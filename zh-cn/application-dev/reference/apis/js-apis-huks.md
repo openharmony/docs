@@ -2596,7 +2596,7 @@ finish(handle: number, options: HuksOptions) : Promise\<HuksResult>
 
 finish操作密钥接口，使用Promise方式异步返回结果。huks.init, huks.update, huks.finish为三段式接口，需要一起使用。
 
->  **说明：** 从API Version 9开始废弃，建议使用[huks.updateSession<sup>9+</sup>](#huksfinishsession9-1)替代。
+>  **说明：** 从API Version 9开始废弃，建议使用[huks.finishSession<sup>9+</sup>](#huksfinishsession9-1)替代。
 
 **系统能力**：SystemCapability.Security.Huks
 

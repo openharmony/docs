@@ -58,6 +58,8 @@ onBundleAdded(bundleName: string): void
 
 **系统能力**：SystemCapability.Customization.EnterpriseDeviceManager
 
+**系统API**: 此接口为系统接口。
+
 **参数：**
 
 | 参数名   | 类型                                  | 必填   | 说明      |
@@ -81,6 +83,8 @@ onBundleRemoved(bundleName: string): void
 应用卸载事件回调。
 
 **系统能力**：SystemCapability.Customization.EnterpriseDeviceManager
+
+**系统API**: 此接口为系统接口。
 
 **参数：**
 

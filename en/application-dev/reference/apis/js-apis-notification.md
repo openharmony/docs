@@ -34,7 +34,11 @@ Publishes a notification. This API uses an asynchronous callback to return the r
 ```js
 // publish callback
 function publishCallback(err) {
-	console.info("==========================>publishCallback=======================>");
+    if (err.code) {
+        console.info("publish failed " + JSON.stringify(err));
+    } else {
+        console.info("publish success");
+    }
 }
 // NotificationRequest object
 var notificationRequest = {
@@ -83,7 +87,7 @@ var notificationRequest = {
     }
 }
 Notification.publish(notificationRequest).then(() => {
-	console.info("==========================>publishCallback=======================>");
+	console.info("publish sucess");
 });
 
 ```
@@ -113,7 +117,11 @@ Publishes a notification. This API uses an asynchronous callback to return the r
 ```js
 // publish callback
 function publishCallback(err) {
-	console.info("==========================>publishCallback=======================>");
+    if (err.code) {
+        console.info("publish failed " + JSON.stringify(err));
+    } else {
+        console.info("publish success");
+    }
 }
 // ID of the user who receives the notification
 var userId = 1
@@ -169,7 +177,7 @@ var notificationRequest = {
 var userId = 1
 
 Notification.publish(notificationRequest, userId).then(() => {
-	console.info("==========================>publishCallback=======================>");
+	console.info("publish sucess");
 });
 ```
 
@@ -195,7 +203,11 @@ Cancels a notification with the specified ID and label. This API uses an asynchr
 ```js
 // cancel callback
 function cancelCallback(err) {
-	console.info("==========================>cancelCallback=======================>");
+    if (err.code) {
+        console.info("cancel failed " + JSON.stringify(err));
+    } else {
+        console.info("cancel success");
+    }
 }
 Notification.cancel(0, "label", cancelCallback)
 ```
@@ -221,7 +233,7 @@ Cancels a notification with the specified ID and label. This API uses a promise 
 
 ```js
 Notification.cancel(0).then(() => {
-	console.info("==========================>cancelCallback=======================>");
+	console.info("cancel sucess");
 });
 ```
 
@@ -247,7 +259,11 @@ Cancels a notification with the specified ID. This API uses an asynchronous call
 ```js
 // cancel callback
 function cancelCallback(err) {
-	console.info("==========================>cancelCallback=======================>");
+    if (err.code) {
+        console.info("cancel failed " + JSON.stringify(err));
+    } else {
+        console.info("cancel success");
+    }
 }
 Notification.cancel(0, cancelCallback)
 ```
@@ -273,7 +289,11 @@ Cancels all notifications. This API uses an asynchronous callback to return the 
 ```js
 // cancel callback
 function cancelAllCallback(err) {
-	console.info("==========================>cancelAllCallback=======================>");
+    if (err.code) {
+        console.info("cancelAll failed " + JSON.stringify(err));
+    } else {
+        console.info("cancelAll success");
+    }
 }
 Notification.cancelAll(cancelAllCallback)
 ```
@@ -292,7 +312,7 @@ Cancels all notifications. This API uses a promise to return the result.
 
 ```js
 Notification.cancelAll().then(() => {
-	console.info("==========================>cancelAllCallback=======================>");
+	console.info("cancelAll sucess");
 });
 ```
 
@@ -322,7 +342,11 @@ Adds a notification slot. This API uses an asynchronous callback to return the r
 ```js
 // addSlot callback
 function addSlotCallBack(err) {
-	console.info("==========================>addSlotCallBack=======================>");
+    if (err.code) {
+        console.info("addSlot failed " + JSON.stringify(err));
+    } else {
+        console.info("addSlot success");
+    }
 }
 // NotificationSlot object
 var notificationSlot = {
@@ -359,7 +383,7 @@ var notificationSlot = {
     type: Notification.SlotType.SOCIAL_COMMUNICATION
 }
 Notification.addSlot(notificationSlot).then(() => {
-	console.info("==========================>addSlotCallback=======================>");
+	console.info("addSlot sucess");
 });
 ```
 
@@ -385,7 +409,11 @@ Adds a notification slot. This API uses an asynchronous callback to return the r
 ```js
 // addSlot callback
 function addSlotCallBack(err) {
-	console.info("==========================>addSlotCallBack=======================>");
+    if (err.code) {
+        console.info("addSlot failed " + JSON.stringify(err));
+    } else {
+        console.info("addSlot success");
+    }
 }
 Notification.addSlot(Notification.SlotType.SOCIAL_COMMUNICATION, addSlotCallBack)
 ```
@@ -410,7 +438,7 @@ Adds a notification slot. This API uses a promise to return the result.
 
 ```js
 Notification.addSlot(Notification.SlotType.SOCIAL_COMMUNICATION).then(() => {
-	console.info("==========================>addSlotCallback=======================>");
+	console.info("addSlot sucess");
 });
 ```
 
@@ -440,7 +468,11 @@ Adds multiple notification slots. This API uses an asynchronous callback to retu
 ```js
 // addSlots callback
 function addSlotsCallBack(err) {
-	console.info("==========================>addSlotsCallBack=======================>");
+    if (err.code) {
+        console.info("addSlots failed " + JSON.stringify(err));
+    } else {
+        console.info("addSlots success");
+    }
 }
 // NotificationSlot object
 var notificationSlot = {
@@ -485,7 +517,7 @@ var notificationSlotArray = new Array();
 notificationSlotArray[0] = notificationSlot;
 
 Notification.addSlots(notificationSlotArray).then(() => {
-	console.info("==========================>addSlotCallback=======================>");
+	console.info("addSlots sucess");
 });
 ```
 
@@ -511,7 +543,11 @@ Obtains a notification slot of the specified type. This API uses an asynchronous
 ```js
 // getSlot callback
 function getSlotCallback(err,data) {
-	console.info("==========================>getSlotCallback=======================>");
+    if (err.code) {
+        console.info("getSlot failed " + JSON.stringify(err));
+    } else {
+        console.info("getSlot success");
+    }
 }
 var slotType = Notification.SlotType.SOCIAL_COMMUNICATION;
 Notification.getSlot(slotType, getSlotCallback)
@@ -544,7 +580,7 @@ Obtains a notification slot of the specified type. This API uses a promise to re
 ```js
 var slotType = Notification.SlotType.SOCIAL_COMMUNICATION;
 Notification.getSlot(slotType).then((data) => {
-	console.info("==========================>getSlotCallback=======================>");
+	console.info("getSlot sucess, data: " + JSON.stringify(data));
 });
 ```
 
@@ -569,7 +605,11 @@ Obtains all notification slots. This API uses an asynchronous callback to return
 ```js
 // getSlots callback
 function getSlotsCallback(err,data) {
-	console.info("==========================>getSlotsCallback=======================>");
+    if (err.code) {
+        console.info("getSlots failed " + JSON.stringify(err));
+    } else {
+        console.info("getSlots success");
+    }
 }
 Notification.getSlots(getSlotsCallback)
 ```
@@ -594,7 +634,7 @@ Obtains all notification slots of this application. This API uses a promise to r
 
 ```js
 Notification.getSlots().then((data) => {
-	console.info("==========================>getSlotsCallback=======================>");
+	console.info("getSlots sucess, data: " + JSON.stringify(data));
 });
 ```
 
@@ -620,7 +660,11 @@ Removes a notification slot of the specified type. This API uses an asynchronous
 ```js
 // removeSlot callback
 function removeSlotCallback(err) {
-	console.info("==========================>removeSlotCallback=======================>");
+    if (err.code) {
+        console.info("removeSlot failed " + JSON.stringify(err));
+    } else {
+        console.info("removeSlot success");
+    }
 }
 var slotType = Notification.SlotType.SOCIAL_COMMUNICATION;
 Notification.removeSlot(slotType,removeSlotCallback)
@@ -647,7 +691,7 @@ Removes a notification slot of the specified type. This API uses a promise to re
 ```js
 var slotType = Notification.SlotType.SOCIAL_COMMUNICATION;
 Notification.removeSlot(slotType).then(() => {
-	console.info("==========================>removeSlotCallback=======================>");
+	console.info("removeSlot sucess");
 });
 ```
 
@@ -671,7 +715,11 @@ Removes all notification slots. This API uses an asynchronous callback to return
 
 ```js
 function removeAllCallBack(err) {
-	console.info("================>removeAllCallBack=======================>");
+    if (err.code) {
+        console.info("removeAllSlots failed " + JSON.stringify(err));
+    } else {
+        console.info("removeAllSlots success");
+    }
 }
 Notification.removeAllSlots(removeAllCallBack)
 ```
@@ -690,7 +738,7 @@ Removes all notification slots. This API uses a promise to return the result.
 
 ```js
 Notification.removeAllSlots().then(() => {
-	console.info("==========================>removeAllCallBack=======================>");
+	console.info("removeAllSlots sucess");
 });
 ```
 
@@ -721,10 +769,14 @@ Subscribes to a notification with the subscription information specified. This A
 ```js
 // subscribe callback
 function subscribeCallback(err) {
-	console.info("==========================>subscribeCallback=======================>");
+    if (err.code) {
+        console.info("subscribe failed " + JSON.stringify(err));
+    } else {
+        console.info("subscribe success");
+    }
 }
 function onConsumeCallback(data) {
-	console.info("==========================>onConsumeCallback=======================>");
+	console.info("Consume callback: " + JSON.stringify(data));
 }
 var subscriber = {
     onConsume: onConsumeCallback
@@ -760,10 +812,14 @@ Subscribes to a notification with the subscription information specified. This A
 
 ```js
 function subscribeCallback(err) {
-	console.info("==========================>subscribeCallback=======================>");
+    if (err.code) {
+        console.info("subscribe failed " + JSON.stringify(err));
+    } else {
+        console.info("subscribe success");
+    }
 }
 function onConsumeCallback(data) {
-	console.info("==========================>onConsumeCallback=======================>");
+	console.info("Consume callback: " + JSON.stringify(data));
 }
 var subscriber = {
     onConsume: onConsumeCallback
@@ -796,13 +852,17 @@ Subscribes to a notification with the subscription information specified. This A
 
 ```js
 function onConsumeCallback(data) {
-	console.info("==========================>onConsumeCallback=======================>");
+    if (err.code) {
+        console.info("subscribe failed " + JSON.stringify(err));
+    } else {
+        console.info("subscribe success");
+    }
 }
 var subscriber = {
     onConsume: onConsumeCallback
 };
 Notification.subscribe(subscriber).then(() => {
-	console.info("==========================>subscribeCallback=======================>");
+	console.info("subscribe sucess");
 });
 ```
 
@@ -831,13 +891,17 @@ Unsubscribes from a notification. This API uses an asynchronous callback to retu
 
 ```js
 function unsubscribeCallback(err) {
-	console.info("==========================>unsubscribeCallback=======================>");
+    if (err.code) {
+        console.info("unsubscribe failed " + JSON.stringify(err));
+    } else {
+        console.info("unsubscribe success");
+    }
 }
-function onConsumeCallback(data) {
-	console.info("==========================>onConsumeCallback=======================>");
+function onCancelCallback(data) {
+	console.info("Cancel callback: " + JSON.stringify(data));
 }
 var subscriber = {
-    onConsume: onConsumeCallback
+    onCancel: onCancelCallback
 }
 Notification.unsubscribe(subscriber, unsubscribeCallback);
 ```
@@ -865,14 +929,14 @@ Unsubscribes from a notification. This API uses a promise to return the result.
 **Example**
 
 ```js
-function onConsumeCallback(data) {
-	console.info("==========================>onConsumeCallback=======================>");
+function onCancelCallback(data) {
+	console.info("Cancel callback: " + JSON.stringify(data));
 }
 var subscriber = {
-    onConsume: onConsumeCallback
+    onCancel: onCancelCallback
 };
 Notification.unsubscribe(subscriber).then(() => {
-	console.info("==========================>unsubscribeCallback=======================>");
+	console.info("unsubscribe sucess");
 });
 ```
 
@@ -902,7 +966,11 @@ Sets whether to enable notification for a specified bundle. This API uses an asy
 
 ```js
 function enableNotificationCallback(err) {
-	console.info("==========================>enableNotificationCallback=======================>");
+    if (err.code) {
+        console.info("enableNotification failed " + JSON.stringify(err));
+    } else {
+        console.info("enableNotification success");
+    }
 }
 var bundle = {
     bundle: "bundleName1",
@@ -938,7 +1006,7 @@ var bundle = {
     bundle: "bundleName1",
 }
 Notification.enableNotification(bundle, false).then(() => {
-	console.info("==========================>enableNotificationCallback=======================>");
+	console.info("enableNotification sucess");
 });
 ```
 
@@ -967,7 +1035,11 @@ Checks whether notification is enabled for a specified bundle. This API uses an 
 
 ```js
 function isNotificationEnabledCallback(err, data) {
-	console.info("==========================>isNotificationEnabledCallback=======================>");
+    if (err.code) {
+        console.info("isNotificationEnabled failed " + JSON.stringify(err));
+    } else {
+        console.info("isNotificationEnabled success");
+    }
 }
 var bundle = {
     bundle: "bundleName1",
@@ -1008,7 +1080,7 @@ var bundle = {
     bundle: "bundleName1",
 }
 Notification.isNotificationEnabled(bundle).then((data) => {
-	console.info("==========================>isNotificationEnabledCallback=======================>");
+	console.info("isNotificationEnabled sucess, data: " + JSON.stringify(data));
 });
 ```
 
@@ -1036,7 +1108,11 @@ Checks whether notification is enabled for this application. This API uses an as
 
 ```js
 function isNotificationEnabledCallback(err, data) {
-	console.info("==========================>isNotificationEnabledCallback=======================>");
+    if (err.code) {
+        console.info("isNotificationEnabled failed " + JSON.stringify(err));
+    } else {
+        console.info("isNotificationEnabled success");
+    }
 }
 
 Notification.isNotificationEnabled(isNotificationEnabledCallback);
@@ -1072,7 +1148,7 @@ Checks whether notification is enabled for this application. This API uses a pro
 
 ```js
 Notification.isNotificationEnabled().then((data) => {
-	console.info("==========================>isNotificationEnabledCallback=======================>");
+	console.info("isNotificationEnabled sucess, data: " + JSON.stringify(data));
 });
 ```
 
@@ -1102,7 +1178,11 @@ Sets whether to enable the notification badge for a specified bundle. This API u
 
 ```js
 function displayBadgeCallback(err) {
-	console.info("==========================>displayBadgeCallback=======================>");
+    if (err.code) {
+        console.info("displayBadge failed " + JSON.stringify(err));
+    } else {
+        console.info("displayBadge success");
+    }
 }
 var bundle = {
     bundle: "bundleName1",
@@ -1138,7 +1218,7 @@ var bundle = {
     bundle: "bundleName1",
 }
 Notification.displayBadge(bundle, false).then(() => {
-	console.info("==========================>displayBadgeCallback=======================>");
+	console.info("displayBadge sucess");
 });
 ```
 
@@ -1167,7 +1247,11 @@ Checks whether the notification badge is enabled for a specified bundle. This AP
 
 ```js
 function isBadgeDisplayedCallback(err, data) {
-	console.info("==========================>isBadgeDisplayedCallback=======================>");
+    if (err.code) {
+        console.info("isBadgeDisplayed failed " + JSON.stringify(err));
+    } else {
+        console.info("isBadgeDisplayed success");
+    }
 }
 var bundle = {
     bundle: "bundleName1",
@@ -1208,7 +1292,7 @@ var bundle = {
     bundle: "bundleName1",
 }
 Notification.isBadgeDisplayed(bundle).then((data) => {
-	console.info("==========================>isBadgeDisplayedCallback=======================>");
+	console.info("isBadgeDisplayed sucess, data: " + JSON.stringify(data));
 });
 ```
 
@@ -1238,7 +1322,11 @@ Sets the notification slot for a specified bundle. This API uses an asynchronous
 
 ```js
 function setSlotByBundleCallback(err) {
-	console.info("==========================>setSlotByBundleCallback=======================>");
+    if (err.code) {
+        console.info("setSlotByBundle failed " + JSON.stringify(err));
+    } else {
+        console.info("setSlotByBundle success");
+    }
 }
 var bundle = {
     bundle: "bundleName1",
@@ -1280,7 +1368,7 @@ var notificationSlot = {
     type: Notification.SlotType.SOCIAL_COMMUNICATION
 }
 Notification.setSlotByBundle(bundle, notificationSlot).then(() => {
-	console.info("==========================>setSlotByBundleCallback=======================>");
+	console.info("setSlotByBundle sucess");
 });
 ```
 
@@ -1309,7 +1397,11 @@ Obtains the notification slots of a specified bundle. This API uses an asynchron
 
 ```js
 function getSlotsByBundleCallback(err, data) {
-	console.info("==========================>getSlotsByBundleCallback=======================>");
+    if (err.code) {
+        console.info("getSlotsByBundle failed " + JSON.stringify(err));
+    } else {
+        console.info("getSlotsByBundle success");
+    }
 }
 var bundle = {
     bundle: "bundleName1",
@@ -1350,7 +1442,7 @@ var bundle = {
     bundle: "bundleName1",
 }
 Notification.getSlotsByBundle(bundle).then((data) => {
-	console.info("==========================>getSlotsByBundleCallback=======================>");
+	console.info("getSlotsByBundle sucess, data: " + JSON.stringify(data));
 });
 ```
 
@@ -1379,7 +1471,11 @@ Obtains the number of notification slots of a specified bundle. This API uses an
 
 ```js
 function getSlotNumByBundleCallback(err, data) {
-	console.info("==========================>getSlotNumByBundleCallback=======================>");
+    if (err.code) {
+        console.info("getSlotNumByBundle failed " + JSON.stringify(err));
+    } else {
+        console.info("getSlotNumByBundle success");
+    }
 }
 var bundle = {
     bundle: "bundleName1",
@@ -1420,7 +1516,7 @@ var bundle = {
     bundle: "bundleName1",
 }
 Notification.getSlotNumByBundle(bundle).then((data) => {
-	console.info("==========================>getSlotNumByBundleCallback=======================>");
+	console.info("getSlotNumByBundle sucess, data: " + JSON.stringify(data));
 });
 ```
 
@@ -1428,7 +1524,7 @@ Notification.getSlotNumByBundle(bundle).then((data) => {
 
 ## Notification.remove
 
-remove(bundle: BundleOption, notificationKey: NotificationKey, callback: AsyncCallback\<void\>): void
+remove(bundle: BundleOption, notificationKey: NotificationKey, reason: RemoveReason, callback: AsyncCallback\<void\>): void
 
 Removes a notification for a specified bundle. This API uses an asynchronous callback to return the result.
 
@@ -1441,16 +1537,21 @@ Removes a notification for a specified bundle. This API uses an asynchronous cal
 **Parameters**
 
 | Name           | Type                               | Mandatory| Description                |
-| --------------- | ----------------------------------- | ---- | -------------------- |
+| --------------- |   ----------------------------------| ---- | -------------------- |
 | bundle          | [BundleOption](#bundleoption)       | Yes  | Bundle information.          |
 | notificationKey | [NotificationKey](#notificationkey) | Yes  | Notification key.            |
+| reason          | [RemoveReason](#removereason9)      | Yes  | Indicates the reason for deleting a notification.        |
 | callback        | AsyncCallback\<void\>               | Yes  | Callback used to return the result.|
 
 **Example**
 
 ```js
 function removeCallback(err) {
-	console.info("==========================>removeCallback=======================>");
+    if (err.code) {
+        console.info("remove failed " + JSON.stringify(err));
+    } else {
+        console.info("remove success");
+    }
 }
 var bundle = {
     bundle: "bundleName1",
@@ -1459,14 +1560,15 @@ var notificationKey = {
     id: 0,
     label: "label",
 }
-Notification.remove(bundle, notificationKey, removeCallback);
+var reason = Notification.RemoveReason.CLICK_REASON_REMOVE;
+Notification.remove(bundle, notificationKey, reason, removeCallback);
 ```
 
 
 
 ## Notification.remove
 
-remove(bundle: BundleOption, notificationKey: NotificationKey): Promise\<void\>
+remove(bundle: BundleOption, notificationKey: NotificationKey, reason: RemoveReason): Promise\<void\>
 
 Removes a notification for a specified bundle. This API uses a promise to return the result.
 
@@ -1482,6 +1584,7 @@ Removes a notification for a specified bundle. This API uses a promise to return
 | --------------- | --------------- | ---- | ---------- |
 | bundle          | [BundleOption](#bundleoption)    | Yes  | Bundle information.|
 | notificationKey | [NotificationKey](#notificationkey) | Yes  | Notification key.  |
+| reason          | [RemoveReason](#removereason9) | Yes  | Reason for deleting the notification.        |
 
 **Example**
 
@@ -1493,8 +1596,9 @@ var notificationKey = {
     id: 0,
     label: "label",
 }
-Notification.remove(bundle, notificationKey).then(() => {
-	console.info("==========================>removeCallback=======================>");
+var reason = Notification.RemoveReason.CLICK_REASON_REMOVE;
+Notification.remove(bundle, notificationKey, reason).then(() => {
+	console.info("remove sucess");
 });
 ```
 
@@ -1502,7 +1606,7 @@ Notification.remove(bundle, notificationKey).then(() => {
 
 ## Notification.remove
 
-remove(hashCode: string, callback: AsyncCallback\<void\>): void
+remove(hashCode: string, reason: RemoveReason, callback: AsyncCallback\<void\>): void
 
 Removes a notification for a specified bundle. This API uses an asynchronous callback to return the result.
 
@@ -1517,6 +1621,7 @@ Removes a notification for a specified bundle. This API uses an asynchronous cal
 | Name    | Type                 | Mandatory| Description                |
 | -------- | --------------------- | ---- | -------------------- |
 | hashCode | string                | Yes  | Unique notification ID.          |
+| reason   | [RemoveReason](#removereason9) | Yes  | Reason for removing the notification.        |
 | callback | AsyncCallback\<void\> | Yes  | Callback used to return the result.|
 
 **Example**
@@ -1525,17 +1630,21 @@ Removes a notification for a specified bundle. This API uses an asynchronous cal
 var hashCode = 'hashCode'
 
 function removeCallback(err) {
-	console.info("==========================>removeCallback=======================>");
+    if (err.code) {
+        console.info("remove failed " + JSON.stringify(err));
+    } else {
+        console.info("remove success");
+    }
 }
-
-Notification.remove(hashCode, removeCallback);
+var reason = Notification.RemoveReason.CANCEL_REASON_REMOVE;
+Notification.remove(hashCode, reason, removeCallback);
 ```
 
 
 
 ## Notification.remove
 
-remove(hashCode: string): Promise\<void\>
+remove(hashCode: string, reason: RemoveReason): Promise\<void\>
 
 Removes a notification for a specified bundle. This API uses a promise to return the result.
 
@@ -1550,14 +1659,15 @@ Removes a notification for a specified bundle. This API uses a promise to return
 | Name    | Type      | Mandatory| Description      |
 | -------- | ---------- | ---- | ---------- |
 | hashCode | string | Yes  | Unique notification ID.|
+| reason   | [RemoveReason](#removereason9) | Yes  | Reason for removing the notification.        |
 
 **Example**
 
 ```js
 var hashCode = 'hashCode'
-
-Notification.remove(hashCode).then(() => {
-	console.info("==========================>removeCallback=======================>");
+var reason = Notification.RemoveReason.CLICK_REASON_REMOVE;
+Notification.remove(hashCode, reason).then(() => {
+	console.info("remove sucess");
 });
 ```
 
@@ -1586,7 +1696,11 @@ Removes all notifications for a specified bundle. This API uses an asynchronous 
 
 ```js
 function removeAllCallback(err) {
-	console.info("==========================>removeAllCallback=======================>");
+    if (err.code) {
+        console.info("removeAll failed " + JSON.stringify(err));
+    } else {
+        console.info("removeAll success");
+    }
 }
 var bundle = {
     bundle: "bundleName1",
@@ -1618,7 +1732,11 @@ Removes all notifications. This API uses an asynchronous callback to return the 
 
 ```js
 function removeAllCallback(err) {
-	console.info("==========================>removeAllCallback=======================>");
+    if (err.code) {
+        console.info("removeAll failed " + JSON.stringify(err));
+    } else {
+        console.info("removeAll success");
+    }
 }
 
 Notification.removeAll(removeAllCallback);
@@ -1648,7 +1766,7 @@ Removes all notifications for a specified user. This API uses a promise to retur
 
 ```js
 Notification.removeAll().then(() => {
-	console.info("==========================>removeAllCallback=======================>");
+	console.info("removeAll sucess");
 });
 ```
 
@@ -1675,7 +1793,11 @@ Removes all notifications for a specified user. This API uses an asynchronous ca
 
 ```js
 function removeAllCallback(err) {
-	console.info("==========================>removeAllCallback=======================>");
+    if (err.code) {
+        console.info("removeAll failed " + JSON.stringify(err));
+    } else {
+        console.info("removeAll success");
+    }
 }
 
 var userId = 1
@@ -1705,7 +1827,11 @@ Removes all notifications for a specified user. This API uses a promise to retur
 
 ```js
 function removeAllCallback(err) {
-	console.info("==========================>removeAllCallback=======================>");
+    if (err.code) {
+        console.info("removeAll failed " + JSON.stringify(err));
+    } else {
+        console.info("removeAll success");
+    }
 }
 
 var userId = 1
@@ -1736,7 +1862,11 @@ Obtains all active notifications. This API uses an asynchronous callback to retu
 
 ```js
 function getAllActiveNotificationsCallback(err, data) {
-	console.info("==========================>getAllActiveNotificationsCallback=======================>");
+    if (err.code) {
+        console.info("getAllActiveNotifications failed " + JSON.stringify(err));
+    } else {
+        console.info("getAllActiveNotifications success");
+    }
 }
 
 Notification.getAllActiveNotifications(getAllActiveNotificationsCallback);
@@ -1766,7 +1896,7 @@ Obtains all active notifications. This API uses a promise to return the result.
 
 ```js
 Notification.getAllActiveNotifications().then((data) => {
-	console.info("==========================>getAllActiveNotificationsCallback=======================>");
+	console.info("getAllActiveNotifications sucess, data: " + JSON.stringify(data));
 });
 ```
 
@@ -1790,7 +1920,11 @@ Obtains the number of active notifications. This API uses an asynchronous callba
 
 ```js
 function getActiveNotificationCountCallback(err, data) {
-	console.info("==========================>getActiveNotificationCountCallback=======================>");
+    if (err.code) {
+        console.info("getActiveNotificationCount failed " + JSON.stringify(err));
+    } else {
+        console.info("getActiveNotificationCount success");
+    }
 }
 
 Notification.getActiveNotificationCount(getActiveNotificationCountCallback);
@@ -1816,7 +1950,7 @@ Obtains the number of active notifications. This API uses a promise to return th
 
 ```js
 Notification.getActiveNotificationCount().then((data) => {
-	console.info("==========================>getActiveNotificationCountCallback=======================>");
+	console.info("getActiveNotificationCount sucess, data: " + JSON.stringify(data));
 });
 ```
 
@@ -1840,7 +1974,11 @@ Obtains active notifications of this application. This API uses an asynchronous 
 
 ```js
 function getActiveNotificationsCallback(err, data) {
-	console.info("==========================>getActiveNotificationsCallback=======================>");
+    if (err.code) {
+        console.info("getActiveNotifications failed " + JSON.stringify(err));
+    } else {
+        console.info("getActiveNotifications success");
+    }
 }
 
 Notification.getActiveNotifications(getActiveNotificationsCallback);
@@ -1866,7 +2004,7 @@ Obtains active notifications of this application. This API uses a promise to ret
 
 ```js
 Notification.getActiveNotifications().then((data) => {
-	console.info("==========================>getActiveNotificationsCallback=======================>");
+	console.info("removeGroupByBundle sucess, data: " + JSON.stringify(data));
 });
 ```
 
@@ -1891,7 +2029,11 @@ Cancels a notification group of this application. This API uses an asynchronous 
 
 ```js
 function cancelGroupCallback(err) {
-   console.info("==========================>cancelGroupCallback=======================>");
+    if (err.code) {
+        console.info("cancelGroup failed " + JSON.stringify(err));
+    } else {
+        console.info("cancelGroup success");
+    }
 }
 
 var groupName = "GroupName";
@@ -1920,7 +2062,7 @@ Cancels a notification group of this application. This API uses a promise to ret
 ```js
 var groupName = "GroupName";
 Notification.cancelGroup(groupName).then(() => {
-	console.info("==========================>cancelGroupPromise=======================>");
+	console.info("cancelGroup sucess");
 });
 ```
 
@@ -1950,7 +2092,11 @@ Removes a notification group for a specified bundle. This API uses an asynchrono
 
 ```js
 function removeGroupByBundleCallback(err) {
-   console.info("==========================>removeGroupByBundleCallback=======================>");
+    if (err.code) {
+        console.info("removeGroupByBundle failed " + JSON.stringify(err));
+    } else {
+        console.info("removeGroupByBundle success");
+    }
 }
 
 var bundleOption = {bundle: "Bundle"};
@@ -1986,7 +2132,7 @@ Removes a notification group for a specified bundle. This API uses a promise to 
 var bundleOption = {bundle: "Bundle"};
 var groupName = "GroupName";
 Notification.removeGroupByBundle(bundleOption, groupName).then(() => {
-	console.info("==========================>removeGroupByBundlePromise=======================>");
+	console.info("removeGroupByBundle sucess");
 });
 ```
 
@@ -2015,7 +2161,11 @@ Sets the DND time. This API uses an asynchronous callback to return the result.
 
 ```js
 function setDoNotDisturbDateCallback(err) {
-   console.info("==========================>setDoNotDisturbDateCallback=======================>");
+    if (err.code) {
+        console.info("setDoNotDisturbDate failed " + JSON.stringify(err));
+    } else {
+        console.info("setDoNotDisturbDate success");
+    }
 }
 
 var doNotDisturbDate = {
@@ -2056,7 +2206,7 @@ var doNotDisturbDate = {
     end: new Date(2021, 11, 15, 18, 0)
 }
 Notification.setDoNotDisturbDate(doNotDisturbDate).then(() => {
-	console.info("==========================>setDoNotDisturbDatePromise=======================>");
+	console.info("setDoNotDisturbDate sucess");
 });
 ```
 
@@ -2085,7 +2235,11 @@ Sets the DND time for a specified user. This API uses an asynchronous callback t
 
 ```js
 function setDoNotDisturbDateCallback(err) {
-   console.info("==========================>setDoNotDisturbDateCallback=======================>");
+    if (err.code) {
+        console.info("setDoNotDisturbDate failed " + JSON.stringify(err));
+    } else {
+        console.info("setDoNotDisturbDate success");
+    }
 }
 
 var doNotDisturbDate = {
@@ -2132,7 +2286,7 @@ var doNotDisturbDate = {
 var userId = 1
 
 Notification.setDoNotDisturbDate(doNotDisturbDate, userId).then(() => {
-	console.info("==========================>setDoNotDisturbDatePromise=======================>");
+	console.info("setDoNotDisturbDate sucess");
 });
 ```
 
@@ -2159,7 +2313,11 @@ Obtains the DND time. This API uses an asynchronous callback to return the resul
 
 ```js
 function getDoNotDisturbDateCallback(err,data) {
-   console.info("==========================>getDoNotDisturbDateCallback=======================>");
+    if (err.code) {
+        console.info("getDoNotDisturbDate failed " + JSON.stringify(err));
+    } else {
+        console.info("getDoNotDisturbDate success");
+    }
 }
 
 Notification.getDoNotDisturbDate(getDoNotDisturbDateCallback);
@@ -2189,7 +2347,7 @@ Obtains the DND time. This API uses a promise to return the result.
 
 ```js
 Notification.getDoNotDisturbDate().then((data) => {
-	console.info("==========================>getDoNotDisturbDatePromise=======================>");
+	console.info("getDoNotDisturbDate sucess, data: " + JSON.stringify(data));
 });
 ```
 
@@ -2217,7 +2375,11 @@ Obtains the DND time of a specified user. This API uses an asynchronous callback
 
 ```js
 function getDoNotDisturbDateCallback(err,data) {
-   console.info("==========================>getDoNotDisturbDateCallback=======================>");
+    if (err.code) {
+        console.info("getDoNotDisturbDate failed " + JSON.stringify(err));
+    } else {
+        console.info("getDoNotDisturbDate success");
+    }
 }
 
 var userId = 1
@@ -2257,7 +2419,7 @@ Obtains the DND time of a specified user. This API uses a promise to return the 
 var userId = 1
 
 Notification.getDoNotDisturbDate(userId).then((data) => {
-	console.info("==========================>getDoNotDisturbDatePromise=======================>");
+	console.info("getDoNotDisturbDate sucess, data: " + JSON.stringify(data));
 });
 ```
 
@@ -2284,7 +2446,11 @@ Checks whether the DND mode is supported. This API uses an asynchronous callback
 
 ```js
 function supportDoNotDisturbModeCallback(err,data) {
-   console.info("==========================>supportDoNotDisturbModeCallback=======================>");
+    if (err.code) {
+        console.info("supportDoNotDisturbMode failed " + JSON.stringify(err));
+    } else {
+        console.info("supportDoNotDisturbMode success");
+    }
 }
 
 Notification.supportDoNotDisturbMode(supportDoNotDisturbModeCallback);
@@ -2314,7 +2480,7 @@ Checks whether the DND mode is supported. This API uses a promise to return the 
 
 ```js
 Notification.supportDoNotDisturbMode().then((data) => {
-	console.info("==========================>supportDoNotDisturbModePromise=======================>");
+	console.info("supportDoNotDisturbMode sucess, data: " + JSON.stringify(data));
 });
 ```
 
@@ -2340,7 +2506,11 @@ Checks whether a specified template exists. This API uses an asynchronous callba
 ```javascript
 var templateName = 'process';
 function isSupportTemplateCallback(err, data) {
-    console.info("isSupportTemplateCallback");
+    if (err.code) {
+        console.info("isSupportTemplate failed " + JSON.stringify(err));
+    } else {
+        console.info("isSupportTemplate success");
+    }
 }
 
 Notification.isSupportTemplate(templateName, isSupportTemplateCallback);
@@ -2374,7 +2544,7 @@ Checks whether a specified template exists. This API uses a promise to return th
 var templateName = 'process';
 
 Notification.isSupportTemplate(templateName).then((data) => {
-    console.info("isSupportTemplateCallback");
+    console.info("isSupportTemplate success, data: " + JSON.stringify(data));
 });
 ```
 
@@ -2398,7 +2568,11 @@ Requests notification to be enabled for this application. This API uses an async
 
 ```javascript
 function requestEnableNotificationCallback() {
-    console.log('------------- requestEnabledNotification --------------');
+    if (err.code) {
+        console.info("requestEnableNotification failed " + JSON.stringify(err));
+    } else {
+        console.info("requestEnableNotification success");
+    }
 };
 
 Notification.requestEnableNotification(requestEnableNotificationCallback);
@@ -2419,7 +2593,7 @@ Requests notification to be enabled for this application. This API uses a promis
 ```javascript
 Notification.requestEnableNotification()
     .then(() => {
-        console.info("requestEnableNotification ");
+        console.info("requestEnableNotification sucess");
 	});
 ```
 
@@ -2447,7 +2621,11 @@ Sets whether this device supports distributed notifications. This API uses an as
 
 ```javascript
 function enabledNotificationCallback() {
-    console.log('----------- enableDistributed ------------');
+    if (err.code) {
+        console.info("enableDistributed failed " + JSON.stringify(err));
+    } else {
+        console.info("enableDistributed success");
+    }
 };
 
 var enable = true
@@ -2482,7 +2660,7 @@ var enable = true
 
 Notification.enableDistributed(enable)
     .then(() => {
-        console.log('-------- enableDistributed ----------');
+        console.info("enableDistributed sucess");
     });
 ```
 
@@ -2505,7 +2683,11 @@ Obtains whether this device supports distributed notifications. This API uses an
 
 ```javascript
 function isDistributedEnabledCallback() {
-    console.log('----------- isDistributedEnabled ------------');
+    if (err.code) {
+        console.info("isDistributedEnabled failed " + JSON.stringify(err));
+    } else {
+        console.info("isDistributedEnabled success");
+    }
 };
 
 Notification.isDistributedEnabled(isDistributedEnabledCallback);
@@ -2532,7 +2714,7 @@ Obtains whether this device supports distributed notifications. This API uses a 
 ```javascript
 Notification.isDistributedEnabled()
     .then((data) => {
-        console.log('-------- isDistributedEnabled ----------');
+        console.info("isDistributedEnabled sucess, data: " + JSON.stringify(data));
     });
 ```
 
@@ -2561,7 +2743,11 @@ Sets whether an application supports distributed notifications based on the bund
 
 ```javascript
 function enableDistributedByBundleCallback() {
-    console.log('----------- enableDistributedByBundle ------------');
+    if (err.code) {
+        console.info("enableDistributedByBundle failed " + JSON.stringify(err));
+    } else {
+        console.info("enableDistributedByBundle success");
+    }
 };
 
 var bundle = {
@@ -2605,7 +2791,7 @@ var enable = true
 
 Notification.enableDistributedByBundle(bundle, enable)
     .then(() => {
-        console.log('-------- enableDistributedByBundle ----------');
+        console.info("enableDistributedByBundle sucess");
     });
 ```
 
@@ -2632,7 +2818,11 @@ Obtains whether an application supports distributed notifications based on the b
 
 ```javascript
 function isDistributedEnabledByBundleCallback(data) {
-    console.log('----------- isDistributedEnabledByBundle ------------', data);
+    if (err.code) {
+        console.info("isDistributedEnabledByBundle failed " + JSON.stringify(err));
+    } else {
+        console.info("isDistributedEnabledByBundle success");
+    }
 };
 
 var bundle = {
@@ -2677,7 +2867,7 @@ var bundle = {
 
 Notification.isDistributedEnabledByBundle(bundle)
     .then((data) => {
-        console.log('-------- isDistributedEnabledByBundle ----------', data);
+        console.info("isDistributedEnabledByBundle sucess, data: " + JSON.stringify(data));
     });
 ```
 
@@ -2704,7 +2894,11 @@ Obtains the notification reminder type. This API uses an asynchronous callback t
 
 ```javascript
 function getDeviceRemindTypeCallback(data) {
-    console.log('----------- getDeviceRemindType ------------', data);
+    if (err.code) {
+        console.info("getDeviceRemindType failed " + JSON.stringify(err));
+    } else {
+        console.info("getDeviceRemindType success");
+    }
 };
 
 Notification.getDeviceRemindType(getDeviceRemindTypeCallback);
@@ -2735,7 +2929,7 @@ Obtains the notification reminder type. This API uses a promise to return the re
 ```javascript
 Notification.getDeviceRemindType()
     .then((data) => {
-        console.log('-------- getDeviceRemindType ----------', data);
+        console.info("getDeviceRemindType sucess, data: " + JSON.stringify(data));
     });
 ```
 
@@ -2766,7 +2960,11 @@ Publishes an agent-powered notification. This API uses an asynchronous callback 
 ```js
 // Callback for publishAsBundle
 function publishAsBundleCallback(err) {
-	console.info("==========================>publishAsBundleCallback=======================>");
+    if (err.code) {
+        console.info("publishAsBundle failed " + JSON.stringify(err));
+    } else {
+        console.info("publishAsBundle success");
+    }
 }
 // Bundle name of the application whose notification function is taken over by the reminder agent
 let representativeBundle = "com.example.demo"
@@ -2830,7 +3028,7 @@ var notificationRequest = {
 }
 
 Notification.publishAsBundle(notificationRequest, representativeBundle, userId).then(() => {
-	console.info("==========================>publishAsBundleCallback=======================>");
+	console.info("publishAsBundle sucess");
 });
 ```
 
@@ -2862,7 +3060,11 @@ Cancels a notification published by the reminder agent. This API uses an asynchr
 ```js
 //cancelAsBundle
 function cancelAsBundleCallback(err) {
-	console.info("==========================>cancelAsBundleCallback=======================>");
+    if (err.code) {
+        console.info("cancelAsBundle failed " + JSON.stringify(err));
+    } else {
+        console.info("cancelAsBundle success");
+    }
 }
 // Bundle name of the application whose notification function is taken over by the reminder agent
 let representativeBundle = "com.example.demo"
@@ -2903,7 +3105,7 @@ let representativeBundle = "com.example.demo"
 let userId = 100
 
 Notification.cancelAsBundle(0, representativeBundle, userId).then(() => {
-	console.info("==========================>cancelAsBundleCallback=======================>");
+	console.info("cancelAsBundle success");
 });
 ```
 
@@ -2933,7 +3135,11 @@ Sets the enabled status for a notification slot of a specified type. This API us
 ```js
 //enableNotificationSlot
 function enableSlotCallback(err) {
-    console.log('===================>enableSlotCallback==================>');
+    if (err.code) {
+        console.info("enableNotificationSlot failed " + JSON.stringify(err));
+    } else {
+        console.info("enableNotificationSlot success");
+    }
 };
 
 Notification.enableNotificationSlot(
@@ -2971,7 +3177,7 @@ Notification.enableNotificationSlot(
     { bundle: "ohos.samples.notification", },
     Notification.SlotType.SOCIAL_COMMUNICATION,
     true).then(() => {
-        console.log('====================>enableNotificationSlot====================>');
+        console.info("enableNotificationSlot sucess");
     });
 ```
 
@@ -3000,7 +3206,11 @@ Obtains the enabled status of the notification slot of a specified type. This AP
 ```js
 //isNotificationSlotEnabled
 function getEnableSlotCallback(err, data) {
-    console.log('===================>getEnableSlotCallback==================');
+    if (err.code) {
+        console.info("isNotificationSlotEnabled failed " + JSON.stringify(err));
+    } else {
+        console.info("isNotificationSlotEnabled success");
+    }
 };
 
 Notification.isNotificationSlotEnabled(
@@ -3042,7 +3252,7 @@ Notification.isNotificationSlotEnabled(
     { bundle: "ohos.samples.notification", },
     Notification.SlotType.SOCIAL_COMMUNICATION
     ).then((data) => {
-      console.log('====================>isNotificationSlotEnabled====================>');
+      console.info("isNotificationSlotEnabled success, data: " + JSON.stringify(data));
     });
 ```
 
@@ -3074,7 +3284,11 @@ let userId = 100;
 let enable = true;
 
 function setSyncNotificationEnabledWithoutAppCallback(err) {
-    console.log('setSyncNotificationEnabledWithoutAppCallback');
+    if (err.code) {
+        console.info("setSyncNotificationEnabledWithoutApp failed " + JSON.stringify(err));
+    } else {
+        console.info("setSyncNotificationEnabledWithoutApp success");
+    }
 }
 
 Notification.setSyncNotificationEnabledWithoutApp(userId, enable, setSyncNotificationEnabledWithoutAppCallback);
@@ -3113,11 +3327,11 @@ let userId = 100;
 let enable = true;
 
 Notification.setSyncNotificationEnabledWithoutApp(userId, enable)
-    .then((data) => {
-        console.log('setSyncNotificationEnabledWithoutApp');
+    .then(() => {
+        console.info('setSyncNotificationEnabledWithoutApp');
     })
     .catch((err) => {
-        console.log('setSyncNotificationEnabledWithoutApp, err:', err);
+        console.info('setSyncNotificationEnabledWithoutApp, err:', err);
     });
 ```
 
@@ -3148,9 +3362,9 @@ let userId = 100;
 
 function getSyncNotificationEnabledWithoutAppCallback(data, err) {
     if (err) {
-        console.log('getSyncNotificationEnabledWithoutAppCallback, err' + err);
+        console.info('getSyncNotificationEnabledWithoutAppCallback, err' + err);
     } else {
-        console.log('getSyncNotificationEnabledWithoutAppCallback, data' + data);
+        console.info('getSyncNotificationEnabledWithoutAppCallback, data' + data);
     }
 }
 
@@ -3189,10 +3403,10 @@ let userId = 100;
 
 Notification.getSyncNotificationEnabledWithoutApp(userId)
     .then((data) => {
-        console.log('getSyncNotificationEnabledWithoutApp, data:', data);
+        console.info('getSyncNotificationEnabledWithoutApp, data:', data);
     })
     .catch((err) => {
-        console.log('getSyncNotificationEnabledWithoutApp, err:', err);
+        console.info('getSyncNotificationEnabledWithoutApp, err:', err);
     });
 ```
 
@@ -3236,7 +3450,7 @@ function onConsumeCallback(data) {
     let wantAgent = data.wantAgent;
     wantAgent .getWant(wantAgent)
         .then((data1) => {
-            console.log('===> getWant success want:' + JSON.stringify(data1));
+            console.info('===> getWant success want:' + JSON.stringify(data1));
         })
         .catch((err) => {
             console.error('===> getWant failed because' + JSON.stringify(err));
@@ -3877,3 +4091,14 @@ Notification.subscribe(subscriber, subscribeCallback);
 | TYPE_NORMAL          | 0   | Normal notification.           |
 | TYPE_CONTINUOUS      | 1   | Continuous notification.           |
 | TYPE_TIMER           | 2   | Timed notification.           |
+
+## RemoveReason<sup>9+</sup>
+
+**System capability**: SystemCapability.Notification.Notification
+
+**System API**: This is a system API and cannot be called by third-party applications.
+
+| Name                | Value | Description                 |
+| -------------------- | --- | -------------------- |
+| CLICK_REASON_REMOVE  | 1   | The notification is removed due to a click on it.   |
+| CANCEL_REASON_REMOVE | 2   | The notification is removed by the user.        |

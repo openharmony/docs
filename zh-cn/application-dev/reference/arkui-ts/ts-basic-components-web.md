@@ -16,7 +16,7 @@
 
 ## 接口
 
-Web(options: { src: ResourceStr, controller: WebController })
+Web(options: { src: ResourceStr, controller: WebController | WebviewController})
 
 > **说明：**
 >
@@ -27,7 +27,7 @@ Web(options: { src: ResourceStr, controller: WebController })
 | 参数名        | 参数类型                            | 必填   | 参数描述    |
 | ---------- | ------------------------------- | ---- | ------- |
 | src        | [ResourceStr](ts-types.md)                           | 是    | 网页资源地址。 |
-| controller | [WebController](#webcontroller) | 否    | 控制器。    |
+| controller | [WebController](#webcontroller) 或 [WebviewController](../apis/js-apis-webview.md#webviewcontroller) |是    | 控制器。    |
 
 **示例：**
 
@@ -38,6 +38,21 @@ Web(options: { src: ResourceStr, controller: WebController })
   @Component
   struct WebComponent {
     controller: WebController = new WebController();
+    build() {
+      Column() {
+        Web({ src: 'www.example.com', controller: this.controller })
+      }
+    }
+  }
+  ```
+  ```ts
+  // xxx.ets
+  import web_webview from '@ohos.web.webview'
+
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: web_webview.WebviewController = new web_webview.WebviewController();
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
@@ -108,7 +123,7 @@ domStorageAccess(domStorageAccess: boolean)
 
 fileAccess(fileAccess: boolean)
 
-设置是否开启应用中文件系统的访问，默认启用。[$rawfile(filepath/filename)](../../ui/ts-resource-access.md)中rawfile路径的文件不受该属性影响而限制访问。
+设置是否开启应用中文件系统的访问，默认启用。[$rawfile(filepath/filename)](../../quick-start/resource-categories-and-access.md)中rawfile路径的文件不受该属性影响而限制访问。
 
 **参数：**
 
@@ -137,7 +152,7 @@ fileAccess(fileAccess: boolean)
 
 fileFromUrlAccess(fileFromUrlAccess: boolean)
 
-设置是否允许通过网页中的JavaScript脚本访问应用文件系统中的内容，默认未启用。[$rawfile(filepath/filename)](../../ui/ts-resource-access.md)中rawfile路径的文件不受该属性影响而限制访问。
+设置是否允许通过网页中的JavaScript脚本访问应用文件系统中的内容，默认未启用。[$rawfile(filepath/filename)](../../quick-start/resource-categories-and-access.md)中rawfile路径的文件不受该属性影响而限制访问。
 
 **参数：**
 
@@ -193,7 +208,7 @@ imageAccess(imageAccess: boolean)
 ### javaScriptProxy
 
 javaScriptProxy(javaScriptProxy: { object: object, name: string, methodList: Array\<string\>,
-    controller: WebController })
+    controller: WebController | WebviewController})
 
 注入JavaScript对象到window对象中，并在window对象中调用该对象的方法。所有参数不支持更新。
 
@@ -204,7 +219,7 @@ javaScriptProxy(javaScriptProxy: { object: object, name: string, methodList: Arr
 | object     | object          | 是    | -    | 参与注册的对象。只能声明方法，不能声明属性。    |
 | name       | string          | 是    | -    | 注册对象的名称，与window中调用的对象名一致。 |
 | methodList | Array\<string\> | 是    | -    | 参与注册的应用侧JavaScript对象的方法。  |
-| controller | [WebController](#webcontroller) | 否    | -    | 控制器。    |
+| controller | [WebController](#webcontroller) 或 [WebviewController](../apis/js-apis-webview.md#webviewcontroller) | 是    | -    | 控制器。    |
 
 **示例：**
 
@@ -214,6 +229,39 @@ javaScriptProxy(javaScriptProxy: { object: object, name: string, methodList: Arr
   @Component
   struct WebComponent {
     controller: WebController = new WebController();
+    testObj = {
+      test: (data1, data2, data3) => {
+        console.log("data1:" + data1);
+        console.log("data2:" + data2);
+        console.log("data3:" + data3);
+        return "AceString";
+      },
+      toString: () => {
+        console.log('toString' + "interface instead.");
+      }
+    }
+    build() {
+      Column() {
+        Web({ src: 'www.example.com', controller: this.controller })
+          .javaScriptAccess(true)
+          .javaScriptProxy({
+            object: this.testObj,
+            name: "objName",
+            methodList: ["test", "toString"],
+            controller: this.controller,
+        })
+      }
+    }
+  }
+  ```
+  ```ts
+  // xxx.ets
+  import web_webview from '@ohos.web.webview'
+
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: web_webview.WebviewController = new web_webview.WebviewController();
     testObj = {
       test: (data1, data2, data3) => {
         console.log("data1:" + data1);
@@ -3596,38 +3644,99 @@ postMessage(options: { message: WebMessageEvent, uri: string}): void
 **示例：**
 
   ```ts
-  // xxx.ets
+  // index.ets
   @Entry
   @Component
   struct WebComponent {
     controller: WebController = new WebController();
     ports: WebMessagePort[] = null;
+    @State sendFromEts: string = 'Send this message from ets to HTML';
+    @State receivedFromHtml: string = 'Display received message send from HTML';
+
     build() {
       Column() {
-        Button('postMessage')
+        // 展示接收到的来自HTML的内容
+        Text(this.receivedFromHtml)
+        // 输入框的内容发送到HTML
+        TextInput({placeholder: 'Send this message from ets to HTML'})
+        .onChange((value: string) => {
+          this.sendFromEts = value;
+        })
+
+        // 1、创建两个消息端口
+        Button('1.CreateWebMessagePorts')
+          .onClick(() => {
+            this.ports = this.controller.createWebMessagePorts();
+            console.log("createWebMessagePorts size:" + this.ports.length)
+          })
+
+        // 2、将其中一个消息端口发送到HTML侧，由HTML侧保存并使用。
+        Button('2.PostMessagePort')
           .onClick(() => {
             var sendPortArray = new Array(this.ports[1]);
             var msgEvent = new WebMessageEvent();
-            msgEvent.setData("__init_ports__");
+            msgEvent.setData("__init_port__");
             msgEvent.setPorts(sendPortArray);
             this.controller.postMessage({message: msgEvent, uri: "*"});
           })
-        Web({ src: 'www.example.com', controller: this.controller })
+
+        // 3、另一个消息端口在应用侧注册回调事件。
+        Button('3.RegisterCallback')
+          .onClick(() => {
+              this.ports[0].onMessageEvent((result: string) => {
+                var msg = 'Got msg from HTML: ' + result;
+                this.receivedFromHtml = msg;
+              })
+          })
+
+        // 4、使用应用侧的端口给另一个已经发送到HTML的消息端口发送消息。
+        Button('4.SendDataToHtml5')
+          .onClick(() => {
+            var msg = new WebMessageEvent();
+            msg.setData(this.sendFromEts);
+            this.ports[0].postMessageEvent(msg);
+          })
+        Web({ src: $rawfile("index.html"), controller: this.controller })
+          .javaScriptAccess(true)
+          .fileAccess(true)
       }
     }
   }
-  // xxx.js
+
+  // index.html
+  <!DOCTYPE html>
+  <html>
+      <body>
+          <h1>Web Message Port Demo</h1>
+          <div style="font-size: 24pt;">
+            <input type="button" value="5.SendToEts" onclick="PostMsgToEts(msgFromJS.value);" /><br/>
+            <input id="msgFromJS" type="text" value="send this message from HTML to ets" style="font-size: 16pt;" /><br/>
+          </div>
+          <p class="output">display received message send from ets</p>
+      </body>
+      <script src="index.js"></script>
+  </html>
+
+  // index.js
   var h5Port;
-  window.addEventListener('message', function(event){
-    if (event.data == '__init_ports__') {
+  var output = document.querySelector('.output');
+  window.addEventListener('message', function(event) {
+    if (event.data == '__init_port__') {
       if(event.ports[0] != null) {
-        h5Port = event.ports[0];
+        h5Port = event.ports[0]; // 1. 保存从ets侧发送过来的端口
         h5Port.onmessage = function(event) {
-          console.log('receive message from ets, on message:' + event.data);
+          // 2. 接收ets侧发送过来的消息.
+          var msg = 'Got message from ets:' + event.data;
+          output.innerHTML = msg;
         }
       }
     }
   })
+
+  // 3. 使用h5Port往ets侧发送消息.
+  function PostMsgToEts(data) {
+    h5Port.postMessage(data)
+  }
   ```
 
 ### getUrl<sup>9+</sup>
@@ -4659,7 +4768,7 @@ static deleteOrigin(origin : string): void
   ```
 
 ### getOrigins<sup>9+</sup>
-static getOrigins(callback: AsyncCallback<Array<WebStorageOrigin>>) : void
+static getOrigins(callback: AsyncCallback\<Array\<WebStorageOrigin>>) : void
 
 以回调方式异步获取当前使用Web SQL数据库的所有源的信息。
 
@@ -4703,7 +4812,7 @@ static getOrigins(callback: AsyncCallback<Array<WebStorageOrigin>>) : void
   ```
 
 ### getOrigins<sup>9+</sup>
-static getOrigins() : Promise<Array<WebStorageOrigin>>
+static getOrigins() : Promise\<Array\<WebStorageOrigin>>
 
 以Promise方式异步获取当前使用Web SQL数据库的所有源的信息。
 
@@ -5257,7 +5366,7 @@ close(): void
 ### postMessageEvent<sup>9+</sup>
 postMessageEvent(message: WebMessageEvent): void
 
-发送消息。
+发送消息。完整示例代码参考[postMessage](#postmessage9)
 
 **参数：**
 
@@ -5292,7 +5401,7 @@ postMessageEvent(message: WebMessageEvent): void
 ### onMessageEvent<sup>9+</sup>
 onMessageEvent(callback: (result: string) => void): void
 
-注册回调函数，接收HTML5侧发送过来的消息。
+注册回调函数，接收HTML5侧发送过来的消息。完整示例代码参考[postMessage](#postmessage9)
 
 **参数：**
 
@@ -5364,7 +5473,7 @@ getData(): string
 ### setData<sup>9+</sup>
 setData(data: string): void
 
-设置当前对象中的消息。
+设置当前对象中的消息。完整示例代码参考[postMessage](#postmessage9)
 
 **参数：**
 
@@ -5432,7 +5541,7 @@ getPorts(): Array\<WebMessagePort\>
 ### setPorts<sup>9+</sup>
 setPorts(ports: Array\<WebMessagePort\>): void
 
-设置当前对象中的消息端口。
+设置当前对象中的消息端口。完整示例代码参考[postMessage](#postmessage9)
 
 **参数：**
 
