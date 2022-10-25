@@ -3421,7 +3421,7 @@ setWindowPrivacyMode(isPrivacyMode: boolean, callback: AsyncCallback&lt;void&gt;
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
-**需要权限：** ohos.permission.PRIVACE_WINDOW
+**需要权限：** ohos.permission.PRIVACY_WINDOW
 
 **参数：**
 
@@ -3463,7 +3463,7 @@ setWindowPrivacyMode(isPrivacyMode: boolean): Promise&lt;void&gt;
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
-**需要权限：** ohos.permission.PRIVACE_WINDOW
+**需要权限：** ohos.permission.PRIVACY_WINDOW
 
 **参数：**
 
