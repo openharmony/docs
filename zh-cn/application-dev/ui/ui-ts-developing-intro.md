@@ -117,6 +117,8 @@ struct CompA {
 }
 ```
 
+![component](figures/component.PNG)
+
 ## 组件的状态更新
 
 组件的状态可以通过动态修改组件成员变量的值来更新，下面以示例来进行说明。
@@ -179,6 +181,8 @@ struct TimerComponent {
   }
 }
 ```
+
+![component](figures/component.gif)
 
 **初始创建和渲染：**
 

@@ -127,6 +127,8 @@ struct MyComponent {
 }
 ```
 
+![LazyForEach1](figures/LazyForEach1.gif)
+
 上述代码在页面加载时仅初始化加载三个列表元素，之后每点击一次列表元素，将增加一个列表元素。
 
 ## 使用条件渲染替代显隐控制
@@ -179,6 +181,8 @@ struct MyComponent {
 }
 ```
 
+![isVisible](figures/isVisible.gif)
+
 ## 使用Column/Row替代Flex
 
 由于Flex容器组件默认情况下存在shrink导致二次布局，这会在一定程度上造成页面渲染上的性能劣化。
@@ -212,6 +216,8 @@ struct MyComponent {
   }
 }
 ```
+
+![flex1](figures/flex1.PNG)
 
 ## 设置List组件的宽高
 
@@ -259,7 +265,10 @@ struct MyComponent {
 }
 ```
 
+![list1](figures/list1.gif)
+
 ## 减少应用滑动白块
+
 应用通过增大List/Grid控件的cachedCount参数，调整UI的加载范围。cachedCount表示屏幕外List/Grid预加载item的个数。  
 如果需要请求网络图片，可以在item滑动到屏幕显示之前，提前下载好内容，从而减少滑动白块。  
 如下是使用cachedCount参数的例子：
@@ -269,33 +278,41 @@ struct MyComponent {
 @Component
 struct MyComponent {
   private source: MyDataSource = new MyDataSource();
+
   build() {
     List() {
-      LazyForEach (this.source, item => {
+      LazyForEach(this.source, item => {
         ListItem() {
           Text("Hello" + item)
-            .fontSize(100)
-            .onAppear(()=>{
+            .fontSize(50)
+            .onAppear(() => {
               console.log("appear:" + item)
             })
         }
       })
-    }.cachedCount(3)  // 扩大数值appear日志范围会变大
+    }.cachedCount(3) // 扩大数值appear日志范围会变大
   }
 }
+
 class MyDataSource implements IDataSource {
-  data: number[] = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15];
+  data: number[] = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15];
+
   public totalCount(): number {
     return this.data.length
   }
+
   public getData(index: number): any {
     return this.data[index]
   }
+
   registerDataChangeListener(listener: DataChangeListener): void {
   }
+
   unregisterDataChangeListener(listener: DataChangeListener): void {
   }
 }
 ```
+![list2](figures/list2.gif)
+
 **使用说明：**
 cachedCount的增加会增大UI的cpu、内存开销。使用时需要根据实际情况，综合性能和用户体验进行调整。
