@@ -2,9 +2,9 @@
 
 在前面的章节中，已经讲述了如何管理页面级变量的状态，本章将说明如何管理应用级变量的状态，具体接口说明请参考[应用级变量的状态管理接口](../reference/arkui-ts/ts-state-management.md)。
 
-## [AppStorage](../reference/arkui-ts/ts-state-management.md#appstorage)
+## AppStorage
 
-AppStorage是应用程序中的单例对象，由UI框架在应用程序启动时创建，在应用程序退出时销毁，为应用程序范围内的可变状态属性提供中央存储。
+[AppStorage](../reference/arkui-ts/ts-state-management.md#appstorage)是应用程序中的单例对象，由UI框架在应用程序启动时创建，在应用程序退出时销毁，为应用程序范围内的可变状态属性提供中央存储。
 
 AppStorage包含整个应用程序中需要访问的所有状态属性，只要应用程序保持运行，AppStorage就会保存所有属性及属性值，属性值可以通过唯一的键值进行访问。
 
@@ -84,13 +84,13 @@ struct ComponentA {
 
 ![appstorage](figures/appstorage.gif)
 
-## [LocalStorage](../reference/arkui-ts/ts-state-management.md#localstorage9)
+## LocalStorage
 
 > **说明：** 
 > 
 > 该组件从API version 9开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
-LocalStorage是应用程序中的存储单元，生命周期跟随其关联的Ability。LocalStorage为应用程序范围内的可变状态属性和非可变状态属性提供存储，可变状态属性和非可变状态属性是构建应用程序UI的一部分，如一个Ability的UI。
+[LocalStorage](../reference/arkui-ts/ts-state-management.md#localstorage9)是应用程序中的存储单元，生命周期跟随其关联的Ability。LocalStorage为应用程序范围内的可变状态属性和非可变状态属性提供存储，可变状态属性和非可变状态属性是构建应用程序UI的一部分，如一个Ability的UI。
 
 应用层：一个应用程序可以创建多个LocalStorage实例，应用程序的每一个Ability对应一个LocalStorage实例。
 
@@ -230,9 +230,9 @@ struct Child {
 
 ![appstorage2](figures/appstorage2.gif)
 
-## [PersistentStorage](../reference/arkui-ts/ts-state-management.md#persistentstorage)
+## PersistentStorage
 
-PersistentStorage提供了一些静态方法用来管理应用持久化数据，可以将特定标记的持久化数据链接到AppStorage中，并由AppStorage接口访问对应持久化数据，或者通过@StorageLink装饰器来访问对应key的变量。 
+[PersistentStorage](../reference/arkui-ts/ts-state-management.md#persistentstorage)提供了一些静态方法用来管理应用持久化数据，可以将特定标记的持久化数据链接到AppStorage中，并由AppStorage接口访问对应持久化数据，或者通过@StorageLink装饰器来访问对应key的变量。 
 
 > **说明：**
 >
@@ -269,9 +269,9 @@ struct PersistentComponent {
 
 ![appstorage3](figures/appstorage3.gif)
 
-## [Environment](../reference/arkui-ts/ts-state-management.md#environment)
+## Environment
 
-Environment是框架在应用程序启动时创建的单例对象，它为AppStorage提供了一系列应用程序需要的环境状态数据，这些数据描述了应用程序运行的设备环境，包括系统语言、深浅色模式等等。Environment及其属性是不可变的，所有数据类型均为简单类型。如下示例展示了从Environment获取系统是否开启无障碍屏幕朗读：
+[Environment](../reference/arkui-ts/ts-state-management.md#environment)是框架在应用程序启动时创建的单例对象，它为AppStorage提供了一系列应用程序需要的环境状态数据，这些数据描述了应用程序运行的设备环境，包括系统语言、深浅色模式等等。Environment及其属性是不可变的，所有数据类型均为简单类型。如下示例展示了从Environment获取系统是否开启无障碍屏幕朗读：
 
 ```ts
 Environment.EnvProp('accessibilityEnabled', 'default')
