@@ -1,7 +1,7 @@
 # API Reference Template
 
 ## General Writing Instructions
-> **NOTE** 
+> **NOTE**
 >
 > Delete all writing instructions after you finish the writing.
 
@@ -141,10 +141,19 @@ Describe the method. For details, see the fourth and fifth points in "Writing In
 
 **Return value** (This part is optional. Delete it if there is no return value.)
 
-| Type                                       | Description                                                  |
-| ------------------------------------------ | ------------------------------------------------------------ |
-| string                                     | Describe the return value, for example, what can be done after the return value is obtained. |
-| Promise\<Array<[CustomType](#customtype)>> | Describe the return value. For details about how to write promise methods, see item 14 in "General Writing Instructions." |
+| Type                                      | Description                                           |
+| ------------------------------------------ | ----------------------------------------------- |
+| string                                     | Describe the return value, for example, what can be done after the return value is obtained.|
+| Promise\<Array<[CustomType](#customtype)>> | Describe the return value. For details about how to write promise methods, see item 14 in "General Writing Instructions."|
+
+**Error codes** (This part is optional. Delete it if no error code is thrown.)
+
+For details about the error codes, see [moduleName Error Codes]\(link to the error code document of the corresponding module).
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 1300001  | Repeated operation.               |
+| 1300002  | This window state is abnormal.        |
 
 **Example**
 

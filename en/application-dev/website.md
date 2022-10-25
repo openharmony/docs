@@ -37,7 +37,7 @@
       - [Test Framework Usage](ability/ability-delegator.md)
   - UI Development
     - [ArkUI Overview](ui/arkui-overview.md)
-    - TypeScript-based Declarative Development Paradigm
+    - ArkTS-based Declarative Development Paradigm
       - [Overview](ui/ui-ts-overview.md)
       - Framework Overview
         - File Organization
@@ -47,49 +47,10 @@
           - [Resource File Categories](ui/ui-ts-basic-resource-file-categories.md)
           - [Accessing Resources](ui/ts-resource-access.md)
         - [Pixel Units](ui/ts-pixel-units.md)
-      - Declarative Syntax
-        - [Overview](ui/ts-syntax-intro.md)
-        - General UI Description Specifications
-          - [Basic Concepts](ui/ts-general-ui-concepts.md)
-          - Declarative UI Description Specifications
-            - [Configuration Without Parameters](ui/ts-parameterless-configuration.md)
-            - [Configuration with Mandatory Parameters](ui/ts-configuration-with-mandatory-parameters.md)
-            - [Attribute Configuration](ui/ts-attribution-configuration.md)
-            - [Event Configuration](ui/ts-event-configuration.md)
-            - [Child Component Configuration](ui/ts-child-component-configuration.md)
-          - Componentization
-            - [@Component](ui/ts-component-based-component.md)
-            - [@Entry](ui/ts-component-based-entry.md)
-            - [@Preview](ui/ts-component-based-preview.md)
-            - [@Builder](ui/ts-component-based-builder.md)
-            - [@Extend](ui/ts-component-based-extend.md)
-            - [@CustomDialog](ui/ts-component-based-customdialog.md)
-            - [@Styles](ui/ts-component-based-styles.md)
-        - About UI State Management
-          - [Basic Concepts](ui/ts-ui-state-mgmt-concepts.md)
-          - Managing Component States
-            - [@State](ui/ts-component-states-state.md)
-            - [@Prop](ui/ts-component-states-prop.md)
-            - [@Link](ui/ts-component-states-link.md)
-          - Managing Application States
-            - [AppStorage](ui/ts-application-states-appstorage.md)
-            - [LocalStorage](ui/ui-ts-local-storage.md)
-            - [PersistentStorage](ui/ts-application-states-apis-persistentstorage.md)
-            - [Environment](ui/ts-application-states-apis-environment.md)
-          - Managing Other States
-            - [@Observed and @ObjectLink](ui/ts-other-states-observed-objectlink.md)
-            - [@Consume and @Provide](ui/ts-other-states-consume-provide.md)
-            - [@Watch](ui/ts-other-states-watch.md)
-          - About Rendering Control Syntax
-            - [if/else](ui/ts-rending-control-syntax-if-else.md)
-            - [ForEach](ui/ts-rending-control-syntax-foreach.md)
-            - [LazyForEach](ui/ts-rending-control-syntax-lazyforeach.md)
-        - About @Component
-          - [build Function](ui/ts-function-build.md)
+      - Componentization
           - [Initialization of Custom Components' Member Variables](ui/ts-custom-component-initialization.md)
           - [Custom Component Lifecycle Callbacks](ui/ts-custom-component-lifecycle-callbacks.md)
           - [Component Creation and Re-initialization](ui/ts-component-creation-re-initialization.md)
-        - [About Syntactic Sugar](ui/ts-syntactic-sugar.md)
       - Common Component Development Guidelines
         - [Button](ui/ui-ts-basic-components-button.md)
         - [Web](ui/ui-ts-components-web.md)
@@ -107,7 +68,7 @@
         - [Building a Food Category Grid Layout](ui/ui-ts-building-category-grid-layout.md)
         - [Implementing Page Redirection and Data Transmission](ui/ui-ts-page-redirection-data-transmission.md)
       - [Recommendations for Improving Performance](ui/ts-performance-improvement-recommendation.md)
-    - JavaScript-based Web-like Development Paradigm
+    - JavaScript-compatible Web-like Development Paradigm
       - [Overview](ui/ui-js-overview.md)
       - Framework
         - [File Organization](ui/js-framework-file.md)
@@ -183,9 +144,6 @@
     - [Common Event and Notification Overview](notification/notification-brief.md)
     - [Common Event Development](notification/common-event.md)
     - [Notification Development](notification/notification-guidelines.md)
-    - Agent-Powered Scheduled Reminder
-      - [Agent-Powered Scheduled Reminder Overview](notification/background-agent-scheduled-reminder-overview.md)
-      - [Agent-Powered Scheduled Reminder Development](notification/background-agent-scheduled-reminder-guide.md)
     - [Debugging Assistant Usage](notification/assistant-guidelines.md)
   - Window Manager
     - [Window Overview](windowmanager/window-overview.md)
@@ -313,7 +271,8 @@
   - [Samples](https://gitee.com/openharmony/applications_app_samples/blob/master/README.md)
   - [Codelabs](https://gitee.com/openharmony/codelabs)
 - API References
-  - Component Reference (TypeScript-based Declarative Development Paradigm)
+  - [SysCap List](reference/syscap-list.md)
+  - Component Reference (ArkTS-based Declarative Development Paradigm)
     - Universal Component Information
       - Universal Events
         - [Click Event](reference/arkui-ts/ts-universal-events-click.md)
@@ -446,12 +405,12 @@
     - Canvas Components
       - [Canvas](reference/arkui-ts/ts-components-canvas-canvas.md)
       - [CanvasRenderingContext2D](reference/arkui-ts/ts-canvasrenderingcontext2d.md)
-      - [OffscreenCanvasRenderingConxt2D](reference/arkui-ts/ts-offscreencanvasrenderingcontext2d.md)
-      - [Lottie](reference/arkui-ts/ts-components-canvas-lottie.md)
-      - [Path2D](reference/arkui-ts/ts-components-canvas-path2d.md)
       - [CanvasGradient](reference/arkui-ts/ts-components-canvas-canvasgradient.md)
       - [ImageBitmap](reference/arkui-ts/ts-components-canvas-imagebitmap.md)
       - [ImageData](reference/arkui-ts/ts-components-canvas-imagedata.md)
+      - [OffscreenCanvasRenderingConxt2D](reference/arkui-ts/ts-offscreencanvasrenderingcontext2d.md)
+      - [Path2D](reference/arkui-ts/ts-components-canvas-path2d.md)
+      - [Lottie](reference/arkui-ts/ts-components-canvas-lottie.md)
     - Animation
       - [AnimatorProperty](reference/arkui-ts/ts-animatorproperty.md)
       - [Explicit Animation](reference/arkui-ts/ts-explicit-animation.md)
@@ -460,8 +419,7 @@
         - [Component Transition](reference/arkui-ts/ts-transition-animation-component.md)
         - [Transition of Shared Elements](reference/arkui-ts/ts-transition-animation-shared-elements.md)
       - [Motion Path Animation](reference/arkui-ts/ts-motion-path-animation.md)
-      - [Matrix Transformation](reference/arkui-ts/ts-matrix-transformation.md)
-      - [Interpolation Calculation](reference/arkui-ts/ts-interpolation-calculation.md)
+
     - Global UI Methods
       - Pop-up Window
         - [Alert Dialog Box](reference/arkui-ts/ts-methods-alert-dialog-box.md)
@@ -473,7 +431,7 @@
       - [Menu](reference/arkui-ts/ts-methods-menu.md)
     - [Built-in Enums](reference/arkui-ts/ts-appendix-enums.md)
     - [Types](reference/arkui-ts/ts-types.md)
-  - Component Reference (JavaScript-based Web-like Development Paradigm)
+  - Component Reference (JavaScript-compatible Web-like Development Paradigm)
     - Universal Component Information
       - [Universal Attributes](reference/arkui-js/js-components-common-attributes.md)
       - [Universal Styles](reference/arkui-js/js-components-common-styles.md)
@@ -719,7 +677,6 @@
       - [@ohos.document](reference/apis/js-apis-document.md)
       - [@ohos.environment](reference/apis/js-apis-environment.md)
       - [@ohos.fileio](reference/apis/js-apis-fileio.md)
-      - [@ohos.fileManager](reference/apis/js-apis-filemanager.md)
       - [@ohos.multimedia.medialibrary](reference/apis/js-apis-medialibrary.md)
       - [@ohos.securityLabel](reference/apis/js-apis-securityLabel.md)
       - [@ohos.statfs](reference/apis/js-apis-statfs.md)
@@ -752,6 +709,7 @@
       - [tagSession](reference/apis/js-apis-tagSession.md)
     - Basic Features
       - [@ohos.accessibility](reference/apis/js-apis-accessibility.md)
+      - [@ohos.accessibility.config](reference/apis/js-apis-accessibility-config.md)
       - [@ohos.faultLogger](reference/apis/js-apis-faultLogger.md)
       - [@ohos.hiAppEvent](reference/apis/js-apis-hiappevent.md)
       - [@ohos.hichecker](reference/apis/js-apis-hichecker.md)

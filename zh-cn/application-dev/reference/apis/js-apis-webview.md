@@ -1380,14 +1380,41 @@ import web_webview from '@ohos.web.webview';
 struct WebComponent {
   controller: web_webview.WebviewController = new web_webview.WebviewController();
   ports: web_webview.WebMessagePort[];
+  @State sendFromEts: string = 'Send this message from ets to HTML';
+  @State receivedFromHtml: string = 'Display received message send from HTML';
 
   build() {
     Column() {
+      // 展示接收到的来自HTML的内容
+      Text(this.receivedFromHtml)
+      // 输入框的内容发送到html
+      TextInput({placeholder: 'Send this message from ets to HTML'})
+        .onChange((value: string) => {
+          this.sendFromEts = value;
+      })
+
       Button('postMessage')
         .onClick(() => {
           try {
+            // 1、创建两个消息端口
             this.ports = this.controller.createWebMessagePorts();
+            // 2、将其中一个消息端口发送到HTML侧，由HTML侧保存并使用。
             this.controller.postMessage('__init_port__', [this.ports[0]], '*');
+            // 3、另一个消息端口在应用侧注册回调事件。
+            this.ports[1].onMessageEvent((result: string) => {
+                var msg = 'Got msg from HTML: ' + result;
+                this.receivedFromHtml = msg;
+              })
+          } catch (error) {
+            console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+          }
+        })
+
+      // 4、使用应用侧的端口给另一个已经发送到html的端口发送消息。
+      Button('SendDataToHTML')
+        .onClick(() => {
+          try {
+            this.ports[1].postMessageEvent("post message from ets to HTML");
           } catch (error) {
             console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
           }
@@ -1404,36 +1431,40 @@ struct WebComponent {
 <html>
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>WebView Callback Demo</title>
+    <title>WebView Message Port Demo</title>
 </head>
 
-<body>
-<h1>Message Demo</h1>
-<div>
-    <input type="button" value="SendToEts" onclick="testPostWebMsg(msgFromJS.value);"/><br/>
-    <input id="msgFromJs" type="text" value="Msg From H5 Demo"/><br/>
-</div>
-<p class="output">My body</p>
-</body>
-<script src="xxx.js"></script>
+  <body>
+    <h1>WebView Message Port Demo</h1>
+    <div>
+        <input type="button" value="SendToEts" onclick="PostMsgToEts(msgFromJS.value);"/><br/>
+        <input id="msgFromJs" type="text" value="send this message from HTML to ets"/><br/>
+    </div>
+    <p class="output">display received message send from ets</p>
+  </body>
+  <script src="xxx.js"></script>
 </html>
 ```
 
 ```js
 //xxx.js
 var h5Port;
+var output = document.querySelector('.output');
 window.addEventListener('message', function (event) {
     if (event.data == '__init_port__') {
         if (event.ports[0] != null) {
-            h5Port = event.ports[0];
+            h5Port = event.ports[0]; // 1. 保存从ets侧发送过来的端口
             h5Port.onmessage = function (event) {
-                console.log('receive message from ets, on message:' + event.data);
+              // 2. 接收ets侧发送过来的消息.
+              var msg = 'Got message from ets:' + event.data;
+              output.innerHTML = msg;
             }
         }
     }
 })
 
-function PostWebMsg(data) {
+// 3. 使用h5Port往ets侧发送消息.
+function PostMsgToEts(data) {
     h5Port.postMessage(data);
 }
 ```

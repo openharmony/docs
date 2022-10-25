@@ -20,9 +20,9 @@ getCameraManager(context: Context, callback: AsyncCallback<CameraManager\>): voi
 
 **参数：**
 
-| 名称     | 类型                                            | 必填 | 说明                           |
+| 名称     | 类型                                             | 必填 | 说明                           |
 | -------- | ----------------------------------------------- | ---- | ---------------------------- |
-| context  | Context                                         | 是   | 应用上下文。                   |
+| context  | [Context](../../ability/context-userguide.md)      | 是   | 应用上下文。                   |
 | callback | AsyncCallback<[CameraManager](#cameramanager)\> | 是   | 回调函数，用于获取相机管理器实例。 |
 
 **示例：**
@@ -49,7 +49,7 @@ getCameraManager(context: Context): Promise<CameraManager\>
 
 | 名称    | 类型    | 必填 | 说明         |
 | ------- | ------- | ---- | ------------ |
-| context | Context | 是   | 应用上下文。 |
+| context | [Context](../../ability/context-userguide.md) | 是   | 应用上下文。 |
 
 **返回值：**
 
@@ -194,7 +194,7 @@ getSupportedOutputCapability(camera:CameraDevice, callback: AsyncCallback<Camera
 **示例：**
 
 ```js
-cameraManager.getSupportedOutputCapability(cameradevice， (err, cameras) => {
+cameraManager.getSupportedOutputCapability(cameradevice, (err, cameras) => {
     if (err) {
         console.error(`Failed to get the cameras. ${err.message}`);
         return;
@@ -939,7 +939,7 @@ on(type: 'error', camera:CameraDevice, callback: ErrorCallback<CameraInputError\
 **示例：**
 
 ```js
-cameraInput.on('error', (cameraInputError) => {
+cameraInput.on('error', camera, (cameraInputError) => {
     console.log(`Camera input error code: ${cameraInputError.code}`);
 })
 ```
@@ -995,7 +995,7 @@ cameraInput.on('error', (cameraInputError) => {
 | EXPOSURE_MODE_AUTO            | 1    | 自动曝光模式。 |
 | EXPOSURE_MODE_CONTINUOUS_AUTO | 2    | 连续自动曝光。 |
 
-## FocusMode
+ ## FocusMode
 
 枚举，焦距模式。
 
@@ -1735,7 +1735,7 @@ isExposureModeSupported(aeMode: ExposureMode, callback: AsyncCallback<boolean\>)
 **示例：**
 
 ```js
-captureSession.isExposureModeSupported(camera.ExposureMode.EXPOSURE_MODE_LOCKEN,(err) => {
+captureSession.isExposureModeSupported(camera.ExposureMode.EXPOSURE_MODE_LOCKED,(err) => {
     if (err) {
         console.log(`Failed to check exposure mode supported ${err.message}`);
         return ;
@@ -1838,7 +1838,7 @@ setExposureMode(aeMode: ExposureMode, callback: AsyncCallback<void\>): void
 **示例：**
 
 ```js
-captureSession.setExposureMode(camera.ExposureMode.EXPOSURE_MODE_LOCKEN,(err) => {
+captureSession.setExposureMode(camera.ExposureMode.EXPOSURE_MODE_LOCKED,(err) => {
     if (err) {
         console.log(`Failed to set the exposure mode ${err.message}`);
         return ;
@@ -2622,7 +2622,7 @@ captureSession.isVideoStabilizationModeSupported(camera.VideoStabilizationMode.O
         console.error(`Failed to check whether video stabilization mode supported. ${err.message}`);
         return;
     }
-    console.log(`Callback returned with the successful execution of isVideoStabilizationModeSupported: ${status}`);
+    console.log(`Callback returned with the successful execution of isVideoStabilizationModeSupported`);
 })
 ```
 
@@ -3386,7 +3386,7 @@ photoOutput.on('error', (err, photoOutputError) => {
 
 | 名称 | 类型                                  | 说明                    |
 | ---- | ------------------------------------- | ----------------------- |
-| code | [PhotoOutputError](#photooutputerror) | PhotoOutput中的错误码。 |
+| code | [PhotoOutputErrorCode](#photooutputerrorcode) | PhotoOutput中的错误码。 |
 
 ## VideoOutput
 
@@ -3577,7 +3577,7 @@ videoOutput.on('error', (VideoOutputError) => {
 
 | 名称 | 类型                                  | 说明                    |
 | ---- | ------------------------------------- | ----------------------- |
-| code | [PhotoOutputError](#photooutputerror) | VideoOutput中的错误码。 |
+| code | [PhotoOutputErrorCode](#photooutputerrorcode) | VideoOutput中的错误码。 |
 
 ## MetadataObjectType
 

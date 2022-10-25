@@ -98,6 +98,55 @@ Each subsystem defines the system parameters of its own modules, including the s
 
   ![UGO rule](figure/dac-definition.png)
 
+- SELinux policy for system parameter configuration
+
+  - Add SELinux tags.
+
+    To add a SELinux tag to system parameters, you first need to define the tag in the **/base/security/selinux/sepolicy/base/public/parameter.te** file. For example:
+
+    ```java
+    type servicectrl_param, parameter_attr
+    ```
+
+    After the tag is defined, add the system parameter prefix associated with the tag to **/base/security/selinux/sepolicy/base/public/parameter_contexts**. The following uses the prefix **ohos.servicectrl** as an example:
+
+    ```java
+    ohos.servicectrl.           u:object_r:servicectrl_param:s0
+    ```
+
+  - Grant operation permissions. For example, to grant operation permissions such as map for the init process, add the following content to the **/base/security/selinux/sepolicy/ohos_policy/startup/init/public/init.te** file:
+
+    ```java
+    allow servicectrl_param tmpfs:filesystem associate;
+    allow init servicectrl_param:file { map open read relabelto relabelfrom };
+    ```
+
+  - Set the write permission. For example, grant the system parameter write permission for services such as **init**, **samgr**, and **hdf_devmgr**.
+
+    ```java
+    allow { init samgr hdf_devmgr } servicectrl_param:parameter_service { set };
+    ```
+
+  - Set the read permission. If you want to grant the permission only for certain services, replace **xxx** with the services in the following code:
+
+    ```java
+    allow { xxx } servicectrl_param:file { map open read };
+    ```
+
+  - If you want to grant the permission for all services, use the following code:
+
+    ```java
+    allow { domain -limit_domain } servicectrl_param:file { map open read };
+    ```
+
+-  Suggestions
+
+   Keep only two system parameter tags for each subsystem:
+
+   - A private tag to control system parameter settings.
+
+   - A public tag to grant access from all services.
+
 -  Loading sequence
 
     The following table provides the sequence of loading system parameters.
@@ -110,6 +159,22 @@ Each subsystem defines the system parameters of its own modules, including the s
     | Vendor parameters| /vendor/etc/param/*.para | Load the system parameters defined by vendors with the secondary priority.                            |
     | System parameters| /system/etc/param/*.para | Load the parameters defined by each subsystem. If a system parameter already exists, ignore it.|
     | Persistent parameters| /data/parameters/ | If persistent parameters exist, load them at last. Persistent parameters will overwrite the default system parameters that have been loaded.|
+
+
+#### System Parameter Tag File Size
+
+If one tag corresponds to more than five system parameters, you need to set the size of the system parameter tag file in **/base/startup/init/services/etc/param/ohos.para.size**. The size value is **512** by default.
+
+Configuring rule:
+
+System parameter tag = Size
+
+Example:
+
+```java
+startup_init_param=40960
+```
+
 
 ### Constraints
 

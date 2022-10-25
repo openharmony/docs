@@ -2,7 +2,7 @@
 
 Provides system event logging APIs for system HAP applications.
 
-> **NOTE**<br>
+> **NOTE**
 > - The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 > - The APIs of this module are system APIs.
 
@@ -19,7 +19,7 @@ Enumerates event types.
 
 **System capability**: SystemCapability.HiviewDFX.HiSysEvent
 
-| Name| Default Value| Description|
+| Name | Default Value | Description |
 | -------- | -------- | -------- |
 | FAULT | 1 | Error event.|
 | STATISTIC | 2 | Statistic event.|
@@ -32,7 +32,7 @@ Defines a system event.
 
 **System capability**: SystemCapability.HiviewDFX.HiSysEvent
 
-| Name| Type| Mandatory| Description|
+| Name| Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
 | domain | string | Yes| Event domain.|
 | name | string | Yes| Event name.|
@@ -50,7 +50,7 @@ Writes event information to the event file. This API uses an asynchronous callba
 
 **Parameters**
 
-| Name   | Type                     | Mandatory| Description                                                        |
+| Name   | Type                     | Mandatory | Description                                                        |
 | --------- | ------------------------- | ---- | ------------------------------------------------------------ |
 | info | [SysEventInfo](#syseventinfo) | Yes| System event information.|
 | callback  | AsyncCallback&lt;void&gt; | Yes| Callback used to process the received return value.<br>- Value **0**: The event verification is successful, and the event will be written to the event file asynchronously. <br>- A value greater than **0**: Invalid parameters are present in the event, and the event will be written to the event file asynchronously after the invalid parameters are ignored.<br>- A value smaller than **0**: The event parameter verification fails, and the event will not be written to the event file.|
@@ -91,13 +91,13 @@ Writes event information to the event file. This API uses a promise to return th
 
 **Parameters**
 
-| Name   | Type                   | Mandatory| Description|
+| Name   | Type                   | Mandatory | Description|
 | --------- | ----------------------- | ---- | --------------- |
 | info | [SysEventInfo](#syseventinfo) | Yes  | System event information.|
 
 **Return value**
 
-| Type               | Description                                                        |
+| Type               | Description                                                   |
 | ------------------- | ------------------------------------------------------------ |
 | Promise&lt;void&gt; | Promise used to return the result. Depending on whether event writing is successful, you can use the **then()** or **catch()** method to process the callback.|
 
@@ -138,7 +138,7 @@ Enumerates matching rule types.
 
 **System capability**: SystemCapability.HiviewDFX.HiSysEvent
 
-| Name| Default Value| Description|
+| Name | Default Value | Description |
 | -------- | -------- | -------- |
 | WHOLE_WORD | 1 | Whole word matching.|
 | PREFIX | 2 | Prefix matching.|
@@ -150,7 +150,7 @@ Defines rules for event subscription.
 
 **System capability**: SystemCapability.HiviewDFX.HiSysEvent
 
-| Name| Type| Mandatory| Description|
+| Name| Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
 | domain | string | Yes| Event domain.|
 | name | string | Yes| Event name.|
@@ -163,7 +163,7 @@ Defines a watcher for event subscription.
 
 **System capability**: SystemCapability.HiviewDFX.HiSysEvent
 
-| Name| Type| Mandatory| Description|
+| Name| Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
 | rules | [WatchRule](#watchrule)[] | Yes| Array of matching rules for event subscription.|
 | onEvent | function | Yes| Callback for event subscription: (info: [SysEventInfo](#syseventinfo)) => void|
@@ -181,7 +181,7 @@ Adds a watcher for event subscription.
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name| Type | Mandatory | Description |
 | ------ | ----------------------------- | ---- | ------------------------ |
 | watcher | [Watcher](#watcher) | Yes| Watcher for event subscription.|
 
@@ -223,7 +223,7 @@ Removes a watcher used for event subscription.
 
 **Parameters**
 
-| Name| Type | Mandatory| Description |
+| Name| Type | Mandatory | Description |
 | ------ | ------------- | ---- | ------------------------ |
 | watcher | [Watcher](#watcher) | Yes| Watcher for event subscription.|
 
@@ -260,7 +260,7 @@ Defines arguments for event query.
 
 **System capability**: SystemCapability.HiviewDFX.HiSysEvent
 
-| Name| Type| Mandatory| Description|
+| Name| Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
 | beginTime | number | Yes| Start time (13-digit timestamp) for event query.|
 | endTime | number | Yes| End time (13-digit timestamp) for event query.|
@@ -272,7 +272,7 @@ Defines rules for event query.
 
 **System capability**: SystemCapability.HiviewDFX.HiSysEvent
 
-| Name| Type| Mandatory| Description|
+| Name| Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
 | domain | string | Yes| Event domain.|
 | names | string[] | Yes| Array of event names.|
@@ -283,7 +283,7 @@ Defines an event query instance.
 
 **System capability**: SystemCapability.HiviewDFX.HiSysEvent
 
-| Name| Type| Mandatory| Description|
+| Name| Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
 | onQuery | function | Yes| Callback of queried events: (infos: [SysEventInfo](#syseventinfo)[]) => void|
 | onComplete | function | Yes| Callback of query result statistics: (reason: number, total: number) => void|
@@ -300,7 +300,7 @@ Queries system events.
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name| Type | Mandatory | Description |
 | ------ | ----------------------------- | ---- | ------------------------ |
 | queryArg | [QueryArg](#queryarg) | Yes  | Arguments for event query.|
 | rules | [QueryRule](#queryrule)[] | Yes  | Array of event query rules.|

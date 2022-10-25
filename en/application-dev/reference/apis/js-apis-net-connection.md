@@ -61,11 +61,37 @@ connection.getDefaultNet().then(function (netHandle) {
 })
 ```
 
+## connection.getDefaultNetSync
+
+getDefaultNetSync(): NetHandle;
+
+Obtains the default active data network in synchronous mode.
+
+**Required permission**: ohos.permission.GET_NETWORK_INFO
+
+**System capability**: SystemCapability.Communication.NetManager.Core
+
+**Return value**
+
+| Type     | Description                              |
+| --------- | ---------------------------------- |
+| NetHandle | Handle of the default active data network.|
+
+**Example**
+
+```js
+let netHandle = connection.getDefaultNetSync();
+```
+
+
 ## connection.hasDefaultNet
 
 hasDefaultNet(callback: AsyncCallback\<boolean>): void
 
 Checks whether the default data network is activated. This API uses an asynchronous callback to return the result.
+The default network priority is as follows: Ethernet > Wi-Fi > cellular. When only one network is connected, it is treated as the default data network.
+
+**Required permission**: ohos.permission.GET_NETWORK_INFO
 
 **System capability**: SystemCapability.Communication.NetManager.Core
 
@@ -89,6 +115,9 @@ connection.hasDefaultNet(function (error, has) {
 hasDefaultNet(): Promise\<boolean>
 
 Checks whether the default data network is activated. This API uses a promise to return the result.
+The default network priority is as follows: Ethernet > Wi-Fi > cellular. When only one network is connected, it is treated as the default data network.
+
+**Required permission**: ohos.permission.GET_NETWORK_INFO
 
 **System capability**: SystemCapability.Communication.NetManager.Core
 
@@ -160,7 +189,7 @@ connection.getAllNets().then(function (nets) {
 
 getConnectionProperties(netHandle: NetHandle, callback: AsyncCallback\<ConnectionProperties>): void
 
-Obtains connection properties of the network corresponding to given network handle. This API uses an asynchronous callback to return the result.
+Obtains connection properties of the network corresponding to the given network handle. This API uses an asynchronous callback to return the result.
 
 **Required permission**: ohos.permission.GET_NETWORK_INFO
 
@@ -791,6 +820,108 @@ Before invoking NetHandle APIs, call **getNetHandle** to obtain a **NetHandle** 
 | Name| Type  | Description                     |
 | ------ | ------ | ------------------------- |
 | netId  | number | Network ID. The value must be greater than or equal to 100.|
+
+### bindSocket
+
+bindSocket(socketParam: TCPSocket \| UDPSocket, callback: AsyncCallback\<void>): void;
+
+Binds a **TCPSocket** or **UDPSocket** object to the data network. This API uses an asynchronous callback to return the result.
+
+**Required permission**: ohos.permission.GET_NETWORK_INFO
+
+**System capability**: SystemCapability.Communication.NetManager.Core
+
+**Parameters**
+
+| Name     | Type                    | Mandatory| Description                           |
+| ----------- | ------------------------ | ---- | -------------------------------|
+| socketParam | [TCPSocket](js-apis-socket.md#tcpsocket) \| [UDPSocket](js-apis-socket.md#udpsocket) | Yes| **TCPSocket** or **UDPSocket** object.|
+| callback    | AsyncCallback\<void>      | Yes  | Callback used to return the result.                       |
+
+**Example**
+
+```js
+connection.getDefaultNet().then(function (netHandle) {
+    var tcp = socket.constructTCPSocketInstance();
+    var udp = socket.constructUDPSocketInstance();
+    let socketType = "xxxx";
+    if (socketType == "TCPSocket") {
+        tcp.bind({
+            address: "xxxx", port: xxxx, family: xxxx
+        }, err => {
+            netHandle.bindSocket(tcp, function (error, data) {
+            console.log(JSON.stringify(error))
+            console.log(JSON.stringify(data))
+        })
+    } else {
+        udp.on('message', callback);
+        udp.bind({
+            address: "xxxx", port: xxxx, family: xxxx
+        }, err => {
+            udp.on('message', (data) => {
+            console.log(JSON.stringify(data))
+            });
+            netHandle.bindSocket(udp, function (error, data) {
+            console.log(JSON.stringify(error))
+            console.log(JSON.stringify(data))
+            });
+        })
+     }
+}
+```
+
+### bindSocket
+
+bindSocket(socketParam: TCPSocket \| UDPSocket): Promise\<void>;
+
+Binds a **TCPSocket** or **UDPSocket** object to the data network. This API uses a promise to return the result.
+
+**Required permission**: ohos.permission.GET_NETWORK_INFO
+
+**System capability**: SystemCapability.Communication.NetManager.Core
+
+**Parameters**
+
+| Name         | Type                 | Mandatory | Description                          |
+| --------------- | --------------------- | ---- | ------------------------------ |
+| socketParam     | [TCPSocket](js-apis-socket.md#tcpsocket) \| [UDPSocket](js-apis-socket.md#udpsocket) | Yes  | **TCPSocket** or **UDPSocket** object.|
+
+**Return value**
+
+| Type          | Description                  |
+| -------------- | ---------------------- |
+| Promise\<void> | Promise used to return the result.|
+
+**Example**
+
+```js
+connection.getDefaultNet().then(function (netHandle) {
+    var tcp = socket.constructTCPSocketInstance();
+    var udp = socket.constructUDPSocketInstance();
+    let socketType = "xxxx";
+    if(socketType == "TCPSocket") {
+        tcp.bind({
+            address: "xxxx", port: xxxx, family: xxxx
+        }, err => {
+            netHandle.bindSocket(tcp).then(err, data) {
+            console.log(JSON.stringify(data))
+        })
+    } else {
+        udp.on('message', callback);
+        udp.bind({
+            address: "xxxx", port: xxxx, family: xxxx
+        }, err => {
+            udp.on('message', (data) => {
+            console.log(JSON.stringify(data))
+            });
+            netHandle.bindSocket(tcp).then(err, data) {
+            console.log(JSON.stringify(data))
+            });
+        })
+     }
+}
+```
+
 
 ### getAddressesByName
 

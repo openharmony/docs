@@ -55,7 +55,7 @@ Creates a time picker whose default time range is from 00:00 to 23:59.
 @Entry
 @Component
 struct TimePickerExample {
-  private selectedTime: Date = new Date('7/22/2022 8:00:00')
+  private selectedTime: Date = new Date('2022-07-22T08:00:00')
 
   build() {
     Column() {

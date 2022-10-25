@@ -43,13 +43,13 @@ Obtains an **OnlineUpdater** object.
 
 ```ts
 try {
-  var upgradeInfo = {
+  const upgradeInfo = {
     upgradeApp: "com.ohos.ota.updateclient",
     businessType: {
       vendor: update.BusinessVendor.PUBLIC,
       subType: update.BusinessSubType.FIRMWARE
     }
-  }
+  };
   let updater = update.getOnlineUpdater(upgradeInfo);
 } catch(error) {
   console.error(`Fail to get updater error: ${error}`);
@@ -233,15 +233,15 @@ Obtains the description file of the new version. This API uses an asynchronous c
 
 ```ts
 // Version digest information
-var versionDigestInfo = {
+const versionDigestInfo = {
   versionDigest: "versionDigest" // Version digest information in the check result
-}
+};
 
 // Options of the description file
-var descriptionOptions = {
+const descriptionOptions = {
   format: update.DescriptionFormat.STANDARD, // Standard format
   language: "zh-cn" // Chinese
-}
+};
 
 updater.getNewVersionDescription(versionDigestInfo, descriptionOptions, (err, info) => {
   console.log(`getNewVersionDescription info ${JSON.stringify(info)}`);
@@ -276,15 +276,15 @@ Obtains the description file of the new version. This API uses a promise to retu
 
 ```ts
 // Version digest information
-var versionDigestInfo = {
+const versionDigestInfo = {
   versionDigest: "versionDigest" // Version digest information in the check result
-}
+};
 
 // Options of the description file
-var descriptionOptions = {
+const descriptionOptions = {
   format: update.DescriptionFormat.STANDARD, // Standard format
   language: "zh-cn" // Chinese
-}
+};
 
 updater.getNewVersionDescription(versionDigestInfo, descriptionOptions).then(info => {
   console.log(`getNewVersionDescription promise info ${JSON.stringify(info)}`);
@@ -368,10 +368,10 @@ Obtains the description file of the current version. This API uses an asynchrono
 
 ```ts
 // Options of the description file
-var descriptionOptions = {
+const descriptionOptions = {
   format: update.DescriptionFormat.STANDARD, // Standard format
   language: "zh-cn" // Chinese
-}
+};
 
 updater.getCurrentVersionDescription(descriptionOptions, (err, info) => {
   console.log(`getCurrentVersionDescription info ${JSON.stringify(info)}`);
@@ -405,10 +405,10 @@ Obtains the description file of the current version. This API uses a promise to 
 
 ```ts
 // Options of the description file
-var descriptionOptions = {
+const descriptionOptions = {
   format: update.DescriptionFormat.STANDARD, // Standard format
   language: "zh-cn" // Chinese
-}
+};
 
 updater.getCurrentVersionDescription(descriptionOptions).then(info => {
   console.log(`getCurrentVersionDescription promise info ${JSON.stringify(info)}`);
@@ -489,15 +489,15 @@ Downloads the new version. This API uses an asynchronous callback to return the 
 
 ```ts
 // Version digest information
-var versionDigestInfo = {
+const versionDigestInfo = {
   versionDigest: "versionDigest" // Version digest information in the check result
-}
+};
 
 // Download options
-var downloadOptions = {
+const downloadOptions = {
   allowNetwork: update.NetType.CELLULAR, // Whether to allow download over data network
   order: update.Order.DOWNLOAD // Download
-}
+};
 updater.download(versionDigestInfo, downloadOptions, (err) => {
   console.log(`download error ${JSON.stringify(err)}`);
 });
@@ -530,15 +530,15 @@ Downloads the new version. This API uses a promise to return the result.
 
 ```ts
 // Version digest information
-var versionDigestInfo = {
+const versionDigestInfo = {
   versionDigest: "versionDigest" // Version digest information in the check result
-}
+};
 
 // Download options
-var downloadOptions = {
+const downloadOptions = {
   allowNetwork: update.NetType.CELLULAR, // Whether to allow download over data network
   order: update.Order.DOWNLOAD // Download
-}
+};
 updater.download(versionDigestInfo, downloadOptions).then(() => {
   console.log(`download start`);
 }).catch(err => {
@@ -568,14 +568,14 @@ Resumes download of the new version. This API uses an asynchronous callback to r
 
 ```ts
 // Version digest information
-var versionDigestInfo = {
+const versionDigestInfo = {
   versionDigest: "versionDigest" // Version digest information in the check result
-}
+};
 
 // Options for resuming download
-var resumeDownloadOptions = {
+const resumeDownloadOptions = {
   allowNetwork: update.NetType.CELLULAR, // Whether to allow download over data network
-}
+};
 updater.resumeDownload(versionDigestInfo, resumeDownloadOptions, (err) => {
   console.log(`resumeDownload error ${JSON.stringify(err)}`);
 });
@@ -608,14 +608,14 @@ Resumes download of the new version. This API uses a promise to return the resul
 
 ```ts
 // Version digest information
-var versionDigestInfo = {
+const versionDigestInfo = {
   versionDigest: "versionDigest" // Version digest information in the check result
-}
+};
 
 // Options for resuming download
-var resumeDownloadOptions = {
+const resumeDownloadOptions = {
   allowNetwork: update.NetType.CELLULAR, // Whether to allow download over data network
-}
+};
 updater.resumeDownload(versionDigestInfo, resumeDownloadOptions).then(value => {
   console.log(`resumeDownload start`);
 }).catch(err => {
@@ -645,14 +645,14 @@ Pauses download of the new version. This API uses an asynchronous callback to re
 
 ```ts
 // Version digest information
-var versionDigestInfo = {
+const versionDigestInfo = {
   versionDigest: "versionDigest" // Version digest information in the check result
-}
+};
 
 // Options for pausing download
-var pauseDownloadOptions = {
+const pauseDownloadOptions = {
   isAllowAutoResume: true // Whether to allow automatic resuming of download
-}
+};
 updater.pauseDownload(versionDigestInfo, pauseDownloadOptions, (err) => {
   console.log(`pauseDownload error ${JSON.stringify(err)}`);
 });
@@ -685,14 +685,14 @@ Resumes download of the new version. This API uses a promise to return the resul
 
 ```ts
 // Version digest information
-var versionDigestInfo = {
+const versionDigestInfo = {
   versionDigest: "versionDigest" // Version digest information in the check result
-}
+};
 
 // Options for pausing download
-var pauseDownloadOptions = {
+const pauseDownloadOptions = {
   isAllowAutoResume: true // Whether to allow automatic resuming of download
-}
+};
 updater.pauseDownload(versionDigestInfo, pauseDownloadOptions).then(value => {
   console.log(`pauseDownload`);
 }).catch(err => {
@@ -722,14 +722,14 @@ Updates the version. This API uses an asynchronous callback to return the result
 
 ```ts
 // Version digest information
-var versionDigestInfo = {
+const versionDigestInfo = {
   versionDigest: "versionDigest" // Version digest information in the check result
-}
+};
 
 // Installation options
-var upgradeOptions = {
+const upgradeOptions = {
   order: update.Order.INSTALL // Installation command
-}
+};
 updater.upgrade(versionDigestInfo, upgradeOptions, (err) => {
   console.log(`upgrade error ${JSON.stringify(err)}`);
 });
@@ -762,14 +762,14 @@ Updates the version. This API uses a promise to return the result.
 
 ```ts
 // Version digest information
-var versionDigestInfo = {
+const versionDigestInfo = {
   versionDigest: "versionDigest" // Version digest information in the check result
-}
+};
 
 // Installation options
-var upgradeOptions = {
+const upgradeOptions = {
   order: update.Order.INSTALL // Installation command
-}
+};
 updater.upgrade(versionDigestInfo, upgradeOptions).then(() => {
   console.log(`upgrade start`);
 }).catch(err => {
@@ -799,14 +799,14 @@ Clears errors. This API uses an asynchronous callback to return the result.
 
 ```ts
 // Version digest information
-var versionDigestInfo = {
+const versionDigestInfo = {
   versionDigest: "versionDigest" // Version digest information in the check result
-}
+};
 
 // Options for clearing errors
-var clearOptions = {
+const clearOptions = {
   status: update.UpgradeStatus.UPGRADE_FAIL,
-}
+};
 updater.clearError(versionDigestInfo, clearOptions, (err) => {
   console.log(`clearError error ${JSON.stringify(err)}`);
 });
@@ -839,14 +839,14 @@ Clears errors. This API uses a promise to return the result.
 
 ```ts
 // Version digest information
-var versionDigestInfo = {
+const versionDigestInfo = {
   versionDigest: "versionDigest" // Version digest information in the check result
-}
+};
 
 // Options for clearing errors
-var clearOptions = {
+lconstet clearOptions = {
   status: update.UpgradeStatus.UPGRADE_FAIL,
-}
+};
 updater.clearError(versionDigestInfo, clearOptions).then(() => {
   console.log(`clearError success`);
 }).catch(err => {
@@ -926,7 +926,7 @@ Sets the update policy. This API uses an asynchronous callback to return the res
 **Example**
 
 ```ts
-let policy = {
+const policy = {
   downloadStrategy: false,
   autoUpgradeStrategy: false,
   autoUpgradePeriods: [ { start: 120, end: 240 } ] // Automatic update period, in minutes
@@ -961,7 +961,7 @@ Sets the update policy. This API uses a promise to return the result.
 **Example**
 
 ```ts
-let policy = {
+const policy = {
   downloadStrategy: false,
   autoUpgradeStrategy: false,
   autoUpgradePeriods: [ { start: 120, end: 240 } ] // Automatic update period, in minutes
@@ -1041,10 +1041,10 @@ Enables listening for update events. This API uses an asynchronous callback to r
 **Example**
 
 ```ts
-var eventClassifyInfo = {
+const eventClassifyInfo = {
   eventClassify: update.EventClassify.TASK, // Listening for update events
   extraInfo: ""
-}
+};
 
 updater.on(eventClassifyInfo, (eventInfo) => {
   console.log("updater on " + JSON.stringify(eventInfo));
@@ -1068,10 +1068,10 @@ Disables listening for update events. This API uses an asynchronous callback to 
 **Example**
 
 ```ts
-var eventClassifyInfo = {
+const eventClassifyInfo = {
   eventClassify: update.EventClassify.TASK, // Listening for update events
   extraInfo: ""
-}
+};
 
 updater.off(eventClassifyInfo, (eventInfo) => {
   console.log("updater off " + JSON.stringify(eventInfo));
@@ -1153,10 +1153,10 @@ Verifies the update package. This API uses an asynchronous callback to return th
 **Example**
 
 ```ts
-var upgradeFile = {
+const upgradeFile = {
   fileType: update.ComponentType.OTA, // OTA package
   filePath: "path" // Path of the local update package
-}
+};
 
 localUpdater.verifyUpgradePackage(upgradeFile, "cerstFilePath", (err) => {
   console.log(`factoryReset error ${JSON.stringify(err)}`);
@@ -1189,10 +1189,10 @@ Verifies the update package. This API uses a promise to return the result.
 **Example**
 
 ```ts
-var upgradeFile = {
+const upgradeFile = {
   fileType: update.ComponentType.OTA, // OTA package
   filePath: "path" // Path of the local update package
-}
+};
 localUpdater.verifyUpgradePackage(upgradeFile, "cerstFilePath").then(() => {
   console.log(`verifyUpgradePackage success`);
 }).catch(err => {
@@ -1219,10 +1219,10 @@ Installs the update package. This API uses an asynchronous callback to return th
 **Example**
 
 ```ts
-var upgradeFiles = [{
+const upgradeFiles = [{
   fileType: update.ComponentType.OTA, // OTA package
   filePath: "path" // Path of the local update package
-}]
+}];
 
 localUpdater.applyNewVersion(upgradeFiles, (err) => {
   console.log(`applyNewVersion error ${JSON.stringify(err)}`);
@@ -1248,10 +1248,10 @@ Installs the update package. This API uses a promise to return the result.
 **Example**
 
 ```ts
-var upgradeFiles = [{
+localUpdater upgradeFiles = [{
   fileType: update.ComponentType.OTA, // OTA package
   filePath: "path" // Path of the local update package
-}]
+}];
 localUpdater.applyNewVersion(upgradeFiles).then(() => {
   console.log(`applyNewVersion success`);
 }).catch(err => {
@@ -1276,10 +1276,10 @@ Enables listening for update events. This API uses an asynchronous callback to r
 **Example**
 
 ```ts
-var eventClassifyInfo = {
+const eventClassifyInfo = {
   eventClassify: update.EventClassify.TASK, // Listening for update events
   extraInfo: ""
-}
+};
 
 function onTaskUpdate(eventInfo) {
   console.log(`on eventInfo id `, eventInfo.eventId);
@@ -1305,10 +1305,10 @@ Disables listening for update events. This API uses an asynchronous callback to 
 **Example**
 
 ```ts
-var eventClassifyInfo = {
+const eventClassifyInfo = {
   eventClassify: update.EventClassify.TASK, // Listening for update events
   extraInfo: ""
-}
+};
 
 function onTaskUpdate(eventInfo) {
   console.log(`on eventInfo id `, eventInfo.eventId);
