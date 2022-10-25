@@ -2,17 +2,15 @@
 
 The **\<RichText>** component parses and displays HTML text.
 
->  **NOTE**
+> **NOTE**
 >
->  This component is supported since API version 8. Updates will be marked with a superscript to indicate their earliest API version.
+> This component is supported since API version 8. Updates will be marked with a superscript to indicate their earliest API version.
 
-## Required Permissions
 
-None
 
 ## Child Components
 
-None
+Not supported
 
 ## APIs
 
@@ -20,9 +18,9 @@ RichText(content:string)
 
 **Parameters**
 
-| Name| Type| Mandatory| Default Value| Description|
-| -------- | -------- | -------- | -------- | -------- |
-| content | string | Yes| - | String in HTML format.|
+| Name| Type| Mandatory | Description|
+| ------- | -------- | ------------- | -------- |
+| content | string | Yes  | String in HTML format.|
 
 
 ## Events
@@ -49,34 +47,38 @@ RichText(content:string)
 | \<script>\</script> | Used to embed or reference a client-side script, such as JavaScript.| \<script>document.write("Hello World!")\</script> |
 
 ## Example
+
 You can preview how this component looks on a real device. The preview is not yet available in the DevEco Studio Previewer.
+
 ```ts
 // xxx.ets
 @Entry
 @Component
 struct RichTextExample {
-  @State data: string = "<h1 style='text-align: center;'>h1 heading</h1>" +
-                        "<h1 style='text-align: center;'><i>h1 italic</i></h1>" +
-                        "<h1 style='text-align: center;'><u>h1 underlined</u></h1>" +
-                        "<h2 style='text-align: center;'>h2 heading</h2>" +
-                        "<h3 style='text-align: center;'>h3 heading</h3>" +
-                        "<p style='text-align: center;'>Regular paragraph</p><hr/>" +
-                        "<div style='width: 500px;height: 500px;border: 1px solid;margin: 0auto;'>" +
-                        "<p style='font-size: 35px;text-align: center;font-weight: bold; color: rgb(24,78,228)'>Font size: 35px; line height: 45px</p>" +
-                        "<p style='background-color: #e5e5e5;line-height: 45px;font-size: 35px;text-indent: 2em;'>" +
-                        "<p>This is a paragraph. This is a paragraph. This is a paragraph. This is a paragraph. This is a paragraph. This is a paragraph. This is a paragraph. This is a paragraph. This is a paragraph.</p>"
+  @State data: string = '<h1 style="text-align: center;">h1 heading</h1>' +
+  '<h1 style="text-align: center;"><i>h1 italic</i></h1>' +
+  '<h1 style="text-align: center;"><u>h1 underlined</u></h1>' +
+  '<h2 style="text-align: center;">h2 heading</h2>' +
+  '<h3 style="text-align: center;">h3 heading</h3>' +
+  '<p style="text-align: center;">Regular paragraph</p><hr/>' +
+  '<div style="width: 500px;height: 500px;border: 1px solid;margin: 0auto;">' +
+  '<p style="font-size: 35px;text-align: center;font-weight: bold; color: rgb(24,78,228)">Font size: 35px; line height: 45px</p>' +
+  '<p style="background-color: #e5e5e5;line-height: 45px;font-size: 35px;text-indent: 2em;">' +
+  '<p>This is a paragraph. This is a paragraph. This is a paragraph. This is a paragraph. This is a paragraph. This is a paragraph. This is a paragraph. This is a paragraph. This is a paragraph.</p>';
 
   build() {
-    Flex({direction: FlexDirection.Column,alignItems: ItemAlign.Center,
-    justifyContent: FlexAlign.Center }){
+    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center,
+      justifyContent: FlexAlign.Center }) {
       RichText(this.data)
-      .onStart(()=>{
-        console.info("RichText onStart")
-      })
-      .onComplete(()=>{
-        console.info("RichText onComplete")
-      })
+        .onStart(() => {
+          console.info('RichText onStart');
+        })
+        .onComplete(() => {
+          console.info('RichText onComplete');
+        })
     }
   }
 }
 ```
+
+ ![richText](figures/richText.png) 
