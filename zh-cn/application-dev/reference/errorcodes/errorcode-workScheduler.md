@@ -24,7 +24,7 @@ Parcel operation failed.
 
 **可能原因**
 
-调用MessageParcel对象读取或写入对象异常
+调用MessageParcel对象读取或写入对象异常。
 
 **处理步骤**
 
@@ -38,8 +38,8 @@ System service operation failed.
 
 **可能原因**
 
-1. 系统服务还未启动
-2. 系统服务异常
+1. 系统服务还未启动。
+2. 系统服务异常。
 
 **处理步骤**
 
