@@ -258,9 +258,6 @@ class MainAbility extends Ability {
                let sysBarProps = {
                    statusBarColor: '#ff00ff',
                    navigationBarColor: '#00ff00',
-                   // 以下两个属性从API Version 7开始支持
-                   isStatusBarLightIcon: false,
-                   isNavigationBarLightIcon: false,
                    // 以下两个属性从API Version 8开始支持
                    statusBarContentColor: '#ffffff',
                    navigationBarContentColor: '#ffffff'
