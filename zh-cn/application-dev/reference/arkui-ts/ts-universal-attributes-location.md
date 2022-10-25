@@ -12,7 +12,7 @@
 
 | 名称 | 参数类型 | 描述 |
 | -------- | -------- | -------- |
-| align | [Alignment](ts-appendix-enums.md#alignment) | 设置元素内容的对齐方式，当元素的width和height大小大于元素本身内容大小时生效。<br/>默认值：Alignment.Center |
+| align | [Alignment](ts-appendix-enums.md#alignment) | 设置元素内容在元素绘制区域内的对齐方式。<br/>默认值：Alignment.Center |
 | direction | [Direction](ts-appendix-enums.md#direction) | 设置元素水平方向的布局。<br/>默认值：Direction.Auto |
 | position | [Position](ts-types.md#position8) | 绝对定位，设置元素左上角相对于父容器左上角偏移位置。在布局容器中，设置该属性不影响父容器布局，仅在绘制时进行位置调整。 |
 | markAnchor | [Position](ts-types.md#position8) | 设置元素在位置定位时的锚点，以元素左上角作为基准点进行偏移。通常配合position和offset属性使用，单独使用时，效果类似offset<br/>默认值：<br/>{<br/>x: 0,<br/>y: 0<br/>} |
