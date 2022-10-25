@@ -20,7 +20,7 @@
 import backgroundTaskManager from '@ohos.resourceschedule.backgroundTaskManager';  
 ```
 
-## backgroundTaskManager.requestSuspendDelay<sup>9</sup>
+## backgroundTaskManager.requestSuspendDelay
 
 requestSuspendDelay(reason: string, callback: Callback&lt;void&gt;): DelaySuspendInfo
 
@@ -76,7 +76,7 @@ requestSuspendDelay(reason: string, callback: Callback&lt;void&gt;): DelaySuspen
   ```
 
 
-## backgroundTaskManager.getRemainingDelayTime:callback<sup>9</sup>
+## backgroundTaskManager.getRemainingDelayTime:callback
 
 getRemainingDelayTime(requestId: number, callback: AsyncCallback&lt;number&gt;): void
 
@@ -125,7 +125,7 @@ getRemainingDelayTime(requestId: number, callback: AsyncCallback&lt;number&gt;):
   ```
 
 
-## backgroundTaskManager.getRemainingDelayTime:promise<sup>9</sup>
+## backgroundTaskManager.getRemainingDelayTime:promise
 
 getRemainingDelayTime(requestId: number): Promise&lt;number&gt;
 
@@ -178,7 +178,7 @@ getRemainingDelayTime(requestId: number): Promise&lt;number&gt;
   ```
 
 
-## backgroundTaskManager.cancelSuspendDelay<sup>9</sup>
+## backgroundTaskManager.cancelSuspendDelay
 
 cancelSuspendDelay(requestId: number): void
 
@@ -219,7 +219,7 @@ cancelSuspendDelay(requestId: number): void
   ```
 
 
-## backgroundTaskManager.startBackgroundRunning:callback<sup>9</sup>
+## backgroundTaskManager.startBackgroundRunning:callback
 
 startBackgroundRunning(context: Context, bgMode: BackgroundMode, wantAgent: WantAgent, callback: AsyncCallback&lt;void&gt;): void
 
@@ -290,7 +290,7 @@ wantAgent.getWantAgent(wantAgentInfo).then((wantAgentObj) => {
 
 ```
 
-## backgroundTaskManager.startBackgroundRunning:promise<sup>9</sup>
+## backgroundTaskManager.startBackgroundRunning:promise
 
 startBackgroundRunning(context: Context, bgMode: BackgroundMode, wantAgent: WantAgent): Promise&lt;void&gt;
 
@@ -362,7 +362,7 @@ wantAgent.getWantAgent(wantAgentInfo).then((wantAgentObj) => {
 
 ```
 
-## backgroundTaskManager.stopBackgroundRunning:callback<sup>9</sup>
+## backgroundTaskManager.stopBackgroundRunning:callback
 
 stopBackgroundRunning(context: Context, callback: AsyncCallback&lt;void&gt;): void
 
@@ -413,7 +413,7 @@ try {
 
 ```
 
-## backgroundTaskManager.stopBackgroundRunning:promise<sup>9</sup>
+## backgroundTaskManager.stopBackgroundRunning:promise
 
 stopBackgroundRunning(context: Context): Promise&lt;void&gt;
 
@@ -467,7 +467,7 @@ try {
 
 ```
 
-## backgroundTaskManager.applyEfficiencyResources<sup>9</sup>
+## backgroundTaskManager.applyEfficiencyResources
 
 applyEfficiencyResources(request: [EfficiencyResourcesRequest](#efficiencyresourcesrequest9)): void
 
@@ -518,7 +518,7 @@ try {
 }
 ```
 
-## backgroundTaskManager.resetAllEfficiencyResources<sup>9</sup>
+## backgroundTaskManager.resetAllEfficiencyResources
 
 resetAllEfficiencyResources(): void
 
@@ -552,7 +552,7 @@ try {
 }
 ```
 
-## DelaySuspendInfo<sup>9</sup>
+## DelaySuspendInfo
 
 延迟挂起信息。
 
@@ -564,7 +564,7 @@ try {
 | actualDelayTime | number | 是    | 应用的实际挂起延迟时间，以毫秒为单位。<br/>一般情况下默认值为180000，低电量（依据系统低电量广播）时默认值为60000。 |
 
 
-## BackgroundMode<sup>9</sup>
+## BackgroundMode
 
 **系统能力:** SystemCapability.ResourceSchedule.BackgroundTaskManager.ContinuousTask
 
@@ -580,7 +580,7 @@ try {
 | VOIP                    | 8    | 音视频通话<br />此接口为系统接口。  |
 | TASK_KEEPING            | 9    | 计算任务（仅在特定设备生效）。        |
 
-## EfficiencyResourcesRequest<sup>9</sup>
+## EfficiencyResourcesRequest
 
 能效资源申请参数。
 
@@ -597,7 +597,7 @@ try {
 | isProcess       | boolean | 否    | 应用申请或者是进程申请。          |
 | reason          | string  | 是    | 申请资源的原因。                |
 
-## ResourceType<sup>9</sup>
+## ResourceType
 
 能效资源类型。
 
