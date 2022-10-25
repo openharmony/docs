@@ -117,7 +117,7 @@ const readBuffer = new ArrayBuffer(96);
 pixelmap.readPixelsToBuffer(readBuffer).then(() => {
     console.log('Succeeded in reading image pixel data.'); // Called if the condition is met.
 }).catch(error => {
-    console.log('Failed to read image pixel data.'); // Called if no condition is met.
+    console.log('Failed to read image pixel data.');  // Called if no condition is met.
 })
 ```
 
@@ -1077,9 +1077,9 @@ const data = new ArrayBuffer(112);
 const imageSourceApi = image.createImageSource(data);
 ```
 
-## image.createIncrementalSource<sup>9+</sup>
+## image.CreateIncrementalSource<sup>9+</sup>
 
-createIncrementalSource(buf: ArrayBuffer): ImageSource
+CreateIncrementalSource(buf: ArrayBuffer): ImageSource
 
 Creates an **ImageSource** instance in incremental mode based on the buffers.
 
@@ -1101,12 +1101,12 @@ Creates an **ImageSource** instance in incremental mode based on the buffers.
 
 ```js
 const buf = new ArrayBuffer(96);
-const imageSourceIncrementalSApi = image.createIncrementalSource(buf);
+const imageSourceIncrementalSApi = image.CreateIncrementalSource(buf);
 ```
 
-## image.createIncrementalSource<sup>9+</sup>
+## image.CreateIncrementalSource<sup>9+</sup>
 
-createIncrementalSource(buf: ArrayBuffer, options?: SourceOptions): ImageSource
+CreateIncrementalSource(buf: ArrayBuffer, options?: SourceOptions): ImageSource
 
 Creates an **ImageSource** instance in incremental mode based on the buffers.
 
@@ -1129,7 +1129,7 @@ Creates an **ImageSource** instance in incremental mode based on the buffers.
 
 ```js
 const buf = new ArrayBuffer(96);
-const imageSourceIncrementalSApi = image.createIncrementalSource(buf);
+const imageSourceIncrementalSApi = image.CreateIncrementalSource(buf);
 ```
 
 ## ImageSource
@@ -1634,6 +1634,7 @@ Packs an image. This API uses a promise to return the result.
 **Example**
 
 ```js
+const imageSourceApi = image.createImageSource(0);
 let packOpts = { format:"image/jpeg", quality:98 }
 imagePackerApi.packing(imageSourceApi, packOpts)
     .then( data => {
@@ -1667,7 +1668,7 @@ let bufferArr = new Uint8Array(color);
 let opts = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } }
 image.createPixelMap(color, opts).then((pixelmap) => {
     let packOpts = { format:"image/jpeg", quality:98 }
-    imagePackerApi.packing(pixelMapApi, packOpts, data => { 
+    imagePackerApi.packing(pixelmap, packOpts, data => { 
         console.log('Succeeded in packing the image.');
     })
 })
@@ -1702,7 +1703,7 @@ let bufferArr = new Uint8Array(color);
 let opts = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } }
 image.createPixelMap(color, opts).then((pixelmap) => {
     let packOpts = { format:"image/jpeg", quality:98 }
-    imagePackerApi.packing(pixelMapApi, packOpts)
+    imagePackerApi.packing(pixelmap, packOpts)
         .then( data => {
             console.log('Succeeded in packing the image.');
         }).catch(error => {
@@ -1761,7 +1762,7 @@ imagePackerApi.release().then(()=>{
 
 createImageReceiver(width: number, height: number, format: number, capacity: number): ImageReceiver
 
-Create an **ImageReceiver** instance by specifying the image width, height, format, and capacity.
+Creates an **ImageReceiver** instance by specifying the image width, height, format, and capacity.
 
 **System capability**: SystemCapability.Multimedia.Image.ImageReceiver
 
@@ -1771,7 +1772,7 @@ Create an **ImageReceiver** instance by specifying the image width, height, form
 | -------- | ------ | ---- | ---------------------- |
 | width    | number | Yes  | Default image width.      |
 | height   | number | Yes  | Default image height.      |
-| format   | number | Yes  | Image format.            |
+| format   | number | Yes  | Image format. |
 | capacity | number | Yes  | Maximum number of images that can be accessed at the same time.|
 
 **Return value**
@@ -2144,7 +2145,7 @@ Describes area information in an image.
 | ------ | ------------------ | ---- | ---- | ------------------------------------------------------------ |
 | pixels | ArrayBuffer        | Yes  | No  | Pixels of the image.                                                      |
 | offset | number             | Yes  | No  | Offset for data reading.                                                    |
-| stride | number             | Yes  | No  | Number of bytes from one row of pixels in memory to the next row of pixels in memory. The value of **stride** must be greater than or equal to the value of **region.size.width** multiplied by 4.                     |
+| stride | number             | Yes  | No  | Number of bytes from one row of pixels in memory to the next row of pixels in memory. The value of **stride** must be greater than or equal to the value of **region.size.width** multiplied by 4.                  |
 | region | [Region](#region7) | Yes  | No  | Region to read or write. The width of the region to write plus the X coordinate cannot be greater than the width of the original image. The height of the region to write plus the Y coordinate cannot be greater than the height of the original image.|
 
 ## ImageInfo
@@ -2178,8 +2179,8 @@ Enumerates the pixel formats of images.
 | ---------------------- | ------ | ----------------- |
 | UNKNOWN                | 0      | Unknown format.       |
 | RGB_565                | 2      | RGB_565.    |
-| RGBA_8888              | 3      | RGBA_8888.  |
-| BGRA_8888<sup>9+</sup> | 4      | BGRA_8888.  |
+| RGBA_8888              | 3      | RGBA_8888.|
+| BGRA_8888<sup>9+</sup> | 4      | BGRA_8888.|
 
 ## AlphaType<sup>9+</sup>
 
@@ -2191,8 +2192,8 @@ Enumerates the alpha types of images.
 | -------- | ------ | ----------------------- |
 | UNKNOWN  | 0      | Unknown alpha type.           |
 | OPAQUE   | 1      | There is no alpha or the image is opaque.|
-| PREMUL   | 2      | Premultiplied alpha.          |
-| UNPREMUL | 3      | Unpremultiplied alpha, that is, straight alpha.        |
+| PREMUL   | 2      | Premultiplied alpha.        |
+| UNPREMUL | 3      | Unpremultiplied alpha, that is, straight alpha.      |
 
 ## ScaleMode<sup>9+</sup>
 
@@ -2257,7 +2258,7 @@ Describes region information.
 | Name| Type         | Readable| Writable| Description        |
 | ---- | ------------- | ---- | ---- | ------------ |
 | size | [Size](#size) | Yes  | Yes  | Region size.  |
-| x    | number        | Yes  | Yes  | X coordinate of the region.|
+| x    | number        | Yes  | Yes  | X coordinate to translate.|
 | y    | number        | Yes  | Yes  | Y coordinate of the region.|
 
 ## PackingOption
@@ -2268,7 +2269,7 @@ Defines the option for image packing.
 
 | Name   | Type  | Readable| Writable| Description                                               |
 | ------- | ------ | ---- | ---- | --------------------------------------------------- |
-| format  | string | Yes  | Yes  | Format of the packed image.<br>Currently, the JPEG and WebP formats are supported. |
+| format  | string | Yes  | Yes  | Format of the packed image.<br>Currently, the following raw formats are supported: .jpeg and .webp.|
 | quality | number | Yes  | Yes  | Quality of the output image during JPEG encoding. The value ranges from 1 to 100.|
 
 ## GetImagePropertyOptions<sup>7+</sup>
@@ -2296,8 +2297,8 @@ Describes the exchangeable image file format (EXIF) information of an image.
 | IMAGE_WIDTH       | "ImageWidth"            | Image width.              |
 | GPS_LATITUDE      | "GPSLatitude"           | Image latitude.              |
 | GPS_LONGITUDE     | "GPSLongitude"          | Image longitude.              |
-| GPS_LATITUDE_REF  | "GPSLatitudeRef"        | Latitude reference, for example, N or S.    |
-| GPS_LONGITUDE_REF | "GPSLongitudeRef"       | Longitude reference, for example, W or E.    |
+| GPS_LATITUDE_REF  | "GPSLatitudeRef"        | Latitude reference, for example, N or S.   |
+| GPS_LONGITUDE_REF | "GPSLongitudeRef"       | Longitude reference, for example, W or E.   |
 
 ## ImageFormat<sup>9+</sup>
 
