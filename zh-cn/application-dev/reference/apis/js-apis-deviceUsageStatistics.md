@@ -15,7 +15,7 @@
 - 查询应用事件（仅限自身应用）。
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
-> 从API version9开始，改接口不再维护，推荐使用新接口[@ohos.resourceschedule.usageStatistics(设备使用信息统计)](js-apis-resourceschedule-deviceUsageStatistics.md)
+> 从API version9开始，该接口不再维护，推荐使用新接口[@ohos.resourceschedule.usageStatistics(设备使用信息统计)](js-apis-resourceschedule-deviceUsageStatistics.md)
 
 
 ## 导入模块

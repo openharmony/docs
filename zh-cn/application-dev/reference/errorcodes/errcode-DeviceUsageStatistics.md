@@ -12,8 +12,7 @@ Memory operation failed.
 
 **可能原因**
 
-该错误码表示系统服务工作异常，可能原因如下。
-内存不足导致创建对象失败。
+该错误码表示系统服务工作异常，可能原因是内存不足导致创建对象失败。
 
 **处理步骤**
 
@@ -105,7 +104,7 @@ Get application info failed.
 
 1. beginTime或者endTime输入不合法。
 2. 应用未安装或者已经被卸载了。
-2. intervalType输入不合法。
+3. intervalType输入不合法。
 
 **处理步骤**
 
@@ -137,7 +136,7 @@ Application group operation failed. The application group are the the same or do
 
 **错误描述**
 
-应用分组操作失败，可能是应用分组相同不需要重复设置或者注册和解注册重复操作。
+应用分组操作失败，应用分组相同不需要重复设置或者注册和解注册重复操作。
 
 **可能原因**
 
@@ -159,8 +158,8 @@ Get application group info failed. The application group infomation cannot be fo
 
 **可能原因**
 
-1、应用输入bundleName错误。
-2、应用可能没有安装或者已经卸载
+1. 应用输入bundleName错误。
+2. 应用可能没有安装或者已经卸载
 
 **处理步骤**
 
