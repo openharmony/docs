@@ -1,4 +1,4 @@
-# AudioMmapBufferDescripter
+# AudioMmapBufferDescriptor
 
 
 ## **概述**

@@ -647,7 +647,7 @@
         - [AudioDeviceDescriptor](reference/hdi-apis/_audio_device_descriptor.md)
         - [AudioManager](reference/hdi-apis/_audio_manager.md)
         - [AudioMixExtInfo](reference/hdi-apis/_audio_mix_ext_info.md)
-        - [AudioMmapBufferDescripter](reference/hdi-apis/_audio_mmap_buffer_descripter.md)
+        - [AudioMmapBufferDescriptor](reference/hdi-apis/_audio_mmap_buffer_descriptor.md)
         - [AudioPort](reference/hdi-apis/_audio_port.md)
         - [AudioPortCap](reference/hdi-apis/audio_portcap.md)
         - [AudioPortCapability](reference/hdi-apis/_audio_port_capability.md)

@@ -34,7 +34,7 @@ AudioAttribute音频属性接口。
 | ([GetCurrentChannelId](#getcurrentchannelid))(AudioHandle&nbsp;handle,&nbsp;uint32_t&nbsp;\*channelId) | 获取音频的数据通道ID | 
 | ([SetExtraParams](#setextraparams))(AudioHandle&nbsp;handle,&nbsp;const&nbsp;char&nbsp;\*keyValueList) | 设置音频拓展参数 | 
 | ([GetExtraParams](#getextraparams))(AudioHandle&nbsp;handle,&nbsp;char&nbsp;\*keyValueList) | 获取音频拓展参数 | 
-| ([ReqMmapBuffer](#reqmmapbuffer))(AudioHandle&nbsp;handle,&nbsp;int32_t&nbsp;reqSize,&nbsp;struct&nbsp;AudioMmapBufferDescripter&nbsp;\*desc) | 请求Mmap缓冲区 | 
+| ([ReqMmapBuffer](#reqmmapbuffer))(AudioHandle&nbsp;handle,&nbsp;int32_t&nbsp;reqSize,&nbsp;struct&nbsp;AudioMmapBufferDescriptor&nbsp;\*desc) | 请求Mmap缓冲区 | 
 | ([GetMmapPosition](#getmmapposition))(AudioHandle&nbsp;handle,&nbsp;uint64_t&nbsp;\*frames,&nbsp;struct&nbsp;AudioTimeStamp&nbsp;\*time) | 获取当前Mmap的读/写位置 | 
 | ([AddAudioEffect](#addaudioeffect))(AudioHandle&nbsp;handle,&nbsp;uint64_t&nbsp;effectid) | 添加音频效果算法实例 | 
 | ([RemoveAudioEffect](#removeaudioeffect))(AudioHandle&nbsp;handle,&nbsp;uint64_t&nbsp;effectid) | 移除音频效果算法实例 | 
@@ -260,7 +260,7 @@ int32_t (*AudioAttribute::RemoveAudioEffect)(AudioHandle handle, uint64_t effect
 
   
 ```
-int32_t(* AudioAttribute::ReqMmapBuffer) (AudioHandle handle, int32_t reqSize, struct AudioMmapBufferDescripter *desc)
+int32_t(* AudioAttribute::ReqMmapBuffer) (AudioHandle handle, int32_t reqSize, struct AudioMmapBufferDescriptor *desc)
 ```
 
 **描述：**

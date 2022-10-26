@@ -30,7 +30,7 @@
 
 - **[AudioMixExtInfo](_audio_mix_ext_info.md)**
 
-- **[AudioMmapBufferDescripter](_audio_mmap_buffer_descripter.md)**
+- **[AudioMmapBufferDescriptor](_audio_mmap_buffer_descriptor.md)**
 
 - **[AudioPort](_audio_port.md)**
 
