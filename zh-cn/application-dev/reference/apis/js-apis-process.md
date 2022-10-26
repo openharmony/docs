@@ -27,10 +27,209 @@ import process from '@ohos.process';
 | tid<sup>8+</sup> | number | 是 | 否 | 当前进程的tid。 |
 
 
+## ProcessManager<sup>9+</sup>	
+
+提供用于新增进程的抛异常接口。
+
+### process.isAppUid<sup>9+</sup>
+
+isAppUid(v: number): boolean
+
+判断uid是否属于当前应用程序。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| v | number | 是 | 应用程序的uid。 |
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| boolean | 返回判断结果，如果返回true表示为应用程序的uid。|
+
+**示例：**
+
+```js
+let pro = new process.ProcessManager();
+let result = pro.isAppUid(688);
+```
+
+
+### process.getUidForName<sup>9+</sup>
+
+getUidForName(v: string): number
+
+通过进程名获取进程uid。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| v | string | 是 | 进程名。 |
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| number | 返回进程uid。|
+
+**示例：**
+
+```js
+let pro = new process.ProcessManager();
+let pres = pro .getUidForName("tool");
+```
+
+
+### process.getThreadPriority<sup>9+</sup>
+
+getThreadPriority(v: number): number
+
+根据指定的tid获取线程优先级。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| v | number | 是 | 指定的线程tid。 |
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| number | 返回线程的优先级。 |
+
+**示例：**
+
+```js
+let pro = new process.ProcessManager();
+let tid = process.tid;
+let pres = pro.getThreadPriority(tid);
+```
+
+
+### process.getSystemConfig<sup>9+</sup>
+
+getSystemConfig(name: number): number
+
+获取系统配置信息。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| name | number | 是 | 指定系统配置参数名。 |
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| number | 返回系统配置信息。 |
+
+**示例：**
+
+```js
+let pro = new process.ProcessManager();
+let _SC_ARG_MAX = 0;
+let pres = pro.getSystemConfig(_SC_ARG_MAX);
+```
+
+
+### process.getEnvironmentVar<sup>9+</sup>
+
+getEnvironmentVar(name: string): string
+
+用该方法获取环境变量对应的值。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| name | string | 是 | 环境变量名。 |
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| string | 返回环境变量名对应的value。 |
+
+**示例：**
+
+```js
+let pro = new process.ProcessManager();
+let pres = pro.getEnvironmentVar("PATH");
+```
+
+
+### process.exit<sup>9+</sup>
+
+exit(code: number): void
+
+终止程序。
+
+请谨慎使用此接口。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| code | number | 是 | 进程的退出码。 |
+
+**示例：**
+
+```js
+let pro = new process.ProcessManager();
+pro.exit(0);
+```
+
+
+### process.kill<sup>9+</sup>
+
+kill(signal: number, pid: number): boolean
+
+发送signal到指定的进程，结束指定进程。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| pid | number | 是 | 进程的id。 |
+| signal | number | 是 | 发送的信号。 |
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| boolean | 信号是否发送成功。 |
+
+**示例：**
+
+```js
+let pro = new process.ProcessManager();
+let pres = process.pid;
+let result = pro.kill(28, pres);
+```
+
+
 ## ChildProcess
 
 主进程可以获取子进程的标准输入输出，以及发送信号和关闭子进程。
-
 
 ### 属性
 
