@@ -116,24 +116,96 @@ struct IndexComponent {
 
 ![lifecycle](figures/lifecycle.PNG)
 
-## onLayout
+## onLayout<sup>9+</sup>
 
 onLayout?(children: Array<LayoutChild>, constraint: [ConstraintSizeOptions](../reference/arkui-ts/ts-types.md#constraintsizeoptions)): void
 
 框架会在自定义组件布局时，将该自定义组件的子节点信息和自身的尺寸范围通过onLayout传递给该自定义组件。不允许在onLayout函数中改变状态变量。
 
-## onMeasure
+## onMeasure<sup>9+</sup>
 
 onMeasure?(children: Array<LayoutChild>, constraint: [ConstraintSizeOptions](../reference/arkui-ts/ts-types.md#constraintsizeoptions)): void
 
 框架会在自定义组件确定尺寸时，将该自定义组件的子节点信息和自身的尺寸范围通过onMeasure传递给该自定义组件。不允许在onMeasure函数中改变状态变量。
 
-## LayoutChild类型说明
+**示例3：**
 
-| 参数    | 参数类型   |   描述       |
-| ----- | ----------- | ----------- |
-| name | string |  子组件名称   |
-| id | string |  子组件id    |
-| constraint | [ConstraintSizeOptions](../reference/arkui-ts/ts-types.md#constraintsizeoptions) |   子组件约束尺寸  |
-| borderInfo | { borderWidth: number, margin: [Margin](../reference/arkui-ts/ts-types.md#margin), padding: [Padding](../reference/arkui-ts/ts-types.md#padding) } |  子组件边框样式  |
-| position | { x: number, y: number } |  子组件位置坐标   |
+```ts
+// xxx.ets
+@Entry
+@Component
+struct Index {
+  build() {
+    Column() {
+      CustomLayout() {
+        ForEach([1, 2, 3], (index) => {
+          Text("Sub" + index)
+            .fontSize(30)
+            .borderWidth(2)
+        })
+      }
+    }
+  }
+}
+
+
+@Component
+struct CustomLayout {
+  @BuilderParam builder: () => {}
+
+  onLayout(children: Array<LayoutChild>, constraint: ConstraintSizeOptions) {
+    let pos = 0
+    children.forEach((child) => {
+      child.layout({ position: { x: pos, y: pos }, constraint: constraint })
+      pos += 100;
+    })
+  }
+
+  onMeasure(children: Array<LayoutChild>, constraint: ConstraintSizeOptions) {
+    let size = 100
+    children.forEach((child) => {
+      child.measure({ minHeight: size, minWidth: size, maxWidth: size, maxHeight: size })
+      size += 50
+    })
+  }
+
+  build() {
+    this.builder()
+  }
+}
+```
+
+![customlayout](figures/customLayout.png)
+
+## LayoutChild<sup>9+</sup>
+
+子组件布局信息
+
+| 参数       | 参数类型                                                                                                    | 描述             |
+| ---------- | ----------------------------------------------------------------------------------------------------------- | ---------------- |
+| name       | string                                                                                                      | 子组件名称       |
+| id         | string                                                                                                      | 子组件id         |
+| constraint | [ConstraintSizeOptions](../reference/arkui-ts/ts-types.md#constraintsizeoptions)                            | 子组件约束尺寸   |
+| borderInfo | [LayoutBorderInfo](#layoutborderinfo9)                                                                      | 子组件border信息 |
+| position   | [Position](../reference/arkui-ts/ts-types.md#position)                                                      | 子组件位置坐标   |
+| measure    | (childConstraint: [ConstraintSizeOptions](../reference/arkui-ts/ts-types.md#constraintsizeoptions)) => void | 子组件位置坐标   |
+| layout     | (LayoutInfo： [LayoutInfo](#layoutinfo9)) => void                                                           | 子组件位置坐标   |
+
+## LayoutBorderInfo<sup>9+</sup>
+
+子组件border信息
+
+| 参数        | 参数类型                                                   | 描述                                         |
+| ----------- | ---------------------------------------------------------- | -------------------------------------------- |
+| borderWidth | [EdgeWidths](../reference/arkui-ts/ts-types.md#edgewidths) | 边框宽度类型，用于描述组件边框不同方向的宽度 |
+| margin      | [Margin](../reference/arkui-ts/ts-types.md#margin)         | 外边距类型，用于描述组件不同方向的外边距     |
+| padding     | [Padding](../reference/arkui-ts/ts-types.md#padding)       | 内边距类型，用于描述组件不同方向的内边距     |
+
+## LayoutInfo<sup>9+</sup>
+
+子组件layout信息
+
+| 参数       | 参数类型                                                                         | 描述           |
+| ---------- | -------------------------------------------------------------------------------- | -------------- |
+| position   | [Position](../reference/arkui-ts/ts-types.md#position)                           | 子组件位置坐标 |
+| constraint | [ConstraintSizeOptions](../reference/arkui-ts/ts-types.md#constraintsizeoptions) | 子组件约束尺寸 |
