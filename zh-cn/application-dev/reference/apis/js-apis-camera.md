@@ -233,7 +233,7 @@ cameraManager.getSupportedOutputCapability(cameradevice).then((cameraoutputcapab
 
 ### isCameraMuted
 
-isCameraMuted(): boolean;
+isCameraMuted(): boolean
 
 查询相机是否被禁用，通过返回值返回结果。
 
@@ -241,9 +241,9 @@ isCameraMuted(): boolean;
 
 **返回值：**
 
-| 类型        | 说明                          |
-| ---------- | ----------------------------- |
-| boolean    | 返回值返回相机是否被禁用。        |
+| 类型        | 说明                                         |
+| ---------- | -------------------------------------------- |
+| boolean    | 返回true表示相机被禁用，返回false表示相机未被禁用。 |
 
 **示例：**
 
@@ -253,9 +253,9 @@ let ismuted = await cameraManager.isCameraMuted();
 
 ### isCameraMuteSupported
 
-isCameraMuteSupported(): boolean;
+isCameraMuteSupported(): boolean
 
-查询相机是否支持禁用，通过返回值返回结果。。
+查询相机是否能被禁用，通过返回值返回结果。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
@@ -263,7 +263,7 @@ isCameraMuteSupported(): boolean;
 
 | 类型        | 说明                          |
 | ---------- | ----------------------------- |
-| boolean    | 返回值返回相机是否支持禁用。      |
+| boolean    | 返回值返回相机是否能被禁用。      |
 
 **示例：**
 
@@ -273,7 +273,7 @@ let ismutesuppotred = await cameraManager.isCameraMuteSupported();
 
 ### muteCamera
 
-muteCamera(mute: boolean): void;
+muteCamera(mute: boolean): void
 
 禁用相机。
 
