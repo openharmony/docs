@@ -186,7 +186,7 @@ struct Index {
     Column() {
       CustomLayout() {
         ForEach([1, 2, 3], (index) => {
-          Text("Sub" + index)
+          Text('Sub' + index)
             .fontSize(30)
             .borderWidth(2)
         })
@@ -204,7 +204,7 @@ struct CustomLayout {
     let pos = 0
     children.forEach((child) => {
       child.layout({ position: { x: pos, y: pos }, constraint: constraint })
-      pos += 100;
+      pos += 100
     })
   }
 
