@@ -315,7 +315,6 @@ try{
 } catch(err) {
          console.info("Failed to delete preferences. code =" + err.code + ", message =" + err.message);
 }
-
 ```
 
 ## data_preferences.removePreferencesFromCache
@@ -449,7 +448,6 @@ try{
 } catch(err) {
     console.info("Failed to remove preferences. code =" + err.code + ", message =" + err.message);
 }
-
 ```
 
 ## Preferences
@@ -484,7 +482,7 @@ try {
             console.info("Failed to get value of 'startup'. code =" + err.code + ", message =" + err.message);
             return;
         }
-    console.info("Succeeded in getting value of 'startup'. Data： " + data);
+    console.info("Succeeded in getting value of 'startup'. val： " + val);
     })
 } catch (err) {
         console.info("Failed to get value of 'startup'. code =" + err.code + ", message =" + err.message);
@@ -680,16 +678,18 @@ has(key: string, callback: AsyncCallback&lt;boolean&gt;): void
 **示例：**
 
 ```js
-try{
-   preferences.has('startup', function (err, val) {
+    try{
+      preferences.has('startup', function (err, val) {
         if (err) {
-            console.info("Failed to check the key 'startup'. code =" + err.code + ", message =" + err.message);
-            return;
+          console.info("Failed to check the key 'startup'. code =" + err.code + ", message =" + err.message);
+          return;
         }
-    if (val) {
-        console.info("The key 'startup' is contained.");
-    } else {
-            console.info("The key 'startup' dose not contain.");    
+        if (val) {
+          console.info("The key 'startup' is contained.");
+        } else {
+          console.info("The key 'startup' dose not contain.");
+        }
+      })
 } catch (err) {
     console.info("Failed to check the key 'startup'. code =" + err.code + ", message =" + err.message);
 }
@@ -719,20 +719,21 @@ has(key: string): Promise&lt;boolean&gt;
 **示例：**
 
 ```js
-try{
-let promise = preferences.has('startup');
-promise.then((isExist) => {
-    if (val) {
-        console.info("The key 'startup' is contained.");
-    } else {
-        console.info("The key 'startup' dose not contain.");
+    try{
+      let promise = preferences.has('startup');
+      promise.then((val) => {
+        if (val) {
+          console.info("The key 'startup' is contained.");
+        } else {
+          console.info("The key 'startup' dose not contain.");
+        }
+      }).catch((err) => {
+        console.info("Failed to check the key 'startup'. code =" + err.code + ", message =" + err.message);
+      })
+    } catch(err) {
+      console.info("Failed to check the key 'startup'. code =" + err.code + ", message =" + err.message);
     }
-    }).catch((err) => {
-       console.info("Failed to check the key 'startup'. code =" + err.code + ", message =" + err.message);
-    })
-} catch(err) {
- console.info("Failed to check the key 'startup'. code =" + err.code + ", message =" + err.message);
-}
+
 ```
 
 
@@ -944,9 +945,8 @@ on(type: 'change', callback: Callback&lt;{ key : string }&gt;): void
 **示例：**
 
 ```js
-data_preferences.getPreferences(this.context, 'mystore', function (err, preferences) {
 try {
-   data_preferences.getPreferences(this.context, 'mystore', function (err, preferences) {
+  data_preferences.getPreferences(this.context, 'mystore', function (err, preferences) {
     if (err) {
         console.info("Failed to get preferences.");
         return;
@@ -967,7 +967,10 @@ try {
                 console.info("Failed to flush. Cause: " + err);
                 return;
             }
-	    console.info("Succeeded in flushing."); // observer will be called.
+            console.info("Succeeded in flushing."); // observer will be called.
+        })
+    })
+})
 } catch (error) {
      console.info("Failed to flush. code =" + err.code + ", message =" + err.message);
 }
@@ -1019,7 +1022,6 @@ data_preferences.getPreferences(this.context, 'mystore', function (err, preferen
         preferences.off('change', observer);
     })
 })
-
 } catch (error) {
   console.info("Failed to flush. code =" + err.code + ", message =" + err.message);}
 ```
