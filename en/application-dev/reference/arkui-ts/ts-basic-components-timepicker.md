@@ -48,7 +48,7 @@ Creates a time picker whose default time range is from 00:00 to 23:59.
 ## Example
 
 
-### Time Selector
+### Time Picker
 
 ```ts
 // xxx.ets
