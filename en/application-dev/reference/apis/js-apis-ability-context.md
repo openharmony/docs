@@ -14,7 +14,7 @@ This module provides APIs for accessing ability-specific resources. You can use 
 Before using the **AbilityContext** module, you must define a child class that inherits from **Ability**.
 
 ```js
-import Ability from '@ohos.application.Ability'
+import Ability from '@ohos.application.Ability';
 class MainAbility extends Ability {
     onWindowStageCreate(windowStage) {
         let context = this.context;
@@ -34,7 +34,7 @@ class MainAbility extends Ability {
 
 ## AbilityContext.startAbility
 
-startAbility(want: Want, callback: AsyncCallback&lt;void&gt;): void
+startAbility(want: Want, callback: AsyncCallback&lt;void&gt;): void;
 
 Starts an ability. This API uses an asynchronous callback to return the result.
 
@@ -63,9 +63,9 @@ Starts an ability. This API uses an asynchronous callback to return the result.
 
 ## AbilityContext.startAbility
 
-startAbility(want: Want, options: StartOptions, callback: AsyncCallback&lt;void&gt;): void
+startAbility(want: Want, options: StartOptions, callback: AsyncCallback&lt;void&gt;): void;
 
-Starts an ability with start options specified. This API uses an asynchronous callback to return the result.
+Starts an ability with the start options specified. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -1143,7 +1143,7 @@ Sets a label for this ability in the mission. This API uses an asynchronous call
 
 ## AbilityContext.setMissionLabel
 
-setMissionLabel(label: string): Promise&lt;void&gt;
+setMissionLabel(label: string): Promise&lt;void&gt;;
 
 Sets a label for this ability in the mission. This API uses a promise to return the result.
 
@@ -1190,7 +1190,7 @@ Sets an icon for this ability in the mission. This API uses an asynchronous call
 **Example**
 
   ```js
-    import image from '@ohos.multimedia.image'
+    import image from '@ohos.multimedia.image';
     var imagePixelMap;
     var color = new ArrayBuffer(0);
     var initializationOptions = {
@@ -1237,7 +1237,7 @@ Sets an icon for this ability in the mission. This API uses a promise to return 
 **Example**
 
   ```js
-    import image from '@ohos.multimedia.image'
+    import image from '@ohos.multimedia.image';
     var imagePixelMap;
     var color = new ArrayBuffer(0);
     var initializationOptions = {
