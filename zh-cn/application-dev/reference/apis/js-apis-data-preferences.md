@@ -964,7 +964,7 @@ try {
 					console.info("Failed to flush. Cause: " + err);
 					return;
 				}
-				console.info("Succeeded in flushing."); // observer will be called.
+				console.info("Succeeded in flushing.");
 			})
 		})
 	})
