@@ -583,10 +583,10 @@ promise.then((value) => {
     console.info('getAll keys = ' + allKeys);
     console.info("getAll object = " + JSON.stringify(value));
     }).catch((err) => {
-         console.info("Failed to get all key-values. , code =" + err.code + ", message =" + err.message);
+         console.info("Failed to get all key-values. code =" + err.code + ", message =" + err.message);
     })
 } catch (err) {
-    console.info("Failed to get all key-values. , code =" + err.code + ", message =" + err.message);
+    console.info("Failed to get all key-values. code =" + err.code + ", message =" + err.message);
 }
 ```
 
@@ -612,13 +612,13 @@ put(key: string, value: ValueType, callback: AsyncCallback&lt;void&gt;): void
 try{
     preferences.put('startup', 'auto', function (err) {
         if (err) {
-            console.info("Failed to put value of 'startup' code =" + err.code + ", message =" + err.message);
+            console.info("Failed to put value of 'startup'. code =" + err.code + ", message =" + err.message);
             return;
         }
     console.info("Succeeded in putting value of 'startup'.");
     })
 } catch (err) {
-    console.info("Failed to put value of 'startup' code =" + err.code + ", message =" + err.message);
+    console.info("Failed to put value of 'startup'. code =" + err.code + ", message =" + err.message);
 }
 ```
 
@@ -652,10 +652,10 @@ try{
 promise.then(() => {
     console.info("Succeeded in putting value of 'startup'.");
     }).catch((err) => {
-        console.info("Failed to put value of 'startup'. , code =" + err.code +", message =" + err.message);
+        console.info("Failed to put value of 'startup'. code =" + err.code +", message =" + err.message);
     })
 } catch(err) {
-    console.info("Failed to put value of 'startup'. , code =" + err.code +", message =" + err.message);
+    console.info("Failed to put value of 'startup'. code =" + err.code +", message =" + err.message);
 }
 ```
 
