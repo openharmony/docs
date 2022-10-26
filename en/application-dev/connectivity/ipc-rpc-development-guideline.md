@@ -10,7 +10,7 @@ IPC/RPC enables a proxy and a stub that run on different processes to communicat
 
 | Class/Interface | Function | Description |
 | --------------- | -------- | ----------- |
-| IRemoteBroker | sptr<IRemoteObject> AsObject() | Obtains the holder of a remote proxy object. This method must be implemented by the derived classes of **IRemoteBroker**. If you call this method on the stub, the **RemoteObject** is returned; if you call this method on the proxy, the proxy object is returned. |
+| [IRemoteBroker](../reference/apis/js-apis-rpc.md#iremotebroker) | sptr<IRemoteObject> AsObject() | Obtains the holder of a remote proxy object. This method must be implemented by the derived classes of **IRemoteBroker**. If you call this method on the stub, the **RemoteObject** is returned; if you call this method on the proxy, the proxy object is returned. |
 | IRemoteStub | virtual int OnRemoteRequest(uint32_t code, MessageParcel &data, MessageParcel &reply, MessageOption &option) | Called to process a request from the proxy and return the result. Derived classes need to override this method. |
 | IRemoteProxy | | Service proxy classes are derived from the **IRemoteProxy** class. |
 
@@ -25,10 +25,10 @@ IPC/RPC enables a proxy and a stub that run on different processes to communicat
     ```
     class ITestAbility : public IRemoteBroker {
     public:
-    // DECLARE_INTERFACE_DESCRIPTOR is mandatory, and the input parameter is std::u16string.
-    DECLARE_INTERFACE_DESCRIPTOR(u"test.ITestAbility");
-    int TRANS_ID_PING_ABILITY = 1; // Define the message code.
-    virtual int TestPingAbility(const std::u16string &dummy) = 0; // Define functions.
+       // DECLARE_INTERFACE_DESCRIPTOR is mandatory, and the input parameter is std::u16string.
+       DECLARE_INTERFACE_DESCRIPTOR(u"test.ITestAbility");
+       int TRANS_ID_PING_ABILITY = 1; // Define the message code.
+       virtual int TestPingAbility(const std::u16string &dummy) = 0; // Define functions.
     };
     ```
 

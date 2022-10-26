@@ -116,27 +116,7 @@ The following table describes APIs available for obtaining device location infor
 
    If your application needs to access the device location information when running on the background, it must be allowed to run on the background in the configuration file and also granted the **ohos.permission.LOCATION_IN_BACKGROUND** permission. In this way, the system continues to report device location information even when your application moves to the background.
 
-   To allow your application to access device location information, you can declare the required permissions in the **config.json** file of your application. The sample code is as follows:
-
-     
-   ```
-   {
-       "module": {
-           "reqPermissions": [{
-               "name": "ohos.permission.LOCATION",
-               "reason": "$string:reason_description",
-               "usedScene": {
-                   "ability": ["com.myapplication.LocationAbility"],
-                   "when": "inuse"
-               }, {
-               ...
-               }
-           ]
-       }
-   }
-   ```
-
-   For details about the configuration fields, see [Application Package Structure Configuration File](../application-dev/quick-start/stage-structure.md).
+   You can declare the required permission in your application's configuration file. For details, see [Application Package Structure Configuration File](../application-dev/quick-start/stage-structure.md).
 
 2. Import the **geolocation** module by which you can implement all APIs related to the basic location capabilities.
      

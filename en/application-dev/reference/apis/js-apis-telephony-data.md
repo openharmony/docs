@@ -88,7 +88,7 @@ console.log("Result: "+ data.getDefaultCellularDataSlotIdSync())
 
 ## data.setDefaultCellularDataSlotId
 
-setDefaultCellularDataSlotId(slotId: number,callback: AsyncCallback\<void\>): void 
+setDefaultCellularDataSlotId(slotId: number, callback: AsyncCallback\<void\>): void 
 
 Sets the default slot of the SIM card used for mobile data. This API uses an asynchronous callback to return the result. 
 
@@ -108,7 +108,7 @@ This is a system API.
 **Example**
 
 ```js
-data.setDefaultCellularDataSlotId(0,(err, data) => {
+data.setDefaultCellularDataSlotId(0, (err, data) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
 ```
@@ -313,7 +313,7 @@ Checks whether the cellular data roaming service is enabled. This API uses an as
 **Example**
 
 ```js
-data.isCellularDataRoamingEnabled(0,(err, data) => {
+data.isCellularDataRoamingEnabled(0, (err, data) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
 ```
