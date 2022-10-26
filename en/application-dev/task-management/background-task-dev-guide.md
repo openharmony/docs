@@ -2,7 +2,13 @@
 
 ## When to Use
 
-If a service needs to be continued when the application or service module is running in the background (not visible to users), the application or service module can request a transient task or continuous task for delayed suspension based on the service type.
+If a service needs to be continued when the application or service module is running in the background (not visible to users), the application or service module can request a transient task to delay the suspension or a continuous task to prevent the suspension. The application can also request efficiency resources in the following scenarios for more flexibility: 
+
+- The application should not be suspended within a period of time until it finishes the task. 
+
+- The application requires system resources even when it is suspended. For example, an alarm clock requires timer resources even when being suspended.
+
+- The application needs to execute the task at an unlimited frequency and within a longer time.
 
 ## Transient Tasks
 
@@ -12,7 +18,7 @@ If a service needs to be continued when the application or service module is run
 
 | API                                     | Description                                      |
 | ---------------------------------------- | ---------------------------------------- |
-| requestSuspendDelay(reason: string, callback: Callback&lt;void&gt;): [DelaySuspendInfo](../reference/apis/js-apis-backgroundTaskManager.md#delaysuspendinfo) | Requests delayed suspension after the application switches to the background.<br>The default duration value of delayed suspension is 180000 when the battery level is normal and 60000 when the battery level is low.|
+| requestSuspendDelay(reason: string, callback: Callback&lt;void&gt;): [DelaySuspendInfo](../reference/apis/js-apis-backgroundTaskManager.md#delaysuspendinfo)| Requests delayed suspension after the application switches to the background.<br>The default duration value of delayed suspension is 180000 when the battery level is normal and 60000 when the battery level is low.|
 | getRemainingDelayTime(requestId: number): Promise&lt;number&gt; | Obtains the remaining duration before the application is suspended.<br>This API uses a promise to return the result.  |
 | cancelSuspendDelay(requestId: number): void | Cancels the suspension delay.                                 |
 
@@ -484,4 +490,91 @@ export default class BgTaskAbility extends Ability {
         console.info("[Demo] BgTaskAbility onBackground")
     }
 };
+```
+
+## Efficiency Resources
+
+### Available APIs
+
+**Table 4** Main APIs for efficiency resources
+
+| API                                     | Description                                      |
+| ---------------------------------------- | ---------------------------------------- |
+| applyEfficiencyResources(request: [EfficiencyResourcesRequest](../reference/apis/js-apis-backgroundTaskManager.md#efficiencyresourcesrequest9)): boolean | Requests efficiency resources.|
+| resetAllEfficiencyResources():void | Releases efficiency resources.  |
+
+
+### How to Develop
+
+
+1. Request efficiency resources.
+
+```js
+import backgroundTaskManager from '@ohos.backgroundTaskManager';
+
+let request = {
+    resourceTypes: backgroundTaskManager.ResourceType.CPU,
+    isApply: true,
+    timeOut: 0,
+    reason: "apply",
+    isPersist: true,
+    isProcess: true,
+};
+let res = backgroundTaskManager.applyEfficiencyResources(request);
+console.info("the result of request is: " + res);
+```
+
+2. Release some efficiency resources.
+
+```js
+import backgroundTaskManager from '@ohos.backgroundTaskManager';
+
+let request = {
+    resourceTypes: backgroundTaskManager.ResourceType.CPU,
+    isApply: false,
+    timeOut: 0,
+    reason: "reset",
+};
+let res = backgroundTaskManager.applyEfficiencyResources(request);
+console.info("the result of request is: " + res);
+```
+
+3. Release all efficiency resources.
+
+```js
+import backgroundTaskManager from '@ohos.backgroundTaskManager';
+
+backgroundTaskManager.backgroundTaskManager.resetAllEfficiencyResources();
+```
+
+### Development Examples
+
+```js
+import backgroundTaskManager from '@ohos.backgroundTaskManager';
+
+// Apply for efficiency resources.
+let request = {
+    resourceTypes: backgroundTaskManager.ResourceType.COMMON_EVENT |
+        backgroundTaskManager.ResourceType.TIMER,
+    isApply: true,
+    timeOut: 0,
+    reason: "apply",
+    isPersist: true,
+    isProcess: true,
+};
+let res = backgroundTaskManager.applyEfficiencyResources(request);
+console.info("the result of request is: " + res);
+
+// Release some efficiency resources.
+request = {
+    resourceTypes: backgroundTaskManager.ResourceType.COMMON_EVENT,
+    isApply: false,
+    timeOut: 0,
+    reason: "reset",
+};
+res = backgroundTaskManager.applyEfficiencyResources(request);
+console.info("the result of request is: " + res);
+
+// Release all efficiency resources.
+backgroundTaskManager.backgroundTaskManager.resetAllEfficiencyResources();
 ```
