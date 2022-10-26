@@ -53,8 +53,8 @@ let context = featureAbility.getContext();
 let preferences = null;
 
 try {
-	data_preferences.getPreferences(context, 'mystore', function (err, val) {
-	    if (err) {
+    data_preferences.getPreferences(context, 'mystore', function (err, val) {
+        if (err) {
 	        console.info("Failed to get preferences. code =" + err.code + ", message =" + err.message);
 	        return;
 	    }
