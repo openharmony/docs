@@ -388,7 +388,12 @@ async function ImportDhTest(alg, keyType) {
 
     //对比密钥类型
     if (huksOptions.properties[3].value === huks.HuksImportKeyType.HUKS_KEY_TYPE_KEY_PAIR) {
-        //PAIR
+        /* 非公钥拼接huksOptions.inData字段，满足以下格式:
+         * keyAlg的类型（4字节）        + key_dh的长度（4字节）        +
+         * g_dhPubData的长度（4字节）   + g_dhPriData的长度（4字节）   +
+         * reserved的大小（4字节）      + g_dhPubData的数据           + g_dhPriData的数据
+         */
+        // PAIR
         let Material = new Uint32Array([huks.HuksKeyAlg.HUKS_ALG_DH, huks.HuksKeySize.HUKS_DH_KEY_SIZE_2048, g_dhPubData.length, g_dhPriData.length, 0]);
         let u8Material = Uint32ToUint8(Material);
         let strMaterial = Uint8ArrayToString(u8Material);
@@ -446,6 +451,12 @@ async function ImportEccTest(alg, keyType) {
 
     //对比密钥类型
     if (huksOptions.properties[3].value === huks.HuksImportKeyType.HUKS_KEY_TYPE_KEY_PAIR) {
+        /* 非公钥拼接huksOptions.inData字段，满足以下格式:
+         * keyAlg的类型（4字节）       + key_ecc的长度（4字节）      +
+         * g_eccXData的长度（4字节）   + g_eccYData的长度（4字节）   +
+         * g_eccZData的长度（4字节）   + g_eccXData的数据          +
+         * g_eccYData的数据          + g_eccZData的数据
+         */
         //PAIR
         let Material = new Uint32Array([huks.HuksKeyAlg.HUKS_ALG_ECC, huks.HuksKeySize.HUKS_ECC_KEY_SIZE_256, g_eccXData.length, g_eccYData.length, g_eccZData.length]);
         let u8Material = Uint32ToUint8(Material);
@@ -510,6 +521,12 @@ async function ImportRsaTest(alg, keyType) {
 
     //对比密钥类型
     if (huksOptions.properties[5].value === huks.HuksImportKeyType.HUKS_KEY_TYPE_KEY_PAIR) {
+        /* 非公钥拼接huksOptions.inData字段，满足以下格式:
+         * keyAlg的类型（4字节）       + key_rsa的长度（4字节）      +
+         * g_nData的长度（4字节）      + g_eData的长度（4字节）      +
+         * g_dData的长度（4字节）      + g_nData的数据             +
+         * g_eData的数据             + g_dData的数据
+         */
         //PAIR
         let Material = new Uint32Array([huks.HuksKeyAlg.HUKS_ALG_RSA, huks.HuksKeySize.HUKS_RSA_KEY_SIZE_512, g_nData.length, g_eData.length, g_dData.length]);
         let u8Material = Uint32ToUint8(Material);
@@ -567,12 +584,18 @@ async function ImportX25519Test(alg, keyType) {
 
     //对比密钥类型
     if (huksOptions.properties[3].value === huks.HuksImportKeyType.HUKS_KEY_TYPE_KEY_PAIR) {
+        /* 非公钥拼接huksOptions.inData字段，满足以下格式:
+         * keyAlg的类型（4字节）           + key_x25519的长度（4字节）      +
+         * g_x25519PubData的长度（4字节）  + g_x25519PriData的长度（4字节） +
+         * reserved的大小（4字节）         + g_x25519PubData的数据        +
+         * g_x25519PriData的数据
+         */
         //PAIR
         let Material = new Uint32Array([huks.HuksKeyAlg.HUKS_ALG_X25519, huks.HuksKeySize.HUKS_CURVE25519_KEY_SIZE_256, g_x25519PriData.length, g_x25519PubData.length, 0]);
         let u8Material = Uint32ToUint8(Material);
         let strMaterial = Uint8ArrayToString(u8Material);
-        let strXData = strMaterial.concat(Uint8ArrayToString(g_x25519PriData));
-        let strData = strXData.concat(Uint8ArrayToString(g_x25519PubData));
+        let strXData = strMaterial.concat(Uint8ArrayToString(g_x25519PubData));
+        let strData = strXData.concat(Uint8ArrayToString(g_x25519PriData));
         huksOptions.inData = StringToUint8Array(strData);
     } else if (huksOptions.properties[3].value === huks.HuksImportKeyType.HUKS_KEY_TYPE_PRIVATE_KEY) {
         //私钥
