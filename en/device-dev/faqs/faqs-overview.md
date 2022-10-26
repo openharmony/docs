@@ -11,27 +11,27 @@ FAQs are used to help developers solve problems frequently encountered during de
 
 - hb installation
 
-  - [What should I do if garbled characters and segmentation faults occur during hb installation?](../faqs/faqs-environment-setup.md)
+  - [Garbled Characters and Segmentation Faults](../faqs/faqs-environment-setup.md)
 
-  - [What should I do if the message "cannot import 'sysconfig' from 'distutils'" is displayed during hb installation?](../faqs/faqs-environment-setup.md)
+  - ["cannot import 'sysconfig' from 'distutils'"](../faqs/faqs-environment-setup.md)
 
-  - [What should I do if the message "module 'platform' has no attribute 'linux_distribution'" is displayed during hb installation?](../faqs/faqs-environment-setup.md)
+  - ["module 'platform' has no attribute 'linux_distribution'"](../faqs/faqs-environment-setup.md)
 
-  - [What should I do if the message "Could not find a version that satisfies the requirement ohos-build" is displayed during hb installation?](../faqs/faqs-environment-setup.md)
+  - ["Could not find a version that satisfies the requirement ohos-build"](../faqs/faqs-environment-setup.md)
 
 - Python3 Installation
 
-  - [What should I do if the message "configure: error: no acceptable C compiler found in $PATH" is displayed during Python 3 installation?](../faqs/faqs-environment-setup.md)
+  - ["configure: error: no acceptable C compiler found in $PATH"](../faqs/faqs-environment-setup.md)
 
-  - [What should I do if the message "-bash: make: command not found" is displayed during Python 3 installation?](../faqs/faqs-environment-setup.md)
+  - ["-bash: make: command not found"](../faqs/faqs-environment-setup.md)
 
-  - [What should I do if the message "zlib not available" is displayed during Python 3 installation?](../faqs/faqs-environment-setup.md)
+  - ["zlib not available"](../faqs/faqs-environment-setup.md)
 
-  - [What should I do if the message "No module named 'Crypto'" is displayed during the build process?](../faqs/faqs-environment-setup.md)
+  - ["No module named '_ctypes'"](../faqs/faqs-environment-setup.md)
 
-- [What should I do when an error with lsb_release occurs during kconfiglib installation?](../faqs/faqs-environment-setup.md)
+- [lsb_release Error During kconfiglib Installation](../faqs/faqs-environment-setup.md)
 
-- [What should I do if the message "ImportError: No module named apt_pkg" is displayed during the execution of an unidentifiable command?](../faqs/faqs-environment-setup.md)
+- ["ImportError: No module named apt_pkg"](../faqs/faqs-environment-setup.md)
 
 
 ## Compilation and Building
