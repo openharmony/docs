@@ -50,20 +50,19 @@ FA模型示例：
 // 获取context
 import featureAbility from '@ohos.ability.featureAbility';
 let context = featureAbility.getContext();
-
 let preferences = null;
+
 try {
-    mPreference.getPreferences(context, 123, function (err, val) {
+    data_preferences.getPreferences(context, 'mystore', function (err, val) {
         if (err) {
-            console.log("get err =" + err + ", code =" + err.code + ", message =" + err.message)
-            expect(false).assertTrue()
+            console.info("Failed to get preferences. code =" + err.code + ", message =" + err.message);
+            return;
         }
-        expect(true).assertEqual(val)
+        preferences = object;
+        console.info("Succeeded in getting preferences.");
     })
 } catch (err) {
-    console.log("trycatch err =" + err + ", code =" + err.code + ", message =" + err.message)
-    done()
-    console.log("testPreferencesCallback0000 end.")
+    console.info("Failed to get preferences. code =" + err.code + ", message =" + err.message);
 }
 ```
 
@@ -81,17 +80,16 @@ class MainAbility extends Ability{
 
 let preferences = null;
 try {
-    mPreference.getPreferences(context, 123, function (err, val) {
+    data_preferences.getPreferences(context, 'mystore', function (err, val) {
         if (err) {
-            console.log("get err =" + err + ", code =" + err.code + ", message =" + err.message)
-            expect(false).assertTrue()
+            console.info("Failed to get preferences. code =" + err.code + ", message =" + err.message);
+            return;
         }
-        expect(true).assertEqual(val)
+        preferences = object;
+        console.info("Succeeded in getting preferences.");
     })
 } catch (err) {
-    console.log("trycatch err =" + err + ", code =" + err.code + ", message =" + err.message)
-    done()
-    console.log("testPreferencesCallback0000 end.")
+    console.info("Failed to get preferences. code =" + err.code + ", message =" + err.message);
 }
 ```
 
@@ -125,18 +123,17 @@ FA模型示例：
 import featureAbility from '@ohos.ability.featureAbility';
 let context = featureAbility.getContext();
 
+let preferences = null;
 try{
-    mPreference.getPreferences(context, 1233).then((ret)=>{
-        console.log("get err")
-        expect(false).assertTrue()
+   let promise = data_preferences.getPreferences(context, 'mystore');
+	promise.then((object) => {
+    	preferences = object;
+    	console.info("Succeeded in getting preferences.");
     }).catch((err) => {
-        console.log("get err =" + err + ", code =" + err.code +", message =" + err.message)
-        expect(false).assertTrue()
+         console.log("Failed to get preferences. code =" + err.code + ", message =" + err.message);
     })
 } catch(err) {
-    console.log("trycatch err =" + err + ", code =" + err.code +", message =" + err.message)
-    done()
-    console.log("testPreferencesPromise0000 end.")
+     console.log("Failed to get preferences. code =" + err.code + ", message =" + err.message);
 }
 ```
 
@@ -152,19 +149,19 @@ class MainAbility extends Ability{
     }
 }
 
+let preferences = null;
 try{
-    mPreference.getPreferences(context, 1233).then((ret)=>{
-        console.log("get err")
-        expect(false).assertTrue()
+   let promise = data_preferences.getPreferences(context, 'mystore');
+	promise.then((object) => {
+    	preferences = object;
+    	console.info("Succeeded in getting preferences.");
     }).catch((err) => {
-        console.log("get err =" + err + ", code =" + err.code +", message =" + err.message)
-        expect(false).assertTrue()
+         console.log("Failed to get preferences. code =" + err.code + ", message =" + err.message);
     })
 } catch(err) {
-    console.log("trycatch err =" + err + ", code =" + err.code +", message =" + err.message)
-    done()
-    console.log("testPreferencesPromise0000 end.")
+     console.log("Failed to get preferences. code =" + err.code + ", message =" + err.message);
 }
+
 ```
 
 ## data_preferences.deletePreferences
@@ -205,17 +202,15 @@ import featureAbility from '@ohos.ability.featureAbility';
 let context = featureAbility.getContext();
 
 try {
-    mPreference.deletePreferences(context, 123, function (err, val) {
-        if (err) {
-            console.log("get err =" + err + ", code =" + err.code + ", message =" + err.message)
-            expect(false).assertTrue()
+    data_preferences.deletePreferences(context, 'mystore', function (err, val) {
+         if (err) {
+            console.info("Failed to delete preferences. code =" + err.code + ", message =" + err.message);
+            return;
         }
-        expect(true).assertEqual(val)
+    console.info("Succeeded in deleting preferences." );
     })
 } catch (err) {
-    console.log("trycatch err =" + err + ", code =" + err.code + ", message =" + err.message)
-    done()
-    console.log("testPreferencesCallback0001 end.")
+    console.info("Failed to delete preferences. code =" + err.code + ", message =" + err.message);
 }
 ```
 
@@ -232,17 +227,15 @@ class MainAbility extends Ability{
 }
 
 try {
-    mPreference.deletePreferences(context, 123, function (err, val) {
-        if (err) {
-            console.log("get err =" + err + ", code =" + err.code + ", message =" + err.message)
-            expect(false).assertTrue()
+    data_preferences.deletePreferences(context, 'mystore', function (err, val) {
+         if (err) {
+            console.info("Failed to delete preferences. code =" + err.code + ", message =" + err.message);
+            return;
         }
-        expect(true).assertEqual(val)
+    console.info("Succeeded in deleting preferences." );
     })
 } catch (err) {
-    console.log("trycatch err =" + err + ", code =" + err.code + ", message =" + err.message)
-    done()
-    console.log("testPreferencesCallback0001 end.")
+    console.info("Failed to delete preferences. code =" + err.code + ", message =" + err.message);
 }
 ```
 
@@ -265,6 +258,12 @@ deletePreferences(context: Context, name: string): Promise&lt;void&gt;
 | context | Context | 是   | 应用上下文。<br>FA模型的应用Context定义见[Context](js-apis-Context.md)。<br>Stage模型的应用Context定义见[Context](js-apis-ability-context.md)。            |
 | name    | string                                | 是   | Preferences实例的名称。 |
 
+**返回值：**
+
+| 类型                | 说明                      |
+| ------------------- | ------------------------- |
+| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
+
 **错误码：**
 
 以下错误码的详细介绍请参见[首选项错误码](../errorcodes/errorcode-preferences.md)。
@@ -272,12 +271,6 @@ deletePreferences(context: Context, name: string): Promise&lt;void&gt;
 | 错误码ID | 错误信息                       |
 | -------- | ------------------------------|
 | 15500010 | Failed to delete preferences. |
-
-**返回值：**
-
-| 类型                | 说明                      |
-| ------------------- | ------------------------- |
-| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
 
 **示例：**
 
@@ -289,17 +282,14 @@ import featureAbility from '@ohos.ability.featureAbility';
 let context = featureAbility.getContext();
 
 try{
-    mPreference.deletePreferences(context, 1233).then((ret)=>{
-        console.log("get err")
-        expect(false).assertTrue()
+   let promise = data_preferences.deletePreferences(context, 'mystore');
+	promise.then(() => {
+    	console.info("Succeeded in deleting preferences.");
     }).catch((err) => {
-        console.log("get err =" + err + ", code =" + err.code +", message =" + err.message)
-        expect(false).assertTrue()
+       console.info("Failed to delete preferences. code =" + err.code + ", message =" + err.message);
     })
 } catch(err) {
-    console.log("trycatch err =" + err + ", code =" + err.code +", message =" + err.message)
-    done()
-    console.log("testPreferencesPromise0001 end.")
+         console.info("Failed to delete preferences. code =" + err.code + ", message =" + err.message);
 }
 ```
 
@@ -316,18 +306,16 @@ class MainAbility extends Ability{
 }
 
 try{
-    mPreference.deletePreferences(context, 1233).then((ret)=>{
-        console.log("get err")
-        expect(false).assertTrue()
+   let promise = data_preferences.deletePreferences(context, 'mystore');
+	promise.then(() => {
+    	console.info("Succeeded in deleting preferences.");
     }).catch((err) => {
-        console.log("get err =" + err + ", code =" + err.code +", message =" + err.message)
-        expect(false).assertTrue()
+       console.info("Failed to delete preferences. code =" + err.code + ", message =" + err.message);
     })
 } catch(err) {
-    console.log("trycatch err =" + err + ", code =" + err.code +", message =" + err.message)
-    done()
-    console.log("testPreferencesPromise0001 end.")
+         console.info("Failed to delete preferences. code =" + err.code + ", message =" + err.message);
 }
+
 ```
 
 ## data_preferences.removePreferencesFromCache
@@ -358,17 +346,15 @@ import featureAbility from '@ohos.ability.featureAbility';
 let context = featureAbility.getContext();
 
 try {
-    mPreference.removePreferencesFromCache(context, 123, function (err, val) {
-        if (err) {
-            console.log("get err =" + err + ", code =" + err.code + ", message =" + err.message)
-            expect(false).assertTrue()
+    data_preferences.removePreferencesFromCache(context, 'mystore', function (err, val) {
+         if (err) {
+            console.info("Failed to remove preferences. code =" + err.code + ", message =" + err.message);
+            return;
         }
-        expect(true).assertEqual(val)
-    })
+    console.info("Succeeded in removing preferences.");
+})
 } catch (err) {
-    console.log("trycatch err =" + err + ", code =" + err.code + ", message =" + err.message)
-    done()
-    console.log("testPreferencesCallback0002 end.")
+    console.info("Failed to remove preferences. code =" + err.code + ", message =" + err.message);
 }
 ```
 
@@ -385,17 +371,15 @@ class MainAbility extends Ability{
 }
 
 try {
-    mPreference.removePreferencesFromCache(context, 123, function (err, val) {
-        if (err) {
-            console.log("get err =" + err + ", code =" + err.code + ", message =" + err.message)
-            expect(false).assertTrue()
+    data_preferences.removePreferencesFromCache(context, 'mystore', function (err, val) {
+         if (err) {
+            console.info("Failed to remove preferences. code =" + err.code + ", message =" + err.message);
+            return;
         }
-        expect(true).assertEqual(val)
-    })
+    console.info("Succeeded in removing preferences.");
+})
 } catch (err) {
-    console.log("trycatch err =" + err + ", code =" + err.code + ", message =" + err.message)
-    done()
-    console.log("testPreferencesCallback0002 end.")
+    console.info("Failed to remove preferences. code =" + err.code + ", message =" + err.message);
 }
 ```
 
@@ -432,17 +416,14 @@ import featureAbility from '@ohos.ability.featureAbility';
 let context = featureAbility.getContext();
 
 try{
-    mPreference.removePreferencesFromCache(context, 1233).then((ret)=>{
-        console.log("get err")
-        expect(false).assertTrue()
+    let promise = data_preferences.removePreferencesFromCache(context, 'mystore');
+	promise.then(() => {
+    	console.info("Succeeded in removing preferences.");
     }).catch((err) => {
-        console.log("get err =" + err + ", code =" + err.code +", message =" + err.message)
-        expect(false).assertTrue()
+        console.info("Failed to remove preferences. code =" + err.code + ", message =" + err.message);
     })
 } catch(err) {
-    console.log("trycatch err =" + err + ", code =" + err.code +", message =" + err.message)
-    done()
-    console.log("testPreferencesPromise0002 end.")
+    console.info("Failed to remove preferences. code =" + err.code + ", message =" + err.message);
 }
 ```
 
@@ -459,18 +440,16 @@ class MainAbility extends Ability{
 }
 
 try{
-    mPreference.removePreferencesFromCache(context, 1233).then((ret)=>{
-        console.log("get err")
-        expect(false).assertTrue()
+    let promise = data_preferences.removePreferencesFromCache(context, 'mystore');
+	promise.then(() => {
+    	console.info("Succeeded in removing preferences.");
     }).catch((err) => {
-        console.log("get err =" + err + ", code =" + err.code +", message =" + err.message)
-        expect(false).assertTrue()
+        console.info("Failed to remove preferences. code =" + err.code + ", message =" + err.message);
     })
 } catch(err) {
-    console.log("trycatch err =" + err + ", code =" + err.code +", message =" + err.message)
-    done()
-    console.log("testPreferencesPromise0002 end.")
+    console.info("Failed to remove preferences. code =" + err.code + ", message =" + err.message);
 }
+
 ```
 
 ## Preferences
@@ -500,17 +479,15 @@ get(key: string, defValue: ValueType, callback: AsyncCallback&lt;ValueType&gt;):
 
 ```js
 try {
-    mPreference.get(123, function (err, val) {
+    data_preferences.get('startup', 'default', function (err, val) {
         if (err) {
-            console.log("get err =" + err + ", code =" + err.code + ", message =" + err.message)
-            expect(false).assertTrue()
+            console.info("Failed to get value of 'startup'. code =" + err.code + ", message =" + err.message);
+            return;
         }
-        expect(true).assertEqual(val)
+    console.info("Succeeded in getting value of 'startup'. Data： " + data);
     })
 } catch (err) {
-    console.log("trycatch err =" + err + ", code =" + err.code + ", message =" + err.message)
-    done()
-    console.log("testPreferencesCallback002 end.")
+        console.info("Failed to get value of 'startup'. code =" + err.code + ", message =" + err.message);
 }
 ```
 
@@ -540,17 +517,14 @@ get(key: string, defValue: ValueType): Promise&lt;ValueType&gt;
 
 ```js
 try{
-    mPreference.get(KEY_TEST_STRING_ELEMENT, KEY_TEST_INT_ELEMENT).then((ret)=>{
-        expect('123').assertEqual(ret)
-        done()
-        console.log("testPreferencesPromise003 end.")
+   let promise = preferences.get('startup', 'default');
+	promise.then((data) => {
+    	console.info("Succeeded in getting value of 'startup'. Data: " + data);
     }).catch((err) => {
-        console.log("get err =" + err + ", code =" + err.code +", message =" + err.message)
-        expect(false).assertTrue()
+       console.info("Failed to get value of 'startup'. code =" + err.code + ", message =" + err.message);
     })
 } catch(err) {
-    console.log("trycatch err =" + err + ", code =" + err.code +", message =" + err.message)
-    expect(false).assertTrue()
+   console.info("Failed to get value of 'startup'. code =" + err.code + ", message =" + err.message);
 }
 ```
 
@@ -572,19 +546,18 @@ getAll(callback: AsyncCallback&lt;Object&gt;): void;
 
 ```js
 try {
-    mPreference.getAll(function (err, val) {
+    preferences.getAll(function (err, value) {
         if (err) {
-            console.log("getAll err =" + err + ", code =" + err.code + ", message =" + err.message)
-            expect(false).assertTrue()
+            console.info("Failed to get all key-values. code =" + err.code + ", message =" + err.message);
+            return;
         }
-        console.log("getAll val = " + JSON.stringify(val))
-        done()
-        console.log("testPreferencesCallback004 end.")
+    let allKeys = Object.keys(value);
+    console.info("getAll keys = " + allKeys);
+    console.info("getAll object = " + JSON.stringify(value));
     })
 } catch (err) {
-    console.log("trycatch err =" + err + ", code =" + err.code + ", message =" + err.message)
-    expect(false).assertTrue()
-}
+ console.info("Failed to get all key-values. code =" + err.code + ", message =" + err.message);
+};
 ```
 
 
@@ -606,16 +579,16 @@ getAll(): Promise&lt;Object&gt;
 
 ```js
 try {
-    mPreference.getAll().then((ret) => {
-        done()
-        console.log("testPreferencesPromise004 end.")
+   let promise = preferences.getAll();
+promise.then((value) => {
+    let allKeys = Object.keys(value);
+    console.info('getAll keys = ' + allKeys);
+    console.info("getAll object = " + JSON.stringify(value));
     }).catch((err) => {
-        console.log("getAll err =" + err + ", code =" + err.code + ", message =" + err.message)
-        expect(false).assertTrue()
+         console.info("Failed to get all key-values. , code =" + err.code + ", message =" + err.message);
     })
 } catch (err) {
-    console.log("trycatch err =" + err + ", code =" + err.code + ", message =" + err.message)
-    expect(false).assertTrue()
+    console.info("Failed to get all key-values. , code =" + err.code + ", message =" + err.message);
 }
 ```
 
@@ -639,19 +612,16 @@ put(key: string, value: ValueType, callback: AsyncCallback&lt;void&gt;): void
 
 ```js
 try{
-    mPreference.put(KEY_TEST_STRING_ELEMENT, KEY_TEST_INT_ELEMENT, function (err) {
+    preferences.put('startup', 'auto', function (err) {
         if (err) {
-            console.log("put err =" + err + ", code =" + err.code +", message =" + err.message)
-            expect(false).assertTrue()
+            console.info("Failed to put value of 'startup' code =" + err.code + ", message =" + err.message);
+            return;
         }
-        done()
-        console.log("testPreferencesCallback008 end.")
+    console.info("Succeeded in putting value of 'startup'.");
     })
-} catch(err) {
-    console.log("trycatch err =" + err + ", code =" + err.code +", message =" + err.message)
-    expect(false).assertTrue()
+} catch (err) {
+    console.info("Failed to put value of 'startup' code =" + err.code + ", message =" + err.message);
 }
-
 ```
 
 
@@ -680,16 +650,14 @@ put(key: string, value: ValueType): Promise&lt;void&gt;
 
 ```js
 try{
-    mPreference.put(KEY_TEST_STRING_ELEMENT, KEY_TEST_INT_ELEMENT).then(()=>{
-        done()
-        console.log("testPreferencesPromise008 end.")
+    let promise = preferences.put('startup', 'auto');
+promise.then(() => {
+    console.info("Succeeded in putting value of 'startup'.");
     }).catch((err) => {
-        console.log("put err =" + err + ", code =" + err.code +", message =" + err.message)
-        expect(false).assertTrue()
+        console.info("Failed to put value of 'startup'. , code =" + err.code +", message =" + err.message);
     })
 } catch(err) {
-    console.log("trycatch err =" + err + ", code =" + err.code +", message =" + err.message)
-    expect(false).assertTrue()
+    console.info("Failed to put value of 'startup'. , code =" + err.code +", message =" + err.message);
 }
 ```
 
@@ -713,18 +681,17 @@ has(key: string, callback: AsyncCallback&lt;boolean&gt;): void
 
 ```js
 try{
-    mPreference.has(KEY_TEST_STRING_ELEMENT, function (err, val) {
+   preferences.has('startup', function (err, val) {
         if (err) {
-            console.log("has err =" + err + ", code =" + err.code +", message =" + err.message)
-            expect(false).assertTrue()
+            console.info("Failed to check the key 'startup'. code =" + err.code + ", message =" + err.message);
+            return;
         }
-        expect(true).assertEqual(val)
-        done()
-        console.log("testPreferencesCallback006 end.")
-    })
-} catch(err) {
-    console.log("trycatch err =" + err + ", code =" + err.code +", message =" + err.message)
-    expect(false).assertTrue()
+    if (val) {
+        console.info("The key 'startup' is contained.");
+    } else {
+            console.info("The key 'startup' dose not contain.");    
+} catch (err) {
+    console.info("Failed to check the key 'startup'. code =" + err.code + ", message =" + err.message);
 }
 ```
 
@@ -753,16 +720,18 @@ has(key: string): Promise&lt;boolean&gt;
 
 ```js
 try{
-    mPreference.has(KEY_TEST_STRING_ELEMENT).then((val)=>{
-        done()
-        console.log("testPreferencesPromise006 end.")
+let promise = preferences.has('startup');
+promise.then((isExist) => {
+    if (val) {
+        console.info("The key 'startup' is contained.");
+    } else {
+        console.info("The key 'startup' dose not contain.");
+    }
     }).catch((err) => {
-        console.log("has err =" + err + ", code =" + err.code +", message =" + err.message)
-        expect(false).assertTrue()
+       console.info("Failed to check the key 'startup'. code =" + err.code + ", message =" + err.message);
     })
 } catch(err) {
-    console.log("trycatch err =" + err + ", code =" + err.code +", message =" + err.message)
-    expect(false).assertTrue()
+ console.info("Failed to check the key 'startup'. code =" + err.code + ", message =" + err.message);
 }
 ```
 
@@ -786,17 +755,15 @@ delete(key: string, callback: AsyncCallback&lt;void&gt;): void
 
 ```js
 try{
-    mPreference.delete(KEY_TEST_STRING_ELEMENT, function(err) {
+    preferences.delete('startup', function (err) {
         if (err) {
-            console.log("delete err =" + err + ", code =" + err.code +", message =" + err.message)
-            expect(false).assertTrue()
+            console.info("Failed to delete the key 'startup'. code =" + err.code + ", message =" + err.message);
+            return;
         }
-        done()
-        console.log("testPreferencesCallback010 end.")
+    console.info("Succeeded in deleting the key 'startup'.");
     })
-} catch(err) {
-    console.log("trycatch err =" + err + ", code =" + err.code +", message =" + err.message)
-    expect(false).assertTrue()
+} catch (err) {
+    console.info("Failed to delete the key 'startup'. code =" + err.code + ", message =" + err.message);
 }
 ```
 
@@ -825,16 +792,14 @@ delete(key: string): Promise&lt;void&gt;
 
 ```js
 try{
-    mPreference.delete(KEY_TEST_STRING_ELEMENT).then(()=>{
-        done()
-        console.log("testPreferencesPromise005 end.")
+   let promise = preferences.delete('startup');
+	promise.then(() => {
+    	console.info("Succeeded in deleting the key 'startup'.");
     }).catch((err) => {
-        console.log("delete err =" + err + ", code =" + err.code +", message =" + err.message)
-        expect(false).assertTrue()
+        console.log("Failed to delete the key 'startup'. code =" + err.code +", message =" + err.message);
     })
 } catch(err) {
-    console.log("trycatch err =" + err + ", code =" + err.code +", message =" + err.message)
-    expect(false).assertTrue()
+    console.log("Failed to delete the key 'startup'. code =" + err.code +", message =" + err.message);
 }
 ```
 
@@ -857,17 +822,15 @@ flush(callback: AsyncCallback&lt;void&gt;): void
 
 ```js
 try{
-    mPreference.flush(function (err) {
-        if (err) {
-            console.log("flush err =" + err + ", code =" + err.code +", message =" + err.message)
-            expect(false).assertTrue()
+    preferences.flush(function (err) {
+         if (err) {
+            console.info("Failed to flush. code =" + err.code + ", message =" + err.message);
+            return;
         }
-        done()
-        console.log("testPreferencesCallback012 end.")
+         console.info("Succeeded in flushing.");
     })
-} catch(err) {
-    console.log("trycatch err =" + err + ", code =" + err.code +", message =" + err.message)
-    expect(false).assertTrue()
+} catch (err) {
+    console.info("Failed to flush. code =" + err.code + ", message =" + err.message);
 }
 ```
 
@@ -890,16 +853,14 @@ flush(): Promise&lt;void&gt;
 
 ```js
 try {
-    mPreference.flush().then(() => {
-        done()
-        console.log("testPreferencesPromise012 end.")
+    let promise = preferences.flush();
+promise.then(() => {
+    console.info("Succeeded in flushing.");
     }).catch((err) => {
-        console.log("flush err =" + err + ", code =" + err.code + ", message =" + err.message)
-        expect(false).assertTrue()
+        console.info("Failed to flush. code =" + err.code + ", message =" + err.message);
     })
 } catch (err) {
-    console.log("trycatch err =" + err + ", code =" + err.code + ", message =" + err.message)
-    expect(false).assertTrue()
+   console.info("Failed to flush. code =" + err.code + ", message =" + err.message);
 }
 ```
 
@@ -922,17 +883,15 @@ clear(callback: AsyncCallback&lt;void&gt;): void
 
 ```js
 try{
-    mPreference.clear(function (err) {
-        if (err) {
-            console.log("clear err =" + err + ", code =" + err.code +", message =" + err.message)
-            expect(false).assertTrue()
+preferences.clear(function (err) {
+    if (err) {
+            console.info("Failed to clear. code =" + err.code + ", message =" + err.message);
+            return;
         }
-        done()
-        console.log("testPreferencesCallback011 end.")
+          console.info("Succeeded in clearing.");
     })
-} catch(err) {
-    console.log("trycatch err =" + err + ", code =" + err.code +", message =" + err.message)
-    expect(false).assertTrue()
+} catch (err) {
+     console.info("Failed to clear. code =" + err.code + ", message =" + err.message);
 }
 ```
 
@@ -955,16 +914,14 @@ clear(): Promise&lt;void&gt;
 
 ```js
 try{
-    mPreference.clear().then(()=>{
-        done()
-        console.log("testPreferencesPromise011 end.")
+    	let promise = preferences.clear()
+	promise.then(() => {
+    	console.info("Succeeded in clearing.");
     }).catch((err) => {
-        console.log("clear err =" + err + ", code =" + err.code +", message =" + err.message)
-        expect(false).assertTrue()
+       console.info("Failed to clear. code =" + err.code + ", message =" + err.message);
     })
 } catch(err) {
-    console.log("trycatch err =" + err + ", code =" + err.code +", message =" + err.message)
-    expect(false).assertTrue()
+    console.info("Failed to clear. code =" + err.code + ", message =" + err.message);
 }
 ```
 
@@ -987,20 +944,32 @@ on(type: 'change', callback: Callback&lt;{ key : string }&gt;): void
 **示例：**
 
 ```js
+data_preferences.getPreferences(this.context, 'mystore', function (err, preferences) {
 try {
-    mPreference.clear();
-    var observer = function (key) {
-        if (key) {
-            console.info('testPreferencesCallback013 key' + key);
-            expect(false).assertTrue()
+   data_preferences.getPreferences(this.context, 'mystore', function (err, preferences) {
+    if (err) {
+        console.info("Failed to get preferences.");
+        return;
+    }
+    let observer = function (key) {
+        console.info("The key " + key + " changed.");
+    }
+    preferences.on('change', observer);
+    preferences.put('startup', 'manual', function (err) {
+        if (err) {
+            console.info("Failed to put the value of 'startup'. Cause: " + err);
+            return;
         }
-        expect("abcd").assertEqual(key);
-    };
-    await mPreference.on('change', observer);
-    await mPreference.put(KEY_TEST_STRING_ELEMENT, "abcd");
+        console.info("Succeeded in putting the value of 'startup'.");
+
+        preferences.flush(function (err) {
+            if (err) {
+                console.info("Failed to flush. Cause: " + err);
+                return;
+            }
+	    console.info("Succeeded in flushing."); // observer will be called.
 } catch (error) {
-    console.log("trycatch err =" + err + ", code =" + err.code + ", message =" + err.message)
-    expect(false).assertTrue()
+     console.info("Failed to flush. code =" + err.code + ", message =" + err.message);
 }
 ```
 
@@ -1024,18 +993,35 @@ off(type: 'change', callback?: Callback&lt;{ key : string }&gt;): void
 
 ```js
 try {
-    console.log("testPreferencesCallback015 begin.")
-    var observer = function (key) {
-        console.info('testPreferencesCallback015 key' + key);
-        expect('').assertEqual(key);
-    };
-    await mPreference.on('change', observer);
-    await mPreference.off('change', observer);
-    await mPreference.put(KEY_TEST_STRING_ELEMENT, "abc");
+data_preferences.getPreferences(this.context, 'mystore', function (err, preferences) {
+    if (err) {
+        console.info("Failed to get preferences.");
+        return;
+    }
+    let observer = function (key) {
+        console.info("The key " + key + " changed.");
+    }
+    preferences.on('change', observer);
+    preferences.put('startup', 'auto', function (err) {
+        if (err) {
+            console.info("Failed to put the value of 'startup'. Cause: " + err);
+            return;
+        }
+        console.info("Succeeded in putting the value of 'startup'.");
+
+        preferences.flush(function (err) {
+            if (err) {
+                console.info("Failed to flush. Cause: " + err);
+                return;
+            }
+            console.info("Succeeded in flushing."); // observer will be called.
+        })
+        preferences.off('change', observer);
+    })
+})
+
 } catch (error) {
-    console.log("trycatch err =" + err + ", code =" + err.code + ", message =" + err.message)
-    expect(false).assertTrue()
-}
+  console.info("Failed to flush. code =" + err.code + ", message =" + err.message);}
 ```
 
 ## ValueType
