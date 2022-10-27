@@ -34,7 +34,7 @@ Input模块主要完成如下工作：对触摸屏驱动IC进行上电、配置�
 
 ### 接口说明
 
-### 硬件接口
+#### 硬件接口
 
 Touchscreen器件的硬件接口相对简单，根据PIN脚的属性，可以简单分为如下三类：
 
@@ -67,7 +67,7 @@ Touchscreen器件的硬件接口相对简单，根据PIN脚的属性，可以简
    - I2C：由于Touchscreen的报点数据量相对较少，所以一般选用I2C方式传输数据。I2C的具体协议及对应操作接口，可以参考Platform接口层中的[I2C使用指南](../driver/driver-platform-i2c-des.md#概述)。
    - SPI：在需要传递的数据不止包含报点坐标，还包含基础容值的情况下，由于需要传递的数据量较大，所以部分厂商会选用SPI通信方式。SPI的具体协议及对应操作接口，可以参考Platform接口层中的[SPI使用指南](../driver/driver-platform-spi-des.md#概述)。
 
-### 软件接口
+#### 软件接口
 
 Input HDF驱动提供给系统服务Input Service调用的HDI驱动能力接口，按照业务范围可以分为三大模块：Input设备管理模块、Input数据上报模块、Input业务控制模块，具体的接口如下表所示，包括：输入设备打开及关闭接口、注册设备监听的回调接口、设备信息查询接口、电源状态控制接口等。
 
@@ -133,9 +133,9 @@ Input HDF驱动提供给系统服务Input Service调用的HDI驱动能力接口�
    根据硬件单板设计的通信接口，使用Platform接口层提供的管脚操作接口配置对应的复位管脚、中断管脚以及电源操作，对于GPIO的操作，可参考[GPIO操作接口指导](../driver/driver-platform-gpio-des.md#概述)。
 
 
-## 开发实例
+### 开发实例
 
-下面以rk3568开发板的Input模块为例，说明Touchscreen器件的适配和接口使用方法。
+下面以RK3568开发板的Input模块为例，说明Touchscreen器件的适配和接口使用方法。
 
 
 1. 设备描述配置
