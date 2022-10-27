@@ -3,7 +3,7 @@
 
 ## 概述
 
-- **Touchscreen驱动主要任务**
+### 功能简介
 
   Touchscreen驱动用于驱动触摸屏使其正常工作，该驱动主要完成如下工作：对触摸屏驱动IC进行上电、配置硬件管脚并初始化其状态、注册中断、配置通信接口（I2C或SPI）、设定Input相关配置、下载及更新固件等操作。
 
@@ -31,8 +31,15 @@
 
   在HDF（Hardware Driver Foundation）[驱动管理框架](../driver/driver-hdf-development.md)的基础上，Input驱动模型通过调用OSAL接口层和Platform接口层提供的基础接口进行开发，涉及的接口包括bus通信接口、操作系统原生接口（memory、lock、thread、timer等）。由于OSAL接口和Platform接口屏蔽了芯片平台的差异，所以基于Input驱动模型实现的Touchscreen驱动可以进行跨平台、跨OS迁移，从而实现驱动的一次开发、多端部署。
 
+### 约束与限制
+
+Touchscreen HDI只针对标准系统，其它系统暂不支持。
+
+接口约束和限制参考[OpenMax IL标准](https://www.khronos.org/api/openmax/il)。
 
 ## 接口说明
+
+### 器件硬件接口
 
 Touchscreen器件的硬件接口相对简单，根据PIN脚的属性，可以简单分为如下三类：
 
@@ -64,6 +71,121 @@ Touchscreen器件的硬件接口相对简单，根据PIN脚的属性，可以简
 
    - I2C：由于Touchscreen的报点数据量相对较少，所以一般选用I2C方式传输数据。I2C的具体协议及对应操作接口，可以参考Platform接口层中的[“I2C”使用指南](../driver/driver-platform-i2c-des.md#概述)。
    - SPI：在需要传递的数据不止包含报点坐标，还包含基础容值的情况下，由于需要传递的数据量较大，所以部分厂商会选用SPI通信方式。SPI的具体协议及对应操作接口，可以参考Platform接口层中的[“SPI” 使用指南](../driver/driver-platform-spi-des.md#概述)。
+
+
+### Input HDI接口
+
+Input HDF驱动提供给系统服务Input Service调用的HDI驱动能力接口，按照业务范围可以分为三大模块：**input设备管理模块**、**input数据上报模块**、**input业务控制模块**，具体的接口如[表1 Input HDI接口列表](#table1513255710559)所示，包括：输入设备打开及关闭接口、注册设备监听的回调接口、设备信息查询接口、电源状态控制接口等。
+
+**表 1**  Input HDI接口列表
+
+<a name="table1513255710559"></a>
+<table><thead align="left"><tr id="row171321857155517"><th class="cellrowborder" align="center" valign="top" width="12.031203120312032%" id="mcps1.2.4.1.1"><p id="p6132957115511"><a name="p6132957115511"></a><a name="p6132957115511"></a>头文件</p>
+</th>
+<th class="cellrowborder" align="center" valign="top" width="66.006600660066%" id="mcps1.2.4.1.2"><p id="p14132125715552"><a name="p14132125715552"></a><a name="p14132125715552"></a>接口名称</p>
+</th>
+<th class="cellrowborder" align="center" valign="top" width="21.96219621962196%" id="mcps1.2.4.1.3"><p id="p18132205755516"><a name="p18132205755516"></a><a name="p18132205755516"></a>功能描述</p>
+</th>
+</tr>
+</thead>
+<tbody><tr id="row13132357165514"><td class="cellrowborder" rowspan="4" align="left" valign="top" width="12.031203120312032%" headers="mcps1.2.4.1.1 "><p id="p15674038913"><a name="p15674038913"></a><a name="p15674038913"></a></p>
+<p id="p825185015460"><a name="p825185015460"></a><a name="p825185015460"></a>input_manager.h</p>
+<p id="p2133757135510"><a name="p2133757135510"></a><a name="p2133757135510"></a></p>
+</td>
+<td class="cellrowborder" valign="top" width="66.006600660066%" headers="mcps1.2.4.1.2 "><p id="p11132857135517"><a name="p11132857135517"></a><a name="p11132857135517"></a>int32_t (*OpenInputDevice)(uint32_t devIndex);</p>
+</td>
+<td class="cellrowborder" align="center" valign="top" width="21.96219621962196%" headers="mcps1.2.4.1.3 "><p id="p8233134675314"><a name="p8233134675314"></a><a name="p8233134675314"></a>打开input设备</p>
+</td>
+</tr>
+<tr id="row9132135715515"><td class="cellrowborder" valign="top" headers="mcps1.2.4.1.1 "><p id="p106067813482"><a name="p106067813482"></a><a name="p106067813482"></a>int32_t (*CloseInputDevice)(uint32_t devIndex);</p>
+</td>
+<td class="cellrowborder" align="center" valign="top" headers="mcps1.2.4.1.2 "><p id="p8233144617532"><a name="p8233144617532"></a><a name="p8233144617532"></a>关闭input设备</p>
+</td>
+</tr>
+<tr id="row2973185044814"><td class="cellrowborder" valign="top" headers="mcps1.2.4.1.1 "><p id="p1974125024812"><a name="p1974125024812"></a><a name="p1974125024812"></a>int32_t (*GetInputDevice)(uint32_t devIndex, DeviceInfo **devInfo);</p>
+</td>
+<td class="cellrowborder" align="center" valign="top" headers="mcps1.2.4.1.2 "><p id="p152331046155310"><a name="p152331046155310"></a><a name="p152331046155310"></a>获取指定ID的设备信息</p>
+</td>
+</tr>
+<tr id="row171330575555"><td class="cellrowborder" valign="top" headers="mcps1.2.4.1.1 "><p id="p913315573557"><a name="p913315573557"></a><a name="p913315573557"></a>int32_t (*GetInputDeviceList)(uint32_t *devNum, DeviceInfo **devList, uint32_t size);</p>
+</td>
+<td class="cellrowborder" align="center" valign="top" headers="mcps1.2.4.1.2 "><p id="p1523319466539"><a name="p1523319466539"></a><a name="p1523319466539"></a>获取所有设备列表信息</p>
+</td>
+</tr>
+<tr id="row1513316577554"><td class="cellrowborder" rowspan="3" align="left" valign="top" width="12.031203120312032%" headers="mcps1.2.4.1.1 "><p id="p14171441118"><a name="p14171441118"></a><a name="p14171441118"></a></p>
+<p id="p57063567463"><a name="p57063567463"></a><a name="p57063567463"></a>input_reporter.h</p>
+</td>
+<td class="cellrowborder" valign="top" width="66.006600660066%" headers="mcps1.2.4.1.2 "><p id="p14794193010499"><a name="p14794193010499"></a><a name="p14794193010499"></a>int32_t (*RegisterReportCallback)(uint32_t devIndex, InputReportEventCb *callback);</p>
+</td>
+<td class="cellrowborder" align="center" valign="top" width="21.96219621962196%" headers="mcps1.2.4.1.3 "><p id="p72331046145316"><a name="p72331046145316"></a><a name="p72331046145316"></a>注册input设备的回调</p>
+</td>
+</tr>
+<tr id="row171331657185514"><td class="cellrowborder" valign="top" headers="mcps1.2.4.1.1 "><p id="p123921240124910"><a name="p123921240124910"></a><a name="p123921240124910"></a>int32_t (*UnregisterReportCallback)(uint32_t devIndex);</p>
+</td>
+<td class="cellrowborder" align="center" valign="top" headers="mcps1.2.4.1.2 "><p id="p19233174675311"><a name="p19233174675311"></a><a name="p19233174675311"></a>注销input设备的回调</p>
+</td>
+</tr>
+<tr id="row41331557165518"><td class="cellrowborder" valign="top" headers="mcps1.2.4.1.1 "><p id="p11499124705012"><a name="p11499124705012"></a><a name="p11499124705012"></a>void (*ReportEventPkgCallback)(const EventPackage **pkgs, uint32_t count);</p>
+</td>
+<td class="cellrowborder" align="center" valign="top" headers="mcps1.2.4.1.2 "><p id="p52331246135315"><a name="p52331246135315"></a><a name="p52331246135315"></a>上报数据的回调函数</p>
+</td>
+</tr>
+<tr id="row1452521025813"><td class="cellrowborder" rowspan="9" align="left" valign="top" width="12.031203120312032%" headers="mcps1.2.4.1.1 "><p id="p1285144710118"><a name="p1285144710118"></a><a name="p1285144710118"></a></p>
+<p id="p854114711117"><a name="p854114711117"></a><a name="p854114711117"></a></p>
+<p id="p15741647517"><a name="p15741647517"></a><a name="p15741647517"></a></p>
+<p id="p7909447418"><a name="p7909447418"></a><a name="p7909447418"></a></p>
+<p id="p12525910165811"><a name="p12525910165811"></a><a name="p12525910165811"></a>input_controller.h</p>
+<p id="p942322013262"><a name="p942322013262"></a><a name="p942322013262"></a></p>
+<p id="p1040515339526"><a name="p1040515339526"></a><a name="p1040515339526"></a></p>
+<p id="p19405533115216"><a name="p19405533115216"></a><a name="p19405533115216"></a></p>
+</td>
+<td class="cellrowborder" valign="top" width="66.006600660066%" headers="mcps1.2.4.1.2 "><p id="p14402132815113"><a name="p14402132815113"></a><a name="p14402132815113"></a>int32_t (*SetPowerStatus)(uint32_t devIndex, uint32_t status);</p>
+</td>
+<td class="cellrowborder" align="center" valign="top" width="21.96219621962196%" headers="mcps1.2.4.1.3 "><p id="p1510016065413"><a name="p1510016065413"></a><a name="p1510016065413"></a>设置电源状态</p>
+</td>
+</tr>
+<tr id="row172902161193"><td class="cellrowborder" valign="top" headers="mcps1.2.4.1.1 "><p id="p2062643555111"><a name="p2062643555111"></a><a name="p2062643555111"></a>int32_t (*GetPowerStatus)(uint32_t devIndex, uint32_t *status);</p>
+</td>
+<td class="cellrowborder" align="center" valign="top" headers="mcps1.2.4.1.2 "><p id="p1323394615539"><a name="p1323394615539"></a><a name="p1323394615539"></a>获取电源状态</p>
+</td>
+</tr>
+<tr id="row1948179195"><td class="cellrowborder" valign="top" headers="mcps1.2.4.1.1 "><p id="p8207194414510"><a name="p8207194414510"></a><a name="p8207194414510"></a>int32_t (*GetDeviceType)(uint32_t devIndex, uint32_t *deviceType);</p>
+</td>
+<td class="cellrowborder" align="center" valign="top" headers="mcps1.2.4.1.2 "><p id="p18233154655317"><a name="p18233154655317"></a><a name="p18233154655317"></a>获取设备类型</p>
+</td>
+</tr>
+<tr id="row1331121813197"><td class="cellrowborder" valign="top" headers="mcps1.2.4.1.1 "><p id="p1321125217514"><a name="p1321125217514"></a><a name="p1321125217514"></a>int32_t (*GetChipInfo)(uint32_t devIndex, char *chipInfo, uint32_t length);</p>
+</td>
+<td class="cellrowborder" align="center" valign="top" headers="mcps1.2.4.1.2 "><p id="p14233104614536"><a name="p14233104614536"></a><a name="p14233104614536"></a>获取器件编码信息</p>
+</td>
+</tr>
+<tr id="row1393181951920"><td class="cellrowborder" valign="top" headers="mcps1.2.4.1.1 "><p id="p79410191191"><a name="p79410191191"></a><a name="p79410191191"></a>int32_t (*GetVendorName)(uint32_t devIndex, char *vendorName, uint32_t length);</p>
+</td>
+<td class="cellrowborder" align="center" valign="top" headers="mcps1.2.4.1.2 "><p id="p7233124695317"><a name="p7233124695317"></a><a name="p7233124695317"></a>获取模组厂商名</p>
+</td>
+</tr>
+<tr id="row8960121911198"><td class="cellrowborder" valign="top" headers="mcps1.2.4.1.1 "><p id="p17712110185218"><a name="p17712110185218"></a><a name="p17712110185218"></a>int32_t (*GetChipName)(uint32_t devIndex, char *chipName, uint32_t length);</p>
+</td>
+<td class="cellrowborder" align="center" valign="top" headers="mcps1.2.4.1.2 "><p id="p923316468539"><a name="p923316468539"></a><a name="p923316468539"></a>获取芯片厂商名</p>
+</td>
+</tr>
+<tr id="row10812112081919"><td class="cellrowborder" valign="top" headers="mcps1.2.4.1.1 "><p id="p20738171735219"><a name="p20738171735219"></a><a name="p20738171735219"></a>int32_t (*SetGestureMode)(uint32_t devIndex, uint32_t gestureMode);</p>
+</td>
+<td class="cellrowborder" align="center" valign="top" headers="mcps1.2.4.1.2 "><p id="p5233546175310"><a name="p5233546175310"></a><a name="p5233546175310"></a>设置手势模式</p>
+</td>
+</tr>
+<tr id="row12422102092613"><td class="cellrowborder" valign="top" headers="mcps1.2.4.1.1 "><p id="p56701925155215"><a name="p56701925155215"></a><a name="p56701925155215"></a>int32_t (*RunCapacitanceTest)(uint32_t devIndex, uint32_t testType, char *result, uint32_t length);</p>
+</td>
+<td class="cellrowborder" align="center" valign="top" headers="mcps1.2.4.1.2 "><p id="p13234346125310"><a name="p13234346125310"></a><a name="p13234346125310"></a>执行容值自检测试</p>
+</td>
+</tr>
+<tr id="row124041233155211"><td class="cellrowborder" valign="top" headers="mcps1.2.4.1.1 "><p id="p16405113375215"><a name="p16405113375215"></a><a name="p16405113375215"></a>int32_t (*RunExtraCommand)(uint32_t devIndex, InputExtraCmd *cmd);</p>
+</td>
+<td class="cellrowborder" align="center" valign="top" headers="mcps1.2.4.1.2 "><p id="p192341246185314"><a name="p192341246185314"></a><a name="p192341246185314"></a>执行拓展指令</p>
+</td>
+</tr>
+</tbody>
+</table>
 
 
 ## 开发步骤
@@ -106,7 +228,7 @@ Touchscreen器件的硬件接口相对简单，根据PIN脚的属性，可以简
 如下配置主要包含Input驱动模型各模块层级信息，具体原理可参考[HDF驱动开发指南](../driver/driver-hdf-development.md)，HDF框架依据该配置信息实现对Input模型各模块的依次加载等。
 
 
-```json
+```
 input :: host {
             hostName = "input_host";
             priority = 100;
@@ -153,7 +275,7 @@ input :: host {
 如下配置包含板级硬件配置及器件私有数据配置，实际业务开发时，可根据具体需求增删及修改如下配置文件信息。
 
 
-```json
+```
 root {
     input_config {
         touchConfig {
