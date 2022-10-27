@@ -181,7 +181,7 @@ struct VideoCreateComponent {
                   console.error('onFinish');
                 })
         .onError(() => {
-                  console.error('onFinish');
+                  console.error('onError');
                 })
         .onPrepared((e) => {
                     console.error('onPrepared is ' + e.duration);

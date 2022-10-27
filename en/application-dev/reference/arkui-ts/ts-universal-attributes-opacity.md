@@ -1,30 +1,24 @@
 # Opacity
 
+You can set the opacity of a component.
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
-> This attribute is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
-
-
-The attributes described in this topic are used to set the opacity of a component.
-
-
-## Required Permissions
-
-None
+>  **NOTE**
+>
+>  The APIs of this module are supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
 
 ## Attributes
 
 
-  | Name | Type | Default Value | Description | 
-| -------- | -------- | -------- | -------- |
-| opacity | number | 1 | Opacity of a component. The value ranges from **0** to **1**. The value **1** means opaque, and **0** means completely transparent. | 
+| Name     | Type                                    | Description                                      |
+| ------- | ---------------------------------------- | ---------------------------------------- |
+| opacity | number \| [Resource](ts-types.md#resource) | Opacity of a component. The value ranges from **0** to **1**. The value **1** means opaque, and **0** means completely transparent.<br/>**NOTE**<br/>A child component can inherit this attribute of its parent component.<br>Default value: **1** |
 
 
 ## Example
 
-  
-```
+```ts
+// xxx.ets
 @Entry
 @Component
 struct OpacityExample {

@@ -1,7 +1,8 @@
 # Interpolation Calculation
 
 
-> **NOTE**<br>
+> **NOTE**
+>
 > This animation is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
 

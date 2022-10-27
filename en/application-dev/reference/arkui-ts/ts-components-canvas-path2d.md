@@ -1,27 +1,31 @@
 # Path2D
 
-
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
-> This component is supported since API version 8. Updates will be marked with a superscript to indicate their earliest API version.
-
-
 **Path2D** allows you to describe a path through an existing path. This path can be drawn through the **stroke** API of **Canvas**.
+
+>  **NOTE**
+> 
+> The APIs of this module are supported since API version 8. Updates will be marked with a superscript to indicate their earliest API version.
+
 
 
 ## addPath
 
-addPath(path: Object): void
+addPath(path: path2D, transform?:Matrix2D): void
 
 Adds a path to this path.
 
-- Parameters
-    | Name | Type | Mandatory | Default Value | Description |
-  | -------- | -------- | -------- | -------- | -------- |
-  | path | Object | Yes | null | Path to be added to this path. |
+**Parameters**
 
-- Example
+  | Name| Type| Mandatory| Default Value| Description| 
+  | -------- | -------- | -------- | -------- | -------- |
+  | path | path2D | Yes| - | Path to be added to this path.| 
+  | transform | Matrix2D | No| null | Transformation matrix of the new path.| 
   
-  ```
+
+**Example**
+
+  ```ts
+  // xxx.ets
   @Entry
   @Component
   struct AddPath {
@@ -57,9 +61,10 @@ closePath(): void
 
 Moves the current point of the path back to the start point of the path, and draws a straight line between the current point and the start point. If the shape has already been closed or has only one point, this method does nothing.
 
-- Example
-  
-  ```
+**Example**
+
+  ```ts
+  // xxx.ets
   @Entry
   @Component
   struct ClosePath {
@@ -96,15 +101,17 @@ moveTo(x: number, y: number): void
 
 Moves the current coordinate point of the path to the target point, without drawing a line during the movement.
 
-- Parameters
-    | Name | Type | Mandatory | Default Value | Description |
-  | -------- | -------- | -------- | -------- | -------- |
-  | x | number | Yes | 0 | X-coordinate of the target point. |
-  | y | number | Yes | 0 | Y-coordinate of the target point. |
+**Parameters**
 
-- Example
-  
-  ```
+  | Name| Type| Mandatory| Default Value| Description| 
+  | -------- | -------- | -------- | -------- | -------- |
+  | x | number | Yes| 0 | X-coordinate of the target point.| 
+  | y | number | Yes| 0 | Y-coordinate of the target point.| 
+
+**Example**
+
+  ```ts
+  // xxx.ets
   @Entry
   @Component
   struct MoveTo {
@@ -141,15 +148,17 @@ lineTo(x: number, y: number): void
 
 Draws a straight line from the current point to the target point.
 
-- Parameters
-    | Name | Type | Mandatory | Default Value | Description |
-  | -------- | -------- | -------- | -------- | -------- |
-  | x | number | Yes | 0 | X-coordinate of the target point. |
-  | y | number | Yes | 0 | Y-coordinate of the target point. |
+**Parameters**
 
-- Example
-  
-  ```
+  | Name| Type| Mandatory| Default Value| Description| 
+  | -------- | -------- | -------- | -------- | -------- |
+  | x | number | Yes| 0 | X-coordinate of the target point.| 
+  | y | number | Yes| 0 | Y-coordinate of the target point.| 
+
+**Example**
+
+  ```ts
+  // xxx.ets
   @Entry
   @Component
   struct LineTo {
@@ -187,19 +196,21 @@ bezierCurveTo(cp1x: number, cp1y: number, cp2x: number, cp2y: number, x: number,
 
 Draws a cubic bezier curve on the canvas.
 
-- Parameters
-    | Name | Type | Mandatory | Default Value | Description |
-  | -------- | -------- | -------- | -------- | -------- |
-  | cp1x | number | Yes | 0 | X-coordinate of the first parameter of the bezier curve. |
-  | cp1y | number | Yes | 0 | Y-coordinate of the first parameter of the bezier curve. |
-  | cp2x | number | Yes | 0 | X-coordinate of the second parameter of the bezier curve. |
-  | cp2y | number | Yes | 0 | Y-coordinate of the second parameter of the bezier curve. |
-  | x | number | Yes | 0 | X-coordinate of the end point on the bezier curve. |
-  | y | number | Yes | 0 | Y-coordinate of the end point on the bezier curve. |
+**Parameters**
 
-- Example
-  
-  ```
+  | Name| Type| Mandatory| Default Value| Description| 
+  | -------- | -------- | -------- | -------- | -------- |
+  | cp1x | number | Yes| 0 | X-coordinate of the first parameter of the bezier curve.| 
+  | cp1y | number | Yes| 0 | Y-coordinate of the first parameter of the bezier curve.| 
+  | cp2x | number | Yes| 0 | X-coordinate of the second parameter of the bezier curve.| 
+  | cp2y | number | Yes| 0 | Y-coordinate of the second parameter of the bezier curve.| 
+  | x | number | Yes| 0 | X-coordinate of the end point on the bezier curve.| 
+  | y | number | Yes| 0 | Y-coordinate of the end point on the bezier curve.| 
+
+**Example**
+
+  ```ts
+  // xxx.ets
   @Entry
   @Component
   struct BezierCurveTo {
@@ -215,7 +226,8 @@ Draws a cubic bezier curve on the canvas.
           .backgroundColor('#ffff00')
           .onReady(() =>{
             this.path2Db.moveTo(10, 10)
-            this.path2Db.bezierCurveTo(20, 100, 200, 100, 200, 20);this.context.stroke(this.path2Db)
+            this.path2Db.bezierCurveTo(20, 100, 200, 100, 200, 20)
+            this.context.stroke(this.path2Db)
           })
       }
       .width('100%')
@@ -233,17 +245,19 @@ quadraticCurveTo(cpx: number, cpy: number, x: number ,y: number): void
 
 Draws a quadratic curve on the canvas.
 
-- Parameters
-    | Name | Type | Mandatory | Default Value | Description |
-  | -------- | -------- | -------- | -------- | -------- |
-  | cpx | number | Yes | 0 | X-coordinate of the bezier curve parameter. |
-  | cpy | number | Yes | 0 | Y-coordinate of the bezier curve parameter. |
-  | x | number | Yes | 0 | X-coordinate of the end point on the bezier curve. |
-  | y | number | Yes | 0 | Y-coordinate of the end point on the bezier curve. |
+**Parameters**
 
-- Example
-  
-  ```
+  | Name| Type| Mandatory| Default Value| Description| 
+  | -------- | -------- | -------- | -------- | -------- |
+  | cpx | number | Yes| 0 | X-coordinate of the bezier curve parameter.| 
+  | cpy | number | Yes| 0 | Y-coordinate of the bezier curve parameter.| 
+  | x | number | Yes| 0 | X-coordinate of the end point on the bezier curve.| 
+  | y | number | Yes| 0 | Y-coordinate of the end point on the bezier curve.| 
+
+**Example**
+
+  ```ts
+  // xxx.ets
   @Entry
   @Component
   struct QuadraticCurveTo {
@@ -274,23 +288,25 @@ Draws a quadratic curve on the canvas.
 
 ## arc
 
-arc(x: number, y: number, radius: number, startAngle: number, endAngle: number, anticlockwise?:  boolean): void
+arc(x: number, y: number, radius: number, startAngle: number, endAngle: number, counterclockwise?: boolean): void
 
 Draws an arc on the canvas.
 
-- Parameters
-    | Name | Type | Mandatory | Default Value | Description |
-  | -------- | -------- | -------- | -------- | -------- |
-  | x | number | Yes | 0 | X-coordinate of the center point of the arc. |
-  | y | number | Yes | 0 | Y-coordinate of the center point of the arc. |
-  | radius | number | Yes | 0 | Radius of the arc. |
-  | startAngle | number | Yes | 0 | Start radian of the arc. |
-  | endAngle | number | Yes | 0 | End radian of the arc. |
-  | anticlockwise | boolean | No | false | Whether to draw the arc counterclockwise. |
+**Parameters**
 
-- Example
-  
-  ```
+  | Name| Type| Mandatory| Default Value| Description| 
+  | -------- | -------- | -------- | -------- | -------- |
+  | x | number | Yes| 0 | X-coordinate of the center point of the arc.| 
+  | y | number | Yes| 0 | Y-coordinate of the center point of the arc.| 
+  | radius | number | Yes| 0 | Radius of the arc.| 
+  | startAngle | number | Yes| 0 | Start radian of the arc.| 
+  | endAngle | number | Yes| 0 | End radian of the arc.| 
+  | counterclockwise | boolean | No| false | Whether to draw the arc counterclockwise.| 
+
+**Example**
+
+  ```ts
+  // xxx.ets
   @Entry
   @Component
   struct Arc {
@@ -305,7 +321,8 @@ Draws an arc on the canvas.
           .height('100%')
           .backgroundColor('#ffff00')
           .onReady(() =>{
-            this.path2Db.arc(100, 75, 50, 0, 6.28);this.context.stroke(this.path2Db)
+            this.path2Db.arc(100, 75, 50, 0, 6.28)
+            this.context.stroke(this.path2Db)
           })
       }
       .width('100%')
@@ -323,18 +340,20 @@ arcTo(x1: number, y1: number, x2: number, y2: number, radius: number): void
 
 Draws an arc based on the radius and points on the arc.
 
-- Parameters
-    | Name | Type | Mandatory | Default Value | Description |
-  | -------- | -------- | -------- | -------- | -------- |
-  | x1 | number | Yes | 0 | X-coordinate of the first point on the arc. |
-  | y1 | number | Yes | 0 | Y-coordinate of the first point on the arc. |
-  | x2 | number | Yes | 0 | X-coordinate of the second point on the arc. |
-  | y2 | number | Yes | 0 | Y-coordinate of the second point on the arc. |
-  | radius | number | Yes | 0 | Radius of the arc. |
+**Parameters**
 
-- Example
-  
-  ```
+  | Name| Type| Mandatory| Default Value| Description| 
+  | -------- | -------- | -------- | -------- | -------- |
+  | x1 | number | Yes| 0 | X-coordinate of the first point on the arc.| 
+  | y1 | number | Yes| 0 | Y-coordinate of the first point on the arc.| 
+  | x2 | number | Yes| 0 | X-coordinate of the second point on the arc.| 
+  | y2 | number | Yes| 0 | Y-coordinate of the second point on the arc.| 
+  | radius | number | Yes| 0 | Radius of the arc.| 
+
+**Example**
+
+  ```ts
+  // xxx.ets
   @Entry
   @Component
   struct ArcTo {
@@ -364,32 +383,34 @@ Draws an arc based on the radius and points on the arc.
 
 ## ellipse
 
-ellipse(x: number, y: number, radiusX: number, radiusY: number, rotation: number, startAngle: number, endAngle: number, anticlockwise?: number): void
+ellipse(x: number, y: number, radiusX: number, radiusY: number, rotation: number, startAngle: number, endAngle: number, counterclockwise?: number): void
 
-Draws an ellipse in the specified rectangular region.
+Draws an ellipse in the specified rectangular region on the canvas.
 
-- Parameters
-    | Name | Type | Mandatory | Default Value | Description |
+**Parameters**
+
+  | Name| Type| Mandatory| Default Value| Description| 
   | -------- | -------- | -------- | -------- | -------- |
-  | x | number | Yes | 0 | X-coordinate of the ellipse center. |
-  | y | number | Yes | 0 | Y-coordinate of the ellipse center. |
-  | radiusX | number | Yes | 0 | Ellipse radius on the x-axis. |
-  | radiusY | number | Yes | 0 | Ellipse radius on the y-axis. |
-  | rotation | number | Yes | 0 | Rotation angle of the ellipse, in radians. |
-  | startAngle | number | Yes | 0 | Angle of the start point for drawing the ellipse, in radians. |
-  | endAngle | number | Yes | 0 | Angle of the end point for drawing the ellipse, in radians. |
-  | anticlockwise | number | No | 0 | Whether to draw the ellipse in the counterclockwise direction. The value **0** means to draw the ellipse in the clockwise direction, and **1** means to draw the ellipse in the counterclockwise direction. This parameter is optional. The default value is **0**. |
+  | x | number | Yes| 0 | X-coordinate of the ellipse center.| 
+  | y | number | Yes| 0 | Y-coordinate of the ellipse center.| 
+  | radiusX | number | Yes| 0 | Ellipse radius on the x-axis.| 
+  | radiusY | number | Yes| 0 | Ellipse radius on the y-axis.| 
+  | rotation | number | Yes| 0 | Rotation angle of the ellipse. The unit is radian.| 
+  | startAngle | number | Yes| 0 | Angle of the start point for drawing the ellipse. The unit is radian.| 
+  | endAngle | number | Yes| 0 | Angle of the end point for drawing the ellipse. The unit is radian.| 
+  | counterclockwise | number | No| 0 | Whether to draw the ellipse counterclockwise. The value **0** means to draw the ellipse clockwise, and **1** means to draw the ellipse counterclockwise. This parameter is optional. The default value is **0**.| 
 
-- Example
-  
-  ```
+**Example**
+
+  ```ts
+  // xxx.ets
   @Entry
   @Component
   struct CanvasExample {
     private settings: RenderingContextSettings = new RenderingContextSettings(true)
     private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
     private path2Db: Path2D = new Path2D()
-  
+
     build() {
       Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
         Canvas(this.context)
@@ -397,7 +418,7 @@ Draws an ellipse in the specified rectangular region.
           .height('100%')
           .backgroundColor('#ffff00')
           .onReady(() =>{
-            this.path2Db.ellipse(200, 200, 50, 100, Math.PI * 0.25, Math.PI * 0.5, Math.PI)
+            this.path2Db.ellipse(200, 200, 50, 100, 0, Math.PI * 1, Math.PI*2)
             this.context.stroke(this.path2Db)
           })
       }
@@ -412,21 +433,23 @@ Draws an ellipse in the specified rectangular region.
 
 ## rect
 
-rect(x: number, y: number, width: number, height: number): void
+rect(x: number, y: number, w: number, h: number): void
 
-Creates a rectangle.
+Creates a rectangle on the canvas.
 
-- Parameters
-    | Name | Type | Mandatory | Default Value | Description |
+**Parameters**
+
+  | Name| Type| Mandatory| Default Value| Description| 
   | -------- | -------- | -------- | -------- | -------- |
-  | x | number | Yes | 0 | X-coordinate of the upper left corner of the rectangle. |
-  | y | number | Yes | 0 | Y-coordinate of the upper left corner of the rectangle. |
-  | width | number | Yes | 0 | Width of the rectangle. |
-  | height | number | Yes | 0 | Height of the rectangle. |
+  | x | number | Yes| 0 | X-coordinate of the upper left corner of the rectangle.| 
+  | y | number | Yes| 0 | Y-coordinate of the upper left corner of the rectangle.| 
+  | w | number | Yes| 0 | Width of the rectangle.| 
+  | h | number | Yes| 0 | Height of the rectangle.| 
 
-- Example
-  
-  ```
+**Example**
+
+  ```ts
+  // xxx.ets
   @Entry
   @Component
   struct CanvasExample {
@@ -441,7 +464,8 @@ Creates a rectangle.
           .height('100%')
           .backgroundColor('#ffff00')
           .onReady(() =>{
-            this.path2Db.rect(20, 20, 100, 100);this.context.stroke(this.path2Db)
+            this.path2Db.rect(20, 20, 100, 100);
+            this.context.stroke(this.path2Db)
           })
       }
       .width('100%')

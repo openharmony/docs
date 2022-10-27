@@ -1,16 +1,10 @@
 # Navigation
 
+The **\<Navigation>** component typically functions as the root container of a page and displays the page title, toolbar, and menu based on the attribute settings.
 
-> **NOTE**<br>
+> **NOTE**
+>
 > This component is supported since API version 8. Updates will be marked with a superscript to indicate their earliest API version.
-
-
-The **&lt;Navigation&gt;** component typically functions as the root container of a page and displays the page title, toolbar, and menu based on the attribute settings.
-
-
-## Required Permissions
-
-None
 
 
 ## Child Components
@@ -24,56 +18,58 @@ Navigation()
 
 Creates a component that can automatically display the navigation bar, title, and toolbar based on the attribute settings.
 
-
 ## Attributes
 
-| Name | Type | Default Value | Description |
-| -------- | -------- | -------- | -------- |
-| title | string \| [CustomBuilder](../../ui/ts-types.md) | - | Page title. |
-| subtitle | string | - | Subtitle of the page. |
-| menus | Array&lt;NavigationMenuItem&gt; \| [CustomBuilder](../../ui/ts-types.md) | - | Menu in the upper right corner of the page. |
-| titleMode | NavigationTitleMode | NavigationTitleMode.Free | Display mode of the page title bar. |
-| toolBar | {<br/>items:[<br/>Object<br/>] }<br/>\| [CustomBuilder](../../ui/ts-types.md) | - | Content of the toolbar.<br/>**items**: all items on the toolbar. |
-| hideToolBar | boolean | false | Whether to hide the toolbar.<br/>**true**: Hide the toolbar.<br/>**false**: Show the toolbar. |
-| hideTitleBar | boolean | false | Whether to hide the title bar. |
-| hideBackButton | boolean | false | Whether to hide the back button. |
+| Name            | Type                                    | Description                                      |
+| -------------- | ---------------------------------------- | ---------------------------------------- |
+| title          | string \| [CustomBuilder](ts-types.md#custombuilder8)<sup>8+</sup> | Page title.                                   |
+| subtitle       | string                                   | Subtitle of the page.                                  |
+| menus          | Array<NavigationMenuItem&gt; \| [CustomBuilder](ts-types.md#custombuilder8)<sup>8+</sup> | Menu in the upper right corner of the page.     |
+| titleMode      | NavigationTitleMode                      | Display mode of the page title bar.<br>Default value: **NavigationTitleMode.Free**|
+| toolBar        | object \| [CustomBuilder](ts-types.md#custombuilder8)<sup>8+</sup> | Content of the toolbar.<br>**items**: all items on the toolbar.    |
+| hideToolBar    | boolean                                  | Whether to hide the toolbar.<br>Default value: **false**<br>**true**: Hide the toolbar.<br>**false**: Show the toolbar.|
+| hideTitleBar   | boolean                                  | Whether to hide the title bar.<br>Default value: **false**                    |
+| hideBackButton | boolean                                  | Whether to hide the back button.<br>Default value: **false**                    |
 
-- NavigationMenuItem attributes
-  | Name | Type | Mandatory | Default Value | Description |
-  | -------- | -------- | -------- | -------- | -------- |
-  | value | string | Yes | - | Text of an option on the menu bar. |
-  | icon | string | No | - | Icon path of an option on the menu bar. |
-  | action | () =&gt; void | No | - | Callback invoked when an option is selected. |
+## NavigationMenuItem
 
-- Object attributes
-  | Name | Type | Mandatory | Default Value | Description |
-  | -------- | -------- | -------- | -------- | -------- |
-  | value | string | Yes | - | Text of an option on the toolbar. |
-  | icon | string | No | - | Icon path of an option on the toolbar. |
-  | action | () =&gt; void | No | - | Callback invoked when an option is selected. |
+| Name  | Type                   | Mandatory| Description                          |
+| ------ | ----------------------- | ---- | ------------------------------ |
+| value  | string                  | Yes  | Text of a menu item.    |
+| icon   | string                  | No  | Icon path of a menu item.|
+| action | () =&gt; void | No  | Callback invoked when a menu item is selected.    |
 
-- NavigationTitleMode enums
-  | Name | Description |
-  | -------- | -------- |
-  | Free | When the content is a scrollable component, the title shrinks as the content scrolls up (the subtitle fades out with its size remaining unchanged) and restores as the content scrolls down. |
-  | Mini | The mode is fixed at mini mode (icon + main title and subtitle). |
-  | Full | The mode is fixed at full mode (main title and subtitle). |
+## object
 
-  > **NOTE**
-  > Currently, only the scrollable component **&lt;List&gt;** is supported.
+| Name  | Type                   | Mandatory| Description                          |
+| ------ | ----------------------- | ---- | ------------------------------ |
+| value  | string                  | Yes  | Text of an option on the toolbar.    |
+| icon   | string                  | No  | Icon path of an option on the toolbar.|
+| action | () =&gt; void | No  | Callback invoked when an option is selected.    |
+
+## NavigationTitleMode
+
+| Name  | Description                                      |
+| ---- | ---------------------------------------- |
+| Free | When the content is a scrollable component, the main title shrinks as the content scrolls down (the subtitle fades out with its size remaining unchanged) and restores when the content scrolls up to the top.|
+| Mini | The icon, main title, and subtitle are in mini mode.                      |
+| Full | The main title and subtitle are in full mode.                         |
+
+>  **NOTE**
+>
+>  Currently, the scrollable component can only be **\<List>**.
 
 
 ## Events
 
-| Name | Description |
-| -------- | -------- |
-| onTitleModeChange(callback:&nbsp;(titleMode:&nbsp;NavigationTitleMode)&nbsp;=&gt;&nbsp;void) | Triggered when **titleMode** is set to **NavigationTitleMode.Free** and the title bar mode changes as content scrolls. |
+| Name                                      | Description                                    |
+| ---------------------------------------- | ---------------------------------------- |
+| onTitleModeChange(callback: (titleMode: NavigationTitleMode) =&gt; void) | Triggered when **titleMode** is set to **NavigationTitleMode.Free** and the title bar mode changes as content scrolls.|
 
 
 ## Example
 
-
-```
+```ts
 // Example 01
 @Entry
 @Component
@@ -161,8 +157,7 @@ struct NavigationExample {
 
 ![en-us_image_0000001256978359](figures/en-us_image_0000001256978359.gif)
 
-
-```
+```ts
 // Example 02
 @Entry
 @Component

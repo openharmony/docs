@@ -23,20 +23,20 @@ Flex(value?: { direction?: FlexDirection, wrap?: FlexWrap,  justifyContent?: Fle
 
 Creates a standard **\<Flex>** component.
 
-- Parameters
-  | Name           | Type                                    | Mandatory  | Default Value              | Description                                    |
-  | -------------- | ---------------------------------------- | ---- | ----------------- | ---------------------------------------- |
-  | direction      | [FlexDirection](ts-appendix-enums.md#flexdirection) | No   | FlexDirection.Row | Direction in which child components are arranged in the **\<Flex>** component, that is, the direction of the main axis.                |
-  | wrap           | [FlexWrap](ts-appendix-enums.md#flexwrap)  | No   | FlexWrap.NoWrap   | Whether the **\<Flex>** component has a single line or multiple lines.                    |
-  | justifyContent | [FlexAlign](ts-appendix-enums.md#flexalign) | No   | FlexAlign.Start   | Alignment mode of the child components in the **\<Flex>** component along the main axis.                     |
-  | alignItems     | [ItemAlign](ts-appendix-enums.md#itemalign) | No   | ItemAlign.Stretch | Alignment mode of the child components in the **\<Flex>** component along the cross axis.                    |
-  | alignContent   | [FlexAlign](ts-appendix-enums.md#flexalign) | No   | FlexAlign.Start   | Alignment mode of the child components in a multi-line **<Flex>** component along the cross axis. This parameter is valid only when **wrap** is set to **Wrap** or **WrapReverse**.|
+**Parameters**
+| Name           | Type                                    | Mandatory  | Default Value              | Description                                    |
+| -------------- | ---------------------------------------- | ---- | ----------------- | ---------------------------------------- |
+| direction      | [FlexDirection](ts-appendix-enums.md#flexdirection) | No   | FlexDirection.Row | Direction in which child components are arranged in the **\<Flex>** component, that is, the direction of the main axis.                |
+| wrap           | [FlexWrap](ts-appendix-enums.md#flexwrap)  | No   | FlexWrap.NoWrap   | Whether the **\<Flex>** component has a single line or multiple lines.                    |
+| justifyContent | [FlexAlign](ts-appendix-enums.md#flexalign) | No   | FlexAlign.Start   | Alignment mode of the child components in the **\<Flex>** component along the main axis.                     |
+| alignItems     | [ItemAlign](ts-appendix-enums.md#itemalign) | No   | ItemAlign.Stretch | Alignment mode of the child components in the **\<Flex>** component along the cross axis.                    |
+| alignContent   | [FlexAlign](ts-appendix-enums.md#flexalign) | No   | FlexAlign.Start   | Alignment mode of the child components in a multi-line **<Flex>** component along the cross axis. This parameter is valid only when **wrap** is set to **Wrap** or **WrapReverse**.|
 
 
 ## Example
 
-```ts
-// xxx.ets
+```
+// Example 01
 @Entry
 @Component
 struct FlexExample1 {
@@ -98,8 +98,8 @@ struct FlexExample1 {
 
 ![en-us_image_0000001256978365](figures/en-us_image_0000001256978365.gif)
 
-```ts
-// xxx.ets
+```
+// Example 02
 @Entry
 @Component
 struct FlexExample2 {
@@ -144,8 +144,8 @@ struct FlexExample2 {
 
 ![en-us_image_0000001211898500](figures/en-us_image_0000001211898500.png)
 
-```ts
-// xxx.ets
+```
+// Example 03
 @Component
 struct JustifyContentFlex {
   @Prop justifyContent : number
@@ -193,8 +193,8 @@ struct FlexExample3 {
 
 ![en-us_image_0000001212218462](figures/en-us_image_0000001212218462.gif)
 
-```ts
-// xxx.ets
+```
+// Example 04
 @Component
 struct AlignItemsFlex {
   @Prop alignItems : number
@@ -242,10 +242,9 @@ struct FlexExample4 {
 
 ![en-us_image_0000001257138371](figures/en-us_image_0000001257138371.jpg)
 
-![en-us_image_0000001212378426](figures/en-us_image_0000001212378426.gif)
 
-```ts
-// xxx.ets
+```
+// Example 05
 @Component
 struct AlignContentFlex {
   @Prop alignContent: number

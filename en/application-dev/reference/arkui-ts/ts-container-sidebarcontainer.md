@@ -1,15 +1,10 @@
 # SideBarContainer
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
-> This component is supported since API version 8. Updates will be marked with a superscript to indicate their earliest API version.
-
-
 The **\<SideBarContainer>** component contains a sidebar and content area as its child components. The sidebar is the first child component and can be shown or hidden as needed. The content area is the second child component.
 
-
-## Required Permissions
-
-None
+>  **NOTE**
+>
+>  This component is supported since API version 8. Updates will be marked with a superscript to indicate their earliest API version.
 
 
 ## Child Components
@@ -21,50 +16,51 @@ Supported
 
 SideBarContainer( type?: SideBarContainerType )
 
-- Parameters
-  | Name| Type| Mandatory| Default Value| Description|
-  | -------- | -------- | -------- | -------- | -------- |
-  | type | SideBarContainerType | No| SideBarContainerType.Embed | Display type of the sidebar.|
+**Parameters**
 
-- SideBarContainerType enums
-  | Name| Description|
-  | -------- | -------- |
-  | Embed | The sidebar is embedded in the component and displayed side by side with the content area.|
-  | Overlay | The sidebar is displayed overlaid on the content area.|
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| type | SideBarContainerType | No| Display type of the sidebar.<br>Default value: **SideBarContainerType.Embed**|
+
+## SideBarContainerType enums
+
+| Name| Description|
+| -------- | -------- |
+| Embed | The sidebar is embedded in the component and displayed side by side with the content area.|
+| Overlay | The sidebar is displayed overlaid on the content area.|
 
 ## Attributes
 
-| Name| Type| Default Value| Description|
+| Name| Type| Description|
+| -------- | -------- | -------- |
+| showSideBar | boolean | Whether to display the sidebar.<br>Default value: **true**|
+| controlButton | ButtonStyle                                                | Attributes of the sidebar control button.|
+| showControlButton | boolean | Whether to display the sidebar control button.<br>Default value: **true**|
+| sideBarWidth | number | Width of the sidebar.<br>Default value: **200**, in vp|
+| minSideBarWidth | number | Minimum width of the sidebar.<br>Default value: **200**, in vp|
+| maxSideBarWidth | number | Maximum width of the sidebar.<br>Default value: **280**, in vp|
+
+## ButtonStyle
+
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| showSideBar | boolean | true | Whether to display the sidebar.|
-| controlButton | ButtonStyle                                                | - | Attributes of the sidebar control button.|
-| showControlButton | boolean | true | Whether to display the sidebar control button.|
-| sideBarWidth | number | 200 | Width of the sidebar.|
-| minSideBarWidth | number | 200 | Minimum width of the sidebar.|
-| maxSideBarWidth | number | 280 | Maximum width of the sidebar.|
-
-- ButtonStyle
-  | Name| Type| Mandatory| Default Value| Description|
-  | -------- | -------- | -------- | -------- | -------- |
-  | left | number | No| 16 | Spacing between the sidebar control button and the left of the container.|
-  | top | number | No| 48 | Spacing between the sidebar control button and the top of the container.|
-  | width | number | No| 32 | Width of the sidebar control button.|
-  | height | number | No| 32 | Height of the sidebar control button.|
-  | icons | {<br>shown:&nbsp;string \| PixelMap \| [Resource](../../ui/ts-types.md) ,<br>hidden:&nbsp;string \| PixelMap \| [Resource](../../ui/ts-types.md) ,<br>switching?:&nbsp;string \| PixelMap \| [Resource](../../ui/ts-types.md) <br>} | No| - | Icons of the sidebar control button.<br> </p> - **shown**: icon of the control button when the sidebar is shown.<br>- **hidden**: icon of the control button when the sidebar is hidden.<br>- **switching**: icon of the control button when the sidebar is switching between the shown and hidden states.|
-
-
-
+| left | number | No| Spacing between the sidebar control button and the left of the container.<br>Default value: **16**, in vp|
+| top | number | No| Spacing between the sidebar control button and the top of the container.<br>Default value: **48**, in vp|
+| width | number | No| Width of the sidebar control button.<br>Default value: **32**, in vp|
+| height | number | No| Height of the sidebar control button.<br>Default value: **32**, in vp|
+| icons | {<br>shown: string \| PixelMap \| [Resource](ts-types.md#resource) ,<br>hidden: string \| PixelMap \| [Resource](ts-types.md#resource) ,<br>switching?: string \| PixelMap \| [Resource](ts-types.md#resource) <br>} | No| Icons of the sidebar control button.<br> </p> - **shown**: icon of the control button when the sidebar is shown.<br>- **hidden**: icon of the control button when the sidebar is hidden.<br>- **switching**: icon of the control button when the sidebar is switching between the shown and hidden states.|
 
 ## Events
 
 | Name| Description|
 | -------- | -------- |
-| onChange(callback: (value: boolen) =&gt; void) | Triggered when the status of the sidebar switches between shown and hidden. <p> The value **true** means that the sidebar is shown, and **false** means that the sidebar is hidden.|
+| onChange(callback: (value: boolean) =&gt; void) | Triggered when the status of the sidebar switches between shown and hidden. <p>The value **true** means that the sidebar is shown, and **false** means the opposite.|
 
 
 ## Example
 
-```
+```ts
+// xxx.ets
 @Entry
 @Component
 struct SideBarContainerExample {

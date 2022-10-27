@@ -4,18 +4,14 @@
 The application code files can be accessed in the following ways:
 
 
-- Use a relative path to reference the code file. For example, if the upper-level directory is ../common/utils/utils.ets, use ./common/utils/utils.ets for the current directory.
+- Use a relative path to reference the code file. Specifically, use **../** to refer to the upper-level directory and **./** to refer to the current directory.
 
-- Use the root path of the current module to reference the code file, for example, common/utils/utils.ets.
-
-- Store common code files in the common directory.
-
+- Use the root path of the current module to reference the code file, for example, **common/utils/utils**.
 
 ## Example
 
-  
 ```
-import { FoodData, FoodList } from "../common/utils/utils.ets";
+import { FoodData, FoodList } from "../common/utils/utils";
 
 @Entry
 @Component
@@ -33,10 +29,9 @@ struct FoodCategoryList {
 }
 ```
 
-Example for importing a code file:
+Imported **utils.ets** file:
 
-  
-```
+```ts
 //common/utils/utils.ets
 
 export class FoodData {  

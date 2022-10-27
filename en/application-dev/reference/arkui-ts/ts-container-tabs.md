@@ -1,70 +1,67 @@
 # Tabs
 
+The **\<Tabs>** component is a container component that allows users to switch between content views through tabs. Each tab page corresponds to a content view.
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
-> This component is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
-
-
-The **&lt;Tabs&gt;** component is a container component that allows users to switch between content views through tabs. Each tab page corresponds to a content view.
-
-
-## Required Permissions
-
-None
+>  **NOTE**
+>
+>  This component is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
 
 ## Child Components
 
-The **&lt;Tabs&gt;** component can contain [TabContent](ts-container-tabcontent.md) child components.
+This component can contain multiple [\<TabContent>](ts-container-tabcontent.md) components.
 
 
 ## APIs
 
-Tabs(value: {barPosition?: BarPosition, index?: number, controller?: [TabsController](#tabscontroller)})
+Tabs(value?: {barPosition?: BarPosition, index?: number, controller?: [TabsController](#tabscontroller)})
 
-- Parameters
-    | Name | Type | Mandatory | Default Value | Description |
-  | -------- | -------- | -------- | -------- | -------- |
-  | barPosition | BarPosition | No | BarPosition.Start | Tab bar position for creating the **&lt;Tabs&gt;** container component. |
-  | index | number | No | 0 | Initial tab index. |
-  | controller | [TabsController](#tabscontroller) | No | - | Tab controller. |
+**Parameters**
 
-- BarPosition enums
-    | Name | Description |
-  | -------- | -------- |
-  | Start | If the **vertical** attribute is set to **true**, the tab is on the left of the container. If the **vertical** attribute is set to **false**, the tab is on the top of the container. |
-  | End | If the **vertical** attribute is set to **true**, the tab is on the right of the container. If the **vertical** attribute is set to **false**, the tab is at the bottom of the container. |
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| barPosition | BarPosition | No| Tab bar position for creating the **\<Tabs>** container component.<br>Default value: **BarPosition.Start**|
+| index | number | No| Initial tab index.<br>Default value: **0**|
+| controller | [TabsController](#tabscontroller) | No| Tab controller.|
+
+## BarPosition
+
+| Name| Description|
+| -------- | -------- |
+| Start | If the **vertical** attribute is set to **true**, the tab is on the left of the container. If the **vertical** attribute is set to **false**, the tab is on the top of the container.|
+| End | If the **vertical** attribute is set to **true**, the tab is on the right of the container. If the **vertical** attribute is set to **false**, the tab is at the bottom of the container.|
 
 
 ## Attributes
 
 Touch target configuration is not supported.
 
-| Name | Type | Default Value | Description |
-| -------- | -------- | -------- | -------- |
-| vertical | boolean | false | Whether a tab is a vertical tab. |
-| scrollable | boolean | true | Whether page switching can be performed by swiping left or right. |
-| barMode | BarMode | - | Tab bar layout mode. |
-| barWidth | number | - | Width of the tab bar. If this parameter is not set, the default value in the system theme is used. |
-| barHeight | number | - | Height of the tab bar. If this parameter is not set, the default value in the system theme is used. |
-| animationDuration | number | 200 | Animation duration of the tab content. |
+| Name| Type| Description|
+| -------- | -------- | -------- |
+| vertical          | boolean | Whether to use vertical tabs. The value **true** means to use vertical tabs, and **false** means to use horizontal tabs.<br>Default value: **false**|
+| scrollable        | boolean | Whether the tabs are scrollable. The value **true** means that the tabs are scrollable, and **false** means the opposite.<br>Default value: **true**|
+| barMode           | BarMode | Tab bar layout mode. For details, see **BarMode**.<br>Default value: **BarMode.Fixed**|
+| barWidth          | [Length](ts-types.md#length) | Width of the tab bar.    |
+| barHeight         | [Length](ts-types.md#length) | Height of the tab bar.    |
+| animationDuration | number | Animation duration of the tab content.<br>Default value: **200**|
 
-- BarMode enums
-    | Name | Description |
-  | -------- | -------- |
-  | Scrollable | The actual layout width of the tab bar is used. If the actual width exceeds the total length, the tab bar is scrollable. |
-  | Fixed | The widths of all tab bars are evenly allocated. |
+## BarMode
 
+| Name| Description|
+| -------- | -------- |
+| Scrollable | The width of each tab is defined by its label length. The tabs are scrollable when the total width exceeds the tab bar width.|
+| Fixed | The width of each tab is fixed, determined by evenly allocating the tab bar width among the tabs.|
 
 ## Events
 
-| Name | Description |
+| Name| Description|
 | -------- | -------- |
-| onChange(callback: (index: number) =&gt; void) | Event triggered when a tab is switched. |
+| onChange(event: (index: number) =&gt; void) | Event triggered when a tab is switched.<br>- **index**: index of the tab. |
 
 ## TabsController
 
 Defines a tab controller, which is used to control switching of tabs.
+
 ### Objects to Import
 
 ```
@@ -78,16 +75,17 @@ changeIndex(value: number): void
 
 Switches to the specified tab.
 
-- Parameters
-  | Name | Type | Mandatory | Default Value | Description |
-  | -------- | -------- | -------- | -------- | -------- |
-  | value | number | Yes | - | Index of a tab. The value starts from **0**. |
+**Parameters**
+
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| value | number | Yes| Index of the tab. The value starts from 0.|
 
 
 ## Example
 
-
-```
+```ts
+// xxx.ets
 @Entry
 @Component
 struct TabsExample {

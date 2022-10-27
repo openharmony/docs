@@ -1,36 +1,33 @@
 # Polymorphic Style
 
-
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
-> This component is supported since API version 8. Updates will be marked with a superscript to indicate their earliest API version.
-
-
 You can set state-specific styles for components.
 
-
-## Required Permissions
-
-None
+>  **NOTE**
+>
+>  The APIs of this module are supported since API version 8. Updates will be marked with a superscript to indicate their earliest API version.
 
 
 ## Attributes
 
-| Name | Type | Default Value | Description |
-| -------- | -------- | -------- | -------- |
-| stateStyles | StateStyles | - | Styles of a component for different states. |
+| Style| Type| Description|
+| -------- | -------- | -------- |
+| stateStyles | StateStyles | Styles of the component for different states.|
 
-- StateStyles<sup>8+</sup>
-    | Name | Type | Mandatory | Default Value | Description |
-  | -------- | -------- | -------- | -------- | -------- |
-  | normal | ()=&gt;void | No | - | Style of the component when stateless. |
-  | pressed | ()=&gt;void | No | - | Style of the component in the pressed state. |
-  | disabled | ()=&gt;void | No | - | Style of the component in disabled state. |
+## StateStyles
+
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| normal | any | No| Style of the component when being stateless.|
+| pressed | any | No| Style of the component in the pressed state.|
+| disabled | any | No| Style of the component in disabled state.|
+| focused | any | No| Style of the component in focused state.|
+| clicked | any | No| Style of the component in clicked state.|
 
 
 ## Example
 
-
-```
+```ts
+// xxx.ets
 @Entry
 @Component
 struct StyleExample {

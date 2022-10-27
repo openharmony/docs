@@ -1,33 +1,37 @@
 # circle
 
-The  **<circle\>**  component is used to draw circles.
+The **\<circle>** component is used to draw circles.
 
->![](../../public_sys-resources/icon-note.gif) **NOTE:** 
->This component is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
+>  **NOTE**
+>
+>  This component is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
+
 
 ## Required Permissions
 
 None
 
+
 ## Child Components
 
-**animate**,  **animateMotion**, and  **animateTransform**  are supported.
+The following are supported: [\<animate>](js-components-svg-animate.md), [\<animateMotion>](js-components-svg-animatemotion.md), and [\<animateTransform>](js-components-svg-animatetransform.md).
+
 
 ## Attributes
 
-The  [universal attributes](js-components-svg-common-attributes.md)  and the attributes listed below are supported.
+The [universal attributes](../arkui-js/js-components-svg-common-attributes.md) and the attributes listed below are supported.
 
-| Name | Type                     | Default Value | Mandatory | Description                                                  |
-| ---- | ------------------------ | ------------- | --------- | ------------------------------------------------------------ |
-| id   | string                   | -             | No        | Unique ID of the component.                                  |
-| cx   | \<length>\|\<percentage> | 0             | No        | X-coordinate of the circle center. Attribute animations are supported. |
-| cy   | \<length>\|\<percentage> | 0             | No        | Y-coordinate of the circle center. Attribute animations are supported. |
-| r    | \<length>\|\<percentage> | 0             | No        | Radius of the circle. Attribute animations are supported.    |
+| Name| Type| Default Value| Mandatory| Description|
+| -------- | -------- | -------- | -------- | -------- |
+| id | string | - | No| Unique ID of the component.|
+| cx | &lt;length&gt;\|&lt;percentage&gt; | 0 | No| X-coordinate of the circle center. Attribute animations are supported.|
+| cy | &lt;length&gt;\|&lt;percentage&gt; | 0 | No| Y-coordinate of the circle center. Attribute animations are supported.|
+| r | &lt;length&gt;\|&lt;percentage&gt; | 0 | No| Radius of the circle. Attribute animations are supported.|
 
 
 ## Example
 
-```
+```html
 <!-- xxx.hml -->
 <div class="container">
   <svg fill="white" width="400" height="400">
@@ -37,5 +41,5 @@ The  [universal attributes](js-components-svg-common-attributes.md)  and the att
 </div>
 ```
 
-![](figures/en-us_image_0000001173164853.png)
 
+![en-us_image_0000001173164853](figures/en-us_image_0000001173164853.png)
