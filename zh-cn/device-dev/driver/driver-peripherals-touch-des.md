@@ -5,37 +5,29 @@
 
 ### 功能简介
 
-  Touchscreen驱动用于驱动触摸屏使其正常工作，该驱动主要完成如下工作：对触摸屏驱动IC进行上电、配置硬件管脚并初始化其状态、注册中断、配置通信接口（I2C或SPI）、设定Input相关配置、下载及更新固件等操作。
+Touchscreen驱动用于驱动触摸屏使其正常工作，该驱动主要完成如下工作：对触摸屏驱动IC进行上电、配置硬件管脚并初始化其状态、注册中断、配置通信接口（I2C或SPI）、设定Input相关配置、下载及更新固件等操作。
 
-- **Touchscreen驱动模型说明**
+### Input驱动模型简介
 
-  本节主要介绍基于Input驱动模型开发的Touchscreen器件驱动，Input模型整体的框架如下图所示。
+本节主要介绍基于Input驱动模型开发的Touchscreen器件驱动，Input模型整体的框架如下图所示。
 
-  Input驱动模型基于HDF驱动框架、Platform接口、OSAL接口进行开发，向上对接规范化的驱动接口HDI（Hardware Device Interface）层，通过Input-HDI层对外提供硬件能力，即上层Input Service可以通过HDI接口层获取相应的驱动能力，进而操控Touchscreen等输入设备。
+Input驱动模型基于HDF驱动框架、Platform接口、OSAL接口进行开发，向上对接规范化的驱动接口HDI（Hardware Device Interface）层，通过Input-HDI层对外提供硬件能力，即上层Input Service可以通过HDI接口层获取相应的驱动能力，进而操控Touchscreen等输入设备。
 
-  **图1** 基于HDF驱动框架的Input驱动模型
+**图1** 基于HDF驱动框架的Input驱动模型
 
-  ![image](figures/基于HDF驱动框架的input驱动模型.png "基于HDF驱动框架的input驱动模型")
+![image](figures/基于HDF驱动框架的input驱动模型.png "基于HDF驱动框架的input驱动模型")
 
-- **Input驱动模型介绍**
+Input驱动模型核心部分由**设备管理层**、**公共驱动层**、**器件驱动层**组成。器件产生的数据借助平台数据通道能力从内核传递到用户态，驱动模型通过配置文件适配不同器件及硬件平台，提高开发者对器件驱动的开发效率。如下为模型各部分的说明：
 
-  Input驱动模型核心部分由**设备管理层**、**公共驱动层**、**器件驱动层**组成。器件产生的数据借助平台数据通道能力从内核传递到用户态，驱动模型通过配置文件适配不同器件及硬件平台，提高开发者对器件驱动的开发效率。如下为模型各部分的说明：
+- Input设备管理：为各类输入设备驱动提供Input设备的注册、注销接口，同时对Input设备列表进行统一管理。
+- Input平台驱动：指各类Input设备的公共抽象驱动（例如触摸屏的公共驱动），该部分主要负责对板级硬件进行初始化、硬件中断处理、向manager注册Input设备等。
+- Input器件驱动：指各器件厂家的差异化驱动，开发者可以通过适配平台驱动预留的差异化接口进行器件驱动开发，实现器件驱动开发量最小化。
+- Input数据通道：提供一套通用的数据上报通道，各类别的Input设备驱动均可用此通道上报Input事件。
+- Input配置解析：负责对Input设备的板级配置及器件私有配置进行解析及管理。
 
-  - Input设备管理：为各类输入设备驱动提供Input设备的注册、注销接口，同时对Input设备列表进行统一管理。
-  - Input平台驱动：指各类Input设备的公共抽象驱动（例如触摸屏的公共驱动），该部分主要负责对板级硬件进行初始化、硬件中断处理、向manager注册Input设备等。
-  - Input器件驱动：指各器件厂家的差异化驱动，开发者可以通过适配平台驱动预留的差异化接口进行器件驱动开发，实现器件驱动开发量最小化。
-  - Input数据通道：提供一套通用的数据上报通道，各类别的Input设备驱动均可用此通道上报Input事件。
-  - Input配置解析：负责对Input设备的板级配置及器件私有配置进行解析及管理。
+### 基于HDF驱动框架开发器件驱动的优势
 
-- **基于HDF驱动框架开发器件驱动的优势**
-
-  在HDF（Hardware Driver Foundation）[驱动管理框架](../driver/driver-hdf-development.md)的基础上，Input驱动模型通过调用OSAL接口层和Platform接口层提供的基础接口进行开发，涉及的接口包括bus通信接口、操作系统原生接口（memory、lock、thread、timer等）。由于OSAL接口和Platform接口屏蔽了芯片平台的差异，所以基于Input驱动模型实现的Touchscreen驱动可以进行跨平台、跨OS迁移，从而实现驱动的一次开发、多端部署。
-
-### 约束与限制
-
-Touchscreen HDI只针对标准系统，其它系统暂不支持。
-
-接口约束和限制参考[OpenMax IL标准](https://www.khronos.org/api/openmax/il)。
+在HDF（Hardware Driver Foundation）[驱动管理框架](../driver/driver-hdf-development.md)的基础上，Input驱动模型通过调用OSAL接口层和Platform接口层提供的基础接口进行开发，涉及的接口包括bus通信接口、操作系统原生接口（memory、lock、thread、timer等）。由于OSAL接口和Platform接口屏蔽了芯片平台的差异，所以基于Input驱动模型实现的Touchscreen驱动可以进行跨平台、跨OS迁移，从而实现驱动的一次开发、多端部署。
 
 ## 接口说明
 
@@ -79,114 +71,38 @@ Input HDF驱动提供给系统服务Input Service调用的HDI驱动能力接口�
 
 **表 1**  Input HDI接口列表
 
-<a name="table1513255710559"></a>
-<table><thead align="left"><tr id="row171321857155517"><th class="cellrowborder" align="center" valign="top" width="12.031203120312032%" id="mcps1.2.4.1.1"><p id="p6132957115511"><a name="p6132957115511"></a><a name="p6132957115511"></a>头文件</p>
-</th>
-<th class="cellrowborder" align="center" valign="top" width="66.006600660066%" id="mcps1.2.4.1.2"><p id="p14132125715552"><a name="p14132125715552"></a><a name="p14132125715552"></a>接口名称</p>
-</th>
-<th class="cellrowborder" align="center" valign="top" width="21.96219621962196%" id="mcps1.2.4.1.3"><p id="p18132205755516"><a name="p18132205755516"></a><a name="p18132205755516"></a>功能描述</p>
-</th>
-</tr>
-</thead>
-<tbody><tr id="row13132357165514"><td class="cellrowborder" rowspan="4" align="left" valign="top" width="12.031203120312032%" headers="mcps1.2.4.1.1 "><p id="p15674038913"><a name="p15674038913"></a><a name="p15674038913"></a></p>
-<p id="p825185015460"><a name="p825185015460"></a><a name="p825185015460"></a>input_manager.h</p>
-<p id="p2133757135510"><a name="p2133757135510"></a><a name="p2133757135510"></a></p>
-</td>
-<td class="cellrowborder" valign="top" width="66.006600660066%" headers="mcps1.2.4.1.2 "><p id="p11132857135517"><a name="p11132857135517"></a><a name="p11132857135517"></a>int32_t (*OpenInputDevice)(uint32_t devIndex);</p>
-</td>
-<td class="cellrowborder" align="center" valign="top" width="21.96219621962196%" headers="mcps1.2.4.1.3 "><p id="p8233134675314"><a name="p8233134675314"></a><a name="p8233134675314"></a>打开input设备</p>
-</td>
-</tr>
-<tr id="row9132135715515"><td class="cellrowborder" valign="top" headers="mcps1.2.4.1.1 "><p id="p106067813482"><a name="p106067813482"></a><a name="p106067813482"></a>int32_t (*CloseInputDevice)(uint32_t devIndex);</p>
-</td>
-<td class="cellrowborder" align="center" valign="top" headers="mcps1.2.4.1.2 "><p id="p8233144617532"><a name="p8233144617532"></a><a name="p8233144617532"></a>关闭input设备</p>
-</td>
-</tr>
-<tr id="row2973185044814"><td class="cellrowborder" valign="top" headers="mcps1.2.4.1.1 "><p id="p1974125024812"><a name="p1974125024812"></a><a name="p1974125024812"></a>int32_t (*GetInputDevice)(uint32_t devIndex, DeviceInfo **devInfo);</p>
-</td>
-<td class="cellrowborder" align="center" valign="top" headers="mcps1.2.4.1.2 "><p id="p152331046155310"><a name="p152331046155310"></a><a name="p152331046155310"></a>获取指定ID的设备信息</p>
-</td>
-</tr>
-<tr id="row171330575555"><td class="cellrowborder" valign="top" headers="mcps1.2.4.1.1 "><p id="p913315573557"><a name="p913315573557"></a><a name="p913315573557"></a>int32_t (*GetInputDeviceList)(uint32_t *devNum, DeviceInfo **devList, uint32_t size);</p>
-</td>
-<td class="cellrowborder" align="center" valign="top" headers="mcps1.2.4.1.2 "><p id="p1523319466539"><a name="p1523319466539"></a><a name="p1523319466539"></a>获取所有设备列表信息</p>
-</td>
-</tr>
-<tr id="row1513316577554"><td class="cellrowborder" rowspan="3" align="left" valign="top" width="12.031203120312032%" headers="mcps1.2.4.1.1 "><p id="p14171441118"><a name="p14171441118"></a><a name="p14171441118"></a></p>
-<p id="p57063567463"><a name="p57063567463"></a><a name="p57063567463"></a>input_reporter.h</p>
-</td>
-<td class="cellrowborder" valign="top" width="66.006600660066%" headers="mcps1.2.4.1.2 "><p id="p14794193010499"><a name="p14794193010499"></a><a name="p14794193010499"></a>int32_t (*RegisterReportCallback)(uint32_t devIndex, InputReportEventCb *callback);</p>
-</td>
-<td class="cellrowborder" align="center" valign="top" width="21.96219621962196%" headers="mcps1.2.4.1.3 "><p id="p72331046145316"><a name="p72331046145316"></a><a name="p72331046145316"></a>注册input设备的回调</p>
-</td>
-</tr>
-<tr id="row171331657185514"><td class="cellrowborder" valign="top" headers="mcps1.2.4.1.1 "><p id="p123921240124910"><a name="p123921240124910"></a><a name="p123921240124910"></a>int32_t (*UnregisterReportCallback)(uint32_t devIndex);</p>
-</td>
-<td class="cellrowborder" align="center" valign="top" headers="mcps1.2.4.1.2 "><p id="p19233174675311"><a name="p19233174675311"></a><a name="p19233174675311"></a>注销input设备的回调</p>
-</td>
-</tr>
-<tr id="row41331557165518"><td class="cellrowborder" valign="top" headers="mcps1.2.4.1.1 "><p id="p11499124705012"><a name="p11499124705012"></a><a name="p11499124705012"></a>void (*ReportEventPkgCallback)(const EventPackage **pkgs, uint32_t count);</p>
-</td>
-<td class="cellrowborder" align="center" valign="top" headers="mcps1.2.4.1.2 "><p id="p52331246135315"><a name="p52331246135315"></a><a name="p52331246135315"></a>上报数据的回调函数</p>
-</td>
-</tr>
-<tr id="row1452521025813"><td class="cellrowborder" rowspan="9" align="left" valign="top" width="12.031203120312032%" headers="mcps1.2.4.1.1 "><p id="p1285144710118"><a name="p1285144710118"></a><a name="p1285144710118"></a></p>
-<p id="p854114711117"><a name="p854114711117"></a><a name="p854114711117"></a></p>
-<p id="p15741647517"><a name="p15741647517"></a><a name="p15741647517"></a></p>
-<p id="p7909447418"><a name="p7909447418"></a><a name="p7909447418"></a></p>
-<p id="p12525910165811"><a name="p12525910165811"></a><a name="p12525910165811"></a>input_controller.h</p>
-<p id="p942322013262"><a name="p942322013262"></a><a name="p942322013262"></a></p>
-<p id="p1040515339526"><a name="p1040515339526"></a><a name="p1040515339526"></a></p>
-<p id="p19405533115216"><a name="p19405533115216"></a><a name="p19405533115216"></a></p>
-</td>
-<td class="cellrowborder" valign="top" width="66.006600660066%" headers="mcps1.2.4.1.2 "><p id="p14402132815113"><a name="p14402132815113"></a><a name="p14402132815113"></a>int32_t (*SetPowerStatus)(uint32_t devIndex, uint32_t status);</p>
-</td>
-<td class="cellrowborder" align="center" valign="top" width="21.96219621962196%" headers="mcps1.2.4.1.3 "><p id="p1510016065413"><a name="p1510016065413"></a><a name="p1510016065413"></a>设置电源状态</p>
-</td>
-</tr>
-<tr id="row172902161193"><td class="cellrowborder" valign="top" headers="mcps1.2.4.1.1 "><p id="p2062643555111"><a name="p2062643555111"></a><a name="p2062643555111"></a>int32_t (*GetPowerStatus)(uint32_t devIndex, uint32_t *status);</p>
-</td>
-<td class="cellrowborder" align="center" valign="top" headers="mcps1.2.4.1.2 "><p id="p1323394615539"><a name="p1323394615539"></a><a name="p1323394615539"></a>获取电源状态</p>
-</td>
-</tr>
-<tr id="row1948179195"><td class="cellrowborder" valign="top" headers="mcps1.2.4.1.1 "><p id="p8207194414510"><a name="p8207194414510"></a><a name="p8207194414510"></a>int32_t (*GetDeviceType)(uint32_t devIndex, uint32_t *deviceType);</p>
-</td>
-<td class="cellrowborder" align="center" valign="top" headers="mcps1.2.4.1.2 "><p id="p18233154655317"><a name="p18233154655317"></a><a name="p18233154655317"></a>获取设备类型</p>
-</td>
-</tr>
-<tr id="row1331121813197"><td class="cellrowborder" valign="top" headers="mcps1.2.4.1.1 "><p id="p1321125217514"><a name="p1321125217514"></a><a name="p1321125217514"></a>int32_t (*GetChipInfo)(uint32_t devIndex, char *chipInfo, uint32_t length);</p>
-</td>
-<td class="cellrowborder" align="center" valign="top" headers="mcps1.2.4.1.2 "><p id="p14233104614536"><a name="p14233104614536"></a><a name="p14233104614536"></a>获取器件编码信息</p>
-</td>
-</tr>
-<tr id="row1393181951920"><td class="cellrowborder" valign="top" headers="mcps1.2.4.1.1 "><p id="p79410191191"><a name="p79410191191"></a><a name="p79410191191"></a>int32_t (*GetVendorName)(uint32_t devIndex, char *vendorName, uint32_t length);</p>
-</td>
-<td class="cellrowborder" align="center" valign="top" headers="mcps1.2.4.1.2 "><p id="p7233124695317"><a name="p7233124695317"></a><a name="p7233124695317"></a>获取模组厂商名</p>
-</td>
-</tr>
-<tr id="row8960121911198"><td class="cellrowborder" valign="top" headers="mcps1.2.4.1.1 "><p id="p17712110185218"><a name="p17712110185218"></a><a name="p17712110185218"></a>int32_t (*GetChipName)(uint32_t devIndex, char *chipName, uint32_t length);</p>
-</td>
-<td class="cellrowborder" align="center" valign="top" headers="mcps1.2.4.1.2 "><p id="p923316468539"><a name="p923316468539"></a><a name="p923316468539"></a>获取芯片厂商名</p>
-</td>
-</tr>
-<tr id="row10812112081919"><td class="cellrowborder" valign="top" headers="mcps1.2.4.1.1 "><p id="p20738171735219"><a name="p20738171735219"></a><a name="p20738171735219"></a>int32_t (*SetGestureMode)(uint32_t devIndex, uint32_t gestureMode);</p>
-</td>
-<td class="cellrowborder" align="center" valign="top" headers="mcps1.2.4.1.2 "><p id="p5233546175310"><a name="p5233546175310"></a><a name="p5233546175310"></a>设置手势模式</p>
-</td>
-</tr>
-<tr id="row12422102092613"><td class="cellrowborder" valign="top" headers="mcps1.2.4.1.1 "><p id="p56701925155215"><a name="p56701925155215"></a><a name="p56701925155215"></a>int32_t (*RunCapacitanceTest)(uint32_t devIndex, uint32_t testType, char *result, uint32_t length);</p>
-</td>
-<td class="cellrowborder" align="center" valign="top" headers="mcps1.2.4.1.2 "><p id="p13234346125310"><a name="p13234346125310"></a><a name="p13234346125310"></a>执行容值自检测试</p>
-</td>
-</tr>
-<tr id="row124041233155211"><td class="cellrowborder" valign="top" headers="mcps1.2.4.1.1 "><p id="p16405113375215"><a name="p16405113375215"></a><a name="p16405113375215"></a>int32_t (*RunExtraCommand)(uint32_t devIndex, InputExtraCmd *cmd);</p>
-</td>
-<td class="cellrowborder" align="center" valign="top" headers="mcps1.2.4.1.2 "><p id="p192341246185314"><a name="p192341246185314"></a><a name="p192341246185314"></a>执行拓展指令</p>
-</td>
-</tr>
-</tbody>
-</table>
+- input_manager.h
 
+  | 接口名称                                                                               | 功能描述           |
+  | ------------------------------------------------------------------------------------- | -------------------|
+  | int32_t (*OpenInputDevice)(uint32_t devIndex);                                        | 打开input设备       |
+  | int32_t (*CloseInputDevice)(uint32_t devIndex);                                       | 关闭input设备       |
+  | int32_t (*GetInputDevice)(uint32_t devIndex, DeviceInfo **devInfo);                   | 获取指定ID的设备信息 |
+  | int32_t (*GetInputDeviceList)(uint32_t *devNum, DeviceInfo **devList, uint32_t size); | 获取所有设备列表信息 |
+
+- input_reporter.h
+
+  | 接口名称                                                                             | 功能描述            |
+  | ----------------------------------------------------------------------------------- | ------------------ |
+  | int32_t (*RegisterReportCallback)(uint32_t devIndex, InputReportEventCb *callback); | 注册input设备的回调 |
+  | int32_t (*UnregisterReportCallback)(uint32_t devIndex);                             | 注销input设备的回调 |
+  | void (*ReportEventPkgCallback)(const EventPackage **pkgs, uint32_t count);          | 上报数据的回调函数   |
+
+- input_controller.h
+
+  | 接口名称                                                                                             | 功能描述       | 
+  | --------------------------------------------------------------------------------------------------- |--------------- | 
+  | int32_t (*SetPowerStatus)(uint32_t devIndex, uint32_t status);                                      | 设置电源状态    | 
+  | int32_t (*GetPowerStatus)(uint32_t devIndex, uint32_t *status);                                     | 获取电源状态    | 
+  | int32_t (*GetDeviceType)(uint32_t devIndex, uint32_t *deviceType);                                  | 获取设备类型    | 
+  | int32_t (*GetChipInfo)(uint32_t devIndex, char *chipInfo, uint32_t length);                         | 获取器件编码信息 | 
+  | int32_t (*GetVendorName)(uint32_t devIndex, char *vendorName, uint32_t length);                     | 获取模组厂商名   | 
+  | int32_t (*GetChipName)(uint32_t devIndex, char *chipName, uint32_t length);                         | 获取芯片厂商名   | 
+  | int32_t (*SetGestureMode)(uint32_t devIndex, uint32_t gestureMode);                                 | 设置手势模式     | 
+  | int32_t (*RunCapacitanceTest)(uint32_t devIndex, uint32_t testType, char *result, uint32_t length); | 执行容值自检测试 | 
+  | int32_t (*RunExtraCommand)(uint32_t devIndex, InputExtraCmd *cmd);                                  | 执行拓展指令     | 
+
+更多接口请参考[Input驱动仓](https://gitee.com/openharmony/drivers_peripheral/tree/master/input)。
 
 ## 开发步骤
 
