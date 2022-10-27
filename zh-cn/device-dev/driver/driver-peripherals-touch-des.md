@@ -230,42 +230,42 @@ Input HDF驱动提供给系统服务Input Service调用的HDI驱动能力接口�
 
 ```
 input :: host {
-            hostName = "input_host";
-            priority = 100;
-            device_input_manager :: device {
-                device0 :: deviceNode {
-                    policy = 2;        // 向外发布服务
-                    priority = 100;    // 加载优先级，在input模块内，manager模块优先级应为最高
-                    preload = 0;       // 加载该驱动，0：加载；1：不加载
-                    permission = 0660;
-                    moduleName = "HDF_INPUT_MANAGER";
-                    serviceName = "input_dev_manager";
-                    deviceMatchAttr = "";
-                }
-            }
-            device_hdf_touch :: device {
-                device0 :: deviceNode {
-                    policy = 2;
-                    priority = 120;
-                    preload = 0;
-                    permission = 0660;
-                    moduleName = "HDF_TOUCH";
-                    serviceName = "event1";
-                    deviceMatchAttr = "touch_device1";
-                }
-            }
+    hostName = "input_host";
+    priority = 100;
+    device_input_manager :: device {
+        device0 :: deviceNode {
+            policy = 2;        // 向外发布服务
+            priority = 100;    // 加载优先级，在input模块内，manager模块优先级应为最高
+            preload = 0;       // 加载该驱动，0：加载；1：不加载
+            permission = 0660;
+            moduleName = "HDF_INPUT_MANAGER";
+            serviceName = "input_dev_manager";
+            deviceMatchAttr = "";
+        }
+    }
+    device_hdf_touch :: device {
+        device0 :: deviceNode {
+            policy = 2;
+            priority = 120;
+            preload = 0;
+            permission = 0660;
+            moduleName = "HDF_TOUCH";
+            serviceName = "event1";
+            deviceMatchAttr = "touch_device1";
+        }
+    }
 
-            device_touch_chip :: device {
-                device0 :: deviceNode {
-                    policy = 0;
-                    priority = 130;
-                    preload = 0;
-                    permission = 0660;
-                    moduleName = "HDF_TOUCH_SAMPLE";
-                    serviceName = "hdf_touch_sample_service";
-                    deviceMatchAttr = "zsj_sample_5p5";
-                }
-            }
+    device_touch_chip :: device {
+        device0 :: deviceNode {
+            policy = 0;
+            priority = 130;
+            preload = 0;
+            permission = 0660;
+            moduleName = "HDF_TOUCH_SAMPLE";
+            serviceName = "hdf_touch_sample_service";
+            deviceMatchAttr = "zsj_sample_5p5";
+        }
+    }
 }
 ```
 
