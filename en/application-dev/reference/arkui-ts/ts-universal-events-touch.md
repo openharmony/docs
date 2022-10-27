@@ -9,9 +9,9 @@ A touch event is triggered when a finger is pressed, slides, or is lifted from a
 
 ## Events
 
-| Name                                      | Bubbling Supported| Description                                    |
-| ---------------------------------------- | ---- | ---------------------------------------- |
-| onTouch(event:&nbsp;(event?:&nbsp;TouchEvent)&nbsp;=&gt;&nbsp;void) | Yes   | Invoked when a touch action is triggered. For details about **event**, see [TouchEvent](#touchevent).|
+| Name                                                        | Bubbling Supported| Description                                                    |
+| ------------------------------------------------------------ | -------- | ------------------------------------------------------------ |
+| onTouch(event: (event?: TouchEvent) =&gt; void) | Yes      | Invoked when a touch action is triggered. For details about **event**, see [TouchEvent](#touchevent).|
 
 
 ## TouchEvent
@@ -22,21 +22,21 @@ A touch event is triggered when a finger is pressed, slides, or is lifted from a
 | touches             | Array&lt;[TouchObject](#touchobject)&gt; | All finger information.     |
 | changedTouches      | Array&lt;[TouchObject](#touchobject)&gt; | Finger information changed.|
 | stopPropagation      | () => void | Stops the event from bubbling upwards or downwards.|
-| timestamp<sup>8+</sup> | number | Timestamp of the event.|
+| timestamp<sup>8+</sup> | number | Timestamp of the event. It is interval between the time when the event is triggered and the time when the system starts, in nanoseconds.|
 | target<sup>8+</sup> | [EventTarget](ts-universal-events-click.md) | Display area of the element that triggers the gesture event.|
 | source<sup>8+</sup> | [SourceType](ts-gesture-settings.md) | Event input device.|
 
 
 ## TouchObject
 
-| Name   | Type                         | Description                 |
-| ------- | --------------------------- | ------------------- |
-| type    | [TouchType](ts-appendix-enums.md#touchtype) | Type of the touch event.           |
-| id      | number                      | Unique identifier of a finger.           |
-| screenX | number                      | X-coordinate of the touch point relative to the left edge of the screen. |
-| screenY | number                      | Y-coordinate of the touch point relative to the upper edge of the device screen. |
-| x       | number                      | X-coordinate of the touch point relative to the left edge of the element being touched.|
-| y       | number                      | Y-coordinate of the touch point relative to the upper edge of the element being touched.|
+| Name   | Type                                       | Description                                 |
+| ------- | ------------------------------------------- | ------------------------------------- |
+| type    | [TouchType](ts-appendix-enums.md#touchtype) | Type of the touch event.                     |
+| id      | number                                      | Unique identifier of a finger.                     |
+| screenX | number                                      | X coordinate of the touch point relative to the upper left corner of the application window.  |
+| screenY | number                                      | Y coordinate of the touch point relative to the upper left corner of the application window.  |
+| x       | number                                      | X coordinate of the touch point relative to the upper left corner of the component being touched.|
+| y       | number                                      | Y coordinate of the touch point relative to the upper left corner of the component being touched.|
 
 ## Example
 

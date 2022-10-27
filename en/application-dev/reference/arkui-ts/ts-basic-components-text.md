@@ -7,11 +7,6 @@ The **\<Text>** component is used to display a piece of textual information.
 >  This component is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
 
-## Required Permissions
-
-None
-
-
 ## Child Components
 
 This component can contain the [\<Span>](ts-basic-components-span.md) child component.
@@ -22,26 +17,25 @@ This component can contain the [\<Span>](ts-basic-components-span.md) child comp
 Text(content?: string | Resource)
 
 **Parameters**
+
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| content | string \| [Resource](ts-types.md#resource) | No| Text content. The content and style set for the **\<Text>** component do not take effect when it contains the **\<Span>** child component.<br>Default value: ' ' |
-
+| content | string \| [Resource](ts-types.md#resource) | No| Text content. The content and style set for the **\<Text>** component do not take effect when it contains the **\<Span>** child component.<br>Default value: **' '**|
 
 ## Attributes
 
-
 | Name| Type| Description|
 | -------- | -------- | -------- |
-| textAlign | [TextAlign](ts-appendix-enums.md#textalign) | Text alignment mode of multiple lines of text.<br/>Default value: **TextAlign.Start** |
-| textOverflow | {overflow: [TextOverflow](ts-appendix-enums.md#textoverflow)} | Display mode when the text is too long.<br/>Default value: **{overflow:&nbsp;TextOverflow.Clip}**<br>**NOTE**<br/>Text is truncated at the transition between words. To truncate text in the middle of a word, add **\u200B** between characters. |
+| textAlign | [TextAlign](ts-appendix-enums.md#textalign) | Text alignment mode of multiple lines of text.<br>Default value: **TextAlign.Start**|
+| textOverflow | {overflow: [TextOverflow](ts-appendix-enums.md#textoverflow)} | Display mode when the text is too long.<br>Default value: **{overflow: TextOverflow.Clip}**<br>**NOTE**<br/>Text is truncated at the transition between words. To truncate text in the middle of a word, add **\u200B** between characters.<br>This attribute must be used with `maxLines` to take effect. |
 | maxLines | number | Maximum number of lines in the text.<br>Default value: **Infinity** |
-| lineHeight     | string \| number \| [Resource](ts-types.md#resource) | Text line height. If the value is less than or equal to **0**, the line height is not limited and the font size is adaptive. If the value of the number type, the unit fp is used. |
-| decoration     | {<br>type: [TextDecorationType](ts-appendix-enums.md#textdecorationtype),<br>color?: [ResourceColor](ts-types.md#resourcecolor8)<br>} | Style and color of the text decorative line.<br/>Default value: **{<br/>type: TextDecorationType.None,<br/>color: Color.Black<br/>}** |
-| baselineOffset | number \| string         | Offset of the text baseline.                             |
-| letterSpacing       | number \| string                 | Letter spacing.                                |
-| minFontSize       | number \| string \| [Resource](ts-types.md#resource) | Minimum font size.                                |
-| maxFontSize       | number \| string \| [Resource](ts-types.md#resource) | Maximum font size.                                |
-| textCase | [TextCase](ts-appendix-enums.md#textcase) | Text case.<br/>Default value: **TextCase.Normal** |
+| lineHeight     | string \| number \| [Resource](ts-types.md#resource)  | Text line height. If the value is less than or equal to **0**, the line height is not limited and the font size is adaptive. If the value of the number type, the unit fp is used.|
+| decoration     | {<br>type: [TextDecorationType](ts-appendix-enums.md#textdecorationtype),<br>color?: [ResourceColor](ts-types.md#resourcecolor8)<br>} | Style and color of the text decorative line.<br>Default value: {<br>type: TextDecorationType.None,<br>color: Color.Black<br>} |
+| baselineOffset | number \| string | Offset of the text baseline.                             |
+| letterSpacing       | number \| string | Letter spacing.                                |
+| minFontSize       | number \| string \| [Resource](ts-types.md#resource)      | Minimum font size.                                |
+| maxFontSize       | number \| string \| [Resource](ts-types.md#resource)      | Maximum font size.                                |
+| textCase | [TextCase](ts-appendix-enums.md#textcase) | Text case.<br>Default value: **TextCase.Normal**|
 
 >  **NOTE**
 >

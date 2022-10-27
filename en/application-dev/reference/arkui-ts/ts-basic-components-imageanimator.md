@@ -1,17 +1,14 @@
 # ImageAnimator
 
-
 The **\<ImageAnimator>** component enables images to be played frame by frame. The list of images to be played can be configured, and the duration of each image can be configured.
 
 > **NOTE**
 >
 > This component is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
-
 ## Required Permissions
 
 None
-
 
 ## Child Components
 
@@ -25,17 +22,16 @@ ImageAnimator()
 
 ## Attributes
 
-| Name| Type| Default Value| Mandatory| Description|
-| -------- | -------- | -------- | -------- | -------- |
-| images | Array&lt;{<br/>src: string,<br/>width?: number \| string,<br/>height?: number \| string,<br/>top?: number \| string,<br/>left?: number \| string,<br/>duration?: number<br/>}&gt; | [] | Yes| Image frame information. The information of each frame includes the image path, image size, image position, and image playback duration. The detailed description is as follows:<br/>**src**: image path. The image format can be SVG, PNG, or JPG.<br/>**width**: image width.<br/>**height**: image height.<br/>**top**: vertical coordinate of the image relative to the upper left corner of the component.<br/>**left**: horizontal coordinate of the image relative to the upper left corner of the component.<br/>**duration**: playback duration of the image, in ms. |
-| state | [AnimationStatus](ts-appendix-enums.md#animationstatus) | Initial | No| Playback status of the animation. The default status is **Initial**.|
-| duration | number | 1000 | No| Playback duration, in ms. The default duration is 1000 ms. When the duration is **0**, no image is played. The value change takes effect only at the beginning of the next cycle. When a separate duration is set in **images**, the setting of this attribute is invalid.|
-| reverse | boolean | false | No| Playback sequence. The value **false** indicates that images are played from the first one to the last one, and **true** indicates that images are played from the last one to the first one.|
-| fixedSize | boolean | true | No| Whether the image size is the same as the component size.<br> **true**: The image size is the same as the component size. In this case, the width, height, top, and left attributes of the image are invalid.<br> **false**: The width, height, top, and left attributes of each image must be set separately.|
-| preDecode | number | 0 | No| Whether to enable pre-decoding. The default value **0** indicates that pre-decoding is disabled. The value **2** indicates that two images following the currently playing frame will be cached in advance to improve performance.|
-| fillMode | [FillMode](ts-appendix-enums.md#fillmode) | Forwards | No| Status before and after the animation starts. For details about the options, see **FillMode**.|
-| iterations | number | 1 | No| Number of times that the animation is played. By default, the animation is played once. The value **-1** indicates that the animation is played for an unlimited number of times.|
-
+| Name    | Type                 | Default Value | Mandatory     | Description                  |
+| ---------- | ----------------------- | -------- | -------- | -------- |
+| images     | Array&lt;{<br/>src: string,<br/>width?: number \| string,<br/>height?: number \| string,<br/>top?: number \| string,<br/>left?: number \| string,<br/>duration?: number<br/>}&gt; | [] | No  | Image frame information. The information of each frame includes the image path, image size, image position, and image playback duration. The detailed description is as follows:<br/>**src**: image path. The image format can be SVG, PNG, or JPG.<br/>**width**: image width.<br/>**height**: image height.<br/>**top**: vertical coordinate of the image relative to the upper left corner of the component.<br/>**left**: horizontal coordinate of the image relative to the upper left corner of the component.<br/>**duration**: playback duration of the image, in ms. |
+| state      | [AnimationStatus](ts-appendix-enums.md#animationstatus) | Initial | No   | Playback status of the animation. |
+| duration   | number  | 1000 | No   | Playback duration, in ms. The default duration is 1000 ms. When the duration is **0**, no image is played. The value change takes effect only at the beginning of the next cycle. When a separate duration is set in **images**, the setting of this attribute is invalid. |
+| reverse    | boolean | false | No   | Playback sequence. The value **false** indicates that images are played from the first one to the last one, and **true** indicates that images are played from the last one to the first one. |
+| fixedSize  | boolean | true | No   | Whether the image size is the same as the component size.<br> **true**: The image size is the same as the component size. In this case, the width, height, top, and left attributes of the image are invalid.<br> **false**: The width, height, top, and left attributes of each image must be set separately. |
+| preDecode  | number  | 0  | No   | Whether to enable pre-decoding. The default value **0** indicates that pre-decoding is disabled. The value **2** indicates that two images following the currently playing frame will be cached in advance to improve performance. |
+| fillMode   | [FillMode](ts-appendix-enums.md#fillmode) | Forwards | No   | Status before and after the animation starts. For details about the options, see **FillMode**. |
+| iterations | number  | 1  | No   | Number of times that the animation is played. By default, the animation is played once. The value **-1** indicates that the animation is played for an unlimited number of times. |
 
 ## Events
 

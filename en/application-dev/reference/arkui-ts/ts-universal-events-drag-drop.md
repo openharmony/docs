@@ -1,39 +1,47 @@
-# Drag/Drop Event
+# Drag Event
 
+A drag event is triggered when a component is dragged.
 
-> **NOTE**
+>  **NOTE**
 >
-> This component is supported since API version 8. Updates will be marked with a superscript to indicate their earliest API version.
+>  The APIs of this module are supported since API version 8. Updates will be marked with a superscript to indicate their earliest API version.
+
+## Events
+
+| Name                                      | Bubbling Supported| Description                                    |
+| ---------------------------------------- | ---- | ---------------------------------------- |
+| onDragStart(event: (event: DragEvent, extraParams?: string) =&gt;  [CustomBuilder](ts-types.md#custombuilder8) \| DragItemInfo) | No   | Triggered when the component bound to the event is dragged for the first time.<br>- **event**: information about the drag event, including the coordinates of the item that is being dragged.<br>- **extraParams**: additional information about the drag event. For details, see extraParam.<br>Return value: object being dragged, which is used for prompts displayed when the object is dragged.<br>A drag event can be triggered by a 150 ms long press. If the duration of a long-press gesture is set to less than or equal to 150 ms, the callback for the long-press gesture takes precedence. Otherwise, the callback for the drag event takes precedence.|
+| onDragEnter(event: (event: DragEvent, extraParams?: string) =&gt; void) | No   | Triggered when the dragged item enters a valid drop target.<br>- **event**: information about the drag event, including the coordinates of the item that is being dragged.<br>- **extraParams**: additional information about the drag event. For details, see extraParam.<br>This event is valid only when the **onDrop** event is listened to.|
+| onDragMove(event: (event: DragEvent, extraParams?: string) =&gt; void) | No   | Triggered when the dragged item moves in a valid drop target.<br>- **event**: information about the drag event, including the coordinates of the item that is being dragged.<br>- **extraParams**: additional information about the drag event. For details, see extraParam.<br>This event is valid only when the **onDrop** event is listened to.|
+| onDragLeave(event: (event: DragEvent, extraParams?: string) =&gt; void) | No   | Triggered when the dragged item leaves a valid drop target.<br>- **event**: information about the drag event, including the coordinates of the item that is being dragged.<br>- **extraParams**: additional information about the drag event. For details, see extraParam.<br>This event is valid only when the **onDrop** event is listened to.|
+| onDrop(event: (event: DragEvent, extraParams?: string) =&gt; void) | No   | Triggered when the dragged item is dropped on a valid drop target.<br>- **event**: information about the drag event, including the coordinates of the item that is being dragged.<br>- **extraParams**: additional information about the drag event. For details, see extraParam.|
+
+## DragItemInfo
+
+| Name     | Type                                    | Mandatory  | Description                               |
+| --------- | ---------------------------------------- | ---- | --------------------------------- |
+| pixelMap  | [PixelMap](../apis/js-apis-image.md#pixelmap7) | No   | Image to be displayed during dragging.                    |
+| builder   | [CustomBuilder](ts-types.md#custombuilder8) | No   | Custom building for drawing. If **pixelMap** is set, this attribute is ignored.|
+| extraInfo | string                                   | No   | Extra information of the dragged item.                          |
 
 
-| Name | Bubbling Supported | Description |
-| -------- | -------- | -------- |
-| onDragStart(callback: (event: DragEvent, extraParams?: string) =&gt;\|[Custom Builder](../../ui/ts-types.md)) | No | Triggered when the component bound to the event is dragged for the first time.<br/>- **event**: information about the drag event, including the coordinates of the item that is being dragged.<br/>- **extraParams**: additional information about the drag event. For details, see **extraParam**.<br/>Return value: object being dragged, which is used for prompts displayed when the object is dragged.<br/>A drag event can be triggered by a 150 ms long press.<br/>If the duration of a long-press gesture is set to less than or equal to 150 ms, the callback for the long-press gesture takes precedence. Otherwise, the callback for the drag event takes precedence. |
-| onDragEnter(callback: (event: DragEvent, extraParams?: string) =&gt; void) | No | Triggered when the dragged item enters a valid drop target.<br/>- **event**: information about the drag event, including the coordinates of the item that is being dragged.<br/>- **extraParams**: additional information about the drag event. For details, see **extraParam**.<br/>This event is valid only when the **onDrop** event is listened to. |
-| onDragMove(callback: (event: DragEvent, extraParams?: string) =&gt; void) | No | Triggered when the dragged item moves in a valid drop target.<br/>- **event**: information about the drag event, including the coordinates of the item that is being dragged.<br/>- **extraParams**: additional information about the drag event. For details, see **extraParam**.<br/>This event is valid only when the **onDrop** event is listened to. |
-| onDragLeave(callback: (event: DragEvent, extraParams?: string) =&gt; void) | No | Triggered when the dragged item leaves a valid drop target.<br/>- **event**: information about the drag event, including the coordinates of the item that is being dragged.<br/>- **extraParams**: additional information about the drag event. For details, see **extraParam**.<br/>This event is valid only when the **onDrop** event is listened to. |
-| onDrop(callback: (event:DragEvent, extraParams?: string) =&gt; void) | No | Triggered when the dragged item is dropped on a valid drop target.<br/>- **event**: information about the drag event, including the coordinates of the item that is being dragged.<br/>- **extraParams**: additional information about the drag event. For details, see **extraParam**. |
+## extraParam
 
+Provides additional information required for dragging an item.
 
-- extraParam
-  
-  Returns additional information required for dragging an item.
-  
-  **extraParam** is a string converted from a JSON object. You can obtain the following attributes using the JSON object converted from **Json.parse**.
-  
-  | Name | Type | Description |
-  | -------- | -------- | -------- |
-  | selectedIndex | number | Index of the dragged item in the parent container. The value of **selectedIndex** starts from **0**.<br/>This attribute is valid only in the **\<ListItem>** component. |
-  | insertIndex | number | Index of the element into which the dragged item is dropped in the **List** component. The value of **insertIndex** starts from **0**.<br/>This attribute is valid only in the drag event of the **\<List>** component. |
+**extraParam** is a string converted from a JSON object. You can obtain the following attributes using the JSON object converted from **Json.parse**.
 
+| Name         | Type  | Description                                      |
+| ------------- | ------ | ---------------------------------------- |
+| selectedIndex | number | Index of the dragged item in the parent container. The value of **selectedindex** starts from **0**.<br>This attribute is valid only in the **ListItem** component.|
+| insertIndex   | number | Index of the element into which the dragged item is dropped in the **List** component. The value of **insertIndex** starts from **0**.<br>This attribute is valid only in the drag event of the **List** component.|
 
-### DragEvent
+## DragEvent
 
-| Name | Return Value Type | Description |
-| -------- | -------- | -------- |
-| getX() | number | X-coordinate of the item that is being dragged, in vp. |
-| getY() | number | Y-coordinate of the item that is being dragged, in vp. |
-
+| Sample Code    | Return Value Type | Description            |
+| ------ | ------ | ---------------- |
+| getX() | number | X-coordinate of the item that is being dragged, in vp.|
+| getY() | number | Y-coordinate of the item that is being dragged, in vp.|
 
 ## Example
 

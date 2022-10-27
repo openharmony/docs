@@ -2,33 +2,27 @@
 
 Image effects include background blur, content blur, grayscale, and much more.
 
-> **NOTE**
+>  **NOTE**
 >
-> This attribute is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
-
-
-## Required Permissions
-
-None
+>  The APIs of this module are supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
 
 ## Attributes
 
 
-| Name | Type | Default Value | Description |
-| -------- | -------- | -------- | -------- |
-| blur | number | - | Adds the content blur effect to the current component. The input parameter is the blur radius. The larger the radius is, the more blurred the content is. If the value is **0**, the content is not blurred. |
-| backdropBlur | number | - | Adds the background blur effect to the current component. The input parameter is the blur radius. The larger the radius is, the more blurred the background is. If the value is **0**, the background is not blurred. |
-| shadow | {<br/>radius: number,<br/>color?: Color \| string \| [Resource](../../ui/ts-types.md#resource-type),<br/>offsetX?: number,<br/>offsetY?: number<br/>} | - | Adds the shadow effect to the current component. The input parameters are the fuzzy radius (mandatory), shadow color (optional; gray by default), X-axis offset (optional and 0 by default), and Y-axis offset (optional; 0 by default). The offset unit is px. |
-| grayscale | number | 0.0 | Converts the input image to grayscale. The value indicates the grayscale conversion ratio. If the input value is **1.0**, the image is converted into a grayscale image. If the input value is **0.0**, the image does not change. If the input value is between **0.0** and **1.0**, the effect changes in linear mode. The unit is percentage. The unit is percentage. |
-| brightness | number | 1.0 | Adds a brightness to the current component. The input parameter is a brightness ratio. The value **1** indicates no effects. The value **0** indicates the complete darkness. If the value is less than **1**, the brightness decreases. If the value is greater than **1**, the brightness increases. A larger value indicates a higher brightness. |
-| saturate | number | 1.0 | Adds the saturation effect to the current component. The saturation is the ratio of the chromatic component to the achromatic component (gray) in a color. When the input value is **1**, the source image is displayed. When the input value is greater than **1**, a higher percentage of the chromatic component indicates a higher saturation. When the input value is less than **1**, a higher percentage of the achromatic component indicates a lower saturation. The unit is percentage. |
-| contrast | number | 1.0 | Adds the contrast effect to the current component. The input parameter is a contrast value. If the value is **1**, the source image is displayed. If the value is greater than **1**, a larger value indicates a higher contrast and a clearer image. If the value is less than **1**, a smaller value indicates a lower contrast is. If the value is **0**, the image becomes all gray. The unit is percentage. |
-| invert | number | 0 | Inverts the input image. The input parameter is an image inversion ratio. The value **1** indicates complete inversion. The value **0** indicates that the image does not change. The unit is percentage. |
-| colorBlend<sup>8+</sup> | Color | - | Adds the color blend effect to the current component. The input parameter is the blended color. |
-| sepia | number | 0 | Converts the image color to sepia. The input parameter is an image inversion ratio. The value **1** indicates the image is completely sepia. The value **0** indicates that the image does not change. The unit is percentage. |
-| hueRotate | number \| string | '0deg' | Adds the hue rotation effect to the current component. The input parameter is a rotation angle. If the input value is **0deg**, the image does not change (because the default rotation angle is **0deg**). The input parameter does not have the maximum value. If the value exceeds **360deg**, the image is rotated for one more circle. In other words, the value **370deg** has the same effect as **10deg**.|
-
+| Name                         | Type                                                    | Default Value| Description                                                        |
+| ----------------------------- | ------------------------------------------------------------ | ------ | ------------------------------------------------------------ |
+| blur                          | number                                                       | -      | Adds the content blur effect to the current component. The input parameter is the blur radius. The larger the radius is, the more blurred the content is. If the value is **0**, the content is not blurred. |
+| backdropBlur                  | number                                                       | -      | Adds the background blur effect to the current component. The input parameter is the blur radius. The larger the radius is, the more blurred the background is. If the value is **0**, the background is not blurred. |
+| shadow                        | {<br>radius: number \| [Resource](ts-types.md#resource),<br>color?: Color \| string \| Resource,<br>offsetX?: number \| Resource,<br>offsetY?: number \| Resource<br>} | -      | Adds the shadow effect to the current component. The input parameters are the fuzzy radius (mandatory), shadow color (optional; gray by default), x-axis offset (optional; 0 by default), and y-axis offset (optional; 0 by default). The offset unit is px.|
+| grayscale                     | number                                                       | 0.0    | Converts the input image to grayscale. The value indicates the grayscale conversion ratio. If the input value is **1.0**, the image is converted into a grayscale image. If the input value is **0.0**, the image does not change. If the input value is between **0.0** and **1.0**, the effect changes in linear mode. The unit is percentage.|
+| brightness                    | number                                                       | 1.0    | Adds a brightness to the current component. The input parameter is a brightness ratio. The value **1** indicates no effects. The value **0** indicates the complete darkness. If the value is less than **1**, the brightness decreases. If the value is greater than **1**, the brightness increases. A larger value indicates a higher brightness.|
+| saturate                      | number                                                       | 1.0    | Adds the saturation effect to the current component. The saturation is the ratio of the chromatic component to the achromatic component (gray) in a color. When the input value is **1**, the source image is displayed. When the input value is greater than **1**, a higher percentage of the chromatic component indicates a higher saturation. When the input value is less than **1**, a higher percentage of the achromatic component indicates a lower saturation. The unit is percentage.|
+| contrast                      | number                                                       | 1.0    | Adds the contrast effect to the current component. The input parameter is a contrast value. If the value is **1**, the source image is displayed. If the value is greater than **1**, a larger value indicates a higher contrast and a clearer image. If the value is less than **1**, a smaller value indicates a lower contrast is. If the value is **0**, the image becomes all gray. The unit is percentage.|
+| invert                        | number                                                       | 0      | Inverts the input image. The input parameter is an image inversion ratio. The value **1** indicates complete inversion. The value **0** indicates that the image does not change. The unit is percentage.|
+| colorBlend <sup>8+</sup> | Color | -      | Adds the color blend effect to the current component. The input parameter is the blended color.                                                           |
+| sepia                         | number                                                       | 0      | Converts the image color to sepia. The input parameter is an image inversion ratio. The value **1** indicates the image is completely sepia. The value **0** indicates that the image does not change. The unit is percentage.|
+| hueRotate                     | number\|string                                               | '0deg' | Adds the hue rotation effect to the current component. The input parameter is a rotation angle. If the input value is **0deg**, the image does not change (because the default rotation angle is **0deg**). The input parameter does not have the maximum value. If the value exceeds **360deg**, the image is rotated for one more circle. In other words, the value **370deg** has the same effect as **10deg**. |
 
 ## Example
 
@@ -39,6 +33,7 @@ You can preview how this component looks on a real device. The preview is not ye
 @Entry
 @Component
 struct ImageEffectsExample {
+
   build() {
     Column({space: 10}) {
       // Blur the font.
@@ -78,4 +73,4 @@ struct ImageEffectsExample {
 }
 ```
 
-
+<img src="figures/image-effect.png" alt="image-effect"  />
