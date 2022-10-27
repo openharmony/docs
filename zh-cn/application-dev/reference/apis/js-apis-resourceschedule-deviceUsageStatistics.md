@@ -72,7 +72,7 @@ isIdleState(bundleName: string, callback: AsyncCallback&lt;boolean&gt;): void
     }
   ```
 
-## bundleState.isIdleState
+## usageStatistics.isIdleState
 
 isIdleState(bundleName: string): Promise&lt;boolean&gt;
 
