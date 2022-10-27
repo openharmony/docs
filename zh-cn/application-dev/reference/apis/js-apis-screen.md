@@ -34,7 +34,7 @@ getAllScreens(callback: AsyncCallback&lt;Array&lt;Screen&gt;&gt;): void
 
 | 错误码ID | 错误信息 |
 | ------- | ----------------------- |
-| 1400001 | This is invalid screen. |
+| 1400001 | Invalid display or screen. |
 
 **示例：**
 
@@ -70,7 +70,7 @@ getAllScreens(): Promise&lt;Array&lt;Screen&gt;&gt;
 
 | 错误码ID | 错误信息 |
 | ------- | ----------------------- |
-| 1400001 | This is invalid screen. |
+| 1400001 | Invalid display or screen. |
 
 **示例：**
 
@@ -162,7 +162,7 @@ makeExpand(options:Array&lt;ExpandOption&gt;, callback: AsyncCallback&lt;number&
 
 | 错误码ID | 错误信息 |
 | ------- | ----------------------- |
-| 1400001 | This is invalid screen. |
+| 1400001 | Invalid display or screen. |
 
 **示例：**
 
@@ -208,7 +208,7 @@ makeExpand(options:Array&lt;ExpandOption&gt;): Promise&lt;number&gt;
 
 | 错误码ID | 错误信息 |
 | ------- | ----------------------- |
-| 1400001 | This is invalid screen. |
+| 1400001 | Invalid display or screen. |
 
 **示例：**
 
@@ -246,7 +246,7 @@ makeMirror(mainScreen:number, mirrorScreen:Array&lt;number&gt;, callback: AsyncC
 
 | 错误码ID | 错误信息 |
 | ------- | ----------------------- |
-| 1400001 | This is invalid screen. |
+| 1400001 | Invalid display or screen. |
 
 **示例：**
 
@@ -293,7 +293,7 @@ makeMirror(mainScreen:number, mirrorScreen:Array&lt;number&gt;): Promise&lt;numb
 
 | 错误码ID | 错误信息 |
 | ------- | ----------------------- |
-| 1400001 | This is invalid screen. |
+| 1400001 | Invalid display or screen. |
 
 **示例：**
 
@@ -334,7 +334,7 @@ createVirtualScreen(options:VirtualScreenOption, callback: AsyncCallback&lt;Scre
 
 | 错误码ID | 错误信息 |
 | ------- | ----------------------- |
-| 1400001 | This is invalid screen. |
+| 1400001 | Invalid display or screen. |
 
 **示例：**
 
@@ -388,7 +388,7 @@ createVirtualScreen(options:VirtualScreenOption): Promise&lt;Screen&gt;
 
 | 错误码ID | 错误信息 |
 | ------- | ----------------------- |
-| 1400001 | This is invalid screen. |
+| 1400001 | Invalid display or screen. |
 
 **示例：**
 
@@ -433,7 +433,7 @@ destroyVirtualScreen(screenId:number, callback: AsyncCallback&lt;void&gt;): void
 
 | 错误码ID | 错误信息 |
 | ------- | ----------------------------- |
-| 1400002 | This operation is not access. |
+| 1400002 | Unauthorized operation. |
 
 **示例：**
 
@@ -478,7 +478,7 @@ destroyVirtualScreen(screenId:number): Promise&lt;void&gt;
 
 | 错误码ID | 错误信息 |
 | ------- | ----------------------------- |
-| 1400002 | This operation is not access. |
+| 1400002 | Unauthorized operation. |
 
 **示例：**
 
@@ -519,7 +519,7 @@ setVirtualScreenSurface(screenId:number, surfaceId: string, callback: AsyncCallb
 
 | 错误码ID | 错误信息 |
 | ------- | ----------------------- |
-| 1400001 | This is invalid screen. |
+| 1400001 | Invalid display or screen. |
 
 **示例：**
 
@@ -568,7 +568,7 @@ setVirtualScreenSurface(screenId:number, surfaceId: string): Promise&lt;void&gt;
 
 | 错误码ID | 错误信息 |
 | ------- | ----------------------- |
-| 1400001 | This is invalid screen. |
+| 1400001 | Invalid display or screen. |
 
 **示例：**
 
@@ -764,7 +764,7 @@ setOrientation(orientation: Orientation, callback: AsyncCallback&lt;void&gt;): v
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------------------- |
-| 1400003 | This window manager service work abnormally. |
+| 1400003 | This display manager service works abnormally. |
 
 **示例：**
 
@@ -806,7 +806,7 @@ setOrientation(orientation: Orientation): Promise&lt;void&gt;
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------------------- |
-| 1400003 | This window manager service work abnormally. |
+| 1400003 | This display manager service works abnormally. |
 
 **示例：**
 
@@ -842,7 +842,7 @@ setScreenActiveMode(modeIndex: number, callback: AsyncCallback&lt;void&gt;): voi
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------------------- |
-| 1400003 | This window manager service work abnormally. |
+| 1400003 | This display manager service works abnormally. |
 
 **示例：**
 
@@ -885,7 +885,7 @@ setScreenActiveMode(modeIndex: number): Promise&lt;void&gt;
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------------------- |
-| 1400003 | This window manager service work abnormally. |
+| 1400003 | This display manager service works abnormally. |
 
 **示例：**
 
@@ -922,7 +922,7 @@ setDensityDpi(densityDpi: number, callback: AsyncCallback&lt;void&gt;): void;
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------------------- |
-| 1400003 | This window manager service work abnormally. |
+| 1400003 | This display manager service works abnormally. |
 
 **示例：**
 
@@ -965,7 +965,7 @@ setDensityDpi(densityDpi: number): Promise&lt;void&gt;
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------------------- |
-| 1400003 | This window manager service work abnormally. |
+| 1400003 | This display manager service works abnormally. |
 
 **示例：**
 
