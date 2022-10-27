@@ -10,6 +10,7 @@
   - [应用包结构说明(Stage模型)](stage-structure.md)
   - [SysCap说明](syscap.md)
   - [HarmonyAppProvision配置文件](app-provision-structure.md)
+  - [资源分类与访问](resource-categories-and-access.md)
   - 学习ArkTS语言
     - [初识ArkTS语言](arkts-get-started.md)
     - ArkTS语法（声明式UI）
