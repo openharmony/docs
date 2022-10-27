@@ -33,16 +33,17 @@ Obtains the SAK value of this NFC-A tag.
 
 | **Type**| **Description**                            |
 | ------------------ | --------------------------|
-| number  | SAK value obtained.|
+| number  | SAK value obtained. The SAK is a hexadecimal number ranging from **0x00** to **0xFF**.|
 
 **Example**
 
 ```js
 import tag from '@ohos.nfc.tag';
 
-// tagInfo is an object given by the NFC service when a tag is dispatched.
-let sak = tag.getNfcATag(taginfo).getSak(); 
-console.log("sak:" +sak);
+// Check whether 'tag.TagInfo' at 'js-apis-nfcTag' has obtained the 'nfcA' correctly.
+
+let sak = nfcA.getSak();
+console.log("nfcA sak: " + sak);
 ```
 
 ### NfcATag.getAtqa
@@ -59,16 +60,16 @@ Obtains the ATQA value of this NFC-A tag.
 
 | **Type**| **Description**                            |
 | ------------------ | --------------------------|
-| number[]  | ATQA value obtained.|
+| number[]  | ATQA value obtained. Each number of the ATQA is a hexadecimal number ranging from **0x00** to **0xFF**.|
 
 **Example**
 
 ```js
 import tag from '@ohos.nfc.tag';
 
-// tagInfo is an object given by the NFC service when a tag is dispatched.
-let atqa = tag.getNfcATag(taginfo).getAtqa();
-console.log("atqa:" +atqa);
+// Check whether 'tag.TagInfo' at 'js-apis-nfcTag' has obtained the 'nfcA' correctly.
+let atqa = nfcA.getAtqa();
+console.log("nfcA atqa: " + atqa);
 ```
 
 ## NfcBTag
@@ -93,16 +94,16 @@ Obtains the application data of this NFC-B tag.
 
 | **Type**| **Description**                            |
 | ------------------ | --------------------------|
-| number[]  | Application data obtained.|
+| number[]  | Application data obtained. Each number in the return result is a hexadecimal number ranging from **0x00** to **0xFF**.|
 
 **Example**
 
 ```js
 import tag from '@ohos.nfc.tag';
 
-// tagInfo is an object given by the NFC service when a tag is dispatched.
-let appData = tag.getNfcBTag(taginfo).getRespAppData();  
-console.log("appData:" +appData);
+// Check whether 'tag.TagInfo' at 'js-apis-nfcTag' has obtained the 'nfcB' correctly.
+let respAppData = nfcB.getRespAppData();
+console.log("nfcB respAppData: " + respAppData);
 ```
 
 ### NfcBTag.getRespProtocol
@@ -119,16 +120,16 @@ Obtains the protocol information of this NFC-B tag.
 
 | **Type**| **Description**                            |
 | ------------------ | --------------------------|
-| number[]  | Protocol information obtained.|
+| number[]  | Protocol information obtained. Each number in the return result is a hexadecimal number ranging from **0x00** to **0xFF**.|
 
 **Example**
 
 ```js
 import tag from '@ohos.nfc.tag';
 
-// tagInfo is an object given by the NFC service when a tag is dispatched.
-let protocol = tag.getNfcBTag(taginfo).getRespProtocol();
-console.log("appData:" +protocol);
+// Check whether 'tag.TagInfo' at 'js-apis-nfcTag' has obtained the 'nfcB' correctly.
+let respProtocol = nfcB.getRespProtocol();
+console.log("nfcB respProtocol: " + respProtocol);
 ```
 
 ## NfcFTag
@@ -153,16 +154,16 @@ Obtains the system code from this NFC-F tag.
 
 | **Type**| **Description**                           |
 | ------------------ | --------------------------|
-| number[]  | System code obtained.|
+| number[]  | System code obtained. Each number in the system code is a hexadecimal number ranging from **0x00** to **0xFF**.|
 
 **Example**
 
 ```js
 import tag from '@ohos.nfc.tag';
 
-// tagInfo is an object given by the NFC service when a tag is dispatched.
-let systemCode = tag.getNfcFTag(taginfo).getSystemCode();  
-console.log("systemCode:" +systemCode);
+// Check whether 'tag.TagInfo' at 'js-apis-nfcTag' has obtained the 'nfcF' correctly.
+let systemCode = nfcF.getSystemCode();
+console.log("nfcF systemCode: " + systemCode);
 ```
 
 ### NfcFTag.getPmm
@@ -179,16 +180,16 @@ Obtains the PMm (consisting of the IC code and manufacturer parameters) informat
 
 | **Type**| **Description**                            |
 | ------------------ | --------------------------|
-| number[]  | PMm information obtained.|
+| number[]  | PMm information obtained. Each number in the return result is a hexadecimal number ranging from **0x00** to **0xFF**.|
 
 **Example**
 
 ```js
 import tag from '@ohos.nfc.tag';
 
-// tagInfo is an object given by the NFC service when a tag is dispatched.
-let pmm = tag.getNfcFTag(taginfo).getPmm();
-console.log("pmm:" +pmm);
+// Check whether 'tag.TagInfo' at 'js-apis-nfcTag' has obtained the 'nfcF' correctly.
+let pmm = nfcF.getPmm();
+console.log("nfcF pmm: " + pmm);
 ```
 
 ## NfcVTag
@@ -213,16 +214,16 @@ Obtains the response flags from this NFC-V tag.
 
 | **Type**| **Description**                            |
 | ------------------ | --------------------------|
-| number | Response flags obtained.|
+| number | Response flags obtained. The value is a hexadecimal number ranging from **0x00** to **0xFF**.|
 
 **Example**
 
 ```js
 import tag from '@ohos.nfc.tag';
 
-// tagInfo is an object given by the NFC service when a tag is dispatched.
-let flags = tag.getNfcVTag(taginfo).getResponseFlags();  
-console.log("flags:" +flags);
+// Check whether 'tag.TagInfo' at 'js-apis-nfcTag' has obtained the 'nfcV' correctly.
+let responseFlags = nfcV.getResponseFlags();
+console.log("nfcV responseFlags: " + responseFlags);
 ```
 
 ### NfcvTag.getDsfId
@@ -239,16 +240,16 @@ Obtains the data storage format identifier (DSFID) from this NFC-V tag.
 
 | **Type**| **Description**                            |
 | ------------------ | --------------------------|
-| number | DSFID obtained.|
+| number | DSFID obtained. The value is a hexadecimal number ranging from **0x00** to **0xFF**.|
 
 **Example**
 
 ```js
 import tag from '@ohos.nfc.tag';
 
-// tagInfo is an object given by the NFC service when a tag is dispatched.
-let dsfId = tag.getNfcVTag(taginfo).getDsfId();
-console.log("dsfId:" +dsfId);
+// Check whether 'tag.TagInfo' at 'js-apis-nfcTag' has obtained the 'nfcV' correctly.
+let dsfId = nfcV.getDsfId();
+console.log("nfcV dsfId: " + dsfId);
 ```
 
 ## IsoDepTag<sup>9+</sup> 
@@ -261,7 +262,7 @@ The following describes the unique interfaces of **IsoDepTag**.
 
 ### IsoDepTag.getHistoricalBytes<sup>9+</sup>
 
-getHistoricalBytes(): string
+getHistoricalBytes(): number[]
 
 Obtains the historical bytes of this tag.
 
@@ -273,21 +274,21 @@ Obtains the historical bytes of this tag.
 
 | **Type**| **Description**                            |
 | ------------------ | --------------------------|
-| string | Historical bytes obtained.|
+| number[] | Historical bytes obtained. Each number in the return result is a hexadecimal number ranging from **0x00** to **0xFF**.|
 
 **Example**
 
 ```js
 import tag from '@ohos.nfc.tag';
 
-// tagInfo is an object given by the NFC service when a tag is dispatched.
-let historicalBytes = tag.getIsoDepTag(taginfo).getHistoricalBytes();
-console.log("historicalBytes:" +historicalBytes);
+// Check whether 'tag.TagInfo' at 'js-apis-nfcTag' has obtained the 'isoDep' correctly.
+let historicalBytes = isoDep.getHistoricalBytes();
+console.log("isoDep historicalBytes: " + historicalBytes);
 ```
 
 ### IsoDepTag.getHiLayerResponse<sup>9+</sup>
 
-getHiLayerResponse(): string
+getHiLayerResponse(): number[]
 
 Obtains the HiLayer response of this tag.
 
@@ -299,16 +300,16 @@ Obtains the HiLayer response of this tag.
 
 | **Type**| **Description**                            |
 | ------------------ | --------------------------|
-| string | HiLayer response obtained.|
+| number[] | HiLayer response obtained. Each number in the return result is a hexadecimal number ranging from **0x00** to **0xFF**.|
 
 **Example**
 
 ```js
 import tag from '@ohos.nfc.tag';
 
-// tagInfo is an object given by the NFC service when a tag is dispatched.
-let hiLayerResponse = tag.getIsoDepTag(taginfo).getHiLayerResponse();
-console.log("hiLayerResponse:" +hiLayerResponse);
+// Check whether 'tag.TagInfo' at 'js-apis-nfcTag' has obtained the 'isoDep' correctly.
+let hiLayerResponse = isoDep.getHiLayerResponse();
+console.log("isoDep hiLayerResponse: " + hiLayerResponse);
 ```
 
 ### IsoDepTag.isExtendedApduSupported<sup>9+</sup>
@@ -332,10 +333,13 @@ Checks whether an extended application protocol data unit (APDU) is supported. T
 ```js
 import tag from '@ohos.nfc.tag';
 
-// tagInfo is an object given by the NFC service when a tag is dispatched.
-tag.getIsoDepTag(taginfo).isExtendedApduSupported().then(function (has) {
-    console.log('has: ' + has)
-}) 
+// Check whether 'tag.TagInfo' at 'js-apis-nfcTag' has obtained the 'isoDep' correctly.
+isoDep.isExtendedApduSupported()
+    .then((data) => {
+        console.log("isoDep isExtendedApduSupported data: " + data);
+    }).catch((err)=> {
+        console.log("isoDep isExtendedApduSupported err: " + err);
+    });
 ```
 
 ### IsoDepTag.isExtendedApduSupported<sup>9+</sup>
@@ -357,11 +361,14 @@ Checks whether an extended APDU is supported. This API uses an asynchronous call
 ```js
 import tag from '@ohos.nfc.tag';
 
-// tagInfo is an object given by the NFC service when a tag is dispatched.
-tag.getIsoDepTag(taginfo).isExtendedApduSupported(function (error, has) {
-    console.log(JSON.stringify(error))
-    console.log('has: ' + has)
-}) 
+// Check whether 'tag.TagInfo' at 'js-apis-nfcTag' has obtained the 'isoDep' correctly.
+isoDep.isExtendedApduSupported((err, data)=> {
+    if (err) {
+        console.log("isoDep isExtendedApduSupported err: " + err);
+    } else {
+        console.log("isoDep isExtendedApduSupported data: " + data);
+    }
+});
 ```
 
 ## NdefTag<sup>9+</sup>
@@ -374,7 +381,7 @@ The following describes the unique interfaces of **NdefTag**.
 
 ### NdefTag.createNdefMessage<sup>9+</sup>
 
-createNdefMessage(data: string): [NdefMessage](#ndefmessage9)
+createNdefMessage(data: number[]): [NdefMessage](#ndefmessage9)
 
 Creates an NDEF message using raw bytes.
 
@@ -386,28 +393,30 @@ Creates an NDEF message using raw bytes.
 
 | **Name**| **Type**| **Mandatory**| **Description**|
 | -------- | -------- | -------- | -------- |
-| data | string | Yes| Raw bytes of the string type.|
+| data | number[] | Yes| Raw bytes used to create the message. Each number is a hexadecimal number ranging from **0x00** to **0xFF**.|
 
 **Return value**
 
 | **Type**| **Description**                            |
 | ------------------ | --------------------------|
-| [NdefMessage](#ndefmessage9) | NDEF message created.|
+| [NdefMessage](#ndefmessage9) | NDEF message created. For details, see *NFCForum-TS-NDEF_1.0*.|
 
 **Example**
 
 ```js
 import tag from '@ohos.nfc.tag';
 
-// tagInfo is an object given by the NFC service when a tag is dispatched.
-let NdefMessage = tag.NdefTag(taginfo).createNdefMessage(data);
+// Check whether 'tag.TagInfo' at 'js-apis-nfcTag' has obtained the 'ndef' correctly.
+let rawData = [0x00, 0xa4, 0x04, ......]; // change the raw data bytes tobe correct.
+let ndefMessage = ndef.createNdefMessage(rawData);
+console.log("ndef ndefMessage: " + ndefMessage);
 ```
 
 ## NdefMessage<sup>9+</sup>
 
 ### NdefMessage.getNdefRecords<sup>9+</sup>
 
-getNdefRecords(): [NdefRecord](#ndefrecord9)[ ]
+getNdefRecords(): [NdefRecord](js-apis-nfcTag.md#ndefrecord9)[ ]
 
 Obtains all NDEF records.
 
@@ -419,32 +428,17 @@ Obtains all NDEF records.
 
 | **Type**| **Description**                            |
 | ------------------ | --------------------------|
-| [NdefRecord](#ndefrecord9)[ ] | All records obtained.|
+| [NdefRecord](js-apis-nfcTag.md#ndefrecord9)[ ] | List of NDEF records obtained. For details, see *NFCForum-TS-NDEF_1.0*.|
 
 **Example**
 
 ```js
 import tag from '@ohos.nfc.tag';
 
-// tagInfo is an object given by the NFC service when a tag is dispatched.
-let NdefRecord = tag.NdefTag(taginfo).getNdefRecords();
+// Check whether 'tag.TagInfo' at 'js-apis-nfcTag' has obtained the 'ndef' correctly.
+let ndefRecords = ndef.getNdefRecords();
+console.log("ndef ndefRecords number: " + ndefRecords.length);
 ```
-
-## NdefRecord<sup>9+</sup>
-
-| **Name**| **Type**|  **Description**|
-| -------- | -------- | -------- |
-| tnf | number |  UID of the tag.|
-| [rtdType](#rtdtype9) | string |  NFC Record Type Definition (RTD) supported by the tag.|
-| id | string |  Additional information about the tag.|
-| payload | string |  RF discovery ID of the tag.|
-
-## RtdType<sup>9+</sup>
-
-| **Name**| **Type**|  **Description**|
-| -------- | -------- | -------- |
-| RTD_TEXT | 'T' |  Text information.|
-| RTD_URI  | 'U' |  Network address, email, or phone number.|
 
 ### NdefTag.createNdefMessage<sup>9+</sup>
 
@@ -459,21 +453,32 @@ Creates an NDEF message using the NDEF records.
 **Parameters**
 | **Name**| **Type**| **Mandatory**| **Description**|
 | -------- | -------- | -------- | -------- |
-| ndefRecords | [NdefRecord](#ndefrecord9)[] | Yes| A list of NDEF records.|
+| ndefRecords | [NdefRecord](js-apis-nfcTag.md#ndefrecord9)[] | Yes| NDEF records used to create the NDEF message. For details, see *NFCForum-TS-NDEF_1.0*.|
 
 **Return value**
 
 | **Type**| **Description**                            |
 | ------------------ | --------------------------|
-| [NdefMessage](#ndefmessage9) | NDEF message created.|
+| [NdefMessage](#ndefmessage9) | NDEF message created. For details, see *NFCForum-TS-NDEF_1.0*.|
 
 **Example**
 
 ```js
 import tag from '@ohos.nfc.tag';
 
-// tagInfo is an object given by the NFC service when a tag is dispatched.
-let NdefMessage = tag.NdefTag(taginfo).createNdefMessage(ndefRecords);
+// Check whether 'tag.TagInfo' at 'js-apis-nfcTag' has obtained the 'ndef' correctly.
+let ndefRecords = [
+    // record format: tnf, rtdType, id, payload
+    // 1st record:
+    {tnf: 0x01, rtdType: [0x54], id: [0x01, 0x02, ...], payload: [0x00, 0xa4, 0x04, ...]},
+
+    // 2nd record:
+    {tnf: 0x02, rtdType: [0x55], id: [0x03, 0x04, ...], payload: [0x00, 0xa4, 0x04, ...]},
+
+    // other record if has one ...
+];
+let ndefMessage = ndef.createNdefMessage(ndefRecords);
+console.log("ndef ndefMessage: " + ndefMessage);
 ```
 
 ### NdefTag.getNdefTagType<sup>9+</sup>
@@ -490,22 +495,23 @@ Obtains the type of this NDEF tag.
 
 | **Type**| **Description**                            |
 | ------------------ | --------------------------|
-| [NfcForumType](#nfcforumtype9) | NDEF tag type obtained.|
+| [NfcForumType](js-apis-nfcTag.md#nfcforumtype9) | NDEF tag type obtained. It can be NFC FORUM TYPE 1, 2, 3, or 4.|
 
 **Example**
 
 ```js
 import tag from '@ohos.nfc.tag';
 
-// tagInfo is an object given by the NFC service when a tag is dispatched.
-let NfcForumType = tag.NdefTag(taginfo).getNdefTagType();
+// Check whether 'tag.TagInfo' at 'js-apis-nfcTag' has obtained the 'ndef' correctly.
+let ndefTagType = ndef.getNdefTagType();
+console.log("ndef ndefTagType: " + ndefTagType);
 ```
 
 ### NdefTag.getNdefMessage<sup>9+</sup>
 
 getNdefMessage(): NdefMessage
 
-Obtains the NDEF message from the tag discovered.
+Obtains the NDEF message.
 
 **Required permissions**: ohos.permission.NFC_TAG
 
@@ -515,15 +521,16 @@ Obtains the NDEF message from the tag discovered.
 
 | **Type**| **Description**                            |
 | ------------------ | --------------------------|
-| [NdefMessage](#ndefmessage9)  | NDEF message created.|
+| [NdefMessage](#ndefmessage9)  | NDEF message obtained. For details, see *NFCForum-TS-NDEF_1.0*.|
 
 **Example**
 
 ```js
 import tag from '@ohos.nfc.tag';
 
-// tagInfo is an object given by the NFC service when a tag is dispatched.
-let NdefMessage = tag.NdefTag(taginfo).getNdefMessage();
+// Check whether 'tag.TagInfo' at 'js-apis-nfcTag' has obtained the 'ndef' correctly.
+let ndefMessage = ndef.getNdefMessage();
+console.log("ndef ndefMessage: " + ndefMessage);
 ```
 
 ### NdefTag.isNdefWritable<sup>9+</sup>
@@ -547,10 +554,13 @@ Checks whether the NDEF tag is writable. This API uses a promise to return the r
 ```js
 import tag from '@ohos.nfc.tag';
 
-// tagInfo is an object given by the NFC service when a tag is dispatched.
-tag.NdefTag(taginfo).isNdefWritable().then(function (has) {
-    console.log(JSON.stringify(has))
-})
+// Check whether 'tag.TagInfo' at 'js-apis-nfcTag' has obtained the 'ndef' correctly.
+ndef.isNdefWritable()
+    .then((data) => {
+        console.log("ndef isNdefWritable data: " + data);
+    }).catch((err)=> {
+        console.log("ndef isNdefWritable err: " + err);
+    });
 ```
 
 ### NdefTag.isNdefWritable<sup>9+</sup>
@@ -574,11 +584,14 @@ Checks whether the NDEF tag is writable. This API uses an asynchronous callback 
 ```js
 import tag from '@ohos.nfc.tag';
 
-// tagInfo is an object given by the NFC service when a tag is dispatched.
-tag.NdefTag(taginfo).isNdefWritable(function (error, has) {
-    console.log(JSON.stringify(error))
-    console.log('has: ' + has)
-})
+// Check whether 'tag.TagInfo' at 'js-apis-nfcTag' has obtained the 'ndef' correctly.
+ndef.isNdefWritable((err, data)=> {
+    if (err) {
+        console.log("ndef isNdefWritable err: " + err);
+    } else {
+        console.log("ndef isNdefWritable data: " + data);
+    }
+});
 ```
 
 ### NdefTag.readNdef<sup>9+</sup>
@@ -595,17 +608,20 @@ Reads the NDEF message from this tag. This API uses a promise to return the resu
 
 | **Type**| **Description**                            |
 | ------------------ | --------------------------|
-| Promise\<[NdefMessage](#ndefmessage9)> | Promise used to return the NDEF message read.|
+| Promise\<[NdefMessage](#ndefmessage9)> | Promise used to return the message read.|
 
 **Example**
 
 ```js
 import tag from '@ohos.nfc.tag';
 
-// tagInfo is an object given by the NFC service when a tag is dispatched.
-tag.NdefTag(taginfo).readNdef().then(function (ndefMessage) {
-    console.log(JSON.stringify(ndefMessage))
-})
+// Check whether 'tag.TagInfo' at 'js-apis-nfcTag' has obtained the 'ndef' correctly.
+ndef.readNdef()
+    .then((data) => {
+        console.log("ndef readNdef data: " + data);
+    }).catch((err)=> {
+        console.log("ndef readNdef err: " + err);
+    });
 ```
 
 ### NdefTag.readNdef<sup>9+</sup>
@@ -629,11 +645,14 @@ Reads the NDEF message from this tag. This API uses an asynchronous callback to 
 ```js
 import tag from '@ohos.nfc.tag';
 
-// tagInfo is an object given by the NFC service when a tag is dispatched.
-tag.NdefTag(taginfo).readNdef(function (error, ndefMessage) {
-    console.log(JSON.stringify(error))
-    console.log('ndefMessage: ' + ndefMessage)
-})
+// Check whether 'tag.TagInfo' at 'js-apis-nfcTag' has obtained the 'ndef' correctly.
+ndef.readNdef((err, data)=> {
+    if (err) {
+        console.log("ndef readNdef err: " + err);
+    } else {
+        console.log("ndef readNdef data: " + data);
+    }
+});
 ```
 
 ### NdefTag.writeNdef<sup>9+</sup>
@@ -663,10 +682,15 @@ Writes an NDEF message to this tag. This API uses a promise to return the result
 ```js
 import tag from '@ohos.nfc.tag';
 
-// tagInfo is an object given by the NFC service when a tag is dispatched.
-NdefTag.writeNdef(msg).then(function (netHandle) {
-    console.log(JSON.stringify(netHandle))
-})
+// Check whether 'tag.TagInfo' at 'js-apis-nfcTag' has obtained the 'ndef' correctly.
+let ndefMessage = ndef.createNdefMessage([0x01, 0x02, ...]); // change the raw data to be correct.
+
+ndef.writeNdef(ndefMessage)
+    .then((data) => {
+        console.log("ndef writeNdef data: " + data);
+    }).catch((err)=> {
+        console.log("ndef writeNdef err: " + err);
+    });
 ```
 
 ### NdefTag.writeNdef<sup>9+</sup>
@@ -691,18 +715,22 @@ Writes an NDEF message to this tag. This API uses an asynchronous callback to re
 ```js
 import tag from '@ohos.nfc.tag';
 
-// tagInfo is an object given by the NFC service when a tag is dispatched.
-tag.NdefTag(taginfo).write(msg, function (error, has) {
-    console.log(JSON.stringify(error))
-    console.log('has: ' + has)
-})
+// Check whether 'tag.TagInfo' at 'js-apis-nfcTag' has obtained the 'ndef' correctly.
+let ndefMessage = ndef.createNdefMessage([0x01, 0x02, ...]); // change the raw data to be correct.
+ndef.writeNdef(ndefMessage, (err, data)=> {
+    if (err) {
+        console.log("ndef writeNdef err: " + err);
+    } else {
+        console.log("ndef writeNdef data: " + data);
+    }
+});
 ```
 
 ### NdefTag.canSetReadOnly<sup>9+</sup>
 
-canSetReadOnly(): Promise\<boolean>
+canSetReadOnly(): boolean
 
-Checks whether this NDEF tag can be set to read-only. This API uses a promise to return the result.
+Checks whether this NDEF tag can be set to read-only.
 
 **Required permissions**: ohos.permission.NFC_TAG
 
@@ -712,45 +740,16 @@ Checks whether this NDEF tag can be set to read-only. This API uses a promise to
 
 | **Type**| **Description**                            |
 | ------------------ | --------------------------|
-| Promise&lt;boolean&gt; | Promise used to return the result. If the tag can be set to read-only, **true** is returned; otherwise, **false** is returned.|
+| boolean| Returns **true** if the tag can be set to read-only; returns **false** otherwise.|
 
 **Example**
 
 ```js
 import tag from '@ohos.nfc.tag';
 
-// tagInfo is an object given by the NFC service when a tag is dispatched.
-tag.NdefTag(taginfo).canSetReadOnly().then(function (has) {
-    console.log(JSON.stringify(has))
-})
-```
-
-### NdefTag.canSetReadOnly<sup>9+</sup>
-
-canSetReadOnly(callback: AsyncCallback&lt;boolean&gt;): void;
-
-Checks whether this NDEF tag can be set to read-only. This API uses an asynchronous callback to return the result.
-
-**Required permissions**: ohos.permission.NFC_TAG
-
-**System capability**: SystemCapability.Communication.NFC
-
-**Parameters**
-
-| Name  | Type                   | Mandatory| Description                                  |
-| -------- | ----------------------- | ---- | -------------------------------------- |
-| callback | AsyncCallback\<boolean> | Yes  | Callback invoked to return the result. If the tag can be set to read-only, **true** is returned; otherwise, **false** is returned.|
-
-**Example**
-
-```js
-import tag from '@ohos.nfc.tag';
-
-// tagInfo is an object given by the NFC service when a tag is dispatched.
-tag.NdefTag(taginfo).canSetReadOnly(function (error, has) {
-    console.log(JSON.stringify(error))
-    console.log('has: ' + has)
-})
+// Check whether 'tag.TagInfo' at 'js-apis-nfcTag' has obtained the 'ndef' correctly.
+var canSetReadOnly = ndef.canSetReadOnly();
+console.log("ndef canSetReadOnly: " + canSetReadOnly);
 ```
 
 ### NdefTag.setReadOnly<sup>9+</sup>
@@ -774,15 +773,18 @@ Sets this NDEF tag to read-only. This API uses a promise to return the result.
 ```js
 import tag from '@ohos.nfc.tag';
 
-// tagInfo is an object given by the NFC service when a tag is dispatched.
-tag.NdefTag(taginfo).setReadOnly().then(function (errcode) {
-    console.log(JSON.stringify(errcode))
-})
+// Check whether 'tag.TagInfo' at 'js-apis-nfcTag' has obtained the 'ndef' correctly.
+ndef.setReadOnly()
+    .then((data) => {
+        console.log("ndef setReadOnly data: " + data);
+    }).catch((err)=> {
+        console.log("ndef setReadOnly err: " + err);
+    });
 ```
 
 ### NdefTag.setReadOnly<sup>9+</sup>
 
-setReadOnly(callback: AsyncCallback<number>): void
+setReadOnly(callback: AsyncCallback\<number>): void
 
 Sets this NDEF tag to read-only. This API uses an asynchronous callback to return the result.
 
@@ -801,18 +803,21 @@ Sets this NDEF tag to read-only. This API uses an asynchronous callback to retur
 ```js
 import tag from '@ohos.nfc.tag';
 
-// tagInfo is an object given by the NFC service when a tag is dispatched.
-tag.NdefTag(taginfo).setReadOnly(function (error, errcode) {
-    console.log(JSON.stringify(error))
-    console.log('has: ' + errcode)
-})
+// Check whether 'tag.TagInfo' at 'js-apis-nfcTag' has obtained the 'ndef' correctly.
+ndef.setReadOnly((err, data)=> {
+    if (err) {
+        console.log("ndef setReadOnly err: " + err);
+    } else {
+        console.log("ndef setReadOnly data: " + data);
+    }
+});
 ```
 
 ### NdefTag.getNdefTagTypeString<sup>9+</sup>
 
-getNdefTagTypeString(type: [NfcForumType](#nfcforumtype9)): string
+getNdefTagTypeString(type: [NfcForumType](js-apis-nfcTag.md#nfcforumtype9)): string
 
-Converts an NFC Forum Type to a byte array defined in the NFC Forum.
+Converts an NFC Forum Type tag to a byte array defined in the NFC Forum.
 
 **Required permissions**: ohos.permission.NFC_TAG
 
@@ -822,7 +827,7 @@ Converts an NFC Forum Type to a byte array defined in the NFC Forum.
 
 | Name  | Type                   | Mandatory| Description                                  |
 | -------- | ----------------------- | ---- | -------------------------------------- |
-| type | [NfcForumType](#nfcforumtype9) | Yes  | NFC Forum Type.|
+| type | [NfcForumType](js-apis-nfcTag.md#nfcforumtype9) | Yes  | NDEF tag type. It can be NFC FORUM type 1, 2, 3, or 4.|
 
 **Return value**
 
@@ -835,21 +840,12 @@ Converts an NFC Forum Type to a byte array defined in the NFC Forum.
 ```js
 import tag from '@ohos.nfc.tag';
 
-// tagInfo is an object given by the NFC service when a tag is dispatched.
-let ndefTypeString= tag.NdefTag(taginfo).getNdefTagTypeString(type); 
+// Check whether 'tag.TagInfo' at 'js-apis-nfcTag' has obtained the 'ndef' correctly.
+let ndefTypeString = ndef.getNdefTagTypeString(tag.NFC_FORUM_TYPE_1);
+console.log("ndef ndefTypeString: " + ndefTypeString);
 ```
 
-## NfcForumType<sup>9+</sup>
-
-| **Name**| **Type**|  **Description**|
-| -------- | -------- | -------- |
-| NFC_FORUM_TYPE_1 | 1 |  NFC Forum Type 1.|
-| NFC_FORUM_TYPE_2 | 2 |  NFC Forum Type 2.|
-| NFC_FORUM_TYPE_3  | 3 |  NFC Forum Type 3.|
-| NFC_FORUM_TYPE_4  | 4 |  NFC Forum Type 4.|
-| MIFARE_CLASSIC  | 101 |   MIFARE Classic.|
-
-## MifareClassicTag <sup>9+</sup>
+## MifareClassicTag<sup>9+</sup>
 
 Provides access to MIFARE Classic properties and I/O operations. This class inherits from **TagSession**.
 
@@ -886,15 +882,20 @@ Authenticates a sector using the key. The sector can be accessed only after the 
 ```js
 import tag from '@ohos.nfc.tag';
 
-// tagInfo is an object given by the NFC service when a tag is dispatched.
-tag.MifareClassicTag(taginfo).authenticateSector(sectorIndex, key).then(function (isKeyA) {
-        console.log(JSON.stringify(isKeyA))
-        })
+// Check whether 'tag.TagInfo' at 'js-apis-nfcTag' has obtained the 'mifareClassic' correctly.
+let sectorIndex = 1; // change it to be correct index.
+let key = [0x04, 0x05, ....];  // change it to be correct key.
+mifareClassic.authenticateSector(sectorIndex, key, true);
+    .then((data) => {
+        console.log("mifareClassic authenticateSector data: " + data);
+    }).catch((err)=> {
+        console.log("mifareClassic authenticateSector err: " + err);
+    });
 ```
 
 ### MifareClassicTag.authenticateSector<sup>9+</sup>
 
-authenticateSector(sectorIndex: number, key: number[], isKeyA: boolean, callback: AsyncCallback<boolean>): void
+authenticateSector(sectorIndex: number, key: number[], isKeyA: boolean, callback: AsyncCallback\<boolean>): void
 
 Authenticates a sector using the key. The sector can be accessed only after the authentication is successful. This API uses an asynchronous callback to return the result.
 
@@ -916,16 +917,21 @@ Authenticates a sector using the key. The sector can be accessed only after the 
 ```js
 import tag from '@ohos.nfc.tag';
 
-// tagInfo is an object given by the NFC service when a tag is dispatched.
-tag.MifareClassicTag(taginfo).authenticateSector(sectorIndex, key, function (error, has) {
-    console.log(JSON.stringify(error))
-    console.log('has: ' + has)
-})
+// Check whether 'tag.TagInfo' at 'js-apis-nfcTag' has obtained the 'mifareClassic' correctly.
+let sectorIndex = 1; // change it to be correct index.
+let key = [0x04, 0x05, ....];  // change it to be correct key.
+mifareClassic.authenticateSector(sectorIndex, key, true, (err, data)=> {
+    if (err) {
+        console.log("mifareClassic authenticateSector err: " + err);
+    } else {
+        console.log("mifareClassic authenticateSector data: " + data);
+    }
+});
 ```
 
 ### MifareClassicTag.readSingleBlock<sup>9+</sup>
 
-readSingleBlock(blockIndex: number): Promise\<string>
+readSingleBlock(blockIndex: number): Promise\<number[]>
 
 Reads a block (16 bytes) on the tag. This API uses a promise to return the result.
 
@@ -943,23 +949,27 @@ Reads a block (16 bytes) on the tag. This API uses a promise to return the resul
 
 | **Type**| **Description**                            |
 | ------------------ | --------------------------|
-| Promise\<string> | Promise used to return the block data read.|
+| Promise\<number[]> | Promise used to return the block data read.|
 
 **Example**
 
 ```js
 import tag from '@ohos.nfc.tag';
 
-let data = "xxx";
-// tagInfo is an object given by the NFC service when a tag is dispatched.
-tag.MifareClassicTag(taginfo).readSingleBlock(blockIndex).then(function (data){
-    console.log('data: ' + data)
-    })
+// Check whether 'tag.TagInfo' at 'js-apis-nfcTag' has obtained the 'mifareClassic' correctly.
+let blockIndex = 1; // change it to be correct index.
+mifareClassic.readSingleBlock(blockIndex, (err, data)=> {
+    if (err) {
+        console.log("mifareClassic readSingleBlock err: " + err);
+    } else {
+        console.log("mifareClassic readSingleBlock data: " + data);
+    }
+});
 ```
 
 ### MifareClassicTag.readSingleBlock<sup>9+</sup>
 
-readSingleBlock(blockIndex: number, callback: AsyncCallback\<string>): void
+readSingleBlock(blockIndex: number, callback: AsyncCallback\<number[]>): void
 
 Reads a block (16 bytes) on the tag. This API uses an asynchronous callback to return the result.
 
@@ -972,24 +982,27 @@ Reads a block (16 bytes) on the tag. This API uses an asynchronous callback to r
 | Name  | Type                   | Mandatory| Description                                  |
 | -------- | ----------------------- | ---- | -------------------------------------- |
 | blockIndex | number | Yes  | Index of the block to read.|
-| callback | AsyncCallback\<string> | Yes  | Callback invoked to return the block read.|
+| callback | AsyncCallback\<number[]> | Yes  | Callback invoked to return the block read.|
 
 **Example**
 
 ```js
 import tag from '@ohos.nfc.tag';
 
-let data = "xxx";
-// tagInfo is an object given by the NFC service when a tag is dispatched.
-tag.MifareClassicTag(taginfo).readSingleBlock(blockIndex, function (error, data) {
-    console.log(JSON.stringify(error))
-    console.log('data: ' + data)
-})
+// Check whether 'tag.TagInfo' at 'js-apis-nfcTag' has obtained the 'mifareClassic' correctly.
+let blockIndex = 1; // change it to be correct index.
+mifareClassic.readSingleBlock(blockIndex, (err, data)=> {
+    if (err) {
+        console.log("mifareClassic readSingleBlock err: " + err);
+    } else {
+        console.log("mifareClassic readSingleBlock data: " + data);
+    }
+});
 ```
 
 ### MifareClassicTag.writeSingleBlock<sup>9+</sup>
 
-writeSingleBlock(blockIndex: number, data: string): Promise\<number>
+writeSingleBlock(blockIndex: number, data: number[]): Promise\<number>
 
 Writes data to a block on the tag. This API uses a promise to return the result.
 
@@ -1002,7 +1015,7 @@ Writes data to a block on the tag. This API uses a promise to return the result.
 | Name  | Type                   | Mandatory| Description                                  |
 | -------- | ----------------------- | ---- | -------------------------------------- |
 | blockIndex | number | Yes  | Index of the target block.|
-| data | string | Yes  | Data to write.|
+| data | number[] | Yes  | Data to write.|
 
 **Return value**
 
@@ -1015,16 +1028,21 @@ Writes data to a block on the tag. This API uses a promise to return the result.
 ```js
 import tag from '@ohos.nfc.tag';
 
-let data = "xxx";
-// tagInfo is an object given by the NFC service when a tag is dispatched.
-tag.MifareClassicTag(taginfo).writeSingleBlock(blockIndex, data).then(function (errcode){
-    console.log(JSON.stringify(errcode))
-    })
+// Check whether 'tag.TagInfo' at 'js-apis-nfcTag' has obtained the 'mifareClassic' correctly.
+let blockIndex = 1; // change it to be correct index.
+let rawData = [0x0a, 0x14, ...]; // change it to be correct data.
+mifareClassic.writeSingleBlock(blockIndex, rawData, (err, data)=> {
+    if (err) {
+        console.log("mifareClassic writeSingleBlock err: " + err);
+    } else {
+        console.log("mifareClassic writeSingleBlock data: " + data);
+    }
+});
 ```
 
 ### MifareClassicTag.writeSingleBlock<sup>9+</sup>
 
-writeSingleBlock(blockIndex: number, data: string, callback: AsyncCallback\<number>): void
+writeSingleBlock(blockIndex: number, data: number[], callback: AsyncCallback\<number>): void
 
 Writes data to a block on the tag. This API uses an asynchronous callback to return the result.
 
@@ -1037,7 +1055,7 @@ Writes data to a block on the tag. This API uses an asynchronous callback to ret
 | Name  | Type                   | Mandatory| Description                                  |
 | -------- | ----------------------- | ---- | -------------------------------------- |
 | blockIndex | number | Yes  | Index of the target block.|
-| data | string | Yes  | Data to write.|
+| data | number[] | Yes  | Data to write.|
 | callback | AsyncCallback\<number> | Yes  | Callback invoked to return the result.|
 
 **Example**
@@ -1045,12 +1063,16 @@ Writes data to a block on the tag. This API uses an asynchronous callback to ret
 ```js
 import tag from '@ohos.nfc.tag';
 
-let data = "xxx";
-// tagInfo is an object given by the NFC service when a tag is dispatched.
-tag.MifareClassicTag(taginfo).writeSingleBlock(blockIndex, data, function (error, errcode) {
-    console.log(JSON.stringify(error))
-    console.log(JSON.stringify(errcode))
-})
+// Check whether 'tag.TagInfo' at 'js-apis-nfcTag' has obtained the 'mifareClassic' correctly.
+let blockIndex = 1; // change it to be correct index.
+let rawData = [0x0a, 0x14, ...]; // change it to be correct data.
+mifareClassic.writeSingleBlock(blockIndex, rawData, (err, data)=> {
+    if (err) {
+        console.log("mifareClassic writeSingleBlock err: " + err);
+    } else {
+        console.log("mifareClassic writeSingleBlock data: " + data);
+    }
+});
 ```
 
 ### MifareClassicTag.incrementBlock<sup>9+</sup>
@@ -1081,10 +1103,16 @@ Increments a block with data. This API uses a promise to return the result.
 ```js
 import tag from '@ohos.nfc.tag';
 
-// tagInfo is an object given by the NFC service when a tag is dispatched.
-tag.MifareClassicTag(taginfo).incrementBlock(blockIndex, value).then(function (errcode){
-    console.log(JSON.stringify(errcode))
-    })
+// Check whether 'tag.TagInfo' at 'js-apis-nfcTag' has obtained the 'mifareClassic' correctly.
+let blockIndex = 1; // change it to be correct index.
+let value = 0x20; // change it to be correct data.
+mifareClassic.incrementBlock(blockIndex, value, (err, data)=> {
+    if (err) {
+        console.log("mifareClassic incrementBlock err: " + err);
+    } else {
+        console.log("mifareClassic incrementBlock data: " + data);
+    }
+});
 ```
 
 ### MifareClassicTag.incrementBlock<sup>9+</sup>
@@ -1110,11 +1138,16 @@ Increments a block with data. This API uses an asynchronous callback to return t
 ```js
 import tag from '@ohos.nfc.tag';
 
-// tagInfo is an object given by the NFC service when a tag is dispatched.
-tag.MifareClassicTag(taginfo).incrementBlock(blockIndex, value, function (error, errcode) {
-    console.log(JSON.stringify(error))
-    console.log(JSON.stringify(errcode))
-})
+// Check whether 'tag.TagInfo' at 'js-apis-nfcTag' has obtained the 'mifareClassic' correctly.
+let blockIndex = 1; // change it to be correct index.
+let value = 0x20; // change it to be correct data.
+mifareClassic.incrementBlock(blockIndex, value, (err, data)=> {
+    if (err) {
+        console.log("mifareClassic incrementBlock err: " + err);
+    } else {
+        console.log("mifareClassic incrementBlock data: " + data);
+    }
+});
 ```
 
 ### MifareClassicTag.decrementBlock<sup>9+</sup>
@@ -1145,10 +1178,16 @@ Decrements a block with data. This API uses a promise to return the result.
 ```js
 import tag from '@ohos.nfc.tag';
 
-// tagInfo is an object given by the NFC service when a tag is dispatched.
-tag.MifareClassicTag(taginfo).decrementBlock(blockIndex, value).then(function (errcode){
-    console.log(JSON.stringify(errcode))
-    })
+// Check whether 'tag.TagInfo' at 'js-apis-nfcTag' has obtained the 'mifareClassic' correctly.
+let blockIndex = 1; // change it to be correct index.
+let value = 0x20; // change it to be correct data.
+mifareClassic.decrementBlock(blockIndex, value, (err, data)=> {
+    if (err) {
+        console.log("mifareClassic decrementBlock err: " + err);
+    } else {
+        console.log("mifareClassic decrementBlock data: " + data);
+    }
+});
 ```
 
 ### MifareClassicTag.decrementBlock<sup>9+</sup>
@@ -1174,11 +1213,16 @@ Decrements a block with data. This API uses an asynchronous callback to return t
 ```js
 import tag from '@ohos.nfc.tag';
 
-// tagInfo is an object given by the NFC service when a tag is dispatched.
-tag.MifareClassicTag(taginfo).decrementBlock(blockIndex, value, function (error, errcode) {
-    console.log(JSON.stringify(error))
-    console.log(JSON.stringify(errcode))
-})
+// Check whether 'tag.TagInfo' at 'js-apis-nfcTag' has obtained the 'mifareClassic' correctly.
+let blockIndex = 1; // change it to be correct index.
+let value = 0x20; // change it to be correct data.
+mifareClassic.decrementBlock(blockIndex, value, (err, data)=> {
+    if (err) {
+        console.log("mifareClassic decrementBlock err: " + err);
+    } else {
+        console.log("mifareClassic decrementBlock data: " + data);
+    }
+});
 ```
 
 ### MifareClassicTag.transferToBlock<sup>9+</sup>
@@ -1209,13 +1253,18 @@ Copies data from the register to a block. This API uses a promise to return the 
 
 import tag from '@ohos.nfc.tag';
 
-// tagInfo is an object given by the NFC service when a tag is dispatched.
-tag.MifareClassicTag(taginfo).transferToBlock(blockIndex).then(function (errcode){
-    console.log(JSON.stringify(errcode))
-    })
+// Check whether 'tag.TagInfo' at 'js-apis-nfcTag' has obtained the 'mifareClassic' correctly.
+let blockIndex = 1; // change it to be correct index.
+mifareClassic.transferToBlock(blockIndex, (err, data)=> {
+    if (err) {
+        console.log("mifareClassic transferToBlock err: " + err);
+    } else {
+        console.log("mifareClassic transferToBlock data: " + data);
+    }
+});
 ```
 
-### MifareClassicTag.transferToBlock
+### MifareClassicTag.transferToBlock<sup>9+</sup>
 
 transferToBlock(blockIndex: number, callback: AsyncCallback\<number>): void
 
@@ -1237,11 +1286,15 @@ Copies data from the register to a block. This API uses an asynchronous callback
 ```js
 import tag from '@ohos.nfc.tag';
 
-// tagInfo is an object given by the NFC service when a tag is dispatched.
-tag.MifareClassicTag(taginfo).transferToBlock(blockIndex, function (error, errcode) {
-    console.log(JSON.stringify(error))
-    console.log(JSON.stringify(errcode))
-})
+// Check whether 'tag.TagInfo' at 'js-apis-nfcTag' has obtained the 'mifareClassic' correctly.
+let blockIndex = 1; // change it to be correct index.
+mifareClassic.transferToBlock(blockIndex, (err, data)=> {
+    if (err) {
+        console.log("mifareClassic transferToBlock err: " + err);
+    } else {
+        console.log("mifareClassic transferToBlock data: " + data);
+    }
+});
 ```
 
 ### MifareClassicTag.restoreFromBlock<sup>9+</sup>
@@ -1272,10 +1325,14 @@ Copies data from a block to the register. This API uses a promise to return the 
 
 import tag from '@ohos.nfc.tag';
 
-// tagInfo is an object given by the NFC service when a tag is dispatched.
-tag.MifareClassicTag(taginfo).restoreFromBlock(blockIndex).then(function (errcode){
-    console.log(JSON.stringify(errcode))
-    })
+// Check whether 'tag.TagInfo' at 'js-apis-nfcTag' has obtained the 'mifareClassic' correctly.
+let blockIndex = 1; // change it to be correct index.
+mifareClassic.restoreFromBlock(blockIndex)
+    .then((data) => {
+        console.log("mifareClassic restoreFromBlock data: " + data);
+    }).catch((err)=> {
+        console.log("mifareClassic isExtendrestoreFromBlockedApduSupported err: " + err);
+    });
 ```
 
 ### MifareClassicTag.restoreFromBlock<sup>9+</sup>
@@ -1300,11 +1357,15 @@ Copies data from a block to the register. This API uses an asynchronous callback
 ```js
 import tag from '@ohos.nfc.tag';
 
-// tagInfo is an object given by the NFC service when a tag is dispatched.
-tag.MifareClassicTag(taginfo).restoreFromBlock(blockIndex, function (error, errcode) {
-    console.log(JSON.stringify(error))
-    console.log(JSON.stringify(errcode))
-})
+// Check whether 'tag.TagInfo' at 'js-apis-nfcTag' has obtained the 'mifareClassic' correctly.
+let blockIndex = 1; // change it to be correct index.
+mifareClassic.restoreFromBlock(blockIndex, (err, data)=> {
+    if (err) {
+        console.log("mifareClassic restoreFromBlock err: " + err);
+    } else {
+        console.log("mifareClassic restoreFromBlock data: " + data);
+    }
+});
 ```
 
 ### MifareClassicTag.getSectorCount<sup>9+</sup>
@@ -1328,8 +1389,9 @@ Obtains the number of sectors in this MIFARE Classic tag.
 ```js
 import tag from '@ohos.nfc.tag';
 
-// tagInfo is an object given by the NFC service when a tag is dispatched.
-let setorCount = tag.MifareClassicTag(taginfo).getSectorCount();
+// Check whether 'tag.TagInfo' at 'js-apis-nfcTag' has obtained the 'mifareClassic' correctly.
+let sectorCount = mifareClassic.getSectorCount();
+console.log("mifareClassic sectorCount: " + sectorCount);
 ```
 
 ### MifareClassicTag.getBlockCountInSector<sup>9+</sup>
@@ -1359,13 +1421,14 @@ Obtains the number of blocks in a sector.
 ```js
 import tag from '@ohos.nfc.tag';
 
-// tagInfo is an object given by the NFC service when a tag is dispatched.
-let blockNumber = tag.MifareClassicTag(taginfo).getBlockCountInSector(sectorIndex);
+// Check whether 'tag.TagInfo' at 'js-apis-nfcTag' has obtained the 'mifareClassic' correctly.
+let blockCountInSector = mifareClassic.getBlockCountInSector();
+console.log("mifareClassic blockCountInSector: " + blockCountInSector);
 ```
 
 ### MifareClassicTag.getType<sup>9+</sup>
 
-getType(): [MifareClassicType](#mifareclassictype9)
+getType(): [MifareClassicType](js-apis-nfcTag.md#mifareclassictype9)
 
 Obtains the type of this MIFARE Classic tag.
 
@@ -1377,22 +1440,23 @@ Obtains the type of this MIFARE Classic tag.
 
 | **Type**| **Description**                            |
 | ------------------ | --------------------------|
-| [MifareClassicType](#mifareclassictype9) | Type of the MIFARE Classic tag obtained.|
+| [MifareClassicType](js-apis-nfcTag.md#mifareclassictype9) | Type of the MIFARE Classic tag obtained.|
 
 **Example**
 
 ```js
 import tag from '@ohos.nfc.tag';
 
-// tagInfo is an object given by the NFC service when a tag is dispatched.
-let type = tag.MifareClassicTag(taginfo).getType(); 
+// Check whether 'tag.TagInfo' at 'js-apis-nfcTag' has obtained the 'mifareClassic' correctly.
+let getType = mifareClassic.getType();
+console.log("mifareClassic getType: " + getType);
 ```
 
 ### MifareClassicTag.getTagSize<sup>9+</sup>
 
 getTagSize(): number
 
-Obtains the tag size (in bytes). For details, see [MifareTagSize](#mifaretagsize9).
+Obtains the tag size (in bytes). For details, see [MifareClassicSize](js-apis-nfcTag.md#mifareclassicsize9).
 
 **Required permissions**: ohos.permission.NFC_TAG
 
@@ -1402,34 +1466,17 @@ Obtains the tag size (in bytes). For details, see [MifareTagSize](#mifaretagsize
 
 | **Type**| **Description**                            |
 | ------------------ | --------------------------|
-| number | Tag size obtained, in bytes. For details, see [MifareTagSize](#mifaretagsize9).|
+| number | Tag size obtained, in bytes. For details, see [MifareClassicSize](js-apis-nfcTag.md#mifareclassicsize9).|
 
 **Example**
 
 ```js
 import tag from '@ohos.nfc.tag';
 
-// tagInfo is an object given by the NFC service when a tag is dispatched.
-let size = tag.MifareClassicTag(taginfo).getTagSize();
+// Check whether 'tag.TagInfo' at 'js-apis-nfcTag' has obtained the 'mifareClassic' correctly.
+let tagSize = mifareClassic.getTagSize();
+console.log("mifareClassic tagSize: " + tagSize);
 ```
-
-## MifareClassicType<sup>9+</sup>
-
-| **Name**| **Value**|  **Description**|
-| -------- | -------- | -------- |
-| TYPE_UNKNOWN | -1 |  Unknown type.|
-| TYPE_CLASSIC | 0 |  MIFARE Classic.|
-| TYPE_PLUS   | 1 |  MIFARE Plus.|
-| TYPE_PRO  | 2 |  MIFARE Pro.|
-
-## MifareTagSize<sup>9+</sup>
-
-| **Name**| **Value**|  **Description**|
-| -------- | -------- | -------- |
-| MC_SIZE_MINI | 320 |  Each tag has 5 sectors, and each sector has 4 blocks.|
-| MC_SIZE_1K  | 1024 |  Each tag has 16 sectors, and each sector has 4 blocks.|
-| MC_SIZE_2K   | 2048 |  Each tag has 32 sectors, and each sector has 4 blocks.|
-| MC_SIZE_4K   | 4096 |  Each tag has 40 sectors, and each sector has 4 blocks.|
 
 ### MifareClassicTag.isEmulatedTag<sup>9+</sup>
 
@@ -1452,8 +1499,9 @@ Checks whether the tag is an emulated tag.
 ```js
 import tag from '@ohos.nfc.tag';
 
-// tagInfo is an object given by the NFC service when a tag is dispatched.
-let isEmulated = tag.MifareClassicTag(taginfo).isEmulatedTag();
+// Check whether 'tag.TagInfo' at 'js-apis-nfcTag' has obtained the 'mifareClassic' correctly.
+let isEmulatedTag = mifareClassic.isEmulatedTag();
+console.log("mifareClassic isEmulatedTag: " + isEmulatedTag);
 ```
 
 ### MifareClassicTag.getBlockIndex<sup>9+</sup>
@@ -1483,8 +1531,10 @@ Obtains the first block of a sector.
 ```js
 import tag from '@ohos.nfc.tag';
 
-// tagInfo is an object given by the NFC service when a tag is dispatched.
-let index = tag.MifareClassicTag(taginfo).getBlockIndex(sectorIndex);
+// Check whether 'tag.TagInfo' at 'js-apis-nfcTag' has obtained the 'mifareClassic' correctly.
+let sectorIndex = 1; // change it to be correct index.
+let blockIndex = mifareClassic.getBlockIndex(sectorIndex);
+console.log("mifareClassic blockIndex: " + blockIndex);
 ```
 
 ### MifareClassicTag.getSectorIndex<sup>9+</sup>
@@ -1514,8 +1564,10 @@ Obtains the index of a sector that contains the specified block.
 ```js
 import tag from '@ohos.nfc.tag';
 
-// tagInfo is an object given by the NFC service when a tag is dispatched.
-let index = tag.MifareClassicTag(taginfo).getSectorIndex(blockIndex);
+// Check whether 'tag.TagInfo' at 'js-apis-nfcTag' has obtained the 'mifareClassic' correctly.
+let blockIndex = 1; // change it to be correct index.
+let sectorIndex = mifareClassic.getSectorIndex(blockIndex);
+console.log("mifareClassic sectorIndex: " + sectorIndex);
 ```
 
 ## MifareUltralightTag<sup>9+</sup>
@@ -1528,7 +1580,7 @@ The following describes the unique interfaces of **MifareUltralightTag**.
 
 ### MifareUltralightTag.readMultiplePages<sup>9+</sup>
 
-readMultiplePages(pageIndex: number): Promise\<string>
+readMultiplePages(pageIndex: number): Promise\<number[]>
 
 Reads multiple pages (4 bytes per page). This API uses a promise to return the result.
 
@@ -1546,7 +1598,7 @@ Reads multiple pages (4 bytes per page). This API uses a promise to return the r
 
 | **Type**| **Description**                            |
 | ------------------ | --------------------------|
-| Promise\<string> | Promise used to return the data read.|
+| Promise\<number[]> | Promise used to return the data read.|
 
 **Example**
 
@@ -1554,15 +1606,19 @@ Reads multiple pages (4 bytes per page). This API uses a promise to return the r
 
 import tag from '@ohos.nfc.tag';
 
-// tagInfo is an object given by the NFC service when a tag is dispatched.
-tag.MifareUltralightTag(taginfo).readMultiplePages(pageIndex).then(function (data){
-    console.log("data: " + data)
-    })
+// Check whether 'tag.TagInfo' at 'js-apis-nfcTag' has obtained the 'mifareUltralight' correctly.
+let pageIndex = 1; // change it to be correct index.
+mifareUltralight.readMultiplePages(pageIndex)
+    .then((data) => {
+        console.log("mifareUltralight readMultiplePages data: " + data);
+    }).catch((err)=> {
+        console.log("mifareUltralight readMultiplePages err: " + err);
+    });
 ```
 
 ### MifareUltralightTag.readMultiplePages<sup>9+</sup>
 
-readMultiplePages(pageIndex: number, callback: AsyncCallback\<string>): void
+readMultiplePages(pageIndex: number, callback: AsyncCallback\<number[]>): void
 
 Reads multiple pages (4 bytes per page). This API uses an asynchronous callback to return the result.
 
@@ -1575,23 +1631,27 @@ Reads multiple pages (4 bytes per page). This API uses an asynchronous callback 
 | Name  | Type                   | Mandatory| Description                                  |
 | -------- | ----------------------- | ---- | -------------------------------------- |
 | pageIndex | number | Yes  | Indexes of the pages to read.|
-| callback | AsyncCallback\<string> | Yes  | Callback invoked to return the data read.|
+| callback | AsyncCallback\<number[]> | Yes  | Callback invoked to return the result.|
 
 **Example**
 
 ```js
 import tag from '@ohos.nfc.tag';
 
-// tagInfo is an object given by the NFC service when a tag is dispatched.
-tag.MifareUltralightTag(taginfo).readMultiplePages(pageIndex, function (error, data) {
-    console.log(JSON.stringify(error))
-    console.log(JSON.stringify(data))
-})
+// Check whether 'tag.TagInfo' at 'js-apis-nfcTag' has obtained the 'mifareUltralight' correctly.
+let pageIndex = 1; // change it to be correct index.
+mifareUltralight.readMultiplePages(pageIndex, (err, data)=> {
+    if (err) {
+        console.log("mifareUltralight readMultiplePages err: " + err);
+    } else {
+        console.log("mifareUltralight readMultiplePages data: " + data);
+    }
+});
 ```
 
 ### MifareUltralightTag.writeSinglePages<sup>9+</sup>
 
-writeSinglePages(pageIndex: number, data: string): Promise\<number>
+writeSinglePages(pageIndex: number, data: number[]): Promise\<number>
 
 Writes a page of data. This API uses a promise to return the result.
 
@@ -1604,7 +1664,7 @@ Writes a page of data. This API uses a promise to return the result.
 | Name  | Type                   | Mandatory| Description                                  |
 | -------- | ----------------------- | ---- | -------------------------------------- |
 | pageIndex | number | Yes  | Index of the page.|
-| data | string | Yes  | Data to write.|
+| data | number[] | Yes  | Data to write.|
 
 **Return value**
 
@@ -1617,15 +1677,20 @@ Writes a page of data. This API uses a promise to return the result.
 ```js
 import tag from '@ohos.nfc.tag';
 
-// tagInfo is an object given by the NFC service when a tag is dispatched.
-tag.MifareUltralightTag(taginfo).writeSinglePages(pageIndex, data).then(function (errcode){
-    console.log(JSON.stringify(errcode))
-    })
+// Check whether 'tag.TagInfo' at 'js-apis-nfcTag' has obtained the 'mifareUltralight' correctly.
+let pageIndex = 1; // change it to be correct index.
+let data = [0x01, 0x02, ...]; // change it to be correct raw data.
+mifareUltralight.writeSinglePages(pageIndex, data)
+    .then((data) => {
+        console.log("mifareUltralight writeSinglePages data: " + data);
+    }).catch((err)=> {
+        console.log("mifareUltralight writeSinglePages err: " + err);
+    });
 ```
 
 ### MifareUltralightTag.writeSinglePages<sup>9+</sup>
 
-writeSinglePages(pageIndex: number, data: string, callback: AsyncCallback\<number>): void
+writeSinglePages(pageIndex: number, data: number[], callback: AsyncCallback\<number>): void
 
 Writes a page of data. This API uses an asynchronous callback to return the result.
 
@@ -1638,7 +1703,7 @@ Writes a page of data. This API uses an asynchronous callback to return the resu
 | Name  | Type                   | Mandatory| Description                    |
 | -------- | ----------------------- | ---- | ------------------------ |
 | pageIndex | number | Yes  | Index of the page.|
-| data | string | Yes  | Data to write.|
+| data | number[] | Yes  | Data to write.|
 | callback|AsyncCallback\<number> |Yes| Callback invoked to return the result.|
 
 **Example**
@@ -1646,18 +1711,23 @@ Writes a page of data. This API uses an asynchronous callback to return the resu
 ```js
 import tag from '@ohos.nfc.tag';
 
-// tagInfo is an object given by the NFC service when a tag is dispatched.
-tag.MifareUltralightTag(taginfo).writeSinglePages(pageIndex, data, function (error, errcode) {
-    console.log(JSON.stringify(error))
-    console.log(JSON.stringify(errcode))
-})
+// Check whether 'tag.TagInfo' at 'js-apis-nfcTag' has obtained the 'mifareUltralight' correctly.
+let pageIndex = 1; // change it to be correct index.
+let data = [0x01, 0x02, ...]; // change it to be correct raw data.
+mifareUltralight.writeSinglePages(pageIndex, data, (err, data)=> {
+    if (err) {
+        console.log("mifareUltralight writeSinglePages err: " + err);
+    } else {
+        console.log("mifareUltralight writeSinglePages data: " + data);
+    }
+});
 ```
 
 ### MifareUltralightTag.getType<sup>9+</sup>
 
 getType(): MifareUltralightType
 
-Obtains the MIFARE Ultralight tag type, in bytes.
+Obtains the MIFARE Ultralight tag type, in bytes. For details, see [MifareUltralightType](js-apis-nfcTag.md#mifareultralighttype9).
 
 **Required permissions**: ohos.permission.NFC_TAG
 
@@ -1667,24 +1737,17 @@ Obtains the MIFARE Ultralight tag type, in bytes.
 
 | **Type**| **Description**                            |
 | ------------------ | --------------------------|
-| MifareUltralightType | Type of the MIFARE Ultralight tag. For details, see [MifareUltralightType](#mifareultralighttype9).|
+| MifareUltralightType | MIFARE Ultralight tag type obtained. For details, see [MifareUltralightType](js-apis-nfcTag.md#mifareultralighttype9).|
 
 **Example**
 
 ```js
 import tag from '@ohos.nfc.tag';
 
-// tagInfo is an object given by the NFC service when a tag is dispatched.
-let type = tag.MifareUltralightType(taginfo).getType(); 
+// Check whether 'tag.TagInfo' at 'js-apis-nfcTag' has obtained the 'mifareUltralight' correctly.
+let getType = mifareClassic.getType();
+console.log("mifareUltralight getType: " + getType);
 ```
-
-### MifareUltralightType<sup>9+</sup>
-
-| **Name**| **Value**|  **Description**|
-| -------- | -------- | -------- |
-| TYPE_UNKOWN  | -1 |  Unknown type.|
-| TYPE_ULTRALIGHT   | 1 |  MIFARE Ultralight.|
-| TYPE_ULTRALIGHT_C    | 2 |  MIFARE Ultralight C.|
 
 ## NdefFormatableTag<sup>9+</sup>
 
@@ -1721,10 +1784,18 @@ Formats this tag as an NDEF tag, and writes an NDEF message to the tag. This API
 ```js
 import tag from '@ohos.nfc.tag';
 
-// tagInfo is an object given by the NFC service when a tag is dispatched.
-tag.NdefFormatableTag(taginfo).format(message).then(function (errcode){
-    console.log(JSON.stringify(errcode))
-    })
+// Check whether 'tag.TagInfo' at 'js-apis-nfcTag' has obtained the 'ndef' correctly.
+let data = [0x01, 0x02, ...]; // change it to be correct raw data.
+let ndefmessage = ndef.createNdefMessage(data);
+
+// Check whether 'tag.TagInfo' at 'js-apis-nfcTag' has obtained the 'ndefFormatable' correctly.
+ndefFormatable.format(ndefmessage, (err, data)=> {
+    if (err) {
+        console.log("ndefFormatable format err: " + err);
+    } else {
+        console.log("ndefFormatable format data: " + data);
+    }
+});
 ```
 
 ### NdefFormatableTag.format<sup>9+</sup>
@@ -1741,19 +1812,32 @@ Formats this tag as an NDEF tag, and writes an NDEF message to the tag. This API
 
 | Name  | Type                   | Mandatory| Description                                  |
 | -------- | ----------------------- | ---- | -------------------------------------- |
-| message | [NdefMessage](#ndefmessage9) | Yes  | NDEF message to write when the formatting is successful. If this parameter is **null**, the tag is formatted only.|
-| callback | AsyncCallback\<number> |Yes|Callback invoked to return the result.|
+| message | [NdefMessage](#ndefmessage9) | Yes  | NDEF message to write when the formatting is successful. If this parameter is **null**, the tag is formatted only (no data will be written).|
+
+**Return value**
+
+| **Type**| **Description**                            |
+| ------------------ | --------------------------|
+| callback: AsyncCallback\<number> | Callback invoked to return the result.|
+
 
 **Example**
 
 ```js
 import tag from '@ohos.nfc.tag';
 
-// tagInfo is an object given by the NFC service when a tag is dispatched.
-tag.NdefFormatableTag(taginfo).format(message, function (error, errcode) {
-    console.log(JSON.stringify(error))
-    console.log(JSON.stringify(errcode))
-})
+// Check whether 'tag.TagInfo' at 'js-apis-nfcTag' has obtained the 'ndef' correctly.
+let data = [0x01, 0x02, ...]; // change it to be correct raw data.
+let ndefmessage = ndef.createNdefMessage(data);
+
+// Check whether 'tag.TagInfo' at 'js-apis-nfcTag' has obtained the 'ndefFormatable' correctly.
+ndefFormatable.format(ndefmessage, (err, data)=> {
+    if (err) {
+        console.log("ndefFormatable format err: " + err);
+    } else {
+        console.log("ndefFormatable format data: " + data);
+    }
+});
 ```
 
 ### NdefFormatableTag.formatReadOnly<sup>9+</sup>
@@ -1783,10 +1867,18 @@ Formats this tag as an NDEF tag, writes an NDEF message to the NDEF tag, and the
 ```js
 import tag from '@ohos.nfc.tag';
 
-// tagInfo is an object given by the NFC service when a tag is dispatched.
-tag.NdefFormatableTag(taginfo).formatReadOnly(message).then(function (errcode){
-    console.log(JSON.stringify(errcode))
-    })
+// Check whether 'tag.TagInfo' at 'js-apis-nfcTag' has obtained the 'ndef' correctly.
+let data = [0x01, 0x02, ...]; // change it to be correct raw data.
+let ndefmessage = ndef.createNdefMessage(data);
+
+// Check whether 'tag.TagInfo' at 'js-apis-nfcTag' has obtained the 'ndefFormatable' correctly.
+ndefFormatable.formatReadOnly(ndefmessage, (err, data)=> {
+    if (err) {
+        console.log("ndefFormatable formatReadOnly err: " + err);
+    } else {
+        console.log("ndefFormatable formatReadOnly data: " + data);
+    }
+});
 ```
 
 ### NdefFormatableTag.formatReadOnly<sup>9+</sup>
@@ -1803,17 +1895,30 @@ Formats this tag as an NDEF tag, writes an NDEF message to the NDEF tag, and the
 
 | Name  | Type                   | Mandatory| Description                                  |
 | -------- | ----------------------- | ---- | -------------------------------------- |
-| message | [NdefMessage](#ndefmessage9) | Yes  | NDEF message to write when the formatting is successful. If this parameter is **null**, the tag is formatted only.|
-| callback | AsyncCallback\<number> |Yes|Callback invoked to return the result.|
+| message | [NdefMessage](#ndefmessage9) | Yes  | NDEF message to write when the formatting is successful. If this parameter is **null**, the tag is formatted only (no data will be written).|
+
+**Return value**
+
+| **Type**| **Description**                            |
+| ------------------ | --------------------------|
+| callback: AsyncCallback\<number> | Callback invoked to return the result.|
+
 
 **Example**
 
 ```js
 import tag from '@ohos.nfc.tag';
 
-// tagInfo is an object given by the NFC service when a tag is dispatched.
-tag.NdefFormatableTag(taginfo).formatReadOnly(message, function (error, errcode) {
-    console.log(JSON.stringify(error))
-    console.log(JSON.stringify(errcode))
-})
+// Check whether 'tag.TagInfo' at 'js-apis-nfcTag' has obtained the 'ndef' correctly.
+let data = [0x01, 0x02, ...]; // change it to be correct raw data.
+let ndefmessage = ndef.createNdefMessage(data);
+
+// Check whether 'tag.TagInfo' at 'js-apis-nfcTag' has obtained the 'ndefFormatable' correctly.
+ndefFormatable.formatReadOnly(ndefmessage, (err, data)=> {
+    if (err) {
+        console.log("ndefFormatable formatReadOnly err: " + err);
+    } else {
+        console.log("ndefFormatable formatReadOnly data: " + data);
+    }
+});
 ```
