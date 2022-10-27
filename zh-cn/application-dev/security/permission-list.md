@@ -150,3 +150,5 @@
 | ohos.permission.<br>ACCESS_PUSH_SERVICE                      | system_basic  | system_grant | TRUE    | 允许应用访问推送服务的Ability。                                     |
 | ohos.permission.<br>RECEIVER_STARTUP_COMPLETED               | system_basic  | system_grant | FALSE   | 允许应用订阅开机广播。                                     |
 | ohos.permission.<br>MANAGE_CAMERA_CONFIG                     | system_basic  | system_grant | FALSE   | 允许应用进行全局相机开关等操作。                                     |
+| ohos.permission.READ_WHOLE_CALENDAR                     | system_basic  | uesr_grant | TRUE    | 允许应用读取所有的日历信息。                                     |
+| ohos.permission.WRITE_WHOLE_CALENDAR                     | system_basic  | uesr_grant | TRUE    | 允许应用添加、移除或更改所有的日历活动。                                     |
