@@ -1,6 +1,6 @@
 # appControl模块
 
-本模块提供应用拦截能力。应用被禁止运行后，用户点击桌面图标时，会根据应用的处置状态，跳转到对应的页面。本模块支持对应用的处置状态进行设置、获取、删除。
+本模块提供应用拦截能力。对应用设置处置状态后，应用会被禁止运行；用户点击桌面图标时，会根据应用的处置状态，跳转到对应的页面。本模块支持对应用的处置状态进行设置、获取、删除。
 
 > **说明：**
 >
@@ -10,13 +10,13 @@
 
 ## 导入模块
 
-```
+``` ts
 import appControl from '@ohos.bundle.appControl'
 ```
 
 ## appControl.setDisposedStatus
 
-**function** setDisposedStatus(appId: **string**, disposedWant: **Want**): Promise\<**void**>
+setDisposedStatus(appId: string, disposedWant: Want): Promise\<void>
 
 以异步方法设置应用的处置状态。使用Promise异步回调。成功返回null，失败返回对应错误信息。
 
@@ -30,7 +30,7 @@ import appControl from '@ohos.bundle.appControl'
 
 | 名称          | 类型     | 必填   | 描述                                      |
 | ----------- | ------ | ---- | --------------------------------------- |
-| appId  | string | 是    | 需要设置处置状态的应用的appId。                         |
+| appId  | string | 是    | 需要设置处置状态的应用的appId。<br> appId是应用的唯一标识，由应用的包名和签名信息决定，可以通过getBundleInfo接口获取。                    |
 | disposedWant | Want  | 是 | 对应用的处置意图。 |
 
 **返回值：**
@@ -39,7 +39,7 @@ import appControl from '@ohos.bundle.appControl'
 | ------------------------- | ------------------ |
 | Promise\<void> | Promise对象。无返回结果的Promise对象。 |
 
-**相关错误码**
+**错误码**
 
 以下错误码的详细介绍请参见[ohos.bundle错误码](../errorcodes/errcode-bundle.md)。
 
@@ -49,8 +49,24 @@ import appControl from '@ohos.bundle.appControl'
 
 **示例：**
 
-```js
-var addId = 'com.example.myapplication_xxxxx';
+```ts
+import appControl from '@ohos.bundle.appControl'
+import bundleManager from '@ohos.bundle.bundleManager';
+
+// 获取appId
+var bundleName = 'com.example.myapplication';
+var appId;
+try {
+    bundleManager.getBundleInfo(bundleName, BundleManager.BundleFlags.GET_BUNDLE_INFO_WITH_SIGNATURE_INFO)
+        .then((data) => {
+            appId = data.signatureInfo.appId;
+        }, error => {
+            console.error("getBundleInfo failed " + error.message);
+        });
+} catch (error) {
+    console.error("getBundleInfo failed " + error.message);
+}
+
 var want = {bundleName: 'com.example.myapplication'};
 
 try {
@@ -67,7 +83,7 @@ try {
 
 ## appControl.setDisposedStatus
 
-**function** setDisposedStatus(appId: **string**, disposedWant: **Want**, callback: AsyncCallback\<**void**>): **void**;
+setDisposedStatus(appId: string, disposedWant: Want, callback: AsyncCallback\<void>): void;
 
 以异步方法设置应用的处置状态。使用callback异步回调。成功返回null，失败返回对应错误信息。
 
@@ -81,11 +97,11 @@ try {
 
 | 名称          | 类型                              | 必填   | 描述                                      |
 | ----------- | ------------------------------- | ---- | --------------------------------------- |
-| appId  | string | 是    | 需要设置处置的应用的appId                           |
+| appId  | string | 是    | 需要设置处置的应用的appId<br> appId是应用的唯一标识，由应用的包名和签名信息决定，可以通过getBundleInfo接口获取。                           |
 | disposedWant | Want  | 是 | 对应用的处置意图。 |
 | callback    | AsyncCallback\<void> | 是    | 回调函数，当设置处置状态成功，err为undefined，否则为错误对象。 |
 
-**相关错误码**
+**错误码**
 
 以下错误码的详细介绍请参见[ohos.bundle错误码](../errorcodes/errcode-bundle.md)。
 
@@ -95,8 +111,24 @@ try {
 
 **示例：**
 
-```js
-var addId = 'com.example.myapplication_xxxxx';
+```ts
+import appControl from '@ohos.bundle.appControl'
+import bundleManager from '@ohos.bundle.bundleManager';
+
+// 获取appId
+var bundleName = 'com.example.myapplication';
+var appId;
+try {
+    bundleManager.getBundleInfo(bundleName, BundleManager.BundleFlags.GET_BUNDLE_INFO_WITH_SIGNATURE_INFO)
+        .then((data) => {
+            appId = data.signatureInfo.appId;
+        }, error => {
+            console.error("getBundleInfo failed " + error.message);
+        });
+} catch (error) {
+    console.error("getBundleInfo failed " + error.message);
+}
+
 var want = {bundleName: 'com.example.myapplication'};
 
 try {
@@ -114,7 +146,7 @@ try {
 
 ## appControl.getDisposedStatus
 
-**function** getDisposedStatus(appId: **string**): Promise\<**Want**>;
+getDisposedStatus(appId: string): Promise\<Want>;
 
 以异步方法获取指定应用已设置的处置状态。使用Promise异步回调，成功返回应用的处置状态，失败返回对应错误信息。
 
@@ -128,7 +160,7 @@ try {
 
 | 名称          | 类型     | 必填   | 描述                                      |
 | ----------- | ------ | ---- | --------------------------------------- |
-| appId  | string | 是    | 要查询的应用的appId       |
+| appId  | string | 是    | 要查询的应用的appId<br> appId是应用的唯一标识，由应用的包名和签名信息决定，可以通过getBundleInfo接口获取。       |
 
 **返回值：**
 
@@ -136,7 +168,7 @@ try {
 | ------------------------- | ------------------ |
 | Promise\<Want> | Promise对象，返回应用的处置状态。 |
 
-**相关错误码**
+**错误码**
 
 以下错误码的详细介绍请参见[ohos.bundle错误码](../errorcodes/errcode-bundle.md)。
 
@@ -146,8 +178,23 @@ try {
 
 **示例：**
 
-```js
-var appId = 'com.example.myapplication_xxxxx';
+```ts
+import appControl from '@ohos.bundle.appControl'
+import bundleManager from '@ohos.bundle.bundleManager';
+
+// 获取appId
+var bundleName = 'com.example.myapplication';
+var appId;
+try {
+    bundleManager.getBundleInfo(bundleName, BundleManager.BundleFlags.GET_BUNDLE_INFO_WITH_SIGNATURE_INFO)
+        .then((data) => {
+            appId = data.signatureInfo.appId;
+        }, error => {
+            console.error("getBundleInfo failed " + error.message);
+        });
+} catch (error) {
+    console.error("getBundleInfo failed " + error.message);
+}
 
 try {
     appControl.getDisposedStatus(appId)
@@ -163,13 +210,13 @@ try {
 
 ## appControl.getDisposedStatus
 
-**function** getDisposedStatus(appId: **string**, callback: AsyncCallback\<**Want**>): **void**;
+getDisposedStatus(appId: string, callback: AsyncCallback\<Want>): void;
 
 以异步方法获取指定应用的处置状态。使用callback异步回调，成功返回应用的处置状态，失败返回对应错误信息。
 
 **需要权限：** ohos.permission.MANAGE_DISPOSED_APP_STATUS
 
-**系统能力：** SystemCapability.BundleManager.BundleFramework
+**系统能力：** SystemCapability.BundleManager.BundleFramework.AppControl
 
 **系统API：**  此接口为系统接口，三方应用不支持调用
 
@@ -177,10 +224,10 @@ try {
 
 | 名称          | 类型     | 必填   | 描述                                      |
 | ----------- | ------ | ---- | --------------------------------------- |
-| appId  | string | 是    | 要查询的应用的appId        |
+| appId  | string | 是    | 要查询的应用的appId<br> appId是应用的唯一标识，由应用的包名和签名信息决定，可以通过getBundleInfo接口获取。        |
 | callback    | AsyncCallback\<Want> | 是    | 回调函数。当获取应用的处置状态成功时，err为undefined，data为获取到的处置状态；否则为错误对象。                    |
 
-**相关错误码**
+**错误码**
 
 以下错误码的详细介绍请参见[ohos.bundle错误码](../errorcodes/errcode-bundle.md)。
 
@@ -190,8 +237,23 @@ try {
 
 **示例：**
 
-```js
-var appId = 'com.example.myapplication_xxxxx';
+```ts
+import appControl from '@ohos.bundle.appControl'
+import bundleManager from '@ohos.bundle.bundleManager';
+
+// 获取appId
+var bundleName = 'com.example.myapplication';
+var appId;
+try {
+    bundleManager.getBundleInfo(bundleName, BundleManager.BundleFlags.GET_BUNDLE_INFO_WITH_SIGNATURE_INFO)
+        .then((data) => {
+            appId = data.signatureInfo.appId;
+        }, error => {
+            console.error("getBundleInfo failed " + error.message);
+        });
+} catch (error) {
+    console.error("getBundleInfo failed " + error.message);
+}
 
 try {
     appControl.getDisposedStatus(appId, (err, data) => {
@@ -208,7 +270,7 @@ try {
 
 ## appControl.deleteDisposedStatus
 
-**function** deleteDisposedStatus(appId: **string**): Promise\<**void**>
+deleteDisposedStatus(appId: string): Promise\<void>
 
 以异步方法删除应用的处置状态。使用promise异步回调，成功返回null，失败返回对应错误信息。
 
@@ -222,7 +284,7 @@ try {
 
 | 名称          | 类型     | 必填   | 描述                                      |
 | ----------- | ------ | ---- | --------------------------------------- |
-| appId  | string | 是    | 要删除处置状态的应用的appId       |                        |
+| appId  | string | 是    | 要删除处置状态的应用的appId<br> appId是应用的唯一标识，由应用的包名和签名信息决定，可以通过getBundleInfo接口获取。       |                        |
 
 **返回值：**
 
@@ -230,7 +292,7 @@ try {
 | ------------------------- | ------------------ |
 | Promise\<void> | Promise对象，无返回结果的Promise对象 |
 
-**相关错误码**
+**错误码**
 
 以下错误码的详细介绍请参见[ohos.bundle错误码](../errorcodes/errcode-bundle.md)。
 
@@ -240,8 +302,23 @@ try {
 
 **示例：**
 
-```js
-var appId = 'com.example.myapplication_xxxxx';
+```ts
+import appControl from '@ohos.bundle.appControl'
+import bundleManager from '@ohos.bundle.bundleManager';
+
+// 获取appId
+var bundleName = 'com.example.myapplication';
+var appId;
+try {
+    bundleManager.getBundleInfo(bundleName, BundleManager.BundleFlags.GET_BUNDLE_INFO_WITH_SIGNATURE_INFO)
+        .then((data) => {
+            appId = data.signatureInfo.appId;
+        }, error => {
+            console.error("getBundleInfo failed " + error.message);
+        });
+} catch (error) {
+    console.error("getBundleInfo failed " + error.message);
+}
 
 try {
     appControl.deleteDisposedStatus(appId)
@@ -257,7 +334,7 @@ try {
 
 ## appControl.deleteDisposedStatus
 
-**function** deleteDisposedStatus(appId: **string**, callback: AsyncCallback\<**void**>) : **void**
+deleteDisposedStatus(appId: string, callback: AsyncCallback\<void>) : void
 
 以异步方法删除应用的处置状态。使用callback异步回调，成功返回null，失败返回对应错误信息。
 
@@ -271,10 +348,10 @@ try {
 
 | 名称          | 类型     | 必填   | 描述                                      |
 | ----------- | ------ | ---- | --------------------------------------- |
-| appId  | string | 是    | 要查询的应用的appId。       |
-| callback    | AsyncCallback\<void> | 是    | 回调函数，当设置处置状态成功，err为undefined，否则为错误对象。                    |
+| appId  | string | 是    | 要查询的应用的appId。<br> appId是应用的唯一标识，由应用的包名和签名信息决定，可以通过getBundleInfo接口获取。       |
+| callback    | AsyncCallback\<void> | 是    | 回调函数，当设置处置状态成功时，err返回undefined。否则回调函数返回具体错误对象。                   |
 
-**相关错误码**
+**错误码**
 
 以下错误码的详细介绍请参见[ohos.bundle错误码](../errorcodes/errcode-bundle.md)。
 
@@ -284,8 +361,23 @@ try {
 
 **示例：**
 
-```js
-var appId = 'com.example.myapplication_xxxxx';
+```ts
+import appControl from '@ohos.bundle.appControl'
+import bundleManager from '@ohos.bundle.bundleManager';
+
+// 获取appId
+var bundleName = 'com.example.myapplication';
+var appId;
+try {
+    bundleManager.getBundleInfo(bundleName, BundleManager.BundleFlags.GET_BUNDLE_INFO_WITH_SIGNATURE_INFO)
+        .then((data) => {
+            appId = data.signatureInfo.appId;
+        }, error => {
+            console.error("getBundleInfo failed " + error.message);
+        });
+} catch (error) {
+    console.error("getBundleInfo failed " + error.message);
+}
 
 try {
     appControl.deleteDisposedStatus(appId, (err, data) => {
@@ -298,5 +390,5 @@ try {
 } catch (error) {
     console.error('deleteDisposedStatus failed ' + error.message);
 }
-
 ```
+
