@@ -75,9 +75,9 @@ Obtains the default display object. This API uses an asynchronous callback to re
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | callback | AsyncCallback&lt;[Display](#display)&gt; | Yes| Callback used to return the default display object.|
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| callback | AsyncCallback&lt;[Display](#display)&gt; | Yes| Callback used to return the default display object.|
 
 **Example**
 
@@ -103,9 +103,9 @@ Obtains the default display object. This API uses a promise to return the result
 
 **Return value**
 
-  | Type                              | Description                                          |
-  | ---------------------------------- | ---------------------------------------------- |
-  | Promise&lt;[Display](#display)&gt; | Promise used to return the default display object.|
+| Type                              | Description                                          |
+| ---------------------------------- | ---------------------------------------------- |
+| Promise&lt;[Display](#display)&gt; | Promise used to return the default display object.|
 
 **Example**
 
@@ -150,9 +150,9 @@ Obtains all display objects. This API uses an asynchronous callback to return th
 
 **Parameters**
 
-  | Name  | Type                                                | Mandatory| Description                           |
-  | -------- | ---------------------------------------------------- | ---- | ------------------------------- |
-  | callback | AsyncCallback&lt;Array&lt;[Display](#display)&gt;&gt; | Yes  | Callback used to return all the display objects.|
+| Name  | Type                                                | Mandatory| Description                           |
+| -------- | ---------------------------------------------------- | ---- | ------------------------------- |
+| callback | AsyncCallback&lt;Array&lt;[Display](#display)&gt;&gt; | Yes  | Callback used to return all the display objects.|
 
 **Example**
 
@@ -176,9 +176,9 @@ Obtains all display objects. This API uses a promise to return the result.
 
 **Return value**
 
-  | Type                                           | Description                                                   |
-  | ----------------------------------------------- | ------------------------------------------------------- |
-  | Promise&lt;Array&lt;[Display](#display)&gt;&gt; | Promise used to return all the display objects.|
+| Type                                           | Description                                                   |
+| ----------------------------------------------- | ------------------------------------------------------- |
+| Promise&lt;Array&lt;[Display](#display)&gt;&gt; | Promise used to return all the display objects.|
 
 **Example**
 
@@ -195,7 +195,7 @@ promise.then((data) => {
 
 hasPrivateWindow(displayId: number): boolean
 
-Checks whether there is a visible privacy window on a display. The privacy window can be set by calling `[setPrivacyMode](js-apis-window.md#setprivacymode7)`. The content in the privacy window cannot be captured or recorded.
+Checks whether there is a visible privacy window on a display. The privacy window can be set by calling [setPrivacyMode](js-apis-window.md#setprivacymode7). The content in the privacy window cannot be captured or recorded.
 
 **System API**: This is a system API.
 
@@ -211,7 +211,7 @@ Checks whether there is a visible privacy window on a display. The privacy windo
 
 | Type                            | Description                                                                   |
 | -------------------------------- |-----------------------------------------------------------------------|
-|boolean | Whether there is a visible privacy window on the display.<br>The value `true` means that there is a visible privacy window on the display, and `false` means the opposite.<br>|
+|boolean | Whether there is a visible privacy window on the display.<br>The value **true** means that there is a visible privacy window on the display, and **false** means the opposite. |
 
 **Example**
 
@@ -271,10 +271,10 @@ Unsubscribes from display changes.
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | type | string | Yes| Event type.<br>- **add**, indicating the display addition event.<br>- **remove**, indicating the display removal event.<br>- **change**, indicating the display change event.|
-  | callback | Callback&lt;number&gt; | No| Callback used to return the ID of the display.|
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| type | string | Yes| Event type.<br>- **add**, indicating the display addition event.<br>- **remove**, indicating the display removal event.<br>- **change**, indicating the display change event.|
+| callback | Callback&lt;number&gt; | No| Callback used to return the ID of the display.|
 
 **Example**
 
@@ -283,9 +283,9 @@ display.off("remove");
 ```
 
 ## Display
-Implements a `Display` instance, with properties and APIs defined.
+Implements a **Display** instance, with properties and APIs defined.
 
-To call an API in the following API examples, you must first use `[getAllDisplay()](#displaygetalldisplay)`, `[getDefaultDisplay()](#displaygetdefaultdisplay)`, or `[getDefaultDisplaySync()](#displaygetdefaultdisplaysync)` to obtain a `Display` instance.
+To call an API in the following API examples, you must first use [getAllDisplay()](#displaygetalldisplay), [getDefaultDisplay()](#displaygetdefaultdisplay), or [getDefaultDisplaySync()](#displaygetdefaultdisplaysync) to obtain a **Display** instance.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
@@ -296,7 +296,7 @@ To call an API in the following API examples, you must first use `[getAllDisplay
 | alive | boolean | Yes| No| Whether the display is alive.|
 | state | [DisplayState](#displaystate) | Yes| No| State of the display.|
 | refreshRate | number | Yes| No| Refresh rate of the display.|
-| rotation | number | Yes| No| Screen rotation angle of the display.|
+| rotation | number | Yes| No| Screen rotation angle of the display.<br/>The value **0** indicates that the screen of the display rotates by 0°.<br/>The value **1** indicates that the screen of the display rotates by 90°.<br/>The value **2** indicates that the screen of the display rotates by 180°.<br/>The value **3** indicates that the screen of the display rotates by 270°. |
 | width | number | Yes| No| Width of the display, in pixels.|
 | height | number | Yes| No| Height of the display, in pixels.|
 | densityDPI | number | Yes| No| Screen density of the display, in DPI.|
@@ -314,7 +314,7 @@ Obtains the cutout information of the display. This API uses an asynchronous cal
 
 | Name     | Type                       | Mandatory| Description                                                        |
 | ----------- | --------------------------- | ---- | ------------------------------------------------------------ |
-| callback    | AsyncCallback&lt;[CutoutInfo](#cutoutinfo9)&gt;   | Yes  | Callback used to If the operation is successful, `err` is `undefined` and `data` is the `CutoutInfo` object obtained. Otherwise, `err` is an error object.|
+| callback    | AsyncCallback&lt;[CutoutInfo](#cutoutinfo9)&gt;   | Yes  | Callback used to If the operation is successful, **err** is **undefined** and **data** is the **CutoutInfo** object obtained. Otherwise, **err** is an error object. |
 
 **Example**
 
@@ -338,7 +338,7 @@ Obtains the cutout information of the display. This API uses a promise to return
 
 | Type               | Description                     |
 | ------------------- | ------------------------- |
-| Promise&lt;[CutoutInfo](#cutoutinfo9)&gt; | Promise used to return the `CutoutInfo` object.|
+| Promise&lt;[CutoutInfo](#cutoutinfo9)&gt; | Promise used to return the **CutoutInfo** object. |
 
 **Example**
 
