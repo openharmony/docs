@@ -12,17 +12,16 @@ OpenHarmony Universal KeyStore (HUKS) provides KeyStore (KS) capabilities for ap
 
 ## Working Principles
 
-HUKS manages keys through the following operations:
+HUKS manages keys through the following APIs in an Init-Update-Finish model:
 
-- **Init**: reads the key, creates a session ID, and returns the session ID to the caller.
+- **InitSession**: reads the key, creates a session ID, and returns the session ID to the caller.
 
-- **Update**: updates data by segment based on the session ID obtained by the **Init** operation.
+- **UpdateSession**: updates data by segment based on the session ID obtained by **InitSession()**.
 
-- **Finish**: processes all data transferred to HUKS and then releases resources.
+- **FinishSession**: processes all the data transferred to HUKS and then releases resources.
 
 > **NOTICE**<br>
-> The **Abort** operation must be invoked to terminate the use of the key when an error occurs in the **Init**, **Update**, or **Finish** operation.
-
+> **AbortSession()** must be called to terminate the use of the key when an error occurs in any of **InitSession()**, **UpdateSession()**, and **FinishSession()**.
 
 ## Constraints
 N/A
