@@ -61,17 +61,17 @@
 
 ### 接口说明
 
-马达驱动模型支持静态HCS配置和动态参数两种振动效果配置能力。马达硬件服务调用StartOnce接口动态配置持续振动，调用Start接口启动静态配置的振动效果。马达驱动模型对HDI开放的API接口能力，如下表所示。
+马达驱动模型支持静态HCS配置和动态参数两种振动效果配置能力。马达硬件服务调用StartOnce接口动态配置持续振动，调用Start接口启动静态配置的振动效果。马达驱动模型对外开放的API接口能力，如下表所示。
 
 **表 1** 马达驱动模型对外API接口能力介绍
 
 | 接口名                                  | 功能描述                                           |
 | -------------------------------------- | ------------------------------------------------ |
-| StartOnce([in] unsigned int duration)                        | 控制马达以执行给定持续时间的单次振动，duration表示单次振动的持续时间。       |
-| Start([in] String effectType)                                | 控制马达以预置效果执行周期性振动，effectType表示马达振动的预设效果类型。     |
-| Stop([in] enum HdfVibratorMode mode)                         | 停止马达振动，mode表示振动模式，可以是单次或周期性的。                             |
-| EnableVibratorModulation([in] unsigned int duration, [in] int intensity, [in] int frequency) | 根据传入的振动效果启动马达，duration表示马达振动的持续时间，intensity表示振动周期内的马达振幅，frequency表示振动周期内的马达频率。 |
-| GetVibratorInfo([out] struct HdfVibratorInfo[] vibratorInfo) | 获取系统中支持设置振幅和频率的所有马达信息，vibratorInfo表示指向马达信息的指针。 |
+| int32_t (*StartOnce)([in] uint32_t duration)                        | 控制马达以执行给定持续时间的单次振动，duration表示单次振动的持续时间。       |
+| int32_t (*Start)([in] const char *effectType)                        | 控制马达以预置效果执行周期性振动，effectType表示指向预设效果类型的指针。     |
+| int32_t (*Stop)([in] enum VibratorMode mode)                         | 停止马达振动，mode表示振动模式，可以是单次或周期性的。                             |
+| int32_t (*EnableVibratorModulation)(uint32_t duration, int32_t intensity, int32_t frequency) | 根据传入的振动效果启动马达，duration表示马达振动的持续时间，intensity表示振动周期内的马达振幅，frequency表示振动周期内的马达频率。 |
+| int32_t (*GetVibratorInfo)([out] struct VibratorInfo **vibratorInfo) | 获取系统中支持设置振幅和频率的所有马达信息，vibratorInfo表示指向马达信息的指针。 |
 
 ### 开发步骤
 

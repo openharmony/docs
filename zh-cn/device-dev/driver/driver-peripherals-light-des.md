@@ -42,9 +42,9 @@ Light驱动模型支持获取系统中所有灯的信息、动态配置闪烁模
 
 | 接口名                                                       | 功能描述                                                     |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| GetLightInfo([out] struct HdfLightInfo[] info)  | 获取当前系统中所有类型的灯信息，info表示指向灯信息的二级指针。 |
-| TurnOnLight([in] int lightId, [in] struct HdfLightEffect effect)  | 根据指定的灯类型ID打开列表中的可用灯，lightId表示灯类型，effect表示指向灯效果的指针。 |
-| TurnOffLight([in] int lightId)                 | 根据指定的灯类型ID关闭列表中的可用灯。                     |
+| int32_t (*GetLightInfo)([out] struct LightInfo **lightInfo, [out] uint32_t *count)  | 获取当前系统中所有类型的灯信息，lightInfo表示指向灯信息的二级指针，count表示指向灯数量的指针。 |
+| int32_t (*TurnOnLight)([in] uint32_t lightId, [in] struct LightEffect *effect)  | 根据指定的灯类型ID打开列表中的可用灯，lightId表示灯类型ID，effect表示指向灯效果的指针。 |
+| int32_t (*TurnOffLight)([in] uint32_t lightId)                 | 根据指定的灯类型ID关闭列表中的可用灯。                     |
 
 ### 开发步骤
 1. 基于HDF驱动框架，按照驱动Driver Entry程序，完成Light抽象驱动开发（主要由Bind、Init、Release、Dispatch函数接口实现），资源配置及HCS配置文件解析。
