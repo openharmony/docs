@@ -41,7 +41,9 @@
     - [公共基础库概述](subsys-utils-overview.md)
     - [公共基础库开发指导](subsys-utils-guide.md)
     - [公共基础库常见问题](subsys-utils-faqs.md)
-- [AI框架开发指导](subsys-ai-aiframework-devguide.md)
+- AI服务
+    - [AI框架开发指导](subsys-ai-aiframework-devguide.md)
+    - [NNRt开发指导](subsys-ai-nnrt-guide.md)
 - Sensor服务
     - [Sensor服务概述](subsys-sensor-overview.md)
     - [Sensor服务使用指导](subsys-sensor-guide.md)
