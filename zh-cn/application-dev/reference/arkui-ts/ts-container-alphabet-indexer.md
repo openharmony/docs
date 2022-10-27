@@ -56,7 +56,7 @@ AlphabetIndexer(value: {arrayValue: Array&lt;string&gt;, selected: number})
 
 | 名称 | 功能描述 |
 | -------- | -------- |
-| onSelected(callback:&nbsp;(index:&nbsp;number)&nbsp;=&gt;&nbsp;void)<sup>(deprecated)</sup> | 索引条选中回调,返回值为当前选中索引。 从API Version 7开始废弃，建议使用onSelect代替。                             |
+| onSelected(callback:&nbsp;(index:&nbsp;number)&nbsp;=&gt;&nbsp;void)<sup>(deprecated)</sup> | 索引条选中回调,返回值为当前选中索引。 从API Version 8开始废弃，建议使用onSelect代替。                             |
 | onSelect(callback:&nbsp;(index:&nbsp;number)&nbsp;=&gt;&nbsp;void)<sup>8+</sup> | 索引条选中回调,返回值为当前选中索引。                                 |
 | onRequestPopupData(callback:&nbsp;(index:&nbsp;number)&nbsp;=&gt;&nbsp;Array&lt;string&gt;)<sup>8+</sup> | 选中字母索引后，请求索引提示弹窗显示内容回调。<br/>返回值：索引对应的字符串数组，此字符串数组在弹窗中竖排显示，字符串列表最多显示5个，超出部分可以滑动显示。 |
 | onPopupSelect(callback:&nbsp;(index:&nbsp;number)&nbsp;=&gt;&nbsp;void)<sup>8+</sup> | 字母索引提示弹窗字符串列表选中回调。                            |
@@ -162,4 +162,3 @@ struct AlphabetIndexerSample {
 }
 ```
 
-![zh-cn_image_0000001174422922](figures/zh-cn_image_0000001174422922.gif)
