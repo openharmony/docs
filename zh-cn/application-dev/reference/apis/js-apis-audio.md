@@ -24,9 +24,11 @@ import audio from '@ohos.multimedia.audio';
 
 **系统能力：** SystemCapability.Multimedia.Audio.Device
 
-| 名称  | 类型                     | 可读 | 可写 | 说明               |
-| ----- | -------------------------- | ---- | ---- | ------------------ |
-| LOCAL_NETWORK_ID<sup>9+</sup> | string | 是   | 否   | 本地设备网络id。 |
+| 名称                                    | 类型      | 可读  | 可写 | 说明               |
+| --------------------------------------- | ----------| ---- | ---- | ------------------ |
+| LOCAL_NETWORK_ID<sup>9+</sup>           | string    | 是   | 否   | 本地设备网络id。<br> **系统能力：** SystemCapability.Multimedia.Audio.Device |
+| DEFAULT_VOLUME_GROUP_ID<sup>9+</sup>    | number    | 是   | 否   | 默认音量组id。<br> **系统能力：** SystemCapability.Multimedia.Audio.Volume       |
+| DEFAULT_INTERRUPT_GROUP_ID<sup>9+</sup> | number | 是   | 否   | 默认音频中断id。<br> **系统能力：** SystemCapability.Multimedia.Audio.Interrupt       |
 
 **示例：**
 
@@ -34,33 +36,7 @@ import audio from '@ohos.multimedia.audio';
 import audio from '@ohos.multimedia.audio';
 
 const localNetworkId = audio.LOCAL_NETWORK_ID;
-```
-
-**系统能力：** SystemCapability.Multimedia.Audio.Volume
-
-| 名称                                 | 类型    | 可读   | 可写 | 说明               |
-| ------------------------------------ | -------| ------ | ---- | ------------------ |
-| DEFAULT_VOLUME_GROUP_ID<sup>9+</sup> | number | 是     | 否   | 默认音量组id。      |
-
-**示例：**
-
-```js
-import audio from '@ohos.multimedia.audio';
-
 const defaultVolumeGroupId = audio.DEFAULT_VOLUME_GROUP_ID;
-```
-
-**系统能力：** SystemCapability.Multimedia.Audio.Interrupt
-
-| 名称                                    | 类型    | 可读   | 可写 | 说明               |
-| --------------------------------------- | -------| ------ | ---- | ------------------ |
-| DEFAULT_INTERRUPT_GROUP_ID<sup>9+</sup> | number | 是     | 否   | 默认音频中断id。      |
-
-**示例：**
-
-```js
-import audio from '@ohos.multimedia.audio';
-
 const defaultInterruptGroupId = audio.DEFAULT_INTERRUPT_GROUP_ID;
 ```
 
@@ -443,20 +419,6 @@ async function createTonePlayer(){
 | USB_HEADSET          | 22     | USB耳机，带麦克风。                                       |
 | DEFAULT<sup>9+</sup> | 1000   | 默认设备类型。                                            |
 
-## ActiveDeviceType<sup>(deprecated)</sup>
-
-枚举，活跃设备类型。
-
-> **说明：**
-> 从 API Version 9 开始废弃，建议使用[CommunicationDeviceType](#communicationdevicetype9)替代。
-
-**系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.Audio.Device
-
-| 名称          | 默认值 | 描述                                                 |
-| ------------- | ------ | ---------------------------------------------------- |
-| SPEAKER       | 2      | 扬声器。                                             |
-| BLUETOOTH_SCO | 7      | 蓝牙设备SCO（Synchronous Connection Oriented）连接。 |
-
 ## CommunicationDeviceType<sup>9</sup>
 
 枚举，用于通信的可用设备类型。
@@ -500,15 +462,15 @@ async function createTonePlayer(){
 
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.Audio.Core
 
-| 名称                 | 默认值   | 描述            |
-| ---------------------| --------| --------------- |
-| ERROR_INVALID_PARAM  | 6800101 | 无效入参。     |
-| ERROR_NO_MEMORY      | 6800102 | 分配内存失败。   |
-| ERROR_ILLEGAL_STATE  | 6800103 | 状态不支持。     |
-| ERROR_UNSUPPORTED    | 6800104 | 参数选项不支持。  |
-| ERROR_TIMEOUT        | 6800105 | 处理超时。       |
+| 错误信息              | 错误码   | 错误描述          |
+| ---------------------| --------| ----------------- |
+| ERROR_INVALID_PARAM  | 6800101 | 无效入参。         |
+| ERROR_NO_MEMORY      | 6800102 | 分配内存失败。     |
+| ERROR_ILLEGAL_STATE  | 6800103 | 状态不支持。       |
+| ERROR_UNSUPPORTED    | 6800104 | 参数选项不支持。    |
+| ERROR_TIMEOUT        | 6800105 | 处理超时。         |
 | ERROR_STREAM_LIMIT   | 6800201 | 音频流数量达到限制。|
-| ERROR_SYSTEM         | 6800301 | 系统处理异常。    |
+| ERROR_SYSTEM         | 6800301 | 系统处理异常。     |
 
 ## AudioChannel<sup>8+</sup>
 
@@ -658,20 +620,6 @@ async function createTonePlayer(){
 | INTERRUPT_HINT_DUCK                | 4      | 提示音频躲避。（躲避：音量减弱，而不会停止） |
 | INTERRUPT_HINT_UNDUCK<sup>8+</sup> | 5      | 提示音量恢复。                               |
 
-## InterruptActionType<sup>(deprecated)</sup>
-
-枚举，中断事件返回类型。
-
-> **说明：**
-> 从 API Version 7 开始支持，从 API Version 9 开始废弃。
-
-**系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.Audio.Renderer
-
-| 名称           | 默认值 | 描述               |
-| -------------- | ------ | ------------------ |
-| TYPE_ACTIVATED | 0      | 表示触发焦点事件。 |
-| TYPE_INTERRUPT | 1      | 表示音频打断事件。 |
-
 ## AudioStreamInfo<sup>8+</sup>
 
 音频流信息。
@@ -732,37 +680,6 @@ async function createTonePlayer(){
 | eventType | [InterruptType](#interrupttype)            | 是   | 中断事件类型，开始或是结束。         |
 | forceType | [InterruptForceType](#interruptforcetype9) | 是   | 操作是由系统执行或是由应用程序执行。 |
 | hintType  | [InterruptHint](#interrupthint)            | 是   | 中断提示。                           |
-
-## AudioInterrupt<sup>(deprecated)</sup>
-
-> **说明：**
-> 从 API Version 7 开始支持，从 API Version 9 开始废弃。
-
-音频监听事件传入的参数。
-
-**系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.Audio.Renderer
-
-| 名称            | 类型                        | 必填 | 说明                                                         |
-| --------------- | --------------------------- | ---- | ------------------------------------------------------------ |
-| streamUsage     | [StreamUsage](#streamusage) | 是   | 音频流使用类型。                                             |
-| contentType     | [ContentType](#contenttype) | 是   | 音频打断媒体类型。                                           |
-| pauseWhenDucked | boolean                     | 是   | 音频打断时是否可以暂停音频播放（true表示音频播放可以在音频打断期间暂停，false表示相反）。 |
-
-## InterruptAction<sup>(deprecated)</sup>
-
-> **说明：**
-> 从 API Version 7 开始支持，从 API Version 9 开始废弃。
-
-音频打断/获取焦点事件的回调方法。
-
-**系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.Audio.Renderer
-
-| 名称       | 类型                                        | 必填 | 说明                                                         |
-| ---------- | ------------------------------------------- | ---- | ------------------------------------------------------------ |
-| actionType | [InterruptActionType](#interruptactiontype) | 是   | 事件返回类型。TYPE_ACTIVATED为焦点触发事件，TYPE_INTERRUPT为音频打断事件。 |
-| type       | [InterruptType](#interrupttype)             | 否   | 打断事件类型。                                               |
-| hint       | [InterruptHint](#interrupthint)              | 否   | 打断事件提示。                                               |
-| activated  | boolean                                     | 否   | 获得/释放焦点。true表示焦点获取/释放成功，false表示焦点获得/释放失败。 |
 
 ## VolumeEvent<sup>8+</sup>
 
@@ -966,577 +883,6 @@ async function getRoutingManager(){
 }
 ```
 
-### setVolume<sup>(deprecated)</sup>
-
-setVolume(volumeType: AudioVolumeType, volume: number, callback: AsyncCallback&lt;void&gt;): void
-
-设置指定流的音量，使用callback方式异步返回结果。
-
-> **说明：**
-> 从 API Version 7 开始支持，从 API Version 9 开始废弃，建议使用AudioVolumeGroupManager中的[setVolume](#setvolume9)替代。
-
-**需要权限：** ohos.permission.ACCESS_NOTIFICATION_POLICY
-
-仅设置铃声（即volumeType为AudioVolumeType.RINGTONE）在静音和非静音状态切换时需要该权限。
-
-**系统能力：** SystemCapability.Multimedia.Audio.Volume
-
-**参数：**
-
-| 参数名     | 类型                                | 必填 | 说明                                                     |
-| ---------- | ----------------------------------- | ---- | -------------------------------------------------------- |
-| volumeType | [AudioVolumeType](#audiovolumetype) | 是   | 音量流类型。                                             |
-| volume     | number                              | 是   | 音量等级，可设置范围通过getMinVolume和getMaxVolume获取。 |
-| callback   | AsyncCallback&lt;void&gt;           | 是   | 回调表示成功还是失败。                                   |
-
-**示例：**
-
-```js
-audioManager.setVolume(audio.AudioVolumeType.MEDIA, 10, (err) => {
-  if (err) {
-    console.error(`Failed to set the volume. ${err}`);
-    return;
-  }
-  console.info('Callback invoked to indicate a successful volume setting.');
-});
-```
-
-### setVolume<sup>(deprecated)</sup>
-
-setVolume(volumeType: AudioVolumeType, volume: number): Promise&lt;void&gt;
-
-设置指定流的音量，使用Promise方式异步返回结果。
-
-> **说明：**
-> 从 API Version 7 开始支持，从 API Version 9 开始废弃，建议使用AudioVolumeGroupManager中的[setVolume](#setvolume9)替代。
-
-**需要权限：** ohos.permission.ACCESS_NOTIFICATION_POLICY
-
-仅设置铃声（即volumeType为AudioVolumeType.RINGTONE）在静音和非静音状态切换时需要该权限。
-
-**系统能力：** SystemCapability.Multimedia.Audio.Volume
-
-**参数：**
-
-| 参数名     | 类型                                | 必填 | 说明                                                     |
-| ---------- | ----------------------------------- | ---- | -------------------------------------------------------- |
-| volumeType | [AudioVolumeType](#audiovolumetype) | 是   | 音量流类型。                                             |
-| volume     | number                              | 是   | 音量等级，可设置范围通过getMinVolume和getMaxVolume获取。 |
-
-**返回值：**
-
-| 类型                | 说明                          |
-| ------------------- | ----------------------------- |
-| Promise&lt;void&gt; | Promise回调表示成功还是失败。 |
-
-**示例：**
-
-```js
-audioManager.setVolume(audio.AudioVolumeType.MEDIA, 10).then(() => {
-  console.info('Promise returned to indicate a successful volume setting.');
-});
-```
-
-### getVolume<sup>(deprecated)</sup>
-
-getVolume(volumeType: AudioVolumeType, callback: AsyncCallback&lt;number&gt;): void
-
-获取指定流的音量，使用callback方式异步返回结果。
-
-> **说明：**
->  从 API Version 7 开始支持，从 API Version 9 开始废弃，建议使用AudioVolumeGroupManager中的[getVolume](#getvolume9)替代。
-
-**系统能力：** SystemCapability.Multimedia.Audio.Volume
-
-**参数：**
-
-| 参数名     | 类型                                | 必填 | 说明               |
-| ---------- | ----------------------------------- | ---- | ------------------ |
-| volumeType | [AudioVolumeType](#audiovolumetype) | 是   | 音量流类型。       |
-| callback   | AsyncCallback&lt;number&gt;         | 是   | 回调返回音量大小。 |
-
-**示例：**
-
-```js
-audioManager.getVolume(audio.AudioVolumeType.MEDIA, (err, value) => {
-  if (err) {
-    console.error(`Failed to obtain the volume. ${err}`);
-    return;
-  }
-  console.info('Callback invoked to indicate that the volume is obtained.');
-});
-```
-
-### getVolume<sup>(deprecated)</sup>
-
-getVolume(volumeType: AudioVolumeType): Promise&lt;number&gt;
-
-获取指定流的音量，使用Promise方式异步返回结果。
-
-> **说明：**
->  从 API Version 7 开始支持，从 API Version 9 开始废弃，建议使用AudioVolumeGroupManager中的[getVolume](#getvolume9)替代。
-
-**系统能力：** SystemCapability.Multimedia.Audio.Volume
-
-**参数：**
-
-| 参数名     | 类型                                | 必填 | 说明         |
-| ---------- | ----------------------------------- | ---- | ------------ |
-| volumeType | [AudioVolumeType](#audiovolumetype) | 是   | 音量流类型。 |
-
-**返回值：**
-
-| 类型                  | 说明                      |
-| --------------------- | ------------------------- |
-| Promise&lt;number&gt; | Promise回调返回音量大小。 |
-
-**示例：**
-
-```js
-audioManager.getVolume(audio.AudioVolumeType.MEDIA).then((value) => {
-  console.info(`Promise returned to indicate that the volume is obtained ${value} .`);
-});
-```
-
-### getMinVolume<sup>(deprecated)</sup>
-
-getMinVolume(volumeType: AudioVolumeType, callback: AsyncCallback&lt;number&gt;): void
-
-获取指定流的最小音量，使用callback方式异步返回结果。
-
-> **说明：**
->  从 API Version 7 开始支持，从 API Version 9 开始废弃，建议使用AudioVolumeGroupManager中的[getMinVolume](#getminvolume9)替代。
-
-**系统能力：** SystemCapability.Multimedia.Audio.Volume
-
-**参数：**
-
-| 参数名     | 类型                                | 必填 | 说明               |
-| ---------- | ----------------------------------- | ---- | ------------------ |
-| volumeType | [AudioVolumeType](#audiovolumetype) | 是   | 音量流类型。       |
-| callback   | AsyncCallback&lt;number&gt;         | 是   | 回调返回最小音量。 |
-
-**示例：**
-
-```js
-audioManager.getMinVolume(audio.AudioVolumeType.MEDIA, (err, value) => {
-  if (err) {
-    console.error(`Failed to obtain the minimum volume. ${err}`);
-    return;
-  }
-  console.info(`Callback invoked to indicate that the minimum volume is obtained. ${value}`);
-});
-```
-
-### getMinVolume<sup>(deprecated)</sup>
-
-getMinVolume(volumeType: AudioVolumeType): Promise&lt;number&gt;
-
-获取指定流的最小音量，使用Promise方式异步返回结果。
-
-> **说明：**
->  从 API Version 7 开始支持，从 API Version 9 开始废弃，建议使用AudioVolumeGroupManager中的[getMinVolume](#getminvolume9)替代。
-
-**系统能力：** SystemCapability.Multimedia.Audio.Volume
-
-**参数：**
-
-| 参数名     | 类型                                | 必填 | 说明         |
-| ---------- | ----------------------------------- | ---- | ------------ |
-| volumeType | [AudioVolumeType](#audiovolumetype) | 是   | 音量流类型。 |
-
-**返回值：**
-
-| 类型                  | 说明                      |
-| --------------------- | ------------------------- |
-| Promise&lt;number&gt; | Promise回调返回最小音量。 |
-
-**示例：**
-
-```js
-audioManager.getMinVolume(audio.AudioVolumeType.MEDIA).then((value) => {
-  console.info(`Promised returned to indicate that the minimum volume is obtained. ${value}`);
-});
-```
-
-### getMaxVolume<sup>(deprecated)</sup>
-
-getMaxVolume(volumeType: AudioVolumeType, callback: AsyncCallback&lt;number&gt;): void
-
-获取指定流的最大音量，使用callback方式异步返回结果。
-
-> **说明：**
->  从 API Version 7 开始支持，从 API Version 9 开始废弃，建议使用AudioVolumeGroupManager中的[getMaxVolume](#getmaxvolume9)替代。
-
-**系统能力：** SystemCapability.Multimedia.Audio.Volume
-
-**参数：**
-
-| 参数名     | 类型                                | 必填 | 说明                   |
-| ---------- | ----------------------------------- | ---- | ---------------------- |
-| volumeType | [AudioVolumeType](#audiovolumetype) | 是   | 音量流类型。           |
-| callback   | AsyncCallback&lt;number&gt;         | 是   | 回调返回最大音量大小。 |
-
-**示例：**
-
-```js
-audioManager.getMaxVolume(audio.AudioVolumeType.MEDIA, (err, value) => {
-  if (err) {
-    console.error(`Failed to obtain the maximum volume. ${err}`);
-    return;
-  }
-  console.info(`Callback invoked to indicate that the maximum volume is obtained. ${value}`);
-});
-```
-
-### getMaxVolume<sup>(deprecated)</sup>
-
-getMaxVolume(volumeType: AudioVolumeType): Promise&lt;number&gt;
-
-获取指定流的最大音量，使用Promise方式异步返回结果。
-
-> **说明：**
->  从 API Version 7 开始支持，从 API Version 9 开始废弃，建议使用AudioVolumeGroupManager中的[getMaxVolume](#getmaxvolume9)替代。
-
-**系统能力：** SystemCapability.Multimedia.Audio.Volume
-
-**参数：**
-
-| 参数名     | 类型                                | 必填 | 说明         |
-| ---------- | ----------------------------------- | ---- | ------------ |
-| volumeType | [AudioVolumeType](#audiovolumetype) | 是   | 音量流类型。 |
-
-**返回值：**
-
-| 类型                  | 说明                          |
-| --------------------- | ----------------------------- |
-| Promise&lt;number&gt; | Promise回调返回最大音量大小。 |
-
-**示例：**
-
-```js
-audioManager.getMaxVolume(audio.AudioVolumeType.MEDIA).then((data) => {
-  console.info('Promised returned to indicate that the maximum volume is obtained.');
-});
-```
-
-### mute<sup>(deprecated)</sup>
-
-mute(volumeType: AudioVolumeType, mute: boolean, callback: AsyncCallback&lt;void&gt;): void
-
-设置指定音量流静音，使用callback方式异步返回结果。
-
-> **说明：**
->  从 API Version 7 开始支持，从 API Version 9 开始废弃，建议使用AudioVolumeGroupManager中的[mute](#mute9)替代。
-
-**需要权限：** ohos.permission.ACCESS_NOTIFICATION_POLICY
-
-仅设置铃声（即volumeType为AudioVolumeType.RINGTONE）在静音和非静音状态切换时需要该权限。
-
-**系统能力：** SystemCapability.Multimedia.Audio.Volume
-
-**参数：**
-
-| 参数名     | 类型                                | 必填 | 说明                                  |
-| ---------- | ----------------------------------- | ---- | ------------------------------------- |
-| volumeType | [AudioVolumeType](#audiovolumetype) | 是   | 音量流类型。                          |
-| mute       | boolean                             | 是   | 静音状态，true为静音，false为非静音。 |
-| callback   | AsyncCallback&lt;void&gt;           | 是   | 回调表示成功还是失败。                |
-
-**示例：**
-
-```js
-audioManager.mute(audio.AudioVolumeType.MEDIA, true, (err) => {
-  if (err) {
-    console.error(`Failed to mute the stream. ${err}`);
-    return;
-  }
-  console.info('Callback invoked to indicate that the stream is muted.');
-});
-```
-
-### mute<sup>(deprecated)</sup>
-
-mute(volumeType: AudioVolumeType, mute: boolean): Promise&lt;void&gt;
-
-设置指定音量流静音，使用Promise方式异步返回结果。
-
-> **说明：**
->  从 API Version 7 开始支持，从 API Version 9 开始废弃，建议使用AudioVolumeGroupManager中的[mute](#mute9)替代。
-
-**需要权限：** ohos.permission.ACCESS_NOTIFICATION_POLICY
-
-仅设置铃声（即volumeType为AudioVolumeType.RINGTONE）在静音和非静音状态切换时需要该权限。
-
-**系统能力：** SystemCapability.Multimedia.Audio.Volume
-
-**参数：**
-
-| 参数名     | 类型                                | 必填 | 说明                                  |
-| ---------- | ----------------------------------- | ---- | ------------------------------------- |
-| volumeType | [AudioVolumeType](#audiovolumetype) | 是   | 音量流类型。                          |
-| mute       | boolean                             | 是   | 静音状态，true为静音，false为非静音。 |
-
-**返回值：**
-
-| 类型                | 说明                          |
-| ------------------- | ----------------------------- |
-| Promise&lt;void&gt; | Promise回调表示成功还是失败。 |
-
-**示例：**
-
-
-```js
-audioManager.mute(audio.AudioVolumeType.MEDIA, true).then(() => {
-  console.info('Promise returned to indicate that the stream is muted.');
-});
-```
-
-### isMute<sup>(deprecated)</sup>
-
-isMute(volumeType: AudioVolumeType, callback: AsyncCallback&lt;boolean&gt;): void
-
-获取指定音量流是否被静音，使用callback方式异步返回结果。
-
-> **说明：**
->  从 API Version 7 开始支持，从 API Version 9 开始废弃，建议使用AudioVolumeGroupManager中的[isMute](#ismute9)替代。
-
-**系统能力：** SystemCapability.Multimedia.Audio.Volume
-
-**参数：**
-
-| 参数名     | 类型                                | 必填 | 说明                                            |
-| ---------- | ----------------------------------- | ---- | ----------------------------------------------- |
-| volumeType | [AudioVolumeType](#audiovolumetype) | 是   | 音量流类型。                                    |
-| callback   | AsyncCallback&lt;boolean&gt;        | 是   | 回调返回流静音状态，true为静音，false为非静音。 |
-
-**示例：**
-
-```js
-audioManager.isMute(audio.AudioVolumeType.MEDIA, (err, value) => {
-  if (err) {
-    console.error(`Failed to obtain the mute status. ${err}`);
-    return;
-  }
-  console.info(`Callback invoked to indicate that the mute status of the stream is obtained. ${value}`);
-});
-```
-
-### isMute<sup>(deprecated)</sup>
-
-isMute(volumeType: AudioVolumeType): Promise&lt;boolean&gt;
-
-获取指定音量流是否被静音，使用Promise方式异步返回结果。
-
-> **说明：**
->  从 API Version 7 开始支持，从 API Version 9 开始废弃，建议使用AudioVolumeGroupManager中的[isMute](#ismute9)替代。
-
-**系统能力：** SystemCapability.Multimedia.Audio.Volume
-
-**参数：**
-
-| 参数名     | 类型                                | 必填 | 说明         |
-| ---------- | ----------------------------------- | ---- | ------------ |
-| volumeType | [AudioVolumeType](#audiovolumetype) | 是   | 音量流类型。 |
-
-**返回值：**
-
-| 类型                   | 说明                                                   |
-| ---------------------- | ------------------------------------------------------ |
-| Promise&lt;boolean&gt; | Promise回调返回流静音状态，true为静音，false为非静音。 |
-
-**示例：**
-
-```js
-audioManager.isMute(audio.AudioVolumeType.MEDIA).then((value) => {
-  console.info(`Promise returned to indicate that the mute status of the stream is obtained ${value}.`);
-});
-```
-
-### isActive<sup>(deprecated)</sup>
-
-isActive(volumeType: AudioVolumeType, callback: AsyncCallback&lt;boolean&gt;): void
-
-获取指定音量流是否为活跃状态，使用callback方式异步返回结果。
-
-> **说明：**
->  从 API Version 7 开始支持，从 API Version 9 开始废弃，建议使用AudioStreamManager中的[isActive](#isactive9)替代。
-
-**系统能力：** SystemCapability.Multimedia.Audio.Volume
-
-**参数：**
-
-| 参数名     | 类型                                | 必填 | 说明                                              |
-| ---------- | ----------------------------------- | ---- | ------------------------------------------------- |
-| volumeType | [AudioVolumeType](#audiovolumetype) | 是   | 音量流类型。                                      |
-| callback   | AsyncCallback&lt;boolean&gt;        | 是   | 回调返回流的活跃状态，true为活跃，false为不活跃。 |
-
-**示例：**
-
-```js
-audioManager.isActive(audio.AudioVolumeType.MEDIA, (err, value) => {
-  if (err) {
-    console.error(`Failed to obtain the active status of the stream. ${err}`);
-    return;
-  }
-  console.info(`Callback invoked to indicate that the active status of the stream is obtained ${value}.`);
-});
-```
-
-### isActive<sup>(deprecated)</sup>
-
-isActive(volumeType: AudioVolumeType): Promise&lt;boolean&gt;
-
-获取指定音量流是否为活跃状态，使用Promise方式异步返回结果。
-
-> **说明：**
->  从 API Version 7 开始支持，从 API Version 9 开始废弃，建议使用AudioStreamManager中的[isActive](#isactive9)替代。
-
-**系统能力：** SystemCapability.Multimedia.Audio.Volume
-
-**参数：**
-
-| 参数名     | 类型                                | 必填 | 说明         |
-| ---------- | ----------------------------------- | ---- | ------------ |
-| volumeType | [AudioVolumeType](#audiovolumetype) | 是   | 音量流类型。 |
-
-**返回值：**
-
-| 类型                   | 说明                                                     |
-| ---------------------- | -------------------------------------------------------- |
-| Promise&lt;boolean&gt; | Promise回调返回流的活跃状态，true为活跃，false为不活跃。 |
-
-**示例：**
-
-```js
-audioManager.isActive(audio.AudioVolumeType.MEDIA).then((value) => {
-  console.info(`Promise returned to indicate that the active status of the stream is obtained ${value}.`);
-});
-```
-
-### setRingerMode<sup>(deprecated)</sup>
-
-setRingerMode(mode: AudioRingMode, callback: AsyncCallback&lt;void&gt;): void
-
-设置铃声模式，使用callback方式异步返回结果。
-
-> **说明：**
->  从 API Version 7 开始支持，从 API Version 9 开始废弃，建议使用AudioVolumeGroupManager中的[setRingerMode](#setringermode9)替代。
-
-**需要权限：** ohos.permission.ACCESS_NOTIFICATION_POLICY
-
-仅在静音和非静音状态切换时需要该权限。
-
-**系统能力：** SystemCapability.Multimedia.Audio.Communication
-
-**参数：**
-
-| 参数名   | 类型                            | 必填 | 说明                     |
-| -------- | ------------------------------- | ---- | ------------------------ |
-| mode     | [AudioRingMode](#audioringmode) | 是   | 音频铃声模式。           |
-| callback | AsyncCallback&lt;void&gt;       | 是   | 回调返回设置成功或失败。 |
-
-**示例：**
-
-```js
-audioManager.setRingerMode(audio.AudioRingMode.RINGER_MODE_NORMAL, (err) => {
-  if (err) {
-    console.error(`Failed to set the ringer mode.​ ${err}`);
-    return;
-  }
-  console.info('Callback invoked to indicate a successful setting of the ringer mode.');
-});
-```
-
-### setRingerMode<sup>(deprecated)</sup>
-
-setRingerMode(mode: AudioRingMode): Promise&lt;void&gt;
-
-设置铃声模式，使用Promise方式异步返回结果。
-
-> **说明：**
->  从 API Version 7 开始支持，从 API Version 9 开始废弃，建议使用AudioVolumeGroupManager中的[setRingerMode](#setringermode9)替代。
-
-**需要权限：** ohos.permission.ACCESS_NOTIFICATION_POLICY
-
-仅在静音和非静音状态切换时需要该权限。
-
-**系统能力：** SystemCapability.Multimedia.Audio.Communication
-
-**参数：**
-
-| 参数名 | 类型                            | 必填 | 说明           |
-| ------ | ------------------------------- | ---- | -------------- |
-| mode   | [AudioRingMode](#audioringmode) | 是   | 音频铃声模式。 |
-
-**返回值：**
-
-| 类型                | 说明                            |
-| ------------------- | ------------------------------- |
-| Promise&lt;void&gt; | Promise回调返回设置成功或失败。 |
-
-**示例：**
-
-```js
-audioManager.setRingerMode(audio.AudioRingMode.RINGER_MODE_NORMAL).then(() => {
-  console.info('Promise returned to indicate a successful setting of the ringer mode.');
-});
-```
-
-### getRingerMode<sup>(deprecated)</sup>
-
-getRingerMode(callback: AsyncCallback&lt;AudioRingMode&gt;): void
-
-获取铃声模式，使用callback方式异步返回结果。
-
-> **说明：**
->  从 API Version 7 开始支持，从 API Version 9 开始废弃，建议使用AudioVolumeGroupManager中的[getRingerMode](#getringermode9)替代。
-
-**系统能力：** SystemCapability.Multimedia.Audio.Communication
-
-**参数：**
-
-| 参数名   | 类型                                                 | 必填 | 说明                     |
-| -------- | ---------------------------------------------------- | ---- | ------------------------ |
-| callback | AsyncCallback&lt;[AudioRingMode](#audioringmode)&gt; | 是   | 回调返回系统的铃声模式。 |
-
-**示例：**
-
-```js
-audioManager.getRingerMode((err, value) => {
-  if (err) {
-    console.error(`Failed to obtain the ringer mode.​ ${err}`);
-    return;
-  }
-  console.info(`Callback invoked to indicate that the ringer mode is obtained ${value}.`);
-});
-```
-
-### getRingerMode<sup>(deprecated)</sup>
-
-getRingerMode(): Promise&lt;AudioRingMode&gt;
-
-获取铃声模式，使用Promise方式异步返回结果。
-
-> **说明：**
->  从 API Version 7 开始支持，从 API Version 9 开始废弃，建议使用AudioVolumeGroupManager中的[getRingerMode](#getringermode9)替代。
-
-**系统能力：** SystemCapability.Multimedia.Audio.Communication
-
-**返回值：**
-
-| 类型                                           | 说明                            |
-| ---------------------------------------------- | ------------------------------- |
-| Promise&lt;[AudioRingMode](#audioringmode)&gt; | Promise回调返回系统的铃声模式。 |
-
-**示例：**
-
-```js
-audioManager.getRingerMode().then((value) => {
-  console.info(`Promise returned to indicate that the ringer mode is obtained ${value}.`);
-});
-```
-
 ### setAudioParameter
 
 setAudioParameter(key: string, value: string, callback: AsyncCallback&lt;void&gt;): void
@@ -1658,503 +1004,6 @@ getAudioParameter(key: string): Promise&lt;string&gt;
 ```js
 audioManager.getAudioParameter('key_example').then((value) => {
   console.info(`Promise returned to indicate that the value of the audio parameter is obtained ${value}.`);
-});
-```
-
-### getDevices<sup>(deprecated)</sup>
-
-getDevices(deviceFlag: DeviceFlag, callback: AsyncCallback&lt;AudioDeviceDescriptors&gt;): void
-
-获取音频设备列表，使用callback方式异步返回结果。
-
-> **说明：**
->  从 API Version 7 开始支持，从 API Version 9 开始废弃，建议使用AudioRoutingManager中的[getDevices](#getdevices9)替代。
-
-**系统能力：** SystemCapability.Multimedia.Audio.Device
-
-**参数：**
-
-| 参数名     | 类型                                                         | 必填 | 说明                 |
-| ---------- | ------------------------------------------------------------ | ---- | -------------------- |
-| deviceFlag | [DeviceFlag](#deviceflag)                                    | 是   | 设备类型的flag。     |
-| callback   | AsyncCallback&lt;[AudioDeviceDescriptors](#audiodevicedescriptors)&gt; | 是   | 回调，返回设备列表。 |
-
-**示例：**
-```js
-audioManager.getDevices(audio.DeviceFlag.OUTPUT_DEVICES_FLAG, (err, value) => {
-  if (err) {
-    console.error(`Failed to obtain the device list. ${err}`);
-    return;
-  }
-  console.info('Callback invoked to indicate that the device list is obtained.');
-});
-```
-
-### getDevices<sup>(deprecated)</sup>
-
-getDevices(deviceFlag: DeviceFlag): Promise&lt;AudioDeviceDescriptors&gt;
-
-获取音频设备列表，使用Promise方式异步返回结果。
-
-> **说明：**
->  从 API Version 7 开始支持，从 API Version 9 开始废弃，建议使用AudioRoutingManager中的[getDevices](#getdevices9)替代。
-
-**系统能力：** SystemCapability.Multimedia.Audio.Device
-
-**参数：**
-
-| 参数名     | 类型                      | 必填 | 说明             |
-| ---------- | ------------------------- | ---- | ---------------- |
-| deviceFlag | [DeviceFlag](#deviceflag) | 是   | 设备类型的flag。 |
-
-**返回值：**
-
-| 类型                                                         | 说明                      |
-| ------------------------------------------------------------ | ------------------------- |
-| Promise&lt;[AudioDeviceDescriptors](#audiodevicedescriptors)&gt; | Promise回调返回设备列表。 |
-
-**示例：**
-
-```js
-audioManager.getDevices(audio.DeviceFlag.OUTPUT_DEVICES_FLAG).then((data) => {
-  console.info('Promise returned to indicate that the device list is obtained.');
-});
-```
-
-### setDeviceActive<sup>(deprecated)</sup>
-
-setDeviceActive(deviceType: ActiveDeviceType, active: boolean, callback: AsyncCallback&lt;void&gt;): void
-
-设置设备激活状态，使用callback方式异步返回结果。
-
-> **说明：**
->  从 API Version 7 开始支持，从 API Version 9 开始废弃，建议使用AudioRoutingManager中的[setCommunicationDevice](#setcommunicationdevice9)替代。
-
-**系统能力：** SystemCapability.Multimedia.Audio.Device
-
-**参数：**
-
-| 参数名     | 类型                                  | 必填 | 说明                     |
-| ---------- | ------------------------------------- | ---- | ------------------------ |
-| deviceType | [ActiveDeviceType](#activedevicetype) | 是   | 活跃音频设备类型。       |
-| active     | boolean                               | 是   | 设备激活状态。           |
-| callback   | AsyncCallback&lt;void&gt;             | 是   | 回调返回设置成功或失败。 |
-
-**示例：**
-
-```js
-audioManager.setDeviceActive(audio.ActiveDeviceType.SPEAKER, true, (err) => {
-  if (err) {
-    console.error(`Failed to set the active status of the device. ${err}`);
-    return;
-  }
-  console.info('Callback invoked to indicate that the device is set to the active status.');
-});
-```
-
-### setDeviceActive<sup>(deprecated)</sup>
-
-setDeviceActive(deviceType: ActiveDeviceType, active: boolean): Promise&lt;void&gt;
-
-设置设备激活状态，使用Promise方式异步返回结果。
-
-> **说明：**
->  从 API Version 7 开始支持，从 API Version 9 开始废弃，建议使用AudioRoutingManager中的[setCommunicationDevice](#setcommunicationdevice9)替代。
-
-**系统能力：** SystemCapability.Multimedia.Audio.Device
-
-**参数：**
-
-| 参数名     | 类型                                  | 必填 | 说明               |
-| ---------- | ------------------------------------- | ---- | ------------------ |
-| deviceType | [ActiveDeviceType](#activedevicetype) | 是   | 活跃音频设备类型。 |
-| active     | boolean                               | 是   | 设备激活状态。     |
-
-**返回值：**
-
-| 类型                | 说明                            |
-| ------------------- | ------------------------------- |
-| Promise&lt;void&gt; | Promise回调返回设置成功或失败。 |
-
-**示例：**
-
-
-```js
-audioManager.setDeviceActive(audio.ActiveDeviceType.SPEAKER, true).then(() => {
-  console.info('Promise returned to indicate that the device is set to the active status.');
-});
-```
-
-### isDeviceActive<sup>(deprecated)</sup>
-
-isDeviceActive(deviceType: ActiveDeviceType, callback: AsyncCallback&lt;boolean&gt;): void
-
-获取指定设备的激活状态，使用callback方式异步返回结果。
-
-> **说明：**
->  从 API Version 7 开始支持，从 API Version 9 开始废弃，建议使用AudioRoutingManager中的[isCommunicationDeviceActive](#iscommunicationdeviceactive9)替代。
-
-**系统能力：** SystemCapability.Multimedia.Audio.Device
-
-**参数：**
-
-| 参数名     | 类型                                  | 必填 | 说明                     |
-| ---------- | ------------------------------------- | ---- | ------------------------ |
-| deviceType | [ActiveDeviceType](#activedevicetype) | 是   | 活跃音频设备类型。       |
-| callback   | AsyncCallback&lt;boolean&gt;          | 是   | 回调返回设备的激活状态。 |
-
-**示例：**
-
-```js
-audioManager.isDeviceActive(audio.ActiveDeviceType.SPEAKER, (err, value) => {
-  if (err) {
-    console.error(`Failed to obtain the active status of the device. ${err}`);
-    return;
-  }
-  console.info('Callback invoked to indicate that the active status of the device is obtained.');
-});
-```
-
-### isDeviceActive<sup>(deprecated)</sup>
-
-isDeviceActive(deviceType: ActiveDeviceType): Promise&lt;boolean&gt;
-
-获取指定设备的激活状态，使用Promise方式异步返回结果。
-
-> **说明：**
->  从 API Version 7 开始支持，从 API Version 9 开始废弃，建议使用AudioRoutingManager中的[isCommunicationDeviceActive](#iscommunicationdeviceactive9)替代。
-
-**系统能力：** SystemCapability.Multimedia.Audio.Device
-
-**参数：**
-
-| 参数名     | 类型                                  | 必填 | 说明               |
-| ---------- | ------------------------------------- | ---- | ------------------ |
-| deviceType | [ActiveDeviceType](#activedevicetype) | 是   | 活跃音频设备类型。 |
-
-**返回值：**
-
-| Type                   | Description                     |
-| ---------------------- | ------------------------------- |
-| Promise&lt;boolean&gt; | Promise回调返回设备的激活状态。 |
-
-**示例：**
-
-```js
-audioManager.isDeviceActive(audio.ActiveDeviceType.SPEAKER).then((value) => {
-  console.info(`Promise returned to indicate that the active status of the device is obtained ${value}.`);
-});
-```
-
-### setMicrophoneMute<sup>(deprecated)</sup>
-
-setMicrophoneMute(mute: boolean, callback: AsyncCallback&lt;void&gt;): void
-
-设置麦克风静音状态，使用callback方式异步返回结果。
-
-> **说明：**
->  从 API Version 7 开始支持，从 API Version 9 开始废弃，建议使用AudioVolumeGroupManager中的[setMicrophoneMute](#setmicrophonemute9)替代。
-
-**需要权限：** ohos.permission.MICROPHONE
-
-**系统能力：** SystemCapability.Multimedia.Audio.Device
-
-**参数：**
-
-| 参数名   | 类型                      | 必填 | 说明                                          |
-| -------- | ------------------------- | ---- | --------------------------------------------- |
-| mute     | boolean                   | 是   | 待设置的静音状态，true为静音，false为非静音。 |
-| callback | AsyncCallback&lt;void&gt; | 是   | 回调返回设置成功或失败。                      |
-
-**示例：**
-
-```js
-audioManager.setMicrophoneMute(true, (err) => {
-  if (err) {
-    console.error(`Failed to mute the microphone. ${err}`);
-    return;
-  }
-  console.info('Callback invoked to indicate that the microphone is muted.');
-});
-```
-
-### setMicrophoneMute<sup>(deprecated)</sup>
-
-setMicrophoneMute(mute: boolean): Promise&lt;void&gt;
-
-设置麦克风静音状态，使用Promise方式异步返回结果。
-
-> **说明：**
->  从 API Version 7 开始支持，从 API Version 9 开始废弃，建议使用AudioVolumeGroupManager中的[setMicrophoneMute](#setmicrophonemute9)替代。
-
-**需要权限：** ohos.permission.MICROPHONE
-
-**系统能力：** SystemCapability.Multimedia.Audio.Device
-
-**参数：**
-
-| 参数名 | 类型    | 必填 | 说明                                          |
-| ------ | ------- | ---- | --------------------------------------------- |
-| mute   | boolean | 是   | 待设置的静音状态，true为静音，false为非静音。 |
-
-**返回值：**
-
-| 类型                | 说明                            |
-| ------------------- | ------------------------------- |
-| Promise&lt;void&gt; | Promise回调返回设置成功或失败。 |
-
-**示例：**
-
-```js
-audioManager.setMicrophoneMute(true).then(() => {
-  console.info('Promise returned to indicate that the microphone is muted.');
-});
-```
-
-### isMicrophoneMute<sup>(deprecated)</sup>
-
-isMicrophoneMute(callback: AsyncCallback&lt;boolean&gt;): void
-
-获取麦克风静音状态，使用callback方式异步返回结果。
-
-> **说明：**
->  从 API Version 7 开始支持，从 API Version 9 开始废弃，建议使用AudioVolumeGroupManager中的[isMicrophoneMute](#ismicrophonemute9)替代。
-
-**需要权限：** ohos.permission.MICROPHONE
-
-**系统能力：** SystemCapability.Multimedia.Audio.Device
-
-**参数：**
-
-| 参数名   | 类型                         | 必填 | 说明                                                    |
-| -------- | ---------------------------- | ---- | ------------------------------------------------------- |
-| callback | AsyncCallback&lt;boolean&gt; | 是   | 回调返回系统麦克风静音状态，true为静音，false为非静音。 |
-
-**示例：**
-
-```js
-audioManager.isMicrophoneMute((err, value) => {
-  if (err) {
-    console.error(`Failed to obtain the mute status of the microphone. ${err}`);
-    return;
-  }
-  console.info(`Callback invoked to indicate that the mute status of the microphone is obtained ${value}.`);
-});
-```
-
-### isMicrophoneMute<sup>(deprecated)</sup>
-
-isMicrophoneMute(): Promise&lt;boolean&gt;
-
-获取麦克风静音状态，使用Promise方式异步返回结果。
-
-> **说明：**
->  从 API Version 7 开始支持，从 API Version 9 开始废弃，建议使用AudioVolumeGroupManager中的[isMicrophoneMute](#ismicrophonemute9)替代。
-
-**需要权限：** ohos.permission.MICROPHONE
-
-**系统能力：** SystemCapability.Multimedia.Audio.Device
-
-**返回值：**
-
-| 类型                   | 说明                                                         |
-| ---------------------- | ------------------------------------------------------------ |
-| Promise&lt;boolean&gt; | Promise回调返回系统麦克风静音状态，true为静音，false为非静音。 |
-
-**示例：**
-
-```js
-audioManager.isMicrophoneMute().then((value) => {
-  console.info(`Promise returned to indicate that the mute status of the microphone is obtained ${value}.`);
-});
-```
-
-### on('volumeChange')<sup>(deprecated)</sup>
-
-on(type: 'volumeChange', callback: Callback\<VolumeEvent>): void
-
-> **说明：**
-> 从 API Version 8 开始支持，从 API Version 9 开始废弃，建议使用AudioVolumeManager中的[on](#on9)替代。
-
-监听系统音量变化事件。
-
-**系统接口：** 该接口为系统接口
-
-目前此订阅接口在单进程多AudioManager实例的使用场景下，仅最后一个实例的订阅生效，其他实例的订阅会被覆盖（即使最后一个实例没有进行订阅），因此推荐使用单一AudioManager实例进行开发。
-
-**系统能力：** SystemCapability.Multimedia.Audio.Volume
-
-**参数：**
-
-| 参数名   | 类型                                   | 必填 | 说明                                                         |
-| -------- | -------------------------------------- | ---- | ------------------------------------------------------------ |
-| type     | string                                 | 是   | 事件回调类型，支持的事件为：'volumeChange'（系统音量变化事件，检测到系统音量改变时，触发该事件）。 |
-| callback | Callback<[VolumeEvent](#volumeevent8)> | 是   | 回调方法。                                                   |
-
-**示例：**
-
-```js
-audioManager.on('volumeChange', (volumeEvent) => {
-  console.info(`VolumeType of stream: ${volumeEvent.volumeType} `);
-  console.info(`Volume level: ${volumeEvent.volume} `);
-  console.info(`Whether to updateUI: ${volumeEvent.updateUi} `);
-});
-```
-
-### on('ringerModeChange')<sup>(deprecated)</sup>
-
-on(type: 'ringerModeChange', callback: Callback\<AudioRingMode>): void
-
-监听铃声模式变化事件。
-
-> **说明：**
-> 从 API Version 8 开始支持，从 API Version 9 开始废弃，建议使用AudioVolumeGroupManager中的[on('ringerModeChange')](#on('ringermodechange')9)替代。
-
-**系统接口：** 该接口为系统接口
-
-**系统能力：** SystemCapability.Multimedia.Audio.Communication
-
-**参数：**
-
-| 参数名   | 类型                                      | 必填 | 说明                                                         |
-| -------- | ----------------------------------------- | ---- | ------------------------------------------------------------ |
-| type     | string                                    | 是   | 事件回调类型，支持的事件为：'ringerModeChange'（铃声模式变化事件，检测到铃声模式改变时，触发该事件）。 |
-| callback | Callback<[AudioRingMode](#audioringmode)> | 是   | 回调方法。                                                   |
-
-**示例：**
-
-```js
-audioManager.on('ringerModeChange', (ringerMode) => {
-  console.info(`Updated ringermode: ${ringerMode}`);
-});
-```
-
-### on('deviceChange')<sup>(deprecated)</sup>
-
-on(type: 'deviceChange', callback: Callback<DeviceChangeAction\>): void
-
-设备更改。音频设备连接状态变化。
-
-> **说明：**
-> 从 API Version 7 开始支持，从 API Version 9 开始废弃，建议使用AudioRoutingManager中的[on](#on9)替代。
-
-**系统能力：** SystemCapability.Multimedia.Audio.Device
-
-**参数：**
-
-| 参数名   | 类型                                                 | 必填 | 说明                                       |
-| :------- | :--------------------------------------------------- | :--- | :----------------------------------------- |
-| type     | string                                               | 是   | 订阅的事件的类型。支持事件：'deviceChange' |
-| callback | Callback<[DeviceChangeAction](#devicechangeaction)\> | 是   | 获取设备更新详情。                         |
-
-**示例：**
-
-```js
-audioManager.on('deviceChange', (deviceChanged) => {
-  console.info(`device change type : ${deviceChanged.type} `);
-  console.info(`device descriptor size : ${deviceChanged.deviceDescriptors.length} `);
-  console.info(`device change descriptor : ${deviceChanged.deviceDescriptors[0].deviceRole} `);
-  console.info(`device change descriptor : ${deviceChanged.deviceDescriptors[0].deviceType} `);
-});
-```
-
-### off('deviceChange')<sup>(deprecated)</sup>
-
-off(type: 'deviceChange', callback?: Callback<DeviceChangeAction\>): void
-
-取消订阅音频设备连接变化事件。
-
-> **说明：**
-> 从 API Version 7 开始支持，从 API Version 9 开始废弃，建议使用AudioRoutingManager中的[off](#off9)替代。
-
-**系统能力：** SystemCapability.Multimedia.Audio.Device
-
-**参数：**
-
-| 参数名   | 类型                                                | 必填 | 说明                                       |
-| -------- | --------------------------------------------------- | ---- | ------------------------------------------ |
-| type     | string                                              | 是   | 订阅的事件的类型。支持事件：'deviceChange' |
-| callback | Callback<[DeviceChangeAction](#devicechangeaction)> | 否   | 获取设备更新详情。                         |
-
-**示例：**
-
-```js
-audioManager.off('deviceChange', (deviceChanged) => {
-  console.info('Should be no callback.');
-});
-```
-
-### on('interrupt')<sup>(deprecated)</sup>
-
-on(type: 'interrupt', interrupt: AudioInterrupt, callback: Callback\<InterruptAction>): void
-
-请求焦点并开始监听音频打断事件（当应用程序的音频被另一个播放事件中断，回调通知此应用程序）。
-
-> **说明：**
-> 从 API Version 7 开始支持，从 API Version 9 开始废弃。
-
-**系统能力：** SystemCapability.Multimedia.Audio.Renderer
-
-**参数：**
-
-| 参数名    | 类型                                          | 必填 | 说明                                                         |
-| --------- | --------------------------------------------- | ---- | ------------------------------------------------------------ |
-| type      | string                                        | 是   | 音频打断事件回调类型，支持的事件为：'interrupt'（多应用之间第二个应用会打断第一个应用，触发该事件）。 |
-| interrupt | AudioInterrupt                                | 是   | 音频打断事件类型的参数。                                     |
-| callback  | Callback<[InterruptAction](#interruptaction)> | 是   | 音频打断事件回调方法。                                       |
-
-**示例：**
-
-```js
-let interAudioInterrupt = {
-  streamUsage:2,
-  contentType:0,
-  pauseWhenDucked:true
-};
-audioManager.on('interrupt', interAudioInterrupt, (InterruptAction) => {
-  if (InterruptAction.actionType === 0) {
-    console.info('An event to gain the audio focus starts.');
-    console.info(`Focus gain event: ${InterruptAction} `);
-  }
-  if (InterruptAction.actionType === 1) {
-    console.info('An audio interruption event starts.');
-    console.info(`Audio interruption event: ${InterruptAction} `);
-  }
-});
-```
-
-### off('interrupt')<sup>(deprecated)</sup>
-
-off(type: 'interrupt', interrupt: AudioInterrupt, callback?: Callback\<InterruptAction>): void
-
-取消监听音频打断事件（删除监听事件，取消打断）。
-
-> **说明：**
-> 从 API Version 7 开始支持，从 API Version 9 开始废弃。
-
-**系统能力：** SystemCapability.Multimedia.Audio.Renderer
-
-**参数：**
-
-| 参数名    | 类型                                          | 必填 | 说明                                                         |
-| --------- | --------------------------------------------- | ---- | ------------------------------------------------------------ |
-| type      | string                                        | 是   | 音频打断事件回调类型，支持的事件为：'interrupt'（多应用之间第二个应用会打断第一个应用，触发该事件）。 |
-| interrupt | AudioInterrupt                                | 是   | 音频打断事件类型的参数。                                     |
-| callback  | Callback<[InterruptAction](#interruptaction)> | 否   | 音频打断事件回调方法。                                       |
-
-**示例：**
-
-```js
-let interAudioInterrupt = {
-  streamUsage:2,
-  contentType:0,
-  pauseWhenDucked:true
-};
-audioManager.off('interrupt', interAudioInterrupt, (InterruptAction) => {
-  if (InterruptAction.actionType === 0) {
-      console.info('An event to release the audio focus starts.');
-      console.info(`Focus release event: ${InterruptAction} `);
-  }
 });
 ```
 
@@ -2425,7 +1274,7 @@ getVolumeGroupManager(groupId: number\): Promise<AudioVolumeGroupManager\>
 
 | 类型                | 说明                          |
 | ------------------- | ----------------------------- |
-| Promise&lt; [AudioVolumeGroupManager](#audiovolumegroupmanager) &gt; | 音量组实例。 |
+| Promise&lt; [AudioVolumeGroupManager](#audiovolumegroupmanager9) &gt; | 音量组实例。 |
 
 **示例：**
 
@@ -2456,7 +1305,6 @@ on(type: 'volumeChange', callback: Callback\<VolumeEvent>): void
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 401     | if input parameter type or number mismatch. |
 | 6800101 | if input parameter value error.             |
 
 **示例：**
@@ -2835,7 +1683,7 @@ audioVolumeGroupManager.isMute(audio.AudioVolumeType.MEDIA).then((value) => {
 });
 ```
 
-### setRingerMode
+### setRingerMode<sup>9+</sup>
 
 setRingerMode(mode: AudioRingMode, callback: AsyncCallback&lt;void&gt;): void
 
@@ -2868,7 +1716,7 @@ audioVolumeGroupManager.setRingerMode(audio.AudioRingMode.RINGER_MODE_NORMAL, (e
 });
 ```
 
-### setRingerMode
+### setRingerMode<sup>9+</sup>
 
 setRingerMode(mode: AudioRingMode): Promise&lt;void&gt;
 
@@ -2902,7 +1750,7 @@ audioVolumeGroupManager.setRingerMode(audio.AudioRingMode.RINGER_MODE_NORMAL).th
 });
 ```
 
-### getRingerMode
+### getRingerMode<sup>9+</sup>
 
 getRingerMode(callback: AsyncCallback&lt;AudioRingMode&gt;): void
 
@@ -2928,7 +1776,7 @@ audioVolumeGroupManager.getRingerMode((err, value) => {
 });
 ```
 
-### getRingerMode
+### getRingerMode<sup>9+</sup>
 
 getRingerMode(): Promise&lt;AudioRingMode&gt;
 
@@ -2950,7 +1798,7 @@ audioVolumeGroupManager.getRingerMode().then((value) => {
 });
 ```
 
-### on('ringerModeChange')<sup>8+</sup>
+### on('ringerModeChange')<sup>9+</sup>
 
 on(type: 'ringerModeChange', callback: Callback\<AudioRingMode>): void
 
@@ -2973,7 +1821,6 @@ on(type: 'ringerModeChange', callback: Callback\<AudioRingMode>): void
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 401     | if input parameter type or number mismatch. |
 | 6800101 | if input parameter value error.             |
 
 **示例：**
@@ -2983,7 +1830,7 @@ audioVolumeGroupManager.on('ringerModeChange', (ringerMode) => {
   console.info(`Updated ringermode: ${ringerMode}`);
 });
 ```
-### setMicrophoneMute
+### setMicrophoneMute<sup>9+</sup>
 
 setMicrophoneMute(mute: boolean, callback: AsyncCallback&lt;void&gt;): void
 
@@ -3012,7 +1859,7 @@ audioVolumeGroupManager.setMicrophoneMute(true, (err) => {
 });
 ```
 
-### setMicrophoneMute
+### setMicrophoneMute<sup>9+</sup>
 
 setMicrophoneMute(mute: boolean): Promise&lt;void&gt;
 
@@ -3042,7 +1889,7 @@ audioVolumeGroupManager.setMicrophoneMute(true).then(() => {
 });
 ```
 
-### isMicrophoneMute
+### isMicrophoneMute<sup>9+</sup>
 
 isMicrophoneMute(callback: AsyncCallback&lt;boolean&gt;): void
 
@@ -3068,7 +1915,7 @@ audioVolumeGroupManager.isMicrophoneMute((err, value) => {
 });
 ```
 
-### isMicrophoneMute
+### isMicrophoneMute<sup>9+</sup>
 
 isMicrophoneMute(): Promise&lt;boolean&gt;
 
@@ -3113,7 +1960,6 @@ on(type: 'micStateChange', callback: Callback&lt;MicStateChangeEvent&gt;): void
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 401     | if input parameter type or number mismatch. |
 | 6800101 | if input parameter value error.             |
 
 **示例：**
@@ -3333,7 +2179,6 @@ on(type: "audioRendererChange", callback: Callback&lt;AudioRendererChangeInfoArr
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 401     | if input parameter type or number mismatch. |
 | 6800101 | if input parameter value error.             |
 
 **示例：**
@@ -3383,7 +2228,6 @@ off(type: "audioRendererChange"): void
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 401     | if input parameter type or number mismatch. |
 | 6800101 | if input parameter value error.             |
 
 **示例：**
@@ -3456,7 +2300,7 @@ console.info('######### CapturerChange Off is called #########');
 
 ```
 
-### isActive
+### isActive<sup>9+</sup>
 
 isActive(volumeType: AudioVolumeType, callback: AsyncCallback&lt;boolean&gt;): void
 
@@ -3483,7 +2327,7 @@ audioStreamManager.isActive(audio.AudioVolumeType.MEDIA, (err, value) => {
 });
 ```
 
-### isActive
+### isActive<sup>9+</sup>
 
 isActive(volumeType: AudioVolumeType): Promise&lt;boolean&gt;
 
@@ -3607,7 +2451,6 @@ on(type: 'deviceChange', deviceFlag: DeviceFlag, callback: Callback<DeviceChange
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 401     | if input parameter type or number mismatch. |
 | 6800101 | if input parameter value error.             |
 
 **示例：**
@@ -3650,7 +2493,6 @@ off(type: 'deviceChange', callback?: Callback<DeviceChangeAction\>): void
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 401     | if input parameter type or number mismatch. |
 | 6800101 | if input parameter value error.             |
 
 **示例：**
@@ -3753,7 +2595,7 @@ async function getRoutingManager(){
 }
 ```
 
-### setCommunicationDevice
+### setCommunicationDevice<sup>9+</sup>
 
 setCommunicationDevice(deviceType: CommunicationDeviceType, active: boolean, callback: AsyncCallback&lt;void&gt;): void
 
@@ -3781,7 +2623,7 @@ audioRoutingManager.setCommunicationDevice(audio.ActiveDeviceType.SPEAKER, true,
 });
 ```
 
-### setCommunicationDevice
+### setCommunicationDevice<sup>9+</sup>
 
 setCommunicationDevice(deviceType: CommunicationDeviceType, active: boolean): Promise&lt;void&gt;
 
@@ -3810,7 +2652,7 @@ audioRoutingManager.setCommunicationDevice(audio.ActiveDeviceType.SPEAKER, true)
 });
 ```
 
-### isCommunicationDeviceActive
+### isCommunicationDeviceActive<sup>9+</sup>
 
 isCommunicationDeviceActive(deviceType: CommunicationDeviceType, callback: AsyncCallback&lt;boolean&gt;): void
 
@@ -3837,7 +2679,7 @@ audioRoutingManager.isCommunicationDeviceActive(audio.ActiveDeviceType.SPEAKER, 
 });
 ```
 
-### isCommunicationDeviceActive
+### isCommunicationDeviceActive<sup>9+</sup>
 
 isCommunicationDeviceActive(deviceType: CommunicationDeviceType): Promise&lt;boolean&gt;
 
@@ -4409,7 +3251,7 @@ getAudioStreamId(): Promise<number\>
 
 | 类型                                           | 说明                   |
 | :--------------------------------------------- | :--------------------- |
-| Promise<number\> | Promise返回音频流id. |
+| Promise<number\> | Promise返回音频流id。 |
 
 **示例：**
 
@@ -5091,7 +3933,6 @@ on(type: 'audioInterrupt', callback: Callback\<InterruptEvent>): void
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 401     | if input parameter type or number mismatch. |
 | 6800101 | if input parameter value error.             |
 
 **示例：**
@@ -5433,9 +4274,9 @@ getAudioStreamId(): Promise<number\>
 
 **返回值：**
 
-| 类型                                           | 说明                   |
-| :--------------------------------------------- | :--------------------- |
-| Promise<number\> | Promise返回音频流id. |
+| 类型             | 说明                   |
+| :----------------| :--------------------- |
+| Promise<number\> | Promise返回音频流id。 |
 
 **示例：**
 
@@ -6157,5 +4998,1132 @@ tonePlayer.release().then(() => {
   console.info('promise call release');
 }).catch(() => {
   console.error('promise call release fail');
+});
+```
+
+## ActiveDeviceType<sup>(deprecated)</sup>
+
+枚举，活跃设备类型。
+
+> **说明：**
+> 从 API version 9 开始废弃，建议使用[CommunicationDeviceType](#communicationdevicetype9)替代。
+
+**系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.Audio.Device
+
+| 名称          | 默认值 | 描述                                                 |
+| ------------- | ------ | ---------------------------------------------------- |
+| SPEAKER       | 2      | 扬声器。                                             |
+| BLUETOOTH_SCO | 7      | 蓝牙设备SCO（Synchronous Connection Oriented）连接。 |
+
+## InterruptActionType<sup>(deprecated)</sup>
+
+枚举，中断事件返回类型。
+
+> **说明：**
+> 从 API version 7 开始支持，从 API version 9 开始废弃。
+
+**系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.Audio.Renderer
+
+| 名称           | 默认值 | 描述               |
+| -------------- | ------ | ------------------ |
+| TYPE_ACTIVATED | 0      | 表示触发焦点事件。 |
+| TYPE_INTERRUPT | 1      | 表示音频打断事件。 |
+
+## AudioInterrupt<sup>(deprecated)</sup>
+
+> **说明：**
+> 从 API version 7 开始支持，从 API version 9 开始废弃。
+
+音频监听事件传入的参数。
+
+**系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.Audio.Renderer
+
+| 名称            | 类型                        | 必填 | 说明                                                         |
+| --------------- | --------------------------- | ---- | ------------------------------------------------------------ |
+| streamUsage     | [StreamUsage](#streamusage) | 是   | 音频流使用类型。                                             |
+| contentType     | [ContentType](#contenttype) | 是   | 音频打断媒体类型。                                           |
+| pauseWhenDucked | boolean                     | 是   | 音频打断时是否可以暂停音频播放（true表示音频播放可以在音频打断期间暂停，false表示相反）。 |
+
+## InterruptAction<sup>(deprecated)</sup>
+
+> **说明：**
+> 从 API version 7 开始支持，从 API version 9 开始废弃。
+
+音频打断/获取焦点事件的回调方法。
+
+**系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.Audio.Renderer
+
+| 名称       | 类型                                        | 必填 | 说明                                                         |
+| ---------- | ------------------------------------------- | ---- | ------------------------------------------------------------ |
+| actionType | [InterruptActionType](#interruptactiontype) | 是   | 事件返回类型。TYPE_ACTIVATED为焦点触发事件，TYPE_INTERRUPT为音频打断事件。 |
+| type       | [InterruptType](#interrupttype)             | 否   | 打断事件类型。                                               |
+| hint       | [InterruptHint](#interrupthint)              | 否   | 打断事件提示。                                               |
+| activated  | boolean                                     | 否   | 获得/释放焦点。true表示焦点获取/释放成功，false表示焦点获得/释放失败。 |
+
+### setVolume<sup>(deprecated)</sup>
+
+setVolume(volumeType: AudioVolumeType, volume: number, callback: AsyncCallback&lt;void&gt;): void
+
+设置指定流的音量，使用callback方式异步返回结果。
+
+> **说明：**
+> 从 API version 7 开始支持，从 API version 9 开始废弃，建议使用AudioVolumeGroupManager中的[setVolume](#setvolume9)替代。
+
+**需要权限：** ohos.permission.ACCESS_NOTIFICATION_POLICY
+
+仅设置铃声（即volumeType为AudioVolumeType.RINGTONE）在静音和非静音状态切换时需要该权限。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Volume
+
+**参数：**
+
+| 参数名     | 类型                                | 必填 | 说明                                                     |
+| ---------- | ----------------------------------- | ---- | -------------------------------------------------------- |
+| volumeType | [AudioVolumeType](#audiovolumetype) | 是   | 音量流类型。                                             |
+| volume     | number                              | 是   | 音量等级，可设置范围通过getMinVolume和getMaxVolume获取。 |
+| callback   | AsyncCallback&lt;void&gt;           | 是   | 回调表示成功还是失败。                                   |
+
+**示例：**
+
+```js
+audioManager.setVolume(audio.AudioVolumeType.MEDIA, 10, (err) => {
+  if (err) {
+    console.error(`Failed to set the volume. ${err}`);
+    return;
+  }
+  console.info('Callback invoked to indicate a successful volume setting.');
+});
+```
+
+### setVolume<sup>(deprecated)</sup>
+
+setVolume(volumeType: AudioVolumeType, volume: number): Promise&lt;void&gt;
+
+设置指定流的音量，使用Promise方式异步返回结果。
+
+> **说明：**
+> 从 API version 7 开始支持，从 API version 9 开始废弃，建议使用AudioVolumeGroupManager中的[setVolume](#setvolume9)替代。
+
+**需要权限：** ohos.permission.ACCESS_NOTIFICATION_POLICY
+
+仅设置铃声（即volumeType为AudioVolumeType.RINGTONE）在静音和非静音状态切换时需要该权限。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Volume
+
+**参数：**
+
+| 参数名     | 类型                                | 必填 | 说明                                                     |
+| ---------- | ----------------------------------- | ---- | -------------------------------------------------------- |
+| volumeType | [AudioVolumeType](#audiovolumetype) | 是   | 音量流类型。                                             |
+| volume     | number                              | 是   | 音量等级，可设置范围通过getMinVolume和getMaxVolume获取。 |
+
+**返回值：**
+
+| 类型                | 说明                          |
+| ------------------- | ----------------------------- |
+| Promise&lt;void&gt; | Promise回调表示成功还是失败。 |
+
+**示例：**
+
+```js
+audioManager.setVolume(audio.AudioVolumeType.MEDIA, 10).then(() => {
+  console.info('Promise returned to indicate a successful volume setting.');
+});
+```
+
+### getVolume<sup>(deprecated)</sup>
+
+getVolume(volumeType: AudioVolumeType, callback: AsyncCallback&lt;number&gt;): void
+
+获取指定流的音量，使用callback方式异步返回结果。
+
+> **说明：**
+>  从 API version 7 开始支持，从 API version 9 开始废弃，建议使用AudioVolumeGroupManager中的[getVolume](#getvolume9)替代。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Volume
+
+**参数：**
+
+| 参数名     | 类型                                | 必填 | 说明               |
+| ---------- | ----------------------------------- | ---- | ------------------ |
+| volumeType | [AudioVolumeType](#audiovolumetype) | 是   | 音量流类型。       |
+| callback   | AsyncCallback&lt;number&gt;         | 是   | 回调返回音量大小。 |
+
+**示例：**
+
+```js
+audioManager.getVolume(audio.AudioVolumeType.MEDIA, (err, value) => {
+  if (err) {
+    console.error(`Failed to obtain the volume. ${err}`);
+    return;
+  }
+  console.info('Callback invoked to indicate that the volume is obtained.');
+});
+```
+
+### getVolume<sup>(deprecated)</sup>
+
+getVolume(volumeType: AudioVolumeType): Promise&lt;number&gt;
+
+获取指定流的音量，使用Promise方式异步返回结果。
+
+> **说明：**
+>  从 API version 7 开始支持，从 API version 9 开始废弃，建议使用AudioVolumeGroupManager中的[getVolume](#getvolume9)替代。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Volume
+
+**参数：**
+
+| 参数名     | 类型                                | 必填 | 说明         |
+| ---------- | ----------------------------------- | ---- | ------------ |
+| volumeType | [AudioVolumeType](#audiovolumetype) | 是   | 音量流类型。 |
+
+**返回值：**
+
+| 类型                  | 说明                      |
+| --------------------- | ------------------------- |
+| Promise&lt;number&gt; | Promise回调返回音量大小。 |
+
+**示例：**
+
+```js
+audioManager.getVolume(audio.AudioVolumeType.MEDIA).then((value) => {
+  console.info(`Promise returned to indicate that the volume is obtained ${value} .`);
+});
+```
+
+### getMinVolume<sup>(deprecated)</sup>
+
+getMinVolume(volumeType: AudioVolumeType, callback: AsyncCallback&lt;number&gt;): void
+
+获取指定流的最小音量，使用callback方式异步返回结果。
+
+> **说明：**
+>  从 API version 7 开始支持，从 API version 9 开始废弃，建议使用AudioVolumeGroupManager中的[getMinVolume](#getminvolume9)替代。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Volume
+
+**参数：**
+
+| 参数名     | 类型                                | 必填 | 说明               |
+| ---------- | ----------------------------------- | ---- | ------------------ |
+| volumeType | [AudioVolumeType](#audiovolumetype) | 是   | 音量流类型。       |
+| callback   | AsyncCallback&lt;number&gt;         | 是   | 回调返回最小音量。 |
+
+**示例：**
+
+```js
+audioManager.getMinVolume(audio.AudioVolumeType.MEDIA, (err, value) => {
+  if (err) {
+    console.error(`Failed to obtain the minimum volume. ${err}`);
+    return;
+  }
+  console.info(`Callback invoked to indicate that the minimum volume is obtained. ${value}`);
+});
+```
+
+### getMinVolume<sup>(deprecated)</sup>
+
+getMinVolume(volumeType: AudioVolumeType): Promise&lt;number&gt;
+
+获取指定流的最小音量，使用Promise方式异步返回结果。
+
+> **说明：**
+>  从 API version 7 开始支持，从 API version 9 开始废弃，建议使用AudioVolumeGroupManager中的[getMinVolume](#getminvolume9)替代。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Volume
+
+**参数：**
+
+| 参数名     | 类型                                | 必填 | 说明         |
+| ---------- | ----------------------------------- | ---- | ------------ |
+| volumeType | [AudioVolumeType](#audiovolumetype) | 是   | 音量流类型。 |
+
+**返回值：**
+
+| 类型                  | 说明                      |
+| --------------------- | ------------------------- |
+| Promise&lt;number&gt; | Promise回调返回最小音量。 |
+
+**示例：**
+
+```js
+audioManager.getMinVolume(audio.AudioVolumeType.MEDIA).then((value) => {
+  console.info(`Promised returned to indicate that the minimum volume is obtained. ${value}`);
+});
+```
+
+### getMaxVolume<sup>(deprecated)</sup>
+
+getMaxVolume(volumeType: AudioVolumeType, callback: AsyncCallback&lt;number&gt;): void
+
+获取指定流的最大音量，使用callback方式异步返回结果。
+
+> **说明：**
+>  从 API version 7 开始支持，从 API version 9 开始废弃，建议使用AudioVolumeGroupManager中的[getMaxVolume](#getmaxvolume9)替代。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Volume
+
+**参数：**
+
+| 参数名     | 类型                                | 必填 | 说明                   |
+| ---------- | ----------------------------------- | ---- | ---------------------- |
+| volumeType | [AudioVolumeType](#audiovolumetype) | 是   | 音量流类型。           |
+| callback   | AsyncCallback&lt;number&gt;         | 是   | 回调返回最大音量大小。 |
+
+**示例：**
+
+```js
+audioManager.getMaxVolume(audio.AudioVolumeType.MEDIA, (err, value) => {
+  if (err) {
+    console.error(`Failed to obtain the maximum volume. ${err}`);
+    return;
+  }
+  console.info(`Callback invoked to indicate that the maximum volume is obtained. ${value}`);
+});
+```
+
+### getMaxVolume<sup>(deprecated)</sup>
+
+getMaxVolume(volumeType: AudioVolumeType): Promise&lt;number&gt;
+
+获取指定流的最大音量，使用Promise方式异步返回结果。
+
+> **说明：**
+>  从 API version 7 开始支持，从 API version 9 开始废弃，建议使用AudioVolumeGroupManager中的[getMaxVolume](#getmaxvolume9)替代。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Volume
+
+**参数：**
+
+| 参数名     | 类型                                | 必填 | 说明         |
+| ---------- | ----------------------------------- | ---- | ------------ |
+| volumeType | [AudioVolumeType](#audiovolumetype) | 是   | 音量流类型。 |
+
+**返回值：**
+
+| 类型                  | 说明                          |
+| --------------------- | ----------------------------- |
+| Promise&lt;number&gt; | Promise回调返回最大音量大小。 |
+
+**示例：**
+
+```js
+audioManager.getMaxVolume(audio.AudioVolumeType.MEDIA).then((data) => {
+  console.info('Promised returned to indicate that the maximum volume is obtained.');
+});
+```
+
+### mute<sup>(deprecated)</sup>
+
+mute(volumeType: AudioVolumeType, mute: boolean, callback: AsyncCallback&lt;void&gt;): void
+
+设置指定音量流静音，使用callback方式异步返回结果。
+
+> **说明：**
+>  从 API version 7 开始支持，从 API version 9 开始废弃，建议使用AudioVolumeGroupManager中的[mute](#mute9)替代。
+
+**需要权限：** ohos.permission.ACCESS_NOTIFICATION_POLICY
+
+仅设置铃声（即volumeType为AudioVolumeType.RINGTONE）在静音和非静音状态切换时需要该权限。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Volume
+
+**参数：**
+
+| 参数名     | 类型                                | 必填 | 说明                                  |
+| ---------- | ----------------------------------- | ---- | ------------------------------------- |
+| volumeType | [AudioVolumeType](#audiovolumetype) | 是   | 音量流类型。                          |
+| mute       | boolean                             | 是   | 静音状态，true为静音，false为非静音。 |
+| callback   | AsyncCallback&lt;void&gt;           | 是   | 回调表示成功还是失败。                |
+
+**示例：**
+
+```js
+audioManager.mute(audio.AudioVolumeType.MEDIA, true, (err) => {
+  if (err) {
+    console.error(`Failed to mute the stream. ${err}`);
+    return;
+  }
+  console.info('Callback invoked to indicate that the stream is muted.');
+});
+```
+
+### mute<sup>(deprecated)</sup>
+
+mute(volumeType: AudioVolumeType, mute: boolean): Promise&lt;void&gt;
+
+设置指定音量流静音，使用Promise方式异步返回结果。
+
+> **说明：**
+>  从 API version 7 开始支持，从 API version 9 开始废弃，建议使用AudioVolumeGroupManager中的[mute](#mute9)替代。
+
+**需要权限：** ohos.permission.ACCESS_NOTIFICATION_POLICY
+
+仅设置铃声（即volumeType为AudioVolumeType.RINGTONE）在静音和非静音状态切换时需要该权限。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Volume
+
+**参数：**
+
+| 参数名     | 类型                                | 必填 | 说明                                  |
+| ---------- | ----------------------------------- | ---- | ------------------------------------- |
+| volumeType | [AudioVolumeType](#audiovolumetype) | 是   | 音量流类型。                          |
+| mute       | boolean                             | 是   | 静音状态，true为静音，false为非静音。 |
+
+**返回值：**
+
+| 类型                | 说明                          |
+| ------------------- | ----------------------------- |
+| Promise&lt;void&gt; | Promise回调表示成功还是失败。 |
+
+**示例：**
+
+
+```js
+audioManager.mute(audio.AudioVolumeType.MEDIA, true).then(() => {
+  console.info('Promise returned to indicate that the stream is muted.');
+});
+```
+
+### isMute<sup>(deprecated)</sup>
+
+isMute(volumeType: AudioVolumeType, callback: AsyncCallback&lt;boolean&gt;): void
+
+获取指定音量流是否被静音，使用callback方式异步返回结果。
+
+> **说明：**
+>  从 API version 7 开始支持，从 API version 9 开始废弃，建议使用AudioVolumeGroupManager中的[isMute](#ismute9)替代。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Volume
+
+**参数：**
+
+| 参数名     | 类型                                | 必填 | 说明                                            |
+| ---------- | ----------------------------------- | ---- | ----------------------------------------------- |
+| volumeType | [AudioVolumeType](#audiovolumetype) | 是   | 音量流类型。                                    |
+| callback   | AsyncCallback&lt;boolean&gt;        | 是   | 回调返回流静音状态，true为静音，false为非静音。 |
+
+**示例：**
+
+```js
+audioManager.isMute(audio.AudioVolumeType.MEDIA, (err, value) => {
+  if (err) {
+    console.error(`Failed to obtain the mute status. ${err}`);
+    return;
+  }
+  console.info(`Callback invoked to indicate that the mute status of the stream is obtained. ${value}`);
+});
+```
+
+### isMute<sup>(deprecated)</sup>
+
+isMute(volumeType: AudioVolumeType): Promise&lt;boolean&gt;
+
+获取指定音量流是否被静音，使用Promise方式异步返回结果。
+
+> **说明：**
+>  从 API version 7 开始支持，从 API version 9 开始废弃，建议使用AudioVolumeGroupManager中的[isMute](#ismute9)替代。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Volume
+
+**参数：**
+
+| 参数名     | 类型                                | 必填 | 说明         |
+| ---------- | ----------------------------------- | ---- | ------------ |
+| volumeType | [AudioVolumeType](#audiovolumetype) | 是   | 音量流类型。 |
+
+**返回值：**
+
+| 类型                   | 说明                                                   |
+| ---------------------- | ------------------------------------------------------ |
+| Promise&lt;boolean&gt; | Promise回调返回流静音状态，true为静音，false为非静音。 |
+
+**示例：**
+
+```js
+audioManager.isMute(audio.AudioVolumeType.MEDIA).then((value) => {
+  console.info(`Promise returned to indicate that the mute status of the stream is obtained ${value}.`);
+});
+```
+
+### isActive<sup>(deprecated)</sup>
+
+isActive(volumeType: AudioVolumeType, callback: AsyncCallback&lt;boolean&gt;): void
+
+获取指定音量流是否为活跃状态，使用callback方式异步返回结果。
+
+> **说明：**
+>  从 API version 7 开始支持，从 API version 9 开始废弃，建议使用AudioStreamManager中的[isActive](#isactive9)替代。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Volume
+
+**参数：**
+
+| 参数名     | 类型                                | 必填 | 说明                                              |
+| ---------- | ----------------------------------- | ---- | ------------------------------------------------- |
+| volumeType | [AudioVolumeType](#audiovolumetype) | 是   | 音量流类型。                                      |
+| callback   | AsyncCallback&lt;boolean&gt;        | 是   | 回调返回流的活跃状态，true为活跃，false为不活跃。 |
+
+**示例：**
+
+```js
+audioManager.isActive(audio.AudioVolumeType.MEDIA, (err, value) => {
+  if (err) {
+    console.error(`Failed to obtain the active status of the stream. ${err}`);
+    return;
+  }
+  console.info(`Callback invoked to indicate that the active status of the stream is obtained ${value}.`);
+});
+```
+
+### isActive<sup>(deprecated)</sup>
+
+isActive(volumeType: AudioVolumeType): Promise&lt;boolean&gt;
+
+获取指定音量流是否为活跃状态，使用Promise方式异步返回结果。
+
+> **说明：**
+>  从 API version 7 开始支持，从 API version 9 开始废弃，建议使用AudioStreamManager中的[isActive](#isactive9)替代。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Volume
+
+**参数：**
+
+| 参数名     | 类型                                | 必填 | 说明         |
+| ---------- | ----------------------------------- | ---- | ------------ |
+| volumeType | [AudioVolumeType](#audiovolumetype) | 是   | 音量流类型。 |
+
+**返回值：**
+
+| 类型                   | 说明                                                     |
+| ---------------------- | -------------------------------------------------------- |
+| Promise&lt;boolean&gt; | Promise回调返回流的活跃状态，true为活跃，false为不活跃。 |
+
+**示例：**
+
+```js
+audioManager.isActive(audio.AudioVolumeType.MEDIA).then((value) => {
+  console.info(`Promise returned to indicate that the active status of the stream is obtained ${value}.`);
+});
+```
+
+### setRingerMode<sup>(deprecated)</sup>
+
+setRingerMode(mode: AudioRingMode, callback: AsyncCallback&lt;void&gt;): void
+
+设置铃声模式，使用callback方式异步返回结果。
+
+> **说明：**
+>  从 API version 7 开始支持，从 API version 9 开始废弃，建议使用AudioVolumeGroupManager中的[setRingerMode](#setringermode9)替代。
+
+**需要权限：** ohos.permission.ACCESS_NOTIFICATION_POLICY
+
+仅在静音和非静音状态切换时需要该权限。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Communication
+
+**参数：**
+
+| 参数名   | 类型                            | 必填 | 说明                     |
+| -------- | ------------------------------- | ---- | ------------------------ |
+| mode     | [AudioRingMode](#audioringmode) | 是   | 音频铃声模式。           |
+| callback | AsyncCallback&lt;void&gt;       | 是   | 回调返回设置成功或失败。 |
+
+**示例：**
+
+```js
+audioManager.setRingerMode(audio.AudioRingMode.RINGER_MODE_NORMAL, (err) => {
+  if (err) {
+    console.error(`Failed to set the ringer mode.​ ${err}`);
+    return;
+  }
+  console.info('Callback invoked to indicate a successful setting of the ringer mode.');
+});
+```
+
+### setRingerMode<sup>(deprecated)</sup>
+
+setRingerMode(mode: AudioRingMode): Promise&lt;void&gt;
+
+设置铃声模式，使用Promise方式异步返回结果。
+
+> **说明：**
+>  从 API version 7 开始支持，从 API version 9 开始废弃，建议使用AudioVolumeGroupManager中的[setRingerMode](#setringermode9)替代。
+
+**需要权限：** ohos.permission.ACCESS_NOTIFICATION_POLICY
+
+仅在静音和非静音状态切换时需要该权限。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Communication
+
+**参数：**
+
+| 参数名 | 类型                            | 必填 | 说明           |
+| ------ | ------------------------------- | ---- | -------------- |
+| mode   | [AudioRingMode](#audioringmode) | 是   | 音频铃声模式。 |
+
+**返回值：**
+
+| 类型                | 说明                            |
+| ------------------- | ------------------------------- |
+| Promise&lt;void&gt; | Promise回调返回设置成功或失败。 |
+
+**示例：**
+
+```js
+audioManager.setRingerMode(audio.AudioRingMode.RINGER_MODE_NORMAL).then(() => {
+  console.info('Promise returned to indicate a successful setting of the ringer mode.');
+});
+```
+
+### getRingerMode<sup>(deprecated)</sup>
+
+getRingerMode(callback: AsyncCallback&lt;AudioRingMode&gt;): void
+
+获取铃声模式，使用callback方式异步返回结果。
+
+> **说明：**
+>  从 API version 7 开始支持，从 API version 9 开始废弃，建议使用AudioVolumeGroupManager中的[getRingerMode](#getringermode9)替代。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Communication
+
+**参数：**
+
+| 参数名   | 类型                                                 | 必填 | 说明                     |
+| -------- | ---------------------------------------------------- | ---- | ------------------------ |
+| callback | AsyncCallback&lt;[AudioRingMode](#audioringmode)&gt; | 是   | 回调返回系统的铃声模式。 |
+
+**示例：**
+
+```js
+audioManager.getRingerMode((err, value) => {
+  if (err) {
+    console.error(`Failed to obtain the ringer mode.​ ${err}`);
+    return;
+  }
+  console.info(`Callback invoked to indicate that the ringer mode is obtained ${value}.`);
+});
+```
+
+### getRingerMode<sup>(deprecated)</sup>
+
+getRingerMode(): Promise&lt;AudioRingMode&gt;
+
+获取铃声模式，使用Promise方式异步返回结果。
+
+> **说明：**
+>  从 API version 7 开始支持，从 API version 9 开始废弃，建议使用AudioVolumeGroupManager中的[getRingerMode](#getringermode9)替代。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Communication
+
+**返回值：**
+
+| 类型                                           | 说明                            |
+| ---------------------------------------------- | ------------------------------- |
+| Promise&lt;[AudioRingMode](#audioringmode)&gt; | Promise回调返回系统的铃声模式。 |
+
+**示例：**
+
+```js
+audioManager.getRingerMode().then((value) => {
+  console.info(`Promise returned to indicate that the ringer mode is obtained ${value}.`);
+});
+```
+
+### getDevices<sup>(deprecated)</sup>
+
+getDevices(deviceFlag: DeviceFlag, callback: AsyncCallback&lt;AudioDeviceDescriptors&gt;): void
+
+获取音频设备列表，使用callback方式异步返回结果。
+
+> **说明：**
+>  从 API version 7 开始支持，从 API version 9 开始废弃，建议使用AudioRoutingManager中的[getDevices](#getdevices9)替代。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Device
+
+**参数：**
+
+| 参数名     | 类型                                                         | 必填 | 说明                 |
+| ---------- | ------------------------------------------------------------ | ---- | -------------------- |
+| deviceFlag | [DeviceFlag](#deviceflag)                                    | 是   | 设备类型的flag。     |
+| callback   | AsyncCallback&lt;[AudioDeviceDescriptors](#audiodevicedescriptors)&gt; | 是   | 回调，返回设备列表。 |
+
+**示例：**
+```js
+audioManager.getDevices(audio.DeviceFlag.OUTPUT_DEVICES_FLAG, (err, value) => {
+  if (err) {
+    console.error(`Failed to obtain the device list. ${err}`);
+    return;
+  }
+  console.info('Callback invoked to indicate that the device list is obtained.');
+});
+```
+
+### getDevices<sup>(deprecated)</sup>
+
+getDevices(deviceFlag: DeviceFlag): Promise&lt;AudioDeviceDescriptors&gt;
+
+获取音频设备列表，使用Promise方式异步返回结果。
+
+> **说明：**
+>  从 API version 7 开始支持，从 API version 9 开始废弃，建议使用AudioRoutingManager中的[getDevices](#getdevices9)替代。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Device
+
+**参数：**
+
+| 参数名     | 类型                      | 必填 | 说明             |
+| ---------- | ------------------------- | ---- | ---------------- |
+| deviceFlag | [DeviceFlag](#deviceflag) | 是   | 设备类型的flag。 |
+
+**返回值：**
+
+| 类型                                                         | 说明                      |
+| ------------------------------------------------------------ | ------------------------- |
+| Promise&lt;[AudioDeviceDescriptors](#audiodevicedescriptors)&gt; | Promise回调返回设备列表。 |
+
+**示例：**
+
+```js
+audioManager.getDevices(audio.DeviceFlag.OUTPUT_DEVICES_FLAG).then((data) => {
+  console.info('Promise returned to indicate that the device list is obtained.');
+});
+```
+
+### setDeviceActive<sup>(deprecated)</sup>
+
+setDeviceActive(deviceType: ActiveDeviceType, active: boolean, callback: AsyncCallback&lt;void&gt;): void
+
+设置设备激活状态，使用callback方式异步返回结果。
+
+> **说明：**
+>  从 API version 7 开始支持，从 API version 9 开始废弃，建议使用AudioRoutingManager中的[setCommunicationDevice](#setcommunicationdevice9)替代。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Device
+
+**参数：**
+
+| 参数名     | 类型                                  | 必填 | 说明                     |
+| ---------- | ------------------------------------- | ---- | ------------------------ |
+| deviceType | [ActiveDeviceType](#activedevicetype) | 是   | 活跃音频设备类型。       |
+| active     | boolean                               | 是   | 设备激活状态。           |
+| callback   | AsyncCallback&lt;void&gt;             | 是   | 回调返回设置成功或失败。 |
+
+**示例：**
+
+```js
+audioManager.setDeviceActive(audio.ActiveDeviceType.SPEAKER, true, (err) => {
+  if (err) {
+    console.error(`Failed to set the active status of the device. ${err}`);
+    return;
+  }
+  console.info('Callback invoked to indicate that the device is set to the active status.');
+});
+```
+
+### setDeviceActive<sup>(deprecated)</sup>
+
+setDeviceActive(deviceType: ActiveDeviceType, active: boolean): Promise&lt;void&gt;
+
+设置设备激活状态，使用Promise方式异步返回结果。
+
+> **说明：**
+>  从 API version 7 开始支持，从 API version 9 开始废弃，建议使用AudioRoutingManager中的[setCommunicationDevice](#setcommunicationdevice9)替代。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Device
+
+**参数：**
+
+| 参数名     | 类型                                  | 必填 | 说明               |
+| ---------- | ------------------------------------- | ---- | ------------------ |
+| deviceType | [ActiveDeviceType](#activedevicetype) | 是   | 活跃音频设备类型。 |
+| active     | boolean                               | 是   | 设备激活状态。     |
+
+**返回值：**
+
+| 类型                | 说明                            |
+| ------------------- | ------------------------------- |
+| Promise&lt;void&gt; | Promise回调返回设置成功或失败。 |
+
+**示例：**
+
+
+```js
+audioManager.setDeviceActive(audio.ActiveDeviceType.SPEAKER, true).then(() => {
+  console.info('Promise returned to indicate that the device is set to the active status.');
+});
+```
+
+### isDeviceActive<sup>(deprecated)</sup>
+
+isDeviceActive(deviceType: ActiveDeviceType, callback: AsyncCallback&lt;boolean&gt;): void
+
+获取指定设备的激活状态，使用callback方式异步返回结果。
+
+> **说明：**
+>  从 API version 7 开始支持，从 API version 9 开始废弃，建议使用AudioRoutingManager中的[isCommunicationDeviceActive](#iscommunicationdeviceactive9)替代。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Device
+
+**参数：**
+
+| 参数名     | 类型                                  | 必填 | 说明                     |
+| ---------- | ------------------------------------- | ---- | ------------------------ |
+| deviceType | [ActiveDeviceType](#activedevicetype) | 是   | 活跃音频设备类型。       |
+| callback   | AsyncCallback&lt;boolean&gt;          | 是   | 回调返回设备的激活状态。 |
+
+**示例：**
+
+```js
+audioManager.isDeviceActive(audio.ActiveDeviceType.SPEAKER, (err, value) => {
+  if (err) {
+    console.error(`Failed to obtain the active status of the device. ${err}`);
+    return;
+  }
+  console.info('Callback invoked to indicate that the active status of the device is obtained.');
+});
+```
+
+### isDeviceActive<sup>(deprecated)</sup>
+
+isDeviceActive(deviceType: ActiveDeviceType): Promise&lt;boolean&gt;
+
+获取指定设备的激活状态，使用Promise方式异步返回结果。
+
+> **说明：**
+>  从 API version 7 开始支持，从 API version 9 开始废弃，建议使用AudioRoutingManager中的[isCommunicationDeviceActive](#iscommunicationdeviceactive9)替代。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Device
+
+**参数：**
+
+| 参数名     | 类型                                  | 必填 | 说明               |
+| ---------- | ------------------------------------- | ---- | ------------------ |
+| deviceType | [ActiveDeviceType](#activedevicetype) | 是   | 活跃音频设备类型。 |
+
+**返回值：**
+
+| Type                   | Description                     |
+| ---------------------- | ------------------------------- |
+| Promise&lt;boolean&gt; | Promise回调返回设备的激活状态。 |
+
+**示例：**
+
+```js
+audioManager.isDeviceActive(audio.ActiveDeviceType.SPEAKER).then((value) => {
+  console.info(`Promise returned to indicate that the active status of the device is obtained ${value}.`);
+});
+```
+
+### setMicrophoneMute<sup>(deprecated)</sup>
+
+setMicrophoneMute(mute: boolean, callback: AsyncCallback&lt;void&gt;): void
+
+设置麦克风静音状态，使用callback方式异步返回结果。
+
+> **说明：**
+>  从 API version 7 开始支持，从 API version 9 开始废弃，建议使用AudioVolumeGroupManager中的[setMicrophoneMute](#setmicrophonemute9)替代。
+
+**需要权限：** ohos.permission.MICROPHONE
+
+**系统能力：** SystemCapability.Multimedia.Audio.Device
+
+**参数：**
+
+| 参数名   | 类型                      | 必填 | 说明                                          |
+| -------- | ------------------------- | ---- | --------------------------------------------- |
+| mute     | boolean                   | 是   | 待设置的静音状态，true为静音，false为非静音。 |
+| callback | AsyncCallback&lt;void&gt; | 是   | 回调返回设置成功或失败。                      |
+
+**示例：**
+
+```js
+audioManager.setMicrophoneMute(true, (err) => {
+  if (err) {
+    console.error(`Failed to mute the microphone. ${err}`);
+    return;
+  }
+  console.info('Callback invoked to indicate that the microphone is muted.');
+});
+```
+
+### setMicrophoneMute<sup>(deprecated)</sup>
+
+setMicrophoneMute(mute: boolean): Promise&lt;void&gt;
+
+设置麦克风静音状态，使用Promise方式异步返回结果。
+
+> **说明：**
+>  从 API version 7 开始支持，从 API version 9 开始废弃，建议使用AudioVolumeGroupManager中的[setMicrophoneMute](#setmicrophonemute9)替代。
+
+**需要权限：** ohos.permission.MICROPHONE
+
+**系统能力：** SystemCapability.Multimedia.Audio.Device
+
+**参数：**
+
+| 参数名 | 类型    | 必填 | 说明                                          |
+| ------ | ------- | ---- | --------------------------------------------- |
+| mute   | boolean | 是   | 待设置的静音状态，true为静音，false为非静音。 |
+
+**返回值：**
+
+| 类型                | 说明                            |
+| ------------------- | ------------------------------- |
+| Promise&lt;void&gt; | Promise回调返回设置成功或失败。 |
+
+**示例：**
+
+```js
+audioManager.setMicrophoneMute(true).then(() => {
+  console.info('Promise returned to indicate that the microphone is muted.');
+});
+```
+
+### isMicrophoneMute<sup>(deprecated)</sup>
+
+isMicrophoneMute(callback: AsyncCallback&lt;boolean&gt;): void
+
+获取麦克风静音状态，使用callback方式异步返回结果。
+
+> **说明：**
+>  从 API version 7 开始支持，从 API version 9 开始废弃，建议使用AudioVolumeGroupManager中的[isMicrophoneMute](#ismicrophonemute9)替代。
+
+**需要权限：** ohos.permission.MICROPHONE
+
+**系统能力：** SystemCapability.Multimedia.Audio.Device
+
+**参数：**
+
+| 参数名   | 类型                         | 必填 | 说明                                                    |
+| -------- | ---------------------------- | ---- | ------------------------------------------------------- |
+| callback | AsyncCallback&lt;boolean&gt; | 是   | 回调返回系统麦克风静音状态，true为静音，false为非静音。 |
+
+**示例：**
+
+```js
+audioManager.isMicrophoneMute((err, value) => {
+  if (err) {
+    console.error(`Failed to obtain the mute status of the microphone. ${err}`);
+    return;
+  }
+  console.info(`Callback invoked to indicate that the mute status of the microphone is obtained ${value}.`);
+});
+```
+
+### isMicrophoneMute<sup>(deprecated)</sup>
+
+isMicrophoneMute(): Promise&lt;boolean&gt;
+
+获取麦克风静音状态，使用Promise方式异步返回结果。
+
+> **说明：**
+>  从 API version 7 开始支持，从 API version 9 开始废弃，建议使用AudioVolumeGroupManager中的[isMicrophoneMute](#ismicrophonemute9)替代。
+
+**需要权限：** ohos.permission.MICROPHONE
+
+**系统能力：** SystemCapability.Multimedia.Audio.Device
+
+**返回值：**
+
+| 类型                   | 说明                                                         |
+| ---------------------- | ------------------------------------------------------------ |
+| Promise&lt;boolean&gt; | Promise回调返回系统麦克风静音状态，true为静音，false为非静音。 |
+
+**示例：**
+
+```js
+audioManager.isMicrophoneMute().then((value) => {
+  console.info(`Promise returned to indicate that the mute status of the microphone is obtained ${value}.`);
+});
+```
+
+### on('volumeChange')<sup>(deprecated)</sup>
+
+on(type: 'volumeChange', callback: Callback\<VolumeEvent>): void
+
+> **说明：**
+> 从 API version 8 开始支持，从 API version 9 开始废弃，建议使用AudioVolumeManager中的[on](#on9)替代。
+
+监听系统音量变化事件。
+
+**系统接口：** 该接口为系统接口
+
+目前此订阅接口在单进程多AudioManager实例的使用场景下，仅最后一个实例的订阅生效，其他实例的订阅会被覆盖（即使最后一个实例没有进行订阅），因此推荐使用单一AudioManager实例进行开发。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Volume
+
+**参数：**
+
+| 参数名   | 类型                                   | 必填 | 说明                                                         |
+| -------- | -------------------------------------- | ---- | ------------------------------------------------------------ |
+| type     | string                                 | 是   | 事件回调类型，支持的事件为：'volumeChange'（系统音量变化事件，检测到系统音量改变时，触发该事件）。 |
+| callback | Callback<[VolumeEvent](#volumeevent8)> | 是   | 回调方法。                                                   |
+
+**示例：**
+
+```js
+audioManager.on('volumeChange', (volumeEvent) => {
+  console.info(`VolumeType of stream: ${volumeEvent.volumeType} `);
+  console.info(`Volume level: ${volumeEvent.volume} `);
+  console.info(`Whether to updateUI: ${volumeEvent.updateUi} `);
+});
+```
+
+### on('ringerModeChange')<sup>(deprecated)</sup>
+
+on(type: 'ringerModeChange', callback: Callback\<AudioRingMode>): void
+
+监听铃声模式变化事件。
+
+> **说明：**
+> 从 API version 8 开始支持，从 API version 9 开始废弃，建议使用AudioVolumeGroupManager中的[on('ringerModeChange')](#on('ringermodechange')9)替代。
+
+**系统接口：** 该接口为系统接口
+
+**系统能力：** SystemCapability.Multimedia.Audio.Communication
+
+**参数：**
+
+| 参数名   | 类型                                      | 必填 | 说明                                                         |
+| -------- | ----------------------------------------- | ---- | ------------------------------------------------------------ |
+| type     | string                                    | 是   | 事件回调类型，支持的事件为：'ringerModeChange'（铃声模式变化事件，检测到铃声模式改变时，触发该事件）。 |
+| callback | Callback<[AudioRingMode](#audioringmode)> | 是   | 回调方法。                                                   |
+
+**示例：**
+
+```js
+audioManager.on('ringerModeChange', (ringerMode) => {
+  console.info(`Updated ringermode: ${ringerMode}`);
+});
+```
+
+### on('deviceChange')<sup>(deprecated)</sup>
+
+on(type: 'deviceChange', callback: Callback<DeviceChangeAction\>): void
+
+设备更改。音频设备连接状态变化。
+
+> **说明：**
+> 从 API version 7 开始支持，从 API version 9 开始废弃，建议使用AudioRoutingManager中的[on](#on9)替代。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Device
+
+**参数：**
+
+| 参数名   | 类型                                                 | 必填 | 说明                                       |
+| :------- | :--------------------------------------------------- | :--- | :----------------------------------------- |
+| type     | string                                               | 是   | 订阅的事件的类型。支持事件：'deviceChange' |
+| callback | Callback<[DeviceChangeAction](#devicechangeaction)\> | 是   | 获取设备更新详情。                         |
+
+**示例：**
+
+```js
+audioManager.on('deviceChange', (deviceChanged) => {
+  console.info(`device change type : ${deviceChanged.type} `);
+  console.info(`device descriptor size : ${deviceChanged.deviceDescriptors.length} `);
+  console.info(`device change descriptor : ${deviceChanged.deviceDescriptors[0].deviceRole} `);
+  console.info(`device change descriptor : ${deviceChanged.deviceDescriptors[0].deviceType} `);
+});
+```
+
+### off('deviceChange')<sup>(deprecated)</sup>
+
+off(type: 'deviceChange', callback?: Callback<DeviceChangeAction\>): void
+
+取消订阅音频设备连接变化事件。
+
+> **说明：**
+> 从 API version 7 开始支持，从 API version 9 开始废弃，建议使用AudioRoutingManager中的[off](#off9)替代。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Device
+
+**参数：**
+
+| 参数名   | 类型                                                | 必填 | 说明                                       |
+| -------- | --------------------------------------------------- | ---- | ------------------------------------------ |
+| type     | string                                              | 是   | 订阅的事件的类型。支持事件：'deviceChange' |
+| callback | Callback<[DeviceChangeAction](#devicechangeaction)> | 否   | 获取设备更新详情。                         |
+
+**示例：**
+
+```js
+audioManager.off('deviceChange', (deviceChanged) => {
+  console.info('Should be no callback.');
+});
+```
+
+### on('interrupt')<sup>(deprecated)</sup>
+
+on(type: 'interrupt', interrupt: AudioInterrupt, callback: Callback\<InterruptAction>): void
+
+请求焦点并开始监听音频打断事件（当应用程序的音频被另一个播放事件中断，回调通知此应用程序）。
+
+> **说明：**
+> 从 API version 7 开始支持，从 API version 9 开始废弃。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Renderer
+
+**参数：**
+
+| 参数名    | 类型                                          | 必填 | 说明                                                         |
+| --------- | --------------------------------------------- | ---- | ------------------------------------------------------------ |
+| type      | string                                        | 是   | 音频打断事件回调类型，支持的事件为：'interrupt'（多应用之间第二个应用会打断第一个应用，触发该事件）。 |
+| interrupt | AudioInterrupt                                | 是   | 音频打断事件类型的参数。                                     |
+| callback  | Callback<[InterruptAction](#interruptaction)> | 是   | 音频打断事件回调方法。                                       |
+
+**示例：**
+
+```js
+let interAudioInterrupt = {
+  streamUsage:2,
+  contentType:0,
+  pauseWhenDucked:true
+};
+audioManager.on('interrupt', interAudioInterrupt, (InterruptAction) => {
+  if (InterruptAction.actionType === 0) {
+    console.info('An event to gain the audio focus starts.');
+    console.info(`Focus gain event: ${InterruptAction} `);
+  }
+  if (InterruptAction.actionType === 1) {
+    console.info('An audio interruption event starts.');
+    console.info(`Audio interruption event: ${InterruptAction} `);
+  }
+});
+```
+
+### off('interrupt')<sup>(deprecated)</sup>
+
+off(type: 'interrupt', interrupt: AudioInterrupt, callback?: Callback\<InterruptAction>): void
+
+取消监听音频打断事件（删除监听事件，取消打断）。
+
+> **说明：**
+> 从 API version 7 开始支持，从 API version 9 开始废弃。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Renderer
+
+**参数：**
+
+| 参数名    | 类型                                          | 必填 | 说明                                                         |
+| --------- | --------------------------------------------- | ---- | ------------------------------------------------------------ |
+| type      | string                                        | 是   | 音频打断事件回调类型，支持的事件为：'interrupt'（多应用之间第二个应用会打断第一个应用，触发该事件）。 |
+| interrupt | AudioInterrupt                                | 是   | 音频打断事件类型的参数。                                     |
+| callback  | Callback<[InterruptAction](#interruptaction)> | 否   | 音频打断事件回调方法。                                       |
+
+**示例：**
+
+```js
+let interAudioInterrupt = {
+  streamUsage:2,
+  contentType:0,
+  pauseWhenDucked:true
+};
+audioManager.off('interrupt', interAudioInterrupt, (InterruptAction) => {
+  if (InterruptAction.actionType === 0) {
+      console.info('An event to release the audio focus starts.');
+      console.info(`Focus release event: ${InterruptAction} `);
+  }
 });
 ```
