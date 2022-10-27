@@ -504,10 +504,10 @@ async function createTonePlayer(){
 | ---------------------| --------| --------------- |
 | ERROR_INVALID_PARAM  | 6800101 | 无效入参。     |
 | ERROR_NO_MEMORY      | 6800102 | 分配内存失败。   |
-| ERROR_ILLEGAL_STATE  | 6800103 | 操作不支持。     |
+| ERROR_ILLEGAL_STATE  | 6800103 | 状态不支持。     |
 | ERROR_UNSUPPORTED    | 6800104 | 参数选项不支持。  |
 | ERROR_TIMEOUT        | 6800105 | 处理超时。       |
-| ERROR_STREAM_LIMIT   | 6800201 | 音频数量达到限制。|
+| ERROR_STREAM_LIMIT   | 6800201 | 音频流数量达到限制。|
 | ERROR_SYSTEM         | 6800301 | 系统处理异常。    |
 
 ## AudioChannel<sup>8+</sup>
@@ -663,7 +663,7 @@ async function createTonePlayer(){
 枚举，中断事件返回类型。
 
 > **说明：**
-> 从 API Version 9 开始废弃。
+> 从 API Version 7 开始支持，从 API Version 9 开始废弃。
 
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.Audio.Renderer
 
@@ -736,7 +736,7 @@ async function createTonePlayer(){
 ## AudioInterrupt<sup>(deprecated)</sup>
 
 > **说明：**
-> 从 API Version 9 开始废弃。
+> 从 API Version 7 开始支持，从 API Version 9 开始废弃。
 
 音频监听事件传入的参数。
 
@@ -751,7 +751,7 @@ async function createTonePlayer(){
 ## InterruptAction<sup>(deprecated)</sup>
 
 > **说明：**
-> 从 API Version 9 开始废弃。
+> 从 API Version 7 开始支持，从 API Version 9 开始废弃。
 
 音频打断/获取焦点事件的回调方法。
 
@@ -973,7 +973,7 @@ setVolume(volumeType: AudioVolumeType, volume: number, callback: AsyncCallback&l
 设置指定流的音量，使用callback方式异步返回结果。
 
 > **说明：**
-> 从 API Version 9 开始废弃，建议使用AudioVolumeGroupManager中的[setVolume](#setvolume9)替代。
+> 从 API Version 7 开始支持，从 API Version 9 开始废弃，建议使用AudioVolumeGroupManager中的[setVolume](#setvolume9)替代。
 
 **需要权限：** ohos.permission.ACCESS_NOTIFICATION_POLICY
 
@@ -1008,7 +1008,7 @@ setVolume(volumeType: AudioVolumeType, volume: number): Promise&lt;void&gt;
 设置指定流的音量，使用Promise方式异步返回结果。
 
 > **说明：**
-> 从 API Version 9 开始废弃，建议使用AudioVolumeGroupManager中的[setVolume](#setvolume9)替代。
+> 从 API Version 7 开始支持，从 API Version 9 开始废弃，建议使用AudioVolumeGroupManager中的[setVolume](#setvolume9)替代。
 
 **需要权限：** ohos.permission.ACCESS_NOTIFICATION_POLICY
 
@@ -1044,7 +1044,7 @@ getVolume(volumeType: AudioVolumeType, callback: AsyncCallback&lt;number&gt;): v
 获取指定流的音量，使用callback方式异步返回结果。
 
 > **说明：**
-> 从 API Version 9 开始废弃，建议使用AudioVolumeGroupManager中的[getVolume](#getvolume9)替代。
+>  从 API Version 7 开始支持，从 API Version 9 开始废弃，建议使用AudioVolumeGroupManager中的[getVolume](#getvolume9)替代。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Volume
 
@@ -1074,7 +1074,7 @@ getVolume(volumeType: AudioVolumeType): Promise&lt;number&gt;
 获取指定流的音量，使用Promise方式异步返回结果。
 
 > **说明：**
-> 从 API Version 9 开始废弃，建议使用AudioVolumeGroupManager中的[getVolume](#getvolume9)替代。
+>  从 API Version 7 开始支持，从 API Version 9 开始废弃，建议使用AudioVolumeGroupManager中的[getVolume](#getvolume9)替代。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Volume
 
@@ -1105,7 +1105,7 @@ getMinVolume(volumeType: AudioVolumeType, callback: AsyncCallback&lt;number&gt;)
 获取指定流的最小音量，使用callback方式异步返回结果。
 
 > **说明：**
-> 从 API Version 9 开始废弃，建议使用AudioVolumeGroupManager中的[getMinVolume](#getminvolume9)替代。
+>  从 API Version 7 开始支持，从 API Version 9 开始废弃，建议使用AudioVolumeGroupManager中的[getMinVolume](#getminvolume9)替代。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Volume
 
@@ -1135,7 +1135,7 @@ getMinVolume(volumeType: AudioVolumeType): Promise&lt;number&gt;
 获取指定流的最小音量，使用Promise方式异步返回结果。
 
 > **说明：**
-> 从 API Version 9 开始废弃，建议使用AudioVolumeGroupManager中的[getMinVolume](#getminvolume9)替代。
+>  从 API Version 7 开始支持，从 API Version 9 开始废弃，建议使用AudioVolumeGroupManager中的[getMinVolume](#getminvolume9)替代。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Volume
 
@@ -1166,7 +1166,7 @@ getMaxVolume(volumeType: AudioVolumeType, callback: AsyncCallback&lt;number&gt;)
 获取指定流的最大音量，使用callback方式异步返回结果。
 
 > **说明：**
-> 从 API Version 9 开始废弃，建议使用AudioVolumeGroupManager中的[getMaxVolume](#getmaxvolume9)替代。
+>  从 API Version 7 开始支持，从 API Version 9 开始废弃，建议使用AudioVolumeGroupManager中的[getMaxVolume](#getmaxvolume9)替代。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Volume
 
@@ -1196,7 +1196,7 @@ getMaxVolume(volumeType: AudioVolumeType): Promise&lt;number&gt;
 获取指定流的最大音量，使用Promise方式异步返回结果。
 
 > **说明：**
-> 从 API Version 9 开始废弃，建议使用AudioVolumeGroupManager中的[getMaxVolume](#getmaxvolume9)替代。
+>  从 API Version 7 开始支持，从 API Version 9 开始废弃，建议使用AudioVolumeGroupManager中的[getMaxVolume](#getmaxvolume9)替代。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Volume
 
@@ -1227,7 +1227,7 @@ mute(volumeType: AudioVolumeType, mute: boolean, callback: AsyncCallback&lt;void
 设置指定音量流静音，使用callback方式异步返回结果。
 
 > **说明：**
-> 从 API Version 9 开始废弃，建议使用AudioVolumeGroupManager中的[mute](#mute9)替代。
+>  从 API Version 7 开始支持，从 API Version 9 开始废弃，建议使用AudioVolumeGroupManager中的[mute](#mute9)替代。
 
 **需要权限：** ohos.permission.ACCESS_NOTIFICATION_POLICY
 
@@ -1262,7 +1262,7 @@ mute(volumeType: AudioVolumeType, mute: boolean): Promise&lt;void&gt;
 设置指定音量流静音，使用Promise方式异步返回结果。
 
 > **说明：**
-> 从 API Version 9 开始废弃，建议使用AudioVolumeGroupManager中的[mute](#mute9)替代。
+>  从 API Version 7 开始支持，从 API Version 9 开始废弃，建议使用AudioVolumeGroupManager中的[mute](#mute9)替代。
 
 **需要权限：** ohos.permission.ACCESS_NOTIFICATION_POLICY
 
@@ -1299,7 +1299,7 @@ isMute(volumeType: AudioVolumeType, callback: AsyncCallback&lt;boolean&gt;): voi
 获取指定音量流是否被静音，使用callback方式异步返回结果。
 
 > **说明：**
-> 从 API Version 9 开始废弃，建议使用AudioVolumeGroupManager中的[isMute](#ismute9)替代。
+>  从 API Version 7 开始支持，从 API Version 9 开始废弃，建议使用AudioVolumeGroupManager中的[isMute](#ismute9)替代。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Volume
 
@@ -1329,7 +1329,7 @@ isMute(volumeType: AudioVolumeType): Promise&lt;boolean&gt;
 获取指定音量流是否被静音，使用Promise方式异步返回结果。
 
 > **说明：**
-> 从 API Version 9 开始废弃，建议使用AudioVolumeGroupManager中的[isMute](#ismute9)替代。
+>  从 API Version 7 开始支持，从 API Version 9 开始废弃，建议使用AudioVolumeGroupManager中的[isMute](#ismute9)替代。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Volume
 
@@ -1360,7 +1360,7 @@ isActive(volumeType: AudioVolumeType, callback: AsyncCallback&lt;boolean&gt;): v
 获取指定音量流是否为活跃状态，使用callback方式异步返回结果。
 
 > **说明：**
-> 从 API Version 9 开始废弃，建议使用AudioStreamManager中的[isActive](#isactive9)替代。
+>  从 API Version 7 开始支持，从 API Version 9 开始废弃，建议使用AudioStreamManager中的[isActive](#isactive9)替代。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Volume
 
@@ -1390,7 +1390,7 @@ isActive(volumeType: AudioVolumeType): Promise&lt;boolean&gt;
 获取指定音量流是否为活跃状态，使用Promise方式异步返回结果。
 
 > **说明：**
-> 从 API Version 9 开始废弃，建议使用AudioStreamManager中的[isActive](#isactive9)替代。
+>  从 API Version 7 开始支持，从 API Version 9 开始废弃，建议使用AudioStreamManager中的[isActive](#isactive9)替代。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Volume
 
@@ -1421,7 +1421,7 @@ setRingerMode(mode: AudioRingMode, callback: AsyncCallback&lt;void&gt;): void
 设置铃声模式，使用callback方式异步返回结果。
 
 > **说明：**
-> 从 API Version 9 开始废弃，建议使用AudioVolumeGroupManager中的[setRingerMode](#setringermode9)替代。
+>  从 API Version 7 开始支持，从 API Version 9 开始废弃，建议使用AudioVolumeGroupManager中的[setRingerMode](#setringermode9)替代。
 
 **需要权限：** ohos.permission.ACCESS_NOTIFICATION_POLICY
 
@@ -1455,7 +1455,7 @@ setRingerMode(mode: AudioRingMode): Promise&lt;void&gt;
 设置铃声模式，使用Promise方式异步返回结果。
 
 > **说明：**
-> 从 API Version 9 开始废弃，建议使用AudioVolumeGroupManager中的[setRingerMode](#setringermode9)替代。
+>  从 API Version 7 开始支持，从 API Version 9 开始废弃，建议使用AudioVolumeGroupManager中的[setRingerMode](#setringermode9)替代。
 
 **需要权限：** ohos.permission.ACCESS_NOTIFICATION_POLICY
 
@@ -1490,7 +1490,7 @@ getRingerMode(callback: AsyncCallback&lt;AudioRingMode&gt;): void
 获取铃声模式，使用callback方式异步返回结果。
 
 > **说明：**
-> 从 API Version 9 开始废弃，建议使用AudioVolumeGroupManager中的[getRingerMode](#getringermode9)替代。
+>  从 API Version 7 开始支持，从 API Version 9 开始废弃，建议使用AudioVolumeGroupManager中的[getRingerMode](#getringermode9)替代。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Communication
 
@@ -1519,7 +1519,7 @@ getRingerMode(): Promise&lt;AudioRingMode&gt;
 获取铃声模式，使用Promise方式异步返回结果。
 
 > **说明：**
-> 从 API Version 9 开始废弃，建议使用AudioVolumeGroupManager中的[getRingerMode](#getringermode9)替代。
+>  从 API Version 7 开始支持，从 API Version 9 开始废弃，建议使用AudioVolumeGroupManager中的[getRingerMode](#getringermode9)替代。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Communication
 
@@ -1668,7 +1668,7 @@ getDevices(deviceFlag: DeviceFlag, callback: AsyncCallback&lt;AudioDeviceDescrip
 获取音频设备列表，使用callback方式异步返回结果。
 
 > **说明：**
-> 从 API Version 9 开始废弃，建议使用AudioRoutingManager中的[getDevices](#getdevices9)替代。
+>  从 API Version 7 开始支持，从 API Version 9 开始废弃，建议使用AudioRoutingManager中的[getDevices](#getdevices9)替代。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Device
 
@@ -1697,7 +1697,7 @@ getDevices(deviceFlag: DeviceFlag): Promise&lt;AudioDeviceDescriptors&gt;
 获取音频设备列表，使用Promise方式异步返回结果。
 
 > **说明：**
-> 从 API Version 9 开始废弃，建议使用AudioRoutingManager中的[getDevices](#getdevices9)替代。
+>  从 API Version 7 开始支持，从 API Version 9 开始废弃，建议使用AudioRoutingManager中的[getDevices](#getdevices9)替代。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Device
 
@@ -1728,7 +1728,7 @@ setDeviceActive(deviceType: ActiveDeviceType, active: boolean, callback: AsyncCa
 设置设备激活状态，使用callback方式异步返回结果。
 
 > **说明：**
-> 从 API Version 9 开始废弃，建议使用AudioRoutingManager中的[setCommunicationDevice](#setcommunicationdevice9)替代。
+>  从 API Version 7 开始支持，从 API Version 9 开始废弃，建议使用AudioRoutingManager中的[setCommunicationDevice](#setcommunicationdevice9)替代。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Device
 
@@ -1759,7 +1759,7 @@ setDeviceActive(deviceType: ActiveDeviceType, active: boolean): Promise&lt;void&
 设置设备激活状态，使用Promise方式异步返回结果。
 
 > **说明：**
-> 从 API Version 9 开始废弃，建议使用AudioRoutingManager中的[setCommunicationDevice](#setcommunicationdevice9)替代。
+>  从 API Version 7 开始支持，从 API Version 9 开始废弃，建议使用AudioRoutingManager中的[setCommunicationDevice](#setcommunicationdevice9)替代。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Device
 
@@ -1792,7 +1792,7 @@ isDeviceActive(deviceType: ActiveDeviceType, callback: AsyncCallback&lt;boolean&
 获取指定设备的激活状态，使用callback方式异步返回结果。
 
 > **说明：**
-> 从 API Version 9 开始废弃，建议使用AudioRoutingManager中的[isCommunicationDeviceActive](#iscommunicationdeviceactive9)替代。
+>  从 API Version 7 开始支持，从 API Version 9 开始废弃，建议使用AudioRoutingManager中的[isCommunicationDeviceActive](#iscommunicationdeviceactive9)替代。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Device
 
@@ -1822,7 +1822,7 @@ isDeviceActive(deviceType: ActiveDeviceType): Promise&lt;boolean&gt;
 获取指定设备的激活状态，使用Promise方式异步返回结果。
 
 > **说明：**
-> 从 API Version 9 开始废弃，建议使用AudioRoutingManager中的[isCommunicationDeviceActive](#iscommunicationdeviceactive9)替代。
+>  从 API Version 7 开始支持，从 API Version 9 开始废弃，建议使用AudioRoutingManager中的[isCommunicationDeviceActive](#iscommunicationdeviceactive9)替代。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Device
 
@@ -1853,7 +1853,7 @@ setMicrophoneMute(mute: boolean, callback: AsyncCallback&lt;void&gt;): void
 设置麦克风静音状态，使用callback方式异步返回结果。
 
 > **说明：**
-> 从 API Version 9 开始废弃，建议使用AudioVolumeGroupManager中的[setMicrophoneMute](#setmicrophonemute9)替代。
+>  从 API Version 7 开始支持，从 API Version 9 开始废弃，建议使用AudioVolumeGroupManager中的[setMicrophoneMute](#setmicrophonemute9)替代。
 
 **需要权限：** ohos.permission.MICROPHONE
 
@@ -1885,7 +1885,7 @@ setMicrophoneMute(mute: boolean): Promise&lt;void&gt;
 设置麦克风静音状态，使用Promise方式异步返回结果。
 
 > **说明：**
-> 从 API Version 9 开始废弃，建议使用AudioVolumeGroupManager中的[setMicrophoneMute](#setmicrophonemute9)替代。
+>  从 API Version 7 开始支持，从 API Version 9 开始废弃，建议使用AudioVolumeGroupManager中的[setMicrophoneMute](#setmicrophonemute9)替代。
 
 **需要权限：** ohos.permission.MICROPHONE
 
@@ -1918,7 +1918,7 @@ isMicrophoneMute(callback: AsyncCallback&lt;boolean&gt;): void
 获取麦克风静音状态，使用callback方式异步返回结果。
 
 > **说明：**
-> 从 API Version 9 开始废弃，建议使用AudioVolumeGroupManager中的[isMicrophoneMute](#ismicrophonemute9)替代。
+>  从 API Version 7 开始支持，从 API Version 9 开始废弃，建议使用AudioVolumeGroupManager中的[isMicrophoneMute](#ismicrophonemute9)替代。
 
 **需要权限：** ohos.permission.MICROPHONE
 
@@ -1949,7 +1949,7 @@ isMicrophoneMute(): Promise&lt;boolean&gt;
 获取麦克风静音状态，使用Promise方式异步返回结果。
 
 > **说明：**
-> 从 API Version 9 开始废弃，建议使用AudioVolumeGroupManager中的[isMicrophoneMute](#ismicrophonemute9)替代。
+>  从 API Version 7 开始支持，从 API Version 9 开始废弃，建议使用AudioVolumeGroupManager中的[isMicrophoneMute](#ismicrophonemute9)替代。
 
 **需要权限：** ohos.permission.MICROPHONE
 
@@ -3511,68 +3511,6 @@ audioStreamManager.isActive(audio.AudioVolumeType.MEDIA).then((value) => {
 });
 ```
 
-### isAudioRendererLowLatencySupported<sup>9+</sup>
-
-isAudioRendererLowLatencySupported(streaminfo: AudioStreamInfo, callback: Callback&lt;boolean&gt;): void;
-
-检查系统是否支持音频渲染器中的低延迟配置。使用callback异步回调。
-
-**系统能力：** SystemCapability.Multimedia.Audio.Renderer
-
-**参数：**
-
-| 名称       |  类型                   | 必填      | 说明                                    |
-| ---------- | ----------------------- | -------- | --------------------------------------- |
-| streaminfo | [AudioStreamInfo](#audiostreaminfo8)         |  是      | 音频渲染器流信息。  |
-| callback   | Callback&lt;boolean&gt; |  是      | 返回系统是否支持音频渲染器中的低延迟配置。 |
-
-**示例：**
-
-```js
-let AudioStreamInfo = {
-  samplingRate: audio.AudioSamplingRate.SAMPLE_RATE_44100,
-  channels: audio.AudioChannel.CHANNEL_1,
-  sampleFormat: audio.AudioSampleFormat.SAMPLE_FORMAT_S16LE,
-  encodingType: audio.AudioEncodingType.ENCODING_TYPE_RAW
-}
-audioStreamManager.isAudioRendererLowLatencySupported(AudioStreamInfo, (result) => {
-  console.info(`isAudioRendererLowLatencySupported success var ${result}`);
-});
-```
-
-### isAudioRendererLowLatencySupported<sup>9+</sup>
-
-isAudioRendererLowLatencySupported(streaminfo: AudioStreamInfo): Promise&lt;boolean&gt;
-
-检查系统是否支持音频渲染器中的低延迟配置。使用Promise方式异步返回结果。
-
-**系统能力：** SystemCapability.Multimedia.Audio.Renderer
-
-**参数：**
-
-| 参数名     | 类型                                  | 必填 | 说明         |
-| ---------- | ------------------------------------ | ---- | ------------|
-| streaminfo | [AudioStreamInfo](#audiostreaminfo8) | 是   | 数据流信息   |
-
-**返回值：**
-
-| 类型                | 说明                                                  |
-| ------------------- | ---------------------------------------------------- |
-| Promise&lt;void&gt; | Promise方式异步返回系统是否支持音频渲染器中的低延迟配置。 |
-
-**示例：**
-
-```js
-let AudioStreamInfo = {
-  samplingRate: audio.AudioSamplingRate.SAMPLE_RATE_44100,
-  channels: audio.AudioChannel.CHANNEL_1,
-  sampleFormat: audio.AudioSampleFormat.SAMPLE_FORMAT_S16LE,
-  encodingType: audio.AudioEncodingType.ENCODING_TYPE_RAW
-}
-let result = audioStreamManager.isAudioRendererLowLatencySupported(AudioStreamInfo);
-console.info(`isAudioRendererLowLatencySupported success var ${result}`);
-```
-
 ## AudioRoutingManager<sup>9+</sup>
 
 音频路由管理。在使用AudioRoutingManager的接口前，需要使用[getRoutingManager](#getroutingmanager9)获取AudioRoutingManager实例。
@@ -4449,7 +4387,7 @@ getAudioStreamId(callback: AsyncCallback<number\>): void
 
 | 参数名   | 类型                                                 | 必填 | 说明                 |
 | :------- | :--------------------------------------------------- | :--- | :------------------- |
-| callback | AsyncCallback<[number]\> | 是   | 回调返回音频流id。 |
+| callback | AsyncCallback<number\> | 是   | 回调返回音频流id。 |
 
 **示例：**
 
@@ -4471,7 +4409,7 @@ getAudioStreamId(): Promise<number\>
 
 | 类型                                           | 说明                   |
 | :--------------------------------------------- | :--------------------- |
-| Promise<[number]\> | Promise返回音频流id. |
+| Promise<number\> | Promise返回音频流id. |
 
 **示例：**
 
@@ -5220,7 +5158,7 @@ on(type: "markReach", frame: number, callback: Callback&lt;number&gt;): void
 | :------- | :----------------------- | :--- | :---------------------------------------- |
 | type     | string                   | 是   | 事件回调类型，支持的事件为：'markReach'。 |
 | frame    | number                   | 是   | 触发事件的帧数。 该值必须大于 0。         |
-| callback | Callback<number>         | 是   | 触发事件时调用的回调。                    |
+| callback | Callback\<number>         | 是   | 触发事件时调用的回调。                    |
 
 **示例：**
 
@@ -5267,7 +5205,7 @@ on(type: "periodReach", frame: number, callback: Callback&lt;number&gt;): void
 | :------- | :----------------------- | :--- | :------------------------------------------ |
 | type     | string                   | 是   | 事件回调类型，支持的事件为：'periodReach'。 |
 | frame    | number                   | 是   | 触发事件的帧数。 该值必须大于 0。           |
-| callback | Callback<number>         | 是   | 触发事件时调用的回调。                      |
+| callback | Callback\<number>         | 是   | 触发事件时调用的回调。                      |
 
 **示例：**
 
@@ -5475,7 +5413,7 @@ getAudioStreamId(callback: AsyncCallback<number\>): void
 
 | 参数名   | 类型                                                 | 必填 | 说明                 |
 | :------- | :--------------------------------------------------- | :--- | :------------------- |
-| callback | AsyncCallback<[number]\> | 是   | 回调返回音频流id。 |
+| callback | AsyncCallback<number\> | 是   | 回调返回音频流id。 |
 
 **示例：**
 
@@ -5497,7 +5435,7 @@ getAudioStreamId(): Promise<number\>
 
 | 类型                                           | 说明                   |
 | :--------------------------------------------- | :--------------------- |
-| Promise<[number]\> | Promise返回音频流id. |
+| Promise<number\> | Promise返回音频流id. |
 
 **示例：**
 
@@ -5863,7 +5801,7 @@ on(type: "markReach", frame: number, callback: Callback&lt;number&gt;): void
 | :------- | :----------------------  | :--- | :----------------------------------------- |
 | type     | string                   | 是   | 事件回调类型，支持的事件为：'markReach'。  |
 | frame    | number                   | 是   | 触发事件的帧数。 该值必须大于0。           |
-| callback | Callback<number>         | 是   | 使用callback方式异步返回被触发事件的回调。 |
+| callback | Callback\<number>         | 是   | 使用callback方式异步返回被触发事件的回调。 |
 
 **示例：**
 
@@ -5909,7 +5847,7 @@ on(type: "periodReach", frame: number, callback: Callback&lt;number&gt;): void
 | :------- | :----------------------- | :--- | :------------------------------------------ |
 | type     | string                   | 是   | 事件回调类型，支持的事件为：'periodReach'。 |
 | frame    | number                   | 是   | 触发事件的帧数。 该值必须大于0。            |
-| callback | Callback<number>         | 是   | 使用callback方式异步返回被触发事件的回调    |
+| callback | Callback\<number>         | 是   | 使用callback方式异步返回被触发事件的回调    |
 
 **示例：**
 
