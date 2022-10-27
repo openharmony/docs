@@ -1013,8 +1013,8 @@ Camera驱动的开发过程主要包含以下步骤：
    "-q | --quit          stop preview and quit this app\n");
    ```
 
-3. 编译用例
-   在drivers/peripheral/camera/hal/BUILD.gn文件中的deps中添加init:ohos_camera_demo,示例代码如下：
+4. 编译用例
+   在drivers/peripheral/camera/hal/BUILD.gn文件中的deps中添加“init:ohos_camera_demo”，示例代码如下：
    ```
    deps = [
        "buffer_manager:camera_buffer_manager",
@@ -1026,4 +1026,6 @@ Camera驱动的开发过程主要包含以下步骤：
        ]
    ```
 
-   以RK3568为例：执行全量编译命令./build.sh --product-name rk3568 --ccache，生成可执行二进制文件ohos_camera_demo，路径为：out/rk3568/packages/phone/vendor/bin/。将可执行文件ohos_camera_demo导入开发板，修改权限直接运行即可。
+   以RK3568为例：
+   1.执行全量编译命令./build.sh --product-name rk3568 --ccache，生成可执行二进制文件ohos_camera_demo，路径为：out/rk3568/packages/phone/vendor/bin/。
+   2.将可执行文件ohos_camera_demo导入开发板，修改权限直接运行即可。
