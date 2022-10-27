@@ -8,7 +8,7 @@ Permission verification failed, usually the result returned by VerifyAccessToken
 
 **错误描述**
 
-权限校验失败，通常为VerifyAccessToken返回的结果导致。
+权限校验失败，应用无权限使用该API，需要申请权限。
 
 **可能原因**
 
@@ -22,7 +22,7 @@ Permission verification failed, usually the result returned by VerifyAccessToken
 
 **错误信息**
 
-Permission verification failed, non-system application uses system API.
+Permission verification failed, application which is not a system application uses system API.
 
 **错误描述**
 
@@ -40,7 +40,7 @@ Permission verification failed, non-system application uses system API.
 
 **错误信息**
 
-The parameter check failed, including the required parameter is not passed in, or the parameter type is wrong.
+BusinessError 401: Parameter error. The type of "${参数名}" must be ${正确的类型}[or ${其他正确的输入}].
 
 **错误描述**
 
@@ -58,7 +58,7 @@ The parameter check failed, including the required parameter is not passed in, o
 
 **错误信息**
 
-The device does not support this API, it is usually used to support a small number of APIs when the device supports the SysCap.
+BusinessError 801: Capability not supported. function ${函数名} can not work correctly due to limited device capabilities.
 
 **错误描述**
 
