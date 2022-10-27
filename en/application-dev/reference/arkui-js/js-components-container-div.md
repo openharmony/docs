@@ -1,11 +1,10 @@
 # div
 
-The **\<div>** component is a basic container that is used as the root node of the page structure or is used to group the content.
-
 >  **NOTE**
 >
 >  This component is supported since API version 4. Updates will be marked with a superscript to indicate their earliest API version.
 
+The **\<div>** component is a basic container that is used as the root node of the page structure or is used to group the content.
 
 ## Required Permissions
 

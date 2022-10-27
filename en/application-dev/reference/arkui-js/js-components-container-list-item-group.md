@@ -18,7 +18,7 @@ None
 
 ## Child Components
 
-Only the [\<list-item>](../arkui-js/js-components-container-list-item.md) child component is supported.
+Only the **[\<list-item>](../arkui-js/js-components-container-list-item.md)** component is supported.
 
 
 ## Attributes
