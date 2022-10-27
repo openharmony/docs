@@ -1,31 +1,35 @@
 # polygon
 
-The  **<polygon\>**  component is used to draw a polygon.
+The **\<polygon>** component is used to draw a polygon.
 
->![](../../public_sys-resources/icon-note.gif) **NOTE:** 
->This component is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
+
+>  **NOTE**
+>
+>  This component is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
 ## Required Permissions
 
 None
 
+
 ## Child Components
 
-**animate**,  **animateMotion**, and  **animateTransform**  are supported.
+The following are supported: [\<animate>](js-components-svg-animate.md), [\<animateMotion>](js-components-svg-animatemotion.md), and [\<animateTransform>](js-components-svg-animatetransform.md).
+
 
 ## Attributes
 
-The  [universal attributes](js-components-svg-common-attributes.md)  and the attributes listed below are supported.
+The [universal attributes](../arkui-js/js-components-svg-common-attributes.md) and the attributes listed below are supported.
 
-| Name   | Type   | Default Value | Mandatory | Description                                                  |
-| ------ | ------ | ------------- | --------- | ------------------------------------------------------------ |
-| id     | string | -             | No        | Unique ID of the component.                                  |
-| points | string | -             | No        | Multiple coordinates of the polygon.<br/>The format is [x1,y1 x2,y2 x3,y3].<br/>Attribute animations are supported. If the number of coordinates of the animation change value set in the attribute animation is different from the format of the original points, the attribute animation is invalid. |
+| Name| Type| Default Value| Mandatory| Description|
+| -------- | -------- | -------- | -------- | -------- |
+| id | string | - | No| Unique ID of the component.|
+| points | string | - | No| Multiple coordinates of the polygon.<br>The format is [x1,y1 x2,y2 x3,y3].<br>Attribute animations are supported. If the number of coordinates of the animation change value set in the attribute animation is different from the format of the original points, the attribute animation is invalid.|
 
 
 ## Example
 
-```
+```html
 <!-- xxx.hml -->
 <div class="container">
   <svg fill="white" stroke="blue" width="400" height="400">
@@ -35,5 +39,5 @@ The  [universal attributes](js-components-svg-common-attributes.md)  and the att
 </div>
 ```
 
-![](figures/en-us_image_0000001173324721.png)
 
+![en-us_image_0000001173324721](figures/en-us_image_0000001173324721.png)

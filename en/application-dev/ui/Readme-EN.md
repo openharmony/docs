@@ -1,7 +1,7 @@
 # UI Development
 
 - [ArkUI Overview](arkui-overview.md)
-- TypeScript-based Declarative Development Paradigm
+- UI Development with eTS-based Declarative Development Paradigm
     - [Overview](ui-ts-overview.md)
     - Framework Overview
         - File Organization
@@ -10,7 +10,7 @@
         - ["js" Tag](ts-framework-js-tag.md)
         - Resource Management
             - [Resource File Categories](ui-ts-basic-resource-file-categories.md)
-            - [Accessing Resources](ts-resource-access.md)
+            - [Resource Access](ts-resource-access.md)
         - [Pixel Units](ts-pixel-units.md)
     - Declarative Syntax
         - [Overview](ts-syntax-intro.md)
@@ -73,7 +73,7 @@
         - [Implementing Page Redirection and Data Transmission](ui-ts-page-redirection-data-transmission.md)
     - [Recommendations for Improving Performance](ts-performance-improvement-recommendation.md)
     
-- JavaScript-based Web-like Development Paradigm
+- UI Development with JavaScript-compatible Web-like Development Paradig
     - [Overview](ui-js-overview.md)
     - Framework
         - [File Organization](js-framework-file.md)
@@ -99,14 +99,14 @@
         - [Defining Gesture Events](ui-js-building-ui-event.md)
         - [Defining Page Routes](ui-js-building-ui-routes.md)
     - Common Component Development Guidelines
-        - Container Components
+        - Container Component Development
             - [List Development](ui-js-components-list.md)
             - [Dialog Development](ui-js-components-dialog.md)
             - [Form Development](ui-js-components-form.md)
             - [Stepper Development](ui-js-components-stepper.md)
             - [Tabs Development](ui-js-component-tabs.md)
             - [Swiper Development](ui-js-components-swiper.md)
-        - Basic Components
+        - Basic Component Development
             - [Text Development](ui-js-components-text.md)
             - [Input Development](ui-js-components-input.md)
             - [Button Development](ui-js-components-button.md)
@@ -127,8 +127,8 @@
             - [CanvasRenderingContext2D](ui-js-components-canvasrenderingcontext2d.md)
             - [Path2D](ui-js-components-path2d.md)
             - [OffscreenCanvas](ui-js-components-offscreencanvas.md)
-        - [Grid-container Development](ui-js-components-grid.md)
-        - Svg
+        - [Grid Container Development](ui-js-components-grid.md)
+        - SVG Development
             - [Basics](ui-js-components-svg-overview.md)
             - [Graph Drawing](ui-js-components-svg-graphics.md)
             - [Path Drawing](ui-js-components-svg-path.md)

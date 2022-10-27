@@ -8,26 +8,25 @@ The **&lt;tabs&gt;** component is a common UI component for navigation. It allow
 
 Create a **&lt;tabs&gt;** component in the .hml file under **pages/index**.
 
-
 ```
-<!-- index.hml -->
-<div class="container" >
-  <tabs> <tab-bar>
-      <text>item1</text>
-      <text>item2</text>
-    </tab-bar>
-    <tab-content>
-      <div class="text">
-        <text>content1</text>
-      </div>
-      <div class="text">
-        <text>content2</text>
-      </div>
-    </tab-content>
-  </tabs>
+<!-- xxx.hml -->
+<div class="container">
+    <tabs>
+        <tab-bar>
+            <text>item1</text>
+            <text>item2</text>
+        </tab-bar>
+        <tab-content>
+            <div class="text">
+                <text>content1</text>
+            </div>
+            <div class="text">
+                <text>content2</text>
+            </div>
+        </tab-content>
+    </tabs>
 </div>
 ```
-
 
 ```
 /* xxx.css */
@@ -52,7 +51,6 @@ Create a **&lt;tabs&gt;** component in the .hml file under **pages/index**.
 
 By default, the active tab of a **&lt;tabs&gt;** component is the one with the specified **index**. To show the **&lt;tabs&gt;** vertically, set the **vertical** attribute to **true**.
 
-
 ```
 <!-- index.hml -->
 <div class="container" style="background-color:#F1F3F5;">
@@ -76,7 +74,6 @@ By default, the active tab of a **&lt;tabs&gt;** component is the one with the s
 ![en-us_image_0000001222967756](figures/en-us_image_0000001222967756.gif)
 
 Set the **mode** attribute to enable the child components of the **&lt;tab-bar&gt;** to be evenly distributed. Set the **scrollable** attribute to disable scrolling of the **&lt;tab-content&gt;**.
-
 
 ```
 <!-- index.hml -->
@@ -103,7 +100,7 @@ Set the **mode** attribute to enable the child components of the **&lt;tab-bar&g
 
 ## Setting Styles
 
-  Set the background color, border, and tab-content layout of the **&lt;tabs&gt;** component.
+Set the background color, border, and tab-content layout of the **&lt;tabs&gt;** component.
 
 ```
 <!-- index.hml -->
@@ -124,7 +121,6 @@ Set the **mode** attribute to enable the child components of the **&lt;tab-bar&g
   </tabs>
 </div>
 ```
-
 
 ```
 /* xxx.css */
@@ -161,7 +157,6 @@ Set the **mode** attribute to enable the child components of the **&lt;tab-bar&g
 
 Add the **change** event for the **&lt;tabs&gt;** component to display the index of the current tab after tab switching.
 
-
 ```
 <!-- index.hml -->
 <div class="container" style="background-color:#F1F3F5;">
@@ -182,7 +177,6 @@ Add the **change** event for the **&lt;tabs&gt;** component to display the index
 </div>
 ```
 
-
 ```
 /* index.js */
 import prompt from '@system.prompt';
@@ -198,9 +192,9 @@ export default {
 ![en-us_image_0000001222807772](figures/en-us_image_0000001222807772.gif)
 
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
+> **NOTE**
 >
-> A **&lt;tabs&gt;** can wrap at most one [**&lt;tab-bar&gt;**](../reference/arkui-js/js-components-container-tab-bar.md)  and at most one [**&lt;tab-content&gt;**](../reference/arkui-js/js-components-container-tab-content.md).
+> A **&lt;tabs&gt;** can wrap at most one [**&lt;tab-bar&gt;**](../reference/arkui-js/js-components-container-tab-bar.md) and at most one [**&lt;tab-content&gt;**](../reference/arkui-js/js-components-container-tab-content.md).
 
 
 ## Example Scenario
@@ -208,7 +202,6 @@ export default {
 In this example, you can switch between tabs and the active tab has the title text in red with an underline below.
 
 Use the **&lt;tabs&gt;**, **&lt;tab-bar&gt;**, and **&lt;tab-content&gt;** components to implement tab switching. Then define the arrays and attributes. Add the **change** event to change the attribute values in the arrays so that the active tab has a different font color and an underline.
-
 
 ```
 <!-- index.hml -->
@@ -237,7 +230,6 @@ Use the **&lt;tabs&gt;**, **&lt;tab-bar&gt;**, and **&lt;tab-content&gt;** compo
   </tabs>
 </div>
 ```
-
 
 ```
 /* xxx.css */
@@ -274,7 +266,6 @@ background-color:#F1F3F5;
   width: 160px;
 }
 ```
-
 
 ```
 /* index.js */

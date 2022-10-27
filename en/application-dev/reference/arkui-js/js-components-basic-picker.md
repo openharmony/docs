@@ -1,174 +1,169 @@
 # picker
 
+>  **NOTE**
+>
+>  This component is supported since API version 4. Updates will be marked with a superscript to indicate their earliest API version.
+
 The **\<picker>** component supports common, date, time, data and time, and multi-column text selectors.
+
 
 ## Required Permissions
 
 None
 
-## Child Component
 
-None
+## Child Components
+
+Not supported
+
 
 ## Attributes
 
-In addition to the attributes in [Universal Attributes](js-components-common-attributes.md), the following attributes are supported.
+In addition to the [universal attributes](../arkui-js/js-components-common-attributes.md), the following attributes are supported.
+
+| Name  | Type    | Default Value | Mandatory  | Description                                      |
+| ---- | ------ | ---- | ---- | ---------------------------------------- |
+| type | string | -    | No   | Picker type. Dynamic modification is not supported. The options are as follows:<br>- **text**: text selector.<br>- **date**: date selector.<br>- **time**: time selector.<br>- **datetime**: date and time selector.<br>- **multi-text**: multi-column text selector.|
 
 
+### Common Selector
 
-| Name | Type   | Default Value | Mandatory | Description                                                  |
-| ---- | ------ | ------------- | --------- | ------------------------------------------------------------ |
-| type | string | -             | No        | Dynamic modification is not supported. Available values include:<br/>-**text**: text selector<br/>-**data**: date selector<br/>-**time**: time selector<br/>-**datetime**: date and time selector<br/>-**multi-text**: multi-column text selector |
+When **type** is set to **text**, a common selector is used.
 
-### Text Selector
+| Name      | Type    | Default Value | Mandatory  | Description                                      |
+| -------- | ------ | ---- | ---- | ---------------------------------------- |
+| range    | Array  | -    | No   | Value range of the common selector, for example, **["15", "20", "25"]**.<br>Use the data binding mode, for example, `range = {{data}}`. Declare the corresponding variable `data: ["15", "20", "25"]` in JavaScript.|
+| selected | string | 0    | No   | Default value of the common selector. The value should be the index of **range**.|
+| value    | string | -    | No   | Value of the common selector.                              |
 
-When **type** is set to **text**, a text selector is used.
-
-
-
-| Name     | Type   | Default Value | Mandatory | Description                                                  |
-| -------- | ------ | ------------- | --------- | ------------------------------------------------------------ |
-| range    | Array  | -             | No        | Value range of the common selector, for example, **["15", "20", "25"]**.NOTE:Use the data binding mode, for example, range = {{data}}. Declare the corresponding variable **data: ["15", "20", "25"]** in the JavaScript. |
-| selected | string | 0             | No        | Default value of the common selector. The value should be the index of **range**. |
-| value    | string | -             | No        | Value of the common selector.                                |
 
 ### Date Selector
 
 When **type** is set to **date**, a date selector is used.
 
+| Name                | Type          | Default Value       | Mandatory  | Description                                      |
+| ------------------ | ------------ | ---------- | ---- | ---------------------------------------- |
+| start              | &lt;time&gt; | 1970-1-1   | No   | Start date of the date selector, in the format of YYYY-MM-DD.       |
+| end                | &lt;time&gt; | 2100-12-31 | No   | End date of the date selector, in the format of YYYY-MM-DD.       |
+| selected           | string       | Current date      | No   | Default value of the date selector, in format of YYYY-MM-DD.|
+| value              | string       | -          | Yes   | Value of the date selector.                              |
+| lunar<sup>5+</sup> | boolean      | false      | No   | Whether the pop-up window displays the lunar calendar.                     |
+| lunarswitch        | boolean      | false      | No   | Whether the date selector displays the lunar calendar switch, which is used to switch between the Gregorian calendar and lunar calendar. The value **true** means to display the lunar calendar switch for users to switch between the Gregorian calendar and lunar calendar. The value **false** means not to display the lunar calendar switch.<br>When both **lunarswitch** and **lunar** are set to **true**, the switch is selected.|
 
-
-| Name        | Type    | Default Value | Mandatory | Description                                                  |
-| ----------- | ------- | ------------- | --------- | ------------------------------------------------------------ |
-| start       | \<time>  | 1970-1-1      | No        | Start date of the date selector, in the format of YYYY-MM-DD. |
-| end         | \<time>  | 2100-12-31    | No        | End date of the date selector, in the format of YYYY-MM-DD.  |
-| selected    | string  | Current date  | No        | Default value of the date selector, in format of YYYY-MM-DD. |
-| value       | string  | -             | Yes       | Value of the date selector.                                  |
-| lunar5+     | boolean | false         | No        | Whether the pop-up window displays the lunar calendar.       |
-| lunarswitch | boolean | false         | No        | Whether the date selector displays the lunar calendar switch, which is used to switch between the Gregorian calendar and lunar calendar. The value **true** means to display the lunar calendar switch for users to switch between the Gregorian calendar and lunar calendar. The value **false** means not to display the lunar calendar switch.NOTE:When both **lunarswitch** and **lunar** are set to **true**, the switch is selected. |
 
 ### Time Selector
 
 When **type** is set to **time**, a time selector is used.
 
+| Name           | Type     | Default Value                                | Mandatory  | Description                                      |
+| ------------- | ------- | ----------------------------------- | ---- | ---------------------------------------- |
+| containsecond | boolean | false                               | No   | Whether seconds are contained.                           |
+| selected      | string  | Current time                               | No   | Default value of the time selector, in format of HH:mm. If seconds are contained, the format is HH:mm:ss. |
+| value         | string  | -                                   | No   | Value of the time selector.                              |
+| hours         | number  | 24<sup>1-4</sup><br>-<sup>5+</sup> | No   | Time format used by the time selector. Available values are as follows:<br>- **12**: displayed in 12-hour format and distinguished by a.m. and p.m.<br>- **24**: displayed in 24-hour format.<br>Since API version 5, the default value is the most commonly-used hour format in the current locale.|
 
-
-| Name          | Type    | Default Value | Mandatory | Description                                                  |
-| ------------- | ------- | ------------- | --------- | ------------------------------------------------------------ |
-| containsecond | boolean | false         | No        | Whether seconds are contained.                               |
-| selected      | string  | Current time  | No        | Default value of the time selector, in the format of HH:mm. If seconds are contained, the format is HH:mm:ss. |
-| value         | string  | -             | No        | Value of the time selector.                                  |
-| hours         | number  | 241-4-5+      | No        | Time format used by the time selector. Available values include:<br/>-**12**: displayed in 12-hour format and distinguished by a.m. and p.m.<br/>-**24**: displayed in 24-hour formatNOTE:The default value is the most commonly-used hour format in the current locale. 5+ |
 
 ### Date and Time Selector
 
 When **type** is set to **datetime**, a date and time selector is used.
 
+| Name                | Type     | Default Value                                | Mandatory  | Description                                      |
+| ------------------ | ------- | ----------------------------------- | ---- | ---------------------------------------- |
+| selected           | string  | Current date and time                             | No   | Default value of the date and time selector. The value can be in either of the following formats:<br>- MM-DD-HH-mm<br>- YYYY-MM-DD-HH-mm<br>If the year is not set, the current year is used by default. The value you set is the date selected by default in the pop-up window.|
+| value              | string  | -                                   | Yes   | Value of the date and time selector.                            |
+| hours              | number  | 24<sup>1-4</sup><br>-<sup>5+</sup> | No   | Time format used by the date and time selector. Available values are as follows:<br>- **12**: displayed in 12-hour format and distinguished by a.m. and p.m.<br>- **24**: displayed in 24-hour format.<br>Since API version 5, the default value is the most commonly-used hour format in the current locale.|
+| lunar<sup>5+</sup> | boolean | false                               | No   | Whether the pop-up window displays the lunar calendar.                   |
+| lunarswitch        | boolean | false                               | No   | Whether the date selector displays the lunar calendar switch, which is used to switch between the Gregorian calendar and lunar calendar. The value **true** means to display the lunar calendar switch for users to switch between the Gregorian calendar and lunar calendar. The value **false** means not to display the lunar calendar switch.<br>When both **lunarswitch** and **lunar** are set to **true**, the switch is selected.|
 
-
-| Name        | Type    | Default Value         | Mandatory | Description                                                  |
-| ----------- | ------- | --------------------- | --------- | ------------------------------------------------------------ |
-| selected    | string  | Current date and time | No        | Default value of the date and time selector. The value can be in either of the following formats:<br/>-MM-DD-HH-mm<br/>-YYYY-MM-DD-HH-mmIf the year is not set, the current year is used by default. <br/>-The value you set is the date selected by default in the pop-up window. |
-| value       | string  | -                     | Yes       | Value of the date and time selector.                         |
-| hours       | number  | 241-4-5+              | No        | Time format used by the date and time selector. Available values include:<br/>-**12**: displayed in 12-hour format and distinguished by a.m. and p.m.<br/>-**24**: displayed in 24-hour format<br/>NOTE:The default value is the most commonly-used hour format in the current locale. 5+ |
-| lunar5+     | boolean | false                 | No        | Whether the pop-up window displays the lunar calendar.       |
-| lunarswitch | boolean | false                 | No        | Whether the date selector displays the lunar calendar switch, which is used to switch between the Gregorian calendar and lunar calendar. The value **true** means to display the lunar calendar switch for users to switch between the Gregorian calendar and lunar calendar. The value **false** means not to display the lunar calendar switch.NOTE:When both **lunarswitch** and **lunar** are set to **true**, the switch is selected. |
 
 ### Multi-Column Text Selector
 
 When **type** is set to **multi-text**, a multi-column text selector is used.
 
+| Name      | Type     | Default Value      | Mandatory  | Description                                      |
+| -------- | ------- | --------- | ---- | ---------------------------------------- |
+| columns  | number  | -         | Yes   | Number of columns in the multi-column text selector.                           |
+| range    | Two-dimensional array| -         | No   | Items of the multi-column text selector. **range** is a two-dimensional array that indicates the number of columns. Each item in the array indicates the data of each column, for example, **[["a", "b"], ["c", "d"]]**.<br>Use the data binding mode, for example, `range = {{data}}`. Declare the corresponding variable `data: ["15", "20", "25"]` in JavaScript.|
+| selected | Array   | [0,0,0, ...]| No   | Default value of the multi-column text selector, which is an array consisting of the indexes of the selected items in each column.|
+| value    | Array   | -         | No   | Value of the multi-column text selector, which is an array consisting of the values of the selected items in each column.           |
 
-
-| Name     | Type                  | Default Value | Mandatory | Description                                                  |
-| -------- | --------------------- | ------------- | --------- | ------------------------------------------------------------ |
-| columns  | number                | -             | Yes       | Number of columns in the multi-column text selector.         |
-| range    | Two-dimensional array | -             | No        | Items of the multi-column text selector. **range** is a two-dimensional array that indicates the number of columns. Each item in the array indicates the data of each column, for example, **[["a","b"], ["c","d"]]**.NOTE:Use the data binding mode, for example, range = {{data}}. Declare the corresponding variable **data: [["a","b"], ["c","d"]]** in the JavaScript. |
-| selected | Array                 | 0,0,0,...     | No        | Default value of the multi-column text selector, which is an array consisting of the indexes of the selected items in each column. |
-| value    | Array                 | -             | No        | Value of the multi-column text selector, which is an array consisting of the values of the selected items in each column. |
 
 ## Styles
 
-In addition to the styles in [Universal Styles](js-components-common-styles.md), the following styles are supported.
+In addition to the [universal styles](../arkui-js/js-components-common-styles.md), the following styles are supported.
 
+| Name                        | Type                        | Default Value       | Mandatory  | Description                                      |
+| -------------------------- | -------------------------- | ---------- | ---- | ---------------------------------------- |
+| text-color                 | &lt;color&gt;              | -          | No   | Text color of the selector.                               |
+| font-size                  | &lt;length&gt;             | -          | No   | Font size of the selector.                               |
+| allow-scale                | boolean                    | true       | No   | Whether the font size changes with the system's font size settings.<br>If the **config-changes** tag of **fontSize** is configured for abilities in the **config.json** file, the setting takes effect without application restart.|
+| letter-spacing             | &lt;length&gt;             | 0          | No   | Letter spacing of the selector. For details, see **letter-spacing** in the **[\<text>](../arkui-js/js-components-basic-text.md#styles)** component.|
+| text-decoration            | string                     | -          | No   | Text decoration of the selector. For details, see **text-decoration** in the **[\<text>](../arkui-js/js-components-basic-text.md#styles)** component.|
+| font-style                 | string                     | normal     | No   | Font style of the selector. For details, see **font-style** in the **[\<text>](../arkui-js/js-components-basic-text.md#styles)** component.|
+| font-weight                | number \| string | normal     | No   | Font weight of the selector. For details, see **font-weight** in the **[\<text>](../arkui-js/js-components-basic-text.md#styles)** component.|
+| font-family                | string                     | sans-serif | No   | Font family, in which fonts are separated by commas (,). Each font is set using a font name or font family name. The first font in the family or the specified [custom font](../arkui-js/js-components-common-customizing-font.md) is used for the text.|
+| line-height                | &lt;length&gt;             | 0px        | No   | Text line height of the selector.                               |
+| column-height<sup>5+</sup> | &lt;length&gt;             | -          | No   | Height of the selector option list.                            |
 
-
-| Name            | Type             | Default Value | Mandatory | Description                                                  |
-| --------------- | ---------------- | ------------- | --------- | ------------------------------------------------------------ |
-| text-color      | \<color>          | -             | No        | Text color of the selector.                                  |
-| font-size       | \<length>         | -             | No        | Font size of the selector.                                   |
-| allow-scale     | boolean          | true          | No        | Whether the font size changes with the system's font size settings.NOTE:If the **config-changes** tag of **fontSize** is configured for abilities in the **config.json** file, the setting takes effect without application restart. |
-| letter-spacing  | \<length>         | 0             | No        | Letter spacing of the selector. For details, see [letter-spacing](js-components-basic-text.md#section5775351116) of the **text** component. |
-| text-decoration | string           | -             | No        | Text decoration of the selector. For details, see [text-decoration](js-components-basic-text.md) of the **text** component. |
-| font-style      | string           | normal        | No        | Font style of the selector. For details, see [font-style](js-components-basic-text.md) of the **text** component. |
-| font-weight     | number \| string | normal        | No        | Font weight of the selector. For details, see [font-weight](js-components-basic-text.md) of the **text** component. |
-| font-family     | string           | sans-serif    | No        | Font family, in which fonts are separated by commas (,). Each font is set using a font name or font family name. The first font that exists in the system or the font specified by [Custom Font Styles](js-components-common-customizing-font.md) in the family is selected as the font for the text. |
-| line-height     | \<length>         | 0px           | No        | Text line height of the selector.                            |
-| column-height5+ | \<length>         | -             | No        | Height of the selector option list.                          |
 
 ## Events
 
-In addition to the events in [Universal Events](js-components-common-events.md), the following events are supported.
+In addition to the [universal events](../arkui-js/js-components-common-events.md), the following events are supported.
+
 
 ### Common Selector
 
+| Name    | Parameter                                      | Description                                      |
+| ------ | ---------------------------------------- | ---------------------------------------- |
+| change | { newValue: newValue, newSelected: newSelected } | Triggered when an item is selected and the OK button is clicked in the displayed pop-up window. **newSelected** is the index.|
+| cancel | -                                        | Triggered when the cancel button is clicked.                     |
 
-
-| Name   | Parameter                                        | Description                                                  |
-| ------ | ------------------------------------------------ | ------------------------------------------------------------ |
-| change | { newValue: newValue, newSelected: newSelected } | Triggered when a value is selected and the OK button is clicked in the displayed pop-up window. **newSelected** is the index. |
-| cancel | -                                                | Triggered when the cancel button is clicked.                 |
 
 ### Date Selector
 
+| Name    | Parameter                                      | Description                                      |
+| ------ | ---------------------------------------- | ---------------------------------------- |
+| change | { year: year, month: month, day: day } | Triggered when an item is selected and the OK button is clicked in the displayed pop-up window.<br>The value of **month** ranges from **0** (January) to **11** (December) since API version 5.|
+| cancel | -                                        | Triggered when the cancel button is clicked.                     |
 
-
-| Name   | Parameter                              | Description                                                  |
-| ------ | -------------------------------------- | ------------------------------------------------------------ |
-| change | { year: year, month: month, day: day } | Triggered when a value is selected and the OK button is clicked in the displayed pop-up window.NOTE:The value of **month** ranges from 0 (January) to 11 (December). 5+ |
-| cancel | -                                      | Triggered when the cancel button is clicked.                 |
 
 ### Date and Time Selector
 
+| Name    | Parameter                                      | Description                          |
+| ------ | ---------------------------------------- | ---------------------------- |
+| change | { year: year, month: month, day: day,  hour: hour, minute: minute} | Triggered when an item is selected and the OK button is clicked in the displayed pop-up window.|
+| cancel | -                                        | Triggered when the cancel button is clicked.         |
 
-
-| Name   | Parameter                                                    | Description                                                  |
-| ------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| change | { year: year, month: month, day: day, hour: hour, minute: minute} | Triggered when a value is selected and the OK button is clicked in the displayed pop-up window. |
-| cancel | -                                                            | Triggered when the cancel button is clicked.                 |
 
 ### Time Selector
 
+| Name    | Parameter                                      | Description                                      |
+| ------ | ---------------------------------------- | ---------------------------------------- |
+| change | { hour: hour, minute: minute, [second: second] } | Triggered when an item is selected and the OK button is clicked in the displayed pop-up window. If **containsecond** is set to true, value contains seconds.|
+| cancel | -                                        | Triggered when the cancel button is clicked.                     |
 
-
-| Name   | Parameter                                        | Description                                                  |
-| ------ | ------------------------------------------------ | ------------------------------------------------------------ |
-| change | { hour: hour, minute: minute, [second: second] } | Triggered when a value is selected and the OK button is clicked in the displayed pop-up window. If **containsecond** is set to true, value contains seconds. |
-| cancel | -                                                | Triggered when the cancel button is clicked.                 |
 
 ### Multi-Column Text Selector
 
+| Name          | Parameter                                      | Description                                      |
+| ------------ | ---------------------------------------- | ---------------------------------------- |
+| change       | { newValue: [newValue1, newValue2, newValue3, …], newSelected:[newSelected1, newSelected2, newSelected3, …] } | Triggered when an item is selected and the OK button is clicked in the displayed pop-up window.<br>- **newValue** is an array consisting of the values of the selected items.<br>- **newSelected** is an array consisting of the indexes of the selected items. The lengths of **newValue** and **newSelected** are the same as the length of **range**.|
+| columnchange | { column: column, newValue: newValue, newSelected: newSelected } | Triggered when the value of a column in the multi-column selector changes.<br>- **column**: column whose value has changed.<br>- **newValue**: selected value.<br>- **newSelected**: index of the selected value.|
+| cancel       | -                                        | Triggered when the cancel button is clicked.                     |
 
-
-| Name         | Parameter                                                    | Description                                                  |
-| ------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| change       | { newValue: [newValue1, newValue2, newValue3, …], newSelected:[newSelected1, newSelected2, newSelected3, …] } | Triggered when an item is selected and the OK button is clicked in the displayed pop-up window.<br/>-**newValue** is an array consisting of the values of the selected items.<br/>-**newSelected** is an array consisting of the indexes of the selected items. The lengths of **newValue** and **newSelected** are the same as the length of **range**. |
-| columnchange | { column: column, newValue: newValue, newSelected: newSelected } | Triggered when the value of a column in the multi-column selector changes.<br/>-**column** indicates the column whose value has changed.<br/>-**newValue** indicates the selected value.<br/>-**newSelected** indicates the index of the selected value. |
-| cancel       | -                                                            | Triggered when the cancel button is clicked.                 |
 
 ## Methods
 
-In addition to the methods in [Universal Methods](js-components-common-methods.md), the following events are supported.
+In addition to the [universal methods](../arkui-js/js-components-common-methods.md), the following methods are supported.
+
+| Name  | Parameter  | Description             |
+| ---- | ---- | --------------- |
+| show | -    | Shows the picker.|
 
 
+## Example
 
-| Name | Parameter | Description          |
-| ---- | --------- | -------------------- |
-| show | -         | Displays the picker. |
-
-## Example Code
-
-```
+```html
 <!-- xxx.hml -->
 <div class="container">
   <select @change="selectChange">
@@ -177,7 +172,7 @@ In addition to the methods in [Universal Methods](js-components-common-methods.m
         </option>
   </select>
   <picker id="picker0" type="text" value="{{textvalue}}" selected="{{textselect}}" range="{{rangetext}}" onchange="textonchange"
-    oncancel="textoncancel" class="pickertext"  "></picker>
+    oncancel="textoncancel" class="pickertext"></picker>
 
   <picker id="picker1" type="date" value="{{datevalue}}" start="2002-2-5" end="2030-6-5" selected="{{dateselect}}" lunarswitch="true"
     onchange="dateonchange" oncancel="dateoncancel" class="pickerdate" show="false"></picker>
@@ -191,6 +186,9 @@ In addition to the methods in [Universal Methods](js-components-common-methods.m
   <picker id="picker4" type="multi-text" value="{{multitextvalue}}" columns="3" range="{{multitext}}" selected="{{multitextselect}}"
     onchange="multitextonchange" oncancel="multitextoncancel" class="pickermuitl" show="false"></picker>
 </div>
+```
+
+```css
 /* xxx.css */
 .container {    
   flex-direction: column;
@@ -215,6 +213,9 @@ In addition to the methods in [Universal Methods](js-components-common-methods.m
   margin-bottom: 50px;
   font-size: 22px;
 }
+```
+
+```js
 // xxx.js
 import router from '@system.router';
 import prompt from '@system.prompt';
@@ -287,4 +288,4 @@ export default {
 }
 ```
 
-![img](figures/mmmm.gif)
+![mmmm](figures/mmmm.gif)

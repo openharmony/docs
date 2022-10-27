@@ -1,51 +1,49 @@
 # tspan
 
->![](../../public_sys-resources/icon-note.gif) **NOTE:** 
->-   This component is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
->-   The text content must be written in the content area. The  **<tspan\>**  child component can be nested.
->-   **<tspan\>**  can be nested only by the parent element label  **svg**.
+The **\<tspan>** component is used to add a text style.
+
+
+>  **NOTE**
+>  - This component is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
+>
+>  - This component can have **\<tspan>** child components nested.
+>
+>  - This component can only be nested by the parent element label **svg**.
 
 ## Required Permissions
 
 None
 
+
 ## Child Components
 
-Tspan is supported.
+The **[\<tspan>](js-components-svg-tspan.md)** child component is supported.
+
+## Attributes
+
 
 The attributes in the following table are supported.
 
-| Name           | Type                     | Default Value | Mandatory | Description                                                  |
-| -------------- | ------------------------ | ------------- | --------- | ------------------------------------------------------------ |
-| id             | string                   | -             | No        | Unique ID of the component.                                  |
-| x              | \<length>\|\<percentage> | 0             | No        | X-coordinate of the upper left corner of the component.      |
-| y              | \<length>\|\<percentage> | 0             | No        | Y-coordinate of the upper left corner of the component. This parameter is invalid for the **textpath** child component. |
-| dx             | \<length>\|\<percentage> | 0             | No        | Offset of the text on the x-axis.                            |
-| dy             | \<length>\|\<percentage> | 0             | No        | Offset of the text on the y-axis. This parameter is invalid for the **textpath** child component. |
-| rotate         | number                   | 0             | No        | Rotates the lower left corner of the font based on the circle center. A positive number indicates clockwise rotation, and a negative number indicates counterclockwise rotation. |
-| font-size      | \<length>                | 30px          | No        | Font size.                                                   |
-| fill           | \<color>                 | black         | No        | Font fill color.                                             |
-| opacity        | number                   | 1             | No        | Opacity of an element. The value ranges from **0** to **1**. The value **1** means opaque, and **0** means completely transparent. Attribute animations are supported. |
-| fill-opacity   | number                   | 1.0           | No        | Font fill opacity.                                           |
-| stroke         | \<color>                 | black         | No        | Stroke and stroke color.                                     |
-| stroke-width   | number                   | 1px           | No        | Stroke width.                                                |
-| stroke-opacity | number                   | 1.0           | No        | Stroke opacity.                                              |
 
+| Name            | Type                                | Default Value  | Mandatory  | Description                                      |
+| -------------- | ---------------------------------- | ----- | ---- | ---------------------------------------- |
+| id             | string                             | -     | No   | Unique ID of the component.                                |
+| x              | &lt;length&gt;\|&lt;percentage&gt; | 0     | No   | X-coordinate of the upper left corner of the component.                            |
+| y              | &lt;length&gt;\|&lt;percentage&gt; | 0     | No   | Y-coordinate of the upper left corner of the component. This attribute is invalid when the component is a child component of the **\<textpath>**.           |
+| dx             | &lt;length&gt;\|&lt;percentage&gt; | 0     | No   | Offset of the text on the x-axis.                               |
+| dy             | &lt;length&gt;\|&lt;percentage&gt; | 0     | No   | Offset of the text on the y-axis. This attribute is invalid when the component is a child component of the **\<textpath>**.              |
+| rotate         | number                             | 0     | No   | Rotation of the text around its lower left corner. A positive number indicates clockwise rotation, and a negative number indicates counterclockwise rotation.              |
+| font-size      | &lt;length&gt;                     | 30px  | No   | Font size.                                |
+| fill           | &lt;color&gt;                      | black | No   | Fill color of the text.                                 |
+| opacity        | number                             | 1     | No   | Opacity of an element. The value ranges from **0** to **1**. The value **1** means opaque, and **0** means completely transparent. Attribute animations are supported.|
+| fill-opacity   | number                             | 1.0   | No   | Fill opacity of the text.                                |
+| stroke         | &lt;color&gt;                      | black | No   | Stroke color.                            |
+| stroke-width   | number                             | 1px   | No   | Stroke width.                                 |
+| stroke-opacity | number                             | 1.0   | No   | Stroke opacity.                                |
 
 ## Example
 
-```
-/* xxx.css */
-.container {    
-    flex-direction: row;
-    justify-content: flex-start;
-    align-items: flex-start;
-    height: 1000px;
-    width: 1080px;
-}
-```
-
-```
+```html
 <!-- xxx.hml -->
 <div class="container">
   <svg >
@@ -65,22 +63,22 @@ The attributes in the following table are supported.
 </div>
 ```
 
-![](figures/tspan-part1.png)
-
-Attribute animation example
-
-```
+```css
 /* xxx.css */
-.container {
+.container {    
     flex-direction: row;
     justify-content: flex-start;
     align-items: flex-start;
-    height: 3000px;
+    height: 1000px;
     width: 1080px;
 }
 ```
 
-```
+![tspan-part1](figures/tspan-part1.png)
+
+Attribute animation example
+
+```html
 <!-- xxx.hml -->
 <div class="container">
   <svg>
@@ -103,9 +101,20 @@ Attribute animation example
 </div>
 ```
 
-![](figures/tspan-animate-part1.gif)
-
+```css
+/* xxx.css */
+.container {
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-start;
+    height: 3000px;
+    width: 1080px;
+}
 ```
+
+![tspan-animate-part1](figures/tspan-animate-part1.gif)
+
+```html
 <!-- xxx.hml -->
 <div class="container">
   <svg>
@@ -120,9 +129,9 @@ Attribute animation example
 </div>
 ```
 
-![](figures/tspan-animate-part2.gif)
+![tspan-animate-part2](figures/tspan-animate-part2.gif)
 
-```
+```html
 <!-- xxx.hml -->
 <div class="container">
   <svg>
@@ -136,9 +145,9 @@ Attribute animation example
 </div>
 ```
 
-![](figures/tspan-animate-part3.gif)
+![tspan-animate-part3](figures/tspan-animate-part3.gif)
 
-```
+```html
 <!-- xxx.hml -->
 <div class="container">
   <svg>
@@ -159,5 +168,4 @@ Attribute animation example
 </div>
 ```
 
-![](figures/tspan-animate-part4.gif)
-
+![tspan-animate-part4](figures/tspan-animate-part4.gif)
