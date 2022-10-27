@@ -7,7 +7,7 @@
 
 Touchscreen驱动用于驱动触摸屏使其正常工作，该驱动主要完成如下工作：对触摸屏驱动IC进行上电、配置硬件管脚并初始化其状态、注册中断、配置通信接口（I2C或SPI）、设定Input相关配置、下载及更新固件等操作。
 
-### Input驱动模型简介
+### 运作机制
 
 本节主要介绍基于Input驱动模型开发的Touchscreen器件驱动，Input模型整体的框架如下图所示。
 
@@ -25,13 +25,7 @@ Input驱动模型核心部分由**设备管理层**、**公共驱动层**、**�
 - Input数据通道：提供一套通用的数据上报通道，各类别的Input设备驱动均可用此通道上报Input事件。
 - Input配置解析：负责对Input设备的板级配置及器件私有配置进行解析及管理。
 
-### 基于HDF驱动框架开发器件驱动的优势
-
-在HDF（Hardware Driver Foundation）[驱动管理框架](../driver/driver-hdf-development.md)的基础上，Input驱动模型通过调用OSAL接口层和Platform接口层提供的基础接口进行开发，涉及的接口包括bus通信接口、操作系统原生接口（memory、lock、thread、timer等）。由于OSAL接口和Platform接口屏蔽了芯片平台的差异，所以基于Input驱动模型实现的Touchscreen驱动可以进行跨平台、跨OS迁移，从而实现驱动的一次开发、多端部署。
-
-## 接口说明
-
-### 器件硬件接口
+**器件硬件接口**
 
 Touchscreen器件的硬件接口相对简单，根据PIN脚的属性，可以简单分为如下三类：
 
@@ -65,7 +59,18 @@ Touchscreen器件的硬件接口相对简单，根据PIN脚的属性，可以简
    - SPI：在需要传递的数据不止包含报点坐标，还包含基础容值的情况下，由于需要传递的数据量较大，所以部分厂商会选用SPI通信方式。SPI的具体协议及对应操作接口，可以参考Platform接口层中的[“SPI” 使用指南](../driver/driver-platform-spi-des.md#概述)。
 
 
-### Input HDI接口
+**基于HDF驱动框架开发器件驱动的优势**
+
+在HDF（Hardware Driver Foundation）[驱动管理框架](../driver/driver-hdf-development.md)的基础上，Input驱动模型通过调用OSAL接口层和Platform接口层提供的基础接口进行开发，涉及的接口包括bus通信接口、操作系统原生接口（memory、lock、thread、timer等）。由于OSAL接口和Platform接口屏蔽了芯片平台的差异，所以基于Input驱动模型实现的Touchscreen驱动可以进行跨平台、跨OS迁移，从而实现驱动的一次开发、多端部署。
+
+
+## 开发指导
+
+### 场景介绍
+
+Input模块主要完成如下工作：对触摸屏驱动IC进行上电、配置硬件管脚并初始化其状态、注册中断、配置通信接口（I2C或SPI）、设定Input相关配置、下载及更新固件等操作。
+
+### 接口说明
 
 Input HDF驱动提供给系统服务Input Service调用的HDI驱动能力接口，按照业务范围可以分为三大模块：**input设备管理模块**、**input数据上报模块**、**input业务控制模块**，具体的接口如[表1 Input HDI接口列表](#table1513255710559)所示，包括：输入设备打开及关闭接口、注册设备监听的回调接口、设备信息查询接口、电源状态控制接口等。
 
@@ -104,7 +109,7 @@ Input HDF驱动提供给系统服务Input Service调用的HDI驱动能力接口�
 
 更多接口请参考[Input驱动仓](https://gitee.com/openharmony/drivers_peripheral/tree/master/input)。
 
-## 开发步骤
+### 开发步骤
 
 基于HDF框架、Platform接口和OSAL接口开发的Input驱动模型，可以做到不区分操作系统和芯片平台，并为Touchscreen等输入器件提供统一的驱动开发架构。
 
