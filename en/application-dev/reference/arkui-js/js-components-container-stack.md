@@ -1,34 +1,43 @@
-# stack<a name="EN-US_TOPIC_0000001127125064"></a>
+# stack
 
-The  **<stack\>**  component provides a stack container where child components are successively stacked and the latter one overwrites the previous one.
+>  **NOTE**
+>
+>  This component is supported since API version 4. Updates will be marked with a superscript to indicate their earliest API version.
 
-## Required Permissions<a name="section11257113618419"></a>
+The **\<Stack>** component provides a stack container where child components are successively stacked and the latter one overwrites the previous one.
+
+## Required Permissions
 
 None
 
-## Child Components<a name="s2936fc34a22b44aa8389d1ec3de8fa61"></a>
+
+## Child Components
 
 Supported
 
-## Attributes<a name="s7207d4d586504fa3be62558273017fbe"></a>
 
-Attributes in  [Universal Attributes](js-components-common-attributes.md)  are supported.
+## Attributes
 
-## Styles<a name="section1774719169253"></a>
+The [universal attributes](../arkui-js/js-components-common-attributes.md) are supported.
 
-Styles in  [Universal Styles](js-components-common-styles.md)  are supported.
 
-## Events<a name="section1948143416285"></a>
+## Styles
 
-Events in  [Universal Events](js-components-common-events.md)  are supported.
+The [universal styles](../arkui-js/js-components-common-styles.md) are supported.
 
-## Methods<a name="section2279124532420"></a>
 
-Methods in  [Universal Methods](js-components-common-methods.md)  are supported.
+## Events
 
-## Example<a name="section18137649112711"></a>
+The [universal events](../arkui-js/js-components-common-events.md) are supported.
 
-```
+## Methods
+
+The [universal methods](../arkui-js/js-components-common-methods.md) are supported.
+
+
+## Example
+
+```html
 <!-- xxx.hml -->
 <stack class="stack-parent">
   <div class="back-child bd-radius"></div>
@@ -37,7 +46,7 @@ Methods in  [Universal Methods](js-components-common-methods.md)  are supported.
 </stack>
 ```
 
-```
+```css
 /* xxx.css */
 .stack-parent {
   width: 400px;
@@ -68,5 +77,4 @@ Methods in  [Universal Methods](js-components-common-methods.md)  are supported.
 }
 ```
 
-![](figures/en-us_image_0000001127284958.png)
-
+![en-us_image_0000001127284958](figures/en-us_image_0000001127284958.png)
