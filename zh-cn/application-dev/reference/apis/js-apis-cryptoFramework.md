@@ -1811,7 +1811,7 @@ init(opMode : CryptoMode, key : Key, params : ParamsSpec) : Promise\<void>
 
 | 类型          | 说明        |
 | ------------- | ----------- |
-| Promise<void> | Promise对象 |
+| Promise\<void> | Promise对象 |
 
 ### update
 
@@ -1826,7 +1826,7 @@ update(data : DataBlob, callback : AsyncCallback\<void>) : void
 | 参数名   | 类型                  | 必填 | 说明               |
 | -------- | --------------------- | ---- | ------------------ |
 | data    | DataBlob              | 是   | 传入的消息         |
-| callback | AsyncCallback<void> | 是   | 回调函数 |
+| callback | AsyncCallback\<void> | 是   | 回调函数 |
 
 ### update
 

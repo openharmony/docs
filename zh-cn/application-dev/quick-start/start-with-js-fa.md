@@ -175,7 +175,7 @@
 
 ## 实现页面间的跳转
 
-页面间的导航可以通过[页面路由router](../reference/apis/js-apis-router.md#routerpush)来实现。页面路由router根据页面url找到目标页面，从而实现跳转。使用页面路由请导入router模块。
+页面间的导航可以通过[页面路由router](../reference/apis/js-apis-router.md)来实现。页面路由router根据页面url找到目标页面，从而实现跳转。使用页面路由请导入router模块。
 
 1. 第一个页面跳转到第二个页面。
 

@@ -68,9 +68,13 @@ foundation/communication/
 ### Sharing a Network
 
 1. Import the network sharing namespace from **@ohos.net.sharing**.
+
 2. Set the network sharing type.
+
 3. Start network sharing.
+
 4. Stop network sharing.
+
 ```
 // Import the network sharing namespace.
 import sharing from '@ohos.net.sharing';
@@ -89,10 +93,15 @@ sharing.stopSharing(this.sharingType,(err)=>{
 ### Initiating a Network Request
 
 1. Import the HTTP namespace from **@ohos.net.http.d.ts**.
+
 2. Call **createHttp()** to create an **HttpRequest** object.
+
 3. Call **httpRequest.on()** to subscribe to an HTTP response header. This method returns a response earlier than the request. You can subscribe to HTTP response header events based on service requirements.
+
 4. Call **httpRequest.request()** to initiate a network request. You need to pass in the URL and optional parameters of the HTTP request.
+
 5. Parse the returned result based on service requirements.
+
 6. Call **httpRequest.destroy()** to release resources after the request is processed.
 
 ```

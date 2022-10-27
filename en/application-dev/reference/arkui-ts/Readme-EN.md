@@ -1,4 +1,4 @@
-# TypeScript-based Declarative Development Paradigm
+# ArkTS-based Declarative Development Paradigm
 
 - Universal Component Information
     - Universal Events
@@ -133,12 +133,13 @@
 - Canvas Components
     - [Canvas](ts-components-canvas-canvas.md)
     - [CanvasRenderingContext2D](ts-canvasrenderingcontext2d.md)
-    - [OffscreenCanvasRenderingContext2D](ts-offscreencanvasrenderingcontext2d.md)
-    - [Lottie](ts-components-canvas-lottie.md)
-    - [Path2D](ts-components-canvas-path2d.md)
     - [CanvasGradient](ts-components-canvas-canvasgradient.md)
     - [ImageBitmap](ts-components-canvas-imagebitmap.md)
     - [ImageData](ts-components-canvas-imagedata.md)
+    - [OffscreenCanvasRenderingContext2D](ts-offscreencanvasrenderingcontext2d.md)
+    - [Path2D](ts-components-canvas-path2d.md)
+    - [Lottie](ts-components-canvas-lottie.md)
+
 - Animation
     - [AnimatorProperty](ts-animatorproperty.md)
     - [Explicit Animation](ts-explicit-animation.md)
@@ -147,8 +148,7 @@
         - [Component Transition](ts-transition-animation-component.md)
         - [Transition of Shared Elements](ts-transition-animation-shared-elements.md)
     - [Motion Path Animation](ts-motion-path-animation.md)
-    - [Matrix Transformation](ts-matrix-transformation.md)
-    - [Interpolation Calculation](ts-interpolation-calculation.md)
+
 - Global UI Methods
     - Pop-up Window
         - [Alert Dialog Box](ts-methods-alert-dialog-box.md)
@@ -159,3 +159,4 @@
         - [Text Picker Dialog Box](ts-methods-textpicker-dialog.md)
     - [Menu](ts-methods-menu.md)
 - [Built-in Enums](ts-appendix-enums.md)
+- [Types](ts-types.md)

@@ -14,7 +14,7 @@
 | 名称         | 参数类型                                      | 描述                                    |
 | -----------| ---------------------------------------- | ------------------------------------ |
 | fontColor  | [ResourceColor](ts-types.md#resourcecolor)  | 设置字体颜色。                                 |
-| fontSize   | Length&nbsp;\|&nbsp;[Resource](ts-types.md#resource)  | 设置字体大小，Length为number类型时，使用fp单位。字体默认大小10。     |
+| fontSize   | [Length](ts-types.md#length)  | 设置字体大小，Length为number类型时，使用fp单位。字体默认大小10。不支持设置百分比字符串。    |
 | fontStyle  | [FontStyle](ts-appendix-enums.md#fontstyle)  | 设置字体样式。<br>默认值：FontStyle.Normal         |
 | fontWeight | number&nbsp;\|&nbsp;[FontWeight](ts-appendix-enums.md#fontweight)&nbsp;\|&nbsp;string  | 设置文本的字体粗细，number类型取值[100,&nbsp;900]，取值间隔为100，默认为400，取值越大，字体越粗。string类型仅支持number类型取值的字符串形式，例如"400"，以及"bold"、"bolder"、"lighter"、"regular"、"medium"，分别对应FontWeight中相应的枚举值。<br/>默认值：FontWeight.Normal  |
 | fontFamily | string&nbsp;\|&nbsp;[Resource](ts-types.md#resource)  | 设置字体列表。默认字体'HarmonyOS Sans'，且当前只支持这种字体。|

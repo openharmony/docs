@@ -3,7 +3,7 @@
 
 ## 驱动模型介绍
 
-HDF（Hardware Driver Foundation）框架以组件化的驱动模型作为核心设计思路，为开发者提供更精细化的驱动管理，让驱动开发和部署更加规范。HDF框架将一类设备驱动放在同一个Host里面，开发者也可以将驱动功能分层独立开发和部署，支持一个驱动多个Node。HDF驱动模型如下图所示：
+HDF（Hardware Driver Foundation）框架以组件化的驱动模型作为核心设计思路，为开发者提供更精细化的驱动管理，让驱动开发和部署更加规范。HDF框架将一类设备驱动放在同一个Host（设备容器）里面，用于管理一组设备的启动加载等过程。在划分Host时，驱动程序是部署在一个Host还是部署在不同的Host，主要考虑驱动程序之间是否存在耦合性，如果两个驱动程序之间存在依赖，可以考虑将这部分驱动程序部署在一个Host里面，否则部署到独立的Host中是更好的选择。Device对应一个真实的物理设备。DeviceNode是设备的一个部件，Device至少有一个DeviceNode。每个DeviceNode可以发布一个设备服务。驱动即驱动程序，每个DevicdNode唯一对应一个驱动，实现和硬件的功能交互。HDF驱动模型如下图所示：
 
   **图1** HDF驱动模型
 
@@ -12,7 +12,7 @@ HDF（Hardware Driver Foundation）框架以组件化的驱动模型作为核心
 
 ## 驱动开发步骤
 
-基于HDF框架的驱动开发主要分为三个部分：驱动实现、驱动编译和驱动配置。详细开发流程如下所示：
+基于HDF框架的驱动开发主要分为三个部分：驱动实现、驱动编译脚本编写和驱动配置。详细开发流程如下所示：
 
 1. 驱动实现
 
@@ -20,24 +20,24 @@ HDF（Hardware Driver Foundation）框架以组件化的驱动模型作为核心
 
    - 驱动业务代码
         
-      ```
+      ```c
       #include "hdf_device_desc.h"          // HDF框架对驱动开发相关能力接口的头文件
       #include "hdf_log.h"                  // HDF框架提供的日志接口头文件
       
-      #define HDF_LOG_TAG "sample_driver"   // 打印日志所包含的标签，如果不定义则用默认定义的HDF_TAG标签。
+      #define HDF_LOG_TAG sample_driver     // 打印日志所包含的标签，如果不定义则用默认定义的HDF_TAG标签。
       
-      // 驱动对外提供的服务能力，将相关的服务接口绑定到HDF框架。
+      // 将驱动对外提供的服务能力接口绑定到HDF框架。
       int32_t HdfSampleDriverBind(struct HdfDeviceObject *deviceObject)
       {
           HDF_LOGD("Sample driver bind success");
-          return 0;
+          return HDF_SUCCESS;
       }
       
       // 驱动自身业务初始化的接口
       int32_t HdfSampleDriverInit(struct HdfDeviceObject *deviceObject)
       {
           HDF_LOGD("Sample driver Init success");
-          return 0;
+          return HDF_SUCCESS;
       }
       
       // 驱动资源释放的接口
@@ -49,7 +49,7 @@ HDF（Hardware Driver Foundation）框架以组件化的驱动模型作为核心
       ```
    - 驱动入口注册到HDF框架
         
-      ```
+      ```c
       // 定义驱动入口的对象，必须为HdfDriverEntry（在hdf_device_desc.h中定义）类型的全局变量。
       struct HdfDriverEntry g_sampleDriverEntry = {
           .moduleVersion = 1,
@@ -63,7 +63,7 @@ HDF（Hardware Driver Foundation）框架以组件化的驱动模型作为核心
       HDF_INIT(g_sampleDriverEntry);
       ```
 
-2. 驱动编译
+2. 驱动编译脚本编写
 
    - LiteOS
 
@@ -74,8 +74,8 @@ HDF（Hardware Driver Foundation）框架以组件化的驱动模型作为核心
        驱动代码的编译必须要使用HDF框架提供的Makefile模板进行编译。
 
          
-       ```
-       include $(LITEOSTOPDIR)/../../drivers/adapter/khdf/liteos/lite.mk # 【必需】导入hdf预定义内容
+       ```c
+       include $(LITEOSTOPDIR)/../../drivers/hdf_core/adapter/khdf/liteos/lite.mk # 【必需】导入hdf预定义内容
        MODULE_NAME :=        #生成的结果文件
        LOCAL_INCLUDE :=      #本驱动的头文件目录
        LOCAL_SRCS :=         #本驱动的源代码文件
@@ -83,22 +83,22 @@ HDF（Hardware Driver Foundation）框架以组件化的驱动模型作为核心
        include $(HDF_DRIVER) #导入Makefile模板完成编译
        ```
 
-       编译结果文件链接到内核镜像，添加到**drivers/adapter/khdf/liteos**目录下的**hdf_lite.mk**里面，示例如下：
+       编译结果文件链接到内核镜像，添加到**drivers/hdf_core/adapter/khdf/liteos**目录下的**hdf_lite.mk**里面，示例如下：
 
            
-       ```
+       ```c
        LITEOS_BASELIB +=  -lxxx  #链接生成的静态库
        LIB_SUBDIRS    +=         #驱动代码Makefile的目录
        ```
 
      - BUILD.gn部分：
 
-       添加模块BUILD.gn参考定义如下内容：
+       添加模块BUILD.gn，可参考如下示例：
 
            
-       ```
+       ```c
        import("//build/lite/config/component/lite_component.gni")
-       import("//drivers/adapter/khdf/liteos/hdf.gni")
+       import("//drivers/hdf_core/adapter/khdf/liteos/hdf.gni")
        module_switch = defined(LOSCFG_DRIVERS_HDF_xxx)
        module_name = "xxx"
        hdf_driver(module_name) {
@@ -109,42 +109,42 @@ HDF（Hardware Driver Foundation）框架以组件化的驱动模型作为核心
        }
        config("public") {                 #定义依赖的头文件配置
            include_dirs = [
-           "xxx/xxx/xxx",                 #依赖的头文件目录
+               "xxx/xxx/xxx",             #依赖的头文件目录
            ]
        }
         ```
 
-       把新增模块的BUILD.gn所在的目录添加到**/drivers/adapter/khdf/liteos/BUILD.gn**里面：
+       把新增模块的BUILD.gn所在的目录添加到**/drivers/hdf_core/adapter/khdf/liteos/BUILD.gn**里面：
 
            
-       ```
+       ```c
        group("liteos") {
            public_deps = [ ":$module_name" ]
                deps = [
-                   "xxx/xxx",   #新增模块BUILD.gn所在的目录，目录结构相对于/drivers/adapter/khdf/liteos
+                   "xxx/xxx",   #新增模块BUILD.gn所在的目录，目录结构相对于/drivers/hdf_core/adapter/khdf/liteos
                ]
        }
        ```
    - Linux
 
-     如果需要定义模块控制宏，需要在模块目录xxx里面添加Kconfig文件，并把Kconfig文件路径添加到**drivers/adapter/khdf/linux/Kconfig**里面：
+     如果需要定义模块控制宏，需要在模块目录xxx里面添加Kconfig文件，并把Kconfig文件路径添加到**drivers/hdf_core/adapter/khdf/linux/Kconfig**里面：
 
         
-     ```
+     ```c
      source "drivers/hdf/khdf/xxx/Kconfig" #目录为hdf模块软链接到kernel里面的目录
      ```
 
-     添加模块目录到**drivers/adapter/khdf/linux/Makefile**：
+     添加模块目录到**drivers/hdf_core/adapter/khdf/linux/Makefile**：
 
         
-     ```
+     ```c
      obj-$(CONFIG_DRIVERS_HDF)  += xxx/
      ```
 
      在模块目录xxx里面添加Makefile文件，在Makefile文件里面添加模块代码编译规则：
 
         
-     ```
+     ```c
      obj-y  += xxx.o
      ```
 
@@ -189,7 +189,7 @@ HDF（Hardware Driver Foundation）框架以组件化的驱动模型作为核心
                       device0 :: deviceNode {      // sample驱动的DeviceNode节点
                           policy = 1;              // policy字段是驱动服务发布的策略，在驱动服务管理章节有详细介绍。
                           priority = 100;          // 驱动启动优先级（0-200），值越大优先级越低，建议默认配100，优先级相同则不保证device的加载顺序。
-                          preload = 0;             // 驱动按需加载字段，在本章节最后的说明有详细介绍。
+                          preload = 0;             // 驱动按需加载字段。
                           permission = 0664;       // 驱动创建设备节点权限
                           moduleName = "sample_driver";      // 驱动名称，该字段的值必须和驱动入口结构的moduleName值一致。
                           serviceName = "sample_service";    // 驱动对外发布服务的名称，必须唯一。
@@ -211,7 +211,9 @@ HDF（Hardware Driver Foundation）框架以组件化的驱动模型作为核心
       >
       > - 进程的uid在文件**base/startup/init_lite/services/etc/passwd**中配置，进程的gid在文件**base/startup/init_lite/services/etc/group**中配置，进程uid和gid配置参考：[系统服务用户组添加方法](https://gitee.com/openharmony/startup_init_lite/wikis)。
       >
-      > - caps值：比如业务模块要配置CAP_DAC_OVERRIDE，此处需要填写caps = ["DAC_OVERRIDE"]，不能填写为caps = ["CAP_DAC_OVERRIDE"]。
+      > - caps值：格式为caps = ["xxx"]，如果要配置CAP_DAC_OVERRIDE，此处需要填写caps = ["DAC_OVERRIDE"]，不能填写为caps = ["CAP_DAC_OVERRIDE"]。
+      >
+      > - preload：驱动按需加载字段，参考[驱动加载](../driver/driver-hdf-load.md)。
 
 
    - 驱动私有配置信息（可选）
@@ -229,7 +231,7 @@ HDF（Hardware Driver Foundation）框架以组件化的驱动模型作为核心
       }
       ```
 
-      配置信息定义之后，需要将该配置文件添加到板级配置入口文件hdf.hcs（这一块可以通过OpenHarmony驱动子系统在DevEco集成驱动开发套件工具一键式配置，具体使用方法参考驱动开发套件中的介绍），示例如下：
+      配置信息定义之后，需要将该配置文件添加到板级配置入口文件hdf.hcs，示例如下：
 
         
       ```
@@ -237,27 +239,3 @@ HDF（Hardware Driver Foundation）框架以组件化的驱动模型作为核心
       #include "sample/sample_config.hcs"
       ```
 
-
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**<br>
-> 驱动加载方式支持按需加载和按序加载两种方式，具体使用方法如下：
-> 
-> - 按需加载
->     
->   ```
->   typedef enum {
->       DEVICE_PRELOAD_ENABLE = 0,
->       DEVICE_PRELOAD_ENABLE_STEP2,
->       DEVICE_PRELOAD_DISABLE,
->       DEVICE_PRELOAD_INVALID
->   } DevicePreload;
->   ```
-> 
->   - 配置文件中preload字段配成0（DEVICE_PRELOAD_ENABLE），则系统启动过程中默认加载。
->
->   - 配成1（DEVICE_PRELOAD_ENABLE_STEP2），当系统支持快启的时候，则在系统完成之后再加载这一类驱动，否则和DEVICE_PRELOAD_ENABLE含义相同。
->
->   - 配成2（DEVICE_PRELOAD_DISABLE），则系统启动过程中默认不加载，支持后续动态加载，当用户态获取驱动服务（参考[消息机制](../driver/driver-hdf-message-management.md)）时，如果驱动服务不存在，HDF框架会尝试动态加载该驱动。
-> 
-> - 按序加载（需要驱动为默认加载）
->
->   配置文件中的priority（取值范围为整数0到200）是用来表示host和驱动的优先级。不同的host内的驱动，host的priority值越小，驱动加载优先级越高；同一个host内驱动的priority值越小，加载优先级越高。

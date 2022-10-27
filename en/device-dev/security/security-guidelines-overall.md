@@ -94,7 +94,7 @@ For device with 128 KB to 128 MB of memory, the OpenHarmony lite kernel is recom
 - Secure boot must be enabled, and the trusted root must be in the chip and cannot be modified. In addition, you must consider the impact of secure upgrade (if available) on secure boot, that is, the signature or hash value of an image file must be updated after a secure upgrade.
 
 
-## Data security
+## Data Security
 
 
 ### Security Mechanism

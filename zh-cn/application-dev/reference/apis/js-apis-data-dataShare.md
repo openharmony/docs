@@ -34,6 +34,14 @@ createDataShareHelper(context: Context, uri: string, callback: AsyncCallback&lt;
 | uri      | string                                                   | 是   | 指示要连接的服务端应用的路径。                               |
 | callback | AsyncCallback&lt;[DataShareHelper](#datasharehelper)&gt; | 是   | 回调函数。当创建DataShareHelper实例成功，err为undefined，data为获取到的DataShareHelper实例；否则为错误对象。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[数据共享错误码](../errorcodes/errorcode-datashare.md)。
+
+| 错误码ID | 错误信息                                             |
+| -------- | ---------------------------------------------------- |
+| 15700010 | The dataShareHelper is not initialized successfully. |
+
 **示例：**
 
 ```ts
@@ -41,14 +49,18 @@ import Ability from '@ohos.application.Ability'
 
 let uri = ("datashare:///com.samples.datasharetest.DataShare");
 let dataShareHelper;
-dataShare.createDataShareHelper(this.context, uri, (err, data) => {
-    if (err != undefined) {
-        console.info("createDataShareHelper failed, error message : " + err);
-    } else {
+try {
+    dataShare.createDataShareHelper(this.context, uri, (err, data) => {
+        if (err != undefined) {
+            console.error(`createDataShareHelper error: code: ${err.code}, message: ${err.message} `);
+            return;
+        }
         console.info("createDataShareHelper succeed, data : " + data);
         dataShareHelper = data;
-    }
-});
+    });
+} catch (err) {
+    console.error(`createDataShareHelper error: code: ${err.code}, message: ${err.message} `);
+};
 ```
 
 ## dataShare.createDataShareHelper
@@ -72,6 +84,14 @@ createDataShareHelper(context: Context, uri: string): Promise&lt;DataShareHelper
 | -------------------------------------------------- | -------------------------------------- |
 | Promise&lt;[DataShareHelper](#datasharehelper)&gt; | Promise对象。返回DataShareHelper实例。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[数据共享错误码](../errorcodes/errorcode-datashare.md)。
+
+| 错误码ID | 错误信息                                             |
+| -------- | ---------------------------------------------------- |
+| 15700010 | The dataShareHelper is not initialized successfully. |
+
 **示例：**
 
 ```ts
@@ -79,12 +99,16 @@ import Ability from '@ohos.application.Ability'
 
 let uri = ("datashare:///com.samples.datasharetest.DataShare");
 let dataShareHelper;
-dataShare.createDataShareHelper(this.context, uri).then((data) => {
-    console.info("createDataShareHelper succeed, data : " + data);
-    dataShareHelper = data;
-}).catch((err) => {
-	console.info("createDataShareHelper failed, error message : " + err); 
-})
+try {
+    dataShare.createDataShareHelper(this.context, uri).then((data) => {
+        console.info("createDataShareHelper succeed, data : " + data);
+        dataShareHelper = data;
+    }). catch((err) => {
+        console.error(`createDataShareHelper error: code: ${err.code}, message: ${err.message} `);
+    });
+} catch (err) {
+    console.error(`createDataShareHelper error: code: ${err.code}, message: ${err.message} `);
+};
 ```
 
 ## DataShareHelper
@@ -171,13 +195,17 @@ const valueBucket = {
     "age": 22,
     "salary": 200.5,
 }
-dataShareHelper.insert(uri, valueBucket, (err, data) => {
-    if (err != undefined) {
-        console.log("insert failed, error message : " + err);
-    }else{
-        console.log("insert succeed, data : " + data);
-    }
-});
+try {
+    dataShareHelper.insert(uri, valueBucket, (err, data) => {
+        if (err != undefined) {
+            console.error(`insert error: code: ${err.code}, message: ${err.message} `);
+            return;
+        }
+        console.info("insert succeed, data : " + data);
+    });
+} catch (err) {
+    console.error(`insert error: code: ${err.code}, message: ${err.message} `);
+};
 ```
 
 ### insert
@@ -211,11 +239,15 @@ const valueBucket = {
     "age": 221,
     "salary": 20.5,
 }
-dataShareHelper.insert(uri, valueBucket).then((data) => {
-    console.log("insert succeed, data : " + data);
-}).catch((err) => {
-    console.log("insert failed, error message : " + err);
-});
+try {
+    dataShareHelper.insert(uri, valueBucket).then((data) => {
+        console.log("insert succeed, data : " + data);
+    }). catch((err) => {
+        console.error(`insert error: code: ${err.code}, message: ${err.message} `);
+    });
+} catch (err) {
+    console.error(`insert error: code: ${err.code}, message: ${err.message} `);
+};
 ```
 
 ### delete
@@ -243,13 +275,17 @@ import dataSharePredicates from '@ohos.data.dataSharePredicates'
 let uri = ("datashare:///com.samples.datasharetest.DataShare");
 let da = new dataSharePredicates.DataSharePredicates();
 da.equalTo("name", "ZhangSan");
-dataShareHelper.delete(uri, da, (err, data) => {
-    if (err != undefined) {
-        console.log("delete failed, error message : " + err);
-    }else{
-        console.log("delete succeed, data : " + data);
-    }
-});
+try {
+    dataShareHelper.delete(uri, da, (err, data) => {
+        if (err != undefined) {
+            console.error(`delete error: code: ${err.code}, message: ${err.message} `);
+            return;
+        }
+        console.info("delete succeed, data : " + data);
+    });
+} catch (err) {
+    console.error(`delete error: code: ${err.code}, message: ${err.message} `);
+};
 ```
 
 ### delete
@@ -282,11 +318,15 @@ import dataSharePredicates from '@ohos.data.dataSharePredicates'
 let uri = ("datashare:///com.samples.datasharetest.DataShare");
 let da = new dataSharePredicates.DataSharePredicates();
 da.equalTo("name", "ZhangSan");
-dataShareHelper.delete(uri, da).then((data) => {
-    console.log("delete succeed, data : " + data);
-}).catch((err) => {
-    console.log("delete failed, error message : " + err);
-});
+try {
+    dataShareHelper.delete(uri, da).then((data) =>  {
+        console.log("delete succeed, data : " + data);
+    }). catch((err) => {
+        console.error(`delete error: code: ${err.code}, message: ${err.message} `);
+    });
+} catch (err) {
+    console.error(`delete error: code: ${err.code}, message: ${err.message} `);
+};
 ```
 
 ### query
@@ -316,13 +356,17 @@ let uri = ("datashare:///com.samples.datasharetest.DataShare");
 let columns = ["*"];
 let da = new dataSharePredicates.DataSharePredicates();
 da.equalTo("name", "ZhangSan");
-dataShareHelper.query(uri, da, columns, (err, data) => {
-    if (err != undefined) {
-        console.log("query failed, error message : " + err);
-    }else{
+try {
+    dataShareHelper.query(uri, da, columns, (err, data) => {
+        if (err != undefined) {
+            console.error(`query error: code: ${err.code}, message: ${err.message} `);
+            return;
+        }
         console.log("query succeed, rowCount : " + data.rowCount);
-    }
-});
+    });
+} catch (err) {
+    console.error(`query error: code: ${err.code}, message: ${err.message} `);
+};
 ```
 
 ### query
@@ -357,11 +401,15 @@ let uri = ("datashare:///com.samples.datasharetest.DataShare");
 let columns = ["*"];
 let da = new dataSharePredicates.DataSharePredicates();
 da.equalTo("name", "ZhangSan");
-dataShareHelper.query(uri, da, columns).then((data) => {
-    console.log("query succeed, rowCount : " + data.rowCount);
-}).catch((err) => {
-    console.log("query failed, error message : " + err);
-});
+try {
+    dataShareHelper.query(uri, da, columns).then((data) =>  {
+        console.log("query succeed, rowCount : " + data.rowCount);
+    }). catch((err) => {
+        console.error(`query error: code: ${err.code}, message: ${err.message} `);
+    });
+} catch (err) {
+    console.error(`query error: code: ${err.code}, message: ${err.message} `);
+};
 ```
 
 ### update
@@ -396,13 +444,17 @@ const va = {
     "salary": 20.5,
    
 }
-dataShareHelper.update(uri, da, va, (err, data) => {
-    if (err != undefined) {
-        console.log("update failed, error message : " + err);
-    }else{
+try {
+    dataShareHelper.update(uri, da, va, (err, data) => {
+        if (err != undefined) {
+            console.error(`update error: code: ${err.code}, message: ${err.message} `);
+            return;
+        }
         console.log("update succeed, data : " + data);
-    }
-});
+    });
+} catch (err) {
+    console.error(`update error: code: ${err.code}, message: ${err.message} `);
+};
 ```
 
 ### update
@@ -442,11 +494,15 @@ const va = {
     "salary": 20.5,
    
 }
-dataShareHelper.update(uri, da, va).then((data) => {
-    console.log("update succeed, data : " + data);
-}).catch((err) => {
-    console.log("update failed, error message : " + err);
-});
+try {
+    dataShareHelper.update(uri, da, va).then((data) =>  {
+        console.log("update succeed, data : " + data);
+    }). catch((err) => {
+        console.error(`update error: code: ${err.code}, message: ${err.message} `);
+    });
+} catch (err) {
+    console.error(`update error: code: ${err.code}, message: ${err.message} `);
+};
 ```
 
 ### batchInsert
@@ -473,13 +529,17 @@ let uri = ("datashare:///com.samples.datasharetest.DataShare");
 let vbs = new Array({"name": "roe11", "age": 21, "salary": 20.5,},
                      {"name": "roe12", "age": 21, "salary": 20.5,},
                      {"name": "roe13", "age": 21, "salary": 20.5,})
-dataShareHelper.batchInsert(uri, vbs, (err, data) => {
-    if (err != undefined) {
-        console.log("batchInsert failed, error message : " + err);
-    }else{
+try {
+    dataShareHelper.batchInsert(uri, vbs, (err, data) => {
+        if (err != undefined) {
+            console.error(`batchInsert error: code: ${err.code}, message: ${err.message} `);
+            return;
+        }
         console.log("batchInsert succeed, data : " + data);
-    }
-});
+    });
+} catch (err) {
+    console.error(`batchInsert error: code: ${err.code}, message: ${err.message} `);
+};
 ```
 
 ### batchInsert
@@ -511,11 +571,15 @@ let uri = ("datashare:///com.samples.datasharetest.DataShare");
 let vbs = new Array({"name": "roe11", "age": 21, "salary": 20.5,},
                      {"name": "roe12", "age": 21, "salary": 20.5,},
                      {"name": "roe13", "age": 21, "salary": 20.5,})
-dataShareHelper.batchInsert(uri, vbs).then((data) => {
-    console.log("batchInsert succeed, data : " + data);
-}).catch((err) => {
-    console.log("batchInsert failed, error message : " + err);
-});
+try {
+    dataShareHelper.batchInsert(uri, vbs).then((data) =>  {
+        console.log("batchInsert succeed, data : " + data);
+    }). catch((err) => {
+        console.error(`batchInsert error: code: ${err.code}, message: ${err.message} `);
+    });
+} catch (err) {
+    console.error(`batchInsert error: code: ${err.code}, message: ${err.message} `);
+};
 ```
 
 ### normalizeUri

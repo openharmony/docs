@@ -70,7 +70,7 @@ writeRemoteObject(object: [IRemoteObject](#iremoteobject)): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见ohos.rpc错误码
+以下错误码的详细介绍请参见[ohos.rpc错误码](../errorcodes/errorcode-rpc.md)
 
   | 错误码ID | 错误信息 |
   | -------- | ------- |
@@ -126,7 +126,7 @@ readRemoteObject(): IRemoteObject
 
 **错误码：**
 
-以下错误码的详细介绍请参见ohos.rpc错误码
+以下错误码的详细介绍请参见[ohos.rpc错误码](../errorcodes/errorcode-rpc.md)
 
   | 错误码ID | 错误信息 |
   | ------- | -------- |
@@ -183,7 +183,7 @@ writeInterfaceToken(token: string): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见ohos.rpc错误码
+以下错误码的详细介绍请参见[ohos.rpc错误码](../errorcodes/errorcode-rpc.md)
 
   | 错误码ID | 错误信息 |
   | ------- | -------- |
@@ -217,7 +217,7 @@ readInterfaceToken(): string
 
 **错误码：**
 
-以下错误码的详细介绍请参见ohos.rpc错误码
+以下错误码的详细介绍请参见[ohos.rpc错误码](../errorcodes/errorcode-rpc.md)
 
   | 错误码ID | 错误信息 |
   | ------- | ----- |
@@ -328,7 +328,7 @@ setCapacity(size: number): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见ohos.rpc错误码
+以下错误码的详细介绍请参见[ohos.rpc错误码](../errorcodes/errorcode-rpc.md)
 
   | 错误码ID | 错误信息 |
   | -------- | ------ |
@@ -522,7 +522,7 @@ writeByte(val: number): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见ohos.rpc错误码
+以下错误码的详细介绍请参见[ohos.rpc错误码](../errorcodes/errorcode-rpc.md)
 
   | 错误码ID | 错误信息 |
   | -------- | ------- |
@@ -556,7 +556,7 @@ readByte(): number
 
 **错误码：**
 
-以下错误码的详细介绍请参见ohos.rpc错误码
+以下错误码的详细介绍请参见[ohos.rpc错误码](../errorcodes/errorcode-rpc.md)
 
   | 错误码ID | 错误信息 |
   | ------- | --------  |
@@ -597,7 +597,7 @@ writeShort(val: number): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见ohos.rpc错误码
+以下错误码的详细介绍请参见[ohos.rpc错误码](../errorcodes/errorcode-rpc.md)
 
   | 错误码ID | 错误信息 |
   | ------- | ------ |
@@ -631,7 +631,7 @@ readShort(): number
 
 **错误码：**
 
-以下错误码的详细介绍请参见ohos.rpc错误码
+以下错误码的详细介绍请参见[ohos.rpc错误码](../errorcodes/errorcode-rpc.md)
 
   | 错误码ID | 错误信息 |
   | ------- | -------- |
@@ -672,7 +672,7 @@ writeInt(val: number): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见ohos.rpc错误码
+以下错误码的详细介绍请参见[ohos.rpc错误码](../errorcodes/errorcode-rpc.md)
 
   | 错误码ID | 错误信息 |
   | -------- | ------- |
@@ -706,7 +706,7 @@ readInt(): number
 
 **错误码：**
 
-以下错误码的详细介绍请参见ohos.rpc错误码
+以下错误码的详细介绍请参见[ohos.rpc错误码](../errorcodes/errorcode-rpc.md)
 
   | 错误码ID | 错误信息 |
   | ------- | ------- |
@@ -747,7 +747,7 @@ writeLong(val: number): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见ohos.rpc错误码
+以下错误码的详细介绍请参见[ohos.rpc错误码](../errorcodes/errorcode-rpc.md)
 
   | 错误码ID | 错误信息 |
   | ------- | ------- |
@@ -781,7 +781,7 @@ readLong(): number
 
 **错误码：**
 
-以下错误码的详细介绍请参见ohos.rpc错误码
+以下错误码的详细介绍请参见[ohos.rpc错误码](../errorcodes/errorcode-rpc.md)
 
   | 错误码ID | 错误信息 |
   | ------- | -------- |
@@ -822,7 +822,7 @@ writeFloat(val: number): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见ohos.rpc错误码
+以下错误码的详细介绍请参见[ohos.rpc错误码](../errorcodes/errorcode-rpc.md)
 
   | 错误码ID | 错误信息 |
   | ------- | ------- |
@@ -856,7 +856,7 @@ readFloat(): number
 
 **错误码：**
 
-以下错误码的详细介绍请参见ohos.rpc错误码
+以下错误码的详细介绍请参见[ohos.rpc错误码](../errorcodes/errorcode-rpc.md)
 
   | 错误码ID | 错误信息 |
   | ------- | -------- |
@@ -897,7 +897,7 @@ writeDouble(val: number): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见ohos.rpc错误码
+以下错误码的详细介绍请参见[ohos.rpc错误码](../errorcodes/errorcode-rpc.md)
 
   | 错误码ID | 错误信息 |
   | ------- | -------- |
@@ -931,7 +931,7 @@ readDouble(): number
 
 **错误码：**
 
-以下错误码的详细介绍请参见ohos.rpc错误码
+以下错误码的详细介绍请参见[ohos.rpc错误码](../errorcodes/errorcode-rpc.md)
 
   | 错误码ID | 错误信息 |
   | ------- | -------- |
@@ -972,7 +972,7 @@ writeBoolean(val: boolean): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见ohos.rpc错误码
+以下错误码的详细介绍请参见[ohos.rpc错误码](../errorcodes/errorcode-rpc.md)
 
   | 错误码ID | 错误信息 |
   | ------- | ------- |
@@ -1006,7 +1006,7 @@ readBoolean(): boolean
 
 **错误码：**
 
-以下错误码的详细介绍请参见ohos.rpc错误码
+以下错误码的详细介绍请参见[ohos.rpc错误码](../errorcodes/errorcode-rpc.md)
 
   | 错误码ID | 错误信息 |
   | -------- | ------- |
@@ -1047,7 +1047,7 @@ writeChar(val: number): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见ohos.rpc错误码
+以下错误码的详细介绍请参见[ohos.rpc错误码](../errorcodes/errorcode-rpc.md)
 
   | 错误码ID | 错误信息 |
   | ------- | -------- |
@@ -1081,7 +1081,7 @@ readChar(): number
 
 **错误码：**
 
-以下错误码的详细介绍请参见ohos.rpc错误码
+以下错误码的详细介绍请参见[ohos.rpc错误码](../errorcodes/errorcode-rpc.md)
 
   | 错误码ID | 错误信息 |
   | ------ | --------- |
@@ -1122,7 +1122,7 @@ writeString(val: string): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见ohos.rpc错误码
+以下错误码的详细介绍请参见[ohos.rpc错误码](../errorcodes/errorcode-rpc.md)
 
   | 错误码ID | 错误信息 |
   | ------- | -------- |
@@ -1156,7 +1156,7 @@ readString(): string
 
 **错误码：**
 
-以下错误码的详细介绍请参见ohos.rpc错误码
+以下错误码的详细介绍请参见[ohos.rpc错误码](../errorcodes/errorcode-rpc.md)
 
   | 错误码ID | 错误信息 |
   | ------- | -------- |
@@ -1197,7 +1197,7 @@ writeParcelable(val: Parcelable): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见ohos.rpc错误码
+以下错误码的详细介绍请参见[ohos.rpc错误码](../errorcodes/errorcode-rpc.md)
 
   | 错误码ID | 错误信息 |
   | ------- | -------- |
@@ -1250,7 +1250,7 @@ readParcelable(dataIn: Parcelable) : void
 
 **错误码：**
 
-以下错误码的详细介绍请参见ohos.rpc错误码
+以下错误码的详细介绍请参见[ohos.rpc错误码](../errorcodes/errorcode-rpc.md)
 
   | 错误码ID | 错误信息 |
   | -------- | ------- |
@@ -1306,7 +1306,7 @@ writeByteArray(byteArray: number[]): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见ohos.rpc错误码
+以下错误码的详细介绍请参见[ohos.rpc错误码](../errorcodes/errorcode-rpc.md)
 
   | 错误码ID | 错误信息 |
   | ------- | -------- |
@@ -1341,7 +1341,7 @@ readByteArray(dataIn: number[]) : void
 
 **错误码：**
 
-以下错误码的详细介绍请参见ohos.rpc错误码
+以下错误码的详细介绍请参见[ohos.rpc错误码](../errorcodes/errorcode-rpc.md)
 
   | 错误码ID | 错误信息 |
   | ------- | -------- |
@@ -1383,7 +1383,7 @@ readByteArray(): number[]
 
 **错误码：**
 
-以下错误码的详细介绍请参见ohos.rpc错误码
+以下错误码的详细介绍请参见[ohos.rpc错误码](../errorcodes/errorcode-rpc.md)
 
   | 错误码ID | 错误信息 |
   | -------- | ------- |
@@ -1425,7 +1425,7 @@ writeShortArray(shortArray: number[]): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见ohos.rpc错误码
+以下错误码的详细介绍请参见[ohos.rpc错误码](../errorcodes/errorcode-rpc.md)
 
   | 错误码ID | 错误信息 |
   | ----- | ----- |
@@ -1459,7 +1459,7 @@ readShortArray(dataIn: number[]) : void
 
 **错误码：**
 
-以下错误码的详细介绍请参见ohos.rpc错误码
+以下错误码的详细介绍请参见[ohos.rpc错误码](../errorcodes/errorcode-rpc.md)
 
   | 错误码ID | 错误信息 |
   | ------ | ------- |
@@ -1500,7 +1500,7 @@ readShortArray(): number[]
 
 **错误码：**
 
-以下错误码的详细介绍请参见ohos.rpc错误码
+以下错误码的详细介绍请参见[ohos.rpc错误码](../errorcodes/errorcode-rpc.md)
 
   | 错误码ID | 错误信息 |
   | -------- | ------- |
@@ -1541,7 +1541,7 @@ writeIntArray(intArray: number[]): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见ohos.rpc错误码
+以下错误码的详细介绍请参见[ohos.rpc错误码](../errorcodes/errorcode-rpc.md)
 
   | 错误码ID | 错误信息 |
   | ----- | --------- |
@@ -1575,7 +1575,7 @@ readIntArray(dataIn: number[]) : void
 
 **错误码：**
 
-以下错误码的详细介绍请参见ohos.rpc错误码
+以下错误码的详细介绍请参见[ohos.rpc错误码](../errorcodes/errorcode-rpc.md)
 
   | 错误码ID | 错误信息 |
   | ------- | -------- |
@@ -1616,7 +1616,7 @@ readIntArray(): number[]
 
 **错误码：**
 
-以下错误码的详细介绍请参见ohos.rpc错误码
+以下错误码的详细介绍请参见[ohos.rpc错误码](../errorcodes/errorcode-rpc.md)
 
   | 错误码ID | 错误信息 |
   | ----- | ------- |
@@ -1657,7 +1657,7 @@ writeLongArray(longArray: number[]): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见ohos.rpc错误码
+以下错误码的详细介绍请参见[ohos.rpc错误码](../errorcodes/errorcode-rpc.md)
 
   | 错误码ID | 错误信息 |
   | -------  | ----- |
@@ -1691,7 +1691,7 @@ readLongArray(dataIn: number[]) : void
 
 **错误码：**
 
-以下错误码的详细介绍请参见ohos.rpc错误码
+以下错误码的详细介绍请参见[ohos.rpc错误码](../errorcodes/errorcode-rpc.md)
 
   | 错误码ID | 错误信息 |
   | ------- | ------ |
@@ -1732,7 +1732,7 @@ readLongArray(): number[]
 
 **错误码：**
 
-以下错误码的详细介绍请参见ohos.rpc错误码
+以下错误码的详细介绍请参见[ohos.rpc错误码](../errorcodes/errorcode-rpc.md)
 
   | 错误码ID | 错误信息 |
   | ------- | -------- |
@@ -1773,7 +1773,7 @@ writeFloatArray(floatArray: number[]): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见ohos.rpc错误码
+以下错误码的详细介绍请参见[ohos.rpc错误码](../errorcodes/errorcode-rpc.md)
 
   | 错误码ID | 错误信息 |
   | ------- | -------- |
@@ -1807,7 +1807,7 @@ readFloatArray(dataIn: number[]) : void
 
 **错误码：**
 
-以下错误码的详细介绍请参见ohos.rpc错误码
+以下错误码的详细介绍请参见[ohos.rpc错误码](../errorcodes/errorcode-rpc.md)
 
   | 错误码ID | 错误信息 |
   | ------- | -------- |
@@ -1848,7 +1848,7 @@ readFloatArray(): number[]
 
 **错误码：**
 
-以下错误码的详细介绍请参见ohos.rpc错误码
+以下错误码的详细介绍请参见[ohos.rpc错误码](../errorcodes/errorcode-rpc.md)
 
   | 错误码ID | 错误信息 |
   | ------- | -------- |
@@ -1889,7 +1889,7 @@ writeDoubleArray(doubleArray: number[]): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见ohos.rpc错误码
+以下错误码的详细介绍请参见[ohos.rpc错误码](../errorcodes/errorcode-rpc.md)
 
   | 错误码ID | 错误信息 |
   | ------- | -------- |
@@ -1923,7 +1923,7 @@ readDoubleArray(dataIn: number[]) : void
 
 **错误码：**
 
-以下错误码的详细介绍请参见ohos.rpc错误码
+以下错误码的详细介绍请参见[ohos.rpc错误码](../errorcodes/errorcode-rpc.md)
 
   | 错误码ID | 错误信息 |
   | ------- | -------- |
@@ -1964,7 +1964,7 @@ readDoubleArray(): number[]
 
 **错误码：**
 
-以下错误码的详细介绍请参见ohos.rpc错误码
+以下错误码的详细介绍请参见[ohos.rpc错误码](../errorcodes/errorcode-rpc.md)
 
   | 错误码ID | 错误信息 |
   | ------- | -------- |
@@ -2005,7 +2005,7 @@ writeBooleanArray(booleanArray: boolean[]): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见ohos.rpc错误码
+以下错误码的详细介绍请参见[ohos.rpc错误码](../errorcodes/errorcode-rpc.md)
 
   | 错误码ID | 错误信息 |
   | ------- | -------- |
@@ -2039,7 +2039,7 @@ readBooleanArray(dataIn: boolean[]) : void
 
 **错误码：**
 
-以下错误码的详细介绍请参见ohos.rpc错误码
+以下错误码的详细介绍请参见[ohos.rpc错误码](../errorcodes/errorcode-rpc.md)
 
   | 错误码ID | 错误信息 |
   | ------- | -------- |
@@ -2080,7 +2080,7 @@ readBooleanArray(): boolean[]
 
 **错误码：**
 
-以下错误码的详细介绍请参见ohos.rpc错误码
+以下错误码的详细介绍请参见[ohos.rpc错误码](../errorcodes/errorcode-rpc.md)
 
   | 错误码ID | 错误信息 |
   | ------- | -------- |
@@ -2121,7 +2121,7 @@ writeCharArray(charArray: number[]): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见ohos.rpc错误码
+以下错误码的详细介绍请参见[ohos.rpc错误码](../errorcodes/errorcode-rpc.md)
 
   | 错误码ID | 错误信息 |
   | -------- | ------ |
@@ -2155,7 +2155,7 @@ readCharArray(dataIn: number[]) : void
 
 **错误码：**
 
-以下错误码的详细介绍请参见ohos.rpc错误码
+以下错误码的详细介绍请参见[ohos.rpc错误码](../errorcodes/errorcode-rpc.md)
 
   | 错误码ID | 错误信息 |
   | ------- | -------- |
@@ -2196,7 +2196,7 @@ readCharArray(): number[]
 
 **错误码：**
 
-以下错误码的详细介绍请参见ohos.rpc错误码
+以下错误码的详细介绍请参见[ohos.rpc错误码](../errorcodes/errorcode-rpc.md)
 
   | 错误码ID | 错误信息 |
   | ------- | -------- |
@@ -2238,7 +2238,7 @@ writeStringArray(stringArray: string[]): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见ohos.rpc错误码
+以下错误码的详细介绍请参见[ohos.rpc错误码](../errorcodes/errorcode-rpc.md)
 
   | 错误码ID | 错误信息 |
   | ------- | -------- |
@@ -2272,7 +2272,7 @@ readStringArray(dataIn: string[]) : void
 
 **错误码：**
 
-以下错误码的详细介绍请参见ohos.rpc错误码
+以下错误码的详细介绍请参见[ohos.rpc错误码](../errorcodes/errorcode-rpc.md)
 
   | 错误码ID | 错误信息 |
   | ------- | -------- |
@@ -2313,7 +2313,7 @@ readStringArray(): string[]
 
 **错误码：**
 
-以下错误码的详细介绍请参见ohos.rpc错误码
+以下错误码的详细介绍请参见[ohos.rpc错误码](../errorcodes/errorcode-rpc.md)
 
   | 错误码ID | 错误信息 |
   | ------- | -------- |
@@ -2348,7 +2348,7 @@ writeNoException(): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见ohos.rpc错误码
+以下错误码的详细介绍请参见[ohos.rpc错误码](../errorcodes/errorcode-rpc.md)
 
   | 错误码ID | 错误信息 |
   | ------- | -------- |
@@ -2399,7 +2399,7 @@ readException(): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见ohos.rpc错误码
+以下错误码的详细介绍请参见[ohos.rpc错误码](../errorcodes/errorcode-rpc.md)
 
   | 错误码ID | 错误信息 |
   | ------- | -------- |
@@ -2472,7 +2472,7 @@ writeParcelableArray(parcelableArray: Parcelable[]): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见ohos.rpc错误码
+以下错误码的详细介绍请参见[ohos.rpc错误码](../errorcodes/errorcode-rpc.md)
 
   | 错误码ID | 错误信息 |
   | ------- | -------- |
@@ -2528,7 +2528,7 @@ readParcelableArray(parcelableArray: Parcelable[]): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见ohos.rpc错误码
+以下错误码的详细介绍请参见[ohos.rpc错误码](../errorcodes/errorcode-rpc.md)
 
   | 错误码ID | 错误信息 |
   | ------- | -------- |
@@ -2588,7 +2588,7 @@ writeRemoteObjectArray(objectArray: IRemoteObject[]): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见ohos.rpc错误码
+以下错误码的详细介绍请参见[ohos.rpc错误码](../errorcodes/errorcode-rpc.md)
 
   | 错误码ID | 错误信息 |
   | ------- | ------- |
@@ -2644,7 +2644,7 @@ readRemoteObjectArray(objects: IRemoteObject[]): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见ohos.rpc错误码
+以下错误码的详细介绍请参见[ohos.rpc错误码](../errorcodes/errorcode-rpc.md)
 
   | 错误码ID | 错误信息 |
   | ------- | -------- |
@@ -2701,7 +2701,7 @@ readRemoteObjectArray(): IRemoteObject[]
 
 **错误码：**
 
-以下错误码的详细介绍请参见ohos.rpc错误码
+以下错误码的详细介绍请参见[ohos.rpc错误码](../errorcodes/errorcode-rpc.md)
 
   | 错误码ID | 错误信息 |
   | ------- | -------- |
@@ -2792,7 +2792,7 @@ static dupFileDescriptor(fd: number) :number
 
 **错误码：**
 
-以下错误码的详细介绍请参见ohos.rpc错误码
+以下错误码的详细介绍请参见[ohos.rpc错误码](../errorcodes/errorcode-rpc.md)
 
   | 错误码ID | 错误信息 |
   | ------- | ------- |
@@ -2866,7 +2866,7 @@ writeFileDescriptor(fd: number): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见ohos.rpc错误码
+以下错误码的详细介绍请参见[ohos.rpc错误码](../errorcodes/errorcode-rpc.md)
 
   | 错误码ID | 错误信息 |
   | -------- | ------ |
@@ -2904,7 +2904,7 @@ readFileDescriptor(): number
 
 **错误码：**
 
-以下错误码的详细介绍请参见ohos.rpc错误码
+以下错误码的详细介绍请参见[ohos.rpc错误码](../errorcodes/errorcode-rpc.md)
 
   | 错误码ID | 错误信息 |
   | ------- | -------- |
@@ -2948,7 +2948,7 @@ writeAshmem(ashmem: Ashmem): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见ohos.rpc错误码
+以下错误码的详细介绍请参见[ohos.rpc错误码](../errorcodes/errorcode-rpc.md)
 
   | 错误码ID | 错误信息 |
   | ------- | ------- |
@@ -2989,7 +2989,7 @@ readAshmem(): Ashmem
 
 **错误码：**
 
-以下错误码的详细介绍请参见ohos.rpc错误码
+以下错误码的详细介绍请参见[ohos.rpc错误码](../errorcodes/errorcode-rpc.md)
 
   | 错误码ID | 错误信息 |
   | ------- | -------- |
@@ -3061,7 +3061,7 @@ writeRawData(rawData: number[], size: number): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见ohos.rpc错误码
+以下错误码的详细介绍请参见[ohos.rpc错误码](../errorcodes/errorcode-rpc.md)
 
   | 错误码ID | 错误信息 |
   | ------- | ------ |
@@ -3103,7 +3103,7 @@ readRawData(size: number): number[]
 
 **错误码：**
 
-以下错误码的详细介绍请参见ohos.rpc错误码
+以下错误码的详细介绍请参见[ohos.rpc错误码](../errorcodes/errorcode-rpc.md)
 
   | 错误码ID | 错误信息 |
   | ------- | -------- |
@@ -3131,7 +3131,9 @@ readRawData(size: number): number[]
 
 ## MessageParcel<sup>(deprecated)</sup>
 
-在RPC过程中，发送方可以使用MessageParcel提供的写方法，将待发送的数据以特定格式写入该对象。接收方可以使用MessageParcel提供的读方法从该对象中读取特定格式的数据。数据格式包括：基础类型及数组、IPC对象、接口描述符和自定义序列化对象。建议后续使用MessageSequence类替代。
+>从API version 9 开始不再维护，建议使用[MessageSequence](#messagesequence9)类替代。
+
+在RPC过程中，发送方可以使用MessageParcel提供的写方法，将待发送的数据以特定格式写入该对象。接收方可以使用MessageParcel提供的读方法从该对象中读取特定格式的数据。数据格式包括：基础类型及数组、IPC对象、接口描述符和自定义序列化对象。
 
 ### create
 
@@ -4023,7 +4025,9 @@ writeString(val: string): boolean
 将字符串值写入MessageParcel实例。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
+
 **参数：**
+
   | 参数名 | 类型   | 必填 | 说明                                      |
   | ------ | ------ | ---- | ----------------------------------------- |
   | val    | string | 是   | 要写入的字符串值，其长度应小于40960字节。 |
@@ -4128,7 +4132,7 @@ readSequenceable(dataIn: Sequenceable) : boolean
 
   | 参数名 | 类型                          | 必填 | 说明                                    |
   | ------ | ----------------------------- | ---- | --------------------------------------- |
-  | dataIn | [Sequenceable](#sequenceable) | 是   | 需要从MessageParcel读取成员变量的对象。 |
+  | dataIn | [Sequenceable](#sequenceabledeprecated) | 是   | 需要从MessageParcel读取成员变量的对象。 |
 
 **返回值：**
 
@@ -5137,6 +5141,7 @@ readRemoteObjectArray(objects: IRemoteObject[]): void
 **系统能力**：SystemCapability.Communication.IPC.Core
 
 **参数：**
+
   | 参数名  | 类型            | 必填 | 说明 |
   | ------- | --------------- | ---- | --------- |
   | objects | IRemoteObject[] | 是   | 从MessageParcel读取的IRemoteObject对象数组。 |
@@ -5510,9 +5515,6 @@ readRawData(size: number): number[]
 
 ## Parcelable<sup>9+</sup>
 
-> **说明：**
-> 本类从API version 9开始启用，代替Sequenceable类。
-
 在进程间通信（IPC）期间，将类的对象写入MessageSequence并从MessageSequence中恢复它们。
 
 ### marshalling
@@ -5619,7 +5621,9 @@ unmarshalling(dataIn: MessageSequence) : boolean
 
 ## Sequenceable<sup>(deprecated)</sup>
 
-在进程间通信（IPC）期间，将类的对象写入MessageParcel并从MessageParcel中恢复它们。后续使用Parcelable类替代。
+>从API version 9 开始不再维护，建议使用[Parcelable](#parcelable9)类替代。
+
+在进程间通信（IPC）期间，将类的对象写入MessageParcel并从MessageParcel中恢复它们。
 
 ### marshalling
 
@@ -5633,7 +5637,7 @@ marshalling(dataOut: MessageParcel): boolean
 
   | 参数名  | 类型                            | 必填 | 说明                                      |
   | ------- | ------------------------------- | ---- | ----------------------------------------- |
-  | dataOut | [MessageParcel](#messageparcel) | 是   | 可序列对象将被封送到的MessageParcel对象。 |
+  | dataOut | [MessageParcel](#messageparceldeprecated) | 是   | 可序列对象将被封送到的MessageParcel对象。 |
 
 **返回值：**
 
@@ -5684,7 +5688,7 @@ unmarshalling(dataIn: MessageParcel) : boolean
 
   | 参数名 | 类型                            | 必填 | 说明                                          |
   | ------ | ------------------------------- | ---- | --------------------------------------------- |
-  | dataIn | [MessageParcel](#messageparcel) | 是   | 已将可序列对象封送到其中的MessageParcel对象。 |
+  | dataIn | [MessageParcel](#messageparceldeprecated) | 是   | 已将可序列对象封送到其中的MessageParcel对象。 |
 
 **返回值：**
 
@@ -5793,25 +5797,27 @@ onRemoteDied(): void
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Communication.IPC.Core。
 
-  | 参数：    | 值              | 说明                                  |
-  | ------- | --------------- | ------------------------------------- |
-  | errCode | number          | 错误码。                              |
-  | code    | number          | 消息代码。                            |
-  | data    | MessageSequence | 发送给对端进程的MessageSequence对象。 |
-  | reply   | MessageSequence | 对端进程返回的MessageSequence对象。   |
+  | 参数名  | 类型            | 必填 | 说明                                   |
+  | ------- | --------------- | ---- | ------------------------------------- |
+  | errCode | number          | 是   | 错误码。                              |
+  | code    | number          | 是   | 消息代码。                            |
+  | data    | MessageSequence | 是   | 发送给对端进程的MessageSequence对象。 |
+  | reply   | MessageSequence | 是   | 对端进程返回的MessageSequence对象。   |
 
 ## SendRequestResult<sup>8+(deprecated)</sup>
 
-发送请求的响应结果。后续使用RequestResult类替代。
+>从API version 9 开始不再维护，建议使用[RequestResult](#requestresult9)类替代。
+
+发送请求的响应结果。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Communication.IPC.Core。
 
-  | 参数：    | 值            | 说明                                |
-  | ------- | ------------- | ----------------------------------- |
-  | errCode | number        | 错误码。                            |
-  | code    | number        | 消息代码。                          |
-  | data    | MessageParcel | 发送给对端进程的MessageParcel对象。 |
-  | reply   | MessageParcel | 对端进程返回的MessageParcel对象。   |
+  | 参数名  | 类型          | 必填 | 说明                                 |
+  | ------- | ------------- | ---- | ----------------------------------- |
+  | errCode | number        | 是   | 错误码。                            |
+  | code    | number        | 是   | 消息代码。                          |
+  | data    | MessageParcel | 是   | 发送给对端进程的MessageParcel对象。 |
+  | reply   | MessageParcel | 是   | 对端进程返回的MessageParcel对象。   |
 
 ## IRemoteObject
 
@@ -5839,9 +5845,11 @@ getLocalInterface(descriptor: string): IRemoteBroker
 
 ### queryLocalInterface<sup>(deprecated)</sup>
 
+>从API version 9 开始不再维护，建议使用[getLocalInterface](#getlocalinterface9)类替代。
+
 queryLocalInterface(descriptor: string): IRemoteBroker
 
-查询接口。后续使用getLocalInterface方法替代。
+查询接口。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
@@ -5860,9 +5868,11 @@ queryLocalInterface(descriptor: string): IRemoteBroker
 
 ### sendRequest<sup>(deprecated)</sup>
 
+>从API version 9 开始不再维护，建议使用[sendMessageRequest](#sendmessagerequest9)类替代。
+
 sendRequest(code : number, data : MessageParcel, reply : MessageParcel, options : MessageOption): boolean
 
-以同步或异步方式向对端进程发送MessageParcel消息。如果为选项设置了异步模式，则期约立即兑现，reply报文里没有内容。如果为选项设置了同步模式，则期约将在sendRequest返回时兑现，回复内容在reply报文里。建议使用sendMessageRequest<sup>9+</sup>替代。
+以同步或异步方式向对端进程发送MessageParcel消息。如果为选项设置了异步模式，则期约立即兑现，reply报文里没有内容。如果为选项设置了同步模式，则期约将在sendRequest返回时兑现，回复内容在reply报文里。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
@@ -5871,8 +5881,8 @@ sendRequest(code : number, data : MessageParcel, reply : MessageParcel, options 
   | 参数名  | 类型 | 必填 | 说明  |
   | ------- | ------------------------------- | ---- | ---- |
   | code    | number                          | 是   | 本次请求调用的消息码，由通信双方确定。如果接口由IDL工具生成，则消息代码由IDL自动生成。 |
-  | data    | [MessageParcel](#messageparcel) | 是   | 保存待发送数据的&nbsp;MessageParcel对象。                                              |
-  | reply   | [MessageParcel](#messageparcel) | 是   | 接收应答数据的MessageParcel对象。                                                      |
+  | data    | [MessageParcel](#messageparceldeprecated) | 是   | 保存待发送数据的&nbsp;MessageParcel对象。                                              |
+  | reply   | [MessageParcel](#messageparceldeprecated) | 是   | 接收应答数据的MessageParcel对象。                                                      |
   | options | [MessageOption](#messageoption) | 是   | 本次请求的同异步模式，默认同步调用。                                                   |
 
 **返回值：**
@@ -5884,9 +5894,11 @@ sendRequest(code : number, data : MessageParcel, reply : MessageParcel, options 
 
 ### sendRequest<sup>8+(deprecated)</sup>
 
+>从API version 9 开始不再维护，建议使用[sendMessageRequest](#sendmessagerequest9)类替代。
+
 sendRequest(code : number, data : MessageParcel, reply : MessageParcel, options : MessageOption): Promise&lt;SendRequestResult&gt;
 
-以同步或异步方式向对端进程发送MessageParcel消息。如果为选项设置了异步模式，则期约立即兑现，reply报文里没有内容。如果为选项设置了同步模式，则期约将在sendRequest返回时兑现，回复内容在reply报文里。后续建议使用sendMessageRequest<sup>9+</sup>替代。
+以同步或异步方式向对端进程发送MessageParcel消息。如果为选项设置了异步模式，则期约立即兑现，reply报文里没有内容。如果为选项设置了同步模式，则期约将在sendRequest返回时兑现，回复内容在reply报文里。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
@@ -5895,8 +5907,8 @@ sendRequest(code : number, data : MessageParcel, reply : MessageParcel, options 
   | 参数名  | 类型                            | 必填 | 说明                                                                                   |
   | ------- | ------------------------------- | ---- | -------------------------------------------------------------------------------------- |
   | code    | number                          | 是   | 本次请求调用的消息码，由通信双方确定。如果接口由IDL工具生成，则消息代码由IDL自动生成。 |
-  | data    | [MessageParcel](#messageparcel) | 是   | 保存待发送数据的&nbsp;MessageParcel对象。                                              |
-  | reply   | [MessageParcel](#messageparcel) | 是   | 接收应答数据的MessageParcel对象。                                                      |
+  | data    | [MessageParcel](#messageparceldeprecated) | 是   | 保存待发送数据的&nbsp;MessageParcel对象。                                              |
+  | reply   | [MessageParcel](#messageparceldeprecated) | 是   | 接收应答数据的MessageParcel对象。                                                      |
   | options | [MessageOption](#messageoption) | 是   | 本次请求的同异步模式，默认同步调用。                                                   |
 
 **返回值：**
@@ -5919,8 +5931,8 @@ sendMessageRequest(code : number, data : MessageSequence, reply : MessageSequenc
   | 参数名  | 类型                            | 必填 | 说明                                                                                   |
   | ------- | ------------------------------- | ---- | -------------------------------------------------------------------------------------- |
   | code    | number                          | 是   | 本次请求调用的消息码，由通信双方确定。如果接口由IDL工具生成，则消息代码由IDL自动生成。 |
-  | data    | MessageSequence                 | 是   | 保存待发送数据的&nbsp;MessageSequence对象。                                            |
-  | reply   | MessageSequence                 | 是   | 接收应答数据的MessageSequence对象。                                                    |
+  | data    | [MessageSequence](#messagesequence9) | 是   | 保存待发送数据的&nbsp;MessageSequence对象。                                            |
+  | reply   | [MessageSequence](#messagesequence9) | 是   | 接收应答数据的MessageSequence对象。                                                    |
   | options | [MessageOption](#messageoption) | 是   | 本次请求的同异步模式，默认同步调用。                                                   |
 
 **返回值：**
@@ -5943,17 +5955,19 @@ sendMessageRequest(code: number, data: MessageSequence, reply: MessageSequence, 
   | 参数名   | 类型                               | 必填 | 说明                                                                                   |
   | -------- | ---------------------------------- | ---- | -------------------------------------------------------------------------------------- |
   | code     | number                             | 是   | 本次请求调用的消息码，由通信双方确定。如果接口由IDL工具生成，则消息代码由IDL自动生成。 |
-  | data     | MessageSequence                    | 是   | 保存待发送数据的&nbsp;MessageSequence对象。                                            |
-  | reply    | MessageSequence                    | 是   | 接收应答数据的MessageSequence对象。                                                    |
+  | data     | [MessageSequence](#messagesequence9) | 是   | 保存待发送数据的&nbsp;MessageSequence对象。                                            |
+  | reply    | [MessageSequence](#messagesequence9) | 是   | 接收应答数据的MessageSequence对象。                                                    |
   | options  | [MessageOption](#messageoption)    | 是   | 本次请求的同异步模式，默认同步调用。                                                   |
   | callback | AsyncCallback&lt;RequestResult&gt; | 是   | 接收发送结果的回调。                                                                   |
 
 
 ### sendRequest<sup>8+(deprecated)</sup>
 
+>从API version 9 开始不再维护，建议使用[sendMessageRequest](#sendmessagerequest9)类替代。
+
 sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: MessageOption, callback: AsyncCallback&lt;SendRequestResult&gt;): void
 
-以同步或异步方式向对端进程发送MessageParcel消息。如果为选项设置了异步模式，则立即收到回调，reply报文里没有内容。如果为选项设置了同步模式，则将在sendRequest返回时收到回调，回复内容在reply报文里。后续建议使用sendMessageRequest替代。
+以同步或异步方式向对端进程发送MessageParcel消息。如果为选项设置了异步模式，则立即收到回调，reply报文里没有内容。如果为选项设置了同步模式，则将在sendRequest返回时收到回调，回复内容在reply报文里。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
@@ -5962,8 +5976,8 @@ sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: Me
   | 参数名   | 类型                                   | 必填 | 说明                                                                                   |
   | -------- | -------------------------------------- | ---- | -------------------------------------------------------------------------------------- |
   | code     | number                                 | 是   | 本次请求调用的消息码，由通信双方确定。如果接口由IDL工具生成，则消息代码由IDL自动生成。 |
-  | data     | [MessageParcel](#messageparcel)        | 是   | 保存待发送数据的&nbsp;MessageParcel对象。                                              |
-  | reply    | [MessageParcel](#messageparcel)        | 是   | 接收应答数据的MessageParcel对象。                                                      |
+  | data     | [MessageParcel](#messageparceldeprecated)        | 是   | 保存待发送数据的&nbsp;MessageParcel对象。                                              |
+  | reply    | [MessageParcel](#messageparceldeprecated)        | 是   | 接收应答数据的MessageParcel对象。                                                      |
   | options  | [MessageOption](#messageoption)        | 是   | 本次请求的同异步模式，默认同步调用。                                                   |
   | callback | AsyncCallback&lt;SendRequestResult&gt; | 是   | 接收发送结果的回调。                                                                   |
 
@@ -5985,7 +5999,7 @@ registerDeathRecipient(recipient: DeathRecipient, flags: number): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见ohos.rpc错误码
+以下错误码的详细介绍请参见[ohos.rpc错误码](../errorcodes/errorcode-rpc.md)
 
   | 错误码ID | 错误信息 |
   | ------- | -------- |
@@ -5994,9 +6008,11 @@ registerDeathRecipient(recipient: DeathRecipient, flags: number): void
 
 ### addDeathrecipient<sup>(deprecated)</sup>
 
+>从API version 9 开始不再维护，建议使用[registerDeathRecipient](#registerdeathrecipient9)类替代。
+
 addDeathRecipient(recipient: DeathRecipient, flags: number): boolean
 
-注册用于接收远程对象死亡通知的回调。如果与RemoteProxy对象匹配的远程对象进程死亡，则调用此方法。建议使用registerDeathRecipient替代。
+注册用于接收远程对象死亡通知的回调。如果与RemoteProxy对象匹配的远程对象进程死亡，则调用此方法。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
@@ -6031,7 +6047,7 @@ removeDeathRecipient(recipient: DeathRecipient, flags: number): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见ohos.rpc错误码
+以下错误码的详细介绍请参见[ohos.rpc错误码](../errorcodes/errorcode-rpc.md)
 
   | 错误码ID | 错误信息 |
   | ------- | -------- |
@@ -6040,9 +6056,11 @@ removeDeathRecipient(recipient: DeathRecipient, flags: number): void
 
 ### removeDeathRecipient<sup>(deprecated)</sup>
 
+>从API version 9 开始不再维护，建议使用[unregisterDeathRecipient](#unregisterdeathrecipient9)类替代。
+
 removeDeathRecipient(recipient: DeathRecipient, flags: number): boolean
 
-注销用于接收远程对象死亡通知的回调。建议使用unregisterDeathRecipient替代。
+注销用于接收远程对象死亡通知的回调。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
@@ -6076,7 +6094,7 @@ getDescriptor(): string
 
 **错误码：**
 
-以下错误码的详细介绍请参见ohos.rpc错误码
+以下错误码的详细介绍请参见[ohos.rpc错误码](../errorcodes/errorcode-rpc.md)
 
   | 错误码ID | 错误信息 |
   | ------- | -------- |
@@ -6085,9 +6103,11 @@ getDescriptor(): string
 
 ### getInterfaceDescriptor<sup>(deprecated)</sup>
 
+>从API version 9 开始不再维护，建议使用[getDescriptor](#getdescriptor9)类替代。
+
 getInterfaceDescriptor(): string
 
-获取对象的接口描述符。接口描述符为字符串。建议使用getDescriptor替代。
+获取对象的接口描述符。接口描述符为字符串。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
@@ -6119,7 +6139,7 @@ isObjectDead(): boolean
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Communication.IPC.Core。
 
-| 参数：                  | 值                      | 说明                              |
+| 参数名                  | 值                      | 说明                              |
 | --------------------- | ----------------------- | --------------------------------- |
 | PING_TRANSACTION      | 1599098439 (0x5f504e47) | 内部指令码，用于测试IPC服务正常。 |
 | DUMP_TRANSACTION      | 1598311760 (0x5f444d50) | 内部指令码，获取Binder内部状态。  |
@@ -6130,9 +6150,11 @@ isObjectDead(): boolean
 
 ### sendRequest<sup>(deprecated)</sup>
 
+>从API version 9 开始不再维护，建议使用[sendMessageRequest](#sendmessagerequest9)类替代。
+
 sendRequest(code : number, data : MessageParcel, reply : MessageParcel, options : MessageOption): boolean
 
-以同步或异步方式向对端进程发送MessageParcel消息。如果为选项设置了异步模式，则期约立即兑现，reply报文里没有内容。如果为选项设置了同步模式，则期约将在sendRequest返回时兑现，回复内容在reply报文里。建议使用sendMessageRequest<sup>9+</sup>替代。
+以同步或异步方式向对端进程发送MessageParcel消息。如果为选项设置了异步模式，则期约立即兑现，reply报文里没有内容。如果为选项设置了同步模式，则期约将在sendRequest返回时兑现，回复内容在reply报文里。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
@@ -6141,8 +6163,8 @@ sendRequest(code : number, data : MessageParcel, reply : MessageParcel, options 
   | 参数名  | 类型                            | 必填 | 说明                                                                                   |
   | ------- | ------------------------------- | ---- | -------------------------------------------------------------------------------------- |
   | code    | number                          | 是   | 本次请求调用的消息码，由通信双方确定。如果接口由IDL工具生成，则消息代码由IDL自动生成。 |
-  | data    | [MessageParcel](#messageparcel) | 是   | 保存待发送数据的&nbsp;MessageParcel对象。                                              |
-  | reply   | [MessageParcel](#messageparcel) | 是   | 接收应答数据的MessageParcel对象。                                                      |
+  | data    | [MessageParcel](#messageparceldeprecated) | 是   | 保存待发送数据的&nbsp;MessageParcel对象。                                              |
+  | reply   | [MessageParcel](#messageparceldeprecated) | 是   | 接收应答数据的MessageParcel对象。                                                      |
   | options | [MessageOption](#messageoption) | 是   | 本次请求的同异步模式，默认同步调用。                                                   |
 
 **返回值：**
@@ -6204,8 +6226,8 @@ sendMessageRequest(code : number, data : MessageSequence, reply : MessageSequenc
   | 参数名  | 类型                            | 必填 | 说明                                                                                   |
   | ------- | ------------------------------- | ---- | -------------------------------------------------------------------------------------- |
   | code    | number                          | 是   | 本次请求调用的消息码，由通信双方确定。如果接口由IDL工具生成，则消息代码由IDL自动生成。 |
-  | data    | MessageSequence                 | 是   | 保存待发送数据的&nbsp;MessageSequence对象。                                            |
-  | reply   | MessageSequence                 | 是   | 接收应答数据的MessageSequence对象。                                                    |
+  | data    | [MessageSequence](#messagesequence9) | 是   | 保存待发送数据的&nbsp;MessageSequence对象。                                            |
+  | reply   | [MessageSequence](#messagesequence9)  | 是   | 接收应答数据的MessageSequence对象。                                                    |
   | options | [MessageOption](#messageoption) | 是   | 本次请求的同异步模式，默认同步调用。                                                   |
 
 **返回值：**
@@ -6263,9 +6285,11 @@ sendMessageRequest(code : number, data : MessageSequence, reply : MessageSequenc
 
 ### sendRequest<sup>8+(deprecated)</sup>
 
+>从API version 9 开始不再维护，建议使用[sendMessageRequest](#sendmessagerequest9)类替代。
+
 sendRequest(code : number, data : MessageParcel, reply : MessageParcel, options : MessageOption): Promise&lt;SendRequestResult&gt;
 
-以同步或异步方式向对端进程发送MessageParcel消息。如果为选项设置了异步模式，则期约立即兑现，reply报文里没有内容。如果为选项设置了同步模式，则期约将在sendRequest返回时兑现，回复内容在reply报文里。建议使用sendMessageRequest<sup>9+</sup>替代。
+以同步或异步方式向对端进程发送MessageParcel消息。如果为选项设置了异步模式，则期约立即兑现，reply报文里没有内容。如果为选项设置了同步模式，则期约将在sendRequest返回时兑现，回复内容在reply报文里。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
@@ -6274,8 +6298,8 @@ sendRequest(code : number, data : MessageParcel, reply : MessageParcel, options 
   | 参数名  | 类型                            | 必填 | 说明                                                                                   |
   | ------- | ------------------------------- | ---- | -------------------------------------------------------------------------------------- |
   | code    | number                          | 是   | 本次请求调用的消息码，由通信双方确定。如果接口由IDL工具生成，则消息代码由IDL自动生成。 |
-  | data    | [MessageParcel](#messageparcel) | 是   | 保存待发送数据的&nbsp;MessageParcel对象。                                              |
-  | reply   | [MessageParcel](#messageparcel) | 是   | 接收应答数据的MessageParcel对象。                                                      |
+  | data    | [MessageParcel](#messageparceldeprecated) | 是   | 保存待发送数据的&nbsp;MessageParcel对象。                                              |
+  | reply   | [MessageParcel](#messageparceldeprecated) | 是   | 接收应答数据的MessageParcel对象。                                                      |
   | options | [MessageOption](#messageoption) | 是   | 本次请求的同异步模式，默认同步调用。                                                   |
 
 **返回值：**
@@ -6343,8 +6367,8 @@ sendMessageRequest(code: number, data: MessageSequence, reply: MessageSequence, 
   | 参数名   | 类型                               | 必填 | 说明                                                                                   |
   | -------- | ---------------------------------- | ---- | -------------------------------------------------------------------------------------- |
   | code     | number                             | 是   | 本次请求调用的消息码，由通信双方确定。如果接口由IDL工具生成，则消息代码由IDL自动生成。 |
-  | data     | MessageSequence                    | 是   | 保存待发送数据的&nbsp;MessageSequence对象。                                            |
-  | reply    | MessageSequence                    | 是   | 接收应答数据的MessageSequence对象。                                                    |
+  | data     | [MessageSequence](#messagesequence9) | 是   | 保存待发送数据的&nbsp;MessageSequence对象。                                            |
+  | reply    | [MessageSequence](#messagesequence9) | 是   | 接收应答数据的MessageSequence对象。                                                    |
   | options  | [MessageOption](#messageoption)    | 是   | 本次请求的同异步模式，默认同步调用。                                                   |
   | callback | AsyncCallback&lt;RequestResult&gt; | 是   | 接收发送结果的回调。                                                                   |
 
@@ -6400,8 +6424,10 @@ sendMessageRequest(code: number, data: MessageSequence, reply: MessageSequence, 
 
 ### sendRequest<sup>8+(deprecated)</sup>
 
+>从API version 9 开始不再维护，建议使用[sendMessageRequest](#sendmessagerequest9)类替代。
+
 sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: MessageOption, callback: AsyncCallback&lt;SendRequestResult&gt;): void
-以同步或异步方式向对端进程发送MessageParcel消息。如果为选项设置了异步模式，则立即收到回调，reply报文里没有内容。如果为选项设置了同步模式，则将在sendRequest返回时收到回调，回复内容在reply报文里。建议使用sendMessageRequest替代。
+以同步或异步方式向对端进程发送MessageParcel消息。如果为选项设置了异步模式，则立即收到回调，reply报文里没有内容。如果为选项设置了同步模式，则将在sendRequest返回时收到回调，回复内容在reply报文里。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
@@ -6410,8 +6436,8 @@ sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: Me
   | 参数名   | 类型                                   | 必填 | 说明                                                                                   |
   | -------- | -------------------------------------- | ---- | -------------------------------------------------------------------------------------- |
   | code     | number                                 | 是   | 本次请求调用的消息码，由通信双方确定。如果接口由IDL工具生成，则消息代码由IDL自动生成。 |
-  | data     | [MessageParcel](#messageparcel)        | 是   | 保存待发送数据的&nbsp;MessageParcel对象。                                              |
-  | reply    | [MessageParcel](#messageparcel)        | 是   | 接收应答数据的MessageParcel对象。                                                      |
+  | data     | [MessageParcel](#messageparceldeprecated)        | 是   | 保存待发送数据的&nbsp;MessageParcel对象。                                              |
+  | reply    | [MessageParcel](#messageparceldeprecated)        | 是   | 接收应答数据的MessageParcel对象。                                                      |
   | options  | [MessageOption](#messageoption)        | 是   | 本次请求的同异步模式，默认同步调用。                                                   |
   | callback | AsyncCallback&lt;SendRequestResult&gt; | 是   | 接收发送结果的回调。                                                                   |
 
@@ -6514,9 +6540,11 @@ getLocalInterface(interface: string): IRemoteBroker
 
 ### queryLocalInterface<sup>(deprecated)</sup>
 
+>从API version 9 开始不再维护，建议使用[getLocalInterface](#getlocalinterface9)类替代。
+
 queryLocalInterface(interface: string): IRemoteBroker
 
-查询并获取当前接口描述符对应的本地接口对象。建议使用getLocalInterface替代。
+查询并获取当前接口描述符对应的本地接口对象。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
@@ -6576,7 +6604,7 @@ registerDeathRecipient(recipient: DeathRecipient, flags: number): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见ohos.rpc错误码
+以下错误码的详细介绍请参见[ohos.rpc错误码](../errorcodes/errorcode-rpc.md)
 
   | 错误码ID | 错误信息 |
   | ------- | -------- |
@@ -6621,9 +6649,11 @@ registerDeathRecipient(recipient: DeathRecipient, flags: number): void
 
 ### addDeathRecippient<sup>(deprecated)</sup>
 
+>从API version 9 开始不再维护，建议使用[registerDeathRecipient](#registerdeathrecipient9)类替代。
+
 addDeathRecipient(recipient : DeathRecipient, flags : number): boolean
 
-注册用于接收远程对象死亡通知的回调，增加proxy对象上的死亡通知。建议使用registerDeathRecipient替代。
+注册用于接收远程对象死亡通知的回调，增加proxy对象上的死亡通知。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
@@ -6673,7 +6703,7 @@ addDeathRecipient(recipient : DeathRecipient, flags : number): boolean
 
 ### unregisterDeathRecipient<sup>9+</sup>
 
-removeDeathRecipient(recipient: DeathRecipient, flags: number): void
+unregisterDeathRecipient(recipient: DeathRecipient, flags: number): void
 
 注销用于接收远程对象死亡通知的回调。
 
@@ -6688,7 +6718,7 @@ removeDeathRecipient(recipient: DeathRecipient, flags: number): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见ohos.rpc错误码
+以下错误码的详细介绍请参见[ohos.rpc错误码](../errorcodes/errorcode-rpc.md)
 
   | 错误码ID | 错误信息 |
   | ------- | -------- |
@@ -6734,9 +6764,11 @@ removeDeathRecipient(recipient: DeathRecipient, flags: number): void
 
 ### removeDeathRecipient<sup>(deprecated)</sup>
 
+>从API version 9 开始不再维护，建议使用[unregisterDeathRecipient](#unregisterdeathrecipient9)类替代。
+
 removeDeathRecipient(recipient : DeathRecipient, flags : number): boolean
 
-注销用于接收远程对象死亡通知的回调。建议使用unregisterDeathRecipient替代。
+注销用于接收远程对象死亡通知的回调。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
@@ -6802,11 +6834,12 @@ getInterfaceDescriptor(): string
 
 **错误码：**
 
-以下错误码的详细介绍请参见ohos.rpc错误码
+以下错误码的详细介绍请参见[ohos.rpc错误码](../errorcodes/errorcode-rpc.md)
 
   | 错误码ID | 错误信息 |
   | -------- | ------- |
   | 1900008 | proxy or remote object is invalid |
+  | 1900007 | communication failed              |
 
 **示例：**
 
@@ -6842,9 +6875,11 @@ getInterfaceDescriptor(): string
 
 ### getInterfaceDescriptor<sup>(deprecated)</sup>
 
+>从API version 9 开始不再维护，建议使用[getDescriptor](#getdescriptor9)类替代。
+
 getInterfaceDescriptor(): string
 
-查询当前代理对象接口的描述符。建议使用getDescriptor替代。
+查询当前代理对象接口的描述符。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
@@ -6928,7 +6963,7 @@ isObjectDead(): boolean
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Communication.IPC.Core。
 
-  | 参数：          | 值   | 说明                                                        |
+  | 参数名          | 值   | 说明                                                        |
   | ------------- | ---- | ----------------------------------------------------------- |
   | TF_SYNC       | 0    | 同步调用。                                                  |
   | TF_ASYNC      | 1    | 异步调用。                                                  |
@@ -7267,8 +7302,8 @@ static flushCmdBuffer(object : IRemoteObject): void
       constructor(descriptor) {
           super(descriptor);
       }
-      addDeathRecipient(recipient: MyDeathRecipient, flags: number);
-      removeDeathRecipient(recipient: MyDeathRecipient, flags: number);
+      registerDeathRecipient(recipient: MyDeathRecipient, flags: number);
+      unregisterDeathRecipient(recipient: MyDeathRecipient, flags: number);
       isObjectDead(): boolean {
           return false;
       }
@@ -7285,9 +7320,11 @@ static flushCmdBuffer(object : IRemoteObject): void
 
 ### flushCommands<sup>(deprecated)</sup>
 
+>从API version 9 开始不再维护，建议使用[flushCmdBuffer](#flushcmdbuffer9)类替代。
+
 static flushCommands(object : IRemoteObject): number
 
-将所有挂起的命令从指定的RemoteProxy刷新到相应的RemoteObject。建议在执行任何时间敏感操作之前调用此方法。使用flushCmdBuffer替代。
+将所有挂起的命令从指定的RemoteProxy刷新到相应的RemoteObject。建议在执行任何时间敏感操作之前调用此方法。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
@@ -7391,9 +7428,11 @@ static restoreCallingIdentity(identity : string): void
 
 ### setCallingIdentity<sup>(deprecated)</sup>
 
+>从API version 9 开始不再维护，建议使用[restoreCallingIdentity](#restorecallingidentity9)类替代。
+
 static setCallingIdentity(identity : string): boolean
 
-将UID和PID恢复为远程用户的UID和PID。它通常在使用resetCallingIdentity后调用，需要resetCallingIdentity返回的远程用户的UID和PID。建议使用restoreCallingIdentity替代。
+将UID和PID恢复为远程用户的UID和PID。它通常在使用resetCallingIdentity后调用，需要resetCallingIdentity返回的远程用户的UID和PID。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
@@ -7449,6 +7488,8 @@ RemoteObject构造函数。
 
 ### sendRequest<sup>(deprecated)</sup>
 
+>从API version 9 开始不再维护，建议使用[sendMessageRequest](#sendmessagerequest9)类替代。
+
 sendRequest(code : number, data : MessageParcel, reply : MessageParcel, options : MessageOption): boolean
 
 以同步或异步方式向对端进程发送MessageParcel消息。如果为选项设置了异步模式，则期约立即兑现，reply报文里没有内容。如果为选项设置了同步模式，则期约将在sendRequest返回时兑现，回复内容在reply报文里。
@@ -7460,8 +7501,8 @@ sendRequest(code : number, data : MessageParcel, reply : MessageParcel, options 
   | 参数名  | 类型                            | 必填 | 说明                                                                                   |
   | ------- | ------------------------------- | ---- | -------------------------------------------------------------------------------------- |
   | code    | number                          | 是   | 本次请求调用的消息码，由通信双方确定。如果接口由IDL工具生成，则消息代码由IDL自动生成。 |
-  | data    | [MessageParcel](#messageparcel) | 是   | 保存待发送数据的&nbsp;MessageParcel对象。                                              |
-  | reply   | [MessageParcel](#messageparcel) | 是   | 接收应答数据的MessageParcel对象。                                                      |
+  | data    | [MessageParcel](#messageparceldeprecated) | 是   | 保存待发送数据的&nbsp;MessageParcel对象。                                              |
+  | reply   | [MessageParcel](#messageparceldeprecated) | 是   | 接收应答数据的MessageParcel对象。                                                      |
   | options | [MessageOption](#messageoption) | 是   | 本次请求的同异步模式，默认同步调用。                                                   |
 
 **返回值：**
@@ -7514,9 +7555,11 @@ sendRequest(code : number, data : MessageParcel, reply : MessageParcel, options 
 
 ### sendRequest<sup>8+(deprecated)</sup>
 
+>从API version 9 开始不再维护，建议使用[sendMessageRequest](#sendmessagerequest9)类替代。
+
 sendRequest(code : number, data : MessageParcel, reply : MessageParcel, options : MessageOption): Promise&lt;SendRequestResult&gt;
 
-以同步或异步方式向对端进程发送MessageParcel消息。如果为选项设置了异步模式，则期约立即兑现，reply报文里没有内容。如果为选项设置了同步模式，则期约将在sendRequest返回时兑现，回复内容在reply报文里。建议使用sendMessageRequest<sup>9+</sup>替代。
+以同步或异步方式向对端进程发送MessageParcel消息。如果为选项设置了异步模式，则期约立即兑现，reply报文里没有内容。如果为选项设置了同步模式，则期约将在sendRequest返回时兑现，回复内容在reply报文里。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
@@ -7525,8 +7568,8 @@ sendRequest(code : number, data : MessageParcel, reply : MessageParcel, options 
   | 参数名  | 类型                            | 必填 | 说明                                                                                   |
   | ------- | ------------------------------- | ---- | -------------------------------------------------------------------------------------- |
   | code    | number                          | 是   | 本次请求调用的消息码，由通信双方确定。如果接口由IDL工具生成，则消息代码由IDL自动生成。 |
-  | data    | [MessageParcel](#messageparcel) | 是   | 保存待发送数据的&nbsp;MessageParcel对象。                                              |
-  | reply   | [MessageParcel](#messageparcel) | 是   | 接收应答数据的MessageParcel对象。                                                      |
+  | data    | [MessageParcel](#messageparceldeprecated) | 是   | 保存待发送数据的&nbsp;MessageParcel对象。                                              |
+  | reply   | [MessageParcel](#messageparceldeprecated) | 是   | 接收应答数据的MessageParcel对象。                                                      |
   | options | [MessageOption](#messageoption) | 是   | 本次请求的同异步模式，默认同步调用。                                                   |
 
 **返回值：**
@@ -7595,8 +7638,8 @@ sendMessageRequest(code : number, data : MessageSequence, reply : MessageSequenc
   | 参数名  | 类型                            | 必填 | 说明                                                                                   |
   | ------- | ------------------------------- | ---- | -------------------------------------------------------------------------------------- |
   | code    | number                          | 是   | 本次请求调用的消息码，由通信双方确定。如果接口由IDL工具生成，则消息代码由IDL自动生成。 |
-  | data    | MessageSequence                 | 是   | 保存待发送数据的&nbsp;MessageSequence对象。                                            |
-  | reply   | MessageSequence                 | 是   | 接收应答数据的MessageSequence对象。                                                    |
+  | data    | [MessageSequence](#messagesequence9) | 是   | 保存待发送数据的&nbsp;MessageSequence对象。                                            |
+  | reply   | [MessageSequence](#messagesequence9) | 是   | 接收应答数据的MessageSequence对象。                                                    |
   | options | [MessageOption](#messageoption) | 是   | 本次请求的同异步模式，默认同步调用。                                                   |
 
 **返回值：**
@@ -7662,8 +7705,8 @@ sendMessageRequest(code: number, data: MessageSequence, reply: MessageSequence, 
   | 参数名        | 类型                               | 必填 | 说明                                                                                   |
   | ------------- | ---------------------------------- | ---- | -------------------------------------------------------------------------------------- |
   | code          | number                             | 是   | 本次请求调用的消息码，由通信双方确定。如果接口由IDL工具生成，则消息代码由IDL自动生成。 |
-  | data          | MessageSequence                    | 是   | 保存待发送数据的&nbsp;MessageSequence对象。                                            |
-  | reply         | MessageSequence                    | 是   | 接收应答数据的MessageSequence对象。                                                    |
+  | data          | [MessageSequence](#messagesequence9) | 是   | 保存待发送数据的&nbsp;MessageSequence对象。                                            |
+  | reply         | [MessageSequence](#messagesequence9) | 是   | 接收应答数据的MessageSequence对象。                                                    |
   | options       | [MessageOption](#messageoption)    | 是   | 本次请求的同异步模式，默认同步调用。                                                   |
   | AsyncCallback | AsyncCallback&lt;RequestResult&gt; | 是   | 接收发送结果的回调。                                                                   |
 
@@ -7679,10 +7722,8 @@ sendMessageRequest(code: number, data: MessageSequence, reply: MessageSequence, 
       constructor(descriptor) {
           super(descriptor);
       }
-      addDeathRecipient(recipient: MyDeathRecipient, flags: number);
-      removeDeathRecipient(recipient: MyDeathRecipient, flags: number): boolean {
-          return true;
-      }
+      registerDeathRecipient(recipient: MyDeathRecipient, flags: number);
+      unregisterDeathRecipient(recipient: MyDeathRecipient, flags: number);
       isObjectDead(): boolean {
           return false;
       }
@@ -7712,9 +7753,11 @@ sendMessageRequest(code: number, data: MessageSequence, reply: MessageSequence, 
 
 ### sendRequest<sup>8+(deprecated)</sup>
 
+>从API version 9 开始不再维护，建议使用[sendMessageRequest](#sendmessagerequest9)类替代。
+
 sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: MessageOption, callback: AsyncCallback&lt;SendRequestResult&gt;): void
 
-以同步或异步方式向对端进程发送MessageParcel消息。如果为选项设置了异步模式，则立即收到回调，reply报文里没有内容。如果为选项设置了同步模式，则将在sendRequest返回时收到回调，回复内容在reply报文里。建议使用sendMessageRequest替代。
+以同步或异步方式向对端进程发送MessageParcel消息。如果为选项设置了异步模式，则立即收到回调，reply报文里没有内容。如果为选项设置了同步模式，则将在sendRequest返回时收到回调，回复内容在reply报文里。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
@@ -7723,8 +7766,8 @@ sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: Me
   | 参数名        | 类型                                   | 必填 | 说明                                                                                   |
   | ------------- | -------------------------------------- | ---- | -------------------------------------------------------------------------------------- |
   | code          | number                                 | 是   | 本次请求调用的消息码，由通信双方确定。如果接口由IDL工具生成，则消息代码由IDL自动生成。 |
-  | data          | [MessageParcel](#messageparcel)        | 是   | 保存待发送数据的&nbsp;MessageParcel对象。                                              |
-  | reply         | [MessageParcel](#messageparcel)        | 是   | 接收应答数据的MessageParcel对象。                                                      |
+  | data          | [MessageParcel](#messageparceldeprecated)        | 是   | 保存待发送数据的&nbsp;MessageParcel对象。                                              |
+  | reply         | [MessageParcel](#messageparceldeprecated)        | 是   | 接收应答数据的MessageParcel对象。                                                      |
   | options       | [MessageOption](#messageoption)        | 是   | 本次请求的同异步模式，默认同步调用。                                                   |
   | AsyncCallback | AsyncCallback&lt;SendRequestResult&gt; | 是   | 接收发送结果的回调。                                                                   |
 
@@ -7775,9 +7818,11 @@ sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: Me
 
 ### onRemoteRequest<sup>8+(deprecated)</sup>
 
+>从API version 9 开始不再维护，建议使用[onRemoteRequestEx](#onremoterequestex9)类替代。
+
 onRemoteRequest(code : number, data : MessageParcel, reply: MessageParcel, options : MessageOption): boolean
 
-sendMessageRequest请求的响应处理函数，服务端在该函数里处理请求，回复结果。建议使用onRemoteRequestEx<sup>9+</sup>替代。
+sendMessageRequest请求的响应处理函数，服务端在该函数里处理请求，回复结果。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
@@ -7786,8 +7831,8 @@ sendMessageRequest请求的响应处理函数，服务端在该函数里处理�
   | 参数名 | 类型                            | 必填 | 说明                                    |
   | ------ | ------------------------------- | ---- | --------------------------------------- |
   | code   | number                          | 是   | 对端发送的服务请求码。                  |
-  | data   | [MessageParcel](#messageparcel) | 是   | 携带客户端调用参数的MessageParcel对象。 |
-  | reply  | [MessageParcel](#messageparcel) | 是   | 写入结果的MessageParcel对象。           |
+  | data   | [MessageParcel](#messageparceldeprecated) | 是   | 携带客户端调用参数的MessageParcel对象。 |
+  | reply  | [MessageParcel](#messageparceldeprecated) | 是   | 写入结果的MessageParcel对象。           |
   | option | [MessageOption](#messageoption) | 是   | 指示操作是同步还是异步。                |
 
 **返回值：**
@@ -7831,7 +7876,7 @@ sendMessageRequest请求的响应处理函数，服务端在该函数里处理�
 
 ### onRemoteRequestEx<sup>9+</sup>
 
-onRemoteRequestEx(code : number, data : MessageSequence, reply: MessageSequence, options : MessageOption): boolean | Promise <boolean>
+onRemoteRequestEx(code : number, data : MessageSequence, reply: MessageSequence, options : MessageOption): boolean | Promise\<boolean>
 
 > **说明：**
 >
@@ -7847,16 +7892,16 @@ sendMessageRequest请求的响应处理函数，服务端在该函数里同步�
   | 参数名 | 类型                            | 必填 | 说明                                      |
   | ------ | ------------------------------- | ---- | ----------------------------------------- |
   | code   | number                          | 是   | 对端发送的服务请求码。                    |
-  | data   | MessageSequence                 | 是   | 携带客户端调用参数的MessageSequence对象。 |
-  | reply  | MessageSequence                 | 是   | 写入结果的MessageSequence对象。           |
-  | option | MessageSequence(#messageoption) | 是   | 指示操作是同步还是异步。                  |
+  | data   | [MessageSequence](#messagesequence9) | 是   | 携带客户端调用参数的MessageSequence对象。 |
+  | reply  | [MessageSequence](#messagesequence9) | 是   | 写入结果的MessageSequence对象。           |
+  | option | [MessageOption](#messageoption) | 是   | 指示操作是同步还是异步。                  |
 
 **返回值：**
 
   | 类型              | 说明                                                                                           |
   | ----------------- | ---------------------------------------------------------------------------------------------- |
   | boolean           | 若在onRemoteRequestEx中同步地处理请求，则返回一个布尔值：操作成功，则返回true；否则返回false。 |
-  | Promise <boolean> | 若在onRemoteRequestEx中异步地处理请求，则返回一个Promise对象。                                 |
+  | Promise\<boolean> | 若在onRemoteRequestEx中异步地处理请求，则返回一个Promise对象。                                 |
 
 **重载onRemoteRequestEx方法同步处理请求示例：**
 
@@ -8124,9 +8169,11 @@ getLocalInterface(descriptor: string): IRemoteBroker
 
 ### queryLocalInterface<sup>(deprecated)</sup>
 
+>从API version 9 开始不再维护，建议使用[getLocalInterface](#getlocalinterface9)类替代。
+
 queryLocalInterface(descriptor: string): IRemoteBroker
 
-查询并获取当前接口描述符对应的远端对象是否已经存在。建议使用getLocalInterface替代。
+查询并获取当前接口描述符对应的远端对象是否已经存在。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
@@ -8185,7 +8232,7 @@ getInterfaceDescriptor(): string
 
 **错误码：**
 
-以下错误码的详细介绍请参见ohos.rpc错误码
+以下错误码的详细介绍请参见[ohos.rpc错误码](../errorcodes/errorcode-rpc.md)
 
   | 错误码ID | 错误信息 |
   | ------- | -------- |
@@ -8222,9 +8269,11 @@ getInterfaceDescriptor(): string
 
 ### getInterfaceDescriptor<sup>(deprecated)</sup>
 
+>从API version 9 开始不再维护，建议使用[getDescriptor](#getdescriptor9)类替代。
+
 getInterfaceDescriptor(): string
 
-查询接口描述符。建议使用getDescriptor替代。
+查询接口描述符。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
@@ -8310,9 +8359,11 @@ modifyLocalInterface(localInterface: IRemoteBroker, descriptor: string): void
 
 ### attachLocalInterface<sup>(deprecated)</sup>
 
+>从API version 9 开始不再维护，建议使用[modifyLocalInterface](#modifylocalinterface9)类替代。
+
 attachLocalInterface(localInterface: IRemoteBroker, descriptor: string): void
 
-此接口用于把接口描述符和IRemoteBroker对象绑定。建议使用modifyLocalInterface替代。
+此接口用于把接口描述符和IRemoteBroker对象绑定。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
@@ -8407,9 +8458,11 @@ static create(name: string, size: number): Ashmem
 
 ### createAshmem<sup>8+(deprecated)</sup>
 
+>从API version 9 开始不再维护，建议使用[create](#create9)类替代。
+
 static createAshmem(name: string, size: number): Ashmem
 
-根据指定的名称和大小创建Ashmem对象。建议使用create替代。
+根据指定的名称和大小创建Ashmem对象。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
@@ -8479,9 +8532,11 @@ static create(ashmem: Ashmem): Ashmem
 
 ### createAshmemFromExisting<sup>8+(deprecated)</sup>
 
+>从API version 9 开始不再维护，建议使用[create](#create9)类替代。
+
 static createAshmemFromExisting(ashmem: Ashmem): Ashmem
 
-通过复制现有Ashmem对象的文件描述符(fd)来创建Ashmem对象。两个Ashmem对象指向同一个共享内存区域。建议使用create替代。
+通过复制现有Ashmem对象的文件描述符(fd)来创建Ashmem对象。两个Ashmem对象指向同一个共享内存区域。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
@@ -8578,7 +8633,7 @@ mapTypedAshmem(mapType: number): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见ohos.rpc错误码
+以下错误码的详细介绍请参见[ohos.rpc错误码](../errorcodes/errorcode-rpc.md)
 
   | 错误码ID | 错误信息 |
   | ------- | ------ |
@@ -8599,9 +8654,11 @@ mapTypedAshmem(mapType: number): void
 
 ### mapAshmem<sup>8+(deprecated)</sup>
 
+>从API version 9 开始不再维护，建议使用[mapTypedAshmem](#maptypedashmem9)类替代。
+
 mapAshmem(mapType: number): boolean
 
-在此进程的虚拟地址空间上创建共享文件映射，映射区域大小由此Ashmem对象指定。建议使用mapTypedAshmem替代。
+在此进程的虚拟地址空间上创建共享文件映射，映射区域大小由此Ashmem对象指定。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
@@ -8636,7 +8693,7 @@ mapReadAndWriteAshmem(): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见ohos.rpc错误码
+以下错误码的详细介绍请参见[ohos.rpc错误码](../errorcodes/errorcode-rpc.md)
 
   | 错误码ID | 错误信息 |
   | ------- | -------- |
@@ -8657,9 +8714,11 @@ mapReadAndWriteAshmem(): void
 
 ### mapReadAndWriteAshmem<sup>8+(deprecated)</sup>
 
+>从API version 9 开始不再维护，建议使用[mapReadWriteAshmem](#mapreadwriteashmem9)类替代。
+
 mapReadAndWriteAshmem(): boolean
 
-在此进程虚拟地址空间上创建可读写的共享文件映射。建议使用mapReadWriteAshmem替代。
+在此进程虚拟地址空间上创建可读写的共享文件映射。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
@@ -8688,7 +8747,7 @@ mapReadonlyAshmem(): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见ohos.rpc错误码
+以下错误码的详细介绍请参见[ohos.rpc错误码](../errorcodes/errorcode-rpc.md)
 
   | 错误码ID | 错误信息 |
   | ------- | -------- |
@@ -8709,9 +8768,11 @@ mapReadonlyAshmem(): void
 
 ### mapReadOnlyAshmem<sup>8+(deprecated)</sup>
 
+>从API version 9 开始不再维护，建议使用[mapReadonlyAshmem](#mapreadonlyashmem9)类替代。
+
 mapReadOnlyAshmem(): boolean
 
-在此进程虚拟地址空间上创建只读的共享文件映射。建议使用mapReadonlyAshmem替代。
+在此进程虚拟地址空间上创建只读的共享文件映射。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
@@ -8746,7 +8807,7 @@ setProtectionType(protectionType: number): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见ohos.rpc错误码
+以下错误码的详细介绍请参见[ohos.rpc错误码](../errorcodes/errorcode-rpc.md)
 
   | 错误码ID | 错误信息 |
   | -------- | ------- |
@@ -8767,9 +8828,11 @@ setProtectionType(protectionType: number): void
 
 ### setProtection<sup>8+(deprecated)</sup>
 
+>从API version 9 开始不再维护，建议使用[setProtectionType](#setprotectiontype9)类替代。
+
 setProtection(protectionType: number): boolean
 
-设置映射内存区域的保护等级。建议使用setProtectionType替代。
+设置映射内存区域的保护等级。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
@@ -8812,7 +8875,7 @@ writeAshmem(buf: number[], size: number, offset: number): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见ohos.rpc错误码
+以下错误码的详细介绍请参见[ohos.rpc错误码](../errorcodes/errorcode-rpc.md)
 
   | 错误码ID | 错误信息 |
   | ------- | -------- |
@@ -8835,9 +8898,11 @@ writeAshmem(buf: number[], size: number, offset: number): void
 
 ### writeToAshmem<sup>8+(deprecated)</sup>
 
+>从API version 9 开始不再维护，建议使用[writeAshmem](#writeashmem9)类替代。
+
 writeToAshmem(buf: number[], size: number, offset: number): boolean
 
-将数据写入此Ashmem对象关联的共享文件。建议使用writeAshmem替代。
+将数据写入此Ashmem对象关联的共享文件。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
@@ -8890,7 +8955,7 @@ readAshmem(size: number, offset: number): number[]
 
 **错误码：**
 
-以下错误码的详细介绍请参见ohos.rpc错误码
+以下错误码的详细介绍请参见[ohos.rpc错误码](../errorcodes/errorcode-rpc.md)
 
   | 错误码ID  | 错误信息 |
   | -------- | -------- |
@@ -8915,9 +8980,11 @@ readAshmem(size: number, offset: number): number[]
 
 ### readFromAshmem<sup>8+(deprecated)</sup>
 
+>从API version 9 开始不再维护，建议使用[readAshmem](#readashmem9)类替代。
+
 readFromAshmem(size: number, offset: number): number[]
 
-从此Ashmem对象关联的共享文件中读取数据。建议使用readAshmem替代。
+从此Ashmem对象关联的共享文件中读取数据。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 

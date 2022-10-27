@@ -85,7 +85,7 @@ Audio模块接口定义。
 | [AudioSampleFormat](#audiosampleformat){&nbsp;AUDIO_SAMPLE_FORMAT_S8,&nbsp;AUDIO_SAMPLE_FORMAT_S8P,&nbsp;AUDIO_SAMPLE_FORMAT_U8,&nbsp;AUDIO_SAMPLE_FORMAT_U8P,&nbsp;&nbsp;&nbsp;AUDIO_SAMPLE_FORMAT_S16,&nbsp;AUDIO_SAMPLE_FORMAT_S16P,&nbsp;AUDIO_SAMPLE_FORMAT_U16,&nbsp;AUDIO_SAMPLE_FORMAT_U16P,&nbsp;&nbsp;&nbsp;AUDIO_SAMPLE_FORMAT_S24,&nbsp;AUDIO_SAMPLE_FORMAT_S24P,&nbsp;AUDIO_SAMPLE_FORMAT_U24,&nbsp;AUDIO_SAMPLE_FORMAT_U24P,&nbsp;&nbsp;&nbsp;AUDIO_SAMPLE_FORMAT_S32,&nbsp;AUDIO_SAMPLE_FORMAT_S32P,&nbsp;AUDIO_SAMPLE_FORMAT_U32,&nbsp;AUDIO_SAMPLE_FORMAT_U32P,&nbsp;&nbsp;&nbsp;AUDIO_SAMPLE_FORMAT_S64,&nbsp;AUDIO_SAMPLE_FORMAT_S64P,&nbsp;AUDIO_SAMPLE_FORMAT_U64,&nbsp;AUDIO_SAMPLE_FORMAT_U64P,&nbsp;&nbsp;&nbsp;AUDIO_SAMPLE_FORMAT_F32,&nbsp;AUDIO_SAMPLE_FORMAT_F32P,&nbsp;AUDIO_SAMPLE_FORMAT_F64,&nbsp;AUDIO_SAMPLE_FORMAT_F64P&nbsp;} | 原始音频样本格式 | 
 | [AudioChannelMode](#audiochannelmode){&nbsp;&nbsp;AUDIO_CHANNEL_NORMAL&nbsp;=&nbsp;0,&nbsp;AUDIO_CHANNEL_BOTH_LEFT,&nbsp;AUDIO_CHANNEL_BOTH_RIGHT,&nbsp;AUDIO_CHANNEL_EXCHANGE,&nbsp;&nbsp;&nbsp;AUDIO_CHANNEL_MIX,&nbsp;AUDIO_CHANNEL_LEFT_MUTE,&nbsp;AUDIO_CHANNEL_RIGHT_MUTE,&nbsp;AUDIO_CHANNEL_BOTH_MUTE&nbsp;} | 音频播放的通道模式 | 
 | [AudioDrainNotifyType](#audiodrainnotifytype){&nbsp;AUDIO_DRAIN_NORMAL_MODE,&nbsp;AUDIO_DRAIN_EARLY_MODE&nbsp;} | DrainBuffer函数结束类型 | 
-| [AudioCallbackType](#audiocallbacktype){&nbsp;AUDIO_NONBLOCK_WRITE_COMPELETED,&nbsp;AUDIO_DRAIN_COMPELETED,&nbsp;AUDIO_FLUSH_COMPLETED,&nbsp;AUDIO_RENDER_FULL,&nbsp;&nbsp;&nbsp;AUDIO_ERROR_OCCUR&nbsp;} | 回调函数通知事件类型 | 
+| [AudioCallbackType](#audiocallbacktype){&nbsp;AUDIO_NONBLOCK_WRITE_COMPLETED,&nbsp;AUDIO_DRAIN_COMPLETED,&nbsp;AUDIO_FLUSH_COMPLETED,&nbsp;AUDIO_RENDER_FULL,&nbsp;&nbsp;&nbsp;AUDIO_ERROR_OCCUR&nbsp;} | 回调函数通知事件类型 | 
 | [AudioPortRole](#audioportrole){&nbsp;AUDIO_PORT_UNASSIGNED_ROLE&nbsp;=&nbsp;0,&nbsp;AUDIO_PORT_SOURCE_ROLE&nbsp;=&nbsp;1,&nbsp;AUDIO_PORT_SINK_ROLE&nbsp;=&nbsp;2&nbsp;} | 音频端口角色 | 
 | [AudioPortType](#audioporttype){&nbsp;AUDIO_PORT_UNASSIGNED_TYPE&nbsp;=&nbsp;0,&nbsp;AUDIO_PORT_DEVICE_TYPE&nbsp;=&nbsp;1,&nbsp;AUDIO_PORT_MIX_TYPE&nbsp;=&nbsp;2,&nbsp;AUDIO_PORT_SESSION_TYPE&nbsp;=&nbsp;3&nbsp;} | 音频端口类型. | 
 | [AudioSessionType](#audiosessiontype){&nbsp;AUDIO_OUTPUT_STAGE_SESSION&nbsp;=&nbsp;0,&nbsp;AUDIO_OUTPUT_MIX_SESSION,&nbsp;AUDIO_ALLOCATE_SESSION,&nbsp;AUDIO_INVALID_SESSION&nbsp;} | 端口会话类型 | 
@@ -215,8 +215,8 @@ enum AudioCallbackType
 
   | 枚举值 | 描述 | 
 | -------- | -------- |
-| AUDIO_NONBLOCK_WRITE_COMPELETED | 非阻塞式写完成 | 
-| AUDIO_DRAIN_COMPELETED | DrainBuffer完成 | 
+| AUDIO_NONBLOCK_WRITE_COMPLETED | 非阻塞式写完成 | 
+| AUDIO_DRAIN_COMPLETED | DrainBuffer完成 | 
 | AUDIO_FLUSH_COMPLETED | Flush完成 | 
 | AUDIO_RENDER_FULL | Render缓冲区已满 | 
 | AUDIO_ERROR_OCCUR | 发生了错误 | 

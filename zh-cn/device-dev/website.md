@@ -166,8 +166,9 @@
            - [互斥锁](kernel/kernel-mini-basic-ipc-mutex.md)
            - [消息队列](kernel/kernel-mini-basic-ipc-queue.md)
            - [信号量](kernel/kernel-mini-basic-ipc-sem.md)
-         - [时间管理](kernel/kernel-basic-mini-time.md)
+         - [时间管理](kernel/kernel-mini-basic-time.md)
          - [软件定时器](kernel/kernel-mini-basic-soft.md)
+         - [双向链表](kernel/kernel-mini-basic-list.md)
        - 扩展组件
          - [C++支持](kernel/kernel-mini-extend-support.md)
          - [CPU占用率](kernel/kernel-mini-extend-cpup.md)
@@ -180,7 +181,6 @@
          - [LMS调测](kernel/kernel-mini-memory-lms.md)
        - 附录
          - [内核编码规范](kernel/kernel-mini-appx-code.md)
-         - [双向链表](kernel/kernel-mini-appx-data-list.md)
          - [标准库支持](kernel/kernel-mini-appx-lib.md)
      - 小型系统内核（LiteOS-A）
        - [小型系统内核概述](kernel/kernel-small-overview.md)
@@ -319,6 +319,7 @@
      - HDF驱动框架
        - [HDF开发概述](driver/driver-hdf-overview.md)
        - [驱动开发](driver/driver-hdf-development.md)
+       - [驱动加载](driver/driver-hdf-load.md)
        - [驱动服务管理](driver/driver-hdf-servicemanage.md)
        - [驱动消息机制管理](driver/driver-hdf-message-management.md)
        - [配置管理](driver/driver-hdf-manage.md)

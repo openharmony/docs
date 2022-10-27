@@ -235,13 +235,13 @@ export default class MainAbility extends Ability {
 
 For details, see [FormExtensionContext](../reference/apis/js-apis-formextensioncontext.md).
 
-### Obtaining the Context on an eTS Page
+### Obtaining the Context on an ArkTS Page
 
-In the stage model, in the `onWindowStageCreate` lifecycle of an ability, you can call `SetUIContent` of `WindowStage` to load an eTS page. In some scenarios, you need to obtain the context on the page to call related APIs.
+In the stage model, in the `onWindowStageCreate` lifecycle of an ability, you can call `SetUIContent` of `WindowStage` to load an ArkTS page. In some scenarios, you need to obtain the context on the page to call related APIs.
 
 **How to Obtain**
 
-Use the API described in the table below to obtain the context associated with an eTS page.
+Use the API described in the table below to obtain the context associated with an ArkTS page.
 
 | API                                  | Description                          |
 | :------------------------------------ | :--------------------------- |

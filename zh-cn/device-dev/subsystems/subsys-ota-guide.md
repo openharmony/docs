@@ -27,13 +27,15 @@ OTA 的升级原理是利用升级包制作工具，将编译出的版本打包�
 
 ### 约束与限制
 
-- 支持基于Hi3861/Hi3518EV300/Hi3516DV300芯片的开源套件。
+- 支持基于Hi3861/Hi3516DV300/RK3568芯片的开源套件。
 
-- 对Hi3518EV300/Hi3516DV300开源套件，设备需要支持SD卡（VFAT格式）。
+- 对Hi3516DV300/RK3568开源套件，设备需要支持SD卡（VFAT格式）。
 
 - 生成升级包需要在linux系统下面执行。
 
 - 目前轻量和小型系统仅支持全量包升级，暂不支持差分包、变分区包升级。
+
+- AB 升级只适用于标准系统支持 AB 分区启动的设备。
 
 
 ## 环境准备
@@ -41,14 +43,9 @@ OTA 的升级原理是利用升级包制作工具，将编译出的版本打包�
 - 在Windows上，下载安装OpenSSL工具，并配置环境变量。
 - 准备升级包制作工具
 - 编译出版本镜像文件
-- 制作升级包需要 Linux 系统环境
-- AB 升级只适用于标准系统支持 AB 分区启动的设备
 
 
-## OTA 升级指导
-
-
-### 开发流程
+## 开发流程
 
 <a href="#生成公私钥对">1. 使用OpenSSL工具生成公私钥对</a>
 
@@ -71,31 +68,33 @@ OTA 的升级原理是利用升级包制作工具，将编译出的版本打包�
 &ensp;&ensp;<a href="#ab-升级场景">5.2 AB 升级场景</a>
 
 
-### 开发步骤
+## 开发步骤
 
 
-#### 生成公私钥对
+### 生成公私钥对
 1. 使用OpenSSL工具生成公私钥对。
 
-3. 请妥善保管私钥文件，在升级包制作过程中将私钥文件作为制作命令的参数带入，用于升级包签名，公钥用于升级时对升级包进行签名校验，公钥的放置如下： 轻量和小型系统将生成的公钥内容预置在代码中，需要厂商实现 HotaHalGetPubKey 这个接口来获取公钥。标准系统需要将生成的公钥放在 ./device/hisilicon/hi3516dv300/build/updater_config/signing_cert.crt 这个文件中。
+3. 请妥善保管私钥文件，在升级包制作过程中将私钥文件作为制作命令的参数带入，用于升级包签名，公钥用于升级时对升级包进行签名校验，公钥的放置如下： 轻量和小型系统将生成的公钥内容预置在代码中，需要厂商实现 HotaHalGetPubKey 这个接口来获取公钥。标准系统需要将生成的公钥放在device或vendor目录下的 /hisilicon/hi3516dv300/build/updater_config/signing_cert.crt 这个文件中。
 
-5. 对使用 Hi3518EV300/Hi3516DV300 套件的轻量和小型系统，在上一步的基础上，还需用public_arr.txt里面的全部内容替换uboot模块device\hisilicon\third_party\uboot\u-boot-2020.01\product\hiupdate\verify\update_public_key.c 中的g_pub_key中的全部内容。
+5. 对使用 Hi3516DV300 套件的小型系统，在上一步的基础上，还需用public_arr.txt里面的全部内容替换uboot模块third_party\u-boot\u-boot-2020.01\product\hiupdate\verify\update_public_key.c 中的g_pub_key中的全部内容。
    示例，uboot模块的公钥：
 
    ```c
-   static unsigned char g_pub_key[PUBKEY_LEN] = {
+   static unsigned char g_pub_key[] = {
        0x30, 0x82, 0x01, 0x0A, 0x02, 0x82, 0x01, 0x01,
        0x00, 0xBF, 0xAA, 0xA5, 0xB3, 0xC2, 0x78, 0x5E,
    }
    ```
 
 
-#### 制作升级包
+### 制作升级包
 
 
-##### 轻量与小型系统升级包制作
+#### 轻量与小型系统升级包制作
 
 1. 创建目标版本（target_package）文件夹，文件格式如下：
+
+   轻量级系统和AB升级的小型系统不需要 OTA.tag 和 config。
      
    ```text
     target_package
@@ -136,9 +135,9 @@ OTA 的升级原理是利用升级包制作工具，将编译出的版本打包�
    | 头信息（head节点） | info节点 | / | 必填 | 该节点内容配置为：head&nbsp;info | 
    | 头信息（head节点） | info节点 | fileVersion | 必填 | 保留字段，内容不影响升级包生成 | 
    | 头信息（head节点） | info节点 | prdID | 必填 | 保留字段，内容不影响升级包生成 | 
-   | 头信息（head节点） | info节点 | softVersion | 必填 | 软件版本号，即升级包版本号，版本必须在“VERSION.mbn”范围内，否则无法生产升级 | 
+   | 头信息（head节点） | info节点 | softVersion | 必填 | 软件版本号，即升级包版本号，版本必须比基础版本大，且OpenHarmony后没有其他字母，否则无法生产升级 | 
    | 头信息（head节点） | info节点 | _date_ | _必填_ | 升级包制作日期，保留字段，不影响升级包生成 | 
-   | 头信息（head节点） | info节点 | _time_ | _必填_ | 升级包制作时间，保留字段，不影响升级包生成 | 
+   | 头信息（head节点） | info节点 | _time_ | _必填_ | 升级包制作时间，保留字段，不影响升级包生成 |  
    | 组件信息（group节点） | component节点 | / | 必填 | 该节点内容配置为：要打入升级包的组件/镜像文件的路径，默认为版本包根路径 | 
    | 组件信息（group节点） | component节点 | compAddr | 必填 | 该组件所对应的分区名称，例如：system、vendor等。 | 
    | 组件信息（group节点） | component节点 | compId | 必填 | 组件Id，不同组件Id不重复 | 
@@ -178,8 +177,7 @@ OTA 的升级原理是利用升级包制作工具，将编译出的版本打包�
    - -nl2：打开非“标准系统”模式开关
 
 
-##### 标准系统升级包制作
-
+#### 标准系统升级包制作
 1. 创建目标版本（target_package）文件夹，文件格式如下：
 
      
@@ -195,7 +193,11 @@ OTA 的升级原理是利用升级包制作工具，将编译出的版本打包�
            └── updater_specified_config.xml
    ```
 
-2. 将待升级的组件，包括镜像文件（例如：system.img）等放入目标版本文件夹的根目录下，代替上文结构中的{component_N}部分。
+2. 将待升级的组件（包括镜像文件和updater_binary文件）放入目标版本文件夹的根目录下，代替上文结构中的{component_N}部分。
+
+   以RK3568为例，镜像文件的构建位置为：out/rk3568/packages/phone/images/
+
+   二进制升级文件updater_binary位置为：out/rk3568/packages/phone/system/bin/
 
 3. 填写“updater_config”文件夹中的组件配置文件。
 
@@ -206,8 +208,10 @@ OTA 的升级原理是利用升级包制作工具，将编译出的版本打包�
      
    ```text
    HI3516
-   HI3518
+   RK3568
    ```
+
+   厂家可在路径base/updater/updater/utils/utils.cpp文件中的GetLocalBoardId()接口进行Local BoardId的配置。请确保utils.cpp文件中的Local BoardId包含在BOARD.list中，否则无法升级。
 
 5. 配置“updater_config”文件夹中当前升级包所支持的版本范围：**VERSION.mbn**。
 
@@ -221,8 +225,9 @@ OTA 的升级原理是利用升级包制作工具，将编译出的版本打包�
    ```text
    Hi3516DV300-eng 10 QP1A.190711.001
    Hi3516DV300-eng 10 QP1A.190711.020
-   Hi3518DV300-eng 10 QP1A.190711.021
    ```
+
+   请确保基础版本号包含在VERSION.mbn中
 
 6. 针对增量（差分）升级包，还需要准备一个源版本（source_package），文件内容格式与目标版本（target_package）相同，需要打包成zip格式，即为：source_package.zip。
 
@@ -264,7 +269,7 @@ OTA 的升级原理是利用升级包制作工具，将编译出的版本打包�
 
    - ./target_package/：指定target_package路径。
    - ./output_package/：指定升级包输出路径。
-   - -pk ./rsa_private_key3072.pem：指定私钥文件路径。
+   - -pk ./rsa_private_key2048.pem：指定私钥文件路径。
 
    **增量（差分）升级包**
 
@@ -278,7 +283,7 @@ OTA 的升级原理是利用升级包制作工具，将编译出的版本打包�
    - ./target_package/：指定target_package路径。
    - ./output_package/：指定升级包输出路径。
    - -s ./source_package.zip：指定“source_package.zip”路径，当存在镜像需要进行差分处理时，必须使用-s参数指定source版本包。
-   - -pk ./rsa_private_key3072.pem：指定私钥文件路径。
+   - -pk ./rsa_private_key2048.pem：指定私钥文件路径。
 
    **变分区升级包**
 
@@ -291,23 +296,23 @@ OTA 的升级原理是利用升级包制作工具，将编译出的版本打包�
 
    - ./target_package/：指定target_package路径。
    - ./output_package/：指定升级包路径。
-   - -pk ./rsa_private_key3072.pem：指定私钥文件路径。
+   - -pk ./rsa_private_key2048.pem：指定私钥文件路径。
    - -pf ./partition_file.xml：指定分区表文件路径。
 
 
-#### 上传升级包
+### 上传升级包
 
 将升级包上传到厂商的OTA服务器。
 
 
-#### 下载升级包
+### 下载升级包
 
 1. 厂商应用从OTA服务器下载升级包。
 
-2. 对Hi3518EV300/Hi3516DV300开源套件，需要插入SD卡(容量&gt;100MBytes)。
+2. 对Hi3516DV300开源套件，需要插入SD卡(容量&gt;100MBytes)。
 
 
-#### 厂商应用集成OTA能力
+### 厂商应用集成OTA能力
 
 1. 轻量与小型系统
 
@@ -319,12 +324,12 @@ OTA 的升级原理是利用升级包制作工具，将编译出的版本打包�
 2. 标准系统请参考[JS参考规范](../../application-dev/reference/apis/js-apis-update.md)指导中的升级接口参考规范。
 
 
-##### API 应用默认场景
+#### API 应用默认场景
 
 升级包是按照上文“生成公私钥对”和“生成升级包”章节制作的。
 
 
-###### 开发指导
+##### 开发指导
 
 1. 应用侧通过下载，获取当前设备升级包后，调用HotaInit接口初始化OTA模块。
 
@@ -333,7 +338,7 @@ OTA 的升级原理是利用升级包制作工具，将编译出的版本打包�
 3. 写入完成后，调用HotaRestart接口重启系统，升级过程中，使用HotaCancel接口可以取消升级。
 
 
-###### 示例代码
+##### 示例代码
 
   使用OpenHarmony的“升级包格式和校验方法”进行升级。
   
@@ -388,12 +393,12 @@ int main(int argc, char **argv)
 ```
 
 
-##### API 应用定制场景
+#### API 应用定制场景
 
 升级包不是按照上文“生成公私钥对”和“生成升级包”章节制作的，是通过其它方式制作的。
 
 
-###### 开发指导
+##### 开发指导
 
 1. 应用侧通过下载，获取当前设备升级包后，调用HotaInit接口初始化。
 
@@ -408,7 +413,7 @@ int main(int argc, char **argv)
 6. 调用HotaRestart接口，进行重启，升级过程中，使用HotaCancel接口可以取消升级。
 
 
-###### 示例代码
+##### 示例代码
 
   使用非OpenHarmony的“升级包格式和校验方法“进行升级。
   
@@ -480,11 +485,11 @@ int main(int argc, char **argv)
 ```
 
 
-###### 系统升级
+##### 系统升级
 
 厂商应用调用OTA模块的API，OTA模块执行升级包的签名验证、版本防回滚、烧写落盘功能，升级完成后自动重启系统。
 
-对于使用Hi3518EV300/Hi3516DV300开源套件的轻量和小型系统，在需要实现防回滚功能的版本中，需要增加LOCAL_VERSION的值，如"ohos default 1.0"-&gt;"ohos default 1.1"，LOCAL_VERSION在device\hisilicon\third_party\uboot\u-boot-2020.01\product\hiupdate\ota_update\ota_local_info.c中。
+对于使用Hi3516DV300开源套件的轻量和小型系统，在需要实现防回滚功能的版本中，需要增加LOCAL_VERSION的值，如"ohos default 1.0"-&gt;"ohos default 1.1"，LOCAL_VERSION在device\hisilicon\third_party\uboot\u-boot-2020.01\product\hiupdate\ota_update\ota_local_info.c中。
 
   示例，增加版本号。
   
@@ -492,16 +497,15 @@ int main(int argc, char **argv)
 const char *get_local_version(void)
 {
 #if defined(CONFIG_TARGET_HI3516EV200) || \
-    defined(CONFIG_TARGET_HI3516DV300) || \
-    defined(CONFIG_TARGET_HI3518EV300)
+    defined(CONFIG_TARGET_HI3516DV300)
 #define LOCAL_VERSION "ohos default 1.0" /* increase: default release version */
 ```
 
 
-##### AB 升级场景
+#### AB 升级场景
 
 
-###### 开发流程
+##### 开发流程
 
 1. 应用侧下载获取当前设备升级包
 2. update_service 通过 SAMGR 将系统安装部件拉起
@@ -509,7 +513,7 @@ const char *get_local_version(void)
 4. 下一次重启时激活新版本
 
 
-###### 开发步骤
+##### 开发步骤
 
 - JS API 通过 update_service 模块处理AB升级相关流程
 
@@ -528,7 +532,7 @@ const char *get_local_version(void)
    
    1.拉起系统安装服务，并建立IPC连接：
    ```cpp
-   int SysInstallerInit(void * callback)
+   int SysInstallerInit(void* callback)
    ```
    
    2.安装指定路径的AB升级包：
@@ -538,7 +542,7 @@ const char *get_local_version(void)
    
    3.设置进度回调：
    ```cpp
-   int SetUpdateProgressCallback(void * callback)
+   int SetUpdateProgressCallback(void* callback)
    ```
    
    4.获取升级包安装状态（0 未开始,1 安装中,2 安装结束）:
@@ -570,7 +574,7 @@ const char *get_local_version(void)
    ```
 
 
-###### 常见问题
+##### 常见问题
 
 1. 升级包下载，安装过程出现异常
 <br>系统保持当前版本继续运行，在下一个搜包周期重新完成版本升级过程
@@ -579,6 +583,6 @@ const char *get_local_version(void)
 <br>需要进行异常回滚，并将无法启动的分区设置为 unbootable，下次则不从该分区启动
 
 
-###### 调测验证
+##### 调测验证
 
 设备能在正常使用的情况下，在后台从服务器下载升级包，完成静默升级，并按照厂商设置的策略重启激活版本。

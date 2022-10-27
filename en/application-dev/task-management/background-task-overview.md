@@ -9,9 +9,11 @@ Background tasks described in this document refer to the services that need to b
 
 - **No background task**: An application or service module does not need further processing when switched to the background.
 
-- **Transient task**: If an application or service module has an urgent, short task that must continue in the background until it is completed, such as data compression, the application or service module can request a transient task for delayed suspension.
+- **Transient task**: If an application or service module has an urgent, short task that must continue in the background until it is completed, such as data compression, the application or service module can request a transient task to delay the suspension.
 
 - **Continuous task**: If an application or service module has a user-initiated, perceivable task that needs to run in an extended period of time in the background, it can request a continuous task so that it will not be suspended. Examples of continuous tasks include music playback, navigation, device connection, and VoIP.
+
+- **Efficiency resources**: If an application needs to ensure that it will not be suspended within a period of time or can normally use certain system resources when it is suspended, it can request efficiency resources, including CPU, WORK_SCHEDULER, software, and hardware resources. Different types of efficiency resources come with different privileges. For example, the CPU resources enable an application or process to keep running without being suspended, and WORK_SCHEDULER resources allow for more task execution time before the application or process is suspended.
 
 
 ## Transient Tasks
@@ -61,3 +63,25 @@ OpenHarmony provides 9 background modes for services that require continuous tas
 - Ensure that the requested continuous task background mode matches the application type. If the background mode does not match the application type, the system will suspend the task once it detects the issue.
 - If a requested continuous task is not actually executed, the system will suspend the task once it detects the issue.
 - Each ability can request only one continuous task at a time.
+
+## Efficiency Resources
+Efficiency resources are classified into CPU, WORK_SCHEDULER, software, and hardware resources.
+An application or process is assigned the privileges associated with the obtained efficiency resources. For example, with the CPU resources, the application or process will not be suspended. With the WORK_SCHEDULER resources, the application or process has more time to execute a task and is not restricted by the execution frequency. With the software and hardware resources, related resources are not proxied when the application or process is suspended.
+
+
+**Table 2** Efficiency resource types
+
+| Name                    | Value | Description                   |
+| ----------------------- | ---- | --------------------- |
+| CPU                     | 1    | CPU resources, which prevent the application from being suspended.            |
+| COMMON_EVENT            | 2    | A type of software resources, which prevent common events from being proxied when the application is suspended. |
+| TIMER                   | 4    | A type of software resources, which prevent timers from being proxied when the application is suspended.   |
+| WORK_SCHEDULER          | 8    | WORK_SCHEDULER resources, which ensure that the application has more time to execute the task.     |
+| BLUETOOTH               | 16   | A type of hardware resources, which prevent Bluetooth resources from being proxied when the application is suspended. |
+| GPS                     | 32   | A type of hardware resources, which prevent GPS resources from being proxied when the application is suspended. |
+| AUDIO                   | 64   | A type of hardware resources, which prevent audio resources from being proxied when the application is suspended.|
+
+### Restrictions on Using Efficiency Resources
+- Applications or processes are responsible for requesting and releasing efficiency resources. A process can release the resources requested by itself, whereas an application can release the resources requested by both itself and its processes. For example, an application requests CPU resources, and its process requests CPU and WORK_SCHEDULER resources. If the application initiates CPU resource release, the CPU resources requested by the process are also released. However, the WORK_SCHEDULER resources are not released. If the process initiates CPU resource release, the CPU resources requested by the application are retained until being released by the application.
+- If persistent resources and non-persistent resources of the same type are requested, the persistent resources overwrite the non-persistent resources and they will not be released upon a timeout. For example, if an application first requests 10-second CPU resources and then requests persistent CPU resources at the 5th second, the CPU resources become persistent and will not be released at the tenth second. If the application releases the CPU resources at the 8th second, both types of CPU resources are released.
+- The WORK_SCHEDULER resources can be requested and released by applications, but not by processes.

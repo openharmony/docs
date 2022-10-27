@@ -13,7 +13,7 @@
    * 水平方向为left， middle， right，对应容器的HorizontalAlign.Start， HorizontalAlign.Center， HorizontalAlign.End。
    * 垂直方向为top， center， bottom，对应容器的VerticalAlign.Top， VerticalAlign.Center， VerticalAlign.Bottom。
  * 子组件可以将容器或者其他子组件设为锚点：  
-   * 参与相对布局的容器内组件必须设置id，容器id固定为__container__。
+   * 参与相对布局的容器内组件必须设置id，不设置id的组件不显示，容器id固定为__container__。
    * 此子组件某一方向上的三个位置可以将容器或其他子组件的同方向三个位置为锚点，同方向上两个以上位置设置锚点以后会跳过第三个。
    * 前端页面设置的子组件尺寸大小不会受到相对布局规则的影响。
    * 对齐后需要额外偏移可设置offset。

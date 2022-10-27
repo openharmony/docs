@@ -1,34 +1,32 @@
 # Pixel Units
 
-
 The framework provides four pixel units, with vp as the reference data unit.
 
 
-| Name | Description | 
-| -------- | -------- |
-| px | Physical pixel unit of the screen. | 
-| vp | Pixels specific to the screen density, which are converted into physical pixels of the screen based on the screen pixel density. | 
-| fp | Font pixel, which is similar to vp and varies according to the system font size. | 
-| lpx | Logical pixel unit of the window. It is the ratio of the actual screen width to the logical width (configured by [designWidth](../ui/ts-framework-js-tag.md)). For example, if designWidth is set to 720, then 1lpx is equal to 2px for a screen with an actual width of 1440 physical pixels. | 
+| Name | Description                                      |
+| ---- | ---------------------------------------- |
+| px   | Physical pixel unit of the screen.                               |
+| vp   | Pixel unit specific to the screen density. Pixels in this unit are converted into physical pixels of the screen based on the screen pixel density. This unit is used for values whose unit is not specified.             |
+| fp   | Font pixel, which is similar to vp and varies according to the system font size.         |
+| lpx  | Logical pixel unit of the window. It is the ratio of the actual screen width to the logical width (configured by **[designWidth](../quick-start/package-structure.md)**). For example, if **designWidth** is set to **720** (default value), then 1lpx is equal to 2px for a screen with an actual width of 1440 physical pixels.|
 
 
 ## Pixel Unit Conversion
 
-Conversion from other pixel units to px is supported.
+Conversion between px and other pixel units is supported.
 
-  | API | Description | 
-| -------- | -------- |
-| vp2px(value : number) : number | Converts a value in units of vp to a value in units of px. | 
-| px2vp(value : number) : number | Converts a value in units of px to a value in units of vp. | 
-| fp2px(value : number) : number | Converts a value in units of fp to a value in units of px. | 
-| px2fp(value : number) : number | Converts a value in units of px to a value in units of fp. | 
-| lpx2px(value : number) : number | Converts a value in units of lpx to a value in units of px. | 
-| px2lpx(value : number) : number | Converts a value in units of px to a value in units of lpx. | 
+| API                                      | Description                    |
+| ---------------------------------------- | ---------------------- |
+| vp2px(value : number) : number | Converts a value in units of vp to a value in units of px. |
+| px2vp(value : number) : number | Converts a value in units of px to a value in units of vp. |
+| fp2px(value : number) : number | Converts a value in units of fp to a value in units of px. |
+| px2fp(value : number) : number | Converts a value in units of px to a value in units of fp. |
+| lpx2px(value : number) : number | Converts a value in units of lpx to a value in units of px.|
+| px2lpx(value : number) : number | Converts a value in units of px to a value in units of lpx.|
 
 
 ## Example
 
-  
 ```ts
 // xxx.ets
 @Entry
@@ -74,3 +72,4 @@ struct Example {
 ```
 
 ![en-us_image_0000001267607893](figures/en-us_image_0000001267607893.gif)
+

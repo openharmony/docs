@@ -84,13 +84,14 @@ getDefaultDisplaySync(): Display
 
 | 错误码ID | 错误信息 |
 | ------- | ----------------------- |
-| 1400001 | This is invalid screen. |
+| 1400001 | Invalid display or screen. |
 
 **示例：**
 
 ```js
+let displayClass = null;
 try {
-    let displayClass = display.getDefaultDisplaySync();
+    displayClass = display.getDefaultDisplaySync();
 } catch (exception) {
     console.error('Failed to obtain the default display object. Code: ' + JSON.stringify(exception));
 };
@@ -116,7 +117,7 @@ getAllDisplays(callback: AsyncCallback&lt;Array&lt;Display&gt;&gt;): void
 
 | 错误码ID | 错误信息 |
 | ------- | ----------------------- |
-| 1400001 | This is invalid screen. |
+| 1400001 | Invalid display or screen. |
 
 **示例：**
 
@@ -152,7 +153,7 @@ getAllDisplays(): Promise&lt;Array&lt;Display&gt;&gt;
 
 | 错误码ID | 错误信息 |
 | ------- | ----------------------- |
-| 1400001 | This is invalid screen. |
+| 1400001 | Invalid display or screen. |
 
 **示例：**
 
@@ -195,7 +196,7 @@ hasPrivateWindow(displayId: number): boolean
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------------------- |
-| 1400003 | This window manager service work abnormally. |
+| 1400003 | This display manager service works abnormally. |
 
 **示例：**
 
@@ -208,8 +209,9 @@ try {
     return;
 };
 
+let ret = undefined;
 try {
-    let ret = display.hasPrivateWindow(displayClass.id);
+    ret = display.hasPrivateWindow(displayClass.id);
 } catch (exception) {
     console.error('Failed to check has privateWindow or not. Code: ' + JSON.stringify(exception));
 };
@@ -243,7 +245,7 @@ on(type: 'add'|'remove'|'change', callback: Callback&lt;number&gt;): void
 ```js
 let callback = (data) => {
     console.info('Listening enabled. Data: ' + JSON.stringify(data));
-}
+};
 try {
     display.on("add", callback);
 } catch (exception) {
@@ -412,7 +414,7 @@ promise.then((data) => {
 | alive | boolean | 是 | 否 | 显示设备是否启用。|
 | state | [DisplayState](#displaystate) | 是 | 否 | 显示设备的状态。|
 | refreshRate | number | 是 | 否 | 显示设备的刷新率。|
-| rotation | number | 是 | 否 | 显示设备的屏幕旋转角度。|
+| rotation | number | 是 | 否 | 显示设备的屏幕旋转角度。<br>值为0时，表示显示设备屏幕旋转为0°；<br>值为1时，表示显示设备屏幕旋转为90°；<br>值为2时，表示显示设备屏幕旋转为180°；<br>值为3时，表示显示设备屏幕旋转为270°。|
 | width | number | 是 | 否 | 显示设备的宽度，单位为像素。|
 | height | number | 是 | 否 | 显示设备的高度，单位为像素。|
 | densityDPI | number | 是 | 否 | 显示设备的屏幕密度，单位为DPI。|
@@ -440,13 +442,14 @@ getCutoutInfo(callback: AsyncCallback&lt;CutoutInfo&gt;): void
 
 | 错误码ID | 错误信息 |
 | ------- | ----------------------- |
-| 1400001 | This is invalid screen. |
+| 1400001 | Invalid display or screen. |
 
 **示例：**
 
 ```js
+let displayClass = null;
 try {
-    let displayClass = display.getDefaultDisplaySync();
+    displayClass = display.getDefaultDisplaySync();
 } catch (exception) {
     console.error('Failed to obtain the default display object. Code: ' + JSON.stringify(exception));
 };
@@ -478,13 +481,14 @@ getCutoutInfo(): Promise&lt;CutoutInfo&gt;
 
 | 错误码ID | 错误信息 |
 | ------- | ----------------------- |
-| 1400001 | This is invalid screen. |
+| 1400001 | Invalid display or screen. |
 
 **示例：**
 
 ```js
+let displayClass = null;
 try {
-    let displayClass = display.getDefaultDisplaySync();
+    displayClass = display.getDefaultDisplaySync();
 } catch (exception) {
     console.error('Failed to obtain the default display object. Code: ' + JSON.stringify(exception));
 };
