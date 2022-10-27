@@ -1014,7 +1014,7 @@ Camera驱动的开发过程主要包含以下步骤：
    ```
 
 3. 编译用例
-   在drivers/peripheral/camera/hal/BUILD.gn文件中的deps中添加"init:ohos_camera_demo",示例代码如下：
+   在drivers/peripheral/camera/hal/BUILD.gn文件中的deps中添加init:ohos_camera_demo,示例代码如下：
    ```
    deps = [
        "buffer_manager:camera_buffer_manager",
