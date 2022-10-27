@@ -1,17 +1,15 @@
 # 属性动画
 
-组件的某些通用属性变化时，可以通过属性动画实现渐变效果，提升用户体验。支持的属性包括width、height、backgroundColor、opacity、scale、rotate、translate等。
+组件的某些通用属性变化时，可以通过属性动画实现渐变过渡效果，提升用户体验。支持的属性包括width、height、backgroundColor、opacity、scale、rotate、translate等。
 
 > **说明：**
 >
 > 从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
+
 animation(value: {duration?: number, tempo?: number, curve?: string | Curve | ICurve, delay?:number, iterations: number, playMode?: PlayMode, onFinish?: () => void})
 
-为组件添加属性动画，实现组件属性状态变化时的过渡动画效果。
-
 **参数：**
-
 
 | 名称         | 参数类型                                       | 必填    | 描述                                                         |
 | ---------- | ------------------------------------------| ---- | ------------------------------------------------------------ |
@@ -31,34 +29,73 @@ animation(value: {duration?: number, tempo?: number, curve?: string | Curve | IC
 @Entry
 @Component
 struct AttrAnimationExample {
-  @State widthSize: number = 200;
-  @State heightSize: number = 100;
-  @State flag: boolean = true;
+  @State widthSize: number = 250
+  @State heightSize: number = 100
+  @State changeColor: number = 0xFF0000FF
+  @State rotateAngle: number = 0
+  @State flagA: boolean = true
+  @State flagB: boolean = true
+  @State flagC: boolean = true
 
   build() {
     Column() {
-      Button('click me')
-        .onClick((event: ClickEvent) => {
-          if (this.flag) {
+      Button('change width and height')
+        .onClick(() => {
+          if (this.flagA) {
             this.widthSize = 100
             this.heightSize = 50
           } else {
-            this.widthSize = 200
+            this.widthSize = 250
             this.heightSize = 100
           }
-          this.flag = !this.flag
+          this.flagA = !this.flagA
         })
-        .width(this.widthSize).height(this.heightSize).backgroundColor(0x317aff)
+        .margin(30)
+        .width(this.widthSize)
+        .height(this.heightSize)
         .animation({
-          duration: 2000, // 动画时长
-          curve: Curve.EaseOut, // 动画曲线
-          delay: 500, // 动画延迟
-          iterations: 1, // 播放次数
-          playMode: PlayMode.Normal // 动画模式
-        }) // 对Button组件的宽高属性进行动画配置
-    }.width('100%').margin({ top: 5 })
+          duration: 2000,
+          curve: Curve.EaseOut,
+          delay: 500,
+          iterations: 1,
+          playMode: PlayMode.Normal
+        })
+      Button('change backgroundColor')
+        .onClick(() => {
+          if (this.flagB) {
+            this.changeColor = 0xFFFF4500
+          } else {
+            this.changeColor = 0xFF0000FF
+          }
+          this.flagB = !this.flagB
+        })
+        .margin(30)
+        .backgroundColor(this.changeColor)
+        .animation({
+          duration: 800,
+          curve: Curve.ExtremeDeceleration,
+          iterations: 3,
+          playMode: PlayMode.Normal
+        })
+      Button('change rotate angle')
+        .onClick(() => {
+          if (this.flagC) {
+            this.rotateAngle = 90
+          } else {
+            this.rotateAngle = 0
+          }
+          this.flagC = !this.flagC
+        })
+        .margin(30)
+        .rotate({ angle: this.rotateAngle })
+        .animation({
+          duration: 1200,
+          curve: Curve.Friction,
+          delay: 500,
+          iterations: 10,
+          playMode: PlayMode.AlternateReverse
+        })
+    }.width('100%').margin({ top: 20 })
   }
 }
 ```
-
-![zh-cn_image_0000001174264358](figures/zh-cn_image_0000001174264358.gif)
