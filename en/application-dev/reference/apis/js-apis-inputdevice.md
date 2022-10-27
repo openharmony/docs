@@ -73,12 +73,15 @@ function listener(data) {
     console.log("type: " + data.type + ", deviceId: " + data.deviceId);
 }
 
+// Enable the listener for listening to hot swap events of an input device.
+inputDevice.on("change", listener);
+
 // Disable this listener.
 inputDevice.off("change", listener);
 
 // Disable all listeners.
 inputDevice.off("change");
-// By default, the soft keyboard is closed when listening is disabled.
+// By default, the soft keyboard is closed when all listeners are disabled.
 ```
 
 ## inputDevice.getDeviceIds

@@ -120,12 +120,12 @@ The following uses a one-time event watcher as an example to illustrate the deve
                  // Obtain the event package based on the configured size threshold. If returned event package is null, all event data has been obtained.
                  while ((eventPkg = holder.takeNext()) != null) {
                    // Parse the obtained event package and display the result on the Log page.
-                   console.info('HiAppEvent eventPkg.packageId=' + eventPkg.packageId);
-                   console.info('HiAppEvent eventPkg.row=' + eventPkg.row);
-                   console.info('HiAppEvent eventPkg.size=' + eventPkg.size);
+                   console.info(`HiAppEvent eventPkg.packageId=${eventPkg.packageId}`);
+                   console.info(`HiAppEvent eventPkg.row=${eventPkg.row}`);
+                   console.info(`HiAppEvent eventPkg.size=${eventPkg.size}`);
                    // Traverse and parse event string arrays in the obtained event package.
                    for (const eventInfo of eventPkg.data) {
-                     console.info('HiAppEvent eventPkg.data=' + eventInfo);
+                     console.info(`HiAppEvent eventPkg.data=${eventInfo}`);
                    }
                  }
                }

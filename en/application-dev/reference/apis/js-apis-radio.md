@@ -403,7 +403,7 @@ Checks whether the current device supports 5G \(NR\).
 ```js
 let result = radio.isNrSupported();
 console.log("Result: "+ result);
-``
+```
 
 
 ## radio.isNrSupported<sup>8+</sup>
@@ -1121,12 +1121,12 @@ Sets the network selection mode. This API uses an asynchronous callback to retur
 let networkInformation={
     operatorName: "China Mobile",
     operatorNumeric: "898600",
-    state: 1,
+    state: radio.NetworkInformationState.NETWORK_AVAILABLE,
     radioTech: "CS"
 }
 let networkSelectionModeOptions={
-    slotid: 0,
-    selectMode: 1,
+    slotId: 0,
+    selectMode: radio.NetworkSelectionMode.NETWORK_SELECTION_AUTOMATIC,
     networkInformation: networkInformation,
     resumeSelection: true
 }
@@ -1165,12 +1165,12 @@ Sets the network selection mode. This API uses a promise to return the result.
 let networkInformation={
     operatorName: "China Mobile",
     operatorNumeric: "898600",
-    state: 1,
+    state: radio.NetworkInformationState.NETWORK_AVAILABLE,
     radioTech: "CS"
 }
 let networkSelectionModeOptions={
-    slotid: 0,
-    selectMode: 1,
+    slotId: 0,
+    selectMode: radio.NetworkSelectionMode.NETWORK_SELECTION_AUTOMATIC,
     networkInformation: networkInformation,
     resumeSelection: true
 }
@@ -1211,7 +1211,7 @@ radio.getNetworkSearchInformation(0, (err, data) => {
 
 ## radio.getNetworkSearchInformation
 
-getNetworkSearchInformation\(slotId: number\): Promise<void\>
+getNetworkSearchInformation\(slotId: number\): Promise<NetworkSearchResult\>
 
 Obtains network search information for the SIM card in the specified slot. This API uses a promise to return the result.
 
@@ -1607,7 +1607,7 @@ radio.getPreferredNetwork(0, (err, data) => {
 
 ## radio.getPreferredNetwork<sup>8+</sup>
 
-getPreferredNetwork(slotId: number): Promise<void\>
+getPreferredNetwork(slotId: number): Promise<PreferredNetworkMode\>
 
 Obtains the preferred network for the SIM card in the specified slot. This API uses a promise to return the result.
 
@@ -1663,7 +1663,7 @@ Obtains the IMS registration status of the specified IMS service type for the SI
 **Example**
 
 ```js
-radio.getImsRegInfo(0, 1, (err, data) => {
+radio.getImsRegInfo(0, radio.ImsServiceType.TYPE_VIDEO, (err, data) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
 ```
@@ -1696,7 +1696,7 @@ Obtains the IMS registration status of the specified IMS service type for the SI
 **Example**
 
 ```js
-let promise = radio.getImsRegInfo(0, 1);
+let promise = radio.getImsRegInfo(0, radio.ImsServiceType.TYPE_VIDEO);
 promise.then(data => {
     console.log(`getImsRegInfo success, promise: data->${JSON.stringify(data)}`);
 }).catch(err => {
@@ -1728,7 +1728,7 @@ Enables listening for **imsRegStateChange** events for the SIM card in the speci
 **Example**
 
 ```js
-radio.on('imsRegStateChange', 0, 1, (err, data) => {
+radio.on('imsRegStateChange', 0, radio.ImsServiceType.TYPE_VIDEO, (err, data) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
 ```
@@ -1757,7 +1757,7 @@ Disables listening for **imsRegStateChange** events for the SIM card in the spec
 **Example**
 
 ```js
-radio.off('imsRegStateChange', 0, 1, (err, data) => {
+radio.off('imsRegStateChange', 0, radio.ImsServiceType.TYPE_VIDEO, (err, data) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
 ```
@@ -1840,10 +1840,10 @@ Defines the network status.
 
 | Name                         | Value  | Description                      |
 | ----------------------------- | ---- | -------------------------- |
-| REG_STATE_NO_SERVICE          | 0    | The device cannot use any service.    |
-| REG_STATE_IN_SERVICE          | 1    | The device can use services normally.     |
-| REG_STATE_EMERGENCY_CALL_ONLY | 2    | The device can use only the emergency call service.|
-| REG_STATE_POWER_OFF           | 3    | The cellular radio service is disabled.        |
+| REG_STATE_NO_SERVICE          | 0    | The device cannot use any services, including data, SMS, and call services.    |
+| REG_STATE_IN_SERVICE          | 1    | The device can use services properly, including data, SMS, and call services.    |
+| REG_STATE_EMERGENCY_CALL_ONLY | 2    | The device can use only the emergency call service.    |
+| REG_STATE_POWER_OFF           | 3    | The device cannot communicate with the network because the cellular radio service is disabled or the modem is powered off.     |
 
 
 ## NsaState
