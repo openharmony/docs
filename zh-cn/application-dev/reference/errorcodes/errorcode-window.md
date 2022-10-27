@@ -2,7 +2,7 @@
 
 ## 1300001 重复操作
 **错误信息**<br>
-This is repeat operation.
+Repeated operation.
 
 **错误描述**<br>
 当进行某些重复操作时，系统会报此错误码。
@@ -28,7 +28,7 @@ This window state is abnormal.
 
 ## 1300003 系统服务工作异常
 **错误信息**<br>
-This window manager service work abnormally.
+This window manager service works abnormally.
 
 **错误描述**<br>
 当系统服务工作异常时，会报此错误码。
@@ -41,7 +41,7 @@ This window manager service work abnormally.
 
 ## 1300004 无权限操作
 **错误信息**<br>
-This operation is not access.
+Unauthorized operation.
 
 **错误描述**<br>
 当对无操作权限的对象进行操作时，会报此错误码。

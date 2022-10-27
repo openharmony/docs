@@ -319,7 +319,7 @@ createWindow(config: Configuration, callback: AsyncCallback&lt;Window&gt;): void
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
-| 1300001 | This is repeat operation.        |
+| 1300001 | Repeated operation. |
 | 1300006 | This window context is abnormal. |
 
 **示例：**
@@ -346,7 +346,7 @@ try {
 
 createWindow(config: Configuration): Promise&lt;Window&gt;
 
-创建子窗口，使用callback异步回调。
+创建子窗口，使用Promise异步回调。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -368,7 +368,7 @@ createWindow(config: Configuration): Promise&lt;Window&gt;
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
-| 1300001 | This is repeat operation.        |
+| 1300001 | Repeated operation. |
 | 1300006 | This window context is abnormal. |
 
 **示例：**
@@ -529,7 +529,7 @@ minimizeAll(id: number, callback: AsyncCallback&lt;void&gt;): void
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------------------- |
-| 1300003 | This window manager service work abnormally. |
+| 1300003 | This window manager service works abnormally. |
 
 **示例：**
 
@@ -584,7 +584,7 @@ minimizeAll(id: number): Promise&lt;void&gt;
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------------------- |
-| 1300003 | This window manager service work abnormally. |
+| 1300003 | This window manager service works abnormally. |
 
 **示例：**
 
@@ -633,7 +633,7 @@ toggleShownStateForAllAppWindows(callback: AsyncCallback&lt;void&gt;): void
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------------------- |
-| 1300003 | This window manager service work abnormally. |
+| 1300003 | This window manager service works abnormally. |
 
 **示例：**
 
@@ -668,7 +668,7 @@ toggleShownStateForAllAppWindows(): Promise&lt;void&gt;
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------------------- |
-| 1300003 | This window manager service work abnormally. |
+| 1300003 | This window manager service works abnormally. |
 
 **示例：**
 
@@ -703,7 +703,7 @@ setWindowLayoutMode(mode: WindowLayoutMode, callback: AsyncCallback&lt;void&gt;)
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------------------- |
-| 1300003 | This window manager service work abnormally. |
+| 1300003 | This window manager service works abnormally. |
 
 **示例：**
 
@@ -748,7 +748,7 @@ setWindowLayoutMode(mode: WindowLayoutMode): Promise&lt;void&gt;
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------------------- |
-| 1300003 | This window manager service work abnormally. |
+| 1300003 | This window manager service works abnormally. |
 
 **示例：**
 
@@ -1283,8 +1283,8 @@ hideWithAnimation(callback: AsyncCallback&lt;void&gt;): void
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------------------- |
 | 1300002 | This window state is abnormal.               |
-| 1300003 | This window manager service work abnormally. |
-| 1300004 | This operation is not access.                |
+| 1300003 | This window manager service works abnormally. |
+| 1300004 | Unauthorized operation.                |
 
 **示例：**
 
@@ -1321,8 +1321,8 @@ hideWithAnimation(): Promise&lt;void&gt;
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------------------- |
 | 1300002 | This window state is abnormal.               |
-| 1300003 | This window manager service work abnormally. |
-| 1300004 | This operation is not access.                |
+| 1300003 | This window manager service works abnormally. |
+| 1300004 | Unauthorized operation.                |
 
 **示例：**
 
@@ -1425,8 +1425,8 @@ showWithAnimation(callback: AsyncCallback&lt;void&gt;): void
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------------------- |
 | 1300002 | This window state is abnormal.               |
-| 1300003 | This window manager service work abnormally. |
-| 1300004 | This operation is not access.                |
+| 1300003 | This window manager service works abnormally. |
+| 1300004 | Unauthorized operation.                |
 
 **示例：**
 
@@ -1463,8 +1463,8 @@ showWithAnimation(): Promise&lt;void&gt;
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------------------- |
 | 1300002 | This window state is abnormal.               |
-| 1300003 | This window manager service work abnormally. |
-| 1300004 | This operation is not access.                |
+| 1300003 | This window manager service works abnormally. |
+| 1300004 | Unauthorized operation.                |
 
 **示例：**
 
@@ -1498,7 +1498,7 @@ destroyWindow(callback: AsyncCallback&lt;void&gt;): void
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------------------- |
 | 1300002 | This window state is abnormal.               |
-| 1300003 | This window manager service work abnormally. |
+| 1300003 | This window manager service works abnormally. |
 
 **示例：**
 
@@ -1533,7 +1533,7 @@ destroyWindow(): Promise&lt;void&gt;
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------------------- |
 | 1300002 | This window state is abnormal.               |
-| 1300003 | This window manager service work abnormally. |
+| 1300003 | This window manager service works abnormally. |
 
 **示例：**
 
@@ -1569,7 +1569,7 @@ moveWindowTo(x: number, y: number, callback: AsyncCallback&lt;void&gt;): void
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------------------- |
 | 1300002 | This window state is abnormal.               |
-| 1300003 | This window manager service work abnormally. |
+| 1300003 | This window manager service works abnormally. |
 
 **示例：**
 
@@ -1615,7 +1615,7 @@ moveWindowTo(x: number, y: number): Promise&lt;void&gt;
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------------------- |
 | 1300002 | This window state is abnormal.               |
-| 1300003 | This window manager service work abnormally. |
+| 1300003 | This window manager service works abnormally. |
 
 **示例：**
 
@@ -1655,7 +1655,7 @@ resize(width: number, height: number, callback: AsyncCallback&lt;void&gt;): void
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------------------- |
 | 1300002 | This window state is abnormal.               |
-| 1300003 | This window manager service work abnormally. |
+| 1300003 | This window manager service works abnormally. |
 
 **示例：**
 
@@ -1701,7 +1701,7 @@ resize(width: number, height: number): Promise&lt;void&gt;
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------------------- |
 | 1300002 | This window state is abnormal.               |
-| 1300003 | This window manager service work abnormally. |
+| 1300003 | This window manager service works abnormally. |
 
 **示例：**
 
@@ -1742,7 +1742,7 @@ setWindowMode(mode: WindowMode, callback: AsyncCallback&lt;void&gt;): void
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------------------- |
 | 1300002 | This window state is abnormal.               |
-| 1300003 | This window manager service work abnormally. |
+| 1300003 | This window manager service works abnormally. |
 
 **示例：**
 
@@ -1790,7 +1790,7 @@ setWindowMode(mode: WindowMode): Promise&lt;void&gt;
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------------------- |
 | 1300002 | This window state is abnormal.               |
-| 1300003 | This window manager service work abnormally. |
+| 1300003 | This window manager service works abnormally. |
 
 **示例：**
 
@@ -1901,7 +1901,7 @@ setWindowLayoutFullScreen(isLayoutFullScreen: boolean, callback: AsyncCallback&l
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------------------- |
 | 1300002 | This window state is abnormal.               |
-| 1300003 | This window manager service work abnormally. |
+| 1300003 | This window manager service works abnormally. |
 
 **示例：**
 
@@ -1947,7 +1947,7 @@ setWindowLayoutFullScreen(isLayoutFullScreen: boolean): Promise&lt;void&gt;
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------------------- |
 | 1300002 | This window state is abnormal.               |
-| 1300003 | This window manager service work abnormally. |
+| 1300003 | This window manager service works abnormally. |
 
 **示例：**
 
@@ -1987,7 +1987,7 @@ setWindowSystemBarEnable(names: Array<'status' | 'navigation'>, callback: AsyncC
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------------------- |
 | 1300002 | This window state is abnormal.               |
-| 1300003 | This window manager service work abnormally. |
+| 1300003 | This window manager service works abnormally. |
 
 **示例：**
 
@@ -2034,7 +2034,7 @@ setWindowSystemBarEnable(names: Array<'status' | 'navigation'>): Promise&lt;void
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------------------- |
 | 1300002 | This window state is abnormal.               |
-| 1300003 | This window manager service work abnormally. |
+| 1300003 | This window manager service works abnormally. |
 
 **示例：**
 
@@ -2075,7 +2075,7 @@ setWindowSystemBarProperties(systemBarProperties: SystemBarProperties, callback:
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------------------- |
 | 1300002 | This window state is abnormal.               |
-| 1300003 | This window manager service work abnormally. |
+| 1300003 | This window manager service works abnormally. |
 
 **示例：**
 
@@ -2127,7 +2127,7 @@ setWindowSystemBarProperties(systemBarProperties: SystemBarProperties): Promise&
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------------------- |
 | 1300002 | This window state is abnormal.               |
-| 1300003 | This window manager service work abnormally. |
+| 1300003 | This window manager service works abnormally. |
 
 **示例：**
 
@@ -2257,7 +2257,7 @@ setUIContent(path: string, callback: AsyncCallback&lt;void&gt;): void
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------------------- |
 | 1300002 | This window state is abnormal.               |
-| 1300003 | This window manager service work abnormally. |
+| 1300003 | This window manager service works abnormally. |
 
 **示例：**
 
@@ -2302,7 +2302,7 @@ setUIContent(path: string): Promise&lt;void&gt;
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------------------- |
 | 1300002 | This window state is abnormal.               |
-| 1300003 | This window manager service work abnormally. |
+| 1300003 | This window manager service works abnormally. |
 
 **示例：**
 
@@ -2344,7 +2344,7 @@ loadContent(path: string, storage: LocalStorage, callback: AsyncCallback&lt;void
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------------------- |
 | 1300002 | This window state is abnormal.               |
-| 1300003 | This window manager service work abnormally. |
+| 1300003 | This window manager service works abnormally. |
 
 **示例：**
 
@@ -2395,7 +2395,7 @@ loadContent(path: string, storage: LocalStorage): Promise&lt;void&gt;
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------------------- |
 | 1300002 | This window state is abnormal.               |
-| 1300003 | This window manager service work abnormally. |
+| 1300003 | This window manager service works abnormally. |
 
 **示例：**
 
@@ -2800,7 +2800,7 @@ bindDialogTarget(token: rpc.RemoteObject, deathCallback: Callback&lt;void&gt;, c
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------------------- |
 | 1300002 | This window state is abnormal.               |
-| 1300003 | This window manager service work abnormally. |
+| 1300003 | This window manager service works abnormally. |
 
 **示例：**
 
@@ -2870,7 +2870,7 @@ bindDialogTarget(token: rpc.RemoteObject, deathCallback: Callback&lt;void&gt;): 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------------------- |
 | 1300002 | This window state is abnormal.               |
-| 1300003 | This window manager service work abnormally. |
+| 1300003 | This window manager service works abnormally. |
 
 **示例：**
 
@@ -3141,7 +3141,7 @@ setWindowBrightness(brightness: number, callback: AsyncCallback&lt;void&gt;): vo
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------------------- |
 | 1300002 | This window state is abnormal.               |
-| 1300003 | This window manager service work abnormally. |
+| 1300003 | This window manager service works abnormally. |
 
 **示例：**
 
@@ -3187,7 +3187,7 @@ setWindowBrightness(brightness: number): Promise&lt;void&gt;
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------------------- |
 | 1300002 | This window state is abnormal.               |
-| 1300003 | This window manager service work abnormally. |
+| 1300003 | This window manager service works abnormally. |
 
 **示例：**
 
@@ -3227,7 +3227,7 @@ setWindowFocusable(isFocusable: boolean, callback: AsyncCallback&lt;void&gt;): v
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------------------- |
 | 1300002 | This window state is abnormal.               |
-| 1300003 | This window manager service work abnormally. |
+| 1300003 | This window manager service works abnormally. |
 
 **示例：**
 
@@ -3273,7 +3273,7 @@ setWindowFocusable(isFocusable: boolean): Promise&lt;void&gt;
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------------------- |
 | 1300002 | This window state is abnormal.               |
-| 1300003 | This window manager service work abnormally. |
+| 1300003 | This window manager service works abnormally. |
 
 **示例：**
 
@@ -3313,7 +3313,7 @@ setWindowKeepScreenOn(isKeepScreenOn: boolean, callback: AsyncCallback&lt;void&g
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------------------- |
 | 1300002 | This window state is abnormal.               |
-| 1300003 | This window manager service work abnormally. |
+| 1300003 | This window manager service works abnormally. |
 
 **示例：**
 
@@ -3359,7 +3359,7 @@ setWindowKeepScreenOn(isKeepScreenOn: boolean): Promise&lt;void&gt;
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------------------- |
 | 1300002 | This window state is abnormal.               |
-| 1300003 | This window manager service work abnormally. |
+| 1300003 | This window manager service works abnormally. |
 
 **示例：**
 
@@ -3400,7 +3400,7 @@ setWakeUpScreen(wakeUp: boolean): void
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------------------- |
 | 1300002 | This window state is abnormal.               |
-| 1300003 | This window manager service work abnormally. |
+| 1300003 | This window manager service works abnormally. |
 
 **示例：**
 
@@ -3555,7 +3555,7 @@ setWindowTouchable(isTouchable: boolean, callback: AsyncCallback&lt;void&gt;): v
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------------------- |
 | 1300002 | This window state is abnormal.               |
-| 1300003 | This window manager service work abnormally. |
+| 1300003 | This window manager service works abnormally. |
 
 **示例：**
 
@@ -3601,7 +3601,7 @@ setWindowTouchable(isTouchable: boolean): Promise&lt;void&gt;
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------------------- |
 | 1300002 | This window state is abnormal.               |
-| 1300003 | This window manager service work abnormally. |
+| 1300003 | This window manager service works abnormally. |
 
 **示例：**
 
@@ -3643,7 +3643,7 @@ setForbidSplitMove(isForbidSplitMove: boolean, callback: AsyncCallback&lt;void&g
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------------------- |
 | 1300002 | This window state is abnormal.               |
-| 1300003 | This window manager service work abnormally. |
+| 1300003 | This window manager service works abnormally. |
 
 **示例：**
 
@@ -3691,7 +3691,7 @@ setForbidSplitMove(isForbidSplitMove: boolean): Promise&lt;void&gt;
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------------------- |
 | 1300002 | This window state is abnormal.               |
-| 1300003 | This window manager service work abnormally. |
+| 1300003 | This window manager service works abnormally. |
 
 **示例：**
 
@@ -3801,7 +3801,7 @@ opacity(opacity: number): void
 | 错误码ID | 错误信息 |
 | ------- | ------------------------------ |
 | 1300002 | This window state is abnormal. |
-| 1300004 | This operation is not access.  |
+| 1300004 | Unauthorized operation.  |
 
 **示例：**
 
@@ -3836,7 +3836,7 @@ scale(scaleOptions: ScaleOptions): void
 | 错误码ID | 错误信息 |
 | ------- | ------------------------------ |
 | 1300002 | This window state is abnormal. |
-| 1300004 | This operation is not access.  |
+| 1300004 | Unauthorized operation.  |
 
 **示例：**
 
@@ -3877,7 +3877,7 @@ rotate(rotateOptions: RotateOptions): void
 | 错误码ID | 错误信息 |
 | ------- | ------------------------------ |
 | 1300002 | This window state is abnormal. |
-| 1300004 | This operation is not access.  |
+| 1300004 | Unauthorized operation.  |
 
 **示例：**
 
@@ -3919,7 +3919,7 @@ translate(translateOptions: TranslateOptions): void
 | 错误码ID | 错误信息 |
 | ------- | ------------------------------ |
 | 1300002 | This window state is abnormal. |
-| 1300004 | This operation is not access.  |
+| 1300004 | Unauthorized operation.  |
 
 **示例：**
 
@@ -3959,7 +3959,7 @@ try {
 | 错误码ID | 错误信息 |
 | ------- | ------------------------------ |
 | 1300002 | This window state is abnormal. |
-| 1300004 | This operation is not access.  |
+| 1300004 | Unauthorized operation.  |
 
 **示例：**
 
@@ -4021,7 +4021,7 @@ setBlur(radius: number): void
 | 错误码ID | 错误信息 |
 | ------- | ------------------------------ |
 | 1300002 | This window state is abnormal. |
-| 1300004 | This operation is not access.  |
+| 1300004 | Unauthorized operation.  |
 
 **示例：**
 
@@ -4056,7 +4056,7 @@ setBackdropBlur(radius: number): void
 | 错误码ID | 错误信息 |
 | ------- | ------------------------------ |
 | 1300002 | This window state is abnormal. |
-| 1300004 | This operation is not access.  |
+| 1300004 | Unauthorized operation.  |
 
 **示例：**
 
@@ -4091,7 +4091,7 @@ setBackdropBlurStyle(blurStyle: BlurStyle): void
 | 错误码ID | 错误信息 |
 | ------- | ------------------------------ |
 | 1300002 | This window state is abnormal. |
-| 1300004 | This operation is not access.  |
+| 1300004 | Unauthorized operation.  |
 
 **示例：**
 
@@ -4129,7 +4129,7 @@ setShadow(radius: number, color?: string, offsetX?: number, offsetY?: number): v
 | 错误码ID | 错误信息 |
 | ------- | ------------------------------ |
 | 1300002 | This window state is abnormal. |
-| 1300004 | This operation is not access.  |
+| 1300004 | Unauthorized operation.  |
 
 **示例：**
 
@@ -4164,7 +4164,7 @@ setCornerRadius(cornerRadius: number): void
 | 错误码ID | 错误信息 |
 | ------- | ------------------------------ |
 | 1300002 | This window state is abnormal. |
-| 1300004 | This operation is not access.  |
+| 1300004 | Unauthorized operation.  |
 
 **示例：**
 

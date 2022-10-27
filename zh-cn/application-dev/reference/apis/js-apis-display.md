@@ -84,7 +84,7 @@ getDefaultDisplaySync(): Display
 
 | 错误码ID | 错误信息 |
 | ------- | ----------------------- |
-| 1400001 | This is invalid screen. |
+| 1400001 | Invalid display or screen. |
 
 **示例：**
 
@@ -117,7 +117,7 @@ getAllDisplays(callback: AsyncCallback&lt;Array&lt;Display&gt;&gt;): void
 
 | 错误码ID | 错误信息 |
 | ------- | ----------------------- |
-| 1400001 | This is invalid screen. |
+| 1400001 | Invalid display or screen. |
 
 **示例：**
 
@@ -153,7 +153,7 @@ getAllDisplays(): Promise&lt;Array&lt;Display&gt;&gt;
 
 | 错误码ID | 错误信息 |
 | ------- | ----------------------- |
-| 1400001 | This is invalid screen. |
+| 1400001 | Invalid display or screen. |
 
 **示例：**
 
@@ -196,7 +196,7 @@ hasPrivateWindow(displayId: number): boolean
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------------------- |
-| 1400003 | This window manager service work abnormally. |
+| 1400003 | This display manager service works abnormally. |
 
 **示例：**
 
@@ -442,7 +442,7 @@ getCutoutInfo(callback: AsyncCallback&lt;CutoutInfo&gt;): void
 
 | 错误码ID | 错误信息 |
 | ------- | ----------------------- |
-| 1400001 | This is invalid screen. |
+| 1400001 | Invalid display or screen. |
 
 **示例：**
 
@@ -481,7 +481,7 @@ getCutoutInfo(): Promise&lt;CutoutInfo&gt;
 
 | 错误码ID | 错误信息 |
 | ------- | ----------------------- |
-| 1400001 | This is invalid screen. |
+| 1400001 | Invalid display or screen. |
 
 **示例：**
 
