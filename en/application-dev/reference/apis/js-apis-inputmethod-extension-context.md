@@ -47,10 +47,11 @@ Starts an ability with the **want** parameter. This API uses an asynchronous cal
 
   ```js
     let want = {
-      "bundleName": "com.example.myapp",
-      "abilityName": "MyAbility"};
-      this.context.startAbility(want, (err) => {
-      console.log('startAbility result:' + JSON.stringify(err));
+        'bundleName': 'com.example.myapp',
+        'abilityName': 'MyAbility'
+    };
+    this.context.startAbility(want, (err) => {
+        console.log('startAbility result:' + JSON.stringify(err));
     });
   ```
 
@@ -79,8 +80,8 @@ Starts an ability with the mandatory **want** and optional **options** parameter
 
   ```js
     let want = {
-        "bundleName": "com.example.myapp",
-        "abilityName": "MyAbility"
+        'bundleName': 'com.example.myapp',
+        'abilityName': 'MyAbility'
     };
     this.context.startAbility(want).then((data) => {
         console.log('success:' + JSON.stringify(data));
@@ -110,15 +111,15 @@ Starts an ability with the **want** and **options** parameters. This API uses an
 
   ```js
   var want = {
-  	"deviceId": "",
-  	"bundleName": "com.extreme.test",
-  	"abilityName": "MainAbility"
+  	'deviceId': '',
+  	'bundleName': 'com.extreme.test',
+  	'abilityName': 'MainAbility'
   };
   var options = {
   	windowMode: 0,
   };
   this.context.startAbility(want, options, (error) => {
-    console.log("error.code = " + error.code)
+      console.log('error.code = ' + error.code)
   })
   ```
 
@@ -140,7 +141,7 @@ Terminates this ability. This API uses an asynchronous callback to return the re
 
   ```js
 this.context.terminateSelf((err) => {
-  console.log('terminateSelf result:' + JSON.stringify(err));
+    console.log('terminateSelf result:' + JSON.stringify(err));
 });
   ```
 

@@ -8,14 +8,15 @@
 - Quick Start
     - Getting Started
         - [Preparations](quick-start/start-overview.md)
-        - [Getting Started with eTS in Stage Model](quick-start/start-with-ets-stage.md)
-        - [Getting Started with eTS in FA Model](quick-start/start-with-ets-fa.md)
+        - [Getting Started with ArkTS in Stage Model](quick-start/start-with-ets-stage.md)
+        - [Getting Started with ArkTS in FA Model](quick-start/start-with-ets-fa.md)
         - [Getting Started with JavaScript in FA Model](quick-start/start-with-js-fa.md)
     - Development Fundamentals
         - [Application Package Structure Configuration File (FA Model)](quick-start/package-structure.md)
         - [Application Package Structure Configuration File (Stage Model)](quick-start/stage-structure.md)
         - [SysCap](quick-start/syscap.md)
         - [HarmonyAppProvision Configuration File](quick-start/app-provision-structure.md)
+        - [Resource Categories and Access](quick-start/resource-categories-and-access.md)
 - Development
     - [Ability Development](ability/Readme-EN.md)
     - [UI Development](ui/Readme-EN.md)
