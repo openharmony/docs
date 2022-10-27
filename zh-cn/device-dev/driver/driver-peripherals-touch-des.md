@@ -41,9 +41,9 @@ Touchscreen器件的硬件接口相对简单，根据PIN脚的属性，可以简
 
 - 通信接口
 
-  **图2** Touchscreen器件常用管脚
+**图2** Touchscreen器件常用管脚
 
-  ![image](figures/Touchscreen器件常用管脚.png "Touchscreen器件常用管脚")
+![image](figures/Touchscreen器件常用管脚.png "Touchscreen器件常用管脚")
 
 对于上图所示的三类接口，简要说明如下：
 
