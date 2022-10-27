@@ -242,7 +242,7 @@ SystemCapability.Web.Webview.Core
 | mimeType   | string | 是   | -      | 媒体类型（MIME）。                                           |
 | encoding   | string | 是   | -      | 编码类型，具体为“Base64"或者”URL编码。                       |
 | baseUrl    | string | 否   | -      | 指定的一个URL路径（“http”/“https”/"data"协议），并由Web组件赋值给window.origin。 |
-| historyUrl | string | 否   | -      | 历史记录URL。非空时，可被历史记录管理，实现前后后退功能。当baseUrl为空时，此属性无效。 |
+| historyUrl | string | 否   | -      | 历史记录URL。非空时，可被历史记录管理，实现前进后退功能。当baseUrl为空时，此属性无效。 |
 
 **错误码**：
 
@@ -251,7 +251,6 @@ SystemCapability.Web.Webview.Core
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
 | 17100001 | Init error. The WebviewController must be associated with a Web component. |
-| 17100002 | Invalid url.                                                 |
 
 **示例：** 
 
@@ -351,7 +350,6 @@ SystemCapability.Web.Webview.Core
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
 | 17100001 | Init error. The WebviewController must be associated with a Web component. |
-| 17100007 | Invalid back or forward operation. |
 
 **示例：** 
 
@@ -447,7 +445,6 @@ SystemCapability.Web.Webview.Core
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
 | 17100001 | Init error. The WebviewController must be associated with a Web component. |
-| 17100007 | Invalid back or forward operation. |
 
 **示例：** 
 
@@ -2211,12 +2208,6 @@ SystemCapability.Web.Webview.Core
 | url    | string | 是   | -      | 要设置的cookie所属的url。 |
 | value  | string | 是   | -      | 要设置的cookie的值。      |
 
-**返回值：** 
-
-| 类型    | 说明                 |
-| ------- | -------------------- |
-| boolean | 设置cookie是否成功。 |
-
 **错误码**：
 
 以下错误码的详细介绍请参见 [webview错误码](../errorcodes/errorcode-webview.md)
@@ -2630,7 +2621,7 @@ SystemCapability.Web.Webview.Core
 
 | 参数名 | 类型   | 必填 | 默认值 | 说明                     |
 | ------ | ------ | ---- | ------ | ------------------------ |
-| origin | string | 是   | -      | 要获取的cookie所属的url. |
+| origin | string | 是   | -      | 指定源的字符串索引. |
 
 **错误码：**
 
