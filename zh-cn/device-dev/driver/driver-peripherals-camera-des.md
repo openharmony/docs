@@ -47,9 +47,7 @@ Camera模块主要针对相机预览、拍照、视频流等场景，对这些�
 
 ### 接口说明<a name="6"></a>
 
-注：以下接口列举的为IDL接口描述生成的对应C++语言函数接口，接口声明见idl文件。
-
-- drivers/interface/camera/v1_0/ICameraDevice.idl
+- icamera_device.h
 
   | 功能描述                     | 接口名称                                                     |
   | ---------------------------- | ------------------------------------------------------------ |
@@ -61,7 +59,7 @@ Camera模块主要针对相机预览、拍照、视频流等场景，对这些�
   | 禁止具体的ResultMeta         | int32_t DisableResult(const std::vector<int32_t>& results) |    
   | 关闭Camera设备               | int32_t Close()                                                 |
 
-- drivers/interface/camera/v1_0/ICameraDeviceCallback.idl
+- icamera_device_callback.h
 
   | 功能描述                                                   | 接口名称                                                     |
   | ---------------------------------------------------------- | ------------------------------------------------------------ |
@@ -69,39 +67,40 @@ Camera模块主要针对相机预览、拍照、视频流等场景，对这些�
   | 上报camera设备相关的metadata的回调                         | int32_t OnResult(uint64_t timestamp, const std::vector<uint8_t>& result) |
 
 
-- drivers/interface/camera/v1_0/ICameraHost.idl
+- icamera_host.h
 
   | 功能描述                       | 接口名称                                                     |
   | ------------------------------ | ------------------------------------------------------------ |
   | 设置ICameraHost回调接口        | int32_t SetCallback(const sptr<ICameraHostCallback>& callbackObj) |
-  | 获取当前可用的Camera设备ID列表 | int32_t GetCameraIds(std::vector<std::string> &cameraIds) |
-  | 获取Camera设备能力集合         | int32_t GetCameraAbility(const std::string &cameraId, std::vector<uint8_t>& cameraAbility) |
-  | 打开Camera设备                 | int32_t OpenCamera(const std::string& cameraId,<br>const sptr<ICameraDeviceCallback>& callbackObj,<br>sptr<ICameraDevice>& device) |
-  | 打开或关闭闪光灯               | int32_t SetFlashlight(const std::string &cameraId, bool isEnable) |
+  | 获取当前可用的Camera设备ID列表 | int32_t GetCameraIds(std::vector<std::string>& cameraIds) |
+  | 获取Camera设备能力集合         | int32_t GetCameraAbility(const std::string& cameraId, std::vector<uint8_t>& cameraAbility) |
+  | 打开Camera设备                 | int32_t OpenCamera(const std::string& cameraId, const sptr<ICameraDeviceCallback>& callbackObj,<br>sptr<ICameraDevice>& device) |
+  | 打开或关闭闪光灯               | int32_t SetFlashlight(const std::string& cameraId, bool isEnable) |
 
-- drivers/interface/camera/v1_0/ICameraHostCallback.idl
+- icamera_host_callback.h
 
   | 功能描述               | 接口名称                                                     |
   | ---------------------- | ------------------------------------------------------------ |
-  | Camera设备状态变化上报 | int32_t OnCameraStatus(const std::string &cameraId, CameraStatus status) |
-  | 闪光灯状态变化回调     | int32_t OnFlashlightStatus(const std::string &cameraId, FlashlightStatus status) |
+  | Camera设备状态变化上报 | int32_t OnCameraStatus(const std::string& cameraId, CameraStatus status) |
+  | 闪光灯状态变化回调     | int32_t OnFlashlightStatus(const std::string& cameraId, FlashlightStatus status) |
+  | Camera事件回调     | int32_t OnCameraEvent(const std::string& cameraId, CameraEvent event) |
 
-- drivers/interface/camera/v1_0/IOfflineStreamOperator.idl
+- ioffline_stream_operator.h
 
   | 功能描述       | 接口名称                                                     |
   | -------------- | ------------------------------------------------------------ |
   | 取消捕获请求   | int32_t CancelCapture(int32_t captureId)                      |
   | 释放流         | int32_t ReleaseStreams(const std::vector<int32_t>& streamIds) |
-  | 释放所有离线流 | RetCode Release()                                         |
+  | 释放所有离线流 | int32_t Release()                                         |
 
 - drivers/interface/camera/v1_0/IStreamOperator.idl
 
   | 功能描述                         | 接口名称                                                     |
   | -------------------------------- | ------------------------------------------------------------ |
-  | 查询是否支持添加参数对应的流     | int32_t IsStreamsSupported(<br>OperationMode mode,<br>const std::vector<uint8_t>& modeSetting,<br>const std::vector<StreamInfo>& infos,<br>StreamSupportType& type) |
+  | 查询是否支持添加参数对应的流     | int32_t IsStreamsSupported(<br>OperationMode mode,<br>const std::vector<uint8_t>& modeSetting,<br>const std::vector<StreamInfo>& infos,<br> StreamSupportType& type) |
   | 创建流                           | int32_t CreateStreams(const std::vector<StreamInfo>& streamInfos) |
   | 释放流                           | int32_t ReleaseStreams(const std::vector<int32_t>& streamIds) |
-  | 配置流                           | int32_t CommitStreams(OperationMode mode, const std::shared_ptr<CameraMetadata> &modeSetting) |
+  | 配置流                           | int32_t CommitStreams(OperationMode mode, const std::vector<uint8_t>& modeSetting) |
   | 获取流的属性                     | int32_t GetStreamAttributes(std::vector<StreamAttribute>& attributes) |
   | 绑定生产者句柄和指定流           | int32_t AttachBufferQueue(int32_t streamId, const sptr<BufferProducerSequenceable>& bufferProducer) |
   | 解除生产者句柄和指定流的绑定关系 | int32_t DetachBufferQueue(int32_t streamId)                   |
@@ -109,14 +108,14 @@ Camera模块主要针对相机预览、拍照、视频流等场景，对这些�
   | 取消捕获                         | int32_t CancelCapture(int32_t captureId)                      |
   | 将指定流转换成离线流             | int32_t ChangeToOfflineStream(const std::vector<int32_t>& streamIds,<br>const sptr<IStreamOperatorCallback>& callbackObj,<br>sptr<IOfflineStreamOperator>& offlineOperator) |
 
-- drivers/interface/camera/v1_0/IStreamOperatorCallback.idl
+- istream_operator_callback.h
 
   | 功能描述                                 | 接口名称                                                     |
   | ---------------------------------------- | ------------------------------------------------------------ |
-  | 捕获开始回调，在捕获开始时调用           | void OnCaptureStarted(int32_t captureId, const std::vector<int32_t>& streamIds) |
-  | 捕获结束回调，在捕获结束时调用           | void OnCaptureEnded(int32_t captureId, const std::vector<CaptureEndedInfo>& infos) |
-  | 捕获错误回调，在捕获过程中发生错误时调用 | void OnCaptureError(int32_t captureId, const std::vector<CaptureErrorInfo>& infos) |
-  | 帧捕获回调                               | void OnFrameShutter(int32_t captureId,<br>const std::vector<int32_t>& streamIds, uint64_t timestamp) |
+  | 捕获开始回调，在捕获开始时调用           | int32_t OnCaptureStarted(int32_t captureId, const std::vector<int32_t>& streamIds) |
+  | 捕获结束回调，在捕获结束时调用           | int32_t OnCaptureEnded(int32_t captureId, const std::vector<CaptureEndedInfo>& infos) |
+  | 捕获错误回调，在捕获过程中发生错误时调用 | int32_t OnCaptureError(int32_t captureId, const std::vector<CaptureErrorInfo>& infos) |
+  | 帧捕获回调                               | int32_t OnFrameShutter(int32_t captureId, const std::vector<int32_t>& streamIds, uint64_t timestamp) |
 
 ### 开发步骤<a name="7"></a>
 Camera驱动的开发过程主要包含以下步骤：
