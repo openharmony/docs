@@ -93,7 +93,7 @@ Camera模块主要针对相机预览、拍照、视频流等场景，对这些�
   | 释放流         | int32_t ReleaseStreams(const std::vector<int32_t>& streamIds) |
   | 释放所有离线流 | int32_t Release()                                         |
 
-- drivers/interface/camera/v1_0/IStreamOperator.idl
+- istream_operator.h
 
   | 功能描述                         | 接口名称                                                     |
   | -------------------------------- | ------------------------------------------------------------ |
