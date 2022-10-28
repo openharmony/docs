@@ -12,7 +12,7 @@ ESwap(Enhanced Swap)提供了自定义新增存储分区作为内存交换分区
 > 使能ESwap需要在使能ZRAM之前，不需要使用ESwap时, 也可以仅使能ZRAM。如部分设备不包括用于换出的存储设备，也没有新建相应的存储分区，那么可以仅使能ZRAM来通过zswapd进行内存回收。
 
 ### 使能ESwap
-1. 打开相关配置项及依赖
+1. 打开相关配置项及依赖。
 
 	启用ESwap，需要通过编译内核时打开相应的配置项及依赖，ESwap相关CONFIG如下：
 
@@ -31,13 +31,13 @@ ESwap(Enhanced Swap)提供了自定义新增存储分区作为内存交换分区
 	同时，开启ESwap需依赖以下CONFIG：
 
 	```
-	CONFIG_MEMCG=y
-	CONFIG_SWAP=y
-	CONFIG_ZSMALLOC=y
-	CONFIG_ZRAM=y
+	CONFIG_MEMCG=y       // Enable Memory controller
+	CONFIG_SWAP=y        // Enable Support for paging of anonymous memory (swap)
+	CONFIG_ZSMALLOC=y    // Enable Memory allocator for compressed pages
+	CONFIG_ZRAM=y        // Enable Compressed RAM block device support
 	```
 
-2. 创建ESwap设备
+2. 创建ESwap设备。
 
 	可以使用任意block设备作为ESwap交换设备，这里创建一个文件hpdisk挂载为loop6设备：
 
@@ -48,7 +48,7 @@ ESwap(Enhanced Swap)提供了自定义新增存储分区作为内存交换分区
 	losetup /dev/block/loop6 hpdisk
 	```
 
-3. 配置ESwap
+3. 配置ESwap。
 
 	将2中创建的设备绑定为ESwap换出设备：
 
@@ -59,14 +59,14 @@ ESwap(Enhanced Swap)提供了自定义新增存储分区作为内存交换分区
 	ESwap默认对换出数据使用软件加密，如果2中创建的ESwap设备支持inline加密，可以关闭ESwap的软件加密功能：
 
 	```Bash
-	// 需确认是否支持并开启硬加密，否则不要执行该操作。
+	// 需咨询开发板厂商是否支持并开启硬加密，否则不要执行该操作。
 	echo 0 > /proc/sys/kernel/hyperhold/soft_crypt
 	```
 
 	> ![icon-caution.gif](public_sys-resources/icon-caution.gif) **注意：**
 	> 出于安全考虑，所有换出内容均需加密。因此若当前配置ESwap的设备不支持inline加密，或编译时未打开inline加密宏，则在关闭软加密时，ESwap无法enable。
 
-4. 使能ESwap
+4. 使能ESwap。
 
 	使能ESwap，使能后无法更改上述配置：
 
@@ -77,7 +77,7 @@ ESwap(Enhanced Swap)提供了自定义新增存储分区作为内存交换分区
 
 ### 使能ZRAM
 
-1. 初始化ZRAM
+1. 初始化ZRAM。
 
 	设置ZRAM与ESwap的交互方式，并配置ZRAM的大小。
 
@@ -95,7 +95,7 @@ ESwap(Enhanced Swap)提供了自定义新增存储分区作为内存交换分区
 	> - readonly：表示只记录数据的cgroup信息，并不换出；
 	> - readwrite：表示打开ZRAM到eswap的换入换出功能。
 
-2. 使能ZRAM
+2. 使能ZRAM。
 
 	启用ZRAM设备为交换分区并将其使能。
 
@@ -107,7 +107,7 @@ ESwap(Enhanced Swap)提供了自定义新增存储分区作为内存交换分区
 
 ### 关闭ESwap与ZRAM
 
-1. 关闭ESwap
+1. 关闭ESwap。
 
 	```Bash
 	echo disable > /proc/sys/kernel/hyperhold/enable
@@ -121,7 +121,7 @@ ESwap(Enhanced Swap)提供了自定义新增存储分区作为内存交换分区
 	> - disable：表示如果ESwap中没有数据，则完全关闭，否则变为只读模式；
 	> - force_disable：表示如果没有数据，完全关闭，否则变为只读模式，并同步等待ESwap中数据完全读出，然后完全关闭。
 
-2. 关闭ZRAM及ZRAM group
+2. 关闭ZRAM及ZRAM group。
 
 	```Bash
 	// 若已经执行过swapon，则需先执行swapoff
