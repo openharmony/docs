@@ -123,14 +123,11 @@ Input HDF驱动提供给系统服务Input Service调用的HDI驱动能力接口�
 
 根据Input驱动模型的加载流程可知，Touchscreen器件驱动的开发过程主要包含以下三个步骤：
 
-1. 设备描述配置
-   目前Input驱动基于HDF驱动框架编写，驱动的加载启动由HDF驱动管理框架统一处理。首先需要在对应的配置文件中，将驱动信息注册进去，如是否加载、加载优先级，此后HDF驱动框架会逐一启动注册过的驱动模块。驱动的相关配置请参考[HDF驱动框架配置指导](../driver/driver-hdf-development.md#驱动开发步骤)。
+1. 设备描述配置：目前Input驱动基于HDF驱动框架编写，驱动的加载启动由HDF驱动管理框架统一处理。首先需要在对应的配置文件中，将驱动信息注册进去，如是否加载、加载优先级，此后HDF驱动框架会逐一启动注册过的驱动模块。驱动的相关配置请参考[HDF驱动框架配置指导](../driver/driver-hdf-development.md#驱动开发步骤)。
 
-2. 板级配置及Touchscreen器件私有配置
-   配置对应的IO管脚功能，例如对单板上为Touchscreen设计预留的I2C Pin脚，需设置对应的寄存器，使其选择I2C的通信功能。
+2. 板级配置及Touchscreen器件私有配置：配置对应的IO管脚功能，例如对单板上为Touchscreen设计预留的I2C Pin脚，需设置对应的寄存器，使其选择I2C的通信功能。
 
-3. 实现器件差异化适配接口
-   根据硬件单板设计的通信接口，使用Platform接口层提供的管脚操作接口配置对应的复位管脚、中断管脚以及电源操作，对于GPIO的操作，可参考[GPIO操作接口指导](../driver/driver-platform-gpio-des.md#概述)。
+3. 实现器件差异化适配接口：根据硬件单板设计的通信接口，使用Platform接口层提供的管脚操作接口配置对应的复位管脚、中断管脚以及电源操作，对于GPIO的操作，可参考[GPIO操作接口指导](../driver/driver-platform-gpio-des.md#概述)。
 
 
 ### 开发实例
@@ -139,7 +136,7 @@ Input HDF驱动提供给系统服务Input Service调用的HDI驱动能力接口�
 
 1. 设备描述配置
 
-   如下配置主要包含Input驱动模型各模块层级信息，具体原理可参考[HDF驱动开发指南](../driver/driver-hdf-development.md)，HDF框架依据该配置信息实现对Input模型各模块的依次加载等。
+   如下配置主要包含Input驱动模型各模块层级信息，配置文件路径为drivers/adapter/khdf/linux/hcs/device_info/device_info.hcs。具体原理可参考[HDF驱动开发指南](../driver/driver-hdf-development.md)，HDF框架依据该配置信息实现对Input模型各模块的依次加载等。
 
    ```
    input :: host {
@@ -184,7 +181,7 @@ Input HDF驱动提供给系统服务Input Service调用的HDI驱动能力接口�
 
 2. 板级配置及器件私有配置
 
-   如下配置包含板级硬件配置及器件私有数据配置，实际业务开发时，可根据具体需求增删及修改如下配置文件信息。
+   如下配置包含板级硬件配置及器件私有数据配置，配置文件路径为drivers/adapter/khdf/linux/hcs/input/input_config.hcs。实际业务开发时，可根据具体需求增删及修改如下配置文件信息。
 
    ```
    root {
@@ -273,7 +270,7 @@ Input HDF驱动提供给系统服务Input Service调用的HDI驱动能力接口�
 
 3. 添加器件驱动
 
-   在器件驱动中，主要实现了平台预留的差异化接口，以器件数据获取及解析进行示例说明。具体开发过程，需要根据实际使用的单板及器件进行适配。
+   在器件驱动中，主要实现了平台预留的差异化接口，以器件数据获取及解析进行示例说明，代码路径为drivers/framework/model/input/driver/touchscreen/touch_gt911.c。具体开发过程，需要根据实际使用的单板及器件进行适配。
 
    ```c
    /* 将从器件中读取到的报点数据解析为坐标 */
