@@ -75,8 +75,8 @@ Input HDF驱动提供给系统服务Input Service调用的HDI驱动能力接口�
 
   | 接口名称                                                                               | 功能描述           |
   | ------------------------------------------------------------------------------------- | -------------------|
-  | int32_t (*OpenInputDevice)(uint32_t devIndex);                                        | 打开input设备       |
-  | int32_t (*CloseInputDevice)(uint32_t devIndex);                                       | 关闭input设备       |
+  | int32_t (*OpenInputDevice)(uint32_t devIndex);                                        | 打开Input设备       |
+  | int32_t (*CloseInputDevice)(uint32_t devIndex);                                       | 关闭Input设备       |
   | int32_t (*GetInputDevice)(uint32_t devIndex, DeviceInfo **devInfo);                   | 获取指定ID的设备信息 |
   | int32_t (*GetInputDeviceList)(uint32_t *devNum, DeviceInfo **devList, uint32_t size); | 获取所有设备列表信息 |
 
@@ -84,8 +84,8 @@ Input HDF驱动提供给系统服务Input Service调用的HDI驱动能力接口�
 
   | 接口名称                                                                             | 功能描述            |
   | ----------------------------------------------------------------------------------- | ------------------ |
-  | int32_t (*RegisterReportCallback)(uint32_t devIndex, InputReportEventCb *callback); | 注册input设备的回调 |
-  | int32_t (*UnregisterReportCallback)(uint32_t devIndex);                             | 注销input设备的回调 |
+  | int32_t (*RegisterReportCallback)(uint32_t devIndex, InputReportEventCb *callback); | 注册Input设备的回调 |
+  | int32_t (*UnregisterReportCallback)(uint32_t devIndex);                             | 注销Input设备的回调 |
   | void (*ReportEventPkgCallback)(const EventPackage **pkgs, uint32_t count);          | 上报数据的回调函数   |
 
 - input_controller.h
