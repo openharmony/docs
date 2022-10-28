@@ -240,7 +240,7 @@ The following uses the Hi3881 WLAN chip as an example to describe how to initial
     /* Functions for initializing and deinitializing a WLAN chip driver. */
     int32_t Hi3881Deinit(struct HdfChipDriver* chipDriver, struct NetDevice *netDevice);
     int32_t Hi3881Init(struct HdfChipDriver* chipDriver, struct NetDevice *netDevice);
-
+    
     /* Initialize mac80211 by hooking the functions of the chip. */
     hi_void HiMac80211Init(struct HdfChipDriver *chipDriver);
 
@@ -453,36 +453,36 @@ The following uses the Hi3881 WLAN chip as an example to describe how to initial
             oam_error_log0(0, OAM_SF_ANY, "{netdev is null!}");
             return HI_ERR_CODE_PTR_NULL;
         }
-
-        do {
-            /* Initialize the network device. */
-            ret = wal_init_netdev(type, netdev);
-            if (ret != HI_SUCCESS) {
-                break;
-            }
-
-            ret = wal_init_netif(type, netdev);
-            if (ret != HI_SUCCESS) {
-                break;
-            }
-            ac_mode_str = "11bgn";
-            if (mode == WAL_PHY_MODE_11G) {
-                ac_mode_str = "11bg";
-            } else if (mode == WAL_PHY_MODE_11B) {
-                ac_mode_str = "11b";
-            }
-
-            ret = wal_ioctl_set_mode(netdev, ac_mode_str);
-        } while (false);
-
-        if (ret != HI_SUCCESS) {
-            wal_deinit_wlan_vap(netdev);
-            oal_net_unregister_netdev(netdev);
-            oal_net_clear_netdev(netdev);
-            return HI_FAIL;
-        }
-
-        return HI_SUCCESS;
+     
+    do {
+       /* Initialize the network device. */
+       ret = wal_init_netdev(type, netdev);
+       if (ret != HI_SUCCESS) {
+           break;
+       }
+    
+       ret = wal_init_netif(type, netdev);
+       if (ret != HI_SUCCESS) {
+           break;
+       }
+       ac_mode_str = "11bgn";
+       if (mode == WAL_PHY_MODE_11G) {
+           ac_mode_str = "11bg";
+       } else if (mode == WAL_PHY_MODE_11B) {
+           ac_mode_str = "11b";
+       }
+    
+       ret = wal_ioctl_set_mode(netdev, ac_mode_str);
+    } while (false);
+    
+    if (ret != HI_SUCCESS) {
+        wal_deinit_wlan_vap(netdev);
+        oal_net_unregister_netdev(netdev);
+        oal_net_clear_netdev(netdev);
+        return HI_FAIL;
+    }
+    
+    return HI_SUCCESS;
     }
 
     /* Hook function pointers of netdev. For details, see NetDeviceInterFace. */
@@ -510,9 +510,8 @@ The following uses the Hi3881 WLAN chip as an example to describe how to initial
     {
         /* Add the network device to the protocol stack. */
         hi_u32 ret = NetDeviceAdd(netdev, (Protocol80211IfType)type);
-
+        
         ...
-
         return HI_SUCCESS;
     }
     ```
@@ -580,7 +579,9 @@ The following uses the Hi3881 WLAN chip as an example to describe how to initial
 
 4. Invoke the event reporting APIs. 
 
-    The WLAN framework provides the event reporting APIs. For details, see hdf_wifi_event.c. For example, call **HdfWiFiEventNewSta AP** to report information about the newly associated STA.
+    The WLAN framework provides the event reporting APIs. For details, see **hdf_wifi_event.c**.
+    
+    For example, call **HdfWiFiEventNewSta AP** to report information about the newly associated STA. 
     
     ```c
     hi_u32 oal_cfg80211_new_sta(oal_net_device_stru *net_device, const hi_u8 *mac_addr, hi_u8 addr_len,
@@ -678,7 +679,7 @@ Develop test cases in the WLAN module unit test to verify the basic features of 
         exit 0
         ```
 
-    - Create a **udhcpd.conf** file (used to start the **udhcpd**) and copy the following content to the file. In the following, **opt dns** *x.x.x.x* *x.x.x.x* indicates two DNS servers configured. You can configure DNS servers as required.
+    -  Create a **udhcpd.conf** file (used to start the **udhcpd**) and copy the following content to the file. In the following, **opt dns** *x.x.x.x* *x.x.x.x* indicates two DNS servers configured. You can configure DNS servers as required.
 
         ```text
         start 192.168.12.2
@@ -734,7 +735,7 @@ Develop test cases in the WLAN module unit test to verify the basic features of 
 
      4. On the mobile phone, select the network named **test** in the available Wi-Fi list and enter the password. 
 
-        The network name and password are configured in the **hostapd.conf** file. You can see that network name in the connected Wi-Fi list if the connection is successful.
+        The network name and password are configured in the **hostapd.conf** file. You can see the network name in the connected Wi-Fi list if the connection is successful.
 
      5. Ping the test terminal from the development board.
 
@@ -944,11 +945,7 @@ Develop test cases in the WLAN module unit test to verify the basic features of 
         ./ Test case name.
         ```
 
-        
-        
    3. Check the test case execution result.
-   
-        
 
 ## Reference
 
