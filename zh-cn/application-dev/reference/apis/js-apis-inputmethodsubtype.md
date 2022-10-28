@@ -23,7 +23,7 @@ import inputMethodEngine from '@ohos.inputMethodSubtype';
 | label | string | 是 | 否 | 否 | 输入法子类型的标签。 |
 | name | string | 是 | 否 | 是 | 输入法子类型的名字。 |
 | id | string | 是 | 否 | 是 | 输入法子类型的id。 |
-| mode | string | 是 | 否 | 否 | 输入法子类型的模式，包括upper和lower。 |
+| mode | string | 是 | 否 | 否 | 输入法子类型的模式，包括upper（大写）和lower（小写）。 |
 | locale | string | 是 | 否 | 是 | 输入法子类型的locale。 |
 | language | string | 是 | 否 | 是 | 输入法子类型的语言。 |
 | icon | string | 是 | 否 | 否 | 输入法子类型的图标。 |
