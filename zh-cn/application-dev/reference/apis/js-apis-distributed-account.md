@@ -190,7 +190,8 @@ setOsAccountDistributedInfo(accountInfo: DistributedInfo, callback: AsyncCallbac
 | 错误码ID | 错误信息|
 | -------- | ------------------- |
 | 12300001 | System service exception. |
-| 12300002 | invalid accountInfo. |
+| 12300002 | Invalid accountInfo. |
+| 12300003 | Account not found. |
 
 **示例：**
   ```js

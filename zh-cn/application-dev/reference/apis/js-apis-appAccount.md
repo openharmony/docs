@@ -97,7 +97,6 @@ createAccount(name: string, options: CreateAccountOptions, callback: AsyncCallba
 | 12300002 | Invalid name or options. |
 | 12300004 | Account already exists. |
 | 12300007 | The number of accounts reaches the upper limit. |
-| 12400003 | The number of custom data reaches the upper limit. |
 
 **示例：**
 
