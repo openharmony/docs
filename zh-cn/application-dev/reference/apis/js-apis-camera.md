@@ -3303,7 +3303,7 @@ isMirrorSupported(callback: AsyncCallback<boolean\>): void
 **示例：**
 
 ```js
-captureSession.isMirrorSupported((err, isSupported) => {
+photoOutput.isMirrorSupported((err, isSupported) => {
     if (err) {
         console.error(`Failed to check mirror is supported ${err.message}`);
         return;
@@ -3329,7 +3329,7 @@ isMirrorSupported(): Promise<boolean\>
 **示例：**
 
 ```js
-captureSession.isMirrorSupported().then((isSupported) => {
+photoOutput.isMirrorSupported().then((isSupported) => {
     console.log(`Promise returned with mirror supported: ${isSupported}`);
 })
 ```
