@@ -137,9 +137,9 @@
 | Name    | Description                  |
 | -------- | ---------------------- |
 | Top      | Top edge in the vertical direction.        |
-| Center<sup>(deprecated) </sup>   | Center position in the vertical direction.<br> This API is deprecated since API version 9.      |
+| Center<sup>(deprecated) </sup>   | Center position in the vertical direction.<br>This API is deprecated since API version 9.      |
 | Bottom   | Bottom edge in the vertical direction.        |
-| Baseline<sup>(deprecated) </sup> | Text baseline position in the cross axis direction.<br> This API is deprecated since API version 9.|
+| Baseline<sup>(deprecated) </sup> | Text baseline position in the cross axis direction.<br>This API is deprecated since API version 9. |
 | Start    | Start position in the horizontal direction.      |
 | Middle<sup>(deprecated) </sup>   | Center position in the horizontal direction.<br>This API is deprecated since API version 9.      |
 | End      | End position in the horizontal direction.      |
@@ -249,7 +249,7 @@
 | End          | The child components are aligned with the end edge of the main axis. The last component is aligned with the main-end, and other components are aligned with the next one.|
 | SpaceBetween | The child components are evenly distributed along the main axis. The space between any two adjacent components is the same. The first component is aligned with the main-start, the last component is aligned with the main-end, and the remaining components are distributed so that the space between any two adjacent components is the same.|
 | SpaceAround  | The child components are evenly distributed along the main axis. The space between any two adjacent components is the same. The space between the first component and main-start, and that between the last component and cross-main are both half the size of the space between two adjacent components.|
-| SpaceEvenly  | The child components are equally distributed along the main axis. The space between the first component and main-start, the space between the last component and main-end, and the space between two adjacent components are the same.|
+| SpaceEvenly  | The child components are evenly distributed along the main axis. The space between the first component and main-start, the space between the last component and main-end, and the space between any two adjacent components are the same. |
 
 ## ItemAlign
 
@@ -355,9 +355,9 @@
 
 | Name    | Description                                  |
 | -------- | -------------------------------------- |
-| Clip     | Extra-long text is truncated.              |
+| Clip     | Extra-long text is clipped.              |
 | Ellipsis | An ellipsis (...) is used to represent clipped text.|
-| None     | No truncation or ellipsis is used for extra-long text.                |
+| None     | No clipping or ellipsis is used for extra-long text.                |
 
 ## TextDecorationType
 
@@ -413,9 +413,9 @@
 
 | Name       | Description                |
 | ----------- | -------------------- |
-| None        | Copy and paste is not allowed.    |
-| InApp       | Intra-application copy and paste is allowed.|
-| LocalDevice | Intra-device copy and paste is allowed.|
+| None        | Copy is not allowed.    |
+| InApp       | Intra-application copy is allowed.|
+| LocalDevice | Intra-device copy is allowed.|
 
 ## HitTestMode<sup>9+</sup>
 
