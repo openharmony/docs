@@ -28,7 +28,7 @@ import audio from '@ohos.multimedia.audio';
 | --------------------------------------- | ----------| ---- | ---- | ------------------ |
 | LOCAL_NETWORK_ID<sup>9+</sup>           | string    | 是   | 否   | 本地设备网络id。<br> **系统能力：** SystemCapability.Multimedia.Audio.Device |
 | DEFAULT_VOLUME_GROUP_ID<sup>9+</sup>    | number    | 是   | 否   | 默认音量组id。<br> **系统能力：** SystemCapability.Multimedia.Audio.Volume       |
-| DEFAULT_INTERRUPT_GROUP_ID<sup>9+</sup> | number | 是   | 否   | 默认音频中断id。<br> **系统能力：** SystemCapability.Multimedia.Audio.Interrupt       |
+| DEFAULT_INTERRUPT_GROUP_ID<sup>9+</sup> | number | 是   | 否   | 默认音频中断组id。<br> **系统能力：** SystemCapability.Multimedia.Audio.Interrupt       |
 
 **示例：**
 
@@ -331,7 +331,7 @@ async function createTonePlayer(){
     "streamUsage": audio.StreamUsage.STREAM_USAGE_MEDIA,
     "rendererFlags": 0
   }
-  let tonePlayer = await audio.createTonePlayer(this.audioRendererInfo);
+  let tonePlayer = await audio.createTonePlayer(audioRendererInfo);
 }
 ```
 
