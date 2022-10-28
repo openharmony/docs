@@ -1027,5 +1027,5 @@ Camera驱动的开发过程主要包含以下步骤：
    ```
 
    以RK3568为例：        
-   1.执行全量编译命令./build.sh --product-name rk3568 --ccache，生成可执行二进制文件ohos_camera_demo，路径为：out/rk3568/packages/phone/vendor/bin/。        
-   2.将可执行文件ohos_camera_demo导入开发板，修改权限直接运行即可。
+   1. 执行全量编译命令./build.sh --product-name rk3568 --ccache，生成可执行二进制文件ohos_camera_demo，路径为：out/rk3568/packages/phone/vendor/bin/。        
+   2. 将可执行文件ohos_camera_demo导入开发板，修改权限直接运行即可。
