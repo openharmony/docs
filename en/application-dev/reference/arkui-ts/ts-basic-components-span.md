@@ -32,7 +32,7 @@ In addition to the [universal text style](ts-universal-attributes-text-style.md)
 | -------- | -------- | -------- |
 | decoration | {<br>type: [TextDecorationType](ts-appendix-enums.md#textdecorationtype),<br>color?: [ResourceColor](ts-types.md#resourcecolor)<br>} | Style and color of the text decorative line.<br>Default value: {<br>type: TextDecorationType.None<br>color: Color.Black<br>} |
 | letterSpacing       | number \| string  | Letter spacing.                                |
-| textCase | [TextCase](ts-appendix-enums.md#textcase) | Text case.<br>Default value: **Normal** |
+| textCase | [TextCase](ts-appendix-enums.md#textcase) | Text case.<br>Default value: **TextCase.Normal**|
 
 
 ## Events

@@ -1,14 +1,16 @@
 # Image
 
-The **\<image>** component is used to render and display images.
+The **\<Image>** component is used to render and display images.
 
->  **NOTE**
+> **NOTE**
 >
->  This component is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
+> This component is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
+
 
 ## Required Permissions
 
 To use online images, the application must have the **ohos.permission.INTERNET** permission. For details about how to apply for a permission, see [Declaring Permissions](../../security/accesstoken-guidelines.md).
+
 
 ## Child Components
 
@@ -19,38 +21,38 @@ Not supported
 
 Image(src: string | PixelMap | Resource)
 
+Obtains an image from the specified source for subsequent rendering and display.
+
 **Parameters**
 
-| Name| Type                                                    | Mandatory| Default Value| Description                                                    |
-| ------ | ------------------------------------------------------------ | ---- | ------ | ------------------------------------------------------------ |
-| src    | string\| [PixelMap](../apis/js-apis-image.md#pixelmap7)\| [Resource](ts-types.md#resource) | Yes  | -      | Image source. Both local and online images are supported.<br>When using resources referenced using a relative path, for example, `Image("common/test.jpg")`, the **\<Image>** component cannot be called across bundles or modules. Therefore, you are advised to use `$r` to reference image resources that need to be used globally.<br>- The following image formats are supported: PNG, JPG, BMP, SVG, GIF.<br>\- Base64 strings are supported. The value format is `data:image/[png\|jpeg\|bmp\|webp];base64,[base64 data]`, where `[base64 data]` is a Base64 string.<br/>\- The value can also be a path starting with `dataability://`, which is used to access the image path provided by a Data ability.<br>\- Strings with the `file:///data/storage` prefix are supported, which are used to read image resources in the` files` folder in the installation directory of the application. Using such strings requires read permission on the files in the installation directory. |
+| Name| Type                                                    | Mandatory| Description                                                    |
+| ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| src    | string\| [PixelMap](../apis/js-apis-image.md#pixelmap7) \| [Resource](ts-types.md#resource) | Yes  | Image source. Both local and online images are supported.<br>When using an image referenced using a relative path, for example, `Image("common/test.jpg")`, the **\<Image>** component cannot be called across bundles or modules. Therefore, you are advised to use `$r` to reference image resources that need to be used globally.<br>- The following image formats are supported: PNG, JPG, BMP, SVG, GIF.<br>\- Base64 strings are supported. The value format is `data:image/[png\|jpeg\|bmp\|webp];base64,[base64 data]`, where `[base64 data]` is a Base64 string.<br/>\- The value can also be a path starting with `dataability://`, which is used to access the image path provided by a Data ability. |
 
 ## Attributes
 
-| Name                   | Type                                    | Default Value     | Description                                      |
-| --------------------- | ---------------------------------------- | -------- | ---------------------------------------- |
-| alt                   | string \| [Resource](ts-types.md#resource) | -        | Placeholder image displayed during loading. Only local images are supported.                  |
-| objectFit             | [ImageFit](ts-appendix-enums.md#imagefit) | Cover    | Image scale mode.                              |
-| objectRepeat          | [ImageRepeat](ts-appendix-enums.md#imagerepeat) | NoRepeat | Whether the image is repeated.<br>> **NOTE**<br>> This attribute is not applicable to SVG images.|
-| interpolation         | ImageInterpolation                       | None     | Interpolation effect of the image. This attribute is intended to alleviate aliasing that occurs when a low-definition image is zoomed in.<br>> **NOTE**<br>> This attribute is not applicable to SVG images or **PixelMap** objects. |
-| renderMode            | ImageRenderMode                          | Original | Rendering mode of the image.<br>> **NOTE**<br>> This attribute is not applicable to SVG images.|
-| sourceSize            | {<br>width: number,<br>height: number<br>} | -        | Decoding size of the image. The original image is decoded into an image of the specified size. If the value is of the number type, the unit px is used.<br>> **NOTE**<br>> This attribute is not applicable to **PixelMap** objects.|
-| matchTextDirection    | boolean                                  | false    | Whether to display the image in the system language direction. When this parameter is set to true, the image is horizontally flipped in the right-to-left (RTL) language context.     |
-| fitOriginalSize       | boolean                                  | true     | Whether to fit the component to the original size of the image source when the component size is not set.               |
-| fillColor             | [ResourceColor](ts-types.md#resourcecolor8) | -        | Fill color of the image. This attribute only applies to an SVG image. Once set, the fill color will replace that of the SVG image.           |
-| autoResize            | boolean                                  | true     | Whether to resize the image source used for drawing based on the size of the display area during image decoding. This resizing can help reduce the memory usage.|
-| syncLoad<sup>8+</sup> | boolean                                  | false    | Whether to load the image synchronously. By default, the image is loaded asynchronously. During synchronous loading, the UI thread is blocked and the placeholder diagram is not displayed. |
+In addition to the [universal attributes](ts-universal-attributes-size.md), the following attributes are supported.
 
->  **NOTE**
->
->  For SVG images, only the following tags are included in the supported list: **svg**, **rect**, **circle**, **ellipse**, **path**, **line**, **polyline**, **polygon**, **animate**, **animateMotion**, and **animateTransform**.
+| Name                 | Type                                               | Description                                                        |
+| --------------------- | ------------------------------------------------------- | ------------------------------------------------------------ |
+| alt                   | string \| [Resource](ts-types.md#resource)| Placeholder image displayed during loading. Both local and Internet URIs are supported.                |
+| objectFit             | [ImageFit](ts-appendix-enums.md#imagefit)                           | Image scale mode.<br>Default value: **ImageFit.Cover**              |
+| objectRepeat          | [ImageRepeat](ts-appendix-enums.md#imagerepeat)         | Whether the image is repeated.<br>Default value: **NoRepeat**<br>**NOTE**<br>This attribute is not applicable to SVG images.|
+| interpolation         | ImageInterpolation               | Interpolation effect of the image. This attribute is intended to alleviate aliasing that occurs when a low-definition image is zoomed in.<br>Default value: **ImageInterpolation.None**<br>**NOTE**<br>This attribute is not applicable to SVG images.<br>This attribute is not applicable to **PixelMap** objects.|
+| renderMode            | ImageRenderMode                     | Rendering mode of the image.<br>Default value: **ImageRenderMode.Original**<br>**NOTE**<br>This attribute is not applicable to SVG images.|
+| sourceSize            | {<br>width: number,<br>height: number<br>} | Size of the decoded image. The original image is decoded into a **pixelMap** of the specified size, in px.<br>**NOTE**<br>This attribute is not applicable to **PixelMap** objects.|
+| matchTextDirection     | boolean | Whether to display the image in the system language direction. When this parameter is set to true, the image is horizontally flipped in the right-to-left (RTL) language context.<br>Default value: **false**  |
+| fitOriginalSize        | boolean | Whether to fit the component to the original size of the image source when the component size is not set.<br>Default value: **true**   |
+| fillColor              | [ResourceColor](ts-types.md#resourcecolor) | Fill color of the image. This attribute only applies to an SVG image. Once set, the fill color will replace that of the SVG image.|
+| autoResize             | boolean | Whether to resize the image source used for drawing based on the size of the display area during image decoding. This resizing can help reduce the memory usage.<br>Default value: **true**|
+| syncLoad<sup>8+</sup> | boolean                                  | Whether to load the image synchronously. By default, the image is loaded asynchronously. During synchronous loading, the UI thread is blocked and the placeholder diagram is not displayed.<br>Default value: **false**|
 
 ## ImageInterpolation
 
-| Name    | Description                      |
-| ------ | ------------------------ |
-| None   | Interpolation image data is not used.              |
-| High   | The interpolation image data is used at the high level. The use of the interpolation image data may affect the image rendering speed.|
+| Name    | Description                       |
+| ------ | ------------------------- |
+| None   | Interpolation image data is not used.               |
+| High   | The interpolation image data is used at the high level, which may affect the image rendering speed.|
 | Medium | The interpolation image data is used at the medium level.             |
 | Low    | The interpolation image data is used at the low level.             |
 
@@ -63,10 +65,11 @@ Image(src: string | PixelMap | Resource)
 
 ## Events
 
+
 | Name                                      | Description                                    |
 | ---------------------------------------- | ---------------------------------------- |
-| onComplete(callback: (event?: { width: number, height: number, componentWidth: number,<br> componentHeight: number, loadingStatus: number }) =&gt; void) | Triggered when an image is successfully loaded. The loaded image is returned.               |
-| onError(callback: (event?: { componentWidth: number, componentHeight: number }) =&gt; void) | Triggered when an exception occurs during image loading.                         |
+| onComplete(callback: (event?: { width: number, height: number, componentWidth: number,<br> componentHeight: number, loadingStatus: number }) =&gt; void) | Triggered when an image is successfully loaded. The size of the loaded image is returned.<br>- **width**: width of the image, in pixels.<br>- **height**: height of the image, in pixels.<br>- **componentWidth**: width of the container component, in pixels.<br>- **componentHeight**: height of the container component, in pixels.<br>- **loadingStatus**: image loading status.<br>|
+| onError(callback: (event?: { componentWidth: number, componentHeight: number }) =&gt; void) | Triggered when an exception occurs during image loading.<br>- **componentWidth**: width of the container component, in pixels.<br>- **componentHeight**: height of the container component, in pixels.<br>|
 | onFinish(event: () =&gt; void) | Triggered when the animation playback in the loaded SVG image is complete. If the animation is an infinite loop, this callback is not triggered.|
 
 
