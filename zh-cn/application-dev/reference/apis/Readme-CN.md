@@ -268,6 +268,7 @@
 - 测试
   - [@ohos.application.testRunner (TestRunner)](js-apis-testRunner.md)
   - [@ohos.uitest (UiTest)](js-apis-uitest.md)
+
 - 已停止维护的接口
   - [@ohos.backgroundTaskManager (后台任务管理)](js-apis-backgroundTaskManager.md)
   - [@ohos.bundleState (设备使用信息统计)](js-apis-deviceUsageStatistics.md)
