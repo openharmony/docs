@@ -31,24 +31,21 @@ animation(value: {duration?: number, tempo?: number, curve?: string | Curve | IC
 struct AttrAnimationExample {
   @State widthSize: number = 250
   @State heightSize: number = 100
-  @State changeColor: number = 0xFF0000FF
   @State rotateAngle: number = 0
-  @State flagA: boolean = true
-  @State flagB: boolean = true
-  @State flagC: boolean = true
+  @State flag: boolean = true
 
   build() {
     Column() {
       Button('change width and height')
         .onClick(() => {
-          if (this.flagA) {
+          if (this.flag) {
             this.widthSize = 100
             this.heightSize = 50
           } else {
             this.widthSize = 250
             this.heightSize = 100
           }
-          this.flagA = !this.flagA
+          this.flag = !this.flag
         })
         .margin(30)
         .width(this.widthSize)
@@ -56,43 +53,20 @@ struct AttrAnimationExample {
         .animation({
           duration: 2000,
           curve: Curve.EaseOut,
-          delay: 500,
-          iterations: 1,
-          playMode: PlayMode.Normal
-        })
-      Button('change backgroundColor')
-        .onClick(() => {
-          if (this.flagB) {
-            this.changeColor = 0xFFFF4500
-          } else {
-            this.changeColor = 0xFF0000FF
-          }
-          this.flagB = !this.flagB
-        })
-        .margin(30)
-        .backgroundColor(this.changeColor)
-        .animation({
-          duration: 800,
-          curve: Curve.ExtremeDeceleration,
           iterations: 3,
           playMode: PlayMode.Normal
         })
       Button('change rotate angle')
         .onClick(() => {
-          if (this.flagC) {
-            this.rotateAngle = 90
-          } else {
-            this.rotateAngle = 0
-          }
-          this.flagC = !this.flagC
+          this.rotateAngle = 90
         })
-        .margin(30)
+        .margin(50)
         .rotate({ angle: this.rotateAngle })
         .animation({
           duration: 1200,
           curve: Curve.Friction,
           delay: 500,
-          iterations: 10,
+          iterations: -1,   // 设置-1表示动画无限循环
           playMode: PlayMode.AlternateReverse
         })
     }.width('100%').margin({ top: 20 })
