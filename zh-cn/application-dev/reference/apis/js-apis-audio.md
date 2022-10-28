@@ -1166,7 +1166,7 @@ let audioRoutingManager = audioManager.getRoutingManager();
 
 ## AudioVolumeManager<sup>9+</sup>
 
-音量管理。在使用AudioVolumeManager的接口前，需要使用[getVolumeManager](#getVolumeManager9)获取AudioVolumeManager实例。
+音量管理。在使用AudioVolumeManager的接口前，需要使用[getVolumeManager](#getvolumemanager9)获取AudioVolumeManager实例。
 
 ### getVolumeGroupInfos<sup>9+</sup>
 
@@ -5978,7 +5978,7 @@ on(type: 'ringerModeChange', callback: Callback\<AudioRingMode>): void
 监听铃声模式变化事件。
 
 > **说明：**
-> 从 API version 8 开始支持，从 API version 9 开始废弃，建议使用AudioVolumeGroupManager中的[on('ringerModeChange')](#on('ringermodechange')9)替代。
+> 从 API version 8 开始支持，从 API version 9 开始废弃，建议使用AudioVolumeGroupManager中的[on('ringerModeChange')](#onringermodechange9)替代。
 
 **系统接口：** 该接口为系统接口
 
