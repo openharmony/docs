@@ -1,4 +1,4 @@
-﻿﻿# 接口
+﻿# 接口
 - [开发说明](development-intro.md)
 - Ability框架
   - FA模型
@@ -197,8 +197,8 @@
   - [@ohos.hiTraceMeter (性能打点)](js-apis-hitracemeter.md)
   - [@ohos.inputmethod (输入法框架)](js-apis-inputmethod.md)
   - [@ohos.inputmethodengine (输入法服务)](js-apis-inputmethodengine.md)
-  - [@ohos.inputmethodextensionability (InputMethodExtensionAbility)](js-apis-inputmethod-extension-ability.md)
-  - [@ohos.inputmethodextensioncontext (InputMethodExtensionContext)](js-apis-inputmethod-extension-context.md)
+  - [@ohos.inputmethodextensionability (InputMethodExtensionAbility)](js-apis-inputMethodExtensionAbility.md)
+  - [@ohos.inputmethodextensioncontext (InputMethodExtensionContext)](js-apis-inputMethodExtensionContext.md)
   - [@ohos.inputmethodsubtype(InputMethodSubtype)](js-apis-inputmethodsubtype.md)
   - [@ohos.pasteboard (剪贴板)](js-apis-pasteboard.md)
   - [@ohos.screenLock (锁屏管理)](js-apis-screen-lock.md)
