@@ -57,15 +57,14 @@ isIdleState(bundleName: string, callback: AsyncCallback&lt;boolean&gt;): void
 | 10000006   | Get application info failed.     |
 
 **示例**：
-
-  ```
+  ```js
     try{
         usageStatistics.isIdleState("com.ohos.camera", (err, res) => {
-        if (err) {
-            console.log('BUNDLE_ACTIVE isIdleState callback failed. code is: ' + err.code + ',message is: ' + err.message);
-        } else {
-            console.log('BUNDLE_ACTIVE isIdleState callback succeeded, result: ' + JSON.stringify(res));
-        }
+            if (err) {
+                console.log('BUNDLE_ACTIVE isIdleState callback failed. code is: ' + err.code + ',message is: ' + err.message);
+            } else {
+                console.log('BUNDLE_ACTIVE isIdleState callback succeeded, result: ' + JSON.stringify(res));
+            }
         });
     } catch(error) {
         console.log('BUNDLE_ACTIVE isIdleState throw error, code is: ' + error.code + ',message is: ' + error.message);
@@ -111,7 +110,7 @@ isIdleState(bundleName: string): Promise&lt;boolean&gt;
         usageStatistics.isIdleState("com.ohos.camera").then( res => {
             console.log('BUNDLE_ACTIVE isIdleState promise succeeded, result: ' + JSON.stringify(res));
         }).catch( err => {
-        console.log('BUNDLE_ACTIVE isIdleState promise failed. code is: ' + err.code + ',message is: ' + err.message);
+            console.log('BUNDLE_ACTIVE isIdleState promise failed. code is: ' + err.code + ',message is: ' + err.message);
         });
     } catch (error) {
         console.log('BUNDLE_ACTIVE isIdleState throw error, code is: ' + error.code + ',message is: ' + error.message);
@@ -193,11 +192,11 @@ queryAppGroup(callback: AsyncCallback&lt;number&gt;): void
 ```javascript
     try{
         usageStatistics.queryAppGroup((err, res) => {
-        if(err) {
-            console.log('BUNDLE_ACTIVE queryAppGroup callback failed. code is: ' + err.code + ',message is: ' + err.message);
-        } else {
-            console.log('BUNDLE_ACTIVE queryAppGroup callback succeeded. result: ' + JSON.stringify(res));
-        }
+            if(err) {
+                console.log('BUNDLE_ACTIVE queryAppGroup callback failed. code is: ' + err.code + ',message is: ' + err.message);
+            } else {
+                console.log('BUNDLE_ACTIVE queryAppGroup callback succeeded. result: ' + JSON.stringify(res));
+            }
         });
     } catch (error) {
         console.log('BUNDLE_ACTIVE queryAppGroup throw error, code is: ' + error.code + ',message is: ' + error.message);
@@ -243,15 +242,15 @@ queryBundleStatsInfos(begin: number, end: number, callback: AsyncCallback&lt;Bun
     try{
         usageStatistics.queryBundleStatsInfos(0, 20000000000000, (err, res) => {
             if (err) {
-            console.log('BUNDLE_ACTIVE queryBundleStatsInfos callback failed. code is: ' + err.code + ',message is: ' + err.message);
+                console.log('BUNDLE_ACTIVE queryBundleStatsInfos callback failed. code is: ' + err.code + ',message is: ' + err.message);
             } else {
-            console.log('BUNDLE_ACTIVE queryBundleStatsInfos callback success.');
-            let i = 1;
-            for(let key in res){
-                console.log('BUNDLE_ACTIVE queryBundleStatsInfos callback number : ' + i);
-                console.log('BUNDLE_ACTIVE queryBundleStatsInfos callback result ' + JSON.stringify(res[key]));
-                i++;
-            }
+                console.log('BUNDLE_ACTIVE queryBundleStatsInfos callback success.');
+                let i = 1;
+                for(let key in res){
+                    console.log('BUNDLE_ACTIVE queryBundleStatsInfos callback number : ' + i);
+                    console.log('BUNDLE_ACTIVE queryBundleStatsInfos callback result ' + JSON.stringify(res[key]));
+                    i++;
+                }
             }
         });
     } catch (error) {
@@ -305,9 +304,9 @@ queryBundleStatsInfos(begin: number, end: number): Promise&lt;BundleStatsMap&gt;
             console.log('BUNDLE_ACTIVE queryBundleStatsInfos promise success.');
             let i = 1;
             for(let key in res){
-            console.log('BUNDLE_ACTIVE queryBundleStatsInfos promise number : ' + i);
-            console.log('BUNDLE_ACTIVE queryBundleStatsInfos promise result ' + JSON.stringify(res[key]));
-            i++;
+                console.log('BUNDLE_ACTIVE queryBundleStatsInfos promise number : ' + i);
+                console.log('BUNDLE_ACTIVE queryBundleStatsInfos promise result ' + JSON.stringify(res[key]));
+                i++;
             }
         }).catch( err => {
             console.log('BUNDLE_ACTIVE queryBundleStatsInfos promise failed. code is: ' + err.code + ',message is: ' + err.message);
@@ -357,13 +356,13 @@ queryBundleStatsInfoByInterval(byInterval: IntervalType, begin: number, end: num
     try{
         usageStatistics.queryBundleStatsInfoByInterval(0, 0, 20000000000000, (err, res) => {
             if (err) {
-            console.log('BUNDLE_ACTIVE queryBundleStatsInfoByInterval callback failed. code is: ' + err.code + ',message is: ' + err.message);
+                console.log('BUNDLE_ACTIVE queryBundleStatsInfoByInterval callback failed. code is: ' + err.code + ',message is: ' + err.message);
             } else {
-            console.log('BUNDLE_ACTIVE queryBundleStatsInfoByInterval callback success.');
-            for (let i = 0; i < res.length; i++) {
-                console.log('BUNDLE_ACTIVE queryBundleStatsInfoByInterval callback number : ' + (i + 1));
-                console.log('BUNDLE_ACTIVE queryBundleStatsInfoByInterval callback result ' + JSON.stringify(res[i]));
-            }
+                console.log('BUNDLE_ACTIVE queryBundleStatsInfoByInterval callback success.');
+                for (let i = 0; i < res.length; i++) {
+                    console.log('BUNDLE_ACTIVE queryBundleStatsInfoByInterval callback number : ' + (i + 1));
+                    console.log('BUNDLE_ACTIVE queryBundleStatsInfoByInterval callback result ' + JSON.stringify(res[i]));
+                }
             }
         });
     } catch (error) {
@@ -417,8 +416,8 @@ queryBundleStatsInfoByInterval(byInterval: IntervalType, begin: number, end: num
         usageStatistics.queryBundleStatsInfoByInterval(0, 0, 20000000000000).then( res => {
             console.log('BUNDLE_ACTIVE queryBundleStatsInfoByInterval promise success.');
             for (let i = 0; i < res.length; i++) {
-            console.log('BUNDLE_ACTIVE queryBundleStatsInfoByInterval promise number : ' + (i + 1));
-            console.log('BUNDLE_ACTIVE queryBundleStatsInfoByInterval promise result ' + JSON.stringify(res[i]));
+                console.log('BUNDLE_ACTIVE queryBundleStatsInfoByInterval promise number : ' + (i + 1));
+                console.log('BUNDLE_ACTIVE queryBundleStatsInfoByInterval promise result ' + JSON.stringify(res[i]));
             }
         }).catch( err => {
             console.log('BUNDLE_ACTIVE queryBundleStatsInfoByInterval promise failed. code is: ' + err.code + ',message is: ' + err.message);
@@ -467,13 +466,13 @@ queryBundleEvents(begin: number, end: number, callback: AsyncCallback&lt;Array&l
     try{
         usageStatistics.queryBundleEvents(0, 20000000000000, (err, res) => {
             if (err) {
-            console.log('BUNDLE_ACTIVE queryBundleEvents callback failed. code is: ' + err.code + ',message is: ' + err.message);
+                console.log('BUNDLE_ACTIVE queryBundleEvents callback failed. code is: ' + err.code + ',message is: ' + err.message);
             } else {
-            console.log('BUNDLE_ACTIVE queryBundleEvents callback success.');
-            for (let i = 0; i < res.length; i++) {
-                console.log('BUNDLE_ACTIVE queryBundleEvents callback number : ' + (i + 1));
-                console.log('BUNDLE_ACTIVE queryBundleEvents callback result ' + JSON.stringify(res[i]));
-            }
+                console.log('BUNDLE_ACTIVE queryBundleEvents callback success.');
+                for (let i = 0; i < res.length; i++) {
+                    console.log('BUNDLE_ACTIVE queryBundleEvents callback number : ' + (i + 1));
+                    console.log('BUNDLE_ACTIVE queryBundleEvents callback result ' + JSON.stringify(res[i]));
+                }
             }
         });
     } catch (error) {
@@ -526,8 +525,8 @@ queryBundleEvents(begin: number, end: number): Promise&lt;Array&lt;BundleEvents&
         usageStatistics.queryBundleEvents(0, 20000000000000).then( res => {
             console.log('BUNDLE_ACTIVE queryBundleEvents promise success.');
             for (let i = 0; i < res.length; i++) {
-            console.log('BUNDLE_ACTIVE queryBundleEvents promise number : ' + (i + 1));
-            console.log('BUNDLE_ACTIVE queryBundleEvents promise result ' + JSON.stringify(res[i]));
+                console.log('BUNDLE_ACTIVE queryBundleEvents promise number : ' + (i + 1));
+                console.log('BUNDLE_ACTIVE queryBundleEvents promise result ' + JSON.stringify(res[i]));
             }
         }).catch( err => {
             console.log('BUNDLE_ACTIVE queryBundleEvents promise failed. code is: ' + err.code + ',message is: ' + err.message);
@@ -572,13 +571,13 @@ queryCurrentBundleEvents(begin: number, end: number, callback: AsyncCallback&lt;
     try{
         usageStatistics.queryCurrentBundleEvents(0, 20000000000000, (err, res) => {
             if (err) {
-            console.log('BUNDLE_ACTIVE queryCurrentBundleEvents callback failed. code is: ' + err.code + ',message is: ' + err.message);
+                console.log('BUNDLE_ACTIVE queryCurrentBundleEvents callback failed. code is: ' + err.code + ',message is: ' + err.message);
             } else {
-            console.log('BUNDLE_ACTIVE queryCurrentBundleEvents callback success.');
-            for (let i = 0; i < res.length; i++) {
-                console.log('BUNDLE_ACTIVE queryCurrentBundleEvents callback number : ' + (i + 1));
-                console.log('BUNDLE_ACTIVE queryCurrentBundleEvents callback result ' + JSON.stringify(res[i]));
-            }
+                console.log('BUNDLE_ACTIVE queryCurrentBundleEvents callback success.');
+                for (let i = 0; i < res.length; i++) {
+                    console.log('BUNDLE_ACTIVE queryCurrentBundleEvents callback number : ' + (i + 1));
+                    console.log('BUNDLE_ACTIVE queryCurrentBundleEvents callback result ' + JSON.stringify(res[i]));
+                }
             }
         });
     } catch (error) {
@@ -627,8 +626,8 @@ queryCurrentBundleEvents(begin: number, end: number): Promise&lt;Array&lt;Bundle
         usageStatistics.queryCurrentBundleEvents(0, 20000000000000).then( res => {
             console.log('BUNDLE_ACTIVE queryCurrentBundleEvents promise success.');
             for (let i = 0; i < res.length; i++) {
-            console.log('BUNDLE_ACTIVE queryCurrentBundleEvents promise number : ' + (i + 1));
-            console.log('BUNDLE_ACTIVE queryCurrentBundleEvents promise result ' + JSON.stringify(res[i]));
+                console.log('BUNDLE_ACTIVE queryCurrentBundleEvents promise number : ' + (i + 1));
+                console.log('BUNDLE_ACTIVE queryCurrentBundleEvents promise result ' + JSON.stringify(res[i]));
             }
         }).catch( err => {
             console.log('BUNDLE_ACTIVE queryCurrentBundleEvents promise failed. code is: ' + err.code + ',message is: ' + err.message);
@@ -831,15 +830,15 @@ queryModuleUsageRecords(maxNum: number, callback: AsyncCallback&lt;Array&lt;HapM
   ```js
     try{
         usageStatistics.queryModuleUsageRecords(1000, (err, res) => {
-        if(err) {
-            console.log('BUNDLE_ACTIVE queryModuleUsageRecords callback failed. code is: ' + err.code + ',message is: ' + err.message);
-        } else {
-            console.log('BUNDLE_ACTIVE queryModuleUsageRecords callback succeeded.');
-            for (let i = 0; i < res.length; i++) {
-            console.log('BUNDLE_ACTIVE queryModuleUsageRecords callback number : ' + (i + 1));
-            console.log('BUNDLE_ACTIVE queryModuleUsageRecords callback result ' + JSON.stringify(res[i]));
+            if(err) {
+                console.log('BUNDLE_ACTIVE queryModuleUsageRecords callback failed. code is: ' + err.code + ',message is: ' + err.message);
+            } else {
+                console.log('BUNDLE_ACTIVE queryModuleUsageRecords callback succeeded.');
+                for (let i = 0; i < res.length; i++) {
+                    console.log('BUNDLE_ACTIVE queryModuleUsageRecords callback number : ' + (i + 1));
+                    console.log('BUNDLE_ACTIVE queryModuleUsageRecords callback result ' + JSON.stringify(res[i]));
+                }
             }
-        }
         });
     } catch (error) {
         console.log('BUNDLE_ACTIVE queryModuleUsageRecords throw error, code is: ' + error.code + ',message is: ' + error.message);
@@ -893,7 +892,7 @@ queryAppGroup(bundleName : string): Promise&lt;number&gt;
         usageStatistics.queryAppGroup(bundleName).then( res => {
             console.log('BUNDLE_ACTIVE queryAppGroup promise succeeded. result: ' + JSON.stringify(res));
         }).catch( err => {
-        console.log('BUNDLE_ACTIVE queryAppGroup promise failed. code is: ' + err.code + ',message is: ' + err.message);
+            console.log('BUNDLE_ACTIVE queryAppGroup promise failed. code is: ' + err.code + ',message is: ' + err.message);
         });
     } catch (error) {
         console.log('BUNDLE_ACTIVE queryAppGroup throw error, code is: ' + error.code + ',message is: ' + error.message);
@@ -939,11 +938,11 @@ queryAppGroup(bundleName : string, callback: AsyncCallback&lt;number&gt;): void
     let bundleName = "com.ohos.camera";
     try{
         usageStatistics.queryAppGroup(bundleName, (err, res) => {
-        if(err) {
-            console.log('BUNDLE_ACTIVE queryAppGroup callback failed. code is: ' + err.code + ',message is: ' + err.message);
-        } else {
-            console.log('BUNDLE_ACTIVE queryAppGroup callback succeeded. result: ' + JSON.stringify(res));
-        }
+            if(err) {
+                console.log('BUNDLE_ACTIVE queryAppGroup callback failed. code is: ' + err.code + ',message is: ' + err.message);
+            } else {
+                console.log('BUNDLE_ACTIVE queryAppGroup callback succeeded. result: ' + JSON.stringify(res));
+            }
         });
     } catch (error) {
         console.log('BUNDLE_ACTIVE queryAppGroup throw error, code is: ' + error.code + ',message is: ' + error.message);
@@ -999,7 +998,7 @@ setAppGroup(bundleName: string, newGroup: GroupType): Promise&lt;void&gt;
         usageStatistics.setAppGroup(bundleName, newGroup).then( () => {
             console.log('BUNDLE_ACTIVE setAppGroup promise succeeded.');
         }).catch( err => {
-        console.log('BUNDLE_ACTIVE setAppGroup promise failed. code is: ' + err.code + ',message is: ' + err.message);
+            console.log('BUNDLE_ACTIVE setAppGroup promise failed. code is: ' + err.code + ',message is: ' + err.message);
         });
     } catch (error) {
         console.log('BUNDLE_ACTIVE setAppGroup throw error, code is: ' + error.code + ',message is: ' + error.message);
@@ -1048,9 +1047,9 @@ setAppGroup(bundleName: string, newGroup: GroupType, callback: AsyncCallback&lt;
     try{
         usageStatistics.setAppGroup(bundleName, newGroup, (err) => {
             if(err) {
-            console.log('BUNDLE_ACTIVE setAppGroup callback failed. code is: ' + err.code + ',message is: ' + err.message);
+                console.log('BUNDLE_ACTIVE setAppGroup callback failed. code is: ' + err.code + ',message is: ' + err.message);
             } else {
-            console.log('BUNDLE_ACTIVE setAppGroup callback succeeded.');
+                console.log('BUNDLE_ACTIVE setAppGroup callback succeeded.');
             }
         });
     } catch (error) {
@@ -1109,7 +1108,7 @@ registerAppGroupCallBack(groupCallback: Callback&lt;AppGroupCallbackInfo&gt;): P
         usageStatistics.registerAppGroupCallBack(onBundleGroupChanged).then( () => {
             console.log('BUNDLE_ACTIVE registerAppGroupCallBack promise succeeded.');
         }).catch( err => {
-        console.log('BUNDLE_ACTIVE registerAppGroupCallBack promise failed. code is: ' + err.code + ',message is: ' + err.message);
+            console.log('BUNDLE_ACTIVE registerAppGroupCallBack promise failed. code is: ' + err.code + ',message is: ' + err.message);
         });
     } catch (error) {
         console.log('BUNDLE_ACTIVE registerAppGroupCallBack throw error, code is: ' + error.code + ',message is: ' + error.message);
@@ -1160,12 +1159,12 @@ registerAppGroupCallBack(groupCallback: Callback&lt;AppGroupCallbackInfo&gt;, ca
         console.log('BUNDLE_ACTIVE registerAppGroupCallBack result bundleName is : ' + res.bundleName);
     };
     try{
-        usageStatistics.registerAppGroupCallBack(onBundleGroupChanged, error => {
-        if(error) {
-            console.log('BUNDLE_ACTIVE registerAppGroupCallBack callback failed. code is: ' + err.code + ',message is: ' + err.message);
-        } else {
-            console.log('BUNDLE_ACTIVE registerAppGroupCallBack callback success.');
-        }
+        usageStatistics.registerAppGroupCallBack(onBundleGroupChanged, err => {
+            if(err) {
+                console.log('BUNDLE_ACTIVE registerAppGroupCallBack callback failed. code is: ' + err.code + ',message is: ' + err.message);
+            } else {
+                console.log('BUNDLE_ACTIVE registerAppGroupCallBack callback success.');
+            }
         });
     } catch (error) {
         console.log('BUNDLE_ACTIVE registerAppGroupCallBack throw error, code is: ' + error.code + ',message is: ' + error.message);
@@ -1252,12 +1251,12 @@ unregisterAppGroupCallBack(callback: AsyncCallback&lt;void&gt;): void;
 
 ```javascript
     try{
-        usageStatistics.unregisterAppGroupCallBack(error => {
-        if(error) {
-            console.log('BUNDLE_ACTIVE unregisterAppGroupCallBack callback failed. code is: ' + err.code + ',message is: ' + err.message);
-        } else {
-            console.log('BUNDLE_ACTIVE unregisterAppGroupCallBack callback success.');
-        }
+        usageStatistics.unregisterAppGroupCallBack(err => {
+            if(err) {
+                console.log('BUNDLE_ACTIVE unregisterAppGroupCallBack callback failed. code is: ' + err.code + ',message is: ' + err.message);
+            } else {
+                console.log('BUNDLE_ACTIVE unregisterAppGroupCallBack callback success.');
+            }
         });
     } catch (error) {
         console.log('BUNDLE_ACTIVE unregisterAppGroupCallBack throw error, code is: ' + error.code + ',message is: ' + error.message);
@@ -1356,10 +1355,10 @@ queryDeviceEventStats(begin: number, end: number, callback: AsyncCallback&lt;Arr
     try{
         usageStatistics.queryDeviceEventStats(0, 20000000000000, (err, res) => {
             if(err) {
-            console.log('BUNDLE_ACTIVE queryDeviceEventStats callback failed. code is: ' + err.code + ',message is: ' + err.message);
+                console.log('BUNDLE_ACTIVE queryDeviceEventStats callback failed. code is: ' + err.code + ',message is: ' + err.message);
             } else {
-            console.log('BUNDLE_ACTIVE queryDeviceEventStats callback success.');
-            console.log('BUNDLE_ACTIVE queryDeviceEventStats callback result ' + JSON.stringify(res));
+                console.log('BUNDLE_ACTIVE queryDeviceEventStats callback success.');
+                console.log('BUNDLE_ACTIVE queryDeviceEventStats callback result ' + JSON.stringify(res));
             }
         });
     } catch (error) {
@@ -1459,10 +1458,10 @@ queryNotificationEventStats(begin: number, end: number, callback: AsyncCallback&
     try{
         usageStatistics.queryNotificationEventStats(0, 20000000000000, (err, res) => {
             if(err) {
-            console.log('BUNDLE_ACTIVE queryNotificationEventStats callback failed. code is: ' + err.code + ',message is: ' + err.message);
+                console.log('BUNDLE_ACTIVE queryNotificationEventStats callback failed. code is: ' + err.code + ',message is: ' + err.message);
             } else {
-            console.log('BUNDLE_ACTIVE queryNotificationEventStats callback success.');
-            console.log('BUNDLE_ACTIVE queryNotificationEventStats callback result ' + JSON.stringify(res));
+                console.log('BUNDLE_ACTIVE queryNotificationEventStats callback success.');
+                console.log('BUNDLE_ACTIVE queryNotificationEventStats callback result ' + JSON.stringify(res));
             }
         });
     } catch (error) {
