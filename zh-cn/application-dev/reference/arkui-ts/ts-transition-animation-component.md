@@ -59,5 +59,3 @@ struct TransitionExample {
   }
 }
 ```
-
-![zh-cn_image_0000001174582850](figures/zh-cn_image_0000001174582850.gif)
