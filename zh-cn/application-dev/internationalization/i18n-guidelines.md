@@ -228,7 +228,7 @@
 
 1. 度量衡单位转换。
 
-   调用[unitConvert](../reference/apis/js-apis-i18n.md#unitconvert8)方法实现度量衡单位转换，并进行格式化显示的功能。
+   调用[unitConvert](../reference/apis/js-apis-i18n.md#unitconvert9)方法实现度量衡单位转换，并进行格式化显示的功能。
 
    ```js
    var fromUnit = {unit: "cup", measureSystem: "US"};
