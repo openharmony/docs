@@ -1132,7 +1132,7 @@ showOptionalInputMethods(callback: AsyncCallback&lt;boolean&gt;): void
 
 ```js
 try {
-    InputMethodSetting.showOptionalInputMethods((err) => {
+    InputMethodSetting.showOptionalInputMethods((err, data) => {
         if (err) {
             console.error('showOptionalInputMethods failed: ' + JSON.stringify(err));
             return;
@@ -1171,7 +1171,7 @@ showOptionalInputMethods(): Promise&lt;boolean&gt;
 **示例：**
 
 ```js
-InputMethodSetting.showOptionalInputMethods().then(() => {
+InputMethodSetting.showOptionalInputMethods().then((data) => {
     console.info('displayOptionalInputMethod success.');
 }).catch((err) => {
     console.error('displayOptionalInputMethod err: ' + err);
