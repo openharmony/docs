@@ -526,7 +526,7 @@ struct Conversation {
 
 - 通过[Flex组件](../../reference/arkui-ts/ts-container-flex.md)将三个部分组合起来，注意justifyContent: FlexAlign.SpaceBetween配置项是将Flex组件中的元素按照主轴方向均匀分配，其中第一个元素与顶部对齐，最后一个元素与底部对齐。
 
-- 通过[List组件](../../reference/arkui-ts/ts-container-list.md)和[ForEach语法](../../ui/ts-rending-control-syntax-foreach.md)，显示整个消息列表。
+- 通过[List组件](../../reference/arkui-ts/ts-container-list.md)和[ForEach语法](../../quick-start/arkts-rendering-control.md#循环渲染)，显示整个消息列表。
 
   | 默认设备 | 平板 | 
   | -------- | -------- |
