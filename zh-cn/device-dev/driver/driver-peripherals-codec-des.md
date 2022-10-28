@@ -172,7 +172,7 @@ HCS配置包括两部分：
 
 HCS配置内容包括：驱动节点、加载顺序、服务名称等。HCS语法可参考[配置管理](driver-hdf-manage.md)。
 
-标准系统配置文件路径（其它系统暂不涉及）：
+以RK3568开发板为例，标准系统配置文件路径（其它系统暂不涉及）：
 vendor/hihope/rk3568/hdf_config/uhdf/
 
 1. device相关配置
