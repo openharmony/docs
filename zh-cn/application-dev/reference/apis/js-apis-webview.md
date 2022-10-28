@@ -26,7 +26,7 @@ import web_webview from '@ohos.web.webview';
 
 close(): void
 
-关闭该信息端口。
+关闭该消息端口。
 
 **系统能力：**
 SystemCapability.Web.Webview.Core
@@ -59,7 +59,7 @@ struct WebComponent {
 
 postMessageEvent(message: string): void
 
-发送消息。
+发送消息。完整示例代码参考[postMessage](#postmessage)
 
 **系统能力：**
 SystemCapability.Web.Webview.Core
@@ -112,7 +112,7 @@ struct WebComponent {
 
 onMessageEvent(callback: (result: string) => void): void
 
-注册回调函数，接收HTML5侧发送过来的消息。
+注册回调函数，接收HTML5侧发送过来的消息。完整示例代码参考[postMessage](#postmessage)
 
 **系统能力：**
 SystemCapability.Web.Webview.Core
@@ -1293,7 +1293,7 @@ struct WebComponent {
 
  createWebMessagePorts(): Array\<WebMessagePort>
 
-创建Web信息端口。
+创建Web消息端口。
 
 **系统能力：**
 SystemCapability.Web.Webview.Core
@@ -1302,7 +1302,7 @@ SystemCapability.Web.Webview.Core
 
 | 类型                   | 说明              |
 | ---------------------- | ----------------- |
-| Array\<WebMessagePort> | web信息端口列表。 |
+| Array\<WebMessagePort> | web消息端口列表。 |
 
 **错误码**：
 
@@ -1345,7 +1345,7 @@ struct WebComponent {
 
 postMessage(name: string, ports: Array\<WebMessagePort>, uri: string): void
 
-发送Web信息端口到HTML5。
+发送Web消息端口到HTML5。
 
 **系统能力：**
 SystemCapability.Web.Webview.Core
@@ -1354,9 +1354,9 @@ SystemCapability.Web.Webview.Core
 
 | 参数名 | 类型                   | 必填 | 默认值 | 说明                             |
 | ------ | ---------------------- | ---- | ------ | :------------------------------- |
-| name   | string                 | 是   | -      | 要发送的信息，包含数据和信息端口 |
-| ports  | Array\<WebMessagePort> | 是   | -      | 接收该信息的URI。                |
-| uri    | string                 | 是   | -      | 接收该信息的URI。                |
+| name   | string                 | 是   | -      | 要发送的消息，包含数据和消息端口。 |
+| ports  | Array\<WebMessagePort> | 是   | -      | 接收该消息的URI。                |
+| uri    | string                 | 是   | -      | 接收该消息的URI。                |
 
 **错误码**：
 

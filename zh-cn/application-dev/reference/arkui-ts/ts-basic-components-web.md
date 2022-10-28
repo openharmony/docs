@@ -3597,14 +3597,14 @@ getCookieManager(): WebCookie
 
 createWebMessagePorts(): Array\<WebMessagePort\>
 
-创建Web信息端口。
+创建Web消息端口。
 
 **返回值：**
 
 
 | 类型                              | 说明            |
 | ------------------------------- | ------------- |
-| Array\<[WebMessagePort](#webmessageport9)\> | web信息端口列表。 |
+| Array\<[WebMessagePort](#webmessageport9)\> | web消息端口列表。 |
 
 **示例：**
 
@@ -3632,14 +3632,14 @@ createWebMessagePorts(): Array\<WebMessagePort\>
 
 postMessage(options: { message: WebMessageEvent, uri: string}): void
 
-发送Web信息端口到HTML5。
+发送Web消息端口到HTML5。
 
 **参数：**
 
 | 参数名        | 参数类型            | 必填   | 默认值  | 参数描述                      |
 | ---------- | --------------- | ---- | ---- | ------------------------- |
-| message     | [WebMessageEvent](#webmessageevent9)          | 是    | -    |要发送的信息，包含数据和信息端口 。 |
-| uri       | string          | 是    | -    | 接收该信息的URI。 |
+| message     | [WebMessageEvent](#webmessageevent9)          | 是    | -    |要发送的消息，包含数据和消息端口。 |
+| uri       | string          | 是    | -    | 接收该消息的URI。 |
 
 **示例：**
 
@@ -5361,7 +5361,7 @@ storeWebArchive(baseName: string, autoName: boolean): Promise<string>
 ### close<sup>9+</sup>
 close(): void
 
-关闭该信息端口。
+关闭该消息端口。
 
 ### postMessageEvent<sup>9+</sup>
 postMessageEvent(message: WebMessageEvent): void
