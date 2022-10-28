@@ -34,13 +34,13 @@ Enumerates the focus directions.
 | up       | Search for the next focusable item above the current item in focus.|
 | down     | Search for the next focusable item below the current item in focus.|
 | left     | Search for the next focusable item on the left of the current item in focus.|
-| right    | Search for the next focusable item on the right the current item in focus.|
+| right    | Search for the next focusable item on the right of the current item in focus.|
 | forward  | Search for the next focusable item before the current item in focus.|
 | backward | Search for the next focusable item after the current item in focus.|
 
 ## FocusType
 
-Enumerates of the focus types.
+Enumerates the focus types.
 
 **System capability**: SystemCapability.BarrierFree.Accessibility.Core
 
@@ -54,8 +54,6 @@ Enumerates of the focus types.
 Defines a rectangle.
 
 **System capability**: SystemCapability.BarrierFree.Accessibility.Core
-
-**Parameters**
 
 | Name    | Type  | Readable  | Writable  | Description       |
 | ------ | ------ | ---- | ---- | --------- |
@@ -75,35 +73,9 @@ Enumerates the window types.
 | application | Application window.|
 | system      | System window.|
 
-## AccessibilityExtensionContext.setEventTypeFilter
-
-setEventTypeFilter(type: Array<accessibility.EventType>): Promise\<boolean>;
-
-Sets the concerned event type.
-
-**System capability**: SystemCapability.BarrierFree.Accessibility.Core
-
-**Parameters**
-
-| Name | Type                                    | Mandatory  | Description      |
-| ---- | ---------------------------------------- | ---- | -------- |
-| type | Array&lt;[EventType](js-apis-accessibility.md#EventType)&gt; | Yes   | Event type.|
-
-**Return value**
-
-| Type                    | Description                   |
-| ---------------------- | --------------------- |
-| Promise&lt;boolean&gt; | Promise used to return the result.|
-
-**Example**
-
-```ts
-this.context.setEventTypeFilter(['click', 'longClick']);
-```
-
 ## AccessibilityExtensionContext.setTargetBundleName
 
-setTargetBundleName(targetNames: Array\<string>): Promise\<boolean>;
+setTargetBundleName(targetNames: Array\<string>): Promise\<void>;
 
 Sets the concerned target bundle.
 
@@ -139,7 +111,7 @@ Obtains the focus element.
 
 | Name                 | Type   | Mandatory  | Description                 |
 | -------------------- | ------- | ---- | ------------------- |
-| isAccessibilityFocus | boolean | No   | Whether the obtained focus element is an accessibility focus. The default value is false.|
+| isAccessibilityFocus | boolean | No   | Whether the obtained focus element is an accessibility focus. The default value is **false**.|
 
 **Return value**
 
@@ -213,7 +185,7 @@ this.context.getWindows().then(windows => {
 
 ## AccessibilityExtensionContext.injectGesture
 
-injectGesture(gesturePath: GesturePath, listener: Callback\<boolean>): Promise\<boolean
+injectGesture(gesturePath: GesturePath, callback: AsyncCallback\<void>): void
 
 Injects a gesture.
 
@@ -224,13 +196,7 @@ Injects a gesture.
 | Name        | Type                                    | Mandatory  | Description            |
 | ----------- | ---------------------------------------- | ---- | -------------- |
 | gesturePath | [GesturePath](js-apis-application-AccessibilityExtensionAbility.md#GesturePath) | Yes   | Path of the gesture to inject.    |
-| listener    | Callback&lt;boolean&gt;                  | Yes   | Callback used to return the result.|
-
-**Return value**
-
-| Type                    | Description                    |
-| ---------------------- | ---------------------- |
-| Promise&lt;boolean&gt; | Promise used to return the result.|
+| callback    | AsyncCallback&lt;void&gt;                  | Yes   | Callback used to return the result.|
 
 **Example**
 
@@ -243,4 +209,171 @@ for (let i = 0; i < 10; i++) {
 this.context.gestureInject(gesturePath, (result) => {
     console.info('gestureInject result: ' + result);
 })
+```
+## AccessibilityElement.attributeNames
+
+attributeNames\<T extends keyof ElementAttributeValues>(): Promise\<Array\<T>>;
+
+Obtains all attribute names of this element.
+
+**System capability**: SystemCapability.BarrierFree.Accessibility.Core
+
+**Return value**
+
+| Type                                      | Description                      |
+| ---------------------------------------- | ------------------------ |
+| Promise&lt;Array&lt;T&gt;&gt; | Promise used to return all attribute names of the element.|
+
+**Example**
+
+```ts
+let accessibilityElement;
+try {
+    accessibilityElement.attributeNames().then((values) => {
+        console.log("get attribute names success");
+    }).catch((err) => {
+        console.log("get attribute names err: "  + JSON.stringify(err));
+    });
+} catch (e) {
+    console.log("An unexpected error occurred. Error:" + e);
+}
+```
+
+## AccessibilityElement.attributeValue
+
+attributeValue\<T extends keyof ElementAttributeValues>(attributeName: T): Promise\<ElementAttributeValues[T]>;
+
+Obtains the attribute value based on an attribute name.
+
+**System capability**: SystemCapability.BarrierFree.Accessibility.Core
+
+**Parameters**
+
+| Name        | Type                                    | Mandatory  | Description            |
+| ----------- | ---------------------------------------- | ---- | -------------- |
+| attributeName | T | Yes   | Attribute name.    |
+
+**Return value**
+
+| Type                                      | Description                      |
+| ---------------------------------------- | ------------------------ |
+| Promise&lt;Array&lt;ElementAttributeValues[T]&gt;&gt; | Promise used to return the attribute value.|
+
+**Example**
+
+```ts
+let accessibilityElement;
+try {
+    let attributeName = 'name';
+    accessibilityElement.attributeValue(attributeName).then((value) => {
+        console.log("get attribute value by name success");
+    }).catch((err) => {
+        console.log("get attribute value by name err: "  + JSON.stringify(err));
+    });
+} catch (e) {
+    console.log("An unexpected error occurred. Error:" + e);
+}
+```
+
+## AccessibilityElement.actionNames
+
+actionNames(): Promise\<Array\<string>>;
+
+Obtains the names of all actions supported by this element.
+
+**System capability**: SystemCapability.BarrierFree.Accessibility.Core
+
+**Return value**
+
+| Type                                      | Description                      |
+| ---------------------------------------- | ------------------------ |
+| Promise&lt;Array&lt;string&gt;&gt; | Promise used to return the names of all actions supported by the element.|
+
+**Example**
+
+```ts
+let accessibilityElement;
+try {
+    accessibilityElement.actionNames().then((values) => {
+        console.log("get action names success");
+    }).catch((err) => {
+        console.log("get action names err: "  + JSON.stringify(err));
+    });
+} catch (e) {
+    console.log("An unexpected error occurred. Error:" + e);
+}
+```
+
+## AccessibilityElement.performAction
+
+performAction(actionName: string, parameters?: object): Promise\<boolean>;
+
+Performs an action based on the specified action name.
+
+**System capability**: SystemCapability.BarrierFree.Accessibility.Core
+
+**Parameters**
+
+| Name        | Type                                    | Mandatory  | Description            |
+| ----------- | ---------------------------------------- | ---- | -------------- |
+| actionName | string | Yes   | Action name.    |
+| parameters | object | No   | Parameter required for performing the target action.    |
+
+**Return value**
+
+| Type                                      | Description                      |
+| ---------------------------------------- | ------------------------ |
+| Promise&lt;Array&lt;boolean&gt;&gt; | Promise used to return the result.|
+
+**Example**
+
+```ts
+let accessibilityElement;
+try {
+
+    accessibilityElement.performAction('action').then((result) => {
+        console.info('perform action result: ' + result);
+    }).catch((err) => {
+        console.log("perform action err: "  + JSON.stringify(err));
+    });
+} catch (e) {
+    console.log("An unexpected error occurred. Error:" + e);
+}
+```
+
+## AccessibilityElement.findElement
+
+findElement(type: 'content', condition: string): Promise\<Array\<AccessibilityElement>>;
+
+Queries the information about this element based on the specified information type and condition.
+
+**System capability**: SystemCapability.BarrierFree.Accessibility.Core
+
+**Parameters**
+
+| Name        | Type                                    | Mandatory  | Description            |
+| ----------- | ---------------------------------------- | ---- | -------------- |
+| type | string | Yes   | Information type. The value is fixed at **'content'**.    |
+| condition | string | Yes   | Search criteria.    |
+
+**Return value**
+
+| Type                                      | Description                      |
+| ---------------------------------------- | ------------------------ |
+| Promise&lt;Array&lt;T&gt;&gt; | Promise used to return the result.|
+
+**Example**
+
+```ts
+let accessibilityElement;
+try {
+    let condition = 'keyword';
+    accessibilityElement.findElement('content', condition).then((values) => {
+        console.log("find element success");
+    }).catch((err) => {
+        console.log("find element err: "  + JSON.stringify(err));
+    });
+} catch (e) {
+    console.log("An unexpected error occurred. Error:" + e);
+}
 ```
