@@ -63,7 +63,7 @@ struct PageTransitionExample1 {
   build() {
     Column() {
       Navigator({ target: 'pages/page1', type: NavigationType.Push }) {
-        Image($r('app.media.bg1')).width('100%').height('100%')
+        Image($r('app.media.bg1')).width('100%').height('100%')    // 图片存放在media文件夹下
       }
     }.scale({ x: this.scale1 }).opacity(this.opacity1)
   }
@@ -94,9 +94,9 @@ struct AExample {
   build() {
     Column() {
       Navigator({ target: 'pages/index', type: NavigationType.Push }) {
-        Image($r('app.media.bg2')).width('100%').height('100%')
+        Image($r('app.media.bg2')).width('100%').height('100%')   // 图片存放在media文件夹下
       }
-    }.height("100%").width("100%").scale({ x: this.scale2 }).opacity(this.opacity2)
+    }.width('100%').height('100%').scale({ x: this.scale2 }).opacity(this.opacity2)
   }
   // 自定义方式1：完全自定义转场过程的效果
   pageTransition() {
@@ -129,7 +129,7 @@ struct PageTransitionExample {
   build() {
     Column() {
       Navigator({ target: 'pages/page1', type: NavigationType.Push }) {
-        Image($r('app.media.bg1')).width('100%').height('100%')
+        Image($r('app.media.bg1')).width('100%').height('100%')   // 图片存放在media文件夹下
       }
     }.scale({ x: this.scale1 }).opacity(this.opacity1)
   }
@@ -156,7 +156,7 @@ struct PageTransitionExample1 {
   build() {
     Column() {
       Navigator({ target: 'pages/index', type: NavigationType.Push }) {
-        Image($r('app.media.bg2')).width('100%').height('100%')
+        Image($r('app.media.bg2')).width('100%').height('100%')    // 图片存放在media文件夹下
       }
     }.scale({ x: this.scale2 }).opacity(this.opacity2)
   }
