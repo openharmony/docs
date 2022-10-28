@@ -3638,8 +3638,8 @@ postMessage(options: { message: WebMessageEvent, uri: string}): void
 
 | 参数名        | 参数类型            | 必填   | 默认值  | 参数描述                      |
 | ---------- | --------------- | ---- | ---- | ------------------------- |
-| message     | [WebMessageEvent](#webmessageevent9)          | 是    | -    |要发送的信息，包含数据和消息端口 。 |
-| uri       | string          | 是    | -    | 接收该信息的URI。 |
+| message     | [WebMessageEvent](#webmessageevent9)          | 是    | -    |要发送的消息，包含数据和消息端口。 |
+| uri       | string          | 是    | -    | 接收该消息的URI。 |
 
 **示例：**
 

@@ -1354,9 +1354,9 @@ SystemCapability.Web.Webview.Core
 
 | 参数名 | 类型                   | 必填 | 默认值 | 说明                             |
 | ------ | ---------------------- | ---- | ------ | :------------------------------- |
-| name   | string                 | 是   | -      | 要发送的信息，包含数据和消息端口 |
-| ports  | Array\<WebMessagePort> | 是   | -      | 接收该信息的URI。                |
-| uri    | string                 | 是   | -      | 接收该信息的URI。                |
+| name   | string                 | 是   | -      | 要发送的消息，包含数据和消息端口。 |
+| ports  | Array\<WebMessagePort> | 是   | -      | 接收该消息的URI。                |
+| uri    | string                 | 是   | -      | 接收该消息的URI。                |
 
 **错误码**：
 
