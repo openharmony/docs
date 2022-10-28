@@ -2,7 +2,9 @@
 
 - Kernel
     - Mini-System Kernel
-        - [Kernel Overview](kernel-mini-overview.md)
+    - [Kernel Overview](kernel-overview.md)
+    - Mini-System Kernel (LiteOS-M)
+        - [LiteOS-M Overview](kernel-mini-overview.md)
         - Basic Kernel
             - [Interrupt Management](kernel-mini-basic-interrupt.md)
             - [Task Management](kernel-mini-basic-task.md)
@@ -16,7 +18,7 @@
             - [Software Timer](kernel-mini-basic-soft.md)
         - Extended Components
             - [C++ Support](kernel-mini-extend-support.md)
-            - [PUP](kernel-mini-extend-cpup.md)
+            - [CPUP](kernel-mini-extend-cpup.md)
             - [Dynamic Loading](kernel-mini-extend-dynamic-loading.md)
             - [File System](kernel-mini-extend-file.md)
         - Kernel Debugging
@@ -28,7 +30,7 @@
             - [Kernel Coding Specification](kernel-mini-appx-code.md)
             - [Doubly Linked List](kernel-mini-appx-data-list.md)
             - [Standard Libraries](kernel-mini-appx-lib.md)
-    - Small-System Kernel
+    - Small-System Kernel (LiteOS-A)
         - [Kernel Overview](kernel-small-overview.md)
         - Kernel Startup
             - [Startup in Kernel Space](kernel-small-start-kernel.md)
@@ -149,7 +151,8 @@
                 - [Doubly Linked List](kernel-small-apx-dll.md)
                 - [Bitwise Operation](kernel-small-apx-bitwise.md)
             - [Standard Library](kernel-small-apx-library.md)
-    - Standard-System Kernel
+            - [Kernel Coding Specification](kernel-mini-appx-code.md)
+    - Standard-System Kernel (Linux)
         - [Linux Kernel Overview](kernel-standard-overview.md)
         - [Applying Patches on Development Boards](kernel-standard-patch.md)
         - [Compiling and Building the Linux Kernel](kernel-standard-build.md)
