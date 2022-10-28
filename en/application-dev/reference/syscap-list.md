@@ -2,7 +2,7 @@
 
 SysCap, short for System Capability, refers to a standalone feature in the operating system.
 
-Before using an API for development, you are advised to read [SysCap](../quick-start/syscap.md) to familiarize yourself with Syscap, and then consult the following tables to see whether the SysCap set required for the API is supported by the target device type.
+Before using an API for development, you are advised to familiarize yourself with [SysCap](../quick-start/syscap.md), and then consult the following tables to see whether the SysCap set required for the API is supported by the target device type.
 
 ## SystemCapability.ArkUI.ArkUI.Full
 
