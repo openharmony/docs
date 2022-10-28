@@ -112,12 +112,17 @@ struct TabsExample {
           Column().width('100%').height('100%').backgroundColor(Color.Green)
         }.tabBar('green')
       }
-      .vertical(true).scrollable(true).barMode(BarMode.Fixed)
-      .barWidth(70).barHeight(150).animationDuration(400)
+      .vertical(true)
+      .scrollable(true)
+      .barMode(BarMode.Fixed)
+      .barWidth(70)
+      .barHeight(150)
+      .animationDuration(400)
       .onChange((index: number) => {
         console.info(index.toString())
       })
-      .width('90%').backgroundColor(0xF5F5F5)
+      .width('90%')
+      .backgroundColor(0xF5F5F5)
     }.width('100%').height(150).margin({ top: 5 })
   }
 }
