@@ -51,7 +51,7 @@ struct TransitionExample {
         })
       if (this.flag) {
         // Image的显示和消失配置为不同的过渡效果
-        Image($r('app.media.bg1')).width('80%').height(300)
+        Image($r('app.media.testImg')).width(300).height(300)
           .transition({ type: TransitionType.Insert, scale: { x: 0, y: 1.0 } })
           .transition({ type: TransitionType.Delete, rotate: { angle: 180 } })
       }
