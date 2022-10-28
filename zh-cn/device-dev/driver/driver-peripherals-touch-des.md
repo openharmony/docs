@@ -138,7 +138,7 @@ Input HDF驱动提供给系统服务Input Service调用的HDI驱动能力接口�
 
    如下配置主要包含Input驱动模型各模块层级信息，配置文件路径为drivers/adapter/khdf/linux/hcs/device_info/device_info.hcs。具体原理可参考[HDF驱动开发指南](../driver/driver-hdf-development.md)，HDF框架依据该配置信息实现对Input模型各模块的依次加载等。
 
-   ```text
+   ```c
    input :: host {
        hostName = "input_host";
        priority = 100;
@@ -183,7 +183,7 @@ Input HDF驱动提供给系统服务Input Service调用的HDI驱动能力接口�
 
    如下配置包含板级硬件配置及器件私有数据配置，配置文件路径为drivers/adapter/khdf/linux/hcs/input/input_config.hcs。实际业务开发时，可根据具体需求增删及修改如下配置文件信息。
 
-   ```text
+   ```c
    root {
        input_config {
            touchConfig {
