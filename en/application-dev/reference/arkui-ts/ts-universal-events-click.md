@@ -11,7 +11,7 @@ A click event is triggered when a component is clicked.
 
 | Name                                      | Bubbling Supported| Description                             |
 | ---------------------------------------- | ---- | --------------------------------- |
-| onClick(event: (event?: ClickEvent) =&gt; void) | No   | Called when a click event occurs. For details about the event parameters, see **ClickEvent**.|
+| onClick(event: (event?: ClickEvent) =&gt; void) | No   | Called when a click event occurs. For details about **event**, see **ClickEvent**.|
 
 ## ClickEvent
 | Name           | Type                                | Description                                                    |
@@ -20,9 +20,9 @@ A click event is triggered when a component is clicked.
 | screenY             | number                               | Y coordinate of the click relative to the upper left corner of the application window.                     |
 | x                   | number                               | X coordinate of the click relative to the upper left corner of the component being clicked.                   |
 | y                   | number                               | Y coordinate of the click relative to the upper left corner of the component being clicked.                   |
-| target<sup>8+</sup> | [EventTarget](#eventtarget8) | Target element that is clicked.                                        |
-| timestamp<sup>8+</sup>           | number                               | Timestamp of the event. It is interval between the time when the event is triggered and the time when the system starts, in nanoseconds.|
-| source<sup>8+</sup>    | [SourceType](ts-gesture-settings.md) | Event input device.                             |
+| timestamp<sup>8+</sup> | number | Timestamp of the event. It is interval between the time when the event is triggered and the time when the system starts, in nanoseconds.|
+| target<sup>8+</sup> | [EventTarget](#eventtarget8) | Display area of the object that triggers the event.|
+| source<sup>8+</sup> | [SourceType](ts-gesture-settings.md#sourcetype)| Event input device.|
 
 ## EventTarget<sup>8+</sup>
 
@@ -43,15 +43,25 @@ struct ClickExample {
 
   build() {
     Column() {
-      Button('Click').backgroundColor(0x2788D9).width(100).height(40)
-        .onClick((event: ClickEvent) => {
-          console.info(this.text = 'Click Point:' + '\n  screenX:' + event.screenX + '\n  screenY:' + event.screenY
-          + '\n  x:' + event.x + '\n  y:' + event.y + '\ntarget:' + '\n  component globalPos:('
-          + event.target.area.globalPosition.x + ',' + event.target.area.globalPosition.y + ')\n  width:'
-          + event.target.area.width + '\n  height:' + event.target.area.height)
-        })
-      Text(this.text).padding(15)
-    }.height(350).width('100%').padding(10)
+      Row({ space: 20 }) {
+        Button('Click').width(100).height(40)
+          .onClick((event: ClickEvent) => {
+            this.text = 'Click Point:' + '\n  screenX:' + event.screenX + '\n  screenY:' + event.screenY
+            + '\n  x:' + event.x + '\n  y:' + event.y + '\ntarget:' + '\n  component globalPos:('
+            + event.target.area.globalPosition.x + ',' + event.target.area.globalPosition.y + ')\n  width:'
+            + event.target.area.width + '\n  height:' + event.target.area.height + '\ntimestamp' + event.timestamp;
+          })
+        Button('Click').width(200).height(50)
+          .onClick((event: ClickEvent) => {
+            this.text = 'Click Point:' + '\n  screenX:' + event.screenX + '\n  screenY:' + event.screenY
+            + '\n  x:' + event.x + '\n  y:' + event.y + '\ntarget:' + '\n  component globalPos:('
+            + event.target.area.globalPosition.x + ',' + event.target.area.globalPosition.y + ')\n  width:'
+            + event.target.area.width + '\n  height:' + event.target.area.height + '\ntimestamp' + event.timestamp;
+          })
+      }.margin(20)
+
+      Text(this.text).margin(15)
+    }.width('100%')
   }
 }
 ```

@@ -1,6 +1,6 @@
 # Popup Control
 
-The popup attribute defines the popup displayed when a component is clicked.
+You can bind a popup to a component, specifying its content, interaction logic, and display status.
 
 >  **NOTE**
 >
@@ -12,7 +12,7 @@ The popup attribute defines the popup displayed when a component is clicked.
 
 | Name          | Type                            | Description                                       |
 | ---------- | ------------------------------------- | --------------------------------------- |
-| bindPopup  | show: boolean,<br>popup: PopupOptions \| CustomPopupOptions<sup>8+</sup> | Settings of the popup bound to the component.<br>**show**: whether to display the popup on the creation page by default. The default value is **false**.<br>**popup**: parameters of the popup.|
+| bindPopup  | show: boolean,<br>popup: [PopupOptions](#popupoptions) \| [CustomPopupOptions](#custompopupoptions8)<sup>8+</sup> | Binds a popup to the component.<br>**show**: whether to show the popup. The default value is **false**, indicating that the popup is hidden.<br>**popup**: parameters of the popup.|
 
 ## PopupOptions
 
@@ -28,80 +28,77 @@ The popup attribute defines the popup displayed when a component is clicked.
 
 | Name                      | Type                      | Mandatory    | Description                                                |
 | -------------------------| ------------------------- | ---- | ---------------------------------------------------- |
-| builder                  | [CustomBuilder](ts-types.md#custombuilder8)  | Yes  | Builder of the popup content.                                         |
+| builder                  | [CustomBuilder](ts-types.md#custombuilder8)  | Yes  | Popup builder.                                         |
 | placement                | [Placement](ts-appendix-enums.md#placement8) | No  | Preferred position of the popup. If the set position is insufficient for holding the popup, it will be automatically adjusted.<br>Default value: **Placement.Bottom**    |
 | maskColor                | [ResourceColor](ts-types.md#resourcecolor)  | No  | Color of the popup mask.                                         |
 | popupColor               | [ResourceColor](ts-types.md#resourcecolor)  | No  | Color of the popup.                                              |
-| enableArrow              | boolean                                      | No  | Whether to display an arrow. Arrows are displayed only for tooltips in the up and down directions.<br>Default value: **true** |
+| enableArrow              | boolean                                      | No  | Whether to display an arrow.<br>Since API version 9, if the location set for the popup arrow is not large enough, the arrow will not be displayed. For example, if **placement** is set to **Left** and the popup height is less than the arrow width (32 vp), the arrow will not be displayed.<br>Default value: **true**|
 | autoCancel               | boolean                                      | No  | Whether to automatically close the popup when an operation is performed on the page.<br>Default value: **true**                       |
 | onStateChange            | (event: { isVisible: boolean }) =&gt; void | No   | Callback for the popup status change event. The parameter **isVisible** indicates whether the popup is visible.|
 
 
 ## Example
-
 ```ts
 // xxx.ets
 @Entry
 @Component
 struct PopupExample {
-  @State noHandlePopup: boolean = false
   @State handlePopup: boolean = false
   @State customPopup: boolean = false
 
+  // Popup builder
   @Builder popupBuilder() {
     Row({ space: 2 }) {
-      Image('/resource/ic_public_thumbsup.svg').width(24).height(24).margin({ left: -5 })
+      Image($r("app.media.image")).width(24).height(24).margin({ left: -5 })
       Text('Custom Popup').fontSize(10)
-    }.width(100).height(50).backgroundColor(Color.White)
+    }.width(100).height(50).padding(5)
   }
 
   build() {
     Flex({ direction: FlexDirection.Column }) {
-      Button('no handle popup')
+      // PopupOptions for setting the popup
+      Button('PopupOptions')
         .onClick(() => {
-          this.noHandlePopup = !this.noHandlePopup
+          this.handlePopup = !this.handlePopup
         })
-        .bindPopup(this.noHandlePopup, {
-          message: 'content1 content1',
-          placementOnTop: false,
+        .bindPopup(this.handlePopup, {
+          message: 'This is a popup with PopupOptions',
+          placementOnTop: true,
+          primaryButton: {
+            value: 'confirm',
+            action: () => {
+              this.handlePopup = !this.handlePopup
+              console.info('confirm Button click')
+            }
+          },
+          // Secondary button
+          secondaryButton: {
+            value: 'cancel',
+            action: () => {
+              this.handlePopup = !this.handlePopup;
+              console.info('cancel Button click')
+            }
+          },
           onStateChange: (e) => {
             console.info(e.isVisible.toString())
             if (!e.isVisible) {
-              this.noHandlePopup = false
+              this.handlePopup = false
             }
           }
         })
         .position({ x: 100, y: 50 })
 
-      Button('with handle popup')
-        .onClick(() => {
-          this.handlePopup = !this.handlePopup
-        })
-        .bindPopup(this.handlePopup, {
-          message: 'content2 content2',
-          placementOnTop: true,
-          primaryButton: {
-            value: 'ok',
-            action: () => {
-              this.handlePopup = !this.handlePopup
-              console.info('secondaryButton click')
-            }
-          },
-          onStateChange: (e) => {
-            console.info(e.isVisible.toString())
-          }
-        })
-        .position({ x: 100, y: 200 })
 
-      Button('custom popup')
+      // CustomPopupOptions for setting the popup
+      Button('CustomPopupOptions')
         .onClick(() => {
           this.customPopup = !this.customPopup
         })
         .bindPopup(this.customPopup, {
           builder: this.popupBuilder,
-          placement: Placement.Bottom,
+          placement: Placement.Top,
           maskColor: 0x33000000,
-          popupColor: Color.White,
+          popupColor: Color.Yellow,
           enableArrow: true,
           onStateChange: (e) => {
             if (!e.isVisible) {
@@ -109,10 +106,10 @@ struct PopupExample {
             }
           }
         })
-        .position({ x: 100, y: 350 })
+        .position({ x: 80, y: 200 })
     }.width('100%').padding({ top: 5 })
   }
 }
 ```
 
-![en-us_image_0000001212058458](figures/en-us_image_0000001212058458.gif)
+![figures/popup.gif](figures/popup.gif)
