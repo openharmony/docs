@@ -23,11 +23,9 @@ Package manager error.
 Input method engine error.
 
 **错误描述**
-
 用户调用输入法应用接口失败时，系统会报此错误码。
 
 **可能原因**
-
 输入法应用进程死亡时会报错
 
 **处理步骤**
@@ -39,7 +37,6 @@ Input method engine error.
 Input method client error.
 
 **错误描述**
-
 当客户端应用（编辑控件）调用失败时，系统会报此错误码。
 
 **可能原因**
@@ -54,7 +51,6 @@ Input method client error.
 Key event processing error.
 
 **错误描述**
-
 当按键事件异常时，系统会报此错误码。
 
 **可能原因**
@@ -69,7 +65,6 @@ Key event processing error.
 Configuration persisting error.
 
 **错误描述**
-
 当保存配置失败时，系统会报此错误码。
 
 **可能原因**
@@ -84,7 +79,6 @@ Configuration persisting error.
 Input method controller error.
 
 **错误描述**
-
 当获取到输入法控制器，并基于此进行一些操作发生错误时，系统会报此错误码。
 
 **可能原因**
@@ -102,7 +96,6 @@ Input method controller error.
 Input method settings extension error.
 
 **错误描述**
-
 当获取到输入法设置器，并基于此进行一些操作发生错误时，系统会报此错误码。
 
 **可能原因**
@@ -120,7 +113,6 @@ Input method settings extension error.
 Input method manager service error.
 
 **错误描述**
-
 获取输入法管理服务异常时，系统会报此错误码。
 
 **可能原因**
@@ -137,7 +129,6 @@ Input method manager service error.
 Others error.
 
 **错误描述**
-
 发生除以上几种类型的错误之外的其他类型错误时，系统会报此错误码。
 
 **可能原因**
