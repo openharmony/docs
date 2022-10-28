@@ -1,6 +1,6 @@
 # 添加动画效果
 
-动画主要包含了组件动画和页面间动画，并提供了[插值计算](../reference/apis/js-apis-curve.md)和[矩阵变换](../reference/apis/js-apis-matrix4.md)的动画能力接口，让开发者极大程度的自主设计动画效果。
+动画主要包含了组件动画和页面间动画，并提供了[插值计算](../reference/arkui-ts/ts-interpolation-calculation.md)和[矩阵变换](../reference/arkui-ts/ts-matrix-transformation.md)的动画能力接口，让开发者极大程度的自主设计动画效果。
 
 在本节主要完成两个动画效果：
 
