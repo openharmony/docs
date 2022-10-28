@@ -461,7 +461,7 @@ Input HDF驱动提供给系统服务Input Service调用的HDI驱动能力接口�
 
        INPUT_CHECK_NULL_POINTER(g_inputInterface, INPUT_NULL_PTR);
        INPUT_CHECK_NULL_POINTER(g_inputInterface->iInputManager, INPUT_NULL_PTR);
-       /* 打开特定的input设备 */
+       /* 打开特定的Input设备 */
        ret = g_inputInterface->iInputManager->OpenInputDevice(DEV_INDEX);
        if (ret) {
            HDF_LOGE("%s: open input device failed, ret = %d", __func__, ret);
@@ -469,7 +469,7 @@ Input HDF驱动提供给系统服务Input Service调用的HDI驱动能力接口�
        }
 
        INPUT_CHECK_NULL_POINTER(g_inputInterface->iInputController, INPUT_NULL_PTR);
-       /* 获取对应input设备的类型 */
+       /* 获取对应Input设备的类型 */
        ret = g_inputInterface->iInputController->GetDeviceType(DEV_INDEX, &devType);
        if (ret) {
            HDF_LOGE("%s: get device type failed, ret: %d", __FUNCTION__, ret);
@@ -477,7 +477,7 @@ Input HDF驱动提供给系统服务Input Service调用的HDI驱动能力接口�
        }
        HDF_LOGI("%s: device1's type is %u\n", __FUNCTION__, devType);
 
-       /* 给特定的input设备注册数据上报回调函数 */
+       /* 给特定的Input设备注册数据上报回调函数 */
        g_callback.ReportEventPkgCallback = ReportEventPkgCallback;
        INPUT_CHECK_NULL_POINTER(g_inputInterface->iInputReporter, INPUT_NULL_PTR);
        ret  = g_inputInterface->iInputReporter->RegisterReportCallback(DEV_INDEX, &g_callback);
@@ -488,14 +488,14 @@ Input HDF驱动提供给系统服务Input Service调用的HDI驱动能力接口�
        HDF_LOGI("%s: wait 10s for testing, pls touch the panel now", __FUNCTION__);
        OsalMSleep(KEEP_ALIVE_TIME_MS);
 
-       /* 注销特定input设备上的回调函数 */
+       /* 注销特定Input设备上的回调函数 */
        ret = g_inputInterface->iInputReporter->UnregisterReportCallback(DEV_INDEX);
        if (ret) {
            HDF_LOGE("%s: unregister callback failed, ret: %d", __FUNCTION__, ret);
            return ret;
        }
 
-       /* 关闭特定的input设备 */
+       /* 关闭特定的Input设备 */
        ret = g_inputInterface->iInputManager->CloseInputDevice(DEV_INDEX);
        if (ret) {
            HDF_LOGE("%s: close device failed, ret: %d", __FUNCTION__, ret);
