@@ -377,16 +377,13 @@ class MainAbility extends Ability {
                        console.info('Succeeded in showing the window. Data: ' + JSON.stringify(data));
                    });
                });
-               //5.销毁悬浮窗。当不再需要悬浮窗时，可根据具体实现逻辑，使用destroy对其进行销毁，此处以监听窗口区域外的点击事件为例实现悬浮窗的销毁。
-               windowClass.on('touchOutside', () => {
-                   console.info('touch outside');
-                   windowClass.destroy((err, data) => {
-                       if (err.code) {
-                           console.error('Failed to destroy the window. Cause: ' + JSON.stringify(err));
-                           return;
-                       }
-                       console.info('Succeeded in destroying the window. Data: ' + JSON.stringify(data));
-                   });
+               //5.销毁悬浮窗。当不再需要悬浮窗时，可根据具体实现逻辑，使用destroy对其进行销毁。
+               windowClass.destroy((err, data) => {
+                   if (err.code) {
+                       console.error('Failed to destroy the window. Cause: ' + JSON.stringify(err));
+                       return;
+                   }
+                   console.info('Succeeded in destroying the window. Data: ' + JSON.stringify(data));
                });
            });
        }
