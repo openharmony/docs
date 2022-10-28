@@ -35,7 +35,7 @@ resources
 base目录默认存在，而限定词目录需要开发者自行创建，其名称可以由一个或多个表征应用场景或设备特征的限定词组合而成。应用使用某资源时，系统会根据当前设备状态优先从相匹配的限定词目录中寻找该资源。只有当resources目录中没有与设备状态匹配的限定词目录，或者在限定词目录中找不到该资源时，才会去base目录中查找。rawfile是原始文件目录，它不会根据设备状态去匹配不同的资源，故不在本文的讨论范文内。
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
-> - 请访问[声明式开发范式资源文件分类](../../ui/ui-ts-basic-resource-file-categories.md)，了解限定词目录的命名规则、创建流程、匹配规则等，本文不展开介绍。
+> - 请访问[声明式开发范式资源文件分类](../../quick-start/resource-categories-and-access.md)，了解限定词目录的命名规则、创建流程、匹配规则等，本文不展开介绍。
 > 
 > - 没有设备状态匹配的限定词目录，或者在限定词目录中找不到目标资源时，会继续在base目录中查找。**强烈建议对于所有应用自定义资源都在base目录中定义默认值**，防止出现找不到资源值的异常场景。
 > 
@@ -73,7 +73,7 @@ base目录与限定词目录下面可以创建资源组目录（包括element、
 在工程中，通过 "$r('app.type.name')" 的形式引用应用资源。app代表是应用内resources目录中定义的资源；type 代表资源类型（或资源的存放位置），可以取 color、float、string、plural和media，name代表资源命名，由开发者添加资源时确定。
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
-> 可以查看[声明式范式访问应用资源](../../ui/ts-resource-access.md)，了解资源访问的更多细节。
+> 可以查看[声明式范式访问应用资源](../../quick-start/resource-categories-and-access.md#应用资源)，了解资源访问的更多细节。
 
 
 ### 示例
