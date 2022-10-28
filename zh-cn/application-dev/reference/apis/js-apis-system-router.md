@@ -379,7 +379,7 @@ export default {
 | message  | string                   | 是   | 询问对话框内容。                                   |
 | success  | (errMsg: string) => void | 否   | 用户选择对话框确认按钮时触发，errMsg表示返回信息。 |
 | cancel   | (errMsg: string) => void | 否   | 用户选择对话框取消按钮时触发，errMsg表示返回信息。 |
-| complete | () => void               | 否   | 接口调用结束的回调函数。                           |
+| complete | () => void               | 否   | 当对话框关闭时触发该回调。                           |
 
 ## DisableAlertBeforeBackPageOptions<sup>6+</sup>
 
@@ -391,7 +391,7 @@ export default {
 | -------- | ------------------------ | ---- | -------------------------------------------------- |
 | success  | (errMsg: string) => void | 否   | 关闭询问对话框能力成功时触发，errMsg表示返回信息。 |
 | cancel   | (errMsg: string) => void | 否   | 关闭询问对话框能力失败时触发，errMsg表示返回信息。 |
-| complete | () => void               | 否   | 接口调用结束的回调函数。                           |
+| complete | () => void               | 否   | 当对话框关闭时触发该回调。                           |
 
 ## ParamsInterface
 
