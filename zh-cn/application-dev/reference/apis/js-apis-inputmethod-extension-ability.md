@@ -5,7 +5,6 @@ InputMethodExtensionAbility模块，提供生态输入法应用开发者通过In
 > **说明：**
 > 
 > - 本模块首批接口从API version 9开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
-> - 本模块接口仅可在Stage模型下使用。
 
 ## 导入模块
 
@@ -27,8 +26,6 @@ import InputMethodExtensionAbility from '@ohos.inputmethodextensionability';
 onCreate(want: Want): void
 
 Extension生命周期回调，在拉起Extension输入法应用时调用，执行初始化输入法应用操作。
-
-**模型约束**： 此接口仅可在Stage模型下使用。
 
 **系统能力**：SystemCapability.MiscServices.InputMethodFramework
 
@@ -54,8 +51,6 @@ class InputMethodExt extends InputMethodExtensionAbility {
 onDestroy(): void
 
 Extension生命周期回调，在销毁输入法应用时回调，执行资源清理等操作。
-
-**模型约束**： 此接口仅可在Stage模型下使用。
 
 **系统能力**：SystemCapability.MiscServices.InputMethodFramework
 

@@ -930,12 +930,12 @@ listInputMethodSubtype(inputMethodProperty: InputMethodProperty): Promise&lt;Arr
 **示例：**
 
 ```js
-let inputMethodSubProperty = {
-    id: "com.example.kikainput",
-    label: "ServiceExtAbility"
+let inputMethodProperty = {
+    packageName:'com.example.kikakeyboard',
+    methodId:'com.example.kikakeyboard',
 }
 try {
-    InputMethodSetting.listInputMethodSubtype(inputMethodSubProperty).then((data) => {
+    InputMethodSetting.listInputMethodSubtype(inputMethodProperty).then((data) => {
         console.info('listInputMethodSubtype success');
     }).catch((err) => {
         console.error('listInputMethodSubtype err: ' + JSON.stringify(err));
