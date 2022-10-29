@@ -24,10 +24,10 @@ Video(value: {src?: string | Resource, currentProgressRate?: number | string | P
 
 | 参数名              | 参数类型                                                     | 必填 | 参数描述                                                     |
 | ------------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| src                 | string \| [Resource](ts-types.md)                   | 否   | 视频播放源的路径，支持本地视频路径和网络路径。<br>支持在resources下面的video或rawfile文件夹里放置媒体资源。<br>支持dataability://的路径前缀，用于访问通过Data Ability提供的视频路径，具体路径信息详见[Data Ability说明](../../ability/fa-dataability.md)。<br/>**说明：**<br/>视频支持的规格是：mp4、mkv、webm、TS。 |
+| src                 | string \| [Resource](ts-types.md)                   | 否   | 视频播放源的路径，支持本地视频路径和网络路径。<br>支持在resources下面的video或rawfile文件夹里放置媒体资源。<br>支持dataability://的路径前缀，用于访问通过Data Ability提供的视频路径，具体路径信息详见[DataAbility说明](../../ability/fa-dataability.md)。<br/>**说明：**<br/>视频支持的格式是：mp4、mkv、webm、TS。 |
 | currentProgressRate | number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;PlaybackSpeed<sup>8+</sup> | 否   | 视频播放倍速。<br/>**说明：**<br/>number取值仅支持：0.75，1.0，1.25，1.75，2.0。<br/>默认值：1.0 \| PlaybackSpeed.Speed_Forward_1_00_X |
-| previewUri          | string&nbsp;\|&nbsp;PixelMap<sup>8+</sup>&nbsp;\|&nbsp;[Resource](ts-types.md) | 否   | 预览图片的路径。                                             |
-| controller          | [VideoController](#videocontroller)                          | 否   | 控制器。                                                     |
+| previewUri          | string&nbsp;\|&nbsp;PixelMap<sup>8+</sup>&nbsp;\|&nbsp;[Resource](ts-types.md) | 否   | 视频未播放时的预览图片路径。                                             |
+| controller          | [VideoController](#videocontroller)                          | 否   | 设置视频控制器。                                                     |
 
 ## PlaybackSpeed<sup>8+</sup>枚举说明
 
@@ -76,7 +76,7 @@ Video(value: {src?: string | Resource, currentProgressRate?: number | string | P
 ### 导入对象
 
 ```ts
-controller: VideoController = new VideoController();
+controller: VideoController = new VideoController()
 ```
 
 
@@ -138,7 +138,7 @@ setCurrentTime(value: number, seekMode: SeekMode)
 
 | 参数名   | 参数类型 | 必填 | 参数描述           |
 | -------- | -------- | ---- | ------------------ |
-| value    | number   | 是   | 视频播放进度位置。 |
+| value    | number   | 是   | 视频播放进度位置，单位为s。 |
 | seekMode | SeekMode | 是   | 跳转模式。         |
 
 ## SeekMode<sup>8+</sup>枚举说明
@@ -159,75 +159,85 @@ setCurrentTime(value: number, seekMode: SeekMode)
 @Entry
 @Component
 struct VideoCreateComponent {
-  @State srcs: Resource = $rawfile('video1.mp4');
-  @State previewUris: Resource = $r('app.media.img');
-  @State currentProgressRates: number = 1;
-  @State autoPlays: boolean = false;
-  @State controlsss: boolean = true;
-  controller: VideoController = new VideoController();
-  
+  @State videoSrc: Resource = $rawfile('video1.mp4')
+  @State previewUri: Resource = $r('app.media.poster1')
+  @State curRate: PlaybackSpeed = PlaybackSpeed.Speed_Forward_1_00_X
+  @State isAutoPlay: boolean = false
+  @State showControls: boolean = true
+  controller: VideoController = new VideoController()
+
   build() {
     Column() {
       Video({
-        src: this.srcs,
-        previewUri: this.previewUris, 
-        currentProgressRate: this.currentProgressRates,
+        src: this.videoSrc,
+        previewUri: this.previewUri,
+        currentProgressRate: this.curRate,
         controller: this.controller
-      }).width(700).height(500)
-        .autoPlay(this.autoPlays)
-        .controls(this.controlsss)
+      }).width(800).height(600)
+        .autoPlay(this.isAutoPlay)
+        .controls(this.showControls)
         .onStart(() => {
-                  console.error('onStart');
-                })
+          console.info('onStart')
+        })
         .onPause(() => {
-                  console.error('onPause');
-                })
+          console.info('onPause')
+        })
         .onFinish(() => {
-                  console.error('onFinish');
-                })
+          console.info('onFinish')
+        })
         .onError(() => {
-                  console.error('onFinish');
-                })
+          console.info('onFinish')
+        })
         .onPrepared((e) => {
-                    console.error('onPrepared is ' + e.duration);
-                })
+          console.info('onPrepared is ' + e.duration)
+        })
         .onSeeking((e) => {
-                    console.error('onSeeking is ' + e.time);
-                })
+          console.info('onSeeking is ' + e.time)
+        })
         .onSeeked((e) => {
-                    console.error('onSeekedis ' + e.time);
-                })
+          console.info('onSeeked is ' + e.time)
+        })
         .onUpdate((e) => {
-                    console.error('onUpdateis ' + e.time);
-                })
+          console.info('onUpdate is ' + e.time)
+        })
+      
       Row() {
-        Button("src").onClick(() => {
-            this.srcs = $rawfile('video2.mp4');
-        });
-        Button("previewUri").onClick(() => {
-            this.previewUris = $r('app.media.img1');
-        });
-        Button("controlsss").onClick(() => {
-          this.controlsss = !this.controlsss;
-        });
+        Button('src').onClick(() => {
+          this.videoSrc = $rawfile('video2.mp4') // 切换视频源
+        }).margin(5)
+        Button('previewUri').onClick(() => {
+          this.previewUri = $r('app.media.poster2') // 切换视频预览海报
+        }).margin(5)
+        Button('controls').onClick(() => {
+          this.showControls = !this.showControls // 切换是否显示视频控制栏
+        }).margin(5)
       }
 
       Row() {
-        Button("start").onClick(() => {
-          this.controller.start();
-        });
-        Button("pause").onClick(() => {
-          this.controller.pause();
-        });
-        Button("stop").onClick(() => {
-          this.controller.stop();
-        });
+        Button('start').onClick(() => {
+          this.controller.start() // 开始播放
+        }).margin(5)
+        Button('pause').onClick(() => {
+          this.controller.pause() // 暂停播放（显示当前帧）
+        }).margin(5)
+        Button('stop').onClick(() => {
+          this.controller.stop() // 结束播放
+        }).margin(5)
+        Button('setTime').onClick(() => {
+          this.controller.setCurrentTime(10, SeekMode.Accurate) // 精准跳转到视频的10s位置
+        }).margin(5)
       }
 
       Row() {
-        Button("setCurrentTime").onClick(() => {
-          this.controller.setCurrentTime(9, SeekMode.Accurate);
-        });
+        Button('rate 0.75').onClick(() => {
+          this.curRate = PlaybackSpeed.Speed_Forward_0_75_X // 0.75倍速播放
+        }).margin(5)
+        Button('rate 1').onClick(() => {
+          this.curRate = PlaybackSpeed.Speed_Forward_1_00_X // 原倍速播放
+        }).margin(5)
+        Button('rate 2').onClick(() => {
+          this.curRate = PlaybackSpeed.Speed_Forward_2_00_X // 2倍速播放
+        }).margin(5)
       }
     }
   }
