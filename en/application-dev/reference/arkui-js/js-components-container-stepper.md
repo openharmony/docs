@@ -27,7 +27,7 @@ In addition to the [universal attributes](../arkui-js/js-components-common-attri
 
 | Name   | Type    | Default Value | Description                            |
 | ----- | ------ | ---- | ------------------------------ |
-| index | number | -    | Index of the **<stepper-item>** child component that is currently displayed.|
+| index | number | -    | Index of the **\<stepper-item>** child component that is currently displayed.|
 
 
 ## Styles
@@ -48,8 +48,8 @@ In addition to the [universal events](../arkui-js/js-components-common-events.md
 | finish | -                                       | Triggered when the last step on the navigator is complete.                   |
 | skip   | -                                       | Triggered when users click the skip button, which works only if you have called **setNextButtonStatus** method to allow users to skip all steps.|
 | change | { prevIndex: prevIndex, index: index} | Triggered when users click the left or right (text) button of the step navigator to switch between steps. **prevIndex** indicates the index of the previous step, and **index** indicates that of the current step.|
-| next   | { index: index, pendingIndex: pendingIndex } | Triggered when users click the next (text) button. **index** indicates the index of the current step, and **pendingIndex** indicates that of the step to go. The return value is in **{pendingIndex:*** pendingIndex***}** format. You can use **pendingIndex** to specify a **<stepper-item>** child component as the next step to go.|
-| back   | { index: index, pendingIndex: pendingIndex } | Triggered when users click the previous (text) button. **index** indicates the index of the current step, and **pendingIndex** indicates that of the step to go. The return value is in Object:{ **{pendingIndex:*** pendingIndex***}** format. You can use **pendingIndex** to specify a **<stepper-item>** child component as the previous step.|
+| next   | { index: index, pendingIndex: pendingIndex } | Triggered when users click the next (text) button. **index** indicates the index of the current step, and **pendingIndex** indicates that of the step to go. The return value is in **{pendingIndex:*** pendingIndex***}** format. You can use **pendingIndex** to specify a **\<stepper-item>** child component as the next step to go.|
+| back   | { index: index, pendingIndex: pendingIndex } | Triggered when users click the previous (text) button. **index** indicates the index of the current step, and **pendingIndex** indicates that of the step to go. The return value is in Object:{ **{pendingIndex:*** pendingIndex***}** format. You can use **pendingIndex** to specify a **\<stepper-item>** child component as the previous step.|
 
 
 ## Methods
