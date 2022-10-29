@@ -70,7 +70,7 @@ struct PanelExample {
   @State show: boolean = false
 
   build() {
-    Stack() {
+    Column() {
       Text('2021-09-30    Today Calendar: 1.afternoon......Click for details')
         .width('90%').height(50).borderRadius(10)
         .backgroundColor(0xFFFFFF).padding({ left: 20 })
