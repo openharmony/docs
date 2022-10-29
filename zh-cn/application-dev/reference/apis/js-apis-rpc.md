@@ -6139,7 +6139,7 @@ isObjectDead(): boolean
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Communication.IPC.Core。
 
-| 参数名                  | 值                      | 说明                              |
+| 名称                  | 值                      | 说明                              |
 | --------------------- | ----------------------- | --------------------------------- |
 | PING_TRANSACTION      | 1599098439 (0x5f504e47) | 内部指令码，用于测试IPC服务正常。 |
 | DUMP_TRANSACTION      | 1598311760 (0x5f444d50) | 内部指令码，获取Binder内部状态。  |
@@ -6963,12 +6963,12 @@ isObjectDead(): boolean
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Communication.IPC.Core。
 
-  | 参数名          | 值   | 说明                                                        |
+  | 名称          | 值   | 说明                                                        |
   | ------------- | ---- | ----------------------------------------------------------- |
-  | TF_SYNC       | 0    | 同步调用。                                                  |
-  | TF_ASYNC      | 1    | 异步调用。                                                  |
+  | TF_SYNC       | 0    | 同步调用标识。                                                  |
+  | TF_ASYNC      | 1    | 异步调用标识。                                                  |
   | TF_ACCEPT_FDS | 0x10 | 指示sendMessageRequest<sup>9+</sup>接口可以返回文件描述符。 |
-  | TF_WAIT_TIME  | 8    | 等待时间。单位秒。                                          |
+  | TF_WAIT_TIME  | 8    | 默认等待时间(单位/秒)。                                          |
 
 
 ### constructor<sup>9+</sup>
@@ -8412,7 +8412,7 @@ attachLocalInterface(localInterface: IRemoteBroker, descriptor: string): void
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Communication.IPC.Core。
 
-  | 参数名     | 值  | 说明               |
+  | 名称       | 值  | 说明               |
   | ---------- | --- | ------------------ |
   | PROT_EXEC  | 4   | 映射的内存可执行   |
   | PROT_NONE  | 0   | 映射的内存不可访问 |
