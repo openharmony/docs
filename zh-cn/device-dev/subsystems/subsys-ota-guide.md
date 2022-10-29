@@ -316,10 +316,10 @@ OTA 的升级原理是利用升级包制作工具，将编译出的版本打包�
 
 1. 轻量与小型系统
 
-   - 调用OTA模块的动态库libhota.so，对应头文件hota_partition.h和hota_updater.h路径：base\update\ota_lite\interfaces\kits\。
-   - libhota.so对应的源码路径为：base\update\ota_lite\frameworks\source。
+   - 调用OTA模块的动态库libhota.so，对应头文件hota_partition.h和hota_updater.h路径：base\update\sys_installer_lite\interfaces\kits\。
+   - libhota.so对应的源码路径为：base\update\sys_installer_lite\frameworks\source。
    - API的使用方法，见本文“API应用场景”和API文档的OTA接口章节。
-   - 如果需要适配开发板，请参考HAL层头文件：base\update\ota_lite\hals\hal_hota_board.h。
+   - 如果需要适配开发板，请参考HAL层头文件：base\update\sys_installer_lite\hals\hal_hota_board.h。
 
 2. 标准系统请参考[JS参考规范](../../application-dev/reference/apis/js-apis-update.md)指导中的升级接口参考规范。
 
