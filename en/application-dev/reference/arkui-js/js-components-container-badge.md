@@ -50,7 +50,7 @@ The [universal styles](../arkui-js/js-components-common-styles.md) are supported
 
 >  **NOTE**
 >
->  The total size of child components must be smaller than or equal to that of the **<badge>** component. Otherwise, the child components cannot be displayed.
+>  The total size of child components must be smaller than or equal to that of the **\<badge>** component. Otherwise, the child components cannot be displayed.
 
 
 ## Events
