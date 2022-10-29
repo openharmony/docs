@@ -62,7 +62,7 @@ In addition to the [universal attributes](ts-universal-attributes-size.md), the 
 
 ## SwiperController
 
-Controller of the **\<Swiper>** component. You can bind this object to the **<Swiper>** component and use it to control page switching.
+Controller of the **\<Swiper>** component. You can bind this object to the **\<Swiper>** component and use it to control page switching.
 
 ### showNext
 
