@@ -1,6 +1,6 @@
 # Video
 
-用于播放单个视频并控制其播放状态的组件。 
+用于播放视频文件并控制其播放状态的组件。 
 
 >  **说明：**
 >
@@ -90,13 +90,13 @@ start(): void
 
 pause(): void
 
-暂停播放。
+暂停播放，显示当前帧，再次播放时从当前位置继续播放。
 
 ### stop
 
 stop(): void
 
-停止播放。
+停止播放，显示当前帧，再次播放时从头开始播放。
 
 ### setCurrentTime
 
@@ -218,7 +218,7 @@ struct VideoCreateComponent {
           this.controller.start() // 开始播放
         }).margin(5)
         Button('pause').onClick(() => {
-          this.controller.pause() // 暂停播放（显示当前帧）
+          this.controller.pause() // 暂停播放
         }).margin(5)
         Button('stop').onClick(() => {
           this.controller.stop() // 结束播放
