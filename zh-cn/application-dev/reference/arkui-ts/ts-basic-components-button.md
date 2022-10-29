@@ -33,7 +33,7 @@
   | 参数名     | 参数类型                                | 必填   | 参数描述          |
   | ------- | ----------------------------------- | ---- | ------------- |
   | label   | [ResourceStr](ts-types.md#resourcestr) | 否    | 按钮文本内容。       |
-  | options | Object                              | 否    | 见options参数说明。 |
+  | options | { type?: ButtonType, stateEffect?: boolean }   | 否    | 见方法1参数说明。 |
 
 
 ## 属性
@@ -51,7 +51,7 @@
 | Normal  | 普通按钮（默认不带圆角）。      |
 
 >  **说明：**
->  - 按钮圆角通过[通用属性borderRadius设置](ts-universal-attributes-border.md)（不支持通过border接口设置圆角）。
+>  - 按钮圆角通过[通用属性borderRadius](ts-universal-attributes-border.md)设置（不支持通过border接口设置圆角）。
 >  - 当按钮类型为Capsule时，borderRadius设置不生效，按钮圆角始终为高度的一半。
 >  - 当按钮类型为Circle时，borderRadius即为按钮半径，若未设置borderRadius按钮半径则为宽、高中较小值的一半。
 >  - 按钮文本通过[通用文本样式](ts-universal-attributes-text-style.md)进行设置。
@@ -66,43 +66,45 @@
 struct ButtonExample {
   build() {
     Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Start, justifyContent: FlexAlign.SpaceBetween }) {
-      Text('Common button').fontSize(9).fontColor(0xCCCCCC)
+      Text('Normal button').fontSize(9).fontColor(0xCCCCCC)
       Flex({ alignItems: ItemAlign.Center, justifyContent: FlexAlign.SpaceBetween }) {
-        Button('Ok', { type: ButtonType.Normal, stateEffect: true }).borderRadius(8).backgroundColor(0x317aff).width(90)
+        Button('OK', { type: ButtonType.Normal, stateEffect: true }).borderRadius(8).backgroundColor(0x317aff).width(90)
         Button({ type: ButtonType.Normal, stateEffect: true }) {
           Row() {
-            // 图片建议通过$r创建Resource对象引入
-            Image($r('app.media.loading')).width(20).height(20).margin({ left: 12 })
+            LoadingProgress().width(20).height(20).margin({ left: 12 }).color(0xFFFFFF)
             Text('loading').fontSize(12).fontColor(0xffffff).margin({ left: 5, right: 12 })
           }.alignItems(VerticalAlign.Center)
-        }.borderRadius(8).backgroundColor(0x317aff).width(90)
-        Button('Disable', { type: ButtonType.Normal, stateEffect: false }).opacity(0.5)
+        }.borderRadius(8).backgroundColor(0x317aff).width(90).height(40)
+
+        Button('Disable', { type: ButtonType.Normal, stateEffect: false }).opacity(0.4)
           .borderRadius(8).backgroundColor(0x317aff).width(90)
       }
 
       Text('Capsule button').fontSize(9).fontColor(0xCCCCCC)
       Flex({ alignItems: ItemAlign.Center, justifyContent: FlexAlign.SpaceBetween }) {
-        Button('Ok', { type: ButtonType.Capsule, stateEffect: true }).backgroundColor(0x317aff).width(90)
+        Button('OK', { type: ButtonType.Capsule, stateEffect: true }).backgroundColor(0x317aff).width(90)
         Button({ type: ButtonType.Capsule, stateEffect: true }) {
           Row() {
-            Image($r('app.media.loading')).width(20).height(20).margin({ left: 12 })
+            LoadingProgress().width(20).height(20).margin({ left: 12 }).color(0xFFFFFF)
             Text('loading').fontSize(12).fontColor(0xffffff).margin({ left: 5, right: 12 })
-          }.alignItems(VerticalAlign.Center).width(90)
+          }.alignItems(VerticalAlign.Center).width(90).height(40)
         }.backgroundColor(0x317aff)
         .onClick((event: ClickEvent) => {
           AlertDialog.show({ message: 'The login is successful' })
         })
-        Button('Disable', { type: ButtonType.Capsule, stateEffect: false }).opacity(0.5)
+
+        Button('Disable', { type: ButtonType.Capsule, stateEffect: false }).opacity(0.4)
           .backgroundColor(0x317aff).width(90)
       }
 
       Text('Circle button').fontSize(9).fontColor(0xCCCCCC)
       Flex({ alignItems: ItemAlign.Center, wrap: FlexWrap.Wrap }) {
         Button({ type: ButtonType.Circle, stateEffect: true }) {
-          Image($r('app.media.ic_public_app_filled')).width(20).height(20)
+          LoadingProgress().width(20).height(20).color(0xFFFFFF)
         }.width(55).height(55).backgroundColor(0x317aff)
+
         Button({ type: ButtonType.Circle, stateEffect: true }) {
-          Image($r('app.media.ic_public_delete_filled')).width(30).height(30)
+          LoadingProgress().width(20).height(20).color(0xFFFFFF)
         }.width(55).height(55).margin({ left: 20 }).backgroundColor(0xF55A42)
       }
     }.height(400).padding({ left: 35, right: 35, top: 35 })
@@ -110,4 +112,3 @@ struct ButtonExample {
 }
 ```
 
-![zh-cn_image_0000001219864141](figures/zh-cn_image_0000001219864141.gif)
