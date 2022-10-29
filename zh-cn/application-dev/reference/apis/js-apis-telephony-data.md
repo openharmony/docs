@@ -18,8 +18,6 @@ getDefaultCellularDataSlotId(callback: AsyncCallback\<number\>): void
 
 获取默认移动数据的SIM卡，使用callback方式作为异步方法。 
 
-**需要权限**：ohos.permission.GET_NETWORK_INFO
-
 **系统能力**：SystemCapability.Telephony.CellularData
 
 **参数：**
@@ -41,8 +39,6 @@ data.getDefaultCellularDataSlotId((err, data) => {
 getDefaultCellularDataSlotId(): Promise\<number\> 
 
 获取默认移动数据的SIM卡，使用Promise方式作为异步方法。 
-
-**需要权限**：ohos.permission.GET_NETWORK_INFO
 
 **系统能力**：SystemCapability.Telephony.CellularData
 
@@ -68,8 +64,6 @@ promise.then((data) => {
 getDefaultCellularDataSlotIdSync(): number
 
 获取默认移动数据的SIM卡
-
-**需要权限**：ohos.permission.GET_NETWORK_INFO
 
 **系统能力**：SystemCapability.Telephony.CellularData
 
