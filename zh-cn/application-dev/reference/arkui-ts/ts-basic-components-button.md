@@ -20,8 +20,8 @@
 
 | 参数名         | 参数类型       | 必填        | 参数描述                              |
 | ----------- | ---------- | ------| --------------------------------- |
-| type        | ButtonType | 否    | 描述按钮风格。<br/>默认值：ButtonType.Capsule                           |
-| stateEffect | boolean    | 否    |  按钮按下时是否开启切换效果，当状态置为false时，点击效果关闭。<br/>默认值：true |
+| type        | ButtonType | 否    | 描述按钮显示样式。<br/>默认值：ButtonType.Capsule                           |
+| stateEffect | boolean    | 否    |  按钮按下时是否开启按压态显示效果，当设置为false时，按压效果关闭。<br/>默认值：true |
 
 
 **方法2：** Button(label?: ResourceStr, options?: { type?: ButtonType, stateEffect?: boolean })
@@ -41,7 +41,7 @@
 | 名称          | 参数类型           | 描述                                |
 | ----------- | ----------- | --------------------------------- |
 | type        | ButtonType  |  设置Button样式。<br/>默认值：ButtonType.Capsule                       |
-| stateEffect | boolean     |  状态切换时是否开启切换效果，当状态置为false时，点击效果关闭。<br/>默认值：true |
+| stateEffect | boolean     |  按钮按下时是否开启按压态显示效果，当设置为false时，按压效果关闭。<br/>默认值：true |
 
 ## ButtonType枚举说明
 | 名称      | 描述                 |
