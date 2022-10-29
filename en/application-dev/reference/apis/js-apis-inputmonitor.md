@@ -101,7 +101,7 @@ This is a system API.
 inputMonitor.off("touch");
 ```
 
-off(type: "mouse", receiver?:Callback<MouseEvent>):void
+off(type: "mouse", receiver?:Callback\<MouseEvent>):void
 
 Stops listening for global mouse events.
 
