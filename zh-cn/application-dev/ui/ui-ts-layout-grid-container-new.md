@@ -1,7 +1,13 @@
 # 栅格布局
 
-栅格组件[GridRow](../reference/arkui-ts/ts-container-gridrow.md)和[GridCol](../reference/arkui-ts/ts-container-gridcol.md)
-相对于[GridContainer](../reference/arkui-ts/ts-container-gridcontainer.md)提供了更灵活、更全面的栅格系统实现方案。GridRow为栅格容器组件，只与栅格子组件GridCol在栅格布局场景中使用。
+栅格系统作为一种辅助布局的定位工具，在平面设计和网站设计都起到了很好的作用，对移动设备的界面设计有较好的借鉴作用。总结栅格系统对于移动设备的优势主要有：
+
+1. 给布局提供一种可循的规律，解决多尺寸多设备的动态布局问题。
+2. 给系统提供一种统一的定位标注，保证各模块各设备的布局一致性。
+3. 给应用提供一种灵活的间距调整方法，满足特殊场景布局调整的可能性。
+
+推荐使用栅格组件[GridRow](../reference/arkui-ts/ts-container-gridrow.md)和[GridCol](../reference/arkui-ts/ts-container-gridcol.md)来实现栅格布局效果，
+相对于目前已废弃的[GridContainer](../reference/arkui-ts/ts-container-gridcontainer.md)组件，GridRow和GridCol提供了更灵活、更全面的栅格系统实现方案。GridRow为栅格容器组件，只能与栅格子组件GridCol在栅格布局场景中使用。
 
 
 ## 栅格容器GridRow
@@ -18,8 +24,8 @@
 
 ### 栅格系统断点
 
-断点以设备宽度为基准，将应用宽度分成了几个不同的区间，即不同的断点。开发者根据需求在不同的区间实现不同的页面布局效果。
-[栅格系统默认断点](ui-ts-layout-grid-container.md#系统栅格断点)将设备宽度分为xs、sm、md、lg四类，尺寸范围如下：
+栅格系统以设备的水平宽度（屏幕密度像素值，单位vp)作为断点依据，定义设备的宽度类型，形成了一套断点规则。开发者可根据需求在不同的断点区间实现不同的页面布局效果。
+栅格系统默认断点将设备宽度分为xs、sm、md、lg四类，尺寸范围如下：
 
 | 断点名称  | 取值范围（vp）| 
 | --------| ------ | 

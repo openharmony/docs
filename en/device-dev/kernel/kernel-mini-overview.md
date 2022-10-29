@@ -1,4 +1,4 @@
-# Kernel Overview
+# LiteOS-M Overview
 
 
 ## Overview
@@ -9,7 +9,7 @@ The OpenHarmony LiteOS-M kernel architecture consists of the hardware layer and 
 
   **Figure 1** Kernel architecture
 
-  ![](figures/kernel-architecture.png "kernel-architecture")
+  ![](figures/Liteos-m-architecture.png "kernel-architecture")
 
 
 ## CPU Architecture Support
