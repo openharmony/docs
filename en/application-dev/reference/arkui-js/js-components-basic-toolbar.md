@@ -18,7 +18,7 @@ Only the **\<toolbar-item>** component is supported.
 
 >  **NOTE**
 >
->  A maximum of five **\<toolbar-item>** child components can be displayed in a **\<toolbar>** component. If there are six or more toolbar items, the first four are displayed, and the rest items are added to the **More** list of the toolbar. Users can click **More** to view the items. The list is displayed in the default style instead of the custom style set for the <toolbar-item> components.
+>  A maximum of five **\<toolbar-item>** child components can be displayed in a **\<toolbar>** component. If there are six or more toolbar items, the first four are displayed, and the rest items are added to the **More** list of the toolbar. Users can click **More** to view the items. The list is displayed in the default style instead of the custom style set for the \<toolbar-item> components.
 
 
 ## Attributes
