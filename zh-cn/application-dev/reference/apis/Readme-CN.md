@@ -95,7 +95,6 @@
   - [@ohos.mediaquery (媒体查询)](js-apis-mediaquery.md)
   - [@ohos.promptAction (弹窗)](js-apis-promptAction.md)
   - [@ohos.router (页面路由)](js-apis-router.md)
-  - [@ohos.uiAppearance(用户界面外观)](js-apis-uiappearance.md)
 - 图形图像
   - [@ohos.animation.windowAnimationManager (窗口动画管理)](js-apis-windowAnimationManager.md)
   - [@ohos.display (屏幕属性)](js-apis-display.md)
