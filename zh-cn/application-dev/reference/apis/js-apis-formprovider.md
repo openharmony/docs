@@ -1,10 +1,10 @@
 # FormProvider
 
-FormProvider模块提供了卡片提供方相关接口的能力，包括更新卡片，设置卡片更新时间，获取卡片信息，请求发布卡片等。
+FormProvider模块提供了卡片提供方相关接口的能力，开发者在开发卡片时，可通过该模块提供接口实现更新卡片，设置卡片更新时间，获取卡片信息，请求发布卡片等。
 
 > **说明：**
->
 > 本模块首批接口从API version 8开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+> 从API version 9 开始不再维护，建议使用[FormProvider](js-apis-app-form-formprovider.md)替代。
 
 ## 导入模块
 
@@ -12,27 +12,21 @@ FormProvider模块提供了卡片提供方相关接口的能力，包括更新�
 import formProvider from '@ohos.application.formProvider';
 ```
 
-## 权限
-
-无
-
 ## setFormNextRefreshTime
 
-setFormNextRefreshTime(formId: string, minute: number, callback: AsyncCallback&lt;void&gt;): void;
+setFormNextRefreshTime(formId: string, minute: number, callback: AsyncCallback&lt;void&gt;): void
 
-设置指定卡片的下一次更新时间。
+设置指定卡片的下一次更新时间，使用callback异步回调。
 
-**系统能力：**
-
-SystemCapability.Ability.Form
+**系统能力：** SystemCapability.Ability.Form
 
 **参数：**
 
   | 参数名 | 类型    | 必填 | 说明                                   |
   | ------ | ------ | ---- | ------------------------------------- |
-  | formId | string | 是   | 卡片标识                               |
-  | minute | number | 是   | 指定多久之后更新，单位分钟，大于等于5     |
-  | callback | AsyncCallback&lt;void&gt; | 是 | callback形式返回启动结果 |
+  | formId | string | 是   | 卡片标识。                               |
+  | minute | number | 是   | 指定多久之后更新，单位分钟，大于等于5。     |
+  | callback | AsyncCallback&lt;void&gt; | 是 | 回调函数。 |
 
 **示例：**
 
@@ -47,26 +41,24 @@ SystemCapability.Ability.Form
 
 ## setFormNextRefreshTime
 
-setFormNextRefreshTime(formId: string, minute: number): Promise&lt;void&gt;;
+setFormNextRefreshTime(formId: string, minute: number): Promise&lt;void&gt;
 
-设置指定卡片的下一次更新时间，以promise方式返回。
+设置指定卡片的下一次更新时间，使用Promise异步回调。
 
-**系统能力：**
-
-SystemCapability.Ability.Form
+**系统能力：** SystemCapability.Ability.Form
 
 **参数：**
 
   | 参数名 | 类型    | 必填 | 说明                                   |
   | ------ | ------ | ---- | ------------------------------------- |
-  | formId | string | 是   | 卡片标识                               |
-  | minute | number | 是   | 指定多久之后更新，单位分钟，大于等于5     |
+  | formId | string | 是   | 卡片标识。                               |
+  | minute | number | 是   | 指定多久之后更新，单位分钟，大于等于5。     |
 
 **返回值：**
 
   | 类型          | 说明                              |
   | ------------- | ---------------------------------- |
-  | Promise\<void> |Promise实例，用于获取异步返回结果。      |
+  | Promise\<void> | 无返回结果的Promise对象。      |
 
 **示例：**
 
@@ -81,21 +73,19 @@ SystemCapability.Ability.Form
 
 ## updateForm
 
-updateForm(formId: string, formBindingData: formBindingData.FormBindingData,callback: AsyncCallback&lt;void&gt;): void;
+updateForm(formId: string, formBindingData: formBindingData.FormBindingData,callback: AsyncCallback&lt;void&gt;): void
 
-更新指定的卡片。
+更新指定的卡片，使用callback异步回调。
 
-**系统能力：**
-
-SystemCapability.Ability.Form
+**系统能力：** SystemCapability.Ability.Form
 
 **参数：**
 
   | 参数名 | 类型                                                                    | 必填 | 说明             |
   | ------ | ---------------------------------------------------------------------- | ---- | ---------------- |
-  | formId | string                                                                 | 是   | 请求更新的卡片标识 |
-  | formBindingData | [FormBindingData](js-apis-formbindingdata.md#formbindingdata) | 是   | 用于更新的数据    |
-  | callback | AsyncCallback&lt;void&gt; | 是 | callback形式返回启动结果 |
+  | formId | string                                                                 | 是   | 请求更新的卡片标识。 |
+  | formBindingData | [FormBindingData](js-apis-formbindingdata.md#formbindingdata) | 是   | 用于更新的数据。    |
+  | callback | AsyncCallback&lt;void&gt; | 是 | 回调函数。 |
 
 **示例：**
 
@@ -112,26 +102,24 @@ SystemCapability.Ability.Form
 
 ## updateForm
 
-updateForm(formId: string, formBindingData: formBindingData.FormBindingData): Promise&lt;void&gt;;
+updateForm(formId: string, formBindingData: formBindingData.FormBindingData): Promise&lt;void&gt;
 
-更新指定的卡片，以promise方式返回。
+更新指定的卡片，使用Promise异步回调。
 
-**系统能力：**
-
-SystemCapability.Ability.Form
+**系统能力：** SystemCapability.Ability.Form
 
 **参数：**
 
   | 参数名 | 类型                                                                    | 必填 | 说明             |
   | ------ | ---------------------------------------------------------------------- | ---- | ---------------- |
-  | formId | string                                                                 | 是   | 请求更新的卡片标识 |
-  | formBindingData | [FormBindingData](js-apis-formbindingdata.md#formbindingdata) | 是   | 用于更新的数据    |
+  | formId | string                                                                 | 是   | 请求更新的卡片标识。 |
+  | formBindingData | [FormBindingData](js-apis-formbindingdata.md#formbindingdata) | 是   | 用于更新的数据。    |
 
 **返回值：**
 
 | 类型           | 说明                                |
 | -------------- | ----------------------------------- |
-| Promise\<void> | Promise实例，用于获取异步返回结果。 |
+| Promise\<void> | 无返回结果的Promise对象。 |
 
 **示例：**
 
@@ -148,9 +136,9 @@ SystemCapability.Ability.Form
 
 ## getFormsInfo<sup>9+</sup>
 
-getFormsInfo(callback: AsyncCallback&lt;Array&lt;formInfo.FormInfo&gt;&gt;): void;
+getFormsInfo(callback: AsyncCallback&lt;Array&lt;formInfo.FormInfo&gt;&gt;): void
 
-获取设备上当前应用程序的卡片信息。
+获取设备上当前应用程序的卡片信息，使用callback异步回调。
 
 **系统能力：** SystemCapability.Ability.Form
 
@@ -158,7 +146,7 @@ getFormsInfo(callback: AsyncCallback&lt;Array&lt;formInfo.FormInfo&gt;&gt;): voi
 
 | 参数名 | 类型    | 必填 | 说明    |
 | ------ | ------ | ---- | ------- |
-| callback | AsyncCallback&lt;Array&lt;[FormInfo](./js-apis-formInfo.md#forminfo-1)&gt;&gt; | 是 | callback形式返回查询到的卡片信息。 |
+| callback | AsyncCallback&lt;Array&lt;[FormInfo](./js-apis-formInfo.md#forminfo-1)&gt;&gt; | 是 | 回调函数。返回查询到的卡片信息。 |
 
 **示例：**
 
@@ -173,9 +161,9 @@ formProvider.getFormsInfo((error, data) => {
 ```
 ## getFormsInfo<sup>9+</sup>
 
-getFormsInfo(filter: formInfo.FormInfoFilter, callback: AsyncCallback&lt;Array&lt;formInfo.FormInfo&gt;&gt;): void;
+getFormsInfo(filter: formInfo.FormInfoFilter, callback: AsyncCallback&lt;Array&lt;formInfo.FormInfo&gt;&gt;): void
 
-获取设备上当前应用程序的卡片信息。
+获取设备上当前应用程序的卡片信息，并筛选符合条件的信息，使用callback异步回调。
 
 **系统能力：** SystemCapability.Ability.Form
 
@@ -183,14 +171,15 @@ getFormsInfo(filter: formInfo.FormInfoFilter, callback: AsyncCallback&lt;Array&l
 
 | 参数名 | 类型    | 必填 | 说明    |
 | ------ | ------ | ---- | ------- |
-| filter | [formInfo.FormInfoFilter](./js-apis-formInfo.md#forminfofilter) | 是 | 过滤卡片信息 |
-| callback | AsyncCallback&lt;Array&lt;[FormInfo](./js-apis-formInfo.md#forminfo-1)&gt;&gt; | 是 | callback形式返回查询到的卡片信息。 |
+| filter | [formInfo.FormInfoFilter](./js-apis-formInfo.md#forminfofilter) | 是 | 卡片信息过滤器。 |
+| callback | AsyncCallback&lt;Array&lt;[FormInfo](./js-apis-formInfo.md#forminfo-1)&gt;&gt; | 是 | 回调函数。返回查询到符合条件的卡片信息。 |
 
 **示例：**
 
 ```js
 import formInfo from '@ohos.application.formInfo';
 const filter : formInfo.FormInfoFilter = {
+    // get info of forms belong to module entry.
     moduleName : "entry"
 };
 formProvider.getFormsInfo(filter, (error, data) => {
@@ -204,9 +193,9 @@ formProvider.getFormsInfo(filter, (error, data) => {
 
 ## getFormsInfo<sup>9+</sup>
 
-getFormsInfo(filter?: formInfo.FormInfoFilter): Promise&lt;Array&lt;formInfo.FormInfo&gt;&gt;;
+getFormsInfo(filter?: formInfo.FormInfoFilter): Promise&lt;Array&lt;formInfo.FormInfo&gt;&gt;
 
-获取设备上当前应用程序的卡片信息。
+获取设备上当前应用程序的卡片信息，使用Promise异步回调。
 
 **系统能力：** SystemCapability.Ability.Form
 
@@ -214,19 +203,20 @@ getFormsInfo(filter?: formInfo.FormInfoFilter): Promise&lt;Array&lt;formInfo.For
 
 | 参数名 | 类型    | 必填 | 说明    |
 | ------ | ------ | ---- | ------- |
-| filter | [formInfo.FormInfoFilter](./js-apis-formInfo.md) | 否 | 过滤卡片信息 |
+| filter | [formInfo.FormInfoFilter](./js-apis-formInfo.md) | 否 | 卡片信息过滤器。 |
 
 **返回值：**
 
 | 类型          | 说明                                |
 | :------------ | :---------------------------------- |
-| Promise&lt;Array&lt;[FormInfo](./js-apis-formInfo.md#forminfo-1)&gt;&gt; | Promise实例，用于获取异步返回查询到的卡片信息。 |
+| Promise&lt;Array&lt;[FormInfo](./js-apis-formInfo.md#forminfo-1)&gt;&gt; | Promise对象。返回查询到符合条件的卡片信息。 |
 
 **示例：**
 
 ```js
 import formInfo from '@ohos.application.formInfo';
 const filter : formInfo.FormInfoFilter = {
+    // get info of forms belong to module entry.
     moduleName : "entry"
 };
 formProvider.getFormsInfo(filter).then((data) => {
@@ -238,21 +228,21 @@ formProvider.getFormsInfo(filter).then((data) => {
 
 ## requestPublishForm<sup>9+</sup>
 
-requestPublishForm(want: Want, formBindingData: formBindingData.FormBindingData, callback: AsyncCallback\<string>): void;
+requestPublishForm(want: Want, formBindingData: formBindingData.FormBindingData, callback: AsyncCallback\<string>): void
 
-请求发布一张卡片到使用方。
+请求发布一张卡片到使用方。使用方通常为桌面。
 
 **系统能力：** SystemCapability.Ability.Form
 
-**系统API**: 此接口为系统接口，三方应用不支持调用。
+**系统接口**: 此接口为系统接口。
 
 **参数：**
 
 | 参数名 | 类型                                                                    | 必填 | 说明             |
 | ------ | ---------------------------------------------------------------------- | ---- | ---------------- |
-| want | [Want](js-apis-application-Want.md)                           | 是   | abilityName: 目标卡片ability<br>parameters:<br>"ohos.extra.param.key.form_dimension"<br>"ohos.extra.param.key.form_name"<br>"ohos.extra.param.key.module_name" |
-| formBindingData | [FormBindingData](js-apis-formbindingdata.md#formbindingdata) | 是   | 用于创建卡片的数据 |
-| callback | AsyncCallback&lt;string&gt; | 是 | callback形式返回卡片标识 |
+| want | [Want](js-apis-application-Want.md)                           | 是   | 发布请求。需包含以下字段。<br>abilityName: 目标卡片ability<br>parameters:<br>"ohos.extra.param.key.form_dimension"<br>"ohos.extra.param.key.form_name"<br>"ohos.extra.param.key.module_name" |
+| formBindingData | [FormBindingData](js-apis-formbindingdata.md#formbindingdata) | 是   | 创建卡片的数据。 |
+| callback | AsyncCallback&lt;string&gt; | 是 | 回调函数。返回卡片标识。 |
 
 **示例：**
 
@@ -278,20 +268,20 @@ requestPublishForm(want: Want, formBindingData: formBindingData.FormBindingData,
 
 ## requestPublishForm<sup>9+</sup>
 
-requestPublishForm(want: Want, callback: AsyncCallback&lt;string&gt;): void;
+requestPublishForm(want: Want, callback: AsyncCallback&lt;string&gt;): void
 
-请求发布一张卡片到使用方。
+请求发布一张卡片到使用方。使用方通常为桌面。
 
 **系统能力：** SystemCapability.Ability.Form
 
-**系统API**: 此接口为系统接口，三方应用不支持调用。
+**系统接口**: 此接口为系统接口。
 
 **参数：**
 
 | 参数名   | 类型                                | 必填 | 说明                                                         |
 | -------- | ----------------------------------- | ---- | ------------------------------------------------------------ |
-| want     | [Want](js-apis-application-Want.md) | 是   | abilityName: 目标卡片ability<br>parameters:<br>"ohos.extra.param.key.form_dimension"<br>"ohos.extra.param.key.form_name"<br>"ohos.extra.param.key.module_name" |
-| callback | AsyncCallback&lt;string&gt;         | 是   | callback形式返回卡片标识                                     |
+| want     | [Want](js-apis-application-Want.md) | 是   | 发布请求。需包含以下字段。<br>abilityName: 目标卡片ability<br>parameters:<br>"ohos.extra.param.key.form_dimension"<br>"ohos.extra.param.key.form_name"<br>"ohos.extra.param.key.module_name" |
+| callback | AsyncCallback&lt;string&gt;         | 是   |  回调函数。返回卡片标识。 |
 
 **示例：**
 
@@ -315,26 +305,26 @@ requestPublishForm(want: Want, callback: AsyncCallback&lt;string&gt;): void;
 
 ## requestPublishForm<sup>9+</sup>
 
-requestPublishForm(want: Want, formBindingData?: formBindingData.FormBindingData): Promise&lt;string&gt;;
+requestPublishForm(want: Want, formBindingData?: formBindingData.FormBindingData): Promise&lt;string&gt;
 
-请求发布一张卡片到使用方。
+请求发布一张卡片到使用方。使用方通常为桌面。
 
 **系统能力：** SystemCapability.Ability.Form
 
-**系统API**: 此接口为系统接口，三方应用不支持调用。
+**系统接口**: 此接口为系统接口。
 
 **参数：**
 
 | 参数名          | 类型                                                         | 必填 | 说明                                                         |
 | --------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| want            | [Want](js-apis-application-Want.md)                          | 是   | abilityName: 目标卡片ability<br/>parameters:<br/>"ohos.extra.param.key.form_dimension"<br/>"ohos.extra.param.key.form_name"<br/>"ohos.extra.param.key.module_name" |
-| formBindingData | [FormBindingData](js-apis-formbindingdata.md#formbindingdata) | 否   | 用于创建卡片的数据                                           |
+| want            | [Want](js-apis-application-Want.md)                          | 是   | 发布请求。需包含以下字段。<br>abilityName: 目标卡片ability<br>parameters:<br>"ohos.extra.param.key.form_dimension"<br>"ohos.extra.param.key.form_name"<br>"ohos.extra.param.key.module_name" |
+| formBindingData | [FormBindingData](js-apis-formbindingdata.md#formbindingdata) | 否   | 创建卡片的数据。                                           |
 
 **返回值：**
 
 | 类型          | 说明                                |
 | :------------ | :---------------------------------- |
-| Promise&lt;string&gt; | Promise实例，用于返回卡片标识。 |
+| Promise&lt;string&gt; | Promise对象。返回卡片标识。 |
 
 **示例：**
 
@@ -356,19 +346,19 @@ requestPublishForm(want: Want, formBindingData?: formBindingData.FormBindingData
 
 ## isRequestPublishFormSupported<sup>9+<sup>
 
-isRequestPublishFormSupported(callback: AsyncCallback&lt;boolean&gt;): void;
+isRequestPublishFormSupported(callback: AsyncCallback&lt;boolean&gt;): void
 
 查询是否支持发布一张卡片到使用方。
 
-**系统能力：** SystemCapability.Ability.Form
+**系统接口**: 此接口为系统接口。
 
-**系统API**: 此接口为系统接口，三方应用不支持调用。
+**系统能力：** SystemCapability.Ability.Form
 
 **参数：**
 
 | 参数名 | 类型    | 必填 | 说明    |
 | ------ | ------ | ---- | ------- |
-| callback | AsyncCallback&lt;boolean&gt; | 是 | callback形式返回是否支持发布一张卡片到使用方 |
+| callback | AsyncCallback&lt;boolean&gt; | 是 | 回调函数。返回是否支持发布一张卡片到使用方。|
 
 **示例：**
 
@@ -400,19 +390,19 @@ formProvider.isRequestPublishFormSupported((error, isSupported) => {
 
 ## isRequestPublishFormSupported<sup>9+</sup>
 
-isRequestPublishFormSupported(): Promise&lt;boolean&gt;;
+isRequestPublishFormSupported(): Promise&lt;boolean&gt;
 
 查询是否支持发布一张卡片到使用方。
 
-**系统能力：** SystemCapability.Ability.Form
+**系统接口**: 此接口为系统接口。
 
-**系统API**: 此接口为系统接口，三方应用不支持调用。
+**系统能力：** SystemCapability.Ability.Form
 
 **返回值：**
 
 | 类型          | 说明                                |
 | :------------ | :---------------------------------- |
-| Promise&lt;boolean&gt; | Promise实例，用于获取异步返回是否支持发布一张卡片到使用方 |
+| Promise&lt;boolean&gt; | Promise对象。返回是否支持发布一张卡片到使用方。 |
 
 **示例：**
 
