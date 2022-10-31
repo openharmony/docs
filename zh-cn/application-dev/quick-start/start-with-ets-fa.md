@@ -190,6 +190,7 @@
    
    ```ts
    // index.ets
+   // 导入页面路由模块
    import router from '@ohos.router';
    
    @Entry
@@ -234,6 +235,7 @@
    
    ```ts
    // second.ets
+   // 导入页面路由模块
    import router from '@ohos.router';
    
    @Entry
