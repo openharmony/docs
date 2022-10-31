@@ -27,39 +27,35 @@
 
 ## 示例
 
-示例功能通过一个Button控制第二个Button的出现和消失，并通过transition配置第二个Button出现和消失的过场动画。
-
 ```ts
 // xxx.ets
 @Entry
 @Component
 struct TransitionExample {
-  @State btn: boolean = false
-  @State show: string = "show"
+  @State flag: boolean = true
+  @State show: string = 'show'
 
   build() {
-    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center,}) {
-      Button(this.show).width(80).height(30).backgroundColor(0x317aff).margin({bottom:50})
+    Column() {
+      Button(this.show).width(80).height(30).margin(30)
         .onClick(() => {
+          // 点击Button控制Image的显示和消失
           animateTo({ duration: 1000 }, () => {
-            this.btn = !this.btn
-            if(this.btn){
-              this.show = "hide"
-            }else{
-              this.show = "show"
+            if (this.flag) {
+              this.show = 'hide'
+            } else {
+              this.show = 'show'
             }
+            this.flag = !this.flag
           })
         })
-      if (this.btn) {
-        // 插入和删除配置为不同的过渡效果
-        Button() {
-          Image($r('app.media.bg1')).width("80%").height(300)
-        }.transition({ type: TransitionType.Insert, scale : {x:0,y:1.0} })
-        .transition({ type: TransitionType.Delete, scale: { x: 1.0, y: 0.0 } })
+      if (this.flag) {
+        // Image的显示和消失配置为不同的过渡效果
+        Image($r('app.media.testImg')).width(300).height(300)
+          .transition({ type: TransitionType.Insert, scale: { x: 0, y: 1.0 } })
+          .transition({ type: TransitionType.Delete, rotate: { angle: 180 } })
       }
-    }.height(400).width("100%").padding({top:100})
+    }.width('100%')
   }
 }
 ```
-
-![zh-cn_image_0000001174582850](figures/zh-cn_image_0000001174582850.gif)

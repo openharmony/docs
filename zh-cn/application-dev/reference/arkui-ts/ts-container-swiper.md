@@ -42,7 +42,7 @@ Swiper(controller?: SwiperController)
 | disableSwipe<sup>8+</sup>   | boolean                                  | 禁用组件滑动切换功能。<br/>默认值：false                              |
 | curve<sup>8+</sup>          | [Curve](ts-appendix-enums.md#curve)  \| string | 设置Swiper的动画曲线，默认为淡入淡出曲线，常用曲线参考[Curve枚举说明](ts-appendix-enums.md#curve)，也可以通过[插值计算](../apis/js-apis-curve.md)模块提供的接口创建自定义的插值曲线对象。<br/>默认值：Curve.Ease |
 | indicatorStyle<sup>8+</sup> | {<br/>left?:&nbsp;[Length](ts-types.md#length),<br/>top?:&nbsp;[Length](ts-types.md#length),<br/>right?:&nbsp;[Length](ts-types.md#length),<br/>bottom?:&nbsp;[Length](ts-types.md#length),<br/>size?:&nbsp;[Length](ts-types.md#length),<br/>mask?:&nbsp;boolean,<br/>color?:&nbsp;[ResourceColor](ts-types.md),<br/>selectedColor?:&nbsp;[ResourceColor](ts-types.md)<br/>} | 设置导航点样式：<br/>\- left: 设置导航点距离Swiper组件左边的距离。<br/>\- top: 设置导航点距离Swiper组件顶部的距离。<br/>\- right: 设置导航点距离Swiper组件右边的距离。<br/>\- bottom: 设置导航点距离Swiper组件底部的距离。<br/>\- size: 设置导航点的直径。<br/>\- mask: 设置是否显示导航点蒙层样式。<br/>\- color: 设置导航点的颜色。<br/>\- selectedColor: 设置选中的导航点的颜色。 |
-| displayCount<sup>8+</sup>   | number\|string                                               | 设置元素显示个数。<br/>默认值：1                                           |
+| displayCount<sup>8+</sup>   | number\|string                                               | 设置一页内元素显示个数。<br/>默认值：1                                           |
 | effectMode<sup>8+</sup>     | [EdgeEffect](ts-appendix-enums.md#edgeeffect)  | 滑动效果，目前支持的滑动效果参见EdgeEffect的枚举说明。<br/>默认值：EdgeEffect.Spring |
 
 ## SwiperDisplayMode枚举说明
@@ -86,7 +86,7 @@ finishAnimation(callback?: () => void): void
 
 | 参数名    | 参数类型   | 必填项 | 参数描述 |
 | --------- | ---------- | ------ | -------- |
-| callback  | () => void | 是     | 动画结束的回调。 |
+| callback  | () => void | 否     | 动画结束的回调。 |
 
 ## 事件
 
@@ -96,11 +96,11 @@ onChange(event: (index: number) => void)
 
 当前显示的子组件索引变化时触发该事件,返回值为当前显示的子组件的索引值。
 
-**参数：**
+**返回值：**
 
-| 参数名    | 参数类型   | 必填项 | 参数描述 |
-| --------- | ---------- | ------ | -------- |
-| index     | number     | 是     | 当前显示元素的索引。 |
+| 名称    |   类型    | 参数描述 |
+| --------- | ---------- | -------- |
+| index     | number    | 当前显示元素的索引。 |
 
 
 ## 示例
@@ -149,36 +149,34 @@ struct SwiperExample {
     Column({ space: 5 }) {
       Swiper(this.swiperController) {
         LazyForEach(this.data, (item: string) => {
-          Text(item).width('90%').height(160).backgroundColor(0xAFEEEE).textAlign(TextAlign.Center).fontSize(20)
+          Text(item).width('90%').height(160).backgroundColor(0xAFEEEE).textAlign(TextAlign.Center).fontSize(30)
         }, item => item)
       }
       .cachedCount(2)
       .index(1)
       .autoPlay(true)
       .interval(4000)
-      .indicator(true) // 默认开启指示点
-      .loop(false) // 默认开启循环播放
+      .indicator(true)
+      .loop(true)
       .duration(1000)
-      .vertical(false) // 默认横向切换
       .itemSpace(0)
-      .curve(Curve.Linear) // 动画曲线
+      .curve(Curve.Linear)
       .onChange((index: number) => {
         console.info(index.toString())
       })
 
-      Flex({ justifyContent: FlexAlign.SpaceAround }) {
-        Button('next')
+      Row({ space: 12 }) {
+        Button('showNext')
           .onClick(() => {
             this.swiperController.showNext()
           })
-        Button('preview')
+        Button('showPrevious')
           .onClick(() => {
             this.swiperController.showPrevious()
           })
-      }
-    }.margin({ top: 5 })
+      }.margin(5)
+    }.width('100%')
+    .margin({ top: 5 })
   }
 }
 ```
-
-![zh-cn_image_0000001224621917](figures/zh-cn_image_0000001224621917.gif)

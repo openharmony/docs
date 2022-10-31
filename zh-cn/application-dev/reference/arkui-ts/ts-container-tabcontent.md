@@ -37,23 +37,24 @@ TabContent()
 // xxx.ets
 @Entry
 @Component
-struct TabContentExample  {
+struct TabContentExample {
   @State fontColor: string = 'rgba(0, 0, 0, 0.4)'
   @State selectedFontColor: string = 'rgba(10, 30, 255, 1)'
   @State currentIndex: number = 0
   private controller: TabsController = new TabsController()
+
   @Builder TabBuilder(index: number) {
     Column() {
       Image(this.currentIndex === index ? '/resources/ic_public_contacts_filled_selected.png' : '/resources/ic_public_contacts_filled.png')
-        .width(10)
-        .height(10)
+        .width(24)
+        .height(24)
+        .margin(6)
         .opacity(this.currentIndex === index ? 1 : 0.4)
         .objectFit(ImageFit.Contain)
       Text(`Tab${(index > 2 ? (index - 1) : index) + 1}`)
         .fontColor(this.currentIndex === index ? this.selectedFontColor : this.fontColor)
         .fontSize(10)
-        .margin({top: 2})
-    }
+    }.width('100%')
   }
 
   @Builder AddBuilder() {
@@ -63,52 +64,52 @@ struct TabContentExample  {
         .height(this.currentIndex === 2 ? 26 : 24)
         .opacity(this.currentIndex === 2 ? 1 : 0.4)
         .objectFit(ImageFit.Contain)
-        .animation({duration: 200})
-    }
+    }.width('100%').height('100%').justifyContent(FlexAlign.Center)
   }
 
   build() {
     Column() {
       Tabs({ barPosition: BarPosition.End, controller: this.controller }) {
         TabContent() {
-          Flex({justifyContent: FlexAlign.Center}) {
+          Column() {
             Text('Tab1').fontSize(32)
-          }
+          }.width('100%')
         }.tabBar(this.TabBuilder(0))
 
         TabContent() {
-          Flex({justifyContent: FlexAlign.Center}) {
+          Column() {
             Text('Tab2').fontSize(32)
-          }
+          }.width('100%')
         }.tabBar(this.TabBuilder(1))
 
         TabContent() {
-          Flex({justifyContent: FlexAlign.Center}) {
+          Column() {
             Text('Add').fontSize(32)
-          }
+          }.width('100%')
         }.tabBar(this.AddBuilder())
 
         TabContent() {
-          Flex({justifyContent: FlexAlign.Center}) {
+          Column() {
             Text('Tab3').fontSize(32)
-          }
+          }.width('100%')
         }.tabBar(this.TabBuilder(3))
 
         TabContent() {
-          Flex({justifyContent: FlexAlign.Center}) {
+          Column() {
             Text('Tab4').fontSize(32)
-          }
+          }.width('100%')
         }.tabBar(this.TabBuilder(4))
       }
       .vertical(false)
-      .barWidth(300).barHeight(56)
+      .barWidth(300)
+      .barHeight(56)
       .onChange((index: number) => {
         this.currentIndex = index
       })
-      .width('90%').backgroundColor('rgba(241, 243, 245, 0.95)')
-    }.width('100%').height(200).margin({ top: 5 })
+      .width('90%')
+      .backgroundColor('rgba(241, 243, 245, 0.95)')
+    }.width('100%').height(200).margin({ top: 15 })
   }
 }
 ```
 
-![zh-cn_image_0000001186585726](figures/zh-cn_image_0000001186585726.gif)
