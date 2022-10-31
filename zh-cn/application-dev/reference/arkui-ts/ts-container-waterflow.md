@@ -42,9 +42,7 @@ WaterFlow(options?: {footer?: CustomBuilder, scroller?: Scroller})
 | rowsGap | Length |设置行与行的间距。<br> 默认值：0|
 | layoutDirection | [FlexDirection](ts-appendix-enums.md#flexdirection) |设置布局的主轴方向。<br/>默认值：FlexDirection::COLUMN|
 
-WaterFlow组件的layoutDirection、rowsTemplate和columnsTemplate属性之间的约束关系说明：
-
-- layoutDirection优先级高于rowsTemplate和columnsTemplate。根据layoutDirection设置情况，分为以下三种设置模式。
+WaterFlow组件的layoutDirection、rowsTemplate和columnsTemplate属性之间的约束关系说明：layoutDirection优先级高于rowsTemplate和columnsTemplate。根据layoutDirection设置情况，分为以下三种设置模式。
 
 - layoutDirection设置纵向布局（FlexDirection::COLUMN 或 FlexDirection::COLUMN_REVERSE）
 
