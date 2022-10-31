@@ -1,6 +1,6 @@
 # TextPicker
 
-滚动选择文本的组件。
+滑动选择文本内容的组件。
 
 >  **说明：**
 >
@@ -23,14 +23,14 @@ TextPicker(options?: {range: string[]|Resource, selected?: number, value?: strin
 | 参数名 | 参数类型 | 必填 | 参数描述 |
 | -------- | -------- | -------- | -------- |
 | range | string[]&nbsp;\|&nbsp;[Resource](ts-types.md#resource类型) | 是 | 选择器的数据选择列表。 |
-| selected | number | 否 | 设置默认选中项在数组中的index值。<br/>默认值：0 |
+| selected | number | 否 | 设置默认选中项在数组中的索引值。<br/>默认值：0 |
 | value | string | 否 | 设置默认选中项的值，优先级低于selected。<br/>默认值：第一个元素值 |
 
 ## 属性
 
 | 名称 | 参数类型 | 描述 |
 | -------- | -------- | -------- |
-| defaultPickerItemHeight | number \| string | 默认Picker内容项元素高度。 |
+| defaultPickerItemHeight | number \| string | 设置Picker各选择项的高度。 |
 
 ## 事件
 
@@ -53,7 +53,7 @@ struct TextPickerExample {
 
   build() {
     Column() {
-      TextPicker({range: this.fruits, selected: this.select})
+      TextPicker({ range: this.fruits, selected: this.select })
         .onChange((value: string, index: number) => {
           console.info('Picker item changed, value: ' + value + ', index: ' + index)
         })
