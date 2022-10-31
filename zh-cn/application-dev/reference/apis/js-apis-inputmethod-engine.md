@@ -126,7 +126,7 @@ createKeyboardDelegate(): KeyboardDelegate
 
 | 类型                                  | 说明             |
 | ------------------------------------- | ---------------- |
-| [KeyboardDelegate](#keyboardDelegate) | 客户端监听实例。 |
+| [KeyboardDelegate](#keyboarddelegate) | 客户端监听实例。 |
 
 **示例：**
 
