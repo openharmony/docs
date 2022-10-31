@@ -42,19 +42,21 @@ WaterFlow(options?: {footer?: CustomBuilder, scroller?: Scroller})
 | rowsGap | Length |设置行与行的间距。<br> 默认值：0|
 | layoutDirection | [FlexDirection](ts-appendix-enums.md#flexdirection) |设置布局的主轴方向。<br/>默认值：FlexDirection::COLUMN|
 
-WaterFlow组件的layoutDirection、rowsTemplate和columnsTemplate属性之间的相互关系：layoutDirection优先级高于rowsTemplate和columnsTemplate，设定符合布局方向的Template设置、忽略不符合布局方向的Template设置。根据设置情况，可分为以下三种属性设置模式：
+WaterFlow组件的layoutDirection、rowsTemplate和columnsTemplate属性之间的约束关系说明：
 
-- layoutDirection设置纵向布局（FlexDirection::COLUMN 或 FlexDirection::COLUMN_REVERSE）：
+- layoutDirection优先级高于rowsTemplate和columnsTemplate。根据layoutDirection设置情况，分为以下三种设置模式。
 
-此时，取影响纵向布局的columnsTemplate设置（如果未设置，取默认值），忽略影响横向布局的rowsTemplate设置。例如columnsTemplate设置为"1fr 1fr"、rowsTemplate设置为"1fr 1fr 1fr"时，展示为纵向的，并且辅轴为均分2列的布局。
+- layoutDirection设置纵向布局（FlexDirection::COLUMN 或 FlexDirection::COLUMN_REVERSE）
 
-- layoutDirection设置横向布局（FlexDirection::ROW 或 FlexDirection::ROW_REVERSE）：
+	此时columnsTemplate有效（如果未设置，取默认值）。例如columnsTemplate设置为"1fr 1fr"、rowsTemplate设置为"1fr 1fr 1fr"时，瀑布流组件纵向布局，辅轴均分成横向2列。
 
-此时，取影响横向布局的rowsTemplate设置（如果未设置，取默认值），忽略纵向布局的columnsTemplate设置。例如columnsTemplate设置为"1fr 1fr"、rowsTemplate设置为"1fr 1fr 1fr"时，展示为横向的，并且辅轴为均分3列的布局。
+- layoutDirection设置横向布局（FlexDirection::ROW 或 FlexDirection::ROW_REVERSE）
 
-- layoutDirection未设置布局方向：
+	此时rowsTemplate有效（如果未设置，取默认值）。例如columnsTemplate设置为"1fr 1fr"、rowsTemplate设置为"1fr 1fr 1fr"时，瀑布流组件横向布局，辅轴均分成纵向3列。
 
-此时，布局方向取layoutDirection的默认值：FlexDirection::COLUMN，设定组件为纵向布局。取影响纵向布局的columnsTemplate设置（如果未设置，取默认值），忽略影响横向布局的rowsTemplate设置。例如columnsTemplate设置为"1fr 1fr"、rowsTemplate设置为"1fr 1fr 1fr"时，展示为纵向的，并且辅轴为均分2列的布局。
+- layoutDirection未设置布局方向
+
+	布局方向为layoutDirection的默认值：FlexDirection::COLUMN，此时columnsTemplate有效。例如columnsTemplate设置为"1fr 1fr"、rowsTemplate设置为"1fr 1fr 1fr"时，瀑布流组件纵向布局，辅轴均分成横向2列。
 
 ## 事件
 
