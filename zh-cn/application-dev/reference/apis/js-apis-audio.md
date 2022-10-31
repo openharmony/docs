@@ -26,7 +26,7 @@ import audio from '@ohos.multimedia.audio';
 
 | 名称                                    | 类型      | 可读  | 可写 | 说明               |
 | --------------------------------------- | ----------| ---- | ---- | ------------------ |
-| LOCAL_NETWORK_ID<sup>9+</sup>           | string    | 是   | 否   | 本地设备网络id。<br> **系统能力：** SystemCapability.Multimedia.Audio.Device |
+| LOCAL_NETWORK_ID<sup>9+</sup>           | string    | 是   | 否   | 本地设备网络id。<br/>此接口为系统接口，三方应用不支持调用。<br> **系统能力：** SystemCapability.Multimedia.Audio.Device  |
 | DEFAULT_VOLUME_GROUP_ID<sup>9+</sup>    | number    | 是   | 否   | 默认音量组id。<br> **系统能力：** SystemCapability.Multimedia.Audio.Volume       |
 | DEFAULT_INTERRUPT_GROUP_ID<sup>9+</sup> | number | 是   | 否   | 默认音频中断组id。<br> **系统能力：** SystemCapability.Multimedia.Audio.Interrupt       |
 
