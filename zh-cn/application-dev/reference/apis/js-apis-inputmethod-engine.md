@@ -1631,7 +1631,10 @@ async function InputMethodAbility() {
 | keyCode   | number   | 是   | 否   | 按键的键值。 |
 | keyAction | number   | 是   | 否   | 按键的状态。 |
 
-## TextInputClient
+## TextInputClient<sup>(deprecated)</sup>
+
+> **说明：** <br/>
+> 从API version 8开始支持，API version 9开始废弃, 建议使用[InputClient](#inputclient9)替代。
 
 下列API示例中都需使用[on('inputStart')](#oninputstart)回调获取到TextInputClient实例，再通过此实例调用对应方法。
 
