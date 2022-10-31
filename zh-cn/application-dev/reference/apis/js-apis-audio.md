@@ -22,7 +22,7 @@ import audio from '@ohos.multimedia.audio';
 
 | 名称                                    | 类型      | 可读  | 可写 | 说明               |
 | --------------------------------------- | ----------| ---- | ---- | ------------------ |
-| LOCAL_NETWORK_ID<sup>9+</sup>           | string    | 是   | 否   | 本地设备网络id。<br/>此接口为系统接口，三方应用不支持调用。<br> **系统能力：** SystemCapability.Multimedia.Audio.Device  |
+| LOCAL_NETWORK_ID<sup>9+</sup>           | string    | 是   | 否   | 本地设备网络id。<br/>此接口为系统接口。<br> **系统能力：** SystemCapability.Multimedia.Audio.Device  |
 | DEFAULT_VOLUME_GROUP_ID<sup>9+</sup>    | number    | 是   | 否   | 默认音量组id。<br> **系统能力：** SystemCapability.Multimedia.Audio.Volume       |
 | DEFAULT_INTERRUPT_GROUP_ID<sup>9+</sup> | number | 是   | 否   | 默认音频中断组id。<br> **系统能力：** SystemCapability.Multimedia.Audio.Interrupt       |
 
@@ -343,7 +343,7 @@ async function createTonePlayer(){
 | RINGTONE                     | 2      | 铃声。     |
 | MEDIA                        | 3      | 媒体。     |
 | VOICE_ASSISTANT<sup>8+</sup> | 9      | 语音助手。 |
-| ALL<sup>9+</sup>             | 100    | 所有公共音频流。<br/>此接口为系统接口，三方应用不支持调用。|
+| ALL<sup>9+</sup>             | 100    | 所有公共音频流。<br/>此接口为系统接口。|
 
 ## InterruptRequestResultType<sup>9+</sup>
 
@@ -377,13 +377,13 @@ async function createTonePlayer(){
 
 | 名称                            | 默认值  | 描述                                              |
 | ------------------------------- | ------ | ------------------------------------------------- |
-| NONE_DEVICES_FLAG<sup>9+</sup>  | 0      | 无 <br/>此接口为系统接口，三方应用不支持调用。        |
+| NONE_DEVICES_FLAG<sup>9+</sup>  | 0      | 无 <br/>此接口为系统接口。        |
 | OUTPUT_DEVICES_FLAG             | 1      | 输出设备。 |
 | INPUT_DEVICES_FLAG              | 2      | 输入设备。 |
 | ALL_DEVICES_FLAG                | 3      | 所有设备。 |
-| DISTRIBUTED_OUTPUT_DEVICES_FLAG<sup>9+</sup> | 4   | 分布式输出设备。<br/>此接口为系统接口，三方应用不支持调用。  |
-| DISTRIBUTED_INPUT_DEVICES_FLAG<sup>9+</sup>  | 8   | 分布式输入设备。<br/>此接口为系统接口，三方应用不支持调用。  |
-| ALL_DISTRIBUTED_DEVICES_FLAG<sup>9+</sup>    | 12  | 分布式输入和输出设备。<br/>此接口为系统接口，三方应用不支持调用。  |
+| DISTRIBUTED_OUTPUT_DEVICES_FLAG<sup>9+</sup> | 4   | 分布式输出设备。<br/>此接口为系统接口。  |
+| DISTRIBUTED_INPUT_DEVICES_FLAG<sup>9+</sup>  | 8   | 分布式输入设备。<br/>此接口为系统接口。  |
+| ALL_DISTRIBUTED_DEVICES_FLAG<sup>9+</sup>    | 12  | 分布式输入和输出设备。<br/>此接口为系统接口。  |
 
 ## DeviceRole
 
@@ -818,8 +818,8 @@ getVolumeGroupInfos();
 | 名称                   | 默认值 | 描述                                          |
 | :--------------------- | :----- | :-------------------------------------------- |
 | AUDIO_SCENE_DEFAULT    | 0      | 默认音频场景。                                |
-| AUDIO_SCENE_RINGING    | 1      | 响铃模式。<br/>此接口为系统接口，三方应用不支持调用。 |
-| AUDIO_SCENE_PHONE_CALL | 2      | 电话模式。<br/>此接口为系统接口，三方应用不支持调用。 |
+| AUDIO_SCENE_RINGING    | 1      | 响铃模式。<br/>此接口为系统接口。 |
+| AUDIO_SCENE_PHONE_CALL | 2      | 电话模式。<br/>此接口为系统接口。 |
 | AUDIO_SCENE_VOICE_CHAT | 3      | 语音聊天模式。                                |
 
 ## AudioManager
@@ -2843,9 +2843,9 @@ async function getRoutingManager(){
 | 名称               | 类型                                       | 可读 | 可写 | 说明                          |
 | -------------------| ----------------------------------------- | ---- | ---- | ---------------------------- |
 | streamId           | number                                    | 是   | 否   | 音频流唯一id。                |
-| clientUid          | number                                    | 是   | 否   | 音频渲染器客户端应用程序的Uid。<br/>此接口为系统接口，三方应用不支持调用。 |
+| clientUid          | number                                    | 是   | 否   | 音频渲染器客户端应用程序的Uid。<br/>此接口为系统接口。 |
 | rendererInfo       | [AudioRendererInfo](#audiorendererinfo8)  | 是   | 否   | 音频渲染器信息。               |
-| rendererState      | [AudioState](#audiostate)                 | 是   | 否   | 音频状态。<br/>此接口为系统接口，三方应用不支持调用。|
+| rendererState      | [AudioState](#audiostate)                 | 是   | 否   | 音频状态。<br/>此接口为系统接口。|
 
 ## AudioRendererChangeInfoArray<sup>9+</sup>
 
@@ -2908,9 +2908,9 @@ audioStreamManager.on('audioRendererChange',  (AudioRendererChangeInfoArray) => 
 | 名称               | 类型                                       | 可读 | 可写 | 说明                          |
 | -------------------| ----------------------------------------- | ---- | ---- | ---------------------------- |
 | streamId           | number                                    | 是   | 否   | 音频流唯一id。                |
-| clientUid          | number                                    | 是   | 否   | 音频采集器客户端应用程序的Uid。<br/>此接口为系统接口，三方应用不支持调用。 |
+| clientUid          | number                                    | 是   | 否   | 音频采集器客户端应用程序的Uid。<br/>此接口为系统接口。 |
 | capturerInfo       | [AudioCapturerInfo](#audiocapturerinfo8)   | 是   | 否   | 音频采集器信息。               |
-| capturerState      | [AudioState](#audiostate)                 | 是   | 否   | 音频状态。<br/>此接口为系统接口，三方应用不支持调用。|
+| capturerState      | [AudioState](#audiostate)                 | 是   | 否   | 音频状态。<br/>此接口为系统接口。|
 
 ## AudioCapturerChangeInfoArray<sup>9+</sup>
 
@@ -2978,9 +2978,9 @@ audioStreamManager.on('audioCapturerChange', (AudioCapturerChangeInfoArray) =>  
 | sampleRates<sup>9+</sup>      | Array&lt;number&gt;        | 是   | 否   | 支持的采样率。 |
 | channelCounts<sup>9+</sup>    | Array&lt;number&gt;        | 是   | 否   | 支持的通道数。 |
 | channelMasks<sup>9+</sup>     | Array&lt;number&gt;        | 是   | 否   | 支持的通道掩码。 |
-| networkId<sup>9+</sup>        | string                     | 是   | 否   | 设备组网的ID。<br/>此接口为系统接口，三方应用不支持调用。 |
-| interruptGroupId<sup>9+</sup> | number                     | 是   | 否   | 设备所处的焦点组ID。<br/>此接口为系统接口，三方应用不支持调用。 |
-| volumeGroupId<sup>9+</sup>    | number                     | 是   | 否   | 设备所处的音量组ID。<br/>此接口为系统接口，三方应用不支持调用。 |
+| networkId<sup>9+</sup>        | string                     | 是   | 否   | 设备组网的ID。<br/>此接口为系统接口。 |
+| interruptGroupId<sup>9+</sup> | number                     | 是   | 否   | 设备所处的焦点组ID。<br/>此接口为系统接口。 |
+| volumeGroupId<sup>9+</sup>    | number                     | 是   | 否   | 设备所处的音量组ID。<br/>此接口为系统接口。 |
 
 ## AudioDeviceDescriptors
 
