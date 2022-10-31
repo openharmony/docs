@@ -2318,20 +2318,13 @@ getDevices(deviceFlag: DeviceFlag, callback: AsyncCallback&lt;AudioDeviceDescrip
 **示例：**
 
 ```js
-let audioManager = audio.getAudioManager();
-audioManager.getRoutingManager((err,AudioRoutingManager)=>{
+audioRoutingManager.getDevices(audio.DeviceFlag.OUTPUT_DEVICES_FLAG, (err, value) => {
   if (err) {
-    console.error(`AudioFrameworkTest:Callback:failed to get RoutingManager ${err}`);
-  } else {
-    AudioRoutingManager.getDevices(audio.DeviceFlag.OUTPUT_DEVICES_FLAG, (err, value) => {
-      if (err) {
-        console.error(`Failed to obtain the device list. ${err}`);
-        return;
-      }
-      console.info('Callback invoked to indicate that the device list is obtained.');
-    });
+    console.error(`Failed to obtain the device list. ${err}`);
+    return;
   }
-})
+  console.info('Callback invoked to indicate that the device list is obtained.');
+});
 ```
 
 ### getDevices<sup>9+</sup>
@@ -2357,16 +2350,8 @@ getDevices(deviceFlag: DeviceFlag): Promise&lt;AudioDeviceDescriptors&gt;
 **示例：**
 
 ```js
-let audioManager = audio.getAudioManager();
-audioManager.getRoutingManager((err,AudioRoutingManager)=>{
-  if (err) {
-    console.error(`AudioFrameworkTest:Callback:failed to get RoutingManager ${err}`);
-  }
-  else {
-    AudioRoutingManager.getDevices(audio.DeviceFlag.OUTPUT_DEVICES_FLAG).then((data) => {
-      console.info('Promise returned to indicate that the device list is obtained.');
-    });
-  }
+audioRoutingManager.getDevices(audio.DeviceFlag.OUTPUT_DEVICES_FLAG).then((data) => {
+  console.info('Promise returned to indicate that the device list is obtained.');
 });
 ```
 
@@ -2397,19 +2382,11 @@ on(type: 'deviceChange', deviceFlag: DeviceFlag, callback: Callback<DeviceChange
 **示例：**
 
 ```js
-let audioManager = audio.getAudioManager();
-audioManager.getRoutingManager((err,AudioRoutingManager)=>{
-  if (err) {
-    console.error(`AudioFrameworkTest:Callback:failed to get RoutingManager ${err}`);
-  }
-  else {
-    AudioRoutingManager.on('deviceChange', audio.DeviceFlag.OUTPUT_DEVICES_FLAG, (deviceChanged) => {
-      console.info('device change type : ' + deviceChanged.type);
-      console.info('device descriptor size : ' + deviceChanged.deviceDescriptors.length);
-      console.info('device change descriptor : ' + deviceChanged.deviceDescriptors[0].deviceRole);
-      console.info('device change descriptor : ' + deviceChanged.deviceDescriptors[0].deviceType);
-    });
-  }
+audioRoutingManager.on('deviceChange', audio.DeviceFlag.OUTPUT_DEVICES_FLAG, (deviceChanged) => {
+  console.info('device change type : ' + deviceChanged.type);
+  console.info('device descriptor size : ' + deviceChanged.deviceDescriptors.length);
+  console.info('device change descriptor : ' + deviceChanged.deviceDescriptors[0].deviceRole);
+  console.info('device change descriptor : ' + deviceChanged.deviceDescriptors[0].deviceType);
 });
 ```
 
@@ -2439,15 +2416,8 @@ off(type: 'deviceChange', callback?: Callback<DeviceChangeAction\>): void
 **示例：**
 
 ```js
-let audioManager = audio.getAudioManager();
-audioManager.getRoutingManager((err,AudioRoutingManager)=>{
-  if (err) {
-    console.error(`AudioFrameworkTest:Callback:failed to get RoutingManager ${err}`);
-  } else {
-    AudioRoutingManager.off('deviceChange', (deviceChanged) => {
-      console.info('Should be no callback.');
-    });
-  }
+audioRoutingManager.off('deviceChange', (deviceChanged) => {
+  console.info('Should be no callback.');
 });
 ```
 
@@ -2470,23 +2440,18 @@ selectInputDevice(inputAudioDevices: AudioDeviceDescriptors, callback: AsyncCall
 
 **示例：**
 ```js
-let audioManager = audio.getAudioManager();
 let inputAudioDeviceDescriptor = [{
   "deviceRole":audio.DeviceRole.INPUT_DEVICE,
   "networkId":audio.LOCAL_NETWORK_ID,
   "interruptGroupId":1,
   "volumeGroupId":1 }];
-let audioRoutingManager;
 
-async function getRoutingManager(){
-  await audioManager.getRoutingManager().then((value) => {
-    audioRoutingManager = value;
-    audioRoutingManager.selectInputDevice(inputAudioDeviceDescriptor, (err) => {
-      if (err) {
-        console.error(`Result ERROR: ${err}`);
-      } else {
-        console.info('Select input devices result callback: SUCCESS'); }
-    });
+async function selectInputDevice(){
+  audioRoutingManager.selectInputDevice(inputAudioDeviceDescriptor, (err) => {
+    if (err) {
+      console.error(`Result ERROR: ${err}`);
+    } else {
+      console.info('Select input devices result callback: SUCCESS'); }
   });
 }
 ```
@@ -2516,23 +2481,18 @@ selectInputDevice(inputAudioDevices: AudioDeviceDescriptors): Promise&lt;void&gt
 **示例：**
 
 ```js
-let audioManager = audio.getAudioManager();
 let inputAudioDeviceDescriptor =[{
   "deviceRole":audio.DeviceRole.INPUT_DEVICE,
   "networkId":audio.LOCAL_NETWORK_ID,
   "interruptGroupId":1,
   "volumeGroupId":1 }];
-let audioRoutingManager;
 
 async function getRoutingManager(){
-  await audioManager.getRoutingManager().then((value) => {
-    audioRoutingManager = value;
     audioRoutingManager.selectInputDevice(inputAudioDeviceDescriptor).then(() => {
       console.info('Select input devices result promise: SUCCESS');
     }).catch((err) => {
       console.error(`Result ERROR: ${err}`);
     });
-  });
 }
 ```
 
@@ -2667,23 +2627,17 @@ selectOutputDevice(outputAudioDevices: AudioDeviceDescriptors, callback: AsyncCa
 
 **示例：**
 ```js
-let audioManager = audio.getAudioManager();
 let outputAudioDeviceDescriptor = [{
   "deviceRole":audio.DeviceRole.OUTPUT_DEVICE,
   "networkId":audio.LOCAL_NETWORK_ID,
   "interruptGroupId":1,
   "volumeGroupId":1 }];
-let audioRoutingManager;
-
-async function getRoutingManager(){
-  await audioManager.getRoutingManager().then((value) => {
-    audioRoutingManager = value;
-    audioRoutingManager.selectOutputDevice(outputAudioDeviceDescriptor, (err) => {
-      if (err) {
-        console.error(`Result ERROR: ${err}`);
-      } else {
-        console.info('Select output devices result callback: SUCCESS'); }
-    });
+async function selectOutputDevice(){
+  audioRoutingManager.selectOutputDevice(outputAudioDeviceDescriptor, (err) => {
+    if (err) {
+      console.error(`Result ERROR: ${err}`);
+    } else {
+      console.info('Select output devices result callback: SUCCESS'); }
   });
 }
 ```
@@ -2713,22 +2667,17 @@ selectOutputDevice(outputAudioDevices: AudioDeviceDescriptors): Promise&lt;void&
 **示例：**
 
 ```js
-let audioManager = audio.getAudioManager();
 let outputAudioDeviceDescriptor =[{
   "deviceRole":audio.DeviceRole.OUTPUT_DEVICE,
   "networkId":audio.LOCAL_NETWORK_ID,
   "interruptGroupId":1,
   "volumeGroupId":1 }];
-let audioRoutingManager;
 
-async function getRoutingManager(){
-  await audioManager.getRoutingManager().then((value) => {
-    audioRoutingManager = value;
-    audioRoutingManager.selectOutputDevice(outputAudioDeviceDescriptor).then(() => {
-      console.info('Select output devices result promise: SUCCESS');
-    }).catch((err) => {
-      console.error(`Result ERROR: ${err}`);
-    });
+async function selectOutputDevice(){
+  audioRoutingManager.selectOutputDevice(outputAudioDeviceDescriptor).then(() => {
+    console.info('Select output devices result promise: SUCCESS');
+  }).catch((err) => {
+    console.error(`Result ERROR: ${err}`);
   });
 }
 ```
@@ -2753,7 +2702,6 @@ selectOutputDeviceByFilter(filter: AudioRendererFilter, outputAudioDevices: Audi
 
 **示例：**
 ```js
-let audioManager = audio.getAudioManager();
 let outputAudioRendererFilter = {
   "uid":20010041,
   "rendererInfo": {
@@ -2766,17 +2714,13 @@ let outputAudioDeviceDescriptor = [{
   "networkId":audio.LOCAL_NETWORK_ID,
   "interruptGroupId":1,
   "volumeGroupId":1 }];
-let audioRoutingManager;
 
-async function getRoutingManager(){
-  await audioManager.getRoutingManager().then((value) => {
-    audioRoutingManager = value;
-    audioRoutingManager.selectOutputDeviceByFilter(outputAudioRendererFilter, outputAudioDeviceDescriptor, (err) => {
-      if (err) {
-        console.error(`Result ERROR: ${err}`);
-      } else {
-        console.info('Select output devices by filter result callback: SUCCESS'); }
-    });
+async function selectOutputDeviceByFilter(){
+  audioRoutingManager.selectOutputDeviceByFilter(outputAudioRendererFilter, outputAudioDeviceDescriptor, (err) => {
+    if (err) {
+      console.error(`Result ERROR: ${err}`);
+    } else {
+      console.info('Select output devices by filter result callback: SUCCESS'); }
   });
 }
 ```
@@ -2807,7 +2751,6 @@ selectOutputDeviceByFilter(filter: AudioRendererFilter, outputAudioDevices: Audi
 **示例：**
 
 ```js
-let audioManager = audio.getAudioManager();
 let outputAudioRendererFilter = {
   "uid":20010041,
   "rendererInfo": {
@@ -2820,17 +2763,13 @@ let outputAudioDeviceDescriptor = [{
   "networkId":audio.LOCAL_NETWORK_ID,
   "interruptGroupId":1,
   "volumeGroupId":1 }];
-let audioRoutingManager;
 
-async function getRoutingManager(){
-  await audioManager.getRoutingManager().then((value) => {
-    audioRoutingManager = value;
-    audioRoutingManager.selectOutputDeviceByFilter(outputAudioRendererFilter, outputAudioDeviceDescriptor).then(() => {
-      console.info('Select output devices by filter result promise: SUCCESS');
-    }).catch((err) => {
-      console.error(`Result ERROR: ${err}`);
-    })
-  });
+async function selectOutputDeviceByFilter(){
+  audioRoutingManager.selectOutputDeviceByFilter(outputAudioRendererFilter, outputAudioDeviceDescriptor).then(() => {
+    console.info('Select output devices by filter result promise: SUCCESS');
+  }).catch((err) => {
+    console.error(`Result ERROR: ${err}`);
+  })
 }
 ```
 
