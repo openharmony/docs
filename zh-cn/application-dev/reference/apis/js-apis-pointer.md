@@ -24,7 +24,7 @@ setPointerVisible(visible: boolean, callback: AsyncCallback&lt;void&gt;): void
 
 | 参数       | 类型                        | 必填   | 说明                                       |
 | -------- | ------------------------- | ---- | ---------------------------------------- |
-| visible  | boolean                   | 是    | 鼠标指针是否显示 |
+| visible  | boolean                   | 是    | 鼠标指针是否显示。 |
 | callback | AsyncCallback&lt;void&gt; | 是    | 回调函数。 |
 
 **示例**：
