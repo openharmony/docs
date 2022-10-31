@@ -144,7 +144,7 @@ Input method manager service error.
 
 **处理步骤**<br/>
 
-无。
+通过ps -A|grep inputmethod查看是否存在输入法服务的进程号，如果存在，则服务正常。
 
 ## 12899999 其他异常
 
