@@ -32,8 +32,8 @@ The dependency between modules can be classified into **deps** (left in the figu
     deps = [
       "GN target of module 1",
     ...
-   ]                        # Intra-component dependency
-  part_name = "part1"       # (Mandatory) Name of the component to which the module belongs.
+   ]                      # Intra-component dependency
+  part_name = "part1"     # (Mandatory) Name of the component to which the module belongs.
   }
   ```
 
@@ -55,8 +55,8 @@ The dependency between modules can be classified into **deps** (left in the figu
     external_deps = [
       "part1:module1",
     ...
-    ]                      # Inter-component dependency. The dependent module must be declared in **inner_kits** by the dependent component.
-    part_name = "part2"    # (Mandatory) Name of the component to which the module belongs.
+    ]                     # Inter-component dependency. The dependent module must be declared in inner_kits by the dependent component.
+    part_name = "part2"   # (Mandatory) Name of the component to which the module belongs.
   }
   ```
 
@@ -64,51 +64,51 @@ The dependency between modules can be classified into **deps** (left in the figu
 
 ## Using Sanitizer
 
-When adding a module, you can enable Sanitizer features, such as the integer overflow detection and control-flow integrity (CFI) check, provided by the compiler as required. Each configuration item is optional. It is **false** by default, and can also be left empty. 
+When adding a module, you can enable the Sanitizer, such as the integer overflow check and control-flow integrity (CFI), provided by the compiler as required. You can also enable the debug or release mode and configure a blocklist. Each configuration item is optional. It is **false** by default. You can also leave it empty. 
 
-The following is an example of Sanitizer configuration:
+Sanitizer configuration example:
 
 ``` shell
   ohos_shared_library("example") {
     sanitize = {
       cfi = true
       integer_overflow = true                
-      debug = true                       # Optional. The default mode is disabled by default.
-      blocklist = "./blocklist.txt"      # Optional. Enter the path of the blocklist.
+      debug = true                           # Optional. The debug mode is disabled by default.
+      blocklist = "./blocklist.txt"          # Optional. Enter the path of the blocklist.
     }
     ...
   }
 ```
 
+**Supported Sanitizer Types**
 
+Currently, the following two types of Sanitizers are supported:
 
-**Supported Sanitizer Features**
-
-- Integer overflow detection: includes detection of  unsigned intergers (unsigned_integer_overflow), signed integers (signed_integer_overflow detection), and both (integer_overflow).  
+- Integer overflow check: provides check of unsigned integer overflow (unsigned_integer_overflow), check of signed integer overflow (signed_integer_overflow), or both (integer_overflow).
 - CFI: prevents malware attacks from redirecting the control flow of a program.
 
-**Other Sanitizer Settings**
+**Release and Debug Modes**
 
-- Debug: specifies whether the debug mode or the release mode is used. The default value **false** indicates that the release mode is used. The value **true** explicitly declares the debug mode. This option is not provided in the build of the release version.
+**Debug** specifies whether the debug mode or the release mode is used. The default value **false** indicates that the release mode is used. The value **true** explicitly declares the debug mode. The **debug** option takes effect only for the Sanitizer and does not determine whether a module is debuggable. In the build configuration for a module in release version, you are advised to set **debug** to **false** (enable the release mode) or leave it unspecified.
 
-  Sanitizer is used to locate problems during development, which is irrelevant to the debug version built. In debug mode, abundant error-related information is provided to help locate errors. When an error occurs, the program will be restored instead of being interrupted to further identify subsequent errors.
+- Debug mode: If debug mode is enabled, abundant error-related information is provided to help locate faults. When an error occurs, the application will be resumed instead of being interrupted to further identify subsequent errors.
 
-  In release mode,  the program will be directly interrupted when an error occurs to protect the system against errors or maliciously attacks.
+- Release mode: If release mode is enabled, the application will be directly interrupted when an error occurs. This can protect the system against errors or maliciously attacks.
 
-- Blocklist: specifies the functions or source programs that are not affected by Sanitizer in the module. It prevents benign behavior from being identified as errors or hotspot functions from generating unreasonable and unacceptable overheads. Exercise caution when using this function. 
+**Blocklist**
 
-  Blocklist example:
+The blocklist specifies the functions or source programs that are not affected by Sanitizer in the module. It prevents benign behavior from being identified as errors or prevents hotspot functions from generating unreasonable and unacceptable overheads. Exercise caution when using this function. 
 
-  ```
-  [cfi]
-  fun:*([Tt]est|TEST)*
-  fun: main
-  
-  [integer]
-  src:example/*.cpp
-  ```
+Blocklist example:
 
-  
+```
+[cfi]
+fun:*([Tt]est|TEST)*
+fun: main
+
+[integer]
+src:example/*.cpp
+```
 
 
 ## Information Collected by the Open Source Software Notice
