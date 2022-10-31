@@ -782,7 +782,7 @@ inputMethodEngine.getKeyboardDelegate().off('textChange', (text) => {
 
 ## KeyboardController
 
-下列API示例中都需使用[inputStart](#oninputstart9)回调获取到KeyboardController实例，再通过此实例调用对应方法。
+下列API示例中都需使用[on('inputStart')](#oninputstart9)回调获取到KeyboardController实例，再通过此实例调用对应方法。
 
 ### hide<sup>9+</sup>
 
@@ -1633,7 +1633,7 @@ async function InputMethodAbility() {
 
 ## TextInputClient
 
-下列API示例中都需使用[inputStart](#oninputstart)回调获取到TextInputClient实例，再通过此实例调用对应方法。
+下列API示例中都需使用[on('inputStart')](#oninputstart)回调获取到TextInputClient实例，再通过此实例调用对应方法。
 
 ### getForward<sup>(deprecated)</sup>
 
