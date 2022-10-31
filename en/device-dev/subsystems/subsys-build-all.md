@@ -105,7 +105,7 @@ You must install the software packages required for build. The command is as fol
   apt-get install -y apt-utils binutils bison flex bc build-essential make mtd-utils gcc-arm-linux-gnueabi u-boot-tools python3.9.2 python3-pip git zip unzip curl wget gcc g++ ruby dosfstools mtools default-jre default-jdk scons python3-distutils perl openssl libssl-dev cpio git-lfs m4 ccache zlib1g-dev tar rsync liblz4-tool genext2fs binutils-dev device-tree-compiler e2fsprogs git-core gnupg gnutls-bin gperf lib32ncurses5-dev libffi-dev zlib* libelf-dev libx11-dev libgl1-mesa-dev lib32z1-dev xsltproc x11proto-core-dev libc6-dev-i386 libxml2-dev lib32z-dev libdwarf-dev 
   apt-get install -y grsync xxd libglib2.0-dev libpixman-1-dev kmod jfsutils reiserfsprogs xfsprogs squashfs-tools  pcmciautils quota ppp libtinfo-dev libtinfo5 libncurses5 libncurses5-dev libncursesw5 libstdc++6  gcc-arm-none-eabi vim ssh locales doxygen
   apt-get install -y libxinerama-dev libxcursor-dev libxrandr-dev libxi-dev
-  # The following modules must be installed for Python. You can obtain the **repo** file from the source code of the build environment mentioned in **Constraints**.
+  # The following modules must be installed for Python. You can obtain the repo file from the source code of the build environment you use.
   chmod +x /usr/bin/repo 
   pip3 install --trusted-host https://repo.huaweicloud.com -i https://repo.huaweicloud.com/repository/pypi/simple requests setuptools pymongo kconfiglib pycryptodome ecdsa ohos-build pyyaml prompt_toolkit==1.0.14 redis json2html yagmail python-jenkins 
   pip3 install esdk-obs-python --trusted-host pypi.org 
@@ -193,20 +193,37 @@ Then, run the build commands in command line (CLI) mode or hb mode.
 
 1. Using the CLI
 
-   Run the following command in the root directory of the source code to build a full distribution:
+   - Run the following command in the root directory of the source code to build a full distribution:
+
+     Release version:
+
+     ```shell
+     ./build.sh --product-name {product_name}
+     ```
+
+     Debug version:
+
+     ```shell
+     ./build.sh --product-name {product_name} --gn-args is_debug=true
+     ```
+
+     >![icon-caution.gif](../public_sys-resources/icon-caution.gif) **CAUTION**<br/>
+     >Due to the limitation of the image size, the full build for the debug version may fail to be burnt. You are advised to build the binary file for each module separately. Run the following command to build a module separately:
+     >
+     >```
+     >./build.sh --product-name {product_name} --gn-args is_debug=true --build-target {target_name}
+     >```
+     >
+     >
+     
+     **{product_name}** specifies the product platform supported by the current distribution, for example, **hispark_taurus_standard**.
+     
+     The image generated is stored in the **out/{device_name}/packages/phone/images/** directory.
+     
+   - The **./build.sh** command supports the following options:
    
-   ```shell
-    ./build.sh --product-name {product_name}
-   ```
-   
-   **{product_name}** specifies the product platform supported by the current distribution, for example, **hispark_taurus_standard**.
-   
-   The image generated is stored in the **out/{device_name}/packages/phone/images/** directory.
-   
-   The **./build.sh** command supports the following options:
-   
-   ```shell
-    -h, --help                                         # Display help information and exit.
+     ```shell
+     -h, --help                                        # Display help information and exit.
      --source-root-dir=SOURCE_ROOT_DIR                 # Specify the path.
      --product-name=PRODUCT_NAME                       # Specify the product name.
      --device-name=DEVICE_NAME                         # Specify the device name.
@@ -224,131 +241,128 @@ Then, run the build commands in command line (CLI) mode or hb mode.
      --fast-rebuild                                    # Specify whether to allow fast rebuild. The default value is False.
      --log-level=LOG_LEVEL                             # Specify the log level used in the build process. The options are debug, info, and error. The default value is info.
      --device-type=DEVICE_TYPE                         # Specify the device type. The default value is default.
-     --build-variant=BUILD_VARIANT                     # Specify the device operation mode. The default value is user.
-   ```
+     --build-variant=BUILD_VARIANT                     #Specify the device operation mode. The default value is user.
+     ```
    
-    
-
-2. Using the hb tool
-
-   **hb** is an OpenHarmony command line tool for executing build commands. Common hb commands are described as follows:
-
-   **hb set**
-
-   Sets the product to build.
-
-   ```shell
-   hb set -h
-   usage: hb set [-h] [-root [ROOT_PATH]] [-p]
-   
-   optional arguments:
-     -h, --help            show this help message and exit
-     -root [ROOT_PATH], --root_path [ROOT_PATH]
-                           Set OHOS root path
-     -p, --product         Set OHOS board and kernel
-   ```
-
-   - If you run **hb set** with no argument, the default setting process starts.
-
-   - You can run **hb set -root** *dir* to set the root directory of the source code.
-
-   - You can run **hb set -p** to set the product to build.
-
      
 
-   **hb env**
 
-   Displays current settings.
+   2. Using the hb tool
 
-   ```shell
-   hb env
-   [OHOS INFO] root path: xxx
-   [OHOS INFO] board: hispark_taurus
-   [OHOS INFO] kernel: liteos
-   [OHOS INFO] product: ipcamera
-   [OHOS INFO] product path: xxx/vendor/hisilicon/ipcamera
-   [OHOS INFO] device path: xxx/device/hisilicon/hispark_taurus/sdk_linux_4.19
-   ```
+      **hb** is an OpenHarmony command line tool for executing build commands. Common hb commands are described as follows:
 
-   
+      **hb set**
 
-   **hb build**
+      Sets the product to build.
 
-   Builds a product, component, module, or chipset solution.
+      ```shell
+      hb set -h
+      usage: hb set [-h] [-root [ROOT_PATH]] [-p]
+      
+      optional arguments:
+        -h, --help            show this help message and exit
+        -root [ROOT_PATH], --root_path [ROOT_PATH]
+                              Set OHOS root path
+        -p, --product         Set OHOS board and kernel
+      ```
 
-   ```shell
-   hb build -h
-   usage: hb build [-h] [-b BUILD_TYPE] [-c COMPILER] [-t [TEST [TEST ...]]] [-cpu TARGET_CPU] [--dmverity] [--tee]
-                   [-p PRODUCT] [-f] [-n] [-T [TARGET [TARGET ...]]] [-v] [-shs] [--patch] [--compact-mode]
-                   [--gn-args GN_ARGS] [--keep-ninja-going] [--build-only-gn] [--log-level LOG_LEVEL] [--fast-rebuild]
-                   [--device-type DEVICE_TYPE] [--build-variant BUILD_VARIANT]
-                   [component [component ...]]
-   
-   positional arguments:
-     component             name of the component, mini/small only
-   
-   optional arguments:
-     -h, --help            show this help message and exit
-     -b BUILD_TYPE, --build_type BUILD_TYPE
-                           release or debug version, mini/small only
-     -c COMPILER, --compiler COMPILER
-                           specify compiler, mini/small only
-     -t [TEST [TEST ...]], --test [TEST [TEST ...]]
-                           compile test suit
-     -cpu TARGET_CPU, --target-cpu TARGET_CPU
-                           select cpu
-     --dmverity            enable dmverity
-     --tee                 Enable tee
-     -p PRODUCT, --product PRODUCT
-                           build a specified product with {product_name}@{company}
-     -f, --full            full code compilation
-     -n, --ndk             compile ndk
-     -T [TARGET [TARGET ...]], --target [TARGET [TARGET ...]]
-                           compile single target
-     -v, --verbose         show all command lines while building
-     -shs, --sign_haps_by_server
-                           sign haps by server
-     --patch               apply product patch before compiling
-     --compact-mode        compatible with standard build system set to false if we use build.sh as build entrance
-     --gn-args GN_ARGS     specifies gn build arguments, eg: --gn-args="foo="bar" enable=true blah=7"
-     --keep-ninja-going    keeps ninja going until 1000000 jobs fail
-     --build-only-gn       only do gn parse, donot run ninja
-     --log-level LOG_LEVEL
-                           specifies the log level during compilationyou can select three levels: debug, info and error
-     --fast-rebuild        it will skip prepare, preloader, gn_gen steps so we can enable it only when there is no change
-                           for gn related script
-     --device-type DEVICE_TYPE
-                           specifies device type
-     --build-variant BUILD_VARIANT
-                           specifies device operating mode
-   ```
+      - If you run **hb set** with no argument, the default setting process starts.
+      - You can run **hb set -root** *dir* to set the root directory of the source code.
 
-   - If you run **hb build** with no argument, the previously configured code directory, product, and options are used for the build. The **-f** option deletes all products to be built. It is equivalent to running **hb clean** and **hb build**.
+      - You can run **hb set -p** to set the product to build.
 
-   - You can run **hb build** *{component_name}* to build product components separately based on the development board and kernel set for the product, for example, **hb build kv_store**.
+      
 
-   - You can run **hb build -p ipcamera@hisilicon** to skip the setting step and build the product directly.
+      **hb env**
 
-   - You can run **hb build** in **device/board/device_company** to select the kernel and build an image that contains the kernel and drivers only based on the current development board and the selected kernel.
+      Displays current settings.
 
-     
+      ```shell
+      hb env
+      [OHOS INFO] root path: xxx
+      [OHOS INFO] board: hispark_taurus
+      [OHOS INFO] kernel: liteos
+      [OHOS INFO] product: ipcamera
+      [OHOS INFO] product path: xxx/vendor/hisilicon/ipcamera
+      [OHOS INFO] device path: xxx/device/hisilicon/hispark_taurus/sdk_linux_4.19
+      ```
 
-   **hb clean**
+      
 
-   Deletes all the files except **args.gn** and **build.log** in the **out** directory (default). To clear files in a specified directory, add the directory parameter to the command, for example, **hb clean out/board/product**.
+      **hb build**
 
-   ```shell
-   hb clean
-   usage: hb clean [-h] [out_path]
-   
-   positional arguments:
-     out_path    clean a specified path.
-   
-   optional arguments:
-     -h, --help  show this help message and exit
-   ```
+      Builds a product, component, module, or chipset solution.
 
-   
+      ```shell
+      hb build -h
+      usage: hb build [-h] [-b BUILD_TYPE] [-c COMPILER] [-t [TEST [TEST ...]]] [-cpu TARGET_CPU] [--dmverity] [--tee]
+                      [-p PRODUCT] [-f] [-n] [-T [TARGET [TARGET ...]]] [-v] [-shs] [--patch] [--compact-mode]
+                      [--gn-args GN_ARGS] [--keep-ninja-going] [--build-only-gn] [--log-level LOG_LEVEL] [--fast-rebuild]
+                      [--device-type DEVICE_TYPE] [--build-variant BUILD_VARIANT]
+                      [component [component ...]]
+      
+      positional arguments:
+        component             name of the component, mini/small only
+      
+      optional arguments:
+        -h, --help            show this help message and exit
+        -b BUILD_TYPE, --build_type BUILD_TYPE
+                              release or debug version, mini/small only
+        -c COMPILER, --compiler COMPILER
+                              specify compiler, mini/small only
+        -t [TEST [TEST ...]], --test [TEST [TEST ...]]
+                              compile test suit
+        -cpu TARGET_CPU, --target-cpu TARGET_CPU
+                              select cpu
+        --dmverity            enable dmverity
+        --tee                 Enable tee
+        -p PRODUCT, --product PRODUCT
+                              build a specified product with {product_name}@{company}
+        -f, --full            full code compilation
+        -n, --ndk             compile ndk
+        -T [TARGET [TARGET ...]], --target [TARGET [TARGET ...]]
+                              compile single target
+        -v, --verbose         show all command lines while building
+        -shs, --sign_haps_by_server
+                              sign haps by server
+        --patch               apply product patch before compiling
+        --compact-mode        compatible with standard build system set to false if we use build.sh as build entrance
+        --gn-args GN_ARGS     specifies gn build arguments, eg: --gn-args="foo="bar" enable=true blah=7"
+        --keep-ninja-going    keeps ninja going until 1000000 jobs fail
+        --build-only-gn       only do gn parse, do not run ninja
+        --log-level LOG_LEVEL
+                              specifies the log level during compilationyou can select three levels: debug, info and error
+        --fast-rebuild        it will skip prepare, preloader, gn_gen steps so we can enable it only when there is no change
+                              for gn related script
+        --device-type DEVICE_TYPE
+                              specifies device type
+        --build-variant BUILD_VARIANT
+                              specifies device operating mode
+      ```
+
+      - If you run **hb build** with no argument, the previously configured code directory, product, and options are used for the build. The **-f** option deletes all products to be built. It is equivalent to running **hb clean** and **hb build**.
+      - You can run **hb build** *{component_name}* to build product components separately based on the development board and kernel set for the product, for example, **hb build kv_store**.
+      - You can run **hb build -p ipcamera@hisilicon** to skip the setting step and build the product directly.
+
+      - You can run **hb build** in **device/board/device_company** to select the kernel and build an image that contains the kernel and drivers only based on the current development board and the selected kernel.
+
+      
+
+      **hb clean**
+
+      Deletes all the files except **args.gn** and **build.log** in the **out** directory (default). To clear files in a specified directory, add the directory parameter to the command, for example, **hb clean out/board/product**.
+
+      ```shell
+      hb clean
+      usage: hb clean [-h] [out_path]
+      
+      positional arguments:
+        out_path    clean a specified path.
+      
+      optional arguments:
+        -h, --help  show this help message and exit
+      ```
+
 
 ### Building Procedures 
 
@@ -366,6 +380,7 @@ You can add and build a product, component, chipset solution, and module. For de
 ## Reference
 
 - [deps and external_deps](subsys-build-reference.md#deps-and-external_deps)
+- [Using Sanitizer](subsys-build-reference.md#using-sanitizer)
 - [Information Collected by the Open Source Software Notice](subsys-build-reference.md#information-collected-by-the-open-source-software-notice)
 - [Parameters for Accelerating Local Build](subsys-build-reference.md#parameters-for-accelerating-local-build)
 - [Viewing Ninja Build Information](subsys-build-reference.md#viewing-ninja-build-information)
