@@ -20,10 +20,6 @@ import audio from '@ohos.multimedia.audio';
 
 ## 常量
 
-**系统接口：** 该接口为系统接口
-
-**系统能力：** SystemCapability.Multimedia.Audio.Device
-
 | 名称                                    | 类型      | 可读  | 可写 | 说明               |
 | --------------------------------------- | ----------| ---- | ---- | ------------------ |
 | LOCAL_NETWORK_ID<sup>9+</sup>           | string    | 是   | 否   | 本地设备网络id。<br/>此接口为系统接口，三方应用不支持调用。<br> **系统能力：** SystemCapability.Multimedia.Audio.Device  |
