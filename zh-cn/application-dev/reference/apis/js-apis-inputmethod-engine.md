@@ -126,7 +126,7 @@ createKeyboardDelegate(): KeyboardDelegate
 
 | 类型                                  | 说明             |
 | ------------------------------------- | ---------------- |
-| [KeyboardDelegate](#KeyboardDelegate) | 客户端监听实例。 |
+| [KeyboardDelegate](#keyboardDelegate) | 客户端监听实例。 |
 
 **示例：**
 
@@ -1464,7 +1464,7 @@ getEditorAttribute(callback: AsyncCallback&lt;EditorAttribute&gt;): void
 
 | 参数名                         | 类型                          | 必填                            | 说明                                                         |
 | ------------------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| callback | AsyncCallback&lt;[EditorAttribute](#EditorAttribute)&gt; | 是 |  回调函数。当编辑框属性值获取成功，err为undefined，data为编辑框属性值；否则为错误对象。|
+| callback | AsyncCallback&lt;[EditorAttribute](#editorattribute)&gt; | 是 |  回调函数。当编辑框属性值获取成功，err为undefined，data为编辑框属性值；否则为错误对象。|
 
 **错误码：**
 
