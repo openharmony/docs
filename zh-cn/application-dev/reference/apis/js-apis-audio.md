@@ -1169,7 +1169,7 @@ getVolumeGroupInfos(networkId: string\): Promise<VolumeGroupInfos\>
 
 ```js
 async function getVolumeGroupInfos(){
-  let volumegroupinfos = await audio.getAudioVolumeManager().getVolumeGroupInfos(audio.LOCAL_NETWORK_ID);
+  let volumegroupinfos = await audio.getAudioManager().getVolumeManager().getVolumeGroupInfos(audio.LOCAL_NETWORK_ID);
   console.info('Promise returned to indicate that the volumeGroup list is obtained.'+JSON.stringify(volumegroupinfos))
 }
 ```
