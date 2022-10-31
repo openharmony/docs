@@ -73,3 +73,5 @@ struct AttrAnimationExample {
   }
 }
 ```
+
+![animation](figures/animation.gif)

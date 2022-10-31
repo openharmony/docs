@@ -30,10 +30,10 @@
 
 **参数：**
 
-  | 参数名     | 参数类型                                | 必填   | 参数描述          |
-  | ------- | ----------------------------------- | ---- | ------------- |
-  | label   | [ResourceStr](ts-types.md#resourcestr) | 否    | 按钮文本内容。       |
-  | options | { type?: ButtonType, stateEffect?: boolean }   | 否    | 见方法1参数说明。 |
+| 参数名     | 参数类型                                | 必填   | 参数描述          |
+| ------- | ----------------------------------- | ---- | ------------- |
+| label   | [ResourceStr](ts-types.md#resourcestr) | 否    | 按钮文本内容。       |
+| options | { type?: ButtonType, stateEffect?: boolean }   | 否    | 见方法1参数说明。 |
 
 
 ## 属性
@@ -89,9 +89,6 @@ struct ButtonExample {
             Text('loading').fontSize(12).fontColor(0xffffff).margin({ left: 5, right: 12 })
           }.alignItems(VerticalAlign.Center).width(90).height(40)
         }.backgroundColor(0x317aff)
-        .onClick((event: ClickEvent) => {
-          AlertDialog.show({ message: 'The login is successful' })
-        })
 
         Button('Disable', { type: ButtonType.Capsule, stateEffect: false }).opacity(0.4)
           .backgroundColor(0x317aff).width(90)
@@ -112,3 +109,4 @@ struct ButtonExample {
 }
 ```
 
+![button](figures/button.gif)

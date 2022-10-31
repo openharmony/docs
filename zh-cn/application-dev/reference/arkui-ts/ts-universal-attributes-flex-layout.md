@@ -105,4 +105,4 @@ struct FlexExample {
 }
 ```
 
-
+![flex](figures/flex.PNG)

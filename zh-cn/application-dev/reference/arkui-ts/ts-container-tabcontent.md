@@ -113,3 +113,4 @@ struct TabContentExample {
 }
 ```
 
+![tabContent](figures/tabContent.gif)
