@@ -178,16 +178,13 @@ class MainAbility extends Ability {
                        console.info('Succeeded in showing the window. Data: ' + JSON.stringify(data));
                    });
                });
-               // 4.销毁子窗口。当不再需要子窗口时，可根据具体实现逻辑，使用destroy对其进行销毁，此处以监听窗口区域外的点击事件为例实现子窗口的销毁。
-               sub_windowClass.on('touchOutside', () => {
-                   console.info('touch outside');
-                   sub_windowClass.destroy((err, data) => {
-                       if (err.code) {
-                           console.error('Failed to destroy the window. Cause: ' + JSON.stringify(err));
-                           return;
-                       }
-                       console.info('Succeeded in destroying the window. Data: ' + JSON.stringify(data));
-                   });
+               // 4.销毁子窗口。当不再需要子窗口时，可根据具体实现逻辑，使用destroy对其进行销毁。
+               sub_windowClass.destroy((err, data) => {
+                   if (err.code) {
+                       console.error('Failed to destroy the window. Cause: ' + JSON.stringify(err));
+                       return;
+                   }
+                   console.info('Succeeded in destroying the window. Data: ' + JSON.stringify(data));
                });
            })
        }
