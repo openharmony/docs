@@ -13,8 +13,8 @@ AbilityContext模块提供允许访问特定Ability的资源的能力，包括�
 
 在使用AbilityContext的功能前，需要通过Ability子类实例获取。
 
-```js
-import Ability from '@ohos.app.ability.Ability';
+```ts
+import Ability from '@ohos.app.ability.UIAbility';
 
  let context = undefined;
 class MainAbility extends Ability {
@@ -51,8 +51,6 @@ startAbility(want: Want, callback: AsyncCallback&lt;void&gt;): void;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[元能力错误码](../errorcodes/errorcode-ability.md)。
-
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
 | 201 | The application does not have permission to call the interface. |
@@ -77,10 +75,10 @@ startAbility(want: Want, callback: AsyncCallback&lt;void&gt;): void;
 
 **示例：**
 
-  ```js
+  ```ts
   var want = {
-    "bundleName": "com.example.myapp",
-    "abilityName": "MyAbility"
+    bundleName: "com.example.myapp",
+    abilityName: "MyAbility"
   };
 
   try {
@@ -120,9 +118,7 @@ startAbility(want: Want, options: StartOptions, callback: AsyncCallback&lt;void&
 
 **错误码：**
 
-以下错误码的详细介绍请参见[元能力错误码](../errorcodes/errorcode-ability.md)。
-
-| 错误码ID | 错误信息 |
+| 错误码ID | 错误信息
 | ------- | -------------------------------- |
 | 201 | The application does not have permission to call the interface. |
 | 401 | Invalid input parameter. |
@@ -146,11 +142,11 @@ startAbility(want: Want, options: StartOptions, callback: AsyncCallback&lt;void&
 
 **示例：**
 
-  ```js
+  ```ts
   var want = {
-    "deviceId": "",
-    "bundleName": "com.extreme.test",
-    "abilityName": "MainAbility"
+    deviceId: "",
+    bundleName: "com.extreme.test",
+    abilityName: "MainAbility"
   };
   var options = {
     windowMode: 0
@@ -197,8 +193,6 @@ startAbility(want: Want, options?: StartOptions): Promise&lt;void&gt;;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[元能力错误码](../errorcodes/errorcode-ability.md)。
-
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
 | 201 | The application does not have permission to call the interface. |
@@ -223,10 +217,10 @@ startAbility(want: Want, options?: StartOptions): Promise&lt;void&gt;;
 
 **示例：**
 
-  ```js
+  ```ts
   var want = {
-    "bundleName": "com.example.myapp",
-    "abilityName": "MyAbility"
+    bundleName: "com.example.myapp",
+    abilityName: "MyAbility"
   };
   var options = {
   	windowMode: 0,
@@ -240,8 +234,8 @@ startAbility(want: Want, options?: StartOptions): Promise&lt;void&gt;;
       })
       .catch((error) => {
         // 处理业务逻辑错误
-        console.log('startAbility failed, error.code: ' + JSON.stringify(err.code) +
-          ' error.message: ' + JSON.stringify(err.message));
+        console.log('startAbility failed, error.code: ' + JSON.stringify(error.code) +
+          ' error.message: ' + JSON.stringify(error.message));
       });
   } catch (paramError) {
     // 处理入参错误异常
@@ -255,7 +249,7 @@ startAbility(want: Want, options?: StartOptions): Promise&lt;void&gt;;
 
 startAbilityForResult(want: Want, callback: AsyncCallback&lt;AbilityResult&gt;): void;
 
-启动Ability并在结束的时候返回执行结果（callback形式）。
+启动Ability并在该Ability退出的时候返回执行结果（callback形式）。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -267,8 +261,6 @@ startAbilityForResult(want: Want, callback: AsyncCallback&lt;AbilityResult&gt;):
 | callback | AsyncCallback&lt;[AbilityResult](js-apis-featureAbility.md#abilityresult)&gt; | 是 | 执行结果回调函数。 |
 
 **错误码：**
-
-以下错误码的详细介绍请参见[元能力错误码](../errorcodes/errorcode-ability.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
@@ -294,11 +286,11 @@ startAbilityForResult(want: Want, callback: AsyncCallback&lt;AbilityResult&gt;):
 
 **示例：**
 
-  ```js
+  ```ts
   var want = {
-    "deviceId": "",
-    "bundleName": "com.extreme.test",
-    "abilityName": "MainAbility"
+    deviceId: "",
+    bundleName: "com.extreme.test",
+    abilityName: "MainAbility"
   };
 
   try {
@@ -324,7 +316,7 @@ startAbilityForResult(want: Want, callback: AsyncCallback&lt;AbilityResult&gt;):
 
 startAbilityForResult(want: Want, options: StartOptions, callback: AsyncCallback&lt;AbilityResult&gt;): void;
 
-启动Ability并在结束的时候返回执行结果（callback形式）。
+启动Ability并在该Ability退出的时候返回执行结果（callback形式）。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -337,8 +329,6 @@ startAbilityForResult(want: Want, options: StartOptions, callback: AsyncCallback
 | callback | AsyncCallback&lt;[AbilityResult](js-apis-featureAbility.md#abilityresult)&gt; | 是 | 执行结果回调函数。 |
 
 **错误码：**
-
-以下错误码的详细介绍请参见[元能力错误码](../errorcodes/errorcode-ability.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
@@ -364,11 +354,11 @@ startAbilityForResult(want: Want, options: StartOptions, callback: AsyncCallback
 
 **示例：**
 
-  ```js
+  ```ts
   var want = {
-    "deviceId": "",
-    "bundleName": "com.extreme.test",
-    "abilityName": "MainAbility"
+    deviceId: "",
+    bundleName: "com.extreme.test",
+    abilityName: "MainAbility"
   };
   var options = {
     windowMode: 0,
@@ -398,7 +388,7 @@ startAbilityForResult(want: Want, options: StartOptions, callback: AsyncCallback
 
 startAbilityForResult(want: Want, options?: StartOptions): Promise&lt;AbilityResult&gt;;
 
-启动Ability并在结束的时候返回执行结果（promise形式）。
+启动Ability并在该Ability退出的时候返回执行结果（promise形式）。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -417,8 +407,6 @@ startAbilityForResult(want: Want, options?: StartOptions): Promise&lt;AbilityRes
 | Promise&lt;[AbilityResult](js-apis-featureAbility.md#abilityresult)&gt; | Promise形式返回执行结果。 |
 
 **错误码：**
-
-以下错误码的详细介绍请参见[元能力错误码](../errorcodes/errorcode-ability.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
@@ -444,10 +432,10 @@ startAbilityForResult(want: Want, options?: StartOptions): Promise&lt;AbilityRes
 
 **示例：**
 
-  ```js
+  ```ts
   var want = {
-    "bundleName": "com.example.myapp",
-    "abilityName": "MyAbility"
+    bundleName: "com.example.myapp",
+    abilityName: "MyAbility"
   };
   var options = {
   	windowMode: 0,
@@ -461,8 +449,8 @@ startAbilityForResult(want: Want, options?: StartOptions): Promise&lt;AbilityRes
       })
       .catch((error) => {
         // 处理业务逻辑错误
-        console.log('startAbilityForResult failed, error.code: ' + JSON.stringify(err.code) +
-          ' error.message: ' + JSON.stringify(err.message));
+        console.log('startAbilityForResult failed, error.code: ' + JSON.stringify(error.code) +
+          ' error.message: ' + JSON.stringify(error.message));
       });
   } catch (paramError) {
     // 处理入参错误异常
@@ -493,8 +481,6 @@ startAbilityForResultWithAccount(want: Want, accountId: number, callback: AsyncC
 
 **错误码：**
 
-以下错误码的详细介绍请参见[元能力错误码](../errorcodes/errorcode-ability.md)。
-
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
 | 201 | The application does not have permission to call the interface. |
@@ -520,11 +506,11 @@ startAbilityForResultWithAccount(want: Want, accountId: number, callback: AsyncC
 
 **示例：**
 
-  ```js
+  ```ts
   var want = {
-    "deviceId": "",
-    "bundleName": "com.extreme.test",
-    "abilityName": "MainAbility"
+    deviceId: "",
+    bundleName: "com.extreme.test",
+    abilityName: "MainAbility"
   };
   var accountId = 100;
 
@@ -571,8 +557,6 @@ startAbilityForResultWithAccount(want: Want, accountId: number, options: StartOp
 
 **错误码：**
 
-以下错误码的详细介绍请参见[元能力错误码](../errorcodes/errorcode-ability.md)。
-
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
 | 201 | The application does not have permission to call the interface. |
@@ -598,11 +582,11 @@ startAbilityForResultWithAccount(want: Want, accountId: number, options: StartOp
 
 **示例：**
 
-  ```js
+  ```ts
   var want = {
-    "deviceId": "",
-    "bundleName": "com.extreme.test",
-    "abilityName": "MainAbility"
+    deviceId: "",
+    bundleName: "com.extreme.test",
+    abilityName: "MainAbility"
   };
   var accountId = 100;
   var options = {
@@ -657,8 +641,6 @@ startAbilityForResultWithAccount(want: Want, accountId: number, options?: StartO
 
 **错误码：**
 
-以下错误码的详细介绍请参见[元能力错误码](../errorcodes/errorcode-ability.md)。
-
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
 | 201 | The application does not have permission to call the interface. |
@@ -684,11 +666,11 @@ startAbilityForResultWithAccount(want: Want, accountId: number, options?: StartO
 
 **示例：**
 
-  ```js
+  ```ts
   var want = {
-    "deviceId": "",
-    "bundleName": "com.extreme.test",
-    "abilityName": "MainAbility"
+    deviceId: "",
+    bundleName: "com.extreme.test",
+    abilityName: "MainAbility"
   };
   var accountId = 100;
   var options = {
@@ -704,8 +686,8 @@ startAbilityForResultWithAccount(want: Want, accountId: number, options?: StartO
       })
       .catch((error) => {
         // 处理业务逻辑错误
-        console.log('startAbilityForResultWithAccount failed, error.code: ' + JSON.stringify(err.code) +
-          ' error.message: ' + JSON.stringify(err.message));
+        console.log('startAbilityForResultWithAccount failed, error.code: ' + JSON.stringify(error.code) +
+          ' error.message: ' + JSON.stringify(error.message));
       });
   } catch (paramError) {
     // 处理入参错误异常
@@ -732,8 +714,6 @@ startServiceExtensionAbility(want: Want, callback: AsyncCallback\<void>): void;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[元能力错误码](../errorcodes/errorcode-ability.md)。
-
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
 | 201 | The application does not have permission to call the interface. |
@@ -751,11 +731,11 @@ startServiceExtensionAbility(want: Want, callback: AsyncCallback\<void>): void;
 
 **示例：**
 
-  ```js
+  ```ts
   var want = {
-    "deviceId": "",
-    "bundleName": "com.extreme.test",
-    "abilityName": "MainAbility"
+    deviceId: "",
+    bundleName: "com.extreme.test",
+    abilityName: "MainAbility"
   };
 
   try {
@@ -794,8 +774,6 @@ startServiceExtensionAbility(want: Want): Promise\<void>;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[元能力错误码](../errorcodes/errorcode-ability.md)。
-
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
 | 201 | The application does not have permission to call the interface. |
@@ -813,11 +791,11 @@ startServiceExtensionAbility(want: Want): Promise\<void>;
 
 **示例：**
 
-  ```js
+  ```ts
   var want = {
-    "deviceId": "",
-    "bundleName": "com.extreme.test",
-    "abilityName": "MainAbility"
+    deviceId: "",
+    bundleName: "com.extreme.test",
+    abilityName: "MainAbility"
   };
 
   try {
@@ -828,8 +806,8 @@ startServiceExtensionAbility(want: Want): Promise\<void>;
       })
       .catch((error) => {
         // 处理业务逻辑错误
-        console.log('startServiceExtensionAbility failed, error.code: ' + JSON.stringify(err.code) +
-          ' error.message: ' + JSON.stringify(err.message));
+        console.log('startServiceExtensionAbility failed, error.code: ' + JSON.stringify(error.code) +
+          ' error.message: ' + JSON.stringify(error.message));
       });
   } catch (paramError) {
     // 处理入参错误异常
@@ -860,8 +838,6 @@ startServiceExtensionAbilityWithAccount(want: Want, accountId: number, callback:
 
 **错误码：**
 
-以下错误码的详细介绍请参见[元能力错误码](../errorcodes/errorcode-ability.md)。
-
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
 | 201 | The application does not have permission to call the interface. |
@@ -876,11 +852,11 @@ startServiceExtensionAbilityWithAccount(want: Want, accountId: number, callback:
 
 **示例：**
 
-  ```js
+  ```ts
   var want = {
-    "deviceId": "",
-    "bundleName": "com.extreme.test",
-    "abilityName": "MainAbility"
+    deviceId: "",
+    bundleName: "com.extreme.test",
+    abilityName: "MainAbility"
   };
   var accountId = 100;
 
@@ -923,8 +899,6 @@ startServiceExtensionAbilityWithAccount(want: Want, accountId: number): Promise\
 
 **错误码：**
 
-以下错误码的详细介绍请参见[元能力错误码](../errorcodes/errorcode-ability.md)。
-
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
 | 201 | The application does not have permission to call the interface. |
@@ -943,11 +917,11 @@ startServiceExtensionAbilityWithAccount(want: Want, accountId: number): Promise\
 
 **示例：**
 
-  ```js
+  ```ts
   var want = {
-    "deviceId": "",
-    "bundleName": "com.extreme.test",
-    "abilityName": "MainAbility"
+    deviceId: "",
+    bundleName: "com.extreme.test",
+    abilityName: "MainAbility"
   };
   var accountId = 100;
 
@@ -959,8 +933,8 @@ startServiceExtensionAbilityWithAccount(want: Want, accountId: number): Promise\
       })
       .catch((error) => {
         // 处理业务逻辑错误
-        console.log('startServiceExtensionAbilityWithAccount failed, error.code: ' + JSON.stringify(err.code) +
-          ' error.message: ' + JSON.stringify(err.message));
+        console.log('startServiceExtensionAbilityWithAccount failed, error.code: ' + JSON.stringify(error.code) +
+          ' error.message: ' + JSON.stringify(error.message));
       });
   } catch (paramError) {
     // 处理入参错误异常
@@ -987,8 +961,6 @@ stopServiceExtensionAbility(want: Want, callback: AsyncCallback\<void>): void;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[元能力错误码](../errorcodes/errorcode-ability.md)。
-
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
 | 201 | The application does not have permission to call the interface. |
@@ -1003,11 +975,11 @@ stopServiceExtensionAbility(want: Want, callback: AsyncCallback\<void>): void;
 
 **示例：**
 
-  ```js
+  ```ts
   var want = {
-    "deviceId": "",
-    "bundleName": "com.extreme.test",
-    "abilityName": "MainAbility"
+    deviceId: "",
+    bundleName: "com.extreme.test",
+    abilityName: "MainAbility"
   };
 
   try {
@@ -1046,8 +1018,6 @@ stopServiceExtensionAbility(want: Want): Promise\<void>;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[元能力错误码](../errorcodes/errorcode-ability.md)。
-
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
 | 201 | The application does not have permission to call the interface. |
@@ -1062,11 +1032,11 @@ stopServiceExtensionAbility(want: Want): Promise\<void>;
 
 **示例：**
 
-  ```js
+  ```ts
   var want = {
-    "deviceId": "",
-    "bundleName": "com.extreme.test",
-    "abilityName": "MainAbility"
+    deviceId: "",
+    bundleName: "com.extreme.test",
+    abilityName: "MainAbility"
   };
 
   try {
@@ -1077,8 +1047,8 @@ stopServiceExtensionAbility(want: Want): Promise\<void>;
       })
       .catch((error) => {
         // 处理业务逻辑错误
-        console.log('stopServiceExtensionAbility failed, error.code: ' + JSON.stringify(err.code) +
-          ' error.message: ' + JSON.stringify(err.message));
+        console.log('stopServiceExtensionAbility failed, error.code: ' + JSON.stringify(error.code) +
+          ' error.message: ' + JSON.stringify(error.message));
       });
   } catch (paramError) {
     // 处理入参错误异常
@@ -1109,8 +1079,6 @@ stopServiceExtensionAbilityWithAccount(want: Want, accountId: number, callback: 
 
 **错误码：**
 
-以下错误码的详细介绍请参见[元能力错误码](../errorcodes/errorcode-ability.md)。
-
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
 | 201 | The application does not have permission to call the interface. |
@@ -1126,11 +1094,11 @@ stopServiceExtensionAbilityWithAccount(want: Want, accountId: number, callback: 
 
 **示例：**
 
-  ```js
+  ```ts
   var want = {
-    "deviceId": "",
-    "bundleName": "com.extreme.test",
-    "abilityName": "MainAbility"
+    deviceId: "",
+    bundleName: "com.extreme.test",
+    abilityName: "MainAbility"
   };
   var accountId = 100;
 
@@ -1173,8 +1141,6 @@ stopServiceExtensionAbilityWithAccount(want: Want, accountId: number): Promise\<
 
 **错误码：**
 
-以下错误码的详细介绍请参见[元能力错误码](../errorcodes/errorcode-ability.md)。
-
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
 | 201 | The application does not have permission to call the interface. |
@@ -1190,11 +1156,11 @@ stopServiceExtensionAbilityWithAccount(want: Want, accountId: number): Promise\<
 
 **示例：**
 
-  ```js
+  ```ts
   var want = {
-    "deviceId": "",
-    "bundleName": "com.extreme.test",
-    "abilityName": "MainAbility"
+    deviceId: "",
+    bundleName: "com.extreme.test",
+    abilityName: "MainAbility"
   };
   var accountId = 100;
 
@@ -1206,8 +1172,8 @@ stopServiceExtensionAbilityWithAccount(want: Want, accountId: number): Promise\<
       })
       .catch((error) => {
         // 处理业务逻辑错误
-        console.log('stopServiceExtensionAbilityWithAccount failed, error.code: ' + JSON.stringify(err.code) +
-          ' error.message: ' + JSON.stringify(err.message));
+        console.log('stopServiceExtensionAbilityWithAccount failed, error.code: ' + JSON.stringify(error.code) +
+          ' error.message: ' + JSON.stringify(error.message));
       });
   } catch (paramError) {
     // 处理入参错误异常
@@ -1232,8 +1198,6 @@ terminateSelf(callback: AsyncCallback&lt;void&gt;): void;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[元能力错误码](../errorcodes/errorcode-ability.md)。
-
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
 | 201 | The application does not have permission to call the interface. |
@@ -1245,7 +1209,7 @@ terminateSelf(callback: AsyncCallback&lt;void&gt;): void;
 
 **示例：**
 
-  ```js
+  ```ts
   this.context.terminateSelf((error) => {
     if (error.code) {
       // 处理业务逻辑错误
@@ -1275,8 +1239,6 @@ terminateSelf(): Promise&lt;void&gt;;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[元能力错误码](../errorcodes/errorcode-ability.md)。
-
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
 | 201 | The application does not have permission to call the interface. |
@@ -1288,7 +1250,7 @@ terminateSelf(): Promise&lt;void&gt;;
 
 **示例：**
 
-  ```js
+  ```ts
   this.context.terminateSelf().then((data) => {
     // 执行正常业务
     console.log('terminateSelf succeed');
@@ -1315,12 +1277,23 @@ terminateSelfWithResult(parameter: AbilityResult, callback: AsyncCallback&lt;voi
 | parameter | [AbilityResult](js-apis-featureAbility.md#abilityresult) | 是 | 返回给调用startAbilityForResult&nbsp;接口调用方的相关信息。 |
 | callback | AsyncCallback&lt;void&gt; | 是 | callback形式返回停止结果。 |
 
+**错误码：**
+
+| 错误码ID | 错误信息 |
+| ------- | -------------------------------- |
+| 201 | The application does not have permission to call the interface. |
+| 401 | Invalid input parameter. |
+| 16000001 | Input error. The specified ability name does not exist. |
+| 16000007 | Service busyness. There are concurrent tasks, waiting for retry. |
+| 16000011 | Context does not exist.        |
+| 16000050 | Internal Error. |
+
 **示例：**
 
-  ```js
+  ```ts
   var want = {
-    "bundleName": "com.extreme.myapplication",
-    "abilityName": "SecondAbility"
+    bundleName: "com.extreme.myapplication",
+    abilityName: "SecondAbility"
   }
   var resultCode = 100;
   // 返回给接口调用方AbilityResult信息
@@ -1328,10 +1301,23 @@ terminateSelfWithResult(parameter: AbilityResult, callback: AsyncCallback&lt;voi
     want,
     resultCode
   }
-  this.context.terminateSelfWithResult(abilityResult, (error) => {
-          console.log("terminateSelfWithResult is called = " + error.code)
+
+  try {
+    this.context.terminateSelfWithResult(abilityResult, (error) => {
+      if (error.code) {
+        // 处理业务逻辑错误
+        console.log('terminateSelfWithResult failed, error.code: ' + JSON.stringify(error.code) +
+          ' error.message: ' + JSON.stringify(error.message));
+        return;
       }
-  );
+      // 执行正常业务
+      console.log('terminateSelfWithResult succeed');
+    });
+  } catch (paramError) {
+      // 处理入参错误异常
+      console.log('error.code: ' + JSON.stringify(paramError.code) +
+        ' error.message: ' + JSON.stringify(paramError.message));
+  }
   ```
 
 
@@ -1355,12 +1341,24 @@ terminateSelfWithResult(parameter: AbilityResult): Promise&lt;void&gt;;
 | -------- | -------- |
 | Promise&lt;void&gt; | promise形式返回停止结果。 |
 
+**错误码：**
+
+| 错误码ID | 错误信息 |
+| ------- | -------------------------------- |
+| 201 | The application does not have permission to call the interface. |
+| 401 | Invalid input parameter. |
+| 16000001 | Input error. The specified ability name does not exist. |
+| 16000007 | Service busyness. There are concurrent tasks, waiting for retry. |
+| 16000011 | Context does not exist.        |
+| 16000050 | Internal Error. |
+
+
 **示例：**
 
-  ```js
+  ```ts
   var want = {
-    "bundleName": "com.extreme.myapplication",
-    "abilityName": "SecondAbility"
+    bundleName: "com.extreme.myapplication",
+    abilityName: "SecondAbility"
   }
   var resultCode = 100;
   // 返回给接口调用方AbilityResult信息
@@ -1368,10 +1366,23 @@ terminateSelfWithResult(parameter: AbilityResult): Promise&lt;void&gt;;
     want,
     resultCode
   }
-  this.context.terminateSelfWithResult(abilityResult).then((result) => {
-      console.log("terminateSelfWithResult")
+
+  try {
+    this.context.terminateSelfWithResult(abilityResult)
+      .then((data) => {
+        // 执行正常业务
+        console.log('terminateSelfWithResult succeed');
+      })
+      .catch((error) => {
+        // 处理业务逻辑错误
+        console.log('terminateSelfWithResult failed, error.code: ' + JSON.stringify(error.code) +
+          ' error.message: ' + JSON.stringify(error.message));
+      });
+  } catch (paramError) {
+    // 处理入参错误异常
+    console.log('error.code: ' + JSON.stringify(paramError.code) +
+      ' error.message: ' + JSON.stringify(paramError.message));
   }
-  )
   ```
 
 ## AbilityContext.connectServiceExtensionAbility
@@ -1399,8 +1410,6 @@ connectServiceExtensionAbility(want: Want, options: ConnectOptions): number;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[元能力错误码](../errorcodes/errorcode-ability.md)。
-
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
 | 201 | The application does not have permission to call the interface. |
@@ -1413,11 +1422,11 @@ connectServiceExtensionAbility(want: Want, options: ConnectOptions): number;
 
 **示例：**
 
-  ```js
+  ```ts
   var want = {
-    "deviceId": "",
-    "bundleName": "com.extreme.test",
-    "abilityName": "MainAbility"
+    deviceId: "",
+    bundleName: "com.extreme.test",
+    abilityName: "MainAbility"
   };
   var options = {
     onConnect(elementName, remote) { console.log('----------- onConnect -----------') },
@@ -1464,8 +1473,6 @@ connectServiceExtensionAbilityWithAccount(want: Want, accountId: number, options
 
 **错误码：**
 
-以下错误码的详细介绍请参见[元能力错误码](../errorcodes/errorcode-ability.md)。
-
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
 | 201 | The application does not have permission to call the interface. |
@@ -1479,11 +1486,11 @@ connectServiceExtensionAbilityWithAccount(want: Want, accountId: number, options
 
 **示例：**
 
-  ```js
+  ```ts
   var want = {
-    "deviceId": "",
-    "bundleName": "com.extreme.test",
-    "abilityName": "MainAbility"
+    deviceId: "",
+    bundleName: "com.extreme.test",
+    abilityName: "MainAbility"
   };
   var accountId = 100;
   var options = {
@@ -1526,8 +1533,6 @@ disconnectServiceExtensionAbility(connection: number): Promise\<void>;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[元能力错误码](../errorcodes/errorcode-ability.md)。
-
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
 | 201 | The application does not have permission to call the interface. |
@@ -1539,7 +1544,7 @@ disconnectServiceExtensionAbility(connection: number): Promise\<void>;
 
 **示例：**
 
-  ```js
+  ```ts
   // connection为connectAbility中的返回值
   var connection = 1;
 
@@ -1551,8 +1556,8 @@ disconnectServiceExtensionAbility(connection: number): Promise\<void>;
       })
       .catch((error) => {
         // 处理业务逻辑错误
-        console.log('disconnectServiceExtensionAbility failed, error.code: ' + JSON.stringify(err.code) +
-          ' error.message: ' + JSON.stringify(err.message));
+        console.log('disconnectServiceExtensionAbility failed, error.code: ' + JSON.stringify(error.code) +
+          ' error.message: ' + JSON.stringify(error.message));
       });
   } catch (paramError) {
     // 处理入参错误异常
@@ -1580,8 +1585,6 @@ disconnectServiceExtensionAbility(connection: number, callback:AsyncCallback\<vo
 
 **错误码：**
 
-以下错误码的详细介绍请参见[元能力错误码](../errorcodes/errorcode-ability.md)。
-
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
 | 201 | The application does not have permission to call the interface. |
@@ -1593,7 +1596,7 @@ disconnectServiceExtensionAbility(connection: number, callback:AsyncCallback\<vo
 
 **示例：**
 
-  ```js
+  ```ts
   // connection为connectServiceExtensionAbility中的返回值
   var connection = 1;
 
@@ -1637,7 +1640,9 @@ startAbilityByCall(want: Want): Promise&lt;Caller&gt;;
 
 **示例：**
 
-  ```js
+  后台启动：
+
+  ```ts
   var caller = undefined;
 
   // 后台启动Ability，不配置parameters
@@ -1647,13 +1652,29 @@ startAbilityByCall(want: Want): Promise&lt;Caller&gt;;
       abilityName: "MainAbility",
       deviceId: ""
   };
-  this.context.startAbilityByCall(wantBackground)
-    .then((obj) => {
+
+  try {
+    this.context.startAbilityByCall(wantBackground)
+      .then((obj) => {
+        // 执行正常业务
         caller = obj;
-        console.log('GetCaller success');
-    }).catch((error) => {
-        console.log(`GetCaller failed with ${error}`);
-    });
+        console.log('startAbilityByCall succeed');
+      }).catch((error) => {
+        // 处理业务逻辑错误
+        console.log('startAbilityByCall failed, error.code: ' + JSON.stringify(error.code) +
+          ' error.message: ' + JSON.stringify(error.message));
+      });
+  } catch (paramError) {
+    // 处理入参错误异常
+    console.log('error.code: ' + JSON.stringify(paramError.code) +
+      ' error.message: ' + JSON.stringify(paramError.message));
+  }
+  ```
+
+  前台启动：
+
+  ```ts
+  var caller = undefined;
 
   // 前台启动Ability，将parameters中的"ohos.aafwk.param.callAbilityToForeground"配置为true
   var wantForeground = {
@@ -1665,13 +1686,23 @@ startAbilityByCall(want: Want): Promise&lt;Caller&gt;;
         "ohos.aafwk.param.callAbilityToForeground": true
       }
   };
-  this.context.startAbilityByCall(wantForeground)
-    .then((obj) => {
+
+  try {
+    this.context.startAbilityByCall(wantForeground)
+      .then((obj) => {
+        // 执行正常业务
         caller = obj;
-        console.log('GetCaller success');
-    }).catch((error) => {
-        console.log(`GetCaller failed with ${error}`);
-    });
+        console.log('startAbilityByCall succeed');
+      }).catch((error) => {
+        // 处理业务逻辑错误
+        console.log('startAbilityByCall failed, error.code: ' + JSON.stringify(error.code) +
+          ' error.message: ' + JSON.stringify(error.message));
+      });
+  } catch (paramError) {
+    // 处理入参错误异常
+    console.log('error.code: ' + JSON.stringify(paramError.code) +
+      ' error.message: ' + JSON.stringify(paramError.message));
+  }
   ```
 
 ## AbilityContext.startAbilityWithAccount
@@ -1695,8 +1726,6 @@ startAbilityWithAccount(want: Want, accountId: number, callback: AsyncCallback\<
 | callback | AsyncCallback\<void\> | 是 | 启动Ability的回调函数。 |
 
 **错误码：**
-
-以下错误码的详细介绍请参见[元能力错误码](../errorcodes/errorcode-ability.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
@@ -1723,11 +1752,11 @@ startAbilityWithAccount(want: Want, accountId: number, callback: AsyncCallback\<
 
 **示例：**
 
-  ```js
+  ```ts
   var want = {
-    "deviceId": "",
-    "bundleName": "com.extreme.test",
-    "abilityName": "MainAbility"
+    deviceId: "",
+    bundleName: "com.extreme.test",
+    abilityName: "MainAbility"
   };
   var accountId = 100;
 
@@ -1773,8 +1802,6 @@ startAbilityWithAccount(want: Want, accountId: number, options: StartOptions, ca
 
 **错误码：**
 
-以下错误码的详细介绍请参见[元能力错误码](../errorcodes/errorcode-ability.md)。
-
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
 | 201 | The application does not have permission to call the interface. |
@@ -1800,11 +1827,11 @@ startAbilityWithAccount(want: Want, accountId: number, options: StartOptions, ca
 
 **示例：**
 
-  ```js
+  ```ts
   var want = {
-    "deviceId": "",
-    "bundleName": "com.extreme.test",
-    "abilityName": "MainAbility"
+    deviceId: "",
+    bundleName: "com.extreme.test",
+    abilityName: "MainAbility"
   };
   var accountId = 100;
   var options = {
@@ -1852,8 +1879,6 @@ startAbilityWithAccount(want: Want, accountId: number, options?: StartOptions): 
 
 **错误码：**
 
-以下错误码的详细介绍请参见[元能力错误码](../errorcodes/errorcode-ability.md)。
-
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
 | 201 | The application does not have permission to call the interface. |
@@ -1879,11 +1904,11 @@ startAbilityWithAccount(want: Want, accountId: number, options?: StartOptions): 
 
 **示例：**
 
-  ```js
+  ```ts
   var want = {
-    "deviceId": "",
-    "bundleName": "com.extreme.test",
-    "abilityName": "MainAbility"
+    deviceId: "",
+    bundleName: "com.extreme.test",
+    abilityName: "MainAbility"
   };
   var accountId = 100;
   var options = {
@@ -1898,8 +1923,8 @@ startAbilityWithAccount(want: Want, accountId: number, options?: StartOptions): 
       })
       .catch((error) => {
         // 处理业务逻辑错误
-        console.log('startAbilityWithAccount failed, error.code: ' + JSON.stringify(err.code) +
-          ' error.message: ' + JSON.stringify(err.message));
+        console.log('startAbilityWithAccount failed, error.code: ' + JSON.stringify(error.code) +
+          ' error.message: ' + JSON.stringify(error.message));
       });
   } catch (paramError) {
     // 处理入参错误异常
@@ -1925,7 +1950,7 @@ requestPermissionsFromUser(permissions: Array&lt;string&gt;, requestCallback: As
 
 **示例：**
 
-  ```js
+  ```ts
        var permissions=['com.example.permission']
        this.context.requestPermissionsFromUser(permissions,(result) => {
        console.log('requestPermissionsFromUserresult:' + JSON.stringify(result));
@@ -1956,7 +1981,7 @@ requestPermissionsFromUser(permissions: Array&lt;string&gt;) : Promise&lt;Permis
 
 **示例：**
 
-  ```js
+  ```ts
    var permissions=['com.example.permission']
        this.context.requestPermissionsFromUser(permissions).then((data) => {
       console.log('success:' + JSON.stringify(data));
@@ -1984,7 +2009,7 @@ setMissionLabel(label: string, callback:AsyncCallback&lt;void&gt;): void;
 
 **示例：**
 
-  ```js
+  ```ts
   this.context.setMissionLabel("test",(result) => {
       console.log('requestPermissionsFromUserresult:' + JSON.stringify(result));
   });
@@ -2013,7 +2038,7 @@ setMissionLabel(label: string): Promise&lt;void&gt;;
 
 **示例：**
 
-  ```js
+  ```ts
   this.context.setMissionLabel("test").then(() => {
       console.log('success');
   }).catch((error) => {
@@ -2039,7 +2064,7 @@ setMissionIcon(icon: image.PixelMap, callback:AsyncCallback\<void>): void;
 
 **示例：**
 
-  ```js
+  ```ts
     import image from '@ohos.multimedia.image';
     var imagePixelMap;
     var color = new ArrayBuffer(0);
@@ -2086,7 +2111,7 @@ setMissionIcon(icon: image.PixelMap): Promise\<void>;
 
 **示例：**
 
-  ```js
+  ```ts
     import image from '@ohos.multimedia.image';
     var imagePixelMap;
     var color = new ArrayBuffer(0);
@@ -2127,7 +2152,7 @@ restoreWindowStage(localStorage: LocalStorage) : void;
 
 **示例：**
 
-  ```js
+  ```ts
     var storage = new LocalStorage();
     this.context.restoreWindowStage(storage);
   ```
@@ -2148,7 +2173,7 @@ isTerminating(): boolean;
 
 **示例：**
 
-  ```js
+  ```ts
   var isTerminating = this.context.isTerminating();
   console.log('ability state :' + isTerminating);
   ```

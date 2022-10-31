@@ -46,7 +46,7 @@ Ability创建时回调，执行初始化业务逻辑操作。
 
 **示例：**
 
-  ```js
+  ```ts
   class myAbility extends Ability {
       onCreate(want, param) {
           console.log('onCreate, want:' + want.abilityName);
@@ -71,7 +71,7 @@ onWindowStageCreate(windowStage: window.WindowStage): void
 
 **示例：**
     
-  ```js
+  ```ts
   class myAbility extends Ability {
       onWindowStageCreate(windowStage) {
           console.log('onWindowStageCreate');
@@ -90,7 +90,7 @@ onWindowStageDestroy(): void
 
 **示例：**
     
-  ```js
+  ```ts
   class myAbility extends Ability {
       onWindowStageDestroy() {
           console.log('onWindowStageDestroy');
@@ -115,7 +115,7 @@ onWindowStageRestore(windowStage: window.WindowStage): void
 
 **示例：**
     
-  ```js
+  ```ts
   class myAbility extends Ability {
       onWindowStageRestore(windowStage) {
           console.log('onWindowStageRestore');
@@ -134,7 +134,7 @@ Ability生命周期回调，在销毁时回调，执行资源清理等操作。
 
 **示例：**
     
-  ```js
+  ```ts
   class myAbility extends Ability {
       onDestroy() {
           console.log('onDestroy');
@@ -153,7 +153,7 @@ Ability生命周期回调，当应用从后台转到前台时触发。
 
 **示例：**
     
-  ```js
+  ```ts
   class myAbility extends Ability {
       onForeground() {
           console.log('onForeground');
@@ -172,7 +172,7 @@ Ability生命周期回调，当应用从前台转到后台时触发。
 
 **示例：**
     
-  ```js
+  ```ts
   class myAbility extends Ability {
       onBackground() {
           console.log('onBackground');
@@ -203,7 +203,7 @@ onContinue(wantParam : {[key: string]: any}): AbilityConstant.OnContinueResult;
 
 **示例：**
     
-  ```js
+  ```ts
   import AbilityConstant from "@ohos.application.AbilityConstant"
   class myAbility extends Ability {
       onContinue(wantParams) {
@@ -232,7 +232,7 @@ onNewWant(want: Want, launchParams: AbilityConstant.LaunchParam): void;
 
 **示例：**
     
-  ```js
+  ```ts
   class myAbility extends Ability {
       onNewWant(want) {
           console.log('onNewWant, want:' + want.abilityName);
@@ -257,7 +257,7 @@ onConfigurationUpdated(config: Configuration): void;
 
 **示例：**
     
-  ```js
+  ```ts
   class myAbility extends Ability {
       onConfigurationUpdated(config) {
           console.log('onConfigurationUpdated, config:' + JSON.stringify(config));
@@ -281,7 +281,7 @@ dump(params: Array\<string>): Array\<string>;
 
 **示例：**
     
-  ```js
+  ```ts
   class myAbility extends Ability {
       dump(params) {
           console.log('dump, params:' + JSON.stringify(params));
@@ -306,7 +306,7 @@ onMemoryLevel(level: AbilityConstant.MemoryLevel): void;
 
 **示例：**
     
-  ```js
+  ```ts
   class myAbility extends Ability {
     onMemoryLevel(level) {
         console.log('onMemoryLevel, level:' + JSON.stringify(level));
@@ -343,8 +343,6 @@ call(method: string, data: rpc.Sequenceable): Promise&lt;void&gt;;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[元能力错误码](../errorcodes/errorcode-ability.md)。
-
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
 | 201 | The application does not have permission to call the interface. |
@@ -355,8 +353,8 @@ call(method: string, data: rpc.Sequenceable): Promise&lt;void&gt;;
 
 **示例：**
     
-  ```js
-  import Ability from '@ohos.app.ability.Ability';
+  ```ts
+  import Ability from '@ohos.app.ability.UIAbility';
   class MyMessageAble{ // 自定义的Sequenceable数据结构
     name:""
     str:""
@@ -388,7 +386,7 @@ call(method: string, data: rpc.Sequenceable): Promise&lt;void&gt;;
         deviceId: ""
       }).then((obj) => {
         caller = obj;
-        let msg = new MyMessageAble(1, "world"); // 参考Sequenceable数据定义
+        let msg = new MyMessageAble("msg", "world"); // 参考Sequenceable数据定义
         caller.call(method, msg)
           .then(() => {
             console.log('Caller call() called');
@@ -429,8 +427,6 @@ callWithResult(method: string, data: rpc.Sequenceable): Promise&lt;rpc.MessagePa
 
 **错误码：**
 
-以下错误码的详细介绍请参见[元能力错误码](../errorcodes/errorcode-ability.md)。
-
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
 | 201 | The application does not have permission to call the interface. |
@@ -441,8 +437,8 @@ callWithResult(method: string, data: rpc.Sequenceable): Promise&lt;rpc.MessagePa
 
 **示例：**
 
-  ```js
-  import Ability from '@ohos.app.ability.Ability';
+  ```ts
+  import Ability from '@ohos.app.ability.UIAbility';
   class MyMessageAble{
     name:""
     str:""
@@ -504,8 +500,6 @@ release(): void;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[元能力错误码](../errorcodes/errorcode-ability.md)。
-
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
 | 401 | Invalid input parameter. |
@@ -515,8 +509,8 @@ release(): void;
 
 **示例：**
     
-  ```js
-  import Ability from '@ohos.app.ability.Ability';
+  ```ts
+  import Ability from '@ohos.app.ability.UIAbility';
   var caller;
   export default class MainAbility extends Ability {
     onWindowStageCreate(windowStage) {
@@ -558,8 +552,6 @@ release(): void;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[元能力错误码](../errorcodes/errorcode-ability.md)。
-
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
 | 401 | Invalid input parameter. |
@@ -568,8 +560,8 @@ release(): void;
 
 **示例：**
     
-  ```js
-  import Ability from '@ohos.app.ability.Ability';
+  ```ts
+  import Ability from '@ohos.app.ability.UIAbility';
   var caller;
   export default class MainAbility extends Ability {
     onWindowStageCreate(windowStage) {
@@ -617,8 +609,6 @@ on(method: string, callback: CalleeCallBack): void;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[元能力错误码](../errorcodes/errorcode-ability.md)。
-
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
 | 401 | Invalid input parameter. |
@@ -627,8 +617,8 @@ on(method: string, callback: CalleeCallBack): void;
 
 **示例：**
 
-  ```js
-  import Ability from '@ohos.app.ability.Ability';
+  ```ts
+  import Ability from '@ohos.app.ability.UIAbility';
   class MyMessageAble{
       name:""
       str:""
@@ -686,8 +676,6 @@ off(method: string): void;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[元能力错误码](../errorcodes/errorcode-ability.md)。
-
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
 | 401 | Invalid input parameter. |
@@ -697,8 +685,8 @@ off(method: string): void;
 
 **示例：**
     
-  ```js
-  import Ability from '@ohos.app.ability.Ability';
+  ```ts
+  import Ability from '@ohos.app.ability.UIAbility';
   var method = 'call_Function';
   export default class MainAbility extends Ability {
     onCreate(want, launchParam) {

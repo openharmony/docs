@@ -72,7 +72,7 @@ Ability配置标签示例如下：
 ```
 **2. 导入Ability模块**
 ```ts
-import Ability from '@ohos.app.ability.Ability'
+import Ability from '@ohos.app.ability.UIAbility'
 ```
 **3. 定义约定的序列化数据**
 
@@ -142,7 +142,7 @@ export default class CalleeAbility extends Ability {
 ### 访问Callee被调用端
 **1. 导入Ability模块**
 ```ts
-import Ability from '@ohos.app.ability.Ability'
+import Ability from '@ohos.app.ability.UIAbility'
 ```
 **2. 获取Caller通信接口**
 
