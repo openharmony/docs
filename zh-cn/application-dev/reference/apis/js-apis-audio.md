@@ -746,7 +746,7 @@ async function createTonePlayer(){
 import audio from '@ohos.multimedia.audio';
 
 async function getVolumeGroupInfos(){
-  let volumegroupinfos = await audio.getAudioManager().getVolumeGroups(audio.LOCAL_NETWORK_ID);
+  let volumegroupinfos = await audio.getAudioManager().getVolumeManager().getVolumeGroupInfos(audio.LOCAL_NETWORK_ID);
   console.info('Promise returned to indicate that the volumeGroup list is obtained.'+JSON.stringify(volumegroupinfos))
 }
 getVolumeGroupInfos();
@@ -1222,8 +1222,8 @@ getVolumeGroupManager(groupId: number\): Promise<AudioVolumeGroupManager\>
 **示例：**
 
 ```js
-let groupid = value[0].groupId;
-let audioVolumeGroupManager = await audioVolumeManager.getVolumeGroupManager(groupid)
+let groupid = audio.DEFAULT_VOLUME_GROUP_ID;
+let audioVolumeGroupManager = await audioVolumeManager.getVolumeGroupManager(groupid);
 console.info('Callback invoked to indicate that the volume group infos list is obtained.');
 ```
 
@@ -2515,7 +2515,7 @@ setCommunicationDevice(deviceType: CommunicationDeviceType, active: boolean, cal
 **示例：**
 
 ```js
-audioRoutingManager.setCommunicationDevice(audio.ActiveDeviceType.SPEAKER, true, (err) => {
+audioRoutingManager.setCommunicationDevice(audio.CommunicationDeviceType.SPEAKER, true, (err) => {
   if (err) {
     console.error(`Failed to set the active status of the device. ${err}`);
     return;
@@ -2548,7 +2548,7 @@ setCommunicationDevice(deviceType: CommunicationDeviceType, active: boolean): Pr
 **示例：**
 
 ```js
-audioRoutingManager.setCommunicationDevice(audio.ActiveDeviceType.SPEAKER, true).then(() => {
+audioRoutingManager.setCommunicationDevice(audio.CommunicationDeviceType.SPEAKER, true).then(() => {
   console.info('Promise returned to indicate that the device is set to the active status.');
 });
 ```
@@ -2571,7 +2571,7 @@ isCommunicationDeviceActive(deviceType: CommunicationDeviceType, callback: Async
 **示例：**
 
 ```js
-audioRoutingManager.isCommunicationDeviceActive(audio.ActiveDeviceType.SPEAKER, (err, value) => {
+audioRoutingManager.isCommunicationDeviceActive(audio.CommunicationDeviceType.SPEAKER, (err, value) => {
   if (err) {
     console.error(`Failed to obtain the active status of the device. ${err}`);
     return;
@@ -2603,7 +2603,7 @@ isCommunicationDeviceActive(deviceType: CommunicationDeviceType): Promise&lt;boo
 **示例：**
 
 ```js
-audioRoutingManager.isCommunicationDeviceActive(audio.ActiveDeviceType.SPEAKER).then((value) => {
+audioRoutingManager.isCommunicationDeviceActive(audio.CommunicationDeviceType.SPEAKER).then((value) => {
   console.info(`Promise returned to indicate that the active status of the device is obtained ${value}.`);
 });
 ```
