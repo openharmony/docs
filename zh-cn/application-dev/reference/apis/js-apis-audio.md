@@ -419,7 +419,7 @@ async function createTonePlayer(){
 | USB_HEADSET          | 22     | USB耳机，带麦克风。                                       |
 | DEFAULT<sup>9+</sup> | 1000   | 默认设备类型。                                            |
 
-## CommunicationDeviceType<sup>9</sup>
+## CommunicationDeviceType<sup>9+</sup>
 
 枚举，用于通信的可用设备类型。
 
@@ -830,59 +830,6 @@ getVolumeGroupInfos();
 
 管理音频音量和音频设备。在调用AudioManager的接口前，需要先通过[getAudioManager](#audiogetaudiomanager)创建实例。
 
-### getRoutingManager<sup>9+</sup>
-
-getRoutingManager(callback: AsyncCallback&lt;AudioRoutingManager&gt;): void
-
-获取AudioRoutingManager对象，使用callback方式异步返回结果。
-
-**系统能力：** SystemCapability.Multimedia.Audio.Device
-
-**参数：**
-
-| 参数名     | 类型                                                              | 必填 | 说明                               |
-| ---------- | ---------------------------------------------------------------- | ---- | --------------------------------- |
-| callback   | AsyncCallback&lt;[AudioRoutingManager](#audioroutingmanager9)&gt; | 是   | 回调，返回AudioRoutingManager对象。 |
-
-**示例：**
-```js
-audioManager.getRoutingManager((err, callback) => {
-  if (err) {
-    console.error(`Result ERROR: ${err}`);
-  }
-  console.info('getRoutingManager Callback SUCCESS.');
-  let audioRoutingManager;
-  audioRoutingManager = callback;
-});
-```
-
-### getRoutingManager<sup>9+</sup>
-
-getRoutingManager(): Promise&lt;AudioRoutingManager&gt;
-
-获取AudioRoutingManager对象，使用Promise方式异步返回结果。
-
-**系统能力：** SystemCapability.Multimedia.Audio.Device
-
-**返回值：**
-
-| 类型                                                        | 说明                                    |
-| ----------------------------------------------------------- | --------------------------------------- |
-| Promise&lt;[AudioRoutingManager](#audioroutingmanager9)&gt;  | Promise回调返回AudioRoutingManager对象。 |
-
-**示例：**
-```js
-let audioManager = audio.getAudioManager();
-async function getRoutingManager(){
-  await audioManager.getRoutingManager().then((value) => {
-    let routingManager = value;
-    console.info('getRoutingManager Promise SUCCESS.');
-  }).catch((err) => {
-    console.error(`Result ERROR: ${err}`);
-  });
-}
-```
-
 ### setAudioParameter
 
 setAudioParameter(key: string, value: string, callback: AsyncCallback&lt;void&gt;): void
@@ -1284,7 +1231,7 @@ let audioVolumeGroupManager = await audioVolumeManager.getVolumeGroupManager(gro
 console.info('Callback invoked to indicate that the volume group infos list is obtained.');
 ```
 
-### on('volumeChange')<sup>8+</sup>
+### on('volumeChange')<sup>9+</sup>
 
 on(type: 'volumeChange', callback: Callback\<VolumeEvent>): void
 
@@ -1804,8 +1751,6 @@ on(type: 'ringerModeChange', callback: Callback\<AudioRingMode>): void
 
 监听铃声模式变化事件。
 
-**系统接口：** 该接口为系统接口
-
 **系统能力：** SystemCapability.Multimedia.Audio.Volume
 
 **参数：**
@@ -2306,7 +2251,7 @@ isActive(volumeType: AudioVolumeType, callback: AsyncCallback&lt;boolean&gt;): v
 
 获取指定音量流是否为活跃状态，使用callback方式异步返回结果。
 
-**系统能力：** SystemCapability.Multimedia.Audio.Volume
+**系统能力：** SystemCapability.Multimedia.Audio.Renderer
 
 **参数：**
 
@@ -2333,7 +2278,7 @@ isActive(volumeType: AudioVolumeType): Promise&lt;boolean&gt;
 
 获取指定音量流是否为活跃状态，使用Promise方式异步返回结果。
 
-**系统能力：** SystemCapability.Multimedia.Audio.Volume
+**系统能力：** SystemCapability.Multimedia.Audio.Renderer
 
 **参数：**
 
@@ -3806,7 +3751,7 @@ setInterruptMode(mode: InterruptMode): Promise&lt;void&gt;
 
 设置应用的焦点模型。使用Promise异步回调。
 
-**系统能力：** SystemCapability.Multimedia.Audio.Renderer
+**系统能力：** SystemCapability.Multimedia.Audio.Interrupt
 
 **参数：**
 
@@ -3836,7 +3781,7 @@ setInterruptMode(mode: InterruptMode, callback: AsyncCallback\<void>): void
 
 设置应用的焦点模型。使用Callback回调返回执行结果。
 
-**系统能力：** SystemCapability.Multimedia.Audio.Renderer
+**系统能力：** SystemCapability.Multimedia.Audio.Interrupt
 
 **参数：**
 
@@ -4751,6 +4696,8 @@ audioCapturer.on('stateChange', (state) => {
 ## ToneType <sup>9+</sup>
 
 枚举，播放器的音调类型。
+
+**系统接口：** 该接口为系统接口
 
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.Audio.Tone
 
