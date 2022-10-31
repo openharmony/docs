@@ -53,3 +53,4 @@ struct ClipAndMaskExample {
 }
 ```
 
+![clipAndMask](figures/clipAndMask.PNG)
