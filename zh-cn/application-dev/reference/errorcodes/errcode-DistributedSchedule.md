@@ -33,7 +33,7 @@ The parameter check failed.
 ## 16600001 系统服务工作异常
 
 ### 错误信息
-The system ability work abnormally.
+The system ability works abnormally.
 
 ### 错误描述
 
@@ -55,7 +55,7 @@ The system ability work abnormally.
 当调用continuationManager相关的接口时传入的token或callback未提前注册，会报此错误码。
 
 ### 错误信息
-The specified token or callback has not registered.
+The specified token or callback is not registered.
 
 ### 可能原因
 该错误码可能原因是指定的token或callback未注册。
@@ -100,7 +100,7 @@ The specified callback has been registered.
 当系统服务工作异常时，会报此错误码。
 
 ### 错误信息
-The system ability work abnormally.
+The system ability works abnormally.
 
 ### 可能原因
 该错误码表示系统服务工作异常，可能原因如下。
@@ -151,7 +151,7 @@ The application is not installed on the remote end and installation-free is not 
 当调用distributedMissionManager.continueMission接口使用迁移功能时，若远端未安装应用但支持免安装，会报此错误码。
 
 ### 错误信息
-The application is not installed on the remote end but installation-free is supported, try again with freeInstall flag.
+The application is not installed on the remote end and installation-free is supported. Try again with the freeInstall flag.
 
 ### 可能原因
 该错误码可能原因是远端未安装应用但支持免安装，使用时未使用免安装的标识。
@@ -166,7 +166,7 @@ The application is not installed on the remote end but installation-free is supp
 当调用distributedMissionManager.continueMission接口使用迁移功能时，若操作设备不是迁移的应用所在的设备或需迁移到的目标设备，会报此错误码。
 
 ### 错误信息
-The operation device must be the device where the application to be continued is located or the target device to be continued.
+The operation device must be the device where the application to be continued is currently located or the target device.
 
 ### 可能原因
 该错误码可能原因是操作设备不是迁移的应用所在的设备或需迁移到的目标设备。
@@ -231,7 +231,7 @@ The object is null.
 当调用continuationManager.register接口时次数过多超出限制，会报此错误码。
 
 ### 错误信息
-The maximum number of registrations exceeded.
+The number of registrations has reached the upper limit.
 
 ### 可能原因
 该错误码可能原因是设备频繁注册，次数超出最大次数限制。
@@ -246,7 +246,7 @@ The maximum number of registrations exceeded.
 当调用continuationManager相关接口时使用未注册的token，会报此错误码。
 
 ### 错误信息
-The token has not registered.
+The token is not registered.
 
 ### 可能原因
 该错误码可能原因是未注册token。
@@ -261,7 +261,7 @@ The token has not registered.
 当使用相同的callback重复调用continuationManager.on接口时，会报此错误码。
 
 ### 错误信息
-Callback has been registered.
+The callback has been registered.
 
 ### 可能原因
 该错误码能原因是指定的callback已经注册过。
@@ -276,7 +276,7 @@ Callback has been registered.
 当调用continuationManager的off、updateConnectStatus和startDeviceManager等接口时，若未提前调用on接口注册callback，会报此错误码。
 
 ### 错误信息
-Callback has not been registered.
+The callback is not registered.
 
 ### 可能原因
 该错误码可能原因是指定的callback未注册。
@@ -291,7 +291,7 @@ Callback has not been registered.
 当调用continuationManager的startDeviceManager接口时，若连接相应Ability失败时，会报此错误码。
 
 ### 错误信息
-Failed to connect ability.
+Failed to connect to the ability.
 
 ### 可能原因
 该错误码可能原因是指定token连接ability失败。
@@ -321,7 +321,7 @@ The type of callback is not supported.
 当调用continuationManager的updateConnectStatus接口时，若参数status为无效值时，会报此错误码。
 
 ### 错误信息
-Invalid connect state.
+Invalid connection state.
 
 ### 可能原因
 该错误码表示无效的连接状态，可能原因是入参DeviceConnectState为非指定值。
@@ -331,12 +331,12 @@ Invalid connect state.
 
 ## 29360216 无效的流转模式
 
+### 错误信息
+Invalid continuation mode.
+
 ### 错误描述
 
 当调用continuationManager的register和startDeviceManager接口时，若参数ContinuationExtraParams.continuationMode为无效值时，会报此错误码。
-
-### 错误信息
-Invalid continuation mode.
 
 ### 可能原因
 该错误码可能原因是入参ContinuationExtraParams.continuationMode为非指定值。
