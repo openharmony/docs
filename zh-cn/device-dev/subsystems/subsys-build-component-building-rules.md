@@ -1,10 +1,10 @@
 # OpenHarmony部件编译构建规范
 
-## 前言
+## 0 前言
 
 ### 目的
 
-编译构建是部件化设计落地的抓手，一个优秀的部件在编译态应该具备可维护、可移植、低耦合的特征。本规范用于引导部件开发人员编写符合部件化设计的编译脚本，使得部件在编译态依赖合理、可配置、可复用、可裁剪。
+编译构建是部件化设计落地的切入点，一个优秀的部件在编译态应该具备可维护、可移植、低耦合的特征。本规范用于引导部件开发人员编写符合部件化设计的编译脚本，使得部件在编译态依赖合理、可配置、可复用、可裁剪。
 
 ### 基本概念
 
@@ -21,7 +21,7 @@
 在编译态，部件的依赖分为：
 
 - 有条件依赖：在特定场景下可裁剪的依赖，有条件的依赖裁剪后不影响部件的 Public API 和 inner api。比如音频对蓝牙的依赖。
-- 强依赖：部件间合理的必要的依赖，不可裁剪。
+- 强依赖：部件间合理的必要的依赖，不可裁剪。比如对安全库函数的依赖。
 
 ### 总体原则
 
@@ -40,6 +40,7 @@
 ### 约定
 
 **规则：** 必须遵守的约定。
+
 **建议：** 必须加以考虑的约定。
 
 无论是“规则”还是“建议”，都必须并努力遵守。
@@ -53,11 +54,15 @@
 
 编译脚本中的变量、编译目标（target）、模板，gni文件，以及部件描述文件中的对象和数据的命名都应采用内核风格（unix_like），单词全小写，用下划线分割。如："startup_init"。
 
-### 规则1.1 部件英文名命名规则：名词形式，需体现部件的功能，在系统内全局唯一，不超过63个有效英文字符，使用小写加下划线的内核风格命名，例如：unix_like。
+### 规则1.1 部件英文名格式须统一
+- 名词形式，需体现部件的功能。
+- 在系统内全局唯一。
+- 不超过63个有效英文字符。
+- 使用小写加下划线的内核风格命名，例如：unix_like。
 
-**例外：** 三方开源软件的使用对应社区的原生命名方式。
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **例外：** 三方开源软件的使用对应社区的原生命名方式，比如：cJson。
 
-### 规则1.2 特性名为部件名前缀加上特性名称。
+### 规则1.2 特性名为部件名前缀加上特性名称
 
 特性是部件声明的可配置的编译选项，加上部件名前缀可避免系统内特性重名。示例：
 
@@ -70,12 +75,16 @@ declare_args() {
 
 **看护手段：** 预编译检查
 
-### 建议1.1 编译目标名以部件名为前缀加上模块名称。
+### 建议1.1 编译目标名以部件名为前缀加上模块名称
 
 一个部件可能有多个编译目标（即模块），以“{部件名}_{模块名}”的方式命名可以根据编译产物（库、可执行文件）快速定位归属部件和避免重名。
 
+反例：
 ```c
 ohos_shared_library("data") // Bad: 不精确，过于通用，系统内易重名
+```
+正例：
+```c
 ohos_shared_library("cellular_data_napi") // Good
 ```
 
@@ -83,71 +92,24 @@ ohos_shared_library("cellular_data_napi") // Good
 
 bundle.json 是定义部件的描述文件，包含了部件的根目录、名称、功能描述、版本号、接口定义和编译入口等信息，须保证其准确性。
 
-### 规则2.1 部件描述文件中字段须准确。
+### 规则2.1 部件描述文件中字段须准确
 
-- name
+| 字段 | 类型 | 看护手段 |
+|---|---|---|
+|name|string。部件的HPM（鸿蒙包管理器）包名称，必填。命名规则：@{organization}/{component_name}。"component_name" 为部件的名称，须满足规则1.1。|静态检查|
+|version|string。部件版本号，必填，命名和升级跟随 OpenHarmony 版本号。|静态检查|
+|destPath|string。部件源码的根目录，必填。部件的根目录须独立唯一，不允许存在多个根目录。|静态检查|
+|component:name|string。部件名，必填。须满足规则1.1。|静态检查|
+|component:subsystem|string。部件归属的子系统名称，必填，子系统名为小写英文字母组合、不使用下划线。|静态检查|
+|component:syscap|string list。可选。命名规则：大驼峰，"SystemCapability.Subsystem.部件能力.子能力（可选）"，如 `SystemCapability.Media.Camera`, `SystemCapability.Media.Camera.Front`。|静态检查|
+|component:features|string list，部件可配置的特性，可选，命名须满足规则1.2。|静态检查|
+|component:adapted_system_type|string list。部件适用的系统类型，必填，值为 `mini`、`small` 和 `standard`，可同时支持多种。|静态检查|
+|component:rom|string。ROM基线值，必填，单位默认为 KByte。|静态检查|
+|component:ram|string。RAM基线值，必填，单位默认为 KByte。|静态检查|
+|component:deps|string list。deps 对象描述了部件的外部依赖，必填，包括其他部件和三方开源软件，应该与部件编译脚本中依赖一致。|预编译检查|
 
-  **类型：** string。部件的HPM（鸿蒙包管理器）包名称，必填。命名规则：@{organization}/{component_name}。"component_name" 为部件的名称，须满足规则1.1。
 
-  **看护手段：** 静态检查
-
-- version
-
-  **类型：** string。部件版本号，必填，命名和升级跟随 OpenHarmony 版本号。
-
-- destPath
-
-  **类型：** string。部件源码的根目录，必填。部件的根目录须独立唯一，不允许存在多个根目录。
-
-  **看护手段：** 静态检查
-
-- component:name
-
-  **类型：** string。部件名，必填。须满足规则1.1。
-
-  **看护手段：** 静态检查
-
-- component:subsystem
-
-  **类型：** string。部件归属的子系统名称，必填，子系统名为小写英文字母组合、不使用下划线。
-
-  **看护手段：** 静态检查
-
-- component:syscap
-
-  **类型：** string list。可选。命名规则：大驼峰，"SystemCapability.Subsystem.部件能力.子能力（可选）"，如 `SystemCapability.Media.Camera`, `SystemCapability.Media.Camera.Front`。
-
-- component:features
-
-  **类型：** string list，部件可配置的特性，可选，命名须满足规则1.2。
-
-  **看护手段：** 静态检查
-
-- component:adapted_system_type
-
-  **类型：** string list。部件适用的系统类型，必填，值为 `mini`、`small` 和 `standard`，可同时支持多种。
-
-  **看护手段：** 静态检查
-
-- component:rom
-
-  **类型：** string。ROM基线值，必填，单位默认为 KByte。
-
-  **看护手段：** 静态检查
-
-- component:ram
-
-  **类型：** string。RAM基线值，必填，单位默认为 KByte。
-
-  **看护手段：** 静态检查
-
-- component:deps
-
-  **类型：** string list。deps 对象描述了部件的外部依赖，必填，包括其他部件和三方开源软件，应该与部件编译脚本中依赖一致。
-
-  **看护手段：** 预编译检查
-
-### 建议2.1 部件的描述文件应存放在部件根目录下。
+### 建议2.1 部件的描述文件应存放在部件根目录下
 
 部件目录是独立的，应将 bundle.json 文件存放到部件根目录下。
 
@@ -155,7 +117,7 @@ bundle.json 是定义部件的描述文件，包含了部件的根目录、名�
 
 编译目标（target）的内置变量赋值决定了编译内容、依赖和打包等信息，与实现部件化设计强相关。
 
-### 规则3.1 部件编译脚本中只允许引用本部件的路径，禁止引用其他部件的绝对或相对路径。
+### 规则3.1 部件编译脚本中只允许引用本部件的路径，禁止引用其他部件的绝对或相对路径
 
 部件间的依赖都必须使用 "externel_deps"，部件编译目标的变量 sources、include_dirs、configs、public_configs、deps、public_deps 引用其他部件的相对和绝对路径属于非法引入依赖：
 
@@ -173,7 +135,7 @@ bundle.json 是定义部件的描述文件，包含了部件的根目录、名�
 
 - pulic_configs
 
-  同 configs，引用其他部件的 configs 可能会引入接口依赖。
+  pulic_configs 只允许引用本部件的配置路径，引用其他部件的 configs 可能会引入接口依赖。
 
 - deps
 
@@ -188,28 +150,30 @@ bundle.json 是定义部件的描述文件，包含了部件的根目录、名�
   deps = [ "../../foo_b:b" ] // Bad, 相对路径依赖其他部件
   ```
 
-  例外：对三方开源软件的引用除外。
+  > ![icon-note.gif](public_sys-resources/icon-note.gif) **例外：** 对三方开源软件的引用除外。
 
 - public_deps
 
-  同 deps，public_deps 只允许用于部件内模块的依赖。
+  public_deps 只允许用于部件内模块的依赖，直接引用其他部件的模块可能会导致依赖其他部件的内部模块和接口。
+
+  > ![icon-note.gif](public_sys-resources/icon-note.gif) **例外：** 对三方开源软件的引用除外。
   
 
 **看护手段：** 静态检查
 
-### 规则3.2 部件编译目标必须指定部件和子系统名。
+### 规则3.2 部件编译目标必须指定部件和子系统名
 
 部件的编译单元 ohos_shared_library、ohos_static_library、ohos_executable_library、ohos_source_set 都必须指定 "part_name" 和 "subsystem_name"。
 
 **看护手段：** 静态检查
 
-### 建议3.1 部件内部的引用使用相对路径。
+### 建议3.1 部件内部的引用使用相对路径
 
-部件内的引用使用相对路径的好处：
+部件内的引用使用相对路径的优点：
 
-1）脚本更简洁 
+- 脚本更简洁
 
-2）部件的编译脚本与部件的根目录解耦。
+- 部件的编译脚本与部件的根目录解耦。
 
 例：
 
@@ -229,7 +193,7 @@ deps = [
 
 **看护手段：** 静态检查
 
-### 建议3.2 部件内部模块的可见度设置为部件内可见。
+### 建议3.2 部件内部模块的可见度设置为部件内可见
 
 部件内部的模块应使用`"visibility"`字段标识，防止被其他部件依赖。示例：
 
@@ -247,23 +211,23 @@ ohos_shared_library("foo_a") {
 
 ## 4 其他
 
-### 规则4.1 部件编译脚本中禁止使用产品名称变量。
+### 规则4.1 部件编译脚本中禁止使用产品名称变量
 
 部件是通用的系统能力，与特定产品无关。编译脚本中使用产品名称，将导致部件功能与产品绑定，不具备通用性。部件不同产品形态上的差异应抽象为特性或者运行时的插件。
 
-**例外：** vendor 和 device 目录下三方厂商部件的编译脚本例外。
+> ![icon-note.gif](public_sys-resources/icon-note.gif)**例外：** vendor 和 device 目录下三方厂商部件的编译脚本例外。
 
 **看护手段：** 静态检查
 
-### 建议4.1 避免import其他部件目录下的gni文件。
+### 建议4.1 避免import其他部件目录下的gni文件
 
 部件内的 gni 文件是用于声明部件内部编译变量和模板，import 其他部件的 gni 文件等同于使用其他部件内部的变量和模板，即引入对其他部件的依赖。影响多个部件的变量、args 和模板应定义在编译框架的 gni 文件中。
 
-**例外：** build 目录下编译框架定义全局的编译选项的 gni 可以被所有部件 import。
+> ![icon-note.gif](public_sys-resources/icon-note.gif)**例外：** build 目录下编译框架定义全局的编译选项的 gni 可以被所有部件 import。
 
 **看护手段：** 静态检查
 
-### 建议4.2 部件使用统一的编译单元模板。
+### 建议4.2 部件使用统一的编译单元模板
 
 轻量、小型和标准的系统的编译单元都应使用ohos定义的模板，比如 `ohos_shared_library`、`ohos_static_library`、`ohos_executable_library`、`ohos_source_set` 等以 "ohos_" 为前缀的模板。
 
