@@ -1,9 +1,8 @@
 # 输入法服务
 
-  本模块的作用是拉通应用和输入法，保证应用可以通过输入法进行文本输入，以及应用与输入法服务的绑定、应用对输入法的显示和隐藏请求、监听输入法当前的状态等等。
+本模块的作用是拉通普通应用和输入法应用，功能包括：普通应用通过输入法应用进行文本输入、普通应用与输入法服务绑定、普通应用对输入法应用进行显示请求和隐藏请求、普通应用对输入法应用当前状态进行监听等等。
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
-> 本模块首批接口从API version 8开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+> **说明：**<br />本模块首批接口从API version 8开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
 ## 导入模块
 
@@ -11,47 +10,47 @@
 import inputMethodEngine from '@ohos.inputmethodengine';
 ```
 
-## inputMethodEngine
+## 常量
 
-常量值。
+功能键常量值、编辑框常量值及光标常量值。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.MiscServices.InputMethodFramework
+**系统能力**：SystemCapability.MiscServices.InputMethodFramework
 
-| 名称 | 参数类型 | 可读 | 可写 | 说明 |
-| -------- | -------- | -------- | -------- | -------- |
-| ENTER_KEY_TYPE_UNSPECIFIED | number | 是 | 否 | 无功能键。 |
-| ENTER_KEY_TYPE_GO | number | 是 | 否 | “前往”功能键。 |
-| ENTER_KEY_TYPE_SEARCH | number | 是 | 否 | “搜索”功能键。 |
-| ENTER_KEY_TYPE_SEND | number | 是 | 否 | “发送”功能键。 |
-| ENTER_KEY_TYPE_NEXT | number | 是 | 否 | “下一个”功能键。 |
-| ENTER_KEY_TYPE_DONE | number | 是 | 否 | “回车”功能键。 |
-| ENTER_KEY_TYPE_PREVIOUS | number | 是 | 否 | “前一个”功能键。 |
-| PATTERN_NULL | number | 是 | 否 | 无特殊性编辑框。 |
-| PATTERN_TEXT | number | 是 | 否 | 文本编辑框。 |
-| PATTERN_NUMBER | number | 是 | 否 | 数字编辑框。 |
-| PATTERN_PHONE | number | 是 | 否 | 电话号码编辑框。 |
-| PATTERN_DATETIME | number | 是 | 否 | 日期编辑框。 |
-| PATTERN_EMAIL | number | 是 | 否 | 邮件编辑框。 |
-| PATTERN_URI | number | 是 | 否 | 超链接编辑框。 |
-| PATTERN_PASSWORD | number | 是 | 否 | 密码编辑框。 |
-| OPTION_ASCII | number | 是 | 否 | 允许输入ASCII值。 |
-| OPTION_NONE | number | 是 | 否 | 不指定编辑框输入属性。 |
-| OPTION_AUTO_CAP_CHARACTERS | number | 是 | 否 | 允许输入字符。 |
-| OPTION_AUTO_CAP_SENTENCES | number | 是 | 否 | 允许输入句子。 |
-| OPTION_AUTO_WORDS | number | 是 | 否 | 允许输入单词。 |
-| OPTION_MULTI_LINE | number | 是 | 否 | 允许输入多行。 |
-| OPTION_NO_FULLSCREEN | number | 是 | 否 | 半屏样式。 |
-| FLAG_SELECTING | number | 是 | 否 | 编辑框处于选择状态。 |
-| FLAG_SINGLE_LINE | number | 是 | 否 | 编辑框为单行。 |
-| DISPLAY_MODE_PART | number | 是 | 否 | 编辑框显示为半屏。 |
-| DISPLAY_MODE_FULL | number | 是 | 否 | 编辑框显示为全屏。 |
-| CURSOR_UP<sup>9+</sup> | number | 是 | 否 | 光标上移。 |
-| CURSOR_DOWN<sup>9+</sup> | number | 是 | 否 | 光标下移。 |
-| CURSOR_LEFT<sup>9+</sup> | number | 是 | 否 | 光标左移。 |
-| CURSOR_RIGHT<sup>9+</sup> | number | 是 | 否 | 光标右移。 |
-| WINDOW_TYPE_INPUT_METHOD_FLOAT<sup>9+</sup> | number | 是 | 否 | 输入法应用窗口风格标识。 |
+| 名称 | 参数类型 | 值 | 说明 |
+| -------- | -------- | -------- | -------- |
+| ENTER_KEY_TYPE_UNSPECIFIED | number | 0 | 无功能键。 |
+| ENTER_KEY_TYPE_GO | number | 2 | “前往”功能键。 |
+| ENTER_KEY_TYPE_SEARCH | number | 3 | “搜索”功能键。 |
+| ENTER_KEY_TYPE_SEND | number | 4 | “发送”功能键。 |
+| ENTER_KEY_TYPE_NEXT | number | 5 | “下一个”功能键。 |
+| ENTER_KEY_TYPE_DONE | number | 6 | “回车”功能键。 |
+| ENTER_KEY_TYPE_PREVIOUS | number | 7 | “前一个”功能键。 |
+| PATTERN_NULL | number | -1 | 无特殊性编辑框。 |
+| PATTERN_TEXT | number | 0 | 文本编辑框。 |
+| PATTERN_NUMBER | number | 2 | 数字编辑框。 |
+| PATTERN_PHONE | number | 3 | 电话号码编辑框。 |
+| PATTERN_DATETIME | number | 4 | 日期编辑框。 |
+| PATTERN_EMAIL | number | 5 | 邮件编辑框。 |
+| PATTERN_URI | number | 6 | 超链接编辑框。 |
+| PATTERN_PASSWORD | number | 7 | 密码编辑框。 |
+| OPTION_ASCII | number | 20 | 允许输入ASCII值。 |
+| OPTION_NONE | number | 0 | 不指定编辑框输入属性。 |
+| OPTION_AUTO_CAP_CHARACTERS | number | 2 | 允许输入字符。 |
+| OPTION_AUTO_CAP_SENTENCES | number | 8 | 允许输入句子。 |
+| OPTION_AUTO_WORDS | number | 4 | 允许输入单词。 |
+| OPTION_MULTI_LINE | number | 1 | 允许输入多行。 |
+| OPTION_NO_FULLSCREEN | number | 10 | 半屏样式。 |
+| FLAG_SELECTING | number | 2 | 编辑框处于选择状态。 |
+| FLAG_SINGLE_LINE | number | 1 | 编辑框为单行。 |
+| DISPLAY_MODE_PART | number | 0 | 编辑框显示为半屏。 |
+| DISPLAY_MODE_FULL | number | 1 | 编辑框显示为全屏。 |
+| CURSOR_UP<sup>9+</sup> | number | 1 | 光标上移。 |
+| CURSOR_DOWN<sup>9+</sup> | number | 2 | 光标下移。 |
+| CURSOR_LEFT<sup>9+</sup> | number | 3 | 光标左移。 |
+| CURSOR_RIGHT<sup>9+</sup> | number | 4 | 光标右移。 |
+| WINDOW_TYPE_INPUT_METHOD_FLOAT<sup>9+</sup> | number | 2105 | 输入法应用窗口风格标识。 |
 
-## inputMethodEngine.getInputMethodAbility<a name="getInputMethodAbility"></a><sup>9+</sup>
+## inputMethodEngine.getInputMethodAbility<sup>9+</sup>
 
 getInputMethodAbility(): InputMethodAbility
 
@@ -71,7 +70,7 @@ getInputMethodAbility(): InputMethodAbility
 let InputMethodAbility = inputMethodAbility.getInputMethodAbility();
 ```
 
-## inputMethodEngine.getKeyboardDelegate<a name="getKeyboardDelegate"></a><sup>9+</sup>
+## inputMethodEngine.getKeyboardDelegate<sup>9+</sup>
 
 getKeyboardDelegate(): KeyboardDelegate
 
@@ -83,7 +82,7 @@ getKeyboardDelegate(): KeyboardDelegate
 
 | 类型                                  | 说明             |
 | ------------------------------------- | ---------------- |
-| [KeyboardDelegate](#KeyboardDelegate) | 客户端监听实例。 |
+| [KeyboardDelegate](#keyboarddelegate) | 客户端监听实例。 |
 
 **示例：**
 
@@ -91,14 +90,13 @@ getKeyboardDelegate(): KeyboardDelegate
 let KeyboardDelegate = inputMethodAbility.getKeyboardDelegate();
 ```
 
-## inputMethodEngine.getInputMethodEngine<a name="getInputMethodEngine"></a><sup>(deprecated)</sup>
+## inputMethodEngine.getInputMethodEngine<sup>(deprecated)</sup>
 
 getInputMethodEngine(): InputMethodEngine
 
 获取服务端实例。
 
-> **说明：** 
-> 从API version 8开始支持，API version 9开始废弃, 建议使用[getInputMethodAbility()](#getInputMethodAbility)替代
+> **说明：** <br/>从API version 8开始支持，API version 9开始废弃, 建议使用[getInputMethodAbility()](#inputmethodenginegetinputmethodability9)替代
 
 **系统能力**： SystemCapability.MiscServices.InputMethodFramework
 
@@ -114,14 +112,13 @@ getInputMethodEngine(): InputMethodEngine
 let InputMethodEngine = inputMethodEngine.getInputMethodEngine();
 ```
 
-## inputMethodEngine.createKeyboardDelegate<a name="createKeyboardDelegate"></a><sup>(deprecated)</sup>
+## inputMethodEngine.createKeyboardDelegate<sup>(deprecated)</sup>
 
 createKeyboardDelegate(): KeyboardDelegate
 
 获取客户端监听实例。
 
-> **说明：** 
-> 从API version 8开始支持，API version 9开始废弃, 建议使用[getKeyboardDelegate()](#getKeyboardDelegate)替代
+> **说明：** <br/>从API version 8开始支持，API version 9开始废弃, 建议使用[getKeyboardDelegate()](#inputmethodenginegetkeyboarddelegate9)替代。
 
 **系统能力**： SystemCapability.MiscServices.InputMethodFramework
 
@@ -137,11 +134,11 @@ createKeyboardDelegate(): KeyboardDelegate
 let KeyboardDelegate = inputMethodEngine.createKeyboardDelegate();
 ```
 
-## InputMethodEngine<a name="InputMethodEngine"></a>
+## InputMethodEngine
 
-下列API示例中都需使用[getInputMethodEngine](#getInputMethodEngine)回调获取到InputMethodEngine实例，再通过此实例调用对应方法。
+下列API示例中都需使用[getInputMethodEngine](#inputmethodenginegetinputmethodenginedeprecated)回调获取到InputMethodEngine实例，再通过此实例调用对应方法。
 
-### on('inputStart')<a name="inputStart"></a>
+### on('inputStart')
 
 on(type: 'inputStart', callback: (kbController: KeyboardController, textInputClient: TextInputClient) => void): void
 
@@ -334,11 +331,11 @@ inputMethodEngine.getInputMethodEngine().off('keyboardHide', () => {
 });
 ```
 
-## InputMethodAbility<a name="InputMethodAbility"></a>
+## InputMethodAbility
 
-下列API示例中都需使用[getInputMethodAbility](#getInputMethodAbility)回调获取到InputMethodAbility实例，再通过此实例调用对应方法。
+下列API示例中都需使用[getInputMethodAbility](#inputmethodenginegetinputmethodability9)回调获取到InputMethodAbility实例，再通过此实例调用对应方法。
 
-### on('inputStart')<a name="inputStart9"></a><sup>9+</sup>
+### on('inputStart')<sup>9+</sup>
 
 on(type: 'inputStart', callback: (kbController: KeyboardController, inputClient: InputClient) => void): void
 
@@ -351,7 +348,7 @@ on(type: 'inputStart', callback: (kbController: KeyboardController, inputClient:
 | 参数名   | 类型                            | 必填 | 说明                                                         |
 | -------- | ------------------------------- | ---- | ------------------------------------------------------------ |
 | type     | string                        | 是   | 设置监听类型。<br/>-type为‘inputStart’时表示订阅输入法绑定。 |
-| callback | [KeyboardController](#keyboardcontroller), [InputClient](#inputclient-9) | 是 | 回调函数，返回输入法操作相关实例。 |
+| callback | [KeyboardController](#keyboardcontroller), [InputClient](#inputclient9) | 是 | 回调函数，返回输入法操作相关实例。 |
 
 **示例：**
 
@@ -375,7 +372,7 @@ off(type: 'inputStart', callback?: (kbController: KeyboardController, inputClien
 | 参数名   | 类型                 | 必填 | 说明                     |
 | -------- | -------------------- | ---- | ------------------------ |
 | type | string                                                       | 是   | 设置监听类型。<br/>-type为‘inputStart’时表示订阅输入法绑定。 |
-| callback | [KeyboardController](#keyboardcontroller), [InputClient](#inputclient) | 否 | 回调函数，返回输入法操作相关实例。 |
+| callback | [KeyboardController](#keyboardcontroller), [InputClient](#inputclient9) | 否 | 回调函数，返回输入法操作相关实例。 |
 
 **示例：**
 
@@ -575,9 +572,9 @@ inputMethodEngine.getInputMethodAbility().off('setSubtype', () => {
 });
 ```
 
-## KeyboardDelegate<a name="KeyboardDelegate"></a>
+## KeyboardDelegate
 
-下列API示例中都需使用[getKeyboardDelegate](#getKeyboardDelegate)回调获取到KeyboardDelegate实例，再通过此实例调用对应方法。
+下列API示例中都需使用[getKeyboardDelegate](#inputmethodenginegetkeyboarddelegate9)回调获取到KeyboardDelegate实例，再通过此实例调用对应方法。
 
 ### on('keyDown'|'keyUp')
 
@@ -783,9 +780,9 @@ inputMethodEngine.getKeyboardDelegate().off('textChange', (text) => {
 });
 ```
 
-## KeyboardController<a name="KeyboardController"></a>
+## KeyboardController
 
-下列API示例中都需使用[inputStart](#inputStart9)回调获取到KeyboardController实例，再通过此实例调用对应方法。
+下列API示例中都需使用[inputStart](#oninputstart9)回调获取到KeyboardController实例，再通过此实例调用对应方法。
 
 ### hide<sup>9+</sup>
 
@@ -799,7 +796,7 @@ hide(callback: AsyncCallback&lt;void&gt;): void
 
 | 参数名   | 类型                   | 必填 | 说明     |
 | -------- | ---------------------- | ---- | -------- |
-| callback | AsyncCallback&lt;void> | 否   | 回调函数。当输入法隐藏成功，err为undefined，否则为错误对象 |
+| callback | AsyncCallback&lt;void> | 否   | 回调函数。当输入法隐藏成功，err为undefined，否则为错误对象。 |
 
 **错误码：**
 
@@ -833,7 +830,7 @@ hide(): Promise&lt;void&gt;
 
 | 类型             | 说明                      |
 | ---------------- | ------------------------- |
-| Promise&lt;void> | Promise对象。无返回结果的Promise对象。 |
+| Promise&lt;void> | 无返回结果的Promise对象。 |
 
 **错误码：**
 
@@ -861,7 +858,7 @@ hideKeyboard(callback: AsyncCallback&lt;void&gt;): void
 
 隐藏输入法。使用callback异步回调。
 
-> **说明：**
+> **说明：**<br/>
 > 从API version 8开始支持，API version 9开始废弃, 建议使用[hide](#hide9)替代。
 
 **系统能力**： SystemCapability.MiscServices.InputMethodFramework
@@ -890,7 +887,7 @@ hideKeyboard(): Promise&lt;void&gt;
 
 隐藏输入法。使用promise异步回调。
 
-> **说明：**
+> **说明：**<br/>
 > 从API version 8开始支持，API version 9开始废弃, 建议使用[hide](#hide9-1)替代。
 
 **系统能力**： SystemCapability.MiscServices.InputMethodFramework
@@ -899,7 +896,7 @@ hideKeyboard(): Promise&lt;void&gt;
 
 | 类型             | 说明                      |
 | ---------------- | ------------------------- |
-| Promise&lt;void> | Promise对象。无返回结果的Promise对象。 |
+| Promise&lt;void> | 无返回结果的Promise对象。 |
 
 **示例：**
 
@@ -913,9 +910,9 @@ async function InputMethodEngine() {
 }
 ```
 
-## InputClient<a name="InputClient "></a><sup>9+</sup>
+## InputClient<sup>9+</sup>
 
-下列API示例中都需使用[inputStart](#inputStart9)回调获取到InputClient实例，再通过此实例调用对应方法。
+下列API示例中都需使用[inputStart](#oninputstart9)回调获取到InputClient实例，再通过此实例调用对应方法。
 
 ### sendKeyFunction<sup>9+</sup>
 
@@ -1283,7 +1280,7 @@ deleteBackward(length:number, callback: AsyncCallback&lt;boolean&gt;): void
 
 **系统能力**： SystemCapability.MiscServices.InputMethodFramework
 
-  **参数：**
+**参数：**
 
 | 参数名   | 类型                         | 必填 | 说明           |
 | -------- | ---------------------------- | ---- | -------------- |
@@ -1582,7 +1579,7 @@ moveCursor(direction: number): Promise&lt;void&gt;
 
 | 类型                | 说明                      |
 | ------------------- | ------------------------- |
-| Promise&lt;void&gt; | Promise对象。无返回结果的Promise对象。 |
+| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
 
 **错误码：**
 
@@ -1612,31 +1609,31 @@ async function InputMethodAbility() {
 }
 ```
 
-## EditorAttribute<a name="EditorAttribute"></a>
+## EditorAttribute
 
 编辑框属性值。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.MiscServices.InputMethodFramework
+**系统能力**：SystemCapability.MiscServices.InputMethodFramework
 
 | 名称         | 参数类型 | 可读 | 可写 | 说明               |
 | ------------ | -------- | ---- | ---- | ------------------ |
 | enterKeyType | number   | 是   | 否   | 编辑框的功能属性。 |
 | inputPattern | number   | 是   | 否   | 编辑框的文本属性。 |
 
-## KeyEvent<a name="KeyEvent"></a>
+## KeyEvent
 
 按键属性值。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.MiscServices.InputMethodFramework
+**系统能力**：SystemCapability.MiscServices.InputMethodFramework
 
 | 名称      | 参数类型 | 可读 | 可写 | 说明         |
 | --------- | -------- | ---- | ---- | ------------ |
 | keyCode   | number   | 是   | 否   | 按键的键值。 |
 | keyAction | number   | 是   | 否   | 按键的状态。 |
 
-## TextInputClient<a name="TextInputClient"></a>
+## TextInputClient
 
-下列API示例中都需使用[inputStart](#inputStart)回调获取到TextInputClient实例，再通过此实例调用对应方法。
+下列API示例中都需使用[inputStart](#oninputstart)回调获取到TextInputClient实例，再通过此实例调用对应方法。
 
 ### getForward<sup>(deprecated)</sup>
 
@@ -1644,7 +1641,7 @@ getForward(length:number, callback: AsyncCallback&lt;string&gt;): void
 
 获取光标前固定长度的文本。使用callback异步回调。
 
-> **说明：** 
+> **说明：** <br/>
 > 从API version 8开始支持，API version 9开始废弃, 建议使用[getForward](#getforward9)替代。
 
 **系统能力**： SystemCapability.MiscServices.InputMethodFramework
@@ -1675,7 +1672,7 @@ getForward(length:number): Promise&lt;string&gt;
 
 获取光标前固定长度的文本。使用promise异步回调。
 
-> **说明：** 
+> **说明：** <br/>
 > 从API version 8开始支持，API version 9开始废弃, 建议使用[getForward](#getforward9)替代
 
 **系统能力**： SystemCapability.MiscServices.InputMethodFramework
@@ -1711,7 +1708,7 @@ getBackward(length:number, callback: AsyncCallback&lt;string&gt;): void
 
 获取光标后固定长度的文本。使用callback异步回调。
 
-> **说明：** 
+> **说明：** <br/>
 > 从API version 8开始支持，API version 9开始废弃, 建议使用[getBackward](#getbackward9)替代
 
 **系统能力**： SystemCapability.MiscServices.InputMethodFramework
@@ -1742,7 +1739,7 @@ getBackward(length:number): Promise&lt;string&gt;
 
 获取光标后固定长度的文本。使用promise异步回调。
 
-> **说明：** 
+> **说明：** <br/>
 > 从API version 8开始支持，API version 9开始废弃, 建议使用[getBackward](#getbackward9)替代
 
 **系统能力**： SystemCapability.MiscServices.InputMethodFramework
@@ -1778,7 +1775,7 @@ deleteForward(length:number, callback: AsyncCallback&lt;boolean&gt;): void
 
 删除光标前固定长度的文本。使用callback异步回调。
 
-> **说明：** 
+> **说明：** <br/>
 > 从API version 8开始支持，API version 9开始废弃, 建议使用[deleteForward](#deleteforward9)替代
 
 **系统能力**： SystemCapability.MiscServices.InputMethodFramework
@@ -1813,7 +1810,7 @@ deleteForward(length:number): Promise&lt;boolean&gt;
 
 删除光标前固定长度的文本。使用promise异步回调。
 
-> **说明：** 
+> **说明：** <br/>
 > 从API version 8开始支持，API version 9开始废弃, 建议使用[deleteForward](#deleteforward9)替代
 
 **系统能力**： SystemCapability.MiscServices.InputMethodFramework
@@ -1853,7 +1850,7 @@ deleteBackward(length:number, callback: AsyncCallback&lt;boolean&gt;): void
 
 删除光标后固定长度的文本。使用callback异步回调。
 
-> **说明：** 
+> **说明：** <br/>
 > 从API version 8开始支持，API version 9开始废弃, 建议使用[deleteBackward](#deletebackward9)替代
 
 **系统能力**： SystemCapability.MiscServices.InputMethodFramework
@@ -1888,7 +1885,7 @@ deleteBackward(length:number): Promise&lt;boolean&gt;
 
 删除光标后固定长度的文本。使用callback异步回调。
 
-> **说明：** 
+> **说明：** <br/>
 > 从API version 8开始支持，API version 9开始废弃, 建议使用[deleteBackward](#deletebackward9)替代
 
 **系统能力**： SystemCapability.MiscServices.InputMethodFramework
@@ -1927,7 +1924,7 @@ sendKeyFunction(action:number, callback: AsyncCallback&lt;boolean&gt;): void
 
 发送功能键。使用callback异步回调。
 
-> **说明：** 
+> **说明：** <br/>
 > 从API version 8开始支持，API version 9开始废弃, 建议使用[sendKeyFunction](#sendkeyfunction9)替代
 
 **系统能力**： SystemCapability.MiscServices.InputMethodFramework
@@ -1961,7 +1958,7 @@ sendKeyFunction(action:number): Promise&lt;boolean&gt;
 
 发送功能键。使用promise异步回调。
 
-> **说明：** 
+> **说明：** <br/>
 > 从API version 8开始支持，API version 9开始废弃, 建议使用[sendKeyFunction](#sendkeyfunction9)替代
 
 **系统能力**： SystemCapability.MiscServices.InputMethodFramework
@@ -2000,7 +1997,7 @@ insertText(text:string, callback: AsyncCallback&lt;boolean&gt;): void
 
 插入文本。使用callback异步回调。
 
-> **说明：** 
+> **说明：** <br/>
 > 从API version 8开始支持，API version 9开始废弃, 建议使用[insertText](#inserttext9)替代
 
 **系统能力**： SystemCapability.MiscServices.InputMethodFramework
@@ -2034,7 +2031,7 @@ insertText(text:string): Promise&lt;boolean&gt;
 
 插入文本。使用promise异步回调。
 
-> **说明：** 
+> **说明：** <br/>
 > 从API version 8开始支持，API version 9开始废弃, 建议使用[insertText](#inserttext9)替代
 
 **系统能力**： SystemCapability.MiscServices.InputMethodFramework
@@ -2073,7 +2070,7 @@ getEditorAttribute(callback: AsyncCallback&lt;EditorAttribute&gt;): void
 
 获取编辑框属性值。使用callback异步回调。
 
-> **说明：** 
+> **说明：** <br/>
 > 从API version 8开始支持，API version 9开始废弃, 建议使用[getEditorAttribute](#geteditorattribute9)替代
 
 **系统能力**： SystemCapability.MiscServices.InputMethodFramework
@@ -2103,7 +2100,7 @@ getEditorAttribute(): Promise&lt;EditorAttribute&gt;
 
 获取编辑框属性值。使用promise异步回调。
 
-> **说明：** 
+> **说明：** <br/>
 > 从API version 8开始支持，API version 9开始废弃, 建议使用[getEditorAttribute](#geteditorattribute9)替代
 
 **系统能力**： SystemCapability.MiscServices.InputMethodFramework
