@@ -142,7 +142,7 @@ let simple = AppStorage.Get('simpleProp')
 
 ### Set
 
-Set<T>(propName: string, newValue: T): boolean
+Set\<T>(propName: string, newValue: T): boolean
 
 对已保存的key值，替换其value值。
 
@@ -165,7 +165,7 @@ let simple = AppStorage.Set('simpleProp', 121);
 
 ### SetOrCreate
 
-SetOrCreate<T>(propName: string, newValue: T): void
+SetOrCreate\<T>(propName: string, newValue: T): void
 
 创建或更新setOrCreate内部的值。
 
@@ -646,7 +646,7 @@ PersistentStorage.PersistProps([{'highScore', '0'},{'wightScore','1'}])
 
 ### Keys
 
-Keys(): Array<string>
+Keys(): Array\<string>
 
 返回所有持久化属性的标记。
 
@@ -654,7 +654,7 @@ Keys(): Array<string>
 
 | 类型          | 描述                       |
 | ------------- | -------------------------- |
-| Array<string> | 返回所有持久化属性的标记。 |
+| Array\<string> | 返回所有持久化属性的标记。 |
 
 ```ts
 let simple = PersistentStorage.Keys()
@@ -728,7 +728,7 @@ Environment.EnvProps([{'accessibilityEnabled', 'default'},{'accessibilityUnEnabl
 
 ### Keys
 
-Keys(): Array<string>
+Keys(): Array\<string>
 
 返回关联的系统项。
 
@@ -736,7 +736,7 @@ Keys(): Array<string>
 
 | 类型          | 描述                   |
 | ------------- | ---------------------- |
-| Array<string> | 返回关联的系统项数组。 |
+| Array\<string> | 返回关联的系统项数组。 |
 
 ```ts
 let simple = Environment.Keys()
