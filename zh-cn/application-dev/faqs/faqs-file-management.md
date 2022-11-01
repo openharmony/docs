@@ -91,3 +91,21 @@ getAlbums方法需要权限：ohos.permission.READ_MEDIA，从[OpenHarmony权限
      })
    }
    ```
+
+## 如何解决多次通过媒体库FetchFileResult获取文件应用崩溃 
+
+适用于：OpenHarmonySDK 3.2.5.5版本，API9 Stage模型
+
+通过FetchFileResult.close()方法，在FetchFileResult对象每次调用完，释放并使其失效。
+
+## 在Stage模型下调用mediaLibrary.getMediaLibrary()接口，IDE报错
+
+适用于：OpenHarmonySDK 3.25.5版本，API9 Stage模型
+
+Stage模型下，获取媒体库实例应该调用mediaLibrary.getMediaLibrary(context: Context)。
+
+## 调用mediaLibrary.getFileAssets()接口返回的内容如何排序
+
+适用于：OpenHarmonySDK 3.2.5.5版本，API9 Stage模型
+
+通过[MediaFetchOptions](../reference/apis/js-apis-medialibrary.md#mediafetchoptions7)对象参数里面的order属性进行排序。
