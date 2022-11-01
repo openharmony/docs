@@ -127,10 +127,3 @@ cameraInput = await this.cameraManager.createCameraInput(cameraId)熊文帅
 适用于：OpenHarmonySDK 3.2.7.5版本，API9 Stage模型
 
 当前限制最多创建13个媒体播放实例。
-
-## openharmony媒体播放失败&lt;406 no buffer&gt;
-
-适用于：OpenHarmonySDK 3.2.5.5版本，API9 Stage模型
-
-V900单板未适配HDI驱动， 需要厂商进行适配
-
