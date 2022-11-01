@@ -152,12 +152,12 @@ struct ShapeExample {
 @Entry
 @Component
 struct ShapeMeshExample {
-  @State columnVal: number = 0;
-  @State rowVal: number = 0;
-  @State count: number = 0;
-  @State verts: Array<number> = [];
-  @State shapeWidth: number = 600;
-  @State shapeHeight: number = 600;
+  @State columnVal: number = 0
+  @State rowVal: number = 0
+  @State count: number = 0
+  @State verts: Array<number> = []
+  @State shapeWidth: number = 600
+  @State shapeHeight: number = 600
 
   build() {
     Column() {
@@ -186,34 +186,34 @@ struct ShapeMeshExample {
       .height(this.shapeHeight + 'px')
       // 手指触摸Shape组件时会显示mesh扭曲效果
       .onTouch((event: TouchEvent) => {
-        var touchX = event.touches[0].x * 2;
-        var touchY = event.touches[0].y * 2;
-        this.columnVal = 20;
-        this.rowVal = 20;
-        this.count = (this.columnVal + 1) * (this.rowVal + 1);
-        var orig = [this.count * 2];
-        var index = 0;
+        var touchX = event.touches[0].x * 2
+        var touchY = event.touches[0].y * 2
+        this.columnVal = 20
+        this.rowVal = 20
+        this.count = (this.columnVal + 1) * (this.rowVal + 1)
+        var orig = [this.count * 2]
+        var index = 0
         for (var i = 0; i <= this.rowVal; i++) {
-          var fy = this.shapeWidth * i / this.rowVal;
+          var fy = this.shapeWidth * i / this.rowVal
           for (var j = 0; j <= this.columnVal; j++) {
-            var fx = this.shapeWidth * j / this.columnVal;
-            orig[index * 2 + 0] = this.verts[index * 2 + 0] = fx;
-            orig[index * 2 + 1] = this.verts[index * 2 + 1] = fy;
+            var fx = this.shapeWidth * j / this.columnVal
+            orig[index * 2 + 0] = this.verts[index * 2 + 0] = fx
+            orig[index * 2 + 1] = this.verts[index * 2 + 1] = fy
             index++;
           }
         }
         for (var k = 0; k < this.count * 2; k += 2) {
-          var dx = touchX - orig[k + 0];
-          var dy = touchY - orig[k + 1];
-          var dd = dx * dx + dy * dy;
-          var d = Math.sqrt(dd);
-          var pull = 80000 / (dd * d);
+          var dx = touchX - orig[k + 0]
+          var dy = touchY - orig[k + 1]
+          var dd = dx * dx + dy * dy
+          var d = Math.sqrt(dd)
+          var pull = 80000 / (dd * d)
           if (pull >= 1) {
-            this.verts[k + 0] = touchX;
-            this.verts[k + 1] = touchY;
+            this.verts[k + 0] = touchX
+            this.verts[k + 1] = touchY
           } else {
-            this.verts[k + 0] = orig[k + 0] + dx * pull;
-            this.verts[k + 1] = orig[k + 1] + dy * pull;
+            this.verts[k + 0] = orig[k + 0] + dx * pull
+            this.verts[k + 1] = orig[k + 1] + dy * pull
           }
         }
       })

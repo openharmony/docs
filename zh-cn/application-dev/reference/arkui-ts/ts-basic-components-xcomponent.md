@@ -107,7 +107,7 @@ getXComponentContext()
 
 ```ts
 // xxx.ets
-import camera from '@ohos.multimedia.camera';
+import camera from '@ohos.multimedia.camera'
 @Entry
 @Component
 struct PreviewArea {
@@ -122,9 +122,9 @@ struct PreviewArea {
       })
         .onLoad(() => {
           this.xcomponentController.setXComponentSurfaceSize({surfaceWidth:1920,surfaceHeight:1080});
-          this.surfaceId = this.xcomponentController.getXComponentSurfaceId();
+          this.surfaceId = this.xcomponentController.getXComponentSurfaceId()
           camera.createPreviewOutput(this.surfaceId).then((previewOutput) => {
-            console.log('Promise returned with the PreviewOutput instance');
+            console.log('Promise returned with the PreviewOutput instance')
           })
         })
         .width('640px')

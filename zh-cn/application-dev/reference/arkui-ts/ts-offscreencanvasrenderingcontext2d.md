@@ -67,8 +67,8 @@ struct FillStyleExample {
         .onReady(() =>{
           this.offContext.fillStyle = '#0000ff'
           this.offContext.fillRect(20, 160, 150, 100)
-          var image = this.offContext.transferToImageBitmap();
-          this.context.transferFromImageBitmap(image);
+          var image = this.offContext.transferToImageBitmap()
+          this.context.transferFromImageBitmap(image)
         })
     }
     .width('100%')
@@ -445,8 +445,8 @@ struct LineDashOffset {
         .onReady(() =>{
           this.offContext.arc(100, 75, 50, 0, 6.28)
           this.offContext.setLineDash([10,20])
-          this.offContext.lineDashOffset = 10.0;
-          this.offContext.stroke();
+          this.offContext.lineDashOffset = 10.0
+          this.offContext.stroke()
           var image = this.offContext.transferToImageBitmap()
           this.context.transferFromImageBitmap(image)
       })
@@ -1016,7 +1016,7 @@ stroke(path?: Path2D): void
 | path | [Path2D](ts-components-canvas-path2d.md) | 否    | null | 需要绘制的Path2D。 |
 
  **示例：**
- 
+
   ```ts
   // xxx.ets
   @Entry
@@ -1373,10 +1373,10 @@ quadraticCurveTo(cpx: number, cpy: number, x: number, y: number): void
           .height('100%')
           .backgroundColor('#ffff00')
           .onReady(() =>{
-            this.offContext.beginPath();
-            this.offContext.moveTo(20, 20);
-            this.offContext.quadraticCurveTo(100, 100, 200, 20);
-            this.offContext.stroke();
+            this.offContext.beginPath()
+            this.offContext.moveTo(20, 20)
+            this.offContext.quadraticCurveTo(100, 100, 200, 20)
+            this.offContext.stroke()
             var image = this.offContext.transferToImageBitmap()
             this.context.transferFromImageBitmap(image)
         })
@@ -1475,9 +1475,9 @@ arcTo(x1: number, y1: number, x2: number, y2: number, radius: number): void
           .height('100%')
           .backgroundColor('#ffff00')
           .onReady(() =>{
-            this.offContext.moveTo(100, 20);
-            this.offContext.arcTo(150, 20, 150, 70, 50);
-            this.offContext.stroke();
+            this.offContext.moveTo(100, 20)
+            this.offContext.arcTo(150, 20, 150, 70, 50)
+            this.offContext.stroke()
             var image = this.offContext.transferToImageBitmap()
             this.context.transferFromImageBitmap(image)
           })
@@ -1664,17 +1664,17 @@ struct Fill {
         .height('100%')
         .backgroundColor('#ffff00')
         .onReady(() =>{
-          let region = new Path2D();
-          region.moveTo(30, 90);
-          region.lineTo(110, 20);
-          region.lineTo(240, 130);
-          region.lineTo(60, 130);
-          region.lineTo(190, 20);
-          region.lineTo(270, 90);
-          region.closePath();
+          let region = new Path2D()
+          region.moveTo(30, 90)
+          region.lineTo(110, 20)
+          region.lineTo(240, 130)
+          region.lineTo(60, 130)
+          region.lineTo(190, 20)
+          region.lineTo(270, 90)
+          region.closePath()
           // Fill path
-          this.offContext.fillStyle = 'green';
-          this.offContext.fill(region, "evenodd");
+          this.offContext.fillStyle = 'green'
+          this.offContext.fill(region, "evenodd")
           var image = this.offContext.transferToImageBitmap()
           this.context.transferFromImageBitmap(image)
         })
@@ -1766,9 +1766,9 @@ struct Clip {
         .height('100%')
         .backgroundColor('#ffff00')
         .onReady(() =>{
-          let region = new Path2D();
-          region.rect(80,10,20,130);
-          region.rect(40,50,100,50);
+          let region = new Path2D()
+          region.rect(80,10,20,130)
+          region.rect(40,50,100,50)
           this.offContext.clip(region,"evenodd")
           this.offContext.fillStyle = "rgb(255,0,0)"
           this.offContext.fillRect(0, 0, 600, 600)
@@ -2214,8 +2214,8 @@ getImageData(sx: number, sy: number, sw: number, sh: number): ImageData
 @Entry
 @Component
 struct GetImageData {
-  private settings: RenderingContextSettings = new RenderingContextSettings(true);
-  private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings);
+  private settings: RenderingContextSettings = new RenderingContextSettings(true)
+  private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
   private offContext: OffscreenCanvasRenderingContext2D = new OffscreenCanvasRenderingContext2D(600, 600, this.settings)
   private img:ImageBitmap = new ImageBitmap("/common/images/1234.png")
 
@@ -2226,9 +2226,9 @@ struct GetImageData {
         .height('100%')
         .backgroundColor('#ffff00')
         .onReady(() =>{
-          this.offContext.drawImage(this.img,0,0,130,130);
-          var imagedata = this.offContext.getImageData(50,50,130,130);
-          this.offContext.putImageData(imagedata,150,150);
+          this.offContext.drawImage(this.img,0,0,130,130)
+          var imagedata = this.offContext.getImageData(50,50,130,130)
+          this.offContext.putImageData(imagedata,150,150)
           var image = this.offContext.transferToImageBitmap()
           this.context.transferFromImageBitmap(image)
         })
@@ -2330,7 +2330,7 @@ struct SetLineDash {
         .onReady(() =>{
           this.offContext.arc(100, 75, 50, 0, 6.28)
           this.offContext.setLineDash([10,20])
-          this.offContext.stroke();
+          this.offContext.stroke()
           var image = this.offContext.transferToImageBitmap()
           this.context.transferFromImageBitmap(image)
       })
@@ -2384,7 +2384,7 @@ struct OffscreenCanvasGetLineDash {
           .onReady(() => {
             this.offContext.arc(100, 75, 50, 0, 6.28)
             this.offContext.setLineDash([10,20])
-            this.offContext.stroke();
+            this.offContext.stroke()
             let res = this.offContext.getLineDash()
             var image = this.offContext.transferToImageBitmap()
             this.context.transferFromImageBitmap(image)
@@ -2437,7 +2437,7 @@ struct ToDataURL {
         .height('100%')
         .backgroundColor('#ffff00')
         .onReady(() =>{
-          var dataURL = this.offContext.toDataURL();
+          var dataURL = this.offContext.toDataURL()
         })
     }
     .width('100%')
@@ -2534,11 +2534,11 @@ struct CanvasExample {
         .height('100%')
         .backgroundColor('#ffff00')
         .onReady(() =>{
-          this.offContext.save(); // save the default state
-          this.offContext.fillStyle = "green";
-          this.offContext.fillRect(20, 20, 100, 100);
-          this.offContext.restore(); // restore to the default state
-          this.offContext.fillRect(150, 75, 100, 100);
+          this.offContext.save() // save the default state
+          this.offContext.fillStyle = "green"
+          this.offContext.fillRect(20, 20, 100, 100)
+          this.offContext.restore() // restore to the default state
+          this.offContext.fillRect(150, 75, 100, 100)
           var image = this.offContext.transferToImageBitmap()
           this.context.transferFromImageBitmap(image)
         })
@@ -2575,11 +2575,11 @@ struct CanvasExample {
         .height('100%')
         .backgroundColor('#ffff00')
         .onReady(() =>{
-          this.offContext.save(); // save the default state
-          this.offContext.fillStyle = "green";
-          this.offContext.fillRect(20, 20, 100, 100);
-          this.offContext.restore(); // restore to the default state
-          this.offContext.fillRect(150, 75, 100, 100);
+          this.offContext.save() // save the default state
+          this.offContext.fillStyle = "green"
+          this.offContext.fillRect(20, 20, 100, 100)
+          this.offContext.restore() // restore to the default state
+          this.offContext.fillRect(150, 75, 100, 100)
           var image = this.offContext.transferToImageBitmap()
           this.context.transferFromImageBitmap(image)
         })

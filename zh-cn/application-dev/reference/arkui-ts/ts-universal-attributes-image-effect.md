@@ -34,7 +34,7 @@
 struct BlurEffectsExample {
   build() {
     Column({ space: 10 }) {
-      //       对字体进行模糊
+      // 对字体进行模糊
       Text('font blur').fontSize(15).fontColor(0xCCCCCC).width('90%')
       Flex({ alignItems: ItemAlign.Center }) {
         Text('original text').margin(10)

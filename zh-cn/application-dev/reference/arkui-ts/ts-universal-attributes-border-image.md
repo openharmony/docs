@@ -41,7 +41,7 @@
 @Entry
 @Component
 struct Index {
-  @State outSetValue: number = 40;
+  @State outSetValue: number = 40
 
   build() {
     Row() {
@@ -63,8 +63,8 @@ struct Index {
         })
           .margin({ top: 30 })
           .onChange((value: number, mode: SliderChangeMode) => {
-            this.outSetValue = value;
-            console.info('value:' + value + 'mode:' + mode.toString());
+            this.outSetValue = value
+            console.info('value:' + value + 'mode:' + mode.toString())
           })
       }
       .width('100%')

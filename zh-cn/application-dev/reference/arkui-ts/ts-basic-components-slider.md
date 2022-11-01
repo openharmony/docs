@@ -75,14 +75,14 @@ Slider(options?: {value?: number, min?: number, max?: number, step?: number, sty
 @Entry
 @Component
 struct SliderExample {
-  @State outSetValueOne: number = 40;
-  @State inSetValueOne: number = 40;
-  @State outSetValueTwo: number = 40;
-  @State inSetValueTwo: number = 40;
-  @State vOutSetValueOne: number = 40;
-  @State vInSetValueOne: number = 40;
-  @State vOutSetValueTwo: number = 40;
-  @State vInSetValueTwo: number = 40;
+  @State outSetValueOne: number = 40
+  @State inSetValueOne: number = 40
+  @State outSetValueTwo: number = 40
+  @State inSetValueTwo: number = 40
+  @State vOutSetValueOne: number = 40
+  @State vInSetValueOne: number = 40
+  @State vOutSetValueTwo: number = 40
+  @State vInSetValueTwo: number = 40
 
   build() {
     Column({ space: 8 }) {
@@ -96,8 +96,8 @@ struct SliderExample {
         })
           .showTips(true)
           .onChange((value: number, mode: SliderChangeMode) => {
-            this.outSetValueOne = value;
-            console.info('value:' + value + 'mode:' + mode.toString());
+            this.outSetValueOne = value
+            console.info('value:' + value + 'mode:' + mode.toString())
           })
         // toFixed(0)将滑动条返回值处理为整数精度
         Text(this.outSetValueOne.toFixed(0)).fontSize(12)
@@ -111,8 +111,8 @@ struct SliderExample {
         })
           .showSteps(true)
           .onChange((value: number, mode: SliderChangeMode) => {
-            this.outSetValueTwo = value;
-            console.info('value:' + value + 'mode:' + mode.toString());
+            this.outSetValueTwo = value
+            console.info('value:' + value + 'mode:' + mode.toString())
           })
         Text(this.outSetValueTwo.toFixed(0)).fontSize(12)
       }
@@ -131,8 +131,8 @@ struct SliderExample {
           .selectedColor('#4169E1')
           .showTips(true)
           .onChange((value: number, mode: SliderChangeMode) => {
-            this.inSetValueOne = value;
-            console.info('value:' + value + 'mode:' + mode.toString());
+            this.inSetValueOne = value
+            console.info('value:' + value + 'mode:' + mode.toString())
           })
         Text(this.inSetValueOne.toFixed(0)).fontSize(12)
       }
@@ -148,8 +148,8 @@ struct SliderExample {
           .selectedColor('#4169E1')
           .showSteps(true)
           .onChange((value: number, mode: SliderChangeMode) => {
-            this.inSetValueTwo = value;
-            console.info('value:' + value + 'mode:' + mode.toString());
+            this.inSetValueTwo = value
+            console.info('value:' + value + 'mode:' + mode.toString())
           })
         Text(this.inSetValueTwo.toFixed(0)).fontSize(12)
       }
@@ -169,8 +169,8 @@ struct SliderExample {
               .selectedColor('#4169E1')
               .showTips(true)
               .onChange((value: number, mode: SliderChangeMode) => {
-                this.vOutSetValueOne = value;
-                console.info('value:' + value + 'mode:' + mode.toString());
+                this.vOutSetValueOne = value
+                console.info('value:' + value + 'mode:' + mode.toString())
               })
             Slider({
               value: this.vOutSetValueTwo,
@@ -183,8 +183,8 @@ struct SliderExample {
               .selectedColor('#4169E1')
               .showSteps(true)
               .onChange((value: number, mode: SliderChangeMode) => {
-                this.vOutSetValueTwo = value;
-                console.info('value:' + value + 'mode:' + mode.toString());
+                this.vOutSetValueTwo = value
+                console.info('value:' + value + 'mode:' + mode.toString())
               })
           }
         }.width('50%').height(300)
@@ -200,8 +200,8 @@ struct SliderExample {
             })
               .showTips(true)
               .onChange((value: number, mode: SliderChangeMode) => {
-                this.vInSetValueOne = value;
-                console.info('value:' + value + 'mode:' + mode.toString());
+                this.vInSetValueOne = value
+                console.info('value:' + value + 'mode:' + mode.toString())
               })
             Slider({
               value: this.vInSetValueTwo,
@@ -212,8 +212,8 @@ struct SliderExample {
             })
               .showSteps(true)
               .onChange((value: number, mode: SliderChangeMode) => {
-                this.vInSetValueTwo = value;
-                console.info('value:' + value + 'mode:' + mode.toString());
+                this.vInSetValueTwo = value
+                console.info('value:' + value + 'mode:' + mode.toString())
               })
           }
         }.width('50%').height(300)
