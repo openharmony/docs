@@ -59,7 +59,8 @@ import image from '@ohos.multimedia.image'
 import media from '@ohos.multimedia.media'
 
 // 创建CameraManager对象
-let cameraManager = await camera.getCameraManager(null)
+context: any = getContext(this)
+let cameraManager = await camera.getCameraManager(this.context)
 if (!cameraManager) {
     console.error('Failed to get the CameraManager instance');
 }
@@ -78,14 +79,10 @@ for (let index = 0; index < cameraArray.length; index++) {
 }
 
 // 创建相机输入流
-let cameraInput
-await cameraManager.createCameraInput(cameraArray[0].cameraId).then((input) => {
-    console.log('Promise returned with the CameraInput instance');
-    cameraInput = input
-})
+let cameraInput = await cameraManager.createCameraInput(cameraArray[0])
 
 // 获取相机设备支持的输出流能力
-let cameraOutputCap = await camera.getSupportedOutputCapability(cameraInput);
+let cameraOutputCap = await cameraManager.getSupportedOutputCapability(cameraArray[0]);
 if (!cameraOutputCap) {
     console.error("outputCapability outputCapability == null || undefined")
 } else {
@@ -112,8 +109,8 @@ if (!metadataObjectTypesArray) {
     console.error("createOutput metadataObjectTypesArray == null || undefined")
 }
 
-// 创建预览输出流
-let previewOutput = await camera.createPreviewOutput(previewProfilesArray[0], surfaceId)
+// 创建预览输出流,其中参数 surfaceId 参考下面 XComponent 组件，预览流为XComponent组件提供的surface
+let previewOutput = await cameraManager.createPreviewOutput(previewProfilesArray[0], surfaceId)
 if (!previewOutput) {
     console.error("Failed to create the PreviewOutput instance.")
 }
@@ -123,7 +120,7 @@ let imageReceiver = await image.createImageReceiver(1920, 1080, 4, 8)
 // 获取照片显示SurfaceId
 let photoSurfaceId = await imageReceiver.getReceivingSurfaceId()
 // 创建拍照输出流
-let photoOutput = await this.camera.createPhotoOutput(photoProfilesArray[0], photoSurfaceId)
+let photoOutput = await cameraManager.createPhotoOutput(photoProfilesArray[0], photoSurfaceId)
 if (!photoOutput) {
     console.error('Failed to create the PhotoOutput instance.');
     return;
@@ -155,20 +152,21 @@ let videoConfig = {
 
 // 创建录像输出流
 let videoRecorder
-await media.createVideoRecorder().then((recorder) => {
+media.createVideoRecorder().then((recorder) => {
     console.log('createVideoRecorder called')
     videoRecorder = recorder
 })
 // 设置视频录制的参数
-await videoRecorder.prepare(videoConfig)
+videoRecorder.prepare(videoConfig)
 //获取录像SurfaceId
-await videoRecorder.getInputSurface().then((id) => {
+let videoSurfaceId
+videoRecorder.getInputSurface().then((id) => {
     console.log('getInputSurface called')
     videoSurfaceId = id
 })
 
 // 创建VideoOutput对象
-let videoOutput = camera.createVideoOutput(videoProfilesArray[0], videoSurfaceId)
+let videoOutput = await cameraManager.createVideoOutput(videoProfilesArray[0], videoSurfaceId)
 if (!videoOutput) {
     console.error('Failed to create the videoOutput instance.');
     return;
@@ -205,11 +203,11 @@ build() {
 
 ```typescript
 function getImageReceiverSurfaceId() {
-    var receiver = image.createImageReceiver(640, 480, 4, 8)
+    let receiver = image.createImageReceiver(640, 480, 4, 8)
     console.log(TAG + 'before ImageReceiver check')
     if (receiver !== undefined) {
       console.log('ImageReceiver is ok')
-      surfaceId1 = await receiver.getReceivingSurfaceId()
+      surfaceId1 = receiver.getReceivingSurfaceId()
       console.log('ImageReceived id: ' + JSON.stringify(surfaceId1))
     } else {
       console.log('ImageReceiver is not ok')
@@ -399,17 +397,17 @@ videoOutput.start(async (err) => {
 });
 
 // 开始录像
-await videoRecorder.start().then(() => {
+videoRecorder.start().then(() => {
     console.info('videoRecorder start success');
 }
 
 // 停止录像
-await videoRecorder.stop().then(() => {
+videoRecorder.stop().then(() => {
     console.info('stop success');
 }
 
 // 停止录像输出流
-await videoOutput.stop((err) => {
+videoOutput.stop((err) => {
     if (err) {
         console.error('Failed to stop the video output ${err.message}');
         return;
@@ -424,22 +422,22 @@ await videoOutput.stop((err) => {
 
 ```typescript
 // 停止当前会话
-await captureSession.stop()
+captureSession.stop()
 
 // 释放相机输入流
-await cameraInput.release()
+cameraInput.release()
 
 // 释放预览输出流
-await previewOutput.release()
+previewOutput.release()
 
 // 释放拍照输出流
-await photoOutput.release()
+photoOutput.release()
 
 // 释放录像输出流
-await videoOutput.release()
+videoOutput.release()
 
 // 释放会话
-await captureSession.release()
+captureSession.release()
 
 // 会话置空
 captureSession = null
