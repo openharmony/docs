@@ -24,7 +24,7 @@ Native API中的[Drawing](../reference/native-apis/_drawing.md)接口可以提�
 
 需要修改CMakeLists.txt文件，在target_link_libraries最后追加libhilog_ndk.z.so。
 
-## NAPI开发的C++代码中，如何获取到模块 package.json 文件中的 “version” 值？
+## 如何获取到模块 package.json 文件中的 “version” 值
 
 适用于：OpenHarmony SDK 3.2.5.3版本，API9 Stage模型
 
