@@ -61,27 +61,35 @@ struct RectExample {
     Column({ space: 10 }) {
       Text('normal').fontSize(11).fontColor(0xCCCCCC).width('90%')
       // 绘制90% * 50的矩形
-      Rect({ width: '90%', height: 50 })
-        .fill(Color.Pink)
-      // 绘制90% * 50的矩形框
-      Rect()
-        .width('90%')
-        .height(50)
-        .fillOpacity(0)
-        .stroke(Color.Red)
-        .strokeWidth(3)
+      Column({ space: 5 }) {
+        Text('normal').fontSize(9).fontColor(0xCCCCCC).width('90%')
+        // 绘制90% * 50矩形
+        Rect({ width: '90%', height: 50 })
+          .fill(Color.Pink)
+        // 绘制90% * 50的矩形框
+        Rect()
+          .width('90%')
+          .height(50)
+          .fillOpacity(0)
+          .stroke(Color.Red)
+          .strokeWidth(3)
 
-      Text('with rounded corners').fontSize(11).fontColor(0xCCCCCC).width('90%')
-      // 绘制90% * 80的矩形, 圆角宽高分别为40、20
+        Text('with rounded corners').fontSize(11).fontColor(0xCCCCCC).width('90%')
+        // 绘制90% * 80的矩形, 圆角宽高分别为40、20
+        Rect({ width: '90%', height: 80 })
+          .radiusHeight(20)
+          .radiusWidth(40)
+          .fill(Color.Pink)
+        // 绘制90% * 80的矩形, 圆角宽高为20
+        Rect({ width: '90%', height: 80 })
+          .radius(20)
+          .fill(Color.Pink)
+      }.width('100%').margin({ top: 10 })
+      // 绘制90% * 50矩形, 左上圆角宽高40,右上圆角宽高20,右下圆角宽高40,左下圆角宽高20
       Rect({ width: '90%', height: 80 })
-        .radiusHeight(20)
-        .radiusWidth(40)
+        .radius([[40, 40], [20, 20], [40, 40], [20, 20]])
         .fill(Color.Pink)
-      // 绘制90% * 80的矩形, 圆角宽高为20
-      Rect({ width: '90%', height: 80 })
-        .radius(20)
-        .fill(Color.Pink)
-    }.width('100%').margin({ top: 10 })
+    }.width('100%').margin({ top: 5 })
   }
 }
 ```
