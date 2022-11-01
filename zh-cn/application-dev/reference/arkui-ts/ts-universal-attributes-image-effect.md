@@ -19,9 +19,9 @@
 | saturate                      | number                                                       | 1.0    | 为当前组件添加饱和度效果，饱和度为颜色中的含色成分和消色成分(灰)的比例，入参为1时，显示原图像，大于1时含色成分越大，饱和度越大；小于1时消色成分越大，饱和度越小。（百分比） |
 | contrast                      | number                                                       | 1.0    | 为当前组件添加对比度效果，入参为对比度的值，值为1时，显示原图；大于1时，值越大对比度越高，图像越清晰醒目；小于1时，值越小对比度越低；当对比度为0时，图像变为全灰。（百分比） |
 | invert                        | number                                                       | 0      | 反转输入的图像。入参为图像反转的比例。值为1时完全反转。值为0则图像无变化。（百分比） |
-| colorBlend&nbsp;<sup>8+</sup> | [Color](ts-appendix-enums.md#color)&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[Resource](ts-types.md#resource) | -      | 为当前组件添加颜色叠加效果，入参为叠加的颜色。               |
 | sepia                         | number                                                       | 0      | 将图像转换为深褐色。入参为图像反转的比例。值为1则完全是深褐色的，值为0图像无变化。&nbsp;（百分比） |
 | hueRotate                     | number&nbsp;\|&nbsp;string                                   | '0deg' | 色相旋转效果，输入参数为旋转角度。                           |
+| colorBlend&nbsp;<sup>8+</sup> | [Color](ts-appendix-enums.md#color)&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[Resource](ts-types.md#resource) | -      | 为当前组件添加颜色叠加效果，入参为叠加的颜色。               |
 
 ## 示例
 
