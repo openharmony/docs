@@ -22,7 +22,7 @@ ImageAnimator()
 
 | 参数名称     | 参数类型                  |参数描述                   |
 | ---------- | ----------------------- |-------- |
-| images     | Array&lt;[ImageFrameInfo](imageframeinfo对象说明)&gt; | 设置图片帧信息集合。每一帧的帧信息(ImageFrameInfo)包含图片路径、图片大小、图片位置和图片播放时长信息，详见ImageFrameInfo属性说明。<br/>默认值：[]  |
+| images     | Array&lt;[ImageFrameInfo](#imageframeinfo对象说明)&gt; | 设置图片帧信息集合。每一帧的帧信息(ImageFrameInfo)包含图片路径、图片大小、图片位置和图片播放时长信息，详见ImageFrameInfo属性说明。<br/>默认值：[]  |
 | state      | [AnimationStatus](ts-appendix-enums.md#animationstatus) |  默认为初始状态，用于控制播放状态。<br/>默认值：AnimationStatus.Initial |
 | duration   | number  | 单位为毫秒，默认时长为1000ms；duration为0时，不播放图片；值的改变只会在下一次循环开始时生效；当images中任意一帧图片设置了单独的duration后，该属性设置无效。<br/>默认值：1000 |
 | reverse    | boolean | 设置播放顺序。false表示从第1张图片播放到最后1张图片；&nbsp;true表示从最后1张图片播放到第1张图片。<br/>默认值：false |
