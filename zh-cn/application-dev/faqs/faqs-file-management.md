@@ -1,7 +1,5 @@
 # 文件管理开发常见问题
 
-# 文件管理开发常见问题
-
 ## fileio.rmdir是递归删除吗？
 
 适用于：OpenHarmony SDK 3.2.6.3版本，API9 Stage模型
