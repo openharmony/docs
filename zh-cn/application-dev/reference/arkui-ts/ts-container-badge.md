@@ -51,7 +51,7 @@
 | ---------- | ------------------------------------------ | ---- | ----------- | ------------------------------------------- |
 | color      | [ResourceColor](ts-types.md#resourcecolor) | 否   | Color.White | 文本颜色。                                  |
 | fontSize   | number&nbsp;\|&nbsp;string                 | 否   | 10          | 文本大小，单位vp。                          |
-| badgeSize  | number&nbsp;\|&nbsp;string                 | 否   | 16          | Badge的大小，单位vp。不支持百分比形式设置。 |
+| badgeSize  | number&nbsp;\|&nbsp;string                 | 否   | 16          | Badge的大小，单位vp。不支持百分比形式设置。当设置为非法值时，按照默认值处理。 |
 | badgeColor | [ResourceColor](ts-types.md#resourcecolor) | 否   | Color.Red   | Badge的颜色。                               |
 
 ## 示例
