@@ -180,3 +180,5 @@ struct SwiperExample {
   }
 }
 ```
+
+![swiper](figures/swiper.gif)

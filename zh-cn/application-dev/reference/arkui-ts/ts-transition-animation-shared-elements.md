@@ -53,3 +53,4 @@ struct pageBExample {
 }
 ```
 
+![shared](figures/shared.gif)

@@ -54,7 +54,7 @@ Audio模块接口定义。
 | [AudioTimeStamp](_audio_time_stamp.md) | 音频时间戳 | 
 | [AudioSubPortCapability](_audio_sub_port_capability.md) | 音频子端口的支持能力 | 
 | [AudioPortCapability](_audio_port_capability.md) | 音频端口的支持能力 | 
-| [AudioMmapBufferDescripter](_audio_mmap_buffer_descripter.md) | mmap缓冲区描述符 | 
+| [AudioMmapBufferDescriptor](_audio_mmap_buffer_descriptor.md) | mmap缓冲区描述符 | 
 | [AudioDevExtInfo](_audio_dev_ext_info.md) | 音频设备拓展信息 | 
 | [AudioMixExtInfo](_audio_mix_ext_info.md) | 音轨拓展信息 | 
 | [AudioSessionExtInfo](_audio_session_ext_info.md) | 会话拓展信息 | 
@@ -145,11 +145,11 @@ Audio模块接口定义。
 | [AudioPortCapability::subPorts](#subports) | 支持的子端口列表。 | 
 | [AudioPortCapability::supportSampleFormatNum](#supportsampleformatnum) | 支持的音频样本格式数量。 | 
 | [AudioPortCapability::supportSampleFormats](#supportsampleformats) | 支持的音频样本格式。 | 
-| [AudioMmapBufferDescripter::memoryAddress](#memoryaddress) | 指向mmap缓冲区的指针。 | 
-| [AudioMmapBufferDescripter::memoryFd](#memoryfd) | mmap缓冲区的文件描述符。 | 
-| [AudioMmapBufferDescripter::totalBufferFrames](#totalbufferframes) | 缓冲区总大小，单位：帧。 | 
-| [AudioMmapBufferDescripter::transferFrameSize](#transferframesize) | 传输大小，单位：帧。 | 
-| [AudioMmapBufferDescripter::isShareable](#isshareable) | mmap缓冲区是否可以在进程间共享。 | 
+| [AudioMmapBufferDescriptor::memoryAddress](#memoryaddress) | 指向mmap缓冲区的指针。 | 
+| [AudioMmapBufferDescriptor::memoryFd](#memoryfd) | mmap缓冲区的文件描述符。 | 
+| [AudioMmapBufferDescriptor::totalBufferFrames](#totalbufferframes) | 缓冲区总大小，单位：帧。 | 
+| [AudioMmapBufferDescriptor::transferFrameSize](#transferframesize) | 传输大小，单位：帧。 | 
+| [AudioMmapBufferDescriptor::isShareable](#isshareable) | mmap缓冲区是否可以在进程间共享。 | 
 | [AudioDevExtInfo::moduleId](#moduleid-12) | 音频流绑定的模块ID。 | 
 | [AudioDevExtInfo::type](#type-23) | 音频端口上的PIN脚（输出、输入）。 | 
 | [AudioDevExtInfo::desc](#desc-55) | 地址描述。 | 
@@ -797,7 +797,7 @@ bool AudioSampleAttributes::isBigEndian
 
   
 ```
-int32_t AudioMmapBufferDescripter::isShareable
+int32_t AudioMmapBufferDescriptor::isShareable
 ```
 
 **描述:**
@@ -833,7 +833,7 @@ enum AudioPortPassthroughMode AudioSubPortCapability::mask
 
   
 ```
-void* AudioMmapBufferDescripter::memoryAddress
+void* AudioMmapBufferDescriptor::memoryAddress
 ```
 
 **描述:**
@@ -845,7 +845,7 @@ void* AudioMmapBufferDescripter::memoryAddress
 
   
 ```
-int32_t AudioMmapBufferDescripter::memoryFd
+int32_t AudioMmapBufferDescriptor::memoryFd
 ```
 
 **描述:**
@@ -1229,7 +1229,7 @@ enum AudioSampleFormat* AudioPortCapability::supportSampleFormats
 
   
 ```
-int32_t AudioMmapBufferDescripter::totalBufferFrames
+int32_t AudioMmapBufferDescriptor::totalBufferFrames
 ```
 
 **描述:**
@@ -1241,7 +1241,7 @@ int32_t AudioMmapBufferDescripter::totalBufferFrames
 
   
 ```
-int32_t AudioMmapBufferDescripter::transferFrameSize
+int32_t AudioMmapBufferDescriptor::transferFrameSize
 ```
 
 **描述:**

@@ -49,7 +49,7 @@ struct Index {
       .bindContextMenu(this.MenuBuilder, ResponseType.LongPress)
       .onDragStart(()=>{
         // 拖拽时关闭菜单
-        ContextMenu.close();
+        ContextMenu.close()
       })
     }
     .width('100%')

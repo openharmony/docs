@@ -183,6 +183,7 @@
    
    ```js
    // index.js
+   // 导入页面路由模块
    import router from '@ohos.router';
    
    export default {
@@ -200,6 +201,7 @@
    
    ```js
    // second.js
+   // 导入页面路由模块
    import router from '@ohos.router';
    
    export default {

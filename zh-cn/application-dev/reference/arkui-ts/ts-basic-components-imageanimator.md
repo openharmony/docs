@@ -22,8 +22,8 @@ ImageAnimator()
 
 | 参数名称     | 参数类型                  |参数描述                   |
 | ---------- | ----------------------- |-------- |
-| images     | Array&lt;[ImageFrameInfo](imageframeinfo对象说明)&gt; | 设置图片帧信息集合。每一帧的帧信息(ImageFrameInfo)包含图片路径、图片大小、图片位置和图片播放时长信息，详见ImageFrameInfo属性说明。<br/>默认值：[]  |
-| state      | [AnimationStatus](ts-appendix-enums.md#animationstatus) |默认为初始状态，用于控制播放状态。<br/>默认值：AnimationStatus.Initial |
+| images     | Array&lt;[ImageFrameInfo](#imageframeinfo对象说明)&gt; | 设置图片帧信息集合。每一帧的帧信息(ImageFrameInfo)包含图片路径、图片大小、图片位置和图片播放时长信息，详见ImageFrameInfo属性说明。<br/>默认值：[]  |
+| state      | [AnimationStatus](ts-appendix-enums.md#animationstatus) |  默认为初始状态，用于控制播放状态。<br/>默认值：AnimationStatus.Initial |
 | duration   | number  | 单位为毫秒，默认时长为1000ms；duration为0时，不播放图片；值的改变只会在下一次循环开始时生效；当images中任意一帧图片设置了单独的duration后，该属性设置无效。<br/>默认值：1000 |
 | reverse    | boolean | 设置播放顺序。false表示从第1张图片播放到最后1张图片；&nbsp;true表示从最后1张图片播放到第1张图片。<br/>默认值：false |
 | fixedSize  | boolean | 设置图片大小是否固定为组件大小。&nbsp;true表示图片大小与组件大小一致，此时设置图片的width&nbsp;、height&nbsp;、top&nbsp;和left属性是无效的。false表示每一张图片的width&nbsp;、height&nbsp;、top和left属性都要单独设置。<br/>默认值：true |
@@ -49,7 +49,7 @@ ImageAnimator()
 | -------- | -------- |
 | onStart(event:&nbsp;()&nbsp;=&gt;&nbsp;void)  | 状态回调，动画开始播放时触发。 |
 | onPause(event:&nbsp;()&nbsp;=&gt;&nbsp;void)  | 状态回调，动画暂停播放时触发。 |
-| onRepeat(event:&nbsp;()&nbsp;=&gt;&nbsp;void) | 状态回调，动画重新播放时触发。 |
+| onRepeat(event:&nbsp;()&nbsp;=&gt;&nbsp;void) | 状态回调，动画重复播放时触发。 |
 | onCancel(event:&nbsp;()&nbsp;=&gt;&nbsp;void) | 状态回调，动画取消播放时触发。 |
 | onFinish(event:&nbsp;()&nbsp;=&gt;&nbsp;void) | 状态回调，动画播放完成时触发。 |
 
@@ -66,47 +66,46 @@ struct ImageAnimatorExample {
   @State iterations: number = 1
 
   build() {
-    Column({ space:5 }) {
+    Column({ space: 10 }) {
       ImageAnimator()
         .images([
-          { 
-            // comment文件夹与pages同级
-            src: '/comment/bg1.jpg',
+          {
+            src: $r('app.media.img1'),
             duration: 500,
-            width: 325,
-            height: 200,
+            width: 170,
+            height: 120,
             top: 0,
             left: 0
           },
           {
-            src: '/comment/bg2.jpg',
+            src: $r('app.media.img2'),
             duration: 500,
-            width: 325,
-            height: 200,
+            width: 170,
+            height: 120,
             top: 0,
-            left: 0
+            left: 170
           },
           {
-            src: $r('app.media.bg3'),
+            src: $r('app.media.img3'),
             duration: 500,
-            width: 325,
-            height: 200,
-            top: 0,
-            left: 0
+            width: 170,
+            height: 120,
+            top: 120,
+            left: 170
           },
           {
-            src: $rawfile('bg4.jpg'),
+            src: $r('app.media.img4'),
             duration: 500,
-            width: 325,
-            height: 200,
-            top: 0,
+            width: 170,
+            height: 120,
+            top: 120,
             left: 0
           }
         ])
         .state(this.state).reverse(this.reverse).fixedSize(false).preDecode(2)
-        .fillMode(FillMode.None).iterations(this.iterations).width(325).height(210)
-        .margin({top:100})
-        .onStart(() => { // 当帧动画开始播放后触发
+        .fillMode(FillMode.None).iterations(this.iterations).width(340).height(240)
+        .margin({ top: 100 })
+        .onStart(() => {
           console.info('Start')
         })
         .onPause(() => {
@@ -118,35 +117,34 @@ struct ImageAnimatorExample {
         .onCancel(() => {
           console.info('Cancel')
         })
-        .onFinish(() => { // 当帧动画播放完成后触发
-          this.state = AnimationStatus.Stopped
+        .onFinish(() => {
           console.info('Finish')
         })
       Row() {
         Button('start').width(100).padding(5).onClick(() => {
           this.state = AnimationStatus.Running
-        })
+        }).margin(5)
         Button('pause').width(100).padding(5).onClick(() => {
-          this.state = AnimationStatus.Paused
-        })
+          this.state = AnimationStatus.Paused     // 显示当前帧图片
+        }).margin(5)
         Button('stop').width(100).padding(5).onClick(() => {
-          this.state = AnimationStatus.Stopped
-        })
+          this.state = AnimationStatus.Stopped    // 显示动画的起始帧图片
+        }).margin(5)
       }
+
       Row() {
         Button('reverse').width(100).padding(5).onClick(() => {
           this.reverse = !this.reverse
-        })
+        }).margin(5)
         Button('once').width(100).padding(5).onClick(() => {
           this.iterations = 1
-        })
-        Button('iteration').width(100).padding(5).onClick(() => {
-          this.iterations = -1
-        })
+        }).margin(5)
+        Button('infinite').width(100).padding(5).onClick(() => {
+          this.iterations = -1 // 无限循环播放
+        }).margin(5)
       }
-    }.width('100%').height('100%').backgroundColor(0xF1F3F5)
+    }.width('100%').height('100%')
   }
 }
 ```
 
-![zh-cn_image_0000001219662643](figures/zh-cn_image_0000001219662643.gif)

@@ -162,3 +162,4 @@ struct AlphabetIndexerSample {
 }
 ```
 
+![alphabet](figures/alphabet.gif)

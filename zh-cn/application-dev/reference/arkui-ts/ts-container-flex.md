@@ -1,10 +1,10 @@
 # Flex
 
-应用弹性方式布局子组件的容器组件。
+以弹性方式布局子组件的容器组件。
 
 > **说明：**
 > - 该组件从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
-> - Flex组件在设置flexShrink、flexGrow时存在二次布局过程，因此在对性能有严格要求的场景下建议使用[Column](ts-container-column.md)、[Row](ts-container-row.md)代替。
+> - Flex组件在渲染时存在二次布局过程，因此在对性能有严格要求的场景下建议使用[Column](ts-container-column.md)、[Row](ts-container-row.md)代替。
 
 
 ## 权限列表
