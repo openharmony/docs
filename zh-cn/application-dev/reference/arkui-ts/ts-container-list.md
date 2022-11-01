@@ -183,7 +183,7 @@ struct ListLanesExample {
       .width("90%")
       .editMode(true)
       .border({ width: 3, color: Color.Red })
-      .lanes({ minLength: 40, maxLength: 60 })
+      .lanes({ minLength: 40, maxLength: 40 })
       .alignListItem(this.alignListItem)
 
       Button("点击更改alignListItem:" + this.alignListItem).onClick(() => {
@@ -200,3 +200,4 @@ struct ListLanesExample {
 }
 ```
 
+![list](figures/list1.gif)
