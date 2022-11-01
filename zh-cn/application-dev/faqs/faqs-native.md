@@ -72,12 +72,6 @@ static napi_value Add(napi_env env, napi_callback_info info)
 }
 ```
 
-## napi中创建boolean的函数是什么 
-
-适用于：OpenHarmony SDK 3.2.5.5版本，API9 Stage模型
-
-napi_get_value_bool(napi_env env, napi_value value, bool\* result)
-
 ## 如何遍历rawfiles中的文件？
 
 适用于：OpenHarmony SDK 3.2版本以上，API9 Stage模型
