@@ -29,7 +29,7 @@ struct OverlayExample {
             .width(240).height(240)
             .overlay("Winter is a beautiful season, especially when it snows.", {
               align: Alignment.Bottom,
-              offset: { x: 70, y: 100 }
+              offset: { x: 0, y: -15 }
             })
         }.border({ color: Color.Black, width: 2 })
       }.width('100%')
