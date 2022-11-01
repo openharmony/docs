@@ -148,3 +148,4 @@ struct ImageAnimatorExample {
 }
 ```
 
+![imageAnimator](figures/imageAnimator.gif)

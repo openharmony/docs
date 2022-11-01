@@ -28,24 +28,24 @@ DatePicker(options?: {start?: Date, end?: Date, selected?: Date})
 
 ## 属性
 
-| 名称    | 参数类型        | 描述            | 
+| 名称    | 参数类型        | 描述            |
 | ------| -------------- | -------- |
-| lunar | boolean  | 日期是否显示农历。<br/>-&nbsp;true：展示农历。<br/>-&nbsp;false：不展示农历。<br/>默认值：false | 
+| lunar | boolean  | 日期是否显示农历。<br/>-&nbsp;true：展示农历。<br/>-&nbsp;false：不展示农历。<br/>默认值：false |
 
 
 ## 事件
 
-| 名称 | 功能描述 | 
-| -------- | -------- | 
-| onChange(callback:&nbsp;(value:&nbsp;DatePickerResult)&nbsp;=&gt;&nbsp;void) | 选择日期时触发该事件。 | 
+| 名称 | 功能描述 |
+| -------- | -------- |
+| onChange(callback:&nbsp;(value:&nbsp;DatePickerResult)&nbsp;=&gt;&nbsp;void) | 选择日期时触发该事件。 |
 
 ## DatePickerResult对象说明
 
-| 名称 | 参数类型 | 描述 | 
+| 名称 | 参数类型 | 描述 |
 | -------- | -------- | -------- |
-| year | number | 选中日期的年。 | 
-| month | number | 选中日期的月(0~11)，0表示1月，11表示12月。 | 
-| day | number | 选中日期的日。 | 
+| year | number | 选中日期的年。 |
+| month | number | 选中日期的月(0~11)，0表示1月，11表示12月。 |
+| day | number | 选中日期的日。 |
 
 
 ## 示例
@@ -82,3 +82,4 @@ struct DatePickerExample {
 }
 ```
 
+![datePicker](figures/datePicker.gif)
