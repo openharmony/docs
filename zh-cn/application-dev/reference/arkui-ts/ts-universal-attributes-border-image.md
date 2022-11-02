@@ -41,7 +41,7 @@
 @Entry
 @Component
 struct Index {
-  @State outSetValue: number = 40;
+  @State outSetValue: number = 40
 
   build() {
     Row() {
@@ -85,7 +85,7 @@ struct Index {
   build() {
     Row() {
       Column() {
-        Text('This is gradient color.').textAlign(TextAlign.Center)
+        Text('This is gradient color.').textAlign(TextAlign.Center).width(68)
           .borderImage({
             source: {
               angle: 90,

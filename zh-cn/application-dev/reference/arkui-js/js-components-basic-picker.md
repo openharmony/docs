@@ -165,52 +165,59 @@
 ```html
 <!-- xxx.hml -->
 <div class="container">
-  <select @change="selectChange">
+    <select @change="selectChange">
         <option value="{{ item }}" for="item in selectList">
             {{ item }}
         </option>
-  </select>
-  <picker id="picker0" type="text" value="{{textvalue}}" selected="{{textselect}}" range="{{rangetext}}" onchange="textonchange"
-    oncancel="textoncancel" class="pickertext"></picker>
+    </select>
+    <picker id="picker0" type="text" value="{{ textvalue }}" selected="{{ textselect }}" range="{{ rangetext }}"
+            onchange="textonchange"
+            oncancel="textoncancel" class="pickertext" show="false"></picker>
 
-  <picker id="picker1" type="date" value="{{datevalue}}" start="2002-2-5" end="2030-6-5" selected="{{dateselect}}" lunarswitch="true"
-    onchange="dateonchange" oncancel="dateoncancel" class="pickerdate" show="false"></picker>
+    <picker id="picker1" type="date" value="{{ datevalue }}" start="2002-2-5" end="2030-6-5" selected="{{ dateselect }}"
+            lunarswitch="true"
+            onchange="dateonchange" oncancel="dateoncancel" class="pickerdate" show="false"></picker>
 
-  <picker id="picker2" type="time" value="{{timevalue}}" containsecond="{{containsecond}}" selected="{{timeselect}}" hours="12"
-    onchange="timeonchange" oncancel="timeoncancel" class="pickertime" show="false"></picker>
+    <picker id="picker2" type="time" value="{{ timevalue }}" containsecond="{{ containsecond }}"
+            selected="{{ timeselect }}" hours="12"
+            onchange="timeonchange" oncancel="timeoncancel" class="pickertime" show="false"></picker>
 
-  <picker id="picker3" type="datetime" value="{{datetimevalue}}" selected="{{datetimeselect}}" hours="24" lunarswitch="true"
-    onchange="datetimeonchange" oncancel="datetimeoncancel" class="pickerdatetime" show="false"></picker>
+    <picker id="picker3" type="datetime" value="{{ datetimevalue }}" selected="{{ datetimeselect }}" hours="24"
+            lunarswitch="true"
+            onchange="datetimeonchange" oncancel="datetimeoncancel" class="pickerdatetime" show="false"></picker>
 
-  <picker id="picker4" type="multi-text" value="{{multitextvalue}}" columns="3" range="{{multitext}}" selected="{{multitextselect}}"
-    onchange="multitextonchange" oncancel="multitextoncancel" class="pickermuitl" show="false"></picker>
+    <picker id="picker4" type="multi-text" value="{{ multitextvalue }}" columns="3" range="{{ multitext }}"
+            selected="{{ multitextselect }}"
+            onchange="multitextonchange" oncancel="multitextoncancel" class="pickermuitl" show="false"></picker>
 </div>
 ```
 
 ```css
 /* xxx.css */
-.container {    
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+.container {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
- picker{
-  width:60%;
-  height:80px;
-  border-radius:20px;
-  text-color:white;
-  font-size:15px;
-  background-color:#4747e3;
-  margin-left:20%;
+
+picker {
+    width: 60%;
+    height: 80px;
+    border-radius: 20px;
+    text-color: white;
+    font-size: 15px;
+    background-color: #4747e3;
+    margin-left: 20%;
 }
- select{
-  background-color: #efecec;
-  height: 50px;
-  width: 60%;
-  margin-left: 20%;
-  margin-top: 300px;
-  margin-bottom: 50px;
-  font-size: 22px;
+
+select {
+    background-color: #efecec;
+    height: 50px;
+    width: 60%;
+    margin-left: 20%;
+    margin-top: 300px;
+    margin-bottom: 50px;
+    font-size: 22px;
 }
 ```
 
@@ -218,72 +225,96 @@
 // xxx.js
 import router from '@system.router';
 import prompt from '@system.prompt';
+
 export default {
-  data: {    
-    selectList:["text","data","time","datetime","multitext"],
-    rangetext:['15', "20", "25"],    
-    multitext:[["a", "b", "c"], ["e", "f", "g"], ["h", "i"], ["k", "l", "m"]],    
-    textvalue:'default textvalue',    
-    datevalue:'default datevalue',    
-    timevalue:'default timevalue',    
-    datetimevalue:'default datetimevalue',    
-    multitextvalue:'default multitextvalue',    
-    containsecond:true,    
-    multitextselect:[1,2,0],    
-    datetimeselect:'2012-5-6-11-25',    
-    timeselect:'11:22:30',    
-    dateselect:'2021-3-2',    
-    textselect:'2'
-  },
-  selectChange(e){
-        for(let i = 0;i<this.selectList.length;i++){
-            if(e.newValue == this.selectList[i]){
-                this.$element("picker"+i).show();
+    data: {
+        selectList: ["text", "data", "time", "datetime", "multitext"],
+        rangetext: ['15', "20", "25"],
+        multitext: [["a", "b", "c"], ["e", "f", "g"], ["h", "i"], ["k", "l", "m"]],
+        textvalue: 'default textvalue',
+        datevalue: 'default datevalue',
+        timevalue: 'default timevalue',
+        datetimevalue: 'default datetimevalue',
+        multitextvalue: 'default multitextvalue',
+        containsecond: true,
+        multitextselect: [1, 2, 0],
+        datetimeselect: '2012-5-6-11-25',
+        timeselect: '11:22:30',
+        dateselect: '2021-3-2',
+        textselect: '2'
+    },
+    selectChange(e) {
+        for (let i = 0;i < this.selectList.length; i++) {
+            if (e.newValue == this.selectList[i]) {
+                this.$element("picker" + i).show();
             }
         }
     },
-  textonchange(e) {    
-    this.textvalue = e.newValue;    
-    prompt.showToast({ message:"text:"+e.newValue+",newSelected:"+e.newSelected })
-  },
-  textoncancel(e) {    
-    prompt.showToast({ message:"text: textoncancel" })
-  },
-  dateonchange(e) {    
-    this.datevalue = e.year + "-" + e.month + "-" + e.day;    
-    prompt.showToast({ message:"date:"+e.year+"-"+(e.month+1)+"-"+e.day })
-  },
-  dateoncancel() {    
-    prompt.showToast({ message:"date: dateoncancel" })
-  },
-  timeonchange(e) {    
-    if(this.containsecond){        
-      this.timevalue=e.hour+":"+e.minute+":"+e.second;        
-      prompt.showToast({ message:"Time:" + e.hour + ":" + e.minute + ":" + e.second })
-    } else {        
-      this.timevalue=e.hour+":"+e.minute;        
-      prompt.showToast({ message:"Time:" + e.hour + ":" + e.minute })
-    }},
-  timeoncancel() {    
-    prompt.showToast({ message:"timeoncancel" })
-  },
-  datetimeonchange(e) {    
-    this.datetimevalue=e.year+"-"+e.month+"-"+e.day+" "+e.hour+":"+e.minute;    
-    prompt.showToast({ message:"Time:"+(e.month+1)+"-"+e.day+" "+e.hour+":"+e.minute })
-  },
-  datetimeoncancel() {    
-    prompt.showToast({ message:"datetimeoncancel" })
-  },
-  multitextonchange(e) {    
-    this.multitextvalue=e.newValue;    
-    prompt.showToast({ message:"Multi-column text change" + e.newValue })
-  },
-  multitextoncancel() {    
-    prompt.showToast({ message:"multitextoncancel" })
-  },
-  popup_picker() {    
-    this.$element("picker_text").show();
-  },
+    textonchange(e) {
+        this.textvalue = e.newValue;
+        prompt.showToast({
+            message: "text:" + e.newValue + ",newSelected:" + e.newSelected
+        })
+    },
+    textoncancel(e) {
+        prompt.showToast({
+            message: "text: textoncancel"
+        })
+    },
+    dateonchange(e) {
+        this.datevalue = e.year + "-" + e.month + "-" + e.day;
+        prompt.showToast({
+            message: "date:" + e.year + "-" + (e.month + 1) + "-" + e.day
+        })
+    },
+    dateoncancel() {
+        prompt.showToast({
+            message: "date: dateoncancel"
+        })
+    },
+    timeonchange(e) {
+        if (this.containsecond) {
+            this.timevalue = e.hour + ":" + e.minute + ":" + e.second;
+            prompt.showToast({
+                message: "Time:" + e.hour + ":" + e.minute + ":" + e.second
+            })
+        } else {
+            this.timevalue = e.hour + ":" + e.minute;
+            prompt.showToast({
+                message: "Time:" + e.hour + ":" + e.minute
+            })
+        }
+    },
+    timeoncancel() {
+        prompt.showToast({
+            message: "timeoncancel"
+        })
+    },
+    datetimeonchange(e) {
+        this.datetimevalue = e.year + "-" + e.month + "-" + e.day + " " + e.hour + ":" + e.minute;
+        prompt.showToast({
+            message: "Time:" + (e.month + 1) + "-" + e.day + " " + e.hour + ":" + e.minute
+        })
+    },
+    datetimeoncancel() {
+        prompt.showToast({
+            message: "datetimeoncancel"
+        })
+    },
+    multitextonchange(e) {
+        this.multitextvalue = e.newValue;
+        prompt.showToast({
+            message: "Multi-column text change" + e.newValue
+        })
+    },
+    multitextoncancel() {
+        prompt.showToast({
+            message: "multitextoncancel"
+        })
+    },
+    popup_picker() {
+        this.$element("picker_text").show();
+    },
 }
 ```
 
