@@ -21,7 +21,7 @@ import inputConsumer from '@ohos.multimodalInput.inputConsumer';
 
 on(type: "key", keyOptions: KeyOptions, callback: Callback&lt;KeyOptions&gt;): void
 
-订阅组合按键, 当满足条件的组合按键输入事件发生时，使用Callback异步方式上报组合按键数据。
+订阅组合按键，当满足条件的组合按键输入事件发生时，使用Callback异步方式上报组合按键数据。
 
 **系统能力：** SystemCapability.MultimodalInput.Input.InputConsumer
 
