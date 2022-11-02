@@ -12,7 +12,7 @@ Package manager error.
 
 **可能原因**
 
-在调用getInputMethods、listCurrentInputMethodSubtype等接口获取输入法及子类型的时候，由于依赖包管理接口而导致异常时会报错。
+在调用getInputMethods、listCurrentInputMethodSubtype等接口获取输入法及子类型的时候，由于获取包管理服务异常时会报错。
 
 **处理步骤**
 
