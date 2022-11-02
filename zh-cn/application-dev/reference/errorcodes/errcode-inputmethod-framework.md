@@ -88,7 +88,7 @@ Configuration persisting error.
 
 **处理步骤**
 
-执行hdc命令setenforce 0关闭SELinux之后，重新执行接口调用，查看功能是否正常。若关闭SELinux之后功能正常，则确认开发的输入法应用是否配置在系统参数配置文件中，详见[系统参数配置指导](https://gitee.com/openharmony/docs/blob/master/zh-cn/device-dev/subsystems/subsys-boot-init-sysparam.md)。
+执行hdc命令setenforce 0关闭SELinux之后，重新执行接口调用，查看功能是否正常。
 
 ## 12800006 输入法控制器异常
 
