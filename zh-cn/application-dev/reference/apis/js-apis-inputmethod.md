@@ -856,7 +856,7 @@ listInputMethodSubtype(inputMethodProperty: InputMethodProperty, callback: Async
 
 | 参数名   | 类型                                               | 必填 | 说明                   |
 | -------- | -------------------------------------------------- | ---- | ---------------------- |
-| inputMethodProperty | InputMethodProperty| 是 | 指定获取子类型所属的输入法应用
+| inputMethodProperty | InputMethodProperty| 是 | 指定获取子类型所属的输入法应用。 |
 | callback | Array<[InputMethodSubtype](./js-apis-inputmethod-subtype.md#inputmethodsubtype)> | 是 | 回调函数，返回指定输入法应用的所有子类型。 |
 
 **错误码：**
@@ -900,7 +900,7 @@ listInputMethodSubtype(inputMethodProperty: InputMethodProperty): Promise&lt;Arr
 
 | 参数名   | 类型                                               | 必填 | 说明                   |
 | -------- | -------------------------------------------------- | ---- | ---------------------- |
-| inputMethodProperty | InputMethodProperty| 是 | 指定获取子类型所属的输入法应用
+| inputMethodProperty | InputMethodProperty| 是 | 指定获取子类型所属的输入法应用。 |
 
 **返回值：**
 

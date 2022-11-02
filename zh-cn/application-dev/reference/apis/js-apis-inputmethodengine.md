@@ -874,7 +874,7 @@ hideKeyboard(callback: AsyncCallback&lt;void&gt;): void
 
 | 参数名   | 类型                   | 必填 | 说明     |
 | -------- | ---------------------- | ---- | -------- |
-| callback | AsyncCallback&lt;void> | 否   | 回调函数。当输入法隐藏成功，err为undefined，否则为错误对象 |
+| callback | AsyncCallback&lt;void> | 否   | 回调函数。当输入法隐藏成功，err为undefined，否则为错误对象。 |
 
 **示例：**
 
