@@ -221,7 +221,7 @@
   - [@ohos.multimodalInput.inputDevice (输入设备)](js-apis-inputdevice.md)
   - [@ohos.multimodalInput.inputDeviceCooperate (键鼠穿越管理)](js-apis-cooperate.md)
   - [@ohos.multimodalInput.inputEvent (输入事件)](js-apis-inputevent.md)
-  - [@ohos.multimodalInput.inputEventClient (注入按键)](js-apis-inputeventclient.md)
+  - [@ohos.multimodalInput.inputEventClient (按键注入)](js-apis-inputeventclient.md)
   - [@ohos.multimodalInput.inputMonitor (输入监听)](js-apis-inputmonitor.md)
   - [@ohos.multimodalInput.keyCode (键值)](js-apis-keycode.md)
   - [@ohos.multimodalInput.keyEvent (按键输入事件)](js-apis-keyevent.md)

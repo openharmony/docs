@@ -37,11 +37,11 @@ on(type: "touch", receiver: TouchEventReceiver): void
 ```js
 try {
     inputMonitor.on("touch", (data)=> {
-        console.info(`monitorOnTouchEvent success ${JSON.stringify(data)}`);
+        console.log(`Monitor on TouchEvent success ${JSON.stringify(data)}`);
         return false;
     });
 } catch (error) {
-    console.info("onMonitor " + error.code + " " + error.message)
+    console.log(`Failed to monitor on TouchEvent, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -66,11 +66,11 @@ on(type: "mouse", receiver: Callback&lt;MouseEvent&gt;): void
 ```js
 try {
     inputMonitor.on("mouse", (data)=> {
-        console.info(`monitorOnMouseEvent success ${JSON.stringify(data)}`);
+        console.log(`Monitor on MouseEvent success ${JSON.stringify(data)}`);
         return false;
     });
 } catch (error) {
-    console.info("onMonitor " + error.code + " " + error.message)
+    console.log(`Failed to monitor on MouseEvent, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -95,25 +95,25 @@ off(type: "touch", receiver?: TouchEventReceiver): void
   **示例：**
 
 ```js
-// 取消所有监听。
+// 取消监听全局触屏事件
 try {
     inputMonitor.off("touch");
 } catch (error) {
-    console.info("offMonitor " + error.code + " " + error.message)
+    console.log(`Failed to monitor off TouchEvent, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 // 单独取消receiver的监听。
 callback:function(data) {
-    console.info(`call success ${JSON.stringify(data)}`);
+    console.log(`call success ${JSON.stringify(data)}`);
 },
 try {
     inputMonitor.on("touch", this.callback);
 } catch (error) {
-    console.info("onTouchMonitor " + error.code + " " + error.message)
-}，
+    console.log(`Failed to monitor on TouchEvent, error: ${JSON.stringify(error, [`code`, `message`])}`);
+},
 try {
     inputMonitor.off("touch",this.callback);
 } catch (error) {
-    console.info("offTouchMonitor " + error.code + " " + error.message)
+    console.log(`Failed to monitor off TouchEvent, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -135,25 +135,25 @@ off(type: "mouse", receiver?: Callback&lt;MouseEvent&gt;): void
 **示例：**
 
 ```js
-// 取消所有监听。
+// 取消监听全局鼠标事件
 try {
     inputMonitor.off("mouse");
 } catch (error) {
-    console.info("offMonitor " + error.code + " " + error.message)
+     console.log(`Failed to monitor off MouseEvent, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 // 单独取消receiver的监听。
 callback:function(data) {
-    console.info(`call success ${JSON.stringify(data)}`);
+    console.log(`call success ${JSON.stringify(data)}`);
 },
 try {
     inputMonitor.on("mouse", this.callback);
 } catch (error) {
-    console.info("onMouseMonitor " + error.code + " " + error.message)
-}，
+    console.log(`Failed to monitor on MouseEvent, error: ${JSON.stringify(error, [`code`, `message`])}`);
+},
 try {
     inputMonitor.off("mouse", this.callback);
 } catch (error) {
-    console.info("offMouseMonitor " + error.code + " " + error.message)
+    console.log(`Failed to monitor off MouseEvent, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -187,6 +187,6 @@ try {
   });
   inputMonitor.off("touch");
 } catch (error) {
-  console.info("offMonitor " + error.code + " " + error.message)
+    console.log(`Failed to monitor off TouchEvent, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
