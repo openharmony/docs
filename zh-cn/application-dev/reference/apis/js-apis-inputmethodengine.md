@@ -16,7 +16,7 @@ import inputMethodEngine from '@ohos.inputmethodengine';
 
 功能键常量值、编辑框常量值及光标常量值。
 
-**系统能力：**SystemCapability.MiscServices.InputMethodFramework
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
 | 名称 | 参数类型 | 值 | 说明 |
 | -------- | -------- | -------- | -------- |
@@ -1621,7 +1621,7 @@ async function InputMethodAbility() {
 
 编辑框属性值。
 
-**系统能力：**SystemCapability.MiscServices.InputMethodFramework
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
 | 名称         | 参数类型 | 可读 | 可写 | 说明               |
 | ------------ | -------- | ---- | ---- | ------------------ |
@@ -1632,7 +1632,7 @@ async function InputMethodAbility() {
 
 按键属性值。
 
-**系统能力：**SystemCapability.MiscServices.InputMethodFramework
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
 | 名称      | 参数类型 | 可读 | 可写 | 说明         |
 | --------- | -------- | ---- | ---- | ------------ |

@@ -16,7 +16,7 @@ import inputMethodEngine from '@ohos.inputMethodSubtype';
 
 属性值。
 
-**系统能力**：SystemCapability.MiscServices.InputMethodFramework
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
 | 名称 | 参数类型 | 可读 | 可写 | 必选 | 说明 |
 | -------- | -------- | -------- | -------- | -------- | -------- |

@@ -33,7 +33,7 @@ destroy(callback: AsyncCallback\<void>): void
 
 停止输入法应用自身。使用callback异步回调。
 
-**系统能力**：SystemCapability.MiscServices.InputMethodFramework
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
 **参数：**
 
@@ -55,7 +55,7 @@ destroy(): Promise<void&gt;;
 
 停止输入法应用自身。通过Promise异步回调。
 
-**系统能力**：SystemCapability.MiscServices.InputMethodFramework
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
 **返回值：**
 

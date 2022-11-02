@@ -17,7 +17,7 @@ import inputMethod from '@ohos.inputmethod';
 
 常量值。
 
-**系统能力：**SystemCapability.MiscServices.InputMethodFramework
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
 | 参数名 | 参数类型 | 常量值 | 说明 |
 | -------- | -------- | -------- | -------- |
@@ -27,12 +27,12 @@ import inputMethod from '@ohos.inputmethod';
 
 输入法应用属性。
 
-**系统能力：**SystemCapability.MiscServices.InputMethodFramework
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
 | 名称 | 参数类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| packageName<sup>(deprecated)</sup> | string | 是 | 否 | 输入法包名。<br/>**说明：**从API8开始支持，从API9开始废弃，建议使用name替代。 |
-| methodId<sup>(deprecated)</sup> | string | 是 | 否 | 输入法唯一标识。<br/>**说明：**从API8开始支持，从API9开始废弃，建议使用id替代。 |
+| packageName<sup>(deprecated)</sup> | string | 是 | 否 | 输入法包名。<br/>**说明：** 从API8开始支持，从API9开始废弃，建议使用name替代。 |
+| methodId<sup>(deprecated)</sup> | string | 是 | 否 | 输入法唯一标识。<br/>**说明：** 从API8开始支持，从API9开始废弃，建议使用id替代。 |
 | name<sup>9+</sup>  | string | 是 | 否 | 输入法内部名称。 |
 | id<sup>9+</sup>    | string | 是 | 否 | 输入法唯一标识。 |
 | label<sup>9+</sup>    | string | 是 | 否 | 输入法对外显示名称。 |
@@ -46,7 +46,7 @@ getController(): InputMethodController
 
 获取客户端实例[InputMethodController](#inputmethodcontroller)。
 
-**系统能力：**SystemCapability.MiscServices.InputMethodFramework
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
 **返回值：**
 
@@ -104,7 +104,7 @@ switchInputMethod(target: InputMethodProperty, callback: AsyncCallback&lt;boolea
 
 **需要权限：** ohos.permission.CONNECT_IME_ABILITY
 
-**系统能力：**SystemCapability.MiscServices.InputMethodFramework
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
 **参数：**
 
@@ -459,7 +459,7 @@ getInputMethodController(): InputMethodController
 >
 > 从API version 6开始支持，从API version 9开始废弃, 建议使用[getController()](#inputmethodgetcontroller9)替代。
 
-**系统能力：**SystemCapability.MiscServices.InputMethodFramework
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
 **返回值：**
 
@@ -505,7 +505,7 @@ stopInputSession(callback: AsyncCallback&lt;boolean&gt;): void
 
 隐藏输入法。使用callback异步回调。
 
-**系统能力：**SystemCapability.MiscServices.InputMethodFramework
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
 **参数：**
 
@@ -737,7 +737,7 @@ stopInput(callback: AsyncCallback&lt;boolean&gt;): void
 >
 > 从API version 6开始支持，从API version 9开始废弃, 建议使用[stopInputSession()](#stopinputsession9)替代
 
-**系统能力：**SystemCapability.MiscServices.InputMethodFramework
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
 **参数：**
 

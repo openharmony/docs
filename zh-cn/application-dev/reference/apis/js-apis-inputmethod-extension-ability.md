@@ -14,7 +14,7 @@ import InputMethodExtensionAbility from '@ohos.inputmethodextensionability';
 
 ## 属性
 
-**系统能力**：SystemCapability.MiscServices.InputMethodFramework
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
 | 名称 | 参数类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
@@ -27,7 +27,7 @@ onCreate(want: Want): void
 
 Extension生命周期回调，在拉起Extension输入法应用时调用，执行初始化输入法应用操作。
 
-**系统能力**：SystemCapability.MiscServices.InputMethodFramework
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
 **参数：**
 
@@ -52,7 +52,7 @@ onDestroy(): void
 
 Extension生命周期回调，在销毁输入法应用时回调，执行资源清理等操作。
 
-**系统能力**：SystemCapability.MiscServices.InputMethodFramework
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
 **示例：**
 
