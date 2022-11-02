@@ -3206,6 +3206,8 @@ Notification.getSyncNotificationEnabledWithoutApp(userId)
 
 ## NotificationSubscriber
 
+提供订阅者接收到新通知或取消通知时的回调方法。
+
 **系统API**：此接口为系统接口，三方应用不支持调用。
 
 ### onConsume
@@ -3216,7 +3218,7 @@ onConsume?: (data: [SubscribeCallbackData](#subscribecallbackdata)) => void
 
 **系统能力**：SystemCapability.Notification.Notification
 
-**系统API**: 此接口为系统接口，三方应用不支持调用。
+**系统接口**: 此接口为系统接口，三方应用不支持调用。
 
 **参数：**
 
@@ -3626,6 +3628,8 @@ Notification.subscribe(subscriber, subscribeCallback);
 
 ## NotificationActionButton
 
+描述通知中显示的操作按钮。
+
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Notification.Notification
 
 | 名称      | 可读 | 可写 | 类型                                            | 描述                      |
@@ -3638,6 +3642,8 @@ Notification.subscribe(subscriber, subscribeCallback);
 
 ## NotificationBasicContent
 
+描述普通文本通知。
+
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Notification.Notification
 
 | 名称           | 可读 | 可写 | 类型   | 描述                               |
@@ -3648,6 +3654,8 @@ Notification.subscribe(subscriber, subscribeCallback);
 
 
 ## NotificationLongTextContent
+
+描述长文本通知。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Notification.Notification
 
@@ -3663,6 +3671,8 @@ Notification.subscribe(subscriber, subscribeCallback);
 
 ## NotificationMultiLineContent
 
+描述多行文本通知。
+
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Notification.Notification
 
 | 名称           | 可读 | 可写 | 类型            | 描述                             |
@@ -3676,6 +3686,8 @@ Notification.subscribe(subscriber, subscribeCallback);
 
 
 ## NotificationPictureContent
+
+描述附有图片的通知。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Notification.Notification
 
@@ -3691,6 +3703,8 @@ Notification.subscribe(subscriber, subscribeCallback);
 
 ## NotificationContent
 
+描述通知类型。
+
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Notification.Notification
 
 | 名称        | 可读 | 可写 | 类型                                                         | 描述               |
@@ -3704,9 +3718,11 @@ Notification.subscribe(subscriber, subscribeCallback);
 
 ## NotificationFlagStatus<sup>8+</sup>
 
+描述通知标志状态。
+
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Notification.Notification
 
-**系统API**：此接口为系统接口，三方应用不支持调用。
+**系统接口**：此接口为系统接口，三方应用不支持调用。
 
 | 名称           | 值  | 描述                               |
 | -------------- | --- | --------------------------------- |
@@ -3717,6 +3733,8 @@ Notification.subscribe(subscriber, subscribeCallback);
 
 ## NotificationFlags<sup>8+</sup>
 
+描述通知标志的实例。
+
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Notification.Notification
 
 | 名称             | 可读 | 可写 | 类型                    | 描述                               |
@@ -3726,6 +3744,8 @@ Notification.subscribe(subscriber, subscribeCallback);
 
 
 ## NotificationRequest
+
+描述通知的请求。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Notification.Notification
 
@@ -3772,6 +3792,8 @@ Notification.subscribe(subscriber, subscribeCallback);
 
 ## DistributedOptions<sup>8+</sup>
 
+描述分布式选项。
+
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Notification.Notification
 
 | 名称                   | 可读 | 可写 | 类型            | 描述                               |
@@ -3783,6 +3805,8 @@ Notification.subscribe(subscriber, subscribeCallback);
 
 
 ## NotificationSlot
+
+描述通知槽
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Notification.Notification
 
@@ -3804,6 +3828,8 @@ Notification.subscribe(subscriber, subscribeCallback);
 
 ## NotificationSorting
 
+提供有关活动通知的排序信息。
+
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Notification.Notification
 
 **系统API**: 此接口为系统接口，三方应用不支持调用。
@@ -3817,6 +3843,8 @@ Notification.subscribe(subscriber, subscribeCallback);
 
 ## NotificationSortingMap
 
+提供关于已订阅的所有通知中活动通知的排序信息
+
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Notification.Notification
 
 **系统API**：此接口为系统接口，三方应用不支持调用。
@@ -3828,6 +3856,8 @@ Notification.subscribe(subscriber, subscribeCallback);
 
 
 ## NotificationSubscribeInfo
+
+设置订阅所需通知的发布者的信息。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Notification.Notification
 
@@ -3841,6 +3871,8 @@ Notification.subscribe(subscriber, subscribeCallback);
 
 ## NotificationTemplate<sup>8+</sup>
 
+通知模板。
+
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Notification.Notification
 
 | 名称 | 参数类型               | 可读 | 可写 | 说明       |
@@ -3850,6 +3882,8 @@ Notification.subscribe(subscriber, subscribeCallback);
 
 
 ## NotificationUserInput<sup>8+</sup>
+
+保存用户输入的通知消息。
 
 **系统能力**：SystemCapability.Notification.Notification
 
