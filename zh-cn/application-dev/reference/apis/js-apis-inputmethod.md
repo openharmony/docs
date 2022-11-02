@@ -17,7 +17,7 @@ import inputMethod from '@ohos.inputmethod';
 
 常量值。
 
-**系统能力**：SystemCapability.MiscServices.InputMethodFramework
+**系统能力：**SystemCapability.MiscServices.InputMethodFramework
 
 | 参数名 | 参数类型 | 常量值 | 说明 |
 | -------- | -------- | -------- | -------- |
@@ -27,12 +27,12 @@ import inputMethod from '@ohos.inputmethod';
 
 输入法应用属性。
 
-**系统能力**：SystemCapability.MiscServices.InputMethodFramework
+**系统能力：**SystemCapability.MiscServices.InputMethodFramework
 
 | 名称 | 参数类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| packageName<sup>(deprecated)</sup> | string | 是 | 否 | 输入法包名。<br/>**说明**：从API8开始支持，从API9开始废弃，建议使用name替代。 |
-| methodId<sup>(deprecated)</sup> | string | 是 | 否 | 输入法唯一标识。<br/>**说明**：从API8开始支持，从API9开始废弃，建议使用id替代。 |
+| packageName<sup>(deprecated)</sup> | string | 是 | 否 | 输入法包名。<br/>**说明：**从API8开始支持，从API9开始废弃，建议使用name替代。 |
+| methodId<sup>(deprecated)</sup> | string | 是 | 否 | 输入法唯一标识。<br/>**说明：**从API8开始支持，从API9开始废弃，建议使用id替代。 |
 | name<sup>9+</sup>  | string | 是 | 否 | 输入法内部名称。 |
 | id<sup>9+</sup>    | string | 是 | 否 | 输入法唯一标识。 |
 | label<sup>9+</sup>    | string | 是 | 否 | 输入法对外显示名称。 |
@@ -46,7 +46,7 @@ getController(): InputMethodController
 
 获取客户端实例[InputMethodController](#inputmethodcontroller)。
 
-**系统能力**：SystemCapability.MiscServices.InputMethodFramework
+**系统能力：**SystemCapability.MiscServices.InputMethodFramework
 
 **返回值：**
 
@@ -74,7 +74,7 @@ getSetting(): InputMethodSetting
 
 获取客户端设置实例[InputMethodSetting](#inputmethodsetting8)。
 
-**系统能力**： SystemCapability.MiscServices.InputMethodFramework
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
 **返回值：**
 
@@ -102,9 +102,9 @@ switchInputMethod(target: InputMethodProperty, callback: AsyncCallback&lt;boolea
 
 切换输入法。使用callback异步回调。
 
-**需要权限**： ohos.permission.CONNECT_IME_ABILITY
+**需要权限：** ohos.permission.CONNECT_IME_ABILITY
 
-**系统能力**：SystemCapability.MiscServices.InputMethodFramework
+**系统能力：**SystemCapability.MiscServices.InputMethodFramework
 
 **参数：**
 
@@ -146,9 +146,9 @@ switchInputMethod(target: InputMethodProperty): Promise&lt;boolean&gt;
 
 切换输入法。使用promise异步回调。
 
-**需要权限**： ohos.permission.CONNECT_IME_ABILITY
+**需要权限：** ohos.permission.CONNECT_IME_ABILITY
 
-**系统能力**： SystemCapability.MiscServices.InputMethodFramework
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
 **参数：**
 
@@ -195,7 +195,7 @@ getCurrentInputMethod(): InputMethodProperty
 
 获取当前输入法扩展应用，提供同步接口，返回当前输入法属性。
 
-**系统能力**： SystemCapability.MiscServices.InputMethodFramework
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
 **返回值：**
 
@@ -215,15 +215,15 @@ switchCurrentInputMethodSubtype(target: InputMethodSubtype, callback: AsyncCallb
 
 在当前输入法应用内切换子类型。使用callback异步回调。
 
-**需要权限**： ohos.permission.CONNECT_IME_ABILITY
+**需要权限：** ohos.permission.CONNECT_IME_ABILITY
 
-**系统能力**： SystemCapability.MiscServices.InputMethodFramework
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
 **参数：**
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| target |  [InputMethodSubtype](./js-apis-inputmethodsubtype.md#inputmethodsubtype)| 是 | 传入要切换的目标输入法子类型。 |
+| target |  [InputMethodSubtype](./js-apis-inputmethod-subtype.md#inputmethodsubtype)| 是 | 传入要切换的目标输入法子类型。 |
 | callback | AsyncCallback&lt;boolean&gt; | 是 | 回调函数。当输入法子类型切换成功，err为undefined，data为true；否则为错误对象。|
 
 **错误码：**
@@ -265,15 +265,15 @@ switchCurrentInputMethodSubtype(target: InputMethodSubtype): Promise&lt;boolean&
 
 在当前输入法应用内切换子类型。使用promise异步回调。
 
-**需要权限**： ohos.permission.CONNECT_IME_ABILITY
+**需要权限：** ohos.permission.CONNECT_IME_ABILITY
 
-**系统能力**： SystemCapability.MiscServices.InputMethodFramework
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
 **参数：**
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-|target |  [InputMethodSubtype](./js-apis-inputmethodsubtype.md#inputmethodsubtype)| 是 | 传入要切换的目标输入法子类型。 |
+|target |  [InputMethodSubtype](./js-apis-inputmethod-subtype.md#inputmethodsubtype)| 是 | 传入要切换的目标输入法子类型。 |
 
 **返回值：**
 
@@ -318,13 +318,13 @@ getCurrentInputMethodSubtype(): InputMethodSubtype
 
 获取当前输入法子类型。
 
-**系统能力**： SystemCapability.MiscServices.InputMethodFramework
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
 **返回值：**
 
 | 类型                                         | 说明                     |
 | -------------------------------------------- | ------------------------ |
-| [InputMethodSubtype](./js-apis-inputmethodsubtype.md#inputmethodsubtype) | 返回当前输入法子类型对象。 |
+| [InputMethodSubtype](./js-apis-inputmethod-subtype.md#inputmethodsubtype) | 返回当前输入法子类型对象。 |
 
 **示例：**
 
@@ -338,16 +338,16 @@ switchCurrentInputMethodAndSubtype(inputMethodProperty: InputMethodProperty, inp
 
 切换至指定输入法应用的指定子类型，用于跨输入法应用切换子类型。使用callback异步回调。
 
-**需要权限**： ohos.permission.CONNECT_IME_ABILITY
+**需要权限：** ohos.permission.CONNECT_IME_ABILITY
 
-**系统能力**： SystemCapability.MiscServices.InputMethodFramework
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
 **参数：**
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 |inputMethodProperty |  [InputMethodProperty](#inputmethodproperty8)| 是 | 传入要切换的目标输入法。 |
-|inputMethodSubtype |  [InputMethodSubtype](./js-apis-inputmethodsubtype.md#inputmethodsubtype)| 是 | 传入要切换的目标输入法子类型。 |
+|inputMethodSubtype |  [InputMethodSubtype](./js-apis-inputmethod-subtype.md#inputmethodsubtype)| 是 | 传入要切换的目标输入法子类型。 |
 | callback | AsyncCallback&lt;boolean&gt; | 是 | 回调函数。当输入法和子类型切换成功，err为undefined，data为获取到的切换子类型结果true；否则为错误对象。 |
 
 **错误码：**
@@ -393,16 +393,16 @@ switchCurrentInputMethodAndSubtype(inputMethodProperty: InputMethodProperty, inp
 
 切换至指定输入法应用的指定子类型，用于跨输入法应用切换子类型。使用promise异步回调。
 
-**需要权限**： ohos.permission.CONNECT_IME_ABILITY
+**需要权限：** ohos.permission.CONNECT_IME_ABILITY
 
-**系统能力**： SystemCapability.MiscServices.InputMethodFramework
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
 **参数：**
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 |inputMethodProperty |  [InputMethodProperty](#inputmethodproperty8)| 是 | 传入要切换的目标输入法。 |
-|inputMethodSubtype |  [InputMethodSubtype](./js-apis-inputmethodsubtype.md#inputmethodsubtype)| 是 | 传入要切换的目标输入法子类型。 |
+|inputMethodSubtype |  [InputMethodSubtype](./js-apis-inputmethod-subtype.md#inputmethodsubtype)| 是 | 传入要切换的目标输入法子类型。 |
 
 **返回值：**
 
@@ -459,7 +459,7 @@ getInputMethodController(): InputMethodController
 >
 > 从API version 6开始支持，从API version 9开始废弃, 建议使用[getController()](#inputmethodgetcontroller9)替代。
 
-**系统能力**：SystemCapability.MiscServices.InputMethodFramework
+**系统能力：**SystemCapability.MiscServices.InputMethodFramework
 
 **返回值：**
 
@@ -481,7 +481,7 @@ getInputMethodSetting(): InputMethodSetting
 
 > **说明：**<br />从API version 6开始支持，从API version 9开始废弃, 建议使用[getSetting()](#inputmethodgetsetting9)替代。
 
-**系统能力**： SystemCapability.MiscServices.InputMethodFramework
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
 **返回值：**
 
@@ -505,7 +505,7 @@ stopInputSession(callback: AsyncCallback&lt;boolean&gt;): void
 
 隐藏输入法。使用callback异步回调。
 
-**系统能力**：SystemCapability.MiscServices.InputMethodFramework
+**系统能力：**SystemCapability.MiscServices.InputMethodFramework
 
 **参数：**
 
@@ -548,7 +548,7 @@ stopInputSession(): Promise&lt;boolean&gt;
 
 隐藏输入法。使用promise异步回调。
 
-**系统能力**： SystemCapability.MiscServices.InputMethodFramework
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
 **返回值：**
 
@@ -589,7 +589,7 @@ showSoftKeyboard(callback: AsyncCallback&lt;void&gt;): void
 
 显示软键盘。使用callback异步回调。
 
-**需要权限**： ohos.permission.CONNECT_IME_ABILITY
+**需要权限：** ohos.permission.CONNECT_IME_ABILITY
 
 **系统能力：**  SystemCapability.MiscServices.InputMethodFramework
 
@@ -626,7 +626,7 @@ showSoftKeyboard(): Promise&lt;void&gt;
 
 显示软键盘，使用Promise异步回调。
 
-**需要权限**： ohos.permission.CONNECT_IME_ABILITY
+**需要权限：** ohos.permission.CONNECT_IME_ABILITY
 
 **系统能力：**  SystemCapability.MiscServices.InputMethodFramework
 
@@ -661,7 +661,7 @@ hideSoftKeyboard(callback: AsyncCallback&lt;void&gt;): void
 
 隐藏软键盘。使用callback异步回调。
 
-**需要权限**： ohos.permission.CONNECT_IME_ABILITY
+**需要权限：** ohos.permission.CONNECT_IME_ABILITY
 
 **系统能力：**  SystemCapability.MiscServices.InputMethodFramework
 
@@ -698,7 +698,7 @@ hideSoftKeyboard(): Promise&lt;void&gt;
 
 隐藏软键盘，使用Promise异步回调。参数个数为0，否则抛出异常。
 
-**需要权限**： ohos.permission.CONNECT_IME_ABILITY
+**需要权限：** ohos.permission.CONNECT_IME_ABILITY
 
 **系统能力：**  SystemCapability.MiscServices.InputMethodFramework
 
@@ -737,7 +737,7 @@ stopInput(callback: AsyncCallback&lt;boolean&gt;): void
 >
 > 从API version 6开始支持，从API version 9开始废弃, 建议使用[stopInputSession()](#stopinputsession9)替代
 
-**系统能力**：SystemCapability.MiscServices.InputMethodFramework
+**系统能力：**SystemCapability.MiscServices.InputMethodFramework
 
 **参数：**
 
@@ -771,7 +771,7 @@ stopInput(): Promise&lt;boolean&gt;
 >
 > 从API version 6开始支持，从API version 9开始废弃, 建议使用[stopInputSession()](#stopinputsession9)替代
 
-**系统能力**： SystemCapability.MiscServices.InputMethodFramework
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
 **返回值：**
 
@@ -803,14 +803,14 @@ on(type: 'imeChange', callback: (inputMethodProperty: InputMethodProperty, input
 
 订阅输入法及子类型变化监听事件。使用callback异步回调。
 
-**系统能力**： SystemCapability.MiscServices.InputMethodFramework
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
 **参数：**
 
 | 参数名   | 类型                            | 必填 | 说明                                                         |
 | -------- | ------------------------------- | ---- | ------------------------------------------------------------ |
 | type     | string                        | 是   | 设置监听类型。<br/>-type为‘imeChange’时表示订阅输入法及子类型变化监听事件。 |
-| callback | [InputMethodProperty](#inputmethodproperty8), [InputMethodSubtype](./js-apis-inputmethodsubtype.md#inputmethodsubtype) | 是 | 回调函数，返回输入法属性对象及输入法子类型对象。 |
+| callback | [InputMethodProperty](#inputmethodproperty8), [InputMethodSubtype](./js-apis-inputmethod-subtype.md#inputmethodsubtype) | 是 | 回调函数，返回输入法属性对象及输入法子类型对象。 |
 
 **示例：**
 
@@ -828,14 +828,14 @@ off(type: 'imeChange', callback?: (inputMethodProperty: InputMethodProperty, inp
 
 取消订阅输入法及子类型变化监听事件。使用callback异步回调。
 
-**系统能力**： SystemCapability.MiscServices.InputMethodFramework
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
 **参数：**
 
 | 参数名   | 类型                            | 必填 | 说明                                                         |
 | -------- | ------------------------------- | ---- | ------------------------------------------------------------ |
 | type     | string                        | 是   | 设置监听类型。<br/>-type为‘imeChange’时表示取消订阅输入法及子类型变化监听事件。 |
-| callback | [InputMethodProperty](#inputmethodproperty8), [InputMethodSubtype](./js-apis-inputmethodsubtype.md#inputmethodsubtype) | 否 | 回调函数，返回取消订阅的输入法属性对象及输入法子类型对象。 |
+| callback | [InputMethodProperty](#inputmethodproperty8), [InputMethodSubtype](./js-apis-inputmethod-subtype.md#inputmethodsubtype) | 否 | 回调函数，返回取消订阅的输入法属性对象及输入法子类型对象。 |
 
 **示例：**
 
@@ -850,14 +850,14 @@ listInputMethodSubtype(inputMethodProperty: InputMethodProperty, callback: Async
 
 获取指定输入法应用的所有子类型。使用callback异步回调。
 
-**系统能力**： SystemCapability.MiscServices.InputMethodFramework
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
 **参数：**
 
 | 参数名   | 类型                                               | 必填 | 说明                   |
 | -------- | -------------------------------------------------- | ---- | ---------------------- |
 | inputMethodProperty | InputMethodProperty| 是 | 指定获取子类型所属的输入法应用
-| callback | Array<[InputMethodSubtype](./js-apis-inputmethodsubtype.md#inputmethodsubtype)> | 是 | 回调函数，返回指定输入法应用的所有子类型。 |
+| callback | Array<[InputMethodSubtype](./js-apis-inputmethod-subtype.md#inputmethodsubtype)> | 是 | 回调函数，返回指定输入法应用的所有子类型。 |
 
 **错误码：**
 
@@ -894,7 +894,7 @@ listInputMethodSubtype(inputMethodProperty: InputMethodProperty): Promise&lt;Arr
 
 获取指定输入法应用的所有子类型。使用promise异步回调。
 
-**系统能力**： SystemCapability.MiscServices.InputMethodFramework
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
 **参数：**
 
@@ -906,7 +906,7 @@ listInputMethodSubtype(inputMethodProperty: InputMethodProperty): Promise&lt;Arr
 
 | 类型                                                        | 说明                   |
 | ----------------------------------------------------------- | ---------------------- |
-| Promise<Array<[InputMethodSubtype](./js-apis-inputmethodsubtype.md#inputmethodsubtype)>> | Promise对象，返回已安装输入法子类型列表。 |
+| Promise<Array<[InputMethodSubtype](./js-apis-inputmethod-subtype.md#inputmethodsubtype)>> | Promise对象，返回已安装输入法子类型列表。 |
 
 **错误码：**
 
@@ -941,13 +941,13 @@ listCurrentInputMethodSubtype(callback: AsyncCallback&lt;Array&lt;InputMethodSub
 
 查询当前输入法应用的所有子类型。使用callback异步回调。
 
-**系统能力**： SystemCapability.MiscServices.InputMethodFramework
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
 **参数：**
 
 | 参数名   | 类型                                               | 必填 | 说明                   |
 | -------- | -------------------------------------------------- | ---- | ---------------------- |
-| callback | Array<[InputMethodSubtype](./js-apis-inputmethodsubtype.md#inputmethodsubtype)> | 是   | 回调函数，返回当前输入法应用的所有子类型。 |
+| callback | Array<[InputMethodSubtype](./js-apis-inputmethod-subtype.md#inputmethodsubtype)> | 是   | 回调函数，返回当前输入法应用的所有子类型。 |
 
 **错误码：**
 
@@ -980,13 +980,13 @@ listCurrentInputMethodSubtype(): Promise&lt;Array&lt;InputMethodSubtype&gt;&gt;
 
 查询当前输入法的子类型列表。使用promise异步回调。
 
-**系统能力**： SystemCapability.MiscServices.InputMethodFramework
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
 **返回值：**
 
 | 类型                                                        | 说明                   |
 | ----------------------------------------------------------- | ---------------------- |
-| Promise<Array<[InputMethodSubtype](./js-apis-inputmethodsubtype.md#inputmethodsubtype)>> | Promise对象，返回当前输入法的子类型列表。 |
+| Promise<Array<[InputMethodSubtype](./js-apis-inputmethod-subtype.md#inputmethodsubtype)>> | Promise对象，返回当前输入法的子类型列表。 |
 
 **错误码：**
 
@@ -1017,7 +1017,7 @@ getInputMethods(enable: boolean, callback: AsyncCallback&lt;Array&lt;InputMethod
 
 获取已激活/未激活输入法列表。参数enable取true，返回已激活输入法列表，取false返回未激活输入法列表。使用callback异步回调。
 
-**系统能力**： SystemCapability.MiscServices.InputMethodFramework
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
 **参数：**
 
@@ -1057,7 +1057,7 @@ getInputMethods(enable: boolean): Promise&lt;Array&lt;InputMethodProperty&gt;&gt
 
 获取已激活/未激活输入法列表。参数enable取true返回已激活输入法列表，取false返回未激活输入法列表。使用promise异步回调。
 
-**系统能力**： SystemCapability.MiscServices.InputMethodFramework
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
 **参数：**
 
@@ -1100,9 +1100,9 @@ showOptionalInputMethods(callback: AsyncCallback&lt;boolean&gt;): void
 
 显示输入法选择对话框。使用callback异步回调。
 
-**需要权限**： ohos.permission.CONNECT_IME_ABILITY
+**需要权限：** ohos.permission.CONNECT_IME_ABILITY
 
-**系统能力**： SystemCapability.MiscServices.InputMethodFramework
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
 **参数：**
 
@@ -1140,9 +1140,9 @@ showOptionalInputMethods(): Promise&lt;boolean&gt;
 
 显示输入法选择对话框。使用promise异步回调。
 
-**需要权限**： ohos.permission.CONNECT_IME_ABILITY
+**需要权限：** ohos.permission.CONNECT_IME_ABILITY
 
-**系统能力**： SystemCapability.MiscServices.InputMethodFramework
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
 **返回值：**
 
@@ -1178,7 +1178,7 @@ listInputMethod(callback: AsyncCallback&lt;Array&lt;InputMethodProperty&gt;&gt;)
 >
 > 从API version 8开始支持，从API version 9开始废弃, 建议使用[getInputMethods](#getinputmethods9)替代
 
-**系统能力**： SystemCapability.MiscServices.InputMethodFramework
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
 **参数：**
 
@@ -1208,7 +1208,7 @@ listInputMethod(): Promise&lt;Array&lt;InputMethodProperty&gt;&gt;
 >
 > 从API version 8开始支持，从API version 9开始废弃, 建议使用[getInputMethods](#getinputmethods9-1)替代
 
-**系统能力**： SystemCapability.MiscServices.InputMethodFramework
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
 **返回值：**
 
@@ -1236,7 +1236,7 @@ displayOptionalInputMethod(callback: AsyncCallback&lt;void&gt;): void
 >
 > 从API version 8开始支持，从API version 9开始废弃, 建议使用[showOptionalInputMethods()](#showoptionalinputmethods9)替代
 
-**系统能力**： SystemCapability.MiscServices.InputMethodFramework
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
 **参数：**
 
@@ -1266,7 +1266,7 @@ displayOptionalInputMethod(): Promise&lt;void&gt;
 >
 > 从API version 8开始支持，API version 9开始废弃, 建议使用[showOptionalInputMethods()](#showoptionalinputmethods9-1)替代
 
-**系统能力**： SystemCapability.MiscServices.InputMethodFramework
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
 **返回值：**
 

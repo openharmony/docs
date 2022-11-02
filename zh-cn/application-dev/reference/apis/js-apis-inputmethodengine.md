@@ -16,7 +16,7 @@ import inputMethodEngine from '@ohos.inputmethodengine';
 
 功能键常量值、编辑框常量值及光标常量值。
 
-**系统能力**：SystemCapability.MiscServices.InputMethodFramework
+**系统能力：**SystemCapability.MiscServices.InputMethodFramework
 
 | 名称 | 参数类型 | 值 | 说明 |
 | -------- | -------- | -------- | -------- |
@@ -58,7 +58,7 @@ getInputMethodAbility(): InputMethodAbility
 
 获取服务端实例。
 
-**系统能力**： SystemCapability.MiscServices.InputMethodFramework
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
 **返回值：**
 
@@ -78,7 +78,7 @@ getKeyboardDelegate(): KeyboardDelegate
 
 获取客户端监听实例。
 
-**系统能力**： SystemCapability.MiscServices.InputMethodFramework
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
 **返回值：**
 
@@ -100,9 +100,9 @@ getInputMethodEngine(): InputMethodEngine
 
 > **说明：**
 >
->从API version 8开始支持，API version 9开始废弃, 建议使用[getInputMethodAbility()](#inputmethodenginegetinputmethodability9)替代
+>从API version 8开始支持，API version 9开始废弃, 建议使用[getInputMethodAbility()](#inputmethodenginegetinputmethodability9)替代。
 
-**系统能力**： SystemCapability.MiscServices.InputMethodFramework
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
 **返回值：**
 
@@ -126,7 +126,7 @@ createKeyboardDelegate(): KeyboardDelegate
 >
 >从API version 8开始支持，API version 9开始废弃, 建议使用[getKeyboardDelegate()](#inputmethodenginegetkeyboarddelegate9)替代。
 
-**系统能力**： SystemCapability.MiscServices.InputMethodFramework
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
 **返回值：**
 
@@ -150,7 +150,7 @@ on(type: 'inputStart', callback: (kbController: KeyboardController, textInputCli
 
 订阅输入法绑定成功事件。使用callback异步回调。
 
-**系统能力**： SystemCapability.MiscServices.InputMethodFramework
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
 **参数：**
 
@@ -174,7 +174,7 @@ off(type: 'inputStart', callback?: (kbController: KeyboardController, textInputC
 
 取消订阅输入法绑定成功事件。
 
-**系统能力**： SystemCapability.MiscServices.InputMethodFramework
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
 **参数：**
 
@@ -199,7 +199,7 @@ on(type: 'inputStop', callback: () => void): void
 
 订阅停止输入法应用事件。使用callback异步回调。
 
-**系统能力**： SystemCapability.MiscServices.InputMethodFramework
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
 **参数：**
 
@@ -222,7 +222,7 @@ off(type: 'inputStop', callback: () => void): void
 
 取消订阅停止输入法应用事件。使用callback异步回调。
 
-**系统能力**： SystemCapability.MiscServices.InputMethodFramework
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
 **参数：**
 
@@ -245,7 +245,7 @@ on(type: 'setCallingWindow', callback: (wid:number) => void): void
 
 订阅设置调用窗口事件。使用callback异步回调。
 
-**系统能力**： SystemCapability.MiscServices.InputMethodFramework
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
 **参数：**
 
@@ -268,7 +268,7 @@ off(type: 'setCallingWindow', callback: (wid:number) => void): void
 
 取消订阅设置调用窗口事件。使用callback异步回调。
 
-**系统能力**： SystemCapability.MiscServices.InputMethodFramework
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
 **参数：**
 
@@ -291,7 +291,7 @@ on(type: 'keyboardShow'|'keyboardHide', callback: () => void): void
 
 订阅输入法事件。使用callback异步回调。
 
-**系统能力**： SystemCapability.MiscServices.InputMethodFramework
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
 **参数：**
 
@@ -317,7 +317,7 @@ off(type: 'keyboardShow'|'keyboardHide', callback?: () => void): void
 
 取消订阅输入法事件。使用callback异步回调。
 
-**系统能力**： SystemCapability.MiscServices.InputMethodFramework
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
 **参数：**
 
@@ -347,7 +347,7 @@ on(type: 'inputStart', callback: (kbController: KeyboardController, inputClient:
 
 订阅输入法绑定成功事件。使用callback异步回调。
 
-**系统能力**： SystemCapability.MiscServices.InputMethodFramework
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
 **参数：**
 
@@ -371,7 +371,7 @@ off(type: 'inputStart', callback?: (kbController: KeyboardController, inputClien
 
 取消订阅输入法绑定成功事件。使用callback异步回调。
 
-**系统能力**： SystemCapability.MiscServices.InputMethodFramework
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
 **参数：**
 
@@ -394,7 +394,7 @@ on(type: 'inputStop', callback: () => void): void
 
 订阅停止输入法应用事件。使用callback异步回调。
 
-**系统能力**： SystemCapability.MiscServices.InputMethodFramework
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
 **参数：**
 
@@ -417,7 +417,7 @@ off(type: 'inputStop', callback: () => void): void
 
 取消订阅停止输入法应用事件。使用callback异步回调。
 
-**系统能力**： SystemCapability.MiscServices.InputMethodFramework
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
 **参数：**
 
@@ -440,7 +440,7 @@ on(type: 'setCallingWindow', callback: (wid:number) => void): void
 
 订阅设置调用窗口事件。使用callback异步回调。
 
-**系统能力**： SystemCapability.MiscServices.InputMethodFramework
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
 **参数：**
 
@@ -463,7 +463,7 @@ off(type: 'setCallingWindow', callback: (wid:number) => void): void
 
 取消订阅设置调用窗口事件。使用callback异步回调。
 
-**系统能力**： SystemCapability.MiscServices.InputMethodFramework
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
 **参数：**
 
@@ -486,7 +486,7 @@ on(type: 'keyboardShow'|'keyboardHide', callback: () => void): void
 
 订阅输入法事件。使用callback异步回调。
 
-**系统能力**： SystemCapability.MiscServices.InputMethodFramework
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
 **参数：**
 
@@ -512,7 +512,7 @@ off(type: 'keyboardShow'|'keyboardHide', callback?: () => void): void
 
 取消订阅输入法事件。使用callback异步回调。
 
-**系统能力**： SystemCapability.MiscServices.InputMethodFramework
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
 **参数：**
 
@@ -538,7 +538,7 @@ on(type: 'setSubtype', callback: (inputMethodSubtype: InputMethodSubtype) => voi
 
 订阅设置输入法子类型事件。使用callback异步回调。
 
-**系统能力**： SystemCapability.MiscServices.InputMethodFramework
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
 **参数：**
 
@@ -561,7 +561,7 @@ off(ype: 'setSubtype', callback?: (inputMethodSubtype: InputMethodSubtype) => vo
 
 取消订阅输入法子类型事件。使用callback异步回调。
 
-**系统能力**： SystemCapability.MiscServices.InputMethodFramework
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
 **参数：**
 
@@ -588,7 +588,7 @@ on(type: 'keyDown'|'keyUp', callback: (event: KeyEvent) => boolean): void
 
 订阅硬键盘事件。使用callback异步回调。
 
-**系统能力**： SystemCapability.MiscServices.InputMethodFramework
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
 **参数：**
 
@@ -618,7 +618,7 @@ off(type: 'keyDown'|'keyUp', callback?: (event: KeyEvent) => boolean): void
 
 取消订阅硬键盘事件。使用callback异步回调。
 
-**系统能力**： SystemCapability.MiscServices.InputMethodFramework
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
 **参数：**
 
@@ -646,7 +646,7 @@ on(type: 'cursorContextChange', callback: (x: number, y:number, height:number) =
 
 订阅光标变化事件。使用callback异步回调。
 
-  **系统能力**： SystemCapability.MiscServices.InputMethodFramework
+  **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
   **参数：**
 
@@ -673,7 +673,7 @@ off(type: 'cursorContextChange', callback?: (x: number, y:number, height:number)
 
 取消订阅光标变化事件。使用callback异步回调。
 
-**系统能力**： SystemCapability.MiscServices.InputMethodFramework
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
   **参数：**
 
@@ -696,7 +696,7 @@ on(type: 'selectionChange', callback: (oldBegin: number, oldEnd: number, newBegi
 
 订阅文本选择变化事件。使用callback异步回调。
 
-**系统能力**： SystemCapability.MiscServices.InputMethodFramework
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
   **参数：**
 
@@ -722,7 +722,7 @@ off(type: 'selectionChange', callback?: (oldBegin: number, oldEnd: number, newBe
 
 取消订阅文本选择变化事件。使用callback异步回调。
 
-**系统能力**： SystemCapability.MiscServices.InputMethodFramework
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
   **参数：**
 
@@ -746,7 +746,7 @@ on(type: 'textChange', callback: (text: string) => void): void
 
 订阅文本变化事件。使用callback异步回调。
 
-**系统能力**： SystemCapability.MiscServices.InputMethodFramework
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
   **参数：**
 
@@ -769,7 +769,7 @@ off(type: 'textChange', callback?: (text: string) => void): void
 
 取消订阅文本变化事件。使用callback异步回调。
 
-**系统能力**： SystemCapability.MiscServices.InputMethodFramework
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
   **参数：**
 
@@ -796,7 +796,7 @@ hide(callback: AsyncCallback&lt;void&gt;): void
 
 隐藏输入法。使用callback异步回调。
 
-**系统能力**： SystemCapability.MiscServices.InputMethodFramework
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
 **参数：**
 
@@ -830,7 +830,7 @@ hide(): Promise&lt;void&gt;
 
 隐藏输入法。使用promise异步回调。
 
-**系统能力**： SystemCapability.MiscServices.InputMethodFramework
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
 **返回值：**
 
@@ -868,7 +868,7 @@ hideKeyboard(callback: AsyncCallback&lt;void&gt;): void
 >
 > 从API version 8开始支持，API version 9开始废弃, 建议使用[hide](#hide9)替代。
 
-**系统能力**： SystemCapability.MiscServices.InputMethodFramework
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
 **参数：**
 
@@ -898,7 +898,7 @@ hideKeyboard(): Promise&lt;void&gt;
 >
 > 从API version 8开始支持，API version 9开始废弃, 建议使用[hide](#hide9-1)替代。
 
-**系统能力**： SystemCapability.MiscServices.InputMethodFramework
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
 **返回值：**
 
@@ -928,7 +928,7 @@ sendKeyFunction(action:number, callback: AsyncCallback&lt;boolean&gt;): void
 
 发送功能键。使用callback异步回调。
 
-**系统能力**： SystemCapability.MiscServices.InputMethodFramework
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
   **参数：**
 
@@ -971,7 +971,7 @@ sendKeyFunction(action:number): Promise&lt;boolean&gt;
 
 发送功能键。使用promise异步回调。
 
-**系统能力**： SystemCapability.MiscServices.InputMethodFramework
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
 **参数：**
 
@@ -1017,7 +1017,7 @@ getForward(length:number, callback: AsyncCallback&lt;string&gt;): void
 
 获取光标前固定长度的文本。使用callback异步回调。
 
-**系统能力**： SystemCapability.MiscServices.InputMethodFramework
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
 **参数：**
 
@@ -1058,7 +1058,7 @@ getForward(length:number): Promise&lt;string&gt;
 
 获取光标前固定长度的文本。使用promise异步回调。
 
-**系统能力**： SystemCapability.MiscServices.InputMethodFramework
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
 **参数：**
 
@@ -1104,7 +1104,7 @@ getBackward(length:number, callback: AsyncCallback&lt;string&gt;): void
 
 获取光标后固定长度的文本。使用callback异步回调。
 
-**系统能力**： SystemCapability.MiscServices.InputMethodFramework
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
 **参数：**
 
@@ -1145,7 +1145,7 @@ getBackward(length:number): Promise&lt;string&gt;
 
 获取光标后固定长度的文本。使用promise异步回调。
 
-**系统能力**： SystemCapability.MiscServices.InputMethodFramework
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
 **参数：**
 
@@ -1191,7 +1191,7 @@ deleteForward(length:number, callback: AsyncCallback&lt;boolean&gt;): void
 
 删除光标前固定长度的文本。使用callback异步回调。
 
-**系统能力**： SystemCapability.MiscServices.InputMethodFramework
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
 **参数：**
 
@@ -1236,7 +1236,7 @@ deleteForward(length:number): Promise&lt;boolean&gt;
 
 删除光标前固定长度的文本。使用promise异步回调。
 
-**系统能力**： SystemCapability.MiscServices.InputMethodFramework
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
 **参数：**
 
@@ -1286,7 +1286,7 @@ deleteBackward(length:number, callback: AsyncCallback&lt;boolean&gt;): void
 
 删除光标后固定长度的文本。使用callback异步回调。
 
-**系统能力**： SystemCapability.MiscServices.InputMethodFramework
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
 **参数：**
 
@@ -1331,7 +1331,7 @@ deleteBackward(length:number): Promise&lt;boolean&gt;
 
 删除光标后固定长度的文本。使用callback异步回调。
 
-**系统能力**： SystemCapability.MiscServices.InputMethodFramework
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
 **参数：**
 
@@ -1377,7 +1377,7 @@ insertText(text:string, callback: AsyncCallback&lt;boolean&gt;): void
 
 插入文本。使用callback异步回调。
 
-**系统能力**： SystemCapability.MiscServices.InputMethodFramework
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
 **参数：**
 
@@ -1417,7 +1417,7 @@ insertText(text:string): Promise&lt;boolean&gt;
 
 插入文本。使用promise异步回调。
 
-**系统能力**： SystemCapability.MiscServices.InputMethodFramework
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
 **参数：**
 
@@ -1466,7 +1466,7 @@ getEditorAttribute(callback: AsyncCallback&lt;EditorAttribute&gt;): void
 
 获取编辑框属性值。使用callback异步回调。
 
-**系统能力**： SystemCapability.MiscServices.InputMethodFramework
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
 **参数：**
 
@@ -1501,7 +1501,7 @@ getEditorAttribute(): Promise&lt;EditorAttribute&gt;
 
 获取编辑框属性值。使用promise异步回调。
 
-**系统能力**： SystemCapability.MiscServices.InputMethodFramework
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
 **返回值：**
 
@@ -1536,14 +1536,14 @@ moveCursor(direction: number, callback: AsyncCallback&lt;void&gt;): void
 
 移动光标。使用callback异步回调。
 
-**系统能力**： SystemCapability.MiscServices.InputMethodFramework
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
 **参数：**
 
 | 参数名    | 类型                      | 必填 | 说明           |
 | --------- | ------------------------- | ---- | -------------- |
 | direction | number                    | 是   | 光标移动方向。 |
-| callback  | AsyncCallback&lt;void&gt; | 是   | 回调函数。当光标移动成功，err为undefined，否则为错误对象    |
+| callback  | AsyncCallback&lt;void&gt; | 是   | 回调函数。当光标移动成功，err为undefined，否则为错误对象。    |
 
 **错误码：**
 
@@ -1575,7 +1575,7 @@ moveCursor(direction: number): Promise&lt;void&gt;
 
 移动光标。使用promise异步回调。
 
-**系统能力**： SystemCapability.MiscServices.InputMethodFramework
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
 **参数：**
 
@@ -1621,7 +1621,7 @@ async function InputMethodAbility() {
 
 编辑框属性值。
 
-**系统能力**：SystemCapability.MiscServices.InputMethodFramework
+**系统能力：**SystemCapability.MiscServices.InputMethodFramework
 
 | 名称         | 参数类型 | 可读 | 可写 | 说明               |
 | ------------ | -------- | ---- | ---- | ------------------ |
@@ -1632,7 +1632,7 @@ async function InputMethodAbility() {
 
 按键属性值。
 
-**系统能力**：SystemCapability.MiscServices.InputMethodFramework
+**系统能力：**SystemCapability.MiscServices.InputMethodFramework
 
 | 名称      | 参数类型 | 可读 | 可写 | 说明         |
 | --------- | -------- | ---- | ---- | ------------ |
@@ -1657,7 +1657,7 @@ getForward(length:number, callback: AsyncCallback&lt;string&gt;): void
 >
 > 从API version 8开始支持，API version 9开始废弃, 建议使用[getForward](#getforward9)替代。
 
-**系统能力**： SystemCapability.MiscServices.InputMethodFramework
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
 **参数：**
 
@@ -1689,7 +1689,7 @@ getForward(length:number): Promise&lt;string&gt;
 >
 > 从API version 8开始支持，API version 9开始废弃, 建议使用[getForward](#getforward9)替代
 
-**系统能力**： SystemCapability.MiscServices.InputMethodFramework
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
 **参数：**
 
@@ -1724,9 +1724,9 @@ getBackward(length:number, callback: AsyncCallback&lt;string&gt;): void
 
 > **说明：**
 >
-> 从API version 8开始支持，API version 9开始废弃, 建议使用[getBackward](#getbackward9)替代
+> 从API version 8开始支持，API version 9开始废弃, 建议使用[getBackward](#getbackward9)替代。
 
-**系统能力**： SystemCapability.MiscServices.InputMethodFramework
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
 **参数：**
 
@@ -1756,9 +1756,9 @@ getBackward(length:number): Promise&lt;string&gt;
 
 > **说明：**
 >
-> 从API version 8开始支持，API version 9开始废弃, 建议使用[getBackward](#getbackward9)替代
+> 从API version 8开始支持，API version 9开始废弃, 建议使用[getBackward](#getbackward9)替代。
 
-**系统能力**： SystemCapability.MiscServices.InputMethodFramework
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
 **参数：**
 
@@ -1793,9 +1793,9 @@ deleteForward(length:number, callback: AsyncCallback&lt;boolean&gt;): void
 
 > **说明：**
 >
-> 从API version 8开始支持，API version 9开始废弃, 建议使用[deleteForward](#deleteforward9)替代
+> 从API version 8开始支持，API version 9开始废弃, 建议使用[deleteForward](#deleteforward9)替代。
 
-**系统能力**： SystemCapability.MiscServices.InputMethodFramework
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
 **参数：**
 
@@ -1829,9 +1829,9 @@ deleteForward(length:number): Promise&lt;boolean&gt;
 
 > **说明：**
 >
-> 从API version 8开始支持，API version 9开始废弃, 建议使用[deleteForward](#deleteforward9)替代
+> 从API version 8开始支持，API version 9开始废弃, 建议使用[deleteForward](#deleteforward9)替代。
 
-**系统能力**： SystemCapability.MiscServices.InputMethodFramework
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
 **参数：**
 
@@ -1870,9 +1870,9 @@ deleteBackward(length:number, callback: AsyncCallback&lt;boolean&gt;): void
 
 > **说明：**
 >
-> 从API version 8开始支持，API version 9开始废弃, 建议使用[deleteBackward](#deletebackward9)替代
+> 从API version 8开始支持，API version 9开始废弃, 建议使用[deleteBackward](#deletebackward9)替代。
 
-**系统能力**： SystemCapability.MiscServices.InputMethodFramework
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
   **参数：**
 
@@ -1906,9 +1906,9 @@ deleteBackward(length:number): Promise&lt;boolean&gt;
 
 > **说明：**
 >
-> 从API version 8开始支持，API version 9开始废弃, 建议使用[deleteBackward](#deletebackward9)替代
+> 从API version 8开始支持，API version 9开始废弃, 建议使用[deleteBackward](#deletebackward9)替代。
 
-**系统能力**： SystemCapability.MiscServices.InputMethodFramework
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
 **参数：**
 
@@ -1946,9 +1946,9 @@ sendKeyFunction(action:number, callback: AsyncCallback&lt;boolean&gt;): void
 
 > **说明：**
 >
-> 从API version 8开始支持，API version 9开始废弃, 建议使用[sendKeyFunction](#sendkeyfunction9)替代
+> 从API version 8开始支持，API version 9开始废弃, 建议使用[sendKeyFunction](#sendkeyfunction9)替代。
 
-**系统能力**： SystemCapability.MiscServices.InputMethodFramework
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
   **参数：**
 
@@ -1981,9 +1981,9 @@ sendKeyFunction(action:number): Promise&lt;boolean&gt;
 
 > **说明：**
 >
-> 从API version 8开始支持，API version 9开始废弃, 建议使用[sendKeyFunction](#sendkeyfunction9)替代
+> 从API version 8开始支持，API version 9开始废弃, 建议使用[sendKeyFunction](#sendkeyfunction9)替代。
 
-**系统能力**： SystemCapability.MiscServices.InputMethodFramework
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
 **参数：**
 
@@ -2021,9 +2021,9 @@ insertText(text:string, callback: AsyncCallback&lt;boolean&gt;): void
 
 > **说明：**
 >
-> 从API version 8开始支持，API version 9开始废弃, 建议使用[insertText](#inserttext9)替代
+> 从API version 8开始支持，API version 9开始废弃, 建议使用[insertText](#inserttext9)替代。
 
-**系统能力**： SystemCapability.MiscServices.InputMethodFramework
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
 **参数：**
 
@@ -2056,9 +2056,9 @@ insertText(text:string): Promise&lt;boolean&gt;
 
 > **说明：**
 >
-> 从API version 8开始支持，API version 9开始废弃, 建议使用[insertText](#inserttext9)替代
+> 从API version 8开始支持，API version 9开始废弃, 建议使用[insertText](#inserttext9)替代。
 
-**系统能力**： SystemCapability.MiscServices.InputMethodFramework
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
 **参数：**
 
@@ -2096,9 +2096,9 @@ getEditorAttribute(callback: AsyncCallback&lt;EditorAttribute&gt;): void
 
 > **说明：**
 >
-> 从API version 8开始支持，API version 9开始废弃, 建议使用[getEditorAttribute](#geteditorattribute9)替代
+> 从API version 8开始支持，API version 9开始废弃, 建议使用[getEditorAttribute](#geteditorattribute9)替代。
 
-**系统能力**： SystemCapability.MiscServices.InputMethodFramework
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
 **参数：**
 
@@ -2127,9 +2127,9 @@ getEditorAttribute(): Promise&lt;EditorAttribute&gt;
 
 > **说明：**
 >
-> 从API version 8开始支持，API version 9开始废弃, 建议使用[getEditorAttribute](#geteditorattribute9)替代
+> 从API version 8开始支持，API version 9开始废弃, 建议使用[getEditorAttribute](#geteditorattribute9)替代。
 
-**系统能力**： SystemCapability.MiscServices.InputMethodFramework
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
 **返回值：**
 
