@@ -2,8 +2,9 @@
 
 - Access Control  
   - [Access Control (Permission) Overview](accesstoken-overview.md)
-  - [Access Control (Permission) Development](accesstoken-guidelines.md)
-  - [Application Permission List](permission-list.md)
+  - [Permission Application Guide](accesstoken-guidelines.md)
+  - [Permission Verification Guide](permission-verify-guidelines.md)
+  - [App Permission List](permission-list.md)
 - User Authentication
   - [User Authentication Overview](userauth-overview.md)
   - [User Authentication Development](userauth-guidelines.md)
