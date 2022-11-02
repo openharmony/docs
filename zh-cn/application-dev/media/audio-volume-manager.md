@@ -55,14 +55,14 @@ AudioVolumeManager提供了音量管理的方法。开发者可以通过本指�
       console.error(`getVolume-------------success and volume is: ${value}.`);
     });
    }
-  //获取指定流的最小音量
+   //获取指定流的最小音量
    async getMinVolume() {
      await loadVolumeGroupManager();
      await audioVolumeGroupManager.getMinVolume(audio.AudioVolumeType.MEDIA).then((value) => {
        console.error(`getMinVolume-------------success and volume is: ${value}.`);
      });
    }
-  //获取指定流的最大音量
+   //获取指定流的最大音量
    async getMaxVolume() {
      await loadVolumeGroupManager();
      await audioVolumeGroupManager.getMaxVolume(audio.AudioVolumeType.MEDIA).then((value) => {
@@ -81,6 +81,7 @@ AudioVolumeManager提供了音量管理的方法。开发者可以通过本指�
 3. （可选）查询、设置、监听麦克风状态。
 
    如果开发者需要获取、设置麦克风状态，或者监听麦克风状态变化等信息，可参考并调用以下接口。
+   
    ```js
    import audio from '@ohos.multimedia.audio';
    async loadVolumeGroupManager() {
