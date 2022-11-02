@@ -196,7 +196,7 @@
   - [@ohos.hiTraceChain (分布式跟踪)](js-apis-hitracechain.md)
   - [@ohos.hiTraceMeter (性能打点)](js-apis-hitracemeter.md)
   - [@ohos.inputmethod (输入法框架)](js-apis-inputmethod.md)
-  - [@ohos.inputmethodengine (输入法服务)](js-apis-inputmethod-engine.md)
+  - [@ohos.inputmethodengine (输入法服务)](js-apis-inputmethodengine.md)
   - [@ohos.inputmethodextensionability (InputMethodExtensionAbility)](js-apis-inputmethod-extension-ability.md)
   - [@ohos.inputmethodextensioncontext (InputMethodExtensionContext)](js-apis-inputmethod-extension-context.md)
   - [@ohos.inputmethodsubtype(InputMethodSubtype)](js-apis-inputmethod-subtype.md)

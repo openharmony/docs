@@ -2,7 +2,9 @@
 
 本模块提供对输入法框架的管理，包括隐藏输入法、查询已安装的输入法列表和显示输入法选择对话框。
 
->  **说明：**<br/>本模块首批接口从API version 6开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+>**说明：**
+>
+>本模块首批接口从API version 6开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
 
 ## 导入模块
@@ -20,18 +22,6 @@ import inputMethod from '@ohos.inputmethod';
 | 参数名 | 参数类型 | 常量值 | 说明 |
 | -------- | -------- | -------- | -------- |
 | MAX_TYPE_NUM | number | 128 | 可支持的最大输入法个数。 |
-| EXCEPTION_PERMISSION<sup>9+</sup> | number | 201 | 错误码类型。详见[输入法框架错误码](../errorcodes/errcode-inputmethod-framework.md)，下同 |
-| EXCEPTION_PARAMCHECK<sup>9+</sup> | number | 401 | 错误码类型 |
-| EXCEPTION_UNSUPPORTED<sup>9+</sup> | number | 801 | 错误码类型 |
-| EXCEPTION_PACKAGEMANAGER<sup>9+</sup> | number | 12800001 | 错误码类型 |
-| EXCEPTION_IMENGINE<sup>9+</sup> | number | 12800002 | 错误码类型 |
-| EXCEPTION_IMCLIENT<sup>9+</sup> | number | 12800003 | 错误码类型 |
-| EXCEPTION_KEYEVENT<sup>9+</sup> | number | 12800004 | 错误码类型 |
-| EXCEPTION_CONFPERSIST<sup>9+</sup> | number | 12800005 | 错误码类型 |
-| EXCEPTION_CONTROLLER<sup>9+</sup> | number | 12800006 | 错误码类型 |
-| EXCEPTION_SETTINGS<sup>9+</sup> | number | 12800007 | 错误码类型 |
-| EXCEPTION_IMMS<sup>9+</sup> | number | 12800008 | 错误码类型 |
-| EXCEPTION_OTHERS<sup>9+</sup> | number | 12899999 | 错误码类型 |
 
 ## InputMethodProperty<sup>8+</sup>
 
@@ -41,8 +31,8 @@ import inputMethod from '@ohos.inputmethod';
 
 | 名称 | 参数类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| packageName<sup>(deprecated)</sup> | string | 是 | 否 | 输入法包名。<br />**说明：**从API8开始支持，从API9开始废弃，建议使用name替代。 |
-| methodId<sup>(deprecated)</sup> | string | 是 | 否 | 输入法唯一标识。<br />**说明：**从API8开始支持，从API9开始废弃，建议使用id替代。 |
+| packageName<sup>(deprecated)</sup> | string | 是 | 否 | 输入法包名。<br/>**说明**：从API8开始支持，从API9开始废弃，建议使用name替代。 |
+| methodId<sup>(deprecated)</sup> | string | 是 | 否 | 输入法唯一标识。<br/>**说明**：从API8开始支持，从API9开始废弃，建议使用id替代。 |
 | name<sup>9+</sup>  | string | 是 | 否 | 输入法内部名称。 |
 | id<sup>9+</sup>    | string | 是 | 否 | 输入法唯一标识。 |
 | label<sup>9+</sup>    | string | 是 | 否 | 输入法对外显示名称。 |
@@ -465,8 +455,9 @@ getInputMethodController(): InputMethodController
 
 获取客户端实例[InputMethodController](#inputmethodcontroller)。
 
-> **说明：** <br/>
-> 从API version 6开始支持，从API version 9开始废弃, 建议使用[getController()](#inputmethodgetcontroller9)替代
+> **说明：** 
+>
+> 从API version 6开始支持，从API version 9开始废弃, 建议使用[getController()](#inputmethodgetcontroller9)替代。
 
 **系统能力**：SystemCapability.MiscServices.InputMethodFramework
 
@@ -742,7 +733,8 @@ stopInput(callback: AsyncCallback&lt;boolean&gt;): void
 
 隐藏输入法。使用callback异步回调。
 
-> **说明：** <br/>
+> **说明：** 
+>
 > 从API version 6开始支持，从API version 9开始废弃, 建议使用[stopInputSession()](#stopinputsession9)替代
 
 **系统能力**：SystemCapability.MiscServices.InputMethodFramework
@@ -775,7 +767,8 @@ stopInput(): Promise&lt;boolean&gt;
 
 隐藏输入法。使用promise异步回调。
 
-> **说明：** <br/>
+> **说明：** 
+>
 > 从API version 6开始支持，从API version 9开始废弃, 建议使用[stopInputSession()](#stopinputsession9)替代
 
 **系统能力**： SystemCapability.MiscServices.InputMethodFramework
@@ -1181,7 +1174,8 @@ listInputMethod(callback: AsyncCallback&lt;Array&lt;InputMethodProperty&gt;&gt;)
 
 查询已安装的输入法列表。使用callback异步回调。
 
-> **说明：** <br/>
+> **说明：** 
+>
 > 从API version 8开始支持，从API version 9开始废弃, 建议使用[getInputMethods](#getinputmethods9)替代
 
 **系统能力**： SystemCapability.MiscServices.InputMethodFramework
@@ -1210,7 +1204,8 @@ listInputMethod(): Promise&lt;Array&lt;InputMethodProperty&gt;&gt;
 
 查询已安装的输入法列表。使用promise异步回调。
 
-> **说明：** <br/>
+> **说明：**
+>
 > 从API version 8开始支持，从API version 9开始废弃, 建议使用[getInputMethods](#getinputmethods9-1)替代
 
 **系统能力**： SystemCapability.MiscServices.InputMethodFramework
@@ -1237,7 +1232,8 @@ displayOptionalInputMethod(callback: AsyncCallback&lt;void&gt;): void
 
 显示输入法选择对话框。使用callback异步回调。
 
-> **说明：** <br/>
+> **说明：**
+>
 > 从API version 8开始支持，从API version 9开始废弃, 建议使用[showOptionalInputMethods()](#showoptionalinputmethods9)替代
 
 **系统能力**： SystemCapability.MiscServices.InputMethodFramework
@@ -1266,7 +1262,8 @@ displayOptionalInputMethod(): Promise&lt;void&gt;
 
 显示输入法选择对话框。使用promise异步回调。
 
-> **说明：** <br/>
+> **说明：**
+>
 > 从API version 8开始支持，API version 9开始废弃, 建议使用[showOptionalInputMethods()](#showoptionalinputmethods9-1)替代
 
 **系统能力**： SystemCapability.MiscServices.InputMethodFramework

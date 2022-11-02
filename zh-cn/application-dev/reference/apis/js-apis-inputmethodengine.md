@@ -2,7 +2,9 @@
 
 本模块的作用是拉通普通应用和输入法应用，功能包括：普通应用通过输入法应用进行文本输入、普通应用与输入法服务绑定、普通应用对输入法应用进行显示请求和隐藏请求、普通应用对输入法应用当前状态进行监听等等。
 
-> **说明：**<br />本模块首批接口从API version 8开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+> **说明：**
+>
+>本模块首批接口从API version 8开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
 ## 导入模块
 
@@ -96,7 +98,9 @@ getInputMethodEngine(): InputMethodEngine
 
 获取服务端实例。
 
-> **说明：** <br/>从API version 8开始支持，API version 9开始废弃, 建议使用[getInputMethodAbility()](#inputmethodenginegetinputmethodability9)替代
+> **说明：**
+>
+>从API version 8开始支持，API version 9开始废弃, 建议使用[getInputMethodAbility()](#inputmethodenginegetinputmethodability9)替代
 
 **系统能力**： SystemCapability.MiscServices.InputMethodFramework
 
@@ -118,7 +122,9 @@ createKeyboardDelegate(): KeyboardDelegate
 
 获取客户端监听实例。
 
-> **说明：** <br/>从API version 8开始支持，API version 9开始废弃, 建议使用[getKeyboardDelegate()](#inputmethodenginegetkeyboarddelegate9)替代。
+> **说明：**
+>
+>从API version 8开始支持，API version 9开始废弃, 建议使用[getKeyboardDelegate()](#inputmethodenginegetkeyboarddelegate9)替代。
 
 **系统能力**： SystemCapability.MiscServices.InputMethodFramework
 
@@ -858,7 +864,8 @@ hideKeyboard(callback: AsyncCallback&lt;void&gt;): void
 
 隐藏输入法。使用callback异步回调。
 
-> **说明：**<br/>
+> **说明：**
+>
 > 从API version 8开始支持，API version 9开始废弃, 建议使用[hide](#hide9)替代。
 
 **系统能力**： SystemCapability.MiscServices.InputMethodFramework
@@ -887,7 +894,8 @@ hideKeyboard(): Promise&lt;void&gt;
 
 隐藏输入法。使用promise异步回调。
 
-> **说明：**<br/>
+> **说明：**
+>
 > 从API version 8开始支持，API version 9开始废弃, 建议使用[hide](#hide9-1)替代。
 
 **系统能力**： SystemCapability.MiscServices.InputMethodFramework
@@ -912,7 +920,7 @@ async function InputMethodEngine() {
 
 ## InputClient<sup>9+</sup>
 
-下列API示例中都需使用[inputStart](#oninputstart9)回调获取到InputClient实例，再通过此实例调用对应方法。
+下列API示例中都需使用[on('inputStart')](#oninputstart9)回调获取到InputClient实例，再通过此实例调用对应方法。
 
 ### sendKeyFunction<sup>9+</sup>
 
@@ -1633,7 +1641,8 @@ async function InputMethodAbility() {
 
 ## TextInputClient<sup>(deprecated)</sup>
 
-> **说明：** <br/>
+> **说明：** 
+>
 > 从API version 8开始支持，API version 9开始废弃, 建议使用[InputClient](#inputclient9)替代。
 
 下列API示例中都需使用[on('inputStart')](#oninputstart)回调获取到TextInputClient实例，再通过此实例调用对应方法。
@@ -1644,7 +1653,8 @@ getForward(length:number, callback: AsyncCallback&lt;string&gt;): void
 
 获取光标前固定长度的文本。使用callback异步回调。
 
-> **说明：** <br/>
+> **说明：**
+>
 > 从API version 8开始支持，API version 9开始废弃, 建议使用[getForward](#getforward9)替代。
 
 **系统能力**： SystemCapability.MiscServices.InputMethodFramework
@@ -1675,7 +1685,8 @@ getForward(length:number): Promise&lt;string&gt;
 
 获取光标前固定长度的文本。使用promise异步回调。
 
-> **说明：** <br/>
+> **说明：**
+>
 > 从API version 8开始支持，API version 9开始废弃, 建议使用[getForward](#getforward9)替代
 
 **系统能力**： SystemCapability.MiscServices.InputMethodFramework
@@ -1711,7 +1722,8 @@ getBackward(length:number, callback: AsyncCallback&lt;string&gt;): void
 
 获取光标后固定长度的文本。使用callback异步回调。
 
-> **说明：** <br/>
+> **说明：**
+>
 > 从API version 8开始支持，API version 9开始废弃, 建议使用[getBackward](#getbackward9)替代
 
 **系统能力**： SystemCapability.MiscServices.InputMethodFramework
@@ -1742,7 +1754,8 @@ getBackward(length:number): Promise&lt;string&gt;
 
 获取光标后固定长度的文本。使用promise异步回调。
 
-> **说明：** <br/>
+> **说明：**
+>
 > 从API version 8开始支持，API version 9开始废弃, 建议使用[getBackward](#getbackward9)替代
 
 **系统能力**： SystemCapability.MiscServices.InputMethodFramework
@@ -1778,7 +1791,8 @@ deleteForward(length:number, callback: AsyncCallback&lt;boolean&gt;): void
 
 删除光标前固定长度的文本。使用callback异步回调。
 
-> **说明：** <br/>
+> **说明：**
+>
 > 从API version 8开始支持，API version 9开始废弃, 建议使用[deleteForward](#deleteforward9)替代
 
 **系统能力**： SystemCapability.MiscServices.InputMethodFramework
@@ -1813,7 +1827,8 @@ deleteForward(length:number): Promise&lt;boolean&gt;
 
 删除光标前固定长度的文本。使用promise异步回调。
 
-> **说明：** <br/>
+> **说明：**
+>
 > 从API version 8开始支持，API version 9开始废弃, 建议使用[deleteForward](#deleteforward9)替代
 
 **系统能力**： SystemCapability.MiscServices.InputMethodFramework
@@ -1853,7 +1868,8 @@ deleteBackward(length:number, callback: AsyncCallback&lt;boolean&gt;): void
 
 删除光标后固定长度的文本。使用callback异步回调。
 
-> **说明：** <br/>
+> **说明：**
+>
 > 从API version 8开始支持，API version 9开始废弃, 建议使用[deleteBackward](#deletebackward9)替代
 
 **系统能力**： SystemCapability.MiscServices.InputMethodFramework
@@ -1888,7 +1904,8 @@ deleteBackward(length:number): Promise&lt;boolean&gt;
 
 删除光标后固定长度的文本。使用callback异步回调。
 
-> **说明：** <br/>
+> **说明：**
+>
 > 从API version 8开始支持，API version 9开始废弃, 建议使用[deleteBackward](#deletebackward9)替代
 
 **系统能力**： SystemCapability.MiscServices.InputMethodFramework
@@ -1927,7 +1944,8 @@ sendKeyFunction(action:number, callback: AsyncCallback&lt;boolean&gt;): void
 
 发送功能键。使用callback异步回调。
 
-> **说明：** <br/>
+> **说明：**
+>
 > 从API version 8开始支持，API version 9开始废弃, 建议使用[sendKeyFunction](#sendkeyfunction9)替代
 
 **系统能力**： SystemCapability.MiscServices.InputMethodFramework
@@ -1961,7 +1979,8 @@ sendKeyFunction(action:number): Promise&lt;boolean&gt;
 
 发送功能键。使用promise异步回调。
 
-> **说明：** <br/>
+> **说明：**
+>
 > 从API version 8开始支持，API version 9开始废弃, 建议使用[sendKeyFunction](#sendkeyfunction9)替代
 
 **系统能力**： SystemCapability.MiscServices.InputMethodFramework
@@ -2000,7 +2019,8 @@ insertText(text:string, callback: AsyncCallback&lt;boolean&gt;): void
 
 插入文本。使用callback异步回调。
 
-> **说明：** <br/>
+> **说明：**
+>
 > 从API version 8开始支持，API version 9开始废弃, 建议使用[insertText](#inserttext9)替代
 
 **系统能力**： SystemCapability.MiscServices.InputMethodFramework
@@ -2034,7 +2054,8 @@ insertText(text:string): Promise&lt;boolean&gt;
 
 插入文本。使用promise异步回调。
 
-> **说明：** <br/>
+> **说明：**
+>
 > 从API version 8开始支持，API version 9开始废弃, 建议使用[insertText](#inserttext9)替代
 
 **系统能力**： SystemCapability.MiscServices.InputMethodFramework
@@ -2073,7 +2094,8 @@ getEditorAttribute(callback: AsyncCallback&lt;EditorAttribute&gt;): void
 
 获取编辑框属性值。使用callback异步回调。
 
-> **说明：** <br/>
+> **说明：**
+>
 > 从API version 8开始支持，API version 9开始废弃, 建议使用[getEditorAttribute](#geteditorattribute9)替代
 
 **系统能力**： SystemCapability.MiscServices.InputMethodFramework
@@ -2103,7 +2125,8 @@ getEditorAttribute(): Promise&lt;EditorAttribute&gt;
 
 获取编辑框属性值。使用promise异步回调。
 
-> **说明：** <br/>
+> **说明：**
+>
 > 从API version 8开始支持，API version 9开始废弃, 建议使用[getEditorAttribute](#geteditorattribute9)替代
 
 **系统能力**： SystemCapability.MiscServices.InputMethodFramework
