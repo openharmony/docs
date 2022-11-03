@@ -47,6 +47,7 @@ Camera模块主要针对相机预览、拍照、视频流等场景，对这些�
 
 ### 接口说明<a name="6"></a>
 
+注：以下接口列举的为IDL接口描述生成的对应C++语言函数接口，接口声明见idl文件（/drivers/interface/camera/v1_0/）。
 - icamera_device.h
 
   | 功能描述                     | 接口名称                                                     |
