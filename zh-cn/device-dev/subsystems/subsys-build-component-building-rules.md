@@ -1,6 +1,6 @@
 # 部件编译构建规范
 
-## 0 前言
+## 前言
 
 ### 目的
 
@@ -25,6 +25,8 @@
 
 ### 总体原则
 
+部件编译构建应遵循以下几个原则：
+
 **独立自治**
 
 部件编译态应内聚，新增外部依赖时应慎重，尽量减少编译时的静态依赖。
@@ -43,6 +45,13 @@
 
 **建议：** 必须加以考虑的约定。
 
+### 看护手段
+
+为了维护部件编译构建规范，门禁会对构建配置文件做一些检查。
+
+预编译检查：指在预编译阶段进行检查，检测到错误将报错并停止编译。
+
+静态检查：指检查工具对配置文件进行扫描检查，非编译手段。
 
 ### 例外
 
@@ -50,7 +59,7 @@
 
 例外破坏了代码的一致性，请尽量避免。“规则”的例外应该是极少的。
 
-## 1 命名
+## 命名
 
 编译脚本中的变量、编译目标（target）、模板，gni文件，以及部件描述文件中的对象和数据的命名都应采用内核风格（unix_like），单词全小写，用下划线分割。如："startup_init"。
 
@@ -62,33 +71,33 @@
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **例外：** 三方开源软件的使用对应社区的原生命名方式，比如：cJson。
 
-### 规则1.2 特性名为部件名前缀加上特性名称
+### 规则1.2 特性名为部件名前缀+特性名称
 
 特性是部件声明的可配置的编译选项，加上部件名前缀可避免系统内特性重名。示例：
 
-```c
+```py
 declare_args() {
-  dsoftbus_conn_p2p = true
-  dsoftbus_conn_ble = false
+  dsoftbus_conn_p2p = true  # dsoftbus 为部件名, conn_p2p 为特性名称
+  dsoftbus_conn_ble = false # dsoftbus 为部件名, conn_ble 为特性名称
 }
 ```
 
 看护手段：预编译检查
 
-### 建议1.1 编译目标名以部件名为前缀加上模块名称
+### 建议1.1 编译目标名以部件名为前缀+模块名称
 
 一个部件可能有多个编译目标（即模块），以“{部件名}_{模块名}”的方式命名可以根据编译产物（库、可执行文件）快速定位归属部件和避免重名。
 
 反例：
-```c
-ohos_shared_library("data") // Bad: 不精确，过于通用，系统内易重名
+```py
+ohos_shared_library("data") # Bad: 不精确，过于通用，系统内易重名
 ```
 正例：
-```c
-ohos_shared_library("cellular_data_napi") // Good
+```py
+ohos_shared_library("cellular_data_napi") # Good
 ```
 
-## 2 描述文件
+## 描述文件
 
 bundle.json是定义部件的描述文件，包含了部件的根目录、名称、功能描述、版本号、接口定义和编译入口等信息，须保证其准确性。
 
@@ -113,7 +122,7 @@ bundle.json是定义部件的描述文件，包含了部件的根目录、名称
 
 部件目录是独立的，应将bundle.json文件存放到部件根目录下。
 
-## 3 变量
+## 变量
 
 编译目标（target）的内置变量赋值决定了编译内容、依赖和打包等信息，与实现部件化设计强相关。
 
@@ -145,10 +154,10 @@ bundle.json是定义部件的描述文件，包含了部件的根目录、名称
 
   base/foos/foo_a/BUILD.gn
 
-  ```c
-  deps = [ "//base/foo/foo_b:b" ] // Bad, 绝对路径依赖其他部件
-  deps = [ "../../foo_b:b" ] // Bad, 相对路径依赖其他部件
-  deps = [ "a" ] // Good, 依赖当前部件内的其他模块
+  ```py
+  deps = [ "//base/foo/foo_b:b" ] # Bad, 绝对路径依赖其他部件
+  deps = [ "../../foo_b:b" ] # Bad, 相对路径依赖其他部件
+  deps = [ "a" ] # Good, 依赖当前部件内的其他模块
   ```
 
   > ![icon-note.gif](public_sys-resources/icon-note.gif) **例外：** 对三方开源软件的引用除外。
@@ -166,6 +175,30 @@ bundle.json是定义部件的描述文件，包含了部件的根目录、名称
 
 部件的编译单元ohos_shared_library、ohos_static_library、ohos_executable_library、ohos_source_set都必须指定"part_name"和"subsystem_name"。
 
+以developtools/syscap_codec/BUILD.gn的ohos_shared_library编译单元为例：
+
+```py
+ohos_shared_library("syscap_interface_shared") {
+  include_dirs = [
+    "include",
+    "src",
+  ]
+  public_configs = [ ":syscap_interface_public_config" ]
+  sources = [
+    "./interfaces/inner_api/syscap_interface.c",
+    "./src/endian_internal.c",
+    "./src/syscap_tool.c",
+  ]
+  deps = [
+    "//third_party/bounds_checking_function:libsec_static",
+    "//third_party/cJSON:cjson_static",
+  ]
+
+  subsystem_name = "developtools" # 必须指定subsystem_name
+  part_name = "syscap_codec" # 必须指定part_name
+}
+```
+
 看护手段：静态检查
 
 ### 建议3.1 部件内部的引用使用相对路径
@@ -180,15 +213,15 @@ bundle.json是定义部件的描述文件，包含了部件的根目录、名称
 
 base/foos/foo_a/BUILD.gn
 
-```c
+```py
 include_dirs = [
-    "./include", // Good, 相对路径引用
-    "//base/foo/foo_a/include" // Bad, 绝对路径引用
+    "./include", # Good, 相对路径引用
+    "//base/foo/foo_a/include" # Bad, 绝对路径引用
 ]
 
 deps = [
-    "sub_module:foo", // Good, 相对路径引用
-    "base/foo/foo_a/sub_moudule:foo" // Bad, 绝对路径引用
+    "sub_module:foo", # Good, 相对路径引用
+    "base/foo/foo_a/sub_moudule:foo" # Bad, 绝对路径引用
 ]
 ```
 
@@ -200,17 +233,17 @@ deps = [
 
 base/foos/foo_a/BUILD.gn
 
-```c
+```py
 ohos_shared_library("foo_a") {
-    visibility = [ "./*" ] // foo_a只在base/foo/foo_a及其子目录下可见
+    visibility = [ "./*" ] # foo_a只在base/foo/foo_a及其子目录下可见
 }
 
 ohos_shared_library("foo_a") {
-    visibility = [ ":*" ] // foo_a只在本BUILD.gn可见
+    visibility = [ ":*" ] # foo_a只在本BUILD.gn可见
 }
 ```
 
-## 4 其他
+## 其他
 
 ### 规则4.1 部件编译脚本中禁止使用产品名称变量
 
@@ -230,5 +263,17 @@ ohos_shared_library("foo_a") {
 
 ### 建议4.2 部件使用统一的编译单元模板
 
-轻量、小型和标准的系统的编译单元都应使用ohos定义的模板，比如`ohos_shared_library`、`ohos_static_library`、`ohos_executable_library`、`ohos_source_set`等以"ohos_"为前缀的模板。
+轻量、小型和标准的系统的编译单元都应使用ohos定义的模板，比如`ohos_shared_library`、`ohos_static_library`、`ohos_executable`、`ohos_source_set`等以"ohos_"为前缀的模板。
+
+例如：
+
+```py
+  executable("foundation") { # Bad, 不推荐使用内置的模板
+    ...
+  }
+
+  ohos_executable("foundation") { # Good, 推荐使用ohos定制模板
+    ...
+  }
+```
 
