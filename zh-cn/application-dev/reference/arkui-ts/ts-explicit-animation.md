@@ -88,3 +88,11 @@ struct AnimateToExample {
   }
 }
 ```
+
+示意图：
+
+![animation](figures/animation.PNG)
+
+点击第一个按钮播放改变按钮大小的动画，点击第二个按钮播放按钮顺时针旋转90度的动画。
+
+![animation1](figures/animation1.PNG)

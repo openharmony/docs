@@ -1,19 +1,21 @@
 # ProcessRunningInfo<sup>(deprecated)</sup>
 
-ProcessRunningInfo模块提供对进程运行信息进行设置和查询的能力。
+本模块提供对进程运行信息进行设置和查询的能力。
 
 > **说明：** 
-> - 本模块接口从API Version 9 开始废弃，建议使用[ProcessRunningInformation<sup>9+</sup>](js-apis-processrunninginformation.md)替代。
+> - 本模块接口从API version 9 开始废弃，建议使用[ProcessRunningInformation<sup>9+</sup>](js-apis-processrunninginformation.md)替代。
 > - 本模块首批接口从API version 8 开始支持。
 
 ## 使用说明
 
-通过appManager来获取。
+通过appManager中[getProcessRunningInfos](js-apis-appmanager.md#appmanagergetprocessrunninginfosdeprecated)方法来获取。
 
 ```js
 import appManager from '@ohos.application.appManager';
-appManager.getProcessRunningInfos((error,data) => { 
-    console.log("getProcessRunningInfos error: "  + error.code + " data: " + JSON.stringify(data));
+app.getProcessRunningInfos().then((data) => {
+    console.log('success:' + JSON.stringify(data));
+}).catch((error) => {
+    console.log('failed:' + JSON.stringify(error));
 });
 ```
 

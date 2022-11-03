@@ -24,9 +24,9 @@
 @Entry
 @Component
 struct FocusEventExample {
-  @State oneButtonColor: string = '#FFC0CB';
-  @State twoButtonColor: string = '#87CEFA';
-  @State threeButtonColor: string = '#90EE90';
+  @State oneButtonColor: string = '#FFC0CB'
+  @State twoButtonColor: string = '#87CEFA'
+  @State threeButtonColor: string = '#90EE90'
 
   build() {
     Column({ space: 20 }) {
@@ -38,10 +38,10 @@ struct FocusEventExample {
         .fontColor(Color.Black)
         .focusable(true)
         .onFocus(() => {
-          this.oneButtonColor = '#FF0000';
+          this.oneButtonColor = '#FF0000'
         })
         .onBlur(() => {
-          this.oneButtonColor = '#FFC0CB';
+          this.oneButtonColor = '#FFC0CB'
         })
       Button('Second Button')
         .backgroundColor(this.twoButtonColor)
@@ -50,10 +50,10 @@ struct FocusEventExample {
         .fontColor(Color.Black)
         .focusable(true)
         .onFocus(() => {
-          this.twoButtonColor = '#FF0000';
+          this.twoButtonColor = '#FF0000'
         })
         .onBlur(() => {
-          this.twoButtonColor = '#87CEFA';
+          this.twoButtonColor = '#87CEFA'
         })
       Button('Third Button')
         .backgroundColor(this.threeButtonColor)
@@ -62,10 +62,10 @@ struct FocusEventExample {
         .fontColor(Color.Black)
         .focusable(true)
         .onFocus(() => {
-          this.threeButtonColor = '#FF0000';
+          this.threeButtonColor = '#FF0000'
         })
         .onBlur(() => {
-          this.threeButtonColor = '#90EE90';
+          this.threeButtonColor = '#90EE90'
         })
     }.width('100%').margin({ top: 20 })
   }

@@ -6,7 +6,7 @@
 页面路由router根据页面的uri找到目标页面，从而实现跳转。以最基础的两个页面之间的跳转为例，具体实现步骤如下：
 
 
-1. 在“Project“窗口，打开entry &gt; src &gt; mainjsdefault，右键点击pages文件夹，选择NewJS Page，创建一个详情页。
+1. 在“Project“窗口，打开src &gt; main &gt;js &gt;MainAbility，右键点击pages文件夹，选择NewJS Page，创建一个详情页。
 
 2. 调用router.push()路由到详情页。
 
@@ -42,6 +42,8 @@ index和detail这两个页面均包含一个text组件和button组件：text组�
 /* index.css */
 /* detail.css */
 .container {
+  width: 100%;
+  height: 100%;
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -60,11 +62,11 @@ index和detail这两个页面均包含一个text组件和button组件：text组�
 
 ```js
 // index.js
-import router from '@system.router';
+import router from '@ohos.router';
 export default {
   launch() {
     router.push ({
-      uri: 'pages/detail/detail',
+      url: 'pages/detail/detail',
     });
   },
 }
@@ -72,7 +74,7 @@ export default {
 
 ```js
 // detail.js
-import router from '@system.router';
+import router from '@ohos.router';
 export default {
   launch() {
     router.back();

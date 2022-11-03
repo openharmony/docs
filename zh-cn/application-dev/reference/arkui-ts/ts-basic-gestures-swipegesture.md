@@ -42,8 +42,8 @@ SwipeGesture(value?: { fingers?: number; direction?: SwipeDirection; speed?: num
 @Entry
 @Component
 struct SwipeGestureExample {
-  @State rotateAngle: number = 0;
-  @State speed: number = 1;
+  @State rotateAngle: number = 0
+  @State speed: number = 1
 
   build() {
     Column() {
@@ -60,8 +60,8 @@ struct SwipeGestureExample {
       .gesture(
       SwipeGesture({ direction: SwipeDirection.Vertical })
         .onAction((event: GestureEvent) => {
-          this.speed = event.speed;
-          this.rotateAngle = event.angle;
+          this.speed = event.speed
+          this.rotateAngle = event.angle
         })
       )
     }.width('100%')

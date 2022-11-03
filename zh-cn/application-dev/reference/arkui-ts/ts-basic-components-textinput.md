@@ -112,8 +112,8 @@ caretPosition(value:&nbsp;number): void
 @Entry
 @Component
 struct TextInputExample {
-  @State text: string = '';
-  controller: TextInputController = new TextInputController();
+  @State text: string = ''
+  controller: TextInputController = new TextInputController()
 
   build() {
     Column() {
@@ -127,14 +127,14 @@ struct TextInputExample {
         .fontSize(14)
         .fontColor(Color.Black)
         .onChange((value: string) => {
-          this.text = value;
+          this.text = value
         })
       Text(this.text)
       Button('Set caretPosition 1')
         .margin(15)
         .onClick(() => {
           // 将光标移动至第一个字符后
-          this.controller.caretPosition(1);
+          this.controller.caretPosition(1)
         })
       // 密码输入框
       TextInput({ placeholder: 'input your password...' })

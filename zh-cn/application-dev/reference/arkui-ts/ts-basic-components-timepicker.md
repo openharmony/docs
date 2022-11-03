@@ -1,6 +1,6 @@
 # TimePicker
 
-滚动选择时间的组件。
+滑动选择时间的组件。
 
 >  **说明：**
 >
@@ -16,7 +16,7 @@
 
 TimePicker(options?: {selected?: Date})
 
-默认以00:00至23:59的时间区间创建滑动选择器。
+默认以24小时的时间区间创建滑动选择器。
 
 **参数：**
 
@@ -55,20 +55,27 @@ TimePicker(options?: {selected?: Date})
 @Entry
 @Component
 struct TimePickerExample {
+  @State isMilitaryTime: boolean = false
   private selectedTime: Date = new Date('2022-07-22T08:00:00')
 
   build() {
     Column() {
+      Button('切换12小时制/24小时制')
+        .margin({ top: 30 })
+        .onClick(() => {
+          this.isMilitaryTime = !this.isMilitaryTime
+        })
       TimePicker({
         selected: this.selectedTime,
       })
-      .useMilitaryTime(true)
-      .onChange((date: TimePickerResult) => {
-        console.info('select current date is: ' + JSON.stringify(date))
-      })
+        .useMilitaryTime(this.isMilitaryTime)
+        .onChange((value: TimePickerResult) => {
+          this.selectedTime.setHours(value.hour, value.minute)
+          console.info('select current date is: ' + JSON.stringify(value))
+        })
     }.width('100%')
   }
 }
 ```
 
-![zh-cn_image_0000001251292933](figures/zh-cn_image_0000001251292933.gif)
+![timePicker](figures/timePicker.gif)

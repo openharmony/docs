@@ -6,10 +6,6 @@
 > 该组件从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 
-
-
-
-
 ## 子组件
 
 可以包含子组件。
@@ -24,10 +20,10 @@ Counter()
 
 不支持通用事件和手势， 仅支持如下事件：
 
-| 名称 | 功能描述 | 
+| 名称 | 功能描述 |
 | -------- | -------- |
-| onInc(event:&nbsp;()&nbsp;=&gt;&nbsp;void) | 监听数值增加事件。 | 
-| onDec(event:&nbsp;()&nbsp;=&gt;&nbsp;void) | 监听数值减少事件。 | 
+| onInc(event:&nbsp;()&nbsp;=&gt;&nbsp;void) | 监听数值增加事件。 |
+| onDec(event:&nbsp;()&nbsp;=&gt;&nbsp;void) | 监听数值减少事件。 |
 
 
 ## 示例

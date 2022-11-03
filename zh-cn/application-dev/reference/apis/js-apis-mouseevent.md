@@ -15,15 +15,15 @@ import {Action,Button,Axis,AxisValue,MouseEvent} from '@ohos.multimodalInput.mou
 
 **系统能力**：SystemCapability.MultimodalInput.Input.Core
 
-| 名称          | 参数类型   | 可读   | 可写   | 描述         |
-| ----------- | ------ | ---- | ---- | ---------- |
-| CANCEL      | number | 是    | 否    | 取消         |
-| MOVE        | number | 是    | 否    | 鼠标移动       |
-| BUTTON_DOWN | number | 是    | 否    | 鼠标按钮按下     |
-| BUTTON_UP   | number | 是    | 否    | 鼠标按钮抬起     |
-| AXIS_BEGIN  | number | 是    | 否    | 鼠标关联的轴事件开始 |
-| AXIS_UPDATE | number | 是    | 否    | 鼠标关联的轴事件更新 |
-| AXIS_END    | number | 是    | 否    | 鼠标关联的轴事件结束 |
+| 名称        | 参数类型 | 可读 | 可写 | 描述                 |
+| ----------- | -------- | ---- | ---- | -------------------- |
+| CANCEL      | number   | 是   | 否   | 取消动作             |
+| MOVE        | number   | 是   | 否   | 鼠标移动             |
+| BUTTON_DOWN | number   | 是   | 否   | 鼠标按钮按下         |
+| BUTTON_UP   | number   | 是   | 否   | 鼠标按钮抬起         |
+| AXIS_BEGIN  | number   | 是   | 否   | 鼠标关联的轴事件开始 |
+| AXIS_UPDATE | number   | 是   | 否   | 鼠标关联的轴事件更新 |
+| AXIS_END    | number   | 是   | 否   | 鼠标关联的轴事件结束 |
 
 
 ## Button

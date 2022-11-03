@@ -2,7 +2,9 @@
 
 状态管理模块提供了应用程序的数据存储能力、持久化数据管理能力、Ability数据存储能力和应用程序需要的环境状态，其中Ability数据存储从API version9开始支持。
 
-> 说明：本模块首批接口从API version 7开始支持，后续版本的新增接口，采用上角标单独标记接口的起始版本。
+> **说明：**
+> 
+> 本模块首批接口从API version 7开始支持，后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
 ## AppStorage
 
@@ -142,7 +144,7 @@ let simple = AppStorage.Get('simpleProp')
 
 ### Set
 
-Set<T>(propName: string, newValue: T): boolean
+Set\<T>(propName: string, newValue: T): boolean
 
 对已保存的key值，替换其value值。
 
@@ -165,7 +167,7 @@ let simple = AppStorage.Set('simpleProp', 121);
 
 ### SetOrCreate
 
-SetOrCreate<T>(propName: string, newValue: T): void
+SetOrCreate\<T>(propName: string, newValue: T): void
 
 创建或更新setOrCreate内部的值。
 
@@ -646,7 +648,7 @@ PersistentStorage.PersistProps([{'highScore', '0'},{'wightScore','1'}])
 
 ### Keys
 
-Keys(): Array<string>
+Keys(): Array\<string>
 
 返回所有持久化属性的标记。
 
@@ -654,7 +656,7 @@ Keys(): Array<string>
 
 | 类型          | 描述                       |
 | ------------- | -------------------------- |
-| Array<string> | 返回所有持久化属性的标记。 |
+| Array\<string> | 返回所有持久化属性的标记。 |
 
 ```ts
 let simple = PersistentStorage.Keys()
@@ -728,7 +730,7 @@ Environment.EnvProps([{'accessibilityEnabled', 'default'},{'accessibilityUnEnabl
 
 ### Keys
 
-Keys(): Array<string>
+Keys(): Array\<string>
 
 返回关联的系统项。
 
@@ -736,7 +738,7 @@ Keys(): Array<string>
 
 | 类型          | 描述                   |
 | ------------- | ---------------------- |
-| Array<string> | 返回关联的系统项数组。 |
+| Array\<string> | 返回关联的系统项数组。 |
 
 ```ts
 let simple = Environment.Keys()

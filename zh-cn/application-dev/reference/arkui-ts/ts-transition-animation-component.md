@@ -59,3 +59,5 @@ struct TransitionExample {
   }
 }
 ```
+
+![animateTo](figures/animateTo.gif)
