@@ -98,7 +98,7 @@
 
 ## 示例
 
-```
+```html
 <!-- index.hml -->
 <div class="container">
   <list class="todo-wrapper">
@@ -112,22 +112,22 @@
 </div>
 ```
 
-```
+```js
 // index.js
 export default {
   data: {
     todolist: [{
       title: '刷题',
-      date: '2021-12-31 10:00:00',
+      date: '2021-12-31 10:00:00'
     }, {
       title: '看电影',
-      date: '2021-12-31 20:00:00',
+      date: '2021-12-31 20:00:00'
     }],
   },
 }
 ```
 
-```
+```css
 /* index.css */
 .container {
   display: flex;
