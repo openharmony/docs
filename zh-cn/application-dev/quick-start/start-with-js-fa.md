@@ -17,6 +17,7 @@
    ![04](figures/04.png)
 
    > **说明：**
+   > 
    > DevEco Studio V2.2 Beta1及更高版本支持使用JS[低代码开发](https://developer.harmonyos.com/cn/docs/documentation/doc-guides/ohos-low-code-development-0000001218440652)方式。
    > 
    > 低代码开发方式具有丰富的UI界面编辑功能，通过可视化界面开发方式快速构建布局，可有效降低开发者的上手成本并提升开发者构建UI界面的效率。

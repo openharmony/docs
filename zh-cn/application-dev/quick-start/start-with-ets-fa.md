@@ -19,6 +19,7 @@
    ![02](figures/02.png)
 
    > **说明：**
+   > 
    > DevEco Studio V3.0 Beta3及更高版本支持使用ArkTS[低代码开发](https://developer.harmonyos.com/cn/docs/documentation/doc-guides/ohos-low-code-development-0000001218440652)方式。
    > 
    > 低代码开发方式具有丰富的UI界面编辑功能，通过可视化界面开发方式快速构建布局，可有效降低开发者的上手成本并提升开发者构建UI界面的效率。
@@ -121,10 +122,12 @@
 ## 构建第二个页面
 
 1. 创建第二个页面。
+
    - 新建第二个页面文件。在“**Project**”窗口，打开“**entry &gt; src &gt; main &gt; ets &gt; MainAbility**”，右键点击“**pages**”文件夹，选择“**New &gt; ArkTS File**”，命名为“**second**”，点击“**Finish**”。可以看到文件目录结构如下：
       ![zh-cn_image_0000001311334932](figures/zh-cn_image_0000001311334932.png)
 
       > **说明：**
+      > 
       > 开发者也可以在右键点击“**pages**”文件夹时，选择“**New &gt; Page**”，则无需手动配置相关页面路由。
    - 配置第二个页面的路由。在config.json文件中的“module - js - pages”下配置第二个页面的路由“pages/second”。示例如下：
      
