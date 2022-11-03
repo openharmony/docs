@@ -1,6 +1,7 @@
 # slider
 
 >  **说明：**
+>
 > 从API version 4开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 滑动条组件，用来快速调节设置值，如音量、亮度等。
@@ -94,7 +95,7 @@ export default {
     } else if (e.mode == "end") {
       this.value = e.value;
       this.endValue = e.value;
-    } else if (e.mode == "click) {
+    } else if (e.mode == "click") {
       this.value = e.value;
       this.currentValue = e.value;
     }
