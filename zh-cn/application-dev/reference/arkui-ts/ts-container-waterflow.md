@@ -93,7 +93,7 @@ export class WaterFlowDataSource implements IDataSource {
 
   constructor() {
       for (let i = 0; i < 100; i++) {
-          this.dataArray.push(i);
+          this.dataArray.push(i)
       }
   }
 
@@ -151,7 +151,7 @@ export class WaterFlowDataSource implements IDataSource {
 
   // 注销改变数据的控制器
   unregisterDataChangeListener(listener: DataChangeListener): void {
-      const pos = this.listeners.indexOf(listener);
+      const pos = this.listeners.indexOf(listener)
       if (pos >= 0) {
           this.listeners.splice(pos, 1)
       }
@@ -195,9 +195,9 @@ export class WaterFlowDataSource implements IDataSource {
 
   // 重新加载数据
   public Reload(): void {
-      this.dataArray.splice(1, 1);
-      this.dataArray.splice(3, 2);
-      this.notifyDataReload();
+      this.dataArray.splice(1, 1)
+      this.dataArray.splice(3, 2)
+      this.notifyDataReload()
   }
 }
 ```
@@ -213,8 +213,8 @@ struct WaterflowDemo {
   @State maxSize: number = 100
   @State fontSize: number = 24
   @State colors: number[] = [0xFFC0CB, 0xDA70D6, 0x6B8E23, 0x6A5ACD, 0x00FFFF, 0x00FF7F]
-  scroller: Scroller = new Scroller();
-  datasource: WaterFlowDataSource = new WaterFlowDataSource();
+  scroller: Scroller = new Scroller()
+  datasource: WaterFlowDataSource = new WaterFlowDataSource()
   private itemWidthArray: number[] = []
   private itemHeightArray: number[] = []
 
@@ -227,13 +227,13 @@ struct WaterflowDemo {
   // 保存flow item宽/高   
   getItemSizeArray() {
     for (let i = 0; i < 100; i++) {
-      this.itemWidthArray.push(this.getSize());
-      this.itemHeightArray.push(this.getSize());
+      this.itemWidthArray.push(this.getSize())
+      this.itemHeightArray.push(this.getSize())
     }
   }
     
   aboutToAppear() {
-    this.getItemSizeArray();
+    this.getItemSizeArray()
   }
     
   @Builder itemFoot() {
