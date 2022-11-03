@@ -45,35 +45,35 @@ AudioVolumeManager提供了音量管理的方法。开发者可以通过本指�
    async loadVolumeGroupManager() {
      const groupid = audio.DEFAULT_VOLUME_GROUP_ID;
      var audioVolumeGroupManager = await audio.getAudioManager().getVolumeManager().getVolumeGroupManager(groupid);
-     console.error('audioVolumeGroupManager create success.');
+     console.info('audioVolumeGroupManager create success.');
    }
    
-   //获取指定流的当前音量（通常范围为1 ~ 15）
+   //获取指定流的当前音量（范围为0 ~ 15）
    async getVolume() {
     await loadVolumeGroupManager();
     await audioVolumeGroupManager.getVolume(audio.AudioVolumeType.MEDIA).then((value) => {
-      console.error(`getVolume-------------success and volume is: ${value}.`);
+      console.info(`getVolume success and volume is: ${value}.`);
     });
    }
    //获取指定流的最小音量
    async getMinVolume() {
      await loadVolumeGroupManager();
      await audioVolumeGroupManager.getMinVolume(audio.AudioVolumeType.MEDIA).then((value) => {
-       console.error(`getMinVolume-------------success and volume is: ${value}.`);
+       console.info(`getMinVolume success and volume is: ${value}.`);
      });
    }
    //获取指定流的最大音量
    async getMaxVolume() {
      await loadVolumeGroupManager();
      await audioVolumeGroupManager.getMaxVolume(audio.AudioVolumeType.MEDIA).then((value) => {
-       console.error(`getMaxVolume-------------success and volume is: ${value}.`);
+       console.info(`getMaxVolume success and volume is: ${value}.`);
      });
    }
    //获取当前铃声模式：  静音（0）| 震动（1） | 响铃（2）
    async getRingerMode() {
      await loadVolumeGroupManager();
      await audioVolumeGroupManager.getRingerMode().then((value) => {
-       console.error(`getRingerMode-----success and RingerMode is: ${value}.`);
+       console.info(`getRingerMode success and RingerMode is: ${value}.`);
      });
    }
    ```
@@ -81,39 +81,39 @@ AudioVolumeManager提供了音量管理的方法。开发者可以通过本指�
 3. （可选）查询、设置、监听麦克风状态。
 
    如果开发者需要获取、设置麦克风状态，或者监听麦克风状态变化等信息，可参考并调用以下接口。
-   
+
    ```js
    import audio from '@ohos.multimedia.audio';
    async loadVolumeGroupManager() {
      const groupid = audio.DEFAULT_VOLUME_GROUP_ID;
      var audioVolumeGroupManager = await audio.getAudioManager().getVolumeManager().getVolumeGroupManager(groupid);
-     console.error('audioVolumeGroupManager create success.');
+     console.info('audioVolumeGroupManager create success.');
    }
 
    async on() {   //监听麦克风状态变化
      await loadVolumeGroupManager();
      await audioVolumeGroupManager.audioVolumeGroupManager.on('micStateChange', (micStateChange) => {
-       console.error(`Current microphone status is: ${micStateChange.mute} `);
+       console.info(`Current microphone status is: ${micStateChange.mute} `);
      });
    }
 
    async isMicrophoneMute() { //查询麦克风是否静音
      await audioVolumeGroupManager.audioVolumeGroupManager.isMicrophoneMute().then((value) => {
-       console.error(`isMicrophoneMute is: ${value}.`);
+       console.info(`isMicrophoneMute is: ${value}.`);
      });
    }
  
    async setMicrophoneMuteTrue() { //设置麦克风静音
      await loadVolumeGroupManager();
      await audioVolumeGroupManager.audioVolumeGroupManager.setMicrophoneMute(true).then(() => {
-       console.error('setMicrophoneMute to mute.');
+       console.info('setMicrophoneMute to mute.');
      });
    }
  
    async setMicrophoneMuteFalse() { //取消麦克风静音
      await loadVolumeGroupManager();
      await audioVolumeGroupManager.audioVolumeGroupManager.setMicrophoneMute(false).then(() => {
-       console.error('setMicrophoneMute to not mute.');
+       console.info('setMicrophoneMute to not mute.');
      });
    }
    async test(){  //综合调用：先设置监听，然后查询麦克风状态，设置麦克风静音后再查询状态，最后取消麦克风静音。
