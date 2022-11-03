@@ -9,7 +9,7 @@
 ## 导入模块
 
 ```
-import defaultAppMgr from '@ohos.bundle.defaultAppManager'
+import defaultAppMgr from '@ohos.bundle.defaultAppManager';
 ```
 ## defaultAppMgr.ApplicationType
 
