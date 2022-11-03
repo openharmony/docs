@@ -1687,7 +1687,7 @@ getForward(length:number): Promise&lt;string&gt;
 
 > **说明：**
 >
-> 从API version 8开始支持，API version 9开始废弃, 建议使用[getForward](#getforward9)替代
+> 从API version 8开始支持，API version 9开始废弃, 建议使用[getForward](#getforward9)替代。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
