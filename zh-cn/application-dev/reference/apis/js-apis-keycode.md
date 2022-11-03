@@ -8,7 +8,7 @@ KeyCode模块提供了按键类设备的键值。
 ## 导入模块
 
 ```js
-import {KeyCode} from '@ohos.multimodalInput.keyCode'
+import {KeyCode} from '@ohos.multimodalInput.keyCode';
 ```
 
 ## KeyCode
