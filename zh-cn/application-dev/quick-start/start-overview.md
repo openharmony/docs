@@ -2,9 +2,7 @@
 
 本文档适用于OpenHarmony应用开发的初学者。通过构建一个简单的具有页面跳转/返回功能的应用（如下图所示），快速了解工程目录的主要文件，熟悉OpenHarmony应用开发流程。
 
-
 ![zh-cn_image_0000001364254729](figures/zh-cn_image_0000001364254729.png)
-
 
 在开始之前，您需要了解有关OpenHarmony应用的一些基本概念：UI框架的简单说明、Ability的基本概念。
 
@@ -45,7 +43,7 @@ FA模型和Stage模型的工程目录结构存在差异，Stage模型只支持�
 
 ## 工具准备
 
-1. 安装最新版[DevEco Studio](https://developer.harmonyos.com/cn/develop/deveco-studio#download)。
+1. 安装最新版[DevEco Studio](https://developer.harmonyos.com/cn/develop/deveco-studio)。
 
 2. 请参考[配置OpenHarmony SDK](https://developer.harmonyos.com/cn/docs/documentation/doc-guides/ohos-setting-up-environment-0000001263160443)，完成**DevEco Studio**的安装和开发环境配置。
 
