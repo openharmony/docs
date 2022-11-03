@@ -1,11 +1,11 @@
 # 输入监听
 
-InputMonitor模块提供了监听全局触摸事件的功能。
-
+输入监听模块，提供了监听输入设备事件（当前支持触摸屏和鼠标）的能力。
 >  **说明：**
-> - 本模块首批接口从API version 7开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 >
-> - 本模块接口均为系统接口。
+>  - 本模块首批接口从API version 7开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+>
+>  - 本模块接口均为系统接口。
 
 
 ## 导入模块
@@ -29,19 +29,19 @@ on(type: "touch", receiver: TouchEventReceiver): void
   **参数：**
 | 参数       | 类型                                       | 必填   | 说明                  |
 | -------- | ---------------------------------------- | ---- | ------------------- |
-| type     | string                                   | 是    | 监听输入事件类型，取值“touch”。 |
-| receiver | [TouchEventReceiver](#toucheventreceiver) | 是    | 触摸输入事件回调函数。         |
+| type     | string                                   | 是    | 输入设备事件类型，取值“touch”。 |
+| receiver | [TouchEventReceiver](#toucheventreceiver) | 是    | 回调函数，异步上报触摸屏输入事件。 |
 
   **示例：**
 
 ```js
 try {
-    inputMonitor.on("touch", (data)=> {
-        console.log(`Monitor on TouchEvent success ${JSON.stringify(data)}`);
-        return false;
-    });
+  inputMonitor.on("touch", (touchEvent) => {
+    console.log(`Monitor on success ${JSON.stringify(touchEvent)}`);
+    return false;
+  });
 } catch (error) {
-    console.log(`Failed to monitor on TouchEvent, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.log(`Monitor on failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -58,19 +58,19 @@ on(type: "mouse", receiver: Callback&lt;MouseEvent&gt;): void
 
 | 参数       | 类型                         | 必填   | 说明                  |
 | -------- | -------------------------- | ---- | ------------------- |
-| type     | string                     | 是    | 监听输入事件类型，取值“mouse”。 |
-| receiver | Callback&lt;MouseEvent&gt; | 是    | 鼠标输入事件回调函数。         |
+| type     | string                     | 是    | 输入设备事件类型，取值“mouse”。 |
+| receiver | Callback&lt;MouseEvent&gt; | 是    | 回调函数，异步上报鼠标输入事件。  |
 
   **示例：**
 
 ```js
 try {
-    inputMonitor.on("mouse", (data)=> {
-        console.log(`Monitor on MouseEvent success ${JSON.stringify(data)}`);
-        return false;
-    });
+  inputMonitor.on("mouse", (mouseEvent) => {
+    console.log(`Monitor on success ${JSON.stringify(mouseEvent)}`);
+    return false;
+  });
 } catch (error) {
-    console.log(`Failed to monitor on MouseEvent, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.log(`Monitor on failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -89,31 +89,36 @@ off(type: "touch", receiver?: TouchEventReceiver): void
   **参数：**
 | 参数       | 类型                                       | 必填   | 说明                  |
 | -------- | ---------------------------------------- | ---- | ------------------- |
-| type     | string                                   | 是    | 监听输入事件类型，取值“touch”。 |
-| receiver | [TouchEventReceiver](#toucheventreceiver) | 否    | 触摸输入事件回调函数。         |
+| type     | string                                   | 是    | 输入设备事件类型，取值“touch”。 |
+| receiver | [TouchEventReceiver](#toucheventreceiver) | 否    | 需要取消监听的回调函数，若无此参数，则取消当前应用监听的所有回调函数。  |
 
   **示例：**
 
 ```js
-// 取消监听全局触屏事件
+// 取消监听单个回调函数
+callback: function(touchEvent) {
+  console.log(`Monitor on success ${JSON.stringify(touchEvent)}`);
+  return false;
+},
 try {
-    inputMonitor.off("touch");
+  inputMonitor.on("touch", this.callback);
+  inputMonitor.off("touch", this.callback);
 } catch (error) {
-    console.log(`Failed to monitor off TouchEvent, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.log(`Monitor execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
-// 单独取消receiver的监听。
-callback:function(data) {
-    console.log(`call success ${JSON.stringify(data)}`);
+```
+
+```js
+// 取消监听所有回调函数
+callback: function(touchEvent) {
+  console.log(`Monitor on success ${JSON.stringify(touchEvent)}`);
+  return false;
 },
 try {
-    inputMonitor.on("touch", this.callback);
+  inputMonitor.on("touch", this.callback);
+  inputMonitor.off("touch");
 } catch (error) {
-    console.log(`Failed to monitor on TouchEvent, error: ${JSON.stringify(error, [`code`, `message`])}`);
-},
-try {
-    inputMonitor.off("touch",this.callback);
-} catch (error) {
-    console.log(`Failed to monitor off TouchEvent, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.log(`Monitor execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -129,39 +134,40 @@ off(type: "mouse", receiver?: Callback&lt;MouseEvent&gt;): void
 
 | 参数       | 类型                         | 必填   | 说明                  |
 | -------- | -------------------------- | ---- | ------------------- |
-| type     | string                     | 是    | 监听输入事件类型，取值“mouse”。 |
-| receiver | Callback&lt;MouseEvent&gt; | 否    | 鼠标输入事件回调函数。         |
+| type     | string                     | 是    | 输入设备事件类型，取值“mouse”。 |
+| receiver | Callback&lt;MouseEvent&gt; | 否    | 需要取消监听的回调函数，若无此参数，则取消当前应用监听的所有回调函数。 |
 
 **示例：**
 
 ```js
-// 取消监听全局鼠标事件
-try {
-    inputMonitor.off("mouse");
-} catch (error) {
-     console.log(`Failed to monitor off MouseEvent, error: ${JSON.stringify(error, [`code`, `message`])}`);
-}
-// 单独取消receiver的监听。
-callback:function(data) {
-    console.log(`call success ${JSON.stringify(data)}`);
+// 取消监听单个回调函数
+callback: function(mouseEvent) {
+  console.log(`Monitor on success ${JSON.stringify(mouseEvent)}`);
 },
 try {
-    inputMonitor.on("mouse", this.callback);
+  inputMonitor.on("mouse", this.callback);
+  inputMonitor.off("mouse", this.callback);
 } catch (error) {
-    console.log(`Failed to monitor on MouseEvent, error: ${JSON.stringify(error, [`code`, `message`])}`);
-},
-try {
-    inputMonitor.off("mouse", this.callback);
-} catch (error) {
-    console.log(`Failed to monitor off MouseEvent, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.log(`Monitor execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
-
+```js
+// 取消监听所有回调函数
+callback: function(mouseEvent) {
+  console.log(`Monitor on success ${JSON.stringify(mouseEvent)}`);
+},
+try {
+  inputMonitor.on("mouse", this.callback);
+  inputMonitor.off("mouse");
+} catch (error) {
+  console.log(`Monitor execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+}
+```
 
 ## TouchEventReceiver
 
-触摸输入事件的回调函数。如果返回true，则触摸输入被监听器消耗，系统将执行关闭动作。
+触摸输入事件的回调函数。
 
 **需要权限：** ohos.permission.INPUT_MONITORING
 
@@ -170,23 +176,25 @@ try {
   **参数：**
 | 参数         | 类型                                       | 必填   | 说明                                       |
 | ---------- | ---------------------------------------- | ---- | ---------------------------------------- |
-| touchEvent | [TouchEvent](../arkui-js/js-components-common-events.md) | 是    | 触摸输入事件回调函数，返回true表示输触事件被监听器消费，false表示输触事件未被监听器消费。 |
+| touchEvent | [TouchEvent](../arkui-js/js-components-common-events.md) | 是    | 触摸输入事件。 |
 
   **返回值：**
 | 类型      | 说明                                       |
 | ------- | ---------------------------------------- |
-| Boolean | 返回true表示触摸输入事件被监听器消费，false表示触摸输入事件未被监听器消费。 |
+| Boolean | 若返回true，本次触摸后续产生的事件不再分发到窗口；若返回false，本次触摸后续产生的事件还会分发到窗口。 |
 
   **示例：**
 
 ```js
 try {
-  inputMonitor.on("touch", (event) => {
-    // 若返回true，表示本次操作后续所有事件不再分发到窗口，事件都由监听者消费。
-    return false;
+  inputMonitor.on("touch", touchEvent => {
+    if (touchEvent.touches.size() == 3) { // 当前有三个手指按下
+      return true;
+    } else {
+      return false;
+    }
   });
-  inputMonitor.off("touch");
 } catch (error) {
-    console.log(`Failed to monitor off TouchEvent, error: ${JSON.stringify(error, [`code`, `message`])}`);
+    console.log(`Monitor on failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
