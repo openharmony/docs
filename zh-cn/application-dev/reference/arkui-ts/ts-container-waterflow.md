@@ -40,21 +40,21 @@ WaterFlow(options?: {footer?: CustomBuilder, scroller?: Scroller})
 | itemConstraintSize | [ConstraintSizeOptions](ts-types.md#constraintsizeoptions) | 设置约束尺寸，子组件布局时，进行尺寸范围限制。               |
 | columnsGap | Length |设置列与列的间距。 <br>默认值：0|
 | rowsGap | Length |设置行与行的间距。<br> 默认值：0|
-| layoutDirection | [FlexDirection](ts-appendix-enums.md#flexdirection) |设置布局的主轴方向。<br/>默认值：FlexDirection::Column|
+| layoutDirection | [FlexDirection](ts-appendix-enums.md#flexdirection) |设置布局的主轴方向。<br/>默认值：FlexDirection.Column|
 
 layoutDirection优先级高于rowsTemplate和columnsTemplate。根据layoutDirection设置情况，分为以下三种设置模式:
 
-- layoutDirection设置纵向布局（FlexDirection::Column 或 FlexDirection::ColumnReverse）
+- layoutDirection设置纵向布局（FlexDirection.Column 或 FlexDirection.ColumnReverse）
 
 	此时columnsTemplate有效（如果未设置，取默认值）。例如columnsTemplate设置为"1fr 1fr"、rowsTemplate设置为"1fr 1fr 1fr"时，瀑布流组件纵向布局，辅轴均分成横向2列。
 
-- layoutDirection设置横向布局（FlexDirection::Row 或 FlexDirection::RowReverse）
+- layoutDirection设置横向布局（FlexDirection.Row 或 FlexDirection.RowReverse）
 
 	此时rowsTemplate有效（如果未设置，取默认值）。例如columnsTemplate设置为"1fr 1fr"、rowsTemplate设置为"1fr 1fr 1fr"时，瀑布流组件横向布局，辅轴均分成纵向3列。
 
 - layoutDirection未设置布局方向
 
-	布局方向为layoutDirection的默认值：FlexDirection::Column，此时columnsTemplate有效。例如columnsTemplate设置为"1fr 1fr"、rowsTemplate设置为"1fr 1fr 1fr"时，瀑布流组件纵向布局，辅轴均分成横向2列。
+	布局方向为layoutDirection的默认值：FlexDirection.Column，此时columnsTemplate有效。例如columnsTemplate设置为"1fr 1fr"、rowsTemplate设置为"1fr 1fr 1fr"时，瀑布流组件纵向布局，辅轴均分成横向2列。
 
 ## 事件
 
