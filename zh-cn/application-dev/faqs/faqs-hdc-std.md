@@ -62,7 +62,7 @@
 
 2. hdc工具指定的路径不要包含中文和空格。
 
-## openharmony下命令如何卸载应用
+## 如何使用命令卸载应用
 
 适用于：OpenHarmony SDK 3.2.2.5版本
 
@@ -85,9 +85,3 @@
 2. 输入 aa dump -a 找到abilityID。
 
 3. aa dump -i [abilityID] -c -render 查看组件树。
-
-## 如何设置原型机息屏时间
-
-适用于：OpenHarmony SDK 3.2.5.5版本
-
-使用命令：hdc_std shell power-shell timeout -o 1000

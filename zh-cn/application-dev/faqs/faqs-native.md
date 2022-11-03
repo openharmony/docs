@@ -72,7 +72,7 @@ static napi_value Add(napi_env env, napi_callback_info info)
 }
 ```
 
-## 如何遍历rawfiles中的文件？
+## 如何遍历rawfiles中的文件
 
 适用于：OpenHarmony SDK 3.2版本以上，API9 Stage模型
 

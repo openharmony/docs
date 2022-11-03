@@ -156,7 +156,7 @@ worker线程与主线程不在同一个上下文中，它们使用数据通信�
 
 适用于：OpenHarmony SDK 3.2.5.5版本，API9 Stage模型
 
-使用ConvertXML的convert接口可以将xml文本解析为JavaScript对象。参考文档：[../reference/apis/js-apis-convertxml.md](../reference/apis/js-apis-convertxml.md)
+使用ConvertXML的convert接口可以将xml文本解析为JavaScript对象。参考文档：[convertxml API文档](../reference/apis/js-apis-convertxml.md)
 
 ## 应用图标一多设置
 
@@ -180,7 +180,7 @@ systemTime.getCurrentTime(false)和new Date().getTime()一样，都是返回1970
 
 适用于：OpenHarmony SDK3.2.6.5, API9 Stage模型
 
-对\@BuilderParam修饰的属性进行赋值时不带参数（如：content: this.specificParam），则此属性的类型需定义成无返回值的函数（如：\@BuilderParam content: () =&gt; void）；若带参数（如：callContent: this.specificParam1("111")），则此属性的类型需定义成any（如：\@BuilderParam callContent: any;），具体用法请参考[BuilderParam](../ui/ts-component-based-builder.md)
+对\@BuilderParam修饰的属性进行赋值时不带参数（如：content: this.specificParam），则此属性的类型需定义成无返回值的函数（如：\@BuilderParam content: () =&gt; void）；若带参数（如：callContent: this.specificParam1("111")），则此属性的类型需定义成any（如：\@BuilderParam callContent: any;），具体用法请参考[BuilderParam](../ui/ts-component-based-builder.md)。
 
 ## ArkTS如何把string转成byte数组
 

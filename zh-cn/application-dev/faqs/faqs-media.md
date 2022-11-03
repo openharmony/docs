@@ -12,7 +12,6 @@
 
 示例：
 
-  
 ```
 //默认设置后置相机,通过设置isFrontCamera来切换相机
 let cameraId

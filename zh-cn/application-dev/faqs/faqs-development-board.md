@@ -27,6 +27,7 @@
 适用于：IDE 3.0.0.991
 
 1. 给预览器新建Profile
+   
    ![zh-cn_image_0000001361254285](figures/zh-cn_image_0000001361254285.png)
 
 2. 新建Profile的具体参数可参考如下配置：

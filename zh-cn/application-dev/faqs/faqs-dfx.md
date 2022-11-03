@@ -29,7 +29,7 @@
 
 通过hdc_std命令 hdc_std shell hilog -b D开启调试开关
 
-## 应用如何打印日志是使用hilog还是console，hilog接口参数domain的设置范围是什么？（狄艾威 2022年9月23日17:13:05）
+## 应用如何打印日志是使用hilog还是console，hilog接口参数domain的设置范围是什么
 
 适用于：OpenHarmony SDK 3.2.2.5版本
 
