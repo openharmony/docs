@@ -137,6 +137,10 @@ DeviceProfile适配分布式数据库自动同步策略，以及采集信息补�
 | 标准系统Full SDK包（Windows\Linux）     | 3.2.7.5      | [站点](https://repo.huaweicloud.com/harmonyos/os/3.2-Beta3/ohos-sdk-windows_linux-full.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/harmonyos/os/3.2-Beta3/ohos-sdk-windows_linux-full.tar.gz.sha256) |
 | 标准系统Public SDK包（Mac）             | 3.2.7.5      | [站点](https://repo.huaweicloud.com/harmonyos/os/3.2-Beta3/ohos-sdk-mac-public.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/harmonyos/os/3.2-Beta3/ohos-sdk-mac-public.tar.gz.sha256) |
 | 标准系统Public SDK包（Windows\Linux）   | 3.2.7.5      | [站点](https://repo.huaweicloud.com/harmonyos/os/3.2-Beta3/ohos-sdk-windows_linux-public.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/harmonyos/os/3.2-Beta3/ohos-sdk-windows_linux-public.tar.gz.sha256) |
+| 标准系统Full SDK包（Mac）               | 3.2.7.6      | [站点](https://repo.huaweicloud.com/harmonyos/os/3.2-Beta3/sdk-patch/mac-sdk-full.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/harmonyos/os/3.2-Beta3/sdk-patch/mac-sdk-full.tar.gz.sha256) |
+| 标准系统Full SDK包（Windows\Linux）     | 3.2.7.6      | [站点](https://repo.huaweicloud.com/harmonyos/os/3.2-Beta3/sdk-patch/ohos-sdk-full.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/harmonyos/os/3.2-Beta3/sdk-patch/ohos-sdk-full.tar.gz.sha256) |
+| 标准系统Public SDK包（Mac）             | 3.2.7.6      | [站点](https://repo.huaweicloud.com/harmonyos/os/3.2-Beta3/sdk-patch/mac-sdk-public.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/harmonyos/os/3.2-Beta3/sdk-patch/mac-sdk-public.tar.gz.sha256) |
+| 标准系统Public SDK包（Windows\Linux）   | 3.2.7.6      | [站点](https://repo.huaweicloud.com/harmonyos/os/3.2-Beta3/sdk-patch/ohos-sdk-public.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/harmonyos/os/3.2-Beta3/sdk-patch/ohos-sdk-public.tar.gz.sha256) |
 
 
 
