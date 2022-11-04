@@ -67,10 +67,6 @@ python ark.py x64.release test262
 
 ## 编译选项
 
-交叉编译可根据目标选择不同平台，如在x64平台构建arm64目标平台，更多平台选择可参考下方获取更多编译说明。
-```
-python ark.py arm64.release
-```
 编译模式选择，如在x64平台构建debug版本。
 ```
 python ark.py x64.debug
@@ -79,4 +75,3 @@ python ark.py x64.debug
 ```
 python ark.py --help
 ```
-
