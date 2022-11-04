@@ -14,7 +14,7 @@ import geolocation from '@ohos.geolocation';
 
 ## geolocation.on('locationChange')
 
-on(type: 'locationChange', request: LocationRequest, callback: Callback&lt;Location&gt;) : void
+on(type: 'locationChange', request: LocationRequest, callback: Callback&lt;Location&gt;): void
 
 Registers a listener for location changes with a location request initiated.
 
@@ -34,6 +34,7 @@ Registers a listener for location changes with a location request initiated.
 **Example**
   
   ```js
+  import geolocation from '@ohos.geolocation';
   var requestInfo = {'priority': 0x203, 'scenario': 0x300, 'timeInterval': 0, 'distanceInterval': 0, 'maxAccuracy': 0};
   var locationChange = (location) => {
       console.log('locationChanger: data: ' + JSON.stringify(location));
@@ -44,7 +45,7 @@ Registers a listener for location changes with a location request initiated.
 
 ## geolocation.off('locationChange')
 
-off(type: 'locationChange', callback?: Callback&lt;Location&gt;) : void
+off(type: 'locationChange', callback?: Callback&lt;Location&gt;): void
 
 Unregisters the listener for location changes with the corresponding location request deleted.
 
@@ -63,6 +64,7 @@ Unregisters the listener for location changes with the corresponding location re
 **Example**
   
   ```js
+  import geolocation from '@ohos.geolocation';
   var requestInfo = {'priority': 0x203, 'scenario': 0x300, 'timeInterval': 0, 'distanceInterval': 0, 'maxAccuracy': 0};
   var locationChange = (location) => {
       console.log('locationChanger: data: ' + JSON.stringify(location));
@@ -74,7 +76,7 @@ Unregisters the listener for location changes with the corresponding location re
 
 ## geolocation.on('locationServiceState')
 
-on(type: 'locationServiceState', callback: Callback&lt;boolean&gt;) : void
+on(type: 'locationServiceState', callback: Callback&lt;boolean&gt;): void
 
 Registers a listener for location service status change events.
 
@@ -93,6 +95,7 @@ Registers a listener for location service status change events.
 **Example**
   
   ```js
+  import geolocation from '@ohos.geolocation';
   var locationServiceState = (state) => {
       console.log('locationServiceState: ' + JSON.stringify(state));
   }
@@ -102,7 +105,7 @@ Registers a listener for location service status change events.
 
 ## geolocation.off('locationServiceState')
 
-off(type: 'locationServiceState', callback?: Callback&lt;boolean&gt;) : void;
+off(type: 'locationServiceState', callback?: Callback&lt;boolean&gt;): void;
 
 Unregisters the listener for location service status change events.
 
@@ -121,6 +124,7 @@ Unregisters the listener for location service status change events.
 **Example**
   
   ```js
+  import geolocation from '@ohos.geolocation';
   var locationServiceState = (state) => {
       console.log('locationServiceState: state: ' + JSON.stringify(state));
   }
@@ -131,7 +135,7 @@ Unregisters the listener for location service status change events.
 
 ## geolocation.on('cachedGnssLocationsReporting')<sup>8+</sup>
 
-on(type: 'cachedGnssLocationsReporting', request: CachedGnssLocationsRequest, callback: Callback&lt;Array&lt;Location&gt;&gt;) : void;
+on(type: 'cachedGnssLocationsReporting', request: CachedGnssLocationsRequest, callback: Callback&lt;Array&lt;Location&gt;&gt;): void;
 
 Registers a listener for cached GNSS location reports.
 
@@ -151,6 +155,7 @@ Registers a listener for cached GNSS location reports.
 **Example**
   
   ```js
+  import geolocation from '@ohos.geolocation';
   var cachedLocationsCb = (locations) => {
       console.log('cachedGnssLocationsReporting: locations: ' + JSON.stringify(locations));
   }
@@ -161,7 +166,7 @@ Registers a listener for cached GNSS location reports.
 
 ## geolocation.off('cachedGnssLocationsReporting')<sup>8+</sup>
 
-off(type: 'cachedGnssLocationsReporting', callback?: Callback&lt;Array&lt;Location&gt;&gt;) : void;
+off(type: 'cachedGnssLocationsReporting', callback?: Callback&lt;Array&lt;Location&gt;&gt;): void;
 
 Unregisters the listener for cached GNSS location reports.
 
@@ -180,6 +185,7 @@ Unregisters the listener for cached GNSS location reports.
 **Example**
   
   ```js
+  import geolocation from '@ohos.geolocation';
   var cachedLocationsCb = (locations) => {
       console.log('cachedGnssLocationsReporting: locations: ' + JSON.stringify(locations));
   }
@@ -191,7 +197,7 @@ Unregisters the listener for cached GNSS location reports.
 
 ## geolocation.on('gnssStatusChange')<sup>8+</sup>
 
-on(type: 'gnssStatusChange', callback: Callback&lt;SatelliteStatusInfo&gt;) : void;
+on(type: 'gnssStatusChange', callback: Callback&lt;SatelliteStatusInfo&gt;): void;
 
 Registers a listener for GNSS satellite status change events.
 
@@ -210,6 +216,7 @@ Registers a listener for GNSS satellite status change events.
 **Example**
   
   ```js
+  import geolocation from '@ohos.geolocation';
   var gnssStatusCb = (satelliteStatusInfo) => {
       console.log('gnssStatusChange: ' + JSON.stringify(satelliteStatusInfo));
   }
@@ -219,7 +226,7 @@ Registers a listener for GNSS satellite status change events.
 
 ## geolocation.off('gnssStatusChange')<sup>8+</sup>
 
-off(type: 'gnssStatusChange', callback?: Callback&lt;SatelliteStatusInfo&gt;) : void;
+off(type: 'gnssStatusChange', callback?: Callback&lt;SatelliteStatusInfo&gt;): void;
 
 Unregisters the listener for GNSS satellite status change events.
 
@@ -237,6 +244,7 @@ Unregisters the listener for GNSS satellite status change events.
 **Example**
   
   ```js
+  import geolocation from '@ohos.geolocation';
   var gnssStatusCb = (satelliteStatusInfo) => {
       console.log('gnssStatusChange: ' + JSON.stringify(satelliteStatusInfo));
   }
@@ -247,7 +255,7 @@ Unregisters the listener for GNSS satellite status change events.
 
 ## geolocation.on('nmeaMessageChange')<sup>8+</sup>
 
-on(type: 'nmeaMessageChange', callback: Callback&lt;string&gt;) : void;
+on(type: 'nmeaMessageChange', callback: Callback&lt;string&gt;): void;
 
 Registers a listener for GNSS NMEA message change events.
 
@@ -266,6 +274,7 @@ Registers a listener for GNSS NMEA message change events.
 **Example**
   
   ```js
+  import geolocation from '@ohos.geolocation';
   var nmeaCb = (str) => {
       console.log('nmeaMessageChange: ' + JSON.stringify(str));
   }
@@ -275,7 +284,7 @@ Registers a listener for GNSS NMEA message change events.
 
 ## geolocation.off('nmeaMessageChange')<sup>8+</sup>
 
-off(type: 'nmeaMessageChange', callback?: Callback&lt;string&gt;) : void;
+off(type: 'nmeaMessageChange', callback?: Callback&lt;string&gt;): void;
 
 Unregisters the listener for GNSS NMEA message change events.
 
@@ -294,6 +303,7 @@ Unregisters the listener for GNSS NMEA message change events.
 **Example**
   
   ```js
+  import geolocation from '@ohos.geolocation';
   var nmeaCb = (str) => {
       console.log('nmeaMessageChange: ' + JSON.stringify(str));
   }
@@ -304,7 +314,7 @@ Unregisters the listener for GNSS NMEA message change events.
 
 ## geolocation.on('fenceStatusChange')<sup>8+</sup>
 
-on(type: 'fenceStatusChange', request: GeofenceRequest, want: WantAgent) : void;
+on(type: 'fenceStatusChange', request: GeofenceRequest, want: WantAgent): void;
 
 Registers a listener for status change events of the specified geofence.
 
@@ -331,13 +341,13 @@ Registers a listener for status change events of the specified geofence.
       wants: [
           {
               bundleName: "com.example.myapplication",
-              abilityName: "com.example.myapplication.MainAbility"
+              abilityName: "com.example.myapplication.MainAbility",
               action: "action1",
           }
       ],
       operationType: wantAgent.OperationType.START_ABILITY,
       requestCode: 0,
-      wantAgentFlags: [wantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
+      wantAgentFlags: [wantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG],
   };
   
   wantAgent.getWantAgent(wantAgentInfo).then((wantAgentObj) => {
@@ -349,7 +359,7 @@ Registers a listener for status change events of the specified geofence.
 
 ## geolocation.off('fenceStatusChange')<sup>8+</sup>
 
-off(type: 'fenceStatusChange', request: GeofenceRequest, want: WantAgent) : void;
+off(type: 'fenceStatusChange', request: GeofenceRequest, want: WantAgent): void;
 
 Unregisters the listener for status change events of the specified geofence.
 
@@ -375,7 +385,7 @@ Unregisters the listener for status change events of the specified geofence.
       wants: [
           {
               bundleName: "com.example.myapplication",
-              abilityName: "com.example.myapplication.MainAbility"
+              abilityName: "com.example.myapplication.MainAbility",
               action: "action1",
           }
       ],
@@ -392,62 +402,9 @@ Unregisters the listener for status change events of the specified geofence.
   ```
 
 
-## geolocation.on('countryCodeChange')<sup>9+</sup>
-
-on(type: 'countryCodeChange', callback: Callback&lt;CountryCode&gt;) : void;
-
-Subscribe to country code information reporting events.
-
-**System capability**: SystemCapability.Location.Location.Core
-
-**Parameters**
-
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | type | string | Yes| Event type. The value is "countrycodechange", which means subscribing to the submission of country code information. |
-  | callback | Callback&lt;CountryCode&gt; | Yes | Callback is used to receive the country code information report. |
-
-
-**Example**
-  
-  ```js
-  var callback = (code) => {
-      console.log('countryCodeChange: ' + JSON.stringify(code));
-  }
-  geolocation.on('countryCodeChange', callback);
-  ```
-
-
-## geolocation.off('countryCodeChange')<sup>9+</sup>
-
-off(type: 'countryCodeChange', callback?: Callback&lt;CountryCode&gt;) : void;
-
-Unsubscribe from the country code to report events.
-
-**System capability**: SystemCapability.Location.Location.Core
-
-**Parameters**
-
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | type | string | Yes| Event type. The value is "countrycodechange", which means unsubscribing to the submission of country code information. |
-  | callback | Callback&lt;CountryCode&gt; | Yes | Callback is used to receive the country code information report. |
-
-
-**Example**
-  
-  ```js
-  var callback = (code) => {
-      console.log('countryCodeChange: ' + JSON.stringify(code));
-  }
-  geolocation.on('countryCodeChange', callback);
-  geolocation.off('countryCodeChange', callback);
-  ```
-
-
 ## geolocation.getCurrentLocation
 
-getCurrentLocation(request: CurrentLocationRequest, callback: AsyncCallback&lt;Location&gt;) : void
+getCurrentLocation(request: CurrentLocationRequest, callback: AsyncCallback&lt;Location&gt;): void
 
 
 Obtains the current location. This API uses an asynchronous callback to return the result. 
@@ -466,6 +423,7 @@ Obtains the current location. This API uses an asynchronous callback to return t
 **Example**
   
   ```js
+  import geolocation from '@ohos.geolocation';
   var requestInfo = {'priority': 0x203, 'scenario': 0x300,'maxAccuracy': 0};
   var locationChange = (err, location) => {
       if (err) {
@@ -482,7 +440,7 @@ Obtains the current location. This API uses an asynchronous callback to return t
 
 ## geolocation.getCurrentLocation
 
-getCurrentLocation(request?: CurrentLocationRequest) : Promise&lt;Location&gt;
+getCurrentLocation(request?: CurrentLocationRequest): Promise&lt;Location&gt;
 
 
 Obtains the current location. This API uses a promise to return the result. 
@@ -507,6 +465,7 @@ Obtains the current location. This API uses a promise to return the result.
 **Example**
   
   ```js
+  import geolocation from '@ohos.geolocation';
   var requestInfo = {'priority': 0x203, 'scenario': 0x300,'maxAccuracy': 0};
   geolocation.getCurrentLocation(requestInfo).then((result) => {
       console.log('current location: ' + JSON.stringify(result));
@@ -516,7 +475,7 @@ Obtains the current location. This API uses a promise to return the result.
 
 ## geolocation.getLastLocation
 
-getLastLocation(callback: AsyncCallback&lt;Location&gt;) : void
+getLastLocation(callback: AsyncCallback&lt;Location&gt;): void
 
 Obtains the previous location. This API uses an asynchronous callback to return the result.
 
@@ -534,6 +493,7 @@ Obtains the previous location. This API uses an asynchronous callback to return 
 **Example**
   
   ```js
+  import geolocation from '@ohos.geolocation';
   geolocation.getLastLocation((err, data) => {
       if (err) {
           console.log('getLastLocation: err=' + JSON.stringify(err));
@@ -547,7 +507,7 @@ Obtains the previous location. This API uses an asynchronous callback to return 
 
 ## geolocation.getLastLocation
 
-getLastLocation() : Promise&lt;Location&gt;
+getLastLocation(): Promise&lt;Location&gt;
 
 Obtains the previous location. This API uses a promise to return the result. 
 
@@ -565,6 +525,7 @@ Obtains the previous location. This API uses a promise to return the result.
 **Example**
   
   ```js
+  import geolocation from '@ohos.geolocation';
   geolocation.getLastLocation().then((result) => {
       console.log('getLastLocation: result: ' + JSON.stringify(result));
   });
@@ -573,7 +534,7 @@ Obtains the previous location. This API uses a promise to return the result.
 
 ## geolocation.isLocationEnabled
 
-isLocationEnabled(callback: AsyncCallback&lt;boolean&gt;) : void
+isLocationEnabled(callback: AsyncCallback&lt;boolean&gt;): void
 
 
 Checks whether the location service is enabled. This API uses an asynchronous callback to return the result.
@@ -591,6 +552,7 @@ Checks whether the location service is enabled. This API uses an asynchronous ca
 **Example**
   
   ```js
+  import geolocation from '@ohos.geolocation';
   geolocation.isLocationEnabled((err, data) => {
       if (err) {
           console.log('isLocationEnabled: err=' + JSON.stringify(err));
@@ -604,7 +566,7 @@ Checks whether the location service is enabled. This API uses an asynchronous ca
 
 ## geolocation.isLocationEnabled
 
-isLocationEnabled() : Promise&lt;boolean&gt;
+isLocationEnabled(): Promise&lt;boolean&gt;
 
 Checks whether the location service is enabled. This API uses a promise to return the result.
 
@@ -621,15 +583,16 @@ Checks whether the location service is enabled. This API uses a promise to retur
 **Example**
   
   ```js
+  import geolocation from '@ohos.geolocation';
   geolocation.isLocationEnabled().then((result) => {
-      console.log('promise, isLocationEnabled: ' + result);
+      console.log('promise, isLocationEnabled: ' + JSON.stringify(result));
   });
   ```
 
 
 ## geolocation.requestEnableLocation
 
-requestEnableLocation(callback: AsyncCallback&lt;boolean&gt;) : void
+requestEnableLocation(callback: AsyncCallback&lt;boolean&gt;): void
 
 
 Requests to enable the location service. This API uses an asynchronous callback to return the result.
@@ -647,6 +610,7 @@ Requests to enable the location service. This API uses an asynchronous callback 
 **Example**
   
   ```js
+  import geolocation from '@ohos.geolocation';
   geolocation.requestEnableLocation((err, data) => {
       if (err) {
           console.log('requestEnableLocation: err=' + JSON.stringify(err));
@@ -660,7 +624,7 @@ Requests to enable the location service. This API uses an asynchronous callback 
 
 ## geolocation.requestEnableLocation
 
-requestEnableLocation() : Promise&lt;boolean&gt;
+requestEnableLocation(): Promise&lt;boolean&gt;
 
 Requests to enable the location service. This API uses a promise to return the result.
 
@@ -677,6 +641,7 @@ Requests to enable the location service. This API uses a promise to return the r
 **Example**
   
   ```js
+  import geolocation from '@ohos.geolocation';
   geolocation.requestEnableLocation().then((result) => {
       console.log('promise, requestEnableLocation: ' + JSON.stringify(result));
   });
@@ -685,7 +650,7 @@ Requests to enable the location service. This API uses a promise to return the r
 
 ## geolocation.enableLocation
 
-enableLocation(callback: AsyncCallback&lt;boolean&gt;) : void;
+enableLocation(callback: AsyncCallback&lt;boolean&gt;): void;
 
 Enables the location service. This API uses an asynchronous callback to return the result.
 
@@ -704,6 +669,7 @@ Enables the location service. This API uses an asynchronous callback to return t
 **Example**
   
   ```js
+  import geolocation from '@ohos.geolocation';
   geolocation.enableLocation((err, data) => {
       if (err) {
           console.log('enableLocation: err=' + JSON.stringify(err));
@@ -717,7 +683,7 @@ Enables the location service. This API uses an asynchronous callback to return t
 
 ## geolocation.enableLocation
 
-enableLocation() : Promise&lt;boolean&gt;
+enableLocation(): Promise&lt;boolean&gt;
 
 Enables the location service. This API uses a promise to return the result.
 
@@ -736,6 +702,7 @@ Enables the location service. This API uses a promise to return the result.
 **Example**
   
   ```js
+  import geolocation from '@ohos.geolocation';
   geolocation.enableLocation().then((result) => {
       console.log('promise, enableLocation: ' + JSON.stringify(result));
   });
@@ -743,7 +710,7 @@ Enables the location service. This API uses a promise to return the result.
 
 ## geolocation.disableLocation
 
-disableLocation(callback: AsyncCallback&lt;boolean&gt;) : void;
+disableLocation(callback: AsyncCallback&lt;boolean&gt;): void;
 
 Disables the location service. This API uses an asynchronous callback to return the result.
 
@@ -762,6 +729,7 @@ Disables the location service. This API uses an asynchronous callback to return 
 **Example**
   
   ```js
+  import geolocation from '@ohos.geolocation';
   geolocation.disableLocation((err, data) => {
       if (err) {
           console.log('disableLocation: err=' + JSON.stringify(err));
@@ -775,7 +743,7 @@ Disables the location service. This API uses an asynchronous callback to return 
 
 ## geolocation.disableLocation
 
-disableLocation() : Promise&lt;boolean&gt;
+disableLocation(): Promise&lt;boolean&gt;
 
 Disables the location service. This API uses a promise to return the result.
 
@@ -794,6 +762,7 @@ Disables the location service. This API uses a promise to return the result.
 **Example**
   
   ```js
+  import geolocation from '@ohos.geolocation';
   geolocation.disableLocation().then((result) => {
       console.log('promise, disableLocation: ' + JSON.stringify(result));
   });
@@ -801,7 +770,7 @@ Disables the location service. This API uses a promise to return the result.
 
 ## geolocation.isGeoServiceAvailable
 
-isGeoServiceAvailable(callback: AsyncCallback&lt;boolean&gt;) : void
+isGeoServiceAvailable(callback: AsyncCallback&lt;boolean&gt;): void
 
 Checks whether the (reverse) geocoding service is available. This API uses an asynchronous callback to return the result.
 
@@ -818,6 +787,7 @@ Checks whether the (reverse) geocoding service is available. This API uses an as
 **Example**
   
   ```js
+  import geolocation from '@ohos.geolocation';
   geolocation.isGeoServiceAvailable((err, data) => {
       if (err) {
           console.log('isGeoServiceAvailable: err=' + JSON.stringify(err));
@@ -831,7 +801,7 @@ Checks whether the (reverse) geocoding service is available. This API uses an as
 
 ## geolocation.isGeoServiceAvailable
 
-isGeoServiceAvailable() : Promise&lt;boolean&gt;
+isGeoServiceAvailable(): Promise&lt;boolean&gt;
 
 Checks whether the (reverse) geocoding service is available. This API uses a promise to return the result.
 
@@ -848,6 +818,7 @@ Checks whether the (reverse) geocoding service is available. This API uses a pro
 **Example**
   
   ```js
+  import geolocation from '@ohos.geolocation';
   geolocation.isGeoServiceAvailable().then((result) => {
       console.log('promise, isGeoServiceAvailable: ' + JSON.stringify(result));
   });
@@ -856,7 +827,7 @@ Checks whether the (reverse) geocoding service is available. This API uses a pro
 
 ## geolocation.getAddressesFromLocation
 
-getAddressesFromLocation(request: ReverseGeoCodeRequest, callback: AsyncCallback&lt;Array&lt;GeoAddress&gt;&gt;) : void
+getAddressesFromLocation(request: ReverseGeoCodeRequest, callback: AsyncCallback&lt;Array&lt;GeoAddress&gt;&gt;): void
 
 Converts coordinates into geographic description through reverse geocoding. This API uses an asynchronous callback to return the result. 
 
@@ -874,6 +845,7 @@ Converts coordinates into geographic description through reverse geocoding. This
 **Example**
   
   ```js
+  import geolocation from '@ohos.geolocation';
   var reverseGeocodeRequest = {"latitude": 31.12, "longitude": 121.11, "maxItems": 1};
   geolocation.getAddressesFromLocation(reverseGeocodeRequest, (err, data) => {
       if (err) {
@@ -888,7 +860,7 @@ Converts coordinates into geographic description through reverse geocoding. This
 
 ## geolocation.getAddressesFromLocation
 
-getAddressesFromLocation(request: ReverseGeoCodeRequest) : Promise&lt;Array&lt;GeoAddress&gt;&gt;;
+getAddressesFromLocation(request: ReverseGeoCodeRequest): Promise&lt;Array&lt;GeoAddress&gt;&gt;;
 
 Converts coordinates into geographic description through reverse geocoding. This API uses a promise to return the result. 
 
@@ -911,6 +883,7 @@ Converts coordinates into geographic description through reverse geocoding. This
 **Example**
   
   ```js
+  import geolocation from '@ohos.geolocation';
   var reverseGeocodeRequest = {"latitude": 31.12, "longitude": 121.11, "maxItems": 1};
   geolocation.getAddressesFromLocation(reverseGeocodeRequest).then((data) => {
       console.log('getAddressesFromLocation: ' + JSON.stringify(data));
@@ -920,7 +893,7 @@ Converts coordinates into geographic description through reverse geocoding. This
 
 ## geolocation.getAddressesFromLocationName
 
-getAddressesFromLocationName(request: GeoCodeRequest, callback: AsyncCallback&lt;Array&lt;GeoAddress&gt;&gt;) : void
+getAddressesFromLocationName(request: GeoCodeRequest, callback: AsyncCallback&lt;Array&lt;GeoAddress&gt;&gt;): void
 
 Converts geographic description into coordinates through geocoding. This API uses an asynchronous callback to return the result. 
 
@@ -938,6 +911,7 @@ Converts geographic description into coordinates through geocoding. This API use
 **Example**
   
   ```js
+  import geolocation from '@ohos.geolocation';
   var geocodeRequest = {"description": "No. xx, xx Road, Pudong District, Shanghai", "maxItems": 1};
   geolocation.getAddressesFromLocationName(geocodeRequest, (err, data) => {
       if (err) {
@@ -952,7 +926,7 @@ Converts geographic description into coordinates through geocoding. This API use
 
 ## geolocation.getAddressesFromLocationName
 
-getAddressesFromLocationName(request: GeoCodeRequest) : Promise&lt;Array&lt;GeoAddress&gt;&gt;
+getAddressesFromLocationName(request: GeoCodeRequest): Promise&lt;Array&lt;GeoAddress&gt;&gt;
 
 Converts geographic description into coordinates through geocoding. This API uses a promise to return the result. 
 
@@ -975,6 +949,7 @@ Converts geographic description into coordinates through geocoding. This API use
 **Example**
   
   ```js
+  import geolocation from '@ohos.geolocation';
   var geocodeRequest = {"description": "No. xx, xx Road, Pudong District, Shanghai", "maxItems": 1};
   geolocation.getAddressesFromLocationName(geocodeRequest).then((result) => {
       console.log('getAddressesFromLocationName: ' + JSON.stringify(result));
@@ -984,7 +959,7 @@ Converts geographic description into coordinates through geocoding. This API use
 
 ## geolocation.getCachedGnssLocationsSize<sup>8+</sup>
 
-getCachedGnssLocationsSize(callback: AsyncCallback&lt;number&gt;) : void;
+getCachedGnssLocationsSize(callback: AsyncCallback&lt;number&gt;): void;
 
 Obtains the number of cached GNSS locations. 
 
@@ -1001,6 +976,7 @@ Obtains the number of cached GNSS locations.
 **Example**
   
   ```js
+  import geolocation from '@ohos.geolocation';
   geolocation.getCachedGnssLocationsSize((err, size) => {
       if (err) {
           console.log('getCachedGnssLocationsSize: err=' + JSON.stringify(err));
@@ -1014,7 +990,7 @@ Obtains the number of cached GNSS locations.
 
 ## geolocation.getCachedGnssLocationsSize<sup>8+</sup>
 
-getCachedGnssLocationsSize() : Promise&lt;number&gt;;
+getCachedGnssLocationsSize(): Promise&lt;number&gt;;
 
 Obtains the number of cached GNSS locations. 
 
@@ -1031,6 +1007,7 @@ Obtains the number of cached GNSS locations.
 **Example**
   
   ```js
+  import geolocation from '@ohos.geolocation';
   geolocation.getCachedGnssLocationsSize().then((result) => {
       console.log('promise, getCachedGnssLocationsSize: ' + JSON.stringify(result));
   });
@@ -1039,7 +1016,7 @@ Obtains the number of cached GNSS locations.
 
 ## geolocation.flushCachedGnssLocations<sup>8+</sup>
 
-flushCachedGnssLocations(callback: AsyncCallback&lt;boolean&gt;) : void;
+flushCachedGnssLocations(callback: AsyncCallback&lt;boolean&gt;): void;
 
 Obtains all cached GNSS locations and clears the GNSS cache queue. 
 
@@ -1056,6 +1033,7 @@ Obtains all cached GNSS locations and clears the GNSS cache queue.
 **Example**
   
   ```js
+  import geolocation from '@ohos.geolocation';
   geolocation.flushCachedGnssLocations((err, result) => {
       if (err) {
           console.log('flushCachedGnssLocations: err=' + JSON.stringify(err));
@@ -1069,7 +1047,7 @@ Obtains all cached GNSS locations and clears the GNSS cache queue.
 
 ## geolocation.flushCachedGnssLocations<sup>8+</sup>
 
-flushCachedGnssLocations() : Promise&lt;boolean&gt;;
+flushCachedGnssLocations(): Promise&lt;boolean&gt;;
 
 Obtains all cached GNSS locations and clears the GNSS cache queue. 
 
@@ -1086,6 +1064,7 @@ Obtains all cached GNSS locations and clears the GNSS cache queue.
 **Example**
   
   ```js
+  import geolocation from '@ohos.geolocation';
   geolocation.flushCachedGnssLocations().then((result) => {
       console.log('promise, flushCachedGnssLocations: ' + JSON.stringify(result));
   });
@@ -1094,7 +1073,7 @@ Obtains all cached GNSS locations and clears the GNSS cache queue.
 
 ## geolocation.sendCommand<sup>8+</sup>
 
-sendCommand(command: LocationCommand, callback: AsyncCallback&lt;boolean&gt;) : void;
+sendCommand(command: LocationCommand, callback: AsyncCallback&lt;boolean&gt;): void;
 
 Sends an extended command to the location subsystem. This API can only be called by system applications.
 
@@ -1112,6 +1091,7 @@ Sends an extended command to the location subsystem. This API can only be called
 **Example**
   
   ```js
+  import geolocation from '@ohos.geolocation';
   var requestInfo = {'scenario': 0x301, 'command': "command_1"};
   geolocation.sendCommand(requestInfo, (err, result) => {
       if (err) {
@@ -1126,7 +1106,7 @@ Sends an extended command to the location subsystem. This API can only be called
 
 ## geolocation.sendCommand<sup>8+</sup>
 
-sendCommand(command: LocationCommand) : Promise&lt;boolean&gt;;
+sendCommand(command: LocationCommand): Promise&lt;boolean&gt;;
 
 Sends an extended command to the location subsystem. This API can only be called by system applications.
 
@@ -1149,650 +1129,10 @@ Sends an extended command to the location subsystem. This API can only be called
 **Example**
   
   ```js
+  import geolocation from '@ohos.geolocation';
   var requestInfo = {'scenario': 0x301, 'command': "command_1"};
   geolocation.sendCommand(requestInfo).then((result) => {
       console.log('promise, sendCommand: ' + JSON.stringify(result));
-  });
-  ```
-
-
-## geolocation.isLocationPrivacyConfirmed<sup>8+</sup>
-
-isLocationPrivacyConfirmed(type : LocationPrivacyType, callback: AsyncCallback&lt;boolean&gt;) : void;
-
-Checks whether a user agrees with the privacy statement of the location service. This API can only be called by system applications.
-
-**System API**: This is a system API and cannot be called by third-party applications.
-
-**Permission required**: ohos.permission.LOCATION
-
-**System capability**: SystemCapability.Location.Location.Core
-
-**Parameters**
-
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | type | LocationPrivacyType | Yes| Privacy statement type, for example, privacy statement displayed in the startup wizard or privacy statement displayed when enabling the location service.|
-  | callback | AsyncCallback&lt;boolean&gt; | Yes| Callback used to return the result, which indicates whether the user agrees with the privacy statement.|
-
-**Example**
-  
-  ```js
-  geolocation.isLocationPrivacyConfirmed(1, (err, result) => {
-      if (err) {
-          console.log('isLocationPrivacyConfirmed: err=' + JSON.stringify(err));
-      }
-      if (result) {
-          console.log('isLocationPrivacyConfirmed: result=' + JSON.stringify(result));
-      }
-  });
-  ```
-
-
-## geolocation.isLocationPrivacyConfirmed<sup>8+</sup>
-
-isLocationPrivacyConfirmed(type : LocationPrivacyType,) : Promise&lt;boolean&gt;;
-
-Checks whether a user agrees with the privacy statement of the location service. This API can only be called by system applications.
-
-**System API**: This is a system API and cannot be called by third-party applications.
-
-**Permission required**: ohos.permission.LOCATION
-
-**System capability**: SystemCapability.Location.Location.Core
-
-**Parameters**
-
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | type | LocationPrivacyType | Yes| Privacy statement type, for example, privacy statement displayed in the startup wizard or privacy statement displayed when enabling the location service.|
-
-**Return value**
-
-  | Name| Description|
-  | -------- | -------- |
-  | Promise&lt;boolean&gt; | Callback used to return the result, which indicates whether the user agrees with the privacy statement.|
-
-**Example**
-  
-  ```js
-  geolocation.isLocationPrivacyConfirmed(1).then((result) => {
-      console.log('promise, isLocationPrivacyConfirmed: ' + JSON.stringify(result));
-  });
-  ```
-
-
-## geolocation.setLocationPrivacyConfirmStatus<sup>8+</sup>
-
-setLocationPrivacyConfirmStatus(type : LocationPrivacyType, isConfirmed: boolean, callback: AsyncCallback&lt;boolean&gt;) : void;
-
-Sets the user confirmation status for the privacy statement of the location service. This API can only be called by system applications.
-
-**System API**: This is a system API and cannot be called by third-party applications.
-
-**Permission required**: ohos.permission.LOCATION
-
-**System capability**: SystemCapability.Location.Location.Core
-
-**Parameters**
-
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | type | LocationPrivacyType | Yes| Privacy statement type, for example, privacy statement displayed in the startup wizard or privacy statement displayed when enabling the location service.|
-  | isConfirmed | boolean | Yes| Callback used to return the result, which indicates whether the user agrees with the privacy statement.|
-  | callback | AsyncCallback&lt;boolean&gt; | Yes| Callback used to return the operation result.|
-
-**Example**
-  
-  ```js
-  geolocation.setLocationPrivacyConfirmStatus(1, true, (err, result) => {
-      if (err) {
-          console.log('setLocationPrivacyConfirmStatus: err=' + JSON.stringify(err));
-      }
-      if (result) {
-          console.log('setLocationPrivacyConfirmStatus: result=' + JSON.stringify(result));
-      }
-  });
-  ```
-
-
-## geolocation.setLocationPrivacyConfirmStatus<sup>8+</sup>
-
-setLocationPrivacyConfirmStatus(type : LocationPrivacyType, isConfirmed : boolean) : Promise&lt;boolean&gt;;
-
-Sets the user confirmation status for the privacy statement of the location service. This API can only be called by system applications.
-
-**System API**: This is a system API and cannot be called by third-party applications.
-
-**Permission required**: ohos.permission.LOCATION
-
-**System capability**: SystemCapability.Location.Location.Core
-
-**Parameters**
-
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | type | LocationPrivacyType | Yes| Privacy statement type, for example, privacy statement displayed in the startup wizard or privacy statement displayed when enabling the location service.|
-  | isConfirmed | boolean | Yes| Callback used to return the result, which indicates whether the user agrees with the privacy statement.|
-
-**Return value**
-
-  | Name| Description|
-  | -------- | -------- |
-  | Promise&lt;boolean&gt; | Callback used to return the operation result.|
-
-**Example**
-  
-  ```js
-  geolocation.setLocationPrivacyConfirmStatus(1, true).then((result) => {
-      console.log('promise, setLocationPrivacyConfirmStatus: ' + JSON.stringify(result));
-  });
-  ```
-
-
-## geolocation.getCountryCode<sup>9+</sup>
-
-getCountryCode(callback: AsyncCallback&lt;CountryCode&gt;) : void;
-
-Query the current country code.
-
-**System capability**: SystemCapability.Location.Location.Core
-
-**Parameters**
-
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | callback | AsyncCallback&lt;CountryCode&gt; | Yes | Callback is used to receive the country code. |
-
-**Example**: 
-  
-  ```js
-  geolocation.getCountryCode((err, result) => {
-      if (err) {
-          console.log('getCountryCode: err=' + JSON.stringify(err));
-      }
-      if (result) {
-          console.log('getCountryCode: result=' + JSON.stringify(result));
-      }
-  });
-  ```
-
-
-## geolocation.getCountryCode<sup>9+</sup>
-
-getCountryCode() : Promise&lt;CountryCode&gt;;
-
-Query the current country code.
-
-**System capability**: SystemCapability.Location.Location.Core
-
-**Parameters**
-
-None
-
-**Return value**
-
-  | Name| Description|
-  | -------- | -------- |
-  | Promise&lt;CountryCode&gt; | return country code. |
-
-**Example**:
-  
-  ```js
-  geolocation.getCountryCode()
-  .then((result) => {
-      console.log('promise, getCountryCode: result=' + JSON.stringify(result));
-  })
-  .catch((error) => {
-      console.log('promise, getCountryCode: error=' + JSON.stringify(error));
-  });
-  ```
-
-
-## geolocation.enableLocationMock<sup>9+</sup>
-
-enableLocationMock(scenario?: LocationRequestScenario, callback: AsyncCallback&lt;void&gt;) : void;
-
-Enable the position simulation function of a scene, and only one scene can be enabled at the same time.
-
-**System capability**: SystemCapability.Location.Location.Core
-
-**System API**: This is a system API and cannot be called by third-party applications.
-
-**Parameters**
-
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | scenario | LocationRequestScenario | No | Indicates under what scenario the position simulation function is enabled. |
-  | callback | AsyncCallback&lt;void&gt; | Yes | It is used to receive the execution result. If the execution is successful, it will return nullptr. Otherwise, it will return an error message. |
-
-**Example**: 
-  
-  ```js
-  var request = {"scenario": 0x0301};
-  geolocation.enableLocationMock(request, (err, result) => {
-      if (err) {
-          console.log('enableLocationMock: err=' + JSON.stringify(err));
-      }
-      if (result) {
-          console.log('enableLocationMock: result=' + JSON.stringify(result));
-      }
-  });
-  ```
-
-## geolocation.enableLocationMock<sup>9+</sup>
-
-enableLocationMock(scenario?: LocationRequestScenario) : Promise&lt;void&gt;;
-
-Enable the position simulation function of a scene, and only one scene can be enabled at the same time.
-
-**System capability**: SystemCapability.Location.Location.Core
-
-**System API**: This is a system API and cannot be called by third-party applications.
-
-**Parameters**
-
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | scenario | LocationRequestScenario | No | Indicates which scene's position simulation function is enabled. If this parameter is not carried, it means that the position simulation function of all scenes is enabled. |
-
-
-**Return value**
-
-  | Name| Description|
-  | -------- | -------- |
-  | Promise&lt;void&gt; | It is used to receive the execution result. If the execution is successful, it will return nullptr. Otherwise, it will return an error message.  |
-
-**Example**: 
-  
-  ```js
-  var request = {"scenario": 0x0301};
-  geolocation.enableLocationMock(request)
-  .then((result) => {
-      if (result) {
-        console.log('promise, enableLocationMock: result=' + JSON.stringify(result));
-      }
-  })
-  .catch((error) => {
-      if (error) {
-        console.log('promise, enableLocationMock: error=' + JSON.stringify(error));
-      }
-  });
-  ```
-
-
-## geolocation.disableLocationMock<sup>9+</sup>
-
-disableLocationMock(scenario?: LocationRequestScenario, callback: AsyncCallback&lt;void&gt;) : void;
-
-To disable the position simulation function.
-
-**System capability**: SystemCapability.Location.Location.Core
-
-**System API**: This is a system API and cannot be called by third-party applications.
-
-**Parameters**
-
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | scenario | LocationRequestScenario | No | Indicates to disable the position simulation function of a scene. If this parameter is not carried, it means to disable the position simulation function of all scenes. |
-  | callback | AsyncCallback&lt;void&gt; | Yes | It is used to receive the execution result. If the execution is successful, it will return nullptr. Otherwise, it will return an error message. |
-
-**Example**: 
-  
-  ```js
-  var request = {"scenario": 0x0301};
-  geolocation.disableLocationMock(request, (err, result) => {
-      if (err) {
-          console.log('disableLocationMock: err=' + JSON.stringify(err));
-      }
-      if (result) {
-          console.log('disableLocationMock: result=' + JSON.stringify(result));
-      }
-  });
-  ```
-
-
-## geolocation.disableLocationMock<sup>9+</sup>
-
-disableLocationMock(scenario?: LocationRequestScenario) : Promise&lt;void&gt;;
-
-To disable the position simulation function.
-
-**System capability**: SystemCapability.Location.Location.Core
-
-**System API**: This is a system API and cannot be called by third-party applications.
-
-**Parameters**
-
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | scenario | LocationRequestScenario | No | Indicates to disable the position simulation function of a scene. If this parameter is not carried, it means to disable the position simulation function of all scenes. |
-
-**Return value**
-
-  | Name| Description|
-  | -------- | -------- |
-  | Promise&lt;void&gt; | It is used to receive the execution result. If the execution is successful, it will return nullptr, otherwise it will return an error message |
-
-**Example**: 
-  
-  ```js
-  var request = {"scenario": 0x0301};
-  geolocation.disableLocationMock(request)
-  .then((result) => {
-      if (result) {
-        console.log('promise, disableLocationMock: result=' + JSON.stringify(result));
-      }
-  })
-  .catch((error) => {
-      if (error) {
-        console.log('promise, disableLocationMock: error=' + JSON.stringify(error));
-      }
-  });
-  ```
-
-
-## geolocation.setMockedLocations<sup>9+</sup>
-
-setMockedLocations(config: LocationMockConfig, callback: AsyncCallback&lt;void&gt;) : void;
-
-Set the simulated location information, and then report the simulated location at the time interval carried in the interface.
-
-**System capability**: SystemCapability.Location.Location.Core
-
-**System API**: This is a system API and cannot be called by third-party applications.
-
-**Parameters**
-
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | config | LocationMockConfig | Yes | Indicates the configuration parameters of location simulation, including the time interval of simulation location reporting and the array of simulation locations. |
-  | callback | AsyncCallback&lt;void&gt; | Yes | It is used to receive the execution result. If the execution is successful, it will return nullptr. Otherwise, it will return an error message. |
-
-**Example**: 
-  
-  ```js
-  var locations = [
-      {"latitude": 30.12, "longitude": 120.11, "altitude": 123, "accuracy": 1, "speed": 5.2, "timeStamp": 16594326109, "direction": 123.11, "timeSinceBoot": 1000000000, "additionSize": 0, "isFromMock": true},
-      {"latitude": 31.13, "longitude": 121.11, "altitude": 123, "accuracy": 2, "speed": 5.2, "timeStamp": 16594326109, "direction": 123.11, "timeSinceBoot": 2000000000, "additionSize": 0, "isFromMock": true},
-      {"latitude": 32.14, "longitude": 122.11, "altitude": 123, "accuracy": 3, "speed": 5.2, "timeStamp": 16594326109, "direction": 123.11, "timeSinceBoot": 3000000000, "additionSize": 0, "isFromMock": true},
-      {"latitude": 33.15, "longitude": 123.11, "altitude": 123, "accuracy": 4, "speed": 5.2, "timeStamp": 16594326109, "direction": 123.11, "timeSinceBoot": 4000000000, "additionSize": 0, "isFromMock": true},
-      {"latitude": 34.16, "longitude": 124.11, "altitude": 123, "accuracy": 5, "speed": 5.2, "timeStamp": 16594326109, "direction": 123.11, "timeSinceBoot": 5000000000, "additionSize": 0, "isFromMock": true}
-  ];
-  var config = {"timeInterval": 5, "locations": locations};
-  geolocation.setMockedLocations(config, (err, data) => {
-      if (err) {
-          console.log('setMockedLocations: err=' + JSON.stringify(err));
-      }
-      if (data) {
-          console.log('setMockedLocations: data=' + JSON.stringify(data));
-      }
-  });
-  ```
-
-## geolocation.setMockedLocations<sup>9+</sup>
-
-setMockedLocations(config: LocationMockConfig) : Promise&lt;void&gt;;
-
-Set the simulated location information, and then report the simulated location at the time interval carried in the interface.
-
-**System capability**: SystemCapability.Location.Location.Core
-
-**System API**: This is a system API and cannot be called by third-party applications.
-
-**Parameters**
-
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | config | LocationMockConfig | Yes | Indicates the configuration parameters of location simulation, including the time interval of simulation location reporting and the array of simulation locations. |
-
-**Return value**
-
-  | Name| Description|
-  | -------- | -------- |
-  | Promise&lt;void&gt; | It is used to receive the execution result. If the execution is successful, it will return nullptr. Otherwise, it will return an error message.  |
-
-**Example**: 
-  
-  ```js
-  var locations = [
-      {"latitude": 30.12, "longitude": 120.11, "altitude": 123, "accuracy": 1, "speed": 5.2, "timeStamp": 16594326109, "direction": 123.11, "timeSinceBoot": 1000000000, "additionSize": 0, "isFromMock": true},
-      {"latitude": 31.13, "longitude": 121.11, "altitude": 123, "accuracy": 2, "speed": 5.2, "timeStamp": 16594326109, "direction": 123.11, "timeSinceBoot": 2000000000, "additionSize": 0, "isFromMock": true},
-      {"latitude": 32.14, "longitude": 122.11, "altitude": 123, "accuracy": 3, "speed": 5.2, "timeStamp": 16594326109, "direction": 123.11, "timeSinceBoot": 3000000000, "additionSize": 0, "isFromMock": true},
-      {"latitude": 33.15, "longitude": 123.11, "altitude": 123, "accuracy": 4, "speed": 5.2, "timeStamp": 16594326109, "direction": 123.11, "timeSinceBoot": 4000000000, "additionSize": 0, "isFromMock": true},
-      {"latitude": 34.16, "longitude": 124.11, "altitude": 123, "accuracy": 5, "speed": 5.2, "timeStamp": 16594326109, "direction": 123.11, "timeSinceBoot": 5000000000, "additionSize": 0, "isFromMock": true}
-  ];
-  var config = {"timeInterval": 5, "locations":locations};
-  geolocation.setMockedLocations(config)
-  .then((result) => {
-      if (result) {
-        console.log('promise, setMockedLocations: result=' + JSON.stringify(result));
-      }
-  })
-  .catch((error) => {
-      if (error) {
-        console.log('promise, setMockedLocations: error=' + JSON.stringify(error));
-      }
-  });
-  ```
-
-
-
-## geolocation.enableReverseGeocodingMock<sup>9+</sup>
-
-enableReverseGeocodingMock(callback: AsyncCallback&lt;void&gt;) : void;
-
-Enable reverse geocoding simulation function.
-
-**System capability**: SystemCapability.Location.Location.Core
-
-**System API**: This is a system API and cannot be called by third-party applications.
-
-**Parameters**
-
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | callback | AsyncCallback&lt;void&gt; | Yes | It is used to receive the execution result. If the execution is successful, it will return nullptr. Otherwise, it will return an error message. |
-
-**Example**: 
-  
-  ```js
-  geolocation.enableReverseGeocodingMock((err, data) => {
-      if (err) {
-          console.log('enableReverseGeocodingMock: err=' + JSON.stringify(err));
-      }
-      if (data) {
-          console.log('enableReverseGeocodingMock: data=' + JSON.stringify(data));
-      }
-  });
-  ```
-
-
-## geolocation.enableReverseGeocodingMock<sup>9+</sup>
-
-enableReverseGeocodingMock() : Promise&lt;void&gt;;
-
-Enable reverse geocoding simulation function.
-
-**System capability**: SystemCapability.Location.Location.Core
-
-**System API**: This is a system API and cannot be called by third-party applications.
-
-**Parameters**: 
-
-None
-
-**Return value**
-
-  | Name| Description|
-  | -------- | -------- |
-  | Promise&lt;void&gt; | It is used to receive the execution result. If the execution is successful, it will return nullptr. Otherwise, it will return an error message. |
-
-**Example**: 
-  
-  ```js
-  geolocation.enableReverseGeocodingMock()
-  .then((result) => {
-      if (result) {
-        console.log('promise, enableReverseGeocodingMock: result=' + JSON.stringify(result));
-      }
-  })
-  .catch((error) => {
-      if (error) {
-        console.log('promise, enableReverseGeocodingMock: error=' + JSON.stringify(error));
-      }
-  });
-  ```
-
-
-## geolocation.disableReverseGeocodingMock<sup>9+</sup>
-
-disableReverseGeocodingMock(callback: AsyncCallback&lt;void&gt;) : void;
-
-Disable reverse geocoding simulation function.
-
-**System capability**: SystemCapability.Location.Location.Core
-
-**System API**: This is a system API and cannot be called by third-party applications.
-
-**Parameters**:
-
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | callback | AsyncCallback&lt;void&gt; | Yes | It is used to receive the execution result. If the execution is successful, it will return nullptr. Otherwise, it will return an error message |
-
-**Example**: 
-  
-  ```js
-  geolocation.disableReverseGeocodingMock((err, result) => {
-      if (err) {
-          console.log('disableReverseGeocodingMock: err=' + JSON.stringify(err));
-      }
-      if (result) {
-          console.log('disableReverseGeocodingMock: result=' + JSON.stringify(result));
-      }
-  });
-  ```
-
-
-## geolocation.disableReverseGeocodingMock<sup>9+</sup>
-
-disableReverseGeocodingMock() : Promise&lt;void&gt;;
-
-Disable reverse geocoding simulation function.
-
-**System capability**: SystemCapability.Location.Location.Core
-
-**System API**: This is a system API and cannot be called by third-party applications.
-
-**Parameters**: 
-
-None
-
-**Return value**
-
-  | Name| Description|
-  | -------- | -------- |
-  | Promise&lt;void&gt; |  It is used to receive the execution result. If the execution is successful, it will return nullptr. Otherwise, it will return an error message. |
-
-**Example**: 
-  
-  ```js
-  geolocation.disableReverseGeocodingMock()
-  .then((result) => {
-      if (result) {
-        console.log('promise, disableReverseGeocodingMock: result=' + JSON.stringify(result));
-      }
-  })
-  .catch((error) => {
-      if (error) {
-        console.log('promise, disableReverseGeocodingMock: error=' + JSON.stringify(error));
-      }
-  });
-  ```
-
-
-## geolocation.setReverseGeocodingMockInfo<sup>9+</sup>
-
-setReverseGeocodingMockInfo(mockInfos: Array&lt;ReverseGeocodingMockInfo&gt;, callback: AsyncCallback&lt;void&gt;) : void;
-
-Set the configuration information of the reverse geocoding simulation function, including the corresponding relationship between location and place name. If the location information is in the configuration information during the subsequent reverse geocoding query, the corresponding place name will be returned.
-
-**System capability**: SystemCapability.Location.Location.Core
-
-**System API**: This is a system API and cannot be called by third-party applications.
-
-**Parameters**
-
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | mockInfos | Array&lt;ReverseGeocodingMockInfo&gt; | Yes | An array of configuration parameters indicating the inverse geocoding simulation function. The configuration parameters of the inverse geocoding simulation function include a location and a place name. |
-  | callback | AsyncCallback&lt;void&gt; | Yes | It is used to receive the execution result. If the execution is successful, it will return nullptr. Otherwise, it will return an error message. |
-
-**Example**: 
-  
-  ```js
-  var mockInfos = [
-      {"location": {"locale": "zh", "latitude": 30.12, "longitude": 120.11, "maxItems": 1}, "geoAddress": {"locale": "zh", "latitude": 30.12, "longitude": 120.11, "maxItems": 1, "isFromMock": true}},
-      {"location": {"locale": "zh", "latitude": 31.12, "longitude": 121.11, "maxItems": 1}, "geoAddress": {"locale": "zh", "latitude": 31.12, "longitude": 121.11, "maxItems": 1, "isFromMock": true}},
-      {"location": {"locale": "zh", "latitude": 32.12, "longitude": 122.11, "maxItems": 1}, "geoAddress": {"locale": "zh", "latitude": 32.12, "longitude": 122.11, "maxItems": 1, "isFromMock": true}},
-      {"location": {"locale": "zh", "latitude": 33.12, "longitude": 123.11, "maxItems": 1}, "geoAddress": {"locale": "zh", "latitude": 33.12, "longitude": 123.11, "maxItems": 1, "isFromMock": true}},
-      {"location": {"locale": "zh", "latitude": 34.12, "longitude": 124.11, "maxItems": 1}, "geoAddress": {"locale": "zh", "latitude": 34.12, "longitude": 124.11, "maxItems": 1, "isFromMock": true}},
-  ];
-  geolocation.setReverseGeocodingMockInfo(mockInfos, (err, data) => {
-      if (err) {
-          console.log('promise, setReverseGeocodingMockInfo, err:' + JSON.stringify(err));
-      } 
-      if (data) {
-          console.log('promise, setReverseGeocodingMockInfo, data:' + JSON.stringify(data));
-      }
-  });
-  ```
-
-
-## geolocation.setReverseGeocodingMockInfo<sup>9+</sup>
-
-setReverseGeocodingMockInfo(mockInfos: Array&lt;ReverseGeocodingMockInfo&gt;) : Promise&lt;void&gt;;
-
-Set the configuration information of the reverse geocoding simulation function, including the corresponding relationship between location and place name. If the location information is in the configuration information during the subsequent reverse geocoding query, the corresponding place name will be returned.
-
-**System capability**: SystemCapability.Location.Location.Core
-
-**System API**: This is a system API and cannot be called by third-party applications.
-
-**Parameters**
-
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | mockInfos | Array&lt;ReverseGeocodingMockInfo&gt; | Yes | An array of configuration parameters indicating the inverse geocoding simulation function. The configuration parameters of the inverse geocoding simulation function include a location and a place name. |
-
-**Return value**
-
-  | Name| Description|
-  | -------- | -------- |
-  | Promise&lt;void&gt; |  It is used to receive the execution result. If the execution is successful, it will return nullptr. Otherwise, it will return an error message. |
-
-**Example**: 
-  
-  ```js
-  var mockInfos = [
-      {"location": {"locale": "zh", "latitude": 30.12, "longitude": 120.11, "maxItems": 1}, "geoAddress": {"locale": "zh", "latitude": 30.12, "longitude": 120.11, "maxItems": 1, "isFromMock": true}},
-      {"location": {"locale": "zh", "latitude": 31.12, "longitude": 121.11, "maxItems": 1}, "geoAddress": {"locale": "zh", "latitude": 31.12, "longitude": 121.11, "maxItems": 1, "isFromMock": true}},
-      {"location": {"locale": "zh", "latitude": 32.12, "longitude": 122.11, "maxItems": 1}, "geoAddress": {"locale": "zh", "latitude": 32.12, "longitude": 122.11, "maxItems": 1, "isFromMock": true}},
-      {"location": {"locale": "zh", "latitude": 33.12, "longitude": 123.11, "maxItems": 1}, "geoAddress": {"locale": "zh", "latitude": 33.12, "longitude": 123.11, "maxItems": 1, "isFromMock": true}},
-      {"location": {"locale": "zh", "latitude": 34.12, "longitude": 124.11, "maxItems": 1}, "geoAddress": {"locale": "zh", "latitude": 34.12, "longitude": 124.11, "maxItems": 1, "isFromMock": true}},
-  ];
-  geolocation.setReverseGeocodingMockInfo(mockInfos)
-  .then((result) => {
-      if (result) {
-        console.log('promise, setReverseGeocodingMockInfo: result=' + JSON.stringify(result));
-      }
-  })
-  .catch((error) => {
-      if (error) {
-        console.log('promise, setReverseGeocodingMockInfo: error=' + JSON.stringify(error));
-      }
   });
   ```
 
@@ -1841,7 +1181,6 @@ Enumerates error codes of the location service.
 
 | Name| Default Value| Description|
 | -------- | -------- | -------- |
-| NOT_SUPPORTED<sup>9+</sup> | 100 | Indicates that the interface function is not supported. |
 | INPUT_PARAMS_ERROR<sup>7+</sup> | 101 | Incorrect input parameters.|
 | REVERSE_GEOCODE_ERROR<sup>7+</sup> | 102 | Failed to call the reverse geocoding API.|
 | GEOCODE_ERROR<sup>7+</sup> | 103 | Failed to call the geocoding API.|
@@ -1849,7 +1188,6 @@ Enumerates error codes of the location service.
 | LOCATION_SWITCH_ERROR<sup>7+</sup> | 105 | Failed to change the location service switch.|
 | LAST_KNOWN_LOCATION_ERROR<sup>7+</sup> | 106 | Failed to obtain the previous location.|
 | LOCATION_REQUEST_TIMEOUT_ERROR<sup>7+</sup> | 107 | Failed to obtain the location within the specified time.|
-| QUERY_COUNTRY_CODE_ERROR<sup>9+</sup> | 108 | Indicates that the country code query failed. |
 
 
 ## ReverseGeoCodeRequest
@@ -1915,7 +1253,6 @@ Defines a geographic location.
 | addressUrl<sup>7+</sup> | string | No| Website URL.|
 | descriptions<sup>7+</sup> | Array&lt;string&gt; | No| Additional description.|
 | descriptionsSize<sup>7+</sup> | number | No| Total number of additional descriptions.|
-| isFromMock<sup>9+</sup> | Boolean | No | Indicates whether the geographical name information comes from the reverse geocoding simulation function. |
 
 
 ## LocationRequest
@@ -2063,58 +1400,3 @@ Defines a location.
 | timeSinceBoot<sup>7+</sup> | number | Yes| Location timestamp since boot.|
 | additions<sup>7+</sup> | Array&lt;string&gt; | No| Additional information.|
 | additionSize<sup>7+</sup> | number | No| Number of additional descriptions.|
-| isFromMock<sup>9+</sup> | Boolean | No | Indicates whether the location information comes from the location simulation function. |
-
-
-## ReverseGeocodingMockInfo<sup>9+</sup>
-
-The configuration information of the reverse geocoding simulation function includes a location information and a place name information.
-
-**System capability**:SystemCapability.Location.Location.Core
-
-**System API**: This is a system API and cannot be called by third-party applications.
-
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| location | ReverseGeoCodeRequest | Yes | Indicates longitude and latitude information. |
-| geoAddress | GeoAddress | Yes | Represents a geographic location. |
-
-
-## LocationMockConfig<sup>9+</sup>
-
-The configuration parameters of the location simulation function include the time interval of the simulation position report and the array of simulation locations.
-
-**System capability**: SystemCapability.Location.Location.Core
-
-**System API**: This is a system API and cannot be called by third-party applications.
-
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| timeInterval | number | Yes | Indicates the time interval of analog location reporting, in seconds. |
-| locations | Array&lt;Location&gt; | Yes | Represents an array of mocked locations. |
-
-
-## CountryCode<sup>9+</sup>
-
-The country code information structure contains the country code string and the source information of the country code.
-
-**System capability**: SystemCapability.Location.Location.Core
-
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| country | string | Yes | Represents the country code string. |
-| type | CountryCodeType | Yes | Indicates the source of country code information. |
-
-
-## CountryCodeType<sup>9+</sup>
-
-Country code source type.
-
-**System capability**: SystemCapability.Location.Location.Core
-
-| Name| Default Value| Description|
-| -------- | -------- | -------- |
-| COUNTRY_CODE_FROM_LOCALE | 1 | The country code obtained from the language configuration information of the globalization module. |
-| COUNTRY_CODE_FROM_SIM | 2 | The country code obtained from the SIM card. |
-| COUNTRY_CODE_FROM_LOCATION | 3 | Based on the user's location information, the country code is queried through reverse geocoding. |
-| COUNTRY_CODE_FROM_NETWORK | 4 | The country code obtained from the cellular network registration information. |
