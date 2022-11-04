@@ -53,8 +53,8 @@ DeviceProfile适配分布式数据库自动同步策略，以及采集信息补�
 | 软件 | 版本 | 备注 |
 | -------- | -------- | -------- |
 | OpenHarmony | 3.2&nbsp;Beta3 | NA |
-| Public SDK | Ohos_sdk_public&nbsp;3.2.7.5&nbsp;(API&nbsp;Version&nbsp;9&nbsp;Beta3) | 面向应用开发者提供，不包含需要使用系统权限的系统接口。<br/>通过DevEco Studio默认获取的SDK为Public SDK。 |
-| Full SDK | Ohos_sdk_full&nbsp;3.2.7.5&nbsp;(API&nbsp;Version&nbsp;9&nbsp;Beta3) | 面向OEM厂商提供，包含了需要使用系统权限的系统接口。<br/>使用Full SDK时需要手动从镜像站点获取，并在DevEco Studio中替换，具体操作可参考[替换指南](../application-dev/quick-start/full-sdk-switch-guide.md)。 |
+| Public SDK | Ohos_sdk_public&nbsp;3.2.7.5&nbsp;(API&nbsp;Version&nbsp;9&nbsp;Beta3)<br>Ohos_sdk_public&nbsp;3.2.7.6&nbsp;(API&nbsp;Version&nbsp;9&nbsp;Beta3) | 面向应用开发者提供，不包含需要使用系统权限的系统接口。<br/>通过DevEco Studio默认获取的SDK为Public SDK。 |
+| Full SDK | Ohos_sdk_full&nbsp;3.2.7.5&nbsp;(API&nbsp;Version&nbsp;9&nbsp;Beta3)<br>Ohos_sdk_full&nbsp;3.2.7.6&nbsp;(API&nbsp;Version&nbsp;9&nbsp;Beta3) | 面向OEM厂商提供，包含了需要使用系统权限的系统接口。<br/>使用Full SDK时需要手动从镜像站点获取，并在DevEco Studio中替换，具体操作可参考[替换指南](../application-dev/quick-start/full-sdk-switch-guide.md)。 |
 | HUAWEI&nbsp;DevEco&nbsp;Studio（可选） | 3.0&nbsp;Release | OpenHarmony应用开发推荐使用 |
 | HUAWEI&nbsp;DevEco&nbsp;Device&nbsp;Tool（可选） | 3.0&nbsp;Release | OpenHarmony智能设备集成开发环境推荐使用 |
 
@@ -137,6 +137,10 @@ DeviceProfile适配分布式数据库自动同步策略，以及采集信息补�
 | 标准系统Full SDK包（Windows\Linux）     | 3.2.7.5      | [站点](https://repo.huaweicloud.com/harmonyos/os/3.2-Beta3/ohos-sdk-windows_linux-full.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/harmonyos/os/3.2-Beta3/ohos-sdk-windows_linux-full.tar.gz.sha256) |
 | 标准系统Public SDK包（Mac）             | 3.2.7.5      | [站点](https://repo.huaweicloud.com/harmonyos/os/3.2-Beta3/ohos-sdk-mac-public.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/harmonyos/os/3.2-Beta3/ohos-sdk-mac-public.tar.gz.sha256) |
 | 标准系统Public SDK包（Windows\Linux）   | 3.2.7.5      | [站点](https://repo.huaweicloud.com/harmonyos/os/3.2-Beta3/ohos-sdk-windows_linux-public.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/harmonyos/os/3.2-Beta3/ohos-sdk-windows_linux-public.tar.gz.sha256) |
+| 标准系统Full SDK包（Mac）               | 3.2.7.6      | [站点](https://repo.huaweicloud.com/harmonyos/os/3.2-Beta3/sdk-patch/mac-sdk-full.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/harmonyos/os/3.2-Beta3/sdk-patch/mac-sdk-full.tar.gz.sha256) |
+| 标准系统Full SDK包（Windows\Linux）     | 3.2.7.6      | [站点](https://repo.huaweicloud.com/harmonyos/os/3.2-Beta3/sdk-patch/ohos-sdk-full.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/harmonyos/os/3.2-Beta3/sdk-patch/ohos-sdk-full.tar.gz.sha256) |
+| 标准系统Public SDK包（Mac）             | 3.2.7.6      | [站点](https://repo.huaweicloud.com/harmonyos/os/3.2-Beta3/sdk-patch/mac-sdk-public.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/harmonyos/os/3.2-Beta3/sdk-patch/mac-sdk-public.tar.gz.sha256) |
+| 标准系统Public SDK包（Windows\Linux）   | 3.2.7.6      | [站点](https://repo.huaweicloud.com/harmonyos/os/3.2-Beta3/sdk-patch/ohos-sdk-public.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/harmonyos/os/3.2-Beta3/sdk-patch/ohos-sdk-public.tar.gz.sha256) |
 
 
 
