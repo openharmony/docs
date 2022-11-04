@@ -102,3 +102,5 @@ connection.hasDefaultNet().then((has)=> {
   console.log("hasDefaultNet " + JSON.stringify(has))
 })
 ```
+
+<!--no_check-->
