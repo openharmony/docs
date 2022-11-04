@@ -60,7 +60,7 @@ ArkCompiler是一种统一编程平台，包含编译器、工具链、运行时
     Hello world!
     ```
 
-### 执行Test262测试套
+## 执行Test262测试套
 ```
 python ark.py x64.release test262
 ```
