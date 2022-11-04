@@ -503,7 +503,7 @@ let InputMethodSetting = inputMethod.getInputMethodSetting();
 
 stopInputSession(callback: AsyncCallback&lt;boolean&gt;): void
 
-隐藏输入法。使用callback异步回调。
+结束输入会话。使用callback异步回调。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -546,7 +546,7 @@ try {
 
 stopInputSession(): Promise&lt;boolean&gt;
 
-隐藏输入法。使用promise异步回调。
+结束输入会话。使用promise异步回调。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
