@@ -126,3 +126,5 @@ cameraInput = await this.cameraManager.createCameraInput(cameraId)熊文帅
 适用于：OpenHarmonySDK 3.2.7.5版本，API9 Stage模型
 
 当前限制最多创建13个媒体播放实例。
+
+<!--no_check-->
