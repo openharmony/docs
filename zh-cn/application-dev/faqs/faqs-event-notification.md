@@ -46,3 +46,4 @@ async function publishNotification() {
   prompt.showToast({ message: "发送成功" })
 }
 ```
+<!--no_check-->
