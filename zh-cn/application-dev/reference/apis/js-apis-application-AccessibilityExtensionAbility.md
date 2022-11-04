@@ -2,7 +2,7 @@
 
 **AccessibilityExtensionAbility**基于ExtensionAbility框架，提供辅助功能业务的能力。
 
->**说明：**
+>![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
 >
 >本模块首批接口从API version 9开始支持，后续版本的新增接口，采用上角标单独标记接口的起始版本。
 >
@@ -32,35 +32,9 @@ import AccessibilityExtensionAbility from '@ohos.application.AccessibilityExtens
 
 | 名称        | 参数类型                                     | 可读   | 可写   | 说明         |
 | --------- | ---------------------------------------- | ---- | ---- | ---------- |
-| eventType | [EventType](js-apis-accessibility.md#EventType) \| [WindowUpdateType](js-apis-accessibility.md#WindowUpdateType) \| [TouchGuideType](touchguidetype) \| [GestureType](gesturetype) \| [PageUpdateType](pageupdatetype) | 是    | 否    | 具体事件类型。    |
+| eventType | [EventType](js-apis-accessibility.md#EventType) \| [WindowUpdateType](js-apis-accessibility.md#WindowUpdateType) \| [TouchGuideType](#touchguidetype) \| [GestureType](#gesturetype) \| [PageUpdateType](#pageupdatetype) | 是    | 否    | 具体事件类型。    |
 | target    | AccessibilityElement                     | 是    | 否    | 发生事件的目标组件。 |
 | timeStamp | number                                   | 是    | 否    | 事件时间戳。     |
-
-## GesturePath
-
-表示手势路径信息。
-
-**系统能力**：以下各项对应的系统能力均为 SystemCapability.BarrierFree.Accessibility.Core
-
-### 属性
-
-| 名称           | 参数类型                                     | 可读   | 可写   | 说明     |
-| ------------ | ---------------------------------------- | ---- | ---- | ------ |
-| points       | Array&lt;[GesturePoint](gesturepoint)&gt; | 是    | 是    | 手势。    |
-| durationTime | number                                   | 是    | 是    | 手势总耗时。 |
-
-## GesturePoint
-
-表示手势触摸点。
-
-**系统能力**：以下各项对应的系统能力均为 SystemCapability.BarrierFree.Accessibility.Core
-
-### 属性
-
-| 名称        | 参数类型   | 可读   | 可写   | 说明      |
-| --------- | ------ | ---- | ---- | ------- |
-| positionX | number | 是    | 是    | 触摸点X坐标。 |
-| positionY | number | 是    | 是    | 触摸点Y坐标。 |
 
 ## GestureType
 
@@ -117,16 +91,14 @@ onConnect(): void;
 
 **系统能力：**  SystemCapability.BarrierFree.Accessibility.Core
 
-**参数：**
-
-无
-
 **示例：**
 
 ```ts
-onConnect(): void {
-    console.log("AxExtensionAbility onConnect");
-}
+class MyAccessibilityExtensionAbility extends AccessibilityExtensionAbility {
+    onConnect() {
+        console.log('AxExtensionAbility onConnect');
+    }
+};
 ```
 
 ## AccessibilityExtensionAbility.onDisconnect
@@ -137,16 +109,14 @@ onDisconnect(): void;
 
 **系统能力：**  SystemCapability.BarrierFree.Accessibility.Core
 
-**参数：**
-
-无
-
 **示例：**
 
 ```ts
-onDisconnect(): void {
-    console.log("AxExtensionAbility onDisconnect");
-}
+class MyAccessibilityExtensionAbility extends AccessibilityExtensionAbility {
+    onDisconnect() {
+        console.log('AxExtensionAbility onDisconnect');
+    }
+};
 ```
 
 ## AccessibilityExtensionAbility.onAccessibilityEvent
@@ -161,17 +131,19 @@ onAccessibilityEvent(event: AccessibilityEvent): void;
 
 | 参数名   | 参数类型                                     | 必填   | 说明              |
 | ----- | ---------------------------------------- | ---- | --------------- |
-| event | [AccessibilityEvent](accessibilityevent) | 是    | 无障碍事件回调函数。无返回值。 |
+| event | [AccessibilityEvent](#accessibilityevent) | 是    | 无障碍事件回调函数。无返回值。 |
 
 **示例：**
 
 ```ts
-onAccessibilityEvent(event: AccessibilityEvent): void {
-    console.log("AxExtensionAbility onAccessibilityEvent");
-    if (event.eventType == 'click') {
-        console.log("AxExtensionAbility onAccessibilityEvent: click");
+class MyAccessibilityExtensionAbility extends AccessibilityExtensionAbility {
+    onAccessibilityEvent(event) {
+        console.log('AxExtensionAbility onAccessibilityEvent');
+        if (event.eventType == 'click') {
+            console.log('AxExtensionAbility onAccessibilityEvent: click');
+        }
     }
-}
+};
 ```
 
 ## AccessibilityExtensionAbility.onKeyEvent
@@ -191,12 +163,14 @@ onKeyEvent(keyEvent: KeyEvent): boolean;
 **示例：**
 
 ```ts
-onKeyEvent(keyEvent: inputEventClient.KeyEvent): boolean {
-    console.log("AxExtensionAbility onKeyEvent");
-    if (keyEvent.keyCode == 22) {
-        console.log("AxExtensionAbility onKeyEvent: intercept 22");
-        return true;
+class MyAccessibilityExtensionAbility extends AccessibilityExtensionAbility {
+    onKeyEvent(keyEvent) {
+        console.log('AxExtensionAbility onKeyEvent');
+        if (keyEvent.keyCode == 22) {
+            console.log('AxExtensionAbility onKeyEvent: intercept 22');
+            return true;
+        }
+        return false;
     }
-    return false;
-}
+};
 ```

@@ -41,6 +41,14 @@ on(type: SensorId.ACCELEROMETER, callback: Callback&lt;AccelerometerResponse&gt;
 | callback | Callback&lt;[AccelerometerResponse](#accelerometerresponse)&gt; | 是   | 注册加速度传感器的回调函数，上报的数据类型为AccelerometerResponse。 |
 | options  | [Options](#options)                                          | 否   | 可选参数列表，设置上报频率，默认值为200000000ns。            |
 
+**错误码**： 
+
+以下错误码的详细介绍请参见 [ohos.sensor(传感器)错误码](../errorcodes/errorcode-sensor.md)。
+
+| 错误码ID | 错误信息           |
+| -------- | ------------------ |
+| 14500101 | Service exception. |
+
 **示例：** 
 
 ```js
@@ -72,6 +80,14 @@ on(type: SensorId.ACCELEROMETER_UNCALIBRATED, callback: Callback&lt;Acceleromete
 | type     | [SensorId](#sensorid9)                                       | 是   | 要订阅的未校准加速度传感器类型为ACCELEROMETER_UNCALIBRATED。 |
 | callback | Callback&lt;[AccelerometerUncalibratedResponse](#accelerometeruncalibratedresponse)&gt; | 是   | 注册未校准加速度计传感器的回调函数，上报的数据类型为AccelerometerUncalibratedResponse。 |
 | options  | [Options](#options)                                          | 否   | 可选参数列表，设置上报频率，默认值为200000000ns。            |
+
+**错误码**： 
+
+以下错误码的详细介绍请参见 [ohos.sensor(传感器)错误码](../errorcodes/errorcode-sensor.md)。
+
+| 错误码ID | 错误信息           |
+| -------- | ------------------ |
+| 14500101 | Service exception. |
 
 **示例：** 
 
@@ -106,6 +122,14 @@ on(type: SensorId.AMBIENT_LIGHT, callback: Callback&lt;LightResponse&gt;, option
 | callback | Callback&lt;[LightResponse](#lightresponse)&gt; | 是   | 注册环境光传感器的回调函数，上报的数据类型为LightResponse。 |
 | options  | [Options](#options)                             | 否   | 可选参数列表，设置上报频率，默认值为200000000ns。           |
 
+**错误码**： 
+
+以下错误码的详细介绍请参见 [ohos.sensor(传感器)错误码](../errorcodes/errorcode-sensor.md)。
+
+| 错误码ID | 错误信息           |
+| -------- | ------------------ |
+| 14500101 | Service exception. |
+
 **示例：** 
 
 ```js
@@ -133,6 +157,14 @@ on(type: SensorId.AMBIENT_TEMPERATURE, callback: Callback&lt;AmbientTemperatureR
 | type     | [SensorId](#sensorid9)                                       | 是   | 要订阅的环境温度传感器类型为AMBIENT_TEMPERATURE。            |
 | callback | Callback&lt;[AmbientTemperatureResponse](#ambienttemperatureresponse)&gt; | 是   | 注册环境温度传感器的回调函数，上报的数据类型为AmbientTemperatureResponse。 |
 | options  | [Options](#options)                                          | 否   | 可选参数列表，设置上报频率，默认值为200000000ns。            |
+
+**错误码**： 
+
+以下错误码的详细介绍请参见 [ohos.sensor(传感器)错误码](../errorcodes/errorcode-sensor.md)。
+
+| 错误码ID | 错误信息           |
+| -------- | ------------------ |
+| 14500101 | Service exception. |
 
 **示例：**
 
@@ -162,6 +194,14 @@ on(type: SensorId.BAROMETER, callback: Callback&lt;BarometerResponse&gt;, option
 | callback | Callback&lt;[BarometerResponse](#barometerresponse)&gt; | 是   | 注册气压计传感器的回调函数，上报的数据类型为BarometerResponse。 |
 | options  | [Options](#options)                                     | 否   | 可选参数列表，设置上报频率，默认值为200000000ns。            |
 
+**错误码**： 
+
+以下错误码的详细介绍请参见 [ohos.sensor(传感器)错误码](../errorcodes/errorcode-sensor.md)。
+
+| 错误码ID | 错误信息           |
+| -------- | ------------------ |
+| 14500101 | Service exception. |
+
 **示例：**
 
 ```js
@@ -189,6 +229,14 @@ on(type: SensorId.GRAVITY, callback: Callback&lt;GravityResponse&gt;,options?: O
 | type     | [SensorId](#sensorid9)                              | 是   | 要订阅的重力传感器类型为GRAVITY。                           |
 | callback | Callback&lt;[GravityResponse](#gravityresponse)&gt; | 是   | 注册重力传感器的回调函数，上报的数据类型为GravityResponse。 |
 | options  | [Options](#options)                                 | 否   | 可选参数列表，设置上报频率，默认值为200000000ns。           |
+
+**错误码**： 
+
+以下错误码的详细介绍请参见 [ohos.sensor(传感器)错误码](../errorcodes/errorcode-sensor.md)。
+
+| 错误码ID | 错误信息           |
+| -------- | ------------------ |
+| 14500101 | Service exception. |
 
 **示例：**
 
@@ -221,6 +269,14 @@ on(type: SensorId.GYROSCOPE, callback: Callback&lt;GyroscopeResponse&gt;,options
 | type     | [SensorId](#sensorid9)                                  | 是   | 要订阅的陀螺仪传感器类型为GYROSCOPE。                        |
 | callback | Callback&lt;[GyroscopeResponse](#gyroscoperesponse)&gt; | 是   | 返回注册陀螺仪传感器的回调函数，上报的数据类型为GyroscopeResponse。 |
 | options  | [Options](#options)                                     | 否   | 可选参数列表，设置上报频率，默认值为200000000ns。            |
+
+**错误码**： 
+
+以下错误码的详细介绍请参见 [ohos.sensor(传感器)错误码](../errorcodes/errorcode-sensor.md)。
+
+| 错误码ID | 错误信息           |
+| -------- | ------------------ |
+| 14500101 | Service exception. |
 
 **示例：**
 
@@ -255,6 +311,14 @@ on(type: SensorId.GYROSCOPE_UNCALIBRATED, callback: Callback&lt;GyroscopeUncalib
 | callback | Callback&lt;[GyroscopeUncalibratedResponse](#gyroscopeuncalibratedresponse)&gt; | 是   | 注册未校准陀螺仪传感器的回调函数，上报的数据类型为GyroscopeUncalibratedResponse。 |
 | options  | [Options](#options)                                          | 否   | 可选参数列表，设置上报频率，默认值为200000000ns。            |
 
+**错误码**： 
+
+以下错误码的详细介绍请参见 [ohos.sensor(传感器)错误码](../errorcodes/errorcode-sensor.md)。
+
+| 错误码ID | 错误信息           |
+| -------- | ------------------ |
+| 14500101 | Service exception. |
+
 **示例：**
 
 ```js
@@ -276,7 +340,7 @@ try {
 
 on(type: SensorId.HALL, callback: Callback&lt;HallResponse&gt;, options?: Options): void
 
-订阅心率传感器数据。
+订阅霍尔传感器数据。
 
 **系统能力**：SystemCapability.Sensors.Sensor
 
@@ -287,6 +351,14 @@ on(type: SensorId.HALL, callback: Callback&lt;HallResponse&gt;, options?: Option
 | type     | [SensorId](#sensorid9)                        | 是   | 要订阅的霍尔传感器类型为HALL。                               |
 | callback | Callback&lt;[HallResponse](#hallresponse)&gt; | 是   | 注册霍尔传感器的回调函数，上报的数据类型为&nbsp;HallResponse。 |
 | options  | [Options](#options)                           | 否   | 可选参数列表，设置上报频率，默认值为200000000ns。            |
+
+**错误码**： 
+
+以下错误码的详细介绍请参见 [ohos.sensor(传感器)错误码](../errorcodes/errorcode-sensor.md)。
+
+| 错误码ID | 错误信息           |
+| -------- | ------------------ |
+| 14500101 | Service exception. |
 
 **示例：**
 
@@ -318,6 +390,14 @@ on(type: SensorId.HEART_RATE, callback: Callback&lt;HeartRateResponse&gt;,option
 | callback | Callback&lt;[HeartRateResponse](#heartrateresponse)&gt; | 是   | 注册一次心率传感器的回调函数，上报的数据类型为HeartRateResponse。 |
 | options  | [Options](#options)                                     | 否   | 可选参数列表，设置上报频率，默认值为200000000ns。            |
 
+**错误码**： 
+
+以下错误码的详细介绍请参见 [ohos.sensor(传感器)错误码](../errorcodes/errorcode-sensor.md)。
+
+| 错误码ID | 错误信息           |
+| -------- | ------------------ |
+| 14500101 | Service exception. |
+
 **示例：**
 
 ```js
@@ -346,6 +426,14 @@ on(type: SensorId.HUMIDITY, callback: Callback&lt;HumidityResponse&gt;,options?:
 | callback | Callback&lt;[HumidityResponse](#humidityresponse)&gt; | 是   | 注册湿度传感器的回调函数，上报的数据类型为HumidityResponse。 |
 | options  | [Options](#options)                                   | 否   | 可选参数列表，设置上报频率，默认值为200000000ns。            |
 
+**错误码**： 
+
+以下错误码的详细介绍请参见 [ohos.sensor(传感器)错误码](../errorcodes/errorcode-sensor.md)。
+
+| 错误码ID | 错误信息           |
+| -------- | ------------------ |
+| 14500101 | Service exception. |
+
 **示例：**
 
 ```js
@@ -358,7 +446,7 @@ try {
 }
 ```
 
-###  LINEAR_ACCELERATION<sup>9+</sup>
+###   LINEAR_ACCELEROMETER<sup>9+</sup>
 
 on(type: SensorId.LINEAR_ACCELEROMETER, callback: Callback&lt;LinearAccelerometerResponse&gt;,
         options?: Options): void
@@ -376,6 +464,14 @@ on(type: SensorId.LINEAR_ACCELEROMETER, callback: Callback&lt;LinearAcceleromete
 | type     | [SensorId](#sensorid9)                                       | 是   | 要订阅的线性加速度传感器类型为LINEAR_ACCELEROMETER。         |
 | callback | Callback&lt;[LinearAccelerometerResponse](#linearaccelerometerresponse)&gt; | 是   | 注册线性加速度传感器的回调函数，上报的数据类型为LinearAccelerometerResponse。 |
 | options  | [Options](#options)                                          | 否   | 可选参数列表，设置上报频率，默认值为200000000ns。            |
+
+**错误码**： 
+
+以下错误码的详细介绍请参见 [ohos.sensor(传感器)错误码](../errorcodes/errorcode-sensor.md)。
+
+| 错误码ID | 错误信息           |
+| -------- | ------------------ |
+| 14500101 | Service exception. |
 
 **示例：**
 
@@ -407,6 +503,14 @@ on(type: SensorId.MAGNETIC_FIELD, callback: Callback&lt;MagneticFieldResponse&gt
 | callback | Callback&lt;[MagneticFieldResponse](#magneticfieldresponse)&gt; | 是   | 注册磁场传感器的回调函数，上报的数据类型为MagneticFieldResponse。 |
 | options  | [Options](#options)                                          | 否   | 可选参数列表，设置上报频率，默认值为200000000ns。            |
 
+**错误码**： 
+
+以下错误码的详细介绍请参见 [ohos.sensor(传感器)错误码](../errorcodes/errorcode-sensor.md)。
+
+| 错误码ID | 错误信息           |
+| -------- | ------------------ |
+| 14500101 | Service exception. |
+
 **示例：**
 
 ```js
@@ -437,6 +541,14 @@ on(type: SensorId.MAGNETIC_FIELD_UNCALIBRATED, callback: Callback&lt;MagneticFie
 | callback | Callback&lt;[MagneticFieldUncalibratedResponse](#magneticfielduncalibratedresponse)&gt; | 是   | 注册未校准磁场传感器的回调函数，上报的数据类型为MagneticFieldUncalibratedResponse。 |
 | options  | [Options](#options)                                          | 否   | 可选参数列表，设置上报频率，默认值为200000000ns。            |
 
+**错误码**： 
+
+以下错误码的详细介绍请参见 [ohos.sensor(传感器)错误码](../errorcodes/errorcode-sensor.md)。
+
+| 错误码ID | 错误信息           |
+| -------- | ------------------ |
+| 14500101 | Service exception. |
+
 **示例：**
 
 ```js
@@ -461,6 +573,14 @@ on(type: SensorId.ORIENTATION, callback: Callback&lt;OrientationResponse&gt;,opt
 订阅定向传感器数据。
 
 **系统能力**：SystemCapability.Sensors.Sensor 
+
+**错误码**： 
+
+以下错误码的详细介绍请参见 [ohos.sensor(传感器)错误码](../errorcodes/errorcode-sensor.md)。
+
+| 错误码ID | 错误信息           |
+| -------- | ------------------ |
+| 14500101 | Service exception. |
 
 **参数：**
 
@@ -493,6 +613,14 @@ on(type: SensorId.PEDOMETER, callback: Callback&lt;PedometerResponse&gt;, option
 **需要权限**：ohos.permission.ACTIVITY_MOTION 
 
 **系统能力**：SystemCapability.Sensors.Sensor 
+
+**错误码**： 
+
+以下错误码的详细介绍请参见 [ohos.sensor(传感器)错误码](../errorcodes/errorcode-sensor.md)。
+
+| 错误码ID | 错误信息           |
+| -------- | ------------------ |
+| 14500101 | Service exception. |
 
 **参数：**
 
@@ -533,6 +661,14 @@ on(type: SensorId.PEDOMETER_DETECTION, callback: Callback&lt;PedometerDetectionR
 | callback | Callback&lt;[PedometerDetectionResponse](#pedometerdetectionresponse)&gt; | 是   | 注册计步检测传感器的回调函数，上报的数据类型为PedometerDetectionResponse。 |
 | options  | [Options](#options)                                          | 否   | 可选参数列表，设置上报频率，默认值为200000000ns。            |
 
+**错误码**： 
+
+以下错误码的详细介绍请参见 [ohos.sensor(传感器)错误码](../errorcodes/errorcode-sensor.md)。
+
+| 错误码ID | 错误信息           |
+| -------- | ------------------ |
+| 14500101 | Service exception. |
+
 **示例：**
 
 ```js
@@ -560,6 +696,14 @@ on(type: SensorId.PROXIMITY, callback: Callback&lt;ProximityResponse&gt;, option
 | type     | [SensorId](#sensorid9)                                  | 是   | 要订阅的接近光传感器类型为PROXIMITY。                        |
 | callback | Callback&lt;[ProximityResponse](#proximityresponse)&gt; | 是   | 注册接近光传感器的回调函数，上报的数据类型为ProximityResponse。 |
 | options  | [Options](#options)                                     | 否   | 可选参数列表，设置上报频率，默认值为200000000ns。            |
+
+**错误码**： 
+
+以下错误码的详细介绍请参见 [ohos.sensor(传感器)错误码](../errorcodes/errorcode-sensor.md)。
+
+| 错误码ID | 错误信息           |
+| -------- | ------------------ |
+| 14500101 | Service exception. |
 
 **示例：** 
 
@@ -589,6 +733,14 @@ on(type: SensorId.ROTATION_VECTOR, callback: Callback&lt;RotationVectorResponse&
 | type     | [SensorId](#sensorid9)                                       | 是   | 要订阅的旋转矢量传感器类型为ROTATION_VECTOR。                |
 | callback | Callback&lt;[RotationVectorResponse](#rotationvectorresponse)&gt; | 是   | 注册旋转矢量传感器的回调函数，上报的数据类型为RotationVectorResponse。 |
 | options  | [Options](#options)                                          | 否   | 可选参数列表，设置上报频率，默认值为200000000ns。            |
+
+**错误码**： 
+
+以下错误码的详细介绍请参见 [ohos.sensor(传感器)错误码](../errorcodes/errorcode-sensor.md)。
+
+| 错误码ID | 错误信息           |
+| -------- | ------------------ |
+| 14500101 | Service exception. |
 
 **示例：** 
 
@@ -622,6 +774,14 @@ on(type: SensorId.SIGNIFICANT_MOTION, callback: Callback&lt;SignificantMotionRes
 | callback | Callback&lt;[SignificantMotionResponse](#significantmotionresponse)&gt; | 是   | 注册有效运动传感器的回调函数，上报的数据类型为SignificantMotionResponse。 |
 | options  | [Options](#options)                                          | 否   | 可选参数列表，设置上报频率，默认值为200000000ns。            |
 
+**错误码**： 
+
+以下错误码的详细介绍请参见 [ohos.sensor(传感器)错误码](../errorcodes/errorcode-sensor.md)。
+
+| 错误码ID | 错误信息           |
+| -------- | ------------------ |
+| 14500101 | Service exception. |
+
 **示例：** 
 
 ```js
@@ -639,7 +799,7 @@ try {
 on(type: SensorId.WEAR_DETECTION, callback: Callback&lt;WearDetectionResponse&gt;,
         options?: Options): void
 
-订阅磨损检测传感器数据。
+订阅佩戴检测传感器数据。
 
 **系统能力**：SystemCapability.Sensors.Sensor
 
@@ -650,6 +810,14 @@ on(type: SensorId.WEAR_DETECTION, callback: Callback&lt;WearDetectionResponse&gt
 | type     | [SensorId](#sensorid9)                                       | 是   | 要订阅的佩戴检测传感器类型为WEAR_DETECTION。                 |
 | callback | Callback&lt;[WearDetectionResponse](#weardetectionresponse)&gt; | 是   | 注册佩戴检测传感器的回调函数，上报的数据类型为WearDetectionResponse。 |
 | options  | [Options](#options)                                          | 否   | 可选参数列表，设置上报频率，默认值为200000000ns。            |
+
+**错误码**： 
+
+以下错误码的详细介绍请参见 [ohos.sensor(传感器)错误码](../errorcodes/errorcode-sensor.md)。
+
+| 错误码ID | 错误信息           |
+| -------- | ------------------ |
+| 14500101 | Service exception. |
 
 **示例：** 
 
@@ -682,6 +850,14 @@ once(type: SensorId.ACCELEROMETER, callback: Callback&lt;AccelerometerResponse&g
 | type     | [SensorId](#sensorid9)                                       | 是   | 加速度传感器类型为ACCELEROMETER。                            |
 | callback | Callback&lt;[AccelerometerResponse](#accelerometerresponse)&gt; | 是   | 注册一次加速度传感器的回调函数，上报的数据类型为AccelerometerResponse。 |
 
+**错误码**： 
+
+以下错误码的详细介绍请参见 [ohos.sensor(传感器)错误码](../errorcodes/errorcode-sensor.md)。
+
+| 错误码ID | 错误信息           |
+| -------- | ------------------ |
+| 14500101 | Service exception. |
+
 **示例：** 
 
 ```js
@@ -713,6 +889,14 @@ once(type: SensorId.ACCELEROMETER_UNCALIBRATED, callback: Callback&lt;Accelerome
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type     | [SensorId](#sensorid9)                                       | 是   | 未校准加速度传感器类型为ACCELEROMETER_UNCALIBRATED。         |
 | callback | Callback&lt;[AccelerometerUncalibratedResponse](#accelerometeruncalibratedresponse)&gt; | 是   | 注册一次未校准加速度传感器的回调函数，上报的数据类型为AccelerometerUncalibratedResponse。 |
+
+**错误码**： 
+
+以下错误码的详细介绍请参见 [ohos.sensor(传感器)错误码](../errorcodes/errorcode-sensor.md)。
+
+| 错误码ID | 错误信息           |
+| -------- | ------------------ |
+| 14500101 | Service exception. |
 
 **示例：** 
 
@@ -747,6 +931,14 @@ once(type: SensorId.AMBIENT_LIGHT, callback: Callback&lt;LightResponse&gt;): voi
 | type     | [SensorId](#sensorid9)                          | 是   | 环境光传感器类型为AMBIENT_LIGHT。                            |
 | callback | Callback&lt;[LightResponse](#lightresponse)&gt; | 是   | 注册一次环境光传感器的回调函数，上报的数据类型为LightResponse。 |
 
+**错误码**： 
+
+以下错误码的详细介绍请参见 [ohos.sensor(传感器)错误码](../errorcodes/errorcode-sensor.md)。
+
+| 错误码ID | 错误信息           |
+| -------- | ------------------ |
+| 14500101 | Service exception. |
+
 **示例：** 
 
 ```js
@@ -774,6 +966,14 @@ once(type: SensorId.AMBIENT_TEMPERATURE, callback: Callback&lt;AmbientTemperatur
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type     | [SensorId](#sensorid9)                                       | 是   | 环境温度传感器类型为AMBIENT_TEMPERATURE。                    |
 | callback | Callback&lt;[AmbientTemperatureResponse](#ambienttemperatureresponse)&gt; | 是   | 注册一次环境温度传感器的回调函数，上报的数据类型为AmbientTemperatureResponse。 |
+
+**错误码**： 
+
+以下错误码的详细介绍请参见 [ohos.sensor(传感器)错误码](../errorcodes/errorcode-sensor.md)。
+
+| 错误码ID | 错误信息           |
+| -------- | ------------------ |
+| 14500101 | Service exception. |
 
 **示例：** 
 
@@ -803,6 +1003,14 @@ once(type: SensorId.BAROMETER, callback: Callback&lt;BarometerResponse&gt;): voi
 | type     | [SensorId](#sensorid9)                                  | 是   | 气压计传感器类型为BAROMETER。                                |
 | callback | Callback&lt;[BarometerResponse](#barometerresponse)&gt; | 是   | 注册一次气压计传感器的回调函数，上报的数据类型为BarometerResponse。 |
 
+**错误码**： 
+
+以下错误码的详细介绍请参见 [ohos.sensor(传感器)错误码](../errorcodes/errorcode-sensor.md)。
+
+| 错误码ID | 错误信息           |
+| -------- | ------------------ |
+| 14500101 | Service exception. |
+
 **示例：** 
 
 ```js
@@ -830,6 +1038,14 @@ once(type: SensorId.GRAVITY, callback: Callback&lt;GravityResponse&gt;): void
 | -------- | --------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | type     | [SensorId](#sensorid9)                              | 是   | 重力传感器类型为GRAVITY。                                    |
 | callback | Callback&lt;[GravityResponse](#gravityresponse)&gt; | 是   | 注册一次重力传感器的回调函数，上报的数据类型为GravityResponse。 |
+
+**错误码**： 
+
+以下错误码的详细介绍请参见 [ohos.sensor(传感器)错误码](../errorcodes/errorcode-sensor.md)。
+
+| 错误码ID | 错误信息           |
+| -------- | ------------------ |
+| 14500101 | Service exception. |
 
 **示例：**
 
@@ -863,6 +1079,14 @@ once(type: SensorId.GYROSCOPE, callback: Callback&lt;GyroscopeResponse&gt;): voi
 | type     | [SensorId](#sensorid9)                                  | 是   | 陀螺仪传感器类型为GYROSCOPE。                                |
 | callback | Callback&lt;[GyroscopeResponse](#gyroscoperesponse)&gt; | 是   | 注册一次陀螺仪传感器的回调函数，上报的数据类型为GyroscopeResponse。 |
 
+**错误码**： 
+
+以下错误码的详细介绍请参见 [ohos.sensor(传感器)错误码](../errorcodes/errorcode-sensor.md)。
+
+| 错误码ID | 错误信息           |
+| -------- | ------------------ |
+| 14500101 | Service exception. |
+
 **示例：**
 
 ```js
@@ -894,6 +1118,14 @@ once(type: SensorId.GYROSCOPE_UNCALIBRATED, callback: Callback&lt;GyroscopeUncal
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type     | [SensorId](#sensorid9)                                       | 是   | 未校准陀螺仪传感器类型为GYROSCOPE_UNCALIBRATED。             |
 | callback | Callback&lt;[GyroscopeUncalibratedResponse](#gyroscopeuncalibratedresponse)&gt; | 是   | 注册一次未校准陀螺仪传感器的回调函数，上报的数据类型为GyroscopeUncalibratedResponse。 |
+
+**错误码**： 
+
+以下错误码的详细介绍请参见 [ohos.sensor(传感器)错误码](../errorcodes/errorcode-sensor.md)。
+
+| 错误码ID | 错误信息           |
+| -------- | ------------------ |
+| 14500101 | Service exception. |
 
 **示例：**
 
@@ -928,6 +1160,14 @@ once(type: SensorId.HALL, callback: Callback&lt;HallResponse&gt;): void
 | type     | [SensorId](#sensorid9)                        | 是   | 霍尔传感器类型为HALL。                                       |
 | callback | Callback&lt;[HallResponse](#hallresponse)&gt; | 是   | 注册一次霍尔传感器的回调函数，上报的数据类型为HallResponse。 |
 
+**错误码**： 
+
+以下错误码的详细介绍请参见 [ohos.sensor(传感器)错误码](../errorcodes/errorcode-sensor.md)。
+
+| 错误码ID | 错误信息           |
+| -------- | ------------------ |
+| 14500101 | Service exception. |
+
 **示例：**
 
 ```js
@@ -958,6 +1198,14 @@ once(type: SensorId.HEART_RATE, callback: Callback&lt;HeartRateResponse&gt;): vo
 | type     | [SensorId](#sensorid9)                                  | 是   | 心率传感器类型为HEART_RATE。                                 |
 | callback | Callback&lt;[HeartRateResponse](#heartrateresponse)&gt; | 是   | 注册一次心率传感器的回调函数，上报的数据类型为HeartRateResponse。 |
 
+**错误码**： 
+
+以下错误码的详细介绍请参见 [ohos.sensor(传感器)错误码](../errorcodes/errorcode-sensor.md)。
+
+| 错误码ID | 错误信息           |
+| -------- | ------------------ |
+| 14500101 | Service exception. |
+
 **示例：**
 
 ```js
@@ -986,6 +1234,14 @@ once(type: SensorId.HUMIDITY, callback: Callback&lt;HumidityResponse&gt;): void
 | type     | [SensorId](#sensorid9)                                | 是   | 湿度传感器类型为HUMIDITY。                                   |
 | callback | Callback&lt;[HumidityResponse](#humidityresponse)&gt; | 是   | 注册一次湿度传感器的回调函数，上报的数据类型为HumidityResponse。 |
 
+**错误码**： 
+
+以下错误码的详细介绍请参见 [ohos.sensor(传感器)错误码](../errorcodes/errorcode-sensor.md)。
+
+| 错误码ID | 错误信息           |
+| -------- | ------------------ |
+| 14500101 | Service exception. |
+
 **示例：**
 
 ```js
@@ -999,7 +1255,7 @@ try {
 }
 ```
 
-### LINEAR_ACCELERATION<sup>9+</sup>
+### LINEAR_ACCELEROMETER<sup>9+</sup>
 
 once(type: SensorId.LINEAR_ACCELEROMETER, callback: Callback&lt;LinearAccelerometerResponse&gt;): void
 
@@ -1015,6 +1271,14 @@ once(type: SensorId.LINEAR_ACCELEROMETER, callback: Callback&lt;LinearAccelerome
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type     | [SensorId](#sensorid9)                                       | 是   | 线性加速度传感器类型为LINEAR_ACCELEROMETER。                 |
 | callback | Callback&lt;[LinearAccelerometerResponse](#linearaccelerometerresponse)&gt; | 是   | 注册一次线性加速度传感器的回调函数，上报的数据类型为LinearAccelerometerResponse。 |
+
+**错误码**： 
+
+以下错误码的详细介绍请参见 [ohos.sensor(传感器)错误码](../errorcodes/errorcode-sensor.md)。
+
+| 错误码ID | 错误信息           |
+| -------- | ------------------ |
+| 14500101 | Service exception. |
 
 **示例：**
 
@@ -1046,6 +1310,14 @@ once(type: SensorId.MAGNETIC_FIELD, callback: Callback&lt;MagneticFieldResponse&
 | type     | [SensorId](#sensorid9)                                       | 是   | 磁场传感器类型为MAGNETIC_FIELD。                             |
 | callback | Callback&lt;[MagneticFieldResponse](#magneticfieldresponse)&gt; | 是   | 注册一次磁场传感器的回调函数，上报的数据类型为MagneticFieldResponse。 |
 
+**错误码**： 
+
+以下错误码的详细介绍请参见 [ohos.sensor(传感器)错误码](../errorcodes/errorcode-sensor.md)。
+
+| 错误码ID | 错误信息           |
+| -------- | ------------------ |
+| 14500101 | Service exception. |
+
 **示例：**
 
 ```js
@@ -1075,6 +1347,14 @@ once(type: SensorId.MAGNETIC_FIELD_UNCALIBRATED, callback: Callback&lt;MagneticF
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type     | [SensorId](#sensorid9)                                       | 是   | 未校准磁场传感器类型为MAGNETIC_FIELD_UNCALIBRATED。          |
 | callback | Callback&lt;[MagneticFieldUncalibratedResponse](#magneticfielduncalibratedresponse)&gt; | 是   | 注册一次未校准磁场传感器的回调函数，上报的数据类型为MagneticFieldUncalibratedResponse。 |
+
+**错误码**： 
+
+以下错误码的详细介绍请参见 [ohos.sensor(传感器)错误码](../errorcodes/errorcode-sensor.md)。
+
+| 错误码ID | 错误信息           |
+| -------- | ------------------ |
+| 14500101 | Service exception. |
 
 **示例：**
 
@@ -1109,6 +1389,14 @@ once(type: SensorId.ORIENTATION, callback: Callback&lt;OrientationResponse&gt;):
 | type     | [SensorId](#sensorid9)                                      | 是   | 方向传感器类型为ORIENTATION。                                |
 | callback | Callback&lt;[OrientationResponse](#orientationresponse)&gt; | 是   | 注册一次方向传感器的回调函数，上报的数据类型为OrientationResponse。 |
 
+**错误码**： 
+
+以下错误码的详细介绍请参见 [ohos.sensor(传感器)错误码](../errorcodes/errorcode-sensor.md)。
+
+| 错误码ID | 错误信息           |
+| -------- | ------------------ |
+| 14500101 | Service exception. |
+
 **示例：**
 
 ```js
@@ -1141,6 +1429,14 @@ once(type: SensorId.PEDOMETER, callback: Callback&lt;PedometerResponse&gt;): voi
 | type     | [SensorId](#sensorid9)                                  | 是   | 计步传感器类型为PEDOMETER。                                  |
 | callback | Callback&lt;[PedometerResponse](#pedometerresponse)&gt; | 是   | 注册一次计步传感器的回调函数，上报的数据类型为PedometerResponse。 |
 
+**错误码**： 
+
+以下错误码的详细介绍请参见 [ohos.sensor(传感器)错误码](../errorcodes/errorcode-sensor.md)。
+
+| 错误码ID | 错误信息           |
+| -------- | ------------------ |
+| 14500101 | Service exception. |
+
 **示例：**
 
 ```js
@@ -1171,6 +1467,14 @@ once(type: SensorId.PEDOMETER_DETECTION, callback: Callback&lt;PedometerDetectio
 | type     | [SensorId](#sensorid9)                                       | 是   | 计步检测传感器类型为PEDOMETER_DETECTION。                    |
 | callback | Callback&lt;[PedometerDetectionResponse](#pedometerdetectionresponse)&gt; | 是   | 注册一次计步检测传感器的回调函数，上报的数据类型为PedometerDetectionResponse。 |
 
+**错误码**： 
+
+以下错误码的详细介绍请参见 [ohos.sensor(传感器)错误码](../errorcodes/errorcode-sensor.md)。
+
+| 错误码ID | 错误信息           |
+| -------- | ------------------ |
+| 14500101 | Service exception. |
+
 **示例：**
 
 ```js
@@ -1199,6 +1503,14 @@ once(type: SensorId.PROXIMITY, callback: Callback&lt;ProximityResponse&gt;): voi
 | type     | [SensorId](#sensorid9)                                  | 是   | 接近光传感器类型为PROXIMITY。                                |
 | callback | Callback&lt;[ProximityResponse](#proximityresponse)&gt; | 是   | 注册一次接近光传感器的回调函数，上报的数据类型为ProximityResponse。 |
 
+**错误码**： 
+
+以下错误码的详细介绍请参见 [ohos.sensor(传感器)错误码](../errorcodes/errorcode-sensor.md)。
+
+| 错误码ID | 错误信息           |
+| -------- | ------------------ |
+| 14500101 | Service exception. |
+
 **示例：**
 
 ```js
@@ -1226,6 +1538,14 @@ once(type: SensorId.ROTATION_VECTOR, callback: Callback&lt;RotationVectorRespons
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type     | [SensorId](#sensorid9)                                       | 是   | 旋转矢量传感器类型为ROTATION_VECTOR。                        |
 | callback | Callback&lt;[RotationVectorResponse](#rotationvectorresponse)&gt; | 是   | 注册一次旋转矢量传感器的回调函数，上报的数据类型为RotationVectorResponse。 |
+
+**错误码**： 
+
+以下错误码的详细介绍请参见 [ohos.sensor(传感器)错误码](../errorcodes/errorcode-sensor.md)。
+
+| 错误码ID | 错误信息           |
+| -------- | ------------------ |
+| 14500101 | Service exception. |
 
 **示例：** 
 
@@ -1258,6 +1578,14 @@ once(type: SensorId.SIGNIFICANT_MOTION, callback: Callback&lt;SignificantMotionR
 | type     | [SensorId](#sensorid9)                                       | 是   | 有效运动传感器类型为SIGNIFICANT_MOTION。                     |
 | callback | Callback&lt;[SignificantMotionResponse](#significantmotionresponse)&gt; | 是   | 注册一次有效运动传感器的回调函数，上报的数据类型为SignificantMotionResponse。 |
 
+**错误码**： 
+
+以下错误码的详细介绍请参见 [ohos.sensor(传感器)错误码](../errorcodes/errorcode-sensor.md)。
+
+| 错误码ID | 错误信息           |
+| -------- | ------------------ |
+| 14500101 | Service exception. |
+
 **示例：** 
 
 ```js
@@ -1275,7 +1603,7 @@ try {
 
 once(type: SensorId.WEAR_DETECTION, callback: Callback&lt;WearDetectionResponse&gt;): void
 
-订阅一次磨损检测传感器数据。
+订阅一次佩戴检测传感器数据。
 
 **系统能力**：SystemCapability.Sensors.Sensor
 
@@ -1285,6 +1613,14 @@ once(type: SensorId.WEAR_DETECTION, callback: Callback&lt;WearDetectionResponse&
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type     | [SensorId](#sensorid9)                                       | 是   | 佩戴检测传感器类型为WEAR_DETECTION。                         |
 | callback | Callback&lt;[WearDetectionResponse](#weardetectionresponse)&gt; | 是   | 注册一次穿戴检测传感器的回调函数，上报的数据类型为WearDetectionResponse。 |
+
+**错误码**： 
+
+以下错误码的详细介绍请参见 [ohos.sensor(传感器)错误码](../errorcodes/errorcode-sensor.md)。
+
+| 错误码ID | 错误信息           |
+| -------- | ------------------ |
+| 14500101 | Service exception. |
 
 **示例：** 
 
@@ -1908,7 +2244,7 @@ try {
 
 off(type: SensorId.WEAR_DETECTION, callback?: Callback&lt;WearDetectionResponse&gt;): void
 
-取消订阅磨损检测传感器数据。
+取消订阅佩戴检测传感器数据。
 
 **系统能力**：SystemCapability.Sensors.Sensor
 
@@ -1948,6 +2284,14 @@ getGeomagneticInfo(locationOptions: LocationOptions, timeMillis: number, callbac
 | timeMillis      | number                                                       | 是   | 表示获取磁偏角的时间，单位为毫秒。 |
 | callback        | AsyncCallback&lt;[GeomagneticResponse](#geomagneticresponse)&gt; | 是   | 返回磁场信息。                     |
 
+**错误码**： 
+
+以下错误码的详细介绍请参见 [sensor.getGeomagneticInfo错误码](../errorcodes/errorcode-sensor.md)。
+
+| 错误码ID | 错误信息           |
+| -------- | ------------------ |
+| 14500101 | Service exception. |
+
 **示例：** 
 
 ```js
@@ -1983,6 +2327,14 @@ getGeomagneticInfo(locationOptions: LocationOptions, timeMillis: number): Promis
 | ---------------------------------------------------------- | -------------- |
 | Promise&lt;[GeomagneticResponse](#geomagneticresponse)&gt; | 返回磁场信息。 |
 
+**错误码**： 
+
+以下错误码的详细介绍请参见 [sensor.getGeomagneticInfo错误码](../errorcodes/errorcode-sensor.md)。
+
+| 错误码ID | 错误信息           |
+| -------- | ------------------ |
+| 14500101 | Service exception. |
+
 **示例：** 
 
 ```js
@@ -2015,6 +2367,14 @@ getDeviceAltitude(seaPressure: number, currentPressure: number, callback: AsyncC
 | seaPressure     | number                      | 是   | 表示海平面气压值，单位为hPa。         |
 | currentPressure | number                      | 是   | 表示设备所在高度的气压值，单位为hPa。 |
 | callback        | AsyncCallback&lt;number&gt; | 是   | 返回设备所在的海拔高度，单位为米。    |
+
+**错误码**： 
+
+以下错误码的详细介绍请参见 [sensor.getDeviceAltitude错误码](../errorcodes/errorcode-sensor.md)。
+
+| 错误码ID | 错误信息           |
+| -------- | ------------------ |
+| 14500101 | Service exception. |
 
 **示例：**
 
@@ -2049,6 +2409,14 @@ getDeviceAltitude(seaPressure: number, currentPressure: number): Promise&lt;numb
 | --------------------- | ------------------------------------ |
 | Promise&lt;number&gt; | 返回设备所在的海拔高度（单位：米）。 |
 
+**错误码**： 
+
+以下错误码的详细介绍请参见 [sensor.getDeviceAltitude错误码](../errorcodes/errorcode-sensor.md)。
+
+| 错误码ID | 错误信息           |
+| -------- | ------------------ |
+| 14500101 | Service exception. |
+
 **示例：** 
 
 ```js
@@ -2078,6 +2446,14 @@ getInclination(inclinationMatrix: Array&lt;number&gt;, callback: AsyncCallback&l
 | ----------------- | --------------------------- | ---- | ---------------------------- |
 | inclinationMatrix | Array&lt;number&gt;         | 是   | 表示倾斜矩阵。               |
 | callback          | AsyncCallback&lt;number&gt; | 是   | 返回地磁倾斜角，单位为弧度。 |
+
+**错误码**： 
+
+以下错误码的详细介绍请参见 [sensor.getInclination错误码](../errorcodes/errorcode-sensor.md)。
+
+| 错误码ID | 错误信息           |
+| -------- | ------------------ |
+| 14500101 | Service exception. |
 
 **示例：** 
 
@@ -2111,6 +2487,14 @@ try {
 | --------------------- | ---------------------------- |
 | Promise&lt;number&gt; | 返回地磁倾斜角，单位为弧度。 |
 
+**错误码**： 
+
+以下错误码的详细介绍请参见 [sensor.getInclination错误码](../errorcodes/errorcode-sensor.md)。
+
+| 错误码ID | 错误信息           |
+| -------- | ------------------ |
+| 14500101 | Service exception. |
+
 **示例：** 
 
 ```js
@@ -2142,6 +2526,14 @@ try {
 | currentRotationMatrix | Array&lt;number&gt;                      | 是   | 表示当前旋转矩阵。                |
 | preRotationMatrix     | Array&lt;number&gt;                      | 是   | 表示旋转矩阵。                    |
 | callback              | AsyncCallback&lt;Array&lt;number&gt;&gt; | 是   | 返回z、x、y轴方向的旋转角度变化。 |
+
+**错误码**： 
+
+以下错误码的详细介绍请参见 [sensor.getAngleVariation错误码](../errorcodes/errorcode-sensor.md)。
+
+| 错误码ID | 错误信息           |
+| -------- | ------------------ |
+| 14500101 | Service exception. |
 
 **示例：** 
 
@@ -2178,6 +2570,14 @@ getAngleVariation(currentRotationMatrix: Array&lt;number&gt;, preRotationMatrix:
 | ---------------------------------- | --------------------------------- |
 | Promise&lt;Array&lt;number&gt;&gt; | 返回z、x、y轴方向的旋转角度变化。 |
 
+**错误码**： 
+
+以下错误码的详细介绍请参见 [sensor.getAngleVariation错误码](../errorcodes/errorcode-sensor.md)。
+
+| 错误码ID | 错误信息           |
+| -------- | ------------------ |
+| 14500101 | Service exception. |
+
 **示例：** 
 
 ```js
@@ -2209,6 +2609,14 @@ getRotationMatrix(rotationVector: Array&lt;number&gt;, callback: AsyncCallback<A
 | -------------- | ---------------------------------------- | ---- | -------------- |
 | rotationVector | Array&lt;number&gt;                      | 是   | 表示旋转矢量。 |
 | callback       | AsyncCallback&lt;Array&lt;number&gt;&gt; | 是   | 返回旋转矩阵。 |
+
+**错误码**： 
+
+以下错误码的详细介绍请参见 [sensor.getRotationMatrix错误码](../errorcodes/errorcode-sensor.md)。
+
+| 错误码ID | 错误信息           |
+| -------- | ------------------ |
+| 14500101 | Service exception. |
 
 **示例：** 
 
@@ -2244,6 +2652,14 @@ getRotationMatrix(rotationVector: Array&lt;number&gt;): Promise<Array<number&gt;
 | ---------------------------------- | -------------- |
 | Promise&lt;Array&lt;number&gt;&gt; | 返回旋转矩阵。 |
 
+**错误码**： 
+
+以下错误码的详细介绍请参见 [sensor.getRotationMatrix错误码](../errorcodes/errorcode-sensor.md)。
+
+| 错误码ID | 错误信息           |
+| -------- | ------------------ |
+| 14500101 | Service exception. |
+
 **示例：** 
 
 ```js
@@ -2277,6 +2693,14 @@ transformRotationMatrix(inRotationVector: Array&lt;number&gt;, coordinates: Coor
 | inRotationVector | Array&lt;number&gt;                       | 是   | 表示旋转矩阵。         |
 | coordinates      | [CoordinatesOptions](#coordinatesoptions) | 是   | 表示坐标系方向。       |
 | callback         | AsyncCallback&lt;Array&lt;number&gt;&gt;  | 是   | 返回转换后的旋转矩阵。 |
+
+**错误码**： 
+
+以下错误码的详细介绍请参见 [sensor.transformRotationMatrix错误码](../errorcodes/errorcode-sensor.md)。
+
+| 错误码ID | 错误信息           |
+| -------- | ------------------ |
+| 14500101 | Service exception. |
 
 **示例：** 
 
@@ -2313,6 +2737,14 @@ transformRotationMatrix(inRotationVector: Array&lt;number&gt;, coordinates: Coor
 | ---------------------------------- | ---------------------- |
 | Promise&lt;Array&lt;number&gt;&gt; | 返回转换后的旋转矩阵。 |
 
+**错误码**： 
+
+以下错误码的详细介绍请参见 [sensor.transformRotationMatrix错误码](../errorcodes/errorcode-sensor.md)。
+
+| 错误码ID | 错误信息           |
+| -------- | ------------------ |
+| 14500101 | Service exception. |
+
 **示例：**
 
 ```js
@@ -2344,6 +2776,14 @@ getQuaternion(rotationVector: Array&lt;number&gt;, callback: AsyncCallback<Array
 | -------------- | ---------------------------------------- | ---- | -------------- |
 | rotationVector | Array&lt;number&gt;                      | 是   | 表示旋转矢量。 |
 | callback       | AsyncCallback&lt;Array&lt;number&gt;&gt; | 是   | 返回四元数。   |
+
+**错误码**： 
+
+以下错误码的详细介绍请参见 [sensor.getQuaternion错误码](../errorcodes/errorcode-sensor.md)。
+
+| 错误码ID | 错误信息           |
+| -------- | ------------------ |
+| 14500101 | Service exception. |
 
 **示例：**
 
@@ -2379,6 +2819,14 @@ getQuaternion(rotationVector: Array&lt;number&gt;): Promise<Array&lt;number&gt;>
 | ---------------------------------- | ------------ |
 | Promise&lt;Array&lt;number&gt;&gt; | 返回四元数。 |
 
+**错误码**： 
+
+以下错误码的详细介绍请参见 [sensor.getQuaternion错误码](../errorcodes/errorcode-sensor.md)。
+
+| 错误码ID | 错误信息           |
+| -------- | ------------------ |
+| 14500101 | Service exception. |
+
 **示例：** 
 
 ```js
@@ -2411,6 +2859,14 @@ getOrientation(rotationMatrix: Array&lt;number&gt;, callback: AsyncCallback<Arra
 | -------------- | ---------------------------------------- | ---- | --------------------------------- |
 | rotationMatrix | Array&lt;number&gt;                      | 是   | 表示旋转矩阵。                    |
 | callback       | AsyncCallback&lt;Array&lt;number&gt;&gt; | 是   | 返回围绕z、x、y轴方向的旋转角度。 |
+
+**错误码**： 
+
+以下错误码的详细介绍请参见 [sensor.getOrientation错误码](../errorcodes/errorcode-sensor.md)。
+
+| 错误码ID | 错误信息           |
+| -------- | ------------------ |
+| 14500101 | Service exception. |
 
 **示例：** 
 
@@ -2447,6 +2903,14 @@ getOrientation(rotationMatrix: Array&lt;number&gt;): Promise<Array&lt;number&gt;
 | ---------------------------------- | --------------------------------- |
 | Promise&lt;Array&lt;number&gt;&gt; | 返回围绕z、x、y轴方向的旋转角度。 |
 
+**错误码**： 
+
+以下错误码的详细介绍请参见 [sensor.getOrientation错误码](../errorcodes/errorcode-sensor.md)。
+
+| 错误码ID | 错误信息           |
+| -------- | ------------------ |
+| 14500101 | Service exception. |
+
 **示例：** 
 
 ```js
@@ -2481,6 +2945,14 @@ getRotationMatrix(gravity: Array&lt;number&gt;, geomagnetic: Array&lt;number&gt;
 | geomagnetic | Array&lt;number&gt;                                          | 是   | 表示地磁矢量。 |
 | callback    | AsyncCallback&lt;[RotationMatrixResponse](#rotationmatrixresponse)&gt; | 是   | 返回旋转矩阵。 |
 
+**错误码**： 
+
+以下错误码的详细介绍请参见 [sensor.getRotationMatrix错误码](../errorcodes/errorcode-sensor.md)。
+
+| 错误码ID | 错误信息           |
+| -------- | ------------------ |
+| 14500101 | Service exception. |
+
 **示例：**
 
 ```js
@@ -2514,6 +2986,14 @@ getRotationMatrix(gravity: Array&lt;number&gt;, geomagnetic: Array&lt;number&gt;
 | ------------------------------------------------------------ | -------------- |
 | Promise&lt;[RotationMatrixResponse](#rotationmatrixresponse)&gt; | 返回旋转矩阵。 |
 
+**错误码**： 
+
+以下错误码的详细介绍请参见 [sensor.getRotationMatrix错误码](../errorcodes/errorcode-sensor.md)。
+
+| 错误码ID | 错误信息           |
+| -------- | ------------------ |
+| 14500101 | Service exception. |
+
 **示例：** 
 
 ```js
@@ -2543,6 +3023,14 @@ try {
 | -------- | ---------------------------------------------- | ---- | ---------------- |
 | callback | AsyncCallback<Array&lt;[Sensor](#sensor9)&gt;> | 是   | 返回传感器列表。 |
 
+**错误码**： 
+
+以下错误码的详细介绍请参见 [sensor.getSensorList错误码](../errorcodes/errorcode-sensor.md)。
+
+| 错误码ID | 错误信息           |
+| -------- | ------------------ |
+| 14500101 | Service exception. |
+
 **示例：** 
 
 ```js
@@ -2571,6 +3059,14 @@ try {
 | 参数名  | 类型                                     | 必填 | 说明             |
 | ------- | ---------------------------------------- | ---- | ---------------- |
 | promise | Promise<Array&lt;[Sensor](#sensor9)&gt;> | 是   | 返回传感器列表。 |
+
+**错误码**： 
+
+以下错误码的详细介绍请参见 [sensor.getSensorList错误码](../errorcodes/errorcode-sensor.md)。
+
+| 错误码ID | 错误信息           |
+| -------- | ------------------ |
+| 14500101 | Service exception. |
 
 **示例：** 
 
@@ -2604,6 +3100,14 @@ getSingleSensor(type: SensorId, callback: AsyncCallback&lt;Sensor&gt;): void
 | type     | [SensorId](#sensorid9)                  | 是   | 传感器类型。     |
 | callback | AsyncCallback&lt;[Sensor](#sensor9)&gt; | 是   | 返回传感器信息。 |
 
+**错误码**： 
+
+以下错误码的详细介绍请参见 [sensor.getSingleSensor错误码](../errorcodes/errorcode-sensor.md)。
+
+| 错误码ID | 错误信息           |
+| -------- | ------------------ |
+| 14500101 | Service exception. |
+
 **示例：**
 
 ```js
@@ -2635,6 +3139,14 @@ try {
 | 参数名  | 类型                              | 必填 | 说明             |
 | ------- | --------------------------------- | ---- | ---------------- |
 | promise | Promise&lt;[Sensor](#sensor9)&gt; | 是   | 返回传感器信息。 |
+
+**错误码**： 
+
+以下错误码的详细介绍请参见 [sensor.getSingleSensor错误码](../errorcodes/errorcode-sensor.md)。
+
+| 错误码ID | 错误信息           |
+| -------- | ------------------ |
+| 14500101 | Service exception. |
 
 **示例：**
 
@@ -3125,7 +3637,7 @@ on(type: SensorType.SENSOR_TYPE_ID_LINEAR_ACCELERATION,callback:Callback&lt;Line
 
 监听线性加速度传感器的数据变化。如果多次调用该接口，仅最后一次调用生效。
 
-从API version 9 开始不再维护，建议使用[sensor.on.LINEAR_ACCELEROMETER](#linear_accelerometer9)代替。
+从API version 9 开始不再维护，建议使用[sensor.on.LINEAR_ACCELEROMETER](#linear_accelerometer9)代替。 
 
 **需要权限**：ohos.permission.ACCELEROMETER
 
@@ -3138,36 +3650,6 @@ on(type: SensorType.SENSOR_TYPE_ID_LINEAR_ACCELERATION,callback:Callback&lt;Line
 | type     | [SensorType](#sensortype)                | 是    | 要订阅的线性加速度传感器类型为SENSOR_TYPE_ID_LINEAR_ACCELERATION。 |
 | callback | Callback&lt;[LinearAccelerometerResponse](#linearaccelerometerresponse)&gt; | 是    | 注册线性加速度传感器的回调函数，上报的数据类型为LinearAccelerometerResponse。 |
 | options  | [Options](#options)                      | 否    | 可选参数列表，设置上报频率，默认值为200000000ns。           |
-
-### LINEAR_ACCELEROMETER<sup>9+</sup>
-
-on(type: SensorType.SENSOR_TYPE_ID_LINEAR_ACCELERATION,callback:Callback&lt;LinearAccelerometerResponse&gt;,
-        options?: Options): void
-
-监听线性加速度传感器的数据变化。如果多次调用该接口，仅最后一次调用生效。
-
-**需要权限**：ohos.permission.ACCELEROMETER
-
-**系统能力**：SystemCapability.Sensors.Sensor
-
-**参数：**
-| 参数名   | 类型                                                         | 必填 | 说明                                                         |
-| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| type     | [SensorType](#sensortype)                                    | 是   | 要订阅的线性加速度传感器类型为SENSOR_TYPE_ID_LINEAR_ACCELEROMETER。 |
-| callback | Callback&lt;[LinearAccelerometerResponse](#linearaccelerometerresponse)&gt; | 是   | 注册线性加速度传感器的回调函数，上报的数据类型为LinearAccelerometerResponse。 |
-| options  | [Options](#options)                                          | 否   | 可选参数列表，设置上报频率，默认值为200000000ns。            |
-
-**示例：**
-
-  ```js
-  sensor.on(sensor.SensorType.SENSOR_TYPE_ID_LINEAR_ACCELEROMETER,function(data){
-      console.info('X-coordinate component: ' + data.x);
-      console.info('Y-coordinate component: ' + data.y);
-      console.info('Z-coordinate component: ' + data.z);
-  },
-      {interval: 10000000}
-  );
-  ```
 
 ### ACCELEROMETER_UNCALIBRATED<sup>(deprecated)</sup>
 
@@ -3645,7 +4127,7 @@ on(type: SensorType.SENSOR_TYPE_ID_HEART_RATE, callback: Callback&lt;HeartRateRe
 
 监听心率传感器数据变化一次。
 
-从API version 9 开始不再维护，建议使用[sensor.on.HEART_BEAT_RATE](#heart_beat_rate9)代替。
+从API version 9 开始不再维护，建议使用[sensor.on.HEART_RATE](#heart_rate9)代替。
 
 **需要权限**：ohos.permission.HEALTH_DATA 
 
@@ -3657,34 +4139,6 @@ on(type: SensorType.SENSOR_TYPE_ID_HEART_RATE, callback: Callback&lt;HeartRateRe
 | -------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | type     | [SensorType](#sensortype)                               | 是   | 要订阅的心率传感器类型为SENSOR_TYPE_ID_HEART_RATE。          |
 | callback | Callback&lt;[HeartRateResponse](#heartrateresponse)&gt; | 是   | 注册一次心率传感器的回调函数，上报的数据类型为HeartRateResponse。 |
-
-### HEART_BEAT_RATE<sup>9+</sup>
-
-on(type: SensorType.SENSOR_TYPE_ID_HEART_RATE, callback: Callback&lt;HeartRateResponse&gt;,
-        options?: Options): void
-
-监听心率传感器数据变化一次。
-
-**需要权限**：ohos.permission.HEALTH_DATA 
-
-**系统能力**：SystemCapability.Sensors.Sensor
-
-**参数：**
-
-| 参数名   | 类型                                                    | 必填 | 说明                                                         |
-| -------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| type     | [SensorType](#sensortype)                               | 是   | 要订阅的心率传感器类型为SENSOR_TYPE_ID_HEART_BEAT_RATE。     |
-| callback | Callback&lt;[HeartRateResponse](#heartrateresponse)&gt; | 是   | 注册一次心率传感器的回调函数，上报的数据类型为HeartRateResponse。 |
-
-**示例：**
-
-```js
-sensor.on(sensor.SensorType.SENSOR_TYPE_ID_HEART_BEAT_RATE,function(data){
-    console.info("Heart rate: " + data.heartRate);
-},
-    {interval: 10000000}
-);
-```
 
 ### ROTATION_VECTOR<sup>(deprecated)</sup>
 
@@ -3780,7 +4234,7 @@ once(type: SensorType.SENSOR_TYPE_ID_LINEAR_ACCELERATION,callback:Callback&lt;Li
 
 监听线性加速度传感器数据变化一次。
 
-从API version 9 开始不再维护，建议使用[sensor.once.LINEAR_ACCELEROMETER](#linear_accelerometer9)代替。
+从API version 9 开始不再维护，建议使用[sensor.once.LINEAR_ACCELEROMETER](#linear_accelerometer9-1)代替。
 
 **需要权限**：ohos.permission.ACCELERATION
 
@@ -3792,33 +4246,6 @@ once(type: SensorType.SENSOR_TYPE_ID_LINEAR_ACCELERATION,callback:Callback&lt;Li
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
 | type     | [SensorType](#sensortype)                | 是    | 线性加速度传感器类型为SENSOR_TYPE_ID_LINEAR_ACCELERATION。 |
 | callback | Callback&lt;[LinearAccelerometerResponse](#linearaccelerometerresponse)&gt; | 是    | 注册一次线性加速度传感器的回调函数，上报的数据类型为LinearAccelerometerResponse。 |
-
-### LINEAR_ACCELEROMETER<sup>9+</sup>
-
-once(type: SensorType.SENSOR_TYPE_ID_LINEAR_ACCELERATION,callback:Callback&lt;LinearAccelerometerResponse&gt;): void
-
-订阅一次线性加速度传感器数据。
-
-**需要权限**：ohos.permission.ACCELERATION 
-
-**系统能力**：SystemCapability.Sensors.Sensor
-
-**参数：**
-| 参数名   | 类型                                                         | 必填 | 说明                                                         |
-| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| type     | [SensorType](#sensortype)                                    | 是   | 线性加速度传感器类型为SENSOR_TYPE_ID_LINEAR_ACCELEROMETER。  |
-| callback | Callback&lt;[LinearAccelerometerResponse](#linearaccelerometerresponse)&gt; | 是   | 注册一次线性加速度传感器的回调函数，上报的数据类型为LinearAccelerometerResponse。 |
-
-**示例：**
-
-  ```js
-  sensor.once(sensor.SensorType.SENSOR_TYPE_ID_LINEAR_ACCELEROMETER, function(data) {
-      console.info('X-coordinate component: ' + data.x);
-      console.info('Y-coordinate component: ' + data.y);
-      console.info('Z-coordinate component: ' + data.z);
-    }
-  );
-  ```
 
 ### ACCELEROMETER_UNCALIBRATED<sup>(deprecated)</sup>
 
@@ -4288,7 +4715,7 @@ once(type: SensorType.SENSOR_TYPE_ID_HEART_RATE, callback: Callback&lt;HeartRate
 
 监听心率传感器数据变化一次。
 
-从API version 9 开始不再维护，建议使用[sensor.once.HEART_BEAT_RATE](#heart_beat_rate9)代替。
+从API version 9 开始不再维护，建议使用[sensor.once.HEART_RATE](#heart_rate9-1)代替。
 
 **需要权限**：ohos.permission.HEART_RATE  
 
@@ -4300,32 +4727,6 @@ once(type: SensorType.SENSOR_TYPE_ID_HEART_RATE, callback: Callback&lt;HeartRate
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
 | type     | [SensorType](#sensortype)                | 是    | 心率传感器类型为SENSOR_TYPE_ID_HEART_RATE。       |
 | callback | Callback&lt;[HeartRateResponse](#heartrateresponse)&gt; | 是    | 注册一次心率传感器的回调函数，上报的数据类型为HeartRateResponse。 |
-
-### HEART_BEAT_RATE<sup>9+</sup>
-
-once(type: SensorType.SENSOR_TYPE_ID_HEART_RATE, callback: Callback&lt;HeartRateResponse&gt;): void		
-
-订阅一次心率传感器数据。
-
-**需要权限**：ohos.permission.HEART_RATE 
-
-**系统能力**：SystemCapability.Sensors.Sensor
-
-**参数：**
-
-| 参数名   | 类型                                                    | 必填 | 说明                                                         |
-| -------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| type     | [SensorType](#sensortype)                               | 是   | 心率传感器类型为SENSOR_TYPE_ID_HEART_BEAT_RATE。             |
-| callback | Callback&lt;[HeartRateResponse](#heartrateresponse)&gt; | 是   | 注册一次心率传感器的回调函数，上报的数据类型为HeartRateResponse。 |
-
-**示例：**
-
-  ```js
-  sensor.once(sensor.SensorType.SENSOR_TYPE_ID_HEART_BEAT_RATE, function(data) {
-      console.info("Heart rate: " + data.heartRate);
-    }
-  );
-  ```
 
 ### WEAR_DETECTION<sup>(deprecated)</sup>
 
@@ -4615,7 +5016,7 @@ off(type: SensorType.SENSOR_TYPE_ID_HEART_RATE, callback?: Callback&lt;HeartRate
 
 取消订阅传感器数据。
 
-从API version 9 开始不再维护，建议使用[sensor.off.HEART_BEAT_RATE](#heart_beat_rate9)代替。
+从API version 9 开始不再维护，建议使用[sensor.off.HEART_RATE](#heart_rate9-2)代替。
 
 **需要权限**：ohos.permission.HEALTH_DATA 
 
@@ -4627,32 +5028,6 @@ off(type: SensorType.SENSOR_TYPE_ID_HEART_RATE, callback?: Callback&lt;HeartRate
 | -------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | type     | [SensorType](#sensortype)                               | 是   | 要取消订阅的心率传感器类型为SENSOR_TYPE_ID_HEART_RATE。      |
 | callback | Callback&lt;[HeartRateResponse](#heartrateresponse)&gt; | 是   | 取消注册一次心率传感器的回调函数，上报的数据类型为HeartRateResponse。 |
-
-### HEART_BEAT_RATE<sup>9+</sup>
-
-off(type: SensorType.SENSOR_TYPE_ID_HEART_RATE, callback?: Callback&lt;HeartRateResponse&gt;): void
-
-取消订阅传感器数据。
-
-**需要权限**：ohos.permission.HEALTH_DATA 
-
-**系统能力**：SystemCapability.Sensors.Sensor
-
-**参数：**
-
-| 参数名   | 类型                                                    | 必填 | 说明                                                         |
-| -------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| type     | [SensorType](#sensortype)                               | 是   | 要取消订阅的心率传感器类型为SENSOR_TYPE_ID_HEART_BEAT_RATE。 |
-| callback | Callback&lt;[HeartRateResponse](#heartrateresponse)&gt; | 是   | 取消注册一次心率传感器的回调函数，上报的数据类型为HeartRateResponse。 |
-
-**示例：**
-
-```js
-function callback(data) {
-    console.info("Heart rate: " + data.heartRate);
-}
-sensor.off(sensor.SensorType.SENSOR_TYPE_ID_HEART_BEAT_RATE, callback);
-```
 
 ### HUMIDITY<sup>(deprecated)</sup>
 
@@ -4686,7 +5061,7 @@ off(type: SensorType.SENSOR_TYPE_ID_LINEAR_ACCELERATION, callback?: Callback&lt;
 
 取消订阅传感器数据。
 
-从API version 9 开始不再维护，建议使用[sensor.off.LINEAR_ACCELEROMETER](#linear_accelerometer9)代替。
+从API version 9 开始不再维护，建议使用[sensor.off.LINEAR_ACCELEROMETER](#linear_accelerometer9-2)代替。
 
 **需要权限**：ohos.permission.ACCELEROMETER
 
@@ -4698,34 +5073,6 @@ off(type: SensorType.SENSOR_TYPE_ID_LINEAR_ACCELERATION, callback?: Callback&lt;
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
 | type     | [SensorType](#sensortype)                | 是    | 要取消订阅的线性加速度传感器类型为SENSOR_TYPE_ID_LINEAR_ACCELERATION。 |
 | callback | Callback&lt;[LinearAccelerometerResponse](#linearaccelerometerresponse)&gt; | 是    | 取消注册性加速度传感器的回调函数，上报的数据类型为LinearAccelerometerResponse。 |
-
-### LINEAR_ACCELEROMETER<sup>9+</sup>
-
-off(type: SensorType.SENSOR_TYPE_ID_LINEAR_ACCELERATION,callback?:Callback&lt;LinearAccelerometerResponse&gt;): void
-
-取消订阅传感器数据。
-
-**需要权限**：ohos.permission.ACCELEROMETER
-
-**系统能力**：SystemCapability.Sensors.Sensor
-
-**参数：**
-
-| 参数名   | 类型                                                         | 必填 | 说明                                                         |
-| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| type     | [SensorType](#sensortype)                                    | 是   | 要取消订阅的线性加速度传感器类型为SENSOR_TYPE_ID_LINEAR_ACCELEROMETER。 |
-| callback | Callback&lt;[LinearAccelerometerResponse](#linearaccelerometerresponse)&gt; | 是   | 取消注册性加速度传感器的回调函数，上报的数据类型为LinearAccelerometerResponse。 |
-
-**示例：**
-
-```js
-function callback(data) {
-    console.info('X-coordinate component: ' + data.x);
-    console.info('Y-coordinate component: ' + data.y);
-    console.info('Z-coordinate component: ' + data.z);
-}
-sensor.off(sensor.SensorType.SENSOR_TYPE_ID_LINEAR_ACCELEROMETER, callback);
-```
 
 ### MAGNETIC_FIELD<sup>(deprecated)</sup>
 

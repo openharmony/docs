@@ -29,7 +29,7 @@ Use the following attributes to bind gesture recognition to a component. When a 
   | Name| Description|
   | -------- | -------- |
   | Normal | The gestures of child components are not masked and are recognized based on the default gesture recognition sequence.|
-  | IgnoreInternal | The gestures of child components are masked. Only the gestures of the current component are recognized.<br>However, the built-in gestures of the child components are not masked. For example, when the child component is a **<List>** component, the built-in sliding gestures can still be triggered.|
+  | IgnoreInternal | The gestures of child components are masked. Only the gestures of the current component are recognized.<br>However, the built-in gestures of the child components are not masked. For example, when the child component is a **\<List>** component, the built-in sliding gestures can still be triggered.|
 
 
 - GestureType

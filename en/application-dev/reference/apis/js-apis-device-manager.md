@@ -10,6 +10,7 @@ System applications can call the APIs to do the following:
 - Query the trusted device list.
 - Query local device information, including the device name, type, and ID.
 - Publish device information for discovery purposes.
+
 > **NOTE**
 >
 > - The initial APIs of this module are supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version.
@@ -18,7 +19,7 @@ System applications can call the APIs to do the following:
 
 ## Modules to Import
 
-```
+```js
 import deviceManager from '@ohos.distributedHardware.deviceManager';
 ```
 
@@ -32,23 +33,37 @@ Creates a **DeviceManager** instance.
 **System capability**: SystemCapability.DistributedHardware.DeviceManager
 
 **Parameters**
-| Name       | Type                                      | Mandatory  | Description                                  |
-| ---------- | ---------------------------------------- | ---- | ------------------------------------ |
-| bundleName | string                                   | Yes   | Bundle name of an application.                          |
-| callback   | AsyncCallback&lt;[DeviceManager](#devicemanager)&gt; | Yes   | Callback used to return the **DeviceManager** instance created.|
+
+  | Name       | Type                                      | Mandatory  | Description                                  |
+  | ---------- | ---------------------------------------- | ---- | ------------------------------------ |
+  | bundleName | string                                   | Yes   | Bundle name of an application.                          |
+  | callback   | AsyncCallback&lt;[DeviceManager](#devicemanager)&gt; | Yes   | Callback used to return the **DeviceManager** instance created.|
+
+**Error codes**
+
+For details about the error codes, see [Device Management Error Codes](../errorcodes/errorcode-device-manager.md).
+
+| ID| Error Message                                                       |
+| -------- | --------------------------------------------------------------- |
+| 11600101 | Failed to execute the function.                                 |
+| 11600102 | Failed to obtain the service.                                   |
 
 **Example**
 
-```
-deviceManager.createDeviceManager("ohos.samples.jshelloworld", (err, data) => {     
-    if (err) { 
-        console.info("createDeviceManager err:" + JSON.stringify(err));    
+  ```js
+  try {
+    deviceManager.createDeviceManager("ohos.samples.jshelloworld", (err, data) => {
+      if (err) { 
+        console.error("createDeviceManager errCode:" + err.code + ",errMessage:" + err.message);
         return;
-    }
-    console.info("createDeviceManager success");
-    let dmInstance = data;
-});
-```
+      }
+      console.info("createDeviceManager success");
+      let dmInstance = data;
+    });
+  } catch(err) {
+    console.error("createDeviceManager errCode:" + err.code + ",errMessage:" + err.message);
+  }
+  ```
 
 ## DeviceInfo
 
@@ -191,7 +206,7 @@ Defines published device information.
 
 **System capability**: SystemCapability.DistributedHardware.DeviceManager
 
-| Name         | Type                             | Mandatory  | Description |
+| Name         | Type                             | Mandatory  | Description               |
 | ------------- | --------------------------------- | ---- | ----------------- |
 | publishId     | number                            | Yes   | ID used to identify a publication period.|
 | mode          | [DiscoverMode ](#discovermode)    | Yes   | Device discovery mode.            |
@@ -202,7 +217,6 @@ Defines published device information.
 
 Provides APIs to obtain information about trusted devices and local devices. Before calling any API in **DeviceManager**, you must use **createDeviceManager** to create a **DeviceManager** instance, for example, **dmInstance**.
 
-
 ### release
 
 release(): void
@@ -211,12 +225,23 @@ Releases this **DeviceManager** instance when it is no longer used.
 
 **System capability**: SystemCapability.DistributedHardware.DeviceManager
 
+**Error codes**
+
+For details about the error codes, see [Device Management Error Codes](../errorcodes/errorcode-device-manager.md).
+
+| ID| Error Message                                                       |
+| -------- | --------------------------------------------------------------- |
+| 11600101 | Failed to execute the function.                                 |
+
 **Example**
 
-```js
-dmInstance.release();
-```
-
+  ```js
+  try {
+    dmInstance.release();
+  } catch (err) {
+    console.error("release errCode:" + err.code + ",errMessage:" + err.message);
+  }
+  ```
 
 ### getTrustedDeviceListSync
 
@@ -228,16 +253,27 @@ Obtains all trusted devices synchronously.
 
 **Return value**
 
-| Name                                    | Description       |
-| -------------------------------------- | --------- |
-| Array&lt;[DeviceInfo](#deviceinfo)&gt; | List of trusted devices obtained.|
+  | Name                                    | Description       |
+  | -------------------------------------- | --------- |
+  | Array&lt;[DeviceInfo](#deviceinfo)&gt; | List of trusted devices obtained.|
+
+**Error codes**
+
+For details about the error codes, see [Device Management Error Codes](../errorcodes/errorcode-device-manager.md).
+
+| ID| Error Message                                                       |
+| -------- | --------------------------------------------------------------- |
+| 11600101 | Failed to execute the function.                                 |
 
 **Example**
 
-```js
-var deviceInfoList = dmInstance.getTrustedDeviceListSync();
-```
-
+  ```js
+  try {
+    var deviceInfoList = dmInstance.getTrustedDeviceListSync();
+  } catch (err) {
+    console.error("getTrustedDeviceListSync errCode:" + err.code + ",errMessage:" + err.message);
+  }
+  ```
 
 ### getTrustedDeviceList<sup>8+</sup>
 
@@ -248,17 +284,33 @@ Obtains all trusted devices. This API uses an asynchronous callback to return th
 **System capability**: SystemCapability.DistributedHardware.DeviceManager
 
 **Parameters**
-| Name      | Type                                    | Mandatory  | Description                   |
-| -------- | ---------------------------------------- | ---- | --------------------- |
-| callback | AsyncCallback&lt;Array&lt;[DeviceInfo](#deviceinfo)&gt;&gt; | Yes   | Callback used to return the list of trusted devices.|
+
+  | Name      | Type                                    | Mandatory  | Description                   |
+  | -------- | ---------------------------------------- | ---- | --------------------- |
+  | callback | AsyncCallback&lt;Array&lt;[DeviceInfo](#deviceinfo)&gt;&gt; | Yes   | Callback used to return the list of trusted devices.|
+
+**Error codes**
+
+For details about the error codes, see [Device Management Error Codes](../errorcodes/errorcode-device-manager.md).
+
+| ID| Error Message                                                       |
+| -------- | --------------------------------------------------------------- |
+| 11600101 | Failed to execute the function.                                 |
 
 **Example**
+
   ```js
-  dmInstance.getTrustedDeviceList((err, data) => {
-      console.log("getTrustedDeviceList err: " + JSON.stringify(err));
+  try {
+    dmInstance.getTrustedDeviceList((err, data) => {
+      if (err) {
+        console.error("getTrustedDeviceList errCode:" + err.code + ",errMessage:" + err.message);
+        return;
+      }
       console.log('get trusted device info: ' + JSON.stringify(data));
-    }
-  );
+    });
+  } catch (err) {
+    console.error("getTrustedDeviceList errCode:" + err.code + ",errMessage:" + err.message);
+  }
   ```
 
 ### getTrustedDeviceList<sup>8+</sup>
@@ -270,16 +322,26 @@ Obtains all trusted devices. This API uses a promise to return the result.
 **System capability**: SystemCapability.DistributedHardware.DeviceManager
 
 **Return value**
-| Type                                      | Description                   |
-| ---------------------------------------- | --------------------- |
-| Promise&lt;Array&lt;[DeviceInfo](#deviceinfo)&gt;&gt; | Promise used to return the list of trusted devices.|
+
+  | Type                                      | Description                   |
+  | ---------------------------------------- | --------------------- |
+  | Promise&lt;Array&lt;[DeviceInfo](#deviceinfo)&gt;&gt; | Promise used to return the list of trusted devices.|
+
+**Error codes**
+
+For details about the error codes, see [Device Management Error Codes](../errorcodes/errorcode-device-manager.md).
+
+| ID| Error Message                                                       |
+| -------- | --------------------------------------------------------------- |
+| 11600101 | Failed to execute the function.                                 |
 
 **Example**
+
   ```js
-  dmInstance.getTrustedDeviceList().then((data) => { 
-      console.log('get trusted device info: ' + JSON.stringify(data));
-  }).catch((err) => {
-      console.log("getTrustedDeviceList err: " + JSON.stringify(err));
+  dmInstance.getTrustedDeviceList().then((data) => {
+    console.log('get trusted device info: ' + JSON.stringify(data));
+    }).catch((err) => {
+      console.error("getTrustedDeviceList errCode:" + err.code + ",errMessage:" + err.message);
   });
   ```
 
@@ -292,15 +354,28 @@ Obtains local device information synchronously.
 **System capability**: SystemCapability.DistributedHardware.DeviceManager
 
 **Return value**
-| Name                                    | Description       |
-| -------------------------------------- | --------- |
-| Array&lt;[DeviceInfo](#deviceinfo)&gt; | List of local devices obtained.|
+
+  | Name                     | Description             |
+  | ------------------------- | ---------------- |
+  | [DeviceInfo](#deviceinfo) | List of local devices obtained.|
+
+**Error codes**
+
+For details about the error codes, see [Device Management Error Codes](../errorcodes/errorcode-device-manager.md).
+
+| ID| Error Message                                                       |
+| -------- | --------------------------------------------------------------- |
+| 11600101 | Failed to execute the function.                                 |
 
 **Example**
-  ```js
-  var deviceInfo = dmInstance.getLocalDeviceInfoSync();
-  ```
 
+  ```js
+  try {
+    var deviceInfo = dmInstance.getLocalDeviceInfoSync();
+  } catch (err) {
+    console.error("getLocalDeviceInfoSync errCode:" + err.code + ",errMessage:" + err.message);
+  }
+  ```
 
 ### getLocalDeviceInfo<sup>8+</sup>
 
@@ -311,17 +386,33 @@ Obtains local device information. This API uses an asynchronous callback to retu
 **System capability**: SystemCapability.DistributedHardware.DeviceManager
 
 **Parameters**
-| Name      | Type                                    | Mandatory  | Description       |
-| -------- | ---------------------------------------- | ---- | --------- |
-| callback | AsyncCallback&lt;[DeviceInfo](#deviceinfo)&gt; | Yes   | Callback used to return the local device information.|
+
+  | Name      | Type                                    | Mandatory  | Description       |
+  | -------- | ---------------------------------------- | ---- | --------- |
+  | callback | AsyncCallback&lt;[DeviceInfo](#deviceinfo)&gt; | Yes   | Callback used to return the local device information.|
+
+**Error codes**
+
+For details about the error codes, see [Device Management Error Codes](../errorcodes/errorcode-device-manager.md).
+
+| ID| Error Message                                                       |
+| -------- | --------------------------------------------------------------- |
+| 11600101 | Failed to execute the function.                                 |
 
 **Example**
+
   ```js
-  dmInstance.getLocalDeviceInfo((err, data) => {
-      console.log("getLocalDeviceInfo err: " + JSON.stringify(err));
-      console.log('get local device info: ' + JSON.stringify(data));
+  try {
+    dmInstance.getLocalDeviceInfo((err, data) => {
+    if (err) {
+      console.error("getLocalDeviceInfo errCode:" + err.code + ",errMessage:" + err.message);
+      return;
     }
-  );
+      console.log('get local device info: ' + JSON.stringify(data));
+    });
+  } catch (err) {
+    console.error("getLocalDeviceInfo errCode:" + err.code + ",errMessage:" + err.message);
+  }
   ```
 
 ### getLocalDeviceInfo<sup>8+</sup>
@@ -333,16 +424,26 @@ Obtains local device information. This API uses a promise to return the result.
 **System capability**: SystemCapability.DistributedHardware.DeviceManager
 
 **Return value**
-| Type                                      | Description                   |
-| ---------------------------------------- | --------------------- |
-| Promise&lt;[DeviceInfo](#deviceinfo)&gt; | Promise used to return the local device information.|
+
+  | Type                                      | Description                   |
+  | ---------------------------------------- | --------------------- |
+  | Promise&lt;[DeviceInfo](#deviceinfo)&gt; | Promise used to return the local device information.|
+
+**Error codes**
+
+For details about the error codes, see [Device Management Error Codes](../errorcodes/errorcode-device-manager.md).
+
+| ID| Error Message                                                       |
+| ------- | --------------------------------------------------------------- |
+| 11600101| Failed to execute the function.                                 |
 
 **Example**
+
   ```js
-  dmInstance.getLocalDeviceInfo().then((data) => { 
-      console.log('get local device info: ' + JSON.stringify(data));
+  dmInstance.getLocalDeviceInfo().then((data) => {
+    console.log('get local device info: ' + JSON.stringify(data));
   }).catch((err) => {
-      console.log("getLocalDeviceInfo err: " + JSON.stringify(err));
+    console.error("getLocalDeviceInfo errCode:" + err.code + ",errMessage:" + err.message);
   });
   ```
 
@@ -355,11 +456,22 @@ Starts to discover peripheral devices.
 **System capability**: SystemCapability.DistributedHardware.DeviceManager
 
 **Parameters**
-| Name           | Type                           | Mandatory  | Description   |
-| ------------- | ------------------------------- | ---- | ----- |
-| subscribeInfo | [SubscribeInfo](#subscribeinfo) | Yes   | Subscription information.|
+
+  | Name           | Type                      | Mandatory| Description   |
+  | ------------- | ------------------------------- | ---- | ----- |
+  | subscribeInfo | [SubscribeInfo](#subscribeinfo) | Yes  | Subscription information.|
+
+**Error codes**
+
+For details about the error codes, see [Device Management Error Codes](../errorcodes/errorcode-device-manager.md).
+
+| ID| Error Message                                                       |
+| -------- | --------------------------------------------------------------- |
+| 11600101 | Failed to execute the function.                                 |
+| 11600104 | Discovery invalid.                                              |
 
 **Example**
+
   ```js
   // Automatically generate a unique subscription ID.
   var subscribeId = Math.floor(Math.random() * 10000 + 1000);
@@ -372,7 +484,11 @@ Starts to discover peripheral devices.
       "isWakeRemote": false,
       "capability": 1
   };
-  dmInstance.startDeviceDiscovery(subscribeInfo); // The deviceFound callback is invoked to notify the application when a device is discovered.
+  try {
+    dmInstance.startDeviceDiscovery(subscribeInfo); // The deviceFound callback is invoked to notify the application when a device is discovered.
+  } catch (err) {
+    console.error("startDeviceDiscovery errCode:" + err.code + ",errMessage:" + err.message);
+  }
   ```
 
 ### startDeviceDiscovery9+</sup>
@@ -384,10 +500,20 @@ Starts to discover peripheral devices and filters discovered devices.
 **System capability**: SystemCapability.DistributedHardware.DeviceManager
 
 **Parameters**
-| Name           | Type                           | Mandatory  | Description   |
-| ------------- | ------------------------------- | ---- | ----- |
-| subscribeInfo | [SubscribeInfo](#subscribeinfo) | Yes  | Subscription information.|
-| filterOptions | string        | No  | Options for filtering discovered devices.|
+
+  | Name           | Type                      | Mandatory  | Description   |
+  | ------------- | ------------------------------- | ---- | -----  |
+  | subscribeInfo | [SubscribeInfo](#subscribeinfo) | Yes  | Subscription information.|
+  | filterOptions | string                          | No  | Options for filtering discovered devices.|
+
+**Error codes**
+
+For details about the error codes, see [Device Management Error Codes](../errorcodes/errorcode-device-manager.md).
+
+| ID| Error Message                                                       |
+| -------- | --------------------------------------------------------------- |
+| 11600101 | Failed to execute the function.                                 |
+| 11600104 | Discovery invalid.                                              |
 
 **Example**
 
@@ -412,7 +538,11 @@ Starts to discover peripheral devices and filters discovered devices.
         }
     ]
   };
-  dmInstance.startDeviceDiscovery(subscribeInfo, JSON.stringify(filterOptions)); // The deviceFound callback is invoked to notify the application when a device is discovered.
+  try {
+    dmInstance.startDeviceDiscovery(subscribeInfo, JSON.stringify(filterOptions)); // The deviceFound callback is invoked to notify the application when a device is discovered.
+  } catch (err) {
+    console.error("startDeviceDiscovery errCode:" + err.code + ",errMessage:" + err.message);
+  }
   ```
 
 ### stopDeviceDiscovery
@@ -424,14 +554,28 @@ Stops device discovery.
 **System capability**: SystemCapability.DistributedHardware.DeviceManager
 
 **Parameters**
-| Name         | Type  | Mandatory  | Description   |
-| ----------- | ------ | ---- | ----- |
-| subscribeId | number | Yes   | Subscription ID.|
+
+  | Name         | Type  | Mandatory  | Description   |
+  | ----------- | ------ | ---- | ----- |
+  | subscribeId | number | Yes   | Subscription ID.|
+
+**Error codes**
+
+For details about the error codes, see [Device Management Error Codes](../errorcodes/errorcode-device-manager.md).
+
+| ID| Error Message                                                       |
+| -------- | --------------------------------------------------------------- |
+| 11600101 | Failed to execute the function.                                 |
 
 **Example**
+
   ```js
   // The subscribeId input must be the same as that automatically generated in startDeviceDiscovery.
-  dmInstance.stopDeviceDiscovery(subscribeId);
+  try {
+    dmInstance.stopDeviceDiscovery(subscribeId);
+  } catch (err) {
+    console.error("stopDeviceDiscovery errCode:" + err.code + ",errMessage:" + err.message);
+  }
   ```
 
 ### publishDeviceDiscovery9+</sup>
@@ -443,11 +587,22 @@ Publishes device information for discovery purposes.
 **System capability**: SystemCapability.DistributedHardware.DeviceManager
 
 **Parameters**
-| Name         | Type                       | Mandatory| Description   |
-| ------------- | ------------------------------- | ---- | ----- |
-| publishInfo   | [PublishInfo](#publishinfo)     | Yes  | Device information to publish.|
+
+  | Name         | Type                       | Mandatory| Description   |
+  | ------------- | ------------------------------- | ---- | ----- |
+  | publishInfo   | [PublishInfo](#publishinfo)     | Yes  | Device information to publish.|
+
+**Error codes**
+
+For details about the error codes, see [Device Management Error Codes](../errorcodes/errorcode-device-manager.md).
+
+| ID| Error Message                                                       |
+| -------- | --------------------------------------------------------------- |
+| 11600101 | Failed to execute the function.                                 |
+| 11600105 | Publish invalid.                                                |
 
 **Example**
+
   ```js
   // Automatically generate a unique subscription ID.
   var publishId = Math.floor(Math.random() * 10000 + 1000);
@@ -457,9 +612,13 @@ Publishes device information for discovery purposes.
       "freq": 2, // High frequency
       "ranging": 1 // The device supports reporting the distance to the discovery initiator.
   };
-  dmInstance.publishDeviceDiscovery(publishInfo); // A callback is invoked to notify the application when the device information is published.
+  try {
+    dmInstance.publishDeviceDiscovery(publishInfo); // A callback is invoked to notify the application when the device information is published.
+  } catch (err) {
+    console.error("publishDeviceDiscovery errCode:" + err.code + ",errMessage:" + err.message);
+  }
   ```
-
+  
 ### unPublishDeviceDiscovery9+</sup>
 
 unPublishDeviceDiscovery(publishId: number): void
@@ -470,14 +629,27 @@ Stops publishing device information.
 
 **Parameters**
 
-| Name       | Type| Mandatory| Description |
-| ----------- | -------- | ---- | ----- |
-| publishId   | number   | Yes  | Publish ID.|
+  | Name       | Type| Mandatory| Description |
+  | ----------- | -------- | ---- | ----- |
+  | publishId   | number   | Yes  | Publish ID.|
+
+**Error codes**
+
+For details about the error codes, see [Device Management Error Codes](../errorcodes/errorcode-device-manager.md).
+
+| ID| Error Message                                                       |
+| -------- | --------------------------------------------------------------- |
+| 11600101 | Failed to execute the function.                                 |
 
 **Example**
+
   ```js
   // The publishId input must be the same as that automatically generated in publishDeviceDiscovery.
-  dmInstance.unPublishDeviceDiscovery(publishId);
+  try {
+    dmInstance.unPublishDeviceDiscovery(publishId);
+  } catch (err) {
+    console.error("unPublishDeviceDiscovery errCode:" + err.code + ",errMessage:" + err.message);
+  }
   ```
 
 ### authenticateDevice
@@ -489,13 +661,24 @@ Authenticates a device.
 **System capability**: SystemCapability.DistributedHardware.DeviceManager
 
 **Parameters**
-| Name        | Type                                    | Mandatory  | Description     |
-| ---------- | ---------------------------------------- | ---- | ------- |
-| deviceInfo | [DeviceInfo](#deviceinfo)                | Yes   | Device information.  |
-| authParam  | [AuthParam](#authparam)                  | Yes   | Authentication parameter.  |
-| callback   | AsyncCallback<{ deviceId: string, pinToken ?: number }> | Yes   | Callback used to return the authentication result.|
+
+  | Name        | Type                                    | Mandatory  | Description     |
+  | ---------- | ---------------------------------------- | ---- | ------- |
+  | deviceInfo | [DeviceInfo](#deviceinfo)                | Yes   | Device information.  |
+  | authParam  | [AuthParam](#authparam)                  | Yes   | Authentication parameter.  |
+  | callback   | AsyncCallback<{ deviceId: string, pinToken ?: number }> | Yes   | Callback used to return the authentication result.|
+
+**Error codes**
+
+For details about the error codes, see [Device Management Error Codes](../errorcodes/errorcode-device-manager.md).
+
+| ID| Error Message                                                       |
+| -------- | --------------------------------------------------------------- |
+| 11600101 | Failed to execute the function.                                 |
+| 11600103 | Authentication invalid.                                         |
 
 **Example**
+
   ```js
   // Information about the device to authenticate. The information can be obtained from the device discovery result.
   var deviceInfo ={
@@ -507,14 +690,18 @@ Authenticates a device.
       "authType": 1, // Authentication type. The value 1 means no account PIN authentication.
       "extraInfo": {} 
   }
-  dmInstance.authenticateDevice(deviceInfo, authParam, (err, data) => {
+  try {
+    dmInstance.authenticateDevice(deviceInfo, authParam, (err, data) => {
       if (err) {
-          console.info(TAG + "authenticateDevice err:" + JSON.stringify(err));
+          console.error("authenticateDevice errCode:" + err.code + ",errMessage:" + err.message);
           return;
       }
-      console.info(TAG + "authenticateDevice result:" + JSON.stringify(data));
-      token = data.pinToken;
-  });
+      console.info("authenticateDevice result:" + JSON.stringify(data));
+      let token = data.pinToken;
+    });
+  } catch (err) {
+    console.error("authenticateDevice errCode:" + err.code + ",errMessage:" + err.message);
+  }
   ```
 
 ### unAuthenticateDevice<sup>8+</sup>
@@ -527,15 +714,27 @@ Deauthenticates a device.
 
 **Parameters**
 
-| Name        | Type                     | Mandatory  | Description   |
-| ---------- | ------------------------- | ---- | ----- |
-| deviceInfo | [DeviceInfo](#deviceinfo) | Yes   | Device information.|
+  | Name        | Type                     | Mandatory  | Description   |
+  | ---------- | ------------------------- | ---- | ----- |
+  | deviceInfo | [DeviceInfo](#deviceinfo) | Yes   | Device information.|
+
+**Error codes**
+
+For details about the error codes, see [Device Management Error Codes](../errorcodes/errorcode-device-manager.md).
+
+| ID| Error Message                                                       |
+| -------- | --------------------------------------------------------------- |
+| 11600101 | Failed to execute the function.                                 |
 
 **Example**
-  ```js
-  dmInstance.unAuthenticateDevice(deviceInfo);
-  ```
 
+  ```js
+  try {
+    dmInstance.unAuthenticateDevice(deviceInfo);
+  } catch (err) {
+    console.error("unAuthenticateDevice errCode:" + err.code + ",errMessage:" + err.message);
+  }
+  ```
 
 ### verifyAuthInfo
 
@@ -546,27 +745,132 @@ Verifies authentication information.
 **System capability**: SystemCapability.DistributedHardware.DeviceManager
 
 **Parameters**
-| Name      | Type                                    | Mandatory  | Description     |
-| -------- | ---------------------------------------- | ---- | ------- |
-| authInfo | [AuthInfo](#authinfo)                    | Yes   | Authentication information.  |
-| authInfo | AsyncCallback<{ deviceId: string, level: number }> | Yes   | Callback used to return the verification result.|
+
+  | Name      | Type                                    | Mandatory  | Description     |
+  | -------- | ---------------------------------------- | ---- | ------- |
+  | authInfo | [AuthInfo](#authinfo)                    | Yes   | Authentication information.  |
+  | callback | AsyncCallback<{ deviceId: string, level: number }> | Yes   | Callback used to return the verification result.|
+
+**Error codes**
+
+For details about the error codes, see [Device Management Error Codes](../errorcodes/errorcode-device-manager.md).
+
+| ID| Error Message                                                       |
+| -------- | --------------------------------------------------------------- |
+| 11600101 | Failed to execute the function.                                 |
 
 **Example**
+
   ```js
   let authInfo = {
     "authType": 1,
     "token": xxxxxx,
     "extraInfo": {}
   }
-  dmInstance.verifyAuthInfo(authInfo, (err, data) => {
+  try {
+    dmInstance.verifyAuthInfo(authInfo, (err, data) => {
     if (err) {
-        console.info(TAG + "verifyAuthInfo err:" + JSON.stringify(err));
+        console.error("verifyAuthInfo errCode:" + err.code + ",errMessage:" + err.message);
         return;
     }
-    console.info(TAG + "verifyAuthInfo result:" + JSON.stringify(data));
-  });
+    console.info("verifyAuthInfo result:" + JSON.stringify(data));
+    });
+  } catch (err) {
+    console.error("verifyAuthInfo errCode:" + err.code + ",errMessage:" + err.message);
+  }
   ```
 
+### setUserOperation9+</sup>
+
+setUserOperation(operateAction: number, params: string): void;
+
+Sets a user operation action.
+
+**System capability**: SystemCapability.DistributedHardware.DeviceManager
+
+**Parameters**
+
+  | Name      | Type           | Mandatory | Description               |
+  | ------------- | --------------- | ---- | ------------------- |
+  | operateAction | number          | Yes   | User operation action.      |
+  | params        | string          | Yes   | Input parameters of the user.|
+
+**Example**
+
+  ```js
+ try {
+    /*
+      operateAction = 0 - Grant the permission.
+      operateAction = 1 - Revoke the permission.
+      operateAction = 2 - The user operation in the permission request dialog box times out.
+      operateAction = 3 - Cancel the display of the PIN box.
+      operateAction = 4 - Cancel the display of the PIN text box.
+      operateAction = 5 - Confirm in the pin text box.
+    */
+    let operation = 0;
+    this.dmInstance.setUserOperation(operation, "extra")
+    } catch (err) {
+      console.error("setUserOperation errCode:" + err.code + ",errMessage:" + err.message);
+  }
+  ```
+
+### on('uiStateChange')9+</sup>
+
+on(type: 'uiStateChange', callback: Callback<{ param: string}>): void;
+
+Subscribes to UI status changes.
+
+**System capability**: SystemCapability.DistributedHardware.DeviceManager
+
+**Parameters**
+
+  | Name     | Type                            | Mandatory| Description                           |
+  | -------- | ------------------------------------ | ---- | ------------------------------ |
+  | type     | string                                | Yes | Event type. The value **'uiStateChange'** indicates a UI status change event.|
+  | callback | Callback&lt;{&nbsp;param: string}&gt; | Yes | Callback used to return the UI status.       |
+
+**Example**
+
+  ```js
+  try {
+    dmInstance.on('uiStateChange', (data) => {
+    console.log("uiStateChange executed, dialog closed" + JSON.stringify(data))
+    var tmpStr = JSON.parse(data.param)
+    this.isShow = tmpStr.verifyFailed
+    console.log("uiStateChange executed, dialog closed" + this.isShow)
+    if (!this.isShow) {
+        this.destruction()
+    }
+  });
+  } catch (err) {
+    console.error("uiStateChange errCode:" + err.code + ",errMessage:" + err.message);
+  }
+  ```
+
+### off('uiStateChange')9+</sup>
+
+off(type: 'uiStateChange', callback?: Callback<{ param: string}>): void;
+
+Unsubscribes from UI status changes.
+
+**System capability**: SystemCapability.DistributedHardware.DeviceManager
+
+**Parameters**
+
+  | Name     | Type                             | Mandatory| Description                           |
+  | -------- | ------------------------------------- | ---- | ------------------------------ |
+  | type     | string                                | Yes  | Event type. The value **'uiStateChange'** indicates a UI status change event.|
+  | callback | Callback&lt;{&nbsp;param: string}&gt; | Yes  | Callback used to return the UI status.|
+
+**Example**
+
+  ```js
+  try {
+    dmInstance.off('uiStateChange');
+  } catch (err) {
+    console.error("uiStateChange errCode:" + err.code + ",errMessage:" + err.message);
+  }
+  ```
 
 ### on('deviceStateChange')
 
@@ -577,19 +881,23 @@ Subscribes to changes in the device state.
 **System capability**: SystemCapability.DistributedHardware.DeviceManager
 
 **Parameters**
-| Name      | Type                                    | Mandatory  | Description                            |
-| -------- | ---------------------------------------- | ---- | ------------------------------ |
-| type     | string                                   | Yes   | Event type. The value **'deviceStateChange'** indicates a device state change event.|
-| callback | Callback&lt;{ action: [DeviceStateChangeAction](#devicestatechangeaction), device: [DeviceInfo](#deviceinfo) }&gt; | Yes   | Callback invoked to return the device information and state.     |
+
+  | Name      | Type                                    | Mandatory  | Description                            |
+  | -------- | ---------------------------------------- | ---- | ------------------------------ |
+  | type     | string                                   | Yes   | Event type. The value **'deviceStateChange'** indicates a device state change event.|
+  | callback | Callback&lt;{ action: [DeviceStateChangeAction](#devicestatechangeaction), device: [DeviceInfo](#deviceinfo) }&gt; | Yes   | Callback used to return the device information and state.     |
 
 **Example**
-  ```js
-  dmInstance.on('deviceStateChange', (data) => {      
-        console.info("deviceStateChange on:" + JSON.stringify(data));
-      }
-  );
-  ```
 
+  ```js
+  try {
+    dmInstance.on('deviceStateChange', (data) => {
+      console.info("deviceStateChange on:" + JSON.stringify(data));
+    });
+  } catch (err) {
+    console.error("deviceStateChange errCode:" + err.code + ",errMessage:" + err.message);
+  }
+  ```
 
 ### off('deviceStateChange')
 
@@ -600,20 +908,23 @@ Unsubscribes from changes in the device state.
 **System capability**: SystemCapability.DistributedHardware.DeviceManager
 
 **Parameters**
-| Name      | Type                                    | Mandatory  | Description                         |
-| -------- | ---------------------------------------- | ---- | --------------------------- |
-| type     | string                                   | Yes   | Event type. The value **'deviceStateChange'** indicates a device state change event.       |
-| callback | Callback&lt;{ action: [DeviceStateChangeAction](#devicestatechangeaction), device: [DeviceInfo](#deviceinfo)  }&gt; | Yes   | Callback invoked to return the device information and state.|
+
+  | Name      | Type                                    | Mandatory  | Description                         |
+  | -------- | ---------------------------------------- | ---- | --------------------------- |
+  | type     | string                                   | Yes   | Event type. The value **'deviceStateChange'** indicates a device state change event.       |
+  | callback | Callback&lt;{&nbsp;action:&nbsp;[DeviceStateChangeAction](#devicestatechangeaction),&nbsp;device:&nbsp;[DeviceInfo](#deviceinfo)&nbsp;&nbsp;}&gt; | Yes   | Callback used to return the device information and state.|
 
 **Example**
 
-```js
-dmInstance.off('deviceStateChange', (data) => {      
+  ```js
+  try {
+    dmInstance.off('deviceStateChange', (data) => {
       console.info('deviceStateChange' + JSON.stringify(data));
-   }
-);
-```
-
+    });
+  } catch (err) {
+    console.error("deviceStateChange errCode:" + err.code + ",errMessage:" + err.message);
+  }
+  ```
 
 ### on('deviceFound')
 
@@ -624,17 +935,22 @@ Subscribes to device discovery events.
 **System capability**: SystemCapability.DistributedHardware.DeviceManager
 
 **Parameters**
-| Name      | Type                                    | Mandatory  | Description                        |
-| -------- | ---------------------------------------- | ---- | -------------------------- |
-| type     | string                                   | Yes   | Event type. The value **'deviceFound'** indicates an event reported when a device is discovered.|
-| callback | Callback&lt;{ subscribeId: number, device: DeviceInfo }&gt; | Yes   | Callback used for device discovery.              |
+
+  | Name      | Type                                    | Mandatory  | Description                        |
+  | -------- | ---------------------------------------- | ---- | -------------------------- |
+  | type     | string                                   | Yes   | Event type. The value **'deviceFound'** indicates an event reported when a device is discovered.|
+  | callback | Callback&lt;{&nbsp;subscribeId: number, device: DeviceInfo&nbsp;}&gt; | Yes   | Callback used for device discovery.              |
 
 **Example**
+
   ```js
-  dmInstance.on('deviceFound', (data) => {
-        console.info("deviceFound:" + JSON.stringify(data));
-      }
-  );
+  try {
+    dmInstance.on('deviceFound', (data) => {
+      console.info("deviceFound:" + JSON.stringify(data));
+    });
+  } catch (err) {
+    console.error("deviceFound errCode:" + err.code + ",errMessage:" + err.message);
+  }
   ```
 
 ### off('deviceFound')
@@ -646,17 +962,22 @@ Unsubscribes from device discovery events.
 **System capability**: SystemCapability.DistributedHardware.DeviceManager
 
 **Parameters**
-| Name      | Type                                    | Mandatory  | Description                         |
-| -------- | ---------------------------------------- | ---- | --------------------------- |
-| type     | string                                   | Yes   | Event type. The value **'deviceFound'** indicates an event reported when a device is discovered.                |
-| callback | Callback&lt;{ subscribeId: number, device: [DeviceInfo](#deviceinfo) }&gt; | Yes   | Callback invoked to return the device information and state.|
+
+  | Name      | Type                                    | Mandatory  | Description                         |
+  | -------- | ---------------------------------------- | ---- | --------------------------- |
+  | type     | string                                   | Yes   | Event type. The value **'deviceFound'** indicates an event reported when a device is discovered.                |
+  | callback | Callback&lt;{&nbsp;subscribeId: number, device: [DeviceInfo](#deviceinfo)&nbsp;}&gt; | Yes   | Callback used to return the device information and state.|
 
 **Example**
+
   ```js
-  dmInstance.off('deviceFound', (data) => {      
-        console.info('deviceFound' + JSON.stringify(data));
-      }
-  );
+  try {
+    dmInstance.off('deviceFound', (data) => {
+      console.info('deviceFound' + JSON.stringify(data));
+    });
+  } catch (err) {
+    console.error("deviceFound errCode:" + err.code + ",errMessage:" + err.message);
+  }
   ```
 
 ### on('discoverFail')
@@ -668,17 +989,22 @@ Subscribes to device discovery failures.
 **System capability**: SystemCapability.DistributedHardware.DeviceManager
 
 **Parameters**
-| Name      | Type                                    | Mandatory  | Description                            |
-| -------- | ---------------------------------------- | ---- | ------------------------------ |
-| type     | string                                   | Yes   | Event type. The event **'discoverFail'** indicates an event reported when device discovery fails.|
-| callback | Callback&lt;{ subscribeId: number, reason: number }&gt; | Yes   | Callback used for the device discovery failure.                |
+
+  | Name      | Type                                    | Mandatory  | Description                            |
+  | -------- | ---------------------------------------- | ---- | ------------------------------ |
+  | type     | string                                   | Yes   | Event type. The event **'discoverFail'** indicates an event reported when device discovery fails.|
+  | callback | Callback&lt;{&nbsp;subscribeId: number, reason: number&nbsp;}&gt; | Yes   | Callback used for the device discovery failure.                |
 
 **Example**
+
   ```js
-  dmInstance.on('discoverFail', (data) => {
-        this.log("discoverFail on:" + JSON.stringify(data));
-      }
-  );
+  try {
+    dmInstance.on('discoverFail', (data) => {
+        console.info("discoverFail on:" + JSON.stringify(data));
+    });
+  } catch (err) {
+    console.error("discoverFail errCode:" + err.code + ",errMessage:" + err.message);
+  }
   ```
 
 ### off('discoverFail')
@@ -690,17 +1016,22 @@ Unsubscribes from device discovery failures.
 **System capability**: SystemCapability.DistributedHardware.DeviceManager
 
 **Parameters**
-| Name      | Type                                    | Mandatory  | Description               |
-| -------- | ---------------------------------------- | ---- | ----------------- |
-| type     | string                                   | Yes   | Event type. The event **'discoverFail'** indicates an event reported when device discovery fails.    |
-| callback | Callback&lt;{ subscribeId: number, reason: number }&gt; | Yes   | Callback used for the device discovery failure.|
+
+  | Name      | Type                                    | Mandatory  | Description               |
+  | -------- | ---------------------------------------- | ---- | ----------------- |
+  | type     | string                                   | Yes   | Event type. The event **'discoverFail'** indicates an event reported when device discovery fails.    |
+  | callback | Callback&lt;{&nbsp;subscribeId: number, reason: number&nbsp;}&gt; | Yes   | Callback used for the device discovery failure.|
 
 **Example**
+
   ```js
-  dmInstance.off('deviceFound', (data) => {      
-        console.info('deviceFound' + JSON.stringify(data));
-      }
-  );
+  try {
+    dmInstance.off('discoverFail', (data) => {
+      console.info('discoverFail' + JSON.stringify(data));
+    });
+  } catch (err) {
+    console.error("discoverFail errCode:" + err.code + ",errMessage:" + err.message);
+  }
   ```
 
 ### on('publishSuccess')9+</sup>
@@ -712,18 +1043,24 @@ Subscribes to device information publication success events.
 **System capability**: SystemCapability.DistributedHardware.DeviceManager
 
 **Parameters**
-| Name    | Type                                | Mandatory| Description                      |
-| -------- | ---------------------------------------- | ---- | -------------------------- |
-| type     | string                                   | Yes  | Event type. The value **'publishSuccess'** indicates an event reported when device information is published.|
-| callback | Callback&lt;{ publishId: number }&gt;    | Yes  | Callback invoked to return the publish ID.              |
+
+  | Name    | Type                                | Mandatory| Description                      |
+  | -------- | ---------------------------------------- | ---- | -------------------------- |
+  | type     | string                                   | Yes  | Event type. The value **'publishSuccess'** indicates an event reported when device information is published.|
+  | callback | Callback&lt;{ publishId: number }&gt;    | Yes  | Callback used to return the publish ID.              |
+
 
 **Example**
-```js
-dmInstance.on('publishSuccess', (data) => {
+
+  ```js
+  try {
+    dmInstance.on('publishSuccess', (data) => {
       console.info("publishSuccess:" + JSON.stringify(data));
-    }
-);
-```
+    });
+  } catch (err) {
+    console.error("publishSuccess errCode:" + err.code + ",errMessage:" + err.message);
+  }
+  ```
 
 ### off('publishSuccess')9+</sup>
 
@@ -734,17 +1071,22 @@ Unsubscribes from device information publication success events.
 **System capability**: SystemCapability.DistributedHardware.DeviceManager
 
 **Parameters**
-| Name    | Type                                | Mandatory| Description                         |
-| -------- | ---------------------------------------- | ---- | --------------------------- |
-| type     | string                                   | Yes  | Event type. The value **'publishSuccess'** indicates an event reported when device information is published.                |
-| callback | Callback&lt;{ publishId: number }&gt;    | Yes  | Callback used to return the publish ID.|
+
+  | Name    | Type                                | Mandatory| Description                         |
+  | -------- | ---------------------------------------- | ---- | --------------------------- |
+  | type     | string                                   | Yes  | Event type. The value **'publishSuccess'** indicates an event reported when device information is published.                |
+  | callback | Callback&lt;{ publishId: number }&gt;    | Yes  | Callback used to return the publish ID.|
 
 **Example**
+
   ```js
-  dmInstance.off('publishSuccess', (data) => {      
-        console.info('publishSuccess' + JSON.stringify(data));
-      }
-  );
+  try {
+    dmInstance.off('publishSuccess', (data) => {
+      console.info('publishSuccess' + JSON.stringify(data));
+    });
+  } catch (err) {
+    console.error("publishSuccess errCode:" + err.code + ",errMessage:" + err.message);
+  }
   ```
 
 ### on('publishFail')9+</sup>
@@ -756,17 +1098,22 @@ Subscribes to device information publication failures.
 **System capability**: SystemCapability.DistributedHardware.DeviceManager
 
 **Parameters**
-| Name    | Type                                             | Mandatory| Description                            |
-| -------- | ----------------------------------------------------- | ---- | ------------------------------ |
-| type     | string                                                | Yes  | Event type. The event **'publishFail'** indicates an event reported when publishing device information fails.|
-| callback | Callback&lt;{ publishId: number, reason: number }&gt; | Yes  | Callback used for the publication failure.                |
+
+  | Name    | Type                                             | Mandatory| Description                            |
+  | -------- | ----------------------------------------------------- | ---- | ------------------------------ |
+  | type     | string                                                | Yes  | Event type. The event **'publishFail'** indicates an event reported when publishing device information fails.|
+  | callback | Callback&lt;{ publishId: number, reason: number }&gt; | Yes  | Callback used for the publication failure.                |
 
 **Example**
+
   ```js
-  dmInstance.on('publishFail', (data) => {
-        this.log("publishFail on:" + JSON.stringify(data));
-      }
-  );
+  try {
+    dmInstance.on('publishFail', (data) => {
+      console.info("publishFail on:" + JSON.stringify(data));
+    });
+  } catch (err) {
+    console.error("publishFail errCode:" + err.code + ",errMessage:" + err.message);
+  }
   ```
 
 ### off('publishFail')9+</sup>
@@ -778,17 +1125,22 @@ Unsubscribes from device information publication failures.
 **System capability**: SystemCapability.DistributedHardware.DeviceManager
 
 **Parameters**
-| Name    | Type                                             | Mandatory| Description               |
-| -------- | ----------------------------------------------------- | ---- | ----------------- |
-| type     | string                                                | Yes  | Event type. The event **'publishFail'** indicates an event reported when publishing device information fails.    |
-| callback | Callback&lt;{ publishId: number, reason: number }&gt; | Yes  | Callback used for the device discovery failure.|
+
+  | Name    | Type                                             | Mandatory| Description               |
+  | -------- | ----------------------------------------------------- | ---- | ----------------- |
+  | type     | string                                                | Yes  | Event type. The event **'publishFail'** indicates an event reported when publishing device information fails.    |
+  | callback | Callback&lt;{ publishId: number, reason: number }&gt; | Yes  | Callback used for the device discovery failure.|
 
 **Example**
+
   ```js
-  dmInstance.off('publishFail', (data) => {      
-        console.info('publishFail' + JSON.stringify(data));
-      }
-  );
+  try {
+    dmInstance.off('publishFail', (data) => {
+      console.info('publishFail' + JSON.stringify(data));
+    });
+  } catch (err) {
+    console.error("publishFail errCode:" + err.code + ",errMessage:" + err.message);
+  }
   ```
 
 ### on('serviceDie')
@@ -800,19 +1152,23 @@ Subscribes to dead events of the **DeviceManager** service.
 **System capability**: SystemCapability.DistributedHardware.DeviceManager
 
 **Parameters**
-| Name      | Type                   | Mandatory  | Description                                      |
-| -------- | ----------------------- | ---- | ---------------------------------------- |
-| type     | string                  | Yes   | Event type. The value **'serviceDie'** indicates an event reported when the **DeviceManager** service is terminated unexpectedly.|
-| callback | () =&gt; void | Yes   | Callback invoked when a dead event of the **DeviceManager** service occurs.                      |
+
+  | Name      | Type                   | Mandatory  | Description                                      |
+  | -------- | ----------------------- | ---- | ---------------------------------------- |
+  | type     | string                  | Yes   | Event type. The value **'serviceDie'** indicates an event reported when the **DeviceManager** service is terminated unexpectedly.|
+  | callback | ()&nbsp;=&gt;&nbsp;void | Yes   | Callback invoked when a dead event of the **DeviceManager** service occurs.                      |
 
 **Example**
-  ```js
-  dmInstance.on("serviceDie", () => {      
-        console.info("serviceDie on");
-     }
-  );
-  ```
 
+  ```js
+  try {
+    dmInstance.on("serviceDie", () => {
+      console.info("serviceDie on");
+    });
+  } catch (err) {
+    console.error("serviceDie errCode:" + err.code + ",errMessage:" + err.message);
+  }
+  ```
 
 ### off('serviceDie')
 
@@ -823,15 +1179,20 @@ Unsubscribes from dead events of the **DeviceManager** service.
 **System capability**: SystemCapability.DistributedHardware.DeviceManager
 
 **Parameters**
-| Name      | Type                   | Mandatory  | Description                                      |
-| -------- | ----------------------- | ---- | ---------------------------------------- |
-| type     | string                  | Yes   | Event type. The value **'serviceDie'** indicates an event reported when the **DeviceManager** service is terminated unexpectedly.|
-| callback | () =&gt; void | No   | Callback used to return the dead event of the **DeviceManager** service.                    |
+
+  | Name      | Type                   | Mandatory  | Description                                      |
+  | -------- | ----------------------- | ---- | ---------------------------------------- |
+  | type     | string                  | Yes   | Event type. The value **'serviceDie'** indicates an event reported when the **DeviceManager** service is terminated unexpectedly.|
+  | callback | ()&nbsp;=&gt;&nbsp;void | No   | Callback used to return the dead event of the **DeviceManager** service.                    |
 
 **Example**
+
   ```js
-  dmInstance.off("serviceDie", () => {      
-        console.info("serviceDie off");
-    }
-  );
+  try {
+    dmInstance.off("serviceDie", () => {
+      console.info("serviceDie off");
+    });
+  } catch (err) {
+    console.error("serviceDie errCode:" + err.code + ",errMessage:" + err.message);
+  }
   ```

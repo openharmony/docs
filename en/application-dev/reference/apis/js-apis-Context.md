@@ -381,6 +381,53 @@ context.getDisplayOrientation().then((data) => {
 });
 ```
 
+## Context.getExternalCacheDir
+
+getExternalCacheDir(callback: AsyncCallback\<string>): void
+
+Obtains the external cache directory of the application. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
+**Parameters**
+
+| Name      | Type                    | Mandatory  | Description                |
+| -------- | ---------------------- | ---- | ------------------ |
+| callback | AsyncCallback\<string> | Yes   | Callback used to return the absolute path of the cache directory.|
+
+**Example**
+
+```js
+import featureAbility from '@ohos.ability.featureAbility'
+var context = featureAbility.getContext();
+context.getExternalCacheDir()
+```
+
+## Context.getExternalCacheDir
+
+getExternalCacheDir(): Promise\<string>;
+
+Obtains the external cache directory of the application. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
+**Return value**
+
+| Type              | Description              |
+| ---------------- | ---------------- |
+| Promise\<string> | Promise used to return the absolute path of the cache directory.|
+
+**Example**
+
+```js
+import featureAbility from '@ohos.ability.featureAbility'
+var context = featureAbility.getContext();
+context.getExternalCacheDir().then((data) => {
+    console.info("=======================>getExternalCacheDirCallback====================>");
+    console.info("====>data====>" + JSON.stringify(data));
+});
+```
+
 ## Context.setDisplayOrientation<sup>7+</sup>
 
 setDisplayOrientation(orientation: bundle.DisplayOrientation, callback: AsyncCallback\<void>): void

@@ -1,4 +1,4 @@
-# 使用eTS语言开发（FA模型）
+# 使用ArkTS语言开发（FA模型）
 
 
 >  **说明：**
@@ -18,7 +18,7 @@
    ![02](figures/02.png)
 
    > **说明：**
-   > DevEco Studio V3.0 Beta3及更高版本支持使用eTS[低代码开发](https://developer.harmonyos.com/cn/docs/documentation/doc-guides/ohos-low-code-development-0000001218440652)方式。
+   > DevEco Studio V3.0 Beta3及更高版本支持使用ArkTS[低代码开发](https://developer.harmonyos.com/cn/docs/documentation/doc-guides/ohos-low-code-development-0000001218440652)方式。
    > 
    > 低代码开发方式具有丰富的UI界面编辑功能，通过可视化界面开发方式快速构建布局，可有效降低开发者的上手成本并提升开发者构建UI界面的效率。
    > 
@@ -35,7 +35,7 @@
   - **src &gt; main &gt; ets &gt; MainAbility &gt; pages**：MainAbility包含的页面。
   - **src &gt; main &gt; ets &gt; MainAbility &gt; pages &gt; index.ets**：pages列表中的第一个页面，即应用的首页入口。
   - **src &gt; main &gt; ets &gt; MainAbility &gt; app.ets**：承载Ability生命周期。
-  - **src &gt; main &gt; resources**：用于存放应用/服务所用到的资源文件，如图形、多媒体、字符串、布局文件等。关于资源文件，详见[资源文件的分类](../ui/ui-ts-basic-resource-file-categories.md)。
+  - **src &gt; main &gt; resources**：用于存放应用/服务所用到的资源文件，如图形、多媒体、字符串、布局文件等。关于资源文件，详见[资源文件的分类](resource-categories-and-access.md#资源分类)。
   - **src &gt; main &gt; config.json**：模块配置文件。主要包含HAP包的配置信息、应用/服务在具体设备上的配置信息以及应用/服务的全局配置信息。具体的配置文件说明，详见[应用包结构配置文件的说明（FA模型）](package-structure.md)。
   - **build-profile.json5**：当前的模块信息 、编译信息配置项，包括buildOption、targets配置等。
   - **hvigorfile.js**：模块级编译构建任务脚本，开发者可以自定义相关任务和代码实现。
@@ -182,7 +182,7 @@
 
 ## 实现页面间的跳转
 
-页面间的导航可以通过[页面路由router](../reference/apis/js-apis-router.md#routerpush)来实现。页面路由router根据页面url找到目标页面，从而实现跳转。使用页面路由请导入router模块。
+页面间的导航可以通过[页面路由router](../reference/apis/js-apis-router.md)来实现。页面路由router根据页面url找到目标页面，从而实现跳转。使用页面路由请导入router模块。
 
 1. 第一个页面跳转到第二个页面。
 
@@ -190,6 +190,7 @@
    
    ```ts
    // index.ets
+   // 导入页面路由模块
    import router from '@ohos.router';
    
    @Entry
@@ -234,6 +235,7 @@
    
    ```ts
    // second.ets
+   // 导入页面路由模块
    import router from '@ohos.router';
    
    @Entry
@@ -288,4 +290,4 @@
 
    ![zh-cn_image_0000001363934577](figures/zh-cn_image_0000001363934577.png)
 
-恭喜您已经使用eTS语言开发（FA模型）完成了第一个OpenHarmony应用，快来[探索更多的OpenHarmony功能](../application-dev-guide.md)吧。
+恭喜您已经使用ArkTS语言开发（FA模型）完成了第一个OpenHarmony应用，快来[探索更多的OpenHarmony功能](../application-dev-guide.md)吧。

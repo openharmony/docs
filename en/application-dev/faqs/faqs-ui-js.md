@@ -30,7 +30,7 @@ let options = {trim : false, declarationKey:"_declaration",
   nameKey : "_name", elementsKey : "_elements"}
 let result:any = conv.convert(xml, options) // Convert fields in the XML file into JavaScript objects.
 console.log('Test: ' + JSON.stringify(result))
-console.log('Test: ' + result._declaration._attributes.version) // vesion field in XML file
+console.log('Test: ' + result._declaration._attributes.version) // version field in XML file
 console.log('Test: ' + result._elements[0]._elements[0]._elements[0]._text) // title field in XML file
 ```
 

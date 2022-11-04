@@ -64,6 +64,14 @@ create(colorSpaceName: ColorSpace): ColorSpaceManager
 | ------------------ | ------------------------ |
 | [ColorSpaceManager](#colorspacemanager)  | 返回当前创建的色域对象实例。               |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[色彩管理错误码](../errorcodes/errorcode-colorspace-manager.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | ----------------------- |
+| 18600001 | Parameter value is abnormal. |
+
 **示例：**
 
 ```js
@@ -95,6 +103,14 @@ create(primaries: ColorSpacePrimaries, gamma: number): ColorSpaceManager
 | 类型                | 说明                     |
 | ------------------ | ------------------------ |
 | [ColorSpaceManager](#colorspacemanager)  | 返回当前创建的色域对象实例。<br>色域类型定义为[ColorSpace](#colorspace)枚举值`CUSTOM`。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[色彩管理错误码](../errorcodes/errorcode-colorspace-manager.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | ----------------------- |
+| 18600001 | Parameter value is abnormal. |
 
 **示例：**
 
@@ -138,6 +154,14 @@ getColorSpaceName(): ColorSpace
 | ------------------ | ------------------------ |
 | [ColorSpace](#colorspace)  | 返回色域类型枚举值。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[色彩管理错误码](../errorcodes/errorcode-colorspace-manager.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | ----------------------- |
+| 18600001 | Parameter value is abnormal. |
+
 **示例：**
 
 ```js
@@ -162,6 +186,14 @@ getWhitePoint(): Array\<number\>
 | ------------------ | ------------------------ |
 | Array\<number\>  | 返回色域白点值[x, y]。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[色彩管理错误码](../errorcodes/errorcode-colorspace-manager.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | ----------------------- |
+| 18600001 | Parameter value is abnormal. |
+
 **示例：**
 
 ```js
@@ -185,6 +217,14 @@ getGamma(): number
 | 类型                | 说明                     |
 | ------------------ | ------------------------ |
 | number  | 返回色域gamma值。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[色彩管理错误码](../errorcodes/errorcode-colorspace-manager.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | ----------------------- |
+| 18600001 | Parameter value is abnormal. |
 
 **示例：**
 

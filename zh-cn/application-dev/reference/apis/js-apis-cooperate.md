@@ -13,7 +13,7 @@
 import inputDeviceCooperate from '@ohos.multimodalInput.inputDeviceCooperate'
 ```
 
-## inputDeviceCooperate.enable<sup>9+</sup>
+## inputDeviceCooperate.enable
 
 enable(enable: boolean, callback: AsyncCallback\<void>): void
 
@@ -46,7 +46,7 @@ try {
 }
 ```
 
-## inputDeviceCooperate.enable<sup>9+</sup>
+## inputDeviceCooperate.enable
 
 enable(enable: boolean): Promise\<void>
 
@@ -84,7 +84,7 @@ try {
 }
 ```
 
-## inputDeviceCooperate.start<sup>9+</sup>
+## inputDeviceCooperate.start
 
 start(sinkDeviceDescriptor: string, srcInputDeviceId: number, callback: AsyncCallback\<void>): void
 
@@ -100,7 +100,14 @@ start(sinkDeviceDescriptor: string, srcInputDeviceId: number, callback: AsyncCal
 | srcInputDeviceId     | number                       |  是   | 键鼠穿越待穿越外设标识符。           |
 | callback             | AsyncCallback\<void>         |  是    | 异步回调函数。当键鼠穿越启动成功，err为undefined，否则为错误对象。|
 
+**错误码：**
 
+以下错误码的详细介绍请参见[ohos.multimodalinput错误码](../errorcodes/errorcodes-multimodalinput.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 4400001  | Incorrect descriptor for the target device.                |
+| 4400002  | Failed to operate the input device.                |
 
 **示例**：
 
@@ -118,7 +125,7 @@ try {
 }
 ```
 
-## inputDeviceCooperate.start<sup>9+</sup>
+## inputDeviceCooperate.start
 
 start(sinkDeviceDescriptor: string, srcInputDeviceId: number): Promise\<void>
 
@@ -141,7 +148,14 @@ start(sinkDeviceDescriptor: string, srcInputDeviceId: number): Promise\<void>
 | ---------------------- | ------------------------------- |
 | Promise\<void>         | Promise实例，用于异步获取结果。       |
 
+**错误码：**
 
+以下错误码的详细介绍请参见[ohos.multimodalinput错误码](../errorcodes/errorcodes-multimodalinput.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 4400001  | Incorrect descriptor for the target device.                |
+| 4400002  | Failed to operate the input device.                |
 
 **示例**：
 
@@ -157,7 +171,7 @@ try {
 }
 ```
 
-## inputDeviceCooperate.stop<sup>9+</sup>
+## inputDeviceCooperate.stop
 
 stop(callback: AsyncCallback\<void>): void
 
@@ -189,7 +203,7 @@ try {
 }
 ```
 
-## inputDeviceCooperate.stop<sup>9+</sup>
+## inputDeviceCooperate.stop
 
 stop(): Promise\<void>
 
@@ -217,7 +231,7 @@ try {
 }
 ```
 
-## inputDeviceCooperate.getState<sup>9+</sup>
+## inputDeviceCooperate.getState
 
 getState(deviceDescriptor: string, callback: AsyncCallback<{ state: boolean }>): void
 
@@ -248,7 +262,7 @@ try {
 }
 ```
 
-## inputDeviceCooperate.getState<sup>9+</sup>
+## inputDeviceCooperate.getState
 
 getState(deviceDescriptor: string): Promise<{ state: boolean }>
 
@@ -286,7 +300,7 @@ try {
 }
 ```
 
-## on('cooperation')<sup>9+</sup>
+## on('cooperation')
 
 on(type: 'cooperation', callback: AsyncCallback<{ deviceDescriptor: string, eventMsg: EventMsg }>): void
 
@@ -319,7 +333,7 @@ try {
 }
 ```
 
-## off('cooperation')<sup>9+</sup>
+## off('cooperation')
 
 off(type: 'cooperation', callback?: AsyncCallback\<void>): void
 
@@ -352,7 +366,7 @@ try {
 }
 ```
 
-## EventMsg<sup>9+</sup>
+## EventMsg
 
 键鼠穿越事件。
 

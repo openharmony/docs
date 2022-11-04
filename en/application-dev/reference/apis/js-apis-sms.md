@@ -397,7 +397,7 @@ Splits an SMS message into multiple segments. This API uses an asynchronous call
 **Example**
 
 ```js
-string content= "long message";
+let content = "long message";
 sms.splitMessage(content, (err, data) => {
       console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
@@ -431,7 +431,7 @@ Splits an SMS message into multiple segments. This API uses a promise to return 
 **Example**
 
 ```js
-string content = "long message";
+let content = "long message";
 let promise = sms.splitMessage(content);
 promise.then(data => {
     console.log(`splitMessage success, promise: data->${JSON.stringify(data)}`);
@@ -463,10 +463,10 @@ Adds a SIM message. This API uses an asynchronous callback to return the result.
 
 ```js
 let simMessageOptions = {
-    slotId = 0,
-    smsc = "test",
-    pdu = "xxxxxx",
-    status = 0
+    slotId: 0,
+    smsc: "test",
+    pdu: "xxxxxx",
+    status: sms.SimMessageStatus.SIM_MESSAGE_STATUS_READ
 };
 sms.addSimMessage(simMessageOptions, (err, data) => {
       console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
@@ -502,10 +502,10 @@ Adds a SIM message. This API uses a promise to return the result.
 
 ```js
 let simMessageOptions = {
-    slotId = 0,
-    smsc = "test",
-    pdu = "xxxxxx",
-    status = 0
+    slotId: 0,
+    smsc: "test",
+    pdu: "xxxxxx",
+    status: sms.SimMessageStatus.SIM_MESSAGE_STATUS_READ
 };
 let promise = sms.addSimMessage(simMessageOptions);
 promise.then(data => {
@@ -607,9 +607,9 @@ Updates a SIM message. This API uses an asynchronous callback to return the resu
 
 ```js
 let updateSimMessageOptions = {
-    slotId = 0,
-    msgIndex = 1,
-    newStatus = 0,
+    slotId: 0,
+    msgIndex: 1,
+    newStatus: sms.SimMessageStatus.SIM_MESSAGE_STATUS_FREE,
     pdu = "xxxxxxx",
     smsc = "test"
 };
@@ -647,9 +647,9 @@ Updates a SIM message. This API uses a promise to return the result.
 
 ```js
 let updateSimMessageOptions = {
-    slotId = 0,
-    msgIndex = 1,
-    newStatus = 0,
+    slotId: 0,
+    msgIndex: 1,
+    newStatus: sms.SimMessageStatus.SIM_MESSAGE_STATUS_FREE,
     pdu = "xxxxxxx",
     smsc = "test"
 };
@@ -749,10 +749,11 @@ Sets the cell broadcast configuration. This API uses an asynchronous callback to
 
 ```js
 let cbConfigOptions = {
-    slotId = 0,
-    smsc = "test",
-    pdu = "xxxxxxxx",
-    status = 0
+    slotId: 0,
+    enable: true,
+    startMessageId: 100,
+    endMessageId: 200,
+    ranType: sms.RanType.TYPE_GSM
 };
 sms.setCBConfig(cbConfigOptions, (err, data) => {
       console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
@@ -788,13 +789,14 @@ Sets the cell broadcast configuration. This API uses a promise to return the res
 
 ```js
 let cbConfigOptions = {
-    slotId = 0,
-    smsc = "test",
-    pdu = "xxxxxxxx",
-    status = 0
+    slotId: 0,
+    enable: true,
+    startMessageId: 100,
+    endMessageId: 200,
+    ranType: sms.RanType.TYPE_GSM
 };
 let promise = sms.setCBConfig(cbConfigOptions);
-promise.then(data => 
+promise.then(data => {
     console.log(`setCBConfig success, promise: data->${JSON.stringify(data)}`);
 }).catch(err => {
     console.error(`setCBConfig failed, promise: err->${JSON.stringify(err)}`);
@@ -859,7 +861,7 @@ Obtains SMS message segment information. This API uses a promise to return the r
 ```js
 let slotId = 0;
 let promise = sms.getSmsSegmentsInfo(slotId, "message", false);
-promise.then(data => 
+promise.then(data => {
     console.log(`getSmsSegmentsInfo success, promise: data->${JSON.stringify(data)}`);
 }).catch(err => {
     console.error(`getSmsSegmentsInfo failed, promise: err->${JSON.stringify(err)}`);
@@ -886,7 +888,7 @@ Checks whether SMS is supported on IMS. This API uses an asynchronous callback t
 
 ```js
 sms.isImsSmsSupported((err, data) => {
-      console.log(`callback: err->${JSON.(err)}, data->${JSON.stringify(data)}`);
+      console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
 ```
 
@@ -1023,7 +1025,7 @@ Decodes MMS messages. This API uses a promise to return the result.
 
 ```js
 let mmsFilePathName = "filename";
-let promise = sms.getSmscAddr(mmsFilePathName);
+let promise = sms.decodeMms(mmsFilePathName);
 promise.then(data => {
     console.log(`decodeMms success, promise: data->${JSON.stringify(data)}`);
 }).catch(err => {
@@ -1092,13 +1094,13 @@ Encodes MMS messages. This API uses a promise to return the result.
 
 ```js
 let mmsAcknowledgeInd = {
-    transactionId = "100",
-    version = 0x10,
-    reportAllowed = 128
+    transactionId: "100",
+    version: sms.MmsVersionType.MMS_VERSION_1_0,
+    reportAllowed = sms.ReportType.MMS_YES
 };
 let mmsInformation = {
-   messageType = 133,
-    mmsType = mmsAcknowledgeInd
+   messageType: sms.MessageType.TYPE_MMS_ACKNOWLEDGE_IND,
+    mmsType: mmsAcknowledgeInd
 };
 let promise = sms.encodeMms(mmsInformation);
 promise.then(data => {

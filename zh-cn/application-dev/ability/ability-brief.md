@@ -32,4 +32,4 @@ Stage模型的设计，主要是为了开发者更加方便地开发出分布式
 ## 相关实例
 针对Ability开发，有以下相关实例可供参考：
 
-- [Page内和Page间导航跳转（eTS）（API8）](https://gitee.com/openharmony/codelabs/tree/master/Ability/PageAbility)
+- [Page内和Page间导航跳转（ArkTS）（API8）](https://gitee.com/openharmony/codelabs/tree/master/Ability/PageAbility)

@@ -85,8 +85,8 @@
 @Entry
 @Component
 struct GestureSettingsExample {
-  @State priorityTestValue: string = '';
-  @State parallelTestValue: string = '';
+  @State priorityTestValue: string = ''
+  @State parallelTestValue: string = ''
 
   build() {
     Column() {
@@ -95,7 +95,7 @@ struct GestureSettingsExample {
           .gesture(
           TapGesture()
             .onAction(() => {
-              this.priorityTestValue += '\nText';
+              this.priorityTestValue += '\nText'
             }))
       }
       .height(200)
@@ -107,7 +107,7 @@ struct GestureSettingsExample {
       .priorityGesture(
       TapGesture()
         .onAction((event: GestureEvent) => {
-          this.priorityTestValue += '\nColumn';
+          this.priorityTestValue += '\nColumn'
         }), GestureMask.IgnoreInternal)
 
       Column() {
@@ -115,7 +115,7 @@ struct GestureSettingsExample {
           .gesture(
           TapGesture()
             .onAction(() => {
-              this.parallelTestValue += '\nText';
+              this.parallelTestValue += '\nText'
             }))
       }
       .height(200)
@@ -127,7 +127,7 @@ struct GestureSettingsExample {
       .parallelGesture(
       TapGesture()
         .onAction((event: GestureEvent) => {
-          this.parallelTestValue += '\nColumn';
+          this.parallelTestValue += '\nColumn'
         }), GestureMask.Normal)
     }
   }

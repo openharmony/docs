@@ -342,7 +342,7 @@ export default {
 | 名称     | 参数类型   | 必填   | 说明                                       |
 | ------ | ------ | ---- | ---------------------------------------- |
 | uri    | string | 是    | 目标页面的uri，可以是以下的两种格式：<br/>1. 页面的绝对路径，由config.json文件中的页面列表提供。例如：<br/>- pages/index/index<br/> -pages/detail/detail<br/>2. 特定路径。如果URI为斜杠（/），则显示主页。 |
-| params | Object | 否    | 跳转时要同时传递到目标页面的数据，跳转到目标页面后，参数可以在页面中直接使用，如this.data1(data1为跳转时params参数中的key值)。如果目标页面中已有该字段，则其值会被传入的字段值覆盖。 |
+| params | Object | 否    | 表示路由跳转时要同时传递到目标页面的数据。跳转到目标页面后，使用router.getParams()获取传递的参数，此外，在类web范式中，参数也可以在页面中直接使用，如this.keyValue(keyValue为跳转时params参数中的key值)，如果目标页面中已有该字段，则其值会被传入的字段值覆盖。 |
 
 
 ## BackRouterOptions
@@ -379,7 +379,7 @@ export default {
 | message  | string                   | 是   | 询问对话框内容。                                   |
 | success  | (errMsg: string) => void | 否   | 用户选择对话框确认按钮时触发，errMsg表示返回信息。 |
 | cancel   | (errMsg: string) => void | 否   | 用户选择对话框取消按钮时触发，errMsg表示返回信息。 |
-| complete | () => void               | 否   | 接口调用结束的回调函数。                           |
+| complete | () => void               | 否   | 当对话框关闭时触发该回调。                           |
 
 ## DisableAlertBeforeBackPageOptions<sup>6+</sup>
 
@@ -391,7 +391,7 @@ export default {
 | -------- | ------------------------ | ---- | -------------------------------------------------- |
 | success  | (errMsg: string) => void | 否   | 关闭询问对话框能力成功时触发，errMsg表示返回信息。 |
 | cancel   | (errMsg: string) => void | 否   | 关闭询问对话框能力失败时触发，errMsg表示返回信息。 |
-| complete | () => void               | 否   | 接口调用结束的回调函数。                           |
+| complete | () => void               | 否   | 当对话框关闭时触发该回调。                           |
 
 ## ParamsInterface
 

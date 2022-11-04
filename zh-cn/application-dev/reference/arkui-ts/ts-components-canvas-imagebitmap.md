@@ -1,18 +1,49 @@
 # ImageBitmap对象
 
+ImageBitmap对象可以存储canvas渲染的像素数据。
+
 >  **说明：**
+> 
 > 从 API Version 8 开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
-
-ImageBitmap对象可以存储canvas渲染的像素数据。
 
 
 ## 属性
 
-| 属性 | 类型 | 描述 | 
+| 属性 | 类型 | 描述 |
 | -------- | -------- | -------- |
-| width | number | ImageBitmap的像素宽度。 | 
-| height | number | ImageBitmap的像素高度。 | 
+| width | number | ImageBitmap的像素宽度。 |
+| height | number | ImageBitmap的像素高度。 |
+
+**示例：**
+
+  ```ts
+  // xxx.ets
+  @Entry
+  @Component
+  struct ImageExample {
+    private settings: RenderingContextSettings = new RenderingContextSettings(true)
+    private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
+    private img:ImageBitmap = new ImageBitmap("common/images/example.jpg")
+
+    build() {
+      Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
+        Canvas(this.context)
+          .width('100%')
+          .height('100%')
+          .backgroundColor('#ffff00')
+          .onReady(() =>{
+            this.context.drawImage( this.img,0,0,500,500,0,0,400,200)
+        })
+      }
+      .width('100%')
+      .height('100%')
+    }
+  }
+  ```
+
+  ![zh-cn_image_0000001194352442](figures/zh-cn_image_0000001194352442.png)
+
 
 
 ## 方法

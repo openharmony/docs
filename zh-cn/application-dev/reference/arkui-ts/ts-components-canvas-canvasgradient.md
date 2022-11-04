@@ -1,10 +1,11 @@
 # CanvasGradient对象
 
+渐变对象。
+
 >  **说明：**
+> 
 >  从 API Version 8 开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
-
-渐变对象。
 
 
 ## addColorStop
@@ -13,13 +14,16 @@ addColorStop(offset: number, color: string): void
 
 设置渐变断点值，包括偏移和颜色。
 
-- 参数
+
+**参数：**
+
   | 参数     | 类型     | 必填   | 默认值       | 描述                           |
   | ------ | ------ | ---- | --------- | ---------------------------- |
   | offset | number | 是    | 0         | 设置渐变点距离起点的位置占总体长度的比例，范围为0到1。 |
   | color  | string | 是    | '#ffffff' | 设置渐变的颜色。                     |
 
-- 示例
+
+**示例：**
 
   ```ts
   // xxx.ets
@@ -48,10 +52,6 @@ addColorStop(offset: number, color: string): void
       .height('100%')
     }}
   ```
-
-
-
-
   ![zh-cn_image_0000001194032516](figures/zh-cn_image_0000001194032516.png)
 
  

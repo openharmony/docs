@@ -1,6 +1,6 @@
-# 注入按键
+# 按键注入
 
-InputEventClient模块提供了注入按键能力。
+按键注入模块，提供按键注入能力。
 
 > **说明：**
 >
@@ -21,7 +21,7 @@ import inputEventClient from '@ohos.multimodalInput.inputEventClient';
 
 injectEvent({KeyEvent: KeyEvent}): void
 
-注入按键，KeyEvent为注入按键的描述信息。
+按键注入，当前仅支持返回键（键值2）注入。
 
 **系统能力：** SystemCapability.MultimodalInput.Input.InputSimulator
 
@@ -29,41 +29,43 @@ injectEvent({KeyEvent: KeyEvent}): void
 
 | 参数       | 类型                    | 必填   | 说明        |
 | -------- | --------------------- | ---- | --------- |
-| KeyEvent | [KeyEvent](#keyevent) | 是    | 注入按键的描述信息 |
+| KeyEvent | [KeyEvent](#keyevent) | 是    | 按键注入描述信息。 |
 
 **示例：**
 
 ```js
 try {
-  var keyEvent = {
+  let backKeyDown = {
     isPressed: true,
     keyCode: 2,
     keyDownDuration: 0,
     isIntercepted: false
   }
-  inputEventClient.injectKeyEvent({ KeyEvent: keyEvent });
-  var keyEvent1 = {
+  inputEventClient.injectKeyEvent({ KeyEvent: backKeyDown });
+
+  let backKeyUp = {
     isPressed: false,
     keyCode: 2,
     keyDownDuration: 0,
     isIntercepted: false
   };
-  inputEventClient.injectKeyEvent({ KeyEvent: keyEvent1 });
+  inputEventClient.injectKeyEvent({ KeyEvent: backKeyUp });
 } catch (error) {
-  console.info("injectKeyEvent " + error.code + " " + error.message);
+  console.log(`Failed to inject KeyEvent, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
 
 ## KeyEvent
 
-注入按键的描述信息。
+按键注入描述信息。
 
 **系统能力：** SystemCapability.MultimodalInput.Input.InputSimulator
 
-| 参数              | 类型      | 必填   | 说明        |
-| --------------- | ------- | ---- | --------- |
-| isPressed       | boolean | 是    | 按键是否按下    |
-| keyCode         | number  | 是    | 按键键值      |
-| keyDownDuration | number  | 是    | 按键按下持续时间  |
-| isIntercepted   | boolean | 是    | 按键是否可以被拦截 |
+| 参数            | 类型    | 必填 | 说明                       |
+| --------------- | ------- | ---- | -------------------------- |
+| isPressed       | boolean | 是   | 按键是否按下。               |
+| keyCode         | number  | 是   | 按键键值，当前只支持back键。 |
+| keyDownDuration | number  | 是   | 按键按下持续时间。           |
+| isIntercepted   | boolean | 是   | 按键是否可以被拦截。         |
+

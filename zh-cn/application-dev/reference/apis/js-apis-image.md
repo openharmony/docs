@@ -36,7 +36,7 @@ createPixelMap(colors: ArrayBuffer, options: InitializationOptions): Promise\<Pi
 **示例：**
 
 ```js
-const color = new ArrayBuffer(96);
+const color = new ArrayBuffer(96);  //96为需要创建的像素buffer大小，取值为：height * width *4
 let bufferArr = new Uint8Array(color);
 let opts = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } }
 image.createPixelMap(color, opts).then((pixelmap) => {
@@ -65,7 +65,7 @@ createPixelMap(colors: ArrayBuffer, options: InitializationOptions, callback: As
 **示例：**
 
 ```js
-const color = new ArrayBuffer(96);
+const color = new ArrayBuffer(96);  //96为需要创建的像素buffer大小，取值为：height * width *4
 let bufferArr = new Uint8Array(color);
 let opts = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } }
 image.createPixelMap(color, opts, (error, pixelmap) => {
@@ -112,7 +112,7 @@ readPixelsToBuffer(dst: ArrayBuffer): Promise\<void>
 **示例：**
 
 ```js
-const readBuffer = new ArrayBuffer(96);
+const readBuffer = new ArrayBuffer(96);  //96为需要创建的像素buffer大小，取值为：height * width *4
 pixelmap.readPixelsToBuffer(readBuffer).then(() => {
     console.log('Succeeded in reading image pixel data.');  //符合条件则进入 
 }).catch(error => {
@@ -138,7 +138,7 @@ readPixelsToBuffer(dst: ArrayBuffer, callback: AsyncCallback\<void>): void
 **示例：**
 
 ```js
-const readBuffer = new ArrayBuffer(96);
+const readBuffer = new ArrayBuffer(96);  //96为需要创建的像素buffer大小，取值为：height * width *4
 pixelmap.readPixelsToBuffer(readBuffer, (err, res) => {
     if(err) {
         console.log('Failed to read image pixel data.');  //不符合条件则进入
@@ -202,7 +202,7 @@ readPixels(area: PositionArea, callback: AsyncCallback\<void>): void
 **示例：**
 
 ```js
-const color = new ArrayBuffer(96);
+const color = new ArrayBuffer(96);  //96为需要创建的像素buffer大小，取值为：height * width *4
 let bufferArr = new Uint8Array(color);
 let opts = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } }
 image.createPixelMap(color, opts, (err, pixelmap) => {
@@ -243,7 +243,7 @@ writePixels(area: PositionArea): Promise\<void>
 **示例：**
 
 ```js
-const color = new ArrayBuffer(96);
+const color = new ArrayBuffer(96);  //96为需要创建的像素buffer大小，取值为：height * width *4
 let bufferArr = new Uint8Array(color);
 let opts = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } }
 image.createPixelMap(color, opts)
@@ -328,7 +328,7 @@ writeBufferToPixels(src: ArrayBuffer): Promise\<void>
 **示例：**
 
 ```js
-const color = new ArrayBuffer(96);
+const color = new ArrayBuffer(96);  //96为需要创建的像素buffer大小，取值为：height * width *4
 let bufferArr = new Uint8Array(color);
 for (var i = 0; i < bufferArr.length; i++) {
     bufferArr[i] = i + 1;
@@ -358,7 +358,7 @@ writeBufferToPixels(src: ArrayBuffer, callback: AsyncCallback\<void>): void
 **示例：**
 
 ```js
-const color = new ArrayBuffer(96);
+const color = new ArrayBuffer(96);  //96为需要创建的像素buffer大小，取值为：height * width *4
 let bufferArr = new Uint8Array(color);
 for (var i = 0; i < bufferArr.length; i++) {
     bufferArr[i] = i + 1;
@@ -390,7 +390,7 @@ getImageInfo(): Promise\<ImageInfo>
 **示例：**
 
 ```js
-const color = new ArrayBuffer(96);
+const color = new ArrayBuffer(96);  //96为需要创建的像素buffer大小，取值为：height * width *4
 let opts = { editable: true, pixelFormat: 2, size: { height: 6, width: 8 } }
 image.createPixelMap(color, opts).then(pixelmap => {
     if (pixelmap == undefined) {
@@ -424,7 +424,7 @@ getImageInfo(callback: AsyncCallback\<ImageInfo>): void
 **示例:**
 
 ```js
-const color = new ArrayBuffer(96);
+const color = new ArrayBuffer(96);  //96为需要创建的像素buffer大小，取值为：height * width *4
 let opts = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } }
 image.createPixelMap(color, opts, (err, pixelmap) => {
     if (pixelmap == undefined) {
@@ -458,7 +458,7 @@ getBytesNumberPerRow(): number
 **示例：**
 
 ```js
-const color = new ArrayBuffer(96);
+const color = new ArrayBuffer(96);  //96为需要创建的像素buffer大小，取值为：height * width *4
 let bufferArr = new Uint8Array(color);
 let opts = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } }
 image.createPixelMap(color, opts, (err,pixelmap) => {
@@ -1044,7 +1044,7 @@ createImageSource(buf: ArrayBuffer): ImageSource
 **示例：**
 
 ```js
-const buf = new ArrayBuffer(96);
+const buf = new ArrayBuffer(96);  //96为需要创建的像素buffer大小，取值为：height * width *4
 const imageSourceApi = image.createImageSource(buf);
 ```
 
@@ -1099,7 +1099,7 @@ createIncrementalSource(buf: ArrayBuffer): ImageSource
 **示例：**
 
 ```js
-const buf = new ArrayBuffer(96);
+const buf = new ArrayBuffer(96);  //96为需要创建的像素buffer大小，取值为：height * width *4
 const imageSourceIncrementalSApi = image.createIncrementalSource(buf);
 ```
 
@@ -1127,7 +1127,7 @@ createIncrementalSource(buf: ArrayBuffer, options?: SourceOptions): ImageSource
 **示例：**
 
 ```js
-const buf = new ArrayBuffer(96);
+const buf = new ArrayBuffer(96);  //96为需要创建的像素buffer大小，取值为：height * width *4
 const imageSourceIncrementalSApi = image.createIncrementalSource(buf);
 ```
 
@@ -1662,7 +1662,7 @@ packing(source: PixelMap, option: PackingOption, callback: AsyncCallback\<ArrayB
 **示例：**
 
 ```js
-const color = new ArrayBuffer(96);
+const color = new ArrayBuffer(96);  //96为需要创建的像素buffer大小，取值为：height * width *4
 let bufferArr = new Uint8Array(color);
 let opts = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } }
 image.createPixelMap(color, opts).then((pixelmap) => {
@@ -1697,7 +1697,7 @@ packing(source: PixelMap, option: PackingOption): Promise\<ArrayBuffer>
 **示例：**
 
 ```js
-const color = new ArrayBuffer(96);
+const color = new ArrayBuffer(96);  //96为需要创建的像素buffer大小，取值为：height * width *4
 let bufferArr = new Uint8Array(color);
 let opts = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } }
 image.createPixelMap(color, opts).then((pixelmap) => {

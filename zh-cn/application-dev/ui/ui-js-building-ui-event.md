@@ -48,16 +48,18 @@ longpress：用户在相同位置长时间保持与屏幕接触。
 ```css
 /* xxx.css */
 .container {
+  width: 100%;
+  height: 100%;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 }
 .text-container {
-  margin-top: 10px;
+  margin-top: 30px;
   flex-direction: column;
-  width: 750px;
-  height: 50px;
-  background-color: #09ba07;
+  width: 600px;
+  height: 70px;
+  background-color: #0000FF;
 }
 .text-style {
   width: 100%;
@@ -99,3 +101,5 @@ export default {
   },
 }
 ```
+
+![zh-cn_image_00000011](figures/zh-cn_image_00000011.gif)

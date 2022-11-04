@@ -26,19 +26,19 @@ The **[\<tspan>](js-components-svg-tspan.md)** child component is supported.
 The attributes in the following table are supported.
 
 
-| Name          | Type                              | Default Value| Description                                                        |
+| Name          | Type                              | Mandatory | Description                                                        |
 | -------------- | ---------------------------------- | ------ | ------------------------------------------------------------ |
 | id             | string                             | -      | Unique ID of the component.                                            |
-| path           | string                             | 0      | Shape of the path.<br>The meanings of the letters are as follows:<br>-&nbsp;M&nbsp;=&nbsp;moveto<br>-&nbsp;L&nbsp;=&nbsp;lineto<br>-&nbsp;H&nbsp;=&nbsp;horizontal&nbsp;lineto<br>-&nbsp;V&nbsp;=&nbsp;vertical&nbsp;lineto<br>-&nbsp;C&nbsp;=&nbsp;curveto<br>-&nbsp;S&nbsp;=&nbsp;smooth&nbsp;curveto<br>-&nbsp;Q&nbsp;=&nbsp;quadratic&nbsp;Belzier&nbsp;curve<br>-&nbsp;T&nbsp;=&nbsp;smooth&nbsp;quadratic&nbsp;Belzier&nbsp;curveto<br>-&nbsp;A&nbsp;=&nbsp;elliptical&nbsp;Arc<br>-&nbsp;Z&nbsp;=&nbsp;closepath<br>Default value: **0**|
-| startOffset    | &lt;length&gt;\|&lt;percentage&gt; | 0      | Offset of the text start point relative to the path start point.<br>Default value: **0**                |
-| font-size      | &lt;length&gt;                     | 30px   | Font size.<br>Default value: **30px**                           |
-| fill           | &lt;color&gt;                      | black  | Font fill color.<br>Default value: **black**                            |
-| by             | number                             | -      | Attribute offset relative to the specified animation. By default, **from** is the original attribute value.            |
-| opacity        | number                             | 1      | Opacity of an element. The value ranges from **0** to **1**. The value **1** means opaque, and **0** means completely transparent. Attribute animations are supported.<br>Default value: **0**|
-| fill-opacity   | number                             | 1.0    | Font fill opacity.<br>Default value: **1.0**                            |
-| stroke         | &lt;color&gt;                      | black  | Stroke color.<br>Default value: **black**                  |
-| stroke-width   | number                             | 1px    | Stroke width.<br>Default value: **1px**                              |
-| stroke-opacity | number                             | 1.0    | Stroke opacity.<br>Default value: **1.0**                            |
+| path           | string                             | No     | Shape of the path.<br>The meanings of the letters are as follows:<br>-&nbsp;M&nbsp;=&nbsp;moveto<br>-&nbsp;L&nbsp;=&nbsp;lineto<br>-&nbsp;H&nbsp;=&nbsp;horizontal&nbsp;lineto<br>-&nbsp;V&nbsp;=&nbsp;vertical&nbsp;lineto<br>-&nbsp;C&nbsp;=&nbsp;curveto<br>-&nbsp;S&nbsp;=&nbsp;smooth&nbsp;curveto<br>-&nbsp;Q&nbsp;=&nbsp;quadratic&nbsp;Belzier&nbsp;curve<br>-&nbsp;T&nbsp;=&nbsp;smooth&nbsp;quadratic&nbsp;Belzier&nbsp;curveto<br>-&nbsp;A&nbsp;=&nbsp;elliptical&nbsp;Arc<br>-&nbsp;Z&nbsp;=&nbsp;closepath<br>Default value: **0**|
+| startOffset    | &lt;length&gt;\|&lt;percentage&gt; | Yes    | Offset of the text start point relative to the path start point.<br>Default value: **0**                |
+| font-size      | &lt;length&gt;                     | No | Font size.<br>Default value: **30px**                           |
+| fill           | &lt;color&gt;                      | No | Font fill color.<br>Default value: **black**                            |
+| by             | number                             | No    | Attribute offset relative to the specified animation. By default, **from** is the original attribute value.            |
+| opacity        | number                             | No    | Opacity of an element. The value ranges from **0** to **1**. The value **1** means opaque, and **0** means completely transparent. Attribute animations are supported.<br>Default value: **0**|
+| fill-opacity   | number                             | No  | Font fill opacity.<br>Default value: **1.0**                            |
+| stroke         | &lt;color&gt;                      | No | Stroke color.<br>Default value: **black**                  |
+| stroke-width   | number                             | No  | Stroke width.<br>Default value: **1px**                              |
+| stroke-opacity | number                             | No  | Stroke opacity.<br>Default value: **1.0**                            |
 
 
 ## Example

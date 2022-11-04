@@ -89,4 +89,4 @@ struct PathExample {
 }
 ```
 
-![zh-cn_image_0000001219744193](figures/zh-cn_image_0000001219744193.png)
+![en-us_image_0000001219744193](figures/en-us_image_0000001219744193.png)

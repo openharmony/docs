@@ -24,7 +24,9 @@ SystemCapability.BundleManager.DistributedBundleFramework
 
 权限等级参考[权限等级说明](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/accesstoken-overview.md#%E6%9D%83%E9%99%90%E7%AD%89%E7%BA%A7%E8%AF%B4%E6%98%8E)
 
-## distributedBundle.getRemoteAbilityInfo
+## distributedBundle.getRemoteAbilityInfo<sup>deprecated<sup>
+
+> 从API version 9开始不再维护，建议使用[getRemoteAbilityInfo](js-apis-distributedBundle.md)替代。
 
 getRemoteAbilityInfo(elementName: ElementName, callback: AsyncCallback&lt;RemoteAbilityInfo&gt;): void;
 
@@ -51,7 +53,9 @@ SystemCapability.BundleManager.DistributedBundleFramework
 
 
 
-## distributedBundle.getRemoteAbilityInfo
+## distributedBundle.getRemoteAbilityInfo<sup>deprecated<sup>
+
+> 从API version 9开始不再维护，建议使用[getRemoteAbilityInfo](js-apis-distributedBundle.md)替代。
 
 getRemoteAbilityInfo(elementName: ElementName): Promise&lt;RemoteAbilityInfo&gt;
 
@@ -81,7 +85,9 @@ SystemCapability.BundleManager.DistributedBundleFramework
 | ------------------------------------------------------------ | --------------------------------- |
 | Promise\<[RemoteAbilityInfo](js-apis-bundle-remoteAbilityInfo.md)> | Promise形式返回远程基本能力信息。 |
 
-## distributedBundle.getRemoteAbilityInfos
+## distributedBundle.getRemoteAbilityInfos<sup>deprecated<sup>
+
+> 从API version 9开始不再维护，建议使用[getRemoteAbilityInfo](js-apis-distributedBundle.md)替代。
 
 getRemoteAbilityInfos(elementNames: Array&lt;ElementName&gt;, callback: AsyncCallback&lt;Array&lt;RemoteAbilityInfo&gt;&gt;): void;
 
@@ -108,7 +114,9 @@ SystemCapability.BundleManager.DistributedBundleFramework
 
 
 
-## distributedBundle.getRemoteAbilityInfos
+## distributedBundle.getRemoteAbilityInfos<sup>deprecated<sup>
+
+> 从API version 9开始不再维护，建议使用[getRemoteAbilityInfo](js-apis-distributedBundle.md)替代。
 
 getRemoteAbilityInfos(elementNames: Array&lt;ElementName&gt;): Promise&lt;Array&lt;RemoteAbilityInfo&gt;&gt;
 

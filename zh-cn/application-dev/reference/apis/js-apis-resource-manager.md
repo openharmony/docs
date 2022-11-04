@@ -27,7 +27,7 @@ getResourceManager(callback: AsyncCallback&lt;ResourceManager&gt;): void
 
 获取当前应用的资源管理对象，使用callback形式返回ResourceManager对象。
 
-此接口仅可在FA模型下使用。
+**模型约束**：此接口仅可在FA模型下使用。
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
@@ -60,7 +60,7 @@ getResourceManager(bundleName: string, callback: AsyncCallback&lt;ResourceManage
 
 获取指定应用的资源管理对象，使用callback形式返回ResourceManager对象。
 
-此接口仅可在FA模型下使用。
+**模型约束**：此接口仅可在FA模型下使用。
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
@@ -83,7 +83,7 @@ getResourceManager(): Promise&lt;ResourceManager&gt;
 
 获取当前应用的资源管理对象，使用Promise形式返回ResourceManager对象。
 
-此接口仅可在FA模型下使用。
+**模型约束**：此接口仅可在FA模型下使用。
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
@@ -114,7 +114,7 @@ getResourceManager(bundleName: string): Promise&lt;ResourceManager&gt;
 
 获取指定应用的资源管理对象，使用Promise形式返回ResourceManager对象。
 
-此接口仅可在FA模型下使用。
+**模型约束**：此接口仅可在FA模型下使用。
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
@@ -261,10 +261,9 @@ resourceManager.getResourceManager((error, mgr) => {
 >
 > - 资源文件在工程的resources目录中定义，id可通过$r(资源地址).id的方式获取，例如$r('app.string.test').id。
 
+### getStringValue<sup>9+</sup>
 
-### getString
-
-getString(resId: number, callback: AsyncCallback&lt;string&gt;): void
+getStringValue(resId: number, callback: AsyncCallback&lt;string&gt;): void
 
 用户获取指定资源ID对应的字符串，使用callback形式返回字符串。
 
@@ -276,23 +275,35 @@ getString(resId: number, callback: AsyncCallback&lt;string&gt;): void
 | resId    | number                      | 是    | 资源ID值           |
 | callback | AsyncCallback&lt;string&gt; | 是    | 异步回调，用于返回获取的字符串 |
 
-**示例：** 
+**错误码：**
+
+以下错误码的详细介绍请参见[资源管理错误码](../errorcodes/errorcode-resource-manager.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 9001001  | The resId invalid.                       |
+| 9001002  | The resource not found by resId.         |
+| 9001006  | The resource re-ref too much.            |
+
+**示例Stage：** 
   ```ts
-  resourceManager.getResourceManager((error, mgr) => {
-      mgr.getString($r('app.string.test').id, (error, value) => {
+    try {
+        this.context.getStringValue($r('app.string.test').id, (error, value) => {
           if (error != null) {
               console.log("error is " + error);
           } else {
               let str = value;
           }
       });
-  });
+    } catch (error) {
+        console.error(`callback getStringValue failed, error code: ${error.code}, message: ${error.message}.`)
+    }
   ```
 
 
-### getString
+### getStringValue<sup>9+</sup>
 
-getString(resId: number): Promise&lt;string&gt;
+getStringValue(resId: number): Promise&lt;string&gt;
 
 用户获取指定资源ID对应的字符串，使用Promise形式返回字符串。
 
@@ -308,21 +319,31 @@ getString(resId: number): Promise&lt;string&gt;
 | --------------------- | ----------- |
 | Promise&lt;string&gt; | 资源ID值对应的字符串 |
 
+以下错误码的详细介绍请参见[资源管理错误码](../errorcodes/errorcode-resource-manager.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 9001001  | The resId invalid.                       |
+| 9001002  | The resource not found by resId.         |
+| 9001006  | The resource re-ref too much.            |
+
 **示例：** 
   ```ts
-  resourceManager.getResourceManager((error, mgr) => {
-      mgr.getString($r('app.string.test').id).then(value => {
-          let str = value;
-      }).catch(error => {
-          console.log("getstring promise error is " + error);
-      });
-  });
+  try {
+    this.context.resourceManager.getStringValue($r('app.string.test').id).then(value => {
+        let str = value;
+    }).catch(error => {
+        console.log("getStringValue promise error is " + error);
+    });
+  } catch (error) {
+    console.error(`promise getStringValue failed, error code: ${error.code}, message: ${error.message}.`)
+  }
   ```
 
 
-### getString<sup>9+</sup>
+### getStringValue<sup>9+</sup>
 
-getString(resource: Resource, callback: AsyncCallback&lt;string&gt;): void
+getStringValue(resource: Resource, callback: AsyncCallback&lt;string&gt;): void
 
 用户获取指定resource对象对应的字符串，使用callback形式返回字符串。
 
@@ -334,6 +355,14 @@ getString(resource: Resource, callback: AsyncCallback&lt;string&gt;): void
 | resource | [Resource](#resource9)      | 是    | 资源信息            |
 | callback | AsyncCallback&lt;string&gt; | 是    | 异步回调，用于返回获取的字符串 |
 
+以下错误码的详细介绍请参见[资源管理错误码](../errorcodes/errorcode-resource-manager.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 9001001  | The resId invalid.                       |
+| 9001002  | The resource not found by resId.         |
+| 9001006  | The resource re-ref too much.            |
+
 **示例：** 
   ```ts
   let resource = {
@@ -341,18 +370,24 @@ getString(resource: Resource, callback: AsyncCallback&lt;string&gt;): void
       moduleName: "entry",
       id: $r('app.string.test').id
   };
-  this.context.resourceManager.getString(resource, (error, value) => {
-      if (error != null) {
-          console.log("error is " + error);
-      } else {
-          let str = value;
-      }
-  });
+  tyr {
+    this.context.resourceManager.getStringValue(resource, (error, value) => {
+        if (error != null) {
+            console.log("error is " + error);
+        } else {
+            let str = value;
+        }
+    });
+  } catch (error) {
+    console.error(`callback getStringValue failed, error code: ${error.code}, message: ${error.message}.`)
+  }
+  
   ```
 
-### getString<sup>9+</sup>
 
-getString(resource: Resource): Promise&lt;string&gt;
+### getStringValue<sup>9+</sup>
+
+getStringValue(resource: Resource): Promise&lt;string&gt;
 
 用户获取指定resource对象对应的字符串，使用Promise形式返回字符串。
 
@@ -368,6 +403,14 @@ getString(resource: Resource): Promise&lt;string&gt;
 | --------------------- | ---------------- |
 | Promise&lt;string&gt; | resource对象对应的字符串 |
 
+以下错误码的详细介绍请参见[资源管理错误码](../errorcodes/errorcode-resource-manager.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 9001001  | The resId invalid.                       |
+| 9001002  | The resource not found by resId.         |
+| 9001006  | The resource re-ref too much.            |
+
 **示例：** 
   ```ts
   let resource = {
@@ -375,16 +418,21 @@ getString(resource: Resource): Promise&lt;string&gt;
       moduleName: "entry",
       id: $r('app.string.test').id
   };
-  this.context.resourceManager.getString(resource).then(value => {
+  try {
+    this.context.resourceManager.getStringValue(resource).then(value => {
       let str = value;
-  }).catch(error => {
-      console.log("getstring promise error is " + error);
-  });
+    }).catch(error => {
+      console.log("getStringValue promise error is " + error);
+    });
+  } catch (error) {
+    console.error(`callback getStringValue failed, error code: ${error.code}, message: ${error.message}.`)
+  }
   ```
 
-### getStringArray
 
-getStringArray(resId: number, callback: AsyncCallback&lt;Array&lt;string&gt;&gt;): void
+### getStringArrayValue<sup>9+</sup>
+
+getStringArrayValue(resId: number, callback: AsyncCallback&lt;Array&lt;string&gt;&gt;): void
 
 用户获取指定资源ID对应的字符串数组，使用callback形式返回字符串数组。
 
@@ -396,23 +444,33 @@ getStringArray(resId: number, callback: AsyncCallback&lt;Array&lt;string&gt;&gt;
 | resId    | number                                   | 是    | 资源ID值             |
 | callback | AsyncCallback&lt;Array&lt;string&gt;&gt; | 是    | 异步回调，用于返回获取的字符串数组 |
 
+以下错误码的详细介绍请参见[资源管理错误码](../errorcodes/errorcode-resource-manager.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 9001001  | The resId invalid.                       |
+| 9001002  | The resource not found by resId.         |
+| 9001006  | The resource re-ref too much.            |
+
 **示例：** 
   ```ts
-  resourceManager.getResourceManager((error, mgr) => {
-      mgr.getStringArray($r('app.strarray.test').id, (error, value) => {
-          if (error != null) {
-              console.log("error is " + error);
-          } else {
-              let strArray = value;
-          }
-      });
-  });
+  try {
+    this.context.resourceManager.getStringArrayValue($r('app.strarray.test').id, (error, value) => {
+        if (error != null) {
+            console.log("error is " + error);
+        } else {
+            let strArray = value;
+        }
+    });
+  } catch (error) {
+    console.error(`callback getStringArrayValue failed, error code: ${error.code}, message: ${error.message}.`)
+  }
   ```
 
 
-### getStringArray
+### getStringArrayValue<sup>9+</sup>
 
-getStringArray(resId: number): Promise&lt;Array&lt;string&gt;&gt;
+getStringArrayValue(resId: number): Promise&lt;Array&lt;string&gt;&gt;
 
 用户获取指定资源ID对应的字符串数组，使用Promise形式返回字符串数组。
 
@@ -428,20 +486,30 @@ getStringArray(resId: number): Promise&lt;Array&lt;string&gt;&gt;
 | ---------------------------------- | ------------- |
 | Promise&lt;Array&lt;string&gt;&gt; | 资源ID值对应的字符串数组 |
 
+以下错误码的详细介绍请参见[资源管理错误码](../errorcodes/errorcode-resource-manager.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 9001001  | The resId invalid.                       |
+| 9001002  | The resource not found by resId.         |
+| 9001006  | The resource re-ref too much.            |
+
 **示例：** 
   ```ts
-  resourceManager.getResourceManager((error, mgr) => {
-       mgr.getStringArray($r('app.strarray.test').id).then(value => {
-          let strArray = value;
-      }).catch(error => {
-          console.log("getStringArray promise error is " + error);
-      });
-  });
+  try {
+    this.context.resourceManager.getStringArrayValue($r('app.strarray.test').id).then(value => {
+        let strArray = value;
+    }).catch(error => {
+        console.log("getStringArrayValue promise error is " + error);
+    });
+  } catch (error) {
+    console.error(`promise getStringArrayValue failed, error code: ${error.code}, message: ${error.message}.`)
+  }
   ```
 
-### getStringArray<sup>9+</sup>
+### getStringArrayValue<sup>9+</sup>
 
-getStringArray(resource: Resource, callback: AsyncCallback&lt;Array&lt;string&gt;&gt;): void
+getStringArrayValue(resource: Resource, callback: AsyncCallback&lt;Array&lt;string&gt;&gt;): void
 
 用户获取指定resource对象对应的字符串数组，使用callback形式返回回字符串数组。
 
@@ -453,6 +521,14 @@ getStringArray(resource: Resource, callback: AsyncCallback&lt;Array&lt;string&gt
 | resource | [Resource](#resource9)                   | 是    | 资源信息              |
 | callback | AsyncCallback&lt;Array&lt;string&gt;&gt; | 是    | 异步回调，用于返回获取的字符串数组 |
 
+以下错误码的详细介绍请参见[资源管理错误码](../errorcodes/errorcode-resource-manager.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 9001001  | The resId invalid.                       |
+| 9001002  | The resource not found by resId.         |
+| 9001006  | The resource re-ref too much.            |
+
 **示例：** 
   ```ts
   let resource = {
@@ -460,18 +536,22 @@ getStringArray(resource: Resource, callback: AsyncCallback&lt;Array&lt;string&gt
       moduleName: "entry",
       id: $r('app.strarray.test').id
   };
-  this.context.resourceManager.getStringArray(resource, (error, value) => {
+  try {
+    this.context.resourceManager.getStringArrayValue(resource, (error, value) => {
       if (error != null) {
           console.log("error is " + error);
       } else {
           let strArray = value;
       }
-  });
+    });
+  } catch (error) {
+    console.error(`callback getStringArrayValue failed, error code: ${error.code}, message: ${error.message}.`)
+  }
   ```
 
-### getStringArray<sup>9+</sup>
+### getStringArrayValue<sup>9+</sup>
 
-getStringArray(resource: Resource): Promise&lt;Array&lt;string&gt;&gt;
+getStringArrayValue(resource: Resource): Promise&lt;Array&lt;string&gt;&gt;
 
 用户获取指定resource对象对应的字符串数组，使用Promise形式返回字符串数组。
 
@@ -487,6 +567,14 @@ getStringArray(resource: Resource): Promise&lt;Array&lt;string&gt;&gt;
 | ---------------------------------- | ------------------ |
 | Promise&lt;Array&lt;string&gt;&gt; | resource对象对应的字符串数组 |
 
+以下错误码的详细介绍请参见[资源管理错误码](../errorcodes/errorcode-resource-manager.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 9001001  | The resId invalid.                       |
+| 9001002  | The resource not found by resId.         |
+| 9001006  | The resource re-ref too much.            |
+
 **示例：** 
   ```ts
   let resource = {
@@ -494,16 +582,21 @@ getStringArray(resource: Resource): Promise&lt;Array&lt;string&gt;&gt;
       moduleName: "entry",
       id: $r('app.strarray.test').id
   };
-  this.context.resourceManager.getStringArray(resource).then(value => {
+  try {
+    this.context.resourceManager.getStringArrayValue(resource).then(value => {
       let strArray = value;
-  }).catch(error => {
-      console.log("getStringArray promise error is " + error);
-  });
+    }).catch(error => {
+        console.log("getStringArray promise error is " + error);
+    });
+  } catch (error) {
+    console.error(`promise getStringArrayValue failed, error code: ${error.code}, message: ${error.message}.`)
+  }
   ```
 
-### getMedia
 
-getMedia(resId: number, callback: AsyncCallback&lt;Uint8Array&gt;): void
+### getMediaContent
+
+getMediaContent(resId: number, callback: AsyncCallback&lt;Uint8Array&gt;): void
 
 用户获取指定资源ID对应的媒体文件内容，使用callback形式返回字节数组。
 
@@ -515,23 +608,32 @@ getMedia(resId: number, callback: AsyncCallback&lt;Uint8Array&gt;): void
 | resId    | number                          | 是    | 资源ID值              |
 | callback | AsyncCallback&lt;Uint8Array&gt; | 是    | 异步回调，用于返回获取的媒体文件内容 |
 
+以下错误码的详细介绍请参见[资源管理错误码](../errorcodes/errorcode-resource-manager.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 9001001  | The resId invalid.                       |
+| 9001002  | The resource not found by resId.         |
+
 **示例：** 
   ```ts
-  resourceManager.getResourceManager((error, mgr) => {
-      mgr.getMedia($r('app.media.test').id, (error, value) => {
-          if (error != null) {
-              console.log("error is " + error);
-          } else {
-              let media = value;
-          }
-      });
-  });
+  try {
+    this.context.resourceManager.getMediaContent($r('app.media.test').id, (error, value) => {
+        if (error != null) {
+            console.log("error is " + error);
+        } else {
+            let media = value;
+        }
+    });
+  } catch (error) {
+    console.error(`callback getMediaContent failed, error code: ${error.code}, message: ${error.message}.`)
+  }
   ```
 
 
-### getMedia
+### getMediaContent
 
-getMedia(resId: number): Promise&lt;Uint8Array&gt;
+getMediaContent(resId: number): Promise&lt;Uint8Array&gt;
 
 用户获取指定资源ID对应的媒体文件内容，使用Promise形式返回字节数组。
 
@@ -547,20 +649,29 @@ getMedia(resId: number): Promise&lt;Uint8Array&gt;
 | ------------------------- | -------------- |
 | Promise&lt;Uint8Array&gt; | 资源ID值对应的媒体文件内容 |
 
+以下错误码的详细介绍请参见[资源管理错误码](../errorcodes/errorcode-resource-manager.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 9001001  | The resId invalid.                       |
+| 9001002  | The resource not found by resId.         |
+
 **示例：** 
   ```ts
-  resourceManager.getResourceManager((error, mgr) => {
-      mgr.getMedia($r('app.media.test').id).then(value => {
+  try {
+      mgr.getMediaContent($r('app.media.test').id).then(value => {
           let media = value;
       }).catch(error => {
-          console.log("getMedia promise error is " + error);
+          console.log("getMediaContent promise error is " + error);
       });
-  });
+  } catch (error) {
+    console.error(`promise getMediaContent failed, error code: ${error.code}, message: ${error.message}.`)
+  }
   ```
 
-### getMedia<sup>9+</sup>
+### getMediaContent<sup>9+</sup>
 
-getMedia(resource: Resource, callback: AsyncCallback&lt;Uint8Array&gt;): void
+getMediaContent(resource: Resource, callback: AsyncCallback&lt;Uint8Array&gt;): void
 
 用户获取指定resource对象对应的媒体文件内容，使用callback形式返回字节数组。
 
@@ -572,6 +683,13 @@ getMedia(resource: Resource, callback: AsyncCallback&lt;Uint8Array&gt;): void
 | resource | [Resource](#resource9)          | 是    | 资源信息               |
 | callback | AsyncCallback&lt;Uint8Array&gt; | 是    | 异步回调，用于返回获取的媒体文件内容 |
 
+以下错误码的详细介绍请参见[资源管理错误码](../errorcodes/errorcode-resource-manager.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 9001001  | The resId invalid.                       |
+| 9001002  | The resource not found by resId.         |
+
 **示例：** 
   ```ts
   let resource = {
@@ -579,18 +697,22 @@ getMedia(resource: Resource, callback: AsyncCallback&lt;Uint8Array&gt;): void
       moduleName: "entry",
       id: $r('app.media.test').id
   };
-  this.context.resourceManager.getMedia(resource, (error, value) => {
-      if (error != null) {
+  try {
+    this.context.resourceManager.getMediaContent(resource, (error, value) => {
+        if (error != null) {
           console.log("error is " + error);
-      } else {
+        } else {
           let media = value;
-      }
-  });
+        }
+    });
+  } catch (error) {
+    console.error(`callback getMediaContent failed, error code: ${error.code}, message: ${error.message}.`)
+  }
   ```
 
-### getMedia<sup>9+</sup>
+### getMediaContent<sup>9+</sup>
 
-getMedia(resource: Resource): Promise&lt;Uint8Array&gt;
+getMediaContent(resource: Resource): Promise&lt;Uint8Array&gt;
 
 用户获取指定resource对象对应的媒体文件内容，使用Promise形式返回字节数组。
 
@@ -606,6 +728,13 @@ getMedia(resource: Resource): Promise&lt;Uint8Array&gt;
 | ------------------------- | ------------------- |
 | Promise&lt;Uint8Array&gt; | resource对象对应的媒体文件内容 |
 
+以下错误码的详细介绍请参见[资源管理错误码](../errorcodes/errorcode-resource-manager.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 9001001  | The resId invalid.                       |
+| 9001002  | The resource not found by resId.         |
+
 **示例：** 
   ```ts
   let resource = {
@@ -613,16 +742,21 @@ getMedia(resource: Resource): Promise&lt;Uint8Array&gt;
       moduleName: "entry",
       id: $r('app.media.test').id
   };
-  this.context.resourceManager.getMedia(resource).then(value => {
+  try {
+    this.context.resourceManager.getMediaContent(resource).then(value => {
       let media = value;
-  }).catch(error => {
-      console.log("getMedia promise error is " + error);
-  });
+    }).catch(error => {
+      console.log("getMediaContent promise error is " + error);
+    });
+  } catch (error) {
+    console.error(`promise getMediaContent failed, error code: ${error.code}, message: ${error.message}.`)
+  }
   ```
 
-### getMediaBase64
 
-getMediaBase64(resId: number, callback: AsyncCallback&lt;string&gt;): void
+### getMediaContentBase64
+
+getMediaContentBase64(resId: number, callback: AsyncCallback&lt;string&gt;): void
 
 用户获取指定资源ID对应的图片资源Base64编码，使用callback形式返回字符串。
 
@@ -634,23 +768,32 @@ getMediaBase64(resId: number, callback: AsyncCallback&lt;string&gt;): void
 | resId    | number                      | 是    | 资源ID值                    |
 | callback | AsyncCallback&lt;string&gt; | 是    | 异步回调，用于返回获取的图片资源Base64编码 |
 
+以下错误码的详细介绍请参见[资源管理错误码](../errorcodes/errorcode-resource-manager.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 9001001  | The resId invalid.                       |
+| 9001002  | The resource not found by resId.         |
+
 **示例：** 
   ```ts
-  resourceManager.getResourceManager((error, mgr) => {
-      mgr.getMediaBase64($r('app.media.test').id, (error, value) => {
-          if (error != null) {
-              console.log("error is " + error);
-          } else {
-              let media = value;
-          }
-      });
-  });
+  try {
+    mgr.getMediaContentBase64($r('app.media.test').id, (error, value) => {
+        if (error != null) {
+            console.log("error is " + error);
+        } else {
+            let media = value;
+        }
+    });       
+  } catch (error) {
+    console.error(`callback getMediaContentBase64 failed, error code: ${error.code}, message: ${error.message}.`)
+  }
   ```
 
 
-### getMediaBase64
+### getMediaContentBase64
 
-getMediaBase64(resId: number): Promise&lt;string&gt;
+getMediaContentBase64(resId: number): Promise&lt;string&gt;
 
 用户获取指定资源ID对应的图片资源Base64编码，使用Promise形式返回字符串。
 
@@ -666,20 +809,29 @@ getMediaBase64(resId: number): Promise&lt;string&gt;
 | --------------------- | -------------------- |
 | Promise&lt;string&gt; | 资源ID值对应的图片资源Base64编码 |
 
+以下错误码的详细介绍请参见[资源管理错误码](../errorcodes/errorcode-resource-manager.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 9001001  | The resId invalid.                       |
+| 9001002  | The resource not found by resId.         |
+
 **示例：** 
   ```ts
-  resourceManager.getResourceManager((error, mgr) => {
-      mgr.getMediaBase64($r('app.media.test').id).then(value => {
-          let media = value;
-      }).catch(error => {
-          console.log("getMediaBase64 promise error is " + error);
-      });
-  });
+  try {
+    mgr.getMediaContentBase64($r('app.media.test').id).then(value => {
+        let media = value;
+    }).catch(error => {
+        console.log("getMediaContentBase64 promise error is " + error);
+    });
+  } catch (error) {
+    console.error(`promise getMediaContentBase64 failed, error code: ${error.code}, message: ${error.message}.`)
+  } 
   ```
 
-### getMediaBase64<sup>9+</sup>
+### getMediaContentBase64<sup>9+</sup>
 
-getMediaBase64(resource: Resource, callback: AsyncCallback&lt;string&gt;): void
+getMediaContentBase64(resource: Resource, callback: AsyncCallback&lt;string&gt;): void
 
 用户获取指定resource对象对应的图片资源Base64编码，使用callback形式返回字符串。
 
@@ -691,6 +843,13 @@ getMediaBase64(resource: Resource, callback: AsyncCallback&lt;string&gt;): void
 | resource | [Resource](#resource9)      | 是    | 资源信息                     |
 | callback | AsyncCallback&lt;string&gt; | 是    | 异步回调，用于返回获取的图片资源Base64编码 |
 
+以下错误码的详细介绍请参见[资源管理错误码](../errorcodes/errorcode-resource-manager.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 9001001  | The resId invalid.                       |
+| 9001002  | The resource not found by resId.         |
+
 **示例：** 
   ```ts
   let resource = {
@@ -698,18 +857,22 @@ getMediaBase64(resource: Resource, callback: AsyncCallback&lt;string&gt;): void
       moduleName: "entry",
       id: $r('app.media.test').id
   };
-  this.context.resourceManager.getMediaBase64(resource, (error, value) => {
-      if (error != null) {
-          console.log("error is " + error);
-      } else {
-          let media = value;
-      }
-  });
+  try {
+    this.context.resourceManager.getMediaContentBase64(resource, (error, value) => {
+        if (error != null) {
+            console.log("error is " + error);
+        } else {
+            let media = value;
+        }
+    });
+  } catch (error) {
+    console.error(`promise getMediaContentBase64 failed, error code: ${error.code}, message: ${error.message}.`)
+  }
   ```
 
-### getMediaBase64<sup>9+</sup>
+### getMediaContentBase64<sup>9+</sup>
 
-getMediaBase64(resource: Resource): Promise&lt;string&gt;
+getMediaContentBase64(resource: Resource): Promise&lt;string&gt;
 
 用户获取指定resource对象对应的图片资源Base64编码，使用Promise形式返回字符串。
 
@@ -725,6 +888,13 @@ getMediaBase64(resource: Resource): Promise&lt;string&gt;
 | --------------------- | ------------------------- |
 | Promise&lt;string&gt; | resource对象对应的图片资源Base64编码 |
 
+以下错误码的详细介绍请参见[资源管理错误码](../errorcodes/errorcode-resource-manager.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 9001001  | The resId invalid.                       |
+| 9001002  | The resource not found by resId.         |
+
 **示例：** 
   ```ts
   let resource = {
@@ -732,11 +902,15 @@ getMediaBase64(resource: Resource): Promise&lt;string&gt;
       moduleName: "entry",
       id: $r('app.media.test').id
   };
-  this.context.resourceManager.getMediaBase64(resource).then(value => {
-      let media = value;
-  }).catch(error => {
-      console.log("getMediaBase64 promise error is " + error);
-  });
+  try {
+    this.context.resourceManager.getMediaContentBase64(resource).then(value => {
+        let media = value;
+    }).catch(error => {
+        console.log("getMediaContentBase64 promise error is " + error);
+    });
+  } catch (error) {
+    console.error(`promise getMediaContentBase64 failed, error code: ${error.code}, message: ${error.message}.`)
+  }
   ```
 
 
@@ -848,9 +1022,9 @@ getDeviceCapability(): Promise&lt;DeviceCapability&gt;
   ```
 
 
-### getPluralString
+### getPluralStringValue
 
-getPluralString(resId: number, num: number, callback: AsyncCallback&lt;string&gt;): void
+getPluralStringValue(resId: number, num: number, callback: AsyncCallback&lt;string&gt;): void
 
 根据指定数量获取指定ID字符串表示的单复数字符串，使用callback形式返回字符串。
 
@@ -863,23 +1037,33 @@ getPluralString(resId: number, num: number, callback: AsyncCallback&lt;string&gt
 | num      | number                      | 是    | 数量值                             |
 | callback | AsyncCallback&lt;string&gt; | 是    | 异步回调，返回根据指定数量获取指定ID字符串表示的单复数字符串 |
 
+以下错误码的详细介绍请参见[资源管理错误码](../errorcodes/errorcode-resource-manager.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 9001001  | The resId invalid.                       |
+| 9001002  | The resource not found by resId.         |
+| 9001006  | The resource re-ref too much.            |
+
 **示例：** 
   ```ts
-  resourceManager.getResourceManager((error, mgr) => {
-      mgr.getPluralString($r("app.plural.test").id, 1, (error, value) => {
-          if (error != null) {
-              console.log("error is " + error);
-          } else {
-              let str = value;
-          }
-      });
-  });
+  try {
+    this.context.resourceManager.getPluralStringValue($r("app.plural.test").id, 1, (error, value) => {
+        if (error != null) {
+            console.log("error is " + error);
+        } else {
+            let str = value;
+        }
+    });
+  } catch (error) {
+    console.error(`callback getPluralStringValue failed, error code: ${error.code}, message: ${error.message}.`)
+  }   
   ```
 
 
-### getPluralString
+### getPluralStringValue
 
-getPluralString(resId: number, num: number): Promise&lt;string&gt;
+getPluralStringValue(resId: number, num: number): Promise&lt;string&gt;
 
 根据指定数量获取对指定ID字符串表示的单复数字符串，使用Promise形式返回字符串。
 
@@ -896,20 +1080,30 @@ getPluralString(resId: number, num: number): Promise&lt;string&gt;
 | --------------------- | ------------------------- |
 | Promise&lt;string&gt; | 根据提供的数量获取对应ID字符串表示的单复数字符串 |
 
+以下错误码的详细介绍请参见[资源管理错误码](../errorcodes/errorcode-resource-manager.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 9001001  | The resId invalid.                       |
+| 9001002  | The resource not found by resId.         |
+| 9001006  | The resource re-ref too much.            |
+
 **示例：** 
   ```ts
-  resourceManager.getResourceManager((error, mgr) => {
-      mgr.getPluralString($r("app.plural.test").id, 1).then(value => {
-          let str = value;
-      }).catch(error => {
-          console.log("getPluralString promise error is " + error);
-      });
-  });
+  try {
+    this.context.resourceManager.getPluralStringValue($r("app.plural.test").id, 1).then(value => {
+        let str = value;
+    }).catch(error => {
+        console.log("getPluralStringValue promise error is " + error);
+    });
+  } catch (error) {
+    console.error(`callback getPluralStringValue failed, error code: ${error.code}, message: ${error.message}.`)
+  }  
   ```
 
-### getPluralString<sup>9+</sup>
+### getPluralStringValue<sup>9+</sup>
 
-getPluralString(resource: Resource, num: number, callback: AsyncCallback&lt;string&gt;): void
+getPluralStringValue(resource: Resource, num: number, callback: AsyncCallback&lt;string&gt;): void
 
 根据指定数量获取指定resource对象表示的单复数字符串，使用callback形式返回字符串。
 
@@ -922,6 +1116,14 @@ getPluralString(resource: Resource, num: number, callback: AsyncCallback&lt;stri
 | num      | number                      | 是    | 数量值                                  |
 | callback | AsyncCallback&lt;string&gt; | 是    | 异步回调，返回根据指定数量获取指定resource对象表示的单复数字符串 |
 
+以下错误码的详细介绍请参见[资源管理错误码](../errorcodes/errorcode-resource-manager.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 9001001  | The resId invalid.                       |
+| 9001002  | The resource not found by resId.         |
+| 9001006  | The resource re-ref too much.            |
+
 **示例：** 
   ```ts
   let resource = {
@@ -929,13 +1131,18 @@ getPluralString(resource: Resource, num: number, callback: AsyncCallback&lt;stri
       moduleName: "entry",
       id: $r('app.plural.test').id
   };
-  this.context.resourceManager.getPluralString(resource, 1, (error, value) => {
-      if (error != null) {
-          console.log("error is " + error);
-      } else {
-          let str = value;
-      }
-  });
+  try {
+    this.context.resourceManager.getPluralStringValue(resource, 1, (error, value) => {
+        if (error != null) {
+            console.log("error is " + error);
+        } else {
+            let str = value;
+        }
+    });
+  } catch (error) {
+    console.error(`callback getPluralStringValue failed, error code: ${error.code}, message: ${error.message}.`)
+  }  
+  
   ```
 
 ### getPluralString<sup>9+</sup>
@@ -957,6 +1164,14 @@ getPluralString(resource: Resource, num: number): Promise&lt;string&gt;
 | --------------------- | ------------------------------ |
 | Promise&lt;string&gt; | 根据提供的数量获取对应resource对象表示的单复数字符串 |
 
+以下错误码的详细介绍请参见[资源管理错误码](../errorcodes/errorcode-resource-manager.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 9001001  | The resId invalid.                       |
+| 9001002  | The resource not found by resId.         |
+| 9001006  | The resource re-ref too much.            |
+
 **示例：** 
   ```ts
   let resource = {
@@ -964,16 +1179,21 @@ getPluralString(resource: Resource, num: number): Promise&lt;string&gt;
       moduleName: "entry",
       id: $r('app.plural.test').id
   };
-  this.context.resourceManager.getPluralString(resource, 1).then(value => {
-      let str = value;
-  }).catch(error => {
-      console.log("getPluralString promise error is " + error);
-  });
+  try {
+    this.context.resourceManager.getPluralString(resource, 1).then(value => {
+        let str = value;
+    }).catch(error => {
+        console.log("getPluralString promise error is " + error);
+    });
+  } catch (error) {
+    console.error(`callback getPluralStringValue failed, error code: ${error.code}, message: ${error.message}.`)
+  }
   ```
 
-### getRawFile<sup>8+</sup>
 
-getRawFile(path: string, callback: AsyncCallback&lt;Uint8Array&gt;): void
+### getRawFileContent<sup>9+</sup>
+
+getRawFileContent(path: string, callback: AsyncCallback&lt;Uint8Array&gt;): void
 
 用户获取resources/rawfile目录下对应的rawfile文件内容，使用callback形式返回字节数组。
 
@@ -985,22 +1205,31 @@ getRawFile(path: string, callback: AsyncCallback&lt;Uint8Array&gt;): void
 | path     | string                          | 是    | rawfile文件路径             |
 | callback | AsyncCallback&lt;Uint8Array&gt; | 是    | 异步回调，用于返回获取的rawfile文件内容 |
 
+以下错误码的详细介绍请参见[资源管理错误码](../errorcodes/errorcode-resource-manager.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 9001005  | The resource not found by path.          |
+
 **示例：** 
   ```ts
-  resourceManager.getResourceManager((error, mgr) => {
-      mgr.getRawFile("test.xml", (error, value) => {
-          if (error != null) {
-              console.log("error is " + error);
-          } else {
-              let rawFile = value;
-          }
-      });
-  });
+  try {
+    this.context.resourceManager.getRawFileContent("test.xml", (error, value) => {
+        if (error != null) {
+            console.log("error is " + error);
+        } else {
+            let rawFile = value;
+        }
+    });
+  } catch (error) {
+    console.error(`callback getRawFileContent failed, error code: ${error.code}, message: ${error.message}.`)
+  }
+      
   ```
 
-### getRawFile<sup>8+</sup>
+### getRawFileContent<sup>9+</sup>
 
-getRawFile(path: string): Promise&lt;Uint8Array&gt;
+getRawFileContent(path: string): Promise&lt;Uint8Array&gt;
 
 用户获取resources/rawfile目录下对应的rawfile文件内容，使用Promise形式返回字节数组。
 
@@ -1016,20 +1245,29 @@ getRawFile(path: string): Promise&lt;Uint8Array&gt;
 | ------------------------- | ----------- |
 | Promise&lt;Uint8Array&gt; | rawfile文件内容 |
 
+以下错误码的详细介绍请参见[资源管理错误码](../errorcodes/errorcode-resource-manager.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 9001005  | The resource not found by path.          |
+
 **示例：** 
   ```ts
-  resourceManager.getResourceManager((error, mgr) => {
-      mgr.getRawFile("test.xml").then(value => {
-          let rawFile = value;
-      }).catch(error => {
-          console.log("getRawFile promise error is " + error);
-      });
-  });
+  try {
+    this.context.resourceManager.getRawFileContent("test.xml").then(value => {
+        let rawFile = value;
+    }).catch(error => {
+        console.log("getRawFileContent promise error is " + error);
+    });
+  } catch (error) {
+    console.error(`promise getRawFileContent failed, error code: ${error.code}, message: ${error.message}.`)
+  }
   ```
 
-### getRawFileDescriptor<sup>8+</sup>
 
-getRawFileDescriptor(path: string, callback: AsyncCallback&lt;RawFileDescriptor&gt;): void
+### getRawFd<sup>9+</sup>
+
+getRawFd(path: string, callback: AsyncCallback&lt;RawFileDescriptor&gt;): void
 
 用户获取resources/rawfile目录下对应rawfile文件的descriptor，使用callback形式返回。
 
@@ -1039,26 +1277,34 @@ getRawFileDescriptor(path: string, callback: AsyncCallback&lt;RawFileDescriptor&
 | 参数名      | 类型                                       | 必填   | 说明                               |
 | -------- | ---------------------------------------- | ---- | -------------------------------- |
 | path     | string                                   | 是    | rawfile文件路径                      |
-| callback | AsyncCallback&lt;[RawFileDescriptor](#rawfiledescriptor8)&gt; | 是    | 异步回调，用于返回获取的rawfile文件的descriptor |
+| callback | AsyncCallback&lt;[getRawFd](#getrawfd9)&gt; | 是    | 异步回调，用于返回获取的rawfile文件的descriptor |
+
+以下错误码的详细介绍请参见[资源管理错误码](../errorcodes/errorcode-resource-manager.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 9001005  | The resource not found by path.          |
 
 **示例：** 
   ```ts
-  resourceManager.getResourceManager((error, mgr) => {
-      mgr.getRawFileDescriptor("test.xml", (error, value) => {
-          if (error != null) {
-              console.log("error is " + error);
-          } else {
-              let fd = value.fd;
-              let offset = value.offset;
-              let length = value.length;
-          }
-      });
+  try {
+    this.context.resourceManager.getRawFd("test.xml", (error, value) => {
+        if (error != null) {
+            console.log("error is " + error);
+        } else {
+            let fd = value.fd;
+            let offset = value.offset;
+            let length = value.length;
+        }
+    });
+  } catch(error => {
+    console.log("getRawFd callback error is " + error);
   });
   ```
 
-### getRawFileDescriptor<sup>8+</sup>
+### getRawFd<sup>9+</sup>
 
-getRawFileDescriptor(path: string): Promise&lt;RawFileDescriptor&gt;
+getRawFd(path: string): Promise&lt;RawFileDescriptor&gt;
 
 用户获取resources/rawfile目录下对应rawfile文件的descriptor，使用Promise形式返回。
 
@@ -1072,19 +1318,27 @@ getRawFileDescriptor(path: string): Promise&lt;RawFileDescriptor&gt;
 **返回值：** 
 | 类型                                       | 说明                  |
 | ---------------------------------------- | ------------------- |
-| Promise&lt;[RawFileDescriptor](#rawfiledescriptor8)&gt; | rawfile文件descriptor |
+| Promise&lt;[getRawFd](#getrawfd9-1)&gt; | rawfile文件descriptor |
+
+以下错误码的详细介绍请参见[资源管理错误码](../errorcodes/errorcode-resource-manager.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 9001005  | The resource not found by path.          |
 
 **示例：** 
   ```ts
-  resourceManager.getResourceManager((error, mgr) => {
-      mgr.getRawFileDescriptor("test.xml").then(value => {
-          let fd = value.fd;
-          let offset = value.offset;
-          let length = value.length;
-      }).catch(error => {
-          console.log("getRawFileDescriptor promise error is " + error);
-      });
-  });
+  try {
+    this.context.resourceManager.getRawFd("test.xml").then(value => {
+        let fd = value.fd;
+        let offset = value.offset;
+        let length = value.length;
+    }).catch(error => {
+        console.log("getRawFd promise error is " + error);
+    });
+  } catch (error) {
+    console.log("getRawFd promise error is " + error);
+  };
   ```
 
 ### closeRawFileDescriptor<sup>8+</sup>
@@ -1141,6 +1395,78 @@ closeRawFileDescriptor(path: string): Promise&lt;void&gt;
   });
   ```
 
+
+### closeRawFd<sup>9+</sup>
+
+closeRawFd(path: string, callback: AsyncCallback&lt;void&gt;): void
+
+用户关闭resources/rawfile目录下rawfile文件的descriptor，使用callback形式返回。
+
+**系统能力**：SystemCapability.Global.ResourceManager
+
+**参数：** 
+| 参数名      | 类型                        | 必填   | 说明          |
+| -------- | ------------------------- | ---- | ----------- |
+| path     | string                    | 是    | rawfile文件路径 |
+| callback | AsyncCallback&lt;void&gt; | 是    | 异步回调        |
+
+以下错误码的详细介绍请参见[资源管理错误码](../errorcodes/errorcode-resource-manager.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 9001005  | The resource not found by path.          |
+
+**示例：** 
+  ```ts
+  try {
+    mgr.closeRawFd("test.xml", (error, value) => {
+        if (error != null) {
+            console.log("error is " + error);
+        }
+    });
+  } catch (error) {
+    console.error(`callback closeRawFd failed, error code: ${error.code}, message: ${error.message}.`)
+  }
+      
+  ```
+
+### closeRawFd<sup>8+</sup>
+
+closeRawFd(path: string): Promise&lt;void&gt;
+
+用户关闭resources/rawfile目录下rawfile文件的descriptor，使用Promise形式返回。
+
+**系统能力**：SystemCapability.Global.ResourceManager
+
+**参数：** 
+| 参数名  | 类型     | 必填   | 说明          |
+| ---- | ------ | ---- | ----------- |
+| path | string | 是    | rawfile文件路径 |
+
+**返回值：** 
+| 类型                  | 说明   |
+| ------------------- | ---- |
+| Promise&lt;void&gt; | 无返回值 |
+
+以下错误码的详细介绍请参见[资源管理错误码](../errorcodes/errorcode-resource-manager.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 9001005  | The resource not found by path.          |
+
+**示例：** 
+  ```ts
+  try {
+    mgr.closeRawFd("test.xml").then(value => {
+        let result = value;
+    }).catch(error => {
+        console.log("closeRawFd promise error is " + error);
+    });
+  } catch (error) {
+    console.error(`promise closeRawFd failed, error code: ${error.code}, message: ${error.message}.`)
+  }
+  ```
+
 ### release<sup>7+</sup>
 
 release()
@@ -1170,15 +1496,28 @@ getStringByName(resName: string, callback: AsyncCallback&lt;string&gt;): void
 | resName  | string                      | 是    | 资源名称            |
 | callback | AsyncCallback&lt;string&gt; | 是    | 异步回调，用于返回获取的字符串 |
 
+以下错误码的详细介绍请参见[资源管理错误码](../errorcodes/errorcode-resource-manager.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 9001003  | The resName invalid.                     |
+| 9001004  | The resource not found by resName.       |
+| 9001006  | The resource re-ref too much.            |
+
 **示例：**
   ```ts
-  this.context.resourceManager.getStringByName("test", (error, value) => {
-      if (error != null) {
-          console.log("error is " + error);
-      } else {
-          let string = value;
-      }
-  });
+  try {
+    this.context.resourceManager.getStringByName("test", (error, value) => {
+        if (error != null) {
+             console.log("error is " + error);
+        } else {
+            let string = value;
+        }
+    });
+  } catch (error) {
+    console.error(`callback getStringByName failed, error code: ${error.code}, message: ${error.message}.`)
+  }
+  
   ```
 
 ### getStringByName<sup>9+</sup>
@@ -1199,13 +1538,25 @@ getStringByName(resName: string): Promise&lt;string&gt;
 | --------------------- | ---------- |
 | Promise&lt;string&gt; | 资源名称对应的字符串 |
 
+以下错误码的详细介绍请参见[资源管理错误码](../errorcodes/errorcode-resource-manager.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 9001003  | The resName invalid.                     |
+| 9001004  | The resource not found by resName.       |
+| 9001006  | The resource re-ref too much.            |
+
 **示例：**
   ```ts
-  this.context.resourceManager.getStringByName("test").then(value => {
-      let string = value;
-  }).catch(error => {
-      console.log("getStringByName promise error is " + error);
-  });
+  try {
+    this.context.resourceManager.getStringByName("test").then(value => {
+        let string = value;
+    }).catch(error => {
+        console.log("getStringByName promise error is " + error);
+    });
+  } catch (error) {
+    console.error(`promise getStringByName failed, error code: ${error.code}, message: ${error.message}.`)
+  }
   ```
 
 ### getStringArrayByName<sup>9+</sup>
@@ -1222,15 +1573,27 @@ getStringArrayByName(resName: string, callback: AsyncCallback&lt;Array&lt;string
 | resName  | string                                   | 是    | 资源名称              |
 | callback | AsyncCallback&lt;Array&lt;string&gt;&gt; | 是    | 异步回调，用于返回获取的字符串数组 |
 
+以下错误码的详细介绍请参见[资源管理错误码](../errorcodes/errorcode-resource-manager.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 9001003  | The resName invalid.                     |
+| 9001004  | The resource not found by resName.       |
+| 9001006  | The resource re-ref too much.            |
+
 **示例：** 
   ```ts
-  this.context.resourceManager.getStringArrayByName("test", (error, value) => {
-      if (error != null) {
-          console.log("error is " + error);
-      } else {
-          let strArray = value;
-      }
-  });
+  try {
+    this.context.resourceManager.getStringArrayByName("test", (error, value) => {
+        if (error != null) {
+            console.log("error is " + error);
+        } else {
+            let strArray = value;
+        }
+    });
+  } catch (error) {
+    console.error(`callback getStringArrayByName failed, error code: ${error.code}, message: ${error.message}.`)
+  }
   ```
 
 ### getStringArrayByName<sup>9+</sup>
@@ -1251,13 +1614,25 @@ getStringArrayByName(resName: string): Promise&lt;Array&lt;string&gt;&gt;
 | ---------------------------------- | ------------ |
 | Promise&lt;Array&lt;string&gt;&gt; | 资源名称对应的字符串数组 |
 
+以下错误码的详细介绍请参见[资源管理错误码](../errorcodes/errorcode-resource-manager.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 9001003  | The resName invalid.                     |
+| 9001004  | The resource not found by resName.       |
+| 9001006  | The resource re-ref too much.            |
+
 **示例：** 
   ```ts
-  this.context.resourceManager.getStringArrayByName("test").then(value => {
-      let strArray = value;
-  }).catch(error => {
-      console.log("getStringArrayByName promise error is " + error);
-  });
+  try {
+    this.context.resourceManager.getStringArrayByName("test").then(value => {
+        let strArray = value;
+    }).catch(error => {
+        console.log("getStringArrayByName promise error is " + error);
+    });
+  } catch (error) {
+    console.error(`promise getStringArrayByName failed, error code: ${error.code}, message: ${error.message}.`)
+  }
   ```
 
 ### getMediaByName<sup>9+</sup>
@@ -1274,15 +1649,27 @@ getMediaByName(resName: string, callback: AsyncCallback&lt;Uint8Array&gt;): void
 | resName  | string                          | 是    | 资源名称               |
 | callback | AsyncCallback&lt;Uint8Array&gt; | 是    | 异步回调，用于返回获取的媒体文件内容 |
 
+以下错误码的详细介绍请参见[资源管理错误码](../errorcodes/errorcode-resource-manager.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 9001003  | The resName invalid.                     |
+| 9001004  | The resource not found by resName.       |
+| 9001006  | The resource re-ref too much.            |
+
 **示例：** 
   ```ts
-  this.context.resourceManager.getMediaByName("test", (error, value) => {
-      if (error != null) {
-          console.log("error is " + error);
-      } else {
-          let media = value;
-      }
-  });
+  try {
+    this.context.resourceManager.getMediaByName("test", (error, value) => {
+        if (error != null) {
+            console.log("error is " + error);
+        } else {
+            let media = value;
+        }
+    });
+  } catch (error) {
+    console.error(`callback getMediaByName failed, error code: ${error.code}, message: ${error.message}.`)
+  }
   ```
 
 ### getMediaByName<sup>9+</sup>
@@ -1303,13 +1690,25 @@ getMediaByName(resName: string): Promise&lt;Uint8Array&gt;
 | ------------------------- | ------------- |
 | Promise&lt;Uint8Array&gt; | 资源名称对应的媒体文件内容 |
 
+以下错误码的详细介绍请参见[资源管理错误码](../errorcodes/errorcode-resource-manager.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 9001003  | The resName invalid.                     |
+| 9001004  | The resource not found by resName.       |
+| 9001006  | The resource re-ref too much.            |
+
 **示例：** 
   ```ts
-  this.context.resourceManager.getMediaByName("test").then(value => {
-      let media = value;
-  }).catch(error => {
-      console.log("getMediaByName promise error is " + error);
-  });
+  try {
+    this.context.resourceManager.getMediaByName("test").then(value => {
+        let media = value;
+    }).catch(error => {
+        console.log("getMediaByName promise error is " + error);
+    });
+  } catch (error) {
+    console.error(`promise getMediaByName failed, error code: ${error.code}, message: ${error.message}.`)
+  }
   ```
 
 ### getMediaBase64ByName<sup>9+</sup>
@@ -1326,15 +1725,27 @@ getMediaBase64ByName(resName: string, callback: AsyncCallback&lt;string&gt;): vo
 | resName  | string                      | 是    | 资源名称                     |
 | callback | AsyncCallback&lt;string&gt; | 是    | 异步回调，用于返回获取的图片资源Base64编码 |
 
+以下错误码的详细介绍请参见[资源管理错误码](../errorcodes/errorcode-resource-manager.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 9001003  | The resName invalid.                     |
+| 9001004  | The resource not found by resName.       |
+| 9001006  | The resource re-ref too much.            |
+
 **示例：** 
   ```ts
-  this.context.resourceManager.getMediaBase64ByName("test", (error, value) => {
-      if (error != null) {
-          console.log("error is " + error);
-      } else {
-          let media = value;
-      }
-  });
+  try {
+    this.context.resourceManager.getMediaBase64ByName("test", (error, value) => {
+        if (error != null) {
+            console.log("error is " + error);
+        } else {
+            let media = value;
+        }
+    });
+  } catch (error) {
+    console.error(`callback getMediaBase64ByName failed, error code: ${error.code}, message: ${error.message}.`)
+  }
   ```
 
 ### getMediaBase64ByName<sup>9+</sup>
@@ -1355,13 +1766,25 @@ getMediaBase64ByName(resName: string): Promise&lt;string&gt;
 | --------------------- | ------------------- |
 | Promise&lt;string&gt; | 资源名称对应的图片资源Base64编码 |
 
+以下错误码的详细介绍请参见[资源管理错误码](../errorcodes/errorcode-resource-manager.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 9001003  | The resName invalid.                     |
+| 9001004  | The resource not found by resName.       |
+| 9001006  | The resource re-ref too much.            |
+
 **示例：** 
   ```ts
-  this.context.resourceManager.getMediaBase64ByName("test").then(value => {
-      let media = value;
-  }).catch(error => {
-      console.log("getMediaBase64ByName promise error is " + error);
-  });
+  try {
+    this.context.resourceManager.getMediaBase64ByName("test").then(value => {
+        let media = value;
+    }).catch(error => {
+        console.log("getMediaBase64ByName promise error is " + error);
+    });
+  } catch (error) {
+    console.error(`promise getMediaBase64ByName failed, error code: ${error.code}, message: ${error.message}.`)
+  }
   ```
 
 ### getPluralStringByName<sup>9+</sup>
@@ -1379,15 +1802,28 @@ getPluralStringByName(resName: string, num: number, callback: AsyncCallback&lt;s
 | num      | number                      | 是    | 数量值                           |
 | callback | AsyncCallback&lt;string&gt; | 是    | 异步回调，返回根据传入的数量值获取资源名称对应的字符串资源 |
 
+以下错误码的详细介绍请参见[资源管理错误码](../errorcodes/errorcode-resource-manager.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 9001003  | The resName invalid.                     |
+| 9001004  | The resource not found by resName.       |
+| 9001006  | The resource re-ref too much.            |
+
 **示例：** 
   ```ts
-  this.context.resourceManager.getPluralStringByName("test", 1, (error, value) => {
-      if (error != null) {
-          console.log("error is " + error);
-      } else {
-          let str = value;
-      }
-  });
+  try {
+    this.context.resourceManager.getPluralStringByName("test", 1, (error, value) => {
+        if (error != null) {
+            console.log("error is " + error);
+        } else {
+            let str = value;
+        }
+    });
+  } catch (error) {
+    console.error(`callback getPluralStringByName failed, error code: ${error.code}, message: ${error.message}.`)
+  }
+  
   ```
 
 ### getPluralStringByName<sup>9+</sup>
@@ -1409,13 +1845,25 @@ getPluralStringByName(resName: string, num: number): Promise&lt;string&gt;
 | --------------------- | ---------------------- |
 | Promise&lt;string&gt; | 根据传入的数量值获取资源名称对应的字符串资源 |
 
+以下错误码的详细介绍请参见[资源管理错误码](../errorcodes/errorcode-resource-manager.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 9001003  | The resName invalid.                     |
+| 9001004  | The resource not found by resName.       |
+| 9001006  | The resource re-ref too much.            |
+
 **示例：** 
   ```ts
-  this.context.resourceManager.getPluralStringByName("test", 1).then(value => {
+  try {
+    this.context.resourceManager.getPluralStringByName("test", 1).then(value => {
       let str = value;
-  }).catch(error => {
+    }).catch(error => {
       console.log("getPluralStringByName promise error is " + error);
-  });
+    });
+  } catch (error) {
+    console.error(`promise getPluralStringByName failed, error code: ${error.code}, message: ${error.message}.`)
+  }
   ```
 
 ### getStringSync<sup>9+</sup>
@@ -1438,7 +1886,11 @@ getStringSync(resId: number): string
 
 **示例：** 
   ```ts
-  this.context.resourceManager.getStringSync($r('app.string.test').id);
+  try {
+    this.context.resourceManager.getStringSync($r('app.string.test').id);
+  } catch (error) {
+    console.error(`getStringSync failed, error code: ${error.code}, message: ${error.message}.`)
+  }
   ```
 
 ### getStringSync<sup>9+</sup>
@@ -1459,6 +1911,14 @@ getStringSync(resource: Resource): string
 | ------ | ---------------- |
 | string | resource对象对应的字符串 |
 
+以下错误码的详细介绍请参见[资源管理错误码](../errorcodes/errorcode-resource-manager.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 9001001  | The resId invalid.                       |
+| 9001002  | The resource not found by resId.         |
+| 9001006  | The resource re-ref too much.            |
+
 **示例：** 
   ```ts
   let resource = {
@@ -1466,7 +1926,11 @@ getStringSync(resource: Resource): string
       moduleName: "entry",
       id: $r('app.string.test').id
   };
-  this.context.resourceManager.getStringSync(resource);
+  try {
+    this.context.resourceManager.getStringSync(resource);
+  } catch (error) {
+    console.error(`getStringSync failed, error code: ${error.code}, message: ${error.message}.`)
+  }
   ```
 
 ### getStringByNameSync<sup>9+</sup>
@@ -1487,9 +1951,21 @@ getStringByNameSync(resName: string): string
 | ------ | ---------- |
 | string | 资源名称对应的字符串 |
 
+以下错误码的详细介绍请参见[资源管理错误码](../errorcodes/errorcode-resource-manager.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 9001003  | The resName invalid.                     |
+| 9001004  | The resource not found by resName.       |
+| 9001006  | The resource re-ref too much.            |
+
 **示例：** 
   ```ts
-  this.context.resourceManager.getStringByNameSync("test");
+  try {
+    this.context.resourceManager.getStringByNameSync("test");
+  } catch (error) {
+    console.error(`getStringByNameSync failed, error code: ${error.code}, message: ${error.message}.`)
+  }
   ```
 
 ### getBoolean<sup>9+</sup>
@@ -1510,9 +1986,21 @@ getBoolean(resId: number): boolean
 | ------- | ------------ |
 | boolean | 资源ID值对应的布尔结果 |
 
+以下错误码的详细介绍请参见[资源管理错误码](../errorcodes/errorcode-resource-manager.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 9001001  | The resId invalid.                       |
+| 9001002  | The resource not found by resId.         |
+| 9001006  | The resource re-ref too much.            |
+
 **示例：** 
   ```ts
-  this.context.resourceManager.getBoolean($r('app.boolean.boolean_test').id);
+  try {
+    this.context.resourceManager.getBoolean($r('app.boolean.boolean_test').id);
+  } catch (error) {
+    console.error(`getBoolean failed, error code: ${error.code}, message: ${error.message}.`)
+  }
   ```
 ### getBoolean<sup>9+</sup>
 
@@ -1532,6 +2020,14 @@ getBoolean(resource: Resource): boolean
 | ------- | ----------------- |
 | boolean | resource对象对应的布尔结果 |
 
+以下错误码的详细介绍请参见[资源管理错误码](../errorcodes/errorcode-resource-manager.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 9001001  | The resId invalid.                       |
+| 9001002  | The resource not found by resId.         |
+| 9001006  | The resource re-ref too much.            |
+
 **示例：** 
   ```ts
   let resource = {
@@ -1539,7 +2035,11 @@ getBoolean(resource: Resource): boolean
       moduleName: "entry",
       id: $r('app.boolean.boolean_test').id
   };
-  this.context.resourceManager.getBoolean(resource);
+  try {
+    this.context.resourceManager.getBoolean(resource);
+  } catch (error) {
+    console.error(`getBoolean failed, error code: ${error.code}, message: ${error.message}.`)
+  }
   ```
 
 ### getBooleanByName<sup>9+</sup>
@@ -1560,9 +2060,21 @@ getBooleanByName(resName: string): boolean
 | ------- | ----------- |
 | boolean | 资源名称对应的布尔结果 |
 
+以下错误码的详细介绍请参见[资源管理错误码](../errorcodes/errorcode-resource-manager.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 9001003  | The resName invalid.                     |
+| 9001004  | The resource not found by resName.       |
+| 9001006  | The resource re-ref too much.            |
+
 **示例：** 
   ```ts
-  this.context.resourceManager.getBooleanByName("boolean_test");
+  try {
+    this.context.resourceManager.getBooleanByName("boolean_test");
+  } catch (error) {
+    console.error(`getBooleanByName failed, error code: ${error.code}, message: ${error.message}.`)
+  }
   ```
 
 ### getNumber<sup>9+</sup>
@@ -1583,10 +2095,27 @@ getNumber(resId: number): number
 | ------ | ---------- |
 | number | 资源ID值对应的数值 |
 
+以下错误码的详细介绍请参见[资源管理错误码](../errorcodes/errorcode-resource-manager.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 9001001  | The resId invalid.                       |
+| 9001002  | The resource not found by resId.         |
+| 9001006  | The resource re-ref too much.            |
+
 **示例：** 
   ```ts
-  this.context.resourceManager.getNumber($r('app.integer.integer_test').id);
-  this.context.resourceManager.getNumber($r('app.float.float_test').id);
+  try {
+    this.context.resourceManager.getNumber($r('app.integer.integer_test').id);
+  } catch (error) {
+    console.error(`getNumber failed, error code: ${error.code}, message: ${error.message}.`)
+  }
+
+  try {
+    this.context.resourceManager.getNumber($r('app.float.float_test').id);
+  } catch (error) {
+    console.error(`getNumber failed, error code: ${error.code}, message: ${error.message}.`)
+  }
   ```
 
 ### getNumber<sup>9+</sup>
@@ -1607,6 +2136,14 @@ getNumber(resource: Resource): number
 | ------ | --------------- |
 | number | resource对象对应的数值 |
 
+以下错误码的详细介绍请参见[资源管理错误码](../errorcodes/errorcode-resource-manager.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 9001001  | The resId invalid.                       |
+| 9001002  | The resource not found by resId.         |
+| 9001006  | The resource re-ref too much.            |
+
 **示例：** 
   ```ts
   let resource = {
@@ -1614,7 +2151,11 @@ getNumber(resource: Resource): number
       moduleName: "entry",
       id: $r('app.integer.integer_test').id
   };
-  this.context.resourceManager.getNumber(resource);
+  try {
+    this.context.resourceManager.getNumber(resource);
+  } catch (error) {
+    console.error(`getNumber failed, error code: ${error.code}, message: ${error.message}.`)
+  }
   ```
 
 ### getNumberByName<sup>9+</sup>
@@ -1635,8 +2176,464 @@ getNumberByName(resName: string): number
 | ------ | --------- |
 | number | 资源名称对应的数值 |
 
+以下错误码的详细介绍请参见[资源管理错误码](../errorcodes/errorcode-resource-manager.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 9001003  | The resName invalid.                     |
+| 9001004  | The resource not found by resName.       |
+| 9001006  | The resource re-ref too much.            |
+
 **示例：** 
   ```ts
-  this.context.resourceManager.getNumberByName("integer_test");
-  this.context.resourceManager.getNumberByName("float_test");
+  try {
+    this.context.resourceManager.getNumberByName("integer_test");
+  } catch (error) {
+    console.error(`getNumberByName failed, error code: ${error.code}, message: ${error.message}.`)
+  }
+
+  try {
+    this.context.resourceManager.getNumberByName("float_test");
+  } catch (error) {
+    console.error(`getNumberByName failed, error code: ${error.code}, message: ${error.message}.`)
+  }
+  ```
+
+
+### getString<sup>(deprecated)</sup>
+
+getString(resId: number, callback: AsyncCallback&lt;string&gt;): void
+
+用户获取指定资源ID对应的字符串，使用callback形式返回字符串。
+
+从API version 9开始不再维护，建议使用[getStringValue](#getstringvalue9)代替。
+
+**系统能力**：SystemCapability.Global.ResourceManager
+
+**参数：** 
+| 参数名      | 类型                          | 必填   | 说明              |
+| -------- | --------------------------- | ---- | --------------- |
+| resId    | number                      | 是    | 资源ID值           |
+| callback | AsyncCallback&lt;string&gt; | 是    | 异步回调，用于返回获取的字符串 |
+
+**示例：** 
+  ```ts
+  resourceManager.getResourceManager((error, mgr) => {
+      mgr.getString($r('app.string.test').id, (error, value) => {
+          if (error != null) {
+              console.log("error is " + error);
+          } else {
+              let str = value;
+          }
+      });
+  });
+  ```
+
+
+### getString<sup>(deprecated)</sup>
+
+getString(resId: number): Promise&lt;string&gt;
+
+用户获取指定资源ID对应的字符串，使用Promise形式返回字符串。
+
+从API version 9开始不再维护，建议使用[getStringValue](#getstringvalue9-1)代替。
+
+**系统能力**：SystemCapability.Global.ResourceManager
+
+**参数：** 
+| 参数名   | 类型     | 必填   | 说明    |
+| ----- | ------ | ---- | ----- |
+| resId | number | 是    | 资源ID值 |
+
+**返回值：** 
+| 类型                    | 说明          |
+| --------------------- | ----------- |
+| Promise&lt;string&gt; | 资源ID值对应的字符串 |
+
+**示例：** 
+  ```ts
+  resourceManager.getResourceManager((error, mgr) => {
+      mgr.getString($r('app.string.test').id).then(value => {
+          let str = value;
+      }).catch(error => {
+          console.log("getstring promise error is " + error);
+      });
+  });
+  ```
+
+
+### getStringArray<sup>(deprecated)</sup>
+
+getStringArray(resId: number, callback: AsyncCallback&lt;Array&lt;string&gt;&gt;): void
+
+用户获取指定资源ID对应的字符串数组，使用callback形式返回字符串数组。
+
+从API version 9开始不再维护，建议使用[getStringArrayValue](#getstringarrayvalue9)代替。
+
+**系统能力**：SystemCapability.Global.ResourceManager
+
+**参数：** 
+| 参数名      | 类型                                       | 必填   | 说明                |
+| -------- | ---------------------------------------- | ---- | ----------------- |
+| resId    | number                                   | 是    | 资源ID值             |
+| callback | AsyncCallback&lt;Array&lt;string&gt;&gt; | 是    | 异步回调，用于返回获取的字符串数组 |
+
+**示例：** 
+  ```ts
+  resourceManager.getResourceManager((error, mgr) => {
+      mgr.getStringArray($r('app.strarray.test').id, (error, value) => {
+          if (error != null) {
+              console.log("error is " + error);
+          } else {
+              let strArray = value;
+          }
+      });
+  });
+  ```
+
+
+### getStringArray<sup>(deprecated)</sup>
+
+getStringArray(resId: number): Promise&lt;Array&lt;string&gt;&gt;
+
+用户获取指定资源ID对应的字符串数组，使用Promise形式返回字符串数组。
+
+从API version 9开始不再维护，建议使用[getStringArrayValue](#getstringarrayvalue9-1)代替。
+
+**系统能力**：SystemCapability.Global.ResourceManager
+
+**参数：** 
+| 参数名   | 类型     | 必填   | 说明    |
+| ----- | ------ | ---- | ----- |
+| resId | number | 是    | 资源ID值 |
+
+**返回值：** 
+| 类型                                 | 说明            |
+| ---------------------------------- | ------------- |
+| Promise&lt;Array&lt;string&gt;&gt; | 资源ID值对应的字符串数组 |
+
+**示例：** 
+  ```ts
+  resourceManager.getResourceManager((error, mgr) => {
+       mgr.getStringArray($r('app.strarray.test').id).then(value => {
+          let strArray = value;
+      }).catch(error => {
+          console.log("getStringArray promise error is " + error);
+      });
+  });
+  ```
+
+
+### getMedia<sup>(deprecated)</sup>
+
+getMedia(resId: number, callback: AsyncCallback&lt;Uint8Array&gt;): void
+
+用户获取指定资源ID对应的媒体文件内容，使用callback形式返回字节数组。
+
+从API version 9开始不再维护，建议使用[getMediaContent](#getmediacontent)代替。
+
+**系统能力**：SystemCapability.Global.ResourceManager
+
+**参数：** 
+| 参数名      | 类型                              | 必填   | 说明                 |
+| -------- | ------------------------------- | ---- | ------------------ |
+| resId    | number                          | 是    | 资源ID值              |
+| callback | AsyncCallback&lt;Uint8Array&gt; | 是    | 异步回调，用于返回获取的媒体文件内容 |
+
+**示例：** 
+  ```ts
+  resourceManager.getResourceManager((error, mgr) => {
+      mgr.getMedia($r('app.media.test').id, (error, value) => {
+          if (error != null) {
+              console.log("error is " + error);
+          } else {
+              let media = value;
+          }
+      });
+  });
+  ```
+
+
+### getMedia<sup>(deprecated)</sup>
+
+getMedia(resId: number): Promise&lt;Uint8Array&gt;
+
+用户获取指定资源ID对应的媒体文件内容，使用Promise形式返回字节数组。
+
+从API version 9开始不再维护，建议使用[getMediaContent](#getmediacontent-1)代替。
+
+**系统能力**：SystemCapability.Global.ResourceManager
+
+**参数：** 
+| 参数名   | 类型     | 必填   | 说明    |
+| ----- | ------ | ---- | ----- |
+| resId | number | 是    | 资源ID值 |
+
+**返回值：** 
+| 类型                        | 说明             |
+| ------------------------- | -------------- |
+| Promise&lt;Uint8Array&gt; | 资源ID值对应的媒体文件内容 |
+
+**示例：** 
+  ```ts
+  resourceManager.getResourceManager((error, mgr) => {
+      mgr.getMedia($r('app.media.test').id).then(value => {
+          let media = value;
+      }).catch(error => {
+          console.log("getMedia promise error is " + error);
+      });
+  });
+  ```
+
+
+### getMediaBase64<sup>(deprecated)</sup>
+
+getMediaBase64(resId: number, callback: AsyncCallback&lt;string&gt;): void
+
+用户获取指定资源ID对应的图片资源Base64编码，使用callback形式返回字符串。
+
+从API version 9开始不再维护，建议使用[getMediaContentBase64](#getmediacontentbase64)代替。
+
+**系统能力**：SystemCapability.Global.ResourceManager
+
+**参数：** 
+| 参数名      | 类型                          | 必填   | 说明                       |
+| -------- | --------------------------- | ---- | ------------------------ |
+| resId    | number                      | 是    | 资源ID值                    |
+| callback | AsyncCallback&lt;string&gt; | 是    | 异步回调，用于返回获取的图片资源Base64编码 |
+
+**示例：** 
+  ```ts
+  resourceManager.getResourceManager((error, mgr) => {
+      mgr.getMediaBase64($r('app.media.test').id, (error, value) => {
+          if (error != null) {
+              console.log("error is " + error);
+          } else {
+              let media = value;
+          }
+      });
+  });
+  ```
+
+
+### getMediaBase64<sup>(deprecated)</sup>
+
+getMediaBase64(resId: number): Promise&lt;string&gt;
+
+用户获取指定资源ID对应的图片资源Base64编码，使用Promise形式返回字符串。
+
+从API version 9开始不再维护，建议使用[getMediaContentBase64](#getmediacontentbase64-1)代替。
+
+**系统能力**：SystemCapability.Global.ResourceManager
+
+**参数：** 
+| 参数名   | 类型     | 必填   | 说明    |
+| ----- | ------ | ---- | ----- |
+| resId | number | 是    | 资源ID值 |
+
+**返回值：** 
+| 类型                    | 说明                   |
+| --------------------- | -------------------- |
+| Promise&lt;string&gt; | 资源ID值对应的图片资源Base64编码 |
+
+**示例：** 
+  ```ts
+  resourceManager.getResourceManager((error, mgr) => {
+      mgr.getMediaBase64($r('app.media.test').id).then(value => {
+          let media = value;
+      }).catch(error => {
+          console.log("getMediaBase64 promise error is " + error);
+      });
+  });
+  ```
+
+
+### getPluralString<sup>(deprecated)</sup>
+
+getPluralString(resId: number, num: number): Promise&lt;string&gt;
+
+根据指定数量获取对指定ID字符串表示的单复数字符串，使用Promise形式返回字符串。
+
+从API version 9开始不再维护，建议使用[getPluralStringValue](#getpluralstringvalue)代替。
+
+**系统能力**：SystemCapability.Global.ResourceManager
+
+**参数：** 
+| 参数名   | 类型     | 必填   | 说明    |
+| ----- | ------ | ---- | ----- |
+| resId | number | 是    | 资源ID值 |
+| num   | number | 是    | 数量值   |
+
+**返回值：** 
+| 类型                    | 说明                        |
+| --------------------- | ------------------------- |
+| Promise&lt;string&gt; | 根据提供的数量获取对应ID字符串表示的单复数字符串 |
+
+**示例：** 
+  ```ts
+  resourceManager.getResourceManager((error, mgr) => {
+      mgr.getPluralString($r("app.plural.test").id, 1).then(value => {
+          let str = value;
+      }).catch(error => {
+          console.log("getPluralString promise error is " + error);
+      });
+  });
+  ```
+
+
+### getPluralString<sup>(deprecated)</sup>
+
+getPluralString(resId: number, num: number, callback: AsyncCallback&lt;string&gt;): void
+
+根据指定数量获取指定ID字符串表示的单复数字符串，使用callback形式返回字符串。
+
+从API version 9开始不再维护，建议使用[getPluralStringValue](#getpluralstringvalue-1)代替。
+
+**系统能力**：SystemCapability.Global.ResourceManager
+
+**参数：** 
+| 参数名      | 类型                          | 必填   | 说明                              |
+| -------- | --------------------------- | ---- | ------------------------------- |
+| resId    | number                      | 是    | 资源ID值                           |
+| num      | number                      | 是    | 数量值                             |
+| callback | AsyncCallback&lt;string&gt; | 是    | 异步回调，返回根据指定数量获取指定ID字符串表示的单复数字符串 |
+
+**示例：** 
+  ```ts
+  resourceManager.getResourceManager((error, mgr) => {
+      mgr.getPluralString($r("app.plural.test").id, 1, (error, value) => {
+          if (error != null) {
+              console.log("error is " + error);
+          } else {
+              let str = value;
+          }
+      });
+  });
+  ```
+
+
+### getRawFile<sup>(deprecated)</sup>
+
+getRawFile(path: string, callback: AsyncCallback&lt;Uint8Array&gt;): void
+
+用户获取resources/rawfile目录下对应的rawfile文件内容，使用callback形式返回字节数组。
+
+从API version 9开始不再维护，建议使用[getRawFileContent](#getrawfilecontent9)代替。
+
+**系统能力**：SystemCapability.Global.ResourceManager
+
+**参数：** 
+| 参数名      | 类型                              | 必填   | 说明                      |
+| -------- | ------------------------------- | ---- | ----------------------- |
+| path     | string                          | 是    | rawfile文件路径             |
+| callback | AsyncCallback&lt;Uint8Array&gt; | 是    | 异步回调，用于返回获取的rawfile文件内容 |
+
+**示例：** 
+  ```ts
+  resourceManager.getResourceManager((error, mgr) => {
+      mgr.getRawFile("test.xml", (error, value) => {
+          if (error != null) {
+              console.log("error is " + error);
+          } else {
+              let rawFile = value;
+          }
+      });
+  });
+  ```
+
+
+### getRawFile<sup>(deprecated)</sup>
+
+getRawFile(path: string): Promise&lt;Uint8Array&gt;
+
+用户获取resources/rawfile目录下对应的rawfile文件内容，使用Promise形式返回字节数组。
+
+从API version 9开始不再维护，建议使用[getRawFileContent](#getrawfilecontent9-1)代替。
+
+**系统能力**：SystemCapability.Global.ResourceManager
+
+**参数：** 
+| 参数名  | 类型     | 必填   | 说明          |
+| ---- | ------ | ---- | ----------- |
+| path | string | 是    | rawfile文件路径 |
+
+**返回值：** 
+| 类型                        | 说明          |
+| ------------------------- | ----------- |
+| Promise&lt;Uint8Array&gt; | rawfile文件内容 |
+
+**示例：** 
+  ```ts
+  resourceManager.getResourceManager((error, mgr) => {
+      mgr.getRawFile("test.xml").then(value => {
+          let rawFile = value;
+      }).catch(error => {
+          console.log("getRawFile promise error is " + error);
+      });
+  });
+  ```
+
+
+### getRawFileDescriptor<sup>(deprecated)</sup>
+
+getRawFileDescriptor(path: string, callback: AsyncCallback&lt;RawFileDescriptor&gt;): void
+
+用户获取resources/rawfile目录下对应rawfile文件的descriptor，使用callback形式返回。
+
+从API version 9开始不再维护，建议使用[getRawFd](#getrawfd9)代替。
+
+**系统能力**：SystemCapability.Global.ResourceManager
+
+**参数：** 
+| 参数名      | 类型                                       | 必填   | 说明                               |
+| -------- | ---------------------------------------- | ---- | -------------------------------- |
+| path     | string                                   | 是    | rawfile文件路径                      |
+| callback | AsyncCallback&lt;[RawFileDescriptor](#rawfiledescriptor8)&gt; | 是    | 异步回调，用于返回获取的rawfile文件的descriptor |
+
+**示例：** 
+  ```ts
+  resourceManager.getResourceManager((error, mgr) => {
+      mgr.getRawFileDescriptor("test.xml", (error, value) => {
+          if (error != null) {
+              console.log("error is " + error);
+          } else {
+              let fd = value.fd;
+              let offset = value.offset;
+              let length = value.length;
+          }
+      });
+  });
+  ```
+
+### getRawFileDescriptor<sup>(deprecated)</sup>
+
+getRawFileDescriptor(path: string): Promise&lt;RawFileDescriptor&gt;
+
+用户获取resources/rawfile目录下对应rawfile文件的descriptor，使用Promise形式返回。
+
+从API version 9开始不再维护，建议使用[getRawFd](#getrawfd9-1)代替。
+
+**系统能力**：SystemCapability.Global.ResourceManager
+
+**参数：** 
+| 参数名  | 类型     | 必填   | 说明          |
+| ---- | ------ | ---- | ----------- |
+| path | string | 是    | rawfile文件路径 |
+
+**返回值：** 
+| 类型                                       | 说明                  |
+| ---------------------------------------- | ------------------- |
+| Promise&lt;[RawFileDescriptor](#rawfiledescriptor8)&gt; | rawfile文件descriptor |
+
+**示例：** 
+  ```ts
+  resourceManager.getResourceManager((error, mgr) => {
+      mgr.getRawFileDescriptor("test.xml").then(value => {
+          let fd = value.fd;
+          let offset = value.offset;
+          let length = value.length;
+      }).catch(error => {
+          console.log("getRawFileDescriptor promise error is " + error);
+      });
+  });
   ```

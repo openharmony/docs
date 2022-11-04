@@ -21,7 +21,7 @@ Rating(options?: { rating: number, indicator?: boolean })
 | 参数名 | 参数类型 | 必填 | 参数描述 |
 | -------- | -------- | -------- | -------- |
 | rating | number | 是 | 设置并接收评分值。<br/>默认值：0 |
-| indicator | boolean | 否 | 仅作为指示器使用，不可操作。<br/>默认值：false |
+| indicator | boolean | 否 | 设置评分组件作为指示器使用，不可改变评分。<br/>默认值：false, 可进行评分 |
 
 
 ## 属性

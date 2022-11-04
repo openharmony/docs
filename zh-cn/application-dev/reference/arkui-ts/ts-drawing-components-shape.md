@@ -14,18 +14,17 @@
 
 ## 子组件
 
-可以包含子组件。
+包含[Rect](ts-drawing-components-rect.md)、[Path](ts-drawing-components-path.md)、[Circle](ts-drawing-components-circle.md)、[Ellipse](ts-drawing-components-ellipse.md)、[Polyline](ts-drawing-components-polyline.md)、[Polygon](ts-drawing-components-polygon.md)、[Image](ts-basic-components-image.md)、[Text](ts-basic-components-text.md)、[Column](ts-container-column.md)、[Row](ts-container-row.md)子组件。
 
 
 ## 接口
 
 Shape(value?: PixelMap)
 
-**参数：**
-
-| 参数名 | 参数类型 | 必填 | 默认值 | 参数描述 |
-| -------- | -------- | -------- | -------- | -------- |
-| value | PixelMap | 否 | - | 绘制目标，可将图形绘制在指定的PixelMap对象中，若未设置，则在当前绘制目标中进行绘制。 |
+- 参数
+  | 参数名 | 参数类型 | 必填 | 默认值 | 参数描述 |
+  | -------- | -------- | -------- | -------- | -------- |
+  | value | [PixelMap](../apis/js-apis-image.md#pixelmap7) | 否 | - | 绘制目标，可将图形绘制在指定的PixelMap对象中，若未设置，则在当前绘制目标中进行绘制。 |
 
 
 ## 属性
@@ -37,14 +36,14 @@ Shape(value?: PixelMap)
 | viewPort | {<br/>x?:&nbsp;number \| string,<br/>y?:&nbsp;number \| string,<br/>width?:&nbsp;number \| string,<br/>height?:&nbsp;number \| string<br/>} | { x:0, y:0, width:0, height:0 } | 否 | 形状的视口。 |
 | fill | [ResourceColor](ts-types.md) | Color.Black | 否 | 设置填充区域颜色。 |
 | fillOpacity | number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[Resource](ts-types.md#resource类型) | 1 | 否 | 设置填充区域透明度。 |
-| stroke | [ResourceColor](ts-types.md) | Color.Black | 否 | 设置线条颜色。 |
-| strokeDashArray | Array&lt;Length&gt; | [] | 否 | 设置线条间隙。 |
-| strokeDashOffset | number&nbsp;\|&nbsp;string | 0 | 否 | 线条绘制起点的偏移量。 |
-| strokeLineCap | [LineCapStyle](ts-appendix-enums.md#linecapstyle) | LineCapStyle.Butt | 否 | 设置线条端点绘制样式。 |
-| strokeLineJoin | [LineJoinStyle](ts-appendix-enums.md#linejoinstyle) | LineJoinStyle.Miter | 否 | 设置线条拐角绘制样式。 |
+| stroke | [ResourceColor](ts-types.md) | - | 否 | 设置边框颜色，不设置时，默认没有边框线条。 |
+| strokeDashArray | Array&lt;Length&gt; | [] | 否 | 设置边框间隙。 |
+| strokeDashOffset | number&nbsp;\|&nbsp;string | 0 | 否 | 边框绘制起点的偏移量。 |
+| strokeLineCap | [LineCapStyle](ts-appendix-enums.md#linecapstyle) | LineCapStyle.Butt | 否 | 设置边框端点绘制样式。 |
+| strokeLineJoin | [LineJoinStyle](ts-appendix-enums.md#linejoinstyle) | LineJoinStyle.Miter | 否 | 设置边框拐角绘制样式。 |
 | strokeMiterLimit | number&nbsp;\|&nbsp;string | 4 | 否 | 设置锐角绘制成斜角的极限值。 |
-| strokeOpacity | number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[Resource](ts-types.md#resource类型) | 1 | 否 | 设置线条透明度。 |
-| strokeWidth | number&nbsp;\|&nbsp;string | 1 | 否 | 设置线条宽度。 |
+| strokeOpacity | number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[Resource](ts-types.md#resource类型) | 1 | 否 | 设置边框透明度。 |
+| strokeWidth | number&nbsp;\|&nbsp;string | 1 | 否 | 设置边框宽度。 |
 | antiAlias | boolean | true | 否 | 是否开启抗锯齿效果。 |
 | mesh<sup>8+</sup> | Array&lt;number&gt;,number,number | [],0,0 | 否 | 设置mesh效果。第一个参数为长度（column + 1）* （row + 1）* 2的数组，它记录了扭曲后的位图各个顶点位置，第二个参数为mesh矩阵列数column，第三个参数为mesh矩阵行数row。 |
 
@@ -153,12 +152,12 @@ struct ShapeExample {
 @Entry
 @Component
 struct ShapeMeshExample {
-  @State columnVal: number = 0;
-  @State rowVal: number = 0;
-  @State count: number = 0;
-  @State verts: Array<number> = [];
-  @State shapeWidth: number = 600;
-  @State shapeHeight: number = 600;
+  @State columnVal: number = 0
+  @State rowVal: number = 0
+  @State count: number = 0
+  @State verts: Array<number> = []
+  @State shapeWidth: number = 600
+  @State shapeHeight: number = 600
 
   build() {
     Column() {
@@ -187,34 +186,34 @@ struct ShapeMeshExample {
       .height(this.shapeHeight + 'px')
       // 手指触摸Shape组件时会显示mesh扭曲效果
       .onTouch((event: TouchEvent) => {
-        var touchX = event.touches[0].x * 2;
-        var touchY = event.touches[0].y * 2;
-        this.columnVal = 20;
-        this.rowVal = 20;
-        this.count = (this.columnVal + 1) * (this.rowVal + 1);
-        var orig = [this.count * 2];
-        var index = 0;
+        var touchX = event.touches[0].x * 2
+        var touchY = event.touches[0].y * 2
+        this.columnVal = 20
+        this.rowVal = 20
+        this.count = (this.columnVal + 1) * (this.rowVal + 1)
+        var orig = [this.count * 2]
+        var index = 0
         for (var i = 0; i <= this.rowVal; i++) {
-          var fy = this.shapeWidth * i / this.rowVal;
+          var fy = this.shapeWidth * i / this.rowVal
           for (var j = 0; j <= this.columnVal; j++) {
-            var fx = this.shapeWidth * j / this.columnVal;
-            orig[index * 2 + 0] = this.verts[index * 2 + 0] = fx;
-            orig[index * 2 + 1] = this.verts[index * 2 + 1] = fy;
+            var fx = this.shapeWidth * j / this.columnVal
+            orig[index * 2 + 0] = this.verts[index * 2 + 0] = fx
+            orig[index * 2 + 1] = this.verts[index * 2 + 1] = fy
             index++;
           }
         }
         for (var k = 0; k < this.count * 2; k += 2) {
-          var dx = touchX - orig[k + 0];
-          var dy = touchY - orig[k + 1];
-          var dd = dx * dx + dy * dy;
-          var d = Math.sqrt(dd);
-          var pull = 80000 / (dd * d);
+          var dx = touchX - orig[k + 0]
+          var dy = touchY - orig[k + 1]
+          var dd = dx * dx + dy * dy
+          var d = Math.sqrt(dd)
+          var pull = 80000 / (dd * d)
           if (pull >= 1) {
-            this.verts[k + 0] = touchX;
-            this.verts[k + 1] = touchY;
+            this.verts[k + 0] = touchX
+            this.verts[k + 1] = touchY
           } else {
-            this.verts[k + 0] = orig[k + 0] + dx * pull;
-            this.verts[k + 1] = orig[k + 1] + dy * pull;
+            this.verts[k + 0] = orig[k + 0] + dx * pull
+            this.verts[k + 1] = orig[k + 1] + dy * pull
           }
         }
       })

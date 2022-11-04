@@ -7,7 +7,7 @@
 
 
 ## 导入模块
-
+                                                                                                                                                                                                                 
 ```js
 import account_distributedAccount from '@ohos.account.distributedAccount';
 ```
@@ -40,7 +40,7 @@ getDistributedAccountAbility(): DistributedAccountAbility
 
 getOsAccountDistributedInfo(callback: AsyncCallback&lt;DistributedInfo&gt;): void
 
-获取分布式帐号信息，使用callback回调异步返回结果。
+获取分布式帐号信息，使用callback异步回调。
 
 **系统能力：** SystemCapability.Account.OsAccount
 
@@ -50,16 +50,22 @@ getOsAccountDistributedInfo(callback: AsyncCallback&lt;DistributedInfo&gt;): voi
 
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | callback | AsyncCallback&lt;[DistributedInfo](#distributedinfo)&gt; | 是 | 获取分布式帐号信息的回调。 |
+  | callback | AsyncCallback&lt;[DistributedInfo](#distributedinfo)&gt; | 是 | 回调参数。当获取分布式帐号信息成功，err为undefined，data为获取到的分布式帐号信息对象；否则为错误对象。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息|
+| -------- | ------------------- |
+| 12300001 | System service exception. |
 
 **示例：**
   ```js
   const accountAbility = account_distributedAccount.getDistributedAccountAbility();
   try {
     accountAbility.getOsAccountDistributedInfo((err, data) => {
-        console.log("getOsAccountDistributedInfo err: " + JSON.stringify(err));
-        console.log('Query account info name: ' + data.name);
-        console.log('Query account info id: ' + data.id);
+      console.log("getOsAccountDistributedInfo err: " + JSON.stringify(err));
+      console.log('Query account info name: ' + data.name);
+      console.log('Query account info id: ' + data.id);
     });
   } catch (e) {
     console.log("getOsAccountDistributedInfo exception: " + JSON.stringify(e));
@@ -70,7 +76,7 @@ getOsAccountDistributedInfo(callback: AsyncCallback&lt;DistributedInfo&gt;): voi
 
 getOsAccountDistributedInfo(): Promise&lt;DistributedInfo&gt;
 
-获取分布式帐号信息，使用Promise方式异步返回结果。
+获取分布式帐号信息。使用Promise异步回调。
 
 **系统能力：** SystemCapability.Account.OsAccount
 
@@ -80,7 +86,13 @@ getOsAccountDistributedInfo(): Promise&lt;DistributedInfo&gt;
 
   | 类型 | 说明 |
   | -------- | -------- |
-  | Promise&lt;[DistributedInfo](#distributedinfo)&gt; | Promise实例，用于获取异步返回结果。 |
+  | Promise&lt;[DistributedInfo](#distributedinfo)&gt; | Promise对象。返回分布式帐号信息对象。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息|
+| -------- | ------------------- |
+| 12300001 | System service exception. |
 
 **示例：**
   ```js
@@ -100,7 +112,7 @@ getOsAccountDistributedInfo(): Promise&lt;DistributedInfo&gt;
 
 queryOsAccountDistributedInfo(callback: AsyncCallback&lt;DistributedInfo&gt;): void
 
-获取分布式帐号信息，使用callback回调异步返回结果。
+获取分布式帐号信息。使用callback异步回调。
 > **说明：** 从API version 9开始废弃，建议使用[getOsAccountDistributedInfo](#getosaccountdistributedinfo9)
 >
 > 从 API version 7开始支持。
@@ -113,7 +125,7 @@ queryOsAccountDistributedInfo(callback: AsyncCallback&lt;DistributedInfo&gt;): v
 
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | callback | AsyncCallback&lt;[DistributedInfo](#distributedinfo)&gt; | 是 | 获取分布式帐号信息的回调。 |
+  | callback | AsyncCallback&lt;[DistributedInfo](#distributedinfo)&gt; | 是 | 回调函数。当获取分布式帐号信息成功，err为undefined，data为获取到的分布式帐号信息对象；否则为错误对象。 |
 
 **示例：**
   ```js
@@ -129,7 +141,8 @@ queryOsAccountDistributedInfo(callback: AsyncCallback&lt;DistributedInfo&gt;): v
 
 queryOsAccountDistributedInfo(): Promise&lt;DistributedInfo&gt;
 
-获取分布式帐号信息，使用Promise方式异步返回结果。
+获取分布式帐号信息。使用Promise异步回调。
+
 > **说明：** 从API version 9开始废弃，建议使用[getOsAccountDistributedInfo](#getosaccountdistributedinfo9-1)
 >
 > 从 API version 7开始支持。
@@ -142,7 +155,7 @@ queryOsAccountDistributedInfo(): Promise&lt;DistributedInfo&gt;
 
   | 类型 | 说明 |
   | -------- | -------- |
-  | Promise&lt;[DistributedInfo](#distributedinfo)&gt; | Promise实例，用于获取异步返回结果。 |
+  | Promise&lt;[DistributedInfo](#distributedinfo)&gt; | Promise对象。返回分布式帐号信息对象。 |
 
 **示例：**
   ```js
@@ -159,7 +172,7 @@ queryOsAccountDistributedInfo(): Promise&lt;DistributedInfo&gt;
 
 setOsAccountDistributedInfo(accountInfo: DistributedInfo, callback: AsyncCallback&lt;void&gt;): void
 
-更新分布式帐号信息，使用callback回调异步返回结果。
+更新分布式帐号信息。使用callback异步回调。
 
 **系统能力：** SystemCapability.Account.OsAccount
 
@@ -170,7 +183,15 @@ setOsAccountDistributedInfo(accountInfo: DistributedInfo, callback: AsyncCallbac
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | accountInfo | [DistributedInfo](#distributedinfo) | 是 | 分布式帐号信息。 |
-  | callback | AsyncCallback&lt;void&gt; | 是 | 更新分布式帐号信息的回调。 |
+  | callback | AsyncCallback&lt;void&gt; | 是 | 回调函数。当更新分布式帐号信息成功时，err为undefined，否则为错误对象。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息|
+| -------- | ------------------- |
+| 12300001 | System service exception. |
+| 12300002 | Invalid accountInfo. |
+| 12300003 | Account not found. |
 
 **示例：**
   ```js
@@ -189,7 +210,7 @@ setOsAccountDistributedInfo(accountInfo: DistributedInfo, callback: AsyncCallbac
 
 setOsAccountDistributedInfo(accountInfo: DistributedInfo): Promise&lt;void&gt;
 
-更新分布式帐号信息，使用Promise方式异步返回结果。
+更新分布式帐号信息。使用Promise异步回调。
 
 **系统能力：** SystemCapability.Account.OsAccount
 
@@ -205,7 +226,14 @@ setOsAccountDistributedInfo(accountInfo: DistributedInfo): Promise&lt;void&gt;
 
   | 类型 | 说明 |
   | -------- | -------- |
-  | Promise&lt;void&gt; | Promise实例，用于获取异步返回结果。 |
+  | Promise&lt;void&gt; | Promise对象。无返回结果的Promise对象。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息|
+| -------- | ------------------- |
+| 12300001 | System service exception. |
+| 12300002 | invalid accountInfo. |
 
 **示例：**
   ```js
@@ -225,7 +253,8 @@ setOsAccountDistributedInfo(accountInfo: DistributedInfo): Promise&lt;void&gt;
 
 updateOsAccountDistributedInfo(accountInfo: DistributedInfo, callback: AsyncCallback&lt;void&gt;): void
 
-更新分布式帐号信息，使用callback回调异步返回结果。
+更新分布式帐号信息。使用callback异步回调。
+
 > **说明：** 从API version 9开始废弃，建议使用[setOsAccountDistributedInfo](#setosaccountdistributedinfo9)
 >
 > 从 API version 7开始支持。
@@ -239,7 +268,7 @@ updateOsAccountDistributedInfo(accountInfo: DistributedInfo, callback: AsyncCall
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | accountInfo | [DistributedInfo](#distributedinfo) | 是 | 分布式帐号信息。 |
-  | callback | AsyncCallback&lt;void&gt; | 是 | 更新分布式帐号信息的回调。 |
+  | callback | AsyncCallback&lt;void&gt; | 是 | 回调函数。当更新分布式帐号信息成功时，err为undefined，否则为错误对象。 |
 
 **示例：**
   ```js
@@ -254,7 +283,7 @@ updateOsAccountDistributedInfo(accountInfo: DistributedInfo, callback: AsyncCall
 
 updateOsAccountDistributedInfo(accountInfo: DistributedInfo): Promise&lt;void&gt;
 
-更新分布式帐号信息，使用Promise方式异步返回结果。
+更新分布式帐号信息。使用Promise异步回调。
 > **说明：** 从API version 9开始废弃，建议使用[setOsAccountDistributedInfo](#setosaccountdistributedinfo9-1)
 >
 > 从 API version 7开始支持。
@@ -272,7 +301,7 @@ updateOsAccountDistributedInfo(accountInfo: DistributedInfo): Promise&lt;void&gt
 
   | 类型 | 说明 |
   | -------- | -------- |
-  | Promise&lt;void&gt; | Promise实例，用于获取异步返回结果。 |
+  | Promise&lt;void&gt; | Promise对象。无返回结果的Promise对象。 |
 
 **示例：**
   ```js

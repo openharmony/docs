@@ -3,24 +3,6 @@
 
 ## **概述**
 
-**所属模块:**
-
-[HdfFaceAuth](_hdf_face_auth.md)
-
-
-## **汇总**
-
-
-### Public 成员函数
-
-  | Public&nbsp;成员函数 | 描述 | 
-| -------- | -------- |
-| [OnResult](#onresult)&nbsp;([in]&nbsp;int&nbsp;result,&nbsp;[in]&nbsp;unsigned&nbsp;char[]&nbsp;extraInfo) | 定义操作结果回调函数。&nbsp;[更多...](#onresult) | 
-| [OnTip](#ontip)&nbsp;([in]&nbsp;int&nbsp;acquire,&nbsp;[in]&nbsp;unsigned&nbsp;char[]&nbsp;extraInfo) | 定义操作过程信息反馈回调函数。&nbsp;[更多...](#ontip) | 
-
-
-## **详细描述**
-
 定义异步API接口回调，用于返回异步接口的请求处理结果和获取信息。使用细节见[IExecutor](interface_i_executor.md)。
 
 **Since：**
@@ -31,15 +13,30 @@
 
 1.0
 
+**所属模块:**
+
+[HdfFaceAuth](_hdf_face_auth.md)
+
+
+## **汇总**
+
+
+### Public 成员函数
+
+  | 名称 | 描述 | 
+| -------- | -------- |
+| [OnResult](#onresult)&nbsp;([in]&nbsp;int&nbsp;result,&nbsp;[in]&nbsp;unsigned&nbsp;char[]&nbsp;extraInfo) | 定义操作结果回调函数。 | 
+| [OnAcquireInfo](#onacquireinfo)&nbsp;([in]&nbsp;int&nbsp;acquire,&nbsp;[in]&nbsp;unsigned&nbsp;char[]&nbsp;extraInfo) | 定义操作过程信息反馈回调函数。 | 
+
 
 ## **成员函数说明**
 
 
-### OnTip()
+### OnAcquireInfo()
 
   
 ```
-IExecutorCallback::OnTip ([in] int tip, [in] unsigned char[] extraInfo )
+IExecutorCallback::OnAcquireInfo ([in] int acquire, [in] unsigned char[] extraInfo )
 ```
 
 **描述：**
@@ -50,7 +47,7 @@ IExecutorCallback::OnTip ([in] int tip, [in] unsigned char[] extraInfo )
 
   | 名称 | 描述 | 
 | -------- | -------- |
-| tip | 提示信息编码[FaceTipsCode](_hdf_face_auth.md#facetipscode)。 |
+| acquire | 提示信息编码[FaceTipsCode](_hdf_face_auth.md#facetipscode)。 | 
 | extraInfo | 其他相关信息，用于支持信息扩展。 | 
 
 **返回：**

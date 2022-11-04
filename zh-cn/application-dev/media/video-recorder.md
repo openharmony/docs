@@ -1,24 +1,34 @@
 # 视频录制开发指导
 
-## 场景介绍
+## 简介
 
-视频录制的主要工作是捕获音视频信号，完成音视频编码并保存到文件中，帮助开发者轻松实现音视频录制功能。它允许调用者指定录制的编码格式、封装格式、文件路径等参数。
+视频录制的主要工作是捕获音视频信号，完成音视频编码并保存到文件中，帮助开发者轻松实现音视频录制功能，包括开始录制、暂停录制、恢复录制、停止录制、释放资源等功能控制。它允许调用者指定录制的编码格式、封装格式、文件路径等参数。
 
-**图1** 视频录制状态机
+## 运作机制
+
+该模块提供了视频录制状态变化示意图和视频录制外部模块交互图。
+
+**图1** 视频录制状态变化示意图
 
 ![zh-ch_image_video_recorder_state_machine](figures/zh-ch_image_video_recorder_state_machine.png)
 
-**图2** 视频录制零层图
+**图2** 视频录制外部模块交互图
 
 ![zh-ch_image_video_recorder_zero](figures/zh-ch_image_video_recorder_zero.png)
 
-## 开发步骤
+**说明**：三方相机应用或系统相机通过调用JS接口层提供的js接口实现相应功能时，框架层会通过Native Framework的媒体服务，调用音频部件通过音频HDI捕获的音频数据，再通过软件编码输出编码封装后的音频数据保存至文件中，和图形子系统通过视频HDI捕获的图像数据，再通过视频编码HDI编码，将编码后的图像数据保存至文件中，实现视频录制功能。
+
+## 约束与限制
+
+开发者在进行录制功能开发前，需要先对所开发的应用配置麦克风权限（ohos.permission.MICROPHONE）和相机权限（ohos.permission.CAMERA），权限配置相关内容可参考：[访问控制权限申请指导](../security/accesstoken-guidelines.md)
+
+## 开发指导
 
 详细API含义可参考：[媒体服务API文档VideoRecorder](../reference/apis/js-apis-media.md#videorecorder9)
 
 ### 全流程场景
 
-包含流程：创建实例、设置录制参数、录制视频、暂停录制、恢复录制、停止录制、释放资源等流程。
+视频录制全流程场景包含：创建实例、设置录制参数、开始录制、暂停录制、恢复录制、停止录制、释放资源等流程。
 
 ```js
 import media from '@ohos.multimedia.media'

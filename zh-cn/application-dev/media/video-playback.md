@@ -1,16 +1,22 @@
 # 视频播放开发指导
 
-## 场景介绍
+## 简介
 
-视频播放的主要工作是将视频数据转码并输出到设备进行播放，同时管理播放任务。本文将对视频播放全流程、视频切换、视频循环播放等场景开发进行介绍说明。
+视频播放的主要工作是将视频数据转码并输出到设备进行播放，同时管理播放任务，包括开始播放、暂停播放、停止播放、资源释放、音量设置、跳转播放位置、设置倍数、获取轨道信息等功能控制。本文将对视频播放全流程、视频切换、视频循环播放等场景开发进行介绍说明。
 
-**图1** 视频播放状态机
+## 运作机制
+
+该模块提供了视频播放状态变化示意图和视频播放外部模块交互图。
+
+**图1** 视频播放状态变化示意图
 
 ![zh-ch_image_video_state_machine](figures/zh-ch_image_video_state_machine.png)
 
-**图2** 视频播放零层图
+**图2** 视频播放外部模块交互图
 
 ![zh-ch_image_video_player](figures/zh-ch_image_video_player.png)
+
+**说明**：三方应用通过调用JS接口层提供的js接口实现相应功能时，框架层会通过Native Framework的媒体服务，调用音频部件将软件解码后的音频数据，输出至音频HDI，和图形子系统将硬件接口层的解码HDI部件的解码后的图像数据，输出至显示HDI，实现视频播放功能。
 
 *注意：视频播放需要显示、音频、编解码等硬件能力。*
 
@@ -31,13 +37,13 @@
 |      ts      |   视频格式：H264/MPEG2/MPEG4 音频格式：AAC/MP3    | 主流分辨率，如1080P/720P/480P/270P |
 |     webm     |          视频格式：VP8 音频格式：VORBIS           | 主流分辨率，如1080P/720P/480P/270P |
 
-## 开发步骤
+## 开发指导
 
 详细API含义可参考：[媒体服务API文档VideoPlayer](../reference/apis/js-apis-media.md#videoplayer8)
 
 ### 全流程场景
 
-包含流程：创建实例，设置url，设置SurfaceId，准备播放视频，播放视频，暂停播放，获取轨道信息，跳转播放位置，设置音量，设置倍速，结束播放，重置，释放资源等流程。
+视频播放的全流程场景包含：创建实例，设置url，设置SurfaceId，准备播放视频，播放视频，暂停播放，获取轨道信息，跳转播放位置，设置音量，设置倍速，结束播放，重置，释放资源等流程。
 
 VideoPlayer支持的url媒体源输入类型可参考：[url属性说明](../reference/apis/js-apis-media.md#videoplayer_属性)
 
@@ -445,5 +451,5 @@ export class VideoPlayerDemo {
 ## 相关实例
 针对视频播放开发，有以下相关实例可供参考：
 
-- [`VideoPlayer:`视频播放（eTS）（API9）（Full SDK）](https://gitee.com/openharmony/applications_app_samples/tree/master/media/VideoPlayer)
-- [视频播放器（eTS）（API 9）](https://gitee.com/openharmony/codelabs/tree/master/Media/VideoPlayerStage)
+- [`VideoPlayer:`视频播放（ArkTS）（API9）（Full SDK）](https://gitee.com/openharmony/applications_app_samples/tree/master/media/VideoPlayer)
+- [视频播放器（ArkTS）（API 9）](https://gitee.com/openharmony/codelabs/tree/master/Media/VideoPlayerStage)

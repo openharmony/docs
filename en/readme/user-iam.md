@@ -8,8 +8,7 @@ This subsystem is widely used in security-sensitive scenarios such as screen loc
 
 **Figure 1** Subsystem architecture
 
-<img src="figures/User-IAM-subsystem-architecture.png" alt="User IAM subsystem architecture" style="zoom:80%;" />
-
+![](figures/User-IAM-subsystem-architecture.png)
 The user IAM subsystem consists of the unified user authentication framework and authentication executor. The unified user authentication framework consists of the following parts:
 
 - Unified user authentication: provides unified user identity authentication externally and provides open biometric authentication capabilities for third-party applications to invoke.

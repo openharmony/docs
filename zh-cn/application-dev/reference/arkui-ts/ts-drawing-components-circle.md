@@ -30,14 +30,14 @@ Circle(options?: {width?: string | number, height?: string | number})
 | -------- | -------- | -------- | -------- |
 | fill | [ResourceColor](ts-types.md) | 否 | 设置填充区域颜色。<br>默认值：Color.Black |
 | fillOpacity | number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[Resource](ts-types.md#resource类型) | 否 | 设置填充区域透明度。<br>默认值：1 |
-| stroke | [ResourceColor](ts-types.md) | 否 | 设置线条颜色。<br>默认值：Color.Black |
-| strokeDashArray | Array&lt;Length&gt; | 否 | 设置线条间隙。<br>默认值：[] |
-| strokeDashOffset | number&nbsp;\|&nbsp;string  | 否 | 线条绘制起点的偏移量。<br>默认值：0 |
-| strokeLineCap | [LineCapStyle](ts-appendix-enums.md#linecapstyle) | 否 | 设置线条端点绘制样式。<br>默认值：LineCapStyle.Butt  |
-| strokeLineJoin | [LineJoinStyle](ts-appendix-enums.md#linejoinstyle) | 否 | 设置线条拐角绘制样式。<br>默认值：LineJoinStyle.Miter |
+| stroke | [ResourceColor](ts-types.md) | 否 | 设置边框颜色，不设置时，默认没有边框。 |
+| strokeDashArray | Array&lt;Length&gt; | 否 | 设置边框间隙。<br>默认值：[] |
+| strokeDashOffset | number&nbsp;\|&nbsp;string  | 否 | 边框绘制起点的偏移量。<br>默认值：0 |
+| strokeLineCap | [LineCapStyle](ts-appendix-enums.md#linecapstyle) | 否 | 设置边框端点绘制样式。<br>默认值：LineCapStyle.Butt |
+| strokeLineJoin | [LineJoinStyle](ts-appendix-enums.md#linejoinstyle) | 否 | 设置边框拐角绘制样式。<br>默认值：LineJoinStyle.Miter |
 | strokeMiterLimit | number&nbsp;\|&nbsp;string | 否 | 设置锐角绘制成斜角的极限值。<br>默认值：4 |
-| strokeOpacity | number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[Resource](ts-types.md#resource类型) | 否 | 设置线条透明度。<br>默认值：1 |
-| strokeWidth | Length | 否 | 设置线条宽度。<br>默认值：1 |
+| strokeOpacity | number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[Resource](ts-types.md#resource类型) | 否 | 设置边框透明度。<br>默认值：1 |
+| strokeWidth | Length | 否 | 设置边框宽度。<br>默认值：1 |
 | antiAlias | boolean | 否 | 是否开启抗锯齿效果。<br>默认值：true |
 
 

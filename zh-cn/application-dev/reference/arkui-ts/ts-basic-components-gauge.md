@@ -43,7 +43,7 @@ Gauge(options:{value: number, min?: number, max?: number})
 
 | 名称      | 类型定义             | 描述                                                         |
 | --------- | -------------------- | ------------------------------------------------------------ |
-| ColorStop | [[ResourceColor](ts-types.md#resourcecolor),&nbsp;number] | 描述渐进色颜色断点类型，第一个参数为颜色值，第二个参数为0~1之间的比例值。 |
+| ColorStop | [[ResourceColor](ts-types.md#resourcecolor),&nbsp;number] | 描述渐进色颜色断点类型，第一个参数为颜色值，若设置为非颜色类型，则置为黑色。第二个参数为颜色所占比重，若设置为负数或是非数值类型，则将比重置为0，该颜色不显示。 |
 
 
 ## 示例
@@ -64,7 +64,7 @@ struct GaugeExample {
       
       // 参数设置当前值为75，属性设置值为25，属性设置优先级高
       Gauge({ value: 75 })
-        .value(25) //属性和参数都设置时以参数为准
+        .value(25) // 属性和参数都设置时以参数为准
         .width(200).height(200)
         .colors([[0x317AF7, 1], [0x5BA854, 1], [0xE08C3A, 1], [0x9C554B, 1]])
       

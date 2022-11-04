@@ -198,9 +198,9 @@ For details about the adaptation status, see [SIG-Devboard](https://gitee.com/op
 | Issue No.| Description|
 | -------- | -------- |
 | [I48IM7](https://gitee.com/openharmony/hiviewdfx_hilog/issues/I48IM7) | During the hilog pressure test, **hilogd** restarts unexpectedly, and the **hilog** command cannot be used.|
-| [I48YPH](https://gitee.com/openharmony/security_deviceauth/issues/I48YPH) | [DSoftBus - Networking] During the testing of the getting-offline - discovery - networking cycle, there are 3 failures among all the 110 attempts.|
+| I48YPH | [DSoftBus - Networking] During the testing of the getting-offline - discovery - networking cycle, there are 3 failures among all the 110 attempts.|
 | [I4BVVW](https://gitee.com/openharmony/communication_dsoftbus/issues/I4BVVW) | [DSoftBus - Networking] The success rate of automatic networking between a standard-system device and mobile phone is 97%.|
-| [I4BXY1](https://gitee.com/openharmony/multimedia_camera_standard/issues/I4BXY1) | There is no sound in the first few seconds of a video recording, the sound and image are out of sync, frame freezing occurs, and noises occur when the audio source was far away during recording.|
+| I4BXY1 | There is no sound in the first few seconds of a video recording, the sound and image are out of sync, frame freezing occurs, and noises occur when the audio source was far away during recording.|
 | [3ZJ1D](https://gitee.com/openharmony/kernel_liteos_a/issues/I3ZJ1D) | There is a possibility that the user mode fails in the XTS pressure test of the permission case.|
 
 
@@ -212,7 +212,7 @@ For details about the adaptation status, see [SIG-Devboard](https://gitee.com/op
 | -------- | -------- | -------- | -------- |
 | [I4NRS5](https://gitee.com/openharmony/kernel_linux_5.10/issues/I4NRS5) | [Kernel subsystem] A CVE vulnerability exists.| No patch has been released for the Linux kernel. The kernel will be updated after the patch is released in the community.| Depending on the patch release in the community|
 | [I4MGJM](https://gitee.com/openharmony/drivers_peripheral/issues/I4MGJM) | [HDF/Camera] The case fails when the RK3568 board runs the camera HDI tests.| The photographing and preview functions are normal. The recording function can be started but cannot be stopped.| 2021/12/31 |
-| [I4OECR](https://gitee.com/openharmony/ark_js_runtime/issues/I4OECR) | An Ark stack exception occurs during XTS running (low probability).| There is a low probability that the Ark stack becomes abnormal during the XTS pressure test. This issue occurs only once in 48 hours. The exception stack is reported only in the log and does not affect the functions.| 2022/01/05|
+| I4OECR | An Ark stack exception occurs during XTS running (low probability).| There is a low probability that the Ark stack becomes abnormal during the XTS pressure test. This issue occurs only once in 48 hours. The exception stack is reported only in the log and does not affect the functions.| 2022/01/05|
 | [I4OBTW](https://gitee.com/openharmony/ability_ability_runtime/issues/I4OBTW) | After all XTS cases are executed and the application is installed, aa start failures occur, affecting the OpenHarmony pipeline stability test.| During the XTS pressure test, when 100 application packages are installed in batches in a short period of time, 2 of them cannot be started. User experience is not affected.| 2022/01/05|
-| [I4OLHF](https://gitee.com/openharmony/ark_js_runtime/issues/I4OLHF?from=project-issue) | [Ark subsystem] The test process is abnormal due to the com.amsst.amsMissionSnapshotTest process.| This issue occurs occasionally during high-pressure tests.| 2022/01/05|
-| [I4OLUK](https://gitee.com/openharmony/ark_js_runtime/issues/I4OLUK) | [Ark subsystem] The process stack is abnormal due to the com.ohos.systemui process.| This issue occurs occasionally during high-pressure tests.| 2022/01/05|
+| I4OLHF | [Ark subsystem] The test process is abnormal due to the com.amsst.amsMissionSnapshotTest process.| This issue occurs occasionally during high-pressure tests.| 2022/01/05|
+| I4OLUK | [Ark subsystem] The process stack is abnormal due to the com.ohos.systemui process.| This issue occurs occasionally during high-pressure tests.| 2022/01/05|

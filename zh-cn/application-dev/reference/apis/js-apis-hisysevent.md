@@ -55,25 +55,44 @@ write(info: SysEventInfo, callback: AsyncCallback&lt;void&gt;): void
 | info | [SysEventInfo](#syseventinfo) | 是 | 系统事件。 |
 | callback  | AsyncCallback&lt;void&gt; | 是 | 回调函数，可以在回调函数中处理接口返回值。<br/>- 0表示事件校验成功，事件正常异步写入事件文件；<br/>- 正值表示事件打点存在异常，但可以正常写入；<br/>- 负值表示事件打点失败。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[系统事件错误码](../errorcodes/errorcode-hisysevent.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | ----------------------------------------------------------------- |
+| 11200001 | Invalid event domain.                                            |
+| 11200002 | Invalid event name.                                              |
+| 11200003 | Abnormal environment.                                            |
+| 11200004 | Length of the event is over limit.                               |
+| 11200051 | Invalid event parameter.                                         |
+| 11200052 | Size of the event parameter of the string type is over limit.    |
+| 11200053 | Count of event parameters is over limit.                         |
+| 11200054 | Count of event parameter of the array type is over limit.        |
+
 **示例：**
 
 ```js
 import hiSysEvent from '@ohos.hiSysEvent';
 
-hiSysEvent.write({
-	domain: "RELIABILITY",
-	name: "STACK",
-	eventType: hiSysEvent.EventType.FAULT,
-	params: {
-		PID: 487,
-		UID: 103,
-		PACKAGE_NAME: "com.ohos.hisysevent.test",
-		PROCESS_NAME: "syseventservice",
-		MSG: "no msg."
-	}
-}, (err, val) => {
-    // do something here.
-})
+try {
+    hiSysEvent.write({
+        domain: "RELIABILITY",
+        name: "STACK",
+        eventType: hiSysEvent.EventType.FAULT,
+        params: {
+            PID: 487,
+            UID: 103,
+            PACKAGE_NAME: "com.ohos.hisysevent.test",
+            PROCESS_NAME: "syseventservice",
+            MSG: "no msg."
+        }
+    }, (err, val) => {
+        // do something here.
+    })
+} catch (error) {
+    console.error(`error code: ${error.code}, error msg: ${error.message}`);
+}
 ```
 
 
@@ -97,31 +116,50 @@ write(info: SysEventInfo): Promise&lt;void&gt;
 | ------------------- | ------------------------------------------------------------ |
 | Promise&lt;void&gt; | Promise实例，可以在其then()、catch()方法中分别对系统事件写入成功、写入异常的回调进行处理。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[系统事件错误码](../errorcodes/errorcode-hisysevent.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------------------------------- |
+| 11200001 | Invalid event domain.                                            |
+| 11200002 | Invalid event name.                                              |
+| 11200003 | Abnormal environment.                                            |
+| 11200004 | Length of the event is over limit.                               |
+| 11200051 | Invalid event parameter.                                         |
+| 11200052 | Size of the event parameter of the string type is over limit.    |
+| 11200053 | Count of event parameters is over limit.                         |
+| 11200054 | Count of event parameter of the array type is over limit.        |
+
 **示例：**
 
 ```js
 import hiSysEvent from '@ohos.hiSysEvent';
 
-hiSysEvent.write({
-	domain: "RELIABILITY",
-	name: "STACK",
-	eventType: hiSysEvent.EventType.FAULT,
-	params: {
-		PID: 487,
-		UID: 103,
-		PACKAGE_NAME: "com.ohos.hisysevent.test",
-		PROCESS_NAME: "syseventservice",
-		MSG: "no msg."
-	}
-}).then(
-	(val) => {
-	    // do something here.
-	}
-).catch(
-	(err) => {
-	    // do something here.
-	}
-)
+try {
+    hiSysEvent.write({
+        domain: "RELIABILITY",
+        name: "STACK",
+        eventType: hiSysEvent.EventType.FAULT,
+        params: {
+            PID: 487,
+            UID: 103,
+            PACKAGE_NAME: "com.ohos.hisysevent.test",
+            PROCESS_NAME: "syseventservice",
+            MSG: "no msg."
+        }
+    }).then(
+        (val) => {
+            // do something here.
+        }
+    ).catch(
+        (err) => {
+            // do something here.
+        }
+    )
+} catch (error) {
+    console.error(`error code: ${error.code}, error msg: ${error.message}`);
+}
 ```
 
 ## RuleType
@@ -163,7 +201,7 @@ hiSysEvent.write({
 
 ## hiSysEvent.addWatcher
 
-addWatcher(watcher: Watcher): number
+addWatcher(watcher: Watcher): void
 
 订阅系统事件，接收[Watcher](#watcher)类型的对象作为事件参数。
 
@@ -177,11 +215,14 @@ addWatcher(watcher: Watcher): number
 | ------ | ----------------------------- | ---- | ------------------------ |
 | watcher | [Watcher](#watcher) | 是 | 系统事件订阅者对象。 |
 
-**返回值：**
+**错误码：**
 
-| 类型    | 说明 |
-| ------- | -------------------------------------------------- |
-| number | 系统事件订阅结果。<br>- 0表示订阅成功。<br>- 负值表示订阅失败。 |
+以下错误码的详细介绍请参见[系统事件错误码](../errorcodes/errorcode-hisysevent.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ----------------------------------- |
+| 11200101 | Count of watchers is over limit.    |
+| 11200102 | Count of watch rules is over limit. |
 
 **示例：**
 
@@ -189,25 +230,29 @@ addWatcher(watcher: Watcher): number
 import hiSysEvent from '@ohos.hiSysEvent';
 
 let watcher = {
-	rules: [{
-		domain: "RELIABILITY",
-		name: "STACK",
-		tag: "STABILITY",
-		ruleType: hiSysEvent.RuleType.WHOLE_WORD,
-	}],
-	onEvent: (info) => {
-	    // do something here.
-	},
-	onServiceDied: () => {
-	    // do something here.
-	}
+    rules: [{
+        domain: "RELIABILITY",
+        name: "STACK",
+        tag: "STABILITY",
+        ruleType: hiSysEvent.RuleType.WHOLE_WORD,
+    }],
+    onEvent: (info) => {
+        // do something here.
+    },
+    onServiceDied: () => {
+        // do something here.
+    }
 }
-let ret = hiSysEvent.addWatcher(watcher)
+try {
+    hiSysEvent.addWatcher(watcher)
+} catch (error) {
+    console.error(`error code: ${error.code}, error msg: ${error.message}`);
+}
 ```
 
 ## hiSysEvent.removeWatcher
 
-removeWatcher(watcher: Watcher): number
+removeWatcher(watcher: Watcher): void
 
 取消订阅系统事件，接收[Watcher](#watcher)类型的对象作为事件参数。
 
@@ -218,14 +263,16 @@ removeWatcher(watcher: Watcher): number
 **参数：**
 
 | 参数名 | 类型  | 必填 | 说明  |
-| ------ | ------------- | ---- | ------------------------ |
+| ------ | ------------- | ---- | ------------------------- |
 | watcher | [Watcher](#watcher) | 是 | 系统事件订阅者对象。 |
 
-**返回值：**
+**错误码：**
 
-| 类型    | 说明 |
-| ------- | ----------------------------------------------------------- |
-| number | 取消订阅系统事件的结果。<br>- 0表示取消订阅成功。<br>- 负值表示取消订阅失败。 |
+以下错误码的详细介绍请参见[系统事件错误码](../errorcodes/errorcode-hisysevent.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | --------------------------- |
+| 11200201 | The watcher does not exist. |
 
 **示例：**
 
@@ -233,21 +280,25 @@ removeWatcher(watcher: Watcher): number
 import hiSysEvent from '@ohos.hiSysEvent';
 
 let watcher = {
-	rules: [{
-		domain: "RELIABILITY",
-		name: "STACK",
-		tag: "STABILITY",
-		ruleType: hiSysEvent.RuleType.WHOLE_WORD,
-	}],
-	onEvent: (info) => {
-	    // do something here.
-	},
-	onServiceDied: () => {
-	    // do something here.
-	}
+    rules: [{
+        domain: "RELIABILITY",
+        name: "STACK",
+        tag: "STABILITY",
+        ruleType: hiSysEvent.RuleType.WHOLE_WORD,
+    }],
+    onEvent: (info) => {
+        // do something here.
+    },
+    onServiceDied: () => {
+        // do something here.
+    }
 }
-let ret = hiSysEvent.addWatcher(watcher)
-hiSysEvent.removeWatcher(watcher)
+try {
+    hiSysEvent.addWatcher(watcher)
+    hiSysEvent.removeWatcher(watcher)
+} catch (error) {
+    console.error(`error code: ${error.code}, error msg: ${error.message}`);
+}
 ```
 
 ## QueryArg
@@ -281,12 +332,12 @@ hiSysEvent.removeWatcher(watcher)
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| onQuery | function | 是 | 返回查询到的系统事件的回调方法(infos: [SysEventInfo](#syseventinfo)[], seqs: number[]) => void。 |
+| onQuery | function | 是 | 返回查询到的系统事件的回调方法(infos: [SysEventInfo](#syseventinfo)[]) => void。 |
 | onComplete | function | 是 | 查询结果统计的回调方法(reason: number, total: number) => void。 |
 
 ## hiSysEvent.query
 
-query(queryArg: QueryArg, rules: QueryRule[], querier: Querier): number
+query(queryArg: QueryArg, rules: QueryRule[], querier: Querier): void
 
 查询系统事件。
 
@@ -302,44 +353,53 @@ query(queryArg: QueryArg, rules: QueryRule[], querier: Querier): number
 | rules | [QueryRule](#queryrule)[] | 是   | 查询规则数组，每次查询可配置多个查询规则。 |
 | querier | [Querier](#querier) | 是   | 查询者对象，包含查询结果及结束的相关回调。 |
 
-**返回值：**
+**错误码：**
 
-| 类型    | 说明                                                        |
-| ------- | ----------------------------------------------------------- |
-| number | 系统事件查询的结果。<br>- 0表示查询成功.<br>- 负值表示查询失败。 |
+以下错误码的详细介绍请参见[系统事件错误码](../errorcodes/errorcode-hisysevent.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ------------------------------------------- |
+| 11200301 | Count of query rules is over limit.         |
+| 11200302 | Invalid query rule.                         |
+| 11200303 | Count of concurrent queriers is over limit. |
+| 11200304 | Query frequency is over limit.              |
 
 **示例：**
 
 ```js
 import hiSysEvent from '@ohos.hiSysEvent';
 
-hiSysEvent.write({
-	domain: "RELIABILITY",
-	name: "STACK",
-	eventType: hiSysEvent.EventType.FAULT,
-	params: {
-		PID: 487,
-		UID: 103,
-		PACKAGE_NAME: "com.ohos.hisysevent.test",
-		PROCESS_NAME: "syseventservice",
-		MSG: "no msg."
-	}
-}, (err, val) => {
-	// do something here.
-})
-hiSysEvent.query({
-	beginTime: -1,
-	endTime: -1,
-	maxEvents: 5,
-}, [{
-	domain: "RELIABILITY",
-	names: ["STACK"],
-}], {
-	onQuery: function (infos, seqs) {
-		// do something here.
-	},
-	onComplete: function(reason, total) {
-		// do something here.
-	}
-})
+try {
+    hiSysEvent.write({
+        domain: "RELIABILITY",
+        name: "STACK",
+        eventType: hiSysEvent.EventType.FAULT,
+        params: {
+            PID: 487,
+            UID: 103,
+            PACKAGE_NAME: "com.ohos.hisysevent.test",
+            PROCESS_NAME: "syseventservice",
+            MSG: "no msg."
+        }
+    }, (err, val) => {
+        // do something here.
+    })
+    hiSysEvent.query({
+        beginTime: -1,
+        endTime: -1,
+        maxEvents: 5,
+    }, [{
+        domain: "RELIABILITY",
+        names: ["STACK"],
+    }], {
+        onQuery: function (infos) {
+            // do something here.
+        },
+        onComplete: function(reason, total) {
+            // do something here.
+        }
+    })
+} catch (error) {
+    console.error(`error code: ${error.code}, error msg: ${error.message}`);
+}
 ```

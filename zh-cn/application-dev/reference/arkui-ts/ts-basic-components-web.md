@@ -16,7 +16,7 @@
 
 ## 接口
 
-Web(options: { src: ResourceStr, controller: WebController })
+Web(options: { src: ResourceStr, controller: WebController | WebviewController})
 
 > **说明：**
 >
@@ -27,7 +27,7 @@ Web(options: { src: ResourceStr, controller: WebController })
 | 参数名        | 参数类型                            | 必填   | 参数描述    |
 | ---------- | ------------------------------- | ---- | ------- |
 | src        | [ResourceStr](ts-types.md)                           | 是    | 网页资源地址。 |
-| controller | [WebController](#webcontroller) | 否    | 控制器。    |
+| controller | [WebController](#webcontroller) 或 [WebviewController](../apis/js-apis-webview.md#webviewcontroller) |是    | 控制器。    |
 
 **示例：**
 
@@ -37,7 +37,22 @@ Web(options: { src: ResourceStr, controller: WebController })
   @Entry
   @Component
   struct WebComponent {
-    controller: WebController = new WebController();
+    controller: WebController = new WebController()
+    build() {
+      Column() {
+        Web({ src: 'www.example.com', controller: this.controller })
+      }
+    }
+  }
+  ```
+  ```ts
+  // xxx.ets
+  import web_webview from '@ohos.web.webview'
+
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: web_webview.WebviewController = new web_webview.WebviewController()
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
@@ -52,7 +67,7 @@ Web(options: { src: ResourceStr, controller: WebController })
   @Entry
   @Component
   struct WebComponent {
-    controller: WebController = new WebController();
+    controller: WebController = new WebController()
     build() {
       Column() {
         Web({ src: $rawfile("index.html"), controller: this.controller })
@@ -94,7 +109,7 @@ domStorageAccess(domStorageAccess: boolean)
   @Entry
   @Component
   struct WebComponent {
-    controller: WebController = new WebController();
+    controller: WebController = new WebController()
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
@@ -108,7 +123,7 @@ domStorageAccess(domStorageAccess: boolean)
 
 fileAccess(fileAccess: boolean)
 
-设置是否开启应用中文件系统的访问，默认启用。[$rawfile(filepath/filename)](../../ui/ts-resource-access.md)中rawfile路径的文件不受该属性影响而限制访问。
+设置是否开启应用中文件系统的访问，默认启用。[$rawfile(filepath/filename)](../../quick-start/resource-categories-and-access.md)中rawfile路径的文件不受该属性影响而限制访问。
 
 **参数：**
 
@@ -123,7 +138,7 @@ fileAccess(fileAccess: boolean)
   @Entry
   @Component
   struct WebComponent {
-    controller: WebController = new WebController();
+    controller: WebController = new WebController()
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
@@ -137,7 +152,7 @@ fileAccess(fileAccess: boolean)
 
 fileFromUrlAccess(fileFromUrlAccess: boolean)
 
-设置是否允许通过网页中的JavaScript脚本访问应用文件系统中的内容，默认未启用。[$rawfile(filepath/filename)](../../ui/ts-resource-access.md)中rawfile路径的文件不受该属性影响而限制访问。
+设置是否允许通过网页中的JavaScript脚本访问应用文件系统中的内容，默认未启用。[$rawfile(filepath/filename)](../../quick-start/resource-categories-and-access.md)中rawfile路径的文件不受该属性影响而限制访问。
 
 **参数：**
 
@@ -152,7 +167,7 @@ fileFromUrlAccess(fileFromUrlAccess: boolean)
   @Entry
   @Component
   struct WebComponent {
-    controller: WebController = new WebController();
+    controller: WebController = new WebController()
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
@@ -180,7 +195,7 @@ imageAccess(imageAccess: boolean)
   @Entry
   @Component
   struct WebComponent {
-    controller: WebController = new WebController();
+    controller: WebController = new WebController()
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
@@ -193,7 +208,7 @@ imageAccess(imageAccess: boolean)
 ### javaScriptProxy
 
 javaScriptProxy(javaScriptProxy: { object: object, name: string, methodList: Array\<string\>,
-    controller: WebController })
+    controller: WebController | WebviewController})
 
 注入JavaScript对象到window对象中，并在window对象中调用该对象的方法。所有参数不支持更新。
 
@@ -204,7 +219,7 @@ javaScriptProxy(javaScriptProxy: { object: object, name: string, methodList: Arr
 | object     | object          | 是    | -    | 参与注册的对象。只能声明方法，不能声明属性。    |
 | name       | string          | 是    | -    | 注册对象的名称，与window中调用的对象名一致。 |
 | methodList | Array\<string\> | 是    | -    | 参与注册的应用侧JavaScript对象的方法。  |
-| controller | [WebController](#webcontroller) | 否    | -    | 控制器。    |
+| controller | [WebController](#webcontroller) 或 [WebviewController](../apis/js-apis-webview.md#webviewcontroller) | 是    | -    | 控制器。    |
 
 **示例：**
 
@@ -213,16 +228,49 @@ javaScriptProxy(javaScriptProxy: { object: object, name: string, methodList: Arr
   @Entry
   @Component
   struct WebComponent {
-    controller: WebController = new WebController();
+    controller: WebController = new WebController()
     testObj = {
       test: (data1, data2, data3) => {
-        console.log("data1:" + data1);
-        console.log("data2:" + data2);
-        console.log("data3:" + data3);
-        return "AceString";
+        console.log("data1:" + data1)
+        console.log("data2:" + data2)
+        console.log("data3:" + data3)
+        return "AceString"
       },
       toString: () => {
-        console.log('toString' + "interface instead.");
+        console.log('toString' + "interface instead.")
+      }
+    }
+    build() {
+      Column() {
+        Web({ src: 'www.example.com', controller: this.controller })
+          .javaScriptAccess(true)
+          .javaScriptProxy({
+            object: this.testObj,
+            name: "objName",
+            methodList: ["test", "toString"],
+            controller: this.controller,
+        })
+      }
+    }
+  }
+  ```
+  ```ts
+  // xxx.ets
+  import web_webview from '@ohos.web.webview'
+
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    testObj = {
+      test: (data1, data2, data3) => {
+        console.log("data1:" + data1)
+        console.log("data2:" + data2)
+        console.log("data3:" + data3)
+        return "AceString"
+      },
+      toString: () => {
+        console.log('toString' + "interface instead.")
       }
     }
     build() {
@@ -259,7 +307,7 @@ javaScriptAccess(javaScriptAccess: boolean)
   @Entry
   @Component
   struct WebComponent {
-    controller: WebController = new WebController();
+    controller: WebController = new WebController()
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
@@ -288,8 +336,8 @@ mixedMode(mixedMode: MixedMode)
   @Entry
   @Component
   struct WebComponent {
-    controller: WebController = new WebController();
-    @State mode: MixedMode = MixedMode.All;
+    controller: WebController = new WebController()
+    @State mode: MixedMode = MixedMode.All
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
@@ -318,7 +366,7 @@ onlineImageAccess(onlineImageAccess: boolean)
   @Entry
   @Component
   struct WebComponent {
-    controller: WebController = new WebController();
+    controller: WebController = new WebController()
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
@@ -347,7 +395,7 @@ zoomAccess(zoomAccess: boolean)
   @Entry
   @Component
   struct WebComponent {
-    controller: WebController = new WebController();
+    controller: WebController = new WebController()
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
@@ -376,7 +424,7 @@ overviewModeAccess(overviewModeAccess: boolean)
   @Entry
   @Component
   struct WebComponent {
-    controller: WebController = new WebController();
+    controller: WebController = new WebController()
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
@@ -405,7 +453,7 @@ databaseAccess(databaseAccess: boolean)
   @Entry
   @Component
   struct WebComponent {
-    controller: WebController = new WebController();
+    controller: WebController = new WebController()
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
@@ -434,7 +482,7 @@ geolocationAccess(geolocationAccess: boolean)
   @Entry
   @Component
   struct WebComponent {
-    controller: WebController = new WebController();
+    controller: WebController = new WebController()
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
@@ -463,8 +511,8 @@ mediaPlayGestureAccess(access: boolean)
   @Entry
   @Component
   struct WebComponent {
-    controller: WebController = new WebController();
-    @State access: boolean = true;
+    controller: WebController = new WebController()
+    @State access: boolean = true
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
@@ -493,7 +541,7 @@ multiWindowAccess(multiWindow: boolean)
   @Entry
   @Component
   struct WebComponent {
-    controller: WebController = new WebController();
+    controller: WebController = new WebController()
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
@@ -522,8 +570,8 @@ cacheMode(cacheMode: CacheMode)
   @Entry
   @Component
   struct WebComponent {
-    controller: WebController = new WebController();
-    @State mode: CacheMode = CacheMode.None;
+    controller: WebController = new WebController()
+    @State mode: CacheMode = CacheMode.None
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
@@ -552,8 +600,8 @@ textZoomRatio(textZoomRatio: number)
   @Entry
   @Component
   struct WebComponent {
-    controller: WebController = new WebController();
-    @State atio: number = 150;
+    controller: WebController = new WebController()
+    @State atio: number = 150
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
@@ -582,8 +630,8 @@ userAgent(userAgent: string)
   @Entry
   @Component
   struct WebComponent {
-    controller: WebController = new WebController();
-    @State userAgent:string = 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2171.71 Safari/537.36';
+    controller: WebController = new WebController()
+    @State userAgent:string = 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2171.71 Safari/537.36'
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
@@ -612,8 +660,8 @@ webDebuggingAccess(webDebuggingAccess: boolean)
   @Entry
   @Component
   struct WebComponent {
-    controller: WebController = new WebController();
-    @State webDebuggingAccess: boolean = true;
+    controller: WebController = new WebController()
+    @State webDebuggingAccess: boolean = true
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
@@ -658,7 +706,7 @@ onAlert(callback: (event?: { url: string; message: string; result: JsResult }) =
   @Entry
   @Component
   struct WebComponent {
-    controller: WebController = new WebController();
+    controller: WebController = new WebController()
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
@@ -682,7 +730,7 @@ onAlert(callback: (event?: { url: string; message: string; result: JsResult }) =
                 event.result.handleCancel()
               }
             })
-            return true;
+            return true
           })
       }
     }
@@ -716,14 +764,14 @@ onBeforeUnload(callback: (event?: { url: string; message: string; result: JsResu
   @Entry
   @Component
   struct WebComponent {
-    controller: WebController = new WebController();
+    controller: WebController = new WebController()
   
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
           .onBeforeUnload((event) => {
-            console.log("event.url:" + event.url);
-            console.log("event.message:" + event.message);
+            console.log("event.url:" + event.url)
+            console.log("event.message:" + event.message)
             AlertDialog.show({
               title: 'onBeforeUnload',
               message: 'text',
@@ -743,7 +791,7 @@ onBeforeUnload(callback: (event?: { url: string; message: string; result: JsResu
                 event.result.handleCancel()
               }
             })
-            return true;
+            return true
           })
       }
     }
@@ -777,15 +825,15 @@ onConfirm(callback: (event?: { url: string; message: string; result: JsResult })
   @Entry
   @Component
   struct WebComponent {
-    controller: WebController = new WebController();
+    controller: WebController = new WebController()
   
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
           .onConfirm((event) => {
-            console.log("event.url:" + event.url);
-            console.log("event.message:" + event.message);
-            console.log("event.result:" + event.result);
+            console.log("event.url:" + event.url)
+            console.log("event.message:" + event.message)
+            console.log("event.result:" + event.result)
             AlertDialog.show({
               title: 'onConfirm',
               message: 'text',
@@ -805,7 +853,7 @@ onConfirm(callback: (event?: { url: string; message: string; result: JsResult })
                 event.result.handleCancel()
               }
             })
-            return true;
+            return true
           })
       }
     }
@@ -837,15 +885,15 @@ onPrompt(callback: (event?: { url: string; message: string; value: string; resul
   @Entry
   @Component
   struct WebComponent {
-    controller: WebController = new WebController();
+    controller: WebController = new WebController()
   
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
           .onPrompt((event) => {
-            console.log("url:" + event.url);
-            console.log("message:" + event.message);
-            console.log("value:" + event.value);
+            console.log("url:" + event.url)
+            console.log("message:" + event.message)
+            console.log("value:" + event.value)
             AlertDialog.show({
               title: 'onPrompt',
               message: 'text',
@@ -865,7 +913,7 @@ onPrompt(callback: (event?: { url: string; message: string; value: string; resul
                 event.result.handleCancel()
               }
             })
-            return true;
+            return true
           })
       }
     }
@@ -897,17 +945,17 @@ onConsole(callback: (event?: { message: ConsoleMessage }) => boolean)
   @Entry
   @Component
   struct WebComponent {
-    controller: WebController = new WebController();
+    controller: WebController = new WebController()
   
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
           .onConsole((event) => {
-            console.log('getMessage:' + event.message.getMessage());
-            console.log('getSourceId:' + event.message.getSourceId());
-            console.log('getLineNumber:' + event.message.getLineNumber());
-            console.log('getMessageLevel:' + event.message.getMessageLevel());
-            return false;
+            console.log('getMessage:' + event.message.getMessage())
+            console.log('getSourceId:' + event.message.getSourceId())
+            console.log('getLineNumber:' + event.message.getLineNumber())
+            console.log('getMessageLevel:' + event.message.getMessageLevel())
+            return false
           })
       }
     }
@@ -934,17 +982,17 @@ onDownloadStart(callback: (event?: { url: string, userAgent: string, contentDisp
   @Entry
   @Component
   struct WebComponent {
-    controller: WebController = new WebController();
+    controller: WebController = new WebController()
   
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
           .onDownloadStart((event) => {
-            console.log('url:' + event.url);
-            console.log('userAgent:' + event.userAgent);
-            console.log('contentDisposition:' + event.contentDisposition);
-            console.log('contentLength:' + event.contentLength);
-            console.log('mimetype:' + event.mimetype);
+            console.log('url:' + event.url)
+            console.log('userAgent:' + event.userAgent)
+            console.log('contentDisposition:' + event.contentDisposition)
+            console.log('contentLength:' + event.contentLength)
+            console.log('mimetype:' + event.mimetype)
           })
       }
     }
@@ -971,23 +1019,23 @@ onErrorReceive(callback: (event?: { request: WebResourceRequest, error: WebResou
   @Entry
   @Component
   struct WebComponent {
-    controller: WebController = new WebController();
+    controller: WebController = new WebController()
   
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
           .onErrorReceive((event) => {
-            console.log('getErrorInfo:' + event.error.getErrorInfo());
-            console.log('getErrorCode:' + event.error.getErrorCode());
-            console.log('url:' + event.request.getRequestUrl());
-            console.log('isMainFrame:' + event.request.isMainFrame());
-            console.log('isRedirect:' + event.request.isRedirect());
-            console.log('isRequestGesture:' + event.request.isRequestGesture());
-            console.log('getRequestHeader_headerKey:' + event.request.getRequestHeader().toString());
-            let result = event.request.getRequestHeader();
-            console.log('The request header result size is ' + result.length);
+            console.log('getErrorInfo:' + event.error.getErrorInfo())
+            console.log('getErrorCode:' + event.error.getErrorCode())
+            console.log('url:' + event.request.getRequestUrl())
+            console.log('isMainFrame:' + event.request.isMainFrame())
+            console.log('isRedirect:' + event.request.isRedirect())
+            console.log('isRequestGesture:' + event.request.isRequestGesture())
+            console.log('getRequestHeader_headerKey:' + event.request.getRequestHeader().toString())
+            let result = event.request.getRequestHeader()
+            console.log('The request header result size is ' + result.length)
             for (let i of result) {
-              console.log('The request header key is : ' + i.headerKey + ', value is : ' + i.headerValue);
+              console.log('The request header key is : ' + i.headerKey + ', value is : ' + i.headerValue)
             }
           })
       }
@@ -1015,30 +1063,30 @@ onHttpErrorReceive(callback: (event?: { request: WebResourceRequest, response: W
   @Entry
   @Component
   struct WebComponent {
-    controller: WebController = new WebController();
+    controller: WebController = new WebController()
   
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
           .onHttpErrorReceive((event) => {
-            console.log('url:' + event.request.getRequestUrl());
-            console.log('isMainFrame:' + event.request.isMainFrame());
-            console.log('isRedirect:' + event.request.isRedirect());
-            console.log('isRequestGesture:' + event.request.isRequestGesture());
-            console.log('getResponseData:' + event.response.getResponseData());
-            console.log('getResponseEncoding:' + event.response.getResponseEncoding());
-            console.log('getResponseMimeType:' + event.response.getResponseMimeType());
-            console.log('getResponseCode:' + event.response.getResponseCode());
-            console.log('getReasonMessage:' + event.response.getReasonMessage());
-            let result = event.request.getRequestHeader();
-            console.log('The request header result size is ' + result.length);
+            console.log('url:' + event.request.getRequestUrl())
+            console.log('isMainFrame:' + event.request.isMainFrame())
+            console.log('isRedirect:' + event.request.isRedirect())
+            console.log('isRequestGesture:' + event.request.isRequestGesture())
+            console.log('getResponseData:' + event.response.getResponseData())
+            console.log('getResponseEncoding:' + event.response.getResponseEncoding())
+            console.log('getResponseMimeType:' + event.response.getResponseMimeType())
+            console.log('getResponseCode:' + event.response.getResponseCode())
+            console.log('getReasonMessage:' + event.response.getReasonMessage())
+            let result = event.request.getRequestHeader()
+            console.log('The request header result size is ' + result.length)
             for (let i of result) {
-              console.log('The request header key is : ' + i.headerKey + ' , value is : ' + i.headerValue);
+              console.log('The request header key is : ' + i.headerKey + ' , value is : ' + i.headerValue)
             }
-            let resph = event.response.getResponseHeader();
-            console.log('The response header result size is ' + resph.length);
+            let resph = event.response.getResponseHeader()
+            console.log('The response header result size is ' + resph.length)
             for (let i of resph) {
-              console.log('The response header key is : ' + i.headerKey + ' , value is : ' + i.headerValue);
+              console.log('The response header key is : ' + i.headerKey + ' , value is : ' + i.headerValue)
             }
           })
       }
@@ -1066,13 +1114,13 @@ onPageBegin(callback: (event?: { url: string }) => void)
   @Entry
   @Component
   struct WebComponent {
-    controller: WebController = new WebController();
+    controller: WebController = new WebController()
   
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
           .onPageBegin((event) => {
-            console.log('url:' + event.url);
+            console.log('url:' + event.url)
           })
       }
     }
@@ -1099,13 +1147,13 @@ onPageEnd(callback: (event?: { url: string }) => void)
   @Entry
   @Component
   struct WebComponent {
-    controller: WebController = new WebController();
+    controller: WebController = new WebController()
   
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
           .onPageEnd((event) => {
-            console.log('url:' + event.url);
+            console.log('url:' + event.url)
           })
       }
     }
@@ -1131,7 +1179,7 @@ onProgressChange(callback: (event?: { newProgress: number }) => void)
   @Entry
   @Component
   struct WebComponent {
-    controller: WebController = new WebController();
+    controller: WebController = new WebController()
   
     build() {
       Column() {
@@ -1163,7 +1211,7 @@ onTitleReceive(callback: (event?: { title: string }) => void)
   @Entry
   @Component
   struct WebComponent {
-    controller: WebController = new WebController();
+    controller: WebController = new WebController()
   
     build() {
       Column() {
@@ -1196,13 +1244,13 @@ onRefreshAccessedHistory(callback: (event?: { url: string, isRefreshed: boolean 
   @Entry
   @Component
   struct WebComponent {
-    controller: WebController = new WebController();
+    controller: WebController = new WebController()
   
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
           .onRefreshAccessedHistory((event) => {
-            console.log('url:' + event.url + ' isReload:' + event.isRefreshed);
+            console.log('url:' + event.url + ' isReload:' + event.isRefreshed)
           })
       }
     }
@@ -1228,13 +1276,13 @@ onRenderExited(callback: (event?: { renderExitReason: RenderExitReason }) => voi
   @Entry
   @Component
   struct WebComponent {
-    controller: WebController = new WebController();
+    controller: WebController = new WebController()
   
     build() {
       Column() {
         Web({ src: 'chrome://crash/', controller: this.controller })
           .onRenderExited((event) => {
-            console.log('reason:' + event.renderExitReason);
+            console.log('reason:' + event.renderExitReason)
           })
       }
     }
@@ -1267,7 +1315,7 @@ onShowFileSelector(callback: (event?: { result: FileSelectorResult, fileSelector
   @Entry
   @Component
   struct WebComponent {
-    controller: WebController = new WebController();
+    controller: WebController = new WebController()
 
     build() {
       Column() {
@@ -1290,7 +1338,7 @@ onShowFileSelector(callback: (event?: { result: FileSelectorResult, fileSelector
                 event.result.handleFileList(fileList)
               }
             })
-            return true;
+            return true
           })
       }
     }
@@ -1322,14 +1370,14 @@ onUrlLoadIntercept(callback: (event?: { data:string | WebResourceRequest }) => b
   @Entry
   @Component
   struct WebComponent {
-    controller: WebController = new WebController();
+    controller: WebController = new WebController()
   
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
           .onUrlLoadIntercept((event) => {
             console.log('onUrlLoadIntercept ' + event.data.toString())
-            return true;
+            return true
           })
       }
     }
@@ -1361,9 +1409,9 @@ onInterceptRequest(callback: (event?: { request: WebResourceRequest}) => WebReso
   @Entry
   @Component
   struct WebComponent {
-    controller: WebController = new WebController();
-    responseweb: WebResourceResponse = new WebResourceResponse();
-    heads:Header[] = new Array();
+    controller: WebController = new WebController()
+    responseweb: WebResourceResponse = new WebResourceResponse()
+    heads:Header[] = new Array()
     @State webdata: string = "<!DOCTYPE html>\n" +
     "<html>\n"+
     "<head>\n"+
@@ -1377,7 +1425,7 @@ onInterceptRequest(callback: (event?: { request: WebResourceRequest}) => WebReso
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
           .onInterceptRequest((event) => {
-            console.log('url:' + event.request.getRequestUrl());
+            console.log('url:' + event.request.getRequestUrl())
             var head1:Header = {
               headerKey:"Connection",
               headerValue:"keep-alive"
@@ -1386,15 +1434,15 @@ onInterceptRequest(callback: (event?: { request: WebResourceRequest}) => WebReso
               headerKey:"Cache-Control",
               headerValue:"no-cache"
             }
-            var length = this.heads.push(head1);
-            length = this.heads.push(head2);
-            this.responseweb.setResponseHeader(this.heads);
-            this.responseweb.setResponseData(this.webdata);
-            this.responseweb.setResponseEncoding('utf-8');
-            this.responseweb.setResponseMimeType('text/html');
-            this.responseweb.setResponseCode(200);
-            this.responseweb.setReasonMessage('OK');
-            return this.responseweb;
+            var length = this.heads.push(head1)
+            length = this.heads.push(head2)
+            this.responseweb.setResponseHeader(this.heads)
+            this.responseweb.setResponseData(this.webdata)
+            this.responseweb.setResponseEncoding('utf-8')
+            this.responseweb.setResponseMimeType('text/html')
+            this.responseweb.setResponseCode(200)
+            this.responseweb.setReasonMessage('OK')
+            return this.responseweb
           })
       }
     }
@@ -1429,8 +1477,8 @@ onHttpAuthRequest(callback: (event?: { handler: HttpAuthHandler, host: string, r
   @Entry
   @Component
   struct WebComponent {
-    controller: WebController = new WebController();
-    httpAuth: boolean = false;
+    controller: WebController = new WebController()
+    httpAuth: boolean = false
   
     build() {
       Column() {
@@ -1442,13 +1490,13 @@ onHttpAuthRequest(callback: (event?: { handler: HttpAuthHandler, host: string, r
               primaryButton: {
                 value: 'cancel',
                 action: () => {
-                  event.handler.cancel();
+                  event.handler.cancel()
                 }
               },
               secondaryButton: {
                 value: 'ok',
                 action: () => {
-                  this.httpAuth = event.handler.isHttpAuthInfoSaved();
+                  this.httpAuth = event.handler.isHttpAuthInfoSaved()
                   if (this.httpAuth == false) {
                     web_webview.WebDataBase.saveHttpAuthCredentials(
                       event.host,
@@ -1456,15 +1504,15 @@ onHttpAuthRequest(callback: (event?: { handler: HttpAuthHandler, host: string, r
                       "2222",
                       "2222"
                     )
-                    event.handler.cancel();
+                    event.handler.cancel()
                   }
                 }
               },
               cancel: () => {
-                event.handler.cancel();
+                event.handler.cancel()
               }
             })
-            return true;
+            return true
           })
       }
     }
@@ -1491,7 +1539,7 @@ onSslErrorEventReceive(callback: (event: { handler: SslErrorHandler, error: SslE
   @Entry
   @Component
   struct WebComponent {
-    controller: WebController = new WebController();
+    controller: WebController = new WebController()
   
     build() {
       Column() {
@@ -1503,20 +1551,20 @@ onSslErrorEventReceive(callback: (event: { handler: SslErrorHandler, error: SslE
               primaryButton: {
                 value: 'confirm',
                 action: () => {
-                  event.handler.handleConfirm();
+                  event.handler.handleConfirm()
                 }
               },
               secondaryButton: {
                 value: 'cancel',
                 action: () => {
-                  event.handler.handleCancel();
+                  event.handler.handleCancel()
                 }
               },
               cancel: () => {
-                event.handler.handleCancel();
+                event.handler.handleCancel()
               }
             })
-            return true;
+            return true
           })
       }
     }
@@ -1546,7 +1594,7 @@ onClientAuthenticationRequest(callback: (event: {handler : ClientAuthenticationH
   @Entry
   @Component
   struct WebComponent {
-    controller: WebController = new WebController();
+    controller: WebController = new WebController()
 
     build() {
       Column() {
@@ -1558,20 +1606,20 @@ onClientAuthenticationRequest(callback: (event: {handler : ClientAuthenticationH
               primaryButton: {
                 value: 'confirm',
                 action: () => {
-                  event.handler.confirm("/system/etc/user.pk8", "/system/etc/chain-user.pem");
+                  event.handler.confirm("/system/etc/user.pk8", "/system/etc/chain-user.pem")
                 }
               },
               secondaryButton: {
                 value: 'cancel',
                 action: () => {
-                  event.handler.cancel();
+                  event.handler.cancel()
                 }
               },
               cancel: () => {
-                event.handler.ignore();
+                event.handler.ignore()
               }
             })
-            return true;
+            return true
           })
       }
     }
@@ -1597,7 +1645,7 @@ onPermissionRequest(callback: (event?: { request: PermissionRequest }) => void)
   @Entry
   @Component
   struct WebComponent {
-    controller: WebController = new WebController();
+    controller: WebController = new WebController()
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
@@ -1608,17 +1656,17 @@ onPermissionRequest(callback: (event?: { request: PermissionRequest }) => void)
               primaryButton: {
                 value: 'deny',
                 action: () => {
-                  event.request.deny();
+                  event.request.deny()
                 }
               },
               secondaryButton: {
                 value: 'onConfirm',
                 action: () => {
-                  event.request.grant(event.request.getAccessibleResource());
+                  event.request.grant(event.request.getAccessibleResource())
                 }
               },
               cancel: () => {
-                event.request.deny();
+                event.request.deny()
               }
             })
           })
@@ -1653,14 +1701,14 @@ onContextMenuShow(callback: (event?: { param: WebContextMenuParam, result: WebCo
   @Entry
   @Component
   struct WebComponent {
-    controller: WebController = new WebController();
+    controller: WebController = new WebController()
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
           .onContextMenuShow((event) => {
-            console.info("x coord = " + event.param.x());
-            console.info("link url = " + event.param.getLinkUrl());
-            return true;
+            console.info("x coord = " + event.param.x())
+            console.info("link url = " + event.param.getLinkUrl())
+            return true
         })
       }
     }
@@ -1687,13 +1735,13 @@ onScroll(callback: (event: {xOffset: number, yOffset: number}) => void)
   @Entry
   @Component
   struct WebComponent {
-    controller: WebController = new WebController();
+    controller: WebController = new WebController()
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
         .onScroll((event) => {
-            console.info("x = " + event.xOffset);
-            console.info("y = " + event.yOffset);
+            console.info("x = " + event.xOffset)
+            console.info("y = " + event.yOffset)
         })
       }
     }
@@ -1720,7 +1768,7 @@ onGeolocationShow(callback: (event?: { origin: string, geolocation: JsGeolocatio
   @Entry
   @Component
   struct WebComponent {
-    controller:WebController = new WebController();
+    controller:WebController = new WebController()
     build() {
       Column() {
         Web({ src:'www.example.com', controller:this.controller })
@@ -1732,11 +1780,11 @@ onGeolocationShow(callback: (event?: { origin: string, geolocation: JsGeolocatio
             confirm: {
               value: 'onConfirm',
               action: () => {
-                event.geolocation.invoke(event.origin, true, true);
+                event.geolocation.invoke(event.origin, true, true)
               }
             },
             cancel: () => {
-              event.geolocation.invoke(event.origin, false, true);
+              event.geolocation.invoke(event.origin, false, true)
             }
           })
         })
@@ -1764,14 +1812,14 @@ onFullScreenEnter(callback: (event: { handler: FullScreenExitHandler }) => void)
   @Entry
   @Component
   struct WebComponent {
-    controller:WebController = new WebController();
-    handler: FullScreenExitHandler = null;
+    controller:WebController = new WebController()
+    handler: FullScreenExitHandler = null
     build() {
       Column() {
         Web({ src:'www.example.com', controller:this.controller })
         .onFullScreenEnter((event) => {
-          console.log("onFullScreenEnter...");
-          this.handler = event.handler;
+          console.log("onFullScreenEnter...")
+          this.handler = event.handler
         })
       }
     }
@@ -1797,17 +1845,17 @@ onFullScreenExit(callback: () => void)
   @Entry
   @Component
   struct WebComponent {
-    controller:WebController = new WebController();
-    handler: FullScreenExitHandler = null;
+    controller:WebController = new WebController()
+    handler: FullScreenExitHandler = null
     build() {
       Column() {
         Web({ src:'www.example.com', controller:this.controller })
         .onFullScreenExit(() => {
-          console.log("onFullScreenExit...");
-          this.handler.exitFullScreen();
+          console.log("onFullScreenExit...")
+          this.handler.exitFullScreen()
         })
         .onFullScreenEnter((event) => {
-          this.handler = event.handler;
+          this.handler = event.handler
         })
       }
     }
@@ -1836,15 +1884,15 @@ onWindowNew(callback: (event: {isAlert: boolean, isUserTrigger: boolean, targetU
   @Entry
   @Component
   struct WebComponent {
-    controller:WebController = new WebController();
+    controller:WebController = new WebController()
     build() {
       Column() {
         Web({ src:'www.example.com', controller: this.controller })
         .multiWindowAccess(true)
         .onWindowNew((event) => {
-          console.log("onWindowNew...");
-          var popController: WebController = new WebController();
-          event.handler.setWebController(popController);
+          console.log("onWindowNew...")
+          var popController: WebController = new WebController()
+          event.handler.setWebController(popController)
         })
       }
     }
@@ -1870,12 +1918,12 @@ onWindowExit(callback: () => void)
   @Entry
   @Component
   struct WebComponent {
-    controller:WebController = new WebController();
+    controller:WebController = new WebController()
     build() {
       Column() {
         Web({ src:'www.example.com', controller: this.controller })
         .onWindowExit((event) => {
-          console.log("onWindowExit...");
+          console.log("onWindowExit...")
         })
       }
     }
@@ -2571,13 +2619,13 @@ requestFocus()
   @Entry
   @Component
   struct WebComponent {
-    controller: WebController = new WebController();
+    controller: WebController = new WebController()
   
     build() {
       Column() {
         Button('requestFocus')
           .onClick(() => {
-            this.controller.requestFocus();
+            this.controller.requestFocus()
           })
         Web({ src: 'www.example.com', controller: this.controller })
       }
@@ -2604,14 +2652,14 @@ accessBackward(): boolean
   @Entry
   @Component
   struct WebComponent {
-    controller: WebController = new WebController();
+    controller: WebController = new WebController()
   
     build() {
       Column() {
         Button('accessBackward')
           .onClick(() => {
-            let result = this.controller.accessBackward();
-            console.log('result:' + result);
+            let result = this.controller.accessBackward()
+            console.log('result:' + result)
           })
         Web({ src: 'www.example.com', controller: this.controller })
       }
@@ -2638,14 +2686,14 @@ accessForward(): boolean
   @Entry
   @Component
   struct WebComponent {
-    controller: WebController = new WebController();
+    controller: WebController = new WebController()
   
     build() {
       Column() {
         Button('accessForward')
           .onClick(() => {
-            let result = this.controller.accessForward();
-            console.log('result:' + result);
+            let result = this.controller.accessForward()
+            console.log('result:' + result)
           })
         Web({ src: 'www.example.com', controller: this.controller })
       }
@@ -2678,15 +2726,15 @@ accessStep(step: number): boolean
   @Entry
   @Component
   struct WebComponent {
-    controller: WebController = new WebController();
-    @State steps: number = 2;
+    controller: WebController = new WebController()
+    @State steps: number = 2
   
     build() {
       Column() {
         Button('accessStep')
           .onClick(() => {
-            let result = this.controller.accessStep(this.steps);
-            console.log('result:' + result);
+            let result = this.controller.accessStep(this.steps)
+            console.log('result:' + result)
           })
         Web({ src: 'www.example.com', controller: this.controller })
       }
@@ -2707,13 +2755,13 @@ backward(): void
   @Entry
   @Component
   struct WebComponent {
-    controller: WebController = new WebController();
+    controller: WebController = new WebController()
   
     build() {
       Column() {
         Button('backward')
           .onClick(() => {
-            this.controller.backward();
+            this.controller.backward()
           })
         Web({ src: 'www.example.com', controller: this.controller })
       }
@@ -2734,13 +2782,13 @@ forward(): void
   @Entry
   @Component
   struct WebComponent {
-    controller: WebController = new WebController();
+    controller: WebController = new WebController()
   
     build() {
       Column() {
         Button('forward')
           .onClick(() => {
-            this.controller.forward();
+            this.controller.forward()
           })
         Web({ src: 'www.example.com', controller: this.controller })
       }
@@ -2767,14 +2815,14 @@ backOrForward(step: number): void
   @Entry
   @Component
   struct WebComponent {
-    controller: WebController = new WebController();
-    @State step: number = -2;
+    controller: WebController = new WebController()
+    @State step: number = -2
   
     build() {
       Column() {
         Button('backOrForward')
           .onClick(() => {
-            this.controller.backOrForward(this.step);
+            this.controller.backOrForward(this.step)
           })
         Web({ src: 'www.example.com', controller: this.controller })
       }
@@ -2801,14 +2849,14 @@ deleteJavaScriptRegister(name: string)
   @Entry
   @Component
   struct WebComponent {
-    controller: WebController = new WebController();
-    @State name: string = 'Object';
+    controller: WebController = new WebController()
+    @State name: string = 'Object'
   
     build() {
       Column() {
         Button('deleteJavaScriptRegister')
           .onClick(() => {
-            this.controller.deleteJavaScriptRegister(this.name);
+            this.controller.deleteJavaScriptRegister(this.name)
           })
         Web({ src: 'www.example.com', controller: this.controller })
       }
@@ -2835,14 +2883,14 @@ getHitTest(): HitTestType
   @Entry
   @Component
   struct WebComponent {
-    controller: WebController = new WebController();
+    controller: WebController = new WebController()
   
     build() {
       Column() {
         Button('getHitTest')
           .onClick(() => {
-            let hitType = this.controller.getHitTest();
-            console.log("hitType: " + hitType);
+            let hitType = this.controller.getHitTest()
+            console.log("hitType: " + hitType)
           })
         Web({ src: 'www.example.com', controller: this.controller })
       }
@@ -2868,15 +2916,15 @@ getHitTestValue(): HitTestValue
   @Entry
   @Component
   struct WebComponent {
-    controller: WebController = new WebController();
+    controller: WebController = new WebController()
   
     build() {
       Column() {
         Button('getHitTestValue')
           .onClick(() => {
-            let hitValue = this.controller.getHitTestValue();
-            console.log("hitType: " + hitValue.getType());
-            console.log("extra: " + hitValue.getExtra());
+            let hitValue = this.controller.getHitTestValue()
+            console.log("hitType: " + hitValue.getType())
+            console.log("extra: " + hitValue.getExtra())
           })
         Web({ src: 'www.example.com', controller: this.controller })
       }
@@ -2902,14 +2950,14 @@ getWebId(): number
   @Entry
   @Component
   struct WebComponent {
-    controller: WebController = new WebController();
+    controller: WebController = new WebController()
   
     build() {
       Column() {
         Button('getWebId')
           .onClick(() => {
-            let id = this.controller.getWebId();
-            console.log("id: " + id);
+            let id = this.controller.getWebId()
+            console.log("id: " + id)
           })
         Web({ src: 'www.example.com', controller: this.controller })
       }
@@ -2935,14 +2983,14 @@ getTitle(): string
   @Entry
   @Component
   struct WebComponent {
-    controller: WebController = new WebController();
+    controller: WebController = new WebController()
   
     build() {
       Column() {
         Button('getTitle')
           .onClick(() => {
-            let title = this.controller.getTitle();
-            console.log("title: " + title);
+            let title = this.controller.getTitle()
+            console.log("title: " + title)
           })
         Web({ src: 'www.example.com', controller: this.controller })
       }
@@ -2968,14 +3016,14 @@ getPageHeight(): number
   @Entry
   @Component
   struct WebComponent {
-    controller: WebController = new WebController();
+    controller: WebController = new WebController()
   
     build() {
       Column() {
         Button('getPageHeight')
           .onClick(() => {
-            let pageHeight = this.controller.getPageHeight();
-            console.log("pageHeight: " + pageHeight);
+            let pageHeight = this.controller.getPageHeight()
+            console.log("pageHeight: " + pageHeight)
           })
         Web({ src: 'www.example.com', controller: this.controller })
       }
@@ -3001,14 +3049,14 @@ getDefaultUserAgent(): string
   @Entry
   @Component
   struct WebComponent {
-    controller: WebController = new WebController();
+    controller: WebController = new WebController()
   
     build() {
       Column() {
         Button('getDefaultUserAgent')
           .onClick(() => {
-            let userAgent = this.controller.getDefaultUserAgent();
-            console.log("userAgent: " + userAgent);
+            let userAgent = this.controller.getDefaultUserAgent()
+            console.log("userAgent: " + userAgent)
           })
         Web({ src: 'www.example.com', controller: this.controller })
       }
@@ -3043,7 +3091,7 @@ baseUrl为空时，通过”data“协议加载指定的一段字符串。
   @Entry
   @Component
   struct WebComponent {
-    controller: WebController = new WebController();
+    controller: WebController = new WebController()
   
     build() {
       Column() {
@@ -3053,7 +3101,7 @@ baseUrl为空时，通过”data“协议加载指定的一段字符串。
               data: "<html><body bgcolor=\"white\">Source:<pre>source</pre></body></html>",
               mimeType: "text/html",
               encoding: "UTF-8"
-            });
+            })
           })
         Web({ src: 'www.example.com', controller: this.controller })
       }
@@ -3085,13 +3133,13 @@ loadUrl(options: { url: string | Resource, headers?: Array\<Header\> })
   @Entry
   @Component
   struct WebComponent {
-    controller: WebController = new WebController();
+    controller: WebController = new WebController()
   
     build() {
       Column() {
         Button('loadUrl')
           .onClick(() => {
-            this.controller.loadUrl({ url: 'www.example.com' });
+            this.controller.loadUrl({ url: 'www.example.com' })
           })
         Web({ src: 'www.example.com', controller: this.controller })
       }
@@ -3112,13 +3160,13 @@ onActive(): void
   @Entry
   @Component
   struct WebComponent {
-    controller: WebController = new WebController();
+    controller: WebController = new WebController()
   
     build() {
       Column() {
         Button('onActive')
           .onClick(() => {
-            this.controller.onActive();
+            this.controller.onActive()
           })
         Web({ src: 'www.example.com', controller: this.controller })
       }
@@ -3139,13 +3187,13 @@ onInactive(): void
   @Entry
   @Component
   struct WebComponent {
-    controller: WebController = new WebController();
+    controller: WebController = new WebController()
   
     build() {
       Column() {
         Button('onInactive')
           .onClick(() => {
-            this.controller.onInactive();
+            this.controller.onInactive()
           })
         Web({ src: 'www.example.com', controller: this.controller })
       }
@@ -3171,14 +3219,14 @@ zoom(factor: number): void
   @Entry
   @Component
   struct WebComponent {
-    controller: WebController = new WebController();
-    @State factor: number = 1;
+    controller: WebController = new WebController()
+    @State factor: number = 1
   
     build() {
       Column() {
         Button('zoom')
           .onClick(() => {
-            this.controller.zoom(this.factor);
+            this.controller.zoom(this.factor)
           })
         Web({ src: 'www.example.com', controller: this.controller })
       }
@@ -3204,14 +3252,14 @@ zoomIn(): boolean
   @Entry
   @Component
   struct WebComponent {
-    controller: WebController = new WebController();
+    controller: WebController = new WebController()
   
     build() {
       Column() {
         Button('zoomIn')
           .onClick(() => {
-            let result = this.controller.zoomIn();
-            console.log("result: " + result);
+            let result = this.controller.zoomIn()
+            console.log("result: " + result)
           })
         Web({ src: 'www.example.com', controller: this.controller })
       }
@@ -3237,14 +3285,14 @@ zoomOut(): boolean
   @Entry
   @Component
   struct WebComponent {
-    controller: WebController = new WebController();
+    controller: WebController = new WebController()
   
     build() {
       Column() {
         Button('zoomOut')
           .onClick(() => {
-            let result = this.controller.zoomOut();
-            console.log("result: " + result);
+            let result = this.controller.zoomOut()
+            console.log("result: " + result)
           })
         Web({ src: 'www.example.com', controller: this.controller })
       }
@@ -3265,13 +3313,13 @@ refresh()
   @Entry
   @Component
   struct WebComponent {
-    controller: WebController = new WebController();
+    controller: WebController = new WebController()
   
     build() {
       Column() {
         Button('refresh')
           .onClick(() => {
-            this.controller.refresh();
+            this.controller.refresh()
           })
         Web({ src: 'www.example.com', controller: this.controller })
       }
@@ -3303,10 +3351,10 @@ registerJavaScriptProxy(options: { object: object, name: string, methodList: Arr
     controller: WebController = new WebController()
     testObj = {
       test: (data) => {
-        return "ArkUI Web Component";
+        return "ArkUI Web Component"
       },
       toString: () => {
-        console.log('Web Component toString');
+        console.log('Web Component toString')
       }
     }
     build() {
@@ -3317,7 +3365,7 @@ registerJavaScriptProxy(options: { object: object, name: string, methodList: Arr
               object: this.testObj,
               name: "objName",
               methodList: ["test", "toString"],
-            });
+            })
           })
         }
         Web({ src: $rawfile('index.html'), controller: this.controller })
@@ -3337,8 +3385,8 @@ registerJavaScriptProxy(options: { object: object, name: string, methodList: Arr
       </body>
       <script type="text/javascript">
       function htmlTest() {
-          str = objName.test("test function");
-          console.log('objName.test result:'+ str);
+          str = objName.test("test function")
+          console.log('objName.test result:'+ str)
       }
   </script>
   </html>
@@ -3365,7 +3413,7 @@ runJavaScript(options: { script: string, callback?: (result: string) => void })
   @Entry
   @Component
   struct WebComponent {
-    controller: WebController = new WebController();
+    controller: WebController = new WebController()
     @State webResult: string = ''
     build() {
       Column() {
@@ -3378,8 +3426,8 @@ runJavaScript(options: { script: string, callback?: (result: string) => void })
             callback: (result: string)=> {
               this.webResult = result
               console.info(`The test() return value is: ${result}`)
-            }});
-          console.info('url: ', e.url);
+            }})
+          console.info('url: ', e.url)
         })
       }
     }
@@ -3396,7 +3444,7 @@ runJavaScript(options: { script: string, callback?: (result: string) => void })
     </body>
     <script type="text/javascript">
     function test() {
-        console.log('Ark WebComponent');
+        console.log('Ark WebComponent')
         return "This value is from index.html"
     }
     </script>
@@ -3417,13 +3465,13 @@ stop()
   @Entry
   @Component
   struct WebComponent {
-    controller: WebController = new WebController();
+    controller: WebController = new WebController()
   
     build() {
       Column() {
         Button('stop')
           .onClick(() => {
-            this.controller.stop();
+            this.controller.stop()
           })
         Web({ src: 'www.example.com', controller: this.controller })
       }
@@ -3444,13 +3492,13 @@ clearHistory(): void
   @Entry
   @Component
   struct WebComponent {
-    controller: WebController = new WebController();
+    controller: WebController = new WebController()
   
     build() {
       Column() {
         Button('clearHistory')
           .onClick(() => {
-            this.controller.clearHistory();
+            this.controller.clearHistory()
           })
         Web({ src: 'www.example.com', controller: this.controller })
       }
@@ -3471,13 +3519,13 @@ clearSslCache(): void
   @Entry
   @Component
   struct WebComponent {
-    controller: WebController = new WebController();
+    controller: WebController = new WebController()
 
     build() {
       Column() {
         Button('clearSslCache')
           .onClick(() => {
-            this.controller.clearSslCache();
+            this.controller.clearSslCache()
           })
         Web({ src: 'www.example.com', controller: this.controller })
       }
@@ -3498,13 +3546,13 @@ clearClientAuthenticationCache(): void
   @Entry
   @Component
   struct WebComponent {
-    controller: WebController = new WebController();
+    controller: WebController = new WebController()
 
     build() {
       Column() {
         Button('clearClientAuthenticationCache')
           .onClick(() => {
-            this.controller.clearClientAuthenticationCache();
+            this.controller.clearClientAuthenticationCache()
           })
         Web({ src: 'www.example.com', controller: this.controller })
       }
@@ -3531,13 +3579,13 @@ getCookieManager(): WebCookie
   @Entry
   @Component
   struct WebComponent {
-    controller: WebController = new WebController();
+    controller: WebController = new WebController()
   
     build() {
       Column() {
         Button('getCookieManager')
           .onClick(() => {
-            let cookieManager = this.controller.getCookieManager();
+            let cookieManager = this.controller.getCookieManager()
           })
         Web({ src: 'www.example.com', controller: this.controller })
       }
@@ -3549,14 +3597,14 @@ getCookieManager(): WebCookie
 
 createWebMessagePorts(): Array\<WebMessagePort\>
 
-创建Web信息端口。
+创建Web消息端口。
 
 **返回值：**
 
 
 | 类型                              | 说明            |
 | ------------------------------- | ------------- |
-| Array\<[WebMessagePort](#webmessageport9)\> | web信息端口列表。 |
+| Array\<[WebMessagePort](#webmessageport9)\> | web消息端口列表。 |
 
 **示例：**
 
@@ -3565,13 +3613,13 @@ createWebMessagePorts(): Array\<WebMessagePort\>
   @Entry
   @Component
   struct WebComponent {
-    controller: WebController = new WebController();
-    ports: WebMessagePort[] = null;
+    controller: WebController = new WebController()
+    ports: WebMessagePort[] = null
     build() {
       Column() {
         Button('createWebMessagePorts')
           .onClick(() => {
-            this.ports = this.controller.createWebMessagePorts();
+            this.ports = this.controller.createWebMessagePorts()
             console.log("createWebMessagePorts size:" + this.ports.length)
           })
         Web({ src: 'www.example.com', controller: this.controller })
@@ -3584,50 +3632,111 @@ createWebMessagePorts(): Array\<WebMessagePort\>
 
 postMessage(options: { message: WebMessageEvent, uri: string}): void
 
-发送Web信息端口到HTML5。
+发送Web消息端口到HTML5。
 
 **参数：**
 
 | 参数名        | 参数类型            | 必填   | 默认值  | 参数描述                      |
 | ---------- | --------------- | ---- | ---- | ------------------------- |
-| message     | [WebMessageEvent](#webmessageevent9)          | 是    | -    |要发送的信息，包含数据和信息端口 。 |
-| uri       | string          | 是    | -    | 接收该信息的URI。 |
+| message     | [WebMessageEvent](#webmessageevent9)          | 是    | -    |要发送的消息，包含数据和消息端口。 |
+| uri       | string          | 是    | -    | 接收该消息的URI。 |
 
 **示例：**
 
   ```ts
-  // xxx.ets
+  // index.ets
   @Entry
   @Component
   struct WebComponent {
-    controller: WebController = new WebController();
-    ports: WebMessagePort[] = null;
+    controller: WebController = new WebController()
+    ports: WebMessagePort[] = null
+    @State sendFromEts: string = 'Send this message from ets to HTML'
+    @State receivedFromHtml: string = 'Display received message send from HTML'
+
     build() {
       Column() {
-        Button('postMessage')
+        // 展示接收到的来自HTML的内容
+        Text(this.receivedFromHtml)
+        // 输入框的内容发送到HTML
+        TextInput({placeholder: 'Send this message from ets to HTML'})
+        .onChange((value: string) => {
+          this.sendFromEts = value
+        })
+
+        // 1、创建两个消息端口
+        Button('1.CreateWebMessagePorts')
           .onClick(() => {
-            var sendPortArray = new Array(this.ports[1]);
-            var msgEvent = new WebMessageEvent();
-            msgEvent.setData("__init_ports__");
-            msgEvent.setPorts(sendPortArray);
-            this.controller.postMessage({message: msgEvent, uri: "*"});
+            this.ports = this.controller.createWebMessagePorts()
+            console.log("createWebMessagePorts size:" + this.ports.length)
           })
-        Web({ src: 'www.example.com', controller: this.controller })
+
+        // 2、将其中一个消息端口发送到HTML侧，由HTML侧保存并使用。
+        Button('2.PostMessagePort')
+          .onClick(() => {
+            var sendPortArray = new Array(this.ports[1])
+            var msgEvent = new WebMessageEvent()
+            msgEvent.setData("__init_port__")
+            msgEvent.setPorts(sendPortArray)
+            this.controller.postMessage({message: msgEvent, uri: "*"})
+          })
+
+        // 3、另一个消息端口在应用侧注册回调事件。
+        Button('3.RegisterCallback')
+          .onClick(() => {
+              this.ports[0].onMessageEvent((result: string) => {
+                var msg = 'Got msg from HTML: ' + result
+                this.receivedFromHtml = msg
+              })
+          })
+
+        // 4、使用应用侧的端口给另一个已经发送到HTML的消息端口发送消息。
+        Button('4.SendDataToHtml5')
+          .onClick(() => {
+            var msg = new WebMessageEvent()
+            msg.setData(this.sendFromEts)
+            this.ports[0].postMessageEvent(msg)
+          })
+        Web({ src: $rawfile("index.html"), controller: this.controller })
+          .javaScriptAccess(true)
+          .fileAccess(true)
       }
     }
   }
-  // xxx.js
+
+  // index.html
+  <!DOCTYPE html>
+  <html>
+      <body>
+          <h1>Web Message Port Demo</h1>
+          <div style="font-size: 24pt;">
+            <input type="button" value="5.SendToEts" onclick="PostMsgToEts(msgFromJS.value);" /><br/>
+            <input id="msgFromJS" type="text" value="send this message from HTML to ets" style="font-size: 16pt;" /><br/>
+          </div>
+          <p class="output">display received message send from ets</p>
+      </body>
+      <script src="index.js"></script>
+  </html>
+
+  // index.js
   var h5Port;
-  window.addEventListener('message', function(event){
-    if (event.data == '__init_ports__') {
+  var output = document.querySelector('.output');
+  window.addEventListener('message', function(event) {
+    if (event.data == '__init_port__') {
       if(event.ports[0] != null) {
-        h5Port = event.ports[0];
+        h5Port = event.ports[0]; // 1. 保存从ets侧发送过来的端口
         h5Port.onmessage = function(event) {
-          console.log('receive message from ets, on message:' + event.data);
+          // 2. 接收ets侧发送过来的消息.
+          var msg = 'Got message from ets:' + event.data;
+          output.innerHTML = msg;
         }
       }
     }
   })
+
+  // 3. 使用h5Port往ets侧发送消息.
+  function PostMsgToEts(data) {
+    h5Port.postMessage(data)
+  }
   ```
 
 ### getUrl<sup>9+</sup>
@@ -3649,12 +3758,12 @@ getUrl(): string
   @Entry
   @Component
   struct WebComponent {
-    controller: WebController = new WebController();
+    controller: WebController = new WebController()
     build() {
       Column() {
         Button('getUrl')
           .onClick(() => {
-            console.log("url: " + this.controller.getUrl());
+            console.log("url: " + this.controller.getUrl())
           })
         Web({ src: 'www.example.com', controller: this.controller })
       }
@@ -3717,14 +3826,14 @@ setCookie(url: string, value: string): boolean
   @Entry
   @Component
   struct WebComponent {
-    controller: WebController = new WebController();
+    controller: WebController = new WebController()
   
     build() {
       Column() {
         Button('setCookie')
           .onClick(() => {
-            let result = this.controller.getCookieManager().setCookie("www.example.com", "a=b");
-            console.log("result: " + result);
+            let result = this.controller.getCookieManager().setCookie("www.example.com", "a=b")
+            console.log("result: " + result)
           })
         Web({ src: 'www.example.com', controller: this.controller })
       }
@@ -3750,14 +3859,14 @@ saveCookieSync(): boolean
   @Entry
   @Component
   struct WebComponent {
-    controller: WebController = new WebController();
+    controller: WebController = new WebController()
   
     build() {
       Column() {
         Button('saveCookieSync')
           .onClick(() => {
-            let result = this.controller.getCookieManager().saveCookieSync();
-            console.log("result: " + result);
+            let result = this.controller.getCookieManager().saveCookieSync()
+            console.log("result: " + result)
           })
         Web({ src: 'www.example.com', controller: this.controller })
       }
@@ -3790,14 +3899,14 @@ getCookie(url: string): string
   @Entry
   @Component
   struct WebComponent {
-    controller: WebController = new WebController();
+    controller: WebController = new WebController()
   
     build() {
       Column() {
         Button('getCookie')
           .onClick(() => {
-            let value = webview.WebCookieManager.getCookie('www.example.com');
-            console.log("value: " + value);
+            let value = webview.WebCookieManager.getCookie('www.example.com')
+            console.log("value: " + value)
           })
         Web({ src: 'www.example.com', controller: this.controller })
       }
@@ -3831,14 +3940,14 @@ setCookie(url: string, value: string): boolean
   @Entry
   @Component
   struct WebComponent {
-    controller: WebController = new WebController();
+    controller: WebController = new WebController()
   
     build() {
       Column() {
         Button('setCookie')
           .onClick(() => {
-            let result = web_webview.WebCookieManager.setCookie('www.example.com', 'a=b');
-            console.log("result: " + result);
+            let result = web_webview.WebCookieManager.setCookie('www.example.com', 'a=b')
+            console.log("result: " + result)
           })
         Web({ src: 'www.example.com', controller: this.controller })
       }
@@ -3865,14 +3974,14 @@ saveCookieSync(): boolean
   @Entry
   @Component
   struct WebComponent {
-    controller: WebController = new WebController();
+    controller: WebController = new WebController()
   
     build() {
       Column() {
         Button('saveCookieSync')
           .onClick(() => {
-            let result = web_webview.WebCookieManager.saveCookieSync();
-            console.log("result: " + result);
+            let result = web_webview.WebCookieManager.saveCookieSync()
+            console.log("result: " + result)
           })
         Web({ src: 'www.example.com', controller: this.controller })
       }
@@ -3899,7 +4008,7 @@ saveCookieAsync(): Promise\<boolean>
   @Entry
   @Component
   struct WebComponent {
-    controller: WebController = new WebController();
+    controller: WebController = new WebController()
   
     build() {
       Column() {
@@ -3907,11 +4016,11 @@ saveCookieAsync(): Promise\<boolean>
           .onClick(() => {
             web_webview.WebCookieManager.saveCookieAsync()
               .then (function(result) {
-                console.log("result: " + result);
+                console.log("result: " + result)
               })
               .catch(function(error) {
-                console.error("error: " + error);
-              });
+                console.error("error: " + error)
+              })
           })
         Web({ src: 'www.example.com', controller: this.controller })
       }
@@ -3938,15 +4047,15 @@ saveCookieAsync(callback: AsyncCallback\<boolean>): void
   @Entry
   @Component
   struct WebComponent {
-    controller: WebController = new WebController();
+    controller: WebController = new WebController()
   
     build() {
       Column() {
         Button('saveCookieAsync')
           .onClick(() => {
             web_webview.WebCookieManager.saveCookieAsync(function(result) {
-              console.log("result: " + result);
-            });
+              console.log("result: " + result)
+            })
           })
         Web({ src: 'www.example.com', controller: this.controller })
       }
@@ -3973,14 +4082,14 @@ isCookieAllowed(): boolean
   @Entry
   @Component
   struct WebComponent {
-    controller: WebController = new WebController();
+    controller: WebController = new WebController()
   
     build() {
       Column() {
         Button('isCookieAllowed')
           .onClick(() => {
-            let result = web_webview.WebCookieManager.isCookieAllowed();
-            console.log("result: " + result);
+            let result = web_webview.WebCookieManager.isCookieAllowed()
+            console.log("result: " + result)
           })
         Web({ src: 'www.example.com', controller: this.controller })
       }
@@ -4007,13 +4116,13 @@ putAcceptCookieEnabled(accept: boolean): void
   @Entry
   @Component
   struct WebComponent {
-    controller: WebController = new WebController();
+    controller: WebController = new WebController()
   
     build() {
       Column() {
         Button('putAcceptCookieEnabled')
           .onClick(() => {
-            web_webview.WebCookieManager.putAcceptCookieEnabled(false);
+            web_webview.WebCookieManager.putAcceptCookieEnabled(false)
           })
         Web({ src: 'www.example.com', controller: this.controller })
       }
@@ -4040,14 +4149,14 @@ isThirdCookieAllowed(): boolean
   @Entry
   @Component
   struct WebComponent {
-    controller: WebController = new WebController();
+    controller: WebController = new WebController()
   
     build() {
       Column() {
         Button('isThirdPartyCookieAllowed')
           .onClick(() => {
-            let result = web_webview.WebCookieManager.isThirdPartyCookieAllowed();
-            console.log("result: " + result);
+            let result = web_webview.WebCookieManager.isThirdPartyCookieAllowed()
+            console.log("result: " + result)
           })
         Web({ src: 'www.example.com', controller: this.controller })
       }
@@ -4074,13 +4183,13 @@ putAcceptThirdPartyCookieEnabled(accept: boolean): void
   @Entry
   @Component
   struct WebComponent {
-    controller: WebController = new WebController();
+    controller: WebController = new WebController()
   
     build() {
       Column() {
         Button('putAcceptThirdPartyCookieEnabled')
           .onClick(() => {
-            web_webview.WebCookieManager.putAcceptThirdPartyCookieEnabled(false);
+            web_webview.WebCookieManager.putAcceptThirdPartyCookieEnabled(false)
           })
         Web({ src: 'www.example.com', controller: this.controller })
       }
@@ -4107,14 +4216,14 @@ existCookie(): boolean
   @Entry
   @Component
   struct WebComponent {
-    controller: WebController = new WebController();
+    controller: WebController = new WebController()
   
     build() {
       Column() {
         Button('existCookie')
           .onClick(() => {
-            let result = web_webview.WebCookieManager.existCookie();
-            console.log("result: " + result);
+            let result = web_webview.WebCookieManager.existCookie()
+            console.log("result: " + result)
           })
         Web({ src: 'www.example.com', controller: this.controller })
       }
@@ -4135,13 +4244,13 @@ deleteEntireCookie(): void
   @Entry
   @Component
   struct WebComponent {
-    controller: WebController = new WebController();
+    controller: WebController = new WebController()
   
     build() {
       Column() {
         Button('deleteEntireCookie')
           .onClick(() => {
-            web_webview.WebCookieManager.deleteEntireCookie();
+            web_webview.WebCookieManager.deleteEntireCookie()
           })
         Web({ src: 'www.example.com', controller: this.controller })
       }
@@ -4162,13 +4271,13 @@ deleteSessionCookie(): void
   @Entry
   @Component
   struct WebComponent {
-    controller: WebController = new WebController();
+    controller: WebController = new WebController()
   
     build() {
       Column() {
         Button('deleteSessionCookie')
           .onClick(() => {
-            webview.WebCookieManager.deleteSessionCookie();
+            webview.WebCookieManager.deleteSessionCookie()
           })
         Web({ src: 'www.example.com', controller: this.controller })
       }
@@ -4199,14 +4308,14 @@ static existHttpAuthCredentials(): boolean
   @Entry
   @Component
   struct WebComponent {
-    controller: WebController = new WebController();
+    controller: WebController = new WebController()
   
     build() {
       Column() {
         Button('existHttpAuthCredentials')
           .onClick(() => {
-            let result = web_webview.WebDataBase.existHttpAuthCredentials();
-            console.log('result: ' + result);
+            let result = web_webview.WebDataBase.existHttpAuthCredentials()
+            console.log('result: ' + result)
           })
         Web({ src: 'www.example.com', controller: this.controller })
       }
@@ -4228,13 +4337,13 @@ static deleteHttpAuthCredentials(): void
   @Entry
   @Component
   struct WebComponent {
-    controller: WebController = new WebController();
+    controller: WebController = new WebController()
   
     build() {
       Column() {
         Button('deleteHttpAuthCredentials')
           .onClick(() => {
-            web_webview.WebDataBase.deleteHttpAuthCredentials();
+            web_webview.WebDataBase.deleteHttpAuthCredentials()
           })
         Web({ src: 'www.example.com', controller: this.controller })
       }
@@ -4269,18 +4378,18 @@ static getHttpAuthCredentials(host: string, realm: string): Array\<string\>
   @Entry
   @Component
   struct WebComponent {
-    controller: WebController = new WebController();
-    host: string = "www.spincast.org";
-    realm: string = "protected example";
-    username_password: string[];
+    controller: WebController = new WebController()
+    host: string = "www.spincast.org"
+    realm: string = "protected example"
+    username_password: string[]
     build() {
       Column() {
         Button('getHttpAuthCredentials')
           .onClick(() => {
-            this.username_password = web_webview.WebDataBase.getHttpAuthCredentials(this.host, this.realm);
-            console.log('num: ' + this.username_password.length);
+            this.username_password = web_webview.WebDataBase.getHttpAuthCredentials(this.host, this.realm)
+            console.log('num: ' + this.username_password.length)
             ForEach(this.username_password, (item) => {
-              console.log('username_password: ' + item);
+              console.log('username_password: ' + item)
             }, item => item)
           })
         Web({ src: 'www.example.com', controller: this.controller })
@@ -4312,14 +4421,14 @@ static saveHttpAuthCredentials(host: string, realm: string, username: string, pa
   @Entry
   @Component
   struct WebComponent {
-    controller: WebController = new WebController();
-    host: string = "www.spincast.org";
-    realm: string = "protected example";
+    controller: WebController = new WebController()
+    host: string = "www.spincast.org"
+    realm: string = "protected example"
     build() {
       Column() {
         Button('saveHttpAuthCredentials')
           .onClick(() => {
-            web_webview.WebDataBase.saveHttpAuthCredentials(this.host, this.realm, "Stromgol", "Laroche");
+            web_webview.WebDataBase.saveHttpAuthCredentials(this.host, this.realm, "Stromgol", "Laroche")
           })
         Web({ src: 'www.example.com', controller: this.controller })
       }
@@ -4347,17 +4456,17 @@ static allowGeolocation(origin: string): void
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview';
+  import web_webview from '@ohos.web.webview'
   @Entry
   @Component
   struct WebComponent {
-    controller: WebController = new WebController();
-    origin: string = "file:///";
+    controller: WebController = new WebController()
+    origin: string = "file:///"
     build() {
       Column() {
         Button('allowGeolocation')
           .onClick(() => {
-            web_webview.GeolocationPermissions.allowGeolocation(this.origin);
+            web_webview.GeolocationPermissions.allowGeolocation(this.origin)
           })
         Web({ src: 'www.example.com', controller: this.controller })
       }
@@ -4381,17 +4490,17 @@ static deleteGeolocation(origin: string): void
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview';
+  import web_webview from '@ohos.web.webview'
   @Entry
   @Component
   struct WebComponent {
-    controller: WebController = new WebController();
-    origin: string = "file:///";
+    controller: WebController = new WebController()
+    origin: string = "file:///"
     build() {
       Column() {
         Button('deleteGeolocation')
           .onClick(() => {
-            web_webview.GeolocationPermissions.deleteGeolocation(this.origin);
+            web_webview.GeolocationPermissions.deleteGeolocation(this.origin)
           })
         Web({ src: 'www.example.com', controller: this.controller })
       }
@@ -4409,16 +4518,16 @@ static deleteAllGeolocation(): void
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview';
+  import web_webview from '@ohos.web.webview'
   @Entry
   @Component
   struct WebComponent {
-    controller: WebController = new WebController();
+    controller: WebController = new WebController()
     build() {
       Column() {
         Button('deleteAllGeolocation')
           .onClick(() => {
-            web_webview.GeolocationPermissions.deleteAllGeolocation();
+            web_webview.GeolocationPermissions.deleteAllGeolocation()
           })
         Web({ src: 'www.example.com', controller: this.controller })
       }
@@ -4443,23 +4552,23 @@ static getAccessibleGeolocation(origin: string, callback: AsyncCallback\<boolean
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview';
+  import web_webview from '@ohos.web.webview'
   @Entry
   @Component
   struct WebComponent {
-    controller: WebController = new WebController();
-    origin: string = "file:///";
+    controller: WebController = new WebController()
+    origin: string = "file:///"
     build() {
       Column() {
         Button('getAccessibleGeolocationAsync')
           .onClick(() => {
             web_webview.GeolocationPermissions.getAccessibleGeolocation(this.origin, (error, result) => {
               if (error) {
-                console.log('getAccessibleGeolocationAsync error: ' + JSON.stringify(error));
-                return;
+                console.log('getAccessibleGeolocationAsync error: ' + JSON.stringify(error))
+                return
               }
-              console.log('getAccessibleGeolocationAsync result: ' + result);
-            });
+              console.log('getAccessibleGeolocationAsync result: ' + result)
+            })
           })
         Web({ src: 'www.example.com', controller: this.controller })
       }
@@ -4489,21 +4598,21 @@ static getAccessibleGeolocation(origin: string): Promise\<boolean\>
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview';
+  import web_webview from '@ohos.web.webview'
   @Entry
   @Component
   struct WebComponent {
-    controller: WebController = new WebController();
-    origin: string = "file:///";
+    controller: WebController = new WebController()
+    origin: string = "file:///"
     build() {
       Column() {
         Button('getAccessibleGeolocationPromise')
           .onClick(() => {
             web_webview.GeolocationPermissions.getAccessibleGeolocation(this.origin).then(result => {
-              console.log('getAccessibleGeolocationPromise result: ' + result);
+              console.log('getAccessibleGeolocationPromise result: ' + result)
             }).catch(error => {
-              console.log('getAccessibleGeolocationPromise error: ' + JSON.stringify(error));
-            });
+              console.log('getAccessibleGeolocationPromise error: ' + JSON.stringify(error))
+            })
           })
         Web({ src: 'www.example.com', controller: this.controller })
       }
@@ -4527,23 +4636,23 @@ static getStoredGeolocation(callback: AsyncCallback\<Array\<string\>\>): void
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview';
+  import web_webview from '@ohos.web.webview'
   @Entry
   @Component
   struct WebComponent {
-    controller: WebController = new WebController();
+    controller: WebController = new WebController()
     build() {
       Column() {
         Button('getStoredGeolocationAsync')
           .onClick(() => {
             web_webview.GeolocationPermissions.getStoredGeolocation((error, origins) => {
               if (error) {
-                console.log('getStoredGeolocationAsync error: ' + JSON.stringify(error));
-                return;
+                console.log('getStoredGeolocationAsync error: ' + JSON.stringify(error))
+                return
               }
-              let origins_str: string = origins.join();
-              console.log('getStoredGeolocationAsync origins: ' + origins_str);
-            });
+              let origins_str: string = origins.join()
+              console.log('getStoredGeolocationAsync origins: ' + origins_str)
+            })
           })
         Web({ src: 'www.example.com', controller: this.controller })
       }
@@ -4573,21 +4682,21 @@ static getStoredGeolocation(): Promise\<Array\<string\>\>
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview';
+  import web_webview from '@ohos.web.webview'
   @Entry
   @Component
   struct WebComponent {
-    controller: WebController = new WebController();
+    controller: WebController = new WebController()
     build() {
       Column() {
         Button('getStoredGeolocationPromise')
           .onClick(() => {
             web_webview.GeolocationPermissions.getStoredGeolocation().then(origins => {
-              let origins_str: string = origins.join();
-              console.log('getStoredGeolocationPromise origins: ' + origins_str);
+              let origins_str: string = origins.join()
+              console.log('getStoredGeolocationPromise origins: ' + origins_str)
             }).catch(error => {
-                console.log('getStoredGeolocationPromise error: ' + JSON.stringify(error));
-            });
+                console.log('getStoredGeolocationPromise error: ' + JSON.stringify(error))
+            })
           })
         Web({ src: 'www.example.com', controller: this.controller })
       }
@@ -4610,12 +4719,12 @@ static deleteAllData(): void
   @Entry
   @Component
   struct WebComponent {
-    controller: WebController = new WebController();
+    controller: WebController = new WebController()
     build() {
       Column() {
         Button('deleteAllData')
           .onClick(() => {
-            web_webview.WebStorage.deleteAllData();
+            web_webview.WebStorage.deleteAllData()
           })
         Web({ src: 'www.example.com', controller: this.controller })
         .databaseAccess(true)
@@ -4643,13 +4752,13 @@ static deleteOrigin(origin : string): void
   @Entry
   @Component
   struct WebComponent {
-    controller: WebController = new WebController();
-    origin: string = "origin";
+    controller: WebController = new WebController()
+    origin: string = "origin"
     build() {
       Column() {
         Button('getHttpAuthCredentials')
           .onClick(() => {
-            web_webview.WebStorage.deleteOrigin(this.origin);
+            web_webview.WebStorage.deleteOrigin(this.origin)
           })
         Web({ src: 'www.example.com', controller: this.controller })
         .databaseAccess(true)
@@ -4659,7 +4768,7 @@ static deleteOrigin(origin : string): void
   ```
 
 ### getOrigins<sup>9+</sup>
-static getOrigins(callback: AsyncCallback<Array<WebStorageOrigin>>) : void
+static getOrigins(callback: AsyncCallback\<Array\<WebStorageOrigin>>) : void
 
 以回调方式异步获取当前使用Web SQL数据库的所有源的信息。
 
@@ -4677,21 +4786,21 @@ static getOrigins(callback: AsyncCallback<Array<WebStorageOrigin>>) : void
   @Entry
   @Component
   struct WebComponent {
-    controller: WebController = new WebController();
-    origin: string = "origin";
+    controller: WebController = new WebController()
+    origin: string = "origin"
     build() {
       Column() {
         Button('getOrigins')
           .onClick(() => {
             web_webview.WebStorage.getOrigins((error, origins) => {
               if (error) {
-                console.log('error: ' + error);
-                return;
+                console.log('error: ' + error)
+                return
               }
               for (let i = 0; i < origins.length; i++) {
-                console.log('origin: ' + origins[i].origin);
-                console.log('usage: ' + origins[i].usage);
-                console.log('quota: ' + origins[i].quota);
+                console.log('origin: ' + origins[i].origin)
+                console.log('usage: ' + origins[i].usage)
+                console.log('quota: ' + origins[i].quota)
               }
             })
           })
@@ -4703,7 +4812,7 @@ static getOrigins(callback: AsyncCallback<Array<WebStorageOrigin>>) : void
   ```
 
 ### getOrigins<sup>9+</sup>
-static getOrigins() : Promise<Array<WebStorageOrigin>>
+static getOrigins() : Promise\<Array\<WebStorageOrigin>>
 
 以Promise方式异步获取当前使用Web SQL数据库的所有源的信息。
 
@@ -4721,8 +4830,8 @@ static getOrigins() : Promise<Array<WebStorageOrigin>>
   @Entry
   @Component
   struct WebComponent {
-    controller: WebController = new WebController();
-    origin: string = "origin";
+    controller: WebController = new WebController()
+    origin: string = "origin"
     build() {
       Column() {
         Button('getOrigins')
@@ -4730,13 +4839,13 @@ static getOrigins() : Promise<Array<WebStorageOrigin>>
             web_webview.WebStorage.getOrigins()
               .then(origins => {
                 for (let i = 0; i < origins.length; i++) {
-                  console.log('origin: ' + origins[i].origin);
-                  console.log('usage: ' + origins[i].usage);
-                  console.log('quota: ' + origins[i].quota);
+                  console.log('origin: ' + origins[i].origin)
+                  console.log('usage: ' + origins[i].usage)
+                  console.log('quota: ' + origins[i].quota)
                 }
               })
               .catch(error => {
-                console.log('error: ' + error);
+                console.log('error: ' + error)
               })
           })
         Web({ src: 'www.example.com', controller: this.controller })
@@ -4766,18 +4875,18 @@ static getOriginQuota(origin : string, callback : AsyncCallback\<number>) : void
   @Entry
   @Component
   struct WebComponent {
-    controller: WebController = new WebController();
-    origin: string = "origin";
+    controller: WebController = new WebController()
+    origin: string = "origin"
     build() {
       Column() {
         Button('getOriginQuota')
           .onClick(() => {
             web_webview.WebStorage.getOriginQuota(this.origin, (error, quota) => {
               if (error) {
-                console.log('error: ' + error);
-                return;
+                console.log('error: ' + error)
+                return
               }
-              console.log('quota: ' + quota);
+              console.log('quota: ' + quota)
             })
           })
         Web({ src: 'www.example.com', controller: this.controller })
@@ -4813,17 +4922,17 @@ static getOriginQuota(origin : string) : Promise\<number>
   @Component
   struct WebComponent {
     controller: WebController = new WebController();
-    origin: string = "origin";
+    origin: string = "origin"
     build() {
       Column() {
         Button('getOriginQuota')
           .onClick(() => {
             web_webview.WebStorage.getOriginQuota(this.origin)
               .then(quota => {
-                console.log('quota: ' + quota);
+                console.log('quota: ' + quota)
               })
               .catch(error => {
-                console.log('error: ' + error);
+                console.log('error: ' + error)
               })
           })
         Web({ src: 'www.example.com', controller: this.controller })
@@ -4854,17 +4963,17 @@ static getOriginUsage(origin : string, callback : AsyncCallback\<number>) : void
   @Component
   struct WebComponent {
     controller: WebController = new WebController();
-    origin: string = "origin";
+    origin: string = "origin"
     build() {
       Column() {
         Button('getOriginUsage')
           .onClick(() => {
             web_webview.WebStorage.getOriginUsage(this.origin, (error, usage) => {
               if (error) {
-                console.log('error: ' + error);
-                return;
+                console.log('error: ' + error)
+                return
               }
-              console.log('usage: ' + usage);
+              console.log('usage: ' + usage)
             })
           })
         Web({ src: 'www.example.com', controller: this.controller })
@@ -4900,17 +5009,17 @@ static getOriginUsage(origin : string) : Promise\<number>
   @Component
   struct WebComponent {
     controller: WebController = new WebController();
-    origin: string = "origin";
+    origin: string = "origin"
     build() {
       Column() {
         Button('getOriginQuota')
           .onClick(() => {
             web_webview.WebStorage.getOriginUsage(this.origin)
               .then(usage => {
-                console.log('usage: ' + usage);
+                console.log('usage: ' + usage)
               })
               .catch(error => {
-                console.log('error: ' + error);
+                console.log('error: ' + error)
               })
           })
         Web({ src: 'www.example.com', controller: this.controller })
@@ -4938,27 +5047,27 @@ searchAllAsync(searchString: string): void
   @Entry
   @Component
   struct WebComponent {
-    controller: WebController = new WebController();
-    @State searchString: string = "xxx";
+    controller: WebController = new WebController()
+    @State searchString: string = "xxx"
 
     build() {
       Column() {
         Button('searchString')
           .onClick(() => {
-            this.controller.searchAllAsync(this.searchString);
+            this.controller.searchAllAsync(this.searchString)
           })
         Button('clearMatches')
           .onClick(() => {
-            this.controller.clearMatches();
+            this.controller.clearMatches()
           })
         Button('searchNext')
           .onClick(() => {
-            this.controller.searchNext(true);
+            this.controller.searchNext(true)
           })
         Web({ src: 'www.example.com', controller: this.controller })
      	  .onSearchResultReceive(ret => {
             console.log("on search result receive:" + "[cur]" + ret.activeMatchOrdinal +
-              "[total]" + ret.numberOfMatches + "[isDone]"+ ret.isDoneCounting);
+              "[total]" + ret.numberOfMatches + "[isDone]"+ ret.isDoneCounting)
           })
       }
     }
@@ -4978,13 +5087,13 @@ clearMatches(): void
   @Entry
   @Component
   struct WebComponent {
-    controller: WebController = new WebController();
+    controller: WebController = new WebController()
 
     build() {
       Column() {
         Button('clearMatches')
           .onClick(() => {
-            this.controller.clearMatches();
+            this.controller.clearMatches()
           })
         Web({ src: 'www.example.com', controller: this.controller })
       }
@@ -5012,13 +5121,13 @@ searchNext(forward: boolean): void
   @Entry
   @Component
   struct WebComponent {
-    controller: WebController = new WebController();
+    controller: WebController = new WebController()
 
     build() {
       Column() {
         Button('searchNext')
           .onClick(() => {
-            this.controller.searchNext(true);
+            this.controller.searchNext(true)
           })
         Web({ src: 'www.example.com', controller: this.controller })
       }
@@ -5047,14 +5156,14 @@ onSearchResultReceive(callback: (event?: {activeMatchOrdinal: number, numberOfMa
   @Entry
   @Component
   struct WebComponent {
-    controller: WebController = new WebController();
+    controller: WebController = new WebController()
 
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
      	  .onSearchResultReceive(ret => {
             console.log("on search result receive:" + "[cur]" + ret.activeMatchOrdinal +
-              "[total]" + ret.numberOfMatches + "[isDone]"+ ret.isDoneCounting);
+              "[total]" + ret.numberOfMatches + "[isDone]"+ ret.isDoneCounting)
           })
       }
     }
@@ -5181,17 +5290,17 @@ storeWebArchive(baseName: string, autoName: boolean, callback: AsyncCallback<str
   @Entry
   @Component
   struct WebComponent {
-    controller: WebController = new WebController();
+    controller: WebController = new WebController()
     build() {
       Column() {
         Button('saveWebArchive')
           .onClick(() => {
-            let webAsyncController = new web_webview.WebAsyncController(this.controller);
+            let webAsyncController = new web_webview.WebAsyncController(this.controller)
             webAsyncController.storeWebArchive("/data/storage/el2/base/", true, (filename) => {
               if (filename != null) {
                 console.info(`save web archive success: ${filename}`)
               }
-            });
+            })
           })
         Web({ src: 'www.example.com', controller: this.controller })
       }
@@ -5252,12 +5361,12 @@ storeWebArchive(baseName: string, autoName: boolean): Promise<string>
 ### close<sup>9+</sup>
 close(): void
 
-关闭该信息端口。
+关闭该消息端口。
 
 ### postMessageEvent<sup>9+</sup>
 postMessageEvent(message: WebMessageEvent): void
 
-发送消息。
+发送消息。完整示例代码参考[postMessage](#postmessage9)
 
 **参数：**
 
@@ -5272,16 +5381,16 @@ postMessageEvent(message: WebMessageEvent): void
   @Entry
   @Component
   struct WebComponent {
-    controller: WebController = new WebController();
-    ports: WebMessagePort[] = null;
+    controller: WebController = new WebController()
+    ports: WebMessagePort[] = null
 
     build() {
       Column() {
         Button('postMessageEvent')
           .onClick(() => {
-            var msg = new WebMessageEvent();
-            msg.setData("post message from ets to html5");
-            this.ports[0].postMessageEvent(msg);
+            var msg = new WebMessageEvent()
+            msg.setData("post message from ets to html5")
+            this.ports[0].postMessageEvent(msg)
           })
         Web({ src: 'www.example.com', controller: this.controller })
       }
@@ -5292,7 +5401,7 @@ postMessageEvent(message: WebMessageEvent): void
 ### onMessageEvent<sup>9+</sup>
 onMessageEvent(callback: (result: string) => void): void
 
-注册回调函数，接收HTML5侧发送过来的消息。
+注册回调函数，接收HTML5侧发送过来的消息。完整示例代码参考[postMessage](#postmessage9)
 
 **参数：**
 
@@ -5307,8 +5416,8 @@ onMessageEvent(callback: (result: string) => void): void
   @Entry
   @Component
   struct WebComponent {
-    controller: WebController = new WebController();
-    ports: WebMessagePort[] = null;
+    controller: WebController = new WebController()
+    ports: WebMessagePort[] = null
 
     build() {
       Column() {
@@ -5352,9 +5461,9 @@ getData(): string
         Button('getPorts')
           .onClick(() => {
             var msgEvent = new WebMessageEvent();
-            msgEvent.setData("message event data");
-            var messageData = msgEvent.getData();
-            console.log("message is:" + messageData);
+            msgEvent.setData("message event data")
+            var messageData = msgEvent.getData()
+            console.log("message is:" + messageData)
           })
       }
     }
@@ -5364,7 +5473,7 @@ getData(): string
 ### setData<sup>9+</sup>
 setData(data: string): void
 
-设置当前对象中的消息。
+设置当前对象中的消息。完整示例代码参考[postMessage](#postmessage9)
 
 **参数：**
 
@@ -5379,16 +5488,16 @@ setData(data: string): void
   @Entry
   @Component
   struct WebComponent {
-    controller: WebController = new WebController();
-    ports: WebMessagePort[] = null;
+    controller: WebController = new WebController()
+    ports: WebMessagePort[] = null
 
     build() {
       Column() {
         Button('setData')
           .onClick(() => {
-            var msg = new WebMessageEvent();
-            msg.setData("post message from ets to HTML5");
-            this.ports[0].postMessageEvent(msg);
+            var msg = new WebMessageEvent()
+            msg.setData("post message from ets to HTML5")
+            this.ports[0].postMessageEvent(msg)
           })
         Web({ src: 'www.example.com', controller: this.controller })
       }
@@ -5413,16 +5522,16 @@ getPorts(): Array\<WebMessagePort\>
   @Entry
   @Component
   struct WebComponent {
-    ports: WebMessagePort[] = null;
+    ports: WebMessagePort[] = null
     build() {
       Column() {
         Button('getPorts')
           .onClick(() => {
-            var sendPortArray = new Array(this.ports[0]);
-            var msgEvent = new WebMessageEvent();
-            msgEvent.setPorts(sendPortArray);
-            var getPorts = msgEvent.getPorts();
-            console.log("Ports is:" + getPorts);
+            var sendPortArray = new Array(this.ports[0])
+            var msgEvent = new WebMessageEvent()
+            msgEvent.setPorts(sendPortArray)
+            var getPorts = msgEvent.getPorts()
+            console.log("Ports is:" + getPorts)
           })
       }
     }
@@ -5432,7 +5541,7 @@ getPorts(): Array\<WebMessagePort\>
 ### setPorts<sup>9+</sup>
 setPorts(ports: Array\<WebMessagePort\>): void
 
-设置当前对象中的消息端口。
+设置当前对象中的消息端口。完整示例代码参考[postMessage](#postmessage9)
 
 **参数：**
 
@@ -5447,18 +5556,18 @@ setPorts(ports: Array\<WebMessagePort\>): void
   @Entry
   @Component
   struct WebComponent {
-    controller: WebController = new WebController();
-    ports: WebMessagePort[] = null;
+    controller: WebController = new WebController()
+    ports: WebMessagePort[] = null
   
     build() {
       Column() {
         Button('setPorts')
           .onClick(() => {
-            var sendPortArray = new Array(this.ports[1]);
-            var msgEvent = new WebMessageEvent();
-            msgEvent.setData("__init_ports__");
-            msgEvent.setPorts(sendPortArray);
-            this.controller.postMessage({message: msgEvent, uri: "*"});
+            var sendPortArray = new Array(this.ports[1])
+            var msgEvent = new WebMessageEvent()
+            msgEvent.setData("__init_ports__")
+            msgEvent.setPorts(sendPortArray)
+            this.controller.postMessage({message: msgEvent, uri: "*"})
           })
         Web({ src: 'www.example.com', controller: this.controller })
       }

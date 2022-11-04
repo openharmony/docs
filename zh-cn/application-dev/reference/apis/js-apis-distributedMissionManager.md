@@ -48,7 +48,7 @@ registerMissionListener(parameter: MissionDeviceInfo, options: MissionCallback, 
       console.log('NotifyNetDisconnect state ' + JSON.stringify(state));
   }
   var parameter =  {
-      deviceId: remoteDeviceId
+      deviceId: ""
   };
   var options = {
       notifyMissionsChanged: NotifyMissionsChanged,
@@ -104,7 +104,7 @@ registerMissionListener(parameter: MissionDeviceInfo, options: MissionCallback):
       console.log('NotifyNetDisconnect state ' + JSON.stringify(state));
   }
   var parameter =  {
-      deviceId: remoteDeviceId
+      deviceId: ""
   };
   var options = {
       notifyMissionsChanged: NotifyMissionsChanged,
@@ -145,7 +145,7 @@ unRegisterMissionListener(parameter: MissionDeviceInfo, callback: AsyncCallback&
 
   ```ts
   var parameter =  {
-      deviceId: remoteDeviceId
+      deviceId: ""
   };
   try {
       distributedMissionManager.unRegisterMissionListener(parameter, (error) => {
@@ -186,7 +186,7 @@ unRegisterMissionListener(parameter: MissionDeviceInfo): Promise&lt;void&gt;
 
   ```ts
   var parameter =  {
-      deviceId: remoteDeviceId
+      deviceId: ""
   };
   try {
       distributedMissionManager.unRegisterMissionListener(parameter)
@@ -221,7 +221,7 @@ startSyncRemoteMissions(parameter: MissionParameter, callback: AsyncCallback&lt;
 
   ```ts
   var parameter =  {
-      deviceId: remoteDeviceId,
+      deviceId: "",
       fixConflict: false, 
       tag: 0
   };
@@ -263,7 +263,7 @@ startSyncRemoteMissions(parameter: MissionParameter): Promise&lt;void&gt;
 
   ```ts
   var parameter =  {
-      deviceId: remoteDeviceId,
+      deviceId: "",
       fixConflict: false, 
       tag: 0
   };
@@ -300,7 +300,7 @@ stopSyncRemoteMissions(parameter: MissionDeviceInfo, callback: AsyncCallback&lt;
 
   ```ts
   var parameter =  {
-      deviceId: remoteDeviceId
+      deviceId: ""
   };
   try {
       distributedMissionManager.stopSyncRemoteMissions(parameter, (error) => {
@@ -340,7 +340,7 @@ stopSyncRemoteMissions(parameter: MissionDeviceInfo): Promise&lt;void&gt;
 
   ```ts
   var parameter =  {
-      deviceId: remoteDeviceId
+      deviceId: ""
   };
   try {
       distributedMissionManager.stopSyncRemoteMissions(parameter)
@@ -376,10 +376,10 @@ continueMission(parameter: ContinueDeviceInfo, options: ContinueCallback, callba
 
   ```ts
   var parameter =  {
-      srcDeviceId: localDeviceId
-      dstDeviceId: remoteDeviceId
-      missionId: remoteMissionId
-      wantParams: {"key": "value"}
+      srcDeviceId: "",
+      dstDeviceId: "",
+      missionId: 1,
+      wantParam: {"key": "value"}
   };
   function OnContinueDone(resultCode) {
       console.log('OnContinueDone resultCode: ' + JSON.stringify(resultCode));
@@ -426,10 +426,10 @@ continueMission(parameter: ContinueDeviceInfo, options: ContinueCallback): Promi
 
   ```ts
   var parameter =  {
-      srcDeviceId: localDeviceId
-      dstDeviceId: remoteDeviceId
-      missionId: remoteMissionId
-      wantParams: {"key": "value"}
+      srcDeviceId: "",
+      dstDeviceId: "",
+      missionId: 1,
+      wantParam: {"key": "value"}
   };
   function OnContinueDone(resultCode) {
       console.log('OnContinueDone resultCode: ' + JSON.stringify(resultCode));
@@ -501,8 +501,8 @@ continueMission(parameter: ContinueDeviceInfo, options: ContinueCallback): Promi
 | -------- | ------ | ---- | ---- | ------- |
 | srcDeviceId | string | 是    | 是    | 表示任务迁移源设备ID。 |
 | dstDeviceId | string | 是    | 是    | 表示任务迁移目标设备ID。 |
-| missionId | string | 是    | 是    | 表示任务ID。 |
-| wantParams | {[key: string]: any} | 是    | 是    | 表示扩展参数。 |
+| missionId | number | 是    | 是    | 表示任务ID。 |
+| wantParam | {[key: string]: any} | 是    | 是    | 表示扩展参数。 |
 
 ## ContinueCallback
 

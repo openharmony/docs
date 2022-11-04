@@ -324,4 +324,4 @@
 
 -[`International`：国际化（JS）（API8）](https://gitee.com/openharmony/applications_app_samples/tree/master/UI/International)
 
--[`International`：国际化（eTS）（API8）（Full SDK）](https://gitee.com/openharmony/applications_app_samples/tree/master/common/International)
+-[`International`：国际化（ArkTS）（API8）（Full SDK）](https://gitee.com/openharmony/applications_app_samples/tree/master/common/International)

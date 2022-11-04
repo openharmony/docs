@@ -1,10 +1,11 @@
 # OffscreenCanvasRenderingContext2D对象
 
+使用OffscreenCanvasRenderingContext2D在Canvas上进行离屏绘制，绘制对象可以是矩形、文本、图片等。离屏绘制是指将需要绘制的内容先绘制在缓存区，然后将其转换成图片，一次性绘制到canvas上，加快了绘制速度。
+
 >  **说明：**
+> 
 >  从 API Version 8 开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
-
-使用OffscreenCanvasRenderingContext2D在Canvas上进行离屏绘制，绘制对象可以是矩形、文本、图片等。离屏绘制是指将需要绘制的内容先绘制在缓存区，然后将其转换成图片，一次性绘制到canvas上，加快了绘制速度。
 
 
 ## 接口
@@ -41,7 +42,6 @@ OffscreenCanvasRenderingContext2D(width: number, height: number, setting: Render
 | [shadowOffsetX](#shadowoffsetx)          | number                                   | 设置绘制阴影时和原有对象的水平偏移值。                      |
 | [shadowOffsetY](#shadowoffsety)          | number                                   | 设置绘制阴影时和原有对象的垂直偏移值。                      |
 | [imageSmoothingEnabled](#imagesmoothingenabled) | boolean                                  | 用于设置绘制图片时是否进行图像平滑度调整，true为启用，false为不启用。 <br/>-&nbsp;默认值：true。 |
-| imageSmoothingQuality                    | string                                   | 用于设置图像平滑度，支持如下三种类型：'low',&nbsp;'medium',&nbsp;'high'。<br/>-&nbsp;默认值：'low'。 |
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
 > fillStyle、shadowColor与 strokeStyle 中string类型格式为 'rgb(255, 255, 255)'，'rgba(255, 255, 255, 1.0)'，'\#FFFFFF'。
@@ -67,8 +67,8 @@ struct FillStyleExample {
         .onReady(() =>{
           this.offContext.fillStyle = '#0000ff'
           this.offContext.fillRect(20, 160, 150, 100)
-          var image = this.offContext.transferToImageBitmap();
-          this.context.transferFromImageBitmap(image);
+          var image = this.offContext.transferToImageBitmap()
+          this.context.transferFromImageBitmap(image)
         })
     }
     .width('100%')
@@ -445,8 +445,8 @@ struct LineDashOffset {
         .onReady(() =>{
           this.offContext.arc(100, 75, 50, 0, 6.28)
           this.offContext.setLineDash([10,20])
-          this.offContext.lineDashOffset = 10.0;
-          this.offContext.stroke();
+          this.offContext.lineDashOffset = 10.0
+          this.offContext.stroke()
           var image = this.offContext.transferToImageBitmap()
           this.context.transferFromImageBitmap(image)
       })
@@ -572,8 +572,7 @@ struct ShadowColor {
           this.offContext.shadowColor = 'rgb(0,0,255)'
           this.offContext.fillStyle = 'rgb(255,0,0)'
           this.offContext.fillRect(30, 30, 100, 100)
-          var image = this.offContext.transferToImageBitmap
-()
+          var image = this.offContext.transferToImageBitmap()
           this.context.transferFromImageBitmap(image)
       })
     }
@@ -739,7 +738,7 @@ fillRect(x: number, y: number, w: number, h: number): void
   }
   ```
 
-  ![zh-cn_image_0000001238832407](figures/zh-cn_image_0000001238832407.png)
+  ![zh-cn_image_0000001194192436](figures/zh-cn_image_0000001194192436.png)
 
 
 ### strokeRect
@@ -767,6 +766,7 @@ strokeRect(x: number, y: number, w: number, h: number): void
     private settings: RenderingContextSettings = new RenderingContextSettings(true)
     private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
     private offContext: OffscreenCanvasRenderingContext2D = new OffscreenCanvasRenderingContext2D(600, 600, this.settings)
+
     build() {
       Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
         Canvas(this.context)
@@ -785,7 +785,7 @@ strokeRect(x: number, y: number, w: number, h: number): void
   }
   ```
 
-  ![zh-cn_image_0000001238712441](figures/zh-cn_image_0000001238712441.png)
+  ![zh-cn_image_0000001194352436](figures/zh-cn_image_0000001194352436.png)
 
 
 ### clearRect
@@ -813,6 +813,7 @@ clearRect(x: number, y: number, w: number, h: number): void
     private settings: RenderingContextSettings = new RenderingContextSettings(true)
     private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
     private offContext: OffscreenCanvasRenderingContext2D = new OffscreenCanvasRenderingContext2D(600, 600, this.settings)
+
     build() {
       Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
         Canvas(this.context)
@@ -821,8 +822,8 @@ clearRect(x: number, y: number, w: number, h: number): void
           .backgroundColor('#ffff00')
           .onReady(() =>{
             this.offContext.fillStyle = 'rgb(0,0,255)'
-            this.offContext.fillRect(0,0,500,500)
-            this.offContext.clearRect(20,20,150,100)
+            this.offContext.fillRect(20,20,200,200)
+            this.offContext.clearRect(30,30,150,100)
             var image = this.offContext.transferToImageBitmap()
             this.context.transferFromImageBitmap(image)
         })
@@ -833,7 +834,7 @@ clearRect(x: number, y: number, w: number, h: number): void
   }
   ```
 
-  ![zh-cn_image_0000001194192458](figures/zh-cn_image_0000001194192458.png)
+  ![zh-cn_image_0000001238952377](figures/zh-cn_image_0000001238952377.png)
 
 
 ### fillText
@@ -861,6 +862,7 @@ fillText(text: string, x: number, y: number, maxWidth?: number): void
     private settings: RenderingContextSettings = new RenderingContextSettings(true)
     private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
     private offContext: OffscreenCanvasRenderingContext2D = new OffscreenCanvasRenderingContext2D(600, 600, this.settings)
+
     build() {
       Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
         Canvas(this.context)
@@ -880,7 +882,7 @@ fillText(text: string, x: number, y: number, maxWidth?: number): void
   }
   ```
 
-  ![zh-cn_image_0000001194352454](figures/zh-cn_image_0000001194352454.png)
+  ![zh-cn_image_0000001194032458](figures/zh-cn_image_0000001194032458.png)
 
 
 ### strokeText
@@ -908,6 +910,7 @@ strokeText(text: string, x: number, y: number): void
     private settings: RenderingContextSettings = new RenderingContextSettings(true)
     private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
     private offContext: OffscreenCanvasRenderingContext2D = new OffscreenCanvasRenderingContext2D(600, 600, this.settings)
+
     build() {
       Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
         Canvas(this.context)
@@ -976,6 +979,7 @@ measureText(text: string): TextMetrics
     private settings: RenderingContextSettings = new RenderingContextSettings(true)
     private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
     private offContext: OffscreenCanvasRenderingContext2D = new OffscreenCanvasRenderingContext2D(600, 600, this.settings)
+
     build() {
       Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
         Canvas(this.context)
@@ -1021,6 +1025,7 @@ stroke(path?: Path2D): void
     private settings: RenderingContextSettings = new RenderingContextSettings(true)
     private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
     private offContext: OffscreenCanvasRenderingContext2D = new OffscreenCanvasRenderingContext2D(600, 600, this.settings)
+
     build() {
       Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
         Canvas(this.context)
@@ -1030,6 +1035,8 @@ stroke(path?: Path2D): void
           .onReady(() =>{
             this.offContext.moveTo(25, 25)
             this.offContext.lineTo(25, 105)
+            this.offContext.lineTo(75, 105)
+            this.offContext.lineTo(75, 25)
             this.offContext.strokeStyle = 'rgb(0,0,255)'
             this.offContext.stroke()
             var image = this.offContext.transferToImageBitmap()
@@ -1042,7 +1049,7 @@ stroke(path?: Path2D): void
   }
   ```
 
-  ![zh-cn_image_0000001239032427](figures/zh-cn_image_0000001239032427.png)
+  ![zh-cn_image_0000001238832389](figures/zh-cn_image_0000001238832389.png)
 
 
 ### beginPath
@@ -1061,6 +1068,7 @@ beginPath(): void
     private settings: RenderingContextSettings = new RenderingContextSettings(true)
     private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
     private offContext: OffscreenCanvasRenderingContext2D = new OffscreenCanvasRenderingContext2D(600, 600, this.settings)
+
     build() {
       Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
         Canvas(this.context)
@@ -1110,6 +1118,7 @@ moveTo(x: number, y: number): void
     private settings: RenderingContextSettings = new RenderingContextSettings(true)
     private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
     private offContext: OffscreenCanvasRenderingContext2D = new OffscreenCanvasRenderingContext2D(600, 600, this.settings)
+
     build() {
       Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
         Canvas(this.context)
@@ -1157,6 +1166,7 @@ lineTo(x: number, y: number): void
     private settings: RenderingContextSettings = new RenderingContextSettings(true)
     private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
     private offContext: OffscreenCanvasRenderingContext2D = new OffscreenCanvasRenderingContext2D(600, 600, this.settings)
+
     build() {
       Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
         Canvas(this.context)
@@ -1197,6 +1207,7 @@ closePath(): void
     private settings: RenderingContextSettings = new RenderingContextSettings(true)
     private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
     private offContext: OffscreenCanvasRenderingContext2D = new OffscreenCanvasRenderingContext2D(600, 600, this.settings)
+
     build() {
       Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
         Canvas(this.context)
@@ -1253,6 +1264,7 @@ createPattern(image: ImageBitmap, repetition: string | null): CanvasPattern | nu
     private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
     private img:ImageBitmap = new ImageBitmap("common/images/icon.jpg")
     private offContext: OffscreenCanvasRenderingContext2D = new OffscreenCanvasRenderingContext2D(600, 600, this.settings)
+
     build() {
       Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
         Canvas(this.context)
@@ -1303,6 +1315,7 @@ bezierCurveTo(cp1x: number, cp1y: number, cp2x: number, cp2y: number, x: number,
     private settings: RenderingContextSettings = new RenderingContextSettings(true)
     private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
     private offContext: OffscreenCanvasRenderingContext2D = new OffscreenCanvasRenderingContext2D(600, 600, this.settings)
+
     build() {
       Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
         Canvas(this.context)
@@ -1352,6 +1365,7 @@ quadraticCurveTo(cpx: number, cpy: number, x: number, y: number): void
     private settings: RenderingContextSettings = new RenderingContextSettings(true)
     private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
     private offContext: OffscreenCanvasRenderingContext2D = new OffscreenCanvasRenderingContext2D(600, 600, this.settings)
+
     build() {
       Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
         Canvas(this.context)
@@ -1359,10 +1373,10 @@ quadraticCurveTo(cpx: number, cpy: number, x: number, y: number): void
           .height('100%')
           .backgroundColor('#ffff00')
           .onReady(() =>{
-            this.offContext.beginPath();
-            this.offContext.moveTo(20, 20);
-            this.offContext.quadraticCurveTo(100, 100, 200, 20);
-            this.offContext.stroke();
+            this.offContext.beginPath()
+            this.offContext.moveTo(20, 20)
+            this.offContext.quadraticCurveTo(100, 100, 200, 20)
+            this.offContext.stroke()
             var image = this.offContext.transferToImageBitmap()
             this.context.transferFromImageBitmap(image)
         })
@@ -1403,6 +1417,7 @@ arc(x: number, y: number, radius: number, startAngle: number, endAngle: number, 
     private settings: RenderingContextSettings = new RenderingContextSettings(true)
     private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
     private offContext: OffscreenCanvasRenderingContext2D = new OffscreenCanvasRenderingContext2D(600, 600, this.settings)
+
     build() {
       Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
         Canvas(this.context)
@@ -1452,6 +1467,7 @@ arcTo(x1: number, y1: number, x2: number, y2: number, radius: number): void
     private settings: RenderingContextSettings = new RenderingContextSettings(true)
     private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
     private offContext: OffscreenCanvasRenderingContext2D = new OffscreenCanvasRenderingContext2D(600, 600, this.settings)
+
     build() {
       Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
         Canvas(this.context)
@@ -1459,9 +1475,9 @@ arcTo(x1: number, y1: number, x2: number, y2: number, radius: number): void
           .height('100%')
           .backgroundColor('#ffff00')
           .onReady(() =>{
-            this.offContext.moveTo(100, 20);
-            this.offContext.arcTo(150, 20, 150, 70, 50);
-            this.offContext.stroke();
+            this.offContext.moveTo(100, 20)
+            this.offContext.arcTo(150, 20, 150, 70, 50)
+            this.offContext.stroke()
             var image = this.offContext.transferToImageBitmap()
             this.context.transferFromImageBitmap(image)
           })
@@ -1492,7 +1508,7 @@ ellipse(x: number, y: number, radiusX: number, radiusY: number, rotation: number
 | rotation         | number  | 是    | 0     | 椭圆的旋转角度，单位为弧度。    |
 | startAngle       | number  | 是    | 0     | 椭圆绘制的起始点角度，以弧度表示。 |
 | endAngle         | number  | 是    | 0     | 椭圆绘制的结束点角度，以弧度表示。 |
-| counterclockwise | boolean | 否    | false | 是否以逆时针方向绘制椭圆。     |
+| counterclockwise | boolean | 否    | false | 是否以逆时针方向绘制椭圆。<br>true:逆时针方向绘制椭圆。<br>false:顺时针方向绘制椭圆。     |
 
  **示例：**
 
@@ -1512,7 +1528,7 @@ ellipse(x: number, y: number, radiusX: number, radiusY: number, rotation: number
           .backgroundColor('#ffff00')
           .onReady(() =>{
             this.offContext.beginPath()
-            this.offContext.ellipse(200, 200, 50, 100, Math.PI * 0.25, Math.PI * 0.5, Math.PI)
+            this.offContext.ellipse(200, 200, 50, 100, Math.PI * 0.25, Math.PI * 0.5, Math.PI * 2)
             this.offContext.stroke()
             var image = this.offContext.transferToImageBitmap()
             this.context.transferFromImageBitmap(image)
@@ -1524,7 +1540,7 @@ ellipse(x: number, y: number, radiusX: number, radiusY: number, rotation: number
   }
   ```
 
-  ![zh-cn_image_0000001238832411](figures/zh-cn_image_0000001238832411.png)
+  ![zh-cn_image_0000001194192440](figures/zh-cn_image_0000001194192440.png)
 
 
 ### rect
@@ -1552,6 +1568,7 @@ rect(x: number, y: number, w: number, h: number): void
     private settings: RenderingContextSettings = new RenderingContextSettings(true)
     private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
     private offContext: OffscreenCanvasRenderingContext2D = new OffscreenCanvasRenderingContext2D(600, 600, this.settings)
+
     build() {
       Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
         Canvas(this.context)
@@ -1576,11 +1593,15 @@ rect(x: number, y: number, w: number, h: number): void
 
 ### fill
 
-fill(): void
+fill(fillRule?: CanvasFillRule): void
 
 对封闭路径进行填充。
 
- **示例：**
+**参数:** 
+
+| 参数       | 类型             | 必填   | 默认值       | 描述                                       |
+| -------- | -------------- | ---- | --------- | ---------------------------------------- |
+| fillRule | CanvasFillRule | 否    | "nonzero" | 指定要填充对象的规则。<br/>可选参数为："nonzero", "evenodd"。 |
 
   ```ts
   // xxx.ets
@@ -1590,6 +1611,7 @@ fill(): void
     private settings: RenderingContextSettings = new RenderingContextSettings(true)
     private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
     private offContext: OffscreenCanvasRenderingContext2D = new OffscreenCanvasRenderingContext2D(600, 600, this.settings)
+
     build() {
       Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
         Canvas(this.context)
@@ -1612,11 +1634,72 @@ fill(): void
   ![zh-cn_image_0000001194192462](figures/zh-cn_image_0000001194192462.png)
 
 
+fill(path: Path2D, fillRule?: CanvasFillRule): void
+
+对封闭路径进行填充。
+
+**参数:** 
+
+| 参数       | 类型             | 必填   | 默认值       | 描述                                       |
+| -------- | -------------- | ---- | --------- | ---------------------------------------- |
+| path     | Path2D         | 是    |           | Path2D填充路径。                              |
+| fillRule | CanvasFillRule | 否    | "nonzero" | 指定要填充对象的规则。<br/>可选参数为："nonzero", "evenodd"。 |
+
+
+**示例:**   
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct Fill {
+  private settings: RenderingContextSettings = new RenderingContextSettings(true)
+  private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
+  private offContext: OffscreenCanvasRenderingContext2D = new OffscreenCanvasRenderingContext2D(600, 600, this.settings)
+
+  build() {
+    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
+      Canvas(this.context)
+        .width('100%')
+        .height('100%')
+        .backgroundColor('#ffff00')
+        .onReady(() =>{
+          let region = new Path2D()
+          region.moveTo(30, 90)
+          region.lineTo(110, 20)
+          region.lineTo(240, 130)
+          region.lineTo(60, 130)
+          region.lineTo(190, 20)
+          region.lineTo(270, 90)
+          region.closePath()
+          // Fill path
+          this.offContext.fillStyle = 'green'
+          this.offContext.fill(region, "evenodd")
+          var image = this.offContext.transferToImageBitmap()
+          this.context.transferFromImageBitmap(image)
+        })
+    }
+    .width('100%')
+    .height('100%')
+  }
+}
+```
+
+ ![zh-cn_image_000000127777775](figures/zh-cn_image_000000127777775.png)
+
+
+
 ### clip
 
-clip(): void
+clip(fillRule?: CanvasFillRule): void
 
 设置当前路径为剪切路径。
+
+**参数:** 
+
+| 参数       | 类型             | 必填   | 默认值       | 描述                                       |
+| -------- | -------------- | ---- | --------- | ---------------------------------------- |
+| fillRule | CanvasFillRule | 否    | "nonzero" | 指定要剪切对象的规则。<br/>可选参数为："nonzero", "evenodd"。 |
 
  **示例：**
 
@@ -1628,6 +1711,7 @@ clip(): void
     private settings: RenderingContextSettings = new RenderingContextSettings(true)
     private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
     private offContext: OffscreenCanvasRenderingContext2D = new OffscreenCanvasRenderingContext2D(600, 600, this.settings)
+
     build() {
       Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
         Canvas(this.context)
@@ -1635,11 +1719,11 @@ clip(): void
           .height('100%')
           .backgroundColor('#ffff00')
           .onReady(() =>{
-            this.offContext.rect(0, 0, 200, 200)
+            this.offContext.rect(0, 0, 100, 200)
             this.offContext.stroke()
             this.offContext.clip()
             this.offContext.fillStyle = "rgb(255,0,0)"
-            this.offContext.fillRect(0, 0, 150, 150)
+            this.offContext.fillRect(0, 0, 200, 200)
             var image = this.offContext.transferToImageBitmap()
             this.context.transferFromImageBitmap(image)
           })
@@ -1650,7 +1734,90 @@ clip(): void
   }
   ```
 
-  ![zh-cn_image_0000001194352458](figures/zh-cn_image_0000001194352458.png)
+  ![zh-cn_image_0000001194032462](figures/zh-cn_image_0000001194032462.png)
+
+
+clip(path:Path2D, fillRule?: CanvasFillRule): void
+
+设置封闭路径为剪切路径。
+
+**参数:** 
+
+| 参数       | 类型             | 必填   | 默认值       | 描述                                       |
+| -------- | -------------- | ---- | --------- | ---------------------------------------- |
+| path | Path2D | 是    |  | Path2D剪切路径。 |
+| fillRule | CanvasFillRule | 否    | "nonzero" | 指定要剪切对象的规则。<br/>可选参数为："nonzero", "evenodd"。 |
+
+ **示例：**
+
+  ```ts
+  // xxx.ets
+@Entry
+@Component
+struct Clip {
+  private settings: RenderingContextSettings = new RenderingContextSettings(true)
+  private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
+  private offContext: OffscreenCanvasRenderingContext2D = new OffscreenCanvasRenderingContext2D(600, 600, this.settings)
+
+  build() {
+    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
+      Canvas(this.context)
+        .width('100%')
+        .height('100%')
+        .backgroundColor('#ffff00')
+        .onReady(() =>{
+          let region = new Path2D()
+          region.rect(80,10,20,130)
+          region.rect(40,50,100,50)
+          this.offContext.clip(region,"evenodd")
+          this.offContext.fillStyle = "rgb(255,0,0)"
+          this.offContext.fillRect(0, 0, 600, 600)
+          var image = this.offContext.transferToImageBitmap()
+          this.context.transferFromImageBitmap(image)
+        })
+    }
+    .width('100%')
+    .height('100%')
+  }
+}
+  ```
+
+  ![zh-cn_image_000000127777779](figures/zh-cn_image_000000127777779.png)
+
+
+
+### filter
+
+filter(filter: string): void
+
+为Canvas图形设置各类滤镜效果。该接口为空接口。
+
+**参数:**
+
+| 参数     | 类型     | 必填   | 默认值  | 说明           |
+| ------ | ------ | ---- | ---- | ------------ |
+| filter | string | 是    | -    | 接受各类滤镜效果的函数。 |
+
+
+### getTransform
+
+getTransform(): Matrix2D
+
+获取当前被应用到上下文的转换矩阵。该接口为空接口。
+
+
+### resetTransform
+
+resetTransform(): void
+
+使用单位矩阵重新设置当前变形。该接口为空接口。
+
+
+### direction
+
+direction(direction: CanvasDirection): void
+
+绘制文本时，描述当前文本方向的属性。该接口为空接口。
 
 
 ### rotate
@@ -1675,6 +1842,7 @@ rotate(angle: number): void
     private settings: RenderingContextSettings = new RenderingContextSettings(true)
     private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
     private offContext: OffscreenCanvasRenderingContext2D = new OffscreenCanvasRenderingContext2D(600, 600, this.settings)
+
     build() {
       Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
         Canvas(this.context)
@@ -1720,6 +1888,7 @@ scale(x: number, y: number): void
     private settings: RenderingContextSettings = new RenderingContextSettings(true)
     private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
     private offContext: OffscreenCanvasRenderingContext2D = new OffscreenCanvasRenderingContext2D(600, 600, this.settings)
+
     build() {
       Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
         Canvas(this.context)
@@ -1727,9 +1896,10 @@ scale(x: number, y: number): void
           .height('100%')
           .backgroundColor('#ffff00')
           .onReady(() =>{
-            this.offContext.strokeRect(10, 10, 25, 25)
+            this.offContext.lineWidth = 3
+            this.offContext.strokeRect(30, 30, 50, 50)
             this.offContext.scale(2, 2) // Scale to 200%
-            this.offContext.strokeRect(10, 10, 25, 25)
+            this.offContext.strokeRect(30, 30, 50, 50)
             var image = this.offContext.transferToImageBitmap()
             this.context.transferFromImageBitmap(image)
           })
@@ -1740,7 +1910,7 @@ scale(x: number, y: number): void
   }
   ```
 
-  ![zh-cn_image_0000001194032484](figures/zh-cn_image_0000001194032484.png)
+  ![zh-cn_image_0000001193872498](figures/zh-cn_image_0000001193872498.png)
 
 
 ### transform
@@ -1777,6 +1947,7 @@ transform方法对应一个变换矩阵，想对一个图形进行变化的时�
     private settings: RenderingContextSettings = new RenderingContextSettings(true)
     private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
     private offContext: OffscreenCanvasRenderingContext2D = new OffscreenCanvasRenderingContext2D(600, 600, this.settings)
+
     build() {
       Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
         Canvas(this.context)
@@ -1832,6 +2003,7 @@ setTransform方法使用的参数和transform()方法相同，但setTransform()�
     private settings: RenderingContextSettings = new RenderingContextSettings(true)
     private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
     private offContext: OffscreenCanvasRenderingContext2D = new OffscreenCanvasRenderingContext2D(600, 600, this.settings)
+
     build() {
       Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
         Canvas(this.context)
@@ -1880,6 +2052,7 @@ translate(x: number, y: number): void
     private settings: RenderingContextSettings = new RenderingContextSettings(true)
     private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
     private offContext: OffscreenCanvasRenderingContext2D = new OffscreenCanvasRenderingContext2D(600, 600, this.settings)
+
     build() {
       Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
         Canvas(this.context)
@@ -1934,7 +2107,7 @@ drawImage(image: ImageBitmap | PixelMap, sx: number, sy: number, sw: number, sh:
   // xxx.ets
   @Entry
   @Component
-  struct Index {
+  struct DrawImage {
     private settings: RenderingContextSettings = new RenderingContextSettings(true)
     private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
     private img:ImageBitmap = new ImageBitmap("common/images/icon.jpg")
@@ -1964,7 +2137,7 @@ drawImage(image: ImageBitmap | PixelMap, sx: number, sy: number, sw: number, sh:
 
 createImageData(sw: number, sh: number): ImageData
 
-根据宽高创建ImageData对象，请参考[ImageData](ts-components-canvas-imagebitmap.md)。
+根据宽高创建ImageData对象，请参考[ImageData](ts-components-canvas-imagedata.md)。
 
  **参数：**
 
@@ -1974,23 +2147,21 @@ createImageData(sw: number, sh: number): ImageData
 | sh   | number | 是    | 0    | ImageData的高度。 |
 
 
-### createImageData
-
 createImageData(imageData: ImageData): ImageData
 
-根据已创建的ImageData对象创建新的ImageData对象，请参考[ImageData](ts-components-canvas-imagebitmap.md)。
+根据已创建的ImageData对象创建新的ImageData对象，请参考[ImageData](ts-components-canvas-imagedata.md)。
 
  **参数：**
 
 | 参数        | 类型                                       | 必填   | 默认   | 描述               |
 | --------- | ---------------------------------------- | ---- | ---- | ---------------- |
-| imagedata | [ImageData](ts-components-canvas-imagebitmap.md) | 是    | null | 被复制的ImageData对象。 |
+| imagedata | [ImageData](ts-components-canvas-imagedata.md) | 是    | null | 被复制的ImageData对象。 |
 
  **返回值：**
 
 | 类型                                       | 说明            |
 | ---------------------------------------- | ------------- |
-| [ImageData](ts-components-canvas-imagebitmap.md) | 新的ImageData对象 |
+| [ImageData](ts-components-canvas-imagedata.md) | 新的ImageData对象 |
 
 ### getPixelMap
 
@@ -2018,7 +2189,7 @@ getPixelMap(sx: number, sy: number, sw: number, sh: number): PixelMap
 
 getImageData(sx: number, sy: number, sw: number, sh: number): ImageData
 
-以当前canvas指定区域内的像素创建[ImageData](ts-components-canvas-imagebitmap.md)对象。
+以当前canvas指定区域内的像素创建[ImageData](ts-components-canvas-imagedata.md)对象。
 
  **参数：**
 
@@ -2033,7 +2204,42 @@ getImageData(sx: number, sy: number, sw: number, sh: number): ImageData
 
 | 类型                                       | 说明            |
 | ---------------------------------------- | ------------- |
-| [ImageData](ts-components-canvas-imagebitmap.md) | 新的ImageData对象 |
+| [ImageData](ts-components-canvas-imagedata.md) | 新的ImageData对象 |
+
+
+**示例：**
+
+  ```ts
+  // xxx.ets
+@Entry
+@Component
+struct GetImageData {
+  private settings: RenderingContextSettings = new RenderingContextSettings(true)
+  private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
+  private offContext: OffscreenCanvasRenderingContext2D = new OffscreenCanvasRenderingContext2D(600, 600, this.settings)
+  private img:ImageBitmap = new ImageBitmap("/common/images/1234.png")
+
+  build() {
+    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
+      Canvas(this.context)
+        .width('100%')
+        .height('100%')
+        .backgroundColor('#ffff00')
+        .onReady(() =>{
+          this.offContext.drawImage(this.img,0,0,130,130)
+          var imagedata = this.offContext.getImageData(50,50,130,130)
+          this.offContext.putImageData(imagedata,150,150)
+          var image = this.offContext.transferToImageBitmap()
+          this.context.transferFromImageBitmap(image)
+        })
+    }
+    .width('100%')
+    .height('100%')
+  }
+}
+  ```
+
+  ![zh-cn_image_000000127777780](figures/zh-cn_image_000000127777780.png)
 
 
 ### putImageData
@@ -2042,7 +2248,7 @@ putImageData(imageData: Object, dx: number, dy: number): void
 
 putImageData(imageData: Object, dx: number, dy: number, dirtyX: number, dirtyY: number, dirtyWidth?: number, dirtyHeight: number): void
 
-使用[ImageData](ts-components-canvas-imagebitmap.md)数据填充新的矩形区域。
+使用[ImageData](ts-components-canvas-imagedata.md)数据填充新的矩形区域。
 
  **参数：**
 
@@ -2124,7 +2330,7 @@ struct SetLineDash {
         .onReady(() =>{
           this.offContext.arc(100, 75, 50, 0, 6.28)
           this.offContext.setLineDash([10,20])
-          this.offContext.stroke();
+          this.offContext.stroke()
           var image = this.offContext.transferToImageBitmap()
           this.context.transferFromImageBitmap(image)
       })
@@ -2153,77 +2359,46 @@ getLineDash(): number[]
 
   ```ts
   // xxx.ets
-  @Entry
-  @Component
-  struct GetLineDash {
+@Entry
+@Component
+struct OffscreenCanvasGetLineDash {
+  @State message: string = 'Hello World'
   private settings: RenderingContextSettings = new RenderingContextSettings(true)
   private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
   private offContext: OffscreenCanvasRenderingContext2D = new OffscreenCanvasRenderingContext2D(600, 600, this.settings)
-    
-    build() {
-      Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
+  build() {
+    Row() {
+      Column() {
+        Text(this.message)
+          .fontSize(50)
+          .fontWeight(FontWeight.Bold)
+          .onClick(()=>{
+            console.error('before getlinedash clicked')
+            let res = this.offContext.getLineDash()
+            console.error(JSON.stringify(res))
+          })
         Canvas(this.context)
           .width('100%')
           .height('100%')
           .backgroundColor('#ffff00')
-          .onReady(() =>{
-            var grad = this.context.createLinearGradient(50,0, 300,100)
+          .onReady(() => {
             this.offContext.arc(100, 75, 50, 0, 6.28)
             this.offContext.setLineDash([10,20])
-            this.offContext.stroke();
+            this.offContext.stroke()
             let res = this.offContext.getLineDash()
             var image = this.offContext.transferToImageBitmap()
             this.context.transferFromImageBitmap(image)
           })
       }
       .width('100%')
-      .height('100%')
     }
+    .height('100%')
   }
+}
   ```
+![zh-cn_image_000000127777778](figures/zh-cn_image_000000127777778.png) 
 
 
-### transferFromImageBitmap
-
-transferFromImageBitmap(bitmap: ImageBitmap): void
-
-显示给定的ImageBitmap对象。
-
-**参数：** 
-
-| 参数     | 类型                                       | 描述                 |
-| ------ | ---------------------------------------- | ------------------ |
-| bitmap | [ImageData](ts-components-canvas-imagebitmap.md) | 待显示的ImageBitmap对象。 |
-
-**示例：** 
-
-  ```ts
-  // xxx.ets
-  @Entry
-  @Component
-  struct GetLineDash {
-  private settings: RenderingContextSettings = new RenderingContextSettings(true)
-  private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
-  private offContext: OffscreenCanvasRenderingContext2D = new OffscreenCanvasRenderingContext2D(600, 600, this.settings)
-    
-    build() {
-      Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
-        Canvas(this.context)
-          .width('100%')
-          .height('100%')
-          .backgroundColor('#ffff00')
-          .onReady(() =>{
-            this.offContext.fillRect(0, 0, 200, 200)
-            var image = this.offContext.transferToImageBitmap()
-            this.context.transferFromImageBitmap(image)
-          })
-      }
-      .width('100%')
-      .height('100%')
-    }
-  }
-  ```
-  ![zh-cn_image_000000127777773](figures/zh-cn_image_000000127777773.png) 
 
 ### toDataURL
 
@@ -2247,7 +2422,7 @@ toDataURL(type?: string, quality?: number): string
 **示例：**
 
   ```ts
-  // xxx.ets
+// xxx.ets
 @Entry
 @Component
 struct ToDataURL {
@@ -2262,7 +2437,7 @@ struct ToDataURL {
         .height('100%')
         .backgroundColor('#ffff00')
         .onReady(() =>{
-          var dataURL = this.offContext.toDataURL();
+          var dataURL = this.offContext.toDataURL()
         })
     }
     .width('100%')
@@ -2270,6 +2445,19 @@ struct ToDataURL {
   }
 }
   ```
+
+
+### imageSmoothingQuality
+
+imageSmoothingQuality(quality: imageSmoothingQuality)
+
+用于设置图像平滑度。该接口为空接口。
+
+ **参数：** 
+
+| 参数      | 类型                    | 描述                                       |
+| ------- | --------------------- | ---------------------------------------- |
+| quality | imageSmoothingQuality | 支持如下三种类型：'low',&nbsp;'medium',&nbsp;'high'。 |
 
 
 ### transferToImageBitmap
@@ -2282,7 +2470,7 @@ transferToImageBitmap(): ImageBitmap
 
 | 类型                                       | 说明              |
 | ---------------------------------------- | --------------- |
-| [ImageData](ts-components-canvas-imagebitmap.md) | 存储离屏画布上渲染的像素数据。 |
+| [ImageBitmap](ts-components-canvas-imagebitmap.md) | 存储离屏画布上渲染的像素数据。 |
 
 
  **示例：**
@@ -2291,10 +2479,11 @@ transferToImageBitmap(): ImageBitmap
   // xxx.ets
   @Entry
   @Component
-  struct CanvasExample {
+  struct PutImageData {
     private settings: RenderingContextSettings = new RenderingContextSettings(true)
     private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
     private offContext: OffscreenCanvasRenderingContext2D = new OffscreenCanvasRenderingContext2D(600, 600, this.settings)
+
     build() {
       Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
         Canvas(this.context)
@@ -2302,7 +2491,14 @@ transferToImageBitmap(): ImageBitmap
           .height('100%')
           .backgroundColor('#ffff00')
           .onReady(() =>{
-            this.offContext.restore()
+            var imageData = this.offContext.createImageData(100, 100)
+            for (var i = 0; i < imageData.data.length; i += 4) {
+              imageData.data[i + 0] = 255
+              imageData.data[i + 1] = 0
+              imageData.data[i + 2] = 255
+              imageData.data[i + 3] = 255
+            }
+            this.offContext.putImageData(imageData, 10, 10)
             var image = this.offContext.transferToImageBitmap()
             this.context.transferFromImageBitmap(image)
           })
@@ -2312,6 +2508,7 @@ transferToImageBitmap(): ImageBitmap
     }
   }
   ```
+![zh-cn_image_0000001238952387](figures/zh-cn_image_0000001238952387.png) 
 
 ### restore
 
@@ -2323,29 +2520,35 @@ restore(): void
 
   ```ts
   // xxx.ets
-  @Entry
-  @Component
-  struct CanvasExample {
-    private settings: RenderingContextSettings = new RenderingContextSettings(true)
-    private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
-    private offContext: OffscreenCanvasRenderingContext2D = new OffscreenCanvasRenderingContext2D(600, 600, this.settings)
-    build() {
-      Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
-        Canvas(this.context)
-          .width('100%')
-          .height('100%')
-          .backgroundColor('#ffff00')
-          .onReady(() =>{
-            this.offContext.restore()
-            var image = this.offContext.transferToImageBitmap()
-            this.context.transferFromImageBitmap(image)
-          })
-      }
-      .width('100%')
-      .height('100%')
+@Entry
+@Component
+struct CanvasExample {
+  private settings: RenderingContextSettings = new RenderingContextSettings(true)
+  private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
+  private offContext: OffscreenCanvasRenderingContext2D = new OffscreenCanvasRenderingContext2D(600, 600, this.settings)
+  
+  build() {
+    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
+      Canvas(this.context)
+        .width('100%')
+        .height('100%')
+        .backgroundColor('#ffff00')
+        .onReady(() =>{
+          this.offContext.save() // save the default state
+          this.offContext.fillStyle = "green"
+          this.offContext.fillRect(20, 20, 100, 100)
+          this.offContext.restore() // restore to the default state
+          this.offContext.fillRect(150, 75, 100, 100)
+          var image = this.offContext.transferToImageBitmap()
+          this.context.transferFromImageBitmap(image)
+        })
     }
+    .width('100%')
+    .height('100%')
   }
+}
   ```
+![zh-cn_image_000000127777781](figures/zh-cn_image_000000127777781.png) 
 
 
 ### save
@@ -2358,29 +2561,35 @@ save(): void
 
   ```ts
   // xxx.ets
-  @Entry
-  @Component
-  struct CanvasExample {
-    private settings: RenderingContextSettings = new RenderingContextSettings(true)
-    private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
-    private offContext: OffscreenCanvasRenderingContext2D = new OffscreenCanvasRenderingContext2D(600, 600, this.settings)
-    build() {
-      Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
-        Canvas(this.context)
-          .width('100%')
-          .height('100%')
-          .backgroundColor('#ffff00')
-          .onReady(() =>{
-            this.offContext.save()
-            var image = this.offContext.transferToImageBitmap()
-            this.context.transferFromImageBitmap(image)
+@Entry
+@Component
+struct CanvasExample {
+  private settings: RenderingContextSettings = new RenderingContextSettings(true)
+  private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
+  private offContext: OffscreenCanvasRenderingContext2D = new OffscreenCanvasRenderingContext2D(600, 600, this.settings)
+  
+  build() {
+    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
+      Canvas(this.context)
+        .width('100%')
+        .height('100%')
+        .backgroundColor('#ffff00')
+        .onReady(() =>{
+          this.offContext.save() // save the default state
+          this.offContext.fillStyle = "green"
+          this.offContext.fillRect(20, 20, 100, 100)
+          this.offContext.restore() // restore to the default state
+          this.offContext.fillRect(150, 75, 100, 100)
+          var image = this.offContext.transferToImageBitmap()
+          this.context.transferFromImageBitmap(image)
         })
-      }
-      .width('100%')
-      .height('100%')
     }
+    .width('100%')
+    .height('100%')
   }
+}
   ```
+![zh-cn_image_000000127777781](figures/zh-cn_image_000000127777781.png) 
 
 
 ### createLinearGradient

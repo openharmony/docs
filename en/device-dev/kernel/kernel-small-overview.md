@@ -1,6 +1,4 @@
-# Kernel Overview
-
-
+# LiteOS-A Overview
 
 ## Overview
 
@@ -33,7 +31,7 @@ To keep pace with the rapid development of the IoT industry, the OpenHarmony lig
 The lightweight kernel consists of the basic kernel, extended components, HDF, and POSIX APIs. Different from the microkernel which is running in the user mode, the extended functions, such as the file system and network protocols, of the lightweight kernel are running in the kernel address space. The direct function calling between components is much faster than inter-process communication \(IPC\) or remote procedure calls \(RPCs\).
 
 **Figure  1**  Architecture of the OpenHarmony LiteOS-A kernel<a name="fig10235830103519"></a>  
-![](figures/architecture-of-the-openharmony-liteos-a-kernel.png "architecture-of-the-openharmony-liteos-a-kernel")
+![](figures/Liteos-a-architecture.png "architecture-of-the-openharmony-liteos-a-kernel")
 
 -   The basic kernel implements basic kernel mechanisms, such as scheduling, memory management, and interrupts.
 -   Extended components include file systems, network protocols, permission management, and more.

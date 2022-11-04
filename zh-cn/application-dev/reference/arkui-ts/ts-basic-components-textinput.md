@@ -34,7 +34,7 @@ TextInput(value?:{placeholder?: ResourceStr, text?: ResourceStr, controller?: Te
 | type                     | InputType                                | 设置输入框类型。<br/>默认值：InputType.Normal        |
 | placeholderColor         | [ResourceColor](ts-types.md#resourcecolor)     | 设置placeholder文本颜色。|
 | placeholderFont          | [Font](ts-types.md#font) | 设置placeholder文本样式。 |
-| enterKeyType             | EnterKeyType                             | 设置输入法回车键类型。<br/>默认值：EnterKeyType.Done    |
+| enterKeyType             | EnterKeyType                             | 设置输入法回车键类型，目前OpenHarmony输入法仅支持默认类型显示。<br/>默认值：EnterKeyType.Done |
 | caretColor               | [ResourceColor](ts-types.md#resourcecolor)    | 设置输入框光标颜色。                               |
 | maxLength                | number                                   | 设置文本的最大输入字符数。                            |
 | inputFilter<sup>8+</sup> | {<br/>value:&nbsp;[ResourceStr](ts-types.md#resourcestr),<br/>error?:&nbsp;(value:&nbsp;string)&nbsp;=&gt;&nbsp;void<br/>} | 正则表达式，匹配表达式的输入允许显示，不匹配的输入将被过滤。目前仅支持单个字符匹配，不支持字符串匹配。<br/>-&nbsp;value：设置正则表达式。<br/>-&nbsp;error：正则匹配失败时，返回被过滤的内容。 |
@@ -112,8 +112,8 @@ caretPosition(value:&nbsp;number): void
 @Entry
 @Component
 struct TextInputExample {
-  @State text: string = '';
-  controller: TextInputController = new TextInputController();
+  @State text: string = ''
+  controller: TextInputController = new TextInputController()
 
   build() {
     Column() {
@@ -127,14 +127,14 @@ struct TextInputExample {
         .fontSize(14)
         .fontColor(Color.Black)
         .onChange((value: string) => {
-          this.text = value;
+          this.text = value
         })
       Text(this.text)
       Button('Set caretPosition 1')
         .margin(15)
         .onClick(() => {
           // 将光标移动至第一个字符后
-          this.controller.caretPosition(1);
+          this.controller.caretPosition(1)
         })
       // 密码输入框
       TextInput({ placeholder: 'input your password...' })
@@ -156,3 +156,4 @@ struct TextInputExample {
 }
 ```
 
+![textInput](figures/textInput.gif)

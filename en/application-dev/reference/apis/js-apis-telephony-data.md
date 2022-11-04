@@ -63,6 +63,29 @@ promise.then((data) => {
 });
 ```
 
+## data.getDefaultCellularDataSlotIdSync
+
+getDefaultCellularDataSlotIdSync(): number
+
+Obtains the default SIM card used for mobile data synchronously.
+
+**Required permission**: ohos.permission.GET_NETWORK_INFO
+
+**System capability**: SystemCapability.Telephony.CellularData
+
+**Return value**
+
+| Type             | Description                                                        |
+| ------ | -------------------------------------------------- |
+| number | Card slot ID.<br>**0**: card slot 1<br>**1**: card slot 2|
+
+**Example**
+
+```js
+console.log("Result: "+ data.getDefaultCellularDataSlotIdSync())
+```
+
+
 ## data.setDefaultCellularDataSlotId
 
 setDefaultCellularDataSlotId(slotId: number,callback: AsyncCallback\<void\>): void 

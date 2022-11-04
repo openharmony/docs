@@ -47,7 +47,7 @@ Obtains an **[InputMethodController](#inputmethodcontroller)** instance.
 
 | Type                                           | Description                    |
 | ----------------------------------------------- | ------------------------ |
-| [InputMethodController](#inputmethodcontroller) | Returns the current **InputMethodController** instance.|
+| [InputMethodController](#inputmethodcontroller) | Current **InputMethodController** instance.|
 
 **Example**
 
@@ -67,7 +67,7 @@ Obtains an **[InputMethodSetting](#inputmethodsetting8)** instance.
 
 | Type                                     | Description                        |
 | ----------------------------------------- | ---------------------------- |
-| [InputMethodSetting](#inputmethodsetting8) | Returns the current **InputMethodSetting** instance.|
+| [InputMethodSetting](#inputmethodsetting8) | Current **InputMethodSetting** instance.|
 
 
 **Example**
@@ -94,15 +94,15 @@ Switches to another input method. This API can be used only in the stage model. 
 **Example**
 
 ```js
-inputMethod.switchInputMethod({packageName:"com.example.kikakeyboard", methodId:"com.example.kikakeyboard"} ,(err,result) => {
+inputMethod.switchInputMethod({packageName:'com.example.kikakeyboard', methodId:'com.example.kikakeyboard'} ,(err,result) => {
     if (err) {
-        console.error("switchInputMethod err: " + JSON.stringify(err));
+        console.error('switchInputMethod err: ' + JSON.stringify(err));
         return;
     }
     if (result) {
-        console.info("Success to switchInputMethod.(callback)");
+        console.info('Success to switchInputMethod.(callback)');
     } else {
-        console.error("Failed to switchInputMethod.(callback)");
+        console.error('Failed to switchInputMethod.(callback)');
     }
 });
 ```
@@ -129,14 +129,14 @@ Switches to another input method. This API can be used only in the stage model. 
 
 
 ```js
-inputMethod.switchInputMethod({packageName:"com.example.kikakeyboard", methodId:"com.example.kikakeyboard"}).then((result) => {
+inputMethod.switchInputMethod({packageName:'com.example.kikakeyboard', methodId:'com.example.kikakeyboard'}).then((result) => {
     if (result) {
-        console.info("Success to switchInputMethod.(promise)");
+        console.info('Success to switchInputMethod.(promise)');
     } else {
-        console.error("Failed to switchInputMethod.(promise)");
+        console.error('Failed to switchInputMethod.(promise)');
     }
 }).catch((err) => {
-    console.error("switchInputMethod promise err: " + err);
+    console.error('switchInputMethod promise err: ' + err);
 })
 ```
 ## inputMethod.getCurrentInputMethod<sup>9+</sup>
@@ -151,7 +151,7 @@ Obtains the current input method. This API synchronously returns the **Inputmeth
 
 | Type                                        | Description                    |
 | -------------------------------------------- | ------------------------ |
-| [InputmethodProperty](#inputmethodproperty8) | **InputmethodProperty** instance of the current input method. |
+| [InputmethodProperty](#inputmethodproperty8) | **InputmethodProperty** instance of the current input method.|
 
 **Example**
 
@@ -183,13 +183,13 @@ Hides the keyboard. This API uses an asynchronous callback to return the result.
 ```js
 InputMethodController.stopInput((error, result) => {
     if (error) {
-        console.error("failed to stopInput because: " + JSON.stringify(error));
+        console.error('failed to stopInput because: ' + JSON.stringify(error));
         return;
     }
     if (result) {
-        console.info("Success to stopInput.(callback)");
+        console.info('Success to stopInput.(callback)');
     } else {
-        console.error("Failed to stopInput.(callback)");
+        console.error('Failed to stopInput.(callback)');
     }
 });
 ```
@@ -214,12 +214,12 @@ Hides the keyboard. This API uses a promise to return the result. If any paramet
 ```js
 InputMethodController.stopInput().then((result) => {
     if (result) {
-        console.info("Success to stopInput.(promise)");
+        console.info('Success to stopInput.(promise)');
     } else {
-        console.error("Failed to stopInput.(promise)");
+        console.error('Failed to stopInput.(promise)');
     }
 }).catch((err) => {
-    console.error("stopInput promise err: " + err);
+    console.error('stopInput promise err: ' + err);
 })
 ```
 
@@ -241,7 +241,7 @@ Shows this soft keyboard. This API uses an asynchronous callback to return the r
 
 ```js
 InputMethodController.showSoftKeyboard((err) => {
-    if (err == undefined) {
+    if (err === undefined) {
         console.info('showSoftKeyboard success');
     } else {
         console.error('showSoftKeyboard failed because : ' + JSON.stringify(err));
@@ -292,7 +292,7 @@ Hides this soft keyboard. This API uses an asynchronous callback to return the r
 
 ```js
 InputMethodController.hideSoftKeyboard((err) => {
-    if (err == undefined) {
+    if (err === undefined) {
         console.info('hideSoftKeyboard success');
     } else {
         console.error('hideSoftKeyboard failed because : ' + JSON.stringify(err));
@@ -342,19 +342,17 @@ Obtains a list of activated or deactivated input methods. This API uses an async
 | Name  | Type                                               | Mandatory| Description                         |
 | -------- | --------------------------------------------------- | ---- | ----------------------------- |
 | enable   | boolean                                             | Yes  | Whether to return a list of activated input methods. The value **true** means to return a list of activated input methods, and **false** means to return a list of deactivated input methods.      |
-| callback | Array<[InputMethodProperty](#inputmethodproperty8)> | Yes  | Callback used to return a list of activated or deactivated input methods. |
+| callback | Array<[InputMethodProperty](#inputmethodproperty8)> | Yes  | Callback used to return a list of activated or deactivated input methods.|
 
 **Example**
 
 ```js
-imeList: Array<inputMethod.InputMethodProperty> = null
 InputMethodSetting.listInputMethod(true, (err,data) => {
     if (err) {
-        console.error("listInputMethod failed because: " + JSON.stringify(err));
+        console.error('listInputMethod failed because: ' + JSON.stringify(err));
         return;
     }
-    console.log("listInputMethod success");
-    this.imeList = data;
+    console.log('listInputMethod success');
  });
 ```
 
@@ -376,17 +374,15 @@ Obtains a list of activated or deactivated input methods. This API uses a promis
 
 | Type                                                        | Description                         |
 | ------------------------------------------------------------ | ----------------------------- |
-| Promise<Array<[InputMethodProperty](#inputmethodproperty8)>> | Promise used to return a list of activated or deactivated input methods. |
+| Promise<Array<[InputMethodProperty](#inputmethodproperty8)>> | Promise used to return a list of activated or deactivated input methods.|
 
 **Example**
 
 ```js
-imeList: Array<inputMethod.InputMethodProperty> = null
 InputMethodSetting.listInputMethod(true).then((data) => {
-    console.info("listInputMethod success");
-    this.imeList = data;
+    console.info('listInputMethod success');
 }).catch((err) => {
-    console.error("listInputMethod promise err: " + err);
+    console.error('listInputMethod promise err: ' + err);
 })
 ```
 
@@ -407,14 +403,12 @@ Obtains a list of installed input methods. This API uses an asynchronous callbac
 **Example**
 
 ```js
-imeList: Array<inputMethod.InputMethodProperty> = null
 InputMethodSetting.listInputMethod((err,data) => {
     if (err) {
-        console.error("listInputMethod failed because: " + JSON.stringify(err));
+        console.error('listInputMethod failed because: ' + JSON.stringify(err));
         return;
     }
-    console.log("listInputMethod success");
-    this.imeList = data;
+    console.log('listInputMethod success');
  });
 ```
 
@@ -435,12 +429,10 @@ Obtains a list of installed input methods. This API uses a promise to return the
 **Example**
 
 ```js
-imeList: Array<inputMethod.InputMethodProperty> = null
 InputMethodSetting.listInputMethod().then((data) => {
-    console.info("listInputMethod success");
-    this.imeList = data;
+    console.info('listInputMethod success');
 }).catch((err) => {
-    console.error("listInputMethod promise err: " + err);
+    console.error('listInputMethod promise err: ' + err);
 })
 ```
 
@@ -463,20 +455,20 @@ Displays a dialog box for selecting an input method. This API uses an asynchrono
 ```js
 InputMethodSetting.displayOptionalInputMethod((err) => {
     if (err) {
-        console.error("displayOptionalInputMethod failed because: " + JSON.stringify(err));
+        console.error('displayOptionalInputMethod failed because: ' + JSON.stringify(err));
         return;
     }
-    console.info("displayOptionalInputMethod success");
+    console.info('displayOptionalInputMethod success');
 });
 ```
 
 ### displayOptionalInputMethod
 
-displayOptionalInputMethod(): Promise&lt;void&gt;
+  displayOptionalInputMethod(): Promise&lt;void&gt;
 
-Displays a dialog box for selecting an input method. This API uses a promise to return the result. If any parameter is passed in, an exception is thrown.
+  Displays a dialog box for selecting an input method. This API uses a promise to return the result. If any parameter is passed in, an exception is thrown.
 
-**System capability**: SystemCapability.MiscServices.InputMethodFramework
+  **System capability**: SystemCapability.MiscServices.InputMethodFramework
 
 **Return value**
 
@@ -488,8 +480,8 @@ Displays a dialog box for selecting an input method. This API uses a promise to 
 
 ```js
 InputMethodSetting.displayOptionalInputMethod().then(() => {
-    console.info("displayOptionalInputMethod success.(promise)");
+    console.info('displayOptionalInputMethod success.(promise)');
 }).catch((err) => {
-    console.error("displayOptionalInputMethod promise err: " + err);
+    console.error('displayOptionalInputMethod promise err: ' + err);
 })
 ```

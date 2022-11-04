@@ -38,7 +38,7 @@ You can set a USB device as the USB host to connect to other USB devices for dat
     // Import the USB API package.
     import usb from '@ohos.usb';
     // Obtain the USB device list.
-    var deviceList = usb.getDevices();
+    let deviceList = usb.getDevices();
     /*
     Example deviceList structure
     [
@@ -81,21 +81,21 @@ You can set a USB device as the USB host to connect to other USB devices for dat
                     number: 1,
                     type: 3,
                     interfaceId: 0,
-                  },
-                ],
-              },
-            ],
-          },
-        ],
-      },
-    ],
+                 }
+               ]
+             }
+           ]
+         }
+       ]
+     }
+   ]
     */
     ```
 
 2.  Obtain the device operation permissions.
 
     ```js
-    var deviceName = deviceList[0].name;
+    let deviceName = deviceList[0].name;
     // Request the permissions to operate a specified device.
     usb.requestRight(deviceName).then(hasRight => {
       console.info("usb device request right result: " + hasRight);
@@ -108,7 +108,7 @@ You can set a USB device as the USB host to connect to other USB devices for dat
 
     ```js
     // Open the device, and obtain the USB device pipe for data transfer.
-    var pipe = usb.connectDevice(deviceList[0]);
+    let pipe = usb.connectDevice(deviceList[0]);
     /*
     Claim the corresponding interface from deviceList.
     interface1 must be one present in the device configuration.
@@ -127,7 +127,7 @@ You can set a USB device as the USB host to connect to other USB devices for dat
     usb.bulkTransfer(pipe, inEndpoint, dataUint8Array, 15000).then(dataLength => {
     if (dataLength >= 0) {
       console.info("usb readData result Length : " + dataLength);
-      var resultStr = this.ab2str(dataUint8Array); // Convert uint8 data into a string.
+      let resultStr = this.ab2str(dataUint8Array); // Convert uint8 data into a string.
       console.info("usb readData buffer : " + resultStr);
     } else {
       console.info("usb readData failed : " + dataLength);

@@ -28,10 +28,10 @@ Defines and shows the action sheet.
 | confirm    | {<br>value: string \| [Resource](ts-types.md#resource),<br>action: () =&gt; void<br>} | No | Text content of the confirm button and callback upon button clicking.<br>Default value:<br>**value**: button text.<br>**action**: callback upon button clicking.|
 | cancel     | () =&gt; void           | No    | Callback invoked when the dialog box is closed after the overlay is clicked.  |
 | alignment  | [DialogAlignment](ts-methods-custom-dialog-box.md#dialogalignment) | No    |  Alignment mode of the dialog box in the vertical direction.<br>Default value: **DialogAlignment.Default**|
-| offset     | {<br>dx: Length,<br>dy: Length<br>} | No     | Offset of the dialog box relative to the alignment position.{<br>dx: 0,<br>dy: 0<br>} |
+| offset     | {<br>dx: Length,<br>dy: Length<br>} | No     | Offset of the dialog box relative to the alignment position.<br/>Default value: **{<br>dx: 0,<br>dy: 0<br>}** |
 | sheets     | Array&lt;SheetInfo&gt; | Yes      | Options in the dialog box. Each option supports the image, text, and callback.|
 
-## SheetInfo parameters
+## SheetInfo
 
 | Name| Type                                                    | Mandatory| Description         |
 | ------ | ------------------------------------------------------------ | ---- | ----------------- |

@@ -6,11 +6,6 @@ A date picker dialog box is a dialog box that allows users to select a date from
 >
 >  The APIs of this module are supported since API version 9. Updates will be marked with a superscript to indicate their earliest API version.
 
-
-## Required Permissions
-
-None
-
 ## DatePickerDialog.show
 
 show(options?: DatePickerDialogOptions)

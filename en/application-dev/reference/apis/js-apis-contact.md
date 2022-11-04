@@ -22,6 +22,7 @@ Adds a contact. This API uses an asynchronous callback to return the result.
 **System capability**: SystemCapability.Applications.ContactsData
 
 **Parameters**
+
 | Name  | Type                       | Mandatory| Description                          |
 | -------- | --------------------------- | ---- | ------------------------------ |
 | contact  | [Contact](#contact)         | Yes  | Contact information.                  |
@@ -31,7 +32,7 @@ Adds a contact. This API uses an asynchronous callback to return the result.
 
   ```js
   contact.addContact({
-      fullName: {fullName: 'xxx'},
+      name: {fullName: 'xxx'},
       phoneNumbers: [{phoneNumber: '138xxxxxxxx'}]
   }, (err, data) => {
       if (err) {
@@ -54,11 +55,13 @@ Adds a contact. This API uses a promise to return the result.
 **System capability**: SystemCapability.Applications.ContactsData
 
 **Parameters**
+
 | Name | Type               | Mandatory| Description        |
 | ------- | ------------------- | ---- | ------------ |
 | contact | [Contact](#contact) | Yes  | Contact information.|
 
 **Return Value**
+
 | Type                 | Description                                       |
 | --------------------- | ------------------------------------------- |
 | Promise&lt;number&gt; | Promise used to return the contact ID.|
@@ -89,6 +92,7 @@ Deletes a contact based on the specified contact key. This API uses an asynchron
 **System capability**: SystemCapability.Applications.ContactsData
 
 **Parameters**
+
 | Name  | Type                     | Mandatory| Description                                |
 | -------- | ------------------------- | ---- | ------------------------------------ |
 | key      | string                    | Yes  | Contact key. Each contact corresponds to one key.|
@@ -118,11 +122,13 @@ Deletes a contact based on the specified contact key. This API uses a promise to
 **System capability**: SystemCapability.Applications.ContactsData
 
 **Parameters**
+
 | Name| Type  | Mandatory| Description                                  |
 | ------ | ------ | ---- | -------------------------------------- |
 | key    | string | Yes  | Contact key. Each contact corresponds to one key.|
 
 **Return Value**
+
 | Type               | Description                                         |
 | ------------------- | --------------------------------------------- |
 | Promise&lt;void&gt; | Promise used to return the result.|
@@ -150,6 +156,7 @@ Updates a contact based on the specified contact information. This API uses an a
 **System capability**: SystemCapability.Applications.ContactsData
 
 **Parameters**
+
 | Name  | Type                     | Mandatory| Description                                |
 | -------- | ------------------------- | ---- | ------------------------------------ |
 | contact  | [Contact](#contact)       | Yes  | Contact information.                        |
@@ -182,6 +189,7 @@ Updates a contact based on the specified contact information and attributes. Thi
 **System capability**: SystemCapability.Applications.ContactsData
 
 **Parameters**
+
 | Name  | Type                                   | Mandatory| Description                                |
 | -------- | --------------------------------------- | ---- | ------------------------------------ |
 | contact  | [Contact](#contact)                     | Yes  | Contact information.                        |
@@ -192,10 +200,10 @@ Updates a contact based on the specified contact information and attributes. Thi
 
   ```js
   contact.updateContact({
-      fullName: {fullName: 'xxx'},
+      name: {fullName: 'xxx'},
       phoneNumbers: [{phoneNumber: '138xxxxxxxx'}]
-  },{
-      attributes:[contact.Attribute.ATTR_EMAIL, contact.Attribute.ATTR_NAME]
+  }, {
+      attributes: [contact.Attribute.ATTR_EMAIL, contact.Attribute.ATTR_NAME]
   }, (err) => {
       if (err) {
           console.log('updateContact callback: err->${JSON.stringify(err)}');
@@ -217,12 +225,14 @@ Updates a contact based on the specified contact information and attributes. Thi
 **System capability**: SystemCapability.Applications.ContactsData
 
 **Parameters**
+
 | Name | Type                                   | Mandatory| Description              |
 | ------- | --------------------------------------- | ---- | ------------------ |
 | contact | [Contact](#contact)                     | Yes  | Contact information.      |
 | attrs   | [ContactAttributes](#contactattributes) | No  | List of contact attributes.|
 
 **Return Value**
+
 | Type               | Description                                             |
 | ------------------- | ------------------------------------------------- |
 | Promise&lt;void&gt; | Promise used to return the result.|
@@ -231,7 +241,7 @@ Updates a contact based on the specified contact information and attributes. Thi
 
   ```js
   let promise = contact.updateContact({
-      fullName: {fullName: 'xxx'},
+      name: {fullName: 'xxx'},
       phoneNumbers: [{phoneNumber: '138xxxxxxxx'}]
   }, {
       attributes: [contact.Attribute.ATTR_EMAIL, contact.Attribute.ATTR_NAME]
@@ -255,6 +265,7 @@ Checks whether the ID of this contact is in the local address book. This API use
 **System capability**: SystemCapability.Applications.ContactsData
 
 **Parameters**
+
 | Name  | Type                        | Mandatory| Description                                                        |
 | -------- | ---------------------------- | ---- | ------------------------------------------------------------ |
 | id       | number                       | Yes  | Contact ID. Each contact corresponds to one ID.                  |
@@ -284,11 +295,13 @@ Checks whether the ID of this contact is in the local address book. This API use
 **System capability**: SystemCapability.Applications.ContactsData
 
 **Parameters**
+
 | Name| Type  | Mandatory| Description                                      |
 | ------ | ------ | ---- | ------------------------------------------ |
 | id     | number | Yes  | Contact ID. Each contact corresponds to one ID.|
 
 **Return Value**
+
 | Type                  | Description                                                        |
 | ---------------------- | ------------------------------------------------------------ |
 | Promise&lt;boolean&gt; | Promise used to return the result. The value **true** indicates that the contact ID is in the local address book, and the value **false** indicates the opposite.|
@@ -316,6 +329,7 @@ Checks whether a contact is included in my card. This API uses an asynchronous c
 **System capability**: SystemCapability.Applications.ContactsData
 
 **Parameters**
+
 | Name  | Type                        | Mandatory| Description                                                        |
 | -------- | ---------------------------- | ---- | ------------------------------------------------------------ |
 | id       | number                       | Yes  | Contact ID.                                        |
@@ -345,11 +359,13 @@ Checks whether a contact is included in my card. This API uses a promise to retu
 **System capability**: SystemCapability.Applications.ContactsData
 
 **Parameters**
+
 | Name| Type  | Mandatory| Description                |
 | ------ | ------ | ---- | -------------------- |
 | id     | number | Yes  | Contact ID.|
 
 **Return Value**
+
 | Type                  | Description                                                        |
 | ---------------------- | ------------------------------------------------------------ |
 | Promise&lt;boolean&gt; | Promise used to return the result. The value **true** indicates that the contact is included in my card, and the value **false** indicates the opposite.|
@@ -377,6 +393,7 @@ Queries my card. This API uses an asynchronous callback to return the result.
 **System capability**: SystemCapability.Applications.ContactsData
 
 **Parameters**
+
 | Name  | Type                                    | Mandatory| Description                          |
 | -------- | ---------------------------------------- | ---- | ------------------------------ |
 | callback | AsyncCallback&lt;[Contact](#contact)&gt; | Yes  | Callback used to return the result.|
@@ -405,6 +422,7 @@ Queries my card based on the specified contact attributes. This API uses an asyn
 **System capability**: SystemCapability.Applications.ContactsData
 
 **Parameters**
+
 | Name  | Type                                    | Mandatory| Description                          |
 | -------- | ---------------------------------------- | ---- | ------------------------------ |
 | attrs    | [ContactAttributes](#contactattributes)  | Yes  | List of contact attributes.            |
@@ -414,7 +432,7 @@ Queries my card based on the specified contact attributes. This API uses an asyn
 
   ```js
   contact.queryMyCard({
-      attributes:['ATTR_EMAIL', 'ATTR_NAME']
+      attributes: [contact.Attribute.ATTR_EMAIL, contact.Attribute.ATTR_NAME]
   }, (err, data) => {
       if (err) {
           console.log(`queryMyCard callback: err->${JSON.stringify(err)}`);
@@ -436,11 +454,13 @@ Queries my card based on the specified contact attributes. This API uses a promi
 **System capability**: SystemCapability.Applications.ContactsData
 
 **Parameters**
+
 | Name| Type                                   | Mandatory| Description              |
 | ------ | --------------------------------------- | ---- | ------------------ |
 | attrs  | [ContactAttributes](#contactattributes) | No  | List of contact attributes.|
 
 **Return Value**
+
 | Type                              | Description                                       |
 | ---------------------------------- | ------------------------------------------- |
 | Promise&lt;[Contact](#contact)&gt; | Promise used to return the result.|
@@ -449,7 +469,7 @@ Queries my card based on the specified contact attributes. This API uses a promi
 
   ```js
   let promise = contact.queryMyCard({
-      attributes:['ATTR_EMAIL', 'ATTR_NAME']
+      attributes: [contact.Attribute.ATTR_EMAIL, contact.Attribute.ATTR_NAME]
   });
   promise.then((data) => {
       console.log(`queryMyCard success: data->${JSON.stringify(data)}`);
@@ -467,9 +487,10 @@ Selects a contact. This API uses an asynchronous callback to return the result.
 
 **Permission required**: ohos.permission.READ_CONTACTS
 
-**System capability**: SystemCapability.Applications.Contacts and SystemCapability.Applications.ContactsData
+**System capability**: SystemCapability.Applications.Contacts
 
 **Parameters**
+
 | Name  | Type                                                 | Mandatory| Description                                |
 | -------- | ----------------------------------------------------- | ---- | ------------------------------------ |
 | callback | AsyncCallback&lt;Array&lt;[Contact](#contact)&gt;&gt; | Yes  | Callback used to return the result.|
@@ -495,9 +516,10 @@ Selects a contact. This API uses a promise to return the result.
 
 **Permission required**: ohos.permission.READ_CONTACTS
 
-**System capability**: SystemCapability.Applications.Contacts and SystemCapability.Applications.ContactsData
+**System capability**: SystemCapability.Applications.Contacts
 
 **Return Value**
+
 | Type                                           | Description                                             |
 | ----------------------------------------------- | ------------------------------------------------- |
 | Promise&lt;Array&lt;[Contact](#contact)&gt;&gt; | Promise used to return the result.|
@@ -525,6 +547,7 @@ Queries a contact based on the specified key. This API uses an asynchronous call
 **System capability**: SystemCapability.Applications.ContactsData
 
 **Parameters**
+
 | Name  | Type                                    | Mandatory| Description                                  |
 | -------- | ---------------------------------------- | ---- | -------------------------------------- |
 | key      | string                                   | Yes  | Contact key. Each contact corresponds to one key.|
@@ -554,6 +577,7 @@ Queries contacts based on the specified key and application. This API uses an as
 **System capability**: SystemCapability.Applications.ContactsData
 
 **Parameters**
+
 | Name  | Type                                    | Mandatory| Description                                  |
 | -------- | ---------------------------------------- | ---- | -------------------------------------- |
 | key      | string                                   | Yes  | Contact key. Each contact corresponds to one key.|
@@ -588,6 +612,7 @@ Queries contacts based on the specified key and attributes. This API uses an asy
 **System capability**: SystemCapability.Applications.ContactsData
 
 **Parameters**
+
 | Name  | Type                                    | Mandatory| Description                                  |
 | -------- | ---------------------------------------- | ---- | -------------------------------------- |
 | key      | string                                   | Yes  | Contact key. Each contact corresponds to one key.|
@@ -620,6 +645,7 @@ Queries contacts based on the specified key, application, and attributes. This A
 **System capability**: SystemCapability.Applications.ContactsData
 
 **Parameters**
+
 | Name  | Type                                    | Mandatory| Description                                  |
 | -------- | ---------------------------------------- | ---- | -------------------------------------- |
 | key      | string                                   | Yes  | Contact key. Each contact corresponds to one key.|
@@ -658,6 +684,7 @@ Queries contacts based on the specified key, application, and attributes. This A
 **System capability**: SystemCapability.Applications.ContactsData
 
 **Parameters**
+
 | Name| Type                                   | Mandatory| Description                                  |
 | ------ | --------------------------------------- | ---- | -------------------------------------- |
 | key    | string                                  | Yes  | Contact key. Each contact corresponds to one key.|
@@ -665,6 +692,7 @@ Queries contacts based on the specified key, application, and attributes. This A
 | attrs  | [ContactAttributes](#contactattributes) | No  | List of contact attributes.                    |
 
 **Return Value**
+
 | Type                              | Description                                           |
 | ---------------------------------- | ----------------------------------------------- |
 | Promise&lt;[Contact](#contact)&gt; | Promise used to return the result.|
@@ -699,6 +727,7 @@ Queries all contacts. This API uses an asynchronous callback to return the resul
 **System capability**: SystemCapability.Applications.ContactsData
 
 **Parameters**
+
 | Name  | Type                                                 | Mandatory| Description                                  |
 | -------- | ----------------------------------------------------- | ---- | -------------------------------------- |
 | callback | AsyncCallback&lt;Array&lt;[Contact](#contact)&gt;&gt; | Yes  | Callback used to return the result.|
@@ -727,6 +756,7 @@ Queries all contacts based on the specified application. This API uses an asynch
 **System capability**: SystemCapability.Applications.ContactsData
 
 **Parameters**
+
 | Name  | Type                                                 | Mandatory| Description                                  |
 | -------- | ----------------------------------------------------- | ---- | -------------------------------------- |
 | holder   | [Holder](#holder)                                     | Yes  | Application that creates the contacts.                |
@@ -760,6 +790,7 @@ Queries all contacts based on the specified attributes. This API uses an asynchr
 **System capability**: SystemCapability.Applications.ContactsData
 
 **Parameters**
+
 | Name  | Type                                                 | Mandatory| Description                                  |
 | -------- | ----------------------------------------------------- | ---- | -------------------------------------- |
 | attrs    | [ContactAttributes](#contactattributes)               | Yes  | List of contact attributes.                    |
@@ -791,6 +822,7 @@ Queries all contacts based on the specified application and attributes. This API
 **System capability**: SystemCapability.Applications.ContactsData
 
 **Parameters**
+
 | Name  | Type                                                 | Mandatory| Description                                  |
 | -------- | ----------------------------------------------------- | ---- | -------------------------------------- |
 | holder   | [Holder](#holder)                                     | Yes  | Application that creates the contacts.                |
@@ -827,12 +859,14 @@ Queries all contacts based on the specified application and attributes. This API
 **System capability**: SystemCapability.Applications.ContactsData
 
 **Parameters**
+
 | Name| Type                                   | Mandatory| Description                  |
 | ------ | --------------------------------------- | ---- | ---------------------- |
 | holder | [Holder](#holder)                       | No  | Application that creates the contacts.|
 | attrs  | [ContactAttributes](#contactattributes) | No  | List of contact attributes.    |
 
 **Return Value**
+
 | Type                                           | Description                                               |
 | ----------------------------------------------- | --------------------------------------------------- |
 | Promise&lt;Array&lt;[Contact](#contact)&gt;&gt; | Promise used to return the result.|
@@ -866,6 +900,7 @@ Queries contacts based on the specified phone number. This API uses an asynchron
 **System capability**: SystemCapability.Applications.ContactsData
 
 **Parameters**
+
 | Name     | Type                                                 | Mandatory| Description                                  |
 | ----------- | ----------------------------------------------------- | ---- | -------------------------------------- |
 | phoneNumber | string                                                | Yes  | Phone number of the contacts.                    |
@@ -895,6 +930,7 @@ Queries contacts based on the specified phone number and application. This API u
 **System capability**: SystemCapability.Applications.ContactsData
 
 **Parameters**
+
 | Name     | Type                                                 | Mandatory| Description                                  |
 | ----------- | ----------------------------------------------------- | ---- | -------------------------------------- |
 | phoneNumber | string                                                | Yes  | Phone number of the contacts.                    |
@@ -929,6 +965,7 @@ Queries contacts based on the specified phone number and attributes. This API us
 **System capability**: SystemCapability.Applications.ContactsData
 
 **Parameters**
+
 | Name     | Type                                                 | Mandatory| Description                                  |
 | ----------- | ----------------------------------------------------- | ---- | -------------------------------------- |
 | phoneNumber | string                                                | Yes  | Phone number of the contacts.                    |
@@ -961,6 +998,7 @@ Queries contacts based on the specified phone number, application, and attribute
 **System capability**: SystemCapability.Applications.ContactsData
 
 **Parameters**
+
 | Name     | Type                                                 | Mandatory| Description                                  |
 | ----------- | ----------------------------------------------------- | ---- | -------------------------------------- |
 | phoneNumber | string                                                | Yes  | Phone number of the contacts.                    |
@@ -998,6 +1036,7 @@ Queries contacts based on the specified phone number, application, and attribute
 **System capability**: SystemCapability.Applications.ContactsData
 
 **Parameters**
+
 | Name     | Type                                   | Mandatory| Description                  |
 | ----------- | --------------------------------------- | ---- | ---------------------- |
 | phoneNumber | string                                  | Yes  | Phone number of the contacts.    |
@@ -1005,6 +1044,7 @@ Queries contacts based on the specified phone number, application, and attribute
 | attrs       | [ContactAttributes](#contactattributes) | No  | List of contact attributes.    |
 
 **Return Value**
+
 | Type                                           | Description                                               |
 | ----------------------------------------------- | --------------------------------------------------- |
 | Promise&lt;Array&lt;[Contact](#contact)&gt;&gt; | Promise used to return the result.|
@@ -1038,6 +1078,7 @@ Queries contacts based on the specified email address. This API uses an asynchro
 **System capability**: SystemCapability.Applications.ContactsData
 
 **Parameters**
+
 | Name  | Type                                                 | Mandatory| Description                                  |
 | -------- | ----------------------------------------------------- | ---- | -------------------------------------- |
 | email    | string                                                | Yes  | Email address of the contact.                    |
@@ -1067,6 +1108,7 @@ Queries contacts based on the specified email address and application. This API 
 **System capability**: SystemCapability.Applications.ContactsData
 
 **Parameters**
+
 | Name  | Type                                                 | Mandatory| Description                                  |
 | -------- | ----------------------------------------------------- | ---- | -------------------------------------- |
 | email    | string                                                | Yes  | Email address of the contact.                    |
@@ -1101,6 +1143,7 @@ Queries contacts based on the specified email address and attributes. This API u
 **System capability**: SystemCapability.Applications.ContactsData
 
 **Parameters**
+
 | Name  | Type                                                 | Mandatory| Description                                |
 | -------- | ----------------------------------------------------- | ---- | ------------------------------------ |
 | email    | string                                                | Yes  | Email address of the contact.                  |
@@ -1133,6 +1176,7 @@ Queries contacts based on the specified email address, application, and attribut
 **System capability**: SystemCapability.Applications.ContactsData
 
 **Parameters**
+
 | Name  | Type                                                 | Mandatory| Description                                |
 | -------- | ----------------------------------------------------- | ---- | ------------------------------------ |
 | email    | string                                                | Yes  | Email address of the contact.                  |
@@ -1170,6 +1214,7 @@ Queries contacts based on the specified email address, application, and attribut
 **System capability**: SystemCapability.Applications.ContactsData
 
 **Parameters**
+
 | Name| Type                                   | Mandatory| Description                  |
 | ------ | --------------------------------------- | ---- | ---------------------- |
 | email  | string                                  | Yes  | Email address of the contact.    |
@@ -1177,6 +1222,7 @@ Queries contacts based on the specified email address, application, and attribut
 | attrs  | [ContactAttributes](#contactattributes) | No  | List of contact attributes.    |
 
 **Return Value**
+
 | Type                                           | Description                                               |
 | ----------------------------------------------- | --------------------------------------------------- |
 | Promise&lt;Array&lt;[Contact](#contact)&gt;&gt; | Promise used to return the result.|
@@ -1210,6 +1256,7 @@ Queries all groups of this contact. This API uses an asynchronous callback to re
 **System capability**: SystemCapability.Applications.ContactsData
 
 **Parameters**
+
 | Name  | Type                                             | Mandatory| Description                                |
 | -------- | ------------------------------------------------- | ---- | ------------------------------------ |
 | callback | AsyncCallback&lt;Array&lt;[Group](#group)&gt;&gt; | Yes  | Callback used to return the result.|
@@ -1238,6 +1285,7 @@ Queries all groups of this contact based on the specified application. This API 
 **System capability**: SystemCapability.Applications.ContactsData
 
 **Parameters**
+
 | Name  | Type                                             | Mandatory| Description                                |
 | -------- | ------------------------------------------------- | ---- | ------------------------------------ |
 | holder   | Holder                                            | Yes  | Application that creates the contacts.              |
@@ -1271,11 +1319,13 @@ Queries all groups of this contact based on the specified application. This API 
 **System capability**: SystemCapability.Applications.ContactsData
 
 **Parameters**
+
 | Name| Type             | Mandatory| Description                  |
 | ------ | ----------------- | ---- | ---------------------- |
 | holder | [Holder](#holder) | No  | Application that creates the contacts.|
 
 **Return Value**
+
 | Type                                       | Description                                             |
 | ------------------------------------------- | ------------------------------------------------- |
 | Promise&lt;Array&lt;[Group](#group)&gt;&gt; | Promise used to return the result.|
@@ -1307,6 +1357,7 @@ Queries all applications that have created contacts. This API uses an asynchrono
 **System capability**: SystemCapability.Applications.ContactsData
 
 **Parameters**
+
 | Name  | Type                                               | Mandatory| Description                                                |
 | -------- | --------------------------------------------------- | ---- | ---------------------------------------------------- |
 | callback | AsyncCallback&lt;Array&lt;[Holder](#holder)&gt;&gt; | Yes  | Callback used to return the result.|
@@ -1335,6 +1386,7 @@ Queries all applications that have created contacts. This API uses a promise to 
 **System capability**: SystemCapability.Applications.ContactsData
 
 **Return Value**
+
 | Type                                         | Description                                                        |
 | --------------------------------------------- | ------------------------------------------------------------ |
 | Promise&lt;Array&lt;[Holder](#holder)&gt;&gt; | Promise used to return the result.|
@@ -1362,6 +1414,7 @@ Queries the key of a contact based on the specified contact ID. This API uses an
 **System capability**: SystemCapability.Applications.ContactsData
 
 **Parameters**
+
 | Name  | Type                       | Mandatory| Description                                   |
 | -------- | --------------------------- | ---- | --------------------------------------- |
 | id       | number                      | Yes  | Contact ID.                   |
@@ -1391,6 +1444,7 @@ Queries the key of a contact based on the specified contact ID and application. 
 **System capability**: SystemCapability.Applications.ContactsData
 
 **Parameters**
+
 | Name  | Type                       | Mandatory| Description                                   |
 | -------- | --------------------------- | ---- | --------------------------------------- |
 | id       | number                      | Yes  | Contact ID.                   |
@@ -1400,7 +1454,7 @@ Queries the key of a contact based on the specified contact ID and application. 
 **Example**
 
   ```js
-  contact.queryKey(id, {
+  contact.queryKey(/*id*/1, {
       holderId: 0,
       bundleName: "",
       displayName: ""
@@ -1425,12 +1479,14 @@ Queries the key of a contact based on the specified contact ID and application. 
 **System capability**: SystemCapability.Applications.ContactsData
 
 **Parameters**
+
 | Name| Type             | Mandatory| Description                  |
 | ------ | ----------------- | ---- | ---------------------- |
 | id     | number            | Yes  | Contact ID.  |
 | holder | [Holder](#holder) | No  | Application that creates the contacts.|
 
 **Return Value**
+
 | Type                 | Description                                                |
 | --------------------- | ---------------------------------------------------- |
 | Promise&lt;string&gt; | Promise used to return the result.|
@@ -1438,7 +1494,7 @@ Queries the key of a contact based on the specified contact ID and application. 
 **Example**
 
   ```js
-  let promise = contact.queryKey(id, {
+  let promise = contact.queryKey(/*id*/1, {
       holderId: 0,
       bundleName: "",
       displayName: ""
@@ -1553,7 +1609,7 @@ Or, create data by configuring a **ContactAttributes** object.
 
 ```js
 let contactAttributes = new contact.ContactAttributes();
-contactAttributes.attributes = ["ATTR_EMAIL"];
+contactAttributes.attributes = [contact.Attribute.ATTR_EMAIL];
 ```
 
 

@@ -2,15 +2,17 @@
 
 The **BackgroundTaskManager** module provides APIs to manage background tasks.
 
-If a service needs to be continued when the application or service module is running in the background (not visible to users), the application or service module can request a transient task or continuous task for delayed suspension based on the service type.
+If a service needs to be continued when the application or service module is running in the background (not visible to users), the application or service module can request a transient task to delay the suspension or a continuous task to prevent the suspension.
 
 If an application has a task that needs to be continued when the application is switched to the background and can be completed within a short period of time, the application can request a transient task. For example, if a user chooses to clear junk files in the **Files** application and exits the application, the application can request a transient task to complete the cleanup.
 
 If an application has a service that can be intuitively perceived by users and needs to run in the background for a long period of time (for example, music playback in the background), the application can request a continuous task.
 
-> **NOTE**
+If a privileged system application needs to use certain system resources (for example, resources required to receive common events) when suspended, it can request efficiency resources.
+
+>  **NOTE**
 >
-> The initial APIs of this module are supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+>  The initial APIs of this module are supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 
 ## Modules to Import
@@ -298,6 +300,64 @@ backgroundTaskManager.stopBackgroundRunning(featureAbility.getContext()).then(()
 
 ```
 
+## backgroundTaskManager.applyEfficiencyResources<sup>9+</sup>
+
+applyEfficiencyResources(request: [EfficiencyResourcesRequest](#efficiencyresourcesrequest9)): boolean
+
+Requests efficiency resources from the system.
+A process and its application can request the same type of resources at the same time, for example, CPU resources. When the application releases the resources, the same type of resources requested by the process are also released.
+
+**System capability**: SystemCapability.ResourceSchedule.BackgroundTaskManager.EfficiencyResourcesApply
+
+**System API**: This is a system API.
+
+**Parameters**
+
+| Name    | Type     | Mandatory  | Description                                      |
+| ------- | ------- | ---- | ---------------------------------------- |
+| request | [EfficiencyResourcesRequest](#efficiencyresourcesrequest9) | Yes   | Necessary information carried in the request, including the resource type and timeout interval. For details, see [EfficiencyResourcesRequest](#efficiencyresourcesrequest9).|
+
+**Return value**
+| Type            | Description              |
+| -------------- | ---------------- |
+| boolean | Returns **true** if the request for the resources is successful; returns **false** otherwise.|
+
+**Example**
+
+```js
+import backgroundTaskManager from '@ohos.backgroundTaskManager';
+
+let request = {
+    resourceTypes: backgroundTaskManager.ResourceType.CPU,
+    isApply: true,
+    timeOut: 0,
+    reason: "apply",
+    isPersist: true,
+    isProcess: false,
+};
+let res = backgroundTaskManager.applyEfficiencyResources(request);
+console.info("result of applyEfficiencyResources is: " + res)
+```
+
+## backgroundTaskManager.resetAllEfficiencyResources<sup>9+</sup>
+
+resetAllEfficiencyResources(): void
+
+Releases all resources that have been requested.
+
+**System capability**: SystemCapability.ResourceSchedule.BackgroundTaskManager.EfficiencyResourcesApply
+
+**System API**: This is a system API.
+
+**Example**
+
+```js
+import backgroundTaskManager from '@ohos.backgroundTaskManager';
+
+backgroundTaskManager.backgroundTaskManager.resetAllEfficiencyResources();
+
+```
+
 ## DelaySuspendInfo
 
 Provides the information about the suspension delay.
@@ -325,3 +385,38 @@ Provides the information about the suspension delay.
 | WIFI_INTERACTION        | 7    | WLAN-related.<br>This is a system API.|
 | VOIP                    | 8    | Audio and video calls.<br>This is a system API. |
 | TASK_KEEPING            | 9    | Computing task (effective only for specific devices).       |
+
+## EfficiencyResourcesRequest<sup>9+</sup>
+
+Describes the parameters for requesting efficiency resources.
+
+**System capability**: SystemCapability.ResourceSchedule.BackgroundTaskManager.EfficiencyResourcesApply
+
+**System API**: This is a system API.
+
+| Name            | Type    | Mandatory  | Description                                      |
+| --------------- | ------ | ---- | ---------------------------------------- |
+| resourceTypes   | number  | Yes   | Type of the resource to request.                              |
+| isApply         | boolean | Yes   | Whether the request is used to apply for resources. The value **true** means that the request is used to apply for resources, and **false** means that the request is used to release resources.         |
+| timeOut         | number  | Yes   | Duration for which the resource will be used, in milliseconds.               |
+| isPersist       | boolean | No   | Whether the resource is permanently held. If the value is **true**, **timeOut** is invalid.   |
+| isProcess       | boolean | No   | Whether the request is initiated by a process. The value **true** means that the request is initiated by a process, and **false** means that the request is initiated by an application.         |
+| reason          | string  | Yes   | Reason for requesting the resource.               |
+
+## ResourceType<sup>9+</sup>
+
+Enumerates the efficiency resource types.
+
+**System capability**: SystemCapability.ResourceSchedule.BackgroundTaskManager.EfficiencyResourcesApply
+
+**System API**: This is a system API.
+
+| Name                    | Value | Description                   |
+| ----------------------- | ---- | --------------------- |
+| CPU                     | 1    | CPU resources, which prevent the application from being suspended.            |
+| COMMON_EVENT            | 2    | A type of software resources, which prevent common events from being proxied when the application is suspended. |
+| TIMER                   | 4    | A type of software resources, which prevent timers from being proxied when the application is suspended.   |
+| WORK_SCHEDULER          | 8    | WORK_SCHEDULER resources, which ensure that the application has more time to execute the task.     |
+| BLUETOOTH               | 16   | A type of hardware resources, which prevent Bluetooth resources from being proxied when the application is suspended. |
+| GPS                     | 32   | A type of hardware resources, which prevent GPS resources from being proxied when the application is suspended. |
+| AUDIO                   | 64   | A type of hardware resources, which prevent audio resources from being proxied when the application is suspended.|

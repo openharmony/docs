@@ -28,16 +28,24 @@ getAllScreens(callback: AsyncCallback&lt;Array&lt;Screen&gt;&gt;): void
 | -------- | --------------------------------------------------- | ---- | -------------------------------------- |
 | callback | AsyncCallback&lt;Array&lt;[Screen](#screen)&gt;&gt; | 是   | 回调函数。返回当前获取的屏幕对象集合。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[屏幕错误码](../errorcodes/errorcode-display.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | ----------------------- |
+| 1400001 | Invalid display or screen. |
+
 **示例：**
 
 ```js
-var screenClass = null;
+let screenClass = null;
 screen.getAllScreens((err, data) => {
     if (err.code) {
-        console.error('Failed to get all screens . Cause:  ' + JSON.stringify(err));
+        console.error('Failed to get all screens. Cause:  ' + JSON.stringify(err));
         return;
     }
-    console.info('Succeeded in getting all screens . Data:' + JSON.stringify(data));
+    console.info('Succeeded in getting all screens. Data:' + JSON.stringify(data));
     screenClass = data[0];
 });
 ```
@@ -56,16 +64,24 @@ getAllScreens(): Promise&lt;Array&lt;Screen&gt;&gt;
 | --------------------------------------------- | ----------------------------------------- |
 | Promise&lt;Array&lt;[Screen](#screen)&gt;&gt; | Promise对象。返回当前获取的屏幕对象集合。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[屏幕错误码](../errorcodes/errorcode-display.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | ----------------------- |
+| 1400001 | Invalid display or screen. |
+
 **示例：**
 
 ```js
-var screenClass = null;
+let screenClass = null;
 let promise = screen.getAllScreens();
 promise.then((data) => {
     screenClass = data[0];
-    console.log('Succeeded in getting all screens . Data:'+ JSON.stringify(data));
+    console.log('Succeeded in getting all screens. Data:'+ JSON.stringify(data));
 }).catch((err) => {
-    console.log('Failed to get all screens . Cause: ' + JSON.stringify(err));
+    console.log('Failed to get all screens. Cause: ' + JSON.stringify(err));
 });
 ```
 
@@ -87,10 +103,14 @@ on(eventType: 'connect' | 'disconnect' | 'change', callback: Callback&lt;number&
 **示例：**
 
 ```js
-var callback = (data) => {
-    console.info('Register the callback for screen changes. Data: ' + JSON.stringify(data))
+try {
+    let callback = (data) => {
+        console.info('Succeeded in registering the callback for screen changes. Data: ' + JSON.stringify(data))
+    };
+    screen.on('connect', callback);
+} catch (exception) {
+    console.error('Failed to register the callback for screen changes. Code: ' + JSON.stringify(exception));
 };
-screen.on("connect", callback);
 ```
 
 ## screen.off('connect' | 'disconnect' | 'change')
@@ -111,10 +131,14 @@ off(eventType: 'connect' | 'disconnect' | 'change', callback?: Callback&lt;numbe
 **示例：**
 
 ```js
-var callback = (data) => {
-    console.info('Unregister the callback for screen changes. Data: ' + JSON.stringify(data))
+try {
+    let callback = (data) => {
+        console.info('Succeeded in unregistering the callback for screen changes. Data: ' + JSON.stringify(data))
+    };
+    screen.off('connect', callback);
+} catch (exception) {
+    console.error('Failed to register the callback for screen changes. Code: ' + JSON.stringify(exception));
 };
-screen.off("connect", callback);
 ```
 
 ## screen.makeExpand
@@ -132,18 +156,30 @@ makeExpand(options:Array&lt;ExpandOption&gt;, callback: AsyncCallback&lt;number&
 | options  | Array&lt;[ExpandOption](#expandoption)&gt; | 是   | 设置扩展屏幕的参数集合。         |
 | callback | Callback&lt;number&gt;                     | 是   | 回调函数。返回扩展屏幕的群组id。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[屏幕错误码](../errorcodes/errorcode-display.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | ----------------------- |
+| 1400001 | Invalid display or screen. |
+
 **示例：**
 
 ```js
-var groupId = null;
-screen.makeExpand([{screenId: 0, startX: 0, startY: 0}, {screenId: 1, startX: 1080, startY: 0}], (err, data) => {
-  if (err.code) {
-    console.error('Failed to make screens as expand-screen. Cause:' + JSON.stringify(err));
-    return;
-  }
-  groupId = data;
-  console.info('Succeeded in making screens as expand-screen.Data:' + JSON.stringify(data));
-});
+try {
+    let groupId = null;
+    screen.makeExpand([{screenId: 0, startX: 0, startY: 0}, {screenId: 1, startX: 1080, startY: 0}], (err, data) => {
+      if (err.code) {
+        console.error('Failed to expand the screen. Code:' + JSON.stringify(err));
+        return;
+      }
+      groupId = data;
+      console.info('Succeeded in expanding the screen. Data: ' + JSON.stringify(data));
+    });
+} catch (exception) {
+    console.error('Failed to expand the screen. Code: ' + JSON.stringify(exception));
+};
 ```
 
 ## screen.makeExpand
@@ -166,14 +202,26 @@ makeExpand(options:Array&lt;ExpandOption&gt;): Promise&lt;number&gt;
 | --------------------- | ----------------------------------- |
 | Promise&lt;number&gt; | Promise对象。返回扩展屏幕的群组id。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[屏幕错误码](../errorcodes/errorcode-display.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | ----------------------- |
+| 1400001 | Invalid display or screen. |
+
 **示例：**
 
 ```js
-screen.makeExpand([{screenId: 0, startX: 0, startY: 0}, {screenId: 1, startX: 1080, startY: 0}]).then((data) => {
-  console.info('Succeeded in making screens as expand-screen.Data:' + JSON.stringify(data));
-}).catch((err) => {
-  console.error('Failed to make screens as expand-screen. Cause:' + JSON.stringify(err));
-});
+try {
+    screen.makeExpand([{screenId: 0, startX: 0, startY: 0}, {screenId: 1, startX: 1080, startY: 0}]).then((data) => {
+      console.info('Succeeded in expanding the screen. Data: ' + JSON.stringify(data));
+    }).catch((err) => {
+      console.error('Failed to expand the screen. Code:' + JSON.stringify(err));
+    });
+} catch (exception) {
+    console.error('Failed to expand the screen. Code: ' + JSON.stringify(exception));
+};
 ```
 
 ## screen.makeMirror
@@ -192,18 +240,30 @@ makeMirror(mainScreen:number, mirrorScreen:Array&lt;number&gt;, callback: AsyncC
 | mirrorScreen | Array&lt;number&gt;         | 是   | 镜像屏幕id集合。       |
 | callback     | AsyncCallback&lt;number&gt; | 是   | 回调函数。返回镜像屏幕的群组id。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[屏幕错误码](../errorcodes/errorcode-display.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | ----------------------- |
+| 1400001 | Invalid display or screen. |
+
 **示例：**
 
 ```js
-var mainScreenId = 0;
-var mirrorScreenIds = [1, 2, 3];
-screen.makeMirror(mainScreenId, mirrorScreenIds, (err, data) => {
-  if (err.code) {
-    console.error('Failed to make screens as mirror-screen.Cause:' + JSON.stringify(err));
-    return;
-  }
-  console.info('Succeeded in making screens as mirror-screen.Data:' + JSON.stringify(data));
-});
+let mainScreenId = 0;
+let mirrorScreenIds = [1, 2, 3];
+try {
+    screen.makeMirror(mainScreenId, mirrorScreenIds, (err, data) => {
+      if (err.code) {
+        console.error('Failed to set screen mirroring. Code: ' + JSON.stringify(err));
+        return;
+      }
+      console.info('Succeeded in setting screen mirroring. Data: ' + JSON.stringify(data));
+    });
+} catch (exception) {
+    console.error('Failed to set screen mirroring. Code: ' + JSON.stringify(exception));
+};
 ```
 
 ## screen.makeMirror
@@ -227,16 +287,28 @@ makeMirror(mainScreen:number, mirrorScreen:Array&lt;number&gt;): Promise&lt;numb
 | --------------------- | ----------------------------------- |
 | Promise&lt;number&gt; | Promise对象。返回镜像屏幕的群组id。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[屏幕错误码](../errorcodes/errorcode-display.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | ----------------------- |
+| 1400001 | Invalid display or screen. |
+
 **示例：**
 
 ```js
-var mainScreenId = 0;
-var mirrorScreenIds = [1, 2, 3];
-screen.makeMirror(mainScreenId, mirrorScreenIds).then((data) => {
-  console.info('Succeeded in making screens as mirror-screen.Data:' + JSON.stringify(data));
-}).catch((err) => {
-  console.error('Failed to make screens as mirror-screen.Cause:' + JSON.stringify(err));
-});
+let mainScreenId = 0;
+let mirrorScreenIds = [1, 2, 3];
+try {
+    screen.makeMirror(mainScreenId, mirrorScreenIds).then((data) => {
+      console.info('Succeeded in setting screen mirroring. Data: ' + JSON.stringify(data));
+    }).catch((err) => {
+      console.error('Failed to set screen mirroring. Code: ' + JSON.stringify(err));
+    });
+} catch (exception) {
+    console.error('Failed to set screen mirroring. Code: ' + JSON.stringify(exception));
+};
 ```
 
 ## screen.createVirtualScreen
@@ -256,24 +328,36 @@ createVirtualScreen(options:VirtualScreenOption, callback: AsyncCallback&lt;Scre
 | options  | [VirtualScreenOption](#virtualscreenoption) | 是   | 用于创建虚拟屏幕的参数。           |
 | callback | AsyncCallback&lt;[Screen](#screen)&gt;      | 是   | 回调函数，返回创建的虚拟屏幕对象。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[屏幕错误码](../errorcodes/errorcode-display.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | ----------------------- |
+| 1400001 | Invalid display or screen. |
+
 **示例：**
 
 ```js
-var screenClass = null;
-screen.createVirtualScreen({
-  name: 'screen01',
-  width: 1080,
-  height: 2340,
-  density: 2,
-  surfaceId: ''
-}, (err, data) => {
-  if (err.code) {
-    console.error('Failed to create virtual screen.Cause:' + JSON.stringify(err));
-    return;
-  }
-  screenClass = data;
-  console.info('Succeeded in creating virtual screen.Data:' + JSON.stringify(data));
-});
+let screenClass = null;
+try {
+    screen.createVirtualScreen({
+      name: 'screen01',
+      width: 1080,
+      height: 2340,
+      density: 2,
+      surfaceId: ''
+    }, (err, data) => {
+      if (err.code) {
+        console.error('Failed to create the virtual screen. Code: ' + JSON.stringify(err));
+        return;
+      }
+      screenClass = data;
+      console.info('Succeeded in creating the virtual screen. Data: ' + JSON.stringify(data));
+    });
+} catch (exception) {
+    console.error('Failed to create the virtual screen. Code: ' + JSON.stringify(exception));
+};
 ```
 
 ## screen.createVirtualScreen
@@ -298,22 +382,34 @@ createVirtualScreen(options:VirtualScreenOption): Promise&lt;Screen&gt;
 | -------------------------------- | ------------------------------------- |
 | Promise&lt;[Screen](#screen)&gt; | Promise对象。返回创建的虚拟屏幕对象。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[屏幕错误码](../errorcodes/errorcode-display.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | ----------------------- |
+| 1400001 | Invalid display or screen. |
+
 **示例：**
 
 ```js
-var screenClass = null;
-screen.createVirtualScreen({
-  name: 'screen01',
-  width: 1080,
-  height: 2340,
-  density: 2,
-  surfaceId: ''
-}).then((data) => {
-  screenClass = data;
-  console.info('Succeeded in creating virtual screen.Data:' + JSON.stringify(data));
-}).catch((err) => {
-  console.error('Failed to create virtual screen.Cause:' + JSON.stringify(err));
-});
+let screenClass = null;
+try {
+    screen.createVirtualScreen({
+      name: 'screen01',
+      width: 1080,
+      height: 2340,
+      density: 2,
+      surfaceId: ''
+    }).then((data) => {
+      screenClass = data;
+      console.info('Succeeded in creating the virtual screen. Data: ' + JSON.stringify(data));
+    }).catch((err) => {
+      console.error('Failed to create the virtual screen. Code: ' + JSON.stringify(err));
+    });
+} catch (exception) {
+    console.error('Failed to create the virtual screen. Code: ' + JSON.stringify(exception));
+};
 ```
 
 ## screen.destroyVirtualScreen
@@ -331,17 +427,29 @@ destroyVirtualScreen(screenId:number, callback: AsyncCallback&lt;void&gt;): void
 | screenId | number                    | 是   | 屏幕的id。                                                   |
 | callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。当销毁虚拟屏幕成功，err为undefined，否则为错误对象。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[屏幕错误码](../errorcodes/errorcode-display.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | ----------------------------- |
+| 1400002 | Unauthorized operation. |
+
 **示例：**
 
 ```js
-var screenId = 1;
-screen.destroyVirtualScreen(screenId, (err,data) => {
-  if (err.code) {
-    console.error('Failed to destroy virtual screen.Cause:' + JSON.stringify(err));
-    return;
-  }
-  console.info('Succeeded in destroying virtual screen.');
-});
+let screenId = 1;
+try {
+    screen.destroyVirtualScreen(screenId, (err,data) => {
+      if (err.code) {
+        console.error('Failed to destroy the virtual screen. Code: ' + JSON.stringify(err));
+        return;
+      }
+      console.info('Succeeded in destroying the virtual screen.');
+    });
+} catch (exception) {
+    console.error('Failed to destroy the virtual screen. Code: ' + JSON.stringify(exception));
+};
 ```
 
 ## screen.destroyVirtualScreen
@@ -364,15 +472,27 @@ destroyVirtualScreen(screenId:number): Promise&lt;void&gt;
 | ------------------- | ------------------------- |
 | Promise&lt;void&gt; | 无返回结果的Promise对象。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[屏幕错误码](../errorcodes/errorcode-display.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | ----------------------------- |
+| 1400002 | Unauthorized operation. |
+
 **示例：**
 
 ```js
-var screenId = 1;
-screen.destroyVirtualScreen(screenId).then((data) => {
-  console.info('Succeeded in destroying virtual screen.');
-}).catch((err) => {
-  console.error('Failed to destroy virtual screen.Cause:' + JSON.stringify(err));
-});
+let screenId = 1;
+try {
+    screen.destroyVirtualScreen(screenId).then((data) => {
+      console.info('Succeeded in destroying the virtual screen.');
+    }).catch((err) => {
+      console.error('Failed to destroy the virtual screen. Code: ' + JSON.stringify(err));
+    });
+} catch (exception) {
+    console.error('Failed to destroy the virtual screen. Code: ' + JSON.stringify(exception));
+};
 ```
 
 ## screen.setVirtualScreenSurface
@@ -393,18 +513,30 @@ setVirtualScreenSurface(screenId:number, surfaceId: string, callback: AsyncCallb
 | surfaceId | string                    | 是   | surface的id。                                                |
 | callback  | AsyncCallback&lt;void&gt; | 是   | 回调函数。当设置虚拟屏幕surface成功，err为undefined，否则为错误对象。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[屏幕错误码](../errorcodes/errorcode-display.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | ----------------------- |
+| 1400001 | Invalid display or screen. |
+
 **示例：**
 
 ```js
-var screenId = 1;
-var surfaceId = '2048';
-screen.setVirtualScreenSurface(screenId, surfaceId, (err,data) => {
-  if (err.code) {
-    console.error('Failed to Set surface for the virtual screen.Cause:' + JSON.stringify(err));
-    return;
-  }
-  console.info('Succeeded in setting surface for the virtual screen.');
-});
+let screenId = 1;
+let surfaceId = '2048';
+try {
+  screen.setVirtualScreenSurface(screenId, surfaceId, (err,data) => {
+    if (err.code) {
+      console.error('Failed to set the surface for the virtual screen. Code: ' + JSON.stringify(err));
+      return;
+    }
+    console.info('Succeeded in setting the surface for the virtual screen.');
+  });
+} catch (exception) {
+    console.error('Failed to set the surface for the virtual screen. Code: ' + JSON.stringify(exception));
+};
 ```
 
 ## screen.setVirtualScreenSurface
@@ -430,16 +562,28 @@ setVirtualScreenSurface(screenId:number, surfaceId: string): Promise&lt;void&gt;
 | ------------------- | ------------------------- |
 | Promise&lt;void&gt; | 无返回结果的Promise对象。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[屏幕错误码](../errorcodes/errorcode-display.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | ----------------------- |
+| 1400001 | Invalid display or screen. |
+
 **示例：**
 
 ```js
-var screenId = 1;
-var surfaceId = '2048';
-screen.setVirtualScreenSurface(screenId, surfaceId).then((data) => {
-  console.info('Succeeded in setting surface for the virtual screen.');
-}).catch((err) => {
-  console.error('Failed to Set surface for the virtual screen.Cause:' + JSON.stringify(err));
-});
+let screenId = 1;
+let surfaceId = '2048';
+try {
+    screen.setVirtualScreenSurface(screenId, surfaceId).then((data) => {
+      console.info('Succeeded in setting the surface for the virtual screen.');
+    }).catch((err) => {
+      console.error('Failed to set the surface for the virtual screen. Code: ' + JSON.stringify(err));
+    });
+} catch (exception) {
+    console.error('Failed to set the surface for the virtual screen. Code: ' + JSON.stringify(exception));
+};
 ```
 
 ## screen.isScreenRotationLocked
@@ -460,9 +604,9 @@ isScreenRotationLocked(): Promise&lt;boolean&gt;
 
 ```js
 screen.isScreenRotationLocked().then((isLocked) => {
-  console.info('Succeeded in getting screen rotation lock status. isLocked:'+ JSON.stringify(isLocked));
+  console.info('Succeeded in getting the screen rotation lock status. isLocked:'+ JSON.stringify(isLocked));
 }).catch((err) => {
-  console.error('Failed to get screen rotation lock status. Cause:' + JSON.stringify(err));
+  console.error('Failed to get the screen rotation lock status. Cause:' + JSON.stringify(err));
 });
 ```
 
@@ -485,10 +629,10 @@ isScreenRotationLocked(callback: AsyncCallback&lt;boolean&gt;): void
 ```js
 screen.isScreenRotationLocked((err, isLocked) => {
   if (err.code) {
-    console.error('Failed to get screen rotation lock status. Cause:' + JSON.stringify(err));
+    console.error('Failed to get the screen rotation lock status. Cause:' + JSON.stringify(err));
     return;
   }
-  console.info('Succeeded in getting screen rotation lock status. isLocked:' + JSON.stringify(isLocked));
+  console.info('Succeeded in getting the screen rotation lock status. isLocked:' + JSON.stringify(isLocked));
 });
 ```
 
@@ -515,12 +659,16 @@ setScreenRotationLocked(isLocked: boolean): Promise&lt;void&gt;
 **示例：**
 
 ```js
-var isLocked = false;
-screen.setScreenRotationLocked(isLocked).then((data) => {
-  console.info('Succeeded in setting whether to lock screen rotation');
-}).catch((err) => {
-  console.error('Failed to set whether to lock screen rotation. Cause:' + JSON.stringify(err));
-});
+let isLocked = false;
+try {
+    screen.setScreenRotationLocked(isLocked).then((data) => {
+      console.info('Succeeded in unlocking auto rotate');
+    }).catch((err) => {
+      console.error('Failed to unlock auto rotate. Code: ' + JSON.stringify(err));
+    });
+} catch (exception) {
+    console.error('Failed to unlock auto rotate. Code: ' + JSON.stringify(exception));
+};
 ```
 
 ## screen.setScreenRotationLocked
@@ -541,14 +689,18 @@ setScreenRotationLocked(isLocked: boolean, callback: AsyncCallback&lt;void&gt;):
 **示例：**
 
 ```js
-var isLocked = false;
-screen.setScreenRotationLocked(isLocked, (err, data) => {
-  if (err.code) {
-    console.error('Failed to set whether to lock screen rotation. Cause:' + JSON.stringify(err));
-    return;
-  }
-  console.info('Succeeded in setting whether to lock screen rotation.');
-});
+let isLocked = false;
+try {
+    screen.setScreenRotationLocked(isLocked, (err, data) => {
+      if (err.code) {
+        console.error('Failed to unlock auto rotate. Cause:' + JSON.stringify(err));
+        return;
+      }
+      console.info('Succeeded in unlocking auto rotate.');
+    });
+} catch (exception) {
+    console.error('Failed to unlock auto rotate. Code: ' + JSON.stringify(exception));
+};
 ```
 
 ## ExpandOption
@@ -606,16 +758,28 @@ setOrientation(orientation: Orientation, callback: AsyncCallback&lt;void&gt;): v
 | orientation | [Orientation](#orientation) | 是   | 屏幕方向。                                                   |
 | callback    | AsyncCallback&lt;void&gt;   | 是   | 回调函数。当设置屏幕方向成功，err为undefined，否则为错误对象。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[屏幕错误码](../errorcodes/errorcode-display.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------------------------------------------- |
+| 1400003 | This display manager service works abnormally. |
+
 **示例：**
 
 ```js
-screenClass.setOrientation(screen.Orientation.VERTICAL, (err, data) => {
-    if (err.code) {
-        console.error('Failed to setOrientation VERTICAL. Cause: ' + JSON.stringify(err));
-        return;
-    }
-    console.info('Succeeded in setting Orientation VERTICAL. data: ' + JSON.stringify(data));
-})
+try {
+    screenClass.setOrientation(screen.Orientation.VERTICAL, (err, data) => {
+        if (err.code) {
+            console.error('Failed to set the vertical orientation. Code: ' + JSON.stringify(err));
+            return;
+        }
+        console.info('Succeeded in setting the vertical orientation. data: ' + JSON.stringify(data));
+    });
+} catch (exception) {
+    console.error('Failed to set the vertical orientation. Code: ' + JSON.stringify(exception));
+};
 ```
 
 ### setOrientation
@@ -636,15 +800,27 @@ setOrientation(orientation: Orientation): Promise&lt;void&gt;
 | ------------------- | ------------------------- |
 | Promise&lt;void&gt; | 无返回结果的Promise对象。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[屏幕错误码](../errorcodes/errorcode-display.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------------------------------------------- |
+| 1400003 | This display manager service works abnormally. |
+
 **示例：**
 
 ```js
-let promise = screenClass.setOrientation(screen.Orientation.VERTICAL);
-promise.then((data) => {
-    console.info('Succeeded in setting Orientation VERTICAL. Data: ' + JSON.stringify(data));
-}).catch((err) => {
-    console.error('Failed to set Orientation VERTICAL. Cause: ' + JSON.stringify(err));
-})
+try {
+    let promise = screenClass.setOrientation(screen.Orientation.VERTICAL);
+    promise.then((data) => {
+        console.info('Succeeded in setting the vertical orientation. Data: ' + JSON.stringify(data));
+    }).catch((err) => {
+        console.error('Failed to set the vertical orientation. Cause: ' + JSON.stringify(err));
+    });
+} catch (exception) {
+    console.error('Failed to set the vertical orientation. Code: ' + JSON.stringify(exception));
+};
 ```
 
 ### setScreenActiveMode
@@ -660,17 +836,29 @@ setScreenActiveMode(modeIndex: number, callback: AsyncCallback&lt;void&gt;): voi
 | modeIndex | number                    | 是   | 模式索引。                                                   |
 | callback  | AsyncCallback&lt;void&gt; | 是   | 回调函数。当设置屏幕当前显示模式成功，err为undefined，否则为错误对象。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[屏幕错误码](../errorcodes/errorcode-display.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------------------------------------------- |
+| 1400003 | This display manager service works abnormally. |
+
 **示例：**
 
 ```js
-var modeIndex = 0;
-screenClass.setScreenActiveMode(modeIndex, (err, data) => {
-    if (err.code) {
-        console.error('Failed to set ScreenActiveMode 0. Cause: ' + JSON.stringify(err));
-        return;
-    }
-    console.info('Succeeded in setting ScreenActiveMode 0. data: ' + JSON.stringify(data));
-})
+let modeIndex = 0;
+try {
+    screenClass.setScreenActiveMode(modeIndex, (err, data) => {
+        if (err.code) {
+            console.error('Failed to set screen active mode 0. Code: ' + JSON.stringify(err));
+            return;
+        }
+        console.info('Succeeded in setting screen active mode 0. data: ' + JSON.stringify(data));
+    });
+} catch (exception) {
+    console.error('Failed to set screen active mode 0. Code: ' + JSON.stringify(exception));
+};
 ```
 
 ### setScreenActiveMode
@@ -691,16 +879,28 @@ setScreenActiveMode(modeIndex: number): Promise&lt;void&gt;
 | ------------------- | ------------------------- |
 | Promise&lt;void&gt; | 无返回结果的Promise对象。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[屏幕错误码](../errorcodes/errorcode-display.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------------------------------------------- |
+| 1400003 | This display manager service works abnormally. |
+
 **示例：**
 
 ```js
-var modeIndex = 0;
-let promise = screenClass.setScreenActiveMode(modeIndex);
-promise.then((data) => {
-    console.info('Succeeded in setting ScreenActiveMode 0. Data: ' + JSON.stringify(data));
-}).catch((err) => {
-    console.error('Failed to set ScreenActiveMode 0. Cause: ' + JSON.stringify(err));
-})
+let modeIndex = 0;
+try {
+    let promise = screenClass.setScreenActiveMode(modeIndex);
+      promise.then((data) => {
+          console.info('Succeeded in setting screen active mode 0. Data: ' + JSON.stringify(data));
+      }).catch((err) => {
+          console.error('Failed to set screen active mode 0. Code: ' + JSON.stringify(err));
+      });
+} catch (exception) {
+    console.error('Failed to set screen active mode 0. Code: ' + JSON.stringify(exception));
+};
 ```
 
 ### setDensityDpi
@@ -716,17 +916,29 @@ setDensityDpi(densityDpi: number, callback: AsyncCallback&lt;void&gt;): void;
 | densityDpi | number                    | 是   | 像素密度。支持的输入范围为80-640。                           |
 | callback   | AsyncCallback&lt;void&gt; | 是   | 回调函数。当设置屏幕的像素密度成功，err为undefined，否则为错误对象。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[屏幕错误码](../errorcodes/errorcode-display.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------------------------------------------- |
+| 1400003 | This display manager service works abnormally. |
+
 **示例：**
 
 ```js
-var densityDpi = 320;
-screenClass.setDensityDpi(densityDpi, (err, data) => {
-    if (err.code) {
-        console.error('Failed to set DensityDpi 320. Cause: ' + JSON.stringify(err));
-        return;
-    }
-    console.info('Succeed in setting DensityDpi 320. data: ' + JSON.stringify(data));
-})
+let densityDpi = 320;
+try {
+    screenClass.setDensityDpi(densityDpi, (err, data) => {
+        if (err.code) {
+            console.error('Failed to set the pixel density of the screen to 320. Code: ' + JSON.stringify(err));
+            return;
+        }
+        console.info('Succeed in setting the pixel density of the screen to 320. data: ' + JSON.stringify(data));
+    });
+} catch (exception) {
+    console.error('Failed to set the pixel density of the screen to 320. Code: ' + JSON.stringify(exception));
+};
 ```
 
 ### setDensityDpi
@@ -747,16 +959,28 @@ setDensityDpi(densityDpi: number): Promise&lt;void&gt;
 | ------------------- | ------------------------- |
 | Promise&lt;void&gt; | 无返回结果的Promise对象。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[屏幕错误码](../errorcodes/errorcode-display.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------------------------------------------- |
+| 1400003 | This display manager service works abnormally. |
+
 **示例：**
 
 ```js
-var densityDpi = 320;
-var promise = screenClass.setDensityDpi(densityDpi);
-promise.then((data) => {
-    console.info('Succeeded in setting DensityDpi 320. Data: ' + JSON.stringify(data));
-}).catch((err) => {
-    console.error('Failed to set DensityDpi 320. Cause: ' + JSON.stringify(err));
-})
+let densityDpi = 320;
+try {
+    let promise = screenClass.setDensityDpi(densityDpi);
+    promise.then((data) => {
+        console.info('Succeeded in setting the pixel density of the screen to 320. Data: ' + JSON.stringify(data));
+    }).catch((err) => {
+        console.error('Failed to set the pixel density of the screen to 320. Code: ' + JSON.stringify(err));
+    });
+} catch (exception) {
+    console.error('Failed to set the pixel density of the screen to 320. Code: ' + JSON.stringify(exception));
+};
 ```
 
 ## Orientation

@@ -1,4 +1,4 @@
-# Code of Conduct<a name="EN-US_TOPIC_0000001055368056"></a>
+# Code of Conduct
 
 The OpenHarmony community complies with the code of conduct specified in  [Contributor Covenant](https://contributor-covenant.org/)  of the open source community. For details, see  [https://www.contributor-covenant.org/version/1/4/code-of-conduct/](https://www.contributor-covenant.org/version/1/4/code-of-conduct/).
 

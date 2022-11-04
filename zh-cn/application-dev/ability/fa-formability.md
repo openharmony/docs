@@ -10,7 +10,7 @@
 - 卡片使用方：显示卡片内容的宿主应用，控制卡片在宿主中展示的位置。
 - 卡片管理服务：用于管理系统中所添加卡片的常驻代理服务，包括卡片对象的管理与使用，以及卡片周期性刷新等。
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> **说明：**
 > 卡片使用方和提供方不要求常驻运行，在需要添加/删除/请求更新卡片时，卡片管理服务会拉起卡片提供方获取卡片信息。
 
 开发者仅需作为卡片提供方进行卡片内容的开发，卡片使用方和卡片管理服务由系统自动处理。
@@ -403,5 +403,5 @@ onUpdate(formId) {
 ## 相关实例
 
 针对FA模型卡片提供方的开发，有以下相关实例可供参考：
-- [`FormAbility`：FA模型卡片（eTS）（API8）](https://gitee.com/openharmony/applications_app_samples/tree/master/ability/FormAbility)
-- [`FormLauncher`：卡片使用方（eTS）（API8）（Full SDK）](https://gitee.com/openharmony/applications_app_samples/tree/master/ability/FormLauncher)
+- [`FormAbility`：FA模型卡片（ArkTS）（API8）](https://gitee.com/openharmony/applications_app_samples/tree/master/ability/FormAbility)
+- [`FormLauncher`：卡片使用方（ArkTS）（API8）（Full SDK）](https://gitee.com/openharmony/applications_app_samples/tree/master/ability/FormLauncher)

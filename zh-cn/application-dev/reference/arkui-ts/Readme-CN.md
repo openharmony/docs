@@ -1,4 +1,4 @@
-# 基于eTS的声明式开发范式
+# 基于ArkTS的声明式开发范式
 
 - 组件通用信息
     - 通用事件
@@ -98,6 +98,7 @@
     - [ColumnSplit](ts-container-columnsplit.md)
     - [Counter](ts-container-counter.md)
     - [Flex](ts-container-flex.md)
+    - [FlowItem](ts-container-flowitem.md)
     - [GridContainer](ts-container-gridcontainer.md)
     - [GridCol](ts-container-gridcol.md)
     - [GridRow](ts-container-gridrow.md)
@@ -118,6 +119,7 @@
     - [Swiper](ts-container-swiper.md)
     - [Tabs](ts-container-tabs.md)
     - [TabContent](ts-container-tabcontent.md)
+    - [WaterFlow](ts-container-waterflow.md)
 - 媒体组件
     - [Video](ts-media-components-video.md)
 - 绘制组件
@@ -132,12 +134,12 @@
 - 画布组件
     - [Canvas](ts-components-canvas-canvas.md)
     - [CanvasRenderingContext2D对象](ts-canvasrenderingcontext2d.md)
-    - [OffscreenCanvasRenderingContext2D对象](ts-offscreencanvasrenderingcontext2d.md)
-    - [Lottie](ts-components-canvas-lottie.md)
-    - [Path2D对象](ts-components-canvas-path2d.md)
     - [CanvasGradient对象](ts-components-canvas-canvasgradient.md)
     - [ImageBitmap对象](ts-components-canvas-imagebitmap.md)
     - [ImageData对象](ts-components-canvas-imagedata.md)
+    - [OffscreenCanvasRenderingContext2D对象](ts-offscreencanvasrenderingcontext2d.md)
+    - [Path2D对象](ts-components-canvas-path2d.md)
+    - [Lottie](ts-components-canvas-lottie.md)
 
 
 - 动画
@@ -148,8 +150,6 @@
         - [组件内转场](ts-transition-animation-component.md)
         - [共享元素转场](ts-transition-animation-shared-elements.md)
     - [路径动画](ts-motion-path-animation.md)
-    - [矩阵变换](ts-matrix-transformation.md)
-    - [插值计算](ts-interpolation-calculation.md)
 - 全局UI方法
     - 弹窗
         - [警告弹窗](ts-methods-alert-dialog-box.md)
@@ -159,5 +159,10 @@
         - [时间选择弹窗](ts-methods-timepicker-dialog.md)
         - [文本选择弹窗](ts-methods-textpicker-dialog.md)
     - [菜单](ts-methods-menu.md)
+- [应用级变量的状态管理](ts-state-management.md)
+- [像素单位](ts-pixel-units.md)
 - [枚举说明](ts-appendix-enums.md)
 - [类型说明](ts-types.md)
+- 已停止维护的组件
+
+    - [GridContainer(栅格)](ts-container-gridcontainer.md)

@@ -209,7 +209,13 @@ export default class MainAbility extends Ability {
         let context = this.context;
         console.log("[Demo] MainAbility bundleName " + context.abilityInfo.bundleName)
 
-        windowStage.setUIContent(this.context, "pages/index", null)
+        windowStage.loadContent("pages/index", (err, data) => {
+            if (err.code) {
+                console.error('Failed to load the content. Cause:' + JSON.stringify(err));
+                return;
+            }
+            console.info('Succeeded in loading the content. Data: ' + JSON.stringify(data))
+        });
     }
 
     onWindowStageDestroy() {
@@ -235,13 +241,13 @@ export default class MainAbility extends Ability {
 
 ​        [FormExtensionContext](../reference/apis/js-apis-formextensioncontext.md)
 
-### 在eTS页面中访问Context
+### 在ArkTS页面中访问Context
 
-Stage模型下，在Ability的`onWindowStageCreate`生命周期中，可以通过WindowStage的`SetUIContent`方法加载一个eTS页面。在一些场景中，需要在页面内获取Context调用相关API。
+Stage模型下，在Ability的`onWindowStageCreate`生命周期中，可以通过WindowStage的`SetUIContent`方法加载一个ArkTS页面。在一些场景中，需要在页面内获取Context调用相关API。
 
 **获取方法**
 
-在eTS页面中通过以下全局方法获取当前页面关联的Context。
+在ArkTS页面中通过以下全局方法获取当前页面关联的Context。
 
 | 接口名                                   | 描述                           |
 | :------------------------------------ | :--------------------------- |

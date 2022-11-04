@@ -16,7 +16,7 @@ The text style attributes are used to set the style for text in a component.
 | fontColor  | [ResourceColor](ts-types.md#resourcecolor)  | Font color.                                |
 | fontSize   | Length \| [Resource](ts-types.md#resource)  | Font size. If the value is of the number type, the unit fp is used.    |
 | fontStyle  | [FontStyle](ts-appendix-enums.md#fontstyle)  | Font style.<br>Default value: **FontStyle.Normal**        |
-| fontWeight | number \| [FontWeight](ts-appendix-enums.md#fontweight) \| string  | Font weight. For the number type, the value ranges from 100 to 900, at an interval of 100. The default value is **400**. A larger value indicates a larger font weight. The string type supports only the string of the number type, for example, 400, "bold", "bolder", "lighter", "regular", and "medium", which correspond to the enumerated values in FontWeight.<br>Default value: **FontWeight.Normal** |
+| fontWeight | number \| [FontWeight](ts-appendix-enums.md#fontweight) \| string  | Font weight. For the number type, the value ranges from 100 to 900, at an interval of 100. The default value is **400**. A larger value indicates a larger font weight. The string type supports only the string of the number type, for example, **400**, **"bold"**, **"bolder"**, **"lighter"**, **"regular"**, and **"medium"**, which correspond to the enumerated values in **FontWeight**.<br>Default value: **FontWeight.Normal** |
 | fontFamily | string \| [Resource](ts-types.md#resource)  | Font family. Use commas (,) to separate multiple fonts, for example, **'Arial, sans-serif'**. The priority of the fonts is the sequence in which they are placed.|
 
 

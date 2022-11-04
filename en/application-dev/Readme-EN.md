@@ -16,6 +16,7 @@
         - [Application Package Structure Configuration File (Stage Model)](quick-start/stage-structure.md)
         - [SysCap](quick-start/syscap.md)
         - [HarmonyAppProvision Configuration File](quick-start/app-provision-structure.md)
+
 - Development
     - [Ability Development](ability/Readme-EN.md)
     - [UI Development](ui/Readme-EN.md)
@@ -26,6 +27,7 @@
     - [Security](security/Readme-EN.md)
     - [Connectivity](connectivity/Readme-EN.md)
     - [Data Management](database/Readme-EN.md)
+    - [File Management](file-management/Readme-EN.md)
     - [Telephony](telephony/Readme-EN.md)
     - [Task Management](task-management/Readme-EN.md)
     - [Device Management](device/Readme-EN.md)

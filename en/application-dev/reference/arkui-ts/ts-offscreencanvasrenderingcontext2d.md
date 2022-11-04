@@ -2,10 +2,10 @@
 
 Use **OffscreenCanvasRenderingContext2D** to draw rectangles, images, and text offscreen onto a canvas. Drawing offscreen onto a canvas is a process where content to draw onto the canvas is first drawn in the buffer, and then converted into a picture, and finally the picture is drawn on the canvas. This process increases the drawing efficiency.
 
-
 >  **NOTE**
->
+> 
 >  The APIs of this module are supported since API version 8. Updates will be marked with a superscript to indicate their earliest API version.
+
 
 
 ## APIs
@@ -14,35 +14,34 @@ OffscreenCanvasRenderingContext2D(width: number, height: number, setting: Render
 
 **Parameters**
 
-| Name    | Type                                    | Mandatory  | Default Value | Description                          |
-| ------- | ---------------------------------------- | ---- | ---- | ------------------------------ |
-| width   | number                                   | Yes   | -    | Width of the offscreen canvas.                       |
-| height  | number                                   | Yes   | -    | Height of the offscreen canvas.                       |
-| setting | [RenderingContextSettings](ts-canvasrenderingcontext2d.md#renderingcontextsettings) | Yes   | -    | See RenderingContextSettings.|
+| Name | Type                                                    | Mandatory| Description                            |
+| ------- | ------------------------------------------------------------ | ---- | ------------------------------------ |
+| width   | number                                                       | Yes  | Width of the offscreen canvas.                      |
+| height  | number                                                       | Yes  | Height of the offscreen canvas.                      |
+| setting | [RenderingContextSettings](ts-canvasrenderingcontext2d.md#renderingcontextsettings) | Yes  | See RenderingContextSettings.|
 
 
 ## Attributes
 
-| Name                                                  | Type                                                         | Description                                                  |
-| ----------------------------------------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| [fillStyle](#fillstyle)                               | string \| [CanvasGradient](ts-components-canvas-canvasgradient.md) \| [CanvasPattern](#canvaspattern) | Style to fill an area.<br>- When the type is **\<color>**, this parameter indicates the color of the filling area.<br>- When the type is **CanvasGradient**, this attribute indicates a gradient object, which is created using the **[createLinearGradient](#createlineargradient)** API.<br>- When the type is **CanvasPattern**, this attribute indicates a pattern, which is created using the **[createPattern](#createpattern)** API. |
-| [lineWidth](#linewidth)                               | number                                                       | Line width.                                                  |
-| [strokeStyle](#strokestyle)                           | string \| [CanvasGradient](ts-components-canvas-canvasgradient.md) \| [CanvasPattern](#canvaspattern) | Stroke style.<br>- When the type is **\<color>**, this parameter indicates the stroke color.<br>- When the type is **CanvasGradient**, this attribute indicates a gradient object, which is created using the **[createLinearGradient](#createlineargradient)** API.<br>- When the type is **CanvasPattern**, this attribute indicates a pattern, which is created using the **[createPattern](#createpattern)** API. |
-| [lineCap](#linecap)                                   | CanvasLineCap                                                | Style of the line endpoints. The options are as follows:<br>- **butt**: The endpoints of the line are squared off.<br>- **round**: The endpoints of the line are rounded.<br>- **square**: The endpoints of the line are squared off, and each endpoint has added a rectangle whose length is the same as the line thickness and whose width is half of the line thickness.<br>- Default value: **'butt'** |
-| [lineJoin](#linejoin)                                 | CanvasLineJoin                                               | Style of the shape used to join line segments. The options are as follows:<br>- **round**: The intersection is a sector, whose radius at the rounded corner is equal to the line width.<br>- **bevel**: The intersection is a triangle. The rectangular corner of each line is independent.<br>- **miter**: The intersection has a miter corner by extending the outside edges of the lines until they meet. You can view the effect of this attribute in **miterLimit**.<br>- Default value: **'miter'** |
-| [miterLimit](#miterlimit)                             | number                                                       | Maximum miter length. The miter length is the distance between the inner corner and the outer corner where two lines meet.<br>- Default value: **10** |
-| [font](#font)                                         | string                                                       | Font style.<br>Syntax: ctx.font='font-size font-family'<br>- (Optional) **font-size**: font size and row height. The unit can only be pixels.<br>(Optional) **font-family**: font family.<br>Syntax: ctx.font='font-style font-weight font-size font-family'<br>- (Optional) **font-style**: font style. Available values are **normal** and **italic**.<br>- (Optional) **font-weight**: font weight. Available values are as follows: **normal**, **bold**, **bolder**, **lighter**, **100**, **200**, **300**, **400**, **500**, **600**, **700**, **800**, **900**.<br>- (Optional) **font-size**: font size and row height. The unit can only be pixels.<br>- (Optional) **font-family**: font family. Available values are **sans-serif**, **serif**, and **monospace**.<br>Default value: **'normal normal 14px sans-serif'** |
-| [textAlign](#textalign)                               | CanvasTextAlign                                              | Text alignment mode. Available values are as follows:<br>- **left**: The text is left-aligned.<br>- **right**: The text is right-aligned.<br>- **center**: The text is center-aligned.<br>- **start**: The text is aligned with the start bound.<br>- **end**: The text is aligned with the end bound.<br>**NOTE**<br>In the **ltr** layout mode, the value **'start'** equals **'left'**. In the **rtl** layout mode, the value **'start'** equals **'right'**.<br>- Default value: **'left'** |
-| [textBaseline](#textbaseline)                         | CanvasTextBaseline                                           | Horizontal alignment mode of text. Available values are as follows:<br>- **alphabetic**: The text baseline is the normal alphabetic baseline.<br>- **top**: The text baseline is on the top of the text bounding box.<br>- **hanging**: The text baseline is a hanging baseline over the text.<br>- **middle**: The text baseline is in the middle of the text bounding box.<br>**'ideographic'**: The text baseline is the ideographic baseline. If a character exceeds the alphabetic baseline, the ideographic baseline is located at the bottom of the excess character.<br>- **bottom**: The text baseline is at the bottom of the text bounding box. Its difference from the ideographic baseline is that the ideographic baseline does not consider letters in the next line.<br>- Default value: **'alphabetic'** |
-| [globalAlpha](#globalalpha)                           | number                                                       | Opacity.<br>**0.0**: completely transparent.<br>**1.0**: completely opaque. |
-| [lineDashOffset](#linedashoffset)                     | number                                                       | Offset of the dashed line. The precision is float.<br>- Default value: **0.0** |
-| [globalCompositeOperation](#globalcompositeoperation) | string                                                       | Composition operation type. Available values are as follows: **'source-over'**, **'source-atop'**, **'source-in'**, **'source-out'**, **'destination-over'**, **'destination-atop'**, **'destination-in'**, **'destination-out'**, **'lighter'**, **'copy'**, and **'xor'**.<br>- Default value: **'source-over'** |
-| [shadowBlur](#shadowblur)                             | number                                                       | Blur level during shadow drawing. A larger value indicates a more blurred effect. The precision is float.<br>- Default value: **0.0** |
-| [shadowColor](#shadowcolor)                           | string                                                       | Shadow color.                                                |
-| [shadowOffsetX](#shadowoffsetx)                       | number                                                       | X-axis shadow offset relative to the original object.        |
-| [shadowOffsetY](#shadowoffsety)                       | number                                                       | Y-axis shadow offset relative to the original object.        |
-| [imageSmoothingEnabled](#imagesmoothingenabled)       | boolean                                                      | Whether to adjust the image smoothness during image drawing. The value **true** means to enable this feature, and **false** means the opposite.<br>- Default value: **true** |
-| imageSmoothingQuality                                 | string                                                       | Image smoothness. The value can be **'low'**, **'medium'**, or **'high'**.<br>- Default value: **'low'** |
+| Name                                      | Type                                      | Description                                      |
+| ---------------------------------------- | ---------------------------------------- | ---------------------------------------- |
+| [fillStyle](#fillstyle)                  | string \| [CanvasGradient](ts-components-canvas-canvasgradient.md) \| [CanvasPattern](#canvaspattern) | Style to fill an area.<br>- When the type is **string**, this attribute indicates the color of the filling area.<br>- When the type is **CanvasGradient**, this attribute indicates a gradient object, which is created using the **[createLinearGradient](#createlineargradient)** API.<br>- When the type is **CanvasPattern**, this attribute indicates a pattern, which is created using the **[createPattern](#createpattern)** API.|
+| [lineWidth](#linewidth)                  | number                                   | Line width.                              |
+| [strokeStyle](#strokestyle)              | string \| [CanvasGradient](ts-components-canvas-canvasgradient.md) \| [CanvasPattern](#canvaspattern) | Stroke style.<br>- When the type is **\<color>**, this parameter indicates the stroke color.<br>- When the type is **CanvasGradient**, this attribute indicates a gradient object, which is created using the **[createLinearGradient](#createlineargradient)** API.<br>- When the type is **CanvasPattern**, this attribute indicates a pattern, which is created using the **[createPattern](#createpattern)** API.|
+| [lineCap](#linecap)                      | CanvasLineCap                            | Style of the line endpoints. The options are as follows:<br>- **butt**: The endpoints of the line are squared off.<br>- **round**: The endpoints of the line are rounded.<br>- **square**: The endpoints of the line are squared off, and each endpoint has added a rectangle whose length is the same as the line thickness and whose width is half of the line thickness.<br>- Default value: **'butt'**|
+| [lineJoin](#linejoin)                    | CanvasLineJoin                           | Style of the shape used to join line segments. The options are as follows:<br>- **round**: The intersection is a sector, whose radius at the rounded corner is equal to the line width.<br>- **bevel**: The intersection is a triangle. The rectangular corner of each line is independent.<br>- **miter**: The intersection has a miter corner by extending the outside edges of the lines until they meet. You can view the effect of this attribute in **miterLimit**.<br>- Default value: **'miter'**|
+| [miterLimit](#miterlimit)                | number                                   | Maximum miter length. The miter length is the distance between the inner corner and the outer corner where two lines meet.<br>- Default value: **10**|
+| [font](#font)                            | string                                   | Font style.<br>Syntax: ctx.font='font-size font-family'<br>- (Optional) **font-size**: font size and row height. The unit can only be pixels.<br>(Optional) **font-family**: font family.<br>Syntax: ctx.font='font-style font-weight font-size font-family'<br>- (Optional) **font-style**: font style. Available values are **normal** and **italic**.<br>- (Optional) **font-weight**: font weight. Available values are as follows: **normal**, **bold**, **bolder**, **lighter**, **100**, **200**, **300**, **400**, **500**, **600**, **700**, **800**, **900**.<br>- (Optional) **font-size**: font size and row height. The unit can only be pixels.<br>- (Optional) **font-family**: font family. Available values are **sans-serif**, **serif**, and **monospace**.<br>Default value: **'normal normal 14px sans-serif'**|
+| [textAlign](#textalign)                  | CanvasTextAlign                          | Text alignment mode. Available values are as follows:<br>- **left**: The text is left-aligned.<br>- **right**: The text is right-aligned.<br>- **center**: The text is center-aligned.<br>- **start**: The text is aligned with the start bound.<br>- **end**: The text is aligned with the end bound.<br>> **NOTE**<br>> In the **ltr** layout mode, the value **'start'** equals **'left'**. In the **rtl** layout mode, the value **'start'** equals **'right'**.<br>- Default value: **'left'**|
+| [textBaseline](#textbaseline)            | CanvasTextBaseline                       | Horizontal alignment mode of text. Available values are as follows:<br>- **alphabetic**: The text baseline is the normal alphabetic baseline.<br>- **top**: The text baseline is on the top of the text bounding box.<br>- **hanging**: The text baseline is a hanging baseline over the text.<br>- **middle**: The text baseline is in the middle of the text bounding box.<br>**'ideographic'**: The text baseline is the ideographic baseline. If a character exceeds the alphabetic baseline, the ideographic baseline is located at the bottom of the excess character.<br>- **bottom**: The text baseline is at the bottom of the text bounding box. Its difference from the ideographic baseline is that the ideographic baseline does not consider letters in the next line.<br>- Default value: **'alphabetic'**|
+| [globalAlpha](#globalalpha)              | number                                   | Opacity.<br>**0.0**: completely transparent.<br>**1.0**: completely opaque.               |
+| [lineDashOffset](#linedashoffset)        | number                                   | Offset of the dashed line. The precision is float.<br>- Default value: **0.0**|
+| [globalCompositeOperation](#globalcompositeoperation) | string                                   | Composition operation type. Available values are as follows: **'source-over'**, **'source-atop'**, **'source-in'**, **'source-out'**, **'destination-over'**, **'destination-atop'**, **'destination-in'**, **'destination-out'**, **'lighter'**, **'copy'**, and **'xor'**.<br>- Default value: **'source-over'**|
+| [shadowBlur](#shadowblur)                | number                                   | Blur level during shadow drawing. A larger value indicates a more blurred effect. The precision is float.<br>- Default value: **0.0**|
+| [shadowColor](#shadowcolor)              | string                                   | Shadow color.                           |
+| [shadowOffsetX](#shadowoffsetx)          | number                                   | X-axis shadow offset relative to the original object.                     |
+| [shadowOffsetY](#shadowoffsety)          | number                                   | Y-axis shadow offset relative to the original object.                     |
+| [imageSmoothingEnabled](#imagesmoothingenabled) | boolean                                  | Whether to adjust the image smoothness during image drawing. The value **true** means to enable this feature, and **false** means the opposite.<br>- Default value: **true**|
 
 > **NOTE**
 >
@@ -574,8 +573,7 @@ struct ShadowColor {
           this.offContext.shadowColor = 'rgb(0,0,255)'
           this.offContext.fillStyle = 'rgb(255,0,0)'
           this.offContext.fillRect(30, 30, 100, 100)
-          var image = this.offContext.transferToImageBitmap
-()
+          var image = this.offContext.transferToImageBitmap()
           this.context.transferFromImageBitmap(image)
       })
     }
@@ -769,6 +767,7 @@ Draws an outlined rectangle on the canvas.
     private settings: RenderingContextSettings = new RenderingContextSettings(true)
     private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
     private offContext: OffscreenCanvasRenderingContext2D = new OffscreenCanvasRenderingContext2D(600, 600, this.settings)
+
     build() {
       Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
         Canvas(this.context)
@@ -815,6 +814,7 @@ Clears the content in a rectangle on the canvas.
     private settings: RenderingContextSettings = new RenderingContextSettings(true)
     private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
     private offContext: OffscreenCanvasRenderingContext2D = new OffscreenCanvasRenderingContext2D(600, 600, this.settings)
+
     build() {
       Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
         Canvas(this.context)
@@ -823,8 +823,8 @@ Clears the content in a rectangle on the canvas.
           .backgroundColor('#ffff00')
           .onReady(() =>{
             this.offContext.fillStyle = 'rgb(0,0,255)'
-            this.offContext.fillRect(0,0,500,500)
-            this.offContext.clearRect(20,20,150,100)
+            this.offContext.fillRect(20,20,200,200)
+            this.offContext.clearRect(30,30,150,100)
             var image = this.offContext.transferToImageBitmap()
             this.context.transferFromImageBitmap(image)
         })
@@ -846,12 +846,12 @@ Draws filled text on the canvas.
 
 **Parameters**
 
-| Name  | Type    | Mandatory  | Default Value | Description             |
-| ---- | ------ | ---- | ---- | --------------- |
-| text | string | Yes   | ""  | Text to draw.     |
-| x    | number | Yes   | 0    | X-coordinate of the lower left corner of the text.|
-| y    | number | Yes   | 0    | Y-coordinate of the lower left corner of the text.|
-| maxWidth    | number | No   | -   | Maximum width allowed for the text.|
+| Name      | Type    | Mandatory  | Default Value | Description             |
+| -------- | ------ | ---- | ---- | --------------- |
+| text     | string | Yes   | ""   | Text to draw.     |
+| x        | number | Yes   | 0    | X-coordinate of the lower left corner of the text.|
+| y        | number | Yes   | 0    | Y-coordinate of the lower left corner of the text.|
+| maxWidth | number | No   | -    | Maximum width allowed for the text.   |
 
  **Example**
 
@@ -863,6 +863,7 @@ Draws filled text on the canvas.
     private settings: RenderingContextSettings = new RenderingContextSettings(true)
     private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
     private offContext: OffscreenCanvasRenderingContext2D = new OffscreenCanvasRenderingContext2D(600, 600, this.settings)
+
     build() {
       Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
         Canvas(this.context)
@@ -893,12 +894,12 @@ Draws a text stroke on the canvas.
 
 **Parameters**
 
-| Name  | Type    | Mandatory  | Default Value | Description             |
-| ---- | ------ | ---- | ---- | --------------- |
-| text | string | Yes   | ""  | Text to draw.     |
-| x    | number | Yes   | 0    | X-coordinate of the lower left corner of the text.|
-| y    | number | Yes   | 0    | Y-coordinate of the lower left corner of the text.|
-| maxWidth   | number | No   | -    | Maximum width of the text to be drawn.|
+| Name      | Type    | Mandatory  | Default Value | Description             |
+| -------- | ------ | ---- | ---- | --------------- |
+| text     | string | Yes   | ""   | Text to draw.     |
+| x        | number | Yes   | 0    | X-coordinate of the lower left corner of the text.|
+| y        | number | Yes   | 0    | Y-coordinate of the lower left corner of the text.|
+| maxWidth | number | No   | -    | Maximum width of the text to be drawn. |
 
  **Example**
 
@@ -910,6 +911,7 @@ Draws a text stroke on the canvas.
     private settings: RenderingContextSettings = new RenderingContextSettings(true)
     private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
     private offContext: OffscreenCanvasRenderingContext2D = new OffscreenCanvasRenderingContext2D(600, 600, this.settings)
+
     build() {
       Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
         Canvas(this.context)
@@ -950,12 +952,12 @@ Returns a **TextMetrics** object used to obtain the width of specified text.
 | ----------- | ------- |
 | TextMetrics | **TextMetrics** object.|
 
-**TextMetrics**
+**TextMetrics** attributes
 
-| Name                    | Type    | Description     |
-| -----                    | ------ | ------- |
-| width                    | number | Width of the text.|
-| height                   | number | Height of the text.|
+| Name                      | Type    | Description                                      |
+| ------------------------ | ------ | ---------------------------------------- |
+| width                    | number | Width of the text.                                 |
+| height                   | number | Height of the text.                                 |
 | actualBoundingBoxAscent  | number | Distance from the horizontal line specified by the **CanvasRenderingContext2D.textBaseline** attribute to the top of the bounding rectangle used to render the text. The current value is **0**.|
 | actualBoundingBoxDescent | number | Distance from the horizontal line specified by the **CanvasRenderingContext2D.textBaseline** attribute to the bottom of the bounding rectangle used to render the text. The current value is **0**.|
 | actualBoundingBoxLeft    | number | Distance parallel to the baseline from the alignment point determined by the **CanvasRenderingContext2D.textAlign** attribute to the left side of the bounding rectangle of the text. The current value is **0**.|
@@ -978,6 +980,7 @@ Returns a **TextMetrics** object used to obtain the width of specified text.
     private settings: RenderingContextSettings = new RenderingContextSettings(true)
     private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
     private offContext: OffscreenCanvasRenderingContext2D = new OffscreenCanvasRenderingContext2D(600, 600, this.settings)
+
     build() {
       Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
         Canvas(this.context)
@@ -1014,7 +1017,7 @@ Strokes a path.
 | path | [Path2D](ts-components-canvas-path2d.md) | No   | null | A **Path2D** path to draw.|
 
  **Example**
-
+ 
   ```ts
   // xxx.ets
   @Entry
@@ -1023,6 +1026,7 @@ Strokes a path.
     private settings: RenderingContextSettings = new RenderingContextSettings(true)
     private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
     private offContext: OffscreenCanvasRenderingContext2D = new OffscreenCanvasRenderingContext2D(600, 600, this.settings)
+
     build() {
       Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
         Canvas(this.context)
@@ -1032,6 +1036,8 @@ Strokes a path.
           .onReady(() =>{
             this.offContext.moveTo(25, 25)
             this.offContext.lineTo(25, 105)
+            this.offContext.lineTo(75, 105)
+            this.offContext.lineTo(75, 25)
             this.offContext.strokeStyle = 'rgb(0,0,255)'
             this.offContext.stroke()
             var image = this.offContext.transferToImageBitmap()
@@ -1063,6 +1069,7 @@ Creates a drawing path.
     private settings: RenderingContextSettings = new RenderingContextSettings(true)
     private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
     private offContext: OffscreenCanvasRenderingContext2D = new OffscreenCanvasRenderingContext2D(600, 600, this.settings)
+
     build() {
       Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
         Canvas(this.context)
@@ -1112,6 +1119,7 @@ Moves a drawing path to a target position on the canvas.
     private settings: RenderingContextSettings = new RenderingContextSettings(true)
     private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
     private offContext: OffscreenCanvasRenderingContext2D = new OffscreenCanvasRenderingContext2D(600, 600, this.settings)
+
     build() {
       Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
         Canvas(this.context)
@@ -1159,6 +1167,7 @@ Connects the current point to a target position using a straight line.
     private settings: RenderingContextSettings = new RenderingContextSettings(true)
     private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
     private offContext: OffscreenCanvasRenderingContext2D = new OffscreenCanvasRenderingContext2D(600, 600, this.settings)
+
     build() {
       Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
         Canvas(this.context)
@@ -1199,6 +1208,7 @@ Draws a closed path.
     private settings: RenderingContextSettings = new RenderingContextSettings(true)
     private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
     private offContext: OffscreenCanvasRenderingContext2D = new OffscreenCanvasRenderingContext2D(600, 600, this.settings)
+
     build() {
       Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
         Canvas(this.context)
@@ -1240,9 +1250,9 @@ Creates a pattern for image filling based on a specified source image and repeti
 
 **Return value**
 
-| Type        | Description                                      |
-| ---------- | ---------------------------------------- |
-|  [CanvasPattern](#canvaspattern)     | Created pattern for image filling based on a specified source image and repetition mode.|
+| Type                             | Description                     |
+| ------------------------------- | ----------------------- |
+| [CanvasPattern](#canvaspattern) | Created pattern for image filling based on a specified source image and repetition mode.|
 
  **Example**
 
@@ -1255,6 +1265,7 @@ Creates a pattern for image filling based on a specified source image and repeti
     private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
     private img:ImageBitmap = new ImageBitmap("common/images/icon.jpg")
     private offContext: OffscreenCanvasRenderingContext2D = new OffscreenCanvasRenderingContext2D(600, 600, this.settings)
+
     build() {
       Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
         Canvas(this.context)
@@ -1305,6 +1316,7 @@ Draws a cubic bezier curve on the canvas.
     private settings: RenderingContextSettings = new RenderingContextSettings(true)
     private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
     private offContext: OffscreenCanvasRenderingContext2D = new OffscreenCanvasRenderingContext2D(600, 600, this.settings)
+
     build() {
       Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
         Canvas(this.context)
@@ -1354,6 +1366,7 @@ Draws a quadratic curve on the canvas.
     private settings: RenderingContextSettings = new RenderingContextSettings(true)
     private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
     private offContext: OffscreenCanvasRenderingContext2D = new OffscreenCanvasRenderingContext2D(600, 600, this.settings)
+
     build() {
       Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
         Canvas(this.context)
@@ -1386,13 +1399,13 @@ Draws an arc on the canvas.
 
  **Parameters**
 
-| Name           | Type     | Mandatory  | Default Value  | Description        |
-| ------------- | ------- | ---- | ----- | ---------- |
-| x             | number  | Yes   | 0     | X-coordinate of the center point of the arc.|
-| y             | number  | Yes   | 0     | Y-coordinate of the center point of the arc.|
-| radius        | number  | Yes   | 0     | Radius of the arc.   |
-| startAngle    | number  | Yes   | 0     | Start radian of the arc.  |
-| endAngle      | number  | Yes   | 0     | End radian of the arc.  |
+| Name              | Type     | Mandatory  | Default Value  | Description        |
+| ---------------- | ------- | ---- | ----- | ---------- |
+| x                | number  | Yes   | 0     | X-coordinate of the center point of the arc.|
+| y                | number  | Yes   | 0     | Y-coordinate of the center point of the arc.|
+| radius           | number  | Yes   | 0     | Radius of the arc.   |
+| startAngle       | number  | Yes   | 0     | Start radian of the arc.  |
+| endAngle         | number  | Yes   | 0     | End radian of the arc.  |
 | counterclockwise | boolean | No   | false | Whether to draw the arc counterclockwise.|
 
  **Example**
@@ -1405,6 +1418,7 @@ Draws an arc on the canvas.
     private settings: RenderingContextSettings = new RenderingContextSettings(true)
     private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
     private offContext: OffscreenCanvasRenderingContext2D = new OffscreenCanvasRenderingContext2D(600, 600, this.settings)
+
     build() {
       Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
         Canvas(this.context)
@@ -1454,6 +1468,7 @@ Draws an arc based on the radius and points on the arc.
     private settings: RenderingContextSettings = new RenderingContextSettings(true)
     private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
     private offContext: OffscreenCanvasRenderingContext2D = new OffscreenCanvasRenderingContext2D(600, 600, this.settings)
+
     build() {
       Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
         Canvas(this.context)
@@ -1485,15 +1500,15 @@ Draws an ellipse in the specified rectangular region on the canvas.
 
  **Parameters**
 
-| Name           | Type     | Mandatory  | Default Value  | Description               |
-| ------------- | ------- | ---- | ----- | ----------------- |
-| x             | number  | Yes   | 0     | X-coordinate of the ellipse center.       |
-| y             | number  | Yes   | 0     | Y-coordinate of the ellipse center.       |
-| radiusX       | number  | Yes   | 0     | Ellipse radius on the x-axis.       |
-| radiusY       | number  | Yes   | 0     | Ellipse radius on the y-axis.       |
-| rotation      | number  | Yes   | 0     | Rotation angle of the ellipse. The unit is radian.   |
-| startAngle    | number  | Yes   | 0     | Angle of the start point for drawing the ellipse. The unit is radian.|
-| endAngle      | number  | Yes   | 0     | Angle of the end point for drawing the ellipse. The unit is radian.|
+| Name              | Type     | Mandatory  | Default Value  | Description               |
+| ---------------- | ------- | ---- | ----- | ----------------- |
+| x                | number  | Yes   | 0     | X-coordinate of the ellipse center.       |
+| y                | number  | Yes   | 0     | Y-coordinate of the ellipse center.       |
+| radiusX          | number  | Yes   | 0     | Ellipse radius on the x-axis.       |
+| radiusY          | number  | Yes   | 0     | Ellipse radius on the y-axis.       |
+| rotation         | number  | Yes   | 0     | Rotation angle of the ellipse. The unit is radian.   |
+| startAngle       | number  | Yes   | 0     | Angle of the start point for drawing the ellipse. The unit is radian.|
+| endAngle         | number  | Yes   | 0     | Angle of the end point for drawing the ellipse. The unit is radian.|
 | counterclockwise | boolean | No   | false | Whether to draw the ellipse in the counterclockwise direction.    |
 
  **Example**
@@ -1514,7 +1529,7 @@ Draws an ellipse in the specified rectangular region on the canvas.
           .backgroundColor('#ffff00')
           .onReady(() =>{
             this.offContext.beginPath()
-            this.offContext.ellipse(200, 200, 50, 100, Math.PI * 0.25, Math.PI * 0.5, Math.PI)
+            this.offContext.ellipse(200, 200, 50, 100, Math.PI * 0.25, Math.PI * 0.5, Math.PI * 2)
             this.offContext.stroke()
             var image = this.offContext.transferToImageBitmap()
             this.context.transferFromImageBitmap(image)
@@ -1537,12 +1552,12 @@ Creates a rectangle on the canvas.
 
  **Parameters**
 
-| Name    | Type    | Mandatory  | Default Value | Description           |
-| ------ | ------ | ---- | ---- | ------------- |
-| x      | number | Yes   | 0    | X-coordinate of the upper left corner of the rectangle.|
-| y      | number | Yes   | 0    | Y-coordinate of the upper left corner of the rectangle.|
-| w  | number | Yes   | 0    | Width of the rectangle.     |
-| h | number | Yes   | 0    | Height of the rectangle.     |
+| Name  | Type    | Mandatory  | Default Value | Description           |
+| ---- | ------ | ---- | ---- | ------------- |
+| x    | number | Yes   | 0    | X-coordinate of the upper left corner of the rectangle.|
+| y    | number | Yes   | 0    | Y-coordinate of the upper left corner of the rectangle.|
+| w    | number | Yes   | 0    | Width of the rectangle.     |
+| h    | number | Yes   | 0    | Height of the rectangle.     |
 
  **Example**
 
@@ -1554,6 +1569,7 @@ Creates a rectangle on the canvas.
     private settings: RenderingContextSettings = new RenderingContextSettings(true)
     private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
     private offContext: OffscreenCanvasRenderingContext2D = new OffscreenCanvasRenderingContext2D(600, 600, this.settings)
+
     build() {
       Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
         Canvas(this.context)
@@ -1578,11 +1594,15 @@ Creates a rectangle on the canvas.
 
 ### fill
 
-fill(): void
+fill(fillRule?: CanvasFillRule): void
 
 Fills the area inside a closed path on the canvas.
 
- **Example**
+**Parameters**
+
+| Name      | Type            | Mandatory  | Default Value      | Description                                      |
+| -------- | -------------- | ---- | --------- | ---------------------------------------- |
+| fillRule | CanvasFillRule | No   | "nonzero" | Rule by which to determine whether a point is inside or outside the area to fill.<br>The options are **"nonzero"** and **"evenodd"**.|
 
   ```ts
   // xxx.ets
@@ -1592,6 +1612,7 @@ Fills the area inside a closed path on the canvas.
     private settings: RenderingContextSettings = new RenderingContextSettings(true)
     private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
     private offContext: OffscreenCanvasRenderingContext2D = new OffscreenCanvasRenderingContext2D(600, 600, this.settings)
+
     build() {
       Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
         Canvas(this.context)
@@ -1614,11 +1635,72 @@ Fills the area inside a closed path on the canvas.
   ![en-us_image_0000001256858421](figures/en-us_image_0000001256858421.png)
 
 
+fill(path: Path2D, fillRule?: CanvasFillRule): void
+
+Fills the area inside a closed path on the canvas.
+
+**Parameters**
+
+| Name      | Type            | Mandatory  | Default Value      | Description                                      |
+| -------- | -------------- | ---- | --------- | ---------------------------------------- |
+| path     | Path2D         | Yes   |           | A **Path2D** path to fill.                             |
+| fillRule | CanvasFillRule | No   | "nonzero" | Rule by which to determine whether a point is inside or outside the area to fill.<br>The options are **"nonzero"** and **"evenodd"**.|
+
+
+**Example**  
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct Fill {
+  private settings: RenderingContextSettings = new RenderingContextSettings(true)
+  private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
+  private offContext: OffscreenCanvasRenderingContext2D = new OffscreenCanvasRenderingContext2D(600, 600, this.settings)
+
+  build() {
+    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
+      Canvas(this.context)
+        .width('100%')
+        .height('100%')
+        .backgroundColor('#ffff00')
+        .onReady(() =>{
+          let region = new Path2D();
+          region.moveTo(30, 90);
+          region.lineTo(110, 20);
+          region.lineTo(240, 130);
+          region.lineTo(60, 130);
+          region.lineTo(190, 20);
+          region.lineTo(270, 90);
+          region.closePath();
+          // Fill path
+          this.offContext.fillStyle = 'green';
+          this.offContext.fill(region, "evenodd");
+          var image = this.offContext.transferToImageBitmap()
+          this.context.transferFromImageBitmap(image)
+        })
+    }
+    .width('100%')
+    .height('100%')
+  }
+}
+```
+
+ ![en-us_image_000000127777775](figures/en-us_image_000000127777775.png)
+
+
+
 ### clip
 
-clip(): void
+clip(fillRule?: CanvasFillRule): void
 
 Sets the current path to a clipping path.
+
+**Parameters**
+
+| Name      | Type            | Mandatory  | Default Value      | Description                                      |
+| -------- | -------------- | ---- | --------- | ---------------------------------------- |
+| fillRule | CanvasFillRule | No   | "nonzero" | Rule by which to determine whether a point is inside or outside the area to clip.<br>The options are **"nonzero"** and **"evenodd"**.|
 
  **Example**
 
@@ -1630,6 +1712,7 @@ Sets the current path to a clipping path.
     private settings: RenderingContextSettings = new RenderingContextSettings(true)
     private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
     private offContext: OffscreenCanvasRenderingContext2D = new OffscreenCanvasRenderingContext2D(600, 600, this.settings)
+
     build() {
       Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
         Canvas(this.context)
@@ -1637,11 +1720,11 @@ Sets the current path to a clipping path.
           .height('100%')
           .backgroundColor('#ffff00')
           .onReady(() =>{
-            this.offContext.rect(0, 0, 200, 200)
+            this.offContext.rect(0, 0, 100, 200)
             this.offContext.stroke()
             this.offContext.clip()
             this.offContext.fillStyle = "rgb(255,0,0)"
-            this.offContext.fillRect(0, 0, 150, 150)
+            this.offContext.fillRect(0, 0, 200, 200)
             var image = this.offContext.transferToImageBitmap()
             this.context.transferFromImageBitmap(image)
           })
@@ -1655,6 +1738,89 @@ Sets the current path to a clipping path.
   ![en-us_image_0000001257058441](figures/en-us_image_0000001257058441.png)
 
 
+clip(path:Path2D, fillRule?: CanvasFillRule): void
+
+Sets a closed path to a clipping path.
+
+**Parameters**
+
+| Name      | Type            | Mandatory  | Default Value      | Description                                      |
+| -------- | -------------- | ---- | --------- | ---------------------------------------- |
+| path | Path2D | Yes   |  | A **Path2D** path to clip.|
+| fillRule | CanvasFillRule | No   | "nonzero" | Rule by which to determine whether a point is inside or outside the area to clip.<br>The options are **"nonzero"** and **"evenodd"**.|
+
+ **Example**
+
+  ```ts
+  // xxx.ets
+@Entry
+@Component
+struct Clip {
+  private settings: RenderingContextSettings = new RenderingContextSettings(true)
+  private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
+  private offContext: OffscreenCanvasRenderingContext2D = new OffscreenCanvasRenderingContext2D(600, 600, this.settings)
+
+  build() {
+    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
+      Canvas(this.context)
+        .width('100%')
+        .height('100%')
+        .backgroundColor('#ffff00')
+        .onReady(() =>{
+          let region = new Path2D();
+          region.rect(80,10,20,130);
+          region.rect(40,50,100,50);
+          this.offContext.clip(region,"evenodd")
+          this.offContext.fillStyle = "rgb(255,0,0)"
+          this.offContext.fillRect(0, 0, 600, 600)
+          var image = this.offContext.transferToImageBitmap()
+          this.context.transferFromImageBitmap(image)
+        })
+    }
+    .width('100%')
+    .height('100%')
+  }
+}
+  ```
+
+  ![en-us_image_000000127777779](figures/en-us_image_000000127777779.png)
+
+
+
+### filter
+
+filter(filter: string): void
+
+Sets a filter for the image on the canvas. This API is a void API.
+
+**Parameters**
+
+| Name    | Type    | Mandatory  | Default Value | Description          |
+| ------ | ------ | ---- | ---- | ------------ |
+| filter | string | Yes   | -    | Functions that accept various filter effects.|
+
+
+### getTransform
+
+getTransform(): Matrix2D
+
+Obtains the current transformation matrix being applied to the context. This API is a void API.
+
+
+### resetTransform
+
+resetTransform(): void
+
+Resets the current transform to the identity matrix. This API is a void API.
+
+
+### direction
+
+direction(direction: CanvasDirection): void
+
+Sets the text direction for drawing text. This API is a void API.
+
+
 ### rotate
 
 rotate(angle: number): void
@@ -1663,8 +1829,8 @@ Rotates a canvas clockwise around its coordinate axes.
 
  **Parameters**
 
-| Name    | Type    | Mandatory  | Default Value | Description                                      |
-| ------ | ------ | ---- | ---- | ---------------------------------------- |
+| Name   | Type    | Mandatory  | Default Value | Description                                      |
+| ----- | ------ | ---- | ---- | ---------------------------------------- |
 | angle | number | Yes   | 0    | Clockwise rotation angle. You can use **Math.PI / 180** to convert the angle to a radian.|
 
  **Example**
@@ -1677,6 +1843,7 @@ Rotates a canvas clockwise around its coordinate axes.
     private settings: RenderingContextSettings = new RenderingContextSettings(true)
     private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
     private offContext: OffscreenCanvasRenderingContext2D = new OffscreenCanvasRenderingContext2D(600, 600, this.settings)
+
     build() {
       Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
         Canvas(this.context)
@@ -1722,6 +1889,7 @@ Scales the canvas based on scale factors.
     private settings: RenderingContextSettings = new RenderingContextSettings(true)
     private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
     private offContext: OffscreenCanvasRenderingContext2D = new OffscreenCanvasRenderingContext2D(600, 600, this.settings)
+
     build() {
       Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
         Canvas(this.context)
@@ -1729,9 +1897,10 @@ Scales the canvas based on scale factors.
           .height('100%')
           .backgroundColor('#ffff00')
           .onReady(() =>{
-            this.offContext.strokeRect(10, 10, 25, 25)
+            this.offContext.lineWidth = 3
+            this.offContext.strokeRect(30, 30, 50, 50)
             this.offContext.scale(2, 2) // Scale to 200%
-            this.offContext.strokeRect(10, 10, 25, 25)
+            this.offContext.strokeRect(30, 30, 50, 50)
             var image = this.offContext.transferToImageBitmap()
             this.context.transferFromImageBitmap(image)
           })
@@ -1761,14 +1930,14 @@ Defines a transformation matrix. To transform a graph, you only need to set para
 
 **Parameters**
 
-| Name        | Type    | Mandatory  | Default Value | Description      |
-| ---------- | ------ | ---- | ---- | -------- |
-| a      | number | Yes   | 0    |X-axis scale.|
-| b      | number | Yes   | 0    |X-axis skew.|
-| c      | number | Yes   | 0    |Y-axis skew.|
-| d      | number | Yes   | 0    |Y-axis scale.|
-| e      | number | Yes   | 0    |X-axis translation.|
-| f      | number | Yes   | 0    |Y-axis translation.|
+| Name  | Type    | Mandatory  | Default Value | Description                  |
+| ---- | ------ | ---- | ---- | -------------------- |
+| a    | number | Yes   | 0    | X-axis scale.    |
+| b    | number | Yes   | 0    | X-axis skew.     |
+| c    | number | Yes   | 0    | Y-axis skew.     |
+| d    | number | Yes   | 0    | Y-axis scale.    |
+| e    | number | Yes   | 0    | X-axis translation.|
+| f    | number | Yes   | 0    | Y-axis translation.|
 
  **Example**
 
@@ -1780,6 +1949,7 @@ Defines a transformation matrix. To transform a graph, you only need to set para
     private settings: RenderingContextSettings = new RenderingContextSettings(true)
     private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
     private offContext: OffscreenCanvasRenderingContext2D = new OffscreenCanvasRenderingContext2D(600, 600, this.settings)
+
     build() {
       Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
         Canvas(this.context)
@@ -1812,18 +1982,18 @@ Defines a transformation matrix. To transform a graph, you only need to set para
 
 setTransform(a: number, b: number, c: number, d: number, e: number, f: number): void
 
-Resets the existing transformation matrix and creates a new transformation matrix by using the same parameters as the **transform()** function.
+Resets the existing transformation matrix and creates a new transformation matrix by using the same parameters as the **transform()** API.
 
 **Parameters**
 
-| Parameters        | Type    | Mandatory  | Default Value | Description      |
-| ---------- | ------ | ---- | ---- | -------- |
-| a      | number | Yes   | 0    |X-axis scale.|
-| b      | number | Yes   | 0    |X-axis skew.|
-| c      | number | Yes   | 0    |Y-axis skew.|
-| d      | number | Yes   | 0    |Y-axis scale.|
-| e      | number | Yes   | 0    |X-axis translation.|
-| f      | number | Yes   | 0    |Y-axis translation.|
+| Name  | Type    | Mandatory  | Default Value | Description                  |
+| ---- | ------ | ---- | ---- | -------------------- |
+| a    | number | Yes   | 0    | X-axis scale.    |
+| b    | number | Yes   | 0    | X-axis skew.     |
+| c    | number | Yes   | 0    | Y-axis skew.     |
+| d    | number | Yes   | 0    | Y-axis scale.    |
+| e    | number | Yes   | 0    | X-axis translation.|
+| f    | number | Yes   | 0    | Y-axis translation.|
 
  **Example**
 
@@ -1835,6 +2005,7 @@ Resets the existing transformation matrix and creates a new transformation matri
     private settings: RenderingContextSettings = new RenderingContextSettings(true)
     private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
     private offContext: OffscreenCanvasRenderingContext2D = new OffscreenCanvasRenderingContext2D(600, 600, this.settings)
+
     build() {
       Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
         Canvas(this.context)
@@ -1857,8 +2028,10 @@ Resets the existing transformation matrix and creates a new transformation matri
   }
   ```
 
-  ![zh-cn_image_0000001193872526](figures/zh-cn_image_0000001193872526.png)
+  ![en-us_image_0000001193872526](figures/en-us_image_0000001193872526.png)
 
+
+### translate
 
 ### translate
 
@@ -1868,7 +2041,7 @@ Moves the origin of the coordinate system.
 
  **Parameters**
 
-| Parameters  | Type    | Mandatory  | Default Value | Description      |
+| Name  | Type    | Mandatory  | Default Value | Description      |
 | ---- | ------ | ---- | ---- | -------- |
 | x    | number | Yes   | 0    | X-axis translation.|
 | y    | number | Yes   | 0    | Y-axis translation.|
@@ -1883,6 +2056,7 @@ Moves the origin of the coordinate system.
     private settings: RenderingContextSettings = new RenderingContextSettings(true)
     private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
     private offContext: OffscreenCanvasRenderingContext2D = new OffscreenCanvasRenderingContext2D(600, 600, this.settings)
+
     build() {
       Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
         Canvas(this.context)
@@ -1903,7 +2077,7 @@ Moves the origin of the coordinate system.
   }
   ```
 
-  ![en-us_image_0000001256978373](figures/en-us_image_0000001256978373.png)
+  ![en-us_image_0000001238832413](figures/en-us_image_0000001238832413.png)
 
 
 ### drawImage
@@ -1918,17 +2092,17 @@ Draws an image on the canvas.
 
  **Parameters**
 
-| Name     | Type                                      | Mandatory  | Default Value | Description                  |
-| ------- | ---------------------------------------- | ---- | ---- | -------------------- |
-| image   | [ImageBitmap](ts-components-canvas-imagebitmap.md) or [PixelMap](../apis/js-apis-image.md#pixelmap7)| Yes   | null | Image resource. For details, see **ImageBitmap** or **PixelMap**.|
-| sx      | number                                   | No   | 0    | X-coordinate of the upper left corner of the rectangle used to crop the source image.|
-| sy      | number                                   | No   | 0    | Y-coordinate of the upper left corner of the rectangle used to crop the source image.|
-| sw      | number                                   | No   | 0    | Target width to crop the source image.      |
-| sh | number                                   | No   | 0    | Target height to crop the source image.      |
-| dx      | number                                   | Yes   | 0    | X-coordinate of the upper left corner of the drawing area on the canvas.      |
-| dy      | number                                   | Yes   | 0    | Y-coordinate of the upper left corner of the drawing area on the canvas.|
-| dw      | number                                   | No   | 0    | Width of the drawing area.            |
-| dh      | number                                   | No   | 0    | Height of the drawing area.            |
+| Name   | Type                                      | Mandatory  | Default Value | Description                           |
+| ----- | ---------------------------------------- | ---- | ---- | ----------------------------- |
+| image | [ImageBitmap](ts-components-canvas-imagebitmap.md) or [PixelMap](../apis/js-apis-image.md#pixelmap7)| Yes   | null | Image resource. For details, see **ImageBitmap** or **PixelMap**.|
+| sx    | number                                   | No   | 0    | X-coordinate of the upper left corner of the rectangle used to crop the source image.         |
+| sy    | number                                   | No   | 0    | Y-coordinate of the upper left corner of the rectangle used to crop the source image.         |
+| sw    | number                                   | No   | 0    | Target width to crop the source image.               |
+| sh    | number                                   | No   | 0    | Target height to crop the source image.               |
+| dx    | number                                   | Yes   | 0    | X-coordinate of the upper left corner of the drawing area on the canvas.               |
+| dy    | number                                   | Yes   | 0    | Y-coordinate of the upper left corner of the drawing area on the canvas.         |
+| dw    | number                                   | No   | 0    | Width of the drawing area.                     |
+| dh    | number                                   | No   | 0    | Height of the drawing area.                     |
 
 
  **Example**
@@ -1937,7 +2111,7 @@ Draws an image on the canvas.
   // xxx.ets
   @Entry
   @Component
-  struct Index {
+  struct DrawImage {
     private settings: RenderingContextSettings = new RenderingContextSettings(true)
     private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
     private img:ImageBitmap = new ImageBitmap("common/images/icon.jpg")
@@ -1967,33 +2141,31 @@ Draws an image on the canvas.
 
 createImageData(sw: number, sh: number): ImageData
 
-Creates an **ImageData** object based on the width and height. For details, see [ImageData](ts-components-canvas-imagebitmap.md).
+Creates an **[ImageData](ts-components-canvas-imagedata.md)** object with the specified dimensions.
 
  **Parameters**
 
-| Name    | Type    | Mandatory  | Default Value  | Description           |
-| ------ | ------ | ---- | ---- | ------------- |
-| sw  | number | Yes   | 0    | Width of the **ImageData** object.|
-| sh  | number | Yes   | 0    | Height of the **ImageData** object.|
+| Name  | Type    | Mandatory  | Default Value  | Description           |
+| ---- | ------ | ---- | ---- | ------------- |
+| sw   | number | Yes   | 0    | Width of the **ImageData** object.|
+| sh   | number | Yes   | 0    | Height of the **ImageData** object.|
 
-
-### createImageData
 
 createImageData(imageData: ImageData): ImageData
 
-Creates an **ImageData** object based on the given existing **ImageData** object. For details, see [ImageData](ts-components-canvas-imagebitmap.md).
+Creates an **[ImageData](ts-components-canvas-imagedata.md)** object by copying an existing **ImageData** object.
 
  **Parameters**
 
 | Name       | Type                                      | Mandatory  | Default Value  | Description              |
 | --------- | ---------------------------------------- | ---- | ---- | ---------------- |
-| imagedata | [ImageData](ts-components-canvas-imagebitmap.md) | Yes   | null | **ImageData** object to copy.|
+| imagedata | [ImageData](ts-components-canvas-imagedata.md) | Yes   | null | **ImageData** object to copy.|
 
  **Return value**
 
-| Type        | Description                                      |
-| ---------- | ---------------------------------------- |
-|  [ImageData](ts-components-canvas-imagebitmap.md)     | New **ImageData** object.|
+| Type                                      | Description           |
+| ---------------------------------------- | ------------- |
+| [ImageData](ts-components-canvas-imagedata.md) | New **ImageData** object.|
 
 ### getPixelMap
 
@@ -2003,29 +2175,29 @@ Obtains the **[PixelMap](../apis/js-apis-image.md#pixelmap7)** object created wi
 
  **Parameters**
 
-| Name| Type| Mandatory| Default Value| Description|
-| -------- | -------- | -------- | -------- | -------- |
-| sx | number | Yes| 0 | X-coordinate of the upper left corner of the output area.|
-| sy | number | Yes| 0 | Y-coordinate of the upper left corner of the output area.|
-| sw | number | Yes| 0 | Width of the output area.|
-| sh | number | Yes| 0 | Height of the output area.|
+| Name  | Type    | Mandatory  | Default Value | Description             |
+| ---- | ------ | ---- | ---- | --------------- |
+| sx   | number | Yes   | 0    | X-coordinate of the upper left corner of the output area.|
+| sy   | number | Yes   | 0    | Y-coordinate of the upper left corner of the output area.|
+| sw   | number | Yes   | 0    | Width of the output area.    |
+| sh   | number | Yes   | 0    | Height of the output area.    |
 
 **Return value**
 
-| Type        | Description                                      |
-| ---------- | ---------------------------------------- |
-| [PixelMap](../apis/js-apis-image.md#pixelmap7)   | **PixelMap** object.|
+| Type                                      | Description          |
+| ---------------------------------------- | ------------ |
+| [PixelMap](../apis/js-apis-image.md#pixelmap7) | **PixelMap** object.|
 
 
 ### getImageData
 
 getImageData(sx: number, sy: number, sw: number, sh: number): ImageData
 
-Obtains the **[ImageData](ts-components-canvas-imagebitmap.md)** object created with the pixels within the specified area on the canvas.
+Obtains the **[ImageData](ts-components-canvas-imagedata.md)** object created with the pixels within the specified area on the canvas.
 
  **Parameters**
 
-| Parameters  | Type    | Mandatory  | Default Value | Description             |
+| Name  | Type    | Mandatory  | Default Value | Description             |
 | ---- | ------ | ---- | ---- | --------------- |
 | sx   | number | Yes   | 0    | X-coordinate of the upper left corner of the output area.|
 | sy   | number | Yes   | 0    | Y-coordinate of the upper left corner of the output area.|
@@ -2034,9 +2206,44 @@ Obtains the **[ImageData](ts-components-canvas-imagebitmap.md)** object created 
 
    **Return value**
 
-| Type        | Description                                      |
-| ---------- | ---------------------------------------- |
-|  [ImageData](ts-components-canvas-imagebitmap.md)     | New **ImageData** object.|
+| Type                                      | Description           |
+| ---------------------------------------- | ------------- |
+| [ImageData](ts-components-canvas-imagedata.md) | New **ImageData** object.|
+
+
+**Example**
+
+  ```ts
+  // xxx.ets
+@Entry
+@Component
+struct GetImageData {
+  private settings: RenderingContextSettings = new RenderingContextSettings(true);
+  private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings);
+  private offContext: OffscreenCanvasRenderingContext2D = new OffscreenCanvasRenderingContext2D(600, 600, this.settings)
+  private img:ImageBitmap = new ImageBitmap("/common/images/1234.png")
+
+  build() {
+    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
+      Canvas(this.context)
+        .width('100%')
+        .height('100%')
+        .backgroundColor('#ffff00')
+        .onReady(() =>{
+          this.offContext.drawImage(this.img,0,0,130,130);
+          var imagedata = this.offContext.getImageData(50,50,130,130);
+          this.offContext.putImageData(imagedata,150,150);
+          var image = this.offContext.transferToImageBitmap()
+          this.context.transferFromImageBitmap(image)
+        })
+    }
+    .width('100%')
+    .height('100%')
+  }
+}
+  ```
+
+  ![en-us_image_000000127777780](figures/en-us_image_000000127777780.png)
 
 
 ### putImageData
@@ -2045,11 +2252,11 @@ putImageData(imageData: Object, dx: number, dy: number): void
 
 putImageData(imageData: Object, dx: number, dy: number, dirtyX: number, dirtyY: number, dirtyWidth?: number, dirtyHeight: number): void
 
-Puts the [ImageData](ts-components-canvas-imagebitmap.md) onto a rectangular area on the canvas.
+Puts an **[ImageData](ts-components-canvas-imagedata.md)** object onto a rectangular area on the canvas.
 
  **Parameters**
 
-| Parameters         | Type    | Mandatory  | Default Value         | Description                           |
+| Name         | Type    | Mandatory  | Default Value         | Description                           |
 | ----------- | ------ | ---- | ------------ | ----------------------------- |
 | imagedata   | Object | Yes   | null         | **ImageData** object with pixels to put onto the canvas.           |
 | dx          | number | Yes   | 0            | X-axis offset of the rectangular area on the canvas.               |
@@ -2104,8 +2311,8 @@ Sets the dash line style.
 
 **Parameters**
 
-| Parameter      | Type   | Description                  |
-| -------- | ----- | -------------------- |
+| Name      | Type      | Description                 |
+| -------- | -------- | ------------------- |
 | segments | number[] | An array of numbers that specify distances to alternately draw a line and a gap.|
 
 **Example**
@@ -2137,7 +2344,7 @@ struct SetLineDash {
   }
 }
   ```
-  ![zh-cn_image_000000127777772](figures/zh-cn_image_000000127777772.png)
+  ![en-us_image_000000127777772](figures/en-us_image_000000127777772.png)
 
 
 ### getLineDash
@@ -2148,29 +2355,37 @@ Obtains the dash line style.
 
 **Return value**
 
-| Type   | Description                      |
-| ----- | ------------------------ |
+| Type      | Description                      |
+| -------- | ------------------------ |
 | number[] | An array describing the interval of alternate line segments and length of spacing.|
 
 **Example**
 
   ```ts
   // xxx.ets
-  @Entry
-  @Component
-  struct GetLineDash {
+@Entry
+@Component
+struct OffscreenCanvasGetLineDash {
+  @State message: string = 'Hello World'
   private settings: RenderingContextSettings = new RenderingContextSettings(true)
   private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
   private offContext: OffscreenCanvasRenderingContext2D = new OffscreenCanvasRenderingContext2D(600, 600, this.settings)
-    
-    build() {
-      Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
+  build() {
+    Row() {
+      Column() {
+        Text(this.message)
+          .fontSize(50)
+          .fontWeight(FontWeight.Bold)
+          .onClick(()=>{
+            console.error('before getlinedash clicked')
+            let res = this.offContext.getLineDash()
+            console.error(JSON.stringify(res))
+          })
         Canvas(this.context)
           .width('100%')
           .height('100%')
           .backgroundColor('#ffff00')
-          .onReady(() =>{
-            var grad = this.context.createLinearGradient(50,0, 300,100)
+          .onReady(() => {
             this.offContext.arc(100, 75, 50, 0, 6.28)
             this.offContext.setLineDash([10,20])
             this.offContext.stroke();
@@ -2180,53 +2395,14 @@ Obtains the dash line style.
           })
       }
       .width('100%')
-      .height('100%')
     }
+    .height('100%')
   }
+}
   ```
+![en-us_image_000000127777778](figures/en-us_image_000000127777778.png) 
 
 
-### transferFromImageBitmap
-
-transferFromImageBitmap(bitmap: ImageBitmap): void
-
-Displays the specified **ImageBitmap** object.
-
-**Parameters**
-
-| Parameters    | Type         | Description                |
-| ------ | ----------- | ------------------ |
-| bitmap | [ImageData](ts-components-canvas-imagebitmap.md) | **ImageBitmap** object to display.|
-
-**Example**
-
-  ```ts
-  // xxx.ets
-  @Entry
-  @Component
-  struct GetLineDash {
-  private settings: RenderingContextSettings = new RenderingContextSettings(true)
-  private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
-  private offContext: OffscreenCanvasRenderingContext2D = new OffscreenCanvasRenderingContext2D(600, 600, this.settings)
-    
-    build() {
-      Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
-        Canvas(this.context)
-          .width('100%')
-          .height('100%')
-          .backgroundColor('#ffff00')
-          .onReady(() =>{
-            this.offContext.fillRect(0, 0, 200, 200)
-            var image = this.offContext.transferToImageBitmap()
-            this.context.transferFromImageBitmap(image)
-          })
-      }
-      .width('100%')
-      .height('100%')
-    }
-  }
-  ```
-  ![zh-cn_image_000000127777773](figures/zh-cn_image_000000127777773.png) 
 
 ### toDataURL
 
@@ -2250,7 +2426,7 @@ Generates a URL containing image display information.
 **Example**
 
   ```ts
-  // xxx.ets
+// xxx.ets
 @Entry
 @Component
 struct ToDataURL {
@@ -2275,6 +2451,19 @@ struct ToDataURL {
   ```
 
 
+### imageSmoothingQuality
+
+imageSmoothingQuality(quality: imageSmoothingQuality)
+
+Sets the quality of image smoothing. This API is a void API.
+
+ **Parameters**
+
+| Name     | Type                   | Description                                      |
+| ------- | --------------------- | ---------------------------------------- |
+| quality | imageSmoothingQuality | Quality of image smoothing. The value can be **'low'**, **'medium'**,or **'high'**.|
+
+
 ### transferToImageBitmap
 
 transferToImageBitmap(): ImageBitmap
@@ -2285,7 +2474,7 @@ Creates an **ImageBitmap** object on the most recently rendered image of the **O
 
 | Type                                      | Description             |
 | ---------------------------------------- | --------------- |
-| [ImageData](ts-components-canvas-imagebitmap.md)| Pixel data rendered on the **OffscreenCanvas**.|
+| [ImageBitmap](ts-components-canvas-imagebitmap.md) | Pixel data rendered on the **OffscreenCanvas**.|
 
 
  **Example**
@@ -2294,10 +2483,11 @@ Creates an **ImageBitmap** object on the most recently rendered image of the **O
   // xxx.ets
   @Entry
   @Component
-  struct CanvasExample {
+  struct PutImageData {
     private settings: RenderingContextSettings = new RenderingContextSettings(true)
     private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
     private offContext: OffscreenCanvasRenderingContext2D = new OffscreenCanvasRenderingContext2D(600, 600, this.settings)
+
     build() {
       Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
         Canvas(this.context)
@@ -2305,7 +2495,14 @@ Creates an **ImageBitmap** object on the most recently rendered image of the **O
           .height('100%')
           .backgroundColor('#ffff00')
           .onReady(() =>{
-            this.offContext.restore()
+            var imageData = this.offContext.createImageData(100, 100)
+            for (var i = 0; i < imageData.data.length; i += 4) {
+              imageData.data[i + 0] = 255
+              imageData.data[i + 1] = 0
+              imageData.data[i + 2] = 255
+              imageData.data[i + 3] = 255
+            }
+            this.offContext.putImageData(imageData, 10, 10)
             var image = this.offContext.transferToImageBitmap()
             this.context.transferFromImageBitmap(image)
           })
@@ -2315,6 +2512,7 @@ Creates an **ImageBitmap** object on the most recently rendered image of the **O
     }
   }
   ```
+![en-us_image_0000001238952387](figures/en-us_image_0000001238952387.png) 
 
 ### restore
 
@@ -2326,29 +2524,35 @@ Restores the saved drawing context.
 
   ```ts
   // xxx.ets
-  @Entry
-  @Component
-  struct CanvasExample {
-    private settings: RenderingContextSettings = new RenderingContextSettings(true)
-    private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
-    private offContext: OffscreenCanvasRenderingContext2D = new OffscreenCanvasRenderingContext2D(600, 600, this.settings)
-    build() {
-      Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
-        Canvas(this.context)
-          .width('100%')
-          .height('100%')
-          .backgroundColor('#ffff00')
-          .onReady(() =>{
-            this.offContext.restore()
-            var image = this.offContext.transferToImageBitmap()
-            this.context.transferFromImageBitmap(image)
-          })
-      }
-      .width('100%')
-      .height('100%')
+@Entry
+@Component
+struct CanvasExample {
+  private settings: RenderingContextSettings = new RenderingContextSettings(true)
+  private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
+  private offContext: OffscreenCanvasRenderingContext2D = new OffscreenCanvasRenderingContext2D(600, 600, this.settings)
+  
+  build() {
+    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
+      Canvas(this.context)
+        .width('100%')
+        .height('100%')
+        .backgroundColor('#ffff00')
+        .onReady(() =>{
+          this.offContext.save(); // save the default state
+          this.offContext.fillStyle = "green";
+          this.offContext.fillRect(20, 20, 100, 100);
+          this.offContext.restore(); // restore to the default state
+          this.offContext.fillRect(150, 75, 100, 100);
+          var image = this.offContext.transferToImageBitmap()
+          this.context.transferFromImageBitmap(image)
+        })
     }
+    .width('100%')
+    .height('100%')
   }
+}
   ```
+![en-us_image_000000127777781](figures/en-us_image_000000127777781.png) 
 
 
 ### save
@@ -2361,29 +2565,35 @@ Saves the current drawing context.
 
   ```ts
   // xxx.ets
-  @Entry
-  @Component
-  struct CanvasExample {
-    private settings: RenderingContextSettings = new RenderingContextSettings(true)
-    private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
-    private offContext: OffscreenCanvasRenderingContext2D = new OffscreenCanvasRenderingContext2D(600, 600, this.settings)
-    build() {
-      Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
-        Canvas(this.context)
-          .width('100%')
-          .height('100%')
-          .backgroundColor('#ffff00')
-          .onReady(() =>{
-            this.offContext.save()
-            var image = this.offContext.transferToImageBitmap()
-            this.context.transferFromImageBitmap(image)
+@Entry
+@Component
+struct CanvasExample {
+  private settings: RenderingContextSettings = new RenderingContextSettings(true)
+  private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
+  private offContext: OffscreenCanvasRenderingContext2D = new OffscreenCanvasRenderingContext2D(600, 600, this.settings)
+  
+  build() {
+    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
+      Canvas(this.context)
+        .width('100%')
+        .height('100%')
+        .backgroundColor('#ffff00')
+        .onReady(() =>{
+          this.offContext.save(); // save the default state
+          this.offContext.fillStyle = "green";
+          this.offContext.fillRect(20, 20, 100, 100);
+          this.offContext.restore(); // restore to the default state
+          this.offContext.fillRect(150, 75, 100, 100);
+          var image = this.offContext.transferToImageBitmap()
+          this.context.transferFromImageBitmap(image)
         })
-      }
-      .width('100%')
-      .height('100%')
     }
+    .width('100%')
+    .height('100%')
   }
+}
   ```
+![en-us_image_000000127777781](figures/en-us_image_000000127777781.png) 
 
 
 ### createLinearGradient

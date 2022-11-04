@@ -190,7 +190,7 @@ repo forall -c 'git lfs pull'
 API变更请参考：
 
 
-_[API差异报告](api-change/v3.1-Release/readme.md)_
+_[API差异报告](api-change/v3.1-Release/Readme-CN.md)_
 
 
 ### 芯片及开发板适配
@@ -215,7 +215,7 @@ _[API差异报告](api-change/v3.1-Release/readme.md)_
 | ArkUI | [拖拽](https://gitee.com/openharmony/app_samples/tree/master/ETSUI/Drag) | 本示例主要展示了拖拽操作的功能。 | eTS |
 | ArkUI | [动画](https://gitee.com/openharmony/app_samples/tree/master/ETSUI/ArkUIAnimation) | 本示例通过点击按钮触发动画，向用户展示属性动画与显示动画的效果。 | eTS |
 | 数据管理 | [分布式数据库-结果集和谓词查询](https://gitee.com/openharmony/app_samples/tree/master/data/DDMQuery) | 本示例展示了分布式数据管理中，如何通过构建query对象，&nbsp;查询kvstore中的数据，获取结果集。 | eTS |
-| 数据管理 | [关系型数据库](https://gitee.com/openharmony/app_samples/tree/master/data/Rdb) | 本示例展示了在eTS中关系型数据库的使用，包括增、删、改、查等操作。 | eTS |
+| 数据管理 | [关系型数据库](https://gitee.com/openharmony/app_samples/tree/master/data/DistributedRdb) | 本示例展示了在eTS中关系型数据库的使用，包括增、删、改、查等操作。 | eTS |
 | 事件 | [后台代理提醒](https://gitee.com/openharmony/app_samples/tree/master/Notification/AlarmClock) | 本示例通过模拟闹钟来展示后台代理提醒的使用方法。 | eTS |
 | 事件 | [事件通知](https://gitee.com/openharmony/app_samples/tree/master/Notification/Emitter) | 本示例主要展示进程内事件通知，用户通过选择对应商品并提交订单后在订单列表显示所选商品。 | eTS |
 | 通信与连接 | [RPC通信](https://gitee.com/openharmony/app_samples/tree/master/Communication/RPC) | 本示例展示了同一设备中前后台的数据交互，用户前台选择相应的商品与数目，后台计算出结果，回传给前台展示。 | eTS |
@@ -248,10 +248,10 @@ _[API差异报告](api-change/v3.1-Release/readme.md)_
 | ISSUE单 | 问题描述 |
 | -------- | -------- |
 | [I4MGJM](https://gitee.com/openharmony/drivers_peripheral/issues/I4MGJM) | 【hdf/camera】RK3568单板跑camera&nbsp;HDI用例失败 |
-| [I4OECR](https://gitee.com/openharmony/ark_js_runtime/issues/I4OECR) | XTS运行报ark异常栈（低概率问题） |
-| [I4OBTW](https://gitee.com/openharmony/aafwk_standard/issues/I4OBTW) | 全量执行XTS用例，安装应用后出现批量aa&nbsp;start&nbsp;失败，影响社区流水线稳定性测试 |
-| [I4OLHF](https://gitee.com/openharmony/ark_js_runtime/issues/I4OLHF?from=project-issue) | 【ArkUI子系统】&nbsp;由进程com.amsst.amsMissionSnapshotTest导致测试进程异常 |
-| [I4OLUK](https://gitee.com/openharmony/ark_js_runtime/issues/I4OLUK) | 【ArkUI子系统】&nbsp;由进程com.ohos.systemui导致进程栈异常 |
+| I4OECR | XTS运行报ark异常栈（低概率问题） |
+| I4OBTW | 全量执行XTS用例，安装应用后出现批量aa&nbsp;start&nbsp;失败，影响社区流水线稳定性测试 |
+| I4OLHF | 【ArkUI子系统】&nbsp;由进程com.amsst.amsMissionSnapshotTest导致测试进程异常 |
+| I4OLUK | 【ArkUI子系统】&nbsp;由进程com.ohos.systemui导致进程栈异常 |
 
 
 ## 遗留缺陷列表

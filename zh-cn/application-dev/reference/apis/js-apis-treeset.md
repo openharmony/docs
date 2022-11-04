@@ -43,10 +43,23 @@ TreeSet的构造函数。
 | -------- | -------- | -------- | -------- |
 | comparator | function | 否 | 用户自定义的比较函数。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[containers错误码](../errorcodes/errorcode-containers.md)。
+
+| 错误码ID | 错误码信息 |
+| -------- | -------- |
+| 10200012 | The TreeSet's constructor cannot be directly invoked. |
+
 **示例：**
 
 ```ts
 let treeSet = new TreeSet();
+try {
+  let treeSet2 = TreeSet();
+} catch(err) {
+  console.log(`${err.code} - ${err.name} - ${err.message}`);
+}
 ```
 
 
@@ -69,6 +82,11 @@ isEmpty(): boolean
 ```ts
 const treeSet = new TreeSet();
 let result = treeSet.isEmpty();
+try {
+  treeSet.isEmpty.bind({})();
+} catch(err) {
+  console.log(`${err.code} - ${err.name} - ${err.message}`);
+}
 ```
 
 
@@ -99,6 +117,11 @@ let treeSet = new TreeSet();
 treeSet.has(123);
 treeSet.add(123);
 let result1 = treeSet.has(123);
+try {
+  treeSet.has.bind({}, 123)();
+} catch(err) {
+  console.log(`${err.code} - ${err.name} - ${err.message}`);
+}
 ```
 
 
@@ -123,6 +146,11 @@ let treeSet = new TreeSet();
 treeSet.add("squirrel");
 treeSet.add("sparrow");
 let result = treeSet.getFirstValue();
+try {
+  treeSet.getFirstValue.bind({})();
+} catch(err) {
+  console.log(`${err.code} - ${err.name} - ${err.message}`);
+}
 ```
 
 
@@ -147,6 +175,11 @@ let treeSet = new TreeSet();
 treeSet.add("squirrel");
 treeSet.add("sparrow");
 let result = treeSet.getLastValue();
+try {
+  treeSet.getLastValue.bind({})();
+} catch(err) {
+  console.log(`${err.code} - ${err.name} - ${err.message}`);
+}
 ```
 
 
@@ -175,6 +208,11 @@ add(value: T): boolean
 ```ts
 let treeSet = new TreeSet();
 let result = treeSet.add("squirrel");
+try {
+  treeSet.add.bind({}, "squirrel")();
+} catch(err) {
+  console.log(`${err.code} - ${err.name} - ${err.message}`);
+}
 ```
 
 
@@ -205,6 +243,11 @@ let treeSet = new TreeSet();
 treeSet.add("squirrel");
 treeSet.add("sparrow");
 let result = treeSet.remove("sparrow");
+try {
+  treeSet.remove.bind({}, "sparrow")();
+} catch(err) {
+  console.log(`${err.code} - ${err.name} - ${err.message}`);
+}
 ```
 
 
@@ -236,6 +279,11 @@ treeSet.add("squirrel");
 treeSet.add("sparrow");
 treeSet.add("gander");
 let result = treeSet.getLowerValue("sparrow");
+try {
+  treeSet.getLowerValue.bind({}, "sparrow")();
+} catch(err) {
+  console.log(`${err.code} - ${err.name} - ${err.message}`);
+}
 ```
 
 
@@ -267,6 +315,11 @@ treeSet.add("squirrel");
 treeSet.add("sparrow");
 treeSet.add("gander");
 let result = treeSet.getHigherValue("sparrow");
+try {
+  treeSet.getHigherValue.bind({}, "sparrow")();
+} catch(err) {
+  console.log(`${err.code} - ${err.name} - ${err.message}`);
+}
 ```
 
 
@@ -291,6 +344,11 @@ let treeSet = new TreeSet();
 treeSet.add("squirrel");
 treeSet.add("sparrow");
 let result = treeSet.popFirst();
+try {
+  treeSet.popFirst.bind({})();
+} catch(err) {
+  console.log(`${err.code} - ${err.name} - ${err.message}`);
+}
 ```
 
 
@@ -315,6 +373,11 @@ let treeSet = new TreeSet();
 treeSet.add("squirrel");
 treeSet.add("sparrow");
 let result = treeSet.popLast();
+try {
+  treeSet.popLast.bind({})();
+} catch(err) {
+  console.log(`${err.code} - ${err.name} - ${err.message}`);
+}
 ```
 
 
@@ -333,6 +396,11 @@ let treeSet = new TreeSet();
 treeSet.add("squirrel");
 treeSet.add("sparrow");
 treeSet.clear();
+try {
+  treeSet.clear.bind({})();
+} catch(err) {
+  console.log(`${err.code} - ${err.name} - ${err.message}`);
+}
 ```
 
 
@@ -361,7 +429,12 @@ let temp = iter.next().value;
 while(temp != undefined) {
   console.log("value:" + temp);
   temp = iter.next().value;
-} 
+}
+try {
+  treeSet.values.bind({})();
+} catch(err) {
+  console.log(`${err.code} - ${err.name} - ${err.message}`);
+}
 ```
 
 
@@ -396,6 +469,13 @@ treeSet.add("gull");
 treeSet.forEach((value, key) => {
   console.log("value:" + value, key)
 });
+try {
+  treeSet.forEach.bind({}, (value, key) => {
+    console.log("value:" + value, key)
+  })();
+} catch(err) {
+  console.log(`${err.code} - ${err.name} - ${err.message}`);
+}
 ```
 
 
@@ -425,6 +505,11 @@ while(temp != undefined) {
   console.log("key:" + temp[0]);
   console.log("value:" + temp[1]);
   temp = iter.next().value;
+}
+try {
+  treeSet.entries.bind({})();
+} catch(err) {
+  console.log(`${err.code} - ${err.name} - ${err.message}`);
 }
 ```
 
@@ -461,5 +546,10 @@ let temp = iter.next().value;
 while(temp != undefined) {
   console.log("value:" + temp);
   temp = iter.next().value;
+}
+try {
+  treeSet[Symbol.iterator].bind({})();
+} catch(err) {
+  console.log(`${err.code} - ${err.name} - ${err.message}`);
 }
 ```

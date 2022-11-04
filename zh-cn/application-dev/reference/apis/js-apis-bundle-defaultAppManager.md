@@ -9,24 +9,24 @@
 ## 导入模块
 
 ```
-import defaultAppMgr from '@ohos.bundle.defaultAppManager'
+import defaultAppMgr from '@ohos.bundle.defaultAppManager';
 ```
 ## defaultAppMgr.ApplicationType
 
 应用类型
 
-**系统能力：** SystemCapability.BundleManager.BundleFramework
+**系统能力：** SystemCapability.BundleManager.BundleFramework.DefaultAppManager
 
-| 名称      | 类型     | 说明                                   |
-| -------- | -------- | -------------------------------------- |
-| BROWSER  | string   | 默认浏览器。                            |
-| IMAGE    | string   | 默认图片查看器。                         |
-| AUDIO    | string   | 默认音频播放器。                         |
-| VIDEO    | string   | 默认视频播放器。                         |
-| PDF      | string   | 默认PDF文档查看器。                      |
-| WORD     | string   | 默认WORD文档查看器。                     |
-| EXCEL    | string   | 默认EXCEL文档查看器。                    |
-| PPT      | string   | 默认PPT文档查看器。                      |
+| 名称      | 类型     | 值    | 说明                                   |
+| -------- | -------- | -------------------------------------- | -------------------------------------- |
+| BROWSER  | string   | Web Browser | 默认浏览器。                            |
+| IMAGE    | string   | Image Gallery | 默认图片查看器。                         |
+| AUDIO    | string   | Audio Player | 默认音频播放器。                         |
+| VIDEO    | string   | Video Player | 默认视频播放器。                         |
+| PDF      | string   | PDF Viewer | 默认PDF文档查看器。                      |
+| WORD     | string   | Word Viewer | 默认WORD文档查看器。                     |
+| EXCEL    | string   | Excel Viewer | 默认EXCEL文档查看器。                    |
+| PPT      | string   | PPT Viewer | 默认PPT文档查看器。                      |
 
 ## defaultAppMgr.isDefaultApplication
 
@@ -34,7 +34,7 @@ isDefaultApplication(type: string): Promise\<boolean>
 
 以异步方法根据系统已定义的应用类型判断当前应用是否是该应用类型的默认应用，使用Promise形式返回结果。
 
-**系统能力：** SystemCapability.BundleManager.BundleFramework
+**系统能力：** SystemCapability.BundleManager.BundleFramework.DefaultAppManager
 
 **参数：**
 
@@ -65,7 +65,7 @@ isDefaultApplication(type: string, callback: AsyncCallback\<boolean>): void
 
 以异步方法根据系统已定义的应用类型判断当前应用是否是该应用类型的默认应用，使用callback形式返回结果。
 
-**系统能力：** SystemCapability.BundleManager.BundleFramework
+**系统能力：** SystemCapability.BundleManager.BundleFramework.DefaultAppManager
 
 **参数：**
 
@@ -94,7 +94,7 @@ getDefaultApplication(type: string, userId?: number): Promise\<BundleInfo>
 
 **需要权限：** ohos.permission.GET_DEFAULT_APPLICATION
 
-**系统能力：** SystemCapability.BundleManager.BundleFramework
+**系统能力：** SystemCapability.BundleManager.BundleFramework.DefaultAppManager
 
 **系统API：**  此接口为系统接口，三方应用不支持调用
 
@@ -110,6 +110,14 @@ getDefaultApplication(type: string, userId?: number): Promise\<BundleInfo>
 | 类型                        | 说明                 |
 | ------------------------- | ------------------ |
 | Promise\<[BundleInfo](js-apis-bundle-BundleInfo.md)> | Promise形式返回默认应用包信息。 |
+
+**错误码：**
+
+| 错误码ID | 错误码信息                                |
+| -------- | ----------------------------------------- |
+| 17700004 | The specified user id is not found.       |
+| 17700023 | The specified default app does not exist. |
+| 17700025 | The specified type is invalid.            |
 
 **示例：**
 
@@ -139,7 +147,7 @@ getDefaultApplication(type: string, userId: number, callback: AsyncCallback\<Bun
 
 **需要权限：** ohos.permission.GET_DEFAULT_APPLICATION
 
-**系统能力：** SystemCapability.BundleManager.BundleFramework
+**系统能力：** SystemCapability.BundleManager.BundleFramework.DefaultAppManager
 
 **系统API：**  此接口为系统接口，三方应用不支持调用
 
@@ -150,6 +158,14 @@ getDefaultApplication(type: string, userId: number, callback: AsyncCallback\<Bun
 | type  | string | 是    | 要查询的应用类型，取[ApplicationType](#defaultappmgrapplicationtype)中的值，或者符合媒体类型格式的文件类型。       |
 | userId  | number | 是    | 用户ID。                           |
 | callback    | AsyncCallback\<[BundleInfo](js-apis-bundle-BundleInfo.md)> | 是    | 程序启动作为入参的回调函数，返回包信息。                    |
+
+**错误码：**
+
+| 错误码ID | 错误码信息                                |
+| -------- | ----------------------------------------- |
+| 17700004 | The specified user id is not found.       |
+| 17700023 | The specified default app does not exist. |
+| 17700025 | The specified type is invalid.            |
 
 **示例：**
 
@@ -179,7 +195,7 @@ getDefaultApplication(type: string, callback: AsyncCallback\<BundleInfo>) : void
 
 **需要权限：** ohos.permission.GET_DEFAULT_APPLICATION
 
-**系统能力：** SystemCapability.BundleManager.BundleFramework
+**系统能力：** SystemCapability.BundleManager.BundleFramework.DefaultAppManager
 
 **系统API：**  此接口为系统接口，三方应用不支持调用
 
@@ -189,6 +205,14 @@ getDefaultApplication(type: string, callback: AsyncCallback\<BundleInfo>) : void
 | ----------- | ------ | ---- | --------------------------------------- |
 | type  | string | 是    | 要查询的应用类型，取[ApplicationType](#defaultappmgrapplicationtype)中的值，或者符合媒体类型格式的文件类型。       |
 | callback    | AsyncCallback\<[BundleInfo](js-apis-bundle-BundleInfo.md)> | 是    | 程序启动作为入参的回调函数，返回包信息。                    |
+
+**错误码：**
+
+| 错误码ID | 错误码信息                                |
+| -------- | ----------------------------------------- |
+| 17700004 | The specified user id is not found.       |
+| 17700023 | The specified default app does not exist. |
+| 17700025 | The specified type is invalid.            |
 
 **示例：**
 
@@ -218,7 +242,7 @@ setDefaultApplication(type: string, elementName: ElementName, userId?: number): 
 
 **需要权限：** ohos.permission.SET_DEFAULT_APPLICATION
 
-**系统能力：** SystemCapability.BundleManager.BundleFramework
+**系统能力：** SystemCapability.BundleManager.BundleFramework.DefaultAppManager.defaultAppManager
 
 **系统API：**  此接口为系统接口，三方应用不支持调用
 
@@ -229,6 +253,14 @@ setDefaultApplication(type: string, elementName: ElementName, userId?: number): 
 | type  | string | 是    | 要设置的应用类型，取[ApplicationType](#defaultappmgrapplicationtype)中的值，或者符合媒体类型格式的文件类型。       |
 | elementName  | [ElementName](js-apis-bundle-ElementName.md) | 是    | 要设置为默认应用的组件信息。                           |
 | userId  | number | 否    | 用户ID。默认值：调用方所在用户。                           |
+
+**错误码：**
+
+| 错误码ID | 错误码信息                                     |
+| -------- | ---------------------------------------------- |
+| 17700004 | The specified user id is not found.            |
+| 17700025 | The specified type is invalid.                 |
+| 17700028 | The specified ability and type does not match. |
 
 **示例：**
 
@@ -266,7 +298,7 @@ setDefaultApplication(type: string, elementName: ElementName, userId: number, ca
 
 **需要权限：** ohos.permission.SET_DEFAULT_APPLICATION
 
-**系统能力：** SystemCapability.BundleManager.BundleFramework
+**系统能力：** SystemCapability.BundleManager.BundleFramework.DefaultAppManager.defaultAppManager
 
 **系统API：**  此接口为系统接口，三方应用不支持调用
 
@@ -278,6 +310,14 @@ setDefaultApplication(type: string, elementName: ElementName, userId: number, ca
 | elementName  | [ElementName](js-apis-bundle-ElementName.md) | 是    | 要设置为默认应用的组件信息。                           |
 | userId  | number | 是    | 用户ID。                           |
 | callback    | AsyncCallback\<void> | 是    | 程序启动作为入参的回调函数。                    |
+
+**错误码：**
+
+| 错误码ID | 错误码信息                                     |
+| -------- | ---------------------------------------------- |
+| 17700004 | The specified user id is not found.            |
+| 17700025 | The specified type is invalid.                 |
+| 17700028 | The specified ability and type does not match. |
 
 **示例：**
 
@@ -315,7 +355,7 @@ setDefaultApplication(type: string, elementName: ElementName, callback: AsyncCal
 
 **需要权限：** ohos.permission.SET_DEFAULT_APPLICATION
 
-**系统能力：** SystemCapability.BundleManager.BundleFramework
+**系统能力：** SystemCapability.BundleManager.BundleFramework.DefaultAppManager.defaultAppManager
 
 **系统API：**  此接口为系统接口，三方应用不支持调用
 
@@ -326,6 +366,14 @@ setDefaultApplication(type: string, elementName: ElementName, callback: AsyncCal
 | type  | string | 是    | 要设置的应用类型，取[ApplicationType](#defaultappmgrapplicationtype)中的值，或者符合媒体类型格式的文件类型。       |
 | elementName  | [ElementName](js-apis-bundle-ElementName.md) | 是    | 要设置为默认应用的组件信息。                           |
 | callback    | AsyncCallback\<void> | 是    | 程序启动作为入参的回调函数。                    |
+
+**错误码：**
+
+| 错误码ID | 错误码信息                                     |
+| -------- | ---------------------------------------------- |
+| 17700004 | The specified user id is not found.            |
+| 17700025 | The specified type is invalid.                 |
+| 17700028 | The specified ability and type does not match. |
 
 **示例：**
 
@@ -363,7 +411,7 @@ resetDefaultApplication(type: string, userId?: number): Promise\<void>
 
 **需要权限：** ohos.permission.SET_DEFAULT_APPLICATION
 
-**系统能力：** SystemCapability.BundleManager.BundleFramework
+**系统能力：** SystemCapability.BundleManager.BundleFramework.DefaultAppManager.defaultAppManager
 
 **系统API：**  此接口为系统接口，三方应用不支持调用
 
@@ -373,6 +421,13 @@ resetDefaultApplication(type: string, userId?: number): Promise\<void>
 | ----------- | ------ | ---- | --------------------------------------- |
 | type  | string | 是    | 要重置的应用类型，取[ApplicationType](#defaultappmgrapplicationtype)中的值，或者符合媒体类型格式的文件类型。       |
 | userId  | number | 否    | 用户ID。默认值：调用方所在用户。                           |
+
+**错误码：**
+
+| 错误码ID | 错误码信息                          |
+| -------- | ----------------------------------- |
+| 17700004 | The specified user id is not found. |
+| 17700025 | The specified type is invalid.      |
 
 **示例：**
 
@@ -402,7 +457,7 @@ resetDefaultApplication(type: string, userId: number, callback: AsyncCallback\<v
 
 **需要权限：** ohos.permission.SET_DEFAULT_APPLICATION
 
-**系统能力：** SystemCapability.BundleManager.BundleFramework
+**系统能力：** SystemCapability.BundleManager.BundleFramework.DefaultAppManager.defaultAppManager
 
 **系统API：**  此接口为系统接口，三方应用不支持调用
 
@@ -413,6 +468,13 @@ resetDefaultApplication(type: string, userId: number, callback: AsyncCallback\<v
 | type  | string | 是    | 要重置的应用类型，取[ApplicationType](#defaultappmgrapplicationtype)中的值，或者符合媒体类型格式的文件类型。       |
 | userId  | number | 是    | 用户ID。                          |
 | callback    | AsyncCallback\<void> | 是    | 程序启动作为入参的回调函数。                    |
+
+**错误码：**
+
+| 错误码ID | 错误码信息                          |
+| -------- | ----------------------------------- |
+| 17700004 | The specified user id is not found. |
+| 17700025 | The specified type is invalid.      |
 
 **示例：**
 
@@ -442,7 +504,7 @@ resetDefaultApplication(type: string, callback: AsyncCallback\<void>) : void;
 
 **需要权限：** ohos.permission.SET_DEFAULT_APPLICATION
 
-**系统能力：** SystemCapability.BundleManager.BundleFramework
+**系统能力：** SystemCapability.BundleManager.BundleFramework.DefaultAppManager.defaultAppManager
 
 **系统API：**  此接口为系统接口，三方应用不支持调用
 
@@ -452,6 +514,13 @@ resetDefaultApplication(type: string, callback: AsyncCallback\<void>) : void;
 | ----------- | ------ | ---- | --------------------------------------- |
 | type  | string | 是    | 要重置的应用类型，取[ApplicationType](#defaultappmgrapplicationtype)中的值，或者符合媒体类型格式的文件类型。       |
 | callback    | AsyncCallback\<void> | 是    | 程序启动作为入参的回调函数。                    |
+
+**错误码：**
+
+| 错误码ID | 错误码信息                          |
+| -------- | ----------------------------------- |
+| 17700004 | The specified user id is not found. |
+| 17700025 | The specified type is invalid.      |
 
 **示例：**
 

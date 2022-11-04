@@ -1,15 +1,6 @@
-# Telephony <a name="EN-US_TOPIC_0000001162422291"></a>
+# Telephony
 
--   [Introduction](#section104mcpsimp)
--   [Directory Structure](#section119mcpsimp)
--   [Constraints](#section123mcpsimp)
--   [Usage](#section128mcpsimp)
-    -   [Obtaining the Current Cellular Network Signal Information](#section1458213210369)
-    -   [Observing Changes to the Cellular Network Status](#section750135512369)
-
--   [Repositories Involved](#section152mcpsimp)
-
-## Introduction<a name="section104mcpsimp"></a>
+## Introduction
 
 The Telephony subsystem provides APIs for obtaining information about the wireless cellular network and SIM card. Applications can call these APIs to obtain information such as the name of the currently registered network, network service status, signal strength, and SIM card information.
 
@@ -28,7 +19,7 @@ The Telephony subsystem consists of the following modules:
 
 ![](figures/en-us_architecture-of-telephony-subsystem.png)
 
-## Directory Structure<a name="section119mcpsimp"></a>
+## Directory Structure
 
 ```
 base/telephony/
@@ -42,16 +33,16 @@ base/telephony/
 └── ril_adapter             # RIL Adapter module
 ```
 
-## Constraints<a name="section123mcpsimp"></a>
+## Constraints
 
 1.  The open-source version currently provides the cellular call (CS call only), SMS & MMS, and cellular data services and supports the dual-SIM framework.
-2.  The Hardware Device Interface (HDI) support is subject to the chip vendors' adaptation capability. For details, see [Telephony Service Development](https://gitee.com/openharmony/docs/blob/master/en/device-dev/subsystems/subsys-tel.md).
+2.  The Hardware Device Interface (HDI) support is subject to the chip vendors' adaptation capability. For details, see [Telephony Development](../device-dev/subsystems/subsys-tel-guide).
 
-## Usage Guidelines<a name="section128mcpsimp"></a>
+## Usage Guidelines
 
 To learn more about the usage of each subsystem module, refer to the respective README. The following illustrates API usage by exemplifying how to obtain the current cellular network signal information and observe the cellular network status changes.
 
-### Obtaining the Current Cellular Network Signal Information<a name="section1458213210369"></a>
+### Obtaining the Current Cellular Network Signal Information
 
 1.  Import the **radio** namespace from **@ohos.telephony.radio.d.ts**.
 2.  Call the **getSignalInformation\(slotId: number\)** function via callback or promise. This function works in asynchronous mode. 
@@ -92,7 +83,7 @@ To learn more about the usage of each subsystem module, refer to the respective 
     ```
 
 
-### Observing Cellular Network Status Changes<a name="section750135512369"></a>
+### Observing Cellular Network Status Changes
 
 Adding an Observer
 
@@ -125,7 +116,7 @@ Removing the Observer
     ```
 
 
-## Repositories Involved<a name="section152mcpsimp"></a>
+## Repositories Involved
 
 **Telephony Subsystem**
 

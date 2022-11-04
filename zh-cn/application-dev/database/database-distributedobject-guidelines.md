@@ -259,5 +259,5 @@
 ## 相关实例
 
 针对分布式数据对象，有以下相关实例可供参考：
-- [`DistributedNote`：分布式备忘录（eTS）（API9）（Full SDK）](https://gitee.com/openharmony/applications_app_samples/tree/master/data/DistributedNote)
-- [`DistributedObjectDms`：分布式跑马灯（eTS）（API9）（Full SDK）](https://gitee.com/openharmony/applications_app_samples/tree/master/data/DistributedObjectDms)
+- [`DistributedNote`：分布式备忘录（ArkTS）（API9）（Full SDK）](https://gitee.com/openharmony/applications_app_samples/tree/master/data/DistributedNote)
+- [`DistributedObjectDms`：分布式跑马灯（ArkTS）（API9）（Full SDK）](https://gitee.com/openharmony/applications_app_samples/tree/master/data/DistributedObjectDms)

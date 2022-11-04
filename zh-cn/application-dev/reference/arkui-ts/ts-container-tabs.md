@@ -1,6 +1,6 @@
 # Tabs
 
-一种可以通过页签进行内容视图切换的容器组件，每个页签对应一个内容视图。
+通过页签进行内容视图切换的容器组件，每个页签对应一个内容视图。
 
 >  **说明：**
 >
@@ -9,7 +9,7 @@
 
 ## 子组件
 
-包含子组件[TabContent](ts-container-tabcontent.md)。
+仅可包含子组件[TabContent](ts-container-tabcontent.md)。
 
 
 ## 接口
@@ -20,8 +20,8 @@ Tabs(value?: {barPosition?: BarPosition, index?: number, controller?: [TabsContr
 
 | 参数名 | 参数类型 | 必填 | 参数描述 |
 | -------- | -------- | -------- | -------- |
-| barPosition | BarPosition | 否 | 指定页签位置来创建Tabs容器组件。<br/>默认值：BarPosition.Start |
-| index | number | 否 | 指定初次初始页签索引。<br/>默认值：0 |
+| barPosition | BarPosition | 否 | 设置Tabs的页签位置。<br/>默认值：BarPosition.Start |
+| index | number | 否 | 设置初始页签索引。<br/>默认值：0 |
 | controller | [TabsController](#tabscontroller) | 否 | 设置Tabs控制器。 |
 
 ## BarPosition枚举说明
@@ -49,8 +49,8 @@ Tabs(value?: {barPosition?: BarPosition, index?: number, controller?: [TabsContr
 
 | 名称 | 描述 |
 | -------- | -------- |
-| Scrollable | TabBar使用实际布局宽度,&nbsp;超过总长度后可滑动。 |
-| Fixed | 所有TabBar平均分配宽度。 |
+| Scrollable | 每一个TabBar均使用实际布局宽度，超过总长度（横向Tabs的barWidth，纵向Tabs的barHeight）后可滑动。 |
+| Fixed | 所有TabBar平均分配barWidth宽度（纵向时平均分配barHeight高度）。 |
 
 ## 事件
 
@@ -112,12 +112,17 @@ struct TabsExample {
           Column().width('100%').height('100%').backgroundColor(Color.Green)
         }.tabBar('green')
       }
-      .vertical(true).scrollable(true).barMode(BarMode.Fixed)
-      .barWidth(70).barHeight(150).animationDuration(400)
+      .vertical(true)
+      .scrollable(true)
+      .barMode(BarMode.Fixed)
+      .barWidth(70)
+      .barHeight(150)
+      .animationDuration(400)
       .onChange((index: number) => {
         console.info(index.toString())
       })
-      .width('90%').backgroundColor(0xF5F5F5)
+      .width('90%')
+      .backgroundColor(0xF5F5F5)
     }.width('100%').height(150).margin({ top: 5 })
   }
 }

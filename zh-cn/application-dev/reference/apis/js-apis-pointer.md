@@ -1,6 +1,6 @@
 # 鼠标指针
 
-鼠标指针管理模块，用于提供鼠标指针相关属性接口。
+鼠标指针管理模块，用于查询和设置鼠标指针相关属性。
 
 > **说明**：
 >
@@ -12,11 +12,11 @@
 import pointer from '@ohos.multimodalInput.pointer';
 ```
 
-## pointer.setPointerVisibele<sup>9+</sup>
+## pointer.setPointerVisible<sup>9+</sup>
 
 setPointerVisible(visible: boolean, callback: AsyncCallback&lt;void&gt;): void
 
-设置鼠标指针显示或者隐藏，使用callback异步回调。
+设置鼠标指针显示或者隐藏，使用AsyncCallback异步方式返回结果。
 
 **系统能力**：SystemCapability.MultimodalInput.Input.Pointer
 
@@ -24,18 +24,22 @@ setPointerVisible(visible: boolean, callback: AsyncCallback&lt;void&gt;): void
 
 | 参数       | 类型                        | 必填   | 说明                                       |
 | -------- | ------------------------- | ---- | ---------------------------------------- |
-| visible  | boolean                   | 是    | 鼠标指针显示或者隐藏状态，true: 鼠标指针显示; false: 鼠标指针隐藏。 |
-| callback | AsyncCallback&lt;void&gt; | 是    | 回调函数。当设置鼠标显示或隐藏成功，err为undefined，否则为错误对象。 |
+| visible  | boolean                   | 是    | 鼠标指针是否显示。 |
+| callback | AsyncCallback&lt;void&gt; | 是    | 回调函数。 |
 
 **示例**：
 
 ```js
 try {
-  pointer.setPointerVisible(true, (err, data) => {
+  pointer.setPointerVisible(true, (error) => {
+    if (error) {
+      console.log(`Set pointer visible failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+      return;
+    }
     console.log(`Set pointer visible success`);
   });
-} catch (err) {
-  console.log(`Set pointer visible failed. err=${JSON.stringify(err)}, msg=${JSON.stringify(message)}`);
+} catch (error) {
+  console.log(`Set pointer visible failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -43,7 +47,7 @@ try {
 
 setPointerVisible(visible: boolean): Promise&lt;void&gt;
 
-设置鼠标指针显示或者隐藏，使用Promise方式作为异步方法。
+设置鼠标指针显示或者隐藏，使用Promise异步方式返回结果。
 
 **系统能力**：SystemCapability.MultimodalInput.Input.Pointer
 
@@ -51,23 +55,23 @@ setPointerVisible(visible: boolean): Promise&lt;void&gt;
 
 | 参数      | 类型      | 必填   | 说明                                       |
 | ------- | ------- | ---- | ---------------------------------------- |
-| visible | boolean | 是    | 鼠标指针显示或者隐藏状态，true: 鼠标指针显示; false: 鼠标指针隐藏。 |
+| visible | boolean | 是    | 鼠标指针是否显示。 |
 
 **返回值**：
 
 | 参数                  | 说明                  |
 | ------------------- | ------------------- |
-| Promise&lt;void&gt; | Promise实例，用于异步获取结果。 |
+| Promise&lt;void&gt; | Promise对象。 |
 
 **示例**：
 
 ```js
 try {
-  pointer.setPointerVisible(false).then(data => {
-    console.log(`Set mouse pointer visible success`);
+  pointer.setPointerVisible(false).then(() => {
+    console.log(`Set pointer visible success`);
   });
-} catch {
-  console.log(`Set mouse pointer visible failed err=${JSON.stringify(data)}, msg=${JSON.stringify(message)}`);
+} catch (error) {
+  console.log(`Set pointer visible failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -75,7 +79,7 @@ try {
 
 isPointerVisible(callback: AsyncCallback&lt;boolean&gt;): void
 
-获取鼠标指针显示或隐藏状态，使用callback异步回调。
+获取鼠标指针显示或隐藏状态，使用AsyncCallback异步方式返回结果。
 
 **系统能力**：SystemCapability.MultimodalInput.Input.Pointer
 
@@ -83,17 +87,21 @@ isPointerVisible(callback: AsyncCallback&lt;boolean&gt;): void
 
 | 参数       | 类型                           | 必填   | 说明             |
 | -------- | ---------------------------- | ---- | -------------- |
-| callback | AsyncCallback&lt;boolean&gt; | 是    | 回调函数，异步返回查询结果。 |
+| callback | AsyncCallback&lt;boolean&gt; | 是    | 回调函数，异步返回鼠标指针显示或隐藏状态。 |
 
 **示例**：
 
 ```js
 try {
-  pointer.isPointerVisible(visible, (err, data) => {
-    console.log(`The mouse pointer visible attributes is ` + visible);
+  pointer.isPointerVisible((error, visible) => {
+    if (error) {
+      console.log(`Get pointer visible failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+      return;
+    }
+    console.log(`Get pointer visible success, visible: ${JSON.stringify(visible)}`);
   });
-} catch (err) {
-  console.log(`The mouse pointer visible attributes is failed. err=${JSON.stringify(err)}, msg=${JSON.stringify(message)}`);
+} catch (error) {
+  console.log(`Get pointer visible failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -101,7 +109,7 @@ try {
 
 isPointerVisible(): Promise&lt;boolean&gt;
 
-获取鼠标指针显示或隐藏状态，使用Promise方式作为异步方法。
+获取鼠标指针显示或隐藏状态，使用Promise异步方式返回结果。
 
 **系统能力**：SystemCapability.MultimodalInput.Input.Pointer
 
@@ -109,25 +117,21 @@ isPointerVisible(): Promise&lt;boolean&gt;
 
 | 参数                     | 说明                  |
 | ---------------------- | ------------------- |
-| Promise&lt;boolean&gt; | Promise实例，用于异步获取结果。 |
+| Promise&lt;boolean&gt; | Promise对象，异步返回鼠标指针显示或隐藏状态。 |
 
 **示例**：
 
 ```js
-try {
-  pointer.isPointerVisible().then((data) => {
-    console.log(`The mouse pointer visible attributes is success. data=${JSON.stringify(data)}`);
-  });
-} catch (err) {
-  ponsole.info(`The mouse pointer visible attributes is failed. err=${JSON.stringify(err)}, msg=${JSON.stringify(message)}`);
-}
+pointer.isPointerVisible().then((visible) => {
+  console.log(`Get pointer visible success, visible: ${JSON.stringify(visible)}`);
+});
 ```
 
 ## pointer.setPointerSpeed<sup>9+</sup>
 
 setPointerSpeed(speed: number, callback: AsyncCallback&lt;void&gt;): void
 
-设置鼠标移动速度，使用callback异步回调。
+设置鼠标移动速度，使用AsyncCallback异步方式返回结果。
 
 **系统能力**：SystemCapability.MultimodalInput.Input.Pointer
 
@@ -135,18 +139,22 @@ setPointerSpeed(speed: number, callback: AsyncCallback&lt;void&gt;): void
 
 | 参数       | 类型                        | 必填   | 说明                                    |
 | -------- | ------------------------- | ---- | ------------------------------------- |
-| speed    | number                    | 是    | 鼠标移动速度设置挡位值1-11，最大值：11，最小值：1，标准值：5。   |
-| callback | AysncCallback&lt;void&gt; | 是    | 回调函数。当设置鼠标速度成功，err为undefined，否则为错误对象。 |
+| speed    | number                    | 是    | 鼠标移动速度，范围1-11，默认为5。   |
+| callback | AysncCallback&lt;void&gt; | 是    | 回调函数。 |
 
 **示例**：
 
 ```js
 try {
-  pointer.setPointerSpeed(5, (err, data) => {
+  pointer.setPointerSpeed(5, (error) => {
+    if (error) {
+      console.log(`Set pointer speed failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+      return;
+    }
     console.log(`Set pointer speed success`);
   });
 } catch (err) {
-  console.log(`Set pointer speed failed. err=${JSON.stringify(err)}, msg=${JSON.stringify(message)}`);
+  console.log(`Set pointer speed failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -154,7 +162,7 @@ try {
 
 setPointerSpeed(speed: number): Promise&lt;void&gt;
 
-设置鼠标移动速度，使用Promise异步回调。
+设置鼠标移动速度，使用Promise异步方式返回结果。
 
 **系统能力**：SystemCapability.MultimodalInput.Input.Pointer
 
@@ -162,23 +170,23 @@ setPointerSpeed(speed: number): Promise&lt;void&gt;
 
 | 参数    | 类型     | 必填   | 说明                                  |
 | ----- | ------ | ---- | ----------------------------------- |
-| speed | number | 是    | 鼠标移动速度设置挡位值1-11，最大值：11，最小值：1，标准值：5。 |
+| speed | number | 是    | 鼠标移动速度，范围1-11，默认为5。 |
 
 **返回值**：
 
 | 参数                  | 说明               |
 | ------------------- | ---------------- |
-| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
+| Promise&lt;void&gt; | Promise对象。 |
 
 **示例**：
 
 ```js
 try {
-  pointer.setPointerSpeed(5).then(data => {
+  pointer.setPointerSpeed(5).then(() => {
     console.log(`Set pointer speed success`);
   });
-} catch (err) {
-  console.log(`Set pointer speed failed err=${JSON.stringify(err)}, msg=${JSON.stringify(message)}`);
+} catch (error) {
+  console.log(`Set pointer speed failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -186,7 +194,7 @@ try {
 
 getPointerSpeed(callback: AsyncCallback&lt;number&gt;): void
 
-获取当前鼠标移动速度，使用callback异步回调。
+获取鼠标移动速度，使用AsyncCallback异步方式返回结果。
 
 **系统能力**：SystemCapability.MultimodalInput.Input.Pointer
 
@@ -194,17 +202,21 @@ getPointerSpeed(callback: AsyncCallback&lt;number&gt;): void
 
 | 参数       | 类型                          | 必填   | 说明             |
 | -------- | --------------------------- | ---- | -------------- |
-| callback | AsyncCallback&lt;number&gt; | 是    | 回调函数，异步返回查询结果。 |
+| callback | AsyncCallback&lt;number&gt; | 是    | 回调函数，异步返回鼠标移动速度。 |
 
 **示例**：
 
 ```js
 try {
-  pointer.getPointerSpeed(speed, (err, data) => {
-    console.log(`The pointer speed is ` + speed);
+  pointer.getPointerSpeed(speed, (error, speed) => {
+    if (error) {
+      console.log(`Get pointer speed failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+      return;
+    }
+    console.log(`Get pointer speed success, speed: ${JSON.stringify(speed)}`);
   });
 } catch (err) {
-  console.log(`Failed to get the pointer speed. err=${JSON.stringify(err)}, msg=${JSON.stringify(message)}`);
+  console.log(`Get pointer speed failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -212,7 +224,7 @@ try {
 
 getPointerSpeed(): Promise&lt;number&gt;
 
-获取当前鼠标移动速度，使用Promise异步回调。
+获取当前鼠标移动速度，使用Promise异步方式返回结果。
 
 **系统能力**：SystemCapability.MultimodalInput.Input.Pointer
 
@@ -220,17 +232,17 @@ getPointerSpeed(): Promise&lt;number&gt;
 
 | 参数                    | 说明                  |
 | --------------------- | ------------------- |
-| Promise&lt;number&gt; | Promise实例，用于异步获取结果。 |
+| Promise&lt;number&gt; | Promise实例，异步返回鼠标移动速度。 |
 
 **示例**：
 
 ```js
 try {
-  pointer.getPointerSpeed().then(data => {
-    console.log(`Get pointer speed success. data=${JSON.stringify(data)}`);
+  pointer.getPointerSpeed().then(speed => {
+    console.log(`Get pointer speed success, speed: ${JSON.stringify(speed)}`);
   });
-} catch (err) {
-  console.log(`Get pointer speed failed err=${JSON.stringify(err)}, msg=${JSON.stringify(message)}`);
+} catch (error) {
+  console.log(`Get pointer speed failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -238,7 +250,7 @@ try {
 
 getPointerStyle(windowId: number, callback: AsyncCallback&lt;PointerStyle&gt;): void
 
-获取鼠标样式类型，使用callback异步回调。
+获取鼠标样式类型，使用AsyncCallback异步方式返回结果。
 
 **系统能力**：SystemCapability.MultimodalInput.Input.Pointer
 
@@ -246,29 +258,27 @@ getPointerStyle(windowId: number, callback: AsyncCallback&lt;PointerStyle&gt;): 
 
 | 参数       | 类型                                       | 必填   | 说明             |
 | -------- | ---------------------------------------- | ---- | -------------- |
-| windowId | number                                   | 是    | 输入设备的窗口id。     |
-| callback | AsyncCallback&lt;[PointerStyle](#pointerstyle9)&gt; | 是    | 回调函数，异步返回查询结果。 |
+| windowId | number                                   | 是    | 窗口id。    |
+| callback | AsyncCallback&lt;[PointerStyle](#pointerstyle9)&gt; | 是    | 回调函数，异步返回鼠标样式类型。 |
 
 **示例**：
 
 ```js
-// 获取设备的鼠标样式。
 import window from '@ohos.window';
-var windowClass = null;
-window.getTopWindow((err, data) => {
-  windowClass = data;
-  windowClass.getProperties((err, data) => {
-    var windowId = data.id;
+
+window.getTopWindow((error, win) => {
+  win.getProperties((error, properties) => {
+    var windowId = properties.id;
     if (windowId < 0) {
       console.log(`Invalid windowId`);
       return;
     }
     try {
-      pointer.getPointerStyle(windowId, (err, ret) => {
-        console.log(`The mouse pointer style is: ` + ret);
+      pointer.getPointerStyle(windowId, (error, style) => {
+        console.log(`Get pointer style success, style: ${JSON.stringify(style)}`);
       });
-    } catch (err) {
-      console.log(`Failed to get the pointer style. err=${JSON.stringify(err)}, msg=${JSON.stringify(message)}`);
+    } catch (error) {
+      console.log(`Get pointer style failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
     }
   });
 });
@@ -278,7 +288,7 @@ window.getTopWindow((err, data) => {
 
 getPointerStyle(windowId: number): Promise&lt;PointerStyle&gt;
 
-获取鼠标样式类型，使用Promise方式作为异步方法。
+获取鼠标样式类型，使用Promise异步方式返回结果。
 
 **系统能力**：SystemCapability.MultimodalInput.Input.Pointer
 
@@ -286,28 +296,26 @@ getPointerStyle(windowId: number): Promise&lt;PointerStyle&gt;
 
 | 参数                                       | 说明                  |
 | ---------------------------------------- | ------------------- |
-| Promise&lt;[PointerStyle](#pointerstyle9)&gt; | Promise实例，用于异步获取结果。 |
+| Promise&lt;[PointerStyle](#pointerstyle9)&gt; | Promise实例，异步返回鼠标样式类型。 |
 
 **示例**：
 
 ```js
-// 获取设备的鼠标样式。
 import window from '@ohos.window';
-var windowClass = null;
-window.getTopWindow((err, data) => {
-  windowClass = data;
-  windowClass.getProperties((err, data) => {
-    var windowId = data.id;
+
+window.getTopWindow((error, win) => {
+  win.getProperties((error, properties) => {
+    var windowId = properties.id;
     if (windowId < 0) {
       console.log(`Invalid windowId`);
       return;
     }
     try {
-      pointer.getPointerStyle(windowId).then((ret) => {
-        console.log(`The mouse pointer style is: ` + ret);
+      pointer.getPointerStyle(windowId).then((style) => {
+        console.log(`Get pointer style success, style: ${JSON.stringify(style)}`);
       });
-    } catch (err) {
-      console.log(`Get pointer style failed err=${JSON.stringify(err)}, msg=${JSON.stringify(message)}`);
+    } catch (error) {
+      console.log(`Get pointer style failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
     }
   });
 });
@@ -317,7 +325,7 @@ window.getTopWindow((err, data) => {
 
 setPointerStyle(windowId: number, pointerStyle: PointerStyle, callback: AsyncCallback&lt;void&gt;): void
 
-设置鼠标的样式类型，使用callback异步回调。
+设置鼠标样式类型，使用AsyncCallback异步方式返回结果。
 
 **系统能力**：SystemCapability.MultimodalInput.Input.Pointer
 
@@ -325,30 +333,28 @@ setPointerStyle(windowId: number, pointerStyle: PointerStyle, callback: AsyncCal
 
 | 参数           | 类型                             | 必填   | 说明                                  |
 | ------------ | ------------------------------ | ---- | ----------------------------------- |
-| windowId     | number                         | 是    | 输入设备的窗口id。                          |
+| windowId     | number                         | 是    | 窗口id。                          |
 | pointerStyle | [PointerStyle](#pointerstyle9) | 是    | 鼠标样式id。                             |
-| callback     | AysncCallback&lt;void&gt;      | 是    | 回调函数。当设置样式成功，err为undefined，否则为错误对象。 |
+| callback     | AysncCallback&lt;void&gt;      | 是    | 回调函数。 |
 
 **示例**：
 
 ```js
-// 设置设备的鼠标样式。
 import window from '@ohos.window';
-var windowClass = null;
-window.getTopWindow((err, data) => {
-  windowClass = data;
-  windowClass.getProperties((err, data) => {
-    var windowId = data.id;
+
+window.getTopWindow((error, win) => {
+  win.getProperties((error, properties) => {
+    var windowId = properties.id;
     if (windowId < 0) {
       console.log(`Invalid windowId`);
       return;
     }
     try {
-      pointer.setPointerStyle(windowId, pointer.PointerStyle.CROSS, (err) => {
-        console.log(`Successfully set mouse pointer style`);
+      pointer.setPointerStyle(windowId, pointer.PointerStyle.CROSS, error => {
+        console.log(`Set pointer style success`);
       });
-    } catch (err) {
-      console.log(`Failed to set the pointer style. err=${JSON.stringify(err)}, msg=${JSON.stringify(message)}`);
+    } catch (error) {
+      console.log(`Set pointer style failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
     }
   });
 });
@@ -357,7 +363,7 @@ window.getTopWindow((err, data) => {
 
 setPointerStyle(windowId: number, pointerStyle: PointerStyle): Promise&lt;void&gt;
 
-设置鼠标的样式类型，使用Promise方式作为异步方法。
+设置鼠标样式类型，使用Promise异步方式返回结果。
 
 **系统能力**：SystemCapability.MultimodalInput.Input.Pointer
 
@@ -365,37 +371,35 @@ setPointerStyle(windowId: number, pointerStyle: PointerStyle): Promise&lt;void&g
 
 | 参数                  | 类型                             | 必填   | 说明               |
 | ------------------- | ------------------------------ | ---- | ---------------- |
-| windowId            | number                         | 是    | 输入设备的窗口id。       |
+| windowId            | number                         | 是    | 窗口id。       |
 | pointerStyle        | [PointerStyle](#pointerstyle9) | 是    | 鼠标样式id。          |
-| Promise&lt;void&gt; | void                           | 是    | 无返回结果的Promise对象。 |
+| Promise&lt;void&gt; | void                           | 是    | Promise对象。 |
 
 **示例**：
 
 ```js
-// 设置设备的鼠标样式。
 import window from '@ohos.window';
-var windowClass = null;
-window.getTopWindow((err, data) => {
-  windowClass = data;
-  windowClass.getProperties((err, data) => {
-    var windowId = data.id;
+
+window.getTopWindow((error, win) => {
+  win.getProperties((error, properties) => {
+    var windowId = properties.id;
     if (windowId < 0) {
       console.log(`Invalid windowId`);
       return;
     }
     try {
       pointer.setPointerStyle(windowId, pointer.PointerStyle.CROSS).then(() => {
-        console.log(`Successfully set mouse pointer style`);
+        console.log(`Set pointer style success`);
       });
-    } catch (err) {
-      console.log(`Failed to set the pointer style. err=${JSON.stringify(err)}, msg=${JSON.stringify(message)}`);
+    } catch (error) {
+      console.log(`Set pointer style failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
     }
   });
 });
 ```
 ## PointerStyle<sup>9+</sup>
 
-定义鼠标样式类型。
+鼠标样式类型。
 
 **系统能力**：SystemCapability.MultimodalInput.Input.Pointer
 
@@ -440,5 +444,3 @@ window.getTopWindow((err, data) => {
 | MIDDLE_BTN_SOUTH_EAST            | 36   | 向东南滚动  |
 | MIDDLE_BTN_SOUTH_WEST            | 37   | 向西南滚动  |
 | MIDDLE_BTN_NORTH_SOUTH_WEST_EAST | 38   | 四向锥形移动 |
-
-

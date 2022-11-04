@@ -5,9 +5,9 @@
     - 语法
         - [HML语法参考](js-service-widget-syntax-hml.md)
         - [CSS语法参考](js-service-widget-syntax-css.md)
-        - [配置数据和事件](js-service-widget-configuration.md)
     - [多语言支持](js-service-widget-multiple-languages.md)
-    - [低版本兼容](js-service-widget-version-compatibility.md)
+    - [版本兼容适配](js-service-widget-version-compatibility.md)
+    - [设置主题样式](js-service-widget-theme.md)
 - 组件
     - 通用
         - [通用属性](js-service-widget-common-attributes.md)
@@ -19,6 +19,7 @@
         - [无障碍](js-service-widget-common-accessibility.md)
         - [原子布局](js-service-widget-common-atomic-layout.md)
     - 容器组件
+        - [badge](js-service-widget-container-badge.md)
         - [div](js-service-widget-container-div.md)
         - [list](js-service-widget-container-list.md)
         - [list-item](js-service-widget-container-list-item.md)
@@ -35,8 +36,5 @@
         - [progress](js-service-widget-basic-progress.md)
         - [span](js-service-widget-basic-span.md)
         - [text](js-service-widget-basic-text.md)
-- 自定义组件
-    - [自定义组件基本用法](js-service-widget-custom-basic-usage.md)
-    - [自定义事件](js-service-widget-custom-events.md)
-    - [Props](js-service-widget-custom-props.md)
+- [自定义组件使用说明](js-service-widget-custom-basic-usage.md)
 - [数据类型说明](js-service-widget-appendix-types.md)

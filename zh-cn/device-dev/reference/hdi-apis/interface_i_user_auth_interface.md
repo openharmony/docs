@@ -3,6 +3,16 @@
 
 ## **概述**
 
+声明用户认证驱动的API接口。
+
+**Since：**
+
+3.2
+
+**Version：**
+
+1.0
+
 **所属模块:**
 
 [HdfUserAuth](_hdf_user_auth.md)
@@ -13,42 +23,29 @@
 
 ### Public 成员函数
 
-  | Public&nbsp;成员函数 | 描述 | 
+  | 名称 | 描述 | 
 | -------- | -------- |
-| [Init](#init)&nbsp;() | 初始化用户认证驱动缓存信息，用于用户认证框架进程启动时初始化信息。&nbsp;[更多...](#init) | 
-| [AddExecutor](#addexecutor)&nbsp;([in]&nbsp;struct&nbsp;[ExecutorRegisterInfo](_executor_register_info.md)&nbsp;info,&nbsp;[out]&nbsp;unsigned&nbsp;long&nbsp;index,&nbsp;[out]&nbsp;unsigned&nbsp;char[]&nbsp;publicKey,&nbsp;[out]&nbsp;unsigned&nbsp;long[]&nbsp;templateIds) | 添加认证执行器来获取认证能力，用于各认证基础服务如口令认证服务等将认证能力对接到用户认证框架。&nbsp;[更多...](#addexecutor) | 
-| [DeleteExecutor](#deleteexecutor)&nbsp;([in]&nbsp;unsigned&nbsp;long&nbsp;index) | 删除执行器，用于清理失效的执行器信息。&nbsp;[更多...](#deleteexecutor) | 
-| [OpenSession](#opensession)&nbsp;([in]&nbsp;int&nbsp;userId,&nbsp;[out]&nbsp;unsigned&nbsp;char[]&nbsp;challenge) | 开启一个认证凭据管理会话，用于在请求管理用户认证凭据前获取有效挑战值。&nbsp;[更多...](#opensession) | 
-| [CloseSession](#closesession)&nbsp;([in]&nbsp;int&nbsp;userId) | 关闭认证凭据管理会话，完成用户认证凭据管理请求处理后，调用该接口使原挑战值失效。&nbsp;[更多...](#closesession) | 
-| [BeginEnrollment](#beginenrollment)&nbsp;([in]&nbsp;int&nbsp;userId,&nbsp;[in]&nbsp;unsigned&nbsp;char[]&nbsp;authToken,&nbsp;[in]&nbsp;struct&nbsp;[EnrollParam](_enroll_param.md)&nbsp;param,&nbsp;[out]&nbsp;struct&nbsp;[ScheduleInfo](_schedule_info.md)&nbsp;info) | 开始注册用户认证凭据。当注册凭据类型为口令且该用户已经注册了口令凭据时，将会更新口令凭据。&nbsp;[更多...](#beginenrollment) | 
-| [UpdateEnrollmentResult](#updateenrollmentresult)&nbsp;([in]&nbsp;int&nbsp;userId,&nbsp;[in]&nbsp;unsigned&nbsp;char[]&nbsp;scheduleResult,&nbsp;[out]&nbsp;unsigned&nbsp;long&nbsp;credentialId,&nbsp;[out]&nbsp;struct&nbsp;[CredentialInfo](_credential_info.md)&nbsp;oldInfo) | 更新用户凭据注册结果，完成凭据注册。&nbsp;[更多...](#updateenrollmentresult) | 
-| [CancelEnrollment](#cancelenrollment)&nbsp;([in]&nbsp;int&nbsp;userId) | 取消注册请求。&nbsp;[更多...](#cancelenrollment) | 
-| [DeleteCredential](#deletecredential)&nbsp;([in]&nbsp;int&nbsp;userId,&nbsp;[in]&nbsp;unsigned&nbsp;long&nbsp;credentialId,&nbsp;[in]&nbsp;unsigned&nbsp;char[]&nbsp;authToken,&nbsp;[out]&nbsp;struct&nbsp;[CredentialInfo](_credential_info.md)&nbsp;info) | 删除用户凭据信息。&nbsp;[更多...](#deletecredential) | 
-| [GetCredential](#getcredential)&nbsp;([in]&nbsp;int&nbsp;userId,&nbsp;[in]&nbsp;enum&nbsp;[AuthType](_hdf_face_auth.md#authtype)&nbsp;authType,&nbsp;[out]&nbsp;struct&nbsp;[CredentialInfo](_credential_info.md)[]&nbsp;infos) | 查询用户凭据信息。&nbsp;[更多...](#getcredential) | 
-| [GetUserInfo](#getuserinfo)&nbsp;([in]&nbsp;int&nbsp;userId,&nbsp;[out]&nbsp;unsigned&nbsp;long&nbsp;secureUid,&nbsp;[out]&nbsp;enum&nbsp;PinSubType&nbsp;pinSubType,&nbsp;[out]&nbsp;struct&nbsp;[EnrolledInfo](_enrolled_info.md)[]&nbsp;infos) | 查询用户认证相关信息。&nbsp;[更多...](#getuserinfo) | 
-| [DeleteUser](#deleteuser)&nbsp;([in]&nbsp;int&nbsp;userId,&nbsp;[in]&nbsp;unsigned&nbsp;char[]&nbsp;authToken,&nbsp;[out]&nbsp;struct&nbsp;[CredentialInfo](_credential_info.md)[]&nbsp;deletedInfos) | 删除用户口令认证凭据，在用户IAM系统内删除该用户，该请求由用户触发。&nbsp;[更多...](#deleteuser) | 
-| [EnforceDeleteUser](#enforcedeleteuser)&nbsp;([in]&nbsp;int&nbsp;userId,&nbsp;[out]&nbsp;struct&nbsp;[CredentialInfo](_credential_info.md)[]&nbsp;deletedInfos) | 强制删除用户，该请求由系统内管理用户的模块触发。&nbsp;[更多...](#enforcedeleteuser) | 
-| [BeginAuthentication](#beginauthentication)&nbsp;([in]&nbsp;unsigned&nbsp;long&nbsp;contextId,&nbsp;[in]&nbsp;struct&nbsp;[AuthSolution](_auth_solution.md)&nbsp;param,&nbsp;[out]&nbsp;struct&nbsp;[ScheduleInfo](_schedule_info.md)[]&nbsp;scheduleInfos) | 开始认证用户，并生成认证方案。&nbsp;[更多...](#beginauthentication) | 
-| [UpdateAuthenticationResult](#updateauthenticationresult)&nbsp;([in]&nbsp;unsigned&nbsp;long&nbsp;contextId,&nbsp;[in]&nbsp;unsigned&nbsp;char[]&nbsp;scheduleResult,&nbsp;[out]&nbsp;struct&nbsp;[AuthResultInfo](_auth_result_info.md)&nbsp;info) | 更新认证结果，评估认证方案的认证结果。&nbsp;[更多...](#updateauthenticationresult) | 
-| [CancelAuthentication](#cancelauthentication)&nbsp;([in]&nbsp;unsigned&nbsp;long&nbsp;contextId) | 取消用户认证请求。&nbsp;[更多...](#cancelauthentication) | 
-| [BeginIdentification](#beginidentification)&nbsp;([in]&nbsp;unsigned&nbsp;long&nbsp;contextId,&nbsp;[in]&nbsp;enum&nbsp;[AuthType](_hdf_face_auth.md#authtype)&nbsp;authType,&nbsp;[in]&nbsp;unsigned&nbsp;char[]&nbsp;challenge,&nbsp;[in]&nbsp;unsigned&nbsp;int&nbsp;executorSensorHint,&nbsp;[out]&nbsp;struct&nbsp;[ScheduleInfo](_schedule_info.md)&nbsp;scheduleInfo) | 开始用户身份识别，并生成识别方案。&nbsp;[更多...](#beginidentification) | 
-| [UpdateIdentificationResult](#updateidentificationresult)&nbsp;([in]&nbsp;unsigned&nbsp;long&nbsp;contextId,&nbsp;[in]&nbsp;unsigned&nbsp;char[]&nbsp;scheduleResult,&nbsp;[out]&nbsp;struct&nbsp;[IdentifyResultInfo](_identify_result_info.md)&nbsp;info) | 更新用户身份识别结果，生成身份识别方案的结果。&nbsp;[更多...](#updateidentificationresult) | 
-| [CancelIdentification](#cancelidentification)&nbsp;([in]&nbsp;unsigned&nbsp;long&nbsp;contextId) | 取消用户身份识别请求。&nbsp;[更多...](#cancelidentification) | 
-| [GetAuthTrustLevel](#getauthtrustlevel)&nbsp;([in]&nbsp;GetUserInfoint&nbsp;userId,&nbsp;[in]&nbsp;enum&nbsp;[AuthType](_hdf_face_auth.md#authtype)&nbsp;authType,&nbsp;[out]&nbsp;unsigned&nbsp;int&nbsp;authTrustLevel) | 获取当前认证类型的认证结果可信等级。&nbsp;[更多...](#getauthtrustlevel) | 
-| [GetValidSolution](#getvalidsolution)&nbsp;([in]&nbsp;int&nbsp;userId,&nbsp;[in]&nbsp;enum&nbsp;[AuthType](_hdf_face_auth.md#authtype)[]&nbsp;authTypes,&nbsp;[in]&nbsp;unsigned&nbsp;int&nbsp;authTrustLevel,&nbsp;[out]&nbsp;enum&nbsp;[AuthType](_hdf_face_auth.md#authtype)[]&nbsp;validTypes) | 获取指定认证结果可信等级下有效的认证方式。&nbsp;[更多...](#getvalidsolution) | 
-
-
-## **详细描述**
-
-声明用户认证驱动的API接口。
-
-**Since：**
-
-3.2
-
-**Version：**
-
-1.0
+| [Init](#init)() | 初始化用户认证驱动缓存信息，用于用户认证框架进程启动时初始化信息。 | 
+| [AddExecutor](#addexecutor)([in]&nbsp;struct&nbsp;ExecutorRegisterInfo&nbsp;info,&nbsp;[out]&nbsp;unsigned&nbsp;long&nbsp;index,&nbsp;[out]&nbsp;unsigned&nbsp;char[]&nbsp;publicKey,&nbsp;[out]&nbsp;unsigned&nbsp;long[]&nbsp;templateIds) | 添加认证执行器来获取认证能力，用于各认证基础服务如口令认证服务等将认证能力对接到用户认证框架。 | 
+| [DeleteExecutor](#deleteexecutor)([in]&nbsp;unsigned&nbsp;long&nbsp;index) | 删除执行器，用于清理失效的执行器信息。 | 
+| [OpenSession](#opensession)([in]&nbsp;int&nbsp;userId,&nbsp;[out]&nbsp;unsigned&nbsp;char[]&nbsp;challenge) | 开启一个认证凭据管理会话，用于在请求管理用户认证凭据前获取有效挑战值。 | 
+| [CloseSession](#closesession)([in]&nbsp;int&nbsp;userId) | 关闭认证凭据管理会话，完成用户认证凭据管理请求处理后，调用该接口使原挑战值失效。 | 
+| [BeginEnrollment](#beginenrollment)([in]&nbsp;int&nbsp;userId,&nbsp;[in]&nbsp;unsigned&nbsp;char[]&nbsp;authToken,&nbsp;[in]&nbsp;struct&nbsp;EnrollParam&nbsp;param,&nbsp;[out]&nbsp;struct&nbsp;ScheduleInfo&nbsp;info) | 开始注册用户认证凭据。当注册凭据类型为口令且该用户已经注册了口令凭据时，将会更新口令凭据。 | 
+| [UpdateEnrollmentResult](#updateenrollmentresult)([in]&nbsp;int&nbsp;userId,&nbsp;[in]&nbsp;unsigned&nbsp;char[]&nbsp;scheduleResult,&nbsp;[out]&nbsp;unsigned&nbsp;long&nbsp;credentialId,&nbsp;[out]&nbsp;struct&nbsp;CredentialInfo&nbsp;oldInfo) | 更新用户凭据注册结果，完成凭据注册。 | 
+| [CancelEnrollment](#cancelenrollment)([in]&nbsp;int&nbsp;userId) | 取消注册请求。 | 
+| [DeleteCredential](#deletecredential)([in]&nbsp;int&nbsp;userId,&nbsp;[in]&nbsp;unsigned&nbsp;long&nbsp;credentialId,&nbsp;[in]&nbsp;unsigned&nbsp;char[]&nbsp;authToken,&nbsp;[out]&nbsp;struct&nbsp;CredentialInfo&nbsp;info) | 删除用户凭据信息。 | 
+| [GetCredential](#getcredential)([in]&nbsp;int&nbsp;userId,&nbsp;[in]&nbsp;enum&nbsp;AuthType&nbsp;authType,&nbsp;[out]&nbsp;struct&nbsp;CredentialInfo[]&nbsp;infos) | 查询用户凭据信息。 | 
+| [GetUserInfo](#getuserinfo)&nbsp;([in]&nbsp;int&nbsp;userId,&nbsp;[out]&nbsp;unsigned&nbsp;long&nbsp;secureUid,&nbsp;[out]&nbsp;enum&nbsp;PinSubType&nbsp;pinSubType,&nbsp;[out]&nbsp;struct&nbsp;EnrolledInfo[]&nbsp;infos) | 查询用户认证相关信息。 | 
+| [DeleteUser](#deleteuser)([in]&nbsp;int&nbsp;userId,&nbsp;[in]&nbsp;unsigned&nbsp;char[]&nbsp;authToken,&nbsp;[out]&nbsp;struct&nbsp;CredentialInfo[]&nbsp;deletedInfos) | 删除用户口令认证凭据，在用户IAM系统内删除该用户，该请求由用户触发。 | 
+| [EnforceDeleteUser](#enforcedeleteuser)([in]&nbsp;int&nbsp;userId,&nbsp;[out]&nbsp;struct&nbsp;CredentialInfo[]&nbsp;deletedInfos) | 强制删除用户，该请求由系统内管理用户的模块触发。 | 
+| [BeginAuthentication](#beginauthentication)([in]&nbsp;unsigned&nbsp;long&nbsp;contextId,&nbsp;[in]&nbsp;struct&nbsp;AuthSolution&nbsp;param,&nbsp;[out]&nbsp;struct&nbsp;ScheduleInfo[]&nbsp;scheduleInfos) | 开始认证用户，并生成认证方案。 | 
+| [UpdateAuthenticationResult](#updateauthenticationresult)([in]&nbsp;unsigned&nbsp;long&nbsp;contextId,&nbsp;[in]&nbsp;unsigned&nbsp;char[]&nbsp;scheduleResult,&nbsp;[out]&nbsp;struct&nbsp;AuthResultInfo&nbsp;info) | 更新认证结果，评估认证方案的认证结果。 | 
+| [CancelAuthentication](#cancelauthentication)([in]&nbsp;unsigned&nbsp;long&nbsp;contextId) | 取消用户认证请求。 | 
+| [BeginIdentification](#beginidentification)([in]&nbsp;unsigned&nbsp;long&nbsp;contextId,&nbsp;[in]&nbsp;enum&nbsp;AuthType&nbsp;authType,&nbsp;[in]&nbsp;unsigned&nbsp;char[]&nbsp;challenge,&nbsp;[in]&nbsp;unsigned&nbsp;int&nbsp;executorSensorHint,&nbsp;[out]&nbsp;struct&nbsp;ScheduleInfo&nbsp;scheduleInfo) | 开始用户身份识别，并生成识别方案。 | 
+| [UpdateIdentificationResult](#updateidentificationresult)([in]&nbsp;unsigned&nbsp;long&nbsp;contextId,&nbsp;[in]&nbsp;unsigned&nbsp;char[]&nbsp;scheduleResult,&nbsp;[out]&nbsp;struct&nbsp;IdentifyResultInfo&nbsp;info) | 更新用户身份识别结果，生成身份识别方案的结果。 | 
+| [CancelIdentification](#cancelidentification)([in]&nbsp;unsigned&nbsp;long&nbsp;contextId) | 取消用户身份识别请求。 | 
+| [GetAuthTrustLevel](#getauthtrustlevel)([in]&nbsp;GetUserInfoint&nbsp;userId,&nbsp;[in]&nbsp;enum&nbsp;AuthType&nbsp;authType,&nbsp;[out]&nbsp;unsigned&nbsp;int&nbsp;authTrustLevel) | 获取当前认证类型的认证结果可信等级。 | 
+| [GetValidSolution](#getvalidsolution)([in]&nbsp;int&nbsp;userId,&nbsp;[in]&nbsp;enum&nbsp;AuthType[]&nbsp;authTypes,&nbsp;[in]&nbsp;unsigned&nbsp;int&nbsp;authTrustLevel,&nbsp;[out]&nbsp;enum&nbsp;AuthType[]&nbsp;validTypes) | 获取指定认证结果可信等级下有效的认证方式。 | 
 
 
 ## **成员函数说明**
@@ -429,7 +426,7 @@ IUserAuthInterface::GetUserInfo([in] int userId, [out] unsigned long secureUid, 
 | -------- | -------- |
 | userId | 用户ID。 | 
 | secureUid | 安全用户ID。 | 
-| pinSubType | 口令认证子类型，请参考[PinSubType](_hdf_user_auth.md#pinsubtype)。 | 
+| pinSubType | 口令认证子类型[PinSubType](_hdf_user_auth.md#pinsubtype)。 | 
 | infos | 注册信息[EnrolledInfo](_enrolled_info.md)。 | 
 
 **返回：**

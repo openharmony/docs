@@ -111,11 +111,11 @@
 
 ## ACL方式声明
 
-如上述示例所示，权限"ohos.permission.PERMISSION2"的权限等级为system_basic，高于此时应用的APL等级，用户的最佳做法是使用ACL方式。
+如上述示例所示，权限"ohos.permission.PERMISSION2"的权限等级为system_basic，高于此时应用的APL等级，开发者的最佳做法是使用ACL方式。
 
 在配置文件声明的基础上，应用还需要在Profile文件中声明不满足申请条件部分的权限。Profile文件的字段说明可参考[HarmonyAppProvision配置文件的说明](../quick-start/app-provision-structure.md)。
 
-该场景中，用户应该在字段"acls"中做声明如下：
+该场景中，开发者应该在字段"acls"中做声明如下：
 
 ```json
 {
@@ -171,5 +171,5 @@
 
 针对访问控制，有以下相关实例可供参考：
 
-- [`AbilityAccessCtrl`：访问权限控制（eTS）（API8）（Full SDK）](https://gitee.com/openharmony/applications_app_samples/tree/master/Safety/AbilityAccessCtrl)
-- [为应用添加运行时权限（eTS）（API 9）](https://gitee.com/openharmony/codelabs/tree/master/Ability/AccessPermission)
+- [`AbilityAccessCtrl`：访问权限控制（ArkTS）（API8）（Full SDK）](https://gitee.com/openharmony/applications_app_samples/tree/master/Safety/AbilityAccessCtrl)
+- [为应用添加运行时权限（ArkTS）（API 9）](https://gitee.com/openharmony/codelabs/tree/master/Ability/AccessPermission)

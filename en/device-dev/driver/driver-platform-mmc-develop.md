@@ -25,10 +25,10 @@ struct MmcCntlrOps {
   int32_t (*setSdioIrq)(struct MmcCntlr *cntlr, bool enable);
   int32_t (*hardwareReset)(struct MmcCntlr *cntlr);
   int32_t (*systemInit)(struct MmcCntlr *cntlr);
-  int32_t (*setEnhanceSrobe)(struct MmcCntlr *cntlr, bool enable);
+  int32_t (*setEnhanceStrobe)(struct MmcCntlr *cntlr, bool enable);
   int32_t (*switchVoltage)(struct MmcCntlr *cntlr, enum MmcVolt volt);
   bool (*devReadOnly)(struct MmcCntlr *cntlr);
-  bool (*devPluged)(struct MmcCntlr *cntlr);
+  bool (*devPlugged)(struct MmcCntlr *cntlr);
   bool (*devBusy)(struct MmcCntlr *cntlr);
   int32_t  (*tune)(struct MmcCntlr *cntlr, uint32_t cmdCode);
   int32_t (*rescanSdioDev)(struct MmcCntlr *cntlr);
@@ -47,10 +47,10 @@ struct MmcCntlrOps {
 | setSdioIrq | **cntlr**: structure pointer to the MMC controller at the core layer.<br>**enable**: whether to enable Secure Digital Input Output (SDIO) interrupts.| HDF_STATUS| Enables or disables SDIO interrupts.|
 | hardwareReset | **cntlr**: structure pointer to the MMC controller at the core layer.| HDF_STATUS| Resets hardware.|
 | systemInit | **cntlr**: structure pointer to the MMC controller at the core layer.| HDF_STATUS| Performs system initialization.|
-| setEnhanceSrobe | **cntlr**: structure pointer to the MMC controller at the core layer.<br>**enable**: whether to enable the enhanced strobe feature.| HDF_STATUS| Sets the enhanced strobe feature.|
+| setEnhanceStrobe | **cntlr**: structure pointer to the MMC controller at the core layer.<br>**enable**: whether to enable the enhanced strobe feature.| HDF_STATUS| Sets the enhanced strobe feature.|
 | switchVoltage | **cntlr**: structure pointer to the MMC controller at the core layer.<br>**volt**: voltage to set, which can be 3.3 V, 1.8 V, or 1.2 V.| HDF_STATUS| Sets the voltage.|
 | devReadOnly | **cntlr**: structure pointer to the MMC controller at the core layer.| Boolean value| Checks whether the device is read-only.|
-| cardPluged | **cntlr**: structure pointer to the MMC controller at the core layer.| Boolean value| Checks whether the device is removed.|
+| cardPlugged | **cntlr**: structure pointer to the MMC controller at the core layer.| Boolean value| Checks whether the device is removed.|
 | devBusy | **cntlr**: structure pointer to the MMC controller at the core layer.| Boolean value| Checks whether the device is being used.|
 | tune | **cntlr**: structure pointer to the MMC controller at the core layer.<br>**cmdCode**: command code of the uint32_t type.| HDF_STATUS| Tunes the oscillator circuit frequency.|
 | rescanSdioDev | **cntlr**: structure pointer to the MMC controller at the core layer.| HDF_STATUS| Scans and adds an SDIO device.|
@@ -254,7 +254,7 @@ The following uses **himci.c** as an example to present the information required
           uint32_t maxBlkNum;
           uint32_t maxBlkSize;
           uint32_t maxReqSize;
-          bool devPluged;
+          bool devPlugged;
           bool detecting;
           void *priv;
       };
@@ -273,10 +273,10 @@ The following uses **himci.c** as an example to present the information required
           .setSdioIrq     = HimciSetSdioIrq,
           .hardwareReset  = HimciHardwareReset,
           .systemInit     = HimciSystemInit,
-          .setEnhanceSrobe= HimciSetEnhanceSrobe,
+          .setEnhanceStrobe= HimciSetEnhanceStrobe,
           .switchVoltage  = HimciSwitchVoltage,
           .devReadOnly    = HimciDevReadOnly,
-          .devPluged      = HimciCardPluged,
+          .devPlugged      = HimciCardPlugged,
           .devBusy        = HimciDevBusy,
           .tune           = HimciTune,
           .rescanSdioDev  = HimciRescanSdioDev,

@@ -52,7 +52,7 @@ Asynchronously obtains information about all available volumes. This API uses a 
 
   | Name  | Type                                             | Mandatory| Description                                |
   | -------- | ------------------------------------------------- | ---- | ------------------------------------ |
-  | callback | callback:AsyncCallback&lt;[Volume](#volume)[]&gt; | Yes  | Callback invoked to return the volume information obtained.|
+  | callback | callback: AsyncCallback&lt;[Volume](#volume)[]&gt; | Yes  | Callback invoked to return the volume information obtained.|
 
 **Example**
 
@@ -110,7 +110,7 @@ Asynchronously obtains the available space of the specified volume. This API use
   | Name  | Type                                 | Mandatory| Description                |
   | -------- | ------------------------------------- | ---- | -------------------- |
   | volumeId | string                                | Yes  | Volume ID.                |
-  | callback | callback:AsyncCallback&lt;boolean&gt; | Yes  | Callback invoked to return the execution result.|
+  | callback | callback: AsyncCallback&lt;boolean&gt; | Yes  | Callback invoked to return the execution result.|
 
 **Example**
 
@@ -154,7 +154,7 @@ Asynchronously unmounts a volume. This API uses a promise to return the result.
 
 ## volumemanager.unmount
 
-unmount(volumeId: string, callback:AsyncCallback&lt;boolean&gt;):void
+unmount(volumeId: string, callback: AsyncCallback&lt;boolean&gt;): void
 
 Asynchronously unmounts a volume. This API uses a callback to return the result.
 
@@ -167,7 +167,7 @@ Asynchronously unmounts a volume. This API uses a callback to return the result.
   | Name  | Type                                 | Mandatory| Description                |
   | -------- | ------------------------------------- | ---- | -------------------- |
   | volumeId | string                                | Yes  | Volume ID.                |
-  | callback | callback:AsyncCallback&lt;boolean&gt; | Yes  | Callback invoked to return the execution result.|
+  | callback | callback: AsyncCallback&lt;boolean&gt; | Yes  | Callback invoked to return the execution result.|
 
 **Example**
 
@@ -226,7 +226,7 @@ Asynchronously obtains volume information based on the UUID. This API uses a cal
   | Name   | Type                                                | Mandatory| Description                |
   | -------- | ------------------------------------------------ | ---- | -------------------- |
   | uuid | string                                                 | Yes  | UUID of the volume.                |
-  | callback | callback:AsyncCallback&lt;[Volume](#volume)&gt;  | Yes  | Callback invoked to return the volume information obtained.|
+  | callback | callback: AsyncCallback&lt;[Volume](#volume)&gt;  | Yes  | Callback invoked to return the volume information obtained.|
 
 **Example**
 
@@ -347,7 +347,7 @@ Asynchronously sets the volume description based on the UUID. This API uses a ca
   | ---------- | --------------------------------------- | ---- | ---------------- |
   | uuid       | string                                  | Yes  | UUID of the volume.           |
   | description | string                                 | Yes  | Volume description.           |
-  | callback   | callback:AsyncCallback&lt;void&gt;   | Yes  | Callback invoked to return the result.|
+  | callback   | callback: AsyncCallback&lt;void&gt;   | Yes  | Callback invoked to return the result.|
 
 **Example**
 
@@ -410,7 +410,7 @@ Asynchronously formats a volume. This API uses a callback to return the result.
   | -------- | ------------------------- | ---- | ----------------------------- |
   | volumeId | string                    | Yes  | Volume ID.               |
   | fsType    | string | Yes  | File system type.|
-  | callback | callback:AsyncCallback&lt;void&gt;  | Yes  | Called after the volume is formatted. |
+  | callback | callback: AsyncCallback&lt;void&gt;  | Yes  | Called after the volume is formatted. |
 
 **Example**
 
@@ -473,7 +473,7 @@ Asynchronously partitions a disk. This API uses a callback to return the result.
   | -------- | --------------------------------------- | ---- | ---------------- |
   | diskId   | string                                  | Yes  | ID of the disk to which the volume belongs.     |
   | type     | number                                  | Yes  | Partition type.          |
-  | callback | callback:AsyncCallback&lt;void&gt;   | Yes  | Callback invoked to return the result.     |
+  | callback | callback: AsyncCallback&lt;void&gt;   | Yes  | Callback invoked to return the result.     |
 
 **Example**
 

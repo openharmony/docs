@@ -4,7 +4,7 @@
 
 >  **说明：**
 >
->  该组件从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+>  该组件从API version7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 
 ## 子组件
@@ -22,38 +22,39 @@ Progress(options: {value: number, total?: number, type?: ProgressType})
 
 | 参数名 | 参数类型 | 必填 | 参数描述 |
 | -------- | -------- | -------- | -------- |
-| value | number | 是 | 指定当前进度值。 |
+| value | number | 是 | 指定当前进度值。设置小于0的数值时置为0，设置大于total的数值时置为total。 |
 | total | number | 否 | 指定进度总长。<br/>默认值：100 |
 | type<sup>8+</sup> | [ProgressType](#progresstype枚举说明) | 否 | 指定进度条类型。<br/>默认值：ProgressType.Linear |
-| style<sup>deprecated</sup> | [ProgressStyle](#progressstyle枚举说明) | 否 | 指定进度条样式。<br/>该参数从API Version8开始废弃，建议使用type替代。<br/>默认值：ProgressStyle.Linear |
+| style<sup>deprecated</sup> | [ProgressStyle](#progressstyle枚举说明) | 否 | 指定进度条样式。<br/>该参数从API version8开始废弃，建议使用type替代。<br/>默认值：ProgressStyle.Linear |
 
 ## ProgressType枚举说明
 
 | 名称 | 描述 |
 | -------- | -------- |
-| Linear | 线性样式。 |
+| Linear | 线性样式。从API version9开始，高度大于宽度的时候自适应垂直显示。 |
 | Ring<sup>8+</sup> | 环形无刻度样式，环形圆环逐渐显示至完全填充效果。 |
-| Eclipse<sup>8+</sup> | 圆形样式，显示类似月圆月缺的进度展示效果，从月牙逐渐变化至满月。 |
-| ScaleRing<sup>8+</sup> | 环形有刻度样式，显示类似时钟刻度形式的进度展示效果。 |
-| Capsule<sup>8+</sup> | 胶囊样式，头尾两端圆弧处的进度展示效果与Eclipse相同；中段处的进度展示效果与Linear相同。 |
+| Eclipse<sup>8+</sup> | 圆形样式，显示类似月圆月缺的进度展示效果，从月牙逐渐变化至满月。|
+| ScaleRing<sup>8+</sup> | 环形有刻度样式，显示类似时钟刻度形式的进度展示效果。从API version9开始，刻度外圈出现重叠的时候自动转换为环形无刻度进度条。|
+| Capsule<sup>8+</sup> | 胶囊样式，头尾两端圆弧处的进度展示效果与Eclipse相同；中段处的进度展示效果与Linear相同。高度大于宽度的时候自适应垂直显示。 |
 
 ##  ProgressStyle枚举说明 
 
 | 名称      | 描述                                                         |
 | --------- | ------------------------------------------------------------ |
-| Linear    | 线性样式。                                                   |
-| Ring      | 环形无刻度样式，环形圆环逐渐显示至完全填充效果。             |
-| Eclipse   | 圆形样式，显示类似月圆月缺的进度展示效果，从月牙逐渐变化至满月。 |
-| ScaleRing | 环形有刻度样式，显示类似时钟刻度形式的进度展示效果。         |
-| Capsule   | 胶囊样式，头尾两端圆弧处的进度展示效果与Eclipse相同；中段处的进度展示效果与Linear相同。 |
+| Linear    | 线性样式。 |
+| Ring      | 环形无刻度样式，环形圆环逐渐显示至完全填充效果。 |
+| Eclipse   | 圆形样式，显示类似月圆月缺的进度展示效果，从月牙逐渐变化至满月。|
+| ScaleRing | 环形有刻度样式，显示类似时钟刻度形式的进度展示效果。|
+| Capsule   | 胶囊样式，头尾两端圆弧处的进度展示效果与Eclipse相同；中段处的进度展示效果与Linear相同。高度大于宽度的时候自适应垂直显示。 |
 
 ## 属性
 
 | 名称 | 参数类型 | 描述 |
 | -------- | -------- | -------- |
-| value | number | 设置当前进度值。 |
+| value | number | 设置当前进度值。设置小于0的数值时置为0，设置大于total的数值时置为total。非法数值不生效。 |
 | color | [ResourceColor](ts-types.md#resourcecolor) | 设置进度条前景色。 |
-| style<sup>8+</sup> | {<br/>strokeWidth?:&nbsp;[Length](ts-types.md#length),<br/>scaleCount?:&nbsp;number,<br/>scaleWidth?:&nbsp;[Length](ts-types.md#length)<br/>} | 定义组件的样式。<br/>-&nbsp;strokeWidth:&nbsp;设置进度条宽度。<br/>-&nbsp;scaleCount:&nbsp;设置环形进度条总刻度数。<br/>-&nbsp;scaleWidth:&nbsp;设置环形进度条刻度粗细，刻度粗细大于进度条宽度时，为系统默认粗细。 |
+| backgroundColor | [ResourceColor](ts-types.md#resourcecolor) | 设置进度条底色。 |
+| style<sup>8+</sup> | {<br/>strokeWidth?:&nbsp;[Length](ts-types.md#length),<br/>scaleCount?:&nbsp;number,<br/>scaleWidth?:&nbsp;[Length](ts-types.md#length)<br/>} | 定义组件的样式。<br/>-&nbsp;strokeWidth:&nbsp;设置进度条宽度（不支持百分比设置）。从API version9开始，环形进度条设置宽度大于等于半径时，默认修改宽度至半径值的二分之一。<br/>默认值：4.0Vp<br/>-&nbsp;scaleCount:&nbsp;设置环形进度条总刻度数。<br>默认值：120<br/>-&nbsp;scaleWidth:&nbsp;设置环形进度条刻度粗细（不支持百分比设置），刻度粗细大于进度条宽度时，为系统默认粗细。<br>默认值：2.0Vp |
 
 
 ## 示例

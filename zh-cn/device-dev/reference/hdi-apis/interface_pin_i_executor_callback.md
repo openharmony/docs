@@ -3,6 +3,16 @@
 
 ## **概述**
 
+定义异步API接口回调，用于返回异步接口的请求处理结果和获取信息。使用细节见[IExecutor](interface_pin_i_executor.md)。
+
+**Since：**
+
+3.2
+
+**Version:**
+
+1.0
+
 **所属模块:**
 
 [HdfPinAuth](_hdf_pin_auth.md)
@@ -13,23 +23,10 @@
 
 ### Public 成员函数
 
-  | Public&nbsp;成员函数 | 描述 | 
+  | 名称 | 描述 | 
 | -------- | -------- |
-| [OnResult](interface_i_executor_callback.md#onresult)&nbsp;([in]&nbsp;int&nbsp;result,&nbsp;[in]&nbsp;unsigned&nbsp;char[]&nbsp;extraInfo) | 定义操作结果回调函数。&nbsp;[更多...](interface_i_executor_callback.md#onresult) | 
-| [OnGetData](#ongetdata)&nbsp;([in]&nbsp;unsigned&nbsp;long&nbsp;scheduleId,&nbsp;[in]&nbsp;unsigned&nbsp;char[]&nbsp;salt,&nbsp;[in]&nbsp;unsigned&nbsp;long&nbsp;authSubType) | 定义请求获取口令数据回调函数。&nbsp;[更多...](#ongetdata) | 
-
-
-## **详细描述**
-
-定义异步API接口回调，用于返回异步接口的请求处理结果和获取信息。使用细节见[IExecutor](interface_i_executor.md)。
-
-**Since：**
-
-3.2
-
-**Version:**
-
-1.0
+| [OnResult](#onresult)&nbsp;([in]&nbsp;int&nbsp;result,&nbsp;[in]&nbsp;unsigned&nbsp;char[]&nbsp;extraInfo) | 定义操作结果回调函数。 | 
+| [OnGetData](#ongetdata)&nbsp;([in]&nbsp;unsigned&nbsp;long&nbsp;scheduleId,&nbsp;[in]&nbsp;unsigned&nbsp;char[]&nbsp;salt,&nbsp;[in]&nbsp;unsigned&nbsp;long&nbsp;authSubType) | 定义请求获取口令数据回调函数。 | 
 
 
 ## **成员函数说明**

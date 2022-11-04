@@ -53,8 +53,8 @@ DeviceProfile适配分布式数据库自动同步策略，以及采集信息补�
 | 软件 | 版本 | 备注 |
 | -------- | -------- | -------- |
 | OpenHarmony | 3.2&nbsp;Beta3 | NA |
-| Public SDK | Ohos_sdk_public&nbsp;3.2.7.5&nbsp;(API&nbsp;Version&nbsp;9&nbsp;Beta3) | 面向应用开发者提供，不包含需要使用系统权限的系统接口。<br/>通过DevEco Studio默认获取的SDK为Public SDK。 |
-| Full SDK | Ohos_sdk_full&nbsp;3.2.7.5&nbsp;(API&nbsp;Version&nbsp;9&nbsp;Beta3) | 面向OEM厂商提供，包含了需要使用系统权限的系统接口。<br/>使用Full SDK时需要手动从镜像站点获取，并在DevEco Studio中替换，具体操作可参考[替换指南](../application-dev/quick-start/full-sdk-switch-guide.md)。 |
+| Public SDK | Ohos_sdk_public&nbsp;3.2.7.5&nbsp;(API&nbsp;Version&nbsp;9&nbsp;Beta3)<br>Ohos_sdk_public&nbsp;3.2.7.6&nbsp;(API&nbsp;Version&nbsp;9&nbsp;Beta3) | 面向应用开发者提供，不包含需要使用系统权限的系统接口。<br/>通过DevEco Studio默认获取的SDK为Public SDK。 |
+| Full SDK | Ohos_sdk_full&nbsp;3.2.7.5&nbsp;(API&nbsp;Version&nbsp;9&nbsp;Beta3)<br>Ohos_sdk_full&nbsp;3.2.7.6&nbsp;(API&nbsp;Version&nbsp;9&nbsp;Beta3) | 面向OEM厂商提供，包含了需要使用系统权限的系统接口。<br/>使用Full SDK时需要手动从镜像站点获取，并在DevEco Studio中替换，具体操作可参考[替换指南](../application-dev/quick-start/full-sdk-switch-guide.md)。 |
 | HUAWEI&nbsp;DevEco&nbsp;Studio（可选） | 3.0&nbsp;Release | OpenHarmony应用开发推荐使用 |
 | HUAWEI&nbsp;DevEco&nbsp;Device&nbsp;Tool（可选） | 3.0&nbsp;Release | OpenHarmony智能设备集成开发环境推荐使用 |
 
@@ -137,6 +137,10 @@ DeviceProfile适配分布式数据库自动同步策略，以及采集信息补�
 | 标准系统Full SDK包（Windows\Linux）     | 3.2.7.5      | [站点](https://repo.huaweicloud.com/harmonyos/os/3.2-Beta3/ohos-sdk-windows_linux-full.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/harmonyos/os/3.2-Beta3/ohos-sdk-windows_linux-full.tar.gz.sha256) |
 | 标准系统Public SDK包（Mac）             | 3.2.7.5      | [站点](https://repo.huaweicloud.com/harmonyos/os/3.2-Beta3/ohos-sdk-mac-public.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/harmonyos/os/3.2-Beta3/ohos-sdk-mac-public.tar.gz.sha256) |
 | 标准系统Public SDK包（Windows\Linux）   | 3.2.7.5      | [站点](https://repo.huaweicloud.com/harmonyos/os/3.2-Beta3/ohos-sdk-windows_linux-public.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/harmonyos/os/3.2-Beta3/ohos-sdk-windows_linux-public.tar.gz.sha256) |
+| 标准系统Full SDK包（Mac）               | 3.2.7.6      | [站点](https://repo.huaweicloud.com/harmonyos/os/3.2-Beta3/sdk-patch/mac-sdk-full.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/harmonyos/os/3.2-Beta3/sdk-patch/mac-sdk-full.tar.gz.sha256) |
+| 标准系统Full SDK包（Windows\Linux）     | 3.2.7.6      | [站点](https://repo.huaweicloud.com/harmonyos/os/3.2-Beta3/sdk-patch/ohos-sdk-full.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/harmonyos/os/3.2-Beta3/sdk-patch/ohos-sdk-full.tar.gz.sha256) |
+| 标准系统Public SDK包（Mac）             | 3.2.7.6      | [站点](https://repo.huaweicloud.com/harmonyos/os/3.2-Beta3/sdk-patch/mac-sdk-public.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/harmonyos/os/3.2-Beta3/sdk-patch/mac-sdk-public.tar.gz.sha256) |
+| 标准系统Public SDK包（Windows\Linux）   | 3.2.7.6      | [站点](https://repo.huaweicloud.com/harmonyos/os/3.2-Beta3/sdk-patch/ohos-sdk-public.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/harmonyos/os/3.2-Beta3/sdk-patch/ohos-sdk-public.tar.gz.sha256) |
 
 
 
@@ -167,10 +171,12 @@ DeviceProfile适配分布式数据库自动同步策略，以及采集信息补�
 | 语言编译运行时子系统 | 前端编译性能提升，如es2abc。<br/>运行时性能提升优化，如ISA重构优化、汇编解释器、TSAOT等。<br/>新增功能，如支持严格模式的ES2021、模块化支持、Runtime&nbsp;调试调优增强、字节码热重载等。<br/>具体如下：<br/>I5MYM9&nbsp;【新增规格】运行时多模块单abc文件合并适配<br/>I59TAQ【新增规格】支持TSAOT优化编译器标准编译lowering和优化pass（规格）描述<br/>I5OJ8Q【新增规格】IDE属性查看功能补齐已支持的2021规范定义的类型<br/>I5ODV4&nbsp;【新增特性】&nbsp;支持字节码补丁文件卸载功能<br/>I5OXSC&nbsp;【新增特性】&nbsp;支持字节码补丁文件加载功能<br/>I5HNNZ&nbsp;【新增特性】使能加载器的命名空间<br/>I5HVQE&nbsp;&nbsp;【新增特性】线程stacksize根据产品配置，增加stack&nbsp;pageguard保护<br/>I5MCUF【增强特性】libc增加CAPI接口，支持pthread等符号<br/>I5HVNH【新增特性】RM.006.增强动态库符号管理<br/>I5HVQ0&nbsp;【新增特性】RM.008.musl支持fortify功能<br/>I5KT7X&nbsp;【新增特性】RM.002.提供API头文件API检测功能<br/>I5TB3Y&nbsp;【新增特性】ABI默认使用emutls特性<br/>I5R119&nbsp;&nbsp;【增强特性】拆分加载器与libc内存使用<br/>支持clang工具链的开源构建<br/>I5MYM9【新增规格】前端编译工具链支持模块化编译<br/>I5IKO1【新增规格】前端abc支持commonjs模块<br/>I5RRAJ【新增规格】补丁文件源码识别工具<br/>I5PRFT【新增规格】补丁字节码编译工具<br/>I5RHDH【新增规格】支持方舟字节码热加载<br/>I5RA7C【新增规格】支持strict模式2021<br/>I5HRUY【新增规格】es2abc支持js转换方舟字节码 | NA |
 | 帐号&amp;程序访问控制子系统 | 帐号服务新增用户身份认证服务；权限服务新增支持精准定位或模糊定位，以及其他能力增强；新增隐私管理服务。<br/>主要涉及如下需求：<br/>I5N90B【新增规格】应用帐号适配沙箱应用<br/>I5N90O【新增规格】帐号子系统新增用户身份认证服务<br/>I5NOQI【新增特性】权限服务支持精准定位或模糊定位<br/>I5NT1X【新增特性】权限使用记录管理增强<br/>I5NU8U【新增特性】权限弹框UX界面增强<br/>I5P4IU【新增特性】新增隐私管理服务<br/>I5P530【新增特性】位置服务使用状态管理 | NA |
 | 全球化子系统 | 新增支持翻译伪本地化能力。<br/>涉及如下需求：<br/>I4WLSJ&nbsp;【新增特性】翻译伪本地化能力 | NA |
-| Misc服务子系统 | 新增剪贴板、上传下载、锁屏、输入法框架等模块基础特性。<br/>主要涉及如下需求：<br/>I5JPMG&nbsp;【request部件】【download】后台任务通知<br/>I5NXHK&nbsp;【input_method_fwk部件】输入法框架支持仅绑定输入法innerkits接口和独立控制软键盘显隐的js接口<br/>I5NG2X&nbsp;【theme_screenlock部件】支持特定系统应用请求锁定屏幕<br/>I5IU1Z&nbsp;&nbsp;支持向剪贴板数据增加图片内容的数据项<br/>I5OGA3&nbsp;&nbsp;支持设备级的跨设备剪贴板开关<br/>I5NMKI&nbsp;【pasteboard部件】支持向剪贴板数据增加二进制数据<br/>I5MAMN&nbsp;&nbsp;支持剪贴板数据范围限制在应用内<br/>I5OX20&nbsp;【input_method_fwk部件】输入法框架支持获取输入法扩展 | NA |
+| Misc服务子系统 | 新增剪贴板、上传下载、锁屏、输入法框架等模块基础特性。<br/>主要涉及如下需求：<br/>I5JPMG&nbsp;【request部件】【download】后台任务通知<br/>I5NXHK&nbsp;【input_method_fwk部件】输入法框架支持仅绑定输入法innerkits接口和独立控制软键盘显隐的js接口<br/>I5NG2X&nbsp;【theme_screenlock部件】支持特定系统应用请求锁定屏幕<br/>I5IU1Z&nbsp;&nbsp;支持向剪贴板数据增加图片内容的数据项<br/>I5OGA3&nbsp;&nbsp;支持剪贴板插件加载开关<br/>I5NMKI&nbsp;【pasteboard部件】支持向剪贴板数据增加二进制数据<br/>I5MAMN&nbsp;&nbsp;支持剪贴板数据范围限制在应用内<br/>I5OX20&nbsp;【input_method_fwk部件】输入法框架支持获取输入法扩展 | NA |
 | ArkUI子系统 | ArkUI组件能力增强；资源、媒体查询能力增强；内存、性能优化；DFX能力增强；工具链能力增强。<br/>主要涉及如下需求：<br/>I5IZZ7&nbsp;【ace_engine_standard部件】panel组件支持单独设置每个角的borderRadius<br/>I5JQ1R&nbsp;【ace_engine_standard部件】支持图片复制粘贴<br/>I5JQ3F&nbsp;【ace_engine_standard部件】输入框能力增强<br/>I5JQ3J&nbsp;【ace_engine_standard部件】stack组件新增事件拓传机制<br/>I5JQ54&nbsp;【ace_engine_standard部件】指定控件获取焦点<br/>I5MX7J&nbsp;【ace_engine_standard部件】list列表支持左滑/右滑及回弹效果<br/>I5MWS0&nbsp;【ace_engine_standard部件】panel组件弹出高度通知给开发者<br/>I5IZVY&nbsp;【ace_engine_standard部件】键鼠接入时支持组件刷新<br/>I5JQ5Y&nbsp;【ace_engine_standard部件】走焦能力增强<br/>I5IY7K&nbsp;【新增需求】【ace_engine_standard部件】主题能力支持<br/>I5MWTB&nbsp;【ace_engine_standard部件】媒体查询支持vp查询<br/>I5IZU9&nbsp;【ace_engine_standard部件】ui_service常驻内存优化<br/>I5JQ26&nbsp;【ace_engine_standard部件】Vsync请求机制流程优化<br/>I5JQ2O&nbsp;【ace_engine部件】公共资源预加载<br/>I5JQ2D&nbsp;【ace_engine_standard部件】Move事件重采样优化<br/>I5IZXS&nbsp;【toolchain部件】DFX打印错误堆栈时支持显示开发者变量名称原文<br/>I5IZYG&nbsp;【toolchain部件】DFX打印错误堆栈时支持显示开发者变量名称原文<br/>I5IZX0&nbsp;【toolchain部件】编译支持解析$r新增bundleName和moduleName参数<br/>I5J09I&nbsp;【toolchain部件】\@Builder&nbsp;支持export导出 | NA |
 
+API变更请参考：
 
+[*API差异报告*](api-change/v3.2-beta3/Readme-CN.md)
 
 
 ### 芯片及开发板适配
@@ -186,7 +192,7 @@ DeviceProfile适配分布式数据库自动同步策略，以及采集信息补�
 | -------- | -------- | -------- | -------- |
 | ArkUI | [HealthyDiet：健康饮食](https://gitee.com/openharmony/applications_app_samples/tree/master/ETSUI/HealthyDiet) | 这是一个记录饮食和查看食物信息的应用，主要用于管理饮食健康。可以添加饮食信息，包括食物的种类、重量以及用餐时间，如早餐、&nbsp;午餐、晚餐和夜宵，并能统计得到相应用餐时间的总热量值、总蛋白质、总脂肪和总碳水值，并且用柱状图的形式展示出来。 | eTS |
 | ArkUI | [MusicAlbum：一多音乐专辑主页](https://gitee.com/openharmony/applications_app_samples/tree/master/MultiDeviceAppDev/MusicAlbum) | 本示例展示了音乐专辑主页，使用一次开发多端部署中介绍的自适应布局能力和响应式布局能力进行多设备（或多窗口尺寸）适配，保证应用在不同设备或不同窗口尺寸下可以正常显示。 | eTS |
-| 元能力、文件管理 | [Share：分享](https://gitee.com/openharmony/applications_app_samples/tree/master/Share/Share) | 分享的主要工作是实现：发送方将文本，链接，图片文件三种类型分享给三方应用,同时能够在三方应用中分别呈现出来。 | eTS |
+| 元能力、文件管理 | [Share：分享](https://gitee.com/openharmony/applications_app_samples/tree/master/Share/CustomShare) | 分享的主要工作是实现：发送方将文本，链接，图片文件三种类型分享给三方应用,同时能够在三方应用中分别呈现出来。 | eTS |
 | 元能力 | [GalleryForm：图库卡片](https://gitee.com/openharmony/applications_app_samples/tree/master/ability/GalleryForm) | 本示例是模拟图库卡片，实现对图库中的照片在卡片中显示，定时刷新卡片内容等功能。 | eTS |
 | ArkUI | [AppMarket：一多应用市场首页](https://gitee.com/openharmony/applications_app_samples/tree/master/MultiDeviceAppDev/AppMarket) | 本示例展示了应用市场首页，页面中包括Tab栏、运营横幅、精品应用、精品游戏等。 | eTS |
 | ArkUI | [Weather：一多天气](https://gitee.com/openharmony/applications_app_samples/tree/master/MultiDeviceAppDev/Weather) | 本示例展示一个天气应用界面，包括首页、城市管理、添加城市、更新时间弹窗，体现一次开发，多端部署的能力。 | eTS |

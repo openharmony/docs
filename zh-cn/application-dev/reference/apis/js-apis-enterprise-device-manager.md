@@ -14,13 +14,15 @@ import enterpriseDeviceManager from '@ohos.enterpriseDeviceManager';
 
 ## enterpriseDeviceManager.enableAdmin
 
-enableAdmin(admin: Want, enterpriseInfo: EnterpriseInfo, type: AdminType, callback: AsyncCallback\<boolean>): void
+enableAdmin(admin: Want, enterpriseInfo: EnterpriseInfo, type: AdminType, callback: AsyncCallback\<void>): void
 
 以异步方法根据给定的包名和类名激活设备管理员应用，使用Callback形式返回是否激活成功。
 
 **需要权限：** ohos.permission.MANAGE_ENTERPRISE_DEVICE_ADMIN
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
+
+**系统API**: 此接口为系统接口。
 
 **参数**：
 
@@ -29,7 +31,17 @@ enableAdmin(admin: Want, enterpriseInfo: EnterpriseInfo, type: AdminType, callba
 | admin          | [Want](js-apis-application-Want.md) | 是    | 设备管理员应用            |
 | enterpriseInfo | [EnterpriseInfo](#enterpriseinfo)   | 是    | 设备管理员应用的企业信息       |
 | type           | [AdminType](#admintype)             | 是    | 激活的设备管理员类型         |
-| callback       | AsyncCallback\<boolean>             | 是    | callback方式返回是否激活成功 |
+| callback       | AsyncCallback\<void>                | 是    | callback方式返回是否激活成功 |
+
+**错误码**：
+
+以下的错误码的详细介绍请参见[企业设备管理错误码](../errorcodes/errorcode-EnterpriseDeviceManager.md)
+
+| 类型      | 说明                                                           |          
+| ------- | --------------------------------------------------------------- |
+| 9200003 | The administrator ability component is invalid.                 |
+| 9200004 | Failed to activate the administrator application of the device. |
+| 9200007 | The system ability work abnormally.                             |
 
 **示例**：
 
@@ -42,24 +54,26 @@ let enterpriseInfo = {
     name: "enterprise name",
     description: "enterprise description"
 }
-enterpriseDeviceManager.enableAdmin(wantTemp, enterpriseInfo, enterpriseDeviceManager.AdminType.ADMIN_TYPE_NORMAL, (error, result) => {
+enterpriseDeviceManager.enableAdmin(wantTemp, enterpriseInfo, enterpriseDeviceManager.AdminType.ADMIN_TYPE_NORMAL, error => {
     if (error != null) {
         console.log("error occurs" + error);
         return;
     }
-    console.log("result is " + result);
+    console.log("enableAdmin success");
 });
 ```
 
 ## enterpriseDeviceManager.enableAdmin
 
-enableAdmin(admin: Want, enterpriseInfo: EnterpriseInfo, type: AdminType, userId: number, callback: AsyncCallback\<boolean>): void
+enableAdmin(admin: Want, enterpriseInfo: EnterpriseInfo, type: AdminType, userId: number, callback: AsyncCallback\<void>): void
 
 以异步方法根据给定的包名和类名激活设备管理员应用，使用Callback形式返回是否激活成功。
 
 **需要权限：** ohos.permission.MANAGE_ENTERPRISE_DEVICE_ADMIN
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
+
+**系统API**: 此接口为系统接口。
 
 **参数**：
 
@@ -69,7 +83,17 @@ enableAdmin(admin: Want, enterpriseInfo: EnterpriseInfo, type: AdminType, userId
 | enterpriseInfo | [EnterpriseInfo](#enterpriseinfo)   | 是    | 设备管理员应用的企业信息                 |
 | type           | [AdminType](#admintype)             | 是    | 激活的设备管理员类型                   |
 | userId         | number                              | 是    | 用户ID。默认值：调用方所在用户，取值范围：大于等于0。 |
-| callback       | AsyncCallback\<boolean>             | 是    | callback方式返回是否激活成功           |
+| callback       | AsyncCallback\<void>                | 是    | callback方式返回是否激活成功           |
+
+**错误码**:
+
+以下的错误码的详细介绍请参见[企业设备管理错误码](../errorcodes/errorcode-EnterpriseDeviceManager.md)
+
+| 类型      | 说明                                                           |          
+| ------- | --------------------------------------------------------------- |
+| 9200003 | The administrator ability component is invalid.                 |
+| 9200004 | Failed to activate the administrator application of the device. |
+| 9200007 | The system ability work abnormally.                             |
 
 **示例**：
 
@@ -82,24 +106,26 @@ let enterpriseInfo = {
     name: "enterprise name",
     description: "enterprise description"
 }
-enterpriseDeviceManager.enableAdmin(wantTemp, enterpriseInfo, enterpriseDeviceManager.AdminType.ADMIN_TYPE_NORMAL, 100, (error, result) => {
+enterpriseDeviceManager.enableAdmin(wantTemp, enterpriseInfo, enterpriseDeviceManager.AdminType.ADMIN_TYPE_NORMAL, 100, error => {
     if (error != null) {
         console.log("error occurs" + error);
         return;
     }
-    console.log("result is " + result);
+    console.log("enableAdmin success");
 });
 ```
 
 ## enterpriseDeviceManager.enableAdmin
 
-enableAdmin(admin: Want, enterpriseInfo: EnterpriseInfo, type: AdminType, userId?: number): Promise\<boolean>
+enableAdmin(admin: Want, enterpriseInfo: EnterpriseInfo, type: AdminType, userId?: number): Promise\<void>
 
 以异步方法根据给定的包名和类名激活设备管理员应用，使用Promise形式返回是否激活成功。
 
 **需要权限：** ohos.permission.MANAGE_ENTERPRISE_DEVICE_ADMIN
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
+
+**系统API**: 此接口为系统接口。
 
 **参数**：
 
@@ -114,7 +140,17 @@ enableAdmin(admin: Want, enterpriseInfo: EnterpriseInfo, type: AdminType, userId
 
 | 类型                | 说明                |
 | ----------------- | ----------------- |
-| Promise\<boolean> | Promise形式返回是否激活成功 |
+| Promise\<void>    | Promise形式返回是否激活成功 |
+
+**错误码**：
+
+以下的错误码的详细介绍请参见[企业设备管理错误码](../errorcodes/errorcode-EnterpriseDeviceManager.md)
+
+| 类型      | 说明                                                           |          
+| ------- | --------------------------------------------------------------- |
+| 9200003 | The administrator ability component is invalid.                 |
+| 9200004 | Failed to activate the administrator application of the device. |
+| 9200007 | The system ability work abnormally.                             |
 
 **示例**：
 
@@ -128,16 +164,14 @@ let enterpriseInfo = {
     description: "enterprise description"
 }
 enterpriseDeviceManager.enableAdmin(wantTemp, enterpriseInfo, enterpriseDeviceManager.AdminType.ADMIN_TYPE_NORMAL, 100)
-.then((result) => {
-    console.log("result is " + result);
-}).catch(error => {
+.catch(error => {
     console.log("error occurs" + error);
 });
 ```
 
 ## enterpriseDeviceManager.disableAdmin
 
-disableAdmin(admin: Want, callback: AsyncCallback\<boolean>): void
+disableAdmin(admin: Want, callback: AsyncCallback\<void>): void
 
 以异步方法根据给定的包名和类名将设备普通管理员应用去激活，使用Callback形式返回是否去激活成功。
 
@@ -145,12 +179,22 @@ disableAdmin(admin: Want, callback: AsyncCallback\<boolean>): void
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
+**系统API**: 此接口为系统接口。
+
 **参数**：
 
 | 参数名      | 类型                                  | 必填   | 说明                  |
 | -------- | ----------------------------------- | ---- | ------------------- |
 | admin    | [Want](js-apis-application-Want.md) | 是    | 普通设备管理员应用           |
-| callback | AsyncCallback\<boolean>             | 是    | callback方式返回是否去激活成功 |
+| callback | AsyncCallback\<void>                | 是    | callback方式返回是否去激活成功 |
+
+**错误码**:
+
+以下的错误码的详细介绍请参见[企业设备管理错误码](../errorcodes/errorcode-EnterpriseDeviceManager.md)
+
+| 类型      | 说明                                                              |          
+| ------- | ----------------------------------------------------------------- |
+| 9200005 | Failed to deactivate the administrator application of the device. |
 
 **示例**：
 
@@ -159,24 +203,26 @@ let wantTemp = {
     bundleName: "bundleName",
     abilityName: "abilityName",
 };
-enterpriseDeviceManager.disableAdmin(wantTemp, (error, result) => {
+enterpriseDeviceManager.disableAdmin(wantTemp, error => {
     if (error != null) {
         console.log("error occurs" + error);
         return;
     }
-    console.log("result is " + result);
+    console.log("disableAdmin success ");
 });
 ```
 
 ## enterpriseDeviceManager.disableAdmin
 
-disableAdmin(admin: Want, userId: number, callback: AsyncCallback\<boolean>): void
+disableAdmin(admin: Want, userId: number, callback: AsyncCallback\<void>): void
 
 以异步方法根据给定的包名和类名将设备普通管理员应用去激活，使用Callback形式返回是否去激活成功。
 
 **需要权限：** ohos.permission.MANAGE_ENTERPRISE_DEVICE_ADMIN
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
+
+**系统API**: 此接口为系统接口。
 
 **参数**：
 
@@ -184,7 +230,15 @@ disableAdmin(admin: Want, userId: number, callback: AsyncCallback\<boolean>): vo
 | -------- | ----------------------------------- | ---- | ---------------------------- |
 | admin    | [Want](js-apis-application-Want.md) | 是    | 普通设备管理员应用                    |
 | userId   | number                              | 是    | 用户ID。默认值：调用方所在用户，取值范围：大于等于0。 |
-| callback | AsyncCallback\<boolean>             | 是    | callback方式返回是否去激活成功          |
+| callback | AsyncCallback\<void>                | 是    | callback方式返回是否去激活成功          |
+
+**错误码**:
+
+以下的错误码的详细介绍请参见[企业设备管理错误码](../errorcodes/errorcode-EnterpriseDeviceManager.md)
+
+| 类型      | 说明                                                              |          
+| ------- | ----------------------------------------------------------------- |
+| 9200005 | Failed to deactivate the administrator application of the device. |
 
 **示例**：
 
@@ -193,24 +247,26 @@ let wantTemp = {
     bundleName: "bundleName",
     abilityName: "abilityName",
 };
-enterpriseDeviceManager.disableAdmin(wantTemp, 100, (error, result) => {
+enterpriseDeviceManager.disableAdmin(wantTemp, 100, error => {
     if (error != null) {
         console.log("error occurs" + error);
         return;
     }
-    console.log("result is " + result);
+    console.log("disableAdmin success ");
 });
 ```
 
 ## enterpriseDeviceManager.disableAdmin
 
-disableAdmin(admin: Want, userId?: number): Promise\<boolean>
+disableAdmin(admin: Want, userId?: number): Promise\<void>
 
 以异步方法根据给定的包名和类名将设备普通管理员应用去激活，使用Promise形式返回是否去激活成功。
 
 **需要权限：** ohos.permission.MANAGE_ENTERPRISE_DEVICE_ADMIN
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
+
+**系统API**: 此接口为系统接口。
 
 **参数**：
 
@@ -223,7 +279,15 @@ disableAdmin(admin: Want, userId?: number): Promise\<boolean>
 
 | 类型                | 说明                |
 | ----------------- | ----------------- |
-| Promise\<boolean> | Promise形式返回是否激活成功 |
+| Promise\<void>    | Promise形式返回是否激活成功 |
+
+**错误码**:
+
+以下的错误码的详细介绍请参见[企业设备管理错误码](../errorcodes/errorcode-EnterpriseDeviceManager.md)
+
+| 类型      | 说明                                                              |          
+| ------- | ----------------------------------------------------------------- |
+| 9200005 | Failed to deactivate the administrator application of the device. |
 
 **示例**：
 
@@ -232,48 +296,62 @@ let wantTemp = {
     bundleName: "bundleName",
     abilityName: "abilityName",
 };
-enterpriseDeviceManager.disableAdmin(wantTemp, 100).then((result) => {
-    console.log("result is " + result);
-}).catch(error => {
+enterpriseDeviceManager.disableAdmin(wantTemp, 100).catch(error => {
     console.log("error occurs" + error);
 });
 ```
 
 ## enterpriseDeviceManager.disableSuperAdmin
 
-disableSuperAdmin(bundleName: String, callback: AsyncCallback\<boolean>): void
+disableSuperAdmin(bundleName: String, callback: AsyncCallback\<void>): void
 
 以异步方法根据给定的包名将设备超级管理员应用去激活，使用Callback形式返回是否去激活成功。
 
+**需要权限：** ohos.permission.MANAGE_ENTERPRISE_DEVICE_ADMIN
+
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
+
+**系统API**: 此接口为系统接口。
 
 **参数**：
 
 | 参数名        | 类型                      | 必填   | 说明                  |
 | ---------- | ----------------------- | ---- | ------------------- |
 | bundleName | String                  | 是    | 超级设备管理员应用的包名        |
-| callback   | AsyncCallback\<boolean> | 是    | callback方式返回是否去激活成功 |
+| callback   | AsyncCallback\<void>    | 是    | callback方式返回是否去激活成功 |
+
+**错误码**:
+
+以下的错误码的详细介绍请参见[企业设备管理错误码](../errorcodes/errorcode-EnterpriseDeviceManager.md)
+
+| 类型      | 说明                                                              |          
+| ------- | ----------------------------------------------------------------- |
+| 9200005 | Failed to deactivate the administrator application of the device. |
 
 **示例**：
 
 ```js
 let bundleName = "com.example.myapplication";
-enterpriseDeviceManager.disableSuperAdmin(bundleName, (error, result) => {
+enterpriseDeviceManager.disableSuperAdmin(bundleName, error => {
     if (error != null) {
         console.log("error occurs" + error);
         return;
     }
-    console.log("result is " + result);
+    console.log("disableSuperAdmin success");
 });
 ```
 
 ## enterpriseDeviceManager.disableSuperAdmin
 
-disableSuperAdmin(bundleName: String): Promise\<boolean>
+disableSuperAdmin(bundleName: String): Promise\<void>
 
 以异步方法根据给定的包名将设备超级管理员应用去激活，使用Promise形式返回是否去激活成功。
 
+**需要权限：** ohos.permission.MANAGE_ENTERPRISE_DEVICE_ADMIN
+
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
+
+**系统API**: 此接口为系统接口。
 
 **参数**：
 
@@ -285,15 +363,21 @@ disableSuperAdmin(bundleName: String): Promise\<boolean>
 
 | 类型                | 说明                |
 | ----------------- | ----------------- |
-| Promise\<boolean> | Promise形式返回是否激活成功 |
+| Promise\<void>    | Promise形式返回是否激活成功 |
+
+**错误码**:
+
+以下的错误码的详细介绍请参见[企业设备管理错误码](../errorcodes/errorcode-EnterpriseDeviceManager.md)
+
+| 类型      | 说明                                                              |          
+| ------- | ----------------------------------------------------------------- |
+| 9200005 | Failed to deactivate the administrator application of the device. |
 
 **示例**：
 
 ```js
 let bundleName = "com.example.myapplication";
-enterpriseDeviceManager.disableSuperAdmin(bundleName).then((result) => {
-    console.log("result is " + result);
-}).catch(error => {
+enterpriseDeviceManager.disableSuperAdmin(bundleName).catch(error => {
     console.log("error occurs" + error);
 });
 ```
@@ -306,12 +390,22 @@ isAdminEnabled(admin: Want, callback: AsyncCallback\<boolean>): void
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
+**系统API**: 此接口为系统接口。
+
 **参数**：
 
 | 参数名      | 类型                                  | 必填   | 说明                   |
 | -------- | ----------------------------------- | ---- | -------------------- |
 | admin    | [Want](js-apis-application-Want.md) | 是    | 设备管理员应用              |
 | callback | AsyncCallback\<boolean>             | 是    | callback方式返回是否处于激活状态 |
+
+**错误码**:
+
+以下的错误码的详细介绍请参见[企业设备管理错误码](../errorcodes/errorcode-EnterpriseDeviceManager.md)
+
+| 类型      | 说明                                                              |          
+| ------- | ----------------------------------------------------------------- |
+| 9200005 | Failed to deactivate the administrator application of the device. |
 
 **示例**：
 
@@ -336,6 +430,8 @@ isAdminEnabled(admin: Want, userId: number, callback: AsyncCallback\<boolean>): 
 以异步方法根据给定的包名和类名判断设备管理员应用是否被激活，使用Callback形式返回是否处于激活状态。
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
+
+**系统API**: 此接口为系统接口。
 
 **参数**：
 
@@ -368,6 +464,8 @@ isAdminEnabled(admin: Want, userId?: number): Promise\<boolean>
 以异步方法根据给定的包名和类名判断设备管理员应用是否被激活，使用Promise形式返回是否处于激活状态。
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
+
+**系统API**: 此接口为系统接口。
 
 **参数**：
 
@@ -404,6 +502,8 @@ isSuperAdmin(bundleName: String, callback: AsyncCallback\<boolean>): void
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
+**系统API**: 此接口为系统接口。
+
 **参数**：
 
 | 参数名        | 类型                      | 必填   | 说明                   |
@@ -431,6 +531,8 @@ isSuperAdmin(bundleName: String): Promise\<boolean>
 以异步方法根据给定的包名判断设备超级管理员应用是否被激活，使用Promise形式返回是否处于激活状态。
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
+
+**系统API**: 此接口为系统接口。
 
 **参数**：
 
@@ -469,6 +571,15 @@ getDeviceSettingsManager(callback: AsyncCallback&lt;DeviceSettingsManager&gt;): 
 | -------- | --------------------------------------- | ---- | ----------------------------------- |
 | callback | AsyncCallback<[DeviceSettingsManager](js-apis-enterpriseDeviceManager-DeviceSettingsManager.md)&gt; | 是    | callback方式返回DeviceSettingsManager对象 |
 
+**错误码**：
+
+以下的错误码的详细介绍请参见[企业设备管理错误码](../errorcodes/errorcode-EnterpriseDeviceManager.md)
+
+| 类型      | 说明                                                                         |          
+| ------- | ---------------------------------------------------------------------------- |
+| 9200001 | The application is not a administrator of the device.                        |
+| 9200002 | The administrator application does not have permission to manage the device. |
+
 **示例：**
 
 ```js
@@ -478,14 +589,12 @@ let wantTemp = {
 };
 enterpriseDeviceManager.getDeviceSettingsManager((error, mgr) => {
     if (error != null) {
-        console.log("error occurs" + error);
+        console.log("error code:" + error.code);
         return;
     }
-    mgr.setDateTime(wantTemp, 1526003846000, (error, value) => { 
+    mgr.setDateTime(wantTemp, 1526003846000, (error) => { 
         if (error != null) {
-            console.log(error);
-        } else {
-            console.log(value);
+            console.log("error code:" + error.code);
         }
     });
 });
@@ -505,6 +614,15 @@ getDeviceSettingsManager(): Promise&lt;DeviceSettingsManager&gt;
 | ------------------------------------ | ---------------------------------- |
 | Promise&lt;[DeviceSettingsManager](js-apis-enterpriseDeviceManager-DeviceSettingsManager.md)&gt; | Promise方式返回DeviceSettingsManager对象 |
 
+**错误码**：
+
+以下的错误码的详细介绍请参见[企业设备管理错误码](../errorcodes/errorcode-EnterpriseDeviceManager.md)
+
+| 类型      | 说明                                                                         |          
+| ------- | ---------------------------------------------------------------------------- |
+| 9200001 | The application is not a administrator of the device.                        |
+| 9200002 | The administrator application does not have permission to manage the device. |
+
 **示例：**
 
 ```js
@@ -513,23 +631,25 @@ let wantTemp = {
     abilityName: "abilityName",
 };
 enterpriseDeviceManager.getDeviceSettingsManager().then((mgr) => {
-    mgr.setDateTime(wantTemp, 1526003846000).then((value) => {
-        console.log(value);
-    }).catch((error) => {
-        console.log(error);
+    mgr.setDateTime(wantTemp, 1526003846000).catch((error) => {
+        console.log("error code:" + error.code);
     })
 }).catch((error) => {
-    console.log(error);
+    console.log("error code:" + error.code);
 })
 ```
 
 ## enterpriseDeviceManager.setEnterpriseInfo
 
-setEnterpriseInfo(admin: Want, enterpriseInfo: EnterpriseInfo, callback: AsyncCallback&lt;boolean&gt;): void
+setEnterpriseInfo(admin: Want, enterpriseInfo: EnterpriseInfo, callback: AsyncCallback\<void>;): void
 
 设置设备管理员应用的企业信息，使用callback形式返回是否设置成功。
 
+**需要权限：** ohos.permission.SET_ENTERPRISE_INFO
+
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
+
+**系统API**: 此接口为系统接口。
 
 **参数：**
 
@@ -537,7 +657,15 @@ setEnterpriseInfo(admin: Want, enterpriseInfo: EnterpriseInfo, callback: AsyncCa
 | -------------- | ----------------------------------- | ---- | ---------------------- |
 | admin          | [Want](js-apis-application-Want.md) | 是    | 设备管理员应用                |
 | enterpriseInfo | [EnterpriseInfo](#enterpriseinfo)   | 是    | 设备管理员应用的企业信息           |
-| callback       | AsyncCallback\<boolean&gt;          | 是    | callback方式返回是否设置企业信息成功 |
+| callback       | AsyncCallback\<void>;               | 是    | callback方式返回是否设置企业信息成功 |
+
+**错误码**：
+
+以下的错误码的详细介绍请参见[企业设备管理错误码](../errorcodes/errorcode-EnterpriseDeviceManager.md)
+
+| 类型      | 说明                                                  |          
+| ------- | ----------------------------------------------------- |
+| 9200001 | The application is not a administrator of the device. |
 
 **示例：**
 
@@ -550,21 +678,26 @@ let enterpriseInfo = {
     name: "enterprise name",
     description: "enterprise description"
 }
-enterpriseDeviceManager.setEnterpriseInfo(wantTemp, enterpriseInfo)
-.then((result) => {
-    console.log("result is " + result);
-}).catch(error => {
-    console.log("error occurs" + error);
+enterpriseDeviceManager.setEnterpriseInfo(wantTemp, enterpriseInfo, error => {
+    if (error != null) {
+        console.log("error occurs" + error);
+        return;
+    }
+    console.log("setEnterpriseInfo success");
 });
 ```
 
 ## enterpriseDeviceManager.setEnterpriseInfo
 
-setEnterpriseInfo(admin: Want, enterpriseInfo: EnterpriseInfo): Promise&lt;boolean&gt;
+setEnterpriseInfo(admin: Want, enterpriseInfo: EnterpriseInfo): Promise\<void>;
 
 设置设备管理员应用的企业信息，使用Promise形式返回是否设置成功。
 
+**需要权限：** ohos.permission.SET_ENTERPRISE_INFO
+
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
+
+**系统API**: 此接口为系统接口。
 
 **参数：**
 
@@ -577,7 +710,15 @@ setEnterpriseInfo(admin: Want, enterpriseInfo: EnterpriseInfo): Promise&lt;boole
 
 | 类型                | 说明                    |
 | ----------------- | --------------------- |
-| Promise\<boolean> | Promise方式返回是否设置企业信息成功 |
+| Promise\<void>    | Promise方式返回是否设置企业信息成功 |
+
+**错误码**：
+
+以下的错误码的详细介绍请参见[企业设备管理错误码](../errorcodes/errorcode-EnterpriseDeviceManager.md)
+
+| 类型      | 说明                                                  |          
+| ------- | ----------------------------------------------------- |
+| 9200001 | The application is not a administrator of the device. |
 
 **示例：**
 
@@ -590,10 +731,7 @@ let enterpriseInfo = {
     name: "enterprise name",
     description: "enterprise description"
 }
-enterpriseDeviceManager.setEnterpriseInfo(wantTemp, enterpriseInfo)
-.then((result) => {
-    console.log("result is " + result);
-}).catch(error => {
+enterpriseDeviceManager.setEnterpriseInfo(wantTemp, enterpriseInfo).catch(error => {
     console.log("error occurs" + error);
 });
 ```
@@ -606,12 +744,22 @@ getEnterpriseInfo(admin: Want, callback: AsyncCallback&lt;EnterpriseInfo&gt;): v
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
+**系统API**: 此接口为系统接口。
+
 **参数：**
 
 | 参数名      | 类型                                       | 必填   | 说明                       |
 | -------- | ---------------------------------------- | ---- | ------------------------ |
 | admin    | [Want](js-apis-application-Want.md)      | 是    | 设备管理员应用                  |
 | callback | AsyncCallback&lt;[EnterpriseInfo](#enterpriseinfo)&gt; | 是    | callback方式返回设备管理员应用的企业信息 |
+
+**错误码**：
+
+以下的错误码的详细介绍请参见[企业设备管理错误码](../errorcodes/errorcode-EnterpriseDeviceManager.md)
+
+| 类型      | 说明                                                  |          
+| ------- | ----------------------------------------------------- |
+| 9200001 | The application is not a administrator of the device. |
 
 **示例：**
 
@@ -638,6 +786,8 @@ getEnterpriseInfo(admin: Want): Promise&lt;EnterpriseInfo&gt;
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
+**系统API**: 此接口为系统接口。
+
 **参数：**
 
 | 参数名   | 类型                                  | 必填   | 说明      |
@@ -649,6 +799,14 @@ getEnterpriseInfo(admin: Want): Promise&lt;EnterpriseInfo&gt;
 | 类型                                       | 说明                        |
 | ---------------------------------------- | ------------------------- |
 | Promise&lt;[EnterpriseInfo](#enterpriseinfo)&gt; | Promise方式返回设备管理员应用的企业信息对象 |
+
+**错误码**：
+
+以下的错误码的详细介绍请参见[企业设备管理错误码](../errorcodes/errorcode-EnterpriseDeviceManager.md)
+
+| 类型      | 说明                                                  |          
+| ------- | ----------------------------------------------------- |
+| 9200001 | The application is not a administrator of the device. |
 
 **示例：**
 
@@ -671,9 +829,11 @@ subscribeManagedEvent(admin: Want, managedEvents: Array\<ManagedEvent>, callback
 
 订阅系统管理事件。使用callback异步回调。
 
-**需要权限：** ohos.permission.MANAGE_ENTERPRISE_DEVICE_ADMIN
+**需要权限：** ohos.permission.ENTERPRISE_SUBSCRIBE_MANAGED_EVENT
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
+
+**系统API**: 此接口为系统接口。
 
 **参数：**
 
@@ -704,9 +864,11 @@ subscribeManagedEvent(admin: Want, managedEvents: Array\<ManagedEvent>): Promise
 
 订阅系统管理事件。使用Promise异步回调。
 
-**需要权限：** ohos.permission.MANAGE_ENTERPRISE_DEVICE_ADMIN
+**需要权限：** ohos.permission.ENTERPRISE_SUBSCRIBE_MANAGED_EVENT
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
+
+**系统API**: 此接口为系统接口。
 
 **参数：**
 
@@ -741,9 +903,11 @@ unsubscribeManagedEvent(admin: Want, managedEvents: Array\<ManagedEvent>, callba
 
 取消订阅系统管理事件。使用callback异步回调。
 
-**需要权限：** ohos.permission.MANAGE_ENTERPRISE_DEVICE_ADMIN
+**需要权限：** ohos.permission.ENTERPRISE_SUBSCRIBE_MANAGED_EVENT
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
+
+**系统API**: 此接口为系统接口。
 
 **参数：**
 
@@ -774,9 +938,11 @@ unsubscribeManagedEvent(admin: Want, managedEvents: Array\<ManagedEvent>): Promi
 
 取消订阅系统管理事件。使用callback异步回调。
 
-**需要权限：** ohos.permission.MANAGE_ENTERPRISE_DEVICE_ADMIN
+**需要权限：** ohos.permission.ENTERPRISE_SUBSCRIBE_MANAGED_EVENT
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
+
+**系统API**: 此接口为系统接口。
 
 **参数：**
 

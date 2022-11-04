@@ -1,77 +1,32 @@
 # UI开发
 
 - [方舟开发框架（ArkUI）概述](arkui-overview.md)
-- UI开发（基于eTS的声明式开发范式）
+- UI开发（基于ArkTS的声明式开发范式）
     - [概述](ui-ts-overview.md)
-    - 框架说明
-        - 文件组织
-            - [目录结构](ts-framework-directory.md)
-            - [应用代码文件访问规则](ts-framework-file-access-rules.md)
-        - 资源管理
-            - [资源文件的分类](ui-ts-basic-resource-file-categories.md)
-            - [资源访问](ts-resource-access.md)
-        - [像素单位](ts-pixel-units.md)
-    - 声明式语法
-        - [描述规范使用说明](ts-syntax-intro.md)
-        - 通用UI描述规范
-            - [基本概念](ts-general-ui-concepts.md)
-            - 声明式UI描述规范
-                - [无构造参数配置](ts-parameterless-configuration.md)
-                - [必选参数构造配置](ts-configuration-with-mandatory-parameters.md)
-                - [属性配置](ts-attribution-configuration.md)
-                - [事件配置](ts-event-configuration.md)
-                - [子组件配置](ts-child-component-configuration.md)
-            - 组件化
-                - [@Component](ts-component-based-component.md)
-                - [@Entry](ts-component-based-entry.md)
-                - [@Preview](ts-component-based-preview.md)
-                - [@Builder](ts-component-based-builder.md)
-                - [@Extend](ts-component-based-extend.md)
-                - [@CustomDialog](ts-component-based-customdialog.md)
-                - [@Styles](ts-component-based-styles.md)
-        - UI状态管理
-            - [基本概念](ts-ui-state-mgmt-concepts.md)
-            - 管理组件拥有的状态
-                - [@State](ts-component-states-state.md)
-                - [@Prop](ts-component-states-prop.md)
-                - [@Link](ts-component-states-link.md)
-            - 管理应用程序的状态
-                - [应用程序的数据存储](ts-application-states-appstorage.md)
-                - [Ability数据存储](ui-ts-local-storage.md)
-                - [持久化数据管理](ts-application-states-apis-persistentstorage.md)
-                - [环境变量](ts-application-states-apis-environment.md)
-            - 其他类目的状态管理
-                - [Observed和ObjectLink数据管理](ts-other-states-observed-objectlink.md)
-                - [@Consume和@Provide数据管理](ts-other-states-consume-provide.md)
-                - [@Watch](ts-other-states-watch.md)
-        - 渲染控制语法
-            - [条件渲染](ts-rending-control-syntax-if-else.md)
-            - [循环渲染](ts-rending-control-syntax-foreach.md)
-            - [数据懒加载](ts-rending-control-syntax-lazyforeach.md)
-        - 深入理解组件化
-            - [build函数](ts-function-build.md)
-            - [自定义组件初始化](ts-custom-component-initialization.md)
-            - [自定义组件生命周期回调函数](ts-custom-component-lifecycle-callbacks.md)
-            - [组件创建和重新初始化示例](ts-component-creation-re-initialization.md)
-        - [语法糖](ts-syntactic-sugar.md)
-    - 常见组件开发指导
-        - [Button开发指导](ui-ts-basic-components-button.md)
-        - [Web开发指导](ui-ts-components-web.md)
-    - 常见布局开发指导
-        - [弹性布局](ui-ts-layout-flex.md)
-        - [栅格布局](ui-ts-layout-grid-container.md)
-        - [媒体查询](ui-ts-layout-mediaquery.md)
-    - 体验声明式UI
-        - [创建声明式UI工程](ui-ts-creating-project.md)
-        - [初识Component](ui-ts-components.md)
-        - [创建简单视图](ui-ts-creating-simple-page.md)
-    - 页面布局与连接
+    - [声明式UI开发指导](ui-ts-developing-intro.md)
+    - 声明式UI开发实例
+      - [创建简单视图](ui-ts-creating-simple-page.md)
+      - 构建完整实例
         - [构建食物数据模型](ui-ts-building-data-model.md)
         - [构建食物列表List布局](ui-ts-building-category-list-layout.md)
         - [构建食物分类Grid布局](ui-ts-building-category-grid-layout.md)
-        - [页面跳转与数据传递](ui-ts-page-redirection-data-transmission.md)
-    - [性能提升的推荐方法](ts-performance-improvement-recommendation.md)
-    
+        - [页面跳转与数据传递](ui-ts-page-redirection-data-transmission.md)    
+      - 添加闪屏动画
+        - [绘制图像](ui-ts-drawing-feature.md)
+        - [添加动画效果](ui-ts-animation-feature.md)
+    - [常用组件说明](ui-ts-components-intro.md)
+    - 常见布局开发指导
+        - 自适应布局
+            - [线性布局](ui-ts-layout-linear.md)
+            - [层叠布局](ui-ts-layout-stack.md)
+            - [弹性布局](ui-ts-layout-flex.md)
+            - [网格布局](ui-ts-layout-grid.md)
+        - 响应式布局
+            - [栅格布局](ui-ts-layout-grid-container-new.md)
+            - [媒体查询](ui-ts-layout-mediaquery.md)
+    - [自定义组件的生命周期](ui-ts-custom-component-lifecycle-callbacks.md)
+    - [Web组件开发指导](ui-ts-components-web.md)
+    - [性能提升的推荐方法](ui-ts-performance-improvement-recommendation.md)
 - UI开发（兼容JS的类Web开发范式）
     - [概述](ui-js-overview.md)
     - 框架说明

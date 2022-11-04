@@ -1,6 +1,6 @@
-# ShortcutInfo
+# ShortcutInfo<sup>(deprecated)<sup>
 
-
+> 从API version 9开始不再维护，建议使用[ShortcutInfo](js-apis-bundleManager-shortcutInfo.md)替代
 
 > **说明：**
 >
@@ -12,9 +12,9 @@
 
 
 
-## ShortcutWant
+## ShortcutWant<sup>(deprecated)<sup>
 
-快捷方式所指向的目标信息。
+> 从API version 9开始不再维护，建议使用[ShortcutWant](js-apis-bundleManager-shortcutInfo.md)替代
 
  **系统能力:** 以下各项对应的系统能力均为SystemCapability.BundleManager.BundleFramework
 
@@ -26,9 +26,10 @@
 | targetModule<sup>9+</sup> | string | 是   | 否   | 快捷方式的目标模块   |
 | targetClass               | string | 是   | 否   | 快捷方式所需的目标类 |
 
-## ShortcutInfo
+## ShortcutInfo<sup>(deprecated)<sup>
 
-快捷方式属性信息。
+> 从API version 9开始不再维护，建议使用[ShortcutInfo](js-apis-bundleManager-shortcutInfo.md)替代。
+
 
  **系统能力:** 以下各项对应的系统能力均为SystemCapability.BundleManager.BundleFramework
 

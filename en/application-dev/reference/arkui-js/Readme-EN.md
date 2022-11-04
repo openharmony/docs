@@ -1,4 +1,4 @@
-#  JavaScript-based Web-like Development Paradigm
+#  JavaScript-compatible Web-like Development Paradigm
 
 -   Universal Component Information
     - [Universal Attributes](js-components-common-attributes.md)

@@ -12,7 +12,7 @@
 | 名称              | 参数说明   | 描述                                       |
 | --------------- | ------ | ---------------------------------------- |
 | aspectRatio     | number | 指定当前组件的宽高比，aspectRatio = width/height。                              |
-| displayPriority | number | 设置当前组件在布局容器中显示的优先级，当父容器空间不足时，低优先级的组件会被隐藏。<br/>**说明：**<br/>仅在Row/Column/Flex(单行)容器组件中生效。 |
+| displayPriority | number | 设置当前组件在布局容器中显示的优先级，当父容器空间不足时，低优先级的组件会被隐藏。<br/>小数点后的数字不作优先级区分，即区间为[x, x + 1)内的数字视为相同优先级。例如：1.0与1.9为同一优先级。<br/>**说明：**<br/>仅在Row/Column/Flex(单行)容器组件中生效。 |
 
 
 ## 示例
@@ -22,7 +22,7 @@
 @Entry
 @Component
 struct AspectRatioExample {
-  private children: string[] = ['1', '2', '3', '4', '5', '6'];
+  private children: string[] = ['1', '2', '3', '4', '5', '6']
 
   build() {
     Column({ space: 20 }) {

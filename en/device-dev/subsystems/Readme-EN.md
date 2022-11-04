@@ -39,21 +39,7 @@
   - [Utils Overview](subsys-utils-overview.md)
   - [Utils Development](subsys-utils-guide.md)
   - [Utils FAQ](subsys-utils-faqs.md)
-- AI Framework
-  - [AI Engine Framework](subsys-aiframework-guide.md)
-  - [Development Environment](subsys-aiframework-envbuild.md)
-  - Technical Specifications
-    - [Code Management](subsys-aiframework-tech-codemanage.md)
-    - [Naming](subsys-aiframework-tech-name.md)
-    - [API Development](subsys-aiframework-tech-interface.md)
-  - Development Guidelines
-    - [SDK](subsys-aiframework-devguide-sdk.md)
-    - [Plug-in](subsys-aiframework-devguide-plugin.md)
-    - [Configuration File](subsys-aiframework-devguide-conf.md)
-  - Development Examples
-    - [KWS SDK](subsys-aiframework-demo-sdk.md)
-    - [KWS Plug-in](subsys-aiframework-demo-plugin.md)
-    - [KWS Configuration File](subsys-aiframework-demo-conf.md)
+- [AI Framework](subsys-ai-aiframework-devguide.md)
 - Data Management
   - RDB
     - [RDB Overview](subsys-data-relational-database-overview.md)
@@ -106,6 +92,7 @@
   - [HiTraceChain Development](subsys-dfx-hitracechain.md)
   - [HiCollie Development](subsys-dfx-hicollie.md)
   - HiSysEvent Development
+    - [HiSysEvent Overview](subsys-dfx-hisysevent-overview.md)
     - [HiSysEvent Logging Configuration](subsys-dfx-hisysevent-logging-config.md)
     - [HiSysEvent Logging](subsys-dfx-hisysevent-logging.md)
     - [HiSysEvent Listening](subsys-dfx-hisysevent-listening.md)

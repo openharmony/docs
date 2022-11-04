@@ -40,7 +40,7 @@ In addition to the [universal attributes](ts-universal-attributes-size.md), the 
 | displayMode                 | SwiperDisplayMode                        | Mode in which elements are displayed along the main axis. This attribute takes effect only when **displayCount** is not set.<br>Default value: **SwiperDisplayMode.Stretch**|
 | cachedCount<sup>8+</sup>    | number                                   | Number of child components to be cached.<br>Default value: **1**                             |
 | disableSwipe<sup>8+</sup>   | boolean                                  | Whether to disable the swipe feature.<br>Default value: **false**                             |
-| curve<sup>8+</sup>          | [Curve](ts-appendix-enums.md#curve)  \| string | Animation curve. The ease-in/ease-out curve is used by default. For details about common curves, see [Curve](ts-appendix-enums.md#curve). You can also create custom curves ([interpolation curve objects](ts-interpolation-calculation.md)) by using the API provided by the interpolation calculation module.<br>Default value: **Curve.Ease**|
+| curve<sup>8+</sup>          | [Curve](ts-appendix-enums.md#curve)  \| string | Animation curve. The ease-in/ease-out curve is used by default. For details about common curves, see [Curve](ts-appendix-enums.md#curve). You can also create custom curves (interpolation curve objects) by using the API provided by the interpolation calculation module.<br>Default value: **Curve.Ease**|
 | indicatorStyle<sup>8+</sup> | {<br>left?: [Length](ts-types.md#length),<br>top?: [Length](ts-types.md#length),<br>right?: [Length](ts-types.md#length),<br>bottom?: [Length](ts-types.md#length),<br>size?: [Length](ts-types.md#length),<br>mask?: boolean,<br>color?: [ResourceColor](ts-types.md#resourcecolor),<br>selectedColor?: [ResourceColor](ts-types.md#resourcecolor)<br>} | Style of the navigation dots indicator.<br>\- **left**: distance between the navigation dots indicator and the left edge of the **\<Swiper>** component.<br>\- **top**: distance between the navigation dots indicator and the top edge of the **\<Swiper>** component.<br>\- **right**: distance between the navigation dots indicator and the right edge of the **\<Swiper>** component.<br>\- **bottom**: distance between the navigation dots indicator and the bottom edge of the **\<Swiper>** component.<br>\- **size**: diameter of the navigation dots indicator.<br>\- **mask**: whether to enable the mask for the navigation dots indicator.<br>\- **color**: color of the navigation dots indicator.<br>\- **selectedColor**: color of the selected navigation dot.|
 | displayCount<sup>8+</sup>   | number\|string                                               | Number of elements to display.<br>Default value: **1**                                          |
 | effectMode<sup>8+</sup>     | [EdgeEffect](ts-appendix-enums.md#edgeeffect)  | Swipe effect. For details, see **EdgeEffect**.<br>Default value: **EdgeEffect.Spring**|
@@ -62,7 +62,7 @@ In addition to the [universal attributes](ts-universal-attributes-size.md), the 
 
 ## SwiperController
 
-Controller of the **\<Swiper>** component. You can bind this object to the **<Swiper>** component and use it to control page switching.
+Controller of the **\<Swiper>** component. You can bind this object to the **\<Swiper>** component and use it to control page switching.
 
 ### showNext
 

@@ -13,169 +13,11 @@ The **Vibrator** module provides APIs for triggering or stopping vibration.
 import vibrator from '@ohos.vibrator';
 ```
 
-## vibrator.vibrate
+## vibrator.startVibration<sup>9+</sup>
 
-vibrate(duration: number): Promise&lt;void&gt;
-
-Triggers vibration with the specified duration. This API uses a promise to return the result.
-
-**Required permissions**: ohos.permission.VIBRATE
-
-**System capability**: SystemCapability.Sensors.MiscDevice
-
-**Parameters**
-
-| Name  | Type  | Mandatory| Description                  |
-| -------- | ------ | ---- | ---------------------- |
-| duration | number | Yes  | Vibration duration, in ms.|
-
-**Return value**
-
-| Type               | Description                                  |
-| ------------------- | -------------------------------------- |
-| Promise&lt;void&gt; | Promise that returns no value.|
-
-**Example**
-
-  ```js
-  vibrator.vibrate(1000).then(()=>{
-      console.log("Promise returned to indicate a successful vibration.");
-  }, (error)=>{
-      console.log("error.code"+error.code+"error.message"+error.message);
-  });
-  ```
-
-## vibrator.vibrate<sup>9+</sup>
-
-vibrate(effect: VibrateEffect, attribute: VibrateAttribute): Promise&lt;void&gt;
+startVibration(effect: VibrateEffect, attribute: VibrateAttribute, callback: AsyncCallback&lt;void&gt;): void
 
 Triggers vibration with the specified effect and attribute. This API uses a promise to return the result.
-
-**Required permissions**: ohos.permission.VIBRATE
-
-**System capability**: SystemCapability.Sensors.MiscDevice
-
-**Parameters**
-
-| Name   | Type                                  | Mandatory| Description          |
-| --------- | -------------------------------------- | ---- | :------------- |
-| effect    | [VibrateEffect](#vibrateeffect9)       | Yes  | Vibration effect.|
-| attribute | [VibrateAttribute](#vibrateattribute9) | Yes  | Vibration attribute.|
-
-**Return value**
-
-| Type               | Description                                  |
-| ------------------- | -------------------------------------- |
-| Promise&lt;void&gt; | Promise that returns no value.|
-
-**Example**
-
-```js
-vibrator.vibrate({
-    type: 'time',
-    duration: 1000
-}, {
-   	id: 0,
-    usage: 'alarm'
-}).then(()=>{
-    console.log("Promise returned to indicate a successful vibration");
-}).catch((error)=>{
-    console.log("error.code" + error.code + "error.message" + error.message);
-})
-```
-
-## vibrator.vibrate
-
-vibrate(duration: number, callback?: AsyncCallback&lt;void&gt;): void
-
-Triggers vibration with the specified duration. This API uses an asynchronous callback to return the result.
-
-**Required permissions**: ohos.permission.VIBRATE
-
-**System capability**: SystemCapability.Sensors.MiscDevice
-
-**Parameters**
-| Name  | Type                     | Mandatory| Description                                                      |
-| -------- | ------------------------- | ---- | ---------------------------------------------------------- |
-| duration | number                    | Yes  | Vibration duration, in ms.                                    |
-| callback | AsyncCallback&lt;void&gt; | No  | Callback used to the result. If the vibration starts, **err** is **undefined**. Otherwise, **err** is an error object.|
-
-**Example**
-
-  ```js
-  vibrator.vibrate(1000,function(error){
-      if(error){
-          console.log("error.code" + error.code + "error.message" + error.message);
-      }else{
-          console.log("Callback returned to indicate a successful vibration.");
-      }
-  })
-  ```
-
-
-## vibrator.vibrate
-
-vibrate(effectId: EffectId): Promise&lt;void&gt;
-
-Triggers vibration with the specified effect. This API uses a promise to return the result.
-
-**Required permissions**: ohos.permission.VIBRATE
-
-**System capability**: SystemCapability.Sensors.MiscDevice
-
-**Parameters**
-| Name  | Type                 | Mandatory| Description              |
-| -------- | --------------------- | ---- | ------------------ |
-| effectId | [EffectId](#effectid) | Yes  | Preset vibration effect ID.|
-
-**Return value**
-| Type               | Description                                  |
-| ------------------- | -------------------------------------- |
-| Promise&lt;void&gt; | Promise that returns no value.|
-
-**Example**
-  ```js
-  vibrator.vibrate(vibrator.EffectId.EFFECT_CLOCK_TIMER).then(()=>{
-      console.log("Promise returned to indicate a successful vibration.");
-  }, (error)=>{
-      console.log("error.code" + error.code + "error.message" + error.message);
-  });
-  ```
-
-
-## vibrator.vibrate
-
-vibrate(effectId: EffectId, callback?: AsyncCallback&lt;void&gt;): void
-
-Triggers vibration with the specified effect. This API uses an asynchronous callback to return the result.
-
-**Required permissions**: ohos.permission.VIBRATE
-
-**System capability**: SystemCapability.Sensors.MiscDevice
-
-**Parameters**
-| Name  | Type                     | Mandatory| Description                                                      |
-| -------- | ------------------------- | ---- | ---------------------------------------------------------- |
-| effectId | [EffectId](#effectid)     | Yes  | Preset vibration effect ID.                                        |
-| callback | AsyncCallback&lt;void&gt; | No  | Callback used to the result. If the vibration starts, **err** is **undefined**. Otherwise, **err** is an error object.|
-
-**Example**
-
-  ```js
-  vibrator.vibrate(vibrator.EffectId.EFFECT_CLOCK_TIMER, function(error){
-      if(error){
-          console.log("error.code" + error.code + "error.message" + error.message);
-      }else{
-          console.log("Callback returned to indicate a successful vibration.");
-      }
-  })
-  ```
-
-## vibrator.vibrate<sup>9+</sup>
-
-vibrate(effect: VibrateEffect, attribute: VibrateAttribute, callback: AsyncCallback&lt;void&gt;): void
-
-Triggers vibration with the specified effect and attribute. This API uses an asynchronous callback to return the result.
 
 **Required permissions**: ohos.permission.VIBRATE
 
@@ -189,27 +31,90 @@ Triggers vibration with the specified effect and attribute. This API uses an asy
 | attribute | [VibrateAttribute](#vibrateattribute9) | Yes  | Vibration attribute.                                            |
 | callback  | AsyncCallback&lt;void&gt;              | Yes  | Callback used to the result. If the vibration starts, **err** is **undefined**. Otherwise, **err** is an error object.|
 
+**Error codes**
+
+For details about the error codes, see [Vibrator Error Codes](../errorcodes/errorcode-vibrator.md).
+
+| ID| Error Message                 |
+| -------- | ------------------------- |
+| 14600101 | Device operation failed.|
+
 **Example**
 
 ```js
-vibrator.vibrate({
+try {
+    vibrator.startVibration({
     type:'time',
     duration:1000,
-},{
-    id:0,
-    usage: 'alarm'
-}, (error)=>{
-    if(error){
-        console.log("vibrate fail, error.code:" + error.code + ",error.message:" + error.message);
-    }else{
-        console.log("Callback returned to indicate a successful vibration.");
-    }
-});
+    },{
+        id:0,
+        usage: 'alarm'
+    }, (error)=>{
+        if(error){
+            console.log('vibrate fail, error.code: ' + error.code + 'error.message: ', + error.message);
+        }else{
+            console.log('Callback returned to indicate a successful vibration.');
+        }
+    });
+} catch(err) {
+      console.info('errCode: ' + err.code + ' ,msg: ' + err.message);
+}
 ```
 
-## vibrator.stop
+## vibrator.startVibration<sup>9+</sup>
 
-stop(stopMode: VibratorStopMode): Promise&lt;void&gt;
+startVibration(effect: VibrateEffect, attribute: VibrateAttribute): Promise&lt;void&gt;
+
+Triggers vibration with the specified effect and attribute. This API uses a promise to return the result.
+
+**Required permissions**: ohos.permission.VIBRATE
+
+**System capability**: SystemCapability.Sensors.MiscDevice
+
+**Parameters**
+
+| Name   | Type                                  | Mandatory| Description          |
+| --------- | -------------------------------------- | ---- | -------------- |
+| effect    | [VibrateEffect](#vibrateeffect9)       | Yes  | Vibration effect.|
+| attribute | [VibrateAttribute](#vibrateattribute9) | Yes  | Vibration attribute.|
+
+**Return value**
+
+| Type               | Description                                  |
+| ------------------- | -------------------------------------- |
+| Promise&lt;void&gt; | Promise that returns no value.|
+
+**Error codes**
+
+For details about the error codes, see [Vibrator Error Codes](../errorcodes/errorcode-vibrator.md).
+
+| ID| Error Message                 |
+| -------- | ------------------------- |
+| 14600101 | Device operation failed.|
+
+**Example**
+
+  ```js
+try {
+    vibrator.startVibration({
+    type: 'time',
+    duration: 1000
+    }, {
+        id: 0,
+        usage: 'alarm'
+    }).then(()=>{
+        console.log('Promise returned to indicate a successful vibration');
+    }).catch((error)=>{
+        console.log('error.code' + error.code + 'error.message' + error.message);
+    })
+} catch(err) {
+      console.info('errCode: ' + err.code + ' ,msg: ' + err.message);
+}
+  ```
+
+## vibrator.stopVibration<sup>9+</sup>
+
+stopVibration(stopMode: VibratorStopMode, callback: AsyncCallback&lt;void&gt;): void
 
 Stops the vibration with the specified **stopMode**. This API uses a promise to return the result. If the specified **stopMode** is different from the mode used to trigger the vibration, this API fails to be called.
 
@@ -218,6 +123,40 @@ Stops the vibration with the specified **stopMode**. This API uses a promise to 
 **System capability**: SystemCapability.Sensors.MiscDevice
 
 **Parameters**
+
+| Name  | Type                                 | Mandatory| Description                                                        |
+| -------- | ------------------------------------- | ---- | ------------------------------------------------------------ |
+| stopMode | [VibratorStopMode](#vibratorstopmode) | Yes  | Mode to stop the vibration.                                    |
+| callback | AsyncCallback&lt;void&gt;             | Yes  | Callback used to the result. If the vibration stops, **err** is **undefined**. Otherwise, **err** is an error object.|
+
+**Example**
+
+  ```js
+try {
+    vibrator.stopVibration(vibrator.VibratorStopMode.VIBRATOR_STOP_MODE_PRESET, function(error){
+        if(error){
+            console.log('error.code' + error.code + 'error.message' + error.message);
+        }else{
+            console.log('Callback returned to indicate successful.');
+        }
+    })
+} catch(err) {
+      console.info('errCode: ' + err.code + ' ,msg: ' + err.message);
+}
+  ```
+
+## vibrator.stopVibration<sup>9+</sup>
+
+stopVibration(stopMode: VibratorStopMode): Promise&lt;void&gt;
+
+Stops the vibration with the specified **stopMode**. This API uses a promise to return the result. If the specified **stopMode** is different from the mode used to trigger the vibration, this API fails to be called.
+
+**Required permissions**: ohos.permission.VIBRATE
+
+**System capability**: SystemCapability.Sensors.MiscDevice
+
+**Parameters**
+
 | Name  | Type                                 | Mandatory| Description                    |
 | -------- | ------------------------------------- | ---- | ------------------------ |
 | stopMode | [VibratorStopMode](#vibratorstopmode) | Yes  | Mode to stop the vibration.|
@@ -231,42 +170,16 @@ Stops the vibration with the specified **stopMode**. This API uses a promise to 
 **Example**
 
   ```js
-  vibrator.stop(vibrator.VibratorStopMode.VIBRATOR_STOP_MODE_PRESET).then(()=>{
-      console.log("Promise returned to indicate a successful vibration.");
-  }, (error)=>{
-      console.log("error.code" + error.code + "error.message" + error.message);
-  });
+try {
+    vibrator.stopVibration(vibrator.VibratorStopMode.VIBRATOR_STOP_MODE_PRESET).then(()=>{
+    console.log('Promise returned to indicate a successful vibration.');
+    }, (error)=>{
+        console.log('error.code' + error.code + 'error.message' + error.message);
+    });
+} catch(err) {
+      console.info('errCode: ' + err.code + ' ,msg: ' + err.message);
+}
   ```
-
-
-## vibrator.stop
-
-stop(stopMode: VibratorStopMode, callback?: AsyncCallback&lt;void&gt;): void;
-
-Stops the vibration with the specified **stopMode**. This API uses an asynchronous callback to return the result. If the specified **stopMode** is different from the mode used to trigger the vibration, this API fails to be called.
-
-**Required permissions**: ohos.permission.VIBRATE
-
-**System capability**: SystemCapability.Sensors.MiscDevice
-
-**Parameters**
-| Name  | Type                                 | Mandatory| Description                                                        |
-| -------- | ------------------------------------- | ---- | ------------------------------------------------------------ |
-| stopMode | [VibratorStopMode](#vibratorstopmode) | Yes  | Mode to stop the vibration.                                    |
-| callback | AsyncCallback&lt;void&gt;             | No  | Callback used to the result. If the vibration stops, **err** is **undefined**. Otherwise, **err** is an error object.|
-
-**Example**
-
-  ```js
-  vibrator.stop(vibrator.VibratorStopMode.VIBRATOR_STOP_MODE_PRESET, function(error){
-      if(error){
-          console.log("error.code" + error.code + "error.message" + error.message);
-      }else{
-          console.log("Callback returned to indicate a successful stop.");
-      }
-  })
-  ```
-
 
 ## EffectId
 
@@ -352,3 +265,201 @@ Enumerates the vibration scenarios.
 | media            | string | Multimedia vibration scenario.        |
 | physicalFeedback | string | Physical feedback vibration scenario.      |
 | simulateReality  | string | Simulated reality vibration scenario.      |
+
+## vibrator.vibrate<sup>(deprecated)</sup>
+
+vibrate(duration: number): Promise&lt;void&gt;
+
+Triggers vibration with the specified duration. This API uses a promise to return the result.
+
+This API is deprecated since API version 9. You are advised to use [vibrator.startVibration](#vibratorstartvibration9-1) instead.
+
+**Required permissions**: ohos.permission.VIBRATE
+
+**System capability**: SystemCapability.Sensors.MiscDevice
+
+**Parameters**
+
+| Name  | Type  | Mandatory| Description                  |
+| -------- | ------ | ---- | ---------------------- |
+| duration | number | Yes  | Vibration duration, in ms.|
+
+**Return value**
+
+| Type               | Description                                  |
+| ------------------- | -------------------------------------- |
+| Promise&lt;void&gt; | Promise that returns no value.|
+
+**Example**
+
+  ```js
+vibrator.vibrate(1000).then(()=>{
+    console.log('Promise returned to indicate a successful vibration.');
+}, (error)=>{
+    console.log('error.code' + error.code + 'error.message' + error.message);
+});
+  ```
+
+## vibrator.vibrate<sup>(deprecated)</sup>
+
+vibrate(duration: number, callback?: AsyncCallback&lt;void&gt;): void
+
+Triggers vibration with the specified duration. This API uses an asynchronous callback to return the result.
+
+This API is deprecated since API version 9. You are advised to use [vibrator.startVibration](#vibratorstartvibration9) instead.
+
+**Required permissions**: ohos.permission.VIBRATE
+
+**System capability**: SystemCapability.Sensors.MiscDevice
+
+**Parameters**
+
+| Name  | Type                     | Mandatory| Description                                                      |
+| -------- | ------------------------- | ---- | ---------------------------------------------------------- |
+| duration | number                    | Yes  | Vibration duration, in ms.                                    |
+| callback | AsyncCallback&lt;void&gt; | No  | Callback used to the result. If the vibration starts, **err** is **undefined**. Otherwise, **err** is an error object.|
+
+**Example**
+
+  ```js
+vibrator.vibrate(1000,function(error){
+    if(error){
+        console.log('error.code' + error.code + 'error.message' + error.message);
+    }else{
+        console.log('Callback returned to indicate a successful vibration.');
+    }
+})
+  ```
+
+
+## vibrator.vibrate<sup>(deprecated)</sup>
+
+vibrate(effectId: EffectId): Promise&lt;void&gt;
+
+Triggers vibration with the specified effect. This API uses a promise to return the result.
+
+This API is deprecated since API version 9. You are advised to use [vibrator.startVibration](#vibratorstartvibration9-1) instead.
+
+**Required permissions**: ohos.permission.VIBRATE
+
+**System capability**: SystemCapability.Sensors.MiscDevice
+
+**Parameters**
+
+| Name  | Type                 | Mandatory| Description              |
+| -------- | --------------------- | ---- | ------------------ |
+| effectId | [EffectId](#effectid) | Yes  | Preset vibration effect ID.|
+
+**Return value**
+
+| Type               | Description                                  |
+| ------------------- | -------------------------------------- |
+| Promise&lt;void&gt; | Promise that returns no value.|
+
+**Example**
+
+  ```js
+vibrator.vibrate(vibrator.EffectId.EFFECT_CLOCK_TIMER).then(()=>{
+    console.log('Promise returned to indicate a successful vibration.');
+}, (error)=>{
+    console.log('error.code' + error.code + 'error.message' + error.message);
+});
+  ```
+
+
+## vibrator.vibrate<sup>(deprecated)</sup>
+
+vibrate(effectId: EffectId, callback?: AsyncCallback&lt;void&gt;): void
+
+Triggers vibration with the specified effect. This API uses an asynchronous callback to return the result.
+
+This API is deprecated since API version 9. You are advised to use [vibrator.startVibration](#vibratorstartvibration9) instead.
+
+**Required permissions**: ohos.permission.VIBRATE
+
+**System capability**: SystemCapability.Sensors.MiscDevice
+
+**Parameters**
+
+| Name  | Type                     | Mandatory| Description                                                      |
+| -------- | ------------------------- | ---- | ---------------------------------------------------------- |
+| effectId | [EffectId](#effectid)     | Yes  | Preset vibration effect ID.                                        |
+| callback | AsyncCallback&lt;void&gt; | No  | Callback used to the result. If the vibration starts, **err** is **undefined**. Otherwise, **err** is an error object.|
+
+**Example**
+
+  ```js
+vibrator.vibrate(vibrator.EffectId.EFFECT_CLOCK_TIMER, function(error){
+    if(error){
+        console.log('error.code' + error.code + 'error.message' + error.message);
+    }else{
+        console.log('Callback returned to indicate a successful vibration.');
+    }
+})
+  ```
+
+## vibrator.stop<sup>(deprecated)</sup>
+
+stop(stopMode: VibratorStopMode): Promise&lt;void&gt;
+
+Stops the vibration with the specified **stopMode**. This API uses a promise to return the result. If the specified **stopMode** is different from the mode used to trigger the vibration, this API fails to be called.
+
+This API is deprecated since API version 9. You are advised to use [vibrator.stopVibration](#vibratorstopvibration9-1) instead.
+
+**Required permissions**: ohos.permission.VIBRATE
+
+**System capability**: SystemCapability.Sensors.MiscDevice
+
+**Parameters**
+
+| Name  | Type                                 | Mandatory| Description                    |
+| -------- | ------------------------------------- | ---- | ------------------------ |
+| stopMode | [VibratorStopMode](#vibratorstopmode) | Yes  | Mode to stop the vibration.|
+
+**Return value**
+
+| Type               | Description                                  |
+| ------------------- | -------------------------------------- |
+| Promise&lt;void&gt; | Promise that returns no value.|
+
+**Example**
+
+  ```js
+vibrator.stop(vibrator.VibratorStopMode.VIBRATOR_STOP_MODE_PRESET).then(()=>{
+    console.log('Promise returned to indicate a successful vibration.');
+}, (error)=>{
+    console.log('error.code' + error.code + 'error.message' + error.message);
+});
+  ```
+
+
+## vibrator.stop<sup>(deprecated)</sup>
+
+stop(stopMode: VibratorStopMode, callback?: AsyncCallback&lt;void&gt;): void
+
+Stops the vibration with the specified **stopMode**. This API uses a promise to return the result. If the specified **stopMode** is different from the mode used to trigger the vibration, this API fails to be called.
+
+This API is deprecated since API version 9. You are advised to use [vibrator.stopVibration](#vibratorstopvibration9) instead.
+
+**Required permissions**: ohos.permission.VIBRATE
+
+**System capability**: SystemCapability.Sensors.MiscDevice
+
+**Parameters**
+
+| Name  | Type                                 | Mandatory| Description                                                        |
+| -------- | ------------------------------------- | ---- | ------------------------------------------------------------ |
+| stopMode | [VibratorStopMode](#vibratorstopmode) | Yes  | Mode to stop the vibration.                                    |
+| callback | AsyncCallback&lt;void&gt;             | No  | Callback used to the result. If the vibration stops, **err** is **undefined**. Otherwise, **err** is an error object.|
+
+**Example**
+
+  ```js
+vibrator.stop(vibrator.VibratorStopMode.VIBRATOR_STOP_MODE_PRESET, function(error){
+    if(error){
+        console.log('error.code' + error.code + 'error.message' + error.message);
+    }else{
+        console.log('Callback returned to indicate successful.');
+    }
+})
+  ```

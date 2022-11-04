@@ -203,7 +203,7 @@ startBackgroundRunning(id: number, request: NotificationRequest, callback: Async
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | id | number | 是 | 长时任务通知id号 |
-  | request | NotificationRequest | 是 | 通知参数，用于显示通知栏的信息 |
+  | request | [NotificationRequest](js-apis-notification.md#notificationrequest) | 是 | 通知参数，用于显示通知栏的信息 |
   | callback | AsyncCallback&lt;void&gt; | 是 | callback形式返回启动长时任务的结果 |
 
  **示例**：
@@ -215,7 +215,7 @@ import wantAgent from '@ohos.wantAgent';
 
 function callback(err, data) {
     if (err) {
-        console.error("Operation failed Cause: " + err);
+        console.error("Operation failed cause: " + JSON.stringify(err));
     } else {
         console.info("Operation succeeded");
     }
@@ -267,7 +267,7 @@ startBackgroundRunning(id: number, request: NotificationRequest): Promise&lt;voi
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | id | number | 是 | 长时任务通知id号 |
-| request | NotificationRequest | 是 | 通知参数，用于显示通知栏的信息 |
+| request | [NotificationRequest](js-apis-notification.md#notificationrequest) | 是 | 通知参数，用于显示通知栏的信息 |
 
 **返回值：**
 
@@ -311,7 +311,7 @@ wantAgent.getWantAgent(wantAgentInfo).then((wantAgentObj) => {
     particleAbility.startBackgroundRunning(id, request).then(() => {
         console.info("Operation succeeded");
     }).catch((err) => {
-        console.error("Operation failed Cause: " + err);
+        console.error("Operation failed cause: " + JSON.stringify(err));
     });
 });
 
@@ -338,7 +338,7 @@ import particleAbility from '@ohos.ability.particleAbility';
 
 function callback(err, data) {
     if (err) {
-        console.error("Operation failed Cause: " + err);
+        console.error("Operation failed cause: " + JSON.stringify(err));
     } else {
         console.info("Operation succeeded");
     }
@@ -370,7 +370,7 @@ import particleAbility from '@ohos.ability.particleAbility';
 particleAbility.cancelBackgroundRunning().then(() => {
     console.info("Operation succeeded");
 }).catch((err) => {
-    console.error("Operation failed Cause: " + err);
+    console.error("Operation failed cause: " + JSON.stringify(err));
 });
 
 ```

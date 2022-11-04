@@ -660,7 +660,7 @@ mediaLibrary.getMediaLibrary().storeMediaAsset(option).then((value) => {
 
 startImagePreview(images: Array&lt;string&gt;, index: number, callback: AsyncCallback&lt;void&gt;): void
 
-启动图片预览界面并限定预览开始显示的图片。可以预览指定序号的单张本地图片（dataability://），也可以预览列表中的所有网络图片（https://）。使用callback方式进行异步回调。
+启动图片预览界面并限定预览开始显示的图片。可以预览指定序号的单张本地图片（datashare://），也可以预览列表中的所有网络图片（https://）。使用callback方式进行异步回调。
 
 > **说明**： <br/>从API Version 9开始废弃。建议使用[Image组件](../arkui-ts/ts-basic-components-image.md)替代。<br/>Image组件，可用于本地图片和网络图片的渲染展示。
 
@@ -670,7 +670,7 @@ startImagePreview(images: Array&lt;string&gt;, index: number, callback: AsyncCal
 
 | 参数名      | 类型                        | 必填   | 说明                                       |
 | -------- | ------------------------- | ---- | ---------------------------------------- |
-| images   | Array&lt;string&gt;       | 是    | 预览的图片URI（"https://"，"dataability://"）列表。 |
+| images   | Array&lt;string&gt;       | 是    | 预览的图片URI（"https://"，"datashare://"）列表。 |
 | index    | number                    | 是    | 开始显示的图片序号。                               |
 | callback | AsyncCallback&lt;void&gt; | 是    | 图片预览回调，失败时返回错误信息。                        |
 
@@ -678,8 +678,8 @@ startImagePreview(images: Array&lt;string&gt;, index: number, callback: AsyncCal
 
 ```js
 let images = [
-    "dataability:///media/xxxx/2",
-    "dataability:///media/xxxx/3"
+    "datashare:///media/xxxx/2",
+    "datashare:///media/xxxx/3"
 ];
 /* 网络图片使用方式
 let images = [
@@ -702,7 +702,7 @@ mediaLibrary.getMediaLibrary().startImagePreview(images, index, (err) => {
 
 startImagePreview(images: Array&lt;string&gt;, callback: AsyncCallback&lt;void&gt;): void
 
-启动图片预览界面，可以预览列表中首张本地图片（dataability://），也可以预览列表中的所有网络图片（https://）。使用callback方式进行异步回调。
+启动图片预览界面，可以预览列表中首张本地图片（datashare://），也可以预览列表中的所有网络图片（https://）。使用callback方式进行异步回调。
 
 > **说明**： <br/>从API Version 9开始废弃。建议使用[Image组件](../arkui-ts/ts-basic-components-image.md)替代。<br/>Image组件，可用于本地图片和网络图片的渲染展示。
 
@@ -712,15 +712,15 @@ startImagePreview(images: Array&lt;string&gt;, callback: AsyncCallback&lt;void&g
 
 | 参数名      | 类型                        | 必填   | 说明                                       |
 | -------- | ------------------------- | ---- | ---------------------------------------- |
-| images   | Array&lt;string&gt;       | 是    | 预览的图片URI（"https://"，"dataability://"）列表。 |
+| images   | Array&lt;string&gt;       | 是    | 预览的图片URI（"https://"，"datashare://"）列表。 |
 | callback | AsyncCallback&lt;void&gt; | 是    | 图片预览回调，失败时返回错误信息。                        |
 
 **示例：**
 
 ```js
 let images = [
-    "dataability:///media/xxxx/2",
-    "dataability:///media/xxxx/3"
+    "datashare:///media/xxxx/2",
+    "datashare:///media/xxxx/3"
 ];
 /* 网络图片使用方式
 let images = [
@@ -742,7 +742,7 @@ mediaLibrary.getMediaLibrary().startImagePreview(images, (err) => {
 
 startImagePreview(images: Array&lt;string&gt;, index?: number): Promise&lt;void&gt;
 
-启动图片预览界面并限定预览开始显示的图片。可以预览指定序号的单张本地图片（dataability://），也可以预览列表中的所有网络图片（https://）。使用Promise方式进行异步回调。
+启动图片预览界面并限定预览开始显示的图片。可以预览指定序号的单张本地图片（datashare://），也可以预览列表中的所有网络图片（https://）。使用Promise方式进行异步回调。
 
 > **说明**： <br/>从API Version 9开始废弃。建议使用[Image组件](../arkui-ts/ts-basic-components-image.md)替代。<br/>Image组件，可用于本地图片和网络图片的渲染展示。
 
@@ -752,7 +752,7 @@ startImagePreview(images: Array&lt;string&gt;, index?: number): Promise&lt;void&
 
 | 参数名    | 类型                  | 必填   | 说明                                       |
 | ------ | ------------------- | ---- | ---------------------------------------- |
-| images | Array&lt;string&gt; | 是    | 预览的图片URI（"https://"，"dataability://"）列表。 |
+| images | Array&lt;string&gt; | 是    | 预览的图片URI（"https://"，"datashare://"）列表。 |
 | index  | number              | 否    | 开始显示的图片序号，不选择时默认为0。                      |
 
 **返回值：**
@@ -765,8 +765,8 @@ startImagePreview(images: Array&lt;string&gt;, index?: number): Promise&lt;void&
 
 ```js
 let images = [
-    "dataability:///media/xxxx/2",
-    "dataability:///media/xxxx/3"
+    "datashare:///media/xxxx/2",
+    "datashare:///media/xxxx/3"
 ];
 /* 网络图片使用方式
 let images = [
@@ -798,7 +798,7 @@ startMediaSelect(option: MediaSelectOption, callback: AsyncCallback&lt;Array&lt;
 | 参数名      | 类型                                       | 必填   | 说明                                   |
 | -------- | ---------------------------------------- | ---- | ------------------------------------ |
 | option   | [MediaSelectOption](#mediaselectoptiondeprecated)  | 是    | 媒体选择选项。                              |
-| callback | AsyncCallback&lt;Array&lt;string&gt;&gt; | 是    | 媒体选择回调，返回选择的媒体URI（dataability://）列表。 |
+| callback | AsyncCallback&lt;Array&lt;string&gt;&gt; | 是    | 媒体选择回调，返回选择的媒体URI（datashare://）列表。 |
 
 **示例：**
 
@@ -838,7 +838,7 @@ startMediaSelect(option: MediaSelectOption): Promise&lt;Array&lt;string&gt;&gt;
 
 | 类型                                 | 说明                                       |
 | ---------------------------------- | ---------------------------------------- |
-| Promise&lt;Array&lt;string&gt;&gt; | Promise实例，用于异步获取选择的媒体URI（dataability://）列表。 |
+| Promise&lt;Array&lt;string&gt;&gt; | Promise实例，用于异步获取选择的媒体URI（datashare://）列表。 |
 
 **示例：**
 
@@ -1015,7 +1015,7 @@ async function example() {
 | 名称                      | 类型                     | 可读 | 可写 | 说明                                                   |
 | ------------------------- | ------------------------ | ---- | ---- | ------------------------------------------------------ |
 | id                        | number                   | 是   | 否   | 文件资源编号                                           |
-| uri                       | string                   | 是   | 否   | 文件资源uri（如：dataability:///media/image/2)         |
+| uri                       | string                   | 是   | 否   | 文件资源uri（如：datashare:///media/image/2)         |
 | mimeType                  | string                   | 是   | 否   | 文件扩展属性                                           |
 | mediaType<sup>8+</sup>    | [MediaType](#mediatype8) | 是   | 否   | 媒体类型                                               |
 | displayName               | string                   | 是   | 是   | 显示文件名，包含后缀名                                 |

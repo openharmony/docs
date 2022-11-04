@@ -27,20 +27,14 @@ struct SharedTransitionExample {
   @State active: boolean = false
 
   build() {
-    List() {
-      ListItem() {
-        Row() {
-          Navigator({ target: 'pages/common/Animation/transAnimation/PageB', type: NavigationType.Push }) {
-            Image($r('app.media.ic_health_heart')).width(50).height(50)
-              .sharedTransition('sharedImage1', { duration: 800, curve: Curve.Linear, delay: 100 })
-          }.padding({ left: 10 })
-          .onClick(() => {
-            this.active = true
-          })
-
-          Text('SharedTransition').width(80).height(80).textAlign(TextAlign.Center)
-        }
-      }
+    Column() {
+      Navigator({ target: 'pages/PageB', type: NavigationType.Push }) {
+        Image($r('app.media.ic_health_heart')).width(50).height(50)
+          .sharedTransition('sharedImage', { duration: 800, curve: Curve.Linear, delay: 100 })
+      }.padding({ left: 20, top: 20 })
+      .onClick(() => {
+        this.active = true
+      })
     }
   }
 }
@@ -50,14 +44,13 @@ struct SharedTransitionExample {
 // PageB.ets
 @Entry
 @Component
-struct BExample {
-
+struct pageBExample {
   build() {
     Stack() {
-      Image($r('app.media.ic_health_heart')).width(150).height(150).sharedTransition('sharedImage1')
-    }.width('100%').height(400)
+      Image($r('app.media.ic_health_heart')).width(150).height(150).sharedTransition('sharedImage')
+    }.width('100%').height('100%')
   }
 }
 ```
 
-![zh-cn_image_0000001219744195](figures/zh-cn_image_0000001219744195.gif)
+![shared](figures/shared.gif)

@@ -52,7 +52,7 @@ createVideoPlayer(callback: AsyncCallback\<[VideoPlayer](#videoplayer8)>): void
 
 | 参数名   | 类型                                        | 必填 | 说明                           |
 | -------- | ------------------------------------------- | ---- | ------------------------------ |
-| callback | AsyncCallback<[VideoPlayer](#videoplayer8)> | 是   | 回调函数。异步返回VideoPlayer实例，可用于管理和播放视频媒体。 |
+| callback | AsyncCallback<[VideoPlayer](#videoplayer8)> | 是   | 回调函数。异步返回VideoPlayer实例，失败时返回null。可用于管理和播放视频媒体。 |
 
 **示例：**
 
@@ -79,9 +79,9 @@ createVideoPlayer(): Promise<[VideoPlayer](#videoplayer8)>
 
 **返回值：**
 
-| 类型                                  | 说明                                |
-| ------------------------------------- | ----------------------------------- |
-| Promise<[VideoPlayer](#videoplayer8)> | Promise对象。异步返回VideoPlayer实例，可用于管理和播放视频媒体。 |
+| 类型                                  | 说明                                                         |
+| ------------------------------------- | ------------------------------------------------------------ |
+| Promise<[VideoPlayer](#videoplayer8)> | Promise对象。异步返回VideoPlayer实例，失败时返回null。可用于管理和播放视频媒体。 |
 
 **示例：**
 
@@ -111,9 +111,9 @@ createAudioRecorder(): AudioRecorder
 
 **返回值:**
 
-| 类型                            | 说明                                      |
-| ------------------------------- | ----------------------------------------- |
-| [AudioRecorder](#audiorecorder) | 返回AudioRecorder类实例，失败时返回null。 |
+| 类型                            | 说明                                                         |
+| ------------------------------- | ------------------------------------------------------------ |
+| [AudioRecorder](#audiorecorder) | 返回AudioRecorder类实例，失败时返回null。可用于录制音频媒体。 |
 
 **示例：**
 
@@ -134,7 +134,7 @@ createVideoRecorder(callback: AsyncCallback\<[VideoRecorder](#videorecorder9)>):
 
 | 参数名   | 类型                                            | 必填 | 说明                           |
 | -------- | ----------------------------------------------- | ---- | ------------------------------ |
-| callback | AsyncCallback<[VideoRecorder](#videorecorder9)> | 是   | 回调函数。异步返回VideoRecorder实例，可用于录制视频媒体。 |
+| callback | AsyncCallback<[VideoRecorder](#videorecorder9)> | 是   | 回调函数。异步返回VideoRecorder实例，失败时返回null。可用于录制视频媒体。 |
 
 **示例：**
 
@@ -162,9 +162,9 @@ createVideoRecorder(): Promise<[VideoRecorder](#videorecorder9)>
 
 **返回值：**
 
-| 类型                                      | 说明                                |
-| ----------------------------------------- | ----------------------------------- |
-| Promise<[VideoRecorder](#videorecorder9)> | Promise对象。异步返回VideoRecorder实例，可用于录制视频媒体。 |
+| 类型                                      | 说明                                                         |
+| ----------------------------------------- | ------------------------------------------------------------ |
+| Promise<[VideoRecorder](#videorecorder9)> | Promise对象。异步返回VideoRecorder实例，失败时返回null。可用于录制视频媒体。 |
 
 **示例：**
 
@@ -361,9 +361,9 @@ seek(timeMs: number): void
 
 **参数：**
 
-| 参数名 | 类型   | 必填 | 说明                                 |
-| ------ | ------ | ---- | ------------------------------------ |
-| timeMs | number | 是   | 指定的跳转时间节点，单位毫秒（ms）。 |
+| 参数名 | 类型   | 必填 | 说明                                                        |
+| ------ | ------ | ---- | ----------------------------------------------------------- |
+| timeMs | number | 是   | 指定的跳转时间节点，单位毫秒（ms），取值范围[0, duration]。 |
 
 **示例：**
 
@@ -426,9 +426,9 @@ getTrackDescription(callback: AsyncCallback<Array\<MediaDescription>>): void
 
 **参数：**
 
-| 参数名   | 类型                                                         | 必填 | 说明                       |
-| -------- | ------------------------------------------------------------ | ---- | -------------------------- |
-| callback | AsyncCallback<Array<[MediaDescription](#mediadescription8)>> | 是   | 获取音频轨道信息回调方法。 |
+| 参数名   | 类型                                                         | 必填 | 说明                                       |
+| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------ |
+| callback | AsyncCallback<Array<[MediaDescription](#mediadescription8)>> | 是   | 音频轨道信息MediaDescription数组回调方法。 |
 
 **示例：**
 
@@ -462,9 +462,9 @@ getTrackDescription(): Promise<Array\<MediaDescription>>
 
 **返回值：**
 
-| 类型                                                   | 说明                            |
-| ------------------------------------------------------ | ------------------------------- |
-| Promise<Array<[MediaDescription](#mediadescription8)>> | 获取音频轨道信息Promise返回值。 |
+| 类型                                                   | 说明                                            |
+| ------------------------------------------------------ | ----------------------------------------------- |
+| Promise<Array<[MediaDescription](#mediadescription8)>> | 音频轨道信息MediaDescription数组Promise返回值。 |
 
 **示例：**
 
@@ -496,7 +496,7 @@ for (let i = 0; i < arrayDescription.length; i++) {
 
 on(type: 'bufferingUpdate', callback: (infoType: [BufferingInfoType](#bufferinginfotype8), value: number) => void): void
 
-开始订阅音频缓存更新事件。
+开始订阅音频缓存更新事件。仅网络播放支持该订阅事件。
 
 **系统能力：** SystemCapability.Multimedia.Media.AudioPlayer
 
@@ -593,7 +593,7 @@ audioPlayer.src = fdPath;  //设置src属性，并触发'dataLoad'事件回调
 
 on(type: 'timeUpdate', callback: Callback\<number>): void
 
-开始订阅音频播放时间更新事件。
+开始订阅音频播放时间更新事件。处于播放状态时，每隔1s上报一次该事件。
 
 **系统能力：** SystemCapability.Multimedia.Media.AudioPlayer
 
@@ -1013,10 +1013,10 @@ seek(timeMs: number, callback: AsyncCallback\<number>): void
 
 **参数：**
 
-| 参数名   | 类型     | 必填 | 说明                                 |
-| -------- | -------- | ---- | ------------------------------------ |
-| timeMs   | number   | 是   | 指定的跳转时间节点，单位毫秒（ms）。 |
-| callback | function | 是   | 跳转到指定播放位置的回调方法。       |
+| 参数名   | 类型     | 必填 | 说明                                                         |
+| -------- | -------- | ---- | ------------------------------------------------------------ |
+| timeMs   | number   | 是   | 指定的跳转时间节点，单位毫秒（ms），取值范围为[0, duration]。 |
+| callback | function | 是   | 跳转到指定播放位置的回调方法。                               |
 
 **示例：**
 
@@ -1041,11 +1041,11 @@ seek(timeMs: number, mode:SeekMode, callback: AsyncCallback\<number>): void
 
 **参数：**
 
-| 参数名   | 类型                   | 必填 | 说明                                 |
-| -------- | ---------------------- | ---- | ------------------------------------ |
-| timeMs   | number                 | 是   | 指定的跳转时间节点，单位毫秒（ms）。 |
-| mode     | [SeekMode](#seekmode8) | 是   | 跳转模式。                           |
-| callback | function               | 是   | 跳转到指定播放位置的回调方法。       |
+| 参数名   | 类型                   | 必填 | 说明                                                         |
+| -------- | ---------------------- | ---- | ------------------------------------------------------------ |
+| timeMs   | number                 | 是   | 指定的跳转时间节点，单位毫秒（ms），取值范围为[0, duration]。 |
+| mode     | [SeekMode](#seekmode8) | 是   | 跳转模式。                                                   |
+| callback | function               | 是   | 跳转到指定播放位置的回调方法。                               |
 
 **示例：**
 
@@ -1071,16 +1071,16 @@ seek(timeMs: number, mode?:SeekMode): Promise\<number>
 
 **参数：**
 
-| 参数名 | 类型                   | 必填 | 说明                                 |
-| ------ | ---------------------- | ---- | ------------------------------------ |
-| timeMs | number                 | 是   | 指定的跳转时间节点，单位毫秒（ms）。 |
-| mode   | [SeekMode](#seekmode8) | 否   | 跳转模式。                           |
+| 参数名 | 类型                   | 必填 | 说明                                                         |
+| ------ | ---------------------- | ---- | ------------------------------------------------------------ |
+| timeMs | number                 | 是   | 指定的跳转时间节点，单位毫秒（ms），取值范围为[0, duration]。 |
+| mode   | [SeekMode](#seekmode8) | 否   | 跳转模式。                                                   |
 
 **返回值：**
 
-| 类型           | 说明                                |
-| -------------- | ----------------------------------- |
-| Promise\<void> | 跳转到指定播放位置的Promise返回值。 |
+| 类型           | 说明                                        |
+| -------------- | ------------------------------------------- |
+| Promise\<void> | 跳转到指定播放位置的Promise返回值，单位ms。 |
 
 **示例：**
 
@@ -1219,9 +1219,9 @@ getTrackDescription(callback: AsyncCallback<Array\<MediaDescription>>): void
 
 **参数：**
 
-| 参数名   | 类型                                                         | 必填 | 说明                       |
-| -------- | ------------------------------------------------------------ | ---- | -------------------------- |
-| callback | AsyncCallback<Array<[MediaDescription](#mediadescription8)>> | 是   | 获取视频轨道信息回调方法。 |
+| 参数名   | 类型                                                         | 必填 | 说明                                       |
+| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------ |
+| callback | AsyncCallback<Array<[MediaDescription](#mediadescription8)>> | 是   | 视频轨道信息MediaDescription数组回调方法。 |
 
 **示例：**
 
@@ -1255,9 +1255,9 @@ getTrackDescription(): Promise<Array\<MediaDescription>>
 
 **返回值：**
 
-| 类型                                                   | 说明                            |
-| ------------------------------------------------------ | ------------------------------- |
-| Promise<Array<[MediaDescription](#mediadescription8)>> | 获取视频轨道信息Promise返回值。 |
+| 类型                                                   | 说明                                            |
+| ------------------------------------------------------ | ----------------------------------------------- |
+| Promise<Array<[MediaDescription](#mediadescription8)>> | 视频轨道信息MediaDescription数组Promise返回值。 |
 
 **示例：**
 
@@ -1331,9 +1331,9 @@ setSpeed(speed:number): Promise\<number>
 
 **返回值：**
 
-| 类型             | 说明                      |
-| ---------------- | ------------------------- |
-| Promise\<number> | 通过Promise获取设置结果。 |
+| 类型             | 说明                                                         |
+| ---------------- | ------------------------------------------------------------ |
+| Promise\<number> | 播放速度Promise返回值，具体见[PlaybackSpeed](#playbackspeed8)。 |
 
 **示例：**
 
@@ -1388,13 +1388,13 @@ selectBitrate(bitrate:number): Promise\<number>
 
 | 参数名  | 类型   | 必填 | 说明                                         |
 | ------- | ------ | ---- | -------------------------------------------- |
-| bitrate | number | 是   | 指定码率播放，用于hls多码率场景，单位为bps。 |
+| bitrate | number | 是   | 指定播放码率，用于hls多码率场景，单位为bps。 |
 
 **返回值：**
 
-| 类型             | 说明                      |
-| ---------------- | ------------------------- |
-| Promise\<number> | 通过Promise获取设置结果。 |
+| 类型             | 说明                        |
+| ---------------- | --------------------------- |
+| Promise\<number> | 指定播放码率Promise返回值。 |
 
 **示例：**
 
@@ -1434,7 +1434,7 @@ videoPlayer.on('playbackCompleted', () => {
 
 on(type: 'bufferingUpdate', callback: (infoType: BufferingInfoType, value: number) => void): void
 
-开始监听视频缓存更新事件。
+开始监听视频缓存更新事件。仅网络播放支持该订阅事件。
 
 **系统能力：** SystemCapability.Multimedia.Media.VideoPlayer
 

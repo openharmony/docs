@@ -39,7 +39,7 @@
 @Entry
 @Component
 struct ClickExample {
-  @State text: string = '';
+  @State text: string = ''
 
   build() {
     Column() {

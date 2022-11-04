@@ -2,7 +2,11 @@
 
 ## 管理系统窗口概述
 
-在`Stage`模型下， 允许系统应用创建和管理系统窗口，包括音量条、壁纸、通知栏、状态栏、导航栏等。具体支持的系统窗口类型见[API参考-WindowType](../reference/apis/js-apis-window.md)。
+在`Stage`模型下， 允许系统应用创建和管理系统窗口，包括音量条、壁纸、通知栏、状态栏、导航栏等。具体支持的系统窗口类型见[API参考-WindowType](../reference/apis/js-apis-window.md#windowtype7)。
+
+> **说明：**
+>
+> 本文档涉及系统接口的使用，请使用full-SDK进行开发。具体使用可见[full-SDK替换指南](../quick-start/full-sdk-switch-guide.md)。
 
 
 ## 接口说明

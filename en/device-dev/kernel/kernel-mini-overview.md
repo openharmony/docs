@@ -1,4 +1,4 @@
-# Kernel Overview
+# LiteOS-M Overview
 
 
 ## Overview
@@ -9,7 +9,7 @@ The OpenHarmony LiteOS-M kernel architecture consists of the hardware layer and 
 
   **Figure 1** Kernel architecture
 
-  ![](figures/kernel-architecture.png "kernel-architecture")
+  ![](figures/Liteos-m-architecture.png "kernel-architecture")
 
 
 ## CPU Architecture Support
@@ -24,7 +24,7 @@ The CPU architecture includes two layers: general architecture definition layer 
 | Header file name| los_&lt;function&gt;.h | los_arch_&lt;function&gt;.h |
 | Function name| Halxxxx | Halxxxx |
 
-LiteOS-M supports mainstream architectures, such as ARM Cortex-M3, ARM Cortex-M4, ARM Cortex-M7, ARM Cortex-M33, and RISC-V. If you need to expand the CPU architecture, see [Chip Architecture Adaptation](../porting/porting-chip-kernel-overview.md).
+LiteOS-M supports mainstream architectures, such as ARM Cortex-M3, ARM Cortex-M4, ARM Cortex-M7, ARM Cortex-M33, and RISC-V.
 
 
 ## Working Principles

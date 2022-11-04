@@ -15,10 +15,10 @@ continuationManager作为流转能力的入口，主要用于拉起系统中的�
 | registerContinuation(callback: AsyncCallback\<number>): void | 注册流转管理服务，并获取对应的注册token，无过滤条件(AsyncCallback)。 |
 | registerContinuation(options: ContinuationExtraParams, callback: AsyncCallback\<number>): void | 注册流转管理服务，并获取对应的注册token(AsyncCallback)。 |
 | registerContinuation(options?: ContinuationExtraParams): Promise\<number> | 连接流转管理服务，并获取对应的注册token(Promise)。 |
-| on(type: "deviceConnect", token: number, callback: Callback\<Array\<ContinuationResult>>): void | 监听设备连接状态(Callback)。 |
-| on(type: "deviceDisconnect", token: number, callback: Callback\<Array\<string>>): void | 监听设备断开状态(Callback)。 |
-| off(type: "deviceConnect", token: number): void | 取消监听设备连接状态。 |
-| off(type: "deviceDisconnect", token: number): void | 取消监听设备断开状态。 |
+| on(type: "deviceSelected", token: number, callback: Callback\<Array\<ContinuationResult>>): void | 监听设备连接状态(Callback)。 |
+| on(type: "deviceUnselected", token: number, callback: Callback\<Array\<ContinuationResult>>): void | 监听设备断开状态(Callback)。 |
+| off(type: "deviceSelected", token: number): void | 取消监听设备连接状态。 |
+| off(type: "deviceUnselected", token: number): void | 取消监听设备断开状态。 |
 | startContinuationDeviceManager(token: number, callback: AsyncCallback\<void>): void | 拉起设备选择模块，可显示组网内可选择设备列表信息，无过滤条件(AsyncCallback)。 |
 | startContinuationDeviceManager(token: number, options: ContinuationExtraParams, callback: AsyncCallback\<void>): void | 拉起设备选择模块，可显示组网内可选择设备列表信息(AsyncCallback)。 |
 | startContinuationDeviceManager(token: number, options?: ContinuationExtraParams): Promise\<void> | 拉起设备选择模块，可显示组网内可选择设备列表信息(Promise)。 |
@@ -34,7 +34,7 @@ continuationManager作为流转能力的入口，主要用于拉起系统中的�
     import continuationManager from '@ohos.continuation.continuationManager';
     ```
 
-2. 跨端迁移或多端协同操作需要申请权限。
+2. 申请分布式权限 DISTRIBUTED_DATASYNC。
 
     权限申请在FA平台和Stage平台有区别，FA平台需要在`config.json`里面进行配置请求权限，示例代码如下：
 
@@ -55,6 +55,7 @@ continuationManager作为流转能力的入口，主要用于拉起系统中的�
     ```ts
     import abilityAccessCtrl from "@ohos.abilityAccessCtrl";
     import bundle from '@ohos.bundle';
+    import featureAbility from '@ohos.ability.featureAbility';
 
     async function requestPermission() {
         let permissions: Array<string> = [
@@ -122,7 +123,8 @@ continuationManager作为流转能力的入口，主要用于拉起系统中的�
         // 如果未申请该权限，则需要调用requestPermissionsFromUser接口申请权限
         if (needGrantPermission) {
             try {
-                await globalThis.abilityContext.requestPermissionsFromUser(permissions);
+                // globalThis.context即Ability.context,需提前在MainAbility.ts文件中赋值
+                await globalThis.context.requestPermissionsFromUser(permissions);
             } catch (err) {
                 console.error('app permission request permissions error' + JSON.stringify(err));
             }
@@ -159,8 +161,8 @@ continuationManager作为流转能力的入口，主要用于拉起系统中的�
 
     try {
         // 参数token为注册token
-        continuationManager.on("deviceConnect", token, (continuationResults) => {
-            console.info('registerDeviceConnectCallback len: ' + continuationResults.length);
+        continuationManager.on("deviceSelected", token, (continuationResults) => {
+            console.info('registerDeviceSelectedCallback len: ' + continuationResults.length);
             if (continuationResults.length <= 0) {
                 console.info('no selected device');
                 return;
@@ -173,7 +175,6 @@ continuationManager作为流转能力的入口，主要用于拉起系统中的�
                 bundleName: 'ohos.samples.continuationmanager',
                 abilityName: 'MainAbility'
             };
-            // 发起多端协同操作，需申请ohos.permission.DISTRIBUTED_DATASYNC权限
             globalThis.abilityContext.startAbility(want).then((data) => {
                 console.info('StartRemoteAbility finished, ' + JSON.stringify(data));
             }).catch((err) => {
@@ -210,15 +211,15 @@ continuationManager作为流转能力的入口，主要用于拉起系统中的�
     ```ts
     try {
         // 参数token为注册token
-        continuationManager.on("deviceDisconnect", token, (deviceIds) => {
-            console.info('onDeviceDisconnect len: ' + deviceIds.length);
-            if (deviceIds.length <= 0) {
+        continuationManager.on("deviceUnselected", token, (continuationResults) => {
+            console.info('onDeviceUnselected len: ' + continuationResults.length);
+            if (continuationResults.length <= 0) {
                 console.info('no unselected device');
                 return;
             }
 
             // 更新设备流转状态
-            let unselectedDeviceId: string = deviceIds[0]; // 将取消选择的第一个远端设备deviceId赋值给unselectedDeviceId变量
+            let unselectedDeviceId: string = continuationResults[0].id; // 将取消选择的第一个远端设备deviceId赋值给unselectedDeviceId变量
             let deviceConnectStatus: continuationManager.DeviceConnectState = continuationManager.DeviceConnectState.DISCONNECTING; // 设备断开状态
 
             // 参数token为注册token，参数unselectedDeviceId为获取到的unselectedDeviceId

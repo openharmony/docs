@@ -10,7 +10,7 @@ The **\<list>** component provides a list container that presents a series of li
 
 ## Child Components
 
-This component supports the [\<ListItem]>(ts-container-listitem.md) and [\<ListItemGroup>](ts-container-listitemgroup.md) child components.
+This component supports the [\<ListItem>](ts-container-listitem.md) and [\<ListItemGroup>](ts-container-listitemgroup.md) child components.
 
 
 ## APIs

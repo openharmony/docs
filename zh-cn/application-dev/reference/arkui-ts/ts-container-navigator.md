@@ -37,7 +37,7 @@ Navigator(value?: {target: string, type?: NavigationType})
 | 名称   | 参数    | 描述                                                         |
 | ------ | ------- | ------------------------------------------------------------ |
 | active | boolean | 当前路由组件是否处于激活状态，处于激活状态时，会生效相应的路由操作。 |
-| params | object  | 跳转时要同时传递到目标页面的数据，可在目标页面使用[router.getParams()](../apis/js-api-router.md#routergetparams)获得。 |
+| params | object  | 跳转时要同时传递到目标页面的数据，可在目标页面使用[router.getParams()](../apis/js-apis-router.md#routergetparams)获得。 |
 | target | string         | 设置跳转目标页面的路径。 目标页面需加入main_pages.json文件中。                         |
 | type   | [NavigationType](#navigationtype枚举说明)  | 设置路由方式。<br/>默认值：NavigationType.Push |
 
@@ -49,21 +49,21 @@ Navigator(value?: {target: string, type?: NavigationType})
 @Entry
 @Component
 struct NavigatorExample {
-  @State active: boolean = false;
+  @State active: boolean = false
   @State Text: object = {name: 'news'}
 
   build() {
     Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Start, justifyContent: FlexAlign.SpaceBetween }) {
       Navigator({ target: 'pages/container/navigator/Detail', type: NavigationType.Push }) {
         Text('Go to ' + this.Text['name'] + ' page')
-            .width('100%').textAlign(TextAlign.Center)
+          .width('100%').textAlign(TextAlign.Center)
       }.params({ text: this.Text }) // 传参数到Detail页面
 
       Navigator() {
         Text('Back to previous page').width('100%').textAlign(TextAlign.Center)
       }.active(this.active)
       .onClick(() => {
-        this.active = true;
+        this.active = true
       })
     }.height(150).width(350).padding(35)
   }
@@ -78,7 +78,7 @@ import router from '@ohos.router'
 @Component
 struct DetailExample {
   // 接收Navigator.ets的传参
-  @State text: any = router.getParams().text;
+  @State text: any = router.getParams().text
 
   build() {
     Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Start, justifyContent: FlexAlign.SpaceBetween }) {
@@ -87,7 +87,7 @@ struct DetailExample {
       }
 
       Text('This is ' + this.text['name'] + ' page')
-          .width('100%').textAlign(TextAlign.Center)
+        .width('100%').textAlign(TextAlign.Center)
     }
     .width('100%').height(200).padding({ left: 35, right: 35, top: 35 })
   }

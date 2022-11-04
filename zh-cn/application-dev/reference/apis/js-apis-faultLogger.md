@@ -39,9 +39,11 @@ import faultLogger from '@ohos.faultLogger'
 | summary | string | 故障的概要 |
 | fullLog | string | 故障日志全文 |
 
-## faultLogger.querySelfFaultLog
+## faultLogger.querySelfFaultLog<sup>(deprecated)</sup>
 
 querySelfFaultLog(faultType: FaultType, callback: AsyncCallback&lt;Array&lt;FaultLogInfo&gt;&gt;) : void
+
+> **说明：** 从 API Version 9 开始废弃，建议使用[faultLogger.query](#faultloggerquery9)替代。
 
 获取当前进程故障信息，该方法通过回调方式获取故障信息数组，故障信息数组内最多上报10份故障信息。
 
@@ -79,9 +81,11 @@ function queryFaultLogCallback(error, value) {
 faultLogger.querySelfFaultLog(faultLogger.FaultType.JS_CRASH, queryFaultLogCallback);
 ```
 
-## faultLogger.querySelfFaultLog
+## faultLogger.querySelfFaultLog<sup>(deprecated)</sup>
 
 querySelfFaultLog(faultType: FaultType) : Promise&lt;Array&lt;FaultLogInfo&gt;&gt;
+
+> **说明：** 从 API Version 9 开始废弃，建议使用[faultLogger.query](#faultloggerquery9-1)替代。
 
 获取当前进程故障信息，该方法通过Promise方式返回故障信息数组，故障信息数组内最多上报10份故障信息。
 
@@ -106,18 +110,125 @@ async function getLog() {
     let value = await faultLogger.querySelfFaultLog(faultLogger.FaultType.JS_CRASH);
     if (value) {
         console.info("value length is " + value.length);
-	let len = value.length;
-	for (let i = 0; i < len; i++) {
-	    console.info("log: " + i);
-	    console.info("Log pid: " + value[i].pid);
-	    console.info("Log uid: " + value[i].uid);
-	    console.info("Log type: " + value[i].type);
-	    console.info("Log timestamp: " + value[i].timestamp);
-	    console.info("Log reason: " + value[i].reason);
-	    console.info("Log module: " + value[i].module);
-	    console.info("Log summary: " + value[i].summary);
-	    console.info("Log text: " + value[i].fullLog);
-	}
+        let len = value.length;
+        for (let i = 0; i < len; i++) {
+            console.info("log: " + i);
+            console.info("Log pid: " + value[i].pid);
+            console.info("Log uid: " + value[i].uid);
+            console.info("Log type: " + value[i].type);
+            console.info("Log timestamp: " + value[i].timestamp);
+            console.info("Log reason: " + value[i].reason);
+            console.info("Log module: " + value[i].module);
+            console.info("Log summary: " + value[i].summary);
+            console.info("Log text: " + value[i].fullLog);
+        }
+    }
+}
+```
+
+## faultLogger.query<sup>9+</sup>
+
+query(faultType: FaultType, callback: AsyncCallback&lt;Array&lt;FaultLogInfo&gt;&gt;) : void
+
+获取当前进程故障信息，该方法通过回调方式获取故障信息数组，故障信息数组内最多上报10份故障信息。
+
+**系统能力：** SystemCapability.HiviewDFX.Hiview.FaultLogger
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| faultType | [FaultType](#faulttype) | 是 | 输入要查询的故障类型。 |
+| callback | AsyncCallbackArray&lt;Array&lt;[FaultLogInfo](#faultloginfo)&gt;&gt; | 是 | 回调函数，在回调函数中获取故障信息数组。<br/>-&nbsp;value拿到故障信息数组；value为undefined表示获取过程中出现异常，error返回错误提示字符串
+
+**错误码：**
+
+以下错误码的详细介绍参见[ohos.faultLogger错误码](../errorcodes/errorcode-faultlogger.md)。
+
+| 错误码ID | 错误信息（此处仅提供错误抛出的关键信息） |
+| --- | --- |
+| 10600001 | The service is not running or broken |
+
+**示例：**
+
+```js
+function queryFaultLogCallback(error, value) {
+    if (error) {
+        console.info('error is ' + error);
+    } else {
+        console.info("value length is " + value.length);
+        let len = value.length;
+        for (let i = 0; i < len; i++) {
+            console.info("log: " + i);
+            console.info("Log pid: " + value[i].pid);
+            console.info("Log uid: " + value[i].uid);
+            console.info("Log type: " + value[i].type);
+            console.info("Log timestamp: " + value[i].timestamp);
+            console.info("Log reason: " + value[i].reason);
+            console.info("Log module: " + value[i].module);
+            console.info("Log summary: " + value[i].summary);
+            console.info("Log text: " + value[i].fullLog);
+        }
+    }
+}
+try {
+    faultLogger.query(faultLogger.FaultType.JS_CRASH, queryFaultLogCallback);
+} catch (err) {
+    console.error(`code: ${err.code}, message: ${err.message}`);
+}
+```
+
+## faultLogger.query<sup>9+</sup>
+
+query(faultType: FaultType) : Promise&lt;Array&lt;FaultLogInfo&gt;&gt;
+
+获取当前进程故障信息，该方法通过Promise方式返回故障信息数组，故障信息数组内最多上报10份故障信息。
+
+**系统能力：** SystemCapability.HiviewDFX.Hiview.FaultLogger
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| faultType | [FaultType](#faulttype) | 是 | 输入要查询的故障类型。 |
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| Promise&lt;Array&lt;[FaultLogInfo](#faultloginfo)&gt;&gt; | Promise实例，可以在其then()方法中获取故障信息实例，也可以使用await。 <br/>-&nbsp;value拿到故障信息数组；value为undefined表示获取过程中出现异常 |
+
+**错误码：**
+
+以下错误码的详细介绍参见[ohos.faultLogger错误码](../errorcodes/errorcode-faultlogger.md)。
+
+| 错误码ID | 错误信息（此处仅提供错误抛出的关键信息） |
+| --- | --- |
+| 10600001 | The service is not running or broken |
+
+**示例：**
+
+```js
+async function getLog() {
+    try {
+        let value = await faultLogger.query(faultLogger.FaultType.JS_CRASH);
+        if (value) {
+            console.info("value length is " + value.length);
+            let len = value.length;
+            for (let i = 0; i < len; i++) {
+                console.info("log: " + i);
+                console.info("Log pid: " + value[i].pid);
+                console.info("Log uid: " + value[i].uid);
+                console.info("Log type: " + value[i].type);
+                console.info("Log timestamp: " + value[i].timestamp);
+                console.info("Log reason: " + value[i].reason);
+                console.info("Log module: " + value[i].module);
+                console.info("Log summary: " + value[i].summary);
+                console.info("Log text: " + value[i].fullLog);
+            }
+        }
+    } catch (err) {
+        console.error(`code: ${err.code}, message: ${err.message}`);
     }
 }
 ```

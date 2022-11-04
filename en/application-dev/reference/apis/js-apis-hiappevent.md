@@ -3,6 +3,7 @@
 This module provides the application event logging functions, such as writing application events to the event file and managing the event logging configuration.
 
 > **NOTE**
+> 
 > The initial APIs of this module are supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 
@@ -18,11 +19,11 @@ Before using application event logging, you need to understand the requirements 
 
 **Event Domain**
 
-An event domain is a string that contains a maximum of 32 characters, including digits (0 to 9), letters (a to z), and underscores (_). It cannot start with an underscore (_).
+An event domain is a string that contains a maximum of 32 characters, including digits (0 to 9), letters (a to z), and underscores (\_). It cannot start with an underscore (\_).
 
 **Event Name**
 
-An event name is a string that contains a maximum of 48 characters, including digits (0 to 9), letters (a to z), and underscores (_). It cannot start with an underscore (_).
+An event name is a string that contains a maximum of 48 characters, including digits (0 to 9), letters (a to z), and underscores (\_). It cannot start with an underscore (\_).
 
 **Event Type**
 
@@ -32,7 +33,7 @@ An event type is an enumerated value of [EventType](#eventtype).
 
 An event parameter is an object in key-value pair format, where the key is the parameter name and the value is the parameter value. The requirements are as follows:
 
-- The parameter name is a string that contains a maximum of 16 characters, including digits (0 to 9), letters (a to z), and underscores (_). It cannot start or end with an underscore (_).
+- The parameter name is a string that contains a maximum of 16 characters, including digits (0 to 9), letters (a to z), and underscores (\_). It cannot start or end with an underscore (\_).
 - The parameter value is a string, number, boolean, or array.
 - When the parameter value is a string, its maximum length is 8*1024 characters. If this limit is exceeded, excess characters will be truncated.
 - When the parameter value is an array, the elements in the array must be of the same type, which can only be string, number, or boolean. In addition, the number of elements must be less than 100. If this limit is exceeded, excess elements will be discarded.
@@ -304,11 +305,8 @@ hiAppEvent.addWatcher({
             console.error("holder is null");
             return;
         }
-        while (true) {
-            let eventPkg = holder.takeNext();
-            if (eventPkg == null) {
-                return;
-            }
+        let eventPkg = null;
+        while ((eventPkg = holder.takeNext()) != null) {
             console.info("eventPkg.packageId=" + eventPkg.packageId);
             console.info("eventPkg.row=" + eventPkg.row);
             console.info("eventPkg.size=" + eventPkg.size);
@@ -324,15 +322,14 @@ let holder = hiAppEvent.addWatcher({
     name: "watcher2",
 });
 if (holder != null) {
-    let eventPkg = holder.takeNext();
-    if (eventPkg == null) {
-        return;
-    }
-    console.info("eventPkg.packageId=" + eventPkg.packageId);
-    console.info("eventPkg.row=" + eventPkg.row);
-    console.info("eventPkg.size=" + eventPkg.size);
-    for (const eventInfo of eventPkg.data) {
-        console.info("eventPkg.data=" + eventInfo);
+    let eventPkg = null;
+    while ((eventPkg = holder.takeNext()) != null) {
+        console.info("eventPkg.packageId=" + eventPkg.packageId);
+        console.info("eventPkg.row=" + eventPkg.row);
+        console.info("eventPkg.size=" + eventPkg.size);
+        for (const eventInfo of eventPkg.data) {
+            console.info("eventPkg.data=" + eventInfo);
+        }
     }
 }
 ```
@@ -408,15 +405,36 @@ Defines a subscription data holder for processing subscription events.
 
 **System capability**: SystemCapability.HiviewDFX.HiAppEvent
 
+### constructor<sup>9+</sup>
+
+constructor(watcherName: string);
+
+A constructor used to create a **holder** object. It is called automatically when a **Watcher** object is added.
+
+**System capability**: SystemCapability.HiviewDFX.HiAppEvent
+
+**Example**
+
+```js
+let holder = hiAppEvent.addWatcher({
+    name: "watcher",
+});
+```
+
 ### setSize<sup>9+</sup>
 
 setSize(size: number): void
 
 Sets the data size threshold for fetching an application event package. The default value is **512*1024**, in bytes.
 
+**System capability**: SystemCapability.HiviewDFX.HiAppEvent
+
 **Example**
 
 ```js
+let holder = hiAppEvent.addWatcher({
+    name: "watcher",
+});
 holder.setSize(1000);
 ```
 
@@ -426,9 +444,14 @@ takeNext(): [AppEventPackage](#appeventpackage9)
 
 Extracts subscription event data based on the configured data size threshold. If all subscription event data has been extracted, **null** will be returned.
 
+**System capability**: SystemCapability.HiviewDFX.HiAppEvent
+
 **Example**
 
 ```js
+let holder = hiAppEvent.addWatcher({
+    name: "watcher",
+});
 let eventPkg = holder.takeNext();
 ```
 

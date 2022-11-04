@@ -167,7 +167,7 @@ CommonEvent模块支持的事件类型。名称指的是系统公共事件宏；
 | COMMON_EVENT_ACCOUNT_DELETED                                 | usual.event.data.ACCOUNT_DELETED                            | ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS               | 删除帐户的公共事件的动作。      |
 | COMMON_EVENT_FOUNDATION_READY                                | usual.event.data.FOUNDATION_READY                           | ohos.permission.RECEIVER_STARTUP_COMPLETED                   | 表示foundation已准备好的公共事件的动作。      |
 | COMMON_EVENT_AIRPLANE_MODE_CHANGED                           | usual.event.AIRPLANE_MODE                                   | 无                                                           | 表示设备飞行模式已更改的公共事件的动作。      |
-| COMMON_EVENT_SPLIT_SCREEN<sup>8+<sup>                                    | usual.event.SPLIT_SCREEN                                    | ohos.permission.RECEIVER_SPLIT_SCREEN                        | 表示分屏的公共事件的动作。      |
+| COMMON_EVENT_SPLIT_SCREEN<sup>8+<sup>                                    | usual.event.SPLIT_SCREEN                                    | 无                        | 表示分屏的公共事件的动作。      |
 | COMMON_EVENT_SLOT_CHANGE<sup>9+<sup>                                    | usual.event.SLOT_CHANGE                                    | ohos.permission.NOTIFICATION_CONTROLLER                        | 表示通知通道更新的动作。      |
 | COMMON_EVENT_SPN_INFO_CHANGED <sup>9+<sup>                                    | usual.event.SPN_INFO_CHANGED                                    | 无                        | 表示spn显示信息已更新的公共事件的动作。      |
 | COMMON_EVENT_QUICK_FIX_APPLY_RESULT <sup>9+<sup>                                    | usual.event.QUICK_FIX_APPLY_RESULT                        | 无                        | 指示快速修复应用的动作。      |
@@ -227,7 +227,7 @@ publish(event: string, options: CommonEventPublishData, callback: AsyncCallback\
 
 ```js
 //公共事件相关信息
-var options = {
+let options = {
 	code: 0,			 //公共事件的初始代码
 	data: "initial data",//公共事件的初始数据
 	isOrdered: true	 //有序公共事件
@@ -279,7 +279,7 @@ function PublishAsUserCallBack(err) {
 }
 
 //指定发送的用户
-var userId = 100;
+let userId = 100;
 
 //发布公共事件
 CommonEvent.publishAsUser("event", userId, PublishAsUserCallBack);
@@ -311,7 +311,7 @@ publishAsUser(event: string, userId: number, options: CommonEventPublishData, ca
 
 ```js
 //公共事件相关信息
-var options = {
+let options = {
 	code: 0,			 //公共事件的初始代码
 	data: "initial data",//公共事件的初始数据
 }
@@ -326,7 +326,7 @@ function PublishAsUserCallBack(err) {
 }
 
 //指定发送的用户
-var userId = 100;
+let userId = 100;
 
 //发布公共事件
 CommonEvent.publishAsUser("event", userId, options, PublishAsUserCallBack);
@@ -353,10 +353,10 @@ createSubscriber(subscribeInfo: CommonEventSubscribeInfo, callback: AsyncCallbac
 
 
 ```js
-var subscriber; //用于保存创建成功的订阅者对象，后续使用其完成订阅及退订的动作
+let subscriber; //用于保存创建成功的订阅者对象，后续使用其完成订阅及退订的动作
 
 //订阅者信息
-var subscribeInfo = {
+let subscribeInfo = {
 	events: ["event"]
 };
 
@@ -398,10 +398,10 @@ createSubscriber(subscribeInfo: CommonEventSubscribeInfo): Promise\<CommonEventS
 **示例：**
 
 ```js
-var subscriber; //用于保存创建成功的订阅者对象，后续使用其完成订阅及退订的动作
+let subscriber; //用于保存创建成功的订阅者对象，后续使用其完成订阅及退订的动作
 
 //订阅者信息
-var subscribeInfo = {
+let subscribeInfo = {
 	events: ["event"]
 };
 
@@ -434,10 +434,10 @@ subscribe(subscriber: CommonEventSubscriber, callback: AsyncCallback\<CommonEven
 **示例：**
 
 ```js
-var subscriber; //用于保存创建成功的订阅者对象，后续使用其完成订阅及退订的动作
+let subscriber; //用于保存创建成功的订阅者对象，后续使用其完成订阅及退订的动作
 
 //订阅者信息
-var subscribeInfo = {
+let subscribeInfo = {
     events: ["event"]
 };
 
@@ -486,10 +486,10 @@ unsubscribe(subscriber: CommonEventSubscriber, callback?: AsyncCallback\<void>):
 **示例：**
 
 ```js
-var subscriber;	//用于保存创建成功的订阅者对象，后续使用其完成订阅及退订的动作
+let subscriber;	//用于保存创建成功的订阅者对象，后续使用其完成订阅及退订的动作
 
 //订阅者信息
-var subscribeInfo = {
+let subscribeInfo = {
 	events: ["event"]
 };
 
@@ -549,7 +549,7 @@ getCode(callback: AsyncCallback\<number>): void
 **示例：**
 
 ```js
-var subscriber;	//创建成功的订阅者对象
+let subscriber;	//创建成功的订阅者对象
 
 //获取有序公共事件的结果代码回调
 function getCodeCallback(err, Code) {
@@ -579,7 +579,7 @@ getCode(): Promise\<number>
 **示例：**
 
 ```js
-var subscriber;	//创建成功的订阅者对象
+let subscriber;	//创建成功的订阅者对象
 
 subscriber.getCode().then((Code) => {
     console.info("getCode " + JSON.stringify(Code));
@@ -606,7 +606,7 @@ setCode(code: number, callback: AsyncCallback\<void>): void
 **示例：**
 
 ```js
-var subscriber;	//创建成功的订阅者对象
+let subscriber;	//创建成功的订阅者对象
 
 //设置有序公共事件的结果代码回调
 function setCodeCallback(err) {
@@ -642,7 +642,7 @@ setCode(code: number): Promise\<void>
 **示例：**
 
 ```js
-var subscriber;	//创建成功的订阅者对象
+let subscriber;	//创建成功的订阅者对象
 
 subscriber.setCode(1).then(() => {
     console.info("setCode");
@@ -668,7 +668,7 @@ getData(callback: AsyncCallback\<string>): void
 **示例：**
 
 ```js
-var subscriber;	//创建成功的订阅者对象
+let subscriber;	//创建成功的订阅者对象
 
 //获取有序公共事件的结果数据回调
 function getDataCallback(err, Data) {
@@ -698,7 +698,7 @@ getData(): Promise\<string>
 **示例：**
 
 ```js
-var subscriber;	//创建成功的订阅者对象
+let subscriber;	//创建成功的订阅者对象
 
 subscriber.getData().then((Data) => {
     console.info("getData " + JSON.stringify(Data));
@@ -725,7 +725,7 @@ setData(data: string, callback: AsyncCallback\<void>): void
 **示例：**
 
 ```js
-var subscriber;	//创建成功的订阅者对象
+let subscriber;	//创建成功的订阅者对象
 
 //设置有序公共事件的结果数据回调
 function setDataCallback(err) {
@@ -761,7 +761,7 @@ setData(data: string): Promise\<void>
 **示例：**
 
 ```js
-var subscriber;	//创建成功的订阅者对象
+let subscriber;	//创建成功的订阅者对象
 
 subscriber.setData("publish_data_changed").then(() => {
     console.info("setData");
@@ -789,7 +789,7 @@ setCodeAndData(code: number, data: string, callback:AsyncCallback\<void>): void
 **示例：**
 
 ```js
-var subscriber;	//创建成功的订阅者对象
+let subscriber;	//创建成功的订阅者对象
 
 //设置有序公共事件的结果代码和结果数据回调
 function setCodeDataCallback(err) {
@@ -826,7 +826,7 @@ setCodeAndData(code: number, data: string): Promise\<void>
 **示例：**
 
 ```js
-var subscriber;	//创建成功的订阅者对象
+let subscriber;	//创建成功的订阅者对象
 
 subscriber.setCodeAndData(1, "publish_data_changed").then(() => {
     console.info("setCodeAndData");
@@ -854,7 +854,7 @@ isOrderedCommonEvent(callback: AsyncCallback\<boolean>): void
 **示例：**
 
 ```js
-var subscriber;	//创建成功的订阅者对象
+let subscriber;	//创建成功的订阅者对象
 
 //获取当前公共事件是否为有序事件的回调
 function isOrderedCallback(err, isOrdered) {
@@ -886,7 +886,7 @@ isOrderedCommonEvent(): Promise\<boolean>
 **示例：**
 
 ```js
-var subscriber;	//创建成功的订阅者对象
+let subscriber;	//创建成功的订阅者对象
 
 subscriber.isOrderedCommonEvent().then((isOrdered) => {
     console.info("isOrdered " + JSON.stringify(isOrdered));
@@ -914,7 +914,7 @@ isStickyCommonEvent(callback: AsyncCallback\<boolean>): void
 **示例：**
 
 ```js
-var subscriber;	//创建成功的订阅者对象
+let subscriber;	//创建成功的订阅者对象
 
 //获取当前公共事件是否为粘性事件的回调
 function isStickyCallback(err, isSticky) {
@@ -946,7 +946,7 @@ isStickyCommonEvent(): Promise\<boolean>
 **示例：**
 
 ```js
-var subscriber;	//创建成功的订阅者对象
+let subscriber;	//创建成功的订阅者对象
 
 subscriber.isStickyCommonEvent().then((isSticky) => {
     console.info("isSticky " + JSON.stringify(isSticky));
@@ -972,7 +972,7 @@ abortCommonEvent(callback: AsyncCallback\<void>): void
 **示例：**
 
 ```js
-var subscriber;	//创建成功的订阅者对象
+let subscriber;	//创建成功的订阅者对象
 
 //取消当前有序公共事件的回调
 function abortCallback(err) {
@@ -1002,7 +1002,7 @@ abortCommonEvent(): Promise\<void>
 **示例：**
 
 ```js
-var subscriber;	//创建成功的订阅者对象
+let subscriber;	//创建成功的订阅者对象
 
 subscriber.abortCommonEvent().then(() => {
     console.info("abortCommonEvent");
@@ -1028,7 +1028,7 @@ clearAbortCommonEvent(callback: AsyncCallback\<void>): void
 **示例：**
 
 ```js
-var subscriber;	//创建成功的订阅者对象
+let subscriber;	//创建成功的订阅者对象
 
 //清除当前公共事件取消状态的回调
 function clearAbortCallback(err) {
@@ -1058,7 +1058,7 @@ clearAbortCommonEvent(): Promise\<void>
 **示例：**
 
 ```js
-var subscriber;	//创建成功的订阅者对象
+let subscriber;	//创建成功的订阅者对象
 
 subscriber.clearAbortCommonEvent().then(() => {
     console.info("clearAbortCommonEvent");
@@ -1084,7 +1084,7 @@ getAbortCommonEvent(callback: AsyncCallback\<boolean>): void
 **示例：**
 
 ```js
-var subscriber;	//创建成功的订阅者对象
+let subscriber;	//创建成功的订阅者对象
 
 //获取当前有序公共事件是否取消的回调
 function getAbortCallback(err, AbortCommonEvent) {
@@ -1114,7 +1114,7 @@ getAbortCommonEvent(): Promise\<boolean>
 **示例：**
 
 ```js
-var subscriber;	//创建成功的订阅者对象
+let subscriber;	//创建成功的订阅者对象
 
 subscriber.getAbortCommonEvent().then((AbortCommonEvent) => {
     console.info("AbortCommonEvent " + JSON.stringify(AbortCommonEvent));
@@ -1140,7 +1140,7 @@ getSubscribeInfo(callback: AsyncCallback\<CommonEventSubscribeInfo>): void
 **示例：**
 
 ```js
-var subscriber;	//创建成功的订阅者对象
+let subscriber;	//创建成功的订阅者对象
 
 //获取订阅者信息回调
 function getSubscribeInfoCallback(err, SubscribeInfo) {
@@ -1170,7 +1170,7 @@ getSubscribeInfo(): Promise\<CommonEventSubscribeInfo>
 **示例：**
 
 ```js
-var subscriber;	//创建成功的订阅者对象
+let subscriber;	//创建成功的订阅者对象
 
 subscriber.getSubscribeInfo().then((SubscribeInfo) => {
     console.info("SubscribeInfo " + JSON.stringify(SubscribeInfo));
@@ -1196,7 +1196,7 @@ finishCommonEvent(callback: AsyncCallback\<void\>): void
 **示例：**
 
 ```js
-var subscriber; //创建成功的订阅者对象
+let subscriber; //创建成功的订阅者对象
 
 //结束当前有序公共事件的回调
 function finishCommonEventCallback(err) {
@@ -1226,7 +1226,7 @@ finishCommonEvent(): Promise\<void\>
 **示例：**
 
 ```js
-var subscriber;	//创建成功的订阅者对象
+let subscriber;	//创建成功的订阅者对象
 
 subscriber.finishCommonEvent().then(() => {
     console.info("FinishCommonEvent");
