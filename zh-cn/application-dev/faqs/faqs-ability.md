@@ -217,3 +217,4 @@ listener.on('change', onPortrait)
 
 2. 必须要使用系统的返回按键才能触发效果。
 
+<!--no_check--> 
