@@ -731,7 +731,7 @@ InputMethodController.hideSoftKeyboard().then(async (err) => {
 
 stopInput(callback: AsyncCallback&lt;boolean&gt;): void
 
-隐藏输入法。使用callback异步回调。
+结束输入会话。使用callback异步回调。
 
 > **说明：** 
 >
@@ -765,7 +765,7 @@ InputMethodController.stopInput((error, result) => {
 
 stopInput(): Promise&lt;boolean&gt;
 
-隐藏输入法。使用promise异步回调。
+结束输入会话。使用promise异步回调。
 
 > **说明：** 
 >
