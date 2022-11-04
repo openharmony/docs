@@ -78,3 +78,4 @@ hdc 和 hdcd版本不匹配 ，请更新IDE至Dev Eco 3.0.1.993及以上版本�
 适用于：OpenHarmony SDK 3.2.7.5版本
 
 参考文档[full-SDK替换指南](../quick-start/full-sdk-switch-guide.md)
+<!--no_check-->
