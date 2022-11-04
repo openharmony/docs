@@ -320,7 +320,7 @@ struct ImageExample3 {
             .onError(() => {
               console.log('load image fail')
             })
-            .overlay('\nwidth: ' + String(this.width) + ' height: ' + String(this.height), {
+            .overlay('\nwidth: ' + String(this.widthValue) + ' height: ' + String(this.heightValue), {
               align: Alignment.Bottom,
               offset: { x: 0, y: 20 }
             })

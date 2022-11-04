@@ -136,16 +136,13 @@
    当不再需要某些子窗口时，可根据场景的具体实现逻辑，使用`destroy`接口销毁子窗口。
    
    ```js
-   // 销毁子窗口。当不再需要某些子窗口时，可根据场景的具体实现逻辑，使用destroy接口销毁子窗口，此处以监听窗口区域外的点击事件实现子窗口的销毁。
-   windowClass.on('touchOutside', () => {
-       console.info('touch outside');
-       windowClass.destroy((err, data) => {
-           if (err.code) {
-               console.error('Failed to destroy the subwindow. Cause:' + JSON.stringify(err));
-               return;
-           }
-           console.info('Succeeded in destroying the subwindow. Data: ' + JSON.stringify(data));
-       });
+   // 销毁子窗口。当不再需要某些子窗口时，可根据场景的具体实现逻辑，使用destroy接口销毁子窗口。
+   windowClass.destroy((err, data) => {
+       if (err.code) {
+           console.error('Failed to destroy the subwindow. Cause:' + JSON.stringify(err));
+           return;
+       }
+       console.info('Succeeded in destroying the subwindow. Data: ' + JSON.stringify(data));
    });
    ```
 

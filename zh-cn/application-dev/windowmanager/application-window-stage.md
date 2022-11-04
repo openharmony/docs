@@ -127,11 +127,12 @@ class MainAbility extends Ability {
    ```ts
    import Ability from '@ohos.application.Ability'
    
+   let windowStage_ = null;
+   let sub_windowClass = null;
    class MainAbility extends Ability {
-       onWindowStageCreate(windowStage) {
+       showSubWindow() {
            // 1.创建应用子窗口。
-           let sub_windowClass = null;
-           windowStage.createSubWindow("mySubWindow", (err, data) => {
+           windowStage_.createSubWindow("mySubWindow", (err, data) => {
                if (err.code) {
                    console.error('Failed to create the subwindow. Cause: ' + JSON.stringify(err));
                    return;
@@ -139,7 +140,7 @@ class MainAbility extends Ability {
                sub_windowClass = data;
                console.info('Succeeded in creating the subwindow. Data: ' + JSON.stringify(data));
                // 1.获取已创建的应用子窗口。
-               windowStage.getSubWindow((err, data) => {
+               windowStage_.getSubWindow((err, data) => {
                    if (err.code) {
                        console.error('Failed to obtain the subWindow. Cause:' + JSON.stringify(err));
                        return;
@@ -178,15 +179,29 @@ class MainAbility extends Ability {
                        console.info('Succeeded in showing the window. Data: ' + JSON.stringify(data));
                    });
                });
-               // 4.销毁子窗口。当不再需要子窗口时，可根据具体实现逻辑，使用destroy对其进行销毁。
-               sub_windowClass.destroy((err, data) => {
-                   if (err.code) {
-                       console.error('Failed to destroy the window. Cause: ' + JSON.stringify(err));
-                       return;
-                   }
-                   console.info('Succeeded in destroying the window. Data: ' + JSON.stringify(data));
-               });
            })
+       }
+   
+       destroySubWindow() {
+           // 4.销毁子窗口。当不再需要子窗口时，可根据具体实现逻辑，使用destroy对其进行销毁。
+           sub_windowClass.destroy((err, data) => {
+               if (err.code) {
+                   console.error('Failed to destroy the window. Cause: ' + JSON.stringify(err));
+                   return;
+               }
+               console.info('Succeeded in destroying the window. Data: ' + JSON.stringify(data));
+           });
+       }
+   
+       onWindowStageCreate(windowStage) {
+           windowStage_ = windowStage;
+           // 开发者可以在适当的时机，如主窗口上按钮点击事件等，创建子窗口。并不一定需要在onWindowStageCreate调用，这里仅作展示
+           this.showSubWindow();
+       }
+   
+       onWindowStageDestroy() {
+           // 开发者可以在适当的时机，如子窗口上点击关闭按钮等，销毁子窗口。并不一定需要在onWindowStageDestroy调用，这里仅作展示
+           this.destroySubWindow();
        }
    };
    ```
