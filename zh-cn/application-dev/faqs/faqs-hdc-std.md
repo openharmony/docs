@@ -85,3 +85,4 @@
 2. 输入 aa dump -a 找到abilityID。
 
 3. aa dump -i [abilityID] -c -render 查看组件树。
+<!--no_check-->
