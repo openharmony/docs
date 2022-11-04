@@ -149,11 +149,25 @@ OpenHarmony IDL容器数据类型与Ts数据类型、C++数据类型的对应关
 
 ## 开发步骤
 
+### IDL工具的获取
+首先，打开DevEco Studio—>Tools—>SDK Manager，查看OpenHarmony SDK的本地安装路径，如下图所示。
+![SDKpath](./figures/SDKpath.png)
+![SDKpath](./figures/SDKpath2.png)
+
+进入对应路径后，查看toolchains->3.x.x.x（对应版本号命名文件夹）下是否存在idl工具的可执行文件，若不存在，可对应版本前往[docs仓版本目录](https://gitee.com/openharmony/docs/tree/master/zh-cn/release-notes)下载SDK包，以[3.2Beta3版本](https://gitee.com/openharmony/docs/blob/master/zh-cn/release-notes/OpenHarmony-v3.2-beta3.md#%E4%BB%8E%E9%95%9C%E5%83%8F%E7%AB%99%E7%82%B9%E8%8E%B7%E5%8F%96)为例，可通过镜像站点获取。
+
+关于如何替换DevEco Studio的SDK包具体操作，参考[full-SDK替换指南](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/quick-start/full-sdk-switch-guide.md#full-sdk%E6%9B%BF%E6%8D%A2%E6%8C%87%E5%8D%97)。
+
+得到idl工具的可执行文件后，根据具体场景进行后续开发步骤。
+
 ### C++开发步骤
 
 #### 创建.idl文件
 
- 开发者可以使用C++编程语言构建.idl文件。.idl示例如下： 
+ 开发者可以使用C++编程语言构建.idl文件。
+ 
+ 
+ 例如，此处构建一个名为iTest.idl的文件，文件内具体内容如下： 
 
 ```cpp
   interface OHOS.IIdlTestService {
@@ -162,7 +176,21 @@ OpenHarmony IDL容器数据类型与Ts数据类型、C++数据类型的对应关
   }
 ```
 
-使用者通过执行命令 “./idl -gen-cpp -d dir -c dir/iTest.idl” （-d为输出目录）在执行环境的dir目录中生成接口文件、Stub文件、Proxy文件。生成的接口类文件名称和.idl文件名称保持一致，区别在于其使用.h和.cpp扩展名。例如，IIdlTestService.idl 生成的文件名是 i_idl_test_service.h、idl_test_service_proxy.h、idl_test_service_stub.h、idl_test_service_proxy.cpp、idl_test_service_stub.cpp。
+通过idl的可执行文件所在文件夹下执行命令 `idl -gen-cpp -d dir -c dir/IIdlTestService.idl`（-d后的dir为目标输出目录）在执行环境的dir目录中生成接口文件、Stub文件、Proxy文件。
+
+ > **注意**：生成的接口类文件名称和.idl文件名称保持一致
+ 
+以命名为`IIdlTestService.idl`的.idl文件，在输出文件夹为生成文件IIdlTestServiceCpp中生成的代码目录结构例类似于:
+
+```
+├── IIdlTestServiceCpp  # idl代码输出文件夹
+│   ├── i_idl_test_service.h  # 生成文件
+│   ├── idl_test_service_proxy.h  # 生成文件
+│   ├── idl_test_service_stub.h  # 生成文件
+│   ├── idl_test_service_proxy.cpp  # 生成文件
+│   └── idl_test_service_stub.cpp  # 生成文件
+└── IIdlTestService.idl  # 构造的.idl文件
+```
 
 #### 服务端公开接口
 
