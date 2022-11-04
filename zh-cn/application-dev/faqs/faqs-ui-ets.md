@@ -625,3 +625,5 @@ RichText底层是web，可以参考html的语法，在div上加上的overflow：
 自定义弹窗组件中参数alignment可以指定弹窗的位置。比如设置弹窗在底部：alignment : DialogAlignment.Bottom。
 
 参考文档：[自定义弹窗](../arkui-ts/ts-methods-custom-dialog-box.md)
+
+<!--no_check--> 
