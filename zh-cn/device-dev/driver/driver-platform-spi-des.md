@@ -1,9 +1,20 @@
 # SPI
 
-
 ## 概述
 
-SPI指串行外设接口（Serial Peripheral Interface），是一种高速的，全双工，同步的通信总线。SPI是由Motorola公司开发，用于在主设备和从设备之间进行通信，常用于与闪存、实时时钟、传感器以及模数转换器等进行通信。
+### 功能简介
+
+SPI指串行外设接口（Serial Peripheral Interface），是一种高速的，全双工，同步的通信总线。SPI是由Motorola公司开发，用于在主设备和从设备之间进行通信。
+
+SPI接口定义了操作SPI设备的通用方法集合，包括：
+  - SPI设备句柄获取和释放。
+  - SPI读写：从SPI设备读取或写入指定长度数据。
+  - SPI自定义传输：通过消息传输结构体执行任意读写组合过程。
+  - SPI设备配置：获取和设置SPI设备属性。
+
+### 运作机制
+
+在HDF框架中，SPI的接口适配模式采用独立服务模式，在这种模式下，每一个设备对象会独立发布一个设备服务来处理外部访问，设备管理器收到API的访问请求之后，通过提取该请求的参数，达到调用实际设备对象的相应内部方法的目的。独立服务模式可以直接借助HDFDeviceManager的服务管理能力，但需要为每个设备单独配置设备节点，若设备过多可能增加内存占用。
 
 SPI以主从方式工作，通常有一个主设备和一个或者多个从设备。主设备和从设备之间一般用4根线相连，它们分别是：
   - SCLK：时钟信号，由主设备产生；
@@ -13,9 +24,9 @@ SPI以主从方式工作，通常有一个主设备和一个或者多个从设�
 
 一个主设备和两个从设备的连接示意图如下所示，Device A和Device B共享主设备的SCLK、MISO和MOSI三根引脚，Device A的片选CS0连接主设备的CS0，Device B的片选CS1连接主设备的CS1。
 
-  **图1** SPI主从设备连接示意图
+**图1** SPI主从设备连接示意图
 
-  ![image](figures/SPI主从设备连接示意图.png "SPI主从设备连接示意图")
+![image](figures/SPI主从设备连接示意图.png "SPI主从设备连接示意图")
 
 - SPI通信通常由主设备发起，通过以下步骤完成一次通信：
   1. 通过CS选中要通信的从设备，在任意时刻，一个主设备上最多只能有一个从设备被选中。
@@ -28,36 +39,31 @@ SPI以主从方式工作，通常有一个主设备和一个或者多个从设�
   - CPOL=1，CPHA=0 时钟信号idle状态为高电平，第一个时钟边沿采样数据。
   - CPOL=1，CPHA=1 时钟信号idle状态为高电平，第二个时钟边沿采样数据。
 
-- SPI接口定义了操作SPI设备的通用方法集合，包括：
-  - SPI设备句柄获取和释放。
-  - SPI读写: 从SPI设备读取或写入指定长度数据。
-  - SPI自定义传输：通过消息传输结构体执行任意读写组合过程。
-  - SPI设备配置：获取和设置SPI设备属性。
+### 约束与限制
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**<br>
-> 当前只支持主机模式，不支持从机模式。
-
-
-## 接口说明
-
-  **表1** SPI驱动API接口功能介绍
-
-| 接口名 | 接口描述 | 
-| -------- | -------- |
-| SpiOpen | 获取SPI设备句柄 | 
-| SpiClose | 释放SPI设备句柄 | 
-| SpiRead | 读取指定长度的数据 | 
-| SpiWrite | 写入指定长度的数据 | 
-| SpiTransfer | SPI数据传输接口 | 
-| SpiSetCfg | 根据指定参数，配置SPI设备 | 
-| SpiGetCfg | 获取SPI设备配置参数 | 
-
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**<br>
-> 本文涉及的所有接口，仅限内核态使用，不支持在用户态使用。
-
+SPI模块当前只支持主机模式，不支持从机模式。
 
 ## 使用指导
 
+### 场景介绍
+
+SPI通常用于与闪存、实时时钟、传感器以及模数/数模转换器等支持SPI协议的设备进行通信。
+
+### 接口说明
+
+SPI模块提供的主要接口如表1所示，具体API详见//drivers/hdf_core/framework/include/platform/spi_if.h。
+
+**表1** SPI驱动API接口功能介绍
+
+| 接口名 | 接口描述 |
+| -------- | -------- |
+| DevHandle SpiOpen(const struct SpiDevInfo \*info) | 获取SPI设备句柄 |
+| void SpiClose(DevHandle handle) | 释放SPI设备句柄 |
+| int32_t SpiRead(DevHandle handle, uint8_t \*buf, uint32_t len) | 读取指定长度的数据 |
+| int32_t SpiWrite(DevHandle handle, uint8_t \*buf, uint32_t len) | 写入指定长度的数据 |
+| int32_t SpiTransfer(DevHandle handle, struct SpiMsg \*msgs, uint32_t count) | SPI数据传输接口 |
+| int32_t SpiSetCfg(DevHandle handle, struct SpiCfg \*cfg) | 根据指定参数，配置SPI设备 |
+| int32_t SpiGetCfg(DevHandle handle, struct SpiCfg \*cfg) | 获取SPI设备配置参数 |
 
 ### 使用流程
 
@@ -67,13 +73,11 @@ SPI以主从方式工作，通常有一个主设备和一个或者多个从设�
 
   ![image](figures/SPI使用流程图.png "SPI使用流程图")
 
-
-### 获取SPI设备句柄
+#### 获取SPI设备句柄
 
 在使用SPI进行通信时，首先要调用SpiOpen获取SPI设备句柄，该函数会返回指定总线号和片选号的SPI设备句柄。
 
-
-```
+```c
 DevHandle SpiOpen(const struct SpiDevInfo *info); 
 ```
 
@@ -88,8 +92,7 @@ DevHandle SpiOpen(const struct SpiDevInfo *info);
 
 假设系统中的SPI设备总线号为0，片选号为0，获取该SPI设备句柄的示例如下：
 
-
-```
+```c
 struct SpiDevInfo spiDevinfo;       /* SPI设备描述符 */
 DevHandle spiHandle = NULL;         /* SPI设备句柄  */
 spiDevinfo.busNum = 0;              /* SPI设备总线号 */
@@ -103,13 +106,11 @@ if (spiHandle == NULL) {
 }
 ```
 
-
-### 获取SPI设备属性
+#### 获取SPI设备属性
 
 在获取到SPI设备句柄之后，需要配置SPI设备属性。配置SPI设备属性之前，可以先获取SPI设备属性，获取SPI设备属性的函数如下所示：
 
-
-```
+```c
 int32_t SpiGetCfg(DevHandle handle, struct SpiCfg *cfg);
 ```
 
@@ -123,8 +124,7 @@ int32_t SpiGetCfg(DevHandle handle, struct SpiCfg *cfg);
 | 0          | 获取配置成功 |
 | 负数       | 获取配置失败 |
 
-
-```
+```c
 int32_t ret;
 struct SpiCfg cfg = {0};                /* SPI配置信息*/
 ret = SpiGetCfg(spiHandle, &cfg);       /* 获取SPI设备属性 */
@@ -133,13 +133,11 @@ if (ret != 0) {
 }
 ```
 
-
-### 配置SPI设备属性
+#### 配置SPI设备属性
 
 在获取到SPI设备句柄之后，需要配置SPI设备属性，配置SPI设备属性的函数如下所示：
 
-
-```
+```c
 int32_t SpiSetCfg(DevHandle handle, struct SpiCfg *cfg);
 ```
 
@@ -153,29 +151,26 @@ int32_t SpiSetCfg(DevHandle handle, struct SpiCfg *cfg);
 | 0          | 配置成功 |
 | 负数       | 配置失败 |
 
-
-```
+```c
 int32_t ret;
 struct SpiCfg cfg = {0};                     /* SPI配置信息*/
 cfg.mode = SPI_MODE_LOOP;                    /* 以回环模式进行通信 */
 cfg.transferMode = PAL_SPI_POLLING_TRANSFER; /* 以轮询的方式进行通信 */
 cfg.maxSpeedHz = 115200;                     /* 最大传输频率 */ 
-cfg.bitsPerWord = 8;                         /* 读写位宽为8个比特 */
+cfg.bitsPerWord = 8;                         /* 读写位宽为8比特 */
 ret = SpiSetCfg(spiHandle, &cfg);            /* 配置SPI设备属性 */
 if (ret != 0) {
     HDF_LOGE("SpiSetCfg: failed, ret %d\n", ret);
 }
 ```
 
-
-### 进行SPI通信
+#### 进行SPI通信
 
 - 向SPI设备写入指定长度的数据
 
   如果只向SPI设备写一次数据，则可以通过以下函数完成：
 
-
-  ```
+  ```c
   int32_t SpiWrite(DevHandle handle, uint8_t *buf, uint32_t len);
   ```
 
@@ -190,8 +185,7 @@ if (ret != 0) {
   | 0          | 写入成功 |
   | 负数       | 写入失败 |
 
-
-  ```
+  ```c
   int32_t ret;
   uint8_t wbuff[4] = {0x12, 0x34, 0x56, 0x78};
   /* 向SPI设备写入指定长度的数据 */
@@ -205,8 +199,7 @@ if (ret != 0) {
 
   如果只读取一次数据，则可以通过以下函数完成：
 
-
-  ```
+  ```c
   int32_t SpiRead(DevHandle handle, uint8_t *buf, uint32_t len); 
   ```
 
@@ -221,8 +214,7 @@ if (ret != 0) {
   | 0 | 读取成功 |
   | 负数 | 读取失败 |
 
-
-  ```
+  ```c
   int32_t ret;
   uint8_t rbuff[4] = {0};
   /* 从SPI设备读取指定长度的数据 */
@@ -236,8 +228,7 @@ if (ret != 0) {
 
   如果需要发起一次自定义传输，则可以通过以下函数完成：
 
-
-  ```
+  ```c
   int32_t SpiTransfer(DevHandle handle, struct SpiMsg *msgs, uint32_t count);
   ```
 
@@ -252,8 +243,7 @@ if (ret != 0) {
   | 0 | 执行成功 |
   | 负数 | 执行失败 |
 
-
-  ```
+  ```c
   int32_t ret;
   uint8_t wbuff[1] = {0x12};
   uint8_t rbuff[1] = {0};
@@ -271,13 +261,11 @@ if (ret != 0) {
   }
   ```
 
-
-### 销毁SPI设备句柄
+#### 销毁SPI设备句柄
 
 SPI通信完成之后，需要销毁SPI设备句柄，销毁SPI设备句柄的函数如下所示：
 
-
-```
+```c
 void SpiClose(DevHandle handle);
 ```
 
@@ -289,17 +277,17 @@ void SpiClose(DevHandle handle);
 | -------- | -------- |
 | handle | SPI设备句柄 |
 
-
-```
+```c
 SpiClose(spiHandle); /* 销毁SPI设备句柄 */
 ```
 
+### 使用实例
 
-## 使用实例
+本例拟对Hi3516DV300开发板上SPI设备进行操作。
 
-  SPI设备完整的使用示例如下所示，首先获取SPI设备句柄，然后配置SPI设备属性，接着调用读写接口进行数据传输，最后销毁SPI设备句柄。
+SPI设备完整的使用示例如下所示，首先获取SPI设备句柄，然后配置SPI设备属性，接着调用读写接口进行数据传输，最后销毁SPI设备句柄。
 
-```
+```c
 #include "hdf_log.h"
 #include "spi_if.h"
 
