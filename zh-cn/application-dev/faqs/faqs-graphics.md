@@ -88,3 +88,4 @@ window.getTopWindow(globalThis.mainContext).then(win => {
   INDEX_LOGGER.info(`get top window failed:${err}`)
 })
 ```
+<!--no_check-->
