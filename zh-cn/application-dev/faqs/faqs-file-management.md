@@ -109,3 +109,5 @@ Stage模型下，获取媒体库实例应该调用mediaLibrary.getMediaLibrary(c
 适用于：OpenHarmonySDK 3.2.5.5版本，API9 Stage模型
 
 通过[MediaFetchOptions](../reference/apis/js-apis-medialibrary.md#mediafetchoptions7)对象参数里面的order属性进行排序。
+
+<!--no_check-->
