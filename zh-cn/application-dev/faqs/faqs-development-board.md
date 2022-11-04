@@ -50,3 +50,4 @@
 连接需要认证的网络后，用浏览器打开任意网址就可以进入认证页面。
 
 如果开发板上没有浏览器，可以安装[浏览器Sample应用](https://gitee.com/openharmony/app_samples/tree/master/device/Browser)。
+<!--no_check-->
