@@ -18,6 +18,7 @@
       - [查看NinjaTrace](subsys-build-reference.md#查看ninjatrace)
       - [HAP编译构建指导](subsys-build-gn-hap-compilation-guide.md)
       - [ 常见问题](subsys-build-FAQ.md)
+- [ArkCompiler](subsys-arkcompiler-guide.md)
 - [分布式远程启动](subsys-remote-start.md)
 - 图形图像
     - [图形图像概述](subsys-graphics-overview.md)
