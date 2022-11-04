@@ -1,7 +1,5 @@
 # UI框架（JS）开发常见问题
 
-
-
 ## 如何取出xml文件中对应的字段
 
 适用于：OpenHarmony SDK 3.2.3.5版本， API9 Stage模型
@@ -39,20 +37,11 @@ let options = {
 }
 let result: any = conv.convert(xml, options) // 将xml文本转为JS对象
 console.log('Test: ' + JSON.stringify(result))
-console.log('Test: ' + result._declaration._attributes.version) // xml字符串中version字段信息console.log('Test: ' + result._elements[0]._elements[0]._elements[0]._text) // xml字符串中title字段内容
+console.log('Test: ' + result._declaration._attributes.version) // xml字符串中version字段信息
+console.log('Test: ' + result._elements[0]._elements[0]._elements[0]._text) // xml字符串中title字段内容
 ```
 
-参考文档：[xml转换JavaScript](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-convertxml.md)
-
-## JS、TS和eTS的区别
-
-适用于：OpenHarmony SDK 3.2.3.5版本，API9 Stage模型
-
-- JS：Web 的编程语言。具有轻量级，弱类型等特点。
-
-- TS：TS是JS的超集，拓展了JS的语法。有明确的类型与更多面向对象的内容如接口，枚举等。
-
-- eTS：OpenHarmony UI开发框架语言，是对TS的扩展，通过声明式开发范式实现UI界面。
+参考文档：[xml转换JavaScript](../reference/apis/js-apis-convertxml.md)
 
 ## 如何将时间转为时分秒格式
 
@@ -101,4 +90,41 @@ export default class DateTimeUtil{
     return `${this.fill(hours)}${this.fill(minutes)}${this.fill(seconds)}`
   }
 }
+
 ```
+
+## scroller如何判断回弹动画的结束误差
+
+适用于：OpenHarmony SDK 3.2.5.3版本，API8 FA模型
+
+目前可以在触摸结束之后，计算同方向的变化，如果变化方向相反，说明出现回弹了，就规避不处理了。
+
+
+## 如何实现应用数据持久化存储
+
+通过PersistentStorage类实现管理应用持久化数据，可以将特定标记的持久化数据链接到AppStorage中，并由AppStorage接口访问对应持久化数据。
+
+参考文档：[持久化数据管理](../ui/ts-application-states-apis-persistentstorage.md)
+
+示例：
+
+  
+```
+AppStorage.Link('varA')
+PersistentStorage.PersistProp("varA", "111");
+@Entry
+@Componentstruct Index {
+  @StorageLink('varA') varA: string = ''
+  build() {
+    Column() {
+      Text('varA: ' + this.varA).fontSize(20)
+      Button('Set').width(100).height(100).onClick(() => {
+        this.varA += '333'
+      })
+    }
+    .width('100%')
+    .height('100%')
+  }
+}
+```
+<!--no_check--> 

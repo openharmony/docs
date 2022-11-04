@@ -27,6 +27,7 @@
 适用于：IDE 3.0.0.991
 
 1. 给预览器新建Profile
+   
    ![zh-cn_image_0000001361254285](figures/zh-cn_image_0000001361254285.png)
 
 2. 新建Profile的具体参数可参考如下配置：
@@ -49,3 +50,4 @@
 连接需要认证的网络后，用浏览器打开任意网址就可以进入认证页面。
 
 如果开发板上没有浏览器，可以安装[浏览器Sample应用](https://gitee.com/openharmony/app_samples/tree/master/device/Browser)。
+<!--no_check-->
