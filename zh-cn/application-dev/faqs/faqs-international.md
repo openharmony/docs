@@ -17,3 +17,4 @@ Resource为string支持限定词目录使用this.context.resourceManager.getStri
 适用于：OpenHarmony SDK 3.2.6.5, API9 Stage模型
 
 form_config.json文件中不支持使用$引用常量。
+<!--no_check-->
