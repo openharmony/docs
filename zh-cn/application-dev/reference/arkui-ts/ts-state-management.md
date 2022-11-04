@@ -47,7 +47,7 @@ SetAndLink\<T>(propName: string, defaultValue: T): SubscribedAbstractProperty\<T
 
 | 类型  | 描述                                                         |
 | ----- | ------------------------------------------------------------ |
-| @Link | 与Link接口类似，如果当前的key保存于LocalStorage，返回该key值对应的value值。如果该key值未被创建，则创建一个对应的defaultValue的Link返回。 |
+| @Link | 与Link接口类似，如果当前的key保存于AppStorage，返回该key值对应的value值。如果该key值未被创建，则创建一个对应的defaultValue的Link返回。 |
 
 ```ts
 let simple = AppStorage.SetAndLink('simpleProp', 121)
@@ -92,7 +92,7 @@ SetAndProp\<S>(propName: string, defaultValue: S): SubscribedAbstractProperty\<S
 
 | 类型  | 描述                                                         |
 | ----- | ------------------------------------------------------------ |
-| @Prop | 如果当前的key保存与LocalStorage，返回该key值对应的value值。如果该key值未被创建，则创建一个对应的defaultValue的Prop返回。 |
+| @Prop | 如果当前的key保存与AppStorage，返回该key值对应的value值。如果该key值未被创建，则创建一个对应的defaultValue的Prop返回。 |
 
 ```ts
 let simple = AppStorage.SetAndProp('simpleProp', 121)
@@ -182,7 +182,7 @@ SetOrCreate\<T>(propName: string, newValue: T): void
 
 | 类型    | 描述                                                         |
 | ------- | ------------------------------------------------------------ |
-| boolean | 如果已存在与给定键名字相同的属性，更新其值且返回true。如果不存在具有给定名称的属性，在LocalStorage中创建具有给定默认值的新属性，默认值必须是T类型。不允许undefined 或 null 返回true。 |
+| boolean | 如果已存在与给定键名字相同的属性，更新其值且返回true。如果不存在具有给定名称的属性，在AppStorage中创建具有给定默认值的新属性，默认值必须是T类型。不允许undefined 或 null 返回true。 |
 
 ```ts
 let simple = AppStorage.SetOrCreate('simpleProp', 121)
