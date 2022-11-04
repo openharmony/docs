@@ -12,7 +12,7 @@ AudioRoutingManager提供了音频路由、设备管理的方法。开发者可�
 
 ![zh-ch_image_audio_routing_manager](figures/zh-ch_image_audio_routing_manager.png)
 
-**说明：**AudioRoutingManager主要接口有：获取设备列表信息、监听与取消监听设备连接状态、激活通信设备、查询通信设备激活状态。更多介绍请参考[API参考文档](../reference/apis/js-apis-audio.md)。
+**说明：** AudioRoutingManager主要接口有：获取设备列表信息、监听与取消监听设备连接状态、激活通信设备、查询通信设备激活状态。更多介绍请参考[API参考文档](../reference/apis/js-apis-audio.md)。
 
 
 ## 开发指导
@@ -96,7 +96,7 @@ AudioRoutingManager提供了音频路由、设备管理的方法。开发者可�
        console.info('setCommunicationDevice true is success.');
      });
    }
-  //查询通信设备激活状态
+   //查询通信设备激活状态
    async isCommunicationDeviceActive() {   
      await loadAudioRoutingManager();
      await audioRoutingManager.isCommunicationDeviceActive(audio.CommunicationDeviceType.SPEAKER).then((value) => {
