@@ -154,3 +154,10 @@
 | ohos.permission.<br>MANAGE_CAMERA_CONFIG                     | system_basic  | system_grant | FALSE   | 允许应用进行全局相机开关等操作。                                     |
 | ohos.permission.READ_WHOLE_CALENDAR                     | system_basic  | uesr_grant | TRUE    | 允许应用读取所有的日历信息。                                     |
 | ohos.permission.WRITE_WHOLE_CALENDAR                     | system_basic  | uesr_grant | TRUE    | 允许应用添加、移除或更改所有的日历活动。                                     |
+| ohos.permission.ENFORCE_USER_IAM     | system_core  | system_grant | TRUE    | 允许SA无token删除IAM子系统用户信息。                                |
+| ohos.permission.ACCESS_AUTH_RESPOOL     | system_core  | system_grant | TRUE    | 允许SA注册执行器。                                |
+| ohos.permission.MOUNT_UNMOUNT_MANAGER     | system_basic  | system_grant | FALSE    | 允许应用对外卡进行挂载卸载操作。                                |
+| ohos.permission.MOUNT_FORMAT_MANAGER     | system_basic  | system_grant | FALSE    | 允许应用对外卡进行格式化操作。                                |
+| ohos.permission.STORAGE_MANAGER     | system_basic  | system_grant | TRUE    | 允许应用调用storage manager服务中对空间统计以及卷信息的查询接口。                                |
+| ohos.permission.BACKUP     | system_basic  | system_grant | TRUE    | 允许应用拥有备份恢复能力。                                |
+| ohos.permission.FILE_ACCESS_MANAGER     | system_basic  | system_grant | TRUE    | 允许文件管理类应用通过FAF框架访问公共数据文件。                                |
