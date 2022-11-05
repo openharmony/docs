@@ -213,8 +213,6 @@
      console.info('Succeeded in setting the window layout to full-screen mode. Data: ' + JSON.stringify(data));
    });
    let sysBarProps = {
-     statusBarColor: '#ff00ff',
-     navigationBarColor: '#00ff00',
      // 以下两个属性从API Version8开始支持。
      statusBarContentColor: '#ffffff',
      navigationBarContentColor: '#ffffff'
