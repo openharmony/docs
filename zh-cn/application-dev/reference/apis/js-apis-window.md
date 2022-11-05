@@ -1198,9 +1198,6 @@ setSystemBarProperties(systemBarProperties: SystemBarProperties, callback: Async
 var SystemBarProperties={
     statusBarColor: '#ff00ff',
     navigationBarColor: '#00ff00',
-    //以下两个属性从API Version7开始支持
-    isStatusBarLightIcon: true,
-    isNavigationBarLightIcon:false,
     //以下两个属性从API Version8开始支持
     statusBarContentColor:'#ffffff',
     navigationBarContentColor:'#00ffff'
@@ -1240,9 +1237,6 @@ setSystemBarProperties(systemBarProperties: SystemBarProperties): Promise&lt;voi
 var SystemBarProperties={
     statusBarColor: '#ff00ff',
     navigationBarColor: '#00ff00',
-    //以下两个属性从API Version7开始支持
-    isStatusBarLightIcon: true,
-    isNavigationBarLightIcon:false,
     //以下两个属性从API Version8开始支持
     statusBarContentColor:'#ffffff',
     navigationBarContentColor:'#00ffff'
