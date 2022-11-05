@@ -35,6 +35,7 @@ AudioPlayer支持的src媒体源输入类型可参考：[src属性说明](../ref
 ```js
 import media from '@ohos.multimedia.media'
 import fileIO from '@ohos.fileio'
+import featureAbility from '@ohos.ability.featureAbility'
 
 // 打印码流轨道信息
 function printfDescription(obj) {
@@ -105,8 +106,14 @@ async function audioPlayerDemo() {
     setCallBack(audioPlayer); // 设置事件回调
     // 2. 用户选择音频，设置uri
     let fdPath = 'fd://'
-    // path路径的码流可通过"hdc file send D:\xxx\01.mp3 /data/app/el1/bundle/public/ohos.acts.multimedia.audio.audioplayer/ohos.acts.multimedia.audio.audioplayer/assets/entry/resources/rawfile" 命令，将其推送到设备上
-    let path = '/data/app/el1/bundle/public/ohos.acts.multimedia.audio.audioplayer/ohos.acts.multimedia.audio.audioplayer/assets/entry/resources/rawfile/01.mp3';
+    // path路径的码流可通过"hdc file send D:\xxx\01.mp3 /data/app/el2/100/base/ohos.acts.multimedia.audio.audioplayer/haps/entry/files" 命令，将其推送到设备上
+    let path = ''
+    var context = featureAbility.getContext();
+    await context.getFilesDir().then((fileDir) => {  
+        console.info("case file dir is" + JSON.stringify(fileDir));
+        path = fileDir + '/01.mp3';
+        console.info("case path is" + path);
+        }); 
     await fileIO.open(path).then((fdNumber) => {
         fdPath = fdPath + '' + fdNumber;
         console.info('open fd success fd is' + fdPath);
@@ -124,6 +131,8 @@ async function audioPlayerDemo() {
 ```js
 import media from '@ohos.multimedia.media'
 import fileIO from '@ohos.fileio'
+import featureAbility from '@ohos.ability.featureAbility'
+
 export class AudioDemo {
   // 设置播放器回调函数
   setCallBack(audioPlayer) {
@@ -145,8 +154,14 @@ export class AudioDemo {
     let audioPlayer = media.createAudioPlayer(); // 创建一个音频播放实例
     this.setCallBack(audioPlayer); // 设置事件回调
     let fdPath = 'fd://'
-    // path路径的码流可通过"hdc file send D:\xxx\01.mp3 /data/app/el1/bundle/public/ohos.acts.multimedia.audio.audioplayer/ohos.acts.multimedia.audio.audioplayer/assets/entry/resources/rawfile" 命令，将其推送到设备上
-    let path = '/data/app/el1/bundle/public/ohos.acts.multimedia.audio.audioplayer/ohos.acts.multimedia.audio.audioplayer/assets/entry/resources/rawfile/01.mp3';
+    // path路径的码流可通过"hdc file send D:\xxx\01.mp3 /data/app/el2/100/base/ohos.acts.multimedia.audio.audioplayer/haps/entry/files" 命令，将其推送到设备上
+    let path = ''
+    var context = featureAbility.getContext();
+    await context.getFilesDir().then((fileDir) => {  
+        console.info("case file dir is" + JSON.stringify(fileDir));
+        path = fileDir + '/01.mp3';
+        console.info("case path is" + path); 
+        }); 
     await fileIO.open(path).then((fdNumber) => {
       fdPath = fdPath + '' + fdNumber;
       console.info('open fd success fd is' + fdPath);
@@ -165,6 +180,8 @@ export class AudioDemo {
 ```js
 import media from '@ohos.multimedia.media'
 import fileIO from '@ohos.fileio'
+import featureAbility from '@ohos.ability.featureAbility'
+
 export class AudioDemo {
 // 设置播放器回调函数
   private isNextMusic = false;
@@ -191,8 +208,14 @@ export class AudioDemo {
   async nextMusic(audioPlayer) {
     this.isNextMusic = true;
     let nextFdPath = 'fd://'
-    // path路径的码流可通过"hdc file send D:\xxx\02.mp3 /data/app/el1/bundle/public/ohos.acts.multimedia.audio.audioplayer/ohos.acts.multimedia.audio.audioplayer/assets/entry/resources/rawfile" 命令，将其推送到设备上
-    let nextpath = '/data/app/el1/bundle/public/ohos.acts.multimedia.audio.audioplayer/ohos.acts.multimedia.audio.audioplayer/assets/entry/resources/rawfile/02.mp3';
+    // path路径的码流可通过"hdc file send D:\xxx\02.mp3 /data/app/el2/100/base/ohos.acts.multimedia.audio.audioplayer/haps/entry/files" 命令，将其推送到设备上
+    let nextpath = ''
+    var context = featureAbility.getContext();
+    await context.getFilesDir().then((fileDir) => {  
+        console.info("case file dir is" + JSON.stringify(fileDir));
+        nextpath = fileDir + '/02.mp3';
+        console.info("case path is" + nextpath); 
+        }); 
     await fileIO.open(nextpath).then((fdNumber) => {
       nextFdPath = nextFdPath + '' + fdNumber;
       console.info('open fd success fd is' + nextFdPath);
@@ -208,8 +231,14 @@ export class AudioDemo {
     let audioPlayer = media.createAudioPlayer();       // 创建一个音频播放实例
     this.setCallBack(audioPlayer);                     // 设置事件回调
     let fdPath = 'fd://'
-    // path路径的码流可通过"hdc file send D:\xxx\01.mp3 /data/app/el1/bundle/public/ohos.acts.multimedia.audio.audioplayer/ohos.acts.multimedia.audio.audioplayer/assets/entry/resources/rawfile" 命令，将其推送到设备上
-    let path = '/data/app/el1/bundle/public/ohos.acts.multimedia.audio.audioplayer/ohos.acts.multimedia.audio.audioplayer/assets/entry/resources/rawfile/01.mp3';
+    // path路径的码流可通过"hdc file send D:\xxx\01.mp3 /data/app/el2/100/base/ohos.acts.multimedia.audio.audioplayer/haps/entry/files" 命令，将其推送到设备上
+    let path = ''
+    var context = featureAbility.getContext();
+    await context.getFilesDir().then((fileDir) => {  
+        console.info("case file dir is" + JSON.stringify(fileDir));
+        path = fileDir + '/01.mp3';
+        console.info("case path is" + path); 
+        }); 
     await fileIO.open(path).then((fdNumber) => {
       fdPath = fdPath + '' + fdNumber;
       console.info('open fd success fd is' + fdPath);
@@ -228,6 +257,8 @@ export class AudioDemo {
 ```js
 import media from '@ohos.multimedia.media'
 import fileIO from '@ohos.fileio'
+import featureAbility from '@ohos.ability.featureAbility'
+
 export class AudioDemo {
   // 设置播放器回调函数
   setCallBack(audioPlayer) {
@@ -245,8 +276,14 @@ export class AudioDemo {
     let audioPlayer = media.createAudioPlayer(); // 创建一个音频播放实例
     this.setCallBack(audioPlayer); // 设置事件回调
     let fdPath = 'fd://'
-    // path路径的码流可通过"hdc file send D:\xxx\01.mp3 /data/app/el1/bundle/public/ohos.acts.multimedia.audio.audioplayer/ohos.acts.multimedia.audio.audioplayer/assets/entry/resources/rawfile" 命令，将其推送到设备上
-    let path = '/data/app/el1/bundle/public/ohos.acts.multimedia.audio.audioplayer/ohos.acts.multimedia.audio.audioplayer/assets/entry/resources/rawfile/01.mp3';
+    // path路径的码流可通过"hdc file send D:\xxx\01.mp3 /data/app/el2/100/base/ohos.acts.multimedia.audio.audioplayer/haps/entry/files" 命令，将其推送到设备上
+    let path = ''
+    var context = featureAbility.getContext();
+    await context.getFilesDir().then((fileDir) => {  
+        console.info("case file dir is" + JSON.stringify(fileDir));
+        path = fileDir + '/01.mp3';
+        console.info("case path is" + path); 
+        }); 
     await fileIO.open(path).then((fdNumber) => {
       fdPath = fdPath + '' + fdNumber;
       console.info('open fd success fd is' + fdPath);
