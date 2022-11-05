@@ -119,7 +119,7 @@ goTo(offset:number): boolean
   ```js
   let predicatesgoto = new dataRdb.RdbPredicates("EMPLOYEE")
   let promisequerygoto = rdbStore.query(predicatesgoto, ["ID", "NAME", "AGE", "SALARY", "CODES"])
-  promisequerygoto.then((resultSet) {
+  promisequerygoto.then((resultSet) => {
       resultSet.goTo(1)
       resultSet.close()
   }).catch((err) => {
@@ -150,7 +150,7 @@ goToRow(position: number): boolean
   ```js
   let predicatesgotorow = new dataRdb.RdbPredicates("EMPLOYEE")
   let promisequerygotorow = rdbStore.query(predicatesgotorow, ["ID", "NAME", "AGE", "SALARY", "CODES"])
-  promisequerygotorow.then((resultSet) {
+  promisequerygotorow.then((resultSet) => {
       resultSet.goToRow(5)
       resultSet.close()
   }).catch((err) => {
@@ -177,7 +177,7 @@ goToFirstRow(): boolean
   ```js
   let predicatesgoFirst = new dataRdb.RdbPredicates("EMPLOYEE")
   let promisequerygoFirst = rdbStore.query(predicatesgoFirst, ["ID", "NAME", "AGE", "SALARY", "CODES"])
-  promisequerygoFirst.then((resultSet) {
+  promisequerygoFirst.then((resultSet) => {
       resultSet.goToFirstRow()
       resultSet.close()
   }).catch((err) => {
@@ -203,7 +203,7 @@ goToLastRow(): boolean
   ```js
   let predicatesgoLast = new dataRdb.RdbPredicates("EMPLOYEE")
   let promisequerygoLast = rdbStore.query(predicatesgoLast, ["ID", "NAME", "AGE", "SALARY", "CODES"])
-  promisequerygoLast.then((resultSet) {
+  promisequerygoLast.then((resultSet) => {
       resultSet.goToLastRow()
       resultSet.close()
   }).catch((err) => {
@@ -229,7 +229,7 @@ goToNextRow(): boolean
   ```js
   let predicatesgoNext = new dataRdb.RdbPredicates("EMPLOYEE")
   let promisequerygoNext = rdbStore.query(predicatesgoNext, ["ID", "NAME", "AGE", "SALARY", "CODES"])
-  promisequerygoNext.then((resultSet) {
+  promisequerygoNext.then((resultSet) => {
       resultSet.goToNextRow()
       resultSet.close()
   }).catch((err) => {
@@ -255,7 +255,7 @@ goToPreviousRow(): boolean
   ```js
   let predicatesgoPrev = new dataRdb.RdbPredicates("EMPLOYEE")
   let promisequerygoPrev = rdbStore.query(predicatesgoPrev, ["ID", "NAME", "AGE", "SALARY", "CODES"])
-  promisequerygoPrev.then((resultSet) {
+  promisequerygoPrev.then((resultSet) => {
       resultSet.goToPreviousRow()
       resultSet.close()
   }).catch((err) => {
@@ -396,7 +396,7 @@ close(): void
   ```js
   let predicatesClose = new dataRdb.RdbPredicates("EMPLOYEE")
   let promiseClose = rdbStore.query(predicatesClose, ["ID", "NAME", "AGE", "SALARY", "CODES"])
-  promiseClose.then((resultSet) {
+  promiseClose.then((resultSet) => {
       resultSet.close()
   }).catch((err) => {
       console.log('resultset close failed')
