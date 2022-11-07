@@ -261,7 +261,7 @@ IsMutable(propName: string): boolean
 | boolean | 返回此属性是否存在并且是否可以改变。 |
 
 ```ts
-let simple = AppStorage.IsMutable()
+let simple = AppStorage.IsMutable('simpleProp')
 ```
 
 ### Size
@@ -643,7 +643,7 @@ PersistProps(properties: {key: string, defaultValue: any}[]): void;
 | key    | {key: string, defaultValue: any}[] |  是  | 要关联的属性数组。 |
 
 ```ts
-PersistentStorage.PersistProps([{'highScore', '0'},{'wightScore','1'}])
+PersistentStorage.PersistProps([{key: 'highScore', defaultValue: '0'},{key: 'wightScore',defaultValue: '1'}])
 ```
 
 ### Keys
@@ -725,7 +725,7 @@ EnvProps(props: {key: string, defaultValue: any}[]): void
 | key    | {key: string, defaultValue: any}[] | 是   | 要关联的属性数组。 | 要关联的属性数组。 |
 
 ```ts
-Environment.EnvProps([{'accessibilityEnabled', 'default'},{'accessibilityUnEnabled','undefault'}])
+Environment.EnvProps([{key: 'accessibilityEnabled', defaultValue: 'default'},{key: 'accessibilityUnEnabled', defaultValue: 'undefault'}])
 ```
 
 ### Keys

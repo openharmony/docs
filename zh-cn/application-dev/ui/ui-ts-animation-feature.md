@@ -305,7 +305,7 @@
        .height(184)
        .width('100%')
        .onClick(() => {
-         router.push({ url: 'pages/FoodDetail', params: { foodId: this.foodItem } })
+         router.push({ url: 'pages/FoodDetail', params: { foodData: this.foodItem } })
        })
      }
    }
