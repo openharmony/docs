@@ -52,7 +52,7 @@ Enumerates the types of the area where the window cannot be displayed.
 
 | Name                              | Value | Description             |
 |----------------------------------|-----| ----------------- |
-| TYPE_SYSTEM                      | 0   | Default area of the system.|
+| TYPE_SYSTEM                      | 0   | Default area of the system. Generally, the status bar, navigation bar, and Dock bar are included. The default area may vary according to the device in use. |
 | TYPE_CUTOUT                      | 1   | Notch. |
 | TYPE_SYSTEM_GESTURE<sup>9+</sup> | 2   | Gesture area.   |
 | TYPE_KEYBOARD<sup>9+</sup>       | 3   | Soft keyboard area. |
@@ -92,14 +92,14 @@ Describes the properties of the status bar and navigation bar.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
-| Name                                  | Type| Readable| Writable| Description                                                        |
-| -------------------------------------- | -------- | ---- | ---- | ------------------------------------------------------------ |
-| statusBarColor                         | string   | No  | Yes  | Background color of the status bar. The value is a hexadecimal RGB or aRGB color value and is case insensitive, for example, `#00FF00` or `#FF00FF00`.|
-| isStatusBarLightIcon<sup>7+</sup>      | boolean  | No  | Yes  | Whether any icon on the status bar is highlighted.                                  |
-| statusBarContentColor<sup>8+</sup>     | string   | No  | Yes  | Color of the text on the status bar.                                            |
-| navigationBarColor                     | string   | No  | Yes  | Background color of the navigation bar. The value is a hexadecimal RGB or aRGB color value and is case insensitive, for example, `#00FF00` or `#FF00FF00`.|
-| isNavigationBarLightIcon<sup>7+</sup>  | boolean  | No  | Yes  | Whether any icon on the navigation bar is highlighted.                                  |
-| navigationBarContentColor<sup>8+</sup> | string   | No  | Yes  | Color of the text on the navigation bar.                                            |
+| Name                                   | Type    | Readable | Writable | Mandatory | Description                                                  |
+| -------------------------------------- | ------- | -------- | -------- | --------- | ------------------------------------------------------------ |
+| statusBarColor                         | string  | No       | Yes      | No        | Background color of the status bar. The value is a hexadecimal RGB or aRGB color value and is case insensitive, for example, **#00FF00** or **#FF00FF00**. The default value is **#0x66000000**. |
+| isStatusBarLightIcon<sup>7+</sup>      | boolean | No       | Yes      | No        | Whether any icon on the status bar is highlighted. The value **true** means that the icon is highlighted, and **false** means the opposite. The default value is **false**. |
+| statusBarContentColor<sup>8+</sup>     | string  | No       | Yes      | No        | Color of the text on the status bar. After this property is set, the setting of **isStatusBarLightIcon** is invalid. The default value is **0xE5FFFFFF**. |
+| navigationBarColor                     | string  | No       | Yes      | No        | Background color of the navigation bar. The value is a hexadecimal RGB or aRGB color value and is case insensitive, for example, **#00FF00** or **#FF00FF00**. The default value is **#0x66000000**. |
+| isNavigationBarLightIcon<sup>7+</sup>  | boolean | No       | Yes      | No        | Whether any icon on the navigation bar is highlighted. The value **true** means that the icon is highlighted, and **false** means the opposite. The default value is **false**. |
+| navigationBarContentColor<sup>8+</sup> | string  | No       | Yes      | No        | Color of the text on the navigation bar. After this property is set, the setting of **isNavigationBarLightIcon** is invalid. The default value is **0xE5FFFFFF**. |
 
 ## Orientation<sup>9+</sup>
 
@@ -303,8 +303,8 @@ Creates a subwindow. This API uses an asynchronous callback to return the result
 **Example**
 
 ```js
-var windowClass = null;
-window.create("first", window.WindowType.TYPE_APP,(err,data) => {
+let windowClass = null;
+window.create('first', window.WindowType.TYPE_APP,(err,data) => {
     if(err.code){
         console.error('Failed to create the subWindow. Cause: ' + JSON.stringify(err));
         return;
@@ -340,8 +340,8 @@ Creates a subwindow. This API uses a promise to return the result.
 **Example**
 
 ```js
-var windowClass = null;
-let promise = window.create("first", window.WindowType.TYPE_APP);
+let windowClass = null;
+let promise = window.create('first', window.WindowType.TYPE_APP);
 promise.then((data)=> {
     windowClass = data;
     console.info('Succeeded in creating the subWindow. Data: ' + JSON.stringify(data));
@@ -370,8 +370,8 @@ Creates a subwindow (in API version 8) or a system window (from API version 9). 
 **Example**
 
 ```js
-var windowClass = null;
- window.create(this.context, "alertWindow", window.WindowType.TYPE_SYSTEM_ALERT, (err, data) => {
+let windowClass = null;
+ window.create(this.context, 'alertWindow', window.WindowType.TYPE_SYSTEM_ALERT, (err, data) => {
     if (err.code) {
         console.error('Failed to create the window. Cause: ' + JSON.stringify(err));
         return;
@@ -407,8 +407,8 @@ Creates a subwindow (in API version 8) or a system window (from API version 9). 
 **Example**
 
 ```js
-var windowClass = null;
-let promise = window.create(this.context, "alertWindow", window.WindowType.TYPE_SYSTEM_ALERT);
+let windowClass = null;
+let promise = window.create(this.context, 'alertWindow', window.WindowType.TYPE_SYSTEM_ALERT);
 promise.then((data)=> {
     windowClass = data;
     console.info('Succeeded in creating the window. Data:' + JSON.stringify(data));
@@ -435,8 +435,8 @@ Finds a window based on the ID. This API uses an asynchronous callback to return
 **Example**
 
 ```js
-var windowClass = null;
- window.find("alertWindow", (err, data) => {
+let windowClass = null;
+ window.find('alertWindow', (err, data) => {
    if (err.code) {
        console.error('Failed to find the Window. Cause: ' + JSON.stringify(err));
        return;
@@ -469,8 +469,8 @@ Finds a window based on the ID. This API uses a promise to return the result.
 **Example**
 
 ```js
-var windowClass = null;
-let promise = window.find("alertWindow");
+let windowClass = null;
+let promise = window.find('alertWindow');
 promise.then((data)=> {
  	windowClass = data;
     console.info('Succeeded in finding the window. Data: ' + JSON.stringify(data));
@@ -498,7 +498,7 @@ Obtains the top window of the current application. This API uses an asynchronous
 **Example**
 
 ```js
-var windowClass = null;
+let windowClass = null;
 window.getTopWindow((err, data) => {
     if (err.code) {
         console.error('Failed to obtain the top window. Cause: ' + JSON.stringify(err));
@@ -528,7 +528,7 @@ Obtains the top window of the current application. This API uses a promise to re
 **Example**
 
 ```js
-var windowClass = null;
+let windowClass = null;
 let promise = window.getTopWindow();
 promise.then((data)=> {
  	windowClass = data;
@@ -556,7 +556,7 @@ Obtains the top window of the current application. This API uses an asynchronous
 **Example**
 
 ```js
-var windowClass = null;
+let windowClass = null;
 window.getTopWindow(this.context, (err, data) => {
     if (err.code) {
         console.error('Failed to obtain the top window. Cause: ' + JSON.stringify(err));
@@ -590,7 +590,7 @@ Obtains the top window of the current application. This API uses a promise to re
 **Example**
 
 ```js
-var windowClass = null;
+let windowClass = null;
 let promise = window.getTopWindow(this.context);
 promise.then((data)=> {
  	windowClass = data;
@@ -622,7 +622,7 @@ Minimizes all windows on a display. This API uses an asynchronous callback to re
 import display from '@ohos.display'
 import window from '@ohos.window'
 
-var displayClass = null;
+let displayClass = null;
 display.getDefaultDisplay((err, data) => {
     if(err.code) {
         return;
@@ -665,7 +665,7 @@ Minimizes all windows on a display. This API uses a promise to return the result
 import display from '@ohos.display'
 import window from '@ohos.window'
 
-var displayClass = null;
+let displayClass = null;
 display.getDefaultDisplay((err, data) => {
     if(err.code) {
         return;
@@ -1255,7 +1255,7 @@ Sets the type of this window. This API uses an asynchronous callback to return t
 **Example**
 
 ```js
-var type = window.WindowType.TYPE_APP;
+let type = window.WindowType.TYPE_APP;
 windowClass.setWindowType(type, (err, data) => {
   if (err.code) {
       console.error('Failed to set the window type. Cause: ' + JSON.stringify(err));
@@ -1294,7 +1294,7 @@ Sets the type of this window. This API uses a promise to return the result.
 **Example**
 
 ```js
-var type = window.WindowType.TYPE_APP;
+let type = window.WindowType.TYPE_APP;
 let promise = windowClass.setWindowType(type);
 promise.then((data)=> {
     console.info('Succeeded in setting the window type. Data: ' + JSON.stringify(data));
@@ -1372,7 +1372,7 @@ Obtains the area where this window cannot be displayed, for example, the system 
 **Example**
 
 ```js
-var type = window.AvoidAreaType.TYPE_SYSTEM;
+let type = window.AvoidAreaType.TYPE_SYSTEM;
 windowClass.getAvoidArea(type, (err, data) => {
     if (err.code) {
         console.error('Failed to obtain the area. Cause:' + JSON.stringify(err));
@@ -1405,7 +1405,7 @@ Obtains the area where this window cannot be displayed, for example, the system 
 **Example**
 
 ```js
-var type = window.AvoidAreaType.TYPE_SYSTEM;
+let type = window.AvoidAreaType.TYPE_SYSTEM;
 let promise = windowClass.getAvoidArea(type);
 promise.then((data)=> {
     console.info('Succeeded in obtaining the area. Data:' + JSON.stringify(data));
@@ -1432,7 +1432,7 @@ Sets whether to enable the full-screen mode for this window. This API uses an as
 **Example**
 
 ```js
-var isFullScreen = true;
+let isFullScreen = true;
 windowClass.setFullScreen(isFullScreen, (err, data) => {
     if (err.code) {
         console.error('Failed to enable the full-screen mode. Cause: ' + JSON.stringify(err));
@@ -1465,7 +1465,7 @@ Sets whether to enable the full-screen mode for this window. This API uses a pro
 **Example**
 
 ```js
-var isFullScreen = true;
+let isFullScreen = true;
 let promise = windowClass.setFullScreen(isFullScreen);
 promise.then((data)=> {
     console.info('Succeeded in enabling the full-screen mode. Data: ' + JSON.stringify(data));
@@ -1492,7 +1492,7 @@ Sets whether to enable the full-screen mode for the window layout. This API uses
 **Example**
 
 ```js
-var isLayoutFullScreen= true;
+let isLayoutFullScreen= true;
 windowClass.setLayoutFullScreen(isLayoutFullScreen, (err, data) => {
     if (err.code) {
         console.error('Failed to set the window layout to full-screen mode. Cause:' + JSON.stringify(err));
@@ -1525,7 +1525,7 @@ Sets whether to enable the full-screen mode for the window layout. This API uses
 **Example**
 
 ```js
-var isLayoutFullScreen = true;
+let isLayoutFullScreen = true;
 let promise = windowClass.setLayoutFullScreen(isLayoutFullScreen);
 promise.then((data)=> {
     console.info('Succeeded in setting the window layout to full-screen mode. Data: ' + JSON.stringify(data));
@@ -1546,14 +1546,14 @@ Sets whether to display the status bar and navigation bar in this window. This A
 
 | Name  | Type                     | Mandatory| Description                                                        |
 | -------- | ------------------------- | ---- | ------------------------------------------------------------ |
-| names    | Array                     | Yes  | Whether to display the status bar and navigation bar.<br>For example, to display the status bar and navigation bar, set this parameter to `["status", "navigation"]`. By default, they are not displayed.|
+| names    | Array                     | Yes  | Whether to display the status bar and navigation bar.<br>For example, to display the status bar and navigation bar, set this parameter to `['status', 'navigation']`. By default, they are not displayed.|
 | callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result.                                                  |
 
 **Example**
 
 ```js
 // In this example, the status bar and navigation bar are not displayed.
-var names = [];
+let names = [];
 windowClass.setSystemBarEnable(names, (err, data) => {
     if (err.code) {
         console.error('Failed to set the system bar to be invisible. Cause:' + JSON.stringify(err));
@@ -1575,7 +1575,7 @@ Sets whether to display the status bar and navigation bar in this window. This A
 
 | Name| Type | Mandatory| Description                                                        |
 | ------ | ----- | ---- | ------------------------------------------------------------ |
-| names  | Array | Yes  | Whether to display the status bar and navigation bar.<br>For example, to display the status bar and navigation bar, set this parameter to `["status", "navigation"]`. By default, they are not displayed.|
+| names  | Array | Yes  | Whether to display the status bar and navigation bar.<br>For example, to display the status bar and navigation bar, set this parameter to `['status', 'navigation']`. By default, they are not displayed.|
 
 **Return value**
 
@@ -1587,7 +1587,7 @@ Sets whether to display the status bar and navigation bar in this window. This A
 
 ```js
 // In this example, the status bar and navigation bar are not displayed.
-var names = [];
+let names = [];
 let promise = windowClass.setSystemBarEnable(names);
 promise.then((data)=> {
     console.info('Succeeded in setting the system bar to be invisible. Data: ' + JSON.stringify(data));
@@ -1614,12 +1614,9 @@ Sets the properties of the status bar and navigation bar in this window. This AP
 **Example**
 
 ```js
-var SystemBarProperties={
+let SystemBarProperties={
     statusBarColor: '#ff00ff',
     navigationBarColor: '#00ff00',
-    // The following properties are supported since API version 7.
-    isStatusBarLightIcon: true,
-    isNavigationBarLightIcon:false,
     // The following properties are supported since API version 8.
     statusBarContentColor:'#ffffff',
     navigationBarContentColor:'#00ffff'
@@ -1656,12 +1653,9 @@ Sets the properties of the status bar and navigation bar in this window. This AP
 **Example**
 
 ```js
-var SystemBarProperties={
+let SystemBarProperties={
     statusBarColor: '#ff00ff',
     navigationBarColor: '#00ff00',
-    // The following properties are supported since API version 7.
-    isStatusBarLightIcon: true,
-    isNavigationBarLightIcon:false,
     // The following properties are supported since API version 8.
     statusBarContentColor:'#ffffff',
     navigationBarContentColor:'#00ffff'
@@ -1692,7 +1686,7 @@ Sets the preferred orientation for this window. This API uses an asynchronous ca
 **Example**
 
 ```js
-var orientation = window.Orientation.AUTO_ROTATION;
+let orientation = window.Orientation.AUTO_ROTATION;
 windowClass.setPreferredOrientation(orientation, (err, data) => {
     if (err.code) {
         console.error('Failed to set window orientation. Cause: ' + JSON.stringify(err));
@@ -1725,7 +1719,7 @@ Sets the preferred orientation for this window. This API uses a promise to retur
 **Example**
 
 ```js
-var orientation = window.Orientation.AUTO_ROTATION;
+let orientation = window.Orientation.AUTO_ROTATION;
 let promise = windowClass.setPreferredOrientation(orientation);
 promise.then((data)=> {
     console.info('Succeeded in setting the window orientation. Data: ' + JSON.stringify(data));
@@ -1752,7 +1746,7 @@ Loads content from a page to this window. This API uses an asynchronous callback
 **Example**
 
 ```js
-windowClass.loadContent("pages/page2/page2", (err, data) => {
+windowClass.loadContent('pages/page2/page2', (err, data) => {
    if (err.code) {
          console.error('Failed to load the content. Cause:' + JSON.stringify(err));
          return;
@@ -1784,7 +1778,7 @@ Loads content from a page to this window. This API uses a promise to return the 
 **Example**
 
 ```js
-let promise = windowClass.loadContent("pages/page2/page2");
+let promise = windowClass.loadContent('pages/page2/page2');
 promise.then((data)=> {
     console.info('Succeeded in loading the content. Data: ' + JSON.stringify(data));
 }).catch((err)=>{
@@ -1806,7 +1800,7 @@ Loads content from a page associated with a local storage to this window. This A
 | Name  | Type                                           | Mandatory| Description                                                        |
 | -------- | ----------------------------------------------- | ---- | ------------------------------------------------------------ |
 | path     | string                                          | Yes  | Path of the page from which the content will be loaded.                                        |
-| storage  | [LocalStorage](../../ui/ui-ts-local-storage.md) | Yes  | A storage unit, which provides storage for variable state properties and non-variable state properties of an application.|
+| storage  | [LocalStorage](../../quick-start/arkts-state-mgmt-application-level.md#localstorage) | Yes  | A storage unit, which provides storage for variable state properties and non-variable state properties of an application.|
 | callback | AsyncCallback&lt;void&gt;                       | Yes  | Callback used to return the result.                                                  |
 
 **Example**
@@ -1816,9 +1810,9 @@ class myAbility extends Ability {
     storage : LocalStorage
     onWindowStageCreate(windowStage) {
         this.storage = new LocalStorage();
-        this.storage.setOrCreate("storageSimpleProp",121);
+        this.storage.setOrCreate('storageSimpleProp',121);
         console.log('onWindowStageCreate');
-        windowStage.loadContent("pages/page2",this.storage,(err, data) => {
+        windowStage.loadContent('pages/page2',this.storage,(err, data) => {
             if (err.code) {
                 console.error('Failed to load the content. Cause:' + JSON.stringify(err));
                 return;
@@ -1844,7 +1838,7 @@ Loads content from a page associated with a local storage to this window. This A
 | Name | Type                                           | Mandatory| Description                                                        |
 | ------- | ----------------------------------------------- | ---- | ------------------------------------------------------------ |
 | path    | string                                          | Yes  | Path of the page from which the content will be loaded.                                        |
-| storage | [LocalStorage](../../ui/ui-ts-local-storage.md) | Yes  | A storage unit, which provides storage for variable state properties and non-variable state properties of an application.|
+| storage | [LocalStorage](../../quick-start/arkts-state-mgmt-application-level.md#localstorage) | Yes  | A storage unit, which provides storage for variable state properties and non-variable state properties of an application.|
 
 **Return value**
 
@@ -1859,10 +1853,10 @@ class myAbility extends Ability {
     storage : LocalStorage
     onWindowStageCreate(windowStage) {
         this.storage = new LocalStorage();
-        this.storage.setOrCreate("storageSimpleProp",121);
+        this.storage.setOrCreate('storageSimpleProp',121);
         console.log('onWindowStageCreate');
-        var windowClass = null;
-        let promise = windowStage.loadContent("pages/page2",this.storage);
+        let windowClass = null;
+        let promise = windowStage.loadContent('pages/page2',this.storage);
         promise.then((data)=> {
             windowClass = data;
             console.info('Succeeded in loading the content. Data: ' + JSON.stringify(data));
@@ -2195,7 +2189,7 @@ Unsubscribes from screenshot events.
 **Example**
 
 ```js
-var callback = ()=>{
+let callback = ()=>{
     console.info('screenshot happened');
 }
 windowClass.on('screenshot', callback)
@@ -2272,7 +2266,7 @@ Binds the modal window to the target window, and adds a callback to listen for m
 ```js
 class MyDeathRecipient {
     onRemoteDied() {
-        console.log("server died");
+        console.log('server died');
     }
 }
 class TestRemoteObject extends rpc.RemoteObject {
@@ -2289,7 +2283,7 @@ class TestRemoteObject extends rpc.RemoteObject {
         return false;
     }
 }
-let token = new TestRemoteObject("testObject");
+let token = new TestRemoteObject('testObject');
 windowClass.bindDialogTarget(token, () => {
     console.info('Dialog Window Need Destroy.');
 }, (err, data) => {
@@ -2329,7 +2323,7 @@ Binds the modal window to the target window, and adds a callback to listen for m
 ```js
 class MyDeathRecipient {
     onRemoteDied() {
-        console.log("server died");
+        console.log('server died');
     }
 }
 class TestRemoteObject extends rpc.RemoteObject {
@@ -2346,7 +2340,7 @@ class TestRemoteObject extends rpc.RemoteObject {
         return false;
     }
 }
-let token = new TestRemoteObject("testObject");
+let token = new TestRemoteObject('testObject');
 let promise = windowClass.bindDialogTarget(token, () => {
     console.info('Dialog Window Need Destroy.');
 });
@@ -2535,7 +2529,7 @@ Sets the background color for this window. This API uses an asynchronous callbac
 **Example**
 
 ```js
-var color = '#00ff33';
+let color = '#00ff33';
 windowClass.setBackgroundColor(color, (err, data) => {
     if (err.code) {
         console.error('Failed to set the background color. Cause: ' + JSON.stringify(err));
@@ -2568,7 +2562,7 @@ Sets the background color for this window. This API uses a promise to return the
 **Example**
 
 ```js
-var color = '#00ff33';
+let color = '#00ff33';
 let promise = windowClass.setBackgroundColor(color);
 promise.then((data)=> {
     console.info('Succeeded in setting the background color. Data: ' + JSON.stringify(data));
@@ -2596,7 +2590,7 @@ Wakes up the screen.
 **Example**
 
 ```js
-var wakeUp = true;
+let wakeUp = true;
 windowClass.setWakeUpScreen(wakeUp);
 ```
 
@@ -2618,7 +2612,7 @@ Sets the screen brightness for this window. This API uses an asynchronous callba
 **Example**
 
 ```js
-var brightness = 1;
+let brightness = 1;
 windowClass.setBrightness(brightness, (err, data) => {
     if (err.code) {
         console.error('Failed to set the brightness. Cause: ' + JSON.stringify(err));
@@ -2651,7 +2645,7 @@ Sets the screen brightness for this window. This API uses a promise to return th
 **Example**
 
 ```js
-var brightness = 1;
+let brightness = 1;
 let promise = windowClass.setBrightness(brightness);
 promise.then((data)=> {
     console.info('Succeeded in setting the brightness. Data: ' + JSON.stringify(data));
@@ -2748,7 +2742,7 @@ Sets whether this window can gain focus. This API uses an asynchronous callback 
 **Example**
 
 ```js
-var isFocusable= true;
+let isFocusable= true;
 windowClass.setFocusable(isFocusable, (err, data) => {
     if (err.code) {
         console.error('Failed to set the window to be focusable. Cause:' + JSON.stringify(err));
@@ -2781,7 +2775,7 @@ Sets whether this window can gain focus. This API uses a promise to return the r
 **Example**
 
 ```js
-var isFocusable= true;
+let isFocusable= true;
 let promise = windowClass.setFocusable(isFocusable);
 promise.then((data)=> {
     console.info('Succeeded in setting the window to be focusable. Data: ' + JSON.stringify(data));
@@ -2808,7 +2802,7 @@ Sets whether to keep the screen always on. This API uses an asynchronous callbac
 **Example**
 
 ```js
-var isKeepScreenOn = true;
+let isKeepScreenOn = true;
 windowClass.setKeepScreenOn(isKeepScreenOn, (err, data) => {
     if (err.code) {
         console.error('Failed to set the screen to be always on. Cause: ' + JSON.stringify(err));
@@ -2841,7 +2835,7 @@ Sets whether to keep the screen always on. This API uses a promise to return the
 **Example**
 
 ```js
-var isKeepScreenOn = true;
+let isKeepScreenOn = true;
 let promise = windowClass.setKeepScreenOn(isKeepScreenOn);
 promise.then((data) => {
     console.info('Succeeded in setting the screen to be always on. Data: ' + JSON.stringify(data));
@@ -2938,7 +2932,7 @@ Sets whether this window is in privacy mode. This API uses an asynchronous callb
 **Example**
 
 ```js
-var isPrivacyMode = true;
+let isPrivacyMode = true;
 windowClass.setPrivacyMode(isPrivacyMode, (err, data) => {
     if (err.code) {
         console.error('Failed to set the window to privacy mode. Cause:' + JSON.stringify(err));
@@ -2972,7 +2966,7 @@ Sets whether this window is in privacy mode. This API uses a promise to return t
 **Example**
 
 ```js
-var isPrivacyMode = true;
+let isPrivacyMode = true;
 let promise = windowClass.setPrivacyMode(isPrivacyMode);
 promise.then((data)=> {
     console.info('Succeeded in setting the window to privacy mode. Data: ' + JSON.stringify(data));
@@ -2996,7 +2990,7 @@ Sets whether to ignore this window during screen capturing or recording.
 | ------------- | ------- | ---- | -------------------- |
 | isSkip | boolean | Yes  | Whether to ignore the window. The default value is `false`.<br>The value `true` means that the window is ignored, and `false` means the opposite.<br>|
 ```js
-var isSkip = true;
+let isSkip = true;
 windowClass.setSnapshotSkip(isSkip);
 ```
 
@@ -3018,7 +3012,7 @@ Sets whether this window is touchable. This API uses an asynchronous callback to
 **Example**
 
 ```js
-var isTouchable = true;
+let isTouchable = true;
 windowClass.setTouchable(isTouchable, (err, data) => {
     if (err.code) {
         console.error('Failed to set the window to be touchable. Cause:' + JSON.stringify(err));
@@ -3052,7 +3046,7 @@ Sets whether this window is touchable. This API uses a promise to return the res
 **Example**
 
 ```js
-var isTouchable = true;
+let isTouchable = true;
 let promise = windowClass.setTouchable(isTouchable);
 promise.then((data)=> {
     console.info('Succeeded in setting the window to be touchable. Data: ' + JSON.stringify(data));
@@ -3081,7 +3075,7 @@ Sets whether this window is forbidden to move in split-screen mode. This API use
 **Example**
 
 ```js
-var isForbidSplitMove = true;
+let isForbidSplitMove = true;
 windowClass.setForbidSplitMove(isForbidSplitMove, (err, data) => {
     if (err.code) {
         console.error('Failed to forbid window moving in split screen mode. Cause:' + JSON.stringify(err));
@@ -3117,7 +3111,7 @@ Sets whether this window is forbidden to move in split-screen mode. This API use
 **Example**
 
 ```js
-var isForbidSplitMove = true;
+let isForbidSplitMove = true;
 let promise = windowClass.setForbidSplitMove(isForbidSplitMove);
 promise.then((data)=> {
     console.info('Succeeded in forbidding window moving in split screen mode. Data: ' + JSON.stringify(data));
@@ -3333,7 +3327,7 @@ Sets the scale parameters for this window.
 **Example**
 
 ```js
-var obj : window.ScaleOptions = {
+let obj : window.ScaleOptions = {
   x : 2.0,
   y : 1.0,
   pivotX = 0.5;
@@ -3361,7 +3355,7 @@ Sets the rotation parameters for this window.
 **Example**
 
 ```js
-var obj : window.RotateOptions = {
+let obj : window.RotateOptions = {
   x : 1.0,
   y : 1.0,
   z : 45.0,
@@ -3390,7 +3384,7 @@ Sets the translation parameters for this window.
 **Example**
 
 ```js
-var obj : window.TranslateOptions = {
+let obj : window.TranslateOptions = {
   x : 100.0,
   y : 0.0,
   z : 0.0
@@ -3431,7 +3425,7 @@ controller.animationForHidden = (context : window.TransitionContext) => {
             context.completeTransition(true)
         }    
       }, () => {
-        var obj : window.TranslateOptions = {
+        let obj : window.TranslateOptions = {
           x : 100.0,
           y : 0.0,
           z : 0.0
@@ -3495,7 +3489,7 @@ import Ability from '@ohos.application.Ability';
 class myAbility extends Ability {
     onWindowStageCreate(windowStage) {
         console.log('onWindowStageCreate');
-        var windowClass = null;
+        let windowClass = null;
         windowStage.getMainWindow((err, data) => {
             if (err.code) {
                 console.error('Failed to obtain the main window. Cause: ' + JSON.stringify(err));
@@ -3530,7 +3524,7 @@ import Ability from '@ohos.application.Ability';
 class myAbility extends Ability {
     onWindowStageCreate(windowStage) {
         console.log('onWindowStageCreate');
-        var windowClass = null;
+        let windowClass = null;
         let promise = windowStage.getMainWindow();
         promise.then((data)=> {
         windowClass = data;
@@ -3565,8 +3559,8 @@ import Ability from '@ohos.application.Ability';
 class myAbility extends Ability {
     onWindowStageCreate(windowStage) {
         console.log('onWindowStageCreate');
-        var windowClass = null;
-        windowStage.createSubWindow("mySubWindow", (err, data) => {
+        let windowClass = null;
+        windowStage.createSubWindow('mySubWindow', (err, data) => {
             if (err.code) {
                 console.error('Failed to create the subwindow. Cause: ' + JSON.stringify(err));
                 return;
@@ -3607,8 +3601,8 @@ import Ability from '@ohos.application.Ability';
 class myAbility extends Ability {
     onWindowStageCreate(windowStage) {
         console.log('onWindowStageCreate');
-        var windowClass = null;
-        let promise = windowStage.createSubWindow("mySubWindow");
+        let windowClass = null;
+        let promise = windowStage.createSubWindow('mySubWindow');
         promise.then((data)=> {
             windowClass = data;
             console.info('Succeeded in creating the subwindow. Data: ' + JSON.stringify(data));
@@ -3641,7 +3635,7 @@ import Ability from '@ohos.application.Ability';
 class myAbility extends Ability {
     onWindowStageCreate(windowStage) {
         console.log('onWindowStageCreate');
-        var windowClass = null;
+        let windowClass = null;
         windowStage.getSubWindow((err, data) => {
             if (err.code) {
                 console.error('Failed to obtain the subwindow. Cause: ' + JSON.stringify(err));
@@ -3676,7 +3670,7 @@ import Ability from '@ohos.application.Ability';
 class myAbility extends Ability {
     onWindowStageCreate(windowStage) {
         console.log('onWindowStageCreate');
-        var windowClass = null;
+        let windowClass = null;
         let promise = windowStage.getSubWindow();
         promise.then((data)=> {
             windowClass = data;
@@ -3702,7 +3696,7 @@ Loads content from a page associated with a local storage to the main window in 
 | Name  | Type                                           | Mandatory| Description                                                        |
 | -------- | ----------------------------------------------- | ---- | ------------------------------------------------------------ |
 | path     | string                                          | Yes  | Path of the page from which the content will be loaded.                                        |
-| storage  | [LocalStorage](../../ui/ui-ts-local-storage.md) | Yes  | A storage unit, which provides storage for variable state properties and non-variable state properties of an application.|
+| storage  | [LocalStorage](../../quick-start/arkts-state-mgmt-application-level.md#localstorage) | Yes  | A storage unit, which provides storage for variable state properties and non-variable state properties of an application.|
 | callback | AsyncCallback&lt;void&gt;                       | Yes  | Callback used to return the result.                                                  |
 
 **Example**
@@ -3713,9 +3707,9 @@ class myAbility extends Ability {
     storage : LocalStorage
     onWindowStageCreate(windowStage) {
         this.storage = new LocalStorage();
-        this.storage.setOrCreate("storageSimpleProp",121);
+        this.storage.setOrCreate('storageSimpleProp',121);
         console.log('onWindowStageCreate');
-        windowStage.loadContent("pages/page2",this.storage,(err, data) => {
+        windowStage.loadContent('pages/page2',this.storage,(err, data) => {
             if (err.code) {
                 console.error('Failed to load the content. Cause:' + JSON.stringify(err));
                 return;
@@ -3741,7 +3735,7 @@ Loads content from a page associated with a local storage to the main window in 
 | Name | Type                                           | Mandatory| Description                                                        |
 | ------- | ----------------------------------------------- | ---- | ------------------------------------------------------------ |
 | path    | string                                          | Yes  | Path of the page from which the content will be loaded.                                        |
-| storage | [LocalStorage](../../ui/ui-ts-local-storage.md) | No  | A storage unit, which provides storage for variable state properties and non-variable state properties of an application.|
+| storage | [LocalStorage](../../quick-start/arkts-state-mgmt-application-level.md#localstorage) | No  | A storage unit, which provides storage for variable state properties and non-variable state properties of an application.|
 
 **Return value**
 
@@ -3757,10 +3751,10 @@ class myAbility extends Ability {
     storage : LocalStorage
     onWindowStageCreate(windowStage) {
         this.storage = new LocalStorage();
-        this.storage.setOrCreate("storageSimpleProp",121);
+        this.storage.setOrCreate('storageSimpleProp',121);
         console.log('onWindowStageCreate');
-        var windowClass = null;
-        let promise = windowStage.loadContent("pages/page2",this.storage);
+        let windowClass = null;
+        let promise = windowStage.loadContent('pages/page2',this.storage);
         promise.then((data)=> {
             windowClass = data;
             console.info('Succeeded in loading the content. Data: ' + JSON.stringify(data));
@@ -3795,7 +3789,7 @@ import Ability from '@ohos.application.Ability';
 class myAbility extends Ability {
     onWindowStageCreate(windowStage) {
         console.log('onWindowStageCreate');
-        windowStage.loadContent("pages/page2", (err, data) => {
+        windowStage.loadContent('pages/page2', (err, data) => {
             if (err.code) {
                 console.error('Failed to load the content. Cause:' + JSON.stringify(err));
                 return;
@@ -3963,7 +3957,7 @@ controller.animationForShown = (context : window.TransitionContext) => {
         iterations: 1, // Number of playback times.
         playMode: PlayMode.Normal // Animation playback mode.
       }, () => {
-        var obj : window.TranslateOptions = {
+        let obj : window.TranslateOptions = {
           x : 100.0,
           y : 0.0,
           z : 0.0
@@ -4014,7 +4008,7 @@ controller.animationForShown = (context : window.TransitionContext) => {
             context.completeTransition(true)
         }  
       }, () => {
-        var obj : window.TranslateOptions = {
+        let obj : window.TranslateOptions = {
           x : 100.0,
           y : 0.0,
           z : 0.0
@@ -4060,7 +4054,7 @@ controller.animationForHidden = (context : window.TransitionContext) => {
             context.completeTransition(true)
         }  
       }, () => {
-        var obj : window.TranslateOptions = {
+        let obj : window.TranslateOptions = {
           x : 100.0,
           y : 0.0,
           z : 0.0
