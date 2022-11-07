@@ -160,4 +160,5 @@
 | ohos.permission.MOUNT_FORMAT_MANAGER     | system_basic  | system_grant | FALSE    | 允许应用对外卡进行格式化操作。                                |
 | ohos.permission.STORAGE_MANAGER     | system_basic  | system_grant | TRUE    | 允许应用调用storage manager服务中对空间统计以及卷信息的查询接口。                                |
 | ohos.permission.BACKUP     | system_basic  | system_grant | TRUE    | 允许应用拥有备份恢复能力。                                |
-| ohos.permission.FILE_ACCESS_MANAGER     | system_basic  | system_grant | TRUE    | 允许文件管理类应用通过FAF框架访问公共数据文件。                                |
+| ohos.permission.FILE_ACCESS_MANAGER     | system_basic  | system_grant | TRUE    | 允许文件管理类应用通过FAF框架访问公共数据文件。                  |
+| ohos.permission.MANAGE_AUDIO_CONFIG                      | system_basic        | system_grant | TRUE   | 允许应用进行全局麦克风静音等操作。           |
