@@ -61,7 +61,7 @@ AudioRenderer提供了渲染音频文件和控制播放的接口，开发者可�
    async function startRenderer() {
      let state = audioRenderer.state;
      // Renderer start时的状态应该是STATE_PREPARED、STATE_PAUSED和STATE_STOPPED之一.
-     if (state != audio.AudioState.STATE_PREPARED || state != audio.AudioState.STATE_PAUSED ||
+     if (state != audio.AudioState.STATE_PREPARED && state != audio.AudioState.STATE_PAUSED &&
        state != audio.AudioState.STATE_STOPPED) {
        console.info('Renderer is not in a correct state to start');
        return;
