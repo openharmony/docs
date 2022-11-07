@@ -3916,7 +3916,7 @@ audioRenderer.off('markReach');
 
 on(type: "periodReach", frame: number, callback: Callback&lt;number&gt;): void
 
-订阅到达标记的事件。 当渲染的帧数达到 frame 参数的值时，回调被循环调用。
+订阅到达标记的事件。 当渲染的帧数达到 frame 参数的值时，触发回调并返回设定的值。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Renderer
 
@@ -4558,7 +4558,7 @@ audioCapturer.off('markReach');
 
 on(type: "periodReach", frame: number, callback: Callback&lt;number&gt;): void
 
-订阅到达标记的事件。 当采集的帧数达到 frame 参数的值时，回调被循环调用。
+订阅到达标记的事件。 当采集的帧数达到 frame 参数的值时，触发回调并返回设定的值。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Capturer
 

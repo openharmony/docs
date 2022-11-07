@@ -98,7 +98,7 @@ AudioRenderer提供了渲染音频文件和控制播放的接口，开发者可�
   
       let writtenbytes = await audioRenderer.write(buf);
   
-      console.info('Actual written bytes: ' + writtenbytes);
+      console.info(`Actual written bytes: ${writtenbytes} `);
       if (writtenbytes < 0) {
         console.error('Write buffer failed. check the state of renderer');
       }
@@ -128,7 +128,7 @@ AudioRenderer提供了渲染音频文件和控制播放的接口，开发者可�
         }
         let buf = new ArrayBuffer(bufferSize);
         rlen += ss.readSync(buf);
-        console.info('Total bytes read from file: ' + rlen);
+        console.info(`Total bytes read from file: ${rlen}`);
         writeBuffer(buf);
       } else {
         console.info('check after next interval');
@@ -241,7 +241,7 @@ AudioRenderer提供了渲染音频文件和控制播放的接口，开发者可�
    let bufferSize : number = await audioRenderer.getBuffersize();
 
    // 获取渲染速率
-   let renderRate : audio.AudioRendererRate = await audioRenderer.getRendererRate();
+   let renderRate : audio.AudioRendererRate = await audioRenderer.getRenderRate();
    ```
 
 8. （可选）设置渲染器相关信息
@@ -273,9 +273,9 @@ AudioRenderer提供了渲染音频文件和控制播放的接口，开发者可�
    ```js
    audioRenderer.on('audioInterrupt', (interruptEvent) => {
      console.info('InterruptEvent Received');
-     console.info('InterruptType: ' + interruptEvent.eventType);
-     console.info('InterruptForceType: ' + interruptEvent.forceType);
-     console.info('AInterruptHint: ' + interruptEvent.hintType);
+     console.info(`InterruptType: ${interruptEvent.eventType}`);
+     console.info(`InterruptForceType: ${interruptEvent.forceType}`);
+     console.info(`AInterruptHint: ${interruptEvent.hintType}`);
 
      if (interruptEvent.forceType == audio.InterruptForceType.INTERRUPT_FORCE) {
        switch (interruptEvent.hintType) {
@@ -319,7 +319,7 @@ AudioRenderer提供了渲染音频文件和控制播放的接口，开发者可�
     ```js
     audioRenderer.on('markReach', (reachNumber) => {
       console.info('Mark reach event Received');
-      console.info('The renderer reached frame: ' + reachNumber);
+      console.info(`The renderer reached frame: ${reachNumber}`);
     });
 
     audioRenderer.off('markReach'); // 取消markReach事件的订阅，后续将无法监听到“标记到达”事件
@@ -332,7 +332,7 @@ AudioRenderer提供了渲染音频文件和控制播放的接口，开发者可�
     ```js
     audioRenderer.on('periodReach', (reachNumber) => {
       console.info('Period reach event Received');
-      console.info('In this period, the renderer reached frame: ' + reachNumber);
+      console.info(`In this period, the renderer reached frame: ${reachNumber} `);
     });
 
     audioRenderer.off('periodReach'); // 取消periodReach事件的订阅，后续将无法监听到“区间标记到达”事件
@@ -345,7 +345,7 @@ AudioRenderer提供了渲染音频文件和控制播放的接口，开发者可�
     ```js
     audioRenderer.on('stateChange', (audioState) => {
       console.info('State change event Received');
-      console.info('Current renderer state is: ' + audioState);
+      console.info(`Current renderer state is: ${audioState}`);
     });
     ```
 

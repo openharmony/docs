@@ -117,7 +117,7 @@ AudioCapturer提供了用于获取原始音频文件的方法。开发者可以�
        console.info('AudioRecLog: read buffer failed');
      } else {
        let number = fileio.writeSync(fd, buffer);
-       console.info('AudioRecLog: data written: ' + number);
+       console.info(`AudioRecLog: data written: ${number}`);
      }
       
      numBuffersToCapture--;
@@ -199,7 +199,7 @@ AudioCapturer提供了用于获取原始音频文件的方法。开发者可以�
     ```js
     audioCapturer.on('markReach', (reachNumber) => {
       console.info('Mark reach event Received');
-      console.info('The Capturer reached frame: ' + reachNumber);
+      console.info(`The Capturer reached frame: ${reachNumber}`);
     });
 
     audioCapturer.off('markReach'); // 取消markReach事件的订阅，后续将无法监听到“标记到达”事件
@@ -212,7 +212,7 @@ AudioCapturer提供了用于获取原始音频文件的方法。开发者可以�
     ```js
     audioCapturer.on('periodReach', (reachNumber) => {
       console.info('Period reach event Received');
-      console.info('In this period, the Capturer reached frame: ' + reachNumber);
+      console.info(`In this period, the Capturer reached frame: ${reachNumber}`);
     });
 
     audioCapturer.off('periodReach'); // 取消periodReach事件的订阅，后续将无法监听到“区间标记到达”事件
@@ -222,7 +222,7 @@ AudioCapturer提供了用于获取原始音频文件的方法。开发者可以�
 
     ```js
     audioCapturer.on('stateChange', (state) => {
-      console.info('AudioCapturerLog: Changed State to : ' + state)
+      console.info(`AudioCapturerLog: Changed State to : ${state}`)
       switch (state) {
         case audio.AudioState.STATE_PREPARED:
           console.info('--------CHANGE IN AUDIO STATE----------PREPARED--------------');
