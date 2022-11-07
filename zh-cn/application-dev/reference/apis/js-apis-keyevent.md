@@ -1,6 +1,6 @@
 # 按键输入事件
 
-KeyEvent模块提供了设备可以上报的按键事件。
+设备上报的按键事件。
 
 >  **说明：**
 >
@@ -18,9 +18,9 @@ import {Action, Key, KeyEvent} from '@ohos.multimodalInput.keyEvent';
 
 | 名称   | 参数类型 | 可读 | 可写 | 描述     |
 | ------ | -------- | ---- | ---- | -------- |
-| CANCEL | number   | 是   | 否   | 取消按钮 |
-| DOWN   | number   | 是   | 否   | 按下按钮 |
-| UP     | number   | 是   | 否   | 抬起按钮 |
+| CANCEL | number   | 是   | 否   | 按键取消 |
+| DOWN   | number   | 是   | 否   | 按键按下 |
+| UP     | number   | 是   | 否   | 按键抬起 |
 
 ## Key
 
@@ -29,8 +29,8 @@ import {Action, Key, KeyEvent} from '@ohos.multimodalInput.keyEvent';
 | 名称        | 参数类型 | 可读 | 可写 | 描述           |
 | ----------- | -------- | ---- | ---- | -------------- |
 | code        | KeyCode  | 是   | 否   | 按键码         |
-| pressedTime | number   | 是   | 否   | 按下持续的时间 |
-| deviceId    | number   | 是   | 否   | 按键所属设备   |
+| pressedTime | number   | 是   | 否   | 按键按下时间 |
+| deviceId    | number   | 是   | 否   | 按键所属设备id   |
 
 ## KeyEvent
 
@@ -39,7 +39,7 @@ import {Action, Key, KeyEvent} from '@ohos.multimodalInput.keyEvent';
 | 名称        | 参数类型 | 可读 | 可写 | 描述                           |
 | ----------- | -------- | ---- | ---- | ------------------------------ |
 | action      | Action   | 是   | 否   | 按键动作                       |
-| key         | Key      | 是   | 否   | 当前发生变化的按键             |
+| key         | Key      | 是   | 否   | 当前上报的按键             |
 | unicodeChar | number   | 是   | 否   | 按键对应的uniCode字符          |
 | keys        | Key[]    | 是   | 否   | 当前处于按下状态的按键列表     |
 | ctrlKey     | boolean  | 是   | 否   | 当前ctrlKey是否处于按下状态    |

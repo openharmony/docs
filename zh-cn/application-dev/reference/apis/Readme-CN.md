@@ -219,7 +219,7 @@
   - [@ohos.geolocation (位置服务)](js-apis-geolocation.md)
   - [@ohos.multimodalInput.inputConsumer (组合按键)](js-apis-inputconsumer.md)
   - [@ohos.multimodalInput.inputDevice (输入设备)](js-apis-inputdevice.md)
-  - [@ohos.multimodalInput.inputDeviceCooperate (键鼠穿越管理)](js-apis-cooperate.md)
+  - [@ohos.multimodalInput.inputDeviceCooperate (键鼠穿越)](js-apis-cooperate.md)
   - [@ohos.multimodalInput.inputEvent (输入事件)](js-apis-inputevent.md)
   - [@ohos.multimodalInput.inputEventClient (按键注入)](js-apis-inputeventclient.md)
   - [@ohos.multimodalInput.inputMonitor (输入监听)](js-apis-inputmonitor.md)
