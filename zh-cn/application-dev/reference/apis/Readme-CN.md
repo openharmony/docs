@@ -46,7 +46,7 @@
     - [@ohos.application.formError (FormError)](js-apis-formerror.md)
     - [@ohos.application.formHost (FormHost)](js-apis-formhost.md)
     - [@ohos.application.formInfo (FormInfo)](js-apis-formInfo.md)
-    - [@ohos.application.formProvider (FormProvider)](js-apis-formprovider.md)
+    - [@ohos.app.form.formProvider (FormProvider)](js-apis-app-form-formprovider.md)
     - [@ohos.application.missionManager (missionManager)](js-apis-missionManager.md)
     - [@ohos.application.quickFixManager (quickFixManager)](js-apis-application-quickFixManager.md)
     - [@ohos.application.Want (Want)](js-apis-application-Want.md)
@@ -294,6 +294,7 @@
   - [@ohos.uitest (UiTest)](js-apis-uitest.md)
 
 - 已停止维护的接口
+  - [@ohos.application.formProvider (FormProvider)](js-apis-formprovider.md)
   - [@ohos.backgroundTaskManager (后台任务管理)](js-apis-backgroundTaskManager.md)
   - [@ohos.bundle (Bundle模块)](js-apis-Bundle.md)
   - [@ohos.bundle.innerBundleManager (innerBundleManager模块)](js-apis-Bundle-InnerBundleManager.md)
