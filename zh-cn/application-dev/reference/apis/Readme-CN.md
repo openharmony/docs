@@ -202,6 +202,7 @@
   - [@ohos.inputmethodengine (输入法服务)](js-apis-inputmethodengine.md)
   - [@ohos.inputmethodextensionability (InputMethodExtensionAbility)](js-apis-inputmethod-extension-ability.md)
   - [@ohos.inputmethodextensioncontext (InputMethodExtensionContext)](js-apis-inputmethod-extension-context.md)
+  - [@ohos.inputmethodsubtype(输入法子类型)](js-apis-inputmethod-subtype.md)
   - [@ohos.pasteboard (剪贴板)](js-apis-pasteboard.md)
   - [@ohos.screenLock (锁屏管理)](js-apis-screen-lock.md)
   - [@ohos.systemTime (系统时间、时区)](js-apis-system-time.md)
