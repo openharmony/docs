@@ -1830,7 +1830,7 @@ void OH_Drawing_SetTextStyleFontFamilies (OH_Drawing_TextStyle * , int , const c
 | -------- | -------- |
 | OH_Drawing_TextStyle | 指向OH_Drawing_TextStyle对象的指针 | 
 | int | 字体名称数量 | 
-| char | 指向字体类型的指针 | 
+| fontFamilies | 指向字体类型的指针数组 | 
 
 
 ### OH_Drawing_SetTextStyleFontHeight()
