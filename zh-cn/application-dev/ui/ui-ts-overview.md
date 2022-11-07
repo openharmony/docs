@@ -67,7 +67,6 @@
 
 - [`ArkUIAnimation`：动画（ArkTS）（API8）](https://gitee.com/openharmony/applications_app_samples/tree/master/ETSUI/ArkUIAnimation)
 
-- [`Xcomponent`：XComponent（ArkTS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/ETSUI/XComponent)
 
 - [`MouseEvent`：鼠标事件（ArkTS）（API8）](https://gitee.com/openharmony/applications_app_samples/tree/master/ETSUI/MouseEvent)
 
