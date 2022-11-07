@@ -147,9 +147,9 @@ import window from '@ohos.window';
 
 | 名称            | 参数类型                  | 可读 | 可写 | 说明                                                         |
 | --------------- | ------------------------- | ---- | ---- | ------------------------------------------------------------ |
-| type            | [WindowType](#windowtype) | 是   | 否   | 当前属性改变的系统栏类型，仅支持类型为导航栏、状态栏的系统栏。 |
+| type            | [WindowType](#windowtype7) | 是   | 否   | 当前属性改变的系统栏类型，仅支持类型为导航栏、状态栏的系统栏。 |
 | isEnable        | boolean                   | 是   | 否   | 当前系统栏是否显示。                                         |
-| region          | [Rect](#rect)             | 是   | 否   | 当前系统栏的位置及大小。                                     |
+| region          | [Rect](#rect7)             | 是   | 否   | 当前系统栏的位置及大小。                                     |
 | backgroundColor | string                    | 是   | 否   | 系统栏背景颜色，为十六进制RGB或ARGB颜色，不区分大小写，例如`#00FF00`或`#FF00FF00`。 |
 | contentColor    | string                    | 是   | 否   | 系统栏文字颜色。                                             |
 
@@ -188,10 +188,10 @@ import window from '@ohos.window';
 | 名称       | 参数类型      | 可读 | 可写 | 说明               |
 | ---------- | ------------- | ---- | ---- | ------------------ |
 | visible<sup>9+</sup>    | boolean       | 是   | 是   | 规避区域是否可见。 |
-| leftRect   | [Rect](#rect) | 是   | 是   | 屏幕左侧的矩形区。 |
-| topRect    | [Rect](#rect) | 是   | 是   | 屏幕顶部的矩形区。 |
-| rightRect  | [Rect](#rect) | 是   | 是   | 屏幕右侧的矩形区。 |
-| bottomRect | [Rect](#rect) | 是   | 是   | 屏幕底部的矩形区。 |
+| leftRect   | [Rect](#rect7) | 是   | 是   | 屏幕左侧的矩形区。 |
+| topRect    | [Rect](#rect7) | 是   | 是   | 屏幕顶部的矩形区。 |
+| rightRect  | [Rect](#rect7) | 是   | 是   | 屏幕右侧的矩形区。 |
+| bottomRect | [Rect](#rect7) | 是   | 是   | 屏幕底部的矩形区。 |
 
 ## Size<sup>7+</sup>
 
@@ -212,8 +212,8 @@ import window from '@ohos.window';
 
 | 名称                                  | 参数类型                  | 可读 | 可写 | 说明                                                         |
 | ------------------------------------- | ------------------------- | ---- | ---- | ------------------------------------------------------------ |
-| windowRect<sup>7+</sup>               | [Rect](#rect)             | 是   | 是   | 窗口尺寸。                                                   |
-| type<sup>7+</sup>                     | [WindowType](#windowtype) | 是   | 是   | 窗口类型。                                                   |
+| windowRect<sup>7+</sup>               | [Rect](#rect7)             | 是   | 是   | 窗口尺寸。                                                   |
+| type<sup>7+</sup>                     | [WindowType](#windowtype7) | 是   | 是   | 窗口类型。                                                   |
 | isFullScreen                          | boolean                   | 是   | 是   | 是否全屏，默认为false。                                      |
 | isLayoutFullScreen<sup>7+</sup>       | boolean                   | 是   | 是   | 窗口是否为沉浸式，默认为false。                              |
 | focusable<sup>7+</sup>                | boolean                   | 是   | 否   | 窗口是否可聚焦，默认为true。                                 |
@@ -297,7 +297,7 @@ create(id: string, type: WindowType, callback: AsyncCallback&lt;Window&gt;): voi
 | 参数名   | 类型                                   | 必填 | 说明                                 |
 | -------- | -------------------------------------- | ---- | ------------------------------------ |
 | id       | string                                 | 是   | 窗口id。                             |
-| type     | [WindowType](#windowtype)              | 是   | 窗口类型。                           |
+| type     | [WindowType](#windowtype7)              | 是   | 窗口类型。                           |
 | callback | AsyncCallback&lt;[Window](#window)&gt; | 是   | 回调函数。返回当前创建的子窗口对象。 |
 
 **示例：**
@@ -329,7 +329,7 @@ create(id: string, type: WindowType): Promise&lt;Window&gt;
 | 参数名 | 类型                      | 必填 | 说明       |
 | ------ | ------------------------- | ---- | ---------- |
 | id     | string                    | 是   | 窗口id。   |
-| type   | [WindowType](#windowtype) | 是   | 窗口类型。 |
+| type   | [WindowType](#windowtype7) | 是   | 窗口类型。 |
 
 **返回值：**
 
@@ -366,7 +366,7 @@ create(ctx: Context, id: string, type: WindowType, callback: AsyncCallback&lt;Wi
 | -------- | -------------------------------------- | ---- | ------------------------------------------------------------ |
 | ctx      | Context                                | 是   | 当前应用上下文信息。<br>API version 8的Context定义见[Context](js-apis-Context.md)。<br>API version 9的Context定义见[Context](js-apis-service-extension-context.md)。 |
 | id       | string                                 | 是   | 窗口id。                                                     |
-| type     | [WindowType](#windowtype)              | 是   | 窗口类型。                                                   |
+| type     | [WindowType](#windowtype7)              | 是   | 窗口类型。                                                   |
 | callback | AsyncCallback&lt;[Window](#window)&gt; | 是   | 回调函数。返回当前创建的子窗口对象。                         |
 
 **示例：**
@@ -400,7 +400,7 @@ create(ctx: Context, id: string, type: WindowType): Promise&lt;Window&gt;
 | ------ | ------------------------- | ---- | ------------------------------------------------------------ |
 | ctx    | Context                   | 是   | 当前应用上下文信息。<br/>API version 8的Context定义见[Context](js-apis-Context.md)。<br/>API version 9的Context定义见[Context](js-apis-service-extension-context.md)。 |
 | id     | string                    | 是   | 窗口id。                                                     |
-| type   | [WindowType](#windowtype) | 是   | 窗口类型。                                                   |
+| type   | [WindowType](#windowtype7) | 是   | 窗口类型。                                                   |
 
 **返回值：**
 
@@ -808,7 +808,7 @@ on(type: 'systemBarTintChange', callback: Callback&lt;SystemBarTintState&gt;): v
 | 参数名   | 类型                                                      | 必填 | 说明                                                         |
 | -------- | --------------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | type     | string                                                    | 是   | 监听事件，固定为'systemBarTintChange'，即导航栏、状态栏属性变化事件。 |
-| callback | Callback&lt;[SystemBarTintState](#systembartintstate)&gt; | 是   | 回调函数。返回当前的状态栏、导航栏信息集合。                 |
+| callback | Callback&lt;[SystemBarTintState](#systembartintstate8)&gt; | 是   | 回调函数。返回当前的状态栏、导航栏信息集合。                 |
 
 **示例：**
 
@@ -833,7 +833,7 @@ off(type: 'systemBarTintChange', callback?: Callback&lt;SystemBarTintState &gt;)
 | 参数名   | 类型                                                      | 必填 | 说明                                                         |
 | -------- | --------------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | type     | string                                                    | 是   | 监听事件，固定为'systemBarTintChange'，即导航栏、状态栏属性变化事件。 |
-| callback | Callback&lt;[SystemBarTintState](#systembartintstate)&gt; | 否   | 回调函数。返回当前的状态栏、导航栏信息集合。                 |
+| callback | Callback&lt;[SystemBarTintState](#systembartintstate8)&gt; | 否   | 回调函数。返回当前的状态栏、导航栏信息集合。                 |
 
 **示例：**
 
@@ -1181,6 +1181,10 @@ resetSize(width: number, height: number, callback: AsyncCallback&lt;void&gt;): v
 
 改变当前窗口大小，使用callback异步回调。
 
+应用主窗口与子窗口存在大小限制，宽度范围：[320,2560]，高度范围：[240,2560]，单位为vp。
+
+系统窗口存在大小限制，宽度范围：[0,2560]，高度范围：[0,2560]，单位为vp。
+
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
 **参数：**
@@ -1208,6 +1212,10 @@ windowClass.resetSize(500, 1000, (err, data) => {
 resetSize(width: number, height: number): Promise&lt;void&gt;
 
 改变当前窗口大小，使用Promise异步回调。
+
+应用主窗口与子窗口存在大小限制，宽度范围：[320,2560]，高度范围：[240,2560]，单位为vp。
+
+系统窗口存在大小限制，宽度范围：[0,2560]，高度范围：[0,2560]，单位为vp。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -1253,7 +1261,7 @@ setWindowType(type: WindowType, callback: AsyncCallback&lt;void&gt;): void
 
 | 参数名   | 类型                      | 必填 | 说明       |
 | -------- | ------------------------- | ---- | ---------- |
-| type     | [WindowType](#windowtype) | 是   | 窗口类型。 |
+| type     | [WindowType](#windowtype7) | 是   | 窗口类型。 |
 | callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。 |
 
 **示例：**
@@ -1287,7 +1295,7 @@ setWindowType(type: WindowType): Promise&lt;void&gt;
 
 | 参数名 | 类型                      | 必填 | 说明       |
 | ------ | ------------------------- | ---- | ---------- |
-| type   | [WindowType](#windowtype) | 是   | 窗口类型。 |
+| type   | [WindowType](#windowtype7) | 是   | 窗口类型。 |
 
 **返回值：**
 
