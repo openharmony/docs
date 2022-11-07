@@ -581,7 +581,7 @@ cacheMode(cacheMode: CacheMode)
   }
   ```
 
-### textZoomRatio
+### textZoomRatio<sup>9+</sup>
 
 textZoomRatio(textZoomRatio: number)
 
@@ -606,6 +606,36 @@ textZoomRatio(textZoomRatio: number)
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
           .textZoomRatio(this.atio)
+      }
+    }
+  }
+  ```
+
+### initialScale<sup>9+</sup>
+
+initialScale(percent: number)
+
+设置整体页面的缩放百分比，默认为100%。
+
+**参数：**
+
+| 参数名          | 参数类型   | 必填   | 默认值  | 参数描述            |
+| ------------ | ------ | ---- | ---- | --------------- |
+| percent | number | 是    | 100 | 要设置的整体页面的缩放百分比。 |
+
+**示例：**
+
+  ```ts
+  // xxx.ets
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: WebController = new WebController()
+    @State percent: number = 100
+    build() {
+      Column() {
+        Web({ src: 'www.example.com', controller: this.controller })
+          .initialScale(this.percent)
       }
     }
   }
@@ -1345,6 +1375,71 @@ onShowFileSelector(callback: (event?: { result: FileSelectorResult, fileSelector
   }
   ```
 
+### onResourceLoad<sup>9+</sup>
+
+onResourceLoad(callback: (event: {url: string}) => void)
+
+通知Web组件所加载的资源文件url信息。
+
+**参数：**
+
+| 参数名  | 参数类型                                     | 参数描述      |
+| ---- | ---------------------------------------- | --------- |
+| url | string | 所加载的资源文件url信息。 |
+
+**示例：**
+
+  ```ts
+  // xxx.ets
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: WebController = new WebController()
+  
+    build() {
+      Column() {
+        Web({ src: 'www.example.com', controller: this.controller })
+          .onResourceLoad((event) => {
+            console.log('onResourceLoad: ' + event.url)
+          })
+      }
+    }
+  }
+  ```
+
+### onScaleChange<sup>9+</sup>
+
+onScaleChange(callback: (event: {oldScale: number, newScale: number}) => void)
+
+当前页面显示比例的变化时触发该回调。
+
+**参数：**
+
+| 参数名  | 参数类型                                     | 参数描述      |
+| ---- | ---------------------------------------- | --------- |
+| oldScale | number | 变化前的显示比例百分比。 |
+| newScale | number | 变化后的显示比例百分比。 |
+
+**示例：**
+
+  ```ts
+  // xxx.ets
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: WebController = new WebController()
+  
+    build() {
+      Column() {
+        Web({ src: 'www.example.com', controller: this.controller })
+          .onScaleChange((event) => {
+            console.log('onScaleChange changed from ' + event.oldScale + ' to ' + event.newScale)
+          })
+      }
+    }
+  }
+  ```
+
 ### onUrlLoadIntercept
 
 onUrlLoadIntercept(callback: (event?: { data:string | WebResourceRequest }) => boolean)
@@ -1793,6 +1888,38 @@ onGeolocationShow(callback: (event?: { origin: string, geolocation: JsGeolocatio
   }
   ```
 
+### onGeolocationHide
+
+onGeolocationHide(callback: () => void)
+
+通知用户先前被调用[onGeolocationShow](#ongeolocationshow)时收到地理位置信息获取请求已被取消。
+
+**参数：**
+
+| 参数名      | 参数类型                         | 参数描述          |
+| ----------- | ------------------------------- | ---------------- |
+| callback     | () => void           | 地理位置信息获取请求已被取消的回调函数。 |
+
+**示例：**
+
+  ```ts
+  // xxx.ets
+  @Entry
+  @Component
+  struct WebComponent {
+    controller:WebController = new WebController()
+    build() {
+      Column() {
+        Web({ src:'www.example.com', controller:this.controller })
+        .geolocationAccess(true)
+        .onGeolocationHide(() => {
+          console.log("onGeolocationHide...")
+        })
+      }
+    }
+  }
+  ```
+
 ### onFullScreenEnter<sup>9+</sup>
 
 onFullScreenEnter(callback: (event: { handler: FullScreenExitHandler }) => void)
@@ -1922,7 +2049,7 @@ onWindowExit(callback: () => void)
     build() {
       Column() {
         Web({ src:'www.example.com', controller: this.controller })
-        .onWindowExit((event) => {
+        .onWindowExit(() => {
           console.log("onWindowExit...")
         })
       }
