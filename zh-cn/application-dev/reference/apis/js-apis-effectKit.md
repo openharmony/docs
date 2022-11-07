@@ -4,7 +4,7 @@
 
 该模块提供以下图像效果相关的常用功能：
 
-- [Filter](#filter)：效果链，指各种图像处理效果的集合链表。
+- [Filter](#filter)：效果类，用于添加指定效果到图像源。
 - [Color](#color)：颜色类，用于保存取色的结果。
 - [ColorPicker](#colorpicker)：智能取色器。
 
@@ -181,6 +181,7 @@ getMainColorSync(): Color
 let color = colorPicker.getMainColorSync();
 console.log('get main color =' + color);
 ```
+![zh-ch_image_Main_Color.png](figures/zh-ch_image_Main_Color.png)
 
 ## Filter
 
@@ -204,7 +205,7 @@ blur(radius: number): Filter
 
 | 类型           | 说明                                            |
 | :------------- | :---------------------------------------------- |
-| [Filter](#filter) | 返回效果链表头。 |
+| [Filter](#filter) | 返回已添加的图像效果。 |
 
 **示例：**
 
@@ -221,6 +222,7 @@ image.createPixelMap(color, opts).then((pixelMap) => {
   }
 })
 ```
+![zh-ch_image_Add_Blur.png](figures/zh-ch_image_Add_Blur.png)
 
 ### brightness
 
@@ -240,7 +242,7 @@ brightness(bright: number): Filter
 
 | 类型           | 说明                                            |
 | :------------- | :---------------------------------------------- |
-| [Filter](#filter) | 返回效果链表头。 |
+| [Filter](#filter) | 返回已添加的图像效果。 |
 
 **示例：**
 
@@ -257,6 +259,7 @@ image.createPixelMap(color, opts).then((pixelMap) => {
   }
 })
 ```
+![zh-ch_image_Add_Brightness.png](figures/zh-ch_image_Add_Brightness.png)
 
 ### grayscale
 
@@ -270,7 +273,7 @@ grayscale(): Filter
 
 | 类型           | 说明                                            |
 | :------------- | :---------------------------------------------- |
-| [Filter](#filter) | 返回效果链表头。 |
+| [Filter](#filter) | 返回已添加的图像效果。 |
 
 **示例：**
 
@@ -286,10 +289,11 @@ image.createPixelMap(color, opts).then((pixelMap) => {
   }
 })
 ```
+![zh-ch_image_Add_Grayscale.png](figures/zh-ch_image_Add_Grayscale.png)
 
 ### getPixelMap
 
-getPixelMap(): image.PixelMap
+getPixelMap(): [image.PixelMap](js-apis-image.md#pixelmap7)
 
 获取已添加链表效果的源图像的image.PixelMap。
 
@@ -299,7 +303,7 @@ getPixelMap(): image.PixelMap
 
 | 类型           | 说明                                            |
 | :------------- | :---------------------------------------------- |
-| [image.PixelMap](js-apis-image.md#pixelmap7) | 已添加链表效果的源图像的image.PixelMap。 |
+| [image.PixelMap](js-apis-image.md#pixelmap7) | 已添加效果的源图像的image.PixelMap。 |
 
 **示例：**
 
