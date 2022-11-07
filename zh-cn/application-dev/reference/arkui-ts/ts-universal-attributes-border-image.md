@@ -41,18 +41,30 @@
 @Entry
 @Component
 struct Index {
+  @State outSetValue: number = 40
 
   build() {
     Row() {
       Column() {
-        Text('This is borderImage.').textAlign(TextAlign.Center)
+        Text('This is borderImage.').textAlign(TextAlign.Center).fontSize(50)
           .borderImage({
-            source: "borderOrigin.png",
-            slice: {top:"31%", bottom:"31%", left:"31%", right:"31%"},
-            width: {top:"20px", bottom:"20px", left:"20px", right:"20px"},
-            outset: {top:"5px", bottom:"5px", left:"5px", right:"5px"},
+            source: $r('app.media.heart'),
+            slice: `${this.outSetValue}%`,
+            width: `${this.outSetValue}px`,
+            outset: '5px',
             repeat: RepeatMode.Repeat,
             fill: false
+          })
+        Slider({
+          value: this.outSetValue,
+          min: 0,
+          max: 100,
+          style: SliderStyle.OutSet
+        })
+          .margin({ top: 30 })
+          .onChange((value: number, mode: SliderChangeMode) => {
+            this.outSetValue = value;
+            console.info('value:' + value + 'mode:' + mode.toString());
           })
       }
       .width('100%')
@@ -62,7 +74,7 @@ struct Index {
 }
 ```
 
-![zh-cn_image_borderImage](figures/borderImage.png)
+![zh-cn_image_borderImage](figures/borderImage.gif)
 
 
 ```ts
@@ -73,7 +85,7 @@ struct Index {
   build() {
     Row() {
       Column() {
-        Text('This is gradient color.').textAlign(TextAlign.Center)
+        Text('This is gradient color.').textAlign(TextAlign.Center).width(68)
           .borderImage({
             source: {
               angle: 90,
