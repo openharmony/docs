@@ -325,7 +325,7 @@ try {
     console.log(`Keyboard mouse crossing event: ${JSON.stringify(data)}`);
   });
 } catch (err) {
-  console.log(`Registered failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.log(`Register failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
