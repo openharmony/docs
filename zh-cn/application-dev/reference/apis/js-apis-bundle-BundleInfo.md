@@ -1,15 +1,13 @@
 # BundleInfo
 
-
-
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
 > 本模块首批接口从API version 7 开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
-
-
 应用包的信息，未做特殊说明的属性，均通过GET_BUNDLE_DEFAULT获取。
 
-## BundleInfo
+## BundleInfo<sup>(deprecated)<sup>
+
+> 从API version 9开始不再维护，建议使用[BundleInfo](js-apis-bundleManager-bundleInfo.md)替代。
 
  **系统能力:** 以下各项对应的系统能力均为SystemCapability.BundleManager.BundleFramework。
 
@@ -38,11 +36,12 @@
 | minCompatibleVersionCode          | number                                                       | 是   | 否   | 分布式场景下的应用包兼容的最低版本。                         |
 | entryInstallationFree             | boolean                                                      | 是   | 否   | Entry是否支持免安装。                                        |
 | reqPermissionStates<sup>8+</sup>  | Array\<number>                                               | 是   | 否   | 申请权限的授予状态。                                         |
-| extensionAbilityInfo<sup>9+</sup> | Array\<[ExtensionAbilityInfo](js-apis-bundle-ExtensionAbilityInfo.md)> | 是   | 否   | ability的可扩展信息<br />通过传入GET_BUNDLE_WITH_EXTENSION_ABILITY获取。 |
 
 
 
-## ReqPermissionDetail
+## ReqPermissionDetail<sup>(deprecated)<sup>
+
+> 从API version 9开始不再维护，建议使用[ReqPermissionDetail](js-apis-bundleManager-bundleInfo.md)替代。
 
 应用运行时需向系统申请的权限集合的详细信息。
 
@@ -52,12 +51,13 @@
 | --------------------- | ----------------------- | ---- | ---- | ---------------------- |
 | name                  | string                  | 是   | 是   | 需要使用的权限名称。   |
 | reason                | string                  | 是   | 是   | 描述申请权限的原因。   |
-| reasonId<sup>9+</sup> | number                  | 是   | 是   | 描述申请权限的原因ID。 |
 | usedScene             | [UsedScene](#usedscene) | 是   | 是   | 权限使用的场景和时机。 |
 
 
 
-## UsedScene
+## UsedScene<sup>(deprecated)<sup>
+
+> 从API version 9开始不再维护，建议使用[UsedScene](js-apis-bundleManager-bundleInfo.md)替代。
 
 描述权限使用的场景和时机。
 

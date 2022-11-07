@@ -1,52 +1,41 @@
 # PackInfo
 
-> **说明：**
+
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
 > 本模块首批接口从API version 9 开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
-应用包信息，通过接口[bundle.getBundlePackInfo](js-apis-Bundle.md)获取。
-
-## BundlePackFlag
-
-**系统API：** 此接口为系统接口，三方应用不支持调用
-
-**系统能力：** 以下各项对应的系统能力均为SystemCapability.BundleManager.BundleFramework
-
-| 名称               | 值         | 说明                               |
-| ------------------ | ---------- | ---------------------------------- |
-| GET_PACK_INFO_ALL  | 0x00000000 | 获取应用包pack.info的所有信息。    |
-| GET_PACKAGES       | 0x00000001 | 获取应用包pack.info的package信息。 |
-| GET_BUNDLE_SUMMARY | 0x00000002 | 获取应用包pack.info的bundle摘要。  |
-| GET_MODULE_SUMMARY | 0x00000004 | 获取应用包pack.info的module摘要。  |
+应用包信息，通过接口[freeInstall.getBundlePackInfo](js-apis-freeInstall.md)获取。
 
 ## BundlePackInfo
 
-**系统API：** 此接口为系统接口，三方应用不支持调用
+**系统接口：** 此接口为系统接口。
 
-**系统能力：** 以下各项对应的系统能力均为SystemCapability.BundleManager.BundleFramework
+**系统能力：** SystemCapability.BundleManager.BundleFrameWork.FreeInstall
 
-| 名称     | 类型                                    | 可读 | 可写 | 说明                          |
-| -------- | --------------------------------------- | ---- | ---- | ----------------------------- |
-| packages | Array\<[PackageConfig](#packageconfig)> | 是   | 否   | 获取pack.info的包信息。       |
-| summary  | [PackageSummary](#packagesummary)       | 是   | 否   | 获取pack.info中的包摘要信息。 |
+
+| 名称     | 类型                                    | 可读 | 可写 | 说明                      |
+| -------- | --------------------------------------- | ---- | ---- | ------------------------- |
+| packages | Array\<[PackageConfig](#packageconfig)> | 是   | 否   | pack.info的包信息。       |
+| summary  | [PackageSummary](#packagesummary)       | 是   | 否   | pack.info中的包摘要信息。 |
 
 ## PackageConfig
 
-**系统API：** 此接口为系统接口，三方应用不支持调用
+**系统接口：** 此接口为系统接口。
 
-**系统能力：** 以下各项对应的系统能力均为SystemCapability.BundleManager.BundleFramework
+**系统能力：** SystemCapability.BundleManager.BundleFrameWork.FreeInstall
 
 | 名称                | 类型           | 可读 | 可写 | 说明                                                         |
 | ------------------- | -------------- | ---- | ---- | ------------------------------------------------------------ |
-| deviceType          | Array\<string> | 是   | 否   | 包支持的设备类型。                                           |
+| deviceTypes          | Array\<string> | 是   | 否   | 包支持的设备类型。                                       |
 | name                | string         | 是   | 否   | 包的名称。                                                   |
 | moduleType          | string         | 是   | 否   | 包的module类型。                                             |
 | deliveryWithInstall | boolean        | 是   | 否   | 是否在用户主动安装的时候安装，true表示主动安装时安装，false表示主动安装时不安装。 |
 
-## PackageSummary 
+## PackageSummary
 
-**系统API：** 此接口为系统接口，三方应用不支持调用
+**系统接口：** 此接口为系统接口。
 
-**系统能力：** 以下各项对应的系统能力均为SystemCapability.BundleManager.BundleFramework
+**系统能力：** SystemCapability.BundleManager.BundleFrameWork.FreeInstall
 
 | 名称    | 类型                                          | 可读 | 可写 | 说明                 |
 | ------- | --------------------------------------------- | ---- | ---- | -------------------- |
@@ -55,9 +44,9 @@
 
 ## BundleConfigInfo
 
-**系统API：** 此接口为系统接口，三方应用不支持调用
+**系统接口：** 此接口为系统接口。
 
-**系统能力：** 以下各项对应的系统能力均为SystemCapability.BundleManager.BundleFramework
+**系统能力：** SystemCapability.BundleManager.BundleFrameWork.FreeInstall
 
 | 名称       | 类型                | 可读 | 可写 | 说明                               |
 | ---------- | ------------------- | ---- | ---- | ---------------------------------- |
@@ -66,60 +55,61 @@
 
 ## ModuleConfigInfo
 
-**系统API：** 此接口为系统接口，三方应用不支持调用
+**系统接口：** 此接口为系统接口。
 
-**系统能力：** 以下各项对应的系统能力均为SystemCapability.BundleManager.BundleFramework
+**系统能力：** SystemCapability.BundleManager.BundleFrameWork.FreeInstall
 
 | 名称               | 类型                                              | 可读 | 可写 | 说明                               |
 | ------------------ | ------------------------------------------------- | ---- | ---- | ---------------------------------- |
+| mainAbility | string | 是 | 否 | 应用主ability的名称。 |
 | apiVersion         | [ApiVersion](#apiversion)                         | 是   | 否   | module的api版本。                  |
 | deviceType         | Array\<string>                                    | 是   | 否   | module的设备类型。                 |
 | distro             | [ModuleDistroInfo](#moduledistroinfo)             | 是   | 否   | module发行版信息。                 |
-| abilities          | Array\<[ModuleAbilityInfo](#moduleabilityinfo)>   | 是   | 否   | module的元能力信息。               |
-| extensionAbilities | Array\<[ExtensionAbilities](#extensionabilities)> | 是   | 否   | 描述extensionAbilities的配置信息。 |
+| abilities          | Array\<[ModuleAbilityInfo](#moduleabilityinfo)>   | 是   | 否   | module包含的ability组件信息。               |
+| extensionAbilities | Array\<[ExtensionAbilities](#extensionability)> | 是   | 否   | 描述extensionAbilities的配置信息。 |
 
-## ModuleDistroInfo 
+## ModuleDistroInfo
 
-**系统API：** 此接口为系统接口，三方应用不支持调用
+**系统接口：** 此接口为系统接口。
 
-**系统能力：** 以下各项对应的系统能力均为SystemCapability.BundleManager.BundleFramework
+**系统能力：** SystemCapability.BundleManager.BundleFrameWork.FreeInstall
 
 | 名称                | 类型    | 可读 | 可写 | 说明                                                         |
 | ------------------- | ------- | ---- | ---- | ------------------------------------------------------------ |
-| mainAbility         | string  | 是   | 否   | 主要能力的名称。                                             |
 | deliveryWithInstall | boolean | 是   | 否   | 是否在用户主动安装的时候安装，true表示主动安装时安装，false表示主动安装时不安装。 |
 | installationFree    | boolean | 是   | 否   | 表示当前HAP是否支持免安装特性。true表示支持免安装特性，且符合免安装约束，false表示不支持免安装特性。 |
 | moduleName          | string  | 是   | 否   | module名称。                                                 |
 | moduleType          | string  | 是   | 否   | module类型。                                                 |
 
-## ModuleAbilityInfo 
+## ModuleAbilityInfo
 
-**系统API：** 此接口为系统接口，三方应用不支持调用
+**系统接口：** 此接口为系统接口。
 
-**系统能力：** 以下各项对应的系统能力均为SystemCapability.BundleManager.BundleFramework
+**系统能力：** SystemCapability.BundleManager.BundleFrameWork.FreeInstall
 
 | 名称    | 类型                                        | 可读 | 可写 | 说明                                                         |
 | ------- | ------------------------------------------- | ---- | ---- | ------------------------------------------------------------ |
-| name    | string                                      | 是   | 否   | 表示当前ability的逻辑名，该名称在整个应用要唯一。            |
+| name    | string                                      | 是   | 否   | 表示当前ability的名称，该名称在整个应用要唯一。            |
 | label   | string                                      | 是   | 否   | 表示ability对用户显示的名称，标签值配置为该名称的资源索引以支持多语言。 |
 | visible | boolean                                     | 是   | 否   | 表示ability是否可以被其它应用调用，true表示可以被其它应用调用，false表示不可以被其它应用调用。 |
 | forms   | Array\<[AbilityFormInfo](#abilityforminfo)> | 是   | 否   | 卡片信息。                                                   |
 
-## ExtensionAbilities
+## ExtensionAbility
 
-**系统API：** 此接口为系统接口，三方应用不支持调用
+**系统接口：** 此接口为系统接口。
 
-**系统能力：** 以下各项对应的系统能力均为SystemCapability.BundleManager.BundleFramework
+**系统能力：** SystemCapability.BundleManager.BundleFrameWork.FreeInstall
 
 | 名称  | 类型                                        | 可读 | 可写 | 说明                                                         |
 | ----- | ------------------------------------------- | ---- | ---- | ------------------------------------------------------------ |
+| name | string | 是 | 否 | 表示该ExtensionAbility的名称 |
 | forms | Array\<[AbilityFormInfo](#abilityforminfo)> | 是   | 否   | 表示form卡片的规格，form卡片是可以嵌入桌面上并接收定时更新的应用简要视图。 |
 
 ## AbilityFormInfo
 
-**系统API：** 此接口为系统接口，三方应用不支持调用
+**系统接口：** 此接口为系统接口。
 
-**系统能力：** 以下各项对应的系统能力均为SystemCapability.BundleManager.BundleFramework
+**系统能力：** SystemCapability.BundleManager.BundleFrameWork.FreeInstall
 
 | 名称                | 类型           | 可读 | 可写 | 说明                                                         |
 | ------------------- | -------------- | ---- | ---- | ------------------------------------------------------------ |
@@ -128,26 +118,26 @@
 | updateEnabled       | boolean        | 是   | 否   | 表示该卡片是否支持定时刷新，true表示卡片支持定时刷新，false表示不支持。 |
 | scheduledUpdateTime | string         | 是   | 否   | 表示卡片定点刷新的时间，采用24小时计数，精确到分钟。         |
 | updateDuration      | number         | 是   | 否   | 表示卡片定时刷新的更新频率，单位为30分钟，取值为30的倍数值。卡片的最高频率为每30分钟刷新一次，和定点刷新二选一，二者都配置的情况下，定时优先。 |
-| supportDimensions   | Array\<number> | 是   | 否   | 表示卡片外观规格，取值为“1\*2”，“2\*2”，“2\*4”，“4\*4”，定义卡片时至少要指定一个卡片规格。 |
-| defaultDimension    | number         | 是   | 否   | 表示卡片默认外观规格，取值必须在supportDimensions配置的列表中。 |
+| supportDimensions   | Array\<string> | 是   | 否   | 表示卡片外观规格，取值为“1\*2”，“2\*2”，“2\*4”，“4\*4”，定义卡片时至少要指定一个卡片规格。 |
+| defaultDimension    | string         | 是   | 否   | 表示卡片默认外观规格，取值必须在supportDimensions配置的列表中。 |
 
 ## ApiVersion
 
-**系统API：** 此接口为系统接口，三方应用不支持调用
+**系统接口：** 系统接口，三方应用不支持调用。
 
-**系统能力：** 以下各项对应的系统能力均为SystemCapability.BundleManager.BundleFramework
+**系统能力：** SystemCapability.BundleManager.BundleFrameWork.FreeInstall
 
 | 名称        | 类型   | 可读 | 可写 | 说明                 |
 | ----------- | ------ | ---- | ---- | -------------------- |
 | releaseType | string | 是   | 否   | 版本的名称。         |
 | compatible  | number | 是   | 否   | 版本的最小兼容代码。 |
-| target      | numbe  | 是   | 否   | 目标版本号。         |
+| target      | number  | 是   | 否   | 目标版本号。         |
 
 ## Version
 
-**系统API：** 此接口为系统接口，三方应用不支持调用
+**系统接口：** 此接口为系统接口。
 
-**系统能力：** 以下各项对应的系统能力均为SystemCapability.BundleManager.BundleFramework
+**系统能力：** SystemCapability.BundleManager.BundleFrameWork.FreeInstall
 
 | 名称                     | 类型   | 可读 | 可写 | 说明                                                         |
 | ------------------------ | ------ | ---- | ---- | ------------------------------------------------------------ |

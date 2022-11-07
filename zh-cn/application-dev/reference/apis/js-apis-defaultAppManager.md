@@ -51,6 +51,7 @@ isDefaultApplication(type: string): Promise\<boolean>
 **示例：**
 
 ```js
+import defaultAppMgr from '@ohos.bundle.defaultAppManager';
 defaultAppMgr.isDefaultApplication(defaultAppMgr.ApplicationType.BROWSER)
 .then((data) => {
     console.info('Operation successful. IsDefaultApplication ? ' + JSON.stringify(data));
@@ -77,6 +78,7 @@ isDefaultApplication(type: string, callback: AsyncCallback\<boolean>): void
 **示例：**
 
 ```js
+import defaultAppMgr from '@ohos.bundle.defaultAppManager';
 defaultAppMgr.isDefaultApplication(defaultAppMgr.ApplicationType.BROWSER, (err, data) => {
     if (err) {
         console.error('Operation failed. Cause: ' + JSON.stringify(err));
@@ -122,6 +124,7 @@ getDefaultApplication(type: string, userId?: number): Promise\<BundleInfo>
 **示例：**
 
 ```js
+import defaultAppMgr from '@ohos.bundle.defaultAppManager';
 defaultAppMgr.getDefaultApplication(defaultAppMgr.ApplicationType.BROWSER)
 .then((data) => {
     console.info('Operation successful. bundleInfo: ' + JSON.stringify(data));
@@ -170,7 +173,9 @@ getDefaultApplication(type: string, userId: number, callback: AsyncCallback\<Bun
 **示例：**
 
 ```js
-defaultAppMgr.getDefaultApplication(defaultAppMgr.ApplicationType.BROWSER, 100, (err, data) => {
+import defaultAppMgr from '@ohos.bundle.defaultAppManager';
+let userId = 100;
+defaultAppMgr.getDefaultApplication(defaultAppMgr.ApplicationType.BROWSER, userId, (err, data) => {
     if (err) {
         console.error('Operation failed. Cause: ' + JSON.stringify(err));
         return;
@@ -178,7 +183,7 @@ defaultAppMgr.getDefaultApplication(defaultAppMgr.ApplicationType.BROWSER, 100, 
     console.info('Operation successful. bundleInfo:' + JSON.stringify(data));
 });
 
-defaultAppMgr.getDefaultApplication("image/png", 100, (err, data) => {
+defaultAppMgr.getDefaultApplication("image/png", userId, (err, data) => {
     if (err) {
         console.error('Operation failed. Cause: ' + JSON.stringify(err));
         return;
@@ -217,6 +222,7 @@ getDefaultApplication(type: string, callback: AsyncCallback\<BundleInfo>) : void
 **示例：**
 
 ```js
+import defaultAppMgr from '@ohos.bundle.defaultAppManager';
 defaultAppMgr.getDefaultApplication(defaultAppMgr.ApplicationType.BROWSER, (err, data) => {
     if (err) {
         console.error('Operation failed. Cause: ' + JSON.stringify(err));
@@ -224,7 +230,6 @@ defaultAppMgr.getDefaultApplication(defaultAppMgr.ApplicationType.BROWSER, (err,
     }
     console.info('Operation successful. bundleInfo:' + JSON.stringify(data));
 });
-
 defaultAppMgr.getDefaultApplication("image/png", (err, data) => {
     if (err) {
         console.error('Operation failed. Cause: ' + JSON.stringify(err));
@@ -236,13 +241,19 @@ defaultAppMgr.getDefaultApplication("image/png", (err, data) => {
 
 ## defaultAppMgr.setDefaultApplication
 
-setDefaultApplication(type: string, elementName: ElementName, userId?: number): Promise\<void>
+setDefaultApplication(type: string, elementName: ElementName, userId?: number): Promise\<**返回值：**
+
+| 类型                                                        | 说明                        |
+| ----------------------------------------------------------- | --------------------------- |
+| Promise\<[BundleInfo](js-apis-bundleManager-bundleInfo.md)> | Promise对象，返回BundleInfo |
+
+>
 
 以异步方法根据系统已定义的应用类型或者符合媒体类型格式（type/subtype）的文件类型设置默认应用，使用Promise形式返回结果。
 
 **需要权限：** ohos.permission.SET_DEFAULT_APPLICATION
 
-**系统能力：** SystemCapability.BundleManager.BundleFramework.DefaultAppManager.defaultAppManager
+**系统能力：** SystemCapability.BundleManager.BundleFramework.DefaultAppManager
 
 **系统API：**  此接口为系统接口，三方应用不支持调用
 
@@ -253,6 +264,12 @@ setDefaultApplication(type: string, elementName: ElementName, userId?: number): 
 | type  | string | 是    | 要设置的应用类型，取[ApplicationType](#defaultappmgrapplicationtype)中的值，或者符合媒体类型格式的文件类型。       |
 | elementName  | [ElementName](js-apis-bundle-ElementName.md) | 是    | 要设置为默认应用的组件信息。                           |
 | userId  | number | 否    | 用户ID。默认值：调用方所在用户。                           |
+
+**返回值：**
+
+| 类型           | 说明                               |
+| -------------- | ---------------------------------- |
+| Promise\<void> | Promise对象，无返回结果的Promise。 |
 
 **错误码：**
 
@@ -265,15 +282,25 @@ setDefaultApplication(type: string, elementName: ElementName, userId?: number): 
 **示例：**
 
 ```js
+import defaultAppMgr from '@ohos.bundle.defaultAppManager';
 defaultAppMgr.setDefaultApplication(defaultAppMgr.ApplicationType.BROWSER, {
     bundleName: "com.test.app",
     moduleName: "module01",
     abilityName: "MainAbility"
-})
-.then((data) => {
+}).then((data) => {
     console.info('Operation successful.');
-})
-.catch((error) => {
+}).catch((error) => {
+    console.error('Operation failed. Cause: ' + JSON.stringify(error));
+});
+
+let userId = 100;
+defaultAppMgr.setDefaultApplication(defaultAppMgr.ApplicationType.BROWSER, {
+    bundleName: "com.test.app",
+    moduleName: "module01",
+    abilityName: "MainAbility"
+}, userId).then((data) => {
+    console.info('Operation successful.');
+}).catch((error) => {
     console.error('Operation failed. Cause: ' + JSON.stringify(error));
 });
 
@@ -281,11 +308,9 @@ defaultAppMgr.setDefaultApplication("image/png", {
     bundleName: "com.test.app",
     moduleName: "module01",
     abilityName: "MainAbility"
-})
-.then((data) => {
+}, userId).then((data) => {
     console.info('Operation successful.');
-})
-.catch((error) => {
+}).catch((error) => {
     console.error('Operation failed. Cause: ' + JSON.stringify(error));
 });
 ```
@@ -298,7 +323,7 @@ setDefaultApplication(type: string, elementName: ElementName, userId: number, ca
 
 **需要权限：** ohos.permission.SET_DEFAULT_APPLICATION
 
-**系统能力：** SystemCapability.BundleManager.BundleFramework.DefaultAppManager.defaultAppManager
+**系统能力：** SystemCapability.BundleManager.BundleFramework.DefaultAppManager
 
 **系统API：**  此接口为系统接口，三方应用不支持调用
 
@@ -322,11 +347,13 @@ setDefaultApplication(type: string, elementName: ElementName, userId: number, ca
 **示例：**
 
 ```js
+import defaultAppMgr from '@ohos.bundle.defaultAppManager';
+let userId = 100;
 defaultAppMgr.setDefaultApplication(defaultAppMgr.ApplicationType.BROWSER, {
     bundleName: "com.test.app",
     moduleName: "module01",
     abilityName: "MainAbility"
-}, 100, (err, data) => {
+}, userId, (err, data) => {
     if (err) {
         console.error('Operation failed. Cause: ' + JSON.stringify(err));
         return;
@@ -338,7 +365,7 @@ defaultAppMgr.setDefaultApplication("image/png", {
     bundleName: "com.test.app",
     moduleName: "module01",
     abilityName: "MainAbility"
-}, 100, (err, data) => {
+}, userId, (err, data) => {
     if (err) {
         console.error('Operation failed. Cause: ' + JSON.stringify(err));
         return;
@@ -355,7 +382,7 @@ setDefaultApplication(type: string, elementName: ElementName, callback: AsyncCal
 
 **需要权限：** ohos.permission.SET_DEFAULT_APPLICATION
 
-**系统能力：** SystemCapability.BundleManager.BundleFramework.DefaultAppManager.defaultAppManager
+**系统能力：** SystemCapability.BundleManager.BundleFramework.DefaultAppManager
 
 **系统API：**  此接口为系统接口，三方应用不支持调用
 
@@ -378,6 +405,7 @@ setDefaultApplication(type: string, elementName: ElementName, callback: AsyncCal
 **示例：**
 
 ```js
+import defaultAppMgr from '@ohos.bundle.defaultAppManager';
 defaultAppMgr.setDefaultApplication(defaultAppMgr.ApplicationType.BROWSER, {
     bundleName: "com.test.app",
     moduleName: "module01",
@@ -411,7 +439,7 @@ resetDefaultApplication(type: string, userId?: number): Promise\<void>
 
 **需要权限：** ohos.permission.SET_DEFAULT_APPLICATION
 
-**系统能力：** SystemCapability.BundleManager.BundleFramework.DefaultAppManager.defaultAppManager
+**系统能力：** SystemCapability.BundleManager.BundleFramework.DefaultAppManager
 
 **系统API：**  此接口为系统接口，三方应用不支持调用
 
@@ -432,7 +460,9 @@ resetDefaultApplication(type: string, userId?: number): Promise\<void>
 **示例：**
 
 ```js
-defaultAppMgr.resetDefaultApplication(defaultAppMgr.ApplicationType.BROWSER)
+import defaultAppMgr from '@ohos.bundle.defaultAppManager';
+let userId = 100;
+defaultAppMgr.resetDefaultApplication(defaultAppMgr.ApplicationType.BROWSER, userId)
 .then((data) => {
     console.info('Operation successful.');
 })
@@ -440,7 +470,7 @@ defaultAppMgr.resetDefaultApplication(defaultAppMgr.ApplicationType.BROWSER)
     console.error('Operation failed. Cause: ' + JSON.stringify(error));
 });
 
-defaultAppMgr.resetDefaultApplication("image/png")
+defaultAppMgr.resetDefaultApplication("image/png", userId)
 .then((data) => {
     console.info('Operation successful.');
 })
@@ -457,7 +487,7 @@ resetDefaultApplication(type: string, userId: number, callback: AsyncCallback\<v
 
 **需要权限：** ohos.permission.SET_DEFAULT_APPLICATION
 
-**系统能力：** SystemCapability.BundleManager.BundleFramework.DefaultAppManager.defaultAppManager
+**系统能力：** SystemCapability.BundleManager.BundleFramework.DefaultAppManager
 
 **系统API：**  此接口为系统接口，三方应用不支持调用
 
@@ -479,7 +509,9 @@ resetDefaultApplication(type: string, userId: number, callback: AsyncCallback\<v
 **示例：**
 
 ```js
-defaultAppMgr.resetDefaultApplication(defaultAppMgr.ApplicationType.BROWSER, 100, (err, data) => {
+import defaultAppMgr from '@ohos.bundle.defaultAppManager';
+let userId = 100;
+defaultAppMgr.resetDefaultApplication(defaultAppMgr.ApplicationType.BROWSER, userId, (err, data) => {
     if (err) {
         console.error('Operation failed. Cause: ' + JSON.stringify(err));
         return;
@@ -487,7 +519,7 @@ defaultAppMgr.resetDefaultApplication(defaultAppMgr.ApplicationType.BROWSER, 100
     console.info('Operation successful.');
 });
 
-defaultAppMgr.resetDefaultApplication("image/png", 100, (err, data) => {
+defaultAppMgr.resetDefaultApplication("image/png", userId, (err, data) => {
     if (err) {
         console.error('Operation failed. Cause: ' + JSON.stringify(err));
         return;
@@ -504,7 +536,7 @@ resetDefaultApplication(type: string, callback: AsyncCallback\<void>) : void;
 
 **需要权限：** ohos.permission.SET_DEFAULT_APPLICATION
 
-**系统能力：** SystemCapability.BundleManager.BundleFramework.DefaultAppManager.defaultAppManager
+**系统能力：** SystemCapability.BundleManager.BundleFramework.DefaultAppManager
 
 **系统API：**  此接口为系统接口，三方应用不支持调用
 
@@ -525,6 +557,7 @@ resetDefaultApplication(type: string, callback: AsyncCallback\<void>) : void;
 **示例：**
 
 ```js
+import defaultAppMgr from '@ohos.bundle.defaultAppManager';
 defaultAppMgr.resetDefaultApplication(defaultAppMgr.ApplicationType.BROWSER, (err, data) => {
     if (err) {
         console.error('Operation failed. Cause: ' + JSON.stringify(err));

@@ -57,7 +57,7 @@ import bundleManager from '@ohos.bundle.bundleManager';
 var bundleName = 'com.example.myapplication';
 var appId;
 try {
-    bundleManager.getBundleInfo(bundleName, BundleManager.BundleFlags.GET_BUNDLE_INFO_WITH_SIGNATURE_INFO)
+    bundleManager.getBundleInfo(bundleName, bundleManager.BundleFlag.GET_BUNDLE_INFO_WITH_SIGNATURE_INFO)
         .then((data) => {
             appId = data.signatureInfo.appId;
         }, error => {
@@ -119,7 +119,7 @@ import bundleManager from '@ohos.bundle.bundleManager';
 var bundleName = 'com.example.myapplication';
 var appId;
 try {
-    bundleManager.getBundleInfo(bundleName, BundleManager.BundleFlags.GET_BUNDLE_INFO_WITH_SIGNATURE_INFO)
+    bundleManager.getBundleInfo(bundleName, bundleManager.BundleFlag.GET_BUNDLE_INFO_WITH_SIGNATURE_INFO)
         .then((data) => {
             appId = data.signatureInfo.appId;
         }, error => {
@@ -186,7 +186,7 @@ import bundleManager from '@ohos.bundle.bundleManager';
 var bundleName = 'com.example.myapplication';
 var appId;
 try {
-    bundleManager.getBundleInfo(bundleName, BundleManager.BundleFlags.GET_BUNDLE_INFO_WITH_SIGNATURE_INFO)
+    bundleManager.getBundleInfo(bundleName, bundleManager.BundleFlag.GET_BUNDLE_INFO_WITH_SIGNATURE_INFO)
         .then((data) => {
             appId = data.signatureInfo.appId;
         }, error => {
@@ -245,7 +245,7 @@ import bundleManager from '@ohos.bundle.bundleManager';
 var bundleName = 'com.example.myapplication';
 var appId;
 try {
-    bundleManager.getBundleInfo(bundleName, BundleManager.BundleFlags.GET_BUNDLE_INFO_WITH_SIGNATURE_INFO)
+    bundleManager.getBundleInfo(bundleName, bundleManager.BundleFlag.GET_BUNDLE_INFO_WITH_SIGNATURE_INFO)
         .then((data) => {
             appId = data.signatureInfo.appId;
         }, error => {
@@ -310,7 +310,7 @@ import bundleManager from '@ohos.bundle.bundleManager';
 var bundleName = 'com.example.myapplication';
 var appId;
 try {
-    bundleManager.getBundleInfo(bundleName, BundleManager.BundleFlags.GET_BUNDLE_INFO_WITH_SIGNATURE_INFO)
+    bundleManager.getBundleInfo(bundleName, bundleManager.BundleFlag.GET_BUNDLE_INFO_WITH_SIGNATURE_INFO)
         .then((data) => {
             appId = data.signatureInfo.appId;
         }, error => {
@@ -369,7 +369,7 @@ import bundleManager from '@ohos.bundle.bundleManager';
 var bundleName = 'com.example.myapplication';
 var appId;
 try {
-    bundleManager.getBundleInfo(bundleName, BundleManager.BundleFlags.GET_BUNDLE_INFO_WITH_SIGNATURE_INFO)
+    bundleManager.getBundleInfo(bundleName, bundleManager.BundleFlag.GET_BUNDLE_INFO_WITH_SIGNATURE_INFO)
         .then((data) => {
             appId = data.signatureInfo.appId;
         }, error => {
