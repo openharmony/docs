@@ -72,15 +72,16 @@ JS Runtime主要由四个子系统组成：
 ## 目录<a name="section161941989596"></a>
 
 ```
-/ark
-├── ets_runtime       # JS运行时组件
+/arkcompiler
+├── ets_runtime       # ArkTS运行时组件
 ├── runtime_core      # 运行时公共组件
-└── ets_frontend       # JS语言的前端工具
+├── ets_frontend      # ArkTS语言的前端工具
+└── toolchain         # ArkTS工具链
 ```
 
 ## 使用指南<a name="section18393638195820"></a>
 
-[方舟运行时使用指南](https://gitee.com/openharmony/ark_js_runtime/blob/master/docs/ARK-Runtime-Usage-Guide-zh.md)
+[方舟运行时使用指南](https://gitee.com/openharmony/arkcompiler_ets_runtime/blob/master/docs/ARK-Runtime-Usage-Guide-zh.md)
 
 ## 相关仓<a name="section1371113476307"></a>
 
@@ -89,3 +90,5 @@ JS Runtime主要由四个子系统组成：
 [arkcompiler\_ets\_runtime](https://gitee.com/openharmony/arkcompiler_ets_runtime)
 
 [arkcompiler\_ets\_frontend](https://gitee.com/openharmony/arkcompiler_ets_frontend)
+
+[arkcompiler\_toolchain](https://gitee.com/openharmony/arkcompiler_toolchain)
