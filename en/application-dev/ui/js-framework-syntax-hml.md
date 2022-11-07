@@ -1,7 +1,6 @@
 # HML
 
-
-The OpenHarmony Markup Language (HML) is an HTML-like language that allows you to build pages based on components and events. Pages built using HML have advanced capabilities such as logic control, data binding, event binding, loop rendering, and conditional rendering.
+The OpenHarmony Markup Language (HML) is an HTML-like language that allows you to build pages based on components and events. Pages built using HML have advanced capabilities such as data binding, event binding, loop rendering, conditional rendering, and logic control.
 
 
 ## HML Page Structure
@@ -44,8 +43,7 @@ export default {
 ```
 
 > **NOTE**
->
-> - To make the array data modification take effect, use the splice method to change array items.
+> - To make the array data modification take effect, use the **splice** method to change array items.
 >
 > - ECMAScript 6 (ES6) syntax is not supported in HML.
 
@@ -53,16 +51,15 @@ export default {
 
 ## Common Event Binding
 
-Events are bound to components through 'on' or '@'. When a component triggers an event, the corresponding event processing function in the .js file is executed.
+Events are bound to components through **'on'** or **'\@'**. When a component triggers an event, the corresponding event processing function in the **.js** file is executed.
 
 Events can be written in the following formats:
 
-- "funcName": name of the event callback, which is implemented by defining the corresponding function in the .js file.
+- **funcName**: name of the event callback, which is implemented by defining the corresponding function in the **.js** file.
 
-- "funcName(a,b)": function parameters, such as a and b, which can be constants, or variables defined in data in the .js file. Do not add the prefix this. to variables.
+- **funcName(a,b)**: function parameters, such as **a** and **b**, which can be constants, or variables defined in **data** in the **.js** file. Do not add the prefix **this.** to variables.
 
 - Example
-
   ```html
   <!-- xxx.hml -->
   <div class="container">
@@ -70,7 +67,7 @@ Events can be written in the following formats:
       <div class="box">
           <input type="button" class="btn" value="increase" onclick="increase" />
           <input type="button" class="btn" value="decrease" @click="decrease" />
-      <!-- Pass additional parameters. -->
+          <!-- Pass additional parameters. -->
           <input type="button" class="btn" value="double" @click="multiply(2)" />
           <input type="button" class="btn" value="decuple" @click="multiply(10)" />
           <input type="button" class="btn" value="square" @click="multiply(count)" />
@@ -131,19 +128,19 @@ Events can be written in the following formats:
 
 ![en-us_image_0000001118642002](figures/en-us_image_0000001118642002.gif)
 
-## Bubbling Event Binding<sup>5+</sup>
+## Binding for Event Bubbling<sup>5+</sup>
 
-Bubbling event binding covers the following:
+Binding for event bubbling covers the following:
 
 - Bind an event callback for event bubbling: **on:{event}.bubble**. **on:{event}** is equivalent to **on:{event}.bubble**.
 
 - Bind an event callback, but stop the event from bubbling upwards: **grab:{event}.bubble**. **grab:{event}** is equivalent to **grab:{event}.bubble**.
   > **NOTE**
   >
-> For details about bubbling events, see [Universal Events](../reference/arkui-js/js-components-common-events.md).
-  
+  > - Event bubbling occurs when the target element and its ancestors have registered a listener for the same event. When the event happens on the element, it first runs the event handler on it, then on its parent, and then all the way up on other ancestors. If an element triggers this event, it first triggers the callback on the element, then on its parent, and then all the way up on other ancestors.
+  >
+  > - For details about event bubbling, see [Universal Events](../reference/arkui-js/js-components-common-events.md).
 - Example
-
   ```html
   <!-- xxx.hml -->
   <div>
@@ -156,12 +153,11 @@ Bubbling event binding covers the following:
       <!-- Bind an event callback for event bubbling.6+ -->
       <div on:click.bubble="clickfunc"></div>
       <div on:click="clickfunc"></div>
-      <!-- Bindan event callback, but stop the event from bubbling upwards.6+ -->
+      <!-- Bind an event callback, but stop the event from bubbling upwards.6+ -->
       <div grab:click.bubble="clickfunc"></div>
       <div grab:click="clickfunc"></div>
   </div>
   ```
-
 
   ```js
   // xxx.js
@@ -177,24 +173,23 @@ Bubbling event binding covers the following:
 
 > **NOTE**
 >
-> Events bound using a traditional statement (such as onclick) will bubble only when the API version in use is 6 or later.
+> Events bound using a traditional statement (such as **onclick**) will bubble only when the API version in use is 6 or later.
 
-## Capturing Event Binding<sup>5+</sup>
+## Binding for Event Capturing<sup>5+</sup>
 
 Touch events can be captured. In the capture phase, which precedes the bubbling phase, an event starts from the parent component to the child component.
 
-Event capturing binding includes:
+Binding for event capturing covers the following:
 
 - Bind an event callback for event capturing: **on:{event}.capture**.
 
 - Bind an event callback, but stop the event from being captured during downward transfer: **grab:{event}.capture**.
 
 - Example
-
   ```html
   <!-- xxx.hml -->
   <div>
-      <!-- Bind an event callback for event capturing.5+ -->
+      <!-- Bind an event callback for event capturing.5+ -->   
       <div on:touchstart.capture="touchstartfunc"></div>
       <!-- Bind an event callback, but stop the event from being captured during downward transfer.5+ -->
       <div grab:touchstart.capture="touchstartfunc"></div>
@@ -230,6 +225,7 @@ Event capturing binding includes:
     <text>{{index}}.{{value.name}}</text>
   </div>
 </div>
+
 ```
 
 ```js
@@ -251,31 +247,30 @@ export default {
 }
 ```
 
-The **tid** attribute accelerates the for loop and improves the re-rendering efficiency when data in a loop changes.
+The **tid** attribute accelerates the **for** loop and improves the re-rendering efficiency when data in a loop changes.
 
 The **tid** attribute specifies the unique ID of each element in the array. If it is not specified, the index of each element in the array is used as the ID. For example, **tid="id"** indicates that the **id** attribute of each element is its unique ID.
 
-The for loop supports the following statements:
+The **for** loop supports the following statements:
 
-- for="array": array is an array object, whose element variable is $item by default.
+- for="array": **array** is an array object, whose element variable is **$item** by default.
 
-- for="v in array": v is a custom element variable, whose index is $idx by default.
+- for="v in array": **v** is a custom element variable, whose index is **$idx** by default.
 
-- for="(i, v) in array": i indicates the element index, and v indicates the element variable. All elements of the array object will be looped through.
+- for="(i, v) in array": **i** indicates the element index, and **v** indicates the element variable. All elements of the array object will be looped through.
 
 > **NOTE**
->
-> - Each element in the array must have the data attribute specified by tid. Otherwise, an exception may occur.
+> - Each element in the array must have the data attribute specified by **tid**. Otherwise, an exception may occur.
 >
 > - The attribute specified by **tid** in the array must be unique. Otherwise, performance loss occurs. In the above example, only **id** and **name** can be used as **tid** because they are unique fields.
 >
-> - The **tid** field does not support expressions.
+> - The **tid** attribute does not support expressions.
 
 ![en-us_image_0000001118642001](figures/en-us_image_0000001118642001.gif)
+
 ## Conditional Rendering
 
-There are two ways to implement conditional rendering: **if-elif-else** or **show**. In **if-elif-else**, when the if statement evaluates to **false**, the component is not built in the VDOM and is not rendered. For show, when **show** is **false**, the component is not rendered but is built in the VDOM. In addition, the **if-elif-else** statements must be used in sibling nodes. Otherwise, the compilation fails. The following example uses both ways to implement conditional rendering:
-
+There are two ways to implement conditional rendering: **if-elif-else** or **show**. In **if-elif-else**, when the **if** statement evaluates to **false**, the component is not built in the VDOM and is not rendered. For **show**, when show is **false**, the component is not rendered but is built in the VDOM. In addition, the **if-elif-else** statements must be used in sibling nodes. Otherwise, the compilation fails. The following example uses both ways to implement conditional rendering:
 
 ```html
 <!-- xxx.hml -->
@@ -319,7 +314,7 @@ export default {
 
 ![en-us_image_0000001118642004](figures/en-us_image_0000001118642004.gif)
 
-In the optimized rendering (**show**), if **show** is **true**, the node is rendered properly; if it is false, the display style will be none.
+In the optimized rendering (**show**), if **show** is **true**, the node is rendered properly; if it is **false**, the display style will be **none**.
 
 ```html
 <!-- xxx.hml -->
@@ -362,7 +357,7 @@ export default {
 
 ## Logic Control Block
 
-**\<block>** makes loop rendering and conditional rendering more flexible. A \<block> will not be compiled as a real component. Note that the **\<block>** tag supports only the for and if attributes.
+**\<block>** makes loop rendering and conditional rendering more flexible. A **\<block>** will not be compiled as a real component. Note that the **\<block>** tag supports only the **for** and **if** attributes.
 
 ```html
 <!-- xxx.hml -->
@@ -396,7 +391,7 @@ export default {
 
 ## Template Reference
 
-HML supports using `element` to reference template files. For details, see [Custom Components](../reference/arkui-js/js-components-custom-basic-usage.md).
+HML supports using **element** to reference template files. For details, see [Custom Components](../reference/arkui-js/js-components-custom-basic-usage.md).
 
 ```html
 <!-- template.hml -->
