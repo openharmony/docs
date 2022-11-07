@@ -35,13 +35,13 @@ enable(enable: boolean, callback: AsyncCallback&lt;void&gt;): void
 try {
   inputDeviceCooperate.enable(true, (error) => {
     if (error) {
-      console.log(`Key mouse crossing enable failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+      console.log(`Keyboard mouse crossing enable failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
       return;
     }
-    console.log(`Key mouse crossing enable success.`);
+    console.log(`Keyboard mouse crossing enable success.`);
   });
 } catch (error) {
-  console.log(`Key mouse crossing enable failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.log(`Keyboard mouse crossing enable failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -75,12 +75,12 @@ enable(enable: boolean): Promise&lt;void&gt;
 ```js
 try {
   inputDeviceCooperate.enable(true).then(() => {
-    console.log(`Key mouse crossing enable success.`);
+    console.log(`Keyboard mouse crossing enable success.`);
   }, (error) => {
-    console.log(`Key mouse crossing enable failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+    console.log(`Keyboard mouse crossing enable failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
   });
 } catch (error) {
-  console.log(`Key mouse crossing enable failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.log(`Keyboard mouse crossing enable failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -98,7 +98,7 @@ start(sinkDeviceDescriptor: string, srcInputDeviceId: number, callback: AsyncCal
 | --------             | ---------------------------- | ----  | ----------------------------   |
 | sinkDeviceDescriptor | string                       |  是   | 键鼠穿越目标设备描述符。             |
 | srcInputDeviceId     | number                       |  是   | 键鼠穿越待穿越外设标识符。           |
-| callback             | AsyncCallback\<void>         |  是    | 回调函数，异步返回键鼠穿越启动、停止结果。|
+| callback             | AsyncCallback\<void>         |  是    | 回调函数，异步返回键鼠穿越启动、停止状态。|
 
 **错误码：**
 
@@ -115,13 +115,13 @@ start(sinkDeviceDescriptor: string, srcInputDeviceId: number, callback: AsyncCal
 try {
   inputDeviceCooperate.start(sinkDeviceDescriptor, srcInputDeviceId, (error) => {
     if (error) {
-      console.log(`Start key mouse crossing failed. error: ${JSON.stringify(error, [`code`, `message`])}`);
+      console.log(`Start Keyboard mouse crossing failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
       return;
     }
-    console.log(`Start key mouse crossing success.`);
+    console.log(`Start Keyboard mouse crossing success.`);
   });
 } catch (error) {
-  console.log(`Start key mouse crossing failed. error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.log(`Start Keyboard mouse crossing failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -162,12 +162,12 @@ start(sinkDeviceDescriptor: string, srcInputDeviceId: number): Promise\<void>
 ```js
 try {
   inputDeviceCooperate.start(sinkDeviceDescriptor, srcInputDeviceId).then(() => {
-    console.log(`Start key mouse crossing success.`);
+    console.log(`Start Keyboard mouse crossing success.`);
   }, (error) => {
-    console.log(`Start key mouse crossing failed. error: ${JSON.stringify(error, [`code`, `message`])}`);
+    console.log(`Start Keyboard mouse crossing failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
   });
 } catch (error) {
-  console.log(`Start key mouse crossing failed. error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.log(`Start Keyboard mouse crossing failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -193,13 +193,13 @@ stop(callback: AsyncCallback\<void>): void
 try {
   inputDeviceCooperate.stop((error) => {
     if (error) {
-      console.log(`Stop key mouse crossing failed. error: ${JSON.stringify(error, [`code`, `message`])}`);
+      console.log(`Stop Keyboard mouse crossing failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
       return;
     }
-    console.log(`Stop key mouse crossing success.`);
+    console.log(`Stop Keyboard mouse crossing success.`);
   });
 } catch (error) {
-  console.log(`Stop key mouse crossing failed. error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.log(`Stop Keyboard mouse crossing failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -222,12 +222,12 @@ stop(): Promise\<void>
 ```js
 try {
   inputDeviceCooperate.stop().then(() => {
-    console.log(`Stop key mouse crossing success.`);
+    console.log(`Stop Keyboard mouse crossing success.`);
   }, (error) => {
-    console.log(`Stop key mouse crossing failed. error: ${JSON.stringify(error, [`code`, `message`])}`);
+    console.log(`Stop Keyboard mouse crossing failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
   });
 } catch (error) {
-  console.log(`Stop key mouse crossing failed. error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.log(`Stop Keyboard mouse crossing failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -322,7 +322,7 @@ on(type: 'cooperation', callback: AsyncCallback<{ deviceDescriptor: string, even
 ```js
 try {
   inputDeviceCooperate.on('cooperation', (data) => {
-    console.log(`Key mouse crossing event: ${JSON.stringify(data)}`);
+    console.log(`Keyboard mouse crossing event: ${JSON.stringify(data)}`);
   });
 } catch (err) {
   console.log(`Registered failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
@@ -351,7 +351,7 @@ off(type: 'cooperation', callback?: AsyncCallback\<void>): void
 ```js
 // 取消注册单个回调函数
 callback: function(event) {
-  console.log(`Key mouse crossing event: ${JSON.stringify(event)}`);
+  console.log(`Keyboard mouse crossing event: ${JSON.stringify(event)}`);
   return false;
 },
 try {
@@ -364,7 +364,7 @@ try {
 ```js
 // 取消注册所有回调函数
 callback: function(event) {
-  console.log(`Key mouse crossing event: ${JSON.stringify(event)}`);
+  console.log(`Keyboard mouse crossing event: ${JSON.stringify(event)}`);
   return false;
 },
 try {
