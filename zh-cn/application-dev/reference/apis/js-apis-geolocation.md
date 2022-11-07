@@ -1097,7 +1097,7 @@ flushCachedGnssLocations() : Promise&lt;boolean&gt;;
 
 sendCommand(command: LocationCommand, callback: AsyncCallback&lt;boolean&gt;) : void;
 
-给位置服务子系统的各个部件发送扩展命令。只有系统应用才能调用。
+给位置服务子系统的各个部件发送扩展命令。
 
 **需要权限**：ohos.permission.LOCATION
 
@@ -1129,7 +1129,7 @@ sendCommand(command: LocationCommand, callback: AsyncCallback&lt;boolean&gt;) : 
 
 sendCommand(command: LocationCommand) : Promise&lt;boolean&gt;;
 
-给位置服务子系统的各个部件发送扩展命令。只有系统应用才能调用。
+给位置服务子系统的各个部件发送扩展命令。
 
 **需要权限**：ohos.permission.LOCATION
 
