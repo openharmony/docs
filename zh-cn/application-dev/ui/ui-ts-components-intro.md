@@ -17,8 +17,6 @@
 
 - [`Canvas`：画布组件（ArkTS）（API8）](https://gitee.com/openharmony/applications_app_samples/tree/master/ETSUI/Canvas)
 
-- [`Xcomponent`：XComponent（ArkTS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/ETSUI/XComponent)
-
 - [`Clock`：简单时钟（ArkTS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/Preset/Clock)
 
 - [`PatternLock`：图案密码锁组件（ArkTS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/ETSUI/PatternLock)
