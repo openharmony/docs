@@ -129,8 +129,10 @@ zh-cn/device-dev/subsystems/subsys-toolchain-hdc-guide.md @Austin23
 zh-cn/device-dev/subsystems/subsys-toolchain-hiperf.md @Austin23
 zh-cn/device-dev/subsystems/subsys-xts-guide.md @Austin23
 
-zh-cn/application-dev/ability/ @RayShih
-zh-cn/application-dev/ui/ @HelloCrease
+zh-cn/application-dev/ability/ @RayShih @littlejerry1 @gwang2008 @ccllee @chengxingzhen
+zh-cn/application-dev/IDL/ @RayShih @littlejerry1 @gwang2008 @ccllee @chengxingzhen
+zh-cn/application-dev/device-usage-statistics/ @RayShih @shuaytao @wangzhen107 @inter515
+zh-cn/application-dev/ui/ @HelloCrease @qieqiewl @tomatodevboy @niulihua
 zh-cn/application-dev/notification/ @RayShih
 zh-cn/application-dev/windowmanager/ @ge-yafang
 zh-cn/application-dev/webgl/ @ge-yafang
