@@ -42,7 +42,7 @@
     - [@ohos.application.Configuration (Configuration)](js-apis-application-configuration.md)
     - [@ohos.application.ConfigurationConstant (ConfigurationConstant)](js-apis-application-configurationConstant.md)
     - [@ohos.application.errorManager (ErrorManager)](js-apis-errorManager.md)
-
+    - [@oho.app.form.formBindingData (卡片数据绑定类)](js-apis-app-form-formbindingdata.md)
     - [@ohos.application.formError (FormError)](js-apis-formerror.md)
     - [@ohos.application.formHost (FormHost)](js-apis-formhost.md)
     - [@ohos.app.form.formProvider (FormProvider)](js-apis-app-form-formprovider.md)
