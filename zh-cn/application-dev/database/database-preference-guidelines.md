@@ -42,7 +42,7 @@
 | ----------- | ---------------------------------------------------------- | ------------------------------------------------------------ |
 | Preferences | put(key: string, value: ValueType): Promise\<void>         | 支持存入值为number、string、boolean、Array\<number>、Array\<string>、Array\<boolean>类型的数据。 |
 | Preferences | get(key: string, defValue: ValueType): Promise\<ValueType> | 支持获取值为number、string、boolean、Array\<number>、Array\<string>、Array\<boolean>类型的数据。 |
-| Preferences | getAll(): Promise<Object>                                  | 支持获取含有所有键值的Object对象。                           |
+| Preferences | getAll(): Promise\<Object>                                  | 支持获取含有所有键值的Object对象。                           |
 
 
 ### 数据持久化
