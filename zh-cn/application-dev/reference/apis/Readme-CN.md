@@ -42,7 +42,7 @@
     - [@ohos.application.Configuration (Configuration)](js-apis-application-configuration.md)
     - [@ohos.application.ConfigurationConstant (ConfigurationConstant)](js-apis-application-configurationConstant.md)
     - [@ohos.application.errorManager (ErrorManager)](js-apis-errorManager.md)
-    - [@ohos.application.formBindingData (卡片数据绑定类)](js-apis-formbindingdata.md)
+
     - [@ohos.application.formError (FormError)](js-apis-formerror.md)
     - [@ohos.application.formHost (FormHost)](js-apis-formhost.md)
     - [@ohos.app.form.formProvider (FormProvider)](js-apis-app-form-formprovider.md)
@@ -296,6 +296,7 @@
 - 已停止维护的接口
   - [@ohos.application.formProvider (FormProvider)](js-apis-formprovider.md)
   - [@ohos.application.formInfo (FormInfo)](js-apis-formInfo.md)
+  - [@ohos.application.formBindingData (卡片数据绑定类)](js-apis-formbindingdata.md)
   - [@ohos.backgroundTaskManager (后台任务管理)](js-apis-backgroundTaskManager.md)
   - [@ohos.bundle (Bundle模块)](js-apis-Bundle.md)
   - [@ohos.bundle.innerBundleManager (innerBundleManager模块)](js-apis-Bundle-InnerBundleManager.md)
