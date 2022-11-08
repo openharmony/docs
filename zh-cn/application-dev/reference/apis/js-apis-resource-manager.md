@@ -1,6 +1,6 @@
 # 资源管理
 
-资源管理模块，根据当前configuration（语言，区域，横竖屏，mccmnc）和device capability（设备类型，分辨率）提供获取应用资源信息读取接口。
+资源管理模块，根据当前configuration：语言、区域、横竖屏、Mcc（移动国家码）和Mnc（移动网络码）、Device capability（设备类型）、Density（分辨率）提供获取应用资源信息读取接口。
 
 > **说明：**
 >
@@ -16,9 +16,16 @@ import resourceManager from '@ohos.resourceManager';
 ## 使用说明
 
 从API Version9开始，Stage模型支持了通过context获取resourceManager对象的方式，再调用其内部获取资源的接口，无需再导入包，此方式FA模型不适用。
+Stage模型下Context的引用方法请参考[Stage模型的Context详细介绍](../../ability/context-userguide.md)
 
 ```ts
-this.context.resourceManager;
+import Ability from '@ohos.application.Ability';
+class MainAbility extends Ability {
+    onWindowStageCreate(windowStage) {
+        let context = this.context;
+        let resourceManager = context.resourceManager;
+    }
+}
 ```
 
 ## resourceManager.getResourceManager
