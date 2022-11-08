@@ -211,8 +211,8 @@ export default class IdlTestServiceStub extends rpc.RemoteObject implements IIdl
         super(des);
     }
     
-    onRemoteRequest(code: number, data, reply, option): boolean {
-        console.log("onRemoteRequest called, code = " + code);
+    async onRemoteRequestEx(code: number, data, reply, option): Promise<boolean> {
+        console.log("onRemoteRequestEx called, code = " + code);
         switch(code) {
             case IdlTestServiceStub.COMMAND_TEST_INT_TRANSACTION: {
                 let _data = data.readInt();

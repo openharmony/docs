@@ -24,7 +24,7 @@ MindSpore Lite是一款AI引擎，它提供了面向不同硬件设备AI模型�
 | ------------------ | ----------------- |
 |OH_AI_ContextHandle OH_AI_ContextCreate()|创建一个上下文的对象。|
 |void OH_AI_ContextSetThreadNum(OH_AI_ContextHandle context, int32_t thread_num)|设置运行时的线程数量。|
-| void OH_AI_ContextSetThreadAffinityMode(OH_AI_ContextHandle context, int mode)|设置运行时线程绑定CPU核心的策略。一般情况下CPU会按照频率分为大小核，即频率较高的为大核，频率较低的为小核。|
+| void OH_AI_ContextSetThreadAffinityMode(OH_AI_ContextHandle context, int mode)|设置运行时线程绑定CPU核心的策略，按照CPU物理核频率分为大、中、小三种类型的核心，并且仅需绑大核或者绑中核，不需要绑小核。
 |OH_AI_DeviceInfoHandle OH_AI_DeviceInfoCreate(OH_AI_DeviceType device_type)|创建一个运行时设备信息对象。|
 |void OH_AI_ContextDestroy(OH_AI_ContextHandle *context)|释放上下文对象。|
 |void OH_AI_DeviceInfoSetEnableFP16(OH_AI_DeviceInfoHandle device_info, bool is_fp16)|设置是否开启Float16推理模式，仅CPU/GPU设备可用。|
