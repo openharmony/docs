@@ -61,6 +61,7 @@
     - continuation/[ContinuationResult (ContinuationResult)](js-apis-continuation-continuationResult.md)
 - 公共事件与通知
   - [@ohos.commonEvent (公共事件模块)](js-apis-commonEvent.md)
+  - [@ohos.commonEventManager (新公共事件模块)](js-apis-commonEventManager.md)
   - [@ohos.events.emitter (Emitter)](js-apis-emitter.md)
   - [@ohos.notification (Notification模块)](js-apis-notification.md)
   - application/[EventHub (EventHub)](js-apis-eventhub.md)
