@@ -192,7 +192,7 @@ loadUrl(url: string | Resource, headers?: Array\<HeaderV9>): void
 | -------- | ------------------------------------------------------------ |
 | 17100001 | Init error. The WebviewController must be associated with a Web component. |
 | 17100002 | Invalid url.                                                 |
-| 17100003 | Invalid resource.                                            |
+| 17100003 | Invalid resource path or file type.                          |
 
 **示例：**
 
@@ -1001,7 +1001,7 @@ zoom(factor: number): void
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
 | 17100001 | Init error. The WebviewController must be associated with a Web compoent. |
-| 17100004 | Cannot delete JavaScriptProxy.                               |
+| 17100004 | Function not enable.                                         |
 
 **示例：**
 
@@ -2573,7 +2573,7 @@ static deleteOrigin(origin : string): void
 
 | 错误码ID | 错误信息                                               |
 | -------- | ------------------------------------------------------ |
-| 17100011 | Invalid permission origin.                             |
+| 17100011 | Invalid origin.                             |
 
 **示例：**
 
@@ -2625,7 +2625,7 @@ static getOrigins(callback: AsyncCallback\<Array\<WebStorageOrigin>>) : void
 
 | 错误码ID | 错误信息                                               |
 | -------- | ------------------------------------------------------ |
-| 17100011 | Invalid permission origin.                             |
+| 17100012 | Invalid web storage origin.                             |
 
 **示例：**
 
@@ -2686,7 +2686,7 @@ static getOrigins() : Promise\<Array\<WebStorageOrigin>>
 
 | 错误码ID | 错误信息                                               |
 | -------- | ------------------------------------------------------ |
-| 17100011 | Invalid permission origin.                             |
+| 17100012 | Invalid web storage origin.                             |
 
 **示例：**
 
@@ -2748,7 +2748,7 @@ static getOriginQuota(origin : string, callback : AsyncCallback\<number>) : void
 
 | 错误码ID | 错误信息                                               |
 | -------- | ------------------------------------------------------ |
-| 17100011 | Invalid permission origin.                             |
+| 17100011 | Invalid origin.                             |
 
 **示例：**
 
@@ -2812,7 +2812,7 @@ static getOriginQuota(origin : string) : Promise\<number>
 
 | 错误码ID | 错误信息                                               |
 | -------- | ------------------------------------------------------ |
-| 17100011 | Invalid permission origin.                             |
+| 17100011 | Invalid origin.                             |
 
 **示例：**
 
@@ -2871,7 +2871,7 @@ static getOriginUsage(origin : string, callback : AsyncCallback\<number>) : void
 
 | 错误码ID | 错误信息                                               |
 | -------- | ------------------------------------------------------ |
-| 17100011 | Invalid permission origin.                             |
+| 17100011 | Invalid origin.                             |
 
 **示例：**
 
@@ -2935,7 +2935,7 @@ static getOriginUsage(origin : string) : Promise\<number>
 
 | 错误码ID | 错误信息                                              |
 | -------- | ----------------------------------------------------- |
-| 17100011 | Invalid permission origin.                            |
+| 17100011 | Invalid origin.                            |
 
 **示例：**
 
@@ -3213,7 +3213,7 @@ static allowGeolocation(origin: string): void
 以下错误码的详细介绍请参见 [webview错误码](../errorcodes/errorcode-webview.md)
 | 错误码ID | 错误信息                                               |
 | -------- | ------------------------------------------------------ |
-| 17100011 | Invalid permission origin.                             |
+| 17100011 | Invalid origin.                             |
 
 **示例：**
 
@@ -3263,7 +3263,7 @@ static deleteGeolocation(origin: string): void
 
 | 错误码ID | 错误信息                                               |
 | -------- | ------------------------------------------------------ |
-| 17100011 | Invalid permission origin.                             |
+| 17100011 | Invalid origin.                             |
 
 **示例：**
 
@@ -3314,7 +3314,7 @@ static getAccessibleGeolocation(origin: string, callback: AsyncCallback\<boolean
 
 | 错误码ID | 错误信息                                               |
 | -------- | ------------------------------------------------------ |
-| 17100011 | Invalid permission origin.                             |
+| 17100011 | Invalid origin.                             |
 
 **示例：**
 
@@ -3376,7 +3376,7 @@ static getAccessibleGeolocation(origin: string): Promise\<boolean>
 
 | 错误码ID | 错误信息                                               |
 | -------- | ------------------------------------------------------ |
-| 17100011 | Invalid permission origin.                             |
+| 17100011 | Invalid origin.                             |
 
 **示例：**
 

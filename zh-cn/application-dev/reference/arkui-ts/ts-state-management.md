@@ -261,7 +261,7 @@ IsMutable(propName: string): boolean
 | boolean | 返回此属性是否存在并且是否可以改变。 |
 
 ```ts
-let simple = AppStorage.IsMutable()
+let simple = AppStorage.IsMutable('simpleProp')
 ```
 
 ### Size
@@ -520,7 +520,7 @@ delete(propName: string): boolean
 
 | 类型    | 描述                                                         |
 | ------- | ------------------------------------------------------------ |
-| boolean | 删除key指定的键值对，如果存在且删除成功返回true，不存在或删除失败返回false。 |
+| boolean | 删除key指定的键值对。存在且删除成功，返回true。不存在、删除失败或有状态变量依旧引用propName，返回false。 |
 
 ```ts
 this.storage = new LocalStorage()
@@ -643,7 +643,7 @@ PersistProps(properties: {key: string, defaultValue: any}[]): void;
 | key    | {key: string, defaultValue: any}[] |  是  | 要关联的属性数组。 |
 
 ```ts
-PersistentStorage.PersistProps([{'highScore', '0'},{'wightScore','1'}])
+PersistentStorage.PersistProps([{key: 'highScore', defaultValue: '0'},{key: 'wightScore',defaultValue: '1'}])
 ```
 
 ### Keys
@@ -699,14 +699,14 @@ EnvProp\<S>(key: string, value: S): boolean
 
 **内置环境变量说明：**
 
-| key          |       类型    |      说明            | 
-| ------------ | ------------- | ------------------- | 
-| accessibilityEnabled | boolean | 无障碍屏幕朗读是否启用。            | 
-| colorMode | ColorMode | 深浅色模式，可选值为：<br>- ColorMode.LIGHT：浅色模式；<br>- ColorMode.DARK：深色模式。   | 
-| fontScale | number | 字体大小比例。            | 
-| fontWeightScale | number | 字重比例。            | 
-| layoutDirection | LayoutDirection | 布局方向类型，可选值为：<br>- LayoutDirection.LTR：从左到右；<br>- LayoutDirection.RTL：从右到左。   | 
-| languageCode | string |     当前系统语言，小写字母，例如zh。            | 
+| key          |       类型    |      说明            |
+| ------------ | ------------- | ------------------- |
+| accessibilityEnabled | boolean | 无障碍屏幕朗读是否启用。            |
+| colorMode | ColorMode | 深浅色模式，可选值为：<br>- ColorMode.LIGHT：浅色模式；<br>- ColorMode.DARK：深色模式。   |
+| fontScale | number | 字体大小比例。            |
+| fontWeightScale | number | 字重比例。            |
+| layoutDirection | LayoutDirection | 布局方向类型，可选值为：<br>- LayoutDirection.LTR：从左到右；<br>- LayoutDirection.RTL：从右到左。   |
+| languageCode | string |     当前系统语言，小写字母，例如zh。            |
 
 ```ts
 Environment.EnvProp('accessibilityEnabled', 'default')
@@ -725,7 +725,7 @@ EnvProps(props: {key: string, defaultValue: any}[]): void
 | key    | {key: string, defaultValue: any}[] | 是   | 要关联的属性数组。 | 要关联的属性数组。 |
 
 ```ts
-Environment.EnvProps([{'accessibilityEnabled', 'default'},{'accessibilityUnEnabled','undefault'}])
+Environment.EnvProps([{key: 'accessibilityEnabled', defaultValue: 'default'},{key: 'accessibilityUnEnabled', defaultValue: 'undefault'}])
 ```
 
 ### Keys

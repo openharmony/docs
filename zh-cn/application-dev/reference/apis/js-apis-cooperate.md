@@ -1,7 +1,6 @@
-# 键鼠穿越管理
+# 键鼠穿越
 
-键鼠穿越功能，即两台或多台设备组网协同后可以共用一套键盘鼠标。
-键鼠穿越管理模块，提供实现键盘、鼠标等外接输入设备的跨设备协同操作。在设备组网的情况下，提供多设备间共享键鼠的开关，设备穿越状态更新以及键鼠穿越光标自适应显示。
+键鼠穿越功能模块，提供两台或多台设备组网协同后键鼠共享能力，实现键鼠输入设备的跨设备协同操作。
 
 > **说明**
 >
@@ -15,18 +14,18 @@ import inputDeviceCooperate from '@ohos.multimodalInput.inputDeviceCooperate'
 
 ## inputDeviceCooperate.enable
 
-enable(enable: boolean, callback: AsyncCallback\<void>): void
+enable(enable: boolean, callback: AsyncCallback&lt;void&gt;): void
 
-键鼠穿越开关开启或关闭，使用callback异步回调。
+开启、关闭键鼠穿越，使用AsyncCallback异步方式返回结果。
 
 **系统能力**: SystemCapability.MultimodalInput.Input.InputDeviceCooperate
 
 **参数**：
 
-| 参数名    | 类型                       | 必填  | 说明                                                                |
-| -------- | ------------------------- | ---- | ------------------------------------------------------------------- |
-| enable   | boolean                   | 是   | 键鼠穿越开关开启或关闭状态。true: 键鼠穿越开关开启; false: 键鼠穿越开关关闭。
-| callback | AsyncCallback\<void>       | 是   | 异步回调函数。当键鼠穿越开关开启或关闭成功，err为undefined，否则为错误对象。                                |
+| 参数名    | 类型      | 必填  | 说明    |
+| -------- | ------------------------- | ---- | --------------------------- |
+| enable   | boolean                   | 是   | 键鼠穿越使能状态。 |
+| callback | AsyncCallback&lt;void&gt;  | 是  |回调函数，异步返回键鼠穿越开启、关闭结果。   |
 
 
 
@@ -34,23 +33,24 @@ enable(enable: boolean, callback: AsyncCallback\<void>): void
 
 ```js
 try {
-  inputDeviceCooperate.enable(true, (err) => {
-    if (err) {
-      console.log(`Turn on the key mouse crossing switch failed. error code=${JSON.stringify(err.code)} msg=${JSON.stringify(err.message)}`);
+  inputDeviceCooperate.enable(true, (error) => {
+    if (error) {
+      console.log(`Keyboard mouse crossing enable failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
       return;
     }
-    console.log(`Turn on the key mouse crossing switch success.`);
+    console.log(`Keyboard mouse crossing enable success.`);
   });
-} catch (err) {
-  console.log(`Turn on the key mouse crossing switch failed. error code=${JSON.stringify(err.code)} msg=${JSON.stringify(err.message)}`);
+} catch (error) {
+  console.log(`Keyboard mouse crossing enable failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
 ## inputDeviceCooperate.enable
 
-enable(enable: boolean): Promise\<void>
+enable(enable: boolean): Promise&lt;void&gt;
 
-键鼠穿越开关开启或关闭，使用Promise方式作为异步方法。
+开启、关闭键鼠穿越，使用Promise异步方式返回结果。
+
 
 **系统能力**： SystemCapability.MultimodalInput.Input.InputDeviceCooperate
 
@@ -58,7 +58,7 @@ enable(enable: boolean): Promise\<void>
 
 | 参数名     | 类型     | 必填  | 说明                                                                                 |
 | --------- | ------- | ---- | -------------------------------------------------------------------                 |
-| enable    | boolean | 是   | 键鼠穿越开关开启或关闭状态。true: 键鼠穿越开关开启; false: 键鼠穿越开关关闭。                   |
+| enable    | boolean | 是   | 键鼠穿越使能状态。                   |
 
 
 
@@ -66,7 +66,7 @@ enable(enable: boolean): Promise\<void>
 
 | 参数                 | 说明                     |
 | ------------------- | ------------------------------- |
-| Promise\<void>      | Promise实例，用于异步获取结果。        |
+| Promise&lt;void&gt;      | Promise对象，异步返回键鼠穿越开启、关闭结果。        |
 
 
 
@@ -74,13 +74,13 @@ enable(enable: boolean): Promise\<void>
 
 ```js
 try {
-  inputDeviceCooperate.enable(false).then((err) => {
-    console.log(`Turn on the key mouse crossing switch success`);
-  }, (err) => {
-    console.log(`Turn on the key mouse crossing switch failed. error code=${JSON.stringify(err.code)} msg=${JSON.stringify(err.message)}`);
+  inputDeviceCooperate.enable(true).then(() => {
+    console.log(`Keyboard mouse crossing enable success.`);
+  }, (error) => {
+    console.log(`Keyboard mouse crossing enable failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
   });
-} catch (err) {
-  console.log(`Turn on the key mouse crossing switch failed. error code=${JSON.stringify(err.code)} msg=${JSON.stringify(err.message)}`);
+} catch (error) {
+  console.log(`Keyboard mouse crossing enable failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -88,7 +88,7 @@ try {
 
 start(sinkDeviceDescriptor: string, srcInputDeviceId: number, callback: AsyncCallback\<void>): void
 
-启动键鼠穿越，使用callback异步回调。
+启动键鼠穿越，使用AsyncCallback异步方式返回结果。
 
 **系统能力**：SystemCapability.MultimodalInput.Input.InputDeviceCooperate
 
@@ -98,7 +98,7 @@ start(sinkDeviceDescriptor: string, srcInputDeviceId: number, callback: AsyncCal
 | --------             | ---------------------------- | ----  | ----------------------------   |
 | sinkDeviceDescriptor | string                       |  是   | 键鼠穿越目标设备描述符。             |
 | srcInputDeviceId     | number                       |  是   | 键鼠穿越待穿越外设标识符。           |
-| callback             | AsyncCallback\<void>         |  是    | 异步回调函数。当键鼠穿越启动成功，err为undefined，否则为错误对象。|
+| callback             | AsyncCallback\<void>         |  是    | 回调函数，异步返回键鼠穿越启动、停止状态。|
 
 **错误码：**
 
@@ -106,22 +106,22 @@ start(sinkDeviceDescriptor: string, srcInputDeviceId: number, callback: AsyncCal
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 4400001  | Incorrect descriptor for the target device.                |
-| 4400002  | Failed to operate the input device.                |
+| 4400001  | 当调用键鼠穿越接口传入无效的设备描述符参数时，系统会产生此错误码。                |
+| 4400002  | 当调用键鼠穿越接口时穿越状态异常，系统会产生此错误码。                |
 
 **示例**：
 
 ```js
 try {
-  inputDeviceCooperate.start(sinkDeviceDescriptor, srcInputDeviceId, (err) => {
-    if (err) {
-      console.log(`Start key mouse crossing failed. error code=${JSON.stringify(err.code)} msg=${JSON.stringify(err.message)}`);
+  inputDeviceCooperate.start(sinkDeviceDescriptor, srcInputDeviceId, (error) => {
+    if (error) {
+      console.log(`Start Keyboard mouse crossing failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
       return;
     }
-    console.log(`Start key mouse crossing success.`);
+    console.log(`Start Keyboard mouse crossing success.`);
   });
-} catch (err) {
-  console.log(`Start key mouse crossing failed. error code=${JSON.stringify(err.code)} msg=${JSON.stringify(err.message)}`);
+} catch (error) {
+  console.log(`Start Keyboard mouse crossing failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -129,7 +129,7 @@ try {
 
 start(sinkDeviceDescriptor: string, srcInputDeviceId: number): Promise\<void>
 
-启动键鼠穿越，使用Promise方式作为异步方法。
+启动键鼠穿越，使用Promise异步方式返回结果。
 
 **系统能力**: SystemCapability.MultimodalInput.Input.InputDeviceCooperate
 
@@ -146,7 +146,7 @@ start(sinkDeviceDescriptor: string, srcInputDeviceId: number): Promise\<void>
 
 | 参数名                  | 说明                             |
 | ---------------------- | ------------------------------- |
-| Promise\<void>         | Promise实例，用于异步获取结果。       |
+| Promise\<void>         | Promise对象，异步返回键鼠穿越启动、关闭结果。       |
 
 **错误码：**
 
@@ -154,20 +154,20 @@ start(sinkDeviceDescriptor: string, srcInputDeviceId: number): Promise\<void>
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 4400001  | Incorrect descriptor for the target device.                |
-| 4400002  | Failed to operate the input device.                |
+| 4400001  | 当调用键鼠穿越接口传入无效的设备描述符参数时，系统会产生此错误码。                 |
+| 4400002  | 当调用键鼠穿越接口时穿越状态异常，系统会产生此错误码。               |
 
 **示例**：
 
 ```js
 try {
-  inputDeviceCooperate.start(sinkDeviceDescriptor, srcInputDeviceId).then((err) => {
-    console.log(`Start key mouse crossing success.`);
-  }, (err) => {
-    console.log(`Start key mouse crossing failed. error code=${JSON.stringify(err.code)} msg=${JSON.stringify(err.message)}`);
+  inputDeviceCooperate.start(sinkDeviceDescriptor, srcInputDeviceId).then(() => {
+    console.log(`Start Keyboard mouse crossing success.`);
+  }, (error) => {
+    console.log(`Start Keyboard mouse crossing failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
   });
-} catch (err) {
-  console.log(`Start key mouse crossing failed. error code=${JSON.stringify(err.code)} msg=${JSON.stringify(err.message)}`);
+} catch (error) {
+  console.log(`Start Keyboard mouse crossing failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -175,7 +175,7 @@ try {
 
 stop(callback: AsyncCallback\<void>): void
 
-停止键鼠穿越，使用callback异步回调。
+停止键鼠穿越，使用AsyncCallback异步方式返回结果。
 
 **系统能力**：SystemCapability.MultimodalInput.Input.InputDeviceCooperate
 
@@ -183,7 +183,7 @@ stop(callback: AsyncCallback\<void>): void
 
 | 参数名                | 类型                          | 必填  | 说明                            |
 | --------             | ---------------------------- | ----  | ----------------------------   |
-| callback             | AsyncCallback\<void>         |  是   | 异步回调函数，返回查询结果。        |
+| callback             | AsyncCallback\<void>         |  是   | 回调函数，异步返回停止键鼠穿越结果。        |
 
 
 
@@ -191,15 +191,15 @@ stop(callback: AsyncCallback\<void>): void
 
 ```js
 try {
-  inputDeviceCooperate.stop((err) => {
-    if (err) {
-      console.log(`Stop key mouse crossing failed. error code=${JSON.stringify(err.code)} msg=${JSON.stringify(err.message)}`);
+  inputDeviceCooperate.stop((error) => {
+    if (error) {
+      console.log(`Stop Keyboard mouse crossing failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
       return;
     }
-    console.log(`Stop key mouse crossing success.`);
+    console.log(`Stop Keyboard mouse crossing success.`);
   });
-} catch (err) {
-  console.log(`Stop key mouse crossing failed. error code=${JSON.stringify(err.code)} msg=${JSON.stringify(err.message)}`);
+} catch (error) {
+  console.log(`Stop Keyboard mouse crossing failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -207,7 +207,7 @@ try {
 
 stop(): Promise\<void>
 
-停止键鼠穿越，使用Promise异步回调。
+停止键鼠穿越，使用Promise异步方式返回结果。
 
 **系统能力**：SystemCapability.MultimodalInput.Input.InputDeviceCooperate
 
@@ -215,19 +215,19 @@ stop(): Promise\<void>
 
 | 参数名                | 说明                            |
 | --------             | ----------------------------   |
-| Promise\<void>       |  Promise实例，用于异步获取结果。      | 
+| Promise\<void>       |  Promise对象，异步返回停止键鼠穿越结果。      | 
 
 **示例**：
 
 ```js
 try {
-  inputDeviceCooperate.stop().then((err) => {
-    console.log(`Stop key mouse crossing success.`);
-  }, (err) => {
-    console.log(`Stop key mouse crossing failed. error code=${JSON.stringify(err.code)} msg=${JSON.stringify(err.message)}`);
+  inputDeviceCooperate.stop().then(() => {
+    console.log(`Stop Keyboard mouse crossing success.`);
+  }, (error) => {
+    console.log(`Stop Keyboard mouse crossing failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
   });
-} catch (err) {
-  console.log(`Stop key mouse crossing failed. error code=${JSON.stringify(err.code)} msg=${JSON.stringify(err.message)}`);
+} catch (error) {
+  console.log(`Stop Keyboard mouse crossing failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -235,7 +235,7 @@ try {
 
 getState(deviceDescriptor: string, callback: AsyncCallback<{ state: boolean }>): void
 
-获取键鼠穿越开关的状态，使用callback异步回调。
+获取键鼠穿越开关的状态，使用AsyncCallback异步方式返回结果。
 
 **系统能力**：SystemCapability.MultimodalInput.Input.InputDeviceCooperate
 
@@ -244,21 +244,21 @@ getState(deviceDescriptor: string, callback: AsyncCallback<{ state: boolean }>):
 | 参数名                | 类型                          | 必填   | 说明                            |
 | --------             | ---------                    | ----  | ----------------------------    |
 | deviceDescriptor     | string                       |  是    | 键鼠穿越目标设备描述符。             |
-| callback             | AsyncCallback<{ state: boolean }> |  是    | 异步回调函数，接收键鼠穿越开关状态。        |
+| callback             | AsyncCallback<{ state: boolean }> |  是    | 回调函数，异步返回键鼠穿越开关状态。        |
 
 **示例**：
 
 ```js
 try {
-  inputDeviceCooperate.getState(deviceDescriptor, (err, data) => {
-    if (err) {
-      console.log(`Get the status failed. error code=${JSON.stringify(err.code)} msg=${JSON.stringify(err.message)}`);
+  inputDeviceCooperate.getState(deviceDescriptor, (error, data) => {
+    if (error) {
+      console.log(`Get the status failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
       return;
     }
-    console.log(`Get the status success. data=${JSON.stringify(data)}`);
+    console.log(`Get the status success, data: ${JSON.stringify(data)}`);
   });
-} catch (err) {
-  console.log(`Get the status failed. error code=${JSON.stringify(err.code)} msg=${JSON.stringify(err.message)}`);
+} catch (error) {
+  console.log(`Get the status failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -266,7 +266,7 @@ try {
 
 getState(deviceDescriptor: string): Promise<{ state: boolean }>
 
-获取键鼠穿越开关的状态，使用Promise异步回调。
+获取键鼠穿越开关的状态，使用Promise异步方式返回结果。
 
 **系统能力**：SystemCapability.MultimodalInput.Input.InputDeviceCooperate
 
@@ -282,7 +282,7 @@ getState(deviceDescriptor: string): Promise<{ state: boolean }>
 
 | 参数                        | 说明                     |
 | -------------------        | ------------------------------- |
-| Promise<{ state: boolean }>| Promise实例，用于异步获取结果。        |
+| Promise<{ state: boolean }>| Promise对象，异步返回键鼠穿越开关状态。        |
 
 
 
@@ -291,12 +291,12 @@ getState(deviceDescriptor: string): Promise<{ state: boolean }>
 ```js
 try {
   inputDeviceCooperate.getState(deviceDescriptor).then((data) => {
-    console.log(`Get the status success. data=${JSON.stringify(data)}`);
-  }, (err) => {
-    console.log(`Get the status failed. error code=${JSON.stringify(err.code)} msg=${JSON.stringify(err.message)}`);
+    console.log(`Get the status success, data: ${JSON.stringify(data)}`);
+  }, (error) => {
+    console.log(`Get the status failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
   });
-} catch (err) {
-  console.log(`Get the status failed. error code=${JSON.stringify(err.code)} msg=${JSON.stringify(err.message)}`);
+} catch (error) {
+  console.log(`Get the status failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -312,8 +312,8 @@ on(type: 'cooperation', callback: AsyncCallback<{ deviceDescriptor: string, even
 
 | 参数名                | 类型                                                             | 必填 | 说明                            |
 | --------             | ----------------------------                                    | ---- | ----------------------------   |
-| type                 | string                                                          |  是  | 注册类型，'cooperation'。         |
-| callback             | AsyncCallback<{ deviceDescriptor: string, eventMsg: [EventMsg](#eventmsg) }> |  是  | 异步回调函数，接收键鼠穿越事件消息。    |
+| type                 | string                                                          |  是  | 注册类型，取值”cooperation“。         |
+| callback             | AsyncCallback<{ deviceDescriptor: string, eventMsg: [EventMsg](#eventmsg) }> |  是  | 回调函数，异步返回键鼠穿越事件。    |
 
 
 
@@ -322,14 +322,10 @@ on(type: 'cooperation', callback: AsyncCallback<{ deviceDescriptor: string, even
 ```js
 try {
   inputDeviceCooperate.on('cooperation', (data) => {
-    if (data) {
-      console.log(`error: ${JSON.stringify(data)}`);
-    } else {
-      console.log(`cooperation: ${JSON.stringify(data)}`);
-    }
+    console.log(`Keyboard mouse crossing event: ${JSON.stringify(data)}`);
   });
 } catch (err) {
-  console.log(`Registered failed. error code=${JSON.stringify(err.code)} msg=${JSON.stringify(err.message)}`);
+  console.log(`Register failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -345,24 +341,37 @@ off(type: 'cooperation', callback?: AsyncCallback\<void>): void
 
 | 参数名                | 类型                                                              | 必填    | 说明                           |
 | --------             | ----------------------------                                     | ----   | ----------------------------   |
-| type                 | string                                                           |  是    | 注册类型，'cooperation'。         |
-| callback             | AsyncCallback<void> |  否  | 异步回调函数，用于返回结果。 |
+| type                 | string                                                           |  是    | 注册类型，取值“cooperation”。         |
+| callback             | AsyncCallback<void> |  否  | 需要取消注册的回调函数，若无此参数，则取消当前应用注册的所有回调函数。 |
 
 
 
 **示例**：
 
 ```js
+// 取消注册单个回调函数
+callback: function(event) {
+  console.log(`Keyboard mouse crossing event: ${JSON.stringify(event)}`);
+  return false;
+},
 try {
-  inputDeviceCooperate.off('cooperation', (err) => {
-    if (err) {
-      console.log(`error: ${JSON.stringify(err)}`);
-    } else {
-      console.log(`Unregistered succeed`);
-    }
-  });
-} catch (err) {
-  console.log(`Unregistered failed. error code=${JSON.stringify(err.code)} msg=${JSON.stringify(err.message)}`);
+  inputDeviceCooperate.on('cooperation', this.callback);
+  inputDeviceCooperate.off("cooperation", this.callback);
+} catch (error) {
+  console.log(`Execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+}
+```
+```js
+// 取消注册所有回调函数
+callback: function(event) {
+  console.log(`Keyboard mouse crossing event: ${JSON.stringify(event)}`);
+  return false;
+},
+try {
+  inputDeviceCooperate.on('cooperation', this.callback);
+  inputDeviceCooperate.off("cooperation");
+} catch (error) {
+  console.log(`Execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 

@@ -1,6 +1,10 @@
 # Native API使用常见问题
 
+## Native API是否有类似Canvas绘制接口
 
+适用于：OpenHarmony SDK 3.2.5.3版本，API9 Stage模型
+
+Native API中的[Drawing](../reference/native-apis/_drawing.md)接口可以提供2D绘制功能。
 
 ## 运行Native HAP的时候，导入的命名空间报错Obj is not a valid object
 
@@ -8,7 +12,19 @@
 
 检查模块根目录（注意不是工程根目录）下的build-profile.json5文件，如果设备是32位，需要在abiFilters参数中配置armeabi-v7a，如果设备是64位，需要在abiFilters参数中配置arm64-v8a。
 
-## NAPI开发的C++代码中，如何获取到模块 package.json 文件中的 “version” 值？
+## 运行Native HAP的时候，报错install parse profile prop check error
+
+适用于：OpenHarmony SDK 3.2.6.3版本，API9 Stage模型
+
+检查模块根目录（注意不是工程根目录）下的build-profile.json5文件，如果设备是32位，需要在abiFilters参数中配置armeabi-v7a，如果设备是64位，需要在abiFilters参数中配置arm64-v8a。
+
+## 在Native代码中使用OH_LOG_Print打印日志，报错undefined symbol: OH_LOG_Print
+
+适用于：OpenHarmony SDK 3.2.6.3版本，API9 Stage模型
+
+需要修改CMakeLists.txt文件，在target_link_libraries最后追加libhilog_ndk.z.so。
+
+## 如何获取到模块 package.json 文件中的 “version” 值
 
 适用于：OpenHarmony SDK 3.2.5.3版本，API9 Stage模型
 
@@ -55,3 +71,11 @@ static napi_value Add(napi_env env, napi_callback_info info)
     return fixed_version_value;
 }
 ```
+
+## 如何遍历rawfiles中的文件
+
+适用于：OpenHarmony SDK 3.2版本以上，API9 Stage模型
+
+使用Native API中的OH_ResourceManager_OpenRawDir()方法获取到rawfile的根目录，然后对其进行遍历。可参考文档：[Native开发指导](../reference/native-apis/rawfile.md)
+
+<!--no_check--> 

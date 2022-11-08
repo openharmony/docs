@@ -76,7 +76,9 @@ result.toString()
 ```
 
 
-### equals
+### equals<sup>(deprecated)</sup>
+> **说明：**<br/>
+> 从API version 9开始废弃，建议使用[equalsTo<sup>9+</sup>](#equalsto9)替代。
 
 equals(other: URI): boolean
 
@@ -102,6 +104,33 @@ equals(other: URI): boolean
 const uriInstance = new uri.URI('http://username:password@host:8080/directory/file?query=pppppp#qwer=da');
 const uriInstance1 = new uri.URI('http://username:password@host:8080/directory/file?query=pppppp#qwer=da#fragment');
 uriInstance.equals(uriInstance1);
+```
+### equalsTo<sup>9+</sup>
+
+equalsTo(other: URI): boolean
+
+判断此URI是否与其他URI对象相等。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| other | [URI](#uri) | 是 | 需要比较的URI对象。 |
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| boolean | 返回true表示相等，否则返回false。 |
+
+**示例：**
+
+```js
+const uriInstance = new uri.URI('http://username:password@host:8080/directory/file?query=pppppp#qwer=da');
+const uriInstance1 = new uri.URI('http://username:password@host:8080/directory/file?query=pppppp#qwer=da#fragment');
+uriInstance.equalsTo(uriInstance1);
 ```
 
 ### checkIsAbsolute
