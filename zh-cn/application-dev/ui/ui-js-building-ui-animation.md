@@ -27,12 +27,14 @@
 ```css
 /* xxx.css */
 .container {
+  width: 100%;
   flex-direction: column;
   align-items: center;
 }
 .translate {
   height: 150px;
   width: 300px;
+  margin: 50px;
   font-size: 50px;
   background-color: #008000;
   transform: translate(200px);
@@ -40,14 +42,16 @@
 .rotate {
   height: 150px;
   width: 300px;
+  margin: 50px;
   font-size: 50px;
   background-color: #008000;
   transform-origin: 200px 100px;
-  transform: rotateX(45deg);
+  transform: rotate(45deg);
 }
 .scale {
   height: 150px;
   width: 300px;
+  margin: 50px;
   font-size: 50px;
   background-color: #008000;
   transform: scaleX(1.5);
@@ -81,28 +85,24 @@ animation样式需要在css文件中先定义keyframe，在keyframe中设置动�
 ```html
 <!-- xxx.hml -->
 <div class="item-container">
-  <text class="header">animation-name</text>
-  <div class="item {{colorParam}}">
-    <text class="txt">color</text>
-  </div>
-  <div class="item {{opacityParam}}">
-    <text class="txt">opacity</text>
-  </div>
-  <input class="button" type="button" name="" value="show" onclick="showAnimation"/>
+    <div class="item {{colorParam}}">
+        <text class="txt">color</text>
+    </div>
+    <div class="item {{opacityParam}}">
+        <text class="txt">opacity</text>
+    </div>
+    <input class="button" type="button" name="" value="show" onclick="showAnimation"/>
 </div>
 ```
 
 ```css
 /* xxx.css */
 .item-container {
-  margin-right: 60px;
-  margin-left: 60px;
+  margin: 60px;
   flex-direction: column;
 }
-.header {
-  margin-bottom: 20px;
-}
 .item {
+  width: 80%;
   background-color: #f76160;
 }
 .txt {
@@ -112,6 +112,7 @@ animation样式需要在css文件中先定义keyframe，在keyframe中设置动�
 }
 .button {
   width: 200px;
+  margin: 10px;
   font-size: 30px;
   background-color: #09ba07;
 }
@@ -141,7 +142,7 @@ animation样式需要在css文件中先定义keyframe，在keyframe中设置动�
 }
 ```
 
-```
+```js
 // xxx.js
 export default {
   data: {
@@ -153,7 +154,7 @@ export default {
     this.opacityParam = '';
     this.colorParam = 'color';
     this.opacityParam = 'opacity';
-  },
+  }
 }
 ```
 
