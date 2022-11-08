@@ -44,7 +44,7 @@
     - [@ohos.application.errorManager (ErrorManager)](js-apis-errorManager.md)
     - [@oho.app.form.formBindingData (卡片数据绑定类)](js-apis-app-form-formbindingdata.md)
     - [@ohos.application.formError (FormError)](js-apis-formerror.md)
-    - [@ohos.application.formHost (FormHost)](js-apis-formhost.md)
+
     - [@ohos.app.form.formProvider (FormProvider)](js-apis-app-form-formprovider.md)
     - [@ohos.app.form.formInfo (FormInfo)](js-apis-app-form-forminfo.md)
     - [@ohos.application.missionManager (missionManager)](js-apis-missionManager.md)
@@ -294,6 +294,7 @@
   - [@ohos.uitest (UiTest)](js-apis-uitest.md)
 
 - 已停止维护的接口
+  - [@ohos.application.formHost (FormHost)](js-apis-formhost.md)
   - [@ohos.application.formProvider (FormProvider)](js-apis-formprovider.md)
   - [@ohos.application.formInfo (FormInfo)](js-apis-formInfo.md)
   - [@ohos.application.formBindingData (卡片数据绑定类)](js-apis-formbindingdata.md)
