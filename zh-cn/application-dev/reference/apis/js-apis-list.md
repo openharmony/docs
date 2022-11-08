@@ -90,14 +90,15 @@ add(element: T): boolean
 
 ```ts
 let list = new List();
-let result = list.add("a");
-let result1 = list.add(1);
+let result1 = list.add("a");
+let result2 = list.add(1);
 let b = [1, 2, 3];
-list.add(b);
+let result3 = list.add(b);
 let c = {name : "Dylon", age : "13"};
-let result3 = list.add(false);
+let result4 = list.add(c);
+let result5 = list.add(false);
 try {
-  list.add.bind({}, "b")();
+  list.add.bind({}, "b")(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
 } catch(err) {
   console.log(`${err.code} - ${err.name} - ${err.message}`);
 }
@@ -135,7 +136,7 @@ list.insert("A", 0);
 list.insert(0, 1);
 list.insert(true, 2);
 try {
-  list.insert.bind({}, "b", 3)();
+  list.insert.bind({}, "b", 3)(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
 } catch(err) {
   console.log(`${err.code} - ${err.name} - ${err.message}`);
 }
@@ -182,7 +183,7 @@ let result = list.has("squirrel");
 list.add("squirrel");
 let result1 = list.has("squirrel");
 try {
-  list.has.bind({}, "squirrel")();
+  list.has.bind({}, "squirrel")(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
 } catch(err) {
   console.log(`${err.code} - ${err.name} - ${err.message}`);
 }
@@ -229,7 +230,7 @@ list.add(2);
 list.add(4);
 let result = list.get(2);
 try {
-  list.get.bind({}, 2)();
+  list.get.bind({}, 2)(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
 } catch(err) {
   console.log(`${err.code} - ${err.name} - ${err.message}`);
 }
@@ -276,7 +277,7 @@ list.add(2);
 list.add(4);
 let result = list.getLastIndexOf(2);
 try {
-  list.getLastIndexOf.bind({}, 2)();
+  list.getLastIndexOf.bind({}, 2)(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
 } catch(err) {
   console.log(`${err.code} - ${err.name} - ${err.message}`);
 }
@@ -324,7 +325,7 @@ list.add(4);
 list.getIndexOf(2);
 let result = list.getIndexOf(2);
 try {
-  list.getIndexOf.bind({}, 2)();
+  list.getIndexOf.bind({}, 2)(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
 } catch(err) {
   console.log(`${err.code} - ${err.name} - ${err.message}`);
 }
@@ -374,7 +375,7 @@ list.equal(obj1);
 let obj2 = {name : "Dylon", age : "13"};
 let result = list.equal(obj2);
 try {
-  list.equal.bind({}, obj2)();
+  list.equal.bind({}, obj2)(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
 } catch(err) {
   console.log(`${err.code} - ${err.name} - ${err.message}`);
 }
@@ -420,7 +421,7 @@ list.add(2);
 list.add(4);
 let result = list.removeByIndex(2);
 try {
-  list.removeByIndex.bind({}, 2)();
+  list.removeByIndex.bind({}, 2)(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
 } catch(err) {
   console.log(`${err.code} - ${err.name} - ${err.message}`);
 }
@@ -469,7 +470,7 @@ list.add(5);
 list.add(4);
 let result = list.remove(2);
 try {
-  list.remove.bind({}, 2)();
+  list.remove.bind({}, 2)(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
 } catch(err) {
   console.log(`${err.code} - ${err.name} - ${err.message}`);
 }
@@ -524,7 +525,7 @@ list.replaceAllElements((value: number, index: number) => {
 try {
   list.replaceAllElements.bind({}, (value: number, index: number) => {
     return value = 2 * value;
-  })();
+  })(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
 } catch(err) {
   console.log(`${err.code} - ${err.name} - ${err.message}`);
 }
@@ -576,7 +577,7 @@ list.forEach((value, index) => {
 try {
   list.forEach.bind({}, (value, index) => {
     console.log("value: " + value, index);
-  })();
+  })(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
 } catch(err) {
   console.log(`${err.code} - ${err.name} - ${err.message}`);
 }
@@ -623,7 +624,7 @@ list.add(4);
 list.sort((a: number, b: number) => a - b);
 list.sort((a: number, b: number) => b - a);
 try {
-  list.sort.bind({}, (a: number, b: number) => b - a)();
+  list.sort.bind({}, (a: number, b: number) => b - a)(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
 } catch(err) {
   console.log(`${err.code} - ${err.name} - ${err.message}`);
 }
@@ -671,7 +672,7 @@ let result = list.getSubList(2, 4);
 let result1 = list.getSubList(4, 3);
 let result2 = list.getSubList(2, 6);
 try {
-  list.getSubList.bind({}, 2, 4)();
+  list.getSubList.bind({}, 2, 4)(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
 } catch(err) {
   console.log(`${err.code} - ${err.name} - ${err.message}`);
 }
@@ -708,7 +709,7 @@ list.add(5);
 list.add(4);
 list.clear();
 try {
-  list.clear.bind({})();
+  list.clear.bind({})(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
 } catch(err) {
   console.log(`${err.code} - ${err.name} - ${err.message}`);
 }
@@ -754,7 +755,7 @@ list.add(5);
 list.add(4);
 list.set(2, "b");
 try {
-  list.set.bind({}, 3, "b")();
+  list.set.bind({}, 3, "b")(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
 } catch(err) {
   console.log(`${err.code} - ${err.name} - ${err.message}`);
 }
@@ -797,7 +798,7 @@ list.add(5);
 list.add(4);
 let result = list.convertToArray();
 try {
-  list.convertToArray.bind({})();
+  list.convertToArray.bind({})(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
 } catch(err) {
   console.log(`${err.code} - ${err.name} - ${err.message}`);
 }
@@ -835,7 +836,7 @@ list.add(5);
 list.add(4);
 let result = list.isEmpty();
 try {
-  list.isEmpty.bind({})();
+  list.isEmpty.bind({})(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
 } catch(err) {
   console.log(`${err.code} - ${err.name} - ${err.message}`);
 }
@@ -873,7 +874,7 @@ list.add(5);
 list.add(4);
 let result = list.getFirst();
 try {
-  list.getFirst.bind({})();
+  list.getFirst.bind({})(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
 } catch(err) {
   console.log(`${err.code} - ${err.name} - ${err.message}`);
 }
@@ -911,7 +912,7 @@ list.add(5);
 list.add(4);
 let result = list.getLast();
 try {
-  list.getLast.bind({})();
+  list.getLast.bind({})(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
 } catch(err) {
   console.log(`${err.code} - ${err.name} - ${err.message}`);
 }
@@ -961,7 +962,7 @@ while(temp != undefined) {
   temp = iter.next().value;
 }
 try {
-  list[Symbol.iterator].bind({})();
+  list[Symbol.iterator].bind({})(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
 } catch(err) {
   console.log(`${err.code} - ${err.name} - ${err.message}`);
 }

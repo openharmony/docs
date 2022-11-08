@@ -72,7 +72,7 @@ let vector = new Vector();
 let result = vector.add("a");
 let result1 = vector.add(1);
 let b = [1, 2, 3];
-vector.add(b);
+let result2 = vector.add(b);
 let c = {name : "Dylon", age : "13"};
 let result3 = vector.add(c);
 ```
@@ -285,7 +285,6 @@ vector.add(4);
 vector.add(5);
 vector.add(4);
 vector.removeByRange(2,4);
-vector.removeByRange(4,3);
 vector.removeByRange(2,6);
 ```
 
@@ -430,9 +429,10 @@ vector.add(2);
 vector.add(4);
 vector.add(5);
 vector.add(4);
-let result = vector.subVector(2,4);
-let result1 = vector.subVector(4,3);
-let result2 = vector.subVector(2,6);
+vector.add(6);
+vector.add(8);
+let result = vector.subVector(0,4);
+let result1 = vector.subVector(2,4);
 
 ```
 

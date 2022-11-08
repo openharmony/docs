@@ -88,7 +88,7 @@ isEmpty(): boolean
 const hashMap = new HashMap();
 let result = hashMap.isEmpty();
 try {
-  hashMap.isEmpty.bind({})();
+  hashMap.isEmpty.bind({})(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
 } catch(err) {
   console.log(`${err.code} - ${err.name} - ${err.message}`);
 }
@@ -131,7 +131,7 @@ let result = hashMap.hasKey("squirrel");
 hashMap.set("squirrel", 123);
 let result1 = hashMap.hasKey("squirrel");
 try {
-  hashMap.hasKey.bind({}, "squirrel")();
+  hashMap.hasKey.bind({}, "squirrel")(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
 } catch(err) {
   console.log(`${err.code} - ${err.name} - ${err.message}`);
 }
@@ -174,7 +174,7 @@ let result = hashMap.hasValue(123);
 hashMap.set("squirrel", 123);
 let result1 = hashMap.hasValue(123);
 try {
-  hashMap.hasValue.bind({}, 123)();
+  hashMap.hasValue.bind({}, 123)(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
 } catch(err) {
   console.log(`${err.code} - ${err.name} - ${err.message}`);
 }
@@ -217,7 +217,7 @@ hashMap.set("squirrel", 123);
 hashMap.set("sparrow", 356);
 let result = hashMap.get("sparrow");
 try {
-  hashMap.get.bind({}, "sparrow")();
+  hashMap.get.bind({}, "sparrow")(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
 } catch(err) {
   console.log(`${err.code} - ${err.name} - ${err.message}`);
 }
@@ -255,7 +255,7 @@ hashMap.set("sparrow", 356);
 let newHashMap = new HashMap();
 hashMap.setAll(newHashMap);
 try {
-  hashMap.setAll.bind({}, newHashMap)();
+  hashMap.setAll.bind({}, newHashMap)(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
 } catch(err) {
   console.log(`${err.code} - ${err.name} - ${err.message}`);
 }
@@ -297,7 +297,7 @@ set(key: K, value: V): Object
 let hashMap = new HashMap();
 let result = hashMap.set("squirrel", 123);
 try {
-  hashMap.set.bind({}, "squirrel", 123)();
+  hashMap.set.bind({}, "squirrel", 123)(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
 } catch(err) {
   console.log(`${err.code} - ${err.name} - ${err.message}`);
 }
@@ -340,7 +340,7 @@ hashMap.set("squirrel", 123);
 hashMap.set("sparrow", 356);
 let result = hashMap.remove("sparrow");
 try {
-  hashMap.remove.bind({}, "sparrow")();
+  hashMap.remove.bind({}, "sparrow")(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
 } catch(err) {
   console.log(`${err.code} - ${err.name} - ${err.message}`);
 }
@@ -371,7 +371,7 @@ hashMap.set("squirrel", 123);
 hashMap.set("sparrow", 356);
 hashMap.clear();
 try {
-  hashMap.clear.bind({})();
+  hashMap.clear.bind({})(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
 } catch(err) {
   console.log(`${err.code} - ${err.name} - ${err.message}`);
 }
@@ -413,7 +413,7 @@ while(temp != undefined) {
   temp = iter.next().value;
 }
 try {
-  hashMap.keys.bind({})();
+  hashMap.keys.bind({})(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
 } catch(err) {
   console.log(`${err.code} - ${err.name} - ${err.message}`);
 }
@@ -455,7 +455,7 @@ while(temp != undefined) {
   temp = iter.next().value;
 }
 try {
-  hashMap.values.bind({})();
+  hashMap.values.bind({})(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
 } catch(err) {
   console.log(`${err.code} - ${err.name} - ${err.message}`);
 }
@@ -498,7 +498,7 @@ let hashMap = new HashMap();
 hashMap.set("sparrow", 123);
 let result = hashMap.replace("sparrow", 357);
 try {
-  hashMap.replace.bind({}, "sparrow", 357)();
+  hashMap.replace.bind({}, "sparrow", 357)(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
 } catch(err) {
   console.log(`${err.code} - ${err.name} - ${err.message}`);
 }
@@ -547,7 +547,7 @@ hashMap.forEach((value, key) => {
 try {
   hashMap.forEach.bind({}, (value, key) => {
     console.log("value:" + value, key);
-  })();
+  })(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
 } catch(err) {
   console.log(`${err.code} - ${err.name} - ${err.message}`);
 }
@@ -590,7 +590,7 @@ while(temp != undefined) {
   temp = iter.next().value;
 }
 try {
-  hashMap.entries.bind({})();
+  hashMap.entries.bind({})(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
 } catch(err) {
   console.log(`${err.code} - ${err.name} - ${err.message}`);
 }
@@ -640,7 +640,7 @@ while(temp != undefined) {
   temp = iter.next().value;
 }
 try {
-  hashMap[Symbol.iterator].bind({})();
+  hashMap[Symbol.iterator].bind({})(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
 } catch(err) {
   console.log(`${err.code} - ${err.name} - ${err.message}`);
 }

@@ -91,7 +91,7 @@ isEmpty(): boolean
 const lightWeightMap = new LightWeightMap();
 let result = lightWeightMap.isEmpty();
 try {
-  lightWeightMap.isEmpty.bind({})();
+  lightWeightMap.isEmpty.bind({})(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
 } catch(err) {
   console.log(`${err.code} - ${err.name} - ${err.message}`);
 }
@@ -136,7 +136,7 @@ let map = new LightWeightMap();
 map.set("sparrow", 356);
 let result = lightWeightMap.hasAll(map);
 try {
-  lightWeightMap.hasAll.bind({}, map)();
+  lightWeightMap.hasAll.bind({}, map)(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
 } catch(err) {
   console.log(`${err.code} - ${err.name} - ${err.message}`);
 }
@@ -180,7 +180,7 @@ lightWeightMap.hasKey("squirrel");
 lightWeightMap.set("squirrel", 123);
 let result1 = lightWeightMap.hasKey("squirrel");
 try {
-  lightWeightMap.hasKey.bind({}, "squirrel")();
+  lightWeightMap.hasKey.bind({}, "squirrel")(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
 } catch(err) {
   console.log(`${err.code} - ${err.name} - ${err.message}`);
 }
@@ -223,7 +223,7 @@ let result = lightWeightMap.hasValue(123);
 lightWeightMap.set("squirrel", 123);
 let result1 = lightWeightMap.hasValue(123);
 try {
-  lightWeightMap.hasValue.bind({}, 123)();
+  lightWeightMap.hasValue.bind({}, 123)(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
 } catch(err) {
   console.log(`${err.code} - ${err.name} - ${err.message}`);
 }
@@ -258,7 +258,7 @@ increaseCapacityTo(minimumCapacity: number): void
 let lightWeightMap = new LightWeightMap();
 lightWeightMap.increaseCapacityTo(10);
 try {
-  lightWeightMap.increaseCapacityTo.bind({}, 10)();
+  lightWeightMap.increaseCapacityTo.bind({}, 10)(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
 } catch(err) {
   console.log(`${err.code} - ${err.name} - ${err.message}`);
 }
@@ -301,7 +301,7 @@ lightWeightMap.set("squirrel", 123);
 lightWeightMap.set("sparrow", 356);
 let result = lightWeightMap.get("sparrow");
 try {
-  lightWeightMap.get.bind({}, "sparrow")();
+  lightWeightMap.get.bind({}, "sparrow")(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
 } catch(err) {
   console.log(`${err.code} - ${err.name} - ${err.message}`);
 }
@@ -344,7 +344,7 @@ lightWeightMap.set("squirrel", 123);
 lightWeightMap.set("sparrow", 356);
 let result = lightWeightMap.getIndexOfKey("sparrow");
 try {
-  lightWeightMap.getIndexOfKey.bind({}, "sparrow")();
+  lightWeightMap.getIndexOfKey.bind({}, "sparrow")(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
 } catch(err) {
   console.log(`${err.code} - ${err.name} - ${err.message}`);
 }
@@ -387,7 +387,7 @@ lightWeightMap.set("squirrel", 123);
 lightWeightMap.set("sparrow", 356);
 let result = lightWeightMap.getIndexOfValue(123);
 try {
-  lightWeightMap.getIndexOfValue.bind({}, 123)();
+  lightWeightMap.getIndexOfValue.bind({}, 123)(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
 } catch(err) {
   console.log(`${err.code} - ${err.name} - ${err.message}`);
 }
@@ -431,12 +431,12 @@ lightWeightMap.set("squirrel", 123);
 lightWeightMap.set("sparrow", 356);
 let result = lightWeightMap.getKeyAt(1);
 try {
-  lightWeightMap.getKeyAt.bind({}, 1)();
+  lightWeightMap.getKeyAt.bind({}, 1)(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
 } catch(err) {
   console.log(`${err.code} - ${err.name} - ${err.message}`);
 }
 try {
-  lightWeightMap.getKeyAt(6)();
+  lightWeightMap.getKeyAt(6)(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
 } catch(err) {
   console.log(`${err.code} - ${err.name} - ${err.message}`);
 }
@@ -474,7 +474,7 @@ lightWeightMap.set("sparrow", 356);
 let map = new LightWeightMap();
 lightWeightMap.setAll(map);
 try {
-  lightWeightMap.setAll.bind({}, map)();
+  lightWeightMap.setAll.bind({}, map)(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
 } catch(err) {
   console.log(`${err.code} - ${err.name} - ${err.message}`);
 }
@@ -515,7 +515,7 @@ set(key: K, value: V): Object
 let lightWeightMap = new LightWeightMap();
 let result = lightWeightMap.set("squirrel", 123);
 try {
-  lightWeightMap.set.bind({}, "squirrel", 123)();
+  lightWeightMap.set.bind({}, "squirrel", 123)(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
 } catch(err) {
   console.log(`${err.code} - ${err.name} - ${err.message}`);
 }
@@ -558,7 +558,7 @@ lightWeightMap.set("squirrel", 123);
 lightWeightMap.set("sparrow", 356);
 lightWeightMap.remove("sparrow");
 try {
-  lightWeightMap.remove.bind({}, "sparrow")();
+  lightWeightMap.remove.bind({}, "sparrow")(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
 } catch(err) {
   console.log(`${err.code} - ${err.name} - ${err.message}`);
 }
@@ -601,7 +601,7 @@ lightWeightMap.set("squirrel", 123);
 lightWeightMap.set("sparrow", 356);
 let result = lightWeightMap.removeAt(1);
 try {
-  lightWeightMap.removeAt.bind({}, 1)();
+  lightWeightMap.removeAt.bind({}, 1)(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
 } catch(err) {
   console.log(`${err.code} - ${err.name} - ${err.message}`);
 }
@@ -646,7 +646,7 @@ lightWeightMap.set("squirrel", 123);
 lightWeightMap.set("sparrow", 356);
 lightWeightMap.setValueAt(1, 3546);
 try {
-  lightWeightMap.setValueAt.bind({}, 1, 3546)();
+  lightWeightMap.setValueAt.bind({}, 1, 3546)(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
 } catch(err) {
   console.log(`${err.code} - ${err.name} - ${err.message}`);
 }
@@ -695,7 +695,7 @@ lightWeightMap.set("squirrel", 123);
 lightWeightMap.set("sparrow", 356);
 let result = lightWeightMap.getValueAt(1);
 try {
-  lightWeightMap.getValueAt.bind({}, 1)();
+  lightWeightMap.getValueAt.bind({}, 1)(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
 } catch(err) {
   console.log(`${err.code} - ${err.name} - ${err.message}`);
 }
@@ -731,7 +731,7 @@ lightWeightMap.set("squirrel", 123);
 lightWeightMap.set("sparrow", 356);
 lightWeightMap.clear();
 try {
-  lightWeightMap.clear.bind({})();
+  lightWeightMap.clear.bind({})(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
 } catch(err) {
   console.log(`${err.code} - ${err.name} - ${err.message}`);
 }
@@ -773,7 +773,7 @@ while(temp != undefined) {
   temp = iter.next().value;
 }
 try {
-  lightWeightMap.keys.bind({})();
+  lightWeightMap.keys.bind({})(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
 } catch(err) {
   console.log(`${err.code} - ${err.name} - ${err.message}`);
 }
@@ -815,7 +815,7 @@ while(temp != undefined) {
   temp = iter.next().value;
 }
 try {
-  lightWeightMap.values.bind({})();
+  lightWeightMap.values.bind({})(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
 } catch(err) {
   console.log(`${err.code} - ${err.name} - ${err.message}`);
 }
@@ -864,7 +864,7 @@ lightWeightMap.forEach((value, key) => {
 try {
   lightWeightMap.forEach.bind({}, (value, key) => {
     console.log("value:" + value, key);
-  })();
+  })(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
 } catch(err) {
   console.log(`${err.code} - ${err.name} - ${err.message}`);
 }
@@ -907,7 +907,7 @@ while(temp != undefined) {
   temp = iter.next().value;
 }
 try {
-  lightWeightMap.entries.bind({})();
+  lightWeightMap.entries.bind({})(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
 } catch(err) {
   console.log(`${err.code} - ${err.name} - ${err.message}`);
 }
@@ -943,7 +943,7 @@ lightWeightMap.set("squirrel", 123);
 lightWeightMap.set("sparrow", 356);
 let iter = lightWeightMap.toString();
 try {
-  lightWeightMap.toString.bind({})();
+  lightWeightMap.toString.bind({})(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
 } catch(err) {
   console.log(`${err.code} - ${err.name} - ${err.message}`);
 }
@@ -993,7 +993,7 @@ while(temp != undefined) {
   temp = iter.next().value;
 }
 try {
-  lightWeightMap[Symbol.iterator].bind({})();
+  lightWeightMap[Symbol.iterator].bind({})(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
 } catch(err) {
   console.log(`${err.code} - ${err.name} - ${err.message}`);
 }
