@@ -167,6 +167,30 @@
 > **说明：**
 > 动态授权申请接口的使用详见[API参考](../reference/apis/js-apis-ability-context.md)。
 
+## user_grant权限预授权
+当前正常情况下，user_grant类型的权限默认不授权，需要时应通过拉起弹框由用户确认是否授予。对于一些预置应用，比如截屏应用，不希望出现弹框，则可以通过预授权的方式完成user_grant类型权限的授权。[预置配置文件](https://gitee.com/openharmony/vendor_hihope/blob/master/rk3568/preinstall-config/install_list_permissions.json)在设备上的路径为system/etc/app/install_list_permission.json，设备开机启动时会读取该配置文件，在应用安装会对在文件中配置的user_grant类型权限授权。当前仅支持预置应用配置该文件。
+预授权配置文件字段内容包括bundleName、app_signature、permissions。
+1. 这里的权限仅对user_grant类型的权限生效[查看权限等级和类型](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/permission-list.md)。
+2. userCancellable配置为true，表示支持用户取消授权，为false则表示不支持用户取消授权。
+
+```json
+[
+  {
+    "bundleName": "com.ohos.myapplication", // 包名
+    "app_signature":[], // 指纹信息
+    "permissions":[
+      {
+        "name":"xxxx", // 权限名，不可缺省
+        "userCancellable":false // 用户不可取消授权，不可缺省
+      },
+      {
+        "name":"yyy", // 权限名，不可缺省
+        "userCancellable":true // 用户可取消授权，不可缺省
+      }
+    ]
+  }
+]
+```
 ## 相关实例
 
 针对访问控制，有以下相关实例可供参考：
