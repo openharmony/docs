@@ -320,7 +320,7 @@ struct ImageExample3 {
             .onError(() => {
               console.log('load image fail')
             })
-            .overlay('\nwidth: ' + String(this.width) + ' height: ' + String(this.height), {
+            .overlay('\nwidth: ' + String(this.widthValue) + ' height: ' + String(this.heightValue), {
               align: Alignment.Bottom,
               offset: { x: 0, y: 20 }
             })
@@ -353,17 +353,17 @@ struct ImageExample3 {
 ###  渲染沙箱路径图片
 
 ```
-import fileio from '@ohos.fileio';
-import image from '@ohos.multimedia.image';
+import fileio from '@ohos.fileio'
+import image from '@ohos.multimedia.image'
 
-const EMPTY_PATH = 'file://';
+const EMPTY_PATH = 'file://'
 
 @Entry
 @Component
 struct LoadImageExample {
-  @State fileContent: string = '';
-  @State path: string = EMPTY_PATH;
-  @State accountInfoHeadPic: any = '';
+  @State fileContent: string = ''
+  @State path: string = EMPTY_PATH
+  @State accountInfoHeadPic: any = ''
 
   build() {
     Column() {
@@ -371,22 +371,22 @@ struct LoadImageExample {
         .margin({ bottom: 10 })
         .onClick(() => {
           try {
-            this.path = EMPTY_PATH;
-            let context = getContext(this);
-            let path = context.getApplicationContext().filesDir + '/icon.png';
-            console.log(`读取沙箱图片=========>${path}`);
-            let fd = fileio.openSync(path, 0o100, 0o666);
-            console.log(`create file========>${fd}`);
-            let srcPath = context.bundleCodeDir + '/entry/resource/base/media/icon.png';
-            fileio.copyFileSync(srcPath, path);
-            console.log(`error:=============>${e.message}`);
+            this.path = EMPTY_PATH
+            let context = getContext(this)
+            let path = context.getApplicationContext().filesDir + '/icon.png'
+            console.log(`读取沙箱图片=========>${path}`)
+            let fd = fileio.openSync(path, 0o100, 0o666)
+            console.log(`create file========>${fd}`)
+            let srcPath = context.bundleCodeDir + '/entry/resource/base/media/icon.png'
+            fileio.copyFileSync(srcPath, path)
+            console.log(`error:=============>${e.message}`)
           }
         })
       Button('读取资源图片')
         .margin({ bottom: 10 })
         .onClick(() => {
           this.path = EMPTY_PATH;
-          this.path += getContext(this.bundleCodeDir + '/entry/resource/base/media/icon.png');
+          this.path += getContext(this.bundleCodeDir + '/entry/resource/base/media/icon.png')
         })
       Text(`图片路径:${this.path}`)
         .fontSize(20)

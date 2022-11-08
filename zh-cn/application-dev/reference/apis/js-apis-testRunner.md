@@ -29,7 +29,7 @@ export default class UserTestRunner implements TestRunner {
     onPrepare() {
         console.log("Trigger onPrepare")
     }
-    onRun(){}
+    onRun() {}
 };
 ```
 
@@ -47,9 +47,9 @@ onRun(): void
 
 ```js
 export default class UserTestRunner implements TestRunner {
-    onPrepare() {
-       console.log("Trigger onRun")
+    onPrepare() {}
+    onRun() {
+        console.log("Trigger onRun")
     }
-    onRun(){}
 };
 ```

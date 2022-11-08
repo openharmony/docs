@@ -3,7 +3,7 @@
 Want模块提供系统的基本通信组件的能力。
 
 > **说明：**
-> 
+>
 > 本模块首批接口从API version 8 开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
 ## 导入模块
@@ -24,9 +24,9 @@ import Want from '@ohos.application.Want';
 | uri          | 只读     | string               | 否   | 表示Uri描述。如果在Want中指定了Uri，则Want将匹配指定的Uri信息，包括scheme, schemeSpecificPart, authority和path信息。 |
 | type         | 只读     | string               | 否   | 表示MIME type类型描述，打开文件的类型，主要用于文管打开文件。比如："text/xml" 、 "image/*"等，MIME定义参考：https://www.iana.org/assignments/media-types/media-types.xhtml?utm_source=ld246.com。   |
 | flags        | 只读     | number               | 否   | 表示处理Want的方式。默认传数字，具体参考：[flags说明](js-apis-featureAbility.md#flags说明)。 |
-| action      | 只读     | string               | 否   | 表示action选项描述。                           |
-| parameters   | 只读     | {[key: string]: any} | 否   | 表示WantParams描述，由开发者自行决定传入的键值对。默认会携带以下key值：<br>ohos.aafwk.callerPid 表示拉起方的pid。<br>ohos.aafwk.param.callerToken 表示拉起方的token。<br>ohos.aafwk.param.callerUid 表示发起方的uid。[Bundle](js-apis-Bundle.md)模块中userId参数，可用于获取应用信息、包信息等，具体参考：[Bundle](js-apis-Bundle.md)。                                       |
-| entities    | 只读     | Array\<string>       | 否   | 表示entities相关描述。                                    |
+| action      | 只读     | string               | 否   | 表示要执行的通用操作（如：查看、分享、应用详情）。在隐式Want中，您可以定义该字段，配合uri或parameters来表示对数据要执行的操作。                           |
+| parameters   | 只读     | {[key: string]: any} | 否   | 表示WantParams描述，由开发者自行决定传入的键值对。默认会携带以下key值：<br>ohos.aafwk.callerPid 表示拉起方的pid。<br>ohos.aafwk.param.callerToken 表示拉起方的token。<br>ohos.aafwk.param.callerUid 表示[bundleInfo](js-apis-bundle-BundleInfo.md#bundleinfo-1)中的uid，应用包里应用程序的uid。                                       |
+| entities    | 只读     | Array\<string>       | 否   | 表示目标Ability额外的类别信息（如：浏览器、视频播放器），在隐式Want中是对action字段的补充。在隐式Want中，您可以定义该字段，来过滤匹配Ability类型。                                    |
 | moduleName<sup>9+</sup> | 只读   | string | 否    | 表示待启动的Ability所属的模块（module）。 |
 
 **示例：**
@@ -46,79 +46,91 @@ import Want from '@ohos.application.Want';
     })
   ```
 
-- 传递FD数据，FD表示文件描述符(FileDescriptor)
+- 通过自定字段传递数据, 以下为当前支持类型。
 
-  ```  js
-    import fileio from '@ohos.fileio';
-    var fd;
-    try {
-        fd = fileio.openSync("/data/storage/el2/base/haps/pic.png");
-    } catch(e) {
-        console.log("openSync fail:" + JSON.stringify(e));
-    }
-    var want = {
-        "deviceId": "", // deviceId为空表示本设备
-        "bundleName": "com.extreme.test",
-        "abilityName": "MainAbility",
-        "moduleName": "entry", // moduleName非必选
-        "parameters": {
-            "keyFd":{"type":"FD", "value":fd}
+    * 字符串（String）
+        ```ts
+        let want = {
+            bundleName: "com.example.demo",
+            abilityName: "com.example.demo.MainAbility",
+            parameters: {
+                keyForString: "str",
+            },
         }
-    };
-    this.context.startAbility(want, (error) => {
-        // 显式拉起Ability，通过bundleName、abilityName和moduleName可以唯一确定一个Ability
-        console.log("error.code = " + error.code)
-    })
-  ```
-
-- 传递RemoteObject数据
-
-  ```  js
-    import rpc from '@ohos.rpc';
-    import Ability from '@ohos.application.Ability'
-
-    class Stub extends rpc.RemoteObject {
-        constructor(des) {
-            if (typeof des == 'string') {
-                super(des);
-            } else {
-                return null;
+        ```
+    * 数字（Number）
+        ```ts
+        let want = {
+            bundleName: "com.example.demo",
+            abilityName: "com.example.demo.MainAbility",
+            parameters: {
+                keyForInt: 100,
+                keyForDouble: 99.99,
+            },
+        }
+        ```
+    * 布尔（Boolean）
+        ```ts
+        let want = {
+            bundleName: "com.example.demo",
+            abilityName: "com.example.demo.MainAbility",
+            parameters: {
+                keyForBool: true,
+            },
+        }
+        ```
+    * 对象（Object）
+        ```ts
+        let want = {
+            bundleName: "com.example.demo",
+            abilityName: "com.example.demo.MainAbility",
+            parameters: {
+                keyForObject: {
+                    keyForObjectString: "str",
+                    keyForObjectInt: -200,
+                    keyForObjectDouble: 35.5,
+                    keyForObjectBool: false,
+                },
+            },
+        }
+        ```
+    * 数组（Array）
+        ```ts
+        let want = {
+            bundleName: "com.example.demo",
+            abilityName: "com.example.demo.MainAbility",
+            parameters: {
+                keyForArrayString: ["str1", "str2", "str3"],
+                keyForArrayInt: [100, 200, 300, 400],
+                keyForArrayDouble: [0.1, 0.2],
+                keyForArrayObject: [{obj1: "aaa"}, {obj2: 100}],
+            },
+        }
+        ```
+    * 文件描述符（FD）
+        ```ts
+            import fileio from '@ohos.fileio';
+            var fd;
+            try {
+                fd = fileio.openSync("/data/storage/el2/base/haps/pic.png");
+            } catch(e) {
+                console.log("openSync fail:" + JSON.stringify(e));
             }
-        }
+            var want = {
+                "deviceId": "", // deviceId为空表示本设备
+                "bundleName": "com.extreme.test",
+                "abilityName": "MainAbility",
+                "moduleName": "entry", // moduleName非必选
+                "parameters": {
+                    "keyFd":{"type":"FD", "value":fd}
+                }
+            };
+            this.context.startAbility(want, (error) => {
+                // 显式拉起Ability，通过bundleName、abilityName和moduleName可以唯一确定一个Ability
+                console.log("error.code = " + error.code)
+            })
+        ```
 
-        onRemoteRequest(code, data, reply, option) {
-            if (code === 1) {
-                console.log('onRemoteRequest called')
-                let token = data.readInterfaceToken();
-                let num = data.readInt();
-                this.method();
-                return true;
-            }
-            return false;
-        }
-
-        method() {
-            console.log('method called');
-        }
-    }
-
-    var remoteObject = new Stub('want-test');
-    var want = {
-        "deviceId": "", // deviceId为空表示本设备
-        "bundleName": "com.extreme.test",
-        "abilityName": "MainAbility",
-        "moduleName": "entry", // moduleName非必选
-        "parameters": {
-            "keyRemoteObject":{"type":"RemoteObject", "value":remoteObject}
-        }
-    };
-
-    this.context.startAbility(want, (error) => {
-        // 显式拉起Ability，通过bundleName、abilityName和moduleName可以唯一确定一个Ability
-        console.log("error.code = " + error.code)
-    })
-
-  ```
   <!--no_check-->
 
 

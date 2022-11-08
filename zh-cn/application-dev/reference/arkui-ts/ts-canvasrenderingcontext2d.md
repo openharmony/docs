@@ -423,8 +423,8 @@ struct LineDashOffset {
         .onReady(() =>{
           this.context.arc(100, 75, 50, 0, 6.28)
           this.context.setLineDash([10,20])
-          this.context.lineDashOffset = 10.0;
-          this.context.stroke();
+          this.context.lineDashOffset = 10.0
+          this.context.stroke()
       })
     }
     .width('100%')
@@ -1172,7 +1172,7 @@ createPattern(image: ImageBitmap, repetition: string | null): CanvasPattern | nu
 | 参数       | 类型                                               | 必填 | 描述                                                         |
 | ---------- | -------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | image      | [ImageBitmap](ts-components-canvas-imagebitmap.md) | 是   | 图源对象，具体参考ImageBitmap对象。                          |
-| repetition | string                                             | 是   | 设置图像重复的方式，取值为：'repeat'、'repeat-x'、&nbsp;'repeat-y'、'no-repeat'。<br/>默认值：'' |
+| repetition | string                                             | 是   | 设置图像重复的方式，取值为：'repeat'、'repeat-x'、&nbsp'repeat-y'、'no-repeat'。<br/>默认值：'' |
 
 **返回值：**：
 
@@ -1996,7 +1996,7 @@ drawImage(image: ImageBitmap | PixelMap, sx: number, sy: number, sw: number, sh:
   struct ImageExample {
     private settings: RenderingContextSettings = new RenderingContextSettings(true)
     private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
-    private img:ImageBitmap = new ImageBitmap("common/images/example.jpg");
+    private img:ImageBitmap = new ImageBitmap("common/images/example.jpg")
 
     build() {
       Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
@@ -2005,7 +2005,7 @@ drawImage(image: ImageBitmap | PixelMap, sx: number, sy: number, sw: number, sh:
           .height('100%')
           .backgroundColor('#ffff00')
           .onReady(() =>{
-            this.context.drawImage( this.img,0,0,500,500,0,0,400,200);
+            this.context.drawImage( this.img,0,0,500,500,0,0,400,200)
         })
       }
       .width('100%')
@@ -2264,7 +2264,7 @@ struct CanvasGetLineDash {
           .onReady(() => {
             this.context.arc(100, 75, 50, 0, 6.28)
             this.context.setLineDash([10,20])
-            this.context.stroke();
+            this.context.stroke()
             let res = this.context.getLineDash()
           })
       }

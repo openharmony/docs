@@ -34,7 +34,7 @@ create(options: AnimatorOptions): AnimatorResult
 **示例：** 
 
   ```js
-  var options = {
+  let options = {
     duration: 1500,
     easing: 'friction',
     delay: 0,
@@ -79,7 +79,7 @@ reset(options: AnimatorOptions): void
 **示例：**
 
 ```js
-var options = {
+let options = {
   duration: 1500,
   easing: 'friction',
   delay: 0,
@@ -266,7 +266,7 @@ export default {
     animator: null
   },
   onInit() {
-    var options = {
+    let options = {
       duration: 1500,
       easing: 'friction',
       delay: 0,
@@ -279,7 +279,7 @@ export default {
     this.animator = animator.create(options);
   },
   Show() {
-    var options1 = {
+    let options1 = {
       duration: 1500,
       easing: 'friction',
       delay: 0,
@@ -294,7 +294,7 @@ export default {
     } catch(error) {
       console.error(`Animator reset failed, error code: ${error.code}, message: ${error.message}.`);
     }
-    var _this = this;
+    let _this = this;
     this.animator.onframe = function(value) {
       _this.divWidth = value;
       _this.divHeight = value;
@@ -353,7 +353,7 @@ createAnimator(options: AnimatorOptions): AnimatorResult
 **示例：** 
 
 ```js
-var options = {
+let options = {
   duration: 1500,
   easing: 'friction',
   delay: 0,

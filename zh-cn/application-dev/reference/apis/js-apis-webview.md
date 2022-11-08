@@ -28,8 +28,7 @@ close(): void
 
 关闭该消息端口。
 
-**系统能力：**
-SystemCapability.Web.Webview.Core
+**系统能力：** SystemCapability.Web.Webview.Core
 
 **示例：**
 
@@ -61,8 +60,7 @@ postMessageEvent(message: string): void
 
 发送消息。完整示例代码参考[postMessage](#postmessage)
 
-**系统能力：**
-SystemCapability.Web.Webview.Core
+**系统能力：** SystemCapability.Web.Webview.Core
 
 **参数：**
 
@@ -114,8 +112,7 @@ onMessageEvent(callback: (result: string) => void): void
 
 注册回调函数，接收HTML5侧发送过来的消息。完整示例代码参考[postMessage](#postmessage)
 
-**系统能力：**
-SystemCapability.Web.Webview.Core
+**系统能力：** SystemCapability.Web.Webview.Core
 
 **参数：**
 
@@ -178,8 +175,7 @@ loadUrl(url: string | Resource, headers?: Array\<HeaderV9>): void
 
 加载指定的URL。
 
-**系统能力：**
-SystemCapability.Web.Webview.Core
+**系统能力：** SystemCapability.Web.Webview.Core
 
 **参数：**
 
@@ -196,7 +192,7 @@ SystemCapability.Web.Webview.Core
 | -------- | ------------------------------------------------------------ |
 | 17100001 | Init error. The WebviewController must be associated with a Web component. |
 | 17100002 | Invalid url.                                                 |
-| 17100003 | Invalid resource.                                            |
+| 17100003 | Invalid resource path or file type.                          |
 
 **示例：**
 
@@ -231,8 +227,7 @@ loadData(data: string, mimeType: string, encoding: string, baseUrl?: string, his
 
 加载指定的数据。
 
-**系统能力：**
-SystemCapability.Web.Webview.Core
+**系统能力：** SystemCapability.Web.Webview.Core
 
 **参数：** 
 
@@ -289,8 +284,7 @@ accessForward(): boolean
 
 当前页面是否可前进，即当前页面是否有前进历史记录。
 
-**系统能力：**
-SystemCapability.Web.Webview.Core
+**系统能力：** SystemCapability.Web.Webview.Core
 
 **返回值：** 
 
@@ -340,8 +334,7 @@ forward(): void
 
 按照历史栈，前进一个页面。一般结合accessForward一起使用。
 
-**系统能力：**
-SystemCapability.Web.Webview.Core
+**系统能力：** SystemCapability.Web.Webview.Core
 
 **错误码**：
 
@@ -384,8 +377,7 @@ accessBackward(): boolean
 
 当前页面是否可后退，即当前页面是否有返回历史记录。
 
-**系统能力：**
-SystemCapability.Web.Webview.Core
+**系统能力：** SystemCapability.Web.Webview.Core
 
 **返回值：**
 
@@ -435,8 +427,7 @@ backward(): void
 
 按照历史栈，后退一个页面。一般结合accessBackward一起使用。
 
-**系统能力：**
-SystemCapability.Web.Webview.Core
+**系统能力：** SystemCapability.Web.Webview.Core
 
 **错误码**：
 
@@ -479,8 +470,7 @@ onActive(): void
 
 调用此接口通知Web组件进入前台激活状态。
 
-**系统能力：**
-SystemCapability.Web.Webview.Core
+**系统能力：** SystemCapability.Web.Webview.Core
 
 **错误码：**
 
@@ -523,8 +513,7 @@ onInactive(): void
 
 调用此接口通知Web组件进入未激活状态。
 
-**系统能力：**
-SystemCapability.Web.Webview.Core
+**系统能力：** SystemCapability.Web.Webview.Core
 
 **错误码：**
 
@@ -566,8 +555,7 @@ refresh(): void
 
 调用此接口通知Web组件刷新网页。
 
-**系统能力：**
-SystemCapability.Web.Webview.Core
+**系统能力：** SystemCapability.Web.Webview.Core
 
 **错误码：**
 
@@ -610,8 +598,7 @@ accessStep(step: number): boolean
 
 当前页面是否可前进或者后退给定的step步。
 
-**系统能力：**
-SystemCapability.Web.Webview.Core
+**系统能力：** SystemCapability.Web.Webview.Core
 
 **参数：**
 
@@ -668,8 +655,7 @@ clearHistory(): void
 
 删除所有前进后退记录。
 
-**系统能力：**
-SystemCapability.Web.Webview.Core
+**系统能力：** SystemCapability.Web.Webview.Core
 
 **错误码：**
 
@@ -712,8 +698,7 @@ getHitTest(): HitTestTypeV9
 
 获取当前被点击区域的元素类型。
 
-**系统能力：**
-SystemCapability.Web.Webview.Core
+**系统能力：** SystemCapability.Web.Webview.Core
 
 **返回值：**
 
@@ -763,8 +748,7 @@ registerJavaScriptProxy(object: object, name: string, methodList: Array\<string>
 
 注入JavaScript对象到window对象中，并在window对象中调用该对象的方法。注册后，须调用[refresh](#refresh)接口生效。
 
-**系统能力：**
-SystemCapability.Web.Webview.Core
+**系统能力：** SystemCapability.Web.Webview.Core
 
 **参数：**
 
@@ -824,8 +808,7 @@ runJavaScript(script: string, callback : AsyncCallback\<string>): void
 
 异步执行JavaScript脚本，并通过回调方式返回脚本执行的结果。runJavaScript需要在loadUrl完成后，比如onPageEnd中调用。
 
-**系统能力：**
-SystemCapability.Web.Webview.Core
+**系统能力：** SystemCapability.Web.Webview.Core
 
 **参数：**
 
@@ -888,8 +871,7 @@ runJavaScript(script: string): Promise\<string>
 
 异步执行JavaScript脚本，并通过Promise方式返回脚本执行的结果。runJavaScript需要在loadUrl完成后，比如onPageEnd中调用。
 
-**系统能力：**
-SystemCapability.Web.Webview.Core
+**系统能力：** SystemCapability.Web.Webview.Core
 
 **参数：**
 
@@ -953,8 +935,7 @@ deleteJavaScriptRegister(name: string): void
 
 删除通过registerJavaScriptProxy注册到window上的指定name的应用侧JavaScript对象。删除后立即生效，无须调用[refresh](#refresh)接口。
 
-**系统能力：**
-SystemCapability.Web.Webview.Core
+**系统能力：** SystemCapability.Web.Webview.Core
 
 **参数：**
 
@@ -1005,8 +986,7 @@ zoom(factor: number): void
 
 调整当前网页的缩放比例。
 
-**系统能力：**
-SystemCapability.Web.Webview.Core
+**系统能力：** SystemCapability.Web.Webview.Core
 
 **参数：**
 
@@ -1021,8 +1001,7 @@ SystemCapability.Web.Webview.Core
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
 | 17100001 | Init error. The WebviewController must be associated with a Web compoent. |
-| 17100004 | Cannot delete JavaScriptProxy.                               |
-| 17100009 | Cannot zoom in or zoom out.                                  |
+| 17100004 | Function not enable.                                         |
 
 **示例：**
 
@@ -1058,8 +1037,7 @@ searchAllAsync(searchString: string): void
 
 异步查找网页中所有匹配关键字'searchString'的内容并高亮，结果通过[onSearchResultReceive](../arkui-ts/ts-basic-components-web.md#onsearchresultreceive9)异步返回。
 
-**系统能力：**
-SystemCapability.Web.Webview.Core
+**系统能力：** SystemCapability.Web.Webview.Core
 
 **参数：**
 
@@ -1113,8 +1091,7 @@ clearMatches(): void
 
 清除所有通过[searchAllAsync](#searchallasync)匹配到的高亮字符查找结果。
 
-**系统能力：**
-SystemCapability.Web.Webview.Core
+**系统能力：** SystemCapability.Web.Webview.Core
 
 **错误码：**
 
@@ -1157,8 +1134,7 @@ searchNext(forward: boolean): void
 
 滚动到下一个匹配的查找结果并高亮。
 
-**系统能力：**
-SystemCapability.Web.Webview.Core
+**系统能力：** SystemCapability.Web.Webview.Core
 
 **参数：**
 
@@ -1207,8 +1183,7 @@ clearSslCache(): void
 
 清除Web组件记录的SSL证书错误事件对应的用户操作行为。
 
-**系统能力：**
-SystemCapability.Web.Webview.Core
+**系统能力：** SystemCapability.Web.Webview.Core
 
 **错误码：**
 
@@ -1251,8 +1226,7 @@ clearClientAuthenticationCache(): void
 
 清除Web组件记录的客户端证书请求事件对应的用户操作行为。
 
-**系统能力：**
-SystemCapability.Web.Webview.Core
+**系统能力：** SystemCapability.Web.Webview.Core
 
 **错误码：**
 
@@ -1295,8 +1269,7 @@ struct WebComponent {
 
 创建Web消息端口。
 
-**系统能力：**
-SystemCapability.Web.Webview.Core
+**系统能力：** SystemCapability.Web.Webview.Core
 
 **返回值：** 
 
@@ -1347,8 +1320,7 @@ postMessage(name: string, ports: Array\<WebMessagePort>, uri: string): void
 
 发送Web消息端口到HTML5。
 
-**系统能力：**
-SystemCapability.Web.Webview.Core
+**系统能力：** SystemCapability.Web.Webview.Core
 
 **参数：**
 
@@ -1472,8 +1444,7 @@ requestFocus(): void
 
 使当前web页面获取焦点。
 
-**系统能力：**
-SystemCapability.Web.Webview.Core
+**系统能力：** SystemCapability.Web.Webview.Core
 
 **错误码**：
 
@@ -1516,8 +1487,7 @@ zoomIn(): void
 
 调用此接口将当前网页进行放大，比例为20%。
 
-**系统能力：**
-SystemCapability.Web.Webview.Core
+**系统能力：** SystemCapability.Web.Webview.Core
 
 **错误码**：
 
@@ -1527,7 +1497,6 @@ SystemCapability.Web.Webview.Core
 | -------- | ------------------------------------------------------------ |
 | 17100001 | Init error. The WebviewController must be associated with a Web component. |
 | 17100004 | Function not enable.                                         |
-| 17100009 | Cannot zoom in or zoom out.                                  |
 
 **示例：**
 
@@ -1562,8 +1531,7 @@ zoomOut(): void
 
 调用此接口将当前网页进行缩小，比例为20%。
 
-**系统能力：**
-SystemCapability.Web.Webview.Core
+**系统能力：** SystemCapability.Web.Webview.Core
 
 **错误码**：
 
@@ -1573,7 +1541,6 @@ SystemCapability.Web.Webview.Core
 | -------- | ------------------------------------------------------------ |
 | 17100001 | Init error. The WebviewController must be associated with a Web component. |
 | 17100004 | Function not enable.                                         |
-| 17100009 | Cannot zoom in or zoom out.                                  |
 
 **示例：**
 
@@ -1608,8 +1575,7 @@ getHitTestValue(): HitTestValue
 
 获取当前被点击区域的元素信息。
 
-**系统能力：**
-SystemCapability.Web.Webview.Core
+**系统能力：** SystemCapability.Web.Webview.Core
 
 **返回值：**
 
@@ -1660,8 +1626,7 @@ getWebId(): number
 
 获取当前Web组件的索引值，用于多个Web组件的管理。
 
-**系统能力：**
-SystemCapability.Web.Webview.Core
+**系统能力：** SystemCapability.Web.Webview.Core
 
 **返回值：**
 
@@ -1711,8 +1676,7 @@ getUserAgent(): string
 
 获取当前默认用户代理。
 
-**系统能力：**
-SystemCapability.Web.Webview.Core
+**系统能力：** SystemCapability.Web.Webview.Core
 
 **返回值：**
 
@@ -1762,8 +1726,7 @@ getTitle(): string
 
 获取文件选择器标题。
 
-**系统能力：**
-SystemCapability.Web.Webview.Core
+**系统能力：** SystemCapability.Web.Webview.Core
 
 **返回值：**
 
@@ -1813,8 +1776,7 @@ getPageHeight(): number
 
 获取当前网页的页面高度。
 
-**系统能力：**
-SystemCapability.Web.Webview.Core
+**系统能力：** SystemCapability.Web.Webview.Core
 
 **返回值：**
 
@@ -1864,8 +1826,7 @@ storeWebArchive(baseName: string, autoName: boolean, callback: AsyncCallback\<st
 
 以回调方式异步保存当前页面。
 
-**系统能力：**
-SystemCapability.Web.Webview.Core
+**系统能力：** SystemCapability.Web.Webview.Core
 
 **参数：**
 
@@ -1925,8 +1886,7 @@ storeWebArchive(baseName: string, autoName: boolean): Promise\<string>
 
 以Promise方式异步保存当前页面。
 
-**系统能力：**
-SystemCapability.Web.Webview.Core
+**系统能力：** SystemCapability.Web.Webview.Core
 
 **参数：**
 
@@ -1991,8 +1951,7 @@ getUrl(): string
 
 获取当前页面的url地址。
 
-**系统能力：**
-SystemCapability.Web.Webview.Core
+**系统能力：** SystemCapability.Web.Webview.Core
 
 **返回值：**
 
@@ -2042,8 +2001,7 @@ stop(): void
 
 停止页面加载。
 
-**系统能力：**
-SystemCapability.Web.Webview.Core
+**系统能力：** SystemCapability.Web.Webview.Core
 
 **错误码**：
 
@@ -2086,8 +2044,7 @@ backOrForward(step: number): void
 
 按照历史栈，前进或者后退指定步长的页面，当历史栈中不存在对应步长的页面时，不会进行页面跳转。
 
-**系统能力：**
-SystemCapability.Web.Webview.Core
+**系统能力：** SystemCapability.Web.Webview.Core
 
 **参数：**
 
@@ -2102,7 +2059,6 @@ SystemCapability.Web.Webview.Core
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
 | 17100001 | Init error. The WebviewController must be associated with a Web component. |
-| 17100007 | Invalid back or forward operation. |
 
 **示例：**
 
@@ -2142,8 +2098,7 @@ static getCookie(url: string): string
 
 获取指定url对应cookie的值。
 
-**系统能力：**
-SystemCapability.Web.Webview.Core
+**系统能力：** SystemCapability.Web.Webview.Core
 
 **参数：**
 
@@ -2198,8 +2153,7 @@ static setCookie(url: string, value: string): void
 
 为指定url设置单个cookie的值。
 
-**系统能力：**
-SystemCapability.Web.Webview.Core
+**系统能力：** SystemCapability.Web.Webview.Core
 
 **参数：**
 
@@ -2250,8 +2204,7 @@ static saveCookieAsync(callback: AsyncCallback\<void>): void
 
 将当前存在内存中的cookie异步保存到磁盘中。
 
-**系统能力：**
-SystemCapability.Web.Webview.Core
+**系统能力：** SystemCapability.Web.Webview.Core
 
 **参数：**
 
@@ -2297,8 +2250,7 @@ static saveCookieAsync(): Promise\<void>
 
 将当前存在内存中的cookie以Promise方法异步保存到磁盘中。
 
-**系统能力：**
-SystemCapability.Web.Webview.Core
+**系统能力：** SystemCapability.Web.Webview.Core
 
 **返回值：** 
 
@@ -2345,8 +2297,7 @@ static putAcceptCookieEnabled(accept: boolean): void
 
 设置WebCookieManager实例是否拥有发送和接收cookie的权限。
 
-**系统能力：**
-SystemCapability.Web.Webview.Core
+**系统能力：** SystemCapability.Web.Webview.Core
 
 **参数：**
 
@@ -2387,8 +2338,7 @@ static isCookieAllowed(): boolean
 
 获取WebCookieManager实例是否拥有发送和接收cookie的权限。
 
-**系统能力：**
-SystemCapability.Web.Webview.Core
+**系统能力：** SystemCapability.Web.Webview.Core
 
 **返回值：** 
 
@@ -2426,8 +2376,7 @@ static putAcceptThirdPartyCookieEnabled(accept: boolean): void
 
 设置WebCookieManager实例是否拥有发送和接收第三方cookie的权限。
 
-**系统能力：**
-SystemCapability.Web.Webview.Core
+**系统能力：** SystemCapability.Web.Webview.Core
 
 **参数：**
 
@@ -2468,8 +2417,7 @@ static isThirdPartyCookieAllowed(): boolean
 
 获取WebCookieManager实例是否拥有发送和接收第三方cookie的权限。
 
-**系统能力：**
-SystemCapability.Web.Webview.Core
+**系统能力：** SystemCapability.Web.Webview.Core
 
 **返回值：** 
 
@@ -2507,8 +2455,7 @@ static existCookie(): boolean
 
 获取是否存在cookie。
 
-**系统能力：**
-SystemCapability.Web.Webview.Core
+**系统能力：** SystemCapability.Web.Webview.Core
 
 **返回值：** 
 
@@ -2546,8 +2493,7 @@ static deleteEntireCookie(): void
 
 清除所有cookie。
 
-**系统能力：**
-SystemCapability.Web.Webview.Core
+**系统能力：** SystemCapability.Web.Webview.Core
 
 **示例：**
 
@@ -2578,8 +2524,7 @@ static deleteSessionCookie(): void
 
 清除所有会话cookie。
 
-**系统能力：**
-SystemCapability.Web.Webview.Core
+**系统能力：** SystemCapability.Web.Webview.Core
 
 **示例：**
 
@@ -2614,8 +2559,7 @@ static deleteOrigin(origin : string): void
 
 清除指定源所使用的存储。
 
-**系统能力：**
-SystemCapability.Web.Webview.Core
+**系统能力：** SystemCapability.Web.Webview.Core
 
 **参数：**
 
@@ -2629,7 +2573,7 @@ SystemCapability.Web.Webview.Core
 
 | 错误码ID | 错误信息                                               |
 | -------- | ------------------------------------------------------ |
-| 17100011 | Invalid permission origin.                             |
+| 17100011 | Invalid origin.                             |
 
 **示例：**
 
@@ -2667,8 +2611,7 @@ static getOrigins(callback: AsyncCallback\<Array\<WebStorageOrigin>>) : void
 
 以回调方式异步获取当前使用Web SQL数据库的所有源的信息。
 
-**系统能力：**
-SystemCapability.Web.Webview.Core
+**系统能力：** SystemCapability.Web.Webview.Core
 
 **参数：**
 
@@ -2682,7 +2625,7 @@ SystemCapability.Web.Webview.Core
 
 | 错误码ID | 错误信息                                               |
 | -------- | ------------------------------------------------------ |
-| 17100011 | Invalid permission origin.                             |
+| 17100012 | Invalid web storage origin.                             |
 
 **示例：**
 
@@ -2729,8 +2672,7 @@ static getOrigins() : Promise\<Array\<WebStorageOrigin>>
 
 以Promise方式异步获取当前使用Web SQL数据库的所有源的信息。
 
-**系统能力：**
-SystemCapability.Web.Webview.Core
+**系统能力：** SystemCapability.Web.Webview.Core
 
 **返回值：**
 
@@ -2744,7 +2686,7 @@ SystemCapability.Web.Webview.Core
 
 | 错误码ID | 错误信息                                               |
 | -------- | ------------------------------------------------------ |
-| 17100011 | Invalid permission origin.                             |
+| 17100012 | Invalid web storage origin.                             |
 
 **示例：**
 
@@ -2791,8 +2733,7 @@ static getOriginQuota(origin : string, callback : AsyncCallback\<number>) : void
 
 使用callback回调异步获取指定源的Web SQL数据库的存储配额，配额以字节为单位。
 
-**系统能力：**
-SystemCapability.Web.Webview.Core
+**系统能力：** SystemCapability.Web.Webview.Core
 
 **参数：**
 
@@ -2807,7 +2748,7 @@ SystemCapability.Web.Webview.Core
 
 | 错误码ID | 错误信息                                               |
 | -------- | ------------------------------------------------------ |
-| 17100011 | Invalid permission origin.                             |
+| 17100011 | Invalid origin.                             |
 
 **示例：**
 
@@ -2851,8 +2792,7 @@ static getOriginQuota(origin : string) : Promise\<number>
 
 以Promise方式异步获取指定源的Web SQL数据库的存储配额，配额以字节为单位。
 
-**系统能力：**
-SystemCapability.Web.Webview.Core
+**系统能力：** SystemCapability.Web.Webview.Core
 
 **参数：**
 
@@ -2872,7 +2812,7 @@ SystemCapability.Web.Webview.Core
 
 | 错误码ID | 错误信息                                               |
 | -------- | ------------------------------------------------------ |
-| 17100011 | Invalid permission origin.                             |
+| 17100011 | Invalid origin.                             |
 
 **示例：**
 
@@ -2916,8 +2856,7 @@ static getOriginUsage(origin : string, callback : AsyncCallback\<number>) : void
 
 以回调方式异步获取指定源的Web SQL数据库的存储量，存储量以字节为单位。
 
-**系统能力：**
-SystemCapability.Web.Webview.Core
+**系统能力：** SystemCapability.Web.Webview.Core
 
 **参数：**
 
@@ -2932,7 +2871,7 @@ SystemCapability.Web.Webview.Core
 
 | 错误码ID | 错误信息                                               |
 | -------- | ------------------------------------------------------ |
-| 17100011 | Invalid permission origin.                             |
+| 17100011 | Invalid origin.                             |
 
 **示例：**
 
@@ -2976,8 +2915,7 @@ static getOriginUsage(origin : string) : Promise\<number>
 
 以Promise方式异步获取指定源的Web SQL数据库的存储量，存储量以字节为单位。
 
-**系统能力：**
-SystemCapability.Web.Webview.Core
+**系统能力：** SystemCapability.Web.Webview.Core
 
 **参数：**
 
@@ -2997,7 +2935,7 @@ SystemCapability.Web.Webview.Core
 
 | 错误码ID | 错误信息                                              |
 | -------- | ----------------------------------------------------- |
-| 17100011 | Invalid permission origin.                            |
+| 17100011 | Invalid origin.                            |
 
 **示例：**
 
@@ -3041,8 +2979,7 @@ static deleteAllData(): void
 
 清除Web SQL数据库当前使用的所有存储。
 
-**系统能力：**
-SystemCapability.Web.Webview.Core
+**系统能力：** SystemCapability.Web.Webview.Core
 
 **示例：**
 
@@ -3082,8 +3019,7 @@ static getHttpAuthCredentials(host: string, realm: string): Array\<string>
 
 检索给定主机和域的HTTP身份验证凭据，该方法为同步方法。
 
-**系统能力：**
-SystemCapability.Web.Webview.Core
+**系统能力：** SystemCapability.Web.Webview.Core
 
 **参数：**
 
@@ -3138,8 +3074,7 @@ static saveHttpAuthCredentials(host: string, realm: string, username: string, pa
 
 保存给定主机和域的HTTP身份验证凭据，该方法为同步方法。
 
-**系统能力：**
-SystemCapability.Web.Webview.Core
+**系统能力：** SystemCapability.Web.Webview.Core
 
 **参数：**
 
@@ -3185,8 +3120,7 @@ static existHttpAuthCredentials(): boolean
 
 判断是否存在任何已保存的HTTP身份验证凭据，该方法为同步方法。存在返回true，不存在返回false。
 
-**系统能力：**
-SystemCapability.Web.Webview.Core
+**系统能力：** SystemCapability.Web.Webview.Core
 
 **返回值：**
 
@@ -3227,8 +3161,7 @@ static deleteHttpAuthCredentials(): void
 
 清除所有已保存的HTTP身份验证凭据，该方法为同步方法。
 
-**系统能力：**
-SystemCapability.Web.Webview.Core
+**系统能力：** SystemCapability.Web.Webview.Core
 
 **示例：**
 
@@ -3267,8 +3200,7 @@ static allowGeolocation(origin: string): void
 
 允许指定来源使用地理位置接口。
 
-**系统能力：**
-SystemCapability.Web.Webview.Core
+**系统能力：** SystemCapability.Web.Webview.Core
 
 **参数：**
 
@@ -3281,7 +3213,7 @@ SystemCapability.Web.Webview.Core
 以下错误码的详细介绍请参见 [webview错误码](../errorcodes/errorcode-webview.md)
 | 错误码ID | 错误信息                                               |
 | -------- | ------------------------------------------------------ |
-| 17100011 | Invalid permission origin.                             |
+| 17100011 | Invalid origin.                             |
 
 **示例：**
 
@@ -3317,8 +3249,7 @@ static deleteGeolocation(origin: string): void
 
 清除指定来源的地理位置权限状态。
 
-**系统能力：**
-SystemCapability.Web.Webview.Core
+**系统能力：** SystemCapability.Web.Webview.Core
 
 **参数：**
 
@@ -3332,7 +3263,7 @@ SystemCapability.Web.Webview.Core
 
 | 错误码ID | 错误信息                                               |
 | -------- | ------------------------------------------------------ |
-| 17100011 | Invalid permission origin.                             |
+| 17100011 | Invalid origin.                             |
 
 **示例：**
 
@@ -3368,8 +3299,7 @@ static getAccessibleGeolocation(origin: string, callback: AsyncCallback\<boolean
 
 以回调方式异步获取指定源的地理位置权限状态。
 
-**系统能力：**
-SystemCapability.Web.Webview.Core
+**系统能力：** SystemCapability.Web.Webview.Core
 
 **参数：**
 
@@ -3384,7 +3314,7 @@ SystemCapability.Web.Webview.Core
 
 | 错误码ID | 错误信息                                               |
 | -------- | ------------------------------------------------------ |
-| 17100011 | Invalid permission origin.                             |
+| 17100011 | Invalid origin.                             |
 
 **示例：**
 
@@ -3426,8 +3356,7 @@ static getAccessibleGeolocation(origin: string): Promise\<boolean>
 
 以Promise方式异步获取指定源的地理位置权限状态。
 
-**系统能力：**
-SystemCapability.Web.Webview.Core
+**系统能力：** SystemCapability.Web.Webview.Core
 
 **参数：**
 
@@ -3447,7 +3376,7 @@ SystemCapability.Web.Webview.Core
 
 | 错误码ID | 错误信息                                               |
 | -------- | ------------------------------------------------------ |
-| 17100011 | Invalid permission origin.                             |
+| 17100011 | Invalid origin.                             |
 
 **示例：**
 
@@ -3488,8 +3417,7 @@ static getStoredGeolocation(callback: AsyncCallback\<Array\<string>>): void
 
 以回调方式异步获取已存储地理位置权限状态的所有源信息。
 
-**系统能力：**
-SystemCapability.Web.Webview.Core
+**系统能力：** SystemCapability.Web.Webview.Core
 
 **参数：**
 
@@ -3537,8 +3465,7 @@ static getStoredGeolocation(): Promise\<Array\<string>>
 
 以Promise方式异步获取已存储地理位置权限状态的所有源信息。
 
-**系统能力：**
-SystemCapability.Web.Webview.Core
+**系统能力：** SystemCapability.Web.Webview.Core
 
 **返回值：**
 
@@ -3585,8 +3512,7 @@ static deleteAllGeolocation(): void
 
 清除所有来源的地理位置权限状态。
 
-**系统能力：**
-SystemCapability.Web.Webview.Core
+**系统能力：** SystemCapability.Web.Webview.Core
 
 **示例：**
 
@@ -3615,8 +3541,9 @@ struct WebComponent {
 }
 ```
 ## HeaderV9
-
 Web组件返回的请求/响应头对象。
+
+**系统能力：** SystemCapability.Web.Webview.Core
 
 | 名称        | 类型   | 说明                 |
 | ----------- | ------ | :------------------- |
@@ -3624,6 +3551,8 @@ Web组件返回的请求/响应头对象。
 | headerValue | string | 请求/响应头的value。 |
 
 ## HitTestTypeV9
+
+**系统能力：** SystemCapability.Web.Webview.Core
 
 | 名称          | 描述                                      |
 | ------------- | ----------------------------------------- |
@@ -3640,6 +3569,8 @@ Web组件返回的请求/响应头对象。
 
 提供点击区域的元素信息。示例代码参考getHitTestValue。
 
+**系统能力：** SystemCapability.Web.Webview.Core
+
 | 名称  | 类型          | 说明                                                         |
 | ----- | ------------- | :----------------------------------------------------------- |
 | type  | [HitTestTypeV9](#hittesttypev9) | 当前被点击区域的元素类型。                                   |
@@ -3649,8 +3580,7 @@ Web组件返回的请求/响应头对象。
 
 提供Web SQL数据库的使用信息。
 
-**系统能力：**
-SystemCapability.Web.Webview.Core
+**系统能力：** SystemCapability.Web.Webview.Core
 
 | 名称   | 类型   | 必填 | 说明                 |
 | ------ | ------ | :--- | -------------------- |

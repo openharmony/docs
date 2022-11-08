@@ -89,22 +89,22 @@ if (!cameraOutputCap) {
     console.info("outputCapability: " + JSON.stringify(cameraOutputCap));
 }
 
-let previewProfilesArray = cameraOutputCap.previewProfiles;
+let previewProfilesArray = cameraOutputCap.GetPreviewProfiles();
 if (!previewProfilesArray) {
     console.error("createOutput previewProfilesArray == null || undefined")
 } 
 
-let photoProfilesArray = cameraOutputCap.photoProfiles;
+let photoProfilesArray = cameraOutputCap.GetPhotoProfiles();
 if (!photoProfilesArray) {
     console.error("createOutput photoProfilesArray == null || undefined")
 } 
 
-let videoProfilesArray = cameraOutputCap.videoProfiles;
+let videoProfilesArray = cameraOutputCap.GetVideoProfiles();
 if (!videoProfilesArray) {
     console.error("createOutput videoProfilesArray == null || undefined")
 } 
 
-let metadataObjectTypesArray = cameraOutputCap.supportedMetadataObjectTypes;
+let metadataObjectTypesArray = cameraOutputCap.GetSupportedMetadataObjectType();
 if (!metadataObjectTypesArray) {
     console.error("createOutput metadataObjectTypesArray == null || undefined")
 }
@@ -115,7 +115,7 @@ if (!previewOutput) {
     console.error("Failed to create the PreviewOutput instance.")
 }
 
-// 创建ImageReceiver对象，并设置照片参数
+// 创建ImageReceiver对象，并设置照片参数：分辨率大小是根据前面 photoProfilesArray 获取的当前设备所支持的拍照分辨率大小去设置
 let imageReceiver = await image.createImageReceiver(1920, 1080, 4, 8)
 // 获取照片显示SurfaceId
 let photoSurfaceId = await imageReceiver.getReceivingSurfaceId()
@@ -188,7 +188,7 @@ build() {
             controller: this.mXComponentController
         })
         .onload(() => {                                                                  // 设置onload回调
-            // 设置Surface宽高（1920*1080）
+            // 设置Surface宽高（1920*1080），预览尺寸设置参考前面 previewProfilesArray 获取的当前设备所支持的预览分辨率大小去设置
             this.mXComponentController.setXComponentSurfaceSize({surfaceWidth:1920,surfaceHeight:1080})
             // 获取Surface ID
             globalThis.surfaceId = mXComponentController.getXComponentSurfaceId()
