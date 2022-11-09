@@ -1,6 +1,6 @@
 # Code of Conduct
 
-The OpenHarmony community complies with the code of conduct specified in  [Contributor Covenant](https://contributor-covenant.org/)  of the open source community. For details, see  [https://www.contributor-covenant.org/version/1/4/code-of-conduct/](https://www.contributor-covenant.org/version/1/4/code-of-conduct/).
+The OpenHarmony community complies with the code of conduct specified in  [Contributor Covenant](https://contributor-covenant.org/)  of the open source community.
 
 To report insults, harassment, or other unacceptable behavior, you can contact the OpenHarmony technical committee at contact@openharmony.io.
 
