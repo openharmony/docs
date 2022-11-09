@@ -1,4 +1,4 @@
-# Encryption Algorithm
+# Cipher
 
 > **NOTE**<br>
 >
@@ -9,7 +9,7 @@
 
 
 ```js
-import cipher from '@system.cipher'
+import cipher from '@system.cipher';
 ```
 
 
@@ -25,9 +25,9 @@ Encrypts or decrypts data using RSA.
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| action | string | Yes| Action to perform. The options are as follows:<br>-&nbsp;encrypt<br>-&nbsp;decrypt|
-| text | string | Yes| Text to be encrypted or decrypted.<br> The text to be encrypted must be common text that meets the following requirement:<br> Maximum text length = Key length/8 - 66<br>For example, if the key is of 1024 bytes, the text to be encrypted cannot exceed 62 bytes (1024/8 -66 = 62).<br> The text to be decrypted must be binary text encoded in Base64. The default format is used for Base64 encoding.|
-| key | string | Yes| RSA key. The key is used as a public key in encryption and a private key in decryption.|
+| action | string | Yes| Action to perform. The options are as follows:<br>- encrypt<br>- decrypt|
+| text | string | Yes| Text to be encrypted or decrypted.<br> The text to be encrypted must be common text that meets the following requirement:<br>Maximum text length = Key length/8 - 66<br>For example, if the key is of 1024 bytes, the text to be encrypted cannot exceed 62 bytes (1024/8 -66 = 62).<br>The text to be decrypted must be binary text encoded in Base64. The default format is used for Base64 encoding. |
+| key | string | Yes| RSA key. It is a public key in encryption and a private key in decryption.|
 | transformation | string | No| RSA padding. The default value is **RSA/None/OAEPWithSHA256AndMGF1Padding**.|
 | success | Function | No| Called when data is encrypted or decrypted successfully.|
 | fail | Function | No| Called when data fails to be encrypted or decrypted.|
@@ -53,7 +53,7 @@ export default {
         console.log(`Handling successful:${data.text}`);          
       },            
       fail: function(data, code) {               
-        console.log(`### Failed to encrypt cipher.rsa ### ${code}:${data}`); 
+        console.log(`### cipher.rsa encrypt fail ### ${code}:${data}`); 
       },
       complete: function() {
         console.log(`operation complete!`);
@@ -86,7 +86,7 @@ export default {
            console.log(`Handling successful:${data.text}`);          
          },            
          fail: function(data, code) {               
-           console.log(`### Failed to encrypt cipher.rsa ### ${code}:${data}`); 
+           console.log(`### cipher.rsa encrypt fail ### ${code}:${data}`); 
          },
          complete: function() {
            console.log(`operation complete!`);
@@ -109,8 +109,8 @@ Encrypts or decrypts data using AES.
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| action | string | Yes| Action to perform. The options are as follows:<br>-&nbsp;encrypt<br>-&nbsp;decrypt|
-| text | string | Yes| Text to be encrypted or decrypted.<br> The text to be encrypted must be common text. The text to be decrypted must be binary text encoded in Base64. The default format is used for Base64 encoding.|
+| action | string | Yes| Action to perform. The options are as follows:<br>- encrypt<br>- decrypt|
+| text | string | Yes| Text to be encrypted or decrypted.<br>The text to be encrypted must be common text. The text to be decrypted must be binary text encoded in Base64. The default format is used for Base64 encoding. |
 | key | string | Yes| Key used for encryption or decryption. It is a string encoded in Base64.|
 | transformation | string | No| Encryption mode and padding of the AES algorithm. The default value is **AES/CBC/PKCS5Padding**.|
 | iv | string | No| Initialization vector (IV) for AES-based encryption and decryption. The value is a string encoded in Base64. The default value is the key value.|
@@ -139,7 +139,7 @@ export default {
         console.log(`Handling successful:${data.text}`);          
         },            
       fail: function(data, code) {               
-        console.log(`### Failed to encrypt cipher.rsa ### ${code}:${data}`); 
+        console.log(`### cipher.rsa encrypt fail ### ${code}:${data}`); 
         },
       complete: function() {
         console.log(`operation complete!`);
@@ -159,13 +159,12 @@ export default {
          console.log(`Handling successful:${data.text}`);          
         },            
        fail: function(data, code) {               
-         console.log(`### Failed to decrypt cipher.rsa ### ${code}:${data}`); 
+         console.log(`### cipher.rsa encrypt fail ### ${code}:${data}`); 
        },
        complete: function() {
          console.log(`operation complete!`);
         }
      });        
-    });    
   }
 }
 
