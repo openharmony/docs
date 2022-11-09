@@ -20,7 +20,7 @@ With reference to industry standards and best practices, this document provides 
 
 2-2 User authentication must be conducted on the server since it may be easily bypassed if being conducted on the client
 
-## 3\. Encryption
+## 3. Encryption
 
 3-1 Use verified, secure, and open encryption algorithms
 
@@ -33,7 +33,7 @@ Recommended cipher algorithms are as follows:
 - Block cipher algorithm: AES (key length of 128 bits or longer)  
 - Stream cipher algorithm: AES (key length of 128 bits or longer) (OFB/CTR mode)   
 - Asymmetric encryption algorithm: RSA (recommended: 3072 bits)   
-- Hash algorithm: SHA-2 (256 bits or above)  
+- Hash algorithm: SHA-2 (256 bits or longer)  
 - Key exchange algorithm: DH (recommended: 3072 bits)  
 - Hash-based message authentication code (HMAC) algorithm: HMAC-SHA-2  
 
@@ -144,7 +144,7 @@ RSA/DSA, with a key length less than 2048 bits
 
 3-21 For keys saved in memory, overwrite the memory by other data (such as 0x00) before freeing it
 
-## 4\. Sensitive Data Protection
+## 4. Sensitive Data Protection
 
 4-1 Store authentication credentials such as passwords in ciphertext and apply access control
 
@@ -162,7 +162,7 @@ RSA/DSA, with a key length less than 2048 bits
 
 4-5 Filter out or shield authentication credentials in logs, debugging information, and error messages
 
-## 5\. System Management and Maintenance Security
+## 5. System Management and Maintenance Security
 
 5-1 Adopt one or more of the following protection measures for login authentication on system O\&M interfaces to support anti-brute force cracking based on actual scenarios and risks: 
 
@@ -193,7 +193,7 @@ TFTP, FTP, Telnet, SSL 2.0, SSL 3.0, TLS 1.0, TLS 1.1, SNMPv1/v2, and SSHv1.x
 
 **Description**: In this way, unauthorized users cannot but obtain the least privilege when the authorization mechanism is faulty or bypassed.
 
-## 6\. Privacy Protection
+## 6. Privacy Protection
 
 6-1 Explicitly notify users and obtain their consent before collecting/using their personal data or forwarding the data to third parties
 
@@ -225,13 +225,13 @@ TFTP, FTP, Telnet, SSL 2.0, SSL 3.0, TLS 1.0, TLS 1.1, SNMPv1/v2, and SSHv1.x
 
 | No.  |             Term             | Definition                                                   |
 | :--: | :--------------------------: | ------------------------------------------------------------ |
-|  1   |  authentication credential   | Private or public data declared to prove identity authenticity. Common authentication credentials include passwords, pre-shared keys, private keys, SNMP community names, smart cards, dynamic tokens, fingerprints, and retinas. |
-|  2   |        personal data         | Any information relating to an identified or identifiable natural person ("data subject") who can be identified, directly or indirectly, in particular by reference to an identifier such as a name, an identification number, and location data or to one or more factors specific to the physical, physiological, genetic, mental, economic, cultural, or social identity of that natural person. Personal data includes a natural person's email address, telephone number, biometric information (such as a fingerprint), location data, IP address, health care information, religious belief, social security number, marital status, and so on. |
-|  3   |   sensitive personal data    | An important subset of personal data, referring to the information involving most private data of a data subject, or the data, once leaked or modified, may result in adverse impacts to a data subject. Sensitive personal data includes data revealing racial or ethnic origin, political opinions, religious or philosophical beliefs, trade-union membership, genetic data, biometric information, data concerning health, sex life, or sexual orientation, as well as bank account numbers, ID card numbers, passports, passwords, and other information associated with a natural person's identity. Sensitive personal data requires additional and stricter protection measures. |
-|  4   |        sensitive data        | The scope of sensitive data varies with product application scenarios, and should be analyzed and determined based on risks in specific scenarios. Typical sensitive data includes authentication credentials (such as passwords, private keys, and dynamic token cards), encryption keys, sensitive personal data, etc. |
-|  5   |         data subject         | An individual who provides the data controller and processor with personal data. A data subject can be identified directly by personal data (such as a name) or indirectly by the combination of personal data. |
-|  6   |        anonymization         | A process of irreversibly de-identifying personal data such that the person cannot be identified by using reasonable time, cost, technology either by the controller or by any other person to identify that individual. |
-|  7   |       pseudonymization       | In order to restrict the ability of using personal data to identify a data subject, identity information contained in personal data can be replaced by aliases. The substitution is considered pseudonymization, which has the following features: (1) The remaining attributes linked to the alias do not suffice to identify the data subject to whom they relate; and (2) The alias assignment cannot be reversed by reasonable efforts of the privacy stakeholders (such as the data controller) other than those that performed assignment. Pseudonymized data is still personal data. Pseudonyms are also known as aliases. |
-|  8   | precise location information | Precise longitude and latitude. For example, the GPS can locate an object with the precision of dozens of meters. The criterion of precise location information is that the information is precise enough for locating a natural person. |
+|  1   |        anonymization         | A process of irreversibly de-identifying personal data such that the person cannot be identified by using reasonable time, cost, technology either by the controller or by any other person to identify that individual. |
+|  2   |  authentication credential   | Private or public data declared to prove identity authenticity. Common authentication credentials include passwords, pre-shared keys, private keys, SNMP community names, smart cards, dynamic tokens, fingerprints, and retinas. |
+|  3   |         data subject         | An individual who provides the data controller and processor with personal data. A data subject can be identified directly by personal data (such as a name) or indirectly by the combination of personal data. |
+|  4   |        personal data         | Any information relating to an identified or identifiable natural person ("data subject") who can be identified, directly or indirectly, in particular by reference to an identifier such as a name, an identification number, and location data or to one or more factors specific to the physical, physiological, genetic, mental, economic, cultural, or social identity of that natural person. Personal data includes a natural person's email address, telephone number, biometric information (such as a fingerprint), location data, IP address, health care information, religious belief, social security number, marital status, and so on. |
+|  5   | precise location information | Precise longitude and latitude. For example, the GPS can locate an object with the precision of dozens of meters. The criterion of precise location information is that the information is precise enough for locating a natural person. |
+|  6   |       pseudonymization       | In order to restrict the ability of using personal data to identify a data subject, identity information contained in personal data can be replaced by aliases. The substitution is considered pseudonymization, which has the following features: (1) The remaining attributes linked to the alias do not suffice to identify the data subject to whom they relate; and (2) The alias assignment cannot be reversed by reasonable efforts of the privacy stakeholders (such as the data controller) other than those that performed assignment. Pseudonymized data is still personal data. Pseudonyms are also known as aliases. |
+|  7   |        sensitive data        | The scope of sensitive data varies with product application scenarios, and should be analyzed and determined based on risks in specific scenarios. Typical sensitive data includes authentication credentials (such as passwords, private keys, and dynamic token cards), encryption keys, sensitive personal data, etc. |
+|  8   |   sensitive personal data    | An important subset of personal data, referring to the information involving most private data of a data subject, or the data, once leaked or modified, may result in adverse impacts to a data subject. Sensitive personal data includes data revealing racial or ethnic origin, political opinions, religious or philosophical beliefs, trade-union membership, genetic data, biometric information, data concerning health, sex life, or sexual orientation, as well as bank account numbers, ID card numbers, passports, passwords, and other information associated with a natural person's identity. Sensitive personal data requires additional and stricter protection measures. |
 |  9   |      standard protocol       | An international standard protocol (e.g., ETSI, 3GPP, or ITU-T standard, or that from some other standard-setting organization), regional standard (e.g., standard developed by the European Union), national industry standard (e.g., standard formulated by the Ministry of Industry and Information Technology of China), or de facto industry standard (e.g., industry standard defined by UPnP). |
 
