@@ -141,7 +141,7 @@ struct DialogTest {
 
 GridContainer内子组件默认水平左对齐，居中显示可以参考以下处理方式：
 
-内部嵌套布局组件Row，设置Row属性justifyContent(FlexAlign.Center)，内部嵌套子组件可保持居中显示，参考[栅格布局](../ui/ui-ts-layout-grid-container.md)文档。
+内部嵌套布局组件Row，设置Row属性justifyContent(FlexAlign.Center)，内部嵌套子组件可保持居中显示，参考[栅格布局](../reference/arkui-ts/ts-container-gridcontainer.md)文档。
 
   示例：
   
@@ -306,7 +306,7 @@ fontColor( '#7F000000' )
 
 适用于：OpenHarmony SDK 3.2.5.5版本，API9 Stage模型
 
-在Page页面返回时，系统会调用\@Entry修饰的自定义组件的onBackPress()回调，可以在回调函数中实现相关业务诉求。参考[自定义组件生命周期回调函数](../ui/ts-custom-component-lifecycle-callbacks.md)
+在Page页面返回时，系统会调用\@Entry修饰的自定义组件的onBackPress()回调，可以在回调函数中实现相关业务诉求。参考[自定义组件生命周期回调函数](../ui/ui-ts-custom-component-lifecycle-callbacks.md)
 
 ## TextInput组件密码模式下，右边的眼睛图标是否支持自定义？
 
@@ -360,7 +360,7 @@ onSubmit事件在回车键或软键盘回车触发该回调，参数为当前软
 
 适用于：OpenHarmony SDK 3.2.6.5版本，API9 Stage模型
 
-支持使用[条件渲染](../ui/ts-rending-control-syntax-if-else.md)和[循环渲染](../ui/ts-rending-control-syntax-foreach.md)等方式进行动态创建组件。
+支持使用[条件渲染](../quick-start/arkts-rendering-control.md#条件渲染)和[循环渲染](../quick-start/arkts-rendering-control.md#循环渲染)等方式进行动态创建组件。
 
 ## 页面路由携带PixelMap对象参数，跳转页面无法获取
 
@@ -610,4 +610,39 @@ RichText底层是web，可以参考html的语法，在div上加上的overflow：
 
 自定义弹窗组件中参数alignment可以指定弹窗的位置。比如设置弹窗在底部：alignment : DialogAlignment.Bottom。
 
-参考文档：[自定义弹窗](../arkui-ts/ts-methods-custom-dialog-box.md)
+参考文档：[自定义弹窗](../reference/arkui-ts/ts-methods-custom-dialog-box.md)
+
+## scroller如何判断回弹动画的结束误差
+
+适用于：OpenHarmony SDK 3.2.5.3版本，API8 FA模型
+
+目前可以在触摸结束之后，计算同方向的变化，如果变化方向相反，说明出现回弹了，就规避不处理了。
+
+
+## 如何实现应用数据持久化存储
+
+通过PersistentStorage类实现管理应用持久化数据，可以将特定标记的持久化数据链接到AppStorage中，并由AppStorage接口访问对应持久化数据。
+
+参考文档：[持久化数据管理](../quick-start/arkts-state-mgmt-application-level.md#persistentstorage)
+
+示例：
+
+  
+```
+AppStorage.Link('varA')
+PersistentStorage.PersistProp("varA", "111");
+@Entry
+@Componentstruct Index {
+  @StorageLink('varA') varA: string = ''
+  build() {
+    Column() {
+      Text('varA: ' + this.varA).fontSize(20)
+      Button('Set').width(100).height(100).onClick(() => {
+        this.varA += '333'
+      })
+    }
+    .width('100%')
+    .height('100%')
+  }
+}
+```
