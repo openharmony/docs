@@ -86,7 +86,7 @@ resourceManager.getRawFile(path, (error, value) => {
 
 Page和Ability打包后会对import的对象分别形成两个不同的闭包，即打包出两个Global对象。因此，所引用的静态变量并不是同一对象，所以无法通过class静态变量方式定义全局变量。建议使用AppStorage进行全局变量管理。
 
-参考文档：[应用程序的数据存储](../ui/ts-application-states-appstorage.md)
+参考文档：[应用程序的数据存储](../quick-start/arkts-state-mgmt-application-level.md)
 
 ## Stage模型下如何获取资源
 
@@ -107,7 +107,7 @@ context
 })
 ```
 
-## 如何实现页面加载前从接口获取数据 
+## 如何实现页面加载前从接口获取数据
 
 适用于：OpenHarmony SDK 3.2.5.5版本，API9 Stage模型
 
@@ -248,7 +248,7 @@ OpenHarmony推荐使用worker来处理多线程场景。
 
 通过\@Observed配合\@ObjectLink装饰符实现。
 
-参考文档：[Observed和ObjectLink数据管理](../ui/ts-other-states-observed-objectlink.md)
+参考文档：[Observed和ObjectLink数据管理](../quick-start/arkts-state-mgmt-page-level.md#observed和objectlink数据管理)
 
 ## 如何实现字符串编解码
 
@@ -285,4 +285,3 @@ OpenHarmony推荐使用worker来处理多线程场景。
 适用于：OpenHarmony SDK 3.2.5.5版本， API9 Stage模型
 
 不支持。
-<!--no_check-->
