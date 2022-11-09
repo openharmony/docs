@@ -611,3 +611,38 @@ RichText底层是web，可以参考html的语法，在div上加上的overflow：
 自定义弹窗组件中参数alignment可以指定弹窗的位置。比如设置弹窗在底部：alignment : DialogAlignment.Bottom。
 
 参考文档：[自定义弹窗](../reference/arkui-ts/ts-methods-custom-dialog-box.md)
+
+## scroller如何判断回弹动画的结束误差
+
+适用于：OpenHarmony SDK 3.2.5.3版本，API8 FA模型
+
+目前可以在触摸结束之后，计算同方向的变化，如果变化方向相反，说明出现回弹了，就规避不处理了。
+
+
+## 如何实现应用数据持久化存储
+
+通过PersistentStorage类实现管理应用持久化数据，可以将特定标记的持久化数据链接到AppStorage中，并由AppStorage接口访问对应持久化数据。
+
+参考文档：[持久化数据管理](../quick-start/arkts-state-mgmt-application-level.md#persistentstorage)
+
+示例：
+
+  
+```
+AppStorage.Link('varA')
+PersistentStorage.PersistProp("varA", "111");
+@Entry
+@Componentstruct Index {
+  @StorageLink('varA') varA: string = ''
+  build() {
+    Column() {
+      Text('varA: ' + this.varA).fontSize(20)
+      Button('Set').width(100).height(100).onClick(() => {
+        this.varA += '333'
+      })
+    }
+    .width('100%')
+    .height('100%')
+  }
+}
+```
