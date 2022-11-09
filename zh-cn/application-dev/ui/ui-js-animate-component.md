@@ -83,6 +83,7 @@ export default {
   justify-content: center;
   align-items: center;
   width: 100%;
+  height: 100%;
 }
 .box{
   width: 200px;
@@ -103,7 +104,7 @@ export default {
   onInit() {
     this.options = {
       duration: 4000,
-    };
+    }
     this.keyframes = [
     {
       transform: {
@@ -127,11 +128,11 @@ export default {
           width: 300,
           height: 300   
       }    
-    ];
+    ]
   },
   Show() {
-    this.animation = this.$element('content').animate(this.keyframes, this.options);
-    this.animation.play();
+    this.animation = this.$element('content').animate(this.keyframes, this.options)
+    this.animation.play()
   }
 }
 ```
@@ -225,16 +226,16 @@ animation对象支持动画事件和动画方法。可以通过添加开始和�
 ```html
 <!-- xxx.hml -->
 <div class="container">
- <div id="content" style="width: 350px;height: 350px;margin-top: 100px;background: linear-gradient(pink, purple);">
- </div>
-   <div class="row">
-      <button type="capsule" value="play" onclick="playAnimation"></button>
-      <button type="capsule" value="pause" onclick="pauseAnimation"></button>
-   </div>
-   <div class="row1">
-      <button type="capsule" value="reverse" onclick="reverseAnimation"></button>
-      <button type="capsule" value="cancel" onclick="cancelAnimation"></button>
-   </div>
+    <div id="content" style="width: 350px;height: 350px;margin-top: 100px;background: linear-gradient(pink, purple);">
+    </div>
+    <div class="row">
+        <button type="capsule" value="play" onclick="playAnimation"></button>
+        <button type="capsule" value="pause" onclick="pauseAnimation"></button>
+    </div>
+    <div class="row1">
+        <button type="capsule" value="reverse" onclick="reverseAnimation"></button>
+        <button type="capsule" value="cancel" onclick="cancelAnimation"></button>
+    </div>
 </div>
 ```
 
@@ -244,6 +245,8 @@ animation对象支持动画事件和动画方法。可以通过添加开始和�
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  width: 100%;
+  height: 100%;
 }
 button{
   width: 200px;
@@ -272,75 +275,64 @@ button{
 
 ```js
 // xxx.js
-import prompt from '@system.prompt';
 export default {
-  data: {
-    animation: '',
-  },
-  onInit() {
-  },
-  onShow() {
-    var options = {
-      duration: 1500,
-      easing:'ease-in',
-      elay:5,
-      direction:'normal',
-      iterations:2
-    };
-    var frames = [
-      {
-        transform: {
-          translate: '-150px -0px'
-        },
-        opacity: 0.1,
-        offset: 0.0,
-        width: 200,
-        height: 200,
-      },
-      {
-        transform: {
-          translate: '150px 0px'
-        },
-        opacity: 1.0,
-        offset: 1.0,
-        width: 300,
-        height: 300,
-      }
-    ];
-    this.animation = this.$element('content').animate(frames, options);
-    this.animation.onstart = function(){
-      prompt.showToast({
-        message: "start"
-      });
-    };  //添加开始事件
-    this.animation.onrepeat = function(){
-      prompt.showToast({
-        message: " repeated"
-      });
-    };//添加重播事件
-    this.animation.oncancel = function(){
-      prompt.showToast({
-        message: "canceled"
-      });
-    };//添加取消事件
-    this.animation.onfinish = function(){
-      prompt.showToast({
-        message: "finish"
-      });
-    };//添加完成事件
-  },
-  playAnimation() {
-    this.animation.play();//调用播放开始的方法
-  },
-  pauseAnimation() {
-    this.animation.pause();//调用播放暂停的方法
-  },
-  reverseAnimation() {
-    this.animation.reverse();//调用播放倒放的方法
-  },
-  cancelAnimation() {
-    this.animation.cancel();//调用播放取消的方法
-  }
+    data: {
+        animation: '',
+    },
+    onShow() {
+        var options = {
+            duration: 1500,
+            easing:'ease-in',
+            delay:5,
+            direction:'normal',
+            iterations:2
+        };
+        var frames = [
+            {
+                transform: {
+                    translate: '-150px -0px'
+                },
+                opacity: 0.1,
+                offset: 0.0,
+                width: 200,
+                height: 200,
+            },
+            {
+                transform: {
+                    translate: '150px 0px'
+                },
+                opacity: 1.0,
+                offset: 1.0,
+                width: 300,
+                height: 300,
+            }
+        ];
+        this.animation = this.$element('content').animate(frames, options);
+        this.animation.onstart = function() {
+            console.info('animation start')
+        }  // 添加开始事件
+        this.animation.onrepeat = function() {
+            console.info('animation repeated')
+        }  // 添加重播事件
+        this.animation.oncancel = function() {
+            console.info('animation canceled')
+        }   // 添加取消事件
+        this.animation.onfinish = function() {
+            console.info('animation finish')
+        }   // 添加完成事件
+    },
+    playAnimation() {
+        this.animation.play()  // 调用播放开始的方法
+    },
+    pauseAnimation() {
+        this.animation.pause()  // 调用播放暂停的方法
+    },
+    reverseAnimation() {
+        this.animation.reverse()  // 调用播放倒放的方法
+    },
+    cancelAnimation() {
+        this.animation.cancel()  // 调用播放取消的方法
+    }
 }
 ```
 
