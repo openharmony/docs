@@ -75,7 +75,7 @@
 
 ## 示例
 
-```
+```html
 <!-- xxx.hml -->
 <div class="container">
   <text id="text">Click to show the pop-up</text>
@@ -88,7 +88,7 @@
 </div>
 ```
 
-```
+```css
 /* xxx.css */
 .container {
   flex-direction: column;
@@ -108,14 +108,14 @@
 }
 ```
 
-```
+```js
 // xxx.js
 import prompt from '@system.prompt'
 export default {
   visibilitychange(e) {
     prompt.showToast({
       message: 'visibility change visibility: ' + e.visibility,
-        duration: 3000,
+        duration: 3000
     }); 
   },
   showpopup() {
@@ -123,7 +123,7 @@ export default {
   },
   hidepopup() {
     this.$element("popup").hide();
-  },
+  }
 }
 ```
 

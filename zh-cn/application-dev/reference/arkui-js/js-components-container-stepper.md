@@ -60,25 +60,25 @@
 
 ## 示例
 
-```
+```html
 <!-- xxx.hml -->
 <div class = "container">
   <stepper class="stepper" id="mystepper" index="0"  onnext="nextclick" onback="backclick">
     <stepper-item class ="stepperItem" label="{{label_1}}">
       <div class = "stepperItemContent" >
-        <text class = "text">First screen</text>
+        <text>First screen</text>
       </div>
       <button type="capsule" class ="button" value="setRightButtonStatus" onclick="setRightButton"></button>
     </stepper-item>
     <stepper-item class ="stepperItem" label="{{label_2}}">
       <div class = "stepperItemContent" >
-        <text class = "text">Second screen</text>
+        <text>Second screen</text>
       </div>
       <button type="capsule" class ="button" value="setRightButtonStatus" onclick="setRightButton"></button>
     </stepper-item>
     <stepper-item class ="stepperItem" label="{{label_3}}">
       <div class = "stepperItemContent" >
-        <text class = "text">Third screen</text>
+        <text>Third screen</text>
       </div>
       <button type="capsule" class ="button" value="setRightButtonStatus" onclick="setRightButton"></button>
     </stepper-item>
@@ -86,7 +86,7 @@
 </div>
 ```
 
-```
+```css
 /* xxx.css */
 .container {
   margin-top: 20px;
@@ -100,7 +100,6 @@
   align-items: center;
 }
 .stepperItemContent {
-  color: #0000ff;
   font-size: 50px;
   justify-content: center;
 }
@@ -111,7 +110,7 @@
 }
 ```
 
-```
+```js
 // xxx.js
 export default {
   data: {
@@ -132,7 +131,7 @@ export default {
         prevLabel: 'BACK',
         nextLabel: 'NEXT',
         status: 'normal'
-     },
+     }
   },
   setRightButton(e) {
     this.$element('mystepper').setNextButtonStatus({status: 'skip', label: 'SKIP'});
@@ -148,7 +147,7 @@ export default {
         pendingIndex: e.pendingIndex
     }
     return index;
-  },
+  }
 }
 ```
 
