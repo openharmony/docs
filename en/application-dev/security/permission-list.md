@@ -1,8 +1,8 @@
-# Application Permission List
+# App Permission List
 
-Before applying for required permissions, read and understand the [permission workflow](accesstoken-overview.md#permission-workflow). Then, determine whether the app can apply for the target permissions based on the table below.
+Before applying for required permissions, read and understand the [permission workflows](accesstoken-overview.md#permission-workflows). Then, determine whether the app can apply for the target permissions based on the table below.
 
-For details about permission usage examples, see [Access Control Development](accesstoken-guidelines.md).
+For details about permission usage examples, see [Permission Application Guide](accesstoken-guidelines.md).
 
 | Permission                                                  | APL    | Authorization Mode    | Enable ACL| Description                                                    |
 | -------------------------------------------------------- | ------------ | ------------ | ------- | ------------------------------------------- |
