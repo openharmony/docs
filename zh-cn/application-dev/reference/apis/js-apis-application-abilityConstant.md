@@ -36,6 +36,7 @@ import AbilityConstant from '@ohos.application.AbilityConstant';
 | START_ABILITY          | 1    | 启动能力。 |
 | CALL | 2    | 呼叫。 |
 | CONTINUATION           | 3    | 继续。 |
+| APP_RECOVERY           | 4    | 状态恢复。 |
 
 
 ## AbilityConstant.LastExitReason
@@ -88,3 +89,29 @@ import AbilityConstant from '@ohos.application.AbilityConstant';
 | MEMORY_LEVEL_MODERATE       | 0   | 内存占用适中。       |
 | MEMORY_LEVEL_LOW            | 1   | 内存占用低。            |
 | MEMORY_LEVEL_CRITICAL       | 2   | 内存占用高。   |
+
+## AbilityConstant.OnSaveResult
+
+保存应用数据的结果类型。
+
+**系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
+
+| 变量                          | 值   | 说明                                                         |
+| ----------------------------- | ---- | ------------------------------------------------------------ |
+| ALL_AGREE           | 0    | 同意保存状态。 |
+| CONTINUATION_REJECT           | 1    | 拒绝迁移保存状态。 |
+| CONTINUATION_MISMATCH  | 2    | 迁移不匹配。|
+| RECOVERY_AGREE           | 3    | 同意恢复保存状态。 |
+| RECOVERY_REJECT  | 4    | 拒绝恢复保存状态。|
+| ALL_REJECT  | 5    | 拒绝保存状态。|
+
+## AbilityConstant.StateType
+
+保存应用数据场景原因类型。
+
+**系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
+
+| 变量                          | 值   | 说明                                                         |
+| ----------------------------- | ---- | ------------------------------------------------------------ |
+| CONTINUATION           | 0    | 迁移保存状态。 |
+| APP_RECOVERY           | 1    | 应用恢复保存状态。 |
