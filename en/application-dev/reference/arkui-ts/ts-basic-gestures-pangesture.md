@@ -1,3 +1,5 @@
+
+
 # PanGesture
 
 **PanGesture** is used to trigger a pan gesture, which requires a minimum 5 vp movement distance of a finger on the screen.
@@ -17,7 +19,7 @@ PanGesture(value?: { fingers?: number; direction?: PanDirection; distance?: numb
 | -------- | -------- | -------- | -------- |
 | fingers | number | No| Minimum number of fingers to trigger a pan gesture. The value ranges from 1 to 10.<br>Default value: **1**|
 | direction | PanDirection | No| Pan direction. The enumerated value supports the AND (&amp;) and OR (\|) operations.<br>Default value: **PanDirection.All**|
-| distance | number | No| Minimum pan distance to trigger the gesture, in vp.<br>Default value: **5.0**<br>**NOTE**<br>If a pan gesture and tab swipe occur at the same time, set **distance** to **1** so that the gesture can be more easily recognized.|
+| distance | number | No| Minimum pan distance to trigger the gesture, in vp.<br>Default value: **5**<br>**NOTE**<br>If a pan gesture and tab swipe occur at the same time, set **distance** to **1** so that the gesture can be more easily recognized.|
 
 ## PanDirection enums
 
@@ -60,10 +62,10 @@ PanGestureOptions(value?: { fingers?: number; direction?: PanDirection; distance
 
 | Name| Description|
 | -------- | -------- |
-| onActionStart(event: (event?: [GestureEvent](ts-gesture-settings.md)) =&gt; void) | Callback invoked when a pan gesture is recognized.|
-| onActionUpdate(event: (event?: [GestureEvent](ts-gesture-settings.md)) =&gt; void) | Callback invoked when the pan gesture status is updated.|
-| onActionEnd(event: (event?: [GestureEvent](ts-gesture-settings.md)) =&gt; void) | Callback invoked when the finger used for a pan gesture is lift.|
-| onActionCancel(event: () =&gt; void) | Callback invoked when a tap cancellation event is received after a pan gesture is recognized.|
+| onActionStart(event: (event?: [GestureEvent](ts-gesture-settings.md#gestureevent)) =&gt; void) | Invoked when a pan gesture is recognized.|
+| onActionUpdate(event: (event?: [GestureEvent](ts-gesture-settings.md#gestureevent)) =&gt; void) | Invoked when the pan gesture status is updated.|
+| onActionEnd(event: (event?: [GestureEvent](ts-gesture-settings.md#gestureevent)) =&gt; void) | Invoked when the finger used for a pan gesture is lift.|
+| onActionCancel(event: () =&gt; void) | Invoked when a tap cancellation event is received after a pan gesture is recognized.|
 
 
 ## Example
@@ -75,28 +77,55 @@ PanGestureOptions(value?: { fingers?: number; direction?: PanDirection; distance
 struct PanGestureExample {
   @State offsetX: number = 0
   @State offsetY: number = 0
+  @State positionX: number = 0
+  @State positionY: number = 0
+  private panOption: PanGestureOptions = new PanGestureOptions({ direction: PanDirection.Left | PanDirection.Right })
 
   build() {
-    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.SpaceBetween }) {
-      Text('PanGesture offset:\nX: ' + this.offsetX + '\n' + 'Y: ' + this.offsetY)
-    }
-    .height(100).width(200).padding(20).border({ width: 1 }).margin(80)
-    .translate({ x: this.offsetX, y: this.offsetY, z: 5 })
-    .gesture(
-      PanGesture({})
+    Column() {
+      Column() {
+        Text('PanGesture offset:\nX: ' + this.offsetX + '\n' + 'Y: ' + this.offsetY)
+      }
+      .height(200)
+      .width(300)
+      .padding(20)
+      .border({ width: 3 })
+      .margin(50)
+      .translate({ x: this.offsetX, y: this.offsetY, z: 0 })
+      // Pan left or right to trigger the gesture event.
+      .gesture(
+      PanGesture(this.panOption)
         .onActionStart((event: GestureEvent) => {
           console.info('Pan start')
         })
         .onActionUpdate((event: GestureEvent) => {
-          this.offsetX = event.offsetX
-          this.offsetY = event.offsetY
+          this.offsetX = this.positionX + event.offsetX
+          this.offsetY = this.positionY + event.offsetY
         })
         .onActionEnd(() => {
+          this.positionX = this.offsetX
+          this.positionY = this.offsetY
           console.info('Pan end')
         })
-    )
+      )
+
+      Button ('Set PanGesture Trigger Condition')
+        .onClick(() => {
+          // Set the pan gesture to be triggered by two fingers moving in any direction.
+          this.panOption.setDirection(PanDirection.All)
+          this.panOption.setFingers(2)
+        })
+    }
   }
 }
 ```
 
-![en-us_image_0000001256978371](figures/en-us_image_0000001256978371.gif)
+**Diagrams**
+
+Pannig to the left:
+
+![en-us_image_0000001174264374](figures/en-us_image_0000001174264374.png) 
+
+Click Set PanGesture Trigger Condition to two fingers moving toward the lower left corner.
+
+ ![en-us_image1_0000001174264374](figures/en-us_image1_0000001174264374.png) 

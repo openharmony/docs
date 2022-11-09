@@ -7,11 +7,6 @@ The **\<XComponent>** can accept and display the EGL/OpenGL ES and media data in
 > This component is supported since API version 8. Updates will be marked with a superscript to indicate their earliest API version.
 
 
-
-## Required Permissions
-
-None
-
 ## Child Components
 
 Not supported
@@ -25,7 +20,7 @@ XComponent(value: {id: string, type: string, libraryname?: string, controller?: 
 | Name      | Type    | Mandatory  | Description   |
 | --------- | ------ | ---- | ----- |
 | id  | string | Yes   | Unique ID of the component. The value can contain a maximum of 128 characters.|
-| type      | string | Yes   |  Type of the component. The options are as follows:<br>-**surface**: The content of this component is displayed individually, without being combined with that of other components.<br>-**component**: The content of this component is displayed after having been combined with that of other components.|
+| type      | string | Yes   | Type of the component. The options are as follows:<br>- **surface**: The content of this component is displayed individually, without being combined with that of other components.<br>- **component**: The content of this component is displayed after having been combined with that of other components. |
 | libraryname | string | No   | Name of the dynamic library generated after compilation at the application native layer.|
 | controller   | [XComponentcontroller](#xcomponentcontroller) | No   | Controller bound to the component, which can be used to invoke methods of the component.|
 
@@ -110,7 +105,7 @@ You can preview how this component looks on a real device. The preview is not ye
 
 ```ts
 // xxx.ets
-import camera from '@ohos.multimedia.camera';
+import camera from '@ohos.multimedia.camera'
 @Entry
 @Component
 struct PreviewArea {
@@ -125,9 +120,9 @@ struct PreviewArea {
       })
         .onLoad(() => {
           this.xcomponentController.setXComponentSurfaceSize({surfaceWidth:1920,surfaceHeight:1080});
-          this.surfaceId = this.xcomponentController.getXComponentSurfaceId();
+          this.surfaceId = this.xcomponentController.getXComponentSurfaceId()
           camera.createPreviewOutput(this.surfaceId).then((previewOutput) => {
-            console.log('Promise returned with the PreviewOutput instance');
+            console.log('Promise returned with the PreviewOutput instance')
           })
         })
         .width('640px')
