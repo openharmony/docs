@@ -8,7 +8,7 @@
 
 2. 根据相机位置和类型创建CameraInput实例
 
-参考文档：[相机管理](../reference/apis/js-apis-camera.md#%E7%9B%B8%E6%9C%BA%E7%AE%A1%E7%90%86)
+参考文档：[相机管理](../reference/apis/js-apis-camera.md)
 
 示例：
 
@@ -126,5 +126,3 @@ cameraInput = await this.cameraManager.createCameraInput(cameraId)熊文帅
 适用于：OpenHarmonySDK 3.2.7.5版本，API9 Stage模型
 
 当前限制最多创建13个媒体播放实例。
-
-<!--no_check-->

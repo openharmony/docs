@@ -107,7 +107,7 @@ context
 })
 ```
 
-## 如何实现页面加载前从接口获取数据 
+## 如何实现页面加载前从接口获取数据
 
 适用于：OpenHarmony SDK 3.2.5.5版本，API9 Stage模型
 
@@ -285,4 +285,3 @@ OpenHarmony推荐使用worker来处理多线程场景。
 适用于：OpenHarmony SDK 3.2.5.5版本， API9 Stage模型
 
 不支持。
-<!--no_check-->

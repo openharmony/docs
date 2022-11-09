@@ -52,4 +52,3 @@
 适用于：OpenHarmony SDK 3.2.6.5版本，API9 Stage模型
 
 使用命令：hdc_std shell hilog -p off
-<!--no_check--> 
