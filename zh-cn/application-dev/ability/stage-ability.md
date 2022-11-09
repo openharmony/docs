@@ -315,7 +315,7 @@ struct Index {
     console.info('Index onPageShow')
     let newWant = globalThis.newWant
     if (newWant.hasOwnProperty("uri")) {
-      router.push({ uri: newWant.uri });
+      router.push({ url: newWant.uri });
       globalThis.newWant = undefined
     }
   }
