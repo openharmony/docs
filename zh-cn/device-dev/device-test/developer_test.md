@@ -26,12 +26,19 @@ OpenHarmony系统开发人员在新增或修改代码之后，希望可以快速
 
 ### 自测试框架基础环境依赖
 
-| 环境依赖 | 操作系统          | Linux系统扩展组件 | python          | python插件                                                   | NFS Server                                       | HDC                 |
-| -------- | ----------------- | ----------------- | --------------- | ------------------------------------------------------------ | ------------------------------------------------ | ------------------- |
-| 版本型号 | Ubuntu18.04及以上 | libreadline-dev   | 3.7.5版本及以上 | pyserial 3.3及以上、paramiko2.7.1及以上、setuptools40.8.0及以上、rsa4.0及以上 | haneWIN NFS Server 1.2.50及以上或者 NFS v4及以上 | 1.1.0版本及以上     |
-| 详细说明 | 代码编译环境      | 命令行读取插件    | 测试框架语言    | pyserial：支持python的串口通信；paramiko：支持python使用SSH协议；setuptools：支持python方便创建和分发python包；rsa：支持python rsa加密 | 支持设备通过串口连接                             | 支持设备通过HDC连接 |
+| 环境依赖          | 版本型号                                                     | 详细说明                                                     |
+| ----------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| 操作系统          | Ubuntu18.04及以上                                            | 代码编译环境                                                 |
+| Linux系统扩展组件 | libreadline-dev                                              | 命令行读取插件                                               |
+| python            | 3.7.5版本及以上                                              | 测试框架语言                                                 |
+| python插件        | pyserial 3.3及以上、paramiko2.7.1及以上、setuptools40.8.0及以上、rsa4.0及以上 | pserial：支持python的串口通信；paramiko：支持python使用SSH协议；setuptools：支持python方便创建和分发python包；rsa：支持python rsa加密 |
+| NFS Server        | haneWIN NFS Server 1.2.50及以上或者 NFS v4及以上             | 支持设备通过串口连接，使用轻量、小型设备                     |
+| HDC               | 1.1.0                                                        | 支持设备通过HDC连接                                          |
+
+
 
 1. 安装Linux扩展组件readline，安装命令如下：
+
     ```
     sudo apt-get install libreadline-dev
     ```
@@ -86,7 +93,7 @@ OpenHarmony系统开发人员在新增或修改代码之后，希望可以快速
 
     > 针对小型或轻量设备
 
-    - Windows环境下安装，例如安装haneWIN NFS Server1.2.50。
+    - Windows环境下安装，安装haneWIN NFS Server1.2.50软件包。
     - Linux环境下安装，安装命令如下：
     ```
     sudo apt install nfs-kernel-server
@@ -100,7 +107,7 @@ OpenHarmony系统开发人员在新增或修改代码之后，希望可以快速
     0 upgraded, 0 newly installed, 0 to remove and 11 not upgraded.
     ```
 
-7. 如果设备支持HDC连接，则需要安装HDC工具，安装流程请[参考](https://gitee.com/openharmony/developtools_hdc_standard/blob/master/README_zh.md)
+7. 如果设备支持HDC连接，则需要安装HDC工具，安装流程请参考[HDC-OpenHarmony设备连接器](https://gitee.com/openharmony/developtools_hdc_standard/blob/master/README_zh.md)。
 
 
 ### 环境依赖检查
