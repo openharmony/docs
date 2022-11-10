@@ -63,9 +63,32 @@ promise.then((data) => {
 });
 ```
 
+## data.getDefaultCellularDataSlotIdSync
+
+getDefaultCellularDataSlotIdSync(): number
+
+Obtains the default SIM card used for mobile data synchronously.
+
+**Required permission**: ohos.permission.GET_NETWORK_INFO
+
+**System capability**: SystemCapability.Telephony.CellularData
+
+**Return value**
+
+| Type             | Description                                                        |
+| ------ | -------------------------------------------------- |
+| number | Card slot ID.<br>**0**: card slot 1<br>**1**: card slot 2|
+
+**Example**
+
+```js
+console.log("Result: "+ data.getDefaultCellularDataSlotIdSync())
+```
+
+
 ## data.setDefaultCellularDataSlotId
 
-setDefaultCellularDataSlotId(slotId: number,callback: AsyncCallback\<void\>): void 
+setDefaultCellularDataSlotId(slotId: number, callback: AsyncCallback\<void\>): void 
 
 Sets the default slot of the SIM card used for mobile data. This API uses an asynchronous callback to return the result. 
 
@@ -79,39 +102,16 @@ This is a system API.
 
 | Name  | Type                 | Mandatory| Description                                                        |
 | -------- | --------------------- | ---- | ------------------------------------------------------------ |
-| slotId   | number                | Yes  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2<br>- **-1**: clearing the default configuration|
+| slotId   | number                | Yes  | SIM card slot ID. <br>- **0**: card slot 1<br>- **1**: card slot 2<br>- **-1**: clearing the default configuration|
 | callback | AsyncCallback\<void\> | Yes  | Callback used to return the result. |
 
 **Example**
 
 ```js
-data.setDefaultCellularDataSlotId(0,(err, data) => {
+data.setDefaultCellularDataSlotId(0, (err, data) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
 ```
-
-## data.getDefaultCellularDataSlotIdSync
-
-getDefaultCellularDataSlotIdSync(): number
-
-Obtains the default SIM card used for mobile data.
-
-**Required permission**: ohos.permission.GET_NETWORK_INFO
-
-**System capability**: SystemCapability.Telephony.CellularData
-
-**Return value**
-
-| Type             | Description                              |
-| ------ | -------------------------------------------------- |
-| number | Card slot ID.<br>**0**: card slot 1<br>**1**: card slot 2 |
-
-**Example**
-
-```js
-console.log("Result: "+ data.getDefaultCellularDataSlotIdSync())
-```
-
 
 ## data.setDefaultCellularDataSlotId
 
@@ -127,13 +127,13 @@ This is a system API.
 
 **Parameters**
 
-| Name| Type  | Mandatory| Description                                                  |
+| Name| Type  | Mandatory| Description                                                        |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| slotId | number | Yes  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2<br>- **-1**: clearing the default configuration|
+| slotId | number | Yes  | SIM card slot ID. <br>- **0**: card slot 1<br>- **1**: card slot 2<br>- **-1**: clearing the default configuration|
 
 **Return value**
 
-| Type          | Description                      |
+| Type          | Description                           |
 | -------------- | ------------------------------- |
 | Promise<\void\> | Promise used to return the result. |
 
@@ -158,7 +158,7 @@ Obtains the cellular data flow type, which can be uplink or downlink. This API u
 
 **Parameters**
 
-| Name  | Type                                          | Mandatory| Description |
+| Name  | Type                                          | Mandatory| Description      |
 | -------- | ---------------------------------------------- | ---- | ---------- |
 | callback | AsyncCallback\<[DataFlowType](#dataflowtype)\> | Yes  | Callback used to return the result.|
 
@@ -227,7 +227,7 @@ Obtains the connection status of the PS domain. This API uses a promise to retur
 
 **Return value**
 
-| Type                                            | Description                            |
+| Type                                            | Description                                 |
 | ------------------------------------------------ | ------------------------------------- |
 | Promise\<[DataConnectState](#dataconnectstate)\> | Promise used to return the result.|
 
@@ -313,7 +313,7 @@ Checks whether the cellular data roaming service is enabled. This API uses an as
 **Example**
 
 ```js
-data.isCellularDataRoamingEnabled(0,(err, data) => {
+data.isCellularDataRoamingEnabled(0, (err, data) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
 ```
