@@ -44,7 +44,7 @@
     - [@ohos.application.errorManager (ErrorManager)](js-apis-errorManager.md)
     - [@oho.app.form.formBindingData (卡片数据绑定类)](js-apis-app-form-formbindingdata.md)
     - [@ohos.application.formError (FormError)](js-apis-formerror.md)
-
+    - [@ohos.app.form.formHost (FormHost)](js-apis-app-form-formhost.md)
     - [@ohos.app.form.formProvider (FormProvider)](js-apis-app-form-formprovider.md)
     - [@ohos.app.form.formInfo (FormInfo)](js-apis-app-form-forminfo.md)
     - [@ohos.application.missionManager (missionManager)](js-apis-missionManager.md)
