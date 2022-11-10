@@ -194,19 +194,19 @@ off(type: "change", listener?: Callback&lt;DeviceListener&gt;): void
 **示例**：
 
 ```js
-callback: function(data) {
+function callback(data) {
   console.log(`Report device event info: ${JSON.stringify(data, [`type`, `deviceId`])}`);
-}
+};
 
 try {
-  inputDevice.on("change", this.callback);
+  inputDevice.on("change", callback);
 } catch (error) {
   console.log(`Listen device event failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 
 // 取消指定的监听。
 try {
-  inputDevice.off("change", this.callback);
+  inputDevice.off("change", callback);
 } catch (error) {
   console.log(`Cancel listening device event failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
