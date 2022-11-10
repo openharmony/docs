@@ -3798,7 +3798,7 @@ on(type: 'audioInterrupt', callback: Callback\<InterruptEvent>): void
 
 监听音频中断事件。使用callback获取中断事件。
 
-与[on('interrupt')](#oninterruptsupdeprecatedsup)一致，该接口在AudioRenderer对象start、pause、stop等事件发生前已经主动获取焦点，不需要开发者主动发起焦点申请。
+与[on('interrupt')](#oninterruptdeprecated)一致，该接口在AudioRenderer对象start、pause、stop等事件发生前已经主动获取焦点，不需要开发者主动发起焦点申请。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Interrupt
 
