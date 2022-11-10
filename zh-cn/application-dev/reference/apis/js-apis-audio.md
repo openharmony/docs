@@ -3798,6 +3798,8 @@ on(type: 'audioInterrupt', callback: Callback\<InterruptEvent>): void
 
 监听音频中断事件。使用callback获取中断事件。
 
+与[on('interrupt')](#oninterruptsupdeprecatedsup)一致，该接口在AudioRenderer对象start、pause、stop等事件发生前已经主动获取焦点，不需要开发者主动发起焦点申请。
+
 **系统能力：** SystemCapability.Multimedia.Audio.Interrupt
 
 **参数：**
@@ -4628,7 +4630,7 @@ audioCapturer.on('stateChange', (state) => {
 });
 ```
 
-## ToneType <sup>9+</sup>
+## ToneType<sup>9+</sup>
 
 枚举，播放器的音调类型。
 
@@ -4684,7 +4686,7 @@ load(type: ToneType, callback: AsyncCallback&lt;void&gt;): void
 
 | 参数名          | 类型                        | 必填  | 说明                            |
 | :--------------| :-------------------------- | :-----| :------------------------------ |
-| type           | ToneType(#tonetype9)        | 是    | 配置的音调类型。                 |
+| type           | [ToneType](#tonetype9)       | 是    | 配置的音调类型。                 |
 | callback       | AsyncCallback<void\>        | 是    | 使用callback方式异步返回结果。 |
 
 **示例：**
@@ -4712,7 +4714,7 @@ load(type: ToneType): Promise&lt;void&gt;
 
 | 参数名         | 类型                    | 必填  |  说明             |
 | :------------- | :--------------------- | :---  | ---------------- |
-| type           | ToneType(#tonetype9)   | 是    | 配置的音调类型。  |
+| type           | [ToneType](#tonetype9)   | 是    | 配置的音调类型。  |
 
 **返回值：**
 
@@ -5941,6 +5943,8 @@ audioManager.off('deviceChange', (deviceChanged) => {
 on(type: 'interrupt', interrupt: AudioInterrupt, callback: Callback\<InterruptAction>): void
 
 请求焦点并开始监听音频打断事件（当应用程序的音频被另一个播放事件中断，回调通知此应用程序）。
+
+与[on('audioInterrupt')](#onaudiointerruptsup9sup)作用一致，均用于监听焦点变化。为无音频流的场景（未曾创建AudioRenderer对象），比如FM、语音唤醒等提供焦点变化监听功能。
 
 > **说明：**
 > 从 API version 7 开始支持，从 API version 9 开始废弃。
