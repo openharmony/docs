@@ -20,10 +20,97 @@ OpenHarmony系统开发人员在新增或修改代码之后，希望可以快速
 
 ## 环境准备
 
-开发自测试框架依赖于python运行环境,python版本为3.8.X,在使用测试框架之前可参阅以下方式进行配置。
+开发自测试框架依赖于python运行环境,python版本为3.7.5及以上版本,在使用测试框架之前可参阅以下方式进行配置。
 
- - [环境配置](https://gitee.com/openharmony/docs/blob/master/zh-cn/device-dev/subsystems/subsys-testguide-test.md#%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE)
- - [源码获取](https://gitee.com/openharmony/docs/blob/master/zh-cn/device-dev/get-code/sourcecode-acquire.md)
+源码获取可[参考](https://gitee.com/openharmony/docs/blob/master/zh-cn/device-dev/get-code/sourcecode-acquire.md)。
+
+### 自测试框架基础环境依赖
+
+| 环境依赖 | 操作系统          | Linux系统扩展组件 | python          | python插件                                                   | NFS Server                                       | HDC                 |
+| -------- | ----------------- | ----------------- | --------------- | ------------------------------------------------------------ | ------------------------------------------------ | ------------------- |
+| 版本型号 | Ubuntu18.04及以上 | libreadline-dev   | 3.7.5版本及以上 | pyserial 3.3及以上、paramiko2.7.1及以上、setuptools40.8.0及以上、rsa4.0及以上 | haneWIN NFS Server 1.2.50及以上或者 NFS v4及以上 | 1.1.0版本及以上     |
+| 详细说明 | 代码编译环境      | 命令行读取插件    | 测试框架语言    | pyserial：支持python的串口通信；paramiko：支持python使用SSH协议；setuptools：支持python方便创建和分发python包；rsa：支持python rsa加密 | 支持设备通过串口连接                             | 支持设备通过HDC连接 |
+
+1. 安装Linux扩展组件readline，安装命令如下：
+    ```
+    sudo apt-get install libreadline-dev
+    ```
+    安装成功提示如下：
+    ```
+    Reading package lists... Done
+    Building dependency tree
+    Reading state information... Done
+    libreadline-dev is already the newest version (7.0-3).
+    0 upgraded, 0 newly installed, 0 to remove and 11 not upgraded.
+    ```
+
+2. 安装setuptools插件，安装命令如下：
+    ```
+    pip3 install setuptools
+    ```
+    安装成功提示如下：
+    ```
+    Requirement already satisfied: setuptools in d:\programs\python37\lib\site-packages (41.2.0)
+    ```
+
+3. 安装paramiko插件，安装命令如下：
+    ```
+    pip3 install paramiko
+    ```
+    安装成功提示如下：
+    ```
+    Installing collected packages: pycparser, cffi, pynacl, bcrypt, cryptography, paramiko
+    Successfully installed bcrypt-3.2.0 cffi-1.14.4 cryptography-3.3.1 paramiko-2.7.2 pycparser-2.20 pynacl-1.4.0
+    ```
+
+4. 安装python的rsa插件，安装命令如下：
+    ```
+    pip3 install rsa
+    ```
+    安装成功提示如下：
+    ```
+    Installing collected packages: pyasn1, rsa
+    Successfully installed pyasn1-0.4.8 rsa-4.7
+    ```
+
+5. 安装串口插件pyserial，安装命令如下：
+    ```
+    pip3 install pyserial
+    ```
+    安装成功提示如下：
+    ```
+    Requirement already satisfied: pyserial in d:\programs\python37\lib\site-packages\pyserial-3.4-py3.7.egg (3.4)
+    ```
+
+6. 如果设备仅支持串口输出测试结果，则需要安装NFS Server
+
+    > 针对小型或轻量设备
+
+    - Windows环境下安装，例如安装haneWIN NFS Server1.2.50。
+    - Linux环境下安装，安装命令如下：
+    ```
+    sudo apt install nfs-kernel-server
+    ```
+    安装成功提示如下：
+    ```
+    Reading package lists... Done
+    Building dependency tree
+    Reading state information... Done
+    nfs-kernel-server is already the newest version (1:1.3.4-2.1ubuntu5.3).
+    0 upgraded, 0 newly installed, 0 to remove and 11 not upgraded.
+    ```
+
+7. 如果设备支持HDC连接，则需要安装HDC工具，安装流程请[参考](https://gitee.com/openharmony/developtools_hdc_standard/blob/master/README_zh.md)
+
+
+### 环境依赖检查
+
+| 检查项                                             | 操作                                                | 满足环境                  |
+| -------------------------------------------------- | --------------------------------------------------- | ------------------------- |
+| 检查python安装成功                                 | 命令行窗口执行命令：python --version                | 版本不小于3.7.5即可       |
+| 检查python扩展插件安装成功                         | 打开test/developertest目录，执行start.bat或start.sh | 可进入提示符“>>>”界面即可 |
+| 检查NFS Server启动状态（被测设备仅支持串口时检测） | 通过串口登录开发板，执行mount命令挂载NFS            | 可正常挂载文件目录即可    |
+| 检查HDC安装成功                                    | 命令行窗口执行命令：hdc_std -v                      | 版本不小于1.1.0即可       |
 
 
 ## 编写测试用例
