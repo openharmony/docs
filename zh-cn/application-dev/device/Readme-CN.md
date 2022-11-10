@@ -13,6 +13,10 @@
 - 振动
   - [振动开发概述](vibrator-overview.md)
   - [振动开发指导](vibrator-guidelines.md)
+- 设备管理
+  - [输入设备开发指导](inputdevice-guidelines.md)
+- 鼠标光标
+  - [鼠标光标开发指导](pointerstyle-guidelines.md)
 - 升级服务
   - [示例服务器开发概述](sample-server-overview.md)
   - [示例服务器开发指导](sample-server-guidelines.md)
