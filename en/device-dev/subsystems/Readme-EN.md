@@ -85,6 +85,9 @@
   - [Development on IPC Authentication](subsys-security-communicationverify.md)
   - [Development on Device Security Level Management](subsys-security-devicesecuritylevel.md)
   - [Development on HUKS](subsys-security-huks-guide.md)
+  - [Application Privilege Configuration Guide](subsys-app-privilege-config-guide.md)
+  - [Preset Application Configuration Guide](subsys-preinstall-app-config-guide.md)
+
 - Startup
   - [Startup](subsys-boot-overview.md)
   - init Module
