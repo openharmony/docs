@@ -23,7 +23,7 @@ Image(src: string | PixelMap | Resource)
 
 | Name| Type                                                    | Mandatory| Default Value| Description                                                    |
 | ------ | ------------------------------------------------------------ | ---- | ------ | ------------------------------------------------------------ |
-| src    | string\| [PixelMap](../apis/js-apis-image.md#pixelmap7)\| [Resource](ts-types.md#resource) | Yes  | -      | Image source. Both local and online images are supported.<br>When using resources referenced using a relative path, for example, `Image("common/test.jpg")`, the **\<Image>** component cannot be called across bundles or modules. Therefore, you are advised to use `$r` to reference image resources that need to be used globally.<br>- The following image formats are supported: PNG, JPG, BMP, SVG, GIF.<br>\- Base64 strings are supported. The value format is `data:image/[png\|jpeg\|bmp\|webp];base64,[base64 data]`, where `[base64 data]` is a Base64 string.<br/>\- The value can also be a path starting with `dataability://`, which is used to access the image path provided by a Data ability.<br>\- Strings with the `file:///data/storage` prefix are supported, which are used to read image resources in the` files` folder in the installation directory of the application. Using such strings requires read permission on the files in the installation directory. |
+| src    | string\| [PixelMap](../apis/js-apis-image.md#pixelmap7)\| [Resource](ts-types.md#resource) | Yes  | -      | Image source. Both local and online images are supported.<br>When using resources referenced using a relative path, for example, `Image("common/test.jpg")`, the **\<Image>** component cannot be called across bundles or modules. Therefore, you are advised to use `$r` to reference image resources that need to be used globally.<br>- The following image formats are supported: PNG, JPG, BMP, SVG, GIF.<br>\- Base64 strings are supported. The value format is `data:image/[png\|jpeg\|bmp\|webp];base64,[base64 data]`, where `[base64 data]` is a Base64 string.<br/>\- The value can also be a path starting with `dataability://`, which is used to access the image path provided by a Data ability.<br>\- Strings with the `file:///data/storage` prefix are supported, which are used to read image resources in the` files` folder in the installation directory of the application. Using such strings requires the read permission on the files in the installation directory.|
 
 ## Attributes
 
@@ -31,10 +31,10 @@ Image(src: string | PixelMap | Resource)
 | --------------------- | ---------------------------------------- | -------- | ---------------------------------------- |
 | alt                   | string \| [Resource](ts-types.md#resource) | -        | Placeholder image displayed during loading. Only local images are supported.                  |
 | objectFit             | [ImageFit](ts-appendix-enums.md#imagefit) | Cover    | Image scale mode.                              |
-| objectRepeat          | [ImageRepeat](ts-appendix-enums.md#imagerepeat) | NoRepeat | Whether the image is repeated.<br>> **NOTE**<br>> This attribute is not applicable to SVG images.|
-| interpolation         | ImageInterpolation                       | None     | Interpolation effect of the image. This attribute is intended to alleviate aliasing that occurs when a low-definition image is zoomed in.<br>> **NOTE**<br>> This attribute is not applicable to SVG images or **PixelMap** objects. |
-| renderMode            | ImageRenderMode                          | Original | Rendering mode of the image.<br>> **NOTE**<br>> This attribute is not applicable to SVG images.|
-| sourceSize            | {<br>width: number,<br>height: number<br>} | -        | Decoding size of the image. The original image is decoded into an image of the specified size. If the value is of the number type, the unit px is used.<br>> **NOTE**<br>> This attribute is not applicable to **PixelMap** objects.|
+| objectRepeat          | [ImageRepeat](ts-appendix-enums.md#imagerepeat) | NoRepeat | Whether the image is repeated.<br>**NOTE**<br>This attribute is not applicable to SVG images. |
+| interpolation         | ImageInterpolation                       | None     | Interpolation effect of the image. This attribute is intended to alleviate aliasing that occurs when a low-definition image is zoomed in.<br>**NOTE**<br>This attribute is not applicable to SVG images or **PixelMap** objects. |
+| renderMode            | ImageRenderMode                          | Original | Rendering mode of the image.<br>**NOTE**<br>This attribute is not applicable to SVG images. |
+| sourceSize            | {<br>width: number,<br>height: number<br>} | -        | Decoding size of the image. The original image is decoded into an image of the specified size. If the value is of the number type, the unit px is used.<br>**NOTE**<br>This attribute is not applicable to **PixelMap** objects. |
 | matchTextDirection    | boolean                                  | false    | Whether to display the image in the system language direction. When this parameter is set to true, the image is horizontally flipped in the right-to-left (RTL) language context.     |
 | fitOriginalSize       | boolean                                  | true     | Whether to fit the component to the original size of the image source when the component size is not set.               |
 | fillColor             | [ResourceColor](ts-types.md#resourcecolor8) | -        | Fill color of the image. This attribute only applies to an SVG image. Once set, the fill color will replace that of the SVG image.           |
@@ -308,7 +308,7 @@ struct LoadImageExample {
           this.path = EMPTY_PATH;
           this.path += getContext(this.bundleCodeDir + '/entry/resource/base/media/icon.png');
         })
-      Text(`Image path: ${this.path}`)
+      Text(`Image pth: ${this.path}`)
         .fontSize(20)
         .margin({ bottom: 10 })
       Image(this.path)

@@ -1,14 +1,14 @@
 # Overview
 
 
-The TypeScript-based declarative development paradigm of ArkUI is a simplified, high-performance UI development framework for cross-device applications.
+The eTS-based declarative development paradigm of ArkUI is a simplified, high-performance UI development framework for cross-device applications.
 
 
 ## Basic Capabilities
 
-In ArkUI that uses the TypeScript-based declarative development paradigm, the programming mode is closer to natural semantics. You can intuitively describe the UI without caring about how the framework implements UI drawing and rendering, leading to simplified and efficient development. The UI capabilities are provided from three dimensions: component, animation, and state management. System capability APIs are also provided to allow for effortless invocation of system capabilities.
+In ArkUI that uses the eTS-based declarative development paradigm, the programming mode is closer to natural semantics. You can intuitively describe the UI without caring about how the framework implements UI drawing and rendering, leading to simplified and efficient development. The UI capabilities are provided from three dimensions: component, animation, and state management. System capability APIs are also provided to allow for effortless invocation of system capabilities.
 
-For details about the UI components, see [Component Reference (TypeScript-based Declarative Development Paradigm)](../reference/arkui-ts/ts-universal-events-click.md).
+For details about the UI components, see [Component Reference (eTS-based Declarative Development Paradigm)](../reference/arkui-ts/ts-universal-events-click.md).
 
 
 - Out-of-the-box components
@@ -39,20 +39,20 @@ For details about the UI components, see [Component Reference (TypeScript-based 
 
 - Declarative UI frontend
   
-Provides basic language specifications of the UI development paradigm, built-in UI components, layouts, and animations, and multiple state management mechanisms, with a wide array of APIs for you to call as required.
+  Provides basic language specifications of the UI development paradigm, built-in UI components, layouts, and animations, and multiple state management mechanisms, with a wide array of APIs for you to call as required.
   
 - Language runtime
-  
-Provides the parsing capability for the UI paradigm syntax and allows for cross-language API calls for a high-performance running environment of the TS language.
-  
+
+  Provides the parsing capability for the UI paradigm syntax and allows for cross-language API calls for a high-performance running environment of the eTS language.
+
 - Declarative UI backend engine
-  
-Provides UI rendering pipelines that are compatible with different development paradigms, multiple basic components, layout calculation, dynamic effects, and interaction events, with state management and drawing capabilities.
-  
+
+  Provides UI rendering pipelines that are compatible with different development paradigms, multiple basic components, layout calculation, dynamic effects, and interaction events, with state management and drawing capabilities.
+
 - Render engine
-  
-Provides efficient drawing capabilities, which enable rendering instructions collected by the rendering pipeline to be drawn to the screen.
-  
+
+  Provides efficient drawing capabilities, which enable rendering instructions collected by the rendering pipeline to be drawn to the screen.
+
 - Porting layer
-  
+
   Provides abstract APIs to connect to different systems, such as system rendering pipelines and lifecycle scheduling.
