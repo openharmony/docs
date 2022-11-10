@@ -162,3 +162,4 @@
 | ohos.permission.BACKUP     | system_basic  | system_grant | TRUE    | 允许应用拥有备份恢复能力。                                |
 | ohos.permission.FILE_ACCESS_MANAGER     | system_basic  | system_grant | TRUE    | 允许文件管理类应用通过FAF框架访问公共数据文件。                  |
 | ohos.permission.MANAGE_AUDIO_CONFIG                      | system_basic        | system_grant | TRUE   | 允许应用进行全局麦克风静音等操作。           |
+| ohos.permission.ACCESS_SERVICE_DM      | system_basic  | system_grant | FALSE    | 允许系统应用获取分布式设备的认证组网能力。          |
