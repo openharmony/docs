@@ -1054,7 +1054,7 @@ DoSomething();
 DoSomething();
 ```
 
-Leave at least one space between the code and the comment on the right. No more than four spaces is recommended.
+Leave at least one space between the code and the comment on the right. No more than four spaces are recommended.
 
 
 You can use the extended Tab key to indent 1-4 spaces.
@@ -1561,7 +1561,7 @@ Note: Whether to declare the pointer parameter as `const` depends on the functio
 
 ### Rec 5.6 Include no more than 5 parameters in a function.
 
-If a function has too many parameters, the function is easy to be affected by changes in external code, hindering maintenance. Too many function parameters will also increases the workload for testing.
+If a function has too many parameters, the function is easy to be affected by changes in external code, hindering maintenance. Too many function parameters will also increase the workload for testing.
 
 The number of parameters in a function must not exceed 5. If the number of parameters exceeds 5, consider the following:
 
@@ -2029,7 +2029,7 @@ However, due to invalid initialization, the defect of placing "UseData" before "
 
 Therefore, simple code should be written to initialize variables or memory blocks as required.
 
-The C99 does not limit the definition position of local variables to before the first statement in a function. That is, a variable can now be defined close to a variable.   
+The C99 does not limit the definition position of local variables before the first statement in a function. That is, a variable can now be defined close to a variable.   
 
 This concise approach not only limits the scope of the variable scope, but also solves the problem of how to initialize the variable when it is defined.   
 
@@ -2080,7 +2080,7 @@ if (v < MAX) ...
 
 There are special cases: for example, the expression `if (MIN < v && v < MAX)` is used to check for a range. This first constant should be placed on the left.
 
-You do not need to worry about accidentally writing '==' as '=' because a compilation alarm will be generated for `if (v = MAX)` and an error will be reported by other static check tools. Use these tools to solve such writing errors and ensure that that code is readable.
+You do not need to worry about accidentally writing '==' as '=' because a compilation alarm will be generated for `if (v = MAX)` and an error will be reported by other static check tools. Use these tools to solve such writing errors and ensure that code is readable.
 
 ### Do not reference a variable again in an expression containing an increment (++) or decrement (--) operator.
 
