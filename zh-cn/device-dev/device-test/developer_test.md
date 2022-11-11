@@ -39,7 +39,7 @@ OpenHarmony系统开发人员在新增或修改代码之后，希望可以快速
 
 1. 安装Linux扩展组件readline，安装命令如下：
 
-    ```
+    ```bash
     sudo apt-get install libreadline-dev
     ```
     安装成功提示如下：
@@ -52,7 +52,7 @@ OpenHarmony系统开发人员在新增或修改代码之后，希望可以快速
     ```
 
 2. 安装setuptools插件，安装命令如下：
-    ```
+    ```bash
     pip3 install setuptools
     ```
     安装成功提示如下：
@@ -61,7 +61,7 @@ OpenHarmony系统开发人员在新增或修改代码之后，希望可以快速
     ```
 
 3. 安装paramiko插件，安装命令如下：
-    ```
+    ```bash
     pip3 install paramiko
     ```
     安装成功提示如下：
@@ -71,7 +71,7 @@ OpenHarmony系统开发人员在新增或修改代码之后，希望可以快速
     ```
 
 4. 安装python的rsa插件，安装命令如下：
-    ```
+    ```bash
     pip3 install rsa
     ```
     安装成功提示如下：
@@ -81,7 +81,7 @@ OpenHarmony系统开发人员在新增或修改代码之后，希望可以快速
     ```
 
 5. 安装串口插件pyserial，安装命令如下：
-    ```
+    ```bash
     pip3 install pyserial
     ```
     安装成功提示如下：
@@ -95,7 +95,7 @@ OpenHarmony系统开发人员在新增或修改代码之后，希望可以快速
 
     - Windows环境下安装，安装haneWIN NFS Server1.2.50软件包。
     - Linux环境下安装，安装命令如下：
-    ```
+    ```bash
     sudo apt install nfs-kernel-server
     ```
     安装成功提示如下：
@@ -135,7 +135,7 @@ calculator_sub_test.cpp
 ```
 
 用例示例
-```
+```c++
 /*
  * Copyright (c) 2021 XXXX Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -222,7 +222,7 @@ HWTEST_F(CalculatorSubTest, integer_sub_001, TestSize.Level1)
 
 2.引用测试框架头文件和命名空间
 
-```
+```c++
 #include <gtest/gtest.h>
 
 using namespace testing::ext;
@@ -230,13 +230,13 @@ using namespace testing::ext;
 
 3.添加被测试类的头文件
 
-```
+```c++
 #include "calculator.h"
 ```
 
 4.定义测试套（测试类）
 
-```
+```c++
 class CalculatorSubTest : public testing::Test {
 public:
     static void SetUpTestCase(void);
@@ -263,13 +263,13 @@ void CalculatorSubTest::SetUp(void)
 void CalculatorSubTest::TearDown(void)
 {
     // input testcase teardown step，teardown invoked after each testcases
-}
+}==
 ```
 > **注意：** 在定义测试套时，测试套名称应与编译目标保持一致，采用大驼峰风格。
 
 5.测试用例实现，包含用例注释和逻辑实现
 
-```
+```c++
 /**
  * @tc.name: integer_sub_001
  * @tc.desc: Verify the sub function.
@@ -336,7 +336,7 @@ AppInfoTest.js
 
 - 用例示例
 
-```
+```js
 /*
  * Copyright (C) 2021 XXXX Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -410,13 +410,13 @@ describe("AppInfoTest", function () {
 	 */
 	```
 2. 导入被测api和jsunit测试库
-    ```
+    ```js
 	import app from '@system.app'
 	
 	import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from 'deccjsunit/index'
 	```
 3. 定义测试套（测试类）
-    ```
+    ```js
 	describe("AppInfoTest", function () {
 	    beforeAll(function() {
 	        // input testsuit setup step，setup invoked before all testcases
@@ -439,7 +439,7 @@ describe("AppInfoTest", function () {
 	    })
 	```
 4. 测试用例实现
-    ```
+    ```JS
 	/*
 	 * @tc.name:appInfoTest001
 	 * @tc.desc:verify app info is not null
@@ -454,7 +454,7 @@ describe("AppInfoTest", function () {
         expect(info != null).assertEqual(true)
 	 })
 	```
-	> **注意：** @tc.require: 格式必须以AR/SR或issue开头： 如：issueI56WJ7
+	> **注意：** @tc.require: 格式必须以issue开头： 如：issueI56WJ7
 
 **Fuzz测试**
 
@@ -640,7 +640,7 @@ ohos_js_unittest("GetAppInfoJsTest") {
 ```
  config.json为hap编译所需配置文件，需要开发者根据被测sdk版本配置“target”项，其余项可默认，具体如下所示：
 
-```
+```json
 {
   "app": {
     "bundleName": "com.example.myapplication",
@@ -753,7 +753,7 @@ group("unittest") {
 
 2.在resource目录下对应的模块目录中创建一个ohos_test.xml文件，文件内容格式如下:
 
-```
+```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration ver="2.0">
     <target name="CalculatorSubTest">
@@ -783,7 +783,7 @@ ohos_unittest("CalculatorSubTest") {
 在执行测试用例之前，针对用例使用设备的不同，需要对相应配置进行修改，修改完成即可执行测试用例。
 
 #### user_config.xml配置
-```
+```xml
 <user_config>
   <build>
     <!-- 是否编译demo用例, 默认为false，如果需要编译demo可修改为true -->
@@ -882,7 +882,7 @@ ohos_unittest("CalculatorSubTest") {
 	>**说明：** 将测试框架及测试用例从Linux环境移植到Windows环境，以便后续执行。
 	
 3. 修改user_config.xml
-	```
+	```xml
 	<build>
 	  <!-- 由于测试用例已编译完成，此标签属性需改为false -->
 	  <testcase>false</testcase>
