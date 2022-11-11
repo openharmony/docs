@@ -12,7 +12,7 @@
 
 ## 系统要求
 
-- Ubuntu系统要求：Ubuntu18.04~21.10版本，内存推荐16 GB及以上。
+- Ubuntu系统要求：Ubuntu18.04~21.10版本。推荐使用20.04版本，内存16 GB及以上。
 
 - Ubuntu系统的用户名不能包含中文字符。
 
@@ -22,37 +22,37 @@
 1. 将Ubuntu Shell环境修改为bash。
    1. 执行如下命令，确认输出结果为bash。如果输出结果不是bash，请根据子步骤2，将Ubuntu shell修改为bash。
       
-       ```
+       ```shell
        ls -l /bin/sh
        ```
 
        ![zh-cn_image_0000001226764302](figures/zh-cn_image_0000001226764302.png)
    2. 打开终端工具，执行如下命令，输入密码，然后选择**No**，将Ubuntu shell由dash修改为bash。
       
-       ```
+       ```shell
        sudo dpkg-reconfigure dash
        ```
 
        ![ubuntu-dash-to-bash](figures/ubuntu-dash-to-bash.png)
 
-2. 下载[DevEco Device Tool 3.0 Release](https://device.harmonyos.com/cn/ide#download) Linux版本。
+2. 下载[DevEco Device Tool 3.1 Beta1](https://device.harmonyos.com/cn/ide#download) Linux版本。
 
 3. 解压DevEco Device Tool软件包并对解压后的文件夹进行赋权。
-   1. 进入DevEco Device Tool软件包目录，执行如下命令解压软件包，其中devicetool-linux-tool-3.1.0.200.zip为软件包名称，请根据实际进行修改。
+   1. 进入DevEco Device Tool软件包目录，执行如下命令解压软件包，其中devicetool-linux-tool-3.1.0.300.zip为软件包名称，请根据实际进行修改。
       
+       ```shell
+       unzip devicetool-linux-tool-3.1.0.300.zip
        ```
-       unzip devicetool-linux-tool-3.1.0.200.zip
-       ```
-   2. 进入解压后的文件夹，执行如下命令，赋予安装文件可执行权限，其中devicetool-linux-tool-3.1.0.200.sh请根据实际进行修改。
+   2. 进入解压后的文件夹，执行如下命令，赋予安装文件可执行权限，其中devicetool-linux-tool-3.1.0.300.sh请根据实际进行修改。
       
-       ```
-       chmod u+x devicetool-linux-tool-3.1.0.200.sh
+       ```shell
+       chmod u+x devicetool-linux-tool-3.1.0.300.sh
        ```
 
-4. 执行如下命令，安装DevEco Device Tool，其中devicetool-linux-tool-3.1.0.200.sh请根据实际进行修改。
+4. 执行如下命令，安装DevEco Device Tool，其中devicetool-linux-tool-3.1.0.300.sh请根据实际进行修改。
    
-   ```
-   sudo ./devicetool-linux-tool-3.1.0.200.sh
+   ```shell
+   sudo ./devicetool-linux-tool-3.1.0.300.sh
    ```
 
 5. 在用户协议和隐私声明签署界面，请详细阅读用户协议和隐私声明，需签署同意用户协议和隐私声明才能进行下一步的安装，可通过键盘的上下按键进行选择。
@@ -66,7 +66,7 @@
 
 6. 使用如下apt-get命令安装后续操作所需的库和工具。
    
-   ```
+   ```shell
    sudo apt-get update && sudo apt-get install binutils binutils-dev git git-lfs gnupg flex bison gperf build-essential zip curl zlib1g-dev gcc-multilib g++-multilib gcc-arm-linux-gnueabi libc6-dev-i386 libc6-dev-amd64 lib32ncurses5-dev x11proto-core-dev libx11-dev lib32z1-dev ccache libgl1-mesa-dev libxml2-utils xsltproc unzip m4 bc gnutls-bin python3.8 python3-pip ruby genext2fs device-tree-compiler make libffi-dev e2fsprogs pkg-config perl openssl libssl-dev libelf-dev libdwarf-dev u-boot-tools mtd-utils cpio doxygen liblz4-tool openjdk-8-jre gcc g++ texinfo dosfstools mtools default-jre default-jdk libncurses5 apt-utils wget scons python3.8-distutils tar rsync git-core libxml2-dev lib32z-dev grsync xxd libglib2.0-dev libpixman-1-dev kmod jfsutils reiserfsprogs xfsprogs squashfs-tools pcmciautils quota ppp libtinfo-dev libtinfo5 libncurses5-dev libncursesw5 libstdc++6 gcc-arm-none-eabi vim ssh locales libxinerama-dev libxcursor-dev libxrandr-dev libxi-dev
    ```
 
