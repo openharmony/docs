@@ -12,6 +12,7 @@
     - [应用包结构说明(Stage模型)](quick-start/stage-structure.md)
     - [SysCap说明](quick-start/syscap.md)
     - [HarmonyAppProvision配置文件](quick-start/app-provision-structure.md)
+    - [资源分类与访问](quick-start/resource-categories-and-access.md)
     - 学习ArkTS语言
       - [初识ArkTS语言](quick-start/arkts-get-started.md)
       - ArkTS语法（声明式UI）
@@ -49,35 +50,30 @@
     - [方舟开发框架（ArkUI）概述](ui/arkui-overview.md)
     - 基于ArkTS的声明式开发范式
       - [概述](ui/ui-ts-overview.md)
-      - 框架说明
-        - 文件组织
-          - [目录结构](ui/ts-framework-directory.md)
-          - [应用代码文件访问规则](ui/ts-framework-file-access-rules.md)
-        - 资源管理
-          - [资源文件的分类](ui/ui-ts-basic-resource-file-categories.md)
-          - [资源访问](ui/ts-resource-access.md)
-        - [像素单位](ui/ts-pixel-units.md)
-        - 深入理解组件化
-          - [自定义组件初始化](ui/ts-custom-component-initialization.md)
-          - [自定义组件生命周期回调函数](ui/ts-custom-component-lifecycle-callbacks.md)
-          - [组件创建和重新初始化示例](ui/ts-component-creation-re-initialization.md)
-      - 常见组件开发指导
-        - [Button开发指导](ui/ui-ts-basic-components-button.md)
-        - [Web开发指导](ui/ui-ts-components-web.md)
-      - 常见布局开发指导
-        - [弹性布局](ui/ui-ts-layout-flex.md)
-        - [栅格布局](ui/ui-ts-layout-grid-container.md)
-        - [媒体查询](ui/ui-ts-layout-mediaquery.md)
-      - 体验声明式UI
-        - [创建声明式UI工程](ui/ui-ts-creating-project.md)
-        - [初识Component](ui/ui-ts-components.md)
+      - [声明式UI开发指导](ui/ui-ts-developing-intro.md)
+      - 声明式UI开发实例
         - [创建简单视图](ui/ui-ts-creating-simple-page.md)
-      - 页面布局与连接
-        - [构建食物数据模型](ui/ui-ts-building-data-model.md)
-        - [构建食物列表List布局](ui/ui-ts-building-category-list-layout.md)
-        - [构建食物分类Grid布局](ui/ui-ts-building-category-grid-layout.md)
-        - [页面跳转与数据传递](ui/ui-ts-page-redirection-data-transmission.md)
-      - [性能提升的推荐方法](ui/ts-performance-improvement-recommendation.md)
+        - 构建完整实例
+          - [构建食物数据模型](ui/ui-ts-building-data-model.md)
+          - [构建食物列表List布局](ui/ui-ts-building-category-list-layout.md)
+          - [构建食物分类Grid布局](ui/ui-ts-building-category-grid-layout.md)
+          - [页面跳转与数据传递](ui/ui-ts-page-redirection-data-transmission.md)    
+        - 添加闪屏动画
+          - [绘制图像](ui/ui-ts-drawing-feature.md)
+          - [添加动画效果](ui/ui-ts-animation-feature.md)
+        - 常见布局开发指导
+          - 自适应布局
+            - [线性布局](ui/ui-ts-layout-linear.md)
+            - [层叠布局](ui/ui-ts-layout-stack.md)
+            - [弹性布局](ui/ui-ts-layout-flex.md)
+            - [网格布局](ui/ui-ts-layout-grid.md)
+          - 响应式布局
+            - [栅格布局（API9）](ui/ui-ts-layout-grid-container-new.md)
+            - [栅格布局](ui/ui-ts-layout-grid-container.md)
+            - [媒体查询](ui/ui-ts-layout-mediaquery.md)
+      - [自定义组件的生命周期](ui/ui-ts-custom-component-lifecycle-callbacks.md)
+      - [Web组件开发指导](ui/ui-ts-components-web.md)
+      - [性能提升的推荐方法](ui/ui-ts-performance-improvement-recommendation.md)
     - 兼容JS的类Web开发范式
       - [概述](ui/ui-js-overview.md)
       - 框架说明
