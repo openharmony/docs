@@ -185,3 +185,56 @@ out/rk3568/.ninja_log文件记录了每个模块编译的开始和结束时间(m
   1. 点击静态检查下的“成功”；
 
   2. 点击输出列的“输出”即可在左侧的build_trace列看到build.trace.html文件，单击该文件即可打开。
+
+## 定制打包chip_prod镜像使用说明
+
+### 背景
+
+针对同一个芯片解决方案下的子产品的定制能力，将差异能力放到 chip_prod 分区，因此需要支持对不同子产品生成对应的 chip_prod.img。
+
+### 使用步骤
+1. 产品解决方案配置：<br>
+   产品解决方案配置文件config.json中添加`"chipprod_config_path"`配置选项，即`"chipprod_config_path":"子产品定义文件所在的路径"`。
+   其中子产品定义文件的文件名为`chip_product_list.gni`，文件格式为：`chip_product_list = ["productA", "productB", ...]` 。<br>
+   示例：<br>
+   以MyProduct产品定制chipprod镜像为例，//vendor/产品厂商/MyProduct/config.json配置如下：
+   ```shell
+   {
+        "product_name": "MyProduct",                                 # 产品名称
+        "version": "3.0",                                            # config.json的版本号, 固定"3.0"
+        "chipprod_config_path": "",                                  # 存放chipprod配置文件路径，可选项
+	"subsystems": [
+          {
+            "subsystem": "arkui",                                    # 选择的子系统
+            "components": [
+              {
+                  "component": "ace_engine",
+                  "features":[ "ace_engine_feature_enable_web = true",
+                    "ace_engine_feature_enable_accessibility = true" ] }   
+            ]
+          },
+          {
+           ......
+          }
+         ......
+         更多子系统和部件
+        }
+   }
+   ```
+
+2. 模块编译配置：<br>
+   某个配置文件在不同的子产品中有差异，比如要打包到productA对应的chip_prod.img中，则模块编译需要配置`install_images`和`module_install_dir`。<br>
+   以`ohos_prebuilt_executable`示例：
+   ```shell
+   ohos_prebuilt_executable("moduleXXX"){
+	install_images = [ "chip_prod" ]
+	module_install_dir = "productA/etc/***"     # module_install_dir指定的路径需要以productA开始。
+   }
+   ```
+
+3. 打包结果:<br>
+   如果定义了子产品productA和productB，即`chip_product_list = ["productA", "productB"],`并且有模块安装到了该产品下，则打包后镜像输出路径如下：
+   ```
+   images/productA/chip_prod.img
+   images/productB/chip_prod.img
+   ```

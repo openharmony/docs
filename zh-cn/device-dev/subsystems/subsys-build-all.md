@@ -352,4 +352,4 @@ optional arguments:
 - [开源软件Notice收集策略说明](subsys-build-reference.md#开源软件notice收集策略说明)
 - [加快本地编译的一些参数](subsys-build-reference.md#加快本地编译的一些参数)
 - [查看NinjaTrace](subsys-build-reference.md#查看ninjatrace)
-
+- [定制打包chip_prod镜像使用说明](subsys-build-reference.md#定制打包chip_prod镜像使用说明)
