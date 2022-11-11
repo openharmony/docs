@@ -401,8 +401,8 @@ zh-cn/application-dev/reference/apis/js-apis-dispatchInfo.md @RayShih
 zh-cn/application-dev/reference/apis/js-apis-distributedMissionManager.md @HelloCrease
 zh-cn/application-dev/reference/apis/js-apis-errorManager.md @RayShih
 zh-cn/application-dev/reference/apis/js-apis-inputevent.md @HelloCrease
-zh-cn/application-dev/reference/apis/js-apis-inputmethod-extension-ability.md @RayShih
-zh-cn/application-dev/reference/apis/js-apis-inputmethod-extension-context.md @RayShih
+zh-cn/application-dev/reference/apis/js-apis-inputmethod-extension-ability.md @ge-yafang
+zh-cn/application-dev/reference/apis/js-apis-inputmethod-extension-context.md @ge-yafang
 zh-cn/application-dev/reference/apis/js-apis-keycode.md @HelloCrease
 zh-cn/application-dev/reference/apis/js-apis-keyevent.md @HelloCrease
 zh-cn/application-dev/reference/apis/js-apis-logs.md @HelloCrease
