@@ -1221,7 +1221,7 @@ windowClass.hide((err) => {
         console.error('Failed to hide the window. Cause: ' + JSON.stringify(err));
         return;
     }
-    console.info('Succeeded in hiding the window. data: ' + JSON.stringify(data));
+    console.info('Succeeded in hiding the window.');
 })
 ```
 
@@ -1329,7 +1329,7 @@ hideWithAnimation(): Promise&lt;void&gt;
 ```js
 let promise = windowClass.hideWithAnimation();
 promise.then(()=> {
-    console.info('Succeeded in hiding the window with animation. Data: ' + JSON.stringify(data));
+    console.info('Succeeded in hiding the window with animation.');
 }).catch((err)=>{
     console.error('Failed to hide the window with animation. Cause: ' + JSON.stringify(err));
 })
@@ -1856,7 +1856,7 @@ try {
 
 getWindowAvoidArea(type: AvoidAreaType): AvoidArea
 
-获取窗口内容规避的区域，如系统的系统栏区域、刘海屏区域、手势区域、软键盘区域等。
+获取窗口内容规避的区域；如系统栏区域、刘海屏区域、手势区域、软键盘区域等与窗口内容重叠时，需要窗口内容避让的区域。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -4590,7 +4590,7 @@ promise.then((data)=> {
 
 getAvoidArea(type: [AvoidAreaType](#avoidareatype7), callback: AsyncCallback&lt;[AvoidArea](#avoidarea7)&gt;): void
 
-获取窗口内容规避的区域，如系统的系统栏区域、刘海屏区域、手势区域、软键盘区域等。
+获取窗口内容规避的区域；如系统栏区域、刘海屏区域、手势区域、软键盘区域等与窗口内容重叠时，需要窗口内容避让的区域。
 
 > **说明：**
 > 
@@ -4622,11 +4622,11 @@ windowClass.getAvoidArea(type, (err, data) => {
 
 getAvoidArea(type: [AvoidAreaType](#avoidareatype7)): Promise&lt;[AvoidArea](#avoidarea7)&gt;
 
-获取窗口内容规避的区域，如系统的系统栏区域、刘海屏区域、手势区域、软键盘区域等。
+获取窗口内容规避的区域；如系统栏区域、刘海屏区域、手势区域、软键盘区域等与窗口内容重叠时，需要窗口内容避让的区域。
 
 > **说明：**
 > 
-> 从 API version 7开始支持，从API version 9开始废弃，推荐使用[getWindowProperties()](#getwindowavoidarea9)。
+> 从 API version 7开始支持，从API version 9开始废弃，推荐使用[getWindowAvoidArea()](#getwindowavoidarea9)。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
