@@ -10,12 +10,12 @@
 
 - Windows 10 64位系统。
 
-- Windows系统上安装的DevEco Device Tool为3.0 Release版本。
+- Windows系统上安装的DevEco Device Tool为3.1 Beta1版本。
 
 
 ## 操作步骤
 
-1. 下载[DevEco Device Tool 3.0 Release](https://device.harmonyos.com/cn/ide#download) Windows版。
+1. 下载[DevEco Device Tool 3.1 Beta1](https://device.harmonyos.com/cn/ide#download) Windows版。
 
 2. 解压DevEco Device Tool压缩包，双击安装包程序，单击**Next**进行安装。
 
