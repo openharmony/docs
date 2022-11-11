@@ -12,7 +12,7 @@ tab页签容器。
 
 ## 子组件
 
-仅支持最多一个&lt;[tab-bar](../arkui-js/js-components-container-tab-bar.md)&gt;和最多一个&lt;[tab-content](../arkui-js/js-components-container-tab-content.md)&gt;。
+仅支持&lt;[tab-bar](../arkui-js/js-components-container-tab-bar.md)&gt;和&lt;[tab-content](../arkui-js/js-components-container-tab-content.md)&gt;。
 
 
 ## 属性
