@@ -30,6 +30,9 @@ Hi3861V100的镜像烧录通过Windows环境进行烧录，开发者启动烧录
 
 4. 在“Tool Chain”页签，设置Uploader烧录器工具，可以通过Tool Chain页签中的Install按钮在线安装。
 
+   > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+   > 若烧录器存在新版本或需要使用其它烧录器，您可以在**Uploader > Use Custom Burn Tool**指定本地的烧录器。
+
    ![Phoenix-upload](figures/Phoenix-upload.png)
 
 5. 在“hi3861”页签，设置烧录选项，包括upload_port、upload_protocol和upload_partitions。
@@ -39,13 +42,13 @@ Hi3861V100的镜像烧录通过Windows环境进行烧录，开发者启动烧录
 
    ![zh-cn_image_0000001345770181](figures/zh-cn_image_0000001345770181.png)
 
-6. 所有的配置都修改完成后，在工程配置页签的顶部，点击**Save**进行保存。
+   配置完成后工程将自动保存。
 
-7. 在“PROJECT TASKS”中，点击hi3861下的**Upload**按钮，启动烧录。
+6. 在“PROJECT TASKS”中，点击hi3861下的**Upload**按钮，启动烧录。
 
    ![zh-cn_image_0000001333322693](figures/zh-cn_image_0000001333322693.png)
 
-8. 启动烧录后，显示如下提示信息时，请在15秒内，按下开发板上的RST按钮重启开发板。
+7. 启动烧录后，显示如下提示信息时，请在15秒内，按下开发板上的RST按钮重启开发板。
 
    ![hi3861-upload-restart](figures/hi3861-upload-restart.png)
 
