@@ -61,16 +61,16 @@
         - 添加闪屏动画
           - [绘制图像](ui/ui-ts-drawing-feature.md)
           - [添加动画效果](ui/ui-ts-animation-feature.md)
-        - 常见布局开发指导
-          - 自适应布局
-            - [线性布局](ui/ui-ts-layout-linear.md)
-            - [层叠布局](ui/ui-ts-layout-stack.md)
-            - [弹性布局](ui/ui-ts-layout-flex.md)
-            - [网格布局](ui/ui-ts-layout-grid.md)
-          - 响应式布局
-            - [栅格布局（API9）](ui/ui-ts-layout-grid-container-new.md)
-            - [栅格布局](ui/ui-ts-layout-grid-container.md)
-            - [媒体查询](ui/ui-ts-layout-mediaquery.md)
+      - 常见布局开发指导
+        - 自适应布局
+          - [线性布局](ui/ui-ts-layout-linear.md)
+          - [层叠布局](ui/ui-ts-layout-stack.md)
+          - [弹性布局](ui/ui-ts-layout-flex.md)
+          - [网格布局](ui/ui-ts-layout-grid.md)
+        - 响应式布局
+          - [栅格布局（API9）](ui/ui-ts-layout-grid-container-new.md)
+          - [栅格布局](ui/ui-ts-layout-grid-container.md)
+          - [媒体查询](ui/ui-ts-layout-mediaquery.md)
       - [自定义组件的生命周期](ui/ui-ts-custom-component-lifecycle-callbacks.md)
       - [Web组件开发指导](ui/ui-ts-components-web.md)
       - [性能提升的推荐方法](ui/ui-ts-performance-improvement-recommendation.md)
