@@ -490,6 +490,8 @@
         - [时间选择弹窗](reference/arkui-ts/ts-methods-timepicker-dialog.md)
         - [文本选择弹窗](reference/arkui-ts/ts-methods-textpicker-dialog.md)
       - [菜单](reference/arkui-ts/ts-methods-menu.md)
+    - [应用级变量的状态管理](reference/arkui-ts/ts-state-management.md)
+    - [像素单位](reference/arkui-ts/ts-pixel-units.md)
     - [枚举说明](reference/arkui-ts/ts-appendix-enums.md)
     - [类型说明](reference/arkui-ts/ts-types.md)
   - 组件参考（兼容JS的类Web开发范式）
