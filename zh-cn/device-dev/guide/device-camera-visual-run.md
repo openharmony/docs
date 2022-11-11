@@ -1,6 +1,6 @@
 # 真机运行<a name="ZH-CN_TOPIC_0000001054809161"></a>
 
-应用编译打包后即可安装到开发板。安装应用前需要先完成[DevEco Device Tool的安装配置](https://device.harmonyos.com/cn/docs/ide/user-guides/service_introduction-0000001050166905)，然后将OpenHarmony烧录到开发板并运行。编译烧录、运行镜像的基本操作请参考快速入门手册：[小型系统快速入门](../quick-start/Readme-CN.md)。完成镜像运行，系统正常启动后，执行如下步骤安装或卸载三方应用。
+应用编译打包后即可安装到开发板。安装应用前需要先完成[DevEco Device Tool的安装配置](https://device.harmonyos.com/cn/docs/ide/user-guides/service_introduction-0000001050166905)，然后将OpenHarmony烧录到开发板并运行。编译烧录、运行镜像的基本操作请参考快速入门手册：[小型系统快速入门](../quick-start/quickstart-overview.md)。完成镜像运行，系统正常启动后，执行如下步骤安装或卸载三方应用。
 
 1.  将IDE编译的未签名应用安装包和安装工具（镜像文件生成目录中的dev\_tools）放在sdcard中，将sdcard插入开发板卡槽。
 2.  应用安装默认要校验签名，需要执行以下命令，关闭签名校验。

@@ -3,7 +3,7 @@
 本示例将运行源码中的camera示例代码，通过本示例可以实现使用开发板进行拍照、录像及预览等功能。
 
 -   本示例源码路径为“applications/sample/camera/media/camera\_sample.cpp”。
--   在运行本示例前需先完成编译烧录、运行镜像等步骤，相关操作请参考[小型系统快速入门](../quick-start/Readme-CN.md)。
+-   在运行本示例前需先完成编译烧录、运行镜像等步骤，相关操作请参考[小型系统快速入门](../quick-start/quickstart-overview.md)。
 
     >![](../public_sys-resources/icon-note.gif) **说明：** 
     >开发板启动后默认会加载launcher应用，应用的图形界面默认显示在媒体图层上方，会影响camera\_sample的演示结果，因此需要在编译或是打包时去掉launcher应用。
