@@ -1,20 +1,18 @@
 # Prompt
 
-The **Prompt** module provides APIs for creating and showing toasts, dialog boxes, and action menus.
+The **PromptAction** module provides APIs for creating and showing toasts, dialog boxes, and action menus.
 
 > **NOTE**
 >
-> The APIs of this module are deprecated since API Version 9. You are advised to use [@ohos.promptAction](js-apis-promptAction.md) instead.
->
-> The initial APIs of this module are supported since API version 8. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+> The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 ## Modules to Import
 
 ```js
-import prompt from '@ohos.prompt'
+import promptAction from '@ohos.promptAction'
 ```
 
-## prompt.showToast
+## promptAction.showToast
 
 showToast(options: ShowToastOptions): void
 
@@ -28,13 +26,26 @@ Shows a toast.
 | ------- | ------------------------------------- | ---- | ------- |
 | options | [ShowToastOptions](#showtoastoptions) | Yes   | Toast options.|
 
+**Error codes**
+
+For details about the error codes, see [promptAction Error Codes](../errorcodes/errorcode-promptAction.md).
+
+| ID  | Error Message|
+| --------- | ------- |
+| 100001    | Internal error. |
+
 **Example**
 
 ```js
-prompt.showToast({            
-  message: 'Message Info',
+try {
+  promptAction.showToast({            
+    message: 'Message Info',
     duration: 2000,      
-});
+  });
+} catch (error) {
+  console.error(`showToast args error code is ${error.code}, message is ${error.message}`);
+};
+
 ```
 
 ![en-us_image_0001](figures/en-us_image_0001.gif)
@@ -47,11 +58,11 @@ Describes the options for showing the toast.
 
 | Name      | Type                                      | Mandatory  | Description                                      |
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
-| message  | string\| [Resource](../arkui-ts/ts-types.md#resource)<sup>9+</sup> | Yes   | Text to display.                                |
+| message  | string\| [Resource](../arkui-ts/ts-types.md#resource)<sup>9+</sup>| Yes   | Text to display.                                |
 | duration | number                                   | No   | Duration that the toast will remain on the screen. The default value is 1500 ms. The value range is 1500 ms to 10000 ms. If a value less than 1500 ms is set, the default value is used. If the value greater than 10000 ms is set, the upper limit 10000 ms is used.|
-| bottom   | string\| number                          | No   | Distance between the toast border and the bottom of the screen. It does not have an upper limit. The default unit is vp.               |
+| bottom   | string\| number                          | No   | Distance between the toast border and the bottom of the screen.                        |
 
-## prompt.showDialog
+## promptAction.showDialog
 
 showDialog(options: ShowDialogOptions): Promise&lt;ShowDialogSuccessResponse&gt;
 
@@ -71,34 +82,46 @@ Shows a dialog box. This API uses a promise to return the result synchronously.
 | ---------------------------------------- | -------- |
 | Promise&lt;[ShowDialogSuccessResponse](#showdialogsuccessresponse)&gt; | Promise used to return the dialog box response result.|
 
+**Error codes**
+
+For details about the error codes, see [promptAction Error Codes](../errorcodes/errorcode-promptAction.md).
+
+| ID  | Error Message|
+| --------- | ------- |
+| 100001    | Internal error. |
+
 **Example**
 
 ```js
-prompt.showDialog({
-  title: 'Title Info',
-  message: 'Message Info',
-  buttons: [
-    {
-      text: 'button1',
-      color: '#000000',
-    },
-    {
-      text: 'button2',
-      color: '#000000',
-    }
-  ],
-})
-  .then(data => {
-    console.info('showDialog success, click button: ' + data.index);
+try {
+  promptAction.showDialog({
+    title: 'Title Info',
+    message: 'Message Info',
+    buttons: [
+      {
+        text: 'button1',
+        color: '#000000',
+      },
+      {
+        text: 'button2',
+        color: '#000000',
+      }
+    ],
   })
-  .catch(err => {
-    console.info('showDialog error: ' + err);
-  })
+    .then(data => {
+      console.info('showDialog success, click button: ' + data.index);
+    })
+    .catch(err => {
+      console.info('showDialog error: ' + err);
+    })
+} catch (error) {
+  console.error(`showDialog args error code is ${error.code}, message is ${error.message}`);
+};
 ```
 
 ![en-us_image_0002](figures/en-us_image_0002.gif)
 
-## prompt.showDialog
+## promptAction.showDialog
 
 showDialog(options: ShowDialogOptions, callback: AsyncCallback&lt;ShowDialogSuccessResponse&gt;):void 
 
@@ -113,32 +136,44 @@ Shows a dialog box. This API uses an asynchronous callback to return the result.
 | options  | [ShowDialogOptions](#showdialogoptions)  | Yes   | Dialog box options.|
 | callback | AsyncCallback&lt;[ShowDialogSuccessResponse](#showdialogsuccessresponse)&gt; | Yes   | Callback used to return the dialog box response result.  |
 
+**Error codes**
+
+For details about the error codes, see [promptAction Error Codes](../errorcodes/errorcode-promptAction.md).
+
+| ID  | Error Message|
+| --------- | ------- |
+| 100001    | Internal error. |
+
 **Example**
 
 ```js
-prompt.showDialog({
-  title: 'showDialog Title Info',
-  message: 'Message Info',
-  buttons: [
-    {
-      text: 'button1',
-      color: '#000000',
-    },
-    {
-      text: 'button2',
-      color: '#000000',
+try {
+  promptAction.showDialog({
+    title: 'showDialog Title Info',
+    message: 'Message Info',
+    buttons: [
+      {
+        text: 'button1',
+        color: '#000000',
+      },
+      {
+        text: 'button2',
+        color: '#000000',
+      }
+    ]
+  }, (err, data) => {
+    if (err) {
+      console.info('showDialog err: ' + err);
+      return;
     }
-  ]
-}, (err, data) => {
-  if (err) {
-    console.info('showDialog err: ' + err);
-    return;
-  }
-  console.info('showDialog success callback, click button: ' + data.index);
-});
+    console.info('showDialog success callback, click button: ' + data.index);
+  });
+} catch (error) {
+  console.error(`showDialog args error code is ${error.code}, message is ${error.message}`);
+};
 ```
 
-![en-us_image_0004](figures/en-us_image_0004.gif)
+![en-us_image_0002](figures/en-us_image_0002.gif)
 
 ## ShowDialogOptions
 
@@ -148,8 +183,8 @@ Describes the options for showing the dialog box.
 
 | Name     | Type                                      | Mandatory  | Description                                      |
 | ------- | ---------------------------------------- | ---- | ---------------------------------------- |
-| title   | string\| [Resource](../arkui-ts/ts-types.md#resource)<sup>9+</sup> | No   | Title of the dialog box.                                   |
-| message | string\| [Resource](../arkui-ts/ts-types.md#resource)<sup>9+</sup> | No   | Text body.                                   |
+| title   | string\| [Resource](../arkui-ts/ts-types.md#resource)<sup>9+</sup>| No   | Title of the dialog box.                                   |
+| message | string\| [Resource](../arkui-ts/ts-types.md#resource)<sup>9+</sup>| No   | Text body.                                   |
 | buttons | Array                                    | No   | Array of buttons in the dialog box. The array structure is **{text:'button', color: '\#666666'}**. Up to three buttons are supported. The first button is of the **positiveButton** type, the second is of the **negativeButton** type, and the third is of the **neutralButton** type.|
 
 ## ShowDialogSuccessResponse 
@@ -162,8 +197,7 @@ Describes the dialog box response result.
 | ----- | ------ | ------------------- |
 | index | number | Index of the selected button in the **buttons** array.|
 
-
-## prompt.showActionMenu
+## promptAction.showActionMenu
 
 showActionMenu(options: ActionMenuOptions, callback: AsyncCallback&lt;ActionMenuSuccessResponse&gt;):void
 
@@ -178,33 +212,45 @@ Shows an action menu. This API uses a callback to return the result asynchronous
 | options  | [ActionMenuOptions](#actionmenuoptions)  | Yes   | Action menu options.  |
 | callback | AsyncCallback&lt;[ActionMenuSuccessResponse](#actionmenusuccessresponse)> | Yes   | Callback used to return the action menu response result.|
 
+**Error codes**
+
+For details about the error codes, see [promptAction Error Codes](../errorcodes/errorcode-promptAction.md).
+
+| ID  | Error Message|
+| --------- | ------- |
+| 100001    | Internal error. |
+
 **Example**
 
 ```js
-prompt.showActionMenu({
-  title: 'Title Info',
-  buttons: [
-    {
-      text: 'item1',
-      color: '#666666',
-    },
-    {
-      text: 'item2',
-      color: '#000000',
-    },
-  ]
-}, (err, data) => {
-  if (err) {
-    console.info('showActionMenu err: ' + err);
-    return;
-  }
-  console.info('showActionMenu success callback, click button: ' + data.index);
-})
+try {
+  promptAction.showActionMenu({
+    title: 'Title Info',
+    buttons: [
+      {
+        text: 'item1',
+        color: '#666666',
+      },
+      {
+        text: 'item2',
+        color: '#000000',
+      },
+    ]
+  }, (err, data) => {
+    if (err) {
+      console.info('showActionMenu err: ' + err);
+      return;
+    }
+    console.info('showActionMenu success callback, click button: ' + data.index);
+  })
+} catch (error) {
+  console.error(`showActionMenu args error code is ${error.code}, message is ${error.message}`);
+};
 ```
 
-![en-us_image_0005](figures/en-us_image_0005.gif) 
+![en-us_image_0005](figures/en-us_image_0005.gif)
 
-## prompt.showActionMenu
+## promptAction.showActionMenu
 
 showActionMenu(options: ActionMenuOptions): Promise&lt;ActionMenuSuccessResponse&gt;
 
@@ -224,30 +270,43 @@ Shows an action menu. This API uses a promise to return the result synchronously
 | ---------------------------------------- | ------- |
 | Promise&lt;[ActionMenuSuccessResponse](#actionmenusuccessresponse)&gt; | Promise used to return the action menu response result.|
 
+**Error codes**
+
+For details about the error codes, see [promptAction Error Codes](../errorcodes/errorcode-promptAction.md).
+
+| ID  | Error Message|
+| --------- | ------- |
+| 100001    | Internal error. |
+
 **Example**
 
 ```js
-prompt.showActionMenu({
-  title: 'showActionMenu Title Info',
-  buttons: [
-    {
-      text: 'item1',
-      color: '#666666',
-    },
-    {
-      text: 'item2',
-      color: '#000000',
-    },
-  ]
-})
-  .then(data => {
-    console.info('showActionMenu success, click button: ' + data.index);
+try {
+  promptAction.showActionMenu({
+    title: 'showActionMenu Title Info',
+    buttons: [
+      {
+        text: 'item1',
+        color: '#666666',
+      },
+      {
+        text: 'item2',
+        color: '#000000',
+      },
+    ]
   })
-  .catch(err => {
-    console.info('showActionMenu error: ' + err);
-  })
+    .then(data => {
+      console.info('showActionMenu success, click button: ' + data.index);
+    })
+    .catch(err => {
+      console.info('showActionMenu error: ' + err);
+    })
+} catch (error) {
+  console.error(`showActionMenu args error code is ${error.code}, message is ${error.message}`);
+};
 ```
-![en-us_image_0006](figures/en-us_image_0006.gif)
+
+![en-us_image_0005](figures/en-us_image_0005.gif)
 
 ## ActionMenuOptions
 
@@ -257,7 +316,7 @@ Describes the options for showing the action menu.
 
 | Name     | Type                                      | Mandatory  | Description                                      |
 | ------- | ---------------------------------------- | ---- | ---------------------------------------- |
-| title   | string\| [Resource](../arkui-ts/ts-types.md#resource)<sup>9+</sup> | No   | Title of the text to display.                                   |
+| title   | string\| [Resource](../arkui-ts/ts-types.md#resource)<sup>9+</sup>| No   | Title of the dialog box.                                   |
 | buttons | Array&lt;[Button](#button)&gt;           | Yes   | Array of menu item buttons. The array structure is **{text:'button', color: '\#666666'}**. Up to six buttons are supported. If there are more than six buttons, extra buttons will not be displayed.|
 
 ## ActionMenuSuccessResponse
@@ -278,5 +337,5 @@ Describes the menu item button in the action menu.
 
 | Name   | Type                                      | Mandatory  | Description     |
 | ----- | ---------------------------------------- | ---- | ------- |
-| text  | string\| [Resource](../arkui-ts/ts-types.md#resource)<sup>9+</sup> | Yes   | Button text.|
-| color | string\| [Resource](../arkui-ts/ts-types.md#resource)<sup>9+</sup> | Yes   | Text color of the button.|
+| text  | string\| [Resource](../arkui-ts/ts-types.md#resource)<sup>9+</sup>| Yes   | Button text.|
+| color | string\| [Resource](../arkui-ts/ts-types.md#resource)<sup>9+</sup>| Yes   | Text color of the button.|
