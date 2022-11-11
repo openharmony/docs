@@ -126,7 +126,7 @@ switchInputMethod(target: InputMethodProperty, callback: AsyncCallback&lt;boolea
 
 ```js
 try{
-    inputMethod.switchInputMethod({packageName:'com.example.kikakeyboard', methodId:'com.example.kikakeyboard'}, (err, result) => {
+    inputMethod.switchInputMethod({packageName:'com.example.kikakeyboard', methodId:'com.example.kikakeyboard', extra: {}}, (err, result) => {
         if (err) {
             console.error('switchInputMethod err: ' + JSON.stringify(err));
             return;
@@ -175,7 +175,7 @@ switchInputMethod(target: InputMethodProperty): Promise&lt;boolean&gt;
 
 ```js
 try {
-    inputMethod.switchInputMethod({packageName:'com.example.kikakeyboard', methodId:'com.example.kikakeyboard'}).then((result) => {
+    inputMethod.switchInputMethod({packageName:'com.example.kikakeyboard', methodId:'com.example.kikakeyboard', extra: {}}).then((result) => {
         if (result) {
             console.info('Success to switchInputMethod.');
         } else {
@@ -240,7 +240,14 @@ switchCurrentInputMethodSubtype(target: InputMethodSubtype, callback: AsyncCallb
 ```js
 let inputMethodSubtype = {
     id: "com.example.kikainput",
-    label: "ServiceExtAbility"
+    label: "ServiceExtAbility",
+    name: "",
+    mode: "upper",
+    locale: "",
+    language: "",
+    icon: "",
+    iconId: 0,
+    extra: {}
 }
 try {
     inputMethod.switchCurrentInputMethodSubtype(inputMethodSubtype, (err, result) => {
@@ -295,7 +302,14 @@ switchCurrentInputMethodSubtype(target: InputMethodSubtype): Promise&lt;boolean&
 ```js
 let inputMethodSubtype = {
     id: "com.example.kikainput",
-    label: "ServiceExtAbility"
+    label: "ServiceExtAbility",
+    name: "",
+    mode: "upper",
+    locale: "",
+    language: "",
+    icon: "",
+    iconId: 0,
+    extra: {}
 }
 try {
     inputMethod.switchCurrentInputMethodSubtype(inputMethodSubtype).then((result) => {
@@ -363,12 +377,20 @@ switchCurrentInputMethodAndSubtype(inputMethodProperty: InputMethodProperty, inp
 
 ```js
 let inputMethodProperty = {
-    packageName:"com.example.kikakeyboard",
-    methodId:"ServiceExtAbility"
+    packageName: "com.example.kikakeyboard",
+    methodId: "ServiceExtAbility",
+    extra: {}
 }
 let inputMethodSubProperty = {
     id: "com.example.kikainput",
-    label: "ServiceExtAbility"
+    label: "ServiceExtAbility",
+    name: "",
+    mode: "upper",
+    locale: "",
+    language: "",
+    icon: "",
+    iconId: 0,
+    extra: {}
 }
 try {
     inputMethod.switchCurrentInputMethodAndSubtype(inputMethodProperty, inputMethodSubProperty, (err,result) => {
@@ -873,7 +895,8 @@ listInputMethodSubtype(inputMethodProperty: InputMethodProperty, callback: Async
 ```js
 let inputMethodProperty = {
     packageName:'com.example.kikakeyboard',
-    methodId:'com.example.kikakeyboard'
+    methodId:'com.example.kikakeyboard',
+    extra:{}
 }
 try {
     InputMethodSetting.listInputMethodSubtype(inputMethodProperty, (err,data) => {
@@ -923,6 +946,7 @@ listInputMethodSubtype(inputMethodProperty: InputMethodProperty): Promise&lt;Arr
 let inputMethodProperty = {
     packageName:'com.example.kikakeyboard',
     methodId:'com.example.kikakeyboard',
+    extra:{}
 }
 try {
     InputMethodSetting.listInputMethodSubtype(inputMethodProperty).then((data) => {

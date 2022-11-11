@@ -1,6 +1,6 @@
 # 输入法服务
 
-本模块的作用是拉通普通应用和输入法应用，功能包括：普通应用通过输入法应用进行文本输入、普通应用与输入法服务绑定、普通应用对输入法应用进行显示请求和隐藏请求、普通应用对输入法应用当前状态进行监听等等。
+本模块的作用是拉通输入法应用和其他三方应用（联系人、微信等），功能包括：将三方应用与输入法应用的服务进行绑定、三方应用通过输入法应用进行文本输入、三方应用对输入法应用进行显示键盘请求和隐藏键盘请求、三方应用对输入法应用当前状态进行监听等。
 
 > **说明：**
 >
@@ -69,7 +69,7 @@ getInputMethodAbility(): InputMethodAbility
 **示例：**
 
 ```js
-let InputMethodAbility = inputMethodAbility.getInputMethodAbility();
+let InputMethodAbility = inputMethodEngine.getInputMethodAbility();
 ```
 
 ## inputMethodEngine.getKeyboardDelegate<sup>9+</sup>
@@ -89,7 +89,7 @@ getKeyboardDelegate(): KeyboardDelegate
 **示例：**
 
 ```js
-let KeyboardDelegate = inputMethodAbility.getKeyboardDelegate();
+let KeyboardDelegate = inputMethodEngine.getKeyboardDelegate();
 ```
 
 ## inputMethodEngine.getInputMethodEngine<sup>(deprecated)</sup>
@@ -183,105 +183,11 @@ off(type: 'inputStart', callback?: (kbController: KeyboardController, textInputC
 | type | string                                                       | 是   | 设置监听类型。<br/>-type为‘inputStart’时表示订阅输入法绑定。 |
 | callback | [KeyboardController](#keyboardcontroller), [TextInputClient](#textinputclient) | 否 | 回调函数，返回取消订阅的KeyboardController和TextInputClient实例。 |
 
-
-
 **示例：**
 
 ```js
 inputMethodEngine.getInputMethodEngine().off('inputStart', (kbController, textInputClient) => {
     console.log('delete inputStart notification.');
-});
-```
-
-### on('inputStop')<sup>9+</sup>
-
-on(type: 'inputStop', callback: () => void): void
-
-订阅停止输入法应用事件。使用callback异步回调。
-
-**系统能力：** SystemCapability.MiscServices.InputMethodFramework
-
-**参数：**
-
-| 参数名   | 类型   | 必填 | 说明                                                         |
-| -------- | ------ | ---- | ------------------------------------------------------------ |
-| type     | string | 是   | 设置监听类型。<br/>-type为‘inputStop’时表示订阅停止输入法应用事件。 |
-| callback | void   | 是   | 回调函数。                                                   |
-
-**示例：**
-
-```js
-inputMethodEngine.getInputMethodEngine().on('inputStop', () => {
-    console.log('inputMethodEngine inputStop');
-});
-```
-
-### off('inputStop')<sup>9+</sup>
-
-off(type: 'inputStop', callback: () => void): void
-
-取消订阅停止输入法应用事件。使用callback异步回调。
-
-**系统能力：** SystemCapability.MiscServices.InputMethodFramework
-
-**参数：**
-
-| 参数名   | 类型   | 必填 | 说明                                                         |
-| -------- | ------ | ---- | ------------------------------------------------------------ |
-| type     | string | 是   | 设置监听类型。<br/>-type为‘inputStop’时表示订阅停止输入法应用事件。 |
-| callback | void   | 是   | 回调函数。                                                   |
-
-**示例：**
-
-```js
-inputMethodEngine.getInputMethodEngine().off('inputStop', () => {
-    console.log('inputMethodEngine delete inputStop notification.');
-});
-```
-
-### on('setCallingWindow')<sup>9+</sup>
-
-on(type: 'setCallingWindow', callback: (wid:number) => void): void
-
-订阅设置调用窗口事件。使用callback异步回调。
-
-**系统能力：** SystemCapability.MiscServices.InputMethodFramework
-
-**参数：**
-
-| 参数名   | 类型   | 必填 | 说明                                                         |
-| -------- | ------ | ---- | ------------------------------------------------------------ |
-| type     | string | 是   | 设置监听类型。<br/>-type为‘setCallingWindow’时表示订阅设置调用窗口事件。 |
-| callback | number | 是   | 回调函数，返回调用方window id。                                            |
-
-**示例：**
-
-```js
-inputMethodEngine.getInputMethodEngine().on('setCallingWindow', (wid) => {
-    console.log('inputMethodEngine setCallingWindow');
-});
-```
-
-### off('setCallingWindow')<sup>9+</sup>
-
-off(type: 'setCallingWindow', callback: (wid:number) => void): void
-
-取消订阅设置调用窗口事件。使用callback异步回调。
-
-**系统能力：** SystemCapability.MiscServices.InputMethodFramework
-
-**参数：**
-
-| 参数名   | 类型   | 必填 | 说明                                                         |
-| -------- | ------ | ---- | ------------------------------------------------------------ |
-| type     | string | 是   | 设置监听类型。<br/>-type为‘setCallingWindow’时表示订阅设置调用窗口事件。 |
-| callback | number | 是   | 回调函数，返回调用方window id。                                 |
-
-**示例：**
-
-```js
-inputMethodEngine.getInputMethodEngine().off('setCallingWindow', () => {
-    console.log('inputMethodEngine delete setCallingWindow notification.');
 });
 ```
 
@@ -849,13 +755,11 @@ hide(): Promise&lt;void&gt;
 **示例：**
 
 ```js
-async function InputMethodEngine() {
-    await KeyboardController.hide().then(() => {
-        console.info('hide success.');
-    }).catch((err) => {
-        console.info('hide err: ' + JSON.stringify(err));
-    });
-}
+KeyboardController.hide().then(() => {
+    console.info('hide success.');
+}).catch((err) => {
+    console.info('hide err: ' + JSON.stringify(err));
+});
 ```
 
 ### hideKeyboard<sup>(deprecated)</sup>
@@ -909,13 +813,11 @@ hideKeyboard(): Promise&lt;void&gt;
 **示例：**
 
 ```js
-async function InputMethodEngine() {
-    await KeyboardController.hideKeyboard().then(() => {
-        console.info('hideKeyboard success.');
-    }).catch((err) => {
-        console.info('hideKeyboard err: ' + JSON.stringify(err));
-    });
-}
+KeyboardController.hideKeyboard().then(() => {
+    console.info('hideKeyboard success.');
+}).catch((err) => {
+    console.info('hideKeyboard err: ' + JSON.stringify(err));
+});
 ```
 
 ## InputClient<sup>9+</sup>
@@ -951,7 +853,7 @@ sendKeyFunction(action:number, callback: AsyncCallback&lt;boolean&gt;): void
 try {
     InputClient.sendKeyFunction(keyFunction, (err, result) => {
         if (err) {
-            console.error('sendKeyFunction err: ' + JSON.stringify(err)JSON.stringify(err));
+            console.error('sendKeyFunction err: ' + JSON.stringify(err));
             return;
         }
         if (result) {
@@ -1084,17 +986,15 @@ getForward(length:number): Promise&lt;string&gt;
 **示例：**
 
 ```js
-async function InputMethodAbility() {
-    let length = 1;
-    try {
-        await InputClient.getForward(length).then((text) => {
-            console.info('getForward resul: ' + text);
-        }).catch((err) => {
-            console.error('getForward err: ' + JSON.stringify(err));
-        });
-    } catch (err) {
+let length = 1;
+try {
+    InputClient.getForward(length).then((text) => {
+        console.info('getForward resul: ' + text);
+    }).catch((err) => {
         console.error('getForward err: ' + JSON.stringify(err));
-    }
+    });
+} catch (err) {
+    console.error('getForward err: ' + JSON.stringify(err));
 }
 ```
 
@@ -1171,17 +1071,15 @@ getBackward(length:number): Promise&lt;string&gt;
 **示例：**
 
 ```js
-async function InputMethodAbility() {
-    let length = 1;
-    try {
-        await InputClient.getBackward(length).then((text) => {
-            console.info('getBackward result: ' + text);
-        }).catch((err) => {
-            console.error('getBackward err: ' + JSON.stringify(err));
-        });
-    } catch (err) {
+let length = 1;
+try {
+    InputClient.getBackward(length).then((text) => {
+        console.info('getBackward result: ' + text);
+    }).catch((err) => {
         console.error('getBackward err: ' + JSON.stringify(err));
-    }
+    });
+} catch (err) {
+    console.error('getBackward err: ' + JSON.stringify(err));
 }
 ```
 
@@ -1262,21 +1160,19 @@ deleteForward(length:number): Promise&lt;boolean&gt;
 **示例：**
 
 ```js
-async function InputMethodAbility() {
-    let length = 1;
-    try {
-        await InputClient.deleteForward(length).then((result) => {
-            if (result) {
-                console.info('Success to deleteForward. ');
-            } else {
-                console.error('Failed to deleteForward. ');
-            }
-        }).catch((err) => {
-            console.error('deleteForward err: ' + JSON.stringify(err));
-        });
-    } catch (err) {
+let length = 1;
+try {
+    InputClient.deleteForward(length).then((result) => {
+        if (result) {
+            console.info('Success to deleteForward. ');
+        } else {
+            console.error('Failed to deleteForward. ');
+        }
+    }).catch((err) => {
         console.error('deleteForward err: ' + JSON.stringify(err));
-    }
+    });
+} catch (err) {
+    console.error('deleteForward err: ' + JSON.stringify(err));
 }
 ```
 
@@ -1357,18 +1253,16 @@ deleteBackward(length:number): Promise&lt;boolean&gt;
 **示例：**
 
 ```js
-async function InputMethodAbility() {
-    let length = 1;
-    await InputClient.deleteBackward(length).then((result) => {
-        if (result) {
-            console.info('Success to deleteBackward. ');
-        } else {
-            console.error('Failed to deleteBackward. ');
-        }
-    }).catch((err) => {
-        console.error('deleteBackward err: ' + JSON.stringify(err));
-    });
-}
+let length = 1;
+InputClient.deleteBackward(length).then((result) => {
+    if (result) {
+        console.info('Success to deleteBackward. ');
+    } else {
+        console.error('Failed to deleteBackward. ');
+    }
+}).catch((err) => {
+    console.error('deleteBackward err: ' + JSON.stringify(err));
+});
 ```
 
 ### insertText<sup>9+</sup>
@@ -1443,20 +1337,18 @@ insertText(text:string): Promise&lt;boolean&gt;
 **示例：**
 
 ```js
-async function InputMethodAbility() {
-    try {
-        await InputClient.insertText('test').then((result) => {
-            if (result) {
-                console.info('Success to insertText. ');
-            } else {
-                console.error('Failed to insertText. ');
-            }
-        }).catch((err) => {
-            console.error('insertText err: ' + JSON.stringify(err));
-        });
-    } catch (e) {
+try {
+    InputClient.insertText('test').then((result) => {
+        if (result) {
+            console.info('Success to insertText. ');
+        } else {
+            console.error('Failed to insertText. ');
+        }
+    }).catch((err) => {
         console.error('insertText err: ' + JSON.stringify(err));
-    }
+    });
+} catch (err) {
+    console.error('insertText err: ' + JSON.stringify(err));
 }
 ```
 
@@ -1520,14 +1412,12 @@ getEditorAttribute(): Promise&lt;EditorAttribute&gt;
 **示例：**
 
 ```js
-async function InputMethodEngine() {
-    await InputClient.getEditorAttribute().then((editorAttribute) => {
-        console.info('editorAttribute.inputPattern: ' + JSON.stringify(editorAttribute.inputPattern));
-        console.info('editorAttribute.enterKeyType: ' + JSON.stringify(editorAttribute.enterKeyType));
-    }).catch((err) => {
-        console.error('getEditorAttribute err: ' + JSON.stringify(err));
-    });
-}
+InputClient.getEditorAttribute().then((editorAttribute) => {
+    console.info('editorAttribute.inputPattern: ' + JSON.stringify(editorAttribute.inputPattern));
+    console.info('editorAttribute.enterKeyType: ' + JSON.stringify(editorAttribute.enterKeyType));
+}).catch((err) => {
+    console.error('getEditorAttribute err: ' + JSON.stringify(err));
+});
 ```
 
 ### moveCursor<sup>9+</sup>
@@ -1557,7 +1447,7 @@ moveCursor(direction: number, callback: AsyncCallback&lt;void&gt;): void
 
 ```js
 try {
-    InputClient.moveCursor(inputMethodAbility.CURSOR_xxx, (err) => {
+    InputClient.moveCursor(inputMethodEngine.CURSOR_xxx, (err) => {
         if (err) {
             console.error('moveCursor err: ' + JSON.stringify(err));
             return;
@@ -1600,20 +1490,14 @@ moveCursor(direction: number): Promise&lt;void&gt;
 **示例：**
 
 ```js
-async function InputMethodAbility() {
-    try {
-        await InputClient.moveCursor(inputMethodEngine.CURSOR_xxx).then((err) => {
-            if (err) {
-                console.log('moveCursor err: ' + JSON.stringify(err));
-                return;
-            }
-            console.log('moveCursor success');
-        }).catch((err) => {
-            console.error('moveCursor success err: ' + JSON.stringify(err));
-        });
-    } catch (err) {
-        console.log('moveCursor err: ' + JSON.stringify(err));
-    }
+try {
+    InputClient.moveCursor(inputMethodEngine.CURSOR_UP).then(() => {
+        console.log('moveCursor success');
+    }).catch((err) => {
+        console.error('moveCursor success err: ' + JSON.stringify(err));
+    });
+} catch (err) {
+    console.log('moveCursor err: ' + JSON.stringify(err));
 }
 ```
 
@@ -1706,14 +1590,12 @@ getForward(length:number): Promise&lt;string&gt;
 **示例：**
 
 ```js
-async function InputMethodEngine() {
-    let length = 1;
-    await TextInputClient.getForward(length).then((text) => {
-        console.info('getForward result---res: ' + text);
-    }).catch((err) => {
-        console.error('getForward err: ' + JSON.stringify(err));
-    });
-}
+let length = 1;
+TextInputClient.getForward(length).then((text) => {
+    console.info('getForward result: ' + JSON.stringify(text));
+}).catch((err) => {
+    console.error('getForward err: ' + JSON.stringify(err));
+});
 ```
 
 ### getBackward<sup>(deprecated)</sup>
@@ -1775,14 +1657,12 @@ getBackward(length:number): Promise&lt;string&gt;
 **示例：**
 
 ```js
-async function InputMethodEngine() {
-    let length = 1;
-    await TextInputClient.getBackward(length).then((text) => {
-        console.info('getBackward result---res: ' + text);
-    }).catch((err) => {
-        console.error('getBackward err: ' + JSON.stringify(err));
-    });
-}
+let length = 1;
+TextInputClient.getBackward(length).then((text) => {
+    console.info('getBackward result: ' + JSON.stringify(text));
+}).catch((err) => {
+    console.error('getBackward err: ' + JSON.stringify(err));
+});
 ```
 
 ### deleteForward<sup>(deprecated)</sup>
@@ -1848,18 +1728,16 @@ deleteForward(length:number): Promise&lt;boolean&gt;
 **示例：**
 
 ```js
-async function InputMethodEngine() {
-    let length = 1;
-    await TextInputClient.deleteForward(length).then((result) => {
-        if (result) {
-            console.info('Success to deleteForward. ');
-        } else {
-            console.error('Failed to deleteForward. ');
-        }
-    }).catch((err) => {
-        console.error('deleteForward err: ' + JSON.stringify(err));
-    });
-}
+let length = 1;
+TextInputClient.deleteForward(length).then((result) => {
+    if (result) {
+        console.info('Succeed in deleting forward. ');
+    } else {
+        console.error('Failed to delete forward. ');
+    }
+}).catch((err) => {
+    console.error('Failed to delete forward err: ' + JSON.stringify(err));
+});
 ```
 
 ### deleteBackward<sup>(deprecated)</sup>
@@ -1925,18 +1803,16 @@ deleteBackward(length:number): Promise&lt;boolean&gt;
 **示例：**
 
 ```js
-async function InputMethodEngine() {
-    let length = 1;
-    await TextInputClient.deleteBackward(length).then((result) => {
-        if (result) {
-            console.info('Success to deleteBackward. ');
-        } else {
-            console.error('Failed to deleteBackward. ');
-        }
-    }).catch((err) => {
-        console.error('deleteBackward err: ' + JSON.stringify(err));
-    });
-}
+let length = 1;
+TextInputClient.deleteBackward(length).then((result) => {
+    if (result) {
+        console.info('Success to deleteBackward. ');
+    } else {
+        console.error('Failed to deleteBackward. ');
+    }
+}).catch((err) => {
+    console.error('deleteBackward err: ' + JSON.stringify(err));
+});
 ```
 ### sendKeyFunction<sup>(deprecated)</sup>
 
@@ -2000,17 +1876,15 @@ sendKeyFunction(action:number): Promise&lt;boolean&gt;
 **示例：**
 
 ```js
-async function InputMethodEngine() {
-    await client.sendKeyFunction(keyFunction).then((result) => {
-        if (result) {
-            console.info('Success to sendKeyFunction. ');
-        } else {
-            console.error('Failed to sendKeyFunction. ');
-        }
-    }).catch((err) => {
-        console.error('sendKeyFunction err:' + JSON.stringify(err));
-    });
-}
+TextInputClient.sendKeyFunction(keyFunction).then((result) => {
+    if (result) {
+        console.info('Success to sendKeyFunction. ');
+    } else {
+        console.error('Failed to sendKeyFunction. ');
+    }
+}).catch((err) => {
+    console.error('sendKeyFunction err:' + JSON.stringify(err));
+});
 ```
 
 ### insertText<sup>(deprecated)</sup>
@@ -2075,17 +1949,15 @@ insertText(text:string): Promise&lt;boolean&gt;
 **示例：**
 
 ```js
-async function InputMethodEngine() {
-    await TextInputClient.insertText('test').then((result) => {
-        if (result) {
-            console.info('Success to insertText. ');
-        } else {
-            console.error('Failed to insertText. ');
-        }
-    }).catch((err) => {
-        console.error('insertText err: ' + JSON.stringify(err));
-    });
-}
+TextInputClient.insertText('test').then((result) => {
+    if (result) {
+        console.info('Success to insertText. ');
+    } else {
+        console.error('Failed to insertText. ');
+    }
+}).catch((err) => {
+    console.error('insertText err: ' + JSON.stringify(err));
+});
 ```
 
 ### getEditorAttribute<sup>(deprecated)</sup>
@@ -2140,12 +2012,10 @@ getEditorAttribute(): Promise&lt;EditorAttribute&gt;
 **示例：**
 
 ```js
-async function InputMethodEngine() {
-    await TextInputClient.getEditorAttribute().then((editorAttribute) => {
-        console.info('editorAttribute.inputPattern: ' + JSON.stringify(editorAttribute.inputPattern));
-        console.info('editorAttribute.enterKeyType: ' + JSON.stringify(editorAttribute.enterKeyType));
-    }).catch((err) => {
-        console.error('getEditorAttribute err: ' + JSON.stringify(err));
-    });
-}
+TextInputClient.getEditorAttribute().then((editorAttribute) => {
+    console.info('editorAttribute.inputPattern: ' + JSON.stringify(editorAttribute.inputPattern));
+    console.info('editorAttribute.enterKeyType: ' + JSON.stringify(editorAttribute.enterKeyType));
+}).catch((err) => {
+    console.error('getEditorAttribute err: ' + JSON.stringify(err));
+});
 ```
