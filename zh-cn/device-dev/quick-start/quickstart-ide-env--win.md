@@ -20,8 +20,6 @@
 2. 解压DevEco Device Tool压缩包，双击安装包程序，单击**Next**进行安装。
 
 3. 设置DevEco Device Tool的安装路径，请注意安装路径不能包含中文字符，**不建议安装到C盘目录**，单击**Next**。
-   > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
-   > 如果您已安装DevEco Device Tool 3.0 Beta2及以前的版本，则在安装新版本时，会先卸载旧版本，卸载过程中出现错误提示“Error during uninstallation process: Cannot remove directory...”时，请单击**Ignore**继续安装，该错误不影响新版本的安装。
 
    ![zh-cn_image_0000001326386753](figures/zh-cn_image_0000001326386753.png)
 
