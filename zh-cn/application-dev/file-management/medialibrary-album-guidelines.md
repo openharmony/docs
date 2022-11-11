@@ -12,9 +12,9 @@ mediaLibrary提供相册相关的接口，供开发者创建、删除相册，�
 
 获取相册中的图片、视频有两种方式：
 
-一是通过[MediaLibrary.getFileAssets](../reference/apis/js-apis-medialibrary.md#getfileassets7-1)指定相册以获取媒体资源，参考[获取指定相册的媒体资源](medialibrary-resource-guidelines#指定相册)；
+一是通过[MediaLibrary.getFileAssets](../reference/apis/js-apis-medialibrary.md#getfileassets7-1)指定相册以获取媒体资源，参考[获取指定相册的媒体资源](medialibrary-resource-guidelines.md#指定相册)；
 
-二是通过[Album.getFileAssets](../reference/apis/js-apis-medialibrary.md#getfileassets7-3)使用相册Album实例获取媒体资源，参考[获取相册中的图片或视频](medialibrary-resource-guidelines#获取相册中的图片或视频)。
+二是通过[Album.getFileAssets](../reference/apis/js-apis-medialibrary.md#getfileassets7-3)使用相册Album实例获取媒体资源，参考[获取相册中的图片或视频](medialibrary-resource-guidelines.md#获取相册中的图片或视频)。
 
 ## 创建相册
 
