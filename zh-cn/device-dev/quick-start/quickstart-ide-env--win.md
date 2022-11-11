@@ -24,11 +24,17 @@
    ![zh-cn_image_0000001326386753](figures/zh-cn_image_0000001326386753.png)
 
 4. 根据安装向导提示，勾选要自动安装的软件。
-   1. 在弹出**VS Code installation confirm**页面，勾选“Install VS Code 1.62.2automatically”，单击**Next**。
+
+   1. 在弹出**VSCode installation confirm**页面，勾选“Install VS Code 1.62.2 automatically”，单击**Next**。
        > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
        > 如果检测到Visual Studio Code已安装，且版本为1.62及以上，则会跳过该步骤。
 
        ![zh-cn_image_0000001285965546](figures/zh-cn_image_0000001285965546.png)
+
+   2. 选择Visual Studio Code的安装路径，单击**Next**。
+
+       ![select-vscode-path](figures/select-vscode-path.png)
+
    2. 在弹出的**Python select page**选择“Download from Huawei mirror”，单击**Next**。
        > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
        > 如果系统已安装可兼容的Python版本（Python 3.8~3.9版本），可选择“Use one of compatible on your PC”。
