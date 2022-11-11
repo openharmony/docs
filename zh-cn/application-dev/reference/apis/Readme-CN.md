@@ -18,7 +18,6 @@
     - [@ohos.application.abilityLifecycleCallback (AbilityLifecycleCallback)](js-apis-application-abilityLifecycleCallback.md)
     - [@ohos.application.DataShareExtensionAbility (数据共享扩展能力)](js-apis-application-DataShareExtensionAbility.md)
     - [@ohos.application.EnvironmentCallback (EnvironmentCallback)](js-apis-application-EnvironmentCallback.md)
-
     - [@ohos.app.form.FormExtensionAbility.d.ts](FormExtensionAbility)(js-apis-app-form-formextensionability.md)
     - [@ohos.application.ServiceExtensionAbility (ServiceExtensionAbility)](js-apis-service-extension-ability.md)
     - [@ohos.application.StartOptions (StartOptions)](js-apis-application-StartOptions.md)

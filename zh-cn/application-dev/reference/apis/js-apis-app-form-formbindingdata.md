@@ -58,7 +58,6 @@ context.getOrCreateLocalDir((err,data)=>{
     "temperature": "21°",
     "formImages": {"image": fd}
   };
-  var formBindingDataObj;
   try {
     formBindingData.createFormBindingData(obj);
   } catch (error) {
