@@ -15,22 +15,22 @@ show(options?: TextPickerDialogOptions)
 
 **TextPickerDialogOptions参数说明：**
 
-  | 参数名 | 参数类型 | 必填 |  参数描述 |
-  | -------- | -------- | -------- |  -------- |
-  | range | string[]&nbsp;\|&nbsp;[Resource](ts-types.md#resource) | 是 |  设置文本选择器的选择范围。 |
-  | selected | number | 否 |  设置选中项的索引值。<br>默认值：0 |
-  | value       | string           | 否    | 设置选中项的文本内容。当设置了selected参数时，该参数不生效。如果设置的value值不在range范围内，则默认取range第一个元素。|
-  | defaultPickerItemHeight | number \| string | 否 | 设置选择器中选项的高度。 |
-  | onAccept | (value: TextPickerResult) => void | 否 |  点击弹窗中的“确定”按钮时触发该回调。 |
-  | onCancel | () => void | 否 | 点击弹窗中的“取消”按钮时触发该回调。 |
-  | onChange | (value: TextPickerResult) => void | 否 |  滑动弹窗中的选择器使当前选中项改变时触发该回调。 |
+| 参数名 | 参数类型 | 必填 |  参数描述 |
+| -------- | -------- | -------- |  -------- |
+| range | string[]&nbsp;\|&nbsp;[Resource](ts-types.md#resource) | 是 |  设置文本选择器的选择范围。 |
+| selected | number | 否 |  设置选中项的索引值。<br>默认值：0 |
+| value       | string           | 否    | 设置选中项的文本内容。当设置了selected参数时，该参数不生效。如果设置的value值不在range范围内，则默认取range第一个元素。|
+| defaultPickerItemHeight | number \| string | 否 | 设置选择器中选项的高度。 |
+| onAccept | (value: [TextPickerResult](#textpickerresult对象说明)) => void | 否 |  点击弹窗中的“确定”按钮时触发该回调。 |
+| onCancel | () => void | 否 | 点击弹窗中的“取消”按钮时触发该回调。 |
+| onChange | (value: [TextPickerResult](#textpickerresult对象说明)) => void | 否 |  滑动弹窗中的选择器使当前选中项改变时触发该回调。 |
 
 ## TextPickerResult对象说明
 
-  | 名称 | 类型 | 描述 | 
-  | -------- | -------- | -------- |
-  | value | string | 选中项的文本内容。 | 
-  | index | number | 选中项在选择范围数组中的索引值。 | 
+| 名称 | 类型 | 描述 |
+| -------- | -------- | -------- |
+| value | string | 选中项的文本内容。 |
+| index | number | 选中项在选择范围数组中的索引值。 |
 
 ## 示例
 
