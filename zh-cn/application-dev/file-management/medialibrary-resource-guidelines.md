@@ -340,7 +340,7 @@ async function example() {
 
 修改后再通过[FileAsset.commitModify](../reference/apis/js-apis-medialibrary.md#commitmodify8-1)更新到数据库中。
 
-在删除文件之前，需要先获取文件对象，可以通过[FetchFileResult](../reference/apis/js-apis-medialibrary.md#fetchfileresult7)中的接口获取对应位置的文件。
+在重命名文件之前，需要先获取文件对象，可以通过[FetchFileResult](../reference/apis/js-apis-medialibrary.md#fetchfileresult7)中的接口获取对应位置的文件。
 
 **前提条件** 
 

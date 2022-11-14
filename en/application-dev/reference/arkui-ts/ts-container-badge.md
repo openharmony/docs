@@ -29,7 +29,7 @@ Create a badge.
 | count | number | Yes| - | Number of notifications.|
 | position | BadgePosition | No| BadgePosition.RightTop | Position to display the badge relative to the parent component.|
 | maxCount | number | No| 99 | Maximum number of notifications. When the maximum number is reached, only **maxCount+** is displayed.|
-| style | BadgeStyle | Yes| - | Style of the **<Badge>** component, including the text color, text size, badge color, and badge size.|
+| style | BadgeStyle | Yes| - | Style of the **\<Badge>** component, including the text color, text size, badge color, and badge size.|
 
 Method 2: Badge(value: {value: string, position?: BadgePosition, style: BadgeStyle})
 

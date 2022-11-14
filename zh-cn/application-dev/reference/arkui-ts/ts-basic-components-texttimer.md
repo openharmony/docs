@@ -71,11 +71,11 @@ reset()
 @Component
 struct TextTimerExample {
   textTimerController: TextTimerController = new TextTimerController()
-  @State format: string = 'HH:mm:ss.SS'
+  @State format: string = 'mm:ss.SS'
 
   build() {
     Column() {
-      TextTimer({controller: this.textTimerController})
+      TextTimer({ controller: this.textTimerController, isCountDown: true, count: 30000 })
         .format(this.format)
         .fontColor(Color.Black)
         .fontSize(50)
@@ -84,14 +84,14 @@ struct TextTimerExample {
         })
       Row() {
         Button("start").onClick(() => {
-          this.textTimerController.start();
-        });
+          this.textTimerController.start()
+        })
         Button("pause").onClick(() => {
-          this.textTimerController.pause();
-        });
+          this.textTimerController.pause()
+        })
         Button("reset").onClick(() => {
-          this.textTimerController.reset();
-        });
+          this.textTimerController.reset()
+        })
       }
     }
   }

@@ -325,6 +325,7 @@ The auth type is not supported.
 **错误信息**
 
 The auth type does not exist.
+
 **可能原因**
 
 该错误码表示认证类型不存在，可能原因如下:
@@ -418,6 +419,7 @@ The auth service is busy.
 **错误信息**
 
 The account authenticator service does not exist.
+
 **可能原因**
 
 该错误码表示认证服务不存在，可能原因如下:
@@ -437,6 +439,7 @@ The account authenticator service does not exist.
 **错误信息**
 
 The account authenticator service works abnormally.
+
 **可能原因**
 
 该错误码表示帐号认证服务异常，可能原因如下:

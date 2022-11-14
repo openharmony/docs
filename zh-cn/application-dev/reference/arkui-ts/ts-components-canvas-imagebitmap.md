@@ -10,10 +10,10 @@ ImageBitmap对象可以存储canvas渲染的像素数据。
 
 ## 属性
 
-| 属性 | 类型 | 描述 | 
+| 属性 | 类型 | 描述 |
 | -------- | -------- | -------- |
-| width | number | ImageBitmap的像素宽度。 | 
-| height | number | ImageBitmap的像素高度。 | 
+| width | number | ImageBitmap的像素宽度。 |
+| height | number | ImageBitmap的像素高度。 |
 
 **示例：**
 
@@ -22,9 +22,9 @@ ImageBitmap对象可以存储canvas渲染的像素数据。
   @Entry
   @Component
   struct ImageExample {
-    private settings: RenderingContextSettings = new RenderingContextSettings(true);
-    private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings);
-    private img:ImageBitmap = new ImageBitmap("common/images/example.jpg");
+    private settings: RenderingContextSettings = new RenderingContextSettings(true)
+    private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
+    private img:ImageBitmap = new ImageBitmap("common/images/example.jpg")
 
     build() {
       Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
@@ -33,7 +33,7 @@ ImageBitmap对象可以存储canvas渲染的像素数据。
           .height('100%')
           .backgroundColor('#ffff00')
           .onReady(() =>{
-            this.context.drawImage( this.img,0,0,500,500,0,0,400,200);
+            this.context.drawImage( this.img,0,0,500,500,0,0,400,200)
         })
       }
       .width('100%')

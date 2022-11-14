@@ -60,7 +60,7 @@ buffer数组的列表。
 
 ## EncodingBlob
 
-证书链数据，在证书链校验时，作为入参传入。
+带编码格式的证书二进制数组。
 
 ### 属性
 
@@ -1029,7 +1029,7 @@ console.info("key hex:" + uint8ArrayToShowStr(encodedKey.data));    // 输出全
 
 getEncoded() : DataBlob
 
-以同步方法，获取二进制形式的密钥内容。
+以同步方法，获取二进制形式的密钥内容。公钥格式满足ASN.1语法、X.509规范、DER编码格式。
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
@@ -1065,7 +1065,7 @@ console.info("key encoded:" + Uint8ArrayToShowStr(encodedKey.data));
 
 getEncoded() : DataBlob
 
-以同步方法，获取二进制形式的密钥内容。
+以同步方法，获取二进制形式的密钥内容。私钥格式满足ASN.1语法，PKCS#8规范、DER编码方式。
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
@@ -1437,11 +1437,9 @@ keyGenPromise.then( keyPair => {
 
 **密钥转换说明**
 
-1. RSA二进制密钥数据，按keysize(32位) ，nsize(keysize/8), esize(e实际长度)，dsize(keysize/8)，nval(大数n的二进制数据)，eval(大数e的二进制数据)，dval(大数d的二进制数据)拼接形成。
-2. RSA二进制密钥数据中，nsize和dsize为密钥位数/8，esize为具体的实际长度。
-3. RSA私钥数据需要包含keysize，nsize，esize，dsize，nval，eval，dval的全部数据，公钥材料中dsize设置为0，缺省dval的数据。
-4. RSA二进制密钥数据中，keysize、nsize、esize和dsize为32位二进制数据，数据的大小端格式请按设备CPU默认格式，密钥材料（nval、eval、dval）统一为大端格式。
-5. convertKey接口中，公钥和私钥二进制数据为可选项，可单独传入公钥或私钥的数据，生成对应只包含公钥或私钥的KeyPair对象。
+1. 非对称密钥（RSA、ECC）的公钥和私钥调用getEncoded()方法后，分别返回X.509格式和PKCS#8格式的二进制数据，此数据可用于跨应用传输或持久化存储。
+2. 当调用convertKey方法将外来二进制数据转换为算法库非对称密钥对象时，公钥应满足ASN.1语法、X.509规范、DER编码格式，私钥应满足ASN.1语法、PKCS#8规范、DER编码格式。
+3. convertKey方法中，公钥和密钥二进制数据非必选项，可单独传入公钥或私钥的数据，生成对应只包含公钥或私钥的KeyPair对象。
 
 ## cryptoFramework.createCipher
 

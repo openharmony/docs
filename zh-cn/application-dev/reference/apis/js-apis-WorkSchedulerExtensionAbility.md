@@ -28,7 +28,7 @@ onWorkStart(work: workScheduler.WorkInfo): void
 
 | 参数名  | 类型                                       | 必填   | 说明             |
 | ---- | ---------------------------------------- | ---- | -------------- |
-| work | [workScheduler.WorkInfo](js-apis-workScheduler.md#workinfo) | 是    | 指示要添加到执行队列的工作。 |
+| work | [workScheduler.WorkInfo](js-apis-resourceschedule-workScheduler.md#workinfo) | 是    | 指示要添加到执行队列的工作。 |
 
 **示例：** 
 
@@ -52,7 +52,7 @@ onWorkStop(work: workScheduler.WorkInfo): void
 
 | 参数名  | 类型                                       | 必填   | 说明             |
 | ---- | ---------------------------------------- | ---- | -------------- |
-| work | [workScheduler.WorkInfo](js-apis-workScheduler.md#workinfo) | 是    | 指示要添加到执行队列的工作。 |
+| work | [workScheduler.WorkInfo](js-apis-resourceschedule-workScheduler.md#workinfo) | 是    | 指示要添加到执行队列的工作。 |
 
 
 **示例：** 

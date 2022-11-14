@@ -63,7 +63,7 @@ struct FocusableExample {
               .width(165)
               .height(40)
               .fontColor(Color.White)
-              .focusOnTouch(true)           //该Button组件点击后可获焦
+              .focusOnTouch(true)           // 该Button组件点击后可获焦
             Row({ space: 5 }) {
               Button()
                 .width(80)
@@ -73,7 +73,7 @@ struct FocusableExample {
                 .width(80)
                 .height(40)
                 .fontColor(Color.White)
-                .focusOnTouch(true)           //该Button组件点击后可获焦
+                .focusOnTouch(true)           // 该Button组件点击后可获焦
             }
             Row({ space: 5 }) {
               Button()
@@ -86,7 +86,7 @@ struct FocusableExample {
                 .fontColor(Color.White)
             }
           }.borderWidth(2).borderColor(Color.Red).borderStyle(BorderStyle.Dashed)
-          .tabIndex(1)                      //该Column组件为按TAB键走焦的第一个获焦的组件
+          .tabIndex(1)                      // 该Column组件为按TAB键走焦的第一个获焦的组件
           Column({ space: 5 }) {
             Button('Group2')
               .width(165)
@@ -101,7 +101,7 @@ struct FocusableExample {
                 .width(80)
                 .height(40)
                 .fontColor(Color.White)
-                .groupDefaultFocus(true)      //该Button组件上级Column组件获焦时获焦
+                .groupDefaultFocus(true)      // 该Button组件上级Column组件获焦时获焦
             }
             Row({ space: 5 }) {
               Button()
@@ -114,14 +114,14 @@ struct FocusableExample {
                 .fontColor(Color.White)
             }
           }.borderWidth(2).borderColor(Color.Green).borderStyle(BorderStyle.Dashed)
-          .tabIndex(2)                      //该Column组件为按TAB键走焦的第二个获焦的组件
+          .tabIndex(2)                      // 该Column组件为按TAB键走焦的第二个获焦的组件
         }
         Column({ space: 5 }) {
           TextInput({placeholder: 'input', text: this.inputValue})
             .onChange((value: string) => {
               this.inputValue = value
             })
-            .defaultFocus(true)             //该TextInput组件为页面的初始默认焦点
+            .defaultFocus(true)             // 该TextInput组件为页面的初始默认焦点
           Button('Group3')
             .width(165)
             .height(40)
@@ -165,7 +165,7 @@ struct FocusableExample {
               .fontColor(Color.White)
           }
         }.borderWidth(2).borderColor(Color.Orange).borderStyle(BorderStyle.Dashed)
-        .tabIndex(3)                      //该Column组件为按TAB键走焦的第三个获焦的组件
+        .tabIndex(3)                      // 该Column组件为按TAB键走焦的第三个获焦的组件
       }.alignItems(VerticalAlign.Top)
     }
   }
@@ -200,7 +200,7 @@ focusControl.requestFocus示例代码：
 使用focusContrl.requestFocus接口使指定组件获取焦点。
 ```ts
 // requestFocus.ets
-import prompt from '@system.prompt';
+import prompt from '@ohos.prompt'
 
 @Entry
 @Component
@@ -250,7 +250,7 @@ struct RequestFocusExample {
         Button("RequestFocus")
           .width(200).height(70).fontColor(Color.White)
           .onClick(() => {
-            var res = focusControl.requestFocus(this.selectId)      //使选中的this.selectId的组件获焦
+            var res = focusControl.requestFocus(this.selectId)      // 使选中的this.selectId的组件获焦
             if (res) {
               prompt.showToast({message: 'Request success'})
             } else {

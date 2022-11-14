@@ -15,15 +15,15 @@ import {Action,Button,Axis,AxisValue,MouseEvent} from '@ohos.multimodalInput.mou
 
 **系统能力**：SystemCapability.MultimodalInput.Input.Core
 
-| 名称          | 参数类型   | 可读   | 可写   | 描述         |
-| ----------- | ------ | ---- | ---- | ---------- |
-| CANCEL      | number | 是    | 否    | 取消         |
-| MOVE        | number | 是    | 否    | 鼠标移动       |
-| BUTTON_DOWN | number | 是    | 否    | 鼠标按钮按下     |
-| BUTTON_UP   | number | 是    | 否    | 鼠标按钮抬起     |
-| AXIS_BEGIN  | number | 是    | 否    | 鼠标关联的轴事件开始 |
-| AXIS_UPDATE | number | 是    | 否    | 鼠标关联的轴事件更新 |
-| AXIS_END    | number | 是    | 否    | 鼠标关联的轴事件结束 |
+| 名称        | 参数类型 | 可读 | 可写 | 描述                 |
+| ----------- | -------- | ---- | ---- | -------------------- |
+| CANCEL      | number   | 是   | 否   | 取消             |
+| MOVE        | number   | 是   | 否   | 鼠标移动             |
+| BUTTON_DOWN | number   | 是   | 否   | 鼠标按钮按下         |
+| BUTTON_UP   | number   | 是   | 否   | 鼠标按钮抬起         |
+| AXIS_BEGIN  | number   | 是   | 否   | 鼠标轴事件开始 |
+| AXIS_UPDATE | number   | 是   | 否   | 鼠标轴事件更新 |
+| AXIS_END    | number   | 是   | 否   | 鼠标轴事件结束 |
 
 
 ## Button
@@ -69,14 +69,14 @@ import {Action,Button,Axis,AxisValue,MouseEvent} from '@ohos.multimodalInput.mou
 | 名称             | 参数类型        | 可读   | 可写   | 描述                                       |
 | -------------- | ----------- | ---- | ---- | ---------------------------------------- |
 | action         | Action      | 是    | 否    | 鼠标事件动作                                   |
-| screenX        | number      | 是    | 否    | 鼠标光标在屏幕中的x坐标                             |
-| screenY        | number      | 是    | 否    | 鼠标光标在屏幕中的y坐标                             |
-| windowX        | number      | 是    | 否    | 鼠标归属窗口的x坐标                               |
-| windowY        | number      | 是    | 否    | 鼠标归属窗口的y坐标                               |
-| rawDeltaX      | number      | 是    | 否    | X轴相对上次上报鼠标位置的偏移，在屏幕边缘位置时，该值可能小于两次鼠标上报的坐标差 |
-| rawDeltaY      | number      | 是    | 否    | Y轴相对上次上报鼠标位置的偏移                          |
-| button         | Button      | 是    | 否    | 当前按下/抬起的按钮                               |
-| pressedButtons | Button[]    | 是    | 否    | 当前处于按下状态的按钮                              |
+| screenX        | number      | 是    | 否    | 鼠标光标在屏幕中的横坐标                             |
+| screenY        | number      | 是    | 否    | 鼠标光标在屏幕中的纵坐标                             |
+| windowX        | number      | 是    | 否    | 鼠标所在窗口的横坐标                               |
+| windowY        | number      | 是    | 否    | 鼠标所在窗口的纵坐标                               |
+| rawDeltaX      | number      | 是    | 否    | 鼠标本次操作横坐标偏移值 |
+| rawDeltaY      | number      | 是    | 否    | 鼠标本次操作纵坐标偏移值                          |
+| button         | Button      | 是    | 否    | 鼠标按钮                               
+| pressedButtons | Button[]    | 是    | 否    | 当前处于按下状态的鼠标按钮                              |
 | axes           | AxisValue[] | 是    | 否    | 事件包含的所有轴数据                               |
 | pressedKeys    | KeyCode[]   | 是    | 否    | 当前处于按下状态的按键列表                            |
 | ctrlKey        | boolean     | 是    | 否    | 当前ctrlKey是否处于按下状态                        |

@@ -18,7 +18,7 @@ In addition to the [universal attributes](../arkui-js/js-components-common-attri
 
 | Name                    | Type     | Default Value  | Mandatory  | Description                                      |
 | ---------------------- | ------- | ----- | ---- | ---------------------------------------- |
-| type                   | string  | -     | No   | Button type. The value cannot be dynamically updated. If this attribute is not set, a capsule-like button is displayed. Different from the capsule button, the capsule-like button allows its corners to be configured using **border-radius**. Available button types are as follows:<br>- **capsule**: capsule button with fillets, background color, and text.<br>- **circle**: circle button that can accommodate icons.<br>- **text**: text button, which displays only text.<br>- **arc**: arc button. This value is applicable to wearables only.<br>- **download**: download button, with an extra download progress bar.|
+| type                   | string  | -     | No   | Button type. The value cannot be dynamically updated. If this attribute is not set, a capsule-like button is displayed. Unlike the capsule button, the capsule-like button allows its corners to be configured using **border-radius**. Available button types are as follows:<br>- **capsule**: capsule button with fillets, background color, and text.<br>- **circle**: circle button that can accommodate icons.<br>- **text**: text button, which displays only text.<br>- **arc**: arc button. This value is applicable to wearables only.<br>- **download**: download button, with an extra download progress bar.|
 | value                  | string  | -     | No   | Text value of the button.                             |
 | icon                   | string  | -     | No   | Path of the button icon. The supported icon formats are JPG, PNG, and SVG.           |
 | placement<sup>5+</sup> | string  | end   | No   | Position of the button icon in text. This attribute is valid only when **type** is not set. Available values are as follows:<br>- **start**: The button icon is at the beginning of the text.<br>- **end**: The button icon is at the end of the text.<br>- **top**: The button icon is at the top of the text.<br>- **bottom**: The button icon is at the bottom of the text.|
@@ -34,27 +34,20 @@ In addition to the [universal styles](../arkui-js/js-components-common-styles.md
 
 | Name         | Type                        | Default Value            | Mandatory  | Description                                      |
 | ----------- | -------------------------- | --------------- | ---- | ---------------------------------------- |
-| text-color  | &lt;color&gt;              | \#007dff<br>| No   | Text color of the button.                                |
-| font-size   | &lt;length&gt;             | 16px<br>      | No   | Font size of the button.                                |
+| text-color  | &lt;color&gt;              | \#007dff | No   | Text color of the button.                                |
+| font-size   | &lt;length&gt;             | 16px      | No   | Font size of the button.                                |
 | allow-scale | boolean                    | true            | No   | Whether the font size changes with the system's font size settings.<br>If the **config-changes** tag of **fontSize** is configured for abilities in the **config.json** file, the setting takes effect without application restart.|
 | font-style  | string                     | normal          | No   | Font style of the button.                                |
-| font-weight | number&nbsp;\|&nbsp;string | normal          | No   | Font weight of the button. For details, see **font-weight** of the [**\<text>** component](../arkui-js/js-components-basic-text.md#styles).|
-| font-family | &lt;string&gt;             | sans-serif      | No   | Font family, in which fonts are separated by commas (,). Each font is set using a font name or font family name. The first font in the family or the font specified by [Custom Font Styles](../arkui-js/js-components-common-customizing-font.md) is used for the text.|
+| font-weight | number \| string | normal          | No   | Font weight of the button. For details, see **font-weight** of the [**\<text>** component](../arkui-js/js-components-basic-text.md#styles).|
+| font-family | &lt;string&gt;             | sans-serif      | No   | Font family, in which fonts are separated by commas (,). Each font is set using a font name or font family name. The first font in the family or the specified [custom font](../arkui-js/js-components-common-customizing-font.md) is used for the text. |
 | icon-width  | &lt;length&gt;             | -               | No   | Width of the internal icon of a circle button. The entire circle button is filled by default.<br>This style must be set when the icon uses the SVG image.|
 | icon-height | &lt;length&gt;             | -               | No   | Height of the internal icon of a circle button. The entire circle button is filled by default.<br>This style must be set when the icon uses the SVG image.|
 | radius      | &lt;length&gt;             | -               | No   | Corner radius of the button. For a circle button, this style takes precedence over **width** and **height** in the universal styles.|
 
->  **NOTE**
->  - For capsule buttons, border-related styles are not supported.
->
->  - For circle buttons, text-related styles are not supported.
->
->  - For text buttons, the font size is automatically adaptive, and **radius**, **width**, and **height** cannot be set. The **background-color** style is not supported when the background is completely transparent.
-
 
 ### When the Button Type Is arc
 
-In addition to the **background-color**, **opacity**, **display**, **visibility**, **position**, **[left|top|right|bottom]** styles in [Universal Styles](../arkui-js/js-components-common-styles.md), the following styles are supported.
+In addition to the **background-color**, **opacity**, **display**, **visibility**, **position**, and **[left|top|right|bottom]** styles in [Universal Styles](../arkui-js/js-components-common-styles.md), the following styles are supported.
 
 | Name         | Type                        | Default Value       | Mandatory  | Description                                      |
 | ----------- | -------------------------- | ---------- | ---- | ---------------------------------------- |
@@ -62,8 +55,8 @@ In addition to the **background-color**, **opacity**, **display**, **visibility*
 | font-size   | &lt;length&gt;             | 37.5px     | No   | Font size of the arc button.                              |
 | allow-scale | boolean                    | true       | No   | Whether the font size changes with the system's font size settings.          |
 | font-style  | string                     | normal     | No   | Font style of the arc button.                              |
-| font-weight | number&nbsp;\|&nbsp;string | normal     | No   | Font weight of the arc button. For details, see **font-weight** of the [**\<text>** component](../arkui-js/js-components-basic-text.md#styles).|
-| font-family | &lt;string&gt;             | sans-serif | No   | Font family, in which fonts are separated by commas (,). Each font is set using a font name or font family name. The first font in the family or the font specified by [Custom Font Styles](../arkui-js/js-components-common-customizing-font.md) is used for the text.|
+| font-weight | number \| string | normal     | No   | Font weight of the arc button. For details, see **font-weight** of the [**\<text>** component](../arkui-js/js-components-basic-text.md#styles).|
+| font-family | &lt;string&gt;             | sans-serif | No   | Font family, in which fonts are separated by commas (,). Each font is set using a font name or font family name. The first font in the family or the specified [custom font](../arkui-js/js-components-common-customizing-font.md) is used for the text. |
 
 
 ## Events
@@ -79,7 +72,7 @@ When the button type is **download**, the following methods are supported.
 
 | Name         | Parameters                            | Description                                      |
 | ----------- | ------------------------------ | ---------------------------------------- |
-| setProgress | {&nbsp;progress:percent&nbsp;} | Progress bar of the download button. The value ranges from 0 to 100. The progress bar is displayed if the value is greater than 0. If the value is greater than or equal to 100, the progress bar is not displayed.<br>The text displayed on the progress bar is subject to the **value** settings.|
+| setProgress | { progress:percent } | Progress bar of the download button. The value ranges from 0 to 100. The progress bar is displayed if the value is greater than 0. If the value is greater than or equal to 100, the progress bar is not displayed.<br>The text displayed on the progress bar is subject to the **value** settings.|
 
 ## Example
 

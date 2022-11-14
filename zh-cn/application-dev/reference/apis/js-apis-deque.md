@@ -38,10 +38,23 @@ Deque的构造函数。
 
 **系统能力：** SystemCapability.Utils.Lang
 
+**错误码：**
+
+以下错误码的详细介绍请参见[containers错误码](../errorcodes/errorcode-containers.md)。
+
+| 错误码ID | 错误码信息 |
+| -------- | -------- |
+| 10200012 | The Deque's constructor cannot be directly invoked. |
+
 **示例：**
 
 ```ts
 let deque = new Deque();
+try {
+  let deque2 = Deque();
+} catch(err) {
+  console.log(`${err.code} - ${err.name} - ${err.message}`);
+}
 ```
 
 ### insertFront
@@ -58,6 +71,14 @@ insertFront(element: T): void
 | -------- | -------- | -------- | -------- |
 | element | T | 是 | 插入的元素。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[containers错误码](../errorcodes/errorcode-containers.md)。
+
+| 错误码ID | 错误码信息 |
+| -------- | -------- |
+| 10200011 | The insertFront method cannot be bound. |
+
 **示例：**
 
 ```ts
@@ -67,7 +88,13 @@ deque.insertFront(1);
 let b = [1, 2, 3];
 deque.insertFront(b);
 let c = {name : "Dylon", age : "13"};
+deque.insertFront(c);
 deque.insertFront(false);
+try {
+  deque.insertFront.bind({}, "b")(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
+} catch(err) {
+  console.log(`${err.code} - ${err.name} - ${err.message}`);
+}
 ```
 
 ### insertEnd
@@ -84,6 +111,14 @@ insertEnd(element: T): void
 | -------- | -------- | -------- | -------- |
 | element | T | 是 | 插入的元素。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[containers错误码](../errorcodes/errorcode-containers.md)。
+
+| 错误码ID | 错误码信息 |
+| -------- | -------- |
+| 10200011 | The insertEnd method cannot be bound. |
+
 **示例：**
 
 ```ts
@@ -93,7 +128,13 @@ deque.insertEnd(1);
 let b = [1, 2, 3];
 deque.insertEnd(b);
 let c = {name : "Dylon", age : "13"};
+deque.insertEnd(c);
 deque.insertEnd(false);
+try {
+  deque.insertEnd.bind({}, "b")(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
+} catch(err) {
+  console.log(`${err.code} - ${err.name} - ${err.message}`);
+}
 ```
 
 ### has
@@ -116,6 +157,14 @@ has(element: T): boolean
 | -------- | -------- |
 | boolean | 如果包含指定元素返回true，否则返回false。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[containers错误码](../errorcodes/errorcode-containers.md)。
+
+| 错误码ID | 错误码信息 |
+| -------- | -------- |
+| 10200011 | The has method cannot be bound. |
+
 **示例：**
 
 ```ts
@@ -123,6 +172,11 @@ let deque = new Deque();
 let result = deque.has("squirrel");
 deque.insertFront("squirrel");
 let result1 = deque.has("squirrel");
+try {
+  deque.has.bind({}, "b")(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
+} catch(err) {
+  console.log(`${err.code} - ${err.name} - ${err.message}`);
+}
 ```
 
 ### popFirst
@@ -139,6 +193,14 @@ popFirst(): T
 | -------- | -------- |
 | T | 返回被删除的元素。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[containers错误码](../errorcodes/errorcode-containers.md)。
+
+| 错误码ID | 错误码信息 |
+| -------- | -------- |
+| 10200011 | The popFirst method cannot be bound. |
+
 **示例：**
 
 ```ts
@@ -149,6 +211,11 @@ deque.insertEnd(5);
 deque.insertFront(2);
 deque.insertFront(4);
 let result = deque.popFirst();
+try {
+  deque.popFirst.bind({})(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
+} catch(err) {
+  console.log(`${err.code} - ${err.name} - ${err.message}`);
+}
 ```
 
 ### popLast
@@ -165,6 +232,14 @@ popLast(): T
 | -------- | -------- |
 | T | 返回被删除的元素。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[containers错误码](../errorcodes/errorcode-containers.md)。
+
+| 错误码ID | 错误码信息 |
+| -------- | -------- |
+| 10200011 | The popLast method cannot be bound. |
+
 **示例：**
 
 ```ts
@@ -175,6 +250,11 @@ deque.insertFront(5);
 deque.insertFront(2);
 deque.insertFront(4);
 let result = deque.popLast();
+try {
+  deque.popLast.bind({})(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
+} catch(err) {
+  console.log(`${err.code} - ${err.name} - ${err.message}`);
+}
 ```
 
 ### forEach
@@ -201,6 +281,14 @@ callbackfn的参数说明：
 | index | number | 否 | 当前遍历到的下标值。 |
 | deque | Deque&lt;T&gt; | 否 | 当前调用forEach方法的实例对象。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[containers错误码](../errorcodes/errorcode-containers.md)。
+
+| 错误码ID | 错误码信息 |
+| -------- | -------- |
+| 10200011 | The forEach method cannot be bound. |
+
 **示例：**
 
 ```ts
@@ -212,6 +300,13 @@ deque.insertEnd(4);
 deque.forEach((value, index) => {
   console.log("value:" + value, index);
 });
+try {
+  deque.forEach.bind({}, (value, index) => {
+    console.log("value:" + value, index);
+  })(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
+} catch(err) {
+  console.log(`${err.code} - ${err.name} - ${err.message}`);
+}
 ```
 
 ### getFirst
@@ -228,6 +323,14 @@ getFirst(): T
 | -------- | -------- |
 | T | 返回T型 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[containers错误码](../errorcodes/errorcode-containers.md)。
+
+| 错误码ID | 错误码信息 |
+| -------- | -------- |
+| 10200011 | The getFirst method cannot be bound. |
+
 **示例：**
 
 ```ts
@@ -237,6 +340,11 @@ deque.insertEnd(4);
 deque.insertFront(5);
 deque.insertFront(4);
 let result = deque.getFirst();
+try {
+  deque.getFirst.bind({})(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
+} catch(err) {
+  console.log(`${err.code} - ${err.name} - ${err.message}`);
+}
 ```
 
 ### getLast
@@ -253,6 +361,14 @@ getLast(): T
 | -------- | -------- |
 | T | 返回T型 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[containers错误码](../errorcodes/errorcode-containers.md)。
+
+| 错误码ID | 错误码信息 |
+| -------- | -------- |
+| 10200011 | The getLast method cannot be bound. |
+
 **示例：**
 
 ```ts
@@ -262,6 +378,11 @@ deque.insertFront(4);
 deque.insertFront(5);
 deque.insertFront(4);
 let result = deque.getLast();
+try {
+  deque.getLast.bind({})(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
+} catch(err) {
+  console.log(`${err.code} - ${err.name} - ${err.message}`);
+}
 ```
 
 ### [Symbol.iterator]
@@ -277,6 +398,14 @@ let result = deque.getLast();
 | 类型 | 说明 |
 | -------- | -------- |
 | IterableIterator&lt;T&gt; | 返回一个迭代器。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[containers错误码](../errorcodes/errorcode-containers.md)。
+
+| 错误码ID | 错误码信息 |
+| -------- | -------- |
+| 10200011 | The Symbol.iterator method cannot be bound. |
 
 **示例：**
 ```ts
@@ -297,5 +426,10 @@ let temp = iter.next().value;
 while(temp != undefined) {
   console.log("value:" + temp);
   temp = iter.next().value;
+}
+try {
+  deque[Symbol.iterator].bind({})(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
+} catch(err) {
+  console.log(`${err.code} - ${err.name} - ${err.message}`);
 }
 ```

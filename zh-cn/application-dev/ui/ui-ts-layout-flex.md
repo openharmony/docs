@@ -27,9 +27,9 @@
 
     ```ts
     Flex({ direction: FlexDirection.Row }) {
-    Text('1').width('33%').height(50).backgroundColor(0xF5DEB3)
-    Text('2').width('33%').height(50).backgroundColor(0xD2B48C)
-    Text('3').width('33%').height(50).backgroundColor(0xF5DEB3)
+      Text('1').width('33%').height(50).backgroundColor(0xF5DEB3)
+      Text('2').width('33%').height(50).backgroundColor(0xD2B48C)
+      Text('3').width('33%').height(50).backgroundColor(0xF5DEB3)
     }
     .height(70)
     .width('90%')
@@ -42,9 +42,9 @@
 
     ```ts
     Flex({ direction: FlexDirection.RowReverse }) {
-    Text('1').width('33%').height(50).backgroundColor(0xF5DEB3)
-    Text('2').width('33%').height(50).backgroundColor(0xD2B48C)
-    Text('3').width('33%').height(50).backgroundColor(0xF5DEB3)
+      Text('1').width('33%').height(50).backgroundColor(0xF5DEB3)
+      Text('2').width('33%').height(50).backgroundColor(0xD2B48C)
+      Text('3').width('33%').height(50).backgroundColor(0xF5DEB3)
     }
     .height(70)
     .width('90%')
@@ -58,9 +58,9 @@
 
     ```ts
     Flex({ direction: FlexDirection.Column }) {
-    Text('1').width('100%').height(50).backgroundColor(0xF5DEB3)
-    Text('2').width('100%').height(50).backgroundColor(0xD2B48C)
-    Text('3').width('100%').height(50).backgroundColor(0xF5DEB3)
+      Text('1').width('100%').height(50).backgroundColor(0xF5DEB3)
+      Text('2').width('100%').height(50).backgroundColor(0xD2B48C)
+      Text('3').width('100%').height(50).backgroundColor(0xF5DEB3)
     }
     .height(70)
     .width('90%')
@@ -74,9 +74,9 @@
 
     ```ts
     Flex({ direction: FlexDirection.ColumnReverse }) {
-    Text('1').width('100%').height(50).backgroundColor(0xF5DEB3)
-    Text('2').width('100%').height(50).backgroundColor(0xD2B48C)
-    Text('3').width('100%').height(50).backgroundColor(0xF5DEB3)
+      Text('1').width('100%').height(50).backgroundColor(0xF5DEB3)
+      Text('2').width('100%').height(50).backgroundColor(0xD2B48C)
+      Text('3').width('100%').height(50).backgroundColor(0xF5DEB3)
     }
     .height(70)
     .width('90%')
@@ -94,9 +94,9 @@
 
     ```ts
     Flex({ wrap: FlexWrap.NoWrap }) {
-    Text('1').width('50%').height(50).backgroundColor(0xF5DEB3)
-    Text('2').width('50%').height(50).backgroundColor(0xD2B48C)
-    Text('3').width('50%').height(50).backgroundColor(0xF5DEB3)
+      Text('1').width('50%').height(50).backgroundColor(0xF5DEB3)
+      Text('2').width('50%').height(50).backgroundColor(0xD2B48C)
+      Text('3').width('50%').height(50).backgroundColor(0xF5DEB3)
     } 
     .width('90%')
     .padding(10)
@@ -109,9 +109,9 @@
 
     ```ts
     Flex({ wrap: FlexWrap.Wrap }) {
-    Text('1').width('50%').height(50).backgroundColor(0xF5DEB3)
-    Text('2').width('50%').height(50).backgroundColor(0xD2B48C)
-    Text('3').width('50%').height(50).backgroundColor(0xD2B48C)
+      Text('1').width('50%').height(50).backgroundColor(0xF5DEB3)
+      Text('2').width('50%').height(50).backgroundColor(0xD2B48C)
+      Text('3').width('50%').height(50).backgroundColor(0xD2B48C)
     } 
     .width('90%')
     .padding(10)
@@ -124,9 +124,9 @@
 
     ```ts
     Flex({ wrap: FlexWrap.WrapReverse}) {
-    Text('1').width('50%').height(50).backgroundColor(0xF5DEB3)
-    Text('2').width('50%').height(50).backgroundColor(0xD2B48C)
-    Text('3').width('50%').height(50).backgroundColor(0xF5DEB3)
+      Text('1').width('50%').height(50).backgroundColor(0xF5DEB3)
+      Text('2').width('50%').height(50).backgroundColor(0xD2B48C)
+      Text('3').width('50%').height(50).backgroundColor(0xF5DEB3)
     }
     .width('90%')
     .padding(10)
@@ -147,9 +147,9 @@
 
     ```ts
     Flex({ justifyContent: FlexAlign.Start }) {  
-     Text('1').width('20%').height(50).backgroundColor(0xF5DEB3)
-     Text('2').width('20%').height(50).backgroundColor(0xD2B48C)    
-     Text('3').width('20%').height(50).backgroundColor(0xF5DEB3)
+      Text('1').width('20%').height(50).backgroundColor(0xF5DEB3)
+      Text('2').width('20%').height(50).backgroundColor(0xD2B48C)    
+      Text('3').width('20%').height(50).backgroundColor(0xF5DEB3)
     }
     .width('90%')
     .padding({ top: 10, bottom: 10 })
@@ -162,9 +162,9 @@
 
     ```ts
     Flex({ justifyContent: FlexAlign.Center }) {  
-    Text('1').width('20%').height(50).backgroundColor(0xF5DEB3)  
-    Text('2').width('20%').height(50).backgroundColor(0xD2B48C)   
-    Text('3').width('20%').height(50).backgroundColor(0xF5DEB3)
+      Text('1').width('20%').height(50).backgroundColor(0xF5DEB3)  
+      Text('2').width('20%').height(50).backgroundColor(0xD2B48C)   
+      Text('3').width('20%').height(50).backgroundColor(0xF5DEB3)
     }
     .width('90%')
     .padding({ top: 10, bottom: 10 })
@@ -177,9 +177,9 @@
 
     ```ts
     Flex({ justifyContent: FlexAlign.End }) {  
-    Text('1').width('20%').height(50).backgroundColor(0xF5DEB3)  
-    Text('2').width('20%').height(50).backgroundColor(0xD2B48C)   
-    Text('3').width('20%').height(50).backgroundColor(0xF5DEB3)
+      Text('1').width('20%').height(50).backgroundColor(0xF5DEB3)  
+      Text('2').width('20%').height(50).backgroundColor(0xD2B48C)   
+      Text('3').width('20%').height(50).backgroundColor(0xF5DEB3)
     }
     .width('90%')
     .padding({ top: 10, bottom: 10 })
@@ -192,9 +192,9 @@
 
     ```ts
     Flex({ justifyContent: FlexAlign.SpaceBetween }) {  
-    Text('1').width('20%').height(50).backgroundColor(0xF5DEB3)  
-    Text('2').width('20%').height(50).backgroundColor(0xD2B48C)   
-    Text('3').width('20%').height(50).backgroundColor(0xF5DEB3)
+      Text('1').width('20%').height(50).backgroundColor(0xF5DEB3)  
+      Text('2').width('20%').height(50).backgroundColor(0xD2B48C)   
+      Text('3').width('20%').height(50).backgroundColor(0xF5DEB3)
     }
     .width('90%')
     .padding({ top: 10, bottom: 10 })
@@ -207,9 +207,9 @@
 
     ```ts
     Flex({ justifyContent: FlexAlign.SpaceAround }) {  
-    Text('1').width('20%').height(50).backgroundColor(0xF5DEB3)  
-    Text('2').width('20%').height(50).backgroundColor(0xD2B48C)   
-    Text('3').width('20%').height(50).backgroundColor(0xF5DEB3)
+      Text('1').width('20%').height(50).backgroundColor(0xF5DEB3)  
+      Text('2').width('20%').height(50).backgroundColor(0xD2B48C)   
+      Text('3').width('20%').height(50).backgroundColor(0xF5DEB3)
     }
     .width('90%')
     .padding({ top: 10, bottom: 10 })
@@ -222,9 +222,9 @@
 
     ```ts
     Flex({ justifyContent: FlexAlign.SpaceEvenly }) {  
-    Text('1').width('20%').height(50).backgroundColor(0xF5DEB3)  
-    Text('2').width('20%').height(50).backgroundColor(0xD2B48C)   
-    Text('3').width('20%').height(50).backgroundColor(0xF5DEB3)
+      Text('1').width('20%').height(50).backgroundColor(0xF5DEB3)  
+      Text('2').width('20%').height(50).backgroundColor(0xD2B48C)   
+      Text('3').width('20%').height(50).backgroundColor(0xF5DEB3)
     }
     .width('90%')
     .padding({ top: 10, bottom: 10 })
@@ -244,9 +244,9 @@
 
     ```ts
     Flex({ alignItems: ItemAlign.Auto }) {  
-    Text('1').width('33%').height(30).backgroundColor(0xF5DEB3)  
-    Text('2').width('33%').height(40).backgroundColor(0xD2B48C)  
-    Text('3').width('33%').height(50).backgroundColor(0xF5DEB3)
+      Text('1').width('33%').height(30).backgroundColor(0xF5DEB3)  
+      Text('2').width('33%').height(40).backgroundColor(0xD2B48C)  
+      Text('3').width('33%').height(50).backgroundColor(0xF5DEB3)
     }
     .size({width: '90%', height: 80})
     .padding(10)
@@ -259,9 +259,9 @@
 
     ```ts
     Flex({ alignItems: ItemAlign.Start }) {  
-    Text('1').width('33%').height(30).backgroundColor(0xF5DEB3)  
-    Text('2').width('33%').height(40).backgroundColor(0xD2B48C)  
-    Text('3').width('33%').height(50).backgroundColor(0xF5DEB3)
+      Text('1').width('33%').height(30).backgroundColor(0xF5DEB3)  
+      Text('2').width('33%').height(40).backgroundColor(0xD2B48C)  
+      Text('3').width('33%').height(50).backgroundColor(0xF5DEB3)
     }
     .size({width: '90%', height: 80})
     .padding(10)
@@ -274,9 +274,9 @@
 
     ```ts
     Flex({ alignItems: ItemAlign.Center }) {  
-    Text('1').width('33%').height(30).backgroundColor(0xF5DEB3)  
-    Text('2').width('33%').height(40).backgroundColor(0xD2B48C)  
-    Text('3').width('33%').height(50).backgroundColor(0xF5DEB3)
+      Text('1').width('33%').height(30).backgroundColor(0xF5DEB3)  
+      Text('2').width('33%').height(40).backgroundColor(0xD2B48C)  
+      Text('3').width('33%').height(50).backgroundColor(0xF5DEB3)
     }
     .size({width: '90%', height: 80})
     .padding(10)
@@ -289,9 +289,9 @@
 
     ```ts
     Flex({ alignItems: ItemAlign.End }) {  
-    Text('1').width('33%').height(30).backgroundColor(0xF5DEB3)  
-    Text('2').width('33%').height(40).backgroundColor(0xD2B48C)  
-    Text('3').width('33%').height(50).backgroundColor(0xF5DEB3)
+      Text('1').width('33%').height(30).backgroundColor(0xF5DEB3)  
+      Text('2').width('33%').height(40).backgroundColor(0xD2B48C)  
+      Text('3').width('33%').height(50).backgroundColor(0xF5DEB3)
     }
     .size({width: '90%', height: 80})
     .padding(10)
@@ -304,9 +304,9 @@
 
     ```ts
     Flex({ alignItems: ItemAlign.Stretch }) {  
-    Text('1').width('33%').height(30).backgroundColor(0xF5DEB3)  
-    Text('2').width('33%').height(40).backgroundColor(0xD2B48C)  
-    Text('3').width('33%').height(50).backgroundColor(0xF5DEB3)
+      Text('1').width('33%').height(30).backgroundColor(0xF5DEB3)  
+      Text('2').width('33%').height(40).backgroundColor(0xD2B48C)  
+      Text('3').width('33%').height(50).backgroundColor(0xF5DEB3)
     }
     .size({width: '90%', height: 80})
     .padding(10)
@@ -319,9 +319,9 @@
 
     ```ts
     Flex({ alignItems: ItemAlign.Baseline }) {  
-    Text('1').width('33%').height(30).backgroundColor(0xF5DEB3)  
-    Text('2').width('33%').height(40).backgroundColor(0xD2B48C)  
-    Text('3').width('33%').height(50).backgroundColor(0xF5DEB3)
+      Text('1').width('33%').height(30).backgroundColor(0xF5DEB3)  
+      Text('2').width('33%').height(40).backgroundColor(0xD2B48C)  
+      Text('3').width('33%').height(50).backgroundColor(0xF5DEB3)
     }
     .size({width: '90%', height: 80})
     .padding(10)
@@ -364,13 +364,13 @@ Flex({ direction: FlexDirection.Row, alignItems: ItemAlign.Center }) { //容器�
 
 - FlexAlign.Start: 子组件各行与交叉轴起点对齐。
 
-    ```
+    ```ts
     Flex({ justifyContent: FlexAlign.SpaceBetween, wrap: FlexWrap.Wrap, alignContent: FlexAlign.Start }) {
-    Text('1').width('30%').height(20).backgroundColor(0xF5DEB3)
-    Text('2').width('60%').height(20).backgroundColor(0xD2B48C)
-    Text('3').width('40%').height(20).backgroundColor(0xD2B48C)
-    Text('4').width('30%').height(20).backgroundColor(0xF5DEB3)
-    Text('5').width('20%').height(20).backgroundColor(0xD2B48C)
+      Text('1').width('30%').height(20).backgroundColor(0xF5DEB3)
+      Text('2').width('60%').height(20).backgroundColor(0xD2B48C)
+      Text('3').width('40%').height(20).backgroundColor(0xD2B48C)
+      Text('4').width('30%').height(20).backgroundColor(0xF5DEB3)
+      Text('5').width('20%').height(20).backgroundColor(0xD2B48C)
     }
     .width('90%')
     .height(100)
@@ -383,11 +383,11 @@ Flex({ direction: FlexDirection.Row, alignItems: ItemAlign.Center }) { //容器�
 
     ```ts
     Flex({ justifyContent: FlexAlign.SpaceBetween, wrap: FlexWrap.Wrap, alignContent: FlexAlign.Center }) {
-    Text('1').width('30%').height(20).backgroundColor(0xF5DEB3)
-    Text('2').width('60%').height(20).backgroundColor(0xD2B48C)
-    Text('3').width('40%').height(20).backgroundColor(0xD2B48C)
-    Text('4').width('30%').height(20).backgroundColor(0xF5DEB3)
-    Text('5').width('20%').height(20).backgroundColor(0xD2B48C)
+      Text('1').width('30%').height(20).backgroundColor(0xF5DEB3)
+      Text('2').width('60%').height(20).backgroundColor(0xD2B48C)
+      Text('3').width('40%').height(20).backgroundColor(0xD2B48C)
+      Text('4').width('30%').height(20).backgroundColor(0xF5DEB3)
+      Text('5').width('20%').height(20).backgroundColor(0xD2B48C)
     }
     .width('90%')
     .height(100)
@@ -400,11 +400,11 @@ Flex({ direction: FlexDirection.Row, alignItems: ItemAlign.Center }) { //容器�
 
     ```ts
     Flex({ justifyContent: FlexAlign.SpaceBetween, wrap: FlexWrap.Wrap, alignContent: FlexAlign.End }) {
-    Text('1').width('30%').height(20).backgroundColor(0xF5DEB3)
-    Text('2').width('60%').height(20).backgroundColor(0xD2B48C)
-    Text('3').width('40%').height(20).backgroundColor(0xD2B48C)
-    Text('4').width('30%').height(20).backgroundColor(0xF5DEB3)
-    Text('5').width('20%').height(20).backgroundColor(0xD2B48C)
+      Text('1').width('30%').height(20).backgroundColor(0xF5DEB3)
+      Text('2').width('60%').height(20).backgroundColor(0xD2B48C)
+      Text('3').width('40%').height(20).backgroundColor(0xD2B48C)
+      Text('4').width('30%').height(20).backgroundColor(0xF5DEB3)
+      Text('5').width('20%').height(20).backgroundColor(0xD2B48C)
     }
     .width('90%')
     .height(100)
@@ -417,11 +417,11 @@ Flex({ direction: FlexDirection.Row, alignItems: ItemAlign.Center }) { //容器�
 
     ```ts
     Flex({ justifyContent: FlexAlign.SpaceBetween, wrap: FlexWrap.Wrap, alignContent: FlexAlign.SpaceBetween }) {
-    Text('1').width('30%').height(20).backgroundColor(0xF5DEB3)
-    Text('2').width('60%').height(20).backgroundColor(0xD2B48C)
-    Text('3').width('40%').height(20).backgroundColor(0xD2B48C)
-    Text('4').width('30%').height(20).backgroundColor(0xF5DEB3)
-    Text('5').width('20%').height(20).backgroundColor(0xD2B48C)
+      Text('1').width('30%').height(20).backgroundColor(0xF5DEB3)
+      Text('2').width('60%').height(20).backgroundColor(0xD2B48C)
+      Text('3').width('40%').height(20).backgroundColor(0xD2B48C)
+      Text('4').width('30%').height(20).backgroundColor(0xF5DEB3)
+      Text('5').width('20%').height(20).backgroundColor(0xD2B48C)
     }
     .width('90%')
     .height(100)
@@ -434,11 +434,11 @@ Flex({ direction: FlexDirection.Row, alignItems: ItemAlign.Center }) { //容器�
 
     ```ts
     Flex({ justifyContent: FlexAlign.SpaceBetween, wrap: FlexWrap.Wrap, alignContent: FlexAlign.SpaceAround }) {
-    Text('1').width('30%').height(20).backgroundColor(0xF5DEB3)
-    Text('2').width('60%').height(20).backgroundColor(0xD2B48C)
-    Text('3').width('40%').height(20).backgroundColor(0xD2B48C)
-    Text('4').width('30%').height(20).backgroundColor(0xF5DEB3)
-    Text('5').width('20%').height(20).backgroundColor(0xD2B48C)
+      Text('1').width('30%').height(20).backgroundColor(0xF5DEB3)
+      Text('2').width('60%').height(20).backgroundColor(0xD2B48C)
+      Text('3').width('40%').height(20).backgroundColor(0xD2B48C)
+      Text('4').width('30%').height(20).backgroundColor(0xF5DEB3)
+      Text('5').width('20%').height(20).backgroundColor(0xD2B48C)
     }
     .width('90%')
     .height(100)
@@ -451,11 +451,11 @@ Flex({ direction: FlexDirection.Row, alignItems: ItemAlign.Center }) { //容器�
 
     ```ts
     Flex({ justifyContent: FlexAlign.SpaceBetween, wrap: FlexWrap.Wrap, alignContent: FlexAlign.SpaceAround }) {
-    Text('1').width('30%').height(20).backgroundColor(0xF5DEB3)
-    Text('2').width('60%').height(20).backgroundColor(0xD2B48C)
-    Text('3').width('40%').height(20).backgroundColor(0xD2B48C)
-    Text('4').width('30%').height(20).backgroundColor(0xF5DEB3)
-    Text('5').width('20%').height(20).backgroundColor(0xD2B48C)
+      Text('1').width('30%').height(20).backgroundColor(0xF5DEB3)
+      Text('2').width('60%').height(20).backgroundColor(0xD2B48C)
+      Text('3').width('40%').height(20).backgroundColor(0xD2B48C)
+      Text('4').width('30%').height(20).backgroundColor(0xF5DEB3)
+      Text('5').width('20%').height(20).backgroundColor(0xD2B48C)
     }
     .width('90%')
     .height(100)

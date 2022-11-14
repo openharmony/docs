@@ -1,17 +1,13 @@
-## 长时任务
+# 长时任务
 
-### 场景说明
+## 场景说明
 
 如果应用需要在后台长时间执行用户可感知的任务，如后台播放音乐、导航、设备连接、VoIP等，则使用长时任务避免进入挂起（Suspend）状态。
 长时任务在后台执行没有时间限制。为了避免该机制被滥用，系统只允许申请有限个数的长时任务类型，同时会有相应的通知提示与长时任务相关联，使用户可感知，并且系统会添加相应的校验机制，确保应用是的确在执行相应的长时任务。
 
-### 权限
+## 接口说明
 
-ohos.permission.KEEP_BACKGROUND_RUNNING
-
-### 接口说明
-
-**表2** 长时任务主要接口
+**表1** 长时任务主要接口
 
 | 接口名                                      | 描述                           |
 | ---------------------------------------- | ---------------------------- |
@@ -21,7 +17,7 @@ ohos.permission.KEEP_BACKGROUND_RUNNING
 
 其中，wantAgent的信息详见（[WantAgent](../reference/apis/js-apis-wantAgent.md)）
 
-**表3** 后台模式类型
+**表2** 后台模式类型
 
 | 参数名                     | id值  | 描述             | 配置项                   |
 | ----------------------- | ---- | -------------- | --------------------- |
@@ -36,9 +32,9 @@ ohos.permission.KEEP_BACKGROUND_RUNNING
 | TASK_KEEPING            | 9    | 计算任务（仅供特定设备使用） | taskKeeping           |
 
 
-### 开发步骤
+## 开发步骤
 
-基于FA模型：
+### 基于FA模型
 
 基于FA的Service Ability使用，参考[ServiceAbility开发指导](../ability/fa-serviceability.md)。
 
@@ -46,7 +42,7 @@ ohos.permission.KEEP_BACKGROUND_RUNNING
 
 当需要与后台执行的长时任务交互时（如播放音乐等）。可以采用connectAbility()方法启动并连接Service Ability。在获取到服务的代理对象后，与服务进行通信，控制长时任务的申请和取消。
 
-1、新建Api Version 8的工程后，在工程目录中右键选择“new” -> “Ability” -> “Service Ability” 快速创建Service Ability组件。并在config.json文件中配置长时任务权限、后台模式类型，其中Ability类型为“service”。
+1、新建Api Version 8的工程后，在工程目录中右键选择“new” -> “Ability” -> “Service Ability” 快速创建Service Ability组件。并在config.json文件中配置长时任务权限ohos.permission.KEEP_BACKGROUND_RUNNING、后台模式类型，其中Ability类型为“service”。
 
 ```
 "module": {
@@ -71,7 +67,7 @@ ohos.permission.KEEP_BACKGROUND_RUNNING
 2、在Service Ability调用长时任务的申请和取消接口。
 
 ```js
-import backgroundTaskManager from '@ohos.backgroundTaskManager';
+import backgroundTaskManager from '@ohos.resourceschedule.backgroundTaskManager';  
 import featureAbility from '@ohos.ability.featureAbility';
 import wantAgent from '@ohos.wantAgent';
 import rpc from "@ohos.rpc";
@@ -95,21 +91,29 @@ function startContinuousTask() {
 
     // 通过wantAgent模块的getWantAgent方法获取WantAgent对象
     wantAgent.getWantAgent(wantAgentInfo).then((wantAgentObj) => {
-        backgroundTaskManager.startBackgroundRunning(featureAbility.getContext(),
-            backgroundTaskManager.BackgroundMode.DATA_TRANSFER, wantAgentObj).then(() => {
-            console.info("Operation startBackgroundRunning succeeded");
-        }).catch((err) => {
-            console.error("Operation startBackgroundRunning failed Cause: " + err);
-        });
+        try {
+            backgroundTaskManager.startBackgroundRunning(featureAbility.getContext(),
+                backgroundTaskManager.BackgroundMode.DATA_TRANSFER, wantAgentObj).then(() => {
+                console.info("Operation startBackgroundRunning succeeded");
+            }).catch((err) => {
+                console.error("Operation startBackgroundRunning failed Cause: " + err);
+            });
+        } catch (error) {
+            console.error(`Operation startBackgroundRunning failed. code is ${error.code} message is ${error.message}`);
+        }
     });
 }
 
 function stopContinuousTask() {
-    backgroundTaskManager.stopBackgroundRunning(featureAbility.getContext()).then(() => {
-        console.info("Operation stopBackgroundRunning succeeded");
-    }).catch((err) => {
-        console.error("Operation stopBackgroundRunning failed Cause: " + err);
-    });
+    try {
+        backgroundTaskManager.stopBackgroundRunning(featureAbility.getContext()).then(() => {
+            console.info("Operation stopBackgroundRunning succeeded");
+        }).catch((err) => {
+            console.error("Operation stopBackgroundRunning failed Cause: " + err);
+        });
+    } catch (error) {
+        console.error(`Operation stopBackgroundRunning failed. code is ${error.code} message is ${error.message}`);
+    }
 }
 
 async function processAsyncJobs() {
@@ -173,11 +177,11 @@ export default {
 };
 ```
 
-基于Stage模型：
+### 基于Stage模型
 
 Stage模型的相关信息参考[Stage模型综述](../ability/stage-brief.md)。
 
-1、新建Api Version 9的工程后，在工程目录中右键选择“New” -> “Ability” 快速创建Ability组件。并在module.json5文件中配置长时任务权限、后台模式类型。
+1、新建Api Version 9的工程后，在工程目录中右键选择“New” -> “Ability” 快速创建Ability组件。并在module.json5文件中配置长时任务权限ohos.permission.KEEP_BACKGROUND_RUNNING、后台模式类型。
 
 ```
 "module": {
@@ -201,7 +205,7 @@ Stage模型的相关信息参考[Stage模型综述](../ability/stage-brief.md)�
 
 ```ts
 import wantAgent from '@ohos.wantAgent';
-import backgroundTaskManager from '@ohos.backgroundTaskManager';
+import backgroundTaskManager from '@ohos.resourceschedule.backgroundTaskManager';
 
 @Entry
 @Component
@@ -229,21 +233,29 @@ struct Index {
 
     // 通过wantAgent模块的getWantAgent方法获取WantAgent对象
     wantAgent.getWantAgent(wantAgentInfo).then((wantAgentObj) => {
-      backgroundTaskManager.startBackgroundRunning(this.context,
-        backgroundTaskManager.BackgroundMode.DATA_TRANSFER, wantAgentObj).then(() => {
-        console.info("Operation startBackgroundRunning succeeded");
-      }).catch((err) => {
-        console.error("Operation startBackgroundRunning failed Cause: " + err);
-      });
+        try {
+            backgroundTaskManager.startBackgroundRunning(this.context,
+                backgroundTaskManager.BackgroundMode.DATA_TRANSFER, wantAgentObj).then(() => {
+                console.info("Operation startBackgroundRunning succeeded");
+            }).catch((err) => {
+                console.error("Operation startBackgroundRunning failed Cause: " + err);
+            });
+        } catch (error) {
+            console.error(`Operation startBackgroundRunning failed. code is ${error.code} message is ${error.message}`);
+        }
     });
   }
 
   stopContinuousTask() {
-    backgroundTaskManager.stopBackgroundRunning(this.context).then(() => {
-      console.info("Operation stopBackgroundRunning succeeded");
-    }).catch((err) => {
-      console.error("Operation stopBackgroundRunning failed Cause: " + err);
-    });
+    try {
+        backgroundTaskManager.stopBackgroundRunning(this.context).then(() => {
+        console.info("Operation stopBackgroundRunning succeeded");
+        }).catch((err) => {
+        console.error("Operation stopBackgroundRunning failed Cause: " + err);
+        });
+    } catch (error) {
+        console.error(`Operation stopBackgroundRunning failed. code is ${error.code} message is ${error.message}`);
+    }
   }
 
   build() {
@@ -282,7 +294,7 @@ struct Index {
 
 ```ts
 import Ability from '@ohos.application.Ability'
-import backgroundTaskManager from '@ohos.backgroundTaskManager';
+import backgroundTaskManager from '@ohos.resourceschedule.backgroundTaskManager';  
 import wantAgent from '@ohos.wantAgent';
 
 const MSG_SEND_METHOD: string = 'CallSendMsg'
@@ -308,21 +320,29 @@ function startContinuousTask() {
 
     // 通过wantAgent模块的getWantAgent方法获取WantAgent对象
     wantAgent.getWantAgent(wantAgentInfo).then((wantAgentObj) => {
-        backgroundTaskManager.startBackgroundRunning(mContext,
-            backgroundTaskManager.BackgroundMode.DATA_TRANSFER, wantAgentObj).then(() => {
-            console.info("Operation startBackgroundRunning succeeded");
-        }).catch((err) => {
-            console.error("Operation startBackgroundRunning failed Cause: " + err);
-        });
+        try {
+            backgroundTaskManager.startBackgroundRunning(featureAbility.getContext(),
+                backgroundTaskManager.BackgroundMode.DATA_TRANSFER, wantAgentObj).then(() => {
+                console.info("Operation startBackgroundRunning succeeded");
+            }).catch((error) => {
+                console.error(`Operation startBackgroundRunning failed. code is ${error.code} message is ${error.message}`);
+            });
+        } catch (error) {
+            console.error(`Operation startBackgroundRunning failed. code is ${error.code} message is ${error.message}`);
+        }
     });
 }
 
 function stopContinuousTask() {
-    backgroundTaskManager.stopBackgroundRunning(mContext).then(() => {
-        console.info("Operation stopBackgroundRunning succeeded");
-    }).catch((err) => {
-        console.error("Operation stopBackgroundRunning failed Cause: " + err);
-    });
+    try {
+        backgroundTaskManager.stopBackgroundRunning(featureAbility.getContext()).then(() => {
+            console.info("Operation stopBackgroundRunning succeeded");
+        }).catch((err) => {
+            console.error(`Operation stopBackgroundRunning failed. code is ${error.code} message is ${error.message}`);
+        });
+    } catch (error) {
+        console.error(`Operation stopBackgroundRunning failed. code is ${error.code} message is ${error.message}`);
+    }
 }
 
 class MySequenceable {

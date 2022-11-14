@@ -22,7 +22,7 @@ import config from "@ohos.accessibility.config";
 | -------- | -------- | -------- | -------- | -------- |
 | highContrastText | [Config](#config)\<boolean>| Yes| Yes| Whether to enable high-contrast text.|
 | invertColor | [Config](#config)\<boolean>| Yes| Yes| Whether to enable color inversion.|
-| daltonizationColorFilter | [Config](#config)&lt;[DaltonizationColorFilter](#daltonizationcolorfilter)&gt;| Yes| Yes| Configuration of the daltonization filter.|
+| daltonizationColorFilter | [Config](#config)\<[DaltonizationColorFilter](#daltonizationcolorfilter)>| Yes| Yes| Daltonization filter. |
 | contentTimeout | [Config](#config)\<number>| Yes| Yes| Recommended duration for content display. The value ranges from 0 to 5000, in milliseconds.|
 | animationOff | [Config](#config)\<boolean>| Yes| Yes| Whether to enable animation.|
 | brightnessDiscount | [Config](#config)\<number>| Yes| Yes| Brightness discount. The value ranges from 0 to 1.0.|
@@ -163,7 +163,7 @@ Adds a listener for changes in the list of enabled accessibility extension abili
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| type | string | Yes| Listening type. The value is fixed at **'enableAbilityListsStateChanged'**, indicating that the changes in the list of enabled accessibility extension abilities.|
+| type | string | Yes| Listening type. The value is fixed at **'enableAbilityListsStateChanged'**, indicating the changes in the list of enabled accessibility extension abilities. |
 | callback | Callback&lt;void&gt; | Yes| Callback invoked when the list of enabled accessibility extension abilities changes.|
 
 **Example**
@@ -186,7 +186,7 @@ Cancels the listener for changes in the list of enabled accessibility extension 
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| type |  string | No| Listening type. The value is fixed at **'enableAbilityListsStateChanged'**, indicating that the changes in the list of enabled accessibility extension abilities.|
+| type |  string | No| Listening type. The value is fixed at **'enableAbilityListsStateChanged'**, indicating the changes in the list of enabled accessibility extension abilities. |
 | callback | Callback&lt;void&gt; | No| Callback invoked when the list of enabled accessibility extension abilities changes.|
 
 **Example**

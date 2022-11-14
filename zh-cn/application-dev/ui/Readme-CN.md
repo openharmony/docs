@@ -3,26 +3,18 @@
 - [方舟开发框架（ArkUI）概述](arkui-overview.md)
 - UI开发（基于ArkTS的声明式开发范式）
     - [概述](ui-ts-overview.md)
-    - 框架说明
-        - 文件组织
-            - [目录结构](ts-framework-directory.md)
-            - [应用代码文件访问规则](ts-framework-file-access-rules.md)
-        - 深入理解组件化
-            - [自定义组件初始化](ts-custom-component-initialization.md)
-            - [自定义组件生命周期回调函数](ts-custom-component-lifecycle-callbacks.md)
-            - [组件创建和重新初始化示例](ts-component-creation-re-initialization.md)
-        
-    - 声明式开发实例
+    - [声明式UI开发指导](ui-ts-developing-intro.md)
+    - 声明式UI开发实例
       - [创建简单视图](ui-ts-creating-simple-page.md)
-      - 构建实例
+      - 构建完整实例
         - [构建食物数据模型](ui-ts-building-data-model.md)
         - [构建食物列表List布局](ui-ts-building-category-list-layout.md)
         - [构建食物分类Grid布局](ui-ts-building-category-grid-layout.md)
-        - [页面跳转与数据传递](ui-ts-page-redirection-data-transmission.md)
-        
+        - [页面跳转与数据传递](ui-ts-page-redirection-data-transmission.md)    
       - 添加闪屏动画
         - [绘制图像](ui-ts-drawing-feature.md)
         - [添加动画效果](ui-ts-animation-feature.md)
+    - [常用组件说明](ui-ts-components-intro.md)
     - 常见布局开发指导
         - 自适应布局
             - [线性布局](ui-ts-layout-linear.md)
@@ -30,11 +22,11 @@
             - [弹性布局](ui-ts-layout-flex.md)
             - [网格布局](ui-ts-layout-grid.md)
         - 响应式布局
-            - [栅格布局](ui-ts-layout-grid-container.md)
-            - [栅格布局（新）](ui-ts-layout-grid-container-new.md)
+            - [栅格布局](ui-ts-layout-grid-container-new.md)
             - [媒体查询](ui-ts-layout-mediaquery.md)
-    - [Web组件开发](ui-ts-components-web.md)
-    - [性能提升的推荐方法](ts-performance-improvement-recommendation.md)
+    - [自定义组件的生命周期](ui-ts-custom-component-lifecycle-callbacks.md)
+    - [Web组件开发指导](ui-ts-components-web.md)
+    - [性能提升的推荐方法](ui-ts-performance-improvement-recommendation.md)
 - UI开发（兼容JS的类Web开发范式）
     - [概述](ui-js-overview.md)
     - 框架说明

@@ -31,6 +31,14 @@ Triggers vibration with the specified effect and attribute. This API uses a prom
 | attribute | [VibrateAttribute](#vibrateattribute9) | Yes  | Vibration attribute.                                            |
 | callback  | AsyncCallback&lt;void&gt;              | Yes  | Callback used to the result. If the vibration starts, **err** is **undefined**. Otherwise, **err** is an error object.|
 
+**Error codes**
+
+For details about the error codes, see [Vibrator Error Codes](../errorcodes/errorcode-vibrator.md).
+
+| ID| Error Message                 |
+| -------- | ------------------------- |
+| 14600101 | Device operation failed.|
+
 **Example**
 
 ```js
@@ -75,6 +83,14 @@ Triggers vibration with the specified effect and attribute. This API uses a prom
 | Type               | Description                                  |
 | ------------------- | -------------------------------------- |
 | Promise&lt;void&gt; | Promise that returns no value.|
+
+**Error codes**
+
+For details about the error codes, see [Vibrator Error Codes](../errorcodes/errorcode-vibrator.md).
+
+| ID| Error Message                 |
+| -------- | ------------------------- |
+| 14600101 | Device operation failed.|
 
 **Example**
 

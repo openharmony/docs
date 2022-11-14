@@ -382,4 +382,4 @@ struct CustomDialogUser {
 }
 ```
 
-![customdialog](figures/customdialog.gif)
+![customdialog](figures/customDialog.gif)

@@ -10,10 +10,10 @@ You can set the background of a component.
 
 | Name| Type| Description|
 | -------- | -------- | -------- |
-| backgroundColor | [ResourceColor](ts-types.md#resourcecolor) | Background color of the component. |
-| backgroundImage | src: [ResourceStr](ts-types.md#resourcestr),<br>repeat?: [ImageRepeat](ts-appendix-enums.md#imagerepeat) | Background image of the component.<br>**src**: image address, which can be the address of an Internet or a local image. (SVG images are not supported.)<br>**repeat**: whether the background image is repeatedly used. By default, the background image is not repeatedly used. |
+| backgroundColor | [ResourceColor](ts-types.md#resourcecolor) | Background color of the component.|
+| backgroundImage | src: [ResourceStr](ts-types.md#resourcestr),<br>repeat?: [ImageRepeat](ts-appendix-enums.md#imagerepeat) | **src**: image address, which can be the address of an Internet or a local image. (SVG images are not supported.)<br>**repeat**: whether the background image is repeatedly used. By default, the background image is not repeatedly used.|
 | backgroundImageSize | {<br>width?: [Length](ts-types.md#length),<br>height?: [Length](ts-types.md#length)<br>} \| [ImageSize](ts-appendix-enums.md#imagesize) | Width and height of the background image. If the input is a **{width: Length, height: Length}** object and only one attribute is set, the other attribute is the set value multiplied by the original aspect ratio of the image. By default, the original image aspect ratio remains unchanged.<br>Default value: **ImageSize.Auto**|
-| backgroundImagePosition | [Position](ts-types.md#position8) \| [Alignment](ts-appendix-enums.md#alignment) | Position of the background image in the component.<br>Default value:<br>**{<br>x: 0,<br>y: 0<br>}** |
+| backgroundImagePosition | [Position](ts-types.md#position8) \| [Alignment](ts-appendix-enums.md#alignment) | Position of the background image in the component, that is, the coordinates relative to the upper left corner of the component.<br>Default value:<br>{<br>x: 0,<br>y: 0<br>} <br> When **x** and **y** are set in percentage, the offset is calculated based on the width and height of the component.|
 
 ## Example
 

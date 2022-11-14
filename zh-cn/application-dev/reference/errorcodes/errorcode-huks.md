@@ -4,7 +4,7 @@
 
 **错误信息**
 
-``${messageInfo}`` mode is not support in current device.
+The ``${messageInfo}`` is not supported.
 
 **可能原因**
 支持API，但是不支持API内部某些子特性（功能），如算法参数。
@@ -16,7 +16,7 @@
 ## 12000002 缺少密钥算法参数
 **错误信息**
 
-Check get ``${messageInfo}`` failed. User should add ``${messageInfo}`` in param set. 
+Failed to obtain the ``${messageInfo}``. It is not set in ParamSet.
 
 **可能原因**
 
@@ -31,7 +31,7 @@ Check get ``${messageInfo}`` failed. User should add ``${messageInfo}`` in param
 
 **错误信息**
 
-``${messageInfo}`` argument is invalid. User should make sure using the correct value. 
+Invalid ``${messageInfo}``.
 
 **可能原因**
 
@@ -46,7 +46,12 @@ Check get ``${messageInfo}`` failed. User should add ``${messageInfo}`` in param
 
 **错误信息**
 
-Read file failed. or Write file failed. 
+可能为以下的其中一种：
+
+- Insufficient storage space.
+- Invalid file size.
+- Failed to ``${messageInfo}``.
+
 
 **可能原因**
 
@@ -61,7 +66,10 @@ Read file failed. or Write file failed.
 
 **错误信息**
 
-IPC communication timeout. or Receive message from IPC failed.
+可能为以下的其中一种：
+
+- Failed to get messages from IPC.
+- IPC ``${messageInfo}``.
 
 **可能原因**
 
@@ -75,7 +83,7 @@ IPC communication timeout. or Receive message from IPC failed.
 
 **错误信息**
 
-Error occured in crypto engine. 
+Crypto engine error.
 
 **可能原因**
 
@@ -93,7 +101,7 @@ Error occured in crypto engine.
 
 **错误信息**
 
-This credential is already invalidated permanently. 
+This credential is invalidated permanently.
 
 **可能原因**
 
@@ -111,7 +119,7 @@ This credential is already invalidated permanently.
 
 **错误信息**
 
-Verify authtoken failed. 
+The authentication token verification failed.
 
 **可能原因**
 
@@ -126,7 +134,7 @@ Verify authtoken failed.
 
 **错误信息**
 
-This authtoken is already timeout. 
+This authentication token timed out.
 
 **可能原因**
 
@@ -140,7 +148,7 @@ This authtoken is already timeout.
 
 **错误信息**
 
-The number of session has reached limit. 
+The number of key operation sessions has reached the limit.
 
 **可能原因**
 
@@ -155,7 +163,7 @@ The number of session has reached limit.
 
 **错误信息**
 
-Queried entity does not exist. 
+The entity does not exist.
 
 **可能原因**
 
@@ -170,7 +178,7 @@ Queried entity does not exist.
 
 **错误信息**
 
-External error ``${messageInfo}``. 
+System external error.
 
 **可能原因**
 
@@ -184,7 +192,7 @@ External error ``${messageInfo}``.
 
 **错误信息**
 
-Queried credential does not exist. 
+The credential does not exist.
 
 **可能原因**
 
@@ -198,7 +206,11 @@ Queried credential does not exist.
 
 **错误信息**
 
-Memory is insufficient. 
+可能为以下的其中一种：
+
+- Insufficient memory.
+- Malloc failed.
+
 
 **可能原因**
 
@@ -212,7 +224,7 @@ Memory is insufficient.
 
 **错误信息**
 
-Call ``${messageInfo}`` service to do ``${messageInfo}`` failed. 
+Failed to obtain the ``${messageInfo}`` information via UserIAM.
 
 **可能原因**
 

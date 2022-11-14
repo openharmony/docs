@@ -223,13 +223,74 @@ getSupportedOutputCapability(camera:CameraDevice): Promise<CameraOutputCapabilit
 | -------------------------------------------------------------- | ----------------------------- |
 | Promise<[CameraOutputCapability](#cameraoutputcapability)\>    | 使用Promise的方式获取结果，返回相机输出能力。 |
 
-
 **示例：**
 
 ```js
 cameraManager.getSupportedOutputCapability(cameradevice).then((cameraoutputcapability) => {
     console.log('Promise returned with an array of supported outputCapability');
 })
+```
+
+### isCameraMuted
+
+isCameraMuted(): boolean
+
+查询相机当前的禁用状态（禁用/未禁用）。
+
+在此之前，需要通过[isCameraMuteSupported](#iscameramutesupported)确认当前设备支持禁用相机。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+**返回值：**
+
+| 类型        | 说明                                         |
+| ---------- | -------------------------------------------- |
+| boolean    | 返回true表示相机被禁用，返回false表示相机未被禁用。 |
+
+**示例：**
+
+```js
+let ismuted = await cameraManager.isCameraMuted();
+```
+
+### isCameraMuteSupported
+
+isCameraMuteSupported(): boolean
+
+查询当前设备是否支持禁用相机，通过返回值返回结果。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+**返回值：**
+
+| 类型        | 说明                          |
+| ---------- | ----------------------------- |
+| boolean    | 返回true表示相机可以被禁用，返回false表示相机不能被禁用。 |
+
+**示例：**
+
+```js
+let ismutesuppotred = await cameraManager.isCameraMuteSupported();
+```
+
+### muteCamera
+
+muteCamera(mute: boolean): void
+
+禁用相机。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+**参数：**
+
+| 名称      | 类型                              | 必填  | 说明        |
+| -------- | --------------------------------- | ---- | ---------- |
+| mute     | boolean                           |  是  |  禁用相机。  |
+
+**示例：**
+
+```js
+cameraManager.muteCamera(mute);
 ```
 
 ### createCameraInput
@@ -659,6 +720,32 @@ cameraManager.on('cameraStatus', (err, cameraStatusInfo) => {
     }
     console.log(`camera : ${cameraStatusInfo.camera.cameraId}`);
     console.log(`status: ${cameraStatusInfo.status}`);
+})
+```
+
+### on('cameraMute')
+
+on(type: 'cameraMute', callback: AsyncCallback<boolean\>): void
+
+禁用回调，通过注册回调函数获取相机禁用状态变化。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+**参数：**
+
+| 名称     | 类型             | 必填 | 说明       |
+| -------- | --------------- | ---- | --------- |
+| type     | string          | 是   | 监听事件，固定为'cameraMute'，即禁用状态变化事件。 |
+| callback | boolean         | 是   | 回调函数，用于获取禁用状态变化信息。               |
+
+**示例：**
+
+```js
+cameraManager.on('cameraMute', (err, cameraStatusInfo) => {
+    if (err) {
+        console.error(`Failed to get cameraMute callback. ${err.message}`);
+        return;
+    }
 })
 ```
 
@@ -3218,7 +3305,7 @@ isMirrorSupported(callback: AsyncCallback<boolean\>): void
 **示例：**
 
 ```js
-captureSession.isMirrorSupported((err, isSupported) => {
+photoOutput.isMirrorSupported((err, isSupported) => {
     if (err) {
         console.error(`Failed to check mirror is supported ${err.message}`);
         return;
@@ -3244,7 +3331,7 @@ isMirrorSupported(): Promise<boolean\>
 **示例：**
 
 ```js
-captureSession.isMirrorSupported().then((isSupported) => {
+photoOutput.isMirrorSupported().then((isSupported) => {
     console.log(`Promise returned with mirror supported: ${isSupported}`);
 })
 ```
@@ -3671,12 +3758,12 @@ getTimestamp(callback: AsyncCallback<number\>): void
 **示例：**
 
 ```js
-metadataObject.getTimestamp((err) => {
+metadataObject.getTimestamp((err,timestamp) => {
     if (err) {
         console.error(`Failed to get timestamp. ${err.message}`);
         return;
     }
-    console.log('Callback returned with timestamp getted.');
+    console.log('Callback returned with timestamp getted timestamp : ${timestamp}');
 })
 ```
 
@@ -3697,8 +3784,8 @@ getTimestamp(): Promise<number\>
 **示例：**
 
 ```js
-metadataObject.getTimestamp().then(() => {
-    console.log('Callback returned with timestamp getted.');
+metadataObject.getTimestamp().then((timestamp) => {
+    console.log('Callback returned with timestamp getted timestamp : ${timestamp}');
 })
 ```
 

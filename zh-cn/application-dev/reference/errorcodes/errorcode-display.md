@@ -1,23 +1,23 @@
 # 屏幕错误码
 
-## 1400001 无效虚拟屏
+## 1400001 无效的显示设备
 **错误信息**<br>
-This is invalid screen.
+Invalid display or screen.
 
 **错误描述**<br>
-当操作无效的虚拟屏时，会报此错误码。
+当操作无效的显示设备，包括虚拟屏时，会报此错误码。
 
-**可能原因**
+**可能原因**<br>
 1. 虚拟屏未创建。
 2. 虚拟屏已销毁。
 
-**处理步骤**
+**处理步骤**<br>
 1. 在操作虚拟屏前，检查该虚拟屏是否已经存在，确保已创建该虚拟屏。
 2. 在操作虚拟屏前，检查虚拟屏是否已被销毁，确保其未被销毁，再进行相关操作。
 
 ## 1400002 无权限操作
 **错误信息**<br>
-This operation is not access.
+Unauthorized operation.
 
 **错误描述**<br>
 当对无操作权限的对象进行操作时，会报此错误码。
@@ -30,13 +30,13 @@ This operation is not access.
 
 ## 1400003 系统服务工作异常
 **错误信息**<br>
-This window manager service work abnormally.
+This display manager service works abnormally.
 
 **错误描述**<br>
 当系统服务工作异常时，会报此错误码。
 
-**可能原因**
-1. 窗口内部服务没有正常启动。
+**可能原因**<br>
+1. 屏幕管理服务没有正常启动。
 2. 底层图形图像合成渲染异常。
 
 **处理步骤**<br>

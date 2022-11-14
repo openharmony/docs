@@ -28,7 +28,7 @@ setDateTime(admin: Want, time: number, callback: AsyncCallback\<void>): void
 
 设置系统时间。使用callback异步回调。
 
-**需要权限：** ohos.permission.EDM_MANAGE_DATETIME
+**需要权限：** ohos.permission.ENTERPRISE_SET_DATETIME
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
@@ -79,7 +79,7 @@ setDateTime(admin: Want, time: number): Promise\<void>
 
 设置系统时间。使用Promise异步回调。
 
-**需要权限：** ohos.permission.EDM_MANAGE_DATETIME
+**需要权限：** ohos.permission.ENTERPRISE_SET_DATETIME
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 

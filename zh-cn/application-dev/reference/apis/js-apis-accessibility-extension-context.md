@@ -797,7 +797,7 @@ rootElement.actionNames((err, data) => {
 ```
 ## performAction
 
-performAction(actionName: string, parameters?: object): Promise\<boolean>;
+performAction(actionName: string, parameters?: object): Promise\<void>;
 
 根据操作名称执行某个操作，使用Promise异步回调。
 
@@ -814,7 +814,7 @@ performAction(actionName: string, parameters?: object): Promise\<boolean>;
 
 | 类型                                       | 说明                       |
 | ---------------------------------------- | ------------------------ |
-| Promise&lt;boolean&gt; | Promise对象，返回执行指定操作后的回调结果，true为执行成功，false为执行失败。 |
+| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
 
 **错误码：**
 
@@ -828,11 +828,9 @@ performAction(actionName: string, parameters?: object): Promise\<boolean>;
 
 ```ts
 let rootElement;
-let performActionRes;
 try {
     rootElement.performAction('action').then((data) => {
         console.info('perform action success');
-        performActionRes = data;
     }).catch((err) => {
         console.log('failed to perform action, because '  + JSON.stringify(err));
     });
@@ -842,7 +840,7 @@ try {
 ```
 ## performAction
 
-performAction(actionName: string, callback: AsyncCallback\<boolean>): void;
+performAction(actionName: string, callback: AsyncCallback\<void>): void;
 
 根据操作名称执行某个操作，使用callback异步回调。
 
@@ -853,7 +851,7 @@ performAction(actionName: string, callback: AsyncCallback\<boolean>): void;
 | 参数名         | 参数类型                                     | 必填   | 说明             |
 | ----------- | ---------------------------------------- | ---- | -------------- |
 | actionName | string | 是    | 表示属性的名称。     |
-| callback | AsyncCallback&lt;boolean&gt; | 是    | 回调函数，返回执行指定操作后的回调结果，true为执行成功，false为执行失败。|
+| callback | AsyncCallback&lt;void&gt; | 是    | 回调函数，表示执行指定操作的回调。|
 
 **错误码：**
 
@@ -867,14 +865,12 @@ performAction(actionName: string, callback: AsyncCallback\<boolean>): void;
 
 ```ts
 let rootElement;
-let performActionRes;
 try {
     rootElement.performAction('action', (err, data) => {
         if (err) {
             console.error('failed to perform action, because ' + JSON.stringify(err));
             return;
         }
-        performActionRes = data;
         console.info('perform action success');
     });
 } catch (exception) {
@@ -883,7 +879,7 @@ try {
 ```
 ## performAction
 
-performAction(actionName: string, parameters: object, callback: AsyncCallback\<boolean>): void;
+performAction(actionName: string, parameters: object, callback: AsyncCallback\<void>): void;
 
 根据操作名称执行某个操作，使用callback异步回调。
 
@@ -895,7 +891,7 @@ performAction(actionName: string, parameters: object, callback: AsyncCallback\<b
 | ----------- | ---------------------------------------- | ---- | -------------- |
 | actionName | string | 是    | 表示属性的名称。     |
 | parameters | object | 是    | 表示执行操作时所需要的参数。     |
-| callback | AsyncCallback&lt;boolean&gt; | 是    | 回调函数，返回执行指定操作后的回调结果，true为执行成功，false为执行失败。|
+| callback | AsyncCallback&lt;void&gt; | 是    | 回调函数，表示执行指定操作的回调。|
 
 **错误码：**
 
@@ -913,14 +909,12 @@ let actionName = 'action';
 let parameters = {
     'setText': 'test text'
 };
-let performActionRes;
 try {
     rootElement.performAction(actionName, parameters, (err, data) => {
         if (err) {
             console.error('failed to perform action, because ' + JSON.stringify(err));
             return;
         }
-        performActionRes = data;
         console.info('perform action success');
     });
 } catch (exception) {

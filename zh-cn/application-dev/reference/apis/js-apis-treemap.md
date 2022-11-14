@@ -46,10 +46,23 @@ TreeMap的构造函数。
 | -------- | -------- | -------- | -------- |
 | comparator | function | 否 | 用户自定义的比较函数。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[containers错误码](../errorcodes/errorcode-containers.md)。
+
+| 错误码ID | 错误码信息 |
+| -------- | -------- |
+| 10200012 | The TreeMap's constructor cannot be directly invoked. |
+
 **示例：**
 
 ```ts
 let treeMap = new TreeMap();
+try {
+  let treeMap2 = TreeMap();
+} catch(err) {
+  console.log(`${err.code} - ${err.name} - ${err.message}`);
+}
 ```
 
 
@@ -67,11 +80,24 @@ isEmpty(): boolean
 | -------- | -------- |
 | boolean | 为空返回true，否则返回false。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[containers错误码](../errorcodes/errorcode-containers.md)。
+
+| 错误码ID | 错误码信息 |
+| -------- | -------- |
+| 10200011 | The isEmpty method cannot be bound. |
+
 **示例：**
 
 ```ts
 const treeMap = new TreeMap();
 let result = treeMap.isEmpty();
+try {
+  treeMap.isEmpty.bind({})(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
+} catch(err) {
+  console.log(`${err.code} - ${err.name} - ${err.message}`);
+}
 ```
 
 
@@ -95,6 +121,14 @@ hasKey(key: K): boolean
 | -------- | -------- |
 | boolean | 包含指定key返回true，否则返回false。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[containers错误码](../errorcodes/errorcode-containers.md)。
+
+| 错误码ID | 错误码信息 |
+| -------- | -------- |
+| 10200011 | The hasKey method cannot be bound. |
+
 **示例：**
 
 ```ts
@@ -102,6 +136,11 @@ let treeMap = new TreeMap();
 let result = treeMap.hasKey("squirrel");
 treeMap.set("squirrel", 123);
 let result1 = treeMap.hasKey("squirrel");
+try {
+  treeMap.hasKey.bind({}, "squirrel")(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
+} catch(err) {
+  console.log(`${err.code} - ${err.name} - ${err.message}`);
+}
 ```
 
 
@@ -125,6 +164,14 @@ hasValue(value: V): boolean
 | -------- | -------- |
 | boolean | 包含指定元素返回true，否则返回false。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[containers错误码](../errorcodes/errorcode-containers.md)。
+
+| 错误码ID | 错误码信息 |
+| -------- | -------- |
+| 10200011 | The hasValue method cannot be bound. |
+
 **示例：**
 
 ```ts
@@ -132,6 +179,11 @@ let treeMap = new TreeMap();
 let result = treeMap.hasValue(123);
 treeMap.set("squirrel", 123);
 let result1 = treeMap.hasValue(123);
+try {
+  treeMap.hasValue.bind({}, 123)(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
+} catch(err) {
+  console.log(`${err.code} - ${err.name} - ${err.message}`);
+}
 ```
 
 
@@ -155,6 +207,14 @@ get(key: K): V
 | -------- | -------- |
 | V | 返回key映射的value值。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[containers错误码](../errorcodes/errorcode-containers.md)。
+
+| 错误码ID | 错误码信息 |
+| -------- | -------- |
+| 10200011 | The get method cannot be bound. |
+
 **示例：**
 
 ```ts
@@ -162,6 +222,11 @@ let treeMap = new TreeMap();
 treeMap.set("squirrel", 123);
 treeMap.set("sparrow", 356);
 let result = treeMap.get("sparrow");
+try {
+  treeMap.get.bind({}, "sparrow")(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
+} catch(err) {
+  console.log(`${err.code} - ${err.name} - ${err.message}`);
+}
 ```
 
 
@@ -179,6 +244,14 @@ getFirstKey(): K
 | -------- | -------- |
 | K | 返回排序第一的key。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[containers错误码](../errorcodes/errorcode-containers.md)。
+
+| 错误码ID | 错误码信息 |
+| -------- | -------- |
+| 10200011 | The getFirstKey method cannot be bound. |
+
 **示例：**
 
 ```ts
@@ -186,6 +259,11 @@ let treeMap = new TreeMap();
 treeMap.set("squirrel", 123);
 treeMap.set("sparrow", 356);
 let result = treeMap.getFirstKey();
+try {
+  treeMap.getFirstKey.bind({})(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
+} catch(err) {
+  console.log(`${err.code} - ${err.name} - ${err.message}`);
+}
 ```
 
 
@@ -203,6 +281,14 @@ getLastKey(): K
 | -------- | -------- |
 | K | 返回排序最后的key |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[containers错误码](../errorcodes/errorcode-containers.md)。
+
+| 错误码ID | 错误码信息 |
+| -------- | -------- |
+| 10200011 | The getLastKey method cannot be bound. |
+
 **示例：**
 
 ```ts
@@ -210,6 +296,11 @@ let treeMap = new TreeMap();
 treeMap.set("squirrel", 123);
 treeMap.set("sparrow", 356);
 let result = treeMap.getLastKey();
+try {
+  treeMap.getLastKey.bind({})(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
+} catch(err) {
+  console.log(`${err.code} - ${err.name} - ${err.message}`);
+}
 ```
 
 
@@ -227,6 +318,14 @@ setAll(map: TreeMap<K, V>): void
 | -------- | -------- | -------- | -------- |
 | map | TreeMap<K, V> | 是 | 被添加元素的treeMap。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[containers错误码](../errorcodes/errorcode-containers.md)。
+
+| 错误码ID | 错误码信息 |
+| -------- | -------- |
+| 10200011 | The setAll method cannot be bound. |
+
 **示例：**
 
 ```ts
@@ -235,6 +334,11 @@ treeMap.set("squirrel", 123);
 treeMap.set("sparrow", 356);
 let map = new TreeMap();
 treeMap.setAll(map);
+try {
+  treeMap.setAll.bind({}, map)(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
+} catch(err) {
+  console.log(`${err.code} - ${err.name} - ${err.message}`);
+}
 ```
 
 
@@ -259,11 +363,24 @@ set(key: K, value: V): Object
 | -------- | -------- |
 | Object | 返回添加后的treeMap |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[containers错误码](../errorcodes/errorcode-containers.md)。
+
+| 错误码ID | 错误码信息 |
+| -------- | -------- |
+| 10200011 | The set method cannot be bound. |
+
 **示例：**
 
 ```ts
 let treeMap = new TreeMap();
 treeMap.set("squirrel", 123);
+try {
+  treeMap.set.bind({}, "squirrel", 123)(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
+} catch(err) {
+  console.log(`${err.code} - ${err.name} - ${err.message}`);
+}
 ```
 
 
@@ -287,6 +404,14 @@ remove(key: K): V
 | -------- | -------- |
 | V | 返回删除元素的值。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[containers错误码](../errorcodes/errorcode-containers.md)。
+
+| 错误码ID | 错误码信息 |
+| -------- | -------- |
+| 10200011 | The remove method cannot be bound. |
+
 **示例：**
 
 ```ts
@@ -294,6 +419,11 @@ let treeMap = new TreeMap();
 treeMap.set("squirrel", 123);
 treeMap.set("sparrow", 356);
 treeMap.remove("sparrow");
+try {
+  treeMap.remove.bind({}, "sparrow")(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
+} catch(err) {
+  console.log(`${err.code} - ${err.name} - ${err.message}`);
+}
 ```
 
 
@@ -317,6 +447,14 @@ getLowerKey(key: K): K
 | -------- | -------- |
 | K | 返回排序中key前一位的数据。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[containers错误码](../errorcodes/errorcode-containers.md)。
+
+| 错误码ID | 错误码信息 |
+| -------- | -------- |
+| 10200011 | The getLowerKey method cannot be bound. |
+
 **示例：**
 
 ```ts
@@ -325,6 +463,11 @@ treeMap.set("squirrel", 123);
 treeMap.set("sparrow", 356);
 treeMap.set("gander", 356);
 let result = treeMap.getLowerKey("sparrow");
+try {
+  treeMap.getLowerKey.bind({}, "sparrow")(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
+} catch(err) {
+  console.log(`${err.code} - ${err.name} - ${err.message}`);
+}
 ```
 
 
@@ -348,6 +491,14 @@ getHigherKey(key: K): K
 | -------- | -------- |
 | K | 返回排序中key后一位的数据。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[containers错误码](../errorcodes/errorcode-containers.md)。
+
+| 错误码ID | 错误码信息 |
+| -------- | -------- |
+| 10200011 | The getHigherKey method cannot be bound. |
+
 **示例：**
 
 ```ts
@@ -356,6 +507,11 @@ treeMap.set("squirrel", 123);
 treeMap.set("sparrow", 356);
 treeMap.set("gander", 356);
 let result = treeMap.getHigherKey("sparrow");
+try {
+  treeMap.getHigherKey.bind({}, "sparrow")(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
+} catch(err) {
+  console.log(`${err.code} - ${err.name} - ${err.message}`);
+}
 ```
 
 ### replace
@@ -379,12 +535,25 @@ replace(key: K, newValue: V): boolean
 | -------- | -------- |
 | boolean | 对指定key对应的元素替换成功返回true，否则返回false。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[containers错误码](../errorcodes/errorcode-containers.md)。
+
+| 错误码ID | 错误码信息 |
+| -------- | -------- |
+| 10200011 | The replace method cannot be bound. |
+
 **示例：**
 
 ```ts
 let treeMap = new TreeMap();
 treeMap.set("sparrow", 123);
 let result = treeMap.replace("sparrow", 357);
+try {
+  treeMap.replace.bind({}, "sparrow", 357)(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
+} catch(err) {
+  console.log(`${err.code} - ${err.name} - ${err.message}`);
+}
 ```
 
 
@@ -396,6 +565,14 @@ clear(): void
 
 **系统能力：** SystemCapability.Utils.Lang
 
+**错误码：**
+
+以下错误码的详细介绍请参见[containers错误码](../errorcodes/errorcode-containers.md)。
+
+| 错误码ID | 错误码信息 |
+| -------- | -------- |
+| 10200011 | The clear method cannot be bound. |
+
 **示例：**
 
 ```ts
@@ -403,6 +580,11 @@ let treeMap = new TreeMap();
 treeMap.set("squirrel", 123);
 treeMap.set("sparrow", 356);
 treeMap.clear();
+try {
+  treeMap.clear.bind({})(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
+} catch(err) {
+  console.log(`${err.code} - ${err.name} - ${err.message}`);
+}
 ```
 
 
@@ -420,6 +602,14 @@ keys(): IterableIterator&lt;K&gt;
 | -------- | -------- |
 | IterableIterator&lt;K&gt; | 返回一个迭代器。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[containers错误码](../errorcodes/errorcode-containers.md)。
+
+| 错误码ID | 错误码信息 |
+| -------- | -------- |
+| 10200011 | The keys method cannot be bound. |
+
 **示例：**
 
 ```ts
@@ -431,7 +621,12 @@ let temp = iter.next().value;
 while(temp != undefined) {
   console.log("value:" + temp);
   temp = iter.next().value;
-} 
+}
+try {
+  treeMap.keys.bind({})(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
+} catch(err) {
+  console.log(`${err.code} - ${err.name} - ${err.message}`);
+}
 ```
 
 
@@ -449,6 +644,14 @@ values(): IterableIterator&lt;V&gt;
 | -------- | -------- |
 | IterableIterator&lt;V&gt; | 返回一个迭代器。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[containers错误码](../errorcodes/errorcode-containers.md)。
+
+| 错误码ID | 错误码信息 |
+| -------- | -------- |
+| 10200011 | The values method cannot be bound. |
+
 **示例：**
 
 ```ts
@@ -460,6 +663,11 @@ let temp = iter.next().value;
 while(temp != undefined) {
   console.log("value:" + temp);
   temp = iter.next().value;
+}
+try {
+  treeMap.values.bind({})(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
+} catch(err) {
+  console.log(`${err.code} - ${err.name} - ${err.message}`);
 }
 ```
 
@@ -486,6 +694,14 @@ callbackfn的参数说明：
 | key | K | 否 | 当前遍历到的元素键值对的键。 |
 | map | TreeMap<K, V> | 否 | 当前调用forEach方法的实例对象。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[containers错误码](../errorcodes/errorcode-containers.md)。
+
+| 错误码ID | 错误码信息 |
+| -------- | -------- |
+| 10200011 | The forEach method cannot be bound. |
+
 **示例：**
 
 ```ts
@@ -495,6 +711,13 @@ treeMap.set("gull", 357);
 treeMap.forEach((value, key) => {
   console.log("value:" + value, key);
 });
+try {
+  treeMap.forEach.bind({}, (value, key) => {
+    console.log("value:" + value, key);
+  })(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
+} catch(err) {
+  console.log(`${err.code} - ${err.name} - ${err.message}`);
+}
 ```
 
 
@@ -512,6 +735,14 @@ entries(): IterableIterator<[K, V]>
 | -------- | -------- |
 | IterableIterator<[K, V]> | 返回一个迭代器。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[containers错误码](../errorcodes/errorcode-containers.md)。
+
+| 错误码ID | 错误码信息 |
+| -------- | -------- |
+| 10200011 | The entries method cannot be bound. |
+
 **示例：**
 
 ```ts
@@ -524,6 +755,11 @@ while(temp != undefined) {
   console.log("key:" + temp[0]);
   console.log("value:" + temp[1]);
   temp = iter.next().value;
+}
+try {
+  treeMap.entries.bind({})(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
+} catch(err) {
+  console.log(`${err.code} - ${err.name} - ${err.message}`);
 }
 ```
 
@@ -540,6 +776,14 @@ while(temp != undefined) {
 | 类型 | 说明 |
 | -------- | -------- |
 | IterableIterator<[K, V]> | 返回一个迭代器。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[containers错误码](../errorcodes/errorcode-containers.md)。
+
+| 错误码ID | 错误码信息 |
+| -------- | -------- |
+| 10200011 | The Symbol.iterator method cannot be bound. |
 
 **示例：**
 
@@ -561,5 +805,10 @@ while(temp != undefined) {
   console.log("key:" + temp[0]);
   console.log("value:" + temp[1]);
   temp = iter.next().value;
+}
+try {
+  treeMap[Symbol.iterator].bind({})(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
+} catch(err) {
+  console.log(`${err.code} - ${err.name} - ${err.message}`);
 }
 ```

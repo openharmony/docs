@@ -34,7 +34,7 @@ List(value?:{space?: number&nbsp;|&nbsp;string, initialIndex?: number, scroller?
 | listDirection | [Axis](ts-appendix-enums.md#axis) | 设置List组件排列方向。<br/>默认值：Axis.Vertical |
 | divider                      | {<br/>strokeWidth:&nbsp;[Length](ts-types.md#length),<br/>color?:[ResourceColor](ts-types.md),<br/>startMargin?:&nbsp;Length,<br/>endMargin?:&nbsp;Length<br/>}&nbsp;\|&nbsp;null | 设置ListItem分割线样式，默认无分割线。<br/>- strokeWidth:&nbsp;分割线的线宽。<br/>- color:&nbsp;分割线的颜色。<br/>- startMargin:&nbsp;分割线与列表侧边起始端的距离。<br/>- endMargin:&nbsp;分割线与列表侧边结束端的距离。 |
 | scrollBar      | [BarState](ts-appendix-enums.md#barstate) | 设置滚动条状态。<br/>默认值：BarState.Off |
-| cachedCount | number                                   | 设置预加载的ListItem数量。具体使用可参考[减少应用白块说明](../../ui/ts-performance-improvement-recommendation.md#减少应用滑动白块)。<br/>默认值：1 |
+| cachedCount | number                                   | 设置预加载的ListItem数量。具体使用可参考[减少应用白块说明](../../ui/ui-ts-performance-improvement-recommendation.md#减少应用滑动白块)。<br/>默认值：1 |
 | editMode | boolean | 声明当前List组件是否处于可编辑模式。<br/>默认值：false |
 | edgeEffect | [EdgeEffect](ts-appendix-enums.md#edgeeffect) | 设置组件的滑动效果。<br/>默认值：EdgeEffect.Spring |
 | chainAnimation | boolean | 设置当前List是否启用链式联动动效，开启后列表滑动以及顶部和底部拖拽时会有链式联动的效果。链式联动效果：List内的list-item间隔一定距离，在基本的滑动交互行为下，主动对象驱动从动对象进行联动，驱动效果遵循弹簧物理动效。<br/>默认值：false<br/>-&nbsp;false：不启用链式联动。<br/>-&nbsp;true：启用链式联动。 |
@@ -183,7 +183,7 @@ struct ListLanesExample {
       .width("90%")
       .editMode(true)
       .border({ width: 3, color: Color.Red })
-      .lanes({ minLength: 40, maxLength: 60 })
+      .lanes({ minLength: 40, maxLength: 40 })
       .alignListItem(this.alignListItem)
 
       Button("点击更改alignListItem:" + this.alignListItem).onClick(() => {
@@ -200,3 +200,4 @@ struct ListLanesExample {
 }
 ```
 
+![list](figures/list1.gif)

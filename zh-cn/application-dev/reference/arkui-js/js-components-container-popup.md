@@ -115,7 +115,7 @@ export default {
   visibilitychange(e) {
     prompt.showToast({
       message: 'visibility change visibility: ' + e.visibility,
-        duration: 3000,
+        duration: 3000
     }); 
   },
   showpopup() {
@@ -123,7 +123,7 @@ export default {
   },
   hidepopup() {
     this.$element("popup").hide();
-  },
+  }
 }
 ```
 

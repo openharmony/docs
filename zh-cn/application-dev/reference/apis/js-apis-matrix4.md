@@ -148,7 +148,7 @@ import matrix4 from '@ohos.matrix4'
 @Entry
 @Component
 struct Test {
-  private matrix1 = Matrix4.identity().translate({x:100})
+  private matrix1 = matrix4.identity().translate({x:100})
   private matrix2 = this.matrix1.copy().scale({x:2})
 
   build() {

@@ -32,10 +32,6 @@ NewIP WiFi灵活极简报文头如下图所示，通过LLC Header中的EtherType
 
 ![zh-cn_image-20220915140627223](figures/zh-cn_image-20220915140627223.png)
 
-NewIP Eth灵活极简报文头如下图所示，通过Eth头中的EtherType = 0xEADD标识NewIP灵活极简报文。
-
-![zh-cn_image-20220930113757464](figures/zh-cn_image-20220930113757464.png)
-
 1)	Dispatch：指示封装子类，数值0b0表示其为极简封装子类，长度为1比特；(0b表示后面数值为二进制)。
 
 2)	Bitmap：变长，Bitmap默认为紧跟在Dispatch有效位后面的7比特，Bitmap字段长度可持续扩展。Bitmap最后一位置0表示Bitmap结束，最后一位置1表示Bitmap向后扩展1 Byte，直至最后一位置0。
@@ -250,7 +246,7 @@ struct sockaddr_nin {
 
 ## NewIP开发说明
 
-目前只在OpenHarmony Linux-5.10内核支持NewIP内核协议栈，只能在用户态人工配置NewIP地址和路由到内核，两台设备可以通过路由器WiFi连接，也可以通过Eth网线直接连接。如果想配置NewIP地址和路由后自动切换到NewIP内核协议栈通信，应用可以参考下面蓝框中描述。
+目前只在OpenHarmony Linux-5.10内核支持NewIP内核协议栈，只能在用户态人工配置NewIP地址和路由到内核，两台设备通过路由器WiFi连接。如果想配置NewIP地址和路由后自动切换到NewIP内核协议栈通信，应用可以参考下面蓝框中描述。
 
 ![zh-cn_image-20221009112548444](figures/zh-cn_image-20221009112548444.png)
 
@@ -304,7 +300,7 @@ NewIP可变长地址配置，路由配置，UDP/TCP收发包demo代码链接如�
 
 2. 将编译生成二级制文件上传到设备1，设备2。
 
-3. 执行“ifconfig xxx up”开启网卡设备，xxx表示网卡名，比如eth0，wlan0。
+3. 执行“ifconfig wlan0 up”开启网卡设备。
 
 4. 在设备1的sh下执行“./nip_addr_cfg_demo server”给服务端配置0xDE00（2字节）变长地址，在设备2的sh下执。行“./nip_addr_cfg_demo client”给客户端配置0x50（1字节）变长地址，通过“cat /proc/net/nip_addr”查看内核地址配置结果。
 

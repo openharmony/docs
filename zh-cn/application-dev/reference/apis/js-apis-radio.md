@@ -927,6 +927,8 @@ sendUpdateCellLocationRequest\(callback: AsyncCallback<void\>\): void
 
 此接口为系统接口。
 
+**需要权限**：ohos.permission.LOCATION
+
 **系统能力**：SystemCapability.Telephony.CoreService
 
 **参数：**
@@ -950,6 +952,8 @@ sendUpdateCellLocationRequest\(slotId: number, callback: AsyncCallback<void\>\):
 发送更新小区位置请求。使用callback异步回调。
 
 此接口为系统接口。
+
+**需要权限**：ohos.permission.LOCATION
 
 **系统能力**：SystemCapability.Telephony.CoreService
 
@@ -976,6 +980,8 @@ sendUpdateCellLocationRequest\(slotId?: number): Promise<void\>
 发送更新小区位置请求。使用Promise异步回调。
 
 此接口为系统接口。
+
+**需要权限**：ohos.permission.LOCATION
 
 **系统能力**：SystemCapability.Telephony.CoreService
 

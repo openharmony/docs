@@ -1,6 +1,7 @@
 # Universal Attributes
 
->  **NOTE**<br>
+>  **NOTE**
+>
 >  Universal attributes are supported since API version 4. Updates will be marked with a superscript to indicate their earliest API version.
 
 ## Common Attributes

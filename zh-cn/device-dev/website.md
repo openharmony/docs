@@ -319,6 +319,7 @@
      - HDF驱动框架
        - [HDF开发概述](driver/driver-hdf-overview.md)
        - [驱动开发](driver/driver-hdf-development.md)
+       - [驱动加载](driver/driver-hdf-load.md)
        - [驱动服务管理](driver/driver-hdf-servicemanage.md)
        - [驱动消息机制管理](driver/driver-hdf-message-management.md)
        - [配置管理](driver/driver-hdf-manage.md)
@@ -646,7 +647,7 @@
         - [AudioDeviceDescriptor](reference/hdi-apis/_audio_device_descriptor.md)
         - [AudioManager](reference/hdi-apis/_audio_manager.md)
         - [AudioMixExtInfo](reference/hdi-apis/_audio_mix_ext_info.md)
-        - [AudioMmapBufferDescripter](reference/hdi-apis/_audio_mmap_buffer_descripter.md)
+        - [AudioMmapBufferDescriptor](reference/hdi-apis/_audio_mmap_buffer_descriptor.md)
         - [AudioPort](reference/hdi-apis/_audio_port.md)
         - [AudioPortCap](reference/hdi-apis/audio_portcap.md)
         - [AudioPortCapability](reference/hdi-apis/_audio_port_capability.md)

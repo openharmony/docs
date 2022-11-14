@@ -40,10 +40,23 @@ HashMap的构造函数。
 
 **系统能力：** SystemCapability.Utils.Lang
 
+**错误码：**
+
+以下错误码的详细介绍请参见[containers错误码](../errorcodes/errorcode-containers.md)。
+
+| 错误码ID | 错误码信息 |
+| -------- | -------- |
+| 10200012 | The HashMap's constructor cannot be directly invoked. |
+
 **示例：**
 
 ```ts
 let hashMap = new HashMap();
+try {
+  let hashMap2 = HashMap();
+} catch(err) {
+  console.log(`${err.code} - ${err.name} - ${err.message}`);
+}
 ```
 
 
@@ -61,11 +74,24 @@ isEmpty(): boolean
 | -------- | -------- |
 | boolean | 为空返回true，不为空返回false。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[containers错误码](../errorcodes/errorcode-containers.md)。
+
+| 错误码ID | 错误码信息 |
+| -------- | -------- |
+| 10200011 | The isEmpty method cannot be bound. |
+
 **示例：**
 
 ```ts
 const hashMap = new HashMap();
 let result = hashMap.isEmpty();
+try {
+  hashMap.isEmpty.bind({})(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
+} catch(err) {
+  console.log(`${err.code} - ${err.name} - ${err.message}`);
+}
 ```
 
 
@@ -89,6 +115,14 @@ hasKey(key: K): boolean
 | -------- | -------- |
 | boolean | 包含指定Key返回true，否则返回false。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[containers错误码](../errorcodes/errorcode-containers.md)。
+
+| 错误码ID | 错误码信息 |
+| -------- | -------- |
+| 10200011 | The hasKey method cannot be bound. |
+
 **示例：**
 
 ```ts
@@ -96,6 +130,11 @@ let hashMap = new HashMap();
 let result = hashMap.hasKey("squirrel");
 hashMap.set("squirrel", 123);
 let result1 = hashMap.hasKey("squirrel");
+try {
+  hashMap.hasKey.bind({}, "squirrel")(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
+} catch(err) {
+  console.log(`${err.code} - ${err.name} - ${err.message}`);
+}
 ```
 
 
@@ -119,6 +158,14 @@ hasValue(value: V): boolean
 | -------- | -------- |
 | boolean | 包含指定value返回true，否则返回false。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[containers错误码](../errorcodes/errorcode-containers.md)。
+
+| 错误码ID | 错误码信息 |
+| -------- | -------- |
+| 10200011 | The hasValue method cannot be bound. |
+
 **示例：**
 
 ```ts
@@ -126,6 +173,11 @@ let hashMap = new HashMap();
 let result = hashMap.hasValue(123);
 hashMap.set("squirrel", 123);
 let result1 = hashMap.hasValue(123);
+try {
+  hashMap.hasValue.bind({}, 123)(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
+} catch(err) {
+  console.log(`${err.code} - ${err.name} - ${err.message}`);
+}
 ```
 
 
@@ -149,6 +201,14 @@ get(key: K): V
 | -------- | -------- |
 | V | 返回key映射的value值。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[containers错误码](../errorcodes/errorcode-containers.md)。
+
+| 错误码ID | 错误码信息 |
+| -------- | -------- |
+| 10200011 | The get method cannot be bound. |
+
 **示例：**
 
 ```ts
@@ -156,6 +216,11 @@ let hashMap = new HashMap();
 hashMap.set("squirrel", 123);
 hashMap.set("sparrow", 356);
 let result = hashMap.get("sparrow");
+try {
+  hashMap.get.bind({}, "sparrow")(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
+} catch(err) {
+  console.log(`${err.code} - ${err.name} - ${err.message}`);
+}
 ```
 
 
@@ -173,6 +238,14 @@ setAll(map: HashMap<K, V>): void
 | -------- | -------- | -------- | -------- |
 | map | HashMap<K, V> | 是 | 被添加元素的hashMap。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[containers错误码](../errorcodes/errorcode-containers.md)。
+
+| 错误码ID | 错误码信息 |
+| -------- | -------- |
+| 10200011 | The setAll method cannot be bound. |
+
 **示例：**
 
 ```ts
@@ -181,6 +254,11 @@ hashMap.set("squirrel", 123);
 hashMap.set("sparrow", 356);
 let newHashMap = new HashMap();
 hashMap.setAll(newHashMap);
+try {
+  hashMap.setAll.bind({}, newHashMap)(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
+} catch(err) {
+  console.log(`${err.code} - ${err.name} - ${err.message}`);
+}
 ```
 
 
@@ -205,11 +283,24 @@ set(key: K, value: V): Object
 | -------- | -------- |
 | Object | 返回添加后的hashMap。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[containers错误码](../errorcodes/errorcode-containers.md)。
+
+| 错误码ID | 错误码信息 |
+| -------- | -------- |
+| 10200011 | The set method cannot be bound. |
+
 **示例：**
 
 ```ts
 let hashMap = new HashMap();
 let result = hashMap.set("squirrel", 123);
+try {
+  hashMap.set.bind({}, "squirrel", 123)(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
+} catch(err) {
+  console.log(`${err.code} - ${err.name} - ${err.message}`);
+}
 ```
 
 
@@ -233,6 +324,14 @@ remove(key: K): V
 | -------- | -------- |
 | V | 返回删除元素的值。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[containers错误码](../errorcodes/errorcode-containers.md)。
+
+| 错误码ID | 错误码信息 |
+| -------- | -------- |
+| 10200011 | The remove method cannot be bound. |
+
 **示例：**
 
 ```ts
@@ -240,6 +339,11 @@ let hashMap = new HashMap();
 hashMap.set("squirrel", 123);
 hashMap.set("sparrow", 356);
 let result = hashMap.remove("sparrow");
+try {
+  hashMap.remove.bind({}, "sparrow")(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
+} catch(err) {
+  console.log(`${err.code} - ${err.name} - ${err.message}`);
+}
 ```
 
 
@@ -251,6 +355,14 @@ clear(): void
 
 **系统能力：** SystemCapability.Utils.Lang
 
+**错误码：**
+
+以下错误码的详细介绍请参见[containers错误码](../errorcodes/errorcode-containers.md)。
+
+| 错误码ID | 错误码信息 |
+| -------- | -------- |
+| 10200011 | The clear method cannot be bound. |
+
 **示例：**
 
 ```ts
@@ -258,6 +370,11 @@ let hashMap = new HashMap();
 hashMap.set("squirrel", 123);
 hashMap.set("sparrow", 356);
 hashMap.clear();
+try {
+  hashMap.clear.bind({})(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
+} catch(err) {
+  console.log(`${err.code} - ${err.name} - ${err.message}`);
+}
 ```
 
 
@@ -275,6 +392,14 @@ keys(): IterableIterator&lt;K&gt;
 | -------- | -------- |
 | IterableIterator&lt;K&gt; | 返回一个迭代器。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[containers错误码](../errorcodes/errorcode-containers.md)。
+
+| 错误码ID | 错误码信息 |
+| -------- | -------- |
+| 10200011 | The keys method cannot be bound. |
+
 **示例：**
 
 ```ts
@@ -286,6 +411,11 @@ let temp = iter.next().value;
 while(temp != undefined) {
   console.log("value:" + temp);
   temp = iter.next().value;
+}
+try {
+  hashMap.keys.bind({})(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
+} catch(err) {
+  console.log(`${err.code} - ${err.name} - ${err.message}`);
 }
 ```
 
@@ -304,6 +434,14 @@ values(): IterableIterator&lt;V&gt;
 | -------- | -------- |
 | IterableIterator&lt;V&gt; | 返回一个迭代器。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[containers错误码](../errorcodes/errorcode-containers.md)。
+
+| 错误码ID | 错误码信息 |
+| -------- | -------- |
+| 10200011 | The values method cannot be bound. |
+
 **示例：**
 
 ```ts
@@ -315,6 +453,11 @@ let temp = iter.next().value;
 while(temp != undefined) {
   console.log("value:" + temp);
   temp = iter.next().value;
+}
+try {
+  hashMap.values.bind({})(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
+} catch(err) {
+  console.log(`${err.code} - ${err.name} - ${err.message}`);
 }
 ```
 
@@ -340,12 +483,25 @@ replace(key: K, newValue: V): boolean
 | -------- | -------- |
 | boolean | 是否成功对已有数据进行替换 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[containers错误码](../errorcodes/errorcode-containers.md)。
+
+| 错误码ID | 错误码信息 |
+| -------- | -------- |
+| 10200011 | The replace method cannot be bound. |
+
 **示例：**
 
 ```ts
 let hashMap = new HashMap();
 hashMap.set("sparrow", 123);
 let result = hashMap.replace("sparrow", 357);
+try {
+  hashMap.replace.bind({}, "sparrow", 357)(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
+} catch(err) {
+  console.log(`${err.code} - ${err.name} - ${err.message}`);
+}
 ```
 
 
@@ -371,6 +527,14 @@ callbackfn的参数说明：
 | key | K | 否 | 当前遍历到的元素键值对的键。 |
 | map | HashMap<K, V> | 否 | 当前调用forEach方法的实例对象。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[containers错误码](../errorcodes/errorcode-containers.md)。
+
+| 错误码ID | 错误码信息 |
+| -------- | -------- |
+| 10200011 | The forEach method cannot be bound. |
+
 **示例：**
 
 ```ts
@@ -380,6 +544,13 @@ hashMap.set("gull", 357);
 hashMap.forEach((value, key) => {
   console.log("value:" + value, key);
 });
+try {
+  hashMap.forEach.bind({}, (value, key) => {
+    console.log("value:" + value, key);
+  })(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
+} catch(err) {
+  console.log(`${err.code} - ${err.name} - ${err.message}`);
+}
 ```
 
 
@@ -397,6 +568,14 @@ entries(): IterableIterator&lt;[K, V]&gt;
 | -------- | -------- |
 | IterableIterator&lt;[K, V]&gt; | 返回一个迭代器。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[containers错误码](../errorcodes/errorcode-containers.md)。
+
+| 错误码ID | 错误码信息 |
+| -------- | -------- |
+| 10200011 | The entries method cannot be bound. |
+
 **示例：**
 
 ```ts
@@ -409,6 +588,11 @@ while(temp != undefined) {
   console.log("key:" + temp[0]);
   console.log("value:" + temp[1]);
   temp = iter.next().value;
+}
+try {
+  hashMap.entries.bind({})(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
+} catch(err) {
+  console.log(`${err.code} - ${err.name} - ${err.message}`);
 }
 ```
 
@@ -426,6 +610,14 @@ while(temp != undefined) {
 | 类型 | 说明 |
 | -------- | -------- |
 | IterableIterator&lt;[K, V]&gt; | 返回一个迭代器。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[containers错误码](../errorcodes/errorcode-containers.md)。
+
+| 错误码ID | 错误码信息 |
+| -------- | -------- |
+| 10200011 | The Symbol.iterator method cannot be bound. |
 
 **示例：**
 ```ts
@@ -446,5 +638,10 @@ while(temp != undefined) {
   console.log("key:" + temp[0]);
   console.log("value:" + temp[1]);
   temp = iter.next().value;
+}
+try {
+  hashMap[Symbol.iterator].bind({})(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
+} catch(err) {
+  console.log(`${err.code} - ${err.name} - ${err.message}`);
 }
 ```

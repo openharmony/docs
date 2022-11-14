@@ -126,19 +126,19 @@ sendMouseEvent(event: MouseEvent): boolean
 ```ts
 // xxx.ets
 class Utils {
-  static rect_left;
-  static rect_top;
-  static rect_right;
-  static rect_bottom;
-  static rect_value;
+  static rect_left
+  static rect_top
+  static rect_right
+  static rect_bottom
+  static rect_value
 
   //获取组件所占矩形区域坐标
   static getComponentRect(key) {
-    let strJson = getInspectorByKey(key);
-    let obj = JSON.parse(strJson);
-    console.info("[getInspectorByKey] current component obj is: " + JSON.stringify(obj));
+    let strJson = getInspectorByKey(key)
+    let obj = JSON.parse(strJson)
+    console.info("[getInspectorByKey] current component obj is: " + JSON.stringify(obj))
     let rectInfo = JSON.parse('[' + obj.$rect + ']')
-    console.info("[getInspectorByKey] rectInfo is: " + rectInfo);
+    console.info("[getInspectorByKey] rectInfo is: " + rectInfo)
     this.rect_left = JSON.parse('[' + rectInfo[0] + ']')[0]
     this.rect_top = JSON.parse('[' + rectInfo[0] + ']')[1]
     this.rect_right = JSON.parse('[' + rectInfo[1] + ']')[0]

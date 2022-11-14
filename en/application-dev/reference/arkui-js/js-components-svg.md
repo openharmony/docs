@@ -6,7 +6,7 @@ The **\<svg>** component is a basic container. It can be used as the root node o
 >  **NOTE**
 > - This component is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 > 
-> - The width and height must be defined for the **<svg>** parent component or **<svg>** component. Otherwise, the component is not drawn.
+> - The width and height must be defined for the **\<svg>** parent component or **\<svg>** component. Otherwise, the component is not drawn.
 
 ## Required Permissions
 

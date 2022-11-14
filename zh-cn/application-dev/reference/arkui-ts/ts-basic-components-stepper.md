@@ -48,10 +48,10 @@ Stepper(value?: { index?: number })
 @Entry
 @Component
 struct StepperExample {
-  @State currentIndex: number = 0;
-  @State firstState: ItemState = ItemState.Normal;
-  @State secondState: ItemState = ItemState.Normal;
-  @State thirdState: ItemState = ItemState.Normal;
+  @State currentIndex: number = 0
+  @State firstState: ItemState = ItemState.Normal
+  @State secondState: ItemState = ItemState.Normal
+  @State thirdState: ItemState = ItemState.Normal
 
   build() {
     Stepper({
@@ -67,7 +67,7 @@ struct StepperExample {
             .margin({ top: 250, bottom: 50 })
           Button('change status:' + this.firstState)
             .onClick(() => {
-              this.firstState = this.firstState === ItemState.Skip ? ItemState.Normal : ItemState.Skip;
+              this.firstState = this.firstState === ItemState.Skip ? ItemState.Normal : ItemState.Skip
             })
         }.width('100%')
       }
@@ -83,7 +83,7 @@ struct StepperExample {
             .margin({ top: 250, bottom: 50 })
           Button('change status:' + this.secondState)
             .onClick(() => {
-              this.secondState = this.secondState === ItemState.Disabled ? ItemState.Normal : ItemState.Disabled;
+              this.secondState = this.secondState === ItemState.Disabled ? ItemState.Normal : ItemState.Disabled
             })
         }.width('100%')
       }
@@ -100,7 +100,7 @@ struct StepperExample {
             .margin({ top: 250, bottom: 50 })
           Button('change status:' + this.thirdState)
             .onClick(() => {
-              this.thirdState = this.thirdState === ItemState.Waiting ? ItemState.Normal : ItemState.Waiting;
+              this.thirdState = this.thirdState === ItemState.Waiting ? ItemState.Normal : ItemState.Waiting
             })
         }.width('100%')
       }
@@ -119,14 +119,14 @@ struct StepperExample {
     }
     .onFinish(() => {
       // 此处可处理点击最后一页的Finish时的逻辑，例如路由跳转等
-      console.info('onFinish');
+      console.info('onFinish')
     })
     .onSkip(() => {
       // 此处可处理点击跳过时的逻辑，例如动态修改Stepper的index值使其跳转到某一步骤页等
-      console.info('onSkip');
+      console.info('onSkip')
     })
     .onChange((prevIndex: number, index: number) => {
-      this.currentIndex = index;
+      this.currentIndex = index
     })
   }
 }

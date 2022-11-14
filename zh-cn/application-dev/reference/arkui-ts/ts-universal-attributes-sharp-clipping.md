@@ -12,7 +12,7 @@
 
 | 名称    | 参数类型                                     | 描述                                  |
 | -----| ------------------------------------------ | ------------------------------------ |
-| clip | [Circle](ts-drawing-components-circle.md)&nbsp;\|&nbsp;[Ellipse](ts-drawing-components-ellipse.md)&nbsp;\|&nbsp;[Path](ts-drawing-components-path.md)&nbsp;\|&nbsp;[Rect](ts-drawing-components-rect.md)&nbsp;\|&nbsp;boolean | 参数为相应类型的组件，按指定的形状对当前组件进行裁剪；参数为boolean类型时，设置是否按照边缘轮廓进行裁剪。<br>默认值：false |
+| clip | [Circle](ts-drawing-components-circle.md)&nbsp;\|&nbsp;[Ellipse](ts-drawing-components-ellipse.md)&nbsp;\|&nbsp;[Path](ts-drawing-components-path.md)&nbsp;\|&nbsp;[Rect](ts-drawing-components-rect.md)&nbsp;\|&nbsp;boolean | 参数为相应类型的组件，按指定的形状对当前组件进行裁剪；参数为boolean类型时，设置是否按照父容器边缘轮廓进行裁剪。<br>默认值：false |
 | mask | [Circle](ts-drawing-components-circle.md)&nbsp;\|&nbsp;[Ellipse](ts-drawing-components-ellipse.md)&nbsp;\|&nbsp;[Path](ts-drawing-components-path.md)&nbsp;\|&nbsp;[Rect](ts-drawing-components-rect.md)&nbsp;| 在当前组件上加上指定形状的遮罩。 |
 
 
@@ -24,34 +24,33 @@
 @Component
 struct ClipAndMaskExample {
   build() {
-    Column({ space: 5 }) {
-      Text('clip').fontSize(9).width('90%').fontColor(0xCCCCCC)
-      // 用一个280px直径的圆对图像进行裁剪
-      Image($r('app.media.example'))
-        .clip(new Circle({ width: 80, height: 80 }))
+    Column({ space: 15 }) {
+      Text('clip').fontSize(12).width('75%').fontColor('#DCDCDC')
+      Row() {
+        Image($r('app.media.testImg')).width('500px').height('280px')
+      }
+      .clip(true) // 如这里不设置clip为true，则Row组件的圆角不会限制其中的Image组件，Image组件的四个角会超出Row
+      .borderRadius(20)
+      // 用一个280px直径的圆对图片进行裁剪
+      Image($r('app.media.testImg'))
+        .clip(new Circle({ width: '280px', height: '280px' }))
         .width('500px').height('280px')
 
-      Row() {
-        Image($r('app.media.example')).width('500px').height('280px')
-      }
-      .clip(true)
-      .borderRadius(20)
-
-      Text('mask').fontSize(9).width('90%').fontColor(0xCCCCCC)
-      // 给图像添加了一个500px*280px的遮罩
-      Image($r('app.media.example'))
+      Text('mask').fontSize(12).width('75%').fontColor('#DCDCDC')
+      // 给图片添加了一个500px*280px的方形遮罩
+      Image($r('app.media.testImg'))
         .mask(new Rect({ width: '500px', height: '280px' }).fill(Color.Gray))
         .width('500px').height('280px')
 
-      // 给图像添加了一个280px*280px的圆遮罩
-      Image($r('app.media.example'))
+      // 给图片添加了一个280px*280px的圆形遮罩
+      Image($r('app.media.testImg'))
         .mask(new Circle({ width: '280px', height: '280px' }).fill(Color.Gray))
-        .width('500px').height('281px')
+        .width('500px').height('280px')
     }
     .width('100%')
-    .margin({ top: 5 })
+    .margin({ top: 15 })
   }
 }
 ```
 
-![zh-cn_image_0000001174264370](figures/zh-cn_image_0000001174264370.png)
+![clipAndMask](figures/clipAndMask.PNG)

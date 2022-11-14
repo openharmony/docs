@@ -34,7 +34,7 @@ getAllScreens(callback: AsyncCallback&lt;Array&lt;Screen&gt;&gt;): void
 
 | 错误码ID | 错误信息 |
 | ------- | ----------------------- |
-| 1400001 | This is invalid screen. |
+| 1400001 | Invalid display or screen. |
 
 **示例：**
 
@@ -42,10 +42,10 @@ getAllScreens(callback: AsyncCallback&lt;Array&lt;Screen&gt;&gt;): void
 let screenClass = null;
 screen.getAllScreens((err, data) => {
     if (err.code) {
-        console.error('Failed to get all screens . Cause:  ' + JSON.stringify(err));
+        console.error('Failed to get all screens. Cause:  ' + JSON.stringify(err));
         return;
     }
-    console.info('Succeeded in getting all screens . Data:' + JSON.stringify(data));
+    console.info('Succeeded in getting all screens. Data:' + JSON.stringify(data));
     screenClass = data[0];
 });
 ```
@@ -70,7 +70,7 @@ getAllScreens(): Promise&lt;Array&lt;Screen&gt;&gt;
 
 | 错误码ID | 错误信息 |
 | ------- | ----------------------- |
-| 1400001 | This is invalid screen. |
+| 1400001 | Invalid display or screen. |
 
 **示例：**
 
@@ -79,9 +79,9 @@ let screenClass = null;
 let promise = screen.getAllScreens();
 promise.then((data) => {
     screenClass = data[0];
-    console.log('Succeeded in getting all screens . Data:'+ JSON.stringify(data));
+    console.log('Succeeded in getting all screens. Data:'+ JSON.stringify(data));
 }).catch((err) => {
-    console.log('Failed to get all screens . Cause: ' + JSON.stringify(err));
+    console.log('Failed to get all screens. Cause: ' + JSON.stringify(err));
 });
 ```
 
@@ -105,7 +105,7 @@ on(eventType: 'connect' | 'disconnect' | 'change', callback: Callback&lt;number&
 ```js
 try {
     let callback = (data) => {
-        console.info('Register the callback for screen changes. Data: ' + JSON.stringify(data))
+        console.info('Succeeded in registering the callback for screen changes. Data: ' + JSON.stringify(data))
     };
     screen.on('connect', callback);
 } catch (exception) {
@@ -133,7 +133,7 @@ off(eventType: 'connect' | 'disconnect' | 'change', callback?: Callback&lt;numbe
 ```js
 try {
     let callback = (data) => {
-        console.info('Unregister the callback for screen changes. Data: ' + JSON.stringify(data))
+        console.info('Succeeded in unregistering the callback for screen changes. Data: ' + JSON.stringify(data))
     };
     screen.off('connect', callback);
 } catch (exception) {
@@ -162,7 +162,7 @@ makeExpand(options:Array&lt;ExpandOption&gt;, callback: AsyncCallback&lt;number&
 
 | 错误码ID | 错误信息 |
 | ------- | ----------------------- |
-| 1400001 | This is invalid screen. |
+| 1400001 | Invalid display or screen. |
 
 **示例：**
 
@@ -171,14 +171,14 @@ try {
     let groupId = null;
     screen.makeExpand([{screenId: 0, startX: 0, startY: 0}, {screenId: 1, startX: 1080, startY: 0}], (err, data) => {
       if (err.code) {
-        console.error('Failed to make screens as expand-screen. Code:' + JSON.stringify(err));
+        console.error('Failed to expand the screen. Code:' + JSON.stringify(err));
         return;
       }
       groupId = data;
-      console.info('Succeeded in making screens as expand-screen. Data: ' + JSON.stringify(data));
+      console.info('Succeeded in expanding the screen. Data: ' + JSON.stringify(data));
     });
 } catch (exception) {
-    console.error('Failed to make screens as expand-screen. Code: ' + JSON.stringify(exception));
+    console.error('Failed to expand the screen. Code: ' + JSON.stringify(exception));
 };
 ```
 
@@ -208,19 +208,19 @@ makeExpand(options:Array&lt;ExpandOption&gt;): Promise&lt;number&gt;
 
 | 错误码ID | 错误信息 |
 | ------- | ----------------------- |
-| 1400001 | This is invalid screen. |
+| 1400001 | Invalid display or screen. |
 
 **示例：**
 
 ```js
 try {
     screen.makeExpand([{screenId: 0, startX: 0, startY: 0}, {screenId: 1, startX: 1080, startY: 0}]).then((data) => {
-      console.info('Succeeded in making screens as expand-screen. Data: ' + JSON.stringify(data));
+      console.info('Succeeded in expanding the screen. Data: ' + JSON.stringify(data));
     }).catch((err) => {
-      console.error('Failed to make screens as expand-screen. Code:' + JSON.stringify(err));
+      console.error('Failed to expand the screen. Code:' + JSON.stringify(err));
     });
 } catch (exception) {
-    console.error('Failed to make screens as expand-screen. Code: ' + JSON.stringify(exception));
+    console.error('Failed to expand the screen. Code: ' + JSON.stringify(exception));
 };
 ```
 
@@ -246,7 +246,7 @@ makeMirror(mainScreen:number, mirrorScreen:Array&lt;number&gt;, callback: AsyncC
 
 | 错误码ID | 错误信息 |
 | ------- | ----------------------- |
-| 1400001 | This is invalid screen. |
+| 1400001 | Invalid display or screen. |
 
 **示例：**
 
@@ -256,13 +256,13 @@ let mirrorScreenIds = [1, 2, 3];
 try {
     screen.makeMirror(mainScreenId, mirrorScreenIds, (err, data) => {
       if (err.code) {
-        console.error('Failed to make screens as mirror-screen. Code: ' + JSON.stringify(err));
+        console.error('Failed to set screen mirroring. Code: ' + JSON.stringify(err));
         return;
       }
-      console.info('Succeeded in making screens as mirror-screen. Data: ' + JSON.stringify(data));
+      console.info('Succeeded in setting screen mirroring. Data: ' + JSON.stringify(data));
     });
 } catch (exception) {
-    console.error('Failed to make screens as mirror-screen. Code: ' + JSON.stringify(exception));
+    console.error('Failed to set screen mirroring. Code: ' + JSON.stringify(exception));
 };
 ```
 
@@ -293,7 +293,7 @@ makeMirror(mainScreen:number, mirrorScreen:Array&lt;number&gt;): Promise&lt;numb
 
 | 错误码ID | 错误信息 |
 | ------- | ----------------------- |
-| 1400001 | This is invalid screen. |
+| 1400001 | Invalid display or screen. |
 
 **示例：**
 
@@ -302,12 +302,12 @@ let mainScreenId = 0;
 let mirrorScreenIds = [1, 2, 3];
 try {
     screen.makeMirror(mainScreenId, mirrorScreenIds).then((data) => {
-      console.info('Succeeded in making screens as mirror-screen. Data: ' + JSON.stringify(data));
+      console.info('Succeeded in setting screen mirroring. Data: ' + JSON.stringify(data));
     }).catch((err) => {
-      console.error('Failed to make screens as mirror-screen. Code: ' + JSON.stringify(err));
+      console.error('Failed to set screen mirroring. Code: ' + JSON.stringify(err));
     });
 } catch (exception) {
-    console.error('Failed to make screens as mirror-screen. Code: ' + JSON.stringify(exception));
+    console.error('Failed to set screen mirroring. Code: ' + JSON.stringify(exception));
 };
 ```
 
@@ -334,7 +334,7 @@ createVirtualScreen(options:VirtualScreenOption, callback: AsyncCallback&lt;Scre
 
 | 错误码ID | 错误信息 |
 | ------- | ----------------------- |
-| 1400001 | This is invalid screen. |
+| 1400001 | Invalid display or screen. |
 
 **示例：**
 
@@ -349,14 +349,14 @@ try {
       surfaceId: ''
     }, (err, data) => {
       if (err.code) {
-        console.error('Failed to create virtual screen. Code: ' + JSON.stringify(err));
+        console.error('Failed to create the virtual screen. Code: ' + JSON.stringify(err));
         return;
       }
       screenClass = data;
-      console.info('Succeeded in creating virtual screen. Data: ' + JSON.stringify(data));
+      console.info('Succeeded in creating the virtual screen. Data: ' + JSON.stringify(data));
     });
 } catch (exception) {
-    console.error('Failed to create virtual screen. Code: ' + JSON.stringify(exception));
+    console.error('Failed to create the virtual screen. Code: ' + JSON.stringify(exception));
 };
 ```
 
@@ -388,7 +388,7 @@ createVirtualScreen(options:VirtualScreenOption): Promise&lt;Screen&gt;
 
 | 错误码ID | 错误信息 |
 | ------- | ----------------------- |
-| 1400001 | This is invalid screen. |
+| 1400001 | Invalid display or screen. |
 
 **示例：**
 
@@ -403,12 +403,12 @@ try {
       surfaceId: ''
     }).then((data) => {
       screenClass = data;
-      console.info('Succeeded in creating virtual screen. Data: ' + JSON.stringify(data));
+      console.info('Succeeded in creating the virtual screen. Data: ' + JSON.stringify(data));
     }).catch((err) => {
-      console.error('Failed to create virtual screen. Code: ' + JSON.stringify(err));
+      console.error('Failed to create the virtual screen. Code: ' + JSON.stringify(err));
     });
 } catch (exception) {
-    console.error('Failed to create virtual screen. Code: ' + JSON.stringify(exception));
+    console.error('Failed to create the virtual screen. Code: ' + JSON.stringify(exception));
 };
 ```
 
@@ -433,7 +433,7 @@ destroyVirtualScreen(screenId:number, callback: AsyncCallback&lt;void&gt;): void
 
 | 错误码ID | 错误信息 |
 | ------- | ----------------------------- |
-| 1400002 | This operation is not access. |
+| 1400002 | Unauthorized operation. |
 
 **示例：**
 
@@ -442,13 +442,13 @@ let screenId = 1;
 try {
     screen.destroyVirtualScreen(screenId, (err,data) => {
       if (err.code) {
-        console.error('Failed to destroy virtual screen. Code: ' + JSON.stringify(err));
+        console.error('Failed to destroy the virtual screen. Code: ' + JSON.stringify(err));
         return;
       }
-      console.info('Succeeded in destroying virtual screen.');
+      console.info('Succeeded in destroying the virtual screen.');
     });
 } catch (exception) {
-    console.error('Failed to destroy virtual screen. Code: ' + JSON.stringify(exception));
+    console.error('Failed to destroy the virtual screen. Code: ' + JSON.stringify(exception));
 };
 ```
 
@@ -478,7 +478,7 @@ destroyVirtualScreen(screenId:number): Promise&lt;void&gt;
 
 | 错误码ID | 错误信息 |
 | ------- | ----------------------------- |
-| 1400002 | This operation is not access. |
+| 1400002 | Unauthorized operation. |
 
 **示例：**
 
@@ -486,12 +486,12 @@ destroyVirtualScreen(screenId:number): Promise&lt;void&gt;
 let screenId = 1;
 try {
     screen.destroyVirtualScreen(screenId).then((data) => {
-      console.info('Succeeded in destroying virtual screen.');
+      console.info('Succeeded in destroying the virtual screen.');
     }).catch((err) => {
-      console.error('Failed to destroy virtual screen. Code: ' + JSON.stringify(err));
+      console.error('Failed to destroy the virtual screen. Code: ' + JSON.stringify(err));
     });
 } catch (exception) {
-    console.error('Failed to destroy virtual screen. Code: ' + JSON.stringify(exception));
+    console.error('Failed to destroy the virtual screen. Code: ' + JSON.stringify(exception));
 };
 ```
 
@@ -519,7 +519,7 @@ setVirtualScreenSurface(screenId:number, surfaceId: string, callback: AsyncCallb
 
 | 错误码ID | 错误信息 |
 | ------- | ----------------------- |
-| 1400001 | This is invalid screen. |
+| 1400001 | Invalid display or screen. |
 
 **示例：**
 
@@ -529,13 +529,13 @@ let surfaceId = '2048';
 try {
   screen.setVirtualScreenSurface(screenId, surfaceId, (err,data) => {
     if (err.code) {
-      console.error('Failed to Set surface for the virtual screen. Code: ' + JSON.stringify(err));
+      console.error('Failed to set the surface for the virtual screen. Code: ' + JSON.stringify(err));
       return;
     }
-    console.info('Succeeded in setting surface for the virtual screen.');
+    console.info('Succeeded in setting the surface for the virtual screen.');
   });
 } catch (exception) {
-    console.error('Failed to Set surface for the virtual screen. Code: ' + JSON.stringify(exception));
+    console.error('Failed to set the surface for the virtual screen. Code: ' + JSON.stringify(exception));
 };
 ```
 
@@ -568,7 +568,7 @@ setVirtualScreenSurface(screenId:number, surfaceId: string): Promise&lt;void&gt;
 
 | 错误码ID | 错误信息 |
 | ------- | ----------------------- |
-| 1400001 | This is invalid screen. |
+| 1400001 | Invalid display or screen. |
 
 **示例：**
 
@@ -577,12 +577,12 @@ let screenId = 1;
 let surfaceId = '2048';
 try {
     screen.setVirtualScreenSurface(screenId, surfaceId).then((data) => {
-      console.info('Succeeded in setting surface for the virtual screen.');
+      console.info('Succeeded in setting the surface for the virtual screen.');
     }).catch((err) => {
-      console.error('Failed to Set surface for the virtual screen. Code: ' + JSON.stringify(err));
+      console.error('Failed to set the surface for the virtual screen. Code: ' + JSON.stringify(err));
     });
 } catch (exception) {
-    console.error('Failed to Set surface for the virtual screen. Code: ' + JSON.stringify(exception));
+    console.error('Failed to set the surface for the virtual screen. Code: ' + JSON.stringify(exception));
 };
 ```
 
@@ -604,9 +604,9 @@ isScreenRotationLocked(): Promise&lt;boolean&gt;
 
 ```js
 screen.isScreenRotationLocked().then((isLocked) => {
-  console.info('Succeeded in getting screen rotation lock status. isLocked:'+ JSON.stringify(isLocked));
+  console.info('Succeeded in getting the screen rotation lock status. isLocked:'+ JSON.stringify(isLocked));
 }).catch((err) => {
-  console.error('Failed to get screen rotation lock status. Cause:' + JSON.stringify(err));
+  console.error('Failed to get the screen rotation lock status. Cause:' + JSON.stringify(err));
 });
 ```
 
@@ -629,10 +629,10 @@ isScreenRotationLocked(callback: AsyncCallback&lt;boolean&gt;): void
 ```js
 screen.isScreenRotationLocked((err, isLocked) => {
   if (err.code) {
-    console.error('Failed to get screen rotation lock status. Cause:' + JSON.stringify(err));
+    console.error('Failed to get the screen rotation lock status. Cause:' + JSON.stringify(err));
     return;
   }
-  console.info('Succeeded in getting screen rotation lock status. isLocked:' + JSON.stringify(isLocked));
+  console.info('Succeeded in getting the screen rotation lock status. isLocked:' + JSON.stringify(isLocked));
 });
 ```
 
@@ -662,12 +662,12 @@ setScreenRotationLocked(isLocked: boolean): Promise&lt;void&gt;
 let isLocked = false;
 try {
     screen.setScreenRotationLocked(isLocked).then((data) => {
-      console.info('Succeeded in setting whether to lock screen rotation');
+      console.info('Succeeded in unlocking auto rotate');
     }).catch((err) => {
-      console.error('Failed to set whether to lock screen rotation. Code: ' + JSON.stringify(err));
+      console.error('Failed to unlock auto rotate. Code: ' + JSON.stringify(err));
     });
 } catch (exception) {
-    console.error('Failed to set whether to lock screen rotation. Code: ' + JSON.stringify(exception));
+    console.error('Failed to unlock auto rotate. Code: ' + JSON.stringify(exception));
 };
 ```
 
@@ -693,13 +693,13 @@ let isLocked = false;
 try {
     screen.setScreenRotationLocked(isLocked, (err, data) => {
       if (err.code) {
-        console.error('Failed to set whether to lock screen rotation. Cause:' + JSON.stringify(err));
+        console.error('Failed to unlock auto rotate. Cause:' + JSON.stringify(err));
         return;
       }
-      console.info('Succeeded in setting whether to lock screen rotation.');
+      console.info('Succeeded in unlocking auto rotate.');
     });
 } catch (exception) {
-    console.error('Failed to set whether to lock screen rotation. Code: ' + JSON.stringify(exception));
+    console.error('Failed to unlock auto rotate. Code: ' + JSON.stringify(exception));
 };
 ```
 
@@ -764,7 +764,7 @@ setOrientation(orientation: Orientation, callback: AsyncCallback&lt;void&gt;): v
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------------------- |
-| 1400003 | This window manager service work abnormally. |
+| 1400003 | This display manager service works abnormally. |
 
 **示例：**
 
@@ -772,13 +772,13 @@ setOrientation(orientation: Orientation, callback: AsyncCallback&lt;void&gt;): v
 try {
     screenClass.setOrientation(screen.Orientation.VERTICAL, (err, data) => {
         if (err.code) {
-            console.error('Failed to set Orientation VERTICAL. Code: ' + JSON.stringify(err));
+            console.error('Failed to set the vertical orientation. Code: ' + JSON.stringify(err));
             return;
         }
-        console.info('Succeeded in setting Orientation VERTICAL. data: ' + JSON.stringify(data));
+        console.info('Succeeded in setting the vertical orientation. data: ' + JSON.stringify(data));
     });
 } catch (exception) {
-    console.error('Failed to set Orientation VERTICAL. Code: ' + JSON.stringify(exception));
+    console.error('Failed to set the vertical orientation. Code: ' + JSON.stringify(exception));
 };
 ```
 
@@ -806,7 +806,7 @@ setOrientation(orientation: Orientation): Promise&lt;void&gt;
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------------------- |
-| 1400003 | This window manager service work abnormally. |
+| 1400003 | This display manager service works abnormally. |
 
 **示例：**
 
@@ -814,12 +814,12 @@ setOrientation(orientation: Orientation): Promise&lt;void&gt;
 try {
     let promise = screenClass.setOrientation(screen.Orientation.VERTICAL);
     promise.then((data) => {
-        console.info('Succeeded in setting Orientation VERTICAL. Data: ' + JSON.stringify(data));
+        console.info('Succeeded in setting the vertical orientation. Data: ' + JSON.stringify(data));
     }).catch((err) => {
-        console.error('Failed to set Orientation VERTICAL. Cause: ' + JSON.stringify(err));
+        console.error('Failed to set the vertical orientation. Cause: ' + JSON.stringify(err));
     });
 } catch (exception) {
-    console.error('Failed to set Orientation VERTICAL. Code: ' + JSON.stringify(exception));
+    console.error('Failed to set the vertical orientation. Code: ' + JSON.stringify(exception));
 };
 ```
 
@@ -842,7 +842,7 @@ setScreenActiveMode(modeIndex: number, callback: AsyncCallback&lt;void&gt;): voi
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------------------- |
-| 1400003 | This window manager service work abnormally. |
+| 1400003 | This display manager service works abnormally. |
 
 **示例：**
 
@@ -851,13 +851,13 @@ let modeIndex = 0;
 try {
     screenClass.setScreenActiveMode(modeIndex, (err, data) => {
         if (err.code) {
-            console.error('Failed to set ScreenActiveMode 0. Code: ' + JSON.stringify(err));
+            console.error('Failed to set screen active mode 0. Code: ' + JSON.stringify(err));
             return;
         }
-        console.info('Succeeded in setting ScreenActiveMode 0. data: ' + JSON.stringify(data));
+        console.info('Succeeded in setting screen active mode 0. data: ' + JSON.stringify(data));
     });
 } catch (exception) {
-    console.error('Failed to set ScreenActiveMode 0. Code: ' + JSON.stringify(exception));
+    console.error('Failed to set screen active mode 0. Code: ' + JSON.stringify(exception));
 };
 ```
 
@@ -885,7 +885,7 @@ setScreenActiveMode(modeIndex: number): Promise&lt;void&gt;
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------------------- |
-| 1400003 | This window manager service work abnormally. |
+| 1400003 | This display manager service works abnormally. |
 
 **示例：**
 
@@ -894,12 +894,12 @@ let modeIndex = 0;
 try {
     let promise = screenClass.setScreenActiveMode(modeIndex);
       promise.then((data) => {
-          console.info('Succeeded in setting ScreenActiveMode 0. Data: ' + JSON.stringify(data));
+          console.info('Succeeded in setting screen active mode 0. Data: ' + JSON.stringify(data));
       }).catch((err) => {
-          console.error('Failed to set ScreenActiveMode 0. Code: ' + JSON.stringify(err));
+          console.error('Failed to set screen active mode 0. Code: ' + JSON.stringify(err));
       });
 } catch (exception) {
-    console.error('Failed to set ScreenActiveMode 0. Code: ' + JSON.stringify(exception));
+    console.error('Failed to set screen active mode 0. Code: ' + JSON.stringify(exception));
 };
 ```
 
@@ -922,7 +922,7 @@ setDensityDpi(densityDpi: number, callback: AsyncCallback&lt;void&gt;): void;
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------------------- |
-| 1400003 | This window manager service work abnormally. |
+| 1400003 | This display manager service works abnormally. |
 
 **示例：**
 
@@ -931,13 +931,13 @@ let densityDpi = 320;
 try {
     screenClass.setDensityDpi(densityDpi, (err, data) => {
         if (err.code) {
-            console.error('Failed to set DensityDpi 320. Code: ' + JSON.stringify(err));
+            console.error('Failed to set the pixel density of the screen to 320. Code: ' + JSON.stringify(err));
             return;
         }
-        console.info('Succeed in setting DensityDpi 320. data: ' + JSON.stringify(data));
+        console.info('Succeed in setting the pixel density of the screen to 320. data: ' + JSON.stringify(data));
     });
 } catch (exception) {
-    console.error('Failed to set DensityDpi 320. Code: ' + JSON.stringify(exception));
+    console.error('Failed to set the pixel density of the screen to 320. Code: ' + JSON.stringify(exception));
 };
 ```
 
@@ -965,7 +965,7 @@ setDensityDpi(densityDpi: number): Promise&lt;void&gt;
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------------------- |
-| 1400003 | This window manager service work abnormally. |
+| 1400003 | This display manager service works abnormally. |
 
 **示例：**
 
@@ -974,12 +974,12 @@ let densityDpi = 320;
 try {
     let promise = screenClass.setDensityDpi(densityDpi);
     promise.then((data) => {
-        console.info('Succeeded in setting DensityDpi 320. Data: ' + JSON.stringify(data));
+        console.info('Succeeded in setting the pixel density of the screen to 320. Data: ' + JSON.stringify(data));
     }).catch((err) => {
-        console.error('Failed to set DensityDpi 320. Code: ' + JSON.stringify(err));
+        console.error('Failed to set the pixel density of the screen to 320. Code: ' + JSON.stringify(err));
     });
 } catch (exception) {
-    console.error('Failed to set DensityDpi 320. Code: ' + JSON.stringify(exception));
+    console.error('Failed to set the pixel density of the screen to 320. Code: ' + JSON.stringify(exception));
 };
 ```
 

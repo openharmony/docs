@@ -33,7 +33,7 @@ TapGesture(value?: { count?: number, fingers?: number })
 @Entry
 @Component
 struct TapGestureExample {
-  @State value: string = '';
+  @State value: string = ''
 
   build() {
     Column() {
@@ -42,7 +42,7 @@ struct TapGestureExample {
         .gesture(
         TapGesture({ count: 2 })
           .onAction((event: GestureEvent) => {
-            this.value = JSON.stringify(event.fingerList[0]);
+            this.value = JSON.stringify(event.fingerList[0])
           })
         )
       Text(this.value)

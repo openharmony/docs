@@ -82,21 +82,21 @@ class MainAbility extends Ability {
             console.info('Succeeded in obtaining the main window. Data: ' + JSON.stringify(data));
             // 2.设置主窗口属性。以设置"是否可触"属性为例。
             let isTouchable = true;
-            windowClass.setTouchable(isTouchable, (err, data) => {
+            windowClass.setTouchable(isTouchable, (err) => {
                 if (err.code) {
                     console.error('Failed to set the window to be touchable. Cause:' + JSON.stringify(err));
                     return;
                 }
-                console.info('Succeeded in setting the window to be touchable. Data:' + JSON.stringify(data));
+                console.info('Succeeded in setting the window to be touchable.');
             })
         })
         // 3.为主窗口加载对应的目标页面。
-        windowStage.loadContent("pages/page2", (err, data) => {
+        windowStage.loadContent("pages/page2", (err) => {
             if (err.code) {
                 console.error('Failed to load the content. Cause:' + JSON.stringify(err));
                 return;
             }
-            console.info('Succeeded in loading the content. Data: ' + JSON.stringify(data));
+            console.info('Succeeded in loading the content.');
         });
     }
 };
@@ -127,11 +127,12 @@ class MainAbility extends Ability {
    ```ts
    import Ability from '@ohos.application.Ability'
    
+   let windowStage_ = null;
+   let sub_windowClass = null;
    class MainAbility extends Ability {
-       onWindowStageCreate(windowStage) {
+       showSubWindow() {
            // 1.创建应用子窗口。
-           let sub_windowClass = null;
-           windowStage.createSubWindow("mySubWindow", (err, data) => {
+           windowStage_.createSubWindow("mySubWindow", (err, data) => {
                if (err.code) {
                    console.error('Failed to create the subwindow. Cause: ' + JSON.stringify(err));
                    return;
@@ -139,7 +140,7 @@ class MainAbility extends Ability {
                sub_windowClass = data;
                console.info('Succeeded in creating the subwindow. Data: ' + JSON.stringify(data));
                // 1.获取已创建的应用子窗口。
-               windowStage.getSubWindow((err, data) => {
+               windowStage_.getSubWindow((err, data) => {
                    if (err.code) {
                        console.error('Failed to obtain the subWindow. Cause:' + JSON.stringify(err));
                        return;
@@ -148,48 +149,59 @@ class MainAbility extends Ability {
                    sub_windowClass = data;
                });
                // 2.子窗口创建成功后，设置子窗口的位置、大小及相关属性等。
-               sub_windowClass.moveTo(300, 300, (err, data) => {
+               sub_windowClass.moveTo(300, 300, (err) => {
                    if (err.code) {
                        console.error('Failed to move the window. Cause:' + JSON.stringify(err));
                        return;
                    }
-                   console.info('Succeeded in moving the window. Data: ' + JSON.stringify(data));
+                   console.info('Succeeded in moving the window.');
                });
-               sub_windowClass.resetSize(500, 1000, (err, data) => {
+               sub_windowClass.resetSize(500, 1000, (err) => {
                    if (err.code) {
                        console.error('Failed to change the window size. Cause:' + JSON.stringify(err));
                        return;
                    }
-                   console.info('Succeeded in changing the window size. Data: ' + JSON.stringify(data));
+                   console.info('Succeeded in changing the window size.');
                });
                // 3.为子窗口加载对应的目标页面。
-               sub_windowClass.loadContent("pages/page3", (err, data) => {
+               sub_windowClass.loadContent("pages/page3", (err) => {
                    if (err.code) {
                        console.error('Failed to load the content. Cause:' + JSON.stringify(err));
                        return;
                    }
-                   console.info('Succeeded in loading the content. Data: ' + JSON.stringify(data));
+                   console.info('Succeeded in loading the content.');
                    // 3.显示子窗口。
-                   sub_windowClass.show((err, data) => {
+                   sub_windowClass.show((err) => {
                        if (err.code) {
-                           console.error('Failed to show the window. Cause:' + JSON.stringify(err));
+                           console.error('Failed to show the window. Cause: ' + JSON.stringify(err));
                            return;
                        }
-                       console.info('Succeeded in showing the window. Data: ' + JSON.stringify(data));
-                   });
-               });
-               // 4.销毁子窗口。当不再需要子窗口时，可根据具体实现逻辑，使用destroy对其进行销毁，此处以监听窗口区域外的点击事件为例实现子窗口的销毁。
-               sub_windowClass.on('touchOutside', () => {
-                   console.info('touch outside');
-                   sub_windowClass.destroy((err, data) => {
-                       if (err.code) {
-                           console.error('Failed to destroy the window. Cause: ' + JSON.stringify(err));
-                           return;
-                       }
-                       console.info('Succeeded in destroying the window. Data: ' + JSON.stringify(data));
+                       console.info('Succeeded in showing the window.');
                    });
                });
            })
+       }
+   
+       destroySubWindow() {
+           // 4.销毁子窗口。当不再需要子窗口时，可根据具体实现逻辑，使用destroy对其进行销毁。
+           sub_windowClass.destroy((err) => {
+               if (err.code) {
+                   console.error('Failed to destroy the window. Cause: ' + JSON.stringify(err));
+                   return;
+               }
+               console.info('Succeeded in destroying the window.');
+           });
+       }
+   
+       onWindowStageCreate(windowStage) {
+           windowStage_ = windowStage;
+           // 开发者可以在适当的时机，如主窗口上按钮点击事件等，创建子窗口。并不一定需要在onWindowStageCreate调用，这里仅作展示
+           this.showSubWindow();
+       }
+   
+       onWindowStageDestroy() {
+           // 开发者可以在适当的时机，如子窗口上点击关闭按钮等，销毁子窗口。并不一定需要在onWindowStageDestroy调用，这里仅作展示
+           this.destroySubWindow();
        }
    };
    ```
@@ -230,56 +242,53 @@ class MainAbility extends Ability {
    
                // 2.实现沉浸式效果。方式一：设置应用主窗口为全屏显示。
                let isFullScreen = true;
-               windowClass.setFullScreen(isFullScreen, (err, data) => {
+               windowClass.setFullScreen(isFullScreen, (err) => {
                    if (err.code) {
                        console.error('Failed to enable the full-screen mode. Cause:' + JSON.stringify(err));
                        return;
                    }
-                   console.info('Succeeded in enabling the full-screen mode. Data: ' + JSON.stringify(data));
+                   console.info('Succeeded in enabling the full-screen mode.');
                });
                // 2.实现沉浸式效果。方式二：设置导航栏、状态栏不显示。
                let names = [];
-               windowClass.setSystemBarEnable(names, (err, data) => {
+               windowClass.setSystemBarEnable(names, (err) => {
                    if (err.code) {
                        console.error('Failed to set the system bar to be visible. Cause:' + JSON.stringify(err));
                        return;
                    }
-                   console.info('Succeeded in setting the system bar to be visible. Data: ' + JSON.stringify(data));
+                   console.info('Succeeded in setting the system bar to be visible.');
                });
                // 2.实现沉浸式效果。方式三：设置窗口为全屏布局，配合设置导航栏、状态栏的透明度、背景/文字颜色及高亮图标等属性，与主窗口显示保持协调一致。
                let isLayoutFullScreen = true;
-               windowClass.setLayoutFullScreen(isLayoutFullScreen, (err, data) => {
+               windowClass.setLayoutFullScreen(isLayoutFullScreen, (err) => {
                    if (err.code) {
                        console.error('Failed to set the window layout to full-screen mode. Cause:' + JSON.stringify(err));
                        return;
                    }
-                   console.info('Succeeded in setting the window layout to full-screen mode. Data: ' + JSON.stringify(data));
+                   console.info('Succeeded in setting the window layout to full-screen mode.');
                });
                let sysBarProps = {
                    statusBarColor: '#ff00ff',
                    navigationBarColor: '#00ff00',
-                   // 以下两个属性从API Version 7开始支持
-                   isStatusBarLightIcon: false,
-                   isNavigationBarLightIcon: false,
                    // 以下两个属性从API Version 8开始支持
                    statusBarContentColor: '#ffffff',
                    navigationBarContentColor: '#ffffff'
                };
-               windowClass.setSystemBarProperties(sysBarProps, (err, data) => {
+               windowClass.setSystemBarProperties(sysBarProps, (err) => {
                    if (err.code) {
                        console.error('Failed to set the system bar properties. Cause: ' + JSON.stringify(err));
                        return;
                    }
-                   console.info('Succeeded in setting the system bar properties. Data: ' + JSON.stringify(data));
+                   console.info('Succeeded in setting the system bar properties.');
                });
            })
            // 3.为沉浸式窗口加载对应的目标页面。
-           windowStage.loadContent("pages/page2", (err, data) => {
+           windowStage.loadContent("pages/page2", (err) => {
                if (err.code) {
                    console.error('Failed to load the content. Cause:' + JSON.stringify(err));
                    return;
                }
-               console.info('Succeeded in loading the content. Data: ' + JSON.stringify(data));
+               console.info('Succeeded in loading the content.');
            });
        }
    };
@@ -347,46 +356,43 @@ class MainAbility extends Ability {
                console.info('Succeeded in creating the floatWindow. Data: ' + JSON.stringify(data));
                windowClass = data;
                // 3.悬浮窗窗口创建成功后，设置悬浮窗的位置、大小及相关属性等。
-               windowClass.moveTo(300, 300, (err, data) => {
+               windowClass.moveTo(300, 300, (err) => {
                    if (err.code) {
                        console.error('Failed to move the window. Cause:' + JSON.stringify(err));
                        return;
                    }
-                   console.info('Succeeded in moving the window. Data: ' + JSON.stringify(data));
+                   console.info('Succeeded in moving the window.');
                });
-               windowClass.resetSize(500, 1000, (err, data) => {
+               windowClass.resetSize(500, 1000, (err) => {
                    if (err.code) {
                        console.error('Failed to change the window size. Cause:' + JSON.stringify(err));
                        return;
                    }
-                   console.info('Succeeded in changing the window size. Data: ' + JSON.stringify(data));
+                   console.info('Succeeded in changing the window size.');
                });
                // 4.为悬浮窗加载对应的目标页面。
-               windowClass.loadContent("pages/page4", (err, data) => {
+               windowClass.loadContent("pages/page4", (err) => {
                    if (err.code) {
                        console.error('Failed to load the content. Cause:' + JSON.stringify(err));
                        return;
                    }
-                   console.info('Succeeded in loading the content. Data: ' + JSON.stringify(data));
+                   console.info('Succeeded in loading the content.');
                    // 4.显示悬浮窗。
-                   windowClass.show((err, data) => {
+                   windowClass.show((err) => {
                        if (err.code) {
                            console.error('Failed to show the window. Cause: ' + JSON.stringify(err));
                            return;
                        }
-                       console.info('Succeeded in showing the window. Data: ' + JSON.stringify(data));
+                       console.info('Succeeded in showing the window.');
                    });
                });
-               //5.销毁悬浮窗。当不再需要悬浮窗时，可根据具体实现逻辑，使用destroy对其进行销毁，此处以监听窗口区域外的点击事件为例实现悬浮窗的销毁。
-               windowClass.on('touchOutside', () => {
-                   console.info('touch outside');
-                   windowClass.destroy((err, data) => {
-                       if (err.code) {
-                           console.error('Failed to destroy the window. Cause: ' + JSON.stringify(err));
-                           return;
-                       }
-                       console.info('Succeeded in destroying the window. Data: ' + JSON.stringify(data));
-                   });
+               //5.销毁悬浮窗。当不再需要悬浮窗时，可根据具体实现逻辑，使用destroy对其进行销毁。
+               windowClass.destroy((err) => {
+                   if (err.code) {
+                       console.error('Failed to destroy the window. Cause: ' + JSON.stringify(err));
+                       return;
+                   }
+                   console.info('Succeeded in destroying the window.');
                });
            });
        }

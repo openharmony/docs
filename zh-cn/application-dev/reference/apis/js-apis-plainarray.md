@@ -41,10 +41,23 @@ PlainArray的构造函数。
 
 **系统能力：** SystemCapability.Utils.Lang
 
+**错误码：**
+
+以下错误码的详细介绍请参见[containers错误码](../errorcodes/errorcode-containers.md)。
+
+| 错误码ID | 错误码信息 |
+| -------- | -------- |
+| 10200012 | The PlainArray's constructor cannot be directly invoked. |
+
 **示例：**
 
 ```ts
 let plainArray = new PlainArray();
+try {
+  let plainArray2 = PlainArray();
+} catch(err) {
+  console.log(`${err.code} - ${err.name} - ${err.message}`);
+}
 ```
 
 
@@ -62,11 +75,24 @@ isEmpty(): boolean
 | -------- | -------- |
 | boolean | 为空返回true, 不为空返回false。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[containers错误码](../errorcodes/errorcode-containers.md)。
+
+| 错误码ID | 错误码信息 |
+| -------- | -------- |
+| 10200011 | The isEmpty method cannot be bound. |
+
 **示例：**
 
 ```ts
 const plainArray = new PlainArray();
 let result = plainArray.isEmpty();
+try {
+  plainArray.isEmpty.bind({})(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
+} catch(err) {
+  console.log(`${err.code} - ${err.name} - ${err.message}`);
+}
 ```
 
 
@@ -90,6 +116,14 @@ has(key: number): boolean
 | -------- | -------- |
 | boolean | 包含指定key返回true，否则返回false。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[containers错误码](../errorcodes/errorcode-containers.md)。
+
+| 错误码ID | 错误码信息 |
+| -------- | -------- |
+| 10200011 | The has method cannot be bound. |
+
 **示例：**
 
 ```ts
@@ -97,6 +131,11 @@ let plainArray = new PlainArray();
 plainArray.has(1);
 plainArray.add(1, "squirrel");
 let result1 = plainArray.has(1);
+try {
+  plainArray.has.bind({}, 1)(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
+} catch(err) {
+  console.log(`${err.code} - ${err.name} - ${err.message}`);
+}
 ```
 
 
@@ -120,6 +159,14 @@ get(key: number): T
 | -------- | -------- |
 | T | 返回key映射的value值。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[containers错误码](../errorcodes/errorcode-containers.md)。
+
+| 错误码ID | 错误码信息 |
+| -------- | -------- |
+| 10200011 | The get method cannot be bound. |
+
 **示例：**
 
 ```ts
@@ -127,6 +174,11 @@ let plainArray = new PlainArray();
 plainArray.add(1, "squirrel");
 plainArray.add(2, "sparrow");
 let result = plainArray.get(1);
+try {
+  plainArray.get.bind({}, 1)(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
+} catch(err) {
+  console.log(`${err.code} - ${err.name} - ${err.message}`);
+}
 ```
 
 
@@ -150,6 +202,14 @@ getIndexOfKey(key: number): number
 | -------- | -------- |
 | number | 返回指定key第一次出现时的下标值，查找失败返回-1。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[containers错误码](../errorcodes/errorcode-containers.md)。
+
+| 错误码ID | 错误码信息 |
+| -------- | -------- |
+| 10200011 | The getIndexOfKey method cannot be bound. |
+
 **示例：**
 
 ```ts
@@ -157,6 +217,11 @@ let plainArray = new PlainArray();
 plainArray.add(1, "squirrel");
 plainArray.add(2, "sparrow");
 let result = plainArray.getIndexOfKey(2);
+try {
+  plainArray.getIndexOfKey.bind({}, 2)(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
+} catch(err) {
+  console.log(`${err.code} - ${err.name} - ${err.message}`);
+}
 ```
 
 
@@ -180,6 +245,14 @@ getIndexOfValue(value: T): number
 | -------- | -------- |
 | number | 返回指定value元素第一次出现时的下标值，查找失败返回-1。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[containers错误码](../errorcodes/errorcode-containers.md)。
+
+| 错误码ID | 错误码信息 |
+| -------- | -------- |
+| 10200011 | The getIndexOfValue method cannot be bound. |
+
 **示例：**
 
 ```ts
@@ -187,6 +260,11 @@ let plainArray = new PlainArray();
 plainArray.add(1, "squirrel");
 plainArray.add(2, "sparrow");
 let result = plainArray.getIndexOfValue("squirrel");
+try {
+  plainArray.getIndexOfValue.bind({}, "squirrel")(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
+} catch(err) {
+  console.log(`${err.code} - ${err.name} - ${err.message}`);
+}
 ```
 
 
@@ -210,6 +288,14 @@ getKeyAt(index: number): number
 | -------- | -------- |
 | number | 返回该下标对应的元素键值对中key值，失败返回-1。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[containers错误码](../errorcodes/errorcode-containers.md)。
+
+| 错误码ID | 错误码信息 |
+| -------- | -------- |
+| 10200011 | The getKeyAt method cannot be bound. |
+
 **示例：**
 
 ```ts
@@ -217,6 +303,11 @@ let plainArray = new PlainArray();
 plainArray.add(1, "squirrel");
 plainArray.add(2, "sparrow");
 let result = plainArray.getKeyAt(1);
+try {
+  plainArray.getKeyAt.bind({}, 1)(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
+} catch(err) {
+  console.log(`${err.code} - ${err.name} - ${err.message}`);
+}
 ```
 
 ### getValueAt
@@ -239,14 +330,33 @@ getValueAt(index: number): T
   | -------- | -------- |
   | T | 返回该下标对应的元素键值对中key值，失败返回undefined。 |
 
+  **错误码：**
+
+以下错误码的详细介绍请参见[containers错误码](../errorcodes/errorcode-containers.md)。
+
+| 错误码ID | 错误码信息 |
+| -------- | -------- |
+| 10200011 | The getValueAt method cannot be bound. |
+| 10200001 | The value of parameters are out of range. |
+
 **示例：**
 
-  ```ts
-  let plainArray = new PlainArray();
-  plainArray.add(1, "squirrel");
-  plainArray.add(2, "sparrow");
-  let result = plainArray.getKeyAt(1);
-  ```
+```ts
+let plainArray = new PlainArray();
+plainArray.add(1, "squirrel");
+plainArray.add(2, "sparrow");
+let result = plainArray.getValueAt(1);
+try {
+  plainArray.getValueAt.bind({}, 1)(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
+} catch(err) {
+  console.log(`${err.code} - ${err.name} - ${err.message}`);
+}
+try {
+  plainArray.getValueAt(10);
+} catch(err) {
+  console.log(`${err.code} - ${err.name} - ${err.message}`);
+}
+```
 
 ### clone
 
@@ -262,6 +372,14 @@ clone(): PlainArray&lt;T&gt;
 | -------- | -------- |
 | PlainArray&lt;T&gt; | 返回新的对象实例。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[containers错误码](../errorcodes/errorcode-containers.md)。
+
+| 错误码ID | 错误码信息 |
+| -------- | -------- |
+| 10200011 | The clone method cannot be bound. |
+
 **示例：**
 
 ```ts
@@ -269,6 +387,11 @@ let plainArray = new PlainArray();
 plainArray.add(1, "squirrel");
 plainArray.add(2, "sparrow");
 let newPlainArray = plainArray.clone();
+try {
+  plainArray.clone.bind({})(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
+} catch(err) {
+  console.log(`${err.code} - ${err.name} - ${err.message}`);
+}
 ```
 
 
@@ -287,11 +410,24 @@ add(key: number, value: T): void
 | key | number | 是 | 添加成员数据的键名。 |
 | value | T | 是 | 添加成员数据的值。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[containers错误码](../errorcodes/errorcode-containers.md)。
+
+| 错误码ID | 错误码信息 |
+| -------- | -------- |
+| 10200011 | The add method cannot be bound. |
+
 **示例：**
 
 ```ts
 let plainArray = new PlainArray();
 plainArray.add(1, "squirrel");
+try {
+  plainArray.add.bind({}, "squirrel")(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
+} catch(err) {
+  console.log(`${err.code} - ${err.name} - ${err.message}`);
+}
 ```
 
 
@@ -315,14 +451,26 @@ remove(key: number): T
 | -------- | -------- |
 | T | 返回删除元素的值。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[containers错误码](../errorcodes/errorcode-containers.md)。
+
+| 错误码ID | 错误码信息 |
+| -------- | -------- |
+| 10200011 | The remove method cannot be bound. |
+
 **示例：**
 
 ```ts
 let plainArray = new PlainArray();
 plainArray.add(1, "squirrel");
 plainArray.add(2, "sparrow");
-plainArray.remove(2);
 let result = plainArray.remove(2);
+try {
+  plainArray.remove.bind({}, 2)(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
+} catch(err) {
+  console.log(`${err.code} - ${err.name} - ${err.message}`);
+}
 ```
 
 
@@ -346,14 +494,26 @@ removeAt(index: number): T
 | -------- | -------- |
 | T | 返回删除的元素。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[containers错误码](../errorcodes/errorcode-containers.md)。
+
+| 错误码ID | 错误码信息 |
+| -------- | -------- |
+| 10200011 | The removeAt method cannot be bound. |
+
 **示例：**
 
 ```ts
 let plainArray = new PlainArray();
 plainArray.add(1, "squirrel");
 plainArray.add(2, "sparrow");
-plainArray.removeAt(1);
 let result = plainArray.removeAt(1);
+try {
+  plainArray.removeAt.bind({}, 1)(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
+} catch(err) {
+  console.log(`${err.code} - ${err.name} - ${err.message}`);
+}
 ```
 
 
@@ -378,6 +538,15 @@ removeRangeFrom(index: number, size: number): number
 | -------- | -------- |
 | number | 实际删除元素个数。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[containers错误码](../errorcodes/errorcode-containers.md)。
+
+| 错误码ID | 错误码信息 |
+| -------- | -------- |
+| 10200011 | The removeRangeFrom method cannot be bound. |
+| 10200001 | The value of parameters are out of range. |
+
 **示例：**
 
 ```ts
@@ -385,6 +554,16 @@ let plainArray = new PlainArray();
 plainArray.add(1, "squirrel");
 plainArray.add(2, "sparrow");
 let result = plainArray.removeRangeFrom(1, 3);
+try {
+  plainArray.removeRangeFrom.bind({}, 1, 3)(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
+} catch(err) {
+  console.log(`${err.code} - ${err.name} - ${err.message}`);
+}
+try {
+  plainArray.removeRangeFrom(10, 3);
+} catch(err) {
+  console.log(`${err.code} - ${err.name} - ${err.message}`);
+}
 ```
 
 
@@ -403,6 +582,15 @@ setValueAt(index: number, value: T): void
 | index | number | 是 | 指定替换数据下标。 |
 | value | T | 是 | 替换键值对中的值。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[containers错误码](../errorcodes/errorcode-containers.md)。
+
+| 错误码ID | 错误码信息 |
+| -------- | -------- |
+| 10200011 | The setValueAt method cannot be bound. |
+| 10200001 | The value of parameters are out of range. |
+
 **示例：**
 
 ```ts
@@ -410,6 +598,16 @@ let plainArray = new PlainArray();
 plainArray.add(1, "squirrel");
 plainArray.add(2, "sparrow");
 plainArray.setValueAt(1, 3546);
+try {
+  plainArray.setValueAt.bind({}, 1, 3546)(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
+} catch(err) {
+  console.log(`${err.code} - ${err.name} - ${err.message}`);
+}
+try {
+  plainArray.setValueAt(10, 3);
+} catch(err) {
+  console.log(`${err.code} - ${err.name} - ${err.message}`);
+}
 ```
 
 
@@ -427,6 +625,14 @@ toString(): String
 | -------- | -------- |
 | String | 返回对应字符串。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[containers错误码](../errorcodes/errorcode-containers.md)。
+
+| 错误码ID | 错误码信息 |
+| -------- | -------- |
+| 10200011 | The toString method cannot be bound. |
+
 **示例：**
 
 ```ts
@@ -434,6 +640,11 @@ let plainArray = new PlainArray();
 plainArray.add(1, "squirrel");
 plainArray.add(2, "sparrow");
 let result = plainArray.toString();
+try {
+  plainArray.toString.bind({})(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
+} catch(err) {
+  console.log(`${err.code} - ${err.name} - ${err.message}`);
+}
 ```
 
 
@@ -445,6 +656,14 @@ clear(): void
 
 **系统能力：** SystemCapability.Utils.Lang
 
+**错误码：**
+
+以下错误码的详细介绍请参见[containers错误码](../errorcodes/errorcode-containers.md)。
+
+| 错误码ID | 错误码信息 |
+| -------- | -------- |
+| 10200011 | The clear method cannot be bound. |
+
 **示例：**
 
 ```ts
@@ -452,6 +671,11 @@ let plainArray = new PlainArray();
 plainArray.add(1, "squirrel");
 plainArray.add(2, "sparrow");
 plainArray.clear();
+try {
+  plainArray.clear.bind({})(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
+} catch(err) {
+  console.log(`${err.code} - ${err.name} - ${err.message}`);
+}
 ```
 
 
@@ -477,6 +701,14 @@ callbackfn的参数说明：
 | index | number | 否 | 当前遍历到的元素键值对的键。 |
 | PlainArray | PlainArray&lt;T&gt;| 否 | 当前调用forEach方法的实例对象。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[containers错误码](../errorcodes/errorcode-containers.md)。
+
+| 错误码ID | 错误码信息 |
+| -------- | -------- |
+| 10200011 | The forEach method cannot be bound. |
+
 **示例：**
 
 ```ts
@@ -486,6 +718,13 @@ plainArray.add(2, "sparrow");
 plainArray.forEach((value, index) => {
   console.log("value:" + value, index);
 });
+try {
+  plainArray.forEach.bind({}, (value, index) => {
+    console.log("value:" + value, index);
+  })(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
+} catch(err) {
+  console.log(`${err.code} - ${err.name} - ${err.message}`);
+}
 ```
 
 
@@ -502,6 +741,14 @@ plainArray.forEach((value, index) => {
 | 类型 | 说明 |
 | -------- | -------- |
 | IterableIterator&lt;[number, T]&gt; | 返回一个迭代器。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[containers错误码](../errorcodes/errorcode-containers.md)。
+
+| 错误码ID | 错误码信息 |
+| -------- | -------- |
+| 10200011 | The Symbol.iterator method cannot be bound. |
 
 **示例：**
 
@@ -523,5 +770,10 @@ while(temp != undefined) {
   console.log("key:" + temp[0]);
   console.log("value:" + temp[1]);
   temp = iter.next().value;
+}
+try {
+  plainArray[Symbol.iterator].bind({})(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
+} catch(err) {
+  console.log(`${err.code} - ${err.name} - ${err.message}`);
 }
 ```

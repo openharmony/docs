@@ -43,10 +43,23 @@ LightWeightSet的构造函数。
 
 **系统能力：** SystemCapability.Utils.Lang
 
+**错误码：**
+
+以下错误码的详细介绍请参见[containers错误码](../errorcodes/errorcode-containers.md)。
+
+| 错误码ID | 错误码信息 |
+| -------- | -------- |
+| 10200012 | The LightWeightSet's constructor cannot be directly invoked. |
+
 **示例：**
 
 ```ts
 let lightWeightSet = new LightWeightSet();
+try {
+  let lightWeightSet2 = LightWeightSet();
+} catch(err) {
+  console.log(`${err.code} - ${err.name} - ${err.message}`);
+}
 ```
 
 
@@ -64,11 +77,24 @@ isEmpty(): boolean
 | -------- | -------- |
 | boolean | 为空返回true，不为空返回false。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[containers错误码](../errorcodes/errorcode-containers.md)。
+
+| 错误码ID | 错误码信息 |
+| -------- | -------- |
+| 10200011 | The isEmpty method cannot be bound. |
+
 **示例：**
 
 ```ts
 const lightWeightSet = new LightWeightSet();
 let result = lightWeightSet.isEmpty();
+try {
+  lightWeightSet.isEmpty.bind({})(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
+} catch(err) {
+  console.log(`${err.code} - ${err.name} - ${err.message}`);
+}
 ```
 
 ### add
@@ -91,11 +117,24 @@ add(obj: T): boolean
 | -------- | -------- |
 | boolean | 成功添加元素返回true，否则返回false。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[containers错误码](../errorcodes/errorcode-containers.md)。
+
+| 错误码ID | 错误码信息 |
+| -------- | -------- |
+| 10200011 | The add method cannot be bound. |
+
 **示例：**
 
 ```ts
 let lightWeightSet = new LightWeightSet();
 let result = lightWeightSet.add("squirrel");
+try {
+  lightWeightSet.add.bind({}, "squirrel")(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
+} catch(err) {
+  console.log(`${err.code} - ${err.name} - ${err.message}`);
+}
 ```
 
 
@@ -113,6 +152,14 @@ addAll(set: LightWeightSet&lt;T&gt;): boolean
 | -------- | -------- | -------- | -------- |
 | set | LightWeightSet&lt;T&gt; | 是 | 提供添加元素的lightWeightSet。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[containers错误码](../errorcodes/errorcode-containers.md)。
+
+| 错误码ID | 错误码信息 |
+| -------- | -------- |
+| 10200011 | The addAll method cannot be bound. |
+
 **示例：**
 
 ```ts
@@ -122,6 +169,11 @@ lightWeightSet.add("sparrow");
 let set = new LightWeightSet();
 set.add("gull");
 let result = lightWeightSet.addAll(set);
+try {
+  lightWeightSet.addAll.bind({}, set)(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
+} catch(err) {
+  console.log(`${err.code} - ${err.name} - ${err.message}`);
+}
 ```
 
 
@@ -145,6 +197,14 @@ hasAll(set: LightWeightSet&lt;T&gt;): boolean
 | -------- | -------- |
 | boolean | 包含所有元素返回true，否则返回false。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[containers错误码](../errorcodes/errorcode-containers.md)。
+
+| 错误码ID | 错误码信息 |
+| -------- | -------- |
+| 10200011 | The hasAll method cannot be bound. |
+
 **示例：**
 
 ```ts
@@ -154,6 +214,11 @@ lightWeightSet.add("sparrow");
 let set = new LightWeightSet();
 set.add("sparrow");
 let result = lightWeightSet.hasAll(set);
+try {
+  lightWeightSet.hasAll.bind({}, set)(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
+} catch(err) {
+  console.log(`${err.code} - ${err.name} - ${err.message}`);
+}
 ```
 
 
@@ -177,6 +242,14 @@ has(key: T): boolean
 | -------- | -------- |
 | boolean | 包含指定key返回true，否则返回false。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[containers错误码](../errorcodes/errorcode-containers.md)。
+
+| 错误码ID | 错误码信息 |
+| -------- | -------- |
+| 10200011 | The has method cannot be bound. |
+
 **示例：**
 
 ```ts
@@ -184,6 +257,11 @@ let lightWeightSet = new LightWeightSet();
 let result = lightWeightSet.has(123);
 lightWeightSet.add(123);
 result = lightWeightSet.has(123);
+try {
+  lightWeightSet.has.bind({}, 123)(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
+} catch(err) {
+  console.log(`${err.code} - ${err.name} - ${err.message}`);
+}
 ```
 
 
@@ -207,6 +285,14 @@ equal(obj: Object): boolean
 | -------- | -------- |
 | boolean | 构成类型相同返回true，否则返回false。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[containers错误码](../errorcodes/errorcode-containers.md)。
+
+| 错误码ID | 错误码信息 |
+| -------- | -------- |
+| 10200011 | The equal method cannot be bound. |
+
 **示例：**
 
 ```ts
@@ -215,6 +301,11 @@ lightWeightSet.add("squirrel");
 lightWeightSet.add("sparrow");
 let obj = ["squirrel", "sparrow"];
 let result = lightWeightSet.equal(obj);
+try {
+  lightWeightSet.equal.bind({}, obj)(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
+} catch(err) {
+  console.log(`${err.code} - ${err.name} - ${err.message}`);
+}
 ```
 
 
@@ -232,11 +323,30 @@ increaseCapacityTo(minimumCapacity: number): void
 | -------- | -------- | -------- | -------- |
 | minimumCapacity | number | 是 | 需要容纳数量。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[containers错误码](../errorcodes/errorcode-containers.md)。
+
+| 错误码ID | 错误码信息 |
+| -------- | -------- |
+| 10200011 | The increaseCapacityTo method cannot be bound. |
+| 10200001 | The value of parameters are out of range. |
+
 **示例：**
 
 ```ts
 let lightWeightSet = new LightWeightSet();
 lightWeightSet.increaseCapacityTo(10);
+try {
+  lightWeightSet.increaseCapacityTo.bind({}, 10)(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
+} catch(err) {
+  console.log(`${err.code} - ${err.name} - ${err.message}`);
+}
+try {
+  lightWeightSet.increaseCapacityTo(2);
+} catch(err) {
+  console.log(`${err.code} - ${err.name} - ${err.message}`);
+}
 ```
 
 
@@ -260,6 +370,14 @@ getIndexOf(key: T): number
 | -------- | -------- |
 | number | 在lightWeightSet中指定数据的下标。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[containers错误码](../errorcodes/errorcode-containers.md)。
+
+| 错误码ID | 错误码信息 |
+| -------- | -------- |
+| 10200011 | The getIndexOf method cannot be bound. |
+
 **示例：**
 
 ```ts
@@ -267,6 +385,11 @@ let lightWeightSet = new LightWeightSet();
 lightWeightSet.add("squirrel");
 lightWeightSet.add("sparrow");
 let result = lightWeightSet.getIndexOf("sparrow");
+try {
+  lightWeightSet.getIndexOf.bind({}, "sparrow")(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
+} catch(err) {
+  console.log(`${err.code} - ${err.name} - ${err.message}`);
+}
 ```
 
 
@@ -290,6 +413,14 @@ remove(key: T): T
 | -------- | -------- |
 | T | 返回删除元素的值。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[containers错误码](../errorcodes/errorcode-containers.md)。
+
+| 错误码ID | 错误码信息 |
+| -------- | -------- |
+| 10200011 | The remove method cannot be bound. |
+
 **示例：**
 
 ```ts
@@ -297,6 +428,11 @@ let lightWeightSet = new LightWeightSet();
 lightWeightSet.add("squirrel");
 lightWeightSet.add("sparrow");
 let result = lightWeightSet.remove("sparrow");
+try {
+  lightWeightSet.remove.bind({}, "sparrow")(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
+} catch(err) {
+  console.log(`${err.code} - ${err.name} - ${err.message}`);
+}
 ```
 
 
@@ -320,6 +456,14 @@ removeAt(index: number): boolean
 | -------- | -------- |
 | boolean | 确认是否成功删除元素 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[containers错误码](../errorcodes/errorcode-containers.md)。
+
+| 错误码ID | 错误码信息 |
+| -------- | -------- |
+| 10200011 | The removeAt method cannot be bound. |
+
 **示例：**
 
 ```ts
@@ -327,6 +471,11 @@ let lightWeightSet = new LightWeightSet();
 lightWeightSet.add("squirrel");
 lightWeightSet.add("sparrow");
 let result = lightWeightSet.removeAt(1);
+try {
+  lightWeightSet.removeAt.bind({}, 1)(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
+} catch(err) {
+  console.log(`${err.code} - ${err.name} - ${err.message}`);
+}
 ```
 
 
@@ -350,6 +499,14 @@ getValueAt(index: number): T
 | -------- | -------- |
 | T | 返回指定下标对应的元素。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[containers错误码](../errorcodes/errorcode-containers.md)。
+
+| 错误码ID | 错误码信息 |
+| -------- | -------- |
+| 10200011 | The getValueAt method cannot be bound. |
+
 **参数：**
 
 ```ts
@@ -357,6 +514,11 @@ let lightWeightSet = new LightWeightSet();
 lightWeightSet.add("squirrel");
 lightWeightSet.add("sparrow");
 let result = lightWeightSet.getValueAt(1);
+try {
+  lightWeightSet.getValueAt.bind({}, 1)(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
+} catch(err) {
+  console.log(`${err.code} - ${err.name} - ${err.message}`);
+}
 ```
 
 
@@ -368,6 +530,14 @@ clear(): void
 
 **系统能力：** SystemCapability.Utils.Lang
 
+**错误码：**
+
+以下错误码的详细介绍请参见[containers错误码](../errorcodes/errorcode-containers.md)。
+
+| 错误码ID | 错误码信息 |
+| -------- | -------- |
+| 10200011 | The clear method cannot be bound. |
+
 **示例：**
 
 ```ts
@@ -375,6 +545,11 @@ let lightWeightSet = new LightWeightSet();
 lightWeightSet.add("squirrel");
 lightWeightSet.add("sparrow");
 lightWeightSet.clear();
+try {
+  lightWeightSet.clear.bind({})(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
+} catch(err) {
+  console.log(`${err.code} - ${err.name} - ${err.message}`);
+}
 ```
 
 
@@ -392,6 +567,14 @@ toString(): String
 | -------- | -------- |
 | String | 返回对应字符串。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[containers错误码](../errorcodes/errorcode-containers.md)。
+
+| 错误码ID | 错误码信息 |
+| -------- | -------- |
+| 10200011 | The toString method cannot be bound. |
+
 **示例：**
 
 ```ts
@@ -399,6 +582,11 @@ let lightWeightSet = new LightWeightSet();
 lightWeightSet.add("squirrel");
 lightWeightSet.add("sparrow");
 let result = lightWeightSet.toString();
+try {
+  lightWeightSet.toString.bind({})(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
+} catch(err) {
+  console.log(`${err.code} - ${err.name} - ${err.message}`);
+}
 ```
 
 
@@ -416,6 +604,14 @@ toArray(): Array&lt;T&gt;
 | -------- | -------- |
 | Array&lt;T&gt; | 返回对应数组。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[containers错误码](../errorcodes/errorcode-containers.md)。
+
+| 错误码ID | 错误码信息 |
+| -------- | -------- |
+| 10200011 | The toArray method cannot be bound. |
+
 **示例：**
 
 ```ts
@@ -423,6 +619,11 @@ let lightWeightSet = new LightWeightSet();
 lightWeightSet.add("squirrel");
 lightWeightSet.add("sparrow");
 let result = lightWeightSet.toArray();
+try {
+  lightWeightSet.toArray.bind({})(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
+} catch(err) {
+  console.log(`${err.code} - ${err.name} - ${err.message}`);
+}
 ```
 
 
@@ -440,6 +641,14 @@ values(): IterableIterator&lt;T&gt;
 | -------- | -------- |
 | IterableIterator&lt;T&gt; | 返回一个迭代器。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[containers错误码](../errorcodes/errorcode-containers.md)。
+
+| 错误码ID | 错误码信息 |
+| -------- | -------- |
+| 10200011 | The values method cannot be bound. |
+
 **示例：**
 
 ```ts
@@ -451,6 +660,11 @@ let index = 0;
 while(index < lightWeightSet.length) {
   console.log(JSON.stringify(iter.next().value));
   index++;
+}
+try {
+  lightWeightSet.values.bind({})(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
+} catch(err) {
+  console.log(`${err.code} - ${err.name} - ${err.message}`);
 }
 ```
 
@@ -477,6 +691,14 @@ callbackfn的参数说明：
 | key | T | 否 | 当前遍历到的元素（和value相同）。 |
 | set | LightWeightSet&lt;T&gt; | 否 | 当前调用forEach方法的实例对象。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[containers错误码](../errorcodes/errorcode-containers.md)。
+
+| 错误码ID | 错误码信息 |
+| -------- | -------- |
+| 10200011 | The forEach method cannot be bound. |
+
 **示例：**
 
 ```ts
@@ -486,6 +708,13 @@ lightWeightSet.add("gull");
 lightWeightSet.forEach((value, key) => {
   console.log("value:" + value, key);
 });
+try {
+  lightWeightSet.forEach.bind({}, (value, key) => {
+    console.log("value:" + value, key);
+  })(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
+} catch(err) {
+  console.log(`${err.code} - ${err.name} - ${err.message}`);
+}
 ```
 
 
@@ -503,6 +732,14 @@ entries(): IterableIterator<[T, T]>
 | -------- | -------- |
 | IterableIterator<[T, T]> | 返回一个迭代器。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[containers错误码](../errorcodes/errorcode-containers.md)。
+
+| 错误码ID | 错误码信息 |
+| -------- | -------- |
+| 10200011 | The entries method cannot be bound. |
+
 **示例：**
 
 ```ts
@@ -514,6 +751,11 @@ let index = 0;
 while(index < lightWeightSet.length) {
   console.log(JSON.stringify(iter.next().value));
   index++;
+}
+try {
+  lightWeightSet.entries.bind({})(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
+} catch(err) {
+  console.log(`${err.code} - ${err.name} - ${err.message}`);
 }
 ```
 
@@ -531,6 +773,14 @@ while(index < lightWeightSet.length) {
 | 类型 | 说明 |
 | -------- | -------- |
 | IterableIterator&lt;T&gt; | 返回一个迭代器。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[containers错误码](../errorcodes/errorcode-containers.md)。
+
+| 错误码ID | 错误码信息 |
+| -------- | -------- |
+| 10200011 | The Symbol.iterator method cannot be bound. |
 
 **示例：**
 
@@ -550,5 +800,10 @@ let temp = iter.next().value;
 while(temp != undefined) {
   console.log("value:" + temp);
   temp = iter.next().value;
+}
+try {
+  lightWeightSet[Symbol.iterator].bind({})(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
+} catch(err) {
+  console.log(`${err.code} - ${err.name} - ${err.message}`);
 }
 ```

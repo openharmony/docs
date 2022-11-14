@@ -220,7 +220,7 @@ checkOsAccountActivated(localId: number, callback: AsyncCallback&lt;boolean&gt;)
 
 判断指定系统帐号是否处于激活状态。使用callback异步回调。
 
-**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS
+**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS 或 ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
 
 **系统能力：** SystemCapability.Account.OsAccount
 
@@ -309,7 +309,7 @@ checkConstraintEnabled(localId: number, constraint: string, callback: AsyncCallb
 
 判断指定系统帐号是否具有指定约束。使用callback异步回调。
 
-**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS 或 ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
+**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS
 
 **系统能力：** SystemCapability.Account.OsAccount
 
@@ -354,7 +354,7 @@ checkConstraintEnabled(localId: number, constraint: string): Promise&lt;boolean&
 
 判断指定系统帐号是否具有指定约束。使用Promise异步回调。
 
-**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS。
+**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS
 
 **系统能力：** SystemCapability.Account.OsAccount
 
@@ -814,7 +814,7 @@ setOsAccountName(localId: number, localName: string, callback: AsyncCallback&lt;
 | 参数名    | 类型                      | 必填 | 说明                                             |
 | :-------- | ------------------------- | ---- | ----------------------------------------------- |
 | localId   | number                    | 是   | 系统帐号ID。               |
-| localName | string                    | 是   | 帐号名，最大长度为1024。                          |
+| localName | string                    | 是   | 帐号名，最大长度为1024个字符。                          |
 | callback  | AsyncCallback&lt;void&gt; | 是   | 回调函数。如果设置成功，err为null，否则为错误对象。 |
 
 **错误码：**
@@ -1594,7 +1594,7 @@ createOsAccount(localName: string, type: OsAccountType): Promise&lt;OsAccountInf
 
 | 类型                                           | 说明                                  |
 | ---------------------------------------------- | ------------------------------------- |
-| Promise&lt;[OsAccountInfo](#osaccountinfo)&gt; | Promis对象，返回新创建的系统帐号的信息。 |
+| Promise&lt;[OsAccountInfo](#osaccountinfo)&gt; | Promise对象，返回新创建的系统帐号的信息。 |
 
 **错误码：**
 
@@ -2503,7 +2503,7 @@ getBundleIdFromUid(uid: number, callback: AsyncCallback&lt;number&gt;): void;
 
 getBundleIdFromUid(uid: number): Promise&lt;number&gt;;
 
-通过uid查询对应的bundleId，使用Promis异步回调。
+通过uid查询对应的bundleId，使用Promise异步回调。
 
 **系统接口：** 此接口为系统接口。
 
@@ -4081,7 +4081,7 @@ setProperty(request: SetPropertyRequest): Promise&lt;number&gt;;
 
 auth(challenge: Uint8Array, authType: AuthType, authTrustLevel: AuthTrustLevel, callback: IUserAuthCallback): Uint8Array;
 
-执行认证。使用callback异步回调。
+认证当前用户。使用callback异步回调。
 
 **系统接口：** 此接口为系统接口。
 
@@ -4139,7 +4139,7 @@ auth(challenge: Uint8Array, authType: AuthType, authTrustLevel: AuthTrustLevel, 
 
 authUser(userId: number, challenge: Uint8Array, authType: AuthType, authTrustLevel: AuthTrustLevel, callback: IUserAuthCallback): Uint8Array;
 
-执行用户认证。使用callback异步回调。
+认证指定用户。使用callback异步回调。
 
 **系统接口：** 此接口为系统接口。
 
@@ -4701,7 +4701,7 @@ getAuthInfo(callback: AsyncCallback&lt;Array&lt;EnrolledCredInfo&gt;&gt;): void;
 
 | 参数名    | 类型                                                                     | 必填 | 说明                                                 |
 | -------- | ------------------------------------------------------------------------ | ---- | --------------------------------------------- |
-| callback | AsyncCallback&lt;Array&lt;[EnrolledCredInfo](#enrolledcredinfo8)&gt;&gt; | 是   | 回调函数。如果成功，err为null，data为当前用户指定类型的所有已注册凭据信息；否则为错误对象。|
+| callback | AsyncCallback&lt;Array&lt;[EnrolledCredInfo](#enrolledcredinfo8)&gt;&gt; | 是   | 回调函数。如果成功，err为null，data为当前用户的所有已注册凭据信息；否则为错误对象。|
 
 **错误码：**
 

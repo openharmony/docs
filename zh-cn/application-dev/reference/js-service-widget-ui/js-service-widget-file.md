@@ -25,7 +25,7 @@ JS服务卡片(entry/src/main/js/Widget)的典型开发目录结构如下：
 
 - .css结尾的CSS样式文件，这个文件用于描述页面样式。
 
-- .json结尾的JSON文件，这个文件用于配置卡片中使用的变量action事件。
+- .json结尾的JSON配置文件，这个文件用于配置卡片中使用的变量action事件。
 
 各个文件夹的作用：
 
@@ -41,11 +41,11 @@ JS服务卡片(entry/src/main/js/Widget)的典型开发目录结构如下：
 
 - 引用代码文件，需使用相对路径，比如：../common/style.css。
 
-- 引用资源文件，推荐使用绝对路径。比如：/common/xxx.png。
+- 引用资源文件，推荐使用绝对路径。比如：/common/test.png。
 
 - 公共代码文件和资源文件推荐放在common下，通过规则1和规则2进行访问。
 
-- CSS样式文件中通过url()函数创建&lt;url&gt;数据类型，如：url(/common/xxx.png)。
+- CSS样式文件中通过url()函数创建&lt;url&gt;数据类型，如：url(/common/test.png)。
 
 > **说明：**
 > 当代码文件A需要引用代码文件B时：

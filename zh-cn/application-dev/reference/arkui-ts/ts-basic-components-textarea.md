@@ -85,9 +85,10 @@ struct TextAreaExample {
 
   build() {
     Column() {
-      TextArea({ placeholder: 'input your word', controller: this.controller })
+      TextArea({ placeholder: 'The text area can hold an unlimited amount of text. input your word', controller: this.controller })
         .placeholderFont({ size: 14, weight: 400 })
         .width(400)
+        .height(50)
         .margin(20)
         .fontSize(14)
         .onChange((value: string) => {
@@ -104,3 +105,5 @@ struct TextAreaExample {
   }
 }
 ```
+
+![textArea](figures/textArea.gif)

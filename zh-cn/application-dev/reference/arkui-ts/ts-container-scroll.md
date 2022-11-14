@@ -168,8 +168,8 @@ scrollBy(dx: Length, dy: Length): void
 @Entry
 @Component
 struct ScrollExample {
-  scroller: Scroller = new Scroller();
-  private arr: number[] = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+  scroller: Scroller = new Scroller()
+  private arr: number[] = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
 
   build() {
     Stack({ alignContent: Alignment.TopStart }) {
@@ -193,33 +193,33 @@ struct ScrollExample {
       .scrollBarWidth(30) // 滚动条宽度
       .edgeEffect(EdgeEffect.None)
       .onScroll((xOffset: number, yOffset: number) => {
-        console.info(xOffset + ' ' + yOffset);
+        console.info(xOffset + ' ' + yOffset)
       })
       .onScrollEdge((side: Edge) => {
-        console.info('To the edge');
+        console.info('To the edge')
       })
       .onScrollEnd(() => {
-        console.info('Scroll Stop');
+        console.info('Scroll Stop')
       })
 
       Button('scroll 150')
         .onClick(() => { // 点击后下滑指定距离150.0vp
-          this.scroller.scrollBy(0,150);
+          this.scroller.scrollBy(0,150)
         })
         .margin({ top: 10, left: 20 })
       Button('scroll 100')
         .onClick(() => { // 点击后滑动到指定位置，即下滑100.0vp的距离
-          this.scroller.scrollTo({ xOffset: 0, yOffset: this.scroller.currentOffset().yOffset + 100 });
+          this.scroller.scrollTo({ xOffset: 0, yOffset: this.scroller.currentOffset().yOffset + 100 })
         })
         .margin({ top: 60, left: 20 })
       Button('back top')
         .onClick(() => { // 点击后回到顶部
-          this.scroller.scrollEdge(Edge.Top);
+          this.scroller.scrollEdge(Edge.Top)
         })
         .margin({ top: 110, left: 20 })
       Button('next page')
         .onClick(() => { // 点击后滑到下一页
-          this.scroller.scrollPage({ next: true });
+          this.scroller.scrollPage({ next: true })
         })
         .margin({ top: 170, left: 20 })
     }.width('100%').height('100%').backgroundColor(0xDCDCDC)
@@ -235,8 +235,8 @@ struct ScrollExample {
 @Component
 struct NestedScroll {
   @State listPosition: number = 0; // 0代表滚动到List顶部，1代表中间值，2代表滚动到List底部。
-  private arr: number[] = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
-  private scroller: Scroller = new Scroller();
+  private arr: number[] = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+  private scroller: Scroller = new Scroller()
 
   build() {
     Flex() {
@@ -245,8 +245,11 @@ struct NestedScroll {
           Text("Scroll Area")
             .width("100%").height("40%").backgroundColor(0X330000FF)
             .fontSize(16).textAlign(TextAlign.Center)
+            .onClick(() => {
+              this.scroller.scrollToIndex(5)
+            })
 
-          List({ space: 20 }) {
+          List({ space: 20, scroller: this.scroller }) {
             ForEach(this.arr, (item) => {
               ListItem() {
                 Text("ListItem" + item)
@@ -255,19 +258,21 @@ struct NestedScroll {
               }.width("100%").height(100)
             }, item => item)
           }
-          .width("100%").height("50%").edgeEffect(EdgeEffect.None)
+          .width("100%")
+          .height("50%")
+          .edgeEffect(EdgeEffect.None)
           .onReachStart(() => {
-            this.listPosition = 0;
+            this.listPosition = 0
           })
           .onReachEnd(() => {
-            this.listPosition = 2;
+            this.listPosition = 2
           })
           .onScrollBegin((dx: number, dy: number) => {
             if ((this.listPosition == 0 && dy >= 0) || (this.listPosition == 2 && dy <= 0)) {
-              this.scroller.scrollBy(0, -dy);
-              return { dxRemain: dx, dyRemain: 0 };
+              this.scroller.scrollBy(0, -dy)
+              return { dxRemain: dx, dyRemain: 0 }
             }
-            this.listPosition = 1;
+            this.listPosition = 1
             return { dxRemain: dx, dyRemain: dy };
           })
 

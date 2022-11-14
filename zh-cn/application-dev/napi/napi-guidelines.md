@@ -642,7 +642,7 @@ export default {
 }
 ```
 ## 相关实例
+
 针对Native API的开发，有以下相关实例可供参考：
-- [`NativeAPI`：NativeAPI（ArkTS）（API8）](https://gitee.com/openharmony/applications_app_samples/tree/master/Native/NativeAPI)
 - [第一个Native C++应用（ArkTS）（API9）](https://gitee.com/openharmony/codelabs/tree/master/NativeAPI/NativeTemplateDemo)
 - [Native Component（ArkTS）（API9）](https://gitee.com/openharmony/codelabs/tree/master/NativeAPI/XComponent)

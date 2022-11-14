@@ -1,6 +1,6 @@
 # 公共事件模块
 
-本模块提供了公共事件的能力，包括公共事件的权限列表，发布公共事件，订阅或取消订阅公共事件，获取或修改公共事件结果代码、结果数据等。
+本模块提供了公共事件的能力，包括公共事件的权限列表，发布公共事件，订阅或取消订阅公共事件，获取或修改公共事件结果代码、结果数据等。本模块将被commonEventManager模块取代，建议优先使用[commonEventManager](js-apis-commonEventManager.md)模块。
 
 > **说明：**
 >
@@ -167,7 +167,7 @@ CommonEvent模块支持的事件类型。名称指的是系统公共事件宏；
 | COMMON_EVENT_ACCOUNT_DELETED                                 | usual.event.data.ACCOUNT_DELETED                            | ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS               | 删除帐户的公共事件的动作。      |
 | COMMON_EVENT_FOUNDATION_READY                                | usual.event.data.FOUNDATION_READY                           | ohos.permission.RECEIVER_STARTUP_COMPLETED                   | 表示foundation已准备好的公共事件的动作。      |
 | COMMON_EVENT_AIRPLANE_MODE_CHANGED                           | usual.event.AIRPLANE_MODE                                   | 无                                                           | 表示设备飞行模式已更改的公共事件的动作。      |
-| COMMON_EVENT_SPLIT_SCREEN<sup>8+<sup>                                    | usual.event.SPLIT_SCREEN                                    | ohos.permission.RECEIVER_SPLIT_SCREEN                        | 表示分屏的公共事件的动作。      |
+| COMMON_EVENT_SPLIT_SCREEN<sup>8+<sup>                                    | usual.event.SPLIT_SCREEN                                    | 无                        | 表示分屏的公共事件的动作。      |
 | COMMON_EVENT_SLOT_CHANGE<sup>9+<sup>                                    | usual.event.SLOT_CHANGE                                    | ohos.permission.NOTIFICATION_CONTROLLER                        | 表示通知通道更新的动作。      |
 | COMMON_EVENT_SPN_INFO_CHANGED <sup>9+<sup>                                    | usual.event.SPN_INFO_CHANGED                                    | 无                        | 表示spn显示信息已更新的公共事件的动作。      |
 | COMMON_EVENT_QUICK_FIX_APPLY_RESULT <sup>9+<sup>                                    | usual.event.QUICK_FIX_APPLY_RESULT                        | 无                        | 指示快速修复应用的动作。      |
@@ -1237,6 +1237,8 @@ subscriber.finishCommonEvent().then(() => {
 
 ## CommonEventData
 
+公共事件数据体。
+
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.Notification.CommonEvent
 
 | 名称       | 可读 | 可写 | 类型                 | 描述                                                    |
@@ -1249,6 +1251,8 @@ subscriber.finishCommonEvent().then(() => {
 
 
 ## CommonEventPublishData
+
+公共事件发送的数据体，包含公共事件内容和属性。
 
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.Notification.CommonEvent
 
@@ -1263,6 +1267,8 @@ subscriber.finishCommonEvent().then(() => {
 | parameters            | 是  | 否  | {[key: string]: any} | 表示公共事件的附加信息。       |
 
 ## CommonEventSubscribeInfo
+
+订阅者信息。
 
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.Notification.CommonEvent
 

@@ -68,7 +68,7 @@ stat(path: string): Promise&lt;Stat&gt;
   ```js
   let filePath = pathDir + "test.txt";
   fileio.stat(filePath).then(function(stat){
-      console.info("getFileInfo succeed:"+ JSON.stringify(stat));
+      console.info("getFileInfo succeed, the size of file is " + stat.size);
   }).catch(function(err){
       console.info("getFileInfo failed with error:"+ err);
   });
@@ -153,7 +153,7 @@ opendir(path: string): Promise&lt;Dir&gt;
   ```js
   let dirPath = pathDir + "/testDir";
   fileio.opendir(dirPath).then(function(dir){
-      console.info("opendir succeed:"+ JSON.stringify(dir));
+      console.info("opendir succeed");
   }).catch(function(err){
       console.info("opendir failed with error:"+ err);
   });
@@ -655,11 +655,7 @@ openSync(path: string, flags?: number, mode?: number): number
 
 ## fileio.read
 
-read(fd: number, buffer: ArrayBuffer, options?: {
-    offset?: number;
-    length?: number;
-    position?: number;
-}): Promise&lt;ReadOut&gt;
+read(fd: number, buffer: ArrayBuffer, options?: { offset?: number; length?: number; position?: number; }): Promise&lt;ReadOut&gt;
 
 从文件读取数据，使用Promise异步回调。
 
@@ -696,11 +692,7 @@ read(fd: number, buffer: ArrayBuffer, options?: {
 
 ## fileio.read
 
-read(fd: number, buffer: ArrayBuffer, options: {
-    offset?: number;
-    length?: number;
-    position?: number;
-}, callback: AsyncCallback&lt;ReadOut&gt;): void
+read(fd: number, buffer: ArrayBuffer, options: { offset?: number; length?: number; position?: number; }, callback: AsyncCallback&lt;ReadOut&gt;): void
 
 从文件读取数据，使用callback异步回调。
 
@@ -732,11 +724,7 @@ read(fd: number, buffer: ArrayBuffer, options: {
 
 ## fileio.readSync
 
-readSync(fd: number, buffer: ArrayBuffer, options?: {
-    offset?: number;
-    length?: number;
-    position?: number;
-}): number
+readSync(fd: number, buffer: ArrayBuffer, options?: { offset?: number; length?: number; position?: number; }): number
 
 以同步方法从文件读取数据。
 
@@ -927,12 +915,7 @@ unlinkSync(path: string): void
 
 ## fileio.write
 
-write(fd: number, buffer: ArrayBuffer | string, options?: {
-    offset?: number;
-    length?: number;
-    position?: number;
-    encoding?: string;
-}): Promise&lt;number&gt;
+write(fd: number, buffer: ArrayBuffer | string, options?: { offset?: number; length?: number; position?: number; encoding?: string; }): Promise&lt;number&gt;
 
 将数据写入文件，使用Promise异步回调。
 
@@ -967,12 +950,7 @@ write(fd: number, buffer: ArrayBuffer | string, options?: {
 
 ## fileio.write
 
-write(fd: number, buffer: ArrayBuffer | string, options: {
-    offset?: number;
-    length?: number;
-    position?: number;
-    encoding?: string;
-}, callback: AsyncCallback&lt;number&gt;): void
+write(fd: number, buffer: ArrayBuffer | string, options: { offset?: number; length?: number; position?: number; encoding?: string; }, callback: AsyncCallback&lt;number&gt;): void
 
 将数据写入文件，使用callback异步回调。
 
@@ -1002,12 +980,7 @@ write(fd: number, buffer: ArrayBuffer | string, options: {
 
 ## fileio.writeSync
 
-writeSync(fd: number, buffer: ArrayBuffer | string, options?: {
-    offset?: number;
-    length?: number;
-    position?: number;
-    encoding?: string;
-}): number
+writeSync(fd: number, buffer: ArrayBuffer | string, options?: { offset?: number; length?: number; position?: number; encoding?: string; }): number
 
 以同步方法将数据写入文件。
 
@@ -1205,7 +1178,7 @@ fstat(fd: number): Promise&lt;Stat&gt;
   let filePath = pathDir + "/test.txt";
   let fd = fileio.openSync(filePath);
   fileio.fstat(fd).then(function(stat){
-      console.info("fstat succeed:"+ JSON.stringify(stat));
+      console.info("fstat succeed, the size of file is "+ stat.size);
   }).catch(function(err){
       console.info("fstat failed with error:"+ err);
   });
@@ -1441,11 +1414,7 @@ truncateSync(path: string, len?: number): void
 
 ## fileio.readText<sup>7+</sup>
 
-readText(filePath: string, options?: {
-    position?: number;
-    length?: number;
-    encoding?: string;
-}): Promise&lt;string&gt;
+readText(filePath: string, options?: { position?: number; length?: number; encoding?: string; }): Promise&lt;string&gt;
 
 基于文本方式读取文件（即直接读取文件的文本内容），使用Promise异步回调。
 
@@ -1478,11 +1447,7 @@ readText(filePath: string, options?: {
 
 ## fileio.readText<sup>7+</sup>
 
-readText(filePath: string, options: {
-    position?: number;
-    length?: number;
-    encoding?: string;
-}, callback: AsyncCallback&lt;string&gt;): void
+readText(filePath: string, options: { position?: number; length?: number; encoding?: string; }, callback: AsyncCallback&lt;string&gt;): void
 
 基于文本方式读取文件（即直接读取文件的文本内容），使用callback异步回调。
 
@@ -1508,11 +1473,7 @@ readText(filePath: string, options: {
 
 ## fileio.readTextSync<sup>7+</sup>
 
-readTextSync(filePath: string, options?: {
-    position?: number;
-    length?: number;
-    encoding?: string;
-}): string
+readTextSync(filePath: string, options?: { position?: number; length?: number; encoding?: string; }): string
 
 以同步方法基于文本方式读取文件（即直接读取文件的文本内容）。
 
@@ -1564,7 +1525,7 @@ lstat(path: string): Promise&lt;Stat&gt;
   ```js
   let filePath = pathDir + "/test.txt";
   fileio.lstat(filePath).then(function(stat){
-      console.info("get link status succeed:"+ JSON.stringify(stat));
+      console.info("get link status succeed, " + the size of file is + stat.size);
   }).catch(function(err){
       console.info("get link status failed with error:"+ err);
   });
@@ -2995,12 +2956,7 @@ flushSync(): void
 
 ### write<sup>7+</sup>
 
-write(buffer: ArrayBuffer | string, options?: {
-    offset?: number;
-    length?: number;
-    position?: number;
-    encoding?: string;
-}): Promise&lt;number&gt;
+write(buffer: ArrayBuffer | string, options?: { offset?: number; length?: number; position?: number; encoding?: string; }): Promise&lt;number&gt;
 
 将数据写入流文件，使用Promise异步回调。
 
@@ -3034,12 +2990,7 @@ write(buffer: ArrayBuffer | string, options?: {
 
 ### write<sup>7+</sup>
 
-write(buffer: ArrayBuffer | string, options: {
-    offset?: number;
-    length?: number;
-    position?: number;
-    encoding?: string;
-}, callback: AsyncCallback&lt;number&gt;): void
+write(buffer: ArrayBuffer | string, options: { offset?: number; length?: number; position?: number; encoding?: string; }, callback: AsyncCallback&lt;number&gt;): void
 
 将数据写入流文件，使用callback异步回调。
 
@@ -3069,12 +3020,7 @@ write(buffer: ArrayBuffer | string, options: {
 
 ### writeSync<sup>7+</sup>
 
-writeSync(buffer: ArrayBuffer | string, options?: {
-    offset?: number;
-    length?: number;
-    position?: number;
-    encoding?: string;
-}): number
+writeSync(buffer: ArrayBuffer | string, options?: { offset?: number; length?: number; position?: number; encoding?: string; }): number
 
 以同步方法将数据写入流文件。
 
@@ -3104,11 +3050,7 @@ writeSync(buffer: ArrayBuffer | string, options?: {
 
 ### read<sup>7+</sup>
 
-read(buffer: ArrayBuffer, options?: {
-    position?: number;
-    offset?: number;
-    length?: number;
-}): Promise&lt;ReadOut&gt;
+read(buffer: ArrayBuffer, options?: { position?: number; offset?: number; length?: number; }): Promise&lt;ReadOut&gt;
 
 从流文件读取数据，使用Promise异步回调。
 
@@ -3143,11 +3085,7 @@ read(buffer: ArrayBuffer, options?: {
 
 ### read<sup>7+</sup>
 
-read(buffer: ArrayBuffer, options: {
-    position?: number;
-    offset?: number;
-    length?: number;
-}, callback: AsyncCallback&lt;ReadOut&gt;): void
+read(buffer: ArrayBuffer, options: { position?: number; offset?: number; length?: number; }, callback: AsyncCallback&lt;ReadOut&gt;): void
 
 从流文件读取数据，使用callback异步回调。
 
@@ -3177,11 +3115,7 @@ read(buffer: ArrayBuffer, options: {
 
 ### readSync<sup>7+</sup>
 
-readSync(buffer: ArrayBuffer, options?: {
-    position?: number;
-    offset?: number;
-    length?: number;
-}): number
+readSync(buffer: ArrayBuffer, options?: { position?: number; offset?: number; length?: number; }): number
 
 以同步方法从流文件读取数据。
 
@@ -3232,7 +3166,7 @@ read(): Promise&lt;Dirent&gt;
 
   ```js
   dir.read().then(function (dirent){
-      console.log("read succeed:"+JSON.stringify(dirent));
+      console.log("read succeed, the name of dirent is " + dirent.name);
   }).catch(function(err){
       console.info("read failed with error:"+ err);
   });
@@ -3259,7 +3193,7 @@ read(callback: AsyncCallback&lt;Dirent&gt;): void
   dir.read(function (err, dirent) {
       if (dirent) {
           // do something
-          console.log("read succeed:"+JSON.stringify(dirent));
+          console.log("read succeed, the name of file is " + dirent.name);
       }
   });
   ```

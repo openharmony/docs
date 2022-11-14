@@ -4,6 +4,8 @@
 
 >  **说明：**
 >
+>  从API Version 9 开始，该组件不再维护，推荐使用新组件[GridCol](ts-container-gridcol.md)、[GridRow](ts-container-gridrow.md)。
+>
 >  该组件从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 

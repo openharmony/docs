@@ -25,7 +25,7 @@ Motion驱动框架如图1所示，上层为Framework层，提供MSDP服务，通
 
 1. MSDP：上层综合传感信息处理平台服务层，当HDI接口服务实例获取成功后可以直接调用Motion HDI接口。
 2. IDL：接口抽象层。MSDP服务层首先从Motion Proxy获取到Motion HDI接口服务实例。而Motion Proxy获取到的接口实例是由IService Manager进行分配。当MSDP服务层成功获取到Motion HDI接口服务实例后，MSDP服务层就可以直接调用Motion Proxy中的HDI接口，然后通过IPC（Inter-Process Communication）调用到Motion Stub，从而调用到Motion Service的接口。这部分是由工具自动生成的代码，不用器件厂商自己开发。
-3. HD IService：HDI Service中包括Motion Interface Driver、Motion Service和Motion Impl三个部分。其中Motion Interface Driver为手势识别接口的驱动代码，在这部分驱动代码中通过定义一个struct HdfDriverEntry类型的结构体变量，实现此变量中的的Init、Bind和Release函数描述驱动能力，函数内部通过HDF_INIT宏加载驱动。Motion Service为手势识别服务接口类，具体的实现在Motion Impl中描述。此部分代码需要器件厂商根据自己器件来开发。
+3. HDI Service：HDI Service中包括Motion Interface Driver、Motion Service和Motion Impl三个部分。其中Motion Interface Driver为手势识别接口的驱动代码，在这部分驱动代码中通过定义一个struct HdfDriverEntry类型的结构体变量，实现此变量中的的Init、Bind和Release函数描述驱动能力，函数内部通过HDF_INIT宏加载驱动。Motion Service为手势识别服务接口类，具体的实现在Motion Impl中描述。此部分代码需要器件厂商根据自己器件来开发。
 
 ## 开发指导 
 
@@ -60,9 +60,9 @@ Motion驱动的主要工作是为上层MSDP服务提供稳定的使能/去使能
 │   └── unittest\hdi                     # 手势识别模块HDI单元测试代码
 ```
 
-下面结合DEMO实例，介绍如何基于HDF驱动框架，手势识别用户态驱动开发。具体实现请参考 [motion_interface_driver.cpp](https://gitee.com/openharmony/drivers_peripheral/blob/master/motion/hdi_service/motion_interface_driver.cpp)。
+下面结合DEMO实例，介绍如何基于HDF驱动框架，进行手势识别用户态驱动开发。具体实现请参考[motion_interface_driver.cpp](https://gitee.com/openharmony/drivers_peripheral/blob/master/motion/hdi_service/motion_interface_driver.cpp)。
 
-手势识别用户态驱动开发， 主要完成Bind、Init、Release、Dispatch函数接口实现。其中Bind函数为驱动对外提供的服务能力，Init函数为系统加载驱动前需要的一些初始化的操作，Release函数的主要作用为当系统加载驱动调用Init函数失败时对资源进行回收操作。
+手势识别用户态驱动开发， 主要完成Bind、Init、Release、Dispatch函数接口实现。其中Bind函数为驱动绑定对外提供的服务能力，Init函数为系统加载驱动前需要的一些初始化的操作，Release函数的主要作用为当系统加载驱动调用Init函数失败时对资源进行回收操作，Dispatch函数为服务能力的具体实现，在Bind函数中进行绑定。
 
 ```c++
 // 自定义的HdfMotionInterfaceHost对象
@@ -153,7 +153,6 @@ struct HdfDriverEntry g_motioninterfaceDriverEntry = {
 // 调用HDF_INIT将驱动入口注册到HDF框架中，在加载驱动时HDF框架会先调用Bind函数，再调用Init函数加载该驱动，当Init调用异常时，HDF框架会调用Release释放驱动资源并退出。
 HDF_INIT(g_userAuthInterfaceDriverEntry);
 ```
-
 
 ### 调测验证
 

@@ -40,10 +40,23 @@ Stack的构造函数。
 
 **系统能力：** SystemCapability.Utils.Lang
 
+**错误码：**
+
+以下错误码的详细介绍请参见[containers错误码](../errorcodes/errorcode-containers.md)。
+
+| 错误码ID | 错误码信息 |
+| -------- | -------- |
+| 10200012 | The Stack's constructor cannot be directly invoked. |
+
 **示例：**
 
 ```ts
 let stack = new Stack();
+try {
+  let stack2 = Stack();
+} catch(err) {
+  console.log(`${err.code} - ${err.name} - ${err.message}`);
+}
 ```
 
 
@@ -67,6 +80,14 @@ push(item: T): T
 | -------- | -------- |
 | T | 返回被添加进去的元素。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[containers错误码](../errorcodes/errorcode-containers.md)。
+
+| 错误码ID | 错误码信息 |
+| -------- | -------- |
+| 10200011 | The push method cannot be bound. |
+
 **示例：**
 
 ```ts
@@ -74,9 +95,14 @@ let stack = new Stack();
 let result = stack.push("a");
 let result1 = stack.push(1);
 let b = [1, 2, 3];
-stack.push(b);
+let result2 = stack.push(b);
 let c = {name : "Dylon", age : "13"};
 let result3 = stack.push(c);
+try {
+  stack.push.bind({}, "b")(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
+} catch(err) {
+  console.log(`${err.code} - ${err.name} - ${err.message}`);
+}
 ```
 
 ### pop
@@ -93,6 +119,14 @@ pop(): T
 | -------- | -------- |
 | T | 返回删除的元素。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[containers错误码](../errorcodes/errorcode-containers.md)。
+
+| 错误码ID | 错误码信息 |
+| -------- | -------- |
+| 10200011 | The pop method cannot be bound. |
+
 **示例：**
 
 ```ts
@@ -103,6 +137,11 @@ stack.push(5);
 stack.push(2);
 stack.push(4);
 let result = stack.pop();
+try {
+  stack.pop.bind({})(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
+} catch(err) {
+  console.log(`${err.code} - ${err.name} - ${err.message}`);
+}
 ```
 
 ### peek
@@ -119,6 +158,14 @@ peek(): T
 | -------- | -------- |
 | T | 返回栈顶元素。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[containers错误码](../errorcodes/errorcode-containers.md)。
+
+| 错误码ID | 错误码信息 |
+| -------- | -------- |
+| 10200011 | The peek method cannot be bound. |
+
 **示例：**
 
 ```ts
@@ -128,6 +175,11 @@ stack.push(4);
 stack.push(5);
 stack.push(2);
 let result = stack.peek();
+try {
+  stack.peek.bind({})(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
+} catch(err) {
+  console.log(`${err.code} - ${err.name} - ${err.message}`);
+}
 ```
 
 ### locate
@@ -150,6 +202,14 @@ locate(element: T): number
 | -------- | -------- |
 | number | 找到就返回下标值，查找失败返回-1。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[containers错误码](../errorcodes/errorcode-containers.md)。
+
+| 错误码ID | 错误码信息 |
+| -------- | -------- |
+| 10200011 | The locate method cannot be bound. |
+
 **示例：**
 
 ```ts
@@ -159,6 +219,11 @@ stack.push(4);
 stack.push(5);
 stack.push(2);
 let result = stack.locate(2);
+try {
+  stack.locate.bind({}, 2)(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
+} catch(err) {
+  console.log(`${err.code} - ${err.name} - ${err.message}`);
+}
 ```
 
 ### forEach
@@ -185,6 +250,14 @@ callbackfn的参数说明：
 | index | number | 否 | 当前遍历到的下标值。 |
 | stack | Stack&lt;T&gt; | 否 | 当前调用forEach方法的实例对象。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[containers错误码](../errorcodes/errorcode-containers.md)。
+
+| 错误码ID | 错误码信息 |
+| -------- | -------- |
+| 10200011 | The forEach method cannot be bound. |
+
 **示例：**
 
 ```ts
@@ -196,6 +269,13 @@ stack.push(4);
 stack.forEach((value, index) => {
  console.log("value:" + value, index);
 });
+try {
+  stack.forEach.bind({}, (value, index) => {
+    console.log("value:" + value, index);
+  })(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
+} catch(err) {
+  console.log(`${err.code} - ${err.name} - ${err.message}`);
+}
 ```
 
 ### isEmpty
@@ -212,6 +292,14 @@ isEmpty(): boolean
 | -------- | -------- |
 | boolean | 为空返回true，不为空返回false。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[containers错误码](../errorcodes/errorcode-containers.md)。
+
+| 错误码ID | 错误码信息 |
+| -------- | -------- |
+| 10200011 | The isEmpty method cannot be bound. |
+
 **示例：**
 
 ```ts
@@ -221,6 +309,11 @@ stack.push(4);
 stack.push(5);
 stack.push(4);
 let result = stack.isEmpty();
+try {
+  stack.isEmpty.bind({})(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
+} catch(err) {
+  console.log(`${err.code} - ${err.name} - ${err.message}`);
+}
 ```
 
 ### [Symbol.iterator]
@@ -236,6 +329,14 @@ let result = stack.isEmpty();
 | 类型 | 说明 |
 | -------- | -------- |
 | IterableIterator&lt;T&gt; | 返回一个迭代器。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[containers错误码](../errorcodes/errorcode-containers.md)。
+
+| 错误码ID | 错误码信息 |
+| -------- | -------- |
+| 10200011 | The Symbol.iterator method cannot be bound. |
 
 **示例：**
 ```ts
@@ -256,5 +357,10 @@ let temp = iter.next().value;
 while(temp != undefined) {
   console.log("value:" + temp);
   temp = iter.next().value;
+}
+try {
+  stack[Symbol.iterator].bind({})(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
+} catch(err) {
+  console.log(`${err.code} - ${err.name} - ${err.message}`);
 }
 ```

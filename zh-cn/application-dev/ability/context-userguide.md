@@ -209,7 +209,13 @@ export default class MainAbility extends Ability {
         let context = this.context;
         console.log("[Demo] MainAbility bundleName " + context.abilityInfo.bundleName)
 
-        windowStage.setUIContent(this.context, "pages/index", null)
+        windowStage.loadContent("pages/index", (err, data) => {
+            if (err.code) {
+                console.error('Failed to load the content. Cause:' + JSON.stringify(err));
+                return;
+            }
+            console.info('Succeeded in loading the content. Data: ' + JSON.stringify(data))
+        });
     }
 
     onWindowStageDestroy() {

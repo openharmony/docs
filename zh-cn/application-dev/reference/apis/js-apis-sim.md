@@ -1155,6 +1155,8 @@ getLockState(slotId: number, lockType: LockType, callback: AsyncCallback<LockSta
 
 此接口为系统接口。
 
+**需要权限**：ohos.permission.GET_TELEPHONY_STATE
+
 **系统能力**：SystemCapability.Telephony.CoreService
 
 **参数：**
@@ -1181,6 +1183,8 @@ getLockState(slotId: number, lockType: LockType): Promise<LockState\>
 获取指定卡槽SIM卡的锁状态。使用Promise异步回调。
 
 此接口为系统接口。
+
+**需要权限**：ohos.permission.GET_TELEPHONY_STATE
 
 **系统能力**：SystemCapability.Telephony.CoreService
 
@@ -2238,7 +2242,6 @@ addIccDiallingNumbers(slotId: number, type: ContactType, diallingNumbers: Dialli
 let diallingNumbersInof = {
     alphaTag: "alpha",
     number: "138xxxxxxxx",
-    recordNumber: 123,
     pin2: "1234"
 };
 sim.addIccDiallingNumbers(0, sim.ContactType.GENERAL_CONTACT, diallingNumbersInof, (err, data) => {
@@ -2278,9 +2281,7 @@ addIccDiallingNumbers(slotId: number, type: ContactType, diallingNumbers: Dialli
 ```js
 let diallingNumbersInof = {
     alphaTag: "alpha",
-    number: "138xxxxxxxx",
-    recordNumber: 123,
-    pin2: "1234"
+    number: "138xxxxxxxx"
 };
 let promise = sim.addIccDiallingNumbers(0, sim.ContactType.GENERAL_CONTACT, diallingNumbersInof);
 promise.then(data => {
@@ -2357,9 +2358,7 @@ delIccDiallingNumbers(slotId: number, type: ContactType, diallingNumbers: Dialli
 ```js
 let diallingNumbersInof = {
     alphaTag: "alpha",
-    number: "138xxxxxxxx",
-    recordNumber: 123,
-    pin2: "1234"
+    number: "138xxxxxxxx"
 };
 let promise = sim.delIccDiallingNumbers(0, sim.ContactType.GENERAL_CONTACT, diallingNumbersInof);
 promise.then(data => {
@@ -2437,8 +2436,7 @@ updateIccDiallingNumbers(slotId: number, type: ContactType, diallingNumbers: Dia
 let diallingNumbersInof = {
     alphaTag: "alpha",
     number: "138xxxxxxxx",
-    recordNumber: 123,
-    pin2: "1234"
+    recordNumber: 123
 };
 let promise = sim.updateIccDiallingNumbers(0, sim.ContactType.GENERAL_CONTACT, diallingNumbersInof);
 promise.then(data => {
