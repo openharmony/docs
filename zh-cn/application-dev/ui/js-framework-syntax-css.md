@@ -100,7 +100,7 @@ div {
   color: #007dff;
 }
 /* 对class="container"的组件下的直接后代text设置样式 */
-.container &gt; text {
+.container > text {
   color: #fa2a2d;
 }
 ```

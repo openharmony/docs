@@ -62,93 +62,97 @@
 
 ```html
 <!-- xxx.hml -->
-<div class = "container">
-  <stepper class="stepper" id="mystepper" index="0"  onnext="nextclick" onback="backclick">
-    <stepper-item class ="stepperItem" label="{{label_1}}">
-      <div class = "stepperItemContent" >
-        <text class = "text">First screen</text>
-      </div>
-      <button type="capsule" class ="button" value="setRightButtonStatus" onclick="setRightButton"></button>
-    </stepper-item>
-    <stepper-item class ="stepperItem" label="{{label_2}}">
-      <div class = "stepperItemContent" >
-        <text class = "text">Second screen</text>
-      </div>
-      <button type="capsule" class ="button" value="setRightButtonStatus" onclick="setRightButton"></button>
-    </stepper-item>
-    <stepper-item class ="stepperItem" label="{{label_3}}">
-      <div class = "stepperItemContent" >
-        <text class = "text">Third screen</text>
-      </div>
-      <button type="capsule" class ="button" value="setRightButtonStatus" onclick="setRightButton"></button>
-    </stepper-item>
-  </stepper>
+<div class="container">
+    <stepper class="stepper" id="mystepper" index="0" onnext="nextclick" onback="backclick">
+        <stepper-item class="stepperItem" label="{{ label_1 }}">
+            <div class="stepperItemContent">
+                <text>First screen</text>
+            </div>
+            <button type="capsule" class="button" value="setRightButtonStatus" onclick="setRightButton"></button>
+        </stepper-item>
+        <stepper-item class="stepperItem" label="{{ label_2 }}">
+            <div class="stepperItemContent">
+                <text>Second screen</text>
+            </div>
+            <button type="capsule" class="button" value="setRightButtonStatus" onclick="setRightButton"></button>
+        </stepper-item>
+        <stepper-item class="stepperItem" label="{{ label_3 }}">
+            <div class="stepperItemContent">
+                <text>Third screen</text>
+            </div>
+            <button type="capsule" class="button" value="setRightButtonStatus" onclick="setRightButton"></button>
+        </stepper-item>
+    </stepper>
 </div>
 ```
 
 ```css
 /* xxx.css */
 .container {
-  margin-top: 20px;
-  flex-direction: column;
-  align-items: center;
-  height: 300px;
+    margin-top: 20px;
+    flex-direction: column;
+    align-items: center;
+    height: 300px;
 }
+
 .stepperItem {
-  width: 100%;
-  flex-direction: column;
-  align-items: center;
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
 }
+
 .stepperItemContent {
-  color: #0000ff;
-  font-size: 50px;
-  justify-content: center;
+    font-size: 50px;
+    justify-content: center;
 }
+
 .button {
-  width: 60%;
-  margin-top: 30px;
-  justify-content: center;
+    width: 60%;
+    margin-top: 30px;
+    justify-content: center;
 }
 ```
 
 ```js
 // xxx.js
 export default {
-  data: {
-    label_1:
-    {
-       prevLabel: 'BACK',
-       nextLabel: 'NEXT',
-       status: 'normal'
-     },
-     label_2:
-     {
-       prevLabel: 'BACK',
-       nextLabel: 'NEXT',
-       status: 'normal'
-     },
-     label_3:
-     {
-        prevLabel: 'BACK',
-        nextLabel: 'NEXT',
-        status: 'normal'
-     },
-  },
-  setRightButton(e) {
-    this.$element('mystepper').setNextButtonStatus({status: 'skip', label: 'SKIP'});
-  },
-  nextclick(e) {
-    var index = {
-      pendingIndex: e.pendingIndex
+    data: {
+        label_1:
+        {
+            prevLabel: 'BACK',
+            nextLabel: 'NEXT',
+            status: 'normal'
+        },
+        label_2:
+        {
+            prevLabel: 'BACK',
+            nextLabel: 'NEXT',
+            status: 'normal'
+        },
+        label_3:
+        {
+            prevLabel: 'BACK',
+            nextLabel: 'NEXT',
+            status: 'normal'
+        }
+    },
+    setRightButton(e) {
+        this.$element('mystepper').setNextButtonStatus({
+            status: 'skip', label: 'SKIP'
+        });
+    },
+    nextclick(e) {
+        var index = {
+            pendingIndex: e.pendingIndex
+        }
+        return index;
+    },
+    backclick(e) {
+        var index = {
+            pendingIndex: e.pendingIndex
+        }
+        return index;
     }
-    return index;
-  },
-  backclick(e) {
-    var index = {
-        pendingIndex: e.pendingIndex
-    }
-    return index;
-  },
 }
 ```
 

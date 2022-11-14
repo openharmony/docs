@@ -22,10 +22,10 @@ WaterFlow(options?: {footer?: CustomBuilder, scroller?: Scroller})
 
 **参数：**
 
-  | 参数名     | 参数类型                                        | 必填 | 参数描述                                     |
-  | ---------- | ----------------------------------------------- | ------ | -------------------------------------------- |
-  | footer |  [CustomBuilder](ts-types.md#custombuilder8) | 否   | 设置WaterFlow尾部组件。  |
-  | scroller | [Scroller](ts-container-scroll.md#scroller) | 否   | 可滚动组件的控制器，与可滚动组件绑定。 |
+| 参数名     | 参数类型                                        | 必填 | 参数描述                                     |
+| ---------- | ----------------------------------------------- | ------ | -------------------------------------------- |
+| footer |  [CustomBuilder](ts-types.md#custombuilder8) | 否   | 设置WaterFlow尾部组件。  |
+| scroller | [Scroller](ts-container-scroll.md#scroller) | 否   | 可滚动组件的控制器，与可滚动组件绑定。<br/>目前瀑布流仅支持Scroller组件的scrollToIndex接口。 |
 
 
 ## 属性
@@ -40,8 +40,21 @@ WaterFlow(options?: {footer?: CustomBuilder, scroller?: Scroller})
 | itemConstraintSize | [ConstraintSizeOptions](ts-types.md#constraintsizeoptions) | 设置约束尺寸，子组件布局时，进行尺寸范围限制。               |
 | columnsGap | Length |设置列与列的间距。 <br>默认值：0|
 | rowsGap | Length |设置行与行的间距。<br> 默认值：0|
-| layoutDirection | [FlexDirection](ts-appendix-enums.md#flexdirection) |设置布局的主轴方向。|
+| layoutDirection | [FlexDirection](ts-appendix-enums.md#flexdirection) |设置布局的主轴方向。<br/>默认值：FlexDirection.Column|
 
+layoutDirection优先级高于rowsTemplate和columnsTemplate。根据layoutDirection设置情况，分为以下三种设置模式:
+
+- layoutDirection设置纵向布局（FlexDirection.Column 或 FlexDirection.ColumnReverse）
+
+	此时columnsTemplate有效（如果未设置，取默认值）。例如columnsTemplate设置为"1fr 1fr"、rowsTemplate设置为"1fr 1fr 1fr"时，瀑布流组件纵向布局，辅轴均分成横向2列。
+
+- layoutDirection设置横向布局（FlexDirection.Row 或 FlexDirection.RowReverse）
+
+	此时rowsTemplate有效（如果未设置，取默认值）。例如columnsTemplate设置为"1fr 1fr"、rowsTemplate设置为"1fr 1fr 1fr"时，瀑布流组件横向布局，辅轴均分成纵向3列。
+
+- layoutDirection未设置布局方向
+
+	布局方向为layoutDirection的默认值：FlexDirection.Column，此时columnsTemplate有效。例如columnsTemplate设置为"1fr 1fr"、rowsTemplate设置为"1fr 1fr 1fr"时，瀑布流组件纵向布局，辅轴均分成横向2列。
 
 ## 事件
 
@@ -79,8 +92,8 @@ export class WaterFlowDataSource implements IDataSource {
   private listeners: DataChangeListener[] = []
 
   constructor() {
-      for (let i = 0; i <= 100; i++) {
-          this.dataArray.push(i);
+      for (let i = 0; i < 100; i++) {
+          this.dataArray.push(i)
       }
   }
 
@@ -138,7 +151,7 @@ export class WaterFlowDataSource implements IDataSource {
 
   // 注销改变数据的控制器
   unregisterDataChangeListener(listener: DataChangeListener): void {
-      const pos = this.listeners.indexOf(listener);
+      const pos = this.listeners.indexOf(listener)
       if (pos >= 0) {
           this.listeners.splice(pos, 1)
       }
@@ -182,9 +195,9 @@ export class WaterFlowDataSource implements IDataSource {
 
   // 重新加载数据
   public Reload(): void {
-      this.dataArray.splice(1, 1);
-      this.dataArray.splice(3, 2);
-      this.notifyDataReload();
+      this.dataArray.splice(1, 1)
+      this.dataArray.splice(3, 2)
+      this.notifyDataReload()
   }
 }
 ```
@@ -200,8 +213,10 @@ struct WaterflowDemo {
   @State maxSize: number = 100
   @State fontSize: number = 24
   @State colors: number[] = [0xFFC0CB, 0xDA70D6, 0x6B8E23, 0x6A5ACD, 0x00FFFF, 0x00FF7F]
-  scroller: Scroller = new Scroller();
-  datasource: WaterFlowDataSource = new WaterFlowDataSource();
+  scroller: Scroller = new Scroller()
+  datasource: WaterFlowDataSource = new WaterFlowDataSource()
+  private itemWidthArray: number[] = []
+  private itemHeightArray: number[] = []
 
   // 计算flow item宽/高  
   getSize() {
@@ -209,6 +224,18 @@ struct WaterflowDemo {
     return (ret > this.minSize ? ret : this.minSize)
   }
 
+  // 保存flow item宽/高   
+  getItemSizeArray() {
+    for (let i = 0; i < 100; i++) {
+      this.itemWidthArray.push(this.getSize())
+      this.itemHeightArray.push(this.getSize())
+    }
+  }
+    
+  aboutToAppear() {
+    this.getItemSizeArray()
+  }
+    
   @Builder itemFoot() {
     Column() {
       Text(`Footer`)
@@ -232,8 +259,8 @@ struct WaterflowDemo {
                 .objectFit(ImageFit.Fill)
             }
           }
-          .width(this.getSize())
-          .height(this.getSize())
+          .width(this.itemWidthArray[item])
+          .height(this.itemHeightArray[item])
           .backgroundColor(this.colors[item % 5])
         }, item => item)
       }

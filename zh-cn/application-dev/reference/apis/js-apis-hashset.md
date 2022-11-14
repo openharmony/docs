@@ -96,7 +96,7 @@ isEmpty(): boolean
 const hashSet = new HashSet();
 let result = hashSet.isEmpty();
 try {
-  hashSet.isEmpty.bind({})();
+  hashSet.isEmpty.bind({})(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
 } catch(err) {
   console.log(`${err.code} - ${err.name} - ${err.message}`);
 }
@@ -139,7 +139,7 @@ let result = hashSet.has("squirrel");
 hashSet.add("squirrel");
 let result1 = hashSet.has("squirrel");
 try {
-  hashSet.has.bind({}, "squirrel")();
+  hashSet.has.bind({}, "squirrel")(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
 } catch(err) {
   console.log(`${err.code} - ${err.name} - ${err.message}`);
 }
@@ -180,7 +180,7 @@ add(value: T): boolean
 let hashSet = new HashSet();
 let result = hashSet.add("squirrel");
 try {
-  hashSet.add.bind({}, "squirrel")();
+  hashSet.add.bind({}, "squirrel")(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
 } catch(err) {
   console.log(`${err.code} - ${err.name} - ${err.message}`);
 }
@@ -223,7 +223,7 @@ hashSet.add("squirrel");
 hashSet.add("sparrow");
 let result = hashSet.remove("sparrow");
 try {
-  hashSet.remove.bind({}, "sparrow")();
+  hashSet.remove.bind({}, "sparrow")(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
 } catch(err) {
   console.log(`${err.code} - ${err.name} - ${err.message}`);
 }
@@ -254,7 +254,7 @@ hashSet.add("squirrel");
 hashSet.add("sparrow");
 hashSet.clear();
 try {
-  hashSet.remove.bind({})();
+  hashSet.remove.bind({})(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
 } catch(err) {
   console.log(`${err.code} - ${err.name} - ${err.message}`);
 }
@@ -296,7 +296,7 @@ while(temp != undefined) {
   temp = iter.next().value;
 }
 try {
-  hashSet.values.bind({})();
+  hashSet.values.bind({})(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
 } catch(err) {
   console.log(`${err.code} - ${err.name} - ${err.message}`);
 }
@@ -345,7 +345,7 @@ hashSet.forEach((value, key) => {
 try {
   hashSet.forEach.bind({}, (value, key) => {
     console.log("value:" + value, key);
-  })();
+  })(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
 } catch(err) {
   console.log(`${err.code} - ${err.name} - ${err.message}`);
 }
@@ -387,7 +387,7 @@ while(temp != undefined) {
   temp = iter.next().value;
 }
 try {
-  hashSet.entries.bind({})();
+  hashSet.entries.bind({})(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
 } catch(err) {
   console.log(`${err.code} - ${err.name} - ${err.message}`);
 }
@@ -436,7 +436,7 @@ while(temp != undefined) {
   temp = iter.next().value;
 }
 try {
-  hashSet[Symbol.iterator].bind({})();
+  hashSet[Symbol.iterator].bind({})(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
 } catch(err) {
   console.log(`${err.code} - ${err.name} - ${err.message}`);
 }

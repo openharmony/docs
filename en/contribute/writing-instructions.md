@@ -52,11 +52,13 @@ The following shows the structure of an  **operation document**  for porting.
 
 **Pictures**
 
-Pictures are stored in the  **pic-en**  folder in the directory where the document is stored. For example,
+Pictures are stored in the **images**  folder in the directory where the document is stored. For example,
 
-Pictures used in  **OpenHarmony\_DOCUMENTS/docs/quick-start/write-standard.md**  are stored in the following directory:
+Pictures used in  **OpenHarmony\_DOCUMENTS/docs/quick-start/writing-instructions.md**  are stored in the following directory:
 
-**OpenHarmony\_DOCUMENTS/docs/quick-start/pic**. Use relative paths to reference pictures in the document.
+**OpenHarmony\_DOCUMENTS/docs/quick-start/images**
+
+Use relative paths to reference pictures in the document.
 
 >![](public_sys-resources/icon-caution.gif) **CAUTION:** 
 >Use the original pictures to avoid intellectual property infringement risks.
@@ -73,9 +75,9 @@ Pictures used in  **OpenHarmony\_DOCUMENTS/docs/quick-start/write-standard.md** 
 
 If a self-made picture is used, refer to the following figure to configure the color. The format can be  **png**,  **jpg**,  **gif**, and so on.
 
-**Figure  1**  Example
+**Figure  1**  Color example
 
-![](figures/example.png "example")
+![](figures/color.png "color example")
 
 For screenshots, see the requirements below. If you need to highlight key information in the figure, add a red box or text remarks.
 
@@ -88,9 +90,6 @@ Chinese font: MicrosoftYaHei
 English font: Arial
 
 Font size: 10 pt
-
-**Figure  2** 
-
 
 **Table**
 

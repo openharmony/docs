@@ -129,8 +129,10 @@ zh-cn/device-dev/subsystems/subsys-toolchain-hdc-guide.md @Austin23
 zh-cn/device-dev/subsystems/subsys-toolchain-hiperf.md @Austin23
 zh-cn/device-dev/subsystems/subsys-xts-guide.md @Austin23
 
-zh-cn/application-dev/ability/ @RayShih
-zh-cn/application-dev/ui/ @HelloCrease
+zh-cn/application-dev/ability/ @RayShih @littlejerry1 @gwang2008 @ccllee @chengxingzhen
+zh-cn/application-dev/IDL/ @RayShih @littlejerry1 @gwang2008 @ccllee @chengxingzhen
+zh-cn/application-dev/device-usage-statistics/ @RayShih @shuaytao @wangzhen107 @inter515
+zh-cn/application-dev/ui/ @HelloCrease @qieqiewl @tomatodevboy @niulihua
 zh-cn/application-dev/notification/ @RayShih
 zh-cn/application-dev/windowmanager/ @ge-yafang
 zh-cn/application-dev/webgl/ @ge-yafang
@@ -445,8 +447,19 @@ zh-cn/application-dev/reference/apis/js-apis-formextensioncontext.md @RayShih @l
 zh-cn/application-dev/reference/apis/js-apis-formhost.md @RayShih @littlejerry1 @gwang2008 @ccllee @chengxingzhen
 zh-cn/application-dev/reference/apis/js-apis-formInfo.md @RayShih @littlejerry1 @gwang2008 @ccllee @chengxingzhen
 zh-cn/application-dev/reference/apis/js-apis-formprovider.md @RayShih @littlejerry1 @gwang2008 @ccllee @chengxingzhen
-zh-cn/application-dev/reference/apis/js-apis-inputmethod-extension-ability.md @RayShih @littlejerry1 @gwang2008 @ccllee @chengxingzhen
-zh-cn/application-dev/reference/apis/js-apis-inputmethod-extension-context.md @RayShih @littlejerry1 @gwang2008 @ccllee @chengxingzhen
+zh-cn/application-dev/reference/apis/js-apis-inputmethod-extension-ability.md @ge-yafang
+zh-cn/application-dev/reference/apis/js-apis-inputmethod-extension-context.md @ge-yafang
+zh-cn/application-dev/reference/apis/js-apis-inputmethod-subtype.md @ge-yafang
+zh-cn/application-dev/reference/errorcodes/errcode-inputmethod-framework.md @ge-yafang
+zh-cn/application-dev/reference/errorcodes/errcode-usb.md @ge-yafang
+zh-cn/application-dev/reference/errorcodes/errorcode-datashare.md @ge-yafang
+zh-cn/application-dev/reference/errorcodes/errorcode-colorspace-manager.md @ge-yafang
+zh-cn/application-dev/reference/errorcodes/errorcode-display.md @ge-yafang
+zh-cn/application-dev/reference/errorcodes/errorcode-distributed-data_object.md @ge-yafang
+zh-cn/application-dev/reference/errorcodes/errorcode-distributedKVStore.md @ge-yafang
+zh-cn/application-dev/reference/errorcodes/errorcode-pasteboard.md @ge-yafang
+zh-cn/application-dev/reference/errorcodes/errorcode-preferences.md @ge-yafang
+zh-cn/application-dev/reference/errorcodes/errorcode-window.md @ge-yafang
 zh-cn/application-dev/reference/apis/js-apis-application-quickFixManager.md @RayShih @littlejerry1 @gwang2008 @ccllee @chengxingzhen
 zh-cn/application-dev/reference/apis/js-apis-missionManager.md @RayShih @littlejerry1 @gwang2008 @ccllee @chengxingzhen
 zh-cn/application-dev/reference/apis/js-apis-particleAbility.md @RayShih @littlejerry1 @gwang2008 @ccllee @chengxingzhen

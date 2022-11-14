@@ -15,6 +15,10 @@
   - [视频播放开发指导](video-playback.md)
   - [视频录制开发指导](video-recorder.md)
 
+- 媒体会话
+  - [AVSession开发概述](avsession-overview.md)
+  - [AVSession开发指导](avsession-guidelines.md)
+
 - 图片
   - [图片开发指导](image.md)
 

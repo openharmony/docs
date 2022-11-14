@@ -83,7 +83,7 @@ GridRow({
          }
        }) {
          Row() {
-           Text(${index})
+           Text(`${index}`)
          }.width("100%").height("50vp")
        }.backgroundColor(color)
      })
@@ -264,7 +264,7 @@ GridCol组件作为GridRow组件的子组件，通过给GridCol传参或者设�
     ForEach(this.bgColors, (color, index) => {
       GridCol({ span: 2 }) {      
         Row() {
-          Text(${index})
+          Text(`${index}`)
         }.width("100%").height("50vp")          
       }
       .backgroundColor(color)
@@ -281,7 +281,7 @@ GridCol组件作为GridRow组件的子组件，通过给GridCol传参或者设�
     ForEach(this.bgColors, (color, index) => {
       GridCol({ span: { xs: 1, sm: 2, md: 3, lg: 4 } }) {      
         Row() {
-          Text(${index})
+          Text(`${index}`)
         }.width("100%").height("50vp")          
       }
       .backgroundColor(color)

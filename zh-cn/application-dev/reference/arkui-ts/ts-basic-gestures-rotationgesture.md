@@ -36,8 +36,8 @@ RotationGesture(value?: { fingers?: number, angle?: number })
 @Entry
 @Component
 struct RotationGestureExample {
-  @State angle: number = 0;
-  @State rotateValue: number = 0;
+  @State angle: number = 0
+  @State rotateValue: number = 0
 
   build() {
     Column() {
@@ -54,14 +54,14 @@ struct RotationGestureExample {
       .gesture(
       RotationGesture()
         .onActionStart((event: GestureEvent) => {
-          console.info('Rotation start');
+          console.info('Rotation start')
         })
         .onActionUpdate((event: GestureEvent) => {
-          this.angle = this.rotateValue + event.angle;
+          this.angle = this.rotateValue + event.angle
         })
         .onActionEnd(() => {
-          this.rotateValue = this.angle;
-          console.info('Rotation end');
+          this.rotateValue = this.angle
+          console.info('Rotation end')
         })
       )
     }.width('100%')

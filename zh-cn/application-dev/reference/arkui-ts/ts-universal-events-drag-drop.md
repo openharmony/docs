@@ -50,12 +50,12 @@
 @Entry
 @Component
 struct DragExample {
-  @State numbers: string[] = ['one', 'two', 'three', 'four', 'five', 'six'];
-  @State text: string = '';
-  @State bool: boolean = false;
-  @State appleVisible: Visibility = Visibility.Visible;
-  @State orangeVisible: Visibility = Visibility.Visible;
-  @State bananaVisible: Visibility = Visibility.Visible;
+  @State numbers: string[] = ['one', 'two', 'three', 'four', 'five', 'six']
+  @State text: string = ''
+  @State bool: boolean = false
+  @State appleVisible: Visibility = Visibility.Visible
+  @State orangeVisible: Visibility = Visibility.Visible
+  @State bananaVisible: Visibility = Visibility.Visible
 
   // 自定义拖拽过程中显示的内容
   @Builder pixelMapBuilder() {
@@ -87,10 +87,10 @@ struct DragExample {
           .backgroundColor(0xAFEEEE)
           .visibility(this.appleVisible)
           .onDragStart(() => {
-            this.bool = true;
-            this.text = 'apple';
-            this.appleVisible = Visibility.None;
-            return this.pixelMapBuilder;
+            this.bool = true
+            this.text = 'apple'
+            this.appleVisible = Visibility.None
+            return this.pixelMapBuilder
           })
         Text('orange')
           .width('25%')
@@ -100,10 +100,10 @@ struct DragExample {
           .backgroundColor(0xAFEEEE)
           .visibility(this.orangeVisible)
           .onDragStart(() => {
-            this.bool = true;
-            this.text = 'orange';
-            this.orangeVisible = Visibility.None;
-            return this.pixelMapBuilder;
+            this.bool = true
+            this.text = 'orange'
+            this.orangeVisible = Visibility.None
+            return this.pixelMapBuilder
           })
         Text('banana')
           .width('25%')
@@ -113,11 +113,11 @@ struct DragExample {
           .backgroundColor(0xAFEEEE)
           .visibility(this.bananaVisible)
           .onDragStart((event: DragEvent, extraParams: string) => {
-            console.log('Text onDragStart, ' + extraParams + 'X:' + event.getX() + 'Y:' + event.getY());
-            this.bool = true;
-            this.text = 'banana';
-            this.bananaVisible = Visibility.None;
-            return this.pixelMapBuilder;
+            console.log('Text onDragStart, ' + extraParams + 'X:' + event.getX() + 'Y:' + event.getY())
+            this.bool = true
+            this.text = 'banana'
+            this.bananaVisible = Visibility.None
+            return this.pixelMapBuilder
           })
       }.padding({ top: 10, bottom: 10 }).margin(10)
 
@@ -147,20 +147,20 @@ struct DragExample {
       .padding(15)
       .divider({ strokeWidth: 2, color: 0xFFFFFF, startMargin: 20, endMargin: 20 })
       .onDragEnter((event: DragEvent, extraParams: string) => {
-        console.log('List onDragEnter, ' + extraParams + 'X:' + event.getX() + 'Y:' + event.getY());
+        console.log('List onDragEnter, ' + extraParams + 'X:' + event.getX() + 'Y:' + event.getY())
       })
       .onDragMove((event: DragEvent, extraParams: string) => {
-        console.log('List onDragMove, ' + extraParams + 'X:' + event.getX() + 'Y:' + event.getY());
+        console.log('List onDragMove, ' + extraParams + 'X:' + event.getX() + 'Y:' + event.getY())
       })
       .onDragLeave((event: DragEvent, extraParams: string) => {
-        console.log('List onDragLeave, ' + extraParams + 'X:' + event.getX() + 'Y:' + event.getY());
+        console.log('List onDragLeave, ' + extraParams + 'X:' + event.getX() + 'Y:' + event.getY())
       })
       .onDrop((event: DragEvent, extraParams: string) => {
         var jsonString = JSON.parse(extraParams);
         if (this.bool) {
           // 通过splice方法插入元素
-          this.numbers.splice(jsonString.insertIndex, 0, this.text);
-          this.bool = false;
+          this.numbers.splice(jsonString.insertIndex, 0, this.text)
+          this.bool = false
         }
       })
     }.width('100%').height('100%').padding({ top: 20 }).margin({ top: 20 })

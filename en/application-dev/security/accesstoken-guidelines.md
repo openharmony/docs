@@ -1,4 +1,4 @@
-# Guide for Requesting Permissions from User
+# Permission Application Guide
 
 ## When to Use
 
@@ -115,7 +115,7 @@ The permission level of **ohos.permission.PERMISSION2** is **system_basic**, whi
 
 In addition to declaring all the permissions in the configuration file, you must declare the permissions whose levels are higher that the app's APL in the app's profile. For details about the fields in the profile, see [HarmonyAppProvision Configuration File](../quick-start/app-provision-structure.md).
 
-In this example, declare the permission under the **acls** field:
+For example, declare the required permission in the **acls** field:
 
 ```json
 {

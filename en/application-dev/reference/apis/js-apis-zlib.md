@@ -1,7 +1,7 @@
 # Zip
 
 > **NOTE**
-> 
+>
 > The initial APIs of this module are supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 ## Constraints
@@ -30,9 +30,9 @@ Zips a file. This API uses a promise to return the result.
 
 **Return value**
 
-| Type          | Description                                                |
-| -------------- | ---------------------------------------------------- |
-| Promise\<void> | Returns **ERROR_CODE_OK** if the operation is successful; returns **ERROR_CODE_ERRNO** otherwise.|
+| Type          | Description                                                        |
+| -------------- | ------------------------------------------------------------ |
+| Promise\<void> | Returns [ERROR_CODE_OK](#ziperrorcode) if the operation is successful.<br>Returns [ERROR_CODE_ERRNO](#ziperrorcode) if the operation fails.|
 
 **Example 1**
 
@@ -96,7 +96,7 @@ Unzips a file. This API uses a promise to return the result.
 
 | Type          | Description                                                        |
 | -------------- | ------------------------------------------------------------ |
-| Promise\<void> | Returns **ERROR_CODE_OK** if the operation is successful; returns **ERROR_CODE_ERRNO** otherwise.|
+| Promise\<void> | Returns [ERROR_CODE_OK](#ziperrorcode) if the operation is successful.<br>Returns [ERROR_CODE_ERRNO](#ziperrorcode) if the operation fails.|
 
 **Example**
 

@@ -3307,7 +3307,7 @@ readInterfaceToken(): string
 
   ```
   class Stub extends rpc.RemoteObject {
-      onRemoteRequestEx(code, data, reply, option) {
+      onRemoteMessageRequest(code, data, reply, option) {
           let interfaceToken = data.readInterfaceToken();
           console.log("RpcServer: interfaceToken is " + interfaceToken);
           return true;
@@ -3438,7 +3438,7 @@ getWritableBytes(): number
 
   ```
   class Stub extends rpc.RemoteObject {
-      onRemoteRequestEx(code, data, reply, option) {
+      onRemoteMessageRequest(code, data, reply, option) {
           let getWritableBytes = data.getWritableBytes();
           console.log("RpcServer: getWritableBytes is " + getWritableBytes);
           return true;
@@ -7130,7 +7130,7 @@ static getCallingPid(): number
 
   ```
   class Stub extends rpc.RemoteObject {
-      onRemoteRequestEx(code, data, reply, option) {
+      onRemoteMessageRequest(code, data, reply, option) {
           let callerPid = rpc.IPCSkeleton.getCallingPid();
           console.log("RpcServer: getCallingPid result: " + callerPid);
           return true;
@@ -7157,7 +7157,7 @@ static getCallingUid(): number
 
   ```
   class Stub extends rpc.RemoteObject {
-      onRemoteRequestEx(code, data, reply, option) {
+      onRemoteMessageRequest(code, data, reply, option) {
           let callerUid = rpc.IPCSkeleton.getCallingUid();
           console.log("RpcServer: getCallingUid result: " + callerUid);
           return true;
@@ -7185,7 +7185,7 @@ static getCallingTokenId(): number;
 
   ```
   class Stub extends rpc.RemoteObject {
-      onRemoteRequestEx(code, data, reply, option) {
+      onRemoteMessageRequest(code, data, reply, option) {
           let callerTokenId = rpc.IPCSkeleton.getCallingTokenId();
           console.log("RpcServer: getCallingTokenId result: " + callerTokenId);
           return true;
@@ -7212,7 +7212,7 @@ static getCallingDeviceID(): string
 
   ```
   class Stub extends rpc.RemoteObject {
-      onRemoteRequestEx(code, data, reply, option) {
+      onRemoteMessageRequest(code, data, reply, option) {
           let callerDeviceID = rpc.IPCSkeleton.getCallingDeviceID();
           console.log("RpcServer: callerDeviceID is: " + callerDeviceID);
           return true;
@@ -7239,7 +7239,7 @@ static getLocalDeviceID(): string
 
   ```
   class Stub extends rpc.RemoteObject {
-      onRemoteRequestEx(code, data, reply, option) {
+      onRemoteMessageRequest(code, data, reply, option) {
           let localDeviceID = rpc.IPCSkeleton.getLocalDeviceID();
           console.log("RpcServer: localDeviceID is: " + localDeviceID);
           return true;
@@ -7266,7 +7266,7 @@ static isLocalCalling(): boolean
 
   ```
   class Stub extends rpc.RemoteObject {
-      onRemoteRequestEx(code, data, reply, option) {
+      onRemoteMessageRequest(code, data, reply, option) {
           let isLocalCalling = rpc.IPCSkeleton.isLocalCalling();
           console.log("RpcServer: isLocalCalling is: " + isLocalCalling);
           return true;
@@ -7385,7 +7385,7 @@ static resetCallingIdentity(): string
 
   ```
   class Stub extends rpc.RemoteObject {
-      onRemoteRequestEx(code, data, reply, option) {
+      onRemoteMessageRequest(code, data, reply, option) {
           let callingIdentity = rpc.IPCSkeleton.resetCallingIdentity();
           console.log("RpcServer: callingIdentity is: " + callingIdentity);
           return true;
@@ -7412,7 +7412,7 @@ static restoreCallingIdentity(identity : string): void
 
   ```
   class Stub extends rpc.RemoteObject {
-      onRemoteRequestEx(code, data, reply, option) {
+      onRemoteMessageRequest(code, data, reply, option) {
           let callingIdentity = null;
           try {
               callingIdentity = rpc.IPCSkeleton.resetCallingIdentity();
@@ -7452,7 +7452,7 @@ static setCallingIdentity(identity : string): boolean
 
   ```
   class Stub extends rpc.RemoteObject {
-      onRemoteRequestEx(code, data, reply, option) {
+      onRemoteMessageRequest(code, data, reply, option) {
           let callingIdentity = null;
           try {
               callingIdentity = rpc.IPCSkeleton.resetCallingIdentity();
@@ -7818,7 +7818,7 @@ sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: Me
 
 ### onRemoteRequest<sup>8+(deprecated)</sup>
 
->从API version 9 开始不再维护，建议使用[onRemoteRequestEx](#onremoterequestex9)类替代。
+>从API version 9 开始不再维护，建议使用[onRemoteMessageRequest](#onremotemessagerequest9)类替代。
 
 onRemoteRequest(code : number, data : MessageParcel, reply: MessageParcel, options : MessageOption): boolean
 
@@ -7874,14 +7874,14 @@ sendMessageRequest请求的响应处理函数，服务端在该函数里处理�
   }
   ```
 
-### onRemoteRequestEx<sup>9+</sup>
+### onRemoteMessageRequest<sup>9+</sup>
 
-onRemoteRequestEx(code : number, data : MessageSequence, reply: MessageSequence, options : MessageOption): boolean | Promise\<boolean>
+onRemoteMessageRequest(code : number, data : MessageSequence, reply: MessageSequence, options : MessageOption): boolean | Promise\<boolean>
 
 > **说明：**
 >
->* 开发者应优先选择重载onRemoteRequestEx方法，其中可以自由实现同步和异步的消息处理。
->* 开发者同时重载onRemoteRequest和onRemoteRequestEx方法时，仅onRemoteRequestEx方法生效。
+>* 开发者应优先选择重载onRemoteMessageRequest方法，其中可以自由实现同步和异步的消息处理。
+>* 开发者同时重载onRemoteRequest和onRemoteMessageRequest方法时，仅onRemoteMessageRequest方法生效。
 
 sendMessageRequest请求的响应处理函数，服务端在该函数里同步或异步地处理请求，回复结果。
 
@@ -7900,10 +7900,10 @@ sendMessageRequest请求的响应处理函数，服务端在该函数里同步�
 
   | 类型              | 说明                                                                                           |
   | ----------------- | ---------------------------------------------------------------------------------------------- |
-  | boolean           | 若在onRemoteRequestEx中同步地处理请求，则返回一个布尔值：操作成功，则返回true；否则返回false。 |
-  | Promise\<boolean> | 若在onRemoteRequestEx中异步地处理请求，则返回一个Promise对象。                                 |
+  | boolean           | 若在onRemoteMessageRequest中同步地处理请求，则返回一个布尔值：操作成功，则返回true；否则返回false。 |
+  | Promise\<boolean> | 若在onRemoteMessageRequest中异步地处理请求，则返回一个Promise对象。                                 |
 
-**重载onRemoteRequestEx方法同步处理请求示例：**
+**重载onRemoteMessageRequest方法同步处理请求示例：**
 
   ```ets
   class MyDeathRecipient {
@@ -7920,9 +7920,9 @@ sendMessageRequest请求的响应处理函数，服务端在该函数里同步�
       isObjectDead(): boolean {
           return false;
       }
-      onRemoteRequestEx(code, data, reply, option) {
+      onRemoteMessageRequest(code, data, reply, option) {
           if (code === 1) {
-              console.log("RpcServer: sync onRemoteRequestEx is called");
+              console.log("RpcServer: sync onRemoteMessageRequest is called");
               return true;
           } else {
               console.log("RpcServer: unknown code: " + code);
@@ -7932,7 +7932,7 @@ sendMessageRequest请求的响应处理函数，服务端在该函数里同步�
   }
   ```
 
-  **重载onRemoteRequestEx方法异步处理请求示例：**
+  **重载onRemoteMessageRequest方法异步处理请求示例：**
 
   ```ets
   class MyDeathRecipient {
@@ -7949,9 +7949,9 @@ sendMessageRequest请求的响应处理函数，服务端在该函数里同步�
       isObjectDead(): boolean {
           return false;
       }
-      async onRemoteRequestEx(code, data, reply, option) {
+      async onRemoteMessageRequest(code, data, reply, option) {
           if (code === 1) {
-              console.log("RpcServer: async onRemoteRequestEx is called");
+              console.log("RpcServer: async onRemoteMessageRequest is called");
           } else {
               console.log("RpcServer: unknown code: " + code);
               return false;
@@ -7964,7 +7964,7 @@ sendMessageRequest请求的响应处理函数，服务端在该函数里同步�
   }
   ```
 
-**同时重载onRemoteRequestEx和onRemoteRequest方法同步处理请求示例：**
+**同时重载onRemoteMessageRequest和onRemoteRequest方法同步处理请求示例：**
 
   ```ets
   class MyDeathRecipient {
@@ -7983,17 +7983,17 @@ sendMessageRequest请求的响应处理函数，服务端在该函数里同步�
       }
       onRemoteRequest(code, data, reply, option) {
           if (code === 1) {
-              console.log("RpcServer: sync onRemoteRequestEx is called");
+              console.log("RpcServer: sync onRemoteMessageRequest is called");
               return true;
           } else {
               console.log("RpcServer: unknown code: " + code);
               return false;
           }
       }
-      // 同时调用仅会执行onRemoteRequestEx
-      onRemoteRequestEx(code, data, reply, option) {
+      // 同时调用仅会执行onRemoteMessageRequest
+      onRemoteMessageRequest(code, data, reply, option) {
           if (code === 1) {
-              console.log("RpcServer: async onRemoteRequestEx is called");
+              console.log("RpcServer: async onRemoteMessageRequest is called");
           } else {
               console.log("RpcServer: unknown code: " + code);
               return false;
@@ -8004,7 +8004,7 @@ sendMessageRequest请求的响应处理函数，服务端在该函数里同步�
   }
   ```
 
-  **同时重载onRemoteRequestEx和onRemoteRequest方法异步处理请求示例：**
+  **同时重载onRemoteMessageRequest和onRemoteRequest方法异步处理请求示例：**
 
   ```ets
   class MyDeathRecipient {
@@ -8030,10 +8030,10 @@ sendMessageRequest请求的响应处理函数，服务端在该函数里同步�
               return false;
           }
       }
-      // 同时调用仅会执行onRemoteRequestEx
-      async onRemoteRequestEx(code, data, reply, option) {
+      // 同时调用仅会执行onRemoteMessageRequest
+      async onRemoteMessageRequest(code, data, reply, option) {
           if (code === 1) {
-              console.log("RpcServer: async onRemoteRequestEx is called");
+              console.log("RpcServer: async onRemoteMessageRequest is called");
           } else {
               console.log("RpcServer: unknown code: " + code);
               return false;

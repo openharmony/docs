@@ -65,10 +65,10 @@ struct MyComponent {
               },
           })
           .onConnect(() => {
-              console.log('AbilityComponent connect');
+              console.log('AbilityComponent connect')
           })
           .onDisconnect(() => {
-              console.log('AbilityComponent disconnect');
+              console.log('AbilityComponent disconnect')
           })
       }
   }

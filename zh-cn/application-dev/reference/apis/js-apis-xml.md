@@ -58,7 +58,9 @@ setAttributes(name: string, value: string): void
 let arrayBuffer = new ArrayBuffer(1024);
 let bufView = new DataView(arrayBuffer);
 let thatSer = new xml.XmlSerializer(bufView);
-thatSer.setAttributes("importance", "high");  
+thatSer.startElement("note");
+thatSer.setAttributes("importance", "high"); 
+thatSer.endElement(); 
 ```
 
 

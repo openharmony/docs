@@ -1,6 +1,6 @@
 # 键值
 
-KeyCode模块提供了按键类设备的键值。
+按键设备键值。
 
 >  **说明：**
 > 本模块首批接口从API version 9开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
@@ -8,7 +8,7 @@ KeyCode模块提供了按键类设备的键值。
 ## 导入模块
 
 ```js
-import {KeyCode} from '@ohos.multimodalInput.keyCode'
+import {KeyCode} from '@ohos.multimodalInput.keyCode';
 ```
 
 ## KeyCode
@@ -19,7 +19,7 @@ import {KeyCode} from '@ohos.multimodalInput.keyCode'
 | -------------------------------- | ------ | ---- | ---- | --------------------------- |
 | KEYCODE_FN                       | number | 是    | 否    | 功能（Fn）键                     |
 | KEYCODE_UNKNOWN                  | number | 是    | 否    | 未知按键                        |
-| KEYCODE_HOME                     | number | 是    | 否    | 按键Home                      |
+| KEYCODE_HOME                     | number | 是    | 否    | 功能（Home）键                  |
 | KEYCODE_BACK                     | number | 是    | 否    | 返回键                         |
 | KEYCODE_MEDIA_PLAY_PAUSE         | number | 是    | 否    | 多媒体键 播放/暂停                  |
 | KEYCODE_MEDIA_STOP               | number | 是    | 否    | 多媒体键 停止                     |
@@ -80,10 +80,10 @@ import {KeyCode} from '@ohos.multimodalInput.keyCode'
 | KEYCODE_Z                        | number | 是    | 否    | 按键'Z'                       |
 | KEYCODE_COMMA                    | number | 是    | 否    | 按键','                       |
 | KEYCODE_PERIOD                   | number | 是    | 否    | 按键'.'                       |
-| KEYCODE_ALT_LEFT                 | number | 是    | 否    | Alt+Left                    |
-| KEYCODE_ALT_RIGHT                | number | 是    | 否    | Alt+Right                   |
-| KEYCODE_SHIFT_LEFT               | number | 是    | 否    | Shift+Left                  |
-| KEYCODE_SHIFT_RIGHT              | number | 是    | 否    | Shift+Right                 |
+| KEYCODE_ALT_LEFT                 | number | 是    | 否    | 左Alt键                    |
+| KEYCODE_ALT_RIGHT                | number | 是    | 否    | 右Alt键                  |
+| KEYCODE_SHIFT_LEFT               | number | 是    | 否    | 左Shift键                |
+| KEYCODE_SHIFT_RIGHT              | number | 是    | 否    | 右Shift键                 |
 | KEYCODE_TAB                      | number | 是    | 否    | Tab键                        |
 | KEYCODE_SPACE                    | number | 是    | 否    | 空格键                         |
 | KEYCODE_SYM                      | number | 是    | 否    | 符号修改器按键                     |
@@ -107,19 +107,19 @@ import {KeyCode} from '@ohos.multimodalInput.keyCode'
 | KEYCODE_PAGE_DOWN                | number | 是    | 否    | 向下翻页键                       |
 | KEYCODE_ESCAPE                   | number | 是    | 否    | ESC键                        |
 | KEYCODE_FORWARD_DEL              | number | 是    | 否    | 删除键                         |
-| KEYCODE_CTRL_LEFT                | number | 是    | 否    | Control+Left                |
-| KEYCODE_CTRL_RIGHT               | number | 是    | 否    | Control+Right               |
+| KEYCODE_CTRL_LEFT                | number | 是    | 否    | 左Ctrl键                |
+| KEYCODE_CTRL_RIGHT               | number | 是    | 否    | 右Ctrl键               |
 | KEYCODE_CAPS_LOCK                | number | 是    | 否    | 大写锁定键                       |
 | KEYCODE_SCROLL_LOCK              | number | 是    | 否    | 滚动锁定键                       |
 | KEYCODE_META_LEFT                | number | 是    | 否    | 左元修改器键                      |
 | KEYCODE_META_RIGHT               | number | 是    | 否    | 右元修改器键                      |
-| KEYCODE_FUNCTION                 | number | 是    | 否    | 函数修改器键                      |
+| KEYCODE_FUNCTION                 | number | 是    | 否    | 功能键                      |
 | KEYCODE_SYSRQ                    | number | 是    | 否    | 系统请求/打印屏幕键                  |
 | KEYCODE_BREAK                    | number | 是    | 否    | Break/Pause键                |
 | KEYCODE_MOVE_HOME                | number | 是    | 否    | 光标移动到开始键                    |
 | KEYCODE_MOVE_END                 | number | 是    | 否    | 光标移动到末尾键                    |
 | KEYCODE_INSERT                   | number | 是    | 否    | 插入键                         |
-| KEYCODE_FORWARD                  | number | 是    | 否    | 删除键                         |
+| KEYCODE_FORWARD                  | number | 是    | 否    | 前进键                         |
 | KEYCODE_MEDIA_PLAY               | number | 是    | 否    | 多媒体键 播放                     |
 | KEYCODE_MEDIA_PAUSE              | number | 是    | 否    | 多媒体键 暂停                     |
 | KEYCODE_MEDIA_CLOSE              | number | 是    | 否    | 多媒体键 关闭                     |

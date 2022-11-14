@@ -3758,12 +3758,12 @@ getTimestamp(callback: AsyncCallback<number\>): void
 **示例：**
 
 ```js
-metadataObject.getTimestamp((err) => {
+metadataObject.getTimestamp((err,timestamp) => {
     if (err) {
         console.error(`Failed to get timestamp. ${err.message}`);
         return;
     }
-    console.log('Callback returned with timestamp getted.');
+    console.log('Callback returned with timestamp getted timestamp : ${timestamp}');
 })
 ```
 
@@ -3784,8 +3784,8 @@ getTimestamp(): Promise<number\>
 **示例：**
 
 ```js
-metadataObject.getTimestamp().then(() => {
-    console.log('Callback returned with timestamp getted.');
+metadataObject.getTimestamp().then((timestamp) => {
+    console.log('Callback returned with timestamp getted timestamp : ${timestamp}');
 })
 ```
 

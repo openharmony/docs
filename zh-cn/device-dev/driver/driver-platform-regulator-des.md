@@ -30,22 +30,23 @@ Regulator接口定义了操作Regulator设备的通用方法集合，包括：
 
    电源管理芯片，内含多个电源甚至其他子系统。 
 
-
 ### 运作机制
 
-在HDF框架中，Regulator模块接口适配模式采用统一服务模式，这需要一个设备服务来作为Regulator模块的管理器，统一处理外部访问，这会在配置文件中有所体现。统一服务模式适合于同类型设备对象较多的情况，如Regulator可能同时具备十几个控制器，采用独立服务模式需要配置更多的设备节点，且服务会占据内存资源。
+在HDF框架中，Regulator模块接口适配模式采用统一服务模式（如图1），这需要一个设备服务来作为Regulator模块的管理器，统一处理外部访问，这会在配置文件中有所体现。统一服务模式适合于同类型设备对象较多的情况，如Regulator可能同时具备十几个控制器，采用独立服务模式需要配置更多的设备节点，且服务会占据内存资源。相反，采用统一服务模式可以使用一个设备服务作为管理器，统一处理所有同类型对象的外部访问，实现便捷管理和节约资源的目的。
 
-Regulator模块各分层的作用为：接口层提供打开设备，写入数据，关闭设备接口的能力。核心层主要提供绑定设备、初始化设备以及释放设备的能力。适配层实现其他具体的功能。
+Regulator模块各分层的作用为：
 
-![](../public_sys-resources/icon-note.gif) 说明：<br>核心层可以调用接口层的函数，也可以通过钩子函数调用适配层函数，从而使得适配层间接的可以调用接口层函数，但是不可逆转接口层调用适配层函数。
+- 接口层：提供打开设备，操作Regulator，关闭设备的能力。
+- 核心层：主要负责服务绑定、初始化以及释放管理器，并提供添加、删除以及获取Regulator设备的能力。
+- 适配层：由驱动适配者实现与硬件相关的具体功能，如设备的初始化等。
 
-**图 1** 统一服务模式结构图
+**图 1** Regulator统一服务模式结构图<a name="fig1"></a>  
 
 ![image1](figures/统一服务模式结构图.png)
 
 ### 约束与限制
 
-Regulator模块当前仅支持轻量和小型系统内核（LiteOS）。
+Regulator模块API当前仅支持内核态调用。
 
 ## 使用指导
 
@@ -58,26 +59,24 @@ Regulator主要用于：
 
 ### 接口说明
 
+Regulator模块提供的主要接口如表1所示，具体API详见//drivers/hdf_core/framework/include/platform/regulator_if.h。
+
 **表1**  Regulator设备API接口说明
 
-| 接口名 | 描述 |
+| 接口名 | 接口描述 |
 | --------------------- | ------------------------- |
-| RegulatorOpen | 获取Regulator设备驱动句柄 |
-| RegulatorClose | 销毁Regulator设备驱动句柄 |
-| RegulatorEnable | 使能Regulator |
-| RegulatorDisable | 禁用Regulator |
-| RegulatorForceDisable | 强制禁用Regulator |
-| RegulatorSetVoltage | 设置Regulator输出电压 |
-| RegulatorGetVoltage | 获取Regulator输出电压 |
-| RegulatorSetCurrent | 设置Regulator输出电流 |
-| RegulatorGetCurrent | 获取Regulator输出电流 |
-| RegulatorGetStatus | 获取Regulator状态 |
-
-
+| DevHandle RegulatorOpen(const char \*name) | 获取Regulator设备驱动句柄 |
+| void RegulatorClose(DevHandle handle) | 销毁Regulator设备驱动句柄 |
+| int32_t RegulatorEnable(DevHandle handle) | 使能Regulator |
+| int32_t RegulatorDisable(DevHandle handle) | 禁用Regulator |
+| int32_t RegulatorForceDisable(DevHandle handle) | 强制禁用Regulator |
+| int32_t RegulatorSetVoltage(DevHandle handle, uint32_t minUv, uint32_t maxUv) | 设置Regulator输出电压 |
+| int32_t RegulatorGetVoltage(DevHandle handle, uint32_t \*voltage) | 获取Regulator输出电压 |
+| int32_t RegulatorSetCurrent(DevHandle handle, uint32_t minUa, uint32_t maxUa) | 设置Regulator输出电流 |
+| int32_t RegulatorGetCurrent(DevHandle handle, uint32_t \*regCurrent) | 获取Regulator输出电流 |
+| int32_t RegulatorGetStatus(DevHandle handle, uint32_t \*status) | 获取Regulator状态 |
 
 ### 开发步骤
-
-在操作系统启动过程中，驱动管理模块根据配置文件加载Regulator驱动，Regulator驱动会检测Regulator器件并初始化驱动。
 
 使用Regulator设备的一般流程如图2所示。
 
@@ -89,7 +88,7 @@ Regulator主要用于：
 
 在操作Regulator设备时，首先要调用RegulatorOpen获取Regulator设备句柄，该函数会返回指定设备名称的Regulator设备句柄。
 
-```
+```c
 DevHandle RegulatorOpen(const char *name);
 ```
 
@@ -104,7 +103,7 @@ DevHandle RegulatorOpen(const char *name);
 
 
 
-```
+```c
 /* Regulator设备名称 */
 const char *name = "regulator_virtual_1";
 DevHandle handle = NULL;
@@ -120,7 +119,7 @@ if (handle  == NULL) {
 
 关闭Regulator设备，系统释放对应的资源。
 
-```
+```c
 void RegulatorClose(DevHandle handle);
 ```
 
@@ -130,7 +129,7 @@ void RegulatorClose(DevHandle handle);
 | ------ | ----------------- |
 | handle | Regulator设备句柄 |
 
-```
+```c
 /* 销毁Regulator设备句柄 */
 RegulatorClose(handle);
 ```
@@ -139,7 +138,7 @@ RegulatorClose(handle);
 
 启用Regulator设备。
 
-```
+```c
 int32_t RegulatorEnable(DevHandle handle);
 ```
 
@@ -154,7 +153,7 @@ int32_t RegulatorEnable(DevHandle handle);
 
 
 
-```
+```c
 int32_t ret;
 
 /* 启用Regulator设备 */
@@ -168,7 +167,7 @@ if (ret != 0) {
 
 禁用Regulator设备。如果Regulator设备状态为常开，或存在Regulator设备子节点未禁用，则禁用失败。
 
-```
+```c
 int32_t RegulatorDisable(DevHandle handle);
 ```
 
@@ -181,7 +180,7 @@ int32_t RegulatorDisable(DevHandle handle);
 | 0 | 禁用成功 |
 | 负数 | 禁用失败 |
 
-```
+```c
 int32_t ret;
 
 /* 禁用Regulator设备 */
@@ -195,7 +194,7 @@ if (ret != 0) {
 
 强制禁用Regulator设备。无论Regulator设备的状态是常开还是子节点已使能，Regulator设备都会被禁用。
 
-```
+```c
 int32_t RegulatorForceDisable(DevHandle handle);
 ```
 
@@ -209,7 +208,7 @@ int32_t RegulatorForceDisable(DevHandle handle);
 | 0 | 禁用成功 |
 | 负数 | 禁用失败 |
 
-```
+```c
 int32_t ret;
 
 /* 强制禁用Regulator设备 */
@@ -221,9 +220,7 @@ if (ret != 0) {
 
 #### 设置Regulator输出电压范围
 
-设置Regulator电压输出电压范围。
-
-```
+```c
 int32_t RegulatorSetVoltage(DevHandle handle, uint32_t minUv, uint32_t maxUv);
 ```
 
@@ -238,7 +235,7 @@ int32_t RegulatorSetVoltage(DevHandle handle, uint32_t minUv, uint32_t maxUv);
 | 0 | 设置成功 |
 | 负数 | 设置失败 |
 
-```
+```c
 int32_t ret;
 int32_t minUv = 0;        // 最小电压为0µV
 int32_t maxUv = 20000;    // 最大电压为20000µV
@@ -252,9 +249,7 @@ if (ret != 0) {
 
 #### 获取Regulator电压
 
-获取Regulator电压。
-
-```
+```c
 int32_t RegulatorGetVoltage(DevHandle handle, uint32_t *voltage);
 ```
 
@@ -269,7 +264,7 @@ int32_t RegulatorGetVoltage(DevHandle handle, uint32_t *voltage);
 | 0 | 获取成功 |
 | 负数 | 获取失败 |
 
-```
+```c
 int32_t ret;
 uint32_t voltage;
 
@@ -282,9 +277,7 @@ if (ret != 0) {
 
 #### 设置Regulator输出电流范围
 
-设置Regulator输出电流范围。
-
-```
+```c
 int32_t RegulatorSetCurrent(DevHandle handle, uint32_t minUa, uint32_t maxUa);
 ```
 
@@ -299,9 +292,9 @@ int32_t RegulatorSetCurrent(DevHandle handle, uint32_t minUa, uint32_t maxUa);
 | 0<br>| 设置成功 |
 | 负数 | 设置失败 |
 
-```
+```c
 int32_t ret;
-int32_t minUa = 0;	// 最小电流为0μA
+int32_t minUa = 0;	    // 最小电流为0μA
 int32_t maxUa = 200;    // 最大电流为200μA
 
 /* 设置Regulator输出电流范围 */
@@ -313,9 +306,7 @@ if (ret != 0) {
 
 #### 获取Regulator电流
 
-获取Regulator电流。
-
-```
+```c
 int32_t RegulatorGetCurrent(DevHandle handle, uint32_t *regCurrent);
 ```
 
@@ -329,7 +320,7 @@ int32_t RegulatorGetCurrent(DevHandle handle, uint32_t *regCurrent);
 | 0 | 获取成功 |
 | 负数 | 获取失败 |
 
-```
+```c
 int32_t ret;
 uint32_t regCurrent;
 
@@ -342,9 +333,7 @@ if (ret != 0) {
 
 #### 获取Regulator状态
 
-获取Regulator状态。
-
-```
+```c
 int32_t RegulatorGetStatus(DevHandle handle, uint32_t *status);
 ```
 
@@ -358,7 +347,7 @@ int32_t RegulatorGetStatus(DevHandle handle, uint32_t *status);
 | 0 | 获取成功 |
 | 负数 | 获取失败 |
 
-```
+```c
 int32_t ret;
 uint32_t status;
 
@@ -373,9 +362,11 @@ if (ret != 0) {
 
 ## 使用实例
 
+本例拟对Hi3516DV300开发板上Regulator设备进行简单的读取操作。
+
 Regulator设备完整的使用示例如下所示，首先获取Regulator设备句柄，然后使能，设置电压，获取电压、状态，禁用，最后销毁Regulator设备句柄。
 
-```
+```c
 void RegulatorTestSample(void)
 {
     int32_t ret;

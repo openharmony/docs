@@ -106,8 +106,8 @@ This is a system API and cannot be called by third-party applications.
 
 | Name                | Type                 | Mandatory| Description                                                |
 | -------------------- | --------------------- | ---- | ---------------------------------------------------- |
-| type                 | "BundleStatusChange"  | Yes  | Event type.                                    |
-| bundleStatusCallback | BundleStatusCallback  | Yes  | Callback to register.                                  |
+| type                 | string | Yes  | Event type. Only **BundleStatusChange** is supported.            |
+| bundleStatusCallback | [BundleStatusCallback](js-apis-Bundle-BundleStatusCallback.md) | Yes  | Callback to register.                                  |
 | callback             | AsyncCallback\<string> | Yes  | Callback used to return a successful result or error information.|
 
 ## innerBundleManager.on
@@ -130,10 +130,10 @@ This is a system API and cannot be called by third-party applications.
 
 **Parameters**
 
-| Name                | Type                | Mandatory| Description              |
-| -------------------- | -------------------- | ---- | ------------------ |
-| type                 | "BundleStatusChange" | Yes  | Event type.  |
-| bundleStatusCallback | BundleStatusCallback | Yes  | Callback to register.|
+| Name                | Type                                                        | Mandatory| Description                                      |
+| -------------------- | ------------------------------------------------------------ | ---- | ------------------------------------------ |
+| type                 | string                                                       | Yes  | Event type. Only **BundleStatusChange** is supported.|
+| bundleStatusCallback | [BundleStatusCallback](js-apis-Bundle-BundleStatusCallback.md) | Yes  | Callback to register.                        |
 
 **Return value**
 
@@ -163,7 +163,7 @@ This is a system API and cannot be called by third-party applications.
 
 | Name    | Type                 | Mandatory| Description                                                |
 | -------- | --------------------- | ---- | ---------------------------------------------------- |
-| type     | "BundleStatusChange"  | Yes  | Event type.                                    |
+| type     | string | Yes  | Event type. Only **BundleStatusChange** is supported.              |
 | callback | AsyncCallback\<string> | Yes  | Callback used to return a successful result or error information.|
 
 ## innerBundleManager.off
@@ -186,9 +186,9 @@ This is a system API and cannot be called by third-party applications.
 
 **Parameters**
 
-| Name| Type                | Mandatory| Description            |
-| ---- | -------------------- | ---- | ---------------- |
-| type | "BundleStatusChange" | Yes  | Event type.|
+| Name| Type  | Mandatory| Description                                      |
+| ---- | ------ | ---- | ------------------------------------------ |
+| type | string | Yes  | Event type. Only **BundleStatusChange** is supported.|
 
 **Return value**
 

@@ -23,7 +23,7 @@ Toggle(options: { type: ToggleType, isOn?: boolean })
 
 | 参数名 | 参数类型 | 必填   | 参数描述           |
 | ---- | ---------- | -----| -------------- |
-| type | ToggleType | 是   | 开关类型。 |
+| type | [ToggleType](#toggletype枚举说明) | 是   | 开关类型。 |
 | isOn | boolean    | 否   | 开关是否打开，true：打开，false：关闭。<br/>默认值：false |
 
 

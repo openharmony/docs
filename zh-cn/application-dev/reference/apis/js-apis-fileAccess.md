@@ -77,10 +77,12 @@ createFileAccessHelper(context: Context, wants: Array&lt;Want&gt;) : FileAccessH
     let fileAccesssHelper = null;
     // wantInfo 从getFileAccessAbilityInfo()获取
     // 创建只连接媒体库服务的helper对象
-    let wantInfo = {
-      "bundleName": "com.ohos.medialibrary.medialibrarydata",
-      "abilityName": "FileExtensionAbility",
-    }
+    let wantInfos = [
+      {
+        "bundleName": "com.ohos.medialibrary.medialibrarydata",
+        "abilityName": "FileExtensionAbility",
+      },
+    ]
     try {
       fileAccesssHelper = fileAccess.createFileAccessHelper(this.context, wantInfos);
       if (!fileAccesssHelper)
@@ -211,7 +213,7 @@ listFile(filter?: Filter) : FileIterator
     let fileIterator = rootInfo.listFile();
     // 含过滤器实现的listFile
     // let fileIterator = rootInfo.listFile(filter);
-    if (fileIterator) {
+    if (!fileIterator) {
       console.error("listFile interface returns an undefined object");
       return;
     }
@@ -261,7 +263,7 @@ scanFile(filter?: Filter) : FileIterator
       let fileIterator = rootInfo.scanFile();
       // 含过滤器实现的scanFile
       // let fileIterator = rootInfo.scanFile(filter);
-      if (fileIterator) {
+      if (!fileIterator) {
         console.error("scanFile interface returns undefined object");
         return;
       }
@@ -311,7 +313,7 @@ listFile(filter?: Filter) : FileIterator
     let fileIterator = fileInfoDir.listFile();
     // 含过滤器实现的listFile
     // let fileIterator = rootInfo.listFile(filter);
-    if (fileIterator) {
+    if (!fileIterator) {
       console.error("listFile interface returns an undefined object");
       return;
     }
@@ -362,7 +364,7 @@ scanFile(filter?: Filter) : FileIterator;
     let fileIterator = fileInfoDir.scanFile();
     // 含过滤器实现的scanFile
     // let fileIterator = rootInfo.scanFile(filter);
-    if (fileIterator) {
+    if (!fileIterator) {
       console.error("scanFile interface returns an undefined object");
       return;
     }
@@ -451,12 +453,12 @@ mkDir(parentUri: string, displayName: string) : Promise&lt;string&gt;
   let dirName = "dirTest"
   let dirUri = null;
   try {
-    dirUri = await fileAccessHelper.mkDir(sourceUri, displayName)
+    dirUri = await fileAccessHelper.mkDir(sourceUri, dirName)
     if (!dirUri) {
       console.error("mkDir return undefined object");
       return;
     }
-    console.log("mkDir sucess， fileUri: " + JSON.stringify(fileUri));
+    console.log("mkDir sucess， dirUri: " + JSON.stringify(dirUri));
   } catch (error) {
     console.error("mkDir failed, error " + error);
   };
