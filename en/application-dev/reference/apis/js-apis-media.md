@@ -1,7 +1,6 @@
 # Media
 
 > **NOTE**
->
 > The initial APIs of this module are supported since API version 6. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 The multimedia subsystem provides a set of simple and easy-to-use APIs for you to access the system and use media resources.
@@ -53,7 +52,7 @@ Creates a **VideoPlayer** instance. This API uses an asynchronous callback to re
 
 | Name  | Type                                       | Mandatory| Description                          |
 | -------- | ------------------------------------------- | ---- | ------------------------------ |
-| callback | AsyncCallback<[VideoPlayer](#videoplayer8)> | Yes  | Callback used to return the **VideoPlayer** instance, which can be used to manage and play video media.|
+| callback | AsyncCallback<[VideoPlayer](#videoplayer8)> | Yes  | Callback used to return the result. If the operation is successful, the **VideoPlayer** instance is returned; otherwise, **null** is returned. The instance can be used to manage and play video media.|
 
 **Example**
 
@@ -80,9 +79,9 @@ Creates a **VideoPlayer** instance. This API uses a promise to return the result
 
 **Return value**
 
-| Type                                 | Description                               |
-| ------------------------------------- | ----------------------------------- |
-| Promise<[VideoPlayer](#videoplayer8)> | Promise used to return the **VideoPlayer** instance, which can be used to manage and play video media.|
+| Type                                 | Description                                                        |
+| ------------------------------------- | ------------------------------------------------------------ |
+| Promise<[VideoPlayer](#videoplayer8)> | Promise used to return the result. If the operation is successful, the **VideoPlayer** instance is returned; otherwise, **null** is returned. The instance can be used to manage and play video media.|
 
 **Example**
 
@@ -112,9 +111,9 @@ Only one **AudioRecorder** instance can be created per device.
 
 **Return value**
 
-| Type                           | Description                                     |
-| ------------------------------- | ----------------------------------------- |
-| [AudioRecorder](#audiorecorder) | Returns the **AudioRecorder** instance if the operation is successful; returns **null** otherwise.|
+| Type                           | Description                                                        |
+| ------------------------------- | ------------------------------------------------------------ |
+| [AudioRecorder](#audiorecorder) | Returns the **AudioRecorder** instance if the operation is successful; returns **null** otherwise. The instance can be used to record audio media.|
 
 **Example**
 
@@ -135,7 +134,7 @@ Only one **AudioRecorder** instance can be created per device.
 
 | Name  | Type                                           | Mandatory| Description                          |
 | -------- | ----------------------------------------------- | ---- | ------------------------------ |
-| callback | AsyncCallback<[VideoRecorder](#videorecorder9)> | Yes  | Callback used to return the **VideoRecorder** instance, which can be used to record video media.|
+| callback | AsyncCallback<[VideoRecorder](#videorecorder9)> | Yes  | Callback used to return the result. If the operation is successful, the **VideoRecorder** instance is returned; otherwise, **null** is returned. The instance can be used to record video media.|
 
 **Example**
 
@@ -163,9 +162,9 @@ Only one **AudioRecorder** instance can be created per device.
 
 **Return value**
 
-| Type                                     | Description                               |
-| ----------------------------------------- | ----------------------------------- |
-| Promise<[VideoRecorder](#videorecorder9)> | Promise used to return the **VideoRecorder** instance, which can be used to record video media.|
+| Type                                     | Description                                                        |
+| ----------------------------------------- | ------------------------------------------------------------ |
+| Promise<[VideoRecorder](#videorecorder9)> | Promise used to return the result. If the operation is successful, the **VideoRecorder** instance is returned; otherwise, **null** is returned. The instance can be used to record video media.|
 
 **Example**
 
@@ -263,7 +262,7 @@ Enumerates the buffering event types.
 | BUFFERING_START   | 1    | Buffering starts.                  |
 | BUFFERING_END     | 2    | Buffering ends.                  |
 | BUFFERING_PERCENT | 3    | Buffering progress, in percent.                |
-| CACHED_DURATION   | 4    | Cache duration, in milliseconds.|
+| CACHED_DURATION   | 4    | Cache duration, in ms.|
 
 ## AudioPlayer
 
@@ -362,9 +361,9 @@ Seeks to the specified playback position.
 
 **Parameters**
 
-| Name| Type  | Mandatory| Description                                |
-| ------ | ------ | ---- | ------------------------------------ |
-| timeMs | number | Yes  | Position to seek to, in milliseconds.|
+| Name| Type  | Mandatory| Description                                                       |
+| ------ | ------ | ---- | ----------------------------------------------------------- |
+| timeMs | number | Yes  | Position to seek to, in ms. The value range is [0, duration].|
 
 **Example**
 
@@ -427,9 +426,9 @@ Obtains the audio track information. This API uses an asynchronous callback to r
 
 **Parameters**
 
-| Name  | Type                                                        | Mandatory| Description                      |
-| -------- | ------------------------------------------------------------ | ---- | -------------------------- |
-| callback | AsyncCallback<Array<[MediaDescription](#mediadescription8)>> | Yes  | Callback used to return the audio track information obtained.|
+| Name  | Type                                                        | Mandatory| Description                                      |
+| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------ |
+| callback | AsyncCallback<Array<[MediaDescription](#mediadescription8)>> | Yes  | Callback used to return a **MediaDescription** array, which records the audio track information.|
 
 **Example**
 
@@ -463,9 +462,9 @@ Obtains the audio track information. This API uses a promise to return the resul
 
 **Return value**
 
-| Type                                                  | Description                           |
-| ------------------------------------------------------ | ------------------------------- |
-| Promise<Array<[MediaDescription](#mediadescription8)>> | Promise used to return the audio track information obtained.|
+| Type                                                  | Description                                           |
+| ------------------------------------------------------ | ----------------------------------------------- |
+| Promise<Array<[MediaDescription](#mediadescription8)>> | Promise used to return a **MediaDescription** array, which records the audio track information.|
 
 **Example**
 
@@ -497,7 +496,7 @@ for (let i = 0; i < arrayDescription.length; i++) {
 
 on(type: 'bufferingUpdate', callback: (infoType: [BufferingInfoType](#bufferinginfotype8), value: number) => void): void
 
-Subscribes to the audio buffering update event.
+Subscribes to the audio buffering update event. Only network playback supports this subscription.
 
 **System capability**: SystemCapability.Multimedia.Media.AudioPlayer
 
@@ -594,7 +593,7 @@ audioPlayer.src = fdPath;  // Set the src attribute and trigger the 'dataLoad' e
 
 on(type: 'timeUpdate', callback: Callback\<number>): void
 
-Subscribes to the **'timeUpdate'** event.
+Subscribes to the **'timeUpdate'** event. This event is reported every second when the audio playback is in progress.
 
 **System capability**: SystemCapability.Multimedia.Media.AudioPlayer
 
@@ -1014,10 +1013,10 @@ Seeks to the specified playback position. The next key frame at the specified po
 
 **Parameters**
 
-| Name  | Type    | Mandatory| Description                                |
-| -------- | -------- | ---- | ------------------------------------ |
-| timeMs   | number   | Yes  | Position to seek to, in milliseconds.|
-| callback | function | Yes  | Callback used to return the result.      |
+| Name  | Type    | Mandatory| Description                                                        |
+| -------- | -------- | ---- | ------------------------------------------------------------ |
+| timeMs   | number   | Yes  | Position to seek to, in ms. The value range is [0, duration].|
+| callback | function | Yes  | Callback used to return the result.                              |
 
 **Example**
 
@@ -1042,11 +1041,11 @@ Seeks to the specified playback position. This API uses an asynchronous callback
 
 **Parameters**
 
-| Name  | Type                  | Mandatory| Description                                |
-| -------- | ---------------------- | ---- | ------------------------------------ |
-| timeMs   | number                 | Yes  | Position to seek to, in milliseconds.|
-| mode     | [SeekMode](#seekmode8) | Yes  | Seek mode.                          |
-| callback | function               | Yes  | Callback used to return the result.      |
+| Name  | Type                  | Mandatory| Description                                                        |
+| -------- | ---------------------- | ---- | ------------------------------------------------------------ |
+| timeMs   | number                 | Yes  | Position to seek to, in ms. The value range is [0, duration].|
+| mode     | [SeekMode](#seekmode8) | Yes  | Seek mode.                                                  |
+| callback | function               | Yes  | Callback used to return the result.                              |
 
 **Example**
 
@@ -1072,16 +1071,16 @@ Seeks to the specified playback position. If **mode** is not specified, the next
 
 **Parameters**
 
-| Name| Type                  | Mandatory| Description                                |
-| ------ | ---------------------- | ---- | ------------------------------------ |
-| timeMs | number                 | Yes  | Position to seek to, in milliseconds.|
-| mode   | [SeekMode](#seekmode8) | No  | Seek mode.                          |
+| Name| Type                  | Mandatory| Description                                                        |
+| ------ | ---------------------- | ---- | ------------------------------------------------------------ |
+| timeMs | number                 | Yes  | Position to seek to, in ms. The value range is [0, duration].|
+| mode   | [SeekMode](#seekmode8) | No  | Seek mode.                                                  |
 
 **Return value**
 
-| Type          | Description                               |
-| -------------- | ----------------------------------- |
-| Promise\<void> | Promise used to return the result.|
+| Type          | Description                                       |
+| -------------- | ------------------------------------------- |
+| Promise\<number> | Promise used to return the playback position, in ms.|
 
 **Example**
 
@@ -1220,9 +1219,9 @@ Obtains the video track information. This API uses an asynchronous callback to r
 
 **Parameters**
 
-| Name  | Type                                                        | Mandatory| Description                      |
-| -------- | ------------------------------------------------------------ | ---- | -------------------------- |
-| callback | AsyncCallback<Array<[MediaDescription](#mediadescription8)>> | Yes  | Callback used to return the video track information obtained.|
+| Name  | Type                                                        | Mandatory| Description                                      |
+| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------ |
+| callback | AsyncCallback<Array<[MediaDescription](#mediadescription8)>> | Yes  | Callback used to return a **MediaDescription** array, which records the video track information.|
 
 **Example**
 
@@ -1256,9 +1255,9 @@ Obtains the video track information. This API uses a promise to return the resul
 
 **Return value**
 
-| Type                                                  | Description                           |
-| ------------------------------------------------------ | ------------------------------- |
-| Promise<Array<[MediaDescription](#mediadescription8)>> | Promise used to return the video track information obtained.|
+| Type                                                  | Description                                           |
+| ------------------------------------------------------ | ----------------------------------------------- |
+| Promise<Array<[MediaDescription](#mediadescription8)>> | Promise used to return a **MediaDescription** array, which records the video track information.|
 
 **Example**
 
@@ -1332,9 +1331,9 @@ Sets the video playback speed. This API uses a promise to return the result.
 
 **Return value**
 
-| Type            | Description                     |
-| ---------------- | ------------------------- |
-| Promise\<number> | Promise used to return the result.|
+| Type            | Description                                                        |
+| ---------------- | ------------------------------------------------------------ |
+| Promise\<number> | Promise used to return playback speed. For details, see [PlaybackSpeed](#playbackspeed8).|
 
 **Example**
 
@@ -1389,13 +1388,13 @@ Selects a bit rate from available ones, which can be obtained by calling [availa
 
 | Name | Type  | Mandatory| Description                                        |
 | ------- | ------ | ---- | -------------------------------------------- |
-| bitrate | number | Yes  | Bit rate to select, which is used in the HLS multi-bit rate scenario. The unit is bit/s.|
+| bitrate | number | Yes  | Bit rate, which is used in the HLS multi-bit rate scenario. The unit is bit/s.|
 
 **Return value**
 
-| Type            | Description                     |
-| ---------------- | ------------------------- |
-| Promise\<number> | Promise used to return the result.|
+| Type            | Description                       |
+| ---------------- | --------------------------- |
+| Promise\<number> | Promise used to return the bit rate.|
 
 **Example**
 
@@ -1435,7 +1434,7 @@ videoPlayer.on('playbackCompleted', () => {
 
 on(type: 'bufferingUpdate', callback: (infoType: BufferingInfoType, value: number) => void): void
 
-Subscribes to the video buffering update event.
+Subscribes to the video buffering update event. Only network playback supports this subscription.
 
 **System capability**: SystemCapability.Multimedia.Media.VideoPlayer
 
