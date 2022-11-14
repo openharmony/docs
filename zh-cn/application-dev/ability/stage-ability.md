@@ -321,7 +321,3 @@ struct Index {
   }
 }
 ```
-
-## 相关实例
-针对Stage模型Ability开发，有以下相关示例可供参考：
-- [`StageCallAbility`：StageCallAbility的创建与使用（ArkTS）（API9）（Full SDK）](https://gitee.com/openharmony/applications_app_samples/tree/master/ability/StageCallAbility)

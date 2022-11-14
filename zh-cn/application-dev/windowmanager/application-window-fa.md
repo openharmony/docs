@@ -91,20 +91,20 @@
    
    ```js
    // 移动子窗口位置。
-   windowClass.moveTo(300, 300, (err, data) => {
+   windowClass.moveTo(300, 300, (err) => {
      if (err.code) {
        console.error('Failed to move the window. Cause:' + JSON.stringify(err));
        return;
      }
-     console.info('Succeeded in moving the window. Data: ' + JSON.stringify(data));
+     console.info('Succeeded in moving the window.');
    });
    // 改变子窗口大小。
-   windowClass.resetSize(500, 1000, (err, data) => {
+   windowClass.resetSize(500, 1000, (err) => {
      if (err.code) {
        console.error('Failed to change the window size. Cause:' + JSON.stringify(err));
        return;
      }
-     console.info('Succeeded in changing the window size. Data: ' + JSON.stringify(data));
+     console.info('Succeeded in changing the window size.');
    });
    ```
 
@@ -114,19 +114,19 @@
    
    ```js
    // 为子窗口加载对应的目标页面。
-   windowClass.loadContent("pages/page2", (err, data) => {
+   windowClass.loadContent("pages/page2", (err) => {
        if (err.code) {
            console.error('Failed to load the content. Cause: ' + JSON.stringify(err));
            return;
        }
-       console.info('Succeeded in loading the content. Data: ' + JSON.stringify(data));
+       console.info('Succeeded in loading the content.');
        // 显示子窗口。
-       windowClass.show((err, data) => {
+       windowClass.show((err) => {
         if (err.code) {
                console.error('Failed to show the window. Cause: ' + JSON.stringify(err));
                return;
            }
-           console.info('Succeeded in showing the window. Data: ' + JSON.stringify(data));
+           console.info('Succeeded in showing the window.');
        });
    });
    ```
@@ -137,12 +137,12 @@
    
    ```js
    // 销毁子窗口。当不再需要某些子窗口时，可根据场景的具体实现逻辑，使用destroy接口销毁子窗口。
-   windowClass.destroy((err, data) => {
+   windowClass.destroy((err) => {
        if (err.code) {
            console.error('Failed to destroy the subwindow. Cause:' + JSON.stringify(err));
            return;
        }
-       console.info('Succeeded in destroying the subwindow. Data: ' + JSON.stringify(data));
+       console.info('Succeeded in destroying the subwindow.');
    });
    ```
 
@@ -186,31 +186,31 @@
    ```js
    // 实现沉浸式效果。方式一：设置窗口全屏显示。
    let isFullScreen = true;
-   mainWindowClass.setFullScreen(isFullScreen, (err, data) => {
+   mainWindowClass.setFullScreen(isFullScreen, (err) => {
      if (err.code) {
        console.error('Failed to enable the full-screen mode. Cause:' + JSON.stringify(err));
        return;
      }
-     console.info('Succeeded in enabling the full-screen mode. Data: ' + JSON.stringify(data));
+     console.info('Succeeded in enabling the full-screen mode.');
    });
    // 实现沉浸式效果。方式二：设置导航栏、状态栏不显示。
    let names = [];
-   mainWindowClass.setSystemBarEnable(names, (err, data) => {
+   mainWindowClass.setSystemBarEnable(names, (err) => {
      if (err.code) {
        console.error('Failed to set the system bar to be visible. Cause:' + JSON.stringify(err));
        return;
      }
-     console.info('Succeeded in setting the system bar to be visible. Data: ' + JSON.stringify(data));
+     console.info('Succeeded in setting the system bar to be visible.');
    });
    // 实现沉浸式效果。
    // 方式三：设置窗口为全屏布局，配合设置状态栏、导航栏的透明度、背景/文字颜色及高亮图标等属性，与主窗口显示保持协调一致。
    let isLayoutFullScreen = true;
-   mainWindowClass.setLayoutFullScreen(isLayoutFullScreen, (err, data) => {
+   mainWindowClass.setLayoutFullScreen(isLayoutFullScreen, (err) => {
      if (err.code) {
        console.error('Failed to set the window layout to full-screen mode. Cause:' + JSON.stringify(err));
        return;
      }
-     console.info('Succeeded in setting the window layout to full-screen mode. Data: ' + JSON.stringify(data));
+     console.info('Succeeded in setting the window layout to full-screen mode.');
    });
    let sysBarProps = {
      statusBarColor: '#ff00ff',
@@ -219,12 +219,12 @@
      statusBarContentColor: '#ffffff',
      navigationBarContentColor: '#ffffff'
    };
-   mainWindowClass.setSystemBarProperties(sysBarProps, (err, data) => {
+   mainWindowClass.setSystemBarProperties(sysBarProps, (err) => {
      if (err.code) {
        console.error('Failed to set the system bar properties. Cause: ' + JSON.stringify(err));
        return;
      }
-     console.info('Succeeded in setting the system bar properties. Data: ' + JSON.stringify(data));
+     console.info('Succeeded in setting the system bar properties.');
    });
    ```
    
@@ -234,19 +234,19 @@
    
    ```js
    // 为沉浸式窗口加载对应的目标页面。
-   mainWindowClass.loadContent("pages/page3", (err, data) => {
+   mainWindowClass.loadContent("pages/page3", (err) => {
        if (err.code) {
            console.error('Failed to load the content. Cause: ' + JSON.stringify(err));
            return;
        }
-       console.info('Succeeded in loading the content. Data: ' + JSON.stringify(data));
+       console.info('Succeeded in loading the content.' );
        // 显示沉浸式窗口。
-       mainWindowClass.show((err, data) => {
+       mainWindowClass.show((err) => {
            if (err.code) {
                console.error('Failed to show the window. Cause: ' + JSON.stringify(err));
                return;
            }
-           console.info('Succeeded in showing the window. Data: ' + JSON.stringify(data));
+           console.info('Succeeded in showing the window.');
        });
    });
    ```
