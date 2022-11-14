@@ -3337,9 +3337,9 @@ scrollSearch(by: By): Promise\<UiComponent>
 
 **返回值：**
 
-| 类型                                            | 说明                                  |
-| ----------------------------------------------- | ------------------------------------- |
-| Promise\<[[UiComponent<sup>(deprecated)</sup>](#uicomponentdeprecated)> | 以Promise形式返回找到的目标控件对象。 |
+| 类型                                                         | 说明                                  |
+| ------------------------------------------------------------ | ------------------------------------- |
+| Promise\<[UiComponent<sup>(deprecated)</sup>](#uicomponentdeprecated)> | 以Promise形式返回找到的目标控件对象。 |
 
 **示例：**
 
@@ -3425,9 +3425,9 @@ findComponent(by: By): Promise\<UiComponent>
 
 **返回值：**
 
-| 类型                                            | 说明                              |
-| ----------------------------------------------- | --------------------------------- |
-| Promise\<[[UiComponent<sup>(deprecated)</sup>](#uicomponentdeprecated)> | 以Promise形式返回找到的控件对象。 |
+| 类型                                                         | 说明                              |
+| ------------------------------------------------------------ | --------------------------------- |
+| Promise\<[UiComponent<sup>(deprecated)</sup>](#uicomponentdeprecated)> | 以Promise形式返回找到的控件对象。 |
 
 **示例：**
 
@@ -3456,9 +3456,9 @@ findComponents(by: By): Promise\<Array\<UiComponent>>
 
 **返回值：**
 
-| 类型                                                    | 说明                                    |
-| ------------------------------------------------------- | --------------------------------------- |
-| Promise\<Array\<[[UiComponent<sup>(deprecated)</sup>](#uicomponentdeprecated)>> | 以Promise形式返回找到的控件对象的列表。 |
+| 类型                                                         | 说明                                    |
+| ------------------------------------------------------------ | --------------------------------------- |
+| Promise\<Array\<[UiComponent<sup>(deprecated)</sup>](#uicomponentdeprecated)>> | 以Promise形式返回找到的控件对象的列表。 |
 
 **示例：**
 
