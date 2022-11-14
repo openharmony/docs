@@ -7,28 +7,28 @@
     - [OpenHarmony v3.2 Beta3 (2022-09-30)](release-notes/OpenHarmony-v3.2-beta3.md)
     - [OpenHarmony v3.2 Beta2 (2022-07-30)](release-notes/OpenHarmony-v3.2-beta2.md)
     - [OpenHarmony v3.2 Beta1 (2022-05-31)](release-notes/OpenHarmony-v3.2-beta1.md)
-    - [OpenHarmony v3.1.1 Release (2022-05-31)](release-notes/OpenHarmony-v3.1.1-release.md)
     - [OpenHarmony v3.1 Release (2022-03-30)](release-notes/OpenHarmony-v3.1-release.md)
+      - [OpenHarmony v3.1.2 Release (2022-08-24)](release-notes/OpenHarmony-v3.1.2-release.md)
+      - [OpenHarmony v3.1.1 Release (2022-05-31)](release-notes/OpenHarmony-v3.1.1-release.md)
     - [OpenHarmony v3.1 Beta (2021-12-31)](release-notes/OpenHarmony-v3.1-beta.md)
-    - [OpenHarmony v3.0.5 LTS (2022-07-01)](release-notes/OpenHarmony-v3.0.5-LTS.md)
-    - [OpenHarmony v3.0.3 LTS (2022-04-08)](release-notes/OpenHarmony-v3.0.3-LTS.md)
-    - [OpenHarmony v3.0.2 LTS (2022-03-18)](release-notes/OpenHarmony-v3.0.2-LTS.md)
-    - [OpenHarmony v3.0.1 LTS (2022-01-12)](release-notes/OpenHarmony-v3.0.1-LTS.md)
+      - [OpenHarmony v3.0.5 LTS (2022-07-01)](release-notes/OpenHarmony-v3.0.5-LTS.md)
+      - [OpenHarmony v3.0.3 LTS (2022-04-08)](release-notes/OpenHarmony-v3.0.3-LTS.md)
+      - [OpenHarmony v3.0.2 LTS (2022-03-18)](release-notes/OpenHarmony-v3.0.2-LTS.md)
+      - [OpenHarmony v3.0.1 LTS (2022-01-12)](release-notes/OpenHarmony-v3.0.1-LTS.md)
     - [OpenHarmony v3.0 LTS (2021-09-30)](release-notes/OpenHarmony-v3.0-LTS.md)
-
   - OpenHarmony 2.x Releases
     - [OpenHarmony v2.2 beta2 (2021-08-04)](release-notes/OpenHarmony-v2.2-beta2.md)
     - [OpenHarmony 2.0 Canary (2021-06-01)](release-notes/OpenHarmony-2-0-Canary.md)
-
   - OpenHarmony 1.x Releases
 
-    - [OpenHarmony v1.1.4 LTS (2022-02-11)](release-notes/OpenHarmony-v1-1-4-LTS.md)
-    - [OpenHarmony v1.1.3 LTS (2021-09-30)](release-notes/OpenHarmony-v1-1-3-LTS.md)
-    - [OpenHarmony v1.1.2 LTS (2021-08-04)](release-notes/OpenHarmony-v1.1.2-LTS.md)
-    - [OpenHarmony 1.1.1 LTS (2021-06-22)](release-notes/OpenHarmony-1-1-1-LTS.md)
-    - [OpenHarmony 1.1.0 LTS (2021-04-01)](release-notes/OpenHarmony-1-1-0-LTS.md)
+      - [OpenHarmony v1.1.5 LTS (2022-08-24)](release-notes/OpenHarmony-v1.1.5-LTS.md)
+      - [OpenHarmony v1.1.4 LTS (2022-02-11)](release-notes/OpenHarmony-v1-1-4-LTS.md)
+      - [OpenHarmony v1.1.3 LTS (2021-09-30)](release-notes/OpenHarmony-v1-1-3-LTS.md)
+      - [OpenHarmony v1.1.2 LTS (2021-08-04)](release-notes/OpenHarmony-v1.1.2-LTS.md)
+      - [OpenHarmony v1.1.1 LTS (2021-06-22)](release-notes/OpenHarmony-1-1-1-LTS.md)
+      - [OpenHarmony v1.1.0 LTS (2021-04-01)](release-notes/OpenHarmony-1-1-0-LTS.md)
     - [OpenHarmony 1.0 (2020-09-10)](release-notes/OpenHarmony-1-0.md)
-
+  
 - API Differences
     - OpenHarmony 3.2 Beta3
       - JS API Differences
@@ -59,6 +59,7 @@
         - [Update subsystem](release-notes/api-change/v3.2-beta3/js-apidiff-update.md)
         - [Web subsystem](release-notes/api-change/v3.2-beta3/js-apidiff-web.md)
         - [Window manager subsystem](release-notes/api-change/v3.2-beta3/js-apidiff-window.md)
+      - [Updates (OpenHarmony 3.2 Beta2 -> OpenHarmony 3.2 Beta3)](release-notes/api-change/v3.2-beta3/changelog-v3.2-beta3.md)
   - OpenHarmony 3.2 Beta2
       - JS API Differences
         - [Ability framework](release-notes/api-change/v3.2-beta2/js-apidiff-ability.md)
@@ -89,7 +90,7 @@
         - [Web subsystem](release-notes/api-change/v3.2-beta2/js-apidiff-web.md)
         - [Window manager subsystem](release-notes/api-change/v3.2-beta2/js-apidiff-window.md)
       - ChangeLog
-        - [Updates Between OpenHarmony 3.2 Beta2 and OpenHarmony 3.2 Beta1](release-notes/api-change/v3.2-beta2/changelog-v3.2-beta2.md)
+        - [Updates (OpenHarmony 3.2 Beta1 -> OpenHarmony 3.2 Beta2)](release-notes/api-change/v3.2-beta2/changelog-v3.2-beta2.md)
         - [Adaptation Guide for the Application Sandbox](release-notes/api-change/v3.2-beta2/application-sandbox-adaptation-guide.md)  
   - OpenHarmony 3.2 Beta1
       - JS API Differences
@@ -147,7 +148,7 @@
   - OpenHarmony 3.1 Beta
       - [JS API Differences](release-notes/api-change/v3.1-beta/js-apidiff-v3.1-beta.md)
       - [Native API Differences](release-notes/api-change/v3.1-beta/native-apidiff-v3.1-beta.md)
-      - [Updates Between OpenHarmony 3.1 Beta and OpenHarmony 3.0](release-notes/api-change/v3.1-beta/changelog-v3.1-beta.md)
+      - [Updates (OpenHarmony 3.0 -> OpenHarmony 3.1 Beta)](release-notes/api-change/v3.1-beta/changelog-v3.1-beta.md)
   - OpenHarmony 3.0 LTS  
       - [JS API Differences](release-notes/api-change/v3.0-LTS/js-apidiff-v3.0-lts.md) 
   - OpenHarmony v2.2 Beta2 
