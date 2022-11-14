@@ -17,8 +17,11 @@ DevEco Device Tool支持Hi3516DV300开发板的源码一键编译功能，提供
    ![zh-cn_image_0000001307480750](figures/zh-cn_image_0000001307480750.png)
 
 3. 安装Hi3516DV300相关工具链，部分工具安装需要使用root权限，请在“TERMINAL”窗口输入用户密码进行安装。
+
    > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
-   > 如果出现安装pip组件失败，可参考[修改Python源的方法](https://device.harmonyos.com/cn/docs/documentation/guide/ide-set-python-source-0000001227639986)进行修改，完成尝试重新安装。
+   >
+   > - 如果出现安装pip组件失败，可参考[修改Python源的方法](https://device.harmonyos.com/cn/docs/documentation/guide/ide-set-python-source-0000001227639986)进行修改，完成尝试重新安装。
+   > - 若出现安装apt组件失败，可参考[修改apt源的方法](https://device.harmonyos.com/cn/docs/documentation/guide/faq-toolchain-install-0000001301623822)进行修改，完成后尝试重新安装。
 
    ![zh-cn_image_0000001360080305](figures/zh-cn_image_0000001360080305.png)
 
