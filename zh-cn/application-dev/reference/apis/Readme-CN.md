@@ -68,6 +68,9 @@
   - bundle/[HapModuleInfo (HapModuleInfo)](js-apis-bundle-HapModuleInfo.md)
   - bundle/[Metadata (Metadata)](js-apis-bundle-Metadata.md)
   - bundle/[ModuleInfo (ModuleInfo)](js-apis-bundle-ModuleInfo.md)
+- 应用管理
+
+  - [@system.package (应用管理)](js-apis-system-package.md)
 - UI界面
 
   - [@ohos.animator (动画)](js-apis-animator.md)
@@ -234,7 +237,6 @@
   - [@system.mediaquery (媒体查询)](js-apis-system-mediaquery.md)
   - [@system.network (网络状态)](js-apis-system-network.md)
   - [@system.notification (通知消息)](js-apis-system-notification.md)
-  - [@system.package (应用管理)](js-apis-system-package.md)
   - [@system.prompt (弹窗)](js-apis-system-prompt.md)
   - [@system.request (上传下载)](js-apis-system-request.md)
   - [@system.router (页面路由)](js-apis-system-router.md)
