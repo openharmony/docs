@@ -171,17 +171,13 @@ catch(error => {
 })
 
 // 用于获取像素每行字节数
-pixelmap.getBytesNumberPerRow( num => {
-    console.log('Succeeded in getting BytesNumber PerRow.');
-})
+var num = pixelmap.getBytesNumberPerRow();
 
 // 用于获取像素总字节数
-pixelmap.getPixelBytesNumber(num => {
-    console.log('Succeeded in getting PixelBytesNumber.');
-})
+var pixelSize = pixelmap.getPixelBytesNumber();
 
 // 用于获取pixelmap信息
-pixelmap.getImageInfo.then( imageInfo => {});
+pixelmap.getImageInfo().then( imageInfo => {});
 
 // 用于释放pixelmap
 pixelmap.release(()=>{
