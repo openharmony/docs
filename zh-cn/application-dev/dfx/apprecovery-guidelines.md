@@ -33,19 +33,19 @@
 
 故障管理是应用提升用户体验的重要手段。鸿蒙应用框架为开发者提供了故障监听，故障恢复以及故障查询三种方式来管理应用的故障。
 这里故障监听指的是errorManager，故障恢复指的是[appRecovery](../reference/apis/js-apis-app-ability-appRecovery.md)，故障查询指的是[faultLogger](../reference/apis/js-apis-faultLogger.md)。
-下图中并没有标记[faultLogger](../reference/apis/js-apis-faultLogger.md)的调用时机，开发者可以根据应用启动时传入的[LastExitReason](../reference/apis/js-apis-application-abilityConstant.md#AbilityConstant.LastExitReason)来决定是否调用[faultLogger](../reference/apis/js-apis-faultLogger.md)查询上次的故障信息。
+下图中并没有标记[faultLogger](../reference/apis/js-apis-faultLogger.md)的调用时机，开发者可以根据应用启动时传入的[LastExitReason](../reference/apis/js-apis-application-abilityConstant.md#abilityconstant.lastexitreason)来决定是否调用[faultLogger](../reference/apis/js-apis-faultLogger.md)查询上次的故障信息。
 ![故障处理流程示意](./figures/20221106203527.png)
 这里建议应用开发者使用[errorManager](../reference/apis/js-apis-errorManager.md)对应用的异常进行处理，处理完成后开发者可以选择调用状态保存接口并主动重启应用。
-如果开发者没有注册[ErrorObserver](../reference/apis/js-apis-errorManager.md#ErrorObserver)也没有使能自动恢复，则按照系统的默认逻辑执行进程退出。用户可以选择从启动器再次打开应用。
-如果开发者使能了自动恢复，框架会首先检查当前故障是否支持状态保存以及开发者是否配置了状态保存，如果支持则会回调[Ability](../reference/apis/js-apis-application-ability.md#Ability)的[onSaveState](../reference/apis/js-apis-application-ability.md#Ability.onSaveState)的接口。最后重启应用。
+如果开发者没有注册[ErrorObserver](../reference/apis/js-apis-errorManager.md#errorobserver)也没有使能自动恢复，则按照系统的默认逻辑执行进程退出。用户可以选择从启动器再次打开应用。
+如果开发者使能了自动恢复，框架会首先检查当前故障是否支持状态保存以及开发者是否配置了状态保存，如果支持则会回调[Ability](../reference/apis/js-apis-application-ability.md#Ability)的[onSaveState](../reference/apis/js-apis-application-ability.md#ability.onsavestate)的接口。最后重启应用。
 
 ### 应用故障管理接口支持场景
 
 | 故障名称   | 故障监听  | 状态保存 | 自动重启 | 日志查询 |
 | ----------|--------- |--------- |--------- |--------- |
-| [JS_CRASH](../reference/apis/js-apis-faultLogger.md#FaultType) | 支持|支持|支持|支持|
-| [APP_FREEZE](../reference/apis/js-apis-faultLogger.md#FaultType) | 不支持|不支持|支持|支持|
-| [CPP_CRASH](../reference/apis/js-apis-faultLogger.md#FaultType) | 不支持|不支持|不支持|支持|
+| [JS_CRASH](../reference/apis/js-apis-faultLogger.md#faulttype) | 支持|支持|支持|支持|
+| [APP_FREEZE](../reference/apis/js-apis-faultLogger.md#faulttype) | 不支持|不支持|支持|支持|
+| [CPP_CRASH](../reference/apis/js-apis-faultLogger.md#faulttype) | 不支持|不支持|不支持|支持|
 
 这里状态保存指的是故障时状态保存，对于应用卡死场景，开发者可以采用定时保存状态或者在Ability切入后台后自动保存的方式最大限度的保护用户数据。
 
@@ -86,7 +86,7 @@ import AbilityConstant from '@ohos.app.ability.AbilityConstant'
 
 #### 2.2 主动触发保存和恢复
 
-- 定义和注册和[ErrorObserver](../reference/apis/js-apis-errorManager.md#ErrorObserver) callback.
+- 定义和注册和[ErrorObserver](../reference/apis/js-apis-errorManager.md#errorobserver) callback.
 
 ```ts
 var registerId = -1;
