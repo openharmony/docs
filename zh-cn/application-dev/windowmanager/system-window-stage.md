@@ -87,7 +87,7 @@ export default class ServiceExtensionAbility1 extends ExtensionContext {
                 }
                 console.info('Succeeded in loading the content.');
                 // 3.显示音量条窗口。
-                windowClass.show((err, data) => {
+                windowClass.show((err) => {
                     if (err.code) {
                         console.error('Failed to show the window. Cause:' + JSON.stringify(err));
                         return;
