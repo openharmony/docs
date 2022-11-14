@@ -8,9 +8,9 @@ UiTest提供模拟UI操作的能力，供开发者在测试场景使用，主要
 - [Component<sup>9+</sup>](#component9)：代表UI界面上的指定控件，提供控件属性获取，控件点击，滑动查找，文本注入等能力。
 - [Driver<sup>9+</sup>](#driver9)：入口类，提供控件匹配/查找，按键注入，坐标点击/滑动，截图等能力。
 - [UiWindow<sup>9+</sup>](#uiwindow9)：入口类，提供窗口属性获取，窗口拖动、调整窗口大小等能力。
-- [By](#bydeprecated)：提供控件特征描述能力，用于控件筛选匹配查找。从API version9开始不再维护，建议使用[[On<sup>9+</sup>](#on9)](#driver9)。
-- [UiComponent](#uicomponentdeprecated)：代表UI界面上的指定控件，提供控件属性获取，控件点击，滑动查找，文本注入等能力。从API version9开始不再维护，建议使用[Component<sup>9+</sup>](#component9)。
-- [UiDriver](#uidriverdeprecated)：入口类，提供控件匹配/查找，按键注入，坐标点击/滑动，截图等能能力。从API version9开始不再维护，建议使用[Driver<sup>9+</sup>](#driver9)。
+- [By<sup>(deprecated)</sup>](#bydeprecated)：提供控件特征描述能力，用于控件筛选匹配查找。从API version9开始不再维护，建议使用[On<sup>9+</sup>](#on9)。
+- [UiComponent<sup>(deprecated)</sup>](#uicomponentdeprecated)：代表UI界面上的指定控件，提供控件属性获取，控件点击，滑动查找，文本注入等能力。从API version9开始不再维护，建议使用[Component<sup>9+</sup>](#component9)。
+- [UiDriver<sup>(deprecated)</sup>](#uidriverdeprecated)：入口类，提供控件匹配/查找，按键注入，坐标点击/滑动，截图等能能力。从API version9开始不再维护，建议使用[Driver<sup>9+</sup>](#driver9)。
 
 >**说明：**
 >
