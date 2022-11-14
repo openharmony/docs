@@ -155,6 +155,8 @@
 | height         | [Length](#length)      | 目标元素的高度，作为返回值时，类型为number，单位vp。 |
 | position       | [Position](#position8) | 目标元素左上角相对父元素左上角的位置。            |
 | globalPosition | [Position](#position8) | 目标元素左上角相对页面左上角的位置。             |
+| pos<sup>(deprecated) </sup>      | [Position](#position8) | 目标元素左上角相对父元素左上角的位置。            |
+| globalPos<sup>(deprecated) </sup>  | [Position](#position8) | 目标元素左上角相对页面左上角的位置。             |
 
 
 ## Position<sup>8+</sup>
