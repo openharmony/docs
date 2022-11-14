@@ -2648,7 +2648,7 @@ async function demo() {
 ## By<sup>(deprecated)</sup>
 
 UiTest框架通过By类提供了丰富的控件特征描述API，用于进行控件筛选来匹配/查找出目标控件。<br>
-By提供的API能力具有以下几个特点:<br>1、支持单属性匹配和多属性组合匹配，例如同时指定目标控件text和id。<br>2、控件属性支持多种匹配模式。<br>3、支持控件绝对定位，相对定位，可通过[By.isBefore](#isbeforedeprecated)和[By.isAfter](#isafterdeprecated)等API限定邻近控件特征进行辅助定位。<br>By类提供的所有API均为同步接口，建议使用者通过静态构造器BY来链式创建By对象。
+By提供的API能力具有以下几个特点:<br>1、支持单属性匹配和多属性组合匹配，例如同时指定目标控件text和id。<br>2、控件属性支持多种匹配模式。<br>3、支持控件绝对定位，相对定位，可通过[By.isBefore<sup>(deprecated)</sup>](#isbeforedeprecated)和[By.isAfter<sup>(deprecated)</sup>](#isafterdeprecated)等API限定邻近控件特征进行辅助定位。<br>By类提供的所有API均为同步接口，建议使用者通过静态构造器BY来链式创建By对象。
 
 从API version9开始不再维护，建议使用[On<sup>9+</sup>](#on9)。
 
@@ -2677,7 +2677,7 @@ text(txt: string, pattern?: MatchPattern): By
 
 | 类型                | 说明                               |
 | ------------------- | ---------------------------------- |
-| [By](#bydeprecated) | 返回指定目标控件文本属性的By对象。 |
+| [By<sup>(deprecated)</sup>](#bydeprecated) | 返回指定目标控件文本属性的By对象。 |
 
 **示例：**
 
@@ -2706,7 +2706,7 @@ key(key: string): By
 
 | 类型                | 说明                                |
 | ------------------- | ----------------------------------- |
-| [By](#bydeprecated) | 返回指定目标控件key值属性的By对象。 |
+| [By<sup>(deprecated)</sup>](#bydeprecated) | 返回指定目标控件key值属性的By对象。 |
 
 **示例：**
 
@@ -2735,7 +2735,7 @@ id(id: number): By
 
 | 类型                | 说明                             |
 | ------------------- | -------------------------------- |
-| [By](#bydeprecated) | 返回指定目标控件id属性的By对象。 |
+| [By<sup>(deprecated)</sup>](#bydeprecated) | 返回指定目标控件id属性的By对象。 |
 
 **示例：**
 
@@ -2764,7 +2764,7 @@ type(tp: string): By
 
 | 类型                | 说明                                     |
 | ------------------- | ---------------------------------------- |
-| [By](#bydeprecated) | 返回指定目标控件的控件类型属性的By对象。 |
+| [By<sup>(deprecated)</sup>](#bydeprecated) | 返回指定目标控件的控件类型属性的By对象。 |
 
 **示例：**
 
@@ -2793,7 +2793,7 @@ clickable(b?: boolean): By
 
 | 类型                | 说明                                       |
 | ------------------- | ------------------------------------------ |
-| [By](#bydeprecated) | 返回指定目标控件的可点击状态属性的By对象。 |
+| [By<sup>(deprecated)</sup>](#bydeprecated) | 返回指定目标控件的可点击状态属性的By对象。 |
 
 **示例：**
 
@@ -2822,7 +2822,7 @@ scrollable(b?: boolean): By
 
 | 类型                | 说明                                       |
 | ------------------- | ------------------------------------------ |
-| [By](#bydeprecated) | 返回指定目标控件的可滑动状态属性的By对象。 |
+| [By<sup>(deprecated)</sup>](#bydeprecated) | 返回指定目标控件的可滑动状态属性的By对象。 |
 
 **示例：**
 
@@ -2850,7 +2850,7 @@ enabled(b?: boolean): By
 
 | 类型                | 说明                                     |
 | ------------------- | ---------------------------------------- |
-| [By](#bydeprecated) | 返回指定目标控件的使能状态属性的By对象。 |
+| [By<sup>(deprecated)</sup>](#bydeprecated) | 返回指定目标控件的使能状态属性的By对象。 |
 
 **示例：**
 
@@ -2878,7 +2878,7 @@ focused(b?: boolean): By
 
 | 类型                | 说明                                     |
 | ------------------- | ---------------------------------------- |
-| [By](#bydeprecated) | 返回指定目标控件的获焦状态属性的By对象。 |
+| [By<sup>(deprecated)</sup>](#bydeprecated) | 返回指定目标控件的获焦状态属性的By对象。 |
 
 **示例：**
 
@@ -2906,7 +2906,7 @@ selected(b?: boolean): By
 
 | 类型                | 说明                                       |
 | ------------------- | ------------------------------------------ |
-| [By](#bydeprecated) | 返回指定目标控件的被选中状态属性的By对象。 |
+| [By<sup>(deprecated)</sup>](#bydeprecated) | 返回指定目标控件的被选中状态属性的By对象。 |
 
 **示例：**
 
@@ -2928,13 +2928,13 @@ isBefore(by: By): By
 
 | 参数名 | 类型                | 必填 | 说明             |
 | ------ | ------------------- | ---- | ---------------- |
-| by     | [By](#bydeprecated) | 是   | 特征控件的属性。 |
+| by     | [By<sup>(deprecated)</sup>](#bydeprecated) | 是   | 特征控件的属性。 |
 
 **返回值：**
 
 | 类型                | 说明                                                 |
 | ------------------- | ---------------------------------------------------- |
-| [By](#bydeprecated) | 返回指定目标控件位于给出的特征属性控件之前的By对象。 |
+| [By<sup>(deprecated)</sup>](#bydeprecated) | 返回指定目标控件位于给出的特征属性控件之前的By对象。 |
 
 **示例：**
 
@@ -2956,13 +2956,13 @@ isAfter(by: By): By
 
 | 参数名 | 类型                | 必填 | 说明             |
 | ------ | ------------------- | ---- | ---------------- |
-| by     | [By](#bydeprecated) | 是   | 特征控件的属性。 |
+| by     | [By<sup>(deprecated)</sup>](#bydeprecated) | 是   | 特征控件的属性。 |
 
 **返回值：**
 
 | 类型                | 说明                                                 |
 | ------------------- | ---------------------------------------------------- |
-| [By](#bydeprecated) | 返回指定目标控件位于给出的特征属性控件之后的By对象。 |
+| [By<sup>(deprecated)</sup>](#bydeprecated) | 返回指定目标控件位于给出的特征属性控件之后的By对象。 |
 
 **示例：**
 
@@ -3333,13 +3333,13 @@ scrollSearch(by: By): Promise\<UiComponent>
 
 | 参数名 | 类型                | 必填 | 说明                 |
 | ------ | ------------------- | ---- | -------------------- |
-| by     | [By](#bydeprecated) | 是   | 目标控件的属性要求。 |
+| by     | [By<sup>(deprecated)</sup>](#bydeprecated) | 是   | 目标控件的属性要求。 |
 
 **返回值：**
 
 | 类型                                            | 说明                                  |
 | ----------------------------------------------- | ------------------------------------- |
-| Promise\<[UiComponent](#uicomponentdeprecated)> | 以Promise形式返回找到的目标控件对象。 |
+| Promise\<[[UiComponent<sup>(deprecated)</sup>](#uicomponentdeprecated)> | 以Promise形式返回找到的目标控件对象。 |
 
 **示例：**
 
@@ -3421,13 +3421,13 @@ findComponent(by: By): Promise\<UiComponent>
 
 | 参数名 | 类型                | 必填 | 说明                 |
 | ------ | ------------------- | ---- | -------------------- |
-| by     | [By](#bydeprecated) | 是   | 目标控件的属性要求。 |
+| by     | [By<sup>(deprecated)</sup>](#bydeprecated) | 是   | 目标控件的属性要求。 |
 
 **返回值：**
 
 | 类型                                            | 说明                              |
 | ----------------------------------------------- | --------------------------------- |
-| Promise\<[UiComponent](#uicomponentdeprecated)> | 以Promise形式返回找到的控件对象。 |
+| Promise\<[[UiComponent<sup>(deprecated)</sup>](#uicomponentdeprecated)> | 以Promise形式返回找到的控件对象。 |
 
 **示例：**
 
@@ -3452,13 +3452,13 @@ findComponents(by: By): Promise\<Array\<UiComponent>>
 
 | 参数名 | 类型                | 必填 | 说明                 |
 | ------ | ------------------- | ---- | -------------------- |
-| by     | [By](#bydeprecated) | 是   | 目标控件的属性要求。 |
+| by     | [By<sup>(deprecated)</sup>](#bydeprecated) | 是   | 目标控件的属性要求。 |
 
 **返回值：**
 
 | 类型                                                    | 说明                                    |
 | ------------------------------------------------------- | --------------------------------------- |
-| Promise\<Array\<[UiComponent](#uicomponentdeprecated)>> | 以Promise形式返回找到的控件对象的列表。 |
+| Promise\<Array\<[[UiComponent<sup>(deprecated)</sup>](#uicomponentdeprecated)>> | 以Promise形式返回找到的控件对象的列表。 |
 
 **示例：**
 
@@ -3483,7 +3483,7 @@ assertComponentExist(by: By): Promise\<void>
 
 | 参数名 | 类型                | 必填 | 说明                 |
 | ------ | ------------------- | ---- | -------------------- |
-| by     | [By](#bydeprecated) | 是   | 目标控件的属性要求。 |
+| by     | [By<sup>(deprecated)</sup>](#bydeprecated) | 是   | 目标控件的属性要求。 |
 
 **示例：**
 
