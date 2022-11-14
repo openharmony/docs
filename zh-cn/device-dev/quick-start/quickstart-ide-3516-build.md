@@ -29,7 +29,7 @@ DevEco Device Tool支持Hi3516DV300开发板的源码一键编译功能，提供
 
    ![zh-cn_image_0000001307320918](figures/zh-cn_image_0000001307320918.png)
 
-4. 在“hi3516dv300”配置页签中，设置源码的编译类型**build_type**，默认为“debug”类型，请根据需要进行修改。修改完成后，单击**Save**进行保存。
+4. 在**ipcamera_hispark_taurus**配置页签中，设置源码的编译类型**build_type**，默认为“debug”类型，请根据需要进行修改。修改完成后，单击**Save**进行保存。
 
    ![zh-cn_image_0000001307160958](figures/zh-cn_image_0000001307160958.png)
 
