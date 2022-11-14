@@ -46,8 +46,7 @@ Caller及Callee功能如下：具体的API详见[接口文档](../reference/apis
 Call调用的开发步骤：
 - 创建Callee被调用端。
 - 访问Callee被调用端。
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
-> 开发步骤章节中的示例代码片段是开发过程的步骤化展示，部分代码可能无法单独运行，完整工程代码请参考[相关实例](#相关实例)。
+
 ### 创建Callee被调用端
 Callee被调用端，需要实现指定方法的数据接收回调函数、数据的序列化及反序列化方法。在需要接收数据期间，通过on接口注册监听，无需接收数据时通过off接口解除监听。
 **1. 配置Ability的启动模式**
