@@ -1284,7 +1284,7 @@ getRawFd(path: string, callback: AsyncCallback&lt;RawFileDescriptor&gt;): void
 | 参数名      | 类型                                       | 必填   | 说明                               |
 | -------- | ---------------------------------------- | ---- | -------------------------------- |
 | path     | string                                   | 是    | rawfile文件路径                      |
-| callback | AsyncCallback&lt;[getRawFd](#getrawfd9)&gt; | 是    | 异步回调，用于返回获取的rawfile文件的descriptor |
+| callback | AsyncCallback&lt;[RawFileDescriptor](#rawfiledescriptor8)&gt; | 是    | 异步回调，用于返回获取的rawfile文件的descriptor |
 
 以下错误码的详细介绍请参见[资源管理错误码](../errorcodes/errorcode-resource-manager.md)。
 
@@ -1325,7 +1325,7 @@ getRawFd(path: string): Promise&lt;RawFileDescriptor&gt;
 **返回值：** 
 | 类型                                       | 说明                  |
 | ---------------------------------------- | ------------------- |
-| Promise&lt;[getRawFd](#getrawfd9-1)&gt; | rawfile文件descriptor |
+| Promise&lt;[RawFileDescriptor](#rawfiledescriptor8)&gt; | rawfile文件descriptor |
 
 以下错误码的详细介绍请参见[资源管理错误码](../errorcodes/errorcode-resource-manager.md)。
 
