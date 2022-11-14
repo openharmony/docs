@@ -13,7 +13,7 @@
 
 install(bundleFilePaths: Array&lt;string&gt;, param: InstallParam, callback: AsyncCallback&lt;InstallStatus&gt;): void;
 
-以异步方法为应用安装hap，支持多hap安装。使用callback形式返回结果。
+以异步方法在应用中安装hap，支持多hap安装。使用callback形式返回结果。
 
 **需要权限：**
 
@@ -29,7 +29,7 @@ SystemCapability.BundleManager.BundleFramework
 
 | 名称            | 类型                                                 | 必填 | 描述                                                         |
 | --------------- | ---------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| bundleFilePaths | Array&lt;string&gt;                                  | 是   | 指示存储hap包的沙箱路径，应用的沙箱路径可以通过[Context](js-apis-Context.md#contextgetfilesdir)获取|
+| bundleFilePaths | Array&lt;string&gt;                                  | 是   | 指示存储hap包的沙箱路径。沙箱路径的获取方法参见[获取应用的沙箱路径](#获取应用的沙箱路径)|
 | param           | [InstallParam](#installparam)                        | 是   | 指定安装所需的其他参数。                                     |
 | callback        | AsyncCallback&lt;[InstallStatus](#installstatus)&gt; | 是   | 程序启动作为入参的回调函数，返回安装状态信息。               |
 
@@ -176,8 +176,8 @@ hap的哈希值参数。应用市场升级检测时，校验各版本哈希值�
 
 | 名称                           | 类型                           |可读|可写| 说明               |
 | ------------------------------ | ------------------------------ | ---- |----|--------------- |
-| userId                         | number                         | 是|是 |指示用户id         |
-| installFlag                    | number                         | 是|是 |指示安装标志       |
+| userId                         | number                         | 是|是 |指示用户id，可以通过[账户子系统](js-apis-)         |
+| installFlag                    | number                         | 是|是 |指示安装标志 <br> 0表示正常安装 <br>1表示替代原有应用       |
 | isKeepData                     | boolean                        | 是|是 |指示应用删除后是否保留数据 |
 | hashParams<sup>9+</sup>        | Array<[HashParam](#hashparam)> | 是|是 |哈希值参数         |
 | crowdtestDeadline<sup>9+</sup> | number                         | 是|是 |[众测](https://deveco.huawei.com/crowdtest)截止时间 |
@@ -194,3 +194,25 @@ hap的哈希值参数。应用市场升级检测时，校验各版本哈希值�
 | ------------- | ------------------------------------------------------------ | ---- | ---- | ------------------------------ |
 | status        | bundle.[InstallErrorCode](js-apis-Bundle.md#installerrorcode) | 是   | 否   | 表示安装或卸载错误状态码       |
 | statusMessage | string                                                       | 是   | 否   | 表示安装或卸载的字符串结果信息 |
+
+## 获取应用的沙箱路径
+对于FA模型，应用的沙箱路径可以通过[Context](js-apis-Context.md)中的方法获取；对于Stage模型，应用的沙箱路径可以通过[Context](js-apis-ability-context.md#abilitycontext)中的属性获取。
+
+**示例：**
+``` ts
+// Stage模型
+import Ability from '@ohos.application.Ability';
+class MainAbility extends Ability {
+    onWindowStageCreate(windowStage) {
+        let context = this.context;
+        let pathDir = context.filesDir;
+    }
+}
+
+// FA模型
+import featureAbility from '@ohos.ability.featureAbility';
+let context = featureAbility.getContext();
+context.getFilesDir().then((data) => {
+    let pathDir = data;
+});
+```
