@@ -35,14 +35,12 @@ Hi3861V100的镜像烧录通过Windows环境进行烧录，开发者启动烧录
 
    ![Phoenix-upload](figures/Phoenix-upload.png)
 
-5. 在“hi3861”页签，设置烧录选项，包括upload_port、upload_protocol和upload_partitions。
+5. 在“hi3861”页签，设置烧录选项，包括upload_port、upload_protocol和upload_partitions。配置完成后工程将自动保存。
    - upload_port：选择已查询的串口号。
    - upload_protocol：选择烧录协议，选择“hiburn-serial”。
    - upload_partitions：选择待烧录的文件名称。DevEco Device Tool已预置默认的烧录文件信息，如果需要修改待烧录文件地址，可点击每个待烧录文件后的![zh-cn_image_0000001333642545](figures/zh-cn_image_0000001333642545.png)按钮进行修改。
 
    ![zh-cn_image_0000001345770181](figures/zh-cn_image_0000001345770181.png)
-
-   配置完成后工程将自动保存。
 
 6. 在“PROJECT TASKS”中，点击hi3861下的**Upload**按钮，启动烧录。
 
