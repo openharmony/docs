@@ -371,12 +371,12 @@ class MainAbility extends Ability {
                    console.info('Succeeded in changing the window size.');
                });
                // 4.为悬浮窗加载对应的目标页面。
-               windowClass.loadContent("pages/page4", (err, data) => {
+               windowClass.loadContent("pages/page4", (err) => {
                    if (err.code) {
                        console.error('Failed to load the content. Cause:' + JSON.stringify(err));
                        return;
                    }
-                   console.info('Succeeded in loading the content. Data: ' + JSON.stringify(data));
+                   console.info('Succeeded in loading the content.');
                    // 4.显示悬浮窗。
                    windowClass.show((err) => {
                        if (err.code) {
