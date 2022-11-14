@@ -297,12 +297,12 @@ Hi3516DV300开发板标准系统的烧录方式包括USB烧录、网口烧录两
 
 3. 通过以下两条命令设置启动参数。
    
-   ```
+   ```shell
    setenv bootargs 'mem=640M console=ttyAMA0,115200 mmz=anonymous,0,0xA8000000,384M clk_ignore_unused rootdelay=10 hardware=Hi3516DV300 init=/init root=/dev/ram0 rw blkdevparts=mmcblk0:1M(boot),15M(kernel),20M(updater),2M(misc),3307M(system),256M(vendor),-(userdata)';
    ```
 
    
-   ```
+   ```shell
    setenv bootcmd 'mmc read 0x0 0x82000000 0x800 0x4800; bootm 0x82000000'
    ```
 
@@ -310,7 +310,7 @@ Hi3516DV300开发板标准系统的烧录方式包括USB烧录、网口烧录两
 
 4. 保存参数设置。
    
-   ```
+   ```shell
    save
    ```
 
@@ -318,7 +318,7 @@ Hi3516DV300开发板标准系统的烧录方式包括USB烧录、网口烧录两
 
 5. 重启开发板，完成系统启动。
    
-   ```
+   ```shell
    reset
    ```
 
