@@ -90,7 +90,6 @@
     - [bootstrap服务启动组件](subsys-boot-bootstrap.md)
     - [常见问题](subsys-boot-faqs.md)
     - [参考](subsys-boot-ref.md)
-- [测试用例开发指导](subsys-testguide-test.md)
 - DFX
     - [DFX概述](subsys-dfx-overview.md)
     - [HiLog开发指导](subsys-dfx-hilog-rich.md)
@@ -113,4 +112,3 @@
     - [bytrace使用指导](subsys-toolchain-bytrace-guide.md)
     - [hdc_std使用指导](subsys-toolchain-hdc-guide.md)
     - [hiperf使用指导](subsys-toolchain-hiperf.md)
-- [XTS测试用例开发指导](subsys-xts-guide.md)
