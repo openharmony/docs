@@ -188,7 +188,7 @@ async function example() {
   };
   let albums = await mgr.getPhotoAlbums(fetchOptions)
   let album = await albums.getFirstObject()
-  mgr.createPhotoAsset('testFile.txt', album.albumUri, (err, fileAsset) => {
+  mgr.createPhotoAsset('testFile.jpg', album.albumUri, (err, fileAsset) => {
     if (fileAsset != undefined) {
       console.info('createPhotoAsset file displayName' + fileAsset.displayName);
       console.info('createPhotoAsset successfully');
@@ -221,7 +221,7 @@ createPhotoAsset(displayName: string, callback: AsyncCallback&lt;FileAsset&gt;):
 ```ts
 async function example() {
   console.info('createPhotoAssetDemo')
-  mgr.createPhotoAsset('testFile.txt', (err, fileAsset) => {
+  mgr.createPhotoAsset('testFile.jpg', (err, fileAsset) => {
     if (fileAsset != undefined) {
       console.info('createPhotoAsset file displayName' + fileAsset.displayName);
       console.info('createPhotoAsset successfully');
@@ -261,7 +261,7 @@ createPhotoAsset(displayName: string, albumUri？: string): Promise&lt;FileAsset
 async function example() {
   console.info('createPhotoAssetDemo')
   try {
-    let fileAsset = await mgr.createPhotoAsset('testFile.txt')
+    let fileAsset = await mgr.createPhotoAsset('testFile.jpg')
     console.info('createPhotoAsset file displayName' + fileAsset.displayName);
     console.info('createPhotoAsset successfully');
   } catch (err) {
@@ -308,8 +308,9 @@ async function example() {
           console.info('album is undefined, err = ', err);
         }
       })
+    } else {
+      console.info('getPhotoAlbums fail, message = ', err);
     }
-    console.info('getPhotoAlbums fail, message = ', err);
   })
 }
 ```
@@ -457,7 +458,7 @@ async function example() {
     predicates: predicates
   };
 
-  mgr.getPhotoAssets(fetchOptions, async (err, fetchResult) => {
+  mgr.getAudioAssets(fetchOptions, async (err, fetchResult) => {
     if (fetchResult != undefined) {
       console.info('fetchFileResult success');
       let fileAsset = await fetchResult.getFirstObject();
@@ -505,7 +506,7 @@ async function example() {
     predicates: predicates
   };
   try {
-    var fetchResult = await mgr.getPhotoAssets(fetchOptions)
+    var fetchResult = await mgr.getAudioAssets(fetchOptions)
   } catch (err) {
     console.info('getAudioAssets failed, message = ', err);
   }
@@ -523,7 +524,7 @@ async function example() {
 
 delete(uri: string, callback: AsyncCallback&lt;void&gt;): void;
 
-删除媒体文件。
+删除媒体文件,删除的文件进入到回收站。
 
 **需要权限**：ohos.permission.READ_IMAGEVIDEO 和 ohos.permission.WRITE_IMAGEVIDEO 或 ohos.permission.READ_AUDIO 和 ohos.permission.WRITE_AUDIO
 
@@ -570,7 +571,7 @@ async function example() {
 
 delete(uri: string): Promise&lt;void&gt;;
 
-删除媒体文件。
+删除媒体文件,删除的文件进入到回收站。
 
 **需要权限**：ohos.permission.READ_IMAGEVIDEO 和 ohos.permission.WRITE_IMAGEVIDEO 或 ohos.permission.READ_AUDIO 和 ohos.permission.WRITE_AUDIO
 
@@ -637,10 +638,29 @@ on(type: ChangeEvent, callback: Callback&lt;void&gt;): void
 
 ```ts
 async function example() {
-    console.info('onDemo')
-    userFileMgr.on('imageChange', () => {
-      // image file had changed, do something
-    });
+  console.info('onDemo')
+  let count = 0;
+  mgr.on('imageChange', () => {
+    count++;
+    // image file had changed, do something
+  });
+  try {
+    let testFileName = "testFile" + Date.now() + ".jpg";
+    let fileAsset = await mgr.createPhotoAsset(testFileName);
+    console.info('createPhotoAsset file displayName' + fileAsset.displayName);
+    console.info('createPhotoAsset successfully');
+  } catch (err) {
+    console.info('createPhotoAsset failed, message = ' + err);
+  }
+  //sleep 1s
+  if (count > 0) {
+    console.info("onDemo success");
+  } else {
+    console.info("onDemo fail");
+  }
+  mgr.off('imageChange', () => {
+    // stop listening success
+  });
 }
 ```
 
@@ -663,10 +683,31 @@ off(type: ChangeEvent, callback?: Callback&lt;void&gt;): void
 
 ```ts
 async function example() {
-    console.info('offDemo')
-    userFileMgr.off('imageChange', () => {
-      // stop listening success
-    });
+  console.info('offDemo')
+  let count = 0;
+  mgr.on('imageChange', () => {
+    count++;
+    // image file had changed, do something
+  });
+
+  mgr.off('imageChange', () => {
+    // stop listening success
+  });
+
+  try {
+    let testFileName = "testFile" + Date.now() + ".jpg";
+    let fileAsset = await mgr.createPhotoAsset(testFileName);
+    console.info('createPhotoAsset file displayName' + fileAsset.displayName);
+    console.info('createPhotoAsset successfully');
+  } catch (err) {
+    console.info('createPhotoAsset failed, message = ' + err);
+  }
+  //sleep 1s
+  if (count == 0) {
+    console.info("offDemo success");
+  } else {
+    console.info("offDemo fail");
+  }
 }
 ```
 
