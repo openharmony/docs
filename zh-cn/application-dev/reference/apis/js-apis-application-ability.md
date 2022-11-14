@@ -319,7 +319,7 @@ onMemoryLevel(level: AbilityConstant.MemoryLevel): void;
 
 onSaveState(reason: AbilityConstant.StateType, wantParam : {[key: string]: any}): AbilityConstant.OnSaveResult;
 
-该API配合[appRecovery](js-apis-appRecovery.md)使用。在应用故障时，如果使能了自动保存状态，框架将回调onSaveState保存Ability状态。
+该API配合[appRecovery](js-apis-app-ability-appRecovery.md)使用。在应用故障时，如果使能了自动保存状态，框架将回调onSaveState保存Ability状态。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
 
