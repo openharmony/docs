@@ -1,6 +1,6 @@
 # appRecovery
 
-appRecovery模块提供应用故障状态恢复能力。
+appRecovery模块提供了应用在故障状态下的恢复能力。
 
 > **说明：**
 > 
@@ -60,13 +60,13 @@ enableAppRecovery(restart?: RestartFlag, saveOccasion?: SaveOccasionFlag, saveMo
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| restart | [RestartFlag](#apprecoveryrestartflag) | 否 | 发生对应故障时是否重启，默认为不重启 |
-| saveOccasion | [SaveOccasionFlag](#apprecoverysaveoccasionflag) | 否 | 状态保存时机，默认为故障时保存 |
-| saveMode | [SaveModeFlag](#apprecoverysavemodeflag) | 否 | 状态保存方式， 默认为文件缓存 |
+| restart | [RestartFlag](#apprecoveryrestartflag) | 否 | 发生对应故障时是否重启，默认为不重启。 |
+| saveOccasion | [SaveOccasionFlag](#apprecoverysaveoccasionflag) | 否 | 状态保存时机，默认为故障时保存。 |
+| saveMode | [SaveModeFlag](#apprecoverysavemodeflag) | 否 | 状态保存方式， 默认为文件缓存。 |
 
 **示例：**
     
-```js
+```ts
 export default class MyAbilityStage extends AbilityStage {
     onCreate() {
         appRecovery.enableAppRecovery(RestartFlag::ALWAYS_RESTART, SaveOccasionFlag::SAVE_WHEN_ERROR, SaveModeFlag::SAVE_WITH_FILE);
@@ -85,7 +85,7 @@ restartApp(): void;
 
 **示例：**
     
-```js
+```ts
 var observer = {
     onUnhandledException(errorMsg) {
         console.log('onUnhandledException, errorMsg: ', errorMsg)
@@ -111,7 +111,7 @@ saveAppState(): boolean;
 
 **示例：**
     
-```js
+```ts
 var observer = {
     onUnhandledException(errorMsg) {
         console.log('onUnhandledException, errorMsg: ', errorMsg)

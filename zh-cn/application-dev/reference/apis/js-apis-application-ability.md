@@ -327,14 +327,14 @@ onSaveState(reason: AbilityConstant.StateType, wantParam : {[key: string]: any})
 
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | reason | [AbilityConstant.StateType](js-apis-application-abilityConstant.md#abilityconstantstatetype) | 是 | 回调保存状态的原因 |
+  | reason | [AbilityConstant.StateType](js-apis-application-abilityConstant.md#abilityconstantstatetype) | 是 | 回调保存状态的原因。 |
   | wantParam | {[key:&nbsp;string]:&nbsp;any} | 是 | want相关参数。 |
 
 **返回值：**
 
   | 类型 | 说明 |
   | -------- | -------- |
-  | AbilityConstant.OnSaveResult | 是否同意保存当前Ability的状态 |
+  | AbilityConstant.OnSaveResult | 是否同意保存当前Ability的状态。 |
 
 **示例：**
 
