@@ -25,7 +25,7 @@ General application privileges are privileges available to applications on all t
 ### Configuration
 
 1. In the [HarmonyAppProvision file](https://gitee.com/openharmony/docs/blob/master/en/application-dev/quick-start/app-provision-structure.md), configure the general privileges in the **app-privilege-capabilities** field.
-2. Use the signing tool to sign the HarmonyAppProvision file and generate a **.p7b** file.
+2. Use the signing tool hapsigner to sign the HarmonyAppProvision file and generate a **.p7b** file.
 3. Use the **.p7b** file to sign the HAP.
 
 Reference: [hapsigner](https://gitee.com/openharmony/developtools_hapsigner#README.md)
@@ -51,7 +51,7 @@ Reference: [hapsigner](https://gitee.com/openharmony/developtools_hapsigner#READ
 
 ### Introduction
 
-In addition to general application privileges, device vendors can define device-specific privileges for an application, as described in the table below.
+In addition to general application privileges, device vendors can define device-specific privileges for an application. The table below describes the device-specific privileges.
 
 | Privilege                 | Type    | Default Value| Description                                             |
 | --------------------- | -------- | ------ | ------------------------------------------------- |
@@ -64,7 +64,7 @@ In addition to general application privileges, device vendors can define device-
 
 ### Configuration
 
-Configure the required privileges in the [configuration files](https://gitee.com/openharmony/vendor_hihope/tree/master/rk3568/preinstall-config).
+Configure the required privileges in [configuration files](https://gitee.com/openharmony/vendor_hihope/tree/master/rk3568/preinstall-config).
 
 ### Example
 
