@@ -88,9 +88,10 @@ deque.insertFront(1);
 let b = [1, 2, 3];
 deque.insertFront(b);
 let c = {name : "Dylon", age : "13"};
+deque.insertFront(c);
 deque.insertFront(false);
 try {
-  deque.insertFront.bind({}, "b")();
+  deque.insertFront.bind({}, "b")(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
 } catch(err) {
   console.log(`${err.code} - ${err.name} - ${err.message}`);
 }
@@ -127,9 +128,10 @@ deque.insertEnd(1);
 let b = [1, 2, 3];
 deque.insertEnd(b);
 let c = {name : "Dylon", age : "13"};
+deque.insertEnd(c);
 deque.insertEnd(false);
 try {
-  deque.insertEnd.bind({}, "b")();
+  deque.insertEnd.bind({}, "b")(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
 } catch(err) {
   console.log(`${err.code} - ${err.name} - ${err.message}`);
 }
@@ -171,7 +173,7 @@ let result = deque.has("squirrel");
 deque.insertFront("squirrel");
 let result1 = deque.has("squirrel");
 try {
-  deque.has.bind({}, "b")();
+  deque.has.bind({}, "b")(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
 } catch(err) {
   console.log(`${err.code} - ${err.name} - ${err.message}`);
 }
@@ -210,7 +212,7 @@ deque.insertFront(2);
 deque.insertFront(4);
 let result = deque.popFirst();
 try {
-  deque.popFirst.bind({})();
+  deque.popFirst.bind({})(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
 } catch(err) {
   console.log(`${err.code} - ${err.name} - ${err.message}`);
 }
@@ -249,7 +251,7 @@ deque.insertFront(2);
 deque.insertFront(4);
 let result = deque.popLast();
 try {
-  deque.popLast.bind({})();
+  deque.popLast.bind({})(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
 } catch(err) {
   console.log(`${err.code} - ${err.name} - ${err.message}`);
 }
@@ -301,7 +303,7 @@ deque.forEach((value, index) => {
 try {
   deque.forEach.bind({}, (value, index) => {
     console.log("value:" + value, index);
-  })();
+  })(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
 } catch(err) {
   console.log(`${err.code} - ${err.name} - ${err.message}`);
 }
@@ -339,7 +341,7 @@ deque.insertFront(5);
 deque.insertFront(4);
 let result = deque.getFirst();
 try {
-  deque.getFirst.bind({})();
+  deque.getFirst.bind({})(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
 } catch(err) {
   console.log(`${err.code} - ${err.name} - ${err.message}`);
 }
@@ -377,7 +379,7 @@ deque.insertFront(5);
 deque.insertFront(4);
 let result = deque.getLast();
 try {
-  deque.getLast.bind({})();
+  deque.getLast.bind({})(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
 } catch(err) {
   console.log(`${err.code} - ${err.name} - ${err.message}`);
 }
@@ -426,7 +428,7 @@ while(temp != undefined) {
   temp = iter.next().value;
 }
 try {
-  deque[Symbol.iterator].bind({})();
+  deque[Symbol.iterator].bind({})(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
 } catch(err) {
   console.log(`${err.code} - ${err.name} - ${err.message}`);
 }

@@ -77,3 +77,5 @@ struct TimePickerExample {
   }
 }
 ```
+
+![timePicker](figures/timePicker.gif)

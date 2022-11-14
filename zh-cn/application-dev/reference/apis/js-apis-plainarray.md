@@ -89,7 +89,7 @@ isEmpty(): boolean
 const plainArray = new PlainArray();
 let result = plainArray.isEmpty();
 try {
-  plainArray.isEmpty.bind({})();
+  plainArray.isEmpty.bind({})(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
 } catch(err) {
   console.log(`${err.code} - ${err.name} - ${err.message}`);
 }
@@ -132,7 +132,7 @@ plainArray.has(1);
 plainArray.add(1, "squirrel");
 let result1 = plainArray.has(1);
 try {
-  plainArray.has.bind({}, 1)();
+  plainArray.has.bind({}, 1)(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
 } catch(err) {
   console.log(`${err.code} - ${err.name} - ${err.message}`);
 }
@@ -175,7 +175,7 @@ plainArray.add(1, "squirrel");
 plainArray.add(2, "sparrow");
 let result = plainArray.get(1);
 try {
-  plainArray.get.bind({}, 1)();
+  plainArray.get.bind({}, 1)(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
 } catch(err) {
   console.log(`${err.code} - ${err.name} - ${err.message}`);
 }
@@ -218,7 +218,7 @@ plainArray.add(1, "squirrel");
 plainArray.add(2, "sparrow");
 let result = plainArray.getIndexOfKey(2);
 try {
-  plainArray.getIndexOfKey.bind({}, 2)();
+  plainArray.getIndexOfKey.bind({}, 2)(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
 } catch(err) {
   console.log(`${err.code} - ${err.name} - ${err.message}`);
 }
@@ -261,7 +261,7 @@ plainArray.add(1, "squirrel");
 plainArray.add(2, "sparrow");
 let result = plainArray.getIndexOfValue("squirrel");
 try {
-  plainArray.getIndexOfValue.bind({}, "squirrel")();
+  plainArray.getIndexOfValue.bind({}, "squirrel")(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
 } catch(err) {
   console.log(`${err.code} - ${err.name} - ${err.message}`);
 }
@@ -304,7 +304,7 @@ plainArray.add(1, "squirrel");
 plainArray.add(2, "sparrow");
 let result = plainArray.getKeyAt(1);
 try {
-  plainArray.getKeyAt.bind({}, 1)();
+  plainArray.getKeyAt.bind({}, 1)(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
 } catch(err) {
   console.log(`${err.code} - ${err.name} - ${err.message}`);
 }
@@ -347,7 +347,7 @@ plainArray.add(1, "squirrel");
 plainArray.add(2, "sparrow");
 let result = plainArray.getValueAt(1);
 try {
-  plainArray.getValueAt.bind({}, 1)();
+  plainArray.getValueAt.bind({}, 1)(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
 } catch(err) {
   console.log(`${err.code} - ${err.name} - ${err.message}`);
 }
@@ -388,7 +388,7 @@ plainArray.add(1, "squirrel");
 plainArray.add(2, "sparrow");
 let newPlainArray = plainArray.clone();
 try {
-  plainArray.clone.bind({})();
+  plainArray.clone.bind({})(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
 } catch(err) {
   console.log(`${err.code} - ${err.name} - ${err.message}`);
 }
@@ -424,7 +424,7 @@ add(key: number, value: T): void
 let plainArray = new PlainArray();
 plainArray.add(1, "squirrel");
 try {
-  plainArray.add.bind({}, "squirrel")();
+  plainArray.add.bind({}, "squirrel")(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
 } catch(err) {
   console.log(`${err.code} - ${err.name} - ${err.message}`);
 }
@@ -465,10 +465,9 @@ remove(key: number): T
 let plainArray = new PlainArray();
 plainArray.add(1, "squirrel");
 plainArray.add(2, "sparrow");
-plainArray.remove(2);
 let result = plainArray.remove(2);
 try {
-  plainArray.remove.bind({}, 2)();
+  plainArray.remove.bind({}, 2)(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
 } catch(err) {
   console.log(`${err.code} - ${err.name} - ${err.message}`);
 }
@@ -509,10 +508,9 @@ removeAt(index: number): T
 let plainArray = new PlainArray();
 plainArray.add(1, "squirrel");
 plainArray.add(2, "sparrow");
-plainArray.removeAt(1);
 let result = plainArray.removeAt(1);
 try {
-  plainArray.removeAt.bind({}, 1)();
+  plainArray.removeAt.bind({}, 1)(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
 } catch(err) {
   console.log(`${err.code} - ${err.name} - ${err.message}`);
 }
@@ -557,7 +555,7 @@ plainArray.add(1, "squirrel");
 plainArray.add(2, "sparrow");
 let result = plainArray.removeRangeFrom(1, 3);
 try {
-  plainArray.removeRangeFrom.bind({}, 1, 3)();
+  plainArray.removeRangeFrom.bind({}, 1, 3)(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
 } catch(err) {
   console.log(`${err.code} - ${err.name} - ${err.message}`);
 }
@@ -601,7 +599,7 @@ plainArray.add(1, "squirrel");
 plainArray.add(2, "sparrow");
 plainArray.setValueAt(1, 3546);
 try {
-  plainArray.setValueAt.bind({}, 1, 3546)();
+  plainArray.setValueAt.bind({}, 1, 3546)(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
 } catch(err) {
   console.log(`${err.code} - ${err.name} - ${err.message}`);
 }
@@ -643,7 +641,7 @@ plainArray.add(1, "squirrel");
 plainArray.add(2, "sparrow");
 let result = plainArray.toString();
 try {
-  plainArray.toString.bind({})();
+  plainArray.toString.bind({})(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
 } catch(err) {
   console.log(`${err.code} - ${err.name} - ${err.message}`);
 }
@@ -674,7 +672,7 @@ plainArray.add(1, "squirrel");
 plainArray.add(2, "sparrow");
 plainArray.clear();
 try {
-  plainArray.clear.bind({})();
+  plainArray.clear.bind({})(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
 } catch(err) {
   console.log(`${err.code} - ${err.name} - ${err.message}`);
 }
@@ -723,7 +721,7 @@ plainArray.forEach((value, index) => {
 try {
   plainArray.forEach.bind({}, (value, index) => {
     console.log("value:" + value, index);
-  })();
+  })(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
 } catch(err) {
   console.log(`${err.code} - ${err.name} - ${err.message}`);
 }
@@ -774,7 +772,7 @@ while(temp != undefined) {
   temp = iter.next().value;
 }
 try {
-  plainArray[Symbol.iterator].bind({})();
+  plainArray[Symbol.iterator].bind({})(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
 } catch(err) {
   console.log(`${err.code} - ${err.name} - ${err.message}`);
 }

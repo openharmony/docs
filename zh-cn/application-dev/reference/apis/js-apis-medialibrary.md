@@ -300,12 +300,17 @@ createAsset(mediaType: MediaType, displayName: string, relativePath: string): Pr
 **示例：**
 
 ```js
-let DIR_CAMERA = mediaLibrary.DirectoryType.DIR_CAMERA;
-media.getPublicDirectory(DIR_CAMERA).then(function(dicResult){
-    console.info("getPublicDirectory successfully:"+ JSON.stringify(dicResult));
-}).catch(function(err){
-    console.info("getPublicDirectory failed with error:"+ err);
-});
+async function example() {
+    // 使用Promise方式创建Image类型文件
+    let mediaType = mediaLibrary.MediaType.IMAGE;
+    let DIR_IMAGE = mediaLibrary.DirectoryType.DIR_IMAGE;
+    const path = await media.getPublicDirectory(DIR_IMAGE);
+    media.createAsset(mediaType, 'imagePromise.jpg', path + 'myPicture/').then((fileAsset) => {
+        console.info('createAsset successfully, message = ' + JSON.stringify(fileAsset));
+    }).catch((err) => {
+        console.info('createAsset failed, message = ' + err);
+    });
+}
 ```
 
 ### deleteAsset<sup>8+</sup>
@@ -2586,4 +2591,5 @@ async function example() {
 | ----- | ------ | ---- | -------------------- |
 | type  | string | 是    | 媒体类型，包括：image, video, media，当前仅支持media类型 |
 | count | number | 是    | 媒体选择，count = 1表示单选，count大于1表示多选。            |
+
 

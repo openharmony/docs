@@ -1840,10 +1840,10 @@ Defines the network status.
 
 | Name                         | Value  | Description                      |
 | ----------------------------- | ---- | -------------------------- |
-| REG_STATE_NO_SERVICE          | 0    | The device cannot use any service.    |
-| REG_STATE_IN_SERVICE          | 1    | The device can use services normally.     |
-| REG_STATE_EMERGENCY_CALL_ONLY | 2    | The device can use only the emergency call service.|
-| REG_STATE_POWER_OFF           | 3    | The cellular radio service is disabled.        |
+| REG_STATE_NO_SERVICE          | 0    | The device cannot use any services, including data, SMS, and call services.    |
+| REG_STATE_IN_SERVICE          | 1    | The device can use services properly, including data, SMS, and call services.    |
+| REG_STATE_EMERGENCY_CALL_ONLY | 2    | The device can use only the emergency call service.    |
+| REG_STATE_POWER_OFF           | 3    | The device cannot communicate with the network because the cellular radio service is disabled or the modem is powered off.     |
 
 
 ## NsaState

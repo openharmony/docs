@@ -9,7 +9,9 @@
 
 配置文件中定义的权限详细信息
 
-## **PermissionDef**
+## **PermissionDef**<sup>(deprecated)<sup>
+
+> 从API version 9开始不再维护，建议使用[PermissionDef](js-apis-bundleManager-permissionDef.md)替代。
 
  **系统能力:** 以下各项对应的系统能力均为SystemCapability.BundleManager.BundleFramework
 

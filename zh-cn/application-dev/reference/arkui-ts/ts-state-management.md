@@ -2,7 +2,9 @@
 
 状态管理模块提供了应用程序的数据存储能力、持久化数据管理能力、Ability数据存储能力和应用程序需要的环境状态，其中Ability数据存储从API version9开始支持。
 
-> 说明：本模块首批接口从API version 7开始支持，后续版本的新增接口，采用上角标单独标记接口的起始版本。
+> **说明：**
+> 
+> 本模块首批接口从API version 7开始支持，后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
 ## AppStorage
 
@@ -45,7 +47,7 @@ SetAndLink\<T>(propName: string, defaultValue: T): SubscribedAbstractProperty\<T
 
 | 类型  | 描述                                                         |
 | ----- | ------------------------------------------------------------ |
-| @Link | 与Link接口类似，如果当前的key保存于LocalStorage，返回该key值对应的value值。如果该key值未被创建，则创建一个对应的defaultValue的Link返回。 |
+| @Link | 与Link接口类似，如果当前的key保存于AppStorage，返回该key值对应的value值。如果该key值未被创建，则创建一个对应的defaultValue的Link返回。 |
 
 ```ts
 let simple = AppStorage.SetAndLink('simpleProp', 121)
@@ -90,7 +92,7 @@ SetAndProp\<S>(propName: string, defaultValue: S): SubscribedAbstractProperty\<S
 
 | 类型  | 描述                                                         |
 | ----- | ------------------------------------------------------------ |
-| @Prop | 如果当前的key保存与LocalStorage，返回该key值对应的value值。如果该key值未被创建，则创建一个对应的defaultValue的Prop返回。 |
+| @Prop | 如果当前的key保存与AppStorage，返回该key值对应的value值。如果该key值未被创建，则创建一个对应的defaultValue的Prop返回。 |
 
 ```ts
 let simple = AppStorage.SetAndProp('simpleProp', 121)
@@ -142,7 +144,7 @@ let simple = AppStorage.Get('simpleProp')
 
 ### Set
 
-Set<T>(propName: string, newValue: T): boolean
+Set\<T>(propName: string, newValue: T): boolean
 
 对已保存的key值，替换其value值。
 
@@ -165,7 +167,7 @@ let simple = AppStorage.Set('simpleProp', 121);
 
 ### SetOrCreate
 
-SetOrCreate<T>(propName: string, newValue: T): void
+SetOrCreate\<T>(propName: string, newValue: T): void
 
 创建或更新setOrCreate内部的值。
 
@@ -180,7 +182,7 @@ SetOrCreate<T>(propName: string, newValue: T): void
 
 | 类型    | 描述                                                         |
 | ------- | ------------------------------------------------------------ |
-| boolean | 如果已存在与给定键名字相同的属性，更新其值且返回true。如果不存在具有给定名称的属性，在LocalStorage中创建具有给定默认值的新属性，默认值必须是T类型。不允许undefined 或 null 返回true。 |
+| boolean | 如果已存在与给定键名字相同的属性，更新其值且返回true。如果不存在具有给定名称的属性，在AppStorage中创建具有给定默认值的新属性，默认值必须是T类型。不允许undefined 或 null 返回true。 |
 
 ```ts
 let simple = AppStorage.SetOrCreate('simpleProp', 121)
@@ -259,7 +261,7 @@ IsMutable(propName: string): boolean
 | boolean | 返回此属性是否存在并且是否可以改变。 |
 
 ```ts
-let simple = AppStorage.IsMutable()
+let simple = AppStorage.IsMutable('simpleProp')
 ```
 
 ### Size
@@ -518,7 +520,7 @@ delete(propName: string): boolean
 
 | 类型    | 描述                                                         |
 | ------- | ------------------------------------------------------------ |
-| boolean | 删除key指定的键值对，如果存在且删除成功返回true，不存在或删除失败返回false。 |
+| boolean | 删除key指定的键值对。存在且删除成功，返回true。不存在、删除失败或有状态变量依旧引用propName，返回false。 |
 
 ```ts
 this.storage = new LocalStorage()
@@ -641,12 +643,12 @@ PersistProps(properties: {key: string, defaultValue: any}[]): void;
 | key    | {key: string, defaultValue: any}[] |  是  | 要关联的属性数组。 |
 
 ```ts
-PersistentStorage.PersistProps([{'highScore', '0'},{'wightScore','1'}])
+PersistentStorage.PersistProps([{key: 'highScore', defaultValue: '0'},{key: 'wightScore',defaultValue: '1'}])
 ```
 
 ### Keys
 
-Keys(): Array<string>
+Keys(): Array\<string>
 
 返回所有持久化属性的标记。
 
@@ -654,7 +656,7 @@ Keys(): Array<string>
 
 | 类型          | 描述                       |
 | ------------- | -------------------------- |
-| Array<string> | 返回所有持久化属性的标记。 |
+| Array\<string> | 返回所有持久化属性的标记。 |
 
 ```ts
 let simple = PersistentStorage.Keys()
@@ -697,14 +699,14 @@ EnvProp\<S>(key: string, value: S): boolean
 
 **内置环境变量说明：**
 
-| key          |       类型    |      说明            | 
-| ------------ | ------------- | ------------------- | 
-| accessibilityEnabled | boolean | 无障碍屏幕朗读是否启用。            | 
-| colorMode | ColorMode | 深浅色模式，可选值为：<br>- ColorMode.LIGHT：浅色模式；<br>- ColorMode.DARK：深色模式。   | 
-| fontScale | number | 字体大小比例。            | 
-| fontWeightScale | number | 字重比例。            | 
-| layoutDirection | LayoutDirection | 布局方向类型，可选值为：<br>- LayoutDirection.LTR：从左到右；<br>- LayoutDirection.RTL：从右到左。   | 
-| languageCode | string |     当前系统语言，小写字母，例如zh。            | 
+| key          |       类型    |      说明            |
+| ------------ | ------------- | ------------------- |
+| accessibilityEnabled | boolean | 无障碍屏幕朗读是否启用。            |
+| colorMode | ColorMode | 深浅色模式，可选值为：<br>- ColorMode.LIGHT：浅色模式；<br>- ColorMode.DARK：深色模式。   |
+| fontScale | number | 字体大小比例。            |
+| fontWeightScale | number | 字重比例。            |
+| layoutDirection | LayoutDirection | 布局方向类型，可选值为：<br>- LayoutDirection.LTR：从左到右；<br>- LayoutDirection.RTL：从右到左。   |
+| languageCode | string |     当前系统语言，小写字母，例如zh。            |
 
 ```ts
 Environment.EnvProp('accessibilityEnabled', 'default')
@@ -723,12 +725,12 @@ EnvProps(props: {key: string, defaultValue: any}[]): void
 | key    | {key: string, defaultValue: any}[] | 是   | 要关联的属性数组。 | 要关联的属性数组。 |
 
 ```ts
-Environment.EnvProps([{'accessibilityEnabled', 'default'},{'accessibilityUnEnabled','undefault'}])
+Environment.EnvProps([{key: 'accessibilityEnabled', defaultValue: 'default'},{key: 'accessibilityUnEnabled', defaultValue: 'undefault'}])
 ```
 
 ### Keys
 
-Keys(): Array<string>
+Keys(): Array\<string>
 
 返回关联的系统项。
 
@@ -736,7 +738,7 @@ Keys(): Array<string>
 
 | 类型          | 描述                   |
 | ------------- | ---------------------- |
-| Array<string> | 返回关联的系统项数组。 |
+| Array\<string> | 返回关联的系统项数组。 |
 
 ```ts
 let simple = Environment.Keys()

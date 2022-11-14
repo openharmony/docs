@@ -23,7 +23,6 @@
 | 名称                      | 类型   | 可读 | 可写 | 说明                 |
 | ------------------------- | ------ | ---- | ---- | -------------------- |
 | targetBundle              | string | 是   | 否   | 快捷方式的目标捆绑包 |
-| targetModule<sup>9+</sup> | string | 是   | 否   | 快捷方式的目标模块   |
 | targetClass               | string | 是   | 否   | 快捷方式所需的目标类 |
 
 ## ShortcutInfo<sup>(deprecated)<sup>
@@ -47,4 +46,3 @@
 | isStatic                | boolean                                    | 是   | 否   | 快捷方式是否为静态           |
 | isHomeShortcut          | boolean                                    | 是   | 否   | 快捷方式是否为主页面快捷方式 |
 | isEnabled               | boolean                                    | 是   | 否   | 是否启用快捷方式             |
-| moduleName<sup>9+</sup> | string                                     | 是   | 否   | 快捷方式的模块名             |

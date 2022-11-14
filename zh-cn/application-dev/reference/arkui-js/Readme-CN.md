@@ -102,4 +102,5 @@
     - [事件参数](js-components-custom-event-parameter.md)
     - [slot插槽](js-components-custom-slot.md)
     - [生命周期定义](js-components-custom-lifecycle.md)
+- [动态创建组件](js-components-create-elements.md)
 - [数据类型说明](js-appendix-types.md)

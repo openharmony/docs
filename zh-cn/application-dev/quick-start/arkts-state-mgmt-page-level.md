@@ -1,6 +1,6 @@
 # 页面级变量的状态管理
 
-@State、@Prop、@Link、@Provide、Consume、@ObjectLink、@Observed和@Watch用于管理页面级变量的状态。
+@State、@Prop、@Link、@Provide、@Consume、@ObjectLink、@Observed和@Watch用于管理页面级变量的状态。
 
 请参考[状态变量多种数据类型声明的使用限制](./arkts-restrictions-and-extensions.md)了解@State、@Provide、 @Link和@Consume四种状态变量的约束条件。
 
@@ -467,6 +467,11 @@ struct CompC {
 如上所示，给状态变量增加一个@Watch装饰器，通过@Watch注册一个回调方法onChanged， 当状态变量count被改变时， 触发onChanged回调。
 
 装饰器@State、@Prop、@Link、@ObjectLink、@Provide、@Consume、@StorageProp以及@StorageLink所装饰的变量均可以通过@Watch监听其变化。
+
+
+>  **说明：**
+>
+>  深层次数据修改不会触发@Watch回调，例如无法监听数组中对象值的改变。
 
 ```ts
 // xxx.ets

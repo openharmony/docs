@@ -1,11 +1,21 @@
 # SDIO
 
-
 ## 概述
 
-SDIO是安全数字输入输出接口（Secure Digital Input and Output）的缩写，是从SD内存卡接口的基础上演化出来的一种外设接口。SDIO接口兼容以前的SD内存卡，并且可以连接支持SDIO接口的设备。
+### 功能简介
 
-SDIO的应用比较广泛，目前，有许多手机都支持SDIO功能，并且很多SDIO外设也被开发出来，使得手机外接外设更加容易。常见的SDIO外设有WLAN、GPS、CAMERA、蓝牙等。
+SDIO是安全数字输入输出接口（Secure Digital Input and Output）的缩写，是从SD内存卡接口的基础上演化出来的一种外设接口。SDIO接口兼容以前的SD卡，并且可以连接支持SDIO接口的其他设备。
+
+SDIO接口定义了操作SDIO的通用方法集合，包括：
+- 打开/关闭SDIO控制器
+- 独占/释放HOST
+- 使能/去使能设备
+- 申请/释放中断
+- 读写、获取/设置公共信息
+
+### 运作机制
+
+在HDF框架中，SDIO的接口适配模式采用独立服务模式。在这种模式下，每一个设备对象会独立发布一个设备服务来处理外部访问，设备管理器收到API的访问请求之后，通过提取该请求的参数，达到调用实际设备对象的相应内部方法的目的。独立服务模式可以直接借助HDFDeviceManager的服务管理能力，但需要为每个设备单独配置设备节点，若设备过多可能增加内存占用。
 
 SDIO总线有两端，其中一端是主机端（HOST），另一端是设备端（DEVICE）。所有的通信都是由HOST端发出命令开始的，在DEVICE端只要能解析HOST的命令，就可以同HOST进行通信了。SDIO的HOST可以连接多个DEVICE，如下图所示：
 - CLK信号：HOST给DEVICE的时钟信号。
@@ -18,30 +28,42 @@ SDIO总线有两端，其中一端是主机端（HOST），另一端是设备端
 
 ![image](figures/SDIO的HOST-DEVICE连接示意图.png "SDIO的HOST-DEVICE连接示意图")
 
-SDIO接口定义了操作SDIO的通用方法集合，包括打开/关闭SDIO控制器、独占/释放HOST、使能/去使能设备、申请/释放中断、读写、获取/设置公共信息等。
+### 约束与限制
 
-
-## 接口说明
-
-  **表1** SDIO驱动API接口功能介绍
-
-| 功能分类 | 接口描述 | 
-| -------- | -------- |
-| SDIO设备打开/关闭接口 | -&nbsp;SdioOpen：打开指定总线号的SDIO控制器<br/>-&nbsp;SdioClose：关闭SDIO控制器 | 
-| SDIO读写接口 | -&nbsp;SdioReadBytes：从指定地址开始，增量读取指定长度的数据<br/>-&nbsp;SdioWriteBytes：从指定地址开始，增量写入指定长度的数据<br/>-&nbsp;SdioReadBytesFromFixedAddr：从固定地址读取指定长度的数据<br/>-&nbsp;SdioWriteBytesToFixedAddr：向固定地址写入指定长度的数据<br/>-&nbsp;SdioReadBytesFromFunc0：从SDIO&nbsp;function&nbsp;0的指定地址空间读取指定长度的数据<br/>-&nbsp;SdioWriteBytesToFunc0：向SDIO&nbsp;function&nbsp;0的指定地址空间写入指定长度的数据 | 
-| SDIO设置块大小接口 | SdioSetBlockSize：设置块的大小 | 
-| SDIO获取/设置公共信息接口 | -&nbsp;SdioGetCommonInfo：获取公共信息<br/>-&nbsp;SdioSetCommonInfo：设置公共信息 | 
-| SDIO刷新数据接口 | SdioFlushData：刷新数据 | 
-| SDIO独占/释放HOST接口 | -&nbsp;SdioClaimHost：独占Host<br/>-&nbsp;SdioReleaseHost：释放Host | 
-| SDIO使能/去使能功能设备接口 | -&nbsp;SdioEnableFunc：使能SDIO功能设备<br/>-&nbsp;SdioDisableFunc：去使能SDIO功能设备 | 
-| SDIO申请/释放中断接口 | -&nbsp;SdioClaimIrq：申请中断<br/>-&nbsp;SdioReleaseIrq：释放中断 | 
-
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**<br>
-> 本文涉及的所有接口，目前只支持在内核态使用，不支持在用户态使用。
-
+SDIO模块API当前仅支持内核态调用。
 
 ## 使用指导
 
+### 场景介绍
+
+SDIO的应用比较广泛，目前，有许多手机都支持SDIO功能，并且很多SDIO外设也被开发出来，使得手机外接外设更加容易。常见的SDIO外设有WLAN、GPS、CAMERA、蓝牙等。
+
+### 接口说明
+
+SDIO模块提供的主要接口如表1所示，具体API详见//drivers/hdf_core/framework/include/platform/sdio_if.h。
+
+**表1** SDIO驱动API接口功能介绍
+
+|  接口名  | 接口描述 |
+| -------- | -------- |
+| DevHandle SdioOpen(int16_t mmcBusNum, struct SdioFunctionConfig \*config) | 打开指定总线号的SDIO控制器 |
+| void SdioClose(DevHandle handle) | 关闭SDIO控制器 |
+| int32_t SdioReadBytes(DevHandle handle, uint8_t \*data, uint32_t addr, uint32_t size) | 从指定地址开始，增量读取指定长度的数据 |
+| int32_t SdioWriteBytes(DevHandle handle, uint8_t \*data, uint32_t addr, uint32_t size) | 从指定地址开始，增量写入指定长度的数据 |
+| int32_t SdioReadBytesFromFixedAddr(DevHandle handle, uint8_t \*data, uint32_t addr, uint32_t size, uint32_t scatterLen) | 从固定地址读取指定长度的数据 |
+| int32_t SdioWriteBytesToFixedAddr(DevHandle handle, uint8_t \*data, uint32_t addr, uint32_t size, uint32_t scatterLen) | 向固定地址写入指定长度的数据 |
+| int32_t SdioReadBytesFromFunc0(DevHandle handle, uint8_t \*data, uint32_t addr, uint32_t size) | 从SDIO&nbsp;function&nbsp;0的指定地址空间读取指定长度的数据 |
+| int32_t SdioWriteBytesToFunc0(DevHandle handle, uint8_t \*data, uint32_t addr, uint32_t size) | 向SDIO&nbsp;function&nbsp;0的指定地址空间写入指定长度的数据 |
+| int32_t SdioSetBlockSize(DevHandle handle, uint32_t blockSize) | 设置块的大小 |
+| int32_t SdioGetCommonInfo(DevHandle handle, SdioCommonInfo \*info, SdioCommonInfoType infoType) | 获取公共信息 |
+| int32_t SdioSetCommonInfo(DevHandle handle, SdioCommonInfo \*info, SdioCommonInfoType infoType) | 设置公共信息 |
+| int32_t SdioFlushData(DevHandle handle) | 刷新数据 |
+| void SdioClaimHost(DevHandle handle) | 独占Host |
+| void SdioReleaseHost(DevHandle handle) | 释放Host |
+| int32_t SdioEnableFunc(DevHandle handle) | 使能SDIO功能设备 |
+| int32_t SdioDisableFunc(DevHandle handle) | 去使能SDIO功能设备 |
+| int32_t SdioClaimIrq(DevHandle handle, SdioIrqHandler \*irqHandler) | 申请中断 |
+| int32_t SdioReleaseIrq(DevHandle handle) | 释放中断 |
 
 ### 使用流程
 
@@ -51,13 +73,11 @@ SDIO接口定义了操作SDIO的通用方法集合，包括打开/关闭SDIO控�
 
   ![image](figures/SDIO使用流程图.png "SDIO使用流程图")
 
-
-### 打开SDIO控制器
+#### 打开SDIO控制器
 
 在使用SDIO进行通信前，首先要调用SdioOpen获取SDIO控制器的设备句柄，该函数会返回指定总线号的SDIO控制器的设备句柄。
 
-  
-```
+```c
 DevHandle SdioOpen(int16_t mmcBusNum, struct SdioFunctionConfig *config);
 ```
 
@@ -72,8 +92,8 @@ DevHandle SdioOpen(int16_t mmcBusNum, struct SdioFunctionConfig *config);
 | 设备句柄 | SDIO控制器的设备句柄 | 
 
   打开SDIO控制器的示例如下：
-  
-```
+
+```c
 DevHandle handle = NULL;
 struct SdioFunctionConfig config;
 config.funcNr = 1;
@@ -86,13 +106,11 @@ if (handle == NULL) {
 }
 ```
 
-
-### 独占HOST
+#### 独占HOST
 
 获取到SDIO控制器的设备句柄之后，需要先独占HOST才能进行SDIO后续的一系列操作，独占HOST函数如下所示：
 
-  
-```
+```c
 void SdioClaimHost(DevHandle handle);
 ```
 
@@ -104,18 +122,15 @@ void SdioClaimHost(DevHandle handle);
 
 独占HOST示例如下：
 
-  
-```
+```c
 SdioClaimHost(handle); /* 独占HOST */
 ```
 
-
-### 使能SDIO设备
+#### 使能SDIO设备
 
 在访问寄存器之前，需要先使能SDIO设备，使能SDIO设备的函数如下所示：
 
-  
-```
+```c
 int32_t SdioEnableFunc(DevHandle handle);
 ```
 
@@ -130,8 +145,7 @@ int32_t SdioEnableFunc(DevHandle handle);
 
 使能SDIO设备的示例如下：
 
-  
-```
+```c
 int32_t ret;
 /* 使能SDIO设备 */
 ret = SdioEnableFunc(handle);
@@ -140,13 +154,11 @@ if (ret != 0) {
 }
 ```
 
-
-### 注册SDIO中断
+#### 注册SDIO中断
 
 在通信之前，还需要注册SDIO中断，注册SDIO中断函数如下图所示：
 
-  
-```
+```c
 int32_t SdioClaimIrq(DevHandle handle, SdioIrqHandler *handler);
 ```
 
@@ -161,8 +173,8 @@ int32_t SdioClaimIrq(DevHandle handle, SdioIrqHandler *handler);
 | 负数 | 注册中断失败 | 
 
   注册SDIO中的示例如下：
-  
-```
+
+```c
 /* 中断服务函数需要根据各自平台的情况去实现 */
 static void SdioIrqFunc(void *data)
 {
@@ -181,15 +193,13 @@ if (ret != 0) {
 }
 ```
 
-
-### 进行SDIO通信
+#### 进行SDIO通信
 
 - 向SDIO设备增量写入指定长度的数据
 
   对应的接口函数如下所示：
 
-  
-  ```
+  ```c
   int32_t SdioWriteBytes(DevHandle handle, uint8_t *data, uint32_t addr, uint32_t size);
   ```
 
@@ -207,8 +217,7 @@ if (ret != 0) {
 
   向SDIO设备增量写入指定长度的数据的示例如下：
 
-  
-  ```
+  ```c
   int32_t ret;
   uint8_t wbuff[] = {1,2,3,4,5};
   uint32_t addr = 0x100 + 0x09;
@@ -223,8 +232,7 @@ if (ret != 0) {
 
   对应的接口函数如下所示：
 
-  
-  ```
+  ```c
   int32_t SdioReadBytes(DevHandle handle, uint8_t *data, uint32_t addr, uint32_t size);
   ```
 
@@ -242,8 +250,7 @@ if (ret != 0) {
 
   从SDIO设备增量读取指定长度的数据的示例如下：
 
-  
-  ```
+  ```c
   int32_t ret;
   uint8_t rbuff[5] = {0};
   uint32_t addr = 0x100 + 0x09;
@@ -255,10 +262,10 @@ if (ret != 0) {
   ```
 
 - 向SDIO设备的固定地址写入指定长度的数据
+
   对应的接口函数如下所示：
 
-    
-  ```
+  ```c
   int32_t SdioWriteBytesToFixedAddr(DevHandle handle, uint8_t *data, uint32_t addr, uint32_t size, uint32_t scatterLen);
   ```
 
@@ -277,8 +284,7 @@ if (ret != 0) {
 
   向SDIO设备的固定地址写入指定长度的数据的示例如下：
 
-    
-  ```
+  ```c
   int32_t ret;
   uint8_t wbuff[] = {1，2，3，4，5};
   uint32_t addr = 0x100 + 0x09;
@@ -290,10 +296,10 @@ if (ret != 0) {
   ```
 
 - 从SDIO设备的固定地址读取指定长度的数据
+
   对应的接口函数如下所示：
 
-    
-  ```
+  ```c
   int32_t SdioReadBytesFromFixedAddr(DevHandle handle, uint8_t *data, uint32_t addr, uint32_t size, uint32_t scatterLen);
   ```
 
@@ -312,8 +318,7 @@ if (ret != 0) {
 
   从SDIO设备的固定地址读取指定长度的数据的示例如下：
 
-    
-  ```
+  ```c
   int32_t ret;
   uint8_t rbuff[5] = {0};
   uint32_t addr = 0x100 + 0x09;
@@ -328,8 +333,7 @@ if (ret != 0) {
 
   当前只支持写入一个字节的数据，对应的接口函数如下所示：
 
-  
-  ```
+  ```c
   int32_t SdioWriteBytesToFunc0(DevHandle handle, uint8_t *data, uint32_t addr, uint32_t size);
   ```
 
@@ -347,8 +351,7 @@ if (ret != 0) {
 
   向SDIO function 0的指定地址空间写入指定长度的数据的示例如下：
 
-  
-  ```
+  ```c
   int32_t ret;
   uint8_t wbuff = 1;
   /* 向SDIO function 0地址0x2中写入1字节的数据 */
@@ -362,8 +365,7 @@ if (ret != 0) {
 
   当前只支持读取一个字节的数据，对应的接口函数如下所示：
 
-  
-  ```
+  ```c
   int32_t SdioReadBytesFromFunc0(DevHandle handle, uint8_t *data, uint32_t addr, uint32_t size);
   ```
 
@@ -381,8 +383,7 @@ if (ret != 0) {
 
   从SDIO function 0的指定地址空间读取指定长度的数据的示例如下：
 
-  
-  ```
+  ```c
   int32_t ret;
   uint8_t rbuff;
   /* 从SDIO function 0设备地址0x2中读取1字节的数据 */
@@ -392,8 +393,7 @@ if (ret != 0) {
   }
   ```
 
-
-### 释放SDIO中断
+#### 释放SDIO中断
 
 通信完成之后，需要释放SDIO中断，函数如下所示：
 
@@ -410,8 +410,7 @@ int32_t SdioReleaseIrq(DevHandle handle);
 
 释放SDIO中断的示例如下：
 
-  
-```
+```c
 int32_t ret;
 /* 释放SDIO中断 */
 ret = SdioReleaseIrq(handle);
@@ -420,8 +419,7 @@ if (ret != 0) {
 }
 ```
 
-
-### 去使能SDIO设备
+#### 去使能SDIO设备
 
 通信完成之后，还需要去使能SDIO设备，函数如下所示：
 
@@ -438,8 +436,7 @@ int32_t SdioDisableFunc(DevHandle handle);
 
 去使能SDIO设备的示例如下：
 
-  
-```
+```c
 int32_t ret;
 /* 去使能SDIO设备 */
 ret = SdioDisableFunc(handle);
@@ -448,13 +445,11 @@ if (ret != 0) {
 }
 ```
 
-
-### 释放HOST
+#### 释放HOST
 
 通信完成之后，还需要释放去HOST，函数如下所示：
 
-  
-```
+```c
 void SdioReleaseHost(DevHandle handle);
 ```
 
@@ -466,18 +461,15 @@ void SdioReleaseHost(DevHandle handle);
 
 释放HOST的示例如下：
 
-  
-```
+```c
 SdioReleaseHost(handle); /* 释放HOST */
 ```
 
-
-### 关闭SDIO控制器
+#### 关闭SDIO控制器
 
 SDIO通信完成之后，最后需要关闭SDIO控制器，函数如下所示：
 
-  
-```
+```c
 void SdioClose(DevHandle handle);
 ```
 
@@ -491,17 +483,17 @@ void SdioClose(DevHandle handle);
 
 关闭SDIO控制器的示例如下：
 
-  
-```
+```c
 SdioClose(handle); /* 关闭SDIO控制器 */
 ```
 
+### 使用实例
 
-## 使用实例
+本例拟对Hi3516DV300开发板上SDIO设备进行操作。
 
-  SDIO设备完整的使用示例如下所示，首先打开总线号为1的SDIO控制器，然后独占HOST、使能设备、注册中断，接着进行SDIO通信（读写等），通信完成之后，释放中断、去使能设备、释放HOST，最后关闭SDIO控制器。
+SDIO设备完整的使用示例如下所示，首先打开总线号为1的SDIO控制器，然后独占HOST、使能设备、注册中断，接着进行SDIO通信（读写等），通信完成之后，释放中断、去使能设备、释放HOST，最后关闭SDIO控制器。
   
-```
+```c
 #include "hdf_log.h"
 #include "sdio_if.h"
 
@@ -529,7 +521,7 @@ void SdioTestSample(void)
     struct SdioFunctionConfig config = {1, 0x123, 0x456};
     uint8_t val;
     uint32_t addr;
-    
+
     /* 打开总线号为1的SDIO设备 */
     handle = SdioOpen(1, &config);
     if (handle == NULL) {

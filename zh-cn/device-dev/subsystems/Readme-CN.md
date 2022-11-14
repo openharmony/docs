@@ -8,6 +8,7 @@
       - [产品配置规则](subsys-build-product.md#产品配置规则)
       - [子系统配置规则](subsys-build-subsystem.md#子系统配置规则)
       - [部件配置规则](subsys-build-component.md#部件配置规则)
+      - [部件编译构建规范](subsys-build-component-building-rules.md#部件编译构建规范)
       - [模块配置规则](subsys-build-module.md#模块配置规则)
       - [芯片解决方案配置规则](subsys-build-chip_solution.md#芯片解决方案配置规则)
       - [特性配置规则](subsys-build-feature.md#特性配置规则)
@@ -18,6 +19,7 @@
       - [查看NinjaTrace](subsys-build-reference.md#查看ninjatrace)
       - [HAP编译构建指导](subsys-build-gn-hap-compilation-guide.md)
       - [ 常见问题](subsys-build-FAQ.md)
+- [ArkCompiler](subsys-arkcompiler-guide.md)
 - [分布式远程启动](subsys-remote-start.md)
 - 图形图像
     - [图形图像概述](subsys-graphics-overview.md)

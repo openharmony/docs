@@ -90,7 +90,7 @@ ATM (AccessTokenManager) 是OpenHarmony上基于AccessToken构建的统一的应
 
 示例如下：
 
-该示例仅涉及修改"apl"字段，其余信息请根据实际情况。Profile文件的字段说明可参考[HarmonyAppProvision配置文件的说明](../quick-start/app-provision-structure.md)。
+该示例仅涉及修改"apl"字段，其余信息请根据实际情况。Profile文件的字段说明可参考[HarmonyAppProvision配置文件的说明](app-provision-structure.md)。
 
 ```json
 {
@@ -218,4 +218,4 @@ ACL方式的工作流程可以参考[ACL方式使用说明](#acl方式使用说�
 }
 ```
 
-Profile文件的字段说明可参考[HarmonyAppProvision配置文件的说明](../quick-start/app-provision-structure.md)。
+Profile文件的字段说明可参考[HarmonyAppProvision配置文件的说明](app-provision-structure.md)。

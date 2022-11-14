@@ -1495,7 +1495,7 @@ workerInstance.onexit = function() {
 }
 ```
 ```js
-// worker.js
+// worker.ts
 import worker from '@ohos.worker';
 
 // 创建worker线程中与主线程通信的对象
@@ -1508,7 +1508,7 @@ const parentPort = worker.workerPort
 parentPort.onmessage = function(e) {
     // data：主线程发送的信息
     let data = e.data;
-    console.log("worker.js onmessage");
+    console.log("worker.ts onmessage");
 
     // worker线程向主线程发送信息
     parentPort.postMessage("123")
@@ -1516,7 +1516,7 @@ parentPort.onmessage = function(e) {
 
 // worker线程发生error的回调
 parentPort.onerror= function(e) {
-    console.log("worker.js onerror");
+    console.log("worker.ts onerror");
 }
 ```
 build-profile.json5 配置 :
@@ -1557,7 +1557,7 @@ workerInstance.onexit = function() {
 }
 ```
 ```js
-// worker.js
+// worker.ts
 import worker from '@ohos.worker';
 
 // 创建worker线程中与主线程通信的对象
@@ -1567,7 +1567,7 @@ const parentPort = worker.workerPort
 parentPort.onmessage = function(e) {
     // data：主线程发送的信息
     let data = e.data;
-    console.log("worker.js onmessage");
+    console.log("worker.ts onmessage");
 
     // worker线程向主线程发送信息
     parentPort.postMessage("123")
@@ -1575,7 +1575,7 @@ parentPort.onmessage = function(e) {
 
 // worker线程发生error的回调
 parentPort.onerror= function(e) {
-    console.log("worker.js onerror");
+    console.log("worker.ts onerror");
 }
 ```
 build-profile.json5 配置:

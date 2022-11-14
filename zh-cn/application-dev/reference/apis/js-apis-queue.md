@@ -92,13 +92,12 @@ add(element: T): boolean
 let queue = new Queue();
 let result = queue.add("a");
 let result1 = queue.add(1);
-queue.add(1);
 let b = [1, 2, 3];
-queue.add(b);
+let result2 = queue.add(b);
 let c = {name : "Dylon", age : "13"};
 let result3 = queue.add(c);
 try {
-  queue.add.bind({}, "b")();
+  queue.add.bind({}, "b")(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
 } catch(err) {
   console.log(`${err.code} - ${err.name} - ${err.message}`);
 }
@@ -137,7 +136,7 @@ queue.add(2);
 queue.add(4);
 let result = queue.pop();
 try {
-  queue.pop.bind({})();
+  queue.pop.bind({})(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
 } catch(err) {
   console.log(`${err.code} - ${err.name} - ${err.message}`);
 }
@@ -175,7 +174,7 @@ queue.add(5);
 queue.add(2);
 let result = queue.getFirst();
 try {
-  queue.getFirst.bind({})();
+  queue.getFirst.bind({})(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
 } catch(err) {
   console.log(`${err.code} - ${err.name} - ${err.message}`);
 }
@@ -227,7 +226,7 @@ queue.forEach((value, index) => {
 try {
   queue.forEach.bind({}, (value, index) => {
     console.log("value:" + value, index);
-  })();
+  })(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
 } catch(err) {
   console.log(`${err.code} - ${err.name} - ${err.message}`);
 }
@@ -276,7 +275,7 @@ while(temp != undefined) {
   temp = iter.next().value;
 }
 try {
-  queue[Symbol.iterator].bind({})();
+  queue[Symbol.iterator].bind({})(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
 } catch(err) {
   console.log(`${err.code} - ${err.name} - ${err.message}`);
 }

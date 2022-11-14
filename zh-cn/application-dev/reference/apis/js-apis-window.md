@@ -777,10 +777,10 @@ on(type: 'systemBarTintChange', callback: Callback&lt;SystemBarTintState&gt;): v
 
 **参数：**
 
-| 参数名   | 类型                                                      | 必填 | 说明                                                         |
-| -------- | --------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| type     | string                                                    | 是   | 监听事件，固定为'systemBarTintChange'，即导航栏、状态栏属性变化事件。 |
-| callback | Callback&lt;[SystemBarTintState](#systembartintstate)&gt; | 是   | 回调函数。返回当前的状态栏、导航栏信息集合。                 |
+| 参数名   | 类型                                                       | 必填 | 说明                                                         |
+| -------- | ---------------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| type     | string                                                     | 是   | 监听事件，固定为'systemBarTintChange'，即导航栏、状态栏属性变化事件。 |
+| callback | Callback&lt;[SystemBarTintState](#systembartintstate8)&gt; | 是   | 回调函数。返回当前的状态栏、导航栏信息集合。                 |
 
 **示例：**
 
@@ -806,10 +806,10 @@ off(type: 'systemBarTintChange', callback?: Callback&lt;SystemBarTintState &gt;)
 
 **参数：**
 
-| 参数名   | 类型                                                      | 必填 | 说明                                                         |
-| -------- | --------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| type     | string                                                    | 是   | 监听事件，固定为'systemBarTintChange'，即导航栏、状态栏属性变化事件。 |
-| callback | Callback&lt;[SystemBarTintState](#systembartintstate)&gt; | 否   | 回调函数。返回当前的状态栏、导航栏信息集合。                 |
+| 参数名   | 类型                                                       | 必填 | 说明                                                         |
+| -------- | ---------------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| type     | string                                                     | 是   | 监听事件，固定为'systemBarTintChange'，即导航栏、状态栏属性变化事件。 |
+| callback | Callback&lt;[SystemBarTintState](#systembartintstate8)&gt; | 否   | 回调函数。返回当前的状态栏、导航栏信息集合。                 |
 
 **示例：**
 
@@ -1221,7 +1221,7 @@ windowClass.hide((err) => {
         console.error('Failed to hide the window. Cause: ' + JSON.stringify(err));
         return;
     }
-    console.info('Succeeded in hiding the window. data: ' + JSON.stringify(data));
+    console.info('Succeeded in hiding the window.');
 })
 ```
 
@@ -1329,7 +1329,7 @@ hideWithAnimation(): Promise&lt;void&gt;
 ```js
 let promise = windowClass.hideWithAnimation();
 promise.then(()=> {
-    console.info('Succeeded in hiding the window with animation. Data: ' + JSON.stringify(data));
+    console.info('Succeeded in hiding the window with animation.');
 }).catch((err)=>{
     console.error('Failed to hide the window with animation. Cause: ' + JSON.stringify(err));
 })
@@ -1638,6 +1638,12 @@ resize(width: number, height: number, callback: AsyncCallback&lt;void&gt;): void
 
 改变当前窗口大小，使用callback异步回调。
 
+应用主窗口与子窗口存在大小限制，宽度范围：[320, 2560]，高度范围：[240, 2560]，单位为vp。
+
+系统窗口存在大小限制，宽度范围：[0, 2560]，高度范围：[0, 2560]，单位为vp。
+
+设置的宽度与高度受到此约束限制。
+
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
 **参数：**
@@ -1678,6 +1684,12 @@ try {
 resize(width: number, height: number): Promise&lt;void&gt;
 
 改变当前窗口大小，使用Promise异步回调。
+
+应用主窗口与子窗口存在大小限制，宽度范围：[320, 2560]，高度范围：[240, 2560]，单位为vp。
+
+系统窗口存在大小限制，宽度范围：[0, 2560]，高度范围：[0, 2560]，单位为vp。
+
+设置的宽度与高度受到此约束限制。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -1844,7 +1856,7 @@ try {
 
 getWindowAvoidArea(type: AvoidAreaType): AvoidArea
 
-获取窗口内容规避的区域，如系统的系统栏区域、刘海屏区域、手势区域、软键盘区域等。
+获取窗口内容规避的区域；如系统栏区域、刘海屏区域、手势区域、软键盘区域等与窗口内容重叠时，需要窗口内容避让的区域。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -4369,6 +4381,12 @@ resetSize(width: number, height: number, callback: AsyncCallback&lt;void&gt;): v
 
 改变当前窗口大小，使用callback异步回调。
 
+应用主窗口与子窗口存在大小限制，宽度范围：[320, 2560]，高度范围：[240, 2560]，单位为vp。
+
+系统窗口存在大小限制，宽度范围：[0, 2560]，高度范围：[0, 2560]，单位为vp。
+
+设置的宽度与高度受到此约束限制。
+
 > **说明：**
 > 
 > 从 API version 7开始支持，从API version 9开始废弃，推荐使用[resize()](#resize9)。
@@ -4400,6 +4418,12 @@ windowClass.resetSize(500, 1000, (err) => {
 resetSize(width: number, height: number): Promise&lt;void&gt;
 
 改变当前窗口大小，使用Promise异步回调。
+
+应用主窗口与子窗口存在大小限制，宽度范围：[320, 2560]，高度范围：[240, 2560]，单位为vp。
+
+系统窗口存在大小限制，宽度范围：[0, 2560]，高度范围：[0, 2560]，单位为vp。
+
+设置的宽度与高度受到此约束限制。
 
 > **说明：**
 > 
@@ -4566,7 +4590,7 @@ promise.then((data)=> {
 
 getAvoidArea(type: [AvoidAreaType](#avoidareatype7), callback: AsyncCallback&lt;[AvoidArea](#avoidarea7)&gt;): void
 
-获取窗口内容规避的区域，如系统的系统栏区域、刘海屏区域、手势区域、软键盘区域等。
+获取窗口内容规避的区域；如系统栏区域、刘海屏区域、手势区域、软键盘区域等与窗口内容重叠时，需要窗口内容避让的区域。
 
 > **说明：**
 > 
@@ -4598,11 +4622,11 @@ windowClass.getAvoidArea(type, (err, data) => {
 
 getAvoidArea(type: [AvoidAreaType](#avoidareatype7)): Promise&lt;[AvoidArea](#avoidarea7)&gt;
 
-获取窗口内容规避的区域，如系统的系统栏区域、刘海屏区域、手势区域、软键盘区域等。
+获取窗口内容规避的区域；如系统栏区域、刘海屏区域、手势区域、软键盘区域等与窗口内容重叠时，需要窗口内容避让的区域。
 
 > **说明：**
 > 
-> 从 API version 7开始支持，从API version 9开始废弃，推荐使用[getWindowProperties()](#getwindowavoidarea9)。
+> 从 API version 7开始支持，从API version 9开始废弃，推荐使用[getWindowAvoidArea()](#getwindowavoidarea9)。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -5829,10 +5853,10 @@ WindowStage生命周期。
 
 | 名称       | 默认值 | 说明       |
 | ---------- | ------ | ---------- |
-| FOREGROUND | 1      | 切到前台。 |
+| SHOWN      | 1      | 切到前台。 |
 | ACTIVE     | 2      | 获焦状态。 |
 | INACTIVE   | 3      | 失焦状态。 |
-| BACKGROUND | 4      | 切到后台。 |
+| HIDDEN     | 4      | 切到后台。 |
 
 ## WindowStage<sup>9+</sup>
 

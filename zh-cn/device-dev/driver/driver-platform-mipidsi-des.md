@@ -1,7 +1,8 @@
 # MIPI DSI
 
-
 ## 概述
+
+### 功能简介
 
 DSI（Display Serial Interface）是由移动行业处理器接口联盟（Mobile Industry Processor Interface (MIPI) Alliance）制定的规范，旨在降低移动设备中显示控制器的成本。它以串行的方式发送像素数据或指令给外设（通常是LCD或者类似的显示设备），或从外设中读取状态信息或像素信息；它定义了主机、图像数据源和目标设备之间的串行总线和通信协议。
 
@@ -9,44 +10,84 @@ MIPI DSI具备高速模式和低速模式两种工作模式，全部数据通道
 
 图1显示了简化的DSI接口。从概念上看，符合DSI的接口与基于DBI-2和DPI-2标准的接口具有相同的功能。它向外围设备传输像素或命令数据，并且可以从外围设备读取状态或像素信息。主要区别在于，DSI对所有像素数据、命令和事件进行序列化，而在传统接口中，这些像素数据、命令和事件通常需要附加控制信号才能在并行数据总线上传输。
 
-  **图1** DSI发送、接收接口
+**图1** DSI发送、接收接口
 
-  ![image](figures/DSI发送-接收接口.png "DSI发送-接收接口")
+![image](figures/DSI发送-接收接口.png "DSI发送-接收接口")
 
+DSI标准对应D-PHY、DSI、DCS规范，可分为四层：
 
-## 接口说明
+- PHY Layer
 
-  **表1** MIPI DSI API接口功能介绍
+  定义了传输媒介，输入/输出电路和和时钟和信号机制。PHY层指定传输介质(电导体)、输入/输出电路和从串行比特流中捕获“1”和“0”的时钟机制。这一部分的规范记录了传输介质的特性、信号的电气参数以及时钟与数据通道之间的时序关系。在DSI链路的发送端，并行数据、信号事件和命令按照包组织在协议层转换为包。协议层附加包协议信息和报头，然后通过Lane Management层向PHY发送完整的字节。数据由PHY进行序列化，并通过串行链路发送。DSI链路的接收端执行与发送端相反的操作，将数据包分解为并行的数据、信号事件和命令。如果有多个Lane, Lane管理层将字节分配给单独的物理层，每个Lane一个PHY。
 
-| 功能分类 | 接口名 | 
-| -------- | -------- |
-| 设置/获取当前MIPI&nbsp;DSI相关配置 | -&nbsp;MipiDsiSetCfg：设置MIPI&nbsp;DSI相关配置<br/>-&nbsp;MipiDsiGetCfg：获取当前MIPI&nbsp;DSI相关配置 | 
-| 获取/释放MIPI&nbsp;DSI操作句柄 | -&nbsp;MipiDsiOpen：获取MIPI&nbsp;DSI操作句柄<br/>-&nbsp;MipiDsiClose：释放MIPI&nbsp;DSI操作句柄 | 
-| 设置MIPI&nbsp;DSI进入Low&nbsp;power模式/High&nbsp;speed模式 | -&nbsp;MipiDsiSetLpMode：设置MIPI&nbsp;DSI进入Low&nbsp;power模式<br/>-&nbsp;MipiDsiSetHsMode：设置MIPI&nbsp;DSI进入High&nbsp;speed模式 | 
-| MIPI&nbsp;DSI发送/回读指令 | -&nbsp;MipiDsiTx：MIPI&nbsp;DSI发送相应指令的接口<br/>-&nbsp;MipiDsiRx：MIPI&nbsp;DSI按期望长度回读的接口 | 
+- Lane Management层
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**<br>
-> 本文涉及的所有接口，仅限内核态使用，不支持在用户态使用。
+  负责发送和收集数据流到每条Lane。数据Lane的三种操作模式 ：espace mode，High-Speed(Burst) mode，Control mode。
 
+- Low Level Protocol层
+
+  定义了如何组帧和解析以及错误检测等。
+
+- Application层
+
+  描述高层编码和解析数据流。这一层描述了数据流中包含的数据的更高级的编码和解释。根据显示子系统架构的不同，它可能由具有指定格式的像素或编码的位流组成，或者由显示模块内的显示控制器解释的命令组成。DSI规范描述了像素值、位流、命令和命令参数到包集合中的字节的映射。 
+
+### 运作机制
+
+MIPI DSI软件模块各分层的作用为：
+
+- 接口层：提供打开设备、写入数据和关闭设备的接口。
+- 核心层：主要提供绑定设备、初始化设备以及释放设备的能力。
+- 适配层：实现其它具体的功能。
+
+![](../public_sys-resources/icon-note.gif) **说明：**<br>核心层可以调用接口层的函数，核心层通过钩子函数调用适配层函数，从而适配层可以间接的调用接口层函数，但是不可逆转接口层调用适配层函数。
+
+**图2** DSI无服务模式结构图
+
+![image](figures/无服务模式结构图.png "DSI无服务模式结构图")
+
+### 约束与限制
+
+由于使用无服务模式，MIPI_DSI接口暂不支持用户态使用。
 
 ## 使用指导
 
+### 场景介绍
 
-### 使用流程
+MIPI DSI主要用于连接显示屏。
+
+### 接口说明
+
+MIPI DSI模块提供的主要接口如表1所示，具体API详见//drivers/hdf_core/framework/include/platform/mipi_dsi_if.h。
+
+**表1** MIPI DSI API接口功能介绍
+
+| 功能分类 |  接口名  |
+| -------- | -------- |
+| DevHandle MipiDsiOpen(uint8_t id) | 获取MIPI&nbsp;DSI操作句柄 |
+| void MipiDsiClose(DevHandle handle) | 释放MIPI&nbsp;DSI操作句柄 |
+| int32_t MipiDsiSetCfg(DevHandle handle, struct MipiCfg \*cfg) | 设置MIPI&nbsp;DSI相关配置 |
+| int32_t MipiDsiGetCfg(DevHandle handle, struct MipiCfg \*cfg) | 获取当前MIPI&nbsp;DSI相关配置 |
+| void MipiDsiSetLpMode(DevHandle handle) | 设置MIPI&nbsp;DSI进入Low&nbsp;power模式 |
+| void MipiDsiSetHsMode(DevHandle handle) | 设置MIPI&nbsp;DSI进入High&nbsp;speed模式 |
+| int32_t MipiDsiTx(DevHandle handle, struct DsiCmdDesc \*cmd) | DSI发送指令 |
+| int32_t MipiDsiRx(DevHandle handle, struct DsiCmdDesc \*cmd, int32_t readLen, uint8_t \*out) | MIPI&nbsp;DSI按期望长度回读数据 |
+
+### 开发步骤
 
 使用MIPI DSI的一般流程如下图所示。
 
-  **图2** MIPI DSI使用流程图
+**图3** MIPI DSI使用流程图
 
-  ![image](figures/MIPI-DSI使用流程图.png "MIPI-DSI使用流程图")
+![image](figures/MIPI-DSI使用流程图.png "MIPI-DSI使用流程图")
 
 
-### 获取MIPI DSI操作句柄
+#### 获取MIPI DSI操作句柄
 
 在进行MIPI DSI进行通信前，首先要调用MipiDsiOpen获取操作句柄，该函数会返回指定通道ID的操作句柄。
 
-  
-```
+
+```c
 DevHandle MipiDsiOpen(uint8_t id);
 ```
 
@@ -61,8 +102,8 @@ DevHandle MipiDsiOpen(uint8_t id);
 
 假设系统中的MIPI DSI通道为0，获取该通道操作句柄的示例如下：
 
-  
-```
+
+```c
 DevHandle mipiDsiHandle = NULL;  /* 设备句柄 */
 chnId = 0;      /* MIPI DSI通道ID */
 
@@ -75,11 +116,11 @@ if (mipiDsiHandle == NULL) {
 ```
 
 
-### MIPI DSI相应配置
+#### MIPI DSI相应配置
 
 - 写入MIPI DSI配置
-    
-  ```
+  
+  ```c
   int32_t MipiDsiSetCfg(DevHandle handle, struct MipiCfg *cfg);
   ```
 
@@ -93,8 +134,8 @@ if (mipiDsiHandle == NULL) {
   | 0 | 设置成功 | 
   | 负数 | 设置失败 | 
 
-    
-  ```
+  
+  ```c
   int32_t ret;
   struct MipiCfg cfg = {0};
   
@@ -122,8 +163,8 @@ if (mipiDsiHandle == NULL) {
   ```
 
 - 获取当前MIPI DSI的配置
-    
-  ```
+  
+  ```c
   int32_t MipiDsiGetCfg(DevHandle handle, struct MipiCfg *cfg);
   ```
 
@@ -137,8 +178,8 @@ if (mipiDsiHandle == NULL) {
   | 0 | 获取成功 | 
   | 负数 | 获取失败 | 
 
-    
-  ```
+  
+  ```c
   int32_t ret;
   struct MipiCfg cfg;
   memset(&cfg, 0, sizeof(struct MipiCfg));
@@ -150,11 +191,11 @@ if (mipiDsiHandle == NULL) {
   ```
 
 
-### 发送/回读控制指令
+#### 发送/回读控制指令
 
 - 发送指令
-    
-  ```
+  
+  ```c
   int32_t MipiDsiTx(PalHandle handle, struct DsiCmdDesc *cmd);
   ```
 
@@ -168,8 +209,8 @@ if (mipiDsiHandle == NULL) {
   | 0 | 发送成功 | 
   | 负数 | 发送失败 | 
 
-    
-  ```
+  
+  ```c
   int32_t ret;
   struct DsiCmdDesc *cmd = OsalMemCalloc(sizeof(struct DsiCmdDesc));
   if (cmd == NULL) {
@@ -197,8 +238,8 @@ if (mipiDsiHandle == NULL) {
   ```
 
 - 回读指令
-    
-  ```
+  
+  ```c
   int32_t MipiDsiRx(DevHandle handle, struct DsiCmdDesc *cmd, uint32_t readLen, uint8_t *out);
   ```
 
@@ -214,8 +255,8 @@ if (mipiDsiHandle == NULL) {
   | 0 | 获取成功 | 
   | 负数 | 获取失败 | 
 
-    
-  ```
+  
+  ```c
   int32_t ret;
   uint8_t readVal = 0;
   
@@ -245,12 +286,11 @@ if (mipiDsiHandle == NULL) {
   ```
 
 
-### 释放MIPI DSI操作句柄
+#### 释放MIPI DSI操作句柄
 
 MIPI DSI使用完成之后，需要释放操作句柄，释放句柄的函数如下所示：
 
-  
-```
+```c
 void MipiDsiClose(DevHandle handle);
 ```
 
@@ -262,18 +302,18 @@ void MipiDsiClose(DevHandle handle);
 | -------- | -------- |
 | handle | MIPI&nbsp;DSI操作句柄 | 
 
-  
-```
+```c
 MipiDsiClose(mipiHandle); /* 释放掉MIPI DSI操作句柄 */
 ```
 
 
 ## 使用实例
 
+本例拟对Hi3516DV300开发板上MIPI DSI设备进行操作。
+
 MIPI DSI完整的使用示例如下所示：
 
-  
-```
+```c
 #include "hdf.h"
 #include "mipi_dsi_if.h"
 

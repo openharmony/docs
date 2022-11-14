@@ -22,7 +22,7 @@
 @Entry
 @Component
 struct AspectRatioExample {
-  private children: string[] = ['1', '2', '3', '4', '5', '6'];
+  private children: string[] = ['1', '2', '3', '4', '5', '6']
 
   build() {
     Column({ space: 20 }) {

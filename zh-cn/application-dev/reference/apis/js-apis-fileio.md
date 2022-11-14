@@ -68,7 +68,7 @@ stat(path: string): Promise&lt;Stat&gt;
   ```js
   let filePath = pathDir + "test.txt";
   fileio.stat(filePath).then(function(stat){
-      console.info("getFileInfo succeed:"+ JSON.stringify(stat));
+      console.info("getFileInfo succeed, the size of file is " + stat.size);
   }).catch(function(err){
       console.info("getFileInfo failed with error:"+ err);
   });
@@ -153,7 +153,7 @@ opendir(path: string): Promise&lt;Dir&gt;
   ```js
   let dirPath = pathDir + "/testDir";
   fileio.opendir(dirPath).then(function(dir){
-      console.info("opendir succeed:"+ JSON.stringify(dir));
+      console.info("opendir succeed");
   }).catch(function(err){
       console.info("opendir failed with error:"+ err);
   });
@@ -1178,7 +1178,7 @@ fstat(fd: number): Promise&lt;Stat&gt;
   let filePath = pathDir + "/test.txt";
   let fd = fileio.openSync(filePath);
   fileio.fstat(fd).then(function(stat){
-      console.info("fstat succeed:"+ JSON.stringify(stat));
+      console.info("fstat succeed, the size of file is "+ stat.size);
   }).catch(function(err){
       console.info("fstat failed with error:"+ err);
   });
@@ -1525,7 +1525,7 @@ lstat(path: string): Promise&lt;Stat&gt;
   ```js
   let filePath = pathDir + "/test.txt";
   fileio.lstat(filePath).then(function(stat){
-      console.info("get link status succeed:"+ JSON.stringify(stat));
+      console.info("get link status succeed, " + the size of file is + stat.size);
   }).catch(function(err){
       console.info("get link status failed with error:"+ err);
   });
@@ -3166,7 +3166,7 @@ read(): Promise&lt;Dirent&gt;
 
   ```js
   dir.read().then(function (dirent){
-      console.log("read succeed:"+JSON.stringify(dirent));
+      console.log("read succeed, the name of dirent is " + dirent.name);
   }).catch(function(err){
       console.info("read failed with error:"+ err);
   });
@@ -3193,7 +3193,7 @@ read(callback: AsyncCallback&lt;Dirent&gt;): void
   dir.read(function (err, dirent) {
       if (dirent) {
           // do something
-          console.log("read succeed:"+JSON.stringify(dirent));
+          console.log("read succeed, the name of file is " + dirent.name);
       }
   });
   ```

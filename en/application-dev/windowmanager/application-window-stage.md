@@ -56,9 +56,9 @@ In the stage model, the main window of an application is created and maintained 
 ### How to Develop
 
 1. Obtain the main window.
-
-   Call **getMainWindow** to obtain the main window of the application.
-
+   
+Call **getMainWindow** to obtain the main window of the application.
+   
 2. Set the properties of the main window.
 
    You can set multiple properties of the main window, such as the background color, brightness, and whether the main window is touchable. The code snippet below uses the **touchable** property as an example.
@@ -112,11 +112,11 @@ You can create an application subwindow, such as a dialog box, and set its prope
 ### How to Develop
 
 1. Create or obtain a subwindow.
-
-   Call **createSubWindow** to create a subwindow.
-
-   Call **getSubWindow** to obtain a subwindow.
-
+   
+Call **createSubWindow** to create a subwindow.
+   
+Call **getSubWindow** to obtain a subwindow.
+   
 2. Set the properties of the subwindow.
 
    After the subwindow is created, you can set its properties, such as the size, position, background color, and brightness.
@@ -132,11 +132,12 @@ You can create an application subwindow, such as a dialog box, and set its prope
    ```ts
    import Ability from '@ohos.application.Ability'
    
+   let windowStage_ = null;
+   let sub_windowClass = null;
    class MainAbility extends Ability {
-       onWindowStageCreate(windowStage) {
+       showSubWindow() {
            // 1. Create a subwindow.
-           let sub_windowClass = null;
-           windowStage.createSubWindow("mySubWindow", (err, data) => {
+           windowStage_.createSubWindow("mySubWindow", (err, data) => {
                if (err.code) {
                    console.error('Failed to create the subwindow. Cause: ' + JSON.stringify(err));
                    return;
@@ -144,7 +145,7 @@ You can create an application subwindow, such as a dialog box, and set its prope
                sub_windowClass = data;
                console.info('Succeeded in creating the subwindow. Data: ' + JSON.stringify(data));
                // 1. Obtain an available subwindow.
-               windowStage.getSubWindow((err, data) => {
+               windowStage_.getSubWindow((err, data) => {
                    if (err.code) {
                        console.error('Failed to obtain the subWindow. Cause:' + JSON.stringify(err));
                        return;
@@ -183,18 +184,29 @@ You can create an application subwindow, such as a dialog box, and set its prope
                        console.info('Succeeded in showing the window. Data: ' + JSON.stringify(data));
                    });
                });
-               // 4. Destroy the subwindow when a click event outside the window is detected.
-               sub_windowClass.on('touchOutside', () => {
-                   console.info('touch outside');
-                   sub_windowClass.destroy((err, data) => {
-                       if (err.code) {
-                           console.error('Failed to destroy the window. Cause: ' + JSON.stringify(err));
-                           return;
-                       }
-                       console.info('Succeeded in destroying the window. Data: ' + JSON.stringify(data));
-                   });
-               });
            })
+       }
+   
+       destroySubWindow() {
+           // 4. Destroy the subwindow when it is no longer needed (depending on the service logic).
+           sub_windowClass.destroy((err, data) => {
+               if (err.code) {
+                   console.error('Failed to destroy the window. Cause: ' + JSON.stringify(err));
+                   return;
+               }
+               console.info('Succeeded in destroying the window. Data: ' + JSON.stringify(data));
+           });
+       }
+   
+       onWindowStageCreate(windowStage) {
+           windowStage_ = windowStage;
+           // Create the subwindow when it is needed, for example, when a click event occurs in the main window. Calling onWindowStageCreate is not always necessary. The code here is for reference only.
+           this.showSubWindow();
+       }
+   
+       onWindowStageDestroy() {
+           // Destroy the subwindow when it is no longer needed, for example, when the Close button in the subwindow is clicked. Calling onWindowStageDestroy is not always necessary. The code here is for reference only.
+           this.destroySubWindow();
        }
    };
    ```
@@ -208,9 +220,9 @@ To create a better video watching and gaming experience, you can use the immersi
 ### How to Develop
 
 1. Obtain the main window.
-
-   Call **getMainWindow** to obtain the main window of the application.
-
+   
+Call **getMainWindow** to obtain the main window of the application.
+   
 2. Implement the immersive effect. You can use any of the following methods:
    - Method 1: Call **setFullScreen** to set the main window to be displayed in full screen. In this case, the navigation bar and status bar are hidden.
    - Method 2: Call **setSystemBarEnable** to hide the navigation bar and status bar.
@@ -298,13 +310,13 @@ A floating window is created based on an existing task. It is always displayed i
 ### How to Develop
 
 1. Apply for permissions.
-
-   To create a floating window (of the **WindowType.TYPE_FLOAT** type), you must configure the **ohos.permission.SYSTEM_FLOAT_WINDOW** permission in the **requestPermissions** field of the **module.json5** file. For details about the file, see [Application Package Structure Configuration File](../quick-start/stage-structure.md).
-
+   
+To create a floating window (of the **WindowType.TYPE_FLOAT** type), you must configure the **ohos.permission.SYSTEM_FLOAT_WINDOW** permission in the **requestPermissions** field of the **module.json5** file. For details about the file, see [Application Package Structure Configuration File](../quick-start/stage-structure.md).
+   
    > **NOTE**
    >
    > If the task for creating the floating window is reclaimed by the system, the floating window will no longer be displayed. If you want the floating window to be displayed in such a case, apply for a [continuous task](../task-management/background-task-overview.md).
-
+   
    ```json
    {
      "module": {
@@ -320,9 +332,9 @@ A floating window is created based on an existing task. It is always displayed i
          }
        ]
      }
-   }
+}
    ```
-
+   
 2. Create a floating window.
 
    Call **window.create** to create a floating window.
@@ -386,16 +398,13 @@ A floating window is created based on an existing task. It is always displayed i
                        console.info('Succeeded in showing the window. Data: ' + JSON.stringify(data));
                    });
                });
-               // 5. Destroy the floating window when a click event outside the window is detected.
-               windowClass.on('touchOutside', () => {
-                   console.info('touch outside');
-                   windowClass.destroy((err, data) => {
-                       if (err.code) {
-                           console.error('Failed to destroy the window. Cause: ' + JSON.stringify(err));
-                           return;
-                       }
-                       console.info('Succeeded in destroying the window. Data: ' + JSON.stringify(data));
-                   });
+               // 5. Destroy the floating window when it is no longer needed (depending on the service logic).
+               windowClass.destroy((err, data) => {
+                   if (err.code) {
+                       console.error('Failed to destroy the window. Cause: ' + JSON.stringify(err));
+                       return;
+                   }
+                   console.info('Succeeded in destroying the window. Data: ' + JSON.stringify(data));
                });
            });
        }

@@ -1,6 +1,6 @@
 # 资源管理
 
-资源管理模块，根据当前configuration（语言，区域，横竖屏，mccmnc）和device capability（设备类型，分辨率）提供获取应用资源信息读取接口。
+资源管理模块，根据当前configuration：语言、区域、横竖屏、Mcc（移动国家码）和Mnc（移动网络码）、Device capability（设备类型）、Density（分辨率）提供获取应用资源信息读取接口。
 
 > **说明：**
 >
@@ -16,9 +16,16 @@ import resourceManager from '@ohos.resourceManager';
 ## 使用说明
 
 从API Version9开始，Stage模型支持了通过context获取resourceManager对象的方式，再调用其内部获取资源的接口，无需再导入包，此方式FA模型不适用。
+Stage模型下Context的引用方法请参考[Stage模型的Context详细介绍](../../ability/context-userguide.md)
 
 ```ts
-this.context.resourceManager;
+import Ability from '@ohos.application.Ability';
+class MainAbility extends Ability {
+    onWindowStageCreate(windowStage) {
+        let context = this.context;
+        let resourceManager = context.resourceManager;
+    }
+}
 ```
 
 ## resourceManager.getResourceManager
@@ -1277,7 +1284,7 @@ getRawFd(path: string, callback: AsyncCallback&lt;RawFileDescriptor&gt;): void
 | 参数名      | 类型                                       | 必填   | 说明                               |
 | -------- | ---------------------------------------- | ---- | -------------------------------- |
 | path     | string                                   | 是    | rawfile文件路径                      |
-| callback | AsyncCallback&lt;[getRawFd](#getrawfd9)&gt; | 是    | 异步回调，用于返回获取的rawfile文件的descriptor |
+| callback | AsyncCallback&lt;[RawFileDescriptor](#rawfiledescriptor8)&gt; | 是    | 异步回调，用于返回获取的rawfile文件的descriptor |
 
 以下错误码的详细介绍请参见[资源管理错误码](../errorcodes/errorcode-resource-manager.md)。
 
@@ -1318,7 +1325,7 @@ getRawFd(path: string): Promise&lt;RawFileDescriptor&gt;
 **返回值：** 
 | 类型                                       | 说明                  |
 | ---------------------------------------- | ------------------- |
-| Promise&lt;[getRawFd](#getrawfd9-1)&gt; | rawfile文件descriptor |
+| Promise&lt;[RawFileDescriptor](#rawfiledescriptor8)&gt; | rawfile文件descriptor |
 
 以下错误码的详细介绍请参见[资源管理错误码](../errorcodes/errorcode-resource-manager.md)。
 

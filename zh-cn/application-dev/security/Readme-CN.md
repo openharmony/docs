@@ -17,3 +17,4 @@
 - Hap包签名工具
   - [Hap包签名工具概述](hapsigntool-overview.md)
   - [Hap包签名工具指导](hapsigntool-guidelines.md)
+  - [HarmonyAppProvision配置文件](app-provision-structure.md)

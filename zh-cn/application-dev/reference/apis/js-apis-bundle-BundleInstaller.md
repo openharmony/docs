@@ -1,15 +1,13 @@
 # BundleInstaller
 
-
-
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
 > 本模块首批接口从API version 7 开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
+在设备上安装、升级和卸载应用
 
+## BundleInstaller.install<sup>(deprecated)<sup>
 
-本模块提供在设备上安装、升级和删除应用的能力。
-
-## BundleInstaller.install
+> 从API version 9开始不再维护，建议使用[install](js-apis-installer.md)替代。
 
 install(bundleFilePaths: Array&lt;string&gt;, param: InstallParam, callback: AsyncCallback&lt;InstallStatus&gt;): void;
 
@@ -57,7 +55,9 @@ bundle.getBundleInstaller().then(installer=>{
 });
 ```
 
-## BundleInstaller.uninstall
+## BundleInstaller.uninstall<sup>(deprecated)<sup>
+
+> 从API version 9开始不再维护，建议使用[uninstall](js-apis-installer.md)替代。
 
 uninstall(bundleName: string, param: InstallParam, callback: AsyncCallback&lt;InstallStatus&gt;): void;
 
@@ -104,7 +104,9 @@ bundle.getBundleInstaller().then(installer=>{
     console.error('getBundleInstaller failed. Cause: ' + error.message);
 });
 ```
-## BundleInstaller.recover<sup>8+</sup>
+## BundleInstaller.recover<sup>(deprecated)<sup>
+
+> 从API version 9开始不再维护，建议使用[recover](js-apis-installer.md)替代。
 
 recover(bundleName: string, param: InstallParam, callback: AsyncCallback&lt;InstallStatus&gt;): void;
 
@@ -153,20 +155,7 @@ bundle.getBundleInstaller().then(installer=>{
 });
 ```
 
-## HashParam<sup>9+</sup>
-
-hap的哈希值参数。应用市场升级检测时，校验各版本哈希值是否一致。
-
- **系统能力:** 以下各项对应的系统能力均为SystemCapability.BundleManager.BundleFramework
-
- **系统API：**  此接口为系统接口，三方应用不支持调用
-
-| 名称       | 类型   | 可读|可写|说明             |
-| ---------- | ------ | ---|---|---------------- |
-| moduleName | string | 是|是 | 应用程序模块名称 |
-| hashValue  | string | 是|是 |hap包的sha256哈希值           |
-
-## InstallParam
+## InstallParam<sup>(deprecated)<sup>
 
 应用程序安装卸载信息
 
@@ -179,10 +168,9 @@ hap的哈希值参数。应用市场升级检测时，校验各版本哈希值�
 | userId                         | number                         | 是|是 |指示用户id，可以通过[账户子系统](js-apis-)         |
 | installFlag                    | number                         | 是|是 |指示安装标志 <br> 0表示正常安装 <br>1表示替代原有应用       |
 | isKeepData                     | boolean                        | 是|是 |指示应用删除后是否保留数据 |
-| hashParams<sup>9+</sup>        | Array<[HashParam](#hashparam)> | 是|是 |哈希值参数         |
-| crowdtestDeadline<sup>9+</sup> | number                         | 是|是 |[众测](https://deveco.huawei.com/crowdtest)截止时间 |
 
-## InstallStatus
+
+## InstallStatus<sup>(deprecated)<sup>
 
 应用程序安装卸载状态
 

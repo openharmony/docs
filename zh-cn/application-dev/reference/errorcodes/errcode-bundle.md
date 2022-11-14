@@ -29,7 +29,7 @@ The specified module name is not found.
 2. 系统中对应的应用没有安装该模块。
 
 **处理步骤**<br/>
-1. 检查bundleName拼写是否正确。
+1. 检查moduleName拼写是否正确。
 2. 确认对应的应用是否安装该模块。
 
 ## 17700003 指定的abilityName不存在
@@ -127,15 +127,16 @@ Failed to install the hap since the hap fails to be parsed.
 2. 确认hap的配置文件满足[配置文件json格式](../../quick-start/stage-structure.md)。
 3. 检查DevEco Studio编译hap时是否有错误提示，缺省字段时会有相应的报错。
 
-## 17700011 签名校验失败失败导致应用安装失败
+## 17700011 签名校验失败导致应用安装失败
 
 **错误信息**<br/>
 Failed to install the hap since the hap signature fails to be verified.
 
 **错误描述**<br/>
-签名校验失败失败导致应用安装失败。
+签名校验失败导致应用安装失败。
 
 **可能原因**<br/>
+
 1. hap包没有签名。
 2. hap签名信息来源不可靠。
 3. 升级的hap包与已安装的hap包签名信息不一致。
@@ -146,49 +147,23 @@ Failed to install the hap since the hap signature fails to be verified.
 2. 确认多个hap签名时使用的证书相同。
 3. 确认升级的hap签名证书与已安装的hap相同。
 
-## 17700012 安装包路径无效导致应用安装失败
+## 17700012 安装包路径无效或者文件过大导致应用安装失败
 
 **错误信息**<br/>
-Failed to install the hap since the path of the hap is invalid.
+Failed to install the hap since the path of the hap is invalid or too large size.
 
 **错误描述**<br/>
-安装包路径无效导致应用安装失败。
+安装包路径无效或者文件过大导致应用安装失败。
 
 **可能原因**<br/>
 1. 输入错误，hap包的文件路径不存在。
 2. hap包的路径无法访问。
+3. hap包的大小超过最大限制4G。
 
 **处理步骤**<br/>
 1. 确认hap是否存在。
 2. 查看hap的可执行权限，是否可读。
-
-## 17700013 应用包过大导致应用安装失败
-
-**错误信息**<br/>
-Failed to install the hap since the hap is too large.
-
-**错误描述**<br/>
-应用包过大导致应用安装失败。
-
-**可能原因**<br/>
-hap包过大，一个hap不能超过4GB。
-
-**处理步骤**<br/>
-确认hap包的大小。
-
-## 17700014 应用包后缀有误导致应用安装失败
-
-**错误信息**<br/>
-Failed to install the hap since the extension name of the hap is not .hap.
-
-**错误描述**<br/>
-应用包后缀有误导致应用安装失败。
-
-**可能原因**<br/>
-hap包的文件后缀名不为.hap。
-
-**处理步骤**<br/>
-确认hap包的后缀是否为.hap。
+3. 查看hap包的大小是否超过4G。
 
 ## 17700015 多个hap包配置信息不同导致应用安装失败
 
@@ -365,3 +340,32 @@ The distributed service is not running.
 
 **处理步骤**<br/>
 确认输入的ability和type拼写是否正确。
+
+## 17700029 指定的ability被禁用
+
+**错误信息**<br/>
+The specified ability is disabled.
+
+**错误描述**<br/>
+指定的ability被禁用。
+
+**可能原因**<br/>
+指定的ability被禁用。
+
+**处理步骤**<br/>
+确认指定的ability是否被禁用，可以使用[bm工具](../../../readme/%E5%8C%85%E7%AE%A1%E7%90%86%E5%AD%90%E7%B3%BB%E7%BB%9F.md#bm)命令查询对应的应用信息。
+
+## 17700030 指定的应用不支持清除缓存文件
+
+**错误信息**<br/>
+The specified bundle does not support clearing cache files.
+
+**错误描述**<br/>
+指定的应用不支持清除缓存文件。
+
+**可能原因**<br/>
+指定的应用为系统应用且在签名证书中配置了不能清除数据(AllowAppDataNotCleared)的字段。
+
+**处理步骤**<br/>
+1.确认指定的应用是否为系统应用，可以使用[bm工具](../../../readme/%E5%8C%85%E7%AE%A1%E7%90%86%E5%AD%90%E7%B3%BB%E7%BB%9F.md#bm)命令查询对应的应用信息，查看isSystemApp是否为true。
+2.确认指定的应用是否配置了能清除缓存(AllowAppDataNotCleared)的字段，可以使用[bm工具](../../../readme/%E5%8C%85%E7%AE%A1%E7%90%86%E5%AD%90%E7%B3%BB%E7%BB%9F.md#bm)命令查询对应的应用信息，查看userDataClearable是否为true。
