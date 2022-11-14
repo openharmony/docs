@@ -285,7 +285,6 @@ vector.add(4);
 vector.add(5);
 vector.add(4);
 vector.removeByRange(2,4);
-vector.removeByRange(2,6);
 ```
 
 ### replaceAllElements
