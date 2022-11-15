@@ -7,7 +7,7 @@
 | 名称        | 读写属性 | 类型                 | 必填 | 描述                                                         |
 | ----------- | -------- | -------------------- | ---- | ------------------------------------------------------------ |
 | deviceId    | 只读     | string               | 否   | 表示运行指定Ability的设备ID。                                |
-| bundleName   | 只读     | string               | 否   | 表示包描述。如果在Want中同时指定了BundleName和AbilityName，则Want可以直接匹配到指定的Ability。 |
+| bundleName   | 只读     | string               | 否   | 表示包名。如果在Want中同时指定了BundleName和AbilityName，则Want可以直接匹配到指定的Ability。 |
 | abilityName  | 只读     | string               | 否   | 表示待启动的Ability名称。如果在Want中该字段同时指定了BundleName和AbilityName，则Want可以直接匹配到指定的Ability。AbilityName需要在一个应用的范围内保证唯一。 |
 | uri          | 只读     | string               | 否   | 表示Uri描述。如果在Want中指定了Uri，则Want将匹配指定的Uri信息，包括scheme, schemeSpecificPart, authority和path信息。 |
 | type         | 只读     | string               | 否   | 表示MIME type类型描述，打开文件的类型，主要用于文管打开文件。比如："text/xml" 、 "image/*"等，MIME定义参考：https://www.iana.org/assignments/media-types/media-types.xhtml?utm_source=ld246.com。   |
@@ -21,7 +21,7 @@
 
 - 基础用法
 
-  ```  js
+  ```  ts
     var want = {
         "deviceId": "", // deviceId为空表示本设备
         "bundleName": "com.extreme.test",
@@ -36,7 +36,7 @@
 
 - 传递FD数据，FD表示文件描述符(FileDescriptor)
 
-  ```  js
+  ```  ts
     import fileio from '@ohos.fileio';
     var fd;
     try {

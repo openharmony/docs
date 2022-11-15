@@ -15,7 +15,7 @@
 
 **示例：**
     
-  ```js
+  ```ts
   let envCallback = {
      onConfigurationUpdated(config) {
        console.info(`envCallback onConfigurationUpdated success: ${JSON.stringify(config)}`)
