@@ -1,6 +1,6 @@
 # Want<sup>6+</sup>
 
-系统基本通信组件。
+Want是对象间信息传递的载体, 可以用于应用组件间的信息传递。 Want的使用场景之一是作为startAbility的参数, 其包含了指定的启动目标, 以及启动时需携带的相关数据, 如bundleName和abilityName字段分别指明目标Ability所在应用的包名以及对应包内的Ability名称。当AbilityA启动AbilityB并需要传入一些数据给AbilityB时, Want可以作为一个数据载体将数据传给AbilityB。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityBase
 
