@@ -2,7 +2,7 @@
 
 continuationManager模块提供了流转/协同入口管理服务能力，包括连接/取消流转管理服务，注册/解注册设备连接变化监听，拉起设备选择模块，更新连接状态。
 
-本模块接口用于拉起系统中的设备选择模块，由于该模块功能暂不完备，因此**流转能力整体暂不支持用于应用开发**。
+本模块接口用于拉起系统中的设备选择模块，由于该模块功能暂不完备，因此流转能力整体暂不支持用于应用开发。
 
 > **说明：**
 > 
@@ -38,7 +38,7 @@ register(callback: AsyncCallback\<number>): void;
 | ------- | -------------------------------------------- |
 | 3 | Failed to flatten the object. |
 | 7 | The object is null. |
-| 29360207 | The maximum number of registrations exceeded. |
+| 29360207 | The number of registrations has reached the upper limit. |
 
 **示例：**
 
@@ -79,7 +79,7 @@ register(options: ContinuationExtraParams, callback: AsyncCallback\<number>): vo
 | ------- | -------------------------------------------- |
 | 3 | Failed to flatten the object. |
 | 7 | The object is null. |
-| 29360207 | The maximum number of registrations exceeded. |
+| 29360207 | The number of registrations has reached the upper limit. |
 | 29360216 | Invalid continuation mode. |
 
 **示例：**
@@ -129,7 +129,7 @@ register(options?: ContinuationExtraParams): Promise\<number>;
 | ------- | -------------------------------------------- |
 | 3 | Failed to flatten the object |
 | 7 | The object is null. |
-| 29360207 | The maximum number of registrations exceeded. |
+| 29360207 | The number of registrations has reached the upper limit. |
 | 29360216 | Invalid continuation mode. |
 
 **示例：**
@@ -172,7 +172,7 @@ registerContinuation(callback: AsyncCallback\<number>): void;
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------------------- |
 | 401 | The parameter check failed. |
-| 16600001 | The system ability work abnormally. |
+| 16600001 | The system ability works abnormally. |
 | 16600003 | The number of token registration times has reached the upper limit. |
 
 **示例：**
@@ -217,7 +217,7 @@ registerContinuation(options: ContinuationExtraParams, callback: AsyncCallback\<
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------------------- |
 | 401 | The parameter check failed. |
-| 16600001 | The system ability work abnormally. |
+| 16600001 | The system ability works abnormally. |
 | 16600003 | The number of token registration times has reached the upper limit. |
 
 **示例：**
@@ -270,7 +270,7 @@ registerContinuation(options?: ContinuationExtraParams): Promise\<number>;
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------------------- |
 | 401 | The parameter check failed. |
-| 16600001 | The system ability work abnormally. |
+| 16600001 | The system ability works abnormally. |
 | 16600003 | The number of token registration times has reached the upper limit. |
 
 **示例：**
@@ -320,8 +320,8 @@ on(type: "deviceConnect", callback: Callback\<ContinuationResult>): void;
 | ------- | -------------------------------------------- |
 | 3 | Failed to flatten the object |
 | 7 | The object is null | 7 |
-| 29360208 | The token has not registered. |
-| 29360209 | Callback has been registered. |
+| 29360208 | The token is not registered. |
+| 29360209 | The callback has been registered. |
 | 29360214 | The type of callback is not supported. |
 
 **示例：**
@@ -359,8 +359,8 @@ on(type: "deviceDisconnect", callback: Callback\<string>): void;
 | ------- | -------------------------------------------- |
 | 3 | Failed to flatten the object. |
 | 7 | The object is null. |
-| 29360208 | The token has not registered. |
-| 29360209 | Callback has been registered. |
+| 29360208 | The token is not registered. |
+| 29360209 | The callback has been registered. |
 | 29360214 | The type of callback is not supported. |
 
 **示例：**
@@ -396,8 +396,8 @@ off(type: "deviceConnect", callback?: Callback\<ContinuationResult>): void;
 | ------- | -------------------------------------------- |
 | 3 | Failed to flatten the object. |
 | 7 | The object is null. |
-| 29360208 | The token has not registered. |
-| 29360210 | Callback has not registered. |
+| 29360208 | The token is not registered. |
+| 29360210 | The callback is not registered. |
 | 29360214 | The type of callback is not supported. |
 
 **示例：**
@@ -435,8 +435,8 @@ off(type: "deviceDisconnect", callback?: Callback\<string>): void;
 | ------- | -------------------------------------------- |
 | 3 | Failed to flatten the object. |
 | 7 | The object is null. |
-| 29360208 | The token has not registered. |
-| 29360210 | Callback has not registered. |
+| 29360208 | The token is not registered. |
+| 29360210 | The callback is not registered. |
 | 29360214 | The type of callback is not supported. |
 
 **示例：**
@@ -472,8 +472,8 @@ on(type: "deviceSelected", token: number, callback: Callback\<Array\<Continuatio
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------------------- |
 | 401 | The parameter check failed. |
-| 16600001 | The system ability work abnormally. |
-| 16600002 | The specified token or callback has not registered. |
+| 16600001 | The system ability works abnormally. |
+| 16600002 | The specified token or callback is not registered. |
 | 16600004 | The specified callback has been registered. |
 
 **示例：**
@@ -519,8 +519,8 @@ on(type: "deviceUnselected", token: number, callback: Callback\<Array\<Continuat
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------------------- |
 | 401 | The parameter check failed. |
-| 16600001 | The system ability work abnormally. |
-| 16600002 | The specified token or callback has not registered. |
+| 16600001 | The system ability works abnormally. |
+| 16600002 | The specified token or callback is not registered. |
 | 16600004 | The specified callback has been registered. |
 
 **示例：**
@@ -566,8 +566,8 @@ off(type: "deviceSelected", token: number): void;
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------------------- |
 | 401 | The parameter check failed. |
-| 16600001 | The system ability work abnormally. |
-| 16600002 | The specified token or callback has not registered. |
+| 16600001 | The system ability works abnormally. |
+| 16600002 | The specified token or callback is not registered. |
 | 16600004 | The specified callback has been registered. |
 
 **示例：**
@@ -605,8 +605,8 @@ off(type: "deviceUnselected", token: number): void;
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------------------- |
 | 401 | The parameter check failed. |
-| 16600001 | The system ability work abnormally. |
-| 16600002 | The specified token or callback has not registered. |
+| 16600001 | The system ability works abnormally. |
+| 16600002 | The specified token or callback is not registered. |
 | 16600004 | The specified callback has been registered. |
 
 **示例：**
@@ -645,9 +645,9 @@ startDeviceManager(token: number, callback: AsyncCallback\<void>): void;
 | ------- | -------------------------------------------- |
 | 3 | Failed to flatten the object. |
 | 7 | The object is null. |
-| 29360208 | The token has not registered. |
-| 29360210 | Callback has not registered. |
-| 29360211 | Failed to connect ability. |
+| 29360208 | The token is not registered. |
+| 29360210 | The callback is not registered. |
+| 29360211 | Failed to connect to the ability. |
 | 29360216 | Invalid continuation mode. |
 
 **示例：**
@@ -689,9 +689,9 @@ startDeviceManager(token: number, options: ContinuationExtraParams, callback: As
 | ------- | -------------------------------------------- |
 | 3 | Failed to flatten the object |
 | 7 | The object is null |
-| 29360208 | The token has not registered. |
-| 29360210 | Callback has not registered. |
-| 29360211 | Failed to connect ability. |
+| 29360208 | The token is not registered. |
+| 29360210 | The callback is not registered. |
+| 29360211 | Failed to connect to the ability. |
 | 29360216 | Invalid continuation mode. |
 
 **示例：**
@@ -741,9 +741,9 @@ startDeviceManager(token: number, options?: ContinuationExtraParams): Promise\<v
 | ------- | -------------------------------------------- |
 | 3 | Failed to flatten the object |
 | 7 | The object is null |
-| 29360208 | The token has not registered. |
-| 29360210 | Callback has not registered. |
-| 29360211 | Failed to connect ability. |
+| 29360208 | The token is not registered. |
+| 29360210 | The callback is not registered. |
+| 29360211 | Failed to connect to the ability. |
 | 29360216 | Invalid continuation mode. |
 
 **示例：**
@@ -786,8 +786,8 @@ startContinuationDeviceManager(token: number, callback: AsyncCallback\<void>): v
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------------------- |
 | 401 | The parameter check failed. |
-| 16600001 | The system ability work abnormally. |
-| 16600002 | The specified token or callback has not registered. |
+| 16600001 | The system ability works abnormally. |
+| 16600002 | The specified token or callback is not registered. |
 
 **示例：**
 
@@ -831,8 +831,8 @@ startContinuationDeviceManager(token: number, options: ContinuationExtraParams, 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------------------- |
 | 401 | The parameter check failed. |
-| 16600001 | The system ability work abnormally. |
-| 16600002 | The specified token or callback has not registered. |
+| 16600001 | The system ability works abnormally. |
+| 16600002 | The specified token or callback is not registered. |
 
 **示例：**
 
@@ -884,8 +884,8 @@ startContinuationDeviceManager(token: number, options?: ContinuationExtraParams)
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------------------- |
 | 401 | The parameter check failed. |
-| 16600001 | The system ability work abnormally. |
-| 16600002 | The specified token or callback has not registered. |
+| 16600001 | The system ability works abnormally. |
+| 16600002 | The specified token or callback is not registered. |
 
 **示例：**
 
@@ -934,10 +934,10 @@ updateConnectStatus(token: number, deviceId: string, status: DeviceConnectState,
 | ------- | -------------------------------------------- |
 | 3 | Failed to flatten the object. |
 | 7 | The object is null. |
-| 29360208 | The token has not registered. |
-| 29360210 | Callback has not registered. |
-| 29360211 | Failed to connect ability. |
-| 29360215 | Invalid connect state. |
+| 29360208 | The token is not registered. |
+| 29360210 | The callback is not registered. |
+| 29360211 | Failed to connect to the ability. |
+| 29360215 | Invalid connection state. |
 
 **示例：**
 
@@ -985,10 +985,10 @@ updateConnectStatus(token: number, deviceId: string, status: DeviceConnectState)
 | ------- | -------------------------------------------- |
 | 3 | Failed to flatten the object. |
 | 7 | The object is null. |
-| 29360208 | The token has not registered. |
-| 29360210 | Callback has not registered. |
-| 29360211 | Failed to connect ability. |
-| 29360215 | Invalid connect state. |
+| 29360208 | The token is not registered. |
+| 29360210 | The callback is not registered. |
+| 29360211 | Failed to connect to the ability. |
+| 29360215 | Invalid connection state. |
 
 **示例：**
 
@@ -1030,8 +1030,8 @@ updateContinuationState(token: number, deviceId: string, status: DeviceConnectSt
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------------------- |
 | 401 | The parameter check failed. |
-| 16600001 | The system ability work abnormally. |
-| 16600002 | The specified token or callback has not registered. |
+| 16600001 | The system ability works abnormally. |
+| 16600002 | The specified token or callback is not registered. |
 
 **示例：**
 
@@ -1082,8 +1082,8 @@ updateContinuationState(token: number, deviceId: string, status: DeviceConnectSt
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------------------- |
 | 401 | The parameter check failed. |
-| 16600001 | The system ability work abnormally. |
-| 16600002 | The specified token or callback has not registered. |
+| 16600001 | The system ability works abnormally. |
+| 16600002 | The specified token or callback is not registered. |
 
 **示例：**
 
@@ -1129,7 +1129,7 @@ unregister(token: number, callback: AsyncCallback\<void>): void;
 | ------- | -------------------------------------------- |
 | 3 | Failed to flatten the object. |
 | 7 | The object is null. |
-| 29360208 | The token has not registered. |
+| 29360208 | The token is not registered. |
 
 **示例：**
 
@@ -1174,7 +1174,7 @@ unregister(token: number): Promise\<void>;
 | ------- | -------------------------------------------- |
 | 3 | Failed to flatten the object. |
 | 7 | The object is null. |
-| 29360208 | The token has not registered. |
+| 29360208 | The token is not registered. |
 
 **示例：**
 
@@ -1213,8 +1213,8 @@ unregisterContinuation(token: number, callback: AsyncCallback\<void>): void;
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------------------- |
 | 401 | The parameter check failed. |
-| 16600001 | The system ability work abnormally. |
-| 16600002 | The specified token or callback has not registered. |
+| 16600001 | The system ability works abnormally. |
+| 16600002 | The specified token or callback is not registered. |
 
 **示例：**
 
@@ -1262,8 +1262,8 @@ unregisterContinuation(token: number): Promise\<void>;
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------------------- |
 | 401 | The parameter check failed. |
-| 16600001 | The system ability work abnormally. |
-| 16600002 | The specified token or callback has not registered. |
+| 16600001 | The system ability works abnormally. |
+| 16600002 | The specified token or callback is not registered. |
 
 **示例：**
 
