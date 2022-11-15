@@ -1,5 +1,7 @@
 # 继承样式 
+
 > **说明：**
+>
 > 从API version 9开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 自定义组件具有inherit-class属性，定义如下：
@@ -10,7 +12,8 @@
 
 可以通过设置inherit-calss属性来继承父组件的样式。
 
-父页面的hml文件，其中自定义组件comp通过inherit-class属性来指定继承其父组件的样式：parent-class1和parent-class2。
+父组件的hml文件，其中自定义组件comp通过inherit-class属性来指定继承其父组件的样式，即parent-class1和parent-class2：
+
 ```html
 <!-- xxx.hml -->
 <element name='comp' src='../../common/component/comp.hml'></element>
@@ -20,7 +23,8 @@
 </div>
 ```
 
-父页面的css文件
+父组件的css文件：
+
 ```css
 /* xxx.css */
 .parent-class1 {
@@ -33,7 +37,8 @@
 }
 ```
 
-自定义组件的hml文件，其中parent-class1和parent-class2是从父组件继承的样式。
+自定义组件的hml文件，其中parent-class1和parent-class2是从父组件继承的样式：
+
 ```html
 <!--comp.hml-->
 <div class="item">
