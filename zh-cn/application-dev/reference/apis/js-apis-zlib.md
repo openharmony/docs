@@ -160,7 +160,7 @@ let options = {
 
 try {
     zlib.compressFile(inFile, outFile, options, (errData) => {
-        if (erData !== null) {
+        if (errData !== null) {
             console.log(`errData is errCode:${errData.errCode}  message:${errData.message}`);
         }
     })
@@ -257,7 +257,7 @@ let options = {
 
 try {
     zlib.decompressFile(inFile, outFile, options, (errData) => {
-        if (erData !== null) {
+        if (errData !== null) {
             console.log(`errData is errCode:${errData.errCode}  message:${errData.message}`);
         }
     })
@@ -301,8 +301,8 @@ let options = {
 };
 
 try {
-    zlib.deCompressFile(inFile, outFile, options).then((data) => {
-        console.info('deCompressFile success');
+    zlib.decompressFile(inFile, outFile, options).then((data) => {
+        console.info('decompressFile success');
     }).catch((errData) => {
         console.log(`errData is errCode:${errData.errCode}  message:${errData.message}`);
     })
