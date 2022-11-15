@@ -1,6 +1,6 @@
 # Configuration
 
-表示环境变化信息。
+定义环境变化信息。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityBase
 
