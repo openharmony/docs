@@ -54,6 +54,7 @@
   - [轻量和小型系统设备开发示例](guide/device-wlan-led-control.md) 
   - [标准系统设备开发示例](guide/device-clock-guide.md) 
 - 调测
+  - [设备测试](device-test/Readme-CN.md)	
   - [调测工具](subsystems/subsys-toolchain-hdc-guide.md) 
 - 工具
   - [Docker编译环境](get-code/gettools-acquire.md)
