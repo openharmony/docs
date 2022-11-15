@@ -11,14 +11,15 @@ Context模块提供开发者运行代码的上下文环境的能力，包括查�
 
 通过AbilityContext等继承实现。
 
- ```js
-import AbilityContext from '@ohos.application.Ability'
-  class MainAbility extends AbilityContext {
+```js
+import Ability from '@ohos.application.Ability'
+
+class MainAbility extends Ability {
     onWindowStageCreate(windowStage) {
-      let test = "com.example.test";
-      let context = this.context.createBundleContext(test);
+        let test = "com.example.test";
+        let context = this.context.createBundleContext(test);
     }
-  }
+}
 ```
 
 ## 属性
@@ -65,16 +66,16 @@ createBundleContext(bundleName: string): Context;
 
 **示例：**
 
-  ```js
-  import AbilityContext from '@ohos.application.Ability'
-      class MainAbility extends AbilityContext {
-          onWindowStageCreate(windowStage) {
-              let test = "com.example.test";
-              let context = this.context.createBundleContext(test);
-      }
-}
+```js
+import Ability from '@ohos.application.Ability'
 
-  ```
+class MainAbility extends Ability {
+    onWindowStageCreate(windowStage) {
+        let test = "com.example.test";
+        let context = this.context.createBundleContext(test);
+    }
+}
+```
 
 
 ## Context.createModuleContext
@@ -99,16 +100,16 @@ createModuleContext(moduleName: string): Context;
 
 **示例：**
 
-  ```js
-  import AbilityContext from '@ohos.application.Ability'
-      class MainAbility extends AbilityContext {
-          onWindowStageCreate(windowStage) {
-              let moduleName = "module";
-              let context = this.context.createModuleContext(moduleName);
-      }
-}
+```js
+import Ability from '@ohos.application.Ability'
 
-  ```
+class MainAbility extends Ability {
+    onWindowStageCreate(windowStage) {
+        let moduleName = "module";
+        let context = this.context.createModuleContext(moduleName);
+    }
+}
+```
 
 
 ## Context.createModuleContext
@@ -136,18 +137,17 @@ createModuleContext(bundleName: string, moduleName: string): Context;
 
 **示例：**
 
-  ```js
-  import AbilityContext from '@ohos.application.Ability'
-      class MainAbility extends AbilityContext {
-          onWindowStageCreate(windowStage) {
-              let bundleName = "com.example.bundle";
-              let moduleName = "module";
-              let context = this.context.createModuleContext(bundleName, moduleName);
-      }
+```js
+import Ability from '@ohos.application.Ability'
+
+class MainAbility extends Ability {
+    onWindowStageCreate(windowStage) {
+        let bundleName = "com.example.bundle";
+        let moduleName = "module";
+        let context = this.context.createModuleContext(bundleName, moduleName);
+    }
 }
-
-  ```
-
+```
 
 ## Context.getApplicationContext
 
@@ -165,10 +165,15 @@ getApplicationContext(): ApplicationContext;
 
 **示例：**
 
-  ```js
-  // 必选项。
-  let applicationContext = this.context.getApplicationContext();
-  ```
+```js
+import Ability from '@ohos.application.Ability'
+
+class MainAbility extends Ability {
+    onWindowStageCreate(windowStage) {
+        let applicationContext = this.context.getApplicationContext();
+    }
+}
+```
 
 
 ## AreaMode
