@@ -17,6 +17,8 @@ Want是对象间信息传递的载体, 可以用于应用组件间的信息传�
 | entities    | 只读     | Array\<string>       | 否   | 表示目标Ability额外的类别信息（如：浏览器、视频播放器），在隐式Want中是对action字段的补充。在隐式Want中，您可以定义该字段，来过滤匹配Ability类型。                                    |
 | moduleName<sup>9+</sup> | 只读   | string | 否    | 表示待启动的Ability所属的模块（module）。 |
 
+具体字段描述参考want.d.ts文件
+
 **示例：**
 
 - 基础用法
