@@ -85,7 +85,7 @@ struct PopupExample {
             }
           },
           onStateChange: (e) => {
-            console.info(e.isVisible.toString())
+            console.info(JSON.stringify(e.isVisible))
             if (!e.isVisible) {
               this.handlePopup = false
             }
