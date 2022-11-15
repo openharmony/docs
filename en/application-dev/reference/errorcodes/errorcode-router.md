@@ -14,7 +14,7 @@ This error code is reported when an internal error that cannot be rectified by d
 
 The operation for obtaining the rendering engine or parsing parameters fails.
 
-**Procedure**
+**Solution**
 
 NA
 
@@ -32,7 +32,7 @@ This error code is reported when the URI of the page to redirect is incorrect or
 
 The entered URI is incorrect or does not exist.
 
-**Procedure**
+**Solution**
 
 Ensure that the URI is correct.
 
@@ -50,7 +50,7 @@ This error code is reported when more than 32 pages are pushed into the page sta
 
 Too many pages are pushed.
 
-**Procedure**
+**Solution**
 
 Delete unnecessary or invalid pages.
 
@@ -68,6 +68,6 @@ This error code is reported when the URI of the page to be used for replacement 
 
 The entered URI is incorrect or does not exist.
 
-**Procedure**
+**Solution**
 
 Ensure that the URI is correct.

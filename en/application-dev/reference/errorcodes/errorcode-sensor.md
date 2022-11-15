@@ -1,6 +1,6 @@
 # Sensor Error Codes
 
-## 14500101 Service exception.
+## 14500101 Service Exception
 
 **Error Message**
 
@@ -14,7 +14,7 @@ This error code is reported if the HDI service is abnormal when the **on**, **on
 
 The HDI service is abnormal.
 
-**Procedure**
+**Solution**
 
 1. Retry the operation at a specified interval (for example, 1s) or at an exponential increase interval.
 2. If the operation fails for three consecutive times, stop the retry. You can also attempt to obtain the sensor list to check for device availability.
