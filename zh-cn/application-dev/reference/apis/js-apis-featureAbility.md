@@ -265,8 +265,8 @@ featureAbility.terminateSelfWithResult(
             }
         },
     },
-    (err, data) => {
-        console.info("err: " + JSON.stringify(err) + "data: " + JSON.stringify(data))
+    (err) => {
+        console.info("err: " + JSON.stringify(err))
     }
 );
 ```
@@ -473,8 +473,8 @@ terminateSelf(callback: AsyncCallback\<void>): void
 ```javascript
 import featureAbility from '@ohos.ability.featureAbility';
 featureAbility.terminateSelf(
-    (err, data) => {
-        console.info("err: " + JSON.stringify(err) + "data: " + JSON.stringify(data))
+    (err) => {
+        console.info("err: " + JSON.stringify(err))
     }
 )
 ```
@@ -613,8 +613,8 @@ var connId = featureAbility.connectAbility(
     },
 );
 var result = featureAbility.disconnectAbility(connId,
-    (error,data) => {
-    console.log('featureAbilityTest DisConnectJsSameBundleName result errCode : ' + error.code + " data: " + data)
+    (error) => {
+        console.log('featureAbilityTest DisConnectJsSameBundleName result errCode : ' + error.code)
     },
 );
 ```
