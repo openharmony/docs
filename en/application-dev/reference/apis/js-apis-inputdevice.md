@@ -73,6 +73,9 @@ function listener(data) {
     console.log("type: " + data.type + ", deviceId: " + data.deviceId);
 }
 
+// Enable listening for hot swap events of an input device.
+inputDevice.on("change", listener);
+
 // Disable this listener.
 inputDevice.off("change", listener);
 
