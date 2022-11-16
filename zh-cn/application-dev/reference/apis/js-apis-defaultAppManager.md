@@ -15,7 +15,7 @@ import defaultAppMgr from '@ohos.bundle.defaultAppManager';
 
 应用类型
 
-**系统能力：** SystemCapability.BundleManager.BundleFramework.DefaultAppManager
+**系统能力：** SystemCapability.BundleManager.BundleFramework.DefaultApp
 
 | 名称      | 类型     | 值    | 说明                                   |
 | -------- | -------- | -------------------------------------- | -------------------------------------- |
@@ -34,7 +34,7 @@ isDefaultApplication(type: string): Promise\<boolean>
 
 以异步方法根据系统已定义的应用类型判断当前应用是否是该应用类型的默认应用，使用Promise形式返回结果。
 
-**系统能力：** SystemCapability.BundleManager.BundleFramework.DefaultAppManager
+**系统能力：** SystemCapability.BundleManager.BundleFramework.DefaultApp
 
 **参数：**
 
@@ -66,7 +66,7 @@ isDefaultApplication(type: string, callback: AsyncCallback\<boolean>): void
 
 以异步方法根据系统已定义的应用类型判断当前应用是否是该应用类型的默认应用，使用callback形式返回结果。
 
-**系统能力：** SystemCapability.BundleManager.BundleFramework.DefaultAppManager
+**系统能力：** SystemCapability.BundleManager.BundleFramework.DefaultApp
 
 **参数：**
 
@@ -96,7 +96,7 @@ getDefaultApplication(type: string, userId?: number): Promise\<BundleInfo>
 
 **需要权限：** ohos.permission.GET_DEFAULT_APPLICATION
 
-**系统能力：** SystemCapability.BundleManager.BundleFramework.DefaultAppManager
+**系统能力：** SystemCapability.BundleManager.BundleFramework.DefaultApp
 
 **系统API：**  此接口为系统接口，三方应用不支持调用
 
@@ -150,7 +150,7 @@ getDefaultApplication(type: string, userId: number, callback: AsyncCallback\<Bun
 
 **需要权限：** ohos.permission.GET_DEFAULT_APPLICATION
 
-**系统能力：** SystemCapability.BundleManager.BundleFramework.DefaultAppManager
+**系统能力：** SystemCapability.BundleManager.BundleFramework.DefaultApp
 
 **系统API：**  此接口为系统接口，三方应用不支持调用
 
@@ -200,7 +200,7 @@ getDefaultApplication(type: string, callback: AsyncCallback\<BundleInfo>) : void
 
 **需要权限：** ohos.permission.GET_DEFAULT_APPLICATION
 
-**系统能力：** SystemCapability.BundleManager.BundleFramework.DefaultAppManager
+**系统能力：** SystemCapability.BundleManager.BundleFramework.DefaultApp
 
 **系统API：**  此接口为系统接口，三方应用不支持调用
 
@@ -253,7 +253,7 @@ setDefaultApplication(type: string, elementName: ElementName, userId?: number): 
 
 **需要权限：** ohos.permission.SET_DEFAULT_APPLICATION
 
-**系统能力：** SystemCapability.BundleManager.BundleFramework.DefaultAppManager
+**系统能力：** SystemCapability.BundleManager.BundleFramework.DefaultApp
 
 **系统API：**  此接口为系统接口，三方应用不支持调用
 
@@ -323,7 +323,7 @@ setDefaultApplication(type: string, elementName: ElementName, userId: number, ca
 
 **需要权限：** ohos.permission.SET_DEFAULT_APPLICATION
 
-**系统能力：** SystemCapability.BundleManager.BundleFramework.DefaultAppManager
+**系统能力：** SystemCapability.BundleManager.BundleFramework.DefaultApp
 
 **系统API：**  此接口为系统接口，三方应用不支持调用
 
@@ -382,7 +382,7 @@ setDefaultApplication(type: string, elementName: ElementName, callback: AsyncCal
 
 **需要权限：** ohos.permission.SET_DEFAULT_APPLICATION
 
-**系统能力：** SystemCapability.BundleManager.BundleFramework.DefaultAppManager
+**系统能力：** SystemCapability.BundleManager.BundleFramework.DefaultApp
 
 **系统API：**  此接口为系统接口，三方应用不支持调用
 
@@ -439,7 +439,7 @@ resetDefaultApplication(type: string, userId?: number): Promise\<void>
 
 **需要权限：** ohos.permission.SET_DEFAULT_APPLICATION
 
-**系统能力：** SystemCapability.BundleManager.BundleFramework.DefaultAppManager
+**系统能力：** SystemCapability.BundleManager.BundleFramework.DefaultApp
 
 **系统API：**  此接口为系统接口，三方应用不支持调用
 
@@ -487,7 +487,7 @@ resetDefaultApplication(type: string, userId: number, callback: AsyncCallback\<v
 
 **需要权限：** ohos.permission.SET_DEFAULT_APPLICATION
 
-**系统能力：** SystemCapability.BundleManager.BundleFramework.DefaultAppManager
+**系统能力：** SystemCapability.BundleManager.BundleFramework.DefaultApp
 
 **系统API：**  此接口为系统接口，三方应用不支持调用
 
@@ -536,7 +536,7 @@ resetDefaultApplication(type: string, callback: AsyncCallback\<void>) : void;
 
 **需要权限：** ohos.permission.SET_DEFAULT_APPLICATION
 
-**系统能力：** SystemCapability.BundleManager.BundleFramework.DefaultAppManager
+**系统能力：** SystemCapability.BundleManager.BundleFramework.DefaultApp
 
 **系统API：**  此接口为系统接口，三方应用不支持调用
 
