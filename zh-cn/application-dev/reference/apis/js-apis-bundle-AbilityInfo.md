@@ -29,8 +29,8 @@ Ability信息，未做特殊说明的属性，均通过GET_BUNDLE_DEFAULT获取
 | isVisible             | boolean                                                  | 是   | 否   | 判断Ability是否可以被其他应用调用         |
 | formEnabled           | boolean                                                  | 是   | 否   | 判断Ability是否提供卡片能力<br />此属性仅可在FA模型下使用 |
 | type                  | AbilityType                                              | 是   | 否   | Ability类型<br />此属性仅可在FA模型下使用  |
-| orientation           | DisplayOrientation                                       | 是   | 否   | Ability的显示模式                         |
-| launchMode            | LaunchMode                                               | 是   | 否   | Ability的启动模式                         |
+| orientation           | [DisplayOrientation](js-apis-Bundle.md#deprecatedisplayorientation)                                       | 是   | 否   | Ability的显示模式                         |
+| launchMode            | [LaunchMode](js-apis-Bundle.md#launchmode)                                               | 是   | 否   | Ability的启动模式                         |
 | permissions           | Array\<string>                                           | 是   | 否   | 被其他应用Ability调用时需要申请的权限集合<br />通过传入GET_ABILITY_INFO_WITH_PERMISSION获取 |
 | deviceTypes           | Array\<string>                                           | 是   | 否   | Ability支持的设备类型                     |
 | deviceCapabilities    | Array\<string>                                           | 是   | 否   | Ability需要的设备能力                     |

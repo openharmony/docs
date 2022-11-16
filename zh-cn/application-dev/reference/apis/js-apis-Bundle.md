@@ -1,6 +1,6 @@
 # Bundle模块(JS端SDK接口)
 
-本模块提供应用信息查询能力，支持BundleInfo、ApplicationInfo、Ability、ExtensionAbility、应用状态等信息的查询
+本模块提供应用信息查询能力，支持[BundleInfo](jw)、ApplicationInfo、Ability、ExtensionAbility、应用状态等信息的查询
 
 > **说明：**
 >
@@ -28,7 +28,7 @@ import bundle from '@ohos.bundle';
 
 getApplicationInfo(bundleName: string, bundleFlags: number, userId?: number): Promise\<ApplicationInfo>
 
-以异步方法根据给定的包名获取ApplicationInfo，使用Promise形式返回结果。
+以异步方法根据给定的包名获取ApplicationInfo。使用Promise异步回调，成功返回应用程序信息，失败返回错误数字1。
 
 **需要权限：**
 
@@ -43,7 +43,7 @@ SystemCapability.BundleManager.BundleFramework
 | 名称        | 类型   | 必填 | 描述                                                         |
 | ----------- | ------ | ---- | ------------------------------------------------------------ |
 | bundleName  | string | 是   | 要查询的应用程序包名称。                                     |
-| bundleFlags | number | 是   | 用于指定返回的应用信息对象中包含信息的标记。默认值：0，取值范围：参考[BundleFlag说明](#bundleflag)中应用信息相关flag |
+| bundleFlags | number | 是   | 用于指定返回的应用信息对象中包含信息的标记。取值范围请参考[BundleFlag说明](#bundleflag)中应用信息相关flag |
 | userId      | number | 否   | 用户ID。默认值：调用方所在用户，取值范围：大于等于0。        |
 
 **返回值：**
@@ -72,7 +72,7 @@ bundle.getApplicationInfo(bundleName, bundleFlags, userId)
 
 getApplicationInfo(bundleName: string, bundleFlags: number, userId: number, callback: AsyncCallback\<ApplicationInfo>): void
 
-以异步方法根据给定的包名获取指定用户下的ApplicationInfo，使用callback形式返回结果。
+以异步方法根据给定的包名获取指定用户下的ApplicationInfo，使用callback形式返回结果。获取成功时data为应用程序信息，失败时err为错误数字1。
 
 **需要权限：**
 
@@ -89,7 +89,7 @@ SystemCapability.BundleManager.BundleFramework
 | bundleName  | string                                                       | 是   | 要查询的应用程序包名称。                                     |
 | bundleFlags | number                                                       | 是   | 用于指定返回的应用信息对象中包含信息的标记。默认值：0，取值范围：参考[BundleFlag说明](#bundleflag)中应用信息相关flag |
 | userId      | number                                                       | 是   | 用户ID。默认值：调用方所在用户，取值范围：大于等于0。        |
-| callback    | AsyncCallback\<[ApplicationInfo](js-apis-bundle-ApplicationInfo.md)> | 是   | 程序启动作为入参的回调函数，返回应用程序信息。               |
+| callback    | AsyncCallback\<[ApplicationInfo](js-apis-bundle-ApplicationInfo.md)> | 是   | 程序启动作为入参的回调函数，获取成功时data为应用程序信息，失败时err为错误数字1。               |
 
 **示例：**
 
@@ -113,7 +113,7 @@ bundle.getApplicationInfo(bundleName, bundleFlags, userId, (err, data) => {
 
 getApplicationInfo(bundleName: string, bundleFlags: number, callback: AsyncCallback\<ApplicationInfo>): void
 
-以异步方法根据给定的包名获取ApplicationInfo，使用callback形式返回结果。
+以异步方法根据给定的包名获取ApplicationInfo，使用callback形式返回结果。获取成功时data为应用程序信息，失败时err为错误数字1。
 
 **需要权限：**
 
@@ -128,7 +128,7 @@ SystemCapability.BundleManager.BundleFramework
 | 名称        | 类型                                                         | 必填 | 描述                                                         |
 | ----------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | bundleName  | string                                                       | 是   | 要查询的应用程序包名称。                                     |
-| bundleFlags | number                                                       | 是   | 用于指定返回的应用信息对象中包含信息的标记。默认值：0，取值范围：参考[BundleFlag说明](#bundleflag)中应用信息相关flag |
+| bundleFlags | number                                                       | 是   | 用于指定返回的应用信息对象中包含信息的标记。取值范围：参考[BundleFlag说明](#bundleflag)中应用信息相关flag |
 | callback    | AsyncCallback\<[ApplicationInfo](js-apis-bundle-ApplicationInfo.md)> | 是   | 程序启动作为入参的回调函数，返回应用程序信息。               |
 
 **示例：**
@@ -152,7 +152,7 @@ bundle.getApplicationInfo(bundleName, bundleFlags, (err, data) => {
 
 getAllBundleInfo(bundleFlag: BundleFlag, userId?: number): Promise<Array\<BundleInfo>>
 
-以异步方法获取系统中所有可用的BundleInfo，使用Promise形式返回结果。
+以异步方法获取指定用户所有的BundleInfo，使用Promise形式返回结果。
 
 **需要权限：**
 
@@ -166,7 +166,7 @@ SystemCapability.BundleManager.BundleFramework
 
 | 名称       | 类型       | 必填 | 描述                                                         |
 | ---------- | ---------- | ---- | ------------------------------------------------------------ |
-| bundleFlag | BundleFlag | 是   | 用于指定返回的应用信息对象中包含信息的标记。默认值：0，取值范围：参考[BundleFlag说明](#bundleflag)中包信息相关flag |
+| bundleFlag | BundleFlag | 是   | 用于指定返回的包信息对象中包含信息的标记。取值范围：参考[BundleFlag说明](#bundleflag)中包信息相关flag |
 | userId     | number     | 否   | 用户ID。默认值：调用方所在用户，取值范围：大于等于0。        |
 
 **返回值：**
@@ -195,7 +195,7 @@ bundle.getAllBundleInfo(bundleFlag, userId)
 
 getAllBundleInfo(bundleFlag: BundleFlag, callback: AsyncCallback<Array\<BundleInfo>>): void
 
-以异步方法获取系统中所有可用的BundleInfo，使用callback形式返回结果。
+以异步方法获取当前用户所有的BundleInfo，使用callback形式返回结果。获取成功时data为包信息，失败时err为错误数字1。
 
 **需要权限：**
 
@@ -232,7 +232,7 @@ bundle.getAllBundleInfo(bundleFlag, (err, data) => {
 
 getAllBundleInfo(bundleFlag: BundleFlag, userId: number, callback: AsyncCallback<Array\<BundleInfo>>): void
 
-以异步方法获取系统中指定用户下所有可用的BundleInfo，使用callback形式返回结果。
+以异步方法获取系统中指定用户下所有的BundleInfo，使用callback形式返回结果。获取成功时data为包信息，失败时err为错误数字1。
 
 **需要权限：**
 
@@ -246,9 +246,9 @@ SystemCapability.BundleManager.BundleFramework
 
 | 名称       | 类型                                                         | 必填 | 描述                                                         |
 | ---------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| bundleFlag | BundleFlag                                                   | 是   | 用于指定返回的应用信息对象中包含信息的标记。默认值：0，取值范围：参考[BundleFlag说明](#bundleflag)中包信息相关flag |
+| bundleFlag | BundleFlag                                                   | 是   | 用于指定返回的应用信息对象中包含信息的标记。取值范围：参考[BundleFlag说明](#bundleflag)中包信息相关flag |
 | userId     | number                                                       | 是   | 用户ID。默认值：调用方所在用户，取值范围：大于等于0。        |
-| callback   | AsyncCallback<Array\<[BundleInfo](js-apis-bundle-BundleInfo.md)>> | 是   | 程序启动作为入参的回调函数，返回所有可用的BundleInfo。       |
+| callback   | AsyncCallback<Array\<[BundleInfo](js-apis-bundle-BundleInfo.md)>> | 是   | 程序启动作为入参的回调函数，获取成功时data为指定用户下所有包的BundleInfo，失败时err为错误数字1。       |
 
 **示例：**
 
@@ -271,7 +271,7 @@ bundle.getAllBundleInfo(bundleFlag, userId, (err, data) => {
 
 getBundleInfo(bundleName: string, bundleFlags: number, options?: BundleOptions): Promise\<BundleInfo>
 
-以异步方法根据给定的包名获取BundleInfo，使用Promise形式返回结果。
+以异步方法根据给定的包名获取BundleInfo，使用Promise异步回调，获取成功时返回包信息，失败时返回错误数字1。
 
 **需要权限：**
 
@@ -286,14 +286,14 @@ SystemCapability.BundleManager.BundleFramework
 | 名称          | 类型            | 必填   | 描述                                      |
 | ----------- | ------------- | ---- | --------------------------------------- |
 | bundleName  | string        | 是    | 包名                                      |
-| bundleFlags | number        | 是    | 用于指定返回的应用信息对象中包含信息的标记。默认值：0，取值范围：参考[BundleFlag说明](#bundleflag)中包信息相关flag |
+| bundleFlags | number        | 是    | 用于指定返回的应用信息对象中包含信息的标记。取值范围：参考[BundleFlag说明](#bundleflag)中包信息相关flag |
 | options     | [BundleOptions](#bundleoptions) | 否    | 包含userid。                               |
 
 **返回值：**
 
 | 类型                   | 说明                           |
 | -------------------- | ---------------------------- |
-| Promise\<[BundleInfo](js-apis-bundle-BundleInfo.md)> | 返回值为Promise对象，Promise中包含包信息。 |
+| Promise\<[BundleInfo](js-apis-bundle-BundleInfo.md)> | Promise对象，获取成功时返回包信息，失败时返回错误数字1 |
 
 **示例：**
 
@@ -317,7 +317,7 @@ bundle.getBundleInfo(bundleName, bundleFlags, options)
 
 getBundleInfo(bundleName: string, bundleFlags: number, callback: AsyncCallback\<BundleInfo>): void
 
-以异步方法根据给定的包名获取BundleInfo，使用callback形式返回结果。
+以异步方法根据给定的包名获取BundleInfo，使用callback异步回调。成功时data为包信息，失败时err为错误数字1。
 
 **需要权限：**
 
@@ -332,8 +332,8 @@ SystemCapability.BundleManager.BundleFramework
 | 名称        | 类型                                                       | 必填 | 描述                                                         |
 | ----------- | ---------------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | bundleName  | string                                                     | 是   | 包名                                                         |
-| bundleFlags | number                                                     | 是   | 用于指定返回的应用信息对象中包含信息的标记。默认值：0，取值范围：参考[BundleFlag说明](#bundleflag)中包信息相关flag |
-| callback    | AsyncCallback\<[BundleInfo](js-apis-bundle-BundleInfo.md)> | 是   | 程序启动作为入参的回调函数，返回包信息。                     |
+| bundleFlags | number                                                     | 是   | 用于指定返回的应用信息对象中包含信息的标记。取值范围：参考[BundleFlag说明](#bundleflag)中包信息相关flag |
+| callback    | AsyncCallback\<[BundleInfo](js-apis-bundle-BundleInfo.md)> | 是   | 程序启动作为入参的回调函数，获取成功时data为包信息，失败时err为错误数字1。                     |
 
 **示例：**
 
@@ -356,7 +356,7 @@ bundle.getBundleInfo(bundleName, bundleFlags, (err, data) => {
 
 getBundleInfo(bundleName: string, bundleFlags: number, options: BundleOptions, callback: AsyncCallback\<BundleInfo>): void
 
-以异步方法根据给定的包名获取BundleInfo，使用callback形式返回结果。
+以异步方法根据给定的包名获取BundleInfo，使用callback异步回调。获取成功时data为包信息，失败时err为错误数字1。
 
 **需要权限：**
 
@@ -369,11 +369,11 @@ SystemCapability.BundleManager.BundleFramework
 **参数：**
 
 | 名称        | 类型                                                       | 必填 | 描述                                                         |
-| ----------- | ---------------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| ----------- | ---------------------------------------------------------- | --- | ------------------------------------------------------------ |
 | bundleName  | string                                                     | 是   | 包名                                                         |
-| bundleFlags | number                                                     | 是   | 用于指定返回的应用信息对象中包含信息的标记。默认值：0，取值范围：参考[BundleFlag说明](#bundleflag)中包信息相关flag |
+| bundleFlags | number                                                     | 是   | 用于指定返回的应用信息对象中包含信息的标记。取值范围：参考[BundleFlag说明](#bundleflag)中包信息相关flag |
 | options     | [BundleOptions](#bundleoptions)                            | 是   | 包含userid。                                                 |
-| callback    | AsyncCallback\<[BundleInfo](js-apis-bundle-BundleInfo.md)> | 是   | 程序启动作为入参的回调函数，返回包信息。                     |
+| callback    | AsyncCallback\<[BundleInfo](js-apis-bundle-BundleInfo.md)> | 是   | 程序启动作为入参的回调函数，获取成功时data为包信息，失败时err为错误数字1。                     |
 
 **示例：**
 
@@ -400,7 +400,7 @@ bundle.getBundleInfo(bundleName, bundleFlags, options, (err, data) => {
 
 getBundleInstaller(): Promise&lt;BundleInstaller&gt;;
 
-获取用于安装包的接口
+获取用于安装包的接口，使用promise异步回调，返回安装接口对象。
 
 **需要权限：**
 
@@ -426,7 +426,7 @@ SystemCapability.BundleManager.BundleFramework
 
 getBundleInstaller(callback: AsyncCallback&lt;BundleInstaller&gt;): void;
 
-获取用于安装包的接口
+获取用于安装包的接口，使用callback异步回调。
 
 **需要权限：**
 
@@ -444,7 +444,7 @@ SystemCapability.BundleManager.BundleFramework
 
 | 名称     | 类型                                                         | 必填 | 描述             |
 | -------- | ------------------------------------------------------------ | ---- | ---------------- |
-| callback | AsyncCallback<[BundleInstaller](js-apis-bundle-BundleInstaller.md)> | 是   | 安装应用程序包。 |
+| callback | AsyncCallback<[BundleInstaller](js-apis-bundle-BundleInstaller.md)> | 是   | data为安装接口对象。 |
 
 ## bundle.cleanBundleCacheFiles<sup>deprecated<sup>
 
@@ -470,7 +470,7 @@ SystemCapability.BundleManager.BundleFramework
 
 | 名称       | 类型                | 必填 | 描述                                  |
 | ---------- | ------------------- | ---- | ------------------------------------- |
-| bundleName | string              | 是   | 指示要清除其缓存数据的应用程序包名称. |
+| bundleName | string              | 是   | 指示要清除其缓存数据的应用程序包名称。 |
 | callback   | AsyncCallback\<void> | 是   | 为返回操作结果而调用的回调。          |
 
 ## bundle.cleanBundleCacheFiles<sup>deprecated<sup>
@@ -511,7 +511,7 @@ SystemCapability.BundleManager.BundleFramework
 
 setApplicationEnabled(bundleName: string, isEnable: boolean, callback: AsyncCallback&lt;void&gt;): void;
 
-设置是否启用指定的应用程序
+设置是否启用指定的应用程序，使用callback异步回调。
 
 **需要权限：**
 
@@ -539,7 +539,7 @@ SystemCapability.BundleManager.BundleFramework
 
 setApplicationEnabled(bundleName: string, isEnable: boolean): Promise&lt;void&gt;
 
-设置是否启用指定的应用程序
+设置是否启用指定的应用程序，使用promise异步回调。
 
 **需要权限：**
 
@@ -572,7 +572,7 @@ SystemCapability.BundleManager.BundleFramework
 
 setAbilityEnabled(info: AbilityInfo, isEnable: boolean, callback: AsyncCallback&lt;void&gt;): void;
 
-设置是否启用指定的功能
+设置是否启用指定的功能，使用callback异步回调。
 
 **需要权限：**
 
@@ -600,7 +600,7 @@ SystemCapability.BundleManager.BundleFramework
 
 setAbilityEnabled(info: AbilityInfo, isEnable: boolean): Promise&lt;void&gt;
 
-设置是否启用指定的功能
+设置是否启用指定的功能，使用promise异步回调。
 
 **需要权限：**
 
@@ -633,7 +633,7 @@ SystemCapability.BundleManager.BundleFramework
 
 getPermissionDef(permissionName: string, callback: AsyncCallback&lt;PermissionDef&gt;): void;
 
-按权限名称获取权限的详细信息
+按权限名称获取权限的详细信息，使用callback异步回调。获取成功时data为权限的详细信息，失败时err为错误数字1。
 
 **需要权限：**
 
@@ -660,7 +660,7 @@ SystemCapability.BundleManager.BundleFramework
 
 getPermissionDef(permissionName: string): Promise&lt;PermissionDef&gt;
 
-按权限名称获取权限的详细信息
+按权限名称获取权限的详细信息，使用promise异步回调。获取成功时返回权限详细信息，失败时返回错误数字1。
 
 **需要权限：**
 
@@ -684,7 +684,7 @@ SystemCapability.BundleManager.BundleFramework
 
 | 类型                                                   | 说明                                                   |
 | ------------------------------------------------------ | ------------------------------------------------------ |
-| Promise<[PermissionDef](js-apis-bundle-PermissionDef)> | 返回值为Promise对象，Promise中包含定义的权限信息对象。 |
+| Promise<[PermissionDef](js-apis-bundle-PermissionDef)> | Promise对象，获取成功时返回权限详细信息，失败时返回错误数字1。 |
 
 
 ## bundle.getAllApplicationInfo<sup>deprecated<sup>
@@ -693,7 +693,7 @@ SystemCapability.BundleManager.BundleFramework
 
 getAllApplicationInfo(bundleFlags: number, userId?: number): Promise<Array\<ApplicationInfo>>
 
-获取指定用户下所有已安装的应用信息，通过Promise获取返回值。
+获取指定用户下所有已安装的应用信息，使用promise异步回调。
 
 **需要权限：**
 
@@ -707,14 +707,14 @@ SystemCapability.BundleManager.BundleFramework
 
 | 名称        | 类型   | 必填 | 描述                                                         |
 | ----------- | ------ | ---- | ------------------------------------------------------------ |
-| bundleFlags | number | 是   | 用于指定返回的应用信息对象中包含信息的标记。默认值：0，取值范围：参考[BundleFlag说明](#bundleflag)中应用信息相关flag |
+| bundleFlags | number | 是   | 用于指定返回的应用信息对象中包含信息的标记。取值范围：参考[BundleFlag说明](#bundleflag)中应用信息相关flag |
 | userId      | number | 否   | 用户ID。默认值：调用方所在用户，取值范围：大于等于0。        |
 
 **返回值：**
 
 | 类型                               | 说明                              |
 | -------------------------------- | ------------------------------- |
-| Promise<Array\<[ApplicationInfo](js-apis-bundle-ApplicationInfo.md)>> | 返回值为Promise对象，Promise中包含应用信息列表。 |
+| Promise<Array\<[ApplicationInfo](js-apis-bundle-ApplicationInfo.md)>> | Promise对象，获取成功时返回应用信息列表，失败时返回错误数字1。 |
 
 **示例：**
 
@@ -735,7 +735,7 @@ bundle.getAllApplicationInfo(bundleFlags, userId)
 
 getAllApplicationInfo(bundleFlags: number, userId: number, callback: AsyncCallback<Array\<ApplicationInfo>>): void
 
-获取指定用户下所有已安装的应用信息，使用callback形式返回结果。
+获取指定用户下所有已安装的应用信息，使用callback异步回调。获取成功时data为应用信息列表，失败时err为错误数字1。
 
 **需要权限：**
 
@@ -751,12 +751,12 @@ SystemCapability.BundleManager.BundleFramework
 | ----------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | bundleFlags | number                                                       | 是   | 用于指定返回的应用信息对象中包含信息的标记。默认值：0，取值范围：参考[BundleFlag说明](#bundleflag)中应用信息相关flag |
 | userId      | number                                                       | 否   | 用户ID。默认值：调用方所在用户，取值范围：大于等于0。        |
-| callback    | AsyncCallback<Array\<[ApplicationInfo](js-apis-bundle-ApplicationInfo.md)>> | 是   | 程序启动作为入参的回调函数，返回应用信息列表。               |
+| callback    | AsyncCallback<Array\<[ApplicationInfo](js-apis-bundle-ApplicationInfo.md)>> | 是   | 程序启动作为入参的回调函数，获取成功时data为应用信息列表，失败时err为错误数字1。               |
 
 **示例：**
 
 ```js
-let bundleFlags = 8;
+let bundleFlags = bundle.BundleFlag.GET_APPLICATION_INFO_WITH_PERMISSION;
 let userId = 100;
 bundle.getAllApplicationInfo(bundleFlags, userId, (err, data) => {
     if (err) {
@@ -774,7 +774,7 @@ bundle.getAllApplicationInfo(bundleFlags, userId, (err, data) => {
 
 getAllApplicationInfo(bundleFlags: number, callback: AsyncCallback<Array\<ApplicationInfo>>) : void;
 
-获取所有已安装的应用信息，使用callback形式返回结果。
+获取所有已安装的应用信息，使用callback异步回调。获取成功时data为应用信息列表，失败时err为错误数字1。
 
 **需要权限：**
 
@@ -789,12 +789,12 @@ SystemCapability.BundleManager.BundleFramework
 | 名称        | 类型                                                         | 必填 | 描述                                                         |
 | ----------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | bundleFlags | number                                                       | 是   | 用于指定返回的应用信息对象中包含信息的标记。默认值：0，取值范围：参考[BundleFlag说明](#bundleflag)中应用信息相关flag |
-| callback    | AsyncCallback<Array\<[ApplicationInfo](js-apis-bundle-ApplicationInfo.md)>> | 是   | 程序启动作为入参的回调函数，返回应用信息列表。               |
+| callback    | AsyncCallback<Array\<[ApplicationInfo](js-apis-bundle-ApplicationInfo.md)>> | 是   | 程序启动作为入参的回调函数，获取成功时data为应用信息列表，失败时err为错误数字1。               |
 
 **示例：**
 
 ```js
-let bundleFlags = 8;
+let bundleFlags = bundle.BundleFlag.GET_APPLICATION_INFO_WITH_PERMISSION;
 bundle.getAllApplicationInfo(bundleFlags, (err, data) => {
     if (err) {
         console.error('Operation failed. Cause: ' + JSON.stringify(err));
@@ -810,7 +810,7 @@ bundle.getAllApplicationInfo(bundleFlags, (err, data) => {
 
 getBundleArchiveInfo(hapFilePath: string, bundleFlags: number) : Promise\<BundleInfo>
 
-以异步方法获取有关HAP包中包含的应用程序包的信息，使用Promise形式返回结果。
+获取有关HAP包中包含的应用程序包的信息，使用Promise形式返回结果。
 
 **系统能力：**
 
@@ -857,14 +857,14 @@ SystemCapability.BundleManager.BundleFramework
 
 | 名称         | 类型     | 必填   | 描述           |
 | ---------- | ------ | ---- | ------------ |
-| hapFilePath | string | 是    | HAP存放路径。路径应指向当前应用程序的数据目录的相对目录。 |
-| bundleFlags | number | 是    | 用于指定要返回的BundleInfo对象中包含信息的标记。默认值：0，取值范围：参考[BundleFlag说明](#bundleflag)中包信息相关flag |
+| hapFilePath | string | 是    | HAP存放路径，支持当前应用程序的数据目录沙箱路径和绝对路径。 |
+| bundleFlags | number | 是    | 用于指定要返回的BundleInfo对象中包含信息的标记。取值范围：参考[BundleFlag说明](#bundleflag)中包信息相关flag |
 | callback| AsyncCallback\<[BundleInfo](js-apis-bundle-BundleInfo.md)> | 是    | 程序启动作为入参的回调函数，返回HAP包中包含的应用程序包的信息。|
 
 **示例：**
 
 ```js
-let hapFilePath = "/data/xxx/test.hap";
+let hapFilePath = "/data/storage/el2/base/test.hap";
 let bundleFlags = 0;
 bundle.getBundleArchiveInfo(hapFilePath, bundleFlags, (err, data) => {
     if (err) {
@@ -1198,7 +1198,7 @@ SystemCapability.BundleManager.BundleFramework
 | 名称          | 类型     | 必填   | 描述                                    |
 | ----------- | ------ | ---- | ------------------------------------- |
 | want        | [Want](js-apis-application-Want.md)   | 是    | 包含要查询的应用程序包名称的意图。                     |
-| bundleFlags | number | 是    | 用于指定返回abilityInfo信息。默认值：0，取值范围：参考[BundleFlag说明](#bundleflag)中Ability信息相关flag |
+| bundleFlags | number | 是    | 用于指定返回abilityInfo信息。取值范围：参考[BundleFlag说明](#bundleflag)中Ability信息相关flag |
 | userId      | number | 否    | 用户ID。默认值：调用方所在用户，取值范围：大于等于0           |
 
 **返回值：**
@@ -1567,7 +1567,11 @@ bundle.getAbilityIcon(bundleName, abilityName, (err, data) => {
 
 > 从API version 9开始不再维护，建议使用[bundleManager.BundleFlag](js-apis-bundleManager.md#bundleflag)替代。
 
-包的标志
+包信息标志，指示需要获取的包信息的内容。由于完整的包信息内容较多，因此使用此标志对返回的包信息内容进行过滤。
+
+当接口与标志不匹配时，该标志会被忽略，例如获取application时使用GET_ABILITY_INFO_WITH_PERMISSION对结果不会产生影响。
+
+标志可以叠加使用，例如使用GET_APPLICATION_INFO_WITH_PERMISSION + GET_APPLICATION_INFO_WITH_DISABLE可以使结果同时包含应用权限信息和被禁用的应用信息。
 
  **系统能力:** 以下各项对应的系统能力均为SystemCapability.BundleManager.BundleFramework
 

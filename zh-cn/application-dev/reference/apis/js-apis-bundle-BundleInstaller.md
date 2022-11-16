@@ -194,6 +194,7 @@ class MainAbility extends Ability {
     onWindowStageCreate(windowStage) {
         let context = this.context;
         let pathDir = context.filesDir;
+        console.info('sandbox path is ' + pathDir);
     }
 }
 
@@ -202,5 +203,6 @@ import featureAbility from '@ohos.ability.featureAbility';
 let context = featureAbility.getContext();
 context.getFilesDir().then((data) => {
     let pathDir = data;
+    console.info('sandbox path is ' + pathDir);
 });
 ```
