@@ -1,5 +1,6 @@
 # 基于ArkTS的声明式开发范式
 
+- [组件导读](ts-components-summary.md)
 - 组件通用信息
     - 通用事件
         - [点击事件](ts-universal-events-click.md)
@@ -65,6 +66,8 @@
     - [LoadingProgress](ts-basic-components-loadingprogress.md)
     - [Marquee](ts-basic-components-marquee.md)
     - [Navigation](ts-basic-components-navigation.md)
+    - [NavRouter](ts-basic-components-navrouter.md)
+    - [NavDestination](ts-basic-components-navdestination.md)
     - [PatternLock](ts-basic-components-patternlock.md)
     - [PluginComponent](ts-basic-components-plugincomponent.md)
     - [Progress](ts-basic-components-progress.md)
@@ -140,8 +143,6 @@
     - [OffscreenCanvasRenderingContext2D对象](ts-offscreencanvasrenderingcontext2d.md)
     - [Path2D对象](ts-components-canvas-path2d.md)
     - [Lottie](ts-components-canvas-lottie.md)
-
-
 - 动画
     - [属性动画](ts-animatorproperty.md)
     - [显式动画](ts-explicit-animation.md)
@@ -164,5 +165,4 @@
 - [枚举说明](ts-appendix-enums.md)
 - [类型说明](ts-types.md)
 - 已停止维护的组件
-
     - [GridContainer(栅格)](ts-container-gridcontainer.md)
