@@ -60,8 +60,6 @@
     - [Hi3516标准系统入门（命令行方式）](quick-start/quickstart-appendix-hi3516-pkg.md)
   
   - [获取源码](get-code/sourcecode-acquire.md)
-    - [隐私保护](security/security-privacy-protection.md)
-    - [安全指南](security/security-guidelines-overall.md)
 - 隐私和安全
   - [隐私保护](security/security-privacy-protection.md)
   - [安全指南](security/security-guidelines-overall.md)
