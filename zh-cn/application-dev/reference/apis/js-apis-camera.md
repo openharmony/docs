@@ -20,9 +20,9 @@ getCameraManager(context: Context, callback: AsyncCallback<CameraManager\>): voi
 
 **参数：**
 
-| 名称     | 类型                                            | 必填 | 说明                           |
+| 名称     | 类型                                             | 必填 | 说明                           |
 | -------- | ----------------------------------------------- | ---- | ---------------------------- |
-| context  | Context                                         | 是   | 应用上下文。                   |
+| context  | [Context](../../ability/context-userguide.md)      | 是   | 应用上下文。                   |
 | callback | AsyncCallback<[CameraManager](#cameramanager)\> | 是   | 回调函数，用于获取相机管理器实例。 |
 
 **示例：**
@@ -49,7 +49,7 @@ getCameraManager(context: Context): Promise<CameraManager\>
 
 | 名称    | 类型    | 必填 | 说明         |
 | ------- | ------- | ---- | ------------ |
-| context | Context | 是   | 应用上下文。 |
+| context | [Context](../../ability/context-userguide.md) | 是   | 应用上下文。 |
 
 **返回值：**
 
@@ -194,7 +194,7 @@ getSupportedOutputCapability(camera:CameraDevice, callback: AsyncCallback<Camera
 **示例：**
 
 ```js
-cameraManager.getSupportedOutputCapability(cameradevice， (err, cameras) => {
+cameraManager.getSupportedOutputCapability(cameradevice, (err, CameraOutputCapability) => {
     if (err) {
         console.error(`Failed to get the cameras. ${err.message}`);
         return;
@@ -223,13 +223,74 @@ getSupportedOutputCapability(camera:CameraDevice): Promise<CameraOutputCapabilit
 | -------------------------------------------------------------- | ----------------------------- |
 | Promise<[CameraOutputCapability](#cameraoutputcapability)\>    | 使用Promise的方式获取结果，返回相机输出能力。 |
 
-
 **示例：**
 
 ```js
 cameraManager.getSupportedOutputCapability(cameradevice).then((cameraoutputcapability) => {
     console.log('Promise returned with an array of supported outputCapability');
 })
+```
+
+### isCameraMuted
+
+isCameraMuted(): boolean
+
+查询相机当前的禁用状态（禁用/未禁用）。
+
+在此之前，需要通过[isCameraMuteSupported](#iscameramutesupported)确认当前设备支持禁用相机。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+**返回值：**
+
+| 类型        | 说明                                         |
+| ---------- | -------------------------------------------- |
+| boolean    | 返回true表示相机被禁用，返回false表示相机未被禁用。 |
+
+**示例：**
+
+```js
+let ismuted = cameraManager.isCameraMuted();
+```
+
+### isCameraMuteSupported
+
+isCameraMuteSupported(): boolean
+
+查询当前设备是否支持禁用相机，通过返回值返回结果。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+**返回值：**
+
+| 类型        | 说明                          |
+| ---------- | ----------------------------- |
+| boolean    | 返回true表示相机可以被禁用，返回false表示相机不能被禁用。 |
+
+**示例：**
+
+```js
+let ismutesuppotred = cameraManager.isCameraMuteSupported();
+```
+
+### muteCamera
+
+muteCamera(mute: boolean): void
+
+禁用相机。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+**参数：**
+
+| 名称      | 类型                              | 必填  | 说明        |
+| -------- | --------------------------------- | ---- | ---------- |
+| mute     | boolean                           |  是  |  禁用相机。  |
+
+**示例：**
+
+```js
+cameraManager.muteCamera(mute);
 ```
 
 ### createCameraInput
@@ -662,6 +723,32 @@ cameraManager.on('cameraStatus', (err, cameraStatusInfo) => {
 })
 ```
 
+### on('cameraMute')
+
+on(type: 'cameraMute', callback: AsyncCallback<boolean\>): void
+
+禁用回调，通过注册回调函数获取相机禁用状态变化。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+**参数：**
+
+| 名称     | 类型             | 必填 | 说明       |
+| -------- | --------------- | ---- | --------- |
+| type     | string          | 是   | 监听事件，固定为'cameraMute'，即禁用状态变化事件。 |
+| callback | boolean         | 是   | 回调函数，用于获取禁用状态变化信息。               |
+
+**示例：**
+
+```js
+cameraManager.on('cameraMute', (err, cameraStatusInfo) => {
+    if (err) {
+        console.error(`Failed to get cameraMute callback. ${err.message}`);
+        return;
+    }
+})
+```
+
 ## CameraStatusInfo
 
 相机管理器回调返回的接口实例，表示相机状态信息。
@@ -939,7 +1026,7 @@ on(type: 'error', camera:CameraDevice, callback: ErrorCallback<CameraInputError\
 **示例：**
 
 ```js
-cameraInput.on('error', (cameraInputError) => {
+cameraInput.on('error', camera, (cameraInputError) => {
     console.log(`Camera input error code: ${cameraInputError.code}`);
 })
 ```
@@ -995,7 +1082,7 @@ cameraInput.on('error', (cameraInputError) => {
 | EXPOSURE_MODE_AUTO            | 1    | 自动曝光模式。 |
 | EXPOSURE_MODE_CONTINUOUS_AUTO | 2    | 连续自动曝光。 |
 
-## FocusMode
+ ## FocusMode
 
 枚举，焦距模式。
 
@@ -1005,7 +1092,7 @@ cameraInput.on('error', (cameraInputError) => {
 | -------------------------- | ---- | ------------ |
 | FOCUS_MODE_MANUAL          | 0    | 手动对焦。     |
 | FOCUS_MODE_CONTINUOUS_AUTO | 1    | 连续自动对焦。 |
-| FOCUS_MODE_AUTO            | 2    | 自动变焦。     |
+| FOCUS_MODE_AUTO            | 2    | 自动对焦。     |
 | FOCUS_MODE_LOCKED          | 3    | 对焦锁定。     |
 
 ## FocusState
@@ -1735,7 +1822,7 @@ isExposureModeSupported(aeMode: ExposureMode, callback: AsyncCallback<boolean\>)
 **示例：**
 
 ```js
-captureSession.isExposureModeSupported(camera.ExposureMode.EXPOSURE_MODE_LOCKEN,(err) => {
+captureSession.isExposureModeSupported(camera.ExposureMode.EXPOSURE_MODE_LOCKED,(err) => {
     if (err) {
         console.log(`Failed to check exposure mode supported ${err.message}`);
         return ;
@@ -1838,7 +1925,7 @@ setExposureMode(aeMode: ExposureMode, callback: AsyncCallback<void\>): void
 **示例：**
 
 ```js
-captureSession.setExposureMode(camera.ExposureMode.EXPOSURE_MODE_LOCKEN,(err) => {
+captureSession.setExposureMode(camera.ExposureMode.EXPOSURE_MODE_LOCKED,(err) => {
     if (err) {
         console.log(`Failed to set the exposure mode ${err.message}`);
         return ;
@@ -2019,8 +2106,8 @@ getExposureBiasRange(): Promise<Array<number\>\>
 **示例：**
 
 ```js
-captureSession.isExposureModeSupported(camera.ExposureMode.EXPOSURE_MODE_LOCKED).then((isSupported) => {
-    console.log(`Promise returned with exposure mode supported : ${isSupported}`);
+captureSession.getExposureBiasRange().then((biasRangeArray) => {
+    console.log('Promise returned with the array of compenstation range: ' + JSON.stringify(biasRangeArray));
 })
 ```
 
@@ -2622,7 +2709,7 @@ captureSession.isVideoStabilizationModeSupported(camera.VideoStabilizationMode.O
         console.error(`Failed to check whether video stabilization mode supported. ${err.message}`);
         return;
     }
-    console.log(`Callback returned with the successful execution of isVideoStabilizationModeSupported: ${status}`);
+    console.log(`Callback returned with the successful execution of isVideoStabilizationModeSupported`);
 })
 ```
 
@@ -3218,7 +3305,7 @@ isMirrorSupported(callback: AsyncCallback<boolean\>): void
 **示例：**
 
 ```js
-captureSession.isMirrorSupported((err, isSupported) => {
+photoOutput.isMirrorSupported((err, isSupported) => {
     if (err) {
         console.error(`Failed to check mirror is supported ${err.message}`);
         return;
@@ -3244,7 +3331,7 @@ isMirrorSupported(): Promise<boolean\>
 **示例：**
 
 ```js
-captureSession.isMirrorSupported().then((isSupported) => {
+photoOutput.isMirrorSupported().then((isSupported) => {
     console.log(`Promise returned with mirror supported: ${isSupported}`);
 })
 ```
@@ -3386,7 +3473,7 @@ photoOutput.on('error', (err, photoOutputError) => {
 
 | 名称 | 类型                                  | 说明                    |
 | ---- | ------------------------------------- | ----------------------- |
-| code | [PhotoOutputError](#photooutputerror) | PhotoOutput中的错误码。 |
+| code | [PhotoOutputErrorCode](#photooutputerrorcode) | PhotoOutput中的错误码。 |
 
 ## VideoOutput
 
@@ -3577,7 +3664,7 @@ videoOutput.on('error', (VideoOutputError) => {
 
 | 名称 | 类型                                  | 说明                    |
 | ---- | ------------------------------------- | ----------------------- |
-| code | [PhotoOutputError](#photooutputerror) | VideoOutput中的错误码。 |
+| code | [PhotoOutputErrorCode](#photooutputerrorcode) | VideoOutput中的错误码。 |
 
 ## MetadataObjectType
 
@@ -3671,12 +3758,12 @@ getTimestamp(callback: AsyncCallback<number\>): void
 **示例：**
 
 ```js
-metadataObject.getTimestamp((err) => {
+metadataObject.getTimestamp((err,timestamp) => {
     if (err) {
         console.error(`Failed to get timestamp. ${err.message}`);
         return;
     }
-    console.log('Callback returned with timestamp getted.');
+    console.log('Callback returned with timestamp getted timestamp : ${timestamp}');
 })
 ```
 
@@ -3697,8 +3784,8 @@ getTimestamp(): Promise<number\>
 **示例：**
 
 ```js
-metadataObject.getTimestamp().then(() => {
-    console.log('Callback returned with timestamp getted.');
+metadataObject.getTimestamp().then((timestamp) => {
+    console.log('Callback returned with timestamp getted timestamp : ${timestamp}');
 })
 ```
 
