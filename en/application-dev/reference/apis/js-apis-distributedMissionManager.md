@@ -1,6 +1,6 @@
 # Distributed Mission Management
 
-The **distributedMissionManager** module implements system mission management across devices. You can use the APIs provided by this module to register or deregister a mission status listener, and start or stop synchronizing the remote mission list.
+The **distributedMissionManager** module implements system mission management across devices. You can use the APIs provided by this module to register or deregister a mission status listener, start or stop synchronizing a remote mission list, and continue a mission on a remote device.
 
 > **NOTE**
 >
@@ -48,16 +48,23 @@ Registers a mission status listener. This API uses an asynchronous callback to r
       console.log('NotifyNetDisconnect state ' + JSON.stringify(state));
   }
   var parameter =  {
-  	deviceId: remoteDeviceId
+      deviceId: ""
   };
   var options = {
       notifyMissionsChanged: NotifyMissionsChanged,
       notifySnapshot: NotifySnapshot,
       notifyNetDisconnect: NotifyNetDisconnect
   }
-  distributedMissionManager.registerMissionListener(parameter, options, (error) => {
-      console.log("error.code = " + error.code)
-  })
+  try {
+      distributedMissionManager.registerMissionListener(parameter, options, (error) => {
+          if (error.code != 0) {
+              console.error('registerMissionListener failed, cause: ' + JSON.stringify(error))
+          }
+          console.info('registerMissionListener finished')
+      })
+  } catch (error) {
+      console.error('registerMissionListener failed, cause: ' + JSON.stringify(error))
+  }
   ```
 ## distributedMissionManager.registerMissionListener
 
@@ -97,19 +104,23 @@ Registers a mission status listener. This API uses a promise to return the resul
       console.log('NotifyNetDisconnect state ' + JSON.stringify(state));
   }
   var parameter =  {
-  	deviceId: remoteDeviceId
+      deviceId: ""
   };
   var options = {
       notifyMissionsChanged: NotifyMissionsChanged,
       notifySnapshot: NotifySnapshot,
       notifyNetDisconnect: NotifyNetDisconnect
   }
-  distributedMissionManager.registerMissionListener(parameter, options)
-  .then(data => {
-      console.info('success data is ' + data);
-  }).catch(error => {
-      console.info('error error is ' + error);
-  })
+  try {
+      distributedMissionManager.registerMissionListener(parameter, options)
+      .then(data => {
+          console.info('registerMissionListener finished, ' + JSON.stringify(data));
+      }).catch(error => {
+          console.error('registerMissionListener failed, cause: ' + JSON.stringify(error));
+      })
+  } catch (error) {
+      console.error('registerMissionListener failed, cause: ' + JSON.stringify(error))
+  }
   ```
 
 
@@ -134,11 +145,18 @@ Deregisters a mission status listener. This API uses an asynchronous callback to
 
   ```ts
   var parameter =  {
-  	deviceId: remoteDeviceId
+      deviceId: ""
   };
-  distributedMissionManager.unRegisterMissionListener(parameter, (error) => {
-      console.log("error.code = " + error.code)
-  })
+  try {
+      distributedMissionManager.unRegisterMissionListener(parameter, (error) => {
+          if (error.code != 0) {
+              console.error('unRegisterMissionListener failed, cause: ' + JSON.stringify(error))
+          }
+          console.info('unRegisterMissionListener finished')
+      })
+  } catch (error) {
+      console.error('unRegisterMissionListener failed, cause: ' + JSON.stringify(error))
+  }
   ```
 
 
@@ -168,14 +186,18 @@ Deregisters a mission status listener. This API uses a promise to return the res
 
   ```ts
   var parameter =  {
-  	deviceId: remoteDeviceId
+      deviceId: ""
   };
-  distributedMissionManager.unRegisterMissionListener(parameter)
-  .then(data => {
-      console.info('success data is ' + data);
-  }).catch(error => {
-      console.info('error error is ' + error);
-  })
+  try {
+      distributedMissionManager.unRegisterMissionListener(parameter)
+      .then(data => {
+          console.info('unRegisterMissionListener finished, ' + JSON.stringify(data));
+      }).catch(error => {
+          console.error('unRegisterMissionListener failed, cause: ' + JSON.stringify(error));
+      })
+  } catch (error) {
+      console.error('unRegisterMissionListener failed, cause: ' + JSON.stringify(error))
+  }
   ```
 
 ## distributedMissionManager.startSyncRemoteMissions
@@ -199,13 +221,20 @@ Starts to synchronize the remote mission list. This API uses an asynchronous cal
 
   ```ts
   var parameter =  {
-  	deviceId: remoteDeviceId,
+      deviceId: "",
       fixConflict: false, 
       tag: 0
   };
-  distributedMissionManager.startSyncRemoteMissions(parameter, (error) => {
-      console.log("error.code = " + error.code)
-  })
+  try {
+      distributedMissionManager.startSyncRemoteMissions(parameter, (error) => {
+          if (error.code != 0) {
+              console.error('startSyncRemoteMissions failed, cause: ' + JSON.stringify(error))
+          }
+          console.info('startSyncRemoteMissions finished')
+      })
+  } catch (error) {
+      console.error('startSyncRemoteMissions failed, cause: ' + JSON.stringify(error))
+  }
   ```
 
 ## distributedMissionManager.startSyncRemoteMissions
@@ -234,16 +263,20 @@ Starts to synchronize the remote mission list. This API uses a promise to return
 
   ```ts
   var parameter =  {
-  	deviceId: remoteDeviceId,
+      deviceId: "",
       fixConflict: false, 
       tag: 0
   };
-  distributedMissionManager.startSyncRemoteMissions(parameter)
-  .then(data => {
-      console.info('success data is ' + data);
-  }).catch(error => {
-      console.info('error error is ' + error);
-  })
+  try {
+      distributedMissionManager.startSyncRemoteMissions(parameter)
+      .then(data => {
+          console.info('startSyncRemoteMissions finished, ' + JSON.stringify(data));
+      }).catch(error => {
+          console.error('startSyncRemoteMissions failed, cause: ' + JSON.stringify(error));
+      })
+  } catch (error) {
+      console.error('startSyncRemoteMissions failed, cause: ' + JSON.stringify(error))
+  }
   ```
 
 ## distributedMissionManager.stopSyncRemoteMissions
@@ -267,11 +300,18 @@ Stops synchronizing the remote mission list. This API uses an asynchronous callb
 
   ```ts
   var parameter =  {
-  	deviceId: remoteDeviceId
+      deviceId: ""
   };
-  distributedMissionManager.stopSyncRemoteMissions(parameter, (error) => {
-      console.log("error.code = " + error.code)
-  })
+  try {
+      distributedMissionManager.stopSyncRemoteMissions(parameter, (error) => {
+          if (error.code != 0) {
+              console.error('stopSyncRemoteMissions failed, cause: ' + JSON.stringify(error))
+          }
+          console.info('stopSyncRemoteMissions finished')
+      })
+  } catch (error) {
+      console.error('stopSyncRemoteMissions failed, cause: ' + JSON.stringify(error))
+  }
   ```
 
 ## distributedMissionManager.stopSyncRemoteMissions
@@ -300,14 +340,113 @@ Stops synchronizing the remote mission list. This API uses a promise to return t
 
   ```ts
   var parameter =  {
-  	deviceId: remoteDeviceId
+      deviceId: ""
   };
-  distributedMissionManager.stopSyncRemoteMissions(parameter)
-  .then(data => {
-      console.info('success data is ' + data);
-  }).catch(error => {
-      console.info('error error is ' + error);
-  })
+  try {
+      distributedMissionManager.stopSyncRemoteMissions(parameter)
+      .then(data => {
+          console.info('stopSyncRemoteMissions finished, ' + JSON.stringify(data));
+      }).catch(error => {
+          console.error('stopSyncRemoteMissions failed, cause: ' + JSON.stringify(error));
+      })
+  } catch (error) {
+      console.error('stopSyncRemoteMissions failed, cause: ' + JSON.stringify(error))
+  }
+  ```
+
+## distributedMissionManager.continueMission
+
+continueMission(parameter: ContinueDeviceInfo, options: ContinueCallback, callback: AsyncCallback&lt;void&gt;): void;
+
+Continues a mission on a remote device. This API uses an asynchronous callback to return the result.
+
+**Required permissions**: ohos.permission.MANAGE_MISSIONS and ohos.permission.DISTRIBUTED_DATASYNC
+
+**System capability**: SystemCapability.Ability.AbilityRuntime.Mission
+
+**Parameters**
+
+| Name      | Type                                     | Mandatory  | Description   |
+| --------- | --------------------------------------- | ---- | ----- |
+| parameter | [ContinueDeviceInfo](#continuedeviceinfo) | Yes   | Parameters required for mission continuation.|
+| options | [ContinueCallback](#continuecallback) | Yes   | Callback invoked when the mission continuation is complete.|
+| callback | AsyncCallback&lt;void&gt; | Yes   | Callback used to return the result.|
+
+**Example**
+
+  ```ts
+  var parameter =  {
+      srcDeviceId: "",
+      dstDeviceId: "",
+      missionId: 1,
+      wantParam: {"key": "value"}
+  };
+  function OnContinueDone(resultCode) {
+      console.log('OnContinueDone resultCode: ' + JSON.stringify(resultCode));
+  };
+  var options = {
+      OnContinueDone: OnContinueDone
+  };
+  try {
+      distributedMissionManager.continueMission(parameter, options, (error) => {
+          if (error.code != 0) {
+              console.error('continueMission failed, cause: ' + JSON.stringify(error))
+          }
+          console.info('continueMission finished')
+      })
+  } catch (error) {
+      console.error('continueMission failed, cause: ' + JSON.stringify(error))
+  }
+  ```
+
+## distributedMissionManager.continueMission
+
+continueMission(parameter: ContinueDeviceInfo, options: ContinueCallback): Promise&lt;void&gt;
+
+Continues a mission on a remote device. This API uses a promise to return the result.
+
+**Required permissions**: ohos.permission.MANAGE_MISSIONS and ohos.permission.DISTRIBUTED_DATASYNC
+
+**System capability**: SystemCapability.Ability.AbilityRuntime.Mission
+
+**Parameters**
+
+| Name      | Type                                     | Mandatory  | Description   |
+| --------- | --------------------------------------- | ---- | ----- |
+| parameter | [ContinueDeviceInfo](#continuedeviceinfo) | Yes   | Parameters required for mission continuation.|
+| options | [ContinueCallback](#continuecallback) | Yes   | Callback invoked when the mission continuation is complete.|
+
+**Return value**
+
+| Type                 | Description              |
+| ------------------- | ---------------- |
+| Promise&lt;void&gt; | Promise used to return the result.|
+
+**Example**
+
+  ```ts
+  var parameter =  {
+      srcDeviceId: "",
+      dstDeviceId: "",
+      missionId: 1,
+      wantParam: {"key": "value"}
+  };
+  function OnContinueDone(resultCode) {
+      console.log('OnContinueDone resultCode: ' + JSON.stringify(resultCode));
+  };
+  var options = {
+      OnContinueDone: OnContinueDone
+  };
+  try {
+      distributedMissionManager.continueMission(parameter, options)
+      .then(data => {
+          console.info('continueMission finished, ' + JSON.stringify(data));
+      }).catch(error => {
+          console.error('continueMission failed, cause: ' + JSON.stringify(error));
+      })
+  } catch (error) {
+      console.error('continueMission failed, cause: ' + JSON.stringify(error))
+  }
   ```
 
 ## MissionCallback
@@ -349,3 +488,30 @@ Defines the parameters required for registering a listener.
 | Name      | Type  | Readable  | Writable  | Description     |
 | -------- | ------ | ---- | ---- | ------- |
 | deviceId | string | Yes   | Yes   | Device ID.|
+
+## ContinueDeviceInfo
+
+Defines the parameters required for mission continuation.
+
+**Required permissions**: ohos.permission.MANAGE_MISSIONS
+
+**System capability**: SystemCapability.Ability.AbilityRuntime.Mission
+
+| Name      | Type  | Readable  | Writable  | Description     |
+| -------- | ------ | ---- | ---- | ------- |
+| srcDeviceId | string | Yes   | Yes   | ID of the source device.|
+| dstDeviceId | string | Yes   | Yes   | ID of the target device.|
+| missionId | number | Yes   | Yes   | Mission ID.|
+| wantParam | {[key: string]: any} | Yes   | Yes   | Extended parameters.|
+
+## ContinueCallback
+
+Defines the callback invoked when the mission continuation is complete.
+
+**Required permissions**: ohos.permission.MANAGE_MISSIONS
+
+**System capability**: SystemCapability.Ability.AbilityRuntime.Mission
+
+| Name                   | Type      | Readable  | Writable  | Description                |
+| --------------------- | -------- | ---- | ---- | ------------------ |
+| onContinueDone | function | Yes   | No   | Callback used to notify the user that the mission continuation is complete and return the continuation result.    |
