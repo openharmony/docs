@@ -136,15 +136,15 @@ windowAnimationManager.setController(controller)
 
 let finishedCallback: windowAnimationManager.WindowAnimationFinishedCallback = undefined;
 windowAnimationManager.minimizeWindowWithAnimation(target, (err, data) => {
-    if (err.code) {
+    if (err) {
         console.error('Failed to minimize the window target. Cause: ' + JSON.stringify(err));
         return;
     }
-
     finishedCallback = data;
-});
 
-finishedCallback.onAnimationFinish();
+    // 在收到回调后，需要开始进行窗口动画，在窗口动画结束后，调用onAnimationFinish回调
+    finishedCallback.onAnimationFinish();
+});
 ```
 
 ## windowAnimationManager.minimizeWindowWithAnimation
