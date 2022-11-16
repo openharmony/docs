@@ -114,7 +114,10 @@
 
 ### 设置分布式列表
 
->**注意：**  在使用RdbStore的setDistributedTables、obtainDistributedTableName、sync、on、off接口时，需要请求相应的权限：ohos.permission.DISTRIBUTED_DATASYNC。
+> **说明：**  
+>
+> - 在使用RdbStore的setDistributedTables、obtainDistributedTableName、sync、on、off接口时，需要请求相应的权限：ohos.permission.DISTRIBUTED_DATASYNC。
+> - 使用分布式列表前，需要先建立设备间组网，具体接口及使用可见[设备管理](../reference/apis/js-apis-device-manager.md)。
 
 **设置分布式列表**
 
