@@ -821,7 +821,7 @@ isChecked(): Promise\<boolean>
 ```js
 async function demo() {
     let driver = Driver.create();
-    let button = await driver.findComponent(ON.type('Checkbox'));
+    let checkBox = await driver.findComponent(ON.type('Checkbox'));
     if(await checkBox.isChecked) {
         console.info('This checkBox is checked');
     } else {
@@ -858,7 +858,7 @@ isCheckable(): Promise\<boolean>
 ```js
 async function demo() {
     let driver = Driver.create();
-    let button = await driver.findComponent(ON.type('Checkbox'));
+    let checkBox = await driver.findComponent(ON.type('Checkbox'));
     if(await checkBox.isCheckable) {
         console.info('This checkBox is checkable');
     } else {
@@ -895,7 +895,7 @@ isScrollable(): Promise\<boolean>
 ```js
 async function demo() {
     let driver = Driver.create();
-    let button = await driver.findComponent(ON.scrollable(true));
+    let scrollBar = await driver.findComponent(ON.scrollable(true));
     if(await scrollBar.isScrollable()) {
         console.info('This scrollBar can be operated');
     } else {
@@ -1045,7 +1045,7 @@ inputText(text: string): Promise\<void>
 ```js
 async function demo() {
     let driver = Driver.create();
-    let button = await driver.findComponent(ON.text('hello world'));
+    let text = await driver.findComponent(ON.text('hello world'));
     await text.inputText('123');
 }
 ```
@@ -1070,7 +1070,7 @@ clearText(): Promise\<void>
 ```js
 async function demo() {
     let driver = Driver.create();
-    let button = await driver.findComponent(ON.text('hello world'));
+    let text = await driver.findComponent(ON.text('hello world'));
     await text.clearText();
 }
 ```
@@ -1142,7 +1142,7 @@ scrollToTop(speed?: number): Promise\<void>
 ```js
 async function demo() {
     let driver = Driver.create();
-    let button = await driver.findComponent(ON.type('Scroll'));
+    let scrollBar = await driver.findComponent(ON.type('Scroll'));
     await scrollBar.scrollToTop();
 }
 ```
@@ -1175,7 +1175,7 @@ scrollToBottom(speed?: number): Promise\<void>
 ```js
 async function demo() {
     let driver = Driver.create();
-    let button = await driver.findComponent(ON.type('Scroll'));
+    let scrollBar = await driver.findComponent(ON.type('Scroll'));
     await scrollBar.scrollToBottom();
 }
 ```
@@ -1242,7 +1242,7 @@ pinchOut(scale: number): Promise\<void>
 ```js
 async function demo() {
     let driver = Driver.create();
-    let button = await driver.findComponent(ON.type('image'));
+    let image = await driver.findComponent(ON.type('image'));
     await image.pinchOut(1.5);
     }
 ```
@@ -1275,7 +1275,7 @@ pinchIn(scale: number): Promise\<void>
 ```js
 async function demo() {
     let driver = Driver.create();
-    let button = await driver.findComponent(ON.type('image'));
+    let image = await driver.findComponent(ON.type('image'));
     await image.pinchIn(0.5);
     }
 ```
@@ -2130,6 +2130,7 @@ injectMultiPointerAction(pointers: PointerMatrix, speed?: number): Promise\<bool
 
 ```js
 async function demo() {
+    let driver = Driver.create();
     let pointers = PointerMatrix.create(2,3);
     pointers.setPoint(0,0,{X:230,Y:480});
     pointers.setPoint(0,1,{X:250,Y:380});
