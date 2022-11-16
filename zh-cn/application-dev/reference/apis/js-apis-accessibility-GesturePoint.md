@@ -45,7 +45,5 @@ constructor(positionX: number, positionY: number);
 **示例：**
 
 ```ts
-let positionX = 1;
-let positionY = 2;
-let gesturePoint = new GesturePoint(positionX, positionY);
+let gesturePoint = new GesturePoint.GesturePoint(1, 2);
 ```

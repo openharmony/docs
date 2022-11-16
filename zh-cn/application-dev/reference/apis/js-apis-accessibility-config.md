@@ -65,7 +65,7 @@ enableAbility(name: string, capability: Array&lt;accessibility.Capability&gt;): 
 
 ```ts
 let name = 'com.ohos.example/axExtension';
-let capability = ['retrieve'];
+let capability : accessibility.Capability[] = ['retrieve'];
 try {
     config.enableAbility(name, capability).then(() => {
       console.info('enable ability succeed');
@@ -75,7 +75,7 @@ try {
 } catch (exception) {
     console.error('failed to enable ability, because ' + JSON.stringify(exception));
 };
-  ```
+```
 
 ## enableAbility
 
@@ -106,9 +106,9 @@ enableAbility(name: string, capability: Array&lt;accessibility.Capability&gt;, c
 
 ```ts
 let name = 'com.ohos.example/axExtension';
-let capability = ['retrieve'];
+let capability : accessibility.Capability[] = ['retrieve'];
 try {
-    config.enableAbility(name, capability, (err, data) => {
+    config.enableAbility(name, capability, (err) => {
         if (err) {
             console.error('failed to enable ability, because ' + JSON.stringify(err));
             return;
@@ -153,7 +153,7 @@ disableAbility(name: string): Promise&lt;void&gt;;
 ```ts
 let name = 'com.ohos.example/axExtension';
 try {
-    config.enableAbility(name).then(() => {
+    config.disableAbility(name).then(() => {
       console.info('disable ability succeed');
     }).catch((err) => {
       console.error('failed to disable ability, because ' + JSON.stringify(err));
@@ -224,12 +224,9 @@ on(type: 'enabledAccessibilityExtensionListChange', callback: Callback&lt;void&g
 try {
     config.on('enabledAccessibilityExtensionListChange', () => {
         console.info('subscribe enabled accessibility extension list change state success');
-    }).catch((err) => {
-        console.error('failed to subscribe enabled accessibility extension list change state, because ' + 
-        JSON.stringify(err));
     });
 } catch (exception) {
-    console.error('failed to subscribe enabled accessibility extension list change state, because ' + 
+    console.error('failed to subscribe enabled accessibility extension list change state, because ' +
     JSON.stringify(exception));
 };
 ```
@@ -254,13 +251,10 @@ off(type: 'enabledAccessibilityExtensionListChange', callback?: Callback&lt;void
 ```ts
 try {
     config.off('enabledAccessibilityExtensionListChange', () => {
-        console.info('unSubscribe enabled accessibility extension list change state success');
-    }).catch((err) => {
-        console.error('failed to unSubscribe enabled accessibility extension list change state, because ' + 
-        JSON.stringify(err));
+        console.info('Unsubscribe enabled accessibility extension list change state success');
     });
 } catch (exception) {
-    console.error('failed to unSubscribe enabled accessibility extension list change state, because ' + 
+    console.error('failed to Unsubscribe enabled accessibility extension list change state, because ' +
     JSON.stringify(exception));
 };
 ```
@@ -408,12 +402,8 @@ on(callback: Callback&lt;T&gt;): void;
 
 ```ts
 try {
-    config.highContrastText.on((err, data) => {
-        if (err) {
-            console.error('failed subscribe highContrastText, because ' + JSON.stringify(err));
-            return;
-        }
-        console.info('subscribe highContrastText success');
+    config.highContrastText.on((data) => {
+        console.info('subscribe highContrastText success, result: ' + JSON.stringify(data));
     });
 } catch (exception) {
     console.error('failed subscribe highContrastText, because ' + JSON.stringify(exception));
@@ -437,12 +427,8 @@ off(callback?: Callback&lt;T&gt;): void;
 **示例：**
 
 ```ts
-config.highContrastText.off((err, data) => {
-    if (err) {
-        console.error('failed unSubscribe highContrastText, because ' + JSON.stringify(err));
-        return;
-    }
-    console.info('unSubscribe highContrastText success');
+config.highContrastText.off((data) => {
+    console.info('Unsubscribe highContrastText success, result: ' + JSON.stringify(data));
 });
 ```
 
