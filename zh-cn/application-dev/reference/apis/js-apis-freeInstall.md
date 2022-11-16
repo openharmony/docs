@@ -298,9 +298,9 @@ getBundlePackInfo(bundleName: string, bundlePackFlag : BundlePackFlag, callback:
 ```js
 import freeInstall from '@ohos.bundle.freeInstall';
 let bundleName = 'com.example.myapplication';
-let upgradeFlag = freeInstall.UpgradeFlag.GET_PACK_INFO_ALL;
+let bundlePackFlag = freeInstall.BundlePackFlag.GET_PACK_INFO_ALL;
 try {
-    freeInstall.getBundlePackInfo(bundleName, upgradeFlag, (err, data) => {
+    freeInstall.getBundlePackInfo(bundleName, bundlePackFlag, (err, data) => {
         if (err) {
             console.error('Operation failed:' + JSON.stringify(err));
         } else {
@@ -352,9 +352,9 @@ getBundlePackInfo(bundleName: string, bundlePackFlag : BundlePackFlag): Promise\
 ```js
 import freeInstall from '@ohos.bundle.freeInstall';
 let bundleName = 'com.example.myapplication';
-let upgradeFlag = freeInstall.UpgradeFlag.GET_PACK_INFO_ALL;
+let bundlePackFlag = freeInstall.BundlePackFlag.GET_PACK_INFO_ALL;
 try {
-    freeInstall.getBundlePackInfo(bundleName, upgradeFlag).then(data => {
+    freeInstall.getBundlePackInfo(bundleName, bundlePackFlag).then(data => {
         console.info('Operation succeed:' + JSON.stringify(data));
     }).catch(err => {
         console.error('Operation failed:' + JSON.stringify(err));

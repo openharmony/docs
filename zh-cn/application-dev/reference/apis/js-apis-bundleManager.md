@@ -500,7 +500,7 @@ getApplicationInfo(bundleName: string, appFlags: [number](#applicationflag), cal
 ```ts
 import bundleManager from '@ohos.bundle.bundleManager'
 let bundleName = 'com.example.myapplication';
-let appsFlag = bundleManager.ApplicationFlag.GET_APPLICATION_INFO_WITH_PERMISSION;
+let appFlags = bundleManager.ApplicationFlag.GET_APPLICATION_INFO_WITH_PERMISSION;
 
 try {
     bundleManager.getApplicationInfo(bundleName, appFlags, (err, data) => {
@@ -2210,7 +2210,7 @@ try {
 }
 
 try {
-    bundleManager.getProfileByAbility(moduleName, abilityName，metadataName).then((data) => {
+    bundleManager.getProfileByAbility(moduleName, abilityName, metadataName).then((data) => {
         console.info('getProfileByAbility successfully. Data: ' + JSON.stringify(data));
     }).catch(error => {
         console.error('getProfileByAbility failed. Cause: ' + error.message);
@@ -2840,7 +2840,7 @@ import bundleManager from '@ohos.bundle.bundleManager'
 let bundleName = 'com.example.myapplication';
 let bundleFlags = bundleManager.BundleFlag.GET_BUNDLE_INFO_WITH_REQUESTED_PERMISSION;
 try {
-    let data = bundleManager.getBundleInfoSync(bundleName, bundleFlags, userId);
+    let data = bundleManager.getBundleInfoSync(bundleName, bundleFlags);
     console.info("getBundleInfoSync successfully :" + JSON.stringify(data));
 } catch (err) {
     console.error('getBundleInfoSync failed:' + err.message);
