@@ -35,7 +35,7 @@ Image(src: string | PixelMap | Resource)
 
 | 名称                  | 参数类型                                                | 描述                                                         |
 | --------------------- | ------------------------------------------------------- | ------------------------------------------------------------ |
-| alt                   | string \| [Resource](ts-types.md#resource类型) | 加载时显示的占位图，支持本地图片和网络图片。                 |
+| alt                   | string \| [Resource](ts-types.md#resource类型) | 加载时显示的占位图，支持本地图片。                 |
 | objectFit             | [ImageFit](ts-appendix-enums.md#imagefit)                           | 设置图片的缩放类型。<br/>默认值：ImageFit.Cover                  |
 | objectRepeat          | [ImageRepeat](ts-appendix-enums.md#imagerepeat)         | 设置图片的重复样式。<br/>默认值：NoRepeat<br/>**说明：**<br/>svg类型图源不支持该属性。 |
 | interpolation         | [ImageInterpolation](#imageinterpolation)               | 设置图片的插值效果，即减轻低清晰度图片在放大显示的时候出现的锯齿问题，仅针对图片放大插值。<br/>默认值：ImageInterpolation.None<br/>**说明：**<br/>svg类型图源不支持该属性。<br/>PixelMap资源不支持该属性。 |
