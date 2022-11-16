@@ -173,7 +173,7 @@ getPmm(): number[]
 
 **需要权限**：ohos.permission.NFC_TAG
 
-**系统能力**：SystemCapability.Communication.NFC
+**系统能力**：SystemCapability.Communication.NFC.Core
 
 **返回值：**
 
@@ -207,7 +207,7 @@ getResponseFlags(): number
 
 **需要权限**：ohos.permission.NFC_TAG
 
-**系统能力**：SystemCapability.Communication.NFC
+**系统能力**：SystemCapability.Communication.NFC.Core
 
 **返回值：**
 
@@ -233,7 +233,7 @@ getDsfId(): number
 
 **需要权限**：ohos.permission.NFC_TAG
 
-**系统能力**：SystemCapability.Communication.NFC
+**系统能力**：SystemCapability.Communication.NFC.Core
 
 **返回值：**
 
@@ -265,7 +265,7 @@ getHistoricalBytes(): number[]
 
 获取标签的历史字节，针对基于NfcA通信技术的IsoDep卡片。
 
-**系统能力**：SystemCapability.Communication.NFC
+**系统能力**：SystemCapability.Communication.NFC.Core
 
 **返回值：**
 | **类型** | **说明**                             |
@@ -287,7 +287,7 @@ getHiLayerResponse(): number[]
 
 获取标签的更高层响应字节，针对基于NfcB通信技术的IsoDep卡片。
 
-**系统能力**：SystemCapability.Communication.NFC
+**系统能力**：SystemCapability.Communication.NFC.Core
 
 **返回值：**
 | **类型** | **说明**                             |
@@ -311,7 +311,7 @@ isExtendedApduSupported(): Promise&lt;boolean&gt;
 
 **需要权限**：ohos.permission.NFC_TAG
 
-**系统能力**：SystemCapability.Communication.NFC
+**系统能力**：SystemCapability.Communication.NFC.Core
 
 **返回值：**
 | **类型** | **说明**                             |
@@ -358,7 +358,7 @@ isExtendedApduSupported(callback: AsyncCallback\<boolean>): void
 
 **需要权限**：ohos.permission.NFC_TAG
 
-**系统能力**：SystemCapability.Communication.NFC
+**系统能力**：SystemCapability.Communication.NFC.Core
 
 **参数：**
 | 参数名   | 类型                    | 必填 | 说明                                   |
@@ -405,7 +405,7 @@ getNdefRecords(): [NdefRecord](js-apis-nfcTag.md#ndefrecord9)[]
 
 获取NDEF消息中的所有记录。
 
-**系统能力**：SystemCapability.Communication.NFC
+**系统能力**：SystemCapability.Communication.NFC.Core
 
 **返回值：**
 | **类型** | **说明**                             |
@@ -416,211 +416,12 @@ getNdefRecords(): [NdefRecord](js-apis-nfcTag.md#ndefrecord9)[]
 ```js
 import tag from '@ohos.nfc.tag';
 
-// see NdefTag, obtains ndefMessage from ndefTag.createNdefMessage or ndefTag.getNdefMessage.
-// var ndefMessage = ndefTag.createNdefMessage(...);
+// Obtains ndefMessage from tag.ndef.createNdefMessage or ndefTag.getNdefMessage.
+// var ndefMessage = tag.ndef.createNdefMessage(...);
 // var ndefMessage = ndefTag.getNdefMessage();
 
 let ndefRecords = ndefMessage.getNdefRecords();
 console.log("ndef ndefRecords number: " + ndefRecords.length);
-```
-
-### NdefMessage.makeUriRecord<sup>9+</sup>
-
-makeUriRecord(uri: string): [NdefRecord](js-apis-nfcTag.md#ndefrecord9);
-
-根据输入的URI，构建NDEF标签的Record数据对象。
-
-**系统能力**：SystemCapability.Communication.NFC
-**参数：**
-
-| 参数名   | 类型                    | 必填 | 说明                                   |
-| -------- | ----------------------- | ---- | -------------------------------------- |
-| uri | string | 是 | 写入到NDEF Record里面的数据内容。 |
-
-**返回值：**
-| **类型** | **说明**                             |
-| ------------------ | --------------------------|
-| [NdefRecord](js-apis-nfcTag.md#ndefrecord9) | NDEF标签的Record，详见NDEF技术规范《NFCForum-TS-NDEF_1.0》。 |
-
-**示例：**
-```js
-import tag from '@ohos.nfc.tag';
-
-// see NdefTag, obtains ndefMessage from ndefTag.createNdefMessage or ndefTag.getNdefMessage. Such as:
-// var ndefMessage = ndefTag.createNdefMessage(...);
-// var ndefMessage = ndefTag.getNdefMessage();
-
-try {
-    let uri = "https://gitee.com/openharmony"; // change it to be correct.
-    let ndefRecord = ndefMessage.makeUriRecord(uri);
-    if (ndefRecord != undefined) {
-        console.log("ndefMessage makeUriRecord rtdType: " + ndefRecord.rtdType);
-        console.log("ndefMessage makeUriRecord payload: " + ndefRecord.payload);
-    } else {
-        console.log("ndefMessage makeUriRecord ndefRecord: " + ndefRecord);
-    }
-} catch (busiError) {
-    console.log("ndefMessage makeUriRecord catched busiError: " + busiError);
-}
-```
-
-### NdefMessage.makeTextRecord<sup>9+</sup>
-
-makeTextRecord(text: string, locale: string): [NdefRecord](js-apis-nfcTag.md#ndefrecord9);
-
-根据输入的文本数据和编码类型，构建NDEF标签的Record。
-
-**系统能力**：SystemCapability.Communication.NFC
-**参数：**
-| 参数名   | 类型                    | 必填 | 说明                                   |
-| -------- | ----------------------- | ---- | -------------------------------------- |
-| text | string | 是   | 写入到NDEF Record里面的文本数据内容。 |
-| locale | string | 是   | 文本数据内容的编码方式。 |
-
-**返回值：**
-| **类型** | **说明**                             |
-| ------------------ | --------------------------|
-| [NdefRecord](js-apis-nfcTag.md#ndefrecord9) | NDEF标签的Record，详见NDEF技术规范《NFCForum-TS-NDEF_1.0》。 |
-
-**示例：**
-```js
-import tag from '@ohos.nfc.tag';
-
-// see NdefTag, obtains ndefMessage from ndefTag.createNdefMessage or ndefTag.getNdefMessage. Such as:
-// var ndefMessage = ndefTag.createNdefMessage(...);
-// var ndefMessage = ndefTag.getNdefMessage();
-
-try {
-    let text = "Hello World";   // change it to be correct.
-    let locale = "utf8"; // change it to be correct.
-    let ndefRecord = ndefMessage.makeTextRecord(text, locale);
-    if (ndefRecord != undefined) {
-        console.log("ndefMessage makeTextRecord rtdType: " + ndefRecord.rtdType);
-        console.log("ndefMessage makeTextRecord payload: " + ndefRecord.payload);
-    } else {
-        console.log("ndefMessage makeTextRecord ndefRecord: " + ndefRecord);
-    }
-} catch (busiError) {
-    console.log("ndefMessage makeTextRecord catched busiError: " + busiError);
-}
-```
-
-
-### NdefMessage.makeMimeRecord<sup>9+</sup>
-
-makeMimeRecord(mimeType: string, mimeData: number[]): [NdefRecord](js-apis-nfcTag.md#ndefrecord9);
-
-根据输入的MIME数据和类型，构建NDEF标签的Record。
-
-**系统能力**：SystemCapability.Communication.NFC
-**参数：**
-| 参数名   | 类型                    | 必填 | 说明                                   |
-| -------- | ----------------------- | ---- | -------------------------------------- |
-| mimeType | string | 是   | MIME数据的类型。 |
-| mimeData | number[] | 是   | MIME数据内容。 |
-
-**返回值：**
-| **类型** | **说明**                             |
-| ------------------ | --------------------------|
-| [NdefRecord](js-apis-nfcTag.md#ndefrecord9) | NDEF标签的Record，详见NDEF技术规范《NFCForum-TS-NDEF_1.0》。 |
-
-**示例：**
-```js
-import tag from '@ohos.nfc.tag';
-
-// see NdefTag, obtains ndefMessage from ndefTag.createNdefMessage or ndefTag.getNdefMessage. Such as:
-// var ndefMessage = ndefTag.createNdefMessage(...);
-// var ndefMessage = ndefTag.getNdefMessage();
-
-try {
-    let mimeType = "media";   // change it to be correct.
-    let mimeData = [0x01, 0x02, 0x03, 0x04]; // change it to be correct.
-    let ndefRecord = ndefMessage.makeMimeRecord(mimeType, mimeData);
-    if (ndefRecord != undefined) {
-        console.log("ndefMessage makeMimeRecord rtdType: " + ndefRecord.rtdType);
-        console.log("ndefMessage makeMimeRecord payload: " + ndefRecord.payload);
-    } else {
-        console.log("ndefMessage makeMimeRecord ndefRecord: " + ndefRecord);
-    }
-} catch (busiError) {
-    console.log("ndefMessage makeMimeRecord catched busiError: " + busiError);
-}
-```
-### NdefMessage.makeExternalRecord<sup>9+</sup>
-
-makeExternalRecord(domainName: string, serviceName: string, externalData: number[]): [NdefRecord](js-apis-nfcTag.md#ndefrecord9);
-
-根据应用程序特定的外部数据，构建NDEF标签的Record。
-
-**系统能力**：SystemCapability.Communication.NFC
-**参数：**
-| 参数名   | 类型                    | 必填 | 说明                                   |
-| -------- | ----------------------- | ---- | -------------------------------------- |
-| domainName | string | 是   | 外部数据发布组织的域名，一般是应用程序的包名。 |
-| serviceName | string | 是   | 外部数据的指定类型。 |
-| externalData | number[] | 是   | 外部数据内容。 |
-
-**返回值：**
-| **类型** | **说明**                             |
-| ------------------ | --------------------------|
-| [NdefRecord](js-apis-nfcTag.md#ndefrecord9) | NDEF标签的Record，详见NDEF技术规范《NFCForum-TS-NDEF_1.0》。 |
-
-**示例：**
-```js
-import tag from '@ohos.nfc.tag';
-
-// see NdefTag, obtains ndefMessage from ndefTag.createNdefMessage or ndefTag.getNdefMessage. Such as:
-// var ndefMessage = ndefTag.createNdefMessage(...);
-// var ndefMessage = ndefTag.getNdefMessage();
-
-try {
-    let domainName = "ohos.nfc.application"; // change it to be correct.
-    let type = "nfc"; // change it to be correct.
-    let externalData = [0x01, 0x02, 0x03, 0x04]; // change it to be correct.
-    let ndefRecord = ndefMessage.makeExternalRecord(domainName, type, externalData);
-    if (ndefRecord != undefined) {
-        console.log("ndefMessage makeExternalRecord rtdType: " + ndefRecord.rtdType);
-        console.log("ndefMessage makeExternalRecord payload: " + ndefRecord.payload);
-    } else {
-        console.log("ndefMessage makeExternalRecord ndefRecord: " + ndefRecord);
-    }
-} catch (busiError) {
-    console.log("ndefMessage makeExternalRecord catched busiError: " + busiError);
-}
-```
-
-### NdefMessage.messageToBytes<sup>9+</sup>
-
-messageToBytes(ndefMessage: [NdefMessage](#ndefmessage9)): number[];
-
-把输入的NDEF消息数据对象，转换为字节格式的数据。
-
-**系统能力**：SystemCapability.Communication.NFC
-**参数：**
-| 参数名   | 类型                    | 必填 | 说明                                   |
-| -------- | ----------------------- | ---- | -------------------------------------- |
-| ndefMessage | [NdefMessage](#ndefmessage9) | 是   | NDEF消息数据对象。 |
-
-**返回值：**
-| **类型** | **说明**                             |
-| ------------------ | --------------------------|
-| number[] | NDEF消息数据对象，所转换成的字节格式的数据。每个number十六进制表示，范围是0x00~0xFF。 |
-
-**示例：**
-```js
-import tag from '@ohos.nfc.tag';
-
-// see NdefTag, obtains ndefMessage from ndefTag.createNdefMessage or ndefTag.getNdefMessage. Such as:
-// var ndefMessage = ndefTag.createNdefMessage(...);
-// var ndefMessage = ndefTag.getNdefMessage();
-
-try {
-    // the parameter 'ndefMessage' can be different from the instance object.
-    let rawData = ndefMessage.messageToBytes(ndefMessage);
-    console.log("ndefMessage messageToBytes rawData: " + rawData);
-} catch (busiError) {
-    console.log("ndefMessage messageToBytes catched busiError: " + busiError);
-}
 ```
 
 ## NdefTag<sup>9+</sup>
@@ -631,88 +432,13 @@ TagSession是所有NFC Tag技术类型的基类， 提供建立连接和发送�
 
 以下是NdefTag的独有接口。
 
-### NdefTag.createNdefMessage<sup>9+</sup>
-
-createNdefMessage(data: number[]): [NdefMessage](#ndefmessage9)
-
-使用原始字节数据创建NDEF标签的Message。该数据必须符合NDEF Record数据格式，如果不符合格式，则返回的NdeMessage数据对象，所包含的NDE Record列表会为空。
-
-**系统能力**：SystemCapability.Communication.NFC
-
-**参数：**
-| **参数名** | **类型** | **必填** | **说明** |
-| -------- | -------- | -------- | -------- |
-| data | number[] | 是 | 原始字节，每个number十六进制表示，范围是0x00~0xFF。 |
-
-**返回值：**
-| **类型** | **说明**                             |
-| ------------------ | --------------------------|
-| [NdefMessage](#ndefmessage9) | NDEF标签的Message，详见NDEF技术规范《NFCForum-TS-NDEF_1.0》。 |
-
-**示例：**
-```js
-import tag from '@ohos.nfc.tag';
-
-// see 'tag.TagInfo' at 'js-apis-nfcTag.md', obtains the 'ndefTag' correctly.
-let rawData = [0xD1, 0x01, 0x03, 0x54, 0x4E, 0x46, 0x43]; // change the raw data bytes to be correct.
-let ndefMessage;
-try {
-    ndefMessage = ndefTag.createNdefMessage(rawData);
-    console.log("ndef createNdefMessage, ndefMessage: " + ndefMessage);
-} catch (busiError) {
-    console.log("ndef createNdefMessage busiError: " + busiError);
-}
-```
-
-### NdefTag.createNdefMessage<sup>9+</sup>
-
-createNdefMessage(ndefRecords: NdefRecord[]): [NdefMessage](#ndefmessage9)
-
-使用NDEF Records列表，创建NDEF Message。
-
-**系统能力**：SystemCapability.Communication.NFC
-
-**参数：**
-| **参数名** | **类型** | **必填** | **说明** |
-| -------- | -------- | -------- | -------- |
-| ndefRecords | [NdefRecord](js-apis-nfcTag.md#ndefrecord9)[] | 是 | NDEF标签的Record列表，详见NDEF技术规范《NFCForum-TS-NDEF_1.0》。 |
-
-**返回值：**
-| **类型** | **说明**                             |
-| ------------------ | --------------------------|
-| [NdefMessage](#ndefmessage9) | NDEF标签的Message，详见NDEF技术规范《NFCForum-TS-NDEF_1.0》。|
-
-**示例：**
-```js
-import tag from '@ohos.nfc.tag';
-
-// see 'tag.TagInfo' at 'js-apis-nfcTag.md', obtains the 'ndefTag' correctly.
-let ndefRecords = [
-    // record format: tnf, rtdType, id, payload
-    // 1st record:
-    {tnf: 0x01, rtdType: [0x54], id: [0x01, 0x02, ...], payload: [0x00, 0xa4, 0x04, ...]},
-
-    // 2nd record:
-    {tnf: 0x02, rtdType: [0x55], id: [0x03, 0x04, ...], payload: [0x00, 0xa4, 0x04, ...]},
-
-    // other record if has one ...
-];
-let ndefMessage;
-try {
-    ndefMessage = ndefTag.createNdefMessage(ndefRecords);
-    console.log("ndef createNdefMessage ndefMessage: " + ndefMessage);
-} catch (busiError) {
-    console.log("ndef createNdefMessage busiError: " + busiError);
-}
-```
-
 ### NdefTag.getNdefTagType<sup>9+</sup>
 
 getNdefTagType(): NfcForumType
 
 获取NDEF标签的类型。
 
-**系统能力**：SystemCapability.Communication.NFC
+**系统能力**：SystemCapability.Communication.NFC.Core
 
 **返回值：**
 | **类型** | **说明**                             |
@@ -734,7 +460,7 @@ getNdefMessage(): NdefMessage
 
 获取发现NDEF标签时，从标签读取的Message。
 
-**系统能力**：SystemCapability.Communication.NFC
+**系统能力**：SystemCapability.Communication.NFC.Core
 
 **返回值：**
 | **类型** | **说明**                             |
@@ -756,7 +482,7 @@ isNdefWritable(): boolean;
 
 检查NDEF标签是否可写。在调用写数据接口前，需要先判断是否支持写操作。
 
-**系统能力**：SystemCapability.Communication.NFC
+**系统能力**：SystemCapability.Communication.NFC.Core
 
 **返回值：**
 | **类型** | **说明**                             |
@@ -780,7 +506,7 @@ readNdef(): Promise\<NdefMessage>
 
 **需要权限**：ohos.permission.NFC_TAG
 
-**系统能力**：SystemCapability.Communication.NFC
+**系统能力**：SystemCapability.Communication.NFC.Core
 
 **返回值：**
 | **类型** | **说明**                             |
@@ -826,7 +552,7 @@ readNdef(callback: AsyncCallback\<[NdefMessage](#ndefmessage9)>): void
 
 **需要权限**：ohos.permission.NFC_TAG
 
-**系统能力**：SystemCapability.Communication.NFC
+**系统能力**：SystemCapability.Communication.NFC.Core
 
 **参数：**
 | 参数名   | 类型                    | 必填 | 说明                                   |
@@ -874,7 +600,7 @@ writeNdef(msg: NdefMessage): Promise\<void>;
 
 **需要权限**：ohos.permission.NFC_TAG
 
-**系统能力**：SystemCapability.Communication.NFC
+**系统能力**：SystemCapability.Communication.NFC.Core
 
 **参数：**
 | 参数名   | 类型                    | 必填 | 说明                                   |
@@ -893,8 +619,8 @@ import tag from '@ohos.nfc.tag';
 
 // see 'tag.TagInfo' at 'js-apis-nfcTag.md', obtains the 'ndefTag' correctly.
 // ndefMessage created from raw data, such as:
-let ndefMessage = ndefTag.createNdefMessage([0xD1, 0x01, 0x03, 0x54, 0x4E, 0x46, 0x43]); // change the raw data to be correct.
-// or ndefMessage created from ndefTag.createNdefMessage(ndefRecords: NdefRecord[])
+let ndefMessage = tag.ndef.createNdefMessage([0xD1, 0x01, 0x03, 0x54, 0x4E, 0x46, 0x43]);  // MUST can be parsed as NDEF Record.
+// or ndefMessage created from tag.ndef.createNdefMessage(ndefRecords: NdefRecord[])
 
 // connect the tag at first if not connected.
 if (!ndefTag.isTagConnected()) {
@@ -923,7 +649,7 @@ writeNdef(msg: NdefMessage, callback: AsyncCallback\<void>): void
 
 **需要权限**：ohos.permission.NFC_TAG
 
-**系统能力**：SystemCapability.Communication.NFC
+**系统能力**：SystemCapability.Communication.NFC.Core
 
 **参数：**
 | 参数名   | 类型                    | 必填 | 说明                                   |
@@ -943,8 +669,8 @@ import tag from '@ohos.nfc.tag';
 
 // see 'tag.TagInfo' at 'js-apis-nfcTag.md', obtains the 'ndefTag' correctly.
 // ndefMessage created from raw data, such as:
-let ndefMessage = ndefTag.createNdefMessage([0xD1, 0x01, 0x03, 0x54, 0x4E, 0x46, 0x43]); // change the raw data to be correct.
-// or ndefMessage created from ndefTag.createNdefMessage(ndefRecords: NdefRecord[])
+let ndefMessage = tag.ndef.createNdefMessage([0xD1, 0x01, 0x03, 0x54, 0x4E, 0x46, 0x43]);  // MUST can be parsed as NDEF Record.
+// or ndefMessage created from tag.ndef.createNdefMessage(ndefRecords: NdefRecord[])
 
 // connect the tag at first if not connected.
 if (!ndefTag.isTagConnected()) {
@@ -975,7 +701,7 @@ canSetReadOnly(): boolean
 
 **需要权限**：ohos.permission.NFC_TAG
 
-**系统能力**：SystemCapability.Communication.NFC
+**系统能力**：SystemCapability.Communication.NFC.Core
 
 **返回值：**
 | **类型** | **说明**                             |
@@ -1005,7 +731,7 @@ setReadOnly(): Promise\<void>
 
 **需要权限**：ohos.permission.NFC_TAG
 
-**系统能力**：SystemCapability.Communication.NFC
+**系统能力**：SystemCapability.Communication.NFC.Core
 
 **错误码：**
 以下错误码的详细介绍请参见[NFC错误码](../errorcodes/errorcode-nfc.md)。
@@ -1046,7 +772,7 @@ setReadOnly(callback: AsyncCallback\<void>): void
 
 **需要权限**：ohos.permission.NFC_TAG
 
-**系统能力**：SystemCapability.Communication.NFC
+**系统能力**：SystemCapability.Communication.NFC.Core
 
 **参数：**
 | 参数名   | 类型                    | 必填 | 说明                                   |
@@ -1092,7 +818,7 @@ getNdefTagTypeString(type: [NfcForumType](js-apis-nfcTag.md#nfcforumtype9)): str
 
 将NFC论坛类型，转换为NFC论坛中定义的字符串描述。
 
-**系统能力**：SystemCapability.Communication.NFC
+**系统能力**：SystemCapability.Communication.NFC.Core
 
 **参数：**
 | 参数名   | 类型                    | 必填 | 说明                                   |
@@ -1134,7 +860,7 @@ authenticateSector(sectorIndex: number, key: number[], isKeyA: boolean): Promise
 
 **需要权限**：ohos.permission.NFC_TAG
 
-**系统能力**：SystemCapability.Communication.NFC
+**系统能力**：SystemCapability.Communication.NFC.Core
 
 **参数：**
 | 参数名   | 类型                    | 必填 | 说明                                   |
@@ -1184,7 +910,7 @@ authenticateSector(sectorIndex: number, key: number[], isKeyA: boolean, callback
 
 **需要权限**：ohos.permission.NFC_TAG
 
-**系统能力**：SystemCapability.Communication.NFC
+**系统能力**：SystemCapability.Communication.NFC.Core
 
 **参数：**
 | 参数名   | 类型                    | 必填 | 说明                                   |
@@ -1237,7 +963,7 @@ readSingleBlock(blockIndex: number): Promise\<number[]>
 
 **需要权限**：ohos.permission.NFC_TAG
 
-**系统能力**：SystemCapability.Communication.NFC
+**系统能力**：SystemCapability.Communication.NFC.Core
 
 **参数：**
 | 参数名   | 类型                    | 必填 | 说明                                   |
@@ -1289,7 +1015,7 @@ readSingleBlock(blockIndex: number, callback: AsyncCallback\<number[]>): void
 
 **需要权限**：ohos.permission.NFC_TAG
 
-**系统能力**：SystemCapability.Communication.NFC
+**系统能力**：SystemCapability.Communication.NFC.Core
 
 **参数：**
 | 参数名   | 类型                    | 必填 | 说明                                   |
@@ -1339,7 +1065,7 @@ writeSingleBlock(blockIndex: number, data: number[]): Promise\<void>
 
 **需要权限**：ohos.permission.NFC_TAG
 
-**系统能力**：SystemCapability.Communication.NFC
+**系统能力**：SystemCapability.Communication.NFC.Core
 
 **参数：**
 | 参数名   | 类型                    | 必填 | 说明                                   |
@@ -1388,7 +1114,7 @@ writeSingleBlock(blockIndex: number, data: number[], callback: AsyncCallback\<vo
 
 **需要权限**：ohos.permission.NFC_TAG
 
-**系统能力**：SystemCapability.Communication.NFC
+**系统能力**：SystemCapability.Communication.NFC.Core
 
 **参数：**
 | 参数名   | 类型                    | 必填 | 说明                                   |
@@ -1440,7 +1166,7 @@ incrementBlock(blockIndex: number, value: number): Promise\<void>
 
 **需要权限**：ohos.permission.NFC_TAG
 
-**系统能力**：SystemCapability.Communication.NFC
+**系统能力**：SystemCapability.Communication.NFC.Core
 
 **参数：**
 | 参数名   | 类型                    | 必填 | 说明                                   |
@@ -1489,7 +1215,7 @@ incrementBlock(blockIndex: number, value: number, callback: AsyncCallback\<void>
 
 **需要权限**：ohos.permission.NFC_TAG
 
-**系统能力**：SystemCapability.Communication.NFC
+**系统能力**：SystemCapability.Communication.NFC.Core
 
 **参数：**
 | 参数名   | 类型                    | 必填 | 说明                                   |
@@ -1541,7 +1267,7 @@ decrementBlock(blockIndex: number, value: number): Promise\<void>
 
 **需要权限**：ohos.permission.NFC_TAG
 
-**系统能力**：SystemCapability.Communication.NFC
+**系统能力**：SystemCapability.Communication.NFC.Core
 
 **参数：**
 | 参数名   | 类型                    | 必填 | 说明                                   |
@@ -1590,7 +1316,7 @@ decrementBlock(blockIndex: number, value: number, callback: AsyncCallback\<void>
 
 **需要权限**：ohos.permission.NFC_TAG
 
-**系统能力**：SystemCapability.Communication.NFC
+**系统能力**：SystemCapability.Communication.NFC.Core
 
 **参数：**
 | 参数名   | 类型                    | 必填 | 说明                                   |
@@ -1642,7 +1368,7 @@ transferToBlock(blockIndex: number): Promise\<void>
 
 **需要权限**：ohos.permission.NFC_TAG
 
-**系统能力**：SystemCapability.Communication.NFC
+**系统能力**：SystemCapability.Communication.NFC.Core
 
 **参数：**
 | 参数名   | 类型                    | 必填 | 说明                                   |
@@ -1689,7 +1415,7 @@ transferToBlock(blockIndex: number, callback: AsyncCallback\<void>): void
 
 **需要权限**：ohos.permission.NFC_TAG
 
-**系统能力**：SystemCapability.Communication.NFC
+**系统能力**：SystemCapability.Communication.NFC.Core
 
 **参数：**
 | 参数名   | 类型                    | 必填 | 说明                                   |
@@ -1739,7 +1465,7 @@ restoreFromBlock(blockIndex: number): Promise\<void>
 
 **需要权限**：ohos.permission.NFC_TAG
 
-**系统能力**：SystemCapability.Communication.NFC
+**系统能力**：SystemCapability.Communication.NFC.Core
 
 **参数：**
 | 参数名   | 类型                    | 必填 | 说明                                   |
@@ -1786,7 +1512,7 @@ restoreFromBlock(blockIndex: number, callback: AsyncCallback\<void>): void
 
 **需要权限**：ohos.permission.NFC_TAG
 
-**系统能力**：SystemCapability.Communication.NFC
+**系统能力**：SystemCapability.Communication.NFC.Core
 
 **参数：**
 | 参数名   | 类型                    | 必填 | 说明                                   |
@@ -1834,7 +1560,7 @@ getSectorCount(): number
 
 获取MIFARE Classic标签中的扇区数。
 
-**系统能力**：SystemCapability.Communication.NFC
+**系统能力**：SystemCapability.Communication.NFC.Core
 
 **返回值：**
 | **类型** | **说明**                             |
@@ -1856,7 +1582,7 @@ getBlockCountInSector(sectorIndex: number): number
 
 获取指定扇区中的块数。
 
-**系统能力**：SystemCapability.Communication.NFC
+**系统能力**：SystemCapability.Communication.NFC.Core
 
 **参数：**
 | 参数名   | 类型                    | 必填 | 说明                                   |
@@ -1889,7 +1615,7 @@ getType(): [MifareClassicType](js-apis-nfcTag.md#mifareclassictype9)
 
 获取MIFARE Classic标签的类型。
 
-**系统能力**：SystemCapability.Communication.NFC
+**系统能力**：SystemCapability.Communication.NFC.Core
 
 **返回值：**
 | **类型** | **说明**                             |
@@ -1911,7 +1637,7 @@ getTagSize(): number
 
 获取标签的存储空间大小，具体请参见[MifareClassicSize](js-apis-nfcTag.md#mifareclassicsize9)。
 
-**系统能力**：SystemCapability.Communication.NFC
+**系统能力**：SystemCapability.Communication.NFC.Core
 
 **返回值：**
 | **类型** | **说明**                             |
@@ -1933,7 +1659,7 @@ isEmulatedTag(): boolean
 
 检查标签是不是被模拟的。
 
-**系统能力**：SystemCapability.Communication.NFC
+**系统能力**：SystemCapability.Communication.NFC.Core
 
 **返回值：**
 | **类型** | **说明**                             |
@@ -1955,7 +1681,7 @@ getBlockIndex(sectorIndex: number): number
 
 获取特定扇区的第一个块的序号。
 
-**系统能力**：SystemCapability.Communication.NFC
+**系统能力**：SystemCapability.Communication.NFC.Core
 
 **参数：**
 | 参数名   | 类型                    | 必填 | 说明                                   |
@@ -1990,7 +1716,7 @@ getSectorIndex(blockIndex: number): number
 
 **需要权限**：ohos.permission.NFC_TAG
 
-**系统能力**：SystemCapability.Communication.NFC
+**系统能力**：SystemCapability.Communication.NFC.Core
 
 **参数：**
 | 参数名   | 类型                    | 必填 | 说明                                   |
@@ -2033,7 +1759,7 @@ readMultiplePages(pageIndex: number): Promise\<number[]>
 
 **需要权限**：ohos.permission.NFC_TAG
 
-**系统能力**：SystemCapability.Communication.NFC
+**系统能力**：SystemCapability.Communication.NFC.Core
 
 **参数：**
 
@@ -2087,7 +1813,7 @@ readMultiplePages(pageIndex: number, callback: AsyncCallback\<number[]>): void
 
 **需要权限**：ohos.permission.NFC_TAG
 
-**系统能力**：SystemCapability.Communication.NFC
+**系统能力**：SystemCapability.Communication.NFC.Core
 
 **参数：**
 | 参数名   | 类型                    | 必填 | 说明                                   |
@@ -2137,7 +1863,7 @@ writeSinglePage(pageIndex: number, data: number[]): Promise\<void>
 
 **需要权限**：ohos.permission.NFC_TAG
 
-**系统能力**：SystemCapability.Communication.NFC
+**系统能力**：SystemCapability.Communication.NFC.Core
 
 **参数：**
 | 参数名   | 类型                    | 必填 | 说明                                   |
@@ -2186,7 +1912,7 @@ writeSinglePage(pageIndex: number, data: number[], callback: AsyncCallback\<void
 
 **需要权限**：ohos.permission.NFC_TAG
 
-**系统能力**：SystemCapability.Communication.NFC
+**系统能力**：SystemCapability.Communication.NFC.Core
 
 **参数：**
 | 参数名   | 类型                    | 必填 | 说明                     |
@@ -2236,7 +1962,7 @@ getType(): MifareUltralightType
 
 获取MIFARE Ultralight标签的类型，具体请参见 [MifareUltralightType](js-apis-nfcTag.md#mifareultralighttype9)。
 
-**系统能力**：SystemCapability.Communication.NFC
+**系统能力**：SystemCapability.Communication.NFC.Core
 
 **返回值：**
 | **类型** | **说明**                             |
@@ -2268,7 +1994,7 @@ format(message: [NdefMessage](#ndefmessage9)): Promise\<void>
 
 **需要权限**：ohos.permission.NFC_TAG
 
-**系统能力**：SystemCapability.Communication.NFC
+**系统能力**：SystemCapability.Communication.NFC.Core
 
 **参数：**
 | 参数名   | 类型                    | 必填 | 说明                                   |
@@ -2298,8 +2024,8 @@ if (!ndefFormatable.isTagConnected()) {
 
 try {
     // ndefMessage created from raw data, such as:
-    let ndefMessage = ndefTag.createNdefMessage([0xD1, 0x01, 0x03, 0x54, 0x4E, 0x46, 0x43]); // change the raw data to be correct.
-    // or ndefMessage created from ndefTag.createNdefMessage(ndefRecords: NdefRecord[])
+    let ndefMessage = tag.ndef.createNdefMessage([0xD1, 0x01, 0x03, 0x54, 0x4E, 0x46, 0x43]);  // MUST can be parsed as NDEF Record.
+    // or ndefMessage created from tag.ndef.createNdefMessage(ndefRecords: NdefRecord[])
 
     ndefFormatable.format(ndefMessage).then(() => {
         console.log("ndefFormatable format Promise success.");
@@ -2319,7 +2045,7 @@ format(message: [NdefMessage](#ndefmessage9), callback: AsyncCallback\<void>): v
 
 **需要权限**：ohos.permission.NFC_TAG
 
-**系统能力**：SystemCapability.Communication.NFC
+**系统能力**：SystemCapability.Communication.NFC.Core
 
 **参数：**
 | 参数名   | 类型                    | 必填 | 说明                                   |
@@ -2348,8 +2074,8 @@ if (!ndefFormatable.isTagConnected()) {
 
 try {
     // ndefMessage created from raw data, such as:
-    let ndefMessage = ndefTag.createNdefMessage([0xD1, 0x01, 0x03, 0x54, 0x4E, 0x46, 0x43]); // change the raw data to be correct.
-    // or ndefMessage created from ndefTag.createNdefMessage(ndefRecords: NdefRecord[])
+    let ndefMessage = tag.ndef.createNdefMessage([0xD1, 0x01, 0x03, 0x54, 0x4E, 0x46, 0x43]);  // MUST can be parsed as NDEF Record.
+    // or ndefMessage created from tag.ndef.createNdefMessage(ndefRecords: NdefRecord[])
 
     ndefFormatable.format(ndefMessage, (err)=> {
         if (err) {
@@ -2371,7 +2097,7 @@ formatReadOnly(message: [NdefMessage](#ndefmessage9)): Promise\<void>
 
 **需要权限**：ohos.permission.NFC_TAG
 
-**系统能力**：SystemCapability.Communication.NFC
+**系统能力**：SystemCapability.Communication.NFC.Core
 
 **参数：**
 | 参数名   | 类型                    | 必填 | 说明                                   |
@@ -2400,8 +2126,8 @@ if (!ndefFormatable.isTagConnected()) {
 
 try {
     // ndefMessage created from raw data, such as:
-    let ndefMessage = ndefTag.createNdefMessage([0xD1, 0x01, 0x03, 0x54, 0x4E, 0x46, 0x43]); // change the raw data to be correct.
-    // or ndefMessage created from ndefTag.createNdefMessage(ndefRecords: NdefRecord[])
+    let ndefMessage = tag.ndef.createNdefMessage([0xD1, 0x01, 0x03, 0x54, 0x4E, 0x46, 0x43]);  // MUST can be parsed as NDEF Record.
+    // or ndefMessage created from tag.ndef.createNdefMessage(ndefRecords: NdefRecord[])
 
     ndefFormatable.formatReadOnly(ndefMessage).then(() => {
         console.log("ndefFormatable formatReadOnly Promise success.");
@@ -2421,7 +2147,7 @@ formatReadOnly(message: [NdefMessage](#ndefmessage9), callback: AsyncCallback\<v
 
 **需要权限**：ohos.permission.NFC_TAG
 
-**系统能力**：SystemCapability.Communication.NFC
+**系统能力**：SystemCapability.Communication.NFC.Core
 
 **参数：**
 | 参数名   | 类型                    | 必填 | 说明                                   |
@@ -2450,8 +2176,8 @@ if (!ndefFormatable.isTagConnected()) {
 
 try {
     // ndefMessage created from raw data, such as:
-    let ndefMessage = ndefTag.createNdefMessage([0xD1, 0x01, 0x03, 0x54, 0x4E, 0x46, 0x43]); // change the raw data to be correct.
-    // or ndefMessage created from ndefTag.createNdefMessage(ndefRecords: NdefRecord[])
+    let ndefMessage = tag.ndef.createNdefMessage([0xD1, 0x01, 0x03, 0x54, 0x4E, 0x46, 0x43]);  // MUST can be parsed as NDEF Record.
+    // or ndefMessage created from tag.ndef.createNdefMessage(ndefRecords: NdefRecord[])
 
     ndefFormatable.formatReadOnly(ndefMessage, (err)=> {
         if (err) {
