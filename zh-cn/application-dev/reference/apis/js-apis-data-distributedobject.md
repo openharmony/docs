@@ -632,7 +632,7 @@ import distributedObject from '@ohos.data.distributedDataObject';
 import featureAbility from '@ohos.ability.featureAbility';
 // 获取context
 let context = featureAbility.getContext();
-let g_object = distributedObject.create({name:"Amy", age:18, isVis:false});
+let g_object = distributedObject.create(context,{name:"Amy", age:18, isVis:false});
 g_object.setSessionId("123456");
 g_object.save("local").then((result) => {
     console.log("save callback");
@@ -654,7 +654,7 @@ class MainAbility extends Ability{
         context = this.context
     }
 }
-let g_object = distributedObject.create({name:"Amy", age:18, isVis:false});
+let g_object = distributedObject.create(context,{name:"Amy", age:18, isVis:false});
 g_object.setSessionId("123456");
 g_object.save("local").then((result) => {
     console.log("save callback");
