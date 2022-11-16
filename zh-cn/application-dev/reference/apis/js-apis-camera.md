@@ -815,8 +815,8 @@ cameraManager.on('cameraMute', (err, cameraStatusInfo) => {
 
 ```js
 async function getCameraInfo("cameraId") {
-    let cameraManager = await camera.getCameraManager(context);
-    let cameras = await cameraManager.getSupportedCameras();
+    let cameraManager = camera.getCameraManager(context);
+    let cameras = cameraManager.getSupportedCameras();
     let cameraObj = cameras[0];
     let cameraId = cameraObj.cameraId;
     let cameraPosition = cameraObj.cameraPosition;
