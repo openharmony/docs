@@ -28,6 +28,7 @@
   flex-direction: column;
   background-color: #F1F3F5;
   width: 100%;
+  height: 100%;
   justify-content: center;
   align-items: center;
 }
@@ -67,6 +68,7 @@ grid-container点击组件调用getColumns、getColumnWidth、getGutterWidth方�
   flex-direction: column;
   background-color: #F1F3F5;
   width: 100%;
+  height: 100%;
   justify-content: center;
   align-items: center;
 }
@@ -154,6 +156,7 @@ export default {
   flex-direction: column;
   background-color: #F1F3F5;
   width: 100%;
+  height: 100%;
   justify-content: center;
   align-items: center;
 }
@@ -203,6 +206,7 @@ text{
   flex-direction: column;
   background-color: #F1F3F5;
   width: 100%;
+  height: 100%;
 }
 text{
   color: #0a0aef;

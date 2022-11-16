@@ -21,8 +21,6 @@ switch为开关选择器，切换开启或关闭状态。具体用法请参考[s
 /* xxx.css */
 .container {
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
   background-color: #F1F3F5;
 }
 ```
