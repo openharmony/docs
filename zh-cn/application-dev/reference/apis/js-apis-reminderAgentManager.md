@@ -35,7 +35,7 @@ publishReminder(reminderReq: ReminderRequest, callback: AsyncCallback&lt;number&
 
 **错误码：**
 
-以下错误码的详细介绍请参见[@ohos.reminderAgentManager (后台代理提醒)](../errorcode/errorcode-reminderAgentManager.md)错误码。
+以下错误码的详细介绍请参见[@ohos.reminderAgentManager (后台代理提醒)](../errorcodes/errorcode-reminderAgentManager.md)错误码。
 
 | 错误码ID   | 错误码信息 |
 | --------- | ------- |
@@ -84,7 +84,7 @@ publishReminder(reminderReq: ReminderRequest): Promise&lt;number&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[@ohos.reminderAgentManager (后台代理提醒)](../errorcode/errorcode-reminderAgentManager.md)错误码。
+以下错误码的详细介绍请参见[@ohos.reminderAgentManager (后台代理提醒)](../errorcodes/errorcode-reminderAgentManager.md)错误码。
 
 | 错误码ID   | 错误码信息 |
 | --------- | ------- |
@@ -126,7 +126,7 @@ cancelReminder(reminderId: number, callback: AsyncCallback&lt;void&gt;): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[@ohos.reminderAgentManager (后台代理提醒)](../errorcode/errorcode-reminderAgentManager.md)错误码。
+以下错误码的详细介绍请参见[@ohos.reminderAgentManager (后台代理提醒)](../errorcodes/errorcode-reminderAgentManager.md)错误码。
 
 | 错误码ID   | 错误码信息 |
 | --------- | ------- |
@@ -172,7 +172,7 @@ cancelReminder(reminderId: number): Promise&lt;void&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[@ohos.reminderAgentManager (后台代理提醒)](../errorcode/errorcode-reminderAgentManager.md)错误码。
+以下错误码的详细介绍请参见[@ohos.reminderAgentManager (后台代理提醒)](../errorcodes/errorcode-reminderAgentManager.md)错误码。
 
 | 错误码ID   | 错误码信息 |
 | --------- | ------- |
@@ -210,7 +210,7 @@ getValidReminders(callback: AsyncCallback&lt;Array&lt;ReminderRequest&gt;&gt;): 
 
 **错误码：**
 
-以下错误码的详细介绍请参见[@ohos.reminderAgentManager (后台代理提醒)](../errorcode/errorcode-reminderAgentManager.md)错误码。
+以下错误码的详细介绍请参见[@ohos.reminderAgentManager (后台代理提醒)](../errorcodes/errorcode-reminderAgentManager.md)错误码。
 
 | 错误码ID   | 错误码信息 |
 | --------- | ------- |
@@ -270,7 +270,7 @@ getValidReminders(): Promise&lt;Array&lt;ReminderRequest&gt;&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[@ohos.reminderAgentManager (后台代理提醒)](../errorcode/errorcode-reminderAgentManager.md)错误码。
+以下错误码的详细介绍请参见[@ohos.reminderAgentManager (后台代理提醒)](../errorcodes/errorcode-reminderAgentManager.md)错误码。
 
 | 错误码ID   | 错误码信息 |
 | --------- | ------- |
@@ -328,7 +328,7 @@ cancelAllReminders(callback: AsyncCallback&lt;void&gt;): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[@ohos.reminderAgentManager (后台代理提醒)](../errorcode/errorcode-reminderAgentManager.md)错误码。
+以下错误码的详细介绍请参见[@ohos.reminderAgentManager (后台代理提醒)](../errorcodes/errorcode-reminderAgentManager.md)错误码。
 
 | 错误码ID   | 错误码信息 |
 | --------- | ------- |
@@ -367,7 +367,7 @@ cancelAllReminders(): Promise&lt;void&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[@ohos.reminderAgentManager (后台代理提醒)](../errorcode/errorcode-reminderAgentManager.md)错误码。
+以下错误码的详细介绍请参见[@ohos.reminderAgentManager (后台代理提醒)](../errorcodes/errorcode-reminderAgentManager.md)错误码。
 
 | 错误码ID   | 错误码信息 |
 | --------- | ------- |
