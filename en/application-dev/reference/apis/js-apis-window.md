@@ -1800,7 +1800,7 @@ Loads content from a page associated with a local storage to this window. This A
 | Name  | Type                                           | Mandatory| Description                                                        |
 | -------- | ----------------------------------------------- | ---- | ------------------------------------------------------------ |
 | path     | string                                          | Yes  | Path of the page from which the content will be loaded.                                        |
-| storage  | [LocalStorage](../../quick-start/arkts-state-mgmt-application-level.md#localstorage) | Yes  | A storage unit, which provides storage for variable state properties and non-variable state properties of an application.|
+| storage  | [LocalStorage](../../ui/ui-ts-local-storage.md) | Yes  | A storage unit, which provides storage for variable state properties and non-variable state properties of an application.|
 | callback | AsyncCallback&lt;void&gt;                       | Yes  | Callback used to return the result.                                                  |
 
 **Example**
@@ -1838,7 +1838,7 @@ Loads content from a page associated with a local storage to this window. This A
 | Name | Type                                           | Mandatory| Description                                                        |
 | ------- | ----------------------------------------------- | ---- | ------------------------------------------------------------ |
 | path    | string                                          | Yes  | Path of the page from which the content will be loaded.                                        |
-| storage | [LocalStorage](../../quick-start/arkts-state-mgmt-application-level.md#localstorage) | Yes  | A storage unit, which provides storage for variable state properties and non-variable state properties of an application.|
+| storage | [LocalStorage](../../ui/ui-ts-local-storage.md) | Yes  | A storage unit, which provides storage for variable state properties and non-variable state properties of an application.|
 
 **Return value**
 
@@ -3696,7 +3696,7 @@ Loads content from a page associated with a local storage to the main window in 
 | Name  | Type                                           | Mandatory| Description                                                        |
 | -------- | ----------------------------------------------- | ---- | ------------------------------------------------------------ |
 | path     | string                                          | Yes  | Path of the page from which the content will be loaded.                                        |
-| storage  | [LocalStorage](../../quick-start/arkts-state-mgmt-application-level.md#localstorage) | Yes  | A storage unit, which provides storage for variable state properties and non-variable state properties of an application.|
+| storage  | [LocalStorage](../../ui/ui-ts-local-storage.md) | Yes  | A storage unit, which provides storage for variable state properties and non-variable state properties of an application.|
 | callback | AsyncCallback&lt;void&gt;                       | Yes  | Callback used to return the result.                                                  |
 
 **Example**
@@ -3735,7 +3735,7 @@ Loads content from a page associated with a local storage to the main window in 
 | Name | Type                                           | Mandatory| Description                                                        |
 | ------- | ----------------------------------------------- | ---- | ------------------------------------------------------------ |
 | path    | string                                          | Yes  | Path of the page from which the content will be loaded.                                        |
-| storage | [LocalStorage](../../quick-start/arkts-state-mgmt-application-level.md#localstorage) | No  | A storage unit, which provides storage for variable state properties and non-variable state properties of an application.|
+| storage | [LocalStorage](../../ui/ui-ts-local-storage.md) | No  | A storage unit, which provides storage for variable state properties and non-variable state properties of an application.|
 
 **Return value**
 
