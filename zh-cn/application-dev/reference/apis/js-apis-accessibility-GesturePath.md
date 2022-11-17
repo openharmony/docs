@@ -44,6 +44,5 @@ constructor(durationTime: number);
 **示例：**
 
 ```ts
-let durationTime = 20;
-let gesturePath = new GesturePath(durationTime);
+let gesturePath = new GesturePath.GesturePath(20);
 ```

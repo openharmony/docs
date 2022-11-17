@@ -171,16 +171,10 @@ on(type: 'enableChange', callback: Callback&lt;boolean&gt;): void;
 **示例：**
 
 ```ts
-let result = false;
 let captionsManager = accessibility.getCaptionsManager();
 try {
-    captionsManager.on('enableChange', (err, data) => {
-        if (err) {
-            console.error('failed to subscribe caption manager enable state change, because ' + JSON.stringify(err));
-            return;
-        }
-        result = data;
-        console.info('subscribe caption manager enable state change success');
+    captionsManager.on('enableChange', (data) => {
+        console.info('subscribe caption manager enable state change, result: ' + JSON.stringify(data));
     });
 } catch (exception) {
     console.error('failed to subscribe caption manager enable state change, because ' + JSON.stringify(exception));
@@ -206,13 +200,9 @@ on(type: 'styleChange', callback: Callback&lt;CaptionsStyle&gt;): void;
 let captionStyle;
 let captionsManager = accessibility.getCaptionsManager();
 try {
-    captionsManager.on('styleChange', (err, data) => {
-        if (err) {
-            console.error('failed to subscribe caption manager style state change, because ' + JSON.stringify(err));
-            return;
-        }
+    captionsManager.on('styleChange', (data) => {
         captionStyle = data;
-        console.info('subscribe caption manager style state change success');
+        console.info('subscribe caption manager style state change, result: ' + JSON.stringify(data));
     });
 } catch (exception) {
     console.error('failed to subscribe caption manager style state change, because ' + JSON.stringify(exception));
@@ -235,19 +225,13 @@ off(type: 'enableChange', callback?: Callback&lt;boolean&gt;): void;
 **示例：**
 
 ```ts
-let result = false;
 let captionsManager = accessibility.getCaptionsManager();
 try {
-    captionsManager.off('enableChange', (err, data) => {
-        if (err) {
-            console.error('failed to unSubscribe caption manager enable state change, because ' + JSON.stringify(err));
-            return;
-        }
-        result = data;
-        console.info('unSubscribe caption manager enable state change success');
+    captionsManager.off('enableChange', (data) => {
+        console.info('Unsubscribe caption manager enable state change, result: ' + JSON.stringify(data));
     });
 } catch (exception) {
-    console.error('failed to unSubscribe caption manager enable state change, because ' + JSON.stringify(exception));
+    console.error('failed to Unsubscribe caption manager enable state change, because ' + JSON.stringify(exception));
 }
 ```
 
@@ -270,16 +254,12 @@ off(type: 'styleChange', callback?: Callback&lt;CaptionsStyle&gt;): void;
 let captionStyle;
 let captionsManager = accessibility.getCaptionsManager();
 try {
-    captionsManager.off('styleChange', (err, data) => {
-        if (err) {
-            console.error('failed to unSubscribe caption manager style state change, because ' + JSON.stringify(err));
-            return;
-        }
+    captionsManager.off('styleChange', (data) => {
         captionStyle = data;
-        console.info('unSubscribe caption manager style state change success');
+        console.info('Unsubscribe caption manager style state change, result: ' + JSON.stringify(data));
     });
 } catch (exception) {
-    console.error('failed to unSubscribe caption manager style state change, because ' + JSON.stringify(exception));
+    console.error('failed to Unsubscribe caption manager style state change, because ' + JSON.stringify(exception));
 }
 ```
 
@@ -503,9 +483,9 @@ getAccessibilityExtensionList(abilityType: AbilityType, stateType: AbilityState)
 **示例：**
 
 ```ts
-let abilityType = 'spoken';
-let abilityState = 'enable';
-let extensionList: accessibility.AccessibilityInfo[];
+let abilityType : accessibility.AbilityType = 'spoken';
+let abilityState : accessibility.AbilityState = 'enable';
+let extensionList: accessibility.AccessibilityAbilityInfo[] = [];
 try {
     accessibility.getAccessibilityExtensionList(abilityType, abilityState).then((data) => {
         for (let item of data) {
@@ -526,7 +506,7 @@ try {
 
 ## accessibility.getAccessibilityExtensionList<sup>9+</sup>
 
-getAccessibilityExtensionList(abilityType: AbilityType, stateType: AbilityState,callback: AsyncCallback&lt;Array&lt;AccessibilityAbilityInfo&gt;&gt;): void
+getAccessibilityExtensionList(abilityType: AbilityType, stateType: AbilityState, callback: AsyncCallback&lt;Array&lt;AccessibilityAbilityInfo&gt;&gt;): void
 
 查询辅助应用列表，使用callback异步回调。
 
@@ -543,9 +523,9 @@ getAccessibilityExtensionList(abilityType: AbilityType, stateType: AbilityState,
 **示例：**
 
 ```ts
-let abilityType = 'spoken';
-let abilityState = 'enable';
-let extensionList: accessibility.AccessibilityInfo[];
+let abilityType : accessibility.AbilityType = 'spoken';
+let abilityState : accessibility.AbilityState = 'enable';
+let extensionList: accessibility.AccessibilityAbilityInfo[] = [];
 try {
     accessibility.getAccessibilityExtensionList(abilityType, abilityState, (err, data) => {
         if (err) {
@@ -560,8 +540,6 @@ try {
             extensionList.push(item);
         }
         console.info('get accessibility extension list success');
-    }).catch((err) => {
-        console.error('failed to get accessibility extension list because ' + JSON.stringify(err));
     });
 } catch (exception) {
     console.error('failed to get accessibility extension list because ' + JSON.stringify(exception));
@@ -607,12 +585,8 @@ on(type: 'accessibilityStateChange', callback: Callback&lt;boolean&gt;): void
 
 ```ts
 try {
-    accessibility.on('accessibilityStateChange', (err, data) => {
-        if (err) {
-            console.error('failed to subscribe accessibility state change, because ' + JSON.stringify(err));
-            return;
-        }
-        console.info('subscribe accessibility state change success');
+    accessibility.on('accessibilityStateChange', (data) => {
+        console.info('subscribe accessibility state change, result: ' + JSON.stringify(data));
     });
 } catch (exception) {
     console.error('failed to subscribe accessibility state change, because ' + JSON.stringify(exception));
@@ -638,12 +612,8 @@ on(type: 'touchGuideStateChange', callback: Callback&lt;boolean&gt;): void
 
 ```ts
 try {
-    accessibility.on('touchGuideStateChange', (err, data) => {
-        if (err) {
-            console.error('failed to subscribe touch guide state change, because ' + JSON.stringify(err));
-            return;
-        }
-        console.info('subscribe touch guide state change success');
+    accessibility.on('touchGuideStateChange', (data) => {
+        console.info('subscribe touch guide state change, result: ' + JSON.stringify(data));
     });
 } catch (exception) {
     console.error('failed to subscribe touch guide state change, because ' + JSON.stringify(exception));
@@ -669,15 +639,11 @@ off(type: 'accessibilityStateChange', callback?: Callback&lt;boolean&gt;): void
 
 ```ts
 try {
-    accessibility.on('accessibilityStateChange', (err, data) => {
-        if (err) {
-            console.error('failed to unSubscribe accessibility state change, because ' + JSON.stringify(err));
-            return;
-        }
-        console.info('unSubscribe accessibility state change success');
+    accessibility.off('accessibilityStateChange', (data) => {
+        console.info('Unsubscribe accessibility state change, result: ' + JSON.stringify(data));
     });
 } catch (exception) {
-    console.error('failed to unSubscribe accessibility state change, because ' + JSON.stringify(exception));
+    console.error('failed to Unsubscribe accessibility state change, because ' + JSON.stringify(exception));
 }
 ```
 
@@ -700,15 +666,11 @@ off(type: 'touchGuideStateChange', callback?: Callback&lt;boolean&gt;): void
 
 ```ts
 try {
-    accessibility.on('touchGuideStateChange', (err, data) => {
-        if (err) {
-            console.error('failed to unSubscribe touch guide state change, because ' + JSON.stringify(err));
-            return;
-        }
-        console.info('unSubscribe touch guide state change success');
+    accessibility.off('touchGuideStateChange', (data) => {
+        console.info('Unsubscribe touch guide state change, result: ' + JSON.stringify(data));
     });
 } catch (exception) {
-    console.error('failed to unSubscribe touch guide state change, because ' + JSON.stringify(exception));
+    console.error('failed to Unsubscribe touch guide state change, because ' + JSON.stringify(exception));
 }
 ```
 

@@ -215,6 +215,7 @@
   - [@ohos.geolocation](js-apis-geolocation.md)
   - [@ohos.multimodalInput.inputConsumer](js-apis-inputconsumer.md)
   - [@ohos.multimodalInput.inputDevice](js-apis-inputdevice.md)
+  - [@ohos.multimodalInput.inputDeviceCooperate](js-apis-cooperate.md)
   - [@ohos.multimodalInput.inputEvent](js-apis-inputevent.md)
   - [@ohos.multimodalInput.inputEventClient](js-apis-inputeventclient.md)
   - [@ohos.multimodalInput.inputMonitor](js-apis-inputmonitor.md)

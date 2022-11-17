@@ -10,6 +10,7 @@
 
 ```ts
 import userFileManager from '@ohos.filemanagement.userFileManager';
+import dataSharePredicates from '@ohos.data.dataSharePredicates';
 ```
 
 ## userFileManager.getUserFileMgr
@@ -38,7 +39,7 @@ getUserFileMgr(context: Context): UserFileManager
 
 ```ts
 const context = getContext(this);
-let mgr = userfilemanager.getUserFileMgr(context);
+let mgr = userFileManager.getUserFileMgr(context);
 ```
 
 ## userFileManager.getUserFileMgr
@@ -62,7 +63,7 @@ getUserFileMgr(): UserFileManager
 **示例：**
 
 ```ts
-let mgr = userfilemanager.getUserFileMgr();
+let mgr = userFileManager.getUserFileMgr();
 ```
 
 ## UserFileManager

@@ -43,10 +43,14 @@ This is a system API.
   **Example**
 
 ```js
-inputMonitor.off("touch", (event) => {
-  // A touch event is consumed.
-  return false;
-});
+try {
+    inputMonitor.on("touch", (data)=> {
+        console.info(`monitorOnTouchEvent success ${JSON.stringify(data)}`);
+        return false;
+    });
+} catch (error) {
+    console.info("onMonitor " + error.code + " " + error.message)
+}
 ```
 
 on(type: "mouse", receiver: Callback&lt;MouseEvent&gt;): void
@@ -69,12 +73,15 @@ This is a system API.
   **Example**
 
 ```js
-inputMonitor.off("mouse", (event) => {
-  // A mouse event is consumed.
-});
+try {
+    inputMonitor.on("mouse", (data)=> {
+        console.info(`monitorOnMouseEvent success ${JSON.stringify(data)}`);
+        return false;
+    });
+} catch (error) {
+    console.info("onMonitor " + error.code + " " + error.message)
+}
 ```
-
-
 
 ## inputMonitor.off
 
@@ -98,7 +105,26 @@ This is a system API.
   **Example**
 
 ```js
-inputMonitor.off("touch");
+// Disable listening globally.
+try {
+    inputMonitor.off("touch");
+} catch (error) {
+    console.info("offMonitor " + error.code + " " + error.message)
+}
+// Disable listening for this receiver.
+callback:function(data) {
+    console.info(`call success ${JSON.stringify(data)}`);
+},
+try {
+    inputMonitor.on("touch", this.callback);
+} catch (error) {
+    console.info("onTouchMonitor " + error.code + " " + error.message)
+},
+try {
+    inputMonitor.off("touch",this.callback);
+} catch (error) {
+    console.info("offTouchMonitor " + error.code + " " + error.message)
+}
 ```
 
 off(type: "mouse", receiver?:Callback\<MouseEvent>):void
@@ -121,7 +147,26 @@ This is a system API.
 **Example**
 
 ```js
-inputMonitor.off("mouse");
+// Disable listening globally.
+try {
+    inputMonitor.off("mouse");
+} catch (error) {
+    console.info("offMonitor " + error.code + " " + error.message)
+}
+// Disable listening for this receiver.
+callback:function(data) {
+    console.info(`call success ${JSON.stringify(data)}`);
+},
+try {
+    inputMonitor.on("mouse", this.callback);
+} catch (error) {
+    console.info("onMouseMonitor " + error.code + " " + error.message)
+},
+try {
+    inputMonitor.off("mouse", this.callback);
+} catch (error) {
+    console.info("offMouseMonitor " + error.code + " " + error.message)
+}
 ```
 
 
@@ -149,9 +194,13 @@ This is a system API.
   **Example**
 
 ```js
-inputMonitor.on("touch", (event) => {
-  // A touch event is consumed.
-  return false;
-});
-inputMonitor.off("touch");
+try {
+  inputMonitor.on("touch", (event) => {
+    // If true is returned, all subsequent events of this operation will be consumed by the listener, instead of being distributed to the window.
+    return false;
+  });
+  inputMonitor.off("touch");
+} catch (error) {
+  console.info("offMonitor " + error.code + " " + error.message)
+}
 ```
