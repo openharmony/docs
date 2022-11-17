@@ -6,7 +6,7 @@
 The specified bundle name is not found.
 
 **错误描述**<br/>
-调用接口时，传入的bundleName不存在。
+调用查询等接口时，传入的bundleName不存在。
 
 **可能原因**<br/>
 1. 输入的bundleName有误。
@@ -22,7 +22,7 @@ The specified bundle name is not found.
 The specified module name is not found.
 
 **错误描述**<br/>
-调用接口时，传入的moduleName不存在。
+调用查询或者免安装相关接口时，传入的moduleName不存在。
 
 **可能原因**<br/>
 1. 输入的moduleName有误。
@@ -38,7 +38,7 @@ The specified module name is not found.
 The specified ability name is not found.
 
 **错误描述**<br/>
-调用接口时，传入的abilityName不存在。
+调用查询等接口时，传入的abilityName不存在。
 
 **可能原因**<br/>
 1. 输入的abilityName有误。
@@ -46,15 +46,15 @@ The specified ability name is not found.
 
 **处理步骤**<br/>
 1. 检查abilityName拼写是否正确。
-2. 确认对应的应用是否安装该模块。
+2. 确认对应的应用是否安装该组件。
 
 ## 17700004 指定的用户不存在
 
 **错误信息**<br/>
-The specified user id is not found.
+The specified user ID is not found.
 
 **错误描述**<br/>
-调用接口时，传入的用户不存在。
+调用与用户相关接口时，传入的用户不存在。
 
 **可能原因**<br/>
 输入的用户名有误，系统中没有该用户。
@@ -66,10 +66,10 @@ The specified user id is not found.
 ## 17700005 指定的appId不存在
 
 **错误信息**<br/>
-The specified appId is not found.
+The specified app ID is not found.
 
 **错误描述**<br/>
-调用接口时，传入的appId为空字符串。
+调用appControl模块中的相关接口时，传入的appId为空字符串。
 
 **可能原因**<br/>
 传入的appId为空字符串。
@@ -83,7 +83,7 @@ The specified appId is not found.
 The specified permission is not found.
 
 **错误描述**<br/>
-调用接口时，传入的权限不存在。
+调用bundleManager模块中的getPermissionDef接口时，传入的权限不存在。
 
 **可能原因**<br/>
 1. 传入的permission名称拼写有误。
@@ -96,10 +96,10 @@ The specified permission is not found.
 ## 17700007 输入的设备Id有误
 
 **错误信息**<br/>
-The specified deviceId is not found.
+The specified device ID is not found.
 
 **错误描述**<br/>
-调用接口时，传入的设备id有误。
+调用distributedBundle模块相关接口时，传入的设备id有误。
 
 **可能原因**<br/>
 1. 传入的deviceId拼写有误。
@@ -112,10 +112,10 @@ The specified deviceId is not found.
 ## 17700010 文件解析失败导致应用安装失败
 
 **错误信息**<br/>
-Failed to install the hap since the hap fails to be parsed.
+Failed to install the HAP because the HAP fails to be parsed.
 
 **错误描述**<br/>
-文件解析失败导致应用安装失败。
+调用installer模块中的install接口时，传入的HAP包解析失败。
 
 **可能原因**<br/>
 1. hap包的格式不是zip格式。
@@ -130,10 +130,10 @@ Failed to install the hap since the hap fails to be parsed.
 ## 17700011 签名校验失败导致应用安装失败
 
 **错误信息**<br/>
-Failed to install the hap since the hap signature fails to be verified.
+Failed to install the HAP because the HAP signature fails to be verified.
 
 **错误描述**<br/>
-签名校验失败导致应用安装失败。
+调用installer模块中的install接口时，签名校验失败导致应用安装失败。
 
 **可能原因**<br/>
 
@@ -150,10 +150,10 @@ Failed to install the hap since the hap signature fails to be verified.
 ## 17700012 安装包路径无效或者文件过大导致应用安装失败
 
 **错误信息**<br/>
-Failed to install the hap since the path of the hap is invalid or too large size.
+Failed to install the HAP because the HAP path is invalid or the HAP is too large.
 
 **错误描述**<br/>
-安装包路径无效或者文件过大导致应用安装失败。
+调用installer模块中的install接口时，安装包路径无效或者文件过大导致应用安装失败。
 
 **可能原因**<br/>
 1. 输入错误，hap包的文件路径不存在。
@@ -168,10 +168,10 @@ Failed to install the hap since the path of the hap is invalid or too large size
 ## 17700015 多个hap包配置信息不同导致应用安装失败
 
 **错误信息**<br/>
-Failed to install haps since the configuration information of multi haps is inconsistent.
+Failed to install the HAPs because they have different configuration information.
 
 **错误描述**<br/>
-多个hap包配置信息不同导致应用安装失败。
+调用installer模块中的install接口时，多个hap包配置信息不同导致应用安装失败。
 
 **可能原因**<br/>
 多个hap包中配置文件app下面的字段不一致。
@@ -182,10 +182,10 @@ Failed to install haps since the configuration information of multi haps is inco
 ## 17700016 系统磁盘空间不足导致应用安装失败
 
 **错误信息**<br/>
-Failed to install the hap since the system disk space is insufficient.
+Failed to install the HAP because of insufficient system disk space.
 
 **错误描述**<br/>
-系统磁盘空间不足导致应用安装失败。
+调用installer模块中的install接口时，系统磁盘空间不足导致应用安装失败。
 
 **可能原因**<br/>
 系统空间不足。
@@ -196,10 +196,10 @@ Failed to install the hap since the system disk space is insufficient.
 ## 17700017 新安装的应用版本号低于已安装的版本号导致应用安装失败
 
 **错误信息**<br/>
-Failed to install the hap since the version of the newly installed hap is too early.
+Failed to install the HAP since the version of the HAP to install is too early.
 
 **错误描述**<br/>
-新安装的应用版本号低于已安装的版本号导致应用安装失败。
+调用installer模块中的install接口时，新安装的应用版本号低于已安装的版本号导致应用安装失败。
 
 **可能原因**<br/>
 新安装的应用版本号低于已安装的版本号。
@@ -213,7 +213,7 @@ Failed to install the hap since the version of the newly installed hap is too ea
 The preinstalled app cannot be uninstalled.
 
 **错误描述**<br/>
-预置应用无法卸载。
+调用installer模块中的uninstall接口卸载预置应用时，无法卸载。
 
 **可能原因**<br/>
 1. 传入的bundleName拼写有误。
@@ -229,7 +229,7 @@ The preinstalled app cannot be uninstalled.
 The specified uid is invalid.
 
 **错误描述**<br/>
-指定的uid无效。
+调用bundleManager模块中的getBundleNameByUid接口时，指定的uid无效。
 
 **可能原因**<br/>
 1. 传入的uid拼写有误。
@@ -245,7 +245,7 @@ The specified uid is invalid.
 The input source file is invalid.
 
 **错误描述**<br/>
-输入的待解析源文件无效。
+调用bundleManager模块中的getBundleArchiveInfo接口时，传入的HAP路径无效。
 
 **可能原因**<br/>
 1. 待解析的源文件不存在。
@@ -261,7 +261,7 @@ The input source file is invalid.
 The specified default app does not exist.
 
 **错误描述**<br/>
-指定的默认应用不存在。
+调用defaultAppManager模块中的getDefaultApplication接口时，指定的默认应用不存在。
 
 **可能原因**<br/>
 设备没有设置对应的默认应用。
@@ -272,10 +272,10 @@ The specified default app does not exist.
 ## 17700024 没有相应的配置文件
 
 **错误信息**<br/>
-Failed to get profile since no profile in the hap.
+Failed to get the profile because there is no profile in the HAP.
 
 **错误描述**<br/>
-没有相应的配置文件。
+调用查询profile文件的相关接口时，没有相应的配置文件。
 
 **可能原因**<br/>
 1. 输入的metadata name在配置文件中不存在。
@@ -291,7 +291,7 @@ Failed to get profile since no profile in the hap.
 The specified type is invalid.
 
 **错误描述**<br/>
-输入的type无效。
+调用defaultAppManager模块的相关接口时，输入的type无效。
 
 **可能原因**<br/>
 1. 输入的type拼写有误。
@@ -306,7 +306,7 @@ The specified type is invalid.
 The specified bundle is disabled.
 
 **错误描述**<br/>
-指定应用被禁用。
+当调用查询应用的相关信息接口时，指定应用被禁用。
 
 **可能原因**<br/>
 设备上对应的应用已经被禁用，无法查询。
@@ -320,7 +320,7 @@ The specified bundle is disabled.
 The distributed service is not running.
 
 **错误描述**<br/>
-分布式服务未启动。
+当调用distributedBundle模块的相关接口时，分布式服务未启动。
 
 **可能原因**<br/>
 设备未组网。
@@ -330,10 +330,10 @@ The distributed service is not running.
 ## 17700028 输入的ability与type不匹配
 
 **错误信息**<br/>
-The distributed service is not running.
+The ability does not match the type.
 
 **错误描述**<br/>
-输入的ability与type不匹配。
+当调用defaultAppManager模块中的setDefaultApplication接口时，输入的ability与type不匹配。
 
 **可能原因**<br/>
 输入的ability和type拼写有误。
@@ -347,7 +347,7 @@ The distributed service is not running.
 The specified ability is disabled.
 
 **错误描述**<br/>
-指定的ability被禁用。
+当调用查询ability相关信息的接口时，指定的ability被禁用。
 
 **可能原因**<br/>
 指定的ability被禁用。
@@ -358,10 +358,10 @@ The specified ability is disabled.
 ## 17700030 指定的应用不支持清除缓存文件
 
 **错误信息**<br/>
-The specified bundle does not support clearing cache files.
+The specified bundle does not support clearing of cache files.
 
 **错误描述**<br/>
-指定的应用不支持清除缓存文件。
+当调用bundleManager模块中的cleanBundleCacheFiles接口时，指定的应用不支持清除缓存文件。
 
 **可能原因**<br/>
 指定的应用为系统应用且在签名证书中配置了不能清除数据(AllowAppDataNotCleared)的字段。
