@@ -15,7 +15,6 @@
     - 开发基础知识
         - [应用包结构说明(FA模型)](quick-start/package-structure.md)
         - [应用包结构说明(Stage模型)](quick-start/stage-structure.md)
-        - [资源文件的分类](quick-start/basic-resource-file-categories.md)
         - [SysCap说明](quick-start/syscap.md)
 - 开发
     - [Ability开发](ability/Readme-CN.md)
