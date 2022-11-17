@@ -8,7 +8,7 @@ The startup subsystem is responsible for starting key system processes and servi
 
     This module can be used on platforms powered by LiteOS Cortex-A or Linux kernel.
 
-    The module starts system service processes from the time the kernel loads the first user-space process to the time the first application is started. In addition to loading key system processes, it needs to configure their permissions during the startup and keep the specified process alive after sub-processes are started. If a key process exits abnormally, the module needs to perform a system restart. For details, see [init Module](../device-dev/subsystems/subsys-boot-init.md).
+    The module starts system service processes from the time the kernel loads the first user-space process to the time the first application is started. In addition to loading key system processes, it needs to configure their permissions during the startup and keep the specified process alive after sub-processes are started. If a key process exits abnormally, the module needs to perform a system restart. For details, see [init Module](../device-dev/subsystems/subsys-boot-init-cfg.md).
 
 
 -   appspawn
@@ -27,7 +27,7 @@ The startup subsystem is responsible for starting key system processes and servi
 
     This module obtains and sets system attributes.
 
-    The module can be used on all platforms. Supported system attributes consist of default, OEM-specified, and custom system attributes. OEM-specified system attributes provide only default values. The specific values need to be adjusted as required. For details, see [syspara Module](../device-dev/subsystems/subsys-boot-syspara.md).
+    The module can be used on all platforms. Supported system attributes consist of default, OEM-specified, and custom system attributes. OEM-specified system attributes provide only default values. The specific values need to be adjusted as required. For details, see [syspara Module](../device-dev/subsystems/subsys-boot-init-sysparam.md).
 
 
 ## Directory Structure<a name="section161941989596"></a>
