@@ -565,6 +565,7 @@
     - [Development on Application Permission Management](subsystems/subsys-security-rightmanagement.md)
     - [Development on IPC Authentication](subsystems/subsys-security-communicationverify.md)
     - [Development on Device Security Level Management](subsystems/subsys-security-devicesecuritylevel.md)
+    - [Development on HUKS](subsystems/subsys-security-huks-guide.md)
 
   - Startup
     - [Startup](subsystems/subsys-boot-overview.md)
