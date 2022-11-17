@@ -44,7 +44,7 @@ setDateTime(admin: Want, time: number, callback: AsyncCallback\<void>): void
 
 **错误码**：
 
-以下的错误码的详细介绍请参见[企业设备管理错误码](../errorcodes/errorcode-EnterpriseDeviceManager.md)
+以下的错误码的详细介绍请参见[企业设备管理错误码](../errorcodes/errorcode-enterpriseDeviceManager.md)
 
 | 类型      | 说明                                                                         |
 | ------- | ---------------------------------------------------------------------------- |
@@ -100,7 +100,7 @@ setDateTime(admin: Want, time: number): Promise\<void>
 
 **错误码**：
 
-以下的错误码的详细介绍请参见[企业设备管理错误码](../errorcodes/errorcode-EnterpriseDeviceManager.md)
+以下的错误码的详细介绍请参见[企业设备管理错误码](../errorcodes/errorcode-enterpriseDeviceManager.md)
 
 | 类型      | 说明                                                                         |
 | ------- | ---------------------------------------------------------------------------- |
