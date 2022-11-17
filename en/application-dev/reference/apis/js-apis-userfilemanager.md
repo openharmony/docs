@@ -23,7 +23,7 @@ Obtains a **UserFileManager** instance. This instance can be used to access and 
 
 | Name | Type   | Mandatory| Description                      |
 | ------- | ------- | ---- | -------------------------- |
-| context | [Context](#../apis/js-apis-Context.md) | Yes  | Context of the ability instance.|
+| context | [Context](../apis/js-apis-Context.md) | Yes  | Context of the ability instance.|
 
 **Return value**
 
@@ -1210,7 +1210,7 @@ Obtains the thumbnail of this file asset. This API uses an asynchronous callback
 
 | Name     | Type                                 | Mandatory  | Description              |
 | -------- | ----------------------------------- | ---- | ---------------- |
-| callback | AsyncCallback&lt;[image.PixelMap](#../apis/js-apis-image.md#pixelmap7)&gt; | Yes   | Callback invoked to return the pixel map of the thumbnail.|
+| callback | AsyncCallback&lt;[image.PixelMap](../apis/js-apis-image.md#pixelmap7)&gt; | Yes   | Callback invoked to return the pixel map of the thumbnail.|
 
 **Example**
 
@@ -1248,7 +1248,7 @@ Obtains the file thumbnail of the given size. This API uses an asynchronous call
 | Name     | Type                                 | Mandatory  | Description              |
 | -------- | ----------------------------------- | ---- | ---------------- |
 | size     | [Size](#size)                      | Yes   | Size of the thumbnail to obtain.           |
-| callback | AsyncCallback&lt;[image.PixelMap](#../apis/js-apis-image.md#pixelmap7)&gt; | Yes   | Callback invoked to return the pixel map of the thumbnail.|
+| callback | AsyncCallback&lt;[image.PixelMap](../apis/js-apis-image.md#pixelmap7)&gt; | Yes   | Callback invoked to return the pixel map of the thumbnail.|
 
 **Example**
 
@@ -1292,7 +1292,7 @@ Obtains the file thumbnail of the given size. This API uses a promise to return 
 
 | Type                           | Description                   |
 | ----------------------------- | --------------------- |
-| Promise&lt;[image.PixelMap](#../apis/js-apis-image.md#pixelmap7)&gt; | Promise used to return the pixel map of the thumbnail.|
+| Promise&lt;[image.PixelMap](../apis/js-apis-image.md#pixelmap7)&gt; | Promise used to return the pixel map of the thumbnail.|
 
 **Example**
 
