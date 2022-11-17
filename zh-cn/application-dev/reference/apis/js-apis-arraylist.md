@@ -422,8 +422,6 @@ arrayList.add(4);
 arrayList.add(5);
 arrayList.add(4);
 arrayList.removeByRange(2, 4);
-arrayList.removeByRange(4, 3);
-arrayList.removeByRange(2, 6);
 try {
   arraylist.removeByRange.bind({}, 2, 4)(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
 } catch(err) {

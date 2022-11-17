@@ -309,6 +309,8 @@ reportNetConnected(netHandle: NetHandle, callback: AsyncCallback&lt;void&gt;): v
 
 Reports connection of the data network. This API uses an asynchronous callback to return the result.
 
+If this API is called, the application considers that the network connection state (**ohos.net.connection.NetCap.NET_CAPABILITY_VAILDATED**) is inconsistent with that in the network management module.
+
 **Permission required**: ohos.permission.GET_NETWORK_INFO and ohos.permission.INTERNET
 
 **System capability**: SystemCapability.Communication.NetManager.Core
@@ -337,6 +339,8 @@ reportNetConnected(netHandle: NetHandle): Promise&lt;void&gt;
 
 Reports connection of the data network. This API uses a promise to return the result.
 
+If this API is called, the application considers that the network connection state (**ohos.net.connection.NetCap.NET_CAPABILITY_VAILDATED**) is inconsistent with that in the network management module.
+
 **Permission required**: ohos.permission.GET_NETWORK_INFO and ohos.permission.INTERNET
 
 **System capability**: SystemCapability.Communication.NetManager.Core
@@ -351,7 +355,7 @@ Reports connection of the data network. This API uses a promise to return the re
 
 | Type| Description|
 | -------- | -------- |
-| Promise&lt;void&gt; | Promise used to return the result.|
+| Promise&lt;void&gt; | Promise that returns no value.|
 
 **Example**
 
@@ -369,6 +373,8 @@ connection.getDefaultNet().then(function (netHandle) {
 reportNetDisconnected(netHandle: NetHandle, callback: AsyncCallback&lt;void&gt;): void
 
 Reports disconnection of the data network. This API uses an asynchronous callback to return the result.
+
+If this API is called, the application considers that the network connection state (**ohos.net.connection.NetCap.NET_CAPABILITY_VAILDATED**) is inconsistent with that in the network management module.
 
 **Permission required**: ohos.permission.GET_NETWORK_INFO and ohos.permission.INTERNET
 
@@ -398,6 +404,8 @@ reportNetDisconnected(netHandle: NetHandle): Promise&lt;void&gt;
 
 Reports disconnection of the data network. This API uses a promise to return the result.
 
+If this API is called, the application considers that the network connection state (**ohos.net.connection.NetCap.NET_CAPABILITY_VAILDATED**) is inconsistent with that in the network management module.
+
 **Permission required**: ohos.permission.GET_NETWORK_INFO and ohos.permission.INTERNET
 
 **System capability**: SystemCapability.Communication.NetManager.Core
@@ -412,7 +420,7 @@ Reports disconnection of the data network. This API uses a promise to return the
 
 | Type| Description|
 | -------- | -------- |
-| Promise&lt;void&gt; | Promise used to return the result.|
+| Promise&lt;void&gt; | Promise that returns no value.|
 
 **Example**
 
@@ -521,7 +529,7 @@ This is a system API.
 
 | Type                                       | Description                         |
 | ------------------------------------------- | ----------------------------- |
-| Promise\<void> | Promise used to return the result.|
+| Promise\<void> | Promise that returns no value.|
 
 **Example**
 
@@ -570,7 +578,7 @@ This is a system API.
 
 | Type                                       | Description                         |
 | ------------------------------------------- | ----------------------------- |
-| Promise\<void> | Promise used to return the result.|
+| Promise\<void> | Promise that returns no value.|
 
 **Example**
 
@@ -888,7 +896,7 @@ Binds a **TCPSocket** or **UDPSocket** object to the data network. This API uses
 
 | Type          | Description                  |
 | -------------- | ---------------------- |
-| Promise\<void> | Promise used to return the result.|
+| Promise\<void> | Promise that returns no value.|
 
 **Example**
 

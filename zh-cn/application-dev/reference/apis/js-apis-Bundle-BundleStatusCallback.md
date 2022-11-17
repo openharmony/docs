@@ -1,7 +1,5 @@
 # BundleStatusCallback
 
-
-
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
 > 从API version 9开始不再支持。建议使用[bundleMonitor](js-apis-bundleMonitor.md)替代。
 
@@ -18,9 +16,6 @@
 
 | 监听类型   | 注册回调                                          | 说明                                   |
 | ------ | --------------------------------------------- | -------------------------------------- |
-| add    | (bundleName : string, userId: number) => void | 获取添加的launcherStatusCallback回调。 |
-| update | (bundleName : string, userId: number) => void | 获取编辑的launcherStatusCallback回调。 |
-| remove | (bundleName : string, userId: number) => void | 获取移除的launcherStatusCallback回调。 |
-
-
-
+| add    | (bundleName : string, userId: number) => void | 获取应用安装时的信息。 |
+| update | (bundleName : string, userId: number) => void | 获取应用更新时的信息。 |
+| remove | (bundleName : string, userId: number) => void | 获取应用卸载时的信息。 |

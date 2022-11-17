@@ -35,14 +35,14 @@ Image(src: string | PixelMap | Resource)
 
 | 名称                  | 参数类型                                                | 描述                                                         |
 | --------------------- | ------------------------------------------------------- | ------------------------------------------------------------ |
-| alt                   | string \| [Resource](ts-types.md#resource类型) | 加载时显示的占位图，支持本地图片和网络图片。                 |
+| alt                   | string \| [Resource](ts-types.md#resource类型) | 加载时显示的占位图，支持本地图片。                 |
 | objectFit             | [ImageFit](ts-appendix-enums.md#imagefit)                           | 设置图片的缩放类型。<br/>默认值：ImageFit.Cover                  |
 | objectRepeat          | [ImageRepeat](ts-appendix-enums.md#imagerepeat)         | 设置图片的重复样式。<br/>默认值：NoRepeat<br/>**说明：**<br/>svg类型图源不支持该属性。 |
 | interpolation         | [ImageInterpolation](#imageinterpolation)               | 设置图片的插值效果，即减轻低清晰度图片在放大显示的时候出现的锯齿问题，仅针对图片放大插值。<br/>默认值：ImageInterpolation.None<br/>**说明：**<br/>svg类型图源不支持该属性。<br/>PixelMap资源不支持该属性。 |
 | renderMode            | [ImageRenderMode](#imagerendermode)                     | 设置图片渲染的模式。<br/>默认值：ImageRenderMode.Original<br/>**说明：**<br/>svg类型图源不支持该属性。 |
 | sourceSize            | {<br/>width:&nbsp;number,<br/>height:&nbsp;number<br/>} | 设置图片裁剪尺寸，将原始图片解码成pixelMap，指定尺寸的图片，单位为px。<br/>**说明：**<br/>PixelMap资源不支持该属性。 |
 | matchTextDirection     | boolean | 设置图片是否跟随系统语言方向，在RTL语言环境下显示镜像翻转显示效果。<br/>默认值：false   |
-| fitOriginalSize        | boolean | 图片组件尺寸未设置时，其显示尺寸是否跟随图源尺寸。<br/>默认值：true    |
+| fitOriginalSize        | boolean | 图片组件尺寸未设置时，其显示尺寸是否跟随图源尺寸。<br/>默认值：false    |
 | fillColor              | [ResourceColor](ts-types.md#resourcecolor) | 填充颜色。设置的填充颜色会覆盖在图片上。仅对svg图源生效，设置后会替换svg图片的fill颜色。 |
 | autoResize             | boolean | 是否需要在图片解码过程中对图源做resize操作，该操作会根据显示区域的尺寸决定用于绘制的图源尺寸，有利于减少内存占用。<br/>默认值：true |
 | syncLoad<sup>8+</sup> | boolean                                  | 设置是否同步加载图片，默认是异步加载。同步加载时阻塞UI线程，不会显示占位图。<br/>默认值：false |

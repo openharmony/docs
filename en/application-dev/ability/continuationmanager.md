@@ -14,20 +14,20 @@ As the entry of the ability continuation capability, **continuationManager** is 
 ## Available APIs
 | API                                                                                         | Description|
 | ---------------------------------------------------------------------------------------------- | ----------- |
-| register(callback: AsyncCallback\<number>): void | Registers the continuation management service and obtains a token. This API does not involve any filter parameters and uses an asynchronous callback to return the result.|
-| register(options: ContinuationExtraParams, callback: AsyncCallback\<number>): void | Registers the continuation management service and obtains a token. This API uses an asynchronous callback to return the result.|
-| register(options?: ContinuationExtraParams): Promise\<number> | Registers the continuation management service and obtains a token. This API uses a promise to return the result.|
-| on(type: "deviceConnect", token: number, callback: Callback\<Array\<ContinuationResult>>): void | Subscribes to device connection events. This API uses an asynchronous callback to return the result.|
-| on(type: "deviceDisconnect", token: number, callback: Callback\<Array\<string>>): void | Subscribes to device disconnection events. This API uses an asynchronous callback to return the result.|
-| off(type: "deviceConnect", token: number): void | Unsubscribes from device connection events.|
-| off(type: "deviceDisconnect", token: number): void | Unsubscribes from device disconnection events.|
-| startDeviceManager(token: number, callback: AsyncCallback\<void>): void | Starts the device selection module to show the list of available devices. This API does not involve any filter parameters and uses an asynchronous callback to return the result.|
-| startDeviceManager(token: number, options: ContinuationExtraParams, callback: AsyncCallback\<void>): void | Starts the device selection module to show the list of available devices. This API uses an asynchronous callback to return the result.|
-| startDeviceManager(token: number, options?: ContinuationExtraParams): Promise\<void> | Starts the device selection module to show the list of available devices. This API uses a promise to return the result.|
-| updateConnectStatus(token: number, deviceId: string, status: DeviceConnectState, callback: AsyncCallback\<void>): void | Instructs the device selection module to update the device connection state. This API uses an asynchronous callback to return the result.|
-| updateConnectStatus(token: number, deviceId: string, status: DeviceConnectState): Promise\<void> | Instructs the device selection module to update the device connection state. This API uses a promise to return the result.|
-| unregister(token: number, callback: AsyncCallback\<void>): void | Deregisters the continuation management service. This API uses an asynchronous callback to return the result.|
-| unregister(token: number): Promise\<void> | Deregisters the continuation management service. This API uses a promise to return the result.|
+| registerContinuation(callback: AsyncCallback\<number>): void | Registers the continuation management service and obtains a token. This API does not involve any filter parameters and uses an asynchronous callback to return the result.|
+| registerContinuation(options: ContinuationExtraParams, callback: AsyncCallback\<number>): void | Registers the continuation management service and obtains a token. This API uses an asynchronous callback to return the result.|
+| registerContinuation(options?: ContinuationExtraParams): Promise\<number> | Registers the continuation management service and obtains a token. This API uses a promise to return the result.|
+| on(type: "deviceSelected", token: number, callback: Callback\<Array\<ContinuationResult>>): void | Subscribes to device connection events. This API uses an asynchronous callback to return the result.|
+| on(type: "deviceUnselected", token: number, callback: Callback\<Array\<ContinuationResult>>): void | Subscribes to device disconnection events. This API uses an asynchronous callback to return the result.|
+| off(type: "deviceSelected", token: number): void | Unsubscribes from device connection events.|
+| off(type: "deviceUnselected", token: number): void | Unsubscribes from device disconnection events.|
+| startContinuationDeviceManager(token: number, callback: AsyncCallback\<void>): void | Starts the device selection module to show the list of available devices. This API does not involve any filter parameters and uses an asynchronous callback to return the result.|
+| startContinuationDeviceManager(token: number, options: ContinuationExtraParams, callback: AsyncCallback\<void>): void | Starts the device selection module to show the list of available devices. This API uses an asynchronous callback to return the result.|
+| startContinuationDeviceManager(token: number, options?: ContinuationExtraParams): Promise\<void> | Starts the device selection module to show the list of available devices. This API uses a promise to return the result.|
+| updateContinuationState(token: number, deviceId: string, status: DeviceConnectState, callback: AsyncCallback\<void>): void | Instructs the device selection module to update the device connection state. This API uses an asynchronous callback to return the result.|
+| updateContinuationState(token: number, deviceId: string, status: DeviceConnectState): Promise\<void> | Instructs the device selection module to update the device connection state. This API uses a promise to return the result.|
+| unregisterContinuation(token: number, callback: AsyncCallback\<void>): void | Deregisters the continuation management service. This API uses an asynchronous callback to return the result.|
+| unregisterContinuation(token: number): Promise\<void> | Deregisters the continuation management service. This API uses a promise to return the result.|
 
 ## How to Develop
 1. Import the **continuationManager** module.
@@ -36,7 +36,7 @@ As the entry of the ability continuation capability, **continuationManager** is 
     import continuationManager from '@ohos.continuation.continuationManager';
     ```
 
-2. Apply for permissions required for cross-device continuation or collaboration operations.
+2. Apply for the **DISTRIBUTED_DATASYNC** permission.
 
     The permission application operation varies according to the ability model in use. In the FA mode, add the required permission in the `config.json` file, as follows:
 
@@ -57,6 +57,7 @@ As the entry of the ability continuation capability, **continuationManager** is 
     ```ts
     import abilityAccessCtrl from "@ohos.abilityAccessCtrl";
     import bundle from '@ohos.bundle';
+    import featureAbility from '@ohos.ability.featureAbility';
 
     async function requestPermission() {
         let permissions: Array<string> = [
@@ -124,7 +125,8 @@ As the entry of the ability continuation capability, **continuationManager** is 
         // If the permission is not granted, call requestPermissionsFromUser to apply for the permission.
         if (needGrantPermission) {
             try {
-                await globalThis.abilityContext.requestPermissionsFromUser(permissions);
+                // globalThis.context is Ability.context, which must be assigned a value in the MainAbility.ts file in advance.
+                await globalThis.context.requestPermissionsFromUser(permissions);
             } catch (err) {
                 console.error('app permission request permissions error' + JSON.stringify(err));
             }
@@ -140,13 +142,16 @@ As the entry of the ability continuation capability, **continuationManager** is 
 
     ```ts
     let token: number = -1; // Used to save the token returned after the registration. The token will be used when listening for device connection/disconnection events, starting the device selection module, and updating the device connection state.
-
-    continuationManager.register().then((data) => {
-        console.info('register finished, ' + JSON.stringify(data));
-        token = data; // Obtain a token and assign a value to the token variable.
-    }).catch((err) => {
-        console.error('register failed, cause: ' + JSON.stringify(err));
-    });
+    try {
+        continuationManager.registerContinuation().then((data) => {
+            console.info('registerContinuation finished, ' + JSON.stringify(data));
+            token = data; // Obtain a token and assign a value to the token variable.
+        }).catch((err) => {
+            console.error('registerContinuation failed, cause: ' + JSON.stringify(err));
+        });
+    } catch (err) {
+        console.error('registerContinuation failed, cause: ' + JSON.stringify(err));
+    }
     ```
 
 4. Listen for the device connection/disconnection state.
@@ -156,28 +161,31 @@ As the entry of the ability continuation capability, **continuationManager** is 
     ```ts
     let remoteDeviceId: string = ""; // Used to save the information about the remote device selected by the user, which will be used for cross-device continuation or collaboration.
 
-    // The token parameter is the token obtained during the registration.
-    continuationManager.on("deviceConnect", token, (continuationResults) => {
-        console.info('registerDeviceConnectCallback len: ' + continuationResults.length);
-        if (continuationResults.length <= 0) {
-            console.info('no selected device');
-            return;
-        }
-        remoteDeviceId = continuationResults[0].id; // Assign the deviceId of the first selected remote device to the remoteDeviceId variable.
+    try {
+        // The token parameter is the token obtained during the registration.
+        continuationManager.on("deviceSelected", token, (continuationResults) => {
+            console.info('registerDeviceSelectedCallback len: ' + continuationResults.length);
+            if (continuationResults.length <= 0) {
+                console.info('no selected device');
+                return;
+            }
+            remoteDeviceId = continuationResults[0].id; // Assign the deviceId of the first selected remote device to the remoteDeviceId variable.
 
-        // Pass the remoteDeviceId parameter to want.
-        let want = {
-            deviceId: remoteDeviceId,
-            bundleName: 'ohos.samples.continuationmanager',
-            abilityName: 'MainAbility'
-        };
-        // To initiate multi-device collaboration, you must obtain the ohos.permission.DISTRIBUTED_DATASYNC permission.
-        globalThis.abilityContext.startAbility(want).then((data) => {
-            console.info('StartRemoteAbility finished, ' + JSON.stringify(data));
-        }).catch((err) => {
-            console.error('StartRemoteAbility failed, cause: ' + JSON.stringify(err));
+            // Pass the remoteDeviceId parameter to want.
+            let want = {
+                deviceId: remoteDeviceId,
+                bundleName: 'ohos.samples.continuationmanager',
+                abilityName: 'MainAbility'
+            };
+            globalThis.abilityContext.startAbility(want).then((data) => {
+                console.info('StartRemoteAbility finished, ' + JSON.stringify(data));
+            }).catch((err) => {
+                console.error('StartRemoteAbility failed, cause: ' + JSON.stringify(err));
+            });
         });
-    });
+    } catch (err) {
+        console.error('on failed, cause: ' + JSON.stringify(err));
+    }
     ```
 
     The preceding multi-device collaboration operation is performed across devices in the stage model. For details about this operation in the FA model, see [Page Ability Development](https://gitee.com/openharmony/docs/blob/master/en/application-dev/ability/fa-pageability.md).
@@ -189,35 +197,43 @@ As the entry of the ability continuation capability, **continuationManager** is 
     let deviceConnectStatus: continuationManager.DeviceConnectState = continuationManager.DeviceConnectState.CONNECTED;
 
     // The token parameter is the token obtained during the registration, and the remoteDeviceId parameter is the remoteDeviceId obtained.
-    continuationManager.updateConnectStatus(token, remoteDeviceId, deviceConnectStatus).then((data) => {
-        console.info('updateConnectStatus finished, ' + JSON.stringify(data));
-    }).catch((err) => {
-        console.error('updateConnectStatus failed, cause: ' + JSON.stringify(err));
-    });
+    try {
+        continuationManager.updateContinuationState(token, remoteDeviceId, deviceConnectStatus).then((data) => {
+            console.info('updateContinuationState finished, ' + JSON.stringify(data));
+        }).catch((err) => {
+            console.error('updateContinuationState failed, cause: ' + JSON.stringify(err));
+        });
+    } catch (err) {
+        console.error('updateContinuationState failed, cause: ' + JSON.stringify(err));
+    }
     ```
 
     Listen for the device disconnection state so that the user can stop cross-device continuation or collaboration in time. The sample code is as follows:
 
     ```ts
-    // The token parameter is the token obtained during the registration.
-    continuationManager.on("deviceDisconnect", token, (deviceIds) => {
-        console.info('onDeviceDisconnect len: ' + deviceIds.length);
-        if (deviceIds.length <= 0) {
-            console.info('no unselected device');
-            return;
-        }
+    try {
+        // The token parameter is the token obtained during the registration.
+        continuationManager.on("deviceUnselected", token, (continuationResults) => {
+            console.info('onDeviceUnselected len: ' + continuationResults.length);
+            if (continuationResults.length <= 0) {
+                console.info('no unselected device');
+                return;
+            }
 
-        // Update the device connection state.
-        let unselectedDeviceId: string = deviceIds[0]; // Assign the deviceId of the first deselected remote device to the unselectedDeviceId variable.
-        let deviceConnectStatus: continuationManager.DeviceConnectState = continuationManager.DeviceConnectState.DISCONNECTING; // Device disconnected.
+            // Update the device connection state.
+            let unselectedDeviceId: string = continuationResults[0].id; // Assign the deviceId of the first deselected remote device to the unselectedDeviceId variable.
+            let deviceConnectStatus: continuationManager.DeviceConnectState = continuationManager.DeviceConnectState.DISCONNECTING; // Device disconnected.
 
-        // The token parameter is the token obtained during the registration, and the unselectedDeviceId parameter is the unselectedDeviceId obtained.
-        continuationManager.updateConnectStatus(token, unselectedDeviceId, deviceConnectStatus).then((data) => {
-            console.info('updateConnectStatus finished, ' + JSON.stringify(data));
-        }).catch((err) => {
-            console.error('updateConnectStatus failed, cause: ' + JSON.stringify(err));
+            // The token parameter is the token obtained during the registration, and the unselectedDeviceId parameter is the unselectedDeviceId obtained.
+            continuationManager.updateContinuationState(token, unselectedDeviceId, deviceConnectStatus).then((data) => {
+                console.info('updateContinuationState finished, ' + JSON.stringify(data));
+            }).catch((err) => {
+                console.error('updateContinuationState failed, cause: ' + JSON.stringify(err));
+            });
         });
-    });
+    } catch (err) {
+        console.error('updateContinuationState failed, cause: ' + JSON.stringify(err));
+    }
     ```
 
 5. Start the device selection module to show the list of available devices on the network.
@@ -231,12 +247,16 @@ As the entry of the ability continuation capability, **continuationManager** is 
         continuationMode: continuationManager.ContinuationMode.COLLABORATION_SINGLE // Single-choice mode of the device selection module.
     };
 
-    // The token parameter is the token obtained during the registration.
-    continuationManager.startDeviceManager(token, continuationExtraParams).then((data) => {
-        console.info('startDeviceManager finished, ' + JSON.stringify(data));
-    }).catch((err) => {
-        console.error('startDeviceManager failed, cause: ' + JSON.stringify(err));
-    });
+    try {
+        // The token parameter is the token obtained during the registration.
+        continuationManager.startContinuationDeviceManager(token, continuationExtraParams).then((data) => {
+            console.info('startContinuationDeviceManager finished, ' + JSON.stringify(data));
+        }).catch((err) => {
+            console.error('startContinuationDeviceManager failed, cause: ' + JSON.stringify(err));
+        });
+    } catch (err) {
+        console.error('startContinuationDeviceManager failed, cause: ' + JSON.stringify(err));
+    }
     ```
 
 6. If you do not need to perform cross-device migration or collaboration operations, you can deregister the continuation management service, by passing the token obtained during the registration.
@@ -244,10 +264,14 @@ As the entry of the ability continuation capability, **continuationManager** is 
     The sample code is as follows:
 
     ```ts
-    // The token parameter is the token obtained during the registration.
-    continuationManager.unregister(token).then((data) => {
-        console.info('unregister finished, ' + JSON.stringify(data));
-    }).catch((err) => {
-        console.error('unregister failed, cause: ' + JSON.stringify(err));
-    });
+    try {
+        // The token parameter is the token obtained during the registration.
+        continuationManager.unregisterContinuation(token).then((data) => {
+            console.info('unregisterContinuation finished, ' + JSON.stringify(data));
+        }).catch((err) => {
+            console.error('unregisterContinuation failed, cause: ' + JSON.stringify(err));
+        });
+    } catch (err) {
+        console.error('unregisterContinuation failed, cause: ' + JSON.stringify(err));
+    }
     ```

@@ -38,7 +38,8 @@ TimePicker(options?: {selected?: Date})
 | ---------------------------------------- | ----------- |
 | onChange(callback:&nbsp;(value:&nbsp;TimePickerResult )&nbsp;=&gt;&nbsp;void) | 选择时间时触发该事件。 |
 
-### TimePickerResult对象说明
+## TimePickerResult对象说明
+
 | 名称     | 参数类型   | 描述      |
 | ------ | ------ | ------- |
 | hour   | number | 选中时间的时。 |

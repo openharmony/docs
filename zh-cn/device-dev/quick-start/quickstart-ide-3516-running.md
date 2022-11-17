@@ -30,13 +30,13 @@
 
 1. 在启动界面进入bin目录。
    
-   ```
+   ```shell
    cd bin
    ```
 
 2. 进入bin目录后可以看到helloworld文件，通过以下命令运行helloworld程序。
    
-   ```
+   ```shell
    ./helloworld
    ```
 

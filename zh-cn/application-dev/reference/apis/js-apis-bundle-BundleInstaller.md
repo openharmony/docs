@@ -1,17 +1,13 @@
 # BundleInstaller
 
-
-
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
 > 本模块首批接口从API version 7 开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
+在设备上安装、升级和卸载应用
 
+## BundleInstaller.install<sup>(deprecated)<sup>
 
-在设备上安装、升级和删除捆绑包
-
-
-
-## BundleInstaller.install
+> 从API version 9开始不再维护，建议使用[install](js-apis-installer.md)替代。
 
 install(bundleFilePaths: Array&lt;string&gt;, param: InstallParam, callback: AsyncCallback&lt;InstallStatus&gt;): void;
 
@@ -35,7 +31,9 @@ SystemCapability.BundleManager.BundleFramework
 | param           | [InstallParam](#installparam)                        | 是   | 指定安装所需的其他参数。                                     |
 | callback        | AsyncCallback&lt;[InstallStatus](#installstatus)&gt; | 是   | 程序启动作为入参的回调函数，返回安装状态信息。               |
 
-## BundleInstaller.uninstall
+## BundleInstaller.uninstall<sup>(deprecated)<sup>
+
+> 从API version 9开始不再维护，建议使用[uninstall](js-apis-installer.md)替代。
 
 uninstall(bundleName: string, param: InstallParam, callback: AsyncCallback&lt;InstallStatus&gt;): void;
 
@@ -59,7 +57,9 @@ SystemCapability.BundleManager.BundleFramework
 | param      | [InstallParam](#installparam)                        | 是   | 指定安装所需的其他参数。                       |
 | callback   | AsyncCallback&lt;[InstallStatus](#installstatus)&gt; | 是   | 程序启动作为入参的回调函数，返回安装状态信息。 |
 
-## BundleInstaller.recover<sup>8+</sup>
+## BundleInstaller.recover<sup>(deprecated)<sup>
+
+> 从API version 9开始不再维护，建议使用[recover](js-apis-installer.md)替代。
 
 recover(bundleName: string, param: InstallParam, callback: AsyncCallback&lt;InstallStatus&gt;): void;
 
@@ -83,20 +83,7 @@ SystemCapability.BundleManager.BundleFramework
 | param      | [InstallParam](#installparam)                        | 是   | 指定安装所需的其他参数。                       |
 | callback   | AsyncCallback&lt;[InstallStatus](#installstatus)&gt; | 是   | 程序启动作为入参的回调函数，返回安装状态信息。 |
 
-## HashParam<sup>9+</sup>
-
-应用程序安装卸载信息
-
- **系统能力:** 以下各项对应的系统能力均为SystemCapability.BundleManager.BundleFramework
-
- **系统API：**  此接口为系统接口，三方应用不支持调用
-
-| 名称       | 类型   | 说明             |
-| ---------- | ------ | ---------------- |
-| moduleName | string | 应用程序模块名称 |
-| hashValue  | string | 哈希值           |
-
-## InstallParam
+## InstallParam<sup>(deprecated)<sup>
 
 应用程序安装卸载信息
 
@@ -109,10 +96,8 @@ SystemCapability.BundleManager.BundleFramework
 | userId                         | number                         | 指示用户id         |
 | installFlag                    | number                         | 指示安装标志       |
 | isKeepData                     | boolean                        | 指示参数是否有数据 |
-| hashParams<sup>9+</sup>        | Array<[HashParam](#hashparam)> | 哈希值参数         |
-| crowdtestDeadline<sup>9+</sup> | number                         | 测试包的被杀死时间 |
 
-## InstallStatus
+## InstallStatus<sup>(deprecated)<sup>
 
 应用程序安装状态
 

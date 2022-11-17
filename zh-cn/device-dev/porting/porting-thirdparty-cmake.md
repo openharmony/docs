@@ -107,7 +107,7 @@ CMake方式可通过指定工具链进行交叉编译，修改并编译该库，
 ## 测试
 
 1. 搭建OpenHarmony环境
-   以Hi3516DV300为例，编译出OpenHarmony镜像，烧写到开发板，相关操作可参考[快速入门小型系统部分](../quick-start/Readme-CN.md)。
+   以Hi3516DV300为例，编译出OpenHarmony镜像，烧写到开发板，相关操作可参考[快速入门小型系统部分](../quick-start/quickstart-overview.md)。
 
    进入系统如下所示：
 

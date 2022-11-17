@@ -36,9 +36,10 @@ on(type: "key", keyOptions: KeyOptions, callback: Callback&lt;KeyOptions&gt;): v
 **示例：** 
 
 ```js
-let powerKeyCode = 18;
+let leftAltKey = 2045;
+let tabKey = 2049;
 try {
-  inputConsumer.on("key", {preKeys: [], finalKey: powerKeyCode, isFinalKeyDown: true, finalKeyDownDuration: 0}, keyOptions => {
+  inputConsumer.on("key", {preKeys: [leftAltKey], finalKey: tabKey, isFinalKeyDown: true, finalKeyDownDuration: 0}, keyOptions => {
     console.log(`keyOptions: ${JSON.stringify(keyOptions)}`);
   });
 } catch (error) {
@@ -66,27 +67,33 @@ off(type: "key", keyOptions: KeyOptions, callback?: Callback&lt;KeyOptions&gt;):
 **示例：** 
 
 ```js
+let leftAltKey = 2045;
+let tabKey = 2049;
 // 取消订阅单个回调函数
 let callback = function (keyOptions) {
   console.log(`keyOptions: ${JSON.stringify(keyOptions)}`);
 }
-let keyOption = {preKeys: [], finalKey: powerKeyCode, isFinalKeyDown: true, finalKeyDownDuration: 0};
+let keyOption = {preKeys: [leftAltKey], finalKey: tabKey, isFinalKeyDown: true, finalKeyDownDuration: 0};
 try {
   inputConsumer.on("key", keyOption, callback);
   inputConsumer.off("key", keyOption, callback);
+  console.log(`Unsubscribe success`);
 } catch (error) {
   console.log(`Execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 ```js
+let leftAltKey = 2045;
+let tabKey = 2049;
 // 取消订阅所有回调函数
 let callback = function (keyOptions) {
   console.log(`keyOptions: ${JSON.stringify(keyOptions)}`);
 }
-let keyOption = {preKeys: [], finalKey: powerKeyCode, isFinalKeyDown: true, finalKeyDownDuration: 0};
+let keyOption = {preKeys: [leftAltKey], finalKey: tabKey, isFinalKeyDown: true, finalKeyDownDuration: 0};
 try {
   inputConsumer.on("key", keyOption, callback);
   inputConsumer.off("key", keyOption);
+  console.log(`Unsubscribe success`);
 } catch (error) {
   console.log(`Execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }

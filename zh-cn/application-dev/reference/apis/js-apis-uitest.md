@@ -6,11 +6,11 @@ UiTest提供模拟UI操作的能力，供开发者在测试场景使用，主要
 
 - [On<sup>9+</sup>](#on9)：提供控件特征描述能力，用于控件筛选匹配查找。
 - [Component<sup>9+</sup>](#component9)：代表UI界面上的指定控件，提供控件属性获取，控件点击，滑动查找，文本注入等能力。
-- [Driver<sup>9+</sup>](#driver9)：入口类，提供控件匹配/查找，按键注入，坐标点击/滑动，截图等能能力。
-- [UiWindow<sup>9+</sup>](#uiwindow9)：入口类，提供窗口属性获取，窗口拖动、调整窗口大小等能能力。
-- [By](#by)：提供控件特征描述能力，用于控件筛选匹配查找。从API version9开始不再维护，建议使用[[On<sup>9+</sup>](#on9)](#driver9)。
-- [UiComponent](#uicomponent)：代表UI界面上的指定控件，提供控件属性获取，控件点击，滑动查找，文本注入等能力。从API version9开始不再维护，建议使用[Component<sup>9+</sup>](#component9)。
-- [UiDriver](#uidriver)：入口类，提供控件匹配/查找，按键注入，坐标点击/滑动，截图等能能力。从API version9开始不再维护，建议使用[Driver<sup>9+</sup>](#driver9)。
+- [Driver<sup>9+</sup>](#driver9)：入口类，提供控件匹配/查找，按键注入，坐标点击/滑动，截图等能力。
+- [UiWindow<sup>9+</sup>](#uiwindow9)：入口类，提供窗口属性获取，窗口拖动、调整窗口大小等能力。
+- [By<sup>(deprecated)</sup>](#bydeprecated)：提供控件特征描述能力，用于控件筛选匹配查找。从API version 9开始不再维护，建议使用[On<sup>9+</sup>](#on9)。
+- [UiComponent<sup>(deprecated)</sup>](#uicomponentdeprecated)：代表UI界面上的指定控件，提供控件属性获取，控件点击，滑动查找，文本注入等能力。从API version 9开始不再维护，建议使用[Component<sup>9+</sup>](#component9)。
+- [UiDriver<sup>(deprecated)</sup>](#uidriverdeprecated)：入口类，提供控件匹配/查找，按键注入，坐标点击/滑动，截图等能力。从API version 9开始不再维护，建议使用[Driver<sup>9+</sup>](#driver9)。
 
 >**说明：**
 >
@@ -20,7 +20,7 @@ UiTest提供模拟UI操作的能力，供开发者在测试场景使用，主要
 ## 导入模块 
 
 ```js
-import {UiComponent, UiDriver, Component, Driver, UiWindow, ON, BY, MatchPattern, DisplayRotation, ResizeDirection, WindowMode, PointerMatrix} from '@ohos.uitest'
+import {UiComponent, UiDriver, Component, Driver, UiWindow, ON, BY, MatchPattern, DisplayRotation, ResizeDirection, WindowMode, PointerMatrix} from '@ohos.uitest';
 ```
 
 ## MatchPattern
@@ -118,11 +118,11 @@ import {UiComponent, UiDriver, Component, Driver, UiWindow, ON, BY, MatchPattern
 
 ## On<sup>9+</sup>
 
-UiTest框架在API9中，通过On类提供了丰富的控件特征描述API，用于进行控件筛选来匹配/查找出目标控件。<br>
+UiTest框架在API 9中，通过On类提供了丰富的控件特征描述API，用于进行控件筛选来匹配/查找出目标控件。<br>
 On提供的API能力具有以下几个特点:<br>1、支持单属性匹配和多属性组合匹配，例如同时指定目标控件text和id。<br>2、控件属性支持多种匹配模式。<br>3、支持控件绝对定位，相对定位，可通过[ON.isBefore](#isbefore)和[ON.isAfter](#isafter)等API限定邻近控件特征进行辅助定位。<br>On类提供的所有API均为同步接口，建议使用者通过静态构造器ON来链式创建On对象。
 
 ```js
-ON.text('123').type('button')
+ON.text('123').type('button');
 ```
 
 ### text<sup>9+</sup>
@@ -149,7 +149,7 @@ text(txt: string, pattern?: MatchPattern): On
 **示例：**
 
 ```js
-let on = ON.text('123') //使用静态构造器ON创建On对象，指定目标控件的text属性。
+let on = ON.text('123'); // 使用静态构造器ON创建On对象，指定目标控件的text属性。
 ```
 
 
@@ -176,7 +176,7 @@ id(id: string): On
 **示例：**
 
 ```js
-let on = ON.id(123) //使用静态构造器ON创建On对象，指定目标控件的id属性。
+let on = ON.id('123'); // 使用静态构造器ON创建On对象，指定目标控件的id属性。
 ```
 
 
@@ -203,7 +203,7 @@ type(tp: string): On
 **示例：**
 
 ```js
-let on = ON.type('button') //使用静态构造器ON创建On对象，指定目标控件的控件类型属性。
+let on = ON.type('button'); // 使用静态构造器ON创建On对象，指定目标控件的控件类型属性。
 ```
 
 
@@ -230,7 +230,7 @@ clickable(b?: boolean): On
 **示例：**
 
 ```js
-let on = ON.clickable(true) //使用静态构造器ON创建On对象，指定目标控件的可点击状态属性。
+let on = ON.clickable(true); // 使用静态构造器ON创建On对象，指定目标控件的可点击状态属性。
 ```
 
 ### longClickable<sup>9+</sup>
@@ -256,7 +256,7 @@ longClickable(b?: boolean): On
 **示例：**
 
 ```js
-let on = ON.longClickable(true) //使用静态构造器ON创建On对象，指定目标控件的可长按点击状态属性。
+let on = ON.longClickable(true); // 使用静态构造器ON创建On对象，指定目标控件的可长按点击状态属性。
 ```
 
 
@@ -283,7 +283,7 @@ scrollable(b?: boolean): On
 **示例：**
 
 ```js
-let on = ON.scrollable(true) //使用静态构造器ON创建On对象，指定目标控件的可滑动状态属性。
+let on = ON.scrollable(true); // 使用静态构造器ON创建On对象，指定目标控件的可滑动状态属性。
 ```
 
 ### enabled<sup>9+</sup>
@@ -309,7 +309,7 @@ enabled(b?: boolean): On
 **示例：**
 
 ```js
-let on = ON.enabled(true) //使用静态构造器ON创建On对象，指定目标控件的使能状态属性。
+let on = ON.enabled(true); // 使用静态构造器ON创建On对象，指定目标控件的使能状态属性。
 ```
 
 ### focused<sup>9+</sup>
@@ -335,7 +335,7 @@ focused(b?: boolean): On
 **示例：**
 
 ```js
-let on = ON.focused(true) //使用静态构造器ON创建On对象，指定目标控件的获焦状态属性。
+let on = ON.focused(true); // 使用静态构造器ON创建On对象，指定目标控件的获焦状态属性。
 ```
 
 ### selected<sup>9+</sup>
@@ -361,7 +361,7 @@ selected(b?: boolean): On
 **示例：**
 
 ```js
-let on = ON.selected(true) //使用静态构造器ON创建On对象，指定目标控件的被选中状态属性。
+let on = ON.selected(true); // 使用静态构造器ON创建On对象，指定目标控件的被选中状态属性。
 ```
 
 ### checked<sup>9+</sup>
@@ -387,7 +387,7 @@ checked(b?: boolean): On
 **示例：**
 
 ```js
-let on = ON.checked(true) //使用静态构造器ON创建On对象，指定目标控件的被勾选状态属性
+let on = ON.checked(true); // 使用静态构造器ON创建On对象，指定目标控件的被勾选状态属性
 ```
 
 ### checkable<sup>9+</sup>
@@ -413,7 +413,7 @@ checkable(b?: boolean): On
 **示例：**
 
 ```js
-let on = ON.checkable(true) //使用静态构造器ON创建On对象，指定目标控件的能否被勾选状态属性。
+let on = ON.checkable(true); // 使用静态构造器ON创建On对象，指定目标控件的能否被勾选状态属性。
 ```
 
 ### isBefore<sup>9+</sup>
@@ -439,7 +439,7 @@ isBefore(on: On): On
 **示例：**
 
 ```js
-let on = ON.isBefore(ON.text('123')) //使用静态构造器ON创建On对象，指定目标控件位于给出的特征属性控件之前。
+let on = ON.isBefore(ON.text('123')); // 使用静态构造器ON创建On对象，指定目标控件位于给出的特征属性控件之前。
 ```
 
 ### isAfter<sup>9+</sup>
@@ -465,7 +465,7 @@ isAfter(on: On): On
 **示例：**
 
 ```js
-let on = ON.isAfter(ON.text('123')) //使用静态构造器ON创建On对象，指定目标控件位于给出的特征属性控件之后。
+let on = ON.isAfter(ON.text('123')); // 使用静态构造器ON创建On对象，指定目标控件位于给出的特征属性控件之后。
 ```
 
 ## Component<sup>9+</sup>
@@ -494,9 +494,9 @@ click(): Promise\<void>
 
 ```js
 async function demo() {
-    let driver = Driver.create()
-    let button = await driver.findComponent(ON.type('button'))
-    await button.click()
+    let driver = Driver.create();
+    let button = await driver.findComponent(ON.type('button'));
+    await button.click();
 }
 ```
 
@@ -521,9 +521,9 @@ doubleClick(): Promise\<void>
 
 ```js
 async function demo() {
-    let driver = Driver.create()
-    let button = await driver.findComponent(ON.type('button'))
-    await button.doubleClick()
+    let driver = Driver.create();
+    let button = await driver.findComponent(ON.type('button'));
+    await button.doubleClick();
 }
 ```
 
@@ -548,9 +548,9 @@ longClick(): Promise\<void>
 
 ```js
 async function demo() {
-    let driver = Driver.create()
-    let button = await driver.findComponent(ON.type('button'))
-    await button.longClick()
+    let driver = Driver.create();
+    let button = await driver.findComponent(ON.type('button'));
+    await button.longClick();
 }
 ```
 
@@ -581,9 +581,9 @@ getId(): Promise\<string>
 
 ```js
 async function demo() {
-    let driver = Driver.create()
-    let button = await driver.findComponent(ON.type('button'))
-    let num = await button.getId()
+    let driver = Driver.create();
+    let button = await driver.findComponent(ON.type('button'));
+    let num = await button.getId();
 }
 ```
 
@@ -614,9 +614,9 @@ getText(): Promise\<string>
 
 ```js
 async function demo() {
-    let driver = Driver.create()
-    let button = await driver.findComponent(ON.type('button'))
-    let text = await button.getText()
+    let driver = Driver.create();
+    let button = await driver.findComponent(ON.type('button'));
+    let text = await button.getText();
 }
 ```
 
@@ -647,9 +647,9 @@ getType(): Promise\<string>
 
 ```js
 async function demo() {
-    let driver = Driver.create()
-    let button = await driver.findComponent(ON.type('button'))
-    let type = await button.getType()
+    let driver = Driver.create();
+    let button = await driver.findComponent(ON.type('button'));
+    let type = await button.getType();
 }
 ```
 
@@ -680,9 +680,9 @@ getBounds(): Promise\<Rect>
 
 ```js
 async function demo() {
-    let driver = Driver.create()
-    let button = await driver.findComponent(ON.type('button'))
-    let rect = await button.getBounds()
+    let driver = Driver.create();
+    let button = await driver.findComponent(ON.type('button'));
+    let rect = await button.getBounds();
 }
 ```
 
@@ -713,9 +713,9 @@ getBoundsCenter(): Promise\<Point>
 
 ```js
 async function demo() {
-    let driver = Driver.create()
-    let button = await driver.findComponent(ON.type('button'))
-    let point = await button.getBoundsCenter()
+    let driver = Driver.create();
+    let button = await driver.findComponent(ON.type('button'));
+    let point = await button.getBoundsCenter();
 }
 ```
 
@@ -746,13 +746,12 @@ isClickable(): Promise\<boolean>
 
 ```js
 async function demo() {
-    let driver = Driver.create()
-    let button = await driver.findComponent(ON.type('button'))
+    let driver = Driver.create();
+    let button = await driver.findComponent(ON.type('button'));
     if(await button.isClickable()) {
-        console.info('This button can be Clicked')
-    }
-    else{
-        console.info('This button can not be Clicked')
+        console.info('This button can be Clicked');
+    } else {
+        console.info('This button can not be Clicked');
     }
 }
 ```
@@ -784,13 +783,12 @@ isLongClickable(): Promise\<boolean>
 
 ```js
 async function demo() {
-    let driver = Driver.create()
-    let button = await driver.findComponent(ON.type('button'))
+    let driver = Driver.create();
+    let button = await driver.findComponent(ON.type('button'));
     if(await button.isLongClickable()) {
-        console.info('This button can longClick')
-    }
-    else{
-        console.info('This button can not longClick')
+        console.info('This button can longClick');
+    } else {
+        console.info('This button can not longClick');
     }
 }
 ```
@@ -822,13 +820,12 @@ isChecked(): Promise\<boolean>
 
 ```js
 async function demo() {
-    let driver = Driver.create()
-    let button = await driver.findComponent(ON.type('Checkbox'))
+    let driver = Driver.create();
+    let checkBox = await driver.findComponent(ON.type('Checkbox'));
     if(await checkBox.isChecked) {
-        console.info('This checkBox is checked')
-    }
-    else{
-        console.info('This checkBox is not checked')
+        console.info('This checkBox is checked');
+    } else {
+        console.info('This checkBox is not checked');
     }
 }
 ```
@@ -860,13 +857,12 @@ isCheckable(): Promise\<boolean>
 
 ```js
 async function demo() {
-    let driver = Driver.create()
-    let button = await driver.findComponent(ON.type('Checkbox'))
+    let driver = Driver.create();
+    let checkBox = await driver.findComponent(ON.type('Checkbox'));
     if(await checkBox.isCheckable) {
-        console.info('This checkBox is checkable')
-    }
-    else{
-        console.info('This checkBox is not checkable')
+        console.info('This checkBox is checkable');
+    } else {
+        console.info('This checkBox is not checkable');
     }
 }
 ```
@@ -898,13 +894,12 @@ isScrollable(): Promise\<boolean>
 
 ```js
 async function demo() {
-    let driver = Driver.create()
-    let button = await driver.findComponent(ON.scrollable(true))
+    let driver = Driver.create();
+    let scrollBar = await driver.findComponent(ON.scrollable(true));
     if(await scrollBar.isScrollable()) {
-        console.info('This scrollBar can be operated')
-    }
-    else{
-        console.info('This scrollBar can not be operated')
+        console.info('This scrollBar can be operated');
+    } else {
+        console.info('This scrollBar can not be operated');
     }
 }
 ```
@@ -937,13 +932,12 @@ isEnabled(): Promise\<boolean>
 
 ```js
 async function demo() {
-    let driver = Driver.create()
-    let button = await driver.findComponent(ON.type('button'))
+    let driver = Driver.create();
+    let button = await driver.findComponent(ON.type('button'));
     if(await button.isEnabled()) {
-        console.info('This button can be operated')
-    }
-    else{
-        console.info('This button can not be operated')
+        console.info('This button can be operated');
+    } else {
+        console.info('This button can not be operated');
     }
 }
 
@@ -976,13 +970,12 @@ isFocused(): Promise\<boolean>
 
 ```js
 async function demo() {
-    let driver = Driver.create()
-    let button = await driver.findComponent(ON.type('button'))
+    let driver = Driver.create();
+    let button = await driver.findComponent(ON.type('button'));
     if(await button.isFocused()) {
-        console.info('This button is focused')
-	}
-    else{
-        console.info('This button is not focused')
+        console.info('This button is focused');
+    } else {
+        console.info('This button is not focused');
 	}
 }
 ```
@@ -1014,13 +1007,12 @@ isSelected(): Promise\<boolean>
 
 ```js
 async function demo() {
-    let driver = Driver.create()
-    let button = await driver.findComponent(ON.type('button'))
+    let driver = Driver.create();
+    let button = await driver.findComponent(ON.type('button'));
     if(await button.isSelected()) {
-        console.info('This button is selected')
-	}
-    else{
-        console.info('This button is not selected')
+        console.info('This button is selected');
+	} else {
+        console.info('This button is not selected');
     }
 }
 ```
@@ -1052,9 +1044,9 @@ inputText(text: string): Promise\<void>
 
 ```js
 async function demo() {
-    let driver = Driver.create()
-    let button = await driver.findComponent(ON.text('hello world'))
-    await text.inputText('123')
+    let driver = Driver.create();
+    let text = await driver.findComponent(ON.text('hello world'));
+    await text.inputText('123');
 }
 ```
 
@@ -1077,9 +1069,9 @@ clearText(): Promise\<void>
 
 ```js
 async function demo() {
-    let driver = Driver.create()
-    let button = await driver.findComponent(ON.text('hello world'))
-    await text.clearText()
+    let driver = Driver.create();
+    let text = await driver.findComponent(ON.text('hello world'));
+    await text.clearText();
 }
 ```
 
@@ -1116,9 +1108,9 @@ scrollSearch(on: ON): Promise\<Component>
 
 ```js
 async function demo() {
-    let driver = Driver.create()
-    let button = await driver.findComponent(ON.type('Scroll'))
-    let button = await scrollBar.scrollSearch(ON.text('next page'))
+    let driver = Driver.create();
+    let button = await driver.findComponent(ON.type('Scroll'));
+    let button = await scrollBar.scrollSearch(ON.text('next page'));
 }
 ```
 
@@ -1149,9 +1141,9 @@ scrollToTop(speed?: number): Promise\<void>
 
 ```js
 async function demo() {
-    let driver = Driver.create()
-    let button = await driver.findComponent(ON.type('Scroll'))
-    await scrollBar.scrollToTop()
+    let driver = Driver.create();
+    let scrollBar = await driver.findComponent(ON.type('Scroll'));
+    await scrollBar.scrollToTop();
 }
 ```
 
@@ -1182,9 +1174,9 @@ scrollToBottom(speed?: number): Promise\<void>
 
 ```js
 async function demo() {
-    let driver = Driver.create()
-    let button = await driver.findComponent(ON.type('Scroll'))
-    await scrollBar.scrollToBottom()
+    let driver = Driver.create();
+    let scrollBar = await driver.findComponent(ON.type('Scroll'));
+    await scrollBar.scrollToBottom();
 }
 ```
 
@@ -1215,10 +1207,10 @@ dragTo(target: Component): Promise\<void>
 
 ```js
 async function demo() {
-    let driver = Driver.create()
-    let button = await driver.findComponent(ON.type('button'))
-    let text = await driver.findComponent(ON.text('hello world'))
-    await button.dragTo(text)
+    let driver = Driver.create();
+    let button = await driver.findComponent(ON.type('button'));
+    let text = await driver.findComponent(ON.text('hello world'));
+    await button.dragTo(text);
     }
 ```
 
@@ -1249,9 +1241,9 @@ pinchOut(scale: number): Promise\<void>
 
 ```js
 async function demo() {
-    let driver = Driver.create()
-    let button = await driver.findComponent(ON.type('image'))
-    await image.pinchOut(1.5)
+    let driver = Driver.create();
+    let image = await driver.findComponent(ON.type('image'));
+    await image.pinchOut(1.5);
     }
 ```
 
@@ -1282,9 +1274,9 @@ pinchIn(scale: number): Promise\<void>
 
 ```js
 async function demo() {
-    let driver = Driver.create()
-    let button = await driver.findComponent(ON.type('image'))
-    await image.pinchIn(0.5)
+    let driver = Driver.create();
+    let image = await driver.findComponent(ON.type('image'));
+    await image.pinchIn(0.5);
     }
 ```
 
@@ -1319,7 +1311,7 @@ static create(): Driver
 
 ```js
 async function demo() {
-    let driver = Driver.create()
+    let driver = Driver.create();
 }
 ```
 
@@ -1349,8 +1341,8 @@ Driver对象在给定的时间内延时。
 
 ```js
 async function demo() {
-    let driver = Driver.create()
-    await driver.delayMs(1000)
+    let driver = Driver.create();
+    await driver.delayMs(1000);
 }
 ```
 
@@ -1386,8 +1378,8 @@ findComponent(on: On): Promise\<Component>
 
 ```js
 async function demo() {
-    let driver = Driver.create()
-    let button = await driver.findComponent(ON.text('next page'))
+    let driver = Driver.create();
+    let button = await driver.findComponent(ON.text('next page'));
 }
 ```
 
@@ -1423,8 +1415,8 @@ findComponents(on: On): Promise\<Array\<Component>>
 
 ```js
 async function demo() {
-    let driver = Driver.create()
-    let buttonList = await driver.findComponents(ON.text('next page'))
+    let driver = Driver.create();
+    let buttonList = await driver.findComponents(ON.text('next page'));
 }
 ```
 
@@ -1460,8 +1452,8 @@ findWindow(filter: WindowFilter): Promise\<UiWindow>
 
 ```js
 async function demo() {
-    let driver = Driver.create()
-    let window = await driver.findWindow({actived: true})
+    let driver = Driver.create();
+    let window = await driver.findWindow({actived: true});
 }
 ```
 
@@ -1498,8 +1490,8 @@ waitForComponent(on: On, time: number): Promise\<Component>
 
 ```js
 async function demo() {
-    let driver = Driver.create()
-    let button = await driver.waitForComponent(ON.text('next page'),500)
+    let driver = Driver.create();
+    let button = await driver.waitForComponent(ON.text('next page'),500);
 }
 ```
 
@@ -1530,8 +1522,8 @@ assertComponentExist(on: On): Promise\<void>
 
 ```js
 async function demo() {
-    let driver = Driver.create()
-    await driver.assertComponentExist(ON.text('next page'))
+    let driver = Driver.create();
+    await driver.assertComponentExist(ON.text('next page'));
 }
 ```
 
@@ -1555,8 +1547,8 @@ Driver对象进行点击BACK键的操作。
 
 ```js
 async function demo() {
-    let driver = Driver.create()
-    await driver.pressBack()
+    let driver = Driver.create();
+    await driver.pressBack();
 }
 ```
 
@@ -1586,8 +1578,8 @@ Driver对象采取如下操作：传入key值实现模拟点击对应按键的�
 
 ```js
 async function demo() {
-    let driver = Driver.create()
-    await driver.triggerKey(123)
+    let driver = Driver.create();
+    await driver.triggerKey(123);
 }
 ```
 
@@ -1619,8 +1611,8 @@ Driver对象通过给定的key值，找到对应组合键并点击。例如，Ke
 
 ```js
 async function demo() {
-    let driver = Driver.create()
-    await driver.triggerCombineKeys(2072, 2047, 2035)
+    let driver = Driver.create();
+    await driver.triggerCombineKeys(2072, 2047, 2035);
 }
 ```
 
@@ -1652,8 +1644,8 @@ Driver对象采取如下操作：在目标坐标点单击。
 
 ```js
 async function demo() {
-    let driver = Driver.create()
-    await driver.click(100,100)
+    let driver = Driver.create();
+    await driver.click(100,100);
 }
 ```
 
@@ -1684,8 +1676,8 @@ Driver对象采取如下操作：在目标坐标点双击。
 
 ```js
 async function demo() {
-    let driver = Driver.create()
-    await driver.doubleClick(100,100)
+    let driver = Driver.create();
+    await driver.doubleClick(100,100);
 }
 ```
 
@@ -1716,8 +1708,8 @@ Driver对象采取如下操作：在目标坐标点长按。
 
 ```js
 async function demo() {
-    let driver = Driver.create()
-    await driver.longClick(100,100)
+    let driver = Driver.create();
+    await driver.longClick(100,100);
 }
 ```
 
@@ -1751,8 +1743,8 @@ Driver对象采取如下操作：从起始坐标点滑向目的坐标点。
 
 ```js
 async function demo() {
-    let driver = Driver.create()
-    await driver.swipe(100,100,200,200,600)
+    let driver = Driver.create();
+    await driver.swipe(100,100,200,200,600);
 }
 ```
 
@@ -1786,8 +1778,8 @@ Driver对象采取如下操作：从起始坐标点拖拽至目的坐标点。
 
 ```js
 async function demo() {
-    let driver = Driver.create()
-    await driver.drag(100,100,200,200,600)
+    let driver = Driver.create();
+    await driver.drag(100,100,200,200,600);
 }
 ```
 
@@ -1823,8 +1815,8 @@ Driver对象采取如下操作：捕获当前屏幕，并保存为PNG格式的�
 
 ```js
 async function demo() {
-    let driver = Driver.create()
-    await driver.screenCap('/local/tmp/')
+    let driver = Driver.create();
+    await driver.screenCap('/local/tmp/');
 }
 ```
 
@@ -1854,8 +1846,8 @@ setDisplayRotation(rotation: DisplayRotation): Promise\<void>
 
 ```js
 async function demo() {
-    let driver = Driver.create()
-    await driver.setDisplayRotation(DisplayRotation.ROTATION_180)
+    let driver = Driver.create();
+    await driver.setDisplayRotation(DisplayRotation.ROTATION_180);
 }
 ```
 
@@ -1885,8 +1877,8 @@ getDisplayRotation(): Promise\<DisplayRotation>
 
 ```js
 async function demo() {
-    let driver = Driver.create()
-    let rotation = await driver.getDisplayRotation()
+    let driver = Driver.create();
+    let rotation = await driver.getDisplayRotation();
 }
 ```
 
@@ -1916,8 +1908,8 @@ setDisplayRotationEnabled(enabled: boolean): Promise\<void>
 
 ```js
 async function demo() {
-    let driver = Driver.create()
-    await driver.setDisplayRotationEnabled(false)
+    let driver = Driver.create();
+    await driver.setDisplayRotationEnabled(false);
 }
 ```
 
@@ -1947,8 +1939,8 @@ getDisplaySize(): Promise\<Point>
 
 ```js
 async function demo() {
-    let driver = Driver.create()
-    let size = await driver.getDisplaySize()
+    let driver = Driver.create();
+    let size = await driver.getDisplaySize();
 }
 ```
 
@@ -1978,8 +1970,8 @@ getDisplayDensity(): Promise\<Point>
 
 ```js
 async function demo() {
-    let driver = Driver.create()
-    let density = await driver.getDisplayDensity()
+    let driver = Driver.create();
+    let density = await driver.getDisplayDensity();
 }
 ```
 
@@ -2003,8 +1995,8 @@ wakeUpDisplay(): Promise\<void>
 
 ```js
 async function demo() {
-    let driver = Driver.create()
-    await driver.wakeUpDisplay()
+    let driver = Driver.create();
+    await driver.wakeUpDisplay();
 }
 ```
 
@@ -2028,8 +2020,8 @@ pressHome(): Promise\<void>
 
 ```js
 async function demo() {
-    let driver = Driver.create()
-    await driver.pressHome()
+    let driver = Driver.create();
+    await driver.pressHome();
 }
 ```
 
@@ -2066,8 +2058,8 @@ waitForIdle(idleTime: number, timeout: number): Promise\<boolean>
 
 ```js
 async function demo() {
-    let driver = Driver.create()
-    let idled = await driver.waitForIdle(4000,5000)
+    let driver = Driver.create();
+    let idled = await driver.waitForIdle(4000,5000);
 }
 ```
 
@@ -2100,8 +2092,8 @@ fling(from: Point, to: Point, stepLen: number, speed: number): Promise\<void>
 
 ```js
 async function demo() {
-    let driver = Driver.create()
-    await driver.fling({X: 500, Y: 480},{X: 450, Y: 480},5,600)
+    let driver = Driver.create();
+    await driver.fling({X: 500, Y: 480},{X: 450, Y: 480},5,600);
 }
 ```
 
@@ -2138,14 +2130,15 @@ injectMultiPointerAction(pointers: PointerMatrix, speed?: number): Promise\<bool
 
 ```js
 async function demo() {
-    let pointers = PointerMatrix.create(2,3)
-    pointers.setPoint(0,0,{X:230,Y:480})
-    pointers.setPoint(0,1,{X:250,Y:380})
-    pointers.setPoint(0,2,{X:270,Y:280})
-    pointers.setPoint(1,0,{X:230,Y:680})
-    pointers.setPoint(1,1,{X:240,Y:580})
-    pointers.setPoint(1,2,{X:250,Y:480})
-    await driver.injectMultiPointerAction(pointers)
+    let driver = Driver.create();
+    let pointers = PointerMatrix.create(2,3);
+    pointers.setPoint(0,0,{X:230,Y:480});
+    pointers.setPoint(0,1,{X:250,Y:380});
+    pointers.setPoint(0,2,{X:270,Y:280});
+    pointers.setPoint(1,0,{X:230,Y:680});
+    pointers.setPoint(1,1,{X:240,Y:580});
+    pointers.setPoint(1,2,{X:250,Y:480});
+    await driver.injectMultiPointerAction(pointers);
 }
 ```
 
@@ -2178,7 +2171,7 @@ static create(fingers: number, steps: number): PointerMatrix
 
 ```js
 async function demo() {
-    let pointerMatrix = PointerMatrix.create(2,3)
+    let pointerMatrix = PointerMatrix.create(2,3);
 }
 ```
 
@@ -2202,13 +2195,13 @@ setPoint(finger: number, step: number, point: Point): void
 
 ```js
 async function demo() {
-    let pointers = PointerMatrix.create(2,3)
-    pointers.setPoint(0,0,{X:230,Y:480})
-    pointers.setPoint(0,1,{X:250,Y:380})
-    pointers.setPoint(0,2,{X:270,Y:280})
-    pointers.setPoint(1,0,{X:230,Y:680})
-    pointers.setPoint(1,1,{X:240,Y:580})
-    pointers.setPoint(1,2,{X:250,Y:480})
+    let pointers = PointerMatrix.create(2,3);
+    pointers.setPoint(0,0,{X:230,Y:480});
+    pointers.setPoint(0,1,{X:250,Y:380});
+    pointers.setPoint(0,2,{X:270,Y:280});
+    pointers.setPoint(1,0,{X:230,Y:680});
+    pointers.setPoint(1,1,{X:240,Y:580});
+    pointers.setPoint(1,2,{X:250,Y:480});
 }
 ```
 
@@ -2244,9 +2237,9 @@ getBundleName(): Promise\<string>
 
 ```js
 async function demo() {
-    let driver = Driver.create()
-    let window = await driver.findWindow({actived: true})
-    let name = await window.getBundleName()
+    let driver = Driver.create();
+    let window = await driver.findWindow({actived: true});
+    let name = await window.getBundleName();
 }
 ```
 
@@ -2277,9 +2270,9 @@ getBounds(): Promise\<Rect>
 
 ```js
 async function demo() {
-    let driver = Driver.create()
-    let window = await driver.findWindow({actived: true})
-    let rect = await window.getBounds()
+    let driver = Driver.create();
+    let window = await driver.findWindow({actived: true});
+    let rect = await window.getBounds();
 }
 ```
 
@@ -2310,9 +2303,9 @@ getTitle(): Promise\<string>
 
 ```js
 async function demo() {
-    let driver = Driver.create()
-    let window = await driver.findWindow({actived: true})
-    let rect = await window.getTitle()
+    let driver = Driver.create();
+    let window = await driver.findWindow({actived: true});
+    let rect = await window.getTitle();
 }
 ```
 
@@ -2343,9 +2336,9 @@ getWindowMode(): Promise\<WindowMode>
 
 ```js
 async function demo() {
-    let driver = Driver.create()
-    let window = await driver.findWindow({actived: true})
-    let mode = await window.getWindowMode()
+    let driver = Driver.create();
+    let window = await driver.findWindow({actived: true});
+    let mode = await window.getWindowMode();
 }
 ```
 
@@ -2376,9 +2369,9 @@ isFocused(): Promise\<boolean>
 
 ```js
 async function demo() {
-    let driver = Driver.create()
-    let window = await driver.findWindow({actived: true})
-    let focused = await window.isFocused()
+    let driver = Driver.create();
+    let window = await driver.findWindow({actived: true});
+    let focused = await window.isFocused();
 }
 ```
 
@@ -2409,9 +2402,9 @@ isActived(): Promise\<boolean>
 
 ```js
 async function demo() {
-    let driver = Driver.create()
-    let window = await driver.findWindow({actived: true})
-    let focused = await window.isActived()
+    let driver = Driver.create();
+    let window = await driver.findWindow({actived: true});
+    let focused = await window.isActived();
 }
 ```
 
@@ -2436,9 +2429,9 @@ focus(): Promise\<void>
 
 ```js
 async function demo() {
-    let driver = Driver.create()
-    let window = await driver.findWindow({actived: true})
-    await window.focus()
+    let driver = Driver.create();
+    let window = await driver.findWindow({actived: true});
+    await window.focus();
 }
 ```
 
@@ -2471,9 +2464,9 @@ moveTo(x: number, y: number): Promise\<void>
 
 ```js
 async function demo() {
-    let driver = Driver.create()
-    let window = await driver.findWindow({actived: true})
-    await window.moveTo(100, 100)
+    let driver = Driver.create();
+    let window = await driver.findWindow({actived: true});
+    await window.moveTo(100, 100);
 }
 ```
 
@@ -2507,9 +2500,9 @@ resize(wide: number, height: number, direction: ResizeDirection): Promise\<void>
 
 ```js
 async function demo() {
-    let driver = Driver.create()
-    let window = await driver.findWindow({actived: true})
-    await window.resize(100, 100, ResizeDirection.LEFT)
+    let driver = Driver.create();
+    let window = await driver.findWindow({actived: true});
+    await window.resize(100, 100, ResizeDirection.LEFT);
 }
 ```
 
@@ -2535,9 +2528,9 @@ split(): Promise\<void>
 
 ```js
 async function demo() {
-    let driver = Driver.create()
-    let window = await driver.findWindow({actived: true})
-    await window.split()
+    let driver = Driver.create();
+    let window = await driver.findWindow({actived: true});
+    await window.split();
 }
 ```
 
@@ -2563,9 +2556,9 @@ maximize(): Promise\<void>
 
 ```js
 async function demo() {
-    let driver = Driver.create()
-    let window = await driver.findWindow({actived: true})
-    await window.maximize()
+    let driver = Driver.create();
+    let window = await driver.findWindow({actived: true});
+    await window.maximize();
 }
 ```
 
@@ -2591,9 +2584,9 @@ minimize(): Promise\<void>
 
 ```js
 async function demo() {
-    let driver = Driver.create()
-    let window = await driver.findWindow({actived: true})
-    await window.minimize()
+    let driver = Driver.create();
+    let window = await driver.findWindow({actived: true});
+    await window.minimize();
 }
 ```
 
@@ -2619,9 +2612,9 @@ resume(): Promise\<void>
 
 ```js
 async function demo() {
-    let driver = Driver.create()
-    let window = await driver.findWindow({actived: true})
-    await window.resume()
+    let driver = Driver.create();
+    let window = await driver.findWindow({actived: true});
+    await window.resume();
 }
 ```
 
@@ -2647,21 +2640,21 @@ close(): Promise\<void>
 
 ```js
 async function demo() {
-    let driver = Driver.create()
-    let window = await driver.findWindow({actived: true})
-    await window.close()
+    let driver = Driver.create();
+    let window = await driver.findWindow({actived: true});
+    await window.close();
 }
 ```
 
 ## By<sup>(deprecated)</sup>
 
 UiTest框架通过By类提供了丰富的控件特征描述API，用于进行控件筛选来匹配/查找出目标控件。<br>
-By提供的API能力具有以下几个特点:<br>1、支持单属性匹配和多属性组合匹配，例如同时指定目标控件text和id。<br>2、控件属性支持多种匹配模式。<br>3、支持控件绝对定位，相对定位，可通过[By.isBefore](#isbefore)和[By.isAfter](#isafter)等API限定邻近控件特征进行辅助定位。<br>By类提供的所有API均为同步接口，建议使用者通过静态构造器BY来链式创建By对象。
+By提供的API能力具有以下几个特点:<br>1、支持单属性匹配和多属性组合匹配，例如同时指定目标控件text和id。<br>2、控件属性支持多种匹配模式。<br>3、支持控件绝对定位，相对定位，可通过[By.isBefore<sup>(deprecated)</sup>](#isbeforedeprecated)和[By.isAfter<sup>(deprecated)</sup>](#isafterdeprecated)等API限定邻近控件特征进行辅助定位。<br>By类提供的所有API均为同步接口，建议使用者通过静态构造器BY来链式创建By对象。
 
-从API version9开始不再维护，建议使用[On<sup>9+</sup>](#on9)。
+从API version 9开始不再维护，建议使用[On<sup>9+</sup>](#on9)。
 
 ```js
-BY.text('123').type('button')
+BY.text('123').type('button');
 ```
 
 ### text<sup>(deprecated)</sup>
@@ -2670,7 +2663,7 @@ text(txt: string, pattern?: MatchPattern): By
 
 指定目标控件文本属性，支持多种匹配模式，返回By对象自身。
 
-从API version9开始不再维护，建议使用[text<sup>9+</sup>](#text9)。
+从API version 9开始不再维护，建议使用[text<sup>9+</sup>](#text9)。
 
 **系统能力**：SystemCapability.Test.UiTest
 
@@ -2683,14 +2676,14 @@ text(txt: string, pattern?: MatchPattern): By
 
 **返回值：**
 
-| 类型      | 说明                               |
-| --------- | ---------------------------------- |
-| [By](#by) | 返回指定目标控件文本属性的By对象。 |
+| 类型                | 说明                               |
+| ------------------- | ---------------------------------- |
+| [By<sup>(deprecated)</sup>](#bydeprecated) | 返回指定目标控件文本属性的By对象。 |
 
 **示例：**
 
 ```js
-let by = BY.text('123') //使用静态构造器BY创建by对象，指定目标控件的text属性。
+let by = BY.text('123'); // 使用静态构造器BY创建by对象，指定目标控件的text属性。
 ```
 
 
@@ -2700,7 +2693,7 @@ key(key: string): By
 
 指定目标控件key值属性，返回By对象自身。
 
-从API version9开始不再维护，建议使用[id<sup>9+</sup>](#id9)。
+从API version 9开始不再维护，建议使用[id<sup>9+</sup>](#id9)。
 
 **系统能力**：SystemCapability.Test.UiTest
 
@@ -2712,14 +2705,14 @@ key(key: string): By
 
 **返回值：**
 
-| 类型      | 说明                                |
-| --------- | ----------------------------------- |
-| [By](#by) | 返回指定目标控件key值属性的By对象。 |
+| 类型                | 说明                                |
+| ------------------- | ----------------------------------- |
+| [By<sup>(deprecated)</sup>](#bydeprecated) | 返回指定目标控件key值属性的By对象。 |
 
 **示例：**
 
 ```js
-let by = BY.key('123') //使用静态构造器BY创建by对象，指定目标控件的key值属性。
+let by = BY.key('123'); // 使用静态构造器BY创建by对象，指定目标控件的key值属性。
 ```
 
 
@@ -2729,7 +2722,7 @@ id(id: number): By
 
 指定目标控件id属性，返回By对象自身。
 
-从API version9开始废弃。
+从API version 9开始废弃。
 
 **系统能力**：SystemCapability.Test.UiTest
 
@@ -2741,14 +2734,14 @@ id(id: number): By
 
 **返回值：**
 
-| 类型      | 说明                             |
-| --------- | -------------------------------- |
-| [By](#by) | 返回指定目标控件id属性的By对象。 |
+| 类型                | 说明                             |
+| ------------------- | -------------------------------- |
+| [By<sup>(deprecated)</sup>](#bydeprecated) | 返回指定目标控件id属性的By对象。 |
 
 **示例：**
 
 ```js
-let by = BY.id(123) //使用静态构造器BY创建by对象，指定目标控件的id属性。
+let by = BY.id(123); // 使用静态构造器BY创建by对象，指定目标控件的id属性。
 ```
 
 
@@ -2758,7 +2751,7 @@ type(tp: string): By
 
 指定目标控件的控件类型属性，返回By对象自身。
 
-从API version9开始不再维护，建议使用[type<sup>9+</sup>](#type9)。
+从API version 9开始不再维护，建议使用[type<sup>9+</sup>](#type9)。
 
 **系统能力**：SystemCapability.Test.UiTest
 
@@ -2770,14 +2763,14 @@ type(tp: string): By
 
 **返回值：**
 
-| 类型      | 说明                                     |
-| --------- | ---------------------------------------- |
-| [By](#by) | 返回指定目标控件的控件类型属性的By对象。 |
+| 类型                | 说明                                     |
+| ------------------- | ---------------------------------------- |
+| [By<sup>(deprecated)</sup>](#bydeprecated) | 返回指定目标控件的控件类型属性的By对象。 |
 
 **示例：**
 
 ```js
-let by = BY.type('button') //使用静态构造器BY创建by对象，指定目标控件的控件类型属性。
+let by = BY.type('button'); // 使用静态构造器BY创建by对象，指定目标控件的控件类型属性。
 ```
 
 
@@ -2787,7 +2780,7 @@ clickable(b?: boolean): By
 
 指定目标控件的可点击状态属性，返回By对象自身。
 
-从API version9开始不再维护，建议使用[clickable<sup>9+</sup>](#clickable9)。
+从API version 9开始不再维护，建议使用[clickable<sup>9+</sup>](#clickable9)。
 
 **系统能力**：SystemCapability.Test.UiTest
 
@@ -2799,14 +2792,14 @@ clickable(b?: boolean): By
 
 **返回值：**
 
-| 类型      | 说明                                       |
-| --------- | ------------------------------------------ |
-| [By](#by) | 返回指定目标控件的可点击状态属性的By对象。 |
+| 类型                | 说明                                       |
+| ------------------- | ------------------------------------------ |
+| [By<sup>(deprecated)</sup>](#bydeprecated) | 返回指定目标控件的可点击状态属性的By对象。 |
 
 **示例：**
 
 ```js
-let by = BY.clickable(true) //使用静态构造器BY创建by对象，指定目标控件的可点击状态属性。
+let by = BY.clickable(true); // 使用静态构造器BY创建by对象，指定目标控件的可点击状态属性。
 ```
 
 
@@ -2816,7 +2809,7 @@ scrollable(b?: boolean): By
 
 指定目标控件的可滑动状态属性，返回By对象自身。
 
-从API version9开始不再维护，建议使用[scrollable<sup>9+</sup>](#scrollable9)。
+从API version 9开始不再维护，建议使用[scrollable<sup>9+</sup>](#scrollable9)。
 
 **系统能力**：SystemCapability.Test.UiTest
 
@@ -2828,14 +2821,14 @@ scrollable(b?: boolean): By
 
 **返回值：**
 
-| 类型      | 说明                                       |
-| --------- | ------------------------------------------ |
-| [By](#by) | 返回指定目标控件的可滑动状态属性的By对象。 |
+| 类型                | 说明                                       |
+| ------------------- | ------------------------------------------ |
+| [By<sup>(deprecated)</sup>](#bydeprecated) | 返回指定目标控件的可滑动状态属性的By对象。 |
 
 **示例：**
 
 ```js
-let by = BY.scrollable(true) //使用静态构造器BY创建by对象，指定目标控件的可滑动状态属性。
+let by = BY.scrollable(true); // 使用静态构造器BY创建by对象，指定目标控件的可滑动状态属性。
 ```
 
 ### enabled<sup>(deprecated)</sup>
@@ -2844,7 +2837,7 @@ enabled(b?: boolean): By
 
 指定目标控件的使能状态属性，返回By对象自身。
 
-从API version9开始不再维护，建议使用[enabled<sup>9+</sup>](#enabled9)。
+从API version 9开始不再维护，建议使用[enabled<sup>9+</sup>](#enabled9)。
 
 **系统能力**：SystemCapability.Test.UiTest
 
@@ -2856,14 +2849,14 @@ enabled(b?: boolean): By
 
 **返回值：**
 
-| 类型      | 说明                                     |
-| --------- | ---------------------------------------- |
-| [By](#by) | 返回指定目标控件的使能状态属性的By对象。 |
+| 类型                | 说明                                     |
+| ------------------- | ---------------------------------------- |
+| [By<sup>(deprecated)</sup>](#bydeprecated) | 返回指定目标控件的使能状态属性的By对象。 |
 
 **示例：**
 
 ```js
-let by = BY.enabled(true) //使用静态构造器BY创建by对象，指定目标控件的使能状态属性。
+let by = BY.enabled(true); // 使用静态构造器BY创建by对象，指定目标控件的使能状态属性。
 ```
 
 ### focused<sup>(deprecated)</sup>
@@ -2872,7 +2865,7 @@ focused(b?: boolean): By
 
 指定目标控件的获焦状态属性，返回By对象自身。
 
-从API version9开始不再维护，建议使用[focused<sup>9+</sup>](#focused9)。
+从API version 9开始不再维护，建议使用[focused<sup>9+</sup>](#focused9)。
 
 **系统能力**：SystemCapability.Test.UiTest
 
@@ -2884,14 +2877,14 @@ focused(b?: boolean): By
 
 **返回值：**
 
-| 类型      | 说明                                     |
-| --------- | ---------------------------------------- |
-| [By](#by) | 返回指定目标控件的获焦状态属性的By对象。 |
+| 类型                | 说明                                     |
+| ------------------- | ---------------------------------------- |
+| [By<sup>(deprecated)</sup>](#bydeprecated) | 返回指定目标控件的获焦状态属性的By对象。 |
 
 **示例：**
 
 ```js
-let by = BY.focused(true) //使用静态构造器BY创建by对象，指定目标控件的获焦状态属性。
+let by = BY.focused(true); // 使用静态构造器BY创建by对象，指定目标控件的获焦状态属性。
 ```
 
 ### selected<sup>(deprecated)</sup>
@@ -2900,7 +2893,7 @@ selected(b?: boolean): By
 
 指定目标控件的被选中状态属性，返回By对象自身。
 
-从API version9开始不再维护，建议使用[selected<sup>9+</sup>](#selected9)。
+从API version 9开始不再维护，建议使用[selected<sup>9+</sup>](#selected9)。
 
 **系统能力**：SystemCapability.Test.UiTest
 
@@ -2912,14 +2905,14 @@ selected(b?: boolean): By
 
 **返回值：**
 
-| 类型      | 说明                                       |
-| --------- | ------------------------------------------ |
-| [By](#by) | 返回指定目标控件的被选中状态属性的By对象。 |
+| 类型                | 说明                                       |
+| ------------------- | ------------------------------------------ |
+| [By<sup>(deprecated)</sup>](#bydeprecated) | 返回指定目标控件的被选中状态属性的By对象。 |
 
 **示例：**
 
 ```js
-let by = BY.selected(true) //使用静态构造器BY创建by对象，指定目标控件的被选中状态属性。
+let by = BY.selected(true); // 使用静态构造器BY创建by对象，指定目标控件的被选中状态属性。
 ```
 
 ### isBefore<sup>(deprecated)</sup>
@@ -2928,26 +2921,26 @@ isBefore(by: By): By
 
 指定目标控件位于给出的特征属性控件之前，返回By对象自身。
 
-从API version9开始不再维护，建议使用[isBefore<sup>9+</sup>](#isbefore9)。
+从API version 9开始不再维护，建议使用[isBefore<sup>9+</sup>](#isbefore9)。
 
 **系统能力**：SystemCapability.Test.UiTest
 
 **参数：**
 
-| 参数名 | 类型      | 必填 | 说明             |
-| ------ | --------- | ---- | ---------------- |
-| by     | [By](#by) | 是   | 特征控件的属性。 |
+| 参数名 | 类型                | 必填 | 说明             |
+| ------ | ------------------- | ---- | ---------------- |
+| by     | [By<sup>(deprecated)</sup>](#bydeprecated) | 是   | 特征控件的属性。 |
 
 **返回值：**
 
-| 类型      | 说明                                                 |
-| --------- | ---------------------------------------------------- |
-| [By](#by) | 返回指定目标控件位于给出的特征属性控件之前的By对象。 |
+| 类型                | 说明                                                 |
+| ------------------- | ---------------------------------------------------- |
+| [By<sup>(deprecated)</sup>](#bydeprecated) | 返回指定目标控件位于给出的特征属性控件之前的By对象。 |
 
 **示例：**
 
 ```js
-let by = BY.isBefore(BY.text('123')) //使用静态构造器BY创建by对象，指定目标控件位于给出的特征属性控件之前。
+let by = BY.isBefore(BY.text('123')); // 使用静态构造器BY创建by对象，指定目标控件位于给出的特征属性控件之前。
 ```
 
 ### isAfter<sup>(deprecated)</sup>
@@ -2956,26 +2949,26 @@ isAfter(by: By): By
 
 指定目标控件位于给出的特征属性控件之后，返回By对象自身。
 
-从API version9开始不再维护，建议使用[isAfter<sup>9+</sup>](#isafter9)。
+从API version 9开始不再维护，建议使用[isAfter<sup>9+</sup>](#isafter9)。
 
 **系统能力**：SystemCapability.Test.UiTest
 
 **参数：**
 
-| 参数名 | 类型      | 必填 | 说明             |
-| ------ | --------- | ---- | ---------------- |
-| by     | [By](#by) | 是   | 特征控件的属性。 |
+| 参数名 | 类型                | 必填 | 说明             |
+| ------ | ------------------- | ---- | ---------------- |
+| by     | [By<sup>(deprecated)</sup>](#bydeprecated) | 是   | 特征控件的属性。 |
 
 **返回值：**
 
-| 类型      | 说明                                                 |
-| --------- | ---------------------------------------------------- |
-| [By](#by) | 返回指定目标控件位于给出的特征属性控件之后的By对象。 |
+| 类型                | 说明                                                 |
+| ------------------- | ---------------------------------------------------- |
+| [By<sup>(deprecated)</sup>](#bydeprecated) | 返回指定目标控件位于给出的特征属性控件之后的By对象。 |
 
 **示例：**
 
 ```js
-let by = BY.isAfter(BY.text('123')) //使用静态构造器BY创建by对象，指定目标控件位于给出的特征属性控件之后。
+let by = BY.isAfter(BY.text('123')); // 使用静态构造器BY创建by对象，指定目标控件位于给出的特征属性控件之后。
 ```
 
 ## UiComponent<sup>(deprecated)</sup>
@@ -2983,7 +2976,7 @@ let by = BY.isAfter(BY.text('123')) //使用静态构造器BY创建by对象，�
 UiTest中，UiComponent类代表了UI界面上的一个控件，提供控件属性获取，控件点击，滑动查找，文本注入等API。
 该类提供的所有方法都使用Promise方式作为异步方法，需使用await调用。
 
-从API version9开始不再维护，建议使用[Component<sup>9+</sup>](#component9)。
+从API version 9开始不再维护，建议使用[Component<sup>9+</sup>](#component9)。
 
 ### click<sup>(deprecated)</sup>
 
@@ -2991,7 +2984,7 @@ click(): Promise\<void>
 
 控件对象进行点击操作。
 
-从API version9开始不再维护，建议使用[click<sup>9+</sup>](#click9)。
+从API version 9开始不再维护，建议使用[click<sup>9+</sup>](#click9)。
 
 **系统能力**：SystemCapability.Test.UiTest
 
@@ -2999,9 +2992,9 @@ click(): Promise\<void>
 
 ```js
 async function demo() {
-    let driver = UiDriver.create()
-    let button = await driver.findComponent(BY.type('button'))
-    await button.click()
+    let driver = UiDriver.create();
+    let button = await driver.findComponent(BY.type('button'));
+    await button.click();
 }
 ```
 
@@ -3011,7 +3004,7 @@ doubleClick(): Promise\<void>
 
 控件对象进行双击操作。
 
-从API version9开始不再维护，建议使用[doubleClick<sup>9+</sup>](#doubleclick9)。
+从API version 9开始不再维护，建议使用[doubleClick<sup>9+</sup>](#doubleclick9)。
 
 **系统能力**：SystemCapability.Test.UiTest
 
@@ -3019,9 +3012,9 @@ doubleClick(): Promise\<void>
 
 ```js
 async function demo() {
-    let driver = UiDriver.create()
-    let button = await driver.findComponent(BY.type('button'))
-    await button.doubleClick()
+    let driver = UiDriver.create();
+    let button = await driver.findComponent(BY.type('button'));
+    await button.doubleClick();
 }
 ```
 
@@ -3031,7 +3024,7 @@ longClick(): Promise\<void>
 
 控件对象进行长按操作。
 
-从API version9开始不再维护，建议使用[longClick<sup>9+</sup>](#longclick9)。
+从API version 9开始不再维护，建议使用[longClick<sup>9+</sup>](#longclick9)。
 
 **系统能力**：SystemCapability.Test.UiTest
 
@@ -3039,9 +3032,9 @@ longClick(): Promise\<void>
 
 ```js
 async function demo() {
-    let driver = UiDriver.create()
-    let button = await driver.findComponent(BY.type('button'))
-    await button.longClick()
+    let driver = UiDriver.create();
+    let button = await driver.findComponent(BY.type('button'));
+    await button.longClick();
 }
 ```
 
@@ -3051,7 +3044,7 @@ getId(): Promise\<number>
 
 获取控件对象的id值。
 
-从API version9开始不再维护，被废弃。
+从API version 9开始不再维护，被废弃。
 
 **系统能力**：SystemCapability.Test.UiTest
 
@@ -3065,9 +3058,9 @@ getId(): Promise\<number>
 
 ```js
 async function demo() {
-    let driver = UiDriver.create()
-    let button = await driver.findComponent(BY.type('button'))
-    let num = await button.getId()
+    let driver = UiDriver.create();
+    let button = await driver.findComponent(BY.type('button'));
+    let num = await button.getId();
 }
 ```
 
@@ -3077,7 +3070,7 @@ getKey(): Promise\<string>
 
 获取控件对象的key值。
 
-从API version9开始不再维护，建议使用[getId<sup>9+</sup>](#getid9)
+从API version 9开始不再维护，建议使用[getId<sup>9+</sup>](#getid9)
 
 **系统能力**：SystemCapability.Test.UiTest
 
@@ -3091,9 +3084,9 @@ getKey(): Promise\<string>
 
 ```js
 async function demo() {
-    let driver = UiDriver.create()
-    let button = await driver.findComponent(BY.type('button'))
-    let str_key = await button.getKey()
+    let driver = UiDriver.create();
+    let button = await driver.findComponent(BY.type('button'));
+    let str_key = await button.getKey();
 }
 ```
 
@@ -3103,7 +3096,7 @@ getText(): Promise\<string>
 
 获取控件对象的文本信息。
 
-从API version9开始不再维护，建议使用[getText<sup>9+</sup>](#gettext9)。
+从API version 9开始不再维护，建议使用[getText<sup>9+</sup>](#gettext9)。
 
 **系统能力**：SystemCapability.Test.UiTest
 
@@ -3117,9 +3110,9 @@ getText(): Promise\<string>
 
 ```js
 async function demo() {
-    let driver = UiDriver.create()
-    let button = await driver.findComponent(BY.type('button'))
-    let text = await button.getText()
+    let driver = UiDriver.create();
+    let button = await driver.findComponent(BY.type('button'));
+    let text = await button.getText();
 }
 ```
 
@@ -3129,7 +3122,7 @@ getType(): Promise\<string>
 
 获取控件对象的控件类型。
 
-从API version9开始不再维护，建议使用[getType<sup>9+</sup>](#gettype9)。
+从API version 9开始不再维护，建议使用[getType<sup>9+</sup>](#gettype9)。
 
 **系统能力**：SystemCapability.Test.UiTest
 
@@ -3143,9 +3136,9 @@ getType(): Promise\<string>
 
 ```js
 async function demo() {
-    let driver = UiDriver.create()
-    let button = await driver.findComponent(BY.type('button'))
-    let type = await button.getType()
+    let driver = UiDriver.create();
+    let button = await driver.findComponent(BY.type('button'));
+    let type = await button.getType();
 }
 ```
 
@@ -3155,7 +3148,7 @@ isClickable(): Promise\<boolean>
 
 获取控件对象可点击状态。
 
-从API version9开始不再维护，建议使用[isClickable<sup>9+</sup>](#isclickable9)。
+从API version 9开始不再维护，建议使用[isClickable<sup>9+</sup>](#isclickable9)。
 
 **系统能力**：SystemCapability.Test.UiTest
 
@@ -3169,13 +3162,12 @@ isClickable(): Promise\<boolean>
 
 ```js
 async function demo() {
-    let driver = UiDriver.create()
-    let button = await driver.findComponent(BY.type('button'))
+    let driver = UiDriver.create();
+    let button = await driver.findComponent(BY.type('button'));
     if(await button.isClickable()) {
-        console.info('This button can be Clicked')
-    }
-    else{
-        console.info('This button can not be Clicked')
+        console.info('This button can be Clicked');
+    } else {
+        console.info('This button can not be Clicked');
     }
 }
 ```
@@ -3186,7 +3178,7 @@ isScrollable(): Promise\<boolean>
 
 获取控件对象可滑动状态。
 
-从API version9开始不再维护，建议使用[isScrollable<sup>9+</sup>](#isscrollable9)。
+从API version 9开始不再维护，建议使用[isScrollable<sup>9+</sup>](#isscrollable9)。
 
 **系统能力**：SystemCapability.Test.UiTest
 
@@ -3200,13 +3192,12 @@ isScrollable(): Promise\<boolean>
 
 ```js
 async function demo() {
-    let driver = UiDriver.create()
-    let scrollBar = await driver.findComponent(BY.scrollable(true))
+    let driver = UiDriver.create();
+    let scrollBar = await driver.findComponent(BY.scrollable(true));
     if(await scrollBar.isScrollable()) {
-        console.info('This scrollBar can be operated')
-    }
-    else{
-        console.info('This scrollBar can not be operated')
+        console.info('This scrollBar can be operated');
+    } else {
+        console.info('This scrollBar can not be operated');
     }
 }
 ```
@@ -3218,7 +3209,7 @@ isEnabled(): Promise\<boolean>
 
 获取控件使能状态。
 
-从API version9开始不再维护，建议使用[isEnabled<sup>9+</sup>](#isenabled9)。
+从API version 9开始不再维护，建议使用[isEnabled<sup>9+</sup>](#isenabled9)。
 
 **系统能力**：SystemCapability.Test.UiTest
 
@@ -3232,13 +3223,12 @@ isEnabled(): Promise\<boolean>
 
 ```js
 async function demo() {
-    let driver = UiDriver.create()
-    let button = await driver.findComponent(BY.type('button'))
+    let driver = UiDriver.create();
+    let button = await driver.findComponent(BY.type('button'));
     if(await button.isEnabled()) {
-        console.info('This button can be operated')
-    }
-    else{
-        console.info('This button can not be operated')
+        console.info('This button can be operated');
+    } else {
+        console.info('This button can not be operated');
     }
 }
 
@@ -3250,7 +3240,7 @@ isFocused(): Promise\<boolean>
 
 判断控件对象是否获焦。
 
-从API version9开始不再维护，建议使用[isFocused<sup>9+</sup>](#isfocused9)。
+从API version 9开始不再维护，建议使用[isFocused<sup>9+</sup>](#isfocused9)。
 
 **系统能力**：SystemCapability.Test.UiTest
 
@@ -3264,13 +3254,12 @@ isFocused(): Promise\<boolean>
 
 ```js
 async function demo() {
-    let driver = UiDriver.create()
-    let button = await driver.findComponent(BY.type('button'))
+    let driver = UiDriver.create();
+    let button = await driver.findComponent(BY.type('button'));
     if(await button.isFocused()) {
-        console.info('This button is focused')
-	}
-    else{
-        console.info('This button is not focused')
+        console.info('This button is focused');
+    } else {
+        console.info('This button is not focused');
 	}
 }
 ```
@@ -3281,7 +3270,7 @@ isSelected(): Promise\<boolean>
 
 获取控件对象被选中状态。
 
-从API version9开始不再维护，建议使用[isSelected<sup>9+</sup>](#isselected9)。
+从API version 9开始不再维护，建议使用[isSelected<sup>9+</sup>](#isselected9)。
 
 **系统能力**：SystemCapability.Test.UiTest
 
@@ -3295,13 +3284,12 @@ isSelected(): Promise\<boolean>
 
 ```js
 async function demo() {
-    let driver = UiDriver.create()
-    let button = await driver.findComponent(BY.type('button'))
+    let driver = UiDriver.create();
+    let button = await driver.findComponent(BY.type('button'));
     if(await button.isSelected()) {
-        console.info('This button is selected')
-	}
-    else{
-        console.info('This button is not selected')
+        console.info('This button is selected');
+    } else {
+        console.info('This button is not selected');
     }
 }
 ```
@@ -3312,7 +3300,7 @@ inputText(text: string): Promise\<void>
 
 向控件中输入文本(适用于文本框控件)。
 
-从API version9开始不再维护，建议使用[inputText<sup>9+</sup>](#inputtext9)。
+从API version 9开始不再维护，建议使用[inputText<sup>9+</sup>](#inputtext9)。
 
 **系统能力**：SystemCapability.Test.UiTest
 
@@ -3326,9 +3314,9 @@ inputText(text: string): Promise\<void>
 
 ```js
 async function demo() {
-    let driver = UiDriver.create()
-    let text = await driver.findComponent(BY.text('hello world'))
-    await text.inputText('123')
+    let driver = UiDriver.create();
+    let text = await driver.findComponent(BY.text('hello world'));
+    await text.inputText('123');
 }
 ```
 
@@ -3338,29 +3326,29 @@ scrollSearch(by: By): Promise\<UiComponent>
 
 在控件上滑动查找目标控件(适用于List等支持滑动的控件)。
 
-从API version9开始不再维护，建议使用[scrollSearch<sup>9+</sup>](#scrollsearch9)。
+从API version 9开始不再维护，建议使用[scrollSearch<sup>9+</sup>](#scrollsearch9)。
 
 **系统能力**：SystemCapability.Test.UiTest
 
 **参数：**
 
-| 参数名 | 类型      | 必填 | 说明                 |
-| ------ | --------- | ---- | -------------------- |
-| by     | [By](#by) | 是   | 目标控件的属性要求。 |
+| 参数名 | 类型                | 必填 | 说明                 |
+| ------ | ------------------- | ---- | -------------------- |
+| by     | [By<sup>(deprecated)</sup>](#bydeprecated) | 是   | 目标控件的属性要求。 |
 
 **返回值：**
 
-| 类型                                  | 说明                                  |
-| ------------------------------------- | ------------------------------------- |
-| Promise\<[UiComponent](#uicomponent)> | 以Promise形式返回找到的目标控件对象。 |
+| 类型                                                         | 说明                                  |
+| ------------------------------------------------------------ | ------------------------------------- |
+| Promise\<[UiComponent<sup>(deprecated)</sup>](#uicomponentdeprecated)> | 以Promise形式返回找到的目标控件对象。 |
 
 **示例：**
 
 ```js
 async function demo() {
-    let driver = UiDriver.create()
-    let scrollBar = await driver.findComponent(BY.type('Scroll'))
-    let button = await scrollBar.scrollSearch(BY.text('next page'))
+    let driver = UiDriver.create();
+    let scrollBar = await driver.findComponent(BY.type('Scroll'));
+    let button = await scrollBar.scrollSearch(BY.text('next page'));
 }
 ```
 
@@ -3369,7 +3357,7 @@ async function demo() {
 UiDriver类为uitest测试框架的总入口，提供控件匹配/查找，按键注入，坐标点击/滑动，截图等API。
 该类提供的方法除UiDriver.create()以外的所有方法都使用Promise方式作为异步方法，需使用await调用。
 
-从API version9开始不再维护，建议使用[Driver<sup>9+</sup>](#driver9)。
+从API version 9开始不再维护，建议使用[Driver<sup>9+</sup>](#driver9)。
 
 ### create<sup>(deprecated)</sup>
 
@@ -3377,7 +3365,7 @@ static create(): UiDriver
 
 静态方法，构造一个UiDriver对象，并返回该对象。
 
-从API version9开始不再维护，建议使用[create<sup>9+</sup>](#create9)。
+从API version 9开始不再维护，建议使用[create<sup>9+</sup>](#create9)。
 
 **系统能力**：SystemCapability.Test.UiTest
 
@@ -3391,7 +3379,7 @@ static create(): UiDriver
 
 ```js
 async function demo() {
-    let driver = UiDriver.create()
+    let driver = UiDriver.create();
 }
 ```
 
@@ -3401,7 +3389,7 @@ delayMs(duration: number): Promise\<void>
 
 UiDriver对象在给定的时间内延时。
 
-从API version9开始不再维护，建议使用[delayMs<sup>9+</sup>](#delayms9)。
+从API version 9开始不再维护，建议使用[delayMs<sup>9+</sup>](#delayms9)。
 
 **系统能力**：SystemCapability.Test.UiTest
 
@@ -3415,8 +3403,8 @@ UiDriver对象在给定的时间内延时。
 
 ```js
 async function demo() {
-    let driver = UiDriver.create()
-    await driver.delayMs(1000)
+    let driver = UiDriver.create();
+    await driver.delayMs(1000);
 }
 ```
 
@@ -3426,28 +3414,28 @@ findComponent(by: By): Promise\<UiComponent>
 
 在UiDriver对象中，根据给出的目标控件属性要求查找目标控件。
 
-从API version9开始不再维护，建议使用[findComponent<sup>9+</sup>](#findcomponent9)。
+从API version 9开始不再维护，建议使用[findComponent<sup>9+</sup>](#findcomponent9)。
 
 **系统能力**：SystemCapability.Test.UiTest
 
 **参数：**
 
-| 参数名 | 类型      | 必填 | 说明                 |
-| ------ | --------- | ---- | -------------------- |
-| by     | [By](#by) | 是   | 目标控件的属性要求。 |
+| 参数名 | 类型                | 必填 | 说明                 |
+| ------ | ------------------- | ---- | -------------------- |
+| by     | [By<sup>(deprecated)</sup>](#bydeprecated) | 是   | 目标控件的属性要求。 |
 
 **返回值：**
 
-| 类型                                  | 说明                              |
-| ------------------------------------- | --------------------------------- |
-| Promise\<[UiComponent](#uicomponent)> | 以Promise形式返回找到的控件对象。 |
+| 类型                                                         | 说明                              |
+| ------------------------------------------------------------ | --------------------------------- |
+| Promise\<[UiComponent<sup>(deprecated)</sup>](#uicomponentdeprecated)> | 以Promise形式返回找到的控件对象。 |
 
 **示例：**
 
 ```js
 async function demo() {
-    let driver = UiDriver.create()
-    let button = await driver.findComponent(BY.text('next page'))
+    let driver = UiDriver.create();
+    let button = await driver.findComponent(BY.text('next page'));
 }
 ```
 
@@ -3457,28 +3445,28 @@ findComponents(by: By): Promise\<Array\<UiComponent>>
 
 在UiDriver对象中，根据给出的目标控件属性要求查找出所有匹配控件，以列表保存。
 
-从API version9开始不再维护，建议使用[findComponents<sup>9+</sup>](#findcomponents9)。
+从API version 9开始不再维护，建议使用[findComponents<sup>9+</sup>](#findcomponents9)。
 
 **系统能力**：SystemCapability.Test.UiTest
 
 **参数：**
 
-| 参数名 | 类型      | 必填 | 说明                 |
-| ------ | --------- | ---- | -------------------- |
-| by     | [By](#by) | 是   | 目标控件的属性要求。 |
+| 参数名 | 类型                | 必填 | 说明                 |
+| ------ | ------------------- | ---- | -------------------- |
+| by     | [By<sup>(deprecated)</sup>](#bydeprecated) | 是   | 目标控件的属性要求。 |
 
 **返回值：**
 
-| 类型                                          | 说明                                    |
-| --------------------------------------------- | --------------------------------------- |
-| Promise\<Array\<[UiComponent](#uicomponent)>> | 以Promise形式返回找到的控件对象的列表。 |
+| 类型                                                         | 说明                                    |
+| ------------------------------------------------------------ | --------------------------------------- |
+| Promise\<Array\<[UiComponent<sup>(deprecated)</sup>](#uicomponentdeprecated)>> | 以Promise形式返回找到的控件对象的列表。 |
 
 **示例：**
 
 ```js
 async function demo() {
-    let driver = UiDriver.create()
-    let buttonList = await driver.findComponents(BY.text('next page'))
+    let driver = UiDriver.create();
+    let buttonList = await driver.findComponents(BY.text('next page'));
 }
 ```
 
@@ -3488,22 +3476,22 @@ assertComponentExist(by: By): Promise\<void>
 
 断言API，用于断言当前界面存在满足给出的目标控件属性的控件; 如果控件不存在，该API将抛出JS异常，使当前测试用例失败。
 
-从API version9开始不再维护，建议使用[assertComponentExist<sup>9+</sup>](#assertcomponentexist9)。
+从API version 9开始不再维护，建议使用[assertComponentExist<sup>9+</sup>](#assertcomponentexist9)。
 
 **系统能力**：SystemCapability.Test.UiTest
 
 **参数：**
 
-| 参数名 | 类型      | 必填 | 说明                 |
-| ------ | --------- | ---- | -------------------- |
-| by     | [By](#by) | 是   | 目标控件的属性要求。 |
+| 参数名 | 类型                | 必填 | 说明                 |
+| ------ | ------------------- | ---- | -------------------- |
+| by     | [By<sup>(deprecated)</sup>](#bydeprecated) | 是   | 目标控件的属性要求。 |
 
 **示例：**
 
 ```js
 async function demo() {
-    let driver = UiDriver.create()
-    await driver.assertComponentExist(BY.text('next page'))
+    let driver = UiDriver.create();
+    await driver.assertComponentExist(BY.text('next page'));
 }
 ```
 
@@ -3513,7 +3501,7 @@ pressBack(): Promise\<void>
 
 UiDriver对象进行点击BACK键的操作。
 
-从API version9开始不再维护，建议使用[pressBack<sup>9+</sup>](#pressback9)。
+从API version 9开始不再维护，建议使用[pressBack<sup>9+</sup>](#pressback9)。
 
 **系统能力**：SystemCapability.Test.UiTest
 
@@ -3521,8 +3509,8 @@ UiDriver对象进行点击BACK键的操作。
 
 ```js
 async function demo() {
-    let driver = UiDriver.create()
-    await driver.pressBack()
+    let driver = UiDriver.create();
+    await driver.pressBack();
 }
 ```
 
@@ -3532,7 +3520,7 @@ triggerKey(keyCode: number): Promise\<void>
 
 UiDriver对象采取如下操作：通过key值找到对应键并点击。
 
-从API version9开始不再维护，建议使用[triggerKey<sup>9+</sup>](#triggerkey9)。
+从API version 9开始不再维护，建议使用[triggerKey<sup>9+</sup>](#triggerkey9)。
 
 **系统能力**：SystemCapability.Test.UiTest
 
@@ -3546,8 +3534,8 @@ UiDriver对象采取如下操作：通过key值找到对应键并点击。
 
 ```js
 async function demo() {
-    let driver = UiDriver.create()
-    await driver.triggerKey(123)
+    let driver = UiDriver.create();
+    await driver.triggerKey(123);
 }
 ```
 
@@ -3558,7 +3546,7 @@ click(x: number, y: number): Promise\<void>
 
 UiDriver对象采取如下操作：在目标坐标点单击。
 
-从API version9开始不再维护，建议使用[click<sup>9+</sup>](#click9)。
+从API version 9开始不再维护，建议使用[click<sup>9+</sup>](#click9)。
 
 **系统能力**：SystemCapability.Test.UiTest
 
@@ -3573,8 +3561,8 @@ UiDriver对象采取如下操作：在目标坐标点单击。
 
 ```js
 async function demo() {
-    let driver = UiDriver.create()
-    await driver.click(100,100)
+    let driver = UiDriver.create();
+    await driver.click(100,100);
 }
 ```
 
@@ -3584,7 +3572,7 @@ doubleClick(x: number, y: number): Promise\<void>
 
 UiDriver对象采取如下操作：在目标坐标点双击。
 
-从API version9开始不再维护，建议使用[doubleClick<sup>9+</sup>](#doubleclick9)。
+从API version 9开始不再维护，建议使用[doubleClick<sup>9+</sup>](#doubleclick9)。
 
 **系统能力**：SystemCapability.Test.UiTest
 
@@ -3599,8 +3587,8 @@ UiDriver对象采取如下操作：在目标坐标点双击。
 
 ```js
 async function demo() {
-    let driver = UiDriver.create()
-    await driver.doubleClick(100,100)
+    let driver = UiDriver.create();
+    await driver.doubleClick(100,100);
 }
 ```
 
@@ -3610,7 +3598,7 @@ longClick(x: number, y: number): Promise\<void>
 
 UiDriver对象采取如下操作：在目标坐标点长按下鼠标左键。
 
-从API version9开始不再维护，建议使用[longClick<sup>9+</sup>](#longclick9)。
+从API version 9开始不再维护，建议使用[longClick<sup>9+</sup>](#longclick9)。
 
 **系统能力**：SystemCapability.Test.UiTest
 
@@ -3625,8 +3613,8 @@ UiDriver对象采取如下操作：在目标坐标点长按下鼠标左键。
 
 ```js
 async function demo() {
-    let driver = UiDriver.create()
-    await driver.longClick(100,100)
+    let driver = UiDriver.create();
+    await driver.longClick(100,100);
 }
 ```
 
@@ -3636,7 +3624,7 @@ swipe(startx: number, starty: number, endx: number, endy: number): Promise\<void
 
 UiDriver对象采取如下操作：从给出的起始坐标点滑向给出的目的坐标点。
 
-从API version9开始不再维护，建议使用[swipe<sup>9+</sup>](#swipe9)。
+从API version 9开始不再维护，建议使用[swipe<sup>9+</sup>](#swipe9)。
 
 **系统能力**：SystemCapability.Test.UiTest
 
@@ -3653,8 +3641,8 @@ UiDriver对象采取如下操作：从给出的起始坐标点滑向给出的目
 
 ```js
 async function demo() {
-    let driver = UiDriver.create()
-    await driver.swipe(100,100,200,200)
+    let driver = UiDriver.create();
+    await driver.swipe(100,100,200,200);
 }
 ```
 
@@ -3664,7 +3652,7 @@ screenCap(savePath: string): Promise\<boolean>
 
 UiDriver对象采取如下操作：捕获当前屏幕，并保存为PNG格式的图片至给出的保存路径中。
 
-从API version9开始不再维护，建议使用[screenCap<sup>9+</sup>](#screencap9)。
+从API version 9开始不再维护，建议使用[screenCap<sup>9+</sup>](#screencap9)。
 
 **系统能力**：SystemCapability.Test.UiTest
 
@@ -3684,7 +3672,7 @@ UiDriver对象采取如下操作：捕获当前屏幕，并保存为PNG格式的
 
 ```js
 async function demo() {
-    let driver = UiDriver.create()
-    await driver.screenCap('/local/tmp/')
+    let driver = UiDriver.create();
+    await driver.screenCap('/local/tmp/1.png');
 }
 ```

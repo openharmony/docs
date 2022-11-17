@@ -187,8 +187,8 @@ upload(context: BaseContext, config: UploadConfig): Promise&lt;UploadTask&gt;
     url: 'https://patch',
     header: { key1: "value1", key2: "value2" },
     method: "POST",
-    files: { filename: "test", name: "test", uri: "internal://cache/test.jpg", type: "jpg" },
-    data: { name: "name123", value: "123" },
+    files: [{ filename: "test", name: "test", uri: "internal://cache/test.jpg", type: "jpg" }],
+    data: [{ name: "name123", value: "123" }],
   };
   request.upload(globalThis.abilityContext, uploadConfig).then((data) => {
       uploadTask = data;
@@ -278,8 +278,8 @@ uploadFile(context: BaseContext, config: UploadConfig): Promise&lt;UploadTask&gt
     url: 'https://patch',
     header: { key1: "value1", key2: "value2" },
     method: "POST",
-    files: { filename: "test", name: "test", uri: "internal://cache/test.jpg", type: "jpg" },
-    data: { name: "name123", value: "123" },
+    files: [{ filename: "test", name: "test", uri: "internal://cache/test.jpg", type: "jpg" }],
+    data: [{ name: "name123", value: "123" }],
   };
   request.uploadFile(globalThis.abilityContext, uploadConfig).then((data) => {
       uploadTask = data;

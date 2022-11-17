@@ -153,7 +153,7 @@ try {
     }
     console.log(`Set pointer speed success`);
   });
-} catch (err) {
+} catch (error) {
   console.log(`Set pointer speed failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
@@ -208,14 +208,14 @@ getPointerSpeed(callback: AsyncCallback&lt;number&gt;): void
 
 ```js
 try {
-  pointer.getPointerSpeed(speed, (error, speed) => {
+  pointer.getPointerSpeed((error, speed) => {
     if (error) {
       console.log(`Get pointer speed failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
       return;
     }
     console.log(`Get pointer speed success, speed: ${JSON.stringify(speed)}`);
   });
-} catch (err) {
+} catch (error) {
   console.log(`Get pointer speed failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
@@ -293,6 +293,12 @@ getPointerStyle(windowId: number): Promise&lt;PointerStyle&gt;
 **系统能力**：SystemCapability.MultimodalInput.Input.Pointer
 
 **参数**：
+
+| 参数     | 类型   | 必填 | 说明     |
+| -------- | ------ | ---- | -------- |
+| windowId | number | 是   | 窗口id。 |
+
+**返回值**：
 
 | 参数                                       | 说明                  |
 | ---------------------------------------- | ------------------- |

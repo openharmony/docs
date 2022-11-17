@@ -465,7 +465,6 @@ remove(key: number): T
 let plainArray = new PlainArray();
 plainArray.add(1, "squirrel");
 plainArray.add(2, "sparrow");
-plainArray.remove(2);
 let result = plainArray.remove(2);
 try {
   plainArray.remove.bind({}, 2)(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
@@ -509,7 +508,6 @@ removeAt(index: number): T
 let plainArray = new PlainArray();
 plainArray.add(1, "squirrel");
 plainArray.add(2, "sparrow");
-plainArray.removeAt(1);
 let result = plainArray.removeAt(1);
 try {
   plainArray.removeAt.bind({}, 1)(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获

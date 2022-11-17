@@ -184,8 +184,11 @@ DevEco Device Tool支持Hi3516DV300开发板的源码一键编译功能，提供
    ![zh-cn_image_0000001292531862](figures/zh-cn_image_0000001292531862.png)
 
 3. 安装Hi3516DV300相关工具链，部分工具安装需要使用root权限，请在**TERMINAL**窗口输入用户密码进行安装。
+
    > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
-   > 如果出现安装pip组件失败，可参考[修改Python源的方法](https://device.harmonyos.com/cn/docs/documentation/guide/ide-set-python-source-0000001227639986)进行修改，完成尝试重新安装。
+   >
+   > - 如果出现安装pip组件失败，可参考[修改Python源的方法](https://device.harmonyos.com/cn/docs/documentation/guide/ide-set-python-source-0000001227639986)进行修改，完成尝试重新安装。
+   > - 若出现安装apt组件失败，可参考[修改apt源的方法](https://device.harmonyos.com/cn/docs/documentation/guide/faq-toolchain-install-0000001301623822)进行修改，完成后尝试重新安装。
 
    ![zh-cn_image_0000001274748606](figures/zh-cn_image_0000001274748606.png)
 
@@ -193,7 +196,7 @@ DevEco Device Tool支持Hi3516DV300开发板的源码一键编译功能，提供
 
    ![zh-cn_image_0000001296270098](figures/zh-cn_image_0000001296270098.png)
 
-4. 在**hi3516dv300**配置页签中，设置源码的编译类型**build_type**，默认为“debug”类型，请根据需要进行修改。修改完成后，点击**Save**进行保存。
+4. 在**hispark_taurus_standard**配置页签中，设置源码的编译类型**build_type**，默认为“debug”类型，请根据需要进行修改。
    
    ![zh-cn_image_0000001325269477](figures/zh-cn_image_0000001325269477.png)
 
@@ -242,9 +245,11 @@ Hi3516DV300开发板标准系统的烧录方式包括USB烧录、网口烧录两
    
    ![Phoenix-upload](figures/Phoenix-upload.png)
 
-5. 在“hi3516dv300”页签，设置烧录选项，包括upload_partitions_profile、upload_port和upload_protocol。
+5. 在“hispark_taurus_standard”页签，设置烧录选项，包括upload_partitions_profile、upload_port和upload_protocol。配置完成后工程将自动保存。
+
    - upload_partitions_profile：选择待烧录程序的配置文件（已预置默认的配置文件），该配置文件会指定烧录文件名称、起始烧录地址、地址长度等信息；同时请勾选**Enable to use upload_partitions_profile for upload**选项。
       > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+      >
       > 如需修改烧录profile文件，在设置烧录分区起始地址和分区长度时，应根据实际待烧录文件的大小进行设置，要求设置的烧录分区大小，要大于待烧录文件的大小；同时，各烧录文件的分区地址设置不能出现重叠。
       > 
       > 首次烧录，请勾选**Enable to use upload_partitions_profile for upload**选项，会自动生成upload_partitions文件。再次烧录时，可根据实际情况选择生成upload_partitions文件进行自定义烧录，也可以再勾选**Enable to use upload_partitions_profile for upload**选项，使用upload_partitions_profile重新生成upload_partitions文件用于烧录。
@@ -253,9 +258,7 @@ Hi3516DV300开发板标准系统的烧录方式包括USB烧录、网口烧录两
 
    ![zh-cn_image_0000001338622229](figures/zh-cn_image_0000001338622229.png)
 
-6. 所有的配置都修改完成后，在工程配置页签的顶部，点击**Save**进行保存。
-
-7. 点击hi3516dv300下的**Upload**按钮。
+6. 单击hispark_taurus_standard下的**Upload**按钮。
    
    ![zh-cn_image_0000001276281922](figures/zh-cn_image_0000001276281922.png)
 
@@ -263,7 +266,7 @@ Hi3516DV300开发板标准系统的烧录方式包括USB烧录、网口烧录两
 
    ![zh-cn_image_0000001326201857](figures/zh-cn_image_0000001326201857.png)
 
-8. 在终端窗口显示如下提示信息时，请在15秒内，按住Update键，插拔USB线，最后松开Update键启动烧录。
+7. 在终端窗口显示如下提示信息时，请在15秒内，按住Update键，插拔USB线，最后松开Update键启动烧录。
    
    ![zh-cn_image_0000001276122010](figures/zh-cn_image_0000001276122010.png)
 
@@ -271,7 +274,7 @@ Hi3516DV300开发板标准系统的烧录方式包括USB烧录、网口烧录两
 
    ![zh-cn_image_0000001275802150](figures/zh-cn_image_0000001275802150.png)
 
-9. 烧录成功后，请根据运行章节进行操作，启动系统。
+8. 烧录成功后，请根据运行章节进行操作，启动系统。
 
 
 ## 运行
@@ -294,12 +297,12 @@ Hi3516DV300开发板标准系统的烧录方式包括USB烧录、网口烧录两
 
 3. 通过以下两条命令设置启动参数。
    
-   ```
+   ```shell
    setenv bootargs 'mem=640M console=ttyAMA0,115200 mmz=anonymous,0,0xA8000000,384M clk_ignore_unused rootdelay=10 hardware=Hi3516DV300 init=/init root=/dev/ram0 rw blkdevparts=mmcblk0:1M(boot),15M(kernel),20M(updater),2M(misc),3307M(system),256M(vendor),-(userdata)';
    ```
 
    
-   ```
+   ```shell
    setenv bootcmd 'mmc read 0x0 0x82000000 0x800 0x4800; bootm 0x82000000'
    ```
 
@@ -307,7 +310,7 @@ Hi3516DV300开发板标准系统的烧录方式包括USB烧录、网口烧录两
 
 4. 保存参数设置。
    
-   ```
+   ```shell
    save
    ```
 
@@ -315,7 +318,7 @@ Hi3516DV300开发板标准系统的烧录方式包括USB烧录、网口烧录两
 
 5. 重启开发板，完成系统启动。
    
-   ```
+   ```shell
    reset
    ```
 

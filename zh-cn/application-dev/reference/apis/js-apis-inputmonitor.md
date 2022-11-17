@@ -96,13 +96,14 @@ off(type: "touch", receiver?: TouchEventReceiver): void
 
 ```js
 // 取消监听单个回调函数
-callback: function(touchEvent) {
+function callback(touchEvent) {
   console.log(`Monitor on success ${JSON.stringify(touchEvent)}`);
   return false;
-},
+};
 try {
-  inputMonitor.on("touch", this.callback);
-  inputMonitor.off("touch", this.callback);
+  inputMonitor.on("touch", callback);
+  inputMonitor.off("touch", callback);
+  console.log(`Monitor off success`);
 } catch (error) {
   console.log(`Monitor execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
@@ -110,13 +111,14 @@ try {
 
 ```js
 // 取消监听所有回调函数
-callback: function(touchEvent) {
+function callback(touchEvent) {
   console.log(`Monitor on success ${JSON.stringify(touchEvent)}`);
   return false;
-},
+};
 try {
-  inputMonitor.on("touch", this.callback);
+  inputMonitor.on("touch", callback);
   inputMonitor.off("touch");
+  console.log(`Monitor off success`);
 } catch (error) {
   console.log(`Monitor execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
@@ -141,12 +143,14 @@ off(type: "mouse", receiver?: Callback&lt;MouseEvent&gt;): void
 
 ```js
 // 取消监听单个回调函数
-callback: function(mouseEvent) {
+function callback(mouseEvent) {
   console.log(`Monitor on success ${JSON.stringify(mouseEvent)}`);
-},
+  return false;
+};
 try {
-  inputMonitor.on("mouse", this.callback);
-  inputMonitor.off("mouse", this.callback);
+  inputMonitor.on("mouse", callback);
+  inputMonitor.off("mouse", callback);
+  console.log(`Monitor off success`);
 } catch (error) {
   console.log(`Monitor execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
@@ -154,12 +158,14 @@ try {
 
 ```js
 // 取消监听所有回调函数
-callback: function(mouseEvent) {
+function callback(mouseEvent) {
   console.log(`Monitor on success ${JSON.stringify(mouseEvent)}`);
-},
+  return false;
+};
 try {
-  inputMonitor.on("mouse", this.callback);
+  inputMonitor.on("mouse", callback);
   inputMonitor.off("mouse");
+  console.log(`Monitor off success`);
 } catch (error) {
   console.log(`Monitor execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
