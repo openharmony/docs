@@ -452,14 +452,14 @@ export default class MainAbility extends Ability {
 
 **系统能力:** SystemCapability.ResourceSchedule.BackgroundTaskManager.ContinuousTask
 
-| 参数名                     | 参数值  | 描述                    |
-| ----------------------- | ---- | --------------------- |
-| DATA_TRANSFER           | 1    | 数据传输。                  |
-| AUDIO_PLAYBACK          | 2    | 音频播放。                  |
-| AUDIO_RECORDING         | 3    | 录音。                    |
-| LOCATION                | 4    | 定位导航。                  |
-| BLUETOOTH_INTERACTION   | 5    | 蓝牙相关。                  |
-| MULTI_DEVICE_CONNECTION | 6    | 多设备互联。                 |
-| WIFI_INTERACTION        | 7    | WLAN相关<br />此接口为系统接口。 |
-| VOIP                    | 8    | 音视频通话<br />此接口为系统接口。  |
-| TASK_KEEPING            | 9    | 计算任务（仅在特定设备生效）。        |
+| 参数名                     | 描述                    |
+| ----------------------- | --------------------- |
+| DATA_TRANSFER           | 数据传输。                  |
+| AUDIO_PLAYBACK          | 音频播放。                  |
+| AUDIO_RECORDING         | 录音。                    |
+| LOCATION                | 定位导航。                  |
+| BLUETOOTH_INTERACTION   | 蓝牙相关。                  |
+| MULTI_DEVICE_CONNECTION | 多设备互联。                 |
+| WIFI_INTERACTION        | WLAN相关<br />此接口为系统接口。 |
+| VOIP                    | 音视频通话<br />此接口为系统接口。  |
+| TASK_KEEPING            | 计算任务（仅在特定设备生效）。        |
