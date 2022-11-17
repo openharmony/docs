@@ -9,6 +9,7 @@ OpenHarmony操作系统是一个开放的系统，开发者可以通过OpenHarmo
 
 
   **图1** 安全保障示意图
+
   ![zh-cn_image_0000001058270836](figures/zh-cn_image_0000001058270836.png)
 
 
@@ -102,6 +103,7 @@ OpenHarmony操作系统是一个开放的系统，开发者可以通过OpenHarmo
 HUKS（OpenHarmony Universal Keystore Service），提供了密钥管理、证书管理服务，当前在OpenHarmony上主要提供密钥管理服务，用于支撑HiChain(设备身份认证平台)的基础设备认证。如下是HUKS的功能结构图：
 
   **图3** HUKS功能结构图
+
   ![zh-cn_image_0000001159520844](figures/zh-cn_image_0000001159520844.png)
 
 支持算法包括：
@@ -144,6 +146,7 @@ HUKS本身不考虑多个应用同时调用的情况，因为HUKS只是一个lib
 
 
   **图4** 设备间建立可信关系流程图
+
   ![zh-cn_image_0000001058382954](figures/zh-cn_image_0000001058382954.png)
 
 
