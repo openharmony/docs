@@ -20,7 +20,7 @@ Row(value?:{space?:  number&nbsp;|&nbsp;string })
 
 | 参数名 | 参数类型 | 必填 | 参数描述 |
 | -------- | -------- | -------- | -------- |
-| space | string&nbsp;\|&nbsp;number | 否 | 横向布局元素间距。<br/>默认值：0，单位vp |
+| space | string&nbsp;\|&nbsp;number | 否 | 横向布局元素间距。<br/>从API version 9开始，space为负数时不生效。<br/>默认值：0，单位vp |
 
 
 ## 属性
