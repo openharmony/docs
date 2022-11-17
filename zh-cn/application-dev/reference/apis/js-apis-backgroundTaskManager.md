@@ -28,7 +28,7 @@ requestSuspendDelay(reason: string, callback: Callback&lt;void&gt;): DelaySuspen
 
 后台应用申请延迟挂起。
 
-延迟挂起时间一般情况下默认值为180000毫秒，低电量（依据系统低电量广播）时默认值为60000毫秒。
+延迟挂起时间一般情况下默认值为3分钟，低电量（依据系统低电量广播）时默认值为1分钟。
 
 **系统能力:** SystemCapability.ResourceSchedule.BackgroundTaskManager.TransientTask
 
