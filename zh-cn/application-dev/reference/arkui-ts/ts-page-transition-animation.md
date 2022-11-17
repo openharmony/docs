@@ -5,20 +5,21 @@
 > **说明：**
 >
 > 从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+>
 
 
 | 名称                | 参数                                                         | 参数描述                                                     |
 | ------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| PageTransitionEnter | {<br/>type: RouteType,<br/>duration: number,<br/>curve: [Curve](ts-appendix-enums.md#curve)&nbsp;\|&nbsp;string,<br>delay: number<br/>} | 设置当前页面的自定义入场动效。<br/>-&nbsp;type：不配置时表明pop为push时效果的逆播。<br/>-&nbsp;duration：动画的时长，单位为毫秒。<br/>-&nbsp;curve：动画曲线。string类型的取值支持"ease"、"ease-in"、"ease-out"、"ease-in-out"、"extreme-deceleration"、"fast-out-linear-in"、"fast-out-slow-in"、"friction"、"linear"、"linear-out-slow-in"、"rhythm"、"sharp"、"smooth"。<br/>&nbsp;默认值：Curve.Linear<br/>-&nbsp;delay：动画延迟时长，单位为毫秒，默认不延迟播放。 |
-| PageTransitionExit  | {<br/>type: RouteType,<br/>duration: number,<br/>curve: [Curve](ts-appendix-enums.md#curve)&nbsp;\|&nbsp;string,<br/>delay: number<br/>} | 设置当前页面的自定义退场动效。<br/>-&nbsp;type：不配置时表明pop为push时效果的逆播<br/>-&nbsp;duration：动画的时长，单位为毫秒。<br/>-&nbsp;curve：动画曲线，string类型取值与PageTransitionEnter相同。<br/>&nbsp;默认值：Curve.Linear<br/>-&nbsp;delay：动画延迟时长，单位为毫秒，默认不延迟播放。 |
+| PageTransitionEnter | {<br/>type?: RouteType,<br/>duration?: number,<br/>curve?: [Curve](ts-appendix-enums.md#curve)&nbsp;\|&nbsp;string,<br>delay?: number<br/>} | 设置当前页面的自定义入场动效。<br/>-&nbsp;type：页面转场效果生效的路由类型。<br/>默认值：RouteType.None。<br/>**说明：**没有匹配时使用系统默认的页面转场效果(根据设备可能会有差异)，如需禁用系统默认页面转场效果，可以指定duration为0。<br/>-&nbsp;duration：动画的时长，单位为毫秒。<br/>-&nbsp;curve：动画曲线。string类型的取值支持"ease"、"ease-in"、"ease-out"、"ease-in-out"、"extreme-deceleration"、"fast-out-linear-in"、"fast-out-slow-in"、"friction"、"linear"、"linear-out-slow-in"、"rhythm"、"sharp"、"smooth"。<br/>默认值：Curve.Linear<br/>-&nbsp;delay：动画延迟时长，单位为毫秒，默认不延迟播放。 |
+| PageTransitionExit  | {<br/>type?: RouteType,<br/>duration?: number,<br/>curve?: [Curve](ts-appendix-enums.md#curve)&nbsp;\|&nbsp;string,<br/>delay?: number<br/>} | 设置当前页面的自定义退场动效。<br/>-&nbsp;type：页面转场效果生效的路由类型。<br/>默认值：RouteType.None。<br/>**说明：**没有匹配时使用系统默认的页面转场效果(根据设备可能会有差异)，如需禁用系统默认页面转场效果，可以指定duration为0。<br/>-&nbsp;duration：动画的时长，单位为毫秒。<br/>-&nbsp;curve：动画曲线，string类型取值与PageTransitionEnter相同。<br/>&nbsp;默认值：Curve.Linear<br/>-&nbsp;delay：动画延迟时长，单位为毫秒，默认不延迟播放。 |
 
 ## RouteType枚举说明
 
 | 名称 | 描述                                                         |
 | ---- | ------------------------------------------------------------ |
-| Pop  | 重定向指定页面。PageA跳转到PageB时，PageA为Exit+Push，PageB为Enter+Push。 |
-| Push | 跳转到下一页面。PageB返回至PageA时，PageA为Enter+Pop，PageB为Exit+Pop。 |
-| None | 页面未重定向。                                               |
+| Pop  | 重定向指定页面。从PageB回退到之前的页面PageA。对于PageB，指定RouteType为None或者Pop的PageTransitionExit组件样式生效，对于PageA，指定RouteType为None或者Pop的PageTransitionEnter组件样式生效。 |
+| Push | 跳转到下一页面。PageA跳转到下一个新的界面PageB。对于PageA，指定RouteType为None或者Push的PageTransitionExit组件样式生效，对于PageB，指定RouteType为None或者Push的PageTransitionEnter组件样式生效。 |
+| None | 页面未重定向。如Push和Pop描述中RouteType为None的情形，即页面进场时PageTransitionEnter的转场效果生效；退场时PageTransitionExit的转场效果生效。 |
 
 
 ## 属性

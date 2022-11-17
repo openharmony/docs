@@ -352,46 +352,50 @@ struct ImageExample3 {
 
 ###  渲染沙箱路径图片
 
-```
+```ts
 import fileio from '@ohos.fileio'
-import image from '@ohos.multimedia.image'
-
-const EMPTY_PATH = 'file://'
+import context from '@ohos.application.context'
 
 @Entry
 @Component
 struct LoadImageExample {
-  @State fileContent: string = ''
-  @State path: string = EMPTY_PATH
-  @State accountInfoHeadPic: any = ''
+  @State resourcesPath: string = ''
+  @State sandboxPath: string = ''
+  context: context.AbilityContext
+
+  aboutToAppear() {
+    this.context = getContext(this) as context.AbilityContext
+  }
 
   build() {
     Column() {
       Button('读取沙箱图片')
-        .margin({ bottom: 10 })
+        .margin({ bottom: 10, top: 10 })
         .onClick(() => {
-          try {
-            this.path = EMPTY_PATH
-            let context = getContext(this)
-            let path = context.getApplicationContext().filesDir + '/icon.png'
-            console.log(`读取沙箱图片=========>${path}`)
-            let fd = fileio.openSync(path, 0o100, 0o666)
-            console.log(`create file========>${fd}`)
-            let srcPath = context.bundleCodeDir + '/entry/resource/base/media/icon.png'
-            fileio.copyFileSync(srcPath, path)
-            console.log(`error:=============>${e.message}`)
-          }
+          this.sandboxPath = this.context.getApplicationContext().filesDir + '/icon.png'
+          console.log(`读取沙箱图片=========>${this.sandboxPath}`)
+          let fd = fileio.openSync(this.sandboxPath, 0o100, 0o666)
+          console.log(`create file========>${fd}`)
+          let srcPath = this.context.bundleCodeDir + '/entry/resources/base/media/icon.png'
+          console.log('mySrcpath' + srcPath)
+          fileio.copyFileSync(srcPath, this.sandboxPath) // 复制图片到沙箱路径
+          this.sandboxPath = 'file://' + this.context.getApplicationContext().filesDir + '/icon.png'
         })
       Button('读取资源图片')
         .margin({ bottom: 10 })
         .onClick(() => {
-          this.path = EMPTY_PATH;
-          this.path += getContext(this.bundleCodeDir + '/entry/resource/base/media/icon.png')
+          this.resourcesPath = 'file://' + this.context.bundleCodeDir + '/entry/resources/base/media/icon.png'
         })
-      Text(`图片路径:${this.path}`)
+      Text(`资源图片路径:${this.resourcesPath}`)
         .fontSize(20)
         .margin({ bottom: 10 })
-      Image(this.path)
+      Image(this.resourcesPath)
+        .width(100)
+        .height(100)
+      Text(`沙箱图片路径:${this.sandboxPath}`)
+        .fontSize(20)
+        .margin({ bottom: 10 })
+      Image(this.sandboxPath)
         .width(100)
         .height(100)
     }
