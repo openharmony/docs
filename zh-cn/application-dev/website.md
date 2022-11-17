@@ -540,7 +540,6 @@
   - JS服务卡片UI组件参考
     - JS服务卡片UI框架说明
         - [文件组织](reference/js-service-widget-ui/js-service-widget-file.md)
-        - [配置文件](reference/js-service-widget-ui/js-service-widget-config-file.md)
         - 语法
             - [HML语法参考](reference/js-service-widget-ui/js-service-widget-syntax-hml.md)
             - [CSS语法参考](reference/js-service-widget-ui/js-service-widget-syntax-css.md)

@@ -2,10 +2,10 @@
 
 This module provides system-related or enhanced I18N capabilities, such as locale management, phone number formatting, and calendar, through supplementary I18N APIs that are not defined in ECMA 402.
 
-The [Intl](intl-guidelines.md) module provides basic I18N capabilities through the standard I18N APIs defined in ECMA 402. It works with the I18N module to provide a complete suite of I18N capabilities.
+The [Intl](js-apis-intl.md) module provides basic I18N capabilities through the standard I18N APIs defined in ECMA 402. It works with the I18N module to provide a complete suite of I18N capabilities.
 
 > **NOTE**
-> 
+>
 > The initial APIs of this module are supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 
@@ -26,16 +26,16 @@ Obtains the localized script for the specified language.
 **System capability**: SystemCapability.Global.I18n
 
 **Parameters**
-| Name         | Type     | Mandatory  | Description              |
-| ------------ | ------- | ---- | ---------------- |
-| language     | string  | Yes   | Specified language.           |
-| locale       | string  | Yes   | Locale ID.    |
-| sentenceCase | boolean | No   | Whether to use sentence case for the localized script.|
+| Name         | Type    | Mandatory | Description                              |
+| ------------ | ------- | --------- | ---------------------------------------- |
+| language     | string  | Yes       | Specified language.                      |
+| locale       | string  | Yes       | Locale ID.                               |
+| sentenceCase | boolean | No        | Whether to use sentence case for the localized script. |
 
 **Return Value**
-| Type    | Description           |
-| ------ | ------------- |
-| string | Localized script for the specified language.|
+| Type   | Description                              |
+| ------ | ---------------------------------------- |
+| string | Localized script for the specified language. |
 
 **Example**
   ```
@@ -53,16 +53,16 @@ Obtains the localized script for the specified country.
 **System capability**: SystemCapability.Global.I18n
 
 **Parameters**
-| Name         | Type     | Mandatory  | Description            |
-| ------------ | ------- | ---- | ----------------------------- |
-| country      | string  | Yes   | Specified country.           |
-| locale       | string  | Yes   | Locale ID.    |
-| sentenceCase | boolean | No   | Whether to use sentence case for the localized script.|
+| Name         | Type    | Mandatory | Description                              |
+| ------------ | ------- | --------- | ---------------------------------------- |
+| country      | string  | Yes       | Specified country.                       |
+| locale       | string  | Yes       | Locale ID.                               |
+| sentenceCase | boolean | No        | Whether to use sentence case for the localized script. |
 
 **Return Value**
-| Type   | Description                                |
-| ------ | ------------------------------------------ |
-| string | Localized script for the specified country.|
+| Type   | Description                              |
+| ------ | ---------------------------------------- |
+| string | Localized script for the specified country. |
 
 **Example**
   ```
@@ -85,9 +85,9 @@ Checks whether the localized script for the specified language is displayed from
 | locale | string | Locale ID.  |
 
 **Return Value**
-| Type     | Description                             |
+| Type    | Description                              |
 | ------- | ---------------------------------------- |
-| boolean | Returns **true** if the localized script is displayed from right to left; returns **false** otherwise.|
+| boolean | Returns **true** if the localized script is displayed from right to left; returns **false** otherwise. |
 
 **Example**
   ```
@@ -105,9 +105,9 @@ Obtains the system language.
 **System capability**: SystemCapability.Global.I18n
 
 **Return Value**
-| Type    | Description     |
-| ------ | ------- |
-| string | System language ID.|
+| Type   | Description         |
+| ------ | ------------------- |
+| string | System language ID. |
 
 **Example**
   ```
@@ -130,14 +130,14 @@ Sets the system language. Currently, this API does not support real-time updatin
 **System API**: This is a system API and cannot be called by third-party applications.
 
 **Parameters**
-| Name     | Type    | Description   |
-| -------- | ------ | ----- |
-| language | string | Language ID.|
+| Name     | Type   | Description  |
+| -------- | ------ | ------------ |
+| language | string | Language ID. |
 
 **Return Value**
-| Type     | Description                                   |
-| ------- | ------------------------------------- |
-| boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
+| Type    | Description                              |
+| ------- | ---------------------------------------- |
+| boolean | Returns **true** if the operation is successful; returns **false** otherwise. |
 
 **Example**
   ```
@@ -156,9 +156,9 @@ Obtains the list of system languages.
 **System capability**: SystemCapability.Global.I18n
 
 **Return Value**
-| Type                 | Description          |
-| ------------------- | ------------ |
-| Array&lt;string&gt; | List of the IDs of system languages.|
+| Type                | Description                          |
+| ------------------- | ------------------------------------ |
+| Array&lt;string&gt; | List of the IDs of system languages. |
 
 **Example**
   ```
@@ -177,14 +177,14 @@ Obtains the list of countries and regions supported for the specified language.
 **System capability**: SystemCapability.Global.I18n
 
 **Parameters**
-| Name     | Type    | Description   |
-| -------- | ------ | ----- |
-| language | string | Language ID.|
+| Name     | Type   | Description  |
+| -------- | ------ | ------------ |
+| language | string | Language ID. |
 
 **Return Value**
-| Type                 | Description          |
-| ------------------- | ------------ |
-| Array&lt;string&gt; | List of the IDs of the countries and regions supported for the specified language.|
+| Type                | Description                              |
+| ------------------- | ---------------------------------------- |
+| Array&lt;string&gt; | List of the IDs of the countries and regions supported for the specified language. |
 
 **Example**
   ```
@@ -201,9 +201,9 @@ Obtains the system region.
 **System capability**: SystemCapability.Global.I18n
 
 **Return Value**
-| Type    | Description     |
-| ------ | ------- |
-| string | System region ID.|
+| Type   | Description       |
+| ------ | ----------------- |
+| string | System region ID. |
 
 **Example**
   ```
@@ -224,14 +224,14 @@ Sets the system region.
 **System capability**: SystemCapability.Global.I18n
 
 **Parameters**
-| Name   | Type    | Description   |
-| ------ | ------ | ----- |
-| region | string | Region ID.|
+| Name   | Type   | Description |
+| ------ | ------ | ----------- |
+| region | string | Region ID.  |
 
 **Return Value**
-| Type     | Description                                   |
-| ------- | ------------------------------------- |
-| boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
+| Type    | Description                              |
+| ------- | ---------------------------------------- |
+| boolean | Returns **true** if the operation is successful; returns **false** otherwise. |
 
 **Example**
   ```
@@ -248,9 +248,9 @@ Obtains the system locale.
 **System capability**: SystemCapability.Global.I18n
 
 **Return Value**
-| Type    | Description     |
-| ------ | ------- |
-| string | System locale ID.|
+| Type   | Description       |
+| ------ | ----------------- |
+| string | System locale ID. |
 
 **Example**
   ```
@@ -271,14 +271,14 @@ Sets the system locale.
 **System capability**: SystemCapability.Global.I18n
 
 **Parameters**
-| Name   | Type    | Description             |
-| ------ | ------ | --------------- |
-| locale | string | System locale ID, for example, **zh-CN**.|
+| Name   | Type   | Description                              |
+| ------ | ------ | ---------------------------------------- |
+| locale | string | System locale ID, for example, **zh-CN**. |
 
 **Return Value**
-| Type     | Description                                      |
+| Type    | Description                              |
 | ------- | ---------------------------------------- |
-| boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
+| boolean | Returns **true** if the operation is successful; returns **false** otherwise. |
 
 **Example**
   ```
@@ -297,15 +297,15 @@ Checks whether the system language matches the specified region.
 **System capability**: SystemCapability.Global.I18n
 
 **Parameters**
-| Name     | Type    | Mandatory  | Description           |
-| -------- | ------ | ---- | ------------- |
-| language | string | Yes   | Valid language ID, for example, **zh**.|
-| region   | string | No   | Valid region ID, for example, **CN**. |
+| Name     | Type   | Mandatory | Description                             |
+| -------- | ------ | --------- | --------------------------------------- |
+| language | string | Yes       | Valid language ID, for example, **zh**. |
+| region   | string | No        | Valid region ID, for example, **CN**.   |
 
 **Return Value**
-| Type     | Description                                      |
+| Type    | Description                              |
 | ------- | ---------------------------------------- |
-| boolean | Returns **true** if the system language matches the specified region; returns **false** otherwise.|
+| boolean | Returns **true** if the system language matches the specified region; returns **false** otherwise. |
 
 **Example**
   ```
@@ -322,15 +322,15 @@ Obtains a **Calendar** object.
 **System capability**: SystemCapability.Global.I18n
 
 **Parameters**
-| Name   | Type    | Mandatory  | Description                                      |
-| ------ | ------ | ---- | ---------------------------------------- |
-| locale | string | Yes   | Valid locale value, for example, **zh-Hans-CN**.                |
-| type   | string | No   | Valid calendar type. Currently, the valid types are as follows: **buddhist**, **chinese**, **coptic**, **ethiopic**, **hebrew**, **gregory**, **indian**, **islamic\_civil**, **islamic\_tbla**, **islamic\_umalqura**, **japanese**, and **persian**. If this parameter is left unspecified, the default calendar type of the specified locale is used.|
+| Name   | Type   | Mandatory | Description                              |
+| ------ | ------ | --------- | ---------------------------------------- |
+| locale | string | Yes       | Valid locale value, for example, **zh-Hans-CN**. |
+| type   | string | No        | Valid calendar type. Currently, the valid types are as follows: **buddhist**, **chinese**, **coptic**, **ethiopic**, **hebrew**, **gregory**, **indian**, **islamic\_civil**, **islamic\_tbla**, **islamic\_umalqura**, **japanese**, and **persian**. If this parameter is left unspecified, the default calendar type of the specified locale is used. |
 
 **Return Value**
-| Type                    | Description   |
-| ---------------------- | ----- |
-| [Calendar](#calendar8) | **Calendar** object.|
+| Type                   | Description          |
+| ---------------------- | -------------------- |
+| [Calendar](#calendar8) | **Calendar** object. |
 
 **Example**
   ```
@@ -350,9 +350,9 @@ Sets the date for this **Calendar** object.
 **System capability**: SystemCapability.Global.I18n
 
 **Parameters**
-| Name | Type  | Mandatory  | Description               |
-| ---- | ---- | ---- | ----------------- |
-| date | Date | Yes   | Date to be set for the **Calendar** object.|
+| Name | Type | Mandatory | Description                              |
+| ---- | ---- | --------- | ---------------------------------------- |
+| date | Date | Yes       | Date to be set for the **Calendar** object. |
 
 **Example**
   ```
@@ -371,9 +371,9 @@ Sets the date and time for this **Calendar** object. The value is represented by
 **System capability**: SystemCapability.Global.I18n
 
 **Parameters**
-| Name | Type    | Mandatory  | Description                                      |
-| ---- | ------ | ---- | ---------------------------------------- |
-| time | number | Yes   | Number of milliseconds that have elapsed since the Unix epoch.|
+| Name | Type   | Mandatory | Description                              |
+| ---- | ------ | --------- | ---------------------------------------- |
+| time | number | Yes       | Number of milliseconds that have elapsed since the Unix epoch. |
 
 **Example**
   ```
@@ -391,14 +391,14 @@ Sets the year, month, day, hour, minute, and second for this **Calendar** object
 **System capability**: SystemCapability.Global.I18n
 
 **Parameters**
-| Name   | Type    | Mandatory  | Description    |
-| ------ | ------ | ---- | ------ |
-| year   | number | Yes   | Year to set. |
-| month  | number | Yes   | Month to set. |
-| date   | number | Yes   | Day to set. |
-| hour   | number | No   | Hour to set.|
-| minute | number | No   | Minute to set.|
-| second | number | No   | Second to set. |
+| Name   | Type   | Mandatory | Description    |
+| ------ | ------ | --------- | -------------- |
+| year   | number | Yes       | Year to set.   |
+| month  | number | Yes       | Month to set.  |
+| date   | number | Yes       | Day to set.    |
+| hour   | number | No        | Hour to set.   |
+| minute | number | No        | Minute to set. |
+| second | number | No        | Second to set. |
 
 **Example**
   ```
@@ -416,9 +416,9 @@ Sets the time zone of this **Calendar** object.
 **System capability**: SystemCapability.Global.I18n
 
 **Parameters**
-| Name     | Type    | Mandatory  | Description                       |
-| -------- | ------ | ---- | ------------------------- |
-| timezone | string | Yes   | Time zone, for example, **Asia/Shanghai**.|
+| Name     | Type   | Mandatory | Description                              |
+| -------- | ------ | --------- | ---------------------------------------- |
+| timezone | string | Yes       | Time zone, for example, **Asia/Shanghai**. |
 
 **Example**
   ```
@@ -436,9 +436,9 @@ Obtains the time zone of this **Calendar** object.
 **System capability**: SystemCapability.Global.I18n
 
 **Return Value**
-| Type    | Description        |
-| ------ | ---------- |
-| string | Time zone of the **Calendar** object.|
+| Type   | Description                           |
+| ------ | ------------------------------------- |
+| string | Time zone of the **Calendar** object. |
 
 **Example**
   ```
@@ -457,9 +457,9 @@ Obtains the start day of a week for this **Calendar** object.
 **System capability**: SystemCapability.Global.I18n
 
 **Return Value**
-| Type    | Description                   |
-| ------ | --------------------- |
-| number | Start day of a week. The value **1** indicates Sunday, and the value **7** indicates Saturday.|
+| Type   | Description                              |
+| ------ | ---------------------------------------- |
+| number | Start day of a week. The value **1** indicates Sunday, and the value **7** indicates Saturday. |
 
 **Example**
   ```
@@ -477,9 +477,9 @@ Sets the start day of a week for this **Calendar** object.
 **System capability**: SystemCapability.Global.I18n
 
 **Parameters**
-| Name  | Type    | Mandatory  | Description                   |
-| ----- | ------ | ---- | --------------------- |
-| value | number | No   | Start day of a week. The value **1** indicates Sunday, and the value **7** indicates Saturday.|
+| Name  | Type   | Mandatory | Description                              |
+| ----- | ------ | --------- | ---------------------------------------- |
+| value | number | No        | Start day of a week. The value **1** indicates Sunday, and the value **7** indicates Saturday. |
 
 **Example**
   ```
@@ -497,9 +497,9 @@ Obtains the minimum number of days in the first week of a year.
 **System capability**: SystemCapability.Global.I18n
 
 **Return Value**
-| Type    | Description          |
-| ------ | ------------ |
-| number | Minimum number of days in the first week of a year.|
+| Type   | Description                              |
+| ------ | ---------------------------------------- |
+| number | Minimum number of days in the first week of a year. |
 
 **Example**
   ```
@@ -517,9 +517,9 @@ Sets the minimum number of days in the first week of a year.
 **System capability**: SystemCapability.Global.I18n
 
 **Parameters**
-| Name  | Type    | Mandatory  | Description          |
-| ----- | ------ | ---- | ------------ |
-| value | number | No   | Minimum number of days in the first week of a year.|
+| Name  | Type   | Mandatory | Description                              |
+| ----- | ------ | --------- | ---------------------------------------- |
+| value | number | No        | Minimum number of days in the first week of a year. |
 
 **Example**
   ```
@@ -537,14 +537,14 @@ Obtains the value of the specified field in the **Calendar** object.
 **System capability**: SystemCapability.Global.I18n
 
 **Parameters**
-| Name  | Type    | Mandatory  | Description                                      |
-| ----- | ------ | ---- | ---------------------------------------- |
-| field | string | Yes   | Value of the specified field in the **Calendar** object. Currently, a valid field can be any of the following: **era**, **year**, **month**, **week\_of\_year**, **week\_of\_month**, **date**, **day\_of\_year**, **day\_of\_week**, **day\_of\_week\_in\_month**, **hour**, **hour\_of\_day**, **minute**, **second**, **millisecond**, **zone\_offset**, **dst\_offset**, **year\_woy**, **dow\_local**, **extended\_year**, **julian\_day**, **milliseconds\_in\_day**, **is\_leap\_month**.|
+| Name  | Type   | Mandatory | Description                              |
+| ----- | ------ | --------- | ---------------------------------------- |
+| field | string | Yes       | Value of the specified field in the **Calendar** object. Currently, a valid field can be any of the following: **era**, **year**, **month**, **week\_of\_year**, **week\_of\_month**, **date**, **day\_of\_year**, **day\_of\_week**, **day\_of\_week\_in\_month**, **hour**, **hour\_of\_day**, **minute**, **second**, **millisecond**, **zone\_offset**, **dst\_offset**, **year\_woy**, **dow\_local**, **extended\_year**, **julian\_day**, **milliseconds\_in\_day**, **is\_leap\_month**. |
 
 **Return Value**
-| Type    | Description                                      |
+| Type   | Description                              |
 | ------ | ---------------------------------------- |
-| number | Value of the specified field. For example, if the year in the internal date of this **Calendar** object is **1990**, the **get("year")** function will return **1990**.|
+| number | Value of the specified field. For example, if the year in the internal date of this **Calendar** object is **1990**, the **get("year")** function will return **1990**. |
 
 **Example**
   ```
@@ -563,14 +563,14 @@ Obtains the name of the **Calendar** object displayed for the specified locale.
 **System capability**: SystemCapability.Global.I18n
 
 **Parameters**
-| Name   | Type    | Mandatory  | Description                                      |
-| ------ | ------ | ---- | ---------------------------------------- |
-| locale | string | Yes   | Locale for which the name of the **Calendar** object is displayed. For example, if **locale** is **en-US**, the name of the Buddhist calendar will be **Buddhist Calendar**.|
+| Name   | Type   | Mandatory | Description                              |
+| ------ | ------ | --------- | ---------------------------------------- |
+| locale | string | Yes       | Locale for which the name of the **Calendar** object is displayed. For example, if **locale** is **en-US**, the name of the Buddhist calendar will be **Buddhist Calendar**. |
 
 **Return Value**
-| Type    | Description                 |
-| ------ | ------------------- |
-| string | Name of the **Calendar** object displayed for the specified locale.|
+| Type   | Description                              |
+| ------ | ---------------------------------------- |
+| string | Name of the **Calendar** object displayed for the specified locale. |
 
 **Example**
   ```
@@ -588,14 +588,14 @@ Checks whether the specified date in this **Calendar** object is a weekend.
 **System capability**: SystemCapability.Global.I18n
 
 **Parameters**
-| Name | Type  | Mandatory  | Description                                      |
-| ---- | ---- | ---- | ---------------------------------------- |
-| date | Date | No   | Specified date in this **Calendar** object. If this parameter is left unspecified, the system checks whether the current date in the **Calendar** object is a weekend.|
+| Name | Type | Mandatory | Description                              |
+| ---- | ---- | --------- | ---------------------------------------- |
+| date | Date | No        | Specified date in this **Calendar** object. If this parameter is left unspecified, the system checks whether the current date in the **Calendar** object is a weekend. |
 
 **Return Value**
-| Type     | Description                                 |
-| ------- | ----------------------------------- |
-| boolean | Returns **true** if the date is a weekend; returns **false** if the date is a weekday.|
+| Type    | Description                              |
+| ------- | ---------------------------------------- |
+| boolean | Returns **true** if the date is a weekend; returns **false** if the date is a weekday. |
 
 **Example**
   ```
@@ -619,10 +619,10 @@ Creates a **PhoneNumberFormat** object.
 **System capability**: SystemCapability.Global.I18n
 
 Parameters
-| Name    | Type                                      | Mandatory  | Description              |
-| ------- | ---------------------------------------- | ---- | ---------------- |
-| country | string                                   | Yes   | Country or region to which the phone number to be formatted belongs.|
-| options | [PhoneNumberFormatOptions](#phonenumberformatoptions8) | No   | Options of the **PhoneNumberFormat** object. |
+| Name    | Type                                     | Mandatory | Description                              |
+| ------- | ---------------------------------------- | --------- | ---------------------------------------- |
+| country | string                                   | Yes       | Country or region to which the phone number to be formatted belongs. |
+| options | [PhoneNumberFormatOptions](#phonenumberformatoptions8) | No        | Options of the **PhoneNumberFormat** object. |
 
 **Example**
   ```
@@ -639,14 +639,14 @@ Checks whether the format of the specified phone number is valid.
 **System capability**: SystemCapability.Global.I18n
 
 **Parameters**
-| Name   | Type    | Mandatory  | Description       |
-| ------ | ------ | ---- | --------- |
-| number | string | Yes   | Phone number to be checked.|
+| Name   | Type   | Mandatory | Description                 |
+| ------ | ------ | --------- | --------------------------- |
+| number | string | Yes       | Phone number to be checked. |
 
 **Return Value**
-| Type     | Description                                   |
-| ------- | ------------------------------------- |
-| boolean | Returns **true** if the phone number format is valid; returns **false** otherwise.|
+| Type    | Description                              |
+| ------- | ---------------------------------------- |
+| boolean | Returns **true** if the phone number format is valid; returns **false** otherwise. |
 
 **Example**
   ```
@@ -664,14 +664,14 @@ Formats a phone number.
 **System capability**: SystemCapability.Global.I18n
 
 **Parameters**
-| Name   | Type    | Mandatory  | Description        |
-| ------ | ------ | ---- | ---------- |
-| number | string | Yes   | Phone number to be formatted.|
+| Name   | Type   | Mandatory | Description                   |
+| ------ | ------ | --------- | ----------------------------- |
+| number | string | Yes       | Phone number to be formatted. |
 
 **Return Value**
-| Type    | Description        |
-| ------ | ---------- |
-| string | Formatted phone number.|
+| Type   | Description             |
+| ------ | ----------------------- |
+| string | Formatted phone number. |
 
 **Example**
   ```
@@ -688,15 +688,15 @@ Obtains the home location of a phone number.
 **System capability**: SystemCapability.Global.I18n
 
 **Parameters**
-| Name   | Type    | Mandatory  | Description        |
-| ------ | ------ | ---- | ---------- |
-| number | string | Yes   | Phone number.|
-| locale | string | Yes   | Locale ID.|
+| Name   | Type   | Mandatory | Description   |
+| ------ | ------ | --------- | ------------- |
+| number | string | Yes       | Phone number. |
+| locale | string | Yes       | Locale ID.    |
 
 **Return value**
-| Type    | Description        |
-| ------ | ---------- |
-| string | Home location of the phone number.|
+| Type   | Description                        |
+| ------ | ---------------------------------- |
+| string | Home location of the phone number. |
 
 **Example**
   ```js
@@ -711,9 +711,9 @@ Defines the options for this PhoneNumberFormat object.
 
 **System capability**: SystemCapability.Global.I18n
 
-| Name  | Type  | Readable  | Writable  | Description                                      |
-| ---- | ------ | ---- | ---- | ---------------------------------------- |
-| type | string | Yes   | Yes   | Format type of a phone number. The value can be **E164**, **INTERNATIONAL**, **NATIONAL**, or **RFC3966**.|
+| Name | Type   | Readable | Writable | Description                              |
+| ---- | ------ | -------- | -------- | ---------------------------------------- |
+| type | string | Yes      | Yes      | Format type of a phone number. The value can be **E164**, **INTERNATIONAL**, **NATIONAL**, or **RFC3966**. |
 
 
 ## UnitInfo<sup>8+</sup>
@@ -722,10 +722,10 @@ Defines the measurement unit information.
 
 **System capability**: SystemCapability.Global.I18n
 
-| Name           | Type  | Readable  | Writable  | Description                                      |
-| ------------- | ------ | ---- | ---- | ---------------------------------------- |
-| unit          | string | Yes   | Yes   | Name of the measurement unit, for example, **meter**, **inch**, or **cup**.|
-| measureSystem | string | Yes   | Yes   | Measurement system. The value can be **SI**, **US**, or **UK**.|
+| Name          | Type   | Readable | Writable | Description                              |
+| ------------- | ------ | -------- | -------- | ---------------------------------------- |
+| unit          | string | Yes      | Yes      | Name of the measurement unit, for example, **meter**, **inch**, or **cup**. |
+| measureSystem | string | Yes      | Yes      | Measurement system. The value can be **SI**, **US**, or **UK**. |
 
 
 ## Util<sup>8+</sup>
@@ -740,18 +740,18 @@ Converts one measurement unit into another and formats the unit based on the spe
 **System capability**: SystemCapability.Global.I18n
 
 **Parameters**
-| Name     | Type                    | Mandatory  | Description                                      |
-| -------- | ---------------------- | ---- | ---------------------------------------- |
-| fromUnit | [UnitInfo](#unitinfo8) | Yes   | Measurement unit to be converted.                                |
-| toUnit   | [UnitInfo](#unitinfo8) | Yes   | Measurement unit to be converted to.                                |
-| value    | number                 | Yes   | Value of the measurement unit to be converted.                            |
-| locale   | string                 | Yes   | Locale used for formatting, for example, **zh-Hans-CN**.               |
-| style    | string                 | No   | Style used for formatting. The value can be **long**, **short**, or **medium**.|
+| Name     | Type                   | Mandatory | Description                              |
+| -------- | ---------------------- | --------- | ---------------------------------------- |
+| fromUnit | [UnitInfo](#unitinfo8) | Yes       | Measurement unit to be converted.        |
+| toUnit   | [UnitInfo](#unitinfo8) | Yes       | Measurement unit to be converted to.     |
+| value    | number                 | Yes       | Value of the measurement unit to be converted. |
+| locale   | string                 | Yes       | Locale used for formatting, for example, **zh-Hans-CN**. |
+| style    | string                 | No        | Style used for formatting. The value can be **long**, **short**, or **medium**. |
 
 **Return Value**
-| Type    | Description                     |
-| ------ | ----------------------- |
-| string | Character string obtained after formatting based on the measurement unit specified by **toUnit**.|
+| Type   | Description                              |
+| ------ | ---------------------------------------- |
+| string | Character string obtained after formatting based on the measurement unit specified by **toUnit**. |
 
 **Example**
   ```
@@ -767,14 +767,14 @@ Obtains the sequence of the year, month, and day in the specified locale.
 **System capability**: SystemCapability.Global.I18n
 
 **Parameters**
-| Name     | Type                    | Mandatory  | Description                                      |
-| -------- | ---------------------- | ---- | ---------------------------------------- |
-| locale   | string                 | Yes   | Locale used for formatting, for example, **zh-Hans-CN**.               |
+| Name   | Type   | Mandatory | Description                              |
+| ------ | ------ | --------- | ---------------------------------------- |
+| locale | string | Yes       | Locale used for formatting, for example, **zh-Hans-CN**. |
 
 **Return value**
-| Type    | Description                     |
-| ------ | ----------------------- |
-| string | Sequence of the year, month, and day.|
+| Type   | Description                           |
+| ------ | ------------------------------------- |
+| string | Sequence of the year, month, and day. |
 
 **Example**
   ```
@@ -790,14 +790,14 @@ Creates an **IndexUtil** object.
 **System capability**: SystemCapability.Global.I18n
 
 **Parameters**
-| Name   | Type    | Mandatory  | Description                          |
-| ------ | ------ | ---- | ---------------------------- |
-| locale | string | No   | A string containing locale information, including the language, optional script, and region.|
+| Name   | Type   | Mandatory | Description                              |
+| ------ | ------ | --------- | ---------------------------------------- |
+| locale | string | No        | A string containing locale information, including the language, optional script, and region. |
 
 **Return Value**
-| Type                      | Description                   |
-| ------------------------ | --------------------- |
-| [IndexUtil](#indexutil8) | **IndexUtil** object mapping to the specified locale.|
+| Type                     | Description                              |
+| ------------------------ | ---------------------------------------- |
+| [IndexUtil](#indexutil8) | **IndexUtil** object mapping to the specified locale. |
 
 **Example**
   ```
@@ -817,9 +817,9 @@ Obtains the index list for this **locale** object.
 **System capability**: SystemCapability.Global.I18n
 
 **Return Value**
-| Type                 | Description                |
-| ------------------- | ------------------ |
-| Array&lt;string&gt; | Index list for this **locale** object.|
+| Type                | Description                            |
+| ------------------- | -------------------------------------- |
+| Array&lt;string&gt; | Index list for this **locale** object. |
 
 **Example**
   ```
@@ -837,9 +837,9 @@ Adds the index of the new **locale** object to the index list.
 **System capability**: SystemCapability.Global.I18n
 
 **Parameters**
-| Name   | Type    | Mandatory  | Description                          |
-| ------ | ------ | ---- | ---------------------------- |
-| locale | string | Yes   | A string containing locale information, including the language, optional script, and region.|
+| Name   | Type   | Mandatory | Description                              |
+| ------ | ------ | --------- | ---------------------------------------- |
+| locale | string | Yes       | A string containing locale information, including the language, optional script, and region. |
 
 **Example**
   ```
@@ -857,14 +857,14 @@ Obtains the index of a text object.
 **System capability**: SystemCapability.Global.I18n
 
 **Parameters**
-| Name | Type    | Mandatory  | Description          |
-| ---- | ------ | ---- | ------------ |
-| text | string | Yes   | **text** object whose index is to be obtained.|
+| Name | Type   | Mandatory | Description                              |
+| ---- | ------ | --------- | ---------------------------------------- |
+| text | string | Yes       | **text** object whose index is to be obtained. |
 
 **Return Value**
-| Type    | Description         |
-| ------ | ----------- |
-| string | Index of the **text** object.|
+| Type   | Description                   |
+| ------ | ----------------------------- |
+| string | Index of the **text** object. |
 
 **Example**
   ```
@@ -885,14 +885,14 @@ Checks whether the input character string is composed of digits.
 **System capability**: SystemCapability.Global.I18n
 
 **Parameters**
-| Name | Type    | Mandatory  | Description   |
-| ---- | ------ | ---- | ----- |
-| char | string | Yes   | Input character.|
+| Name | Type   | Mandatory | Description      |
+| ---- | ------ | --------- | ---------------- |
+| char | string | Yes       | Input character. |
 
 **Return Value**
-| Type     | Description                                  |
-| ------- | ------------------------------------ |
-| boolean | Returns **true** if the input character is a digit; returns **false** otherwise.|
+| Type    | Description                              |
+| ------- | ---------------------------------------- |
+| boolean | Returns **true** if the input character is a digit; returns **false** otherwise. |
 
 **Example**
   ```
@@ -909,14 +909,14 @@ Checks whether the input character is a space.
 **System capability**: SystemCapability.Global.I18n
 
 **Parameters**
-| Name | Type    | Mandatory  | Description   |
-| ---- | ------ | ---- | ----- |
-| char | string | Yes   | Input character.|
+| Name | Type   | Mandatory | Description      |
+| ---- | ------ | --------- | ---------------- |
+| char | string | Yes       | Input character. |
 
 **Return Value**
-| Type     | Description                                    |
-| ------- | -------------------------------------- |
-| boolean | Returns **true** if the input character is a space; returns **false** otherwise.|
+| Type    | Description                              |
+| ------- | ---------------------------------------- |
+| boolean | Returns **true** if the input character is a space; returns **false** otherwise. |
 
 **Example**
   ```
@@ -933,14 +933,14 @@ Checks whether the input character is a white space.
 **System capability**: SystemCapability.Global.I18n
 
 **Parameters**
-| Name | Type    | Mandatory  | Description   |
-| ---- | ------ | ---- | ----- |
-| char | string | Yes   | Input character.|
+| Name | Type   | Mandatory | Description      |
+| ---- | ------ | --------- | ---------------- |
+| char | string | Yes       | Input character. |
 
 **Return Value**
-| Type     | Description                                    |
-| ------- | -------------------------------------- |
-| boolean | Returns **true** if the input character is a white space; returns **false** otherwise.|
+| Type    | Description                              |
+| ------- | ---------------------------------------- |
+| boolean | Returns **true** if the input character is a white space; returns **false** otherwise. |
 
 **Example**
   ```
@@ -957,14 +957,14 @@ Checks whether the input character is of the right to left (RTL) language.
 **System capability**: SystemCapability.Global.I18n
 
 **Parameters**
-| Name | Type    | Mandatory  | Description   |
-| ---- | ------ | ---- | ----- |
-| char | string | Yes   | Input character.|
+| Name | Type   | Mandatory | Description      |
+| ---- | ------ | --------- | ---------------- |
+| char | string | Yes       | Input character. |
 
 **Return Value**
-| Type     | Description                                      |
+| Type    | Description                              |
 | ------- | ---------------------------------------- |
-| boolean | Returns **true** if the input character is of the RTL language; returns **false** otherwise.|
+| boolean | Returns **true** if the input character is of the RTL language; returns **false** otherwise. |
 
 **Example**
   ```
@@ -981,14 +981,14 @@ Checks whether the input character is an ideographic character.
 **System capability**: SystemCapability.Global.I18n
 
 **Parameters**
-| Name | Type    | Mandatory  | Description   |
-| ---- | ------ | ---- | ----- |
-| char | string | Yes   | Input character.|
+| Name | Type   | Mandatory | Description      |
+| ---- | ------ | --------- | ---------------- |
+| char | string | Yes       | Input character. |
 
 **Return Value**
-| Type     | Description                                      |
+| Type    | Description                              |
 | ------- | ---------------------------------------- |
-| boolean | Returns **true** if the input character is an ideographic character; returns **false** otherwise.|
+| boolean | Returns **true** if the input character is an ideographic character; returns **false** otherwise. |
 
 **Example**
   ```
@@ -1005,14 +1005,14 @@ Checks whether the input character is a letter.
 **System capability**: SystemCapability.Global.I18n
 
 **Parameters**
-| Name | Type    | Mandatory  | Description   |
-| ---- | ------ | ---- | ----- |
-| char | string | Yes   | Input character.|
+| Name | Type   | Mandatory | Description      |
+| ---- | ------ | --------- | ---------------- |
+| char | string | Yes       | Input character. |
 
 **Return Value**
-| Type     | Description                                  |
-| ------- | ------------------------------------ |
-| boolean | Returns **true** if the input character is a letter; returns **false** otherwise.|
+| Type    | Description                              |
+| ------- | ---------------------------------------- |
+| boolean | Returns **true** if the input character is a letter; returns **false** otherwise. |
 
 **Example**
   ```
@@ -1029,14 +1029,14 @@ Checks whether the input character is a lowercase letter.
 **System capability**: SystemCapability.Global.I18n
 
 **Parameters**
-| Name | Type    | Mandatory  | Description   |
-| ---- | ------ | ---- | ----- |
-| char | string | Yes   | Input character.|
+| Name | Type   | Mandatory | Description      |
+| ---- | ------ | --------- | ---------------- |
+| char | string | Yes       | Input character. |
 
 **Return Value**
-| Type     | Description                                      |
+| Type    | Description                              |
 | ------- | ---------------------------------------- |
-| boolean | Returns **true** if the input character is a lowercase letter; returns **false** otherwise.|
+| boolean | Returns **true** if the input character is a lowercase letter; returns **false** otherwise. |
 
 **Example**
   ```
@@ -1053,14 +1053,14 @@ Checks whether the input character is an uppercase letter.
 **System capability**: SystemCapability.Global.I18n
 
 **Parameters**
-| Name | Type    | Mandatory  | Description   |
-| ---- | ------ | ---- | ----- |
-| char | string | Yes   | Input character.|
+| Name | Type   | Mandatory | Description      |
+| ---- | ------ | --------- | ---------------- |
+| char | string | Yes       | Input character. |
 
 **Return Value**
-| Type     | Description                                      |
+| Type    | Description                              |
 | ------- | ---------------------------------------- |
-| boolean | Returns **true** if the input character is an uppercase letter; returns **false** otherwise.|
+| boolean | Returns **true** if the input character is an uppercase letter; returns **false** otherwise. |
 
 **Example**
   ```
@@ -1077,14 +1077,14 @@ Obtains the type of the input character string.
 **System capability**: SystemCapability.Global.I18n
 
 **Parameters**
-| Name | Type    | Mandatory  | Description   |
-| ---- | ------ | ---- | ----- |
-| char | string | Yes   | Input character.|
+| Name | Type   | Mandatory | Description      |
+| ---- | ------ | --------- | ---------------- |
+| char | string | Yes       | Input character. |
 
 **Return Value**
-| Type    | Description         |
-| ------ | ----------- |
-| string | Type of the input character.|
+| Type   | Description                  |
+| ------ | ---------------------------- |
+| string | Type of the input character. |
 
 **Example**
   ```
@@ -1101,14 +1101,14 @@ Obtains a [BreakIterator](#breakiterator8) object for text segmentation.
 **System capability**: SystemCapability.Global.I18n
 
 **Parameters**
-| Name   | Type    | Mandatory  | Description                                      |
-| ------ | ------ | ---- | ---------------------------------------- |
-| locale | string | Yes   | Valid locale value, for example, **zh-Hans-CN**. The [BreakIterator](#breakiterator8) object segments text according to the rules of the specified locale.|
+| Name   | Type   | Mandatory | Description                              |
+| ------ | ------ | --------- | ---------------------------------------- |
+| locale | string | Yes       | Valid locale value, for example, **zh-Hans-CN**. The [BreakIterator](#breakiterator8) object segments text according to the rules of the specified locale. |
 
 **Return Value**
-| Type                              | Description         |
-| -------------------------------- | ----------- |
-| [BreakIterator](#breakiterator8) | [BreakIterator](#breakiterator8) object used for text segmentation.|
+| Type                             | Description                              |
+| -------------------------------- | ---------------------------------------- |
+| [BreakIterator](#breakiterator8) | [BreakIterator](#breakiterator8) object used for text segmentation. |
 
 **Example**
   ```
@@ -1128,9 +1128,9 @@ Sets the text to be processed by the [BreakIterator](#breakiterator8) object.
 **System capability**: SystemCapability.Global.I18n
 
 **Parameters**
-| Name | Type    | Mandatory  | Description                     |
-| ---- | ------ | ---- | ----------------------- |
-| text | string | Yes   | Text to be processed by the **BreakIterator** object.|
+| Name | Type   | Mandatory | Description                              |
+| ---- | ------ | --------- | ---------------------------------------- |
+| text | string | Yes       | Text to be processed by the **BreakIterator** object. |
 
 **Example**
   ```
@@ -1148,9 +1148,9 @@ Obtains the text being processed by the [BreakIterator](#breakiterator8) object.
 **System capability**: SystemCapability.Global.I18n
 
 **Return Value**
-| Type    | Description                    |
-| ------ | ---------------------- |
-| string | Text being processed by the **BreakIterator** object.|
+| Type   | Description                              |
+| ------ | ---------------------------------------- |
+| string | Text being processed by the **BreakIterator** object. |
 
 **Example**
   ```
@@ -1169,9 +1169,9 @@ Obtains the position of the [BreakIterator](#breakiterator8) object in the text 
 **System capability**: SystemCapability.Global.I18n
 
 **Return Value**
-| Type    | Description                         |
-| ------ | --------------------------- |
-| number | Position of the **BreakIterator** object in the text being processed.|
+| Type   | Description                              |
+| ------ | ---------------------------------------- |
+| number | Position of the **BreakIterator** object in the text being processed. |
 
 **Example**
   ```
@@ -1190,9 +1190,9 @@ Puts the [BreakIterator](#breakiterator8) object to the first text boundary, whi
 **System capability**: SystemCapability.Global.I18n
 
 **Return Value**
-| Type    | Description               |
-| ------ | ----------------- |
-| number | Offset to the first text boundary of the processed text.|
+| Type   | Description                              |
+| ------ | ---------------------------------------- |
+| number | Offset to the first text boundary of the processed text. |
 
 **Example**
   ```
@@ -1211,9 +1211,9 @@ Puts the [BreakIterator](#breakiterator8) object to the last text boundary, whic
 **System capability**: SystemCapability.Global.I18n
 
 **Return Value**
-| Type    | Description                |
-| ------ | ------------------ |
-| number | Offset of the last text boundary of the processed text.|
+| Type   | Description                              |
+| ------ | ---------------------------------------- |
+| number | Offset of the last text boundary of the processed text. |
 
 **Example**
   ```
@@ -1232,14 +1232,14 @@ Moves the [BreakIterator](#breakiterator8) object backward by the specified numb
 **System capability**: SystemCapability.Global.I18n
 
 **Parameters**
-| Name  | Type    | Mandatory  | Description                                      |
-| ----- | ------ | ---- | ---------------------------------------- |
-| index | number | No   | Number of text boundaries by which the [BreakIterator](#breakiterator8) object is moved. A positive value indicates that the text boundary is moved backward, and a negative value indicates the opposite. If no index is specified, the index will be treated as **1**.|
+| Name  | Type   | Mandatory | Description                              |
+| ----- | ------ | --------- | ---------------------------------------- |
+| index | number | No        | Number of text boundaries by which the [BreakIterator](#breakiterator8) object is moved. A positive value indicates that the text boundary is moved backward, and a negative value indicates the opposite. If no index is specified, the index will be treated as **1**. |
 
 **Return Value**
-| Type    | Description                                      |
+| Type   | Description                              |
 | ------ | ---------------------------------------- |
-| number | Position of the [BreakIterator](#breakiterator8) object in the text after it is moved by the specified number of text boundaries. The value **-1** is returned if the position of the [BreakIterator](#breakiterator8) object is outside of the processed text after it is moved by the specified number of text boundaries.|
+| number | Position of the [BreakIterator](#breakiterator8) object in the text after it is moved by the specified number of text boundaries. The value **-1** is returned if the position of the [BreakIterator](#breakiterator8) object is outside of the processed text after it is moved by the specified number of text boundaries. |
 
 **Example**
   ```
@@ -1260,9 +1260,9 @@ Moves the [BreakIterator](#breakiterator8) object to the previous text boundary.
 **System capability**: SystemCapability.Global.I18n
 
 **Return Value**
-| Type    | Description                                      |
+| Type   | Description                              |
 | ------ | ---------------------------------------- |
-| number | Position of the [BreakIterator](#breakiterator8) object in the text after it is moved to the previous text boundary. The value **-1** is returned if the position of the [BreakIterator](#breakiterator8) object is outside of the processed text after it is moved by the specified number of text boundaries.|
+| number | Position of the [BreakIterator](#breakiterator8) object in the text after it is moved to the previous text boundary. The value **-1** is returned if the position of the [BreakIterator](#breakiterator8) object is outside of the processed text after it is moved by the specified number of text boundaries. |
 
 **Example**
   ```
@@ -1283,14 +1283,14 @@ Moves the [BreakIterator](#breakiterator8) object to the text boundary after the
 **System capability**: SystemCapability.Global.I18n
 
 **Parameters**
-| Name   | Type    | Mandatory  | Description                                      |
-| ------ | ------ | ---- | ---------------------------------------- |
-| offset | number | Yes   | Offset to the position before the text boundary to which the [BreakIterator](#breakiterator8) object is moved.|
+| Name   | Type   | Mandatory | Description                              |
+| ------ | ------ | --------- | ---------------------------------------- |
+| offset | number | Yes       | Offset to the position before the text boundary to which the [BreakIterator](#breakiterator8) object is moved. |
 
 **Return Value**
-| Type    | Description                                      |
+| Type   | Description                              |
 | ------ | ---------------------------------------- |
-| number | The value **-1** is returned if the text boundary to which the [BreakIterator](#breakiterator8) object is moved is outside of the processed text.|
+| number | The value **-1** is returned if the text boundary to which the [BreakIterator](#breakiterator8) object is moved is outside of the processed text. |
 
 **Example**
   ```
@@ -1311,14 +1311,14 @@ Checks whether the position specified by the offset is a text boundary. If **tru
 **System capability**: SystemCapability.Global.I18n
 
 **Parameters**
-| Name   | Type    | Mandatory  | Description         |
-| ------ | ------ | ---- | ----------- |
-| offset | number | Yes   | Position to check.|
+| Name   | Type   | Mandatory | Description        |
+| ------ | ------ | --------- | ------------------ |
+| offset | number | Yes       | Position to check. |
 
 **Return Value**
-| Type     | Description                             |
-| ------- | ------------------------------- |
-| boolean | Returns **true** if the position specified by the offset is a text boundary; returns **false** otherwise.|
+| Type    | Description                              |
+| ------- | ---------------------------------------- |
+| boolean | Returns **true** if the position specified by the offset is a text boundary; returns **false** otherwise. |
 
 **Example**
   ```
@@ -1338,9 +1338,9 @@ Checks whether the 24-hour clock is used.
 **System capability**: SystemCapability.Global.I18n
 
 **Return Value**
-| Type     | Description                                      |
+| Type    | Description                              |
 | ------- | ---------------------------------------- |
-| boolean | Returns **true** if the 24-hour clock is used; returns **false** otherwise.|
+| boolean | Returns **true** if the 24-hour clock is used; returns **false** otherwise. |
 
 **Example**
   ```
@@ -1359,14 +1359,14 @@ Sets the 24-hour clock.
 **System capability**: SystemCapability.Global.I18n
 
 **Parameters**
-| Name   | Type     | Mandatory  | Description                                      |
-| ------ | ------- | ---- | ---------------------------------------- |
-| option | boolean | Yes   | Whether to enable the 24-hour clock. The value **true** means to enable the 24-hour clock, and the value **false** means the opposite.|
+| Name   | Type    | Mandatory | Description                              |
+| ------ | ------- | --------- | ---------------------------------------- |
+| option | boolean | Yes       | Whether to enable the 24-hour clock. The value **true** means to enable the 24-hour clock, and the value **false** means the opposite. |
 
 **Return Value**
-| Type     | Description                           |
-| ------- | ----------------------------- |
-| boolean | Returns **true** if the 24-hour clock is enabled; returns **false** otherwise.|
+| Type    | Description                              |
+| ------- | ---------------------------------------- |
+| boolean | Returns **true** if the 24-hour clock is enabled; returns **false** otherwise. |
 
 **Example**
   ```
@@ -1386,15 +1386,15 @@ Adds a preferred language to the specified position on the preferred language li
 **System capability**: SystemCapability.Global.I18n
 
 **Parameters**
-| Name     | Type    | Mandatory  | Description        |
-| -------- | ------ | ---- | ---------- |
-| language | string | Yes   | Preferred language to add. |
-| index    | number | No   | Position to which the preferred language is added.|
+| Name     | Type   | Mandatory | Description                              |
+| -------- | ------ | --------- | ---------------------------------------- |
+| language | string | Yes       | Preferred language to add.               |
+| index    | number | No        | Position to which the preferred language is added. |
 
 **Return Value**
-| Type     | Description                           |
-| ------- | ----------------------------- |
-| boolean | Returns **true** if the preferred language is successfully added; returns **false** otherwise.|
+| Type    | Description                              |
+| ------- | ---------------------------------------- |
+| boolean | Returns **true** if the preferred language is successfully added; returns **false** otherwise. |
 
 **Example**
   ```
@@ -1416,14 +1416,14 @@ Deletes a preferred language from the specified position on the preferred langua
 **System capability**: SystemCapability.Global.I18n
 
 **Parameters**
-| Name  | Type    | Mandatory  | Description                   |
-| ----- | ------ | ---- | --------------------- |
-| index | number | Yes   | Position of the preferred language to delete.|
+| Name  | Type   | Mandatory | Description                              |
+| ----- | ------ | --------- | ---------------------------------------- |
+| index | number | Yes       | Position of the preferred language to delete. |
 
 **Return Value**
-| Type     | Description                           |
-| ------- | ----------------------------- |
-| boolean | Returns **true** if the preferred language is deleted; returns **false** otherwise.|
+| Type    | Description                              |
+| ------- | ---------------------------------------- |
+| boolean | Returns **true** if the preferred language is deleted; returns **false** otherwise. |
 
 **Example**
   ```
@@ -1442,9 +1442,9 @@ Obtains the list of preferred languages.
 **System capability**: SystemCapability.Global.I18n
 
 **Return Value**
-| Type                 | Description       |
-| ------------------- | --------- |
-| Array&lt;string&gt; | List of preferred languages.|
+| Type                | Description                  |
+| ------------------- | ---------------------------- |
+| Array&lt;string&gt; | List of preferred languages. |
 
 **Example**
   ```
@@ -1461,9 +1461,9 @@ Obtains the first language in the preferred language list.
 **System capability**: SystemCapability.Global.I18n
 
 **Return Value**
-| Type    | Description            |
-| ------ | -------------- |
-| string | First language in the preferred language list.|
+| Type   | Description                              |
+| ------ | ---------------------------------------- |
+| string | First language in the preferred language list. |
 
 **Example**
   ```
@@ -1480,14 +1480,14 @@ Obtains the **TimeZone** object corresponding to the specified time zone ID.
 **System capability**: SystemCapability.Global.I18n
 
 **Parameters**
-| Name   | Type    | Mandatory  | Description   |
-| ------ | ------ | ---- | ----- |
-| zondID | string | No   | Time zone ID.|
+| Name   | Type   | Mandatory | Description   |
+| ------ | ------ | --------- | ------------- |
+| zondID | string | No        | Time zone ID. |
 
 **Return Value**
-| Type      | Description          |
-| -------- | ------------ |
-| TimeZone | **TimeZone** object corresponding to the time zone ID.|
+| Type     | Description                              |
+| -------- | ---------------------------------------- |
+| TimeZone | **TimeZone** object corresponding to the time zone ID. |
 
 **Example**
   ```
@@ -1507,9 +1507,9 @@ Obtains the ID of the specified **TimeZone** object.
 **System capability**: SystemCapability.Global.I18n
 
 **Return Value**
-| Type    | Description          |
-| ------ | ------------ |
-| string | Time zone ID corresponding to the **TimeZone** object.|
+| Type   | Description                              |
+| ------ | ---------------------------------------- |
+| string | Time zone ID corresponding to the **TimeZone** object. |
 
 **Example**
   ```
@@ -1527,15 +1527,15 @@ Obtains the representation of a **TimeZone** object in the specified locale.
 **System capability**: SystemCapability.Global.I18n
 
 **Parameters**
-| Name   | Type     | Mandatory  | Description                  |
-| ------ | ------- | ---- | -------------------- |
-| locale | string  | No   | System locale ID.               |
-| isDST  | boolean | No   | Whether to consider DST when obtaining the representation of the **TimeZone** object.|
+| Name   | Type    | Mandatory | Description                              |
+| ------ | ------- | --------- | ---------------------------------------- |
+| locale | string  | No        | System locale ID.                        |
+| isDST  | boolean | No        | Whether to consider DST when obtaining the representation of the **TimeZone** object. |
 
 **Return Value**
-| Type    | Description           |
-| ------ | ------------- |
-| string | Representation of the **TimeZone** object in the specified locale.|
+| Type   | Description                              |
+| ------ | ---------------------------------------- |
+| string | Representation of the **TimeZone** object in the specified locale. |
 
 **Example**
   ```
@@ -1553,9 +1553,9 @@ Obtains the offset between the time zone represented by a **TimeZone** object an
 **System capability**: SystemCapability.Global.I18n
 
 **Return Value**
-| Type    | Description                 |
-| ------ | ------------------- |
-| number | Offset between the time zone represented by the **TimeZone** object and the UTC time zone.|
+| Type   | Description                              |
+| ------ | ---------------------------------------- |
+| number | Offset between the time zone represented by the **TimeZone** object and the UTC time zone. |
 
 **Example**
   ```
@@ -1573,9 +1573,9 @@ Obtains the offset between the time zone represented by a **TimeZone** object an
 **System capability**: SystemCapability.Global.I18n
 
 **Return Value**
-| Type    | Description                     |
-| ------ | ----------------------- |
-| number | Offset between the time zone represented by the **TimeZone** object and the UTC time zone at a certain time point.|
+| Type   | Description                              |
+| ------ | ---------------------------------------- |
+| number | Offset between the time zone represented by the **TimeZone** object and the UTC time zone at a certain time point. |
 
 **Example**
   ```
@@ -1592,9 +1592,9 @@ Obtains the list of time zone IDs supported by the system.
 **System capability**: SystemCapability.Global.I18n
 
 **Return value**
-| Type                 | Description         |
-| ------------------- | ----------- |
-| Array&lt;string&gt; | List of time zone IDs supported by the system.|
+| Type                | Description                              |
+| ------------------- | ---------------------------------------- |
+| Array&lt;string&gt; | List of time zone IDs supported by the system. |
 
 **Example**
   ```ts
@@ -1611,9 +1611,9 @@ Obtains the list of time zone city IDs supported by the system.
 **System capability**: SystemCapability.Global.I18n
 
 **Return value**
-| Type                 | Description           |
-| ------------------- | ------------- |
-| Array&lt;string&gt; | List of time zone city IDs supported by the system.|
+| Type                | Description                              |
+| ------------------- | ---------------------------------------- |
+| Array&lt;string&gt; | List of time zone city IDs supported by the system. |
 
 **Example**
   ```ts
@@ -1630,15 +1630,15 @@ Obtains the localized display of a time zone city in the specified locale.
 **System capability**: SystemCapability.Global.I18n
 
 **Parameters**
-| Name   | Type    | Mandatory  | Description    |
-| ------ | ------ | ---- | ------ |
-| cityID | string | Yes   | Time zone city ID.|
-| locale | string | Yes   | Locale ID.  |
+| Name   | Type   | Mandatory | Description        |
+| ------ | ------ | --------- | ------------------ |
+| cityID | string | Yes       | Time zone city ID. |
+| locale | string | Yes       | Locale ID.         |
 
 **Return value**
-| Type    | Description                |
-| ------ | ------------------ |
-| string | Localized display of the time zone city in the specified locale.|
+| Type   | Description                              |
+| ------ | ---------------------------------------- |
+| string | Localized display of the time zone city in the specified locale. |
 
 **Example**
   ```ts
@@ -1655,14 +1655,14 @@ Obtains the **TimeZone** object corresponding to the specified time zone city ID
 **System capability**: SystemCapability.Global.I18n
 
 **Parameters**
-| Name   | Type    | Mandatory  | Description    |
-| ------ | ------ | ---- | ------ |
-| cityID | string | Yes   | Time zone city ID.|
+| Name   | Type   | Mandatory | Description        |
+| ------ | ------ | --------- | ------------------ |
+| cityID | string | Yes       | Time zone city ID. |
 
 **Return value**
-| Type      | Description         |
-| -------- | ----------- |
-| TimeZone | **TimeZone** object corresponding to the specified time zone city ID.|
+| Type     | Description                              |
+| -------- | ---------------------------------------- |
+| TimeZone | **TimeZone** object corresponding to the specified time zone city ID. |
 
 **Example**
   ```ts
@@ -1683,14 +1683,14 @@ This is a system API.
 **System capability**: SystemCapability.Global.I18n
 
 **Parameters**
-| Name | Type     | Mandatory  | Description                             |
-| ---- | ------- | ---- | ------------------------------- |
-| flag | boolean | Yes   | Whether to turn on the local digit switch. The value **true** means to turn on the local digit switch, and the value **false** indicates the opposite.|
+| Name | Type    | Mandatory | Description                              |
+| ---- | ------- | --------- | ---------------------------------------- |
+| flag | boolean | Yes       | Whether to turn on the local digit switch. The value **true** means to turn on the local digit switch, and the value **false** indicates the opposite. |
 
 **Return value**
-| Type     | Description                                 |
-| ------- | ----------------------------------- |
-| boolean | Result indicating whether the local digit switch is successfully set. The value **true** indicates that the local digit switch is successfully set, and the value **false** indicates the opposite.|
+| Type    | Description                              |
+| ------- | ---------------------------------------- |
+| boolean | Result indicating whether the local digit switch is successfully set. The value **true** indicates that the local digit switch is successfully set, and the value **false** indicates the opposite. |
 
 **Example**
   ```ts
@@ -1707,9 +1707,9 @@ Checks whether the local digit switch is turned on.
 **System capability**: SystemCapability.Global.I18n
 
 **Return value**
-| Type     | Description                                      |
+| Type    | Description                              |
 | ------- | ---------------------------------------- |
-| boolean | Result indicating whether the local digit switch is turned on. The value **true** indicates that the local digit switch is turned on, and the value **false** indicates the opposite.|
+| boolean | Result indicating whether the local digit switch is turned on. The value **true** indicates that the local digit switch is turned on, and the value **false** indicates the opposite. |
 
 **Example**
   ```ts
@@ -1729,9 +1729,9 @@ Obtains a list of IDs supported by the **Transliterator** object.
 **System capability**: SystemCapability.Global.I18n
 
 **Return value**
-| Type      | Description        |
-| -------- | ---------- |
-| string[] | List of IDs supported by the **Transliterator** object.|
+| Type     | Description                              |
+| -------- | ---------------------------------------- |
+| string[] | List of IDs supported by the **Transliterator** object. |
 
 **Example**
   ```ts
@@ -1748,14 +1748,14 @@ Creates a **Transliterator** object.
 **System capability**: SystemCapability.Global.I18n
 
 **Parameters**
-| Name | Type    | Mandatory  | Description      |
-| ---- | ------ | ---- | -------- |
-| id   | string | Yes   | ID supported by the **Transliterator** object.|
+| Name | Type   | Mandatory | Description                              |
+| ---- | ------ | --------- | ---------------------------------------- |
+| id   | string | Yes       | ID supported by the **Transliterator** object. |
 
 **Return value**
-| Type                                | Description   |
-| ---------------------------------- | ----- |
-| [Transliterator](#transliterator9) | **Transliterator** object.|
+| Type                               | Description                |
+| ---------------------------------- | -------------------------- |
+| [Transliterator](#transliterator9) | **Transliterator** object. |
 
 **Example**
   ```ts
@@ -1772,14 +1772,14 @@ Converts the input string from the source format to the target format.
 **System capability**: SystemCapability.Global.I18n
 
 **Parameters**
-| Name | Type    | Mandatory  | Description    |
-| ---- | ------ | ---- | ------ |
-| text | string | Yes   | Input string.|
+| Name | Type   | Mandatory | Description   |
+| ---- | ------ | --------- | ------------- |
+| text | string | Yes       | Input string. |
 
 **Return value**
-| Type    | Description      |
-| ------ | -------- |
-| string | Target string.|
+| Type   | Description    |
+| ------ | -------------- |
+| string | Target string. |
 
 **Example**
   ```ts
