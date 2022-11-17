@@ -207,6 +207,9 @@ try {
   console.info("oninputdevcie " + error.code + " " + error.message)
 }
 
+// Enable listening for hot swap events of an input device.
+inputDevice.on("change", listener);
+
 // Disable this listener.
 try {
   inputDevice.off("change", this.callback);
