@@ -460,6 +460,6 @@ export default class MainAbility extends Ability {
 | LOCATION                | 定位导航。                  |
 | BLUETOOTH_INTERACTION   | 蓝牙相关。                  |
 | MULTI_DEVICE_CONNECTION | 多设备互联。                 |
-| WIFI_INTERACTION        | WLAN相关<br />此接口为系统接口。 |
-| VOIP                    | 音视频通话<br />此接口为系统接口。  |
+| WIFI_INTERACTION        | WLAN相关（此接口为系统接口）。 |
+| VOIP                    | 音视频通话（此接口为系统接口）。  |
 | TASK_KEEPING            | 计算任务（仅在特定设备生效）。        |
