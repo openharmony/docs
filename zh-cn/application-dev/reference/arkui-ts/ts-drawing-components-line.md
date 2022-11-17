@@ -21,32 +21,33 @@
 
 Line(options?: {width?: string | number, height?: string | number})
 
-- 参数
-  | 参数名 | 参数类型 | 必填 | 默认值 | 参数描述 |
-  | -------- | -------- | -------- | -------- | -------- |
-  | width | string \| number | 否 | 0 | 宽度。 |
-  | height | string \| number | 否 | 0 | 高度。 |
+**参数：**
+
+| 参数名 | 参数类型 | 必填 | 默认值 | 参数描述 |
+| -------- | -------- | -------- | -------- | -------- |
+| width | string \| number | 否 | 0 | 宽度。 |
+| height | string \| number | 否 | 0 | 高度。 |
 
 
 ## 属性
 
 除支持[通用属性](ts-universal-attributes-size.md)外，还支持以下属性：
 
-| 参数名称 | 参数类型 | 默认值 | 必填 | 参数描述 |
-| -------- | -------- | -------- | -------- | -------- |
-| startPoint | Array | [0,&nbsp;0] | 是   | 直线起点坐标点(相对坐标)。 |
-| endPoint   | Array | [0,&nbsp;0] | 是   | 直线终点坐标点(相对坐标)。 |
-| fill | [ResourceColor](ts-types.md#resourcecolor8) | Color.Black | 否 | 设置填充区域颜色。 |
-| fillOpacity | number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[Resource](ts-types.md#resource) | 1 | 否 | 设置填充区域透明度。 |
-| stroke | [ResourceColor](ts-types.md#resourcecolor8) | Color.Black | 否 | 设置线条颜色。 |
-| strokeDashArray | Array&lt;Length&gt; | [] | 否 | 设置线条间隙。 |
-| strokeDashOffset | number&nbsp;\|&nbsp;string | 0 | 否 | 线条绘制起点的偏移量。 |
-| strokeLineCap | [LineCapStyle](ts-appendix-enums.md#linecapstyle) | LineCapStyle.Butt | 否 | 设置线条端点绘制样式。 |
-| strokeLineJoin | [LineJoinStyle](ts-appendix-enums.md#linejoinstyle) | LineJoinStyle.Miter | 否 | 设置线条拐角绘制样式。 |
-| strokeMiterLimit | number&nbsp;\|&nbsp;string | 4 | 否 | 设置锐角绘制成斜角的极限值。 |
-| strokeOpacity | number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[Resource](ts-types.md#resource) | 1 | 否 | 设置线条透明度。 |
-| strokeWidth | Length | 1 | 否 | 设置线条宽度。 |
-| antiAlias | boolean | true | 否 | 是否开启抗锯齿效果。 |
+| 名称 | 类型 | 默认值 | 描述 |
+| -------- | -------- | -------- | -------- |
+| startPoint | Array | [0,&nbsp;0] | 直线起点坐标点(相对坐标)。 |
+| endPoint   | Array | [0,&nbsp;0] | 直线终点坐标点(相对坐标)。 |
+| fill | [ResourceColor](ts-types.md#resourcecolor8) | Color.Black | 设置填充区域颜色。<br/>**说明：**<br/>Line组件无法形成闭合区域，该属性设置无效。 |
+| fillOpacity | number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[Resource](ts-types.md#resource) | 1 | 设置填充区域透明度。<br/>**说明：**<br/>Line组件无法形成闭合区域，该属性设置无效。 |
+| stroke | [ResourceColor](ts-types.md#resourcecolor8) | Color.Black | 设置线条颜色。 |
+| strokeDashArray | Array&lt;Length&gt; | [] | 设置线条间隙。 |
+| strokeDashOffset | number&nbsp;\|&nbsp;string | 0 | 线条绘制起点的偏移量。 |
+| strokeLineCap | [LineCapStyle](ts-appendix-enums.md#linecapstyle) | LineCapStyle.Butt | 设置线条端点绘制样式。 |
+| strokeLineJoin | [LineJoinStyle](ts-appendix-enums.md#linejoinstyle) | LineJoinStyle.Miter | 设置线条拐角绘制样式。 |
+| strokeMiterLimit | number&nbsp;\|&nbsp;string | 4 | 设置锐角绘制成斜角的极限值。<br/>**说明：**<br/>Line组件无法设置锐角图形，该属性设置无效。 |
+| strokeOpacity | number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[Resource](ts-types.md#resource) | 1 | 设置线条透明度。 |
+| strokeWidth | Length | 1 | 设置线条宽度。 |
+| antiAlias | boolean | true | 是否开启抗锯齿效果。 |
 
 ## 示例
 

@@ -53,7 +53,7 @@
 
 ## 示例
 
-```
+```html
 <!-- xxx.hml -->
 <div class="container">
   <qrcode value="{{qr_value}}" type="{{qr_type}}"
@@ -71,7 +71,7 @@
 </div>
 ```
 
-```
+```css
 /* xxx.css */
 .container {
   width: 100%;
@@ -90,7 +90,7 @@ select{
 }
 ```
 
-```
+```js
 /* index.js */
 export default {
   data: {

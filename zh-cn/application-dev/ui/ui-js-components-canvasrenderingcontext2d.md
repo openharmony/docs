@@ -9,7 +9,7 @@
 使用moveTo和lineTo画出一条线段，当使用closePath方法时会结束当前路径形成一个封闭图形 。设置quadraticCurveTo（二次贝赛尔曲线）或bezierCurveTo（三次贝赛尔曲线）的值组成图形。
 
 
-```
+```html
 <!-- xxx.hml -->
 <div class="container">
   <canvas ref="canvas1"></canvas>
@@ -24,9 +24,11 @@
 ```
 
 
-```
+```css
 /* xxx.css */
 .container{
+  width: 100%;
+  height: 100%;
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -47,7 +49,7 @@ select{
 ```
 
 
-```
+```js
 // xxx.js
 import prompt from '@system.prompt';
 export default {
@@ -209,7 +211,7 @@ export default {
 
 
 
-```
+```html
 <!-- xxx.hml -->
 <div class="container">
   <canvas ref="canvas1"></canvas>
@@ -222,11 +224,11 @@ export default {
 </div>
 ```
 
-
-
-```
+```css
 /* xxx.css */
 .container{
+  width: 100%;
+  height: 100%;
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -246,9 +248,7 @@ select{
 }
 ```
 
-
-
-```
+```js
 // xxx.js
 import prompt from '@system.prompt';
 export default {
@@ -307,7 +307,7 @@ export default {
 添加createLinearGradient和createRadialGradient属性创建渐变容器，接着用addColorStop方法添加多个色块组成渐变色，再设置fillStyle为gradient将渐变色填充到矩形中，最后设置阴影的模糊级别（shadowBlur）、阴影颜色（shadowColor）及阴影偏移量（shadowOffset）。
 
 
-```
+```html
 <!-- xxx.hml -->
 <div class="container">
   <canvas ref="canvas1"></canvas>
@@ -321,9 +321,11 @@ export default {
 ```
 
 
-```
+```css
 /* xxx.css */
 .container{
+  width: 100%;
+  height: 100%;
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -344,7 +346,7 @@ select{
 ```
 
 
-```
+```js
 // xxx.js
 import prompt from '@system.prompt';
 export default {
@@ -432,7 +434,7 @@ export default {
 先创建文本，再用fillText方法把文字写在画布上。通过globalAlpha属性改变基线透明度，使基线不会挡住文字，再设置textAlign和textBaseline属性确定文字基于基线的位置。
 
 
-```
+```html
 <!-- xxx.hml -->
 <div class="container">
   <canvas ref="canvas1"></canvas>
@@ -445,9 +447,11 @@ export default {
 ```
 
 
-```
+```css
 /* xxx.css */
 .container{
+  width: 100%;
+  height: 100%;
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -468,7 +472,7 @@ select{
 ```
 
 
-```
+```js
 // xxx.js
 import prompt from '@system.prompt';
 export default {
@@ -566,7 +570,7 @@ export default {
 创建图片对象后使用drawImage属性画出图片，给图片设置一些动画样式如scale（缩放）、translate（平移）或rotate（旋转）。
 
 
-```
+```html
 <!-- xxx.hml -->
 <div class="container">
   <div class="content">
@@ -588,7 +592,7 @@ export default {
 ```
 
 
-```
+```css
 /* xxx.css */
 .container{
   flex-direction: column;
@@ -623,7 +627,7 @@ text{
 ```
 
 
-```
+```js
 // xxx.js
 import prompt from '@system.prompt';
 export default {
@@ -742,7 +746,7 @@ export default {
 save方法可对画笔样式进行存储，restore可对存储的画笔进行恢复。如下面的示例，先设置画笔为红色，在保存画笔后对画布进行清除并改变画笔为蓝色，当我们直接使用画笔时会画出一个蓝色矩形，对存储的画笔进行恢复后就可画出红色矩形。
 
 
-```
+```html
 <!-- xxx.hml -->
 <div class="container">
   <div class="content">
@@ -757,9 +761,11 @@ save方法可对画笔样式进行存储，restore可对存储的画笔进行恢
 ```
 
 
-```
+```css
 /* xxx.css */
 .container{
+  width: 100%;
+  height: 100%;
   flex-direction: column;
   background-color: #F1F3F5;
   align-items: center;
@@ -791,7 +797,7 @@ text{
 ```
 
 
-```
+```js
 // xxx.js
 import prompt from '@system.prompt';
 export default {

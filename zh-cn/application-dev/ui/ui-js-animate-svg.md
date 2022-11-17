@@ -9,7 +9,7 @@
 在Svg的子组件[animate](../reference/arkui-js/js-components-svg-animate.md)中，通过attributeName设置需要进行动效的属性，from设置开始值，to设置结束值。
 
 
-```
+```html
 <!-- xxx.hml -->
 <div class="container">
   <svg>
@@ -46,7 +46,7 @@
 在Svg的子组件[animateMotion](../reference/arkui-js/js-components-svg-animatemotion.md)中，通过path设置动画变化的路径。
 
 
-```
+```html
 <!-- xxx.hml -->
 <div class="container">
   <svg fill="white" width="800" height="900">
@@ -65,10 +65,10 @@
 
 ## animateTransform动画
 
-在Svg的子组件[animateMotion](../reference/arkui-js/js-components-svg-animatetransform.md)中，通过attributeName绑定transform属性，type设置动画类型，from设置开始值，to设置结束值。
+在Svg的子组件[animateTransform](../reference/arkui-js/js-components-svg-animatetransform.md)中，通过attributeName绑定transform属性，type设置动画类型，from设置开始值，to设置结束值。
 
 
-```
+```html
 <!-- xxx.hml -->
 <div class="container" style="">
   <svg>
@@ -94,7 +94,7 @@
 ```
 
 
-```
+```css
 /* xxx.css */
 .container {
   flex-direction: column;
