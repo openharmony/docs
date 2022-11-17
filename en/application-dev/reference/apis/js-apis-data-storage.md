@@ -3,13 +3,10 @@
 Lightweight storage provides applications with data processing capability and allows applications to perform lightweight data storage and query. Data is stored in key-value (KV) pairs. Keys are of the string type, and values can be of the number, string, or Boolean type.
 
 
-> **NOTE**<br/>
+> **NOTE**
 >
-> -  The initial APIs of this module are supported since API version 6. Newly added APIs will be marked with a superscript to indicate their earliest API version.
->
-> -  The APIs of this module are no longer maintained since API Version 9. You are advised to use [`@ohos.data.preferences`](js-apis-data-preferences.md).
-> 
-> -  The APIs of this module can be used only in the FA model.
+> The initial APIs of this module are supported since API version 6. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+
 
 
 ## Modules to Import
