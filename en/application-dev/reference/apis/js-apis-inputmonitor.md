@@ -105,13 +105,13 @@ This is a system API.
   **Example**
 
 ```js
-// 取消所有监听。
+// Disable listening globally.
 try {
     inputMonitor.off("touch");
 } catch (error) {
     console.info("offMonitor " + error.code + " " + error.message)
 }
-// 单独取消receiver的监听。
+// Disable listening for this receiver.
 callback:function(data) {
     console.info(`call success ${JSON.stringify(data)}`);
 },
@@ -119,7 +119,7 @@ try {
     inputMonitor.on("touch", this.callback);
 } catch (error) {
     console.info("onTouchMonitor " + error.code + " " + error.message)
-}，
+},
 try {
     inputMonitor.off("touch",this.callback);
 } catch (error) {
@@ -147,13 +147,13 @@ This is a system API.
 **Example**
 
 ```js
-// 取消所有监听。
+// Disable listening globally.
 try {
     inputMonitor.off("mouse");
 } catch (error) {
     console.info("offMonitor " + error.code + " " + error.message)
 }
-// 单独取消receiver的监听。
+// Disable listening for this receiver.
 callback:function(data) {
     console.info(`call success ${JSON.stringify(data)}`);
 },
@@ -161,7 +161,7 @@ try {
     inputMonitor.on("mouse", this.callback);
 } catch (error) {
     console.info("onMouseMonitor " + error.code + " " + error.message)
-}，
+},
 try {
     inputMonitor.off("mouse", this.callback);
 } catch (error) {
@@ -196,7 +196,7 @@ This is a system API.
 ```js
 try {
   inputMonitor.on("touch", (event) => {
-    // 若返回true，表示本次操作后续所有事件不再分发到窗口，事件都由监听者消费。
+    // If true is returned, all subsequent events of this operation will be consumed by the listener, instead of being distributed to the window.
     return false;
   });
   inputMonitor.off("touch");
