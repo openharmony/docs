@@ -155,6 +155,7 @@
 - 子系统开发
 
   -  内核
+     - [内核概述](kernel/kernel-overview.md)
      - 轻量系统内核（LiteOS-M）
        - [轻量系统内核概述](kernel/kernel-mini-overview.md)
        - 基础内核
