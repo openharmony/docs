@@ -388,7 +388,7 @@
        - [系统能力配置规则](subsystems/subsys-build-syscap.md)
        - [关于deps、external_deps的使用](subsystems/subsys-build-reference.md)
        - [开源软件Notice收集策略说明](subsystems/subsys-build-reference.md)
-       - [加快本地编译的一些参数](subsystems/subsys-build-reference.md
+       - [加快本地编译的一些参数](subsystems/subsys-build-reference.md)
        - [查看NinjaTrace](subsystems/subsys-build-reference.md)
        - [HAP编译构建指导](subsystems/subsys-build-gn-hap-compilation-guide.md)
        - [常见问题](subsystems/subsys-build-FAQ.md)
