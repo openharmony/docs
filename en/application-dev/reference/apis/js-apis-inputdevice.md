@@ -453,7 +453,7 @@ try {
 
 ## DeviceListener<sup>9+</sup>
 
-Defines the information about an input device.
+Defines the listener for hot swap events of an input device.
 
 **System capability**: SystemCapability.MultimodalInput.Input.InputDevice
 
