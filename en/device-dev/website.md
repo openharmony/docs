@@ -197,6 +197,7 @@
 
         - [Overall Description of Compilation Form Factors](quick-start/quickstart-build.md)
   - [Obtaining Source Code](get-code/sourcecode-acquire.md)
+- Privacy and Security
   - [Privacy Protection](security/security-privacy-protection.md)
   - [Security Guidelines](security/security-guidelines-overall.md)
 
