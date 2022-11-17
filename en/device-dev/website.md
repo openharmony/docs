@@ -655,17 +655,16 @@
   - [Codelabs](https://gitee.com/openharmony/codelabs/blob/master/README.md)
 - References
   - FAQs
-    - [FAQs Overview](faqs/faqs-overview.md)
-    - [Environment Setup](faqs/faqs-environment-setup.md)
-    - [Compilation and Building](faqs/faqs-building.md)
-    - [Burning](faqs/faqs-burning.md)
-    - [Kernel](faqs/faqs-kernel.md)
-    - [Porting](faqs/faqs-porting.md)
-    - [Startup](faqs/faqs-startup.md)
-    - [System Applications](faqs/faqs-system-applications.md)
-
-
-
+    - [Overview of FAQs](faqs-overview.md)
+    - [Environment Setup](faqs-environment-setup.md)
+    - [Compilation and Building](faqs-building.md)
+    - [Burning](faqs-burning.md)
+    - [File Management Development](faqs-file-management.md)
+    - [Data Management Development](faqs-data-management.md)
+    - [Kernel](faqs-kernel.md)
+    - [Porting](faqs-porting.md)
+    - [Startup](faqs-startup.md)
+    - [System Applications](faqs-system-applications.md)
 
 
 
