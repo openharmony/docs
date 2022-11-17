@@ -515,12 +515,13 @@
 
 
 - 调测
-  - [测试用例开发](subsystems/subsys-testguide-test.md)
+  - [developer_test开发者自测试执行框架使用指导](device-test/developer_test.md)
+  - [xdevice测试调度框架使用指导](device-test/xdevice.md)
   - 调测工具
     - [bytrace使用指导](subsystems/subsys-toolchain-bytrace-guide.md)
     - [hdc\_std 使用指导](subsystems/subsys-toolchain-hdc-guide.md)
     - [hiperf 使用指南](subsystems/subsys-toolchain-hiperf.md)
-- [XTS认证](subsystems/subsys-xts-guide.md)
+- [XTS认证](device-test/subsys-xts-guide.md)
 - 工具
   - [Docker编译环境](get-code/gettools-acquire.md)
   - [IDE集成开发环境](get-code/gettools-ide.md)
