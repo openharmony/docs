@@ -23,7 +23,7 @@ getUserFileMgr(context: Context): UserFileManager
 
 | 参数名  | 类型    | 必填 | 说明                       |
 | ------- | ------- | ---- | -------------------------- |
-| context | [Context](#../apis/js-apis-Context.md) | 是   | 传入Ability实例的Context。 |
+| context | [Context](../apis/js-apis-Context.md) | 是   | 传入Ability实例的Context。 |
 
 **返回值：**
 
@@ -1210,7 +1210,7 @@ getThumbnail(callback: AsyncCallback&lt;image.PixelMap&gt;): void
 
 | 参数名      | 类型                                  | 必填   | 说明               |
 | -------- | ----------------------------------- | ---- | ---------------- |
-| callback | AsyncCallback&lt;[image.PixelMap](#../apis/js-apis-image.md#pixelmap7)&gt; | 是    | 回调返回缩略图的PixelMap |
+| callback | AsyncCallback&lt;[image.PixelMap](../apis/js-apis-image.md#pixelmap7)&gt; | 是    | 回调返回缩略图的PixelMap |
 
 **示例：**
 
@@ -1248,7 +1248,7 @@ getThumbnail(size: Size, callback: AsyncCallback&lt;image.PixelMap&gt;): void
 | 参数名      | 类型                                  | 必填   | 说明               |
 | -------- | ----------------------------------- | ---- | ---------------- |
 | size     | [Size](#size)                      | 是    | 缩略图尺寸            |
-| callback | AsyncCallback&lt;[image.PixelMap](#../apis/js-apis-image.md#pixelmap7)&gt; | 是    | 回调返回缩略图的PixelMap |
+| callback | AsyncCallback&lt;[image.PixelMap](../apis/js-apis-image.md#pixelmap7)&gt; | 是    | 回调返回缩略图的PixelMap |
 
 **示例：**
 
@@ -1292,7 +1292,7 @@ getThumbnail(size?: Size): Promise&lt;image.PixelMap&gt;
 
 | 类型                            | 说明                    |
 | ----------------------------- | --------------------- |
-| Promise&lt;[image.PixelMap](#../apis/js-apis-image.md#pixelmap7)&gt; | Promise返回缩略图的PixelMap |
+| Promise&lt;[image.PixelMap](../apis/js-apis-image.md#pixelmap7)&gt; | Promise返回缩略图的PixelMap |
 
 **示例：**
 
