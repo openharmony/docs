@@ -1525,7 +1525,7 @@ lstat(path: string): Promise&lt;Stat&gt;
   ```js
   let filePath = pathDir + "/test.txt";
   fileio.lstat(filePath).then(function(stat){
-      console.info("get link status succeed, " + the size of file is + stat.size);
+      console.info("get link status succeed, the size of file is" + stat.size);
   }).catch(function(err){
       console.info("get link status failed with error:"+ err);
   });
