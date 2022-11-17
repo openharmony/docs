@@ -15,6 +15,130 @@ The Input Device module implements listening for connection, disconnection, and 
 ```js
 import inputDevice from '@ohos.multimodalInput.inputDevice';
 ```
+## inputDevice.getDeviceList<sup>9+</sup>
+
+getDeviceList(callback: AsyncCallback&lt;Array&lt;number&gt;&gt;): void
+
+Obtains the IDs of all input devices. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.MultimodalInput.Input.InputDevice
+
+**Parameters**
+
+| Name    | Type                                    | Mandatory| Description      |
+| -------- | ---------------------------------------- | ---- | ---------- |
+| callback | AsyncCallback&lt;Array&lt;number&gt;&gt; | Yes  | Callback used to return the result.|
+
+**Example**
+
+```js
+try {
+  inputDevice.getDeviceList((error, ids) => {
+    if (error) {
+      console.log(`Failed to get device list.
+         error code=${JSON.stringify(err.code)} msg=${JSON.stringify(err.message)}`);
+      return;
+    }
+    this.data = ids;
+    console.log("The device ID list is: " + ids);
+  });
+} catch (error) {
+  console.info("getDeviceList " + error.code + " " + error.message);
+}
+```
+
+## inputDevice.getDeviceList<sup>9+</sup>
+
+getDeviceList(): Promise&lt;Array&lt;number&gt;&gt;
+
+Obtains the IDs of all input devices. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.MultimodalInput.Input.InputDevice
+
+**Return value**
+
+| Name                              | Description                           |
+| ---------------------------------- | ------------------------------- |
+| Promise&lt;Array&lt;number&gt;&gt; | Promise used to return the result.|
+
+**Example**
+
+```js
+try {
+  inputDevice.getDeviceList().then((ids) => {
+    console.log("The device ID list is: " + ids);
+  });
+} catch (error) {
+  console.info("getDeviceList " + error.code + " " + error.message);
+}
+```
+
+## inputDevice.getDeviceInfo<sup>9+</sup>
+
+getDeviceInfo(deviceId: number, callback: AsyncCallback&lt;InputDeviceData&gt;): void
+
+Obtains information about an input device. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.MultimodalInput.Input.InputDevice
+
+**Parameters**
+
+| Name    | Type                                                    | Mandatory| Description                                   |
+| -------- | -------------------------------------------------------- | ---- | --------------------------------------- |
+| deviceId | number                                                   | Yes  | ID of the input device.                 |
+| callback | AsyncCallback&lt;[InputDeviceData](#inputdevicedata)&gt; | Yes  | Callback used to return the result, which is an **InputDeviceData** object.|
+
+**Example**
+
+```js
+// Obtain the name of the device whose ID is 1.
+try {
+  inputDevice.getDeviceInfo(1, (error, inputDevice) => {
+    if (error) {
+      console.log(`Failed to get device information.
+          error code=${JSON.stringify(err.code)} msg=${JSON.stringify(err.message)}`);
+      return;
+    }
+    console.log("The device name is: " + inputDevice.name);
+  });
+} catch (error) {
+  console.info("getDeviceInfo " + error.code + " " + error.message);
+}
+```
+
+## inputDevice.getDeviceInfo<sup>9+</sup>
+
+getDeviceInfo(deviceId: number): Promise&lt;InputDeviceData&gt;
+
+Obtains information about an input device. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.MultimodalInput.Input.InputDevice
+
+**Parameters**
+
+| Name    | Type  | Mandatory| Description                  |
+| -------- | ------ | ---- | ---------------------- |
+| deviceId | number | Yes  | ID of the input device.|
+
+**Return value**
+
+| Name                                              | Description                           |
+| -------------------------------------------------- | ------------------------------- |
+| Promise&lt;[InputDeviceData](#inputdevicedata)&gt; | Promise used to return the result.|
+
+**Example**
+
+```js
+// Obtain the name of the device whose ID is 1.
+try {
+  inputDevice.getDeviceInfo(id).then((inputDevice) => {
+    console.log("The device name is: " + inputDevice.name);
+  });
+} catch (error) {
+  console.info("getDeviceInfo " + error.code + " " + error.message);
+}
+```
+
 
 ## inputDevice.on<sup>9+</sup>
 
@@ -35,20 +159,24 @@ Enables listening for hot swap events of an input device.
 
 ```js
 let isPhysicalKeyboardExist = true;
-inputDevice.on("change", (data) => {
+try {
+  inputDevice.on("change", (data) => {
     console.log("type: " + data.type + ", deviceId: " + data.deviceId);
     inputDevice.getKeyboardType(data.deviceId, (err, ret) => {
-        console.log("The keyboard type of the device is: " + ret);
-        if (ret == inputDevice.KeyboardType.ALPHABETIC_KEYBOARD && data.type == 'add') {
-            // The physical keyboard is connected.
-            isPhysicalKeyboardExist = true;
-        } else if (ret == inputDevice.KeyboardType.ALPHABETIC_KEYBOARD && data.type == 'remove') {
-            // The physical keyboard is disconnected.
-            isPhysicalKeyboardExist = false;
-        }
+      console.log("The keyboard type of the device is: " + ret);
+      if (ret == inputDevice.KeyboardType.ALPHABETIC_KEYBOARD && data.type == 'add') {
+        // The physical keyboard is connected.
+        isPhysicalKeyboardExist = true;
+      } else if (ret == inputDevice.KeyboardType.ALPHABETIC_KEYBOARD && data.type == 'remove') {
+        // The physical keyboard is disconnected.
+        isPhysicalKeyboardExist = false;
+      }
     });
-});
-// Check whether the soft keyboard is open based on the value of isPhysicalKeyboardExist.
+  });
+  // Check whether the soft keyboard is open based on the value of isPhysicalKeyboardExist.
+} catch (error) {
+  console.info("oninputdevcie " + error.code + " " + error.message);
+}
 ```
 
 ## inputDevice.off<sup>9+</sup>
@@ -69,23 +197,39 @@ Disables listening for hot swap events of an input device.
 **Example**
 
 ```js
-function listener(data) {
-    console.log("type: " + data.type + ", deviceId: " + data.deviceId);
+callback: function(data) {
+  console.log("type: " + data.type + ", deviceId: " + data.deviceId);
+}
+
+try {
+  inputDevice.on("change", this.callback);
+} catch (error) {
+  console.info("oninputdevcie " + error.code + " " + error.message)
 }
 
 // Disable this listener.
-inputDevice.off("change", listener);
+try {
+  inputDevice.off("change", this.callback);
+} catch (error) {
+  console.info("offinputdevcie " + error.code + " " + error.message)
+}
 
 // Disable all listeners.
-inputDevice.off("change");
+try {
+  inputDevice.off("change");
+} catch (error) {
+  console.info("offinputdevcie " + error.code + " " + error.message);
+}
 // By default, the soft keyboard is closed when listening is disabled.
 ```
 
-## inputDevice.getDeviceIds
+## inputDevice.getDeviceIds<sup>(deprecated)</sup>
 
 getDeviceIds(callback: AsyncCallback&lt;Array&lt;number&gt;&gt;): void
 
 Obtains the IDs of all input devices. This API uses an asynchronous callback to return the result.
+
+This API is deprecated since API version 9. You are advised to use [inputDevice.getDeviceList](#inputdevicegetdevicelist9) instead.
 
 **System capability**: SystemCapability.MultimodalInput.Input.InputDevice
 
@@ -103,11 +247,13 @@ inputDevice.getDeviceIds((ids)=>{
 });
 ```
 
-## inputDevice.getDeviceIds
+## inputDevice.getDeviceIds<sup>(deprecated)</sup>
 
 getDeviceIds(): Promise&lt;Array&lt;number&gt;&gt;
 
 Obtains the IDs of all input devices. This API uses a promise to return the result.
+
+This API is deprecated since API version 9. You are advised to use [inputDevice.getDeviceList](#inputdevicegetdevicelist9) instead.
 
 **System capability**: SystemCapability.MultimodalInput.Input.InputDevice
 
@@ -125,11 +271,13 @@ inputDevice.getDeviceIds().then((ids)=>{
 });
 ```
 
-## inputDevice.getDevice
+## inputDevice.getDevice<sup>(deprecated)</sup>
 
 getDevice(deviceId: number, callback: AsyncCallback&lt;InputDeviceData&gt;): void
 
 Obtains information about an input device. This API uses an asynchronous callback to return the result.
+
+This API is deprecated since API version 9. You are advised to use [inputDevice.getDeviceInfo](#inputdevicegetdeviceinfo9) instead.
 
 **System capability**: SystemCapability.MultimodalInput.Input.InputDevice
 
@@ -149,11 +297,13 @@ inputDevice.getDevice(1, (inputDevice)=>{
 });
 ```
 
-## inputDevice.getDevice
+## inputDevice.getDevice<sup>(deprecated)</sup>
 
 getDevice(deviceId: number): Promise&lt;InputDeviceData&gt;
 
 Obtains information about an input device. This API uses a promise to return the result.
+
+This API is deprecated since API version 9. You are advised to use [inputDevice.getDeviceInfo](#inputdevicegetdeviceinfo9) instead.
 
 **System capability**: SystemCapability.MultimodalInput.Input.InputDevice
 
@@ -198,9 +348,13 @@ Obtains the key codes supported by the input device. This API uses an asynchrono
 
 ```js
 // Check whether the input device whose ID is 1 supports key codes 17, 22, and 2055.
-inputDevice.supportKeys(1, [17, 22, 2055], (ret)=>{
+try {
+  inputDevice.supportKeys(1, [17, 22, 2055], (error, ret) => {
     console.log("The query result is as follows: " + ret);
-});
+  });
+} catch (error) {
+  console.info("supportKeys " + error.code + " " + error.message);
+}
 ```
 
 ## inputDevice.supportKeys<sup>9+</sup>
@@ -228,9 +382,13 @@ Obtains the key codes supported by the input device. This API uses a promise to 
 
 ```js
 // Check whether the input device whose ID is 1 supports key codes 17, 22, and 2055.
-inputDevice.supportKeys(1, [17, 22, 2055]).then((ret)=>{
+try {
+  inputDevice.supportKeys(1, [17, 22, 2055]).then((ret) => {
     console.log("The query result is as follows: " + ret);
-})
+  });
+} catch (error) {
+  console.info("supportKeys " + error.code + " " + error.message);
+}
 ```
 
 ## inputDevice.getKeyboardType<sup>9+</sup>
@@ -252,9 +410,18 @@ Obtains the keyboard type of an input device. This API uses an asynchronous call
 
 ```js
 // Query the keyboard type of the input device whose ID is 1.
-inputDevice.getKeyboardType(1, (ret)=>{
-    console.log("The keyboard type of the device is: " + ret);
-});
+try {
+  inputDevice.getKeyboardType(1, (error, number) => {
+    if (error) {
+      console.log(`Failed to get keyboardtype.
+          error code=${JSON.stringify(err.code)} msg=${JSON.stringify(err.message)}`);
+      return;
+    }
+    console.log("The keyboard type of the device is: " + number);
+  });
+} catch (error) {
+  console.info("getKeyboardType " + error.code + " " + error.message);
+}
 ```
 
 ## inputDevice.getKeyboardType<sup>9+</sup>
@@ -275,9 +442,13 @@ Obtains the keyboard type of an input device. This API uses a promise to return 
 
 ```js
 // Query the keyboard type of the input device whose ID is 1.
-inputDevice.getKeyboardType(1).then((ret)=>{
-    console.log("The keyboard type of the device is: " + ret);
-})
+try {
+  inputDevice.getKeyboardType(1).then((number) => {
+    console.log("The keyboard type of the device is: " + number);
+  });
+} catch (error) {
+  console.info("getKeyboardType " + error.code + " " + error.message);
+}
 ```
 
 ## DeviceListener<sup>9+</sup>
