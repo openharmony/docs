@@ -333,7 +333,7 @@ SystemCapability.Print.print
 
   | 参数名 | 类型 | 必填 | 说明 | 
   | -------- | -------- | -------- | -------- |
-  | printerId |  string| 否 | 打印机ID。|
+  | printerId |  string| 是 | 打印机ID。|
   | callback  | AsyncCallback<boolean> | 是    | 被指定的回调方法。      | 
 
 **示例：**
@@ -366,7 +366,7 @@ SystemCapability.Print.print
 
   | 参数名 | 类型 | 必填 | 说明 | 
   | -------- | -------- | -------- | -------- |
-  | printerId |  string| 否 | 打印机ID。|
+  | printerId |  string| 是 | 打印机ID。|
 
 **返回值：**
 
@@ -405,7 +405,7 @@ SystemCapability.Print.print
 
   | 参数名 | 类型 | 必填 | 说明 | 
   | -------- | -------- | -------- | -------- |
-  | printerId |  string| 否 | 打印机ID。|
+  | printerId |  string| 是 | 打印机ID。|
   | callback  | AsyncCallback<boolean> | 是    | 被指定的回调方法。      | 
 
 **示例：**
@@ -438,7 +438,7 @@ SystemCapability.Print.print
 
   | 参数名 | 类型 | 必填 | 说明 | 
   | -------- | -------- | -------- | -------- |
-  | printerId |  string| 否 | 打印机ID。|
+  | printerId |  string| 是 | 打印机ID。|
 
 **返回值：**
 
@@ -677,7 +677,7 @@ print.startPrintJob(PrintJob).then((data)=>{
 ```
 ## print.cancelPrintJob
 
-cancelPrintJob(jobinfo: PrintJob, callback: AsyncCallback<boolean>): void;
+cancelPrintJob(jobId: string, callback: AsyncCallback<boolean>): void;
 
 取消打印任务（callback形式）。
 
@@ -693,51 +693,14 @@ SystemCapability.Print.print
 
   | 参数名 | 类型 | 必填 | 说明 | 
   | -------- | -------- | -------- | -------- |
-  | jobinfo |  [PrintJob](#PrintJob)| 是 | 打印任务。|
+  | jobId |  string| 是 | jobid。|
   | callback  |AsyncCallback<boolean> | 是    | 被指定的回调结果。      | 
 
 **示例：**
     
 ```js
-let printerState = 1;
-let printerRange = {
-  startPage : 1,  // start page of sequence
-  endPage : 4,  // end page of sequence
-  pages : [1,4],  // discrete page of sequence
-};
-let printerPageSize = {
-    id: '1',    // page size id
-    name: 'string',  // page size name
-    width: 200, // unit: milimeter
-    height: 200,  // unit: milimeter
-};
-let printMargin = {
-  top: 1,  // top margin
-  bottom: 2,  // bottom margin
-  left: 1,  // left side margin
-  right: 1,  // right side margin
-}
-let previewAttribute = {
-  previewRange: printerRange,  // preview page range
-  result: 'string',        // preview file
-}
-let printJob = {
-  files:['D:/dev/a.docx'],
-  jobId:'1001',
-  printerId: '2001',      // printer id to take charge of printing
-  jobState: printerState,  // current print job state
-  copyNumber: 3,      // copies of document list
-  pageRange: printerRange,
-  isSequential: false,    // sequential print
-  pageSize: printerPageSize,  // the selected page size
-  isLandscape: false,      // vertical printing
-  colorMode: 1,      // color mode
-  duplexMode: 1,    // duplex mode
-  margin: printMargin,    // current margin setting
-  preview: previewAttribute,  // preview setting
-  option:'string'
-}
-print.cancelPrintJob(printJob, (err, data) => {
+let jobId = 1;
+print.cancelPrintJob(jobId, (err, data) => {
     if (err) {
         console.error('Operation failed. Cause: ' + JSON.stringify(err));
         return;
@@ -774,45 +737,8 @@ SystemCapability.Print.print
 **示例：**
     
 ```js
-let printerState = 1;
-let printerRange = {
-  startPage : 1,  // start page of sequence
-  endPage : 4,  // end page of sequence
-  pages : [1,4],  // discrete page of sequence
-};
-let printerPageSize = {
-    id: '1',    // page size id
-    name: 'string',  // page size name
-    width: 200, // unit: milimeter
-    height: 200,  // unit: milimeter
-};
-let printMargin = {
-  top: 1,  // top margin
-  bottom: 2,  // bottom margin
-  left: 1,  // left side margin
-  right: 1,  // right side margin
-}
-let previewAttribute = {
-  previewRange: printerRange,  // preview page range
-  result: 'string',        // preview file
-}
-let printJob = {
-  files:['D:/dev/a.docx'],
-  jobId:'1001',
-  printerId: '2001',      // printer id to take charge of printing
-  jobState: printerState,  // current print job state
-  copyNumber: 3,      // copies of document list
-  pageRange: printerRange,
-  isSequential: false,    // sequential print
-  pageSize: printerPageSize,  // the selected page size
-  isLandscape: false,      // vertical printing
-  colorMode: 1,      // color mode
-  duplexMode: 1,    // duplex mode
-  margin: printMargin,    // current margin setting
-  preview: previewAttribute,  // preview setting
-  option:''
-}
-print.cancelPrintJob(printJob).then((data)=>{
+let jobId = 1;
+print.cancelPrintJob(jobId).then((data)=>{
     console.info('Operation successful. Data: ' + JSON.stringify(data));
 }).catch((error) => {
     console.error('Operation failed. Cause: ' + JSON.stringify(error));
@@ -1892,82 +1818,6 @@ print.updateExtensionInfo(info).then((data)=>{
 })
 ```
 
-## print.readFile
-
-readFile(config: ReadConfig, callback: AsyncCallback<ArrayBuffer>): void;
-
-打开文件（callback形式）。
-
-**需要权限：**
-
-ohos.permission.MANAGE_PRINT_JOB
-
-**系统能力**：
-
-SystemCapability.Print.print
-
-**参数：**
-
-  | 参数名 | 类型 | 必填 | 说明 | 
-  | -------- | -------- | -------- | -------- |
-  | config | [ReadConfig](#readConfig)| 是 | 文件配置信息。|
-  | callback | AsyncCallback<Array<byte>> | 是    | 被指定的回调结果。      | 
-
-**示例：**
-    
-```js
-let readConfig = {
-                  file: '',
-		          offset: 1,
-		          max: 3,
-                 }
-print.readFile(readConfig, (err, data) => {
-    if (err) {
-        console.error('Operation failed. Cause: ' + JSON.stringify(err));
-        return;
-    }
-    console.info('Operation successful. Data:' + JSON.stringify(data));
- })
-```
-## print.readFile
-
-readFile(config: ReadConfig): Promise<ArrayBuffer>;
-  
-打开文件（promise形式）。
-
-**需要权限：**
-
-ohos.permission.MANAGE_PRINT_JOB
-
-**系统能力**：
-
-SystemCapability.Print.print
-
-**参数：**
-
-  | 参数名 | 类型 | 必填 | 说明 | 
-  | -------- | -------- | -------- | -------- |
-  | config | [ReadConfig](#readConfig)| 是 | 文件配置信息。|
-
-**返回值：**
-
-  | 类型 |  说明 | 
-  | -------- | -------- |
-  |  Promise<Array<byte>>  | Promise形式返回执行结果。      | 
-
-**示例：**
-    
-```js
-let readConfig = {file: '';
-		          offset: 1,
-		          max: 3,}
-print.readFile(readConfig).then((data)=>{
-    console.info('Operation successful. Data: ' + JSON.stringify(data));
-}).catch((error) => {
-    console.error('Operation failed. Cause: ' + JSON.stringify(error));
-})
-```
-
 ## PrintTask
 
  print接口创建打印任务的通知送信的callback接口
@@ -2058,10 +1908,10 @@ SystemCapability.Print.print
 
 | 名称                  | 读写属性 | 类型                   | 必填   | 描述                                     |
 | ------------------- | ---- | -------------------- | ---- | -------------------------------------- |
-| top                | 只读   | number        | 是    | 上边距。                     |
-| bottom                | 只读   | number        | 是    | 下边距。                     |
-| left                | 只读   | number        | 是    | 左边距。                     |
-| right                | 只读   | number        | 是    | 又边距。                     |
+| top                | 只读   | number        | 否    | 上边距。                     |
+| bottom                | 只读   | number        | 否    | 下边距。                     |
+| left                | 只读   | number        | 否    | 左边距。                     |
+| right                | 只读   | number        | 否    | 又边距。                     |
 
 ## PrinterRange
 
@@ -2071,9 +1921,9 @@ SystemCapability.Print.print
 
 | 名称                  | 读写属性 | 类型                   | 必填   | 描述                                     |
 | ------------------- | ---- | -------------------- | ---- | -------------------------------------- |
-| startPage                | 只读   | number        | 是    | 开始页。                     |
-| endPage                | 只读   | number        | 是    | 结束页。                     |
-| pages                | 只读   |  Array<number>        | 是    | 总页数。                     |
+| startPage                | 只读   | number        | 否    | 开始页。                     |
+| endPage                | 只读   | number        | 否    | 结束页。                     |
+| pages                | 只读   |  Array<number>        | 否    | 总页数。                     |
 
 ## PreviewAttribute
 
@@ -2084,7 +1934,7 @@ SystemCapability.Print.print
 | 名称                  | 读写属性 | 类型                   | 必填   | 描述                                     |
 | ------------------- | ---- | -------------------- | ---- | -------------------------------------- |
 | previewRange                | 只读   | [PrinterRange](#printerRange)        | 是    | 打印范围。                     
-| result                | 只读   | string        | 是    | 预览文件地址。                     |
+| result                | 只读   | string        | 否    | 预览文件地址。                     |
 
 ## PrinterResolution
 
@@ -2119,10 +1969,13 @@ SystemCapability.Print.print
 
 | 名称                  | 读写属性 | 类型                   | 必填   | 描述                                     |
 | ------------------- | ---- | -------------------- | ---- | -------------------------------------- |
-| minMargin                | 只读   | [PrintMargin](#printMargin)        | 是    | 打印边距。        |             
-| pageSize                | 只读   |  Array<[PrinterPageSize](#printerPageSize)>       | 是    | 打印范围。|                     | resolution                | 只读   |  Array<[PrinterResolution](#printerResolution)>       | 是    | 分别率。|
 | colorMode                | 只读   | number        | 是    | 颜色模式。                     |
 | duplexMode                | 只读   | number        | 是    | 双面模式。                     |
+| pageSize                | 只读   |  Array<[PrinterPageSize](#printerPageSize)>       | 是    | 打印范围。|       
+| resolution                | 只读   |  Array<[PrinterResolution](#printerResolution)>       | 否    | 分别率。|
+| minMargin                | 只读   | [PrintMargin](#printMargin)        | 否    | 打印边距。        |  
+
+
 
 ## PrinterInfo
 
@@ -2133,10 +1986,10 @@ SystemCapability.Print.print
 | 名称                  | 读写属性 | 类型                   | 必填   | 描述                                     |
 | ------------------- | ---- | -------------------- | ---- | -------------------------------------- |
 | printerId                | 只读   |  string       | 是    | 打印机id。        |             
-| printerName                | 只读   | string       | 是    | 打印机名称。|                     
-| printerIcon                | 只读   |  number      | 是    | 打印机按钮。|
-| printerState                | 只读   | [PrinterState](#PrinterState)         | 是    | 打印机状态。                     
-| description                | 只读   | string        | 是    | 打印机描述。                     |
+| printerName                | 只读   | string       | 是    | 打印机名称。|      
+| printerState                | 只读   | [PrinterState](#PrinterState)         | 是    | 打印机状态。  |                   
+| printerIcon                | 只读   |  number      | 否    | 打印机按钮。|
+| description                | 只读   | string        | 否    | 打印机描述。                     |
 | capability                | 只读   |  [PrinterCapability](#printerCapability)        | 否    | 打印机能力。   |
 | option                | 只读   | string        | 否    | json对象。   |                  
 
@@ -2153,13 +2006,13 @@ SystemCapability.Print.print
 | printerId                | 只读   |  string       | 是    | 打印机。|
 | jobState                | 只读   |  [PrintJobState](#printJobState)        | 是    | 任务状态。                     
 | copyNumber                | 只读   | number        | 是    | 打印份数。                     |
-| pageRange                | 只读   | [PrinterRange](#printerRange)       | 是    | 打印范围。                     |
+| pageRange                | 只读   | [PrinterRange](#printerRange)       | 是    | 打印范围。   |
 | isSequential                | 只读   | boolean       | 是    | 是否按顺序。                     |
 | pageSize                | 只读   | [PrinterPageSize](#printerPageSize)         | 是    | 纸张大小。                     | isLandscape                | 只读   | boolean       | 是    | 是否垂直居中。    |
 | colorMode                | 只读   | number        | 是    | 色彩模式。                     |
 | duplexMode                | 只读   | number        | 是    | 双面模式。                     |
-| margin                | 只读   |  [PrintMargin](#printMargin)        | 是    | 打印边距。                     |
-| preview                | 只读   |  [PreviewAttribute](#previewAttribute)        | 是   | 预览设置。         |
+| margin                | 只读   |  [PrintMargin](#printMargin)        | 否    | 打印边距。                     |
+| preview                | 只读   |  [PreviewAttribute](#previewAttribute)        | 否   | 预览设置。         |
 | option                | 只读   | string        | 否    | json对象。   |   
      
 ## PrinterState
@@ -2170,13 +2023,12 @@ SystemCapability.Print.print
 
 | 变量                                  | 值        | 说明                                       |
 | ------------------------------------ | ---------- | ---------------------------------------- |
-| PRINTER_ADDED         | 1 | 打印机添加。                         |
-| PRINTER_REMOVED       | 2 | 打印机删除。                         |
-| PRINTER_UPDATE_CAP       | 3 | 打印机更新。                         |
-| PRINTER_CONNECTED          | 4 | 打印机已连接。                               |
-| PRINTER_DISCONNECTED      | 5 | 打印机断开连接。                  |
-| PRINTER_RUNNING              | 6 |打印机运行终。                            |
-| PRINTER_UNKNOWN            | 7 | 未知状态。                              |
+| PRINTER_ADDED         | 0 | 打印机添加。                         |
+| PRINTER_REMOVED       | 1 | 打印机删除。                         |
+| PRINTER_UPDATE_CAP       | 2 | 打印机更新。                         |
+| PRINTER_CONNECTED          | 3 | 打印机已连接。                               |
+| PRINTER_DISCONNECTED      | 4 | 打印机断开连接。                  |
+| PRINTER_RUNNING              | 5 |打印机运行终。                            |
                     
 ## PrintJobState
 
@@ -2186,12 +2038,11 @@ SystemCapability.Print.print
 
 | 变量                                   | 值         | 说明                                       |
 | ------------------------------------ | ---------- | ---------------------------------------- |
-| PRINT_JOB_PREPARE        | 1 | 打印任务准备。                         |
-| PRINT_JOB_QUEUED       | 2 | 开始打印任务。                         |
-| PRINT_JOB_RUNNING          | 3 | 打印任务执行中。                               |
-| PRINT_JOB_BLOCKED            | 4 | 打印任务阻塞。                  |
-| PRINT_JOB_COMPLETED              | 5 | 打印任务完成。                            |
-| PRINT_JOB_UNKNOWN | 6 | 打印任务未知状态。|   
+| PRINT_JOB_PREPARE        | 0 | 打印任务准备。                         |
+| PRINT_JOB_QUEUED       | 1 | 开始打印任务。                         |
+| PRINT_JOB_RUNNING          | 2 | 打印任务执行中。                               |
+| PRINT_JOB_BLOCKED            | 3 | 打印任务阻塞。                  |
+| PRINT_JOB_COMPLETED              | 4 | 打印任务完成。                            | 
 
 ## PrintJobSubState
 
@@ -2220,6 +2071,24 @@ SystemCapability.Print.print
 | PRINT_JOB_BLOCK_BAD_CERTIFICATE | 16 | 认证失败。|   
 | PRINT_JOB_BLOCK_UNKNOWN | 17 | 未知状态。|   
 
+## PrintErrorCode
+打印错误码
+
+**系统能力**：以下各项对应的系统能力均为SystemCapability.Print.print
+
+| 变量                                   | 值         | 说明                                       |
+| ------------------------------------ | ---------- | ---------------------------------------- |
+| E_PRINT_NONE        | 0 |  成功。                         |
+| E_PRINT_NO_PERMISSION       | 201 | 没有权限。                         |
+| E_PRINT_INVALID_PARAMETER   |401| 参数错误。                               |
+| E_PRINT_GENERIC_FAILURE            | 13100001 | 打印的一般故障。                  |
+| E_PRINT_RPC_FAILURE              | 13100002 | RPC失败。                            |
+| E_PRINT_SERVER_FAILURE | 13100003 | 打印服务失败。|   
+| E_PRINT_INVALID_EXTENSION | 13100004 | 打印扩展名无效。|   
+| E_PRINT_INVALID_PRINTER | 13100005 | 无效打印机。|   
+| E_PRINT_INVALID_PRINTJOB | 13100006 | 打印作业无效。|   
+| E_PRINT_FILE_IO | 13100007 |文件i/o错误。|   
+
 ## PrinterExtensionInfo
 打印扩展信息,继承ExtensionAbilityInfo
 
@@ -2233,18 +2102,6 @@ SystemCapability.Print.print
 | vendorIcon                | 只读   |  number        | 是    | 供应商的资源id。|              
 | version                | 只读   | string        | 是    | 当前打印机扩展的版本。                     |
  
-## ReadConfig
-文件配置
-
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Print.print
-
-| 名称                  | 读写属性 | 类型                   | 必填   | 描述                                     |
-| ------------------- | ---- | -------------------- | ---- | -------------------------------------- |
-| file                | 只读   | string      | 是    |文件地址。        |             
-| offset                | 只读   |  number       | 否    | 偏移量。|                     
-| max                | 只读   |  number       | 否    | 最大偏移量。|
- 
-
 # PrintExtensionAbility
 
 PrintExtensionAbility模块提供PrintExtension打印扩展服务扩展相关接口的能力。
