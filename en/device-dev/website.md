@@ -201,6 +201,24 @@
   - [Security Guidelines](security/security-guidelines-overall.md)
 
 - Porting
+
+  - Mini System SoC Porting Guide
+    - Porting Preparations
+      - [Before You Start](porting/porting-chip-prepare-knows.md)
+      - [Building Adaptation Process](porting/porting-chip-prepare-process.md)
+    - Kernel Porting
+      - [Overview](porting/porting-chip-kernel-overview.md)
+      - [Basic Kernel Adaptation](porting/porting-chip-kernel-adjustment.md)
+      - [Kernel Porting Verification](porting/porting-chip-kernel-verify.md)
+    - Board-Level OS Porting
+      - [Overview](porting/porting-chip-board-overview.md)
+      - [Board-Level Driver Adaptation](porting/porting-chip-board-driver.md)
+      - [Implementation of APIs at the HAL](porting/porting-chip-board-hal.md)
+      - [System Modules](porting/porting-chip-board-component.md)
+      - [lwIP Module Adaptation](porting/porting-chip-board-lwip.md)
+      - [Third-party Module Adaptation](porting/porting-chip-board-bundle.md)
+      - [XTS](porting/porting-chip-board-xts.md)
+    - [FAQs](porting/porting-chip-faqs.md)
   - Small System SoC Porting Guide
 
     - Porting Preparations
