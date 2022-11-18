@@ -1,10 +1,10 @@
 # Flex
 
-The **\<Flex>** component allows for elastic layout of child components.
+The **\<Flex>** component allows for flexible layout of child components.
 
 > **NOTE**
 > - This component is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
-> - The **\<Flex>** component adapts the layout of flex items to comply with the **flexShrink** and **flexGrow** settings. This may affect the performance. Therefore, you are advised to use **[Column](ts-container-column.md)** or **[Row](ts-container-row.md)** instead under scenarios where consistently high performance is required.
+> - The **\<Flex>** component adapts the layout of flex items during rendering. This may affect the performance. Therefore, you are advised to use **[Column](ts-container-column.md)** or **[Row](ts-container-row.md)** instead under scenarios where consistently high performance is required.
 
 
 ## Required Permissions
@@ -14,7 +14,7 @@ None
 
 ## Child Components
 
-This component can contain child components.
+Supported
 
 
 ## APIs
@@ -30,7 +30,7 @@ Creates a standard **\<Flex>** component.
   | wrap           | [FlexWrap](ts-appendix-enums.md#flexwrap)  | No   | FlexWrap.NoWrap   | Whether the **\<Flex>** component has a single line or multiple lines.                    |
   | justifyContent | [FlexAlign](ts-appendix-enums.md#flexalign) | No   | FlexAlign.Start   | Alignment mode of the child components in the **\<Flex>** component along the main axis.                     |
   | alignItems     | [ItemAlign](ts-appendix-enums.md#itemalign) | No   | ItemAlign.Start | Alignment mode of the child components in the **\<Flex>** component along the cross axis.                    |
-  | alignContent   | [FlexAlign](ts-appendix-enums.md#flexalign) | No   | FlexAlign.Start   | Alignment mode of the child components in a multi-line **\<Flex>** component along the cross axis. This parameter is valid only when **wrap** is set to **Wrap** or **WrapReverse**.|
+  | alignContent   | [FlexAlign](ts-appendix-enums.md#flexalign) | No   | FlexAlign.Start   | Alignment mode of the child components in a multi-line **<Flex>** component along the cross axis. This parameter is valid only when **wrap** is set to **Wrap** or **WrapReverse**.|
 
 
 ## Example
@@ -148,7 +148,7 @@ struct FlexExample2 {
 // xxx.ets
 @Component
 struct JustifyContentFlex {
-  @Prop justifyContent : number
+  justifyContent : number
 
   build() {
     Flex({ justifyContent: this.justifyContent }) {
@@ -197,7 +197,7 @@ struct FlexExample3 {
 // xxx.ets
 @Component
 struct AlignItemsFlex {
-  @Prop alignItems : number
+  alignItems : number
 
   build() {
     Flex({ alignItems: this.alignItems }) {
@@ -246,7 +246,7 @@ struct FlexExample4 {
 // xxx.ets
 @Component
 struct AlignContentFlex {
-  @Prop alignContent: number
+  alignContent: number
 
   build() {
     Flex({ wrap: FlexWrap.Wrap, alignContent: this.alignContent }) {
