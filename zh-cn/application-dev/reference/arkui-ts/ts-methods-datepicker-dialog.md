@@ -13,7 +13,7 @@ show(options?: DatePickerDialogOptions)
 
 定义日期滑动选择器弹窗并弹出。
 
-**DatePickerDialogOptions参数说明：**
+**DatePickerDialogOptions参数：**
 
 | 参数名 | 参数类型 | 必填 | 默认值 | 参数描述 |
 | -------- | -------- | -------- | -------- | -------- |
