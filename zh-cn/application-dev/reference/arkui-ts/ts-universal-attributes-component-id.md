@@ -229,7 +229,11 @@ struct IdExample {
                 }
               }
             },
-            source: SourceType.Mouse
+            source: SourceType.Mouse,
+            pressure: 1,
+            tiltX: 1,
+            tiltY: 1,
+            sourceTool: SourceTool.Unknown
           }
           sendMouseEvent(mouseEvent) // 发送鼠标事件
         }, 2000)
