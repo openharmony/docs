@@ -4,10 +4,9 @@
 
   - Getting Started
     - [Preparations](quick-start/start-overview.md)
-    - [Getting Started with eTS in Stage Model](quick-start/start-with-ets-stage.md)
-    - [Getting Started with eTS in FA Model](quick-start/start-with-ets-fa.md)
+    - [Getting Started with ArkTS in Stage Model](quick-start/start-with-ets-stage.md)
+    - [Getting Started with ArkTS in FA Model](quick-start/start-with-ets-fa.md)
     - [Getting Started with JavaScript in FA Model](quick-start/start-with-js-fa.md)
-
   - Development Fundamentals
     - [Application Package Structure Configuration File (FA Model)](quick-start/package-structure.md)
     - [Application Package Structure Configuration File (Stage Model)](quick-start/stage-structure.md)
@@ -176,6 +175,7 @@
     - Access Control
       - [Access Control Overview](security/accesstoken-overview.md)
       - [Access Control Development](security/accesstoken-guidelines.md)
+      - [Permission Verification Guide](security/permission-verify-guidelines.md)
       - [Permission List](security/permission-list.md)
     - User Authentication
       - [User Authentication Overview](security/userauth-overview.md)
@@ -265,6 +265,7 @@
     - [Drawing Development](napi/drawing-guidelines.md)
     - [Raw File Development](napi/rawfile-guidelines.md)
     - [Native Window Development](napi/native-window-guidelines.md)
+    - [Using MindSpore Lite for Model Inference](napi/mindspore-lite-guidelines.md)
 - Tools
   - [DevEco Studio (OpenHarmony) User Guide](quick-start/deveco-studio-user-guide-for-openharmony.md)
 - Hands-On Tutorials
@@ -579,6 +580,7 @@
         - [@ohos.application.formInfo](reference/apis/js-apis-formInfo.md)
         - [@ohos.application.formProvider](reference/apis/js-apis-formprovider.md)
         - [@ohos.application.missionManager](reference/apis/js-apis-missionManager.md)
+        - [@ohos.application.quickFixManager](reference/apis/js-apis-application-quickFixManager.md)
         - [@ohos.application.Want](reference/apis/js-apis-application-Want.md)
         - [@ohos.continuation.continuationManager](reference/apis/js-apis-continuation-continuationExtraParams.md)
         - [@ohos.continuation.continuationManager](reference/apis/js-apis-continuation-continuationManager.md)
@@ -610,6 +612,7 @@
       - [ApplicationInfo](reference/apis/js-apis-bundle-ApplicationInfo.md)
       - [BundleInfo](reference/apis/js-apis-bundle-BundleInfo.md)
       - [BundleInstaller](reference/apis/js-apis-bundle-BundleInstaller.md)
+      - [BundleStatusCallback](reference/apis/js-apis-Bundle-BundleStatusCallback.md)
       - [CustomizeData](reference/apis/js-apis-bundle-CustomizeData.md)
       - [DispatchInfo](reference/apis/js-apis-dispatchInfo.md)
       - [ElementName](reference/apis/js-apis-bundle-ElementName.md)
@@ -618,6 +621,7 @@
       - [LauncherAbilityInfo](reference/apis/js-apis-bundle-LauncherAbilityInfo.md)
       - [Metadata](reference/apis/js-apis-bundle-Metadata.md)
       - [ModuleInfo](reference/apis/js-apis-bundle-ModuleInfo.md)
+      - [PackInfo](reference/apis/js-apis-bundle-PackInfo.md)
       - [PermissionDef](reference/apis/js-apis-bundle-PermissionDef.md)
       - [RemoteAbilityInfo](reference/apis/js-apis-bundle-remoteAbilityInfo.md)
       - [ShortcutInfo](reference/apis/js-apis-bundle-ShortcutInfo.md)
@@ -631,6 +635,7 @@
       - [@ohos.animation.windowAnimationManager](reference/apis/js-apis-windowAnimationManager.md)
       - [@ohos.display](reference/apis/js-apis-display.md)
       - [@ohos.effectKit](reference/apis/js-apis-effectKit.md)
+      - [@ohos.graphics.colorSpaceManager](reference/apis/js-apis-colorSpaceManager.md)
       - [@ohos.screen](reference/apis/js-apis-screen.md)
       - [@ohos.screenshot](reference/apis/js-apis-screenshot.md)
       - [@ohos.window](reference/apis/js-apis-window.md)
@@ -677,6 +682,7 @@
       - [@ohos.document](reference/apis/js-apis-document.md)
       - [@ohos.environment](reference/apis/js-apis-environment.md)
       - [@ohos.fileio](reference/apis/js-apis-fileio.md)
+      - [@ohos.filemanagement.userfile_manager](reference/apis/js-apis-userfilemanager.md)
       - [@ohos.multimedia.medialibrary](reference/apis/js-apis-medialibrary.md)
       - [@ohos.securityLabel](reference/apis/js-apis-securityLabel.md)
       - [@ohos.statfs](reference/apis/js-apis-statfs.md)
@@ -692,8 +698,13 @@
       - [@ohos.telephony.sms](reference/apis/js-apis-sms.md)
     - Network Management
       - [@ohos.net.connection](reference/apis/js-apis-net-connection.md)
+      - [@ohos.net.ethernet](reference/apis/js-apis-net-ethernet.md)
       - [@ohos.net.http](reference/apis/js-apis-http.md)
+      - [@ohos.net.policy](reference/apis/js-apis-net-policy.md)
+      - [@ohos.net.sharing](reference/apis/js-apis-net-sharing.md)
       - [@ohos.net.socket](reference/apis/js-apis-socket.md)
+      - [@ohos.net.statistics](reference/apis/js-apis-net-statistics.md)
+      - [@ohos.net.tlsSocket](reference/apis/js-apis-tlsSocket.md)
       - [@ohos.net.webSocket](reference/apis/js-apis-webSocket.md)
       - [@ohos.request](reference/apis/js-apis-request.md)
     - Connectivity
@@ -819,7 +830,7 @@
   - [Guide to Switching to Full SDK](quick-start/full-sdk-switch-guide.md)
   - [Ability Framework Development](faqs/faqs-ability.md)
   - [ArkUI (JavaScript) Development](faqs/faqs-ui-js.md)
-  - [ArkUI (eTS) Development](faqs/faqs-ui-ets.md)
+  - [ArkUI (ArkTS) Development](faqs/faqs-ui-ets.md)
   - [Graphics and Image Development](faqs/faqs-graphics.md)
   - [File Management Development](faqs/faqs-file-management.md)
   - [Network and Connection Development](faqs/faqs-connectivity.md)
