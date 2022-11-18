@@ -468,6 +468,7 @@
      - [HiTraceChain开发指导](subsystems/subsys-dfx-hitracechain.md)
      - [HiCollie开发指导](subsystems/subsys-dfx-hicollie.md)
      - HiSysEvent开发指导
+       - [HiSysEvent概述](subsystems/subsys-dfx-hisysevent-overview.md)
        - [HiSysEvent打点配置指导](subsystems/subsys-dfx-hisysevent-logging-config.md)
        - [HiSysEvent打点指导](subsystems/subsys-dfx-hisysevent-logging.md)
        - [HiSysEvent订阅指导](subsystems/subsys-dfx-hisysevent-listening.md)
@@ -524,6 +525,7 @@
     - [hiperf 使用指南](subsystems/subsys-toolchain-hiperf.md)
 - [XTS认证](device-test/xts.md)
 - 工具
+  - [Docker编译环境](get-code/gettools-overview.md)
   - [Docker编译环境](get-code/gettools-acquire.md)
   - [IDE集成开发环境](get-code/gettools-ide.md)
 - 示例教程
