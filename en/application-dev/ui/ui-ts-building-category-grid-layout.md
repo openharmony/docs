@@ -4,7 +4,7 @@
 The diet application allows food on the home page to display in list or grid mode. You can implement switching between food categories through tabs in grid mode.
 
 
-1. Import the Category enumeration type to the **FoodCategoryList** page.
+1. Import the **Category** enumeration type to the **FoodCategoryList** page.
    
    ```ts
    import { Category, FoodData } from '../model/FoodData'
@@ -121,9 +121,9 @@ The diet application allows food on the home page to display in list or grid mod
 
    ![en-us_image_0000001222807800](figures/en-us_image_0000001222807800.gif)
 
-6. Create a tab to display all food categories (All). Create the **\<Tabs>** component and its child component **TabContent** in the **FoodCategory** component, and set **tabBar** to **All**. Set the width of the **TabBars** to **280** and the layout mode to **Scrollable**. This means that the TabBars can be scrolled when the total length exceeds 280. The **\<Tabs>** component is a container component that allows users to switch between content views through tabs. Each tab page corresponds to a TabContent.
+6. Create a tab to display all food categories (**All**). Create the **\<Tabs>** component and its child component **TabContent** in the **FoodCategory** component, and set **tabBar** to **All**. Set the width of the **TabBars** to **280** and the layout mode to **Scrollable**. This means that the TabBars can be scrolled when the total length exceeds 280. The **\<Tabs>** component is a container component that allows users to switch between content views through tabs. Each tab page corresponds to a TabContent.
    
-   ```
+   ```ts
    @Component
    struct FoodCategory {
      private foodItems: FoodData[]
@@ -204,7 +204,7 @@ The diet application allows food on the home page to display in list or grid mod
              .objectFit(ImageFit.Contain)
              .height(152)
              .width('100%')
-         }.backgroundColor('#FFf1f3f5')
+         }
          Flex({ justifyContent: FlexAlign.Start, alignItems: ItemAlign.Center }) {
            Text(this.foodItem.name)
              .fontSize(14)
@@ -251,120 +251,122 @@ The diet application allows food on the home page to display in list or grid mod
 
 10. Create the Category.Vegetable, Category.Fruit, Category.Nut, Category.SeaFood, and Category.Dessert tabs.
     
-  ```ts
-  @Component
-  struct FoodCategory {
-    private foodItems: FoodData[]
-    build() {
-      Stack() {
-        Tabs() {
-          TabContent() {
-            FoodGrid({ foodItems: this.foodItems })
-          }.tabBar('All')
-
-          TabContent() {
-            FoodGrid({ foodItems: this.foodItems.filter(item => (item.category === Category.Vegetable)) })
-          }.tabBar('Vegetable')
-
-          TabContent() {
-            FoodGrid({ foodItems: this.foodItems.filter(item => (item.category === Category.Fruit)) })
-          }.tabBar('Fruit')
-
-          TabContent() {
-            FoodGrid({ foodItems: this.foodItems.filter(item => (item.category === Category.Nut)) })
-          }.tabBar('Nut')
-
-          TabContent() {
-            FoodGrid({ foodItems: this.foodItems.filter(item => (item.category === Category.Seafood)) })
-          }.tabBar('Seafood')
-
-          TabContent() {
-            FoodGrid({ foodItems: this.foodItems.filter(item => (item.category === Category.Dessert)) })
-          }.tabBar('Dessert')
+    ```ts
+    @Component
+    struct FoodCategory {
+      private foodItems: FoodData[]
+    
+      build() {
+        Stack() {
+          Tabs() {
+            TabContent() {
+              FoodGrid({ foodItems: this.foodItems })
+            }.tabBar('All')
+    
+            TabContent() {
+              FoodGrid({ foodItems: this.foodItems.filter(item => (item.category === Category.Vegetable)) })
+            }.tabBar('Vegetable')
+    
+            TabContent() {
+              FoodGrid({ foodItems: this.foodItems.filter(item => (item.category === Category.Fruit)) })
+            }.tabBar('Fruit')
+    
+            TabContent() {
+              FoodGrid({ foodItems: this.foodItems.filter(item => (item.category === Category.Nut)) })
+            }.tabBar('Nut')
+    
+            TabContent() {
+              FoodGrid({ foodItems: this.foodItems.filter(item => (item.category === Category.Seafood)) })
+            }.tabBar('Seafood')
+    
+            TabContent() {
+              FoodGrid({ foodItems: this.foodItems.filter(item => (item.category === Category.Dessert)) })
+            }.tabBar('Dessert')
+          }
+          .barWidth(280)
+          .barMode(BarMode.Scrollable)
         }
-        .barWidth(280)
-        .barMode(BarMode.Scrollable)
       }
     }
-  }
-  ```
+    ```
 
 11. Set the number of rows and height of grids for different food categories. Because the number of foods varies according to the category, the **'1fr 1fr 1fr 1fr 1fr 1fr'** constant cannot be used to set the number of rows to 6.
-   Create member variables **gridRowTemplate** and **HeightValue**, and set the number of grid rows and height by using these member variables.
+      Create member variables **gridRowTemplate** and **HeightValue**, and set the number of grid rows and height by using these member variables.
 
-   ```ts
-   @Component
-   struct FoodGrid {
-     private foodItems: FoodData[]
-     private gridRowTemplate : string = ''
-     private heightValue: number
-     build() {
-       Scroll() {
-         Grid() {
-           ForEach(this.foodItems, (item: FoodData) => {
-             GridItem() {
-               FoodGridItem({foodItem: item})
-             }
-           }, (item: FoodData) => item.id.toString())
-         }
-         .rowsTemplate(this.gridRowTemplate)
-         .columnsTemplate('1fr 1fr')
-         .columnsGap(8)
-         .rowsGap(8)
-         .height(this.heightValue)
-       }
-       .scrollBar(BarState.Off)
-       .padding({left: 16, right: 16})
-     }
-   }
-   ```
-
-Invoke the aboutToAppear API to calculate the number of rows (**gridRowTemplate**) and height (**heightValue**).
-
-   ```ts
-   aboutToAppear() {
-     var rows = Math.round(this.foodItems.length / 2);
-     this.gridRowTemplate = '1fr '.repeat(rows);
-     this.heightValue = rows * 192 - 8;
-   }
-   ```
-
-The custom component provides two lifecycle callbacks: **aboutToAppear** and **aboutToDisappear**. **aboutToAppear** is executed after the custom component is created and before the build method of the custom component is executed. **aboutToDisappear** is executed when the custom component is deinitialized.
-
-   ![en-us_image_0000001267647885](figures/en-us_image_0000001267647885.png)
-
-   ```ts
-   @Component
-   struct FoodGrid {
-     private foodItems: FoodData[]
-     private gridRowTemplate : string = ''
-     private heightValue: number
-   
-     aboutToAppear() {
-       var rows = Math.round(this.foodItems.length / 2);
-       this.gridRowTemplate = '1fr '.repeat(rows);
-       this.heightValue = rows * 192 - 8;
-     }
-   
-     build() {
-       Scroll() {
-         Grid() {
-           ForEach(this.foodItems, (item: FoodData) => {
-             GridItem() {
-               FoodGridItem({foodItem: item})
-             }
-           }, (item: FoodData) => item.id.toString())
-         }
-         .rowsTemplate(this.gridRowTemplate)
-         .columnsTemplate('1fr 1fr')
-         .columnsGap(8)
-         .rowsGap(8)
-         .height(this.heightValue)
-       }
-       .scrollBar(BarState.Off)
-       .padding({left: 16, right: 16})
-     }
-   }
-   ```
-
-   ![en-us_image_0000001267887869](figures/en-us_image_0000001267887869.gif)
+    ```ts
+    @Component
+    struct FoodGrid {
+      private foodItems: FoodData[]
+      private gridRowTemplate: string = ''
+      private heightValue: number
+    
+      build() {
+        Scroll() {
+          Grid() {
+            ForEach(this.foodItems, (item: FoodData) => {
+              GridItem() {
+                FoodGridItem({ foodItem: item })
+              }
+            }, (item: FoodData) => item.id.toString())
+          }
+          .rowsTemplate(this.gridRowTemplate)
+          .columnsTemplate('1fr 1fr')
+          .columnsGap(8)
+          .rowsGap(8)
+          .height(this.heightValue)
+        }
+        .scrollBar(BarState.Off)
+        .padding({ left: 16, right: 16 })
+      }
+    }
+    ```
+    
+    Invoke the **aboutToAppear** API to calculate the number of rows (**gridRowTemplate**) and height (**heightValue**).
+    
+       ```ts
+    aboutToAppear() {
+      var rows = Math.round(this.foodItems.length / 2);
+      this.gridRowTemplate = '1fr '.repeat(rows);
+      this.heightValue = rows * 192 - 8;
+    }
+       ```
+    
+    The custom component provides two lifecycle callbacks: **aboutToAppear** and **aboutToDisappear**. **aboutToAppear** is executed after the custom component is created and before the build method of the custom component is executed. **aboutToDisappear** is executed when the custom component is deinitialized.
+    
+    ![en-us_image_0000001267647885](figures/en-us_image_0000001267647885.png)
+    
+       ```ts
+    @Component
+    struct FoodGrid {
+      private foodItems: FoodData[]
+      private gridRowTemplate: string = ''
+      private heightValue: number
+    
+      aboutToAppear() {
+        var rows = Math.round(this.foodItems.length / 2);
+        this.gridRowTemplate = '1fr '.repeat(rows);
+        this.heightValue = rows * 192 - 8;
+      }
+    
+      build() {
+        Scroll() {
+          Grid() {
+            ForEach(this.foodItems, (item: FoodData) => {
+              GridItem() {
+                FoodGridItem({ foodItem: item })
+              }
+            }, (item: FoodData) => item.id.toString())
+          }
+          .rowsTemplate(this.gridRowTemplate)
+          .columnsTemplate('1fr 1fr')
+          .columnsGap(8)
+          .rowsGap(8)
+          .height(this.heightValue)
+        }
+        .scrollBar(BarState.Off)
+        .padding({ left: 16, right: 16 })
+      }
+    }
+       ```
+    
+    ![en-us_image_0000001267887869](figures/en-us_image_0000001267887869.gif)

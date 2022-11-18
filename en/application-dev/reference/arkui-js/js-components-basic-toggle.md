@@ -47,7 +47,7 @@ In addition to the [universal events](../arkui-js/js-components-common-events.md
 
 | Name    | Parameter                             | Description            |
 | ------ | ------------------------------- | -------------- |
-| change | { checked: isChecked }| Triggered when the toggle is selected or unselected.|
+| change | { checked: isChecked } | Triggered when the toggle is selected or unselected.|
 
 
 ## Methods
