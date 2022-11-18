@@ -594,7 +594,7 @@ removeFirstFound(element: T): boolean
 ```ts
 let linkedList = new LinkedList();
 try {
-  linkedList.removeFirstFound();
+  linkedList.removeFirstFound(4);
 } catch(err) {
   console.log(`${err.code} - ${err.name} - ${err.message}`);
 }
