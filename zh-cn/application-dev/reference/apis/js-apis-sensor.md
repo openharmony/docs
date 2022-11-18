@@ -26,11 +26,11 @@ on(type: SensorId.ACCELEROMETER, callback: Callback&lt;AccelerometerResponse&gt;
 
 **参数：** 
 
-| 参数名   | 类型                                                         | 必填 | 说明                                                         |
-| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| type     | [SensorId](#sensorid9)                                       | 是   | 传感器类型，该值固定为SensorId.ACCELEROMETER。                 |
+| 参数名   | 类型                                                         | 必填 | 说明                                                        |
+| -------- | ------------------------------------------------------------ | ---- | ----------------------------------------------------------- |
+| type     | [SensorId](#sensorid9).ACCELEROMETER                         | 是   | 传感器类型，该值固定为SensorId.ACCELEROMETER。              |
 | callback | Callback&lt;[AccelerometerResponse](#accelerometerresponse)&gt; | 是   | 回调函数，异步上报的传感器数据固定为AccelerometerResponse。 |
-| options  | [Options](#options)                                          | 否   | 设置上报频率，默认值为200000000ns。            |
+| options  | [Options](#options)                                          | 否   | 设置上报频率，默认值为200000000ns。                         |
 
 **错误码**： 
 
@@ -68,9 +68,9 @@ on(type: SensorId.ACCELEROMETER_UNCALIBRATED, callback: Callback&lt;Acceleromete
 
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| type     | [SensorId](#sensorid9)                                       | 是   | 传感器类型，该值固定为SensorId.ACCELEROMETER_UNCALIBRATED。 |
+| type     | [SensorId](#sensorid9).ACCELEROMETER_UNCALIBRATED            | 是   | 传感器类型，该值固定为SensorId.ACCELEROMETER_UNCALIBRATED。  |
 | callback | Callback&lt;[AccelerometerUncalibratedResponse](#accelerometeruncalibratedresponse)&gt; | 是   | 回调函数，异步上报的传感器数据固定为AccelerometerUncalibratedResponse。 |
-| options  | [Options](#options)                                          | 否   | 设置上报频率，默认值为200000000ns。            |
+| options  | [Options](#options)                                          | 否   | 设置上报频率，默认值为200000000ns。                          |
 
 **错误码**： 
 
@@ -107,11 +107,11 @@ on(type: SensorId.AMBIENT_LIGHT, callback: Callback&lt;LightResponse&gt;, option
 
 **参数：** 
 
-| 参数名   | 类型                                            | 必填 | 说明                                                        |
-| -------- | ----------------------------------------------- | ---- | ----------------------------------------------------------- |
-| type     | [SensorId](#sensorid9)                          | 是   | 传感器类型，该值固定为SensorId.AMBIENT_LIGHT。                   |
+| 参数名   | 类型                                            | 必填 | 说明                                                |
+| -------- | ----------------------------------------------- | ---- | --------------------------------------------------- |
+| type     | [SensorId](#sensorid9).AMBIENT_LIGHT            | 是   | 传感器类型，该值固定为SensorId.AMBIENT_LIGHT。      |
 | callback | Callback&lt;[LightResponse](#lightresponse)&gt; | 是   | 回调函数，异步上报的传感器数据固定为LightResponse。 |
-| options  | [Options](#options)                             | 否   | 设置上报频率，默认值为200000000ns。           |
+| options  | [Options](#options)                             | 否   | 设置上报频率，默认值为200000000ns。                 |
 
 **错误码**： 
 
@@ -145,9 +145,9 @@ on(type: SensorId.AMBIENT_TEMPERATURE, callback: Callback&lt;AmbientTemperatureR
 
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| type     | [SensorId](#sensorid9)                                       | 是   | 传感器类型，该值固定为SensorId.AMBIENT_TEMPERATURE。            |
+| type     | [SensorId](#sensorid9).AMBIENT_TEMPERATURE                   | 是   | 传感器类型，该值固定为SensorId.AMBIENT_TEMPERATURE。         |
 | callback | Callback&lt;[AmbientTemperatureResponse](#ambienttemperatureresponse)&gt; | 是   | 回调函数，异步上报的传感器数据固定为AmbientTemperatureResponse。 |
-| options  | [Options](#options)                                          | 否   | 设置上报频率，默认值为200000000ns。            |
+| options  | [Options](#options)                                          | 否   | 设置上报频率，默认值为200000000ns。                          |
 
 **错误码**： 
 
@@ -179,11 +179,11 @@ on(type: SensorId.BAROMETER, callback: Callback&lt;BarometerResponse&gt;, option
 
 **参数：**
 
-| 参数名   | 类型                                                    | 必填 | 说明                                                         |
-| -------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| type     | [SensorId](#sensorid9)                                  | 是   | 传感器类型，该值固定为SensorId.BAROMETER。                        |
+| 参数名   | 类型                                                    | 必填 | 说明                                                    |
+| -------- | ------------------------------------------------------- | ---- | ------------------------------------------------------- |
+| type     | [SensorId](#sensorid9).BAROMETER                        | 是   | 传感器类型，该值固定为SensorId.BAROMETER。              |
 | callback | Callback&lt;[BarometerResponse](#barometerresponse)&gt; | 是   | 回调函数，异步上报的传感器数据固定为BarometerResponse。 |
-| options  | [Options](#options)                                     | 否   | 设置上报频率，默认值为200000000ns。            |
+| options  | [Options](#options)                                     | 否   | 设置上报频率，默认值为200000000ns。                     |
 
 **错误码**： 
 
@@ -215,11 +215,11 @@ on(type: SensorId.GRAVITY, callback: Callback&lt;GravityResponse&gt;,options?: O
 
 **参数：** 
 
-| 参数名   | 类型                                                | 必填 | 说明                                                        |
-| -------- | --------------------------------------------------- | ---- | ----------------------------------------------------------- |
-| type     | [SensorId](#sensorid9)                              | 是   | 传感器类型，该值固定为SensorId.GRAVITY。                           |
+| 参数名   | 类型                                                | 必填 | 说明                                                  |
+| -------- | --------------------------------------------------- | ---- | ----------------------------------------------------- |
+| type     | [SensorId](#sensorid9).GRAVITY                      | 是   | 传感器类型，该值固定为SensorId.GRAVITY。              |
 | callback | Callback&lt;[GravityResponse](#gravityresponse)&gt; | 是   | 回调函数，异步上报的传感器数据固定为GravityResponse。 |
-| options  | [Options](#options)                                 | 否   | 设置上报频率，默认值为200000000ns。           |
+| options  | [Options](#options)                                 | 否   | 设置上报频率，默认值为200000000ns。                   |
 
 **错误码**： 
 
@@ -255,11 +255,11 @@ on(type: SensorId.GYROSCOPE, callback: Callback&lt;GyroscopeResponse&gt;,options
 
 **参数：** 
 
-| 参数名   | 类型                                                    | 必填 | 说明                                                         |
-| -------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| type     | [SensorId](#sensorid9)                                  | 是   | 传感器类型，该值固定为SensorId.GYROSCOPE。                        |
+| 参数名   | 类型                                                    | 必填 | 说明                                                    |
+| -------- | ------------------------------------------------------- | ---- | ------------------------------------------------------- |
+| type     | [SensorId](#sensorid9).GYROSCOPE                        | 是   | 传感器类型，该值固定为SensorId.GYROSCOPE。              |
 | callback | Callback&lt;[GyroscopeResponse](#gyroscoperesponse)&gt; | 是   | 回调函数，异步上报的传感器数据固定为GyroscopeResponse。 |
-| options  | [Options](#options)                                     | 否   | 设置上报频率，默认值为200000000ns。            |
+| options  | [Options](#options)                                     | 否   | 设置上报频率，默认值为200000000ns。                     |
 
 **错误码**： 
 
@@ -298,9 +298,9 @@ on(type: SensorId.GYROSCOPE_UNCALIBRATED, callback: Callback&lt;GyroscopeUncalib
 
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| type     | [SensorId](#sensorid9)                                       | 是   | 传感器类型，该值固定为SensorId.GYROSCOPE_UNCALIBRATED。     |
+| type     | [SensorId](#sensorid9).GYROSCOPE_UNCALIBRATED                | 是   | 传感器类型，该值固定为SensorId.GYROSCOPE_UNCALIBRATED。      |
 | callback | Callback&lt;[GyroscopeUncalibratedResponse](#gyroscopeuncalibratedresponse)&gt; | 是   | 回调函数，异步上报的传感器数据固定为GyroscopeUncalibratedResponse。 |
-| options  | [Options](#options)                                          | 否   | 设置上报频率，默认值为200000000ns。            |
+| options  | [Options](#options)                                          | 否   | 设置上报频率，默认值为200000000ns。                          |
 
 **错误码**： 
 
@@ -337,11 +337,11 @@ on(type: SensorId.HALL, callback: Callback&lt;HallResponse&gt;, options?: Option
 
 **参数：** 
 
-| 参数名   | 类型                                          | 必填 | 说明                                                         |
-| -------- | --------------------------------------------- | ---- | ------------------------------------------------------------ |
-| type     | [SensorId](#sensorid9)                        | 是   | 传感器类型，该值固定为SensorId.HALL。                               |
+| 参数名   | 类型                                          | 必填 | 说明                                               |
+| -------- | --------------------------------------------- | ---- | -------------------------------------------------- |
+| type     | [SensorId](#sensorid9).HALL                   | 是   | 传感器类型，该值固定为SensorId.HALL。              |
 | callback | Callback&lt;[HallResponse](#hallresponse)&gt; | 是   | 回调函数，异步上报的传感器数据固定为HallResponse。 |
-| options  | [Options](#options)                           | 否   | 设置上报频率，默认值为200000000ns。            |
+| options  | [Options](#options)                           | 否   | 设置上报频率，默认值为200000000ns。                |
 
 **错误码**： 
 
@@ -375,11 +375,11 @@ on(type: SensorId.HEART_RATE, callback: Callback&lt;HeartRateResponse&gt;,option
 
 **参数：** 
 
-| 参数名   | 类型                                                    | 必填 | 说明                                                         |
-| -------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| type     | [SensorId](#sensorid9)                                  | 是   | 传感器类型，该值固定为SensorId.HEART_RATE。                         |
+| 参数名   | 类型                                                    | 必填 | 说明                                                    |
+| -------- | ------------------------------------------------------- | ---- | ------------------------------------------------------- |
+| type     | [SensorId](#sensorid9).HEART_RATE                       | 是   | 传感器类型，该值固定为SensorId.HEART_RATE。             |
 | callback | Callback&lt;[HeartRateResponse](#heartrateresponse)&gt; | 是   | 回调函数，异步上报的传感器数据固定为HeartRateResponse。 |
-| options  | [Options](#options)                                     | 否   | 设置上报频率，默认值为200000000ns。            |
+| options  | [Options](#options)                                     | 否   | 设置上报频率，默认值为200000000ns。                     |
 
 **错误码**： 
 
@@ -411,11 +411,11 @@ on(type: SensorId.HUMIDITY, callback: Callback&lt;HumidityResponse&gt;,options?:
 
 **参数：** 
 
-| 参数名   | 类型                                                  | 必填 | 说明                                                         |
-| -------- | ----------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| type     | [SensorId](#sensorid9)                                | 是   | 传感器类型，该值固定为SensorId.HUMIDITY。                           |
+| 参数名   | 类型                                                  | 必填 | 说明                                                   |
+| -------- | ----------------------------------------------------- | ---- | ------------------------------------------------------ |
+| type     | [SensorId](#sensorid9).HUMIDITY                       | 是   | 传感器类型，该值固定为SensorId.HUMIDITY。              |
 | callback | Callback&lt;[HumidityResponse](#humidityresponse)&gt; | 是   | 回调函数，异步上报的传感器数据固定为HumidityResponse。 |
-| options  | [Options](#options)                                   | 否   | 设置上报频率，默认值为200000000ns。            |
+| options  | [Options](#options)                                   | 否   | 设置上报频率，默认值为200000000ns。                    |
 
 **错误码**： 
 
@@ -452,9 +452,9 @@ on(type: SensorId.LINEAR_ACCELEROMETER, callback: Callback&lt;LinearAcceleromete
 
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| type     | [SensorId](#sensorid9)                                       | 是   | 传感器类型，该值固定为SensorId.LINEAR_ACCELEROMETER。         |
+| type     | [SensorId](#sensorid9).LINEAR_ACCELEROMETER                  | 是   | 传感器类型，该值固定为SensorId.LINEAR_ACCELEROMETER。        |
 | callback | Callback&lt;[LinearAccelerometerResponse](#linearaccelerometerresponse)&gt; | 是   | 回调函数，异步上报的传感器数据固定为LinearAccelerometerResponse。 |
-| options  | [Options](#options)                                          | 否   | 设置上报频率，默认值为200000000ns。            |
+| options  | [Options](#options)                                          | 否   | 设置上报频率，默认值为200000000ns。                          |
 
 **错误码**： 
 
@@ -488,11 +488,11 @@ on(type: SensorId.MAGNETIC_FIELD, callback: Callback&lt;MagneticFieldResponse&gt
 
 **参数：**
 
-| 参数名   | 类型                                                         | 必填 | 说明                                                         |
-| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| type     | [SensorId](#sensorid9)                                       | 是   | 传感器类型，该值固定为SensorId.MAGNETIC_FIELD。                     |
+| 参数名   | 类型                                                         | 必填 | 说明                                                        |
+| -------- | ------------------------------------------------------------ | ---- | ----------------------------------------------------------- |
+| type     | [SensorId](#sensorid9).MAGNETIC_FIELD                        | 是   | 传感器类型，该值固定为SensorId.MAGNETIC_FIELD。             |
 | callback | Callback&lt;[MagneticFieldResponse](#magneticfieldresponse)&gt; | 是   | 回调函数，异步上报的传感器数据固定为MagneticFieldResponse。 |
-| options  | [Options](#options)                                          | 否   | 设置上报频率，默认值为200000000ns。            |
+| options  | [Options](#options)                                          | 否   | 设置上报频率，默认值为200000000ns。                         |
 
 **错误码**： 
 
@@ -528,9 +528,9 @@ on(type: SensorId.MAGNETIC_FIELD_UNCALIBRATED, callback: Callback&lt;MagneticFie
 
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| type     | [SensorId](#sensorid9)                                       | 是   | 传感器类型，该值固定为SensorId.MAGNETIC_FIELD_UNCALIBRATED。  |
+| type     | [SensorId](#sensorid9).MAGNETIC_FIELD_UNCALIBRATED           | 是   | 传感器类型，该值固定为SensorId.MAGNETIC_FIELD_UNCALIBRATED。 |
 | callback | Callback&lt;[MagneticFieldUncalibratedResponse](#magneticfielduncalibratedresponse)&gt; | 是   | 回调函数，异步上报的传感器数据固定为MagneticFieldUncalibratedResponse。 |
-| options  | [Options](#options)                                          | 否   | 设置上报频率，默认值为200000000ns。            |
+| options  | [Options](#options)                                          | 否   | 设置上报频率，默认值为200000000ns。                          |
 
 **错误码**： 
 
@@ -575,11 +575,11 @@ on(type: SensorId.ORIENTATION, callback: Callback&lt;OrientationResponse&gt;,opt
 
 **参数：**
 
-| 参数名   | 类型                                                        | 必填 | 说明                                                         |
-| -------- | ----------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| type     | [SensorId](#sensorid9)                                      | 是   | 传感器类型，该值固定为SensorId.ORIENTATION。                        |
+| 参数名   | 类型                                                        | 必填 | 说明                                                      |
+| -------- | ----------------------------------------------------------- | ---- | --------------------------------------------------------- |
+| type     | [SensorId](#sensorid9).ORIENTATION                          | 是   | 传感器类型，该值固定为SensorId.ORIENTATION。              |
 | callback | Callback&lt;[OrientationResponse](#orientationresponse)&gt; | 是   | 回调函数，异步上报的传感器数据固定为OrientationResponse。 |
-| options  | [Options](#options)                                         | 否   | 设置上报频率，默认值为200000000ns。            |
+| options  | [Options](#options)                                         | 否   | 设置上报频率，默认值为200000000ns。                       |
 
 **示例：**
 
@@ -615,11 +615,11 @@ on(type: SensorId.PEDOMETER, callback: Callback&lt;PedometerResponse&gt;, option
 
 **参数：**
 
-| 参数名   | 类型                                                    | 必填 | 说明                                                         |
-| -------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| type     | [SensorId](#sensorid9)                                  | 是   | 传感器类型，该值固定为SensorId.PEDOMETER。                          |
+| 参数名   | 类型                                                    | 必填 | 说明                                                    |
+| -------- | ------------------------------------------------------- | ---- | ------------------------------------------------------- |
+| type     | [SensorId](#sensorid9).PEDOMETER                        | 是   | 传感器类型，该值固定为SensorId.PEDOMETER。              |
 | callback | Callback&lt;[PedometerResponse](#pedometerresponse)&gt; | 是   | 回调函数，异步上报的传感器数据固定为PedometerResponse。 |
-| options  | [Options](#options)                                     | 否   | 设置上报频率，默认值为200000000ns。            |
+| options  | [Options](#options)                                     | 否   | 设置上报频率，默认值为200000000ns。                     |
 
 **示例：**
 
@@ -648,9 +648,9 @@ on(type: SensorId.PEDOMETER_DETECTION, callback: Callback&lt;PedometerDetectionR
 
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| type     | [SensorId](#sensorid9)                                       | 是   | 传感器类型，该值固定为SensorId.PEDOMETER_DETECTION。            |
+| type     | [SensorId](#sensorid9).PEDOMETER_DETECTION                   | 是   | 传感器类型，该值固定为SensorId.PEDOMETER_DETECTION。         |
 | callback | Callback&lt;[PedometerDetectionResponse](#pedometerdetectionresponse)&gt; | 是   | 回调函数，异步上报的传感器数据固定为PedometerDetectionResponse。 |
-| options  | [Options](#options)                                          | 否   | 设置上报频率，默认值为200000000ns。            |
+| options  | [Options](#options)                                          | 否   | 设置上报频率，默认值为200000000ns。                          |
 
 **错误码**： 
 
@@ -682,11 +682,11 @@ on(type: SensorId.PROXIMITY, callback: Callback&lt;ProximityResponse&gt;, option
 
 **参数：**
 
-| 参数名   | 类型                                                    | 必填 | 说明                                                         |
-| -------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| type     | [SensorId](#sensorid9)                                  | 是   | 传感器类型，该值固定为SensorId.PROXIMITY。                        |
+| 参数名   | 类型                                                    | 必填 | 说明                                                    |
+| -------- | ------------------------------------------------------- | ---- | ------------------------------------------------------- |
+| type     | [SensorId](#sensorid9).PROXIMITY                        | 是   | 传感器类型，该值固定为SensorId.PROXIMITY。              |
 | callback | Callback&lt;[ProximityResponse](#proximityresponse)&gt; | 是   | 回调函数，异步上报的传感器数据固定为ProximityResponse。 |
-| options  | [Options](#options)                                     | 否   | 设置上报频率，默认值为200000000ns。            |
+| options  | [Options](#options)                                     | 否   | 设置上报频率，默认值为200000000ns。                     |
 
 **错误码**： 
 
@@ -721,9 +721,9 @@ on(type: SensorId.ROTATION_VECTOR, callback: Callback&lt;RotationVectorResponse&
 
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| type     | [SensorId](#sensorid9)                                       | 是   | 传感器类型，该值固定为SensorId.ROTATION_VECTOR。                |
+| type     | [SensorId](#sensorid9).ROTATION_VECTOR                       | 是   | 传感器类型，该值固定为SensorId.ROTATION_VECTOR。             |
 | callback | Callback&lt;[RotationVectorResponse](#rotationvectorresponse)&gt; | 是   | 回调函数，异步上报的传感器数据固定为RotationVectorResponse。 |
-| options  | [Options](#options)                                          | 否   | 设置上报频率，默认值为200000000ns。            |
+| options  | [Options](#options)                                          | 否   | 设置上报频率，默认值为200000000ns。                          |
 
 **错误码**： 
 
@@ -761,9 +761,9 @@ on(type: SensorId.SIGNIFICANT_MOTION, callback: Callback&lt;SignificantMotionRes
 
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| type     | [SensorId](#sensorid9)                                       | 是   | 传感器类型，该值固定为SensorId.SIGNIFICANT_MOTION。             |
+| type     | [SensorId](#sensorid9).SIGNIFICANT_MOTION                    | 是   | 传感器类型，该值固定为SensorId.SIGNIFICANT_MOTION。          |
 | callback | Callback&lt;[SignificantMotionResponse](#significantmotionresponse)&gt; | 是   | 回调函数，异步上报的传感器数据固定为SignificantMotionResponse。 |
-| options  | [Options](#options)                                          | 否   | 设置上报频率，默认值为200000000ns。            |
+| options  | [Options](#options)                                          | 否   | 设置上报频率，默认值为200000000ns。                          |
 
 **错误码**： 
 
@@ -796,11 +796,11 @@ on(type: SensorId.WEAR_DETECTION, callback: Callback&lt;WearDetectionResponse&gt
 
 **参数：** 
 
-| 参数名   | 类型                                                         | 必填 | 说明                                                         |
-| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| type     | [SensorId](#sensorid9)                                       | 是   | 传感器类型，该值固定为SensorId.WEAR_DETECTION。                 |
+| 参数名   | 类型                                                         | 必填 | 说明                                                        |
+| -------- | ------------------------------------------------------------ | ---- | ----------------------------------------------------------- |
+| type     | [SensorId](#sensorid9).WEAR_DETECTION                        | 是   | 传感器类型，该值固定为SensorId.WEAR_DETECTION。             |
 | callback | Callback&lt;[WearDetectionResponse](#weardetectionresponse)&gt; | 是   | 回调函数，异步上报的传感器数据固定为WearDetectionResponse。 |
-| options  | [Options](#options)                                          | 否   | 设置上报频率，默认值为200000000ns。            |
+| options  | [Options](#options)                                          | 否   | 设置上报频率，默认值为200000000ns。                         |
 
 **错误码**： 
 
@@ -836,9 +836,9 @@ once(type: SensorId.ACCELEROMETER, callback: Callback&lt;AccelerometerResponse&g
 
 **参数：** 
 
-| 参数名   | 类型                                                         | 必填 | 说明                                                         |
-| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| type     | [SensorId](#sensorid9)                                       | 是   | 传感器类型，该值固定为SensorId.ACCELEROMETER。                            |
+| 参数名   | 类型                                                         | 必填 | 说明                                                        |
+| -------- | ------------------------------------------------------------ | ---- | ----------------------------------------------------------- |
+| type     | [SensorId](#sensorid9).ACCELEROMETER                         | 是   | 传感器类型，该值固定为SensorId.ACCELEROMETER。              |
 | callback | Callback&lt;[AccelerometerResponse](#accelerometerresponse)&gt; | 是   | 回调函数，异步上报的传感器数据固定为AccelerometerResponse。 |
 
 **错误码**： 
@@ -877,7 +877,7 @@ once(type: SensorId.ACCELEROMETER_UNCALIBRATED, callback: Callback&lt;Accelerome
 
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| type     | [SensorId](#sensorid9)                                       | 是   | 传感器类型，该值固定为SensorId.ACCELEROMETER_UNCALIBRATED。         |
+| type     | [SensorId](#sensorid9).ACCELEROMETER_UNCALIBRATED            | 是   | 传感器类型，该值固定为SensorId.ACCELEROMETER_UNCALIBRATED。  |
 | callback | Callback&lt;[AccelerometerUncalibratedResponse](#accelerometeruncalibratedresponse)&gt; | 是   | 回调函数，异步上报的传感器数据固定为AccelerometerUncalibratedResponse。 |
 
 **错误码**： 
@@ -915,9 +915,9 @@ once(type: SensorId.AMBIENT_LIGHT, callback: Callback&lt;LightResponse&gt;): voi
 
 **参数：** 
 
-| 参数名   | 类型                                            | 必填 | 说明                                                         |
-| -------- | ----------------------------------------------- | ---- | ------------------------------------------------------------ |
-| type     | [SensorId](#sensorid9)                          | 是   | 传感器类型，该值固定为SensorId.AMBIENT_LIGHT。                            |
+| 参数名   | 类型                                            | 必填 | 说明                                                |
+| -------- | ----------------------------------------------- | ---- | --------------------------------------------------- |
+| type     | [SensorId](#sensorid9).AMBIENT_LIGHT            | 是   | 传感器类型，该值固定为SensorId.AMBIENT_LIGHT。      |
 | callback | Callback&lt;[LightResponse](#lightresponse)&gt; | 是   | 回调函数，异步上报的传感器数据固定为LightResponse。 |
 
 **错误码**： 
@@ -952,7 +952,7 @@ once(type: SensorId.AMBIENT_TEMPERATURE, callback: Callback&lt;AmbientTemperatur
 
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| type     | [SensorId](#sensorid9)                                       | 是   | 传感器类型，该值固定为SensorId.AMBIENT_TEMPERATURE。                    |
+| type     | [SensorId](#sensorid9).AMBIENT_TEMPERATURE                   | 是   | 传感器类型，该值固定为SensorId.AMBIENT_TEMPERATURE。         |
 | callback | Callback&lt;[AmbientTemperatureResponse](#ambienttemperatureresponse)&gt; | 是   | 回调函数，异步上报的传感器数据固定为AmbientTemperatureResponse。 |
 
 **错误码**： 
@@ -985,9 +985,9 @@ once(type: SensorId.BAROMETER, callback: Callback&lt;BarometerResponse&gt;): voi
 
 **参数：**
 
-| 参数名   | 类型                                                    | 必填 | 说明                                                         |
-| -------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| type     | [SensorId](#sensorid9)                                  | 是   | 传感器类型，该值固定为SensorId.BAROMETER。                                |
+| 参数名   | 类型                                                    | 必填 | 说明                                                    |
+| -------- | ------------------------------------------------------- | ---- | ------------------------------------------------------- |
+| type     | [SensorId](#sensorid9).BAROMETER                        | 是   | 传感器类型，该值固定为SensorId.BAROMETER。              |
 | callback | Callback&lt;[BarometerResponse](#barometerresponse)&gt; | 是   | 回调函数，异步上报的传感器数据固定为BarometerResponse。 |
 
 **错误码**： 
@@ -1020,9 +1020,9 @@ once(type: SensorId.GRAVITY, callback: Callback&lt;GravityResponse&gt;): void
 
 **参数：**
 
-| 参数名   | 类型                                                | 必填 | 说明                                                         |
-| -------- | --------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| type     | [SensorId](#sensorid9)                              | 是   | 传感器类型，该值固定为SensorId.GRAVITY。                                    |
+| 参数名   | 类型                                                | 必填 | 说明                                                  |
+| -------- | --------------------------------------------------- | ---- | ----------------------------------------------------- |
+| type     | [SensorId](#sensorid9).GRAVITY                      | 是   | 传感器类型，该值固定为SensorId.GRAVITY。              |
 | callback | Callback&lt;[GravityResponse](#gravityresponse)&gt; | 是   | 回调函数，异步上报的传感器数据固定为GravityResponse。 |
 
 **错误码**： 
@@ -1059,9 +1059,9 @@ once(type: SensorId.GYROSCOPE, callback: Callback&lt;GyroscopeResponse&gt;): voi
 
 **参数：** 
 
-| 参数名   | 类型                                                    | 必填 | 说明                                                         |
-| -------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| type     | [SensorId](#sensorid9)                                  | 是   | 传感器类型，该值固定为SensorId.GYROSCOPE。                                |
+| 参数名   | 类型                                                    | 必填 | 说明                                                    |
+| -------- | ------------------------------------------------------- | ---- | ------------------------------------------------------- |
+| type     | [SensorId](#sensorid9).GYROSCOPE                        | 是   | 传感器类型，该值固定为SensorId.GYROSCOPE。              |
 | callback | Callback&lt;[GyroscopeResponse](#gyroscoperesponse)&gt; | 是   | 回调函数，异步上报的传感器数据固定为GyroscopeResponse。 |
 
 **错误码**： 
@@ -1100,7 +1100,7 @@ once(type: SensorId.GYROSCOPE_UNCALIBRATED, callback: Callback&lt;GyroscopeUncal
 
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| type     | [SensorId](#sensorid9)                                       | 是   | 传感器类型，该值固定为SensorId.GYROSCOPE_UNCALIBRATED。             |
+| type     | [SensorId](#sensorid9).GYROSCOPE_UNCALIBRATED                | 是   | 传感器类型，该值固定为SensorId.GYROSCOPE_UNCALIBRATED。      |
 | callback | Callback&lt;[GyroscopeUncalibratedResponse](#gyroscopeuncalibratedresponse)&gt; | 是   | 回调函数，异步上报的传感器数据固定为GyroscopeUncalibratedResponse。 |
 
 **错误码**： 
@@ -1138,9 +1138,9 @@ once(type: SensorId.HALL, callback: Callback&lt;HallResponse&gt;): void
 
 **参数：** 
 
-| 参数名   | 类型                                          | 必填 | 说明                                                         |
-| -------- | --------------------------------------------- | ---- | ------------------------------------------------------------ |
-| type     | [SensorId](#sensorid9)                        | 是   | 传感器类型，该值固定为SensorId.HALL。                                       |
+| 参数名   | 类型                                          | 必填 | 说明                                               |
+| -------- | --------------------------------------------- | ---- | -------------------------------------------------- |
+| type     | [SensorId](#sensorid9).HALL                   | 是   | 传感器类型，该值固定为SensorId.HALL。              |
 | callback | Callback&lt;[HallResponse](#hallresponse)&gt; | 是   | 回调函数，异步上报的传感器数据固定为HallResponse。 |
 
 **错误码**： 
@@ -1175,9 +1175,9 @@ once(type: SensorId.HEART_RATE, callback: Callback&lt;HeartRateResponse&gt;): vo
 
 **参数：** 
 
-| 参数名   | 类型                                                    | 必填 | 说明                                                         |
-| -------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| type     | [SensorId](#sensorid9)                                  | 是   | 传感器类型，该值固定为SensorId.HEART_RATE。                                 |
+| 参数名   | 类型                                                    | 必填 | 说明                                                    |
+| -------- | ------------------------------------------------------- | ---- | ------------------------------------------------------- |
+| type     | [SensorId](#sensorid9).HEART_RATE                       | 是   | 传感器类型，该值固定为SensorId.HEART_RATE。             |
 | callback | Callback&lt;[HeartRateResponse](#heartrateresponse)&gt; | 是   | 回调函数，异步上报的传感器数据固定为HeartRateResponse。 |
 
 **错误码**： 
@@ -1210,9 +1210,9 @@ once(type: SensorId.HUMIDITY, callback: Callback&lt;HumidityResponse&gt;): void
 
 **参数：** 
 
-| 参数名   | 类型                                                  | 必填 | 说明                                                         |
-| -------- | ----------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| type     | [SensorId](#sensorid9)                                | 是   | 传感器类型，该值固定为SensorId.HUMIDITY。                                   |
+| 参数名   | 类型                                                  | 必填 | 说明                                                   |
+| -------- | ----------------------------------------------------- | ---- | ------------------------------------------------------ |
+| type     | [SensorId](#sensorid9).HUMIDITY                       | 是   | 传感器类型，该值固定为SensorId.HUMIDITY。              |
 | callback | Callback&lt;[HumidityResponse](#humidityresponse)&gt; | 是   | 回调函数，异步上报的传感器数据固定为HumidityResponse。 |
 
 **错误码**： 
@@ -1249,7 +1249,7 @@ once(type: SensorId.LINEAR_ACCELEROMETER, callback: Callback&lt;LinearAccelerome
 
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| type     | [SensorId](#sensorid9)                                       | 是   | 传感器类型，该值固定为SensorId.LINEAR_ACCELEROMETER。                 |
+| type     | [SensorId](#sensorid9).LINEAR_ACCELEROMETER                  | 是   | 传感器类型，该值固定为SensorId.LINEAR_ACCELEROMETER。        |
 | callback | Callback&lt;[LinearAccelerometerResponse](#linearaccelerometerresponse)&gt; | 是   | 回调函数，异步上报的传感器数据固定为LinearAccelerometerResponse。 |
 
 **错误码**： 
@@ -1284,9 +1284,9 @@ once(type: SensorId.MAGNETIC_FIELD, callback: Callback&lt;MagneticFieldResponse&
 
 **参数：**
 
-| 参数名   | 类型                                                         | 必填 | 说明                                                         |
-| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| type     | [SensorId](#sensorid9)                                       | 是   | 传感器类型，该值固定为SensorId.MAGNETIC_FIELD。                             |
+| 参数名   | 类型                                                         | 必填 | 说明                                                        |
+| -------- | ------------------------------------------------------------ | ---- | ----------------------------------------------------------- |
+| type     | [SensorId](#sensorid9).MAGNETIC_FIELD                        | 是   | 传感器类型，该值固定为SensorId.MAGNETIC_FIELD。             |
 | callback | Callback&lt;[MagneticFieldResponse](#magneticfieldresponse)&gt; | 是   | 回调函数，异步上报的传感器数据固定为MagneticFieldResponse。 |
 
 **错误码**： 
@@ -1323,7 +1323,7 @@ once(type: SensorId.MAGNETIC_FIELD_UNCALIBRATED, callback: Callback&lt;MagneticF
 
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| type     | [SensorId](#sensorid9)                                       | 是   | 传感器类型，该值固定为SensorId.MAGNETIC_FIELD_UNCALIBRATED。          |
+| type     | [SensorId](#sensorid9).MAGNETIC_FIELD_UNCALIBRATED           | 是   | 传感器类型，该值固定为SensorId.MAGNETIC_FIELD_UNCALIBRATED。 |
 | callback | Callback&lt;[MagneticFieldUncalibratedResponse](#magneticfielduncalibratedresponse)&gt; | 是   | 回调函数，异步上报的传感器数据固定为MagneticFieldUncalibratedResponse。 |
 
 **错误码**： 
@@ -1361,9 +1361,9 @@ once(type: SensorId.ORIENTATION, callback: Callback&lt;OrientationResponse&gt;):
 
 **参数：** 
 
-| 参数名   | 类型                                                        | 必填 | 说明                                                         |
-| -------- | ----------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| type     | [SensorId](#sensorid9)                                      | 是   | 传感器类型，该值固定为SensorId.ORIENTATION。                                |
+| 参数名   | 类型                                                        | 必填 | 说明                                                      |
+| -------- | ----------------------------------------------------------- | ---- | --------------------------------------------------------- |
+| type     | [SensorId](#sensorid9).ORIENTATION                          | 是   | 传感器类型，该值固定为SensorId.ORIENTATION。              |
 | callback | Callback&lt;[OrientationResponse](#orientationresponse)&gt; | 是   | 回调函数，异步上报的传感器数据固定为OrientationResponse。 |
 
 **错误码**： 
@@ -1400,9 +1400,9 @@ once(type: SensorId.PEDOMETER, callback: Callback&lt;PedometerResponse&gt;): voi
 
 **参数：**
 
-| 参数名   | 类型                                                    | 必填 | 说明                                                         |
-| -------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| type     | [SensorId](#sensorid9)                                  | 是   | 传感器类型，该值固定为SensorId.PEDOMETER。                                  |
+| 参数名   | 类型                                                    | 必填 | 说明                                                    |
+| -------- | ------------------------------------------------------- | ---- | ------------------------------------------------------- |
+| type     | [SensorId](#sensorid9).PEDOMETER                        | 是   | 传感器类型，该值固定为SensorId.PEDOMETER。              |
 | callback | Callback&lt;[PedometerResponse](#pedometerresponse)&gt; | 是   | 回调函数，异步上报的传感器数据固定为PedometerResponse。 |
 
 **错误码**： 
@@ -1438,7 +1438,7 @@ once(type: SensorId.PEDOMETER_DETECTION, callback: Callback&lt;PedometerDetectio
 
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| type     | [SensorId](#sensorid9)                                       | 是   | 传感器类型，该值固定为SensorId.PEDOMETER_DETECTION。                    |
+| type     | [SensorId](#sensorid9).PEDOMETER_DETECTION                   | 是   | 传感器类型，该值固定为SensorId.PEDOMETER_DETECTION。         |
 | callback | Callback&lt;[PedometerDetectionResponse](#pedometerdetectionresponse)&gt; | 是   | 回调函数，异步上报的传感器数据固定为PedometerDetectionResponse。 |
 
 **错误码**： 
@@ -1471,9 +1471,9 @@ once(type: SensorId.PROXIMITY, callback: Callback&lt;ProximityResponse&gt;): voi
 
 **参数：**
 
-| 参数名   | 类型                                                    | 必填 | 说明                                                         |
-| -------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| type     | [SensorId](#sensorid9)                                  | 是   | 传感器类型，该值固定为SensorId.PROXIMITY。                                |
+| 参数名   | 类型                                                    | 必填 | 说明                                                    |
+| -------- | ------------------------------------------------------- | ---- | ------------------------------------------------------- |
+| type     | [SensorId](#sensorid9).PROXIMITY                        | 是   | 传感器类型，该值固定为SensorId.PROXIMITY。              |
 | callback | Callback&lt;[ProximityResponse](#proximityresponse)&gt; | 是   | 回调函数，异步上报的传感器数据固定为ProximityResponse。 |
 
 **错误码**： 
@@ -1508,7 +1508,7 @@ once(type: SensorId.ROTATION_VECTOR, callback: Callback&lt;RotationVectorRespons
 
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| type     | [SensorId](#sensorid9)                                       | 是   | 传感器类型，该值固定为SensorId.ROTATION_VECTOR。                        |
+| type     | [SensorId](#sensorid9).ROTATION_VECTOR                       | 是   | 传感器类型，该值固定为SensorId.ROTATION_VECTOR。             |
 | callback | Callback&lt;[RotationVectorResponse](#rotationvectorresponse)&gt; | 是   | 回调函数，异步上报的传感器数据固定为RotationVectorResponse。 |
 
 **错误码**： 
@@ -1546,7 +1546,7 @@ once(type: SensorId.SIGNIFICANT_MOTION, callback: Callback&lt;SignificantMotionR
 
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| type     | [SensorId](#sensorid9)                                       | 是   | 传感器类型，该值固定为SensorId.SIGNIFICANT_MOTION。                     |
+| type     | [SensorId](#sensorid9).SIGNIFICANT_MOTION                    | 是   | 传感器类型，该值固定为SensorId.SIGNIFICANT_MOTION。          |
 | callback | Callback&lt;[SignificantMotionResponse](#significantmotionresponse)&gt; | 是   | 回调函数，异步上报的传感器数据固定为SignificantMotionResponse。 |
 
 **错误码**： 
@@ -1579,9 +1579,9 @@ once(type: SensorId.WEAR_DETECTION, callback: Callback&lt;WearDetectionResponse&
 
 **参数：**
 
-| 参数名   | 类型                                                         | 必填 | 说明                                                         |
-| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| type     | [SensorId](#sensorid9)                                       | 是   | 传感器类型，该值固定为SensorId.WEAR_DETECTION。                         |
+| 参数名   | 类型                                                         | 必填 | 说明                                                        |
+| -------- | ------------------------------------------------------------ | ---- | ----------------------------------------------------------- |
+| type     | [SensorId](#sensorid9).WEAR_DETECTION                        | 是   | 传感器类型，该值固定为SensorId.WEAR_DETECTION。             |
 | callback | Callback&lt;[WearDetectionResponse](#weardetectionresponse)&gt; | 是   | 回调函数，异步上报的传感器数据固定为WearDetectionResponse。 |
 
 **错误码**： 
@@ -1620,7 +1620,7 @@ off(type: SensorId.ACCELEROMETER, callback?: Callback&lt;AccelerometerResponse&g
 
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| type     | [SensorId](#sensorid9)                                       | 是   | 传感器类型，该值固定为SensorId.ACCELEROMETER。                |
+| type     | [SensorId](#sensorid9).ACCELEROMETER                         | 是   | 传感器类型，该值固定为SensorId.ACCELEROMETER。               |
 | callback | Callback&lt;[AccelerometerResponse](#accelerometerresponse)&gt; | 否   | 需要取消订阅的回调函数，若无此参数，则取消订阅当前类型的所有回调函数。 |
 
 **示例：**
@@ -1658,7 +1658,7 @@ off(type: SensorId.ACCELEROMETER_UNCALIBRATED, callback?: Callback&lt;Accelerome
 
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| type     | [SensorId](#sensorid9)                                       | 是   | 传感器类型，该值固定为SensorId.ACCELEROMETER_UNCALIBRATED。 |
+| type     | [SensorId](#sensorid9).ACCELEROMETER_UNCALIBRATED            | 是   | 传感器类型，该值固定为SensorId.ACCELEROMETER_UNCALIBRATED。  |
 | callback | Callback&lt;[AccelerometerUncalibratedResponse](#accelerometeruncalibratedresponse)&gt; | 是   | 需要取消订阅的回调函数，若无此参数，则取消订阅当前类型的所有回调函数。 |
 
 **示例：**
@@ -1694,7 +1694,7 @@ off(type: SensorId.AMBIENT_LIGHT, callback?: Callback&lt;LightResponse&gt;): voi
 
 | 参数名   | 类型                                            | 必填 | 说明                                                         |
 | -------- | ----------------------------------------------- | ---- | ------------------------------------------------------------ |
-| type     | [SensorId](#sensorid9)                          | 是   | 传感器类型，该值固定为SensorId.AMBIENT_LIGHT。                |
+| type     | [SensorId](#sensorid9).AMBIENT_LIGHT            | 是   | 传感器类型，该值固定为SensorId.AMBIENT_LIGHT。               |
 | callback | Callback&lt;[LightResponse](#lightresponse)&gt; | 是   | 需要取消订阅的回调函数，若无此参数，则取消订阅当前类型的所有回调函数。 |
 
 **示例：**
@@ -1730,7 +1730,7 @@ off(type: SensorId.AMBIENT_TEMPERATURE, callback?: Callback&lt;AmbientTemperatur
 
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| type     | [SensorId](#sensorid9)                                       | 是   | 传感器类型，该值固定为SensorId.AMBIENT_TEMPERATURE。        |
+| type     | [SensorId](#sensorid9).AMBIENT_TEMPERATURE                   | 是   | 传感器类型，该值固定为SensorId.AMBIENT_TEMPERATURE。         |
 | callback | Callback&lt;[AmbientTemperatureResponse](#ambienttemperatureresponse)&gt; | 是   | 需要取消订阅的回调函数，若无此参数，则取消订阅当前类型的所有回调函数。 |
 
 **示例：**
@@ -1766,7 +1766,7 @@ off(type: SensorId.BAROMETER, callback?: Callback&lt;BarometerResponse&gt;): voi
 
 | 参数名   | 类型                                                    | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| type     | [SensorId](#sensorid9)                                  | 是   | 传感器类型，该值固定为SensorId.BAROMETER。                    |
+| type     | [SensorId](#sensorid9).BAROMETER                        | 是   | 传感器类型，该值固定为SensorId.BAROMETER。                   |
 | callback | Callback&lt;[BarometerResponse](#barometerresponse)&gt; | 是   | 需要取消订阅的回调函数，若无此参数，则取消订阅当前类型的所有回调函数。 |
 
 **示例：**
@@ -1802,7 +1802,7 @@ off(type: SensorId.GRAVITY, callback?: Callback&lt;GravityResponse&gt;): void
 
 | 参数名   | 类型                                                | 必填 | 说明                                                         |
 | -------- | --------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| type     | [SensorId](#sensorid9)                              | 是   | 传感器类型，该值固定为SensorId.GRAVITY。                        |
+| type     | [SensorId](#sensorid9).GRAVITY                      | 是   | 传感器类型，该值固定为SensorId.GRAVITY。                     |
 | callback | Callback&lt;[GravityResponse](#gravityresponse)&gt; | 是   | 需要取消订阅的回调函数，若无此参数，则取消订阅当前类型的所有回调函数。 |
 
 **示例：**
@@ -1840,7 +1840,7 @@ off(type: SensorId.GYROSCOPE, callback?: Callback&lt;GyroscopeResponse&gt;): voi
 
 | 参数名   | 类型                                                    | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| type     | [SensorId](#sensorid9)                                  | 是   | 传感器类型，该值固定为SensorId.GYROSCOPE。                    |
+| type     | [SensorId](#sensorid9).GYROSCOPE                        | 是   | 传感器类型，该值固定为SensorId.GYROSCOPE。                   |
 | callback | Callback&lt;[GyroscopeResponse](#gyroscoperesponse)&gt; | 是   | 需要取消订阅的回调函数，若无此参数，则取消订阅当前类型的所有回调函数。 |
 
 **示例：**
@@ -1878,7 +1878,7 @@ off(type: SensorId.GYROSCOPE_UNCALIBRATED, callback?: Callback&lt;GyroscopeUncal
 
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| type     | [SensorId](#sensorid9)                                       | 是   | 传感器类型，该值固定为SensorId.GYROSCOPE_UNCALIBRATED。 |
+| type     | [SensorId](#sensorid9).GYROSCOPE_UNCALIBRATED                | 是   | 传感器类型，该值固定为SensorId.GYROSCOPE_UNCALIBRATED。      |
 | callback | Callback&lt;[GyroscopeUncalibratedResponse](#gyroscopeuncalibratedresponse)&gt; | 是   | 需要取消订阅的回调函数，若无此参数，则取消订阅当前类型的所有回调函数。 |
 
 **示例：**
@@ -1914,7 +1914,7 @@ off(type: SensorId.HALL, callback?: Callback&lt;HallResponse&gt;): void
 
 | 参数名   | 类型                                          | 必填 | 说明                                                         |
 | -------- | --------------------------------------------- | ---- | ------------------------------------------------------------ |
-| type     | [SensorId](#sensorid9)                        | 是   | 传感器类型，该值固定为SensorId.HALL。                           |
+| type     | [SensorId](#sensorid9).HALL                   | 是   | 传感器类型，该值固定为SensorId.HALL。                        |
 | callback | Callback&lt;[HallResponse](#hallresponse)&gt; | 是   | 需要取消订阅的回调函数，若无此参数，则取消订阅当前类型的所有回调函数。 |
 
 **示例：**
@@ -1952,7 +1952,7 @@ off(type: SensorId.HEART_RATE, callback?: Callback&lt;HeartRateResponse&gt;): vo
 
 | 参数名   | 类型                                                    | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| type     | [SensorId](#sensorid9)                                  | 是   | 传感器类型，该值固定为SensorId.HEART_RATE。                     |
+| type     | [SensorId](#sensorid9).HEART_RATE                       | 是   | 传感器类型，该值固定为SensorId.HEART_RATE。                  |
 | callback | Callback&lt;[HeartRateResponse](#heartrateresponse)&gt; | 是   | 需要取消订阅的回调函数，若无此参数，则取消订阅当前类型的所有回调函数。 |
 
 **示例：**
@@ -1988,7 +1988,7 @@ off(type: SensorId.HUMIDITY, callback?: Callback&lt;HumidityResponse&gt;): void
 
 | 参数名   | 类型                                                  | 必填 | 说明                                                         |
 | -------- | ----------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| type     | [SensorId](#sensorid9)                                | 是   | 传感器类型，该值固定为SensorId.HUMIDITY。                       |
+| type     | [SensorId](#sensorid9).HUMIDITY                       | 是   | 传感器类型，该值固定为SensorId.HUMIDITY。                    |
 | callback | Callback&lt;[HumidityResponse](#humidityresponse)&gt; | 是   | 需要取消订阅的回调函数，若无此参数，则取消订阅当前类型的所有回调函数。 |
 
 **示例：**
@@ -2026,7 +2026,7 @@ off(type: SensorId.LINEAR_ACCELEROMETER, callback?: Callback&lt;LinearAccelerome
 
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| type     | [SensorId](#sensorid9)                                       | 是   | 传感器类型，该值固定为SensorId.LINEAR_ACCELERATION。      |
+| type     | [SensorId](#sensorid9).LINEAR_ACCELEROMETER                  | 是   | 传感器类型，该值固定为SensorId.LINEAR_ACCELERATION。         |
 | callback | Callback&lt;[LinearAccelerometerResponse](#linearaccelerometerresponse)&gt; | 是   | 需要取消订阅的回调函数，若无此参数，则取消订阅当前类型的所有回调函数。 |
 
 **示例：**
@@ -2062,7 +2062,7 @@ off(type: SensorId.MAGNETIC_FIELD, callback?: Callback&lt;MagneticFieldResponse&
 
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| type     | [SensorId](#sensorid9)                                       | 是   | 传感器类型，该值固定为SensorId.MAGNETIC_FIELD。                 |
+| type     | [SensorId](#sensorid9).MAGNETIC_FIELD                        | 是   | 传感器类型，该值固定为SensorId.MAGNETIC_FIELD。              |
 | callback | Callback&lt;[MagneticFieldResponse](#magneticfieldresponse)&gt; | 是   | 需要取消订阅的回调函数，若无此参数，则取消订阅当前类型的所有回调函数。 |
 
 **示例：**
@@ -2098,7 +2098,7 @@ off(type: SensorId.MAGNETIC_FIELD_UNCALIBRATED, callback?: Callback&lt;MagneticF
 
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| type     | [SensorId](#sensorid9)                                       | 是   | 传感器类型，该值固定为SensorId.MAGNETIC_FIELD_UNCALIBRATED。 |
+| type     | [SensorId](#sensorid9).MAGNETIC_FIELD_UNCALIBRATED           | 是   | 传感器类型，该值固定为SensorId.MAGNETIC_FIELD_UNCALIBRATED。 |
 | callback | Callback&lt;[MagneticFieldUncalibratedResponse](#magneticfielduncalibratedresponse)&gt; | 是   | 需要取消订阅的回调函数，若无此参数，则取消订阅当前类型的所有回调函数。 |
 
 **示例：**
@@ -2134,7 +2134,7 @@ off(type: SensorId.ORIENTATION, callback?: Callback&lt;OrientationResponse&gt;):
 
 | 参数名   | 类型                                                        | 必填 | 说明                                                         |
 | -------- | ----------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| type     | [SensorId](#sensorid9)                                      | 是   | 传感器类型，该值固定为SensorId.ORIENTATION。                    |
+| type     | [SensorId](#sensorid9).ORIENTATION                          | 是   | 传感器类型，该值固定为SensorId.ORIENTATION。                 |
 | callback | Callback&lt;[OrientationResponse](#orientationresponse)&gt; | 是   | 需要取消订阅的回调函数，若无此参数，则取消订阅当前类型的所有回调函数。 |
 
 **示例：**
@@ -2172,7 +2172,7 @@ off(type: SensorId.PEDOMETER, callback?: Callback&lt;PedometerResponse&gt;): voi
 
 | 参数名   | 类型                                                    | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| type     | [SensorId](#sensorid9)                                  | 是   | 传感器类型，该值固定为SensorId.PEDOMETER。                      |
+| type     | [SensorId](#sensorid9).PEDOMETER                        | 是   | 传感器类型，该值固定为SensorId.PEDOMETER。                   |
 | callback | Callback&lt;[PedometerResponse](#pedometerresponse)&gt; | 是   | 需要取消订阅的回调函数，若无此参数，则取消订阅当前类型的所有回调函数。 |
 
 **示例：**
@@ -2210,7 +2210,7 @@ off(type: SensorId.PEDOMETER_DETECTION, callback?: Callback&lt;PedometerDetectio
 
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| type     | [SensorId](#sensorid9)                                       | 是   | 传感器类型，该值固定为SensorId.PEDOMETER_DETECTION。        |
+| type     | [SensorId](#sensorid9).PEDOMETER_DETECTION                   | 是   | 传感器类型，该值固定为SensorId.PEDOMETER_DETECTION。         |
 | callback | Callback&lt;[PedometerDetectionResponse](#pedometerdetectionresponse)&gt; | 是   | 需要取消订阅的回调函数，若无此参数，则取消订阅当前类型的所有回调函数。 |
 
 **示例：**
@@ -2246,7 +2246,7 @@ off(type: SensorId.PROXIMITY, callback?: Callback&lt;ProximityResponse&gt;): voi
 
 | 参数名   | 类型                                                    | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| type     | [SensorId](#sensorid9)                                  | 是   | 传感器类型，该值固定为SensorId.PROXIMITY。                    |
+| type     | [SensorId](#sensorid9).PROXIMITY                        | 是   | 传感器类型，该值固定为SensorId.PROXIMITY。                   |
 | callback | Callback&lt;[ProximityResponse](#proximityresponse)&gt; | 是   | 需要取消订阅的回调函数，若无此参数，则取消订阅当前类型的所有回调函数。 |
 
 **示例：**
@@ -2282,7 +2282,7 @@ off(type: SensorId.ROTATION_VECTOR, callback?: Callback&lt;RotationVectorRespons
 
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| type     | [SensorId](#sensorid9)                                       | 是   | 传感器类型，该值固定为SensorId.ROTATION_VECTOR。            |
+| type     | [SensorId](#sensorid9).ROTATION_VECTOR                       | 是   | 传感器类型，该值固定为SensorId.ROTATION_VECTOR。             |
 | callback | Callback&lt;[RotationVectorResponse](#rotationvectorresponse)&gt; | 是   | 需要取消订阅的回调函数，若无此参数，则取消订阅当前类型的所有回调函数。 |
 
 **示例：**
@@ -2318,7 +2318,7 @@ off(type: SensorId.SIGNIFICANT_MOTION, callback?: Callback&lt;SignificantMotionR
 
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| type     | [SensorId](#sensorid9)                                       | 是   | 传感器类型，该值固定为SensorId.SIGNIFICANT_MOTION。         |
+| type     | [SensorId](#sensorid9).SIGNIFICANT_MOTION                    | 是   | 传感器类型，该值固定为SensorId.SIGNIFICANT_MOTION。          |
 | callback | Callback&lt;[SignificantMotionResponse](#significantmotionresponse)&gt; | 是   | 需要取消订阅的回调函数，若无此参数，则取消订阅当前类型的所有回调函数。 |
 
 **示例：**
@@ -2354,7 +2354,7 @@ off(type: SensorId.WEAR_DETECTION, callback?: Callback&lt;WearDetectionResponse&
 
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| type     | [SensorId](#sensorid9)                                       | 是   | 传感器类型，该值固定为SensorId.WEAR_DETECTION。             |
+| type     | [SensorId](#sensorid9).WEAR_DETECTION                        | 是   | 传感器类型，该值固定为SensorId.WEAR_DETECTION。              |
 | callback | Callback&lt;[WearDetectionResponse](#weardetectionresponse)&gt; | 是   | 需要取消订阅的回调函数，若无此参数，则取消订阅当前类型的所有回调函数。 |
 
 **示例：**
@@ -3400,29 +3400,29 @@ try {
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Sensors.Sensor
 
-| 名称                        | 默认值 | 说明                   |
-| --------------------------- | ------ | ---------------------- |
-| ACCELEROMETER               | 1      | 加速度传感器。         |
-| GYROSCOPE                   | 2      | 陀螺仪传感器。         |
-| AMBIENT_LIGHT               | 5      | 环境光传感器。         |
-| MAGNETIC_FIELD              | 6      | 磁场传感器。           |
-| BAROMETER                   | 8      | 气压计传感器。         |
-| HALL                        | 10     | 霍尔传感器。           |
-| PROXIMITY                   | 12     | 接近光传感器。         |
-| HUMIDITY                    | 13     | 湿度传感器。           |
-| ORIENTATION                 | 256    | 方向传感器。           |
-| GRAVITY                     | 257    | 重力传感器。           |
-| LINEAR_ACCELEROMETER        | 258    | 线性加速度传感器。     |
-| ROTATION_VECTOR             | 259    | 旋转矢量传感器。       |
-| AMBIENT_TEMPERATURE         | 260    | 环境温度传感器。       |
-| MAGNETIC_FIELD_UNCALIBRATED | 261    | 未校准磁场传感器。     |
-| GYROSCOPE_UNCALIBRATED      | 263    | 未校准陀螺仪传感器。   |
-| SIGNIFICANT_MOTION          | 264    | 有效运动传感器。       |
-| PEDOMETER_DETECTION         | 265    | 计步检测传感器。       |
-| PEDOMETER                   | 266    | 计步传感器。           |
-| HEART_RATE                  | 278    | 心率传感器。           |
-| WEAR_DETECTION              | 280    | 佩戴检测传感器。       |
-| ACCELEROMETER_UNCALIBRATED  | 281    | 未校准加速度计传感器。 |
+| 名称                        | 值   | 说明                   |
+| --------------------------- | ---- | ---------------------- |
+| ACCELEROMETER               | 1    | 加速度传感器。         |
+| GYROSCOPE                   | 2    | 陀螺仪传感器。         |
+| AMBIENT_LIGHT               | 5    | 环境光传感器。         |
+| MAGNETIC_FIELD              | 6    | 磁场传感器。           |
+| BAROMETER                   | 8    | 气压计传感器。         |
+| HALL                        | 10   | 霍尔传感器。           |
+| PROXIMITY                   | 12   | 接近光传感器。         |
+| HUMIDITY                    | 13   | 湿度传感器。           |
+| ORIENTATION                 | 256  | 方向传感器。           |
+| GRAVITY                     | 257  | 重力传感器。           |
+| LINEAR_ACCELEROMETER        | 258  | 线性加速度传感器。     |
+| ROTATION_VECTOR             | 259  | 旋转矢量传感器。       |
+| AMBIENT_TEMPERATURE         | 260  | 环境温度传感器。       |
+| MAGNETIC_FIELD_UNCALIBRATED | 261  | 未校准磁场传感器。     |
+| GYROSCOPE_UNCALIBRATED      | 263  | 未校准陀螺仪传感器。   |
+| SIGNIFICANT_MOTION          | 264  | 有效运动传感器。       |
+| PEDOMETER_DETECTION         | 265  | 计步检测传感器。       |
+| PEDOMETER                   | 266  | 计步传感器。           |
+| HEART_RATE                  | 278  | 心率传感器。           |
+| WEAR_DETECTION              | 280  | 佩戴检测传感器。       |
+| ACCELEROMETER_UNCALIBRATED  | 281  | 未校准加速度计传感器。 |
 
 ## SensorType<sup>(deprecated)</sup>
 
@@ -3462,9 +3462,9 @@ try {
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Sensors.Sensor
 
-| 名称      | 参数类型 | 可读 | 可写 | 说明                     |
-| --------- | -------- | ---- | ---- | ------------------------ |
-| timestamp | number   | 是   | 是   | 传感器数据上报的时间戳。 |
+| 名称      | 类型   | 可读 | 可写 | 说明                     |
+| --------- | ------ | ---- | ---- | ------------------------ |
+| timestamp | number | 是   | 是   | 传感器数据上报的时间戳。 |
 
 ## Sensor<sup>9+</sup>
 
@@ -3472,7 +3472,7 @@ try {
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Sensors.Sensor
 
-| 名称            | 参数类型 | 说明                   |
+| 名称            | 类型 | 说明                   |
 | --------------- | -------- | ---------------------- |
 | sensorName      | string   | 传感器名称。           |
 | venderName      | string   | 传感器供应商。         |
@@ -3492,11 +3492,11 @@ try {
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Sensors.Sensor
 
 
-| 名称 | 参数类型 | 可读 | 可写 | 说明                                 |
-| ---- | -------- | ---- | ---- | ------------------------------------ |
-| x    | number   | 是   | 是   | 施加在设备x轴的加速度，单位 : m/s2。 |
-| y    | number   | 是   | 是   | 施加在设备y轴的加速度，单位 : m/s2。 |
-| z    | number   | 是   | 是   | 施加在设备z轴的加速度，单位 : m/s2。 |
+| 名称 | 类型   | 可读 | 可写 | 说明                                 |
+| ---- | ------ | ---- | ---- | ------------------------------------ |
+| x    | number | 是   | 是   | 施加在设备x轴的加速度，单位 : m/s2。 |
+| y    | number | 是   | 是   | 施加在设备y轴的加速度，单位 : m/s2。 |
+| z    | number | 是   | 是   | 施加在设备z轴的加速度，单位 : m/s2。 |
 
 
 ## LinearAccelerometerResponse
@@ -3506,11 +3506,11 @@ try {
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Sensors.Sensor
 
 
-| 名称 | 参数类型 | 可读 | 可写 | 说明                                     |
-| ---- | -------- | ---- | ---- | ---------------------------------------- |
-| x    | number   | 是   | 是   | 施加在设备x轴的线性加速度，单位 : m/s2。 |
-| y    | number   | 是   | 是   | 施加在设备y轴的线性加速度，单位 : m/s2。 |
-| z    | number   | 是   | 是   | 施加在设备z轴的线性加速度，单位 : m/s2。 |
+| 名称 | 类型   | 可读 | 可写 | 说明                                     |
+| ---- | ------ | ---- | ---- | ---------------------------------------- |
+| x    | number | 是   | 是   | 施加在设备x轴的线性加速度，单位 : m/s2。 |
+| y    | number | 是   | 是   | 施加在设备y轴的线性加速度，单位 : m/s2。 |
+| z    | number | 是   | 是   | 施加在设备z轴的线性加速度，单位 : m/s2。 |
 
 
 ## AccelerometerUncalibratedResponse
@@ -3520,14 +3520,14 @@ try {
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Sensors.Sensor
 
 
-| 名称  | 参数类型 | 可读 | 可写 | 说明                                             |
-| ----- | -------- | ---- | ---- | ------------------------------------------------ |
-| x     | number   | 是   | 是   | 施加在设备x轴未校准的加速度，单位 : m/s2。       |
-| y     | number   | 是   | 是   | 施加在设备y轴未校准的加速度，单位 : m/s2。       |
-| z     | number   | 是   | 是   | 施加在设备z轴未校准的加速度，单位 : m/s2。       |
-| biasX | number   | 是   | 是   | 施加在设备x轴未校准的加速度偏量，单位 : m/s2。   |
-| biasY | number   | 是   | 是   | 施加在设备上y轴未校准的加速度偏量，单位 : m/s2。 |
-| biasZ | number   | 是   | 是   | 施加在设备z轴未校准的加速度偏量，单位 : m/s2。   |
+| 名称  | 类型   | 可读 | 可写 | 说明                                             |
+| ----- | ------ | ---- | ---- | ------------------------------------------------ |
+| x     | number | 是   | 是   | 施加在设备x轴未校准的加速度，单位 : m/s2。       |
+| y     | number | 是   | 是   | 施加在设备y轴未校准的加速度，单位 : m/s2。       |
+| z     | number | 是   | 是   | 施加在设备z轴未校准的加速度，单位 : m/s2。       |
+| biasX | number | 是   | 是   | 施加在设备x轴未校准的加速度偏量，单位 : m/s2。   |
+| biasY | number | 是   | 是   | 施加在设备上y轴未校准的加速度偏量，单位 : m/s2。 |
+| biasZ | number | 是   | 是   | 施加在设备z轴未校准的加速度偏量，单位 : m/s2。   |
 
 
 ## GravityResponse
@@ -3537,11 +3537,11 @@ try {
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Sensors.Sensor
 
 
-| 名称 | 参数类型 | 可读 | 可写 | 说明                                     |
-| ---- | -------- | ---- | ---- | ---------------------------------------- |
-| x    | number   | 是   | 是   | 施加在设备x轴的重力加速度，单位 : m/s2。 |
-| y    | number   | 是   | 是   | 施加在设备y轴的重力加速度，单位 : m/s2。 |
-| z    | number   | 是   | 是   | 施加在设备z轴的重力加速度，单位 : m/s2。 |
+| 名称 | 类型   | 可读 | 可写 | 说明                                     |
+| ---- | ------ | ---- | ---- | ---------------------------------------- |
+| x    | number | 是   | 是   | 施加在设备x轴的重力加速度，单位 : m/s2。 |
+| y    | number | 是   | 是   | 施加在设备y轴的重力加速度，单位 : m/s2。 |
+| z    | number | 是   | 是   | 施加在设备z轴的重力加速度，单位 : m/s2。 |
 
 
 ## OrientationResponse
@@ -3551,11 +3551,11 @@ try {
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Sensors.Sensor
 
 
-| 名称  | 参数类型 | 可读 | 可写 | 说明                              |
-| ----- | -------- | ---- | ---- | --------------------------------- |
-| alpha | number   | 是   | 是   | 设备围绕Z轴的旋转角度，单位：度。 |
-| beta  | number   | 是   | 是   | 设备围绕X轴的旋转角度，单位：度。 |
-| gamma | number   | 是   | 是   | 设备围绕Y轴的旋转角度，单位：度。 |
+| 名称  | 类型   | 可读 | 可写 | 说明                              |
+| ----- | ------ | ---- | ---- | --------------------------------- |
+| alpha | number | 是   | 是   | 设备围绕Z轴的旋转角度，单位：度。 |
+| beta  | number | 是   | 是   | 设备围绕X轴的旋转角度，单位：度。 |
+| gamma | number | 是   | 是   | 设备围绕Y轴的旋转角度，单位：度。 |
 
 
 ## RotationVectorResponse
@@ -3565,12 +3565,12 @@ try {
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Sensors.Sensor
 
 
-| 名称 | 参数类型 | 可读 | 可写 | 说明              |
-| ---- | -------- | ---- | ---- | ----------------- |
-| x    | number   | 是   | 是   | 旋转矢量x轴分量。 |
-| y    | number   | 是   | 是   | 旋转矢量y轴分量。 |
-| z    | number   | 是   | 是   | 旋转矢量z轴分量。 |
-| w    | number   | 是   | 是   | 标量。            |
+| 名称 | 类型   | 可读 | 可写 | 说明              |
+| ---- | ------ | ---- | ---- | ----------------- |
+| x    | number | 是   | 是   | 旋转矢量x轴分量。 |
+| y    | number | 是   | 是   | 旋转矢量y轴分量。 |
+| z    | number | 是   | 是   | 旋转矢量z轴分量。 |
+| w    | number | 是   | 是   | 标量。            |
 
 
 ## GyroscopeResponse
@@ -3580,11 +3580,11 @@ try {
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Sensors.Sensor
 
 
-| 名称 | 参数类型 | 可读 | 可写 | 说明                             |
-| ---- | -------- | ---- | ---- | -------------------------------- |
-| x    | number   | 是   | 是   | 设备x轴的旋转角速度，单位rad/s。 |
-| y    | number   | 是   | 是   | 设备y轴的旋转角速度，单位rad/s。 |
-| z    | number   | 是   | 是   | 设备z轴的旋转角速度，单位rad/s。 |
+| 名称 | 类型   | 可读 | 可写 | 说明                             |
+| ---- | ------ | ---- | ---- | -------------------------------- |
+| x    | number | 是   | 是   | 设备x轴的旋转角速度，单位rad/s。 |
+| y    | number | 是   | 是   | 设备y轴的旋转角速度，单位rad/s。 |
+| z    | number | 是   | 是   | 设备z轴的旋转角速度，单位rad/s。 |
 
 
 ## GyroscopeUncalibratedResponse
@@ -3594,14 +3594,14 @@ try {
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Sensors.Sensor
 
 
-| 名称  | 参数类型 | 可读 | 可写 | 说明                                       |
-| ----- | -------- | ---- | ---- | ------------------------------------------ |
-| x     | number   | 是   | 是   | 设备x轴未校准的旋转角速度，单位rad/s。     |
-| y     | number   | 是   | 是   | 设备y轴未校准的旋转角速度，单位rad/s。     |
-| z     | number   | 是   | 是   | 设备z轴未校准的旋转角速度，单位rad/s。     |
-| biasX | number   | 是   | 是   | 设备x轴未校准的旋转角速度偏量，单位rad/s。 |
-| biasY | number   | 是   | 是   | 设备y轴未校准的旋转角速度偏量，单位rad/s。 |
-| biasZ | number   | 是   | 是   | 设备z轴未校准的旋转角速度偏量，单位rad/s。 |
+| 名称  | 类型   | 可读 | 可写 | 说明                                       |
+| ----- | ------ | ---- | ---- | ------------------------------------------ |
+| x     | number | 是   | 是   | 设备x轴未校准的旋转角速度，单位rad/s。     |
+| y     | number | 是   | 是   | 设备y轴未校准的旋转角速度，单位rad/s。     |
+| z     | number | 是   | 是   | 设备z轴未校准的旋转角速度，单位rad/s。     |
+| biasX | number | 是   | 是   | 设备x轴未校准的旋转角速度偏量，单位rad/s。 |
+| biasY | number | 是   | 是   | 设备y轴未校准的旋转角速度偏量，单位rad/s。 |
+| biasZ | number | 是   | 是   | 设备z轴未校准的旋转角速度偏量，单位rad/s。 |
 
 
 ## SignificantMotionResponse
@@ -3611,9 +3611,9 @@ try {
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Sensors.Sensor
 
 
-| 名称   | 参数类型 | 可读 | 可写 | 说明                                                         |
-| ------ | -------- | ---- | ---- | ------------------------------------------------------------ |
-| scalar | number   | 是   | 是   | 表示剧烈运动程度。测量三个物理轴（x、y&nbsp;和&nbsp;z）上，设备是否存在大幅度运动；如果取值为1则代表存在大幅度运动，取值为0则代表没有大幅度运动。 |
+| 名称   | 类型   | 可读 | 可写 | 说明                                                         |
+| ------ | ------ | ---- | ---- | ------------------------------------------------------------ |
+| scalar | number | 是   | 是   | 表示剧烈运动程度。测量三个物理轴（x、y&nbsp;和&nbsp;z）上，设备是否存在大幅度运动；如果取值为1则代表存在大幅度运动，取值为0则代表没有大幅度运动。 |
 
 
 ## ProximityResponse
@@ -3623,9 +3623,9 @@ try {
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Sensors.Sensor
 
 
-| 名称     | 参数类型 | 可读 | 可写 | 说明                                                   |
-| -------- | -------- | ---- | ---- | ------------------------------------------------------ |
-| distance | number   | 是   | 是   | 可见物体与设备显示器的接近程度。0表示接近，1表示远离。 |
+| 名称     | 类型   | 可读 | 可写 | 说明                                                   |
+| -------- | ------ | ---- | ---- | ------------------------------------------------------ |
+| distance | number | 是   | 是   | 可见物体与设备显示器的接近程度。0表示接近，1表示远离。 |
 
 
 ## LightResponse
@@ -3635,9 +3635,9 @@ try {
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Sensors.Sensor
 
 
-| 名称      | 参数类型 | 可读 | 可写 | 说明                   |
-| --------- | -------- | ---- | ---- | ---------------------- |
-| intensity | number   | 是   | 是   | 光强（单位：勒克斯）。 |
+| 名称      | 类型   | 可读 | 可写 | 说明                   |
+| --------- | ------ | ---- | ---- | ---------------------- |
+| intensity | number | 是   | 是   | 光强（单位：勒克斯）。 |
 
 
 ## HallResponse
@@ -3647,9 +3647,9 @@ try {
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Sensors.Sensor
 
 
-| 名称   | 参数类型 | 可读 | 可写 | 说明                                                         |
-| ------ | -------- | ---- | ---- | ------------------------------------------------------------ |
-| status | number   | 是   | 是   | 显示霍尔状态。测量设备周围是否存在磁力吸引，0表示没有，大于0表示有。 |
+| 名称   | 类型   | 可读 | 可写 | 说明                                                         |
+| ------ | ------ | ---- | ---- | ------------------------------------------------------------ |
+| status | number | 是   | 是   | 显示霍尔状态。测量设备周围是否存在磁力吸引，0表示没有，大于0表示有。 |
 
 
 ## MagneticFieldResponse
@@ -3659,11 +3659,11 @@ try {
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Sensors.Sensor
 
 
-| 名称 | 参数类型 | 可读 | 可写 | 说明                         |
-| ---- | -------- | ---- | ---- | ---------------------------- |
-| x    | number   | 是   | 是   | x轴环境磁场强度，单位 : μT。 |
-| y    | number   | 是   | 是   | y轴环境磁场强度，单位 : μT。 |
-| z    | number   | 是   | 是   | z轴环境磁场强度，单位 : μT。 |
+| 名称 | 类型   | 可读 | 可写 | 说明                         |
+| ---- | ------ | ---- | ---- | ---------------------------- |
+| x    | number | 是   | 是   | x轴环境磁场强度，单位 : μT。 |
+| y    | number | 是   | 是   | y轴环境磁场强度，单位 : μT。 |
+| z    | number | 是   | 是   | z轴环境磁场强度，单位 : μT。 |
 
 
 ## MagneticFieldUncalibratedResponse
@@ -3673,14 +3673,14 @@ try {
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Sensors.Sensor
 
 
-| 名称  | 参数类型 | 可读 | 可写 | 说明                                   |
-| ----- | -------- | ---- | ---- | -------------------------------------- |
-| x     | number   | 是   | 是   | x轴未校准环境磁场强度，单位 : μT。     |
-| y     | number   | 是   | 是   | y轴未校准环境磁场强度，单位 : μT。     |
-| z     | number   | 是   | 是   | z轴未校准环境磁场强度，单位 : μT。     |
-| biasX | number   | 是   | 是   | x轴未校准环境磁场强度偏量，单位 : μT。 |
-| biasY | number   | 是   | 是   | y轴未校准环境磁场强度偏量，单位 : μT。 |
-| biasZ | number   | 是   | 是   | z轴未校准环境磁场强度偏量，单位 : μT。 |
+| 名称  | 类型   | 可读 | 可写 | 说明                                   |
+| ----- | ------ | ---- | ---- | -------------------------------------- |
+| x     | number | 是   | 是   | x轴未校准环境磁场强度，单位 : μT。     |
+| y     | number | 是   | 是   | y轴未校准环境磁场强度，单位 : μT。     |
+| z     | number | 是   | 是   | z轴未校准环境磁场强度，单位 : μT。     |
+| biasX | number | 是   | 是   | x轴未校准环境磁场强度偏量，单位 : μT。 |
+| biasY | number | 是   | 是   | y轴未校准环境磁场强度偏量，单位 : μT。 |
+| biasZ | number | 是   | 是   | z轴未校准环境磁场强度偏量，单位 : μT。 |
 
 
 ## PedometerResponse
@@ -3690,9 +3690,9 @@ try {
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Sensors.Sensor
 
 
-| 名称  | 参数类型 | 可读 | 可写 | 说明             |
-| ----- | -------- | ---- | ---- | ---------------- |
-| steps | number   | 是   | 是   | 用户的行走步数。 |
+| 名称  | 类型   | 可读 | 可写 | 说明             |
+| ----- | ------ | ---- | ---- | ---------------- |
+| steps | number | 是   | 是   | 用户的行走步数。 |
 
 
 ## HumidityResponse
@@ -3702,9 +3702,9 @@ try {
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Sensors.Sensor
 
 
-| 名称     | 参数类型 | 可读 | 可写 | 说明                                                      |
-| -------- | -------- | ---- | ---- | --------------------------------------------------------- |
-| humidity | number   | 是   | 是   | 湿度值。测量环境的相对湿度，以百分比&nbsp;(%)&nbsp;表示。 |
+| 名称     | 类型   | 可读 | 可写 | 说明                                                      |
+| -------- | ------ | ---- | ---- | --------------------------------------------------------- |
+| humidity | number | 是   | 是   | 湿度值。测量环境的相对湿度，以百分比&nbsp;(%)&nbsp;表示。 |
 
 
 ## PedometerDetectionResponse
@@ -3714,9 +3714,9 @@ try {
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Sensors.Sensor
 
 
-| 名称   | 参数类型 | 可读 | 可写 | 说明                                                         |
-| ------ | -------- | ---- | ---- | ------------------------------------------------------------ |
-| scalar | number   | 是   | 是   | 计步器检测。检测用户的计步动作，如果取值为1则代表用户产生了计步行走的动作，取值为0则代表用户没有发生运动。 |
+| 名称   | 类型   | 可读 | 可写 | 说明                                                         |
+| ------ | ------ | ---- | ---- | ------------------------------------------------------------ |
+| scalar | number | 是   | 是   | 计步器检测。检测用户的计步动作，如果取值为1则代表用户产生了计步行走的动作，取值为0则代表用户没有发生运动。 |
 
 
 ## AmbientTemperatureResponse
@@ -3726,9 +3726,9 @@ try {
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Sensors.Sensor
 
 
-| 名称        | 参数类型 | 可读 | 可写 | 说明                       |
-| ----------- | -------- | ---- | ---- | -------------------------- |
-| temperature | number   | 是   | 是   | 环境温度（单位：摄氏度）。 |
+| 名称        | 类型   | 可读 | 可写 | 说明                       |
+| ----------- | ------ | ---- | ---- | -------------------------- |
+| temperature | number | 是   | 是   | 环境温度（单位：摄氏度）。 |
 
 
 ## BarometerResponse
@@ -3738,9 +3738,9 @@ try {
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Sensors.Sensor
 
 
-| 名称     | 参数类型 | 可读 | 可写 | 说明                     |
-| -------- | -------- | ---- | ---- | ------------------------ |
-| pressure | number   | 是   | 是   | 压力值（单位：帕斯卡）。 |
+| 名称     | 类型   | 可读 | 可写 | 说明                     |
+| -------- | ------ | ---- | ---- | ------------------------ |
+| pressure | number | 是   | 是   | 压力值（单位：帕斯卡）。 |
 
 
 ## HeartRateResponse
@@ -3750,9 +3750,9 @@ try {
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Sensors.Sensor
 
 
-| 名称      | 参数类型 | 可读 | 可写 | 说明                                    |
-| --------- | -------- | ---- | ---- | --------------------------------------- |
-| heartRate | number   | 是   | 是   | 心率值。测量用户的心率数值，单位：bpm。 |
+| 名称      | 类型   | 可读 | 可写 | 说明                                    |
+| --------- | ------ | ---- | ---- | --------------------------------------- |
+| heartRate | number | 是   | 是   | 心率值。测量用户的心率数值，单位：bpm。 |
 
 
 ## WearDetectionResponse
@@ -3762,9 +3762,9 @@ try {
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Sensors.Sensor
 
 
-| 名称  | 参数类型 | 可读 | 可写 | 说明                                             |
-| ----- | -------- | ---- | ---- | ------------------------------------------------ |
-| value | number   | 是   | 是   | 表示设备是否被穿戴（1表示已穿戴，0表示未穿戴）。 |
+| 名称  | 类型   | 可读 | 可写 | 说明                                             |
+| ----- | ------ | ---- | ---- | ------------------------------------------------ |
+| value | number | 是   | 是   | 表示设备是否被穿戴（1表示已穿戴，0表示未穿戴）。 |
 
 
 ## Options
@@ -3773,9 +3773,9 @@ try {
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Sensors.Sensor
 
-| 名称     | 参数类型 | 说明                                        |
-| -------- | -------- | ------------------------------------------- |
-| interval | number   | 表示传感器的上报频率，默认值为200000000ns。 |
+| 名称     | 类型   | 说明                                        |
+| -------- | ------ | ------------------------------------------- |
+| interval | number | 表示传感器的上报频率，默认值为200000000ns。 |
 
 ## RotationMatrixResponse
 
@@ -3783,7 +3783,7 @@ try {
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Sensors.Sensor
 
-| 名称        | 参数类型            | 可读 | 可写 | 说明       |
+| 名称        | 类型                | 可读 | 可写 | 说明       |
 | ----------- | ------------------- | ---- | ---- | ---------- |
 | rotation    | Array&lt;number&gt; | 是   | 是   | 旋转矩阵。 |
 | inclination | Array&lt;number&gt; | 是   | 是   | 倾斜矩阵。 |
@@ -3795,10 +3795,10 @@ try {
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Sensors.Sensor
 
-| 名称 | 参数类型 | 可读 | 可写 | 说明        |
-| ---- | -------- | ---- | ---- | ----------- |
-| x    | number   | 是   | 是   | x坐标方向。 |
-| y    | number   | 是   | 是   | y坐标方向。 |
+| 名称 | 类型   | 可读 | 可写 | 说明        |
+| ---- | ------ | ---- | ---- | ----------- |
+| x    | number | 是   | 是   | x坐标方向。 |
+| y    | number | 是   | 是   | y坐标方向。 |
 
 
 ## GeomagneticResponse
@@ -3807,15 +3807,15 @@ try {
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Sensors.Sensor
 
-| 名称            | 参数类型 | 可读 | 可写 | 说明                                               |
-| --------------- | -------- | ---- | ---- | -------------------------------------------------- |
-| x               | number   | 是   | 是   | 地磁场的北分量。                                   |
-| y               | number   | 是   | 是   | 地磁场的东分量。                                   |
-| z               | number   | 是   | 是   | 地磁场的垂直分量。                                 |
-| geomagneticDip  | number   | 是   | 是   | 地磁倾角，即地球磁场线与水平面的夹角。             |
-| deflectionAngle | number   | 是   | 是   | 地磁偏角，即地磁北方向与正北方向在水平面上的角度。 |
-| levelIntensity  | number   | 是   | 是   | 地磁场的水平强度。                                 |
-| totalIntensity  | number   | 是   | 是   | 地磁场的总强度。                                   |
+| 名称            | 类型   | 可读 | 可写 | 说明                                               |
+| --------------- | ------ | ---- | ---- | -------------------------------------------------- |
+| x               | number | 是   | 是   | 地磁场的北分量。                                   |
+| y               | number | 是   | 是   | 地磁场的东分量。                                   |
+| z               | number | 是   | 是   | 地磁场的垂直分量。                                 |
+| geomagneticDip  | number | 是   | 是   | 地磁倾角，即地球磁场线与水平面的夹角。             |
+| deflectionAngle | number | 是   | 是   | 地磁偏角，即地磁北方向与正北方向在水平面上的角度。 |
+| levelIntensity  | number | 是   | 是   | 地磁场的水平强度。                                 |
+| totalIntensity  | number | 是   | 是   | 地磁场的总强度。                                   |
 
 ## LocationOptions
 
@@ -3823,11 +3823,11 @@ try {
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Sensors.Sensor
 
-| 名称      | 参数类型 | 可读 | 可写 | 说明       |
-| --------- | -------- | ---- | ---- | ---------- |
-| latitude  | number   | 是   | 是   | 纬度。     |
-| longitude | number   | 是   | 是   | 经度。     |
-| altitude  | number   | 是   | 是   | 海拔高度。 |
+| 名称      | 类型   | 可读 | 可写 | 说明       |
+| --------- | ------ | ---- | ---- | ---------- |
+| latitude  | number | 是   | 是   | 纬度。     |
+| longitude | number | 是   | 是   | 经度。     |
+| altitude  | number | 是   | 是   | 海拔高度。 |
 
 ## sensor.on<sup>(deprecated)</sup>
 
