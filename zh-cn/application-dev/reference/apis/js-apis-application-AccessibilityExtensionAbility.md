@@ -18,7 +18,7 @@ import AccessibilityExtensionAbility from '@ohos.application.AccessibilityExtens
 
 **系统能力：** SystemCapability.BarrierFree.Accessibility.Core
 
-| 名称      | 参数类型 | 可读 | 可写 | 说明                      |
+| 名称      | 类型 | 可读 | 可写 | 说明                      |
 | --------- | -------- | ---- | ---- | ------------------------- |
 | context | [AccessibilityExtensionContext](js-apis-accessibility-extension-context.md) | 是 | 否 | 表示辅助扩展能力上下文。 |
 
@@ -30,7 +30,7 @@ import AccessibilityExtensionAbility from '@ohos.application.AccessibilityExtens
 
 ### 属性
 
-| 名称        | 参数类型                                     | 可读   | 可写   | 说明         |
+| 名称        | 类型                                     | 可读   | 可写   | 说明         |
 | --------- | ---------------------------------------- | ---- | ---- | ---------- |
 | eventType | [EventType](js-apis-accessibility.md#EventType) \| [WindowUpdateType](js-apis-accessibility.md#WindowUpdateType) \| [TouchGuideType](#touchguidetype) \| [GestureType](#gesturetype) \| [PageUpdateType](#pageupdatetype) | 是    | 否    | 具体事件类型。    |
 | target    | AccessibilityElement                     | 是    | 否    | 发生事件的目标组件。 |
@@ -129,7 +129,7 @@ onAccessibilityEvent(event: AccessibilityEvent): void;
 
 **参数：**
 
-| 参数名   | 参数类型                                     | 必填   | 说明              |
+| 参数名   | 类型                                     | 必填   | 说明              |
 | ----- | ---------------------------------------- | ---- | --------------- |
 | event | [AccessibilityEvent](#accessibilityevent) | 是    | 无障碍事件回调函数。无返回值。 |
 
@@ -156,7 +156,7 @@ onKeyEvent(keyEvent: KeyEvent): boolean;
 
 **参数：**
 
-| 参数名      | 参数类型                                     | 必填   | 说明                      |
+| 参数名      | 类型                                     | 必填   | 说明                      |
 | -------- | ---------------------------------------- | ---- | ----------------------- |
 | keyEvent | [KeyEvent](js-apis-keyevent.md#KeyEvent) | 是    | 按键事件回调函数。返回true表示拦截此按键。 |
 
