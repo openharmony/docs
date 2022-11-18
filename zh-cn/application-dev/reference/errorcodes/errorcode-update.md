@@ -4,7 +4,7 @@
 
 **错误信息**
 
-BusineaaError "${错误码}":Executefail.
+BusineaaError "${错误码}":Execute fail.
 
 **错误描述**
 
