@@ -337,7 +337,7 @@ async function createTonePlayer(){
 
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.Audio.Volume
 
-| 名称                         | 默认值 | 描述       |
+| 名称                         | 值      | 说明       |
 | ---------------------------- | ------ | ---------- |
 | VOICE_CALL<sup>8+</sup>      | 0      | 语音电话。 |
 | RINGTONE                     | 2      | 铃声。     |
@@ -353,7 +353,7 @@ async function createTonePlayer(){
 
 **系统接口：** 该接口为系统接口
 
-| 名称                         | 默认值 | 描述       |
+| 名称                         | 值      | 说明       |
 | ---------------------------- | ------ | ---------- |
 | INTERRUPT_REQUEST_GRANT      | 0      | 请求音频中断成功。 |
 | INTERRUPT_REQUEST_REJECT     | 1      | 请求音频中断失败，可能具有较高优先级类型。 |
@@ -364,7 +364,7 @@ async function createTonePlayer(){
 
 **系统能力：** SystemCapability.Multimedia.Audio.Interrupt
 
-| 名称                         | 默认值 | 描述       |
+| 名称                         | 值      | 说明       |
 | ---------------------------- | ------ | ---------- |
 | SHARE_MODE                   | 0      | 共享焦点模式。 |
 | INDEPENDENT_MODE             | 1      | 独立焦点模式。 |
@@ -375,7 +375,7 @@ async function createTonePlayer(){
 
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.Audio.Device
 
-| 名称                            | 默认值  | 描述                                              |
+| 名称                            |  值     | 说明                                              |
 | ------------------------------- | ------ | ------------------------------------------------- |
 | NONE_DEVICES_FLAG<sup>9+</sup>  | 0      | 无 <br/>此接口为系统接口。        |
 | OUTPUT_DEVICES_FLAG             | 1      | 输出设备。 |
@@ -391,7 +391,7 @@ async function createTonePlayer(){
 
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.Audio.Device
 
-| 名称          | 默认值 | 描述           |
+| 名称          |  值    | 说明           |
 | ------------- | ------ | -------------- |
 | INPUT_DEVICE  | 1      | 输入设备角色。 |
 | OUTPUT_DEVICE | 2      | 输出设备角色。 |
@@ -402,7 +402,7 @@ async function createTonePlayer(){
 
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.Audio.Device
 
-| 名称                 | 默认值 | 描述                                                      |
+| 名称                 | 值     | 说明                                                      |
 | ---------------------| ------ | --------------------------------------------------------- |
 | INVALID              | 0      | 无效设备。                                                |
 | EARPIECE             | 1      | 听筒。                                                    |
@@ -421,7 +421,7 @@ async function createTonePlayer(){
 
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.Audio.Communication
 
-| 名称          | 默认值 | 描述          |
+| 名称          | 值     | 说明          |
 | ------------- | ------ | -------------|
 | SPEAKER       | 2      | 扬声器。      |
 
@@ -431,7 +431,7 @@ async function createTonePlayer(){
 
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.Audio.Communication
 
-| 名称                | 默认值 | 描述       |
+| 名称                |  值    | 说明       |
 | ------------------- | ------ | ---------- |
 | RINGER_MODE_SILENT  | 0      | 静音模式。 |
 | RINGER_MODE_VIBRATE | 1      | 震动模式。 |
@@ -443,7 +443,7 @@ async function createTonePlayer(){
 
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.Audio.Core
 
-| 名称                                | 默认值 | 描述                       |
+| 名称                                |  值    | 说明                       |
 | ---------------------------------- | ------ | -------------------------- |
 | SAMPLE_FORMAT_INVALID              | -1     | 无效格式。                 |
 | SAMPLE_FORMAT_U8                   | 0      | 无符号8位整数。            |
@@ -474,7 +474,7 @@ async function createTonePlayer(){
 
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.Audio.Core
 
-| 名称      | 默认值   | 描述     |
+| 名称      |  值       | 说明     |
 | --------- | -------- | -------- |
 | CHANNEL_1 | 0x1 << 0 | 单声道。 |
 | CHANNEL_2 | 0x1 << 1 | 双声道。 |
@@ -485,7 +485,7 @@ async function createTonePlayer(){
 
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.Audio.Core
 
-| 名称              | 默认值 | 描述            |
+| 名称              |  值    | 说明            |
 | ----------------- | ------ | --------------- |
 | SAMPLE_RATE_8000  | 8000   | 采样率为8000。  |
 | SAMPLE_RATE_11025 | 11025  | 采样率为11025。 |
@@ -505,7 +505,7 @@ async function createTonePlayer(){
 
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.Audio.Core
 
-| 名称                  | 默认值 | 描述      |
+| 名称                  |  值    | 说明      |
 | --------------------- | ------ | --------- |
 | ENCODING_TYPE_INVALID | -1     | 无效。    |
 | ENCODING_TYPE_RAW     | 0      | PCM编码。 |
@@ -516,7 +516,7 @@ async function createTonePlayer(){
 
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.Audio.Core
 
-| 名称                               | 默认值 | 描述       |
+| 名称                               |  值    | 说明       |
 | ---------------------------------- | ------ | ---------- |
 | CONTENT_TYPE_UNKNOWN               | 0      | 未知类型。 |
 | CONTENT_TYPE_SPEECH                | 1      | 语音。     |
@@ -531,7 +531,7 @@ async function createTonePlayer(){
 
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.Audio.Core
 
-| 名称                                      | 默认值 | 描述       |
+| 名称                                      |  值    | 说明       |
 | ------------------------------------------| ------ | ---------- |
 | STREAM_USAGE_UNKNOWN                      | 0      | 未知类型。 |
 | STREAM_USAGE_MEDIA                        | 1      | 音频。     |
@@ -547,7 +547,7 @@ async function createTonePlayer(){
 
 **系统能力：** SystemCapability.Multimedia.Audio.Interrupt
 
-| 名称                               | 默认值  | 描述                       |
+| 名称                               |  值     | 说明                       |
 | ---------------------------------- | ------ | ------------------------- |
 | INTERRUPT_REQUEST_TYPE_DEFAULT     | 0      |  默认类型，可中断音频请求。  |
 
@@ -557,7 +557,7 @@ async function createTonePlayer(){
 
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.Audio.Core
 
-| 名称           | 默认值 | 描述             |
+| 名称           | 值     | 说明             |
 | -------------- | ------ | ---------------- |
 | STATE_INVALID  | -1     | 无效状态。       |
 | STATE_NEW      | 0      | 创建新实例状态。 |
@@ -573,7 +573,7 @@ async function createTonePlayer(){
 
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.Audio.Renderer
 
-| 名称               | 默认值 | 描述       |
+| 名称               | 值     | 说明       |
 | ------------------ | ------ | ---------- |
 | RENDER_RATE_NORMAL | 0      | 正常速度。 |
 | RENDER_RATE_DOUBLE | 1      | 2倍速。    |
@@ -585,7 +585,7 @@ async function createTonePlayer(){
 
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.Audio.Renderer
 
-| 名称                 | 默认值 | 描述                   |
+| 名称                 |  值     | 说明                   |
 | -------------------- | ------ | ---------------------- |
 | INTERRUPT_TYPE_BEGIN | 1      | 音频播放中断事件开始。 |
 | INTERRUPT_TYPE_END   | 2      | 音频播放中断事件结束。 |
@@ -596,7 +596,7 @@ async function createTonePlayer(){
 
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.Audio.Renderer
 
-| 名称            | 默认值 | 描述                                 |
+| 名称            |  值    | 说明                                 |
 | --------------- | ------ | ------------------------------------ |
 | INTERRUPT_FORCE | 0      | 由系统进行操作，强制打断音频播放。   |
 | INTERRUPT_SHARE | 1      | 由应用进行操作，可以选择打断或忽略。 |
@@ -607,7 +607,7 @@ async function createTonePlayer(){
 
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.Audio.Renderer
 
-| 名称                               | 默认值 | 描述                                         |
+| 名称                               |  值     | 说明                                         |
 | ---------------------------------- | ------ | -------------------------------------------- |
 | INTERRUPT_HINT_NONE<sup>8+</sup>   | 0      | 无提示。                                     |
 | INTERRUPT_HINT_RESUME              | 1      | 提示音频恢复。                               |
@@ -711,7 +711,7 @@ async function createTonePlayer(){
 
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.Audio.Volume
 
-| 名称                            | 默认值 | 描述                   |
+| 名称                            |  值     | 说明                   |
 | :------------------------------ | :----- | :--------------------- |
 | CONNECT_TYPE_LOCAL              | 1      | 本地设备。         |
 | CONNECT_TYPE_DISTRIBUTED        | 2      | 分布式设备。            |
@@ -737,7 +737,7 @@ async function createTonePlayer(){
 | networkId<sup>9+</sup>     | string                     | 是   | 否   | 组网络id。  |
 | groupId<sup>9+</sup>       | number                     | 是   | 否   | 组设备组id。 |
 | mappingId<sup>9+</sup>     | number                     | 是   | 否   | 组映射id。 |
-| groupName<sup>9+</sup>     | number                     | 是   | 否   | 组名。 |
+| groupName<sup>9+</sup>     | string                     | 是   | 否   | 组名。 |
 | type<sup>9+</sup>          | [ConnectType](#connecttype9)| 是   | 否   | 连接设备类型。 |
 
 ## DeviceChangeAction
@@ -757,7 +757,7 @@ async function createTonePlayer(){
 
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.Audio.Device
 
-| 名称       | 默认值 | 描述           |
+| 名称       |  值     | 说明           |
 | :--------- | :----- | :------------- |
 | CONNECT    | 0      | 设备连接。     |
 | DISCONNECT | 1      | 断开设备连接。 |
@@ -790,7 +790,7 @@ async function createTonePlayer(){
 
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.Audio.Core
 
-| 名称                                         | 默认值 | 描述                   |
+| 名称                                         |  值     | 说明                   |
 | :------------------------------------------- | :----- | :--------------------- |
 | SOURCE_TYPE_INVALID                          | -1     | 无效的音频源。         |
 | SOURCE_TYPE_MIC                              | 0      | Mic音频源。            |
@@ -803,7 +803,7 @@ async function createTonePlayer(){
 
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.Audio.Communication
 
-| 名称                   | 默认值 | 描述                                          |
+| 名称                   |  值     | 说明                                          |
 | :--------------------- | :----- | :-------------------------------------------- |
 | AUDIO_SCENE_DEFAULT    | 0      | 默认音频场景。                                |
 | AUDIO_SCENE_RINGING    | 1      | 响铃模式。<br/>此接口为系统接口。 |
@@ -1171,7 +1171,7 @@ getVolumeGroupManager(groupId: number, callback: AsyncCallback<AudioVolumeGroupM
 | 参数名     | 类型                                                         | 必填 | 说明                 |
 | ---------- | ------------------------------------------------------------ | ---- | -------------------- |
 | groupId    | number                                    | 是   | 音量组id。     |
-| callback   | AsyncCallback&lt; [AudioVolumeGroupManager](#audiovolumegroupmanager9) &gt; | 是   | 回调，返回一个音量组实例。 |
+| callback   | AsyncCallback&lt;[AudioVolumeGroupManager](#audiovolumegroupmanager9)&gt; | 是   | 回调，返回一个音量组实例。 |
 
 **示例：**
 
@@ -1236,7 +1236,7 @@ on(type: 'volumeChange', callback: Callback\<VolumeEvent>): void
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 6800101 | if input parameter value error.             |
+| 6800101 | if input parameter value error              |
 
 **示例：**
 
@@ -1750,7 +1750,7 @@ on(type: 'ringerModeChange', callback: Callback\<AudioRingMode>): void
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 6800101 | if input parameter value error.             |
+| 6800101 | if input parameter value error              |
 
 **示例：**
 
@@ -1889,7 +1889,7 @@ on(type: 'micStateChange', callback: Callback&lt;MicStateChangeEvent&gt;): void
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 6800101 | if input parameter value error.             |
+| 6800101 | if input parameter value error              |
 
 **示例：**
 
@@ -2108,7 +2108,7 @@ on(type: "audioRendererChange", callback: Callback&lt;AudioRendererChangeInfoArr
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 6800101 | if input parameter value error.             |
+| 6800101 | if input parameter value error              |
 
 **示例：**
 
@@ -2157,7 +2157,7 @@ off(type: "audioRendererChange"): void
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 6800101 | if input parameter value error.             |
+| 6800101 | if input parameter value error              |
 
 **示例：**
 
@@ -2180,6 +2180,14 @@ on(type: "audioCapturerChange", callback: Callback&lt;AudioCapturerChangeInfoArr
 | -------- | ------- | --------- | ----------------------------------------------------------------------- |
 | type     | string  | 是        | 事件类型，支持的事件`'audioCapturerChange'`：当音频采集器发生更改时触发。     |
 | callback | Callback<[AudioCapturerChangeInfoArray](#audiocapturerchangeinfoarray9)> | 是     | 回调函数。   |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[音频错误码](../errorcodes/errorcode-audio.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 6800101 | if input parameter value error              |
 
 **示例：**
 
@@ -2220,6 +2228,14 @@ off(type: "audioCapturerChange"): void;
 | 名称      | 类型     | 必填 | 说明                                                          |
 | -------- | -------- | --- | ------------------------------------------------------------- |
 | type     | string   |是   | 事件类型，支持的事件`'audioCapturerChange'`：音频采集器更改事件。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[音频错误码](../errorcodes/errorcode-audio.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 6800101 | if input parameter value error              |
 
 **示例：**
 
@@ -2365,7 +2381,7 @@ on(type: 'deviceChange', deviceFlag: DeviceFlag, callback: Callback<DeviceChange
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 6800101 | if input parameter value error.             |
+| 6800101 | if input parameter value error              |
 
 **示例：**
 
@@ -2399,7 +2415,7 @@ off(type: 'deviceChange', callback?: Callback<DeviceChangeAction\>): void
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 6800101 | if input parameter value error.             |
+| 6800101 | if input parameter value error              |
 
 **示例：**
 
@@ -3804,7 +3820,7 @@ on(type: 'audioInterrupt', callback: Callback\<InterruptEvent>): void
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 6800101 | if input parameter value error.             |
+| 6800101 | if input parameter value error              |
 
 **示例：**
 
@@ -4627,7 +4643,7 @@ audioCapturer.on('stateChange', (state) => {
 
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.Audio.Tone
 
-| 名称                                              | 默认值 | 描述                          |
+| 名称                                              |  值    | 说明                          |
 | :------------------------------------------------ | :----- | :----------------------------|
 | TONE_TYPE_DIAL_0                                  | 0      | 键0的DTMF音。                 |
 | TONE_TYPE_DIAL_1                                  | 1      | 键1的DTMF音。                 |
@@ -4883,7 +4899,7 @@ tonePlayer.release().then(() => {
 
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.Audio.Device
 
-| 名称          | 默认值 | 描述                                                 |
+| 名称          |  值     | 说明                                                 |
 | ------------- | ------ | ---------------------------------------------------- |
 | SPEAKER       | 2      | 扬声器。                                             |
 | BLUETOOTH_SCO | 7      | 蓝牙设备SCO（Synchronous Connection Oriented）连接。 |
@@ -4897,7 +4913,7 @@ tonePlayer.release().then(() => {
 
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.Audio.Renderer
 
-| 名称           | 默认值 | 描述               |
+| 名称           |  值     | 说明               |
 | -------------- | ------ | ------------------ |
 | TYPE_ACTIVATED | 0      | 表示触发焦点事件。 |
 | TYPE_INTERRUPT | 1      | 表示音频打断事件。 |
