@@ -64,24 +64,24 @@
 <!-- xxx.hml -->
 <div class="container">
     <stepper class="stepper" id="mystepper" onnext="nextclick" onback="backclick" onchange="statuschange"
-             onfinish="finish" onskip="skip">
-        <stepper-item class="stepperItem" label="{{ label_1 }}">
-            <div class="stepperItemContent">
-                <text>First screen</text>
+             onfinish="finish" onskip="skip" style="height : 100%;">
+        <stepper-item class="stepper-item" label="{{ label_1 }}">
+            <div class="item">
+                <text>Page One</text>
+                <button type="capsule" class="button" value="change status" onclick="setRightButton"></button>
             </div>
-            <button type="capsule" class="button" value="setRightButtonStatus" onclick="setRightButton"></button>
         </stepper-item>
-        <stepper-item class="stepperItem" label="{{ label_2 }}">
-            <div class="stepperItemContent">
-                <text>Second screen</text>
+        <stepper-item class="stepper-item" label="{{ label_2 }}">
+            <div class="item">
+                <text>Page Two</text>
+                <button type="capsule" class="button" value="change status" onclick="setRightButton"></button>
             </div>
-            <button type="capsule" class="button" value="setRightButtonStatus" onclick="setRightButton"></button>
         </stepper-item>
-        <stepper-item class="stepperItem" label="{{ label_3 }}">
-            <div class="stepperItemContent">
-                <text>Third screen</text>
+        <stepper-item class="stepper-item" label="{{ label_3 }}">
+            <div class="item">
+                <text>Page Three</text>
+                <button type="capsule" class="button" value="change status" onclick="setRightButton"></button>
             </div>
-            <button type="capsule" class="button" value="setRightButtonStatus" onclick="setRightButton"></button>
         </stepper-item>
     </stepper>
 </div>
@@ -90,26 +90,40 @@
 ```css
 /* xxx.css */
 .container {
-    margin-top: 20px;
     flex-direction: column;
     align-items: center;
-    height: 300px;
-}
-
-.stepperItem {
+    height: 100%;
     width: 100%;
+    background-color: #f7f7f7;
+}
+.stepper{
+    width: 100%;
+    height: 100%;
+}
+.stepper-item {
+    width: 100%;
+    height: 100%;
     flex-direction: column;
     align-items: center;
 }
-
-.stepperItemContent {
-    font-size: 50px;
-    justify-content: center;
+.item{
+    width: 90%;
+    height: 86%;
+    margin-top: 80px;
+    background-color: white;
+    border-radius: 60px;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 160px;
 }
-
+text {
+    font-size: 78px;
+    color: #182431;
+    opacity: 0.4;
+}
 .button {
-    width: 60%;
-    margin-top: 30px;
+    width: 40%;
+    margin-top: 100px;
     justify-content: center;
 }
 ```
@@ -174,4 +188,4 @@ export default {
 }
 ```
 
-![zh-cn_image_0000001127125114](figures/stepper.gif)
+![](figures/stepper.gif)
