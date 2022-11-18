@@ -165,7 +165,7 @@ import window from '@ohos.window';
 | --------------- | ------------------------- | ---- | ---- | ------------------------------------------------------------ |
 | type            | [WindowType](#windowtype7) | 是   | 否   | 当前属性改变的系统栏类型，仅支持类型为导航栏、状态栏的系统栏。 |
 | isEnable        | boolean                   | 是   | 否   | 当前系统栏是否显示。true表示显示；false表示不显示。 |
-| region          | [Rect](#rect)             | 是   | 否   | 当前系统栏的位置及大小。                                     |
+| region          | [Rect](#rect7)             | 是   | 否   | 当前系统栏的位置及大小。                                     |
 | backgroundColor | string                    | 是   | 否   | 系统栏背景颜色，为十六进制RGB或ARGB颜色，不区分大小写，例如`#00FF00`或`#FF00FF00`。 |
 | contentColor    | string                    | 是   | 否   | 系统栏文字颜色。                                             |
 
@@ -204,10 +204,10 @@ import window from '@ohos.window';
 | 名称       | 参数类型      | 可读 | 可写 | 说明               |
 | ---------- | ------------- | ---- | ---- | ------------------ |
 | visible<sup>9+</sup>    | boolean       | 是   | 是   | 规避区域是否可见。true表示可见；false表示不可见。 |
-| leftRect   | [Rect](#rect) | 是   | 是   | 屏幕左侧的矩形区。 |
-| topRect    | [Rect](#rect) | 是   | 是   | 屏幕顶部的矩形区。 |
-| rightRect  | [Rect](#rect) | 是   | 是   | 屏幕右侧的矩形区。 |
-| bottomRect | [Rect](#rect) | 是   | 是   | 屏幕底部的矩形区。 |
+| leftRect   | [Rect](#rect7) | 是   | 是   | 屏幕左侧的矩形区。 |
+| topRect    | [Rect](#rect7) | 是   | 是   | 屏幕顶部的矩形区。 |
+| rightRect  | [Rect](#rect7) | 是   | 是   | 屏幕右侧的矩形区。 |
+| bottomRect | [Rect](#rect7) | 是   | 是   | 屏幕底部的矩形区。 |
 
 ## Size<sup>7+</sup>
 
@@ -228,7 +228,7 @@ import window from '@ohos.window';
 
 | 名称                                  | 参数类型                  | 可读 | 可写 | 说明                                                         |
 | ------------------------------------- | ------------------------- | ---- | ---- | ------------------------------------------------------------ |
-| windowRect<sup>7+</sup>               | [Rect](#rect)             | 是   | 是   | 窗口尺寸。                                                   |
+| windowRect<sup>7+</sup>               | [Rect](#rect7)             | 是   | 是   | 窗口尺寸。                                                   |
 | type<sup>7+</sup>                     | [WindowType](#windowtype7) | 是   | 是   | 窗口类型。                                                   |
 | isFullScreen                          | boolean                   | 是   | 是   | 是否全屏，默认为false。true表示全屏；false表示非全屏。 |
 | isLayoutFullScreen<sup>7+</sup>       | boolean                   | 是   | 是   | 窗口是否为沉浸式，默认为false。true表示沉浸式；false表示非沉浸式。 |
@@ -319,7 +319,7 @@ createWindow(config: Configuration, callback: AsyncCallback&lt;Window&gt;): void
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
-| 1300001 | This is repeat operation.        |
+| 1300001 | Repeated operation. |
 | 1300006 | This window context is abnormal. |
 
 **示例：**
@@ -339,14 +339,14 @@ try {
     });
 } catch (exception) {
     console.error('Failed to create the window. Cause: ' + JSON.stringify(exception));
-};
+}
 ```
 
 ## window.createWindow<sup>9+</sup>
 
 createWindow(config: Configuration): Promise&lt;Window&gt;
 
-创建子窗口，使用callback异步回调。
+创建子窗口，使用Promise异步回调。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -368,7 +368,7 @@ createWindow(config: Configuration): Promise&lt;Window&gt;
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
-| 1300001 | This is repeat operation.        |
+| 1300001 | Repeated operation. |
 | 1300006 | This window context is abnormal. |
 
 **示例：**
@@ -386,7 +386,7 @@ try {
     });
 } catch (exception) {
     console.error('Failed to create the window. Cause: ' + JSON.stringify(exception));
-};
+}
 ```
 
 ## window.findWindow<sup>9+</sup>
@@ -412,11 +412,12 @@ findWindow(name: string): Window
 **示例：**
 
 ```js
+let windowClass = null;
 try {
-    let windowClass = window.findWindow('alertWindow');
+    windowClass = window.findWindow('alertWindow');
 } catch (exception) {
     console.error('Failed to find the Window. Cause: ' + JSON.stringify(exception));
-};
+}
 ```
 
 ## window.getLastWindow<sup>9+</sup>
@@ -458,7 +459,7 @@ try {
     });
 } catch (exception) {
     console.error('Failed to obtain the top window. Cause: ' + JSON.stringify(exception));
-};
+}
 ```
 
 ## window.getLastWindow<sup>9+</sup>
@@ -504,7 +505,7 @@ try {
     });
 } catch (exception) {
     console.error('Failed to obtain the top window. Cause: ' + JSON.stringify(exception));
-};
+}
 ```
 
 ## window.minimizeAll<sup>9+</sup>
@@ -529,32 +530,31 @@ minimizeAll(id: number, callback: AsyncCallback&lt;void&gt;): void
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------------------- |
-| 1300003 | This window manager service work abnormally. |
+| 1300003 | This window manager service works abnormally. |
 
 **示例：**
 
 ```js
 import display from '@ohos.display'
-import window from '@ohos.window'
 
+let displayClass = null;
 try {
     displayClass = display.getDefaultDisplaySync();
+
+    try {
+        window.minimizeAll(displayClass.id, (err) => {
+            if(err.code) {
+                console.error('Failed to minimize all windows. Cause: ' + JSON.stringify(err));
+                return;
+            }
+            console.info('Succeeded in minimizing all windows.');
+        });
+    } catch (exception) {
+        console.error('Failed to minimize all windows. Cause: ' + JSON.stringify(exception));
+    }
 } catch (exception) {
     console.error('Failed to obtain the default display object. Code: ' + JSON.stringify(exception));
-    return;
-};
-
-try {
-    window.minimizeAll(displayClass.id, (err) => {
-        if(err.code) {
-            console.error('Failed to minimize all windows. Cause: ' + JSON.stringify(err));
-            return;
-        }
-        console.info('Succeeded in minimizing all windows.');
-    });
-} catch (exception) {
-    console.error('Failed to minimize all windows. Cause: ' + JSON.stringify(exception));
-};
+}
 ```
 
 ## window.minimizeAll<sup>9+</sup>
@@ -584,31 +584,30 @@ minimizeAll(id: number): Promise&lt;void&gt;
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------------------- |
-| 1300003 | This window manager service work abnormally. |
+| 1300003 | This window manager service works abnormally. |
 
 **示例：**
 
 ```js
 import display from '@ohos.display'
-import window from '@ohos.window'
 
+let displayClass = null;
 try {
     displayClass = display.getDefaultDisplaySync();
+
+    try {
+        let promise = window.minimizeAll(displayClass.id);
+        promise.then(()=> {
+            console.info('Succeeded in minimizing all windows.');
+        }).catch((err)=>{
+            console.error('Failed to minimize all windows. Cause: ' + JSON.stringify(err));
+        });
+    } catch (exception) {
+        console.error('Failed to minimize all windows. Cause: ' + JSON.stringify(exception));
+    }
 } catch (exception) {
     console.error('Failed to obtain the default display object. Code: ' + JSON.stringify(exception));
-    return;
-};
-
-try {
-    let promise = window.minimizeAll(displayClass.id);
-    promise.then(()=> {
-        console.info('Succeeded in minimizing all windows.');
-    }).catch((err)=>{
-        console.error('Failed to minimize all windows. Cause: ' + JSON.stringify(err));
-    });
-} catch (exception) {
-    console.error('Failed to minimize all windows. Cause: ' + JSON.stringify(exception));
-};
+}
 ```
 
 ## window.toggleShownStateForAllAppWindows<sup>9+</sup>
@@ -632,7 +631,7 @@ toggleShownStateForAllAppWindows(callback: AsyncCallback&lt;void&gt;): void
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------------------- |
-| 1300003 | This window manager service work abnormally. |
+| 1300003 | This window manager service works abnormally. |
 
 **示例：**
 
@@ -643,7 +642,7 @@ window.toggleShownStateForAllAppWindows((err) => {
         return;
     }
     console.info('Succeeded in toggling shown state for all app windows.');
-})
+});
 ```
 
 ## window.toggleShownStateForAllAppWindows<sup>9+</sup>
@@ -667,7 +666,7 @@ toggleShownStateForAllAppWindows(): Promise&lt;void&gt;
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------------------- |
-| 1300003 | This window manager service work abnormally. |
+| 1300003 | This window manager service works abnormally. |
 
 **示例：**
 
@@ -677,7 +676,7 @@ promise.then(()=> {
     console.info('Succeeded in toggling shown state for all app windows.');
 }).catch((err)=>{
     console.error('Failed to toggle shown state for all app windows. Cause: ' + JSON.stringify(err));
-})
+});
 ```
 
 ## window.setWindowLayoutMode<sup>9+</sup>
@@ -702,7 +701,7 @@ setWindowLayoutMode(mode: WindowLayoutMode, callback: AsyncCallback&lt;void&gt;)
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------------------- |
-| 1300003 | This window manager service work abnormally. |
+| 1300003 | This window manager service works abnormally. |
 
 **示例：**
 
@@ -717,7 +716,7 @@ try {
     });
 } catch (exception) {
     console.error('Failed to set window layout mode. Cause: ' + JSON.stringify(exception));
-};
+}
 ```
 
 ## window.setWindowLayoutMode<sup>9+</sup>
@@ -747,7 +746,7 @@ setWindowLayoutMode(mode: WindowLayoutMode): Promise&lt;void&gt;
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------------------- |
-| 1300003 | This window manager service work abnormally. |
+| 1300003 | This window manager service works abnormally. |
 
 **示例：**
 
@@ -761,7 +760,7 @@ try {
     });
 } catch (exception) {
     console.error('Failed to set window layout mode. Cause: ' + JSON.stringify(exception));
-};
+}
 ```
 
 ## window.on('systemBarTintChange')<sup>8+</sup>
@@ -776,10 +775,10 @@ on(type: 'systemBarTintChange', callback: Callback&lt;SystemBarTintState&gt;): v
 
 **参数：**
 
-| 参数名   | 类型                                                      | 必填 | 说明                                                         |
-| -------- | --------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| type     | string                                                    | 是   | 监听事件，固定为'systemBarTintChange'，即导航栏、状态栏属性变化事件。 |
-| callback | Callback&lt;[SystemBarTintState](#systembartintstate)&gt; | 是   | 回调函数。返回当前的状态栏、导航栏信息集合。                 |
+| 参数名   | 类型                                                       | 必填 | 说明                                                         |
+| -------- | ---------------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| type     | string                                                     | 是   | 监听事件，固定为'systemBarTintChange'，即导航栏、状态栏属性变化事件。 |
+| callback | Callback&lt;[SystemBarTintState](#systembartintstate8)&gt; | 是   | 回调函数。返回当前的状态栏、导航栏信息集合。                 |
 
 **示例：**
 
@@ -790,7 +789,7 @@ try {
     });
 } catch (exception) {
     console.error('Failed to enable the listener for systemBarTint changes. Cause: ' + JSON.stringify(exception));
-};
+}
 ```
 
 ## window.off('systemBarTintChange')<sup>8+</sup>
@@ -805,10 +804,10 @@ off(type: 'systemBarTintChange', callback?: Callback&lt;SystemBarTintState &gt;)
 
 **参数：**
 
-| 参数名   | 类型                                                      | 必填 | 说明                                                         |
-| -------- | --------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| type     | string                                                    | 是   | 监听事件，固定为'systemBarTintChange'，即导航栏、状态栏属性变化事件。 |
-| callback | Callback&lt;[SystemBarTintState](#systembartintstate)&gt; | 否   | 回调函数。返回当前的状态栏、导航栏信息集合。                 |
+| 参数名   | 类型                                                       | 必填 | 说明                                                         |
+| -------- | ---------------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| type     | string                                                     | 是   | 监听事件，固定为'systemBarTintChange'，即导航栏、状态栏属性变化事件。 |
+| callback | Callback&lt;[SystemBarTintState](#systembartintstate8)&gt; | 否   | 回调函数。返回当前的状态栏、导航栏信息集合。                 |
 
 **示例：**
 
@@ -817,7 +816,7 @@ try {
     window.off('systemBarTintChange');
 } catch (exception) {
     console.error('Failed to disable the listener for systemBarTint changes. Cause: ' + JSON.stringify(exception));
-};
+}
 ```
 
 ## window.create<sup>(deprecated)</sup>
@@ -923,7 +922,7 @@ create(ctx: BaseContext, id: string, type: WindowType, callback: AsyncCallback&l
 
 ```js
 let windowClass = null;
- window.create(this.context, 'alertWindow', window.WindowType.TYPE_SYSTEM_ALERT, (err, data) => {
+window.create(this.context, 'alertWindow', window.WindowType.TYPE_SYSTEM_ALERT, (err, data) => {
     if (err.code) {
         console.error('Failed to create the window. Cause: ' + JSON.stringify(err));
         return;
@@ -998,13 +997,13 @@ find(id: string, callback: AsyncCallback&lt;Window&gt;): void
 
 ```js
 let windowClass = null;
- window.find('alertWindow', (err, data) => {
-   if (err.code) {
-       console.error('Failed to find the Window. Cause: ' + JSON.stringify(err));
-       return;
-   }
-   windowClass = data;
-   console.info('Succeeded in finding the window. Data: ' + JSON.stringify(data));
+window.find('alertWindow', (err, data) => {
+    if (err.code) {
+        console.error('Failed to find the Window. Cause: ' + JSON.stringify(err));
+        return;
+    }
+    windowClass = data;
+    console.info('Succeeded in finding the window. Data: ' + JSON.stringify(data));
 });
 ```
 
@@ -1038,7 +1037,7 @@ find(id: string): Promise&lt;Window&gt;
 let windowClass = null;
 let promise = window.find('alertWindow');
 promise.then((data)=> {
- 	windowClass = data;
+    windowClass = data;
     console.info('Succeeded in finding the window. Data: ' + JSON.stringify(data));
 }).catch((err)=>{
     console.error('Failed to find the Window. Cause: ' + JSON.stringify(err));
@@ -1105,11 +1104,11 @@ getTopWindow(): Promise&lt;Window&gt;
 let windowClass = null;
 let promise = window.getTopWindow();
 promise.then((data)=> {
- 	windowClass = data;
+    windowClass = data;
     console.info('Succeeded in obtaining the top window. Data: ' + JSON.stringify(data));
 }).catch((err)=>{
     console.error('Failed to obtain the top window. Cause: ' + JSON.stringify(err));
-})
+});
 ```
 
 ## window.getTopWindow<sup>(deprecated)</sup>
@@ -1179,7 +1178,7 @@ promise.then((data)=> {
     console.info('Succeeded in obtaining the top window. Data: ' + JSON.stringify(data));
 }).catch((err)=>{
     console.error('Failed to obtain the top window. Cause: ' + JSON.stringify(err));
-})
+});
 ```
 
 ## Window
@@ -1220,8 +1219,8 @@ windowClass.hide((err) => {
         console.error('Failed to hide the window. Cause: ' + JSON.stringify(err));
         return;
     }
-    console.info('Succeeded in hiding the window. data: ' + JSON.stringify(data));
-})
+    console.info('Succeeded in hiding the window.');
+});
 ```
 
 ### hide<sup>7+</sup>
@@ -1256,7 +1255,7 @@ promise.then(()=> {
     console.info('Succeeded in hiding the window.');
 }).catch((err)=>{
     console.error('Failed to hide the window. Cause: ' + JSON.stringify(err));
-})
+});
 ```
 
 ### hideWithAnimation<sup>9+</sup>
@@ -1282,8 +1281,8 @@ hideWithAnimation(callback: AsyncCallback&lt;void&gt;): void
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------------------- |
 | 1300002 | This window state is abnormal.               |
-| 1300003 | This window manager service work abnormally. |
-| 1300004 | This operation is not access.                |
+| 1300003 | This window manager service works abnormally. |
+| 1300004 | Unauthorized operation.                |
 
 **示例：**
 
@@ -1294,7 +1293,7 @@ windowClass.hideWithAnimation((err) => {
         return;
     }
     console.info('Succeeded in hiding the window with animation.');
-})
+});
 ```
 
 ### hideWithAnimation<sup>9+</sup>
@@ -1320,18 +1319,18 @@ hideWithAnimation(): Promise&lt;void&gt;
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------------------- |
 | 1300002 | This window state is abnormal.               |
-| 1300003 | This window manager service work abnormally. |
-| 1300004 | This operation is not access.                |
+| 1300003 | This window manager service works abnormally. |
+| 1300004 | Unauthorized operation.                |
 
 **示例：**
 
 ```js
 let promise = windowClass.hideWithAnimation();
 promise.then(()=> {
-    console.info('Succeeded in hiding the window with animation. Data: ' + JSON.stringify(data));
+    console.info('Succeeded in hiding the window with animation.');
 }).catch((err)=>{
     console.error('Failed to hide the window with animation. Cause: ' + JSON.stringify(err));
-})
+});
 ```
 
 ### showWindow<sup>9+</sup>
@@ -1424,8 +1423,8 @@ showWithAnimation(callback: AsyncCallback&lt;void&gt;): void
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------------------- |
 | 1300002 | This window state is abnormal.               |
-| 1300003 | This window manager service work abnormally. |
-| 1300004 | This operation is not access.                |
+| 1300003 | This window manager service works abnormally. |
+| 1300004 | Unauthorized operation.                |
 
 **示例：**
 
@@ -1436,7 +1435,7 @@ windowClass.showWithAnimation((err) => {
         return;
     }
     console.info('Succeeded in showing the window with animation.');
-})
+});
 ```
 
 ### showWithAnimation<sup>9+</sup>
@@ -1462,8 +1461,8 @@ showWithAnimation(): Promise&lt;void&gt;
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------------------- |
 | 1300002 | This window state is abnormal.               |
-| 1300003 | This window manager service work abnormally. |
-| 1300004 | This operation is not access.                |
+| 1300003 | This window manager service works abnormally. |
+| 1300004 | Unauthorized operation.                |
 
 **示例：**
 
@@ -1473,7 +1472,7 @@ promise.then(()=> {
     console.info('Succeeded in showing the window with animation.');
 }).catch((err)=>{
     console.error('Failed to show the window with animation. Cause: ' + JSON.stringify(err));
-})
+});
 ```
 
 ### destroyWindow<sup>9+</sup>
@@ -1497,7 +1496,7 @@ destroyWindow(callback: AsyncCallback&lt;void&gt;): void
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------------------- |
 | 1300002 | This window state is abnormal.               |
-| 1300003 | This window manager service work abnormally. |
+| 1300003 | This window manager service works abnormally. |
 
 **示例：**
 
@@ -1508,7 +1507,7 @@ windowClass.destroyWindow((err) => {
         return;
     }
     console.info('Succeeded in destroying the window.');
-})
+});
 ```
 
 ### destroyWindow<sup>9+</sup>
@@ -1532,7 +1531,7 @@ destroyWindow(): Promise&lt;void&gt;
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------------------- |
 | 1300002 | This window state is abnormal.               |
-| 1300003 | This window manager service work abnormally. |
+| 1300003 | This window manager service works abnormally. |
 
 **示例：**
 
@@ -1542,7 +1541,7 @@ promise.then(()=> {
     console.info('Succeeded in destroying the window.');
 }).catch((err)=>{
     console.error('Failed to destroy the window. Cause: ' + JSON.stringify(err));
-})
+});
 ```
 
 ### moveWindowTo<sup>9+</sup>
@@ -1568,7 +1567,7 @@ moveWindowTo(x: number, y: number, callback: AsyncCallback&lt;void&gt;): void
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------------------- |
 | 1300002 | This window state is abnormal.               |
-| 1300003 | This window manager service work abnormally. |
+| 1300003 | This window manager service works abnormally. |
 
 **示例：**
 
@@ -1583,7 +1582,7 @@ try {
     });
 } catch (exception) {
     console.error('Failed to move the window. Cause:' + JSON.stringify(exception));
-};
+}
 ```
 
 ### moveWindowTo<sup>9+</sup>
@@ -1614,7 +1613,7 @@ moveWindowTo(x: number, y: number): Promise&lt;void&gt;
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------------------- |
 | 1300002 | This window state is abnormal.               |
-| 1300003 | This window manager service work abnormally. |
+| 1300003 | This window manager service works abnormally. |
 
 **示例：**
 
@@ -1628,7 +1627,7 @@ try {
     });
 } catch (exception) {
     console.error('Failed to move the window. Cause:' + JSON.stringify(exception));
-};
+}
 ```
 
 ### resize<sup>9+</sup>
@@ -1636,6 +1635,12 @@ try {
 resize(width: number, height: number, callback: AsyncCallback&lt;void&gt;): void
 
 改变当前窗口大小，使用callback异步回调。
+
+应用主窗口与子窗口存在大小限制，宽度范围：[320, 2560]，高度范围：[240, 2560]，单位为vp。
+
+系统窗口存在大小限制，宽度范围：[0, 2560]，高度范围：[0, 2560]，单位为vp。
+
+设置的宽度与高度受到此约束限制。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -1654,7 +1659,7 @@ resize(width: number, height: number, callback: AsyncCallback&lt;void&gt;): void
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------------------- |
 | 1300002 | This window state is abnormal.               |
-| 1300003 | This window manager service work abnormally. |
+| 1300003 | This window manager service works abnormally. |
 
 **示例：**
 
@@ -1669,7 +1674,7 @@ try {
     });
 } catch (exception) {
     console.error('Failed to change the window size. Cause:' + JSON.stringify(exception));
-};
+}
 ```
 
 ### resize<sup>9+</sup>
@@ -1677,6 +1682,12 @@ try {
 resize(width: number, height: number): Promise&lt;void&gt;
 
 改变当前窗口大小，使用Promise异步回调。
+
+应用主窗口与子窗口存在大小限制，宽度范围：[320, 2560]，高度范围：[240, 2560]，单位为vp。
+
+系统窗口存在大小限制，宽度范围：[0, 2560]，高度范围：[0, 2560]，单位为vp。
+
+设置的宽度与高度受到此约束限制。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -1700,7 +1711,7 @@ resize(width: number, height: number): Promise&lt;void&gt;
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------------------- |
 | 1300002 | This window state is abnormal.               |
-| 1300003 | This window manager service work abnormally. |
+| 1300003 | This window manager service works abnormally. |
 
 **示例：**
 
@@ -1714,7 +1725,7 @@ try {
     });
 } catch (exception) {
     console.error('Failed to change the window size. Cause: ' + JSON.stringify(exception));
-};
+}
 ```
 
 ### setWindowMode<sup>9+</sup>
@@ -1741,7 +1752,7 @@ setWindowMode(mode: WindowMode, callback: AsyncCallback&lt;void&gt;): void
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------------------- |
 | 1300002 | This window state is abnormal.               |
-| 1300003 | This window manager service work abnormally. |
+| 1300003 | This window manager service works abnormally. |
 
 **示例：**
 
@@ -1757,7 +1768,7 @@ try {
     });
 } catch (exception) {
     console.error('Failed to set the window mode. Cause: ' + JSON.stringify(exception));
-};
+}
 ```
 
 ### setWindowMode<sup>9+</sup>
@@ -1789,14 +1800,14 @@ setWindowMode(mode: WindowMode): Promise&lt;void&gt;
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------------------- |
 | 1300002 | This window state is abnormal.               |
-| 1300003 | This window manager service work abnormally. |
+| 1300003 | This window manager service works abnormally. |
 
 **示例：**
 
 ```js
 let mode = window.WindowMode.FULLSCREEN;
 try {
-    let promise = windowClass.setWindowMode(type);
+    let promise = windowClass.setWindowMode(mode);
     promise.then(()=> {
         console.info('Succeeded in setting the window mode.');
     }).catch((err)=>{
@@ -1804,7 +1815,7 @@ try {
     });
 } catch (exception) {
     console.error('Failed to set the window mode. Cause: ' + JSON.stringify(exception));
-};
+}
 ```
 
 ### getWindowProperties<sup>9+</sup>
@@ -1836,14 +1847,14 @@ try {
     let properties = windowClass.getWindowProperties();
 } catch (exception) {
     console.error('Failed to obtain the window properties. Cause: ' + JSON.stringify(exception));
-};
+}
 ```
 
 ### getWindowAvoidArea<sup>9+</sup>
 
 getWindowAvoidArea(type: AvoidAreaType): AvoidArea
 
-获取窗口内容规避的区域，如系统的系统栏区域、刘海屏区域、手势区域、软键盘区域等。
+获取窗口内容规避的区域；如系统栏区域、刘海屏区域、手势区域、软键盘区域等与窗口内容重叠时，需要窗口内容避让的区域。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -1875,7 +1886,7 @@ try {
     let avoidArea = windowClass.getWindowAvoidArea(type);
 } catch (exception) {
     console.error('Failed to obtain the area. Cause:' + JSON.stringify(exception));
-};
+}
 ```
 
 ### setWindowLayoutFullScreen<sup>9+</sup>
@@ -1900,7 +1911,7 @@ setWindowLayoutFullScreen(isLayoutFullScreen: boolean, callback: AsyncCallback&l
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------------------- |
 | 1300002 | This window state is abnormal.               |
-| 1300003 | This window manager service work abnormally. |
+| 1300003 | This window manager service works abnormally. |
 
 **示例：**
 
@@ -1916,7 +1927,7 @@ try {
     });
 } catch (exception) {
     console.error('Failed to set the window layout to full-screen mode. Cause:' + JSON.stringify(exception));
-};
+}
 ```
 
 ### setWindowLayoutFullScreen<sup>9+</sup>
@@ -1946,7 +1957,7 @@ setWindowLayoutFullScreen(isLayoutFullScreen: boolean): Promise&lt;void&gt;
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------------------- |
 | 1300002 | This window state is abnormal.               |
-| 1300003 | This window manager service work abnormally. |
+| 1300003 | This window manager service works abnormally. |
 
 **示例：**
 
@@ -1961,7 +1972,7 @@ try {
     });
 } catch (exception) {
     console.error('Failed to set the window layout to full-screen mode. Cause:' + JSON.stringify(exception));
-};
+}
 ```
 
 ### setWindowSystemBarEnable<sup>9+</sup>
@@ -1986,7 +1997,7 @@ setWindowSystemBarEnable(names: Array<'status' | 'navigation'>, callback: AsyncC
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------------------- |
 | 1300002 | This window state is abnormal.               |
-| 1300003 | This window manager service work abnormally. |
+| 1300003 | This window manager service works abnormally. |
 
 **示例：**
 
@@ -2003,7 +2014,7 @@ try {
     });
 } catch (exception) {
     console.error('Failed to set the system bar to be invisible. Cause:' + JSON.stringify(exception));
-};
+}
 ```
 
 ### setWindowSystemBarEnable<sup>9+</sup>
@@ -2033,7 +2044,7 @@ setWindowSystemBarEnable(names: Array<'status' | 'navigation'>): Promise&lt;void
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------------------- |
 | 1300002 | This window state is abnormal.               |
-| 1300003 | This window manager service work abnormally. |
+| 1300003 | This window manager service works abnormally. |
 
 **示例：**
 
@@ -2049,7 +2060,7 @@ try {
     });
 } catch (exception) {
     console.error('Failed to set the system bar to be invisible. Cause:' + JSON.stringify(exception));
-};
+}
 ```
 
 ### setWindowSystemBarProperties<sup>9+</sup>
@@ -2074,12 +2085,12 @@ setWindowSystemBarProperties(systemBarProperties: SystemBarProperties, callback:
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------------------- |
 | 1300002 | This window state is abnormal.               |
-| 1300003 | This window manager service work abnormally. |
+| 1300003 | This window manager service works abnormally. |
 
 **示例：**
 
 ```js
-let SystemBarProperties={
+let SystemBarProperties = {
     statusBarColor: '#ff00ff',
     navigationBarColor: '#00ff00',
     //以下两个属性从API Version8开始支持
@@ -2096,7 +2107,7 @@ try {
     });
 } catch (exception) {
     console.error('Failed to set the system bar properties. Cause: ' + JSON.stringify(exception));
-};
+}
 ```
 
 ### setWindowSystemBarProperties<sup>9+</sup>
@@ -2126,12 +2137,12 @@ setWindowSystemBarProperties(systemBarProperties: SystemBarProperties): Promise&
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------------------- |
 | 1300002 | This window state is abnormal.               |
-| 1300003 | This window manager service work abnormally. |
+| 1300003 | This window manager service works abnormally. |
 
 **示例：**
 
 ```js
-let SystemBarProperties={
+let SystemBarProperties = {
     statusBarColor: '#ff00ff',
     navigationBarColor: '#00ff00',
     //以下两个属性从API Version8开始支持
@@ -2147,7 +2158,7 @@ try {
     });
 } catch (exception) {
     console.error('Failed to set the system bar properties. Cause: ' + JSON.stringify(exception));
-};
+}
 ```
 
 ### setPreferredOrientation<sup>9+</sup>
@@ -2187,7 +2198,7 @@ try {
     });
 } catch (exception) {
     console.error('Failed to set window orientation. Cause: ' + JSON.stringify(exception));
-};
+}
 ```
 
 ### setPreferredOrientation<sup>9+</sup>
@@ -2231,7 +2242,7 @@ try {
     });
 } catch (exception) {
     console.error('Failed to set window orientation. Cause: ' + JSON.stringify(exception));
-};
+}
 ```
 
 ### setUIContent<sup>9+</sup>
@@ -2256,7 +2267,7 @@ setUIContent(path: string, callback: AsyncCallback&lt;void&gt;): void
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------------------- |
 | 1300002 | This window state is abnormal.               |
-| 1300003 | This window manager service work abnormally. |
+| 1300003 | This window manager service works abnormally. |
 
 **示例：**
 
@@ -2271,7 +2282,7 @@ try {
     });
 } catch (exception) {
     console.error('Failed to load the content. Cause:' + JSON.stringify(exception));
-};
+}
 ```
 
 ### setUIContent<sup>9+</sup>
@@ -2301,7 +2312,7 @@ setUIContent(path: string): Promise&lt;void&gt;
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------------------- |
 | 1300002 | This window state is abnormal.               |
-| 1300003 | This window manager service work abnormally. |
+| 1300003 | This window manager service works abnormally. |
 
 **示例：**
 
@@ -2315,7 +2326,7 @@ try {
     });
 } catch (exception) {
     console.error('Failed to load the content. Cause: ' + JSON.stringify(exception));
-};
+}
 ```
 
 ### loadContent<sup>9+</sup>
@@ -2343,29 +2354,24 @@ loadContent(path: string, storage: LocalStorage, callback: AsyncCallback&lt;void
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------------------- |
 | 1300002 | This window state is abnormal.               |
-| 1300003 | This window manager service work abnormally. |
+| 1300003 | This window manager service works abnormally. |
 
 **示例：**
 
 ```ts
-class myAbility extends Ability {
-    storage : LocalStorage
-    onWindowStageCreate(windowStage) {
-        this.storage = new LocalStorage();
-        this.storage.setOrCreate('storageSimpleProp',121);
-        console.log('onWindowStageCreate');
-        try {
-            windowStage.loadContent('pages/page2',this.storage,(err) => {
-                if (err.code) {
-                    console.error('Failed to load the content. Cause:' + JSON.stringify(err));
-                    return;
-                }
-                console.info('Succeeded in loading the content.');
-            });
-        } catch (exception) {
-            console.error('Failed to load the content. Cause:' + JSON.stringify(exception));
-        };
-    }
+let storage = new LocalStorage();
+storage.setOrCreate('storageSimpleProp',121);
+console.log('onWindowStageCreate');
+try {
+    windowClass.loadContent('pages/page2', storage, (err) => {
+        if (err.code) {
+            console.error('Failed to load the content. Cause:' + JSON.stringify(err));
+            return;
+        }
+        console.info('Succeeded in loading the content.');
+    });
+} catch (exception) {
+    console.error('Failed to load the content. Cause:' + JSON.stringify(exception));
 }
 ```
 
@@ -2399,30 +2405,23 @@ loadContent(path: string, storage: LocalStorage): Promise&lt;void&gt;
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------------------- |
 | 1300002 | This window state is abnormal.               |
-| 1300003 | This window manager service work abnormally. |
+| 1300003 | This window manager service works abnormally. |
 
 **示例：**
 
 ```ts
-class myAbility extends Ability {
-    storage : LocalStorage
-    onWindowStageCreate(windowStage) {
-        this.storage = new LocalStorage();
-        this.storage.setOrCreate('storageSimpleProp',121);
-        console.log('onWindowStageCreate');
-        let windowClass = null;
-        try {
-            let promise = windowStage.loadContent('pages/page2',this.storage);
-            promise.then(()=> {
-                windowClass = data;
-                console.info('Succeeded in loading the content.');
-            }).catch((err)=>{
-                console.error('Failed to load the content. Cause:' + JSON.stringify(err));
-            });
-        } catch (exception) {
-            console.error('Failed to load the content. Cause:' + JSON.stringify(exception));
-        };
-    }
+let storage = new LocalStorage();
+storage.setOrCreate('storageSimpleProp',121);
+console.log('onWindowStageCreate');
+try {
+    let promise = windowClass.loadContent('pages/page2', storage);
+    promise.then(() => {
+        console.info('Succeeded in loading the content.');
+    }).catch((err) => {
+        console.error('Failed to load the content. Cause:' + JSON.stringify(err));
+    });
+} catch (exception) {
+    console.error('Failed to load the content. Cause:' + JSON.stringify(exception));
 }
 ```
 
@@ -2456,7 +2455,7 @@ try {
     console.info('Succeeded in checking whether the window is showing. Data: ' + JSON.stringify(data));
 } catch (exception) {
     console.error('Failed to check whether the window is showing. Cause: ' + JSON.stringify(exception));
-};
+}
 ```
 
 ### on('windowSizeChange')<sup>7+</sup>
@@ -2483,7 +2482,7 @@ try {
     });
 } catch (exception) {
     console.error('Failed to enable the listener for window size changes. Cause: ' + JSON.stringify(exception));
-};
+}
 ```
 
 ### off('windowSizeChange')<sup>7+</sup>
@@ -2508,7 +2507,7 @@ try {
     windowClass.off('windowSizeChange');
 } catch (exception) {
     console.error('Failed to disable the listener for window size changes. Cause: ' + JSON.stringify(exception));
-};
+}
 ```
 
 ### on('avoidAreaChange')<sup>9+</sup>
@@ -2536,7 +2535,7 @@ try {
     });
 } catch (exception) {
     console.error('Failed to enable the listener for system avoid area changes. Cause: ' + JSON.stringify(exception));
-};
+}
 ```
 
 ### off('avoidAreaChange')<sup>9+</sup>
@@ -2561,7 +2560,7 @@ try {
     windowClass.off('avoidAreaChange');
 } catch (exception) {
     console.error('Failed to disable the listener for system avoid area changes. Cause: ' + JSON.stringify(exception));
-};
+}
 ```
 
 ### on('keyboardHeightChange')<sup>7+</sup>
@@ -2588,7 +2587,7 @@ try {
     });
 } catch (exception) {
     console.error('Failed to enable the listener for keyboard height changes. Cause: ' + JSON.stringify(exception));
-};
+}
 ```
 
 ### off('keyboardHeightChange')<sup>7+</sup>
@@ -2613,7 +2612,7 @@ try {
     windowClass.off('keyboardHeightChange');
 } catch (exception) {
     console.error('Failed to disable the listener for keyboard height changes. Cause: ' + JSON.stringify(exception));
-};
+}
 ```
 
 ### on('touchOutside')<sup>9+</sup>
@@ -2642,7 +2641,7 @@ try {
     });
 } catch (exception) {
     console.error('Failed to register callback. Cause: ' + JSON.stringify(exception));
-};
+}
 ```
 
 ### off('touchOutside')<sup>9+</sup>
@@ -2669,7 +2668,7 @@ try {
     windowClass.off('touchOutside');
 } catch (exception) {
     console.error('Failed to unregister callback. Cause: ' + JSON.stringify(exception));
-};
+}
 ```
 
 ### on('screenshot')<sup>9+</sup>
@@ -2696,7 +2695,7 @@ try {
     });
 } catch (exception) {
     console.error('Failed to register callback. Cause: ' + JSON.stringify(exception));
-};
+}
 ```
 
 ### off('screenshot')<sup>9+</sup>
@@ -2717,21 +2716,21 @@ off(type: 'screenshot', callback?: Callback&lt;void&gt;): void
 **示例：**
 
 ```js
-let callback = ()=>{
+let callback = () => {
     console.info('screenshot happened');
-}
+};
 try {
     windowClass.on('screenshot', callback);
 } catch (exception) {
     console.error('Failed to register callback. Cause: ' + JSON.stringify(exception));
-};
+}
 try {
     windowClass.off('screenshot', callback);
     // 如果通过on开启多个callback进行监听，同时关闭所有监听：
     windowClass.off('screenshot');
 } catch (exception) {
     console.error('Failed to unregister callback. Cause: ' + JSON.stringify(exception));
-};
+}
 ```
 
 ### on('dialogTargetTouch')<sup>9+</sup>
@@ -2758,7 +2757,7 @@ try {
     });
 } catch (exception) {
     console.error('Failed to register callback. Cause: ' + JSON.stringify(exception));
-};
+}
 ```
 
 ### off('dialogTargetTouch')<sup>9+</sup>
@@ -2783,7 +2782,7 @@ try {
     windowClass.off('dialogTargetTouch');
 } catch (exception) {
     console.error('Failed to unregister callback. Cause: ' + JSON.stringify(exception));
-};
+}
 ```
 
 ### bindDialogTarget<sup>9+</sup>
@@ -2811,11 +2810,13 @@ bindDialogTarget(token: rpc.RemoteObject, deathCallback: Callback&lt;void&gt;, c
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------------------- |
 | 1300002 | This window state is abnormal.               |
-| 1300003 | This window manager service work abnormally. |
+| 1300003 | This window manager service works abnormally. |
 
 **示例：**
 
 ```js
+import rpc from '@ohos.rpc';
+
 class MyDeathRecipient {
     onRemoteDied() {
         console.log('server died');
@@ -2835,6 +2836,7 @@ class TestRemoteObject extends rpc.RemoteObject {
         return false;
     }
 }
+
 let token = new TestRemoteObject('testObject');
 try {
     windowClass.bindDialogTarget(token, () => {
@@ -2848,7 +2850,7 @@ try {
     });
 } catch (exception) {
     console.error('Failed to bind dialog target. Cause:' + JSON.stringify(exception));
-};
+}
 ```
 
 ### bindDialogTarget<sup>9+</sup>
@@ -2881,11 +2883,13 @@ bindDialogTarget(token: rpc.RemoteObject, deathCallback: Callback&lt;void&gt;): 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------------------- |
 | 1300002 | This window state is abnormal.               |
-| 1300003 | This window manager service work abnormally. |
+| 1300003 | This window manager service works abnormally. |
 
 **示例：**
 
 ```js
+import rpc from '@ohos.rpc';
+
 class MyDeathRecipient {
     onRemoteDied() {
         console.log('server died');
@@ -2905,6 +2909,7 @@ class TestRemoteObject extends rpc.RemoteObject {
         return false;
     }
 }
+
 let token = new TestRemoteObject('testObject');
 try {
     let promise = windowClass.bindDialogTarget(token, () => {
@@ -2917,7 +2922,7 @@ try {
     });
 } catch (exception) {
     console.error('Failed to bind dialog target. Cause:' + JSON.stringify(exception));
-};
+}
 ```
 
 ### isWindowSupportWideGamut<sup>9+</sup>
@@ -3023,7 +3028,7 @@ try {
     });
 } catch (exception) {
     console.error('Failed to set window colorspace. Cause:' + JSON.stringify(exception));
-};
+}
 ```
 
 ### setWindowColorSpace<sup>9+</sup>
@@ -3066,7 +3071,7 @@ try {
     });
 } catch (exception) {
     console.error('Failed to set window colorspace. Cause:' + JSON.stringify(exception));
-};
+}
 ```
 
 ### getWindowColorSpace<sup>9+</sup>
@@ -3127,7 +3132,7 @@ try {
     windowClass.setWindowBackgroundColor(color);
 } catch (exception) {
     console.error('Failed to set the background color. Cause: ' + JSON.stringify(exception));
-};
+}
 ```
 
 ### setWindowBrightness<sup>9+</sup>
@@ -3152,7 +3157,7 @@ setWindowBrightness(brightness: number, callback: AsyncCallback&lt;void&gt;): vo
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------------------- |
 | 1300002 | This window state is abnormal.               |
-| 1300003 | This window manager service work abnormally. |
+| 1300003 | This window manager service works abnormally. |
 
 **示例：**
 
@@ -3168,7 +3173,7 @@ try {
     });
 } catch (exception) {
     console.error('Failed to set the brightness. Cause: ' + JSON.stringify(exception));
-};
+}
 ```
 
 ### setWindowBrightness<sup>9+</sup>
@@ -3198,7 +3203,7 @@ setWindowBrightness(brightness: number): Promise&lt;void&gt;
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------------------- |
 | 1300002 | This window state is abnormal.               |
-| 1300003 | This window manager service work abnormally. |
+| 1300003 | This window manager service works abnormally. |
 
 **示例：**
 
@@ -3213,7 +3218,7 @@ try {
     });
 } catch (exception) {
     console.error('Failed to set the brightness. Cause: ' + JSON.stringify(exception));
-};
+}
 ```
 
 ### setWindowFocusable<sup>9+</sup>
@@ -3238,12 +3243,12 @@ setWindowFocusable(isFocusable: boolean, callback: AsyncCallback&lt;void&gt;): v
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------------------- |
 | 1300002 | This window state is abnormal.               |
-| 1300003 | This window manager service work abnormally. |
+| 1300003 | This window manager service works abnormally. |
 
 **示例：**
 
 ```js
-let isFocusable= true;
+let isFocusable = true;
 try {
     windowClass.setWindowFocusable(isFocusable, (err) => {
         if (err.code) {
@@ -3254,7 +3259,7 @@ try {
     });
 } catch (exception) {
     console.error('Failed to set the window to be focusable. Cause:' + JSON.stringify(exception));
-};
+}
 ```
 
 ### setWindowFocusable<sup>9+</sup>
@@ -3284,12 +3289,12 @@ setWindowFocusable(isFocusable: boolean): Promise&lt;void&gt;
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------------------- |
 | 1300002 | This window state is abnormal.               |
-| 1300003 | This window manager service work abnormally. |
+| 1300003 | This window manager service works abnormally. |
 
 **示例：**
 
 ```js
-let isFocusable= true;
+let isFocusable = true;
 try {
     let promise = windowClass.setWindowFocusable(isFocusable);
     promise.then(()=> {
@@ -3299,7 +3304,7 @@ try {
     });
 } catch (exception) {
     console.error('Failed to set the window to be focusable. Cause:' + JSON.stringify(exception));
-};
+}
 ```
 
 ### setWindowKeepScreenOn<sup>9+</sup>
@@ -3324,7 +3329,7 @@ setWindowKeepScreenOn(isKeepScreenOn: boolean, callback: AsyncCallback&lt;void&g
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------------------- |
 | 1300002 | This window state is abnormal.               |
-| 1300003 | This window manager service work abnormally. |
+| 1300003 | This window manager service works abnormally. |
 
 **示例：**
 
@@ -3340,7 +3345,7 @@ try {
     });
 } catch (exception) {
     console.error('Failed to set the screen to be always on. Cause: ' + JSON.stringify(exception));
-};
+}
 ```
 
 ### setWindowKeepScreenOn<sup>9+</sup>
@@ -3370,7 +3375,7 @@ setWindowKeepScreenOn(isKeepScreenOn: boolean): Promise&lt;void&gt;
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------------------- |
 | 1300002 | This window state is abnormal.               |
-| 1300003 | This window manager service work abnormally. |
+| 1300003 | This window manager service works abnormally. |
 
 **示例：**
 
@@ -3385,7 +3390,7 @@ try {
     });
 } catch (exception) {
     console.error('Failed to set the screen to be always on. Cause: ' + JSON.stringify(exception));
-};
+}
 ```
 
 ### setWakeUpScreen()<sup>9+</sup>
@@ -3411,7 +3416,7 @@ setWakeUpScreen(wakeUp: boolean): void
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------------------- |
 | 1300002 | This window state is abnormal.               |
-| 1300003 | This window manager service work abnormally. |
+| 1300003 | This window manager service works abnormally. |
 
 **示例：**
 
@@ -3421,7 +3426,7 @@ try {
     windowClass.setWakeUpScreen(wakeUp);
 } catch (exception) {
     console.error('Failed to wake up the screen. Cause: ' + JSON.stringify(exception));
-};
+}
 ```
 
 ### setWindowPrivacyMode<sup>9+</sup>
@@ -3432,7 +3437,7 @@ setWindowPrivacyMode(isPrivacyMode: boolean, callback: AsyncCallback&lt;void&gt;
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
-**需要权限：** ohos.permission.PRIVACE_WINDOW
+**需要权限：** ohos.permission.PRIVACY_WINDOW
 
 **参数：**
 
@@ -3463,7 +3468,7 @@ try {
     });
 } catch (exception) {
     console.error('Failed to set the window to privacy mode. Cause:' + JSON.stringify(exception));
-};
+}
 ```
 
 ### setWindowPrivacyMode<sup>9+</sup>
@@ -3474,7 +3479,7 @@ setWindowPrivacyMode(isPrivacyMode: boolean): Promise&lt;void&gt;
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
-**需要权限：** ohos.permission.PRIVACE_WINDOW
+**需要权限：** ohos.permission.PRIVACY_WINDOW
 
 **参数：**
 
@@ -3509,7 +3514,7 @@ try {
     });
 } catch (exception) {
     console.error('Failed to set the window to privacy mode. Cause:' + JSON.stringify(exception));
-};
+}
 ```
 
 ### setSnapshotSkip<sup>9+</sup>
@@ -3566,7 +3571,7 @@ setWindowTouchable(isTouchable: boolean, callback: AsyncCallback&lt;void&gt;): v
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------------------- |
 | 1300002 | This window state is abnormal.               |
-| 1300003 | This window manager service work abnormally. |
+| 1300003 | This window manager service works abnormally. |
 
 **示例：**
 
@@ -3582,7 +3587,7 @@ try {
     });
 } catch (exception) {
     console.error('Failed to set the window to be touchable. Cause:' + JSON.stringify(exception));
-};
+}
 ```
 
 ### setWindowTouchable<sup>9+</sup>
@@ -3612,7 +3617,7 @@ setWindowTouchable(isTouchable: boolean): Promise&lt;void&gt;
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------------------- |
 | 1300002 | This window state is abnormal.               |
-| 1300003 | This window manager service work abnormally. |
+| 1300003 | This window manager service works abnormally. |
 
 **示例：**
 
@@ -3627,7 +3632,7 @@ try {
     });
 } catch (exception) {
     console.error('Failed to set the window to be touchable. Cause:' + JSON.stringify(exception));
-};
+}
 ```
 
 ### setForbidSplitMove<sup>9+</sup>
@@ -3654,7 +3659,7 @@ setForbidSplitMove(isForbidSplitMove: boolean, callback: AsyncCallback&lt;void&g
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------------------- |
 | 1300002 | This window state is abnormal.               |
-| 1300003 | This window manager service work abnormally. |
+| 1300003 | This window manager service works abnormally. |
 
 **示例：**
 
@@ -3670,7 +3675,7 @@ try {
     });
 } catch (exception) {
     console.error('Failed to forbid window moving in split screen mode. Cause:' + JSON.stringify(exception));
-};
+}
 ```
 
 ### setForbidSplitMove<sup>9+</sup>
@@ -3702,7 +3707,7 @@ setForbidSplitMove(isForbidSplitMove: boolean): Promise&lt;void&gt;
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------------------- |
 | 1300002 | This window state is abnormal.               |
-| 1300003 | This window manager service work abnormally. |
+| 1300003 | This window manager service works abnormally. |
 
 **示例：**
 
@@ -3717,7 +3722,7 @@ try {
     });
 } catch (exception) {
     console.error('Failed to forbid window moving in split screen mode. Cause:' + JSON.stringify(exception));
-};
+}
 ```
 
 ### snapshot<sup>9+</sup>
@@ -3745,13 +3750,13 @@ snapshot(callback: AsyncCallback&lt;image.PixelMap&gt;): void
 **示例：**
 
 ```js
-windowClass.snapshot((err, data) => {
+windowClass.snapshot((err, pixelMap) => {
     if (err.code) {
         console.error('Failed to snapshot window. Cause:' + JSON.stringify(err));
         return;
     }
     console.info('Succeeded in snapshotting window. Pixel bytes number: ' + pixelMap.getPixelBytesNumber());
-    data.release(); // PixelMap使用完后及时释放内存
+    pixelMap.release(); // PixelMap使用完后及时释放内存
 });
 ```
 
@@ -3812,7 +3817,7 @@ opacity(opacity: number): void
 | 错误码ID | 错误信息 |
 | ------- | ------------------------------ |
 | 1300002 | This window state is abnormal. |
-| 1300004 | This operation is not access.  |
+| 1300004 | Unauthorized operation.  |
 
 **示例：**
 
@@ -3821,7 +3826,7 @@ try {
     windowClass.opacity(0.5);
 } catch (exception) {
     console.error('Failed to opacity. Cause: ' + JSON.stringify(exception));
-};
+}
 ```
 
 ### scale<sup>9+</sup>
@@ -3847,7 +3852,7 @@ scale(scaleOptions: ScaleOptions): void
 | 错误码ID | 错误信息 |
 | ------- | ------------------------------ |
 | 1300002 | This window state is abnormal. |
-| 1300004 | This operation is not access.  |
+| 1300004 | Unauthorized operation.  |
 
 **示例：**
 
@@ -3855,14 +3860,14 @@ scale(scaleOptions: ScaleOptions): void
 let obj : window.ScaleOptions = {
   x : 2.0,
   y : 1.0,
-  pivotX = 0.5;
-  pivotY = 0.5;
-}
+  pivotX : 0.5,
+  pivotY : 0.5
+};
 try {
     windowClass.scale(obj);
 } catch (exception) {
     console.error('Failed to scale. Cause: ' + JSON.stringify(exception));
-};
+}
 ```
 
 ### rotate<sup>9+</sup>
@@ -3888,7 +3893,7 @@ rotate(rotateOptions: RotateOptions): void
 | 错误码ID | 错误信息 |
 | ------- | ------------------------------ |
 | 1300002 | This window state is abnormal. |
-| 1300004 | This operation is not access.  |
+| 1300004 | Unauthorized operation.  |
 
 **示例：**
 
@@ -3897,14 +3902,14 @@ let obj : window.RotateOptions = {
   x : 1.0,
   y : 1.0,
   z : 45.0,
-  pivotX = 0.5;
-  pivotY = 0.5;
-}
+  pivotX : 0.5,
+  pivotY : 0.5
+};
 try {
     windowClass.rotate(obj);
 } catch (exception) {
     console.error('Failed to rotate. Cause: ' + JSON.stringify(exception));
-};
+}
 ```
 
 ### translate<sup>9+</sup>
@@ -3930,7 +3935,7 @@ translate(translateOptions: TranslateOptions): void
 | 错误码ID | 错误信息 |
 | ------- | ------------------------------ |
 | 1300002 | This window state is abnormal. |
-| 1300004 | This operation is not access.  |
+| 1300004 | Unauthorized operation.  |
 
 **示例：**
 
@@ -3939,12 +3944,12 @@ let obj : window.TranslateOptions = {
   x : 100.0,
   y : 0.0,
   z : 0.0
-}
+};
 try {
     windowClass.translate(obj);
 } catch (exception) {
     console.error('Failed to translate. Cause: ' + JSON.stringify(exception));
-};
+}
 ```
 
 ###  getTransitionController<sup>9+</sup>
@@ -3970,14 +3975,14 @@ try {
 | 错误码ID | 错误信息 |
 | ------- | ------------------------------ |
 | 1300002 | This window state is abnormal. |
-| 1300004 | This operation is not access.  |
+| 1300004 | Unauthorized operation.  |
 
 **示例：**
 
 ```js
 let controller = windowClass.getTransitionController(); // 获取属性转换控制器
 controller.animationForHidden = (context : window.TransitionContext) => {
-	let toWindow = context.toWindow
+	let toWindow = context.toWindow;
  	animateTo({
     	duration: 1000, // 动画时长
         tempo: 0.5, // 播放速率
@@ -3993,20 +3998,20 @@ controller.animationForHidden = (context : window.TransitionContext) => {
           x : 100.0,
           y : 0.0,
           z : 0.0
-        }
+        };
         toWindow.translate(obj); // 设置动画过程中的属性转换
         console.info('toWindow translate end');
       }
-    )
+    );
     console.info('complete transition end');
-}
+};
 windowClass.hideWithAnimation((err, data) => {
     if (err.code) {
         console.error('Failed to show the window with animation. Cause: ' + JSON.stringify(err));
         return;
     }
     console.info('Succeeded in showing the window with animation. Data: ' + JSON.stringify(data));
-})
+});
 ```
 
 ### setBlur<sup>9+</sup>
@@ -4032,7 +4037,7 @@ setBlur(radius: number): void
 | 错误码ID | 错误信息 |
 | ------- | ------------------------------ |
 | 1300002 | This window state is abnormal. |
-| 1300004 | This operation is not access.  |
+| 1300004 | Unauthorized operation.  |
 
 **示例：**
 
@@ -4041,7 +4046,7 @@ try {
     windowClass.setBlur(4.0);
 } catch (exception) {
     console.error('Failed to set blur. Cause: ' + JSON.stringify(exception));
-};
+}
 ```
 
 ### setBackdropBlur<sup>9+</sup>
@@ -4067,7 +4072,7 @@ setBackdropBlur(radius: number): void
 | 错误码ID | 错误信息 |
 | ------- | ------------------------------ |
 | 1300002 | This window state is abnormal. |
-| 1300004 | This operation is not access.  |
+| 1300004 | Unauthorized operation.  |
 
 **示例：**
 
@@ -4076,7 +4081,7 @@ try {
     windowClass.setBackdropBlur(4.0);
 } catch (exception) {
     console.error('Failed to set backdrop blur. Cause: ' + JSON.stringify(exception));
-};
+}
 ```
 
 ### setBackdropBlurStyle<sup>9+</sup>
@@ -4102,16 +4107,16 @@ setBackdropBlurStyle(blurStyle: BlurStyle): void
 | 错误码ID | 错误信息 |
 | ------- | ------------------------------ |
 | 1300002 | This window state is abnormal. |
-| 1300004 | This operation is not access.  |
+| 1300004 | Unauthorized operation.  |
 
 **示例：**
 
 ```js
 try {
-    windowClass.setBackdropBlurStyle(window.BlurType.THIN);
+    windowClass.setBackdropBlurStyle(window.BlurStyle.THIN);
 } catch (exception) {
     console.error('Failed to set backdrop blur style. Cause: ' + JSON.stringify(exception));
-};
+}
 ```
 
 ### setShadow<sup>9+</sup>
@@ -4140,7 +4145,7 @@ setShadow(radius: number, color?: string, offsetX?: number, offsetY?: number): v
 | 错误码ID | 错误信息 |
 | ------- | ------------------------------ |
 | 1300002 | This window state is abnormal. |
-| 1300004 | This operation is not access.  |
+| 1300004 | Unauthorized operation.  |
 
 **示例：**
 
@@ -4149,7 +4154,7 @@ try {
     windowClass.setShadow(4.0, '#FF00FF00', 2, 3);
 } catch (exception) {
     console.error('Failed to set shadow. Cause: ' + JSON.stringify(exception));
-};
+}
 ```
 
 ### setCornerRadius<sup>9+</sup>
@@ -4175,7 +4180,7 @@ setCornerRadius(cornerRadius: number): void
 | 错误码ID | 错误信息 |
 | ------- | ------------------------------ |
 | 1300002 | This window state is abnormal. |
-| 1300004 | This operation is not access.  |
+| 1300004 | Unauthorized operation.  |
 
 **示例：**
 
@@ -4184,7 +4189,7 @@ try {
     windowClass.setCornerRadius(4.0);
 } catch (exception) {
     console.error('Failed to set corner radius. Cause: ' + JSON.stringify(exception));
-};
+}
 ```
 
 ### show<sup>(deprecated)</sup>
@@ -4214,7 +4219,7 @@ windowClass.show((err) => {
         return;
     }
     console.info('Succeeded in showing the window.');
-})
+});
 ```
 
 ### show<sup>(deprecated)</sup>
@@ -4243,7 +4248,7 @@ promise.then(()=> {
     console.info('Succeeded in showing the window.');
 }).catch((err)=>{
     console.error('Failed to show the window. Cause: ' + JSON.stringify(err));
-})
+});
 ```
 
 ### destroy<sup>(deprecated)</sup>
@@ -4273,7 +4278,7 @@ windowClass.destroy((err) => {
         return;
     }
     console.info('Succeeded in destroying the window.');
-})
+});
 ```
 
 ### destroy<sup>(deprecated)</sup>
@@ -4302,7 +4307,7 @@ promise.then(()=> {
     console.info('Succeeded in destroying the window.');
 }).catch((err)=>{
     console.error('Failed to destroy the window. Cause: ' + JSON.stringify(err));
-})
+});
 ```
 
 ### moveTo<sup>(deprecated)</sup>
@@ -4334,7 +4339,6 @@ windowClass.moveTo(300, 300, (err)=>{
         return;
     }
     console.info('Succeeded in moving the window.');
-
 });
 ```
 
@@ -4371,7 +4375,7 @@ promise.then(()=> {
     console.info('Succeeded in moving the window.');
 }).catch((err)=>{
     console.error('Failed to move the window. Cause: ' + JSON.stringify(err));
-})
+});
 ```
 
 ### resetSize<sup>(deprecated)</sup>
@@ -4379,6 +4383,12 @@ promise.then(()=> {
 resetSize(width: number, height: number, callback: AsyncCallback&lt;void&gt;): void
 
 改变当前窗口大小，使用callback异步回调。
+
+应用主窗口与子窗口存在大小限制，宽度范围：[320, 2560]，高度范围：[240, 2560]，单位为vp。
+
+系统窗口存在大小限制，宽度范围：[0, 2560]，高度范围：[0, 2560]，单位为vp。
+
+设置的宽度与高度受到此约束限制。
 
 > **说明：**
 > 
@@ -4411,6 +4421,12 @@ windowClass.resetSize(500, 1000, (err) => {
 resetSize(width: number, height: number): Promise&lt;void&gt;
 
 改变当前窗口大小，使用Promise异步回调。
+
+应用主窗口与子窗口存在大小限制，宽度范围：[320, 2560]，高度范围：[240, 2560]，单位为vp。
+
+系统窗口存在大小限制，宽度范围：[0, 2560]，高度范围：[0, 2560]，单位为vp。
+
+设置的宽度与高度受到此约束限制。
 
 > **说明：**
 > 
@@ -4577,7 +4593,7 @@ promise.then((data)=> {
 
 getAvoidArea(type: [AvoidAreaType](#avoidareatype7), callback: AsyncCallback&lt;[AvoidArea](#avoidarea7)&gt;): void
 
-获取窗口内容规避的区域，如系统的系统栏区域、刘海屏区域、手势区域、软键盘区域等。
+获取窗口内容规避的区域；如系统栏区域、刘海屏区域、手势区域、软键盘区域等与窗口内容重叠时，需要窗口内容避让的区域。
 
 > **说明：**
 > 
@@ -4609,11 +4625,11 @@ windowClass.getAvoidArea(type, (err, data) => {
 
 getAvoidArea(type: [AvoidAreaType](#avoidareatype7)): Promise&lt;[AvoidArea](#avoidarea7)&gt;
 
-获取窗口内容规避的区域，如系统的系统栏区域、刘海屏区域、手势区域、软键盘区域等。
+获取窗口内容规避的区域；如系统栏区域、刘海屏区域、手势区域、软键盘区域等与窗口内容重叠时，需要窗口内容避让的区域。
 
 > **说明：**
 > 
-> 从 API version 7开始支持，从API version 9开始废弃，推荐使用[getWindowProperties()](#getwindowavoidarea9)。
+> 从 API version 7开始支持，从API version 9开始废弃，推荐使用[getWindowAvoidArea()](#getwindowavoidarea9)。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -5131,7 +5147,7 @@ windowClass.isSupportWideGamut((err, data) => {
         return;
     }
     console.info('Succeeded in checking whether the window support WideGamut Data: ' + JSON.stringify(data));
-})
+});
 ```
 
 ### isSupportWideGamut<sup>(deprecated)</sup>
@@ -5191,7 +5207,7 @@ windowClass.setColorSpace(window.ColorSpace.WIDE_GAMUT, (err) => {
         return;
     }
     console.info('Succeeded in setting window colorspace.');
-})
+});
 ```
 
 ### setColorSpace<sup>(deprecated)</sup>
@@ -5256,7 +5272,7 @@ windowClass.getColorSpace((err, data) => {
         return;
     }
     console.info('Succeeded in getting window colorspace. Cause:' + JSON.stringify(data));
-})
+});
 ```
 
 ### getColorSpace<sup>(deprecated)</sup>
@@ -5654,7 +5670,7 @@ windowClass.setOutsideTouchable(true, (err) => {
         return;
     }
     console.info('Succeeded in setting the area to be touchable.');
-})
+});
 ```
 
 ### setOutsideTouchable<sup>(deprecated)</sup>
@@ -5721,7 +5737,6 @@ windowClass.setPrivacyMode(isPrivacyMode, (err) => {
         return;
     }
     console.info('Succeeded in setting the window to privacy mode.');
-
 });
 ```
 
@@ -5790,7 +5805,6 @@ windowClass.setTouchable(isTouchable, (err) => {
         return;
     }
     console.info('Succeeded in setting the window to be touchable.');
-
 });
 ```
 
@@ -5840,10 +5854,10 @@ WindowStage生命周期。
 
 | 名称       | 默认值 | 说明       |
 | ---------- | ------ | ---------- |
-| FOREGROUND | 1      | 切到前台。 |
+| SHOWN      | 1      | 切到前台。 |
 | ACTIVE     | 2      | 获焦状态。 |
 | INACTIVE   | 3      | 失焦状态。 |
-| BACKGROUND | 4      | 切到后台。 |
+| HIDDEN     | 4      | 切到后台。 |
 
 ## WindowStage<sup>9+</sup>
 
@@ -5880,6 +5894,7 @@ getMainWindow(callback: AsyncCallback&lt;Window&gt;): void
 
 ```ts
 import Ability from '@ohos.application.Ability';
+
 class myAbility extends Ability {
     onWindowStageCreate(windowStage) {
         console.log('onWindowStageCreate');
@@ -5893,7 +5908,7 @@ class myAbility extends Ability {
             console.info('Succeeded in obtaining the main window. Data: ' + JSON.stringify(data));
         });
     }
-}
+};
 ```
 
 ### getMainWindow<sup>9+</sup>
@@ -5925,19 +5940,20 @@ getMainWindow(): Promise&lt;Window&gt;
 
 ```ts
 import Ability from '@ohos.application.Ability';
+
 class myAbility extends Ability {
     onWindowStageCreate(windowStage) {
         console.log('onWindowStageCreate');
         let windowClass = null;
         let promise = windowStage.getMainWindow();
-        promise.then((data)=> {
+        promise.then((data) => {
         windowClass = data;
             console.info('Succeeded in obtaining the main window. Data: ' + JSON.stringify(data));
-        }).catch((err)=>{
+        }).catch((err) => {
             console.error('Failed to obtain the main window. Cause: ' + JSON.stringify(err));
         });
     }
-}
+};
 ```
 
 ### getMainWindowSync<sup>9+</sup>
@@ -5969,6 +5985,7 @@ getMainWindowSync(): Window
 
 ```ts
 import Ability from '@ohos.application.Ability';
+
 class myAbility extends Ability {
     onWindowStageCreate(windowStage) {
         console.log('onWindowStageCreate');
@@ -5978,7 +5995,7 @@ class myAbility extends Ability {
             console.error('Failed to obtain the main window. Cause: ' + JSON.stringify(exception));
         };
     }
-}
+};
 ```
 
 ### createSubWindow<sup>9+</sup>
@@ -6011,6 +6028,7 @@ createSubWindow(name: string, callback: AsyncCallback&lt;Window&gt;): void
 
 ```ts
 import Ability from '@ohos.application.Ability';
+
 class myAbility extends Ability {
     onWindowStageCreate(windowStage) {
         console.log('onWindowStageCreate');
@@ -6029,7 +6047,7 @@ class myAbility extends Ability {
             console.error('Failed to create the subwindow. Cause: ' + JSON.stringify(exception));
         };
     }
-}
+};
 ```
 ### createSubWindow<sup>9+</sup>
 
@@ -6066,23 +6084,24 @@ createSubWindow(name: string): Promise&lt;Window&gt;
 
 ```ts
 import Ability from '@ohos.application.Ability';
+
 class myAbility extends Ability {
     onWindowStageCreate(windowStage) {
         console.log('onWindowStageCreate');
         let windowClass = null;
         try {
             let promise = windowStage.createSubWindow('mySubWindow');
-            promise.then((data)=> {
+            promise.then((data) => {
                 windowClass = data;
                 console.info('Succeeded in creating the subwindow. Data: ' + JSON.stringify(data));
-            }).catch((err)=>{
+            }).catch((err) => {
                 console.error('Failed to create the subwindow. Cause: ' + JSON.stringify(err));
             });
         } catch (exception) {
             console.error('Failed to create the subwindow. Cause: ' + JSON.stringify(exception));
         };
     }
-}
+};
 ```
 
 ### getSubWindow<sup>9+</sup>
@@ -6113,6 +6132,7 @@ getSubWindow(callback: AsyncCallback&lt;Array&lt;Window&gt;&gt;): void
 
 ```ts
 import Ability from '@ohos.application.Ability';
+
 class myAbility extends Ability {
     onWindowStageCreate(windowStage) {
         console.log('onWindowStageCreate');
@@ -6126,7 +6146,7 @@ class myAbility extends Ability {
             console.info('Succeeded in obtaining the subwindow. Data: ' + JSON.stringify(data));
         });
     }
-}
+};
 ```
 ### getSubWindow<sup>9+</sup>
 
@@ -6156,19 +6176,20 @@ getSubWindow(): Promise&lt;Array&lt;Window&gt;&gt;
 
 ```ts
 import Ability from '@ohos.application.Ability';
+
 class myAbility extends Ability {
     onWindowStageCreate(windowStage) {
         console.log('onWindowStageCreate');
         let windowClass = null;
         let promise = windowStage.getSubWindow();
-        promise.then((data)=> {
+        promise.then((data) => {
             windowClass = data;
             console.info('Succeeded in obtaining the subwindow. Data: ' + JSON.stringify(data));
-        }).catch((err)=>{
+        }).catch((err) => {
             console.error('Failed to obtain the subwindow. Cause: ' + JSON.stringify(err));
         })
     }
-}
+};
 ```
 ### loadContent<sup>9+</sup>
 
@@ -6201,6 +6222,7 @@ loadContent(path: string, storage: LocalStorage, callback: AsyncCallback&lt;void
 
 ```ts
 import Ability from '@ohos.application.Ability';
+
 class myAbility extends Ability {
     storage : LocalStorage
     onWindowStageCreate(windowStage) {
@@ -6219,7 +6241,7 @@ class myAbility extends Ability {
             console.error('Failed to load the content. Cause:' + JSON.stringify(exception));
         };
     }
-}
+};
 ```
 
 ### loadContent<sup>9+</sup>
@@ -6258,6 +6280,7 @@ loadContent(path: string, storage?: LocalStorage): Promise&lt;void&gt;
 
 ```ts
 import Ability from '@ohos.application.Ability';
+
 class myAbility extends Ability {
     storage : LocalStorage
     onWindowStageCreate(windowStage) {
@@ -6266,16 +6289,16 @@ class myAbility extends Ability {
         console.log('onWindowStageCreate');
         try {
             let promise = windowStage.loadContent('pages/page2',this.storage);
-            promise.then(()=> {
+            promise.then(() => {
                 console.info('Succeeded in loading the content.');
-            }).catch((err)=>{
+            }).catch((err) => {
                 console.error('Failed to load the content. Cause:' + JSON.stringify(err));
             });
         } catch (exception) {
             console.error('Failed to load the content. Cause:' + JSON.stringify(exception));
         };
     }
-}
+};
 ```
 
 ### loadContent<sup>9+</sup>
@@ -6308,6 +6331,7 @@ loadContent(path: string, callback: AsyncCallback&lt;void&gt;): void
 
 ```ts
 import Ability from '@ohos.application.Ability';
+
 class myAbility extends Ability {
     onWindowStageCreate(windowStage) {
         console.log('onWindowStageCreate');
@@ -6323,7 +6347,7 @@ class myAbility extends Ability {
             console.error('Failed to load the content. Cause:' + JSON.stringify(exception));
         };
     }
-}
+};
 ```
 
 ### on('windowStageEvent')<sup>9+</sup>
@@ -6356,6 +6380,7 @@ on(eventType: 'windowStageEvent', callback: Callback&lt;WindowStageEventType&gt;
 
 ```ts
 import Ability from '@ohos.application.Ability';
+
 class myAbility extends Ability {
     onWindowStageCreate(windowStage) {
         console.log('onWindowStageCreate');
@@ -6369,7 +6394,7 @@ class myAbility extends Ability {
                 JSON.stringify(exception));
         };
     }
-}
+};
 ```
 
 ### off('windowStageEvent')<sup>9+</sup>
@@ -6402,6 +6427,7 @@ off(eventType: 'windowStageEvent', callback?: Callback&lt;WindowStageEventType&g
 
 ```ts
 import Ability from '@ohos.application.Ability';
+
 class myAbility extends Ability {
     onWindowStageCreate(windowStage) {
         console.log('onWindowStageCreate');
@@ -6412,7 +6438,7 @@ class myAbility extends Ability {
                 JSON.stringify(exception));
         };
     }
-}
+};
 ```
 
 ### disableWindowDecor()<sup>9+</sup>
@@ -6440,12 +6466,13 @@ disableWindowDecor(): void
 
 ```ts
 import Ability from '@ohos.application.Ability';
+
 class myAbility extends Ability {
     onWindowStageCreate(windowStage) {
         console.log('disableWindowDecor');
         windowStage.disableWindowDecor();
     }
-}
+};
 ```
 
 ### setShowOnLockScreen()<sup>9+</sup>
@@ -6479,6 +6506,7 @@ setShowOnLockScreen(showOnLockScreen: boolean): void
 
 ```ts
 import Ability from '@ohos.application.Ability';
+
 class myAbility extends Ability {
     onWindowStageCreate(windowStage) {
         console.log('onWindowStageCreate');
@@ -6488,7 +6516,7 @@ class myAbility extends Ability {
             console.error('Failed to show on lockscreen. Cause:' + JSON.stringify(exception));
         };
     }
-}
+};
 ```
 ## TransitionContext<sup>9+</sup>
 
@@ -6525,7 +6553,7 @@ completeTransition(isCompleted: boolean): void
 ```js
 let controller = windowClass.getTransitionController();
 controller.animationForShown = (context : window.TransitionContext) => {
-	let toWindow = context.toWindow
+	let toWindow = context.toWindow;
  	animateTo({
     	duration: 1000, // 动画时长
         tempo: 0.5, // 播放速率
@@ -6538,11 +6566,11 @@ controller.animationForShown = (context : window.TransitionContext) => {
           x : 100.0,
           y : 0.0,
           z : 0.0
-        }
+        };
         toWindow.translate(obj);
         console.info('toWindow translate end');
       }
-    )
+    );
     try {
         context.completeTransition(true)
     } catch (exception) {
@@ -6577,7 +6605,7 @@ animationForShown(context: TransitionContext): void
 ```js
 let controller = windowClass.getTransitionController();
 controller.animationForShown = (context : window.TransitionContext) => {
-	let toWindow = context.toWindow
+	let toWindow = context.toWindow;
  	animateTo({
     	duration: 1000, // 动画时长
         tempo: 0.5, // 播放速率
@@ -6593,13 +6621,13 @@ controller.animationForShown = (context : window.TransitionContext) => {
           x : 100.0,
           y : 0.0,
           z : 0.0
-        }
+        };
         toWindow.translate(obj);
         console.info('toWindow translate end');
       }
-    )
+    );
     console.info('complete transition end');
-}
+};
 ```
 
 ### animationForHidden<sup>9+</sup>
@@ -6623,7 +6651,7 @@ animationForHidden(context: TransitionContext): void
 ```js
 let controller = windowClass.getTransitionController();
 controller.animationForHidden = (context : window.TransitionContext) => {
-	let toWindow = context.toWindow
+	let toWindow = context.toWindow;
  	animateTo({
     	duration: 1000, // 动画时长
         tempo: 0.5, // 播放速率
@@ -6639,11 +6667,11 @@ controller.animationForHidden = (context : window.TransitionContext) => {
           x : 100.0,
           y : 0.0,
           z : 0.0
-        }
+        };
         toWindow.translate(obj);
         console.info('toWindow translate end');
       }
     )
     console.info('complete transition end');
-}
+};
 ```
