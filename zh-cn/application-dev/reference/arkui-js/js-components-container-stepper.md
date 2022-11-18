@@ -25,7 +25,7 @@
 
 | 名称    | 类型     | 默认值  | 描述                             |
 | ----- | ------ | ---- | ------------------------------ |
-| index | number | -    | 设置步骤导航器步骤显示第几个stepper-item子组件。 |
+| index | number | 0    | 设置步骤导航器步骤显示第几个stepper-item子组件，默认显示第一个stepper-item。 |
 
 
 ## 样式
@@ -42,9 +42,9 @@
 
 | 名称     | 参数                                       | 描述                                       |
 | ------ | ---------------------------------------- | ---------------------------------------- |
-| finish | 无                                        | 当步骤导航器最后一个步骤完成时触发该事件。                    |
-| skip   | 无                                        | 当通过setNextButtonStatus方法设置当前步骤导航器可跳过时，点击右侧跳过按钮触发该事件。 |
-| change | {&nbsp;prevIndex：prevIndex,&nbsp;index:&nbsp;index} | 当步骤导航器点击左边或者右边文本按钮进行步骤切换时触发该事件，prevIndex表示老步骤的序号，index表示新步骤的序号。 |
+| finish | 无                                        | 当步骤导航器最后一个步骤完成时,触发该事件。                    |
+| skip   | 无                                        | 当前步骤导航器下一步按钮状态为skip，即可跳过时，点击右侧跳过按钮触发该事件。 |
+| change | {&nbsp;prevIndex：prevIndex,&nbsp;index:&nbsp;index} | 当用户点击步骤导航器的左边或者右边按钮进行步骤切换时触发该事件，prevIndex表示老步骤的序号，index表示新步骤的序号。 |
 | next   | {&nbsp;index：index,&nbsp;pendingIndex:&nbsp;pendingIndex&nbsp;} | 当用户点击下一步按钮时触发该事件，index表示当前步骤序号，pendingIndex表示将要跳转的序号，该事件有返回值，返回值格式为：{&nbsp;pendingIndex：pendingIndex&nbsp;}，可以通过指定pendingIndex来修改下一个步骤使用哪个stepper-item子组件。 |
 | back   | {&nbsp;index：index,&nbsp;pendingIndex:&nbsp;pendingIndex&nbsp;} | 当用户点击上一步按钮时触发该事件，index表示当前步骤序号，pendingIndex表示将要跳转的序号，该事件有返回值，返回值格式为Object：{&nbsp;pendingIndex：pendingIndex&nbsp;}，可以通过指定pendingIndex来修改上一个步骤使用哪个stepper-item子组件。 |
 
@@ -55,7 +55,7 @@
 
 | 名称                  | 参数                                       | 描述                                       |
 | ------------------- | ---------------------------------------- | ---------------------------------------- |
-| setNextButtonStatus | {&nbsp;status:&nbsp;string,&nbsp;label:&nbsp;label&nbsp;} | 设置当前步骤导航器下一步文本按钮的状态，参数中status类型为string，可选值为：<br/>-&nbsp;normal：正常状态，下一步文本按钮正常显示，可点击进入下一个步骤；<br/>-&nbsp;disabled：不可用状态，下一步文本按钮灰度显示，不可点击进入下一个步骤；<br/>-&nbsp;waiting：等待状态，下一步文本按钮不显示，使用等待进度条，不可点击进入下一个步骤。<br/>-&nbsp;skip：跳过状态，下一步文本按钮显示跳过按钮，点击时会跳过剩下步骤。 |
+| setNextButtonStatus | {&nbsp;status:&nbsp;string,&nbsp;label:&nbsp;label&nbsp;} | 设置当前步骤中下一步按钮的文本与状态，参数中label为指定按钮文本，status指定按钮状态，status可选值为：<br/>-&nbsp;normal：正常状态，下一步文本按钮正常显示，可点击进入下一个步骤；<br/>-&nbsp;disabled：不可用状态，下一步文本按钮灰度显示，不可点击进入下一个步骤；<br/>-&nbsp;waiting：等待状态，下一步文本按钮不显示，使用等待进度条，不可点击进入下一个步骤。<br/>-&nbsp;skip：跳过状态，下一步文本按钮显示跳过按钮，点击时会跳过剩下步骤。 |
 
 
 ## 示例
@@ -63,7 +63,8 @@
 ```html
 <!-- xxx.hml -->
 <div class="container">
-    <stepper class="stepper" id="mystepper" index="0" onnext="nextclick" onback="backclick">
+    <stepper class="stepper" id="mystepper" onnext="nextclick" onback="backclick" onchange="statuschange"
+             onfinish="finish" onskip="skip">
         <stepper-item class="stepperItem" label="{{ label_1 }}">
             <div class="stepperItemContent">
                 <text>First screen</text>
@@ -115,6 +116,8 @@
 
 ```js
 // xxx.js
+import prompt from '@system.prompt';
+
 export default {
     data: {
         label_1:
@@ -138,7 +141,7 @@ export default {
     },
     setRightButton(e) {
         this.$element('mystepper').setNextButtonStatus({
-            status: 'skip', label: 'SKIP'
+            status: 'waiting', label: 'SKIP'
         });
     },
     nextclick(e) {
@@ -152,8 +155,23 @@ export default {
             pendingIndex: e.pendingIndex
         }
         return index;
+    },
+    statuschange(e) {
+        prompt.showToast({
+            message: '上一步序号' + e.prevIndex + '当前序号' + e.index
+        })
+    },
+    finish() {
+        prompt.showToast({
+            message: '最后一步已完成'
+        })
+    },
+    skip() {
+        prompt.showToast({
+            message: 'skip触发'
+        })
     }
 }
 ```
 
-![zh-cn_image_0000001127125114](figures/zh-cn_image_0000001127125114.gif)
+![zh-cn_image_0000001127125114](figures/stepper.gif)
