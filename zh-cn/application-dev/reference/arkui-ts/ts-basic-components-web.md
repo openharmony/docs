@@ -26,7 +26,7 @@ Web(options: { src: ResourceStr, controller: WebController })
 
 | 参数名        | 参数类型                            | 必填   | 参数描述    |
 | ---------- | ------------------------------- | ---- | ------- |
-| src        | [ResourceStr](ts-types.md)                           | 是    | 网页资源地址。 |
+| src        | [ResourceStr](ts-types.md)      | 是    | 网页资源地址。 |
 | controller | [WebController](#webcontroller) | 否    | 控制器。    |
 
 **示例：**
@@ -83,8 +83,8 @@ domStorageAccess(domStorageAccess: boolean)
 
 **参数：**
 
-| 参数名              | 参数类型    | 必填   | 默认值  | 参数描述                                 |
-| ---------------- | ------- | ---- | ---- | ------------------------------------ |
+| 参数名              | 参数类型    | 必填   | 默认值   | 参数描述                                 |
+| ---------------- | ------- | ---- | ----- | ------------------------------------ |
 | domStorageAccess | boolean | 是    | false | 设置是否开启文档对象模型存储接口（DOM Storage API）权限。 |
 
 **示例：**
@@ -108,12 +108,12 @@ domStorageAccess(domStorageAccess: boolean)
 
 fileAccess(fileAccess: boolean)
 
-设置是否开启应用中文件系统的访问，默认启用。[$rawfile(filepath/filename)](../../ui/ts-resource-access.md)中rawfile路径的文件不受该属性影响而限制访问。
+设置是否开启应用中文件系统的访问，默认启用。[$rawfile(filepath/filename)](../../quick-start/resource-categories-and-access.md)中rawfile路径的文件不受该属性影响而限制访问。
 
 **参数：**
 
-| 参数名        | 参数类型    | 必填   | 默认值  | 参数描述                                     |
-| ---------- | ------- | ---- | ---- | ---------------------------------------- |
+| 参数名        | 参数类型    | 必填   | 默认值  | 参数描述                   |
+| ---------- | ------- | ---- | ---- | ---------------------- |
 | fileAccess | boolean | 是    | true | 设置是否开启应用中文件系统的访问，默认启用。 |
 
 **示例：**
@@ -137,7 +137,7 @@ fileAccess(fileAccess: boolean)
 
 fileFromUrlAccess(fileFromUrlAccess: boolean)
 
-设置是否允许通过网页中的JavaScript脚本访问应用文件系统中的内容，默认未启用。[$rawfile(filepath/filename)](../../ui/ts-resource-access.md)中rawfile路径的文件不受该属性影响而限制访问。
+设置是否允许通过网页中的JavaScript脚本访问应用文件系统中的内容，默认未启用。[$rawfile(filepath/filename)](../../quick-start/resource-categories-and-access.md)中rawfile路径的文件不受该属性影响而限制访问。
 
 **参数：**
 
@@ -199,12 +199,12 @@ javaScriptProxy(javaScriptProxy: { object: object, name: string, methodList: Arr
 
 **参数：**
 
-| 参数名        | 参数类型            | 必填   | 默认值  | 参数描述                      |
-| ---------- | --------------- | ---- | ---- | ------------------------- |
-| object     | object          | 是    | -    | 参与注册的对象。只能声明方法，不能声明属性。    |
-| name       | string          | 是    | -    | 注册对象的名称，与window中调用的对象名一致。 |
-| methodList | Array\<string\> | 是    | -    | 参与注册的应用侧JavaScript对象的方法。  |
-| controller | [WebController](#webcontroller) | 否    | -    | 控制器。    |
+| 参数名        | 参数类型                            | 必填   | 默认值  | 参数描述                      |
+| ---------- | ------------------------------- | ---- | ---- | ------------------------- |
+| object     | object                          | 是    | -    | 参与注册的对象。只能声明方法，不能声明属性。    |
+| name       | string                          | 是    | -    | 注册对象的名称，与window中调用的对象名一致。 |
+| methodList | Array\<string\>                 | 是    | -    | 参与注册的应用侧JavaScript对象的方法。  |
+| controller | [WebController](#webcontroller) | 否    | -    | 控制器。                      |
 
 **示例：**
 
@@ -277,8 +277,8 @@ mixedMode(mixedMode: MixedMode)
 
 **参数：**
 
-| 参数名       | 参数类型                        | 必填   | 默认值  | 参数描述      |
-| --------- | --------------------------- | ---- | ---- | --------- |
+| 参数名       | 参数类型                        | 必填   | 默认值            | 参数描述      |
+| --------- | --------------------------- | ---- | -------------- | --------- |
 | mixedMode | [MixedMode](#mixedmode枚举说明) | 是    | MixedMode.None | 要设置的混合内容。 |
 
 **示例：**
@@ -394,8 +394,8 @@ databaseAccess(databaseAccess: boolean)
 
 **参数：**
 
-| 参数名            | 参数类型    | 必填   | 默认值  | 参数描述              |
-| -------------- | ------- | ---- | ---- | ----------------- |
+| 参数名            | 参数类型    | 必填   | 默认值   | 参数描述              |
+| -------------- | ------- | ---- | ----- | ----------------- |
 | databaseAccess | boolean | 是    | false | 设置是否开启数据库存储API权限。 |
 
 **示例：**
@@ -423,9 +423,9 @@ geolocationAccess(geolocationAccess: boolean)
 
 **参数：**
 
-| 参数名            | 参数类型    | 必填   | 默认值  | 参数描述              |
-| -------------- | ------- | ---- | ---- | ----------------- |
-| geolocationAccess | boolean | 是    | true    | 设置是否开启获取地理位置权限。 |
+| 参数名               | 参数类型    | 必填   | 默认值  | 参数描述            |
+| ----------------- | ------- | ---- | ---- | --------------- |
+| geolocationAccess | boolean | 是    | true | 设置是否开启获取地理位置权限。 |
 
 **示例：**
 
@@ -452,9 +452,9 @@ mediaPlayGestureAccess(access: boolean)
 
 **参数：**
 
-| 参数名       | 参数类型   | 必填   | 默认值  | 参数描述      |
-| --------- | ------ | ---- | ---- | --------- |
-| access | boolean | 是    | true    | 设置视频播放是否需要用户手动点击。 |
+| 参数名    | 参数类型    | 必填   | 默认值  | 参数描述              |
+| ------ | ------- | ---- | ---- | ----------------- |
+| access | boolean | 是    | true | 设置视频播放是否需要用户手动点击。 |
 
 **示例：**
 
@@ -482,8 +482,8 @@ cacheMode(cacheMode: CacheMode)
 
 **参数：**
 
-| 参数名       | 参数类型                        | 必填   | 默认值  | 参数描述      |
-| --------- | --------------------------- | ---- | ---- | --------- |
+| 参数名       | 参数类型                        | 必填   | 默认值               | 参数描述      |
+| --------- | --------------------------- | ---- | ----------------- | --------- |
 | cacheMode | [CacheMode](#cachemode枚举说明) | 是    | CacheMode.Default | 要设置的缓存模式。 |
 
 **示例：**
@@ -512,9 +512,9 @@ textZoomRatio(textZoomRatio: number)
 
 **参数：**
 
-| 参数名          | 参数类型   | 必填   | 默认值  | 参数描述            |
-| ------------ | ------ | ---- | ---- | --------------- |
-| textZoomRatio | number | 是    | 100 | 要设置的页面的文本缩放百分比。 |
+| 参数名           | 参数类型   | 必填   | 默认值  | 参数描述            |
+| ------------- | ------ | ---- | ---- | --------------- |
+| textZoomRatio | number | 是    | 100  | 要设置的页面的文本缩放百分比。 |
 
 **示例：**
 
@@ -572,9 +572,9 @@ webDebuggingAccess(webDebuggingAccess: boolean)
 
 **参数：**
 
-| 参数名       | 参数类型   | 必填   | 默认值  | 参数描述      |
-| --------- | ------ | ---- | ---- | --------- |
-| webDebuggingAccess | boolean | 是    | false    | 设置是否启用网页调试功能。 |
+| 参数名                | 参数类型    | 必填   | 默认值   | 参数描述          |
+| ------------------ | ------- | ---- | ----- | ------------- |
+| webDebuggingAccess | boolean | 是    | false | 设置是否启用网页调试功能。 |
 
 **示例：**
 
@@ -1155,9 +1155,9 @@ onRefreshAccessedHistory(callback: (event?: { url: string, isRefreshed: boolean 
 
 **参数：**
 
-| 参数名         | 参数类型    | 参数描述                              |
-| ----------- | ------- | --------------------------------- |
-| url         | string  | 访问的url。                           |
+| 参数名         | 参数类型    | 参数描述                                     |
+| ----------- | ------- | ---------------------------------------- |
+| url         | string  | 访问的url。                                  |
 | isRefreshed | boolean | true表示该页面是被重新加载的（调用[refresh](#refresh)接口），false表示该页面是新加载的。 |
 
 **示例：**
@@ -1227,8 +1227,8 @@ onShowFileSelector(callback: (event?: { result: FileSelectorResult, fileSelector
 
 **返回值：**
 
-| 类型      | 说明                                  |
-| ------- | ----------------------------------- |
+| 类型      | 说明                                       |
+| ------- | ---------------------------------------- |
 | boolean | 当返回值为true时，用户可以调用系统提供的弹窗能力。当返回值为false时，触发Web默认弹窗。 |
 
 **示例：**
@@ -1321,8 +1321,8 @@ onInterceptRequest(callback: (event?: { request: WebResourceRequest}) => WebReso
 
 **返回值：**
 
-| 类型                                       | 说明                          |
-| ---------------------------------------- | --------------------------- |
+| 类型                                       | 说明                                       |
+| ---------------------------------------- | ---------------------------------------- |
 | [WebResourceResponse](#webresourceresponse) | 返回响应数据则按照响应数据加载，无响应数据则返回null表示按照原来的方式加载。 |
 
 **示例：**
@@ -1449,10 +1449,10 @@ onSslErrorEventReceive(callback: (event: { handler: SslErrorHandler, error: SslE
 
 **参数：**
 
-| 参数名     | 参数类型                           | 参数描述             |
-| ------- | ------------------------------------ | ----------------    |
+| 参数名     | 参数类型                                 | 参数描述           |
+| ------- | ------------------------------------ | -------------- |
 | handler | [SslErrorHandler](#sslerrorhandler9) | 通知Web组件用户操作行为。 |
-| error   | [SslError](#sslerror9枚举说明)        | 错误码。 |
+| error   | [SslError](#sslerror9枚举说明)           | 错误码。           |
 
 **示例：**
 
@@ -1502,13 +1502,13 @@ onClientAuthenticationRequest(callback: (event: {handler : ClientAuthenticationH
 
 **参数：**
 
-| 参数名   | 参数类型                             | 参数描述             |
-| ------- | ------------------------------------ | ----------------    |
-| handler | [ClientAuthenticationHandler](#clientauthenticationhandler9) | 通知Web组件用户操作行为。|
-| host    | string          | 请求证书服务器的主机名。 |
-| port    | number          | 请求证书服务器的端口号。 |
-| keyTypes| Array<string>   | 可接受的非对称秘钥类型。 |
-| issuers | Array<string>   | 与私钥匹配的证书可接受颁发者。|
+| 参数名      | 参数类型                                     | 参数描述            |
+| -------- | ---------------------------------------- | --------------- |
+| handler  | [ClientAuthenticationHandler](#clientauthenticationhandler9) | 通知Web组件用户操作行为。  |
+| host     | string                                   | 请求证书服务器的主机名。    |
+| port     | number                                   | 请求证书服务器的端口号。    |
+| keyTypes | Array<string>                            | 可接受的非对称秘钥类型。    |
+| issuers  | Array<string>                            | 与私钥匹配的证书可接受颁发者。 |
 
   **示例：**
   ```ts
@@ -1557,9 +1557,9 @@ onPermissionRequest(callback: (event?: { request: PermissionRequest }) => void)
 
 **参数：**
 
-| 参数名     | 参数类型                                 | 参数描述             |
-| ------- | ------------------------------------ | ---------------- |
-| request | [PermissionRequest](#permissionrequest9) | 通知Web组件用户操作行为。   |
+| 参数名     | 参数类型                                     | 参数描述           |
+| ------- | ---------------------------------------- | -------------- |
+| request | [PermissionRequest](#permissionrequest9) | 通知Web组件用户操作行为。 |
 
 **示例：**
 
@@ -1606,15 +1606,15 @@ onContextMenuShow(callback: (event?: { param: WebContextMenuParam, result: WebCo
 
 **参数：**
 
-| 参数名     | 参数类型                                 | 参数描述             |
-| ------- | ------------------------------------ | ---------------- |
-| param   | [WebContextMenuParam](#webcontextmenuparam9)   | 菜单相关参数。 |
-| result  | [WebContextMenuResult](#webcontextmenuresult9) | 菜单相应事件传入内核。 |
+| 参数名    | 参数类型                                     | 参数描述        |
+| ------ | ---------------------------------------- | ----------- |
+| param  | [WebContextMenuParam](#webcontextmenuparam9) | 菜单相关参数。     |
+| result | [WebContextMenuResult](#webcontextmenuresult9) | 菜单相应事件传入内核。 |
 
 **返回值：**
 
-| 类型     | 说明                   |
-| ------ | -------------------- |
+| 类型      | 说明                       |
+| ------- | ------------------------ |
 | boolean | 自定义菜单返回true，默认菜单返回false。 |
 
 **示例：**
@@ -1646,10 +1646,10 @@ onScroll(callback: (event: {xOffset: number, yOffset: number}) => void)
 
 **参数：**
 
-| 参数名     | 参数类型                                 | 参数描述             |
-| ------- | ------------------------------------ | ---------------- |
-| xOffset   | number   | 水平滚动条滚动所在位置。 |
-| yOffset  | number | 竖直滚动条滚动所在位置。 |
+| 参数名     | 参数类型   | 参数描述         |
+| ------- | ------ | ------------ |
+| xOffset | number | 水平滚动条滚动所在位置。 |
+| yOffset | number | 竖直滚动条滚动所在位置。 |
 
 **示例：**
 
@@ -1679,10 +1679,10 @@ onGeolocationShow(callback: (event?: { origin: string, geolocation: JsGeolocatio
 
 **参数：**
 
-| 参数名      | 参数类型                         | 参数描述          |
-| ----------- | ------------------------------- | ---------------- |
+| 参数名         | 参数类型                            | 参数描述           |
+| ----------- | ------------------------------- | -------------- |
 | origin      | string                          | 指定源的字符串索引。     |
-| geolocation | [JsGeolocation](#jsgeolocation) | 通知Web组件用户操作行为。|
+| geolocation | [JsGeolocation](#jsgeolocation) | 通知Web组件用户操作行为。 |
 
 **示例：**
 
@@ -2183,10 +2183,10 @@ confirm(priKeyFile : string, certChainFile : string): void
 
 **参数：**
 
-| 参数名         | 参数类型 | 必填   | 参数描述        |
-| --------      | ------   | ----  | ----------     |
-| priKeyFile    | string   | 是    | 存放私钥的文件，包含路径和文件名。|
-| certChainFile | string   | 是    | 存放证书链的文件，包含路径和文件名。|
+| 参数名           | 参数类型   | 必填   | 参数描述               |
+| ------------- | ------ | ---- | ------------------ |
+| priKeyFile    | string | 是    | 存放私钥的文件，包含路径和文件名。  |
+| certChainFile | string | 是    | 存放证书链的文件，包含路径和文件名。 |
 
 ### cancel<sup>9+</sup>
 
@@ -2218,9 +2218,9 @@ getOrigin(): string
 
 **返回值：**
 
-| 类型      | 说明                    |
-| ------- | --------------------- |
-| string  | 当前请求权限网页的来源。 |
+| 类型     | 说明           |
+| ------ | ------------ |
+| string | 当前请求权限网页的来源。 |
 
 ### getAccessibleResource<sup>9+</sup>
 
@@ -2230,8 +2230,8 @@ getAccessibleResource(): Array\<string\>
 
 **返回值：**
 
-| 类型            | 说明                     |
-| --------------- | ----------------------- |
+| 类型              | 说明            |
+| --------------- | ------------- |
 | Array\<string\> | 网页所请求的权限资源列表。 |
 
 ### grant<sup>9+</sup>
@@ -2242,9 +2242,9 @@ grant(resources: Array\<string\>): void
 
 **参数：**
 
-| 参数名     | 参数类型        | 必填 | 默认值 | 参数描述                |
-| --------- | --------------- | ---- | ----- | ---------------------- |
-| resources | Array\<string\> | 是   | -     | 网页所请求的权限资源列表。|
+| 参数名       | 参数类型            | 必填   | 默认值  | 参数描述          |
+| --------- | --------------- | ---- | ---- | ------------- |
+| resources | Array\<string\> | 是    | -    | 网页所请求的权限资源列表。 |
 
 ## WebContextMenuParam<sup>9+</sup>
 
@@ -2258,8 +2258,8 @@ x(): number
 
 **返回值：**
 
-| 类型            | 说明                     |
-| --------------- | ----------------------- |
+| 类型     | 说明                 |
+| ------ | ------------------ |
 | number | 显示正常返回非负整数，否则返回-1。 |
 
 ### y<sup>9+</sup>
@@ -2270,8 +2270,8 @@ y(): number
 
 **返回值：**
 
-| 类型            | 说明                     |
-| --------------- | ----------------------- |
+| 类型     | 说明                 |
+| ------ | ------------------ |
 | number | 显示正常返回非负整数，否则返回-1。 |
 
 ### getLinkUrl<sup>9+</sup>
@@ -2282,8 +2282,8 @@ getLinkUrl(): string
 
 **返回值：**
 
-| 类型            | 说明                     |
-| --------------- | ----------------------- |
+| 类型     | 说明                        |
+| ------ | ------------------------- |
 | string | 如果长按位置是链接，返回经过安全检查的url链接。 |
 
 ### getUnfilterendLinkUrl<sup>9+</sup>
@@ -2294,8 +2294,8 @@ getUnfilterendLinkUrl(): string
 
 **返回值：**
 
-| 类型            | 说明                     |
-| --------------- | ----------------------- |
+| 类型     | 说明                    |
+| ------ | --------------------- |
 | string | 如果长按位置是链接，返回原始的url链接。 |
 
 ### getSourceUrl<sup>9+</sup>
@@ -2306,8 +2306,8 @@ getSourceUrl(): string
 
 **返回值：**
 
-| 类型            | 说明                     |
-| --------------- | ----------------------- |
+| 类型     | 说明                       |
+| ------ | ------------------------ |
 | string | 如果选中的元素有src属性，返回src的url。 |
 
 ### existsImageContents<sup>9+</sup>
@@ -2318,8 +2318,8 @@ existsImageContents(): boolean
 
 **返回值：**
 
-| 类型            | 说明                     |
-| --------------- | ----------------------- |
+| 类型      | 说明                        |
+| ------- | ------------------------- |
 | boolean | 长按位置中有图片返回true，否则返回false。 |
 
 ## WebContextMenuResult<sup>9+</sup>
@@ -2350,11 +2350,11 @@ invoke(origin: string, allow: boolean, retain: boolean): void
 
 **参数：**
 
-| 参数名     | 参数类型 | 必填 | 默认值 | 参数描述               |
-| --------- | ------- | ---- | ----- | ---------------------- |
-| origin    | string  | 是   | -     | 指定源的字符串索引。     |
-| allow     | boolean | 是   | -     | 设置的地理位置权限状态。 |
-| retain    | boolean | 是   | -     | 是否允许将地理位置权限状态保存到系统中。可通过[GeolocationPermissions](#geolocationpermissions9)接口管理保存到系统的地理位置权限。 |
+| 参数名    | 参数类型    | 必填   | 默认值  | 参数描述                                     |
+| ------ | ------- | ---- | ---- | ---------------------------------------- |
+| origin | string  | 是    | -    | 指定源的字符串索引。                               |
+| allow  | boolean | 是    | -    | 设置的地理位置权限状态。                             |
+| retain | boolean | 是    | -    | 是否允许将地理位置权限状态保存到系统中。可通过[GeolocationPermissions](#geolocationpermissions9)接口管理保存到系统的地理位置权限。 |
 
 ## WebController
 
@@ -3362,8 +3362,8 @@ createWebMessagePorts(): Array\<WebMessagePort\>
 **返回值：**
 
 
-| 类型                              | 说明            |
-| ------------------------------- | ------------- |
+| 类型                                       | 说明         |
+| ---------------------------------------- | ---------- |
 | Array\<[WebMessagePort](#webmessageport9)\> | web信息端口列表。 |
 
 **示例：**
@@ -3396,10 +3396,10 @@ postMessage(options: { message: WebMessageEvent, uri: string}): void
 
 **参数：**
 
-| 参数名        | 参数类型            | 必填   | 默认值  | 参数描述                      |
-| ---------- | --------------- | ---- | ---- | ------------------------- |
-| message     | [WebMessageEvent](#webmessageevent9)          | 是    | -    |要发送的信息，包含数据和信息端口 。 |
-| uri       | string          | 是    | -    | 接收该信息的URI。 |
+| 参数名     | 参数类型                                 | 必填   | 默认值  | 参数描述               |
+| ------- | ------------------------------------ | ---- | ---- | ------------------ |
+| message | [WebMessageEvent](#webmessageevent9) | 是    | -    | 要发送的信息，包含数据和信息端口 。 |
+| uri     | string                               | 是    | -    | 接收该信息的URI。         |
 
 **示例：**
 
@@ -3507,8 +3507,8 @@ getUrl(): string
 
 **返回值：**
 
-| 类型                              | 说明            |
-| ------------------------------- | ------------- |
+| 类型     | 说明          |
+| ------ | ----------- |
 | string | 当前页面的url地址。 |
 
 **示例：**
@@ -3641,14 +3641,14 @@ getCookie(url: string): string
 
 **参数：**
 
-| 参数名   | 参数类型   | 必填   | 默认值  | 参数描述              |
-| ----- | ------ | ---- | ---- | ----------------- |
-| url   | string | 是    | -    | 要获取的cookie所属的url。 |
+| 参数名  | 参数类型   | 必填   | 默认值  | 参数描述              |
+| ---- | ------ | ---- | ---- | ----------------- |
+| url  | string | 是    | -    | 要获取的cookie所属的url。 |
 
 **返回值：**
 
-| 类型      | 说明                   |
-| ------- | -------------------- |
+| 类型     | 说明                |
+| ------ | ----------------- |
 | string | 指定url对应的cookie的值。 |
 
 **示例：**
@@ -3684,12 +3684,12 @@ setCookie(url: string, value: string): boolean
 | 参数名   | 参数类型   | 必填   | 默认值  | 参数描述              |
 | ----- | ------ | ---- | ---- | ----------------- |
 | url   | string | 是    | -    | 要设置的cookie所属的url。 |
-| value   | string | 是    | -    | 要设置的cookie的值。 |
+| value | string | 是    | -    | 要设置的cookie的值。     |
 
 **返回值：**
 
-| 类型      | 说明                   |
-| ------- | -------------------- |
+| 类型      | 说明            |
+| ------- | ------------- |
 | boolean | 设置cookie是否成功。 |
 
 **示例：**
@@ -3756,8 +3756,8 @@ saveCookieAsync(): Promise\<boolean>
 
 **返回值：**
 
-| 类型      | 说明                   |
-| ------- | -------------------- |
+| 类型                | 说明                          |
+| ----------------- | --------------------------- |
 | Promise\<boolean> | Promise实例，用于获取cookie是否成功保存。 |
 
 **示例：**
@@ -3795,9 +3795,9 @@ saveCookieAsync(callback: AsyncCallback\<boolean>): void
 
 **参数：**
 
-| 参数名   | 参数类型   | 必填   | 默认值  | 参数描述              |
-| ----- | ------ | ---- | ---- | ----------------- |
-| callback   | AsyncCallback\<boolean> | 是    | -    | 返回cookie是否成功保存的布尔值作为回调函数的入参。 |
+| 参数名      | 参数类型                    | 必填   | 默认值  | 参数描述                         |
+| -------- | ----------------------- | ---- | ---- | ---------------------------- |
+| callback | AsyncCallback\<boolean> | 是    | -    | 返回cookie是否成功保存的布尔值作为回调函数的入参。 |
 
 **示例：**
 
@@ -3830,8 +3830,8 @@ isCookieAllowed(): boolean
 
 **返回值：**
 
-| 类型      | 说明                   |
-| ------- | -------------------- |
+| 类型      | 说明                  |
+| ------- | ------------------- |
 | boolean | 是否拥有发送和接收cookie的权限。 |
 
 **示例：**
@@ -3864,9 +3864,9 @@ putAcceptCookieEnabled(accept: boolean): void
 
 **参数：**
 
-| 参数名   | 参数类型   | 必填   | 默认值  | 参数描述              |
-| ----- | ------ | ---- | ---- | ----------------- |
-| accept   | boolean | 是    | -    | 设置是否拥有发送和接收cookie的权限。 |
+| 参数名    | 参数类型    | 必填   | 默认值  | 参数描述                  |
+| ------ | ------- | ---- | ---- | --------------------- |
+| accept | boolean | 是    | -    | 设置是否拥有发送和接收cookie的权限。 |
 
 **示例：**
 
@@ -3897,8 +3897,8 @@ isThirdCookieAllowed(): boolean
 
 **返回值：**
 
-| 类型      | 说明                   |
-| ------- | -------------------- |
+| 类型      | 说明                     |
+| ------- | ---------------------- |
 | boolean | 是否拥有发送和接收第三方cookie的权限。 |
 
 **示例：**
@@ -3931,9 +3931,9 @@ putAcceptThirdPartyCookieEnabled(accept: boolean): void
 
 **参数：**
 
-| 参数名   | 参数类型   | 必填   | 默认值  | 参数描述              |
-| ----- | ------ | ---- | ---- | ----------------- |
-| accept   | boolean | 是    | -    | 设置是否拥有发送和接收第三方cookie的权限。 |
+| 参数名    | 参数类型    | 必填   | 默认值  | 参数描述                     |
+| ------ | ------- | ---- | ---- | ------------------------ |
+| accept | boolean | 是    | -    | 设置是否拥有发送和接收第三方cookie的权限。 |
 
 **示例：**
 
@@ -3964,8 +3964,8 @@ existCookie(): boolean
 
 **返回值：**
 
-| 类型      | 说明                   |
-| ------- | -------------------- |
+| 类型      | 说明          |
+| ------- | ----------- |
 | boolean | 是否存在cookie。 |
 
 **示例：**
@@ -4208,9 +4208,9 @@ static allowGeolocation(origin: string): void
 
 **参数：**
 
-| 参数名    | 参数类型 | 必填 | 默认值 | 参数描述       |
-| -------- | -------- | ---- | ----- | ------------- |
-| origin   | string   | 是   | -     | 指定源的字符串索引。 |
+| 参数名    | 参数类型   | 必填   | 默认值  | 参数描述       |
+| ------ | ------ | ---- | ---- | ---------- |
+| origin | string | 是    | -    | 指定源的字符串索引。 |
 
 **示例：**
 
@@ -4242,9 +4242,9 @@ static deleteGeolocation(origin: string): void
 
 **参数：**
 
-| 参数名    | 参数类型 | 必填 | 默认值 | 参数描述       |
-| -------- | -------- | ---- | ----- | ------------- |
-| origin   | string   | 是   | -     | 指定源的字符串索引。 |
+| 参数名    | 参数类型   | 必填   | 默认值  | 参数描述       |
+| ------ | ------ | ---- | ---- | ---------- |
+| origin | string | 是    | -    | 指定源的字符串索引。 |
 
 **示例：**
 
@@ -4303,10 +4303,10 @@ static getAccessibleGeolocation(origin: string, callback: AsyncCallback\<boolean
 
 **参数：**
 
-| 参数名    | 参数类型 | 必填 | 默认值 | 参数描述       |
-| -------- | -------- | ---- | ----- | ------------- |
-| origin   | string   | 是   | -     | 指定源的字符串索引。 |
-| callback | AsyncCallback\<boolean\> | 是 | - | 返回指定源的地理位置权限状态。获取成功，true表示已授权，false表示拒绝访问。获取失败，表示不存在指定源的权限状态。 |
+| 参数名      | 参数类型                     | 必填   | 默认值  | 参数描述                                     |
+| -------- | ------------------------ | ---- | ---- | ---------------------------------------- |
+| origin   | string                   | 是    | -    | 指定源的字符串索引。                               |
+| callback | AsyncCallback\<boolean\> | 是    | -    | 返回指定源的地理位置权限状态。获取成功，true表示已授权，false表示拒绝访问。获取失败，表示不存在指定源的权限状态。 |
 
 **示例：**
 
@@ -4344,14 +4344,14 @@ static getAccessibleGeolocation(origin: string): Promise\<boolean\>
 
 **参数：**
 
-| 参数名    | 参数类型 | 必填 | 默认值 | 参数描述       |
-| -------- | -------- | ---- | ----- | ------------- |
-| origin   | string   | 是   | -     | 指定源的字符串索引。 |
+| 参数名    | 参数类型   | 必填   | 默认值  | 参数描述       |
+| ------ | ------ | ---- | ---- | ---------- |
+| origin | string | 是    | -    | 指定源的字符串索引。 |
 
 **返回值：**
 
-| 类型               | 说明                                  |
-| ------------------ | ------------------------------------ |
+| 类型                 | 说明                                       |
+| ------------------ | ---------------------------------------- |
 | Promise\<boolean\> | Promise实例，用于获取指定源的权限状态，获取成功，true表示已授权，false表示拒绝访问。获取失败，表示不存在指定源的权限状态。 |
 
 **示例：**
@@ -4388,9 +4388,9 @@ static getStoredGeolocation(callback: AsyncCallback\<Array\<string\>\>): void
 
 **参数：**
 
-| 参数名    | 参数类型 | 必填 | 默认值 | 参数描述       |
-| -------- | -------- | ---- | ----- | ------------- |
-| callback | AsyncCallback\<Array\<string\>\> | 是 | - | 返回已存储地理位置权限状态的所有源信息。 |
+| 参数名      | 参数类型                             | 必填   | 默认值  | 参数描述                 |
+| -------- | -------------------------------- | ---- | ---- | -------------------- |
+| callback | AsyncCallback\<Array\<string\>\> | 是    | -    | 返回已存储地理位置权限状态的所有源信息。 |
 
 **示例：**
 
@@ -4428,14 +4428,14 @@ static getStoredGeolocation(): Promise\<Array\<string\>\>
 
 **参数：**
 
-| 参数名    | 参数类型 | 必填 | 默认值 | 参数描述       |
-| -------- | -------- | ---- | ----- | ------------- |
-| callback | AsyncCallback\<Array\<string\>\> | 是 | - | 返回已存储地理位置权限状态的所有源信息。 |
+| 参数名      | 参数类型                             | 必填   | 默认值  | 参数描述                 |
+| -------- | -------------------------------- | ---- | ---- | -------------------- |
+| callback | AsyncCallback\<Array\<string\>\> | 是    | -    | 返回已存储地理位置权限状态的所有源信息。 |
 
 **返回值：**
 
-| 类型                       | 说明                                  |
-| -------------------------- | ------------------------------------ |
+| 类型                         | 说明                               |
+| -------------------------- | -------------------------------- |
 | Promise\<Array\<string\>\> | Promise实例，用于获取已存储地理位置权限状态的所有源信息。 |
 
 **示例：**
@@ -4796,8 +4796,8 @@ searchAllAsync(searchString: string): void
 
 **参数：**
 
-| 参数名  | 参数类型   | 必填   | 默认值  | 参数描述                  |
-| ---- | ------ | ---- | ---- | --------------------- |
+| 参数名          | 参数类型   | 必填   | 默认值  | 参数描述    |
+| ------------ | ------ | ---- | ---- | ------- |
 | searchString | string | 是    | -    | 查找的关键字。 |
 
 **示例：**
@@ -4869,8 +4869,8 @@ searchNext(forward: boolean): void
 
 **参数：**
 
-| 参数名  | 参数类型   | 必填   | 默认值  | 参数描述                  |
-| ---- | ------ | ---- | ---- | --------------------- |
+| 参数名     | 参数类型    | 必填   | 默认值  | 参数描述        |
+| ------- | ------- | ---- | ---- | ----------- |
 | forward | boolean | 是    | -    | 从前向后或者逆向查找。 |
 
 
@@ -4903,11 +4903,11 @@ onSearchResultReceive(callback: (event?: {activeMatchOrdinal: number, numberOfMa
 
 **参数：**
 
-| 参数名                | 参数类型          | 参数描述                                |
-| ------------------ | ------------- | ----------------------------------- |
-| activeMatchOrdinal | number        | 当前匹配的查找项的序号（从0开始）。 |
-| numberOfMatches    | number        | 所有匹配到的关键词的个数。 |
-| isDoneCounting     | boolean       | 当次页内查找操作是否结束。该方法可能会回调多次，直到isDoneCounting为true为止。 |
+| 参数名                | 参数类型    | 参数描述                                     |
+| ------------------ | ------- | ---------------------------------------- |
+| activeMatchOrdinal | number  | 当前匹配的查找项的序号（从0开始）。                       |
+| numberOfMatches    | number  | 所有匹配到的关键词的个数。                            |
+| isDoneCounting     | boolean | 当次页内查找操作是否结束。该方法可能会回调多次，直到isDoneCounting为true为止。 |
 
 **示例：**
 
@@ -5004,18 +5004,18 @@ onRenderExited接口返回的渲染进程退出的具体原因。
 
 onSslErrorEventReceive接口返回的SSL错误的具体原因。
 
-| 名称           | 描述                  |
-| -------------- | -----------------    |
-| Invalid        | 一般错误。            |
-| HostMismatch   | 主机名不匹配。        |
-| DateInvalid    | 证书日期无效。        |
-| Untrusted      | 证书颁发机构不受信任。 |
+| 名称           | 描述          |
+| ------------ | ----------- |
+| Invalid      | 一般错误。       |
+| HostMismatch | 主机名不匹配。     |
+| DateInvalid  | 证书日期无效。     |
+| Untrusted    | 证书颁发机构不受信任。 |
 
 ## ProtectedResourceType<sup>9+</sup>枚举说明
 
-| 名称      | 描述            | 备注           |
-| --------- | -------------- | -------------- |
-| MidiSysex | MIDI SYSEX资源。| 目前仅支持权限事件上报，MIDI设备的使用还未支持。|
+| 名称        | 描述            | 备注                         |
+| --------- | ------------- | -------------------------- |
+| MidiSysex | MIDI SYSEX资源。 | 目前仅支持权限事件上报，MIDI设备的使用还未支持。 |
 
 ## WebAsyncController
 
@@ -5083,8 +5083,8 @@ storeWebArchive(baseName: string, autoName: boolean): Promise<string>
 
 **返回值：**
 
-| 类型                                       | 说明                                       |
-| ---------------------------------------- | ---------------------------------------- |
+| 类型              | 说明                               |
+| --------------- | -------------------------------- |
 | Promise<string> | Promise实例，保存成功返回文件路径，保存失败返回null。 |
 
 **示例：**
@@ -5130,9 +5130,9 @@ postMessageEvent(message: WebMessageEvent): void
 
 **参数：**
 
-| 参数名   | 参数类型   | 必填   | 默认值  | 参数描述              |
-| ----- | ------ | ---- | ---- | ----------------- |
-| message   | [WebMessageEvent](#webmessageevent9) | 是    | -    | 要发送的消息。 |
+| 参数名     | 参数类型                                 | 必填   | 默认值  | 参数描述    |
+| ------- | ------------------------------------ | ---- | ---- | ------- |
+| message | [WebMessageEvent](#webmessageevent9) | 是    | -    | 要发送的消息。 |
 
 **示例：**
 
@@ -5165,9 +5165,9 @@ onMessageEvent(callback: (result: string) => void): void
 
 **参数：**
 
-| 参数名   | 参数类型   | 必填   | 默认值  | 参数描述              |
-| ----- | ------ | ---- | ---- | ----------------- |
-| callback   | function | 是    | -    | 接收消息的回调函数。 |
+| 参数名      | 参数类型     | 必填   | 默认值  | 参数描述       |
+| -------- | -------- | ---- | ---- | ---------- |
+| callback | function | 是    | -    | 接收消息的回调函数。 |
 
 **示例：**
 
@@ -5205,8 +5205,8 @@ getData(): string
 
 **返回值：**
 
-| 类型                              | 说明            |
-| ------------------------------- | ------------- |
+| 类型     | 说明             |
+| ------ | -------------- |
 | string | 当前该类型对象中存放的消息。 |
 
 **示例：**
@@ -5237,9 +5237,9 @@ setData(data: string): void
 
 **参数：**
 
-| 参数名   | 参数类型   | 必填   | 默认值  | 参数描述              |
-| ----- | ------ | ---- | ---- | ----------------- |
-| data   | string | 是    | -    | 要发送的消息。 |
+| 参数名  | 参数类型   | 必填   | 默认值  | 参数描述    |
+| ---- | ------ | ---- | ---- | ------- |
+| data | string | 是    | -    | 要发送的消息。 |
 
 **示例：**
 
@@ -5271,8 +5271,8 @@ getPorts(): Array\<WebMessagePort\>
 
 **返回值：**
 
-| 类型                              | 说明            |
-| ------------------------------- | ------------- |
+| 类型                                       | 说明               |
+| ---------------------------------------- | ---------------- |
 | Array\<[WebMessagePort](#webmessageport9)\> | 当前该类型对象中存放的消息端口。 |
 
 **示例：**
@@ -5305,9 +5305,9 @@ setPorts(ports: Array\<WebMessagePort\>): void
 
 **参数：**
 
-| 参数名   | 参数类型   | 必填   | 默认值  | 参数描述              |
-| ----- | ------ | ---- | ---- | ----------------- |
-| ports   | Array\<[WebMessagePort](#webmessageport9)\> | 是    | -    | 要发送的消息端口。 |
+| 参数名   | 参数类型                                     | 必填   | 默认值  | 参数描述      |
+| ----- | ---------------------------------------- | ---- | ---- | --------- |
+| ports | Array\<[WebMessagePort](#webmessageport9)\> | 是    | -    | 要发送的消息端口。 |
 
 **示例：**
 
