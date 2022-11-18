@@ -2445,10 +2445,10 @@ selectInputDevice(inputAudioDevices: AudioDeviceDescriptors, callback: AsyncCall
 **示例：**
 ```js
 let inputAudioDeviceDescriptor = [{
-  "deviceRole":audio.DeviceRole.INPUT_DEVICE,
-  "networkId":audio.LOCAL_NETWORK_ID,
-  "interruptGroupId":1,
-  "volumeGroupId":1 }];
+  deviceRole : audio.DeviceRole.INPUT_DEVICE,
+  networkId : audio.LOCAL_NETWORK_ID,
+  interruptGroupId : 1,
+  volumeGroupId : 1 }];
 
 async function selectInputDevice(){
   audioRoutingManager.selectInputDevice(inputAudioDeviceDescriptor, (err) => {
@@ -2486,10 +2486,10 @@ selectInputDevice(inputAudioDevices: AudioDeviceDescriptors): Promise&lt;void&gt
 
 ```js
 let inputAudioDeviceDescriptor =[{
-  "deviceRole":audio.DeviceRole.INPUT_DEVICE,
-  "networkId":audio.LOCAL_NETWORK_ID,
-  "interruptGroupId":1,
-  "volumeGroupId":1 }];
+  deviceRole : audio.DeviceRole.INPUT_DEVICE,
+  networkId : audio.LOCAL_NETWORK_ID,
+  interruptGroupId : 1,
+  volumeGroupId : 1 }];
 
 async function getRoutingManager(){
     audioRoutingManager.selectInputDevice(inputAudioDeviceDescriptor).then(() => {
@@ -2632,10 +2632,10 @@ selectOutputDevice(outputAudioDevices: AudioDeviceDescriptors, callback: AsyncCa
 **示例：**
 ```js
 let outputAudioDeviceDescriptor = [{
-  "deviceRole":audio.DeviceRole.OUTPUT_DEVICE,
-  "networkId":audio.LOCAL_NETWORK_ID,
-  "interruptGroupId":1,
-  "volumeGroupId":1 }];
+  deviceRole : audio.DeviceRole.OUTPUT_DEVICE,
+  networkId : audio.LOCAL_NETWORK_ID,
+  interruptGroupId : 1,
+  volumeGroupId : 1 }];
 async function selectOutputDevice(){
   audioRoutingManager.selectOutputDevice(outputAudioDeviceDescriptor, (err) => {
     if (err) {
@@ -2672,10 +2672,10 @@ selectOutputDevice(outputAudioDevices: AudioDeviceDescriptors): Promise&lt;void&
 
 ```js
 let outputAudioDeviceDescriptor =[{
-  "deviceRole":audio.DeviceRole.OUTPUT_DEVICE,
-  "networkId":audio.LOCAL_NETWORK_ID,
-  "interruptGroupId":1,
-  "volumeGroupId":1 }];
+  deviceRole : audio.DeviceRole.OUTPUT_DEVICE,
+  networkId : audio.LOCAL_NETWORK_ID,
+  interruptGroupId : 1,
+  volumeGroupId : 1 }];
 
 async function selectOutputDevice(){
   audioRoutingManager.selectOutputDevice(outputAudioDeviceDescriptor).then(() => {
@@ -2707,17 +2707,17 @@ selectOutputDeviceByFilter(filter: AudioRendererFilter, outputAudioDevices: Audi
 **示例：**
 ```js
 let outputAudioRendererFilter = {
-  "uid":20010041,
-  "rendererInfo": {
-    "contentType":audio.ContentType.CONTENT_TYPE_MUSIC,
-    "streamUsage":audio.StreamUsage.STREAM_USAGE_MEDIA,
-    "rendererFlags":0 },
-  "rendererId":0 };
+  uid : 20010041,
+  rendererInfo : {
+    contentType : audio.ContentType.CONTENT_TYPE_MUSIC,
+    streamUsage : audio.StreamUsage.STREAM_USAGE_MEDIA,
+    rendererFlags : 0 },
+  rendererId : 0 };
 let outputAudioDeviceDescriptor = [{
-  "deviceRole":audio.DeviceRole.OUTPUT_DEVICE,
-  "networkId":audio.LOCAL_NETWORK_ID,
-  "interruptGroupId":1,
-  "volumeGroupId":1 }];
+  deviceRole : audio.DeviceRole.OUTPUT_DEVICE,
+  networkId : audio.LOCAL_NETWORK_ID,
+  interruptGroupId : 1,
+  volumeGroupId : 1 }];
 
 async function selectOutputDeviceByFilter(){
   audioRoutingManager.selectOutputDeviceByFilter(outputAudioRendererFilter, outputAudioDeviceDescriptor, (err) => {
@@ -2756,17 +2756,17 @@ selectOutputDeviceByFilter(filter: AudioRendererFilter, outputAudioDevices: Audi
 
 ```js
 let outputAudioRendererFilter = {
-  "uid":20010041,
-  "rendererInfo": {
-    "contentType":audio.ContentType.CONTENT_TYPE_MUSIC,
-    "streamUsage":audio.StreamUsage.STREAM_USAGE_MEDIA,
-    "rendererFlags":0 },
-  "rendererId":0 };
+  uid : 20010041,
+  rendererInfo : {
+    contentType : audio.ContentType.CONTENT_TYPE_MUSIC,
+    streamUsage : audio.StreamUsage.STREAM_USAGE_MEDIA,
+    rendererFlags : 0 },
+  rendererId : 0 };
 let outputAudioDeviceDescriptor = [{
-  "deviceRole":audio.DeviceRole.OUTPUT_DEVICE,
-  "networkId":audio.LOCAL_NETWORK_ID,
-  "interruptGroupId":1,
-  "volumeGroupId":1 }];
+  deviceRole : audio.DeviceRole.OUTPUT_DEVICE,
+  networkId : audio.LOCAL_NETWORK_ID,
+  interruptGroupId : 1,
+  volumeGroupId : 1 }];
 
 async function selectOutputDeviceByFilter(){
   audioRoutingManager.selectOutputDeviceByFilter(outputAudioRendererFilter, outputAudioDeviceDescriptor).then(() => {
