@@ -67,7 +67,7 @@ HarmonyAppProvision文件示例：
 | distribution-certificate  | 表示[发布证书](hapsigntool-guidelines.md)的信息。 | 数值    | 当type属性为release时，该标签必选；否则，该标签可选。 | 不可缺省   |
 | bundle-name  | 表示应用程序的包名。 | 字符串    | 必选 | 不可缺省   |
 | apl  | 表示应用程序的[apl级别](accesstoken-overview.md)，系统预定义的apl包括：normal、system_basic和system_core。 | 字符串    | 必选 | 不可缺省   |
-| app-feature  | 表示应用程序的类型，系统预定义的app-feature包括hos_system_app （系统应用）和hos_normal_app（普通应用）。 | 字符串    | 必选 | 不可缺省   |
+| app-feature  | 表示应用程序的类型，系统预定义的app-feature包括hos_system_app （系统应用）和hos_normal_app（普通应用）。只有系统应用才允许调用系统API，普通应用调用系统API可能会调用失败或运行异常。 | 字符串    | 必选 | 不可缺省   |
 
 
 ### acls对象内部结构
@@ -79,7 +79,7 @@ acls对象包含已授权的[acl权限](accesstoken-overview.md)。需要指出�
 | allowed-acls | 表示已授权的[acl权限](accesstoken-overview.md)列表。 | 字符串数组    | 可选 | 不可缺省   |
 
 ### permissions对象内部结构
-permissions对象包含允许使用的受限敏感权限。不同于acls对象，permissions对象中的权限仅代表应用允许使用该敏感权限，权限最终由用户运行时授权。需要指出的是，开发者仍然需要在应用包配置文件（[config.json](package-structure.md)）将permissions权限信息填写到reqPermissions属性中。
+permissions对象包含允许使用的受限敏感权限。不同于acls对象，permissions对象中的权限仅代表应用允许使用该敏感权限，权限最终由用户运行时授权。需要指出的是，开发者仍然需要在应用包配置文件（[config.json](../quick-start/package-structure.md)）将permissions权限信息填写到reqPermissions属性中。
 
 表5 permissions对象的内部结构
 | 属性名称                  | 含义                            | 数据类型 | 是否必选 | 是否可缺省 |
