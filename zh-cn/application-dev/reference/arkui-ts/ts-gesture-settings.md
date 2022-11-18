@@ -40,10 +40,11 @@
 
 组件通过手势事件绑定不同GestureType的手势对象，各手势对象在响应手势操作的事件回调中提供手势相关信息。下面通过TapGesture手势对象的onAction事件响应点击事件，获取事件相关信息。其余手势对象的事件定义见各个手势对象章节。 若需绑定多种手势请使用 [组合手势](ts-combined-gestures.md)。
 
-- TapGesture事件说明
-  | 名称 | 功能描述 |
-  | -------- | -------- |
-  | onAction((event?:GestureEvent)&nbsp;=&gt;&nbsp;void) | Tap手势识别成功回调。 |
+**TapGesture事件说明**
+
+| 名称 | 功能描述 |
+| -------- | -------- |
+| onAction((event?:GestureEvent)&nbsp;=&gt;&nbsp;void) | Tap手势识别成功回调。 |
 
 ## GestureEvent对象说明
 | 名称 | 类型 | 描述 |
