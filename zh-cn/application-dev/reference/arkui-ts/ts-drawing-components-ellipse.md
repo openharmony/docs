@@ -14,7 +14,7 @@
 
 ## 接口
 
-ellipse(options?: {width?: string | number, height?: string | number})
+Ellipse(options?: {width?: string | number, height?: string | number})
 
 **参数:**
 
