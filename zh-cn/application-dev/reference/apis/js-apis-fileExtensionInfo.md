@@ -2,7 +2,7 @@
 
 该模块提供公共文件访问和管理模块中RootInfo与FileInfo中部分属性值的定义。
 
->![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+>**说明：**
 >
 >- 本模块首批接口从API version 9开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 >- 本模块接口为系统接口。
@@ -37,10 +37,10 @@ import fileExtensionInfo from '@ohos.fileExtensionInfo';
 
 ### 属性
 
-  | 名称 | 类型   | 值 | 可读 | 可写 | 说明     |
-  | ------ | ------ | ---- | ---- | ---- | -------- |
-  | SUPPORTS_READ   | number | 0b1 | 是   | 否   | 支持读 |
-  | SUPPORTS_WRITE   | number | 0b10 | 是   | 否   | 支持写 |
+  | 名称 | 类型   | 可读 | 可写 | 说明     |
+  | ------ | ------ | ---- | ---- | -------- |
+  | SUPPORTS_READ   | number | 是   | 否   | 支持读 |
+  | SUPPORTS_WRITE   | number | 是   | 否   | 支持写 |
 
 ## fileExtensionInfo.DocumentFlag
 
@@ -50,9 +50,9 @@ import fileExtensionInfo from '@ohos.fileExtensionInfo';
 
 ### 属性
 
-  | 名称 | 类型   | 值 | 可读 | 可写 | 说明     |
-  | ------ | ------ | ---- | ---- | ---- | -------- |
-  | REPRESENTS_FILE   | number | 0b1 | 是   | 否   | 代表文件 |
-  | REPRESENTS_DIR   | number | 0b10 | 是   | 否   | 代表目录 |
-  | SUPPORTS_READ   | number | 0b100 | 是   | 否   | 支持读 |
-  | SUPPORTS_WRITE   | number | 0b1000 | 是   | 否   | 支持写 |
+  | 名称 | 类型   | 可读 | 可写 | 说明     |
+  | ------ | ------ | ---- | ---- | -------- |
+  | REPRESENTS_FILE   | number | 是   | 否   | 代表文件 |
+  | REPRESENTS_DIR   | number | 是   | 否   | 代表目录 |
+  | SUPPORTS_READ   | number | 是   | 否   | 支持读 |
+  | SUPPORTS_WRITE   | number | 是   | 否   | 支持写 |
