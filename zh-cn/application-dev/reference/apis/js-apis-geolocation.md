@@ -4,7 +4,7 @@
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
 > 本模块首批接口从API version 7开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
-
+> 从API Version 9开始，该接口不再维护，推荐使用新接口[`@ohos.geoLocationManager`](js-apis-geoLocationManager.md)。
 
 ## 导入模块
 
@@ -17,6 +17,9 @@ import geolocation from '@ohos.geolocation';
 on(type: 'locationChange', request: LocationRequest, callback: Callback&lt;Location&gt;): void
 
 开启位置变化订阅，并发起定位请求。定位结果按照[LocationRequest](#locationrequest)的属性进行上报，
+
+> **说明：**<br/>
+> 从API version 9开始废弃，建议使用[geoLocationManager.on(type: 'locationChange', request: LocationRequest, callback: Callback&lt;Location&gt;): void<sup>9+</sup>](#)替代。
 
 **需要权限**：ohos.permission.LOCATION
 
@@ -50,6 +53,9 @@ off(type: 'locationChange', callback?: Callback&lt;Location&gt;): void
 
 关闭位置变化订阅，并删除对应的定位请求。
 
+> **说明：**<br/>
+> 从API version 9开始废弃，建议使用[geoLocationManager.off(type: 'locationChange', callback?: Callback&lt;Location&gt;): void<sup>9+</sup>](#)替代。
+
 **需要权限**：ohos.permission.LOCATION
 
 **系统能力**：SystemCapability.Location.Location.Core
@@ -81,6 +87,9 @@ on(type: 'locationServiceState', callback: Callback&lt;boolean&gt;): void
 
 订阅位置服务状态变化。
 
+> **说明：**<br/>
+> 从API version 9开始废弃，建议使用[geoLocationManager.on(type: 'locationEnabledChange', callback: Callback<boolean>): void;<sup>9+</sup>](#)替代。
+
 **需要权限**：ohos.permission.LOCATION
 
 **系统能力**：SystemCapability.Location.Location.Core
@@ -109,6 +118,9 @@ on(type: 'locationServiceState', callback: Callback&lt;boolean&gt;): void
 off(type: 'locationServiceState', callback?: Callback&lt;boolean&gt;): void;
 
 取消订阅位置服务状态变化。
+
+> **说明：**<br/>
+> 从API version 9开始废弃，建议使用[geoLocationManager.off(type: 'locationEnabledChange', callback: Callback<boolean>): void;<sup>9+</sup>](#)替代。
 
 **需要权限**：ohos.permission.LOCATION
 
@@ -139,6 +151,9 @@ off(type: 'locationServiceState', callback?: Callback&lt;boolean&gt;): void;
 on(type: 'cachedGnssLocationsReporting', request: CachedGnssLocationsRequest, callback: Callback&lt;Array&lt;Location&gt;&gt;): void;
 
 订阅缓存GNSS定位结果上报事件。
+
+> **说明：**<br/>
+> 从API version 9开始废弃，建议使用[geoLocationManager.on(type: 'cachedGnssLocationsChange', request: CachedGnssLocationsRequest, callback: Callback<Array<Location>>): void;<sup>9+</sup>](#)替代。
 
 **需要权限**：ohos.permission.LOCATION
 
@@ -171,6 +186,9 @@ off(type: 'cachedGnssLocationsReporting', callback?: Callback&lt;Array&lt;Locati
 
 取消订阅缓存GNSS定位结果上报事件。
 
+> **说明：**<br/>
+> 从API version 9开始废弃，建议使用[geoLocationManager.off(type: 'cachedGnssLocationsChange', callback?: Callback<Array<Location>>): void;<sup>9+</sup>](#)替代。
+
 **需要权限**：ohos.permission.LOCATION
 
 **系统能力**：SystemCapability.Location.Location.Gnss
@@ -202,6 +220,9 @@ on(type: 'gnssStatusChange', callback: Callback&lt;SatelliteStatusInfo&gt;): voi
 
 订阅GNSS卫星状态信息上报事件。
 
+> **说明：**<br/>
+> 从API version 9开始废弃，建议使用[geoLocationManager.on(type: 'satelliteStatusChange', callback: Callback<SatelliteStatusInfo>): void;<sup>9+</sup>](#)替代。
+
 **需要权限**：ohos.permission.LOCATION
 
 **系统能力**：SystemCapability.Location.Location.Gnss
@@ -230,6 +251,9 @@ on(type: 'gnssStatusChange', callback: Callback&lt;SatelliteStatusInfo&gt;): voi
 off(type: 'gnssStatusChange', callback?: Callback&lt;SatelliteStatusInfo&gt;): void;
 
 取消订阅GNSS卫星状态信息上报事件。
+
+> **说明：**<br/>
+> 从API version 9开始废弃，建议使用[geoLocationManager.off(type: 'satelliteStatusChange', callback?: Callback<SatelliteStatusInfo>): void;<sup>9+</sup>](#)替代。
 
 **需要权限**：ohos.permission.LOCATION
 
@@ -260,6 +284,9 @@ on(type: 'nmeaMessageChange', callback: Callback&lt;string&gt;): void;
 
 订阅GNSS NMEA信息上报事件。
 
+> **说明：**<br/>
+> 从API version 9开始废弃，建议使用[geoLocationManager.on(type: 'nmeaMessage', callback: Callback<string>): void;<sup>9+</sup>](#)替代。
+
 **需要权限**：ohos.permission.LOCATION
 
 **系统能力**：SystemCapability.Location.Location.Gnss
@@ -288,6 +315,9 @@ on(type: 'nmeaMessageChange', callback: Callback&lt;string&gt;): void;
 off(type: 'nmeaMessageChange', callback?: Callback&lt;string&gt;): void;
 
 取消订阅GNSS NMEA信息上报事件。
+
+> **说明：**<br/>
+> 从API version 9开始废弃，建议使用[geoLocationManager.off(type: 'nmeaMessage', callback?: Callback<string>): void;<sup>9+</sup>](#)替代。
 
 **需要权限**：ohos.permission.LOCATION
 
@@ -318,6 +348,9 @@ off(type: 'nmeaMessageChange', callback?: Callback&lt;string&gt;): void;
 on(type: 'fenceStatusChange', request: GeofenceRequest, want: WantAgent): void;
 
 添加一个围栏，并订阅地理围栏事件。
+
+> **说明：**<br/>
+> 从API version 9开始废弃，建议使用[geoLocationManager.on(type: 'gnssFenceStatusChange', request: GeofenceRequest, want: WantAgent): void;<sup>9+</sup>](#)替代。
 
 **需要权限**：ohos.permission.LOCATION
 
@@ -364,6 +397,9 @@ off(type: 'fenceStatusChange', request: GeofenceRequest, want: WantAgent): void;
 
 删除一个围栏，并取消订阅该围栏事件。
 
+> **说明：**<br/>
+> 从API version 9开始废弃，建议使用[geoLocationManager.off(type: 'gnssFenceStatusChange', request: GeofenceRequest, want: WantAgent): void;<sup>9+</sup>](#)替代。
+
 **需要权限**：ohos.permission.LOCATION
 
 **系统能力**：SystemCapability.Location.Location.Geofence
@@ -407,8 +443,10 @@ off(type: 'fenceStatusChange', request: GeofenceRequest, want: WantAgent): void;
 
 getCurrentLocation(request: CurrentLocationRequest, callback: AsyncCallback&lt;Location&gt;): void
 
-
 获取当前位置，使用callback回调异步返回结果。
+
+> **说明：**<br/>
+> 从API version 9开始废弃，建议使用[geoLocationManager.getCurrentLocation(request: CurrentLocationRequest, callback: AsyncCallback&lt;Location&gt;): void<sup>9+</sup>](#)替代。
 
 **需要权限**：ohos.permission.LOCATION
 
@@ -443,8 +481,10 @@ getCurrentLocation(request: CurrentLocationRequest, callback: AsyncCallback&lt;L
 
 getCurrentLocation(request?: CurrentLocationRequest): Promise&lt;Location&gt;
 
-
 获取当前位置，使用Promise方式异步返回结果。
+
+> **说明：**<br/>
+> 从API version 9开始废弃，建议使用[geoLocationManager.getCurrentLocation(request?: CurrentLocationRequest): Promise&lt;Location&gt;<sup>9+</sup>](#)替代。
 
 **需要权限**：ohos.permission.LOCATION
 
@@ -480,6 +520,9 @@ getLastLocation(callback: AsyncCallback&lt;Location&gt;): void
 
 获取上一次位置，使用callback回调异步返回结果。
 
+> **说明：**<br/>
+> 从API version 9开始废弃，建议使用[geoLocationManager.getLastLocation(): Location;<sup>9+</sup>](#)替代。
+
 **需要权限**：ohos.permission.LOCATION
 
 **系统能力**：SystemCapability.Location.Location.Core
@@ -512,6 +555,9 @@ getLastLocation(): Promise&lt;Location&gt;
 
 获取上一次位置，使用Promise方式异步返回结果。
 
+> **说明：**<br/>
+> 从API version 9开始废弃，建议使用[geoLocationManager.getLastLocation(): Location;<sup>9+</sup>](#)替代。
+
 **需要权限**：ohos.permission.LOCATION
 
 **系统能力**：SystemCapability.Location.Location.Core
@@ -537,8 +583,10 @@ getLastLocation(): Promise&lt;Location&gt;
 
 isLocationEnabled(callback: AsyncCallback&lt;boolean&gt;): void
 
-
 判断位置服务是否已经打开，使用callback回调异步返回结果。
+
+> **说明：**<br/>
+> 从API version 9开始废弃，建议使用[geoLocationManager.isLocationEnabled(): boolean;<sup>9+</sup>](#)替代。
 
 **需要权限**：ohos.permission.LOCATION
 
@@ -571,6 +619,9 @@ isLocationEnabled(): Promise&lt;boolean&gt;
 
 判断位置服务是否已经开启，使用Promise方式异步返回结果。
 
+> **说明：**<br/>
+> 从API version 9开始废弃，建议使用[geoLocationManager.isLocationEnabled(): boolean;<sup>9+</sup>](#)替代。
+
 **需要权限**：ohos.permission.LOCATION
 
 **系统能力**：SystemCapability.Location.Location.Core
@@ -595,8 +646,10 @@ isLocationEnabled(): Promise&lt;boolean&gt;
 
 requestEnableLocation(callback: AsyncCallback&lt;boolean&gt;): void
 
-
 请求打开位置服务，使用callback回调异步返回结果。
+
+> **说明：**<br/>
+> 从API version 9开始废弃，建议使用[geoLocationManager.requestEnableLocation(callback: AsyncCallback<boolean>): void;<sup>9+</sup>](#)替代。
 
 **需要权限**：ohos.permission.LOCATION
 
@@ -629,6 +682,9 @@ requestEnableLocation(): Promise&lt;boolean&gt;
 
 请求打开位置服务，使用Promise方式异步返回结果。
 
+> **说明：**<br/>
+> 从API version 9开始废弃，建议使用[geoLocationManager.requestEnableLocation(): Promise<boolean>;<sup>9+</sup>](#)替代。
+
 **需要权限**：ohos.permission.LOCATION
 
 **系统能力**：SystemCapability.Location.Location.Core
@@ -649,131 +705,14 @@ requestEnableLocation(): Promise&lt;boolean&gt;
   ```
 
 
-## geolocation.enableLocation
-
-enableLocation(callback: AsyncCallback&lt;boolean&gt;): void;
-
-打开位置服务，使用callback回调异步返回结果。
-
-**系统API**：此接口为系统接口，三方应用不支持调用。
-
-**需要权限**：ohos.permission.MANAGE_SECURE_SETTINGS
-
-**系统能力**：SystemCapability.Location.Location.Core
-
-**参数**：
-
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | callback | AsyncCallback&lt;boolean&gt; | 是 | 用来接收位置服务状态的回调。 |
-
-**示例**
-  
-  ```ts
-  import geolocation from '@ohos.geolocation';
-  geolocation.enableLocation((err, data) => {
-      if (err) {
-          console.log('enableLocation: err=' + JSON.stringify(err));
-      }
-      if (data) {
-          console.log('enableLocation: data=' + JSON.stringify(data));
-      }
-  });
-  ```
-
-
-## geolocation.enableLocation
-
-enableLocation(): Promise&lt;boolean&gt;
-
-打开位置服务，使用Promise方式异步返回结果。
-
-**系统API**：此接口为系统接口，三方应用不支持调用。
-
-**需要权限**：ohos.permission.MANAGE_SECURE_SETTINGS
-
-**系统能力**：SystemCapability.Location.Location.Core
-
-**返回值**：
-
-  | 参数名 | 说明 |
-  | -------- | -------- |
-  | Promise&lt;boolean&gt; | 返回位置服务是否可用。 |
-
-**示例**
-  
-  ```ts
-  import geolocation from '@ohos.geolocation';
-  geolocation.enableLocation().then((result) => {
-      console.log('promise, enableLocation: ' + JSON.stringify(result));
-  });
-  ```
-
-## geolocation.disableLocation
-
-disableLocation(callback: AsyncCallback&lt;boolean&gt;): void;
-
-关闭位置服务，使用callback回调异步返回结果。
-
-**系统API**：此接口为系统接口，三方应用不支持调用。
-
-**需要权限**：ohos.permission.MANAGE_SECURE_SETTINGS
-
-**系统能力**：SystemCapability.Location.Location.Core
-
-**参数**：
-
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | callback | AsyncCallback&lt;boolean&gt; | 是 | 用来接收位置服务状态的回调。 |
-
-**示例**
-  
-  ```ts
-  import geolocation from '@ohos.geolocation';
-  geolocation.disableLocation((err, data) => {
-      if (err) {
-          console.log('disableLocation: err=' + JSON.stringify(err));
-      }
-      if (data) {
-          console.log('disableLocation: data=' + JSON.stringify(data));
-      }
-  });
-  ```
-
-
-## geolocation.disableLocation
-
-disableLocation(): Promise&lt;boolean&gt;
-
-关闭位置服务，使用Promise方式异步返回结果。
-
-**系统API**：此接口为系统接口，三方应用不支持调用。
-
-**需要权限**：ohos.permission.MANAGE_SECURE_SETTINGS
-
-**系统能力**：SystemCapability.Location.Location.Core
-
-**返回值**：
-
-  | 参数名 | 说明 |
-  | -------- | -------- |
-  | Promise&lt;boolean&gt; | 返回位置服务是否可用。 |
-
-**示例**
-  
-  ```ts
-  import geolocation from '@ohos.geolocation';
-  geolocation.disableLocation().then((result) => {
-      console.log('promise, disableLocation: ' + JSON.stringify(result));
-  });
-  ```
-
 ## geolocation.isGeoServiceAvailable
 
 isGeoServiceAvailable(callback: AsyncCallback&lt;boolean&gt;): void
 
 判断（逆）地理编码服务状态，使用callback回调异步返回结果。
+
+> **说明：**<br/>
+> 从API version 9开始废弃，建议使用[geoLocationManager.isGeocoderAvailable(): boolean;<sup>9+</sup>](#)替代。
 
 **需要权限**：ohos.permission.LOCATION
 
@@ -806,6 +745,9 @@ isGeoServiceAvailable(): Promise&lt;boolean&gt;
 
 判断（逆）地理编码服务状态，使用Promise方式异步返回结果。
 
+> **说明：**<br/>
+> 从API version 9开始废弃，建议使用[geoLocationManager.isGeocoderAvailable(): boolean;<sup>9+</sup>](#)替代。
+
 **需要权限**：ohos.permission.LOCATION
 
 **系统能力**：SystemCapability.Location.Location.Geocoder
@@ -831,6 +773,9 @@ isGeoServiceAvailable(): Promise&lt;boolean&gt;
 getAddressesFromLocation(request: ReverseGeoCodeRequest, callback: AsyncCallback&lt;Array&lt;GeoAddress&gt;&gt;): void
 
 调用逆地理编码服务，将坐标转换为地理描述，使用callback回调异步返回结果。
+
+> **说明：**<br/>
+> 从API version 9开始废弃，建议使用[geoLocationManager.getAddressesFromLocation(request: ReverseGeoCodeRequest, callback: AsyncCallback<Array<GeoAddress>>): void;<sup>9+</sup>](#)替代。
 
 **需要权限**：ohos.permission.LOCATION
 
@@ -865,6 +810,9 @@ getAddressesFromLocation(request: ReverseGeoCodeRequest): Promise&lt;Array&lt;Ge
 
 调用逆地理编码服务，将坐标转换为地理描述，使用Promise方式异步返回结果。
 
+> **说明：**<br/>
+> 从API version 9开始废弃，建议使用[geoLocationManager.getAddressesFromLocation(request: ReverseGeoCodeRequest): Promise<Array<GeoAddress>>;<sup>9+</sup>](#)替代。
+
 **需要权限**：ohos.permission.LOCATION
 
 **系统能力**：SystemCapability.Location.Location.Geocoder
@@ -897,6 +845,9 @@ getAddressesFromLocation(request: ReverseGeoCodeRequest): Promise&lt;Array&lt;Ge
 getAddressesFromLocationName(request: GeoCodeRequest, callback: AsyncCallback&lt;Array&lt;GeoAddress&gt;&gt;): void
 
 调用地理编码服务，将地理描述转换为具体坐标，使用callback回调异步返回结果。
+
+> **说明：**<br/>
+> 从API version 9开始废弃，建议使用[geoLocationManager.getAddressesFromLocationName(request: GeoCodeRequest, callback: AsyncCallback<Array<GeoAddress>>): void;<sup>9+</sup>](#)替代。
 
 **需要权限**：ohos.permission.LOCATION
 
@@ -931,6 +882,9 @@ getAddressesFromLocationName(request: GeoCodeRequest): Promise&lt;Array&lt;GeoAd
 
 调用地理编码服务，将地理描述转换为具体坐标，使用Promise方式异步返回结果。
 
+> **说明：**<br/>
+> 从API version 9开始废弃，建议使用[geoLocationManager.getAddressesFromLocationName(request: GeoCodeRequest): Promise<Array<GeoAddress>>;<sup>9+</sup>](#)替代。
+
 **需要权限**：ohos.permission.LOCATION
 
 **系统能力**：SystemCapability.Location.Location.Geocoder
@@ -964,6 +918,9 @@ getCachedGnssLocationsSize(callback: AsyncCallback&lt;number&gt;): void;
 
 获取GNSS芯片缓存位置的个数。
 
+> **说明：**<br/>
+> 从API version 9开始废弃，建议使用[geoLocationManager.getCachedGnssLocationsSize(callback: AsyncCallback<number>): void;<sup>9+</sup>](#)替代。
+
 **需要权限**：ohos.permission.LOCATION
 
 **系统能力**：SystemCapability.Location.Location.Gnss
@@ -995,6 +952,9 @@ getCachedGnssLocationsSize(): Promise&lt;number&gt;;
 
 获取GNSS芯片缓存位置的个数。
 
+> **说明：**<br/>
+> 从API version 9开始废弃，建议使用[geoLocationManager.getCachedGnssLocationsSize(): Promise<number>;<sup>9+</sup>](#)替代。
+
 **需要权限**：ohos.permission.LOCATION
 
 **系统能力**：SystemCapability.Location.Location.Gnss
@@ -1020,6 +980,9 @@ getCachedGnssLocationsSize(): Promise&lt;number&gt;;
 flushCachedGnssLocations(callback: AsyncCallback&lt;boolean&gt;): void;
 
 读取并清空GNSS芯片所有缓存位置。
+
+> **说明：**<br/>
+> 从API version 9开始废弃，建议使用[geoLocationManager.flushCachedGnssLocations(callback: AsyncCallback<void>): void;<sup>9+</sup>](#)替代。
 
 **需要权限**：ohos.permission.LOCATION
 
@@ -1052,6 +1015,9 @@ flushCachedGnssLocations(): Promise&lt;boolean&gt;;
 
 读取并清空GNSS芯片所有缓存位置。
 
+> **说明：**<br/>
+> 从API version 9开始废弃，建议使用[geoLocationManager.flushCachedGnssLocations(): Promise<void>;<sup>9+</sup>](#)替代。
+
 **需要权限**：ohos.permission.LOCATION
 
 **系统能力**：SystemCapability.Location.Location.Gnss
@@ -1077,6 +1043,9 @@ flushCachedGnssLocations(): Promise&lt;boolean&gt;;
 sendCommand(command: LocationCommand, callback: AsyncCallback&lt;boolean&gt;): void;
 
 给位置服务子系统的各个部件发送扩展命令。
+
+> **说明：**<br/>
+> 从API version 9开始废弃，建议使用[geoLocationManager.sendCommand(command: LocationCommand, callback: AsyncCallback<void>): void;<sup>9+</sup>](#)替代。
 
 **需要权限**：ohos.permission.LOCATION
 
@@ -1111,6 +1080,9 @@ sendCommand(command: LocationCommand): Promise&lt;boolean&gt;;
 
 给位置服务子系统的各个部件发送扩展命令。
 
+> **说明：**<br/>
+> 从API version 9开始废弃，建议使用[geoLocationManager.sendCommand(command: LocationCommand): Promise<void>;<sup>9+</sup>](#)替代。
+
 **需要权限**：ohos.permission.LOCATION
 
 **系统能力**：SystemCapability.Location.Location.Core
@@ -1138,10 +1110,12 @@ sendCommand(command: LocationCommand): Promise&lt;boolean&gt;;
   ```
 
 
-
 ## LocationRequestPriority
 
 位置请求中位置信息优先级设置。
+
+> **说明：**<br/>
+> 从API version 9开始废弃，建议使用[geoLocationManager.LocationRequestPriority;<sup>9+</sup>](#)替代。
 
 **需要权限**：ohos.permission.LOCATION
 
@@ -1158,6 +1132,9 @@ sendCommand(command: LocationCommand): Promise&lt;boolean&gt;;
 ## LocationRequestScenario
 
   位置请求中定位场景设置。
+
+> **说明：**<br/>
+> 从API version 9开始废弃，建议使用[geoLocationManager.LocationRequestScenario;<sup>9+</sup>](#)替代。
 
 **需要权限**：ohos.permission.LOCATION
 
@@ -1176,6 +1153,9 @@ sendCommand(command: LocationCommand): Promise&lt;boolean&gt;;
 ## GeoLocationErrorCode
 
 位置服务中的错误码信息。
+
+> **说明：**<br/>
+> 从API version 9开始废弃。
 
 **需要权限**：ohos.permission.LOCATION
 
@@ -1196,6 +1176,9 @@ sendCommand(command: LocationCommand): Promise&lt;boolean&gt;;
 
 逆地理编码请求接口。
 
+> **说明：**<br/>
+> 从API version 9开始废弃，建议使用[geoLocationManager.ReverseGeoCodeRequest;<sup>9+</sup>](#)替代。
+
 **需要权限**：ohos.permission.LOCATION
 
 **系统能力**：SystemCapability.Location.Location.Geocoder
@@ -1211,6 +1194,9 @@ sendCommand(command: LocationCommand): Promise&lt;boolean&gt;;
 ## GeoCodeRequest
 
 地理编码请求接口。
+
+> **说明：**<br/>
+> 从API version 9开始废弃，建议使用[geoLocationManager.GeoCodeRequest;<sup>9+</sup>](#)替代。
 
 **需要权限**：ohos.permission.LOCATION
 
@@ -1230,6 +1216,9 @@ sendCommand(command: LocationCommand): Promise&lt;boolean&gt;;
 ## GeoAddress
 
 地理编码类型。
+
+> **说明：**<br/>
+> 从API version 9开始废弃，建议使用[geoLocationManager.GeoAddress;<sup>9+</sup>](#)替代。
 
 **需要权限**：ohos.permission.LOCATION
 
@@ -1261,6 +1250,9 @@ sendCommand(command: LocationCommand): Promise&lt;boolean&gt;;
 
 位置信息请求类型。
 
+> **说明：**<br/>
+> 从API version 9开始废弃，建议使用[geoLocationManager.LocationRequest;<sup>9+</sup>](#)替代。
+
 **需要权限**：ohos.permission.LOCATION
 
 **系统能力**：SystemCapability.Location.Location.Core
@@ -1278,6 +1270,9 @@ sendCommand(command: LocationCommand): Promise&lt;boolean&gt;;
 
 当前位置信息请求类型。
 
+> **说明：**<br/>
+> 从API version 9开始废弃，建议使用[geoLocationManager.CurrentLocationRequest;<sup>9+</sup>](#)替代。
+
 **需要权限**：ohos.permission.LOCATION
 
 **系统能力**：SystemCapability.Location.Location.Core
@@ -1293,6 +1288,9 @@ sendCommand(command: LocationCommand): Promise&lt;boolean&gt;;
 ## SatelliteStatusInfo<sup>8+</sup>
 
 卫星状态信息。
+
+> **说明：**<br/>
+> 从API version 9开始废弃，建议使用[geoLocationManager.SatelliteStatusInfo;<sup>9+</sup>](#)替代。
 
 **需要权限**：ohos.permission.LOCATION
 
@@ -1312,6 +1310,9 @@ sendCommand(command: LocationCommand): Promise&lt;boolean&gt;;
 
 请求订阅GNSS缓存位置上报功能接口的配置参数。
 
+> **说明：**<br/>
+> 从API version 9开始废弃，建议使用[geoLocationManager.CachedGnssLocationsRequest;<sup>9+</sup>](#)替代。
+
 **需要权限**：ohos.permission.LOCATION
 
 **系统能力**：SystemCapability.Location.Location.Gnss
@@ -1325,6 +1326,9 @@ sendCommand(command: LocationCommand): Promise&lt;boolean&gt;;
 ## Geofence<sup>8+</sup>
 
 GNSS围栏的配置参数。目前只支持圆形围栏。
+
+> **说明：**<br/>
+> 从API version 9开始废弃，建议使用[geoLocationManager.Geofence;<sup>9+</sup>](#)替代。
 
 **需要权限**：ohos.permission.LOCATION
 
@@ -1342,6 +1346,9 @@ GNSS围栏的配置参数。目前只支持圆形围栏。
 
 请求添加GNSS围栏消息中携带的参数，包括定位优先级、定位场景和围栏信息。
 
+> **说明：**<br/>
+> 从API version 9开始废弃，建议使用[geoLocationManager.GeofenceRequest;<sup>9+</sup>](#)替代。
+
 **需要权限**：ohos.permission.LOCATION
 
 **系统能力**：SystemCapability.Location.Location.Geofence
@@ -1356,6 +1363,9 @@ GNSS围栏的配置参数。目前只支持圆形围栏。
 ## LocationPrivacyType<sup>8+</sup>
 
 定位服务隐私协议类型。
+
+> **说明：**<br/>
+> 从API version 9开始废弃，建议使用[geoLocationManager.LocationPrivacyType;<sup>9+</sup>](#)替代。
 
 **需要权限**：ohos.permission.LOCATION
 
@@ -1372,6 +1382,9 @@ GNSS围栏的配置参数。目前只支持圆形围栏。
 
 扩展命令结构体。
 
+> **说明：**<br/>
+> 从API version 9开始废弃，建议使用[geoLocationManager.LocationCommand;<sup>9+</sup>](#)替代。
+
 **需要权限**：ohos.permission.LOCATION
 
 **系统能力**：SystemCapability.Location.Location.Core
@@ -1385,6 +1398,9 @@ GNSS围栏的配置参数。目前只支持圆形围栏。
 ## Location
 
 位置信息类型。
+
+> **说明：**<br/>
+> 从API version 9开始废弃，建议使用[geoLocationManager.Location;<sup>9+</sup>](#)替代。
 
 **需要权限**：ohos.permission.LOCATION
 

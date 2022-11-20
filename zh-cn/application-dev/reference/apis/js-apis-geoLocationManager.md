@@ -165,9 +165,9 @@ enableLocation(): Promise&lt;void&gt;
 
 ## geoLocationManager.disableLocation
 
-disableLocation(callback: AsyncCallback&lt;void&gt;): void;
+disableLocation(): void;
 
-关闭位置服务，使用callback回调异步返回结果。
+关闭位置服务。
 
 **系统API**：此接口为系统接口，三方应用不支持调用。
 
@@ -177,9 +177,7 @@ disableLocation(callback: AsyncCallback&lt;void&gt;): void;
 
 **参数**：
 
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | callback | AsyncCallback&lt;void&gt; | 是 | 用来接收错误码的回调。 |
+无
 
 **错误码**：
 
@@ -201,48 +199,9 @@ disableLocation(callback: AsyncCallback&lt;void&gt;): void;
   ```
 
 
-## geoLocationManager.disableLocation
-
-disableLocation(): Promise&lt;void&gt;
-
-关闭位置服务，使用Promise方式异步返回结果。
-
-**系统API**：此接口为系统接口，三方应用不支持调用。
-
-**需要权限**：ohos.permission.MANAGE_SECURE_SETTINGS
-
-**系统能力**：SystemCapability.Location.Location.Core
-
-**返回值**：
-
-  | 参数名 | 说明 |
-  | -------- | -------- |
-  | Promise&lt;void&gt; | 返回错误码。 |
-
-**错误码**：
-
-以下错误码的详细介绍请参见[位置服务子系统错误码](../errorcodes/errorcode-geoLocationManager.md)。
-
-| 错误码ID | 错误信息 |
-| -------- | ---------------------------------------- |
-|3301000 | Location service is unavailable.                                            |
-
-**示例**
-  
-  ```ts
-  import geoLocationManager from '@ohos.geoLocationManager';
-  geoLocationManager.disableLocation().then((result) => {
-      console.log('promise, disableLocation succeed');
-  })
-  .catch((error) => {
-      console.log('promise, disableLocation: error=' + JSON.stringify(error));
-  });
-  ```
-
-
 ## geoLocationManager.isLocationPrivacyConfirmed
 
-isLocationPrivacyConfirmed(type : LocationPrivacyType, callback: AsyncCallback&lt;boolean&gt;): void;
+isLocationPrivacyConfirmed(type: LocationPrivacyType): boolean;
 
 查询用户是否同意定位服务隐私申明，是否同意启用定位服务。只有系统应用才能调用。
 
@@ -255,7 +214,12 @@ isLocationPrivacyConfirmed(type : LocationPrivacyType, callback: AsyncCallback&l
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | type |  [LocationPrivacyType](#locationprivacytype)| 是 | 指定隐私申明场景，例如开机向导中的隐私申明、开启网络定位功能时弹出的隐私申明等。 |
-  | callback | AsyncCallback&lt;boolean&gt; | 是 | 表示用户是否同意定位服务隐私申明。 |
+
+**返回值**：
+
+| 类型   | 说明             |
+| ------ | ---------------- |
+| boolean | 表示用户是否同意定位服务隐私申明。。 |
 
 **错误码**：
 
@@ -280,49 +244,9 @@ isLocationPrivacyConfirmed(type : LocationPrivacyType, callback: AsyncCallback&l
   ```
 
 
-## geoLocationManager.isLocationPrivacyConfirmed
-
-isLocationPrivacyConfirmed(type : LocationPrivacyType,): Promise&lt;boolean&gt;;
-
-查询用户是否同意定位服务隐私申明，是否同意启用定位服务。只有系统应用才能调用。
-
-**系统API**：此接口为系统接口，三方应用不支持调用。
-
-**系统能力**：SystemCapability.Location.Location.Core
-
-**参数**：
-
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | type | [LocationPrivacyType](#locationprivacytype) | 是 | 指定隐私申明场景，例如开机向导中的隐私申明、开启网络定位功能时弹出的隐私申明等。 |
-
-**返回值**：
-
-  | 参数名 | 说明 |
-  | -------- | -------- |
-  | Promise&lt;boolean&gt; | 表示用户是否同意定位服务隐私申明。 |
-
-**错误码**：
-
-以下错误码的详细介绍请参见[位置服务子系统错误码](../errorcodes/errorcode-geoLocationManager.md)。
-
-| 错误码ID | 错误信息 |
-| -------- | ---------------------------------------- |
-|3301000 | Location service is unavailable.                                            |
-
-**示例**
-  
-  ```ts
-  import geoLocationManager from '@ohos.geoLocationManager';
-  geoLocationManager.isLocationPrivacyConfirmed(1).then((result) => {
-      console.log('promise, isLocationPrivacyConfirmed: ' + JSON.stringify(result));
-  });
-  ```
-
-
 ## geoLocationManager.setLocationPrivacyConfirmStatus
 
-setLocationPrivacyConfirmStatus(type : LocationPrivacyType, isConfirmed: boolean, callback: AsyncCallback&lt;void&gt;): void;
+setLocationPrivacyConfirmStatus(type: LocationPrivacyType, isConfirmed: boolean): void;
 
 设置用户勾选定位服务隐私申明的状态，记录用户是否同意启用定位服务。只有系统应用才能调用。
 
