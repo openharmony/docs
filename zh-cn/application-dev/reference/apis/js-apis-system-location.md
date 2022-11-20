@@ -1,7 +1,7 @@
 # 地理位置
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
-> - 从API Version 7 开始，该接口不再维护，推荐使用新接口[`@ohos.geolocation`](js-apis-geolocation.md)。
+> - 从API Version 9开始，该接口不再维护，推荐使用新接口[`@ohos.geoLocationManager`](js-apis-geoLocationManager.md)。
 > 
 > - 本模块首批接口从API version 3开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
@@ -24,6 +24,9 @@ ohos.permission.LOCATION
 getLocation(Object): void
 
 获取设备的地理位置。
+
+> **说明：**<br/>
+> 从API version 9开始废弃，建议使用[geoLocationManager.getCurrentLocation<sup>9+</sup>](#)替代。
 
 **系统能力：** SystemCapability.Location.Location.Lite
 
@@ -81,6 +84,9 @@ getLocationType(Object): void
 
 获取当前设备支持的定位类型。
 
+> **说明：**<br/>
+> 从API version 9开始废弃。
+
 **系统能力：** SystemCapability.Location.Location.Lite
 
 **参数：**
@@ -120,6 +126,9 @@ export default {
 subscribe(Object): void
 
 订阅设备的地理位置信息。多次调用的话，只有最后一次的调用生效。
+
+> **说明：**<br/>
+> 从API version 9开始废弃，建议使用[geoLocationManager.on(type: 'locationChange', request: LocationRequest, callback: Callback<Location>): void;<sup>9+</sup>](#)替代。
 
 **系统能力：** SystemCapability.Location.Location.Lite
 
@@ -173,6 +182,9 @@ unsubscribe(): void
 
 取消订阅设备的地理位置信息。
 
+> **说明：**<br/>
+> 从API version 9开始废弃，建议使用[geoLocationManager.off(type: 'locationChange', callback?: Callback<Location>): void;](#)替代。
+
 **系统能力：** SystemCapability.Location.Location.Lite
 
 **示例：**
@@ -191,6 +203,9 @@ export default {
 getSupportedCoordTypes(): Array&lt;string&gt;
 
 获取设备支持的坐标系类型。
+
+> **说明：**<br/>
+> 从API version 9开始废弃。
 
 **系统能力：** SystemCapability.Location.Location.Lite
 
