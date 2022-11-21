@@ -56,6 +56,12 @@ setSurfaceId(surfaceId: string): void;
 | -------------- | ---------------------------------- | ---- | -------------------------- |
 | surfaceId       | string     | 是   | [XComponent](../arkui-ts/ts-basic-components-xcomponent.md#getxcomponentsurfaceid) 持有 Surface 的 ID。 |
 
+| 错误码ID | 错误信息 |
+| -------- | ------- |
+| 201 | Permission verification failed. |
+| 202 | The caller is not a system application. |
+| 12700001 | The operation is failed. |
+
 **示例：**
 
   ```js
@@ -70,13 +76,3 @@ setSurfaceId(surfaceId: string): void;
       console.error("set surface id failed, error = " + e);
   }
   ```
-
-## ResultCode
-
- 表示执行结果的枚举。
-
- **系统能力：** SystemCapability.UserIAM.UserAuth.FaceAuth
-
-| 名称                    | 默认值 | 描述                 |
-| ----------------------- | ------ | -------------------- |
-| FAIL                    | 12700001      | 执行失败。           |

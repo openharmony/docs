@@ -187,26 +187,59 @@ export default {
 }
 ```
 
+## AuthResultInfo<sup>9+</sup>
+
+表示认证结果信息。
+
+**系统能力**：以下各项对应的系统能力均为SystemCapability.UserIAM.UserAuth.Core。
+
+| 参数名         | 参数类型   | 必填 | 说明                 |
+| ------------ | ---------- | ---- | -------------------- |
+| result        | number | 是   | 认证结果。       |
+| token        | Uint8Array | 否   | 用户身份认证通过的凭证。 |
+| remainAttempts  | number     | 否   | 剩余的认证操作次数。 |
+| lockoutDuration | number     | 否   | 认证操作的冻结时间。 |
+
+## TipInfo<sup>9+</sup>
+
+表示认证过程中的提示信息。
+
+**系统能力**：以下各项对应的系统能力均为SystemCapability.UserIAM.UserAuth.Core。
+
+| 参数名称         | 参数类型   | 必填 | 说明                 |
+| ------------ | ---------- | ---- | -------------------- |
+| module        | number | 是   | 发送提示信息的模块标识。       |
+| tip        | number | 是   | 认证过程提示信息。       |
+
 ## EventInfo<sup>9+</sup>
 
-类型别名，用于表示认证事件信息的类型，取值可以为下表中的类型。
+表示认证过程中事件信息的类型。
 
-**系统能力**：SystemCapability.UserIAM.UserAuth.Core
+**系统能力**：以下各项对应的系统能力均为SystemCapability.UserIAM.UserAuth.Core。
 
-| 类型    | 说明                       |
+| 取值类型    | 说明                       |
 | --------- | ----------------------- |
-| [AuthResultInfo](#authresultinfo9)    | 认证结果信息  |
+| [AuthResultInfo](#authresultinfo9)    | 获取到的认证结果信息  |
 | [TipInfo](#tipinfo9)    | 认证过程中的提示信息      |
+
+## AuthEventKey<sup>9+</sup>
+
+表示认证事件类型的关键字，作为[on](#on9)接口的的参数。
+
+| 取值类型       | 说明                    |
+| ---------- | ----------------------- |
+| "result" | [on](#on9)接口第一个参数为"result"时，[callback](#callback9)回调返回认证的结果信息。 |
+| "tip"    | [on](#on9)接口第一个参数为"tip"时，[callback](#callback9)回调返回认证操作中的提示信息。 |
 
 ## AuthEvent<sup>9+</sup>
 
-认证事件回调的对象。
+认证接口的异步回调对象。
 
 ### callback<sup>9+</sup>
 
 callback: (result : EventInfo) => void
 
-表示在认证结束后返回结果信息或者在认证操作中返回提示信息。
+通过该回调获取认证结果信息或认证过程中的提示信息。
 
 **系统能力**：SystemCapability.UserIAM.UserAuth.Core
 
@@ -224,6 +257,7 @@ callback: (result : EventInfo) => void
     let challenge = new Uint8Array([1, 2, 3, 4, 5, 6, 7, 8]);
     let authType = userIAM_userAuth.UserAuthType.FACE;
     let authTrustLevel = userIAM_userAuth.AuthTrustLevel.ATL1;
+    // 通过callback获取认证结果
     try {
         let auth = userIAM_userAuth.getAuthInstance(challenge, authType, authTrustLevel);
         auth.on("result", {
@@ -240,40 +274,28 @@ callback: (result : EventInfo) => void
         console.log("authV9 error = " + error);
         // do error
     }
+    // 通过callback获取认证过程中的提示信息
+    try {
+        let auth = userIAM_userAuth.getAuthInstance(challenge, authType, authTrustLevel);
+        auth.on("tip", {
+        callback : (result : userIAM_userAuth.TipInfo) => {
+            switch (result.tip) {
+                case userIAM_userAuth.FaceTips.FACE_AUTH_TIP_TOO_BRIGHT:
+                // do something;
+                case userIAM_userAuth.FaceTips.FACE_AUTH_TIP_TOO_DARK:
+                // do something;
+                default:
+                // do others
+            }
+        }
+        });
+        auth.start();
+        console.log("authV9 start success");
+    } catch (error) {
+        console.log("authV9 error = " + error);
+        // do error
+    }
   ```
-
-## AuthResultInfo<sup>9+</sup>
-
-表示认证结果信息的对象。
-
-**系统能力**：SystemCapability.UserIAM.UserAuth.Core
-
-| 名称         | 参数类型   | 必填 | 说明                 |
-| ------------ | ---------- | ---- | -------------------- |
-| result        | number | 是   | 认证结果。       |
-| token        | Uint8Array | 否   | 用户身份认证通过的凭证。 |
-| remainAttempts  | number     | 否   | 剩余的认证操作次数。 |
-| lockoutDuration | number     | 否   | 认证操作的冻结时间。 |
-
-## TipInfo<sup>9+</sup>
-
-表示认证过程中提示信息的对象。
-
-**系统能力**：SystemCapability.UserIAM.UserAuth.Core
-
-| 名称         | 参数类型   | 必填 | 说明                 |
-| ------------ | ---------- | ---- | -------------------- |
-| module        | number | 否   | 认证模块。       |
-| tip        | number | 否   | 认证过程提示信息。       |
-
-## AuthEventKey<sup>9+</sup>
-
-类型别名，表示认证事件的关键字，取值为表格内字符串。
-
-| 取值       | 说明                    |
-| ---------- | ----------------------- |
-| "result" | 取值为result时，事件回调返回认证的结果信息。 |
-| "tip"    | 取值为tip时，事件回调返回认证操作中的提示信息。 |
 
 ## AuthInstance<sup>9+</sup>
 
@@ -283,7 +305,7 @@ callback: (result : EventInfo) => void
 
 on(name : AuthEventKey, callback : AuthEvent) : void
 
-表示开启对认证事件的监听。
+订阅指定类型的用户认证事件。
 
 **系统能力**：SystemCapability.UserIAM.UserAuth.Core
 
@@ -291,8 +313,15 @@ on(name : AuthEventKey, callback : AuthEvent) : void
 
 | 参数名    | 类型                        | 必填 | 说明                       |
 | --------- | -------------------------- | ---- | ------------------------- |
-| name    | AuthEventKey                 | 是   | 认证事件的关键字          |
-| callback    | AuthEvent                | 是   | 认证事件的回调函数          |
+| name  | [AuthEventKey](#autheventkey9) | 是   | 表示认证事件类型，取值为"result"时，回调函数返回认证结果；取值为"tip"时，回调函数返回认证过程中的提示信息。 |
+| callback  | [AuthEvent](#authevent9)   | 是   | 认证接口的回调函数，用于返回认证结果或认证过程中的提示信息。          |
+
+**错误码：**
+
+| 错误码ID | 错误信息 |
+| -------- | ------- |
+| 401 | Incorrect parameters. |
+| 12500002 | General operation error. |
 
 **示例：**
 
@@ -304,6 +333,7 @@ on(name : AuthEventKey, callback : AuthEvent) : void
     let authTrustLevel = userIAM_userAuth.AuthTrustLevel.ATL1;
     try {
         let auth = userIAM_userAuth.getAuthInstance(challenge, authType, authTrustLevel);
+        // 订阅认证结果
         auth.on("result", {
         callback: (result: userIAM_userAuth.AuthResultInfo) => {
             console.log("authV9 result " + result.result);
@@ -312,7 +342,7 @@ on(name : AuthEventKey, callback : AuthEvent) : void
             console.log("authV9 lockoutDuration " + result.lockoutDuration);
         }
         });
-        // if need tip
+        // 订阅认证过程中的提示信息
         auth.on("tip", {
         callback : (result : userIAM_userAuth.TipInfo) => {
             switch (result.tip) {
@@ -320,7 +350,6 @@ on(name : AuthEventKey, callback : AuthEvent) : void
                 // do something;
                 case userIAM_userAuth.FaceTips.FACE_AUTH_TIP_TOO_DARK:
                 // do something;
-                // ...
                 default:
                 // do others
             }
@@ -338,13 +367,20 @@ on(name : AuthEventKey, callback : AuthEvent) : void
 
 off(name : AuthEventKey) : void
 
-表示关闭对认证事件的监听。
+取消订阅特定类型的认证事件。
 
 **系统能力**：SystemCapability.UserIAM.UserAuth.Core
 
 | 参数名    | 类型                        | 必填 | 说明                       |
 | --------- | -------------------------- | ---- | ------------------------- |
-| name    | AuthEventKey                 | 是   | 认证事件的关键字          |
+| name    | [AuthEventKey](#autheventkey9)      | 是   | 表示认证事件类型，取值为"result"时，取消订阅认证结果；取值为"tip"时，取消订阅认证过程中的提示信息。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息 |
+| -------- | ------- |
+| 401 | Incorrect parameters. |
+| 12500002 | General operation error. |
 
 **示例：**
 
@@ -354,9 +390,16 @@ off(name : AuthEventKey) : void
     let challenge = new Uint8Array([1, 2, 3, 4, 5, 6, 7, 8]);
     let authType = userIAM_userAuth.UserAuthType.FACE;
     let authTrustLevel = userIAM_userAuth.AuthTrustLevel.ATL1;
+    let auth;
+    try {
+        auth = userIAM_userAuth.getAuthInstance(challenge, authType, authTrustLevel);
+        console.log("get auth instance success");
+    } catch (error) {
+        console.log("get auth instance failed" + error);
+    }
 
     try {
-        let auth = userIAM_userAuth.getAuthInstance(challenge, authType, authTrustLevel);
+        // 订阅认证结果
         auth.on("result", {
         callback: (result: userIAM_userAuth.AuthResultInfo) => {
             console.log("authV9 result " + result.result);
@@ -365,18 +408,16 @@ off(name : AuthEventKey) : void
             console.log("authV9 lockoutDuration " + result.lockoutDuration);
         }
         });
-        console.log("turn on authentication event listening success");
+        console.log("subscribe authentication event success");
     } catch (error) {
-        console.log("turn off authentication event listening failed " + error);
-        // do error
+        console.log("subscribe authentication event failed " + error);
     }
-
+    // 取消订阅认证结果
     try {
-        let auth = userIAM_userAuth.getAuthInstance(challenge, authType, authTrustLevel);
         auth.off("result");
-        console.info("turn off authentication event listening success");
+        console.info("cancel subscribe authentication event success");
     } catch (error) {
-        console.info("turn off authentication event listening failed, error = " + error);
+        console.info("cancel subscribe authentication event failed, error = " + error);
     }
   ```
 
@@ -384,11 +425,25 @@ off(name : AuthEventKey) : void
 
 start() : void
 
-表示开始认证。
+开始认证。
+
+> **说明：**
+> 使用获取到的[AuthInstance](#authinstance9)对象调用该接口进行认证。
 
 **需要权限**：ohos.permission.ACCESS_BIOMETRIC
 
 **系统能力**：SystemCapability.UserIAM.UserAuth.Core
+
+**错误码：**
+
+| 错误码ID | 错误信息 |
+| -------- | ------- |
+| 201 | Permission verification failed. |
+| 401 | Incorrect parameters. |
+| 12500002 | General operation error. |
+| 12500005 | The authentication type is not supported. |
+| 12500006 | The authentication trust level is not supported. |
+| 12500010 | The type of credential has not been enrolled. |
 
 **示例：**
 
@@ -412,11 +467,22 @@ start() : void
 
 cancel(): void
 
-表示取消认证。
+取消认证。
+
+> **说明：**
+> 使用获取到的[AuthInstance](#authinstance9)对象调用该接口进行取消认证，此[AuthInstance](#authinstance9)应该是正在进行认证的对象。
 
 **需要权限**：ohos.permission.ACCESS_BIOMETRIC
 
 **系统能力**：SystemCapability.UserIAM.UserAuth.Core
+
+**错误码：**
+
+| 错误码ID | 错误信息 |
+| -------- | ------- |
+| 201 | Permission verification failed. |
+| 401 | Incorrect parameters. |
+| 12500002 | General operation error. |
 
 **示例：**
 
@@ -429,7 +495,6 @@ cancel(): void
 
     try {
         let auth = userIAM_userAuth.getAuthInstance(challenge, authType, authTrustLevel);
-        auth.start();
         auth.cancel();
         console.info("cancel auth success");
     } catch (error) {
@@ -444,7 +509,7 @@ getAuthInstance(challenge : Uint8Array, authType : UserAuthType, authTrustLevel 
 获取AuthInstance对象，用于执行用户身份认证。
 
 > **说明：**
-> 每个AuthInstance只能用于发起一次认证，若需要再次发起认证需重新获取AuthInstance。
+> 每个AuthInstance只能进行一次认证，若需要再次进行认证则需重新获取AuthInstance。
 
 **系统能力**：SystemCapability.UserIAM.UserAuth.Core
 
@@ -461,6 +526,15 @@ getAuthInstance(challenge : Uint8Array, authType : UserAuthType, authTrustLevel 
 | 类型                                      | 说明         |
 | ----------------------------------------- | ------------ |
 | [AuthInstance](#authinstance9) | 认证器对象。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息 |
+| -------- | ------- |
+| 401 | Incorrect parameters. |
+| 12500002 | General operation error. |
+| 12500005 | The authentication type is not supported. |
+| 12500006 | The authentication trust level is not supported. |
 
 **示例：**
   ```js
@@ -492,7 +566,14 @@ getVersion(): number
 
 | 类型   | 说明                   |
 | ------ | ---------------------- |
-| number | 获取的认证器版本信息。 |
+| number | 认证器版本信息。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息 |
+| -------- | ------- |
+| 201 | Permission verification failed. |
+| 12500002 | General operation error. |
 
 **示例：**
 
@@ -511,7 +592,7 @@ getVersion(): number
 
 getAvailableStatus(authType : UserAuthType, authTrustLevel : AuthTrustLevel): void
 
-表示检查指定的认证等级的认证能力是否可用。
+查询指定类型和等级的认证能力是否支持。
 
 **需要权限**：ohos.permission.ACCESS_BIOMETRIC
 
@@ -522,7 +603,18 @@ getAvailableStatus(authType : UserAuthType, authTrustLevel : AuthTrustLevel): vo
 | 参数名         | 类型                               | 必填 | 说明                       |
 | -------------- | ---------------------------------- | ---- | -------------------------- |
 | authType       | [UserAuthType](#userauthtype8)     | 是   | 认证类型，当前只支持FACE。 |
-| authTrustLevel | [AuthTrustLevel](#authtrustlevel8) | 是   | 认证结果的信任等级。       |
+| authTrustLevel | [AuthTrustLevel](#authtrustlevel8) | 是   | 认证信任等级。       |
+
+**错误码：**
+
+| 错误码ID | 错误信息 |
+| -------- | ------- |
+| 201 | Permission verification failed. |
+| 401 | Incorrect parameters. |
+| 12500002 | General operation error. |
+| 12500005 | The authentication type is not supported. |
+| 12500006 | The authentication trust level is not supported. |
+| 12500010 | The type of credential has not been enrolled. |
 
 **示例：**
 
@@ -539,7 +631,7 @@ getAvailableStatus(authType : UserAuthType, authTrustLevel : AuthTrustLevel): vo
 
   ## ResultCodeV9<sup>9+</sup>
 
-表示执行结果的枚举。
+表示返回码的枚举。
 
 **系统能力**：SystemCapability.UserIAM.UserAuth.Core
 
@@ -553,23 +645,22 @@ getAvailableStatus(authType : UserAuthType, authTrustLevel : AuthTrustLevel): vo
 | TYPE_NOT_SUPPORT        | 12500005      | 不支持的认证类型。   |
 | TRUST_LEVEL_NOT_SUPPORT | 12500006      | 不支持的认证等级。   |
 | BUSY                    | 12500007      | 忙碌状态。           |
-| INVALID_PARAMETERS      | 12500008      | 无效参数。           |
 | LOCKED                  | 12500009      | 认证器已锁定。       |
 | NOT_ENROLLED            | 12500010      | 用户未录入认证信息。 |
 
 ## UserAuth<sup>8+</sup>
 
-认证器的对象。
+认证器对象。
 
 ### constructor<sup>(deprecated)</sup>
 
 constructor()
 
+创建认证器对象。
+
 > **说明：**
 > 从 API version 9 开始废弃，请使用[getAuthInstance](#useriam_userauthgetauthinstance9)替代。
 <br/>从 API version 8 开始支持。
-
-表示获取的认证器对象。
 
 **系统能力**：SystemCapability.UserIAM.UserAuth.Core
 
@@ -577,7 +668,7 @@ constructor()
 
 | 类型                   | 说明                 |
 | ---------------------- | -------------------- |
-| [UserAuth](#userauth8) | UserAuth认证器对象。 |
+| [UserAuth](#userauth8) | 认证器对象。 |
 
 **示例：**
 
@@ -591,11 +682,11 @@ constructor()
 
 getVersion() : number
 
+获取认证器的版本信息。
+
 > **说明：**
 > 从 API version 9 开始废弃，请使用[getVersion](#useriam_userauthgetversion9)替代。
 <br/>从 API version 8 开始支持。
-
-表示获取的认证器版本信息。
 
 **需要权限**：ohos.permission.ACCESS_BIOMETRIC
 
@@ -605,7 +696,7 @@ getVersion() : number
 
 | 类型   | 说明                   |
 | ------ | ---------------------- |
-| number | 获取的认证器版本信息。 |
+| number | 认证器版本信息。 |
 
 **示例：**
 
@@ -621,11 +712,11 @@ getVersion() : number
 
 getAvailableStatus(authType : UserAuthType, authTrustLevel : AuthTrustLevel) : number
 
-> **说明：**
-> 从 API version 9 开始废弃，请使用开始废弃，请使用[getAvailableStatus](#useriam_userauthgetavailablestatus9)替代。
-<br/>从 API version 8 开始支持。
+查询指定类型和等级的认证能力是否支持。
 
-表示检查指定的认证等级的认证能力是否可用。
+> **说明：**
+> 从 API version 9 开始废弃，请使用[getAvailableStatus](#useriam_userauthgetavailablestatus9)替代。
+<br/>从 API version 8 开始支持。
 
 **需要权限**：ohos.permission.ACCESS_BIOMETRIC
 
@@ -636,13 +727,13 @@ getAvailableStatus(authType : UserAuthType, authTrustLevel : AuthTrustLevel) : n
 | 参数名         | 类型                               | 必填 | 说明                       |
 | -------------- | ---------------------------------- | ---- | -------------------------- |
 | authType       | [UserAuthType](#userauthtype8)     | 是   | 认证类型，当前只支持FACE。 |
-| authTrustLevel | [AuthTrustLevel](#authtrustlevel8) | 是   | 认证结果的信任等级。       |
+| authTrustLevel | [AuthTrustLevel](#authtrustlevel8) | 是   | 认证信任等级。       |
 
 **返回值：**
 
 | 类型   | 说明                                                         |
 | ------ | ------------------------------------------------------------ |
-| number | 获取指定的认证等级的认证能力是否可用的检查结果，返回值参见[ResultCode](#resultcodedeprecated)。 |
+| number | 查询结果，结果为SUCCESS时表示支持，其他返回值参见[ResultCode](#resultcodedeprecated)。 |
 
 **示例：**
 
@@ -653,10 +744,8 @@ getAvailableStatus(authType : UserAuthType, authTrustLevel : AuthTrustLevel) : n
   let checkCode = auth.getAvailableStatus(userIAM_userAuth.UserAuthType.FACE, userIAM_userAuth.AuthTrustLevel.ATL1);
   if (checkCode == userIAM_userAuth.ResultCode.SUCCESS) {
       console.info("check auth support success");
-      // 此处添加支持指定类型认证的逻辑
   } else {
       console.error("check auth support fail, code = " + checkCode);
-      // 此处添加不支持指定类型认证的逻辑
   }
   ```
 
@@ -664,11 +753,11 @@ getAvailableStatus(authType : UserAuthType, authTrustLevel : AuthTrustLevel) : n
 
 auth(challenge: Uint8Array, authType: UserAuthType, authTrustLevel: AuthTrustLevel, callback: IUserAuthCallback): Uint8Array
 
+执行用户认证，使用回调函数返回结果。
+
 > **说明：**
 > 从 API version 9 开始废弃，建议使用[start](#start9)代替。
 <br/>从 API version 8 开始支持。
-
-表示执行用户认证，使用callback方式作为异步方法。
 
 **需要权限**：ohos.permission.ACCESS_BIOMETRIC
 
@@ -680,7 +769,7 @@ auth(challenge: Uint8Array, authType: UserAuthType, authTrustLevel: AuthTrustLev
 | -------------- | ---------------------------------------- | ---- | ------------------------ |
 | challenge      | Uint8Array                               | 是   | 挑战值，可以填null。     |
 | authType       | [UserAuthType](#userauthtype8)           | 是   | 认证类型，当前支持FACE。 |
-| authTrustLevel | [AuthTrustLevel](#authtrustlevel8)       | 是   | 信任等级。               |
+| authTrustLevel | [AuthTrustLevel](#authtrustlevel8)       | 是   | 认证信任等级。               |
 | callback       | [IUserAuthCallback](#iuserauthcallbackdeprecated) | 是   | 回调函数。               |
 
 **返回值：**
@@ -716,11 +805,11 @@ auth(challenge: Uint8Array, authType: UserAuthType, authTrustLevel: AuthTrustLev
 
 cancelAuth(contextID : Uint8Array) : number
 
+表示通过contextID取消本次认证操作。
+
 > **说明：**
 > 从 API version 9 开始废弃，建议使用[cancel](#cancel9)代替。
 <br/>从 API version 8 开始支持。
-
-表示通过contextID取消本次认证操作。
 
 **需要权限**：ohos.permission.ACCESS_BIOMETRIC
 
@@ -730,13 +819,13 @@ cancelAuth(contextID : Uint8Array) : number
 
 | 参数名    | 类型       | 必填 | 说明                                       |
 | --------- | ---------- | ---- | ------------------------------------------ |
-| contextID | Uint8Array | 是   | 上下文ID信息，通过[auth](#authdeprecated)接口获得。 |
+| contextID | Uint8Array | 是   | 上下文的标识，通过[auth](#authdeprecated)接口获取。 |
 
 **返回值：**
 
 | 类型   | 说明                     |
 | ------ | ------------------------ |
-| number | 取消本次认证操作的结果。 |
+| number | 取消认证的结果，结果为SUCCESS时表示取消成功，其他返回值参见[ResultCode](#resultcodedeprecated)。 |
 
 **示例：**
 
@@ -756,21 +845,21 @@ cancelAuth(contextID : Uint8Array) : number
 
 ## IUserAuthCallback<sup>(deprecated)</sup>
 
+返回认证结果的回调对象。
+
 > **说明：**
 > 从 API version 9 开始废弃，建议使用[AuthEvent](#authevent9)代替。
 <br/>从 API version 8 开始支持。
-
-认证过程中回调结果的对象。
 
 ### onResult<sup>(deprecated)</sup>
 
 onResult: (result : number, extraInfo : AuthResult) => void
 
+回调函数，返回认证结果。
+
 > **说明：**
 > 从 API version 9 开始废弃，建议使用[callback](#callback9)代替。
 <br/>从 API version 8 开始支持。
-
-表示在认证操作中，获取认证结果。
 
 **系统能力**：SystemCapability.UserIAM.UserAuth.Core
 
@@ -779,7 +868,7 @@ onResult: (result : number, extraInfo : AuthResult) => void
 | 参数名    | 类型                       | 必填 | 说明                                                         |
 | --------- | -------------------------- | ---- | ------------------------------------------------------------ |
 | result    | number                     | 是   | 认证结果，参见[ResultCode](#resultcodedeprecated)。                   |
-| extraInfo | [AuthResult](#authresultdeprecated) | 是   | 扩展信息，不同情况下的具体信息，<br/>如果身份验证通过，则在extrainfo中返回用户认证令牌，<br/>如果身份验证失败，则在extrainfo中返回剩余的用户认证次数，<br/>如果身份验证执行器被锁定，则在extrainfo中返回冻结时间。 |
+| extraInfo | [AuthResult](#authresultdeprecated) | 是   | 扩展信息，不同情况下的具体信息，<br/>如果身份验证通过，则在extraInfo中返回用户认证令牌，<br/>如果身份验证失败，则在extraInfo中返回剩余的用户认证次数，<br/>如果身份验证执行器被锁定，则在extraInfo中返回冻结时间。 |
 
 
 **示例：**
@@ -800,16 +889,6 @@ onResult: (result : number, extraInfo : AuthResult) => void
               }
           } catch (e) {
               console.info("auth onResult error = " + e);
-          }
-      },
-
-      onAcquireInfo: (module, acquire, extraInfo) => {
-          try {
-              console.info("auth onAcquireInfo module = " + module);
-              console.info("auth onAcquireInfo acquire = " + acquire);
-              console.info("auth onAcquireInfo extraInfo = " + JSON.stringify(extraInfo));
-          } catch (e) {
-              console.info("auth onAcquireInfo error = " + e);
           }
       }
   });
@@ -819,11 +898,11 @@ onResult: (result : number, extraInfo : AuthResult) => void
 
 onAcquireInfo ?: (module : number, acquire : number, extraInfo : any) => void
 
+回调函数，返回认证过程中的提示信息，非必须实现。
+
 > **说明：**
 > 从 API version 9 开始废弃，建议使用[callback](#callback9)代替。
 <br/>从 API version 8 开始支持。
-
-表示在认证过程中，获取提示码信息，非必须实现。
 
 **系统能力**：SystemCapability.UserIAM.UserAuth.Core
 
@@ -831,8 +910,8 @@ onAcquireInfo ?: (module : number, acquire : number, extraInfo : any) => void
 
 | 参数名    | 类型   | 必填 | 说明                           |
 | --------- | ------ | ---- | ------------------------------ |
-| module    | number | 是   | 认证执行器的类型。             |
-| acquire   | number | 是   | 认证执行器认证过程的交互信息。 |
+| module    | number | 是   | 发送提示信息的模块标识。             |
+| acquire   | number | 是   | 认证执过程中的提示信息。 |
 | extraInfo | any    | 是   | 预留字段。                     |
 
 **示例：**
@@ -842,20 +921,6 @@ onAcquireInfo ?: (module : number, acquire : number, extraInfo : any) => void
 
   let auth = new userIAM_userAuth.UserAuth();
   auth.auth(null, userIAM_userAuth.UserAuthType.FACE, userIAM_userAuth.AuthTrustLevel.ATL1, {
-      onResult: (result, extraInfo) => {
-          try {
-              console.info("auth onResult result = " + result);
-              console.info("auth onResult extraInfo = " + JSON.stringify(extraInfo));
-              if (result == userIAM_userAuth.ResultCode.SUCCESS) {
-                  // 此处添加认证成功逻辑
-              }  else {
-                  // 此处添加认证失败逻辑
-              }
-          } catch (e) {
-              console.info("auth onResult error = " + e);
-          }
-      },
-
       onAcquireInfo: (module, acquire, extraInfo) => {
           try {
               console.info("auth onAcquireInfo module = " + module);
@@ -870,26 +935,26 @@ onAcquireInfo ?: (module : number, acquire : number, extraInfo : any) => void
 
 ## AuthResult<sup>(deprecated)</sup>
 
+表示认证结果的对象。
+
 > **说明：**
 > 从 API version 9 开始废弃，建议使用[AuthResultInfo](#authresultinfo9)代替。
 <br/>从 API version 8 开始支持。
-
-表示认证结果的对象。
 
 **系统能力**：SystemCapability.UserIAM.UserAuth.Core
 
 | 名称         | 参数类型   | 必填 | 说明                 |
 | ------------ | ---------- | ---- | -------------------- |
-| token        | Uint8Array | 否   | 身份认证令牌。       |
+| token        | Uint8Array | 否   | 认证通过的令牌信息。       |
 | remainTimes  | number     | 否   | 剩余的认证操作次数。 |
 | freezingTime | number     | 否   | 认证操作的冻结时间。 |
 
 ## ResultCode<sup>(deprecated)</sup>
 
+表示返回码的枚举。
+
 > **说明：**
 > 从 API version 9 开始废弃，建议使用[ResultCodeV9](#resultcodev99)代替。
-
-表示执行结果的枚举。
 
 **系统能力**：SystemCapability.UserIAM.UserAuth.Core
 
@@ -906,7 +971,6 @@ onAcquireInfo ?: (module : number, acquire : number, extraInfo : any) => void
 | INVALID_PARAMETERS      | 8      | 无效参数。           |
 | LOCKED                  | 9      | 认证器已锁定。       |
 | NOT_ENROLLED            | 10     | 用户未录入认证信息。 |
-
 
 ## FaceTips<sup>8+</sup>
 
@@ -973,10 +1037,10 @@ onAcquireInfo ?: (module : number, acquire : number, extraInfo : any) => void
 
 getAuthenticator(): Authenticator
 
+获取Authenticator对象，用于执行用户身份认证。
+
 > **说明：**
 > 从 API version 8 开始废弃，建议使用[constructor](#constructordeprecated)替代。
-
-获取Authenticator对象，用于执行用户身份认证。
 
 **系统能力**：SystemCapability.UserIAM.UserAuth.Core
 
@@ -993,20 +1057,19 @@ getAuthenticator(): Authenticator
 
 ## Authenticator<sup>(deprecated)</sup>
 
-> **说明：**
-> 从 API version 8 开始废弃，建议使用[UserAuth](#userauth8)替代。
-
 认证器对象。
 
+> **说明：**
+> 从 API version 8 开始废弃，建议使用[UserAuth](#userauth8)替代。
 
 ### execute<sup>(deprecated)</sup>
 
 execute(type: AuthType, level: SecureLevel, callback: AsyncCallback&lt;number&gt;): void
 
+执行用户认证，使用callback方式作为异步方法。
+
 > **说明：**
 > 从 API version 8 开始废弃，建议使用[auth](#authdeprecated)替代。
-
-执行用户认证，使用callback方式作为异步方法。
 
 **需要权限**：ohos.permission.ACCESS_BIOMETRIC
 
@@ -1041,12 +1104,12 @@ execute(type: AuthType, level: SecureLevel, callback: AsyncCallback&lt;number&gt
 
 ### execute<sup>(deprecated)</sup>
 
-execute(type:AuthType, level:SecureLevel): Promise&lt;number&gt;
+execute(type : AuthType, level : SecureLevel): Promise&lt;number&gt;
+
+执行用户认证，使用promise方式作为异步方法。
 
 > **说明：**
 > 从 API version 8 开始废弃，建议使用[auth](#authdeprecated)替代。
-
-执行用户认证，使用promise方式作为异步方法。
 
 **需要权限**：ohos.permission.ACCESS_BIOMETRIC
 
@@ -1078,10 +1141,10 @@ execute(type:AuthType, level:SecureLevel): Promise&lt;number&gt;
 
 ## AuthenticationResult<sup>(deprecated)</sup>
 
+表示认证结果的枚举。
+
 > **说明：**
 > 从 API version 8 开始废弃，建议使用[ResultCode](#resultcodedeprecated)替代。
-
-表示认证结果的枚举。
 
 **系统能力**：SystemCapability.UserIAM.UserAuth.Core
 
