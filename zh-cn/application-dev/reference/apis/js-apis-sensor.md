@@ -1,15 +1,6 @@
 # 传感器
 
-sensor模块提供订阅传感器数据基本能力，包括订阅、取消订阅传感器数据，获取传感器列表，以及通用的传感器算法接口如通过气压值计算海拔高度、通过旋转矩阵计算设备方向等。
-
-传感器是指用于侦测环境中所发生事件或变化，并将此消息发送至其他电子设备（如中央处理器）的设备，通常由敏感组件和转换组件组成。传感器是实现物联网智能化的重要基石，为实现全场景智慧化战略，支撑“1+8+N”产品需求，需要构筑统一的传感器管理框架，达到为各产品/业务提供低时延、低功耗的感知数据的目的。根据用途可分为以下六大类：
-
-- 运动类：加速度、陀螺仪、重力、线性加速度传感器等
-- 姿态类：旋转矢量、方向传感器等
-- 环境类：磁力计、气压、湿度传感器等
-- 光线类：环境光、接近光、色温传感器等
-- 健康类：心率、心跳传感器等
-- 其它：霍尔传感器、手握传感器等
+sensor模块提供了获取传感器数据的能力，包括获取传感器属性列表，订阅传感器数据，以及一些通用的传感器算法。
 
 > **说明：**
 > 本模块首批接口从API version 8开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
@@ -27,19 +18,19 @@ import sensor from '@ohos.sensor';
 
 on(type: SensorId.ACCELEROMETER, callback: Callback&lt;AccelerometerResponse&gt;,options?: Options): void
 
-订阅加速度计传感器数据。
+订阅加速度传感器数据。
 
-**需要权限**：ohos.permission.ACCELEROMETER 
+**需要权限**：ohos.permission.ACCELEROMETER
 
 **系统能力**：SystemCapability.Sensors.Sensor
 
 **参数：** 
 
-| 参数名   | 类型                                                         | 必填 | 说明                                                         |
-| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| type     | [SensorId](#sensorid9)                                       | 是   | 要订阅的加速度传感器类型为 ACCELEROMETER。                   |
-| callback | Callback&lt;[AccelerometerResponse](#accelerometerresponse)&gt; | 是   | 注册加速度传感器的回调函数，上报的数据类型为AccelerometerResponse。 |
-| options  | [Options](#options)                                          | 否   | 可选参数列表，设置上报频率，默认值为200000000ns。            |
+| 参数名   | 类型                                                         | 必填 | 说明                                                        |
+| -------- | ------------------------------------------------------------ | ---- | ----------------------------------------------------------- |
+| type     | [SensorId](#sensorid9).ACCELEROMETER                         | 是   | 传感器类型，该值固定为SensorId.ACCELEROMETER。              |
+| callback | Callback&lt;[AccelerometerResponse](#accelerometerresponse)&gt; | 是   | 回调函数，异步上报的传感器数据固定为AccelerometerResponse。 |
+| options  | [Options](#options)                                          | 否   | 设置上报频率，默认值为200000000ns。                         |
 
 **错误码**： 
 
@@ -53,13 +44,13 @@ on(type: SensorId.ACCELEROMETER, callback: Callback&lt;AccelerometerResponse&gt;
 
 ```js
 try {
-    sensor.on(sensor.SensorId.ACCELEROMETER,function(data){
+    sensor.on(sensor.SensorId.ACCELEROMETER, function (data) {
         console.info('X-coordinate component: ' + data.x);
         console.info('Y-coordinate component: ' + data.y);
         console.info('Z-coordinate component: ' + data.z);
-    }, {interval: 10000000} );
-} catch(err) {
-        console.info('on fail, errCode: ' + err.code + ' ,msg: ' + err.message);
+    }, { interval: 10000000 });
+} catch (err) {
+    console.error('On fail, errCode: ' + err.code + ' ,msg: ' + err.message);
 }
 ```
 
@@ -67,7 +58,7 @@ try {
 
 on(type: SensorId.ACCELEROMETER_UNCALIBRATED, callback: Callback&lt;AccelerometerUncalibratedResponse&gt;,options?: Options): void
 
-订阅未校准的加速度计传感器数据。
+订阅未校准加速度传感器数据。
 
 **需要权限**：ohos.permission.ACCELEROMETER 
 
@@ -77,9 +68,9 @@ on(type: SensorId.ACCELEROMETER_UNCALIBRATED, callback: Callback&lt;Acceleromete
 
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| type     | [SensorId](#sensorid9)                                       | 是   | 要订阅的未校准加速度传感器类型为ACCELEROMETER_UNCALIBRATED。 |
-| callback | Callback&lt;[AccelerometerUncalibratedResponse](#accelerometeruncalibratedresponse)&gt; | 是   | 注册未校准加速度计传感器的回调函数，上报的数据类型为AccelerometerUncalibratedResponse。 |
-| options  | [Options](#options)                                          | 否   | 可选参数列表，设置上报频率，默认值为200000000ns。            |
+| type     | [SensorId](#sensorid9).ACCELEROMETER_UNCALIBRATED            | 是   | 传感器类型，该值固定为SensorId.ACCELEROMETER_UNCALIBRATED。  |
+| callback | Callback&lt;[AccelerometerUncalibratedResponse](#accelerometeruncalibratedresponse)&gt; | 是   | 回调函数，异步上报的传感器数据固定为AccelerometerUncalibratedResponse。 |
+| options  | [Options](#options)                                          | 否   | 设置上报频率，默认值为200000000ns。                          |
 
 **错误码**： 
 
@@ -93,16 +84,16 @@ on(type: SensorId.ACCELEROMETER_UNCALIBRATED, callback: Callback&lt;Acceleromete
 
 ```js
 try {
-    sensor.on(sensor.SensorId.ACCELEROMETER_UNCALIBRATED,function(data){
+    sensor.on(sensor.SensorId.ACCELEROMETER_UNCALIBRATED, function (data) {
         console.info('X-coordinate component: ' + data.x);
         console.info('Y-coordinate component: ' + data.y);
         console.info('Z-coordinate component: ' + data.z);
         console.info('X-coordinate bias: ' + data.biasX);
         console.info('Y-coordinate bias: ' + data.biasY);
         console.info('Z-coordinate bias: ' + data.biasZ);
-      }, {interval: 10000000} );
-} catch(err) {
-      console.info('on fail, errCode: ' + err.code + ' ,msg: ' + err.message);
+    }, { interval: 10000000 });
+} catch (err) {
+    console.error('On fail, errCode: ' + err.code + ' ,msg: ' + err.message);
 }
 ```
 
@@ -116,11 +107,11 @@ on(type: SensorId.AMBIENT_LIGHT, callback: Callback&lt;LightResponse&gt;, option
 
 **参数：** 
 
-| 参数名   | 类型                                            | 必填 | 说明                                                        |
-| -------- | ----------------------------------------------- | ---- | ----------------------------------------------------------- |
-| type     | [SensorId](#sensorid9)                          | 是   | 要订阅的环境光传感器类型为AMBIENT_LIGHT。                   |
-| callback | Callback&lt;[LightResponse](#lightresponse)&gt; | 是   | 注册环境光传感器的回调函数，上报的数据类型为LightResponse。 |
-| options  | [Options](#options)                             | 否   | 可选参数列表，设置上报频率，默认值为200000000ns。           |
+| 参数名   | 类型                                            | 必填 | 说明                                                |
+| -------- | ----------------------------------------------- | ---- | --------------------------------------------------- |
+| type     | [SensorId](#sensorid9).AMBIENT_LIGHT            | 是   | 传感器类型，该值固定为SensorId.AMBIENT_LIGHT。      |
+| callback | Callback&lt;[LightResponse](#lightresponse)&gt; | 是   | 回调函数，异步上报的传感器数据固定为LightResponse。 |
+| options  | [Options](#options)                             | 否   | 设置上报频率，默认值为200000000ns。                 |
 
 **错误码**： 
 
@@ -134,11 +125,11 @@ on(type: SensorId.AMBIENT_LIGHT, callback: Callback&lt;LightResponse&gt;, option
 
 ```js
 try {
-  sensor.on(sensor.SensorId.AMBIENT_LIGHT,function(data){
-      console.info('Illumination: ' + data.intensity);
-  }, {interval: 10000000} );
-} catch(err) {
-      console.info('on fail, errCode: ' + err.code + ' ,msg: ' + err.message);
+    sensor.on(sensor.SensorId.AMBIENT_LIGHT, function (data) {
+        console.info('The ambient light intensity: ' + data.intensity);
+    }, { interval: 10000000 });
+} catch (err) {
+    console.error('On fail, errCode: ' + err.code + ' ,msg: ' + err.message);
 }
 ```
 
@@ -146,7 +137,7 @@ try {
 
 on(type: SensorId.AMBIENT_TEMPERATURE, callback: Callback&lt;AmbientTemperatureResponse&gt;,options?: Options): void
 
-订阅环境温度传感器数据。
+订阅温度传感器数据。
 
 **系统能力**：SystemCapability.Sensors.Sensor
 
@@ -154,9 +145,9 @@ on(type: SensorId.AMBIENT_TEMPERATURE, callback: Callback&lt;AmbientTemperatureR
 
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| type     | [SensorId](#sensorid9)                                       | 是   | 要订阅的环境温度传感器类型为AMBIENT_TEMPERATURE。            |
-| callback | Callback&lt;[AmbientTemperatureResponse](#ambienttemperatureresponse)&gt; | 是   | 注册环境温度传感器的回调函数，上报的数据类型为AmbientTemperatureResponse。 |
-| options  | [Options](#options)                                          | 否   | 可选参数列表，设置上报频率，默认值为200000000ns。            |
+| type     | [SensorId](#sensorid9).AMBIENT_TEMPERATURE                   | 是   | 传感器类型，该值固定为SensorId.AMBIENT_TEMPERATURE。         |
+| callback | Callback&lt;[AmbientTemperatureResponse](#ambienttemperatureresponse)&gt; | 是   | 回调函数，异步上报的传感器数据固定为AmbientTemperatureResponse。 |
+| options  | [Options](#options)                                          | 否   | 设置上报频率，默认值为200000000ns。                          |
 
 **错误码**： 
 
@@ -170,11 +161,11 @@ on(type: SensorId.AMBIENT_TEMPERATURE, callback: Callback&lt;AmbientTemperatureR
 
 ```js
 try {
-  sensor.on(sensor.SensorId.AMBIENT_TEMPERATURE,function(data){
-      console.info('Temperature: ' + data.temperature);
-  }, {interval: 10000000} );
-} catch(err) {
-      console.info('on fail, errCode: ' + err.code + ' ,msg: ' + err.message);
+    sensor.on(sensor.SensorId.AMBIENT_TEMPERATURE, function (data) {
+        console.info('Temperature: ' + data.temperature);
+    }, { interval: 10000000 });
+} catch (err) {
+    console.error('On fail, errCode: ' + err.code + ' ,msg: ' + err.message);
 }
 ```
 
@@ -188,11 +179,11 @@ on(type: SensorId.BAROMETER, callback: Callback&lt;BarometerResponse&gt;, option
 
 **参数：**
 
-| 参数名   | 类型                                                    | 必填 | 说明                                                         |
-| -------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| type     | [SensorId](#sensorid9)                                  | 是   | 要订阅的气压计传感器类型为BAROMETER。                        |
-| callback | Callback&lt;[BarometerResponse](#barometerresponse)&gt; | 是   | 注册气压计传感器的回调函数，上报的数据类型为BarometerResponse。 |
-| options  | [Options](#options)                                     | 否   | 可选参数列表，设置上报频率，默认值为200000000ns。            |
+| 参数名   | 类型                                                    | 必填 | 说明                                                    |
+| -------- | ------------------------------------------------------- | ---- | ------------------------------------------------------- |
+| type     | [SensorId](#sensorid9).BAROMETER                        | 是   | 传感器类型，该值固定为SensorId.BAROMETER。              |
+| callback | Callback&lt;[BarometerResponse](#barometerresponse)&gt; | 是   | 回调函数，异步上报的传感器数据固定为BarometerResponse。 |
+| options  | [Options](#options)                                     | 否   | 设置上报频率，默认值为200000000ns。                     |
 
 **错误码**： 
 
@@ -206,11 +197,11 @@ on(type: SensorId.BAROMETER, callback: Callback&lt;BarometerResponse&gt;, option
 
 ```js
 try {
-  sensor.on(sensor.SensorId.BAROMETER,function(data){
-      console.info('Atmospheric pressure: ' + data.pressure);
-  }, {interval: 10000000} );
-} catch(err) {
-      console.info('on fail, errCode: ' + err.code + ' ,msg: ' + err.message);
+    sensor.on(sensor.SensorId.BAROMETER, function (data) {
+        console.info('Atmospheric pressure: ' + data.pressure);
+    }, { interval: 10000000 });
+} catch (err) {
+    console.error('On fail, errCode: ' + err.code + ' ,msg: ' + err.message);
 }
 ```
 
@@ -224,11 +215,11 @@ on(type: SensorId.GRAVITY, callback: Callback&lt;GravityResponse&gt;,options?: O
 
 **参数：** 
 
-| 参数名   | 类型                                                | 必填 | 说明                                                        |
-| -------- | --------------------------------------------------- | ---- | ----------------------------------------------------------- |
-| type     | [SensorId](#sensorid9)                              | 是   | 要订阅的重力传感器类型为GRAVITY。                           |
-| callback | Callback&lt;[GravityResponse](#gravityresponse)&gt; | 是   | 注册重力传感器的回调函数，上报的数据类型为GravityResponse。 |
-| options  | [Options](#options)                                 | 否   | 可选参数列表，设置上报频率，默认值为200000000ns。           |
+| 参数名   | 类型                                                | 必填 | 说明                                                  |
+| -------- | --------------------------------------------------- | ---- | ----------------------------------------------------- |
+| type     | [SensorId](#sensorid9).GRAVITY                      | 是   | 传感器类型，该值固定为SensorId.GRAVITY。              |
+| callback | Callback&lt;[GravityResponse](#gravityresponse)&gt; | 是   | 回调函数，异步上报的传感器数据固定为GravityResponse。 |
+| options  | [Options](#options)                                 | 否   | 设置上报频率，默认值为200000000ns。                   |
 
 **错误码**： 
 
@@ -242,13 +233,13 @@ on(type: SensorId.GRAVITY, callback: Callback&lt;GravityResponse&gt;,options?: O
 
 ```js
 try {
-  sensor.on(sensor.SensorId.GRAVITY,function(data){
-      console.info('X-coordinate component: ' + data.x);
-      console.info('Y-coordinate component: ' + data.y);
-      console.info('Z-coordinate component: ' + data.z);
-  }, {interval: 10000000} );
-} catch(err) {
-      console.info('on fail, errCode: ' + err.code + ' ,msg: ' + err.message);
+    sensor.on(sensor.SensorId.GRAVITY, function (data) {
+        console.info('X-coordinate component: ' + data.x);
+        console.info('Y-coordinate component: ' + data.y);
+        console.info('Z-coordinate component: ' + data.z);
+    }, { interval: 10000000 });
+} catch (err) {
+    console.error('On fail, errCode: ' + err.code + ' ,msg: ' + err.message);
 }
 ```
 
@@ -264,11 +255,11 @@ on(type: SensorId.GYROSCOPE, callback: Callback&lt;GyroscopeResponse&gt;,options
 
 **参数：** 
 
-| 参数名   | 类型                                                    | 必填 | 说明                                                         |
-| -------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| type     | [SensorId](#sensorid9)                                  | 是   | 要订阅的陀螺仪传感器类型为GYROSCOPE。                        |
-| callback | Callback&lt;[GyroscopeResponse](#gyroscoperesponse)&gt; | 是   | 返回注册陀螺仪传感器的回调函数，上报的数据类型为GyroscopeResponse。 |
-| options  | [Options](#options)                                     | 否   | 可选参数列表，设置上报频率，默认值为200000000ns。            |
+| 参数名   | 类型                                                    | 必填 | 说明                                                    |
+| -------- | ------------------------------------------------------- | ---- | ------------------------------------------------------- |
+| type     | [SensorId](#sensorid9).GYROSCOPE                        | 是   | 传感器类型，该值固定为SensorId.GYROSCOPE。              |
+| callback | Callback&lt;[GyroscopeResponse](#gyroscoperesponse)&gt; | 是   | 回调函数，异步上报的传感器数据固定为GyroscopeResponse。 |
+| options  | [Options](#options)                                     | 否   | 设置上报频率，默认值为200000000ns。                     |
 
 **错误码**： 
 
@@ -282,13 +273,13 @@ on(type: SensorId.GYROSCOPE, callback: Callback&lt;GyroscopeResponse&gt;,options
 
 ```js
 try {
-  sensor.on(sensor.SensorId.GYROSCOPE,function(data){
-      console.info('X-coordinate component: ' + data.x);
-      console.info('Y-coordinate component: ' + data.y);
-      console.info('Z-coordinate component: ' + data.z);
-  }, {interval: 10000000} );
-} catch(err) {
-      console.info('on fail, errCode: ' + err.code + ' ,msg: ' + err.message);
+    sensor.on(sensor.SensorId.GYROSCOPE, function (data) {
+        console.info('X-coordinate component: ' + data.x);
+        console.info('Y-coordinate component: ' + data.y);
+        console.info('Z-coordinate component: ' + data.z);
+    }, { interval: 10000000 });
+} catch (err) {
+    console.error('On fail, errCode: ' + err.code + ' ,msg: ' + err.message);
 }
 ```
 
@@ -297,7 +288,7 @@ try {
 on(type: SensorId.GYROSCOPE_UNCALIBRATED, callback: Callback&lt;GyroscopeUncalibratedResponse&gt;,
       options?: Options): void
 
-订阅未经校准的陀螺仪传感器数据
+订阅未校准陀螺仪传感器数据
 
 **需要权限**：ohos.permission.GYROSCOPE 
 
@@ -307,9 +298,9 @@ on(type: SensorId.GYROSCOPE_UNCALIBRATED, callback: Callback&lt;GyroscopeUncalib
 
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| type     | [SensorId](#sensorid9)                                       | 是   | 要订阅的未校准陀螺仪传感器类型为GYROSCOPE_UNCALIBRATED。     |
-| callback | Callback&lt;[GyroscopeUncalibratedResponse](#gyroscopeuncalibratedresponse)&gt; | 是   | 注册未校准陀螺仪传感器的回调函数，上报的数据类型为GyroscopeUncalibratedResponse。 |
-| options  | [Options](#options)                                          | 否   | 可选参数列表，设置上报频率，默认值为200000000ns。            |
+| type     | [SensorId](#sensorid9).GYROSCOPE_UNCALIBRATED                | 是   | 传感器类型，该值固定为SensorId.GYROSCOPE_UNCALIBRATED。      |
+| callback | Callback&lt;[GyroscopeUncalibratedResponse](#gyroscopeuncalibratedresponse)&gt; | 是   | 回调函数，异步上报的传感器数据固定为GyroscopeUncalibratedResponse。 |
+| options  | [Options](#options)                                          | 否   | 设置上报频率，默认值为200000000ns。                          |
 
 **错误码**： 
 
@@ -323,16 +314,16 @@ on(type: SensorId.GYROSCOPE_UNCALIBRATED, callback: Callback&lt;GyroscopeUncalib
 
 ```js
 try {
-  sensor.on(sensor.SensorId.GYROSCOPE_UNCALIBRATED,function(data){
-      console.info('X-coordinate component: ' + data.x);
-      console.info('Y-coordinate component: ' + data.y);
-      console.info('Z-coordinate component: ' + data.z);
-      console.info('X-coordinate bias: ' + data.biasX);
-      console.info('Y-coordinate bias: ' + data.biasY);
-      console.info('Z-coordinate bias: ' + data.biasZ);
-  }, {interval: 10000000} );
-} catch(err) {
-      console.info('on fail, errCode: ' + err.code + ' ,msg: ' + err.message);
+    sensor.on(sensor.SensorId.GYROSCOPE_UNCALIBRATED, function (data) {
+        console.info('X-coordinate component: ' + data.x);
+        console.info('Y-coordinate component: ' + data.y);
+        console.info('Z-coordinate component: ' + data.z);
+        console.info('X-coordinate bias: ' + data.biasX);
+        console.info('Y-coordinate bias: ' + data.biasY);
+        console.info('Z-coordinate bias: ' + data.biasZ);
+    }, { interval: 10000000 });
+} catch (err) {
+    console.error('On fail, errCode: ' + err.code + ' ,msg: ' + err.message);
 }
 ```
 
@@ -346,11 +337,11 @@ on(type: SensorId.HALL, callback: Callback&lt;HallResponse&gt;, options?: Option
 
 **参数：** 
 
-| 参数名   | 类型                                          | 必填 | 说明                                                         |
-| -------- | --------------------------------------------- | ---- | ------------------------------------------------------------ |
-| type     | [SensorId](#sensorid9)                        | 是   | 要订阅的霍尔传感器类型为HALL。                               |
-| callback | Callback&lt;[HallResponse](#hallresponse)&gt; | 是   | 注册霍尔传感器的回调函数，上报的数据类型为&nbsp;HallResponse。 |
-| options  | [Options](#options)                           | 否   | 可选参数列表，设置上报频率，默认值为200000000ns。            |
+| 参数名   | 类型                                          | 必填 | 说明                                               |
+| -------- | --------------------------------------------- | ---- | -------------------------------------------------- |
+| type     | [SensorId](#sensorid9).HALL                   | 是   | 传感器类型，该值固定为SensorId.HALL。              |
+| callback | Callback&lt;[HallResponse](#hallresponse)&gt; | 是   | 回调函数，异步上报的传感器数据固定为HallResponse。 |
+| options  | [Options](#options)                           | 否   | 设置上报频率，默认值为200000000ns。                |
 
 **错误码**： 
 
@@ -364,11 +355,11 @@ on(type: SensorId.HALL, callback: Callback&lt;HallResponse&gt;, options?: Option
 
 ```js
 try {
-  sensor.on(sensor.SensorId.HALL,function(data){
-      console.info('Status: ' + data.status);
-  }, {interval: 10000000} );
-} catch(err) {
-      console.info('on fail, errCode: ' + err.code + ' ,msg: ' + err.message);
+    sensor.on(sensor.SensorId.HALL, function (data) {
+        console.info('Hall status: ' + data.status);
+    }, { interval: 10000000 });
+} catch (err) {
+    console.error('On fail, errCode: ' + err.code + ' ,msg: ' + err.message);
 }
 ```
 
@@ -384,11 +375,11 @@ on(type: SensorId.HEART_RATE, callback: Callback&lt;HeartRateResponse&gt;,option
 
 **参数：** 
 
-| 参数名   | 类型                                                    | 必填 | 说明                                                         |
-| -------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| type     | [SensorId](#sensorid9)                                  | 是   | 要订阅的心率传感器类型为HEART_RATE。                         |
-| callback | Callback&lt;[HeartRateResponse](#heartrateresponse)&gt; | 是   | 注册一次心率传感器的回调函数，上报的数据类型为HeartRateResponse。 |
-| options  | [Options](#options)                                     | 否   | 可选参数列表，设置上报频率，默认值为200000000ns。            |
+| 参数名   | 类型                                                    | 必填 | 说明                                                    |
+| -------- | ------------------------------------------------------- | ---- | ------------------------------------------------------- |
+| type     | [SensorId](#sensorid9).HEART_RATE                       | 是   | 传感器类型，该值固定为SensorId.HEART_RATE。             |
+| callback | Callback&lt;[HeartRateResponse](#heartrateresponse)&gt; | 是   | 回调函数，异步上报的传感器数据固定为HeartRateResponse。 |
+| options  | [Options](#options)                                     | 否   | 设置上报频率，默认值为200000000ns。                     |
 
 **错误码**： 
 
@@ -402,11 +393,11 @@ on(type: SensorId.HEART_RATE, callback: Callback&lt;HeartRateResponse&gt;,option
 
 ```js
 try {
-    sensor.on(sensor.SensorId.HEART_RATE,function(data){
+    sensor.on(sensor.SensorId.HEART_RATE, function (data) {
         console.info('Heart rate: ' + data.heartRate);
-    }, {interval: 10000000} );
-} catch(err) {
-      console.info('on fail, errCode: ' + err.code + ' ,msg: ' + err.message);
+    }, { interval: 10000000 });
+} catch (err) {
+    console.error('On fail, errCode: ' + err.code + ' ,msg: ' + err.message);
 }
 ```
 
@@ -420,11 +411,11 @@ on(type: SensorId.HUMIDITY, callback: Callback&lt;HumidityResponse&gt;,options?:
 
 **参数：** 
 
-| 参数名   | 类型                                                  | 必填 | 说明                                                         |
-| -------- | ----------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| type     | [SensorId](#sensorid9)                                | 是   | 要订阅的湿度传感器类型为HUMIDITY。                           |
-| callback | Callback&lt;[HumidityResponse](#humidityresponse)&gt; | 是   | 注册湿度传感器的回调函数，上报的数据类型为HumidityResponse。 |
-| options  | [Options](#options)                                   | 否   | 可选参数列表，设置上报频率，默认值为200000000ns。            |
+| 参数名   | 类型                                                  | 必填 | 说明                                                   |
+| -------- | ----------------------------------------------------- | ---- | ------------------------------------------------------ |
+| type     | [SensorId](#sensorid9).HUMIDITY                       | 是   | 传感器类型，该值固定为SensorId.HUMIDITY。              |
+| callback | Callback&lt;[HumidityResponse](#humidityresponse)&gt; | 是   | 回调函数，异步上报的传感器数据固定为HumidityResponse。 |
+| options  | [Options](#options)                                   | 否   | 设置上报频率，默认值为200000000ns。                    |
 
 **错误码**： 
 
@@ -438,11 +429,11 @@ on(type: SensorId.HUMIDITY, callback: Callback&lt;HumidityResponse&gt;,options?:
 
 ```js
 try {
-  sensor.on(sensor.SensorId.HUMIDITY,function(data){
-      console.info('Humidity: ' + data.humidity);
-  }, {interval: 10000000} );
-} catch(err) {
-      console.info('on fail, errCode: ' + err.code + ' ,msg: ' + err.message);
+    sensor.on(sensor.SensorId.HUMIDITY, function (data) {
+        console.info('Humidity: ' + data.humidity);
+    }, { interval: 10000000 });
+} catch (err) {
+    console.error('On fail, errCode: ' + err.code + ' ,msg: ' + err.message);
 }
 ```
 
@@ -461,9 +452,9 @@ on(type: SensorId.LINEAR_ACCELEROMETER, callback: Callback&lt;LinearAcceleromete
 
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| type     | [SensorId](#sensorid9)                                       | 是   | 要订阅的线性加速度传感器类型为LINEAR_ACCELEROMETER。         |
-| callback | Callback&lt;[LinearAccelerometerResponse](#linearaccelerometerresponse)&gt; | 是   | 注册线性加速度传感器的回调函数，上报的数据类型为LinearAccelerometerResponse。 |
-| options  | [Options](#options)                                          | 否   | 可选参数列表，设置上报频率，默认值为200000000ns。            |
+| type     | [SensorId](#sensorid9).LINEAR_ACCELEROMETER                  | 是   | 传感器类型，该值固定为SensorId.LINEAR_ACCELEROMETER。        |
+| callback | Callback&lt;[LinearAccelerometerResponse](#linearaccelerometerresponse)&gt; | 是   | 回调函数，异步上报的传感器数据固定为LinearAccelerometerResponse。 |
+| options  | [Options](#options)                                          | 否   | 设置上报频率，默认值为200000000ns。                          |
 
 **错误码**： 
 
@@ -477,13 +468,13 @@ on(type: SensorId.LINEAR_ACCELEROMETER, callback: Callback&lt;LinearAcceleromete
 
 ```js
 try {
-  sensor.on(sensor.SensorId.LINEAR_ACCELEROMETER, function(data) {
-      console.info('X-coordinate component: ' + data.x);
-      console.info('Y-coordinate component: ' + data.y);
-      console.info('Z-coordinate component: ' + data.z);
-    }, {interval: 10000000} );
-} catch(err) {
-      console.info('on fail, errCode: ' + err.code + ' ,msg: ' + err.message);
+    sensor.on(sensor.SensorId.LINEAR_ACCELEROMETER, function (data) {
+        console.info('X-coordinate component: ' + data.x);
+        console.info('Y-coordinate component: ' + data.y);
+        console.info('Z-coordinate component: ' + data.z);
+    }, { interval: 10000000 });
+} catch (err) {
+    console.error('On fail, errCode: ' + err.code + ' ,msg: ' + err.message);
 }
 ```
 
@@ -491,17 +482,17 @@ try {
 
 on(type: SensorId.MAGNETIC_FIELD, callback: Callback&lt;MagneticFieldResponse&gt;,options?: Options): void
 
-订阅磁场传感器数据。
+订阅地磁传感器数据。
 
 **系统能力**：SystemCapability.Sensors.Sensor 
 
 **参数：**
 
-| 参数名   | 类型                                                         | 必填 | 说明                                                         |
-| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| type     | [SensorId](#sensorid9)                                       | 是   | 要订阅的磁场传感器类型为MAGNETIC_FIELD。                     |
-| callback | Callback&lt;[MagneticFieldResponse](#magneticfieldresponse)&gt; | 是   | 注册磁场传感器的回调函数，上报的数据类型为MagneticFieldResponse。 |
-| options  | [Options](#options)                                          | 否   | 可选参数列表，设置上报频率，默认值为200000000ns。            |
+| 参数名   | 类型                                                         | 必填 | 说明                                                        |
+| -------- | ------------------------------------------------------------ | ---- | ----------------------------------------------------------- |
+| type     | [SensorId](#sensorid9).MAGNETIC_FIELD                        | 是   | 传感器类型，该值固定为SensorId.MAGNETIC_FIELD。             |
+| callback | Callback&lt;[MagneticFieldResponse](#magneticfieldresponse)&gt; | 是   | 回调函数，异步上报的传感器数据固定为MagneticFieldResponse。 |
+| options  | [Options](#options)                                          | 否   | 设置上报频率，默认值为200000000ns。                         |
 
 **错误码**： 
 
@@ -515,13 +506,13 @@ on(type: SensorId.MAGNETIC_FIELD, callback: Callback&lt;MagneticFieldResponse&gt
 
 ```js
 try {
-  sensor.on(sensor.SensorId.MAGNETIC_FIELD,function(data){
-      console.info('X-coordinate component: ' + data.x);
-      console.info('Y-coordinate component: ' + data.y);
-      console.info('Z-coordinate component: ' + data.z);
-  }, {interval: 10000000} );
-} catch(err) {
-      console.info('on fail, errCode: ' + err.code + ' ,msg: ' + err.message);
+    sensor.on(sensor.SensorId.MAGNETIC_FIELD, function (data) {
+        console.info('X-coordinate component: ' + data.x);
+        console.info('Y-coordinate component: ' + data.y);
+        console.info('Z-coordinate component: ' + data.z);
+    }, { interval: 10000000 });
+} catch (err) {
+    console.error('On fail, errCode: ' + err.code + ' ,msg: ' + err.message);
 }
 ```
 
@@ -529,7 +520,7 @@ try {
 
 on(type: SensorId.MAGNETIC_FIELD_UNCALIBRATED, callback: Callback&lt;MagneticFieldUncalibratedResponse&gt;, options?: Options): void
 
-订阅未校准的磁场传感器数据
+订阅未校准地磁传感器数据
 
 **系统能力**：SystemCapability.Sensors.Sensor 
 
@@ -537,9 +528,9 @@ on(type: SensorId.MAGNETIC_FIELD_UNCALIBRATED, callback: Callback&lt;MagneticFie
 
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| type     | [SensorId](#sensorid9)                                       | 是   | 要订阅的未校准磁场传感器类型为MAGNETIC_FIELD_UNCALIBRATED。  |
-| callback | Callback&lt;[MagneticFieldUncalibratedResponse](#magneticfielduncalibratedresponse)&gt; | 是   | 注册未校准磁场传感器的回调函数，上报的数据类型为MagneticFieldUncalibratedResponse。 |
-| options  | [Options](#options)                                          | 否   | 可选参数列表，设置上报频率，默认值为200000000ns。            |
+| type     | [SensorId](#sensorid9).MAGNETIC_FIELD_UNCALIBRATED           | 是   | 传感器类型，该值固定为SensorId.MAGNETIC_FIELD_UNCALIBRATED。 |
+| callback | Callback&lt;[MagneticFieldUncalibratedResponse](#magneticfielduncalibratedresponse)&gt; | 是   | 回调函数，异步上报的传感器数据固定为MagneticFieldUncalibratedResponse。 |
+| options  | [Options](#options)                                          | 否   | 设置上报频率，默认值为200000000ns。                          |
 
 **错误码**： 
 
@@ -553,16 +544,16 @@ on(type: SensorId.MAGNETIC_FIELD_UNCALIBRATED, callback: Callback&lt;MagneticFie
 
 ```js
 try {
-  sensor.on(sensor.SensorId.MAGNETIC_FIELD_UNCALIBRATED,function(data){
-      console.info('X-coordinate component: ' + data.x);
-      console.info('Y-coordinate component: ' + data.y);
-      console.info('Z-coordinate component: ' + data.z);
-      console.info('X-coordinate bias: ' + data.biasX);
-      console.info('Y-coordinate bias: ' + data.biasY);
-      console.info('Z-coordinate bias: ' + data.biasZ);
-  }, {interval: 10000000} );
-} catch(err) {
-      console.info('on fail, errCode: ' + err.code + ' ,msg: ' + err.message);
+    sensor.on(sensor.SensorId.MAGNETIC_FIELD_UNCALIBRATED, function (data) {
+        console.info('X-coordinate component: ' + data.x);
+        console.info('Y-coordinate component: ' + data.y);
+        console.info('Z-coordinate component: ' + data.z);
+        console.info('X-coordinate bias: ' + data.biasX);
+        console.info('Y-coordinate bias: ' + data.biasY);
+        console.info('Z-coordinate bias: ' + data.biasZ);
+    }, { interval: 10000000 });
+} catch (err) {
+    console.error('On fail, errCode: ' + err.code + ' ,msg: ' + err.message);
 }
 ```
 
@@ -570,7 +561,7 @@ try {
 
 on(type: SensorId.ORIENTATION, callback: Callback&lt;OrientationResponse&gt;,options?: Options): void
 
-订阅定向传感器数据。
+订阅方向传感器数据。
 
 **系统能力**：SystemCapability.Sensors.Sensor 
 
@@ -584,23 +575,23 @@ on(type: SensorId.ORIENTATION, callback: Callback&lt;OrientationResponse&gt;,opt
 
 **参数：**
 
-| 参数名   | 类型                                                        | 必填 | 说明                                                         |
-| -------- | ----------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| type     | [SensorId](#sensorid9)                                      | 是   | 要订阅的方向传感器类型为ORIENTATION。                        |
-| callback | Callback&lt;[OrientationResponse](#orientationresponse)&gt; | 是   | 注册方向传感器的回调函数，上报的数据类型为OrientationResponse。 |
-| options  | [Options](#options)                                         | 否   | 可选参数列表，设置上报频率，默认值为200000000ns。            |
+| 参数名   | 类型                                                        | 必填 | 说明                                                      |
+| -------- | ----------------------------------------------------------- | ---- | --------------------------------------------------------- |
+| type     | [SensorId](#sensorid9).ORIENTATION                          | 是   | 传感器类型，该值固定为SensorId.ORIENTATION。              |
+| callback | Callback&lt;[OrientationResponse](#orientationresponse)&gt; | 是   | 回调函数，异步上报的传感器数据固定为OrientationResponse。 |
+| options  | [Options](#options)                                         | 否   | 设置上报频率，默认值为200000000ns。                       |
 
 **示例：**
 
 ```js
 try {
-  sensor.on(sensor.SensorId.ORIENTATION,function(data){
-      console.info('The device rotates at an angle around the X axis: ' + data.beta);
-      console.info('The device rotates at an angle around the Y axis: ' + data.gamma);
-      console.info('The device rotates at an angle around the Z axis: ' + data.alpha);
-  }, {interval: 10000000} );
-} catch(err) {
-      console.info('on fail, errCode: ' + err.code + ' ,msg: ' + err.message);
+    sensor.on(sensor.SensorId.ORIENTATION, function (data) {
+        console.info('The device rotates at an angle around the Z axis: ' + data.alpha);
+        console.info('The device rotates at an angle around the X axis: ' + data.beta);
+        console.info('The device rotates at an angle around the Y axis: ' + data.gamma);
+    }, { interval: 10000000 });
+} catch (err) {
+    console.error('On fail, errCode: ' + err.code + ' ,msg: ' + err.message);
 }
 ```
 
@@ -624,21 +615,21 @@ on(type: SensorId.PEDOMETER, callback: Callback&lt;PedometerResponse&gt;, option
 
 **参数：**
 
-| 参数名   | 类型                                                    | 必填 | 说明                                                         |
-| -------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| type     | [SensorId](#sensorid9)                                  | 是   | 要订阅的计步传感器类型为PEDOMETER。                          |
-| callback | Callback&lt;[PedometerResponse](#pedometerresponse)&gt; | 是   | 注册计步传感器的回调函数，上报的数据类型为PedometerResponse。 |
-| options  | [Options](#options)                                     | 否   | 可选参数列表，设置上报频率，默认值为200000000ns。            |
+| 参数名   | 类型                                                    | 必填 | 说明                                                    |
+| -------- | ------------------------------------------------------- | ---- | ------------------------------------------------------- |
+| type     | [SensorId](#sensorid9).PEDOMETER                        | 是   | 传感器类型，该值固定为SensorId.PEDOMETER。              |
+| callback | Callback&lt;[PedometerResponse](#pedometerresponse)&gt; | 是   | 回调函数，异步上报的传感器数据固定为PedometerResponse。 |
+| options  | [Options](#options)                                     | 否   | 设置上报频率，默认值为200000000ns。                     |
 
 **示例：**
 
 ```js
 try {
-  sensor.on(sensor.SensorId.PEDOMETER,function(data){
-      console.info('Steps: ' + data.steps);
-  }, {interval: 10000000} );
-} catch(err) {
-      console.info('on fail, errCode: ' + err.code + ' ,msg: ' + err.message);
+    sensor.on(sensor.SensorId.PEDOMETER, function (data) {
+        console.info('Step count: ' + data.steps);
+    }, { interval: 10000000 });
+} catch (err) {
+    console.error('On fail, errCode: ' + err.code + ' ,msg: ' + err.message);
 }
 ```
 
@@ -647,7 +638,7 @@ try {
 on(type: SensorId.PEDOMETER_DETECTION, callback: Callback&lt;PedometerDetectionResponse&gt;,
         options?: Options): void
 
-订阅计步器检测传感器数据。
+订阅计步检测器传感器数据。
 
 **需要权限**：ohos.permission.ACTIVITY_MOTION 
 
@@ -657,9 +648,9 @@ on(type: SensorId.PEDOMETER_DETECTION, callback: Callback&lt;PedometerDetectionR
 
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| type     | [SensorId](#sensorid9)                                       | 是   | 要订阅的计步检测传感器类型为PEDOMETER_DETECTION。            |
-| callback | Callback&lt;[PedometerDetectionResponse](#pedometerdetectionresponse)&gt; | 是   | 注册计步检测传感器的回调函数，上报的数据类型为PedometerDetectionResponse。 |
-| options  | [Options](#options)                                          | 否   | 可选参数列表，设置上报频率，默认值为200000000ns。            |
+| type     | [SensorId](#sensorid9).PEDOMETER_DETECTION                   | 是   | 传感器类型，该值固定为SensorId.PEDOMETER_DETECTION。         |
+| callback | Callback&lt;[PedometerDetectionResponse](#pedometerdetectionresponse)&gt; | 是   | 回调函数，异步上报的传感器数据固定为PedometerDetectionResponse。 |
+| options  | [Options](#options)                                          | 否   | 设置上报频率，默认值为200000000ns。                          |
 
 **错误码**： 
 
@@ -673,11 +664,11 @@ on(type: SensorId.PEDOMETER_DETECTION, callback: Callback&lt;PedometerDetectionR
 
 ```js
 try {
-  sensor.on(sensor.SensorId.PEDOMETER_DETECTION,function(data){
-      console.info('Scalar data: ' + data.scalar);
-  }, {interval: 10000000} );
-} catch(err) {
-      console.info('on fail, errCode: ' + err.code + ' ,msg: ' + err.message);
+    sensor.on(sensor.SensorId.PEDOMETER_DETECTION, function (data) {
+        console.info('Pedometer scalar: ' + data.scalar);
+    }, { interval: 10000000 });
+} catch (err) {
+    console.error('On fail, errCode: ' + err.code + ' ,msg: ' + err.message);
 }
 ```
 
@@ -685,17 +676,17 @@ try {
 
 on(type: SensorId.PROXIMITY, callback: Callback&lt;ProximityResponse&gt;, options?: Options): void
 
-订阅接近传感器数据。
+订阅接近光传感器数据。
 
 **系统能力**：SystemCapability.Sensors.Sensor 
 
 **参数：**
 
-| 参数名   | 类型                                                    | 必填 | 说明                                                         |
-| -------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| type     | [SensorId](#sensorid9)                                  | 是   | 要订阅的接近光传感器类型为PROXIMITY。                        |
-| callback | Callback&lt;[ProximityResponse](#proximityresponse)&gt; | 是   | 注册接近光传感器的回调函数，上报的数据类型为ProximityResponse。 |
-| options  | [Options](#options)                                     | 否   | 可选参数列表，设置上报频率，默认值为200000000ns。            |
+| 参数名   | 类型                                                    | 必填 | 说明                                                    |
+| -------- | ------------------------------------------------------- | ---- | ------------------------------------------------------- |
+| type     | [SensorId](#sensorid9).PROXIMITY                        | 是   | 传感器类型，该值固定为SensorId.PROXIMITY。              |
+| callback | Callback&lt;[ProximityResponse](#proximityresponse)&gt; | 是   | 回调函数，异步上报的传感器数据固定为ProximityResponse。 |
+| options  | [Options](#options)                                     | 否   | 设置上报频率，默认值为200000000ns。                     |
 
 **错误码**： 
 
@@ -709,11 +700,11 @@ on(type: SensorId.PROXIMITY, callback: Callback&lt;ProximityResponse&gt;, option
 
 ```js
 try {
-  sensor.on(sensor.SensorId.PROXIMITY,function(data){
-      console.info('Distance: ' + data.distance);
-  }, {interval: 10000000} );
-} catch(err) {
-      console.info('on fail, errCode: ' + err.code + ' ,msg: ' + err.message);
+    sensor.on(sensor.SensorId.PROXIMITY, function (data) {
+        console.info('Distance: ' + data.distance);
+    }, { interval: 10000000 });
+} catch (err) {
+    console.error('On fail, errCode: ' + err.code + ' ,msg: ' + err.message);
 }
 ```
 
@@ -730,9 +721,9 @@ on(type: SensorId.ROTATION_VECTOR, callback: Callback&lt;RotationVectorResponse&
 
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| type     | [SensorId](#sensorid9)                                       | 是   | 要订阅的旋转矢量传感器类型为ROTATION_VECTOR。                |
-| callback | Callback&lt;[RotationVectorResponse](#rotationvectorresponse)&gt; | 是   | 注册旋转矢量传感器的回调函数，上报的数据类型为RotationVectorResponse。 |
-| options  | [Options](#options)                                          | 否   | 可选参数列表，设置上报频率，默认值为200000000ns。            |
+| type     | [SensorId](#sensorid9).ROTATION_VECTOR                       | 是   | 传感器类型，该值固定为SensorId.ROTATION_VECTOR。             |
+| callback | Callback&lt;[RotationVectorResponse](#rotationvectorresponse)&gt; | 是   | 回调函数，异步上报的传感器数据固定为RotationVectorResponse。 |
+| options  | [Options](#options)                                          | 否   | 设置上报频率，默认值为200000000ns。                          |
 
 **错误码**： 
 
@@ -746,14 +737,14 @@ on(type: SensorId.ROTATION_VECTOR, callback: Callback&lt;RotationVectorResponse&
 
 ```js
 try {
-  sensor.on(sensor.SensorId.ROTATION_VECTOR,function(data){
-      console.info('X-coordinate component: ' + data.x);
-      console.info('Y-coordinate component: ' + data.y);
-      console.info('Z-coordinate component: ' + data.z);
-      console.info('Scalar quantity: ' + data.w);
-  }, {interval: 10000000} );
-} catch(err) {
-      console.info('on fail, errCode: ' + err.code + ' ,msg: ' + err.message);
+    sensor.on(sensor.SensorId.ROTATION_VECTOR, function (data) {
+        console.info('X-coordinate component: ' + data.x);
+        console.info('Y-coordinate component: ' + data.y);
+        console.info('Z-coordinate component: ' + data.z);
+        console.info('Scalar quantity: ' + data.w);
+    }, { interval: 10000000 });
+} catch (err) {
+    console.error('On fail, errCode: ' + err.code + ' ,msg: ' + err.message);
 }
 ```
 
@@ -762,7 +753,7 @@ try {
 on(type: SensorId.SIGNIFICANT_MOTION, callback: Callback&lt;SignificantMotionResponse&gt;,
         options?: Options): void
 
-订阅重要的运动传感器数据。
+订阅大幅动作检测传感器数据。
 
 **系统能力**：SystemCapability.Sensors.Sensor
 
@@ -770,9 +761,9 @@ on(type: SensorId.SIGNIFICANT_MOTION, callback: Callback&lt;SignificantMotionRes
 
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| type     | [SensorId](#sensorid9)                                       | 是   | 要订阅的大幅动作传感器类型为SIGNIFICANT_MOTION。             |
-| callback | Callback&lt;[SignificantMotionResponse](#significantmotionresponse)&gt; | 是   | 注册有效运动传感器的回调函数，上报的数据类型为SignificantMotionResponse。 |
-| options  | [Options](#options)                                          | 否   | 可选参数列表，设置上报频率，默认值为200000000ns。            |
+| type     | [SensorId](#sensorid9).SIGNIFICANT_MOTION                    | 是   | 传感器类型，该值固定为SensorId.SIGNIFICANT_MOTION。          |
+| callback | Callback&lt;[SignificantMotionResponse](#significantmotionresponse)&gt; | 是   | 回调函数，异步上报的传感器数据固定为SignificantMotionResponse。 |
+| options  | [Options](#options)                                          | 否   | 设置上报频率，默认值为200000000ns。                          |
 
 **错误码**： 
 
@@ -786,11 +777,11 @@ on(type: SensorId.SIGNIFICANT_MOTION, callback: Callback&lt;SignificantMotionRes
 
 ```js
 try {
-  sensor.on(sensor.SensorId.SIGNIFICANT_MOTION,function(data){
-      console.info('Scalar data: ' + data.scalar);
-  }, {interval: 10000000} );
-} catch(err) {
-      console.info('on fail, errCode: ' + err.code + ' ,msg: ' + err.message);
+    sensor.on(sensor.SensorId.SIGNIFICANT_MOTION, function (data) {
+        console.info('Scalar data: ' + data.scalar);
+    }, { interval: 10000000 });
+} catch (err) {
+    console.error('On fail, errCode: ' + err.code + ' ,msg: ' + err.message);
 }
 ```
 
@@ -805,11 +796,11 @@ on(type: SensorId.WEAR_DETECTION, callback: Callback&lt;WearDetectionResponse&gt
 
 **参数：** 
 
-| 参数名   | 类型                                                         | 必填 | 说明                                                         |
-| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| type     | [SensorId](#sensorid9)                                       | 是   | 要订阅的佩戴检测传感器类型为WEAR_DETECTION。                 |
-| callback | Callback&lt;[WearDetectionResponse](#weardetectionresponse)&gt; | 是   | 注册佩戴检测传感器的回调函数，上报的数据类型为WearDetectionResponse。 |
-| options  | [Options](#options)                                          | 否   | 可选参数列表，设置上报频率，默认值为200000000ns。            |
+| 参数名   | 类型                                                         | 必填 | 说明                                                        |
+| -------- | ------------------------------------------------------------ | ---- | ----------------------------------------------------------- |
+| type     | [SensorId](#sensorid9).WEAR_DETECTION                        | 是   | 传感器类型，该值固定为SensorId.WEAR_DETECTION。             |
+| callback | Callback&lt;[WearDetectionResponse](#weardetectionresponse)&gt; | 是   | 回调函数，异步上报的传感器数据固定为WearDetectionResponse。 |
+| options  | [Options](#options)                                          | 否   | 设置上报频率，默认值为200000000ns。                         |
 
 **错误码**： 
 
@@ -823,11 +814,11 @@ on(type: SensorId.WEAR_DETECTION, callback: Callback&lt;WearDetectionResponse&gt
 
 ```js
 try {
-  sensor.on(sensor.SensorId.WEAR_DETECTION,function(data){
-      console.info('Wear status: ' + data.value);
-  }, {interval: 10000000} );
-} catch(err) {
-      console.info('on fail, errCode: ' + err.code + ' ,msg: ' + err.message);
+    sensor.on(sensor.SensorId.WEAR_DETECTION, function (data) {
+        console.info('Wear status: ' + data.value);
+    }, { interval: 10000000 });
+} catch (err) {
+    console.error('On fail, errCode: ' + err.code + ' ,msg: ' + err.message);
 }
 ```
 
@@ -837,7 +828,7 @@ try {
 
 once(type: SensorId.ACCELEROMETER, callback: Callback&lt;AccelerometerResponse&gt;): void
 
-订阅一次加速度计传感器数据。
+获取一次加速度传感器数据。
 
 **需要权限**：ohos.permission.ACCELEROMETER 
 
@@ -845,10 +836,10 @@ once(type: SensorId.ACCELEROMETER, callback: Callback&lt;AccelerometerResponse&g
 
 **参数：** 
 
-| 参数名   | 类型                                                         | 必填 | 说明                                                         |
-| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| type     | [SensorId](#sensorid9)                                       | 是   | 加速度传感器类型为ACCELEROMETER。                            |
-| callback | Callback&lt;[AccelerometerResponse](#accelerometerresponse)&gt; | 是   | 注册一次加速度传感器的回调函数，上报的数据类型为AccelerometerResponse。 |
+| 参数名   | 类型                                                         | 必填 | 说明                                                        |
+| -------- | ------------------------------------------------------------ | ---- | ----------------------------------------------------------- |
+| type     | [SensorId](#sensorid9).ACCELEROMETER                         | 是   | 传感器类型，该值固定为SensorId.ACCELEROMETER。              |
+| callback | Callback&lt;[AccelerometerResponse](#accelerometerresponse)&gt; | 是   | 回调函数，异步上报的传感器数据固定为AccelerometerResponse。 |
 
 **错误码**： 
 
@@ -862,14 +853,13 @@ once(type: SensorId.ACCELEROMETER, callback: Callback&lt;AccelerometerResponse&g
 
 ```js
 try {
-  sensor.once(sensor.SensorId.ACCELEROMETER,function(data){
-      console.info('X-coordinate component: ' + data.x);
-      console.info('Y-coordinate component: ' + data.y);
-      console.info('Z-coordinate component: ' + data.z);
-    }
-  );
-} catch(err) {
-      console.info('once fail, errCode: ' + err.code + ' ,msg: ' + err.message);
+    sensor.once(sensor.SensorId.ACCELEROMETER, function (data) {
+        console.info('X-coordinate component: ' + data.x);
+        console.info('Y-coordinate component: ' + data.y);
+        console.info('Z-coordinate component: ' + data.z);
+    });
+} catch (err) {
+    console.error('Once fail, errCode: ' + err.code + ' ,msg: ' + err.message);
 }
 ```
 
@@ -877,7 +867,7 @@ try {
 
 once(type: SensorId.ACCELEROMETER_UNCALIBRATED, callback: Callback&lt;AccelerometerUncalibratedResponse&gt;): void
 
-订阅一次未校准的加速度计传感器数据。
+获取一次未校准加速度传感器数据。
 
 **需要权限**：ohos.permission.ACCELEROMETER 
 
@@ -887,8 +877,8 @@ once(type: SensorId.ACCELEROMETER_UNCALIBRATED, callback: Callback&lt;Accelerome
 
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| type     | [SensorId](#sensorid9)                                       | 是   | 未校准加速度传感器类型为ACCELEROMETER_UNCALIBRATED。         |
-| callback | Callback&lt;[AccelerometerUncalibratedResponse](#accelerometeruncalibratedresponse)&gt; | 是   | 注册一次未校准加速度传感器的回调函数，上报的数据类型为AccelerometerUncalibratedResponse。 |
+| type     | [SensorId](#sensorid9).ACCELEROMETER_UNCALIBRATED            | 是   | 传感器类型，该值固定为SensorId.ACCELEROMETER_UNCALIBRATED。  |
+| callback | Callback&lt;[AccelerometerUncalibratedResponse](#accelerometeruncalibratedresponse)&gt; | 是   | 回调函数，异步上报的传感器数据固定为AccelerometerUncalibratedResponse。 |
 
 **错误码**： 
 
@@ -902,17 +892,16 @@ once(type: SensorId.ACCELEROMETER_UNCALIBRATED, callback: Callback&lt;Accelerome
 
 ```js
 try {
-  sensor.once(sensor.SensorId.ACCELEROMETER_UNCALIBRATED, function(data) {
-      console.info('X-coordinate component: ' + data.x);
-      console.info('Y-coordinate component: ' + data.y);
-      console.info('Z-coordinate component: ' + data.z);
-      console.info('X-coordinate bias: ' + data.biasX);
-      console.info('Y-coordinate bias: ' + data.biasY);
-      console.info('Z-coordinate bias: ' + data.biasZ);
-    }
-  );
-} catch(err) {
-      console.info('once fail, errCode: ' + err.code + ' ,msg: ' + err.message);
+    sensor.once(sensor.SensorId.ACCELEROMETER_UNCALIBRATED, function (data) {
+        console.info('X-coordinate component: ' + data.x);
+        console.info('Y-coordinate component: ' + data.y);
+        console.info('Z-coordinate component: ' + data.z);
+        console.info('X-coordinate bias: ' + data.biasX);
+        console.info('Y-coordinate bias: ' + data.biasY);
+        console.info('Z-coordinate bias: ' + data.biasZ);
+    });
+} catch (err) {
+    console.error('Once fail, errCode: ' + err.code + ' ,msg: ' + err.message);
 }
 ```
 
@@ -920,16 +909,16 @@ try {
 
 once(type: SensorId.AMBIENT_LIGHT, callback: Callback&lt;LightResponse&gt;): void
 
-订阅环境光传感器数据一次。
+获取一次环境光传感器数据。
 
 **系统能力**：SystemCapability.Sensors.Sensor
 
 **参数：** 
 
-| 参数名   | 类型                                            | 必填 | 说明                                                         |
-| -------- | ----------------------------------------------- | ---- | ------------------------------------------------------------ |
-| type     | [SensorId](#sensorid9)                          | 是   | 环境光传感器类型为AMBIENT_LIGHT。                            |
-| callback | Callback&lt;[LightResponse](#lightresponse)&gt; | 是   | 注册一次环境光传感器的回调函数，上报的数据类型为LightResponse。 |
+| 参数名   | 类型                                            | 必填 | 说明                                                |
+| -------- | ----------------------------------------------- | ---- | --------------------------------------------------- |
+| type     | [SensorId](#sensorid9).AMBIENT_LIGHT            | 是   | 传感器类型，该值固定为SensorId.AMBIENT_LIGHT。      |
+| callback | Callback&lt;[LightResponse](#lightresponse)&gt; | 是   | 回调函数，异步上报的传感器数据固定为LightResponse。 |
 
 **错误码**： 
 
@@ -943,12 +932,11 @@ once(type: SensorId.AMBIENT_LIGHT, callback: Callback&lt;LightResponse&gt;): voi
 
 ```js
 try {
-   sensor.once(sensor.SensorId.AMBIENT_LIGHT, function(data) {
-       console.info('Illumination: ' + data.intensity);
-     }
-   );
-} catch(err) {
-      console.info('once fail, errCode: ' + err.code + ' ,msg: ' + err.message);
+    sensor.once(sensor.SensorId.AMBIENT_LIGHT, function (data) {
+        console.info('The ambient light intensity: ' + data.intensity);
+    });
+} catch (err) {
+    console.error('Once fail, errCode: ' + err.code + ' ,msg: ' + err.message);
 }
 ```
 
@@ -956,7 +944,7 @@ try {
 
 once(type: SensorId.AMBIENT_TEMPERATURE, callback: Callback&lt;AmbientTemperatureResponse&gt;): void
 
-一次订阅环境温度传感器数据。
+获取一次温度传感器数据。
 
 **系统能力**：SystemCapability.Sensors.Sensor
 
@@ -964,8 +952,8 @@ once(type: SensorId.AMBIENT_TEMPERATURE, callback: Callback&lt;AmbientTemperatur
 
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| type     | [SensorId](#sensorid9)                                       | 是   | 环境温度传感器类型为AMBIENT_TEMPERATURE。                    |
-| callback | Callback&lt;[AmbientTemperatureResponse](#ambienttemperatureresponse)&gt; | 是   | 注册一次环境温度传感器的回调函数，上报的数据类型为AmbientTemperatureResponse。 |
+| type     | [SensorId](#sensorid9).AMBIENT_TEMPERATURE                   | 是   | 传感器类型，该值固定为SensorId.AMBIENT_TEMPERATURE。         |
+| callback | Callback&lt;[AmbientTemperatureResponse](#ambienttemperatureresponse)&gt; | 是   | 回调函数，异步上报的传感器数据固定为AmbientTemperatureResponse。 |
 
 **错误码**： 
 
@@ -979,12 +967,11 @@ once(type: SensorId.AMBIENT_TEMPERATURE, callback: Callback&lt;AmbientTemperatur
 
 ```js
 try {
-   sensor.once(sensor.SensorId.AMBIENT_TEMPERATURE, function(data) {
-       console.info('Temperature: ' + data.temperature);
-     }
-   );
-} catch(err) {
-      console.info('once fail, errCode: ' + err.code + ' ,msg: ' + err.message);
+    sensor.once(sensor.SensorId.AMBIENT_TEMPERATURE, function (data) {
+        console.info('Temperature: ' + data.temperature);
+    });
+} catch (err) {
+    console.error('Once fail, errCode: ' + err.code + ' ,msg: ' + err.message);
 }
 ```
 
@@ -992,16 +979,16 @@ try {
 
 once(type: SensorId.BAROMETER, callback: Callback&lt;BarometerResponse&gt;): void
 
-订阅一次气压计传感器数据。
+获取一次气压计传感器数据。
 
 **系统能力**：SystemCapability.Sensors.Sensor
 
 **参数：**
 
-| 参数名   | 类型                                                    | 必填 | 说明                                                         |
-| -------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| type     | [SensorId](#sensorid9)                                  | 是   | 气压计传感器类型为BAROMETER。                                |
-| callback | Callback&lt;[BarometerResponse](#barometerresponse)&gt; | 是   | 注册一次气压计传感器的回调函数，上报的数据类型为BarometerResponse。 |
+| 参数名   | 类型                                                    | 必填 | 说明                                                    |
+| -------- | ------------------------------------------------------- | ---- | ------------------------------------------------------- |
+| type     | [SensorId](#sensorid9).BAROMETER                        | 是   | 传感器类型，该值固定为SensorId.BAROMETER。              |
+| callback | Callback&lt;[BarometerResponse](#barometerresponse)&gt; | 是   | 回调函数，异步上报的传感器数据固定为BarometerResponse。 |
 
 **错误码**： 
 
@@ -1015,12 +1002,11 @@ once(type: SensorId.BAROMETER, callback: Callback&lt;BarometerResponse&gt;): voi
 
 ```js
 try {
-   sensor.once(sensor.SensorType.SENSOR_TYPE_ID_BAROMETER, function(data) {
-       console.info('Atmospheric pressure: ' + data.pressure);
-     }
-   );
-} catch(err) {
-      console.info('once fail, errCode: ' + err.code + ' ,msg: ' + err.message);
+    sensor.once(sensor.SensorType.SENSOR_TYPE_ID_BAROMETER, function (data) {
+        console.info('Atmospheric pressure: ' + data.pressure);
+    });
+} catch (err) {
+    console.error('Once fail, errCode: ' + err.code + ' ,msg: ' + err.message);
 }
 ```
 
@@ -1028,16 +1014,16 @@ try {
 
 once(type: SensorId.GRAVITY, callback: Callback&lt;GravityResponse&gt;): void
 
-订阅一次重力传感器数据。
+获取一次重力传感器数据。
 
 **系统能力**：SystemCapability.Sensors.Sensor
 
 **参数：**
 
-| 参数名   | 类型                                                | 必填 | 说明                                                         |
-| -------- | --------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| type     | [SensorId](#sensorid9)                              | 是   | 重力传感器类型为GRAVITY。                                    |
-| callback | Callback&lt;[GravityResponse](#gravityresponse)&gt; | 是   | 注册一次重力传感器的回调函数，上报的数据类型为GravityResponse。 |
+| 参数名   | 类型                                                | 必填 | 说明                                                  |
+| -------- | --------------------------------------------------- | ---- | ----------------------------------------------------- |
+| type     | [SensorId](#sensorid9).GRAVITY                      | 是   | 传感器类型，该值固定为SensorId.GRAVITY。              |
+| callback | Callback&lt;[GravityResponse](#gravityresponse)&gt; | 是   | 回调函数，异步上报的传感器数据固定为GravityResponse。 |
 
 **错误码**： 
 
@@ -1051,14 +1037,13 @@ once(type: SensorId.GRAVITY, callback: Callback&lt;GravityResponse&gt;): void
 
 ```js
 try {
-   sensor.once(sensor.SensorId.GRAVITY, function(data) {
-       console.info('X-coordinate component: ' + data.x);
-       console.info('Y-coordinate component: ' + data.y);
-       console.info('Z-coordinate component: ' + data.z);
-     }
-   );
-} catch(err) {
-      console.info('once fail, errCode: ' + err.code + ' ,msg: ' + err.message);
+    sensor.once(sensor.SensorId.GRAVITY, function (data) {
+        console.info('X-coordinate component: ' + data.x);
+        console.info('Y-coordinate component: ' + data.y);
+        console.info('Z-coordinate component: ' + data.z);
+    });
+} catch (err) {
+    console.error('Once fail, errCode: ' + err.code + ' ,msg: ' + err.message);
 }
 ```
 
@@ -1066,7 +1051,7 @@ try {
 
 once(type: SensorId.GYROSCOPE, callback: Callback&lt;GyroscopeResponse&gt;): void
 
-订阅一次陀螺仪传感器数据。
+获取一次陀螺仪传感器数据。
 
 **需要权限**：ohos.permission.GYROSCOPE 
 
@@ -1074,10 +1059,10 @@ once(type: SensorId.GYROSCOPE, callback: Callback&lt;GyroscopeResponse&gt;): voi
 
 **参数：** 
 
-| 参数名   | 类型                                                    | 必填 | 说明                                                         |
-| -------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| type     | [SensorId](#sensorid9)                                  | 是   | 陀螺仪传感器类型为GYROSCOPE。                                |
-| callback | Callback&lt;[GyroscopeResponse](#gyroscoperesponse)&gt; | 是   | 注册一次陀螺仪传感器的回调函数，上报的数据类型为GyroscopeResponse。 |
+| 参数名   | 类型                                                    | 必填 | 说明                                                    |
+| -------- | ------------------------------------------------------- | ---- | ------------------------------------------------------- |
+| type     | [SensorId](#sensorid9).GYROSCOPE                        | 是   | 传感器类型，该值固定为SensorId.GYROSCOPE。              |
+| callback | Callback&lt;[GyroscopeResponse](#gyroscoperesponse)&gt; | 是   | 回调函数，异步上报的传感器数据固定为GyroscopeResponse。 |
 
 **错误码**： 
 
@@ -1091,14 +1076,13 @@ once(type: SensorId.GYROSCOPE, callback: Callback&lt;GyroscopeResponse&gt;): voi
 
 ```js
 try {
-   sensor.once(sensor.SensorId.GYROSCOPE, function(data) {
-       console.info('X-coordinate component: ' + data.x);
-       console.info('Y-coordinate component: ' + data.y);
-       console.info('Z-coordinate component: ' + data.z);
-     }
-   );
-} catch(err) {
-      console.info('once fail, errCode: ' + err.code + ' ,msg: ' + err.message);
+    sensor.once(sensor.SensorId.GYROSCOPE, function (data) {
+        console.info('X-coordinate component: ' + data.x);
+        console.info('Y-coordinate component: ' + data.y);
+        console.info('Z-coordinate component: ' + data.z);
+    });
+} catch (err) {
+    console.error('Once fail, errCode: ' + err.code + ' ,msg: ' + err.message);
 }
 ```
 
@@ -1106,7 +1090,7 @@ try {
 
 once(type: SensorId.GYROSCOPE_UNCALIBRATED, callback: Callback&lt;GyroscopeUncalibratedResponse&gt;): void
 
-一次订阅未校准的陀螺仪传感器数据。
+获取一次未校准陀螺仪传感器数据。
 
 **需要权限**：ohos.permission.GYROSCOPE 
 
@@ -1116,8 +1100,8 @@ once(type: SensorId.GYROSCOPE_UNCALIBRATED, callback: Callback&lt;GyroscopeUncal
 
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| type     | [SensorId](#sensorid9)                                       | 是   | 未校准陀螺仪传感器类型为GYROSCOPE_UNCALIBRATED。             |
-| callback | Callback&lt;[GyroscopeUncalibratedResponse](#gyroscopeuncalibratedresponse)&gt; | 是   | 注册一次未校准陀螺仪传感器的回调函数，上报的数据类型为GyroscopeUncalibratedResponse。 |
+| type     | [SensorId](#sensorid9).GYROSCOPE_UNCALIBRATED                | 是   | 传感器类型，该值固定为SensorId.GYROSCOPE_UNCALIBRATED。      |
+| callback | Callback&lt;[GyroscopeUncalibratedResponse](#gyroscopeuncalibratedresponse)&gt; | 是   | 回调函数，异步上报的传感器数据固定为GyroscopeUncalibratedResponse。 |
 
 **错误码**： 
 
@@ -1131,17 +1115,16 @@ once(type: SensorId.GYROSCOPE_UNCALIBRATED, callback: Callback&lt;GyroscopeUncal
 
 ```js
 try {
-    sensor.once(sensor.SensorId.GYROSCOPE_UNCALIBRATED, function(data) {
+    sensor.once(sensor.SensorId.GYROSCOPE_UNCALIBRATED, function (data) {
         console.info('X-coordinate component: ' + data.x);
         console.info('Y-coordinate component: ' + data.y);
         console.info('Z-coordinate component: ' + data.z);
         console.info('X-coordinate bias: ' + data.biasX);
         console.info('Y-coordinate bias: ' + data.biasY);
         console.info('Z-coordinate bias: ' + data.biasZ);
-      }
-    );
-} catch(err) {
-      console.info('once fail, errCode: ' + err.code + ' ,msg: ' + err.message);
+    });
+} catch (err) {
+    console.error('Once fail, errCode: ' + err.code + ' ,msg: ' + err.message);
 }
 ```
 
@@ -1149,16 +1132,16 @@ try {
 
 once(type: SensorId.HALL, callback: Callback&lt;HallResponse&gt;): void
 
-订阅一次霍尔传感器数据。
+获取霍尔传感器数据。
 
 **系统能力**：SystemCapability.Sensors.Sensor 
 
 **参数：** 
 
-| 参数名   | 类型                                          | 必填 | 说明                                                         |
-| -------- | --------------------------------------------- | ---- | ------------------------------------------------------------ |
-| type     | [SensorId](#sensorid9)                        | 是   | 霍尔传感器类型为HALL。                                       |
-| callback | Callback&lt;[HallResponse](#hallresponse)&gt; | 是   | 注册一次霍尔传感器的回调函数，上报的数据类型为HallResponse。 |
+| 参数名   | 类型                                          | 必填 | 说明                                               |
+| -------- | --------------------------------------------- | ---- | -------------------------------------------------- |
+| type     | [SensorId](#sensorid9).HALL                   | 是   | 传感器类型，该值固定为SensorId.HALL。              |
+| callback | Callback&lt;[HallResponse](#hallresponse)&gt; | 是   | 回调函数，异步上报的传感器数据固定为HallResponse。 |
 
 **错误码**： 
 
@@ -1172,12 +1155,11 @@ once(type: SensorId.HALL, callback: Callback&lt;HallResponse&gt;): void
 
 ```js
 try {
-    sensor.once(sensor.SensorId.HALL, function(data) {
+    sensor.once(sensor.SensorId.HALL, function (data) {
         console.info('Status: ' + data.status);
-      }
-    );
-} catch(err) {
-      console.info('once fail, errCode: ' + err.code + ' ,msg: ' + err.message);
+    });
+} catch (err) {
+    console.error('Once fail, errCode: ' + err.code + ' ,msg: ' + err.message);
 }
 ```
 
@@ -1185,7 +1167,7 @@ try {
 
 once(type: SensorId.HEART_RATE, callback: Callback&lt;HeartRateResponse&gt;): void
 
-订阅一次心率传感器数据。
+获取一次心率传感器数据。
 
 **需要权限**：ohos.permission.READ_HEALTH_DATA 
 
@@ -1193,10 +1175,10 @@ once(type: SensorId.HEART_RATE, callback: Callback&lt;HeartRateResponse&gt;): vo
 
 **参数：** 
 
-| 参数名   | 类型                                                    | 必填 | 说明                                                         |
-| -------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| type     | [SensorId](#sensorid9)                                  | 是   | 心率传感器类型为HEART_RATE。                                 |
-| callback | Callback&lt;[HeartRateResponse](#heartrateresponse)&gt; | 是   | 注册一次心率传感器的回调函数，上报的数据类型为HeartRateResponse。 |
+| 参数名   | 类型                                                    | 必填 | 说明                                                    |
+| -------- | ------------------------------------------------------- | ---- | ------------------------------------------------------- |
+| type     | [SensorId](#sensorid9).HEART_RATE                       | 是   | 传感器类型，该值固定为SensorId.HEART_RATE。             |
+| callback | Callback&lt;[HeartRateResponse](#heartrateresponse)&gt; | 是   | 回调函数，异步上报的传感器数据固定为HeartRateResponse。 |
 
 **错误码**： 
 
@@ -1210,12 +1192,11 @@ once(type: SensorId.HEART_RATE, callback: Callback&lt;HeartRateResponse&gt;): vo
 
 ```js
 try {
-    sensor.once(sensor.SensorId.HEART_BEAT_RATE, function(data) {
+    sensor.once(sensor.SensorId.HEART_BEAT_RATE, function (data) {
         console.info('Heart rate: ' + data.heartRate);
-      }
-    );
-} catch(err) {
-      console.info('once fail, errCode: ' + err.code + ' ,msg: ' + err.message);
+    });
+} catch (err) {
+    console.error('Once fail, errCode: ' + err.code + ' ,msg: ' + err.message);
 }
 ```
 
@@ -1223,16 +1204,16 @@ try {
 
 once(type: SensorId.HUMIDITY, callback: Callback&lt;HumidityResponse&gt;): void
 
-订阅一次湿度传感器数据。
+获取一次湿度传感器数据。
 
 **系统能力**：SystemCapability.Sensors.Sensor 
 
 **参数：** 
 
-| 参数名   | 类型                                                  | 必填 | 说明                                                         |
-| -------- | ----------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| type     | [SensorId](#sensorid9)                                | 是   | 湿度传感器类型为HUMIDITY。                                   |
-| callback | Callback&lt;[HumidityResponse](#humidityresponse)&gt; | 是   | 注册一次湿度传感器的回调函数，上报的数据类型为HumidityResponse。 |
+| 参数名   | 类型                                                  | 必填 | 说明                                                   |
+| -------- | ----------------------------------------------------- | ---- | ------------------------------------------------------ |
+| type     | [SensorId](#sensorid9).HUMIDITY                       | 是   | 传感器类型，该值固定为SensorId.HUMIDITY。              |
+| callback | Callback&lt;[HumidityResponse](#humidityresponse)&gt; | 是   | 回调函数，异步上报的传感器数据固定为HumidityResponse。 |
 
 **错误码**： 
 
@@ -1246,12 +1227,11 @@ once(type: SensorId.HUMIDITY, callback: Callback&lt;HumidityResponse&gt;): void
 
 ```js
 try {
-    sensor.once(sensor.SensorId.HUMIDITY, function(data) {
+    sensor.once(sensor.SensorId.HUMIDITY, function (data) {
         console.info('Humidity: ' + data.humidity);
-      }
-    );
-} catch(err) {
-      console.info('once fail, errCode: ' + err.code + ' ,msg: ' + err.message);
+    });
+} catch (err) {
+    console.error('Once fail, errCode: ' + err.code + ' ,msg: ' + err.message);
 }
 ```
 
@@ -1259,7 +1239,7 @@ try {
 
 once(type: SensorId.LINEAR_ACCELEROMETER, callback: Callback&lt;LinearAccelerometerResponse&gt;): void
 
-订阅一次线性加速度传感器数据。
+获取一次线性加速度传感器数据。
 
 **需要权限**：ohos.permission.ACCELEROMETER 
 
@@ -1269,8 +1249,8 @@ once(type: SensorId.LINEAR_ACCELEROMETER, callback: Callback&lt;LinearAccelerome
 
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| type     | [SensorId](#sensorid9)                                       | 是   | 线性加速度传感器类型为LINEAR_ACCELEROMETER。                 |
-| callback | Callback&lt;[LinearAccelerometerResponse](#linearaccelerometerresponse)&gt; | 是   | 注册一次线性加速度传感器的回调函数，上报的数据类型为LinearAccelerometerResponse。 |
+| type     | [SensorId](#sensorid9).LINEAR_ACCELEROMETER                  | 是   | 传感器类型，该值固定为SensorId.LINEAR_ACCELEROMETER。        |
+| callback | Callback&lt;[LinearAccelerometerResponse](#linearaccelerometerresponse)&gt; | 是   | 回调函数，异步上报的传感器数据固定为LinearAccelerometerResponse。 |
 
 **错误码**： 
 
@@ -1284,14 +1264,13 @@ once(type: SensorId.LINEAR_ACCELEROMETER, callback: Callback&lt;LinearAccelerome
 
 ```js
 try {
-    sensor.once(sensor.SensorId.LINEAR_ACCELEROMETER, function(data) {
+    sensor.once(sensor.SensorId.LINEAR_ACCELEROMETER, function (data) {
         console.info('X-coordinate component: ' + data.x);
         console.info('Y-coordinate component: ' + data.y);
         console.info('Z-coordinate component: ' + data.z);
-      }
-    );
-} catch(err) {
-      console.info('once fail, errCode: ' + err.code + ' ,msg: ' + err.message);
+    });
+} catch (err) {
+    console.error('Once fail, errCode: ' + err.code + ' ,msg: ' + err.message);
 }
 ```
 
@@ -1299,16 +1278,16 @@ try {
 
 once(type: SensorId.MAGNETIC_FIELD, callback: Callback&lt;MagneticFieldResponse&gt;): void
 
-订阅一次磁场传感器数据。
+获取一次磁场传感器数据。
 
 **系统能力**：SystemCapability.Sensors.Sensor
 
 **参数：**
 
-| 参数名   | 类型                                                         | 必填 | 说明                                                         |
-| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| type     | [SensorId](#sensorid9)                                       | 是   | 磁场传感器类型为MAGNETIC_FIELD。                             |
-| callback | Callback&lt;[MagneticFieldResponse](#magneticfieldresponse)&gt; | 是   | 注册一次磁场传感器的回调函数，上报的数据类型为MagneticFieldResponse。 |
+| 参数名   | 类型                                                         | 必填 | 说明                                                        |
+| -------- | ------------------------------------------------------------ | ---- | ----------------------------------------------------------- |
+| type     | [SensorId](#sensorid9).MAGNETIC_FIELD                        | 是   | 传感器类型，该值固定为SensorId.MAGNETIC_FIELD。             |
+| callback | Callback&lt;[MagneticFieldResponse](#magneticfieldresponse)&gt; | 是   | 回调函数，异步上报的传感器数据固定为MagneticFieldResponse。 |
 
 **错误码**： 
 
@@ -1322,14 +1301,13 @@ once(type: SensorId.MAGNETIC_FIELD, callback: Callback&lt;MagneticFieldResponse&
 
 ```js
 try {
-   sensor.once(sensor.SensorId.MAGNETIC_FIELD, function(data) {
-       console.info('X-coordinate component: ' + data.x);
-       console.info('Y-coordinate component: ' + data.y);
-       console.info('Z-coordinate component: ' + data.z);
-     }
-   );
-} catch(err) {
-      console.info('once fail, errCode: ' + err.code + ' ,msg: ' + err.message);
+    sensor.once(sensor.SensorId.MAGNETIC_FIELD, function (data) {
+        console.info('X-coordinate component: ' + data.x);
+        console.info('Y-coordinate component: ' + data.y);
+        console.info('Z-coordinate component: ' + data.z);
+    });
+} catch (err) {
+    console.error('Once fail, errCode: ' + err.code + ' ,msg: ' + err.message);
 }
 ```
 
@@ -1337,7 +1315,7 @@ try {
 
 once(type: SensorId.MAGNETIC_FIELD_UNCALIBRATED, callback: Callback&lt;MagneticFieldUncalibratedResponse&gt;): void
 
-订阅一次未经校准的磁场传感器数据。
+获取一次未经校准的磁场传感器数据。
 
 **系统能力**：SystemCapability.Sensors.Sensor
 
@@ -1345,8 +1323,8 @@ once(type: SensorId.MAGNETIC_FIELD_UNCALIBRATED, callback: Callback&lt;MagneticF
 
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| type     | [SensorId](#sensorid9)                                       | 是   | 未校准磁场传感器类型为MAGNETIC_FIELD_UNCALIBRATED。          |
-| callback | Callback&lt;[MagneticFieldUncalibratedResponse](#magneticfielduncalibratedresponse)&gt; | 是   | 注册一次未校准磁场传感器的回调函数，上报的数据类型为MagneticFieldUncalibratedResponse。 |
+| type     | [SensorId](#sensorid9).MAGNETIC_FIELD_UNCALIBRATED           | 是   | 传感器类型，该值固定为SensorId.MAGNETIC_FIELD_UNCALIBRATED。 |
+| callback | Callback&lt;[MagneticFieldUncalibratedResponse](#magneticfielduncalibratedresponse)&gt; | 是   | 回调函数，异步上报的传感器数据固定为MagneticFieldUncalibratedResponse。 |
 
 **错误码**： 
 
@@ -1360,17 +1338,16 @@ once(type: SensorId.MAGNETIC_FIELD_UNCALIBRATED, callback: Callback&lt;MagneticF
 
 ```js
 try {
-    sensor.once(sensor.SensorId.MAGNETIC_FIELD_UNCALIBRATED, function(data) {
+    sensor.once(sensor.SensorId.MAGNETIC_FIELD_UNCALIBRATED, function (data) {
         console.info('X-coordinate component: ' + data.x);
         console.info('Y-coordinate component: ' + data.y);
         console.info('Z-coordinate component: ' + data.z);
         console.info('X-coordinate bias: ' + data.biasX);
         console.info('Y-coordinate bias: ' + data.biasY);
         console.info('Z-coordinate bias: ' + data.biasZ);
-      }
-    );
-} catch(err) {
-      console.info('once fail, errCode: ' + err.code + ' ,msg: ' + err.message);
+    });
+} catch (err) {
+    console.error('Once fail, errCode: ' + err.code + ' ,msg: ' + err.message);
 }
 ```
 
@@ -1378,16 +1355,16 @@ try {
 
 once(type: SensorId.ORIENTATION, callback: Callback&lt;OrientationResponse&gt;): void
 
-订阅一次定向传感器数据。
+获取一次方向传感器数据。
 
 **系统能力**：SystemCapability.Sensors.Sensor
 
 **参数：** 
 
-| 参数名   | 类型                                                        | 必填 | 说明                                                         |
-| -------- | ----------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| type     | [SensorId](#sensorid9)                                      | 是   | 方向传感器类型为ORIENTATION。                                |
-| callback | Callback&lt;[OrientationResponse](#orientationresponse)&gt; | 是   | 注册一次方向传感器的回调函数，上报的数据类型为OrientationResponse。 |
+| 参数名   | 类型                                                        | 必填 | 说明                                                      |
+| -------- | ----------------------------------------------------------- | ---- | --------------------------------------------------------- |
+| type     | [SensorId](#sensorid9).ORIENTATION                          | 是   | 传感器类型，该值固定为SensorId.ORIENTATION。              |
+| callback | Callback&lt;[OrientationResponse](#orientationresponse)&gt; | 是   | 回调函数，异步上报的传感器数据固定为OrientationResponse。 |
 
 **错误码**： 
 
@@ -1401,14 +1378,13 @@ once(type: SensorId.ORIENTATION, callback: Callback&lt;OrientationResponse&gt;):
 
 ```js
 try {
-   sensor.once(sensor.SensorId.ORIENTATION, function(data) {
-       console.info('The device rotates at an angle around the X axis: ' + data.beta);
-       console.info('The device rotates at an angle around the Y axis: ' + data.gamma);
-       console.info('The device rotates at an angle around the Z axis: ' + data.alpha);
-     }
-   );
-} catch(err) {
-      console.info('once fail, errCode: ' + err.code + ' ,msg: ' + err.message);
+    sensor.once(sensor.SensorId.ORIENTATION, function (data) {
+        console.info('The device rotates at an angle around the X axis: ' + data.beta);
+        console.info('The device rotates at an angle around the Y axis: ' + data.gamma);
+        console.info('The device rotates at an angle around the Z axis: ' + data.alpha);
+    });
+} catch (err) {
+    console.error('Once fail, errCode: ' + err.code + ' ,msg: ' + err.message);
 }
 ```
 
@@ -1416,7 +1392,7 @@ try {
 
 once(type: SensorId.PEDOMETER, callback: Callback&lt;PedometerResponse&gt;): void
 
-订阅一次计步器传感器数据。
+获取一次计步器传感器数据。
 
 **需要权限**：ohos.permission.ACTIVITY_MOTION 
 
@@ -1424,10 +1400,10 @@ once(type: SensorId.PEDOMETER, callback: Callback&lt;PedometerResponse&gt;): voi
 
 **参数：**
 
-| 参数名   | 类型                                                    | 必填 | 说明                                                         |
-| -------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| type     | [SensorId](#sensorid9)                                  | 是   | 计步传感器类型为PEDOMETER。                                  |
-| callback | Callback&lt;[PedometerResponse](#pedometerresponse)&gt; | 是   | 注册一次计步传感器的回调函数，上报的数据类型为PedometerResponse。 |
+| 参数名   | 类型                                                    | 必填 | 说明                                                    |
+| -------- | ------------------------------------------------------- | ---- | ------------------------------------------------------- |
+| type     | [SensorId](#sensorid9).PEDOMETER                        | 是   | 传感器类型，该值固定为SensorId.PEDOMETER。              |
+| callback | Callback&lt;[PedometerResponse](#pedometerresponse)&gt; | 是   | 回调函数，异步上报的传感器数据固定为PedometerResponse。 |
 
 **错误码**： 
 
@@ -1441,20 +1417,18 @@ once(type: SensorId.PEDOMETER, callback: Callback&lt;PedometerResponse&gt;): voi
 
 ```js
 try {
-    sensor.once(sensor.SensorId.PEDOMETER, function(data) {
-        console.info('Steps: ' + data.steps);
-      }
-    );
-} catch(err) {
-      console.info('once fail, errCode: ' + err.code + ' ,msg: ' + err.message);
+    sensor.once(sensor.SensorId.PEDOMETER, function (data) {
+        console.info('Step count: ' + data.steps);
+    });
+} catch (err) {
+    console.error('Once fail, errCode: ' + err.code + ' ,msg: ' + err.message);
 }
 ```
 
 ### PEDOMETER_DETECTION<sup>9+</sup>
 
 once(type: SensorId.PEDOMETER_DETECTION, callback: Callback&lt;PedometerDetectionResponse&gt;): void
-
-订阅一次计步器检测传感器数据。
+获取一次计步检测器传感器数据。
 
 **需要权限**：ohos.permission.ACTIVITY_MOTION 
 
@@ -1464,8 +1438,8 @@ once(type: SensorId.PEDOMETER_DETECTION, callback: Callback&lt;PedometerDetectio
 
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| type     | [SensorId](#sensorid9)                                       | 是   | 计步检测传感器类型为PEDOMETER_DETECTION。                    |
-| callback | Callback&lt;[PedometerDetectionResponse](#pedometerdetectionresponse)&gt; | 是   | 注册一次计步检测传感器的回调函数，上报的数据类型为PedometerDetectionResponse。 |
+| type     | [SensorId](#sensorid9).PEDOMETER_DETECTION                   | 是   | 传感器类型，该值固定为SensorId.PEDOMETER_DETECTION。         |
+| callback | Callback&lt;[PedometerDetectionResponse](#pedometerdetectionresponse)&gt; | 是   | 回调函数，异步上报的传感器数据固定为PedometerDetectionResponse。 |
 
 **错误码**： 
 
@@ -1479,12 +1453,11 @@ once(type: SensorId.PEDOMETER_DETECTION, callback: Callback&lt;PedometerDetectio
 
 ```js
 try {
-    sensor.once(sensor.SensorId.PEDOMETER_DETECTION, function(data) {
+    sensor.once(sensor.SensorId.PEDOMETER_DETECTION, function (data) {
         console.info('Scalar data: ' + data.scalar);
-      }
-    );
-} catch(err) {
-      console.info('once fail, errCode: ' + err.code + ' ,msg: ' + err.message);
+    });
+} catch (err) {
+    console.error('Once fail, errCode: ' + err.code + ' ,msg: ' + err.message);
 }
 ```
 
@@ -1492,16 +1465,16 @@ try {
 
 once(type: SensorId.PROXIMITY, callback: Callback&lt;ProximityResponse&gt;): void
 
-订阅一次接近传感器数据。
+获取一次接近光传感器数据。
 
 **系统能力**：SystemCapability.Sensors.Sensor
 
 **参数：**
 
-| 参数名   | 类型                                                    | 必填 | 说明                                                         |
-| -------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| type     | [SensorId](#sensorid9)                                  | 是   | 接近光传感器类型为PROXIMITY。                                |
-| callback | Callback&lt;[ProximityResponse](#proximityresponse)&gt; | 是   | 注册一次接近光传感器的回调函数，上报的数据类型为ProximityResponse。 |
+| 参数名   | 类型                                                    | 必填 | 说明                                                    |
+| -------- | ------------------------------------------------------- | ---- | ------------------------------------------------------- |
+| type     | [SensorId](#sensorid9).PROXIMITY                        | 是   | 传感器类型，该值固定为SensorId.PROXIMITY。              |
+| callback | Callback&lt;[ProximityResponse](#proximityresponse)&gt; | 是   | 回调函数，异步上报的传感器数据固定为ProximityResponse。 |
 
 **错误码**： 
 
@@ -1515,12 +1488,11 @@ once(type: SensorId.PROXIMITY, callback: Callback&lt;ProximityResponse&gt;): voi
 
 ```js
 try {
-   sensor.once(sensor.SensorId.PROXIMITY, function(data) {
-       console.info('Distance: ' + data.distance);
-     }
-   );
-} catch(err) {
-      console.info('once fail, errCode: ' + err.code + ' ,msg: ' + err.message);
+    sensor.once(sensor.SensorId.PROXIMITY, function (data) {
+        console.info('Distance: ' + data.distance);
+    });
+} catch (err) {
+    console.error('Once fail, errCode: ' + err.code + ' ,msg: ' + err.message);
 }
 ```
 
@@ -1528,7 +1500,7 @@ try {
 
 once(type: SensorId.ROTATION_VECTOR, callback: Callback&lt;RotationVectorResponse&gt;): void
 
-订阅一次旋转矢量传感器数据。
+获取一次旋转矢量传感器数据。
 
 **系统能力**：SystemCapability.Sensors.Sensor
 
@@ -1536,8 +1508,8 @@ once(type: SensorId.ROTATION_VECTOR, callback: Callback&lt;RotationVectorRespons
 
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| type     | [SensorId](#sensorid9)                                       | 是   | 旋转矢量传感器类型为ROTATION_VECTOR。                        |
-| callback | Callback&lt;[RotationVectorResponse](#rotationvectorresponse)&gt; | 是   | 注册一次旋转矢量传感器的回调函数，上报的数据类型为RotationVectorResponse。 |
+| type     | [SensorId](#sensorid9).ROTATION_VECTOR                       | 是   | 传感器类型，该值固定为SensorId.ROTATION_VECTOR。             |
+| callback | Callback&lt;[RotationVectorResponse](#rotationvectorresponse)&gt; | 是   | 回调函数，异步上报的传感器数据固定为RotationVectorResponse。 |
 
 **错误码**： 
 
@@ -1551,15 +1523,14 @@ once(type: SensorId.ROTATION_VECTOR, callback: Callback&lt;RotationVectorRespons
 
 ```js
 try {
-   sensor.once(sensor.SensorId.ROTATION_VECTOR, function(data) {
-       console.info('X-coordinate component: ' + data.x);
-       console.info('Y-coordinate component: ' + data.y);
-       console.info('Z-coordinate component: ' + data.z);
-       console.info('Scalar quantity: ' + data.w);
-     }
-   );
-} catch(err) {
-      console.info('once fail, errCode: ' + err.code + ' ,msg: ' + err.message);
+    sensor.once(sensor.SensorId.ROTATION_VECTOR, function (data) {
+        console.info('X-coordinate component: ' + data.x);
+        console.info('Y-coordinate component: ' + data.y);
+        console.info('Z-coordinate component: ' + data.z);
+        console.info('Scalar quantity: ' + data.w);
+    });
+} catch (err) {
+    console.error('Once fail, errCode: ' + err.code + ' ,msg: ' + err.message);
 }
 ```
 
@@ -1567,7 +1538,7 @@ try {
 
 once(type: SensorId.SIGNIFICANT_MOTION, callback: Callback&lt;SignificantMotionResponse&gt;): void
 
-订阅一次重要的运动传感器数据。
+获取一次大幅动作检测传感器数据。
 
 **系统能力**：SystemCapability.Sensors.Sensor
 
@@ -1575,8 +1546,8 @@ once(type: SensorId.SIGNIFICANT_MOTION, callback: Callback&lt;SignificantMotionR
 
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| type     | [SensorId](#sensorid9)                                       | 是   | 有效运动传感器类型为SIGNIFICANT_MOTION。                     |
-| callback | Callback&lt;[SignificantMotionResponse](#significantmotionresponse)&gt; | 是   | 注册一次有效运动传感器的回调函数，上报的数据类型为SignificantMotionResponse。 |
+| type     | [SensorId](#sensorid9).SIGNIFICANT_MOTION                    | 是   | 传感器类型，该值固定为SensorId.SIGNIFICANT_MOTION。          |
+| callback | Callback&lt;[SignificantMotionResponse](#significantmotionresponse)&gt; | 是   | 回调函数，异步上报的传感器数据固定为SignificantMotionResponse。 |
 
 **错误码**： 
 
@@ -1590,12 +1561,11 @@ once(type: SensorId.SIGNIFICANT_MOTION, callback: Callback&lt;SignificantMotionR
 
 ```js
 try {
-   sensor.once(sensor.SensorId.SIGNIFICANT_MOTION, function(data) {
-       console.info('Scalar data: ' + data.scalar);
-     }
-   );
-} catch(err) {
-      console.info('once fail, errCode: ' + err.code + ' ,msg: ' + err.message);
+    sensor.once(sensor.SensorId.SIGNIFICANT_MOTION, function (data) {
+        console.info('Scalar data: ' + data.scalar);
+    });
+} catch (err) {
+    console.error('Once fail, errCode: ' + err.code + ' ,msg: ' + err.message);
 }
 ```
 
@@ -1603,16 +1573,16 @@ try {
 
 once(type: SensorId.WEAR_DETECTION, callback: Callback&lt;WearDetectionResponse&gt;): void
 
-订阅一次佩戴检测传感器数据。
+获取一次佩戴检测传感器数据。
 
 **系统能力**：SystemCapability.Sensors.Sensor
 
 **参数：**
 
-| 参数名   | 类型                                                         | 必填 | 说明                                                         |
-| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| type     | [SensorId](#sensorid9)                                       | 是   | 佩戴检测传感器类型为WEAR_DETECTION。                         |
-| callback | Callback&lt;[WearDetectionResponse](#weardetectionresponse)&gt; | 是   | 注册一次穿戴检测传感器的回调函数，上报的数据类型为WearDetectionResponse。 |
+| 参数名   | 类型                                                         | 必填 | 说明                                                        |
+| -------- | ------------------------------------------------------------ | ---- | ----------------------------------------------------------- |
+| type     | [SensorId](#sensorid9).WEAR_DETECTION                        | 是   | 传感器类型，该值固定为SensorId.WEAR_DETECTION。             |
+| callback | Callback&lt;[WearDetectionResponse](#weardetectionresponse)&gt; | 是   | 回调函数，异步上报的传感器数据固定为WearDetectionResponse。 |
 
 **错误码**： 
 
@@ -1626,12 +1596,11 @@ once(type: SensorId.WEAR_DETECTION, callback: Callback&lt;WearDetectionResponse&
 
 ```js
 try {
-   sensor.once(sensor.SensorId.WEAR_DETECTION, function(data) {
-       console.info("Wear status: "+ data.value);
-     }
-   );
-} catch(err) {
-      console.info('once fail, errCode: ' + err.code + ' ,msg: ' + err.message);
+    sensor.once(sensor.SensorId.WEAR_DETECTION, function (data) {
+        console.info("Wear status: " + data.value);
+    });
+} catch (err) {
+    console.error('Once fail, errCode: ' + err.code + ' ,msg: ' + err.message);
 }
 ```
 
@@ -1641,7 +1610,7 @@ try {
 
 off(type: SensorId.ACCELEROMETER, callback?: Callback&lt;AccelerometerResponse&gt;): void
 
-取消订阅加速度计传感器数据。
+取消订阅加速度传感器数据。
 
 **需要权限**：ohos.permission.ACCELEROMETER 
 
@@ -1651,21 +1620,27 @@ off(type: SensorId.ACCELEROMETER, callback?: Callback&lt;AccelerometerResponse&g
 
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| type     | [SensorId](#sensorid9)                                       | 是   | 要取消订阅的加速度传感器类型为ACCELEROMETER。                |
-| callback | Callback&lt;[AccelerometerResponse](#accelerometerresponse)&gt; | 是   | 取消注册加速度传感器的回调函数，上报的数据类型为AccelerometerResponse。 |
+| type     | [SensorId](#sensorid9).ACCELEROMETER                         | 是   | 传感器类型，该值固定为SensorId.ACCELEROMETER。               |
+| callback | Callback&lt;[AccelerometerResponse](#accelerometerresponse)&gt; | 否   | 需要取消订阅的回调函数，若无此参数，则取消订阅当前类型的所有回调函数。 |
 
 **示例：**
 
 ```js
+function callback1(data) {
+    console.info('Callback1 data: ' + JSON.stringify(data));
+}
+function callback2(data) {
+    console.info('Callback2 data: ' + JSON.stringify(data));
+}
 try {
-    function callback(data) {
-        console.info('x-coordinate component: ' + data.x);
-        console.info('Y-coordinate component: ' + data.y);
-        console.info('Z-coordinate component: ' + data.z);
-    }
-    sensor.off(sensor.SensorId.ACCELEROMETER, callback);
-} catch(err) {
-      console.info('off fail, errCode: ' + err.code + ' ,msg: ' + err.message);
+    sensor.on(sensor.SensorId.ACCELEROMETER, callback1);
+    sensor.on(sensor.SensorId.ACCELEROMETER, callback2);
+    // 仅取消callback1的注册
+    sensor.off(sensor.SensorId.ACCELEROMETER, callback1);
+    // 取消SensorId.ACCELEROMETER类型的所有回调
+    sensor.off(sensor.SensorId.ACCELEROMETER);
+} catch (err) {
+    console.error('Off fail, errCode: ' + err.code + ' ,msg: ' + err.message);
 }
 ```
 
@@ -1673,7 +1648,7 @@ try {
 
 off(type: SensorId.ACCELEROMETER_UNCALIBRATED, callback?: Callback&lt;AccelerometerUncalibratedResponse&gt;): void
 
-取消订阅未校准的加速度计传感器数据。
+取消订阅未校准加速度传感器数据。
 
 **需要权限**：ohos.permission.ACCELEROMETER 
 
@@ -1683,24 +1658,27 @@ off(type: SensorId.ACCELEROMETER_UNCALIBRATED, callback?: Callback&lt;Accelerome
 
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| type     | [SensorId](#sensorid9)                                       | 是   | 要取消订阅的未校准加速度计传感器类型为ACCELEROMETER_UNCALIBRATED。 |
-| callback | Callback&lt;[AccelerometerUncalibratedResponse](#accelerometeruncalibratedresponse)&gt; | 是   | 取消注册未校准加速度计传感器的回调函数，上报的数据类型为AccelerometerUncalibratedResponse。 |
+| type     | [SensorId](#sensorid9).ACCELEROMETER_UNCALIBRATED            | 是   | 传感器类型，该值固定为SensorId.ACCELEROMETER_UNCALIBRATED。  |
+| callback | Callback&lt;[AccelerometerUncalibratedResponse](#accelerometeruncalibratedresponse)&gt; | 是   | 需要取消订阅的回调函数，若无此参数，则取消订阅当前类型的所有回调函数。 |
 
 **示例：**
 
 ```js
+function callback1(data) {
+    console.info('Callback1 data: ' + JSON.stringify(data));
+}
+function callback2(data) {
+    console.info('Callback2 data: ' + JSON.stringify(data));
+}
 try {
-    function callback(data) {
-        console.info('X-coordinate component: ' + data.x);
-        console.info('Y-coordinate component: ' + data.y);
-        console.info('Z-coordinate component: ' + data.z);
-        console.info('X-coordinate bias: ' + data.biasX);
-        console.info('Y-coordinate bias: ' + data.biasY);
-        console.info('Z-coordinate bias: ' + data.biasZ);
-    }
-    sensor.off(sensor.SensorId.ACCELEROMETER_UNCALIBRATED, callback);
-} catch(err) {
-      console.info('off fail, errCode: ' + err.code + ' ,msg: ' + err.message);
+    sensor.on(sensor.SensorId.ACCELEROMETER_UNCALIBRATED, callback1);
+    sensor.on(sensor.SensorId.ACCELEROMETER_UNCALIBRATED, callback2);
+    // 仅取消callback1的注册
+    sensor.off(sensor.SensorId.ACCELEROMETER_UNCALIBRATED, callback1);
+    // 取消注册SensorId.ACCELEROMETER_UNCALIBRATED类型的所有回调
+    sensor.off(sensor.SensorId.ACCELEROMETER_UNCALIBRATED);
+} catch (err) {
+    console.error('Off fail, errCode: ' + err.code + ' ,msg: ' + err.message);
 }
 ```
 
@@ -1716,27 +1694,35 @@ off(type: SensorId.AMBIENT_LIGHT, callback?: Callback&lt;LightResponse&gt;): voi
 
 | 参数名   | 类型                                            | 必填 | 说明                                                         |
 | -------- | ----------------------------------------------- | ---- | ------------------------------------------------------------ |
-| type     | [SensorId](#sensorid9)                          | 是   | 要取消订阅的环境光传感器类型为AMBIENT_LIGHT。                |
-| callback | Callback&lt;[LightResponse](#lightresponse)&gt; | 是   | 取消注册环境光传感器的回调函数，上报的数据类型为LightResponse。 |
+| type     | [SensorId](#sensorid9).AMBIENT_LIGHT            | 是   | 传感器类型，该值固定为SensorId.AMBIENT_LIGHT。               |
+| callback | Callback&lt;[LightResponse](#lightresponse)&gt; | 是   | 需要取消订阅的回调函数，若无此参数，则取消订阅当前类型的所有回调函数。 |
 
 **示例：**
 
 ```js
-try {
-    function callback(data) {
-        console.info('Illumination: ' + data.intensity);
-    }
-    sensor.off(sensor.SensorId.AMBIENT_LIGHT, callback);
-} catch(err) {
-      console.info('off fail, errCode: ' + err.code + ' ,msg: ' + err.message);
+function callback1(data) {
+    console.info('Callback1 data: ' + JSON.stringify(data));
 }
+function callback2(data) {
+    console.info('Callback2 data: ' + JSON.stringify(data));
+}
+try {
+    sensor.on(sensor.SensorId.AMBIENT_LIGHT, callback1);
+    sensor.on(sensor.SensorId.AMBIENT_LIGHT, callback2);
+    // 仅取消callback1的注册
+    sensor.off(sensor.SensorId.AMBIENT_LIGHT, callback1);
+    // 取消注册SensorId.AMBIENT_LIGHT的所有回调
+    sensor.off(sensor.SensorId.AMBIENT_LIGHT);
+} catch (err) {
+    console.error('Off fail, errCode: ' + err.code + ' ,msg: ' + err.message);
+}V
 ```
 
 ### AMBIENT_TEMPERATURE<sup>9+</sup> 
 
 off(type: SensorId.AMBIENT_TEMPERATURE, callback?: Callback&lt;AmbientTemperatureResponse&gt;): void
 
-取消订阅环境温度传感器数据。
+取消订阅温度传感器数据。
 
 **系统能力**：SystemCapability.Sensors.Sensor
 
@@ -1744,19 +1730,27 @@ off(type: SensorId.AMBIENT_TEMPERATURE, callback?: Callback&lt;AmbientTemperatur
 
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| type     | [SensorId](#sensorid9)                                       | 是   | 要取消订阅的环境温度传感器类型为AMBIENT_TEMPERATURE。        |
-| callback | Callback&lt;[AmbientTemperatureResponse](#ambienttemperatureresponse)&gt; | 是   | 取消注册环境温度传感器的回调函数，上报的数据类型为AmbientTemperatureResponse。 |
+| type     | [SensorId](#sensorid9).AMBIENT_TEMPERATURE                   | 是   | 传感器类型，该值固定为SensorId.AMBIENT_TEMPERATURE。         |
+| callback | Callback&lt;[AmbientTemperatureResponse](#ambienttemperatureresponse)&gt; | 是   | 需要取消订阅的回调函数，若无此参数，则取消订阅当前类型的所有回调函数。 |
 
 **示例：**
 
 ```js
+function callback1(data) {
+    console.info('Callback1 data: ' + JSON.stringify(data));
+}
+function callback2(data) {
+    console.info('Callback2 data: ' + JSON.stringify(data));
+}
 try {
-    function callback(data) {
-        console.info('Temperature: ' + data.temperature);
-    }
-    sensor.off( sensor.SensorId.AMBIENT_TEMPERATURE, callback);
-} catch(err) {
-      console.info('off fail, errCode: ' + err.code + ' ,msg: ' + err.message);
+    sensor.on(sensor.SensorId.AMBIENT_TEMPERATURE, callback1);
+    sensor.on(sensor.SensorId.AMBIENT_TEMPERATURE, callback2);
+    // 仅取消callback1的注册
+    sensor.off(sensor.SensorId.AMBIENT_TEMPERATURE, callback1);
+    // 取消注册SensorId.AMBIENT_TEMPERATURE的所有回调
+    sensor.off(sensor.SensorId.AMBIENT_TEMPERATURE);
+} catch (err) {
+    console.error('Off fail, errCode: ' + err.code + ' ,msg: ' + err.message);
 }
 ```
 
@@ -1772,19 +1766,27 @@ off(type: SensorId.BAROMETER, callback?: Callback&lt;BarometerResponse&gt;): voi
 
 | 参数名   | 类型                                                    | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| type     | [SensorId](#sensorid9)                                  | 是   | 要取消订阅的气压计传感器类型为BAROMETER。                    |
-| callback | Callback&lt;[BarometerResponse](#barometerresponse)&gt; | 是   | 取消注册气压计传感器的回调函数，上报的数据类型为BarometerResponse。 |
+| type     | [SensorId](#sensorid9).BAROMETER                        | 是   | 传感器类型，该值固定为SensorId.BAROMETER。                   |
+| callback | Callback&lt;[BarometerResponse](#barometerresponse)&gt; | 是   | 需要取消订阅的回调函数，若无此参数，则取消订阅当前类型的所有回调函数。 |
 
 **示例：**
 
 ```js
+function callback1(data) {
+    console.info('Callback1 data: ' + JSON.stringify(data));
+}
+function callback2(data) {
+    console.info('Callback2 data: ' + JSON.stringify(data));
+}
 try {
-    function callback(data) {
-        console.info('Atmospheric pressure: ' + data.pressure);
-    }
-    sensor.off(sensor.SensorId.BAROMETER, callback);
-} catch(err) {
-      console.info('off fail, errCode: ' + err.code + ' ,msg: ' + err.message);
+    sensor.on(sensor.SensorId.BAROMETER, callback1);
+    sensor.on(sensor.SensorId.BAROMETER, callback2);
+    // 仅取消callback1的注册
+    sensor.off(sensor.SensorId.BAROMETER, callback1);
+    // 取消注册SensorId.BAROMETER的所有回调
+    sensor.off(sensor.SensorId.BAROMETER);
+} catch (err) {
+    console.error('Off fail, errCode: ' + err.code + ' ,msg: ' + err.message);
 }
 ```
 
@@ -1800,21 +1802,27 @@ off(type: SensorId.GRAVITY, callback?: Callback&lt;GravityResponse&gt;): void
 
 | 参数名   | 类型                                                | 必填 | 说明                                                         |
 | -------- | --------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| type     | [SensorId](#sensorid9)                              | 是   | 要取消订阅的重力传感器类型为GRAVITY。                        |
-| callback | Callback&lt;[GravityResponse](#gravityresponse)&gt; | 是   | 取消注册注册重力传感器的回调函数，上报的数据类型为GravityResponse。 |
+| type     | [SensorId](#sensorid9).GRAVITY                      | 是   | 传感器类型，该值固定为SensorId.GRAVITY。                     |
+| callback | Callback&lt;[GravityResponse](#gravityresponse)&gt; | 是   | 需要取消订阅的回调函数，若无此参数，则取消订阅当前类型的所有回调函数。 |
 
 **示例：**
 
 ```js
+function callback1(data) {
+    console.info('Callback1 data: ' + JSON.stringify(data));
+}
+function callback2(data) {
+    console.info('Callback2 data: ' + JSON.stringify(data));
+}
 try {
-    function callback(data) {
-        console.info('X-coordinate component: ' + data.x);
-        console.info('Y-coordinate component: ' + data.y);
-        console.info('Z-coordinate component: ' + data.z);
-    }
-    sensor.off( sensor.SensorId.GRAVITY, callback);
-} catch(err) {
-      console.info('off fail, errCode: ' + err.code + ' ,msg: ' + err.message);
+    sensor.on(sensor.SensorId.GRAVITY, callback1);
+    sensor.on(sensor.SensorId.GRAVITY, callback2);
+    // 仅取消callback1的注册
+    sensor.off(sensor.SensorId.GRAVITY, callback1);
+    // 取消注册SensorId.GRAVITY的所有回调
+    sensor.off(sensor.SensorId.GRAVITY);
+} catch (err) {
+    console.error('Off fail, errCode: ' + err.code + ' ,msg: ' + err.message);
 }
 ```
 
@@ -1832,21 +1840,27 @@ off(type: SensorId.GYROSCOPE, callback?: Callback&lt;GyroscopeResponse&gt;): voi
 
 | 参数名   | 类型                                                    | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| type     | [SensorId](#sensorid9)                                  | 是   | 要取消订阅的陀螺仪传感器类型为GYROSCOPE。                    |
-| callback | Callback&lt;[GyroscopeResponse](#gyroscoperesponse)&gt; | 是   | 取消注册陀螺仪传感器的回调函数，上报的数据类型为GyroscopeResponse。 |
+| type     | [SensorId](#sensorid9).GYROSCOPE                        | 是   | 传感器类型，该值固定为SensorId.GYROSCOPE。                   |
+| callback | Callback&lt;[GyroscopeResponse](#gyroscoperesponse)&gt; | 是   | 需要取消订阅的回调函数，若无此参数，则取消订阅当前类型的所有回调函数。 |
 
 **示例：**
 
 ```js
+function callback1(data) {
+    console.info('Callback1 data: ' + JSON.stringify(data));
+}
+function callback2(data) {
+    console.info('Callback2 data: ' + JSON.stringify(data));
+}
 try {
-    function callback(data) {
-        console.info('X-coordinate component: ' + data.x);
-        console.info('Y-coordinate component: ' + data.y);
-        console.info('Z-coordinate component: ' + data.z);
-    }
-    sensor.off(sensor.SensorId.GYROSCOPE, callback);
-} catch(err) {
-      console.info('off fail, errCode: ' + err.code + ' ,msg: ' + err.message);
+    sensor.on(sensor.SensorId.GYROSCOPE, callback1);
+    sensor.on(sensor.SensorId.GYROSCOPE, callback2);
+    // 仅取消callback1的注册
+    sensor.off(sensor.SensorId.GYROSCOPE, callback1);
+    // 取消注册SensorId.GYROSCOPE的所有回调
+    sensor.off(sensor.SensorId.GYROSCOPE);
+} catch (err) {
+    console.error('Off fail, errCode: ' + err.code + ' ,msg: ' + err.message);
 }
 ```
 
@@ -1854,7 +1868,7 @@ try {
 
 off(type: SensorId.GYROSCOPE_UNCALIBRATED, callback?: Callback&lt;GyroscopeUncalibratedResponse&gt;): void
 
- 取消订阅未校准的陀螺仪传感器数据。
+ 取消订阅未校准陀螺仪传感器数据。
 
 **需要权限**：ohos.permission.GYROSCOPE
 
@@ -1864,21 +1878,27 @@ off(type: SensorId.GYROSCOPE_UNCALIBRATED, callback?: Callback&lt;GyroscopeUncal
 
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| type     | [SensorId](#sensorid9)                                       | 是   | 要取消订阅的未校准陀螺仪传感器类型为GYROSCOPE_UNCALIBRATED。 |
-| callback | Callback&lt;[GyroscopeUncalibratedResponse](#gyroscopeuncalibratedresponse)&gt; | 是   | 取消注册未校准陀螺仪传感器的回调函数，上报的数据类型为GyroscopeUncalibratedResponse。 |
+| type     | [SensorId](#sensorid9).GYROSCOPE_UNCALIBRATED                | 是   | 传感器类型，该值固定为SensorId.GYROSCOPE_UNCALIBRATED。      |
+| callback | Callback&lt;[GyroscopeUncalibratedResponse](#gyroscopeuncalibratedresponse)&gt; | 是   | 需要取消订阅的回调函数，若无此参数，则取消订阅当前类型的所有回调函数。 |
 
 **示例：**
 
 ```js
+function callback1(data) {
+    console.info('Callback1 data: ' + JSON.stringify(data));
+}
+function callback2(data) {
+    console.info('Callback2 data: ' + JSON.stringify(data));
+}
 try {
-    function callback(data) {
-        console.info('X-coordinate component: ' + data.x);
-        console.info('Y-coordinate component: ' + data.y);
-        console.info('Z-coordinate component: ' + data.z);
-    }
-    sensor.off(sensor.SensorId.GYROSCOPE_UNCALIBRATED, callback);
-} catch(err) {
-      console.info('off fail, errCode: ' + err.code + ' ,msg: ' + err.message);
+    sensor.on(sensor.SensorId.GYROSCOPE_UNCALIBRATED, callback1);
+    sensor.on(sensor.SensorId.GYROSCOPE_UNCALIBRATED, callback2);
+    // 仅取消callback1的注册
+    sensor.off(sensor.SensorId.GYROSCOPE_UNCALIBRATED, callback1);
+    // 取消注册SensorId.GYROSCOPE_UNCALIBRATED的所有回调
+    sensor.off(sensor.SensorId.GYROSCOPE_UNCALIBRATED);
+} catch (err) {
+    console.error('Off fail, errCode: ' + err.code + ' ,msg: ' + err.message);
 }
 ```
 
@@ -1894,19 +1914,27 @@ off(type: SensorId.HALL, callback?: Callback&lt;HallResponse&gt;): void
 
 | 参数名   | 类型                                          | 必填 | 说明                                                         |
 | -------- | --------------------------------------------- | ---- | ------------------------------------------------------------ |
-| type     | [SensorId](#sensorid9)                        | 是   | 要取消订阅的霍尔传感器类型为HALL。                           |
-| callback | Callback&lt;[HallResponse](#hallresponse)&gt; | 是   | 取消注册霍尔传感器的回调函数，上报的数据类型为&nbsp;HallResponse。 |
+| type     | [SensorId](#sensorid9).HALL                   | 是   | 传感器类型，该值固定为SensorId.HALL。                        |
+| callback | Callback&lt;[HallResponse](#hallresponse)&gt; | 是   | 需要取消订阅的回调函数，若无此参数，则取消订阅当前类型的所有回调函数。 |
 
 **示例：**
 
 ```js
+function callback1(data) {
+    console.info('Callback1 data: ' + JSON.stringify(data));
+}
+function callback2(data) {
+    console.info('Callback2 data: ' + JSON.stringify(data));
+}
 try {
-    function callback(data) {
-        console.info('Status: ' + data.status);
-    }
-    sensor.off(sensor.SensorId.HALL, callback);
-} catch(err) {
-      console.info('off fail, errCode: ' + err.code + ' ,msg: ' + err.message);
+    sensor.on(sensor.SensorId.HALL, callback1);
+    sensor.on(sensor.SensorId.HALL, callback2);
+    // 仅取消callback1的注册
+    sensor.off(sensor.SensorId.HALL, callback1);
+    // 取消注册SensorId.HALL的所有回调
+    sensor.off(sensor.SensorId.HALL);
+} catch (err) {
+    console.error('Off fail, errCode: ' + err.code + ' ,msg: ' + err.message);
 }
 ```
 
@@ -1924,19 +1952,27 @@ off(type: SensorId.HEART_RATE, callback?: Callback&lt;HeartRateResponse&gt;): vo
 
 | 参数名   | 类型                                                    | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| type     | [SensorId](#sensorid9)                                  | 是   | 要取消订阅的心率传感器类型为HEART_RATE。                     |
-| callback | Callback&lt;[HeartRateResponse](#heartrateresponse)&gt; | 是   | 取消注册一次心率传感器的回调函数，上报的数据类型为HeartRateResponse。 |
+| type     | [SensorId](#sensorid9).HEART_RATE                       | 是   | 传感器类型，该值固定为SensorId.HEART_RATE。                  |
+| callback | Callback&lt;[HeartRateResponse](#heartrateresponse)&gt; | 是   | 需要取消订阅的回调函数，若无此参数，则取消订阅当前类型的所有回调函数。 |
 
 **示例：**
 
 ```js
+function callback1(data) {
+    console.info('Callback1 data: ' + JSON.stringify(data));
+}
+function callback2(data) {
+    console.info('Callback2 data: ' + JSON.stringify(data));
+}
 try {
-    function callback(data) {
-        console.info("Heart rate: " + data.heartRate);
-    }
-    sensor.off(sensor.SensorId.HEART_RATE, callback);
-} catch(err) {
-      console.info('off fail, errCode: ' + err.code + ' ,msg: ' + err.message);
+    sensor.on(sensor.SensorId.HEART_RATE, callback1);
+    sensor.on(sensor.SensorId.HEART_RATE, callback2);
+    // 仅取消callback1的注册
+    sensor.off(sensor.SensorId.HEART_RATE, callback1);
+    // 取消注册SensorId.HEART_RATE的所有回调
+    sensor.off(sensor.SensorId.HEART_RATE);
+} catch (err) {
+    console.error('Off fail, errCode: ' + err.code + ' ,msg: ' + err.message);
 }
 ```
 
@@ -1952,19 +1988,27 @@ off(type: SensorId.HUMIDITY, callback?: Callback&lt;HumidityResponse&gt;): void
 
 | 参数名   | 类型                                                  | 必填 | 说明                                                         |
 | -------- | ----------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| type     | [SensorId](#sensorid9)                                | 是   | 要取消订阅的湿度传感器类型为HUMIDITY。                       |
-| callback | Callback&lt;[HumidityResponse](#humidityresponse)&gt; | 是   | 取消注册湿度传感器的回调函数，上报的数据类型为HumidityResponse。 |
+| type     | [SensorId](#sensorid9).HUMIDITY                       | 是   | 传感器类型，该值固定为SensorId.HUMIDITY。                    |
+| callback | Callback&lt;[HumidityResponse](#humidityresponse)&gt; | 是   | 需要取消订阅的回调函数，若无此参数，则取消订阅当前类型的所有回调函数。 |
 
 **示例：**
 
 ```js
+function callback1(data) {
+    console.info('Callback1 data: ' + JSON.stringify(data));
+}
+function callback2(data) {
+    console.info('Callback2 data: ' + JSON.stringify(data));
+}
 try {
-    function callback(data) {
-        console.info('Humidity: ' + data.humidity);
-    }
-    sensor.off(sensor.SensorId.HUMIDITY, callback);
-} catch(err) {
-      console.info('off fail, errCode: ' + err.code + ' ,msg: ' + err.message);
+    sensor.on(sensor.SensorId.HUMIDITY, callback1);
+    sensor.on(sensor.SensorId.HUMIDITY, callback2);
+    // 仅取消callback1的注册
+    sensor.off(sensor.SensorId.HUMIDITY, callback1);
+    // 取消注册SensorId.HUMIDITY的所有回调
+    sensor.off(sensor.SensorId.HUMIDITY);
+} catch (err) {
+    console.error('Off fail, errCode: ' + err.code + ' ,msg: ' + err.message);
 }
 ```
 
@@ -1982,21 +2026,27 @@ off(type: SensorId.LINEAR_ACCELEROMETER, callback?: Callback&lt;LinearAccelerome
 
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| type     | [SensorId](#sensorid9)                                       | 是   | 要取消订阅的线性加速度传感器类型为LINEAR_ACCELERATION。      |
-| callback | Callback&lt;[LinearAccelerometerResponse](#linearaccelerometerresponse)&gt; | 是   | 取消注册性加速度传感器的回调函数，上报的数据类型为LinearAccelerometerResponse。 |
+| type     | [SensorId](#sensorid9).LINEAR_ACCELEROMETER                  | 是   | 传感器类型，该值固定为SensorId.LINEAR_ACCELERATION。         |
+| callback | Callback&lt;[LinearAccelerometerResponse](#linearaccelerometerresponse)&gt; | 是   | 需要取消订阅的回调函数，若无此参数，则取消订阅当前类型的所有回调函数。 |
 
 **示例：**
 
 ```js
+function callback1(data) {
+    console.info('Callback1 data: ' + JSON.stringify(data));
+}
+function callback2(data) {
+    console.info('Callback2 data: ' + JSON.stringify(data));
+}
 try {
-    function callback(data) {
-        console.info('X-coordinate component: ' + data.x);
-        console.info('Y-coordinate component: ' + data.y);
-        console.info('Z-coordinate component: ' + data.z);
-    }
-    sensor.off(sensor.SensorId.LINEAR_ACCELEROMETER, callback);
-} catch(err) {
-      console.info('off fail, errCode: ' + err.code + ' ,msg: ' + err.message);
+    sensor.on(sensor.SensorId.LINEAR_ACCELEROMETER, callback1);
+    sensor.on(sensor.SensorId.LINEAR_ACCELEROMETER, callback2);
+    // 仅取消callback1的注册
+    sensor.off(sensor.SensorId.LINEAR_ACCELEROMETER, callback1);
+    // 取消注册SensorId.LINEAR_ACCELEROMETER的所有回调
+    sensor.off(sensor.SensorId.LINEAR_ACCELEROMETER);
+} catch (err) {
+    console.error('Off fail, errCode: ' + err.code + ' ,msg: ' + err.message);
 }
 ```
 
@@ -2012,21 +2062,27 @@ off(type: SensorId.MAGNETIC_FIELD, callback?: Callback&lt;MagneticFieldResponse&
 
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| type     | [SensorId](#sensorid9)                                       | 是   | 要取消订阅的磁场传感器类型为MAGNETIC_FIELD。                 |
-| callback | Callback&lt;[MagneticFieldResponse](#magneticfieldresponse)&gt; | 是   | 取消注册磁场传感器的回调函数，上报的数据类型为MagneticFieldResponse。 |
+| type     | [SensorId](#sensorid9).MAGNETIC_FIELD                        | 是   | 传感器类型，该值固定为SensorId.MAGNETIC_FIELD。              |
+| callback | Callback&lt;[MagneticFieldResponse](#magneticfieldresponse)&gt; | 是   | 需要取消订阅的回调函数，若无此参数，则取消订阅当前类型的所有回调函数。 |
 
 **示例：**
 
 ```js
+function callback1(data) {
+    console.info('Callback1 data: ' + JSON.stringify(data));
+}
+function callback2(data) {
+    console.info('Callback2 data: ' + JSON.stringify(data));
+}
 try {
-    function callback(data) {
-        console.info('X-coordinate component: ' + data.x);
-        console.info('Y-coordinate component: ' + data.y);
-        console.info('Z-coordinate component: ' + data.z);
-    }
-    sensor.off(sensor.SensorId.MAGNETIC_FIELD, callback);
-} catch(err) {
-      console.info('off fail, errCode: ' + err.code + ' ,msg: ' + err.message);
+    sensor.on(sensor.SensorId.MAGNETIC_FIELD, callback1);
+    sensor.on(sensor.SensorId.MAGNETIC_FIELD, callback2);
+    // 仅取消callback1的注册
+    sensor.off(sensor.SensorId.MAGNETIC_FIELD, callback1);
+    // 取消注册SensorId.MAGNETIC_FIELD的所有回调
+    sensor.off(sensor.SensorId.MAGNETIC_FIELD);
+} catch (err) {
+    console.error('Off fail, errCode: ' + err.code + ' ,msg: ' + err.message);
 }
 ```
 
@@ -2042,24 +2098,27 @@ off(type: SensorId.MAGNETIC_FIELD_UNCALIBRATED, callback?: Callback&lt;MagneticF
 
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| type     | [SensorId](#sensorid9)                                       | 是   | 要取消订阅的未校准磁场传感器类型为MAGNETIC_FIELD_UNCALIBRATED。 |
-| callback | Callback&lt;[MagneticFieldUncalibratedResponse](#magneticfielduncalibratedresponse)&gt; | 是   | 取消注册未校准磁场传感器的回调函数，上报的数据类型为MagneticFieldUncalibratedResponse。 |
+| type     | [SensorId](#sensorid9).MAGNETIC_FIELD_UNCALIBRATED           | 是   | 传感器类型，该值固定为SensorId.MAGNETIC_FIELD_UNCALIBRATED。 |
+| callback | Callback&lt;[MagneticFieldUncalibratedResponse](#magneticfielduncalibratedresponse)&gt; | 是   | 需要取消订阅的回调函数，若无此参数，则取消订阅当前类型的所有回调函数。 |
 
 **示例：**
 
 ```js
+function callback1(data) {
+    console.info('Callback1 data: ' + JSON.stringify(data));
+}
+function callback2(data) {
+    console.info('Callback2 data: ' + JSON.stringify(data));
+}
 try {
-    function callback(data) {
-        console.info('X-coordinate component: ' + data.x);
-        console.info('Y-coordinate component: ' + data.y);
-        console.info('Z-coordinate component: ' + data.z);
-        console.info('X-coordinate bias: ' + data.biasX);
-        console.info('Y-coordinate bias: ' + data.biasY);
-        console.info('Z-coordinate bias: ' + data.biasZ);
-    }
-    sensor.off(sensor.SensorId.MAGNETIC_FIELD_UNCALIBRATED, callback);
-} catch(err) {
-      console.info('off fail, errCode: ' + err.code + ' ,msg: ' + err.message);
+    sensor.on(sensor.SensorId.MAGNETIC_FIELD_UNCALIBRATED, callback1);
+    sensor.on(sensor.SensorId.MAGNETIC_FIELD_UNCALIBRATED, callback2);
+    // 仅取消callback1的注册
+    sensor.off(sensor.SensorId.MAGNETIC_FIELD_UNCALIBRATED, callback1);
+    // 取消注册SensorId.MAGNETIC_FIELD_UNCALIBRATED的所有回调
+    sensor.off(sensor.SensorId.MAGNETIC_FIELD_UNCALIBRATED);
+} catch (err) {
+    console.error('Off fail, errCode: ' + err.code + ' ,msg: ' + err.message);
 }
 ```
 
@@ -2075,21 +2134,27 @@ off(type: SensorId.ORIENTATION, callback?: Callback&lt;OrientationResponse&gt;):
 
 | 参数名   | 类型                                                        | 必填 | 说明                                                         |
 | -------- | ----------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| type     | [SensorId](#sensorid9)                                      | 是   | 要取消订阅的方向传感器类型为ORIENTATION。                    |
-| callback | Callback&lt;[OrientationResponse](#orientationresponse)&gt; | 是   | 取消注册方向传感器的回调函数，上报的数据类型为OrientationResponse。 |
+| type     | [SensorId](#sensorid9).ORIENTATION                          | 是   | 传感器类型，该值固定为SensorId.ORIENTATION。                 |
+| callback | Callback&lt;[OrientationResponse](#orientationresponse)&gt; | 是   | 需要取消订阅的回调函数，若无此参数，则取消订阅当前类型的所有回调函数。 |
 
 **示例：**
 
 ```js
+function callback1(data) {
+    console.info('Callback1 data: ' + JSON.stringify(data));
+}
+function callback2(data) {
+    console.info('Callback2 data: ' + JSON.stringify(data));
+}
 try {
-    function callback(data) {
-        console.info('The device rotates at an angle around the X axis: ' + data.beta);
-        console.info('The device rotates at an angle around the Y axis: ' + data.gamma);
-        console.info('The device rotates at an angle around the Z axis: ' + data.alpha);
-    }
-    sensor.off(sensor.SensorId.ORIENTATION, callback);
-} catch(err) {
-      console.info('off fail, errCode: ' + err.code + ' ,msg: ' + err.message);
+    sensor.on(sensor.SensorId.ORIENTATION, callback1);
+    sensor.on(sensor.SensorId.ORIENTATION, callback2);
+    // 仅取消callback1的注册
+    sensor.off(sensor.SensorId.ORIENTATION, callback1);
+    // 取消注册SensorId.ORIENTATION的所有回调
+    sensor.off(sensor.SensorId.ORIENTATION);
+} catch (err) {
+    console.error('Off fail, errCode: ' + err.code + ' ,msg: ' + err.message);
 }
 ```
 
@@ -2107,19 +2172,27 @@ off(type: SensorId.PEDOMETER, callback?: Callback&lt;PedometerResponse&gt;): voi
 
 | 参数名   | 类型                                                    | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| type     | [SensorId](#sensorid9)                                  | 是   | 要取消订阅的计步传感器类型为PEDOMETER。                      |
-| callback | Callback&lt;[PedometerResponse](#pedometerresponse)&gt; | 是   | 取消注册计步传感器的回调函数，上报的数据类型为PedometerResponse。 |
+| type     | [SensorId](#sensorid9).PEDOMETER                        | 是   | 传感器类型，该值固定为SensorId.PEDOMETER。                   |
+| callback | Callback&lt;[PedometerResponse](#pedometerresponse)&gt; | 是   | 需要取消订阅的回调函数，若无此参数，则取消订阅当前类型的所有回调函数。 |
 
 **示例：**
 
 ```js
+function callback1(data) {
+    console.info('Callback1 data: ' + JSON.stringify(data));
+}
+function callback2(data) {
+    console.info('Callback2 data: ' + JSON.stringify(data));
+}
 try {
-    function callback(data) {
-        console.info('Steps: ' + data.steps);
-    }
-    sensor.off(sensor.SensorId.PEDOMETER, callback);
-} catch(err) {
-      console.info('off fail, errCode: ' + err.code + ' ,msg: ' + err.message);
+    sensor.on(sensor.SensorId.PEDOMETER, callback1);
+    sensor.on(sensor.SensorId.PEDOMETER, callback2);
+    // 仅取消callback1的注册
+    sensor.off(sensor.SensorId.PEDOMETER, callback1);
+    // 取消注册SensorId.PEDOMETER的所有回调
+    sensor.off(sensor.SensorId.PEDOMETER);
+} catch (err) {
+    console.error('Off fail, errCode: ' + err.code + ' ,msg: ' + err.message);
 }
 ```
 
@@ -2127,7 +2200,7 @@ try {
 
 off(type: SensorId.PEDOMETER_DETECTION, callback?: Callback&lt;PedometerDetectionResponse&gt;): void
 
-取消订阅计步器检测传感器数据。
+取消订阅计步检测器传感器数据。
 
 **需要权限**：ohos.permission.ACTIVITY_MOTION 
 
@@ -2137,19 +2210,27 @@ off(type: SensorId.PEDOMETER_DETECTION, callback?: Callback&lt;PedometerDetectio
 
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| type     | [SensorId](#sensorid9)                                       | 是   | 要取消订阅的计步检测传感器类型为PEDOMETER_DETECTION。        |
-| callback | Callback&lt;[PedometerDetectionResponse](#pedometerdetectionresponse)&gt; | 是   | 取消注册计步检测传感器的回调函数，上报的数据类型为PedometerDetectionResponse。 |
+| type     | [SensorId](#sensorid9).PEDOMETER_DETECTION                   | 是   | 传感器类型，该值固定为SensorId.PEDOMETER_DETECTION。         |
+| callback | Callback&lt;[PedometerDetectionResponse](#pedometerdetectionresponse)&gt; | 是   | 需要取消订阅的回调函数，若无此参数，则取消订阅当前类型的所有回调函数。 |
 
 **示例：**
 
 ```js
+function callback1(data) {
+    console.info('Callback1 data: ' + JSON.stringify(data));
+}
+function callback2(data) {
+    console.info('Callback2 data: ' + JSON.stringify(data));
+}
 try {
-    function callback(data) {
-        console.info('Scalar data: ' + data.scalar);
-    }
-    sensor.off(sensor.SensorId.PEDOMETER_DETECTION, callback);
-} catch(err) {
-      console.info('off fail, errCode: ' + err.code + ' ,msg: ' + err.message);
+    sensor.on(sensor.SensorId.PEDOMETER_DETECTION, callback1);
+    sensor.on(sensor.SensorId.PEDOMETER_DETECTION, callback2);
+    // 仅取消callback1的注册
+    sensor.off(sensor.SensorId.PEDOMETER_DETECTION, callback1);
+    // 取消注册SensorId.PEDOMETER_DETECTION的所有回调
+    sensor.off(sensor.SensorId.PEDOMETER_DETECTION);
+} catch (err) {
+    console.error('Off fail, errCode: ' + err.code + ' ,msg: ' + err.message);
 }
 ```
 
@@ -2157,7 +2238,7 @@ try {
 
 off(type: SensorId.PROXIMITY, callback?: Callback&lt;ProximityResponse&gt;): void
 
-取消订阅接近传感器数据。
+取消订阅接近光传感器数据。
 
 **系统能力**：SystemCapability.Sensors.Sensor
 
@@ -2165,19 +2246,27 @@ off(type: SensorId.PROXIMITY, callback?: Callback&lt;ProximityResponse&gt;): voi
 
 | 参数名   | 类型                                                    | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| type     | [SensorId](#sensorid9)                                  | 是   | 要取消订阅的接近光传感器类型为PROXIMITY。                    |
-| callback | Callback&lt;[ProximityResponse](#proximityresponse)&gt; | 是   | 取消注册接近光传感器的回调函数，上报的数据类型为ProximityResponse。 |
+| type     | [SensorId](#sensorid9).PROXIMITY                        | 是   | 传感器类型，该值固定为SensorId.PROXIMITY。                   |
+| callback | Callback&lt;[ProximityResponse](#proximityresponse)&gt; | 是   | 需要取消订阅的回调函数，若无此参数，则取消订阅当前类型的所有回调函数。 |
 
 **示例：**
 
 ```js
+function callback1(data) {
+    console.info('Callback1 data: ' + JSON.stringify(data));
+}
+function callback2(data) {
+    console.info('Callback2 data: ' + JSON.stringify(data));
+}
 try {
-    function callback(data) {
-        console.info('Distance: ' + data.distance);
-    }
-    sensor.off(sensor.SensorId.PROXIMITY, callback);
-} catch(err) {
-      console.info('off fail, errCode: ' + err.code + ' ,msg: ' + err.message);
+    sensor.on(sensor.SensorId.PROXIMITY, callback1);
+    sensor.on(sensor.SensorId.PROXIMITY, callback2);
+    // 仅取消callback1的注册
+    sensor.off(sensor.SensorId.PROXIMITY, callback1);
+    // 取消注册SensorId.PROXIMITY的所有回调
+    sensor.off(sensor.SensorId.PROXIMITY);
+} catch (err) {
+    console.error('Off fail, errCode: ' + err.code + ' ,msg: ' + err.message);
 }
 ```
 
@@ -2193,22 +2282,27 @@ off(type: SensorId.ROTATION_VECTOR, callback?: Callback&lt;RotationVectorRespons
 
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| type     | [SensorId](#sensorid9)                                       | 是   | 要取消订阅的旋转矢量传感器类型为ROTATION_VECTOR。            |
-| callback | Callback&lt;[RotationVectorResponse](#rotationvectorresponse)&gt; | 是   | 取消注册旋转矢量传感器的回调函数，上报的数据类型为RotationVectorResponse。 |
+| type     | [SensorId](#sensorid9).ROTATION_VECTOR                       | 是   | 传感器类型，该值固定为SensorId.ROTATION_VECTOR。             |
+| callback | Callback&lt;[RotationVectorResponse](#rotationvectorresponse)&gt; | 是   | 需要取消订阅的回调函数，若无此参数，则取消订阅当前类型的所有回调函数。 |
 
 **示例：**
 
 ```js
+function callback1(data) {
+    console.info('Callback1 data: ' + JSON.stringify(data));
+}
+function callback2(data) {
+    console.info('Callback2 data: ' + JSON.stringify(data));
+}
 try {
-    function callback(data) {
-        console.info('X-coordinate component: ' + data.x);
-        console.info('Y-coordinate component: ' + data.y);
-        console.info('Z-coordinate component: ' + data.z);
-        console.info('Scalar quantity: ' + data.w);
-    }
-    sensor.off(sensor.SensorId.ROTATION_VECTOR, callback);
-} catch(err) {
-      console.info('off fail, errCode: ' + err.code + ' ,msg: ' + err.message);
+    sensor.on(sensor.SensorId.ROTATION_VECTOR, callback1);
+    sensor.on(sensor.SensorId.ROTATION_VECTOR, callback2);
+    // 仅取消callback1的注册
+    sensor.off(sensor.SensorId.ROTATION_VECTOR, callback1);
+    // 取消注册SensorId.ROTATION_VECTOR的所有回调
+    sensor.off(sensor.SensorId.ROTATION_VECTOR);
+} catch (err) {
+    console.error('Off fail, errCode: ' + err.code + ' ,msg: ' + err.message);
 }
 ```
 
@@ -2216,7 +2310,7 @@ try {
 
 off(type: SensorId.SIGNIFICANT_MOTION, callback?: Callback&lt;SignificantMotionResponse&gt;): void
 
-取消订阅重要的运动传感器数据。
+取消大幅动作检测传感器数据。
 
 **系统能力**：SystemCapability.Sensors.Sensor
 
@@ -2224,19 +2318,27 @@ off(type: SensorId.SIGNIFICANT_MOTION, callback?: Callback&lt;SignificantMotionR
 
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| type     | [SensorId](#sensorid9)                                       | 是   | 要取消订阅的大幅动作传感器类型为SIGNIFICANT_MOTION。         |
-| callback | Callback&lt;[SignificantMotionResponse](#significantmotionresponse)&gt; | 是   | 取消注册有效运动传感器的回调函数，上报的数据类型为SignificantMotionResponse。 |
+| type     | [SensorId](#sensorid9).SIGNIFICANT_MOTION                    | 是   | 传感器类型，该值固定为SensorId.SIGNIFICANT_MOTION。          |
+| callback | Callback&lt;[SignificantMotionResponse](#significantmotionresponse)&gt; | 是   | 需要取消订阅的回调函数，若无此参数，则取消订阅当前类型的所有回调函数。 |
 
 **示例：**
 
 ```js
+function callback1(data) {
+    console.info('Callback1 data: ' + JSON.stringify(data));
+}
+function callback2(data) {
+    console.info('Callback2 data: ' + JSON.stringify(data));
+}
 try {
-    function callback(data) {
-        console.info('Scalar data: ' + data.scalar);
-    }
-    sensor.off(sensor.SensorId.SIGNIFICANT_MOTION, callback);
-} catch(err) {
-      console.info('off fail, errCode: ' + err.code + ' ,msg: ' + err.message);
+    sensor.on(sensor.SensorId.SIGNIFICANT_MOTION, callback1);
+    sensor.on(sensor.SensorId.SIGNIFICANT_MOTION, callback2);
+    // 仅取消callback1的注册
+    sensor.off(sensor.SensorId.SIGNIFICANT_MOTION, callback1);
+    // 取消注册SensorId.SIGNIFICANT_MOTION的所有回调
+    sensor.off(sensor.SensorId.SIGNIFICANT_MOTION);
+} catch (err) {
+    console.error('Off fail, errCode: ' + err.code + ' ,msg: ' + err.message);
 }
 ```
 
@@ -2252,19 +2354,27 @@ off(type: SensorId.WEAR_DETECTION, callback?: Callback&lt;WearDetectionResponse&
 
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| type     | [SensorId](#sensorid9)                                       | 是   | 要取消订阅的佩戴检测传感器类型为WEAR_DETECTION。             |
-| callback | Callback&lt;[WearDetectionResponse](#weardetectionresponse)&gt; | 是   | 取消注册佩戴检测传感器的回调函数，上报的数据类型为WearDetectionResponse。 |
+| type     | [SensorId](#sensorid9).WEAR_DETECTION                        | 是   | 传感器类型，该值固定为SensorId.WEAR_DETECTION。              |
+| callback | Callback&lt;[WearDetectionResponse](#weardetectionresponse)&gt; | 是   | 需要取消订阅的回调函数，若无此参数，则取消订阅当前类型的所有回调函数。 |
 
 **示例：**
 
 ```js
+function callback1(data) {
+    console.info('Callback1 data: ' + JSON.stringify(data));
+}
+function callback2(data) {
+    console.info('Callback2 data: ' + JSON.stringify(data));
+}
 try {
-    function accCallback(data) {
-        console.info('Wear status: ' + data.value);
-    }
-    sensor.off(sensor.SensorId.WEAR_DETECTION, accCallback);
-} catch(err) {
-      console.info('off fail, errCode: ' + err.code + ' ,msg: ' + err.message);
+    sensor.on(sensor.SensorId.WEAR_DETECTION, callback1);
+    sensor.on(sensor.SensorId.WEAR_DETECTION, callback2);
+    // 仅取消callback1的注册
+    sensor.off(sensor.SensorId.WEAR_DETECTION, callback1);
+    // 取消注册SensorId.WEAR_DETECTION的所有回调
+    sensor.off(sensor.SensorId.WEAR_DETECTION);
+} catch (err) {
+    console.error('Off fail, errCode: ' + err.code + ' ,msg: ' + err.message);
 }
 ```
 
@@ -2272,7 +2382,7 @@ try {
 
 getGeomagneticInfo(locationOptions: LocationOptions, timeMillis: number, callback: AsyncCallback&lt;GeomagneticResponse&gt;): void
 
-获取地球上特定位置的地磁场 。
+获取某时刻地球上特定位置的地磁场信息。
 
 **系统能力**：SystemCapability.Sensors.Sensor
 
@@ -2280,9 +2390,9 @@ getGeomagneticInfo(locationOptions: LocationOptions, timeMillis: number, callbac
 
 | 参数名          | 类型                                                         | 必填 | 说明                               |
 | --------------- | ------------------------------------------------------------ | ---- | ---------------------------------- |
-| locationOptions | [LocationOptions](#locationoptions)                          | 是   | 地理位置。                         |
-| timeMillis      | number                                                       | 是   | 表示获取磁偏角的时间，单位为毫秒。 |
-| callback        | AsyncCallback&lt;[GeomagneticResponse](#geomagneticresponse)&gt; | 是   | 返回磁场信息。                     |
+| locationOptions | [LocationOptions](#locationoptions)                          | 是   | 地理位置，包括经度、纬度和海拔高度。                         |
+| timeMillis      | number                                                       | 是   | 获取磁偏角的时间，unix时间戳，单位毫秒。 |
+| callback        | AsyncCallback&lt;[GeomagneticResponse](#geomagneticresponse)&gt; | 是   | 回调函数，返回地磁场信息。                     |
 
 **错误码**： 
 
@@ -2296,13 +2406,21 @@ getGeomagneticInfo(locationOptions: LocationOptions, timeMillis: number, callbac
 
 ```js
 try {
-    sensor.getGeomagneticInfo({latitude:80, longitude:0, altitude:0}, 1580486400000, function(data)  {
-    console.info('sensor_getGeomagneticInfo_callback x: ' + data.x + ',y: ' + data.y + ',z: ' +
-	             data.z + ',geomagneticDip: ' + data.geomagneticDip + ',deflectionAngle: ' + data.deflectionAngle +
-		     ',levelIntensity: ' + data.levelIntensity + ',totalIntensity: ' + data.totalIntensity);
+    sensor.getGeomagneticInfo({ latitude: 80, longitude: 0, altitude: 0 }, 1580486400000, function (err, data) {
+        if (err) {
+            console.error('Get geomagneticInfo failed. Error code: ' + err.code + '; message: ' + err.message);
+            return;
+        }
+        console.info("GeomagneticInfo x" + data.x);
+        console.info("GeomagneticInfo y" + data.y);
+        console.info("GeomagneticInfo z" + data.z);
+        console.info("GeomagneticInfo geomagneticDip" + data.geomagneticDip);
+        console.info("GeomagneticInfo deflectionAngle" + data.deflectionAngle);
+        console.info("GeomagneticInfo levelIntensity" + data.levelIntensity);
+        console.info("GeomagneticInfo totalIntensity" + data.totalIntensity);
     });
 } catch (err) {
-        console.error('getGeomagneticInfo failed. Error code: ' + err.code + '; message: ' + err.message);
+    console.error('Get geomagneticInfo failed. Error code: ' + err.code + '; message: ' + err.message);
 }
 ```
 
@@ -2310,7 +2428,7 @@ try {
 
 getGeomagneticInfo(locationOptions: LocationOptions, timeMillis: number): Promise&lt;GeomagneticResponse&gt;
 
-获取地球上特定位置的地磁场 。
+获取某时刻地球上特定位置的地磁场信息。
 
 **系统能力**：SystemCapability.Sensors.Sensor
 
@@ -2318,14 +2436,14 @@ getGeomagneticInfo(locationOptions: LocationOptions, timeMillis: number): Promis
 
 | 参数名          | 类型                                | 必填 | 说明                               |
 | --------------- | ----------------------------------- | ---- | ---------------------------------- |
-| locationOptions | [LocationOptions](#locationoptions) | 是   | 地理位置。                         |
-| timeMillis      | number                              | 是   | 表示获取磁偏角的时间，单位为毫秒。 |
+| locationOptions | [LocationOptions](#locationoptions) | 是   | 地理位置，包括经度、纬度和海拔高度。                         |
+| timeMillis      | number                              | 是   | 获取磁偏角的时间，unix时间戳，单位毫秒。 |
 
 **返回值：** 
 
 | 类型                                                       | 说明           |
 | ---------------------------------------------------------- | -------------- |
-| Promise&lt;[GeomagneticResponse](#geomagneticresponse)&gt; | 返回磁场信息。 |
+| Promise&lt;[GeomagneticResponse](#geomagneticresponse)&gt; | Promise对象，返回地磁场信息。 |
 
 **错误码**： 
 
@@ -2339,16 +2457,20 @@ getGeomagneticInfo(locationOptions: LocationOptions, timeMillis: number): Promis
 
 ```js
 try {
-      const promise = sensor.getGeomagneticInfo({latitude:80, longitude:0, altitude:0}, 1580486400000);
-      promise.then((data) => {
-          console.info('sensor_getGeomagneticInfo_promise x: ' + data.x + ',y: ' + data.y + ',z: ' +
-  	             data.z + ',geomagneticDip: ' + data.geomagneticDip + ',deflectionAngle: ' + data.deflectionAngle +
-  		     ',levelIntensity: ' + data.levelIntensity + ',totalIntensity: ' + data.totalIntensity);
-      }).catch((reason) => {
-          console.info('Operation failed.');
-  })
+    const promise = sensor.getGeomagneticInfo({ latitude: 80, longitude: 0, altitude: 0 }, 1580486400000);
+    promise.then((data) => {
+        console.info("GeomagneticInfo x" + data.x);
+        console.info("GeomagneticInfo y" + data.y);
+        console.info("GeomagneticInfo z" + data.z);
+        console.info("GeomagneticInfo geomagneticDip" + data.geomagneticDip);
+        console.info("GeomagneticInfo deflectionAngle" + data.deflectionAngle);
+        console.info("GeomagneticInfo levelIntensity" + data.levelIntensity);
+        console.info("GeomagneticInfo totalIntensity" + data.totalIntensity);
+    }, (err)=>{
+        console.error('Get geomagneticInfo failed. Error code: ' + err.code + '; message: ' + err.message);
+    });
 } catch (err) {
-        console.error('getGeomagneticInfo failed. Error code: ' + err.code + '; message: ' + err.message);
+    console.error('Get geomagneticInfo. Error code: ' + err.code + '; message: ' + err.message);
 }
 ```
 
@@ -2356,7 +2478,7 @@ try {
 
 getDeviceAltitude(seaPressure: number, currentPressure: number, callback: AsyncCallback&lt;number&gt;): void
 
-根据当前气压获取设备所在的海拔高度。
+根据气压值获取海拔高度。
 
 **系统能力**：SystemCapability.Sensors.Sensor
 
@@ -2364,9 +2486,9 @@ getDeviceAltitude(seaPressure: number, currentPressure: number, callback: AsyncC
 
 | 参数名          | 类型                        | 必填 | 说明                                  |
 | --------------- | --------------------------- | ---- | ------------------------------------- |
-| seaPressure     | number                      | 是   | 表示海平面气压值，单位为hPa。         |
-| currentPressure | number                      | 是   | 表示设备所在高度的气压值，单位为hPa。 |
-| callback        | AsyncCallback&lt;number&gt; | 是   | 返回设备所在的海拔高度，单位为米。    |
+| seaPressure     | number                      | 是   | 海平面气压值，单位为hPa。         |
+| currentPressure | number                      | 是   | 指定的气压值，单位为hPa。 |
+| callback        | AsyncCallback&lt;number&gt; | 是   | 回调函数，返回指定的气压值对应的海拔高度，单位为米。    |
 
 **错误码**： 
 
@@ -2380,11 +2502,17 @@ getDeviceAltitude(seaPressure: number, currentPressure: number, callback: AsyncC
 
 ```js
 try {
-  sensor.getDeviceAltitude(0, 200, function(data)  {
-          console.info('Successed to get getDeviceAltitude interface get data: ' + data);
-  });
+    let seaPressure = 1013.2;
+    let currentPressure = 1500.0;
+    sensor.getDeviceAltitude(seaPressure, currentPressure, function (err, data) {
+        if (err) {
+            console.error('Get altitude failed. Error code: ' + err.code + '; message: ' + err.message);
+            return;
+        }
+        console.info('altitude: ' + data);
+    });
 } catch (err) {
-        console.error('getDeviceAltitude failed. Error code: ' + err.code + '; message: ' + err.message);
+    console.error('Get altitude failed. Error code: ' + err.code + '; message: ' + err.message);
 }
 ```
 
@@ -2392,7 +2520,7 @@ try {
 
 getDeviceAltitude(seaPressure: number, currentPressure: number): Promise&lt;number&gt;
 
-根据当前气压获取设备所在的海拔高度。
+根据气压值获取海拔高度。
 
 **系统能力**：SystemCapability.Sensors.Sensor
 
@@ -2400,14 +2528,14 @@ getDeviceAltitude(seaPressure: number, currentPressure: number): Promise&lt;numb
 
 | 参数名          | 类型   | 必填 | 说明                                  |
 | --------------- | ------ | ---- | ------------------------------------- |
-| seaPressure     | number | 是   | 表示海平面气压值，单位为hPa。         |
-| currentPressure | number | 是   | 表示设备所在高度的气压值，单位为hPa。 |
+| seaPressure     | number | 是   | 海平面气压值，单位为hPa。         |
+| currentPressure | number | 是   | 指定的气压值，单位为hPa。 |
 
 **返回值：** 
 
 | 类型                  | 说明                                 |
 | --------------------- | ------------------------------------ |
-| Promise&lt;number&gt; | 返回设备所在的海拔高度（单位：米）。 |
+| Promise&lt;number&gt; | Promise对象，返回指定的气压值对应的海拔高度，单位为米。 |
 
 **错误码**： 
 
@@ -2421,14 +2549,16 @@ getDeviceAltitude(seaPressure: number, currentPressure: number): Promise&lt;numb
 
 ```js
 try {
-  const promise = sensor.getDeviceAltitude (0, 200);
-      promise.then((data) => {
-          console.info('sensor_getDeviceAltitude_Promise success', data);
-      }).catch((err) => {
-          console.error("Operation failed");
-  })
+    let seaPressure = 1013.2;
+    let currentPressure = 1500.0;
+    const promise = sensor.getDeviceAltitude(seaPressure, currentPressure);
+    promise.then((data) => {
+        console.info('sensor_getDeviceAltitude_Promise success', data);
+    }, (err) => {
+        console.error('Get altitude failed. Error code: ' + err.code + '; message: ' + err.message);
+    });
 } catch (err) {
-        console.error('getDeviceAltitude failed. Error code: ' + err.code + '; message: ' + err.message);
+    console.error('Get altitude failed. Error code: ' + err.code + '; message: ' + err.message);
 }
 ```
 
@@ -2436,7 +2566,7 @@ try {
 
 getInclination(inclinationMatrix: Array&lt;number&gt;, callback: AsyncCallback&lt;number&gt;): void
 
-从倾角矩阵计算地磁倾角的弧度。
+根据倾斜矩阵计算地磁倾角。
 
 **系统能力**：SystemCapability.Sensors.Sensor
 
@@ -2444,8 +2574,8 @@ getInclination(inclinationMatrix: Array&lt;number&gt;, callback: AsyncCallback&l
 
 | 参数名            | 类型                        | 必填 | 说明                         |
 | ----------------- | --------------------------- | ---- | ---------------------------- |
-| inclinationMatrix | Array&lt;number&gt;         | 是   | 表示倾斜矩阵。               |
-| callback          | AsyncCallback&lt;number&gt; | 是   | 返回地磁倾斜角，单位为弧度。 |
+| inclinationMatrix | Array&lt;number&gt;         | 是   | 倾斜矩阵。               |
+| callback          | AsyncCallback&lt;number&gt; | 是   | 回调函数，返回地磁倾角，单位为弧度。 |
 
 **错误码**： 
 
@@ -2459,11 +2589,21 @@ getInclination(inclinationMatrix: Array&lt;number&gt;, callback: AsyncCallback&l
 
 ```js
 try {
-  sensor.getInclination ([1, 0, 0, 0, 1, 0, 0, 0, 1], function(data)  {
-          console.info('Successed to get getInclination  interface get data: ' + data);
-  })
+    // inclinationMatrix可以为3*3，或者4*4
+    let inclinationMatrix = [
+        1, 0, 0,
+        0, 1, 0,
+        0, 0, 1
+    ]
+    sensor.getInclination(inclinationMatrix, function (err, data) {
+        if (err) {
+            console.error('Get inclination failed. Error code: ' + err.code + '; message: ' + err.message);
+            return;
+        }
+        console.info('Inclination: ' + data);
+    })
 } catch (err) {
-        console.error('getInclination failed. Error code: ' + err.code + '; message: ' + err.message);
+    console.error('Get inclination failed. Error code: ' + err.code + '; message: ' + err.message);
 }
 ```
 
@@ -2471,7 +2611,7 @@ try {
 
  getInclination(inclinationMatrix: Array&lt;number&gt;): Promise&lt;number&gt;
 
- 从倾角矩阵计算地磁倾角的弧度。
+根据倾斜矩阵计算地磁倾角。
 
 **系统能力**：SystemCapability.Sensors.Sensor
 
@@ -2479,13 +2619,13 @@ try {
 
 | 参数名            | 类型                | 必填 | 说明           |
 | ----------------- | ------------------- | ---- | -------------- |
-| inclinationMatrix | Array&lt;number&gt; | 是   | 表示倾斜矩阵。 |
+| inclinationMatrix | Array&lt;number&gt; | 是   | 倾斜矩阵。 |
 
 **返回值：** 
 
 | 类型                  | 说明                         |
 | --------------------- | ---------------------------- |
-| Promise&lt;number&gt; | 返回地磁倾斜角，单位为弧度。 |
+| Promise&lt;number&gt; | Promise对象，返回地磁倾斜角，单位为弧度。 |
 
 **错误码**： 
 
@@ -2499,14 +2639,20 @@ try {
 
 ```js
 try {
-  const promise = sensor.getInclination ([1, 0, 0, 0, 1, 0, 0, 0, 1]);
-      promise.then((data) => {
-          console.info('getInclination_promise successed', data);
-      }).catch((err) => {
-           console.error("Operation failed");
-  })
+    // inclinationMatrix可以为3*3，或者4*4
+    let inclinationMatrix = [
+        1, 0, 0,
+        0, 1, 0,
+        0, 0, 1
+    ]
+    const promise = sensor.getInclination(inclinationMatrix);
+    promise.then((data) => {
+        console.info('Inclination: ' + data);
+    }, (err) => {
+        console.error('Get inclination failed. Error code: ' + err.code + '; message: ' + err.message);
+    });
 } catch (err) {
-        console.error('getInclination failed. Error code: ' + err.code + '; message: ' + err.message);
+    console.error('Get inclination failed. Error code: ' + err.code + '; message: ' + err.message);
 }
 ```
 
@@ -2515,7 +2661,7 @@ try {
  getAngleVariation(currentRotationMatrix: Array&lt;number&gt;, preRotationMatrix: Array&lt;number&gt;,
         callback: AsyncCallback<Array&lt;number&gt;>): void
 
-得到两个旋转矩阵之间的角度变化。
+计算两个旋转矩阵之间的角度变化。
 
 **系统能力**：SystemCapability.Sensors.Sensor
 
@@ -2523,9 +2669,9 @@ try {
 
 | 参数名                | 类型                                     | 必填 | 说明                              |
 | --------------------- | ---------------------------------------- | ---- | --------------------------------- |
-| currentRotationMatrix | Array&lt;number&gt;                      | 是   | 表示当前旋转矩阵。                |
-| preRotationMatrix     | Array&lt;number&gt;                      | 是   | 表示旋转矩阵。                    |
-| callback              | AsyncCallback&lt;Array&lt;number&gt;&gt; | 是   | 返回z、x、y轴方向的旋转角度变化。 |
+| currentRotationMatrix | Array&lt;number&gt;                      | 是   | 当前旋转矩阵。                |
+| preRotationMatrix     | Array&lt;number&gt;                      | 是   | 相对旋转矩阵。                    |
+| callback              | AsyncCallback&lt;Array&lt;number&gt;&gt; | 是   | 回调函数，返回绕z、x、y轴方向的旋转角度。 |
 
 **错误码**： 
 
@@ -2539,13 +2685,31 @@ try {
 
 ```js
 try {
-  sensor.getAngleVariation([1,0,0,0,1,0,0,0,1], [1, 0, 0, 0, 0.87, -0.50, 0, 0.50, 0.87], function(data)  {
-      for (var i=0; i < data.length; i++) {
-          console.info("data[" + i + "]: " + data[i]);
-      }
-  })
+    // 旋转矩阵可以为3*3，或者4*4
+    let currentRotationMatrix = [
+        1, 0, 0,
+        0, 1, 0,
+        0, 0, 1
+    ];
+    let preRotationMatrix = [
+        1, 0, 0,
+        0, 0.87, -0.50,
+        0, 0.50, 0.87
+    ];
+    sensor.getAngleVariation(currentRotationMatrix, preRotationMatrix, function (err, data) {
+        if (err) {
+            console.error('Get angle variation failed. Error code: ' + err.code + '; message: ' + err.message);
+            return;
+        }
+        if (data.length < 3) {
+            console.error("Get angle variation failed, length" + data.length);
+        }
+        console.info("Z: " + data[0]);
+        console.info("X: " + data[1]);
+        console.info("Y  : " + data[2]);
+    })
 } catch (err) {
-        console.error('getAngleVariation failed. Error code: ' + err.code + '; message: ' + err.message);
+    console.error('Get angle variation failed. Error code: ' + err.code + '; message: ' + err.message);
 }
 ```
 
@@ -2561,14 +2725,14 @@ getAngleVariation(currentRotationMatrix: Array&lt;number&gt;, preRotationMatrix:
 
 | 参数名                | 类型                | 必填 | 说明               |
 | --------------------- | ------------------- | ---- | ------------------ |
-| currentRotationMatrix | Array&lt;number&gt; | 是   | 表示当前旋转矩阵。 |
-| preRotationMatrix     | Array&lt;number&gt; | 是   |                    |
+| currentRotationMatrix | Array&lt;number&gt; | 是   | 当前旋转矩阵。 |
+| preRotationMatrix     | Array&lt;number&gt; | 是   | 相对旋转矩阵                  |
 
 **返回值：** 
 
 | 类型                               | 说明                              |
 | ---------------------------------- | --------------------------------- |
-| Promise&lt;Array&lt;number&gt;&gt; | 返回z、x、y轴方向的旋转角度变化。 |
+| Promise&lt;Array&lt;number&gt;&gt; | Promise对象，返回绕z、x、y轴方向的旋转角度。 |
 
 **错误码**： 
 
@@ -2582,16 +2746,30 @@ getAngleVariation(currentRotationMatrix: Array&lt;number&gt;, preRotationMatrix:
 
 ```js
 try {
-  const promise = sensor.getAngleVariation([1,0,0,0,1,0,0,0,1], [1,0,0,0,0.87,-0.50,0,0.50,0.87]);
-      promise.then((data) => {
-          for (var i=0; i < data.length; i++) {
-              console.info('data[' + i + ']: ' + data[i]);
-          }
-      }).catch((reason) => {
-          console.info('promise::catch ', reason);
-  })
+    // 旋转矩阵可以为3*3，或者4*4
+    let currentRotationMatrix = [
+        1, 0, 0,
+        0, 1, 0,
+        0, 0, 1
+    ];
+    let preRotationMatrix = [
+        1, 0, 0,
+        0, 0.87, -0.50,
+        0, 0.50, 0.87
+    ];
+    const promise = sensor.getAngleVariation(currentRotationMatrix, preRotationMatrix);
+    promise.then((data) => {
+        if (data.length < 3) {
+            console.error("Get angle variation failed, length" + data.length);
+        }
+        console.info("Z: " + data[0]);
+        console.info("X: " + data[1]);
+        console.info("Y  : " + data[2]);
+    }, (err) => {
+        console.error('Get angle variation failed. Error code: ' + err.code + '; message: ' + err.message);
+    });
 } catch (err) {
-        console.error('getAngleVariation failed. Error code: ' + err.code + '; message: ' + err.message);
+    console.error('Get angle variation failed. Error code: ' + err.code + '; message: ' + err.message);
 }
 ```
 
@@ -2599,7 +2777,7 @@ try {
 
 getRotationMatrix(rotationVector: Array&lt;number&gt;, callback: AsyncCallback<Array&lt;number&gt;>): void
 
-将旋转向量转换为旋转矩阵。
+根据旋转矢量获取旋转矩阵。
 
 **系统能力**：SystemCapability.Sensors.Sensor
 
@@ -2607,8 +2785,8 @@ getRotationMatrix(rotationVector: Array&lt;number&gt;, callback: AsyncCallback<A
 
 | 参数名         | 类型                                     | 必填 | 说明           |
 | -------------- | ---------------------------------------- | ---- | -------------- |
-| rotationVector | Array&lt;number&gt;                      | 是   | 表示旋转矢量。 |
-| callback       | AsyncCallback&lt;Array&lt;number&gt;&gt; | 是   | 返回旋转矩阵。 |
+| rotationVector | Array&lt;number&gt;                      | 是   | 旋转矢量。 |
+| callback       | AsyncCallback&lt;Array&lt;number&gt;&gt; | 是   | 回调函数，返回3*3旋转矩阵。 |
 
 **错误码**： 
 
@@ -2622,13 +2800,18 @@ getRotationMatrix(rotationVector: Array&lt;number&gt;, callback: AsyncCallback<A
 
 ```js
 try {
-  sensor.getRotationMatrix([0.20046076, 0.21907, 0.73978853, 0.60376877], function(data) {
-      for (var i=0; i < data.length; i++) {
-          console.info('data[' + i + ']: ' + data[i]);
-      }
-  })
+    let rotationVector = [0.20046076, 0.21907, 0.73978853, 0.60376877];
+    sensor.getRotationMatrix(rotationVector, function (err, data) {
+        if (err) {
+            console.error('Get rotationMatrix failed. Error code: ' + err.code + '; message: ' + err.message);
+            return;
+        }
+        for (var i = 0; i < data.length; i++) {
+            console.info('data[' + i + ']: ' + data[i]);
+        }
+    })
 } catch (err) {
-        console.error('getRotationMatrix failed. Error code: ' + err.code + '; message: ' + err.message);
+    console.error('Get rotationMatrix failed. Error code: ' + err.code + '; message: ' + err.message);
 }
 ```
 
@@ -2636,7 +2819,7 @@ try {
 
 getRotationMatrix(rotationVector: Array&lt;number&gt;): Promise<Array<number&gt;> 
 
-将旋转向量转换为旋转矩阵。
+根据旋转矢量获取旋转矩阵。
 
 **系统能力**：SystemCapability.Sensors.Sensor
 
@@ -2644,13 +2827,13 @@ getRotationMatrix(rotationVector: Array&lt;number&gt;): Promise<Array<number&gt;
 
 | 参数名         | 类型                | 必填 | 说明           |
 | -------------- | ------------------- | ---- | -------------- |
-| rotationVector | Array&lt;number&gt; | 是   | 表示旋转矢量。 |
+| rotationVector | Array&lt;number&gt; | 是   | 旋转矢量。 |
 
 **返回值：**
 
 | 类型                               | 说明           |
 | ---------------------------------- | -------------- |
-| Promise&lt;Array&lt;number&gt;&gt; | 返回旋转矩阵。 |
+| Promise&lt;Array&lt;number&gt;&gt; | Promise对象，返回旋转矩阵。 |
 
 **错误码**： 
 
@@ -2664,16 +2847,17 @@ getRotationMatrix(rotationVector: Array&lt;number&gt;): Promise<Array<number&gt;
 
 ```js
 try {
-  const promise = sensor.getRotationMatrix([0.20046076, 0.21907, 0.73978853, 0.60376877]);
-      promise.then((data) => {
-          for (var i=0; i < data.length; i++) {
-              console.info('data[' + i + ']: ' + data[i]);
-          }
-      }).catch((reason) => {
-          console.info('promise::catch ', reason);
-  })
+    let rotationVector = [0.20046076, 0.21907, 0.73978853, 0.60376877];
+    const promise = sensor.getRotationMatrix(rotationVector);
+    promise.then((data) => {
+        for (var i = 0; i < data.length; i++) {
+            console.info('data[' + i + ']: ' + data[i]);
+        }
+    }, (err) => {
+        console.error('Get rotationMatrix failed. Error code: ' + err.code + '; message: ' + err.message);
+    });
 } catch (err) {
-        console.error('getRotationMatrix failed. Error code: ' + err.code + '; message: ' + err.message);
+    console.error('Get rotationMatrix failed. Error code: ' + err.code + '; message: ' + err.message);
 }
 ```
 
@@ -2682,7 +2866,7 @@ try {
 transformRotationMatrix(inRotationVector: Array&lt;number&gt;, coordinates: CoordinatesOptions,
         callback: AsyncCallback<Array&lt;number&gt;>): void
 
-旋转提供的旋转矩阵，使其可以以不同的方式表示坐标系。
+根据指定坐标系映射旋转矩阵。
 
 **系统能力**：SystemCapability.Sensors.Sensor
 
@@ -2690,11 +2874,11 @@ transformRotationMatrix(inRotationVector: Array&lt;number&gt;, coordinates: Coor
 
 | 参数名           | 类型                                      | 必填 | 说明                   |
 | ---------------- | ----------------------------------------- | ---- | ---------------------- |
-| inRotationVector | Array&lt;number&gt;                       | 是   | 表示旋转矩阵。         |
-| coordinates      | [CoordinatesOptions](#coordinatesoptions) | 是   | 表示坐标系方向。       |
-| callback         | AsyncCallback&lt;Array&lt;number&gt;&gt;  | 是   | 返回转换后的旋转矩阵。 |
+| inRotationVector | Array&lt;number&gt;                       | 是   | 旋转矩阵。         |
+| coordinates      | [CoordinatesOptions](#coordinatesoptions) | 是   | 指定坐标系方向。       |
+| callback         | AsyncCallback&lt;Array&lt;number&gt;&gt;  | 是   | 回调函数，返回映射后的旋转矩阵。 |
 
-**错误码**： 
+**错误码**：
 
 以下错误码的详细介绍请参见 [sensor.transformRotationMatrix错误码](../errorcodes/errorcode-sensor.md)。
 
@@ -2706,13 +2890,22 @@ transformRotationMatrix(inRotationVector: Array&lt;number&gt;, coordinates: Coor
 
 ```js
 try {
-    sensor.transformRotationMatrix([1, 0, 0, 0, 1, 0, 0, 0, 1], {x:2, y:3}, function(data) {
-        for (var i=0; i < data.length; i++) {
-            console.info('transformRotationMatrix  data[' + i + '] = ' + data[i]);
+    let rotationMatrix = [
+        1, 0, 0,
+        0, 0.87, -0.50,
+        0, 0.50, 0.87
+    ];
+    sensor.transformRotationMatrix(rotationMatrix, { x: 1, y: 3 }, function (err, data) {
+        if (err) {
+            console.error('Transform rotationMatrix failed. Error code: ' + err.code + '; message: ' + err.message);
+            return;
+        }
+        for (var i = 0; i < data.length; i++) {
+            console.info('data[' + i + '] = ' + data[i]);
         }
     })
 } catch (err) {
-        console.error('transformRotationMatrix failed. Error code: ' + err.code + '; message: ' + err.message);
+    console.error('Transform rotationMatrix failed. Error code: ' + err.code + '; message: ' + err.message);
 }
 ```
 
@@ -2720,7 +2913,7 @@ try {
 
 transformRotationMatrix(inRotationVector: Array&lt;number&gt;, coordinates: CoordinatesOptions): Promise<Array&lt;number&gt;> 
 
-旋转提供的旋转矩阵，使其可以以不同的方式表示坐标系。
+根据指定坐标系映射旋转矩阵。
 
 **系统能力**：SystemCapability.Sensors.Sensor
 
@@ -2728,14 +2921,14 @@ transformRotationMatrix(inRotationVector: Array&lt;number&gt;, coordinates: Coor
 
 | 参数名           | 类型                                      | 必填 | 说明             |
 | ---------------- | ----------------------------------------- | ---- | ---------------- |
-| inRotationVector | Array&lt;number&gt;                       | 是   | 表示旋转矩阵。   |
-| coordinates      | [CoordinatesOptions](#coordinatesoptions) | 是   | 表示坐标系方向。 |
+| inRotationVector | Array&lt;number&gt;                       | 是   | 旋转矩阵。   |
+| coordinates      | [CoordinatesOptions](#coordinatesoptions) | 是   | 指定坐标系方向。 |
 
 **返回值：**
 
 | 类型                               | 说明                   |
 | ---------------------------------- | ---------------------- |
-| Promise&lt;Array&lt;number&gt;&gt; | 返回转换后的旋转矩阵。 |
+| Promise&lt;Array&lt;number&gt;&gt; | Promise对象，返回转换后的旋转矩阵。 |
 
 **错误码**： 
 
@@ -2749,16 +2942,21 @@ transformRotationMatrix(inRotationVector: Array&lt;number&gt;, coordinates: Coor
 
 ```js
 try {
-    const promise = sensor.transformRotationMatrix([1, 0, 0, 0, 1, 0, 0, 0, 1], {x:2, y:3});
+    let rotationMatrix = [
+        1, 0, 0,
+        0, 0.87, -0.50,
+        0, 0.50, 0.87
+    ];
+    const promise = sensor.transformRotationMatrix(rotationMatrix, { x: 1, y: 3 });
     promise.then((data) => {
-        for (var i=0; i < data.length; i++) {
-            console.info('transformRotationMatrix  data[' + i + '] = ' + data[i]);
+        for (var i = 0; i < data.length; i++) {
+            console.info('data[' + i + ']: ' + data[i]);
         }
-    }).catch((err) => {
-           console.info("Operation failed");
-})
+    }, (err) => {
+        console.error('Transform rotationMatrix failed. Error code: ' + err.code + '; message: ' + err.message);
+    });
 } catch (err) {
-        console.error('transformRotationMatrix failed. Error code: ' + err.code + '; message: ' + err.message);
+    console.error('Transform rotationMatrix failed. Error code: ' + err.code + '; message: ' + err.message);
 }
 ```
 
@@ -2766,7 +2964,7 @@ try {
 
 getQuaternion(rotationVector: Array&lt;number&gt;, callback: AsyncCallback<Array&lt;number&gt;>): void 
 
-将旋转向量转换为归一化四元数。
+根据旋转向量计算归一化四元数。
 
 **系统能力**：SystemCapability.Sensors.Sensor
 
@@ -2774,8 +2972,8 @@ getQuaternion(rotationVector: Array&lt;number&gt;, callback: AsyncCallback<Array
 
 | 参数名         | 类型                                     | 必填 | 说明           |
 | -------------- | ---------------------------------------- | ---- | -------------- |
-| rotationVector | Array&lt;number&gt;                      | 是   | 表示旋转矢量。 |
-| callback       | AsyncCallback&lt;Array&lt;number&gt;&gt; | 是   | 返回四元数。   |
+| rotationVector | Array&lt;number&gt;                      | 是   | 旋转矢量。 |
+| callback       | AsyncCallback&lt;Array&lt;number&gt;&gt; | 是   | 回调函数，返回归一化四元数。   |
 
 **错误码**： 
 
@@ -2789,13 +2987,18 @@ getQuaternion(rotationVector: Array&lt;number&gt;, callback: AsyncCallback<Array
 
 ```js
 try {
-    sensor.getQuaternion ([0.20046076, 0.21907, 0.73978853, 0.60376877], function(data)  {
-      for (var i=0; i < data.length; i++) {
-          console.info('data[' + i + ']: ' + data[i]);
-      }
-  })
+    let rotationVector = [0.20046076, 0.21907, 0.73978853, 0.60376877];
+    sensor.getQuaternion(rotationVector, function (err, data) {
+        if (err) {
+            console.error('Get quaternion failed. Error code: ' + err.code + '; message: ' + err.message);
+            return;
+        }
+        for (var i = 0; i < data.length; i++) {
+            console.info('data[' + i + ']: ' + data[i]);
+        }
+    })
 } catch (err) {
-        console.error('getQuaternion failed. Error code: ' + err.code + '; message: ' + err.message);
+    console.error('Get quaternion failed. Error code: ' + err.code + '; message: ' + err.message);
 }
 ```
 
@@ -2803,7 +3006,7 @@ try {
 
 getQuaternion(rotationVector: Array&lt;number&gt;): Promise<Array&lt;number&gt;> 
 
-将旋转向量转换为归一化四元数。
+根据旋转向量计算归一化四元数。
 
 **系统能力**：SystemCapability.Sensors.Sensor
 
@@ -2811,13 +3014,13 @@ getQuaternion(rotationVector: Array&lt;number&gt;): Promise<Array&lt;number&gt;>
 
 | 参数名         | 类型                | 必填 | 说明           |
 | -------------- | ------------------- | ---- | -------------- |
-| rotationVector | Array&lt;number&gt; | 是   | 表示旋转矢量。 |
+| rotationVector | Array&lt;number&gt; | 是   | 旋转矢量。 |
 
 **返回值：**
 
 | 类型                               | 说明         |
 | ---------------------------------- | ------------ |
-| Promise&lt;Array&lt;number&gt;&gt; | 返回四元数。 |
+| Promise&lt;Array&lt;number&gt;&gt; | Promise，对象返归一化回四元数。 |
 
 **错误码**： 
 
@@ -2831,17 +3034,17 @@ getQuaternion(rotationVector: Array&lt;number&gt;): Promise<Array&lt;number&gt;>
 
 ```js
 try {
-  const promise = sensor.getQuaternion([0.20046076, 0.21907, 0.73978853, 0.60376877]);
-      promise.then((data) => {
-          console.info('getQuaternionn_promise successed');
-          for (var i=0; i < data.length; i++) {
-              console.info('data[' + i + ']: ' + data[i]);
-          }
-      }).catch((err) => {
-          console.info('promise failed');
-  })
+    let rotationVector = [0.20046076, 0.21907, 0.73978853, 0.60376877];
+    const promise = sensor.getQuaternion(rotationVector);
+    promise.then((data) => {
+        for (var i = 0; i < data.length; i++) {
+            console.info('data[' + i + ']: ' + data[i]);
+        }
+    }, (err) => {
+        console.error('Get quaternion failed. Error code: ' + err.code + '; message: ' + err.message);
+    });
 } catch (err) {
-        console.error('getQuaternion failed. Error code: ' + err.code + '; message: ' + err.message);
+    console.error('Get quaternion failed. Error code: ' + err.code + '; message: ' + err.message);
 }
 ```
 
@@ -2849,7 +3052,7 @@ try {
 
 getOrientation(rotationMatrix: Array&lt;number&gt;, callback: AsyncCallback<Array&lt;number&gt;>): void 
 
-根据旋转矩阵计算设备的方向。
+根据旋转矩阵计算设备方向。
 
 **系统能力**：SystemCapability.Sensors.Sensor
 
@@ -2857,8 +3060,8 @@ getOrientation(rotationMatrix: Array&lt;number&gt;, callback: AsyncCallback<Arra
 
 | 参数名         | 类型                                     | 必填 | 说明                              |
 | -------------- | ---------------------------------------- | ---- | --------------------------------- |
-| rotationMatrix | Array&lt;number&gt;                      | 是   | 表示旋转矩阵。                    |
-| callback       | AsyncCallback&lt;Array&lt;number&gt;&gt; | 是   | 返回围绕z、x、y轴方向的旋转角度。 |
+| rotationMatrix | Array&lt;number&gt;                      | 是   | 旋转矩阵。                    |
+| callback       | AsyncCallback&lt;Array&lt;number&gt;&gt; | 是   | 回调函数，返回围绕z、x、y轴方向的旋转角度。 |
 
 **错误码**： 
 
@@ -2872,14 +3075,25 @@ getOrientation(rotationMatrix: Array&lt;number&gt;, callback: AsyncCallback<Arra
 
 ```js
 try {
-  sensor.getOrientation([1, 0, 0, 0, 1, 0, 0, 0, 1], function(data)  {
-      console.info("SensorJsAPI--->Successed to get getOrientation interface get data: " + data);
-      for (var i = 1; i < data.length; i++) {
-          console.info('sensor_getOrientation_callback ' + data[i]);
-      }
-  })
+    let preRotationMatrix = [
+        1, 0, 0,
+        0, 0.87, -0.50,
+        0, 0.50, 0.87
+    ];
+    sensor.getOrientation(preRotationMatrix, function (err, data) {
+        if (err) {
+            console.error('Get orientation failed. Error code: ' + err.code + '; message: ' + err.message);
+            return;
+        }
+        if (data.length < 3) {
+            console.error("Get orientation failed, length" + data.length);
+        }
+        console.info("Z: " + data[0]);
+        console.info("X: " + data[1]);
+        console.info("Y  : " + data[2]);
+    })
 } catch (err) {
-        console.error('getOrientation failed. Error code: ' + err.code + '; message: ' + err.message);
+    console.error('Get orientation failed. Error code: ' + err.code + '; message: ' + err.message);
 }
 ```
 
@@ -2895,13 +3109,13 @@ getOrientation(rotationMatrix: Array&lt;number&gt;): Promise<Array&lt;number&gt;
 
 | 参数名         | 类型                | 必填 | 说明           |
 | -------------- | ------------------- | ---- | -------------- |
-| rotationMatrix | Array&lt;number&gt; | 是   | 表示旋转矩阵。 |
+| rotationMatrix | Array&lt;number&gt; | 是   | 旋转矩阵。 |
 
 **返回值：**
 
 | 类型                               | 说明                              |
 | ---------------------------------- | --------------------------------- |
-| Promise&lt;Array&lt;number&gt;&gt; | 返回围绕z、x、y轴方向的旋转角度。 |
+| Promise&lt;Array&lt;number&gt;&gt; | Promise对象，返回围绕z、x、y轴方向的旋转角度。 |
 
 **错误码**： 
 
@@ -2915,17 +3129,21 @@ getOrientation(rotationMatrix: Array&lt;number&gt;): Promise<Array&lt;number&gt;
 
 ```js
 try {
-  const promise = sensor.getOrientation([1, 0, 0, 0, 1, 0, 0, 0, 1]);
-      promise.then((data) => {
-          console.info('sensor_getOrientation_Promise success', data);
-          for (var i = 1; i < data.length; i++) {
-              console.info('sensor_getOrientation_promise ' + data[i]);
-          }
-      }).catch((err) => {
-          console.info('promise failed');
-  })
-} catch (err) {
+    let preRotationMatrix = [
+        1, 0, 0,
+        0, 0.87, -0.50,
+        0, 0.50, 0.87
+    ];
+    const promise = sensor.getOrientation(preRotationMatrix);
+    promise.then((data) => {
+        for (var i = 0; i < data.length; i++) {
+            console.info('data[' + i + ']: ' + data[i]);
+        }
+    }, (err) => {
         console.error('getOrientation failed. Error code: ' + err.code + '; message: ' + err.message);
+    });
+} catch (err) {
+    console.error('getOrientation failed. Error code: ' + err.code + '; message: ' + err.message);
 }
 ```
 
@@ -2941,9 +3159,9 @@ getRotationMatrix(gravity: Array&lt;number&gt;, geomagnetic: Array&lt;number&gt;
 
 | 参数名      | 类型                                                         | 必填 | 说明           |
 | ----------- | ------------------------------------------------------------ | ---- | -------------- |
-| gravity     | Array&lt;number&gt;                                          | 是   | 表示重力向量。 |
-| geomagnetic | Array&lt;number&gt;                                          | 是   | 表示地磁矢量。 |
-| callback    | AsyncCallback&lt;[RotationMatrixResponse](#rotationmatrixresponse)&gt; | 是   | 返回旋转矩阵。 |
+| gravity     | Array&lt;number&gt;                                          | 是   | 重力矢量。 |
+| geomagnetic | Array&lt;number&gt;                                          | 是   | 地磁矢量。 |
+| callback    | AsyncCallback&lt;[RotationMatrixResponse](#rotationmatrixresponse)&gt; | 是   | 回调函数，返回旋转矩阵。 |
 
 **错误码**： 
 
@@ -2957,11 +3175,17 @@ getRotationMatrix(gravity: Array&lt;number&gt;, geomagnetic: Array&lt;number&gt;
 
 ```js
 try {
-  sensor.getRotationMatrix ([-0.27775216, 0.5351276, 9.788099], [210.87253, -78.6096, -111.44444], function(data)  {
-      console.info('sensor_getRotationMatrix_callback ' + JSON.stringify(data));
-  })
+    let gravity = [-0.27775216, 0.5351276, 9.788099];
+    let geomagnetic = [210.87253, -78.6096, -111.44444];
+    sensor.getRotationMatrix(gravity, geomagnetic, function (err, data) => {
+        if (err) {
+            console.error('Get rotationMatrix failed. Error code: ' + err.code + '; message: ' + err.message);
+            return;
+        }
+        console.info('RotationMatrix' + JSON.stringify(data));
+    })
 } catch (err) {
-        console.error('getRotationMatrix failed. Error code: ' + err.code + '; message: ' + err.message);
+    console.error('Get rotationMatrix failed. Error code: ' + err.code + '; message: ' + err.message);
 }
 ```
 
@@ -2977,14 +3201,14 @@ getRotationMatrix(gravity: Array&lt;number&gt;, geomagnetic: Array&lt;number&gt;
 
 | 参数名      | 类型                | 必填 | 说明           |
 | ----------- | ------------------- | ---- | -------------- |
-| gravity     | Array&lt;number&gt; | 是   | 表示重力向量。 |
-| geomagnetic | Array&lt;number&gt; | 是   | 表示地磁矢量。 |
+| gravity     | Array&lt;number&gt; | 是   | 重力向量。 |
+| geomagnetic | Array&lt;number&gt; | 是   | 地磁矢量。 |
 
 **返回值：** 
 
 | 类型                                                         | 说明           |
 | ------------------------------------------------------------ | -------------- |
-| Promise&lt;[RotationMatrixResponse](#rotationmatrixresponse)&gt; | 返回旋转矩阵。 |
+| Promise&lt;[RotationMatrixResponse](#rotationmatrixresponse)&gt; | Promise对象，返回旋转矩阵。 |
 
 **错误码**： 
 
@@ -2998,20 +3222,22 @@ getRotationMatrix(gravity: Array&lt;number&gt;, geomagnetic: Array&lt;number&gt;
 
 ```js
 try {
-  const promise = sensor.getRotationMatrix ([-0.27775216, 0.5351276, 9.788099], [210.87253, -78.6096, -111.44444]);
-      promise.then((data) => {
-          console.info('sensor_getRotationMatrix_callback ' + JSON.stringify(data));
-      }).catch((err) => {
-          console.info('promise failed');
-  })
+    let gravity = [-0.27775216, 0.5351276, 9.788099];
+    let geomagnetic = [210.87253, -78.6096, -111.44444];
+    const promise = sensor.getRotationMatrix(gravity, geomagnetic);
+    promise.then((data) => {
+        console.info('RotationMatrix' + JSON.stringify(data));
+    }, (err) => {
+        console.error('Get rotationMatrix failed. Error code: ' + err.code + '; message: ' + err.message);
+    });
 } catch (err) {
-        console.error('getRotationMatrix failed. Error code: ' + err.code + '; message: ' + err.message);
+    console.error('Get rotationMatrix failed. Error code: ' + err.code + '; message: ' + err.message);
 }
 ```
 
 ## sensor.getSensorList<sup>9+</sup>
 
- getSensorList(callback: AsyncCallback<Array&lt;Sensor&gt;>): void
+getSensorList(callback: AsyncCallback<Array&lt;Sensor&gt;>): void
 
 获取设备上的所有传感器信息。
 
@@ -3021,7 +3247,7 @@ try {
 
 | 参数名   | 类型                                           | 必填 | 说明             |
 | -------- | ---------------------------------------------- | ---- | ---------------- |
-| callback | AsyncCallback<Array&lt;[Sensor](#sensor9)&gt;> | 是   | 返回传感器列表。 |
+| callback | AsyncCallback<Array&lt;[Sensor](#sensor9)&gt;> | 是   | 回调函数，返回传感器属性列表。 |
 
 **错误码**： 
 
@@ -3035,14 +3261,17 @@ try {
 
 ```js
 try {
-    sensor.getSensorList((data) => {
-        console.info('getSensorList callback in ' + data.length);
+    sensor.getSensorList((err, data) => {
+        if (err) {
+            console.error('Get sensorList failed. Error code: ' + err.code + '; message: ' + err.message);
+            return;
+        }
         for (var i = 0; i < data.length; i++) {
-            console.info("getSensorList " + JSON.stringify(data[i]));
+            console.info('data[' + i + ']: ' + JSON.stringify(data[i]));
         }
     });
 } catch (err) {
-        console.error('getSensorList failed. Error code: ' + err.code + '; message: ' + err.message);
+    console.error('Get sensorList failed. Error code: ' + err.code + '; message: ' + err.message);
 }
 ```
 
@@ -3058,7 +3287,7 @@ try {
 
 | 参数名  | 类型                                     | 必填 | 说明             |
 | ------- | ---------------------------------------- | ---- | ---------------- |
-| promise | Promise<Array&lt;[Sensor](#sensor9)&gt;> | 是   | 返回传感器列表。 |
+| promise | Promise<Array&lt;[Sensor](#sensor9)&gt;> | 是   | Promise对象，返回传感器属性列表。 |
 
 **错误码**： 
 
@@ -3073,15 +3302,14 @@ try {
 ```js
 try {
     sensor.getSensorList().then((data) => {
-        console.info('getSensorList promise in ' + data.length);
         for (var i = 0; i < data.length; i++) {
-            console.info("getSensorList " + JSON.stringify(data[i]));
+            console.info('data[' + i + ']: ' + JSON.stringify(data[i]));
         }
-    }, (error)=>{
-        console.error('getSensorList failed');
+    }, (err) => {
+        console.error('Get sensorList failed. Error code: ' + err.code + '; message: ' + err.message);
     });
 } catch (err) {
-        console.error('getSensorList failed. Error code: ' + err.code + '; message: ' + err.message);
+    console.error('Get sensorList failed. Error code: ' + err.code + '; message: ' + err.message);
 }
 ```
 
@@ -3089,7 +3317,7 @@ try {
 
 getSingleSensor(type: SensorId, callback: AsyncCallback&lt;Sensor&gt;): void
 
-获取指定类型的传感器信息。
+获取指定传感器类型的属性信息。
 
 **系统能力**：SystemCapability.Sensors.Sensor
 
@@ -3097,8 +3325,8 @@ getSingleSensor(type: SensorId, callback: AsyncCallback&lt;Sensor&gt;): void
 
 | 参数名   | 类型                                    | 必填 | 说明             |
 | -------- | --------------------------------------- | ---- | ---------------- |
-| type     | [SensorId](#sensorid9)                  | 是   | 传感器类型。     |
-| callback | AsyncCallback&lt;[Sensor](#sensor9)&gt; | 是   | 返回传感器信息。 |
+| type     | [SensorId](#sensorid9)                  | 是   | 指定传感器类型。     |
+| callback | AsyncCallback&lt;[Sensor](#sensor9)&gt; | 是   | 回调函数，返回指定传感器的属性信息。 |
 
 **错误码**： 
 
@@ -3112,11 +3340,15 @@ getSingleSensor(type: SensorId, callback: AsyncCallback&lt;Sensor&gt;): void
 
 ```js
 try {
-    sensor.getSingleSensor(sensor.SensorId.SENSOR_TYPE_ID_ACCELEROMETER, (error, data) =>     {
-        console.info('getSingleSensor ' + JSON.stringify(data));
+    sensor.getSingleSensor(sensor.SensorId.SENSOR_TYPE_ID_ACCELEROMETER, (err, data) => {
+        if (err) {
+            console.error('Get singleSensor failed. Error code: ' + err.code + '; message: ' + err.message);
+            return;
+        }
+        console.info('Sensor: ' + JSON.stringify(data));
     });
 } catch (err) {
-        console.error('getSingleSensor failed. Error code: ' + err.code + '; message: ' + err.message);
+    console.error('Get singleSensor failed. Error code: ' + err.code + '; message: ' + err.message);
 }
 ```
 
@@ -3153,12 +3385,12 @@ try {
 ```js
 try {
     sensor.getSingleSensor(sensor.SensorId.SENSOR_TYPE_ID_ACCELEROMETER).then((data) => {
-        console.info('getSingleSensor '+ JSON.stringify(data));
-    }, (error)=>{
-        console.error('getSingleSensor failed');
+        console.info('Sensor: ' + JSON.stringify(data));
+    }, (err) => {
+        console.error('Get singleSensor failed. Error code: ' + err.code + '; message: ' + err.message);
     });
 } catch (err) {
-        console.error('getSingleSensor failed. Error code: ' + err.code + '; message: ' + err.message);
+    console.error('Get singleSensor failed. Error code: ' + err.code + '; message: ' + err.message);
 }
 ```
 
@@ -3168,29 +3400,29 @@ try {
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Sensors.Sensor
 
-| 名称                        | 默认值 | 说明                   |
-| --------------------------- | ------ | ---------------------- |
-| ACCELEROMETER               | 1      | 加速度传感器。         |
-| GYROSCOPE                   | 2      | 陀螺仪传感器。         |
-| AMBIENT_LIGHT               | 5      | 环境光传感器。         |
-| MAGNETIC_FIELD              | 6      | 磁场传感器。           |
-| BAROMETER                   | 8      | 气压计传感器。         |
-| HALL                        | 10     | 霍尔传感器。           |
-| PROXIMITY                   | 12     | 接近光传感器。         |
-| HUMIDITY                    | 13     | 湿度传感器。           |
-| ORIENTATION                 | 256    | 方向传感器。           |
-| GRAVITY                     | 257    | 重力传感器。           |
-| LINEAR_ACCELEROMETER        | 258    | 线性加速度传感器。     |
-| ROTATION_VECTOR             | 259    | 旋转矢量传感器。       |
-| AMBIENT_TEMPERATURE         | 260    | 环境温度传感器。       |
-| MAGNETIC_FIELD_UNCALIBRATED | 261    | 未校准磁场传感器。     |
-| GYROSCOPE_UNCALIBRATED      | 263    | 未校准陀螺仪传感器。   |
-| SIGNIFICANT_MOTION          | 264    | 有效运动传感器。       |
-| PEDOMETER_DETECTION         | 265    | 计步检测传感器。       |
-| PEDOMETER                   | 266    | 计步传感器。           |
-| HEART_RATE                  | 278    | 心率传感器。           |
-| WEAR_DETECTION              | 280    | 佩戴检测传感器。       |
-| ACCELEROMETER_UNCALIBRATED  | 281    | 未校准加速度计传感器。 |
+| 名称                        | 值   | 说明                   |
+| --------------------------- | ---- | ---------------------- |
+| ACCELEROMETER               | 1    | 加速度传感器。         |
+| GYROSCOPE                   | 2    | 陀螺仪传感器。         |
+| AMBIENT_LIGHT               | 5    | 环境光传感器。         |
+| MAGNETIC_FIELD              | 6    | 磁场传感器。           |
+| BAROMETER                   | 8    | 气压计传感器。         |
+| HALL                        | 10   | 霍尔传感器。           |
+| PROXIMITY                   | 12   | 接近光传感器。         |
+| HUMIDITY                    | 13   | 湿度传感器。           |
+| ORIENTATION                 | 256  | 方向传感器。           |
+| GRAVITY                     | 257  | 重力传感器。           |
+| LINEAR_ACCELEROMETER        | 258  | 线性加速度传感器。     |
+| ROTATION_VECTOR             | 259  | 旋转矢量传感器。       |
+| AMBIENT_TEMPERATURE         | 260  | 环境温度传感器。       |
+| MAGNETIC_FIELD_UNCALIBRATED | 261  | 未校准磁场传感器。     |
+| GYROSCOPE_UNCALIBRATED      | 263  | 未校准陀螺仪传感器。   |
+| SIGNIFICANT_MOTION          | 264  | 有效运动传感器。       |
+| PEDOMETER_DETECTION         | 265  | 计步检测传感器。       |
+| PEDOMETER                   | 266  | 计步传感器。           |
+| HEART_RATE                  | 278  | 心率传感器。           |
+| WEAR_DETECTION              | 280  | 佩戴检测传感器。       |
+| ACCELEROMETER_UNCALIBRATED  | 281  | 未校准加速度计传感器。 |
 
 ## SensorType<sup>(deprecated)</sup>
 
@@ -3230,9 +3462,9 @@ try {
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Sensors.Sensor
 
-| 名称      | 参数类型 | 可读 | 可写 | 说明                     |
-| --------- | -------- | ---- | ---- | ------------------------ |
-| timestamp | number   | 是   | 是   | 传感器数据上报的时间戳。 |
+| 名称      | 类型   | 可读 | 可写 | 说明                     |
+| --------- | ------ | ---- | ---- | ------------------------ |
+| timestamp | number | 是   | 是   | 传感器数据上报的时间戳。 |
 
 ## Sensor<sup>9+</sup>
 
@@ -3240,18 +3472,18 @@ try {
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Sensors.Sensor
 
-| 名称            | 参数类型 | 说明                   |
+| 名称            | 类型 | 说明                   |
 | --------------- | -------- | ---------------------- |
 | sensorName      | string   | 传感器名称。           |
 | venderName      | string   | 传感器供应商。         |
 | firmwareVersion | string   | 传感器固件版本。       |
 | hardwareVersion | string   | 传感器硬件版本。       |
 | sensorId        | number   | 传感器类型id。         |
-| maxRange        | number   | 传感器的最大测量范围。 |
+| maxRange        | number   | 传感器测量范围的最大值。 |
 | minSamplePeriod | number   | 允许的最小采样周期。   |
 | maxSamplePeriod | number   | 允许的最大采样周期。   |
 | precision       | number   | 传感器精度。           |
-| power           | number   | 传感器电源。           |
+| power           | number   | 传感器功率。           |
 
 ## AccelerometerResponse
 
@@ -3260,11 +3492,11 @@ try {
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Sensors.Sensor
 
 
-| 名称 | 参数类型 | 可读 | 可写 | 说明                                 |
-| ---- | -------- | ---- | ---- | ------------------------------------ |
-| x    | number   | 是   | 是   | 施加在设备x轴的加速度，单位 : m/s2。 |
-| y    | number   | 是   | 是   | 施加在设备y轴的加速度，单位 : m/s2。 |
-| z    | number   | 是   | 是   | 施加在设备z轴的加速度，单位 : m/s2。 |
+| 名称 | 类型   | 可读 | 可写 | 说明                                 |
+| ---- | ------ | ---- | ---- | ------------------------------------ |
+| x    | number | 是   | 是   | 施加在设备x轴的加速度，单位 : m/s2。 |
+| y    | number | 是   | 是   | 施加在设备y轴的加速度，单位 : m/s2。 |
+| z    | number | 是   | 是   | 施加在设备z轴的加速度，单位 : m/s2。 |
 
 
 ## LinearAccelerometerResponse
@@ -3274,11 +3506,11 @@ try {
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Sensors.Sensor
 
 
-| 名称 | 参数类型 | 可读 | 可写 | 说明                                     |
-| ---- | -------- | ---- | ---- | ---------------------------------------- |
-| x    | number   | 是   | 是   | 施加在设备x轴的线性加速度，单位 : m/s2。 |
-| y    | number   | 是   | 是   | 施加在设备y轴的线性加速度，单位 : m/s2。 |
-| z    | number   | 是   | 是   | 施加在设备z轴的线性加速度，单位 : m/s2。 |
+| 名称 | 类型   | 可读 | 可写 | 说明                                     |
+| ---- | ------ | ---- | ---- | ---------------------------------------- |
+| x    | number | 是   | 是   | 施加在设备x轴的线性加速度，单位 : m/s2。 |
+| y    | number | 是   | 是   | 施加在设备y轴的线性加速度，单位 : m/s2。 |
+| z    | number | 是   | 是   | 施加在设备z轴的线性加速度，单位 : m/s2。 |
 
 
 ## AccelerometerUncalibratedResponse
@@ -3288,14 +3520,14 @@ try {
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Sensors.Sensor
 
 
-| 名称  | 参数类型 | 可读 | 可写 | 说明                                             |
-| ----- | -------- | ---- | ---- | ------------------------------------------------ |
-| x     | number   | 是   | 是   | 施加在设备x轴未校准的加速度，单位 : m/s2。       |
-| y     | number   | 是   | 是   | 施加在设备y轴未校准的加速度，单位 : m/s2。       |
-| z     | number   | 是   | 是   | 施加在设备z轴未校准的加速度，单位 : m/s2。       |
-| biasX | number   | 是   | 是   | 施加在设备x轴未校准的加速度偏量，单位 : m/s2。   |
-| biasY | number   | 是   | 是   | 施加在设备上y轴未校准的加速度偏量，单位 : m/s2。 |
-| biasZ | number   | 是   | 是   | 施加在设备z轴未校准的加速度偏量，单位 : m/s2。   |
+| 名称  | 类型   | 可读 | 可写 | 说明                                             |
+| ----- | ------ | ---- | ---- | ------------------------------------------------ |
+| x     | number | 是   | 是   | 施加在设备x轴未校准的加速度，单位 : m/s2。       |
+| y     | number | 是   | 是   | 施加在设备y轴未校准的加速度，单位 : m/s2。       |
+| z     | number | 是   | 是   | 施加在设备z轴未校准的加速度，单位 : m/s2。       |
+| biasX | number | 是   | 是   | 施加在设备x轴未校准的加速度偏量，单位 : m/s2。   |
+| biasY | number | 是   | 是   | 施加在设备上y轴未校准的加速度偏量，单位 : m/s2。 |
+| biasZ | number | 是   | 是   | 施加在设备z轴未校准的加速度偏量，单位 : m/s2。   |
 
 
 ## GravityResponse
@@ -3305,11 +3537,11 @@ try {
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Sensors.Sensor
 
 
-| 名称 | 参数类型 | 可读 | 可写 | 说明                                     |
-| ---- | -------- | ---- | ---- | ---------------------------------------- |
-| x    | number   | 是   | 是   | 施加在设备x轴的重力加速度，单位 : m/s2。 |
-| y    | number   | 是   | 是   | 施加在设备y轴的重力加速度，单位 : m/s2。 |
-| z    | number   | 是   | 是   | 施加在设备z轴的重力加速度，单位 : m/s2。 |
+| 名称 | 类型   | 可读 | 可写 | 说明                                     |
+| ---- | ------ | ---- | ---- | ---------------------------------------- |
+| x    | number | 是   | 是   | 施加在设备x轴的重力加速度，单位 : m/s2。 |
+| y    | number | 是   | 是   | 施加在设备y轴的重力加速度，单位 : m/s2。 |
+| z    | number | 是   | 是   | 施加在设备z轴的重力加速度，单位 : m/s2。 |
 
 
 ## OrientationResponse
@@ -3319,11 +3551,11 @@ try {
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Sensors.Sensor
 
 
-| 名称  | 参数类型 | 可读 | 可写 | 说明                              |
-| ----- | -------- | ---- | ---- | --------------------------------- |
-| alpha | number   | 是   | 是   | 设备围绕Z轴的旋转角度，单位：度。 |
-| beta  | number   | 是   | 是   | 设备围绕X轴的旋转角度，单位：度。 |
-| gamma | number   | 是   | 是   | 设备围绕Y轴的旋转角度，单位：度。 |
+| 名称  | 类型   | 可读 | 可写 | 说明                              |
+| ----- | ------ | ---- | ---- | --------------------------------- |
+| alpha | number | 是   | 是   | 设备围绕Z轴的旋转角度，单位：度。 |
+| beta  | number | 是   | 是   | 设备围绕X轴的旋转角度，单位：度。 |
+| gamma | number | 是   | 是   | 设备围绕Y轴的旋转角度，单位：度。 |
 
 
 ## RotationVectorResponse
@@ -3333,12 +3565,12 @@ try {
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Sensors.Sensor
 
 
-| 名称 | 参数类型 | 可读 | 可写 | 说明              |
-| ---- | -------- | ---- | ---- | ----------------- |
-| x    | number   | 是   | 是   | 旋转矢量x轴分量。 |
-| y    | number   | 是   | 是   | 旋转矢量y轴分量。 |
-| z    | number   | 是   | 是   | 旋转矢量z轴分量。 |
-| w    | number   | 是   | 是   | 标量。            |
+| 名称 | 类型   | 可读 | 可写 | 说明              |
+| ---- | ------ | ---- | ---- | ----------------- |
+| x    | number | 是   | 是   | 旋转矢量x轴分量。 |
+| y    | number | 是   | 是   | 旋转矢量y轴分量。 |
+| z    | number | 是   | 是   | 旋转矢量z轴分量。 |
+| w    | number | 是   | 是   | 标量。            |
 
 
 ## GyroscopeResponse
@@ -3348,11 +3580,11 @@ try {
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Sensors.Sensor
 
 
-| 名称 | 参数类型 | 可读 | 可写 | 说明                             |
-| ---- | -------- | ---- | ---- | -------------------------------- |
-| x    | number   | 是   | 是   | 设备x轴的旋转角速度，单位rad/s。 |
-| y    | number   | 是   | 是   | 设备y轴的旋转角速度，单位rad/s。 |
-| z    | number   | 是   | 是   | 设备z轴的旋转角速度，单位rad/s。 |
+| 名称 | 类型   | 可读 | 可写 | 说明                             |
+| ---- | ------ | ---- | ---- | -------------------------------- |
+| x    | number | 是   | 是   | 设备x轴的旋转角速度，单位rad/s。 |
+| y    | number | 是   | 是   | 设备y轴的旋转角速度，单位rad/s。 |
+| z    | number | 是   | 是   | 设备z轴的旋转角速度，单位rad/s。 |
 
 
 ## GyroscopeUncalibratedResponse
@@ -3362,14 +3594,14 @@ try {
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Sensors.Sensor
 
 
-| 名称  | 参数类型 | 可读 | 可写 | 说明                                       |
-| ----- | -------- | ---- | ---- | ------------------------------------------ |
-| x     | number   | 是   | 是   | 设备x轴未校准的旋转角速度，单位rad/s。     |
-| y     | number   | 是   | 是   | 设备y轴未校准的旋转角速度，单位rad/s。     |
-| z     | number   | 是   | 是   | 设备z轴未校准的旋转角速度，单位rad/s。     |
-| biasX | number   | 是   | 是   | 设备x轴未校准的旋转角速度偏量，单位rad/s。 |
-| biasY | number   | 是   | 是   | 设备y轴未校准的旋转角速度偏量，单位rad/s。 |
-| biasZ | number   | 是   | 是   | 设备z轴未校准的旋转角速度偏量，单位rad/s。 |
+| 名称  | 类型   | 可读 | 可写 | 说明                                       |
+| ----- | ------ | ---- | ---- | ------------------------------------------ |
+| x     | number | 是   | 是   | 设备x轴未校准的旋转角速度，单位rad/s。     |
+| y     | number | 是   | 是   | 设备y轴未校准的旋转角速度，单位rad/s。     |
+| z     | number | 是   | 是   | 设备z轴未校准的旋转角速度，单位rad/s。     |
+| biasX | number | 是   | 是   | 设备x轴未校准的旋转角速度偏量，单位rad/s。 |
+| biasY | number | 是   | 是   | 设备y轴未校准的旋转角速度偏量，单位rad/s。 |
+| biasZ | number | 是   | 是   | 设备z轴未校准的旋转角速度偏量，单位rad/s。 |
 
 
 ## SignificantMotionResponse
@@ -3379,9 +3611,9 @@ try {
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Sensors.Sensor
 
 
-| 名称   | 参数类型 | 可读 | 可写 | 说明                                                         |
-| ------ | -------- | ---- | ---- | ------------------------------------------------------------ |
-| scalar | number   | 是   | 是   | 表示剧烈运动程度。测量三个物理轴（x、y&nbsp;和&nbsp;z）上，设备是否存在大幅度运动；如果取值为1则代表存在大幅度运动，取值为0则代表没有大幅度运动。 |
+| 名称   | 类型   | 可读 | 可写 | 说明                                                         |
+| ------ | ------ | ---- | ---- | ------------------------------------------------------------ |
+| scalar | number | 是   | 是   | 表示剧烈运动程度。测量三个物理轴（x、y&nbsp;和&nbsp;z）上，设备是否存在大幅度运动；如果取值为1则代表存在大幅度运动，取值为0则代表没有大幅度运动。 |
 
 
 ## ProximityResponse
@@ -3391,9 +3623,9 @@ try {
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Sensors.Sensor
 
 
-| 名称     | 参数类型 | 可读 | 可写 | 说明                                                   |
-| -------- | -------- | ---- | ---- | ------------------------------------------------------ |
-| distance | number   | 是   | 是   | 可见物体与设备显示器的接近程度。0表示接近，1表示远离。 |
+| 名称     | 类型   | 可读 | 可写 | 说明                                                   |
+| -------- | ------ | ---- | ---- | ------------------------------------------------------ |
+| distance | number | 是   | 是   | 可见物体与设备显示器的接近程度。0表示接近，1表示远离。 |
 
 
 ## LightResponse
@@ -3403,9 +3635,9 @@ try {
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Sensors.Sensor
 
 
-| 名称      | 参数类型 | 可读 | 可写 | 说明                   |
-| --------- | -------- | ---- | ---- | ---------------------- |
-| intensity | number   | 是   | 是   | 光强（单位：勒克斯）。 |
+| 名称      | 类型   | 可读 | 可写 | 说明                   |
+| --------- | ------ | ---- | ---- | ---------------------- |
+| intensity | number | 是   | 是   | 光强（单位：勒克斯）。 |
 
 
 ## HallResponse
@@ -3415,9 +3647,9 @@ try {
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Sensors.Sensor
 
 
-| 名称   | 参数类型 | 可读 | 可写 | 说明                                                         |
-| ------ | -------- | ---- | ---- | ------------------------------------------------------------ |
-| status | number   | 是   | 是   | 显示霍尔状态。测量设备周围是否存在磁力吸引，0表示没有，大于0表示有。 |
+| 名称   | 类型   | 可读 | 可写 | 说明                                                         |
+| ------ | ------ | ---- | ---- | ------------------------------------------------------------ |
+| status | number | 是   | 是   | 显示霍尔状态。测量设备周围是否存在磁力吸引，0表示没有，大于0表示有。 |
 
 
 ## MagneticFieldResponse
@@ -3427,11 +3659,11 @@ try {
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Sensors.Sensor
 
 
-| 名称 | 参数类型 | 可读 | 可写 | 说明                         |
-| ---- | -------- | ---- | ---- | ---------------------------- |
-| x    | number   | 是   | 是   | x轴环境磁场强度，单位 : μT。 |
-| y    | number   | 是   | 是   | y轴环境磁场强度，单位 : μT。 |
-| z    | number   | 是   | 是   | z轴环境磁场强度，单位 : μT。 |
+| 名称 | 类型   | 可读 | 可写 | 说明                         |
+| ---- | ------ | ---- | ---- | ---------------------------- |
+| x    | number | 是   | 是   | x轴环境磁场强度，单位 : μT。 |
+| y    | number | 是   | 是   | y轴环境磁场强度，单位 : μT。 |
+| z    | number | 是   | 是   | z轴环境磁场强度，单位 : μT。 |
 
 
 ## MagneticFieldUncalibratedResponse
@@ -3441,14 +3673,14 @@ try {
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Sensors.Sensor
 
 
-| 名称  | 参数类型 | 可读 | 可写 | 说明                                   |
-| ----- | -------- | ---- | ---- | -------------------------------------- |
-| x     | number   | 是   | 是   | x轴未校准环境磁场强度，单位 : μT。     |
-| y     | number   | 是   | 是   | y轴未校准环境磁场强度，单位 : μT。     |
-| z     | number   | 是   | 是   | z轴未校准环境磁场强度，单位 : μT。     |
-| biasX | number   | 是   | 是   | x轴未校准环境磁场强度偏量，单位 : μT。 |
-| biasY | number   | 是   | 是   | y轴未校准环境磁场强度偏量，单位 : μT。 |
-| biasZ | number   | 是   | 是   | z轴未校准环境磁场强度偏量，单位 : μT。 |
+| 名称  | 类型   | 可读 | 可写 | 说明                                   |
+| ----- | ------ | ---- | ---- | -------------------------------------- |
+| x     | number | 是   | 是   | x轴未校准环境磁场强度，单位 : μT。     |
+| y     | number | 是   | 是   | y轴未校准环境磁场强度，单位 : μT。     |
+| z     | number | 是   | 是   | z轴未校准环境磁场强度，单位 : μT。     |
+| biasX | number | 是   | 是   | x轴未校准环境磁场强度偏量，单位 : μT。 |
+| biasY | number | 是   | 是   | y轴未校准环境磁场强度偏量，单位 : μT。 |
+| biasZ | number | 是   | 是   | z轴未校准环境磁场强度偏量，单位 : μT。 |
 
 
 ## PedometerResponse
@@ -3458,9 +3690,9 @@ try {
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Sensors.Sensor
 
 
-| 名称  | 参数类型 | 可读 | 可写 | 说明             |
-| ----- | -------- | ---- | ---- | ---------------- |
-| steps | number   | 是   | 是   | 用户的行走步数。 |
+| 名称  | 类型   | 可读 | 可写 | 说明             |
+| ----- | ------ | ---- | ---- | ---------------- |
+| steps | number | 是   | 是   | 用户的行走步数。 |
 
 
 ## HumidityResponse
@@ -3470,9 +3702,9 @@ try {
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Sensors.Sensor
 
 
-| 名称     | 参数类型 | 可读 | 可写 | 说明                                                      |
-| -------- | -------- | ---- | ---- | --------------------------------------------------------- |
-| humidity | number   | 是   | 是   | 湿度值。测量环境的相对湿度，以百分比&nbsp;(%)&nbsp;表示。 |
+| 名称     | 类型   | 可读 | 可写 | 说明                                                      |
+| -------- | ------ | ---- | ---- | --------------------------------------------------------- |
+| humidity | number | 是   | 是   | 湿度值。测量环境的相对湿度，以百分比&nbsp;(%)&nbsp;表示。 |
 
 
 ## PedometerDetectionResponse
@@ -3482,9 +3714,9 @@ try {
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Sensors.Sensor
 
 
-| 名称   | 参数类型 | 可读 | 可写 | 说明                                                         |
-| ------ | -------- | ---- | ---- | ------------------------------------------------------------ |
-| scalar | number   | 是   | 是   | 计步器检测。检测用户的计步动作，如果取值为1则代表用户产生了计步行走的动作，取值为0则代表用户没有发生运动。 |
+| 名称   | 类型   | 可读 | 可写 | 说明                                                         |
+| ------ | ------ | ---- | ---- | ------------------------------------------------------------ |
+| scalar | number | 是   | 是   | 计步器检测。检测用户的计步动作，如果取值为1则代表用户产生了计步行走的动作，取值为0则代表用户没有发生运动。 |
 
 
 ## AmbientTemperatureResponse
@@ -3494,9 +3726,9 @@ try {
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Sensors.Sensor
 
 
-| 名称        | 参数类型 | 可读 | 可写 | 说明                       |
-| ----------- | -------- | ---- | ---- | -------------------------- |
-| temperature | number   | 是   | 是   | 环境温度（单位：摄氏度）。 |
+| 名称        | 类型   | 可读 | 可写 | 说明                       |
+| ----------- | ------ | ---- | ---- | -------------------------- |
+| temperature | number | 是   | 是   | 环境温度（单位：摄氏度）。 |
 
 
 ## BarometerResponse
@@ -3506,9 +3738,9 @@ try {
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Sensors.Sensor
 
 
-| 名称     | 参数类型 | 可读 | 可写 | 说明                     |
-| -------- | -------- | ---- | ---- | ------------------------ |
-| pressure | number   | 是   | 是   | 压力值（单位：帕斯卡）。 |
+| 名称     | 类型   | 可读 | 可写 | 说明                     |
+| -------- | ------ | ---- | ---- | ------------------------ |
+| pressure | number | 是   | 是   | 压力值（单位：帕斯卡）。 |
 
 
 ## HeartRateResponse
@@ -3518,9 +3750,9 @@ try {
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Sensors.Sensor
 
 
-| 名称      | 参数类型 | 可读 | 可写 | 说明                                    |
-| --------- | -------- | ---- | ---- | --------------------------------------- |
-| heartRate | number   | 是   | 是   | 心率值。测量用户的心率数值，单位：bpm。 |
+| 名称      | 类型   | 可读 | 可写 | 说明                                    |
+| --------- | ------ | ---- | ---- | --------------------------------------- |
+| heartRate | number | 是   | 是   | 心率值。测量用户的心率数值，单位：bpm。 |
 
 
 ## WearDetectionResponse
@@ -3530,9 +3762,9 @@ try {
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Sensors.Sensor
 
 
-| 名称  | 参数类型 | 可读 | 可写 | 说明                                             |
-| ----- | -------- | ---- | ---- | ------------------------------------------------ |
-| value | number   | 是   | 是   | 表示设备是否被穿戴（1表示已穿戴，0表示未穿戴）。 |
+| 名称  | 类型   | 可读 | 可写 | 说明                                             |
+| ----- | ------ | ---- | ---- | ------------------------------------------------ |
+| value | number | 是   | 是   | 表示设备是否被穿戴（1表示已穿戴，0表示未穿戴）。 |
 
 
 ## Options
@@ -3541,9 +3773,9 @@ try {
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Sensors.Sensor
 
-| 名称     | 参数类型 | 说明                                        |
-| -------- | -------- | ------------------------------------------- |
-| interval | number   | 表示传感器的上报频率，默认值为200000000ns。 |
+| 名称     | 类型   | 说明                                        |
+| -------- | ------ | ------------------------------------------- |
+| interval | number | 表示传感器的上报频率，默认值为200000000ns。 |
 
 ## RotationMatrixResponse
 
@@ -3551,7 +3783,7 @@ try {
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Sensors.Sensor
 
-| 名称        | 参数类型            | 可读 | 可写 | 说明       |
+| 名称        | 类型                | 可读 | 可写 | 说明       |
 | ----------- | ------------------- | ---- | ---- | ---------- |
 | rotation    | Array&lt;number&gt; | 是   | 是   | 旋转矩阵。 |
 | inclination | Array&lt;number&gt; | 是   | 是   | 倾斜矩阵。 |
@@ -3563,10 +3795,10 @@ try {
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Sensors.Sensor
 
-| 名称 | 参数类型 | 可读 | 可写 | 说明        |
-| ---- | -------- | ---- | ---- | ----------- |
-| x    | number   | 是   | 是   | x坐标方向。 |
-| y    | number   | 是   | 是   | y坐标方向。 |
+| 名称 | 类型   | 可读 | 可写 | 说明        |
+| ---- | ------ | ---- | ---- | ----------- |
+| x    | number | 是   | 是   | x坐标方向。 |
+| y    | number | 是   | 是   | y坐标方向。 |
 
 
 ## GeomagneticResponse
@@ -3575,15 +3807,15 @@ try {
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Sensors.Sensor
 
-| 名称            | 参数类型 | 可读 | 可写 | 说明                                               |
-| --------------- | -------- | ---- | ---- | -------------------------------------------------- |
-| x               | number   | 是   | 是   | 地磁场的北分量。                                   |
-| y               | number   | 是   | 是   | 地磁场的东分量。                                   |
-| z               | number   | 是   | 是   | 地磁场的垂直分量。                                 |
-| geomagneticDip  | number   | 是   | 是   | 地磁倾角，即地球磁场线与水平面的夹角。             |
-| deflectionAngle | number   | 是   | 是   | 地磁偏角，即地磁北方向与正北方向在水平面上的角度。 |
-| levelIntensity  | number   | 是   | 是   | 地磁场的水平强度。                                 |
-| totalIntensity  | number   | 是   | 是   | 地磁场的总强度。                                   |
+| 名称            | 类型   | 可读 | 可写 | 说明                                               |
+| --------------- | ------ | ---- | ---- | -------------------------------------------------- |
+| x               | number | 是   | 是   | 地磁场的北分量。                                   |
+| y               | number | 是   | 是   | 地磁场的东分量。                                   |
+| z               | number | 是   | 是   | 地磁场的垂直分量。                                 |
+| geomagneticDip  | number | 是   | 是   | 地磁倾角，即地球磁场线与水平面的夹角。             |
+| deflectionAngle | number | 是   | 是   | 地磁偏角，即地磁北方向与正北方向在水平面上的角度。 |
+| levelIntensity  | number | 是   | 是   | 地磁场的水平强度。                                 |
+| totalIntensity  | number | 是   | 是   | 地磁场的总强度。                                   |
 
 ## LocationOptions
 
@@ -3591,11 +3823,11 @@ try {
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Sensors.Sensor
 
-| 名称      | 参数类型 | 可读 | 可写 | 说明       |
-| --------- | -------- | ---- | ---- | ---------- |
-| latitude  | number   | 是   | 是   | 纬度。     |
-| longitude | number   | 是   | 是   | 经度。     |
-| altitude  | number   | 是   | 是   | 海拔高度。 |
+| 名称      | 类型   | 可读 | 可写 | 说明       |
+| --------- | ------ | ---- | ---- | ---------- |
+| latitude  | number | 是   | 是   | 纬度。     |
+| longitude | number | 是   | 是   | 经度。     |
+| altitude  | number | 是   | 是   | 海拔高度。 |
 
 ## sensor.on<sup>(deprecated)</sup>
 

@@ -245,8 +245,11 @@ struct NestedScroll {
           Text("Scroll Area")
             .width("100%").height("40%").backgroundColor(0X330000FF)
             .fontSize(16).textAlign(TextAlign.Center)
+            .onClick(() => {
+              this.scroller.scrollToIndex(5)
+            })
 
-          List({ space: 20 }) {
+          List({ space: 20, scroller: this.scroller }) {
             ForEach(this.arr, (item) => {
               ListItem() {
                 Text("ListItem" + item)
@@ -255,7 +258,9 @@ struct NestedScroll {
               }.width("100%").height(100)
             }, item => item)
           }
-          .width("100%").height("50%").edgeEffect(EdgeEffect.None)
+          .width("100%")
+          .height("50%")
+          .edgeEffect(EdgeEffect.None)
           .onReachStart(() => {
             this.listPosition = 0
           })

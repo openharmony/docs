@@ -12,9 +12,8 @@
 
 Resource为string支持限定词目录使用this.context.resourceManager.getStringSync(\\$r('app.string.test').id)，可以同步转换，不支持\$r('app.string.test', 2)方式。更多用法请参考[ResourceManager(资源管理)](../reference/apis/js-apis-resource-manager.md#getstringsync9)
 
-## form_config.json文件中使用$引用常量为什么不生效 
+## form_config.json文件中使用$引用常量为什么不生效
 
 适用于：OpenHarmony SDK 3.2.6.5, API9 Stage模型
 
 form_config.json文件中不支持使用$引用常量。
-<!--no_check-->

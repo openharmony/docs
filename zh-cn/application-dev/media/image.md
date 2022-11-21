@@ -96,7 +96,7 @@ pixelmap.writeBufferToPixels(writeColor).then(() => {
 })
 
 // 用于获取图片信息
-pixelmap.getImageInfo( imageInfo => {
+pixelmap.getImageInfo((error, imageInfo) => {
     if (imageInfo !== null) {
 	    console.log('Succeeded in getting imageInfo');
     } 
@@ -171,17 +171,13 @@ catch(error => {
 })
 
 // 用于获取像素每行字节数
-pixelmap.getBytesNumberPerRow( num => {
-    console.log('Succeeded in getting BytesNumber PerRow.');
-})
+var num = pixelmap.getBytesNumberPerRow();
 
 // 用于获取像素总字节数
-pixelmap.getPixelBytesNumber(num => {
-    console.log('Succeeded in getting PixelBytesNumber.');
-})
+var pixelSize = pixelmap.getPixelBytesNumber();
 
 // 用于获取pixelmap信息
-pixelmap.getImageInfo( imageInfo => {})
+pixelmap.getImageInfo().then( imageInfo => {});
 
 // 用于释放pixelmap
 pixelmap.release(()=>{
@@ -229,7 +225,7 @@ imagePackerApi.packing(imageSourceApi, packOpts)
 imagePackerApi.release();
 
 // 用于获取imagesource信息
-imageSourceApi.getImageInfo(imageInfo => {
+imageSourceApi.getImageInfo((err, imageInfo) => {
     console.log('Succeeded in getting imageInfo');
 })
 
@@ -249,8 +245,9 @@ public async init(surfaceId: any) {
     var receiver = image.createImageReceiver(8 * 1024, 8, image.ImageFormat.JPEG, 1);
 
     // 获取Surface ID
-    var surfaceId = await receiver.getReceivingSurfaceId();
-
+    receiver.getReceivingSurfaceId((err, surfaceId) => {
+        console.info("receiver getReceivingSurfaceId success");
+    });
     // 注册Surface的监听，在surface的buffer准备好后触发
     receiver.on('imageArrival', () => {
         // 去获取Surface中最新的buffer

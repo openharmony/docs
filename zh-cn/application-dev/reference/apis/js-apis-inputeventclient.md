@@ -41,7 +41,7 @@ try {
     keyDownDuration: 0,
     isIntercepted: false
   }
-  inputEventClient.injectKeyEvent({ KeyEvent: backKeyDown });
+  inputEventClient.injectEvent({ KeyEvent: backKeyDown });
 
   let backKeyUp = {
     isPressed: false,
@@ -49,7 +49,7 @@ try {
     keyDownDuration: 0,
     isIntercepted: false
   };
-  inputEventClient.injectKeyEvent({ KeyEvent: backKeyUp });
+  inputEventClient.injectEvent({ KeyEvent: backKeyUp });
 } catch (error) {
   console.log(`Failed to inject KeyEvent, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }

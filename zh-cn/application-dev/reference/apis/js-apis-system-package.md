@@ -3,7 +3,7 @@
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
 >
-> - 从API Version 7 开始，该接口不再维护，推荐使用新接口[`@ohos.bundle`](js-apis-Bundle.md)。
+> - 从API version 9开始不再维护，推荐使用该模块[`@ohos.bundle.bundleManager`](js-apis-bundleManager.md)。
 >
 > - 本模块首批接口从API version 3开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
@@ -16,7 +16,8 @@ import pkg from '@system.package';
 ```
 
 
-## package.hasInstalled
+## package.hasInstalled<sup>(deprecated)</sup>
+> 从API version 9开始不再维护，推荐使用该模块[`@ohos.bundle.bundleManager`](js-apis-bundleManager.md)。
 
 hasInstalled(Object): void
 

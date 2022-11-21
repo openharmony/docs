@@ -102,7 +102,7 @@ start(sinkDeviceDescriptor: string, srcInputDeviceId: number, callback: AsyncCal
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.multimodalinput错误码](../errorcodes/errorcodes-multimodalinput.md)。
+以下错误码的详细介绍请参见[ohos.multimodalinput错误码](../errorcodes/errorcode-multimodalinput.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
@@ -112,6 +112,8 @@ start(sinkDeviceDescriptor: string, srcInputDeviceId: number, callback: AsyncCal
 **示例**：
 
 ```js
+let sinkDeviceDescriptor = "descriptor";
+let srcInputDeviceId = 0;
 try {
   inputDeviceCooperate.start(sinkDeviceDescriptor, srcInputDeviceId, (error) => {
     if (error) {
@@ -150,7 +152,7 @@ start(sinkDeviceDescriptor: string, srcInputDeviceId: number): Promise\<void>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.multimodalinput错误码](../errorcodes/errorcodes-multimodalinput.md)。
+以下错误码的详细介绍请参见[ohos.multimodalinput错误码](../errorcodes/errorcode-multimodalinput.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
@@ -160,6 +162,8 @@ start(sinkDeviceDescriptor: string, srcInputDeviceId: number): Promise\<void>
 **示例**：
 
 ```js
+let sinkDeviceDescriptor = "descriptor";
+let srcInputDeviceId = 0;
 try {
   inputDeviceCooperate.start(sinkDeviceDescriptor, srcInputDeviceId).then(() => {
     console.log(`Start Keyboard mouse crossing success.`);
@@ -215,7 +219,7 @@ stop(): Promise\<void>
 
 | 参数名                | 说明                            |
 | --------             | ----------------------------   |
-| Promise\<void>       |  Promise对象，异步返回停止键鼠穿越结果。      | 
+| Promise\<void>       |  Promise对象，异步返回停止键鼠穿越结果。      |
 
 **示例**：
 
@@ -249,6 +253,7 @@ getState(deviceDescriptor: string, callback: AsyncCallback<{ state: boolean }>):
 **示例**：
 
 ```js
+let deviceDescriptor = "descriptor";
 try {
   inputDeviceCooperate.getState(deviceDescriptor, (error, data) => {
     if (error) {
@@ -289,6 +294,7 @@ getState(deviceDescriptor: string): Promise<{ state: boolean }>
 **示例**：
 
 ```js
+let deviceDescriptor = "descriptor";
 try {
   inputDeviceCooperate.getState(deviceDescriptor).then((data) => {
     console.log(`Get the status success, data: ${JSON.stringify(data)}`);
@@ -324,7 +330,7 @@ try {
   inputDeviceCooperate.on('cooperation', (data) => {
     console.log(`Keyboard mouse crossing event: ${JSON.stringify(data)}`);
   });
-} catch (err) {
+} catch (error) {
   console.log(`Register failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
@@ -350,25 +356,25 @@ off(type: 'cooperation', callback?: AsyncCallback\<void>): void
 
 ```js
 // 取消注册单个回调函数
-callback: function(event) {
+function callback(event) {
   console.log(`Keyboard mouse crossing event: ${JSON.stringify(event)}`);
   return false;
 },
 try {
-  inputDeviceCooperate.on('cooperation', this.callback);
-  inputDeviceCooperate.off("cooperation", this.callback);
+  inputDeviceCooperate.on('cooperation', callback);
+  inputDeviceCooperate.off("cooperation", callback);
 } catch (error) {
   console.log(`Execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 ```js
 // 取消注册所有回调函数
-callback: function(event) {
+function callback(event) {
   console.log(`Keyboard mouse crossing event: ${JSON.stringify(event)}`);
   return false;
 },
 try {
-  inputDeviceCooperate.on('cooperation', this.callback);
+  inputDeviceCooperate.on('cooperation', callback);
   inputDeviceCooperate.off("cooperation");
 } catch (error) {
   console.log(`Execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);

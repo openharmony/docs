@@ -1,10 +1,10 @@
-Prebuilts for Clang/LLVM-based tools used in OpenHarmony
+Prebuilts for Clang/LLVM-based Tools Used in OpenHarmony
 ====================================================
 
 1. For the latest version of this doc, please make sure to visit:
 [OpenHarmony Clang/LLVM-based Tools Readme Doc](https://gitee.com/openharmony/third_party_llvm-project/blob/master/llvm-build/README.md)
 
-2. Build Instructions
+2. Build instructions
 ------------------
 
 ```
@@ -19,9 +19,9 @@ cp -r toolchain/llvm-project/llvm-build toolchain
 python3 ./toolchain/llvm-build/build.py
 ```
 
-3. Update Prebuilts
+3. Update prebuilts
 ----------------
-From an OpenHarmony project run:
+From an OpenHarmony project, run:
 
 ```
 $ ./build/prebuilts_download.sh

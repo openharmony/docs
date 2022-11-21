@@ -52,6 +52,9 @@ featureAbility.startAbility(
             uri: ""
         },
     },
+    (err, data) => {
+        console.info("err: " + JSON.stringify(err) + "data: " + JSON.stringify(data))
+    }
 );
 ```
 
@@ -268,6 +271,9 @@ featureAbility.terminateSelfWithResult(
             }
         },
     },
+    (err) => {
+        console.info("err: " + JSON.stringify(err))
+    }
 );
 ```
 
@@ -345,7 +351,11 @@ hasWindowFocus(callback: AsyncCallback\<boolean>): void
 
 ```javascript
 import featureAbility from '@ohos.ability.featureAbility';
-featureAbility.hasWindowFocus()
+featureAbility.hasWindowFocus(
+    (err, data) => {
+        console.info("err: " + JSON.stringify(err) + "data: " + JSON.stringify(data))
+    }
+)
 ```
 
 ## featureAbility.hasWindowFocus<sup>7+<sup>
@@ -389,7 +399,11 @@ getWant(callback: AsyncCallback\<Want>): void
 
 ```javascript
 import featureAbility from '@ohos.ability.featureAbility';
-featureAbility.getWant()
+featureAbility.getWant(
+    (err, data) => {
+        console.info("err: " + JSON.stringify(err) + "data: " + JSON.stringify(data))
+    }
+)
 ```
 
 ## featureAbility.getWant
@@ -455,7 +469,11 @@ terminateSelf(callback: AsyncCallback\<void>): void
 
 ```javascript
 import featureAbility from '@ohos.ability.featureAbility';
-featureAbility.terminateSelf()
+featureAbility.terminateSelf(
+    (err) => {
+        console.info("err: " + JSON.stringify(err))
+    }
+)
 ```
 
 ## featureAbility.terminateSelf<sup>7+</sup>
@@ -583,8 +601,8 @@ var connId = featureAbility.connectAbility(
     },
 );
 var result = featureAbility.disconnectAbility(connId,
-    (error,data) => {
-        console.log('featureAbilityTest DisConnectJsSameBundleName result errCode : ' + error.code + " data: " + data)
+    (error) => {
+        console.log('featureAbilityTest DisConnectJsSameBundleName result errCode : ' + error.code)
     },
 );
 ```
@@ -660,7 +678,11 @@ getWindow(callback: AsyncCallback\<window.Window>): void
 **示例：**
 
 ```javascript
-featureAbility.getWindow()
+featureAbility.getWindow(
+    (err, data) => {
+        console.info("err: " + JSON.stringify(err) + "data: " + JSON.stringify(data))
+    }
+)
 ```
 
 ## featureAbility.getWindow<sup>7+</sup>

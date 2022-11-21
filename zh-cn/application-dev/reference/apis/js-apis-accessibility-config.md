@@ -16,7 +16,7 @@ import config from '@ohos.accessibility.config';
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.BarrierFree.Accessibility.Core
 
-| 名称 | 参数类型 | 可读 | 可写 | 说明 | 
+| 名称 | 类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
 | highContrastText | [Config](#config)\<boolean>| 是 | 是 | 表示高对比度文字功能启用状态。 |
 | invertColor | [Config](#config)\<boolean>| 是 | 是 | 表示颜色反转功能启用状态。 |
@@ -41,7 +41,7 @@ enableAbility(name: string, capability: Array&lt;accessibility.Capability&gt;): 
 
 **参数：**
 
-| 参数名 | 参数类型 | 必填 | 说明 |
+| 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | name | string | 是 | 辅助应用的名称，格式为：'bundleName/abilityName'。 |
 | capability | Array&lt;[accessibility.Capability](js-apis-accessibility.md#capability)&gt;) | 是 | 辅助应用的能力属性。 |
@@ -65,7 +65,7 @@ enableAbility(name: string, capability: Array&lt;accessibility.Capability&gt;): 
 
 ```ts
 let name = 'com.ohos.example/axExtension';
-let capability = ['retrieve'];
+let capability : accessibility.Capability[] = ['retrieve'];
 try {
     config.enableAbility(name, capability).then(() => {
       console.info('enable ability succeed');
@@ -75,7 +75,7 @@ try {
 } catch (exception) {
     console.error('failed to enable ability, because ' + JSON.stringify(exception));
 };
-  ```
+```
 
 ## enableAbility
 
@@ -87,7 +87,7 @@ enableAbility(name: string, capability: Array&lt;accessibility.Capability&gt;, c
 
 **参数：**
 
-| 参数名 | 参数类型 | 必填 | 说明 |
+| 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | name | string | 是 | 辅助应用的名称，格式为：'bundleName/abilityName'。 |
 | capability | Array&lt;[accessibility.Capability](js-apis-accessibility.md#capability)&gt; | 是 | 辅助应用的能力属性。 |
@@ -106,9 +106,9 @@ enableAbility(name: string, capability: Array&lt;accessibility.Capability&gt;, c
 
 ```ts
 let name = 'com.ohos.example/axExtension';
-let capability = ['retrieve'];
+let capability : accessibility.Capability[] = ['retrieve'];
 try {
-    config.enableAbility(name, capability, (err, data) => {
+    config.enableAbility(name, capability, (err) => {
         if (err) {
             console.error('failed to enable ability, because ' + JSON.stringify(err));
             return;
@@ -130,7 +130,7 @@ disableAbility(name: string): Promise&lt;void&gt;;
 
 **参数：**
 
-| 参数名 | 参数类型 | 必填 | 说明 |
+| 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | name | string | 是 | 辅助应用的名称，格式为：'bundleName/abilityName'。 |
 
@@ -153,7 +153,7 @@ disableAbility(name: string): Promise&lt;void&gt;;
 ```ts
 let name = 'com.ohos.example/axExtension';
 try {
-    config.enableAbility(name).then(() => {
+    config.disableAbility(name).then(() => {
       console.info('disable ability succeed');
     }).catch((err) => {
       console.error('failed to disable ability, because ' + JSON.stringify(err));
@@ -173,7 +173,7 @@ disableAbility(name: string, callback: AsyncCallback&lt;void&gt;): void;
 
 **参数：**
 
-| 参数名 | 参数类型 | 必填 | 说明 |
+| 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | name | string | 是 | 辅助应用的名称，格式为：'bundleName/abilityName'。 |
 | callback | AsyncCallback&lt;void&gt; | 是 | 回调函数。 |
@@ -213,7 +213,7 @@ on(type: 'enabledAccessibilityExtensionListChange', callback: Callback&lt;void&g
 
 **参数：**
 
-| 参数名 | 参数类型 | 必填 | 说明 |
+| 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | type | string | 是 | 参数固定为enabledAccessibilityExtensionListChange，监听启用的辅助扩展的列表变化。 |
 | callback | Callback&lt;void&gt; | 是 | 回调函数，在启用的辅助扩展的列表变化时通过此函数进行通知。 |
@@ -224,12 +224,9 @@ on(type: 'enabledAccessibilityExtensionListChange', callback: Callback&lt;void&g
 try {
     config.on('enabledAccessibilityExtensionListChange', () => {
         console.info('subscribe enabled accessibility extension list change state success');
-    }).catch((err) => {
-        console.error('failed to subscribe enabled accessibility extension list change state, because ' + 
-        JSON.stringify(err));
     });
 } catch (exception) {
-    console.error('failed to subscribe enabled accessibility extension list change state, because ' + 
+    console.error('failed to subscribe enabled accessibility extension list change state, because ' +
     JSON.stringify(exception));
 };
 ```
@@ -244,7 +241,7 @@ off(type: 'enabledAccessibilityExtensionListChange', callback?: Callback&lt;void
 
 **参数：**
 
-| 参数名 | 参数类型 | 必填 | 说明 |
+| 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | type |  string | 否 | 参数固定为enabledAccessibilityExtensionListChange，监听启用的辅助扩展的列表变化。 |
 | callback | Callback&lt;void&gt; | 否 | 要取消的监听回调函数。 |
@@ -254,13 +251,10 @@ off(type: 'enabledAccessibilityExtensionListChange', callback?: Callback&lt;void
 ```ts
 try {
     config.off('enabledAccessibilityExtensionListChange', () => {
-        console.info('unSubscribe enabled accessibility extension list change state success');
-    }).catch((err) => {
-        console.error('failed to unSubscribe enabled accessibility extension list change state, because ' + 
-        JSON.stringify(err));
+        console.info('Unsubscribe enabled accessibility extension list change state success');
     });
 } catch (exception) {
-    console.error('failed to unSubscribe enabled accessibility extension list change state, because ' + 
+    console.error('failed to Unsubscribe enabled accessibility extension list change state, because ' +
     JSON.stringify(exception));
 };
 ```
@@ -279,7 +273,7 @@ set(value: T): Promise&lt;void&gt;;
 
 **参数：**
 
-| 参数名 | 参数类型 | 必填 | 说明 |
+| 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | value | T | 是 | 设置的属性值。 |
 
@@ -314,7 +308,7 @@ set(value: T, callback: AsyncCallback&lt;void&gt;): void;
 
 **参数：**
 
-| 参数名 | 参数类型 | 必填 | 说明 |
+| 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | value | T | 是 | 设置的属性值。 |
 | callback | AsyncCallback&lt;void&gt; | 是 | 回调函数。 |
@@ -372,7 +366,7 @@ get(callback: AsyncCallback&lt;T&gt;): void;
 
 **参数：**
 
-| 参数名 | 参数类型 | 必填 | 说明 |
+| 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | callback | AsyncCallback&lt;void&gt; | 是 | 回调函数，返回属性值。 |
 
@@ -400,7 +394,7 @@ on(callback: Callback&lt;T&gt;): void;
 
 **参数：**
 
-| 参数名 | 参数类型 | 必填 | 说明 |
+| 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | callback | Callback&lt;T&gt; | 是 | 回调函数，在属性变化时通过此函数进行通知。 |
 
@@ -408,12 +402,8 @@ on(callback: Callback&lt;T&gt;): void;
 
 ```ts
 try {
-    config.highContrastText.on((err, data) => {
-        if (err) {
-            console.error('failed subscribe highContrastText, because ' + JSON.stringify(err));
-            return;
-        }
-        console.info('subscribe highContrastText success');
+    config.highContrastText.on((data) => {
+        console.info('subscribe highContrastText success, result: ' + JSON.stringify(data));
     });
 } catch (exception) {
     console.error('failed subscribe highContrastText, because ' + JSON.stringify(exception));
@@ -430,19 +420,15 @@ off(callback?: Callback&lt;T&gt;): void;
 
 **参数：**
 
-| 参数名 | 参数类型 | 必填 | 说明 |
+| 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | callback | Callback&lt;T&gt; | 否 | 要取消的监听回调函数。 |
 
 **示例：**
 
 ```ts
-config.highContrastText.off((err, data) => {
-    if (err) {
-        console.error('failed unSubscribe highContrastText, because ' + JSON.stringify(err));
-        return;
-    }
-    console.info('unSubscribe highContrastText success');
+config.highContrastText.off((data) => {
+    console.info('Unsubscribe highContrastText success, result: ' + JSON.stringify(data));
 });
 ```
 

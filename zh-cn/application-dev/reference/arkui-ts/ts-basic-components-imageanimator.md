@@ -36,10 +36,10 @@ ImageAnimator()
 | 参数名称   | 参数类型   | 必填 | 参数描述 |
 | -------- | -------------- | -------- | -------- |
 | src      | string \| [Resource](ts-types.md#resource)<sup>9+</sup> | 是    | 图片路径，图片格式为svg，png和jpg，从API Version9开始支持[Resource](ts-types.md#resource)类型的路径。|
-| width    | [Length](ts-types.md#length)  | 否  | 图片宽度。<br/>默认值：0          |
-| height   | [Length](ts-types.md#length)  | 否  | 图片高度。<br/>默认值：0             |
-| top      | [Length](ts-types.md#length)  | 否  | 图片相对于组件左上角的纵向坐标。<br/>默认值：0    |
-| left     | [Length](ts-types.md#length)  | 否  | 图片相对于组件左上角的横向坐标。<br/>默认值：0    |
+| width    | number&nbsp;\|&nbsp;string | 否  | 图片宽度。<br/>默认值：0          |
+| height   | number&nbsp;\|&nbsp;string | 否  | 图片高度。<br/>默认值：0             |
+| top      | number&nbsp;\|&nbsp;string | 否  | 图片相对于组件左上角的纵向坐标。<br/>默认值：0    |
+| left     | number&nbsp;\|&nbsp;string | 否  | 图片相对于组件左上角的横向坐标。<br/>默认值：0    |
 | duration | number          | 否     | 每一帧图片的播放时长，单位毫秒。<br/>默认值：0               |
 
 

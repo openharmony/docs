@@ -46,7 +46,11 @@ struct WebComponent {
     Column() {
       Button('close')
         .onClick(() => {
-          this.msgPort[1].close();
+          if (this.msgPort && this.msgPort[1]) {
+            this.msgPort[1].close();
+          } else {
+            console.error("msgPort is null, Please initialize first");
+          }
         })
       Web({ src: 'www.example.com', controller: this.controller })
     }
@@ -166,7 +170,20 @@ struct WebComponent {
 ### 创建对象
 
 ```ts
-controller: web_webview.WebviewController = new web_webview.WebviewController();
+// xxx.ets
+import web_webview from '@ohos.web.webview'
+
+@Entry
+@Component
+struct WebComponent {
+  controller: web_webview.WebviewController = new web_webview.WebviewController();
+
+  build() {
+    Column() {
+      Web({ src: 'www.example.com', controller: this.controller })
+    }
+  }
+}
 ```
 
 ### loadUrl
@@ -1383,7 +1400,11 @@ struct WebComponent {
       Button('SendDataToHTML')
         .onClick(() => {
           try {
-            this.ports[1].postMessageEvent("post message from ets to HTML");
+            if (this.ports && this.ports[1]) {
+              this.ports[1].postMessageEvent("post message from ets to HTML");
+            } else {
+              console.error(`ports is null, Please initialize first`);
+            }
           } catch (error) {
             console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
           }
@@ -1434,7 +1455,11 @@ window.addEventListener('message', function (event) {
 
 // 3. 使用h5Port往ets侧发送消息.
 function PostMsgToEts(data) {
-    h5Port.postMessage(data);
+    if (h5Port) {
+      h5Port.postMessage(data);
+    } else {
+      console.error("h5Port is null, Please initialize first");
+    }
 }
 ```
 

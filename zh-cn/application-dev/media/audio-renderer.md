@@ -8,6 +8,7 @@ AudioRenderer提供了渲染音频文件和控制播放的接口，开发者可�
 - **音频中断**：当优先级较高的音频流需要播放时，AudioRenderer会中断优先级较低的流。例如，当用户在收听音乐时有来电，则优先级较低音乐播放将被暂停。
 - **状态检查**：在进行应用开发的过程中，建议开发者通过on('stateChange')方法订阅AudioRenderer的状态变更。因为针对AudioRenderer的某些操作，仅在音频播放器在固定状态时才能执行。如果应用在音频播放器处于错误状态时执行操作，系统可能会抛出异常或生成其他未定义的行为。
 - **异步操作**：为保证UI线程不被阻塞，大部分AudioRenderer调用都是异步的。对于每个API均提供了callback函数和Promise函数，以下示例均采用Promise函数，更多方式可参考[音频管理API文档AudioRenderer](../reference/apis/js-apis-audio.md#audiorenderer8)。
+- **焦点模式**：OpenHarmony中有两种焦点模式：**共享焦点模式**和**独立焦点模式**。其中，共享焦点模式是指，同一个应用创建的所有AudioRenderer对象共享一个焦点对象，应用内部无焦点转移，因此无法触发回调通知；独立焦点模式与之相反，即同一个应用创建的每个AudioRenderer对象都拥有独立的焦点对象，会发生焦点抢占，当应用内部发生焦点抢占，将会发生焦点转移，原本拥有焦点的AudioRenderer对象会获取到相关的回调通知。需要注意的是，默认情况下，应用创建的都是共享焦点，开发者可以调用setInterruptMode()来设置创建的焦点模式，完整示例请参考开发指导14。
 
 ## 运作机制
 
@@ -39,13 +40,11 @@ AudioRenderer提供了渲染音频文件和控制播放的接口，开发者可�
         sampleFormat: audio.AudioSampleFormat.SAMPLE_FORMAT_S16LE,
         encodingType: audio.AudioEncodingType.ENCODING_TYPE_RAW
     }
-
     let audioRendererInfo = {
         content: audio.ContentType.CONTENT_TYPE_SPEECH,
         usage: audio.StreamUsage.STREAM_USAGE_VOICE_COMMUNICATION,
         rendererFlags: 0 // 0是音频渲染器的扩展标志位，默认为0
     }
-
     let audioRendererOptions = {
         streamInfo: audioStreamInfo,
         rendererInfo: audioRendererInfo
@@ -86,54 +85,53 @@ AudioRenderer提供了渲染音频文件和控制播放的接口，开发者可�
 
    ```js
    import fileio from '@ohos.fileio';
+   import audio from '@ohos.multimedia.audio';
 
-    async function writeBuffer(buf) {
-      let state = audioRenderer.state;
-      // 写入数据时，渲染器的状态必须为STATE_RUNNING
-      if (state != audio.AudioState.STATE_RUNNING) {
-        console.error('Renderer is not running, do not write');
-        this.isPlay = false;
-        return;
-      }
+   async function writeBuffer(buf) {
+     // 写入数据时，渲染器的状态必须为STATE_RUNNING
+     if (audioRenderer.state != audio.AudioState.STATE_RUNNING) {
+       console.error('Renderer is not running, do not write');
+       return;
+     }
+     let writtenbytes = await audioRenderer.write(buf);
+     console.info(`Actual written bytes: ${writtenbytes} `);
+     if (writtenbytes < 0) {
+       console.error('Write buffer failed. check the state of renderer');
+     }
+   }
   
-      let writtenbytes = await audioRenderer.write(buf);
+   // 此处是渲染器的合理的最小缓冲区大小（也可以选择其它大小的缓冲区）
+   const bufferSize = await audioRenderer.getBufferSize();
+   let dir = globalThis.fileDir; //不可直接访问，没权限，切记！！！一定要使用沙箱路径
+   const path = dir + '/file_example_WAV_2MG.wav'; // 需要渲染的音乐文件 实际路径为：/data/storage/el2/base/haps/entry/files/file_example_WAV_2MG.wav
+   console.info(`file path: ${ path}`);
+   let ss = fileio.createStreamSync(path, 'r');
+   const totalSize = fileio.statSync(path).size; // 音乐文件大小
+   let discardHeader = new ArrayBuffer(bufferSize);
+   ss.readSync(discardHeader);
+   let rlen = 0;
+   rlen += bufferSize;
   
-      console.info(`Actual written bytes: ${writtenbytes} `);
-      if (writtenbytes < 0) {
-        console.error('Write buffer failed. check the state of renderer');
-      }
-    }
-  
-    // 此处是渲染器的合理的最小缓冲区大小（也可以选择其它大小的缓冲区）
-    const bufferSize = await audioRenderer.getBufferSize();
-    const path = '/data/file_example_WAV_2MG.wav'; // 需要渲染的音乐文件
-    let ss = fileio.createStreamSync(path, 'r');
-    const totalSize = fileio.statSync(path).size; // 音乐文件大小
-    let discardHeader = new ArrayBuffer(bufferSize);
-    ss.readSync(discardHeader);
-    let rlen = 0;
-    rlen += bufferSize;
-  
-    let id = setInterval(() => {
-      if (this.isRelease) { // 如果渲染器状态为release，停止渲染
-        ss.closeSync();
-        stopRenderer();
-        clearInterval(id);
-      }
-      if (this.isPlay) {
-        if (rlen >= totalSize) { // 如果音频文件已经被读取完，停止渲染
-          ss.closeSync();
-          stopRenderer();
-          clearInterval(id);
-        }
-        let buf = new ArrayBuffer(bufferSize);
-        rlen += ss.readSync(buf);
-        console.info(`Total bytes read from file: ${rlen}`);
-        writeBuffer(buf);
-      } else {
-        console.info('check after next interval');
-      }
-    }, 30); // 定时器区间根据音频格式设置，单位为毫秒
+   let id = setInterval(() => {
+     if (audioRenderer.state == audio.AudioState.STATE_RELEASED) { // 如果渲染器状态为release，停止渲染
+       ss.closeSync();
+       await audioRenderer.stop();
+       clearInterval(id);
+     }
+     if (audioRenderer.state == audio.AudioState.STATE_RUNNING) {
+       if (rlen >= totalSize) { // 如果音频文件已经被读取完，停止渲染
+         ss.closeSync();
+         await audioRenderer.stop();
+         clearInterval(id);
+       }
+       let buf = new ArrayBuffer(bufferSize);
+       rlen += ss.readSync(buf);
+       console.info(`Total bytes read from file: ${rlen}`);
+       writeBuffer(buf);
+     } else {
+       console.info('check after next interval');
+     }
+   }, 30); // 定时器区间根据音频格式设置，单位为毫秒
    ```
 
 4. （可选）调用pause()方法或stop()方法暂停/停止渲染音频数据。
@@ -269,6 +267,8 @@ AudioRenderer提供了渲染音频文件和控制播放的接口，开发者可�
    在某些情况下，框架会采取暂停播放、降低音量等强制操作，并通过InterruptEvent通知应用。在其他情况下，应用可以自行对InterruptEvent做出响应。
 
    在音频中断的情况下，应用可能会碰到音频数据写入失败的问题。所以建议不感知、不处理中断的应用在写入音频数据前，使用audioRenderer.state检查播放器状态。而订阅音频中断事件，可以获取到更多详细信息，具体可参考[InterruptEvent](../reference/apis/js-apis-audio.md#interruptevent9)。
+
+   需要说明的是，本模块的订阅音频中断事件与[AudioManager](../reference/apis/js-apis-audio.md#audiomanager)模块中的on('interrupt')稍有不同。自api9以来，on('interrupt')和off('interrupt')均被废弃。在AudioRenderer模块，当开发者需要监听焦点变化事件时，只需要调用on('audioInterrupt')函数，当应用内部的AudioRenderer对象在start\stop\pause等动作发生时，会主动请求焦点，从而发生焦点转移，相关的AudioRenderer对象即可获取到对应的回调信息。但对除AudioRenderer的其他对象，例如FM、语音唤醒等，应用不会创建对象，此时可调用AudioManager中的on('interrupt')获取焦点变化通知。
    
    ```js
    audioRenderer.on('audioInterrupt', (interruptEvent) => {
@@ -360,7 +360,6 @@ AudioRenderer提供了渲染音频文件和控制播放的接口，开发者可�
     } catch (err) {
       console.info(`Call on function error,  ${err}`); // 程序抛出401异常
     }
-
     try {
       audioRenderer.on(1, () => { // 入参类型错误
       })
@@ -368,3 +367,177 @@ AudioRenderer提供了渲染音频文件和控制播放的接口，开发者可�
       console.info(`Call on function error,  ${err}`); // 程序抛出6800101异常
     }
     ```
+
+14. （可选）on('audioInterrupt')方法完整示例。
+     同一个应用中的AudioRender1和AudioRender2在创建时均设置了焦点模式为独立，并且调用on('audioInterrupt')监听焦点变化。刚开始AudioRender1拥有焦点，当AudioRender2获取到焦点时，audioRenderer1将收到焦点转移的通知，打印相关日志。如果AudioRender1和AudioRender2不将焦点模式设置为独立，则监听处理中的日志在应用运行过程中永远不会被打印。
+     ```js
+     async runningAudioRender1(){
+       let audioStreamInfo = {
+         samplingRate: audio.AudioSamplingRate.SAMPLE_RATE_48000,
+         channels: audio.AudioChannel.CHANNEL_1,
+         sampleFormat: audio.AudioSampleFormat.SAMPLE_FORMAT_S32LE,
+         encodingType: audio.AudioEncodingType.ENCODING_TYPE_RAW
+       }
+       let audioRendererInfo = {
+         content: audio.ContentType.CONTENT_TYPE_MUSIC,
+         usage: audio.StreamUsage.STREAM_USAGE_MEDIA,
+         rendererFlags: 0 // 0是音频渲染器的扩展标志位，默认为0
+       }
+       let audioRendererOptions = {
+         streamInfo: audioStreamInfo,
+         rendererInfo: audioRendererInfo
+       }
+
+       //1.1 创建对象
+       audioRenderer1 = await audio.createAudioRenderer(audioRendererOptions);
+       console.info("Create audio renderer 1 success.");
+
+       //1.2 设置焦点模式为独立模式 ：1
+       audioRenderer1.setInterruptMode(1).then( data => {
+         console.info('audioRenderer1 setInterruptMode Success!');
+       }).catch((err) => {
+         console.error(`audioRenderer1 setInterruptMode Fail: ${err}`);
+       });
+
+       //1.3 设置监听
+       audioRenderer1.on('audioInterrupt', async(interruptEvent) => {
+         console.info(`audioRenderer1 on audioInterrupt : ${JSON.stringify(interruptEvent)}`)
+       });
+
+       //1.4 启动渲染
+       await audioRenderer1.start();
+       console.info('startAudioRender1 success');
+
+       //1.5 获取缓存区大小，此处是渲染器的合理的最小缓冲区大小（也可以选择其它大小的缓冲区）
+       const bufferSize = await audioRenderer1.getBufferSize();
+       console.info(`audio bufferSize: ${bufferSize}`);
+
+       //1.6 获取原始音频数据文件
+       let dir = globalThis.fileDir; //不可直接访问，没权限，切记！！！一定要使用沙箱路径
+       const path1 = dir + '/music001_48000_32_1.wav'; // 需要渲染的音乐文件 实际路径为：/data/storage/el2/base/haps/entry/files/music001_48000_32_1.wav
+       console.info(`audioRender1 file path: ${ path1}`);
+       let ss1 = await fileio.createStream(path1,'r');
+       const totalSize1 = fileio.statSync(path1).size; // 音乐文件大小
+       console.info(`totalSize1   -------: ${totalSize1}`);
+       let discardHeader = new ArrayBuffer(bufferSize);
+       ss1.readSync(discardHeader);
+       let rlen = 0;
+       rlen += bufferSize;
+
+       //2.7 通过audioRender对缓存区的原始音频数据进行渲染
+       let id = setInterval(async () => {
+         if (audioRenderer1.state == audio.AudioState.STATE_RELEASED) { // 如果渲染器状态为release，停止渲染
+           ss1.closeSync();
+           audioRenderer1.stop();
+           clearInterval(id);
+         }
+         if (audioRenderer1.state == audio.AudioState.STATE_RUNNING) {
+           if (rlen >= totalSize1) { // 如果音频文件已经被读取完，停止渲染
+             ss1.closeSync();
+             await audioRenderer1.stop();
+             clearInterval(id);
+           }
+           let buf = new ArrayBuffer(bufferSize);
+           rlen += ss1.readSync(buf);
+           console.info(`Total bytes read from file: ${rlen}`);
+           await writeBuffer(buf, that.audioRenderer1);
+         } else {
+           console.info('check after next interval');
+         }
+       }, 30); // 定时器区间根据音频格式设置，单位为毫秒
+     }
+
+     async runningAudioRender2(){
+       let audioStreamInfo = {
+         samplingRate: audio.AudioSamplingRate.SAMPLE_RATE_48000,
+         channels: audio.AudioChannel.CHANNEL_1,
+         sampleFormat: audio.AudioSampleFormat.SAMPLE_FORMAT_S32LE,
+         encodingType: audio.AudioEncodingType.ENCODING_TYPE_RAW
+       }
+       let audioRendererInfo = {
+         content: audio.ContentType.CONTENT_TYPE_MUSIC,
+         usage: audio.StreamUsage.STREAM_USAGE_MEDIA,
+         rendererFlags: 0 // 0是音频渲染器的扩展标志位，默认为0
+       }
+       let audioRendererOptions = {
+         streamInfo: audioStreamInfo,
+         rendererInfo: audioRendererInfo
+       }
+
+       //2.1 创建对象
+       audioRenderer2 = await audio.createAudioRenderer(audioRendererOptions);
+       console.info("Create audio renderer 2 success.");
+
+       //2.2 设置焦点模式为独立模式 ：1
+       audioRenderer2.setInterruptMode(1).then( data => {
+         console.info('audioRenderer2 setInterruptMode Success!');
+       }).catch((err) => {
+         console.error(`audioRenderer2 setInterruptMode Fail: ${err}`);
+       });
+
+       //2.3 设置监听
+       audioRenderer2.on('audioInterrupt', async(interruptEvent) => {
+         console.info(`audioRenderer2 on audioInterrupt : ${JSON.stringify(interruptEvent)}`)
+       });
+
+       //2.4 启动渲染
+       await audioRenderer2.start();
+       console.info('startAudioRender2 success');
+
+       //2.5 获取缓存区大小
+       const bufferSize = await audioRenderer2.getBufferSize();
+       console.info(`audio bufferSize: ${bufferSize}`);
+
+       //2.6 读取原始音频数据文件
+       let dir = globalThis.fileDir; //不可直接访问，没权限，切记！！！一定要使用沙箱路径
+       const path2 = dir + '/music002_48000_32_1.wav'; // 需要渲染的音乐文件 实际路径为：/data/storage/el2/base/haps/entry/files/music002_48000_32_1.wav
+       console.error(`audioRender1 file path: ${ path2}`);
+       let ss2 = await fileio.createStream(path2,'r');
+       const totalSize2 = fileio.statSync(path2).size; // 音乐文件大小
+       console.error(`totalSize2   -------: ${totalSize2}`);
+       let discardHeader2 = new ArrayBuffer(bufferSize);
+       ss2.readSync(discardHeader2);
+       let rlen = 0;
+       rlen += bufferSize;
+
+       //2.7 通过audioRender对缓存区的原始音频数据进行渲染
+       let id = setInterval(async () => {
+         if (audioRenderer2.state == audio.AudioState.STATE_RELEASED) { // 如果渲染器状态为release，停止渲染
+           ss2.closeSync();
+           that.audioRenderer2.stop();
+           clearInterval(id);
+         }
+         if (audioRenderer1.state == audio.AudioState.STATE_RUNNING) {
+           if (rlen >= totalSize2) { // 如果音频文件已经被读取完，停止渲染
+             ss2.closeSync();
+             await audioRenderer2.stop();
+             clearInterval(id);
+           }
+           let buf = new ArrayBuffer(bufferSize);
+           rlen += ss2.readSync(buf);
+           console.info(`Total bytes read from file: ${rlen}`);
+           await writeBuffer(buf, that.audioRenderer2);
+         } else {
+           console.info('check after next interval');
+         }
+       }, 30); // 定时器区间根据音频格式设置，单位为毫秒
+     }
+
+     async writeBuffer(buf, audioRender) {
+       let writtenbytes;
+       await audioRender.write(buf).then((value) => {
+         writtenbytes = value;
+         console.info(`Actual written bytes: ${writtenbytes} `);
+       });
+       if (typeof(writtenbytes) != 'number' || writtenbytes < 0) {
+         console.error('get Write buffer failed. check the state of renderer');
+       }
+     }
+
+     //综合调用入口
+     async test(){
+       await runningAudioRender1();
+       await runningAudioRender2();
+     }
+
+     ```

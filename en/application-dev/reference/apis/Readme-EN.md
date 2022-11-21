@@ -45,6 +45,7 @@
     - [@ohos.application.formInfo](js-apis-formInfo.md)
     - [@ohos.application.formProvider](js-apis-formprovider.md)
     - [@ohos.application.missionManager](js-apis-missionManager.md)
+    - [@ohos.application.quickFixManager](js-apis-application-quickFixManager.md)
     - [@ohos.application.Want](js-apis-application-Want.md)
     - [@ohos.continuation.continuationManager](js-apis-continuation-continuationExtraParams.md)
     - [@ohos.continuation.continuationManager](js-apis-continuation-continuationManager.md)
@@ -90,8 +91,8 @@
 - UI Page
   - [@ohos.animator](js-apis-animator.md)
   - [@ohos.mediaquery](js-apis-mediaquery.md)
+  - [@ohos.promptAction](js-apis-promptAction.md)
   - [@ohos.router](js-apis-router.md)
-  - [@ohos.uiAppearance](js-apis-uiappearance.md)
  - Graphics 
   - [@ohos.animation.windowAnimationManager](js-apis-windowAnimationManager.md)
   - [@ohos.display ](js-apis-display.md)
@@ -146,6 +147,7 @@
   - [@ohos.document](js-apis-document.md)
   - [@ohos.environment](js-apis-environment.md)
   - [@ohos.fileio](js-apis-fileio.md)
+  - [@ohos.filemanagement.userfile_manager](js-apis-userfilemanager.md)
   - [@ohos.multimedia.medialibrary](js-apis-medialibrary.md)
   - [@ohos.securityLabel](js-apis-securityLabel.md)
   - [@ohos.statfs](js-apis-statfs.md)
@@ -213,6 +215,7 @@
   - [@ohos.geolocation](js-apis-geolocation.md)
   - [@ohos.multimodalInput.inputConsumer](js-apis-inputconsumer.md)
   - [@ohos.multimodalInput.inputDevice](js-apis-inputdevice.md)
+  - [@ohos.multimodalInput.inputDeviceCooperate](js-apis-cooperate.md)
   - [@ohos.multimodalInput.inputEvent](js-apis-inputevent.md)
   - [@ohos.multimodalInput.inputEventClient](js-apis-inputeventclient.md)
   - [@ohos.multimodalInput.inputMonitor](js-apis-inputmonitor.md)
@@ -261,6 +264,7 @@
   - [@ohos.application.testRunner](js-apis-testRunner.md)
   - [@ohos.uitest](js-apis-uitest.md)
 - APIs No Longer Maintained 
+  - [@ohos.bundleState](js-apis-deviceUsageStatistics.md)
   - [@ohos.bytrace](js-apis-bytrace.md)
   - [@ohos.data.storage](js-apis-data-storage.md)
   - [@ohos.data.distributedData](js-apis-distributed-data.md)

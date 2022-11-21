@@ -39,7 +39,7 @@
   - [Utils Overview](subsys-utils-overview.md)
   - [Utils Development](subsys-utils-guide.md)
   - [Utils FAQ](subsys-utils-faqs.md)
-- [AI Framework](subsys-ai-aiframework-devguide.md)
+- [AI Framework Development](subsys-ai-aiframework-devguide.md)
 - Data Management
   - RDB
     - [RDB Overview](subsys-data-relational-database-overview.md)
@@ -71,6 +71,8 @@
   - [Development on IPC Authentication](subsys-security-communicationverify.md)
   - [Development on Device Security Level Management](subsys-security-devicesecuritylevel.md)
   - [Development on HUKS](subsys-security-huks-guide.md)
+  - [Application Privilege Configuration Guide](subsys-app-privilege-config-guide.md)
+  - [Preset Application Configuration Guide](subsys-preinstall-app-config-guide.md)
 - Startup
   - [Startup](subsys-boot-overview.md)
   - init Module
@@ -92,7 +94,6 @@
   - [HiTraceChain Development](subsys-dfx-hitracechain.md)
   - [HiCollie Development](subsys-dfx-hicollie.md)
   - HiSysEvent Development
-    - [HiSysEvent Overview](subsys-dfx-hisysevent-overview.md)
     - [HiSysEvent Logging Configuration](subsys-dfx-hisysevent-logging-config.md)
     - [HiSysEvent Logging](subsys-dfx-hisysevent-logging.md)
     - [HiSysEvent Listening](subsys-dfx-hisysevent-listening.md)

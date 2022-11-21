@@ -62,16 +62,16 @@
 
 除支持[通用事件](../arkui-js/js-components-common-events.md)外，还支持如下事件：
 
-| 名称                         | 参数                                       | 描述                                       |
-| -------------------------- | ---------------------------------------- | ---------------------------------------- |
-| indexerchange<sup>5+</sup> | {&nbsp;local:&nbsp;booleanValue&nbsp;}   | 多语言索引条切换事件，仅当indexer属性为true，indexermulti为true时生效。booleanValue可能值为true或者false：<br/>-&nbsp;true:&nbsp;当前展示本地索引。<br/>-&nbsp;false:&nbsp;当前展示字母索引。 |
+| 名称                       | 参数                                                         | 描述                                                         |
+| -------------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| indexerchange<sup>5+</sup> | {&nbsp;local:&nbsp;booleanValue&nbsp;}                       | 多语言索引条切换事件，仅当indexer属性为true，indexermulti为true时生效。booleanValue可能值为true或者false：<br/>-&nbsp;true:&nbsp;当前展示本地索引。<br/>-&nbsp;false:&nbsp;当前展示字母索引。 |
 | scroll                     | {&nbsp;scrollX:&nbsp;scrollXValue,&nbsp;scrollY:&nbsp;scrollYValue,&nbsp;scrollState:&nbsp;stateValue&nbsp;} | 列表滑动的偏移量和状态回调。<br/>stateValue:&nbsp;0表示列表滑动已经停止。<br/>stateValue:&nbsp;1表示列表正在用户触摸状态下滑动。<br/>stateValue:&nbsp;2表示列表正在用户松手状态下滑动。 |
-| scrollbottom               | -                                        | 当前列表已滑动到底部位置。                            |
-| scrolltop                  | -                                        | 当前列表已滑动到顶部位置。                            |
-| scrollend                  | -                                        | 列表滑动已经结束。                                |
-| scrolltouchup              | -                                        | 手指已经抬起且列表仍在惯性滑动。                         |
-| requestitem                | -                                        | 请求创建新的list-item。<br/>长列表延迟加载时，可视区域外缓存的list-item数量少于cachedcount时，会触发该事件。 |
-| rotate<sup>7+</sup>        | {&nbsp;rotateValue:&nbsp;number&nbsp;}   | 返回表冠旋转角度增量值，仅智能穿戴支持。                     |
+| scrollbottom               | -                                                            | 当前列表已滑动到底部位置。                                   |
+| scrolltop                  | -                                                            | 当前列表已滑动到顶部位置。                                   |
+| scrollend                  | -                                                            | 列表滑动已经结束。                                           |
+| scrolltouchup              | -                                                            | 手指已经抬起且列表仍在惯性滑动。                             |
+| requestitem                | -                                                            | 请求创建新的list-item。<br/>长列表延迟加载时，可视区域外缓存的list-item数量少于cachedcount时，会触发该事件。 |
+| rotation<sup>7+</sup>      | {&nbsp;rotateValue:&nbsp;number&nbsp;}                       | 返回表冠旋转角度增量值，仅智能穿戴支持。                     |
 
 
 ## 方法
@@ -118,10 +118,10 @@ export default {
   data: {
     todolist: [{
       title: '刷题',
-      date: '2021-12-31 10:00:00',
+      date: '2021-12-31 10:00:00'
     }, {
       title: '看电影',
-      date: '2021-12-31 20:00:00',
+      date: '2021-12-31 20:00:00'
     }],
   },
 }

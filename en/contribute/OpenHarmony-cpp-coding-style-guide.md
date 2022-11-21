@@ -1,43 +1,49 @@
 # C++ Coding Style Guide
 
-## <a name="c0-1"></a>Purpose
+## Purpose
 Rules are not perfect. They might disable useful features in specific situations and therefore affect code implementation. However, the purpose of developing rules is to get more benefits for most programmers. If a rule cannot be followed in your team operation, we can improve the rule together.
+
 Before referring to this coding style guide, you are expected to have the following basic capabilities of the C++programming language: 
+
 1. Have a general knowledge of ISO standards for C++.
 2. Be familiar with the basic features of C++, including those of C++ 03/11/14/17.
 3. Have a general knowledge of the C++ standard library.
 
-## <a name="c0-2"></a>General Principles
+## General Principles
 Code must meet the requirements for readability, maintainability, security, reliability, testability, efficiency, and portability while ensuring functionality correctness.  
 
-## <a name="c0-3"></a>Key Points
+## Key Points
 1. C++ programming style, such as naming and typesetting.
 2. C++ modular design, including how to design header files, classes, interfaces, and functions.
 3. Best practices of C++ features, including constants, type casting, resource management, and templates.
 4. Best practices of modern C++, including conventions that can improve code maintainability and reliability in C++ 11/14/17.
 5. This coding style guide is preferentially applicable to C++17.
 
-## <a name="c0-4"></a>Conventions
+## Conventions
 **Rule**: Conventions that must be followed during programming.
 
 **Rec**: Conventions that must be considered during programming.
 
 This document is applicable to standard C++ versions (C++ 03/11/14/17) unless otherwise specified.
 
-## <a name="c0-5"></a>Exceptions
+## Exceptions
 It is necessary to understand the reason for these conventions and try to comply with them, no matter if they are rules or recommendations.
+
 However, some rules and recommendations have exceptions.
 
 The only acceptable exceptions are those that do not violate the general principles and provide appropriate reasons for the exception.
+
 Try to avoid exceptions because they affect the code consistency. Exceptions to 'Rules' should be very rare.
 
-The style consistency principle is preferred in the following case:  
+The style consistency principle is preferred in the following case: 
+
 When you modify open-source or third-party code, comply with their respective code specifications.
 
-# <a name="c2"></a>2 Naming
-## <a name="c2-1"></a>General Naming Rules
+# 2 Naming
+## General Naming Rules
 __CamelCase__
 CamelCase is the practice of writing compound words or phrases so that each word or abbreviation in the phrase begins with a capital letter, and with no intervening spaces or punctuation.
+
 There are two conventions: UpperCamelCase and lowerCamelCase.
 
 
@@ -49,12 +55,15 @@ There are two conventions: UpperCamelCase and lowerCamelCase.
 | Macro, constant, enumerated value, goto tag| All capitalized, separated by underscores (\_)|
 
 Note:
+
 **Constant** in the above table refers to the variable that is of the basic data type, enumeration type, and string type and modified by **const** or **constexpr** under the global scope, the namespace scope, and the scope of a static member of a class, excluding arrays and other variables.
+
 **Variable** indicates the variables excluding those defined in **Constant**. These variables use the lowerCamelCase style.
 
-## <a name="c2-2"></a>File Naming
-### <a name="r2-2-1"></a>Rule 2.2.1 Use .cpp as the C++ file name extension and .h as the header file name extension.
+## File Naming
+### Rule 2.2.1 Use .cpp as the C++ file name extension and .h as the header file name extension.
 It is recommended that you use .h as the file name extension of a header file so that the header file is compatible with C and C++.
+
 It is recommended that you use .cpp as the file name extension of an implementation file. In this way, you can easily distinguish C++ code from C code.
 
 At present, there are some other file name extensions used by programmers:
@@ -63,10 +72,11 @@ At present, there are some other file name extensions used by programmers:
 - Implementation files: .cc, .cxx, .C
 
 If your project team uses a specific file name extension, you can continue to use it and keep the style consistent.
+
 This document uses .h and .cpp extensions.
 
 
-### <a name="r2-2-2"></a>Rule 2.2.2 Keep C++ file names the same as the class name.
+### Rule 2.2.2 Keep C++ file names the same as the class name.
 The names of the C++ header file and the C++ implementation file must be the same as the class name. Use the unix\_like style and keep the style consistent.
 
 For example, if there is a class named DatabaseConnection, the corresponding file names are as follows:
@@ -75,7 +85,7 @@ For example, if there is a class named DatabaseConnection, the corresponding fil
 
 The naming rules of struct, namespace, and enumeration definition files are similar to the rules above.
 
-## <a name="c2-3"></a>Function Naming
+## Function Naming
 Functions are named in the UpperCamelCase style. Generally, the verb or verb-object structure is used.
 ```cpp
 class List {
@@ -90,10 +100,12 @@ namespace Utils {
 }
 ```
 
-## <a name="c2-4"></a>Type Naming
+## Type Naming
 
 Types are named in the UpperCamelCase style.
+
 All types, such as classes, structs, unions, typedefs, and enumerations, use the same conventions. Example:
+
 ```cpp
 // Classes, structs, and unions
 class UrlTable { ...
@@ -121,8 +133,9 @@ namespace FileUtils {
 ```
 
 
-### <a name="a2-4-1"></a>Rec 2.4.1 Do not abuse typedef or #define to set alias for the basic data types.
+### Rec 2.4.1 Do not abuse typedef or #define to set alias for the basic data types.
 Unless otherwise specified, do not use typedef or #define to redefine basic data types.
+
 The basic data types found in the `<cstdint>` header file are preferable.
 
 | Signed Type | Unsigned Type | Description                              |
@@ -134,7 +147,7 @@ The basic data types found in the `<cstdint>` header file are preferable.
 | intptr_t    | uintptr_t     | The signed or unsigned integer type large enough to hold a pointer. |
 
 
-## <a name="c2-5"></a>Variable Naming
+## Variable Naming
 General variables, including global variables, function parameters, local variables, and member variables, are named in the lowerCamelCase style.
 ```cpp
 std::string tableName;  // Good: Recommended style.
@@ -142,7 +155,7 @@ std::string tablename;  // Bad: Forbidden style.
 std::string path;       // Good: When there is only one word, lowerCamelCase (all lowercase) is used.
 ```
 
-### <a name="r2-5-1"></a>Rule 2.5.1 Add the prefix 'g_' to global variables. Do not add a prefix to a static variable.
+### Rule 2.5.1 Add the prefix 'g_' to global variables. Do not add a prefix to a static variable.
 Global variables should be used as little as possible, and special attention should be paid to their use. This prefix highlights global variables so that developers can be more careful when handling them.
 - Global static variables and global variables are named in the same way.
 - Static variables in functions and common local variables are named in the same way.
@@ -158,7 +171,7 @@ void Func()
 }
 ```
 
-### <a name="r2-5-2"></a>Rule 2.5.2 Name member variables in classes in the unix\_like style.
+### Rule 2.5.2 Name member variables in classes in the unix\_like style.
 
 ```cpp
 class Foo {
@@ -168,7 +181,7 @@ private:
 ```
 Use the lowerCamelCase style and do not add prefixes or suffixes to name a member variable of the struct or union type. Keep the naming style consistent with that for a local variable.
 
-## <a name="c2-6"></a>Macro, Constant, and Enum Naming
+## Macro, Constant, and Enum Naming
 Use uppercase letters separated by underscores (\_) for macro names and enumerated values.
 In the global scope, constants of named and unnamed namespaces and static member constants should be capitalized and separated with underscores (\_).Local constants and ordinary const member variables use the lowerCamelCase naming style.
 
@@ -195,11 +208,11 @@ namespace Utils {
 
 ```
 
-# <a name="c3"></a>3 Formatting
+# 3 Formatting
 
-## <a name="c3-1"></a>Line Length
+## Line Length
 
-### <a name="r3-1-1"></a>Rule 3.1.1 Include 120 characters or less in each line.
+### Rule 3.1.1 Include 120 characters or less in each line.
 If the line of code exceeds the permitted length, wrap the line appropriately.
 
 Exceptions:
@@ -213,16 +226,19 @@ Exceptions:
 #endif
 ```
 
-## <a name="c3-2"></a>Indentation
+## Indentation
 
-### <a name="r3-2-1"></a>Rule 3.2.1 Use spaces to indent and indent 4 spaces at a time.
+### Rule 3.2.1 Use spaces to indent and indent 4 spaces at a time.
 Only spaces can be used for indentation. Four spaces are indented each time. Do not use the Tab character to indent.
+
 Currently, almost all integrated development environments (IDEs) support automatic conversion of a Tab input to four spaces. Configure your IDE to support indentation with spaces.
 
-## <a name="c3-3"></a>Braces
-### <a name="r3-3-1"></a>Rule 3.3.1 Use the K&R indentation style.
+## Braces
+### Rule 3.3.1 Use the K&R indentation style.
 __K&R style__
+
 While wrapping a line, the left brace of the function (excluding the lambda statement) starts a new line and takes a single line. Other left braces are placed at the end of the line along with the statement.
+
 The right brace takes a single line, unless it is followed by the rest of the same statement, such as `while` in the `do` statement, `else` or `else if` in the `if` statement, a comma, or a semicolon.
 
 Example:
@@ -259,10 +275,10 @@ private:
 };
 ```
 
-## <a name="c3-4"></a>Function Declarations and Definitions
+## Function Declarations and Definitions
 
-### <a name="r3-4-1"></a>Rule 3.4.1 Keep the return type and function name of the function declaration or definition in the same line, and align the function parameter list appropriately if it needs to be wrapped.
-When a function is declared and defined, the return value type of the function should be in the same line as the function name. When the function parameter list is wrapped, it should be aligned appropriately. 
+### Rule 3.4.1 Keep the return type and function name of the function declaration or definition in the same line, and align the function parameter list appropriately if it needs to be wrapped.
+When a function is declared and defined, the return value type of the function should be in the same line as the function name. When the function parameter list is wrapped, it should be aligned appropriately.
 The left parenthesis of a parameter list is always in the same line as the function name. The right parenthesis always follows the last parameter.
 
 Example:
@@ -292,9 +308,10 @@ ReturnType ReallyReallyReallyReallyLongFunctionName(            // The line leng
 }
 ```
 
-## <a name="c3-5"></a>Function Calls
-### <a name="r3-5-1"></a>Rule 3.5.1 A function call parameter list should be placed on one line. When the parameter list exceeds the line length and requires a line break, the parameters should be properly aligned.
+## Function Calls
+### Rule 3.5.1 A function call parameter list should be placed on one line. When the parameter list exceeds the line length and requires a line break, the parameters should be properly aligned.
 A function call parameter list should be placed on one line. When the parameter list exceeds the line length and requires a line break, the parameters should be properly aligned.
+
 The left parenthesis always follows the function name, and the right parenthesis always follows the last parameter.
 
 The following are examples of proper line breaks:
@@ -319,9 +336,9 @@ int result = DealWithStructureLikeParams(left.x, left.y,     // A group of relat
                                          right.x, right.y);  // Another group of related parameters.
 ```
 
-## <a name="c3-6"></a> if Statements
+## if Statements
 
-### <a name="r3-6-1"></a>Rule 3.6.1 Use braces to include an if statement.
+### Rule 3.6.1 Use braces to include an if statement.
 We require that all if statements use braces, even if there is only one statement.
 
 Reasons:
@@ -334,7 +351,7 @@ if (objectIsNotExist) {         // Good: Braces are added to a single-line condi
     return CreateNewObject();
 }
 ```
-### <a name="r3-6-2"></a>Rule 3.6.2 Place if, else, and else if keywords on separate lines.
+### Rule 3.6.2 Place if, else, and else if keywords on separate lines.
 If there are multiple branches in a conditional statement, they should be placed on separate lines.
 
 Good example:
@@ -354,8 +371,8 @@ Bad example:
 if (someConditions) { ... } else { ... } // Bad: The if and else keywords are put on the same line.
 ```
 
-## <a name="c3-7"></a> Loop Statements
-### <a name="r3-7-1"></a>Rule 3.7.1 Use braces after loop statements.
+## Loop Statements
+### Rule 3.7.1 Use braces after loop statements.
 Similar to if statements, we require that the for and while loop statements contain braces, even if the loop body is empty or there is only one loop statement.
 ```cpp
 for (int i = 0; i < someRange; i++) {   // Good: Braces are used.
@@ -380,8 +397,8 @@ for (int i = 0; i < someRange; i++)
 while (someCondition) ; // Bad: Using a semicolon here will make people misunderstand that it is a part of the while statement and not the end to it.
 ```
 
-## <a name="c3-8"></a> Switch Statements
-### <a name="r3-8-1"></a>Rule 3.8.1 Indent case and default in a switch statement with four spaces.
+## Switch Statements
+### Rule 3.8.1 Indent case and default in a switch statement with four spaces.
 The indentation style of the switch statement is as follows:
 ```cpp
 switch (var) {
@@ -407,10 +424,13 @@ default:                // Bad: default is not indented.
 }
 ```
 
-## <a name="c3-9"></a> Expressions
+## Expressions
 
-### <a name="a3-9-1"></a>Rec 3.9.1 Keep a consistent line break style for expressions and ensure that operators are placed at the end of a line.
-A long expression that does not meet the line length requirement must be wrapped appropriately. Generally, the expression is wrapped at an operator of a lower priority or a connector, and the operator or connector is placed at the end of the line.
+### Rec 3.9.1 Keep a consistent line break style for expressions and ensure that operators are placed at the end of a line.
+A long expression that does not meet the line length requirement must be wrapped appropriately. 
+
+Generally, the expression is wrapped at an operator of a lower priority or a connector, and the operator or connector is placed at the end of the line.
+
 Placing these at the end of a line indicates that the operation is to be continued on the next line.
 Example:
 
@@ -434,9 +454,9 @@ int sum = longVariableName1 + longVariableName2 + longVariableName3 +
 int sum = longVariableName1 + longVariableName2 + longVariableName3 +
           longVariableName4 + longVariableName5 + longVariableName6;   // Good: The lines are aligned.
 ```
-## <a name="c3-10"></a> Variable Assignment
+## Variable Assignment
 
-### <a name="r3-10-1"></a>Rule 3.10.1 Multiple variable definitions and assignment statements cannot be written on one line.
+### Rule 3.10.1 Multiple variable definitions and assignment statements cannot be written on one line.
 Each line should have only one variable initialization statement. It is easier to read and understand.
 
 ```cpp
@@ -457,10 +477,10 @@ pointX = 1; pointY = 2;  // Bad: Multiple variable assignment statements must be
 ```
 Exception: Multiple variables can be declared and initialized in the for loop header, if initialization statement (C++17), and structured binding statement (C++17). Multiple variable declarations in these statements have strong associations. Forcible division into multiple lines may cause problems such as scope inconsistency and separation of declaration from initialization.
 
-## <a name="c3-11"></a> Initialization
+## Initialization
 Initialization is applicable to structs, unions, and arrays.
 
-### <a name="r3-11-1"></a>Rule 3.11.1 When an initialization list is wrapped, ensure that the line after the break is indented and aligned properly.
+### Rule 3.11.1 When an initialization list is wrapped, ensure that the line after the break is indented and aligned properly.
 If a structure or array initialization list is wrapped, the line after the break is indented with four spaces.
 Choose the wrap location and alignment style for best comprehension.
 
@@ -471,8 +491,8 @@ const int rank[] = {
 };
 ```
 
-## <a name="c3-12"></a> Pointers and References
-### <a name="a3-12-1"></a>Rec 3.12.1 The pointer type `*` follows a variable name or type. There can be only one space to the side of it.
+## Pointers and References
+### Rec 3.12.1 The pointer type `*` follows a variable name or type. There can be only one space to the side of it.
 Pointer naming: There can be only one space next to `*`.
 ```cpp
 int* p = NULL;  // Good
@@ -487,7 +507,7 @@ Exception: When a variable is modified by const or restrict, `*` cannot follow t
 const char * const VERSION = "V100";
 ```
 
-### <a name="a3-12-2"></a>Rec 3.12.2 The reference type `&` follows a variable name or type. There can be only one space to the side of it.
+### Rec 3.12.2 The reference type `&` follows a variable name or type. There can be only one space to the side of it.
 Reference naming: There can be only one space around `&`.
 ```cpp
 int i = 8;
@@ -496,17 +516,17 @@ int& p = i;     // Good
 int &p = i;     // Good
 int*& rp = pi; // Good: The reference type `*&` follows the type.
 int *&rp = pi; // Good: The reference type `*&` follows the variable name.
-int* &rp = pi; // Good: The pointer type `*` follows the type and the eference type `&` follows the variable name.
+int* &rp = pi; // Good: The pointer type `*` follows the type and the reference type `&` follows the variable name.
 
 int & p = i;    // Bad
 int&p = i;      // Bad
 ```
 
-## <a name="c3-13"></a>Compilation Preprocessing
-### <a name="r3-13-1"></a>Rule 3.13.1 Place a number sign (#) at the beginning of a line for compilation preprocessing. In nested compilation preprocessing, the number sign (#) can be indented.
+## Compilation Preprocessing
+### Rule 3.13.1 Place a number sign (#) at the beginning of a line for compilation preprocessing. In nested compilation preprocessing, the number sign (#) can be indented.
 The number sign (#) must be placed at the beginning of a line for compilation preprocessing, even if the code is embedded in the function body.
 
-### <a name="r3-13-2"></a>Rule 3.13.2 Do not use macros.
+### Rule 3.13.2 Do not use macros.
 Macros do not obey scope, type system, and other rules, and may easily lead to issues. Avoid macro definitions wherever possible. If you must use macros, give them unique names.
 In C++, there are many ways to avoid using macros:
 - Use `const` or `enum` to define constants that are easy to understand.
@@ -515,12 +535,14 @@ In C++, there are many ways to avoid using macros:
 - Use the `template` function to handle multiple types.
 Macros can be used in scenarios such as header guards, conditional compilation, and logging.
 
-### <a name="r3-13-3"></a>Rule 3.13.3 Do not use macros to represent constants.
+### Rule 3.13.3 Do not use macros to represent constants.
 Macros involve simple text replacement, which is completed during preprocessing. When an error occurs, the macro value is reported without the macro name. During tracing and debugging, the macro name is not displayed either. Besides, macros do not have type checking or scopes.
 
-### <a name="r3-13-4"></a>Rule 3.13.4 Do not use function-like macros.
+### Rule 3.13.4 Do not use function-like macros.
 Before defining a function-like macro, consider whether it can be replaced with a function. If yes, you are advised to use a function for replacement.
+
 The disadvantages of the function-like macro are as follows:
+
 - Function-like macros have no type check, which is not as strict as the function call check.
 - If macro parameters are not evaluated during macro expansion, unexpected results may occur.
 - A macro has no independent scope.
@@ -530,6 +552,7 @@ The disadvantages of the function-like macro are as follows:
 - Macros containing a large number of statements must be expanded at each call point. If there are many call points, the code will be expanded.
 
 Unlike macros, functions do not have these disadvantages. However, the biggest disadvantage of functions is low execution efficiency (increasing the overhead of function calls and the difficulty of compiler optimization).
+
 In light of this, you can use inline functions when necessary. Similar to macros, inline functions are expanded at the call point. The difference is that inline functions are expanded during compilation.
 
 Inline functions have the advantages of both functions and macros:
@@ -540,10 +563,11 @@ Inline functions have the advantages of both functions and macros:
 For performance-sensitive code, consider using inline functions instead of standard functions.
 
 Exceptions:
+
 In logging scenarios, only function-like macros can be used to keep information such as the file name (__FILE__) and line number (__LINE__) of the call point.
 
-## <a name="c3-14"></a> Whitespace
-### <a name="r3-14-1"></a>Rule 3.14.1 Ensure that horizontal spaces are used to highlight keywords and important information, and avoid unnecessary whitespace.
+## Whitespace
+### Rule 3.14.1 Ensure that horizontal spaces are used to highlight keywords and important information, and avoid unnecessary whitespace.
 Horizontal spaces are used to highlight keywords and important information. Spaces are not allowed at the end of each code line. The general rules are as follows:
 
 - Add spaces after keywords such as if, switch, case, do, while, and for.
@@ -688,7 +712,7 @@ switch (value)
 
 Note: Currently, all IDEs support automatic deletion of spaces at the end of a line. Please configure your IDE correctly.
 
-### <a name="a3-14-1"></a>Rec 3.14.1 Use blank lines only when necessary to keep code compact.
+### Rec 3.14.1 Use blank lines only when necessary to keep code compact.
 
 There must be as few blank lines as possible so that more code can be displayed for easy reading. Recommendations:
 - Add blank lines according to the correlation between lines.
@@ -723,8 +747,8 @@ int Foo(...)
 }
 ```
 
-## <a name="c3-15"></a> Classes
-### <a name="r3-15-1"></a>Rule 3.15.1 Class access specifier declarations are in the sequence: public, protected, private. Indent these specifiers to the same level as the class keyword.
+## Classes
+### Rule 3.15.1 Class access specifier declarations are in the sequence: public, protected, private. Indent these specifiers to the same level as the class keyword.
 ```cpp
 class MyClass : public BaseClass {
 public:      // Not indented.
@@ -751,7 +775,7 @@ private:
 In each part, it is recommended that similar statements be put together and in the following order: Type (including typedef, using, nested structs and classes), Constant, Factory Function, Constructor, Assignment Operator, Destructor, Other Member Function, and Data Member
 
 
-### <a name="r3-15-2"></a>Rule 3.15.2 The constructor initialization list must be on the same line or wrapped and aligned with four spaces of indentation.
+### Rule 3.15.2 The constructor initialization list must be on the same line or wrapped and aligned with four spaces of indentation.
 ```cpp
 // If all variables can be placed on the same line
 MyClass::MyClass(int var) : someVar_(var) 
@@ -776,28 +800,33 @@ MyClass::MyClass(int var)
 }
 ```
 
-# <a name="c4"></a>4 Comments
-Generally, clear architecture and good naming are recommended to improve code readability, and comments are provided only when necessary.  
+# 4 Comments
+Generally, clear architecture and good naming are recommended to improve code readability, and comments are provided only when necessary. 
+
 Comments are used to help readers quickly understand code. Therefore, **comments should be provided for the sake of readers**.
 
 Comments must be concise, clear, and unambiguous, ensuring that information is complete and not redundant.
 
-**Comments are as important as code**.  
-When writing a comment, you need to step into the reader's shoes and use comments to express what the reader really needs. Comments are used to express the function and intention of code, rather than repeating code.  
+**Comments are as important as code**. 
+
+When writing a comment, you need to step into the reader's shoes and use comments to express what the reader really needs. Comments are used to express the function and intention of code, rather than repeating code.
+
 When modifying the code, ensure that the comments are consistent with the modified code. It is not polite to modify only code and keep the old comments, which will undermine the consistency between code and comments, and may confuse or even mislead readers.
 
 Comments should be made in English.  
 
-## <a name="c4-1"></a>Comment Style
+## Comment Style
 
-In C++ code, both ` /* */` and ` // ` can be used for commenting.  
-Comments can be classified into different types, such as file header comments, function header comments, and code comments. This is based on their purposes and positions.  
+In C++ code, both ` /* */` and ` // ` can be used for commenting. 
+
+Comments can be classified into different types, such as file header comments, function header comments, and code comments. This is based on their purposes and positions. 
+
 Comments of the same type must keep a consistent style.
 
 Note: Example code in this document uses comments in the `//` format only to better describe the rules and recommendations. This does not mean this comment format is better.
 
-## <a name="c4-2"></a>  File Header Comments
-### <a name="r4-2-1"></a>Rule 4.2.1 File header comments must contain the copyright notice.
+## File Header Comments
+### Rule 4.2.1 File header comments must contain the copyright notice.
 
 /*
  * Copyright (c) 2020 Huawei Device Co., Ltd.
@@ -814,16 +843,18 @@ Note: Example code in this document uses comments in the `//` format only to bet
  * limitations under the License.
     */
 
-## <a name="c4-3"></a> Function Header Comments
-### <a name="r4-3-1"></a>Rule 4.3.1 Write function header comments for public functions.
+## Function Header Comments
+### Rule 4.3.1 Write function header comments for public functions.
 Public functions are interfaces provided by classes for external systems. To use public functions, the caller must understand the functionalities, parameter value ranges, return values, and precautions of the functions.
 Write function header comments for the function value range, return value, and precautions, since they cannot be self-explained.
 
-### <a name="r4-3-2"></a>Rule 4.3.2 Function header comments with no content are forbidden.
+### Rule 4.3.2 Function header comments with no content are forbidden.
 Not all functions need function header comments.
+
 For information that cannot be described by function signatures, add function header comments.
 
 Function header comments are placed above the function declaration or definition. Use one of the following styles:
+
 Use '//' to start the function header.
 
 ```cpp
@@ -852,9 +883,11 @@ int Func2(void);
 int Func3(void);
 ```
 Use function names to describe functions, and add function header comments if necessary.
+
 Do not write useless or redundant function headers. Do not write empty function headers with no content.
 
 The function header comment content will depend on the function and includes but is not limited to: a function description, return value, performance constraints, usage comments, memory conventions, algorithm implementation, reentering requirements.
+
 In the function interface declaration in the external header file, the function header comment should clearly describe important and useful information.
 
 Good example:
@@ -883,9 +916,9 @@ Problems:
 - The function name is redundant.
 - The most import thing, that is, who needs to release the buffer, is not clearly stated.
 
-## <a name="c4-4"></a> Code Comments
-### <a name="r4-4-1"></a>Rule 4.4.1 Code comments are placed above or on the right of the corresponding code.
-### <a name="r4-4-2"></a>Rule 4.4.2 There must be a space between the comment character and the comment content. At least one space is required between the comment and code if the comment is placed to the right of code.
+## Code Comments
+### Rule 4.4.1 Code comments are placed above or on the right of the corresponding code.
+### Rule 4.4.2 There must be a space between the comment character and the comment content. At least one space is required between the comment and code if the comment is placed to the right of code.
 Comments placed above code should be indented the same as that of the code.
 Use one of the following styles:
 Use "//".
@@ -911,6 +944,7 @@ DoSomething();
 DoSomething();
 ```
 Leave at least one space between the code and the comment on the right. It is recommended that no more than four spaces be left.
+
 You can use the Tab key to indent 1–4 spaces.
 
 Select and use one of the following styles:
@@ -920,6 +954,7 @@ int foo = 100;  // Comment on the right
 int bar = 200;  /* Comment on the right */
 ```
 It is more appealing sometimes when the comment is placed on the right of code and the comments and code are aligned vertically.
+
 After the alignment, ensure that the comment is 1–4 spaces away from the widest line of code.
 Example:
 
@@ -929,21 +964,26 @@ const int ANOTHER_CONST = 200;   /* Leave spaces after code to align comments ve
 ```
 When the comment on the right exceeds the line width, consider placing the comment above the code.
 
-### <a name="r4-4-3"></a>Rule 4.4.3 Delete unused code segments. Do not comment them out.
+### Rule 4.4.3 Delete unused code segments. Do not comment them out.
 Code that is commented out cannot be maintained. If you attempt to restore the code, it is very likely to introduce ignorable defects.
+
 The correct method is to delete unnecessary code directly. If necessary, consider porting or rewriting the code.
 
 Here, commenting out refers to the removal of code from compilation without actually deleting it. This is done by using /* */, //, #if 0, #ifdef NEVER_DEFINED, and so on.
 
-# <a name="c5"></a>5 Header Files
-## <a name="c5-1"></a> Header File Responsibility
+# 5 Header Files
+## Header File Responsibility
 A header file is an external interface of a module or file. The design of a header file shows most of the system design.
+
 The interface declaration for most functions is more suitable placed in the header file, but implementation (except inline functions) cannot be placed in the header file. Functions, macros, enumerations, and structure definitions that need to be used in .cpp files cannot be placed in the header file.
+
 The header responsibility should be simple. An overly complex header file will make dependencies complex and cause long compilation times.
 
-### <a name="a5-1-1"></a>Rec 5.1.1 Each .cpp file should have a .h file with the same name. It should be used to declare the classes and interfaces that need to be exposed externally.
+### Rec 5.1.1 Each .cpp file should have a .h file with the same name. It should be used to declare the classes and interfaces that need to be exposed externally.
 Generally, each .cpp file has a corresponding .h file. This .cpp file is used to store the function declarations, macro definitions, and class definitions that are to be exposed.
+
 If a .cpp file does not need to open any interface externally, it should not exist.
+
 Exception: __An entry point (for example, the file where the main function is located), unit tests, and dynamic libraries __
 
 Example:
@@ -983,19 +1023,22 @@ void Foo::Fun()
 }
 ```
 
-## <a name="c5-2"></a> Header File Dependency
-### <a name="r5-2-1"></a>Rule 5.2.1 Header file cyclic dependency is forbidden.
-An example of cyclic dependency (also known as circular dependency) is: a.h contains b.h, b.h contains c.h, and c.h contains a.h. If any of these header files is modified, all code containing a.h, b.h, and c.h needs to be recompiled.   
+## Header File Dependency
+### Rule 5.2.1 Header file cyclic dependency is forbidden.
+An example of cyclic dependency (also known as circular dependency) is: a.h contains b.h, b.h contains c.h, and c.h contains a.h. If any of these header files is modified, all code containing a.h, b.h, and c.h needs to be recompiled.  
+
 For a unidirectional dependency, for example if: a.h contains b.h, b.h contains c.h, and c.h does not contain any header file, modifying a.h does not mean that we need to recompile the source code for b.h or c.h.
 
 The cyclic dependency of header files reflects an obviously unreasonable architecture design, which can be avoided through optimization.
 
 
-### <a name="r5-2-2"></a>Rule 5.2.2 Header files should have #define guards to prevent multiple inclusion.
+### Rule 5.2.2 Header files should have #define guards to prevent multiple inclusion.
 To prevent header files from being included multiple times, all header files should be protected by #define. Do not use #pragma once.
 
 When defining a protection character, comply with the following rules:
+
 1) The protection character uses a unique name.
+
 2) Do not place code or comments (except for file header comments) before or after the protected part.
 
 Example: Assume that the timer.h file of the timer module is in the timer/include/timer.h directory. Perform the following operations to safeguard the timer.h file:
@@ -1007,9 +1050,11 @@ Example: Assume that the timer.h file of the timer module is in the timer/includ
 #endif
 ```
 
-### <a name="r5-2-3"></a>Rule 5.2.3 It is prohibited to reference external function interfaces and variables in extern declaration mode.
+### Rule 5.2.3 It is prohibited to reference external function interfaces and variables in extern declaration mode.
 Interfaces provided by other modules or files can be used only by including header files.
+
 Using external function interfaces and variables in extern declaration mode may cause inconsistency between declarations and definitions when external interfaces are changed.
+
 In addition, this kind of implicit dependency may cause architecture corruption.
 
 Cases that do not comply with specifications:
@@ -1058,11 +1103,14 @@ int Fun()
 }
 ```
 In some scenarios, if internal functions need to be referenced with no intrusion to the code, the extern declaration mode can be used.
+
 Example:
+
 When performing unit testing on an internal function, you can use the extern declaration to reference the tested function.
+
 When a function needs to be stubbed or patched, the function can be declared using extern.
 
-### <a name="r5-2-4"></a>Rule 5.2.4 Do not include header files in extern "C".
+### Rule 5.2.4 Do not include header files in extern "C".
 If a header file is included in extern "C", extern "C" may be nested. Some compilers restrict the nesting of extern "C". If there are too many nested layers, compilation errors may occur.
 
 When C and C++ programmings are used together and if extern "C" includes a header file, the original intent behind the header file may be hindered. For example, when the link specifications are modified incorrectly.
@@ -1108,7 +1156,7 @@ However, because `#include "a.h"` is placed inside `extern "C"` in b.h, the link
 Exceptions:
 In the C++ compilation environment, if you want to reference the header file of pure C, the C header files should not contain `extern "C"`. The non-intrusive approach is to include the C header file in `extern "C"`.
 
-### <a name="a5-2-1"></a>Rec 5.2.1 Use `#include` instead of a forward declaration to include header files.
+### Rec 5.2.1 Use `#include` instead of a forward declaration to include header files.
 A forward declaration is for the declaration of classes, functions, and templates and is not meant for its definition.
 
 - Advantages:
@@ -1124,11 +1172,11 @@ A forward declaration is for the declaration of classes, functions, and template
 
 Therefore, we should avoid using forward declarations as much as possible. Instead, we use the #include statement to include a header file and ensure dependency.
 
-# <a name="c6"></a>6 Scopes
+# 6 Scopes
 
-## <a name="c6-1"></a> Namespaces
+## Namespaces
 
-### <a name="a6-1-1"></a>Rec 6.1.1 For code that does not need to be exported from the .cpp file, you are advised to use an unnamed namespace for encapsulation or use static to modify the variables, constants, or functions that need hiding.
+### Rec 6.1.1 For code that does not need to be exported from the .cpp file, you are advised to use an unnamed namespace for encapsulation or use static to modify the variables, constants, or functions that need hiding.
 In the C++ 2003 standard, using static to modify the external availability of functions and variables was marked as deprecated. Therefore, unnamed namespaces are the recommended method.
 
 Main Reasons:
@@ -1156,7 +1204,7 @@ void Foo::Fun()
 
 ```
 
-### <a name="r6-1-1"></a>Rule 6.1.1 Do not use "using" to import namespace in a header file or before #include statements.
+### Rule 6.1.1 Do not use "using" to import namespace in a header file or before #include statements.
 Note: Using "using" to import namespace will affect any subsequent code and may cause symbol conflicts. 
 Example:
 
@@ -1207,9 +1255,9 @@ namespace Foo {
 ```
 
 
-## <a name="c6-2"></a> Global Functions and Static Member Functions
+## Global Functions and Static Member Functions
 
-### <a name="a6-2-1"></a>Rec 6.2.1 Use namespaces to manage global functions. If global functions are closely tied to a class, you can use static member functions.
+### Rec 6.2.1 Use namespaces to manage global functions. If global functions are closely tied to a class, you can use static member functions.
 Note: Placing non-member functions in a namespace avoids polluting the global scope. Do not use "class + static member function" to simply manage global functions. If a global function is closely tied to a class, it can be used as a static member function of the class.
 
 If you need to define some global functions for a .cpp file, use unnamed namespaces for management.
@@ -1224,9 +1272,9 @@ public:
 };
 ```
 
-## <a name="c6-3"></a> Global Constants and Static Member Constants
+## Global Constants and Static Member Constants
 
-### <a name="a6-3-1"></a>Rec 6.3.1 Use namespaces to manage global constants. If global constants are closely tied to a class, you can use static member constants.
+### Rec 6.3.1 Use namespaces to manage global constants. If global constants are closely tied to a class, you can use static member constants.
 Note: Placing global constants in a namespace avoids polluting the global scope. Do not use "class + static member constant" to simply manage global constants. If a global constant is closely tied to a class, it can be used as a static member constant of the class.
 
 If you need to define some global constants only for a .cpp file, use unnamed namespaces for management.
@@ -1241,9 +1289,9 @@ public:
 };
 ```
 
-## <a name="c6-4"></a> Global Variables
+## Global Variables
 
-### <a name="a6-4-1"></a>Rec 6.4.1 Do not use global variables. Use the singleton pattern instead.
+### Rec 6.4.1 Do not use global variables. Use the singleton pattern instead.
 Note: Global variables can be modified and read, which results in data coupling between production code and the global variables.
 ```cpp
 int g_counter = 0;
@@ -1299,9 +1347,9 @@ After the singleton is implemented, there is a unique global instance, which can
 
 Exception: In some cases, the scope of a global variable is contained inside a module. Multiple instances of the same global variable may exist, and each module holds one copy. In this case, a singleton cannot be used as it is limited to one instance.
 
-# <a name="c7"></a>7 Classes
+# 7 Classes
 
-## <a name="c7-1"></a> Constructors, Copy/Move Constructors, Copy/Move Assignment Operators, and Destructors
+## Constructors, Copy/Move Constructors, Copy/Move Assignment Operators, and Destructors
 Constructors, copy/move constructors, copy/move assignment operators, and destructors provide lifetime management methods for objects.
 - Constructor: `X()`
 - Copy constructor: `X(const X&)`
@@ -1310,7 +1358,7 @@ Constructors, copy/move constructors, copy/move assignment operators, and destru
 - Move assignment operator: `operator=(X&&)`       *Provided in versions later than C++ 11*.
 - Destructor: `~X()`
 
-### <a name="r7-1-1"></a>Rule 7.1.1 The member variables of a class must be initialized explicitly.
+### Rule 7.1.1 The member variables of a class must be initialized explicitly.
 Note: If a class has members but no constructor and a default constructor is defined, the compiler will automatically generate a constructor, but it will not initialize member variables. The content of each object is uncertain.
 
 Exceptions:
@@ -1355,7 +1403,7 @@ private:
 };
 ```
 
-### <a name="a7-1-1"></a>Rec 7.1.1 Initialization during declaration (C++ 11) and initialization using the constructor initialization list are preferred for member variables.
+### Rec 7.1.1 Initialization during declaration (C++ 11) and initialization using the constructor initialization list are preferred for member variables.
 Note: Initialization during declaration (C++11) is preferred because initialized values of member variables can be easily understood. If initialized values of certain member variables are relevant to constructors, or C++ 11 is not supported, the constructor initialization list is used preferentially to initialize these member variables. Compared with the assignment statements in constructors, code of the constructor initialization list is simpler and has higher performance, and can be used to initialize constant and reference members.
 
 ```cpp
@@ -1373,7 +1421,7 @@ private:
 };
 ```
 
-### <a name="r7-1-2"></a>Rule 7.1.2 Declare single-parameter constructors as explicit to prevent implicit conversion.
+### Rule 7.1.2 Declare single-parameter constructors as explicit to prevent implicit conversion.
 Note: If a single-parameter constructor is not declared as explicit, it will become an implicit conversion function.
 Example:
 
@@ -1402,7 +1450,7 @@ The preceding code fails to be compiled because the parameter required by `Proce
 
 If the explicit keyword of the Foo constructor is removed, implicit conversion is triggered and a temporary Foo object is generated when `ProcessFoo` is called with the string parameter. Usually, this implicit conversion is confusing and bugs are apt to be hidden, due to unexpected type conversion. Therefore, single-parameter constructors require explicit declaration.
 
-### <a name="r7-1-3"></a>Rule 7.1.3 If copy/move constructors and copy/move assignment operators are not needed, clearly prohibit them.
+### Rule 7.1.3 If copy/move constructors and copy/move assignment operators are not needed, clearly prohibit them.
 Note: If users do not define it, the compiler will generate copy constructors and copy assignment operators, move constructors and move assignment operators (move semantic functions will be available in versions later than C++ 11).
 If we do not use copy constructors or copy assignment operators, explicitly delete them.
 
@@ -1439,7 +1487,7 @@ public:
 };
 ```
 
-### <a name="r7-1-4"></a>Rule 7.1.4 Copy constructors and copy assignment operators should be implemented or forbidden together.
+### Rule 7.1.4 Copy constructors and copy assignment operators should be implemented or forbidden together.
 Both copy constructors and copy assignment operators provide copy semantics. They should be implemented or hidden together.
 
 ```cpp
@@ -1467,7 +1515,7 @@ private:
 };
 ```
 
-### <a name="r7-1-5"></a>Rule 7.1.5 Move constructors and move assignment operators should be implemented or hidden together.
+### Rule 7.1.5 Move constructors and move assignment operators should be implemented or hidden together.
 The move operation is added in C++ 11. If a class is required to support the move operation, move constructors and move assignment operators need to be implemented.
 
 Both move constructors and move assignment operators provide move semantics. They should be implemented or hidden together.
@@ -1496,8 +1544,9 @@ public:
 };
 ```
 
-### <a name="r7-1-6"></a>Rule 7.1.6 It is prohibited to call virtual functions in constructors and destructors.
+### Rule 7.1.6 It is prohibited to call virtual functions in constructors and destructors.
 Note: Calling a virtual function of the current object in a constructor or destructor will cause behaviors of non-polymorphism.
+
 In C++, a base class constructs only one complete object at a time.
 
 Example: Base indicates the base class, and Sub indicates the derived class.
@@ -1520,15 +1569,22 @@ public:
 ```
 
 When running the following statement:
+
 `Sub sub;`
+
 The constructor of the derived class is executed first. However, the constructor of the base class is called first. Because the constructor of the base class calls the virtual function log, the log is in the base class version. The derived class is constructed only after the base class is constructed. As a result, behaviors of non-polymorphism are caused.
+
 This also applies to destructors.
 
-### <a name="r7-1-7"></a>Rule 7.1.7 The copy constructors, copy assignment operators, move constructors, and move assignment operators in polymorphic base classes must be non-public or delete functions.
+### Rule 7.1.7 The copy constructors, copy assignment operators, move constructors, and move assignment operators in polymorphic base classes must be non-public or delete functions.
 Slicing occurs if the value of a derived class object is directly assigned to a base class object. In this case, only the base class part is copied or moved, which undermines polymorphism.
+
 [Counterexample]
+
 In the following code example, the copy constructor and copy assignment operator are not defined in the base class. The compiler automatically generates two special member functions.
+
 If the value of a derived class object is assigned to the base class object, slicing occurs. The copy constructor and copy assignment operator can be declared as **deleted** so that the compiler can check such assignment behavior.
+
 ```cpp
 class Base {                       
 public:                
@@ -1553,11 +1609,11 @@ void Foo(const Base &base)
 Derived d;
 Foo(d); // A derived class object is passed.
 ```
-1. Set copy constructors or copy assignment operators to **private** and do not implement them.
+Set copy constructors or copy assignment operators to **private** and do not implement them.
 
-## <a name="c7-2"></a> Inheritance
+## Inheritance
 
-### <a name="r7-2-1"></a>Rule 7.2.1 Declare destructors of a base class as virtual, and declare the class that is not to be inherited as final.
+### Rule 7.2.1 Declare destructors of a base class as virtual, and declare the class that is not to be inherited as final.
 Note: Destructors of the derived class can be called during polymorphism invocation only when destructors of the base class are virtual.
 
 Example: There will be memory leak if destructors of the base class are not declared as virtual.
@@ -1616,12 +1672,16 @@ int main(int argc, char* args[])
 }
 ```
 Because destructors of the base class are not declared as virtual, only destructors of the base class are called when an object is destroyed. Destructors of the derived class Sub are not called. As a result, a memory leak occurs.
+
 Exceptions:
+
 For classes such as **NoCopyable** and **NoMovable** that have no behavior and are used only as identifiers, you do not need to define them as final.
 
-### <a name="r7-2-2"></a>Rule 7.2.2 Do not use default parameter values for virtual functions.
+### Rule 7.2.2 Do not use default parameter values for virtual functions.
 Note: In C++, virtual functions are dynamically bound, but the default parameters of functions are statically bound during compilation. This means that the function you finally execute is a virtual function that is defined in the derived class but uses the default parameter value in the base class. To avoid confusion and other problems caused by inconsistent default parameter declarations during overriding of virtual functions, it is prohibited to declare default parameter values for all virtual functions.
+
 Example: The default value of parameter "text" of the virtual function "Display" is determined at compilation time instead of runtime, which does not fit with polymorphism.
+
 ```cpp
 class Base {
 public:
@@ -1659,7 +1719,7 @@ int main()
 };
 ```
 
-### <a name="r7-2-3"></a>Rule 7.2.3 Do not redefine inherited non-virtual functions.
+### Rule 7.2.3 Do not redefine inherited non-virtual functions.
 Note: Non-virtual functions cannot be dynamically bound (only virtual functions can be dynamically bound). You can obtain the correct result by operating on the pointer of the base class.
 
 Example:
@@ -1683,7 +1743,7 @@ base->Fun();   // Call Fun of the base class.
 
 ```
 
-## <a name="c7-3"></a> Multiple Inheritance
+## Multiple Inheritance
 In the actual development process, multiple inheritance is seldom used because the following typical problems may occur:
 1. Data duplication and name ambiguity caused by "diamond" inheritance. C++ introduces virtual inheritance to solve these problems.
 2. In addition to "diamond" inheritance, names of multiple base classes may also conflict with each other, resulting in name ambiguity.
@@ -1695,7 +1755,7 @@ Multiple inheritance provides a simpler method for assembling and reusing multip
 
 Therefore, multiple inheritance can be used only in the following cases:
 
-### <a name="a7-3-1"></a>Rec 7.3.1 Use multi-inheritance to implement interface separation and multi-role combination.
+### Rec 7.3.1 Use multi-inheritance to implement interface separation and multi-role combination.
 If a class requires multiple interfaces, combine multiple separated interfaces by using multiple inheritance. This is similar to the Traits mixin of the Scala language.
 
 ```cpp
@@ -1723,7 +1783,7 @@ class basic_iostream : public basic_istream, public basic_ostream {
 };
 ```
 
-## <a name="c7-4"></a> Overloading
+## Overloading
 
 Overload operators should be used when there are sufficient reasons, and they do not change the original perception of the operators. For example, do not use the plus sign (+) to perform subtraction.
 Operator overloading can make code more intuitive but has some disadvantages:
@@ -1732,11 +1792,9 @@ Operator overloading can make code more intuitive but has some disadvantages:
 - Overloading operators can cause confusion if behavior definitions are not intuitive (for example, if the "+" operator is used for subtraction).
 - The implicit conversion caused by the overloading of assignment operators may lead to entrenched bugs. Functions such as Equals () and CopyFrom () can be defined to replace the = and == operators.
 
-
-
-# <a name="c8"></a> 8 Functions
-## <a name="c8-1"></a>Function Design
-### <a name="r8-1-1"></a>Rule 8.1.1 Avoid long functions and ensure that each function contains no more than 50 lines (non-null and non-comment).
+# 8 Functions
+## Function Design
+### Rule 8.1.1 Avoid long functions and ensure that each function contains no more than 50 lines (non-null and non-comment).
 A function should be displayed on one screen (no longer than 50 lines). It should do only one thing, and do it well.
 
 Long functions often mean that the functions are too complex to implement in more than one function, or overly detailed but not further abstracted.
@@ -1744,11 +1802,12 @@ Long functions often mean that the functions are too complex to implement in mor
 Exception: Some algorithms may be longer than 50 lines due to algorithm convergence and functional comprehensiveness.
 
 Even if a long function works very well now, once someone modifies it, new problems may occur. It might even cause bugs that are difficult to find.
+
 It is recommended that you split a long function into several functions that are simpler and easier to manage, facilitating comprehension and modification.
 
-## <a name="c8-2"></a>Inline Functions
+## Inline Functions
 
-###  <a name="a8-2-1"></a>Rec 8.2.1 An inline function cannot exceed 10 lines.
+###  Rec 8.2.1 An inline function cannot exceed 10 lines.
 **Note**: An inline function has the same characteristics of a normal function. The difference between an inline function and a normal function lies in the processing of function calls. When a general function is called, the program execution right is transferred to the called function, and then returned to the function that calls it. When an inline function is called, the invocation expression is replaced with an inline function body.
 
 Inline functions are only suitable for small functions with only 1-10 lines. For a large function that contains many statements, the function call and return overheads are relatively trivial and do not need the help of an inline function. Most compilers may abandon the inline mode and use the common method to call the function.
@@ -1756,9 +1815,9 @@ Inline functions are only suitable for small functions with only 1-10 lines. For
 If an inline function contains complex control structures, such as loop, branch (switch), and try-catch statements, the compiler may regard the function as a common function.
 **Virtual functions and recursive functions cannot be used as inline functions**.
 
-## <a name="c8-3"></a> Function Parameters
+## Function Parameters
 
-### <a name="a8-3-1"></a>Rec 8.3.1 Use a reference instead of a pointer for function parameters.
+### Rec 8.3.1 Use a reference instead of a pointer for function parameters.
 
 **Note**: A reference is more secure than a pointer because it is not empty and does not point to other targets. Using a reference stops the need to check for illegal null pointers.
 
@@ -1767,8 +1826,9 @@ Use const to avoid parameter modification, so that readers can clearly know that
 
 Exception: When the input parameter is an array with an unknown compile-time length, you can use a pointer instead of a reference.
 
-### <a name="a8-3-2"></a>Rec 8.3.2 Use strongly typed parameters. Do not use void*.
+### Rec 8.3.2 Use strongly typed parameters. Do not use void*.
 While different languages have their own views on strong typing and weak typing, it is generally believed that C and C++ are strongly typed languages. Since we use such a strongly typed language, we should keep to this style.
+
 An advantage of this is the compiler can find type mismatch problems at the compilation stage.
 
 Using strong typing helps the compiler find more errors for us. Pay attention to the usage of the FooListAddNode function in the following code:
@@ -1802,20 +1862,20 @@ void MakeTheList()
 1. You can use a template function to change the parameter type.
 2. A base class pointer can be used to implement this according to polymorphism.
 
-### <a name="a8-3-3"></a>Rec 8.3.3 A function can have a maximum of five parameters.
+### Rec 8.3.3 A function can have a maximum of five parameters.
 If a function has too many parameters, it is apt to be affected by external changes, and therefore maintenance is affected. Too many function parameters will also increase the testing workload.
 
 If a function has more than five parameters, you can:
 - Split the function.
 - Combine related parameters into a struct.
 
-# <a name="c9"></a> 9 Other C++ Features
+# 9 Other C++ Features
 
-## <a name="c9-1"></a> Constants and Initialization
+## Constants and Initialization
 
 Unchanged values are easier to understand, trace, and analyze. Therefore, use constants instead of variables as much as possible. When defining values, use const as a default.
 
-### <a name="r9-1-1"></a>Rule 9.1.1 Do not use macros to replace constants.
+### Rule 9.1.1 Do not use macros to replace constants.
 
 **Note**: Macros are a simple text replacement that is completed in the preprocessing phase. When an error is reported, the corresponding value is reported. During tracing and debugging, the value is also displayed instead of the macro name. A macro does not support type checking and is insecure. A macro has no scope.
 
@@ -1829,7 +1889,7 @@ const int MAX_MSISDN_LEN = 20; // Good
 constexpr int MAX_MSISDN_LEN = 20;
 ```
 
-###  <a name="a9-1-1"></a>Rec 9.1.1 A group of related integer constants must be defined as an enumeration.
+###  Rec 9.1.1 A group of related integer constants must be defined as an enumeration.
 
 **Note**: Enumerations are more secure than `#define` or `const int`. The compiler checks whether a parameter value is within the enumerated value range to avoid errors.
 
@@ -1908,23 +1968,29 @@ enum RTCPType {
 };
 ```
 
-### <a name="r9-1-2"></a>Rule 9.1.2 Magic numbers cannot be used.
+### Rule 9.1.2 Magic numbers cannot be used.
 So-called magic numbers are numbers that are unintelligible and difficult to understand.
 
 Some numbers can be understood based on context.
+
 For example, the number 12 varies in different contexts.
+
 type = 12; is not intelligible (and a magic number), but `month = year * 12`; can be understood, so we wouldn't really class this as a magic number.
+
 The number 0 is often seen as a magic number. For example, `status = 0`; cannot truly express any status information.
 
 Solution:
+
 Comments can be added for numbers that are used locally.
+
 For the numbers that are used multiple times, you must define them as constants and give them descriptive names.
 
 The following cases are forbidden:
+
 No symbol is used to explain the meaning of a number, for example, ` const int ZERO = 0`.
 The symbol name limits the value. For example, for example, `const int XX_TIMER_INTERVAL_300MS = 300`. Use `XX_TIMER_INTERVAL_MS` instead.
 
-### <a name="r9-1-3"></a>Rule 9.1.3 Ensure that a constant has only one responsibility.
+### Rule 9.1.3 Ensure that a constant has only one responsibility.
 
 **Note**: A constant is used for only one specific function, that is, a constant cannot be used for multiple purposes.
 
@@ -1943,7 +2009,7 @@ namespace Namespace2 {
 }
 ```
 
-### <a name="r9-1-4"></a>Rule 9.1.4 Do not use memcpy_s or memset_s to initialize non-POD objects.
+### Rule 9.1.4 Do not use memcpy_s or memset_s to initialize non-POD objects.
 
 **Note**: `POD` is short for `Plain Old Data`, which is a concept introduced in the C++ 98 standard (ISO/IEC 14882, first edition, 1998-09-01). The `POD` types include the original types and aggregate types such as `int`, `char`, `float`, `double`, `enumeration`, `void`, and pointer. Encapsulation and object-oriented features cannot be used (for example, user-defined constructors, assignment operators, destructors, base classes, and virtual functions).
 
@@ -1953,7 +2019,7 @@ Even if a class of the aggregate type is directly copied and compared, and any f
 
 For details about the POD type, see the appendix.
 
-### <a name="a9-1-2"></a>Rec 9.1.2 Declare and initialize variables only when they are used.
+### Rec 9.1.2 Declare and initialize variables only when they are used.
 
 **Note**: It is a common low-level programming error that a variable is not assigned an initial value before being used. Declaring and initializing a variable just before using it will prevent this.
 
@@ -1973,8 +2039,8 @@ string name("zhangsan");  // Invoke a constructor.
 ```
 
 
-## <a name="c9-2"></a> Expressions
-### <a name="r9-2-1"></a>Rule 9.2.1 A variable cannot be referenced again if it is contained in an increment or decrement operation in an expression. 
+## Expressions
+### Rule 9.2.1 A variable cannot be referenced again if it is contained in an increment or decrement operation in an expression. 
 In an expression where the increment or decrement operations are performed on a variable, the variable cannot be referenced again. The result of a second referencing is not explicitly defined in C++ standards. The results in different compilers or different versions of a compiler may be different.
 Therefore, it is recommended that an undefined operation sequence not be assumed.
 
@@ -2001,11 +2067,13 @@ i++;            // Good: i++ is placed in a single line.
 x = Func(i, i);
 ```
 
-### <a name="r9-2-2"></a>Rule 9.2.2 A switch statement must have a default branch.
+### Rule 9.2.2 A switch statement must have a default branch.
 In most cases, a switch statement requires a default branch to ensure that there is a default action when the case tag is missing for a processed value.
 
 Exceptions:
+
 If the switch condition variables are enumerated and the case branch covers all values, the default branch is redundant.
+
 Because modern compilers can check which case branches are missing in the switch statement and provide an advanced warning. 
 
 ```cpp
@@ -2026,7 +2094,7 @@ switch (color) {
 }
 ```
 
-### <a name="a9-2-1"></a>Rec 9.2.1 When comparing expressions, follow the principle that the left side tends to change and the right side tends to remain unchanged.
+### Rec 9.2.1 When comparing expressions, follow the principle that the left side tends to change and the right side tends to remain unchanged.
 When a variable is compared with a constant, placing the constant on the left, for example, if (MAX == v), does not comply with standard reading habits  and is more difficult to understand.
 The constant should be placed on the right. The expression is written as follows:
 ```cpp
@@ -2042,7 +2110,7 @@ There are special cases: for example, if the expression `if (MIN < value && valu
 
 You do not need to worry about writing '==' as '=' because a compilation alarm will be generated for `if (value = MAX)` and an error will be reported by other static check tools. Use these tools to solve such writing errors and ensure that that code is readable.
 
-### <a name="a9-2-2"></a>Rec 9.2.2 Use parentheses to specify the operator precedence.
+### Rec 9.2.2 Use parentheses to specify the operator precedence.
 Use parentheses to specify the operator precedence. This will prevent program errors due to the inconsistency between default priority and the intended design. At the same time, it makes the code clearer and more readable. However, too many parentheses muddy the code, reducing readability. The following is a recommendation on their correct usage.
 
 - For binary and ternary operators, if multiple operators are involved, parentheses should be used.
@@ -2055,7 +2123,7 @@ x = (a == b) ? a : (a – b);    /* More than one operator is used and thus pare
 ```
 
 
-## <a name="c9-3"></a> Type Casting
+## Type Casting
 
 Do not use type branches to customize behaviors. Type branch customization behavior is prone to errors and is an obvious sign of attempting to compile C code using C++. This is very inflexible technology. If you forget to modify all branches when adding a new type to a compiler, you will not be notified. Use templates and virtual functions to let the type define itself rather than letting the calling side determine behavior.
 
@@ -2068,7 +2136,7 @@ However, we cannot prohibit the use of type casting because the C++ language is 
 
 Exception: When calling a function, if we do not want to process the result of the function, first consider whether this is your best choice. If you do not want to process the return value of the function, cast it to void.
 
-### <a name="r9-3-1"></a>Rule 9.3.1 If type casting is required, use the type casting provided by the C++ instead of the C style.
+### Rule 9.3.1 If type casting is required, use the type casting provided by the C++ instead of the C style.
 
 **Note**:
 
@@ -2086,15 +2154,15 @@ The type casting provided by C++ is more targeted, easy to read, and more secure
   int64_t i{ someInt32 };
 ```
 
-### <a name="a9-3-1"></a>Rec 9.3.1 Avoid using `dynamic_cast`.
+### Rec 9.3.1 Avoid using `dynamic_cast`.
 1. `dynamic_cast` depends on the RTTI of C++ so that the programmer can identify the type of the object in C++ at run time.
 2. `dynamic_cast` indicates that a problem has occurred in the design of the base class and derived class.The derived class destroys the contract of the base class and it is necessary to use `dynamic_cast` to convert the class to a subclass for special processing. In this case, it is more desirable to improve the design of the class, instead of using `dynamic_cast` to solve the problem.
 
-### <a name="a9-3-2"></a>Rec 9.3.2 Avoid using `reinterpret_cast`.
+### Rec 9.3.2 Avoid using `reinterpret_cast`.
 
 **Note**: `reinterpret_cast` is used to convert irrelevant types. Trying to use `reinterpret_cast` to force a type to another type destroys the security and reliability of the type and is an insecure casting method. Avoid casting between completely different types.
 
-### <a name="a9-3-3"></a>Rec 9.3.3 Avoid using `const_cast`.
+### Rec 9.3.3 Avoid using `const_cast`.
 
 **Note**: The `const_cast` command is used to remove the `const`  and `volatile` properties of an object.
 
@@ -2132,9 +2200,9 @@ int main(void)
 ```
 
 
-## <a name="c9-4"></a>Resource Allocation and Release
+## Resource Allocation and Release
 
-### <a name="r9-4-1"></a>Rule 9.4.1 When a single object is released, delete is used. When an array object is released, delete [] is used.
+### Rule 9.4.1 When a single object is released, delete is used. When an array object is released, delete [] is used.
 Note: To delete a single object, use delete; to delete an array object, use delete []. The reasons are as follows:
 
 - new: Apply for memory from the system and call the corresponding constructor to initialize an object.
@@ -2162,7 +2230,7 @@ delete[] numberArray;
 numberArray = NULL;
 ```
 
-### <a name="a9-4-1"></a>Rec 9.4.1 Use the RAII feature to trace dynamic allocation.
+### Rec 9.4.1 Use the RAII feature to trace dynamic allocation.
 
 Note: RAII is an acronym for Resource Acquisition Is Initialization. It is a simple technology that controls program resources (such as memory, file handle, network connections, and mutexes) by using the object lifecycle.
 
@@ -2204,11 +2272,11 @@ bool Update()
 }
 ```
 
-## <a name="c9-5"></a>Standard Template Library
+## Standard Template Library
 
 The standard template library (STL) varies between products. The following table lists some basic rules and suggestions for each team.
 
-### <a name="r9-5-1"></a>Rule 9.5.1 Do not save the pointer returned by c_str () of std::string.
+### Rule 9.5.1 Do not save the pointer returned by c_str () of std::string.
 
 Note: The C++ standard does not specify that the string::c_str () pointer is permanently valid. Therefore, the STL implementation used can return a temporary storage area and release it quickly when calling string::c_str (). Therefore, to ensure the portability of the program, do not save the result of string::c_str (). Instead, call it directly.
 
@@ -2240,45 +2308,53 @@ void Fun2()
 Exception: In rare cases where high performance coding is required , you can temporarily save the pointer returned by string::c_str() to match the existing functions which support only the input parameters of the const char* type. However, you should ensure that the lifecycle of the string object is longer than that of the saved pointer, and that the string object is not modified within the lifecycle of the saved pointer.
 
 
-### <a name="a9-5-1"></a>Rec 9.5.1 Use std::string instead of char*.
+### Rec 9.5.1 Use std::string instead of char*.
 
 Note: Using string instead of `char*` has the following advantages:
 1. There is no need to consider the null character '\0' at the end.
 2. You can directly use operators such as `+`,  `=`, and `==`, and other character and string operation functions.
-3. There is no need to consider memory allocation operations.This helps avoid explicit usage of `new` and `delete` and the resulting errors.
+3. There is no need to consider memory allocation operations. This helps avoid explicit usage of `new` and `delete` and the resulting errors.
 
 Note that in some STL implementations, string is based on the copy-on-write policy, which causes two problems. One is that the copy-on-write policy of some versions does not implement thread security, and the program breaks down in multi-threaded environments. Second, dangling pointers may be caused when a dynamic link library transfers the string based on the copy-on-write policy, due to the fact that reference count cannot be reduced when the library is unloaded. Therefore, it is important to select a reliable STL implementation to ensure the stability of the program.
 
 Exception:
+
 When an API of a system or other third-party library is called, only `char*` can be used for defined interfaces. However, before calling the interfaces, you can use string. When calling the interfaces, you can use `string::c_str()` to obtain the character pointer.
+
 When a character array is allocated as a buffer on the stack, you can directly define the character array without using string or containers such as `vector<char>`.
 
-### <a name="r9-5-2"></a>Rule 9.5.2 Do not use auto_ptr.
+### Rule 9.5.2 Do not use auto_ptr.
 Note: The `std::auto_ptr` in the STL library has an implicit ownership transfer behavior. The code is as follows:
 ```cpp
 auto_ptr<T> p1(new T);
 auto_ptr<T> p2 = p1;
 ```
 After the second line of statements is executed, p1 does not point to the object allocated in line 1 and becomes `NULL`. Therefore, `auto_ptr` cannot be placed in any standard containers.
+
 This ownership transfer behavior is not expected. In scenarios where ownership must be transferred, implicit transfer should not be used. This often requires the programmer to keep extra attention on code that uses `auto_ptr`, otherwise access to a null pointer will occur.
+
 There are two common scenarios for using auto_ptr . One is to transfer it as a smart pointer to outside the function that generates the auto_ptr , and the other is to use auto_ptr as the RAII management class. Resources are automatically released when the lifecycle of auto_ptr expires.
+
 In the first scenario, you can use std::shared_ptr instead.
+
 In the second scenario, you can use std::unique_ptr in the C++ 11 standard. std::unique_ptr is a substitute for std::auto_ptr and supports explicit ownership transfer.
 
 Exception:
+
 Before the C++ 11 standard is widely used, std::auto_ptr can be used in scenarios where ownership needs to be transferred. However, it is recommended that std::auto_ptr be encapsulated. The copy constructor and assignment operator of the encapsulation class should not be used in a standard container.
 
 
-### <a name="a9-5-2"></a>Rec 9.5.2 Use the new standard header files.
+### Rec 9.5.2 Use the new standard header files.
 
 Note:
 When using the standard header file of C++, use `<cstdlib>` instead of `<stdlib.h>`.
 
-## <a name="c9-6"></a> Usage of const
+## Usage of const
 Add the keyword const before the declared variable or parameter (example: `const int foo`) to prevent the variable from being tampered with. Add the const qualifier to the function in the class (example: `class Foo {int Bar (char c) const;} ;`) to make sure the function does not modify the status of the class member variable. const variables, data members, functions, and parameters ensure that the type detection during compilation is accurate and errors are found as soon as possible. Therefore, we strongly recommend that const be used in any possible case.
+
 Sometimes it is better to use constexpr from C++ 11 to define real constants.
 
-### <a name="r9-6-1"></a>Rule 9.6.1 For formal parameters of pointer and reference types, if the parameters do not need to be modified, use const.
+### Rule 9.6.1 For formal parameters of pointer and reference types, if the parameters do not need to be modified, use const.
 Unchanging values are easier to understand, trace, and analyze. `const` is used as the default option and is checked during compilation to make the code more secure and reliable.
 ```cpp
 class Foo;
@@ -2286,9 +2362,11 @@ class Foo;
 void PrintFoo(const Foo& foo);
 ```
 
-### <a name="r9-6-2"></a>Rule 9.6.2 For member functions that do not modify member variables, use const.
+### Rule 9.6.2 For member functions that do not modify member variables, use const.
 Declare the member function as `const` whenever possible. The access function should always be const. So long as the function of a member is not modified, the function is declared with const.
+
 When you need to modify data members in a virtual function, take all classes in the inheritance chain into account instead of only focusing on the implementation of a single class.
+
 ```cpp
 class Foo {
 public:
@@ -2310,7 +2388,7 @@ private:
 };
 ```
 
-### <a name="a9-6-1"></a>Rec 9.6.1 Member variables that will not be modified after initialization should be defined as constants.
+### Rec 9.6.1 Member variables that will not be modified after initialization should be defined as constants.
 
 ```cpp
 class Foo {
@@ -2321,9 +2399,9 @@ private:
 };
 ```
 
-## <a name="c9.7"></a> Exceptions
+## Exceptions
 
-### <a name="a9-7-1"></a>Rec 9.7.1 If the function does not throw an exception, the declaration is `noexcept`.
+### Rec 9.7.1 If the function does not throw an exception, the declaration is `noexcept`.
 **Reasons:**
 1. If the function does not throw an exception, the declaration is `noexcept`, which enables the compiler to optimize the function to the maximum extent, for example, reducing the execution paths and improving the efficiency of exiting when an error occurs.
 2. For STL containers such as  `vector`, to ensure the interface robustness, if the `move `  constructor of saved items is not declared as `noexcept`,  the `copy machanism` instead of the  `move machanism`  is used when the items are removed from the container. This would cause performance loss risks. If the function does not throw an exception, or a program does not intercept and process an exception thrown by the function, new `noexcept` keywords can be used to modify the function, indicating that the function does not throw an exception or the thrown exception is not intercepted or processed. For example:
@@ -2341,7 +2419,7 @@ std::vector<int> MyComputation(const std::vector<int>& v) noexcept
 }
 ```
 
-**Example:**
+**Example**
 
 ```cpp
 RetType Function(Type params) noexcept;   // Maximized optimization
@@ -2368,11 +2446,12 @@ a2.push_back(Foo2()); //Triggers container expansion and invokes the move constr
 ```
 
 **Note**
+
 The default constructor, destructor, `swap` function, and `move` operator should not throw an exception.
 
-## <a name="c9-8"></a>Templates and Generic Programming
+## Templates and Generic Programming
 
-### <a name="a9-8-1"></a>Rule 9.8.1 Do not use generic programming.
+### Rule 9.8.1 Do not use generic programming.
 OpenHarmony adopts object-oriented programming, which has ideas, concepts, and techniques totally different from those of generic programming.
 
 Generic programming in C++ allows for extremely flexible interfaces that are type safe and high performance, enabling reuse of code of different types but with the same behavior.
@@ -2386,10 +2465,12 @@ However, generic programming has the following disadvantages:
 5. It is difficult to modify or refactor the template code. The template code is expanded in multiple contexts, and it is hard to verify that the code refactoring makes sense in all of them.
 
 Only __a few components of OpenHarmony__ support generic programming, and the templates developed using generic programming must have detailed comments.
-Exceptions:
-1. The STL adaptation layer can use generic programming.
 
-## <a name="c9-9"></a>Macros
+Exceptions:
+
+The STL adaptation layer can use generic programming.
+
+## Macros
 In the C++ language, it is strongly recommended that complex macros be used as little as possible.
 - For constant definitions, use `const` or `enum` as stated in the preceding sections. 
 - For macro functions, try to be as simple as possible, comply with the following principles, and use inline functions and template functions for replacement.
@@ -2405,13 +2486,13 @@ template<typename T> T Square(T a, T b) { return a * b; }
 For details about how to use macros, see the related chapters about the C language specifications.
 **Exception**: For some common and mature applications, for example, encapsulation for new and delete, the use of macros can be retained.
 
-# <a name="c10"></a> 10 Modern C++ Features
+# 10 Modern C++ Features
 
 As the ISO released the C++ 11 language standard in 2011 and released the C++ 17 in March 2017, the modern C++ (C++ 11/14/17) adds a large number of new language features and standard libraries that improve programming efficiency and code quality.
 This chapter describes some guidelines for modern C++ use, to avoid language pitfalls.
 
-## <a name="c10-1"></a> Code Simplicity and Security Improvement
-### <a name="a10-1-1"></a>Rec 10.1.1 Use `auto` properly.
+## Code Simplicity and Security Improvement
+### Rec 10.1.1 Use `auto` properly.
 **Reasons**
 
 * `auto` can help you avoid writing verbose, repeated type names, and can also ensure initialization when variables are defined.
@@ -2463,8 +2544,9 @@ auto s1 = v[0]; // auto deduction changes s1 to std::string in order to copy v[0
 
 If `auto` is used to define an interface, such as a constant in a header file, the type may be changed if the developer has modified the value.
 
-### <a name="r10-1-1"></a>Rule 10.1.1 Use the keyword `override` when rewriting virtual functions.
-**Reason:**
+### Rule 10.1.1 Use the keyword `override` when rewriting virtual functions.
+**Reason**
+
 The keyword `override` ensures that the function is a virtual function and an overridden virtual function of the base class. If the subclass function is different from the base class function prototype, a compilation alarm is generated. `final` also ensures that virtual functions are not overridden by subclasses.
 
 If you modify the prototype of a base class virtual function but forget to modify the virtual function overridden by the subclass, you can find inconsistency during compilation. You can also avoid forgetting to modify the overridden function when there are multiple subclasses.
@@ -2493,11 +2575,12 @@ public:
 2. When overriding the virtual function by a subclass in a base class, including destructors, use the keyword `override` or  `final` instead of `virtual`.
 3. For the non-virtual function, do not use `virtual` or `override`.
 
-### <a name="r10-1-2"></a>Rule: 10.1.2 Use the keyword `delete` to delete functions.
+### Rule: 10.1.2 Use the keyword `delete` to delete functions.
 **Reason**
+
 The `delete` keyword is clearer and the application scope is wider than a class member function that is declared as private and not implemented.
 
-**Example:**
+**Example**
 
 ```cpp
 class Foo {
@@ -2523,8 +2606,9 @@ template<>
 void Process<void>(void) = delete;
 ```
 
-### <a name="r10-1-3"></a>Rule 10.1.3 Use `nullptr` instead of `NULL` or `0`.
-**Reason:**
+### Rule 10.1.3 Use `nullptr` instead of `NULL` or `0`.
+**Reason**
+
 For a long time, C++ has not had a keyword that represents a null pointer, which is embarrassing:
 
 ```cpp
@@ -2577,7 +2661,7 @@ if (result == nullptr) {  // Find() returns a pointer.
 }
 ```
 
-### <a name="r10-1-4"></a>Rule 10.1.4 Use `using` instead of `typedef`.
+### Rule 10.1.4 Use `using` instead of `typedef`.
 For versions earlier than `C++11`, you can define the alias of the type by using `typedef`. No one wants to repeat code like `std::map<uint32_t, std::vector<int>>`.
 
 ```cpp
@@ -2632,11 +2716,13 @@ private:
 };
 ```
 
-### <a name="r10-1-5"></a>Rule 10.1.5 Do not use std::move to operate the const object.
+### Rule 10.1.5 Do not use std::move to operate the const object.
 Literally, `std::move` means moving an object. The const object cannot be modified and cannot be moved. Therefore, using `std::move` to operate the const object may confuse code readers.
+
 Regarding actual functions, `std::move` converts an object to the rvalue reference type. It can convert the const object to the rvalue reference of const. Because few types define the move constructor and the move assignment operator that use the const rvalue reference as the parameter, the actual function of code is often degraded to object copy instead of object movement, which brings performance loss.
 
-**Bad example:**
+**Bad example**
+
 ```cpp
 std::string g_string;
 std::vector<std::string> g_stringList;
@@ -2650,14 +2736,14 @@ void func()
 }
 ```
 
-## <a name="c10-2"></a> Smart Pointers
-### <a name="r10-2-1"></a>Rule 10.2.1 Preferentially use the original pointer instead of the smart pointer for singletons and class members that are not held by multiple parties.
-**Reason:**
+## Smart Pointers
+### Rule 10.2.1 Preferentially use the original pointer instead of the smart pointer for singletons and class members that are not held by multiple parties.
+**Reason**
 Smart pointers automatically release object resources to prevent resource leakage, but they require extra resource overheads. For example, the classes, constructors, and destructors automatically generated by smart pointers consume more resources such as memory.
 
 When singletons, class members, and the like are not held by multiple parties, resources can be released only in class destructors. In this case, smart pointers should not be used.
 
-**Example:**
+**Example**
 
 ```cpp
 class Foo;
@@ -2699,18 +2785,20 @@ public:
 ```
 2. When the created object is returned and needs to be referenced by multiple parties, `shared_ptr` can be used.
 
-### <a name="r10-2-2"></a>Rule 10.2.2 Use `unique_ptr` instead of `shared_ptr`.
-**Reasons:**
+### Rule 10.2.2 Use `unique_ptr` instead of `shared_ptr`.
+**Reasons**
+
 1. Using `shared_ptr` a lot has an overhead (atomic operations on the `shared_ptr`s reference count have a measurable cost).
 2. Shared ownership in some cases (such as circular dependency) may create objects that can never be released.
 3. Shared ownership can be an attractive alternative to careful ownership design but it may obfuscate the design of a system.
 
-### <a name="r10-2-2"></a>Rule 10.2.2 Use `std::make_unique` instead of `new` to create a `unique_ptr`.
-**Reasons:**
+### Rule 10.2.2 Use `std::make_unique` instead of `new` to create a `unique_ptr`.
+**Reasons**
+
 1. `make_unique` provides a simpler creation method.
 2. `make_unique` ensures the exception safety of complex expressions.
 
-**Example:**
+**Example**
 
 ```cpp
 // Bad: MyClass appears twice, which carries a risk of inconsistency.
@@ -2737,31 +2825,40 @@ F(unique_ptr<Foo>(new Foo()), Bar());
 F(make_unique<Foo>(), Bar());
 ```
 
-**Exception:**
+**Exception**
+
 `std::make_unique` does not support user-defined `deleter`.
+
 In the scenario where the `deleter` needs to be customized, it is recommended that `make_unique` be implemented in the customized version's own namespace.
+
 Using `new` to create `unique_ptr` with the user-defined `deleter` is the last choice.
 
-### <a name="r10-2-4"></a>Rule 10.2.4 Create `shared_ptr` by using `std::make_shared` instead of `new`.
-**Reason:**
+### Rule 10.2.4 Create `shared_ptr` by using `std::make_shared` instead of `new`.
+**Reason**
+
 In addition to the consistency factor similar to that in `std::make_unique` when using `std::make_shared`, performance is also a factor to consider.
 `std::shared_ptr` manages two entities:
+
 * Control block (storing reference count, `deleter`, etc.)
 * Managed objects
 
 When `std::make_shared` creates `std::shared_ptr`, it allocates sufficient memory for storing control blocks and managed objects on the heap at a time. When `std::shared_ptr<MyClass>(new MyClass)`is used to create a `std::shared_ptr`, not only does `new MyClass` trigger heap allocation, but the constructor function of `std::shard_ptr` triggers a second heap allocation, resulting in extra overhead.
 
-**Exception:**
+**Exception**
+
 Similar to `std::make_unique`, `std::make_shared` does not support `deleter` customization.
 
-## <a name="c10-3"></a> Lambda
-### <a name="a10-3-1"></a>Rec 10.3.1 Use `lambda` to capture local variables or write local functions when normal functions do not work.
-**Reason:**
+## Lambda
+### Rec 10.3.1 Use `lambda` to capture local variables or write local functions when normal functions do not work.
+**Reason**
+
 Functions cannot capture local variables or be declared at local scope. If you need those things, choose `lambda` instead of handwritten `functor`.
+
 On the other hand, `lambda` and `functor` objects do not support overloading. If overloading is required, use a function.
+
 If both `lambda` and functions work, a function is preferred. Use the simplest tool.
 
-**Example:**
+**Example**
 
 ```cpp
 // Write a function that accepts only an int or string.
@@ -2778,11 +2875,12 @@ for (int taskNum = 0; taskNum < max; ++taskNum) {
 pool.Join();
 ```
 
-### <a name="r10-3-1"></a>Rule 10.3.1 Avoid capturing by reference in lambdas that will not be used locally.
-**Reason:**
+### Rule 10.3.1 Avoid capturing by reference in lambdas that will not be used locally.
+**Reason**
+
 Using `lambdas` at a "nonlocal" scope includes returning, storing on the heap, and passing to another thread. Local pointers and references should not outlive their scope. Capturing by reference in `lambdas` indicates storing a reference to a local object. If this leads to a reference that exceeds the lifecycle of a local variable, capturing by reference should not be used.
 
-**Example:**
+**Example**
 
 ```cpp
 // Bad
@@ -2805,11 +2903,12 @@ void Foo()
 }
 ```
 
-### <a name="a10-3-2"></a>Rec 10.3.2 All variables are explicitly captured if `this` is captured.
-**Reason:**
+### Rec 10.3.2 All variables are explicitly captured if `this` is captured.
+**Reason**
+
 The `[=]` in the member function seems to indicate capturing by value but actually it is capturing data members by reference because it captures the invisible `this` pointer by value. Generally, it is recommended that capturing by reference be avoided. If it is necessary to do so, write `this` explicitly.
 
-**Example:**
+**Example**
 
 ```cpp
 class MyClass {
@@ -2833,14 +2932,19 @@ private:
 };
 ```
 
-### <a name="a10-3-3"></a>Rec 10.3.3 Avoid default capture modes.
-**Reason:**
+### Rec 10.3.3 Avoid default capture modes.
+**Reason**
+
 The lambda expression provides two default capture modes: by-reference (&) and by-value (=).
+
 By default, the "by-reference" capture mode will implicitly capture the reference of all local variables, which will easily lead to dangling references. By contrast, explicitly writing variables that need to be captured can make it easier to check the lifecycle of an object and reduce the possibility of making a mistake.
-By default, the "by-value" capture mode will implicitly capture this pointer, and it is difficult to find out which variables the lambda function depends on.If a static variable exists, the reader mistakenly considers that the lambda has copied a static variable.
+
+By default, the "by-value" capture mode will implicitly capture this pointer, and it is difficult to find out which variables the lambda function depends on. If a static variable exists, the reader mistakenly considers that the lambda has copied a static variable.
+
 Therefore, it is required to clearly state the variables that lambda needs to capture, instead of using the default capture mode.
 
-**Bad example:**
+**Bad example**
+
 ```cpp
 auto func()
 {
@@ -2854,7 +2958,8 @@ auto func()
 }
 ```
 
-**Good example:**
+**Good example**
+
 ```cpp
 auto func()
 {
@@ -2870,14 +2975,15 @@ auto func()
 
 Reference: Effective Modern C++: Item 31: Avoid default capture modes.
 
-## <a name="c10-4"></a> Interfaces
-### <a name="a10-4-1"></a>Rec 10.4.1 Use `T*` or `T&` arguments instead of a smart pointer in scenarios where ownership is not involved.
-**Reasons:**
+## Interfaces
+### Rec 10.4.1 Use `T*` or `T&` arguments instead of a smart pointer in scenarios where ownership is not involved.
+**Reasons**
+
 1. Passing a smart pointer to transfer or share ownership should only be used when the ownership mechanism is explicitly required.
-2. Passing a smart pointer (for example, passing the `this` smart pointer) restricts the use of a function to callers using smart pointers.
+2. Passing a smart pointer (for example, passing `this` ) restricts the use of a function to callers using smart pointers.
 3. Passing a shared smart pointer adds a runtime performance cost.
 
-**Example:**
+**Example**
 
 ```cpp
 // Accept any int*.

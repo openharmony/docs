@@ -43,7 +43,6 @@ createEffect(source: image.PixelMap): Filter
 import image from "@ohos.multimedia.image";
 
 const color = new ArrayBuffer(96);
-let bufferArr = new Uint8Array(color);
 let opts = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } }
 image.createPixelMap(color, opts).then((pixelMap) => {
   let headFilter = effectKit.createEffect(pixelMap);
@@ -76,7 +75,6 @@ createColorPicker(source: image.PixelMap): Promise\<ColorPicker>
 import image from "@ohos.multimedia.image";
 
 const color = new ArrayBuffer(96);
-let bufferArr = new Uint8Array(color);
 let opts = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } }
 image.createPixelMap(color, opts).then((pixelMap) => {
   effectKit.createColorPicker(pixelMap).then(colorPicker => {
@@ -106,7 +104,6 @@ createColorPicker(source: image.PixelMap, callback: AsyncCallback\<ColorPicker>)
 import image from "@ohos.multimedia.image";
 
 const color = new ArrayBuffer(96);
-let bufferArr = new Uint8Array(color);
 let opts = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } }
 image.createPixelMap(color, opts).then((pixelMap) => {
   effectKit.createColorPicker(pixelMap, (error, colorPicker) => {

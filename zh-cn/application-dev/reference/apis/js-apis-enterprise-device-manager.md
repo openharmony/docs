@@ -35,7 +35,7 @@ enableAdmin(admin: Want, enterpriseInfo: EnterpriseInfo, type: AdminType, callba
 
 **错误码**：
 
-以下的错误码的详细介绍请参见[企业设备管理错误码](../errorcodes/errorcode-EnterpriseDeviceManager.md)
+以下的错误码的详细介绍请参见[企业设备管理错误码](../errorcodes/errorcode-enterpriseDeviceManager.md)
 
 | 类型      | 说明                                                           |          
 | ------- | --------------------------------------------------------------- |
@@ -87,7 +87,7 @@ enableAdmin(admin: Want, enterpriseInfo: EnterpriseInfo, type: AdminType, userId
 
 **错误码**:
 
-以下的错误码的详细介绍请参见[企业设备管理错误码](../errorcodes/errorcode-EnterpriseDeviceManager.md)
+以下的错误码的详细介绍请参见[企业设备管理错误码](../errorcodes/errorcode-enterpriseDeviceManager.md)
 
 | 类型      | 说明                                                           |          
 | ------- | --------------------------------------------------------------- |
@@ -144,7 +144,7 @@ enableAdmin(admin: Want, enterpriseInfo: EnterpriseInfo, type: AdminType, userId
 
 **错误码**：
 
-以下的错误码的详细介绍请参见[企业设备管理错误码](../errorcodes/errorcode-EnterpriseDeviceManager.md)
+以下的错误码的详细介绍请参见[企业设备管理错误码](../errorcodes/errorcode-enterpriseDeviceManager.md)
 
 | 类型      | 说明                                                           |          
 | ------- | --------------------------------------------------------------- |
@@ -190,7 +190,7 @@ disableAdmin(admin: Want, callback: AsyncCallback\<void>): void
 
 **错误码**:
 
-以下的错误码的详细介绍请参见[企业设备管理错误码](../errorcodes/errorcode-EnterpriseDeviceManager.md)
+以下的错误码的详细介绍请参见[企业设备管理错误码](../errorcodes/errorcode-enterpriseDeviceManager.md)
 
 | 类型      | 说明                                                              |          
 | ------- | ----------------------------------------------------------------- |
@@ -234,7 +234,7 @@ disableAdmin(admin: Want, userId: number, callback: AsyncCallback\<void>): void
 
 **错误码**:
 
-以下的错误码的详细介绍请参见[企业设备管理错误码](../errorcodes/errorcode-EnterpriseDeviceManager.md)
+以下的错误码的详细介绍请参见[企业设备管理错误码](../errorcodes/errorcode-enterpriseDeviceManager.md)
 
 | 类型      | 说明                                                              |          
 | ------- | ----------------------------------------------------------------- |
@@ -283,7 +283,7 @@ disableAdmin(admin: Want, userId?: number): Promise\<void>
 
 **错误码**:
 
-以下的错误码的详细介绍请参见[企业设备管理错误码](../errorcodes/errorcode-EnterpriseDeviceManager.md)
+以下的错误码的详细介绍请参见[企业设备管理错误码](../errorcodes/errorcode-enterpriseDeviceManager.md)
 
 | 类型      | 说明                                                              |          
 | ------- | ----------------------------------------------------------------- |
@@ -322,7 +322,7 @@ disableSuperAdmin(bundleName: String, callback: AsyncCallback\<void>): void
 
 **错误码**:
 
-以下的错误码的详细介绍请参见[企业设备管理错误码](../errorcodes/errorcode-EnterpriseDeviceManager.md)
+以下的错误码的详细介绍请参见[企业设备管理错误码](../errorcodes/errorcode-enterpriseDeviceManager.md)
 
 | 类型      | 说明                                                              |          
 | ------- | ----------------------------------------------------------------- |
@@ -367,7 +367,7 @@ disableSuperAdmin(bundleName: String): Promise\<void>
 
 **错误码**:
 
-以下的错误码的详细介绍请参见[企业设备管理错误码](../errorcodes/errorcode-EnterpriseDeviceManager.md)
+以下的错误码的详细介绍请参见[企业设备管理错误码](../errorcodes/errorcode-enterpriseDeviceManager.md)
 
 | 类型      | 说明                                                              |          
 | ------- | ----------------------------------------------------------------- |
@@ -401,7 +401,7 @@ isAdminEnabled(admin: Want, callback: AsyncCallback\<boolean>): void
 
 **错误码**:
 
-以下的错误码的详细介绍请参见[企业设备管理错误码](../errorcodes/errorcode-EnterpriseDeviceManager.md)
+以下的错误码的详细介绍请参见[企业设备管理错误码](../errorcodes/errorcode-enterpriseDeviceManager.md)
 
 | 类型      | 说明                                                              |          
 | ------- | ----------------------------------------------------------------- |
@@ -573,7 +573,7 @@ getDeviceSettingsManager(callback: AsyncCallback&lt;DeviceSettingsManager&gt;): 
 
 **错误码**：
 
-以下的错误码的详细介绍请参见[企业设备管理错误码](../errorcodes/errorcode-EnterpriseDeviceManager.md)
+以下的错误码的详细介绍请参见[企业设备管理错误码](../errorcodes/errorcode-enterpriseDeviceManager.md)
 
 | 类型      | 说明                                                                         |          
 | ------- | ---------------------------------------------------------------------------- |
@@ -616,7 +616,7 @@ getDeviceSettingsManager(): Promise&lt;DeviceSettingsManager&gt;
 
 **错误码**：
 
-以下的错误码的详细介绍请参见[企业设备管理错误码](../errorcodes/errorcode-EnterpriseDeviceManager.md)
+以下的错误码的详细介绍请参见[企业设备管理错误码](../errorcodes/errorcode-enterpriseDeviceManager.md)
 
 | 类型      | 说明                                                                         |          
 | ------- | ---------------------------------------------------------------------------- |
@@ -661,7 +661,7 @@ setEnterpriseInfo(admin: Want, enterpriseInfo: EnterpriseInfo, callback: AsyncCa
 
 **错误码**：
 
-以下的错误码的详细介绍请参见[企业设备管理错误码](../errorcodes/errorcode-EnterpriseDeviceManager.md)
+以下的错误码的详细介绍请参见[企业设备管理错误码](../errorcodes/errorcode-enterpriseDeviceManager.md)
 
 | 类型      | 说明                                                  |          
 | ------- | ----------------------------------------------------- |
@@ -714,7 +714,7 @@ setEnterpriseInfo(admin: Want, enterpriseInfo: EnterpriseInfo): Promise\<void>;
 
 **错误码**：
 
-以下的错误码的详细介绍请参见[企业设备管理错误码](../errorcodes/errorcode-EnterpriseDeviceManager.md)
+以下的错误码的详细介绍请参见[企业设备管理错误码](../errorcodes/errorcode-enterpriseDeviceManager.md)
 
 | 类型      | 说明                                                  |          
 | ------- | ----------------------------------------------------- |
@@ -755,7 +755,7 @@ getEnterpriseInfo(admin: Want, callback: AsyncCallback&lt;EnterpriseInfo&gt;): v
 
 **错误码**：
 
-以下的错误码的详细介绍请参见[企业设备管理错误码](../errorcodes/errorcode-EnterpriseDeviceManager.md)
+以下的错误码的详细介绍请参见[企业设备管理错误码](../errorcodes/errorcode-enterpriseDeviceManager.md)
 
 | 类型      | 说明                                                  |          
 | ------- | ----------------------------------------------------- |
@@ -802,7 +802,7 @@ getEnterpriseInfo(admin: Want): Promise&lt;EnterpriseInfo&gt;
 
 **错误码**：
 
-以下的错误码的详细介绍请参见[企业设备管理错误码](../errorcodes/errorcode-EnterpriseDeviceManager.md)
+以下的错误码的详细介绍请参见[企业设备管理错误码](../errorcodes/errorcode-enterpriseDeviceManager.md)
 
 | 类型      | 说明                                                  |          
 | ------- | ----------------------------------------------------- |

@@ -18,7 +18,7 @@ extraData代表发送请求的额外数据，支持如下数据：
 
 错误码28代表CURLE_OPERATION_TIMEDOUT，操作超时。网络请求底层使用libcurl库，更多错误码可以查看相应文档。
 
-参考文档：[开发指南](../reference/apis/js-apis-http.md#response%E5%B8%B8%E7%94%A8%E9%94%99%E8%AF%AF%E7%A0%81)和[Curl错误码](https://curl.se/libcurl/c/libcurl-errors.html)
+参考文档：[Response常用错误码](../reference/apis/js-apis-http.md#response常用错误码)和[Curl错误码](https://curl.se/libcurl/c/libcurl-errors.html)
 
 ## \@ohos.net.http.d.ts的response错误码返回6是什么意思？
 
@@ -26,7 +26,7 @@ extraData代表发送请求的额外数据，支持如下数据：
 
 6表示地址无法解析主机，可以尝试ping一下request中的url，确认是否可以ping通。
 
-更多错误码参考[Response常用错误码](../reference/apis/js-apis-http.md#response%E5%B8%B8%E7%94%A8%E9%94%99%E8%AF%AF%E7%A0%81)或者[Curl错误码](https://curl.se/libcurl/c/libcurl-errors.html)
+更多错误码参考[Response常用错误码](../reference/apis/js-apis-http.md#response常用错误码)或者[Curl错误码](https://curl.se/libcurl/c/libcurl-errors.html)
 
 ## 调用camera拍摄的照片怎么上传到服务器
 
@@ -102,5 +102,3 @@ connection.hasDefaultNet().then((has)=> {
   console.log("hasDefaultNet " + JSON.stringify(has))
 })
 ```
-
-<!--no_check-->

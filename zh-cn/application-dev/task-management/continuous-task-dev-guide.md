@@ -19,17 +19,17 @@
 
 **表2** 后台模式类型
 
-| 参数名                     | id值  | 描述             | 配置项                   |
-| ----------------------- | ---- | -------------- | --------------------- |
-| DATA_TRANSFER           | 1    | 数据传输           | dataTransfer          |
-| AUDIO_PLAYBACK          | 2    | 音频播放           | audioPlayback         |
-| AUDIO_RECORDING         | 3    | 录音             | audioRecording        |
-| LOCATION                | 4    | 定位导航           | location              |
-| BLUETOOTH_INTERACTION   | 5    | 蓝牙相关           | bluetoothInteraction  |
-| MULTI_DEVICE_CONNECTION | 6    | 多设备互联          | multiDeviceConnection |
-| WIFI_INTERACTION        | 7    | WLAN相关（系统保留）   | wifiInteraction       |
-| VOIP                    | 8    | 音视频通话（系统保留）    | voip                  |
-| TASK_KEEPING            | 9    | 计算任务（仅供特定设备使用） | taskKeeping           |
+| 参数名                     | 描述             | 配置项                   |
+| ----------------------- | -------------- | --------------------- |
+| DATA_TRANSFER           | 数据传输           | dataTransfer          |
+| AUDIO_PLAYBACK          | 音频播放           | audioPlayback         |
+| AUDIO_RECORDING         | 录音             | audioRecording        |
+| LOCATION                | 定位导航           | location              |
+| BLUETOOTH_INTERACTION   | 蓝牙相关           | bluetoothInteraction  |
+| MULTI_DEVICE_CONNECTION | 多设备互联          | multiDeviceConnection |
+| WIFI_INTERACTION        | WLAN相关（系统保留）   | wifiInteraction       |
+| VOIP                    | 音视频通话（系统保留）    | voip                  |
+| TASK_KEEPING            | 计算任务（仅供特定设备使用） | taskKeeping           |
 
 
 ## 开发步骤

@@ -17,8 +17,8 @@ show(value: {&nbsp;title: string&nbsp;|&nbsp;Resource,&nbsp;message: string&nbsp
 
 | 参数名        | 参数类型                    | 必填  | 参数描述                          |
 | ---------- | -------------------------- | ------- | ----------------------------- |
-| title      | [ResourceStr](ts-types.md#resourcestr) | 是     |  弹窗标题。 |
-| message    | [ResourceStr](ts-types.md#resourcestr) | 是     | 弹窗内容。  |
+| title      | [Resource](ts-types.md#resource)&nbsp;\|&nbsp;string | 是     |  弹窗标题。 |
+| message    | [Resource](ts-types.md#resource)&nbsp;\|&nbsp;string | 是     | 弹窗内容。  |
 | autoCancel | boolean                           | 否     | 点击遮障层时，是否关闭弹窗。<br>默认值：true |
 | confirm    | {<br/>value:&nbsp;[ResourceStr](ts-types.md#resourcestr),<br/>action:&nbsp;()&nbsp;=&gt;&nbsp;void<br/>} | 否  | 确认按钮的文本内容和点击回调。<br>默认值：<br/>value：按钮文本内容。<br/>action:&nbsp;按钮选中时的回调。 |
 | cancel     | ()&nbsp;=&gt;&nbsp;void           | 否     | 点击遮障层关闭dialog时的回调。   |

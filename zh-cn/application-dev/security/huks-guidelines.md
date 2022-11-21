@@ -4,7 +4,7 @@ HUKS（OpenHarmony Universal KeyStore，OpenHarmony通用密钥库系统）向�
 
 > **说明**
 >
-> 本开发指导基于API version 9，仅适用于eTS语言开发
+> 本开发指导基于API version 9，仅适用于ArkTS语言开发
 
 ### **前提条件**
 

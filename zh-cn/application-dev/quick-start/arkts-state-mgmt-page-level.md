@@ -468,6 +468,11 @@ struct CompC {
 
 装饰器@State、@Prop、@Link、@ObjectLink、@Provide、@Consume、@StorageProp以及@StorageLink所装饰的变量均可以通过@Watch监听其变化。
 
+
+>  **说明：**
+>
+>  深层次数据修改不会触发@Watch回调，例如无法监听数组中对象值的改变。
+
 ```ts
 // xxx.ets
 @Entry
