@@ -541,7 +541,7 @@ try {
         });
     });
 } catch (e) {
-    console.error(`An unexpected error occurred.code is ${err.code},message is ${err.message}`);
+    console.error(`An unexpected error occurred.code is ${e.code},message is ${e.message}`);
 }
 ```
 
@@ -738,7 +738,7 @@ let kvManager;
 try {
     kvManager.getAllKVStoreId('appId', function (err, data) {
         if (err != undefined) {
-            console.error(`Fail to get AllKVStoreId.code is ${e.code},message is ${e.message}`);
+            console.error(`Fail to get AllKVStoreId.code is ${err.code},message is ${err.message}`);
             return;
         }
         console.log('Succeeded in getting AllKVStoreId');
@@ -2535,7 +2535,7 @@ try {
         });
     });
 } catch (e) {
-    console.error(`An unexpected error occurred.code is ${e.code},message is ${e.message}`;
+    console.error(`An unexpected error occurred.code is ${e.code},message is ${e.message}`);
 }
 ```
 
@@ -4147,7 +4147,7 @@ try {
     });
     kvStore.startTransaction(async function (err, data) {
         if (err != undefined) {
-            console.error(`Fail to start Transaction.code is ${e.code},message is ${e.message}`);
+            console.error(`Fail to start Transaction.code is ${err.code},message is ${err.message}`);
             return;
         }
         console.log('Succeeded in starting Transaction');
@@ -4155,7 +4155,7 @@ try {
         console.log(`entries: ${entries}`);
         kvStore.putBatch(entries, async function (err, data) {
             if (err != undefined) {
-                console.error(`Fail to put batch.code is ${e.code},message is ${e.message}`);
+                console.error(`Fail to put batch.code is ${err.code},message is ${err.message}`);
                 return;
             }
             console.log('Succeeded in putting Batch');
@@ -5020,7 +5020,7 @@ try {
             console.error(`Fail to get.code is ${err.code},message is ${err.message}`);
         });
     }).catch((error) => {
-        console.error(`Fail to put.code is ${err.code},message is ${err.message}`);
+        console.error(`Fail to put.code is ${error.code},message is ${error.message}`);
     });
 } catch (e) {
     console.error(`Fail to get.code is ${e.code},message is ${e.message}`);
@@ -5293,7 +5293,7 @@ try {
     });
     console.log('Succeeded in getting entries');
 } catch (e) {
-    console.error(`Fail to get entries.code is ${err.code},message is ${err.message}`);
+    console.error(`Fail to get entries.code is ${e.code},message is ${e.message}`);
 }
 ```
 
