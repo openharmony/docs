@@ -13,7 +13,7 @@ import defaultAppMgr from '@ohos.bundle.defaultAppManager';
 ```
 ## defaultAppMgr.ApplicationType
 
-应用类型
+默认应用的应用类型。
 
 **系统能力：** SystemCapability.BundleManager.BundleFramework.DefaultAppManager
 
@@ -50,7 +50,7 @@ isDefaultApplication(type: string): Promise\<boolean>
 
 **示例：**
 
-```js
+```ts
 import defaultAppMgr from '@ohos.bundle.defaultAppManager';
 defaultAppMgr.isDefaultApplication(defaultAppMgr.ApplicationType.BROWSER)
 .then((data) => {
@@ -77,7 +77,7 @@ isDefaultApplication(type: string, callback: AsyncCallback\<boolean>): void
 
 **示例：**
 
-```js
+```ts
 import defaultAppMgr from '@ohos.bundle.defaultAppManager';
 defaultAppMgr.isDefaultApplication(defaultAppMgr.ApplicationType.BROWSER, (err, data) => {
     if (err) {
@@ -123,7 +123,7 @@ getDefaultApplication(type: string, userId?: number): Promise\<BundleInfo>
 
 **示例：**
 
-```js
+```ts
 import defaultAppMgr from '@ohos.bundle.defaultAppManager';
 defaultAppMgr.getDefaultApplication(defaultAppMgr.ApplicationType.BROWSER)
 .then((data) => {
@@ -172,7 +172,7 @@ getDefaultApplication(type: string, userId: number, callback: AsyncCallback\<Bun
 
 **示例：**
 
-```js
+```ts
 import defaultAppMgr from '@ohos.bundle.defaultAppManager';
 let userId = 100;
 defaultAppMgr.getDefaultApplication(defaultAppMgr.ApplicationType.BROWSER, userId, (err, data) => {
@@ -221,7 +221,7 @@ getDefaultApplication(type: string, callback: AsyncCallback\<BundleInfo>) : void
 
 **示例：**
 
-```js
+```ts
 import defaultAppMgr from '@ohos.bundle.defaultAppManager';
 defaultAppMgr.getDefaultApplication(defaultAppMgr.ApplicationType.BROWSER, (err, data) => {
     if (err) {
@@ -241,7 +241,9 @@ defaultAppMgr.getDefaultApplication("image/png", (err, data) => {
 
 ## defaultAppMgr.setDefaultApplication
 
-setDefaultApplication(type: string, elementName: ElementName, userId?: number): Promise\<**返回值：**
+setDefaultApplication(type: string, elementName: ElementName, userId?: number): Promise\<BundleInfo>
+
+**返回值：**
 
 | 类型                                                        | 说明                        |
 | ----------------------------------------------------------- | --------------------------- |
@@ -281,7 +283,7 @@ setDefaultApplication(type: string, elementName: ElementName, userId?: number): 
 
 **示例：**
 
-```js
+```ts
 import defaultAppMgr from '@ohos.bundle.defaultAppManager';
 defaultAppMgr.setDefaultApplication(defaultAppMgr.ApplicationType.BROWSER, {
     bundleName: "com.test.app",
@@ -346,7 +348,7 @@ setDefaultApplication(type: string, elementName: ElementName, userId: number, ca
 
 **示例：**
 
-```js
+```ts
 import defaultAppMgr from '@ohos.bundle.defaultAppManager';
 let userId = 100;
 defaultAppMgr.setDefaultApplication(defaultAppMgr.ApplicationType.BROWSER, {
@@ -404,7 +406,7 @@ setDefaultApplication(type: string, elementName: ElementName, callback: AsyncCal
 
 **示例：**
 
-```js
+```ts
 import defaultAppMgr from '@ohos.bundle.defaultAppManager';
 defaultAppMgr.setDefaultApplication(defaultAppMgr.ApplicationType.BROWSER, {
     bundleName: "com.test.app",
@@ -459,7 +461,7 @@ resetDefaultApplication(type: string, userId?: number): Promise\<void>
 
 **示例：**
 
-```js
+```ts
 import defaultAppMgr from '@ohos.bundle.defaultAppManager';
 let userId = 100;
 defaultAppMgr.resetDefaultApplication(defaultAppMgr.ApplicationType.BROWSER, userId)
@@ -508,7 +510,7 @@ resetDefaultApplication(type: string, userId: number, callback: AsyncCallback\<v
 
 **示例：**
 
-```js
+```ts
 import defaultAppMgr from '@ohos.bundle.defaultAppManager';
 let userId = 100;
 defaultAppMgr.resetDefaultApplication(defaultAppMgr.ApplicationType.BROWSER, userId, (err, data) => {
@@ -556,7 +558,7 @@ resetDefaultApplication(type: string, callback: AsyncCallback\<void>) : void;
 
 **示例：**
 
-```js
+```ts
 import defaultAppMgr from '@ohos.bundle.defaultAppManager';
 defaultAppMgr.resetDefaultApplication(defaultAppMgr.ApplicationType.BROWSER, (err, data) => {
     if (err) {

@@ -3,7 +3,7 @@
 本模块提供内部包的管理
 
 > **说明：**
-> 
+>
 > 本模块首批接口从API version 8 开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
 ## 导入模块
@@ -48,7 +48,7 @@ SystemCapability.BundleManager.BundleFramework
 | 名称       | 类型                                                         | 必填 | 描述                                                  |
 | ---------- | ------------------------------------------------------------ | ---- | ----------------------------------------------------- |
 | bundleName | string                                                       | 是   | 要查询的应用程序包名称。                              |
-| userId     | number                                                       | 是   | 用户ID。默认值：调用方所在用户，取值范围：大于等于0。 |
+| userId     | number                                                       | 是   | 用户ID。取值范围：大于等于0。 |
 | callback   | AsyncCallback\<Array<[LauncherAbilityInfo](js-apis-bundle-LauncherAbilityInfo.md)>> | 是   | 程序启动作为入参的回调函数，返回程序信息。            |
 
 
@@ -76,7 +76,7 @@ SystemCapability.BundleManager.BundleFramework
 | 名称       | 类型   | 必填 | 描述                                                  |
 | ---------- | ------ | ---- | ----------------------------------------------------- |
 | bundleName | string | 是   | 要查询的应用程序包名称。                              |
-| userId     | number | 是   | 用户ID。默认值：调用方所在用户，取值范围：大于等于0。 |
+| userId     | number | 是   | 用户ID。取值范围：大于等于0。 |
 
 **返回值：**
 
@@ -88,7 +88,7 @@ SystemCapability.BundleManager.BundleFramework
 
 on(type:"BundleStatusChange", bundleStatusCallback : BundleStatusCallback, callback: AsyncCallback&lt;string&gt;) : void;
 
-注册Callback。
+注册Callback，使用callback方式异步回调。
 
 **需要权限：**
 
@@ -114,7 +114,7 @@ SystemCapability.BundleManager.BundleFramework
 
 on(type:"BundleStatusChange", bundleStatusCallback : BundleStatusCallback): Promise&lt;string&gt;
 
-注册Callback。
+注册Callback，使用promise方式异步回调。
 
 **需要权限：**
 
@@ -145,7 +145,7 @@ SystemCapability.BundleManager.BundleFramework
 
 off(type:"BundleStatusChange", callback: AsyncCallback&lt;string&gt;) : void;
 
-取消注册Callback。
+取消注册Callback，使用callback方式异步回调。
 
 **需要权限：**
 
@@ -170,7 +170,7 @@ SystemCapability.BundleManager.BundleFramework
 
 off(type:"BundleStatusChange"): Promise&lt;string&gt;
 
-取消注册Callback。
+取消注册Callback，使用promise方式异步回调。
 
 **需要权限：**
 
@@ -218,7 +218,7 @@ SystemCapability.BundleManager.BundleFramework
 
 | 名称     | 类型                                                         | 必填 | 描述                                                  |
 | -------- | ------------------------------------------------------------ | ---- | ----------------------------------------------------- |
-| userId   | number                                                       | 是   | 用户ID。默认值：调用方所在用户，取值范围：大于等于0。 |
+| userId   | number                                                       | 是   | 用户ID。取值范围：大于等于0。 |
 | callback | AsyncCallback\<Array<[LauncherAbilityInfo](js-apis-bundle-LauncherAbilityInfo.md)>> | 是   | 程序启动作为入参的回调函数，返回程序信息。            |
 
 ## innerBundleManager.getAllLauncherAbilityInfos
@@ -243,7 +243,7 @@ SystemCapability.BundleManager.BundleFramework
 
 | 名称   | 类型   | 必填 | 描述                                                  |
 | ------ | ------ | ---- | ----------------------------------------------------- |
-| userId | number | 是   | 用户ID。默认值：调用方所在用户，取值范围：大于等于0。 |
+| userId | number | 是   | 用户ID。取值范围：大于等于0。 |
 
 **返回值：**
 

@@ -3,7 +3,7 @@
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
 > 本模块首批接口从API version 7 开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
-在设备上安装、升级和卸载应用
+本模块提供设备上安装、升级和卸载应用的能力。
 
 ## BundleInstaller.install<sup>(deprecated)<sup>
 
@@ -28,8 +28,8 @@ SystemCapability.BundleManager.BundleFramework
 | 名称            | 类型                                                 | 必填 | 描述                                                         |
 | --------------- | ---------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | bundleFilePaths | Array&lt;string&gt;                                  | 是   | 指示存储hap包的沙箱路径。沙箱路径的获取方法参见[获取应用的沙箱路径](#获取应用的沙箱路径)|
-| param           | [InstallParam](#installparam)                        | 是   | 指定安装所需的其他参数。                                     |
-| callback        | AsyncCallback&lt;[InstallStatus](#installstatus)&gt; | 是   | 程序启动作为入参的回调函数，返回安装状态信息。               |
+| param           | [InstallParam](#installparamdeprecated)                        | 是   | 指定安装所需的其他参数。                                     |
+| callback        | AsyncCallback&lt;[InstallStatus](#installstatusdeprecated)&gt; | 是   | 程序启动作为入参的回调函数，返回安装状态信息。               |
 
 **示例：**
 
@@ -61,7 +61,7 @@ bundle.getBundleInstaller().then(installer=>{
 
 uninstall(bundleName: string, param: InstallParam, callback: AsyncCallback&lt;InstallStatus&gt;): void;
 
-以异步方法卸载应用程序，使用callback形式返回结果。
+以异步方法卸载应用程序，使用callback异步回调，返回安装状态信息。
 
 **需要权限：**
 
@@ -78,14 +78,14 @@ SystemCapability.BundleManager.BundleFramework
 | 名称       | 类型                                                 | 必填 | 描述                                           |
 | ---------- | ---------------------------------------------------- | ---- | ---------------------------------------------- |
 | bundleName | string                                               | 是   | 包名                                           |
-| param      | [InstallParam](#installparam)                        | 是   | 指定卸载所需的其他参数。                       |
-| callback   | AsyncCallback&lt;[InstallStatus](#installstatus)&gt; | 是   | 程序启动作为入参的回调函数，返回安装状态信息。 |
+| param      | [InstallParam](#installparamdeprecated)                        | 是   | 指定卸载所需的其他参数。                       |
+| callback   | AsyncCallback&lt;[InstallStatus](#installstatusdeprecated)&gt; | 是   | 程序启动作为入参的回调函数，返回安装状态信息。 |
 
 **示例：**
 
 ```ts
 import bundle from '@ohos.bundle';
-let bundleName = 'com.ohos.demo';
+let bundleName = 'com.example.myapplication';
 let installParam = {
     userId: 100,
     isKeepData: false,
@@ -126,16 +126,16 @@ SystemCapability.BundleManager.BundleFramework
 
 | 名称       | 类型                                                 | 必填 | 描述                                           |
 | ---------- | ---------------------------------------------------- | ---- | ---------------------------------------------- |
-| bundleName | string                                               | 是   | 包名                                           |
-| param      | [InstallParam](#installparam)                        | 是   | 指定应用恢复所需的其他参数。                       |
-| callback   | AsyncCallback&lt;[InstallStatus](#installstatus)&gt; | 是   | 程序启动作为入参的回调函数，返回应用恢复状态信息。 |
+| bundleName | string                                               | 是   | 应用包名。                                           |
+| param      | [InstallParam](#installparamdeprecated)                        | 是   | 指定应用恢复所需的其他参数。                       |
+| callback   | AsyncCallback&lt;[InstallStatus](#installstatusdeprecated)&gt; | 是   | 程序启动作为入参的回调函数，返回应用恢复状态信息。 |
 
 **示例：**
 
 ```ts
 import bundle from '@ohos.bundle';
 
-let bundleName = 'com.ohos.demo';
+let bundleName = 'com.example.myapplication';
 let installParam = {
     userId: 100,
     isKeepData: false,
@@ -157,7 +157,7 @@ bundle.getBundleInstaller().then(installer=>{
 
 ## InstallParam<sup>(deprecated)<sup>
 
-应用程序安装卸载信息
+安装、恢复或卸载时需要指定的参数。
 
  **系统能力:** 以下各项对应的系统能力均为SystemCapability.BundleManager.BundleFramework
 
@@ -165,14 +165,14 @@ bundle.getBundleInstaller().then(installer=>{
 
 | 名称                           | 类型                           |可读|可写| 说明               |
 | ------------------------------ | ------------------------------ | ---- |----|--------------- |
-| userId                         | number                         | 是|是 |指示用户id，可以通过[账户子系统](js-apis-)         |
-| installFlag                    | number                         | 是|是 |指示安装标志 <br> 0表示正常安装 <br>1表示替代原有应用       |
-| isKeepData                     | boolean                        | 是|是 |指示应用删除后是否保留数据 |
+| userId                         | number                         | 是|是 |指示用户id。           |
+| installFlag                    | number                         | 是|是 |指示安装标志 <br> 0表示正常安装，1表示替代原有应用。       |
+| isKeepData                     | boolean                        | 是|是 |指示应用删除后是否保留数据。 |
 
 
 ## InstallStatus<sup>(deprecated)<sup>
 
-应用程序安装卸载状态
+应用程序安装卸载的结果。
 
  **系统能力:** 以下各项对应的系统能力均为SystemCapability.BundleManager.BundleFramework
 
@@ -180,11 +180,11 @@ bundle.getBundleInstaller().then(installer=>{
 
 | 名称          | 类型                                                         | 可读 | 可写 | 说明                           |
 | ------------- | ------------------------------------------------------------ | ---- | ---- | ------------------------------ |
-| status        | bundle.[InstallErrorCode](js-apis-Bundle.md#installerrorcode) | 是   | 否   | 表示安装或卸载错误状态码       |
-| statusMessage | string                                                       | 是   | 否   | 表示安装或卸载的字符串结果信息 |
+| status        | bundle.[InstallErrorCode](js-apis-Bundle.md#installerrorcode) | 是   | 否   | 表示安装或卸载错误状态码。       |
+| statusMessage | string                                                       | 是   | 否   | 表示安装或卸载的字符串结果信息。 |
 
 ## 获取应用的沙箱路径
-对于FA模型，应用的沙箱路径可以通过[Context](js-apis-Context.md)中的方法获取；对于Stage模型，应用的沙箱路径可以通过[Context](js-apis-ability-context.md#abilitycontext)中的属性获取。
+对于FA模型，应用的沙箱路径可以通过[Context](js-apis-Context.md)中的方法获取；对于Stage模型，应用的沙箱路径可以通过[Context](js-apis-ability-context.md#abilitycontext)中的属性获取。下面以获取沙箱文件路径为例。
 
 **示例：**
 ``` ts
