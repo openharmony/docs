@@ -1,6 +1,6 @@
 # 公共事件模块
 
-本模块提供了公共事件的能力，包括公共事件的权限列表，发布公共事件，订阅或取消订阅公共事件，获取或修改公共事件结果代码、结果数据等。
+本模块提供了公共事件的能力，包括公共事件的权限列表，发布公共事件，订阅或取消订阅公共事件，获取或修改公共事件结果代码、结果数据等。本模块将被commonEventManager模块取代，建议优先使用[commonEventManager](js-apis-commonEventManager.md)模块。
 
 > **说明：**
 >
@@ -1237,6 +1237,8 @@ subscriber.finishCommonEvent().then(() => {
 
 ## CommonEventData
 
+公共事件数据体。
+
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.Notification.CommonEvent
 
 | 名称       | 可读 | 可写 | 类型                 | 描述                                                    |
@@ -1250,6 +1252,8 @@ subscriber.finishCommonEvent().then(() => {
 
 ## CommonEventPublishData
 
+公共事件发送的数据体，包含公共事件内容和属性。
+
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.Notification.CommonEvent
 
 | 名称                  | 可读 | 可写 | 类型                 | 描述                         |
@@ -1259,10 +1263,12 @@ subscriber.finishCommonEvent().then(() => {
 | data                  | 是  | 否  | string               | 表示公共事件的自定义结果数据。 |
 | subscriberPermissions | 是  | 否  | Array\<string>       | 表示订阅者的权限。             |
 | isOrdered             | 是  | 否  | boolean              | 表示是否是有序事件。           |
-| isSticky              | 是  | 否  | boolean              | 表示是否是粘性事件。           |
+| isSticky              | 是  | 否  | boolean              | 表示是否是粘性事件。仅系统应用或系统服务允许发送粘性事件。 |
 | parameters            | 是  | 否  | {[key: string]: any} | 表示公共事件的附加信息。       |
 
 ## CommonEventSubscribeInfo
+
+订阅者信息。
 
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.Notification.CommonEvent
 

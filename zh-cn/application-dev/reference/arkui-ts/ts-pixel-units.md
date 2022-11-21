@@ -71,7 +71,7 @@ struct Example {
 }
 ```
 
-![zh-cn_image_0000001169582302](figures/zh-cn_image_0000001169582302.gif)
+![zh-cn_image_0000001169582302](figures/zh-cn_image_0000001169582302.png)
 
 
 ## 相关实例

@@ -10,27 +10,31 @@
 
 - Windows 10 64位系统。
 
-- Windows系统上安装的DevEco Device Tool为3.0 Release版本。
+- Windows系统上安装的DevEco Device Tool为3.1 Beta1版本。
 
 
 ## 操作步骤
 
-1. 下载[DevEco Device Tool 3.0 Release](https://device.harmonyos.com/cn/ide#download) Windows版。
+1. 下载[DevEco Device Tool 3.1 Beta1](https://device.harmonyos.com/cn/ide#download) Windows版。
 
 2. 解压DevEco Device Tool压缩包，双击安装包程序，单击**Next**进行安装。
 
 3. 设置DevEco Device Tool的安装路径，请注意安装路径不能包含中文字符，**不建议安装到C盘目录**，单击**Next**。
-   > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
-   > 如果您已安装DevEco Device Tool 3.0 Beta2及以前的版本，则在安装新版本时，会先卸载旧版本，卸载过程中出现错误提示“Error during uninstallation process: Cannot remove directory...”时，请单击**Ignore**继续安装，该错误不影响新版本的安装。
 
    ![zh-cn_image_0000001326386753](figures/zh-cn_image_0000001326386753.png)
 
 4. 根据安装向导提示，勾选要自动安装的软件。
-   1. 在弹出**VS Code installation confirm**页面，勾选“Install VS Code 1.62.2automatically”，单击**Next**。
+
+   1. 在弹出**VSCode installation confirm**页面，勾选“Install VS Code 1.62.2 automatically”，单击**Next**。
        > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
        > 如果检测到Visual Studio Code已安装，且版本为1.62及以上，则会跳过该步骤。
 
        ![zh-cn_image_0000001285965546](figures/zh-cn_image_0000001285965546.png)
+
+   2. 选择Visual Studio Code的安装路径，单击**Next**。
+
+       ![select-vscode-path](figures/select-vscode-path.png)
+
    2. 在弹出的**Python select page**选择“Download from Huawei mirror”，单击**Next**。
        > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
        > 如果系统已安装可兼容的Python版本（Python 3.8~3.9版本），可选择“Use one of compatible on your PC”。

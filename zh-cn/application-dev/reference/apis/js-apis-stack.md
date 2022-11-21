@@ -95,11 +95,11 @@ let stack = new Stack();
 let result = stack.push("a");
 let result1 = stack.push(1);
 let b = [1, 2, 3];
-stack.push(b);
+let result2 = stack.push(b);
 let c = {name : "Dylon", age : "13"};
 let result3 = stack.push(c);
 try {
-  stack.push.bind({}, "b")();
+  stack.push.bind({}, "b")(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
 } catch(err) {
   console.log(`${err.code} - ${err.name} - ${err.message}`);
 }
@@ -138,7 +138,7 @@ stack.push(2);
 stack.push(4);
 let result = stack.pop();
 try {
-  stack.pop.bind({})();
+  stack.pop.bind({})(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
 } catch(err) {
   console.log(`${err.code} - ${err.name} - ${err.message}`);
 }
@@ -176,7 +176,7 @@ stack.push(5);
 stack.push(2);
 let result = stack.peek();
 try {
-  stack.peek.bind({})();
+  stack.peek.bind({})(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
 } catch(err) {
   console.log(`${err.code} - ${err.name} - ${err.message}`);
 }
@@ -220,7 +220,7 @@ stack.push(5);
 stack.push(2);
 let result = stack.locate(2);
 try {
-  stack.locate.bind({}, 2)();
+  stack.locate.bind({}, 2)(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
 } catch(err) {
   console.log(`${err.code} - ${err.name} - ${err.message}`);
 }
@@ -272,7 +272,7 @@ stack.forEach((value, index) => {
 try {
   stack.forEach.bind({}, (value, index) => {
     console.log("value:" + value, index);
-  })();
+  })(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
 } catch(err) {
   console.log(`${err.code} - ${err.name} - ${err.message}`);
 }
@@ -310,7 +310,7 @@ stack.push(5);
 stack.push(4);
 let result = stack.isEmpty();
 try {
-  stack.isEmpty.bind({})();
+  stack.isEmpty.bind({})(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
 } catch(err) {
   console.log(`${err.code} - ${err.name} - ${err.message}`);
 }
@@ -359,7 +359,7 @@ while(temp != undefined) {
   temp = iter.next().value;
 }
 try {
-  stack[Symbol.iterator].bind({})();
+  stack[Symbol.iterator].bind({})(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
 } catch(err) {
   console.log(`${err.code} - ${err.name} - ${err.message}`);
 }

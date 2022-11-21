@@ -1771,7 +1771,7 @@ createImageReceiver(width: number, height: number, format: number, capacity: num
 | -------- | ------ | ---- | ---------------------- |
 | width    | number | 是   | 图像的默认宽度。       |
 | height   | number | 是   | 图像的默认高度。       |
-| format   | number | 是   | 图像格式，取值为[ImageFormat](#imageformat9)常量。  |
+| format   | number | 是   | 图像格式，取值为[ImageFormat](#imageformat9)常量（目前该参数为使用者和camera约定的值，以后可能还有其他应用场景，receiver的作用只是传递，目前仅支持 ImageFormat:JPEG 格式）。  |
 | capacity | number | 是   | 同时访问的最大图像数。 |
 
 **返回值：**
@@ -1783,7 +1783,7 @@ createImageReceiver(width: number, height: number, format: number, capacity: num
 **示例：**
 
 ```js
-var receiver = image.createImageReceiver(8192, 8, 4, 8);
+var receiver = image.createImageReceiver(8192, 8, 2000, 8);
 ```
 
 ## ImageReceiver<sup>9+</sup>

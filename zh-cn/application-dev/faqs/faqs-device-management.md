@@ -48,4 +48,3 @@ display.getDefaultDisplay((err, data) => {
 适用于：OpenHarmony SDK 3.2.6.5版本，API9 Stage模型
 
 快捷键功能开发请使用组合按键api，具体可参考[组合按键（InputConsumer）](../reference/apis/js-apis-inputconsumer.md)
-<!--no_check-->

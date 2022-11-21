@@ -22,8 +22,8 @@ import data_preferences from '@ohos.data.preferences';
 
 | 名称             | 参数类型 | 可读 | 可写 | 说明                                    |
 | ---------------- | -------- | ---- | ---- | --------------------------------------- |
-| MAX_KEY_LENGTH   | string   | 是   | 否   | Key的最大长度限制，需小于80个字节。     |
-| MAX_VALUE_LENGTH | string   | 是   | 否   | Value的最大长度限制，需小于8192个字节。 |
+| MAX_KEY_LENGTH   | number   | 是   | 否   | Key的最大长度限制，需小于80个字节。     |
+| MAX_VALUE_LENGTH | number   | 是   | 否   | Value的最大长度限制，需小于8192个字节。 |
 
 
 ## data_preferences.getPreferences
@@ -475,7 +475,7 @@ get(key: string, defValue: ValueType, callback: AsyncCallback&lt;ValueType&gt;):
 
 ```js
 try {
-    data_preferences.get('startup', 'default', function (err, val) {
+    preferences.get('startup', 'default', function (err, val) {
         if (err) {
             console.info("Failed to get value of 'startup'. code =" + err.code + ", message =" + err.message);
             return;

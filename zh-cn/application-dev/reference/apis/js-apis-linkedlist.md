@@ -98,11 +98,12 @@ let linkedList = new LinkedList();
 let result = linkedList.add("a");
 let result1 = linkedList.add(1);
 let b = [1, 2, 3];
-linkedList.add(b);
+let result2 = linkedList.add(b);
 let c = {name : "Dylon", age : "13"};
-let result3 = linkedList.add(false);
+let result3 = linkedList.add(c);
+let result4 = linkedList.add(false);
 try {
-  linkedList.add.bind({}, "b")();
+  linkedList.add.bind({}, "b")(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
 } catch(err) {
   console.log(`${err.code} - ${err.name} - ${err.message}`);
 }
@@ -139,9 +140,10 @@ linkedList.addFirst(1);
 let b = [1, 2, 3];
 linkedList.addFirst(b);
 let c = {name : "Dylon", age : "13"};
+linkedList.addFirst(c);
 linkedList.addFirst(false);
 try {
-  linkedList.addFirst.bind({}, "b")();
+  linkedList.addFirst.bind({}, "b")(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
 } catch(err) {
   console.log(`${err.code} - ${err.name} - ${err.message}`);
 }
@@ -179,7 +181,7 @@ linkedList.insert(0, "A");
 linkedList.insert(1, 0);
 linkedList.insert(2, true);
 try {
-  linkedList.insert.bind({}, 3, "b")();
+  linkedList.insert.bind({}, 3, "b")(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
 } catch(err) {
   console.log(`${err.code} - ${err.name} - ${err.message}`);
 }
@@ -226,7 +228,7 @@ let result1 = linkedList.has("squirrel");
 linkedList.add("squirrel");
 let result = linkedList.has("squirrel");
 try {
-  linkedList.has.bind({}, "squirrel")();
+  linkedList.has.bind({}, "squirrel")(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
 } catch(err) {
   console.log(`${err.code} - ${err.name} - ${err.message}`);
 }
@@ -273,7 +275,7 @@ linkedList.add(2);
 linkedList.add(4);
 let result = linkedList.get(2);
 try {
-  linkedList.get.bind({}, 2)();
+  linkedList.get.bind({}, 2)(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
 } catch(err) {
   console.log(`${err.code} - ${err.name} - ${err.message}`);
 }
@@ -320,7 +322,7 @@ linkedList.add(2);
 linkedList.add(4);
 let result = linkedList.getLastIndexOf(2);
 try {
-  linkedList.getLastIndexOf.bind({}, 2)();
+  linkedList.getLastIndexOf.bind({}, 2)(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
 } catch(err) {
   console.log(`${err.code} - ${err.name} - ${err.message}`);
 }
@@ -367,7 +369,7 @@ linkedList.add(2);
 linkedList.add(4);
 let result = linkedList.getIndexOf(2);
 try {
-  linkedList.getIndexOf.bind({}, 2)();
+  linkedList.getIndexOf.bind({}, 2)(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
 } catch(err) {
   console.log(`${err.code} - ${err.name} - ${err.message}`);
 }
@@ -413,7 +415,7 @@ linkedList.add(2);
 linkedList.add(4);
 let result = linkedList.removeByIndex(2);
 try {
-  linkedList.removeByIndex.bind({}, 2)();
+  linkedList.removeByIndex.bind({}, 2)(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
 } catch(err) {
   console.log(`${err.code} - ${err.name} - ${err.message}`);
 }
@@ -463,7 +465,7 @@ linkedList.add(2);
 linkedList.add(4);
 let result = linkedList.removeFirst();
 try {
-  linkedList.removeFirst.bind({})();
+  linkedList.removeFirst.bind({})(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
 } catch(err) {
   console.log(`${err.code} - ${err.name} - ${err.message}`);
 }
@@ -508,7 +510,7 @@ linkedList.add(2);
 linkedList.add(4);
 let result = linkedList.removeLast();
 try {
-  linkedList.removeLast.bind({})();
+  linkedList.removeLast.bind({})(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
 } catch(err) {
   console.log(`${err.code} - ${err.name} - ${err.message}`);
 }
@@ -552,7 +554,7 @@ linkedList.add(5);
 linkedList.add(4);
 let result = linkedList.remove(2);
 try {
-  linkedList.remove.bind({}, 2)();
+  linkedList.remove.bind({}, 2)(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
 } catch(err) {
   console.log(`${err.code} - ${err.name} - ${err.message}`);
 }
@@ -592,7 +594,7 @@ removeFirstFound(element: T): boolean
 ```ts
 let linkedList = new LinkedList();
 try {
-  linkedList.removeFirstFound();
+  linkedList.removeFirstFound(4);
 } catch(err) {
   console.log(`${err.code} - ${err.name} - ${err.message}`);
 }
@@ -602,7 +604,7 @@ linkedList.add(5);
 linkedList.add(4);
 let result = linkedList.removeFirstFound(4);
 try {
-  linkedList.removeFirstFound.bind({}, 2)();
+  linkedList.removeFirstFound.bind({}, 2)(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
 } catch(err) {
   console.log(`${err.code} - ${err.name} - ${err.message}`);
 }
@@ -652,7 +654,7 @@ linkedList.add(5);
 linkedList.add(4);
 let result = linkedList.removeLastFound(4);
 try {
-  linkedList.removeLastFound.bind({}, 4)();
+  linkedList.removeLastFound.bind({}, 4)(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
 } catch(err) {
   console.log(`${err.code} - ${err.name} - ${err.message}`);
 }
@@ -690,7 +692,7 @@ linkedList.add(5);
 linkedList.add(4);
 let result = linkedList.clone();
 try {
-  linkedList.clone.bind({})();
+  linkedList.clone.bind({})(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
 } catch(err) {
   console.log(`${err.code} - ${err.name} - ${err.message}`);
 }
@@ -742,7 +744,7 @@ linkedList.forEach((value, index) => {
 try {
   linkedList.forEach.bind({}, (value, index) => {
     console.log("value:" + value, index);
-  })();
+  })(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
 } catch(err) {
   console.log(`${err.code} - ${err.name} - ${err.message}`);
 }
@@ -774,7 +776,7 @@ linkedList.add(5);
 linkedList.add(4);
 linkedList.clear();
 try {
-  linkedList.clear.bind({})();
+  linkedList.clear.bind({})(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
 } catch(err) {
   console.log(`${err.code} - ${err.name} - ${err.message}`);
 }
@@ -820,7 +822,7 @@ linkedList.add(5);
 linkedList.add(4);
 let result = linkedList.set(2, "b");
 try {
-  linkedList.set.bind({}, 2, "b")();
+  linkedList.set.bind({}, 2, "b")(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
 } catch(err) {
   console.log(`${err.code} - ${err.name} - ${err.message}`);
 }
@@ -862,7 +864,7 @@ linkedList.add(5);
 linkedList.add(4);
 let result = linkedList.convertToArray();
 try {
-  linkedList.convertToArray.bind({})();
+  linkedList.convertToArray.bind({})(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
 } catch(err) {
   console.log(`${err.code} - ${err.name} - ${err.message}`);
 }
@@ -900,7 +902,7 @@ linkedList.add(5);
 linkedList.add(4);
 let result = linkedList.getFirst();
 try {
-  linkedList.getFirst.bind({})();
+  linkedList.getFirst.bind({})(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
 } catch(err) {
   console.log(`${err.code} - ${err.name} - ${err.message}`);
 }
@@ -938,7 +940,7 @@ linkedList.add(5);
 linkedList.add(4);
 linkedList.getLast();
 try {
-  linkedList.getLast.bind({})();
+  linkedList.getLast.bind({})(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
 } catch(err) {
   console.log(`${err.code} - ${err.name} - ${err.message}`);
 }
@@ -988,7 +990,7 @@ while(temp != undefined) {
   temp = iter.next().value;
 }
 try {
-  linkedList[Symbol.iterator].bind({})();
+  linkedList[Symbol.iterator].bind({})(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
 } catch(err) {
   console.log(`${err.code} - ${err.name} - ${err.message}`);
 }

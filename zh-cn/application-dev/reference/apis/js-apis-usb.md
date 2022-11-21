@@ -107,7 +107,7 @@ connectDevice(device: USBDevice): Readonly&lt;USBDevicePipe&gt;
 
 **错误码：**
 
-以下错误码的详细介绍参见[USB错误码](../errorcodes/errcode-usb.md)。
+以下错误码的详细介绍参见[USB错误码](../errorcodes/errorcode-usb.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |

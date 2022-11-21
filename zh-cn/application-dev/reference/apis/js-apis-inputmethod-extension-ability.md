@@ -8,7 +8,7 @@
 
 ## 导入模块
 
-```
+```js
 import InputMethodExtensionAbility from '@ohos.inputmethodextensionability';
 ```
 
@@ -30,9 +30,9 @@ Extension生命周期回调，在拉起Extension输入法应用时调用，执�
 
 **参数：**
 
-| 参数名 | 类型 | 必填 | 说明 | 
-| -------- | -------- | -------- | -------- |
-| want |  [Want](js-apis-application-Want.md) | 是 | 当前Extension相关的Want类型信息，包括ability名称、bundle名称等。 | 
+| 参数名 | 类型          | 必填 | 说明                             |
+| ------ | ----------- | ---- | ------------------------------- |
+| want   | [Want](js-apis-application-Want.md) | 是   | 当前Extension相关的Want类型信息，包括ability名称、bundle名称等。 |
 
 **示例：**
 

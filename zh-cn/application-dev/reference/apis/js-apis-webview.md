@@ -46,7 +46,11 @@ struct WebComponent {
     Column() {
       Button('close')
         .onClick(() => {
-          this.msgPort[1].close();
+          if (this.msgPort && this.msgPort[1]) {
+            this.msgPort[1].close();
+          } else {
+            console.error("msgPort is null, Please initialize first");
+          }
         })
       Web({ src: 'www.example.com', controller: this.controller })
     }
@@ -166,7 +170,20 @@ struct WebComponent {
 ### 创建对象
 
 ```ts
-controller: web_webview.WebviewController = new web_webview.WebviewController();
+// xxx.ets
+import web_webview from '@ohos.web.webview'
+
+@Entry
+@Component
+struct WebComponent {
+  controller: web_webview.WebviewController = new web_webview.WebviewController();
+
+  build() {
+    Column() {
+      Web({ src: 'www.example.com', controller: this.controller })
+    }
+  }
+}
 ```
 
 ### loadUrl
@@ -192,7 +209,7 @@ loadUrl(url: string | Resource, headers?: Array\<HeaderV9>): void
 | -------- | ------------------------------------------------------------ |
 | 17100001 | Init error. The WebviewController must be associated with a Web component. |
 | 17100002 | Invalid url.                                                 |
-| 17100003 | Invalid resource.                                            |
+| 17100003 | Invalid resource path or file type.                          |
 
 **示例：**
 
@@ -1001,7 +1018,7 @@ zoom(factor: number): void
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
 | 17100001 | Init error. The WebviewController must be associated with a Web compoent. |
-| 17100004 | Cannot delete JavaScriptProxy.                               |
+| 17100004 | Function not enable.                                         |
 
 **示例：**
 
@@ -1383,7 +1400,11 @@ struct WebComponent {
       Button('SendDataToHTML')
         .onClick(() => {
           try {
-            this.ports[1].postMessageEvent("post message from ets to HTML");
+            if (this.ports && this.ports[1]) {
+              this.ports[1].postMessageEvent("post message from ets to HTML");
+            } else {
+              console.error(`ports is null, Please initialize first`);
+            }
           } catch (error) {
             console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
           }
@@ -1434,7 +1455,11 @@ window.addEventListener('message', function (event) {
 
 // 3. 使用h5Port往ets侧发送消息.
 function PostMsgToEts(data) {
-    h5Port.postMessage(data);
+    if (h5Port) {
+      h5Port.postMessage(data);
+    } else {
+      console.error("h5Port is null, Please initialize first");
+    }
 }
 ```
 
@@ -2573,7 +2598,7 @@ static deleteOrigin(origin : string): void
 
 | 错误码ID | 错误信息                                               |
 | -------- | ------------------------------------------------------ |
-| 17100011 | Invalid permission origin.                             |
+| 17100011 | Invalid origin.                             |
 
 **示例：**
 
@@ -2625,7 +2650,7 @@ static getOrigins(callback: AsyncCallback\<Array\<WebStorageOrigin>>) : void
 
 | 错误码ID | 错误信息                                               |
 | -------- | ------------------------------------------------------ |
-| 17100011 | Invalid permission origin.                             |
+| 17100012 | Invalid web storage origin.                             |
 
 **示例：**
 
@@ -2686,7 +2711,7 @@ static getOrigins() : Promise\<Array\<WebStorageOrigin>>
 
 | 错误码ID | 错误信息                                               |
 | -------- | ------------------------------------------------------ |
-| 17100011 | Invalid permission origin.                             |
+| 17100012 | Invalid web storage origin.                             |
 
 **示例：**
 
@@ -2748,7 +2773,7 @@ static getOriginQuota(origin : string, callback : AsyncCallback\<number>) : void
 
 | 错误码ID | 错误信息                                               |
 | -------- | ------------------------------------------------------ |
-| 17100011 | Invalid permission origin.                             |
+| 17100011 | Invalid origin.                             |
 
 **示例：**
 
@@ -2812,7 +2837,7 @@ static getOriginQuota(origin : string) : Promise\<number>
 
 | 错误码ID | 错误信息                                               |
 | -------- | ------------------------------------------------------ |
-| 17100011 | Invalid permission origin.                             |
+| 17100011 | Invalid origin.                             |
 
 **示例：**
 
@@ -2871,7 +2896,7 @@ static getOriginUsage(origin : string, callback : AsyncCallback\<number>) : void
 
 | 错误码ID | 错误信息                                               |
 | -------- | ------------------------------------------------------ |
-| 17100011 | Invalid permission origin.                             |
+| 17100011 | Invalid origin.                             |
 
 **示例：**
 
@@ -2935,7 +2960,7 @@ static getOriginUsage(origin : string) : Promise\<number>
 
 | 错误码ID | 错误信息                                              |
 | -------- | ----------------------------------------------------- |
-| 17100011 | Invalid permission origin.                            |
+| 17100011 | Invalid origin.                            |
 
 **示例：**
 
@@ -3213,7 +3238,7 @@ static allowGeolocation(origin: string): void
 以下错误码的详细介绍请参见 [webview错误码](../errorcodes/errorcode-webview.md)
 | 错误码ID | 错误信息                                               |
 | -------- | ------------------------------------------------------ |
-| 17100011 | Invalid permission origin.                             |
+| 17100011 | Invalid origin.                             |
 
 **示例：**
 
@@ -3263,7 +3288,7 @@ static deleteGeolocation(origin: string): void
 
 | 错误码ID | 错误信息                                               |
 | -------- | ------------------------------------------------------ |
-| 17100011 | Invalid permission origin.                             |
+| 17100011 | Invalid origin.                             |
 
 **示例：**
 
@@ -3314,7 +3339,7 @@ static getAccessibleGeolocation(origin: string, callback: AsyncCallback\<boolean
 
 | 错误码ID | 错误信息                                               |
 | -------- | ------------------------------------------------------ |
-| 17100011 | Invalid permission origin.                             |
+| 17100011 | Invalid origin.                             |
 
 **示例：**
 
@@ -3376,7 +3401,7 @@ static getAccessibleGeolocation(origin: string): Promise\<boolean>
 
 | 错误码ID | 错误信息                                               |
 | -------- | ------------------------------------------------------ |
-| 17100011 | Invalid permission origin.                             |
+| 17100011 | Invalid origin.                             |
 
 **示例：**
 

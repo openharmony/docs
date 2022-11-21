@@ -1,6 +1,6 @@
 # 图形图像开发常见问题
 
-## 调用window实例的setSystemBarProperties接口时，设置isStatusBarLightIcon和isNavigationBarLightIcon属性不生效 
+## 调用window实例的setSystemBarProperties接口时，设置isStatusBarLightIcon和isNavigationBarLightIcon属性不生效
 
 适用于：OpenHarmony SDK 3.2.5.3版本，API9 Stage模型
 
@@ -12,7 +12,7 @@
 
 导入\@ohos.window模块，开发者可以使用window.setSystemBarProperties()接口设置状态栏样式属性，达到自定义样式的效果。
 
-## 如何隐藏状态栏，实现沉浸式效果。
+## 如何隐藏状态栏，实现沉浸式效果
 
 适用于：OpenHarmony SDK 3.2.6.3版本，API9 Stage模型
 
@@ -88,4 +88,3 @@ window.getTopWindow(globalThis.mainContext).then(win => {
   INDEX_LOGGER.info(`get top window failed:${err}`)
 })
 ```
-<!--no_check-->

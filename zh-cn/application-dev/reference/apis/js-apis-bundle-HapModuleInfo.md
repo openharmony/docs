@@ -9,7 +9,9 @@
 
 Hap模块信息，未做特殊说明的属性，均通过GET_BUNDLE_DEFAULT获取
 
-## HapModuleInfo
+## HapModuleInfo<sup>(deprecated)<sup>
+
+> 从API version 9开始不再维护，建议使用[HapModuleInfo](js-apis-bundleManager-hapModuleInfo.md)替代。
 
 **系统能力**: 以下各项对应的系统能力均为SystemCapability.BundleManager.BundleFramework
 
@@ -32,8 +34,4 @@ Hap模块信息，未做特殊说明的属性，均通过GET_BUNDLE_DEFAULT获�
 | moduleName                        | string                                                       | 是   | 否   | 模块名               |
 | mainAbilityName                   | string                                                       | 是   | 否   | 入口Ability名称      |
 | installationFree                  | boolean                                                      | 是   | 否   | 是否支持免安装       |
-| mainElementName<sup>9+</sup>      | string                                                       | 是   | 否   | 入口ability信息      |
-| extensionAbilityInfo<sup>9+</sup> | Array\<[ExtensionAbilityInfo](js-apis-bundle-ExtensionAbilityInfo.md)> | 是   | 否   | extensionAbility信息 |
-| metadata<sup>9+</sup>             | Array\<[Metadata](js-apis-bundle-Metadata.md)>               | 是   | 否   | Ability的元信息      |
-| hashValue<sup>9+</sup>            | string                                                       | 是   | 否   | Module的Hash值<br />通过传入GET_BUNDLE_WITH_HASH_VALUE获取 |
 

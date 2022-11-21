@@ -10,10 +10,16 @@
   - [OpenSL ES播放开发指导](opensles-playback.md)
   - [OpenSL ES录音开发指导](opensles-capture.md)
   - [音频焦点模式开发指导](audio-interruptmode.md)
+  - [音量管理开发指导](audio-volume-manager.md)
+  - [路由、设备管理开发指导](audio-routing-manager.md)
 
 - 视频
   - [视频播放开发指导](video-playback.md)
   - [视频录制开发指导](video-recorder.md)
+
+- 媒体会话
+  - [AVSession开发概述](avsession-overview.md)
+  - [AVSession开发指导](avsession-guidelines.md)
 
 - 图片
   - [图片开发指导](image.md)

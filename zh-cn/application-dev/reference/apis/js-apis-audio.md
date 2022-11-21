@@ -716,6 +716,14 @@ async function createTonePlayer(){
 | CONNECT_TYPE_LOCAL              | 1      | 本地设备。         |
 | CONNECT_TYPE_DISTRIBUTED        | 2      | 分布式设备。            |
 
+## VolumeGroupInfos<sup>9+</sup>
+
+音量组信息，数组类型，为[VolumeGroupInfo](#volumegroupinfo9)的数组，只读。
+
+**系统接口：** 该接口为系统接口
+
+**系统能力：** SystemCapability.Multimedia.Audio.Volume
+
 ## VolumeGroupInfo<sup>9+</sup>
 
 音量组信息。
@@ -731,26 +739,6 @@ async function createTonePlayer(){
 | mappingId<sup>9+</sup>     | number                     | 是   | 否   | 组映射id。 |
 | groupName<sup>9+</sup>     | number                     | 是   | 否   | 组名。 |
 | type<sup>9+</sup>          | [ConnectType](#connecttype9)| 是   | 否   | 连接设备类型。 |
-
-## VolumeGroupInfos<sup>9+</sup>
-
-音量组信息，数组类型，为[VolumeGroupInfo](#volumegroupinfo9)的数组，只读。
-
-**系统接口：** 该接口为系统接口
-
-**系统能力：** SystemCapability.Multimedia.Audio.Volume
-
-**示例：**
-
-```js
-import audio from '@ohos.multimedia.audio';
-
-async function getVolumeGroupInfos(){
-  let volumegroupinfos = await audio.getAudioManager().getVolumeManager().getVolumeGroupInfos(audio.LOCAL_NETWORK_ID);
-  console.info('Promise returned to indicate that the volumeGroup list is obtained.'+JSON.stringify(volumegroupinfos))
-}
-getVolumeGroupInfos();
-```
 
 ## DeviceChangeAction
 
@@ -2773,6 +2761,12 @@ async function selectOutputDeviceByFilter(){
 }
 ```
 
+## AudioRendererChangeInfoArray<sup>9+</sup>
+
+数组类型，AudioRenderChangeInfo数组，只读。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Renderer
+
 ## AudioRendererChangeInfo<sup>9+</sup>
 
 描述音频渲染器更改信息。
@@ -2785,12 +2779,6 @@ async function selectOutputDeviceByFilter(){
 | clientUid          | number                                    | 是   | 否   | 音频渲染器客户端应用程序的Uid。<br/>此接口为系统接口。 |
 | rendererInfo       | [AudioRendererInfo](#audiorendererinfo8)  | 是   | 否   | 音频渲染器信息。               |
 | rendererState      | [AudioState](#audiostate)                 | 是   | 否   | 音频状态。<br/>此接口为系统接口。|
-
-## AudioRendererChangeInfoArray<sup>9+</sup>
-
-AudioRenderChangeInfo数组，只读。
-
-**系统能力：** SystemCapability.Multimedia.Audio.Renderer
 
 **示例：**
 
@@ -2838,6 +2826,13 @@ audioStreamManager.on('audioRendererChange',  (AudioRendererChangeInfoArray) => 
 });
 ```
 
+
+## AudioCapturerChangeInfoArray<sup>9+</sup>
+
+数组类型，AudioCapturerChangeInfo数组，只读。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Capturer
+
 ## AudioCapturerChangeInfo<sup>9+</sup>
 
 描述音频采集器更改信息。
@@ -2850,12 +2845,6 @@ audioStreamManager.on('audioRendererChange',  (AudioRendererChangeInfoArray) => 
 | clientUid          | number                                    | 是   | 否   | 音频采集器客户端应用程序的Uid。<br/>此接口为系统接口。 |
 | capturerInfo       | [AudioCapturerInfo](#audiocapturerinfo8)   | 是   | 否   | 音频采集器信息。               |
 | capturerState      | [AudioState](#audiostate)                 | 是   | 否   | 音频状态。<br/>此接口为系统接口。|
-
-## AudioCapturerChangeInfoArray<sup>9+</sup>
-
-AudioCapturerChangeInfo数组，只读。
-
-**系统能力：** SystemCapability.Multimedia.Audio.Capturer
 
 **示例：**
 
@@ -2901,6 +2890,10 @@ audioStreamManager.on('audioCapturerChange', (AudioCapturerChangeInfoArray) =>  
 });
 ```
 
+## AudioDeviceDescriptors
+
+设备属性数组类型，为[AudioDeviceDescriptor](#audiodevicedescriptor)的数组，只读。
+
 ## AudioDeviceDescriptor
 
 描述音频设备。
@@ -2920,10 +2913,6 @@ audioStreamManager.on('audioCapturerChange', (AudioCapturerChangeInfoArray) =>  
 | networkId<sup>9+</sup>        | string                     | 是   | 否   | 设备组网的ID。<br/>此接口为系统接口。 |
 | interruptGroupId<sup>9+</sup> | number                     | 是   | 否   | 设备所处的焦点组ID。<br/>此接口为系统接口。 |
 | volumeGroupId<sup>9+</sup>    | number                     | 是   | 否   | 设备所处的音量组ID。<br/>此接口为系统接口。 |
-
-## AudioDeviceDescriptors
-
-设备属性数组类型，为[AudioDeviceDescriptor](#audiodevicedescriptor)的数组，只读。
 
 **示例：**
 
@@ -3798,6 +3787,8 @@ on(type: 'audioInterrupt', callback: Callback\<InterruptEvent>): void
 
 监听音频中断事件。使用callback获取中断事件。
 
+与[on('interrupt')](#oninterruptdeprecated)一致，该接口在AudioRenderer对象start、pause、stop等事件发生前已经主动获取焦点，不需要开发者主动发起焦点申请。
+
 **系统能力：** SystemCapability.Multimedia.Audio.Interrupt
 
 **参数：**
@@ -3916,7 +3907,7 @@ audioRenderer.off('markReach');
 
 on(type: "periodReach", frame: number, callback: Callback&lt;number&gt;): void
 
-订阅到达标记的事件。 当渲染的帧数达到 frame 参数的值时，回调被循环调用。
+订阅到达标记的事件。 当渲染的帧数达到 frame 参数的值时，触发回调并返回设定的值。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Renderer
 
@@ -4558,7 +4549,7 @@ audioCapturer.off('markReach');
 
 on(type: "periodReach", frame: number, callback: Callback&lt;number&gt;): void
 
-订阅到达标记的事件。 当采集的帧数达到 frame 参数的值时，回调被循环调用。
+订阅到达标记的事件。 当采集的帧数达到 frame 参数的值时，触发回调并返回设定的值。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Capturer
 
@@ -4628,7 +4619,7 @@ audioCapturer.on('stateChange', (state) => {
 });
 ```
 
-## ToneType <sup>9+</sup>
+## ToneType<sup>9+</sup>
 
 枚举，播放器的音调类型。
 
@@ -4684,7 +4675,7 @@ load(type: ToneType, callback: AsyncCallback&lt;void&gt;): void
 
 | 参数名          | 类型                        | 必填  | 说明                            |
 | :--------------| :-------------------------- | :-----| :------------------------------ |
-| type           | ToneType(#tonetype9)        | 是    | 配置的音调类型。                 |
+| type           | [ToneType](#tonetype9)       | 是    | 配置的音调类型。                 |
 | callback       | AsyncCallback<void\>        | 是    | 使用callback方式异步返回结果。 |
 
 **示例：**
@@ -4712,7 +4703,7 @@ load(type: ToneType): Promise&lt;void&gt;
 
 | 参数名         | 类型                    | 必填  |  说明             |
 | :------------- | :--------------------- | :---  | ---------------- |
-| type           | ToneType(#tonetype9)   | 是    | 配置的音调类型。  |
+| type           | [ToneType](#tonetype9)   | 是    | 配置的音调类型。  |
 
 **返回值：**
 
@@ -4836,7 +4827,7 @@ tonePlayer.stop().then(() => {
 
 release(callback: AsyncCallback&lt;void&gt;): void
 
-释放与此TonePlay对象关联的资源。使用callback方式异步返回结果。
+释放与此TonePlayer对象关联的资源。使用callback方式异步返回结果。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Tone
 
@@ -4863,7 +4854,7 @@ tonePlayer.release((err) => {
 
 release(): Promise&lt;void&gt;
 
-释放与此TonePlay对象关联的资源。使用Promise方式异步返回结果。
+释放与此TonePlayer对象关联的资源。使用Promise方式异步返回结果。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Tone
 
@@ -5941,6 +5932,8 @@ audioManager.off('deviceChange', (deviceChanged) => {
 on(type: 'interrupt', interrupt: AudioInterrupt, callback: Callback\<InterruptAction>): void
 
 请求焦点并开始监听音频打断事件（当应用程序的音频被另一个播放事件中断，回调通知此应用程序）。
+
+与[on('audioInterrupt')](#onaudiointerrupt9)作用一致，均用于监听焦点变化。为无音频流的场景（未曾创建AudioRenderer对象），比如FM、语音唤醒等提供焦点变化监听功能。
 
 > **说明：**
 > 从 API version 7 开始支持，从 API version 9 开始废弃。

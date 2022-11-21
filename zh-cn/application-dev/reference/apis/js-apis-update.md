@@ -102,7 +102,7 @@ try {
   let localUpdater = update.getLocalUpdater();
 } catch(error) {
   console.error(`Fail to get localUpdater error: ${error}`);
-}
+};
 ```
 
 ## Updater
@@ -844,7 +844,7 @@ const versionDigestInfo = {
 };
 
 // 清除选项
-lconstet clearOptions = {
+const clearOptions = {
   status: update.UpgradeStatus.UPGRADE_FAIL,
 };
 updater.clearError(versionDigestInfo, clearOptions).then(() => {
@@ -1248,7 +1248,7 @@ applyNewVersion(upgradeFiles: Array<[UpgradeFile](#upgradefile)>): Promise\<void
 **示例:**
 
 ```ts
-localUpdater upgradeFiles = [{
+const upgradeFiles = [{
   fileType: update.ComponentType.OTA, // OTA包
   filePath: "path" // 本地升级包路径
 }];

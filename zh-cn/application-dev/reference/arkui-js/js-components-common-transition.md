@@ -319,7 +319,7 @@ Page1有一个不透明盒子，点击盒子会跳转到Page2，当点击Page2�
    <div class="container">
        <text>transition</text>
        <div class="move_page" onclick="jumpBack"></div>
-   </div
+   </div>
    ```
 
    ```js

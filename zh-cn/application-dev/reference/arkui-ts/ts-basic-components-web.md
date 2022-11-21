@@ -148,35 +148,6 @@ fileAccess(fileAccess: boolean)
   }
   ```
 
-### fileFromUrlAccess<sup>9+</sup>
-
-fileFromUrlAccess(fileFromUrlAccess: boolean)
-
-设置是否允许通过网页中的JavaScript脚本访问应用文件系统中的内容，默认未启用。[$rawfile(filepath/filename)](../../quick-start/resource-categories-and-access.md)中rawfile路径的文件不受该属性影响而限制访问。
-
-**参数：**
-
-| 参数名               | 参数类型    | 必填   | 默认值   | 参数描述                                     |
-| ----------------- | ------- | ---- | ----- | ---------------------------------------- |
-| fileFromUrlAccess | boolean | 是    | false | 设置是否允许通过网页中的JavaScript脚本访问应用文件系统中的内容，默认未启用。 |
-
-**示例：**
-
-  ```ts
-  // xxx.ets
-  @Entry
-  @Component
-  struct WebComponent {
-    controller: WebController = new WebController()
-    build() {
-      Column() {
-        Web({ src: 'www.example.com', controller: this.controller })
-          .fileFromUrlAccess(true)
-      }
-    }
-  }
-  ```
-
 ### imageAccess
 
 imageAccess(imageAccess: boolean)
@@ -581,7 +552,7 @@ cacheMode(cacheMode: CacheMode)
   }
   ```
 
-### textZoomRatio
+### textZoomRatio<sup>9+</sup>
 
 textZoomRatio(textZoomRatio: number)
 
@@ -606,6 +577,36 @@ textZoomRatio(textZoomRatio: number)
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
           .textZoomRatio(this.atio)
+      }
+    }
+  }
+  ```
+
+### initialScale<sup>9+</sup>
+
+initialScale(percent: number)
+
+设置整体页面的缩放百分比，默认为100%。
+
+**参数：**
+
+| 参数名          | 参数类型   | 必填   | 默认值  | 参数描述            |
+| ------------ | ------ | ---- | ---- | --------------- |
+| percent | number | 是    | 100 | 要设置的整体页面的缩放百分比。 |
+
+**示例：**
+
+  ```ts
+  // xxx.ets
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: WebController = new WebController()
+    @State percent: number = 100
+    build() {
+      Column() {
+        Web({ src: 'www.example.com', controller: this.controller })
+          .initialScale(this.percent)
       }
     }
   }
@@ -741,7 +742,7 @@ onAlert(callback: (event?: { url: string; message: string; result: JsResult }) =
 
 onBeforeUnload(callback: (event?: { url: string; message: string; result: JsResult }) => boolean)
 
-刷新或关闭场景下，在即将离开当前页面时触发此回调。刷新当前页面应先通过点击等方式获取焦点，才会触发此回调。
+刷新或关闭场景下，在即将离开当前页面时触发此回调。刷新或关闭当前页面应先通过点击等方式获取焦点，才会触发此回调。
 
 **参数：**
 
@@ -1345,6 +1346,71 @@ onShowFileSelector(callback: (event?: { result: FileSelectorResult, fileSelector
   }
   ```
 
+### onResourceLoad<sup>9+</sup>
+
+onResourceLoad(callback: (event: {url: string}) => void)
+
+通知Web组件所加载的资源文件url信息。
+
+**参数：**
+
+| 参数名  | 参数类型                                     | 参数描述      |
+| ---- | ---------------------------------------- | --------- |
+| url | string | 所加载的资源文件url信息。 |
+
+**示例：**
+
+  ```ts
+  // xxx.ets
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: WebController = new WebController()
+  
+    build() {
+      Column() {
+        Web({ src: 'www.example.com', controller: this.controller })
+          .onResourceLoad((event) => {
+            console.log('onResourceLoad: ' + event.url)
+          })
+      }
+    }
+  }
+  ```
+
+### onScaleChange<sup>9+</sup>
+
+onScaleChange(callback: (event: {oldScale: number, newScale: number}) => void)
+
+当前页面显示比例的变化时触发该回调。
+
+**参数：**
+
+| 参数名  | 参数类型                                     | 参数描述      |
+| ---- | ---------------------------------------- | --------- |
+| oldScale | number | 变化前的显示比例百分比。 |
+| newScale | number | 变化后的显示比例百分比。 |
+
+**示例：**
+
+  ```ts
+  // xxx.ets
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: WebController = new WebController()
+  
+    build() {
+      Column() {
+        Web({ src: 'www.example.com', controller: this.controller })
+          .onScaleChange((event) => {
+            console.log('onScaleChange changed from ' + event.oldScale + ' to ' + event.newScale)
+          })
+      }
+    }
+  }
+  ```
+
 ### onUrlLoadIntercept
 
 onUrlLoadIntercept(callback: (event?: { data:string | WebResourceRequest }) => boolean)
@@ -1793,6 +1859,38 @@ onGeolocationShow(callback: (event?: { origin: string, geolocation: JsGeolocatio
   }
   ```
 
+### onGeolocationHide
+
+onGeolocationHide(callback: () => void)
+
+通知用户先前被调用[onGeolocationShow](#ongeolocationshow)时收到地理位置信息获取请求已被取消。
+
+**参数：**
+
+| 参数名      | 参数类型                         | 参数描述          |
+| ----------- | ------------------------------- | ---------------- |
+| callback     | () => void           | 地理位置信息获取请求已被取消的回调函数。 |
+
+**示例：**
+
+  ```ts
+  // xxx.ets
+  @Entry
+  @Component
+  struct WebComponent {
+    controller:WebController = new WebController()
+    build() {
+      Column() {
+        Web({ src:'www.example.com', controller:this.controller })
+        .geolocationAccess(true)
+        .onGeolocationHide(() => {
+          console.log("onGeolocationHide...")
+        })
+      }
+    }
+  }
+  ```
+
 ### onFullScreenEnter<sup>9+</sup>
 
 onFullScreenEnter(callback: (event: { handler: FullScreenExitHandler }) => void)
@@ -1922,9 +2020,44 @@ onWindowExit(callback: () => void)
     build() {
       Column() {
         Web({ src:'www.example.com', controller: this.controller })
-        .onWindowExit((event) => {
+        .onWindowExit(() => {
           console.log("onWindowExit...")
         })
+      }
+    }
+  }
+  ```
+
+### onSearchResultReceive<sup>9+</sup>
+
+onSearchResultReceive(callback: (event?: {activeMatchOrdinal: number, numberOfMatches: number, isDoneCounting: boolean}) => void): WebAttribute
+
+回调通知调用方网页页内查找的结果。
+
+**参数：**
+
+| 参数名                | 参数类型          | 参数描述                                |
+| ------------------ | ------------- | ----------------------------------- |
+| activeMatchOrdinal | number        | 当前匹配的查找项的序号（从0开始）。 |
+| numberOfMatches    | number        | 所有匹配到的关键词的个数。 |
+| isDoneCounting     | boolean       | 当次页内查找操作是否结束。该方法可能会回调多次，直到isDoneCounting为true为止。 |
+
+**示例：**
+
+  ```ts
+  // xxx.ets
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: WebController = new WebController()
+
+    build() {
+      Column() {
+        Web({ src: 'www.example.com', controller: this.controller })
+     	  .onSearchResultReceive(ret => {
+            console.log("on search result receive:" + "[cur]" + ret.activeMatchOrdinal +
+              "[total]" + ret.numberOfMatches + "[isDone]"+ ret.isDoneCounting)
+          })
       }
     }
   }
@@ -3771,6 +3904,113 @@ getUrl(): string
   }
   ```
 
+### searchAllAsync<sup>9+</sup>
+
+searchAllAsync(searchString: string): void
+
+异步查找网页中所有匹配关键字'searchString'的内容并高亮，结果通过[onSearchResultReceive](#onsearchresultreceive9)异步返回。
+
+**参数：**
+
+| 参数名  | 参数类型   | 必填   | 默认值  | 参数描述                  |
+| ---- | ------ | ---- | ---- | --------------------- |
+| searchString | string | 是    | -    | 查找的关键字。 |
+
+**示例：**
+
+  ```ts
+  // xxx.ets
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: WebController = new WebController()
+    @State searchString: string = "xxx"
+
+    build() {
+      Column() {
+        Button('searchString')
+          .onClick(() => {
+            this.controller.searchAllAsync(this.searchString)
+          })
+        Button('clearMatches')
+          .onClick(() => {
+            this.controller.clearMatches()
+          })
+        Button('searchNext')
+          .onClick(() => {
+            this.controller.searchNext(true)
+          })
+        Web({ src: 'www.example.com', controller: this.controller })
+     	  .onSearchResultReceive(ret => {
+            console.log("on search result receive:" + "[cur]" + ret.activeMatchOrdinal +
+              "[total]" + ret.numberOfMatches + "[isDone]"+ ret.isDoneCounting)
+          })
+      }
+    }
+  }
+  ```
+
+### clearMatches<sup>9+</sup>
+
+clearMatches(): void
+
+清除所有通过[searchAllAsync](#searchallasync9)匹配到的高亮字符查找结果。
+
+**示例：**
+
+  ```ts
+  // xxx.ets
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: WebController = new WebController()
+
+    build() {
+      Column() {
+        Button('clearMatches')
+          .onClick(() => {
+            this.controller.clearMatches()
+          })
+        Web({ src: 'www.example.com', controller: this.controller })
+      }
+    }
+  }
+  ```
+
+### searchNext<sup>9+</sup>
+
+searchNext(forward: boolean): void
+
+滚动到下一个匹配的查找结果并高亮。
+
+**参数：**
+
+| 参数名  | 参数类型   | 必填   | 默认值  | 参数描述                  |
+| ---- | ------ | ---- | ---- | --------------------- |
+| forward | boolean | 是    | -    | 从前向后或者逆向查找。 |
+
+
+**示例：**
+
+  ```ts
+  // xxx.ets
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: WebController = new WebController()
+
+    build() {
+      Column() {
+        Button('searchNext')
+          .onClick(() => {
+            this.controller.searchNext(true)
+          })
+        Web({ src: 'www.example.com', controller: this.controller })
+      }
+    }
+  }
+  ```
+
 ## HitTestValue<sup>9+</sup>
 提供点击区域的元素信息。示例代码参考[getHitTestValue](#gethittestvalue9)。
 
@@ -5028,147 +5268,6 @@ static getOriginUsage(origin : string) : Promise\<number>
     }
   }
   ```
-### searchAllAsync<sup>9+</sup>
-
-searchAllAsync(searchString: string): void
-
-异步查找网页中所有匹配关键字'searchString'的内容并高亮，结果通过[onSearchResultReceive](#onsearchresultreceive9)异步返回。
-
-**参数：**
-
-| 参数名  | 参数类型   | 必填   | 默认值  | 参数描述                  |
-| ---- | ------ | ---- | ---- | --------------------- |
-| searchString | string | 是    | -    | 查找的关键字。 |
-
-**示例：**
-
-  ```ts
-  // xxx.ets
-  @Entry
-  @Component
-  struct WebComponent {
-    controller: WebController = new WebController()
-    @State searchString: string = "xxx"
-
-    build() {
-      Column() {
-        Button('searchString')
-          .onClick(() => {
-            this.controller.searchAllAsync(this.searchString)
-          })
-        Button('clearMatches')
-          .onClick(() => {
-            this.controller.clearMatches()
-          })
-        Button('searchNext')
-          .onClick(() => {
-            this.controller.searchNext(true)
-          })
-        Web({ src: 'www.example.com', controller: this.controller })
-     	  .onSearchResultReceive(ret => {
-            console.log("on search result receive:" + "[cur]" + ret.activeMatchOrdinal +
-              "[total]" + ret.numberOfMatches + "[isDone]"+ ret.isDoneCounting)
-          })
-      }
-    }
-  }
-  ```
-
-### clearMatches<sup>9+</sup>
-
-clearMatches(): void
-
-清除所有通过[searchAllAsync](#searchallasync9)匹配到的高亮字符查找结果。
-
-**示例：**
-
-  ```ts
-  // xxx.ets
-  @Entry
-  @Component
-  struct WebComponent {
-    controller: WebController = new WebController()
-
-    build() {
-      Column() {
-        Button('clearMatches')
-          .onClick(() => {
-            this.controller.clearMatches()
-          })
-        Web({ src: 'www.example.com', controller: this.controller })
-      }
-    }
-  }
-  ```
-
-### searchNext<sup>9+</sup>
-
-searchNext(forward: boolean): void
-
-滚动到下一个匹配的查找结果并高亮。
-
-**参数：**
-
-| 参数名  | 参数类型   | 必填   | 默认值  | 参数描述                  |
-| ---- | ------ | ---- | ---- | --------------------- |
-| forward | boolean | 是    | -    | 从前向后或者逆向查找。 |
-
-
-**示例：**
-
-  ```ts
-  // xxx.ets
-  @Entry
-  @Component
-  struct WebComponent {
-    controller: WebController = new WebController()
-
-    build() {
-      Column() {
-        Button('searchNext')
-          .onClick(() => {
-            this.controller.searchNext(true)
-          })
-        Web({ src: 'www.example.com', controller: this.controller })
-      }
-    }
-  }
-  ```
-
-### onSearchResultReceive<sup>9+</sup>
-
-onSearchResultReceive(callback: (event?: {activeMatchOrdinal: number, numberOfMatches: number, isDoneCounting: boolean}) => void): WebAttribute
-
-回调通知调用方网页页内查找的结果。
-
-**参数：**
-
-| 参数名                | 参数类型          | 参数描述                                |
-| ------------------ | ------------- | ----------------------------------- |
-| activeMatchOrdinal | number        | 当前匹配的查找项的序号（从0开始）。 |
-| numberOfMatches    | number        | 所有匹配到的关键词的个数。 |
-| isDoneCounting     | boolean       | 当次页内查找操作是否结束。该方法可能会回调多次，直到isDoneCounting为true为止。 |
-
-**示例：**
-
-  ```ts
-  // xxx.ets
-  @Entry
-  @Component
-  struct WebComponent {
-    controller: WebController = new WebController()
-
-    build() {
-      Column() {
-        Web({ src: 'www.example.com', controller: this.controller })
-     	  .onSearchResultReceive(ret => {
-            console.log("on search result receive:" + "[cur]" + ret.activeMatchOrdinal +
-              "[total]" + ret.numberOfMatches + "[isDone]"+ ret.isDoneCounting)
-          })
-      }
-    }
-  }
-  ```
 
 ## WebStorageOrigin<sup>9+</sup>
 
@@ -5238,6 +5337,7 @@ onRenderExited接口返回的渲染进程退出的具体原因。
 | HttpAnchorImg | 带有超链接的图片，其中超链接的src为http。 |
 | Img           | HTML::img标签。             |
 | Map           | 地理地址。                    |
+| Phone         | 手机电话号码。                |
 | Unknown       | 未知内容。                    |
 
 ## SslError<sup>9+</sup>枚举说明

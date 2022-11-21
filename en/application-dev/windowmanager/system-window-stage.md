@@ -2,7 +2,11 @@
 
 ## Overview
 
-In the stage model, system applications are allowed to create and manage system windows, including the volume bar, wallpaper, notification panel, status bar, and navigation bar. For details about the supported system window types, see "WindowType" in [Window](../reference/apis/js-apis-window.md).
+In the stage model, system applications are allowed to create and manage system windows, including the volume bar, wallpaper, notification panel, status bar, and navigation bar. For details about the supported system window types, see [WindowType in Window](../reference/apis/js-apis-window.md#windowtype7).
+
+> **NOTE**
+>
+> This document involves the use of system APIs. Use the full SDK for development. For details, see [Guide to Switching to Full SDK](../quick-start/full-sdk-switch-guide.md).
 
 
 ## Available APIs
@@ -11,7 +15,7 @@ For details, see [Window](../reference/apis/js-apis-window.md).
 
 | Instance| API| Description|
 | -------- | -------- | -------- |
-| Window static method| create(ctx: Context, id: string, type: WindowType, callback: AsyncCallback&lt;Window&gt;): void | Creates a system window when `ctx` is [ServiceExtensionContext](../reference/apis/js-apis-service-extension-context.md).<br>-`ctx`: application context. <br>-`type`: window type. |
+| Window static method| create(ctx: Context, id: string, type: WindowType, callback: AsyncCallback&lt;Window&gt;): void | Creates a system window when **ctx** is [ServiceExtensionContext](../reference/apis/js-apis-service-extension-context.md).<br>- **ctx**: application context.  <br>- **type**: window type.|
 | Window | resetSize(width: number, height: number, callback: AsyncCallback&lt;void&gt;): void | Changes the window size.|
 | Window | moveTo(x: number, y: number, callback: AsyncCallback&lt;void&gt;): void | Moves this window.|
 | Window | loadContent(path: string, callback: AsyncCallback&lt;void&gt;): void | Loads the page content to this window.|
@@ -29,7 +33,7 @@ This section uses the volume bar as an example to describe the steps for system 
 
 1. Create a system window.
 
-   In the case of [ServiceExtensionContext](../reference/apis/js-apis-service-extension-context.md), call `window.create` to create a system window of the volume bar type.
+   In the case of [ServiceExtensionContext](../reference/apis/js-apis-service-extension-context.md), call **window.create** to create a system window of the volume bar type.
 
 2. Set the properties of the system window.
 
@@ -37,11 +41,11 @@ This section uses the volume bar as an example to describe the steps for system 
 
 3. Load content for the system window and show it.
 
-   You can call `loadContent` and `show` to load and display the content in the volume bar window.
+   You can call **loadContent** and **show** to load and display the content in the volume bar window.
 
 4. Hide or destroy the system window.
 
-   When the volume bar window is no longer needed, you can call `hide` or `destroy` to hide or destroy it.
+   When the volume bar window is no longer needed, you can call **hide** or **destroy** to hide or destroy it.
 
 ```ts
 import ExtensionContext from '@ohos.application.ServiceExtensionAbility';

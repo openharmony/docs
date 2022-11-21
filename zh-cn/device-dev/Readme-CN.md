@@ -25,7 +25,8 @@
       - 小型系统芯片移植案例
           - [小型设备STM32MP1芯片移植案例](porting/porting-stm32mp15xx-on-smallsystem.md)
       - 标准系统芯片移植案例
-          - [标准系统方案之瑞芯微RK3568移植案例](porting/porting-dayu200-on_standard-demo.md) 	
+          - [标准系统方案之瑞芯微RK3568移植案例](porting/porting-dayu200-on_standard-demo.md) 
+          - [标准系统方案之瑞芯微RK3566移植案例](https://gitee.com/openharmony/vendor_kaihong/blob/master/khdvk_3566b/porting-khdvk_3566b-on_standard-demo.md)	
 - 子系统开发
   - 内核 
     - [轻量系统内核](kernel/kernel-mini-overview.md)
@@ -53,10 +54,8 @@
   - [轻量和小型系统设备开发示例](guide/device-wlan-led-control.md) 
   - [标准系统设备开发示例](guide/device-clock-guide.md) 
 - 调测
-  - [测试用例开发](subsystems/subsys-testguide-test.md)	
+  - [设备测试](device-test/Readme-CN.md)	
   - [调测工具](subsystems/subsys-toolchain-hdc-guide.md) 
-- XTS认证
-  - [XTS认证](subsystems/subsys-xts-guide.md)
 - 工具
   - [Docker编译环境](get-code/gettools-acquire.md)
   - [IDE集成开发环境](get-code/gettools-ide.md)

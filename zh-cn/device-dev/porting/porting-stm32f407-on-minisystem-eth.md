@@ -1185,7 +1185,7 @@ _hdf_drivers_end = .;
 
 #### 添加XTS子系统
 
-`XTS`测试参考资料见[xts参考资料](../subsystems/subsys-xts-guide.md)，进行`XTS`子系统适配需要添加`xts_acts`与`xts_tools`组件，直接在`config.json`配置即可，配置如下：
+`XTS`测试参考资料见[xts参考资料](../device-test/xts.md)，进行`XTS`子系统适配需要添加`xts_acts`与`xts_tools`组件，直接在`config.json`配置即可，配置如下：
 
     {
           "subsystem": "xts",

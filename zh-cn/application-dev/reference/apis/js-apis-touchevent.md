@@ -54,19 +54,19 @@ import {Action,ToolType,SourceType,Touch,TouchEvent} from '@ohos.multimodalInput
 
 | 名称          | 参数类型   | 可读   | 可写   | 描述                                  |
 | ----------- | ------ | ---- | ---- | ----------------------------------- |
-| id          | number | 是    | 否    | 指针标识                                |
-| pressedTime | number | 是    | 否    | 按下时的时间戳                             |
+| id          | number | 是    | 否    | 触摸事件标识                                |
+| pressedTime | number | 是    | 否    | 按下时间戳                             |
 | screenX     | number | 是    | 否    | 触摸位置所属的屏幕x坐标                        |
 | screenY     | number | 是    | 否    | 触摸位置所属的屏幕y坐标                        |
 | windowX     | number | 是    | 否    | 触摸位置在窗口中的x坐标                        |
 | windowY     | number | 是    | 否    | 触摸位置在窗口中的y坐标                        |
 | pressure    | number | 是    | 否    | 压力值，取值范围是[0.0, 1.0], 0.0表示不支持       |
-| width       | number | 是    | 否    | 按下接触区域的宽度                           |
-| height      | number | 是    | 否    | 按下接触区域的高度                           |
+| width       | number | 是    | 否    | 触摸区域的宽度                           |
+| height      | number | 是    | 否    | 触摸区域的高度                           |
 | tiltX       | number | 是    | 否    | 相对YZ平面的角度,取值的范围[-90, 90]，其中正值是向右倾斜。 |
 | tiltY       | number | 是    | 否    | 相对XZ平面的角度,值的范围[-90, 90]，其中正值是向下倾斜。  |
-| toolX       | number | 是    | 否    | 工具区域的中心点X                           |
-| toolY       | number | 是    | 否    | 工具区域的中心点Y                           |
+| toolX       | number | 是    | 否    | 工具区域的中心点x坐标                           |
+| toolY       | number | 是    | 否    | 工具区域的中心点y坐标                           |
 | toolWidth   | number | 是    | 否    | 工具区域宽度                              |
 | toolHeight  | number | 是    | 否    | 工具区域高度                              |
 | rawX        | number | 是    | 否    | 输入设备上的x坐标                           |

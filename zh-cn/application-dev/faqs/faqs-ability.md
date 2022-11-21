@@ -91,7 +91,7 @@ Ability配置中缺少startWindowIcon属性配置，需要在module.json5中abil
 
 不推荐，Stage模型使用globalThis去获取Context是错误的使用方式。在Stage模型中，整个应用进程共用一个js虚拟机实例，其中可以运行多个Ability实例，共用一个global对象。在同一个js虚拟机内的不同的Ability中使用globalThis获取Context，存在被覆盖从而发生错误的风险。
 
-推荐使用方式参考：[Stage模型和Context详细介绍](../ability/context-userguide.md#stage%E6%A8%A1%E5%9E%8B%E5%92%8Ccontext%E8%AF%A6%E7%BB%86%E4%BB%8B%E7%BB%8D)。
+推荐使用方式参考：[Stage模型的Context详细介绍](../ability/context-userguide.md#stage模型的context详细介绍)。
 
 ## 如何在应用A中去获取应用B的Hap包的安装路径
 
@@ -145,12 +145,11 @@ Full SDK : 面向OEM厂商提供，包含了需要使用系统权限的系统接
 
 可以通过点击卡片拉起响应的Ability后，通过Ability来实现业务登录场景。
 
-## 如何跳转到设置中应用详情页面。
+## 如何跳转到设置中应用详情页面
 
 使用于：OpenHarmony SDK 3.2.6.5版本
 
 参考如下代码实现，示例：
-
 
 ```
 this.context.startAbility(
@@ -165,7 +164,6 @@ this.context.startAbility(
 使用于：OpenHarmony SDK 3.2.5.5版本，API9 Stage模型
 
 参考如下代码实现，示例：
-
 
 ```
 let listener = mediaquery.matchMediaSync('(orientation: landscape)')
@@ -216,5 +214,3 @@ listener.on('change', onPortrait)
 1. router.disableAlertBeforeBackPage和router.enableAlertBeforeBackPage类似一个开关，disableAlertBeforeBackPage是返回上一级页面时关闭弹窗提示，enableAlertBeforeBackPage是打开弹窗提示，默认是关闭的，当你需要使用时，首先要在一个函数里面开启功能，然后再执行跳转
 
 2. 必须要使用系统的返回按键才能触发效果。
-
-<!--no_check--> 

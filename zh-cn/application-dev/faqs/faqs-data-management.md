@@ -71,5 +71,3 @@ PixelMap应该被转换成相应的ArrayBuffer再放进数据库。
 Stage模型DataShare不可与FA模型DataAbility混用，连接的服务端应用需使用DataShareExtensionAbility实现。
 
 参考文档：[数据共享开发指导](../database/database-datashare-guidelines.md)
-
-<!--no_check-->

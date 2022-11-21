@@ -77,5 +77,3 @@ static napi_value Add(napi_env env, napi_callback_info info)
 适用于：OpenHarmony SDK 3.2版本以上，API9 Stage模型
 
 使用Native API中的OH_ResourceManager_OpenRawDir()方法获取到rawfile的根目录，然后对其进行遍历。可参考文档：[Native开发指导](../reference/native-apis/rawfile.md)
-
-<!--no_check--> 

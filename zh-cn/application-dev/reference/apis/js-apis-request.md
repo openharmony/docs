@@ -187,8 +187,8 @@ upload(context: BaseContext, config: UploadConfig): Promise&lt;UploadTask&gt;
     url: 'https://patch',
     header: { key1: "value1", key2: "value2" },
     method: "POST",
-    files: { filename: "test", name: "test", uri: "internal://cache/test.jpg", type: "jpg" },
-    data: { name: "name123", value: "123" },
+    files: [{ filename: "test", name: "test", uri: "internal://cache/test.jpg", type: "jpg" }],
+    data: [{ name: "name123", value: "123" }],
   };
   request.upload(globalThis.abilityContext, uploadConfig).then((data) => {
       uploadTask = data;
@@ -264,7 +264,7 @@ uploadFile(context: BaseContext, config: UploadConfig): Promise&lt;UploadTask&gt
 | Promise&lt;[UploadTask](#uploadtask)&gt; | 返回上传任务。 |
 
 **错误码：**
-以下错误码的详细介绍请参见[上传下载错误码](../errorcodes/errorcodes-request.md)。
+以下错误码的详细介绍请参见[上传下载错误码](../errorcodes/errorcode-request.md)。
 
 | 错误码ID | 错误码信息 |
 | -------- | -------- |
@@ -278,8 +278,8 @@ uploadFile(context: BaseContext, config: UploadConfig): Promise&lt;UploadTask&gt
     url: 'https://patch',
     header: { key1: "value1", key2: "value2" },
     method: "POST",
-    files: { filename: "test", name: "test", uri: "internal://cache/test.jpg", type: "jpg" },
-    data: { name: "name123", value: "123" },
+    files: [{ filename: "test", name: "test", uri: "internal://cache/test.jpg", type: "jpg" }],
+    data: [{ name: "name123", value: "123" }],
   };
   request.uploadFile(globalThis.abilityContext, uploadConfig).then((data) => {
       uploadTask = data;
@@ -308,7 +308,7 @@ uploadFile(context: BaseContext, config: UploadConfig, callback: AsyncCallback&l
 | callback | AsyncCallback&lt;[UploadTask](#uploadtask)&gt; | 否 | 回调函数，异步返回UploadTask对象。 |
 
 **错误码：**
-以下错误码的详细介绍请参见[上传下载错误码](../errorcodes/errorcodes-request.md)。
+以下错误码的详细介绍请参见[上传下载错误码](../errorcodes/errorcode-request.md)。
 
 | 错误码ID | 错误码信息 |
 | -------- | -------- |
@@ -910,7 +910,7 @@ downloadFile(context: BaseContext, config: DownloadConfig): Promise&lt;DownloadT
 | Promise&lt;[DownloadTask](#downloadtask)&gt; | 返回下载任务。 |
 
 **错误码：**
-以下错误码的详细介绍请参见[上传下载错误码](../errorcodes/errorcodes-request.md)。
+以下错误码的详细介绍请参见[上传下载错误码](../errorcodes/errorcode-request.md)。
 
 | 错误码ID | 错误码信息 |
 | -------- | -------- |
@@ -949,7 +949,7 @@ downloadFile(context: BaseContext, config: DownloadConfig, callback: AsyncCallba
 | callback | AsyncCallback&lt;[DownloadTask](#downloadtask)&gt; | 否 | 下载接口的回调函数。 |
 
 **错误码：**
-以下错误码的详细介绍请参见[上传下载错误码](../errorcodes/errorcodes-request.md)。
+以下错误码的详细介绍请参见[上传下载错误码](../errorcodes/errorcode-request.md)。
 
 | 错误码ID | 错误码信息 |
 | -------- | -------- |

@@ -1,19 +1,19 @@
-# Contribution Process<a name="EN-US_TOPIC_0000001052970939"></a>
+# Contribution Process
 
-## Preparations<a name="section124971410183614"></a>
+## Preparations
 
 -   Install, configure, and use Git. For details, visit  [https://gitee.com/help/categories/43](https://gitee.com/help/categories/43).
 -   Register an SSH public key. For details, visit  [https://gitee.com/help/articles/4191](https://gitee.com/help/articles/4191).
 -   Find the repository that you are interested in on the code hosting platform of OpenHarmony.
 
-## Downloading Code<a name="section6125202333611"></a>
+## Downloading Code
 
-## Forking a Code Branch from the Cloud<a name="section8365811818"></a>
+## Forking a Code Branch from the Cloud
 
 1.  Find and open the homepage of the repository.
 2.  Click the  **Fork**  button in the upper right corner, and create an individual cloud fork branch as prompted.
 
-## Downloading the Fork Repository to the Local Host<a name="section49051646201819"></a>
+## Downloading the Fork Repository to the Local Host
 
 Perform the following steps to download the code in the repository to your computer:
 
@@ -36,7 +36,7 @@ Perform the following steps to download the code in the repository to your compu
     2.  Clone the remote repository.
         - You can copy the address of the remote repository on the repository page.
 
-          **Figure  1** <a name="fig1772512534014"></a>  
+          **Figure  1** Cloning the remote repository  
 
           ![](figures/clone.png "clone")
 
@@ -49,7 +49,7 @@ Perform the following steps to download the code in the repository to your compu
 
 
 
-## Using the repo Tool to Download Code Repositories in Batches<a name="section15763252468"></a>
+## Using the repo Tool to Download Code Repositories in Batches
 
 1.  Download the repo tool. \(For details, see  [https://gitee.com/help/articles/4316](https://gitee.com/help/articles/4316).\)
 
@@ -67,9 +67,9 @@ Perform the following steps to download the code in the repository to your compu
     ```
 
 
-## Committing Code<a name="section338918220422"></a>
+## Committing Code
 
-## Committing a Repository \(git clone\)<a name="section669715742719"></a>
+## Committing a Repository \(git clone\)
 
 1.  **Update the branch.**
 
@@ -109,7 +109,7 @@ Perform the following steps to download the code in the repository to your compu
     ```
 
 
-## Committing Multiple Repositories \(repo init/sync\)<a name="section6560046192910"></a>
+## Committing Multiple Repositories \(repo init/sync\)
 
 1. Configure the token of the global environment.
 
@@ -181,27 +181,29 @@ Save the settings and exit. The repo tool automatically pushes the local branch 
 
 The tool automatically associates the PR with the issue.
 
-## Creating a Pull Request<a name="section28261522124316"></a>
+## Creating a Pull Request
 
 Access the fork repository on Gitee, click the button for creating a PR, and select the  **myfeature**  branch to generate a PR. \(Skip this step if a PR has been automatically created using the repo tool.\)
 
 For details, visit  [https://gitee.com/help/articles/4128](https://gitee.com/help/articles/4128).
 
->![](public_sys-resources/icon-notice.gif) **NOTICE:** 
+>![](public_sys-resources/icon-notice.gif) **NOTICE**
+>
 >**How do I create PRs at the same time if multiple code repositories have compilation dependencies?**
 >During the development of the operating system \(OS\), it is common that multiple code repositories have compilation dependencies. Therefore, the PRs need to be created and merged at the same time. For this reason, Gitee uses issues as the dependency identifiers for code repositories with compilation dependencies to commit the PRs. Follow the operations below:
+>
 >1.  Create an issue in any of the code repositories.
 >2.  Associate PRs that need to be built and merged at the same time with the issue. For details, visit  [https://gitee.com/help/articles/4142](https://gitee.com/help/articles/4142).
 >3.  After the build is triggered, the build center identifies the PRs associated with the same issue, downloads the build, and merges the PRs into the code library after the code is approved.
 
-## Building Access Control<a name="section981124754415"></a>
+## Building Access Control
 
-## Creating an Issue<a name="section979820334458"></a>
+## Creating an Issue
 
 1.  Go to the homepage of the repository.
 2.  Click the  **Issues**  tab in the upper left corner. Then, click the issue creation button on the right, and create a dedicated task as prompted to execute continuous integration \(CI\) access control for associated code \(feature development/bug fixing\).
 
-## Associating the Issue with the PR<a name="section5470144853615"></a>
+## Associating the Issue with the PR
 
 When creating a PR or compiling an existing PR, enter  **\#+I+_five-digit issue ID_**  in the description box to associate the issue with the PR.
 
@@ -212,7 +214,7 @@ When creating a PR or compiling an existing PR, enter  **\#+I+_five-digit issue 
 -   Among the PRs associated with the issue, no PR that has been merged or closed is allowed. Otherwise, the CI cannot be triggered.
 -   If an issue has been associated with a merged or closed PR, the issue cannot be reused. In this case, create another issue and associate it with an open PR.
 
-## Triggering Code Access Control<a name="section11163175420406"></a>
+## Triggering Code Access Control
 
 Comment "start build" in the PR to trigger CI access control.
 
@@ -235,7 +237,7 @@ On the CI portal, you can detect code bugs in a timely manner to ensure code rel
 
 Visit [CI portal](http://ci.openharmony.cn/#/pipeLine).
 
-## Reviewing Code<a name="section17823849145014"></a>
+## Reviewing Code
 
 For details, visit [https://gitee.com/help/articles/4304](https://gitee.com/help/articles/4304).
 

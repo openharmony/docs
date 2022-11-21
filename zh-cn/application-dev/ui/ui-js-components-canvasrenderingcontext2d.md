@@ -27,6 +27,8 @@
 ```css
 /* xxx.css */
 .container{
+  width: 100%;
+  height: 100%;
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -227,6 +229,8 @@ export default {
 ```css
 /* xxx.css */
 .container{
+  width: 100%;
+  height: 100%;
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -324,6 +328,8 @@ export default {
 ```css
 /* xxx.css */
 .container{
+  width: 100%;
+  height: 100%;
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -448,6 +454,8 @@ export default {
 ```css
 /* xxx.css */
 .container{
+  width: 100%;
+  height: 100%;
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -591,6 +599,8 @@ export default {
 ```css
 /* xxx.css */
 .container{
+  width: 100%;
+  height: 100%;
   flex-direction: column;
   background-color: #F1F3F5;
   align-items: center;
@@ -760,6 +770,8 @@ save方法可对画笔样式进行存储，restore可对存储的画笔进行恢
 ```css
 /* xxx.css */
 .container{
+  width: 100%;
+  height: 100%;
   flex-direction: column;
   background-color: #F1F3F5;
   align-items: center;

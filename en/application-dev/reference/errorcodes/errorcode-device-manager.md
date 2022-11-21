@@ -10,7 +10,7 @@ Failed to execute the function.
 
 An error occurred during internal invocation.
 
-**Procedure**
+**Solution**
 
 Call the API again.
 
@@ -24,7 +24,7 @@ Failed to obtain the service.
 
 The service is not started or fails to start.
 
-**Procedure**
+**Solution**
 
 Check whether the service is started normally and obtain the service again.
 
@@ -52,7 +52,7 @@ Discovery invalid.
 
 The last discovery service is still in progress.
 
-**Procedure**
+**Solution**
 
 Wait until the last discovery service is complete and call the discovery API again.
 
@@ -66,6 +66,6 @@ Publish invalid.
 
 The last publish service is still in progress.
 
-**Procedure**
+**Solution**
 
 Wait until the last publish service is complete and call the publish API again.

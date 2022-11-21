@@ -94,9 +94,10 @@
 | ohos.permission.MANAGE_SECURE_SETTINGS                   | system_basic | system_grant | TRUE    | 允许应用修改安全类系统设置。                                 |
 | ohos.permission.READ_DFX_SYSEVENT                        | system_basic | system_grant | FALSE   | 允许获取所有应用账号信息。                                   |
 | ohos.permission.MANAGE_ENTERPRISE_DEVICE_ADMIN           | system_core  | system_grant | TRUE    | 允许应用激活设备管理员应用。                                 |
-| ohos.permission.SET_ENTERPRISE_INFO                      | system_basic | system_grant | FALSE   | 允许设备管理员应用设置企业信息。                             |
-| ohos.permission.ENTERPRISE_SUBSCRIBE_MANAGED_EVENT       | system_basic | system_grant | FALSE   | 允许设备管理员应用订阅管理事件。                             |
-| ohos.permission.ENTERPRISE_SET_DATETIME                  | system_basic | system_grant | FALSE   | 允许设备管理员应用设置系统时间。                             |
+| ohos.permission.SET_ENTERPRISE_INFO                      | system_basic | system_grant | TRUE   | 允许设备管理员应用设置企业信息。                             |
+| ohos.permission.ENTERPRISE_SUBSCRIBE_MANAGED_EVENT       | system_basic | system_grant | TRUE   | 允许设备管理员应用订阅管理事件。                             |
+| ohos.permission.ENTERPRISE_SET_DATETIME                  | system_basic | system_grant | TRUE   | 允许设备管理员应用设置系统时间。                             |
+| ohos.permission.ENTERPRISE_GET_DEVICE_INFO               | system_basic | system_grant | TRUE   | 允许设备管理员读取设备信息。                                 |
 | ohos.permission.NFC_TAG                                  | normal       | system_grant | FALSE   | 允许应用读取Tag卡片。                                        |
 | ohos.permission.NFC_CARD_EMULATION                       | normal       | system_grant | FALSE   | 允许应用实现卡模拟功能。                                     |
 | ohos.permission.PERMISSION_USED_STATS                    | system_basic | system_grant | TRUE    | 允许系统应用访问权限使用记录。                               |
@@ -160,4 +161,5 @@
 | ohos.permission.MOUNT_FORMAT_MANAGER     | system_basic  | system_grant | FALSE    | 允许应用对外卡进行格式化操作。                                |
 | ohos.permission.STORAGE_MANAGER     | system_basic  | system_grant | TRUE    | 允许应用调用storage manager服务中对空间统计以及卷信息的查询接口。                                |
 | ohos.permission.BACKUP     | system_basic  | system_grant | TRUE    | 允许应用拥有备份恢复能力。                                |
-| ohos.permission.FILE_ACCESS_MANAGER     | system_basic  | system_grant | TRUE    | 允许文件管理类应用通过FAF框架访问公共数据文件。                                |
+| ohos.permission.FILE_ACCESS_MANAGER     | system_basic  | system_grant | TRUE    | 允许文件管理类应用通过FAF框架访问公共数据文件。                  |
+| ohos.permission.MANAGE_AUDIO_CONFIG                      | system_basic        | system_grant | TRUE   | 允许应用进行全局麦克风静音等操作。           |

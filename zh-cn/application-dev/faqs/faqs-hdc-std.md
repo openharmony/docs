@@ -1,6 +1,6 @@
 # hdc_std命令使用常见问题
 
-## 日志的常用命令 
+## 日志的常用命令
 
 适用于：OpenHarmony SDK 3.2.2.5版本
 
@@ -10,7 +10,7 @@
 
 抓取日志：hdc_std shell hilog &gt; log.txt
 
-## 日志限流怎么规避 
+## 日志限流怎么规避
 
 适用于：OpenHarmony SDK 3.2.5.3版本，API9 Stage模型
 
@@ -30,7 +30,7 @@
 
 请检查sdk和开发板烧录的系统版本是否一致，推荐取同一天的sdk和系统版本。
 
-## 如何通过hdc命令上传文件 
+## 如何通过hdc命令上传文件
 
 适用于：OpenHarmony SDK 3.2.2.5版本
 
@@ -85,4 +85,3 @@
 2. 输入 aa dump -a 找到abilityID。
 
 3. aa dump -i [abilityID] -c -render 查看组件树。
-<!--no_check-->
