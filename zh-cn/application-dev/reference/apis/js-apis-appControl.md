@@ -41,7 +41,7 @@ setDisposedStatus(appId: string, disposedWant: Want): Promise\<void>
 
 **错误码**
 
-以下错误码的详细介绍请参见[ohos.bundle错误码](../errorcodes/errcode-bundle.md)。
+以下错误码的详细介绍请参见[ohos.bundle错误码](../errorcodes/errorcode-bundle.md)。
 
 | 错误码 | 错误信息                                |
 | ------ | -------------------------------------- |
@@ -87,7 +87,7 @@ setDisposedStatus(appId: string, disposedWant: Want, callback: AsyncCallback\<vo
 
 **错误码**
 
-以下错误码的详细介绍请参见[ohos.bundle错误码](../errorcodes/errcode-bundle.md)。
+以下错误码的详细介绍请参见[ohos.bundle错误码](../errorcodes/errorcode-bundle.md)。
 
 | 错误码 | 错误信息                                |
 | ------ | -------------------------------------- |
@@ -138,7 +138,7 @@ getDisposedStatus(appId: string): Promise\<Want>;
 
 **错误码**
 
-以下错误码的详细介绍请参见[ohos.bundle错误码](../errorcodes/errcode-bundle.md)。
+以下错误码的详细介绍请参见[ohos.bundle错误码](../errorcodes/errorcode-bundle.md)。
 
 | 错误码 | 错误信息                                |
 | ------ | -------------------------------------- |
@@ -182,7 +182,7 @@ getDisposedStatus(appId: string, callback: AsyncCallback\<Want>): void;
 
 **错误码**
 
-以下错误码的详细介绍请参见[ohos.bundle错误码](../errorcodes/errcode-bundle.md)。
+以下错误码的详细介绍请参见[ohos.bundle错误码](../errorcodes/errorcode-bundle.md)。
 
 | 错误码 | 错误信息                                |
 | ------ | -------------------------------------- |
@@ -232,7 +232,7 @@ deleteDisposedStatus(appId: string): Promise\<void>
 
 **错误码**
 
-以下错误码的详细介绍请参见[ohos.bundle错误码](../errorcodes/errcode-bundle.md)。
+以下错误码的详细介绍请参见[ohos.bundle错误码](../errorcodes/errorcode-bundle.md)。
 
 | 错误码 | 错误信息                                |
 | ------ | -------------------------------------- |
@@ -276,7 +276,7 @@ deleteDisposedStatus(appId: string, callback: AsyncCallback\<void>) : void
 
 **错误码**
 
-以下错误码的详细介绍请参见[ohos.bundle错误码](../errorcodes/errcode-bundle.md)。
+以下错误码的详细介绍请参见[ohos.bundle错误码](../errorcodes/errorcode-bundle.md)。
 
 | 错误码 | 错误信息                                |
 | ------ | -------------------------------------- |
