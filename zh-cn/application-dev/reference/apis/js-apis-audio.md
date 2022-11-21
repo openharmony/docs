@@ -4827,7 +4827,7 @@ tonePlayer.stop().then(() => {
 
 release(callback: AsyncCallback&lt;void&gt;): void
 
-释放与此TonePlay对象关联的资源。使用callback方式异步返回结果。
+释放与此TonePlayer对象关联的资源。使用callback方式异步返回结果。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Tone
 
@@ -4854,7 +4854,7 @@ tonePlayer.release((err) => {
 
 release(): Promise&lt;void&gt;
 
-释放与此TonePlay对象关联的资源。使用Promise方式异步返回结果。
+释放与此TonePlayer对象关联的资源。使用Promise方式异步返回结果。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Tone
 
