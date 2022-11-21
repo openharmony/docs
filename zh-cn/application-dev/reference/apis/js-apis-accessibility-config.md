@@ -64,6 +64,7 @@ enableAbility(name: string, capability: Array&lt;accessibility.Capability&gt;): 
 **示例：**
 
 ```ts
+import accessibility from '@ohos.accessibility';
 let name = 'com.ohos.example/axExtension';
 let capability : accessibility.Capability[] = ['retrieve'];
 try {
@@ -105,6 +106,7 @@ enableAbility(name: string, capability: Array&lt;accessibility.Capability&gt;, c
 **示例：**
 
 ```ts
+import accessibility from '@ohos.accessibility';
 let name = 'com.ohos.example/axExtension';
 let capability : accessibility.Capability[] = ['retrieve'];
 try {
