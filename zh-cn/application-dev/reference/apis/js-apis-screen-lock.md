@@ -390,11 +390,8 @@ onSystemEvent(callback: Callback\<SystemEvent\>): boolean
 **示例：** 
 
 ```js
-let isSuccess = screenlock.onSystemEvent((err, event)=>{
+let isSuccess = screenlock.onSystemEvent((event)=>{
     console.log(`onSystemEvent:callback:${event.eventType}`)
-        if (err) {
-            console.log(`onSystemEvent callback error -> ${JSON.stringify(err)}`);
-        }
 });
 if (!isSuccess) {
     console.log(`onSystemEvent result is false`)
