@@ -128,7 +128,7 @@ try {
 **系统能力：** SystemCapability.DistributedDataManager.KVStore.Core
 
 | 名称 | 类型 | 可读 | 可写 | 说明 |
-| ----- | ------ | ------ | ------ |
+| ----- | ------ | ------ | ------ | ------ |
 | userId | string | 是  | 是  | 指示要设置的用户ID。 |
 | userType | [UserType](#usertype) | 是  | 是  | 指示要设置的用户类型。 |
 
@@ -573,8 +573,8 @@ try {
 用于提供创建数据库的配置信息。
 
 
-| 名称  | 类型 | 可读  | 可写  | 说明                    |
-| -----  | ------  | ----  | ----------------------- |
+| 名称  | 类型 | 可读   | 可写   | 说明                    |
+| -----  | ------  | ------  | ------  | -------------------|
 | createIfMissing  | boolean | 是 | 是 | 当数据库文件不存在时是否创建数据库，默认创建。 <br>**系统能力：** SystemCapability.DistributedDataManager.KVStore.Core    |
 | encrypt  | boolean | 是 | 是 |设置数据库文件是否加密，默认不加密。<br>**系统能力：** SystemCapability.DistributedDataManager.KVStore.Core     |
 | backup  | boolean | 是 | 是 |设置数据库文件是否备份，默认备份。 <br>**系统能力：** SystemCapability.DistributedDataManager.KVStore.Core    |
@@ -632,7 +632,7 @@ KVStore常量。
 **系统能力：** SystemCapability.DistributedDataManager.KVStore.DistributedKVStore
 
 | 名称  | 类型 | 可读 | 可写 | 说明                    |
-| ---   | ----  | ----------------------- |
+| ---   | ----  | ----  | ----  | ----------------------- |
 | root<sup>8+</sup>  | [FieldNode](#fieldnode8) | 是 | 是 | 表示json根对象。 |
 | indexes<sup>8+</sup>  | Array\<string> | 是 | 是 | 表示json类型的字符串数组。  |
 | mode<sup>8+</sup>  | number | 是 | 是 | 表示Schema的模式。  |
@@ -653,7 +653,7 @@ constructor()
 **系统能力：** SystemCapability.DistributedDataManager.KVStore.DistributedKVStore
 
 | 名称  | 类型 | 可读 | 可写 | 说明                    |
-| ---   | ----  | ----------------------- |
+| ---   | ----  | ----  | ----  | ----------------------- |
 | nullable<sup>8+</sup>  | boolean | 是 | 是 | 表示数据库字段是否可以为空。   |
 | default<sup>8+</sup>  | string | 是 | 是 | 表示Fieldnode的默认值。 |
 | type<sup>8+</sup>  | number | 是 | 是 | 表示指定节点对应数据类型的值。 |
@@ -1338,7 +1338,7 @@ lessThan(field: string, value: number|string): Query
 | 参数名  | 类型 | 必填  | 说明                    |
 | -----  | ------  | ----  | ----------------------- |
 | fieId  | string  | 是    |表示指定字段，不能包含' ^ '。  |
-| value  | number\|string\|boolean  | 是    | 表示指定的值。|
+| value  | number\|string  | 是    | 表示指定的值。|
 
 **返回值：**
 
@@ -1373,7 +1373,7 @@ greaterThanOrEqualTo(field: string, value: number|string): Query
 | 参数名  | 类型 | 必填  | 说明                    |
 | -----  | ------  | ----  | ----------------------- |
 | fieId  | string  | 是    |表示指定字段，不能包含' ^ '。  |
-| value  | number\|string\|boolean  | 是    | 表示指定的值。|
+| value  | number\|string  | 是    | 表示指定的值。|
 
 **返回值：**
 
@@ -1408,7 +1408,7 @@ lessThanOrEqualTo(field: string, value: number|string): Query
 | 参数名  | 类型 | 必填  | 说明                    |
 | -----  | ------  | ----  | ----------------------- |
 | fieId  | string  | 是    |表示指定字段，不能包含' ^ '。  |
-| value  | number\|string\|boolean  | 是    | 表示指定的值。|
+| value  | number\|string  | 是    | 表示指定的值。|
 
 **返回值：**
 

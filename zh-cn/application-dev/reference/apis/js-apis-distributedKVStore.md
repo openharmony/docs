@@ -52,14 +52,14 @@ import distributedKVStore from '@ohos.data.distributedKVStore';
 
 **系统能力：** SystemCapability.DistributedDataManager.KVStore.Core
 
-| 名称       | 值   | 说明                   |
-| ---------- | --  | ---------------------- |
-| STRING     | 0   | 表示值类型为字符串。   |
-| INTEGER    | 1   | 表示值类型为整数。     |
-| FLOAT      | 2   | 表示值类型为浮点数。   |
-| BYTE_ARRAY | 3   | 表示值类型为字节数组。 |
-| BOOLEAN    | 4   | 表示值类型为布尔值。   |
-| DOUBLE     | 5   | 表示值类型为双浮点数。 |
+| 名称       | 说明                   |
+| ---------- | ---------------------- |
+| STRING     | 表示值类型为字符串。   |
+| INTEGER    | 表示值类型为整数。     |
+| FLOAT      | 表示值类型为浮点数。   |
+| BYTE_ARRAY | 表示值类型为字节数组。 |
+| BOOLEAN    | 表示值类型为布尔值。   |
+| DOUBLE     | 表示值类型为双浮点数。 |
 
 ## Value
 
@@ -114,20 +114,20 @@ import distributedKVStore from '@ohos.data.distributedKVStore';
 
 **系统能力：** SystemCapability.DistributedDataManager.KVStore.Core
 
-| 名称                  | 值   | 说明                         |
-| --------------------- | --   | ---------------------------- |
-| SUBSCRIBE_TYPE_LOCAL  | 0   | 表示订阅本地数据变更。       |
-| SUBSCRIBE_TYPE_REMOTE | 1   | 表示订阅远端数据变更。       |
-| SUBSCRIBE_TYPE_ALL    | 2   | 表示订阅远端和本地数据变更。 |
+| 名称                  | 说明                         |
+| --------------------- | ---------------------------- |
+| SUBSCRIBE_TYPE_LOCAL  | 表示订阅本地数据变更。       |
+| SUBSCRIBE_TYPE_REMOTE | 表示订阅远端数据变更。       |
+| SUBSCRIBE_TYPE_ALL    | 表示订阅远端和本地数据变更。 |
 
 ## KVStoreType
 
 分布式键值数据库类型枚举。
 
-| 名称                 | 值   | 说明                                                         |
-| -------------------- | --   | ------------------------------------------------------------ |
-| DEVICE_COLLABORATION | 0   | 表示多设备协同数据库。<br>**系统能力：** SystemCapability.DistributedDataManager.KVStore.DistributedKVStore |
-| SINGLE_VERSION       | 1   | 表示单版本数据库。 <br>**系统能力：** SystemCapability.DistributedDataManager.KVStore.Core |
+| 名称                 | 说明                                                         |
+| -------------------- | ------------------------------------------------------------ |
+| DEVICE_COLLABORATION | 表示多设备协同数据库。<br>**系统能力：** SystemCapability.DistributedDataManager.KVStore.DistributedKVStore |
+| SINGLE_VERSION       | 表示单版本数据库。 <br>**系统能力：** SystemCapability.DistributedDataManager.KVStore.Core |
 
 ## SecurityLevel
 
@@ -135,18 +135,18 @@ import distributedKVStore from '@ohos.data.distributedKVStore';
 
 **系统能力：** SystemCapability.DistributedDataManager.KVStore.Core
 
-| 名称        | 值   | 说明                                                         |
-| -------:   | --   | ------------------------------------------------------------ |
-| S1         | 0   | 表示数据库的安全级别为低级别，当数据泄露时会产生较低影响。例如，包含壁纸等系统数据的数据库。 |
-| S2         | 1   | 表示数据库的安全级别为中级别，当数据泄露时会产生较大影响。例如，包含录音、视频等用户生成数据或通话记录等信息的数据库。 |
-| S3         | 2   |  表示数据库的安全级别为高级别，当数据泄露时会产生重大影响。例如，包含用户运动、健康、位置等信息的数据库。 |
-| S4         | 3   |  表示数据库的安全级别为关键级别，当数据泄露时会产生严重影响。例如，包含认证凭据、财务数据等信息的数据库。 |
+| 名称        | 说明                                                         |
+| -------:   | ------------------------------------------------------------ |
+| S1         | 表示数据库的安全级别为低级别，当数据泄露时会产生较低影响。例如，包含壁纸等系统数据的数据库。 |
+| S2         | 表示数据库的安全级别为中级别，当数据泄露时会产生较大影响。例如，包含录音、视频等用户生成数据或通话记录等信息的数据库。 |
+| S3         |  表示数据库的安全级别为高级别，当数据泄露时会产生重大影响。例如，包含用户运动、健康、位置等信息的数据库。 |
+| S4         |  表示数据库的安全级别为关键级别，当数据泄露时会产生严重影响。例如，包含认证凭据、财务数据等信息的数据库。 |
 
 ## Options
 
 用于提供创建数据库的配置信息。
 
-| 参数名          | 类型                        | 可读 | 可写 | 说明                                                         |
+| 名称          | 类型                        | 可读 | 可写 | 说明                                                         |
 | --------------- | ------------------------------- | ---- | ---- | ------------------------------------------------------------ |
 | createIfMissing | boolean                         | 是   | 是   | 当数据库文件不存在时是否创建数据库，默认创建。 <br>**系统能力：** SystemCapability.DistributedDataManager.KVStore.Core |
 | encrypt         | boolean                         | 是   | 是   | 设置数据库文件是否加密，默认不加密。<br>**系统能力：** SystemCapability.DistributedDataManager.KVStore.Core |
@@ -2941,7 +2941,7 @@ get(key: string, callback: AsyncCallback<boolean | string| number | Uint8Array>)
 | 参数名  | 类型 | 必填  | 说明                    |
 | -----  | ------  | ----  | ----------------------- |
 | key    |string   | 是    |要查询数据的key，不能为空且长度不大于[MAX_KEY_LENGTH](#constants)。  |
-| callback  |AsyncCallback&lt;Uint8Array \| string \| boolean \| number&gt;) | 是    |回调函数。返回获取查询的值。  |
+| callback  |AsyncCallback&lt;boolean \| string \| number \| Uint8Array&gt;) | 是    |回调函数。返回获取查询的值。  |
 
 **错误码：**
 
