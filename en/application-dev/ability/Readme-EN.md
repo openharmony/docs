@@ -1,4 +1,5 @@
 # Ability Development
+
 - [Ability Framework Overview](ability-brief.md)
 - [Context Usage](context-userguide.md)
 - FA Model
@@ -19,5 +20,3 @@
   - [Ability Assistant Usage](ability-assistant-guidelines.md)
   - [ContinuationManager Development](continuationmanager.md)
   - [Test Framework Usage](ability-delegator.md)
-  
-
