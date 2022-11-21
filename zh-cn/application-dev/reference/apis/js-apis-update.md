@@ -43,9 +43,9 @@ getOnlineUpdater(upgradeInfo: UpgradeInfo): Updater
 
 以下的错误码的详细介绍请参见[升级错误码](../errorcodes/errorcode-update.md)
 
-| 类型       | 说明                                   |
-| -------  | ------------------------------------- |
-| 11500104 | IPC error.                            |
+| 类型       | 说明                                                  |
+| -------  | ---------------------------------------------------- |
+| 11500104 | BusinessError 11500104: IPC error.                   |
 
 **示例：**
 
@@ -83,9 +83,9 @@ getRestorer(): Restorer
 
 以下的错误码的详细介绍请参见[升级错误码](../errorcodes/errorcode-update.md)
 
-| 类型       | 说明                                   |
-| -------  | ------------------------------------- |
-| 11500104 | IPC error.                            |
+| 类型       | 说明                                                  |
+| -------  | ---------------------------------------------------- |
+| 11500104 | BusinessError 11500104: IPC error.                   |
 
 **示例：**
 
@@ -115,9 +115,9 @@ getLocalUpdater(): LocalUpdater
 
 以下的错误码的详细介绍请参见[升级错误码](../errorcodes/errorcode-update.md)
 
-| 类型       | 说明                                   |
-| -------  | ------------------------------------- |
-| 11500104 | IPC error.                            |
+| 类型       | 说明                                                  |
+| -------  | ---------------------------------------------------- |
+| 11500104 | BusinessError 11500104: IPC error.                   |
 
 **示例：**
 
@@ -151,9 +151,9 @@ checkNewVersion(callback: AsyncCallback\<CheckResult>): void
 
 以下的错误码的详细介绍请参见[升级错误码](../errorcodes/errorcode-update.md)
 
-| 类型       | 说明                                   |
-| -------  | ------------------------------------- |
-| 11500104 | IPC error.                            |
+| 类型       | 说明                                                  |
+| -------  | ---------------------------------------------------- |
+| 11500104 | BusinessError 11500104: IPC error.                   |
 
 **示例：**
 
@@ -183,9 +183,9 @@ checkNewVersion(): Promise\<CheckResult>
 
 以下的错误码的详细介绍请参见[升级错误码](../errorcodes/errorcode-update.md)
 
-| 类型       | 说明                                   |
-| -------  | ------------------------------------- |
-| 11500104 | IPC error.                            |
+| 类型       | 说明                                                  |
+| -------  | ---------------------------------------------------- |
+| 11500104 | BusinessError 11500104: IPC error.                   |
 
 **示例:**
 
@@ -219,9 +219,9 @@ getNewVersionInfo(callback: AsyncCallback\<NewVersionInfo>): void
 
 以下的错误码的详细介绍请参见[升级错误码](../errorcodes/errorcode-update.md)
 
-| 类型       | 说明                                   |
-| -------  | ------------------------------------- |
-| 11500104 | IPC error.                            |
+| 类型       | 说明                                                  |
+| -------  | ---------------------------------------------------- |
+| 11500104 | BusinessError 11500104: IPC error.                   |
 
 **示例：**
 
@@ -252,9 +252,9 @@ getNewVersionInfo(): Promise\<NewVersionInfo>
 
 以下的错误码的详细介绍请参见[升级错误码](../errorcodes/errorcode-update.md)
 
-| 类型       | 说明                                   |
-| -------  | ------------------------------------- |
-| 11500104 | IPC error.                            |
+| 类型       | 说明                                                  |
+| -------  | ---------------------------------------------------- |
+| 11500104 | BusinessError 11500104: IPC error.                   |
 
 **示例：**
 
@@ -289,9 +289,9 @@ getNewVersionDescription(versionDigestInfo: VersionDigestInfo, descriptionOption
 
 以下的错误码的详细介绍请参见[升级错误码](../errorcodes/errorcode-update.md)
 
-| 类型       | 说明                                   |
-| -------  | ------------------------------------- |
-| 11500104 | IPC error.                            |
+| 类型       | 说明                                                  |
+| -------  | ---------------------------------------------------- |
+| 11500104 | BusinessError 11500104: IPC error.                   |
 
 **示例：**
 
@@ -340,9 +340,9 @@ getNewVersionDescription(versionDigestInfo: VersionDigestInfo, descriptionOption
 
 以下的错误码的详细介绍请参见[升级错误码](../errorcodes/errorcode-update.md)
 
-| 类型       | 说明                                   |
-| -------  | ------------------------------------- |
-| 11500104 | IPC error.                            |
+| 类型       | 说明                                                  |
+| -------  | ---------------------------------------------------- |
+| 11500104 | BusinessError 11500104: IPC error.                   |
 
 **示例：**
 
@@ -385,9 +385,9 @@ getCurrentVersionInfo(callback: AsyncCallback\<CurrentVersionInfo>): void
 
 以下的错误码的详细介绍请参见[升级错误码](../errorcodes/errorcode-update.md)
 
-| 类型       | 说明                                   |
-| -------  | ------------------------------------- |
-| 11500104 | IPC error.                            |
+| 类型       | 说明                                                  |
+| -------  | ---------------------------------------------------- |
+| 11500104 | BusinessError 11500104: IPC error.                   |
 
 **示例：**
 
@@ -419,9 +419,9 @@ getCurrentVersionInfo(): Promise\<CurrentVersionInfo>
 
 以下的错误码的详细介绍请参见[升级错误码](../errorcodes/errorcode-update.md)
 
-| 类型       | 说明                                   |
-| -------  | ------------------------------------- |
-| 11500104 | IPC error.                            |
+| 类型       | 说明                                                  |
+| -------  | ---------------------------------------------------- |
+| 11500104 | BusinessError 11500104: IPC error.                   |
 
 **示例：**
 
@@ -456,9 +456,9 @@ getCurrentVersionDescription(descriptionOptions: DescriptionOptions, callback: A
 
 以下的错误码的详细介绍请参见[升级错误码](../errorcodes/errorcode-update.md)
 
-| 类型       | 说明                                   |
-| -------  | ------------------------------------- |
-| 11500104 | IPC error.                            |
+| 类型       | 说明                                                  |
+| -------  | ---------------------------------------------------- |
+| 11500104 | BusinessError 11500104: IPC error.                   |
 
 **示例：**
 
@@ -501,9 +501,9 @@ getCurrentVersionDescription(descriptionOptions: DescriptionOptions): Promise\<A
 
 以下的错误码的详细介绍请参见[升级错误码](../errorcodes/errorcode-update.md)
 
-| 类型       | 说明                                   |
-| -------  | ------------------------------------- |
-| 11500104 | IPC error.                            |
+| 类型       | 说明                                                  |
+| -------  | ---------------------------------------------------- |
+| 11500104 | BusinessError 11500104: IPC error.                   |
 
 **示例：**
 
@@ -541,9 +541,9 @@ getTaskInfo(callback: AsyncCallback\<TaskInfo>): void
 
 以下的错误码的详细介绍请参见[升级错误码](../errorcodes/errorcode-update.md)
 
-| 类型       | 说明                                   |
-| -------  | ------------------------------------- |
-| 11500104 | IPC error.                            |
+| 类型       | 说明                                                  |
+| -------  | ---------------------------------------------------- |
+| 11500104 | BusinessError 11500104: IPC error.                   |
 
 **示例：**
 
@@ -573,9 +573,9 @@ getTaskInfo(): Promise\<TaskInfo>
 
 以下的错误码的详细介绍请参见[升级错误码](../errorcodes/errorcode-update.md)
 
-| 类型       | 说明                                   |
-| -------  | ------------------------------------- |
-| 11500104 | IPC error.                            |
+| 类型       | 说明                                                  |
+| -------  | ---------------------------------------------------- |
+| 11500104 | BusinessError 11500104: IPC error.                   |
 
 **示例：**
 
@@ -609,9 +609,9 @@ download(versionDigestInfo: VersionDigestInfo, downloadOptions: DownloadOptions,
 
 以下的错误码的详细介绍请参见[升级错误码](../errorcodes/errorcode-update.md)
 
-| 类型       | 说明                                   |
-| -------  | ------------------------------------- |
-| 11500104 | IPC error.                            |
+| 类型       | 说明                                                  |
+| -------  | ---------------------------------------------------- |
+| 11500104 | BusinessError 11500104: IPC error.                   |
 
 **示例：**
 
@@ -658,9 +658,9 @@ download(versionDigestInfo: VersionDigestInfo, downloadOptions: DownloadOptions)
 
 以下的错误码的详细介绍请参见[升级错误码](../errorcodes/errorcode-update.md)
 
-| 类型       | 说明                                   |
-| -------  | ------------------------------------- |
-| 11500104 | IPC error.                            |
+| 类型       | 说明                                                  |
+| -------  | ---------------------------------------------------- |
+| 11500104 | BusinessError 11500104: IPC error.                   |
 
 **示例：**
 
@@ -704,9 +704,9 @@ resumeDownload(versionDigestInfo: VersionDigestInfo, resumeDownloadOptions: Resu
 
 以下的错误码的详细介绍请参见[升级错误码](../errorcodes/errorcode-update.md)
 
-| 类型       | 说明                                   |
-| -------  | ------------------------------------- |
-| 11500104 | IPC error.                            |
+| 类型       | 说明                                                  |
+| -------  | ---------------------------------------------------- |
+| 11500104 | BusinessError 11500104: IPC error.                   |
 
 **示例：**
 
@@ -752,9 +752,9 @@ resumeDownload(versionDigestInfo: VersionDigestInfo, resumeDownloadOptions: Resu
 
 以下的错误码的详细介绍请参见[升级错误码](../errorcodes/errorcode-update.md)
 
-| 类型       | 说明                                   |
-| -------  | ------------------------------------- |
-| 11500104 | IPC error.                            |
+| 类型       | 说明                                                  |
+| -------  | ---------------------------------------------------- |
+| 11500104 | BusinessError 11500104: IPC error.                   |
 
 **示例：**
 
@@ -797,9 +797,9 @@ pauseDownload(versionDigestInfo: VersionDigestInfo, pauseDownloadOptions: PauseD
 
 以下的错误码的详细介绍请参见[升级错误码](../errorcodes/errorcode-update.md)
 
-| 类型       | 说明                                   |
-| -------  | ------------------------------------- |
-| 11500104 | IPC error.                            |
+| 类型       | 说明                                                  |
+| -------  | ---------------------------------------------------- |
+| 11500104 | BusinessError 11500104: IPC error.                   |
 
 **示例：**
 
@@ -845,9 +845,9 @@ pauseDownload(versionDigestInfo: VersionDigestInfo, pauseDownloadOptions: PauseD
 
 以下的错误码的详细介绍请参见[升级错误码](../errorcodes/errorcode-update.md)
 
-| 类型       | 说明                                   |
-| -------  | ------------------------------------- |
-| 11500104 | IPC error.                            |
+| 类型       | 说明                                                  |
+| -------  | ---------------------------------------------------- |
+| 11500104 | BusinessError 11500104: IPC error.                   |
 
 **示例：**
 
@@ -890,9 +890,9 @@ upgrade(versionDigestInfo: VersionDigestInfo, upgradeOptions: UpgradeOptions, ca
 
 以下的错误码的详细介绍请参见[升级错误码](../errorcodes/errorcode-update.md)
 
-| 类型       | 说明                                   |
-| -------  | ------------------------------------- |
-| 11500104 | IPC error.                            |
+| 类型       | 说明                                                  |
+| -------  | ---------------------------------------------------- |
+| 11500104 | BusinessError 11500104: IPC error.                   |
 
 **示例：**
 
@@ -938,9 +938,9 @@ upgrade(versionDigestInfo: VersionDigestInfo, upgradeOptions: UpgradeOptions): P
 
 以下的错误码的详细介绍请参见[升级错误码](../errorcodes/errorcode-update.md)
 
-| 类型       | 说明                                   |
-| -------  | ------------------------------------- |
-| 11500104 | IPC error.                            |
+| 类型       | 说明                                                  |
+| -------  | ---------------------------------------------------- |
+| 11500104 | BusinessError 11500104: IPC error.                   |
 
 **示例：**
 
@@ -983,9 +983,9 @@ clearError(versionDigestInfo: VersionDigestInfo, clearOptions: ClearOptions, cal
 
 以下的错误码的详细介绍请参见[升级错误码](../errorcodes/errorcode-update.md)
 
-| 类型       | 说明                                   |
-| -------  | ------------------------------------- |
-| 11500104 | IPC error.                            |
+| 类型       | 说明                                                  |
+| -------  | ---------------------------------------------------- |
+| 11500104 | BusinessError 11500104: IPC error.                   |
 
 **示例：**
 
@@ -1031,9 +1031,9 @@ clearError(versionDigestInfo: VersionDigestInfo, clearOptions: ClearOptions): Pr
 
 以下的错误码的详细介绍请参见[升级错误码](../errorcodes/errorcode-update.md)
 
-| 类型       | 说明                                   |
-| -------  | ------------------------------------- |
-| 11500104 | IPC error.                            |
+| 类型       | 说明                                                  |
+| -------  | ---------------------------------------------------- |
+| 11500104 | BusinessError 11500104: IPC error.                   |
 
 **示例：**
 
@@ -1074,9 +1074,9 @@ getUpgradePolicy(callback: AsyncCallback\<UpgradePolicy>): void
 
 以下的错误码的详细介绍请参见[升级错误码](../errorcodes/errorcode-update.md)
 
-| 类型       | 说明                                   |
-| -------  | ------------------------------------- |
-| 11500104 | IPC error.                            |
+| 类型       | 说明                                                  |
+| -------  | ---------------------------------------------------- |
+| 11500104 | BusinessError 11500104: IPC error.                   |
 
 **示例：**
 
@@ -1107,9 +1107,9 @@ getUpgradePolicy(): Promise\<UpgradePolicy>
 
 以下的错误码的详细介绍请参见[升级错误码](../errorcodes/errorcode-update.md)
 
-| 类型       | 说明                                   |
-| -------  | ------------------------------------- |
-| 11500104 | IPC error.                            |
+| 类型       | 说明                                                  |
+| -------  | ---------------------------------------------------- |
+| 11500104 | BusinessError 11500104: IPC error.                   |
 
 **示例：**
 
@@ -1143,9 +1143,9 @@ setUpgradePolicy(policy: UpgradePolicy, callback: AsyncCallback\<void>): void
 
 以下的错误码的详细介绍请参见[升级错误码](../errorcodes/errorcode-update.md)
 
-| 类型       | 说明                                   |
-| -------  | ------------------------------------- |
-| 11500104 | IPC error.                            |
+| 类型       | 说明                                                  |
+| -------  | ---------------------------------------------------- |
+| 11500104 | BusinessError 11500104: IPC error.                   |
 
 **示例：**
 
@@ -1186,9 +1186,9 @@ setUpgradePolicy(policy: UpgradePolicy): Promise\<void>
 
 以下的错误码的详细介绍请参见[升级错误码](../errorcodes/errorcode-update.md)
 
-| 类型       | 说明                                   |
-| -------  | ------------------------------------- |
-| 11500104 | IPC error.                            |
+| 类型       | 说明                                                  |
+| -------  | ---------------------------------------------------- |
+| 11500104 | BusinessError 11500104: IPC error.                   |
 
 **示例：**
 
@@ -1225,9 +1225,9 @@ terminateUpgrade(callback: AsyncCallback\<void>): void
 
 以下的错误码的详细介绍请参见[升级错误码](../errorcodes/errorcode-update.md)
 
-| 类型       | 说明                                   |
-| -------  | ------------------------------------- |
-| 11500104 | IPC error.                            |
+| 类型       | 说明                                                  |
+| -------  | ---------------------------------------------------- |
+| 11500104 | BusinessError 11500104: IPC error.                   |
 
 **示例：**
 
@@ -1257,9 +1257,9 @@ terminateUpgrade(): Promise\<void>
 
 以下的错误码的详细介绍请参见[升级错误码](../errorcodes/errorcode-update.md)
 
-| 类型       | 说明                                   |
-| -------  | ------------------------------------- |
-| 11500104 | IPC error.                            |
+| 类型       | 说明                                                  |
+| -------  | ---------------------------------------------------- |
+| 11500104 | BusinessError 11500104: IPC error.                   |
 
 **示例：**
 
@@ -1290,9 +1290,9 @@ on(eventClassifyInfo: EventClassifyInfo, taskCallback: UpgradeTaskCallback): voi
 
 以下的错误码的详细介绍请参见[升级错误码](../errorcodes/errorcode-update.md)
 
-| 类型       | 说明                                   |
-| -------  | ------------------------------------- |
-| 11500104 | IPC error.                            |
+| 类型       | 说明                                                  |
+| -------  | ---------------------------------------------------- |
+| 11500104 | BusinessError 11500104: IPC error.                   |
 
 **示例：**
 
@@ -1325,9 +1325,9 @@ off(eventClassifyInfo: EventClassifyInfo, taskCallback?: UpgradeTaskCallback): v
 
 以下的错误码的详细介绍请参见[升级错误码](../errorcodes/errorcode-update.md)
 
-| 类型       | 说明                                   |
-| -------  | ------------------------------------- |
-| 11500104 | IPC error.                            |
+| 类型       | 说明                                                  |
+| -------  | ---------------------------------------------------- |
+| 11500104 | BusinessError 11500104: IPC error.                   |
 
 **示例：**
 
@@ -1364,9 +1364,9 @@ factoryReset(callback: AsyncCallback\<void>): void
 
 以下的错误码的详细介绍请参见[升级错误码](../errorcodes/errorcode-update.md)
 
-| 类型       | 说明                                   |
-| -------  | ------------------------------------- |
-| 11500104 | IPC error.                            |
+| 类型       | 说明                                                  |
+| -------  | ---------------------------------------------------- |
+| 11500104 | BusinessError 11500104: IPC error.                   |
 
 **示例：**
 
@@ -1396,9 +1396,9 @@ factoryReset(): Promise\<void>
 
 以下的错误码的详细介绍请参见[升级错误码](../errorcodes/errorcode-update.md)
 
-| 类型       | 说明                                   |
-| -------  | ------------------------------------- |
-| 11500104 | IPC error.                            |
+| 类型       | 说明                                                  |
+| -------  | ---------------------------------------------------- |
+| 11500104 | BusinessError 11500104: IPC error.                   |
 
 **示例:**
 
@@ -1434,9 +1434,9 @@ verifyUpgradePackage(upgradeFile: UpgradeFile, certsFile: string, callback: Asyn
 
 以下的错误码的详细介绍请参见[升级错误码](../errorcodes/errorcode-update.md)
 
-| 类型       | 说明                                   |
-| -------  | ------------------------------------- |
-| 11500104 | IPC error.                            |
+| 类型       | 说明                                                  |
+| -------  | ---------------------------------------------------- |
+| 11500104 | BusinessError 11500104: IPC error.                   |
 
 **示例：**
 
@@ -1478,9 +1478,9 @@ verifyUpgradePackage(upgradeFile: UpgradeFile, certsFile: string): Promise\<void
 
 以下的错误码的详细介绍请参见[升级错误码](../errorcodes/errorcode-update.md)
 
-| 类型       | 说明                                   |
-| -------  | ------------------------------------- |
-| 11500104 | IPC error.                            |
+| 类型       | 说明                                                  |
+| -------  | ---------------------------------------------------- |
+| 11500104 | BusinessError 11500104: IPC error.                   |
 
 **示例:**
 
@@ -1516,9 +1516,9 @@ applyNewVersion(upgradeFiles: Array<[UpgradeFile](#upgradefile)>, callback: Asyn
 
 以下的错误码的详细介绍请参见[升级错误码](../errorcodes/errorcode-update.md)
 
-| 类型       | 说明                                   |
-| -------  | ------------------------------------- |
-| 11500104 | IPC error.                            |
+| 类型       | 说明                                                  |
+| -------  | ---------------------------------------------------- |
+| 11500104 | BusinessError 11500104: IPC error.                   |
 
 **示例：**
 
@@ -1553,9 +1553,9 @@ applyNewVersion(upgradeFiles: Array<[UpgradeFile](#upgradefile)>): Promise\<void
 
 以下的错误码的详细介绍请参见[升级错误码](../errorcodes/errorcode-update.md)
 
-| 类型       | 说明                                   |
-| -------  | ------------------------------------- |
-| 11500104 | IPC error.                            |
+| 类型       | 说明                                                  |
+| -------  | ---------------------------------------------------- |
+| 11500104 | BusinessError 11500104: IPC error.                   |
 
 **示例:**
 
@@ -1589,9 +1589,9 @@ on(eventClassifyInfo: EventClassifyInfo, taskCallback: UpgradeTaskCallback): voi
 
 以下的错误码的详细介绍请参见[升级错误码](../errorcodes/errorcode-update.md)
 
-| 类型       | 说明                                   |
-| -------  | ------------------------------------- |
-| 11500104 | IPC error.                            |
+| 类型       | 说明                                                  |
+| -------  | ---------------------------------------------------- |
+| 11500104 | BusinessError 11500104: IPC error.                   |
 
 **示例：**
 
@@ -1626,9 +1626,9 @@ off(eventClassifyInfo: EventClassifyInfo, taskCallback?: UpgradeTaskCallback): v
 
 以下的错误码的详细介绍请参见[升级错误码](../errorcodes/errorcode-update.md)
 
-| 类型       | 说明                                   |
-| -------  | ------------------------------------- |
-| 11500104 | IPC error.                            |
+| 类型       | 说明                                                  |
+| -------  | ---------------------------------------------------- |
+| 11500104 | BusinessError 11500104: IPC error.                   |
 
 **示例：**
 

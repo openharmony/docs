@@ -4,7 +4,7 @@
 
 **错误信息**
 
-BusinessError 11500104:IPC error.
+BusinessError 11500104: IPC error.
 
 **错误描述**
 
@@ -12,7 +12,7 @@ BusinessError 11500104:IPC error.
 
 **可能原因**
 
-1. IPC 调用过程中出现异常，接口调用失败。
+IPC 调用过程中出现异常，接口调用失败。
 
 **处理步骤**
 
