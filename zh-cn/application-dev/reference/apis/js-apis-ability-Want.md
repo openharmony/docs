@@ -1,6 +1,10 @@
-# Want<sup>6+</sup>
+# Want
 
 Want是对象间信息传递的载体, 可以用于应用组件间的信息传递。 Want的使用场景之一是作为startAbility的参数, 其包含了指定的启动目标, 以及启动时需携带的相关数据, 如bundleName和abilityName字段分别指明目标Ability所在应用的包名以及对应包内的Ability名称。当Ability A需要启动Ability B并传入一些数据时, 可使用Want作为载体将这些数据传递给Ability B。
+
+> **说明：**
+> 
+> 本模块首批接口从API version 6开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityBase
 
@@ -61,5 +65,3 @@ Want是对象间信息传递的载体, 可以用于应用组件间的信息传�
     })
   ```
   <!--no_check-->
-
-

@@ -1,17 +1,23 @@
 # 接口
+
 - [开发说明](development-intro.md)
+
 - Ability框架
+  
   - FA模型
+    - [@ohos.ability.ability (Ability)](js-apis-ability-ability.md)
     - [@ohos.ability.featureAbility (FeatureAbility模块)](js-apis-featureAbility.md)
     - [@ohos.ability.particleAbility (particleAbility模块)](js-apis-particleAbility.md)
     - ability/[dataAbilityHelper (DataAbilityHelper模块)](js-apis-dataAbilityHelper.md)
     - app/[context (Context模块)](js-apis-Context.md)
+  
   - Stage模型
     - [@ohos.application.Ability (Ability)](js-apis-application-ability.md)
     - [@ohos.application.AbilityConstant (AbilityConstant)](js-apis-application-abilityConstant.md)
     - [@ohos.application.AbilityStage (AbilityStage)](js-apis-application-abilitystage.md)
     - [@ohos.application.abilityLifecycleCallback (AbilityLifecycleCallback)](js-apis-application-abilityLifecycleCallback.md)
     - [@ohos.application.DataShareExtensionAbility (数据共享扩展能力)](js-apis-application-DataShareExtensionAbility.md)
+    - [@ohos.application.EnvironmentCallback (EnvironmentCallback)](js-apis-application-EnvironmentCallback.md)
     - [@ohos.application.FormExtension (FormExtension)](js-apis-formextension.md)
     - [@ohos.application.ServiceExtensionAbility (ServiceExtensionAbility)](js-apis-service-extension-ability.md)
     - [@ohos.application.StartOptions (StartOptions)](js-apis-application-StartOptions.md)
@@ -25,18 +31,16 @@
     - application/[FormExtensionContext (FormExtensionContext)](js-apis-formextensioncontext.md)
     - application/[PermissionRequestResult (PermissionRequestResult)](js-apis-permissionrequestresult.md)
     - application/[ServiceExtensionContext (ServiceExtensionContext)](js-apis-service-extension-context.md)
+  
   - 通用
     - [@ohos.ability.dataUriUtils (DataUriUtils模块)](js-apis-DataUriUtils.md)
     - [@ohos.ability.errorCode (ErrorCode)](js-apis-ability-errorCode.md)
     - [@ohos.ability.wantConstant (wantConstant)](js-apis-ability-wantConstant.md)
     - [@ohos.application.abilityDelegatorRegistry (AbilityDelegatorRegistry)](js-apis-abilityDelegatorRegistry.md)
     - [@ohos.application.abilityManager (AbilityManager)](js-apis-application-abilityManager.md)
-    - [@ohos.application.AccessibilityExtensionAbility (AccessibilityExtensionContext)](js-apis-accessibility-extension-context.md)
-    - [@ohos.application.AccessibilityExtensionAbility (辅助功能扩展能力)](js-apis-application-AccessibilityExtensionAbility.md)
     - [@ohos.application.appManager (appManager)](js-apis-appmanager.md)
-    - [@ohos.application.Configuration (Configuration)](js-apis-configuration.md)
-    - [@ohos.application.ConfigurationConstant (ConfigurationConstant)](js-apis-configurationconstant.md)
-    - [@ohos.application.EnvironmentCallback (EnvironmentCallback)](js-apis-application-EnvironmentCallback.md)
+    - [@ohos.application.Configuration (Configuration)](js-apis-application-configuration.md)
+    - [@ohos.application.ConfigurationConstant (ConfigurationConstant)](js-apis-application-configurationconstant.md)
     - [@ohos.application.errorManager (ErrorManager)](js-apis-errorManager.md)
     - [@ohos.application.formBindingData (卡片数据绑定类)](js-apis-formbindingdata.md)
     - [@ohos.application.formError (FormError)](js-apis-formerror.md)
@@ -46,35 +50,52 @@
     - [@ohos.application.missionManager (missionManager)](js-apis-missionManager.md)
     - [@ohos.application.quickFixManager (quickFixManager)](js-apis-application-quickFixManager.md)
     - [@ohos.application.Want (Want)](js-apis-application-Want.md)
-    - [@ohos.continuation.continuationManager (ContinuationExtraParams)](js-apis-continuation-continuationExtraParams.md)
     - [@ohos.continuation.continuationManager (continuationManager)](js-apis-continuation-continuationManager.md)
     - [@ohos.wantAgent (WantAgent模块)](js-apis-wantAgent.md)
+    - ability/[abilityResult (AbilityResult)](js-apis-ability-abilityResult.md)
+    - ability/[Want (Want)](js-apis-ability-Want.md)
     - application/[abilityDelegator (AbilityDelegator)](js-apis-application-abilityDelegator.md)
     - application/[abilityDelegatorArgs (AbilityDelegatorArgs)](js-apis-application-abilityDelegatorArgs.md)
     - application/[abilityMonitor (AbilityMonitor)](js-apis-application-abilityMonitor.md)
     - application/[AbilityRunningInfo (AbilityRunningInfo)](js-apis-abilityrunninginfo.md)
     - application/[ExtensionRunningInfo (ExtensionRunningInfo)](js-apis-extensionrunninginfo.md)
     - application/[MissionSnapshot (MissionSnapshot)](js-apis-application-MissionSnapshot.md)
-    - application/[ProcessRunningInfo (ProcessRunningInfo)](js-apis-processrunninginfo.md)
     - application/[ProcessRunningInformation (ProcessRunningInformation)](js-apis-processrunninginformation.md)
     - application/[shellCmdResult (ShellCmdResult)](js-apis-application-shellCmdResult.md)
-    - continuation/[ContinuationResult (ContinuationResult)](js-apis-continuation-continuationResult.md)
+    - continuation/[continuationExtraParams (ContinuationExtraParams)](js-apis-continuation-continuationExtraParams.md)
+    - continuation/[continuationResult (ContinuationResult)](js-apis-continuation-continuationResult.md)
+
 - 公共事件与通知
-  - [@ohos.commonEvent (公共事件模块)](js-apis-commonEvent.md)
-  - [@ohos.commonEventManager (新公共事件模块)](js-apis-commonEventManager.md)
+  - [@ohos.commonEventManager (公共事件模块)](js-apis-commonEventManager.md)
   - [@ohos.events.emitter (Emitter)](js-apis-emitter.md)
   - [@ohos.notification (Notification模块)](js-apis-notification.md)
   - application/[EventHub (EventHub)](js-apis-eventhub.md)
+
 - 包管理
   - [@ohos.bundle.appControl(appControl模块)](js-apis-appControl.md)
   - [@ohos.bundle.bundleManager (bundleManager模块)](js-apis-bundleManager.md)
-  - [@ohos.bundle.bundleMonitor(bundleMonitor模块)](js-apis-bundleMonitor.md)
-  - [@ohos.bundle.defaultAppManager(defaultAppManager模块)](js-apis-defaultAppManager.md)
-  - [@ohos.bundle.innerBundleManager (innerBundleManager模块)](js-apis-Bundle-InnerBundleManager.md)
+  - [@ohos.bundle.bundleMonitor (bundleMonitor模块)](js-apis-bundleMonitor.md)
+  - [@ohos.bundle.defaultAppManager (默认应用管理)](js-apis-defaultAppManager.md)
   - [@ohos.bundle.distributedBundle (distributedBundle模块)](js-apis-distributedBundle.md)
-  - [@ohos.bundle.freeInstall(freeInstall模块)](js-apis-freeInstall.md)
-  - [@ohos.bundle.installer(installer模块)](js-apis-installer.md)
+  - [@ohos.bundle.freeInstall (freeInstall模块)](js-apis-freeInstall.md)
+  - [@ohos.bundle.installer (installer模块)](js-apis-installer.md)
+  - [@ohos.bundle.launcherBundleManager (launcherBundleManager模块)](js-apis-launcherBundleManager.md)
   - [@ohos.zlib (Zip模块)](js-apis-zlib.md)
+  - bundle/[customizeData (CustomizeData)](js-apis-bundle-CustomizeData.md)
+  - bundleManager/[abilityInfo (AbilityInfo)](js-apis-bundleManager-abilityInfo.md)
+  - bundleManager/[applicationInfo (ApplicationInfo)](js-apis-bundleManager-applicationInfo.md)
+  - bundleManager/[bundleInfo (BundleInfo)](js-apis-bundleManager-bundleInfo.md)
+  - bundleManager/[dispatchInfo (DispatchInfo)](js-apis-bundleManager-dispatchInfo.md)
+  - bundleManager/[elementName (ElementName)](js-apis-bundleManager-elementName.md)
+  - bundleManager/[extensionAbilityInfo (ExtensionAbilityInfo)](js-apis-bundleManager-extensionAbilityInfo.md)
+  - bundleManager/[hapModuleInfo (HapModuleInfo)](js-apis-bundleManager-hapModuleInfo.md)
+  - bundleManager/[launcherAbilityInfo (LauncherAbilityInfo)](js-apis-bundleManager-launcherAbilityInfo.md)
+  - bundleManager/[metadata (Metadata)](js-apis-bundleManager-metadata.md)
+  - bundleManager/[packInfo (PackInfo)](js-apis-bundleManager-packInfo.md)
+  - bundleManager/[permissionDef (PermissionDef)](js-apis-bundleManager-permissionDef.md)
+  - bundleManager/[remoteAbilityInfo (RemoteAbilityInfo)](js-apis-bundleManager-remoteAbilityInfo.md)
+  - bundleManager/[shortcutInfo (ShortcutInfo)](js-apis-bundleManager-shortcutInfo.md)
+
 - UI界面
   - [@ohos.animator (动画)](js-apis-animator.md)
   - [@ohos.curves (插值计算)](js-apis-curve.md)
@@ -82,6 +103,7 @@
   - [@ohos.mediaquery (媒体查询)](js-apis-mediaquery.md)
   - [@ohos.promptAction (弹窗)](js-apis-promptAction.md)
   - [@ohos.router (页面路由)](js-apis-router.md)
+
 - 图形图像
   - [@ohos.animation.windowAnimationManager (窗口动画管理)](js-apis-windowAnimationManager.md)
   - [@ohos.display (屏幕属性)](js-apis-display.md)
@@ -92,15 +114,19 @@
   - [@ohos.window (窗口)](js-apis-window.md)
   - [webgl (WebGL)](js-apis-webgl.md)
   - [webgl2 (WebGL2)](js-apis-webgl2.md)
+
 - 媒体
   - [@ohos.multimedia.audio (音频管理)](js-apis-audio.md)
+  - [@ohos.multimedia.avsession (媒体会话管理)](js-apis-avsession.md)
   - [@ohos.multimedia.camera (相机管理)](js-apis-camera.md)
   - [@ohos.multimedia.image (图片处理)](js-apis-image.md)
   - [@ohos.multimedia.media (媒体服务)](js-apis-media.md)
+
 - 资源管理
   - [@ohos.i18n (国际化-I18n)](js-apis-i18n.md)
   - [@ohos.intl (国际化-Intl)](js-apis-intl.md)
   - [@ohos.resourceManager (资源管理)](js-apis-resource-manager.md)
+
 - 资源调度
   - [@ohos.distributedMissionManager (分布式任务管理)](js-apis-distributedMissionManager.md)
   - [@ohos.reminderAgentManager (后台代理提醒)](js-apis-reminderAgentManager.md)
@@ -108,19 +134,16 @@
   - [@ohos.resourceschedule.workScheduler (延迟任务调度)](js-apis-resourceschedule-workScheduler.md)
   - [@ohos.resourceschedule.usageStatistics (设备使用信息统计)](js-apis-resourceschedule-deviceUsageStatistics.md)
   - [@ohos.WorkSchedulerExtensionAbility (延迟任务调度回调)](js-apis-WorkSchedulerExtensionAbility.md)
-- 定制管理
-  - [@ohos.configPolicy (配置策略)](js-apis-config-policy.md)
-  - [@ohos.EnterpriseAdminExtensionAbility (EnterpriseAdminExtensionAbility)](js-apis-EnterpriseAdminExtensionAbility.md)
-  - [@ohos.enterpriseDeviceManager (企业设备管理)](js-apis-enterprise-device-manager.md)
-  - enterpriseDeviceManager/[DeviceSettingsManager(设备设置管理)](js-apis-enterpriseDeviceManager-DeviceSettingsManager.md)
+
 - 安全
-  - [@ohos.abilityAccessCtrl (访问控制管理)](js-apis-abilityAccessCtrl.md)
+  - [@ohos.abilityAccessCtrl (程序访问控制管理)](js-apis-abilityAccessCtrl.md)
   - [@ohos.privacyManager (隐私管理)](js-apis-privacyManager.md)
   - [@ohos.security.cryptoFramework (加解密算法库框架)](js-apis-cryptoFramework.md)
   - [@ohos.security.huks (通用密钥库系统)](js-apis-huks.md)
   - [@ohos.userIAM.faceAuth (人脸认证)](js-apis-useriam-faceauth.md)
   - [@ohos.userIAM.userAuth (用户认证)](js-apis-useriam-userauth.md)
   - [@system.cipher (加密算法)](js-apis-system-cipher.md)
+
 - 数据管理
   - [@ohos.data.dataAbility (DataAbility谓词)](js-apis-data-ability.md)
   - [@ohos.data.dataShare (数据共享)](js-apis-data-dataShare.md)
@@ -132,18 +155,19 @@
   - [@ohos.data.rdb (关系型数据库)](js-apis-data-rdb.md)
   - [@ohos.data.ValuesBucket (数据集)](js-apis-data-ValuesBucket.md)
   - data/rdb/[resultSet (结果集)](js-apis-data-resultset.md)
+
 - 文件管理
-  - [@ohos.document (文件交互)](js-apis-document.md)
   - [@ohos.environment (目录环境能力)](js-apis-environment.md)
   - [@ohos.data.fileAccess (公共文件访问与管理)](js-apis-fileAccess.md)
   - [@ohos.fileExtensionInfo (公共文件访问与管理属性信息)](js-apis-fileExtensionInfo.md)
   - [@ohos.fileio (文件管理)](js-apis-fileio.md)
-  - [@ohos.filemanagement.userfile_manager (用户数据管理)](js-apis-userfilemanager.md)
+  - [@ohos.filemanagement.userFileManager (用户数据管理)](js-apis-userFileManager.md)
   - [@ohos.multimedia.medialibrary (媒体库管理)](js-apis-medialibrary.md)
   - [@ohos.securityLabel (数据标签)](js-apis-securityLabel.md)
   - [@ohos.statfs (statfs)](js-apis-statfs.md)
   - [@ohos.storageStatistics (应用空间统计)](js-apis-storage-statistics.md)
   - [@ohos.volumeManager (卷管理)](js-apis-volumemanager.md)
+
 - 电话服务
   - [@ohos.contact (联系人)](js-apis-contact.md)
   - [@ohos.telephony.call (拨打电话)](js-apis-call.md)
@@ -152,6 +176,7 @@
   - [@ohos.telephony.radio (网络搜索)](js-apis-radio.md)
   - [@ohos.telephony.sim (SIM卡管理)](js-apis-sim.md)
   - [@ohos.telephony.sms (短信服务)](js-apis-sms.md)
+
 - 网络管理
   - [@ohos.net.connection (网络连接管理)](js-apis-net-connection.md)
   - [@ohos.net.ethernet (以太网连接管理)](js-apis-net-ethernet.md)
@@ -163,6 +188,7 @@
   - [@ohos.net.tlsSocket (TLSSocket连接)](js-apis-tlsSocket.md)
   - [@ohos.net.webSocket (WebSocket连接)](js-apis-webSocket.md)
   - [@ohos.request (上传下载)](js-apis-request.md)
+
 - 通信与连接
   - [@ohos.bluetooth (蓝牙)](js-apis-bluetooth.md)
   - [@ohos.connectedTag (有源标签)](js-apis-connectedTag.md)
@@ -171,20 +197,24 @@
   - [@ohos.nfc.tag (标准NFC-Tag)](js-apis-nfcTag.md)
   - [@ohos.rpc (RPC通信)](js-apis-rpc.md)
   - [@ohos.wifi (WLAN)](js-apis-wifi.md)
-  - [@ohos.wifiext (WLAN)](js-apis-wifiext.md)
+  - [@ohos.wifiext (WLAN扩展接口)](js-apis-wifiext.md)
   - tag/[nfctech (标准NFC-Tag Nfc 技术)](js-apis-nfctech.md)
   - tag/[tagSession (标准NFC-Tag TagSession)](js-apis-tagSession.md)
+
 - 系统基础能力
   - [@ohos.accessibility (辅助功能)](js-apis-accessibility.md)
   - [@ohos.accessibility.config (系统辅助功能配置)](js-apis-accessibility-config.md)
+  - [@ohos.accessibility.GesturePath (手势路径)](js-apis-accessibility-GesturePath.md)
+  - [@ohos.accessibility.GesturePoint (手势触摸点)](js-apis-accessibility-GesturePoint.md)
+  - [@ohos.application.AccessibilityExtensionAbility (辅助功能扩展能力)](js-apis-application-AccessibilityExtensionAbility.md)
   - [@ohos.faultLogger (故障日志获取)](js-apis-faultLogger.md)
-  - [@ohos.hiAppEvent (应用打点)](js-apis-hiappevent.md)
   - [@ohos.hichecker (检测模式)](js-apis-hichecker.md)
   - [@ohos.hidebug (Debug调试)](js-apis-hidebug.md)
   - [@ohos.hilog (HiLog日志打印)](js-apis-hilog.md)
   - [@ohos.hiSysEvent (系统事件打点)](js-apis-hisysevent.md)
   - [@ohos.hiTraceChain (分布式跟踪)](js-apis-hitracechain.md)
   - [@ohos.hiTraceMeter (性能打点)](js-apis-hitracemeter.md)
+  - [@ohos.hiviewdfx.hiAppEvent (应用事件打点)](js-apis-hiviewdfx-hiappevent.md)
   - [@ohos.inputmethod (输入法框架)](js-apis-inputmethod.md)
   - [@ohos.inputmethodengine (输入法服务)](js-apis-inputmethodengine.md)
   - [@ohos.inputmethodextensionability (InputMethodExtensionAbility)](js-apis-inputmethod-extension-ability.md)
@@ -198,13 +228,15 @@
   - [@ohos.web.webview(Web)](js-apis-webview.md)
   - [console (日志打印)](js-apis-logs.md)
   - [Timer (定时器)](js-apis-timer.md)
-- 设备管理
+  - application/[AccessibilityExtensionContext (辅助功能扩展上下文)](js-apis-accessibility-extension-context.md)
 
+- 设备管理
   - [@ohos.batteryInfo (电量信息)](js-apis-battery-info.md)
+  - [@ohos.batteryStatistics (耗电统计)](js-apis-batteryStatistics.md)
   - [@ohos.brightness (屏幕亮度)](js-apis-brightness.md)
   - [@ohos.deviceInfo (设备信息)](js-apis-device-info.md)
   - [@ohos.distributedHardware.deviceManager (设备管理)](js-apis-device-manager.md)
-  - [@ohos.geolocation (位置服务)](js-apis-geolocation.md)
+  - [@ohos.geoLocationManager (位置服务)](js-apis-geoLocationManager.md)
   - [@ohos.multimodalInput.inputConsumer (组合按键)](js-apis-inputconsumer.md)
   - [@ohos.multimodalInput.inputDevice (输入设备)](js-apis-inputdevice.md)
   - [@ohos.multimodalInput.inputDeviceCooperate (键鼠穿越)](js-apis-cooperate.md)
@@ -220,15 +252,23 @@
   - [@ohos.runningLock (Runninglock锁)](js-apis-runninglock.md)
   - [@ohos.sensor (传感器)](js-apis-sensor.md)
   - [@ohos.settings (设置数据项名称)](js-apis-settings.md)
-  - [@ohos.systemParameter (系统属性)](js-apis-system-parameter.md)
+  - [@ohos.systemParameterV9 (系统属性)](js-apis-system-parameterV9.md)
   - [@ohos.thermal (热管理)](js-apis-thermal.md)
   - [@ohos.update (升级)](js-apis-update.md)
   - [@ohos.usbV9 (USB管理)](js-apis-usb.md)
   - [@ohos.vibrator (振动)](js-apis-vibrator.md)
+
 - 帐号管理
   - [@ohos.account.appAccount (应用帐号管理)](js-apis-appAccount.md)
   - [@ohos.account.distributedAccount (分布式帐号管理)](js-apis-distributed-account.md)
   - [@ohos.account.osAccount (系统帐号管理)](js-apis-osAccount.md)
+
+- 定制管理
+  - [@ohos.configPolicy (配置策略)](js-apis-config-policy.md)
+  - [@ohos.EnterpriseAdminExtensionAbility (EnterpriseAdminExtensionAbility)](js-apis-EnterpriseAdminExtensionAbility.md)
+  - [@ohos.enterpriseDeviceManager (企业设备管理)](js-apis-enterprise-device-manager.md)
+  - enterpriseDeviceManager/[DeviceSettingsManager(设备设置管理)](js-apis-enterpriseDeviceManager-DeviceSettingsManager.md)
+
 - 语言基础类库
   - [@ohos.buffer (Buffer)](js-apis-buffer.md)
   - [@ohos.convertxml (xml转换JavaScript)](js-apis-convertxml.md)
@@ -252,19 +292,27 @@
   - [@ohos.util.Vector (线性容器Vector)](js-apis-vector.md)
   - [@ohos.worker (启动一个Worker)](js-apis-worker.md)
   - [@ohos.xml (xml解析与生成)](js-apis-xml.md)
+
 - 测试
   - [@ohos.application.testRunner (TestRunner)](js-apis-testRunner.md)
   - [@ohos.uitest (UiTest)](js-apis-uitest.md)
+
 - 已停止维护的接口
   - [@ohos.backgroundTaskManager (后台任务管理)](js-apis-backgroundTaskManager.md)
-  - [@ohos.bundle(包管理)](js-apis-Bundle.md)
+  - [@ohos.bundle (Bundle模块)](js-apis-Bundle.md)
+  - [@ohos.bundle.innerBundleManager (innerBundleManager模块)](js-apis-Bundle-InnerBundleManager.md)
   - [@ohos.bundleState (设备使用信息统计)](js-apis-deviceUsageStatistics.md)
   - [@ohos.bytrace (性能打点)](js-apis-bytrace.md)
+  - [@ohos.commonEvent (公共事件模块)](js-apis-commonEvent.md)
   - [@ohos.data.storage (轻量级存储)](js-apis-data-storage.md)
   - [@ohos.data.distributedData (分布式数据管理)](js-apis-distributed-data.md)
-  - [@ohos.distributedBundle(分布式包管理)](js-apis-Bundle-distributedBundle.md)
+  - [@ohos.distributedBundle (分布式包管理)](js-apis-Bundle-distributedBundle.md)
+  - [@ohos.document (文件交互)](js-apis-document.md)
+  - [@ohos.geolocation (位置服务)](js-apis-geolocation.md)
+  - [@ohos.hiAppEvent (应用打点)](js-apis-hiappevent.md)
   - [@ohos.prompt (弹窗)](js-apis-prompt.md)
   - [@ohos.reminderAgent (后台代理提醒)](js-apis-reminderAgent.md)
+  - [@ohos.systemParameter (系统属性)](js-apis-system-parameter.md)
   - [@ohos.usb (USB管理)](js-apis-usb-deprecated.md)
   - [@system.app (应用上下文)](js-apis-system-app.md)
   - [@system.battery (电量信息)](js-apis-system-battery.md)
@@ -285,4 +333,17 @@
   - [@system.sensor (传感器)](js-apis-system-sensor.md)
   - [@system.storage (数据存储)](js-apis-system-storage.md)
   - [@system.vibrator (振动)](js-apis-system-vibrate.md)
+  - application/[ProcessRunningInfo (ProcessRunningInfo)](js-apis-processrunninginfo.md)
+  - bundle/[abilityInfo (AbilityInfo)](js-apis-bundle-AbilityInfo.md)
+  - bundle/[applicationInfo (ApplicationInfo)](js-apis-bundle-ApplicationInfo.md)
+  - bundle/[bundleInfo (BundleInfo)](js-apis-bundle-BundleInfo.md)
+  - bundle/[bundleInstaller (BundleInstaller)](js-apis-bundle-BundleInstaller.md)
+  - bundle/[bundleStatusCallback (BundleStatusCallback)](js-apis-Bundle-BundleStatusCallback.md)
+  - bundle/[elementName (ElementName)](js-apis-bundle-ElementName.md)
+  - bundle/[hapModuleInfo (HapModuleInfo)](js-apis-bundle-HapModuleInfo.md)
+  - bundle/[launcherAbilityInfo (LauncherAbilityInfo)](js-apis-bundle-LauncherAbilityInfo.md)
+  - bundle/[moduleInfo (ModuleInfo)](js-apis-bundle-ModuleInfo.md)
+  - bundle/[PermissionDef (PermissionDef)](js-apis-bundle-PermissionDef.md)
+  - bundle/[remoteAbilityInfo (RemoteAbilityInfo)](js-apis-bundle-remoteAbilityInfo.md)
+  - bundle/[shortcutInfo (shortcutInfo)](js-apis-bundle-ShortcutInfo.md)
   - [console (日志打印)](js-apis-logs.md)
