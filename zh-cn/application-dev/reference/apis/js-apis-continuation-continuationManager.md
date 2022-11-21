@@ -20,7 +20,7 @@ register(callback: AsyncCallback\<number>): void;
 
 注册流转管理服务，并获取对应的注册token，无过滤条件，使用AsyncCallback方式作为异步方法。
 
-> 从API Version 9开始不再维护，建议使用[registerContinuation](#continuationmanagerregistercontinuation9)替代。
+> 从API version 9开始不再维护，建议使用[registerContinuation](#continuationmanagerregistercontinuation9)替代。
 
 **系统能力**：SystemCapability.Ability.DistributedAbilityManager
 
@@ -60,7 +60,7 @@ register(options: ContinuationExtraParams, callback: AsyncCallback\<number>): vo
 
 连接流转管理服务，并获取对应的注册token，使用AsyncCallback方式作为异步方法。
 
-> 从API Version 9开始不再维护，建议使用[registerContinuation](#continuationmanagerregistercontinuation9)替代。
+> 从API version 9开始不再维护，建议使用[registerContinuation](#continuationmanagerregistercontinuation9)替代。
 
 **系统能力**：SystemCapability.Ability.DistributedAbilityManager
 
@@ -105,7 +105,7 @@ register(options?: ContinuationExtraParams): Promise\<number>;
 
 连接流转管理服务，并获取对应的注册token，使用Promise方式作为异步方法。
 
-> 从API Version 9开始不再维护，建议使用[registerContinuation](#continuationmanagerregistercontinuation9)替代。
+> 从API version 9开始不再维护，建议使用[registerContinuation](#continuationmanagerregistercontinuation9)替代。
 
 **系统能力**：SystemCapability.Ability.DistributedAbilityManager
 
@@ -301,7 +301,7 @@ on(type: "deviceConnect", callback: Callback\<ContinuationResult>): void;
 
 异步方法，监听设备连接状态，使用Callback形式返回连接的设备信息。
 
-> 从API Version 9开始不再维护，建议使用[on](#continuationmanagerondeviceselected9)替代。
+> 从API version 9开始不再维护，建议使用[on](#continuationmanagerondeviceselected9)替代。
 
 **系统能力**：SystemCapability.Ability.DistributedAbilityManager
 
@@ -340,7 +340,7 @@ on(type: "deviceDisconnect", callback: Callback\<string>): void;
 
 异步方法，监听设备断开状态，使用Callback形式返回断开的设备信息。
 
-> 从API Version 9开始不再维护，建议使用[on](#continuationmanagerondeviceunselected9)替代。
+> 从API version 9开始不再维护，建议使用[on](#continuationmanagerondeviceunselected9)替代。
 
 **系统能力**：SystemCapability.Ability.DistributedAbilityManager
 
@@ -377,7 +377,7 @@ off(type: "deviceConnect", callback?: Callback\<ContinuationResult>): void;
 
 异步方法，取消监听设备连接状态，使用Callback形式返回连接的设备信息。
 
-> 从API Version 9开始不再维护，建议使用[off](#continuationmanageroffdeviceselected9)替代。
+> 从API version 9开始不再维护，建议使用[off](#continuationmanageroffdeviceselected9)替代。
 
 **系统能力**：SystemCapability.Ability.DistributedAbilityManager
 
@@ -416,7 +416,7 @@ off(type: "deviceDisconnect", callback?: Callback\<string>): void;
 
 异步方法，取消监听设备断开状态，使用Callback形式返回连接的设备信息。
 
-> 从API Version 9开始不再维护，建议使用[off](#continuationmanageroffdeviceunselected9)替代。
+> 从API version 9开始不再维护，建议使用[off](#continuationmanageroffdeviceunselected9)替代。
 
 **系统能力**：SystemCapability.Ability.DistributedAbilityManager
 
@@ -626,7 +626,7 @@ startDeviceManager(token: number, callback: AsyncCallback\<void>): void;
 
 拉起设备选择模块，可显示组网内可选择设备列表信息，无过滤条件，使用AsyncCallback方式作为异步方法。
 
-> 从API Version 9开始不再维护，建议使用[startContinuationDeviceManager](#continuationmanagerstartcontinuationdevicemanager9)替代。
+> 从API version 9开始不再维护，建议使用[startContinuationDeviceManager](#continuationmanagerstartcontinuationdevicemanager9)替代。
 
 **系统能力**：SystemCapability.Ability.DistributedAbilityManager
 
@@ -669,7 +669,7 @@ startDeviceManager(token: number, options: ContinuationExtraParams, callback: As
 
 拉起设备选择模块，可显示组网内可选择设备列表信息，使用AsyncCallback方式作为异步方法。
 
-> 从API Version 9开始不再维护，建议使用[startContinuationDeviceManager](#continuationmanagerstartcontinuationdevicemanager9)替代。
+> 从API version 9开始不再维护，建议使用[startContinuationDeviceManager](#continuationmanagerstartcontinuationdevicemanager9)替代。
 
 **系统能力**：SystemCapability.Ability.DistributedAbilityManager
 
@@ -716,7 +716,7 @@ startDeviceManager(token: number, options?: ContinuationExtraParams): Promise\<v
 
 拉起设备选择模块，可显示组网内可选择设备列表信息，使用Promise方式作为异步方法。
 
-> 从API Version 9开始不再维护，建议使用[startContinuationDeviceManager](#continuationmanagerstartcontinuationdevicemanager9)替代。
+> 从API version 9开始不再维护，建议使用[startContinuationDeviceManager](#continuationmanagerstartcontinuationdevicemanager9)替代。
 
 **系统能力**：SystemCapability.Ability.DistributedAbilityManager
 
@@ -913,7 +913,7 @@ updateConnectStatus(token: number, deviceId: string, status: DeviceConnectState,
 
 通知设备选择模块，更新当前的连接状态，使用AsyncCallback方式作为异步方法。
 
-> 从API Version 9开始不再维护，建议使用[updateContinuationState](#continuationmanagerupdatecontinuationstate9)替代。
+> 从API version 9开始不再维护，建议使用[updateContinuationState](#continuationmanagerupdatecontinuationstate9)替代。
 
 **系统能力**：SystemCapability.Ability.DistributedAbilityManager
 
@@ -959,7 +959,7 @@ updateConnectStatus(token: number, deviceId: string, status: DeviceConnectState)
 
 通知设备选择模块，更新当前的连接状态，使用Promise方式作为异步方法。
 
-> 从API Version 9开始不再维护，建议使用[updateContinuationState](#continuationmanagerupdatecontinuationstate9)替代。
+> 从API version 9开始不再维护，建议使用[updateContinuationState](#continuationmanagerupdatecontinuationstate9)替代。
 
 **系统能力**：SystemCapability.Ability.DistributedAbilityManager
 
@@ -1110,7 +1110,7 @@ unregister(token: number, callback: AsyncCallback\<void>): void;
 
 解注册流转管理服务，传入注册时获取的token进行解注册，使用AsyncCallback方式作为异步方法。
 
-> 从API Version 9开始不再维护，建议使用[unregisterContinuation](#continuationmanagerunregistercontinuation9)替代。
+> 从API version 9开始不再维护，建议使用[unregisterContinuation](#continuationmanagerunregistercontinuation9)替代。
 
 **系统能力**：SystemCapability.Ability.DistributedAbilityManager
 
@@ -1150,7 +1150,7 @@ unregister(token: number): Promise\<void>;
 
 解注册流转管理服务，传入注册时获取的token进行解注册，使用Promise方式作为异步方法。
 
-> 从API Version 9开始不再维护，建议使用[unregisterContinuation](#continuationmanagerunregistercontinuation9)替代。
+> 从API version 9开始不再维护，建议使用[unregisterContinuation](#continuationmanagerunregistercontinuation9)替代。
 
 **系统能力**：SystemCapability.Ability.DistributedAbilityManager
 
