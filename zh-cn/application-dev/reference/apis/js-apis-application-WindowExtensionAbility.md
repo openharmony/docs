@@ -19,7 +19,7 @@ import WindowExtensionAbility from '@ohos.application.WindowExtensionAbility';
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
-| 名称      | 参数类型 | 可读 | 可写 | 说明                      |
+| 名称      | 类型 | 可读 | 可写 | 说明                      |
 | --------- | -------- | ---- | ---- | ------------------------- |
 | context      | [ExtensionContext](js-apis-extension-context.md)   | 是   | 否   | 上下文。      |
 
