@@ -903,7 +903,6 @@ onAcquireInfo ?: (module : number, acquire : number, extraInfo : any) => void
 | TYPE_NOT_SUPPORT        | 5      | 不支持的认证类型。   |
 | TRUST_LEVEL_NOT_SUPPORT | 6      | 不支持的认证等级。   |
 | BUSY                    | 7      | 忙碌状态。           |
-| INVALID_PARAMETERS      | 8      | 无效参数。           |
 | LOCKED                  | 9      | 认证器已锁定。       |
 | NOT_ENROLLED            | 10     | 用户未录入认证信息。 |
 

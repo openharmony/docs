@@ -70,13 +70,3 @@ setSurfaceId(surfaceId: string): void;
       console.error("set surface id failed, error = " + e);
   }
   ```
-
-## ResultCode
-
- 表示执行结果的枚举。
-
- **系统能力：** SystemCapability.UserIAM.UserAuth.FaceAuth
-
-| 名称                    | 默认值 | 描述                 |
-| ----------------------- | ------ | -------------------- |
-| FAIL                    | 12700001      | 执行失败。           |
