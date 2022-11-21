@@ -1263,7 +1263,7 @@ subscriber.finishCommonEvent().then(() => {
 | data                  | 是  | 否  | string               | 表示公共事件的自定义结果数据。 |
 | subscriberPermissions | 是  | 否  | Array\<string>       | 表示订阅者的权限。             |
 | isOrdered             | 是  | 否  | boolean              | 表示是否是有序事件。           |
-| isSticky              | 是  | 否  | boolean              | 表示是否是粘性事件。           |
+| isSticky              | 是  | 否  | boolean              | 表示是否是粘性事件。仅系统应用或系统服务允许发送粘性事件。 |
 | parameters            | 是  | 否  | {[key: string]: any} | 表示公共事件的附加信息。       |
 
 ## CommonEventSubscribeInfo
