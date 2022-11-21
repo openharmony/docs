@@ -45,6 +45,22 @@ Stepper(value?: { index?: number })
 
 ```ts
 // xxx.ets
+@Styles function itemStyle () {
+  .width(336)
+  .height(621)
+  .margin({ top: 48, left: 12 })
+  .borderRadius(24)
+  .backgroundColor('#FFFFFF')
+}
+
+@Extend(Text) function itemTextStyle () {
+  .fontColor('#182431')
+  .fontSize(36)
+  .fontWeight(500)
+  .opacity(0.4)
+  .margin({ top: 82, bottom: 40 })
+}
+
 @Entry
 @Component
 struct StepperExample {
@@ -61,15 +77,13 @@ struct StepperExample {
       StepperItem() {
         Column() {
           Text('Page One')
-            .fontSize(35)
-            .fontColor(Color.Blue)
-            .lineHeight(50)
-            .margin({ top: 250, bottom: 50 })
+            .itemTextStyle()
           Button('change status:' + this.firstState)
+            .backgroundColor('#007dFF')
             .onClick(() => {
               this.firstState = this.firstState === ItemState.Skip ? ItemState.Normal : ItemState.Skip
             })
-        }.width('100%')
+        }.itemStyle()
       }
       .nextLabel('Next')
       .status(this.firstState)
@@ -77,15 +91,13 @@ struct StepperExample {
       StepperItem() {
         Column() {
           Text('Page Two')
-            .fontSize(35)
-            .fontColor(Color.Blue)
-            .lineHeight(50)
-            .margin({ top: 250, bottom: 50 })
+            .itemTextStyle()
           Button('change status:' + this.secondState)
+            .backgroundColor('#007dFF')
             .onClick(() => {
               this.secondState = this.secondState === ItemState.Disabled ? ItemState.Normal : ItemState.Disabled
             })
-        }.width('100%')
+        }.itemStyle()
       }
       .nextLabel('Next')
       .prevLabel('Previous')
@@ -94,29 +106,25 @@ struct StepperExample {
       StepperItem() {
         Column() {
           Text('Page Three')
-            .fontSize(35)
-            .fontColor(Color.Blue)
-            .lineHeight(50)
-            .margin({ top: 250, bottom: 50 })
+            .itemTextStyle()
           Button('change status:' + this.thirdState)
+            .backgroundColor('#007dFF')
             .onClick(() => {
               this.thirdState = this.thirdState === ItemState.Waiting ? ItemState.Normal : ItemState.Waiting
             })
-        }.width('100%')
+        }.itemStyle()
       }
       .status(this.thirdState)
       // 第四个步骤页
       StepperItem() {
-        Text('Page four')
-          .fontSize(35)
-          .fontColor(Color.Blue)
-          .width('100%')
-          .textAlign(TextAlign.Center)
-          .lineHeight(50)
-          .margin({ top: 250 })
+        Column() {
+          Text('Page four')
+            .itemTextStyle()
+        }.itemStyle()
       }
       .nextLabel('Finish')
     }
+    .backgroundColor('#F1F3F5')
     .onFinish(() => {
       // 此处可处理点击最后一页的Finish时的逻辑，例如路由跳转等
       console.info('onFinish')
