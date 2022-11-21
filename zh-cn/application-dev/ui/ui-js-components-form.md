@@ -10,7 +10,7 @@ Form是一个表单容器，支持容器内[Input](../reference/arkui-js/js-comp
 ## 创建Form组件
 
 在pages/index目录下的hml文件中创建一个Form组件。
-```
+```html
 <!-- xxx.hml -->
 <div class="container">
   <form style="width: 100%; height: 20%">  
@@ -19,7 +19,7 @@ Form是一个表单容器，支持容器内[Input](../reference/arkui-js/js-comp
 </div>
 ```
 
-```
+```css
 /* xxx.css */
 .container {
   width:100%;
@@ -37,7 +37,7 @@ Form是一个表单容器，支持容器内[Input](../reference/arkui-js/js-comp
 ## 实现表单缩放
 
 为Form组件添加click-effect属性，实现点击表单后的缩放效果，click-effect枚举值请参考[通用属性](../reference/arkui-js/js-components-common-attributes.md)。
-```
+```html
 <!-- xxx.hml -->
 <div class="container">
   <form  id="formId" class="formClass" click-effect="spring-large">
@@ -53,7 +53,7 @@ Form是一个表单容器，支持容器内[Input](../reference/arkui-js/js-comp
 通过为Form添加background-color和border属性，来设置表单的背景颜色和边框。
 
 
-```
+```css
 /* xxx.css */
 .container {
   width: 100%;
@@ -79,7 +79,7 @@ Form是一个表单容器，支持容器内[Input](../reference/arkui-js/js-comp
 
 为Form组件添加submit和reset事件，来提交表单内容或重置表单选项。
 
-```
+```html
 <!-- xxx.hml -->
 <div class="container">
   <form onsubmit='onSubmit' onreset='onReset' class="form">
@@ -98,7 +98,7 @@ Form是一个表单容器，支持容器内[Input](../reference/arkui-js/js-comp
 </div>
 ```
 
-```
+```css
 /* index.css */
 .container{
   width: 100%;
@@ -118,7 +118,7 @@ Form是一个表单容器，支持容器内[Input](../reference/arkui-js/js-comp
 }
 ```
 
-```
+```js
 /* xxx.js */
 import prompt from '@system.prompt';
 export default{
@@ -145,7 +145,7 @@ export default{
 
 创建[Input](../reference/arkui-js/js-components-basic-input.md)组件，分别设置type属性为checkbox（多选框）和radio（单选框），再使用Form组件的onsubmit和onreset事件实现表单数据的提交与重置。
 
-```
+```html
 <!-- xxx.hml -->
 <div class="container">
    <form onsubmit="formSubmit" onreset="formReset">
@@ -180,9 +180,11 @@ export default{
 </div>
 ```
 
-```
+```css
 /* index.css */
 .container {
+  width: 100%;
+  height: 100%;
   flex-direction:column;
   align-items:center;
   background-color:#F1F3F5;
@@ -197,7 +199,7 @@ label{
 }
 ```
 
-```
+```js
 /* xxx.js */
 import prompt from '@system.prompt';
 export default {

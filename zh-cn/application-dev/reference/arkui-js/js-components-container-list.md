@@ -71,7 +71,7 @@
 | scrollend | - | 列表滑动已经结束。 |
 | scrolltouchup | - | 手指已经抬起且列表仍在惯性滑动。 |
 | requestitem | - | 请求创建新的list-item。<br/>长列表延迟加载时，可视区域外缓存的list-item数量少于cachedcount时，会触发该事件。 |
-| rotate<sup>7+</sup> | {&nbsp;rotateValue:&nbsp;number&nbsp;} | 返回表冠旋转角度增量值，仅智能穿戴支持。 |
+| rotation<sup>7+</sup> | {&nbsp;rotateValue:&nbsp;number&nbsp;} | 返回表冠旋转角度增量值，仅智能穿戴支持。 |
 
 
 ## 方法

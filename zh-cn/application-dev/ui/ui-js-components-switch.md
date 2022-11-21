@@ -9,19 +9,17 @@ Switch为开关选择器，切换开启或关闭状态。具体用法请参考[S
 在pages/index目录下的hml文件中创建一个Switch组件。
 
 
-```
+```html
 <div class="container">
     <switch></switch>
 </div>
 ```
 
 
-```
+```css
 /* xxx.css */
 .container {
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
   background-color: #F1F3F5;
 }
 ```
@@ -33,7 +31,7 @@ Switch为开关选择器，切换开启或关闭状态。具体用法请参考[S
 
   witch组件通过textoff和showtext属性设置文本选中和未选中时的状态。设置checked属性值为true（组件为打开状态）。添加change事件，当组件状态改变时触发，触发后执行switchChange函数获取组件当前状态（关闭/打开）。
 
-```
+```html
 <!-- xxx.hml -->
 <div class="container">
   <switch showtext="true" texton="open" textoff="close" checked="true" @change="switchChange"></switch>
@@ -60,7 +58,7 @@ switch{
 ```
 
 
-```
+```css
 // xxx.js
 import prompt from '@system.prompt';
 export default {
@@ -92,7 +90,7 @@ export default {
 
   实现方法：创建Switch开关，设置checked属性为true，通过数据绑定改变收货地址。设置display属性（默认为none），当关闭开关改变display属性值为flex后显示地址模块，点击按钮改变颜色。
 
-```
+```html
 <!-- xxx.hml -->
 <div class="container">
   <div class="change">
@@ -111,7 +109,7 @@ export default {
 ```
 
 
-```
+```css
 /* xxx.css */
 .container {
   width: 100%;
@@ -166,7 +164,7 @@ switch{
 ```
 
 
-```
+```js
 // xxx.js
 import prompt from '@system.prompt';
 export default {

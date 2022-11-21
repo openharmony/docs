@@ -25,17 +25,18 @@
 
 Shape(value?: PixelMap)
 
-- 参数
-  | 参数名 | 参数类型 | 必填 | 默认值 | 参数描述 |
-  | -------- | -------- | -------- | -------- | -------- |
-  | value | [PixelMap](../apis/js-apis-image.md#pixelmap7) | 否 | - | 绘制目标，可将图形绘制在指定的PixelMap对象中，若未设置，则在当前绘制目标中进行绘制。 |
+**参数：**
+
+| 参数名 | 参数类型 | 必填 | 默认值 | 参数描述 |
+| -------- | -------- | -------- | -------- | -------- |
+| value | [PixelMap](../apis/js-apis-image.md#pixelmap7) | 否 | - | 绘制目标，可将图形绘制在指定的PixelMap对象中，若未设置，则在当前绘制目标中进行绘制。 |
 
 
 ## 属性
 
 除支持[通用属性](ts-universal-attributes-size.md)外，还支持以下属性：
 
-| 参数名称 | 参数类型 | 默认值 | 必填 | 参数描述 |
+| 名称 | 类型 | 默认值 | 必填 | 描述 |
 | -------- | -------- | -------- | -------- | -------- |
 | viewPort | {<br/>x?:&nbsp;number \| string,<br/>y?:&nbsp;number \| string,<br/>width?:&nbsp;number \| string,<br/>height?:&nbsp;number \| string<br/>} | { x:0, y:0, width:0, height:0 } | 否 | 形状的视口。 |
 | fill | [ResourceColor](ts-types.md#resourcecolor8) | Color.Black | 否 | 设置填充区域颜色。 |

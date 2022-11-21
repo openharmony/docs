@@ -60,7 +60,7 @@
 
 ## 示例
 
-```
+```html
 <!--xxx.hml -->
 <div class="container">
   <div class="row">
@@ -78,11 +78,11 @@
 </div>
 ```
 
-```
+```css
 /*xxx.css */
 .container {
   flex-direction: column;
-  align-items: center;
+  margin-left: 20px;
 }
 .row {
   flex-direction: row;
