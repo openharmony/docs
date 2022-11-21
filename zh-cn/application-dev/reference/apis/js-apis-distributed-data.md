@@ -35,7 +35,7 @@ createKVManager(config: KVManagerConfig, callback: AsyncCallback&lt;KVManager&gt
 
 **参数：**
 
-| 参数名 | 参数类型 | 必填 | 说明 |
+| 参数名 | 类型 | 必填 | 说明 |
 | ----- | ------ | ------ | ------ |
 | config | [KVManagerConfig](#kvmanagerconfig) | 是  | 提供KVManager实例的配置信息，包括调用方的包名和用户信息。 |
 | callback | AsyncCallback&lt;[KVManager](#kvmanager)&gt; | 是  | 回调函数。返回创建的KVManager对象实例。 |
@@ -75,7 +75,7 @@ createKVManager(config: KVManagerConfig): Promise&lt;KVManager&gt;
 
 **参数：**
 
-| 参数名 | 参数类型 | 必填 | 说明 |
+| 参数名 | 类型 | 必填 | 说明 |
 | ----- | ------ | ------ | ------ |
 | config |[KVManagerConfig](#kvmanager) | 是  | 提供KVManager实例的配置信息，包括调用方的包名和用户信息。 |
 
@@ -116,10 +116,10 @@ try {
 
 **系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core
 
-| 参数名 | 参数类型 | 必填 | 说明 |
-| ----- | ------ | ------ | ------ |
-| userInfo | [UserInfo](#userinfo) | 是  | 调用方的用户信息。 |
-| bundleName | string | 是  | 调用方的包名。 |
+| 名称 | 类型 | 可读 | 可写 | 说明 |
+| ----- | ------ | ------ | ------ | ------ |
+| userInfo | [UserInfo](#userinfo) | 是  | 是  | 调用方的用户信息。 |
+| bundleName | string | 是  | 是  | 调用方的包名。 |
 
 ## UserInfo
 
@@ -127,10 +127,10 @@ try {
 
 **系统能力：** SystemCapability.DistributedDataManager.KVStore.Core
 
-| 名称 | 参数类型 | 必填 | 说明 |
+| 名称 | 类型 | 可读 | 可写 | 说明 |
 | ----- | ------ | ------ | ------ |
-| userId | string | 是  | 指示要设置的用户ID。 |
-| userType | [UserType](#usertype) | 是  | 指示要设置的用户类型。 |
+| userId | string | 是  | 是  | 指示要设置的用户ID。 |
+| userType | [UserType](#usertype) | 是  | 是  | 指示要设置的用户类型。 |
 
 
 ## UserType
@@ -158,7 +158,7 @@ getKVStore&lt;T extends KVStore&gt;(storeId: string, options: Options, callback:
 
 **参数：**
 
-| 参数名 | 参数类型 | 必填 | 说明 |
+| 参数名 | 类型 | 必填 | 说明 |
 | ----- | ------ | ------ | ------ |
 | storeId | string | 是  | 数据库唯一标识符，长度不大于[MAX_STORE_ID_LENGTH](#constants)。 |
 | options | [Options](#options) | 是  | 创建KVStore实例的配置信息。 |
@@ -202,7 +202,7 @@ getKVStore&lt;T extends KVStore&gt;(storeId: string, options: Options): Promise&
 
 **参数：**
 
-| 参数名   | 参数类型                | 必填  | 说明    |
+| 参数名   | 类型                | 必填  | 说明    |
 | ------- | ---------------------- | ---- | -------------------- |
 | storeId  | string      | 是   | 数据库唯一标识符，长度不大于[MAX_STORE_ID_LENGTH](#constants)。 |
 | options  | [Options](#options)   | 是   | 创建KVStore实例的配置信息。|
@@ -250,7 +250,7 @@ closeKVStore(appId: string, storeId: string, kvStore: KVStore, callback: AsyncCa
 **参数：**
 
 
-| 参数名   | 参数类型              | 必填 | 说明         |
+| 参数名   | 类型              | 必填 | 说明         |
 | ------- | -----------------   | ---- | --------------------------- |
 | appId    | string              | 是   | 所调用数据库方的包名。         |
 | storeId  | string  | 是   | 要关闭的数据库唯一标识符，长度不大于[MAX_STORE_ID_LENGTH](#constants)。 |
@@ -295,7 +295,7 @@ closeKVStore(appId: string, storeId: string, kvStore: KVStore): Promise&lt;void&
 
 **参数：**
 
-| 参数名  | 参数类型 | 必填  | 说明        |
+| 参数名  | 类型 | 必填  | 说明        |
 | -----  | ------  | ---- | ----------------------------- |
 | appId  | string  | 是   | 所调用数据库方的包名。            |
 | storeId | string | 是   | 要关闭的数据库唯一标识符，长度不大于[MAX_STORE_ID_LENGTH](#constants)。 |
@@ -349,7 +349,7 @@ deleteKVStore(appId: string, storeId: string, callback: AsyncCallback&lt;void&gt
 
 **参数：**
 
-| 参数名  | 参数类型 | 必填  | 说明                    |
+| 参数名  | 类型 | 必填  | 说明                    |
 | -----  | ------  | ----  | ----------------------- |
 | appId  | string  | 是   | 所调用数据库方的包名。     |
 | storeId | string | 是   | 要删除的数据库唯一标识符，长度不大于[MAX_STORE_ID_LENGTH](#constants)。 |
@@ -392,7 +392,7 @@ deleteKVStore(appId: string, storeId: string): Promise&lt;void&gt;
 
 **参数：**
 
-| 参数名  | 参数类型 | 必填  | 说明                    |
+| 参数名  | 类型 | 必填  | 说明                    |
 | -----  | ------  | ----  | ----------------------- |
 | appId  | string  | 是   | 所调用数据库方的包名。     |
 | storeId | string | 是   | 要删除的数据库唯一标识符，长度不大于[MAX_STORE_ID_LENGTH](#constants)。 |
@@ -446,7 +446,7 @@ getAllKVStoreId(appId: string, callback: AsyncCallback&lt;string[]&gt;): void
 
 **参数：**
 
-| 参数名  | 参数类型 | 必填  | 说明                    |
+| 参数名  | 类型 | 必填  | 说明                    |
 | -----  | ------  | ----  | ----------------------- |
 | appId  | string  | 是    | 所调用数据库方的包名。     |
 | callback | AsyncCallback&lt;string[]&gt; | 是   |回调函数。返回所有创建的KvStore数据库的storeId。 |
@@ -476,7 +476,7 @@ getAllKVStoreId(appId: string): Promise&lt;string[]&gt;
 
 **参数：**
 
-| 参数名  | 参数类型 | 必填  | 说明                    |
+| 参数名  | 类型 | 必填  | 说明                    |
 | -----  | ------  | ----  | ----------------------- |
 | appId  | string  | 是    | 所调用数据库方的包名。     |
 
@@ -515,7 +515,7 @@ on(event: 'distributedDataServiceDie', deathCallback: Callback&lt;void&gt;): voi
 
 **参数：**
 
-| 参数名  | 参数类型 | 必填  | 说明                    |
+| 参数名  | 类型 | 必填  | 说明                    |
 | -----  | ------  | ----  | ----------------------- |
 | event  | string | 是    | 订阅的事件名，固定为'distributedDataServiceDie'，即服务状态变更事件。 |
 | deathCallback  | Callback&lt;void&gt;  | 是    | 回调函数。 |
@@ -546,7 +546,7 @@ off(event: 'distributedDataServiceDie', deathCallback?: Callback&lt;void&gt;): v
 
 **参数：**
 
-| 参数名  | 参数类型 | 必填  | 说明                    |
+| 参数名  | 类型 | 必填  | 说明                    |
 | -----  | ------  | ----  | ----------------------- |
 | event  | string | 是    | 取消订阅的事件名，固定为'distributedDataServiceDie'，即服务状态变更事件。 |
 | deathCallback  | Callback&lt;void&gt;  | 否    | 回调函数。 |
@@ -573,15 +573,15 @@ try {
 用于提供创建数据库的配置信息。
 
 
-| 参数名  | 参数类型 | 必填  | 说明                    |
+| 名称  | 类型 | 可读  | 可写  | 说明                    |
 | -----  | ------  | ----  | ----------------------- |
-| createIfMissing  | boolean | 否 | 当数据库文件不存在时是否创建数据库，默认创建。 <br>**系统能力：** SystemCapability.DistributedDataManager.KVStore.Core    |
-| encrypt  | boolean | 否 |设置数据库文件是否加密，默认不加密。<br>**系统能力：** SystemCapability.DistributedDataManager.KVStore.Core     |
-| backup  | boolean | 否 |设置数据库文件是否备份，默认备份。 <br>**系统能力：** SystemCapability.DistributedDataManager.KVStore.Core    |
-| autoSync  | boolean | 否 |设置数据库文件是否自动同步，默认不自动同步。<br>**系统能力：** SystemCapability.DistributedDataManager.KVStore.Core<br>**需要权限**： ohos.permission.DISTRIBUTED_DATASYNC     |
-| kvStoreType | [KVStoreType](#kvstoretype) | 否 |设置要创建的数据库类型，默认为多设备协同数据库。<br>**系统能力：** SystemCapability.DistributedDataManager.KVStore.Core |
-| securityLevel | [SecurityLevel](#securitylevel) | 否 |设置数据库安全级别，默认不设置安全级别。<br>**系统能力：** SystemCapability.DistributedDataManager.KVStore.Core  |
-| schema<sup>8+</sup> | [Schema](#schema8) | 否 | 设置定义存储在数据库中的值。<br>**系统能力：** SystemCapability.DistributedDataManager.KVStore.DistributedKVStore |
+| createIfMissing  | boolean | 是 | 是 | 当数据库文件不存在时是否创建数据库，默认创建。 <br>**系统能力：** SystemCapability.DistributedDataManager.KVStore.Core    |
+| encrypt  | boolean | 是 | 是 |设置数据库文件是否加密，默认不加密。<br>**系统能力：** SystemCapability.DistributedDataManager.KVStore.Core     |
+| backup  | boolean | 是 | 是 |设置数据库文件是否备份，默认备份。 <br>**系统能力：** SystemCapability.DistributedDataManager.KVStore.Core    |
+| autoSync  | boolean | 是 | 是 |设置数据库文件是否自动同步，默认不自动同步。<br>**系统能力：** SystemCapability.DistributedDataManager.KVStore.Core<br>**需要权限**： ohos.permission.DISTRIBUTED_DATASYNC     |
+| kvStoreType | [KVStoreType](#kvstoretype) | 是 | 是 |设置要创建的数据库类型，默认为多设备协同数据库。<br>**系统能力：** SystemCapability.DistributedDataManager.KVStore.Core |
+| securityLevel | [SecurityLevel](#securitylevel) | 是 | 是 |设置数据库安全级别，默认不设置安全级别。<br>**系统能力：** SystemCapability.DistributedDataManager.KVStore.Core  |
+| schema<sup>8+</sup> | [Schema](#schema8) | 是 | 是 | 设置定义存储在数据库中的值。<br>**系统能力：** SystemCapability.DistributedDataManager.KVStore.DistributedKVStore |
 
 
 ## KVStoreType
@@ -631,12 +631,12 @@ KVStore常量。
 
 **系统能力：** SystemCapability.DistributedDataManager.KVStore.DistributedKVStore
 
-| 名称  | 类型 | 说明                    |
+| 名称  | 类型 | 可读 | 可写 | 说明                    |
 | ---   | ----  | ----------------------- |
-| root<sup>8+</sup>  | [FieldNode](#fieldnode8) | 表示json根对象。 |
-| indexes<sup>8+</sup>  | Array\<string> | 表示json类型的字符串数组。  |
-| mode<sup>8+</sup>  | number | 表示Schema的模式。  |
-| skip<sup>8+</sup>  | number |  Schema的跳跃大小。  |
+| root<sup>8+</sup>  | [FieldNode](#fieldnode8) | 是 | 是 | 表示json根对象。 |
+| indexes<sup>8+</sup>  | Array\<string> | 是 | 是 | 表示json类型的字符串数组。  |
+| mode<sup>8+</sup>  | number | 是 | 是 | 表示Schema的模式。  |
+| skip<sup>8+</sup>  | number | 是 | 是 |  Schema的跳跃大小。  |
 
 ### constructor<sup>8+</sup> 
 
@@ -652,11 +652,11 @@ constructor()
 
 **系统能力：** SystemCapability.DistributedDataManager.KVStore.DistributedKVStore
 
-| 名称  | 类型 | 说明                    |
+| 名称  | 类型 | 可读 | 可写 | 说明                    |
 | ---   | ----  | ----------------------- |
-| nullable<sup>8+</sup>  | boolean | 表示数据库字段是否可以为空。   |
-| default<sup>8+</sup>  | string | 表示Fieldnode的默认值。 |
-| type<sup>8+</sup>  | number | 表示指定节点对应数据类型的值。 |
+| nullable<sup>8+</sup>  | boolean | 是 | 是 | 表示数据库字段是否可以为空。   |
+| default<sup>8+</sup>  | string | 是 | 是 | 表示Fieldnode的默认值。 |
+| type<sup>8+</sup>  | number | 是 | 是 | 表示指定节点对应数据类型的值。 |
 
 ### constructor<sup>8+</sup>
 
@@ -668,7 +668,7 @@ constructor(name: string)
 
 **参数：**
 
-| 参数名 | 参数类型 | 必填 | 说明            |
+| 参数名 | 类型 | 必填 | 说明            |
 | ------ | -------- | ---- | --------------- |
 | name   | string   | 是   | FieldNode的值。 |
 
@@ -682,7 +682,7 @@ appendChild(child: FieldNode): boolean
 
 **参数：**
 
-| 参数名  | 参数类型 | 必填  | 说明                    |
+| 参数名  | 类型 | 必填  | 说明                    |
 | -----  | ------  | ----  | ----------------------- |
 | child  | [FieldNode](#fieldnode8) | 是    | 要附加的域节点。   |
 
@@ -935,7 +935,7 @@ move(offset: number): boolean
 
 **参数：**
 
-| 参数名  | 参数类型 | 必填  | 说明                    |
+| 参数名  | 类型 | 必填  | 说明                    |
 | -----  | ------  | ----  | ----------------------- |
 | offset  | number  | 是    | 表示与当前位置的相对偏移量，负偏移表示向后移动，正偏移表示向前移动。   |
 
@@ -975,7 +975,7 @@ moveToPosition(position: number): boolean
 
 **参数：**
 
-| 参数名  | 参数类型 | 必填  | 说明                    |
+| 参数名  | 类型 | 必填  | 说明                    |
 | -----  | ------  | ----  | ----------------------- |
 | position  | number  | 是    |表示绝对位置。          |
 
@@ -1230,7 +1230,7 @@ equalTo(field: string, value: number|string|boolean): Query
 
 **参数：**
 
-| 参数名  | 参数类型 | 必填  | 说明                    |
+| 参数名  | 类型 | 必填  | 说明                    |
 | -----  | ------  | ----  | ----------------------- |
 | fieId  | string  | 是    |表示指定字段，不能包含' ^ '。  |
 | value  | number\|string\|boolean  | 是    | 表示指定的值。|
@@ -1265,7 +1265,7 @@ notEqualTo(field: string, value: number|string|boolean): Query
 
 **参数：**
 
-| 参数名  | 参数类型 | 必填  | 说明                    |
+| 参数名  | 类型 | 必填  | 说明                    |
 | -----  | ------  | ----  | ----------------------- |
 | fieId  | string  | 是    |表示指定字段，不能包含' ^ '。  |
 | value  | number\|string\|boolean  | 是    | 表示指定的值。|
@@ -1300,7 +1300,7 @@ greaterThan(field: string, value: number|string|boolean): Query
 
 **参数：**
 
-| 参数名  | 参数类型 | 必填  | 说明                    |
+| 参数名  | 类型 | 必填  | 说明                    |
 | -----  | ------  | ----  | ----------------------- |
 | fieId  | string  | 是    |表示指定字段，不能包含' ^ '。  |
 | value  | number\|string\|boolean  | 是    | 表示指定的值。|
@@ -1335,7 +1335,7 @@ lessThan(field: string, value: number|string): Query
 
 **参数：**
 
-| 参数名  | 参数类型 | 必填  | 说明                    |
+| 参数名  | 类型 | 必填  | 说明                    |
 | -----  | ------  | ----  | ----------------------- |
 | fieId  | string  | 是    |表示指定字段，不能包含' ^ '。  |
 | value  | number\|string\|boolean  | 是    | 表示指定的值。|
@@ -1370,7 +1370,7 @@ greaterThanOrEqualTo(field: string, value: number|string): Query
 
 **参数：**
 
-| 参数名  | 参数类型 | 必填  | 说明                    |
+| 参数名  | 类型 | 必填  | 说明                    |
 | -----  | ------  | ----  | ----------------------- |
 | fieId  | string  | 是    |表示指定字段，不能包含' ^ '。  |
 | value  | number\|string\|boolean  | 是    | 表示指定的值。|
@@ -1405,7 +1405,7 @@ lessThanOrEqualTo(field: string, value: number|string): Query
 
 **参数：**
 
-| 参数名  | 参数类型 | 必填  | 说明                    |
+| 参数名  | 类型 | 必填  | 说明                    |
 | -----  | ------  | ----  | ----------------------- |
 | fieId  | string  | 是    |表示指定字段，不能包含' ^ '。  |
 | value  | number\|string\|boolean  | 是    | 表示指定的值。|
@@ -1440,7 +1440,7 @@ isNull(field: string): Query
 
 **参数：**
 
-| 参数名  | 参数类型 | 必填  | 说明                    |
+| 参数名  | 类型 | 必填  | 说明                    |
 | -----  | ------  | ----  | ----------------------- |
 | fieId  | string  | 是    |表示指定字段，不能包含' ^ '。  |
 
@@ -1475,7 +1475,7 @@ inNumber(field: string, valueList: number[]): Query
 
 **参数：**
 
-| 参数名  | 参数类型 | 必填  | 说明                    |
+| 参数名  | 类型 | 必填  | 说明                    |
 | -----  | ------  | ----  | ----------------------- |
 | fieId  | string  | 是    |表示指定字段，不能包含' ^ '。  |
 | valueList  | number[]  | 是    | 表示指定的值列表。|
@@ -1510,7 +1510,7 @@ inString(field: string, valueList: string[]): Query
 
 **参数：**
 
-| 参数名  | 参数类型 | 必填  | 说明                    |
+| 参数名  | 类型 | 必填  | 说明                    |
 | -----  | ------  | ----  | ----------------------- |
 | fieId  | string  | 是    |表示指定字段，不能包含' ^ '。  |
 | valueList  | string[]  | 是    | 表示指定的字符串值列表。|
@@ -1545,7 +1545,7 @@ notInNumber(field: string, valueList: number[]): Query
 
 **参数：**
 
-| 参数名  | 参数类型 | 必填  | 说明                    |
+| 参数名  | 类型 | 必填  | 说明                    |
 | -----  | ------  | ----  | ----------------------- |
 | fieId  | string  | 是    |表示指定字段，不能包含' ^ '。  |
 | valueList  | number[]  | 是    | 表示指定的值列表。|
@@ -1580,7 +1580,7 @@ notInString(field: string, valueList: string[]): Query
 
 **参数：**
 
-| 参数名  | 参数类型 | 必填  | 说明                    |
+| 参数名  | 类型 | 必填  | 说明                    |
 | -----  | ------  | ----  | ----------------------- |
 | fieId  | string  | 是    |表示指定字段，不能包含' ^ '。  |
 | valueList  | string[]  | 是    | 表示指定的字符串值列表。|
@@ -1615,7 +1615,7 @@ like(field: string, value: string): Query
 
 **参数：**
 
-| 参数名  | 参数类型 | 必填  | 说明                    |
+| 参数名  | 类型 | 必填  | 说明                    |
 | -----  | ------  | ----  | ----------------------- |
 | fieId  | string  | 是    |表示指定字段，不能包含' ^ '。  |
 | value  | string  | 是    | 表示指定的字符串值。|
@@ -1650,7 +1650,7 @@ unlike(field: string, value: string): Query
 
 **参数：**
 
-| 参数名  | 参数类型 | 必填  | 说明                    |
+| 参数名  | 类型 | 必填  | 说明                    |
 | -----  | ------  | ----  | ----------------------- |
 | fieId  | string  | 是    |表示指定字段，不能包含' ^ '。  |
 | value  | string  | 是    | 表示指定的字符串值。|
@@ -1745,7 +1745,7 @@ orderByAsc(field: string): Query
 
 **参数：**
 
-| 参数名  | 参数类型 | 必填  | 说明                    |
+| 参数名  | 类型 | 必填  | 说明                    |
 | -----  | ------  | ----  | ----------------------- |
 | fieId  | string  | 是    |表示指定字段，不能包含' ^ '。  |
 
@@ -1780,7 +1780,7 @@ orderByDesc(field: string): Query
 
 **参数：**
 
-| 参数名  | 参数类型 | 必填  | 说明                    |
+| 参数名  | 类型 | 必填  | 说明                    |
 | -----  | ------  | ----  | ----------------------- |
 | fieId  | string  | 是    |表示指定字段，不能包含' ^ '。  |
 
@@ -1815,7 +1815,7 @@ limit(total: number, offset: number): Query
 
 **参数：**
 
-| 参数名  | 参数类型 | 必填  | 说明                    |
+| 参数名  | 类型 | 必填  | 说明                    |
 | -----  | ------  | ----  | ----------------------- |
 | total  | number  | 是    |表示指定的结果数。  |
 | offset | number  | 是    |表示起始位置。  |
@@ -1853,7 +1853,7 @@ isNotNull(field: string): Query
 
 **参数：**
 
-| 参数名  | 参数类型 | 必填  | 说明                    |
+| 参数名  | 类型 | 必填  | 说明                    |
 | -----  | ------  | ----  | ----------------------- |
 | fieId  | string  | 是    |表示指定字段，不能包含' ^ '。      |
 
@@ -1947,7 +1947,7 @@ prefixKey(prefix: string): Query
 
 **参数：**
 
-| 参数名  | 参数类型 | 必填  | 说明                    |
+| 参数名  | 类型 | 必填  | 说明                    |
 | -----  | ------  | ----  | ----------------------- |
 | prefix | string  | 是    |表示指定的键前缀。     |
 
@@ -1982,7 +1982,7 @@ setSuggestIndex(index: string): Query
 
 **参数：**
 
-| 参数名  | 参数类型 | 必填  | 说明                    |
+| 参数名  | 类型 | 必填  | 说明                    |
 | -----  | ------  | ----  | ----------------------- |
 | index  | string  | 是    |指示要设置的索引。   |
 
@@ -2017,7 +2017,7 @@ deviceId(deviceId:string):Query
 
 **参数：**
 
-| 参数名  | 参数类型 | 必填  | 说明                    |
+| 参数名  | 类型 | 必填  | 说明                    |
 | -----  | ------  | ----  | ----------------------- |
 | deviceId | string  | 是    |指示查询的设备ID。   |
 
@@ -2084,7 +2084,7 @@ put(key: string, value: Uint8Array | string | number | boolean, callback: AsyncC
 
 **参数：**
 
-| 参数名  | 参数类型 | 必填  | 说明                    |
+| 参数名  | 类型 | 必填  | 说明                    |
 | -----  | ------  | ----  | ----------------------- |
 | key    | string  | 是    |要添加数据的key，不能为空且长度不大于[MAX_KEY_LENGTH](#constants)。   |
 | value  | Uint8Array \| string \| number \| boolean | 是    |要添加数据的value，支持Uint8Array、number 、 string 、boolean，Uint8Array、string 的长度不大于[MAX_VALUE_LENGTH](#constants)。   |
@@ -2119,7 +2119,7 @@ put(key: string, value: Uint8Array | string | number | boolean): Promise&lt;void
 
 **参数：**
 
-| 参数名  | 参数类型 | 必填  | 说明                    |
+| 参数名  | 类型 | 必填  | 说明                    |
 | -----  | ------  | ----  | ----------------------- |
 | key    | string  | 是    |要添加数据的key，不能为空且长度不大于[MAX_KEY_LENGTH](#constants)。   |
 | value  | Uint8Array \| string \| number \| boolean | 是    |要添加数据的value，支持Uint8Array、number 、 string 、boolean，Uint8Array、string 的长度不大于[MAX_VALUE_LENGTH](#constants)。   |
@@ -2157,7 +2157,7 @@ delete(key: string, callback: AsyncCallback&lt;void&gt;): void
 
 **参数：**
 
-| 参数名  | 参数类型 | 必填  | 说明                    |
+| 参数名  | 类型 | 必填  | 说明                    |
 | -----  | ------  | ----  | ----------------------- |
 | key    | string  | 是    |要删除数据的key，不能为空且长度不大于[MAX_KEY_LENGTH](#constants)。   |
 | callback  | AsyncCallback&lt;void&gt;  | 是    |回调函数。   |
@@ -2198,7 +2198,7 @@ delete(key: string): Promise&lt;void&gt;
 
 **参数：**
 
-| 参数名  | 参数类型 | 必填  | 说明                    |
+| 参数名  | 类型 | 必填  | 说明                    |
 | -----  | ------  | ----  | ----------------------- |
 | key    | string  | 是    |要删除数据的key，不能为空且长度不大于[MAX_KEY_LENGTH](#constants)。   |
 
@@ -2240,7 +2240,7 @@ on(event: 'dataChange', type: SubscribeType, listener: Callback&lt;ChangeNotific
 
 **参数：**
 
-| 参数名  | 参数类型 | 必填  | 说明                    |
+| 参数名  | 类型 | 必填  | 说明                    |
 | -----  | ------  | ----  | ----------------------- |
 | event  |string  | 是    |订阅的事件名，固定为'dataChange'，表示数据变更事件。       |
 | type  |[SubscribeType](#subscribetype) | 是    |表示订阅的类型。     |
@@ -2265,7 +2265,7 @@ on(event: 'syncComplete', syncCallback: Callback&lt;Array&lt;[string, number]&gt
 
 **参数：**
 
-| 参数名  | 参数类型 | 必填  | 说明                    |
+| 参数名  | 类型 | 必填  | 说明                    |
 | -----  | ------  | ----  | ----------------------- |
 | event  |string | 是    |订阅的事件名，固定为'syncComplete'，表示同步完成事件。       |
 | syncCallback  |Callback&lt;Array&lt;[string, number]&gt;&gt; | 是    |回调函数。     |
@@ -2289,7 +2289,7 @@ off(event:'dataChange', listener?: Callback&lt;ChangeNotification&gt;): void
 
 **参数：**
 
-| 参数名  | 参数类型 | 必填  | 说明                    |
+| 参数名  | 类型 | 必填  | 说明                    |
 | -----  | ------  | ----  | ----------------------- |
 | event  |string  | 是    |取消订阅的事件名，固定为'dataChange'，表示数据变更事件。       |
 | listener |Callback&lt;[ChangeNotification](#changenotification)&gt; |否    |回调函数。 |
@@ -2325,7 +2325,7 @@ putBatch(entries: Entry[], callback: AsyncCallback&lt;void&gt;): void
 
 **参数：**
 
-| 参数名  | 参数类型 | 必填  | 说明                    |
+| 参数名  | 类型 | 必填  | 说明                    |
 | -----  | ------  | ----  | ----------------------- |
 | entries  |[Entry](#entry)[] | 是    |表示要批量插入的键值对。  |
 | callback |Asyncallback&lt;void&gt; |是     |回调函数。 |
@@ -2372,7 +2372,7 @@ putBatch(entries: Entry[]): Promise&lt;void&gt;
 
 **参数：**
 
-| 参数名  | 参数类型 | 必填  | 说明                    |
+| 参数名  | 类型 | 必填  | 说明                    |
 | -----  | ------  | ----  | ----------------------- |
 | entries  |[Entry](#entry)[] | 是    |表示要批量插入的键值对。  |
 
@@ -2426,7 +2426,7 @@ deleteBatch(keys: string[], callback: AsyncCallback&lt;void&gt;): void
 
 **参数：**
 
-| 参数名  | 参数类型 | 必填  | 说明                    |
+| 参数名  | 类型 | 必填  | 说明                    |
 | -----  | ------  | ----  | ----------------------- |
 | keys  |string[] | 是    |表示要批量删除的键值对。  |
 | callback  |AsyncCallback&lt;void&gt; | 是    |回调函数。  |
@@ -2473,7 +2473,7 @@ deleteBatch(keys: string[]): Promise&lt;void&gt;
 
 **参数：**
 
-| 参数名  | 参数类型 | 必填  | 说明                    |
+| 参数名  | 类型 | 必填  | 说明                    |
 | -----  | ------  | ----  | ----------------------- |
 | keys   |string[] | 是    |表示要批量删除的键值对。  |
 
@@ -2529,7 +2529,7 @@ startTransaction(callback: AsyncCallback&lt;void&gt;): void
 
 **参数：**
 
-| 参数名  | 参数类型 | 必填  | 说明                    |
+| 参数名  | 类型 | 必填  | 说明                    |
 | -----  | ------  | ----  | ----------------------- |
 | callback  |AsyncCallback&lt;void&gt; | 是    |回调函数。  |
 
@@ -2616,7 +2616,7 @@ commit(callback: AsyncCallback&lt;void&gt;): void
 
 **参数：**
 
-| 参数名  | 参数类型 | 必填  | 说明                    |
+| 参数名  | 类型 | 必填  | 说明                    |
 | -----  | ------  | ----  | ----------------------- |
 | callback  |AsyncCallback&lt;void&gt; | 是    |回调函数。  |
 
@@ -2678,7 +2678,7 @@ rollback(callback: AsyncCallback&lt;void&gt;): void
 
 **参数：**
 
-| 参数名  | 参数类型 | 必填  | 说明                    |
+| 参数名  | 类型 | 必填  | 说明                    |
 | -----  | ------  | ----  | ----------------------- |
 | callback  |AsyncCallback&lt;void&gt; | 是    |回调函数。  |
 
@@ -2740,7 +2740,7 @@ enableSync(enabled: boolean, callback: AsyncCallback&lt;void&gt;): void
 
 **参数：**
 
-| 参数名  | 参数类型 | 必填  | 说明                    |
+| 参数名  | 类型 | 必填  | 说明                    |
 | -----  | ------  | ----  | ----------------------- |
 | enabled  |boolean | 是    |设定是否开启同步，true表示开启同步，false表示不启用同步。  |
 | callback  |AsyncCallback&lt;void&gt; | 是    |回调函数。  |
@@ -2773,7 +2773,7 @@ enableSync(enabled: boolean): Promise&lt;void&gt;
 
 **参数：**
 
-| 参数名  | 参数类型 | 必填  | 说明                    |
+| 参数名  | 类型 | 必填  | 说明                    |
 | -----  | ------  | ----  | ----------------------- |
 | enabled  |boolean | 是    |设定是否开启同步，true表示开启同步，false表示不启用同步。  |
 
@@ -2809,7 +2809,7 @@ setSyncRange(localLabels: string[], remoteSupportLabels: string[], callback: Asy
 
 **参数：**
 
-| 参数名  | 参数类型 | 必填  | 说明                    |
+| 参数名  | 类型 | 必填  | 说明                    |
 | -----  | ------  | ----  | ----------------------- |
 | localLabels  |string[] | 是    |表示本地设备的同步标签。  |
 | remoteSupportLabels  |string[] | 是    |表示要同步数据的设备的同步标签。  |
@@ -2841,7 +2841,7 @@ setSyncRange(localLabels: string[], remoteSupportLabels: string[]): Promise&lt;v
 
 **参数：**
 
-| 参数名  | 参数类型 | 必填  | 说明                    |
+| 参数名  | 类型 | 必填  | 说明                    |
 | -----  | ------  | ----  | ----------------------- |
 | localLabels  |string[] | 是    |表示本地设备的同步标签。  |
 | remoteSupportLabels  |string[] | 是    |表示要同步数据的设备的同步标签。  |
@@ -2889,7 +2889,7 @@ try {
 
 **系统能力：** SystemCapability.DistributedDataManager.KVStore.Core
 
-| 名称  | 参数类型   |可读   |可写   | 说明                    |
+| 名称  | 类型   |可读   |可写   | 说明                    |
 | ----- | -------   | -----| ------|------------------------ |
 | insertEntries | [Entry](#entry)[]   | 是  |  是 |数据添加记录。   |
 | updateEntries | [Entry](#entry)[]   | 是  |  是 |数据更新记录。   |
@@ -2902,7 +2902,7 @@ try {
 
 **系统能力：** SystemCapability.DistributedDataManager.KVStore.Core
 
-| 名称  | 参数类型   |可读   |可写   | 说明                    |
+| 名称  | 类型   |可读   |可写   | 说明                    |
 | ----- | -------   | -----| ------|------------------------ |
 | key | string   | 是  |  是 |键值。   |
 | value | [Value](#value) | 是  |  是 |值对象。   |
@@ -2914,7 +2914,7 @@ try {
 
 **系统能力：** SystemCapability.DistributedDataManager.KVStore.Core
 
-| 名称  | 参数类型   |可读   |可写   | 说明                    |
+| 名称  | 类型   |可读   |可写   | 说明                    |
 | ----- | -------   | -----| ------|------------------------ |
 | type | [ValueType](#value)   | 是  |  是 |值类型。   |
 | value | Uint8Array \| string \| number \| boolean| 是  |  是 |值。   |
@@ -2952,7 +2952,7 @@ get(key: string, callback: AsyncCallback&lt;Uint8Array | string | boolean | numb
 
 **参数：**
 
-| 参数名  | 参数类型 | 必填  | 说明                    |
+| 参数名  | 类型 | 必填  | 说明                    |
 | -----  | ------  | ----  | ----------------------- |
 | key    |string   | 是    |要查询数据的key，不能为空且长度不大于[MAX_KEY_LENGTH](#constants)。  |
 | callback  |AsyncCallback&lt;Uint8Array \| string \| boolean \| number&gt;) | 是    |回调函数。返回获取查询的值。  |
@@ -2990,7 +2990,7 @@ get(key: string): Promise&lt;Uint8Array | string | boolean | number&gt;
 
 **参数：**
 
-| 参数名  | 参数类型 | 必填  | 说明                    |
+| 参数名  | 类型 | 必填  | 说明                    |
 | -----  | ------  | ----  | ----------------------- |
 | key    |string   | 是    |要查询数据的key，不能为空且长度不大于[MAX_KEY_LENGTH](#constants)。  |
 
@@ -3033,7 +3033,7 @@ getEntries(keyPrefix: string, callback: AsyncCallback&lt;Entry[]&gt;): void
 
 **参数：**
 
-| 参数名  | 参数类型 | 必填  | 说明                    |
+| 参数名  | 类型 | 必填  | 说明                    |
 | -----  | ------  | ----  | ----------------------- |
 | keyPrefix    |string   | 是    |表示要匹配的键前缀。  |
 | callback    |AsyncCallback&lt;[Entry](#entry)[]&gt;   | 是    |回调函数。返回匹配指定前缀的键值对列表。  |
@@ -3079,7 +3079,7 @@ getEntries(keyPrefix: string): Promise&lt;Entry[]&gt;
 
 **参数：**
 
-| 参数名  | 参数类型 | 必填  | 说明                    |
+| 参数名  | 类型 | 必填  | 说明                    |
 | -----  | ------  | ----  | ----------------------- |
 | keyPrefix    |string   | 是    |表示要匹配的键前缀。  |
 
@@ -3137,7 +3137,7 @@ getEntries(query: Query, callback: AsyncCallback&lt;Entry[]&gt;): void
 
 **参数：**
 
-| 参数名  | 参数类型 | 必填  | 说明                    |
+| 参数名  | 类型 | 必填  | 说明                    |
 | -----  | ------  | ----  | ----------------------- |
 | query  |[Query](#query8)   | 是    |表示要匹配的键前缀。  |
 | callback  |AsyncCallback&lt;[Entry](#entry)[]&gt;   | 是    |回调函数。返回与指定Query对象匹配的键值对列表。  |
@@ -3188,7 +3188,7 @@ getEntries(query: Query): Promise&lt;Entry[]&gt;
 
 **参数：**
 
-| 参数名  | 参数类型 | 必填  | 说明                    |
+| 参数名  | 类型 | 必填  | 说明                    |
 | -----  | ------  | ----  | ----------------------- |
 | query  |[Query](#query8)   | 是    |表示查询对象。  |
 
@@ -3246,7 +3246,7 @@ getResultSet(keyPrefix: string, callback: AsyncCallback&lt;KvStoreResultSet&gt;)
 
 **参数：**
 
-| 参数名  | 参数类型 | 必填  | 说明                    |
+| 参数名  | 类型 | 必填  | 说明                    |
 | -----  | ------  | ----  | ----------------------- |
 | keyPrefix  |string   | 是    |表示要匹配的键前缀。 |
 | callback  |AsyncCallback&lt;[KvStoreResultSet](#kvstoreresultset8)&gt;   | 是    |回调函数。返回具有指定前缀的结果集。 |
@@ -3295,7 +3295,7 @@ getResultSet(keyPrefix: string): Promise&lt;KvStoreResultSet&gt;
 
 **参数：**
 
-| 参数名  | 参数类型 | 必填  | 说明                    |
+| 参数名  | 类型 | 必填  | 说明                    |
 | -----  | ------  | ----  | ----------------------- |
 | keyPrefix  |string   | 是    |表示要匹配的键前缀。 |
 
@@ -3355,7 +3355,7 @@ getResultSet(query: Query, callback: AsyncCallback&lt;KvStoreResultSet&gt;): voi
 
 **参数：**
 
-| 参数名  | 参数类型 | 必填  | 说明                    |
+| 参数名  | 类型 | 必填  | 说明                    |
 | -----  | ------   | ----  | ----------------------- |
 | query  |Query    | 是    |表示查询对象。             |
 | callback  |AsyncCallback&lt;[KvStoreResultSet](#kvstoreresultset8)&gt;   | 是    |回调函数，获取与指定Query对象匹配的KvStoreResultSet对象。 |
@@ -3403,7 +3403,7 @@ getResultSet(query: Query): Promise&lt;KvStoreResultSet&gt;
 
 **参数：**
 
-| 参数名  | 参数类型 | 必填  | 说明                    |
+| 参数名  | 类型 | 必填  | 说明                    |
 | -----  | ------   | ----  | ----------------------- |
 | query  |[Query](#query8)    | 是    |表示查询对象。             |
 
@@ -3459,7 +3459,7 @@ closeResultSet(resultSet: KvStoreResultSet, callback: AsyncCallback&lt;void&gt;)
 
 **参数：**
 
-| 参数名  | 参数类型 | 必填  | 说明                    |
+| 参数名  | 类型 | 必填  | 说明                    |
 | -----  | ------   | ----  | ----------------------- |
 | resultSet  |[KvStoreResultSet](#kvstoreresultset8)   | 是    |表示要关闭的KvStoreResultSet对象。             |
 | callback  |AsyncCallback&lt;void&gt;   | 是    |回调函数。             |
@@ -3493,7 +3493,7 @@ closeResultSet(resultSet: KvStoreResultSet): Promise&lt;void&gt;
 
 **参数：**
 
-| 参数名  | 参数类型 | 必填  | 说明                    |
+| 参数名  | 类型 | 必填  | 说明                    |
 | -----  | ------   | ----  | ----------------------- |
 | resultSet  |[KvStoreResultSet](#kvstoreresultset8)   | 是    |表示要关闭的KvStoreResultSet对象。             |
 
@@ -3530,7 +3530,7 @@ getResultSize(query: Query, callback: AsyncCallback&lt;number&gt;): void
 
 **参数：**
 
-| 参数名  | 参数类型 | 必填  | 说明                    |
+| 参数名  | 类型 | 必填  | 说明                    |
 | -----  | ------   | ----  | ----------------------- |
 | query  |[Query](#query8)   | 是    |表示查询对象。         |
 | callback  |AsyncCallback&lt;number&gt;   | 是    |回调函数。返回与指定Query对象匹配的结果数。         |
@@ -3576,7 +3576,7 @@ getResultSize(query: Query): Promise&lt;number&gt;
 
 **参数：**
 
-| 参数名  | 参数类型 | 必填  | 说明                    |
+| 参数名  | 类型 | 必填  | 说明                    |
 | -----  | ------   | ----  | ----------------------- |
 | query  |[Query](#query8)   | 是    |表示查询对象。         |
 
@@ -3631,7 +3631,7 @@ removeDeviceData(deviceId: string, callback: AsyncCallback&lt;void&gt;): void
 
 **参数：**
 
-| 参数名  | 参数类型 | 必填  | 说明                    |
+| 参数名  | 类型 | 必填  | 说明                    |
 | -----  | ------   | ----  | ----------------------- |
 | deviceId  |string   | 是    |表示要删除设备的名称。       |
 | callback  |AsyncCallback&lt;void&gt;   | 是    |回调函数。      |
@@ -3673,7 +3673,7 @@ removeDeviceData(deviceId: string): Promise&lt;void&gt;
 
 **参数：**
 
-| 参数名  | 参数类型 | 必填  | 说明                    |
+| 参数名  | 类型 | 必填  | 说明                    |
 | -----  | ------   | ----  | ----------------------- |
 | deviceId  |string   | 是    |表示要删除设备的名称。       |
 
@@ -3722,7 +3722,7 @@ on(event: 'syncComplete', syncCallback: Callback&lt;Array&lt;[string, number]&gt
 
 **参数：**
 
-| 参数名  | 参数类型 | 必填  | 说明                    |
+| 参数名  | 类型 | 必填  | 说明                    |
 | -----  | ------   | ----  | ----------------------- |
 | event  |string   | 是    |订阅的事件名，固定为'syncComplete'，表示同步完成事件。    |
 | syncCallback  |Callback&lt;Array&lt;[string, number]&gt;&gt;   | 是    |回调函数。用于向调用方发送同步结果的回调。    |
@@ -3758,7 +3758,7 @@ off(event: 'syncComplete', syncCallback?: Callback&lt;Array&lt;[string, number]&
 
 **参数：**
 
-| 参数名  | 参数类型 | 必填  | 说明                    |
+| 参数名  | 类型 | 必填  | 说明                    |
 | -----  | ------   | ----  | ----------------------- |
 | event  |string   | 是    |取消订阅的事件名，固定为'syncComplete'，表示同步完成事件。    |
 | syncCallback  |Callback&lt;Array&lt;[string, number]&gt;&gt;   | 否    |回调函数。用于向调用方发送同步结果的回调。    |
@@ -3797,7 +3797,7 @@ sync(deviceIds: string[], mode: SyncMode, delayMs?: number): void
 
 **参数：**
 
-| 参数名  | 参数类型 | 必填  | 说明                    |
+| 参数名  | 类型 | 必填  | 说明                    |
 | -----  | ------   | ----  | ----------------------- |
 | deviceIds  |string[]  | 是    |同一组网环境下，需要同步的设备的deviceId列表。    |
 | mode  |[SyncMode](#syncmode)   | 是   |同步模式。    |
@@ -3820,7 +3820,7 @@ setSyncParam(defaultAllowedDelayMs: number, callback: AsyncCallback&lt;void&gt;)
 
 **参数：**
 
-| 参数名  | 参数类型 | 必填  | 说明                    |
+| 参数名  | 类型 | 必填  | 说明                    |
 | -----  | ------   | ----  | ----------------------- |
 | defaultAllowedDelayMs  |number  | 是    |表示数据库同步允许的默认延迟，以毫秒为单位。    |
 | callback  |AsyncCallback&lt;void&gt;  | 是   |回调函数。   |
@@ -3850,7 +3850,7 @@ setSyncParam(defaultAllowedDelayMs: number): Promise&lt;void&gt;
 
 **参数：**
 
-| 参数名  | 参数类型 | 必填  | 说明                    |
+| 参数名  | 类型 | 必填  | 说明                    |
 | -----  | ------   | ----  | ----------------------- |
 | defaultAllowedDelayMs  |number  | 是    |表示数据库同步允许的默认延迟，以毫秒为单位。    |
 
@@ -3888,7 +3888,7 @@ getSecurityLevel(callback: AsyncCallback&lt;SecurityLevel&gt;): void
 
 **参数：**
 
-| 参数名  | 参数类型 | 必填  | 说明                    |
+| 参数名  | 类型 | 必填  | 说明                    |
 | -----  | ------   | ----  | ----------------------- |
 | callback  |AsyncCallback&lt;[SecurityLevel](#securitylevel)&gt;  | 是    |回调函数。返回数据库的安全级别。    |
 
@@ -3956,7 +3956,7 @@ get(deviceId: string, key: string, callback: AsyncCallback&lt;boolean|string|num
 
 **参数：**
 
-| 参数名  | 参数类型 | 必填  | 说明                    |
+| 参数名  | 类型 | 必填  | 说明                    |
 | -----  | ------   | ----  | ----------------------- |
 | deviceId  |string  | 是    |标识要查询其数据的设备。    |
 | key       |string  | 是    |表示要查询key值的键。    |
@@ -3991,7 +3991,7 @@ get(deviceId: string, key: string): Promise&lt;boolean|string|number|Uint8Array&
 
 **参数：**
 
-| 参数名  | 参数类型 | 必填  | 说明                    |
+| 参数名  | 类型 | 必填  | 说明                    |
 | -----  | ------   | ----  | ----------------------- |
 | deviceId  |string  | 是    |标识要查询其数据的设备。    |
 | key       |string  | 是    |表示要查询key值的键。    |
@@ -4035,7 +4035,7 @@ getEntries(deviceId: string, keyPrefix: string, callback: AsyncCallback&lt;Entry
 
 **参数：**
 
-| 参数名  | 参数类型 | 必填  | 说明                    |
+| 参数名  | 类型 | 必填  | 说明                    |
 | -----  | ------   | ----  | ----------------------- |
 | deviceId  |string  | 是    |标识要查询其数据的设备。    |
 | keyPrefix |string  | 是    |表示要匹配的键前缀。    |
@@ -4083,7 +4083,7 @@ getEntries(deviceId: string, keyPrefix: string): Promise&lt;Entry[]&gt;
 
 **参数：**
 
-| 参数名  | 参数类型 | 必填  | 说明                    |
+| 参数名  | 类型 | 必填  | 说明                    |
 | -----  | ------   | ----  | ----------------------- |
 | deviceId  |string  | 是    |标识要查询其数据的设备。    |
 | keyPrefix |string  | 是    |表示要匹配的键前缀。    |
@@ -4142,7 +4142,7 @@ getEntries(query: Query, callback: AsyncCallback&lt;Entry[]&gt;): void
 
 **参数：**
 
-| 参数名  | 参数类型 | 必填  | 说明                    |
+| 参数名  | 类型 | 必填  | 说明                    |
 | -----  | ------   | ----  | ----------------------- |
 | query  |[Query](#query8)  | 是    |表示查询对象。    |
 | callback |AsyncCallback&lt;[Entry](#entry)[]&gt;  | 是    |回调函数，返回与指定Query对象匹配的键值对列表。    |
@@ -4194,7 +4194,7 @@ getEntries(query: Query): Promise&lt;Entry[]&gt;
 
 **参数：**
 
-| 参数名  | 参数类型 | 必填  | 说明                    |
+| 参数名  | 类型 | 必填  | 说明                    |
 | -----  | ------   | ----  | ----------------------- |
 | query  |[Query](#query8)  | 是    |表示查询对象。    |
 
@@ -4252,7 +4252,7 @@ getEntries(deviceId: string, query: Query, callback: AsyncCallback&lt;Entry[]&gt
 
 **参数：**
 
-| 参数名  | 参数类型 | 必填  | 说明                    |
+| 参数名  | 类型 | 必填  | 说明                    |
 | -----  | ------   | ----  | ----------------------- |
 | deviceId  |string  | 是    |键值对所属的设备ID。    |
 | query  |[Query](#query8)  | 是    |表示查询对象。    |
@@ -4305,7 +4305,7 @@ getEntries(deviceId: string, query: Query): Promise&lt;Entry[]&gt;
 
 **参数：**
 
-| 参数名  | 参数类型 | 必填  | 说明                    |
+| 参数名  | 类型 | 必填  | 说明                    |
 | -----  | ------   | ----  | ----------------------- |
 | deviceId  |string  | 是    |键值对所属的设备ID。    |
 | query  |[Query](#query8)  | 是    |表示查询对象。    |
@@ -4365,7 +4365,7 @@ getResultSet(deviceId: string, keyPrefix: string, callback: AsyncCallback&lt;KvS
 
 **参数：**
 
-| 参数名  | 参数类型 | 必填  | 说明                    |
+| 参数名  | 类型 | 必填  | 说明                    |
 | -----  | ------   | ----  | ----------------------- |
 | deviceId  |string  | 是    |标识要查询其数据的设备。    |
 | keyPrefix |string  | 是    |表示要匹配的键前缀。    |
@@ -4400,7 +4400,7 @@ getResultSet(deviceId: string, keyPrefix: string): Promise&lt;KvStoreResultSet&g
 
 **参数：**
 
-| 参数名  | 参数类型 | 必填  | 说明                    |
+| 参数名  | 类型 | 必填  | 说明                    |
 | -----  | ------   | ----  | ----------------------- |
 | deviceId  |string  | 是    |标识要查询其数据的设备。    |
 | keyPrefix |string  | 是    |表示要匹配的键前缀。    |
@@ -4444,7 +4444,7 @@ getResultSet(query: Query, callback: AsyncCallback&lt;KvStoreResultSet&gt;): voi
 
 **参数：**
 
-| 参数名  | 参数类型 | 必填  | 说明                    |
+| 参数名  | 类型 | 必填  | 说明                    |
 | -----  | ------   | ----  | ----------------------- |
 | query  |[Query](#query8)  | 是    |表示查询对象。    |
 | callback  |AsyncCallback&lt;[KvStoreResultSet](#kvstoreresultset8)[]&gt;  | 是  |回调函数，返回与指定Query对象匹配的KvStoreResultSet对象。    |
@@ -4496,7 +4496,7 @@ getResultSet(query: Query): Promise&lt;KvStoreResultSet&gt;
 
 **参数：**
 
-| 参数名  | 参数类型 | 必填  | 说明                    |
+| 参数名  | 类型 | 必填  | 说明                    |
 | -----  | ------   | ----  | ----------------------- |
 | query  |[Query](#query8)  | 是    |表示查询对象。    |
 
@@ -4560,7 +4560,7 @@ getResultSet(deviceId: string, query: Query, callback: AsyncCallback&lt;KvStoreR
 
 **参数：**
 
-| 参数名  | 参数类型 | 必填  | 说明                    |
+| 参数名  | 类型 | 必填  | 说明                    |
 | -----  | ------   | ----  | ----------------------- |
 | deviceId  |string  | 是    |KvStoreResultSet对象所属的设备ID。    |
 | query  |[Query](#query8)  | 是    |表示查询对象。    |
@@ -4612,7 +4612,7 @@ getResultSet(deviceId: string, query: Query): Promise&lt;KvStoreResultSet&gt;
 
 **参数：**
 
-| 参数名  | 参数类型 | 必填  | 说明                    |
+| 参数名  | 类型 | 必填  | 说明                    |
 | -----  | ------   | ----  | ----------------------- |
 | deviceId  |string  | 是    |KvStoreResultSet对象所属的设备ID。    |
 | query  |[Query](#query8)  | 是    |表示查询对象。    |
@@ -4678,7 +4678,7 @@ closeResultSet(resultSet: KvStoreResultSet, callback: AsyncCallback&lt;void&gt;)
 
 **参数：**
 
-| 参数名  | 参数类型 | 必填  | 说明                    |
+| 参数名  | 类型 | 必填  | 说明                    |
 | -----  | ------   | ----  | ----------------------- |
 | resultSet  |[KvStoreResultSet](#getresultset8)  | 是    |指示要关闭的KvStoreResultSet对象。   |
 | callback   |AsyncCallback&lt;void&gt;                 | 是    |回调函数。    |
@@ -4713,7 +4713,7 @@ closeResultSet(resultSet: KvStoreResultSet): Promise&lt;void&gt;
 
 **参数：**
 
-| 参数名  | 参数类型 | 必填  | 说明                    |
+| 参数名  | 类型 | 必填  | 说明                    |
 | -----  | ------   | ----  | ----------------------- |
 | resultSet  |[KvStoreResultSet](#getresultset8)  | 是    |指示要关闭的KvStoreResultSet对象。   |
 
@@ -4751,7 +4751,7 @@ getResultSize(query: Query, callback: AsyncCallback&lt;number&gt;): void
 
 **参数：**
 
-| 参数名  | 参数类型 | 必填  | 说明                    |
+| 参数名  | 类型 | 必填  | 说明                    |
 | -----  | ------   | ----  | ----------------------- |
 | query     |[Query](#query8)       | 是    |表示查询对象。    |
 | callback  |AsyncCallback&lt;number&gt;  | 是    |回调函数，返回与指定Query对象匹配的结果数。    |
@@ -4798,7 +4798,7 @@ getResultSize(query: Query): Promise&lt;number&gt;
 
 **参数：**
 
-| 参数名  | 参数类型 | 必填  | 说明                    |
+| 参数名  | 类型 | 必填  | 说明                    |
 | -----  | ------   | ----  | ----------------------- |
 | query     |[Query](#query8)       | 是    |表示查询对象。    |
 
@@ -4854,7 +4854,7 @@ getResultSize(deviceId: string, query: Query, callback: AsyncCallback&lt;number&
 
 **参数：**
 
-| 参数名  | 参数类型 | 必填  | 说明                    |
+| 参数名  | 类型 | 必填  | 说明                    |
 | -----  | ------   | ----  | ----------------------- |
 | deviceId  |string                       | 是    |KvStoreResultSet对象所属的设备ID。    |
 | query     |[Query](#query8)       | 是    |表示查询对象。    |
@@ -4901,7 +4901,7 @@ getResultSize(deviceId: string, query: Query): Promise&lt;number&gt;
 
 **参数：**
 
-| 参数名  | 参数类型 | 必填  | 说明                    |
+| 参数名  | 类型 | 必填  | 说明                    |
 | -----  | ------   | ----  | ----------------------- |
 | deviceId  |string                       | 是    |KvStoreResultSet对象所属的设备ID。    |
 | query     |[Query](#query8)       | 是    |表示查询对象。    |
@@ -4957,7 +4957,7 @@ removeDeviceData(deviceId: string, callback: AsyncCallback&lt;void&gt;): void
 
 **参数：**
 
-| 参数名  | 参数类型 | 必填  | 说明                    |
+| 参数名  | 类型 | 必填  | 说明                    |
 | -----  | ------   | ----  | ----------------------- |
 | deviceId  |string                       | 是    |标识要删除其数据的设备。  |
 | callback  |AsyncCallback&lt;void&gt;    | 是    |回调函数。    |
@@ -4999,7 +4999,7 @@ removeDeviceData(deviceId: string): Promise&lt;void&gt;
 
 **参数：**
 
-| 参数名  | 参数类型 | 必填  | 说明                    |
+| 参数名  | 类型 | 必填  | 说明                    |
 | -----  | ------   | ----  | ----------------------- |
 | deviceId  |string  | 是    |标识要删除其数据的设备。  |
 
@@ -5050,7 +5050,7 @@ sync(deviceIds: string[], mode: SyncMode, delayMs?: number): void
 
 **参数：**
 
-| 参数名  | 参数类型 | 必填  | 说明                    |
+| 参数名  | 类型 | 必填  | 说明                    |
 | -----  | ------   | ----  | ----------------------- |
 | deviceIds    |string[]               | 是    |需要同步DeviceKvStore数据库的设备ID列表。 |
 | mode            |[SyncMode](#syncmode)  | 是    |同步模式。  |
@@ -5087,7 +5087,7 @@ on(event: 'syncComplete', syncCallback: Callback&lt;Array&lt;[string, number]&gt
 
 **参数：**
 
-| 参数名  | 参数类型 | 必填  | 说明                    |
+| 参数名  | 类型 | 必填  | 说明                    |
 | -----  | ------   | ----  | ----------------------- |
 | event    |string      | 是    |订阅的事件名，固定为'syncComplete'，表示同步完成事件。 |
 | syncCallback            |Callback<Array&lt;[string, number]&gt;> | 是    |回调函数。用于向调用方发送同步结果的回调。  |
@@ -5123,7 +5123,7 @@ off(event: 'syncComplete', syncCallback?: Callback&lt;Array&lt;[string, number]&
 
 **参数：**
 
-| 参数名  | 参数类型 | 必填  | 说明                    |
+| 参数名  | 类型 | 必填  | 说明                    |
 | -----  | ------   | ----  | ----------------------- |
 | event         |string                           | 是    |取消订阅的事件名，固定为'syncComplete'，表示同步完成事件。 |
 | syncCallback  |Callback<Array&lt;[string, number]&gt;&gt; | 否    |回调函数。用于向调用方发送同步结果的回调。  |
