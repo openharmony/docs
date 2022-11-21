@@ -346,4 +346,3 @@
   - bundle/[PermissionDef (PermissionDef)](js-apis-bundle-PermissionDef.md)
   - bundle/[remoteAbilityInfo (RemoteAbilityInfo)](js-apis-bundle-remoteAbilityInfo.md)
   - bundle/[shortcutInfo (shortcutInfo)](js-apis-bundle-ShortcutInfo.md)
-  - [console (日志打印)](js-apis-logs.md)
