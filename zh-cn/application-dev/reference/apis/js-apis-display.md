@@ -33,7 +33,7 @@ import display from '@ohos.display';
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
-| 名称   | 参数类型 | 可读 | 可写 | 说明               |
+| 名称   | 类型 | 可读 | 可写 | 说明               |
 | ------ | -------- | ---- | ---- | ------------------ |
 | left   | number   | 是   | 是   | 矩形区域的左边界。 |
 | top    | number   | 是   | 是   | 矩形区域的上边界。 |
@@ -46,7 +46,7 @@ import display from '@ohos.display';
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
-| 名称   | 参数类型      | 可读 | 可写 | 说明               |
+| 名称   | 类型      | 可读 | 可写 | 说明               |
 | ------ | ------------- | ---- | ---- | ------------------ |
 | left   | [Rect](#rect9) | 是   | 否   | 瀑布曲面区域的左侧矩形区域。 |
 | top    | [Rect](#rect9) | 是   | 否   | 瀑布曲面区域的顶部矩形区域。 |
@@ -59,7 +59,7 @@ import display from '@ohos.display';
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
-| 名称                        | 参数类型      | 可读 | 可写 | 说明               |
+| 名称                        | 类型      | 可读 | 可写 | 说明               |
 | --------------------------- | ------------- | ---- | ---- | ------------------ |
 | boundingRects                | Array\<[Rect](#rect9)> | 是   | 否   | 挖孔、刘海等区域的边界矩形。 |
 | waterfallDisplayAreaRects   | [WaterfallDisplayAreaRects](#waterfalldisplayarearects9) | 是 | 否 | 瀑布屏曲面部分显示区域。 |
@@ -406,7 +406,7 @@ promise.then((data) => {
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
-| 名称 | 参数类型 | 可读 | 可写 | 说明 |
+| 名称 | 类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
 | id | number | 是 | 否 | 显示设备的id号。|
 | name | string | 是 | 否 | 显示设备的名称。|
