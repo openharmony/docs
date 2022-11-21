@@ -37,7 +37,7 @@ getBundleInstaller(callback: AsyncCallback\<BundleInstaller>): void;
 
 **错误码：**
 
-错误码的详细介绍请参见[ohos.bundle错误码](../errorcodes/errcode-bundle.md)。
+错误码的详细介绍请参见[ohos.bundle错误码](../errorcodes/errorcode-bundle.md)。
 
 **示例：**
 
@@ -74,7 +74,7 @@ getBundleInstaller(): Promise\<BundleInstaller>;
 
 **错误码：**
 
-错误码的详细介绍请参见[ohos.bundle错误码](../errorcodes/errcode-bundle.md)。
+错误码的详细介绍请参见[ohos.bundle错误码](../errorcodes/errorcode-bundle.md)。
 
 **示例：**
 
@@ -113,7 +113,7 @@ install(hapFilePaths: Array&lt;string&gt;, installParam: InstallParam, callback:
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.bundle错误码](../errorcodes/errcode-bundle.md)。
+以下错误码的详细介绍请参见[ohos.bundle错误码](../errorcodes/errorcode-bundle.md)。
 
 | 错误码ID | 错误码信息                                                      |
 | -------- | ---------------------------------------------------------------|
@@ -177,7 +177,7 @@ uninstall(bundleName: string, installParam: InstallParam, callback: AsyncCallbac
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.bundle错误码](../errorcodes/errcode-bundle.md)。
+以下错误码的详细介绍请参见[ohos.bundle错误码](../errorcodes/errorcode-bundle.md)。
 
 | 错误码ID | 错误码信息                                                                  |
 | -------- | ---------------------------------------------------------------------------|
@@ -235,7 +235,7 @@ recover(bundleName: string, installParam: InstallParam, callback: AsyncCallback&
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.bundle错误码](../errorcodes/errcode-bundle.md)。
+以下错误码的详细介绍请参见[ohos.bundle错误码](../errorcodes/errorcode-bundle.md)。
 
 | 错误码ID | 错误码信息                                                                 |
 | -------- | ---------------------------------------------------------------------------|

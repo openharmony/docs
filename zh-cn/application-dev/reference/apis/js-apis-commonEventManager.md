@@ -189,7 +189,7 @@ publish(event: string, callback: AsyncCallback\<void>): void
 | callback | AsyncCallback\<void> | 是   | 表示被指定的回调方法。 |
 
 **错误码：**
-以下错误码详细介绍请参考[@ohos.commonEventManager(事件)](../errorcodes/errcode-CommonEventService.md)
+以下错误码详细介绍请参考[@ohos.commonEventManager(事件)](../errorcodes/errorcode-CommonEventService.md)
 
 |错误码ID    |错误信息            |
 |-----------|--------------------|
