@@ -947,7 +947,6 @@ queryAppGroup(bundleName : string, callback: AsyncCallback&lt;number&gt;): void
     } catch (error) {
         console.log('BUNDLE_ACTIVE queryAppGroup throw error, code is: ' + error.code + ',message is: ' + error.message);
     }
-});
 ```
 
 ## usageStatistics.setAppGroup
@@ -992,7 +991,7 @@ setAppGroup(bundleName: string, newGroup: GroupType): Promise&lt;void&gt;
 
 ```javascript
     let bundleName = "com.example.deviceUsageStatistics";
-    let newGroup = bundleState.GroupType.ACTIVE_GROUP_DAILY;
+    let newGroup = usageStatistics.GroupType.DAILY_GROUP;
 
     try{
         usageStatistics.setAppGroup(bundleName, newGroup).then( () => {
@@ -1042,7 +1041,7 @@ setAppGroup(bundleName: string, newGroup: GroupType, callback: AsyncCallback&lt;
 
 ```javascript
     let bundleName = "com.example.deviceUsageStatistics";
-    let newGroup = bundleState.GroupType.ACTIVE_GROUP_DAILY;
+    let newGroup = usageStatistics.GroupType.DAILY_GROUP;
 
     try{
         usageStatistics.setAppGroup(bundleName, newGroup, (err) => {
