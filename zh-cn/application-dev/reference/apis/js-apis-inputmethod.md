@@ -1,11 +1,10 @@
 # 输入法框架
 
-本模块提供对输入法框架的管理，包括隐藏输入法、查询已安装的输入法列表和显示输入法选择对话框。
+本模块提供对输入法框架的管理，包括隐藏输入法、查询已安装的输入法列表和拉起选择输入法弹窗。
 
->  **说明：**
+> **说明：**
 >
 > 本模块首批接口从API version 6开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
-
 
 ## 导入模块
 
@@ -13,27 +12,26 @@
 import inputMethod from '@ohos.inputmethod';
 ```
 
-## inputMethod<sup>8+</sup>
+## 常量<sup>8+</sup>
 
 常量值。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.MiscServices.InputMethodFramework
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
-| 名称 | 参数类型 | 可读 | 可写 | 说明 |
-| -------- | -------- | -------- | -------- | -------- |
-| MAX_TYPE_NUM | number | 是 | 否 | 可支持的最大输入法个数。 |
-
+| 参数名 | 参数 | 常量值 | 说明 |
+| -------- | -------- | -------- | -------- |
+| MAX_TYPE_NUM | number | 128 | 可支持的最大输入法个数。 |
 
 ## InputMethodProperty<sup>8+</sup>
 
 输入法应用属性。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.MiscServices.InputMethodFramework
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
-| 名称 | 参数类型 | 可读 | 可写 | 说明 |
+| 名称 | 参数 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| packageName | string | 是 | 否 | 包名。 |
-| methodId | string | 是 | 否 | Ability名。 |
+| packageName | string | 是 | 否 | 输入法包名。 |
+| methodId | string | 是 | 否 | 输入法唯一标识。 |
 
 ## inputMethod.getInputMethodController
 
@@ -41,7 +39,7 @@ getInputMethodController(): InputMethodController
 
 获取客户端实例[InputMethodController](#inputmethodcontroller)。
 
-**系统能力**：SystemCapability.MiscServices.InputMethodFramework
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
 **返回值：**
 
@@ -52,7 +50,7 @@ getInputMethodController(): InputMethodController
 **示例：**
 
 ```js
-  var InputMethodController = inputMethod.getInputMethodController();
+let inputMethodController = inputMethod.getInputMethodController();
 ```
 
 ## inputMethod.getInputMethodSetting<sup>8+</sup>
@@ -61,7 +59,7 @@ getInputMethodSetting(): InputMethodSetting
 
 获取客户端设置实例[InputMethodSetting](#inputmethodsetting8)。
 
-**系统能力**： SystemCapability.MiscServices.InputMethodFramework
+**系统能力：**  SystemCapability.MiscServices.InputMethodFramework
 
 **返回值：**
 
@@ -69,95 +67,98 @@ getInputMethodSetting(): InputMethodSetting
 | ----------------------------------------- | ---------------------------- |
 | [InputMethodSetting](#inputmethodsetting8) | 回调返回当前客户端设置实例。 |
 
-
 **示例：**
 
 ```js
-  var InputMethodSetting = inputMethod.getInputMethodSetting();
+let inputMethodSetting = inputMethod.getInputMethodSetting();
 ```
 ## inputMethod.switchInputMethod<sup>9+</sup>
 
 switchInputMethod(target: InputMethodProperty, callback: AsyncCallback&lt;boolean&gt;): void
 
-切换输入法。此接口仅可在Stage模型下使用。使用callback形式返回结果。参数个数为2，否则抛出异常。
+切换输入法。使用callback异步回调。
 
-**系统能力**：SystemCapability.MiscServices.InputMethodFramework
+**模型约束：** 此接口仅可在Stage模型下使用。
+
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
 **参数：**
 
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  |target | [InputmethodProperty](#inputmethodproperty8) | 是 | 传入要切换的目标输入法。 |
-  | callback | AsyncCallback&lt;boolean&gt; | 是 | 返回输入法切换是否成功。 |
-
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| target | [InputMethodProperty](#inputmethodproperty8) | 是 | 传入要切换的目标输入法。 |
+| callback | AsyncCallback&lt;boolean&gt; | 是 | 回调函数。当输入法切换成功，err为undefined，data为true；否则为错误对象。 |
 
 **示例：**
 
 ```js
 inputMethod.switchInputMethod({packageName:'com.example.kikakeyboard', methodId:'com.example.kikakeyboard'} ,(err,result) => {
     if (err) {
-        console.error('switchInputMethod err: ' + JSON.stringify(err));
+        console.error('Failed to switch inputmethod: ' + JSON.stringify(err));
         return;
     }
     if (result) {
-        console.info('Success to switchInputMethod.(callback)');
+        console.info('Succeeded in switching inputmethod.');
     } else {
-        console.error('Failed to switchInputMethod.(callback)');
+        console.error('Failed to switch inputmethod.');
     }
 });
 ```
+
 ## inputMethod.switchInputMethod<sup>9+</sup>
+
 switchInputMethod(target: InputMethodProperty): Promise&lt;boolean&gt;
 
-切换输入法。此接口仅可在Stage模型下使用。使用promise形式返回结果。参数个数为1，否则抛出异常。
+切换输入法。使用Promise异步回调。
 
-**系统能力**： SystemCapability.MiscServices.InputMethodFramework
+**模型约束：** 此接口仅可在Stage模型下使用。
+
+**系统能力：**  SystemCapability.MiscServices.InputMethodFramework
 
 **参数：**
 
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  |target |  [InputmethodProperty](#inputmethodproperty8)| 是 | 传入要切换的目标输入法。 |
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+|target |  [InputMethodProperty](#inputmethodproperty8)| 是 | 传入要切换的目标输入法。 |
 
 **返回值：**
 
-  | 类型                                      | 说明                         |
-  | ----------------------------------------- | ---------------------------- |
-  | Promise\<boolean> | 回调返回切换后的输入法。 |
+| 类型                                      | 说明                         |
+| ----------------------------------------- | ---------------------------- |
+| Promise\<boolean> | Promise对象。返回true表示切换输入法成功；返回false表示切换输入法失败。 |
 
 **示例：**
-
 
 ```js
 inputMethod.switchInputMethod({packageName:'com.example.kikakeyboard', methodId:'com.example.kikakeyboard'}).then((result) => {
     if (result) {
-        console.info('Success to switchInputMethod.(promise)');
+        console.info('Succeeded in switching inputMethod.');
     } else {
-        console.error('Failed to switchInputMethod.(promise)');
+        console.error('Failed to switch inputmethod.');
     }
 }).catch((err) => {
-    console.error('switchInputMethod promise err: ' + err);
+    console.error('Failed to switch inputmethod: ' + JSON.stringify(err));
 })
 ```
+
 ## inputMethod.getCurrentInputMethod<sup>9+</sup>
 
 getCurrentInputMethod(): InputMethodProperty
 
-获取当前输入法扩展应用，提供同步接口，返回当前输入法属性对象。
+获取当前输入法的属性对象。
 
-**系统能力**： SystemCapability.MiscServices.InputMethodFramework
+**系统能力：**  SystemCapability.MiscServices.InputMethodFramework
 
 **返回值：**
 
 | 类型                                         | 说明                     |
 | -------------------------------------------- | ------------------------ |
-| [InputmethodProperty](#inputmethodproperty8) | 返回当前输入法属性对象。 |
+| [InputMethodProperty](#inputmethodproperty8) | 返回当前输入法的属性对象。 |
 
 **示例：**
 
-
 ```js
-var currentIme = inputMethod.getCurrentInputMethod();
+let currentIme = inputMethod.getCurrentInputMethod();
 ```
 
 ## InputMethodController
@@ -168,28 +169,28 @@ var currentIme = inputMethod.getCurrentInputMethod();
 
 stopInput(callback: AsyncCallback&lt;boolean&gt;): void
 
-隐藏输入法。使用callback形式返回结果。参数个数为1，否则抛出异常。
+结束输入会话。使用callback异步回调。
 
-**系统能力**：SystemCapability.MiscServices.InputMethodFramework
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
 **参数：**
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| callback | AsyncCallback&lt;boolean&gt; | 是 | 返回输入法隐藏是否成功。 |
+| callback | AsyncCallback&lt;boolean&gt; | 是 | 回调函数。当结束输入会话成功，err为undefined，data为true；否则为错误对象。 |
 
 **示例：**
 
 ```js
-InputMethodController.stopInput((error, result) => {
+inputMethodController.stopInput((error, result) => {
     if (error) {
-        console.error('failed to stopInput because: ' + JSON.stringify(error));
+        console.error('Failed to stop input method: ' + JSON.stringify(err));
         return;
     }
     if (result) {
-        console.info('Success to stopInput.(callback)');
+        console.info('Succeeded in stoping input method.');
     } else {
-        console.error('Failed to stopInput.(callback)');
+        console.error('Failed to stop input method.');
     }
 });
 ```
@@ -198,28 +199,27 @@ InputMethodController.stopInput((error, result) => {
 
 stopInput(): Promise&lt;boolean&gt;
 
-隐藏输入法。使用promise形式返回结果。参数个数为0，否则抛出异常。
+结束输入会话。使用Promise异步回调。
 
-**系统能力**： SystemCapability.MiscServices.InputMethodFramework
+**系统能力：**  SystemCapability.MiscServices.InputMethodFramework
 
 **返回值：**
 
 | 类型 | 说明 |
 | -------- | -------- |
-| Promise&lt;boolean&gt; | 返回输入法隐藏是否成功。 |
+| Promise&lt;boolean&gt; | Promise对象。返回true表示结束会话成功；返回false表示结束会话失败。 |
 
 **示例：**
 
-
 ```js
-InputMethodController.stopInput().then((result) => {
+inputMethodController.stopInput().then((result) => {
     if (result) {
-        console.info('Success to stopInput.(promise)');
+        console.info('Succeeded in stoping input method.');
     } else {
-        console.error('Failed to stopInput.(promise)');
+        console.error('Failed to stop input method.');
     }
 }).catch((err) => {
-    console.error('stopInput promise err: ' + err);
+    console.error('Failed to stop input method: ' + JSON.stringify(err));
 })
 ```
 
@@ -227,24 +227,24 @@ InputMethodController.stopInput().then((result) => {
 
 showSoftKeyboard(callback: AsyncCallback&lt;void&gt;): void
 
-显示软键盘，使用callback异步回调。参数个数为1，否则抛出异常。
+显示软键盘，使用callback异步回调。
 
 **系统能力：**  SystemCapability.MiscServices.InputMethodFramework
 
 **参数：**
 
-| 参数名   | 参数类型                  | 必填 | 说明       |
+| 参数名   | 参数                  | 必填 | 说明       |
 | -------- | ------------------------- | ---- | ---------- |
-| callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。 |
+| callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。当软键盘显示成功。err为undefined，否则为错误对象。 |
 
 **示例：**
 
 ```js
-InputMethodController.showSoftKeyboard((err) => {
-    if (err === undefined) {
-        console.info('showSoftKeyboard success');
+inputMethodController.showSoftKeyboard((err) => {
+    if (err) {
+        console.info('Succeeded in showing softKeyboard.');
     } else {
-        console.error('showSoftKeyboard failed because : ' + JSON.stringify(err));
+        console.error('Failed to show softKeyboard: ' + JSON.stringify(err));
     }
 })
 ```
@@ -254,7 +254,7 @@ InputMethodController.showSoftKeyboard((err) => {
 
 showSoftKeyboard(): Promise&lt;void&gt;
 
-显示软键盘，使用Promise异步回调。参数个数为0，否则抛出异常。
+显示软键盘，使用Promise异步回调。
 
 **系统能力：**  SystemCapability.MiscServices.InputMethodFramework
 
@@ -267,10 +267,10 @@ showSoftKeyboard(): Promise&lt;void&gt;
 **示例：**
 
 ```js
-InputMethodController.showSoftKeyboard().then(async (err) => {
-    console.log('showSoftKeyboard success');
+inputMethodController.showSoftKeyboard().then(() => {
+    console.log('Succeeded in showing softKeyboard.');
 }).catch((err) => {
-    console.error('showSoftKeyboard promise err: ' + JSON.stringify(err));
+    console.error('Failed to show softKeyboard: ' + JSON.stringify(err));
 });
 ```
 
@@ -278,34 +278,33 @@ InputMethodController.showSoftKeyboard().then(async (err) => {
 
 hideSoftKeyboard(callback: AsyncCallback&lt;void&gt;): void
 
-隐藏软键盘，使用callback异步回调。参数个数为1，否则抛出异常。
+隐藏软键盘，使用callback异步回调。
 
 **系统能力：**  SystemCapability.MiscServices.InputMethodFramework
 
 **参数：**
 
-| 参数名   | 参数类型                  | 必填 | 说明       |
+| 参数名   | 参数                  | 必填 | 说明       |
 | -------- | ------------------------- | ---- | ---------- |
-| callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。 |
+| callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。当软键盘隐藏成功。err为undefined，否则为错误对象。 |
 
 **示例：**
 
 ```js
-InputMethodController.hideSoftKeyboard((err) => {
-    if (err === undefined) {
-        console.info('hideSoftKeyboard success');
+inputMethodController.hideSoftKeyboard((err) => {
+    if (err) {
+        console.info('Failed to hide softKeyboard: ' + JSON.stringify(err));
     } else {
-        console.error('hideSoftKeyboard failed because : ' + JSON.stringify(err));
+        console.error('Succeeded in hiding softKeyboard.');
     }
 })
 ```
-
 
 ### hideSoftKeyboard<sup>9+</sup> ###
 
 hideSoftKeyboard(): Promise&lt;void&gt;
 
-隐藏软键盘，使用Promise异步回调。参数个数为0，否则抛出异常。
+隐藏软键盘，使用Promise异步回调。
 
 **系统能力：**  SystemCapability.MiscServices.InputMethodFramework
 
@@ -318,10 +317,10 @@ hideSoftKeyboard(): Promise&lt;void&gt;
 **示例：**
 
 ```js
-InputMethodController.hideSoftKeyboard().then(async (err) => {
-    console.log('hideSoftKeyboard success');
+inputMethodController.hideSoftKeyboard().then((err) => {
+    console.log('Succeeded in hiding softKeyboard.');
 }).catch((err) => {
-    console.error('hideSoftKeyboard promise err: ' + JSON.stringify(err));
+    console.error('Failed to hide softKeyboard: ' + JSON.stringify(err));
 });
 ```
 
@@ -333,26 +332,26 @@ InputMethodController.hideSoftKeyboard().then(async (err) => {
 
 listInputMethod(enable: boolean, callback: AsyncCallback&lt;Array&lt;InputMethodProperty&gt;&gt;): void
 
-获取已激活/未激活输入法列表。参数enable取true，返回已激活输入法列表，取false返回未激活输入法列表。使用callback形式返回结果。参数个数为2，否则抛出异常。
+获取已激活/未激活输入法列表。使用callback异步回调。
 
-**系统能力**： SystemCapability.MiscServices.InputMethodFramework
+**系统能力：**  SystemCapability.MiscServices.InputMethodFramework
 
 **参数：**
 
 | 参数名   | 类型                                                | 必填 | 说明                          |
 | -------- | --------------------------------------------------- | ---- | ----------------------------- |
-| enable   | boolean                                             | 是   | 指定返回已激活/未激活。       |
-| callback | Array<[InputMethodProperty](#inputmethodproperty8)> | 是   | 返回已激活/未激活输入法列表。 |
+| enable   | boolean                                             | 是   | 值为true，表示获取已激活的输入法列表；值为false，表示获取未激活的输入法列表。 |
+| callback | AsyncCallback&lt;Array&lt;[InputMethodProperty](#inputmethodproperty8)&gt;&gt; | 是   | 回调函数，返回已激活/未激活的输入法列表。 |
 
 **示例：**
 
 ```js
-InputMethodSetting.listInputMethod(true, (err,data) => {
+inputMethodSetting.listInputMethod(true, (err,data) => {
     if (err) {
-        console.error('listInputMethod failed because: ' + JSON.stringify(err));
+        console.error('Failed to list inputmethods: ' + JSON.stringify(err));
         return;
     }
-    console.log('listInputMethod success');
+    console.log('Succeeded in listing inputmethods.');
  });
 ```
 
@@ -360,29 +359,29 @@ InputMethodSetting.listInputMethod(true, (err,data) => {
 
 listInputMethod(enable: boolean): Promise&lt;Array&lt;InputMethodProperty&gt;&gt;
 
-获取已激活/未激活输入法列表。参数enable取true返回已激活输入法列表，取false返回未激活输入法列表。使用promise形式返回结果。参数个数为0，否则抛出异常。
+获取已激活/未激活输入法列表。使用Promise异步回调。
 
-**系统能力**： SystemCapability.MiscServices.InputMethodFramework
+**系统能力：**  SystemCapability.MiscServices.InputMethodFramework
 
 **参数：**
 
-| 参数名 | 类型    | 必填 | 说明                    |
-| ------ | ------- | ---- | ----------------------- |
-| enable | boolean | 是   | 指定返回已激活/未激活。 |
+| 参数名 | 类型    | 必填 | 说明                              |
+| ------ | ------- | ---- | --------------------------------- |
+| enable | boolean | 是   | 值为true，表示获取已激活的输入法列表；值为false，表示获取未激活的输入法列表。 |
 
 **返回值：**
 
 | 类型                                                         | 说明                          |
 | ------------------------------------------------------------ | ----------------------------- |
-| Promise<Array<[InputMethodProperty](#inputmethodproperty8)>> | 返回已激活/未激活输入法列表。 |
+| Promise<Array<[InputMethodProperty](#inputmethodproperty8)>> | Promise对象，返回已激活/未激活的输入法列表。 |
 
 **示例：**
 
 ```js
-InputMethodSetting.listInputMethod(true).then((data) => {
-    console.info('listInputMethod success');
+inputMethodSetting.listInputMethod(true).then((data) => {
+    console.info('Succeeded in listing inputmethods.');
 }).catch((err) => {
-    console.error('listInputMethod promise err: ' + err);
+    console.error('Failed to list inputmethods: ' + JSON.stringify(err));
 })
 ```
 
@@ -390,25 +389,25 @@ InputMethodSetting.listInputMethod(true).then((data) => {
 
 listInputMethod(callback: AsyncCallback&lt;Array&lt;InputMethodProperty&gt;&gt;): void
 
-查询已安装的输入法列表。使用callback形式返回结果。参数个数为1，否则抛出异常。
+查询已安装的输入法列表。使用callback异步回调。
 
-**系统能力**： SystemCapability.MiscServices.InputMethodFramework
+**系统能力：**  SystemCapability.MiscServices.InputMethodFramework
 
 **参数：**
 
 | 参数名   | 类型                                               | 必填 | 说明                   |
 | -------- | -------------------------------------------------- | ---- | ---------------------- |
-| callback | Array<[InputMethodProperty](#inputmethodproperty8)> | 是   | 返回已安装输入法列表。 |
+| callback | AsyncCallback&lt;Array<[InputMethodProperty](#inputmethodproperty8)>&gt; | 是   | 回调函数，返回已安装的输入法列表。 |
 
 **示例：**
 
 ```js
-InputMethodSetting.listInputMethod((err,data) => {
+inputMethodSetting.listInputMethod((err, data) => {
     if (err) {
-        console.error('listInputMethod failed because: ' + JSON.stringify(err));
+        console.error('Failed to list inputmethods: ' + JSON.stringify(err));
         return;
     }
-    console.log('listInputMethod success');
+    console.log('Succeeded in listing inputmethods.');
  });
 ```
 
@@ -416,23 +415,23 @@ InputMethodSetting.listInputMethod((err,data) => {
 
 listInputMethod(): Promise&lt;Array&lt;InputMethodProperty&gt;&gt;
 
-查询已安装的输入法列表。使用promise形式返回结果。参数个数为0，否则抛出异常。
+查询已安装的输入法列表。使用Promise异步回调。
 
-**系统能力**： SystemCapability.MiscServices.InputMethodFramework
+**系统能力：**  SystemCapability.MiscServices.InputMethodFramework
 
 **返回值：**
 
 | 类型                                                        | 说明                   |
 | ----------------------------------------------------------- | ---------------------- |
-| Promise<Array<[InputMethodProperty](#inputmethodproperty8)>> | 返回已安装输入法列表。 |
+| Promise<Array<[InputMethodProperty](#inputmethodproperty8)>> | Promise对象，返回已安装的输入法列表。 |
 
 **示例：**
 
 ```js
-InputMethodSetting.listInputMethod().then((data) => {
-    console.info('listInputMethod success');
+inputMethodSetting.listInputMethod().then((data) => {
+    console.info('Succeeded in listing inputmethod.');
 }).catch((err) => {
-    console.error('listInputMethod promise err: ' + err);
+    console.error('Failed to list inputmethod: ' + JSON.stringify(err));
 })
 ```
 
@@ -440,35 +439,35 @@ InputMethodSetting.listInputMethod().then((data) => {
 
 displayOptionalInputMethod(callback: AsyncCallback&lt;void&gt;): void
 
-显示输入法选择对话框。使用callback形式返回结果。参数个数为1，否则抛出异常。
+显示选择输入法弹窗。使用callback异步回调。
 
-**系统能力**： SystemCapability.MiscServices.InputMethodFramework
+**系统能力：**  SystemCapability.MiscServices.InputMethodFramework
 
 **参数：**
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| callback | AsyncCallback&lt;void&gt; | 是 | 回调函数。 |
+| callback | AsyncCallback&lt;void&gt; | 是 | 回调函数。当选择输入法弹窗显示成功。err为undefined，否则为错误对象。 |
 
 **示例：**
 
 ```js
-InputMethodSetting.displayOptionalInputMethod((err) => {
+inputMethodSetting.displayOptionalInputMethod((err) => {
     if (err) {
-        console.error('displayOptionalInputMethod failed because: ' + JSON.stringify(err));
+        console.error('Failed to display optional inputmethod: ' + JSON.stringify(err));
         return;
     }
-    console.info('displayOptionalInputMethod success');
+    console.info('Succeeded in displaying optional inputmethod.');
 });
 ```
 
 ### displayOptionalInputMethod
 
-  displayOptionalInputMethod(): Promise&lt;void&gt;
+displayOptionalInputMethod(): Promise&lt;void&gt;
 
-  显示输入法选择对话框。使用promise形式返回结果。参数个数为0，否则抛出异常。
+显示选择输入法弹窗。使用Promise异步回调。
 
-  **系统能力**： SystemCapability.MiscServices.InputMethodFramework
+**系统能力：**  SystemCapability.MiscServices.InputMethodFramework
 
 **返回值：**
 
@@ -479,9 +478,9 @@ InputMethodSetting.displayOptionalInputMethod((err) => {
 **示例：**
 
 ```js
-InputMethodSetting.displayOptionalInputMethod().then(() => {
-    console.info('displayOptionalInputMethod success.(promise)');
+inputMethodSetting.displayOptionalInputMethod().then(() => {
+    console.info('Succeeded in displaying optional inputmethod.');
 }).catch((err) => {
-    console.error('displayOptionalInputMethod promise err: ' + err);
+    console.error('Failed to display optional inputmethod: ' + JSON.stringify(err));
 })
 ```
