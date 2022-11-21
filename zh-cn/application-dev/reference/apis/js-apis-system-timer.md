@@ -106,7 +106,7 @@ startTimer(timer: number, triggerTime: number, callback: AsyncCallback&lt;void&g
 
 | 参数名      | 类型                        | 必填 | 说明                                                         |
 | ----------- | --------------------------- | ---- | ------------------------------------------------------------ |
-| timer       | number                      | 是   | 定时器的ID。                                                 |                                                                                                             
+| timer       | number                      | 是   | 定时器的ID。                                                 |
 | triggerTime | number                      | 是   | 定时器的触发时间，单位：毫秒。                               |
 
 
@@ -119,7 +119,7 @@ export default {
             type: systemTimer.TIMER_TYPE_REALTIME,
             repeat:false
         }
-        let timerId = systemTimer.createTimer(options)
+        let timerId = await systemTimer.createTimer(options)
 		let triggerTime = new Date().getTime()
         triggerTime += 3000
         systemTimer.startTimer(timerId, triggerTime, (error, data) => {
@@ -132,7 +132,7 @@ export default {
     }
 }
   ```
-  
+
 ## systemTime.startTimer
 
 startTimer(timer: number, triggerTime: number): Promise&lt;void&gt;
@@ -158,7 +158,7 @@ export default {
             type: systemTimer.TIMER_TYPE_REALTIME,
             repeat:false
         }
-        let timerId = systemTimer.createTimer(options)
+        let timerId = await systemTimer.createTimer(options)
 		let triggerTime = new Date().getTime()
         triggerTime += 3000
         systemTimer.startTimer(timerId, triggerTime).then((data) => {
@@ -194,11 +194,11 @@ export default {
             type: systemTimer.TIMER_TYPE_REALTIME,
             repeat:false
         }
-        let timerId = systemTimer.createTimer(options)
+        let timerId = await systemTimer.createTimer(options)
 		let triggerTime = new Date().getTime()
         triggerTime += 3000
         systemTimer.startTimer(timerId, triggerTime)
-        systemTimer.stoptTimer(timerId, (error, data) => {
+        systemTimer.stopTimer(timerId, (error, data) => {
             if (error) {
                 console.error(`failed to systemTime.startTimer ` + JSON.stringify(error));
                 return;
@@ -222,7 +222,7 @@ stopTimer(timer: number): Promise&lt;void&gt;
 
 | 参数名 | 类型    | 必填 | 说明                                                         |
 | ------ | ------- | ---- | ------------------------------------------------------------ |
-| timer  | number  | 是   | 定时器的ID。                                                 |                                                                                                                      
+| timer  | number  | 是   | 定时器的ID。                                                 |
 
 **示例：**
 
@@ -233,11 +233,11 @@ export default {
             type: systemTimer.TIMER_TYPE_REALTIME,
             repeat:false
         }
-        let timerId = systemTimer.createTimer(options)
+        let timerId = await systemTimer.createTimer(options)
 		let triggerTime = new Date().getTime()
         triggerTime += 3000
         systemTimer.startTimer(timerId, triggerTime)
-        systemTimer.stoptTimer(timerId).then((data) => {
+        systemTimer.stopTimer(timerId).then((data) => {
             console.log(`systemTime.startTimer success data : ` + JSON.stringify(data));
         }).catch((error) => {
             console.error(`failed to systemTime.startTimer because ` + JSON.stringify(error));
@@ -323,7 +323,7 @@ export default {
     }
 }
   ```
-  
+
  ## TimerOptions
 
 createTimer的初始化选项。
