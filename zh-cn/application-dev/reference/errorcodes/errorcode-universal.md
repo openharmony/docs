@@ -71,22 +71,3 @@ BusinessError 801: Capability not supported. function ${函数名} can not work 
 **处理步骤**
 
 请检查设备是否支持使用的API。
-
-## 901 该操作系统或运行环境不支持此API
-
-**错误信息**
-
-The operating system or operating environment does not support this API, and it is used for processing that the cross-platform API cannot be enabled on a certain platform.
-
-**错误描述**
-
-该操作系统或运行环境不支持此API，用于跨平台API在某个平台不能使用的处理。
-
-**可能原因**
-
-跨平台API在某个平台不能使用的处理。
-
-**处理步骤**
-
-请检查跨平台API在对应的平台是否可以使用。
-
