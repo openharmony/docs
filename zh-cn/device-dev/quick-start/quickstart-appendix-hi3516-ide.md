@@ -162,7 +162,7 @@ applications/sample/hello
    在productdefine/common/products/Hi3516DV300.json中添加对应的hello部件，直接添加到原有部件后即可。
 
    > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
-   > 本章节操作是以OpenHarmony-v3.1-Release版本为例进行操作的，该版本中，Hi3516的配置文件为productdefine/common/products/Hi3516DV300.json；若源码版本大于OpenHarmony-v3.1-Release时，Hi3516的配置文件为vendor/hisilicon/Hi3516DV300/config.json。
+   > 本章节操作是以OpenHarmony-v3.1-Release版本为例进行操作的，该版本中，Hi3516的配置文件为productdefine/common/products/Hi3516DV300.json；从OpenHarmony-v3.2-Beta2版本开始，Hi3516的配置文件为vendor/hisilicon/Hi3516DV300/config.json。
 
    
    ```
