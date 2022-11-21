@@ -12,7 +12,7 @@ import bundleManager from '@ohos.bundle.bundleManager'
 ```
 ## 权限列表
 
-| 权限                                       | 权限等级     | 描述               |
+| 权限                                       | 权限等级     | 描述            |
 | ------------------------------------------ | ------------ | ------------------|
 | ohos.permission.GET_BUNDLE_INFO            | normal       | 查询指定应用信息   |
 | ohos.permission.GET_BUNDLE_INFO_PRIVILEGED | system_basic | 可查询所有应用信息 |
@@ -84,53 +84,53 @@ import bundleManager from '@ohos.bundle.bundleManager'
 
  **系统能力:** 以下各项对应的系统能力均为SystemCapability.BundleManager.BundleFramework.Core。
 
-| 名称 | 值 |
-|:----------------:|:---:|
-| FORM             | 0   |
-| WORK_SCHEDULER   | 1   |
-| INPUT_METHOD     | 2   |
-| SERVICE          | 3   |
-| ACCESSIBILITY    | 4   |
-| DATA_SHARE       | 5   |
-| FILE_SHARE       | 6   |
-| STATIC_SUBSCRIBER| 7   |
-| WALLPAPER        | 8   |
-| BACKUP           |  9  |
-| WINDOW           |  10 |
-| ENTERPRISE_ADMIN |  11 |
-| THUMBNAIL        | 13  |
-| PREVIEW          | 14  |
-| UNSPECIFIED      | 255 |
+| 名称 | 值 | 说明 |
+|:----------------:|:---:|:---:|
+| FORM             | 0   | 卡片的extensionAbility |
+| WORK_SCHEDULER   | 1   | 延时任务的extensionAbility |
+| INPUT_METHOD     | 2   | 输入法的extensionAbility |
+| SERVICE          | 3   | 后台运行的service组件,只有系统应用才能使用 |
+| ACCESSIBILITY    | 4   | 辅助能力的extensionAbility |
+| DATA_SHARE       | 5   | 数据共享的extensionAbility,只有系统应用才能使用 |
+| FILE_SHARE       | 6   | 文件共享的extensionAbility |
+| STATIC_SUBSCRIBER| 7   | 静态广播的extensionAbility |
+| WALLPAPER        | 8   | 壁纸的extensionAbility |
+| BACKUP           |  9  | 数据备份的extensionAbility  |
+| WINDOW           |  10 | 这个extensionAbility会在启动过程中创建一个window,为开发者提供界面开发。开发者开发出来的界面将通过abilityComponent控件组合到其他应用的窗口中 |
+| ENTERPRISE_ADMIN |  11 | 管理员用户的extensionAbility |
+| THUMBNAIL        | 13  | 获取文件缩略图的extensionAbility,开发者可以对自定义文件类型的文件提供缩略图 |
+| PREVIEW          | 14  | 这个extensionAbility会将文件解析后在一个窗口中显示,开发者可以通过将此窗口组合到其他应用窗口中 |
+| UNSPECIFIED      | 255 | 未指明用户的extensionAbility |
 
 
 ### PermissionGrantState
 
  **系统能力:** 以下各项对应的系统能力均为SystemCapability.BundleManager.BundleFramework.Core。
 
-| 名称 | 值 |
-|:----------------:|:---:|
-| PERMISSION_DENIED|  -1 |
-| PERMISSION_GRANTED |  0  |
+| 名称 | 值 | 说明 |
+|:----------------:|:---:|:---:|
+| PERMISSION_DENIED|  -1 | 拒绝授予权限 |
+| PERMISSION_GRANTED |  0  |  授予权限  |
 
 ### SupportWindowMode
 
  **系统能力:** 以下各项对应的系统能力均为SystemCapability.BundleManager.BundleFramework.Core。
 
-| 名称 | 值 |
-|:----------------:|:---:|
-| FULL_SCREEN      | 0   |
-| SPLIT            | 1   |
-| FLOATING         | 2   |
+| 名称 | 值 | 说明 |
+|:----------------:|:---:|:---:|
+| FULL_SCREEN      | 0   | 窗口支持全屏显示 |
+| SPLIT            | 1   | 窗口支持分屏显示 |
+| FLOATING         | 2   | 支持窗口化显示 |
 
 ### LaunchType
 
  **系统能力:** 以下各项对应的系统能力均为SystemCapability.BundleManager.BundleFramework.Core。
 
-| 名称 | 值 |
-|:----------------:|:---:|
-| SINGLETON        | 0   |
-| STANDARD         | 1   |
-| SPECIFIED        | 2   |
+| 名称 | 值 | 说明 |
+|:----------------:|:---:|:---:|
+| SINGLETON        | 0   | ability的启动模式,表示单实例 |
+| STANDARD         | 1   | ability的启动模式,表示普通多实例 |
+| SPECIFIED        | 2   | ability的启动模式,表示该ability内部根据业务自己置顶多实例 |
 
 ### AbilityType
 
@@ -138,31 +138,31 @@ import bundleManager from '@ohos.bundle.bundleManager'
 
  **系统能力:** 以下各项对应的系统能力均为SystemCapability.BundleManager.BundleFramework.Core。
 
-| 名称             | 值 |
-|:----------------:|----|
-| PAGE             | 1  |
-| SERVICE          | 2  |
-| DATA             | 3  |
+|  名称   | 值   |                            说明                            |
+| :-----: | ---- | :--------------------------------------------------------: |
+|  PAGE   | 1    |     表示基于Page模板开发的FA，用于提供与用户交互的能力     |
+| SERVICE | 2    |  表示基于Service模板开发的PA，用于提供后台运行任务的能力   |
+|  DATA   | 3    | 表示基于Data模板开发的PA，用于对外部提供统一的数据访问对象 |
 
 ### DisplayOrientation
 
  **系统能力:** 以下各项对应的系统能力均为SystemCapability.BundleManager.BundleFramework.Core。
 
-| 名称                               |值 |
-|:----------------------------------|---|
-| UNSPECIFIED                        |0 |
-| LANDSCAPE                          |1 |
-| PORTRAIT                           |2 |
-| FOLLOW_RECENT                      |3 |
-| LANDSCAPE_INVERTED                 |4 |
-| PORTRAIT_INVERTED                  |5 |
-| AUTO_ROTATION                      |6 |
-| AUTO_ROTATION_LANDSCAPE            |7 |
-| AUTO_ROTATION_PORTRAIT             |8 |
-| AUTO_ROTATION_RESTRICTED           |9 |
-| AUTO_ROTATION_LANDSCAPE_RESTRICTED |10|
-| AUTO_ROTATION_PORTRAIT_RESTRICTED  |11|
-| LOCKED                             |12|
+| 名称                               |值 |说明 |
+|:----------------------------------|---|---|
+| UNSPECIFIED                        |0 |表示未定义方向模式，由系统判定 |
+| LANDSCAPE                          |1 |表示横屏显示模式 |
+| PORTRAIT                           |2 |表示竖屏显示模式 |
+| FOLLOW_RECENT                      |3 |表示跟随上一个显示模式 |
+| LANDSCAPE_INVERTED                 |4 |表示反向横屏显示模式 |
+| PORTRAIT_INVERTED                  |5 |表示反向竖屏显示模式 |
+| AUTO_ROTATION                      |6 |表示传感器自动旋转模式 |
+| AUTO_ROTATION_LANDSCAPE            |7 |表示传感器自动横向旋转模式 |
+| AUTO_ROTATION_PORTRAIT             |8 |表示传感器自动竖向旋转模式 |
+| AUTO_ROTATION_RESTRICTED           |9 |表示受开关控制的自动旋转模式 |
+| AUTO_ROTATION_LANDSCAPE_RESTRICTED |10|表述受开关控制的自动横向旋转模式|
+| AUTO_ROTATION_PORTRAIT_RESTRICTED  |11|表示受开关控制的自动竖向旋转模式|
+| LOCKED                             |12|表示锁定模式|
 
 ## 方法
 
@@ -176,7 +176,7 @@ getBundleInfoForSelf(bundleFlags: [number](#bundleflag)): Promise\<[BundleInfo](
 
 **参数：**
 
-| 名称        | 类型   | 必填 | 描述                  |
+| 参数名     | 类型   | 必填 | 说明                |
 | ----------- | ------ | ---- | --------------------- |
 | bundleFlags | [number](#bundleflag) | 是   | 指定返回的BundleInfo所包含的信息 |
 
@@ -214,7 +214,7 @@ getBundleInfoForSelf(bundleFlags: [number](#bundleflag), callback: AsyncCallback
 
 **参数：**
 
-| 名称        | 类型   | 必填 | 描述                  |
+| 参数名     | 类型   | 必填 | 说明                |
 | ----------- | ------ | ---- | --------------------- |
 | bundleFlags | [number](#bundleflag) | 是   | 指定返回的BundleInfo所包含的信息 |
 | callback | AsyncCallback\<[BundleInfo](js-apis-bundleManager-bundleInfo.md)> | 是 | 回调函数，当获取成功时，err为null，data为获取到的当前应用的BundleInfo；否则为错误对象 |
@@ -256,7 +256,7 @@ getBundleInfo(bundleName: string, bundleFlags: number, userId: number, callback:
 
 **参数：**
 
-| 名称        | 类型   | 必填 | 描述                         |
+| 参数名  | 类型   | 必填 | 说明                       |
 | ----------- | ------ | ---- | ---------------------------- |
 | bundleName  | string | 是   | 表示要查询的应用程序包名称    |
 | bundleFlags | [number](#bundleflag) | 是   | 指定返回的BundleInfo所包含的信息|
@@ -267,7 +267,7 @@ getBundleInfo(bundleName: string, bundleFlags: number, userId: number, callback:
 
 以下错误码的详细介绍请参见[ohos.bundle错误码](../errorcodes/errorcode-bundle.md)。
 
-| 错误码ID | 错误码信息                            |
+| 错误码ID | 错误信息                              |
 | -------- | ------------------------------------- |
 | 17700001 | The specified bundleName is not found |
 | 17700004 | The specified userId is not found     |
@@ -276,9 +276,30 @@ getBundleInfo(bundleName: string, bundleFlags: number, userId: number, callback:
 **示例：**
 
 ```ts
+// 额外获取AbilityInfo
 import bundleManager from '@ohos.bundle.bundleManager'
 let bundleName = 'com.example.myapplication';
-let bundleFlags = bundleManager.BundleFlag.GET_BUNDLE_INFO_DEFAULT;
+let bundleFlags = bundleManager.BundleFlag.GET_BUNDLE_INFO_WITH_HAP_MODULE | bundleManager.BundleFlag.GET_BUNDLE_INFO_WITH_ABILITY;
+let userId = 100;
+
+try {
+    bundleManager.getBundleInfo(bundleName, bundleFlags, userId, (err, data) => {
+        if (err) {
+            console.error('getBundleInfo failed:' + err.message);
+        } else {
+            console.info('getBundleInfo successfully:' + JSON.stringify(data));
+        }
+    });
+} catch (err) {
+    console.error('getBundleInfo failed:' + err.message);
+}
+```
+
+```
+// 额外获取ApplicationInfo中的metadata
+import bundleManager from '@ohos.bundle.bundleManager'
+let bundleName = 'com.example.myapplication';
+let bundleFlags = bundleManager.BundleFlag.GET_BUNDLE_INFO_WITH_APPLICATION | bundleManager.BundleFlag.GET_BUNDLE_INFO_WITH_METADATA;
 let userId = 100;
 
 try {
@@ -308,7 +329,7 @@ getBundleInfo(bundleName: string, bundleFlags: number, callback: AsyncCallback\<
 
 **参数：**
 
-| 名称        | 类型   | 必填 | 描述                         |
+| 参数名     | 类型   | 必填 | 说明                       |
 | ----------- | ------ | ---- | ---------------------------- |
 | bundleName  | string | 是   | 表示要查询的应用程序包名称    |
 | bundleFlags | [number](#bundleflag) | 是   | 指定返回的BundleInfo所包含的信息|
@@ -318,7 +339,7 @@ getBundleInfo(bundleName: string, bundleFlags: number, callback: AsyncCallback\<
 
 以下错误码的详细介绍请参见[ohos.bundle错误码](../errorcodes/errorcode-bundle.md)。
 
-| 错误码ID | 错误码信息                            |
+| 错误码ID | 错误信息                              |
 | -------- | ------------------------------------- |
 | 17700001 | The specified bundleName is not found |
 | 17700026 | The specified bundle is disabled      |
@@ -326,9 +347,10 @@ getBundleInfo(bundleName: string, bundleFlags: number, callback: AsyncCallback\<
 **示例：**
 
 ```ts
+// 额外获取extensionAbility
 import bundleManager from '@ohos.bundle.bundleManager'
 let bundleName = 'com.example.myapplication';
-let bundleFlags = bundleManager.BundleFlag.GET_BUNDLE_INFO_DEFAULT;
+let bundleFlags = bundleManager.BundleFlag.GET_BUNDLE_INFO_WITH_HAP_MODULE | bundleManager.BundleFlag.GET_BUNDLE_INFO_WITH_EXTENSION_ABILITY;
 
 try {
     bundleManager.getBundleInfo(bundleName, bundleFlags, (err, data) => {
@@ -357,7 +379,7 @@ getBundleInfo(bundleName: string, bundleFlags: [number](#bundleflag), userId?: n
 
 **参数：**
 
-| 名称        | 类型   | 必填 | 描述                         |
+| 参数名     | 类型   | 必填 | 说明                       |
 | ----------- | ------ | ---- | ---------------------------- |
 | bundleName  | string | 是   | 表示要查询的应用程序包名称 |
 | bundleFlags | [number](#bundleflag) | 是   | 指定返回的BundleInfo所包含的信息       |
@@ -372,7 +394,7 @@ getBundleInfo(bundleName: string, bundleFlags: [number](#bundleflag), userId?: n
 **错误码：**
 
 以下错误码的详细介绍请参见[ohos.bundle错误码](../errorcodes/errorcode-bundle.md)。
-| 错误码ID | 错误码信息                            |
+| 错误码ID | 错误信息                            |
 | -------- | --------------------------------------|
 | 17700001 | The specified bundleName is not found |
 | 17700004 | The specified userId is not found     |
@@ -381,9 +403,10 @@ getBundleInfo(bundleName: string, bundleFlags: [number](#bundleflag), userId?: n
 **示例：**
 
 ```ts
+// 额外获取ApplicationInfo和SignatureInfo
 import bundleManager from '@ohos.bundle.bundleManager'
 let bundleName = 'com.example.myapplication';
-let bundleFlags = bundleManager.BundleFlag.GET_BUNDLE_INFO_DEFAULT;
+let bundleFlags = bundleManager.BundleFlag.GET_BUNDLE_INFO_WITH_APPLICATION | bundleManager.BundleFlag.GET_BUNDLE_INFO_WITH_SIGNATURE_INFO;
 let userId = 100;
 
 try {
@@ -428,7 +451,7 @@ getApplicationInfo(bundleName: string, appFlags: [number](#applicationflag), use
 
 **参数：**
 
-| 名称       | 类型   | 必填 | 描述                         |
+| 参数名    | 类型   | 必填 | 说明                       |
 | ---------- | ------ | ---- | ---------------------------- |
 | bundleName | string | 是   | 表示要查询的应用程序包名称 |
 | appFlags   | [number](#applicationflag) | 是   | 指定返回的ApplicationInfo所包含的信息    |
@@ -439,7 +462,7 @@ getApplicationInfo(bundleName: string, appFlags: [number](#applicationflag), use
 
 以下错误码的详细介绍请参见[ohos.bundle错误码](../errorcodes/errorcode-bundle.md)。
 
-| 错误码ID | 错误码信息                             |
+| 错误码ID | 错误信息                             |
 | -------- | --------------------------------------|
 | 17700001 | The specified bundleName is not found |
 | 17700004 | The specified userId is not found     |
@@ -480,7 +503,7 @@ getApplicationInfo(bundleName: string, appFlags: [number](#applicationflag), cal
 
 **参数：**
 
-| 名称       | 类型   | 必填 | 描述                         |
+| 参数名    | 类型   | 必填 | 说明                       |
 | ---------- | ------ | ---- | ---------------------------- |
 | bundleName | string | 是   | 表示要查询的应用程序包名称 |
 | appFlags   | [number](#applicationflag) | 是   | 指定返回的ApplicationInfo所包含的信息    |
@@ -490,7 +513,7 @@ getApplicationInfo(bundleName: string, appFlags: [number](#applicationflag), cal
 
 以下错误码的详细介绍请参见[ohos.bundle错误码](../errorcodes/errorcode-bundle.md)。
 
-| 错误码ID | 错误码信息                             |
+| 错误码ID | 错误信息                             |
 | -------- | --------------------------------------|
 | 17700001 | The specified bundleName is not found |
 | 17700026 | The specified bundle is disabled      |
@@ -529,7 +552,7 @@ getApplicationInfo(bundleName: string, appFlags: [number](#applicationflag), use
 
 **参数：**
 
-| 名称       | 类型   | 必填 | 描述                         |
+| 参数名    | 类型   | 必填 | 说明                       |
 | ---------- | ------ | ---- | ---------------------------- |
 | bundleName | string | 是   | 表示要查询的应用程序包名称 |
 | appFlags   | [number](#applicationflag) | 是   | 指定返回的ApplicationInfo所包含的信息    |
@@ -545,7 +568,7 @@ getApplicationInfo(bundleName: string, appFlags: [number](#applicationflag), use
 
 以下错误码的详细介绍请参见[ohos.bundle错误码](../errorcodes/errorcode-bundle.md)。
 
-| 错误码ID | 错误码信息                             |
+| 错误码ID | 错误信息                             |
 | -------- | ------------------------------------- |
 | 17700001 | The specified bundleName is not found |
 | 17700004 | The specified userId is not found     |
@@ -584,7 +607,7 @@ getAllBundleInfo(bundleFlags: [number](#bundleflag), userId: number, callback: A
 
 **参数：**
 
-| 名称        | 类型   | 必填 | 描述                                               |
+| 参数名     | 类型   | 必填 | 说明                                             |
 | ----------- | ------ | ---- | -------------------------------------------------- |
 | bundleFlags | [number](#bundleflag) | 是   | 指定返回的BundleInfo所包含的信息                    |
 | userId      | number | 是   | 表示用户ID                      |
@@ -594,7 +617,7 @@ getAllBundleInfo(bundleFlags: [number](#bundleflag), userId: number, callback: A
 
 以下错误码的详细介绍请参见[ohos.bundle错误码](../errorcodes/errorcode-bundle.md)。
 
-| 错误码ID | 错误码信息                         |
+| 错误码ID | 错误信息                         |
 | -------- | --------------------------------- |
 | 17700004 | The specified userId is not found |
 
@@ -632,7 +655,7 @@ getAllBundleInfo(bundleFlags: [number](#bundleflag), callback: AsyncCallback<Arr
 
 **参数：**
 
-| 名称        | 类型   | 必填 | 描述                                               |
+| 参数名     | 类型   | 必填 | 说明                                             |
 | ----------- | ------ | ---- | -------------------------------------------------- |
 | bundleFlags | [number](#bundleflag) | 是   | 指定返回的BundleInfo所包含的信息   |
 | callback | AsyncCallback<Array\<[BundleInfo](js-apis-bundleManager-bundleInfo.md)>> | 是 | 回调函数，当获取成功时，err为null，data为获取到的Array\<BundleInfo>；否则为错误对象 |
@@ -674,7 +697,7 @@ getAllBundleInfo(bundleFlags: [number](#bundleflag), userId?: number): Promise<A
 
 **参数：**
 
-| 名称        | 类型   | 必填 | 描述                                               |
+| 参数名     | 类型   | 必填 | 说明                                             |
 | ----------- | ------ | ---- | -------------------------------------------------- |
 | bundleFlags | [number](#bundleflag) | 是   | 指定返回的BundleInfo所包含的信息                   |
 | userId      | number | 否   | 表示用户ID                          |
@@ -689,7 +712,7 @@ getAllBundleInfo(bundleFlags: [number](#bundleflag), userId?: number): Promise<A
 
 以下错误码的详细介绍请参见[ohos.bundle错误码](../errorcodes/errorcode-bundle.md)。
 
-| 错误码ID | 错误码信息                         |
+| 错误码ID | 错误信息                         |
 | -------- | ---------------------------------- |
 | 17700004 | The specified userId is not found |
 
@@ -724,7 +747,7 @@ getAllApplicationInfo(appFlags: [number](#applicationflag), userId: number, call
 
 **参数：**
 
-| 名称     | 类型   | 必填 | 描述                                                        |
+| 参数名  | 类型   | 必填 | 说明                                                      |
 | -------- | ------ | ---- | ----------------------------------------------------------- |
 | appFlags | [number](#applicationflag) | 是   | 指定返回的ApplicationInfo所包含的信息                       |
 | userId   | number | 是   | 表示用户ID         |
@@ -734,7 +757,7 @@ getAllApplicationInfo(appFlags: [number](#applicationflag), userId: number, call
 
 以下错误码的详细介绍请参见[ohos.bundle错误码](../errorcodes/errorcode-bundle.md)。
 
-| 错误码ID | 错误码信息                         |
+| 错误码ID | 错误信息                         |
 | -------- | ---------------------------------- |
 | 17700004 | The specified userId is not found |
 
@@ -772,7 +795,7 @@ getAllApplicationInfo(appFlags: [number](#applicationflag), callback: AsyncCallb
 
 **参数：**
 
-| 名称     | 类型   | 必填 | 描述                                                        |
+| 参数名  | 类型   | 必填 | 说明                                                      |
 | -------- | ------ | ---- | ----------------------------------------------------------- |
 | appFlags | [number](#applicationflag) | 是   | 指定返回的ApplicationInfo所包含的信息                       |
 | callback | AsyncCallback<Array\<[ApplicationInfo](js-apis-bundleManager-applicationInfo.md)>> | 是 | 回调函数，当获取成功时，err为null，data为获取到的Array\<ApplicationInfo>；否则为错误对象 |
@@ -814,7 +837,7 @@ getAllApplicationInfo(appFlags: [number](#applicationflag), userId?: number): Pr
 
 **参数：**
 
-| 名称     | 类型   | 必填 | 描述                                                        |
+| 参数名  | 类型   | 必填 | 说明                                                      |
 | -------- | ------ | ---- | ---------------------------------------------------------- |
 | appFlags | [number](#applicationflag) | 是   | 指定返回的ApplicationInfo所包含的信息                       |
 | userId   | number | 否   | 表示用户ID                                   |
@@ -829,7 +852,7 @@ getAllApplicationInfo(appFlags: [number](#applicationflag), userId?: number): Pr
 
 以下错误码的详细介绍请参见[ohos.bundle错误码](../errorcodes/errorcode-bundle.md)。
 
-| 错误码ID | 错误码信息                         |
+| 错误码ID | 错误信息                         |
 | -------- | ---------------------------------- |
 | 17700004 | The specified userId is not found |
 
@@ -865,7 +888,7 @@ queryAbilityInfo(want: Want, abilityFlags: [number](#abilityflag), userId: numbe
 
 **参数：**
 
-| 名称         | 类型   | 必填 | 描述                                                    |
+| 参数名      | 类型   | 必填 | 说明                                                  |
 | ------------ | ------ | ---- | ------------------------------------------------------- |
 | want         | Want   | 是   | 表示包含要查询的应用程序包名称的Want                    |
 | abilityFlags | [number](#abilityflag) | 是   | 指定返回的AbilityInfo所包含的信息                       |
@@ -876,7 +899,7 @@ queryAbilityInfo(want: Want, abilityFlags: [number](#abilityflag), userId: numbe
 
 以下错误码的详细介绍请参见[ohos.bundle错误码](../errorcodes/errorcode-bundle.md)。
 
-| 错误码ID | 错误码信息                             |
+| 错误码ID | 错误信息                             |
 | -------- | -------------------------------------- |
 | 17700001 | The specified bundleName is not found |
 | 17700003 | The specified ability is not found   |
@@ -922,7 +945,7 @@ queryAbilityInfo(want: Want, abilityFlags: [number](#abilityflag), callback: Asy
 
 **参数：**
 
-| 名称         | 类型   | 必填 | 描述                                                    |
+| 参数名      | 类型   | 必填 | 说明                                                  |
 | ------------ | ------ | ---- | -------------------------------------------------------|
 | want         | Want   | 是   | 表示包含要查询的应用程序包名称的Want                    |
 | abilityFlags | [number](#abilityflag) | 是   | 指定返回的AbilityInfo所包含的信息       |
@@ -932,7 +955,7 @@ queryAbilityInfo(want: Want, abilityFlags: [number](#abilityflag), callback: Asy
 
 以下错误码的详细介绍请参见[ohos.bundle错误码](../errorcodes/errorcode-bundle.md)。
 
-| 错误码ID | 错误码信息                             |
+| 错误码ID | 错误信息                             |
 | -------- | -------------------------------------- |
 | 17700001 | The specified bundleName is not found |
 | 17700003 | The specified ability is not found   |
@@ -976,7 +999,7 @@ queryAbilityInfo(want: Want, abilityFlags: [number](#abilityflag), userId?: numb
 
 **参数：**
 
-| 名称         | 类型   | 必填 | 描述                                                    |
+| 参数名      | 类型   | 必填 | 说明                                                  |
 | ------------ | ------ | ---- | ------------------------------------------------------- |
 | want         | Want   | 是   | 表示包含要查询的应用程序包名称的Want                    |
 | abilityFlags | [number](#abilityflag) | 是   | 表示指定返回的AbilityInfo所包含的信息 |
@@ -992,7 +1015,7 @@ queryAbilityInfo(want: Want, abilityFlags: [number](#abilityflag), userId?: numb
 
 以下错误码的详细介绍请参见[ohos.bundle错误码](../errorcodes/errorcode-bundle.md)。
 
-| 错误码ID | 错误码信息                             |
+| 错误码ID | 错误信息                             |
 | -------- | ------------------------------------- |
 | 17700001 | The specified bundleName is not found |
 | 17700003 | The specified ability is not found    |
@@ -1055,7 +1078,7 @@ queryExtensionAbilityInfo(want: Want, extensionAbilityType: [ExtensionAbilityTyp
 
 **参数：**
 
-| 名称                  | 类型                                                         | 必填 | 描述                                                         |
+| 参数名                | 类型                                                         | 必填 | 说明                                                         |
 | --------------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | want                  | Want                                                         | 是   | 表示包含要查询的应用程序包名称的Want                         |
 | extensionAbilityType  | [ExtensionAbilityType](#extensionabilitytype)                | 是   | 标识extensionAbility的类型                                   |
@@ -1067,12 +1090,12 @@ queryExtensionAbilityInfo(want: Want, extensionAbilityType: [ExtensionAbilityTyp
 
 以下错误码的详细介绍请参见[ohos.bundle错误码](../errorcodes/errorcode-bundle.md)。
 
-| 错误码ID | 错误码信息                            |
-| -------- | --------------------------------------|
-| 17700001 | The specified bundleName is not found |
-| 17700003 | The specified extensionAbility is not found    |
-| 17700004 | The specified userId is invalid       |
-| 17700026 | The specified bundle is disabled      |
+| 错误码ID | 错误信息                                    |
+| -------- | ------------------------------------------- |
+| 17700001 | The specified bundleName is not found       |
+| 17700003 | The specified extensionAbility is not found |
+| 17700004 | The specified userId is invalid             |
+| 17700026 | The specified bundle is disabled            |
 
 **示例：**
 
@@ -1113,7 +1136,7 @@ queryExtensionAbilityInfo(want: Want, extensionAbilityType: [ExtensionAbilityTyp
 
 **参数：**
 
-| 名称                  | 类型                                                         | 必填 | 描述                                                         |
+| 参数名                | 类型                                                         | 必填 | 说明                                                         |
 | --------------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | want                  | Want                                                         | 是   | 表示包含要查询的应用程序包名称的Want                         |
 | extensionAbilityType  | [ExtensionAbilityType](#extensionabilitytype)                | 是   | 标识extensionAbility的类型                                   |
@@ -1124,11 +1147,11 @@ queryExtensionAbilityInfo(want: Want, extensionAbilityType: [ExtensionAbilityTyp
 
 以下错误码的详细介绍请参见[ohos.bundle错误码](../errorcodes/errorcode-bundle.md)。
 
-| 错误码ID | 错误码信息                            |
-| -------- | --------------------------------------|
-| 17700001 | The specified bundleName is not found |
-| 17700003 | The specified extensionAbility is not found|
-| 17700026 | The specified bundle is disabled      |
+| 错误码ID | 错误信息                                    |
+| -------- | ------------------------------------------- |
+| 17700001 | The specified bundleName is not found       |
+| 17700003 | The specified extensionAbility is not found |
+| 17700026 | The specified bundle is disabled            |
 
 **示例：**
 
@@ -1168,12 +1191,12 @@ queryExtensionAbilityInfo(want: Want, extensionAbilityType: [ExtensionAbilityTyp
 
 **参数：**
 
-| 名称                  | 类型                 | 必填 | 描述                                                   |
-| --------------------- | -------------------- | ---- | ------------------------------------------------------ |
-| want                  | Want                 | 是   | 表示包含要查询的应用程序包名称的Want                    |
-| extensionAbilityType  | [ExtensionAbilityType](#extensionabilitytype) | 是   | 标识extensionAbility的类型                               |
+| 参数名                | 类型                                          | 必填 | 说明                                                    |
+| --------------------- | --------------------------------------------- | ---- | ------------------------------------------------------- |
+| want                  | Want                                          | 是   | 表示包含要查询的应用程序包名称的Want                    |
+| extensionAbilityType  | [ExtensionAbilityType](#extensionabilitytype) | 是   | 标识extensionAbility的类型                              |
 | extensionAbilityFlags | [number](#extensionabilityflag)               | 是   | 表示用于指定将返回的ExtensionInfo对象中包含的信息的标志 |
-| userId                | number               | 否   | 表示用户ID                               |
+| userId                | number                                        | 否   | 表示用户ID                                              |
 
 **返回值：**
 
@@ -1185,7 +1208,7 @@ queryExtensionAbilityInfo(want: Want, extensionAbilityType: [ExtensionAbilityTyp
 
 以下错误码的详细介绍请参见[ohos.bundle错误码](../errorcodes/errorcode-bundle.md)。
 
-| 错误码ID | 错误码信息                             |
+| 错误码ID | 错误信息                             |
 | -------- | --------------------------------------|
 | 17700001 | The specified bundleName is not found |
 | 17700003 | The specified extensionAbility is not found    |
@@ -1250,7 +1273,7 @@ getBundleNameByUid(uid: number, callback: AsyncCallback\<string>): void;
 
 **参数：**
 
-| 名称     | 类型                   | 必填 | 描述                                                         |
+| 参数名   | 类型                   | 必填 | 说明                                                         |
 | -------- | ---------------------- | ---- | ------------------------------------------------------------ |
 | uid      | number                 | 是   | 表示应用程序的UID                                            |
 | callback | AsyncCallback\<string> | 是   | 回调函数，当获取成功时，err为null，data为获取到的BundleName；否则为错误对象 |
@@ -1259,7 +1282,7 @@ getBundleNameByUid(uid: number, callback: AsyncCallback\<string>): void;
 
 以下错误码的详细介绍请参见[ohos.bundle错误码](../errorcodes/errorcode-bundle.md)。
 
-| 错误码ID | 错误码信息            |
+| 错误码ID | 错误信息            |
 | -------- | --------------------- |
 | 17700021 | The uid is not found |
 
@@ -1295,7 +1318,7 @@ getBundleNameByUid(uid: number): Promise\<string>;
 
 **参数：**
 
-| 名称 | 类型   | 必填 | 描述                |
+| 参数名 | 类型   | 必填 | 说明                |
 | ---- | ------ | ---- | ------------------ |
 | uid  | number | 是   | 表示应用程序的UID |
 
@@ -1309,7 +1332,7 @@ getBundleNameByUid(uid: number): Promise\<string>;
 
 以下错误码的详细介绍请参见[ohos.bundle错误码](../errorcodes/errorcode-bundle.md)。
 
-| 错误码ID | 错误码信息            |
+| 错误码ID | 错误信息            |
 | -------- | ---------------------|
 | 17700021 | The uid is not found |
 
@@ -1343,7 +1366,7 @@ getBundleArchiveInfo(hapFilePath: string, bundleFlags: [number](#bundleflag), ca
 
 **参数：**
 
-| 名称        | 类型   | 必填 | 描述                                                         |
+| 参数名       | 类型   | 必填 | 说明                                                         |
 | ----------- | ------ | ---- | ----------------------------------------------------------- |
 | hapFilePath | string | 是   | 表示存储HAP的路径，路径应该是当前应用程序数据目录的相对路径 |
 | bundleFlags | [number](#bundleflag) | 是   | 表示用于指定要返回的BundleInfo对象中包含的信息的标志       |
@@ -1353,7 +1376,7 @@ getBundleArchiveInfo(hapFilePath: string, bundleFlags: [number](#bundleflag), ca
 
 以下错误码的详细介绍请参见[ohos.bundle错误码](../errorcodes/errorcode-bundle.md)。
 
-| 错误码ID | 错误码信息                  |
+| 错误码ID | 错误信息                  |
 | -------- | --------------------------- |
 | 17700022 | The hapFilePath is invalid |
 
@@ -1391,7 +1414,7 @@ getBundleArchiveInfo(hapFilePath: string,  bundleFlags: [number](#bundleflag)): 
 
 **参数：**
 
-| 名称        | 类型   | 必填 | 描述                                                         |
+| 参数名       | 类型   | 必填 | 说明                                                         |
 | ----------- | ------ | ---- | ------------------------------------------------------------ |
 | hapFilePath | string | 是   | 表示存储HAP的路径，路径应该是当前应用程序数据目录的相对路径 |
 | bundleFlags | [number](#bundleflag) | 是   | 表示用于指定要返回的BundleInfo对象中包含的信息的标志       |
@@ -1406,7 +1429,7 @@ getBundleArchiveInfo(hapFilePath: string,  bundleFlags: [number](#bundleflag)): 
 
 以下错误码的详细介绍请参见[ohos.bundle错误码](../errorcodes/errorcode-bundle.md)。
 
-| 错误码ID | 错误码信息                 |
+| 错误码ID | 错误信息                   |
 | -------- | -------------------------- |
 | 17700022 | The hapFilePath is invalid |
 
@@ -1442,7 +1465,7 @@ cleanBundleCacheFiles(bundleName: string, callback: AsyncCallback\<void>): void;
 
 **参数：**
 
-| 名称       | 类型                 | 必填 | 描述                                                         |
+| 参数名     | 类型                 | 必填 | 说明                                                         |
 | ---------- | -------------------- | ---- | ------------------------------------------------------------ |
 | bundleName | string               | 是   | 表示要清理其缓存数据的应用程序的bundleName                   |
 | callback   | AsyncCallback\<void> | 是   | 回调函数，当清理应用缓存目录数据成功，err为null，否则为错误对象 |
@@ -1451,9 +1474,9 @@ cleanBundleCacheFiles(bundleName: string, callback: AsyncCallback\<void>): void;
 
 以下错误码的详细介绍请参见[ohos.bundle错误码](../errorcodes/errorcode-bundle.md)。
 
-| 错误码ID | 错误码信息                                                   |
+| 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 17700001 | The specified bundleName is not found                       |
+| 17700001 | The specified bundleName is not found                        |
 | 17700030 | The specified bundleName does not support cleaning cache files |
 
 **示例：**
@@ -1489,8 +1512,8 @@ cleanBundleCacheFiles(bundleName: string): Promise\<void>;
 
 **参数：**
 
-| 名称       | 类型   | 必填 | 描述                                         |
-| ---------- | ------ | ---- | -------------------------------------------- |
+| 参数名     | 类型   | 必填 | 说明                                       |
+| ---------- | ------ | ---- | ------------------------------------------ |
 | bundleName | string | 是   | 表示要清理其缓存数据的应用程序的bundleName |
 
 **返回值：**
@@ -1503,9 +1526,9 @@ cleanBundleCacheFiles(bundleName: string): Promise\<void>;
 
 以下错误码的详细介绍请参见[ohos.bundle错误码](../errorcodes/errorcode-bundle.md)。
 
-| 错误码ID | 错误码信息                                                   |
-| -------- | ------------------------------------------------------------ |
-| 17700001 | The specified bundleName is not found                       |
+| 错误码ID | 错误信息                                                   |
+| -------- | ---------------------------------------------------------- |
+| 17700001 | The specified bundleName is not found                      |
 | 17700030 | The specified bundle does not support cleaning cache files |
 
 **示例：**
@@ -1539,7 +1562,7 @@ setApplicationEnabled(bundleName: string, isEnabled: boolean, callback: AsyncCal
 
 **参数：**
 
-| 名称       | 类型    | 必填 | 描述                                  |
+| 参数名      | 类型    | 必填 | 说明                                  |
 | ---------- | ------- | ---- | ------------------------------------- |
 | bundleName | string  | 是   | 指定应用的bundleName                |
 | isEnabled  | boolean | 是   | 值为true表示使能，值为false表示禁用 |
@@ -1549,7 +1572,7 @@ setApplicationEnabled(bundleName: string, isEnabled: boolean, callback: AsyncCal
 
 以下错误码的详细介绍请参见[ohos.bundle错误码](../errorcodes/errorcode-bundle.md)。
 
-| 错误码ID | 错误码信息                             |
+| 错误码ID | 错误信息                             |
 | -------- | -------------------------------------- |
 | 17700001 | The specified bundleName is not found |
 
@@ -1586,7 +1609,7 @@ setApplicationEnabled(bundleName: string, isEnabled: boolean): Promise\<void>;
 
 **参数：**
 
-| 名称       | 类型    | 必填 | 描述                                  |
+| 参数名      | 类型    | 必填 | 说明                                  |
 | ---------- | ------- | ---- | ------------------------------------- |
 | bundleName | string  | 是   | 表示应用程序的bundleName            |
 | isEnabled  | boolean | 是   | 值为true表示使能，值为false表示禁用 |
@@ -1601,7 +1624,7 @@ setApplicationEnabled(bundleName: string, isEnabled: boolean): Promise\<void>;
 
 以下错误码的详细介绍请参见[ohos.bundle错误码](../errorcodes/errorcode-bundle.md)。
 
-| 错误码ID | 错误码信息                             |
+| 错误码ID | 错误信息                             |
 | -------- | -------------------------------------- |
 | 17700001 | The specified bundleName is not found |
 
@@ -1636,7 +1659,7 @@ setAbilityEnabled(info: [AbilityInfo](js-apis-bundleManager-abilityInfo.md), isE
 
 **参数：**
 
-| 名称     | 类型        | 必填 | 描述                                  |
+| 参数名    | 类型        | 必填 | 说明                                  |
 | -------- | ----------- | ---- | ------------------------------------- |
 | info     | [AbilityInfo](js-apis-bundleManager-abilityInfo.md) | 是   | 需要被设置的组件              |
 | isEnabled| boolean     | 是   | 值为true表示使能，值为false表示禁用 |
@@ -1646,7 +1669,7 @@ setAbilityEnabled(info: [AbilityInfo](js-apis-bundleManager-abilityInfo.md), isE
 
 以下错误码的详细介绍请参见[ohos.bundle错误码](../errorcodes/errorcode-bundle.md)。
 
-| 错误码ID | 错误码信息                              |
+| 错误码ID | 错误信息                              |
 | -------- | ---------------------------------------|
 | 17700001 | The specified bundleName is not found  |
 | 17700003 | The specified abilityInfo is not found |
@@ -1697,7 +1720,7 @@ setAbilityEnabled(info: [AbilityInfo](js-apis-bundleManager-abilityInfo.md), isE
 
 **参数：**
 
-| 名称     | 类型        | 必填 | 描述                                  |
+| 参数名    | 类型        | 必填 | 说明                                  |
 | -------- | ----------- | ---- | ------------------------------------- |
 | info     | [AbilityInfo](js-apis-bundleManager-abilityInfo.md) | 是   | 需要被设置的组件                   |
 | isEnabled| boolean     | 是   | 值为true表示使能，值为false表示禁用 |
@@ -1712,7 +1735,7 @@ setAbilityEnabled(info: [AbilityInfo](js-apis-bundleManager-abilityInfo.md), isE
 
 以下错误码的详细介绍请参见[ohos.bundle错误码](../errorcodes/errorcode-bundle.md)。
 
-| 错误码ID | 错误码信息                              |
+| 错误码ID | 错误信息                              |
 | -------- | -------------------------------------- |
 | 17700001 | The specified bundleName is not found  |
 | 17700003 | The specified abilityInfo is not found |
@@ -1759,7 +1782,7 @@ isApplicationEnabled(bundleName: string, callback: AsyncCallback\<boolean>): voi
 
 **参数：**
 
-| 名称       | 类型   | 必填 | 描述                       |
+| 参数名      | 类型   | 必填 | 说明                       |
 | ---------- | ------ | ---- | -------------------------- |
 | bundleName | string | 是   | 表示应用程序的bundleName |
 | callback | AsyncCallback\<boolean> | 是 | 回调函数，返回true表示当前应用为使能状态，返回false表示应用为禁用状态 |
@@ -1768,7 +1791,7 @@ isApplicationEnabled(bundleName: string, callback: AsyncCallback\<boolean>): voi
 
 以下错误码的详细介绍请参见[ohos.bundle错误码](../errorcodes/errorcode-bundle.md)。
 
-| 错误码ID | 错误码信息                             |
+| 错误码ID | 错误信息                             |
 | -------- | -------------------------------------- |
 | 17700001 | The specified bundleName is not found |
 
@@ -1803,7 +1826,7 @@ isApplicationEnabled(bundleName: string): Promise\<boolean>;
 
 **参数：**
 
-| 名称       | 类型   | 必填 | 描述                       |
+| 参数名      | 类型   | 必填 | 说明                       |
 | ---------- | ------ | ---- | -------------------------- |
 | bundleName | string | 是   | 表示应用程序的bundleName  |
 
@@ -1817,7 +1840,7 @@ isApplicationEnabled(bundleName: string): Promise\<boolean>;
 
 以下错误码的详细介绍请参见[ohos.bundle错误码](../errorcodes/errorcode-bundle.md)。
 
-| 错误码ID | 错误码信息                             |
+| 错误码ID | 错误信息                             |
 | -------- | -------------------------------------- |
 | 17700001 | The specified bundleName is not found |
 
@@ -1850,7 +1873,7 @@ isAbilityEnabled(info: [AbilityInfo](js-apis-bundleManager-abilityInfo.md), call
 
 **参数：**
 
-| 名称 | 类型        | 必填 | 描述                        |
+| 参数名 | 类型        | 必填 | 说明                        |
 | ---- | ----------- | ---- | --------------------------- |
 | info | [AbilityInfo](js-apis-bundleManager-abilityInfo.md) | 是   | 表示关于检查ability的信息 |
 | callback | AsyncCallback\<boolean> | 是 | 回调函数，返回true表示当前应用组件为使能状态，返回false表示应用组件为禁用状态 |
@@ -1859,7 +1882,7 @@ isAbilityEnabled(info: [AbilityInfo](js-apis-bundleManager-abilityInfo.md), call
 
 以下错误码的详细介绍请参见[ohos.bundle错误码](../errorcodes/errorcode-bundle.md)。
 
-| 错误码ID | 错误码信息                              |
+| 错误码ID | 错误信息                              |
 | -------- | --------------------------------------- |
 | 17700001 | The specified bundleName is not found  |
 | 17700003 | The specified abilityName is not found |
@@ -1908,7 +1931,7 @@ isAbilityEnabled(info: [AbilityInfo](js-apis-bundleManager-abilityInfo.md)): Pro
 
 **参数：**
 
-| 名称 | 类型        | 必填 | 描述                        |
+| 参数名 | 类型        | 必填 | 说明                        |
 | ---- | ----------- | ---- | --------------------------- |
 | info | [AbilityInfo](js-apis-bundleManager-abilityInfo.md) | 是   | 表示关于检查ability的信息 |
 
@@ -1922,7 +1945,7 @@ isAbilityEnabled(info: [AbilityInfo](js-apis-bundleManager-abilityInfo.md)): Pro
 
 以下错误码的详细介绍请参见[ohos.bundle错误码](../errorcodes/errorcode-bundle.md)。
 
-| 错误码ID | 错误码信息                              |
+| 错误码ID | 错误信息                              |
 | -------- | --------------------------------------- |
 | 17700001 | The specified bundleName is not found  |
 | 17700003 | The specified abilityName is not found |
@@ -1971,7 +1994,7 @@ getLaunchWantForBundle(bundleName: string, userId: number, callback: AsyncCallba
 
 **参数：**
 
-| 名称       | 类型                 | 必填 | 描述                                                         |
+| 参数名     | 类型                 | 必填 | 说明                                                         |
 | ---------- | -------------------- | ---- | ------------------------------------------------------------ |
 | bundleName | string               | 是   | 表示应用程序的bundleName                                     |
 | userId     | number               | 是   | 表示用户ID                                                   |
@@ -1981,7 +2004,7 @@ getLaunchWantForBundle(bundleName: string, userId: number, callback: AsyncCallba
 
 以下错误码的详细介绍请参见[ohos.bundle错误码](../errorcodes/errorcode-bundle.md)。
 
-| 错误码ID | 错误码信息                             |
+| 错误码ID | 错误信息                             |
 | -------- | --------------------------------------|
 | 17700001 | The specified bundleName is not found |
 | 17700004 | The specified userId is not found     |
@@ -2021,7 +2044,7 @@ getLaunchWantForBundle(bundleName: string, callback: AsyncCallback\<Want>): void
 
 **参数：**
 
-| 名称       | 类型                 | 必填 | 描述                                                         |
+| 参数名     | 类型                 | 必填 | 说明                                                         |
 | ---------- | -------------------- | ---- | ------------------------------------------------------------ |
 | bundleName | string               | 是   | 表示应用程序的bundleName                                     |
 | callback   | AsyncCallback\<Want> | 是   | 回调函数，当获取成功时，err为null，data为获取到的Want；否则为错误对象 |
@@ -2030,7 +2053,7 @@ getLaunchWantForBundle(bundleName: string, callback: AsyncCallback\<Want>): void
 
 以下错误码的详细介绍请参见[ohos.bundle错误码](../errorcodes/errorcode-bundle.md)。
 
-| 错误码ID | 错误码信息                             |
+| 错误码ID | 错误信息                             |
 | -------- | --------------------------------------|
 | 17700001 | The specified bundleName is not found |
 | 17700026 | The specified bundle is disabled      |
@@ -2068,7 +2091,7 @@ getLaunchWantForBundle(bundleName: string, userId?: number): Promise\<Want>;
 
 **参数：**
 
-| 名称       | 类型   | 必填 | 描述                     |
+| 参数名      | 类型   | 必填 | 说明                     |
 | ---------- | ------ | ---- | ------------------------ |
 | bundleName | string | 是   | 表示应用程序的bundleName |
 | userId     | number | 否   | 表示用户ID|
@@ -2083,7 +2106,7 @@ getLaunchWantForBundle(bundleName: string, userId?: number): Promise\<Want>;
 
 以下错误码的详细介绍请参见[ohos.bundle错误码](../errorcodes/errorcode-bundle.md)。
 
-| 错误码ID | 错误码信息                             |
+| 错误码ID | 错误信息                             |
 | -------- | --------------------------------------|
 | 17700001 | The specified bundleName is not found |
 | 17700004 | The specified userId is not found     |
@@ -2117,7 +2140,7 @@ getProfileByAbility(moduleName: string, abilityName: string, metadataName: strin
 
 **参数：**
 
-| 名称         | 类型                          | 必填 | 描述                                                         |
+| 参数名       | 类型                          | 必填 | 说明                                                         |
 | ------------ | ----------------------------- | ---- | ------------------------------------------------------------ |
 | moduleName   | string                        | 是   | 表示应用程序的moduleName                                     |
 | abilityName  | string                        | 是   | 表示应用程序的abilityName                                    |
@@ -2128,7 +2151,7 @@ getProfileByAbility(moduleName: string, abilityName: string, metadataName: strin
 
 以下错误码的详细介绍请参见[ohos.bundle错误码](../errorcodes/errorcode-bundle.md)。
 
-| 错误码ID | 错误码信息                                                   |
+| 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
 | 17700002 | The specified moduleName is not existed                      |
 | 17700003 | The specified abilityName is not existed                     |
@@ -2167,7 +2190,7 @@ getProfileByAbility(moduleName: string, abilityName: string, metadataName?: stri
 
 **参数：**
 
-| 名称         | 类型   | 必填 | 描述                       |
+| 参数名       | 类型   | 必填 | 说明                       |
 | ------------ | ------ | ---- | -------------------------- |
 | moduleName   | string | 是   | 表示应用程序的moduleName   |
 | abilityName  | string | 是   | 表示应用程序的abilityName  |
@@ -2183,7 +2206,7 @@ getProfileByAbility(moduleName: string, abilityName: string, metadataName?: stri
 
 以下错误码的详细介绍请参见[ohos.bundle错误码](../errorcodes/errorcode-bundle.md)。
 
-| 错误码ID | 错误码信息                                                   |
+| 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
 | 17700002 | The specified moduleName is not existed                      |
 | 17700003 | The specified abilityName is not existed                     |
@@ -2230,7 +2253,7 @@ getProfileByExtensionAbility(moduleName: string, extensionAbilityName: string, m
 
 **参数：**
 
-| 名称                 | 类型                          | 必填 | 描述                                                         |
+| 名称                 | 类型                          | 必填 | 说明                                                         |
 | -------------------- | ----------------------------- | ---- | ------------------------------------------------------------ |
 | moduleName           | string                        | 是   | 表示应用程序的moduleName                                     |
 | extensionAbilityName | string                        | 是   | 表示应用程序的extensionAbilityName                           |
@@ -2241,7 +2264,7 @@ getProfileByExtensionAbility(moduleName: string, extensionAbilityName: string, m
 
 以下错误码的详细介绍请参见[ohos.bundle错误码](../errorcodes/errorcode-bundle.md)。
 
-| 错误码ID | 错误码信息                                                   |
+| 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
 | 17700002 | The specified moduleName is not existed                      |
 | 17700003 | The specified extensionAbilityName is not existed            |
@@ -2279,8 +2302,8 @@ getProfileByExtensionAbility(moduleName: string, extensionAbilityName: string, m
 
 **参数：**
 
-| 名称                 | 类型   | 必填 | 描述                               |
-| -------------------- | ------ | ---- | -----------------------------------|
+| 名称                 | 类型   | 必填 | 说明                               |
+| -------------------- | ------ | ---- | ---------------------------------- |
 | moduleName           | string | 是   | 表示应用程序的moduleName           |
 | extensionAbilityName | string | 是   | 表示应用程序的extensionAbilityName |
 | metadataName         | string | 否   | 表示应用程序的metadataName         |
@@ -2295,7 +2318,7 @@ getProfileByExtensionAbility(moduleName: string, extensionAbilityName: string, m
 
 以下错误码的详细介绍请参见[ohos.bundle错误码](../errorcodes/errorcode-bundle.md)。
 
-| 错误码ID | 错误码信息                                                   |
+| 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
 | 17700002 | The specified moduleName is not existed                      |
 | 17700003 | The specified extensionAbilityName is not existed            |
@@ -2345,7 +2368,7 @@ getPermissionDef(permissionName: string, callback: AsyncCallback\<[PermissionDef
 
 **参数：**
 
-| 名称           | 类型                                                         | 必填 | 描述                                                         |
+| 名称           | 类型                                                         | 必填 | 说明                                                         |
 | -------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | permissionName | string                                                       | 是   | 表示权限名称                                                 |
 | callback       | AsyncCallback\<[PermissionDef](js-apis-bundleManager-permissionDef.md)> | 是   | 回调函数，当获取成功时，err为null，data为获取到的Array\<PermissionDef>；否则为错误对象 |
@@ -2354,8 +2377,8 @@ getPermissionDef(permissionName: string, callback: AsyncCallback\<[PermissionDef
 
 以下错误码的详细介绍请参见[ohos.bundle错误码](../errorcodes/errorcode-bundle.md)。
 
-| 错误码ID | 错误码信息                            |
-| -------- | --------------------------------------|
+| 错误码ID | 错误信息                              |
+| -------- | ------------------------------------- |
 | 17700006 | The specified permission is not found |
 
 **示例：**
@@ -2390,9 +2413,9 @@ getPermissionDef(permissionName: string): Promise\<[PermissionDef](js-apis-bundl
 
 **参数：**
 
-| 名称           | 类型   | 必填 | 描述                 |
-| -------------- | ------ | ---- | -------------------- |
-| permissionName | string | 是   | 表示权限名称         |
+| 名称           | 类型   | 必填 | 说明           |
+| -------------- | ------ | ---- | -------------- |
+| permissionName | string | 是   | 表示权限参数名 |
 
 **返回值：**
 
@@ -2404,8 +2427,8 @@ getPermissionDef(permissionName: string): Promise\<[PermissionDef](js-apis-bundl
 
 以下错误码的详细介绍请参见[ohos.bundle错误码](../errorcodes/errorcode-bundle.md)。
 
-| 错误码ID | 错误码信息                            |
-| -------- | --------------------------------------|
+| 错误码ID | 错误信息                              |
+| -------- | ------------------------------------- |
 | 17700006 | The specified permission is not found |
 
 **示例：**
@@ -2438,7 +2461,7 @@ getAbilityLabel(bundleName: string, moduleName: string, abilityName: string, cal
 
 **参数：**
 
-| 名称        | 类型                   | 必填 | 描述                                                         |
+| 参数名      | 类型                   | 必填 | 说明                                                         |
 | ----------- | ---------------------- | ---- | ------------------------------------------------------------ |
 | bundleName  | string                 | 是   | 表示应用程序的bundleName                                     |
 | moduleName  | string                 | 是   | 表示应用程序的moduleName                                     |
@@ -2449,8 +2472,8 @@ getAbilityLabel(bundleName: string, moduleName: string, abilityName: string, cal
 
 以下错误码的详细介绍请参见[ohos.bundle错误码](../errorcodes/errorcode-bundle.md)。
 
-| 错误码ID | 错误码信息                             |
-| -------- | ---------------------------------------|
+| 错误码ID | 错误信息                               |
+| -------- | -------------------------------------- |
 | 17700001 | The specified bundleName is not found  |
 | 17700002 | The specified moduleName is not found  |
 | 17700003 | The specified abilityName is not found |
@@ -2492,7 +2515,7 @@ getAbilityLabel(bundleName: string, moduleName: string, abilityName: string): Pr
 
 **参数：**
 
-| 名称        | 类型   | 必填 | 描述                      |
+| 参数名      | 类型   | 必填 | 说明                      |
 | ----------- | ------ | ---- | ------------------------- |
 | bundleName  | string | 是   | 表示应用程序的bundleName  |
 | moduleName  | string | 是   | 表示应用程序的moduleName  |
@@ -2508,7 +2531,7 @@ getAbilityLabel(bundleName: string, moduleName: string, abilityName: string): Pr
 
 以下错误码的详细介绍请参见[ohos.bundle错误码](../errorcodes/errorcode-bundle.md)。
 
-| 错误码ID | 错误码信息                              |
+| 错误码ID | 错误信息                              |
 | -------- | --------------------------------------- |
 | 17700001 | The specified bundleName is not found  |
 | 17700002 | The specified moduleName is not found  |
@@ -2549,7 +2572,7 @@ getAbilityIcon(bundleName: string, moduleName: string, abilityName: string, call
 
 **参数：**
 
-| 名称        | 类型                                                        | 必填 | 描述                                                         |
+| 参数名      | 类型                                                        | 必填 | 说明                                                         |
 | ----------- | ----------------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | bundleName  | string                                                      | 是   | 表示应用程序的bundleName                                     |
 | moduleName  | string                                                      | 是   | 表示应用程序的moduleName                                     |
@@ -2560,7 +2583,7 @@ getAbilityIcon(bundleName: string, moduleName: string, abilityName: string, call
 
 以下错误码的详细介绍请参见[ohos.bundle错误码](../errorcodes/errorcode-bundle.md)。
 
-| 错误码ID | 错误码信息                              |
+| 错误码ID | 错误信息                              |
 | -------- | -------------------------------------- |
 | 17700001 | The specified bundleName is not found  |
 | 17700002 | The specified moduleName is not found  |
@@ -2603,7 +2626,7 @@ getAbilityIcon(bundleName: string, moduleName: string, abilityName: string): Pro
 
 **参数：**
 
-| 名称        | 类型   | 必填 | 描述                      |
+| 参数名      | 类型   | 必填 | 说明                      |
 | ----------- | ------ | ---- | ------------------------- |
 | bundleName  | string | 是   | 表示应用程序的bundleName  |
 | moduleName  | string | 是   | 表示应用程序的moduleName  |
@@ -2619,7 +2642,7 @@ getAbilityIcon(bundleName: string, moduleName: string, abilityName: string): Pro
 
 以下错误码的详细介绍请参见[ohos.bundle错误码](../errorcodes/errorcode-bundle.md)。
 
-| 错误码ID | 错误码信息                             |
+| 错误码ID | 错误信息                               |
 | -------- | -------------------------------------- |
 | 17700001 | The specified bundleName is not found  |
 | 17700002 | The specified moduleName is not found  |
@@ -2660,7 +2683,7 @@ getApplicationInfoSync(bundleName: string, applicationFlags: number, userId: num
 
 **参数：**
 
-| 名称        | 类型   | 必填 | 描述                                                       |
+| 参数名       | 类型   | 必填 | 说明                                                       |
 | ----------- | ------ | ---- | ----------------------------------------------------------|
 | bundleName  | string | 是   | 表示应用程序的bundleName                                  |
 | applicationFlags | [number](#applicationflag) | 是   | 表示用于指定将返回的ApplicationInfo对象中包含的信息       |
@@ -2676,7 +2699,7 @@ getApplicationInfoSync(bundleName: string, applicationFlags: number, userId: num
 
 以下错误码的详细介绍请参见[ohos.bundle错误码](../errorcodes/errorcode-bundle.md)。
 
-| 错误码ID | 错误码信息                             |
+| 错误码ID | 错误信息                             |
 | -------- | -------------------------------------- |
 | 17700001 | The specified bundleName is not found |
 | 17700004 | The specified userId is not found     |
@@ -2712,7 +2735,7 @@ getApplicationInfoSync(bundleName: string, applicationFlags: number) : [Applicat
 
 **参数：**
 
-| 名称        | 类型   | 必填 | 描述                                                       |
+| 参数名       | 类型   | 必填 | 说明                                                       |
 | ----------- | ------ | ---- | ----------------------------------------------------------|
 | bundleName  | string | 是   | 表示应用程序的bundleName                                  |
 | applicationFlags | [number](#applicationflag) | 是   | 表示用于指定将返回的ApplicationInfo对象中包含的信息       |
@@ -2727,7 +2750,7 @@ getApplicationInfoSync(bundleName: string, applicationFlags: number) : [Applicat
 
 以下错误码的详细介绍请参见[ohos.bundle错误码](../errorcodes/errorcode-bundle.md)。
 
-| 错误码ID | 错误码信息                             |
+| 错误码ID | 错误信息                             |
 | -------- | -------------------------------------- |
 | 17700001 | The specified bundleName is not found |
 | 17700026 | The specified bundle is disabled      |
@@ -2761,7 +2784,7 @@ getBundleInfoSync(bundleName: string, bundleFlags: [number](#bundleflag), userId
 
 **参数：**
 
-| 名称        | 类型   | 必填 | 描述                                                     |
+| 参数名       | 类型   | 必填 | 说明                                                     |
 | ----------- | ------ | ---- | -------------------------------------------------------- |
 | bundleName  | string | 是   | 表示应用程序的bundleName                                 |
 | bundleFlags | [number](#bundleflag) | 是   | 表示用于指定将返回的BundleInfo对象中包含的信息的标志 |
@@ -2777,7 +2800,7 @@ getBundleInfoSync(bundleName: string, bundleFlags: [number](#bundleflag), userId
 
 以下错误码的详细介绍请参见[ohos.bundle错误码](../errorcodes/errorcode-bundle.md)。
 
-| 错误码ID | 错误码信息                             |
+| 错误码ID | 错误信息                             |
 | -------- | ------------------------------------- |
 | 17700001 | The specified bundleName is not found |
 | 17700004 | The specified userId is not found     |
@@ -2813,7 +2836,7 @@ getBundleInfoSync(bundleName: string, bundleFlags: [number](#bundleflag)): [Bund
 
 **参数：**
 
-| 名称        | 类型   | 必填 | 描述                                                     |
+| 参数名       | 类型   | 必填 | 说明                                                     |
 | ----------- | ------ | ---- | -------------------------------------------------------- |
 | bundleName  | string | 是   | 表示应用程序的bundleName                                 |
 | bundleFlags | [number](#bundleflag) | 是   | 表示用于指定将返回的BundleInfo对象中包含的信息的标志 |
@@ -2828,7 +2851,7 @@ getBundleInfoSync(bundleName: string, bundleFlags: [number](#bundleflag)): [Bund
 
 以下错误码的详细介绍请参见[ohos.bundle错误码](../errorcodes/errorcode-bundle.md)。
 
-| 错误码ID | 错误码信息                             |
+| 错误码ID | 错误信息                             |
 | -------- | ------------------------------------- |
 | 17700001 | The specified bundleName is not found |
 | 17700026 | The specified bundle is disabled      |

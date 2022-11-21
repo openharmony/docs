@@ -23,7 +23,7 @@ zipFile(inFile: string, outFile: string, options: Options): Promise&lt;void&gt;
 
 **参数：**
 
-| 参数名  | 类型                | 必填 | 描述                                                         |
+| 参数名  | 类型                | 必填 | 说明                                                         |
 | ------- | ------------------- | ---- | ------------------------------------------------------------ |
 | inFile  | string              | 是   | 指定压缩的文件夹路径或者文件路径，对应的路径参考[FA模型](js-apis-Context.md)，[Stage模型](js-apis-application-context.md) |
 | outFile | string              | 是   | 指定压缩结果的文件路径（文件的扩展名zip）                    |
@@ -87,7 +87,7 @@ unzipFile(inFile:string, outFile:string, options: Options): Promise&lt;void&gt;
 
 **参数：**
 
-| 参数名  | 类型                | 必填 | 描述                                                         |
+| 参数名  | 类型                | 必填 | 说明                                                         |
 | ------- | ------------------- | ---- | ------------------------------------------------------------ |
 | inFile  | string              | 是   | 指定压缩的文件夹路径或者文件路径，对应的路径参考[FA模型](js-apis-Context.md)，[stage模型](js-apis-application-context.md) |
 | outFile | string              | 是   | 指定的解压文件路径                                           |
@@ -123,13 +123,13 @@ zlib.unzipFile(inFile, outFile, options).then((data) => {
 
 compressFile(inFile: string, outFile: string, options: Options, callback: AsyncCallback\<void>): void;
 
-压缩文件，压缩的结果通过callback返回。成功时返回null，失败时返回错误码。
+压缩文件，压缩的结果通过callback返回。成功时返回null，失败时返回错误码ID。
 
 **系统能力：** SystemCapability.BundleManager.Zlib
 
 **参数：**
 
-| 参数名                  | 类型                | 必填 | 描述                                                         |
+| 参数名                  | 类型                | 必填 | 说明                                                         |
 | ----------------------- | ------------------- | ---- | ------------------------------------------------------------ |
 | inFile                  | string              | 是   | 指定压缩的文件夹路径或者文件路径，对应的路径参考[FA模型](js-apis-Context.md)，[stage模型](js-apis-application-context.md) |
 | outFile                 | string              | 是   | 指定的解压文件路径                                           |
@@ -138,11 +138,11 @@ compressFile(inFile: string, outFile: string, options: Options, callback: AsyncC
 
 **相关错误码**
 
-| 错误码 | 错误信息                               |
-| ------ | -------------------------------------- |
-| 401    | wrong param type                       |
-| 900001 | The Input source file is invalid.      |
-| 900002 | The Input destination file is invalid. |
+| 错误码ID | 错误信息                               |
+| -------- | -------------------------------------- |
+| 401      | wrong param type                       |
+| 900001   | The Input source file is invalid.      |
+| 900002   | The Input destination file is invalid. |
 
 **示例**
 
@@ -177,7 +177,7 @@ compressFile(inFile: string, outFile: string, options: Options): Promise\<void>;
 
 **参数：**
 
-| 参数名  | 类型                | 必填 | 描述                                                         |
+| 参数名  | 类型                | 必填 | 说明                                                         |
 | ------- | ------------------- | ---- | ------------------------------------------------------------ |
 | inFile  | string              | 是   | 指定压缩的文件夹路径或者文件路径，对应的路径参考[FA模型](js-apis-Context.md)，[stage模型](js-apis-application-context.md) |
 | outFile | string              | 是   | 指定的解压文件路径                                           |
@@ -185,11 +185,11 @@ compressFile(inFile: string, outFile: string, options: Options): Promise\<void>;
 
 **相关错误码**
 
-| 错误码 | 错误信息                               |
-| ------ | -------------------------------------- |
-| 401    | wrong param type                       |
-| 900001 | The Input source file is invalid.      |
-| 900002 | The Input destination file is invalid. |
+| 错误码ID | 错误信息                               |
+| -------- | -------------------------------------- |
+| 401      | wrong param type                       |
+| 900001   | The Input source file is invalid.      |
+| 900002   | The Input destination file is invalid. |
 
 ```typescript
 // 【压缩文件 例子2】
@@ -226,7 +226,7 @@ decompressFile(inFile: string, outFile: string, options: Options, callback: Asyn
 
 **参数：**
 
-| 参数名                  | 类型                | 必填 | 描述                                                         |
+| 参数名                  | 类型                | 必填 | 说明                                                         |
 | ----------------------- | ------------------- | ---- | ------------------------------------------------------------ |
 | inFile                  | string              | 是   | 指定的待解压缩文件的文件路径，对应的路径参考[FA模型](js-apis-Context.md)，[stage模型](js-apis-application-context.md) |
 | outFile                 | string              | 是   | 指定的解压后的目录路径                                       |
@@ -235,11 +235,11 @@ decompressFile(inFile: string, outFile: string, options: Options, callback: Asyn
 
 **相关错误码**
 
-| 错误码 | 错误信息                               |
-| ------ | -------------------------------------- |
-| 401    | wrong param type                       |
-| 900001 | The Input source file is invalid.      |
-| 900002 | The Input destination file is invalid. |
+| 错误码ID | 错误信息                               |
+| -------- | -------------------------------------- |
+| 401      | wrong param type                       |
+| 900001   | The Input source file is invalid.      |
+| 900002   | The Input destination file is invalid. |
 
 **示例**
 
@@ -274,7 +274,7 @@ decompressFile(inFile: string, outFile: string, options: Options): Promise\<void
 
 **参数：**
 
-| 参数名  | 类型                | 必填 | 描述                                                         |
+| 参数名  | 类型                | 必填 | 说明                                                         |
 | ------- | ------------------- | ---- | ------------------------------------------------------------ |
 | inFile  | string              | 是   | 指定的待解压缩文件的文件路径，对应的路径参考[FA模型](js-apis-Context.md)，[stage模型](js-apis-application-context.md) |
 | outFile | string              | 是   | 指定的解压后的目录路径                                       |
