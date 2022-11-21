@@ -17,7 +17,7 @@ ExtensionAbility信息，未做特殊说明的属性，均通过[getBundleInfo](
 | descriptionId        | number                                                      | 是   | 否   | ExtensionAbility的描述资源id                       |
 | iconId               | number                                                      | 是   | 否   | ExtensionAbility的图标资源id                       |
 | isVisible            | boolean                                                     | 是   | 否   | 判断ExtensionAbility是否可以被其他应用调用         |
-| extensionAbilityType | bundle.ExtensionAbilityType                                 | 是   | 否   | ExtensionAbility类型                               |
+| extensionAbilityType | [ExtensionAbilityType](js-apis-bundleManager.md#extensionabilitytype)  | 是   | 否   | ExtensionAbility类型                               |
 | permissions          | Array\<string>                                              | 是   | 否   | 被其他应用ExtensionAbility调用时需要申请的权限集合 |
 | applicationInfo      | [ApplicationInfo](js-apis-bundleManager-applicationInfo.md) | 是   | 否   | 应用程序的配置信息                                 |
 | metadata             | Array\<[Metadata](js-apis-bundleManager-metadata.md)>       | 是   | 否   | ExtensionAbility的元信息                           |
