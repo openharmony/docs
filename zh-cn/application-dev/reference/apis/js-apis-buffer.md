@@ -371,6 +371,13 @@ import buffer from '@ohos.buffer';
 let ab = new ArrayBuffer(10);
 let buf = buffer.from(ab, 0, 2);
 
+let arrayBuffer = new ArrayBuffer(5);
+let array = new Int8Array(arrayBuffer);
+array[0] = '1';
+array[1] = '2';
+array[2] = '3';
+array[3] = '4';
+array[4] = '5';
 try {
   const buf = buffer.from(arrayBuffer, 6, 1);
 } catch (err) {
@@ -1644,10 +1651,10 @@ let buf = buffer.from([1, -2]);
 console.log(buf.readUInt8(0).toString());
 console.log(buf.readUInt8(1).toString());
 
-let buf = buffer.allocUninitializedFromPool(4);
-buf.writeUInt8(0x42);
+let buf1 = buffer.allocUninitializedFromPool(4);
+buf1.writeUInt8(0x42);
 try {
-  let ref = buf.readUInt8(4).toString(16);
+  let ref = buf1.readUInt8(4).toString(16);
 } catch (err) {
   console.log("readUInt8 exception: " + JSON.stringify(err));
 }
@@ -2430,9 +2437,9 @@ import buffer from '@ohos.buffer';
 let buf = buffer.allocUninitializedFromPool(8);
 buf.writeBigUInt64LE(0xdecafafecacefaden, 0);
 
-let buf = buffer.allocUninitializedFromPool(8);
+let buf1 = buffer.allocUninitializedFromPool(8);
 try {
-  let ref = buf.writeBigUInt64LE(0xdecafafecacefaden, 1);
+  let ref = buf1.writeBigUInt64LE(0xdecafafecacefaden, 1);
 } catch (err) {
   console.log("writeBigUInt64LE exception: " + JSON.stringify(err));
 }
@@ -2522,9 +2529,9 @@ import buffer from '@ohos.buffer';
 let buf = buffer.allocUninitializedFromPool(8);
 buf.writeDoubleLE(123.456, 0);
 
-let buf = buffer.allocUninitializedFromPool(8);
+let buf1 = buffer.allocUninitializedFromPool(8);
 try {
-  let ref = buf.writeDoubleLE(123.456, 1);
+  let ref = buf1.writeDoubleLE(123.456, 1);
 } catch (err) {
   console.log("writeDoubleLE exception: " + JSON.stringify(err));
 }
