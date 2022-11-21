@@ -146,6 +146,8 @@
 
   - [@ohos.document](js-apis-document.md)
   - [@ohos.environment](js-apis-environment.md)
+  - [@ohos.data.fileAccess](js-apis-fileAccess.md)
+  - [@ohos.fileExtensionInfo](js-apis-fileExtensionInfo.md)
   - [@ohos.fileio](js-apis-fileio.md)
   - [@ohos.filemanagement.userfile_manager](js-apis-userfilemanager.md)
   - [@ohos.multimedia.medialibrary](js-apis-medialibrary.md)
