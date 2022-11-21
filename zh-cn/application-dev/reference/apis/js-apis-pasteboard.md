@@ -636,8 +636,8 @@ let opt = {
   scaleMode: 1
 };
 image.createPixelMap(buffer, opt).then((pixelMap) => {
-    let pasteData = pasteboard.createPixelMapData(pixelMap);
-    let pixelMap = pasteData.getPrimaryPixelMap();
+    let pasteData = pasteboard.createData('app/xml',pixelMap);
+    let PixelMap = pasteData.getPrimaryPixelMap();
 });
 ```
 
@@ -1226,6 +1226,7 @@ off(type:  'update', callback?: () =&gt;void ): void
 **示例：**
 
 ```js
+let systemPasteboard = pasteboard.getSystemPasteboard();
 let listener = () => {
     console.info('The system pasteboard has changed.');
 };
@@ -1249,6 +1250,7 @@ clearData(callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
 ```js
+let systemPasteboard = pasteboard.getSystemPasteboard();
 systemPasteboard.clearData((err, data) => { 
     if (err) {
         console.error(`Failed to clear the pasteboard. Cause: ${err.message}`);
@@ -1275,6 +1277,7 @@ clearData(): Promise&lt;void&gt;
 **示例：**
 
 ```js
+let systemPasteboard = pasteboard.getSystemPasteboard();
 systemPasteboard.clearData().then((data) => { 
     console.info('Succeeded in clearing the pasteboard.');
 }).catch((err) => {
@@ -1442,6 +1445,7 @@ hasData(callback:  AsyncCallback&lt;boolean&gt;): void
 **示例：**
 
 ```js
+let systemPasteboard = pasteboard.getSystemPasteboard();
 systemPasteboard.hasData((err, data) => {
     if (err) {
         console.error(`Failed to check the PasteData. Cause: ${err.message}`);
@@ -1468,6 +1472,7 @@ hasData(): Promise&lt;boolean&gt;
 **示例：**
 
 ```js
+let systemPasteboard = pasteboard.getSystemPasteboard();
 systemPasteboard.hasData().then((data) => { 
     console.info(`Succeeded in checking the PasteData. Data: ${data}`);
 }).catch((err) => {
