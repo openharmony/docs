@@ -33,7 +33,7 @@ import colorSpaceManager from '@ohos.graphics.colorSpaceManager';
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.ColorManager.Core
 
-| 名称                          | 参数类型 | 可读 | 可写 | 说明                                                         |
+| 名称                          | 类型 | 可读 | 可写 | 说明                                                         |
 | ---------------------------- | -------- | ---- | ---- | ----------------------------------------------------- |
 | redX                         | number   | 是   | 是   | 标准红色在色彩空间的x坐标值。 |
 | redY                         | number   | 是   | 是   | 标准红色在色彩空间的y坐标值。 |
