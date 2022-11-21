@@ -14,7 +14,7 @@ import systemTimer from '@ohos.systemTimer';
 ```
 
 
-## systemTime.createTimer
+## systemTimer.createTimer
 
 createTimer(options: TimerOptions, callback: AsyncCallback&lt;number&gt;): void
 
@@ -55,7 +55,7 @@ export default {
   ```
 
 
-## systemTime.createTimer
+## systemTimer.createTimer
 
 createTimer(options: TimerOptions): Promise&lt;number&gt;
 
@@ -94,7 +94,7 @@ export default {
   ```
 
 
-## systemTime.startTimer
+## systemTimer.startTimer
 
 startTimer(timer: number, triggerTime: number, callback: AsyncCallback&lt;void&gt;): void
 
@@ -114,7 +114,7 @@ startTimer(timer: number, triggerTime: number, callback: AsyncCallback&lt;void&g
 
   ```js
 export default {
-    systemTimer () {
+    async systemTimer () {
         var options = {
             type: systemTimer.TIMER_TYPE_REALTIME,
             repeat:false
@@ -133,7 +133,7 @@ export default {
 }
   ```
 
-## systemTime.startTimer
+## systemTimer.startTimer
 
 startTimer(timer: number, triggerTime: number): Promise&lt;void&gt;
 
@@ -153,7 +153,7 @@ startTimer(timer: number, triggerTime: number): Promise&lt;void&gt;
 
   ```js
 export default {
-    systemTimer (){
+    async systemTimer (){
         var options = {
             type: systemTimer.TIMER_TYPE_REALTIME,
             repeat:false
@@ -171,7 +171,7 @@ export default {
   ```
 
 
-## systemTime.stopTimer
+## systemTimer.stopTimer
 
 stopTimer(timer: number, callback: AsyncCallback&lt;void&gt;): void
 
@@ -189,7 +189,7 @@ stopTimer(timer: number, callback: AsyncCallback&lt;void&gt;): void
 
   ```js
 export default {
-    systemTimer () {
+    async systemTimer () {
         var options = {
             type: systemTimer.TIMER_TYPE_REALTIME,
             repeat:false
@@ -210,7 +210,7 @@ export default {
   ```
 
 
-## systemTime.stopTimer
+## systemTimer.stopTimer
 
 stopTimer(timer: number): Promise&lt;void&gt;
 
@@ -228,7 +228,7 @@ stopTimer(timer: number): Promise&lt;void&gt;
 
   ```js
 export default {
-    systemTimer (){
+    async systemTimer (){
         var options = {
             type: systemTimer.TIMER_TYPE_REALTIME,
             repeat:false
@@ -247,7 +247,7 @@ export default {
   ```
 
 
-## systemTime.destroyTimer
+## systemTimer.destroyTimer
 
 destroyTimer(timer: number, callback: AsyncCallback&lt;void&gt;): void
 
@@ -265,12 +265,12 @@ destroyTimer(timer: number, callback: AsyncCallback&lt;void&gt;): void
 
   ```js
 export default {
-    systemTimer () {
+    async systemTimer () {
         var options = {
             type: systemTimer.TIMER_TYPE_REALTIME,
             repeat:false
         }
-        let timerId = systemTimer.createTimer(options)
+        let timerId = await systemTimer.createTimer(options)
 		let triggerTime = new Date().getTime()
         triggerTime += 3000
         systemTimer.startTimer(timerId, triggerTime)
@@ -287,7 +287,7 @@ export default {
   ```
 
 
-## systemTime.destroyTimer
+## systemTimer.destroyTimer
 
 destroyTimer(timer: number): Promise&lt;void&gt;
 
@@ -305,12 +305,12 @@ destroyTimer(timer: number): Promise&lt;void&gt;
 
   ```js
 export default {
-    systemTimer (){
+    async systemTimer (){
         var options = {
             type: systemTimer.TIMER_TYPE_REALTIME,
             repeat:false
         }
-        let timerId = systemTimer.createTimer(options)
+        let timerId = await systemTimer.createTimer(options)
 		let triggerTime = new Date().getTime()
         triggerTime += 3000
         systemTimer.startTimer(timerId, triggerTime)
