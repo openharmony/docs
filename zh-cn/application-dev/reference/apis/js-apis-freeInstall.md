@@ -21,8 +21,7 @@ import freeInstall from '@ohos.bundle.freeInstall';
 | ohos.permission.GET_BUNDLE_INFO_PRIVILEGED | system_basic | 可查询所有应用信息 |
 | ohos.permission.INSTALL_BUNDLE             | system_core  | 可安装、卸载应用   |
 
-权限等级参考[权限等级说明](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/accesstoken-overview.md#%E6%9D%83%E9%99%90%E7%AD%89%E7%BA%A7%E8%AF%B4%E6%98%8E)
-
+权限等级参考[权限等级说明](../../security/accesstoken-overview.md#权限等级说明)。
 ## UpgradeFlag
 
 **系统接口：** 此接口为系统接口。

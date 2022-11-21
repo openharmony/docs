@@ -19,7 +19,7 @@ import bundleManager from '@ohos.bundle.bundleManager'
 | ohos.permission.REMOVE_CACHE_FILES         | system_basic | 清理应用缓存       |
 |ohos.permission.CHANGE_ABILITY_ENABLED_STATE| system_basic | 设置禁用使能所需的权限  |
 
-权限等级参考[权限等级说明](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/accesstoken-overview.md#%E6%9D%83%E9%99%90%E7%AD%89%E7%BA%A7%E8%AF%B4%E6%98%8E)
+权限等级参考[权限等级说明](../../security/accesstoken-overview.md#权限等级说明)。
 
 ## 枚举
 
