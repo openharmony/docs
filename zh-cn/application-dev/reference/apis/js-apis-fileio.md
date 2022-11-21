@@ -420,7 +420,7 @@ copyFile(src: string | number, dest: string | number, mode?: number): Promise&lt
 
 ## fileio.copyFile
 
-copyFile(src: string | number, dest: string | number, mode: number, callback: AsyncCallback&lt;void&gt;): void
+copyFile(src: string|number, dest: string|number, mode: number, callback: AsyncCallback&lt;void&gt;): void
 
 复制文件，使用callback异步回调。
 
@@ -430,8 +430,8 @@ copyFile(src: string | number, dest: string | number, mode: number, callback: As
 
   | 参数名      | 类型                         | 必填   | 说明                                       |
   | -------- | -------------------------- | ---- | ---------------------------------------- |
-  | src      | string \| number | 是    | 待复制文件的路径或待复制文件的描述符。                      |
-  | dest     | string \| number | 是    | 目标文件路径或目标文件描述符。                          |
+  | src      | string\|number | 是    | 待复制文件的路径或待复制文件的描述符。                      |
+  | dest     | string\|number | 是    | 目标文件路径或目标文件描述符。                          |
   | mode     | number                     | 否    | mode提供覆盖文件的选项，当前仅支持0，且默认为0。<br/>0：完全覆盖目标文件，未覆盖部分将被裁切掉。 |
   | callback | AsyncCallback&lt;void&gt;  | 是    | 异步复制文件之后的回调。                             |
 
@@ -448,7 +448,7 @@ copyFile(src: string | number, dest: string | number, mode: number, callback: As
 
 ## fileio.copyFileSync
 
-copyFileSync(src: string | number, dest: string | number, mode?: number): void
+copyFileSync(src: string|number, dest: string|number, mode?: number): void
 
 以同步方法复制文件。
 
@@ -458,8 +458,8 @@ copyFileSync(src: string | number, dest: string | number, mode?: number): void
 
   | 参数名  | 类型                         | 必填   | 说明                                       |
   | ---- | -------------------------- | ---- | ---------------------------------------- |
-  | src  | string \| number | 是    | 待复制文件的路径或待复制文件的描述符。                      |
-  | dest | string \| number | 是    | 目标文件路径或目标文件描述符。                          |
+  | src  | string\|number | 是    | 待复制文件的路径或待复制文件的描述符。                      |
+  | dest | string\|number | 是    | 目标文件路径或目标文件描述符。                          |
   | mode | number                     | 否    | mode提供覆盖文件的选项，当前仅支持0，且默认为0。<br/>0：完全覆盖目标文件，未覆盖部分将被裁切掉。 |
 
 **示例：**
@@ -602,7 +602,7 @@ open(path: string, flags: number, mode: number, callback: AsyncCallback&lt;numbe
 | path     | string                          | 是   | 待打开文件的应用沙箱路径。                                   |
 | flags    | number                          | 否   | 打开文件的选项，必须指定如下选项中的一个，默认以只读方式打开：<br/>-&nbsp;0o0：只读打开。<br/>-&nbsp;0o1：只写打开。<br/>-&nbsp;0o2：读写打开。<br/>同时，也可给定如下选项，以按位或的方式追加，默认不给定任何额外选项：<br/>-&nbsp;0o100：若文件不存在，则创建文件。使用该选项时必须指定第三个参数&nbsp;mode。<br/>-&nbsp;0o200：如果追加了0o100选项，且文件已经存在，则出错。<br/>-&nbsp;0o1000：如果文件存在且以只写或读写的方式打开文件，则将其长度裁剪为零。<br/>-&nbsp;0o2000：以追加方式打开，后续写将追加到文件末尾。<br/>-&nbsp;0o4000：如果path指向FIFO、块特殊文件或字符特殊文件，则本次打开及后续&nbsp;IO&nbsp;进行非阻塞操作。<br/>-&nbsp;0o200000：如果path不指向目录，则出错。<br/>-&nbsp;0o400000：如果path指向符号链接，则出错。<br/>-&nbsp;0o4010000：以同步IO的方式打开文件。 |
 | mode     | number                          | 否   | 若创建文件，则指定文件的权限，可给定如下权限，以按位或的方式追加权限，默认给定0o666。<br/>-&nbsp;0o666：所有者具有读、写权限，所有用户组具有读、写权限，其余用户具有读、写权限。<br/>-&nbsp;0o700：所有者具有读、写及可执行权限。<br/>-&nbsp;0o400：所有者具有读权限。<br/>-&nbsp;0o200：所有者具有写权限。<br/>-&nbsp;0o100：所有者具有可执行权限。<br/>-&nbsp;0o070：所有用户组具有读、写及可执行权限。<br/>-&nbsp;0o040：所有用户组具有读权限。<br/>-&nbsp;0o020：所有用户组具有写权限。<br/>-&nbsp;0o010：所有用户组具有可执行权限。<br/>-&nbsp;0o007：其余用户具有读、写及可执行权限。<br/>-&nbsp;0o004：其余用户具有读权限。<br/>-&nbsp;0o002：其余用户具有写权限。<br/>-&nbsp;0o001：其余用户具有可执行权限。 |
-| callback | AsyncCallback&nbsp;&lt;number&gt; | 是   | 异步打开文件之后的回调。                                     |
+| callback | AsyncCallback&lt;number&gt; | 是   | 异步打开文件之后的回调。                                     |
 
 **示例：**
 
@@ -950,7 +950,7 @@ write(fd: number, buffer: ArrayBuffer | string, options?: { offset?: number; len
 
 ## fileio.write
 
-write(fd: number, buffer: ArrayBuffer | string, options: { offset?: number; length?: number; position?: number; encoding?: string; }, callback: AsyncCallback&lt;number&gt;): void
+write(fd: number, buffer: ArrayBuffer|string, options: { offset?: number; length?: number; position?: number; encoding?: string; }, callback: AsyncCallback&lt;number&gt;): void
 
 将数据写入文件，使用callback异步回调。
 
@@ -961,7 +961,7 @@ write(fd: number, buffer: ArrayBuffer | string, options: { offset?: number; leng
   | 参数名      | 类型                              | 必填   | 说明                                       |
   | -------- | ------------------------------- | ---- | ---------------------------------------- |
   | fd       | number                          | 是    | 待写入文件的文件描述符。                             |
-  | buffer   | ArrayBuffer&nbsp;\|&nbsp;string | 是    | 待写入文件的数据，可来自缓冲区或字符串。                     |
+  | buffer   | ArrayBuffer\|string | 是    | 待写入文件的数据，可来自缓冲区或字符串。                     |
   | options  | Object                          | 否    | 支持如下选项：<br/>-&nbsp;offset，number类型，表示期望写入数据的位置相对于数据首地址的偏移。可选，默认为0。<br/>-&nbsp;length，number类型，表示期望写入数据的长度。可选，默认缓冲区长度减去偏移长度。<br/>-&nbsp;position，number类型，表示期望写入文件的位置。可选，默认从当前位置开始写。<br/>-&nbsp;encoding，string类型，当数据是string类型时有效，表示数据的编码方式，默认&nbsp;'utf-8'。仅支持&nbsp;'utf-8'。<br/>约束：offset+length<=buffer.size。 |
   | callback | AsyncCallback&lt;number&gt;     | 是    | 异步将数据写入完成后执行的回调函数。                       |
 
@@ -980,7 +980,7 @@ write(fd: number, buffer: ArrayBuffer | string, options: { offset?: number; leng
 
 ## fileio.writeSync
 
-writeSync(fd: number, buffer: ArrayBuffer | string, options?: { offset?: number; length?: number; position?: number; encoding?: string; }): number
+writeSync(fd: number, buffer: ArrayBuffer|string, options?: { offset?: number; length?: number; position?: number; encoding?: string; }): number
 
 以同步方法将数据写入文件。
 
@@ -991,7 +991,7 @@ writeSync(fd: number, buffer: ArrayBuffer | string, options?: { offset?: number;
   | 参数名     | 类型                              | 必填   | 说明                                       |
   | ------- | ------------------------------- | ---- | ---------------------------------------- |
   | fd      | number                          | 是    | 待写入文件的文件描述符。                             |
-  | buffer  | ArrayBuffer \| string | 是    | 待写入文件的数据，可来自缓冲区或字符串。                     |
+  | buffer  | ArrayBuffer\|string | 是    | 待写入文件的数据，可来自缓冲区或字符串。                     |
   | options | Object                          | 否    | 支持如下选项：<br/>-&nbsp;offset，number类型，表示期望写入数据的位置相对于数据首地址的偏移。可选，默认为0。<br/>-&nbsp;length，number类型，表示期望写入数据的长度。可选，默认缓冲区长度减去偏移长度。<br/>-&nbsp;position，number类型，表示期望写入文件的位置。可选，默认从当前位置开始写。<br/>-&nbsp;encoding，string类型，当数据是string类型时有效，表示数据的编码方式，默认&nbsp;'utf-8'。仅支持&nbsp;'utf-8'。<br/>约束：offset+length<=buffer.size。 |
 
 **返回值：**
@@ -2577,7 +2577,7 @@ createWatcher(filename: string, events: number, callback: AsyncCallback&lt;numbe
 | --------- | ---------- | ---- | ---- | ----------------- |
 | bytesRead | number     | 是    | 是    | 实际读取长度。           |
 | offset    | number     | 是    | 是    | 读取数据相对于缓冲区首地址的偏移。 |
-| buffer    | ArrayBufer | 是    | 是    | 保存读取数据的缓冲区。       |
+| buffer    | ArrayBuffer | 是    | 是    | 保存读取数据的缓冲区。       |
 
 
 ## Stat
@@ -2956,7 +2956,7 @@ flushSync(): void
 
 ### write<sup>7+</sup>
 
-write(buffer: ArrayBuffer | string, options?: { offset?: number; length?: number; position?: number; encoding?: string; }): Promise&lt;number&gt;
+write(buffer: ArrayBuffer|string, options?: { offset?: number; length?: number; position?: number; encoding?: string; }): Promise&lt;number&gt;
 
 将数据写入流文件，使用Promise异步回调。
 
@@ -2966,7 +2966,7 @@ write(buffer: ArrayBuffer | string, options?: { offset?: number; length?: number
 
   | 参数名     | 类型                              | 必填   | 说明                                       |
   | ------- | ------------------------------- | ---- | ---------------------------------------- |
-  | buffer  | ArrayBuffer \| string | 是    | 待写入文件的数据，可来自缓冲区或字符串。                     |
+  | buffer  | ArrayBuffer\|string | 是    | 待写入文件的数据，可来自缓冲区或字符串。                     |
   | options | Object                          | 否    | 支持如下选项：<br/>-&nbsp;offset，number类型，表示期望写入数据的位置相对于数据首地址的偏移。可选，默认为0。<br/>-&nbsp;length，number类型，表示期望写入数据的长度。可选，默认缓冲区长度减去偏移长度。<br/>-&nbsp;position，number类型，表示期望写入文件的位置。可选，默认从当前位置开始写。<br/>-&nbsp;encoding，string类型，当数据是string类型时有效，表示数据的编码方式，默认&nbsp;'utf-8'。仅支持&nbsp;'utf-8'。<br/>约束：offset+length<=buffer.size。  |
 
 **返回值：**
@@ -2990,7 +2990,7 @@ write(buffer: ArrayBuffer | string, options?: { offset?: number; length?: number
 
 ### write<sup>7+</sup>
 
-write(buffer: ArrayBuffer | string, options: { offset?: number; length?: number; position?: number; encoding?: string; }, callback: AsyncCallback&lt;number&gt;): void
+write(buffer: ArrayBuffer|string, options: { offset?: number; length?: number; position?: number; encoding?: string; }, callback: AsyncCallback&lt;number&gt;): void
 
 将数据写入流文件，使用callback异步回调。
 
@@ -3000,7 +3000,7 @@ write(buffer: ArrayBuffer | string, options: { offset?: number; length?: number;
 
   | 参数名   | 类型                            | 必填 | 说明                                                         |
   | -------- | ------------------------------- | ---- | ------------------------------------------------------------ |
-  | buffer   | ArrayBuffer \| string | 是   | 待写入文件的数据，可来自缓冲区或字符串。                     |
+  | buffer   | ArrayBuffer\|string | 是   | 待写入文件的数据，可来自缓冲区或字符串。                     |
   | options  | Object                          | 否   | 支持如下选项：<br/>-&nbsp;offset，number类型，表示期望写入数据的位置相对于数据首地址的偏移。可选，默认为0。<br/>-&nbsp;length，number类型，表示期望写入数据的长度。可选，默认缓冲区长度减去偏移长度。<br/>-&nbsp;position，number类型，表示期望写入文件的位置。可选，默认从当前位置开始写。<br/>-&nbsp;encoding，string类型，当数据是string类型时有效，表示数据的编码方式，默认&nbsp;'utf-8'。仅支持&nbsp;'utf-8'。<br/>约束：offset+length<=buffer.size。 |
   | callback | AsyncCallback&lt;number&gt;     | 是   | 异步写入完成后执行的回调函数。                               |
 
