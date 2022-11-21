@@ -359,7 +359,7 @@ off(type: 'cooperation', callback?: AsyncCallback\<void>): void
 function callback(event) {
   console.log(`Keyboard mouse crossing event: ${JSON.stringify(event)}`);
   return false;
-},
+}
 try {
   inputDeviceCooperate.on('cooperation', callback);
   inputDeviceCooperate.off("cooperation", callback);
@@ -372,7 +372,7 @@ try {
 function callback(event) {
   console.log(`Keyboard mouse crossing event: ${JSON.stringify(event)}`);
   return false;
-},
+}
 try {
   inputDeviceCooperate.on('cooperation', callback);
   inputDeviceCooperate.off("cooperation");
