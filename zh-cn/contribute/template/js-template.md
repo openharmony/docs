@@ -298,6 +298,10 @@ import call from '@ohos.telephony.call';
 
 ## CustomType
 
+> *写作说明*
+>
+> 可选，如果没有可删除此二级标题，对应d.ts中无方法的Interface。
+
 仅有k-v键值对的自定义类型示例。
 
 **系统能力：** SystemCapability.xxx.xxx（必选）
