@@ -259,7 +259,7 @@ import Ability from '@ohos.application.Ability'
 import backgroundTaskManager from '@ohos.resourceschedule.backgroundTaskManager';  
 import wantAgent from '@ohos.wantAgent';
 
-function callback(err, data) {
+function callback(error, data) {
     if (error) {
         console.error(`Operation startBackgroundRunning failed. code is ${error.code} message is ${error.message}`);
     } else {
