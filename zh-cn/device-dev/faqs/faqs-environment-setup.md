@@ -225,3 +225,42 @@
   sudo apt-get remove  python3-apt
   sudo apt-get install python3-apt
   ```
+
+### 源码升级
+**场景描述** 
+
+当您的环境中已有下载好的OpenHarmony源码，需要将其升级为其他分支（例如Master）源码时，可按照如下步骤进行操作。
+
+**操作方法** 
+
+1. 进入现有OpenHarmony根目录。
+   
+   请注意该目录下包含一个隐藏目录.repo，如没有此隐藏目录，请重新解压获取的源码包，以获取完整的源码内容。
+   
+2. 使用repo init命令重新初始化源码库信息。
+
+   其中，branch表示分支名称，例如master、OpenHarmony-3.2-Beta3等。
+   ```shell
+   repo init -u https://gitee.com/openharmony/manifest -b branch --no-repo-verify
+   ```
+
+3. 下载更新源码文件。
+
+   ```shell
+   repo sync -c
+   repo forall -c 'pwd;git lfs pull'
+   ```
+   如果想保持工作路径清洁，可以执行如下命令。
+   
+   注意：此操作会重置本地工作区，删除未被git管理的文件或目录，请谨慎操作。
+   ```shell
+   repo forall -c 'git reset --hard;git clean -fdx'
+   ```
+
+4. 执行prebuilts脚本，安装编译器及二进制工具。
+
+   ```shell
+   bash build/prebuilts_download.sh
+   ```
+   
+   
