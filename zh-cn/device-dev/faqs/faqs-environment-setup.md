@@ -252,7 +252,8 @@
    ```
    如果想保持工作路径清洁，可以执行如下命令。
    
-   >![icon-note.gif](public_sys-resources/icon-caution.gif) **注意：**此操作会重置本地工作区，删除未被git管理的文件或目录，请谨慎操作。
+   >![icon-note.gif](public_sys-resources/icon-caution.gif) **注意：**
+   >此操作会重置本地工作区，删除未被git管理的文件或目录，请谨慎操作。
    ```shell
    repo forall -c 'git reset --hard;git clean -fdx'
    ```
