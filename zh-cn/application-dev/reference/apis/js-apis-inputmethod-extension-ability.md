@@ -16,9 +16,9 @@ import InputMethodExtensionAbility from '@ohos.inputmethodextensionability';
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
-| 名称    | 参数类型           | 可读 | 可写 | 说明                 |
-| ------- | -----------------| --- | ---- | -------------------- |
-| context | [InputMethodExtensionContext](js-apis-inputmethod-extension-context.md) | 是   | 否   | InputMethodExtension的上下文环境，继承自ExtensionContext。 |
+| 名称 | 类型 | 可读 | 可写 | 说明 |
+| -------- | -------- | -------- | -------- | -------- |
+| context | [InputMethodExtensionContext](js-apis-inputmethod-extension-context.md) | 是 | 否 | InputMethodExtension的上下文环境，继承自ExtensionContext。 |
 
 ## InputMethodExtensionAbility.onCreate
 
