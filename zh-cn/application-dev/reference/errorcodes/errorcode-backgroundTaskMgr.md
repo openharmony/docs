@@ -34,7 +34,7 @@ Parcel operation failed.
 
 **错误信息**
 
-Internal transaction failed.
+IPC failed.
 
 **可能原因**
 
