@@ -21,7 +21,7 @@ import DataShareExtensionAbility from '@ohos.application.DataShareExtensionAbili
 
 **系统能力**：SystemCapability.DistributedDataManager.DataShare.Provider
 
-| 名称 | 参数类型 | 可读 | 可写 | 说明 | 
+| 名称 | 类型 | 可读 | 可写 | 说明 | 
 | -------- | -------- | -------- | -------- | -------- |
 | context | [ExtensionContext](js-apis-extension-context.md)  | 是 | 否 |表示数据共享扩展能力上下文。 | 
 
@@ -35,7 +35,7 @@ DataShare客户端连接DataShareExtensionAbility服务端时，服务端回调�
 
 **参数：**
 
-| 参数名 | 参数类型 | 必填 | 说明 |
+| 参数名 | 类型 | 必填 | 说明 |
 | ----- | ------ | ------ | ------ |
 | want | [Want](js-apis-application-Want.md#want) | 是  | Want类型信息，包括ability名称、bundle名称等。 |
 | callback | AsyncCallback&lt;void&gt; | 是 | 回调函数。无返回值。 |
@@ -80,7 +80,7 @@ insert?(uri: string, valueBucket: ValuesBucket, callback: AsyncCallback&lt;numbe
 
 **参数：**
 
-| 参数名 | 参数类型 | 必填 | 说明 |
+| 参数名 | 类型 | 必填 | 说明 |
 | ----- | ------ | ------ | ------ |
 | uri |string | 是  | 指示要插入的数据的路径。 |
 | valueBucket |[ValuesBucket](js-apis-data-ValuesBucket.md#valuesbucket) | 是 | 指示要插入的数据。 |
@@ -124,7 +124,7 @@ update?(uri: string, predicates: dataSharePredicates.DataSharePredicates, valueB
 
 **参数：**
 
-| 参数名 | 参数类型 | 必填 | 说明 |
+| 参数名 | 类型 | 必填 | 说明 |
 | ----- | ------ | ------ | ------ |
 | uri | string | 是  | 指示要更新的数据的路径。 |
 | predicates | [DataSharePredicates](js-apis-data-dataSharePredicates.md#datasharepredicates) | 是  | 指示筛选条件。 |
@@ -167,7 +167,7 @@ delete?(uri: string, predicates: dataSharePredicates.DataSharePredicates, callba
 
 **参数：**
 
-| 名称       | 参数类型                                                     | 必填 | 说明                               |
+| 参数名       | 类型                                                     | 必填 | 说明                               |
 | ---------- | ------------------------------------------------------------ | ---- | ---------------------------------- |
 | uri        | string                                                       | 是   | 指示要删除的数据的路径。           |
 | predicates | [DataSharePredicates](js-apis-data-dataSharePredicates.md#datasharepredicates) | 是   | 指示筛选条件。                     |
@@ -209,7 +209,7 @@ query?(uri: string, predicates: dataSharePredicates.DataSharePredicates, columns
 
 **参数：**
 
-| 名称 | 参数类型 | 必填 | 说明 |
+| 参数名 | 类型 | 必填 | 说明 |
 | ----- | ------ | ------ | ------ |
 | uri | string | 是  | 指示要查询的数据的路径。 |
 | predicates | [DataSharePredicates](js-apis-data-dataSharePredicates.md#datasharepredicates) | 是  | 指示筛选条件。 |
@@ -255,7 +255,7 @@ batchInsert?(uri: string, valueBuckets: Array&lt;ValuesBucket&gt;, callback: Asy
 
 **参数：**
 
-| 名称         | 参数类型                                                     | 必填 | 说明                             |
+| 参数名        | 类型                                                     | 必填 | 说明                             |
 | ------------ | ------------------------------------------------------------ | ---- | -------------------------------- |
 | uri          | string                                                       | 是   | 指示要批量插入的数据的路径。     |
 | valueBuckets | Array&lt;[ValuesBucket](js-apis-data-ValuesBucket.md#valuesbucket)&gt; | 是   | 指示要批量插入的数据。           |
@@ -301,7 +301,7 @@ normalizeUri?(uri: string, callback: AsyncCallback&lt;string&gt;): void
 
 **参数：**
 
-| 名称     | 类型                  | 必填 | 描述                    |
+| 参数名     | 类型                  | 必填 | 说明                    |
 | -------- | --------------------- | ---- | ----------------------- |
 | uri      | string                | 是   | 指示用户传入的[URI](js-apis-uri.md#uri)。 |
 | callback | AsyncCallback&lt;string&gt; | 是   | 回调函数。如果支持URI规范化，则返回规范化URI，否则返回空。 |
@@ -328,7 +328,7 @@ denormalizeUri?(uri: string, callback: AsyncCallback&lt;string&gt;): void
 
 **参数：**
 
-| 名称     | 类型                  | 必填 | 描述                    |
+| 参数名     | 类型                  | 必填 | 说明                    |
 | -------- | --------------------- | ---- | ----------------------- |
 | uri      | string                | 是   | 指示服务端使用的[URI](js-apis-uri.md#uri)。 |
 | callback | AsyncCallback&lt;string&gt; | 是   | 回调函数。如果反规范化成功，则返回反规范化的URI；如果无需进行反规范化，则返回原始URI；若不支持则返回空。 |
