@@ -11,12 +11,12 @@
 
 ## DispatchInfo
 
-**系统能力**: 以下各项对应的系统能力均为SystemCapability.BundleManager.BundleFramework
+**系统能力**: 以下各项对应的系统能力均为SystemCapability.BundleManager.BundleFramework.FreeInstall
 
 **系统API：**此接口为系统接口，三方应用不支持调用
 
-| 名称        | 类型   | 可读 | 可写 | 说明                     |
-| ----------- | ------ | ---- | ---- | ------------------------ |
-| version     | string | 是   | 否   | 包含dispatchInfo版本信息 |
-| dispatchAPI | string | 是   | 否   | 包含免安装接口版本号     |
+| 名称               | 类型   | 可读 | 可写 | 说明                     |
+| ------------------ | ------ | ---- | ---- | ------------------------ |
+| version            | string | 是   | 否   | 包含dispatchInfo版本信息 |
+| dispatchAPIVersion | string | 是   | 否   | 包含免安装接口版本号     |
 

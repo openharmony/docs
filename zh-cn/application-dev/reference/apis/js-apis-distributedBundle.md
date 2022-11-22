@@ -20,7 +20,7 @@ SystemCapability.BundleManager.DistributedBundleFramework
 
 ## 权限列表
 
-| 权限                                       | 权限等级     | 描述               |
+| 权限                                       | 权限等级     | 说明               |
 | ------------------------------------------ | ------------ | ------------------ |
 | ohos.permission.GET_BUNDLE_INFO_PRIVILEGED | system_basic | 可查询所有应用信息 |
 
@@ -40,16 +40,16 @@ getRemoteAbilityInfo(elementName: ElementName, callback: AsyncCallback\<RemoteAb
 
 **参数：**
 
-| 名称        | 类型                                                         | 必填 | 描述                                               |
-| ----------- | ------------------------------------------------------------ | ---- | -------------------------------------------------- |
-| elementName | [ElementName](js-apis-bundleManager-elementName.md)                 | 是   | ElementName信息。                            |
+| 参数名      | 类型                                                         | 必填 | 说明                                                         |
+| ----------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| elementName | [ElementName](js-apis-bundleManager-elementName.md)          | 是   | ElementName信息。                                            |
 | callback    | AsyncCallback<[RemoteAbilityInfo](js-apis-bundleManager-remoteAbilityInfo.md)> | 是   | 回调函数，操作成功返回err为null，data为RemoteAbilityInfo对象；否则为错误对象。 |
 
 **错误码：**
 
 以下错误码的详细介绍请参见[ohos.bundle错误码](../errorcodes/errorcode-bundle.md)。
 
-| 错误码ID        |    错误新息(此处仅提供错误抛出的关键信息)                   |
+| 错误码ID        |    错误信息                   |
 |---------------|-------------------------|
 |  201         | Permission denied.|
 |  401       | The parameter check failed. |
@@ -94,7 +94,7 @@ getRemoteAbilityInfo(elementName: ElementName): Promise\<RemoteAbilityInfo>;
 
 **参数：**
 
-| 名称        | 类型                                         | 必填 | 描述                    |
+| 参数名       | 类型                                         | 必填 | 说明                    |
 | ----------- | -------------------------------------------- | ---- | ----------------------- |
 | elementName | [ElementName](js-apis-bundleManager-elementName.md) | 是   | ElementName信息。 |
 
@@ -108,7 +108,7 @@ getRemoteAbilityInfo(elementName: ElementName): Promise\<RemoteAbilityInfo>;
 
 以下错误码的详细介绍请参见[ohos.bundle错误码](../errorcodes/errorcode-bundle.md)。
 
-| 错误码ID        |    错误新息(此处仅提供错误抛出的关键信息)                   |
+| 错误码ID        |    错误信息                   |
 |---------------|-------------------------|
 |  201         | Permission denied.|
 |  401       | The parameter check failed. |
@@ -151,16 +151,16 @@ getRemoteAbilityInfo(elementNames: Array\<ElementName>, callback: AsyncCallback\
 
 **参数：**
 
-| 名称         | 类型                                                         | 必填 | 描述                                               |
-| ------------ | ------------------------------------------------------------ | ---- | -------------------------------------------------- |
-| elementNames | Array<[ElementName](js-apis-bundleManager-elementName.md)>          | 是   | ElementName信息,最大数组长度为10                   |
+| 参数名       | 类型                                                         | 必填 | 说明                                                         |
+| ------------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| elementNames | Array<[ElementName](js-apis-bundleManager-elementName.md)>   | 是   | ElementName信息,最大数组长度为10                             |
 | callback     | AsyncCallback\<Array\<[RemoteAbilityInfo](js-apis-bundleManager-remoteAbilityInfo.md)>> | 是   | 回调函数，调用成功返回err为null，data为RemoteAbilityInfo数组对象；否则返回错误对象。 |
 
 **错误码：**
 
 以下错误码的详细介绍请参见[ohos.bundle错误码](../errorcodes/errorcode-bundle.md)。
 
-| 错误码ID        |    错误新息(此处仅提供错误抛出的关键信息)                   |
+| 错误码ID        |    错误信息                   |
 |---------------|-------------------------|
 |  201         | Permission denied.|
 |  401       | The parameter check failed. |
@@ -212,7 +212,7 @@ getRemoteAbilityInfo(elementNames: Array\<ElementName>): Promise\<Array\<RemoteA
 
 **参数：**
 
-| 名称         | 类型                                                | 必填 | 描述                    |
+| 参数名        | 类型                                                | 必填 | 说明                    |
 | ------------ | --------------------------------------------------- | ---- | ----------------------- |
 | elementNames | Array<[ElementName](js-apis-bundleManager-elementName.md)> | 是   | ElementName信息,最大数组长度为10。 |
 
@@ -226,7 +226,7 @@ getRemoteAbilityInfo(elementNames: Array\<ElementName>): Promise\<Array\<RemoteA
 
 以下错误码的详细介绍请参见[ohos.bundle错误码](../errorcodes/errorcode-bundle.md)。
 
-| 错误码ID        |    错误新息(此处仅提供错误抛出的关键信息)                   |
+| 错误码ID        |    错误信息                   |
 |---------------|-------------------------|
 |  201         | Permission denied.|
 |  401       | The parameter check failed. |
@@ -276,7 +276,7 @@ getRemoteAbilityInfo(elementName: ElementName, locale: string, callback: AsyncCa
 
 **参数：**
 
-| 名称        | 类型                                                         | 必填 | 描述                                               |
+| 参数名       | 类型                                                         | 必填 | 说明                                               |
 | ----------- | ------------------------------------------------------------ | ---- | -------------------------------------------------- |
 | elementName | [ElementName](js-apis-bundleManager-elementName.md)                 | 是   | ElementName信息。                            |
 | locale  | string |是 | 语言地区 |
@@ -286,7 +286,7 @@ getRemoteAbilityInfo(elementName: ElementName, locale: string, callback: AsyncCa
 
 以下错误码的详细介绍请参见[ohos.bundle错误码](../errorcodes/errorcode-bundle.md)。
 
-| 错误码ID        |    错误新息(此处仅提供错误抛出的关键信息)                   |
+| 错误码ID        |    错误信息                   |
 |---------------|-------------------------|
 |  201         | Permission denied.|
 |  401       | The parameter check failed. |
@@ -331,7 +331,7 @@ getRemoteAbilityInfo(elementName: ElementName, locale: string): Promise\<RemoteA
 
 **参数：**
 
-| 名称        | 类型                                         | 必填 | 描述                    |
+| 参数名       | 类型                                         | 必填 | 说明                    |
 | ----------- | -------------------------------------------- | ---- | ----------------------- |
 | elementName | [ElementName](js-apis-bundleManager-elementName.md) | 是   | ElementName信息。 |
 | locale  | string |是 | 语言地区 |
@@ -346,7 +346,7 @@ getRemoteAbilityInfo(elementName: ElementName, locale: string): Promise\<RemoteA
 
 以下错误码的详细介绍请参见[ohos.bundle错误码](../errorcodes/errorcode-bundle.md)。
 
-| 错误码ID        |    错误新息(此处仅提供错误抛出的关键信息)                   |
+| 错误码ID        |    错误信息                   |
 |---------------|-------------------------|
 |  201         | Permission denied.|
 |  401       | The parameter check failed. |
@@ -389,7 +389,7 @@ getRemoteAbilityInfo(elementNames: Array\<ElementName>, locale: string, callback
 
 **参数：**
 
-| 名称         | 类型                                                         | 必填 | 描述                                               |
+| 参数名        | 类型                                                         | 必填 | 说明                                               |
 | ------------ | ------------------------------------------------------------ | ---- | -------------------------------------------------- |
 | elementNames | Array<[ElementName](js-apis-bundleManager-elementName.md)>          | 是   | ElementName信息,最大数组长度为10                   |
 | locale  | string |是 | 语言地区 |
@@ -399,7 +399,7 @@ getRemoteAbilityInfo(elementNames: Array\<ElementName>, locale: string, callback
 
 以下错误码的详细介绍请参见[ohos.bundle错误码](../errorcodes/errorcode-bundle.md)。
 
-| 错误码ID        |    错误新息(此处仅提供错误抛出的关键信息)                   |
+| 错误码ID        |    错误信息                   |
 |---------------|-------------------------|
 |  201         | Permission denied.|
 |  401       | The parameter check failed. |
@@ -451,7 +451,7 @@ getRemoteAbilityInfo(elementNames: Array\<ElementName>, locale: string): Promise
 
 **参数：**
 
-| 名称         | 类型                                                | 必填 | 描述                    |
+| 参数名        | 类型                                                | 必填 | 说明                    |
 | ------------ | --------------------------------------------------- | ---- | ----------------------- |
 | elementNames | Array<[ElementName](js-apis-bundleManager-elementName.md)> | 是   | ElementName信息,最大数组长度为10。 |
 | locale  | string |是 | 语言地区 |
@@ -466,7 +466,7 @@ getRemoteAbilityInfo(elementNames: Array\<ElementName>, locale: string): Promise
 
 以下错误码的详细介绍请参见[ohos.bundle错误码](../errorcodes/errorcode-bundle.md)。
 
-| 错误码ID        |    错误新息(此处仅提供错误抛出的关键信息)                   |
+| 错误码ID        |    错误信息                   |
 |---------------|-------------------------|
 |  201         | Permission denied.|
 |  401       | The parameter check failed. |

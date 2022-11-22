@@ -61,7 +61,7 @@ setHapModuleUpgradeFlag(bundleName: string, moduleName: string, upgradeFlag: Upg
 
 **参数：**
 
-| 名称        | 类型                        | 必填 | 描述                         |
+| 参数名     | 类型                        | 必填 | 说明                       |
 | ----------- | --------------------------- | ---- | ---------------------------- |
 | bundleName  | string                      | 是   | 应用程序包名称。             |
 | moduleName  | string                      | 是   | 应用程序模块名称。           |
@@ -72,7 +72,7 @@ setHapModuleUpgradeFlag(bundleName: string, moduleName: string, upgradeFlag: Upg
 
 以下错误码的详细介绍请参见[ohos.bundle错误码](../errorcodes/errorcode-bundle.md)。
 
-| 错误码ID        |    错误新息(此处仅提供错误抛出的关键信息)                   |
+| 错误码ID        |    错误信息                   |
 |---------------|-------------------------|
 |  201         | Permission denied.|
 |  401       | The parameter check failed. |
@@ -114,7 +114,7 @@ setHapModuleUpgradeFlag(bundleName: string, moduleName: string, upgradeFlag: Upg
 
 **参数：**
 
-| 名称        | 类型                        | 必填 | 描述                   |
+| 参数名      | 类型                        | 必填 | 说明                   |
 | ----------- | --------------------------- | ---- | ---------------------- |
 | bundleName  | string                      | 是   | 应用程序包名称。       |
 | moduleName  | string                      | 是   | 应用程序模块名称。     |
@@ -130,7 +130,7 @@ setHapModuleUpgradeFlag(bundleName: string, moduleName: string, upgradeFlag: Upg
 
 以下错误码的详细介绍请参见[ohos.bundle错误码](../errorcodes/errorcode-bundle.md)。
 
-| 错误码ID        |    错误新息(此处仅提供错误抛出的关键信息)                   |
+| 错误码ID        |    错误信息                   |
 |---------------|-------------------------|
 |  201         | Permission denied.|
 |  401       | The parameter check failed. |
@@ -170,7 +170,7 @@ isHapModuleRemovable(bundleName: string, moduleName: string, callback: AsyncCall
 
 **参数：**
 
-| 名称       | 类型                   | 必填 | 描述                                          |
+| 参数名      | 类型                   | 必填 | 说明                                          |
 | ---------- | ---------------------- | ---- | --------------------------------------------- |
 | bundleName | string                 | 是   | 应用程序包名称。                              |
 | moduleName | string                 | 是   | 应用程序模块名称。                            |
@@ -180,7 +180,7 @@ isHapModuleRemovable(bundleName: string, moduleName: string, callback: AsyncCall
 
 以下错误码的详细介绍请参见[ohos.bundle错误码](../errorcodes/errorcode-bundle.md)。
 
-| 错误码ID        |    错误新息(此处仅提供错误抛出的关键信息)                   |
+| 错误码ID        |    错误信息                   |
 |---------------|-------------------------|
 |  201         | Permission denied.|
 |  401       | The parameter check failed. |
@@ -221,7 +221,7 @@ isHapModuleRemovable(bundleName: string, moduleName: string): Promise\<boolean>;
 
 **参数：**
 
-| 名称       | 类型   | 必填 | 描述               |
+| 参数名     | 类型   | 必填 | 说明               |
 | ---------- | ------ | ---- | ------------------ |
 | bundleName | string | 是   | 应用程序包名称。   |
 | moduleName | string | 是   | 应用程序模块名称。 |
@@ -236,7 +236,7 @@ isHapModuleRemovable(bundleName: string, moduleName: string): Promise\<boolean>;
 
 以下错误码的详细介绍请参见[ohos.bundle错误码](../errorcodes/errorcode-bundle.md)。
 
-| 错误码ID        |    错误新息(此处仅提供错误抛出的关键信息)                   |
+| 错误码ID        |    错误信息                   |
 |---------------|-------------------------|
 |  201         | Permission denied.|
 |  401       | The parameter check failed. |
@@ -275,17 +275,17 @@ getBundlePackInfo(bundleName: string, bundlePackFlag : BundlePackFlag, callback:
 
 **参数：**
 
-| 名称           | 类型                                                         | 必填 | 描述                                                 |
-| -------------- | ------------------------------------------------------------ | ---- | ---------------------------------------------------- |
-| bundleName     | string                                                       | 是   | 应用程序包名称。                                     |
-| bundlePackFlag | [BundlePackFlag](#bundlepackflag)            | 是   | 指示要查询的应用包标志                               |
+| 参数名         | 类型                                                         | 必填 | 说明                                                         |
+| -------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| bundleName     | string                                                       | 是   | 应用程序包名称。                                             |
+| bundlePackFlag | [BundlePackFlag](#bundlepackflag)                            | 是   | 指示要查询的应用包标志                                       |
 | callback       | AsyncCallback<[BundlePackInfo](js-apis-bundleManager-packInfo.md)> | 是   | 回调函数。当函数调用成功，err为null，data为获取到的BundlePackInfo信息。否则为错误对象。 |
 
 **错误码：**
 
 以下错误码的详细介绍请参见[ohos.bundle错误码](../errorcodes/errorcode-bundle.md)。
 
-| 错误码ID        |    错误新息(此处仅提供错误抛出的关键信息)                   |
+| 错误码ID        |    错误信息                   |
 |---------------|-------------------------|
 |  201         | Permission denied.|
 |  401       | The parameter check failed. |
@@ -324,9 +324,9 @@ getBundlePackInfo(bundleName: string, bundlePackFlag : BundlePackFlag): Promise\
 
 **参数：**
 
-| 名称           | 类型                                              | 必填 | 描述                   |
-| -------------- | ------------------------------------------------- | ---- | ---------------------- |
-| bundleName     | string                                            | 是   | 应用程序包名称。       |
+| 参数名         | 类型                              | 必填 | 说明                   |
+| -------------- | --------------------------------- | ---- | ---------------------- |
+| bundleName     | string                            | 是   | 应用程序包名称。       |
 | bundlePackFlag | [BundlePackFlag](#bundlepackflag) | 是   | 指示要查询的应用包标志 |
 
 **返回值：**
@@ -339,7 +339,7 @@ getBundlePackInfo(bundleName: string, bundlePackFlag : BundlePackFlag): Promise\
 
 以下错误码的详细介绍请参见[ohos.bundle错误码](../errorcodes/errorcode-bundle.md)。
 
-| 错误码ID        |    错误新息(此处仅提供错误抛出的关键信息)                   |
+| 错误码ID        |    错误信息                   |
 |---------------|-------------------------|
 |  201         | Permission denied.|
 |  401       | The parameter check failed. |
@@ -377,15 +377,15 @@ getDispatchInfo(callback: AsyncCallback\<DispatchInfo>): void;
 
 **参数：**
 
-| 名称     | 类型                                                   | 必填 | 描述                                                         |
-| -------- | ------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| 参数名   | 类型                                                         | 必填 | 说明                                                         |
+| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | callback | AsyncCallback<[DispatchInfo](js-apis-bundleManager-dispatchInfo.md)> | 是   | 回调函数。当函数调用成功，err为null，data为获取到的[DispatchInfo](js-apis-bundleManager-dispatchInfo.md)信息。否则为错误对象。 |
 
 **错误码：**
 
 以下错误码的详细介绍请参见[ohos.bundle错误码](../errorcodes/errorcode-bundle.md)。
 
-| 错误码ID        |    错误新息(此处仅提供错误抛出的关键信息)                   |
+| 错误码ID        |    错误信息                   |
 |---------------|-------------------------|
 |  201         | Permission denied.|
 |  801       | Capability not supported. |
@@ -429,7 +429,7 @@ getDispatchInfo(): Promise\<DispatchInfo>;
 
 以下错误码的详细介绍请参见[ohos.bundle错误码](../errorcodes/errorcode-bundle.md)。
 
-| 错误码ID        |    错误新息(此处仅提供错误抛出的关键信息)                   |
+| 错误码ID        |    错误信息                   |
 |---------------|-------------------------|
 |  201         | Permission denied.|
 |  801       | Capability not supported. |

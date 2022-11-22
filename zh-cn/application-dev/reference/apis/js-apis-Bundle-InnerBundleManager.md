@@ -38,7 +38,7 @@ SystemCapability.BundleManager.BundleFramework
 
 **参数：**
 
-| 名称       | 类型                                                         | 必填 | 描述                                                  |
+| 参数名     | 类型                                                         | 必填 | 说明                                                  |
 | ---------- | ------------------------------------------------------------ | ---- | ----------------------------------------------------- |
 | bundleName | string                                                       | 是   | 要查询的应用程序包名称。                              |
 | userId     | number                                                       | 是   | 用户ID。默认值：调用方所在用户，取值范围：大于等于0。 |
@@ -66,7 +66,7 @@ SystemCapability.BundleManager.BundleFramework
 
 **参数：**
 
-| 名称       | 类型   | 必填 | 描述                                                  |
+| 参数名     | 类型   | 必填 | 说明                                                  |
 | ---------- | ------ | ---- | ----------------------------------------------------- |
 | bundleName | string | 是   | 要查询的应用程序包名称。                              |
 | userId     | number | 是   | 用户ID。默认值：调用方所在用户，取值范围：大于等于0。 |
@@ -98,7 +98,7 @@ SystemCapability.BundleManager.BundleFramework
 
 **参数：**
 
-| 名称                 | 类型                  | 必填 | 描述                                                 |
+| 参数名              | 类型                  | 必填 | 说明                                               |
 | -------------------- | --------------------- | ---- | ---------------------------------------------------- |
 | type                 | string | 是   | 指示应执行命令，只支持BundleStatusChange。             |
 | bundleStatusCallback | [BundleStatusCallback](js-apis-Bundle-BundleStatusCallback.md) | 是   | 指示要注册的回调。                                   |
@@ -125,7 +125,7 @@ SystemCapability.BundleManager.BundleFramework
 
 **参数：**
 
-| 名称                 | 类型                                                         | 必填 | 描述                                       |
+| 参数名               | 类型                                                         | 必填 | 说明                                       |
 | -------------------- | ------------------------------------------------------------ | ---- | ------------------------------------------ |
 | type                 | string                                                       | 是   | 指示应执行命令，只支持BundleStatusChange。 |
 | bundleStatusCallback | [BundleStatusCallback](js-apis-Bundle-BundleStatusCallback.md) | 是   | 指示要注册的回调。                         |
@@ -157,7 +157,7 @@ SystemCapability.BundleManager.BundleFramework
 
 **参数：**
 
-| 名称     | 类型                  | 必填 | 描述                                                 |
+| 参数名  | 类型                  | 必填 | 说明                                               |
 | -------- | --------------------- | ---- | ---------------------------------------------------- |
 | type     | string | 是   | 指示应执行命令，只支持BundleStatusChange。               |
 | callback | AsyncCallback\<string> | 是   | 程序启动作为入参的回调函数，返回正确结果或错误信息。 |
@@ -183,9 +183,9 @@ SystemCapability.BundleManager.BundleFramework
 
 **参数：**
 
-| 名称 | 类型   | 必填 | 描述                                       |
-| ---- | ------ | ---- | ------------------------------------------ |
-| type | string | 是   | 指示应执行命令，只支持BundleStatusChange。 |
+| 参数名 | 类型   | 必填 | 说明                                       |
+| ------ | ------ | ---- | ------------------------------------------ |
+| type   | string | 是   | 指示应执行命令，只支持BundleStatusChange。 |
 
 **返回值：**
 
@@ -214,7 +214,7 @@ SystemCapability.BundleManager.BundleFramework
 
 **参数：**
 
-| 名称     | 类型                                                         | 必填 | 描述                                                  |
+| 参数名   | 类型                                                         | 必填 | 说明                                                  |
 | -------- | ------------------------------------------------------------ | ---- | ----------------------------------------------------- |
 | userId   | number                                                       | 是   | 用户ID。默认值：调用方所在用户，取值范围：大于等于0。 |
 | callback | AsyncCallback\<Array<[LauncherAbilityInfo](js-apis-bundle-LauncherAbilityInfo.md)>> | 是   | 程序启动作为入参的回调函数，返回程序信息。            |
@@ -240,7 +240,7 @@ SystemCapability.BundleManager.BundleFramework
 
 **参数：**
 
-| 名称   | 类型   | 必填 | 描述                                                  |
+| 参数名 | 类型   | 必填 | 说明                                                  |
 | ------ | ------ | ---- | ----------------------------------------------------- |
 | userId | number | 是   | 用户ID。默认值：调用方所在用户，取值范围：大于等于0。 |
 
@@ -271,7 +271,7 @@ SystemCapability.BundleManager.BundleFramework
 
 **参数：**
 
-| 名称       | 类型                                                         | 必填 | 描述                                           |
+| 参数名     | 类型                                                         | 必填 | 说明                                           |
 | ---------- | ------------------------------------------------------------ | ---- | ---------------------------------------------- |
 | bundleName | string                                                       | 是   | 要查询的应用程序包名称。                       |
 | callback   | AsyncCallback\<Array<[ShortcutInfo](js-apis-bundle-ShortcutInfo.md)>> | 是   | 程序启动作为入参的回调函数，返回快捷方式信息。 |
@@ -297,7 +297,7 @@ SystemCapability.BundleManager.BundleFramework
 
 **参数：**
 
-| 名称       | 类型   | 必填 | 描述                     |
+| 参数名     | 类型   | 必填 | 说明                     |
 | ---------- | ------ | ---- | ------------------------ |
 | bundleName | string | 是   | 要查询的应用程序包名称。 |
 
