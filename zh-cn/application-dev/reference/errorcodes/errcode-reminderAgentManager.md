@@ -4,7 +4,7 @@
 
 **错误信息**
 
-Notification does not enable.
+Notification is not enabled.
 
 **错误描述**
 
@@ -63,7 +63,7 @@ The reminder does not exist.
 
 **错误信息**
 
-The package name does not exist.
+The bundle name does not exist.
 
 **错误描述**
 
