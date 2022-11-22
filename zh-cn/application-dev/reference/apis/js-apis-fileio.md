@@ -29,7 +29,7 @@ class MainAbility extends Ability {
 }
  ```
 
- Stage模型context的具体获取方法参见[Stage模型](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-ability-context.md#abilitycontext)。
+ Stage模型context的具体获取方法参见[Stage模型](js-apis-ability-context.md#abilitycontext)。
 
 **FA模型**
 
@@ -41,7 +41,7 @@ class MainAbility extends Ability {
  })
  ```
  
- FA模型context的具体获取方法参见[FA模型](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-Context.md#context%E6%A8%A1%E5%9D%97)。
+ FA模型context的具体获取方法参见[FA模型](js-apis-Context.md#Context模块)。
 
 ## fileio.stat
 
@@ -68,7 +68,7 @@ stat(path: string): Promise&lt;Stat&gt;
   ```js
   let filePath = pathDir + "test.txt";
   fileio.stat(filePath).then(function(stat){
-      console.info("getFileInfo succeed:"+ JSON.stringify(stat));
+      console.info("getFileInfo succeed, the size of file is " + stat.size);
   }).catch(function(err){
       console.info("getFileInfo failed with error:"+ err);
   });
@@ -153,7 +153,7 @@ opendir(path: string): Promise&lt;Dir&gt;
   ```js
   let dirPath = pathDir + "/testDir";
   fileio.opendir(dirPath).then(function(dir){
-      console.info("opendir succeed:"+ JSON.stringify(dir));
+      console.info("opendir succeed");
   }).catch(function(err){
       console.info("opendir failed with error:"+ err);
   });
@@ -250,7 +250,7 @@ access(path: string, mode?: number): Promise&lt;void&gt;
 
 ## fileio.access
 
-access(path: string, mode: number, callback: AsyncCallback&lt;void&gt;): void
+access(path: string, mode?: number, callback: AsyncCallback&lt;void&gt;): void
 
 检查当前进程是否可访问某文件，使用callback异步回调。
 
@@ -395,8 +395,8 @@ copyFile(src: string | number, dest: string | number, mode?: number): Promise&lt
 
   | 参数名  | 类型                         | 必填   | 说明                                       |
   | ---- | -------------------------- | ---- | ---------------------------------------- |
-  | src  | string&nbsp;\|&nbsp;number | 是    | 待复制文件的路径或待复制文件的描述符。                      |
-  | dest | string&nbsp;\|&nbsp;number | 是    | 目标文件路径或目标文件描述符。                          |
+  | src  | string \| number | 是    | 待复制文件的路径或待复制文件的描述符。                      |
+  | dest | string \| number | 是    | 目标文件路径或目标文件描述符。                          |
   | mode | number                     | 否    | mode提供覆盖文件的选项，当前仅支持0，且默认为0。<br/>0：完全覆盖目标文件，未覆盖部分将被裁切掉。 |
 
 **返回值：**
@@ -420,7 +420,7 @@ copyFile(src: string | number, dest: string | number, mode?: number): Promise&lt
 
 ## fileio.copyFile
 
-copyFile(src: string | number, dest: string | number, mode: number, callback: AsyncCallback&lt;void&gt;): void
+copyFile(src: string|number, dest: string|number, mode: number, callback: AsyncCallback&lt;void&gt;): void
 
 复制文件，使用callback异步回调。
 
@@ -430,8 +430,8 @@ copyFile(src: string | number, dest: string | number, mode: number, callback: As
 
   | 参数名      | 类型                         | 必填   | 说明                                       |
   | -------- | -------------------------- | ---- | ---------------------------------------- |
-  | src      | string&nbsp;\|&nbsp;number | 是    | 待复制文件的路径或待复制文件的描述符。                      |
-  | dest     | string&nbsp;\|&nbsp;number | 是    | 目标文件路径或目标文件描述符。                          |
+  | src      | string\|number | 是    | 待复制文件的路径或待复制文件的描述符。                      |
+  | dest     | string\|number | 是    | 目标文件路径或目标文件描述符。                          |
   | mode     | number                     | 否    | mode提供覆盖文件的选项，当前仅支持0，且默认为0。<br/>0：完全覆盖目标文件，未覆盖部分将被裁切掉。 |
   | callback | AsyncCallback&lt;void&gt;  | 是    | 异步复制文件之后的回调。                             |
 
@@ -448,7 +448,7 @@ copyFile(src: string | number, dest: string | number, mode: number, callback: As
 
 ## fileio.copyFileSync
 
-copyFileSync(src: string | number, dest: string | number, mode?: number): void
+copyFileSync(src: string|number, dest: string|number, mode?: number): void
 
 以同步方法复制文件。
 
@@ -458,8 +458,8 @@ copyFileSync(src: string | number, dest: string | number, mode?: number): void
 
   | 参数名  | 类型                         | 必填   | 说明                                       |
   | ---- | -------------------------- | ---- | ---------------------------------------- |
-  | src  | string&nbsp;\|&nbsp;number | 是    | 待复制文件的路径或待复制文件的描述符。                      |
-  | dest | string&nbsp;\|&nbsp;number | 是    | 目标文件路径或目标文件描述符。                          |
+  | src  | string\|number | 是    | 待复制文件的路径或待复制文件的描述符。                      |
+  | dest | string\|number | 是    | 目标文件路径或目标文件描述符。                          |
   | mode | number                     | 否    | mode提供覆盖文件的选项，当前仅支持0，且默认为0。<br/>0：完全覆盖目标文件，未覆盖部分将被裁切掉。 |
 
 **示例：**
@@ -602,7 +602,7 @@ open(path: string, flags: number, mode: number, callback: AsyncCallback&lt;numbe
 | path     | string                          | 是   | 待打开文件的应用沙箱路径。                                   |
 | flags    | number                          | 否   | 打开文件的选项，必须指定如下选项中的一个，默认以只读方式打开：<br/>-&nbsp;0o0：只读打开。<br/>-&nbsp;0o1：只写打开。<br/>-&nbsp;0o2：读写打开。<br/>同时，也可给定如下选项，以按位或的方式追加，默认不给定任何额外选项：<br/>-&nbsp;0o100：若文件不存在，则创建文件。使用该选项时必须指定第三个参数&nbsp;mode。<br/>-&nbsp;0o200：如果追加了0o100选项，且文件已经存在，则出错。<br/>-&nbsp;0o1000：如果文件存在且以只写或读写的方式打开文件，则将其长度裁剪为零。<br/>-&nbsp;0o2000：以追加方式打开，后续写将追加到文件末尾。<br/>-&nbsp;0o4000：如果path指向FIFO、块特殊文件或字符特殊文件，则本次打开及后续&nbsp;IO&nbsp;进行非阻塞操作。<br/>-&nbsp;0o200000：如果path不指向目录，则出错。<br/>-&nbsp;0o400000：如果path指向符号链接，则出错。<br/>-&nbsp;0o4010000：以同步IO的方式打开文件。 |
 | mode     | number                          | 否   | 若创建文件，则指定文件的权限，可给定如下权限，以按位或的方式追加权限，默认给定0o666。<br/>-&nbsp;0o666：所有者具有读、写权限，所有用户组具有读、写权限，其余用户具有读、写权限。<br/>-&nbsp;0o700：所有者具有读、写及可执行权限。<br/>-&nbsp;0o400：所有者具有读权限。<br/>-&nbsp;0o200：所有者具有写权限。<br/>-&nbsp;0o100：所有者具有可执行权限。<br/>-&nbsp;0o070：所有用户组具有读、写及可执行权限。<br/>-&nbsp;0o040：所有用户组具有读权限。<br/>-&nbsp;0o020：所有用户组具有写权限。<br/>-&nbsp;0o010：所有用户组具有可执行权限。<br/>-&nbsp;0o007：其余用户具有读、写及可执行权限。<br/>-&nbsp;0o004：其余用户具有读权限。<br/>-&nbsp;0o002：其余用户具有写权限。<br/>-&nbsp;0o001：其余用户具有可执行权限。 |
-| callback | AsyncCallback&nbsp;&lt;void&gt; | 是   | 异步打开文件之后的回调。                                     |
+| callback | AsyncCallback&lt;number&gt; | 是   | 异步打开文件之后的回调。                                     |
 
 **示例：**
 
@@ -655,11 +655,7 @@ openSync(path: string, flags?: number, mode?: number): number
 
 ## fileio.read
 
-read(fd: number, buffer: ArrayBuffer, options?: {
-    offset?: number;
-    length?: number;
-    position?: number;
-}): Promise&lt;ReadOut&gt;
+read(fd: number, buffer: ArrayBuffer, options?: { offset?: number; length?: number; position?: number; }): Promise&lt;ReadOut&gt;
 
 从文件读取数据，使用Promise异步回调。
 
@@ -696,11 +692,7 @@ read(fd: number, buffer: ArrayBuffer, options?: {
 
 ## fileio.read
 
-read(fd: number, buffer: ArrayBuffer, options: {
-    offset?: number;
-    length?: number;
-    position?: number;
-}, callback: AsyncCallback&lt;ReadOut&gt;): void
+read(fd: number, buffer: ArrayBuffer, options: { offset?: number; length?: number; position?: number; }, callback: AsyncCallback&lt;ReadOut&gt;): void
 
 从文件读取数据，使用callback异步回调。
 
@@ -732,11 +724,7 @@ read(fd: number, buffer: ArrayBuffer, options: {
 
 ## fileio.readSync
 
-readSync(fd: number, buffer: ArrayBuffer, options?: {
-    offset?: number;
-    length?: number;
-    position?: number;
-}): number
+readSync(fd: number, buffer: ArrayBuffer, options?: { offset?: number; length?: number; position?: number; }): number
 
 以同步方法从文件读取数据。
 
@@ -927,12 +915,7 @@ unlinkSync(path: string): void
 
 ## fileio.write
 
-write(fd: number, buffer: ArrayBuffer | string, options?: {
-    offset?: number;
-    length?: number;
-    position?: number;
-    encoding?: string;
-}): Promise&lt;number&gt;
+write(fd: number, buffer: ArrayBuffer | string, options?: { offset?: number; length?: number; position?: number; encoding?: string; }): Promise&lt;number&gt;
 
 将数据写入文件，使用Promise异步回调。
 
@@ -967,12 +950,7 @@ write(fd: number, buffer: ArrayBuffer | string, options?: {
 
 ## fileio.write
 
-write(fd: number, buffer: ArrayBuffer | string, options: {
-    offset?: number;
-    length?: number;
-    position?: number;
-    encoding?: string;
-}, callback: AsyncCallback&lt;number&gt;): void
+write(fd: number, buffer: ArrayBuffer|string, options: { offset?: number; length?: number; position?: number; encoding?: string; }, callback: AsyncCallback&lt;number&gt;): void
 
 将数据写入文件，使用callback异步回调。
 
@@ -983,7 +961,7 @@ write(fd: number, buffer: ArrayBuffer | string, options: {
   | 参数名      | 类型                              | 必填   | 说明                                       |
   | -------- | ------------------------------- | ---- | ---------------------------------------- |
   | fd       | number                          | 是    | 待写入文件的文件描述符。                             |
-  | buffer   | ArrayBuffer&nbsp;\|&nbsp;string | 是    | 待写入文件的数据，可来自缓冲区或字符串。                     |
+  | buffer   | ArrayBuffer\|string | 是    | 待写入文件的数据，可来自缓冲区或字符串。                     |
   | options  | Object                          | 否    | 支持如下选项：<br/>-&nbsp;offset，number类型，表示期望写入数据的位置相对于数据首地址的偏移。可选，默认为0。<br/>-&nbsp;length，number类型，表示期望写入数据的长度。可选，默认缓冲区长度减去偏移长度。<br/>-&nbsp;position，number类型，表示期望写入文件的位置。可选，默认从当前位置开始写。<br/>-&nbsp;encoding，string类型，当数据是string类型时有效，表示数据的编码方式，默认&nbsp;'utf-8'。仅支持&nbsp;'utf-8'。<br/>约束：offset+length<=buffer.size。 |
   | callback | AsyncCallback&lt;number&gt;     | 是    | 异步将数据写入完成后执行的回调函数。                       |
 
@@ -1002,12 +980,7 @@ write(fd: number, buffer: ArrayBuffer | string, options: {
 
 ## fileio.writeSync
 
-writeSync(fd: number, buffer: ArrayBuffer | string, options?: {
-    offset?: number;
-    length?: number;
-    position?: number;
-    encoding?: string;
-}): number
+writeSync(fd: number, buffer: ArrayBuffer|string, options?: { offset?: number; length?: number; position?: number; encoding?: string; }): number
 
 以同步方法将数据写入文件。
 
@@ -1018,7 +991,7 @@ writeSync(fd: number, buffer: ArrayBuffer | string, options?: {
   | 参数名     | 类型                              | 必填   | 说明                                       |
   | ------- | ------------------------------- | ---- | ---------------------------------------- |
   | fd      | number                          | 是    | 待写入文件的文件描述符。                             |
-  | buffer  | ArrayBuffer&nbsp;\|&nbsp;string | 是    | 待写入文件的数据，可来自缓冲区或字符串。                     |
+  | buffer  | ArrayBuffer\|string | 是    | 待写入文件的数据，可来自缓冲区或字符串。                     |
   | options | Object                          | 否    | 支持如下选项：<br/>-&nbsp;offset，number类型，表示期望写入数据的位置相对于数据首地址的偏移。可选，默认为0。<br/>-&nbsp;length，number类型，表示期望写入数据的长度。可选，默认缓冲区长度减去偏移长度。<br/>-&nbsp;position，number类型，表示期望写入文件的位置。可选，默认从当前位置开始写。<br/>-&nbsp;encoding，string类型，当数据是string类型时有效，表示数据的编码方式，默认&nbsp;'utf-8'。仅支持&nbsp;'utf-8'。<br/>约束：offset+length<=buffer.size。 |
 
 **返回值：**
@@ -1205,7 +1178,7 @@ fstat(fd: number): Promise&lt;Stat&gt;
   let filePath = pathDir + "/test.txt";
   let fd = fileio.openSync(filePath);
   fileio.fstat(fd).then(function(stat){
-      console.info("fstat succeed:"+ JSON.stringify(stat));
+      console.info("fstat succeed, the size of file is "+ stat.size);
   }).catch(function(err){
       console.info("fstat failed with error:"+ err);
   });
@@ -1441,11 +1414,7 @@ truncateSync(path: string, len?: number): void
 
 ## fileio.readText<sup>7+</sup>
 
-readText(filePath: string, options?: {
-    position?: number;
-    length?: number;
-    encoding?: string;
-}): Promise&lt;string&gt;
+readText(filePath: string, options?: { position?: number; length?: number; encoding?: string; }): Promise&lt;string&gt;
 
 基于文本方式读取文件（即直接读取文件的文本内容），使用Promise异步回调。
 
@@ -1478,11 +1447,7 @@ readText(filePath: string, options?: {
 
 ## fileio.readText<sup>7+</sup>
 
-readText(filePath: string, options: {
-    position?: number;
-    length?: number;
-    encoding?: string;
-}, callback: AsyncCallback&lt;string&gt;): void
+readText(filePath: string, options: { position?: number; length?: number; encoding?: string; }, callback: AsyncCallback&lt;string&gt;): void
 
 基于文本方式读取文件（即直接读取文件的文本内容），使用callback异步回调。
 
@@ -1508,11 +1473,7 @@ readText(filePath: string, options: {
 
 ## fileio.readTextSync<sup>7+</sup>
 
-readTextSync(filePath: string, options?: {
-    position?: number;
-    length?: number;
-    encoding?: string;
-}): string
+readTextSync(filePath: string, options?: { position?: number; length?: number; encoding?: string; }): string
 
 以同步方法基于文本方式读取文件（即直接读取文件的文本内容）。
 
@@ -1564,7 +1525,7 @@ lstat(path: string): Promise&lt;Stat&gt;
   ```js
   let filePath = pathDir + "/test.txt";
   fileio.lstat(filePath).then(function(stat){
-      console.info("get link status succeed:"+ JSON.stringify(stat));
+      console.info("get link status succeed, the size of file is" + stat.size);
   }).catch(function(err){
       console.info("get link status failed with error:"+ err);
   });
@@ -1637,7 +1598,7 @@ rename(oldPath: string, newPath: string): Promise&lt;void&gt;
 | 参数名  | 类型   | 必填 | 说明                         |
 | ------- | ------ | ---- | ---------------------------- |
 | oldPath | string | 是   | 目标文件的当前应用沙箱路径。 |
-| newPath | String | 是   | 目标文件的新应用沙箱路径。   |
+| newPath | string | 是   | 目标文件的新应用沙箱路径。   |
 
 **返回值：**
 
@@ -1671,8 +1632,8 @@ rename(oldPath: string, newPath: string, callback: AsyncCallback&lt;void&gt;): v
 | 参数名   | 类型                      | 必填 | 说明                         |
 | -------- | ------------------------- | ---- | ---------------------------- |
 | oldPath  | string                    | 是   | 目标文件的当前应用沙箱路径。 |
-| newPath  | String                    | 是   | 目标文件的新应用沙箱路径。   |
-| Callback | AsyncCallback&lt;void&gt; | 是   | 异步重命名文件之后的回调。   |
+| newPath  | string                    | 是   | 目标文件的新应用沙箱路径。   |
+| callback | AsyncCallback&lt;void&gt; | 是   | 异步重命名文件之后的回调。   |
 
 **示例：**
 
@@ -1697,7 +1658,7 @@ renameSync(oldPath: string, newPath: string): void
 | 参数名  | 类型   | 必填 | 说明                         |
 | ------- | ------ | ---- | ---------------------------- |
 | oldPath | string | 是   | 目标文件的当前应用沙箱路径。 |
-| newPath | String | 是   | 目标文件的新应用沙箱路径。   |
+| newPath | string | 是   | 目标文件的新应用沙箱路径。   |
 
 **示例：**
 
@@ -1836,7 +1797,7 @@ fdatasync(fd: number, callback: AsyncCallback&lt;void&gt;): void
   | 参数名      | 类型                              | 必填   | 说明                |
   | -------- | ------------------------------- | ---- | ----------------- |
   | fd       | number                          | 是    | 待同步文件的文件描述符。      |
-  | callback | AsyncCallback&nbsp;&lt;void&gt; | 是    | 异步将文件内容数据同步之后的回调。 |
+  | callback | AsyncCallback&lt;void&gt; | 是    | 异步将文件内容数据同步之后的回调。 |
 
 **示例：**
 
@@ -2176,7 +2137,7 @@ fchmod(fd: number, mode: number, callback: AsyncCallback&lt;void&gt;): void
   | -------- | ------------------------------- | ---- | ---------------------------------------- |
   | fd       | number                          | 是    | 待改变文件的文件描述符。                             |
   | mode     | number                          | 是    | 若创建文件，则指定文件的权限，可给定如下权限，以按位或的方式追加权限。<br/>-&nbsp;0o700：所有者具有读、写及可执行权限。<br/>-&nbsp;0o400：所有者具有读权限。<br/>-&nbsp;0o200：所有者具有写权限。<br/>-&nbsp;0o100：所有者具有可执行权限。<br/>-&nbsp;0o070：所有用户组具有读、写及可执行权限。<br/>-&nbsp;0o040：所有用户组具有读权限。<br/>-&nbsp;0o020：所有用户组具有写权限。<br/>-&nbsp;0o010：所有用户组具有可执行权限。<br/>-&nbsp;0o007：其余用户具有读、写及可执行权限。<br/>-&nbsp;0o004：其余用户具有读权限。<br/>-&nbsp;0o002：其余用户具有写权限。<br/>-&nbsp;0o001：其余用户具有可执行权限。 |
-  | callback | AsyncCallback&nbsp;&lt;void&gt; | 是    | 异步改变文件权限之后的回调。                           |
+  | callback | AsyncCallback&lt;void&gt; | 是    | 异步改变文件权限之后的回调。                           |
 
 **示例：**
 
@@ -2351,7 +2312,7 @@ fdopenStream(fd: number, mode: string, callback: AsyncCallback&lt;Stream&gt;): v
   | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
   | fd       | number                                   | 是    | 待打开文件的文件描述符。                             |
   | mode     | string                                   | 是    | -&nbsp;r：打开只读文件，该文件必须存在。<br/>-&nbsp;r+：打开可读写的文件，该文件必须存在。<br/>-&nbsp;w：打开只写文件，若文件存在则文件长度清0，即该文件内容会消失。若文件不存在则建立该文件。<br/>-&nbsp;w+：打开可读写文件，若文件存在则文件长度清0，即该文件内容会消失。若文件不存在则建立该文件。<br/>-&nbsp;a：以附加的方式打开只写文件。若文件不存在，则会建立该文件，如果文件存在，写入的数据会被加到文件尾，即文件原先的内容会被保留。<br/>-&nbsp;a+：以附加方式打开可读写的文件。若文件不存在，则会建立该文件，如果文件存在，写入的数据会被加到文件尾后，即文件原先的内容会被保留。 |
-  | callback | AsyncCallback&nbsp;&lt;[Stream](#stream)&gt; | 是    | 异步打开文件流之后的回调。                            |
+  | callback | AsyncCallback&lt;[Stream](#stream)&gt; | 是    | 异步打开文件流之后的回调。                            |
 
 **示例：**
 
@@ -2586,8 +2547,8 @@ createWatcher(filename: string, events: number, callback: AsyncCallback&lt;numbe
 | 参数名   | 类型                              | 必填 | 说明                                                         |
 | -------- | --------------------------------- | ---- | ------------------------------------------------------------ |
 | filePath | string                            | 是   | 待监视文件的应用沙箱路径。                                   |
-| events   | Number                            | 是   | -&nbsp;1:&nbsp;监听文件或者目录是否发生重命名。<br/>-&nbsp;2：监听文件或者目录内容的是否修改。<br/>-&nbsp;3：两者都有。 |
-| callback | AsyncCallback&lt;number&nbsp;&gt; | 是   | 每发生变化一次，调用一次此函数。                             |
+| events   | number                            | 是   | -&nbsp;1:&nbsp;监听文件或者目录是否发生重命名。<br/>-&nbsp;2：监听文件或者目录内容的是否修改。<br/>-&nbsp;3：两者都有。 |
+| callback | AsyncCallback&lt;number&gt; | 是   | 每发生变化一次，调用一次此函数。                             |
 
 **返回值：**
 
@@ -2612,11 +2573,11 @@ createWatcher(filename: string, events: number, callback: AsyncCallback&lt;numbe
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.FileManagement.File.FileIO。
 
-| 名称        | 参数类型       | 可读   | 可写   | 说明                |
+| 名称        | 类型       | 可读   | 可写   | 说明                |
 | --------- | ---------- | ---- | ---- | ----------------- |
 | bytesRead | number     | 是    | 是    | 实际读取长度。           |
 | offset    | number     | 是    | 是    | 读取数据相对于缓冲区首地址的偏移。 |
-| buffer    | ArrayBufer | 是    | 是    | 保存读取数据的缓冲区。       |
+| buffer    | ArrayBuffer | 是    | 是    | 保存读取数据的缓冲区。       |
 
 
 ## Stat
@@ -2627,7 +2588,7 @@ createWatcher(filename: string, events: number, callback: AsyncCallback&lt;numbe
 
 ### 属性
 
-| 名称     | 参数类型   | 可读   | 可写   | 说明                                       |
+| 名称     | 类型   | 可读   | 可写   | 说明                                       |
 | ------ | ------ | ---- | ---- | ---------------------------------------- |
 | dev    | number | 是    | 否    | 标识包含该文件的主设备号。                            |
 | ino    | number | 是    | 否    | 标识该文件。通常同设备上的不同文件的INO不同。                 |
@@ -2995,12 +2956,7 @@ flushSync(): void
 
 ### write<sup>7+</sup>
 
-write(buffer: ArrayBuffer | string, options?: {
-    offset?: number;
-    length?: number;
-    position?: number;
-    encoding?: string;
-}): Promise&lt;number&gt;
+write(buffer: ArrayBuffer|string, options?: { offset?: number; length?: number; position?: number; encoding?: string; }): Promise&lt;number&gt;
 
 将数据写入流文件，使用Promise异步回调。
 
@@ -3010,7 +2966,7 @@ write(buffer: ArrayBuffer | string, options?: {
 
   | 参数名     | 类型                              | 必填   | 说明                                       |
   | ------- | ------------------------------- | ---- | ---------------------------------------- |
-  | buffer  | ArrayBuffer&nbsp;\|&nbsp;string | 是    | 待写入文件的数据，可来自缓冲区或字符串。                     |
+  | buffer  | ArrayBuffer\|string | 是    | 待写入文件的数据，可来自缓冲区或字符串。                     |
   | options | Object                          | 否    | 支持如下选项：<br/>-&nbsp;offset，number类型，表示期望写入数据的位置相对于数据首地址的偏移。可选，默认为0。<br/>-&nbsp;length，number类型，表示期望写入数据的长度。可选，默认缓冲区长度减去偏移长度。<br/>-&nbsp;position，number类型，表示期望写入文件的位置。可选，默认从当前位置开始写。<br/>-&nbsp;encoding，string类型，当数据是string类型时有效，表示数据的编码方式，默认&nbsp;'utf-8'。仅支持&nbsp;'utf-8'。<br/>约束：offset+length<=buffer.size。  |
 
 **返回值：**
@@ -3034,12 +2990,7 @@ write(buffer: ArrayBuffer | string, options?: {
 
 ### write<sup>7+</sup>
 
-write(buffer: ArrayBuffer | string, options: {
-    offset?: number;
-    length?: number;
-    position?: number;
-    encoding?: string;
-}, callback: AsyncCallback&lt;number&gt;): void
+write(buffer: ArrayBuffer|string, options: { offset?: number; length?: number; position?: number; encoding?: string; }, callback: AsyncCallback&lt;number&gt;): void
 
 将数据写入流文件，使用callback异步回调。
 
@@ -3049,7 +3000,7 @@ write(buffer: ArrayBuffer | string, options: {
 
   | 参数名   | 类型                            | 必填 | 说明                                                         |
   | -------- | ------------------------------- | ---- | ------------------------------------------------------------ |
-  | buffer   | ArrayBuffer&nbsp;\|&nbsp;string | 是   | 待写入文件的数据，可来自缓冲区或字符串。                     |
+  | buffer   | ArrayBuffer\|string | 是   | 待写入文件的数据，可来自缓冲区或字符串。                     |
   | options  | Object                          | 否   | 支持如下选项：<br/>-&nbsp;offset，number类型，表示期望写入数据的位置相对于数据首地址的偏移。可选，默认为0。<br/>-&nbsp;length，number类型，表示期望写入数据的长度。可选，默认缓冲区长度减去偏移长度。<br/>-&nbsp;position，number类型，表示期望写入文件的位置。可选，默认从当前位置开始写。<br/>-&nbsp;encoding，string类型，当数据是string类型时有效，表示数据的编码方式，默认&nbsp;'utf-8'。仅支持&nbsp;'utf-8'。<br/>约束：offset+length<=buffer.size。 |
   | callback | AsyncCallback&lt;number&gt;     | 是   | 异步写入完成后执行的回调函数。                               |
 
@@ -3069,12 +3020,7 @@ write(buffer: ArrayBuffer | string, options: {
 
 ### writeSync<sup>7+</sup>
 
-writeSync(buffer: ArrayBuffer | string, options?: {
-    offset?: number;
-    length?: number;
-    position?: number;
-    encoding?: string;
-}): number
+writeSync(buffer: ArrayBuffer | string, options?: { offset?: number; length?: number; position?: number; encoding?: string; }): number
 
 以同步方法将数据写入流文件。
 
@@ -3084,7 +3030,7 @@ writeSync(buffer: ArrayBuffer | string, options?: {
 
   | 参数名     | 类型                              | 必填   | 说明                                       |
   | ------- | ------------------------------- | ---- | ---------------------------------------- |
-  | buffer  | ArrayBuffer&nbsp;\|&nbsp;string | 是    | 待写入文件的数据，可来自缓冲区或字符串。                     |
+  | buffer  | ArrayBuffer \| string | 是    | 待写入文件的数据，可来自缓冲区或字符串。                     |
   | options | Object                          | 否    | 支持如下选项：<br/>-&nbsp;offset，number类型，表示期望写入数据的位置相对于数据首地址的偏移。可选，默认为0。<br/>-&nbsp;length，number类型，表示期望写入数据的长度。可选，默认缓冲区长度减去偏移长度。<br/>-&nbsp;position，number类型，表示期望写入文件的位置。可选，默认从当前位置开始写。<br/>-&nbsp;encoding，string类型，当数据是string类型时有效，表示数据的编码方式，默认&nbsp;'utf-8'。仅支持&nbsp;'utf-8'。<br/>约束：offset+length<=buffer.size。  |
 
 **返回值：**
@@ -3104,11 +3050,7 @@ writeSync(buffer: ArrayBuffer | string, options?: {
 
 ### read<sup>7+</sup>
 
-read(buffer: ArrayBuffer, options?: {
-    position?: number;
-    offset?: number;
-    length?: number;
-}): Promise&lt;ReadOut&gt;
+read(buffer: ArrayBuffer, options?: { position?: number; offset?: number; length?: number; }): Promise&lt;ReadOut&gt;
 
 从流文件读取数据，使用Promise异步回调。
 
@@ -3143,11 +3085,7 @@ read(buffer: ArrayBuffer, options?: {
 
 ### read<sup>7+</sup>
 
-read(buffer: ArrayBuffer, options: {
-    position?: number;
-    offset?: number;
-    length?: number;
-}, callback: AsyncCallback&lt;ReadOut&gt;): void
+read(buffer: ArrayBuffer, options: { position?: number; offset?: number; length?: number; }, callback: AsyncCallback&lt;ReadOut&gt;): void
 
 从流文件读取数据，使用callback异步回调。
 
@@ -3177,11 +3115,7 @@ read(buffer: ArrayBuffer, options: {
 
 ### readSync<sup>7+</sup>
 
-readSync(buffer: ArrayBuffer, options?: {
-    position?: number;
-    offset?: number;
-    length?: number;
-}): number
+readSync(buffer: ArrayBuffer, options?: { position?: number; offset?: number; length?: number; }): number
 
 以同步方法从流文件读取数据。
 
@@ -3232,7 +3166,7 @@ read(): Promise&lt;Dirent&gt;
 
   ```js
   dir.read().then(function (dirent){
-      console.log("read succeed:"+JSON.stringify(dirent));
+      console.log("read succeed, the name of dirent is " + dirent.name);
   }).catch(function(err){
       console.info("read failed with error:"+ err);
   });
@@ -3259,7 +3193,7 @@ read(callback: AsyncCallback&lt;Dirent&gt;): void
   dir.read(function (err, dirent) {
       if (dirent) {
           // do something
-          console.log("read succeed:"+JSON.stringify(dirent));
+          console.log("read succeed, the name of file is " + dirent.name);
       }
   });
   ```
@@ -3343,7 +3277,7 @@ closeSync(): void
 
 ### 属性
 
-| 名称   | 参数类型   | 可读   | 可写   | 说明      |
+| 名称   | 类型   | 可读   | 可写   | 说明      |
 | ---- | ------ | ---- | ---- | ------- |
 | name | string | 是    | 否    | 目录项的名称。 |
 
@@ -3509,7 +3443,7 @@ isSymbolicLink(): boolean
 
 文件过滤器配置项。
 
-| 名称        | 参数类型       | 说明                |
+| 名称        | 类型       | 说明                |
 | ----------- | --------------- | ------------------ |
 | suffix | Array&lt;string&gt;     | 文件后缀名，各个关键词OR关系。           |
 | displayName    | Array&lt;string&gt;     | 文件名模糊匹配，各个关键词OR关系。 |

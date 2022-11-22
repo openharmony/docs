@@ -133,7 +133,7 @@ var subscriber = {
 
 ##### 开启通知使能
 
-应用发布通知的使能开关默认是关闭的，所以应用发布通知前需要用户允许后才能发送。应用可以通过Notification.requestEnableNotification弹窗提醒用户允许发送通知。
+应用发布通知的使能开关默认是关闭的，需要通过下拉通知栏，在通知设置里打开通知开关。应用也可以通过调用Notification.requestEnableNotification接口，弹窗提示用户是否允许发送通知。
 
 ```js
 Notification.requestEnableNotification().then((data) => {
@@ -262,6 +262,4 @@ Notification.cancel(1, "label", cancelCallback)
 
 针对通知开发，有以下相关可供参考：
 
-- [`Notification:`订阅、发送通知（eTS）（API9）（Full SDK）](https://gitee.com/openharmony/applications_app_samples/tree/master/Notification/Notification)
-
-- [`Notification`：通知（eTS）（API8）](https://gitee.com/openharmony/applications_app_samples/tree/master/common/Notification)
+- [`Notification:`订阅、发送通知（ArkTS）（API9）（Full SDK）](https://gitee.com/openharmony/applications_app_samples/tree/master/Notification/Notification)

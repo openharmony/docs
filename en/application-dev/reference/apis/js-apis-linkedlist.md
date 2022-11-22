@@ -12,6 +12,9 @@ Unlike **[List](js-apis-list.md)**, which is a singly linked list, **LinkedList*
 
 **Recommended use case**: Use **LinkedList** for frequent insertion and removal operations.
 
+This topic uses the following to identify the use of generics:
+- T: Type
+
 ## Modules to Import
 
 ```ts
@@ -76,7 +79,7 @@ let result = linkedList.add("a");
 let result1 = linkedList.add(1);
 let b = [1, 2, 3];
 linkedList.add(b);
-let c = {name : "lala", age : "13"};
+let c = {name : "Dylon", age : "13"};
 let result3 = linkedList.add(false);
 ```
 
@@ -102,7 +105,7 @@ linkedList.addFirst("a");
 linkedList.addFirst(1);
 let b = [1, 2, 3];
 linkedList.addFirst(b);
-let c = {name : "lala", age : "13"};
+let c = {name : "Dylon", age : "13"};
 linkedList.addFirst(false);
 ```
 
@@ -154,9 +157,9 @@ Checks whether this container has the specified element.
 
 ```ts
 let linkedList = new LinkedList();
-let result1 = linkedList.has("Ahfbrgrbgnutfodgorrogorg");
-linkedList.add("Ahfbrgrbgnutfodgorrogorg");
-let result = linkedList.has("Ahfbrgrbgnutfodgorrogorg");
+let result1 = linkedList.has("squirrel");
+linkedList.add("squirrel");
+let result = linkedList.has("squirrel");
 ```
 
 ### get

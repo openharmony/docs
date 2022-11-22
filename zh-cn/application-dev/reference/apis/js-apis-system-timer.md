@@ -14,7 +14,7 @@ import systemTimer from '@ohos.systemTimer';
 ```
 
 
-## systemTime.createTimer
+## systemTimer.createTimer
 
 createTimer(options: TimerOptions, callback: AsyncCallback&lt;number&gt;): void
 
@@ -55,7 +55,7 @@ export default {
   ```
 
 
-## systemTime.createTimer
+## systemTimer.createTimer
 
 createTimer(options: TimerOptions): Promise&lt;number&gt;
 
@@ -94,7 +94,7 @@ export default {
   ```
 
 
-## systemTime.startTimer
+## systemTimer.startTimer
 
 startTimer(timer: number, triggerTime: number, callback: AsyncCallback&lt;void&gt;): void
 
@@ -106,7 +106,7 @@ startTimer(timer: number, triggerTime: number, callback: AsyncCallback&lt;void&g
 
 | 参数名      | 类型                        | 必填 | 说明                                                         |
 | ----------- | --------------------------- | ---- | ------------------------------------------------------------ |
-| timer       | number                      | 是   | 定时器的ID。                                                 |                                                                                                             
+| timer       | number                      | 是   | 定时器的ID。                                                 |
 | triggerTime | number                      | 是   | 定时器的触发时间，单位：毫秒。                               |
 
 
@@ -114,12 +114,12 @@ startTimer(timer: number, triggerTime: number, callback: AsyncCallback&lt;void&g
 
   ```js
 export default {
-    systemTimer () {
+    async systemTimer () {
         var options = {
             type: systemTimer.TIMER_TYPE_REALTIME,
             repeat:false
         }
-        let timerId = systemTimer.createTimer(options)
+        let timerId = await systemTimer.createTimer(options)
 		let triggerTime = new Date().getTime()
         triggerTime += 3000
         systemTimer.startTimer(timerId, triggerTime, (error, data) => {
@@ -132,8 +132,8 @@ export default {
     }
 }
   ```
-  
-## systemTime.startTimer
+
+## systemTimer.startTimer
 
 startTimer(timer: number, triggerTime: number): Promise&lt;void&gt;
 
@@ -153,12 +153,12 @@ startTimer(timer: number, triggerTime: number): Promise&lt;void&gt;
 
   ```js
 export default {
-    systemTimer (){
+    async systemTimer (){
         var options = {
             type: systemTimer.TIMER_TYPE_REALTIME,
             repeat:false
         }
-        let timerId = systemTimer.createTimer(options)
+        let timerId = await systemTimer.createTimer(options)
 		let triggerTime = new Date().getTime()
         triggerTime += 3000
         systemTimer.startTimer(timerId, triggerTime).then((data) => {
@@ -171,7 +171,7 @@ export default {
   ```
 
 
-## systemTime.stopTimer
+## systemTimer.stopTimer
 
 stopTimer(timer: number, callback: AsyncCallback&lt;void&gt;): void
 
@@ -189,16 +189,16 @@ stopTimer(timer: number, callback: AsyncCallback&lt;void&gt;): void
 
   ```js
 export default {
-    systemTimer () {
+    async systemTimer () {
         var options = {
             type: systemTimer.TIMER_TYPE_REALTIME,
             repeat:false
         }
-        let timerId = systemTimer.createTimer(options)
+        let timerId = await systemTimer.createTimer(options)
 		let triggerTime = new Date().getTime()
         triggerTime += 3000
         systemTimer.startTimer(timerId, triggerTime)
-        systemTimer.stoptTimer(timerId, (error, data) => {
+        systemTimer.stopTimer(timerId, (error, data) => {
             if (error) {
                 console.error(`failed to systemTime.startTimer ` + JSON.stringify(error));
                 return;
@@ -210,7 +210,7 @@ export default {
   ```
 
 
-## systemTime.stopTimer
+## systemTimer.stopTimer
 
 stopTimer(timer: number): Promise&lt;void&gt;
 
@@ -222,22 +222,22 @@ stopTimer(timer: number): Promise&lt;void&gt;
 
 | 参数名 | 类型    | 必填 | 说明                                                         |
 | ------ | ------- | ---- | ------------------------------------------------------------ |
-| timer  | number  | 是   | 定时器的ID。                                                 |                                                                                                                      
+| timer  | number  | 是   | 定时器的ID。                                                 |
 
 **示例：**
 
   ```js
 export default {
-    systemTimer (){
+    async systemTimer (){
         var options = {
             type: systemTimer.TIMER_TYPE_REALTIME,
             repeat:false
         }
-        let timerId = systemTimer.createTimer(options)
+        let timerId = await systemTimer.createTimer(options)
 		let triggerTime = new Date().getTime()
         triggerTime += 3000
         systemTimer.startTimer(timerId, triggerTime)
-        systemTimer.stoptTimer(timerId).then((data) => {
+        systemTimer.stopTimer(timerId).then((data) => {
             console.log(`systemTime.startTimer success data : ` + JSON.stringify(data));
         }).catch((error) => {
             console.error(`failed to systemTime.startTimer because ` + JSON.stringify(error));
@@ -247,7 +247,7 @@ export default {
   ```
 
 
-## systemTime.destroyTimer
+## systemTimer.destroyTimer
 
 destroyTimer(timer: number, callback: AsyncCallback&lt;void&gt;): void
 
@@ -265,12 +265,12 @@ destroyTimer(timer: number, callback: AsyncCallback&lt;void&gt;): void
 
   ```js
 export default {
-    systemTimer () {
+    async systemTimer () {
         var options = {
             type: systemTimer.TIMER_TYPE_REALTIME,
             repeat:false
         }
-        let timerId = systemTimer.createTimer(options)
+        let timerId = await systemTimer.createTimer(options)
 		let triggerTime = new Date().getTime()
         triggerTime += 3000
         systemTimer.startTimer(timerId, triggerTime)
@@ -287,7 +287,7 @@ export default {
   ```
 
 
-## systemTime.destroyTimer
+## systemTimer.destroyTimer
 
 destroyTimer(timer: number): Promise&lt;void&gt;
 
@@ -305,12 +305,12 @@ destroyTimer(timer: number): Promise&lt;void&gt;
 
   ```js
 export default {
-    systemTimer (){
+    async systemTimer (){
         var options = {
             type: systemTimer.TIMER_TYPE_REALTIME,
             repeat:false
         }
-        let timerId = systemTimer.createTimer(options)
+        let timerId = await systemTimer.createTimer(options)
 		let triggerTime = new Date().getTime()
         triggerTime += 3000
         systemTimer.startTimer(timerId, triggerTime)
@@ -323,17 +323,17 @@ export default {
     }
 }
   ```
-  
+
  ## TimerOptions
 
 createTimer的初始化选项。
 
 **系统能力：** SystemCapability.MiscServices.Time
 
-| 参数名   | 类型              | 必填 | 说明                                                                                            |
-| -------- | ------------------| ---- | ----------------------------------------------------------------------------------------------- |
-| type     | number            | 是   | const TIMER_TYPE_REALTIME: 设置为系统启动时间定时器，否则为walltime定时器; <br/>const TIMER_TYPE_WAKEUP: 设置为唤醒定时器，否则为非唤醒; <br/>const TIMER_TYPE_EXACT: 设置为精准定时器，否则为非精准定时器; <br/>const TIMER_TYPE_IDLE: number: 设置为IDLE模式定时器，否则为非IDLE模式定时器（暂不支持） |
-| repeat   | boolean           | 是   | true 为循环定时器，false为单次定时器。                                                          |
-| interval | number            | 否   | 如果是循环定时器，repeat值应大于5000毫秒，非重复定时器置为0。                                   |
-| wantAgent| wantAgent         | 否   | 设置通知的wantagent，定时器到期后通知。(支持拉起应用MainAbility,暂不支持拉起ServiceAbility)     |
+| 参数名   | 类型              | 必填 | 说明                                                                                                                      |
+| -------- | ------------------| ---- | ------------------------------------------------------------------------------------------------------------------------- |
+| type     | number            | 是   | const TIMER_TYPE_REALTIME: 设置为系统启动时间定时器(当设置系统时间超过定时器启动时间，定时器则失效)，否则为walltime定时器; <br/>const TIMER_TYPE_WAKEUP: 设置为唤醒定时器，否则为非唤醒; <br/>const TIMER_TYPE_EXACT: 设置为精准定时器，否则为非精准定时器; <br/>const TIMER_TYPE_IDLE: number: 设置为IDLE模式定时器，否则为非IDLE模式定时器（暂不支持） |
+| repeat   | boolean           | 是   | true 为循环定时器，false为单次定时器。                                                                                    |
+| interval | number            | 否   | 如果是循环定时器，repeat值应大于5000毫秒，非重复定时器置为0。                                                             |
+| wantAgent| wantAgent         | 否   | 设置通知的wantagent，定时器到期后通知。(支持拉起应用MainAbility,暂不支持拉起ServiceAbility)                               |
 | callback | number            | 是   | 以回调函数的形式返回定时器的ID     |

@@ -7,7 +7,9 @@
 
 ElementName信息，通过接口[Context.getElementName](js-apis-Context.md)获取。
 
-## ElementName
+## ElementName<sup>(deprecated)<sup>
+
+> 从API version 9开始不再维护，建议使用[ElementName](js-apis-bundleManager-elementName.md)替代。
 
  **系统能力:** 以下各项对应的系统能力均为SystemCapability.BundleManager.BundleFramework。
 
@@ -20,4 +22,3 @@ ElementName信息，通过接口[Context.getElementName](js-apis-Context.md)获�
 | abilityName             | string   | 是   | 是   | Ability名称。               |
 | uri                     | string   | 是   | 是   | 资源标识符。                 |
 | shortName               | string   | 是   | 是   | Ability短名称。               |
-| moduleName<sup>9+</sup> | string   | 是   | 是   | Ability所属的HAP包的名称。   |

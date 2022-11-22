@@ -73,7 +73,7 @@ save(options: ScreenshotOptions, callback: AsyncCallback&lt;image.PixelMap&gt;):
 **示例：**
 
   ```js
-  var screenshotOptions = {
+  let screenshotOptions = {
     "screenRect": {
         "left": 200,
         "top": 100,
@@ -85,14 +85,18 @@ save(options: ScreenshotOptions, callback: AsyncCallback&lt;image.PixelMap&gt;):
     "rotation": 0,
     "displayId": 0
   };
-  screenshot.save(screenshotOptions, (err, pixelMap) => {
-    if (err) {
-        console.log('Failed to save screenshot: ' + JSON.stringify(err));
-        return;
-    }
-    console.log('Succeeded in saving sreenshot. Pixel bytes number: ' + pixelMap.getPixelBytesNumber());
-    pixelMap.release(); // PixelMap使用完后及时释放内存
-  });
+  try {
+    screenshot.save(screenshotOptions, (err, pixelMap) => {
+      if (err) {
+          console.log('Failed to save screenshot. Code: ' + JSON.stringify(err));
+          return;
+      }
+      console.log('Succeeded in saving sreenshot. Pixel bytes number: ' + pixelMap.getPixelBytesNumber());
+      pixelMap.release(); // PixelMap使用完后及时释放内存
+    });
+  } catch (exception) {
+    console.error('Failed to save screenshot. Code: ' + JSON.stringify(exception));
+  };
   ```
 
 ## screenshot.save
@@ -114,14 +118,18 @@ save(callback: AsyncCallback&lt;image.PixelMap&gt;): void
 **示例：**
 
   ```js
-  screenshot.save((err, pixelMap) => {
-    if (err) {
-        console.log('Failed to save screenshot: ' + JSON.stringify(err));
-        return;
-    }
-    console.log('Succeeded in saving sreenshot. Pixel bytes number: ' + pixelMap.getPixelBytesNumber());
-    pixelMap.release(); // PixelMap使用完后及时释放内存
-  });
+  try {
+    screenshot.save((err, pixelMap) => {
+      if (err) {
+          console.log('Failed to save screenshot. Code: ' + JSON.stringify(err));
+          return;
+      }
+      console.log('Succeeded in saving sreenshot. Pixel bytes number: ' + pixelMap.getPixelBytesNumber());
+      pixelMap.release(); // PixelMap使用完后及时释放内存
+    });
+  } catch (exception) {
+    console.error('Failed to save screenshot. Code: ' + JSON.stringify(exception));
+  };
   ```
 
 ## screenshot.save
@@ -149,7 +157,7 @@ save(options?: ScreenshotOptions): Promise&lt;image.PixelMap&gt;
 **示例：**
 
   ```js
-  var screenshotOptions = {
+  let screenshotOptions = {
   	"screenRect": {
   		"left": 200,
   		"top": 100,
@@ -161,11 +169,15 @@ save(options?: ScreenshotOptions): Promise&lt;image.PixelMap&gt;
   	"rotation": 0,
   	"displayId": 0
   };
-  let promise = screenshot.save(screenshotOptions);
-  promise.then((pixelMap) => {
-      console.log('Succeeded in saving sreenshot. Pixel bytes number: ' + pixelMap.getPixelBytesNumber());
-      pixelMap.release(); // PixelMap使用完后及时释放内存
-  }).catch((err) => {
-      console.log('Failed to save screenshot: ' + JSON.stringify(err));
-  });
+  try {
+    let promise = screenshot.save(screenshotOptions);
+    promise.then((pixelMap) => {
+        console.log('Succeeded in saving sreenshot. Pixel bytes number: ' + pixelMap.getPixelBytesNumber());
+        pixelMap.release(); // PixelMap使用完后及时释放内存
+    }).catch((err) => {
+        console.log('Failed to save screenshot. Code: ' + JSON.stringify(err));
+    });
+  } catch (exception) {
+    console.error('Failed to save screenshot. Code: ' + JSON.stringify(exception));
+  };
   ```

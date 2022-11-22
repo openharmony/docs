@@ -21,11 +21,11 @@ ListItemGroup(options?: {header?: CustomBuilder, footer?: CustomBuilder, space?:
 
 **参数：**
 
-  | 参数名 | 参数类型 | 必填 | 参数描述 |
-  | -------- | -------- | -------- | -------- |
-  | header | [CustomBuilder](ts-types.md#custombuilder8) | 否 |  设置ListItemGroup头部组件。 |
-  | footer | [CustomBuilder](ts-types.md#custombuilder8) | 否 |  设置ListItemGroup尾部组件。 |
-  | space | number&nbsp;\|&nbsp;string | 否 | 列表项间距。只作用于ListItem与ListItem之间，不作用于header与ListItem、footer与ListItem之间。 |
+| 参数名 | 参数类型 | 必填 | 参数描述 |
+| -------- | -------- | -------- | -------- |
+| header | [CustomBuilder](ts-types.md#custombuilder8) | 否 |  设置ListItemGroup头部组件。 |
+| footer | [CustomBuilder](ts-types.md#custombuilder8) | 否 |  设置ListItemGroup尾部组件。 |
+| space | number&nbsp;\|&nbsp;string | 否 | 列表项间距。只作用于ListItem与ListItem之间，不作用于header与ListItem、footer与ListItem之间。 |
 
 ## 属性
 
@@ -96,7 +96,7 @@ struct ListItemGroupExample {
             }, item => item)
           }
           .borderRadius(20)
-          .divider({ strokeWidth: 1, color: Color.Blue) // 每行之间的分界线
+          .divider({ strokeWidth: 1, color: Color.Blue }) // 每行之间的分界线
         })
       }
       .width('90%')

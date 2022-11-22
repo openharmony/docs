@@ -6,11 +6,6 @@ A text picker dialog box is a dialog box that allows users to select text from t
 >
 >  The APIs of this module are supported since API version 8. Updates will be marked with a superscript to indicate their earliest API version.
 
-
-## Required Permissions
-
-None
-
 ## TextPickerDialog.show
 
 show(options?: TextPickerDialogOptions)

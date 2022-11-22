@@ -154,7 +154,7 @@ OpenHarmony源码重要目录介绍见表1 OpenHarmony重要目录，其中devic
      
    ```
    group("MyProduct") {
-       print("MyVendorCompnay MyProduct is under developing.")
+       print("MyVendorCompany MyProduct is under developing.")
    }
    ```
 

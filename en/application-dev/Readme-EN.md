@@ -8,14 +8,14 @@
 - Quick Start
     - Getting Started
         - [Preparations](quick-start/start-overview.md)
-        - [Getting Started with eTS in Stage Model](quick-start/start-with-ets-stage.md)
-        - [Getting Started with eTS in FA Model](quick-start/start-with-ets-fa.md)
+        - [Getting Started with ArkTS in Stage Model](quick-start/start-with-ets-stage.md)
+        - [Getting Started with ArkTS in FA Model](quick-start/start-with-ets-fa.md)
         - [Getting Started with JavaScript in FA Model](quick-start/start-with-js-fa.md)
     - Development Fundamentals
         - [Application Package Structure Configuration File (FA Model)](quick-start/package-structure.md)
         - [Application Package Structure Configuration File (Stage Model)](quick-start/stage-structure.md)
         - [SysCap](quick-start/syscap.md)
-        - [HarmonyAppProvision Configuration File](quick-start/app-provision-structure.md)
+
 - Development
     - [Ability Development](ability/Readme-EN.md)
     - [UI Development](ui/Readme-EN.md)
@@ -26,6 +26,7 @@
     - [Security](security/Readme-EN.md)
     - [Connectivity](connectivity/Readme-EN.md)
     - [Data Management](database/Readme-EN.md)
+    - [File Management](file-management/Readme-EN.md)
     - [Telephony](telephony/Readme-EN.md)
     - [Task Management](task-management/Readme-EN.md)
     - [Device Management](device/Readme-EN.md)

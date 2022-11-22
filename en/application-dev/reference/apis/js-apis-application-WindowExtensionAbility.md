@@ -78,7 +78,7 @@ export default class MyWindowExtensionAbility extends WindowExtensionAbility {
 
 ## WindowExtensionAbility.onWindowReady
 
-onWindowReady(window: Window): void
+onWindowReady(window: window.Window): void
 
 Called when a window is ready.
 
@@ -88,7 +88,7 @@ Called when a window is ready.
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| window | [Window](js-apis-window.md) | Yes| Current **Window** instance.|
+| window | [window.Window](js-apis-window.md#window) | Yes| Current **Window** instance.|
 
 
 **Example**
@@ -99,7 +99,7 @@ export default class MyWindowExtensionAbility extends WindowExtensionAbility {
   onWindowReady(window) {
     window.loadContent('WindowExtAbility/pages/index1').then(() => {
       window.getProperties().then((pro) => {
-        console.log("WindowExtension " + JSON.stringify(pro));
+        console.log('WindowExtension ' + JSON.stringify(pro));
       })
       window.show();
     })

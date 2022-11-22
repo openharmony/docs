@@ -14,6 +14,9 @@ Compared with **[HashSet](js-apis-hashset.md)**, which can also store values, **
 
 **Recommended use case**: Use **LightWeightSet** when you need a set that has only unique elements or need to deduplicate a set.
 
+This topic uses the following to identify the use of generics:
+- T: Type
+
 ## Modules to Import
 
 ```ts
@@ -93,7 +96,7 @@ Adds an element to this container.
 
 ```ts
 let lightWeightSet = new LightWeightSet();
-let result = lightWeightSet.add("Ahfbrgrbgnutfodgorrogorgrogofdfdf");
+let result = lightWeightSet.add("squirrel");
 ```
 
 
@@ -115,10 +118,10 @@ Adds all elements in a **LightWeightSet** instance to this container.
 
 ```ts
 let lightWeightSet = new LightWeightSet();
-lightWeightSet.add("Ahfbrgrbgnutfodgorrogorgrogofdfdf");
-lightWeightSet.add("sdfs");
+lightWeightSet.add("squirrel");
+lightWeightSet.add("sparrow");
 let set = new LightWeightSet();
-set.add("sfage");
+set.add("gull");
 let result = lightWeightSet.addAll(set);
 ```
 
@@ -147,10 +150,10 @@ Checks whether this container contains all elements of the specified **LightWeig
 
 ```ts
 let lightWeightSet = new LightWeightSet();
-lightWeightSet.add("Ahfbrgrbgnutfodgorrogorgrogofdfdf");
-lightWeightSet.add("sdfs");
+lightWeightSet.add("squirrel");
+lightWeightSet.add("sparrow");
 let set = new LightWeightSet();
-set.add("sdfs");
+set.add("sparrow");
 let result = lightWeightSet.hasAll(set);
 ```
 
@@ -209,9 +212,9 @@ Checks whether this container contains objects of the same type as the specified
 
 ```ts
 let lightWeightSet = new LightWeightSet();
-lightWeightSet.add("Ahfbrgrbgnutfodgorrogorgrogofdfdf");
-lightWeightSet.add("sdfs");
-let obj = ["Ahfbrgrbgnutfodgorrogorgrogofdfdf", "sdfs"];
+lightWeightSet.add("squirrel");
+lightWeightSet.add("sparrow");
+let obj = ["squirrel", "sparrow"];
 let result = lightWeightSet.equal(obj);
 ```
 
@@ -262,9 +265,9 @@ Obtains the position index of the element with the specified key in this contain
 
 ```ts
 let lightWeightSet = new LightWeightSet();
-lightWeightSet.add("Ahfbrgrbgnutfodgorrogorgrogofdfdf");
-lightWeightSet.add("sdfs");
-let result = lightWeightSet.getIndexOf("sdfs");
+lightWeightSet.add("squirrel");
+lightWeightSet.add("sparrow");
+let result = lightWeightSet.getIndexOf("sparrow");
 ```
 
 
@@ -292,9 +295,9 @@ Removes an element of the specified key from this container.
 
 ```ts
 let lightWeightSet = new LightWeightSet();
-lightWeightSet.add("Ahfbrgrbgnutfodgorrogorgrogofdfdf");
-lightWeightSet.add("sdfs");
-let result = lightWeightSet.remove("sdfs");
+lightWeightSet.add("squirrel");
+lightWeightSet.add("sparrow");
+let result = lightWeightSet.remove("sparrow");
 ```
 
 
@@ -322,8 +325,8 @@ Removes the element at the specified position from this container.
 
 ```ts
 let lightWeightSet = new LightWeightSet();
-lightWeightSet.add("Ahfbrgrbgnutfodgorrogorgrogofdfdf");
-lightWeightSet.add("sdfs");
+lightWeightSet.add("squirrel");
+lightWeightSet.add("sparrow");
 let result = lightWeightSet.removeAt(1);
 ```
 
@@ -352,8 +355,8 @@ Obtains the value of the element at the specified position in this container.
 
 ```ts
 let lightWeightSet = new LightWeightSet();
-lightWeightSet.add("Ahfbrgrbgnutfodgorrogorgrogofdfdf");
-lightWeightSet.add("sdfs");
+lightWeightSet.add("squirrel");
+lightWeightSet.add("sparrow");
 let result = lightWeightSet.getValueAt(1);
 ```
 
@@ -370,8 +373,8 @@ Clears this container and sets its length to **0**.
 
 ```ts
 let lightWeightSet = new LightWeightSet();
-lightWeightSet.add("Ahfbrgrbgnutfodgorrogorgrogofdfdf");
-lightWeightSet.add("sdfs");
+lightWeightSet.add("squirrel");
+lightWeightSet.add("sparrow");
 lightWeightSet.clear();
 ```
 
@@ -394,8 +397,8 @@ Obtains a string that contains all elements in this container.
 
 ```ts
 let lightWeightSet = new LightWeightSet();
-lightWeightSet.add("Ahfbrgrbgnutfodgorrogorgrogofdfdf");
-lightWeightSet.add("sdfs");
+lightWeightSet.add("squirrel");
+lightWeightSet.add("sparrow");
 let result = lightWeightSet.toString();
 ```
 
@@ -418,8 +421,8 @@ Obtains an array that contains all objects in this container.
 
 ```ts
 let lightWeightSet = new LightWeightSet();
-lightWeightSet.add("Ahfbrgrbgnutfodgorrogorgrogofdfdf");
-lightWeightSet.add("sdfs");
+lightWeightSet.add("squirrel");
+lightWeightSet.add("sparrow");
 let result = lightWeightSet.toArray();
 ```
 
@@ -442,8 +445,8 @@ Obtains an iterator that contains all the values in this container.
 
 ```ts
 let lightWeightSet = new LightWeightSet();
-lightWeightSet.add("Ahfbrgrbgnutfodgorrogorgrogofdfdf");
-lightWeightSet.add("sdfs");
+lightWeightSet.add("squirrel");
+lightWeightSet.add("sparrow");
 let iter = lightWeightSet.values();
 let index = 0;
 while(index < lightWeightSet.length) {
@@ -479,8 +482,8 @@ callbackfn
 
 ```ts
 let lightWeightSet = new LightWeightSet();
-lightWeightSet.add("sdfs");
-lightWeightSet.add("dfsghsf");
+lightWeightSet.add("sparrow");
+lightWeightSet.add("gull");
 lightWeightSet.forEach((value, key) => {
   console.log("value:" + value, key);
 });
@@ -505,8 +508,8 @@ Obtains an iterator that contains all the elements in this container.
 
 ```ts
 let lightWeightSet = new LightWeightSet();
-lightWeightSet.add("Ahfbrgrbgnutfodgorrogorgrogofdfdf");
-lightWeightSet.add("sdfs");
+lightWeightSet.add("squirrel");
+lightWeightSet.add("sparrow");
 let iter = lightWeightSet.entries();
 let index = 0;
 while(index < lightWeightSet.length) {
@@ -534,8 +537,8 @@ Obtains an iterator, each item of which is a JavaScript object.
 
 ```ts
 let lightWeightSet = new LightWeightSet();
-lightWeightSet.add("Ahfbrgrbgnutfodgorrogorgrogofdfdf");
-lightWeightSet.add("sdfs");
+lightWeightSet.add("squirrel");
+lightWeightSet.add("sparrow");
 
 // Method 1:
 for (let item of lightWeightSet) { 

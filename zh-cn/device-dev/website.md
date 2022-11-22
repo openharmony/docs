@@ -1,204 +1,68 @@
 # OpenHarmony设备开发文档
 - [设备开发导读](device-dev-guide.md)
 - 快速开始
-  - 轻量和小型系统快速入门（IDE方式，推荐）
-
-      - [轻量与小型系统入门概述](quick-start/quickstart-ide-lite-overview.md)
-
-      - 准备轻量与小型系统环境
-
-          - [搭建Windows+Ubuntu混合开发环境](quick-start/quickstart-ide-lite-env-setup-win-ubuntu.md)
-
-          - [获取源码](quick-start/quickstart-ide-lite-sourcecode-acquire.md)
-
-      - [导入源码工程](quick-start/quickstart-ide-lite-create-project.md)
-
-      - 运行“Hello World”
-
-          - Hi3861开发板
-
-              - [编写“Hello World”程序](quick-start/quickstart-ide-lite-steps-hi3861-helloworld.md)
-
-              - [编译](quick-start/quickstart-ide-lite-steps-hi3861-building.md)
-
-              - [烧录](quick-start/quickstart-ide-lite-steps-hi3861-burn.md)
-
-              - [联网](quick-start/quickstart-ide-lite-steps-hi3861-netconfig.md)
-
-              - [调试验证](quick-start/quickstart-ide-lite-steps-hi3861-debug.md)
-
-              - [运行](quick-start/quickstart-ide-lite-steps-hi3861-running.md)
-
-          - Hi3516开发板
-
-              - [编写“Hello World”程序](quick-start/quickstart-ide-lite-steps-hi3516-helloworld.md)
-
-              - [编译](quick-start/quickstart-ide-lite-steps-hi3516-building.md)
-
-              - [烧录](quick-start/quickstart-ide-lite-steps-hi3516-burn.md)
-
-              - [运行](quick-start/quickstart-ide-lite-steps-hi3516-running.md)
-
-      - 附录
-
-          - [Hi3861开发板介绍](quick-start/quickstart-ide-lite-introduction-hi3861.md)
-
-          - [Hi3516开发板介绍](quick-start/quickstart-ide-lite-introduction-hi3516.md)
-
-          - [编译形态整体说明](quick-start/quickstart-build.md)
-
-  - 轻量和小型系统快速入门（安装包方式）
-
-      - [轻量与小型系统入门概述](quick-start/quickstart-lite-overview.md)
-
-      - [搭建轻量与小型系统环境](quick-start/quickstart-lite-env-setup.md)
-
-      - 运行“Hello World”
-
-          - Hi3861开发板
-
-              - [安装Hi3861开发板环境](quick-start/quickstart-lite-steps-hi3861-setting.md)
-
-              - [编写“Hello World”程序](quick-start/quickstart-lite-steps-hi3861-helloworld.md)
-
-              - [编译](quick-start/quickstart-lite-steps-hi3861-building.md)
-
-              - [烧录](quick-start/quickstart-lite-steps-hi3861-burn.md)
-
-              - [联网](quick-start/quickstart-lite-steps-hi3861-netconfig.md)
-
-              - [调试验证](quick-start/quickstart-lite-steps-hi3861-debug.md)
-
-              - [运行](quick-start/quickstart-lite-steps-hi3861-running.md)
-
-          - Hi3516开发板
-
-              - [安装Hi3516开发板环境](quick-start/quickstart-lite-steps-hi3516-setting.md)
-
-              - [编写“Hello World”程序](quick-start/quickstart-lite-steps-hi3516-helloworld.md)
-
-              - [编译](quick-start/quickstart-lite-steps-hi3516-building.md)
-
-              - [烧录](quick-start/quickstart-lite-steps-hi3516-burn.md)
-
-              - [运行](quick-start/quickstart-lite-steps-hi3516-running.md)
-
-      - 常见问题
-
-          - [hb安装异常](quick-start/quickstart-lite-faq-hb.md)
-
-          - [编译异常](quick-start/quickstart-lite-faq-compose.md)
-
-          - [烧录异常](quick-start/quickstart-lite-faq-burning.md)
-
-      - 附录
-
-          - 开发板介绍
-
-              - [Hi3861开发板介绍](quick-start/quickstart-lite-introduction-hi3861.md)
-
-              - [Hi3516开发板介绍](quick-start/quickstart-lite-introduction-hi3516.md)
-
-          - [参考信息](quick-start/quickstart-lite-reference.md)
-
-          - [使用HiTool烧录代码](quick-start/quickstart-lite-hitool.md)
-
-          - [编译形态整体说明](quick-start/quickstart-build.md)
-
-  - 标准系统快速入门（IDE方式，推荐）
-
-      - [标准系统入门概述](quick-start/quickstart-ide-standard-overview.md)
-
-      - 准备标准系统环境
-
-          - [搭建Windows+Ubuntu混合开发环境](quick-start/quickstart-ide-standard-env-setup-win-ubuntu.md)
-
-          - [获取源码](quick-start/quickstart-ide-standard-sourcecode-acquire.md)
-
-      - [导入源码工程](quick-start/quickstart-ide-standard-create-project.md)
-
-      - 运行“Hello World”
-
-          - Hi3516开发板
-
-              - [编写“Hello World”程序](quick-start/quickstart-ide-standard-running-hi3516-create.md)
-
-              - [编译](quick-start/quickstart-ide-standard-running-hi3516-build.md)
-
-              - [烧录](quick-start/quickstart-ide-standard-running-hi3516-burning.md)
-
-              - [运行](quick-start/quickstart-ide-standard-running-hi3516-running.md)
-
-          - RK3568开发板
-
-              - [编写“Hello World”程序](quick-start/quickstart-ide-standard-running-rk3568-create.md)
-
-              - [编译](quick-start/quickstart-ide-standard-running-rk3568-build.md)
-
-              - [烧录](quick-start/quickstart-ide-standard-running-rk3568-burning.md)
-
-              - [运行](quick-start/quickstart-ide-standard-running-rk3568-running.md)
-
-      - 附录
-
-          - [Hi3516开发板介绍](quick-start/quickstart-ide-standard-board-introduction-hi3516.md)
-
-          - [RK3568开发板介绍](quick-start/quickstart-ide-standard-board-introduction-rk3568.md)
-
-          - [编译形态整体说明](quick-start/quickstart-build.md)
-
-  - 标准系统快速入门（安装包方式）
-
-      - [标准系统入门概述](quick-start/quickstart-standard-overview.md)
-
-      - [搭建标准系统环境](quick-start/quickstart-standard-env-setup.md)
-
-      - 运行“Hello World”
-
-          - Hi3516开发板
-
-              - [编写“Hello World”程序](quick-start/quickstart-std-3516-create.md)
-
-              - [编译](quick-start/quickstart-standard-running-hi3516-build.md)
-
-              - [烧录](quick-start/quickstart-standard-running-hi3516-burning.md)
-
-              - [运行](quick-start/quickstart-standard-running-hi3516-running.md)
-
-          - RK3568开发板
-
-              - [编写“Hello World”程序](quick-start/quickstart-standard-running-rk3568-create.md)
-
-              - [编译](quick-start/quickstart-standard-running-rk3568-build.md)
-
-              - [烧录](quick-start/quickstart-standard-running-rk3568-burning.md)
-
-              - [运行](quick-start/quickstart-standard-running-rk3568-running.md)
-
-      - 常见问题
-
-          - [hb安装异常](quick-start/quickstart-standard-faq-hb.md)
-
-          - [编译异常](quick-start/quickstart-standard-faq-compose.md)
-
-          - [烧录异常](quick-start/quickstart-standard-faq-burning.md)
-
-      - 附录
-
-          - 开发板介绍
-
-              - [Hi3516开发板介绍](quick-start/quickstart-standard-board-introduction-hi3516.md)
-
-              - [RK3568开发板介绍](quick-start/quickstart-standard-board-introduction-rk3568.md)
-
-          - [参考信息](quick-start/quickstart-standard-reference.md)
-
-          - [使用HiTool烧录代码](quick-start/quickstart-standard-hitool.md)
-
-          - [编译形态整体说明](quick-start/quickstart-build.md)
+  - [快速入门概述](quick-start/quickstart-overview.md)
+  - 基于IDE开发
+    - 搭建开发环境
+      - [搭建Windows环境](quick-start/quickstart-ide-env--win.md)
+      - [搭建Ubuntu环境](quick-start/quickstart-ide-env-ubuntu.md)
+      - [配置远程访问环境](quick-start/quickstart-ide-env-remote.md)
+    - [创建工程并获取源码](quick-start/quickstart-ide-import-project.md)
+    - 轻量系统（基于Hi3861开发板）
+      - [编写“Hello World”程序](quick-start/quickstart-ide-3861-helloworld.md)
+      - [编译](quick-start/quickstart-ide-3861-build.md)
+      - [烧录](quick-start/quickstart-ide-3861-burn.md)
+      - [运行](quick-start/quickstart-ide-3861-running.md)
+    - 小型系统（基于Hi3516开发板）
+      - [编写“Hello World”程序](quick-start/quickstart-ide-3516-helloworld.md)
+      - [编译](quick-start/quickstart-ide-3516-build.md)
+      - [烧录](quick-start/quickstart-ide-3516-burn.md)
+      - [运行](quick-start/quickstart-ide-3516-running.md)
+    - 标准系统（基于RK3568开发板）
+      - [编写“Hello World”程序](quick-start/quickstart-ide-3568-helloworld.md)
+      - [编译](quick-start/quickstart-ide-3568-build.md)
+      - [烧录](quick-start/quickstart-ide-3568-burn.md)
+      - [运行](quick-start/quickstart-ide-3568-running.md)
+  - 基于命令行开发
+    - 搭建开发环境
+      - [准备开发环境](quick-start/quickstart-pkg-prepare.md)
+      - [安装库和工具集](quick-start/quickstart-pkg-install_package.md)
+      - [获取源码](quick-start/quickstart-pkg-sourcecode.md)
+      - [安装编译工具](quick-start/quickstart-pkg-install_tool.md)
+    - 轻量系统（基于Hi3861开发板）
+      - [安装Hi3861开发板特有环境](quick-start/quickstart-pkg-3861-tool.md)
+      - [编写“Hello World”程序](quick-start/quickstart-pkg-3861-helloworld.md)
+      - [编译](quick-start/quickstart-pkg-3861-build.md)
+      - [烧录](quick-start/quickstart-pkg-3861-burn.md)
+      - [运行](quick-start/quickstart-pkg-3861-running.md)
+    - 小型系统（基于Hi3516开发板）
+      - [编写“Hello World”程序](quick-start/quickstart-pkg-3516-helloworld.md)
+      - [编译](quick-start/quickstart-pkg-3516-build.md)
+      - [烧录](quick-start/quickstart-pkg-3516-burn.md)
+      - [运行](quick-start/quickstart-pkg-3516-running.md)
+    - 标准系统（基于RK3568开发板）
+      - [编写“Hello World”程序](quick-start/quickstart-pkg-3568-helloworld.md)
+      - [编译](quick-start/quickstart-pkg-3568-build.md)
+      - [烧录](quick-start/quickstart-pkg-3568-burn.md)
+      - [运行](quick-start/quickstart-pkg-3568-running.md)
+    - 常用信息
+      - [配置代理](quick-start/quickstart-pkg-common-proxy.md)
+      - [使用build.sh脚本编译源码](quick-start/quickstart-pkg-common-build.md)
+      - [hb安装异常处理](quick-start/quickstart-pkg-common-hberr.md)
+      - [编译异常处理](quick-start/quickstart-pkg-common-builderr.md)
+      - [烧录异常处理](quick-start/quickstart-pkg-common-burnerr.md)
+  - 附录
+    - [Hi3516开发板介绍](quick-start/quickstart-appendix-hi3516.md)
+    - [Hi3861开发板介绍](quick-start/quickstart-appendix-hi3861.md)
+    - [RK3568开发板介绍](quick-start/quickstart-appendix-rk3568.md)
+    - [编译形态整体说明](quick-start/quickstart-appendix-compiledform.md)
+    - [Hi3516标准系统入门（IDE方式）](quick-start/quickstart-appendix-hi3516-ide.md)
+    - [Hi3516标准系统入门（命令行方式）](quick-start/quickstart-appendix-hi3516-pkg.md)
+  
   - [获取源码](get-code/sourcecode-acquire.md)
-    - [隐私保护](security/security-privacy-protection.md)
-    - [安全指南](security/security-guidelines-overall.md)
+- 隐私和安全
+  - [隐私保护](security/security-privacy-protection.md)
+  - [安全指南](security/security-guidelines-overall.md)
 
 - 移植
 
@@ -289,6 +153,7 @@
 - 子系统开发
 
   -  内核
+     - [内核概述](kernel/kernel-overview.md)
      - 轻量系统内核（LiteOS-M）
        - [轻量系统内核概述](kernel/kernel-mini-overview.md)
        - 基础内核
@@ -300,8 +165,9 @@
            - [互斥锁](kernel/kernel-mini-basic-ipc-mutex.md)
            - [消息队列](kernel/kernel-mini-basic-ipc-queue.md)
            - [信号量](kernel/kernel-mini-basic-ipc-sem.md)
-         - [时间管理](kernel/kernel-basic-mini-time.md)
+         - [时间管理](kernel/kernel-mini-basic-time.md)
          - [软件定时器](kernel/kernel-mini-basic-soft.md)
+         - [双向链表](kernel/kernel-mini-basic-list.md)
        - 扩展组件
          - [C++支持](kernel/kernel-mini-extend-support.md)
          - [CPU占用率](kernel/kernel-mini-extend-cpup.md)
@@ -314,7 +180,6 @@
          - [LMS调测](kernel/kernel-mini-memory-lms.md)
        - 附录
          - [内核编码规范](kernel/kernel-mini-appx-code.md)
-         - [双向链表](kernel/kernel-mini-appx-data-list.md)
          - [标准库支持](kernel/kernel-mini-appx-lib.md)
      - 小型系统内核（LiteOS-A）
        - [小型系统内核概述](kernel/kernel-small-overview.md)
@@ -444,6 +309,7 @@
        - [标准系统内核编译与构建指导](kernel/kernel-standard-build.md)
        - 内核增强特性
          - [Enhanced SWAP特性介绍](kernel/kernel-standard-mm-eswap.md)
+         - [NewIP内核协议栈介绍](kernel/kernel-standard-newip.md)
          - 任务调度
            - [关联线程组调度](kernel/kernel-standard-sched-rtg.md)
            - [CPU轻量级隔离](kernel/kernel-standard-sched-cpuisolation.md)
@@ -452,6 +318,7 @@
      - HDF驱动框架
        - [HDF开发概述](driver/driver-hdf-overview.md)
        - [驱动开发](driver/driver-hdf-development.md)
+       - [驱动加载](driver/driver-hdf-load.md)
        - [驱动服务管理](driver/driver-hdf-servicemanage.md)
        - [驱动消息机制管理](driver/driver-hdf-message-management.md)
        - [配置管理](driver/driver-hdf-manage.md)
@@ -512,18 +379,18 @@
      - [构建系统编码规范与最佳实践](subsystems/subsys-build-gn-coding-style-and-best-practice.md)
      - [编译构建Kconfig可视化配置指导](subsystems/subsys-build-gn-kconfig-visual-config-guide.md)
      - 编译构建参考
-       - [子系统配置规则](subsystems/subsys-build-subsystem.md#子系统配置规则)
-       - [产品配置规则](subsystems/subsys-build-product.md#产品配置规则)
-       - [子系统配置规则](subsystems/subsys-build-subsystem.md#子系统配置规则)
-       - [部件配置规则](subsystems/subsys-build-component.md#部件配置规则)
-       - [模块配置规则](subsystems/subsys-build-module.md#模块配置规则)
-       - [芯片解决方案配置规则](subsystems/subsys-build-chip_solution.md#芯片解决方案配置规则)
-       - [特性配置规则](subsystems/subsys-build-feature.md#特性配置规则)
-       - [系统能力配置规则](subsystems/subsys-build-syscap.md#如何按需配置部件的系统能力)
-       - [关于deps、external_deps的使用](subsystems/subsys-build-reference.md#关于deps、external_deps的使用)
-       - [开源软件Notice收集策略说明](subsystems/subsys-build-reference.md#开源软件notice收集策略说明)
-       - [加快本地编译的一些参数](subsystems/subsys-build-reference.md#加快本地编译的一些参数)
-       - [查看NinjaTrace](subsystems/subsys-build-reference.md#查看ninjatrace)
+       - [子系统配置规则](subsystems/subsys-build-subsystem.md)
+       - [产品配置规则](subsystems/subsys-build-product.md)
+       - [子系统配置规则](subsystems/subsys-build-subsystem.md)
+       - [部件配置规则](subsystems/subsys-build-component.md)
+       - [模块配置规则](subsystems/subsys-build-module.md)
+       - [芯片解决方案配置规则](subsystems/subsys-build-chip_solution.md)
+       - [特性配置规则](subsystems/subsys-build-feature.md)
+       - [系统能力配置规则](subsystems/subsys-build-syscap.md)
+       - [关于deps、external_deps的使用](subsystems/subsys-build-reference.md)
+       - [开源软件Notice收集策略说明](subsystems/subsys-build-reference.md)
+       - [加快本地编译的一些参数](subsystems/subsys-build-reference.md)
+       - [查看NinjaTrace](subsystems/subsys-build-reference.md)
        - [HAP编译构建指导](subsystems/subsys-build-gn-hap-compilation-guide.md)
        - [常见问题](subsystems/subsys-build-FAQ.md)
   -  [分布式远程启动](subsystems/subsys-remote-start.md)
@@ -579,6 +446,8 @@
      - [IPC通信鉴权开发指导](subsystems/subsys-security-communicationverify.md)
      - [设备安全等级管理开发指导](subsystems/subsys-security-devicesecuritylevel.md)
      - [OpenHarmony通用密钥库系统开发指导](subsystems/subsys-security-huks-guide.md)
+     - [应用特权配置指导](subsystems/subsys-app-privilege-config-guide.md)
+     - [预置应用配置指导](subsystems/subsys-preinstall-app-config-guide.md)
   -  启动恢复
      - [启动恢复子系统概述](subsystems/subsys-boot-overview.md)
      - init启动引导组件
@@ -596,7 +465,7 @@
      - [DFX概述](subsystems/subsys-dfx-overview.md)
      - [HiLog开发指导](subsystems/subsys-dfx-hilog-rich.md)
      - [HiLog_Lite开发指导](subsystems/subsys-dfx-hilog-lite.md)
-     - [HiTrace开发指导](subsystems/subsys-dfx-hitrace.md)
+     - [HiTraceChain开发指导](subsystems/subsys-dfx-hitracechain.md)
      - [HiCollie开发指导](subsystems/subsys-dfx-hicollie.md)
      - HiSysEvent开发指导
        - [HiSysEvent打点配置指导](subsystems/subsys-dfx-hisysevent-logging-config.md)
@@ -623,13 +492,6 @@
     - WLAN连接类产品
       - [LED外设控制](guide/device-wlan-led-control.md)
       - [集成三方SDK](guide/device-wlan-sdk.md)
-    - 无屏摄像头类产品
-      - 摄像头控制
-        - [概述](guide/device-iotcamera-control-overview.md)
-        - 示例开发
-          - [拍照开发指导](guide/device-iotcamera-control-demo-photodevguide.md)
-          - [录像开发指导](guide/device-iotcamera-control-demo-videodevguide.md)
-        - [应用实例](guide/device-iotcamera-control-example.md)
     - 带屏摄像头类产品
       - 屏幕和摄像头控制
         - [概述](guide/device-camera-control-overview.md)
@@ -654,12 +516,13 @@
 
 
 - 调测
-  - [测试用例开发](subsystems/subsys-testguide-test.md)
+  - [developer_test开发者自测试执行框架使用指导](device-test/developer_test.md)
+  - [xdevice测试调度框架使用指导](device-test/xdevice.md)
   - 调测工具
     - [bytrace使用指导](subsystems/subsys-toolchain-bytrace-guide.md)
     - [hdc\_std 使用指导](subsystems/subsys-toolchain-hdc-guide.md)
     - [hiperf 使用指南](subsystems/subsys-toolchain-hiperf.md)
-- [XTS认证](subsystems/subsys-xts-guide.md)
+- [XTS认证](device-test/xts.md)
 - 工具
   - [Docker编译环境](get-code/gettools-acquire.md)
   - [IDE集成开发环境](get-code/gettools-ide.md)
@@ -675,26 +538,27 @@
     - [内核常见问题](faqs/faqs-kernel.md)
     - [移植常见问题](faqs/faqs-porting.md)
     - [启动恢复常见问题](faqs/faqs-startup.md)
-    - [系统应用常见问题](faqs/faqs-system-applications.md)
-  
+    - [系统应用常见问题](faqs/faqs-system-applications.md) 
   - HDI接口参考
     - 模块
       - [Audio](reference/hdi-apis/_audio.md)
       - [Battery](reference/hdi-apis/battery.md)
-      - [Camera](reference/hdi-apis/_camera.md)
-      - [Codec](reference/hdi-apis/_codec.md)
+      - [Camera](reference/hdi-apis/camera.md)
+      - [Codec](reference/hdi-apis/codec.md)
       - [Display](reference/hdi-apis/_display.md)
       - [HdfFaceAuth](reference/hdi-apis/_hdf_face_auth.md)
-      - [Input](reference/hdi-apis/_input.md)
-      - [Light](reference/hdi-apis/_light.md)
       - [HdfPinAuth](reference/hdi-apis/_hdf_pin_auth.md)
-      - [Power](reference/hdi-apis/power.md)
-      - [Sensor](reference/hdi-apis/_sensor.md)
-      - [Thermal](reference/hdi-apis/thermal.md)
-      - [USB](reference/hdi-apis/_u_s_b.md)
       - [HdfUserAuth](reference/hdi-apis/_hdf_user_auth.md)
-      - [Vibrator](reference/hdi-apis/_vibrator.md)
-      - [WLAN](reference/hdi-apis/_w_l_a_n.md)
+      - [HdiActivityRecognition](reference/hdi-apis/activity_recognition.md)
+      - [Input](reference/hdi-apis/input.md)
+      - [Light](reference/hdi-apis/light.md)
+      - [Motion](reference/hdi-apis/motion.md)
+      - [Power](reference/hdi-apis/power.md)
+      - [Sensor](reference/hdi-apis/sensor.md)
+      - [Thermal](reference/hdi-apis/thermal.md)
+      - [USB](reference/hdi-apis/usb.md)
+      - [Vibrator](reference/hdi-apis/vibrator.md)
+      - [WLAN](reference/hdi-apis/wlan.md)
     - 头文件和结构体
       - 头文件
         - [audio_adapter.h](reference/hdi-apis/audio__adapter_8h.md)
@@ -706,65 +570,74 @@
         - [audio_scene.h](reference/hdi-apis/audio__scene_8h.md)
         - [audio_types.h](reference/hdi-apis/audio__types_8h.md)
         - [audio_volume.h](reference/hdi-apis/audio__volume_8h.md)
-        - [codec_callback_if.h](reference/hdi-apis/codec__callback__if_8h.md)
-        - [codec_common_type.h](reference/hdi-apis/codec__common__type_8h.md)
-        - [codec_component_if.h](reference/hdi-apis/codec__component__if_8h.md)
-        - [codec_component_manager.h](reference/hdi-apis/codec__component__manager_8h.md)
-        - [codec_component_type.h](reference/hdi-apis/codec__component__type_8h.md)
+        - [codec_callback_if.h](reference/hdi-apis/codec_callback_if_h.md)
+        - [codec_common_type.h](reference/hdi-apis/codec_common_type_h.md)
+        - [codec_component_if.h](reference/hdi-apis/codec_component_if_h.md)
+        - [codec_component_manager.h](reference/hdi-apis/codec__component__manager_h.md)
+        - [codec_component_type.h](reference/hdi-apis/codec__component__type_h.md)
         - [display_device.h](reference/hdi-apis/display__device_8h.md)
         - [display_gfx.h](reference/hdi-apis/display__gfx_8h.md)
         - [display_gralloc.h](reference/hdi-apis/display__gralloc_8h.md)
         - [display_layer.h](reference/hdi-apis/display__layer_8h.md)
         - [display_type.h](reference/hdi-apis/display__type_8h.md)
-        - [icamera_device_callback.h](reference/hdi-apis/icamera__device__callback_8h.md)
-        - [icamera_device.h](reference/hdi-apis/icamera__device_8h.md)
-        - [icamera_host_callback.h](reference/hdi-apis/icamera__host__callback_8h.md)
-        - [icamera_host.h](reference/hdi-apis/icamera__host_8h.md)
+        - [display_vgu.h](reference/hdi-apis/display__vgu_8h.md)
         - [input_controller.h](reference/hdi-apis/input__controller_8h.md)
         - [input_manager.h](reference/hdi-apis/input__manager_8h.md)
         - [input_reporter.h](reference/hdi-apis/input__reporter_8h.md)
         - [input_type.h](reference/hdi-apis/input__type_8h.md)
-        - [ioffline_stream_operator.h](reference/hdi-apis/ioffline__stream__operator_8h.md)
-        - [istream_operator_callback.h](reference/hdi-apis/istream__operator__callback_8h.md)
-        - [istream_operator.h](reference/hdi-apis/istream__operator_8h.md)
-        - [light_if.h](reference/hdi-apis/light__if_8h.md)
-        - [light_type.h](reference/hdi-apis/light_8typeh.md)
-        - [sensor_if.h](reference/hdi-apis/sensor__if_8h.md)
-        - [sensor_type.h](reference/hdi-apis/sensor__type_8h.md)
-        - [types.h](reference/hdi-apis/types_8h.md)
-        - [usb_info.h](reference/hdi-apis/usb__info_8h.md)
-        - [usbd_client.h](reference/hdi-apis/usbd__client_8h.md)
-        - [usbd_subscriber.h](reference/hdi-apis/usbd__subscriber_8h.md)
-        - [usbd_type.h](reference/hdi-apis/usbd__type_8h.md)
-        - [vibrator_if.h](reference/hdi-apis/vibrator__if_8h.md)
-        - [vibrator_type.h](reference/hdi-apis/vibrator__type_8h.md)
-        - [wifi_hal_ap_feature.h](reference/hdi-apis/wifi__hal__ap__feature_8h.md)
-        - [wifi_hal_base_feature.h](reference/hdi-apis/wifi__hal__base__feature_8h.md)
-        - [wifi_hal_sta_feature.h](reference/hdi-apis/wifi__hal__sta__feature_8h.md)
-        - [wifi_hal.h](reference/hdi-apis/wifi__hal_8h.md)
+        - [ActivityRecognitionTypes.idl](reference/hdi-apis/activity_recognition_types_idl.md)
+        - [Types.idl](reference/hdi-apis/battery_types_idl.md)
         - [IExecutor.idl](reference/hdi-apis/face__auth_2_i_executor_8idl.md)
         - [IExecutorCallback.idl](reference/hdi-apis/face__auth_2_i_executor_callback_8idl.md)
         - [FaceAuthTypes.idl](reference/hdi-apis/_face_auth_types_8idl.md)
         - [PinAuthTypes.idl](reference/hdi-apis/_pin_auth_types_8idl.md)
-        - [IBatteryCallback.idl](reference/hdi-apis/_i_battery_callback_8idl.md)
-        - [IBatteryInterface.idl](reference/hdi-apis/_i_battery_interface_8idl.md)
         - [IExecutor.idl](reference/hdi-apis/pin__auth_2_i_executor_8idl.md)
         - [IExecutorCallback.idl](reference/hdi-apis/pin__auth_2_i_executor_callback_8idl.md)
         - [IFaceAuthInterface.idl](reference/hdi-apis/_i_face_auth_interface_8idl.md)
         - [IPinAuthInterface.idl](reference/hdi-apis/_i_pin_auth_interface_8idl.md)
+        - [IUserAuthInterface.idl](reference/hdi-apis/_i_user_auth_interface_8idl.md)
+        - [UserAuthTypes.idl](reference/hdi-apis/_user_auth_types_8idl.md)
+        - [IActivityChangedCallback.idl](reference/hdi-apis/_i_activity_changed_callback_8idl.md)
+        - [IActivityInterface.idl](reference/hdi-apis/_i_activity_interface_8idl.md)
+        - [IBatteryCallback.idl](reference/hdi-apis/_i_battery_callback_8idl.md)
+        - [IBatteryInterface.idl](reference/hdi-apis/_i_battery_interface_8idl.md)
+        - [ICameraDevice.idl](reference/hdi-apis/_i_camera_device_8idl.md)
+        - [ICameraDeviceCallback.idl](reference/hdi-apis/_i_camera_device_callback_8idl.md)
+        - [ICameraHostCallback.idl](reference/hdi-apis/_i_camera_host_callback_8idl.md)
+        - [ICameraHost.idl](reference/hdi-apis/_i_camera_host_8idl.md)
+        - [ILightInterface.idl](reference/hdi-apis/_i_light_interface_8idl.md)
+        - [IMotionCallback.idl](reference/hdi-apis/_i_motion_callback_8idl.md)
+        - [IMotionInterface.idl](reference/hdi-apis/_i_motion_interface_8idl.md)
+        - [IOfflineStreamOperator.idl](reference/hdi-apis/_i_offline_stream_operator_8idl.md)
         - [IPowerHdiCallback.idl](reference/hdi-apis/_i_power_hdi_callback_8idl.md)
         - [IPowerInterface.idl](reference/hdi-apis/_i_power_interface_8idl.md)
-        - [IThermalInterface.idl](reference/hdi-apis/_i_thermal_interface_8idl.md)
+        - [ISensorCallback.idl](reference/hdi-apis/_i_sensor_callback_8idl.md)
+        - [ISensorInterface.idl](reference/hdi-apis/_i_sensor_interface_8idl.md)
+        - [IStreamOperator.idl](reference/hdi-apis/_i_stream_operator_8idl.md)
+        - [IStreamOperatorCallback.idl](reference/hdi-apis/_i_stream_operator_callback_8idl.md)
         - [IThermalCallback.idl](reference/hdi-apis/_i_thermal_callback_8idl.md)
-        - [IUserAuthInterface.idl](reference/hdi-apis/_i_user_auth_interface_8idl.md)
+        - [IThermalInterface.idl](reference/hdi-apis/_i_thermal_interface_8idl.md)
+        - [IUsbdBulkCallback.idl](reference/hdi-apis/_i_usbd_bulk_callback_8idl.md)
+        - [IUsbInterface.idl](reference/hdi-apis/_i_usb_interface_8idl.md)
+        - [IUsbdSubscriber.idl](reference/hdi-apis/_i_usbd_subscriber_8idl.md)
+        - [IVibratorInterface.idl](reference/hdi-apis/_i_vibrator_interface_8idl.md)
+        - [IWlanCallback.idl](reference/hdi-apis/_i_wlan_callback_8idl.md)
+        - [IWlanInterface.idl](reference/hdi-apis/_i_wlan_interface_8idl.md)
+        - [LightTypes.idl](reference/hdi-apis/_light_types_8idl.md)
+        - [MotionTypes.idl](reference/hdi-apis/_motion_types_8idl.md)
         - [PowerTypes.idl](reference/hdi-apis/_power_types_8idl.md)
+        - [SensorTypes.idl](reference/hdi-apis/_sensor_types_8idl.md)
         - [ThermalTypes.idl](reference/hdi-apis/_thermal_types_8idl.md)
-        - [Types.idl](reference/hdi-apis/_types_8idl.md)
-        - [UserAuthTypes.idl](reference/hdi-apis/_user_auth_types_8idl.md)
+        - [Types.idl](reference/hdi-apis/camera_2v1__0_2_types_8idl.md)
+        - [UsbTypes.idl](reference/hdi-apis/_usb_types_8idl.md)
+        - [VibratorTypes.idl](reference/hdi-apis/_vibrator_types_8idl.md)
+        - [WlanTypes.idl](reference/hdi-apis/_wlan_types_8idl.md)
       - 结构体
-        - [attribute](reference/hdi-apis/____attribute____.md)
-        - [Alignment](reference/hdi-apis/_alignment.md)
+        - [YUVDescInfo](reference/hdi-apis/_yun_desc_info_.md)
+        - [ExtDataHandle](reference/hdi-apis/_ext_data_handle.md)
+        - [ActRecognitionEvent](reference/hdi-apis/_act_recognition_event.md)
         - [AllocInfo](reference/hdi-apis/_alloc_info.md)
+        - [Alignment](reference/hdi-apis/_alignment.md)
         - [AudioAdapter](reference/hdi-apis/_audio_adapter.md)
         - [AudioAdapterDescriptor](reference/hdi-apis/_audio_adapter_descriptor.md)
         - [AudioAttribute](reference/hdi-apis/_audio_attribute.md)
@@ -774,9 +647,9 @@
         - [AudioDeviceDescriptor](reference/hdi-apis/_audio_device_descriptor.md)
         - [AudioManager](reference/hdi-apis/_audio_manager.md)
         - [AudioMixExtInfo](reference/hdi-apis/_audio_mix_ext_info.md)
-        - [AudioMmapBufferDescripter](reference/hdi-apis/_audio_mmap_buffer_descripter.md)
+        - [AudioMmapBufferDescriptor](reference/hdi-apis/_audio_mmap_buffer_descriptor.md)
         - [AudioPort](reference/hdi-apis/_audio_port.md)
-        - [AudioPortCap](reference/hdi-apis/_audio_port_cap.md)
+        - [AudioPortCap](reference/hdi-apis/audio_portcap.md)
         - [AudioPortCapability](reference/hdi-apis/_audio_port_capability.md)
         - [AudioRender](reference/hdi-apis/_audio_render.md)
         - [AudioRoute](reference/hdi-apis/_audio_route.md)
@@ -791,12 +664,16 @@
         - [AudioVolume](reference/hdi-apis/_audio_volume.md)
         - [AuthResultInfo](reference/hdi-apis/_auth_result_info.md)
         - [AuthSolution](reference/hdi-apis/_auth_solution.md)
-        - [BatteryInfo](reference/hdi-apis/_battery_info.md)
         - [BufferData](reference/hdi-apis/_buffer_data.md)
+        - [BatteryInfo](reference/hdi-apis/_battery_info.md)
+        - [CaptureEndedInfo](reference/hdi-apis/_capture_ended_info.md)
+        - [CaptureErrorInfo](reference/hdi-apis/_capture_error_info.md)
+        - [CaptureInfo](reference/hdi-apis/_capture_info.md)
         - [CodecCallbackType](reference/hdi-apis/_codec_callback_type.md)
         - [CodecCompCapability](reference/hdi-apis/_codec_comp_capability.md)
         - [CodecComponentManager](reference/hdi-apis/_codec_component_manager.md)
         - [CodecComponentType](reference/hdi-apis/_codec_component_type.md)
+        - [ColorValue](reference/hdi-apis/union_color_value.md)
         - [CompVerInfo](reference/hdi-apis/_comp_ver_info.md)
         - [CredentialInfo](reference/hdi-apis/_credential_info.md)
         - [DeviceFuncs](reference/hdi-apis/_device_funcs.md)
@@ -815,11 +692,33 @@
         - [GfxFuncs](reference/hdi-apis/_gfx_funcs.md)
         - [GfxOpt](reference/hdi-apis/_gfx_opt.md)
         - [GrallocFuncs](reference/hdi-apis/_gralloc_funcs.md)
+        - [HdfFeatureInfo](reference/hdi-apis/_hdf_feature_info.md)
+        - [HdfLightColor](reference/hdi-apis/_hdf_light_color.md)
+        - [HdfLightEffect](reference/hdi-apis/_hdf_light_effect.md)
+        - [HdfLightFlashEffect](reference/hdi-apis/_hdf_light_flash_effect.md)
+        - [HdfLightInfo](reference/hdi-apis/_hdf_light_info.md)
+        - [HdfMotionEvent](reference/hdi-apis/_hdf_motion_event.md)
+        - [HdfNetDeviceInfo](reference/hdi-apis/_hdf_net_device_info.md)
+        - [HdfNetDeviceInfoResult](reference/hdi-apis/_hdf_net_device_info_result.md)
+        - [HdfSensorEvents](reference/hdi-apis/_hdf_sensor_events.md)
+        - [HdfSensorInformation](reference/hdi-apis/_hdf_sensor_information.md)
+        - [HdfStaInfo](reference/hdi-apis/_hdf_sta_info.md)
         - [HdfThermalCallbackInfo](reference/hdi-apis/_hdf_thermal_callback_info.md)
+        - [HdfVibratorInfo](reference/hdi-apis/_hdf_vibrator_info.md)
+        - [HdfWifiDriverScanSsid](reference/hdi-apis/_hdf_wifi_driver_scan_ssid.md)
+        - [HdfWifiInfo](reference/hdi-apis/_hdf_wifi_info.md)
+        - [HdfWifiScan](reference/hdi-apis/_hdf_wifi_scan.md)
+        - [HdfWifiScanResult](reference/hdi-apis/_hdf_wifi_scan_result.md)
         - [HDRCapability](reference/hdi-apis/_h_d_r_capability.md)
         - [HDRMetaData](reference/hdi-apis/_h_d_r_meta_data.md)
+        - [IActivityChangedCallback](reference/hdi-apis/interface_i_activity_changed_callback.md)
+        - [IActivityInterface](reference/hdi-apis/interface_i_activity_interface.md)
         - [IBatteryCallback](reference/hdi-apis/interface_i_battery_callback.md)
         - [IBatteryInterface](reference/hdi-apis/interface_i_battery_interface.md)
+        - [ICameraDevice](reference/hdi-apis/interface_i_camera_device.md)
+        - [ICameraDeviceCallback](reference/hdi-apis/interface_i_camera_device_callback.md)
+        - [ICameraHost](reference/hdi-apis/interface_i_camera_host.md)
+        - [ICameraHostCallback](reference/hdi-apis/interface_i_camera_host_callback.md)
         - [ICircle](reference/hdi-apis/_i_circle.md)
         - [IdentifyResultInfo](reference/hdi-apis/_identify_result_info.md)
         - [IExecutor](reference/hdi-apis/interface_i_executor.md)
@@ -827,78 +726,106 @@
         - [IExecutorCallback](reference/hdi-apis/interface_i_executor_callback.md)
         - [IExecutorCallback](reference/hdi-apis/interface_pin_i_executor_callback.md)
         - [IFaceAuthInterface](reference/hdi-apis/interface_i_face_auth_interface.md)
-        - [IInputInterface](reference/hdi-apis/_i_input_interface.md)
         - [ILine](reference/hdi-apis/_i_line.md)
+        - [IInputInterface](reference/hdi-apis/_i_input_interface.md)
+        - [ILightInterface](reference/hdi-apis/interface_i_light_interface.md)
+        - [IMotionCallback](reference/hdi-apis/interface_i_motion_callback.md)
+        - [IMotionInterface](reference/hdi-apis/interface_i_motion_interface.md)
         - [InputController](reference/hdi-apis/_input_controller.md)
         - [InputDevAbility](reference/hdi-apis/_input_dev_ability.md)
-        - [InputDevAttr](reference/hdi-apis/_input_dev_attr.md) 
+        - [InputDevAttr](reference/hdi-apis/_input_dev_attr.md)
         - [InputDevDesc](reference/hdi-apis/_input_dev_desc.md)
+        - [InputDeviceInfo](reference/hdi-apis/_input_device_info.md)
         - [InputDevIdentify](reference/hdi-apis/_input_dev_identify.md)
-        - [InputDeviceInfo](reference/hdi-apis/_device_info.md)
-        - [InputDimensionInfo](reference/hdi-apis/_input_dimension_info.md) 
-        - [InputEventCb](reference/hdi-apis/_input_report_event_cb.md)
-        - [InputEventPackage](reference/hdi-apis/_event_package.md)
+        - [InputDimensionInfo](reference/hdi-apis/_input_dimension_info.md)
+        - [InputEventCb](reference/hdi-apis/_input_event_cb.md)
+        - [InputEventPackage](reference/hdi-apis/_input_event_package.md)
+        - [IPowerHdiCallback](reference/hdi-apis/interface_i_power_hdi_callback.md)
         - [InputExtraCmd](reference/hdi-apis/_input_extra_cmd.md)
         - [InputHostCb](reference/hdi-apis/_input_host_cb.md)
-        - [InputHotPlugEvent](reference/hdi-apis/_input_hotplug_event.md)
+        - [InputHotPlugEvent](reference/hdi-apis/_input_hot_plug_event.md)
         - [InputManager](reference/hdi-apis/_input_manager.md)
         - [InputReporter](reference/hdi-apis/_input_reporter.md)
+        - [IOfflineStreamOperator](reference/hdi-apis/interface_i_offline_stream_operator.md)
         - [IPinAuthInterface](reference/hdi-apis/interface_i_pin_auth_interface.md)
-        - [IPowerHdiCallback](reference/hdi-apis/interface_i_power_hdi_callback.md)
         - [IPowerInterface](reference/hdi-apis/interface_i_power_interface.md)
         - [IRect](reference/hdi-apis/_i_rect.md)
+        - [ISensorCallback](reference/hdi-apis/interface_i_sensor_callback.md)
+        - [ISensorInterface](reference/hdi-apis/interface_i_sensor_interface.md)
+        - [IStreamOperator](reference/hdi-apis/interface_i_stream_operator.md)
+        - [IStreamOperatorCallback](reference/hdi-apis/interface_i_stream_operator_callback.md)
         - [ISurface](reference/hdi-apis/_i_surface.md)
         - [IThermalCallback](reference/hdi-apis/interface_i_thermal_callback.md)
         - [IThermalInterface](reference/hdi-apis/interface_i_thermal_interface.md)
+        - [IUsbdBulkCallback](reference/hdi-apis/interface_i_usbd_bulk_callback.md)
+        - [IUsbdSubscriber](reference/hdi-apis/interface_i_usbd_subscriber.md)
+        - [IUsbInterface](reference/hdi-apis/interface_i_usb_interface.md)
         - [IUserAuthInterface](reference/hdi-apis/interface_i_user_auth_interface.md)
-        - [IWiFi](reference/hdi-apis/_i_wi_fi.md)
-        - [IWiFiAp](reference/hdi-apis/_i_wi_fi_ap.md)
-        - [IWiFiBaseFeature](reference/hdi-apis/_i_wi_fi_base_feature.md)
-        - [IWiFiSta](reference/hdi-apis/_i_wi_fi_sta.md)
+        - [IVibratorInterface](reference/hdi-apis/interface_i_vibrator_interface.md)
+        - [IWlanCallback](reference/hdi-apis/interface_i_wlan_callback.md)
+        - [IWlanInterface](reference/hdi-apis/interface_i_wlan_interface.md)
         - [LayerAlpha](reference/hdi-apis/_layer_alpha.md)
         - [LayerBuffer](reference/hdi-apis/_layer_buffer.md)
         - [LayerFuncs](reference/hdi-apis/_layer_funcs.md)
         - [LayerInfo](reference/hdi-apis/_layer_info.md)
-        - [LightEffect](reference/hdi-apis/_light_effect.md)
-        - [LightFlashEffect](reference/hdi-apis/_light_flash_effect.md)
-        - [LightInfo](reference/hdi-apis/_light_info.md)
-        - [LightInterface](reference/hdi-apis/_light_interface.md)
-        - [OHOS::Camera::CaptureEndedInfo](reference/hdi-apis/_o_h_o_s_1_1_camera_1_1_capture_ended_info.md)
-        - [OHOS::Camera::CaptureErrorInfo](reference/hdi-apis/_o_h_o_s_1_1_camera_1_1_capture_error_info.md)
-        - [OHOS::Camera::CaptureInfo](reference/hdi-apis/_o_h_o_s_1_1_camera_1_1_capture_info.md)
-        - [OHOS::Camera::ICameraDevice](reference/hdi-apis/_o_h_o_s_1_1_camera_1_1_i_camera_device.md)
-        - [OHOS::Camera::ICameraDeviceCallback](reference/hdi-apis/_o_h_o_s_1_1_camera_1_1_i_camera_device_callback.md)
-        - [OHOS::Camera::ICameraHost](reference/hdi-apis/_o_h_o_s_1_1_camera_1_1_i_camera_host.md)
-        - [OHOS::Camera::ICameraHostCallback](reference/hdi-apis/_o_h_o_s_1_1_camera_1_1_i_camera_host_callback.md)
-        - [OHOS::Camera::IOfflineStreamOperator](reference/hdi-apis/_o_h_o_s_1_1_camera_1_1_i_offline_stream_operator.md)
-        - [OHOS::Camera::IStreamOperator](reference/hdi-apis/_o_h_o_s_1_1_camera_1_1_i_stream_operator.md)
-        - [OHOS::Camera::IStreamOperatorCallback](reference/hdi-apis/_o_h_o_s_1_1_camera_1_1_i_stream_operator_callback.md)
-        - [OHOS::Camera::StreamAttribute](reference/hdi-apis/_o_h_o_s_1_1_camera_1_1_stream_attribute.md)
-        - [OHOS::Camera::StreamInfo](reference/hdi-apis/_o_h_o_s_1_1_camera_1_1_stream_info.md)
-        - [OHOS::USB::UsbCtrlTransfer](reference/hdi-apis/_o_h_o_s_1_1_u_s_b_1_1_usb_ctrl_transfer.md)
-        - [OHOS::USB::UsbdClient](reference/hdi-apis/_o_h_o_s_1_1_u_s_b_1_1_usbd_client.md)
-        - [OHOS::USB::UsbDev](reference/hdi-apis/_o_h_o_s_1_1_u_s_b_1_1_usb_dev.md)
-        - [OHOS::USB::USBDeviceInfo](reference/hdi-apis/_o_h_o_s_1_1_u_s_b_1_1_u_s_b_device_info.md)
-        - [OHOS::USB::UsbdSubscriber](reference/hdi-apis/_o_h_o_s_1_1_u_s_b_1_1_usbd_subscriber.md)
-        - [OHOS::USB::UsbInfo](reference/hdi-apis/_o_h_o_s_1_1_u_s_b_1_1_usb_info.md)
-        - [OHOS::USB::UsbPipe](reference/hdi-apis/_o_h_o_s_1_1_u_s_b_1_1_usb_pipe.md)
+        - [MeasChannelParam](reference/hdi-apis/_meas_channel_param.md)
+        - [MeasChannelResult](reference/hdi-apis/_meas_channel_result.md)
         - [OmxCodecBuffer](reference/hdi-apis/_omx_codec_buffer.md)
         - [PortCap](reference/hdi-apis/union_port_cap.md)
+        - [PortInfo](reference/hdi-apis/_port_info.md)
         - [PresentTimestamp](reference/hdi-apis/_present_timestamp.md)
         - [PropertyObject](reference/hdi-apis/_property_object.md)
+        - [ProjectionScreenCmdParam](reference/hdi-apis/_projection_screen_cmd_param.md)
         - [RangeValue](reference/hdi-apis/_range_value.md)
         - [Rect](reference/hdi-apis/_rect.md)
         - [Rectangle](reference/hdi-apis/_rectangle.md)
+        - [RGBColor](reference/hdi-apis/_r_g_b_color.md)
         - [ScheduleInfo](reference/hdi-apis/_schedule_info.md)
-        - [SensorEvents](reference/hdi-apis/_sensor_events.md)
-        - [SensorInformation](reference/hdi-apis/_sensor_information.md)
-        - [SensorInterface](reference/hdi-apis/_sensor_interface.md)
-        - [StaInfo](reference/hdi-apis/_sta_info.md)
+        - [StreamAttribute](reference/hdi-apis/_stream_attribute.md)
+        - [StreamInfo](reference/hdi-apis/_stream_info.md)
         - [SupportBufferType](reference/hdi-apis/_support_buffer_type.md)
         - [TemplateInfo](reference/hdi-apis/_template_info.md)
         - [ThermalZoneInfo](reference/hdi-apis/_thermal_zone_info.md)
+        - [UsbCtrlTransfer](reference/hdi-apis/_usb_ctrl_transfer.md)
+        - [UsbDev](reference/hdi-apis/_usb_dev.md)
+        - [USBDeviceInfo](reference/hdi-apis/_u_s_b_device_info.md)
+        - [UsbPipe](reference/hdi-apis/_usb_pipe.md)
         - [UseBufferType](reference/hdi-apis/_use_buffer_type.md)
         - [VerifyAllocInfo](reference/hdi-apis/_verify_alloc_info.md)
-        - [VibratorInterface](reference/hdi-apis/_vibrator_interface.md)
+        - [VGUBuffer](reference/hdi-apis/_v_g_u_buffer.md)
+        - [VGUColorStop](reference/hdi-apis/_v_g_u_color_stop.md)
+        - [VGUConic](reference/hdi-apis/_v_g_u_conic.md)
+        - [VGUFillAttr](reference/hdi-apis/_v_g_u_fill_attr.md)
+        - [VGUFuncs](reference/hdi-apis/_v_g_u_funcs.md)
+        - [VGUGradient](reference/hdi-apis/_v_g_u_gradient.md)
+        - [VGUImage](reference/hdi-apis/_v_g_u_image.md)
+        - [VGULinear](reference/hdi-apis/_v_g_u_linear.md)
+        - [VGUMaskLayer](reference/hdi-apis/_v_g_u_mask_layer.md)
+        - [VGUMatrix3](reference/hdi-apis/_v_g_u_matrix3.md)
+        - [VGUPaintStyle](reference/hdi-apis/_v_g_u_paint_style.md)
+        - [VGUPath](reference/hdi-apis/_v_g_u_path.md)
+        - [VGUPattern](reference/hdi-apis/_v_g_u_pattern.md)
+        - [VGUPoint](reference/hdi-apis/_v_g_u_point.md)
+        - [VGURadial](reference/hdi-apis/_v_g_u_radial.md)
+        - [VGURect](reference/hdi-apis/_v_g_u_rect.md)
+        - [VGUSolid](reference/hdi-apis/_v_g_u_solid.md)
+        - [VGUStrokeAttr](reference/hdi-apis/_v_g_u_stroke_attr.md)
+        - [VGUSurface](reference/hdi-apis/_v_g_u_surface.md)
         - [VideoPortCap](reference/hdi-apis/_video_port_cap.md)
+        - [WifiStationInfo](reference/hdi-apis/_wifi_station_info.md)
+        - [WRGBColor](reference/hdi-apis/_w_r_g_b_color.md)
 
+   
+  - CMSIS API参考
+    - [CMSIS](reference/kernel/cmsis/_c_m_s_i_s-_r_t_o_s.md)
+    - 结构体
+        - [osEventFlagsAttr_t](reference/kernel/cmsis/os_event_flags_attr__t.md)
+        - [osMemoryPoolAttr_t](reference/kernel/cmsis/os_memory_pool_attr__t.md)
+        - [osMessageQueueAttr_t](reference/kernel/cmsis/os_message_queue_attr__t.md)
+        - [osMutexAttr_t](reference/kernel/cmsis/os_mutex_attr__t.md)
+        - [osSemaphoreAttr_t](reference/kernel/cmsis/os_semaphore_attr__t.md)
+        - [osThreadAttr_t](reference/kernel/cmsis/os_thread_attr__t.md)
+        - [osTimerAttr_t](reference/kernel/cmsis/os_timer_attr__t.md)
+        - [osVersion_t](reference/kernel/cmsis/os_version__t.md)
+
+   

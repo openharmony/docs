@@ -1,4 +1,4 @@
-# 访问控制（权限）开发指导
+# 访问控制授权申请指导
 
 ## 场景介绍
 
@@ -16,11 +16,11 @@
 
 ## 接口说明
 
-以下仅列举本指导使用的接口，更多说明可以查阅[API参考](../reference/apis/js-apis-abilityAccessCtrl.md)。
+以下仅列举本指导使用的接口，更多说明可以查阅[API参考](../reference/apis/js-apis-ability-context.md)。
 
 | 接口名                                                       | 描述                                             |
 | ------------------------------------------------------------ | --------------------------------------------------- |
-| verifyAccessToken(tokenID: number, permissionName: string): Promise&lt;GrantStatus&gt; | 校验应用是否授予权限，使用Promise方式异步返回结果。 |
+| requestPermissionsFromUser(permissions: Array&lt;string&gt;, requestCallback: AsyncCallback&lt;PermissionRequestResult&gt;) : void; | 拉起弹窗请求用户授权。 |
 
 ## 权限申请声明
 
@@ -111,11 +111,11 @@
 
 ## ACL方式声明
 
-如上述示例所示，权限"ohos.permission.PERMISSION2"的权限等级为system_basic，高于应用此时应用的APL等级，用户的最佳做法是使用ACL方式。
+如上述示例所示，权限"ohos.permission.PERMISSION2"的权限等级为system_basic，高于此时应用的APL等级，开发者的最佳做法是使用ACL方式。
 
-在配置文件声明的基础上，应用还需要在Profile文件中声明不满足申请条件部分的权限。Profile文件的字段说明可参考[HarmonyAppProvision配置文件的说明](../quick-start/app-provision-structure.md)。
+在配置文件声明的基础上，应用还需要在Profile文件中声明不满足申请条件部分的权限。Profile文件的字段说明可参考[HarmonyAppProvision配置文件的说明](app-provision-structure.md)。
 
-该场景中，用户应该在字段"acls"中做声明如下：
+该场景中，开发者应该在字段"acls"中做声明如下：
 
 ```json
 {
@@ -137,15 +137,15 @@
 
 > **注意：**
 >
-> 不能把之前授予的状态持久化，每次访问受目标权限保护的接口前，都应该检查权限授权状态，因为用户在动态授予后可能通过设置取消应用的权限。
+> 不能把之前授予的状态持久化，每次访问受目标权限保护的接口前，都应该调用requestPermissionsFromUser接口请求权限，因为用户在动态授予后可能通过设置取消应用的权限。
 
 ## 完整示例
 
-对访问者进行权限校验的开发步骤为：
+请求用户授权权限的开发步骤为：
 
 1. 获取ability的上下文context。
-2. 调用requestPermissionsFromUser接口进行权限校验。
-3. 根据权限校验结果采取对应的措施。
+2. 调用requestPermissionsFromUser接口请求权限。运行过程中，该接口会根据应用是否已获得目标权限决定是否拉起动态弹框请求用户授权。
+3. 根据requestPermissionsFromUser接口返回值判断是否已获取目标权限。如果当前已经获取权限，则可以继续正常访问目标接口。
 
 ```js
   //ability的onWindowStageCreate生命周期
@@ -167,9 +167,33 @@
 > **说明：**
 > 动态授权申请接口的使用详见[API参考](../reference/apis/js-apis-ability-context.md)。
 
+## user_grant权限预授权
+当前正常情况下，user_grant类型的权限默认不授权，需要时应通过拉起弹框由用户确认是否授予。对于一些预置应用，比如截屏应用，不希望出现弹框，则可以通过预授权的方式完成user_grant类型权限的授权。[预置配置文件](https://gitee.com/openharmony/vendor_hihope/blob/master/rk3568/preinstall-config/install_list_permissions.json)在设备上的路径为system/etc/app/install_list_permission.json，设备开机启动时会读取该配置文件，在应用安装会对在文件中配置的user_grant类型权限授权。当前仅支持预置应用配置该文件。
+预授权配置文件字段内容包括bundleName、app_signature、permissions。
+1. 这里的权限仅对user_grant类型的权限生效[查看权限等级和类型](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/permission-list.md)。
+2. userCancellable配置为true，表示支持用户取消授权，为false则表示不支持用户取消授权。
+
+```json
+[
+  {
+    "bundleName": "com.ohos.myapplication", // 包名
+    "app_signature":[], // 指纹信息
+    "permissions":[
+      {
+        "name":"xxxx", // 权限名，不可缺省
+        "userCancellable":false // 用户不可取消授权，不可缺省
+      },
+      {
+        "name":"yyy", // 权限名，不可缺省
+        "userCancellable":true // 用户可取消授权，不可缺省
+      }
+    ]
+  }
+]
+```
 ## 相关实例
 
 针对访问控制，有以下相关实例可供参考：
 
-- [`AbilityAccessCtrl`：访问权限控制（eTS）（API8）（Full SDK）](https://gitee.com/openharmony/applications_app_samples/tree/master/Safety/AbilityAccessCtrl)
-- [为应用添加运行时权限（eTS）（API 9）](https://gitee.com/openharmony/codelabs/tree/master/Ability/AccessPermission)
+- [`AbilityAccessCtrl`：访问权限控制（ArkTS）（API8）（Full SDK）](https://gitee.com/openharmony/applications_app_samples/tree/master/Safety/AbilityAccessCtrl)
+- [为应用添加运行时权限（ArkTS）（API 9）](https://gitee.com/openharmony/codelabs/tree/master/Ability/AccessPermission)

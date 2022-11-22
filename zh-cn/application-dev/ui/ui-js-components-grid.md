@@ -28,6 +28,7 @@
   flex-direction: column;
   background-color: #F1F3F5;
   width: 100%;
+  height: 100%;
   justify-content: center;
   align-items: center;
 }
@@ -67,6 +68,7 @@ grid-container点击组件调用getColumns、getColumnWidth、getGutterWidth方�
   flex-direction: column;
   background-color: #F1F3F5;
   width: 100%;
+  height: 100%;
   justify-content: center;
   align-items: center;
 }
@@ -108,9 +110,9 @@ export default {
 ![zh-cn_image_0000001227135613](figures/zh-cn_image_0000001227135613.gif)
 
 
-## 添加grild-col
+## 添加grid-col
 
-创建grid-container组件并添加grid-row，在grid-row组件内添加grild-col组件形成布局。
+创建grid-container组件并添加grid-row，在grid-row组件内添加grid-col组件形成布局。
 
 
 ```html
@@ -154,6 +156,7 @@ export default {
   flex-direction: column;
   background-color: #F1F3F5;
   width: 100%;
+  height: 100%;
   justify-content: center;
   align-items: center;
 }
@@ -203,6 +206,7 @@ text{
   flex-direction: column;
   background-color: #F1F3F5;
   width: 100%;
+  height: 100%;
 }
 text{
   color: #0a0aef;

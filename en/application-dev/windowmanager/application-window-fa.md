@@ -54,7 +54,7 @@ You can create a subwindow, such as a dialog box, and set its properties.
    import window from '@ohos.window';
    
    let windowClass = null;
-   // 1. Method 1: Create a subwindow.
+   // Method 1: Create a subwindow.
    window.create("subWindow", window.WindowType.TYPE_APP, (err, data) => {
        if (err.code) {
            console.error('Failed to create the subWindow. Cause: ' + JSON.stringify(err));
@@ -63,7 +63,7 @@ You can create a subwindow, such as a dialog box, and set its properties.
        console.info('Succeeded in creating subWindow. Data: ' + JSON.stringify(data));
        windowClass = data;
    });
-   // 1. Method 2: Obtain a subwindow.
+   // Method 2: Obtain a subwindow.
    window.getTopWindow((err, data) => {
        if (err.code) {
            console.error('Failed to get the subWindow. Cause: ' + JSON.stringify(err));
@@ -72,7 +72,7 @@ You can create a subwindow, such as a dialog box, and set its properties.
        console.info('Succeeded in getting subWindow. Data: ' + JSON.stringify(data));
        windowClass = data;
    });
-   // 1. Method 3: Find a subwindow.
+   // Method 3: Find a subwindow.
    window.find("subWindow", (err, data) => {
        if (err.code) {
            console.error('Failed to find the subWindow. Cause: ' + JSON.stringify(err));
@@ -88,7 +88,7 @@ You can create a subwindow, such as a dialog box, and set its properties.
    After the subwindow is created, you can set its properties, such as the size, position, background color, and brightness.
    
    ```js
-   // 2. Move the subwindow.
+   // Move the subwindow.
    windowClass.moveTo(300, 300, (err, data) => {
      if (err.code) {
        console.error('Failed to move the window. Cause:' + JSON.stringify(err));
@@ -96,7 +96,7 @@ You can create a subwindow, such as a dialog box, and set its properties.
      }
      console.info('Succeeded in moving the window. Data: ' + JSON.stringify(data));
    });
-   // 2. Change the size of the subwindow.
+   // Change the size of the subwindow.
    windowClass.resetSize(500, 1000, (err, data) => {
      if (err.code) {
        console.error('Failed to change the window size. Cause:' + JSON.stringify(err));
@@ -111,14 +111,14 @@ You can create a subwindow, such as a dialog box, and set its properties.
    Call `loadContent` and `show` to load and display the content in the subwindow.
    
    ```js
-   // 3. Load the page content to the subwindow.
+   // Load the page content to the subwindow.
    windowClass.loadContent("pages/page2", (err, data) => {
        if (err.code) {
            console.error('Failed to load the content. Cause: ' + JSON.stringify(err));
            return;
        }
        console.info('Succeeded in loading the content. Data: ' + JSON.stringify(data));
-       // 3. Show the subwindow.
+       // Show the subwindow.
        windowClass.show((err, data) => {
         if (err.code) {
                console.error('Failed to show the window. Cause: ' + JSON.stringify(err));
@@ -134,7 +134,7 @@ You can create a subwindow, such as a dialog box, and set its properties.
    When the subwindow is no longer needed, you can call `destroy` to destroy it.
    
    ```js
-   // 4. Destroy the subwindow when a click event outside the window is detected.
+   // Destroy the subwindow when a click event outside the window is detected.
    windowClass.on('touchOutside', () => {
        console.info('touch outside');
        windowClass.destroy((err, data) => {
@@ -167,7 +167,7 @@ To create a better video watching and gaming experience, you can use the immersi
    import window from '@ohos.window';
    
    let mainWindowClass = null;
-   // 1. Obtain the main window.
+   // Obtain the main window.
    window.getTopWindow((err, data) => {
      if (err.code) {
        console.error('Failed to get the subWindow. Cause: ' + JSON.stringify(err));
@@ -185,7 +185,7 @@ To create a better video watching and gaming experience, you can use the immersi
    - Method 3: Call `setLayoutFullScreen` to enable the full-screen mode for the main window layout. Call `setSystemProperties` to set the opacity, background color, text color, and highlighted icon of the navigation bar and status bar to ensure that their display effect is consistent with that of the main window.
 
    ```js
-   // 2. Use method 1 to implement the immersive effect.
+   // Use method 1 to implement the immersive effect.
    let isFullScreen = true;
    mainWindowClass.setFullScreen(isFullScreen, (err, data) => {
      if (err.code) {
@@ -194,7 +194,7 @@ To create a better video watching and gaming experience, you can use the immersi
      }
      console.info('Succeeded in enabling the full-screen mode. Data: ' + JSON.stringify(data));
    });
-   // 2. Use method 2 to implement the immersive effect.
+   // Use method 2 to implement the immersive effect.
    let names = [];
    mainWindowClass.setSystemBarEnable(names, (err, data) => {
      if (err.code) {
@@ -203,7 +203,7 @@ To create a better video watching and gaming experience, you can use the immersi
      }
      console.info('Succeeded in setting the system bar to be visible. Data: ' + JSON.stringify(data));
    });
-   // 2. Use method 3 to implement the immersive effect.
+   // Use method 3 to implement the immersive effect.
    let isLayoutFullScreen = true;
    mainWindowClass.setLayoutFullScreen(isLayoutFullScreen, (err, data) => {
      if (err.code) {
@@ -236,14 +236,14 @@ To create a better video watching and gaming experience, you can use the immersi
    Call `loadContent` and `show` to load and display the content in the immersive window.
    
    ```js
-   // 3. Load the page content to the immersive window.
+   // Load the page content to the immersive window.
    mainWindowClass.loadContent("pages/page3", (err, data) => {
        if (err.code) {
            console.error('Failed to load the content. Cause: ' + JSON.stringify(err));
            return;
        }
        console.info('Succeeded in loading the content. Data: ' + JSON.stringify(data));
-       // 3. Show the immersive window.
+       // Show the immersive window.
        mainWindowClass.show((err, data) => {
            if (err.code) {
                console.error('Failed to show the window. Cause: ' + JSON.stringify(err));

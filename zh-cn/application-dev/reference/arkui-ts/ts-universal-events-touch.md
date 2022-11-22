@@ -1,6 +1,6 @@
 # 触摸事件
 
-当手指放在组件上、滑动或从组件上移开时触发。
+当手指在组件上按下、滑动、抬起时触发。
 
 > **说明：**
 >
@@ -11,7 +11,7 @@
 
 | 名称                                                         | 是否冒泡 | 功能描述                                                     |
 | ------------------------------------------------------------ | -------- | ------------------------------------------------------------ |
-| onTouch(event:&nbsp;(event?:&nbsp;TouchEvent)&nbsp;=&gt;&nbsp;void) | 是       | 触摸动作触发该方法调用，event参数见[TouchEvent](#touchevent对象说明)介绍。 |
+| onTouch(event:&nbsp;(event?:&nbsp;TouchEvent)&nbsp;=&gt;&nbsp;void) | 是       | 手指触摸动作触发该回调，event返回值见[TouchEvent](#touchevent对象说明)介绍。 |
 
 
 ## TouchEvent对象说明
@@ -23,8 +23,8 @@
 | changedTouches      | Array&lt;[TouchObject](#touchobject对象说明)&gt; | 当前发生变化的手指信息。 |
 | stopPropagation      | () => void | 阻塞事件冒泡。 |
 | timestamp<sup>8+</sup> | number | 事件时间戳。触发事件时距离系统启动的时间间隔，单位纳秒。 |
-| target<sup>8+</sup> | [EventTarget](ts-universal-events-click.md) | 触发手势事件的元素对象显示区域。 |
-| source<sup>8+</sup> | [SourceType](ts-gesture-settings.md) | 事件输入设备。 |
+| target<sup>8+</sup> | [EventTarget](ts-universal-events-click.md#eventtarget8对象说明) | 触发事件的元素对象显示区域。 |
+| source<sup>8+</sup> | [SourceType](ts-gesture-settings.md#sourcetype枚举说明) | 事件输入设备。 |
 
 
 ## TouchObject对象说明
@@ -49,8 +49,8 @@ struct TouchExample {
   @State eventType: string = ''
 
   build() {
-    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.SpaceBetween }) {
-      Button('Touch').backgroundColor(0x2788D9).height(40).width(80)
+    Column() {
+      Button('Touch').height(40).width(100)
         .onTouch((event: TouchEvent) => {
           if (event.type === TouchType.Down) {
             this.eventType = 'Down'
@@ -61,13 +61,29 @@ struct TouchExample {
           if (event.type === TouchType.Move) {
             this.eventType = 'Move'
           }
-          console.info(this.text = 'TouchType:' + this.eventType + '\nDistance between touch point and touch element:\nx: '
-          + event.touches[0].x + '\n' + 'y: ' + event.touches[0].y + '\ncomponent globalPos:('
+          this.text = 'TouchType:' + this.eventType + '\nDistance between touch point and touch element:\nx: '
+          + event.touches[0].x + '\n' + 'y: ' + event.touches[0].y + '\nComponent globalPos:('
           + event.target.area.globalPosition.x + ',' + event.target.area.globalPosition.y + ')\nwidth:'
-          + event.target.area.width + '\nheight:' + event.target.area.height)
+          + event.target.area.width + '\nheight:' + event.target.area.height
+        })
+      Button('Touch').height(50).width(200).margin(20)
+        .onTouch((event: TouchEvent) => {
+          if (event.type === TouchType.Down) {
+            this.eventType = 'Down'
+          }
+          if (event.type === TouchType.Up) {
+            this.eventType = 'Up'
+          }
+          if (event.type === TouchType.Move) {
+            this.eventType = 'Move'
+          }
+          this.text = 'TouchType:' + this.eventType + '\nDistance between touch point and touch element:\nx: '
+          + event.touches[0].x + '\n' + 'y: ' + event.touches[0].y + '\nComponent globalPos:('
+          + event.target.area.globalPosition.x + ',' + event.target.area.globalPosition.y + ')\nwidth:'
+          + event.target.area.width + '\nheight:' + event.target.area.height
         })
       Text(this.text)
-    }.height(200).width(350).padding({ left: 35, right: 35, top: 35 })
+    }.width('100%').padding(30)
   }
 }
 ```

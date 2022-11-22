@@ -433,7 +433,7 @@ export default {
             console.log('ServiceAbility want:' + JSON.stringify(want));
             console.log('ServiceAbility want name:' + want.bundleName)
         } catch(err) {
-            console.log("ServiceAbility error:" + err)
+            console.log('ServiceAbility error:' + err)
         }
         console.info('ServiceAbility onConnect end');
         return new IdlTestImp('connect');
@@ -455,13 +455,13 @@ import featureAbility from '@ohos.ability.featureAbility';
 
 function callbackTestIntTransaction(result: number, ret: number): void {
   if (result == 0 && ret == 124) {
-    console.log("case 1 success ");
+    console.log('case 1 success');
   }
 }
 
 function callbackTestStringTransaction(result: number): void {
   if (result == 0) {
-    console.log("case 2 success ");
+    console.log('case 2 success');
   }
 }
 
@@ -472,17 +472,17 @@ var onAbilityConnectDone = {
     testProxy.testStringTransaction('hello', callbackTestStringTransaction);
   },
   onDisconnect:function (elementName) {
-    console.log("onDisconnectService onDisconnect");
+    console.log('onDisconnectService onDisconnect');
   },
   onFailed:function (code) {
-    console.log("onDisconnectService onFailed");
+    console.log('onDisconnectService onFailed');
   }
 };
 
 function connectAbility: void {
     let want = {
-    	"bundleName":"com.example.myapplicationidl",
-    	"abilityName": "com.example.myapplicationidl.ServiceAbility"
+        bundleName: 'com.example.myapplicationidl',
+        abilityName: 'com.example.myapplicationidl.ServiceAbility'
     };
     let connectionId = -1;
     connectionId = featureAbility.connectAbility(want, onAbilityConnectDone);
@@ -595,7 +595,7 @@ export default class IdlTestServiceProxy implements IIdlTestService {
         let _reply = new rpc.MessageParcel();
         _data.writeInt(data);
         this.proxy.sendRequest(IdlTestServiceProxy.COMMAND_TEST_INT_TRANSACTION, _data, _reply, _option).then(function(result) {
-            if (result.errCode === 0) {
+            if (result.errCode == 0) {
                 let _errCode = result.reply.readInt();
                 if (_errCode != 0) {
                     let _returnValue = undefined;
@@ -605,7 +605,7 @@ export default class IdlTestServiceProxy implements IIdlTestService {
                 let _returnValue = result.reply.readInt();
                 callback(_errCode, _returnValue);
             } else {
-                console.log("sendRequest failed, errCode: " + result.errCode);
+                console.log('sendRequest failed, errCode: ' + result.errCode);
             }
         })
     }
@@ -617,11 +617,11 @@ export default class IdlTestServiceProxy implements IIdlTestService {
         let _reply = new rpc.MessageParcel();
         _data.writeString(data);
         this.proxy.sendRequest(IdlTestServiceProxy.COMMAND_TEST_STRING_TRANSACTION, _data, _reply, _option).then(function(result) {
-            if (result.errCode === 0) {
+            if (result.errCode == 0) {
                 let _errCode = result.reply.readInt();
                 callback(_errCode);
             } else {
-                console.log("sendRequest failed, errCode: " + result.errCode);
+                console.log('sendRequest failed, errCode: ' + result.errCode);
             }
         })
     }
@@ -644,12 +644,12 @@ import nativeMgr from 'nativeManager';
 
 function testIntTransactionCallback(errCode: number, returnValue: number)
 {
-	console.log("errCode: " + errCode + "  returnValue: " + returnValue);
+	console.log('errCode: ' + errCode + '  returnValue: ' + returnValue);
 }
 
 function testStringTransactionCallback(errCode: number)
 {
-	console.log("errCode: " + errCode);
+	console.log('errCode: ' + errCode);
 }
 
 function jsProxyTriggerCppStub()
@@ -660,6 +660,6 @@ function jsProxyTriggerCppStub()
   	tsProxy.testIntTransaction(10, testIntTransactionCallback);
   	
   	// invoke testStringTransaction
-  	tsProxy.testStringTransaction("test", testIntTransactionCallback);
+    tsProxy.testStringTransaction('test', testIntTransactionCallback);
 }
 ```

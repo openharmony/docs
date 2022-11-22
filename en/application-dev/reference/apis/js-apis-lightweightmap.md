@@ -12,6 +12,10 @@ Compared with **[HashMap](js-apis-hashmap.md)**, which can also store KV pairs, 
 
 **Recommended use case**: Use LightWeightMap when you need to store and access **KV pairs**.
 
+This topic uses the following to identify the use of generics:
+- K: Key
+- V: Value
+
 ## Modules to Import
 
 ```ts
@@ -92,10 +96,10 @@ Checks whether this container contains all elements of the specified **LightWeig
 
 ```ts
 let lightWeightMap = new LightWeightMap();
-lightWeightMap.set("Ahfbrgrbgnutfodgorrogorgrogofdfdf", 123);
-lightWeightMap.set("sdfs", 356);
+lightWeightMap.set("squirrel", 123);
+lightWeightMap.set("sparrow", 356);
 let map = new LightWeightMap();
-map.set("sdfs", 356);
+map.set("sparrow", 356);
 let result = lightWeightMap.hasAll(map);
 ```
 
@@ -125,9 +129,9 @@ Checks whether this container contains the specified key.
 ```ts
 let lightWeightMap = new LightWeightMap();
 let result = lightWeightMap.hasKey;
-lightWeightMap.hasKey("Ahfbrgrbgnutfodgorrogorgrogofdfdf");
-lightWeightMap.set("Ahfbrgrbgnutfodgorrogorgrogofdfdf", 123);
-let result1 = lightWeightMap.hasKey("Ahfbrgrbgnutfodgorrogorgrogofdfdf");
+lightWeightMap.hasKey("squirrel");
+lightWeightMap.set("squirrel", 123);
+let result1 = lightWeightMap.hasKey("squirrel");
 ```
 
 
@@ -156,7 +160,7 @@ Checks whether this container contains the specified value.
 ```ts
 let lightWeightMap = new LightWeightMap();
 let result = lightWeightMap.hasValue(123);
-lightWeightMap.set("Ahfbrgrbgnutfodgorrogorgrogofdfdf", 123);
+lightWeightMap.set("squirrel", 123);
 let result1 = lightWeightMap.hasValue(123);
 ```
 
@@ -207,9 +211,9 @@ Obtains the value of the specified key in this container.
 
 ```ts
 let lightWeightMap = new LightWeightMap();
-lightWeightMap.set("Ahfbrgrbgnutfodgorrogorgrogofdfdf", 123);
-lightWeightMap.set("sdfs", 356);
-let result = lightWeightMap.get("sdfs");
+lightWeightMap.set("squirrel", 123);
+lightWeightMap.set("sparrow", 356);
+let result = lightWeightMap.get("sparrow");
 ```
 
 
@@ -237,9 +241,9 @@ Obtains the index of the first occurrence of an element with the specified key i
 
 ```ts
 let lightWeightMap = new LightWeightMap();
-lightWeightMap.set("Ahfbrgrbgnutfodgorrogorgrogofdfdf", 123);
-lightWeightMap.set("sdfs", 356);
-let result = lightWeightMap.getIndexOfKey("sdfs");
+lightWeightMap.set("squirrel", 123);
+lightWeightMap.set("sparrow", 356);
+let result = lightWeightMap.getIndexOfKey("sparrow");
 ```
 
 
@@ -267,8 +271,8 @@ Obtains the index of the first occurrence of an element with the specified value
 
 ```ts
 let lightWeightMap = new LightWeightMap();
-lightWeightMap.set("Ahfbrgrbgnutfodgorrogorgrogofdfdf", 123);
-lightWeightMap.set("sdfs", 356);
+lightWeightMap.set("squirrel", 123);
+lightWeightMap.set("sparrow", 356);
 let result = lightWeightMap.getIndexOfValue(123);
 ```
 
@@ -297,8 +301,8 @@ Obtains the key of an element at the specified position in this container.
 
 ```ts
 let lightWeightMap = new LightWeightMap();
-lightWeightMap.set("Ahfbrgrbgnutfodgorrogorgrogofdfdf", 123);
-lightWeightMap.set("sdfs", 356);
+lightWeightMap.set("squirrel", 123);
+lightWeightMap.set("sparrow", 356);
 let result = lightWeightMap.getKeyAt(1);
 ```
 
@@ -321,8 +325,8 @@ Adds all elements in a **LightWeightMap** instance to this container.
 
 ```ts
 let lightWeightMap = new LightWeightMap();
-lightWeightMap.set("Ahfbrgrbgnutfodgorrogorgrogofdfdf", 123);
-lightWeightMap.set("sdfs", 356);
+lightWeightMap.set("squirrel", 123);
+lightWeightMap.set("sparrow", 356);
 let map = new LightWeightMap();
 lightWeightMap.setAll(map);
 ```
@@ -352,7 +356,7 @@ Adds an element to this container.
 
 ```ts
 let lightWeightMap = new LightWeightMap();
-let result = lightWeightMap.set("Ahfbrgrbgnutfodgorrogorgrogofdfdf", 123);
+let result = lightWeightMap.set("squirrel", 123);
 ```
 
 
@@ -380,9 +384,9 @@ Removes an element with the specified key from this container.
 
 ```ts
 let lightWeightMap = new LightWeightMap();
-lightWeightMap.set("Ahfbrgrbgnutfodgorrogorgrogofdfdf", 123);
-lightWeightMap.set("sdfs", 356);
-lightWeightMap.remove("sdfs");
+lightWeightMap.set("squirrel", 123);
+lightWeightMap.set("sparrow", 356);
+lightWeightMap.remove("sparrow");
 ```
 
 
@@ -410,8 +414,8 @@ Removes an element at the specified position from this container.
 
 ```ts
 let lightWeightMap = new LightWeightMap();
-lightWeightMap.set("Ahfbrgrbgnutfodgorrogorgrogofdfdf", 123);
-lightWeightMap.set("sdfs", 356);
+lightWeightMap.set("squirrel", 123);
+lightWeightMap.set("sparrow", 356);
 let result = lightWeightMap.removeAt(1);
 ```
 
@@ -441,8 +445,8 @@ Sets a value for an element at the specified position in this container.
 
 ```ts
 let lightWeightMap = new LightWeightMap();
-lightWeightMap.set("Ahfbrgrbgnutfodgorrogorgrogofdfdf", 123);
-lightWeightMap.set("sdfs", 356);
+lightWeightMap.set("squirrel", 123);
+lightWeightMap.set("sparrow", 356);
 lightWeightMap.setValueAt(1, 3546);
 ```
 
@@ -471,8 +475,8 @@ Obtains the value of an element at the specified position in this container.
 
 ```ts
 let lightWeightMap = new LightWeightMap();
-lightWeightMap.set("Ahfbrgrbgnutfodgorrogorgrogofdfdf", 123);
-lightWeightMap.set("sdfs", 356);
+lightWeightMap.set("squirrel", 123);
+lightWeightMap.set("sparrow", 356);
 let result = lightWeightMap.getValueAt(1);
 ```
 
@@ -489,8 +493,8 @@ Clears this container and sets its length to **0**.
 
 ```ts
 let lightWeightMap = new LightWeightMap();
-lightWeightMap.set("Ahfbrgrbgnutfodgorrogorgrogofdfdf", 123);
-lightWeightMap.set("sdfs", 356);
+lightWeightMap.set("squirrel", 123);
+lightWeightMap.set("sparrow", 356);
 lightWeightMap.clear();
 ```
 
@@ -513,8 +517,8 @@ Obtains an iterator that contains all the keys in this container.
 
 ```ts
 let lightWeightMap = new LightWeightMap();
-lightWeightMap.set("Ahfbrgrbgnutfodgorrogorgrogofdfdf", 123);
-lightWeightMap.set("sdfs", 356);
+lightWeightMap.set("squirrel", 123);
+lightWeightMap.set("sparrow", 356);
 let iter = lightWeightMap.keys();
 let temp = iter.next().value;
 while(temp != undefined) {
@@ -542,8 +546,8 @@ Obtains an iterator that contains all the values in this container.
 
 ```ts
 let lightWeightMap = new LightWeightMap();
-lightWeightMap.set("Ahfbrgrbgnutfodgorrogorgrogofdfdf", 123);
-lightWeightMap.set("sdfs", 356);
+lightWeightMap.set("squirrel", 123);
+lightWeightMap.set("sparrow", 356);
 let iter = lightWeightMap.values();
 let temp = iter.next().value;
 while(temp != undefined) {
@@ -579,8 +583,8 @@ callbackfn
 
 ```ts
 let lightWeightMap = new LightWeightMap();
-lightWeightMap.set("sdfs", 123);
-lightWeightMap.set("dfsghsf", 357);
+lightWeightMap.set("sparrow", 123);
+lightWeightMap.set("gull", 357);
 lightWeightMap.forEach((value, key) => {
   console.log("value:" + value, key);
 });
@@ -605,8 +609,8 @@ Obtains an iterator that contains all the elements in this container.
 
 ```ts
 let lightWeightMap = new LightWeightMap();
-lightWeightMap.set("Ahfbrgrbgnutfodgorrogorgrogofdfdf", 123);
-lightWeightMap.set("sdfs", 356);
+lightWeightMap.set("squirrel", 123);
+lightWeightMap.set("sparrow", 356);
 let iter = lightWeightMap.entries();
 let temp = iter.next().value;
 while(temp != undefined) {
@@ -634,8 +638,8 @@ Concatenates the elements in this container into a string and returns the string
 
   ```ts
   let lightWeightMap = new LightWeightMap();
-  lightWeightMap.set("A", 123);
-  lightWeightMap.set("sdfs", 356);
+  lightWeightMap.set("squirrel", 123);
+  lightWeightMap.set("sparrow", 356);
   let iter = lightWeightMap.toString();
   ```
 
@@ -657,8 +661,8 @@ Obtains an iterator, each item of which is a JavaScript object.
 
 ```ts
 let lightWeightMap = new LightWeightMap();
-lightWeightMap.set("Ahfbrgrbgnutfodgorrogorgrogofdfdf", 123);
-lightWeightMap.set("sdfs", 356);
+lightWeightMap.set("squirrel", 123);
+lightWeightMap.set("sparrow", 356);
 
 // Method 1:
 for (let item of lightWeightMap) { 

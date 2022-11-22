@@ -49,3 +49,51 @@ export default class EnterpriseAdminAbility extends EnterpriseAdminExtensionAbil
   }
 };
 ```
+
+## EnterpriseAdminExtensionAbility.onBundleAdded
+
+onBundleAdded(bundleName: string): void
+
+Called when a bundle is added.
+
+**System capability**: SystemCapability.Customization.EnterpriseDeviceManager
+
+**Parameters**
+
+| Parameter  | Type                                 | Mandatory  | Description     |
+| ----- | ----------------------------------- | ---- | ------- |
+| bundleName | string | Yes   | Name of the bundle added.|
+
+**Example**
+
+```ts
+export default class EnterpriseAdminAbility extends EnterpriseAdminExtensionAbility {
+  onBundleAdded(bundleName: string) {
+    console.log("added bundle name: " + bundleName);
+  }
+};
+```
+
+## EnterpriseAdminExtensionAbility.onBundleRemoved
+
+onBundleRemoved(bundleName: string): void
+
+Called when a bundle is removed.
+
+**System capability**: SystemCapability.Customization.EnterpriseDeviceManager
+
+**Parameters**
+
+| Parameter  | Type                                 | Mandatory  | Description     |
+| ----- | ----------------------------------- | ---- | ------- |
+| bundleName | string | Yes   | Name of the bundle removed.|
+
+**Example**
+
+```ts
+export default class EnterpriseAdminAbility extends EnterpriseAdminExtensionAbility {
+  onBundleAdded(bundleName: string) {
+    console.log("removed bundle name: " + bundleName);
+  }
+};
+```

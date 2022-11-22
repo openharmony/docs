@@ -302,7 +302,7 @@ Represents the WLAN configuration.
 
 ## IpType<sup>7+</sup>
 
-Enumerate the IP address types.
+Enumerates the IP address types.
 
 **System API**: This is a system API.
 
@@ -473,7 +473,7 @@ Removes the configuration of an untrusted network. This API uses a promise to re
 
   | **Name**| **Type**| **Mandatory**| **Description**|
   | -------- | -------- | -------- | -------- |
-  | config | [WifiDeviceConfig](#wifideviceconfig) | Yes| WLAN configuration to remove.|
+| config | [WifiDeviceConfig](#wifideviceconfig) | Yes| WLAN configuration to remove.|
 
 **Return value**
 
@@ -496,7 +496,7 @@ Removes the configuration of an untrusted network. This API uses an asynchronous
 
   | **Name**| **Type**| **Mandatory**| **Description**|
   | -------- | -------- | -------- | -------- |
-  | config | [WifiDeviceConfig](#wifideviceconfig) | Yes| WLAN configuration to remove.|
+| config | [WifiDeviceConfig](#wifideviceconfig) | Yes| WLAN configuration to remove.|
   | callback | AsyncCallback&lt;boolean&gt; | Yes| Callback invoked to return the result. If the operation is successful, **err** is **0** and **data** is **true**. If the operation fails, **data** is **false**. If **err** is not **0**, an error has occurred.|
 
 
@@ -555,7 +555,7 @@ Removes the configuration of a candidate network. This API uses a promise to ret
 
   | **Name**| **Type**| **Mandatory**| **Description**|
   | -------- | -------- | -------- | -------- |
-  | networkId | number | Yes| ID of the network configuration to remove.|
+| networkId | number | Yes| ID of the network configuration to remove.|
 
 **Return value**
 
@@ -578,8 +578,8 @@ Removes the configuration of a candidate network. This API uses an asynchronous 
 
   | **Name**| **Type**| **Mandatory**| **Description**|
   | -------- | -------- | -------- | -------- |
-  | networkId | number | Yes| ID of the network configuration to remove.|
-  | callback | AsyncCallback&lt;void&gt; | Yes| Callback invoked to return the result. If the operation is successful, the value of **err** is **0**. If **err** is not **0**, an error has occurred.|
+| networkId | number | Yes| ID of the network configuration to remove.|
+| callback | AsyncCallback&lt;void&gt; | Yes| Callback invoked to return the result. If the operation is successful, the value of **err** is **0**. If **err** is not **0**, an error has occurred.|
 
 
 ## wifi.getCandidateConfigs<sup>9+</sup>
@@ -658,7 +658,7 @@ Connects to the specified network.
 
   | **Name**| **Type**| **Mandatory**| **Description**|
   | -------- | -------- | -------- | -------- |
-  | config | [WifiDeviceConfig](#wifideviceconfig) | Yes| WLAN configuration.|
+| config | [WifiDeviceConfig](#wifideviceconfig) | Yes| WLAN configuration.|
 
 **Return value**
 
@@ -871,16 +871,16 @@ Obtains the features supported by this device.
 
 | Value| Description|
 | -------- | -------- |
-| 0x0001 | WLAN infrastructure mode|
-| 0x0002 | 5 GHz feature|
-| 0x0004 | Generic Advertisement Service (GAS)/Access Network Query Protocol (ANQP) feature|
-| 0x0008 | Wi-Fi Direct|
-| 0x0010 | SoftAP|
-| 0x0040 | Wi-Fi AWare|
-| 0x8000 | WLAN AP/STA concurrency|
-| 0x8000000 | WPA3 Personal (WPA-3 SAE)|
-| 0x10000000 | WPA3-Enterprise Suite B |
-| 0x20000000 | Enhanced open feature|
+| 0x0001 | WLAN infrastructure mode. |
+| 0x0002 | 5 GHz feature. |
+| 0x0004 | Generic Advertisement Service (GAS)/Access Network Query Protocol (ANQP) feature. |
+| 0x0008 | Wi-Fi Direct. |
+| 0x0010 | SoftAP. |
+| 0x0040 | Wi-Fi AWare. |
+| 0x8000 | WLAN AP/STA concurrency. |
+| 0x8000000 | WPA3 Personal (WPA-3 SAE). |
+| 0x10000000 | WPA3-Enterprise Suite B. |
+| 0x20000000 | Enhanced open feature. |
 
 
 ## wifi.isFeatureSupported<sup>7+</sup>
@@ -1050,7 +1050,7 @@ Updates network configuration.
 
   | **Name**| **Type**| **Mandatory**| **Description**|
   | -------- | -------- | -------- | -------- |
-  | config | [WifiDeviceConfig](#wifideviceconfig) | Yes| New WLAN configuration.|
+| config | [WifiDeviceConfig](#wifideviceconfig) | Yes| New WLAN configuration.|
 
 **Return value**
 
@@ -1119,7 +1119,7 @@ Removes the specified network configuration.
 
   | **Name**| **Type**| **Mandatory**| **Description**|
   | -------- | -------- | -------- | -------- |
-  | id | number | Yes| ID of the network configuration to remove.|
+| id | number | Yes| ID of the network configuration to remove.|
 
 **Return value**
 
@@ -1830,10 +1830,10 @@ Registers the WLAN state change events.
 
 | **Value**| **Description**|
 | -------- | -------- |
-| 0 | Deactivated|
-| 1 | Activated|
-| 2 | Activating|
-| 3 | Deactivating|
+| 0 | Deactivated. |
+| 1 | Activated. |
+| 2 | Activating. |
+| 3 | Deactivating. |
 
 
 ## wifi.off('wifiStateChange')<sup>7+</sup>
@@ -1851,22 +1851,21 @@ Unregisters the WLAN state change events.
   | **Name**| **Type**| **Mandatory**| **Description**|
   | -------- | -------- | -------- | -------- |
   | type | string | Yes| Event type. The value is **wifiStateChange**.|
-  | callback | Callback&lt;number&gt; | No| Callback used to return the WLAN state. If this parameter is not specified, all callbacks associated with the specified event will be unregistered.|
+  | callback | Callback&lt;number&gt; | No| Callback for the WLAN state. If this parameter is not specified, all callbacks associated with the specified event will be unregistered.|
 
 **Example**
   ```js
   import wifi from '@ohos.wifi';
   
-  var WIFI_POWER_STATE = "wifiStateChange";
   var recvPowerNotifyFunc = result => {
       console.info("Receive power state change event: " + result);
   }
   
   // Register an event.
-  wifi.on(WIFI_POWER_STATE, recvPowerNotifyFunc);
+  wifi.on("wifiStateChange", recvPowerNotifyFunc);
   
   // Unregister an event.
-  wifi.off(WIFI_POWER_STATE, recvPowerNotifyFunc);
+  wifi.off("wifiStateChange", recvPowerNotifyFunc);
   ```
 
 
@@ -1891,8 +1890,8 @@ Registers the WLAN connection state change events.
 
 | **Value**| **Description**|
 | -------- | -------- |
-| 0 | Disconnected|
-| 1 | Connected|
+| 0 | Disconnected.|
+| 1 | Connected.|
 
 
 ## wifi.off('wifiConnectionChange')<sup>7+</sup>
@@ -1910,7 +1909,7 @@ Unregisters the WLAN connection state change events.
   | **Name**| **Type**| **Mandatory**| **Description**|
   | -------- | -------- | -------- | -------- |
   | type | string | Yes| Event type. The value is **wifiConnectionChange**.|
-  | callback | Callback&lt;number&gt; | No| Callback used to return the WLAN connection state. If this parameter is not specified, all callbacks associated with the specified event will be unregistered.|
+  | callback | Callback&lt;number&gt; | No| Callback for the WLAN connection state. If this parameter is not specified, all callbacks associated with the specified event will be unregistered.|
 
 
 ## wifi.on('wifiScanStateChange')<sup>7+</sup>
@@ -1934,8 +1933,8 @@ Registers the WLAN scan state change events.
 
 | **Value**| **Description**|
 | -------- | -------- |
-| 0 | Scan failed|
-| 1 | Scan successful|
+| 0 | Scan failed.|
+| 1 | Scan successful.|
 
 
 ## wifi.off('wifiScanStateChange')<sup>7+</sup>
@@ -1953,7 +1952,7 @@ Unregisters the WLAN scan state change events.
 | **Name**| **Type**| **Mandatory**| **Description**|
 | -------- | -------- | -------- | -------- |
 | type | string | Yes| Event type. The value is **wifiScanStateChange**.|
-| callback | Callback&lt;number&gt; | No| Callback used to return the WLAN scan state. If this parameter is not specified, all callbacks associated with the specified event will be unregistered.|
+| callback | Callback&lt;number&gt; | No| Callback for the WLAN scan state. If this parameter is not specified, all callbacks associated with the specified event will be unregistered.|
 
 
 ## wifi.on('wifiRssiChange')<sup>7+</sup>
@@ -1989,7 +1988,7 @@ Unregisters the RSSI change events.
   | **Name**| **Type**| **Mandatory**| **Description**|
   | -------- | -------- | -------- | -------- |
   | type | string | Yes| Event type. The value is **wifiRssiChange**.|
-  | callback | Callback&lt;number&gt; | No| Callback used to return the RSSI. If this parameter is not specified, all callbacks associated with the specified event will be unregistered.|
+| callback | Callback&lt;number&gt; | No| Callback for the RSSI. If this parameter is not specified, all callbacks associated with the specified event will be unregistered.|
 
 
 ## wifi.on('hotspotStateChange')<sup>7+</sup>
@@ -2013,10 +2012,10 @@ Registers the hotspot state change events.
 
 | **Value**| **Description**|
 | -------- | -------- |
-| 0 | Deactivated|
-| 1 | Activated|
-| 2 | Activating|
-| 3 | Deactivating|
+| 0 | Deactivated. |
+| 1 | Activated. |
+| 2 | Activating. |
+| 3 | Deactivating. |
 
 
 ## wifi.off('hotspotStateChange')<sup>7+</sup>
@@ -2034,7 +2033,7 @@ Unregisters the hotspot state change events.
   | **Name**| **Type**| **Mandatory**| **Description**|
   | -------- | -------- | -------- | -------- |
   | type | string | Yes| Event type. The value is **hotspotStateChange**.|
-  | callback | Callback&lt;number&gt; | No| Callback used to return the hotspot state. If this parameter is not specified, all callbacks associated with the specified event will be unregistered.|
+| callback | Callback&lt;number&gt; | No| Callback for the hotspot state. If this parameter is not specified, all callbacks associated with the specified event will be unregistered.|
 
 
 ## wifi.on('p2pStateChange')<sup>8+</sup>
@@ -2058,11 +2057,11 @@ Registers the P2P state change events.
 
 | **Value**| **Description**|
 | -------- | -------- |
-| 1 | Available|
-| 2 | Opening|
-| 3 | Opened|
-| 4 | Closing|
-| 5 | Closed|
+| 1 | Available. |
+| 2 | Opening. |
+| 3 | Opened. |
+| 4 | Closing. |
+| 5 | Closed. |
 
 ## wifi.off('p2pStateChange')<sup>8+</sup>
 
@@ -2079,7 +2078,7 @@ Unregisters the P2P state change events.
   | **Name**| **Type**| **Mandatory**| **Description**|
   | -------- | -------- | -------- | -------- |
   | type | string | Yes| Event type. The value is **p2pStateChange**.|
-  | callback | Callback&lt;number&gt; | No| Callback used to return the P2P state. If this parameter is not specified, all callbacks associated with the specified event will be unregistered.|
+| callback | Callback&lt;number&gt; | No| Callback for the P2P state. If this parameter is not specified, all callbacks associated with the specified event will be unregistered.|
 
 
   ## wifi.on('p2pConnectionChange')<sup>8+</sup>
@@ -2115,7 +2114,7 @@ Unregisters the P2P connection state change events.
   | **Name**| **Type**| **Mandatory**| **Description**|
   | -------- | -------- | -------- | -------- |
   | type | string | Yes| Event type. The value is **p2pConnectionChange**.|
-  | callback | Callback&lt;[WifiP2pLinkedInfo](#wifip2plinkedinfo8)&gt; | No| Callback used to return the P2P connection state. If this parameter is not specified, all callbacks associated with the specified event will be unregistered.|
+| callback | Callback&lt;[WifiP2pLinkedInfo](#wifip2plinkedinfo8)&gt; | No| Callback for the P2P connection state. If this parameter is not specified, all callbacks associated with the specified event will be unregistered.|
 
 
 ## wifi.on('p2pDeviceChange')<sup>8+</sup>
@@ -2151,7 +2150,7 @@ Unregisters the P2P device state change events.
   | **Name**| **Type**| **Mandatory**| **Description**|
   | -------- | -------- | -------- | -------- |
   | type | string | Yes| Event type. The value is **p2pDeviceChange**.|
-  | callback | Callback&lt;[WifiP2pDevice](#wifip2pdevice8)&gt; | No| Callback used to return the P2P device state. If this parameter is not specified, all callbacks associated with the specified event will be unregistered.|
+| callback | Callback&lt;[WifiP2pDevice](#wifip2pdevice8)&gt; | No| Callback for the P2P device state. If this parameter is not specified, all callbacks associated with the specified event will be unregistered.|
 
 
 ## wifi.on('p2pPeerDeviceChange')<sup>8+</sup>
@@ -2169,7 +2168,7 @@ Registers the P2P peer device state change events.
   | **Name**| **Type**| **Mandatory**| **Description**|
   | -------- | -------- | -------- | -------- |
   | type | string | Yes| Event type. The value is **p2pPeerDeviceChange**.|
-  | callback | Callback&lt;[WifiP2pDevice[]](#wifip2pdevice8)&gt; | Yes| Callback invoked to return the P2P peer device state.|
+| callback | Callback&lt;[WifiP2pDevice[]](#wifip2pdevice8)&gt; | Yes| Callback invoked to return the P2P peer device state.|
 
 
 ## wifi.off('p2pPeerDeviceChange')<sup>8+</sup>
@@ -2187,7 +2186,7 @@ Unregisters the P2P peer device state change events.
   | **Name**| **Type**| **Mandatory**| **Description**|
   | -------- | -------- | -------- | -------- |
   | type | string | Yes| Event type. The value is **p2pPeerDeviceChange**.|
-  | callback | Callback&lt;[WifiP2pDevice[]](#wifip2pdevice8)&gt; | No| Callback used to return the peer device state. If this parameter is not specified, all callbacks associated with the specified event will be unregistered.|
+| callback | Callback&lt;[WifiP2pDevice[]](#wifip2pdevice8)&gt; | No| Callback for the peer device state. If this parameter is not specified, all callbacks associated with the specified event will be unregistered.|
 
 
 ## wifi.on('p2pPersistentGroupChange')<sup>8+</sup>
@@ -2223,7 +2222,7 @@ Unregisters the P2P persistent group state change events.
   | **Name**| **Type**| **Mandatory**| **Description**|
   | -------- | -------- | -------- | -------- |
   | type | string | Yes| Event type. The value is **p2pPersistentGroupChange**.|
-  | callback | Callback&lt;void&gt; | No| Callback used to return the P2P persistent group state. If this parameter is not specified, all callbacks associated with the specified event will be unregistered.|
+| callback | Callback&lt;void&gt; | No| Callback for the P2P persistent group state. If this parameter is not specified, all callbacks associated with the specified event will be unregistered.|
 
 
 ## wifi.on('p2pDiscoveryChange')<sup>8+</sup>
@@ -2247,8 +2246,8 @@ Registers the P2P device discovery state change events.
 
 | **Value**| **Description**|
 | -------- | -------- |
-| 0 | Initial state|
-| 1 | Discovered|
+| 0 | Initial state.|
+| 1 | Discovered.|
 
 
 ## wifi.off('p2pDiscoveryChange')<sup>8+</sup>
@@ -2266,4 +2265,4 @@ Unregisters the P2P device discovery state change events.
   | **Name**| **Type**| **Mandatory**| **Description**|
   | -------- | -------- | -------- | -------- |
   | type | string | Yes| Event type. The value is **p2pDiscoveryChange**.|
-  | callback | Callback&lt;number&gt; | No| Callback used to return the P2P device discovery state. If this parameter is not specified, all callbacks associated with the specified event will be unregistered.|
+| callback | Callback&lt;number&gt; | No| Callback for the P2P device discovery state. If this parameter is not specified, all callbacks associated with the specified event will be unregistered.|

@@ -29,7 +29,7 @@ import LightWeightMap from '@ohos.util.LightWeightMap';
 
 **系统能力：** SystemCapability.Utils.Lang
 
-| 名称 | 参数类型 | 可读 | 可写 | 说明 |
+| 名称 | 类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
 | length | number | 是 | 否 | LightWeightMap的元素个数。 |
 
@@ -42,10 +42,24 @@ LightWeightMap的构造函数。
 
 **系统能力：** SystemCapability.Utils.Lang
 
+
+**错误码：**
+
+以下错误码的详细介绍请参见[containers错误码](../errorcodes/errorcode-containers.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 10200012 | The LightWeightMap's constructor cannot be directly invoked. |
+
 **示例：**
 
 ```ts
 let lightWeightMap = new LightWeightMap();
+try {
+  let lightWeightMap2 = LightWeightMap();
+} catch(err) {
+  console.log(`${err.code} - ${err.name} - ${err.message}`);
+}
 ```
 
 
@@ -63,11 +77,24 @@ isEmpty(): boolean
 | -------- | -------- |
 | boolean | 为空返回true，不为空返回false。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[containers错误码](../errorcodes/errorcode-containers.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 10200011 | The isEmpty method cannot be bound. |
+
 **示例：**
 
 ```ts
 const lightWeightMap = new LightWeightMap();
 let result = lightWeightMap.isEmpty();
+try {
+  lightWeightMap.isEmpty.bind({})(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
+} catch(err) {
+  console.log(`${err.code} - ${err.name} - ${err.message}`);
+}
 ```
 
 
@@ -91,6 +118,14 @@ hasAll(map: LightWeightMap<K, V>): boolean
 | -------- | -------- |
 | boolean | 包含所有元素返回true，否则返回false。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[containers错误码](../errorcodes/errorcode-containers.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 10200011 | The hasAll method cannot be bound. |
+
 **示例：**
 
 ```ts
@@ -100,6 +135,11 @@ lightWeightMap.set("sparrow", 356);
 let map = new LightWeightMap();
 map.set("sparrow", 356);
 let result = lightWeightMap.hasAll(map);
+try {
+  lightWeightMap.hasAll.bind({}, map)(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
+} catch(err) {
+  console.log(`${err.code} - ${err.name} - ${err.message}`);
+}
 ```
 
 
@@ -123,6 +163,14 @@ hasKey(key: K): boolean;
 | -------- | -------- |
 | boolean | 包含指定key返回true，否则返回false。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[containers错误码](../errorcodes/errorcode-containers.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 10200011 | The hasKey method cannot be bound. |
+
 **示例：**
 
 ```ts
@@ -131,6 +179,11 @@ let result = lightWeightMap.hasKey;
 lightWeightMap.hasKey("squirrel");
 lightWeightMap.set("squirrel", 123);
 let result1 = lightWeightMap.hasKey("squirrel");
+try {
+  lightWeightMap.hasKey.bind({}, "squirrel")(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
+} catch(err) {
+  console.log(`${err.code} - ${err.name} - ${err.message}`);
+}
 ```
 
 
@@ -154,6 +207,14 @@ hasValue(value: V): boolean
 | -------- | -------- |
 | boolean | 包含指定元素返回true，否则返回false。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[containers错误码](../errorcodes/errorcode-containers.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 10200011 | The hasValue method cannot be bound. |
+
 **示例：**
 
 ```ts
@@ -161,6 +222,11 @@ let lightWeightMap = new LightWeightMap();
 let result = lightWeightMap.hasValue(123);
 lightWeightMap.set("squirrel", 123);
 let result1 = lightWeightMap.hasValue(123);
+try {
+  lightWeightMap.hasValue.bind({}, 123)(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
+} catch(err) {
+  console.log(`${err.code} - ${err.name} - ${err.message}`);
+}
 ```
 
 
@@ -171,6 +237,14 @@ increaseCapacityTo(minimumCapacity: number): void
 将当前LightWeightMap扩容至可以容纳指定数量元素。
 
 **系统能力：** SystemCapability.Utils.Lang
+
+**错误码：**
+
+以下错误码的详细介绍请参见[containers错误码](../errorcodes/errorcode-containers.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 10200011 | The increaseCapacityTo method cannot be bound. |
 
 **参数：**
 
@@ -183,6 +257,11 @@ increaseCapacityTo(minimumCapacity: number): void
 ```ts
 let lightWeightMap = new LightWeightMap();
 lightWeightMap.increaseCapacityTo(10);
+try {
+  lightWeightMap.increaseCapacityTo.bind({}, 10)(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
+} catch(err) {
+  console.log(`${err.code} - ${err.name} - ${err.message}`);
+}
 ```
 
 
@@ -206,6 +285,14 @@ get(key: K): V
 | -------- | -------- |
 | V | 返回key映射的value值。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[containers错误码](../errorcodes/errorcode-containers.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 10200011 | The get method cannot be bound. |
+
 **示例：**
 
 ```ts
@@ -213,6 +300,11 @@ let lightWeightMap = new LightWeightMap();
 lightWeightMap.set("squirrel", 123);
 lightWeightMap.set("sparrow", 356);
 let result = lightWeightMap.get("sparrow");
+try {
+  lightWeightMap.get.bind({}, "sparrow")(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
+} catch(err) {
+  console.log(`${err.code} - ${err.name} - ${err.message}`);
+}
 ```
 
 
@@ -236,6 +328,14 @@ getIndexOfKey(key: K): number
 | -------- | -------- |
 | number | 返回指定元素第一次出现时的下标值，查找失败返回-1。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[containers错误码](../errorcodes/errorcode-containers.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 10200011 | The getIndexOfKey method cannot be bound. |
+
 **示例：**
 
 ```ts
@@ -243,6 +343,11 @@ let lightWeightMap = new LightWeightMap();
 lightWeightMap.set("squirrel", 123);
 lightWeightMap.set("sparrow", 356);
 let result = lightWeightMap.getIndexOfKey("sparrow");
+try {
+  lightWeightMap.getIndexOfKey.bind({}, "sparrow")(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
+} catch(err) {
+  console.log(`${err.code} - ${err.name} - ${err.message}`);
+}
 ```
 
 
@@ -266,6 +371,14 @@ getIndexOfValue(value: V): number
 | -------- | -------- |
 | number | 返回指定元素第一次出现时的下标值，查找失败返回-1。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[containers错误码](../errorcodes/errorcode-containers.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 10200011 | The getIndexOfValue method cannot be bound. |
+
 **示例：**
 
 ```ts
@@ -273,6 +386,11 @@ let lightWeightMap = new LightWeightMap();
 lightWeightMap.set("squirrel", 123);
 lightWeightMap.set("sparrow", 356);
 let result = lightWeightMap.getIndexOfValue(123);
+try {
+  lightWeightMap.getIndexOfValue.bind({}, 123)(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
+} catch(err) {
+  console.log(`${err.code} - ${err.name} - ${err.message}`);
+}
 ```
 
 
@@ -296,6 +414,15 @@ getKeyAt(index: number): K
 | -------- | -------- |
 | K | 返回该下标对应的元素键值对中key值。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[containers错误码](../errorcodes/errorcode-containers.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 10200011 | The getKeyAt method cannot be bound. |
+| 10200001 | The value of parameters are out of range. |
+
 **示例：**
 
 ```ts
@@ -303,6 +430,16 @@ let lightWeightMap = new LightWeightMap();
 lightWeightMap.set("squirrel", 123);
 lightWeightMap.set("sparrow", 356);
 let result = lightWeightMap.getKeyAt(1);
+try {
+  lightWeightMap.getKeyAt.bind({}, 1)(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
+} catch(err) {
+  console.log(`${err.code} - ${err.name} - ${err.message}`);
+}
+try {
+  lightWeightMap.getKeyAt(6)(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
+} catch(err) {
+  console.log(`${err.code} - ${err.name} - ${err.message}`);
+}
 ```
 
 
@@ -320,6 +457,14 @@ setAll(map: LightWeightMap<K, V>): void
 | -------- | -------- | -------- | -------- |
 | map | LightWeightMap<K, V> | 是 | 被添加元素的lightWeightMap。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[containers错误码](../errorcodes/errorcode-containers.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 10200011 | The setAll method cannot be bound. |
+
 **示例：**
 
 ```ts
@@ -328,6 +473,11 @@ lightWeightMap.set("squirrel", 123);
 lightWeightMap.set("sparrow", 356);
 let map = new LightWeightMap();
 lightWeightMap.setAll(map);
+try {
+  lightWeightMap.setAll.bind({}, map)(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
+} catch(err) {
+  console.log(`${err.code} - ${err.name} - ${err.message}`);
+}
 ```
 
 
@@ -351,11 +501,24 @@ set(key: K, value: V): Object
 | -------- | -------- |
 | Object | 返回添加数据后的lightWeightMap。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[containers错误码](../errorcodes/errorcode-containers.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 10200011 | The set method cannot be bound. |
+
 **示例：**
 
 ```ts
 let lightWeightMap = new LightWeightMap();
 let result = lightWeightMap.set("squirrel", 123);
+try {
+  lightWeightMap.set.bind({}, "squirrel", 123)(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
+} catch(err) {
+  console.log(`${err.code} - ${err.name} - ${err.message}`);
+}
 ```
 
 
@@ -379,6 +542,14 @@ remove(key: K): V
 | -------- | -------- |
 | V | 返回删除元素的值。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[containers错误码](../errorcodes/errorcode-containers.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 10200011 | The remove method cannot be bound. |
+
 **示例：**
 
 ```ts
@@ -386,6 +557,11 @@ let lightWeightMap = new LightWeightMap();
 lightWeightMap.set("squirrel", 123);
 lightWeightMap.set("sparrow", 356);
 lightWeightMap.remove("sparrow");
+try {
+  lightWeightMap.remove.bind({}, "sparrow")(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
+} catch(err) {
+  console.log(`${err.code} - ${err.name} - ${err.message}`);
+}
 ```
 
 
@@ -409,6 +585,14 @@ removeAt(index: number): boolean
 | -------- | -------- |
 | boolean | 成功删除元素返回true，否则返回false。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[containers错误码](../errorcodes/errorcode-containers.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 10200011 | The removeAt method cannot be bound. |
+
 **示例：**
 
 ```ts
@@ -416,6 +600,11 @@ let lightWeightMap = new LightWeightMap();
 lightWeightMap.set("squirrel", 123);
 lightWeightMap.set("sparrow", 356);
 let result = lightWeightMap.removeAt(1);
+try {
+  lightWeightMap.removeAt.bind({}, 1)(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
+} catch(err) {
+  console.log(`${err.code} - ${err.name} - ${err.message}`);
+}
 ```
 
 
@@ -440,6 +629,15 @@ setValueAt(index: number, newValue: V): boolean
 | -------- | -------- |
 | boolean | 成功替换指定位置数据返回true，否则返回false。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[containers错误码](../errorcodes/errorcode-containers.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 10200011 | The setValueAt method cannot be bound. |
+| 10200001 | The value of parameters are out of range. |
+
 **示例：**
 
 ```ts
@@ -447,6 +645,16 @@ let lightWeightMap = new LightWeightMap();
 lightWeightMap.set("squirrel", 123);
 lightWeightMap.set("sparrow", 356);
 lightWeightMap.setValueAt(1, 3546);
+try {
+  lightWeightMap.setValueAt.bind({}, 1, 3546)(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
+} catch(err) {
+  console.log(`${err.code} - ${err.name} - ${err.message}`);
+}
+try {
+  lightWeightMap.setValueAt(6, 3546);
+} catch(err) {
+  console.log(`${err.code} - ${err.name} - ${err.message}`);
+}
 ```
 
 
@@ -470,6 +678,15 @@ getValueAt(index: number): V
 | -------- | -------- |
 | V | 返回指定下标对应键值对中的元素。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[containers错误码](../errorcodes/errorcode-containers.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 10200011 | The getValueAt method cannot be bound. |
+| 10200001 | The value of parameters are out of range. |
+
 **示例：**
 
 ```ts
@@ -477,6 +694,16 @@ let lightWeightMap = new LightWeightMap();
 lightWeightMap.set("squirrel", 123);
 lightWeightMap.set("sparrow", 356);
 let result = lightWeightMap.getValueAt(1);
+try {
+  lightWeightMap.getValueAt.bind({}, 1)(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
+} catch(err) {
+  console.log(`${err.code} - ${err.name} - ${err.message}`);
+}
+try {
+  lightWeightMap.getValueAt(6);
+} catch(err) {
+  console.log(`${err.code} - ${err.name} - ${err.message}`);
+}
 ```
 
 
@@ -488,6 +715,14 @@ clear(): void
 
 **系统能力：** SystemCapability.Utils.Lang
 
+**错误码：**
+
+以下错误码的详细介绍请参见[containers错误码](../errorcodes/errorcode-containers.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 10200011 | The clear method cannot be bound. |
+
 **示例：**
 
 ```ts
@@ -495,6 +730,11 @@ let lightWeightMap = new LightWeightMap();
 lightWeightMap.set("squirrel", 123);
 lightWeightMap.set("sparrow", 356);
 lightWeightMap.clear();
+try {
+  lightWeightMap.clear.bind({})(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
+} catch(err) {
+  console.log(`${err.code} - ${err.name} - ${err.message}`);
+}
 ```
 
 
@@ -512,6 +752,14 @@ keys(): IterableIterator&lt;K&gt;
 | -------- | -------- |
 | IterableIterator&lt;K&gt; | 返回一个迭代器。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[containers错误码](../errorcodes/errorcode-containers.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 10200011 | The keys method cannot be bound. |
+
 **示例：**
 
 ```ts
@@ -523,6 +771,11 @@ let temp = iter.next().value;
 while(temp != undefined) {
   console.log("value:" + temp);
   temp = iter.next().value;
+}
+try {
+  lightWeightMap.keys.bind({})(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
+} catch(err) {
+  console.log(`${err.code} - ${err.name} - ${err.message}`);
 }
 ```
 
@@ -541,6 +794,14 @@ values(): IterableIterator&lt;V&gt;
 | -------- | -------- |
 | IterableIterator&lt;V&gt; | 返回一个迭代器。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[containers错误码](../errorcodes/errorcode-containers.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 10200011 | The values method cannot be bound. |
+
 **示例：**
 
 ```ts
@@ -552,7 +813,12 @@ let temp = iter.next().value;
 while(temp != undefined) {
   console.log("value:" + temp);
   temp = iter.next().value;
-} 
+}
+try {
+  lightWeightMap.values.bind({})(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
+} catch(err) {
+  console.log(`${err.code} - ${err.name} - ${err.message}`);
+}
 ```
 
 
@@ -578,6 +844,14 @@ callbackfn的参数说明：
 | key | K | 否 | 当前遍历到的元素键值对的键。 |
 | map | LightWeightMap<K, V> | 否 | 当前调用forEach方法的实例对象。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[containers错误码](../errorcodes/errorcode-containers.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 10200011 | The forEach method cannot be bound. |
+
 **示例：**
 
 ```ts
@@ -587,6 +861,13 @@ lightWeightMap.set("gull", 357);
 lightWeightMap.forEach((value, key) => {
   console.log("value:" + value, key);
 });
+try {
+  lightWeightMap.forEach.bind({}, (value, key) => {
+    console.log("value:" + value, key);
+  })(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
+} catch(err) {
+  console.log(`${err.code} - ${err.name} - ${err.message}`);
+}
 ```
 
 
@@ -604,6 +885,14 @@ entries(): IterableIterator<[K, V]>
 | -------- | -------- |
 | IterableIterator<[K, V]> | 返回一个迭代器。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[containers错误码](../errorcodes/errorcode-containers.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 10200011 | The entries method cannot be bound. |
+
 **示例：**
 
 ```ts
@@ -616,6 +905,11 @@ while(temp != undefined) {
   console.log("key:" + temp[0]);
   console.log("value:" + temp[1]);
   temp = iter.next().value;
+}
+try {
+  lightWeightMap.entries.bind({})(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
+} catch(err) {
+  console.log(`${err.code} - ${err.name} - ${err.message}`);
 }
 ```
 
@@ -633,14 +927,27 @@ toString(): String
   | -------- | -------- |
   | String | 返回一个字符串。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[containers错误码](../errorcodes/errorcode-containers.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 10200011 | The toString method cannot be bound. |
+
 **示例：**
 
-  ```ts
-  let lightWeightMap = new LightWeightMap();
-  lightWeightMap.set("squirrel", 123);
-  lightWeightMap.set("sparrow", 356);
-  let iter = lightWeightMap.toString();
-  ```
+```ts
+let lightWeightMap = new LightWeightMap();
+lightWeightMap.set("squirrel", 123);
+lightWeightMap.set("sparrow", 356);
+let iter = lightWeightMap.toString();
+try {
+  lightWeightMap.toString.bind({})(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
+} catch(err) {
+  console.log(`${err.code} - ${err.name} - ${err.message}`);
+}
+```
 
 ### [Symbol.iterator]
 
@@ -655,6 +962,14 @@ toString(): String
 | 类型 | 说明 |
 | -------- | -------- |
 | IterableIterator<[K, V]> | 返回一个迭代器。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[containers错误码](../errorcodes/errorcode-containers.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 10200011 | The Symbol.iterator method cannot be bound. |
 
 **示例：**
 
@@ -676,5 +991,10 @@ while(temp != undefined) {
   console.log("key:" + temp[0]);
   console.log("value:" + temp[1]);
   temp = iter.next().value;
+}
+try {
+  lightWeightMap[Symbol.iterator].bind({})(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
+} catch(err) {
+  console.log(`${err.code} - ${err.name} - ${err.message}`);
 }
 ```

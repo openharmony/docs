@@ -132,27 +132,27 @@
 // xxx.js
 import prompt from '@system.prompt';
 export default {
-  showDialog(e) {
+  showDialog() {
     this.$element('simpledialog').show()
   },
-  cancelDialog(e) {
+  cancelDialog() {
     prompt.showToast({
       message: 'Dialog cancelled'
     })
   },
-  cancelSchedule(e) {
+  cancelSchedule() {
     this.$element('simpledialog').close()
     prompt.showToast({
       message: 'Successfully cancelled'
     })
   },
-  setSchedule(e) {
+  setSchedule() {
     this.$element('simpledialog').close()
     prompt.showToast({
       message: 'Successfully confirmed'
     })
   },
-  doubleclick(e){
+  doubleclick(){
     prompt.showToast({
       message: 'doubleclick'
     })

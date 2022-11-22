@@ -10,6 +10,9 @@ Unlike [LinkedList](js-apis-linkedlist.md), which is a doubly linked list, **Lis
 
 **Recommended use case**: Use **List** for frequent insertion and removal operations.
 
+This topic uses the following to identify the use of generics:
+- T: Type
+
 ## Modules to Import
 
 ```ts
@@ -72,7 +75,7 @@ let result = list.add("a");
 let result1 = list.add(1);
 let b = [1, 2, 3];
 list.add(b);
-let c = {name : "lala", age : "13"};
+let c = {name : "Dylon", age : "13"};
 let result3 = list.add(false);
 ```
 
@@ -124,9 +127,9 @@ Checks whether this container has the specified element.
 
 ```ts
 let list = new List();
-let result = list.has("Ahfbrgrbgnutfodgorrogorg");
-list.add("Ahfbrgrbgnutfodgorrogorg");
-let result1 = list.has("Ahfbrgrbgnutfodgorrogorg");
+let result = list.has("squirrel");
+list.add("squirrel");
+let result1 = list.has("squirrel");
 ```
 
 ### get
@@ -181,7 +184,7 @@ Obtains the index of the last occurrence of the specified element in this contai
 
 | Value Type | Description|
 | -------- | -------- |
-| number | Returns the position index if obtained; returns **-1** otherwise.|
+| number | Returns the index if obtained; returns **-1** otherwise.|
 
 **Example**
 
@@ -265,7 +268,7 @@ obj1.add(2);
 obj1.add(4);
 obj1.add(5);
 list.equal(obj1);
-let obj2 = {name : "lala", age : "13"};
+let obj2 = {name : "Dylon", age : "13"};
 let result = list.equal(obj2);
 ```
 

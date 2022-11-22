@@ -45,7 +45,7 @@ Linux内核移植主要涉及基于linux内核基线合入三方芯片补丁后�
 4. 烧录启动。
    由于不同芯片的开发板的烧录方式不一样，此处不表述具体的烧录方式。需要注意烧录的各镜像的大小及启动参数的配置，参考hi3516dv300采用uboot启动参数：
 
-     
+   
    ```
    setenv bootargs 'mem=128M console=ttyAMA0,115200 root=/dev/mmcblk0p3 ro rootfstype=ext4 rootwait blkdevparts=mmcblk0:1M(boot),9M(kernel),50M(rootfs),50M(userfs)'
    ```
@@ -53,7 +53,7 @@ Linux内核移植主要涉及基于linux内核基线合入三方芯片补丁后�
 
 ## 验证
 
-调试init进程、启动shell和运行简单的用户态程序，验证内核移植是否成功。OpenHarmony[小型系统](../quick-start/quickstart-lite-overview.md)的OS镜像结构以及linux用户态的启动流程如下图1所示：
+调试init进程、启动shell和运行简单的用户态程序，验证内核移植是否成功。OpenHarmony小型系统的OS镜像结构以及linux用户态的启动流程如下图1所示：
 
   **图1** 基于linux内核的OS镜像结构和用户态程序启动流程
   ![zh-cn_image_0000001154372318](figures/zh-cn_image_0000001154372318.png)

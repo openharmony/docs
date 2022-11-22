@@ -28,7 +28,7 @@ NewIP载荷传输效率，相比IPv4提高最少1%，相比IPv6提高最少2.33%
 
 ## 可变长报头格式
 
-NewIP灵活极简报文头如下图所示，通过LLC Header中的EtherType = 0xEADD标识NewIP灵活极简报文。Bitmap是一组由0和1组成的二进制序列，每个二进制位的数值用于表示特定目标特性的存在性。
+NewIP WiFi灵活极简报文头如下图所示，通过LLC Header中的EtherType = 0xEADD标识NewIP灵活极简报文。Bitmap是一组由0和1组成的二进制序列，每个二进制位的数值用于表示特定目标特性的存在性。
 
 ![zh-cn_image-20220915140627223](figures/zh-cn_image-20220915140627223.png)
 
@@ -105,7 +105,7 @@ VENDOR_HOOKS=y          // 使能内核插桩基础框架
 备注：
 
 1. 只在Linux 5.10内核上支持NewIP内核协议栈。
-2. 鸿蒙linux内核要求所有原生内核代码侵入式修改，都要修改成插桩方式。
+2. OpenHarmony linux内核要求所有原生内核代码侵入式修改，都要修改成插桩方式。
 
 ```c
 /* 将NewIP ehash函数注册到内核 */
@@ -244,9 +244,43 @@ struct sockaddr_nin {
 };
 ```
 
+## NewIP开发说明
+
+目前只在OpenHarmony Linux-5.10内核支持NewIP内核协议栈，只能在用户态人工配置NewIP地址和路由到内核，两台设备通过路由器WiFi连接。如果想配置NewIP地址和路由后自动切换到NewIP内核协议栈通信，应用可以参考下面蓝框中描述。
+
+![zh-cn_image-20221009112548444](figures/zh-cn_image-20221009112548444.png)
+
+上图中NewIP地址，路由配置程序可以参考[代码仓examples代码](https://gitee.com/openharmony/communication_sfc_newip/tree/master/examples)，根据CPU硬件差异更改Makefile中CC定义编译成二级制文件后推送到开发板，参考上图命令给设备配置NewIP地址和路由。
+
+| 文件名             | 功能                                                   |
+| ------------------ | ------------------------------------------------------ |
+| nip_addr.c         | NewIP可变长地址配置demo代码（可配置任意有效NewIP地址） |
+| nip_route.c        | NewIP路由配置demo代码（可配置任意有效NewIP地址）       |
+| check_nip_enable.c | 获取本机NewIP能力                                      |
+
+设备1上查看NewIP地址和路由：
+
+```sh
+# cat /proc/net/nip_addr
+01          wlan0
+# cat /proc/net/nip_route
+02      ff09       1 wlan0        # 到设备2的路由
+01      01      2149580801 wlan0  # 本机自发自收路由
+```
+
+设备2上查看NewIP地址和路由：
+
+```sh
+# cat /proc/net/nip_addr
+02          wlan0
+# cat /proc/net/nip_route
+01      ff09       1 wlan0        # 到设备1的路由
+02      02      2149580801 wlan0  # 本机自发自收路由
+```
+
 ## NewIP收发包代码示例
 
-NewIP可变长地址配置，路由配置，UDP/TCP收发包demo代码链接如下，NewIP协议栈用户态接口使用方法可以参考[代码仓examples代码](https://gitee.com/openharmony-sig/communication_sfc_newip/tree/master/examples)。
+NewIP可变长地址配置，路由配置，UDP/TCP收发包demo代码链接如下，NewIP协议栈用户态接口使用方法可以参考[代码仓examples代码](https://gitee.com/openharmony/communication_sfc_newip/tree/master/examples)。demo代码内配置固定地址和路由，执行编译后二进制程序时不需要人工指定地址和路由。
 
 | 文件名                | 功能                          |
 | --------------------- | ----------------------------- |
@@ -262,15 +296,15 @@ NewIP可变长地址配置，路由配置，UDP/TCP收发包demo代码链接如�
 
 ![zh-cn_image-20220915165414926](figures/zh-cn_image-20220915165414926.png)
 
-1、将demo代码拷贝到Linux编译机上，make clean，make all编译demo代码。
+1. 将demo代码拷贝到Linux编译机上，make clean，make all编译demo代码。
 
-2、将编译生成二级制文件上传到设备1，设备2。
+2. 将编译生成二级制文件上传到设备1，设备2。
 
-3、执行“ifconfig xxx up”开启网卡设备，xxx表示网卡名，比如eth0，wlan0。
+3. 执行“ifconfig wlan0 up”开启网卡设备。
 
-4、在设备1的sh下执行“./nip_addr_cfg_demo server”给服务端配置0xDE00（2字节）变长地址，在设备2的sh下执行“./nip_addr_cfg_demo client”给客户端配置0x50（1字节）变长地址，通过“cat /proc/net/nip_addr”查看内核地址配置结果。
+4. 在设备1的sh下执行“./nip_addr_cfg_demo server”给服务端配置0xDE00（2字节）变长地址，在设备2的sh下执。行“./nip_addr_cfg_demo client”给客户端配置0x50（1字节）变长地址，通过“cat /proc/net/nip_addr”查看内核地址配置结果。
 
-5、在设备1的sh下执行“./nip_route_cfg_demo server”给服务端配置路由，在设备2的sh下执行“./nip_route_cfg_demo client”给客户端配置路由，通过“cat /proc/net/nip_route”查看内核路由配置结果。
+5. 在设备1的sh下执行“./nip_route_cfg_demo server”给服务端配置路由，在设备2的sh下执行“./nip_route_cfg_demo client”给客户端配置路由，通过“cat /proc/net/nip_route”查看内核路由配置结果。
 
 以上步骤操作完成后，可以进行UDP/TCP收发包，收发包demo默认使用上面步骤中配置的地址和路由。
 
@@ -343,5 +377,59 @@ allow thread_xxx thread_xxx:socket { create bind connect listen accept read writ
 allowxperm thread_xxx thread_xxx:socket ioctl { 0x8933 0x8916 0x890B };
 ```
 
+## WireShark报文解析模板
 
+Wireshark默认报文解析规则无法解析NewIP报文，在WireShark配置中添加NewIP报文解析模板可以实现NewIP报文解析，[NewIP报文解析模板](https://gitee.com/openharmony/communication_sfc_newip/blob/master/tools/wireshark_cfg_for_newip.lua)详见代码仓。
 
+报文解析模板配置文件的方法：
+
+依次单击 Help -> About Wireshark -> Folders，打开Global Configuration目录，编辑init.lua文件。在末尾添加dofile(DATA_DIR..”newip.lua”)，其中DATA_DIR即为newip.lua插件所在路径。
+
+![zh-cn_image-20220930141628922](figures/zh-cn_image-20220930141628922.png)
+
+NewIP报文解析模板添加样例：
+
+```
+NewIP报文解析模板存放路径：
+D:\tools\WireShark\wireshark_cfg_for_newip.lua
+
+WireShark配置文件路径：
+C:\Program Files\Wireshark\init.lua
+
+在init.lua文件最后增加下面配置（window 11）
+dofile("D:\\tools\\WireShark\\wireshark_cfg_for_newip.lua")
+```
+
+### 报文解析样例
+
+#### ND请求
+
+NewIP邻居发现请求报文格式如下，NewIP极简报文头包含1字节的bitmap（0x76），bitmap标识后面携带TTL，报文总长度，上层协议类型，目的地址，源地址。NewIP ND请求报文包含报文类型，操作码，校验和和请求地址。
+
+![zh-cn_image-20221011144901470](figures/zh-cn_image-20221011144901470.png)
+
+![zh-cn_image-20221011143924648](figures/zh-cn_image-20221011143924648.png)
+
+#### ND应答
+
+NewIP邻居发现应答报文格式如下，NewIP极简报文头包含2字节的bitmap（0x77，0x00），bitmap1标识后面携带TTL，报文总长度，上层协议类型，目的地址，源地址。bitmap2是字节对齐不携带任何数据（rk3568开发板链路层数据发送要求数据长度是偶数字节）。NewIP ND应答报文包含报文类型，操作码，校验和和邻居MAC地址长度，邻居MAC地址。
+
+![zh-cn_image-20221011145157288](figures/zh-cn_image-20221011145157288.png)
+
+![zh-cn_image-20221011144751355](figures/zh-cn_image-20221011144751355.png)
+
+#### TCP握手
+
+TCP三次握手SYN报文格式如下，NewIP极简报文头包含2字节的bitmap（0x77，0x00），bitmap1标识后面携带TTL，报文总长度，上层协议类型，目的地址，源地址。bitmap2是字节对齐不携带任何数据（rk3568开发板链路层数据发送要求数据长度是偶数字节）。
+
+![image-20221011150018915](figures/zh-cn_image-20221011150018915.png)
+
+![image-20221011145430048](figures/zh-cn_image-20221011145430048.png)
+
+#### TCP数据包
+
+TCP数据格式如下，NewIP极简报文头包含2字节的bitmap（0x77，0x00），bitmap1标识后面携带TTL，报文总长度，上层协议类型，目的地址，源地址。bitmap2是字节对齐不携带任何数据（rk3568开发板链路层数据发送要求数据长度是偶数字节）。
+
+![image-20221011150215316](figures/zh-cn_image-20221011150215316.png)
+
+![image-20221011145616293](figures/zh-cn_image-20221011145616293.png)

@@ -1,12 +1,10 @@
 # ExtensionAbilityInfo
 
-
+The **ExtensionAbilityInfo** module provides Extension ability information. Unless otherwise specified, all attributes are obtained through [getBundleInfo](js-apis-Bundle.md#bundlegetbundleinfo), and flags are obtained through [GET_BUNDLE_DEFAULT](js-apis-Bundle.md#bundleflag).
 
 > **NOTE**
 >
 > The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
-
-The **ExtensionAbilityInfo** module provides Extension ability information. Unless otherwise specified, all attributes are obtained through **GET_BUNDLE_DEFAULT**.
 
 ## ExtensionAbilityInfo
 

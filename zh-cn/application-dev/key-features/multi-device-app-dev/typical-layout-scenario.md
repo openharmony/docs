@@ -34,9 +34,9 @@
 
 **实现方案**
 
-不同断点下，页签在页面中的位置及尺寸都有差异，可以结合响应式布局能力，设置不同断点下[Tab组件](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/arkui-ts/ts-container-tabs.md)的barPosition、vertical、barWidth和barHeight属性实现目标效果。
+不同断点下，页签在页面中的位置及尺寸都有差异，可以结合响应式布局能力，设置不同断点下[Tab组件](../../reference/arkui-ts/ts-container-tabs.md)的barPosition、vertical、barWidth和barHeight属性实现目标效果。
 
-另外，页签栏中的文字和图片的相对位置不同，同样可以通过设置不同断点下[tabBar](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/arkui-ts/ts-container-tabcontent.md#%E5%B1%9E%E6%80%A7)对应的CustomBuilder中的布局方向，实现目标效果。
+另外，页签栏中的文字和图片的相对位置不同，同样可以通过设置不同断点下[tabBar](../../reference/arkui-ts/ts-container-tabcontent.md#属性)对应的CustomBuilder中的布局方向，实现目标效果。
 
 
 **参考代码**
@@ -144,7 +144,7 @@ struct Home {
 
 **实现方案**
 
-运营横幅通常使用[Swiper组件](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/arkui-ts/ts-container-swiper.md)实现。不同断点下，运营横幅中展示的图片数量不同。只需要结合响应式布局，配置不同断点下Swiper组件的displayCount属性，即可实现目标效果。
+运营横幅通常使用[Swiper组件](../../reference/arkui-ts/ts-container-swiper.md)实现。不同断点下，运营横幅中展示的图片数量不同。只需要结合响应式布局，配置不同断点下Swiper组件的displayCount属性，即可实现目标效果。
 
 **参考代码**
 
@@ -202,9 +202,9 @@ export default struct Banner {
 
 **实现方案**
 
-不同断点下，页面中图片的排布不同，此场景可以通过响应式布局能力结合[Grid组件](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/arkui-ts/ts-container-grid.md)实现，通过调整不同断点下的Grid组件的columnsTemplate属性即可实现目标效果。
+不同断点下，页面中图片的排布不同，此场景可以通过响应式布局能力结合[Grid组件](../../reference/arkui-ts/ts-container-grid.md)实现，通过调整不同断点下的Grid组件的columnsTemplate属性即可实现目标效果。
 
-另外，由于本例中各列的宽度相同，也可以通过响应式布局能力结合[List组件](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/arkui-ts/ts-container-list.md)实现，通过调整不同断点下的List组件的lanes属性也可实现目标效果。
+另外，由于本例中各列的宽度相同，也可以通过响应式布局能力结合[List组件](../../reference/arkui-ts/ts-container-list.md)实现，通过调整不同断点下的List组件的lanes属性也可实现目标效果。
 
 
 **参考代码**
@@ -341,7 +341,7 @@ struct MultiLaneList {
 
 **实现方案**
 
-侧边栏通常通过[SideBarContainer组件](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/arkui-ts/ts-container-sidebarcontainer.md)实现，结合响应式布局能力，在不同断点下为SiderBarConContainer组件的sideBarWidth、showControlButton等属性配置不同的值，即可实现目标效果。
+侧边栏通常通过[SideBarContainer组件](../../reference/arkui-ts/ts-container-sidebarcontainer.md)实现，结合响应式布局能力，在不同断点下为SiderBarConContainer组件的sideBarWidth、showControlButton等属性配置不同的值，即可实现目标效果。
 
 **参考代码**
 
@@ -433,7 +433,7 @@ struct SideBarSample {
 
 **实现方案**
 
-图片通常使用[Image组件](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/arkui-ts/ts-basic-components-image.md)展示，Image组件的objectFit属性默认为ImageFit.Cover，即保持宽高比进行缩小或者放大以使得图片两边都大于或等于显示边界。在大图浏览场景下，因屏幕与图片的宽高比可能有差异，常常会发生图片被截断的问题。此时只需将Image组件的objectFit属性设置为ImageFit.Contain，即保持宽高比进行缩小或者放大并使得图片完全显示在显示边界内，即可解决该问题。
+图片通常使用[Image组件](../../reference/arkui-ts/ts-basic-components-image.md)展示，Image组件的objectFit属性默认为ImageFit.Cover，即保持宽高比进行缩小或者放大以使得图片两边都大于或等于显示边界。在大图浏览场景下，因屏幕与图片的宽高比可能有差异，常常会发生图片被截断的问题。此时只需将Image组件的objectFit属性设置为ImageFit.Contain，即保持宽高比进行缩小或者放大并使得图片完全显示在显示边界内，即可解决该问题。
 
 
 **参考代码**
@@ -609,7 +609,7 @@ export default struct Header {
 
 **实现方案**
 
-借助[栅格组件](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/arkui-ts/ts-container-gridrow.md)，控制待显示内容在不同的断点下占据不同的列数，即可实现不同设备上的缩进效果。另外还可以调整不同断点下栅格组件与两侧的间距，获得更好的显示效果。
+借助[栅格组件](../../reference/arkui-ts/ts-container-gridrow.md)，控制待显示内容在不同的断点下占据不同的列数，即可实现不同设备上的缩进效果。另外还可以调整不同断点下栅格组件与两侧的间距，获得更好的显示效果。
 
 
 **参考代码**

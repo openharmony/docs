@@ -39,7 +39,7 @@ OpenHarmony应用沙箱组件
 
 ![](figures/compile-change1-2.png)
 
-**变更2：**自定义组件Struct的成员属性不能和内置属性方法名重名。
+**变更2**：自定义组件Struct的成员属性不能和内置属性方法名重名。
 
 **变更影响**
 

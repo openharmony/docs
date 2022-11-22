@@ -422,13 +422,11 @@ enableAirplaneMode(enable: boolean): Promise\<void>
 
 ```js
 let isEnabled = true;
-settings.enableAirplaneMode(isEnabled).then((err) => {
-    if (err) {
-        console.log('Failed to enable AirplaneMode.');
-        return;
-    }
-    console.log('Return true if enable.');
-});
+settings.enableAirplaneMode(isEnabled).then(() => {
+  console.log('Succeeded in enabling AirplaneMode.');
+}).catch((err) => {
+  console.log(`Failed to enable AirplaneMode. Cause: ${err}`);
+})
 ```
 
 ## settings.canShowFloating

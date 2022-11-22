@@ -1,6 +1,6 @@
 # quickFixManager
 
-quickFixManager模块提供快速修复的能力，快速修复是鸿蒙提供给开发者的一种技术手段，支持开发者以远快于（小时级、分钟级）应用升级的方式进行缺陷修复。
+quickFixManager模块提供快速修复的能力，快速修复是OpenHarmony提供给开发者的一种技术手段，支持开发者以远快于（小时级、分钟级）应用升级的方式进行缺陷修复。
 
 > **说明：**
 > 
@@ -49,6 +49,8 @@ applyQuickFix(hapModuleQuickFixFiles: Array\<string>, callback: AsyncCallback\<v
 
 快速修复的补丁安装接口。
 
+**需要权限**: ohos.permission.INSTALL_BUNDLE
+
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.QuickFix
 
 **系统API**: 此接口为系统接口，三方应用不支持调用。
@@ -77,9 +79,11 @@ applyQuickFix(hapModuleQuickFixFiles: Array\<string>, callback: AsyncCallback\<v
 
 ## quickFixManager.applyQuickFix
 
-applyQuickFix(hapModuleQuickFixFiles: Array\<string>): Promise<void>;
+applyQuickFix(hapModuleQuickFixFiles: Array\<string>): Promise\<void>;
 
 快速修复的补丁安装接口。
+
+**需要权限**: ohos.permission.INSTALL_BUNDLE
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.QuickFix
 
@@ -116,6 +120,8 @@ getApplicationQuickFixInfo(bundleName: string, callback: AsyncCallback\<Applicat
 
 获取应用的快速修复信息。
 
+**需要权限**: ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
+
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.QuickFix
 
 **系统API**: 此接口为系统接口，三方应用不支持调用。
@@ -147,6 +153,8 @@ getApplicationQuickFixInfo(bundleName: string, callback: AsyncCallback\<Applicat
 getApplicationQuickFixInfo(bundleName: string): Promise\<ApplicationQuickFixInfo>;
 
 获取应用的快速修复信息。
+
+**需要权限**: ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.QuickFix
 

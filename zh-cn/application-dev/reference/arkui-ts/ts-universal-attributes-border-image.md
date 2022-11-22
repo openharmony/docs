@@ -10,29 +10,19 @@
 
 | 名称         | 参数类型                                     | 描述                                      |
 | ---------- | ---------------------------------------- | --------------------------------------- |
-| borderImage     | BorderImageOption | 图片边框或者渐变色边框设置接口。                            |
+| borderImage     | [BorderImageOption](#borderimageoption对象说明) | 图片边框或者渐变色边框设置接口。                            |
 
 ## BorderImageOption对象说明
 
 | 名称         | 类型                                     | 描述                                      |
 | ---------- | ---------------------------------------- | --------------------------------------- |
 | source     | string \| [Resource](ts-types.md#resource) \| [linearGradient](ts-universal-attributes-gradient-color.md) | 边框图源或者渐变色设置。                            |
-| slice      | [Length](ts-types.md#length)\| EdgeWidths | 设置图片边框切割宽度。<br/>默认值：0                   |
-| width      | [Length](ts-types.md#length)\| EdgeWidths | 设置图片边框宽度。<br/>默认值：0                     |
-| outset     | [Length](ts-types.md#length)\| EdgeWidths | 设置边框图片向外延伸距离。<br/>默认值：0                 |
-| RepeatMode | RepeatMode                               | 设置边框图片的重复方式。<br/>默认值：RepeatMode.Stretch |
+| slice      | [Length](ts-types.md#length) \| [EdgeWidths](ts-types.md#edgewidths9) | 设置图片边框切割宽度。<br/>默认值：0                   |
+| width      | [Length](ts-types.md#length) \| [EdgeWidths](ts-types.md#edgewidths9) | 设置图片边框宽度。<br/>默认值：0                     |
+| outset     | [Length](ts-types.md#length) \| [EdgeWidths](ts-types.md#edgewidths9) | 设置边框图片向外延伸距离。<br/>默认值：0                 |
+| repeat | [RepeatMode](#repeatmode枚举说明)                               | 设置边框图片的重复方式。<br/>默认值：RepeatMode.Stretch |
 | fill       | boolean                                  | 设置边框图片中心填充。<br/>默认值：false               |
 
-## EdgeWidths对象说明
-
-引用该对象时，至少传入一个参数。
-
-| 名称 | 参数类型 | 必填 |描述 |
-| -------- | -------- |-------- |-------- |
-| left | [Length](ts-types.md#length) | 否 | 左侧距离参数。 |
-| right | [Length](ts-types.md#length) | 否 | 右侧距离参数。 |
-| top | [Length](ts-types.md#length) | 否 | 上侧距离参数。 |
-| bottom | [Length](ts-types.md#length) | 否 | 下侧距离参数。 |
 
 ## RepeatMode枚举说明
 
@@ -51,19 +41,31 @@
 @Entry
 @Component
 struct Index {
+  @State outSetValue: number = 40
 
   build() {
     Row() {
       Column() {
-        Text('This is\nborderImage.').textAlign(TextAlign.Center)
+        Text('This is borderImage.').textAlign(TextAlign.Center).fontSize(50)
           .borderImage({
-            source: "borderOrigin.png",
-            slice: {top:"31%", bottom:"31%", left:"31%", right:"31%"},
-            width: {top:"20px", bottom:"20px", left:"20px", right:"20px"},
-            outset: {top:"5px", bottom:"5px", left:"5px", right:"5px"},
+            source: $r('app.media.heart'),
+            slice: `${this.outSetValue}%`,
+            width: `${this.outSetValue}px`,
+            outset: '5px',
             repeat: RepeatMode.Repeat,
             fill: false
-          });
+          })
+        Slider({
+          value: this.outSetValue,
+          min: 0,
+          max: 100,
+          style: SliderStyle.OutSet
+        })
+          .margin({ top: 30 })
+          .onChange((value: number, mode: SliderChangeMode) => {
+            this.outSetValue = value
+            console.info('value:' + value + 'mode:' + mode.toString())
+          })
       }
       .width('100%')
     }
@@ -72,7 +74,7 @@ struct Index {
 }
 ```
 
-![zh-cn_image_borderImage](figures/borderImage.png)
+![zh-cn_image_borderImage](figures/borderImage.gif)
 
 
 ```ts
@@ -80,20 +82,21 @@ struct Index {
 @Entry
 @Component
 struct Index {
-
   build() {
     Row() {
       Column() {
-        Text('This is\ngradient color.').textAlign(TextAlign.Center)
+        Text('This is gradient color.').textAlign(TextAlign.Center).width(68)
           .borderImage({
-            source: {angle:90,
+            source: {
+              angle: 90,
               direction: GradientDirection.Left,
-              colors: [[0xAEE1E1, 0.0], [0xD3E0DC, 0.3], [0xFCD1D1, 1.0]]},
-            slice: {top:10, bottom:10, left:10, right:10},
-            width: {top:"10px", bottom:"10px", left: "10px", right:"10px"},
+              colors: [[0xAEE1E1, 0.0], [0xD3E0DC, 0.3], [0xFCD1D1, 1.0]]
+            },
+            slice: { top: 10, bottom: 10, left: 10, right: 10 },
+            width: { top: "10px", bottom: "10px", left: "10px", right: "10px" },
             repeat: RepeatMode.Stretch,
             fill: false
-          });
+          })
       }
       .width('100%')
     }

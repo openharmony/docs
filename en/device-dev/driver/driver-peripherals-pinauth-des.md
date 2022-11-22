@@ -342,8 +342,8 @@ The development procedure is as follows:
        }
    
        info.executorType = EXECUTOR_TYPE;
-       info.remainTimes = infoRet.remainTimes;
-       info.freezingTime = infoRet.freezingTime;
+       info.remainAttempts = infoRet.remainTimes;
+       info.lockoutDuration = infoRet.freezingTime;
    
        return HDF_SUCCESS;
    }

@@ -9,13 +9,57 @@
 
 
 ```js
-import cipher from '@system.cipher'
+import cipher from '@system.cipher';
 ```
 
+## CipherResponse
+
+Defines the response to the cipher interface called.
+
+**System capability**: SystemCapability.Security.Cipher
+
+| Name| Type  | Mandatory| Description        |
+| ------ | ------ | ---- | ------------ |
+| text   | string | Yes  | Response content.|
+
+## CipherRsaOptions
+
+Defines the input parameters of **cipher.rsa()**.
+
+**System capability**: SystemCapability.Security.Cipher
+
+| Name        | Type                                | Mandatory| Description                                                        |
+| -------------- | ------------------------------------ | ---- | ------------------------------------------------------------ |
+| action         | string                               | Yes  | Action to perform. The options are as follows:<br>1. **encrypt**: Encrypts data.<br>2. **decrypt**: Decrypts data.|
+| text           | string                               | Yes  | Text to be encrypted or decrypted.<br> The text to be encrypted must be a common text and cannot exceed the length calculated based on the formula (keySize/8 - 66). **keySize** indicates the key length. For example, if the key length is 1024 bytes, the text cannot exceed 62 bytes (1024/8 - 66 = 62). The text to be decrypted must be a binary value encoded in Base64. The default format is used for Base64 encoding.|
+| key            | string                               | Yes  | RSA key. It is a public key in encryption and a private key in decryption.     |
+| transformation | string                               | No  | RSA padding. The default value is **RSA/None/OAEPWithSHA256AndMGF1Padding**.|
+| success        | (data: [CipherResponse](#cipherresponse)) => void       | No  | Called when data is encrypted or decrypted successfully.                                    |
+| fail           | (data: string, code: number) => void | No  | Called when data fails to be encrypted or decrypted.                                    |
+| complete       | () => void                           | No  | Called when the execution is complete.                                    |
+
+## CipherAesOptions
+
+Defines the input parameters of **cipher.aes()**.
+
+**System capability**: SystemCapability.Security.Cipher
+
+| Name        | Type                                | Mandatory| Description                                                        |
+| -------------- | ------------------------------------ | ---- | ------------------------------------------------------------ |
+| action         | string                               | Yes  | Action to perform. The options are as follows:<br>1. **encrypt**: Encrypts data.<br>2. **decrypt**: Decrypts data.|
+| text           | string                               | Yes  | Text to be encrypted or decrypted.<br> The text to be encrypted must be common text. The text to be decrypted must be a binary value encoded in Base64. The default format is used for Base64 encoding.|
+| key            | string                               | Yes  | Key used for encryption or decryption. It is a Base64 encoded string.|
+| transformation | string                               | No  | Encryption mode and padding of the AES algorithm. The default value is **AES/CBC/PKCS5Padding**.         |
+| iv             | string                               | No  | Initialization vector (IV) for AES-based encryption and decryption. The value is a string encoded in Base64. The default value is the key value.|
+| ivOffset       | string                               | No  | Offset of the IV for AES-based encryption and decryption. The default value is **0**, which is the only value supported.                 |
+| ivLen          | string                               | No  | Length of the IV, in bytes. This field is reserved. The default value is **16**, which is the only value supported.|
+| success        | (data: [CipherResponse](#cipherresponse)) => void       | No  | Called when data is encrypted or decrypted successfully.                                    |
+| fail           | (data: string, code: number) => void | No  | Called when data fails to be encrypted or decrypted.                                    |
+| complete       | () => void                           | No  | Called when the execution is complete.                                    |
 
 ## cipher.rsa
 
-rsa(Object): void
+rsa(options: CipherRsaOptions): void
 
 Encrypts or decrypts data using RSA.
 
@@ -25,13 +69,7 @@ Encrypts or decrypts data using RSA.
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| action | string | Yes| Action to perform. The options are as follows:<br>-&nbsp;encrypt<br>-&nbsp;decrypt|
-| text | string | Yes| Text to be encrypted or decrypted.<br> The text to be encrypted must be common text that meets the following requirement:<br> Maximum text length = Key length/8 - 66<br>For example, if the key is of 1024 bytes, the text to be encrypted cannot exceed 62 bytes (1024/8 -66 = 62).<br> The text to be decrypted must be binary text encoded in Base64. The default format is used for Base64 encoding.|
-| key | string | Yes| RSA key. The key is used as a public key in encryption and a private key in decryption.|
-| transformation | string | No| RSA padding. The default value is **RSA/None/OAEPWithSHA256AndMGF1Padding**.|
-| success | Function | No| Called when data is encrypted or decrypted successfully.|
-| fail | Function | No| Called when data fails to be encrypted or decrypted.|
-| complete | Function | No| Called when the execution is complete.|
+| options | [CipherRsaOptions](#cipherrsaoptions) | Yes| Parameters set for RSA encryption or decryption.|
 
 **Example**
 
@@ -53,7 +91,7 @@ export default {
         console.log(`Handling successful:${data.text}`);          
       },            
       fail: function(data, code) {               
-        console.log(`### Failed to encrypt cipher.rsa ### ${code}:${data}`); 
+        console.log(`### cipher.rsa encryption failed ### ${code}:${data}`); 
       },
       complete: function() {
         console.log(`operation complete!`);
@@ -86,7 +124,7 @@ export default {
            console.log(`Handling successful:${data.text}`);          
          },            
          fail: function(data, code) {               
-           console.log(`### Failed to encrypt cipher.rsa ### ${code}:${data}`); 
+           console.log(`### cipher.rsa encryption failed ### ${code}:${data}`); 
          },
          complete: function() {
            console.log(`operation complete!`);
@@ -99,7 +137,7 @@ export default {
 
 ## cipher.aes
 
-aes(Object): void
+aes(options: CipherAesOptions): void
 
 Encrypts or decrypts data using AES.
 
@@ -109,16 +147,7 @@ Encrypts or decrypts data using AES.
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| action | string | Yes| Action to perform. The options are as follows:<br>-&nbsp;encrypt<br>-&nbsp;decrypt|
-| text | string | Yes| Text to be encrypted or decrypted.<br> The text to be encrypted must be common text. The text to be decrypted must be binary text encoded in Base64. The default format is used for Base64 encoding.|
-| key | string | Yes| Key used for encryption or decryption. It is a string encoded in Base64.|
-| transformation | string | No| Encryption mode and padding of the AES algorithm. The default value is **AES/CBC/PKCS5Padding**.|
-| iv | string | No| Initialization vector (IV) for AES-based encryption and decryption. The value is a string encoded in Base64. The default value is the key value.|
-| ivOffset | string | No| Offset of the IV for AES-based encryption and decryption. The default value is **0**, which is the only value supported.|
-| ivLen | string | No| Length of the IV, in bytes. This field is reserved. The default value is **16**, which is the only value supported.|
-| success | Function | No| Called when data is encrypted or decrypted successfully.|
-| fail | Function | No| Called when data fails to be encrypted or decrypted.|
-| complete | Function | No| Called when the execution is complete.|
+| options | [CipherAesOptions](#cipheraesoptions) | Yes| Parameters set for AES encryption or decryption.|
 
 **Example**
 
@@ -139,7 +168,7 @@ export default {
         console.log(`Handling successful:${data.text}`);          
         },            
       fail: function(data, code) {               
-        console.log(`### Failed to encrypt cipher.rsa ### ${code}:${data}`); 
+        console.log(`### cipher.rsa encryption failed ### ${code}:${data}`); 
         },
       complete: function() {
         console.log(`operation complete!`);
@@ -159,13 +188,12 @@ export default {
          console.log(`Handling successful:${data.text}`);          
         },            
        fail: function(data, code) {               
-         console.log(`### Failed to decrypt cipher.rsa ### ${code}:${data}`); 
+         console.log(`### cipher.aes encryption failed ### ${code}:${data}`); 
        },
        complete: function() {
          console.log(`operation complete!`);
         }
      });        
-    });    
   }
 }
 

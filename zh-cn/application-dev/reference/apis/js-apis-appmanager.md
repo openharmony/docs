@@ -294,6 +294,9 @@ registerApplicationStateObserver(observer: ApplicationStateObserver): number;
     },
     onProcessDied(processData) {
         console.log('------------ onProcessDied -----------', processData);
+    },
+    onProcessStateChanged(processData) {
+        console.log('------------ onProcessStateChanged -----------', processData);
     }
   }
   const observerCode = app.registerApplicationStateObserver(applicationStateObserver);
@@ -335,6 +338,9 @@ registerApplicationStateObserver(observer: ApplicationStateObserver, bundleNameL
     },
     onProcessDied(processData) {
         console.log('------------ onProcessDied -----------', processData);
+    },
+    onProcessStateChanged(processData) {
+        console.log('------------ onProcessStateChanged -----------', processData);
     }
   }
   var bundleNameList = ['bundleName1', 'bundleName2'];
@@ -707,6 +713,18 @@ onForegroundApplicationChanged(appStateData: AppStateData): void;
   var applicationStateObserver = {
     onForegroundApplicationChanged(appStateData) {
         console.log('------------ onForegroundApplicationChanged -----------', appStateData);
+    },
+    onAbilityStateChanged(abilityStateData) {
+        console.log('------------ onAbilityStateChanged -----------', abilityStateData);
+    },
+    onProcessCreated(processData) {
+        console.log('------------ onProcessCreated -----------', processData);
+    },
+    onProcessDied(processData) {
+        console.log('------------ onProcessDied -----------', processData);
+    },
+    onProcessStateChanged(processData) {
+        console.log('------------ onProcessStateChanged -----------', processData);
     }
   }
   const observerCode = app.registerApplicationStateObserver(applicationStateObserver);
@@ -734,8 +752,20 @@ onAbilityStateChanged(abilityStateData: AbilityStateData): void;
     
 ```js
   var applicationStateObserver = {
+    onForegroundApplicationChanged(appStateData) {
+        console.log('------------ onForegroundApplicationChanged -----------', appStateData);
+    },
     onAbilityStateChanged(abilityStateData) {
         console.log('------------ onAbilityStateChanged -----------', abilityStateData);
+    },
+    onProcessCreated(processData) {
+        console.log('------------ onProcessCreated -----------', processData);
+    },
+    onProcessDied(processData) {
+        console.log('------------ onProcessDied -----------', processData);
+    },
+    onProcessStateChanged(processData) {
+        console.log('------------ onProcessStateChanged -----------', processData);
     }
   }
   const observerCode = app.registerApplicationStateObserver(applicationStateObserver);
@@ -762,8 +792,20 @@ onProcessCreated(processData: ProcessData): void;
     
 ```js
   var applicationStateObserver = {
+    onForegroundApplicationChanged(appStateData) {
+        console.log('------------ onForegroundApplicationChanged -----------', appStateData);
+    },
+    onAbilityStateChanged(abilityStateData) {
+        console.log('------------ onAbilityStateChanged -----------', abilityStateData);
+    },
     onProcessCreated(processData) {
         console.log('------------ onProcessCreated -----------', processData);
+    },
+    onProcessDied(processData) {
+        console.log('------------ onProcessDied -----------', processData);
+    },
+    onProcessStateChanged(processData) {
+        console.log('------------ onProcessStateChanged -----------', processData);
     }
   }
   const observerCode = app.registerApplicationStateObserver(applicationStateObserver);
@@ -790,8 +832,20 @@ onProcessDied(processData: ProcessData): void;
     
 ```js
   var applicationStateObserver = {
+    onForegroundApplicationChanged(appStateData) {
+        console.log('------------ onForegroundApplicationChanged -----------', appStateData);
+    },
+    onAbilityStateChanged(abilityStateData) {
+        console.log('------------ onAbilityStateChanged -----------', abilityStateData);
+    },
+    onProcessCreated(processData) {
+        console.log('------------ onProcessCreated -----------', processData);
+    },
     onProcessDied(processData) {
         console.log('------------ onProcessDied -----------', processData);
+    },
+    onProcessStateChanged(processData) {
+        console.log('------------ onProcessStateChanged -----------', processData);
     }
   }
   const observerCode = app.registerApplicationStateObserver(applicationStateObserver);
@@ -818,6 +872,18 @@ onProcessDied(processData: ProcessData): void;
     
 ```js
   var applicationStateObserver = {
+    onForegroundApplicationChanged(appStateData) {
+        console.log('------------ onForegroundApplicationChanged -----------', appStateData);
+    },
+    onAbilityStateChanged(abilityStateData) {
+        console.log('------------ onAbilityStateChanged -----------', abilityStateData);
+    },
+    onProcessCreated(processData) {
+        console.log('------------ onProcessCreated -----------', processData);
+    },
+    onProcessDied(processData) {
+        console.log('------------ onProcessDied -----------', processData);
+    },
     onProcessStateChanged(processData) {
         console.log('------------ onProcessStateChanged -----------', processData);
     }
@@ -866,7 +932,7 @@ onProcessDied(processData: ProcessData): void;
 | bundleName<sup>8+</sup>  | string   | 是   | 否  | 应用包名。                  |
 | uid<sup>8+</sup>         | number   | 是   | 否   | 用户ID。                  |
 | isContinuousTask<sup>9+</sup>         | boolean   | 是   | 否   | 判断过程是否为连续任务。                  |
-| isKeepAlive<sup>8+</sup>         | boolean   | 是   | 否   | 判断该过程是否保持活跃。                  |
+| isKeepAlive<sup>9+</sup>         | boolean   | 是   | 否   | 判断该过程是否保持活跃。                  |
 
 ## ProcessRunningInfo
 

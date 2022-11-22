@@ -2,7 +2,8 @@
 
 - 访问控制  
   - [访问控制（权限）开发概述](accesstoken-overview.md)
-  - [访问控制（权限）开发指导](accesstoken-guidelines.md)
+  - [访问控制授权申请指导](accesstoken-guidelines.md)
+  - [访问控制权限校验指导](permission-verify-guidelines.md)
   - [应用权限列表](permission-list.md)
 - 用户认证
   - [用户认证开发概述](userauth-overview.md)
@@ -10,6 +11,10 @@
 - 密钥管理
   - [HUKS开发概述](huks-overview.md)
   - [HUKS开发指导](huks-guidelines.md)
+- 加密算法库框架
+  - [加密算法库框架概述](cryptoFramework-overview.md)
+  - [加密算法框架开发指导](cryptoFramework-guidelines.md)
 - Hap包签名工具
   - [Hap包签名工具概述](hapsigntool-overview.md)
   - [Hap包签名工具指导](hapsigntool-guidelines.md)
+  - [HarmonyAppProvision配置文件](app-provision-structure.md)

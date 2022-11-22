@@ -4,7 +4,7 @@
 
 ## 场景介绍
 
-Host模式下，可以获取到已经连接的设备列表，并根据需要打开和关闭设备、控制设备权限、进行数据传输等。
+Host模式下，可以获取到已经连接的USB设备列表，并根据需要打开和关闭设备、控制设备权限、进行数据传输等。
 
 
 ## 接口说明
@@ -19,6 +19,7 @@ USB类开放能力如下，具体请查阅[API参考文档](../reference/apis/js
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
 | hasRight(deviceName: string): boolean                         | 如果“使用者”（如各种App或系统）有权访问设备则返回true；无权访问设备则返回false。 |
 | requestRight(deviceName: string): Promise&lt;boolean&gt;       | 请求给定软件包的临时权限以访问设备。                         |
+| removeRight(deviceName: string): boolean | 移除软件包对设备的访问权限。|
 | connectDevice(device: USBDevice): Readonly&lt;USBDevicePipe&gt; | 根据`getDevices()`返回的设备信息打开USB设备。                |
 | getDevices(): Array&lt;Readonly&lt;USBDevice&gt;&gt;          | 返回USB设备列表。                                            |
 | setConfiguration(pipe: USBDevicePipe, config: USBConfig): number | 设置设备的配置。                                             |
@@ -163,4 +164,4 @@ USB设备可作为Host设备连接Device设备进行数据传输。开发示例�
 
 针对USB管理开发，有以下相关实例可供参考：
 
-- [`USBManager`：USB管理（eTS）（API8）](https://gitee.com/openharmony/applications_app_samples/tree/master/device/USBManager)
+- [`USBManager`：USB管理（ArkTS）（API8）](https://gitee.com/openharmony/applications_app_samples/tree/master/device/USBManager)

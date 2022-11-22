@@ -1,18 +1,17 @@
 # 设备信息
 
+本模块提供当前设备的信息。
+
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
 > - 从API Version 6开始，该接口不再维护，推荐使用新接口[`@ohos.deviceInfo`](js-apis-device-info.md)进行设备信息查询。
 > 
 > - 本模块首批接口从API version 3开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
-
 ## 导入模块
-
 
 ```
 import device from '@system.device';
 ```
-
 
 ## device.getInfo
 
@@ -23,7 +22,7 @@ getInfo(Object): void
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
 > 在首页的onShow生命周期之前不建议调用device.getInfo接口。
 
-**系统能力：** SystemCapability.Startup.SysInfo
+**系统能力：** SystemCapability.Startup.SystemInfo
 
 **参数：**
 

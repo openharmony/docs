@@ -82,13 +82,26 @@
         "name" : "serviceName",
         "path" : ["/system/bin/serviceName"]
         "importance" : 1,                  // 服务进程提供优先级设置
-        "cpucore" : [0],                   // 服务进程提供cpu绑核功能
+        "cpucore" : [0],                   // 服务进程提供CPU绑核功能
         "critical" : [1, 5, 10],           // 服务提供抑制机制
         "apl" : "normal",                  // 系统服务进程设置其分布式Capability能力
         "d-caps" : ["OHOS_DMS"],           // 系统服务进程设置其分布式Capability能力
         "secon" : "u:r:distributedsche:s0" // 服务的SELinux标签， "u:r:distributedsche:s0"为要设置的SELinux标签信息
     }
     ```
+
+- 添加selinux标签
+
+  服务配置selinux策略，需要通过"secon"为服务添加selinux标签。例如为watchdog_service添加selinux标签，如下:
+
+    ```
+    "services" : [{
+              "name" : "watchdog_service",
+              "secon" : "u:r:watchdog_service:s0"
+    }]
+    ```
+    对应的需要在selinux中定义此标签，定义方法与配置文件参照selinux指导文档
+
 - init FD代持（仅标准系统以上提供）
 
   FD代持是按需启动的一个辅助扩展机制，按需启动进程可以保持退出前的fd状态句柄不丢失。按需启动进程退出前可将fd发送给init代持，再次启动后再从init获取fd。

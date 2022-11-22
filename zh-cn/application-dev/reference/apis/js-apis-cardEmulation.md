@@ -1,6 +1,6 @@
 # 标准NFC-cardEmulation
 
-本模块主要用于操作及管理NFC卡模拟。
+本模块主要提供NFC卡模拟业务，包括判断支持哪种卡模拟类型，HCE卡模拟的业务实现等。
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
 > 本模块首批接口从API version 6开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
@@ -12,30 +12,47 @@
 import cardEmulation from '@ohos.nfc.cardEmulation';
 ```
 
+## FeatureType
+
+定义不同的NFC卡模拟类型。
+
+**系统能力**：SystemCapability.Communication.NFC.Core
+
+| 名称 | 默认值 | 说明 |
+| -------- | -------- | -------- |
+| HCE | 0 | HCE 卡模拟。 |
+| UICC | 1 | SIM 卡模拟。 |
+| ESE | 2      | ESE卡模拟。 |
 
 ## cardEmulation.isSupported
 
 isSupported(feature: number): boolean
 
-是否支持某种类型的卡模拟
+是否支持某种类型的卡模拟。
 
 **系统能力**：SystemCapability.Communication.NFC.Core
+
+**参数：**
+
+| 参数名  | 类型     | 必填 | 说明                    |
+| ------- | -------- | ---- | ----------------------- |
+| feature | number | 是   | 卡模拟类型值，详细请见[FeatureType](#featuretype)枚举值。 |
 
 **返回值：**
 
   | **类型** | **说明** |
   | -------- | -------- |
-  | boolean | true:支持该类型卡模拟，&nbsp;false:不支持该类型卡模拟。 |
+  | boolean | true: 支持该类型卡模拟，&nbsp;false: 不支持该类型卡模拟。 |
 
 ## HceService<sup>8+</sup>
 
-管理HCE卡模拟。在调用HceService的接口前，需要先通过new cardEmulation.HceService()创建实例。
+提供HCE卡模拟的实现，主要包括接收对端读卡设备的APDU数据，并响应APDU数据到对端读卡设备。使用HCE相关接口前，必须先判断设备是否支持HCE卡模拟能力。
 
 ### startHCE<sup>8+</sup>
 
 startHCE(aidList: string[]): boolean
 
-开始使用HCE能力。
+启动HCE业务功能。包括设置当前应用为前台优先，动态注册AID列表。
 
 **需要权限**：ohos.permission.NFC_CARD_EMULATION
 
@@ -45,13 +62,13 @@ startHCE(aidList: string[]): boolean
 
 | 参数名  | 类型     | 必填 | 说明                    |
 | ------- | -------- | ---- | ----------------------- |
-| aidList | string[] | 是   | 注册进行卡模拟的aid列表 |
+| aidList | string[] | 是   | 动态注册卡模拟的AID列表。 |
 
 ### stopHCE<sup>8+</sup>
 
 stopHCE(): boolean
 
-停止使用HCE能力。
+停止HCE业务功能。包括退出当前应用前台优先，释放动态注册的AID列表。
 
 **需要权限**：ohos.permission.NFC_CARD_EMULATION
 
@@ -61,7 +78,7 @@ stopHCE(): boolean
 
 on(type: "hceCmd", callback: AsyncCallback<number[]>): void;
 
-在startHCE后，订阅对端设备消息。
+订阅回调，用于接收对端读卡设备发送的APDU数据。
 
 **需要权限**：ohos.permission.NFC_CARD_EMULATION
 
@@ -71,14 +88,14 @@ on(type: "hceCmd", callback: AsyncCallback<number[]>): void;
 
 | 参数名   | 类型                    | 必填 | 说明                                         |
 | -------- | ----------------------- | ---- | -------------------------------------------- |
-| type     | string                  | 是   | 固定填"hceCmd"字符串                         |
-| callback | AsyncCallback<number[]> | 是   | 订阅的事件回调，入参是符合APDU协议的数据数组 |
+| type     | string                  | 是   | 固定填"hceCmd"字符串。                         |
+| callback | AsyncCallback<number[]> | 是   | 订阅的事件回调，入参是符合APDU协议的数据，每个number十六进制表示，范围是0x00~0xFF。 |
 
 ### sendResponse<sup>8+</sup>
 
 sendResponse(responseApdu: number[]): void;
 
-发送数据到对端设备。
+发送APDU数据到对端读卡设备。
 
 **需要权限**：ohos.permission.NFC_CARD_EMULATION
 
@@ -88,16 +105,25 @@ sendResponse(responseApdu: number[]): void;
 
 | 参数名       | 类型     | 必填 | 说明                                               |
 | ------------ | -------- | ---- | -------------------------------------------------- |
-| responseApdu | number[] | 是   | 准备发送到对端的数据，入参是符合APDU协议的数据数组 |
+| responseApdu | number[] | 是   | 发送到对端读卡设备的符合APDU协议的数据，每个number十六进制表示，范围是0x00~0xFF。 |
 
 **示例：**
 
 ```js
+import cardEmulation from '@ohos.nfc.cardEmulation';
+
+var isHceSupported = cardEmulation.isSupported(cardEmulation.FeatureType.HCE);
+if (!isHceSupported) {
+    console.log('this device is not supported for HCE, ignore it.');
+    return;
+}
+
+// device supports HCE, transimit APDU with remote nfc reader.
 var hceService = new cardEmulation.HceService();
 hceService.startHCE([
     "F0010203040506", "A0000000041010"
-])
-hceService.stopHCE();
+]);
+
 hceService.on("hceCmd", (err, res) => {
     if(err.data === 0) {
         console.log('callback => Operation hceCmd succeeded. Data: ' + JSON.stringify(res));
@@ -108,16 +134,8 @@ hceService.on("hceCmd", (err, res) => {
         console.log('callback => Operation hceCmd failed. Cause: ' + err.data);
     }
 })
+
+// stop HCE when the application exit the nfc card emulation.
+hceService.stopHCE();
 ```
-## FeatureType
-
-表示NFC支持的卡模拟类型枚举。
-
-**系统能力**：SystemCapability.Communication.NFC.Core
-
-| 名称 | 默认值 | 说明 |
-| -------- | -------- | -------- |
-| HCE | 0 | 该常量用于检查是否支持 HCE 卡模拟。 |
-| UICC | 1 | 该常量用于检查是否支持 SIM 卡模拟。 |
-| ESE | 2      | 该常量用于检查是否支持ESE卡模拟。 |
 

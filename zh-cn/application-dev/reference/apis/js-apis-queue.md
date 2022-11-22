@@ -25,7 +25,7 @@ import Queue from '@ohos.util.Queue';
 
 **系统能力：** SystemCapability.Utils.Lang
 
-| 名称 | 参数类型 | 可读 | 可写 | 说明 |
+| 名称 | 类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
 | length | number | 是 | 否 | Queue的元素个数。 |
 
@@ -38,10 +38,23 @@ Queue的构造函数。
 
 **系统能力：** SystemCapability.Utils.Lang
 
+**错误码：**
+
+以下错误码的详细介绍请参见[containers错误码](../errorcodes/errorcode-containers.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 10200012 | The Queue's constructor cannot be directly invoked. |
+
 **示例：**
 
 ```ts
 let queue = new Queue();
+try {
+  let queue2 = Queue();
+} catch(err) {
+  console.log(`${err.code} - ${err.name} - ${err.message}`);
+}
 ```
 
 
@@ -65,17 +78,29 @@ add(element: T): boolean
 | -------- | -------- |
 | boolean | 插入成功返回true，否则返回false。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[containers错误码](../errorcodes/errorcode-containers.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 10200011 | The add method cannot be bound. |
+
 **示例：**
 
 ```ts
 let queue = new Queue();
 let result = queue.add("a");
 let result1 = queue.add(1);
-queue.add(1);
 let b = [1, 2, 3];
-queue.add(b);
+let result2 = queue.add(b);
 let c = {name : "Dylon", age : "13"};
 let result3 = queue.add(c);
+try {
+  queue.add.bind({}, "b")(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
+} catch(err) {
+  console.log(`${err.code} - ${err.name} - ${err.message}`);
+}
 ```
 
 ### pop
@@ -92,6 +117,14 @@ pop(): T
 | -------- | -------- |
 | T | 返回删除的元素。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[containers错误码](../errorcodes/errorcode-containers.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 10200011 | The pop method cannot be bound. |
+
 **示例：**
 
 ```ts
@@ -102,6 +135,11 @@ queue.add(5);
 queue.add(2);
 queue.add(4);
 let result = queue.pop();
+try {
+  queue.pop.bind({})(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
+} catch(err) {
+  console.log(`${err.code} - ${err.name} - ${err.message}`);
+}
 ```
 
 ### getFirst
@@ -118,6 +156,14 @@ getFirst(): T
 | -------- | -------- |
 | T | 返回获取的元素。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[containers错误码](../errorcodes/errorcode-containers.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 10200011 | The getFirst method cannot be bound. |
+
 **示例：**
 
 ```ts
@@ -127,6 +173,11 @@ queue.add(4);
 queue.add(5);
 queue.add(2);
 let result = queue.getFirst();
+try {
+  queue.getFirst.bind({})(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
+} catch(err) {
+  console.log(`${err.code} - ${err.name} - ${err.message}`);
+}
 ```
 
 ### forEach
@@ -153,6 +204,14 @@ callbackfn的参数说明：
 | index | number | 否 | 当前遍历到的下标值。 |
 | Queue | Queue&lt;T&gt; | 否 | 当前调用forEach方法的实例对象。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[containers错误码](../errorcodes/errorcode-containers.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 10200011 | The forEach method cannot be bound. |
+
 **示例：**
 
 ```ts
@@ -164,7 +223,13 @@ queue.add(4);
 queue.forEach((value, index) => {
   console.log("value:" + value, index);
 });
-
+try {
+  queue.forEach.bind({}, (value, index) => {
+    console.log("value:" + value, index);
+  })(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
+} catch(err) {
+  console.log(`${err.code} - ${err.name} - ${err.message}`);
+}
 ```
 
 ### [Symbol.iterator]
@@ -180,6 +245,14 @@ queue.forEach((value, index) => {
 | 类型 | 说明 |
 | -------- | -------- |
 | IterableIterator&lt;T&gt; | 返回一个迭代器。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[containers错误码](../errorcodes/errorcode-containers.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 10200011 | The Symbol.iterator method cannot be bound. |
 
 **示例：**
 ```ts
@@ -200,5 +273,10 @@ let temp = iter.next().value;
 while(temp != undefined) {
   console.log("value:" + temp);
   temp = iter.next().value;
+}
+try {
+  queue[Symbol.iterator].bind({})(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
+} catch(err) {
+  console.log(`${err.code} - ${err.name} - ${err.message}`);
 }
 ```

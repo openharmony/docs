@@ -1,6 +1,6 @@
 # SwipeGesture
 
-用于触发滑动事件，滑动最小速度为100vp/s时识别成功。
+用于触发滑动事件，滑动速度大于100vp/s时可识别成功。
 
 >  **说明：**
 >
@@ -16,7 +16,7 @@ SwipeGesture(value?: { fingers?: number; direction?: SwipeDirection; speed?: num
 | 参数名称 | 参数类型 | 必填 | 参数描述 |
 | -------- | -------- | -------- | -------- |
 | fingers | number | 否 | 触发滑动的最少手指数，默认为1，最小为1指，最大为10指。<br/>默认值：1 |
-| direction | SwipeDirection | 否 | 触发滑动手势的滑动方向。<br/>默认值：SwipeDirection.All |
+| direction | [SwipeDirection](#swipedirection枚举说明) | 否 | 触发滑动手势的滑动方向。<br/>默认值：SwipeDirection.All |
 | speed | number | 否 | 识别滑动的最小速度（默认为100VP/秒）。<br/>默认值：100 |
 
 ## SwipeDirection枚举说明
@@ -24,8 +24,8 @@ SwipeGesture(value?: { fingers?: number; direction?: SwipeDirection; speed?: num
 | 名称 | 描述 |
 | -------- | -------- |
 | All | 所有方向。 |
-| Horizontal | 水平方向。 |
-| Vertical | 竖直方向。 |
+| Horizontal | 水平方向，手指滑动方向与x轴夹角小于45度时触发。 |
+| Vertical | 竖直方向，手指滑动方向与y轴夹角小于45度时触发。 |
 | None | 任何方向均不可触发。 |
 
 
@@ -35,7 +35,6 @@ SwipeGesture(value?: { fingers?: number; direction?: SwipeDirection; speed?: num
 | -------- | -------- |
 | onAction(event:(event?:&nbsp;[GestureEvent](ts-gesture-settings.md#gestureevent对象说明))&nbsp;=&gt;&nbsp;void) | 滑动手势识别成功回调。 |
 
-![zh-cn_image_0000001231374559](figures/zh-cn_image_0000001231374661.png)
 ## 示例
 
 ```ts
@@ -43,27 +42,31 @@ SwipeGesture(value?: { fingers?: number; direction?: SwipeDirection; speed?: num
 @Entry
 @Component
 struct SwipeGestureExample {
-  @State rotateAngle : number = 0
-  @State speed : number = 1
+  @State rotateAngle: number = 0
+  @State speed: number = 1
 
   build() {
     Column() {
-      Text("SwipGesture speed ： " + this.speed)
-      Text("SwipGesture angle ： " + this.rotateAngle)
-    }
-    .position({x: 80, y: 200})
-    .border({width:2})
-    .width(260).height(260)
-    .rotate({x: 0, y: 0, z: 1, angle: this.rotateAngle})
-    .gesture(
-      SwipeGesture({fingers: 1, direction: SwipeDirection.Vertical})
+      Column() {
+        Text("SwipeGesture speed\n" + this.speed)
+        Text("SwipeGesture angle\n" + this.rotateAngle)
+      }
+      .border({ width: 3 })
+      .width(300)
+      .height(200)
+      .margin(100)
+      .rotate({ angle: this.rotateAngle })
+      // 单指竖直方向滑动时触发该事件
+      .gesture(
+      SwipeGesture({ direction: SwipeDirection.Vertical })
         .onAction((event: GestureEvent) => {
           this.speed = event.speed
           this.rotateAngle = event.angle
-      })
-    )
+        })
+      )
+    }.width('100%')
   }
 }
 ```
 
-![zh-cn_image_0000001231374559](figures/zh-cn_image_0000001231374559.gif)
+ ![zh-cn_image_0000001231374559.png](figures/zh-cn_image_0000001231374559.png) 

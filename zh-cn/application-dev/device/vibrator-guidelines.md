@@ -54,4 +54,4 @@
 
 针对振动开发，有以下相关实例可供参考：
 
-- [`Vibrator`：振动（eTS）（API8）](https://gitee.com/openharmony/applications_app_samples/tree/master/device/Vibrator)
+- [`Vibrator`：振动（ArkTS）（API8）](https://gitee.com/openharmony/applications_app_samples/tree/master/device/Vibrator)

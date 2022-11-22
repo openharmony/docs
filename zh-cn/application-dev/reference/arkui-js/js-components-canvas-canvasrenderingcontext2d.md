@@ -584,7 +584,7 @@ fillRect(x: number, y: number, width:number, height: number): void
 ```html
   <!-- xxx.hml -->
   <div>
-    <canvas ref="canvas" style="width: 200px; height: 150px; "></canvas>
+    <canvas ref="canvas" style="width: 500px; height: 500px; "></canvas>
   </div>
 ```
 
@@ -620,7 +620,7 @@ clearRect(x: number, y: number, width:number, height: number): void
   ```html
   <!-- xxx.hml -->
   <div>
-    <canvas ref="canvas" style="width: 200px; height: 150px;"></canvas>
+    <canvas ref="canvas" style="width: 500px; height: 500px;"></canvas>
   </div>
   ```
 
@@ -983,7 +983,7 @@ createPattern(image: Image, repetition: string): Object
   ```html
   <!-- xxx.hml -->
   <div>
-    <canvas ref="canvas" style="width: 200px; height: 150px;"></canvas>
+    <canvas ref="canvas" style="width: 1000px; height: 1000px;"></canvas>
   </div>
   ```
 
@@ -997,7 +997,7 @@ createPattern(image: Image, repetition: string): Object
       img.src = 'common/images/example.jpg';
       var pat = ctx.createPattern(img, 'repeat');
       ctx.fillStyle = pat;
-      ctx.fillRect(0, 0, 20, 20);
+      ctx.fillRect(0, 0, 500, 500);
     }
   }
   ```
@@ -1428,7 +1428,7 @@ transform方法对应一个变换矩阵，想对一个图形进行变化的时�
 
 setTransform(scaleX: number, skewX: number, skewY: number, scale: number, translateX: number, translateY: number): void
 
-setTransfrom方法使用的参数和transform()方法相同，但setTransform()方法会重置现有的变换矩阵并创建新的变换矩阵。
+setTransform方法使用的参数和transform()方法相同，但setTransform()方法会重置现有的变换矩阵并创建新的变换矩阵。
 
 **参数：** 
 
@@ -1573,7 +1573,7 @@ drawImage(image: Image | PixelMap, sx: number, sy: number, sWidth: number, sHeig
   ```html
   <!-- xxx.hml -->
   <div>
-    <canvas style="width: 200px; height: 150px; background-color: #ffff00;"></canvas>
+    <canvas ref="canvas" style="width: 500px; height: 500px; background-color: #ffff00;"></canvas>
   </div>
   ```
 
@@ -1581,11 +1581,11 @@ drawImage(image: Image | PixelMap, sx: number, sy: number, sWidth: number, sHeig
   //xxx.js
   export default {
     onShow() {
-      var test = this.$element('drawImage');
+      var test = this.$refs.canvas;
       var ctx = test.getContext('2d');
       var img = new Image();
       img.src = 'common/image/test.jpg';
-      ctx.drawImage(img, 50, 80, 80, 80);
+      ctx.drawImage(img, 0, 0, 200, 200, 10, 10, 200, 200);
     }
   }
   ```

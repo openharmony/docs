@@ -43,5 +43,4 @@
 | hb | OpenHarmony的命令行工具，用来执行编译命令。 | 
 | HOBT | HiLink&nbsp;SDK&nbsp;OHOS&nbsp;Basic&nbsp;Test缩写，是HiLink&nbsp;SDK&nbsp;接入&nbsp;OpenHarmony的基础功能测试，检验HiLink&nbsp;SDK依赖的相关接口功能是否完善。 |  
 | Kit&nbsp;Framework | Kit&nbsp;Framework是Kit的基础框架，包含了OpenHarmony的安全部件，不可裁剪。 | 
-| HiLink&nbsp;SDK | HarmonyOS&nbsp;Connect套件的一个关键组成部分，用于实现设备的联网，以及设备与HarmonyOS&nbsp;Connect云和智慧生活App的互联互通。 | 
 | kv | 键值对(key-value)，描述数据存储的格式。 | 

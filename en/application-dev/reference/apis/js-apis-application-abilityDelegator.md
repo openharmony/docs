@@ -875,3 +875,265 @@ abilityDelegator.finishTest(msg, 0).then(() => {
     console.info("finishTest promise");
 });
 ```
+
+### addAbilityStageMonitor<sup>9+</sup>
+
+addAbilityStageMonitor(monitor: AbilityStageMonitor, callback: AsyncCallback\<void>): void;
+
+Adds an **AbilityStageMonitor** instance to monitor the lifecycle state changes of an ability stage. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
+**Parameters**
+
+| Name  | Type                                                        | Mandatory| Description                                                        |
+| -------- | ------------------------------------------------------------ | -------- | ------------------------------------------------------------ |
+| monitor  | [AbilityStageMonitor](#abilitystagemonitor) | Yes      | [AbilityStageMonitor](#abilitystagemonitor) instance.|
+| callback | AsyncCallback\<void>                                         | Yes      | Callback used to return the result.                                          |
+
+**Example**
+
+```js
+var abilityDelegator;
+
+var monitor = {
+    moduleName: "moduleName",
+    srcEntrance: "srcEntrance",
+}
+
+abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
+abilityDelegator.addAbilityStageMonitor(monitor, (err : any) => {
+    console.info("addAbilityStageMonitor callback");
+});
+```
+
+
+
+### addAbilityStageMonitor<sup>9+</sup>
+
+addAbilityStageMonitor(monitor: AbilityStageMonitor): Promise\<void>;
+
+Adds an **AbilityStageMonitor** instance to monitor the lifecycle state changes of an ability stage. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
+**Parameters**
+
+| Name | Type                                                        | Mandatory| Description                                                        |
+| ------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| monitor | [AbilityStageMonitor](#abilitystagemonitor) | Yes  | [AbilityStageMonitor](#abilitystagemonitor) instance.|
+
+**Return value**
+
+| Type          | Description               |
+| -------------- | ------------------- |
+| Promise\<void> | Promise used to return the result.|
+
+**Example**
+
+```js
+var abilityDelegator;
+
+var monitor = {
+    moduleName: "moduleName",
+    srcEntrance: "srcEntrance",
+}
+
+abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
+abilityDelegator.addAbilityStageMonitor(monitor).then(() => {
+    console.info("addAbilityStageMonitor promise");
+});
+```
+
+### removeAbilityStageMonitor<sup>9+</sup>
+
+removeAbilityStageMonitor(monitor: AbilityStageMonitor, callback: AsyncCallback\<void>): void;
+
+Removes an **AbilityStageMonitor** instance from the application memory. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
+**Parameters**
+
+| Name  | Type                                                        | Mandatory| Description                                                        |
+| -------- | ------------------------------------------------------------ | -------- | ------------------------------------------------------------ |
+| monitor  | [AbilityStageMonitor](#abilitystagemonitor) | Yes      | [AbilityStageMonitor](#abilitystagemonitor) instance.|
+| callback | AsyncCallback\<void>                                         | Yes      | Callback used to return the result.                                          |
+
+**Example**
+
+```js
+var abilityDelegator;
+
+var monitor = {
+    moduleName: "moduleName",
+    srcEntrance: "srcEntrance",
+}
+
+abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
+abilityDelegator.removeAbilityStageMonitor(monitor, (err : any) => {
+    console.info("removeAbilityStageMonitor callback");
+});
+```
+
+
+
+### removeAbilityStageMonitor<sup>9+</sup>
+
+removeAbilityStageMonitor(monitor: AbilityStageMonitor): Promise\<void>;
+
+Removes an **AbilityStageMonitor** object from the application memory. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
+**Parameters**
+
+| Name | Type                                                        | Mandatory| Description                                                        |
+| ------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| monitor | [AbilityStageMonitor](#abilitystagemonitor) | Yes  | [AbilityStageMonitor](#abilitystagemonitor) instance.|
+
+**Return value**
+
+| Type          | Description               |
+| -------------- | ------------------- |
+| Promise\<void> | Promise used to return the result.|
+
+**Example**
+
+```js
+var abilityDelegator;
+
+var monitor = {
+    moduleName: "moduleName",
+    srcEntrance: "srcEntrance",
+}
+
+abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
+abilityDelegator.removeAbilityStageMonitor(monitor).then(() => {
+    console.info("removeAbilityStageMonitor promise");
+});
+```
+
+### waitAbilityStageMonitor<sup>9+</sup>
+
+waitAbilityStageMonitor(monitor: AbilityStageMonitor, callback: AsyncCallback\<AbilityStage>): void;
+
+Waits for an **AbilityStage** instance that matches the conditions set in an **AbilityStageMonitor** instance and returns the **AbilityStage** instance. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
+**Parameters**
+
+| Name  | Type                                                        | Mandatory| Description                                                        |
+| -------- | ------------------------------------------------------------ | -------- | ------------------------------------------------------------ |
+| monitor  | [AbilityStageMonitor](#abilitystagemonitor) | Yes      | [AbilityStageMonitor](#abilitystagemonitor) instance.|
+| callback | AsyncCallback\<AbilityStage>                                         | Yes      | Callback used to return the result. If the operation is successful, an **AbilityStage** instance is returned. Otherwise, no value is returned.            |
+
+**Example**
+
+```js
+var abilityDelegator;
+
+function onAbilityCreateCallback(data) {
+    console.info("onAbilityCreateCallback");
+}
+
+var monitor = {
+    moduleName: "moduleName",
+    srcEntrance: "srcEntrance",
+}
+
+abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
+abilityDelegator.waitAbilityStageMonitor(monitor, (err : any, data : any) => {
+    console.info("waitAbilityStageMonitor callback");
+});
+```
+  
+### waitAbilityStageMonitor<sup>9+</sup>
+
+waitAbilityStageMonitor(monitor: AbilityStageMonitor, timeout?: number): Promise\<AbilityStage>;
+
+Waits for an **AbilityStage** instance that matches the conditions set in an **AbilityStageMonitor** instance and returns the **AbilityStage** instance. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
+**Parameters**
+
+| Name | Type                                                        | Mandatory| Description                                                        |
+| ------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| monitor | [AbilityStageMonitor](#abilitystagemonitor) | Yes  | [AbilityStageMonitor](#abilitystagemonitor) instance.|
+| timeout | number | No  | Maximum waiting time, in milliseconds.|
+
+**Return value**
+
+| Type          | Description               |
+| -------------- | ------------------- |
+| Promise\<AbilityStage> | Promise used to return the result. If the operation is successful, an **AbilityStage** instance is returned. Otherwise, no value is returned.|
+
+**Example**
+
+```js
+var abilityDelegator;
+
+function onAbilityCreateCallback(data) {
+    console.info("onAbilityCreateCallback");
+}
+
+var monitor = {
+    moduleName: "moduleName",
+    srcEntrance: "srcEntrance",
+}
+
+abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
+abilityDelegator.waitAbilityStageMonitor(monitor).then((data : any) => {
+    console.info("waitAbilityStageMonitor promise");
+});
+```
+
+### waitAbilityStageMonitor<sup>9+</sup>
+
+waitAbilityStageMonitor(monitor: AbilityStageMonitor, timeout: number, callback: AsyncCallback\<AbilityStage>): void;
+
+Waits a period of time for an **AbilityStage** instance that matches the conditions set in an **AbilityStageMonitor** instance and returns the **AbilityStage** instance. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
+**Parameters**
+
+| Name | Type                                                        | Mandatory| Description                                                        |
+| ------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| monitor | [AbilityStageMonitor](#abilitystagemonitor) | Yes  | [AbilityStageMonitor](#abilitystagemonitor) instance.|
+| timeout | number | No  | Maximum waiting time, in milliseconds.|
+| callback | AsyncCallback\<AbilityStage>                                         | Yes      | Callback used to return the result. If the operation is successful, an **AbilityStage** instance is returned. Otherwise, no value is returned.                    |
+
+**Example**
+
+```js
+var abilityDelegator;
+var timeout = 100;
+
+function onAbilityCreateCallback(data) {
+    console.info("onAbilityCreateCallback");
+}
+
+var monitor = {
+    moduleName: "moduleName",
+    srcEntrance: "srcEntrance",
+}
+
+abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
+abilityDelegator.waitAbilityStageMonitor(monitor, timeout, (err : any, data : any) => {
+    console.info("waitAbilityStageMonitor callback");
+});
+```
+
+## AbilityStageMonitor
+
+Provides conditions for matching **AbilityStage** instances. The most recently matched **AbilityStage** instance is saved in an **AbilityStageMonitor** instance. 
+
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
+| Name                                                        | Type    | Readable| Writable| Description                                                        |
+| ------------------------------------------------------------ | -------- | ---- | ---- | ------------------------------------------------------------ |
+| moduleName<sup>9+</sup>                                                 | string   | Yes  | Yes  | Module name of the **AbilityStage** instance.|
+| srcEntrance<sup>9+</sup> | string | Yes  | Yes  | Source path of the **AbilityStage** instance.|

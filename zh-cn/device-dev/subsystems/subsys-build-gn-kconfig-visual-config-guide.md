@@ -30,7 +30,7 @@
 
 2. 环境准备
 
-   环境配置所需要的Kconfiglib已内置在OpenHarmony自带的hb工具中，如需安装hb工具，可参考：[hb安装教程](../quick-start/quickstart-lite-env-setup.md#安装hb)
+   环境配置所需要的Kconfiglib已内置在OpenHarmony自带的hb工具中，如需安装hb工具，可参考：[hb安装教程](../quick-start/quickstart-pkg-install_tool.md#安装hb)
 
 3. 开启可视化配置界面
 

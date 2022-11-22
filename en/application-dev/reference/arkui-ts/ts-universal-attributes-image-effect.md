@@ -17,8 +17,8 @@ None
 
 | Name                         | Type                                                    | Default Value| Description                                                        |
 | ----------------------------- | ------------------------------------------------------------ | ------ | ------------------------------------------------------------ |
-| blur                          | number                                                       | -      | Blur effect of the current component' content. The input parameter is the blur radius. The larger the radius is, the more blurred the content is. If the value is **0**, the content is not blurred.|
-| backdropBlur                  | number                                                       | -      | Blur effect of the current component' background. The input parameter is the blur radius. The larger the radius is, the more blurred the background is. If the value is **0**, the background is not blurred.|
+| blur                          | number                                                       | -      | Adds the content blur effect to the current component. The input parameter is the blur radius. The larger the radius is, the more blurred the content is. If the value is **0**, the content is not blurred. |
+| backdropBlur                  | number                                                       | -      | Adds the background blur effect to the current component. The input parameter is the blur radius. The larger the radius is, the more blurred the background is. If the value is **0**, the background is not blurred. |
 | shadow                        | {<br>radius: number \| [Resource](ts-types.md#resource),<br>color?: Color \| string \| Resource,<br>offsetX?: number \| Resource,<br>offsetY?: number \| Resource<br>} | -      | Adds the shadow effect to the current component. The input parameters are the fuzzy radius (mandatory), shadow color (optional; gray by default), x-axis offset (optional; 0 by default), and y-axis offset (optional; 0 by default). The offset unit is px.|
 | grayscale                     | number                                                       | 0.0    | Converts the input image to grayscale. The value indicates the grayscale conversion ratio. If the input value is **1.0**, the image is converted into a grayscale image. If the input value is **0.0**, the image does not change. If the input value is between **0.0** and **1.0**, the effect changes in linear mode. The unit is percentage.|
 | brightness                    | number                                                       | 1.0    | Adds a brightness to the current component. The input parameter is a brightness ratio. The value **1** indicates no effects. The value **0** indicates the complete darkness. If the value is less than **1**, the brightness decreases. If the value is greater than **1**, the brightness increases. A larger value indicates a higher brightness.|
@@ -78,4 +78,4 @@ struct ImageEffectsExample {
 }
 ```
 
-<img src="figures/image-effect.png" alt="image-effect"  />
+![](figures/image-effect.png)

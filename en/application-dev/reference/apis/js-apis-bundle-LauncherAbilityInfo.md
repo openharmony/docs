@@ -1,6 +1,6 @@
 # LauncherAbilityInfo
 
-The **LauncherAbilityInfo** module provides information about a launcher ability.
+The **LauncherAbilityInfo** module provides information about the launcher ability, which is obtained through [innerBundleManager.getLauncherAbilityInfos](js-apis-Bundle-InnerBundleManager.md).
 
 > **NOTE**
 >
@@ -12,8 +12,8 @@ The **LauncherAbilityInfo** module provides information about a launcher ability
 
 **System API**: This is a system API and cannot be called by third-party applications.
 
-| Name           | Type                                                | Readable| Writable| Description                                |
-| --------------- | ---------------------------------------------------- | ---- | ---- | ------------------------------------ |
+| Name           | Type                                                | Readable| Writable| Description                                  |
+| --------------- | ---------------------------------------------------- | ---- | ---- | -------------------------------------- |
 | applicationInfo | [ApplicationInfo](js-apis-bundle-ApplicationInfo.md) | Yes  | No  | Application information of the launcher ability.|
 | elementName     | [ElementName](js-apis-bundle-ElementName.md)         | Yes  | No  | Element name of the launcher ability.   |
 | labelId         | number                                               | Yes  | No  | Label ID of the launcher ability.            |

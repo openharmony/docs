@@ -3,13 +3,18 @@
 ## 概述
 ### 基本概念
  - begetctl介绍
+
    具体参考[begetctl命令](#table14737791480)。
  - bootchart 插件
+
    bootchart是一个用于linux启动过程性能分析的开源工具软件，在系统中自动收集CPU占用率、磁盘吞吐率、进程等信息，并以图形方式显示分析结果，可用作指导优化系统启动过程。begetctl命令参考：[begetctl命令](#table14737791480)。
+ - bootevent 插件
+
+   bootevent是一个记录init进程及各个服务的启动关键事件的插件，记录内容包括事件名称，关联事件的服务的启动时间，事件发生时间。导出文件支持tracing解析，可用作指导优化系统启动过程。
 
 ### 约束与限制
 
-bootchart 只支持标准系统， begetctl 支持小型系统和标准系统。
+bootchart和bootevent只支持标准系统， begetctl 支持小型系统和标准系统。
 
 ## 开发指导
 ### 参数说明
@@ -17,7 +22,7 @@ bootchart 只支持标准系统， begetctl 支持小型系统和标准系统。
 | 命令 | 命令格式和示例 | 说明 |
 | :----------  |  :----------  |:--------|
 | init group test [stage] | init group test | stage参见ServiceStatus。 |
-| param ls [-r] [name] | 显示系统参数，例如：<br>查看usb系统参数：begetctl param ls persist.sys.usb    | 无 |
+| param ls [-r] [name] | 显示系统参数，例如：<br>查看USB系统参数：begetctl param ls persist.sys.usb    | 无 |
 | param get [name] | 获取系统参数信息，例如：<br>begetctl param get 或 param get | 无 |
 | param set name value| 设置系统参数，例如：<br>begetctl param set ohos.servicectrl.display 1 或 param set ohos.servicectrl.display 1| 无 |
 | param wait name [value] [timeout] | 等待系统参数，例如：<br>begetctl param wait persist.sys.usb.config hdc 或 param wait persist.sys.usb.config hdc | timeout默认值：30秒 |
@@ -54,18 +59,15 @@ bootchart 只支持标准系统， begetctl 支持小型系统和标准系统。
 | modulectl uninstall moduleName | 卸载动态插件，例如：<br>modulectl uninstall bootchart | 无 |
 | modulectl install moduleName | 安装动态插件，例如：<br>modulectl install bootchart | 无 |
 | modulectl list | 动态插件列表，例如：<br>begetctl modulectl list | 无 |
+| setloglevel level | 设置log等级为info，例如：<br>begetctl setloglevel 1 | log等级设置范围0~4 |
+| getloglevel | 获取当前init的log等级，例如：<br>begetctl getloglevel | 无 |
+| bootevent disable | 关闭bootevent插件功能，例如：<br>bootevent disable | 无 |
+| bootevent enable | 开启bootevent插件功能，例如：<br>begetctl 关闭bootevent插件功能 | 无 |
+| dump_service parameter_service trigger | 命令行展示所有trigger信息，例如：<br>begetctl dump_service parameter_service trigger | 无 |
+| dump_service all | 命令行展示所有服务的信息，例如：<br>begetctl dump_service all | 无 |
+| dump_service serviceName | 命令行展示单个服务信息，例如：<br>begetctl dump_service param_watcher | 无 |
+| dump api | 命令行展示init接口信息，例如：<br>begetctl dump api | 无 |
 
-## 开发指导
-
-### 接口说明
-
-  **表1**  接口介绍<a name="table14737791479"></a>
-| 函数 | 函数解释 |
-| ----------  |  ---------- |
-| void PluginExecCmdByName(const char *name, const char *cmdContent) | 通过名称启动插件。 |
-| void PluginExecCmdByCmdIndex(int index, const char *cmdContent) | 通过标志启动插件。 |
-| int PluginExecCmd(const char *name, int argc, const char **argv) | 命令启动插件。 |
-| int AddCmdExecutor(const char *cmdName, CmdExecutor execCmd) | 添加安装插件命令。 |
 
 ### 开发步骤
   新增一个插件， 以bootchart为例：
@@ -137,7 +139,7 @@ bootchart 只支持标准系统， begetctl 支持小型系统和标准系统。
     ```
 
 ### 开发实例
-
+#### bootchart 使用示例
   预制条件：
   1. 准备bootchart测试环境：linux操作系统下安装python及pycairo pip install pycairo
   2. 在linux解压bootchart-master.tar
@@ -163,3 +165,30 @@ bootchart 只支持标准系统， begetctl 支持小型系统和标准系统。
 
   预期结果：
         <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;在bootchart-master目录下生成bootchart.pdf。
+#### bootevent 使用示例
+1. 在服务的cfg文件中配置bootevent事件,支持配置一个或多个bootevent事件。
+
+    配置单个bootevent事件:
+    ```json
+    bootevents : "bootevent.xxxbootevent",
+    ```
+    配置多个bootevent事件:
+    ```json
+    bootevents : ["bootevent.xxxbootevent1", "bootevent.xxxbootevent2.xxx"],
+    ```
+> **注意：** 配置的bootevent事件必须以“bootevent.”开始。
+2. 服务代码中发送bootevent事件。
+
+    服务自身代码中调用init提供的SetParameter接口发送bootevent事件,例如发送上一步骤中设置的XXXbootevent1事件：
+    ```c
+    SetParameter("bootevent.XXXbootevent1", "true");
+    ```
+3. 命令行启用bootevent功能。
+
+    - 执行begetctl bootevent enable命令后再次启动系统，bootevent功能开启。
+    - 执行begetctl bootevent disable命令后再次启动系统，bootevent功能关闭。
+4. 导出文件支持trace分析。
+
+    - 导出的bootevent文件目录：/data/service/el0/startup/init/。
+    - 导出文件命名规则：“时间戳.bootevent”。
+    - 导出的bootevent信息文件可以通过trace分析工具进行可视化展示。

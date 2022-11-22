@@ -33,6 +33,7 @@ var config = {
 
 在开发stage模型下的应用程序时，不涉及属性标识 "cleartextTraffic"。
 
+下载服务器需要支持http协议的header方法，能够通过content-length获取下载数据大小，否则下载任务失败，可通过[on('fail')<sup>7+</sup>)](#onfail7)查看失败原因。
 
 
 ## 常量
@@ -53,6 +54,8 @@ var config = {
 | ERROR_INSUFFICIENT_SPACE<sup>7+</sup> | number | 是 | 否 | 存储空间不足。 |
 | ERROR_TOO_MANY_REDIRECTS<sup>7+</sup> | number | 是 | 否 | 网络重定向过多导致的错误。 |
 | ERROR_UNHANDLED_HTTP_CODE<sup>7+</sup> | number | 是 | 否 | 无法识别的HTTP代码。 |
+| ERROR_OFFLINE<sup>9+</sup> | number | 是 | 否 | 网络未连接。 |
+| ERROR_UNSUPPORTED_NETWORK_TYPE<sup>9+</sup> | number | 是 | 否 | 网络类型不匹配。 |
 | ERROR_UNKNOWN<sup>7+</sup> | number | 是 | 否 | 未知错误。 |
 | PAUSED_QUEUED_FOR_WIFI<sup>7+</sup> | number | 是 | 否 | 下载被暂停并等待WLAN连接，因为文件大小超过了使用蜂窝网络的会话允许的最大值。 |
 | PAUSED_UNKNOWN<sup>7+</sup> | number | 是 | 否 | 未知原因导致暂停下载。 |
@@ -72,6 +75,8 @@ upload(config: UploadConfig): Promise&lt;UploadTask&gt;
 上传，异步方法，使用promise形式返回结果。
 
 此接口仅可在FA模型下使用
+
+>  **说明：** 从API Version 9开始废弃，建议使用[request.uploadFile<sup>9+</sup>](#requestuploadfile9)替代。
 
 **需要权限**：ohos.permission.INTERNET
 
@@ -116,6 +121,8 @@ upload(config: UploadConfig, callback: AsyncCallback&lt;UploadTask&gt;): void
 
 此接口仅可在FA模型下使用
 
+>  **说明：** 从API Version 9开始废弃，建议使用[request.uploadFile<sup>9+</sup>](#requestuploadfile9-1)替代。
+
 **需要权限**：ohos.permission.INTERNET
 
 **系统能力**: SystemCapability.MiscServices.Upload
@@ -152,6 +159,8 @@ upload(context: BaseContext, config: UploadConfig): Promise&lt;UploadTask&gt;
 
 上传，异步方法，使用promise形式返回结果。
 
+>  **说明：** 从API Version 9开始废弃，建议使用[request.uploadFile<sup>9+</sup>](#requestuploadfile9)替代。
+
 **需要权限**：ohos.permission.INTERNET
 
 **系统能力**: SystemCapability.MiscServices.Upload
@@ -178,8 +187,8 @@ upload(context: BaseContext, config: UploadConfig): Promise&lt;UploadTask&gt;
     url: 'https://patch',
     header: { key1: "value1", key2: "value2" },
     method: "POST",
-    files: { filename: "test", name: "test", uri: "internal://cache/test.jpg", type: "jpg" },
-    data: { name: "name123", value: "123" },
+    files: [{ filename: "test", name: "test", uri: "internal://cache/test.jpg", type: "jpg" }],
+    data: [{ name: "name123", value: "123" }],
   };
   request.upload(globalThis.abilityContext, uploadConfig).then((data) => {
       uploadTask = data;
@@ -194,6 +203,8 @@ upload(context: BaseContext, config: UploadConfig): Promise&lt;UploadTask&gt;
 upload(context: BaseContext, config: UploadConfig, callback: AsyncCallback&lt;UploadTask&gt;): void
 
 上传，异步方法，使用callback形式返回结果。
+
+>  **说明：** 从API Version 9开始废弃，建议使用[request.uploadFile<sup>9+</sup>](#requestuploadfile9-1)替代。
 
 **需要权限**：ohos.permission.INTERNET
 
@@ -226,6 +237,103 @@ upload(context: BaseContext, config: UploadConfig, callback: AsyncCallback&lt;Up
       uploadTask = data;
   });
   ```
+
+
+## request.uploadFile<sup>9+</sup>
+
+uploadFile(context: BaseContext, config: UploadConfig): Promise&lt;UploadTask&gt;
+
+上传，异步方法，使用promise形式返回结果。
+
+**需要权限**：ohos.permission.INTERNET
+
+**系统能力**: SystemCapability.MiscServices.Upload
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+| context | BaseContext | 是 | 基于应用程序的上下文。 |
+| config | [UploadConfig](#uploadconfig) | 是 | 上传的配置信息。 |
+
+
+**返回值：**
+
+| 类型 | 说明 |
+  | -------- | -------- |
+| Promise&lt;[UploadTask](#uploadtask)&gt; | 返回上传任务。 |
+
+**错误码：**
+以下错误码的详细介绍请参见[上传下载错误码](../errorcodes/errorcode-request.md)。
+
+| 错误码ID | 错误码信息 |
+| -------- | -------- |
+| 13400002 | Bad file path. |
+
+**示例：**
+
+  ```js
+  let uploadTask;
+  let uploadConfig = {
+    url: 'https://patch',
+    header: { key1: "value1", key2: "value2" },
+    method: "POST",
+    files: [{ filename: "test", name: "test", uri: "internal://cache/test.jpg", type: "jpg" }],
+    data: [{ name: "name123", value: "123" }],
+  };
+  request.uploadFile(globalThis.abilityContext, uploadConfig).then((data) => {
+      uploadTask = data;
+  }).catch((err) => {
+      console.error('Failed to request the upload. Cause: ' + JSON.stringify(err));
+  });
+  ```
+
+
+## request.uploadFile<sup>9+</sup>
+
+uploadFile(context: BaseContext, config: UploadConfig, callback: AsyncCallback&lt;UploadTask&gt;): void
+
+上传，异步方法，使用callback形式返回结果。
+
+**需要权限**：ohos.permission.INTERNET
+
+**系统能力**: SystemCapability.MiscServices.Upload
+
+**参数：**
+
+| 参数名 | 参数类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+| context | BaseContext | 是 | 基于应用程序的上下文。 |
+| config | [UploadConfig](#uploadconfig) | 是 | 上传的配置信息。 |
+| callback | AsyncCallback&lt;[UploadTask](#uploadtask)&gt; | 否 | 回调函数，异步返回UploadTask对象。 |
+
+**错误码：**
+以下错误码的详细介绍请参见[上传下载错误码](../errorcodes/errorcode-request.md)。
+
+| 错误码ID | 错误码信息 |
+| -------- | -------- |
+| 13400002 | Bad file path. |
+
+**示例：**
+
+  ```js
+  let uploadTask;
+  let uploadConfig = {
+    url: 'https://patch',
+    header: { key1: "value1", key2: "value2" },
+    method: "POST",
+    files: [{ filename: "test", name: "test", uri: "internal://cache/test.jpg", type: "jpg" }],
+    data: [{ name: "name123", value: "123" }],
+  };
+  request.uploadFile(globalThis.abilityContext, uploadConfig, (err, data) => {
+      if (err) {
+          console.error('Failed to request the upload. Cause: ' + JSON.stringify(err));
+          return;
+      }
+      uploadTask = data;
+  });
+  ```
+
 
 ## UploadTask
 
@@ -455,6 +563,8 @@ remove(): Promise&lt;boolean&gt;
 
 移除上传的任务，异步方法，使用promise形式返回结果。
 
+>  **说明：** 从API Version 9开始废弃，建议使用[delete<sup>9+</sup>](#delete9)替代。
+
 **需要权限**：ohos.permission.INTERNET
 
 **系统能力**: SystemCapability.MiscServices.Upload
@@ -486,6 +596,8 @@ remove(callback: AsyncCallback&lt;boolean&gt;): void
 
 移除上传的任务，异步方法，使用callback形式返回结果。
 
+>  **说明：** 从API Version 9开始废弃，建议使用[delete<sup>9+</sup>](#delete9-1)替代。
+
 **需要权限**：ohos.permission.INTERNET
 
 **系统能力**: SystemCapability.MiscServices.Upload
@@ -500,6 +612,70 @@ remove(callback: AsyncCallback&lt;boolean&gt;): void
   
   ```js
   uploadTask.remove((err, result) => {
+      if (err) {
+          console.error('Failed to remove the upload task. Cause: ' + JSON.stringify(err));
+          return;
+      }
+      if (result) {
+          console.info('Upload task removed successfully.');
+      } else {
+          console.error('Failed to remove the upload task.');
+      }
+  });
+  ```
+
+
+### delete<sup>9+</sup>
+
+delete(): Promise&lt;boolean&gt;
+
+移除上传的任务，异步方法，使用promise形式返回结果。
+
+**需要权限**：ohos.permission.INTERNET
+
+**系统能力**: SystemCapability.MiscServices.Upload
+
+**返回值：**
+
+| 类型 | 说明 |
+  | -------- | -------- |
+| Promise&lt;boolean&gt; | 移除任务是否成功。true：成功，false：不成功。 |
+
+**示例：**
+
+  ```js
+  uploadTask.delete().then((result) => {
+      if (result) {
+          console.info('Upload task removed successfully. ');
+      } else {
+          console.error('Failed to remove the upload task. ');
+      }
+  }).catch((err) => {
+      console.error('Failed to remove the upload task. Cause: ' + JSON.stringify(err));
+  });
+  ```
+
+
+### delete<sup>9+</sup>
+
+delete(callback: AsyncCallback&lt;boolean&gt;): void
+
+移除上传的任务，异步方法，使用callback形式返回结果。
+
+**需要权限**：ohos.permission.INTERNET
+
+**系统能力**: SystemCapability.MiscServices.Upload
+
+**参数：**
+
+| 参数名 | 参数类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+| callback | AsyncCallback&lt;boolean&gt; | 是 | 移除任务的回调函数。 |
+
+**示例：**
+
+  ```js
+  uploadTask.delete((err, result) => {
       if (err) {
           console.error('Failed to remove the upload task. Cause: ' + JSON.stringify(err));
           return;
@@ -543,21 +719,21 @@ remove(callback: AsyncCallback&lt;boolean&gt;): void
 
 **需要权限**：ohos.permission.INTERNET
 
-**系统能力**: 以下各项对应的系统能力均为SystemCapability.MiscServices.Download
+**系统能力**: 以下各项对应的系统能力均为SystemCapability.MiscServices.Download。
 
 | 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| filename | string | 否 | multipart提交时，请求头中的文件名。 |
-| name | string | 否 | multipart提交时，表单项目的名称，缺省为file。 |
+| filename | string | 是 | multipart提交时，请求头中的文件名。 |
+| name | string | 是 | multipart提交时，表单项目的名称，缺省为file。 |
 | uri | string | 是 | 文件的本地存储路径。<br/>支持“dataability”和“internal”两种协议类型，但“internal”仅支持临时目录，示例：<br/>dataability:///com.domainname.dataability.persondata/person/10/file.txt<br/>internal://cache/path/to/file.txt |
-| type | string | 否 | 文件的内容类型，默认根据文件名或路径的后缀获取。 |
+| type | string | 是 | 文件的内容类型，默认根据文件名或路径的后缀获取。 |
 
 
 ## RequestData
 
 **需要权限**：ohos.permission.INTERNET
 
-**系统能力**: 以下各项对应的系统能力均为SystemCapability.MiscServices.Download
+**系统能力**: 以下各项对应的系统能力均为SystemCapability.MiscServices.Download。
 
 | 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
@@ -570,6 +746,8 @@ remove(callback: AsyncCallback&lt;boolean&gt;): void
 download(config: DownloadConfig): Promise&lt;DownloadTask&gt;
 
 下载，异步方法，使用promise形式返回结果。
+
+>  **说明：** 从API Version 9开始废弃，建议使用[request.downloadFile<sup>9+</sup>](#requestdownloadfile9)替代。
 
 此接口仅可在FA模型下使用
 
@@ -607,6 +785,8 @@ download(config: DownloadConfig, callback: AsyncCallback&lt;DownloadTask&gt;): v
 
 下载，异步方法，使用callback形式返回结果。
 
+>  **说明：** 从API Version 9开始废弃，建议使用[request.downloadFile<sup>9+</sup>](#requestdownloadfile9-1)替代。
+
 此接口仅可在FA模型下使用
 
 **需要权限**：ohos.permission.INTERNET
@@ -639,6 +819,8 @@ download(config: DownloadConfig, callback: AsyncCallback&lt;DownloadTask&gt;): v
 download(context: BaseContext, config: DownloadConfig): Promise&lt;DownloadTask&gt;
 
 下载，异步方法，使用promise形式返回结果。
+
+>  **说明：** 从API Version 9开始废弃，建议使用[request.downloadFile<sup>9+</sup>](#requestdownloadfile9)替代。
 
 **需要权限**：ohos.permission.INTERNET
 
@@ -675,6 +857,8 @@ download(context: BaseContext, config: DownloadConfig, callback: AsyncCallback&l
 
 下载，异步方法，使用callback形式返回结果。
 
+>  **说明：** 从API Version 9开始废弃，建议使用[request.downloadFile<sup>9+</sup>](#requestdownloadfile9-1)替代。
+
 **需要权限**：ohos.permission.INTERNET
 
 **系统能力**: SystemCapability.MiscServices.Download
@@ -700,6 +884,94 @@ download(context: BaseContext, config: DownloadConfig, callback: AsyncCallback&l
       downloadTask = data;
   });
   ```
+
+
+## request.downloadFile<sup>9+</sup>
+
+downloadFile(context: BaseContext, config: DownloadConfig): Promise&lt;DownloadTask&gt;
+
+下载，异步方法，使用promise形式返回结果。
+
+**需要权限**：ohos.permission.INTERNET
+
+**系统能力**: SystemCapability.MiscServices.Download
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+| context | BaseContext | 是 | 基于应用程序的上下文。 |
+| config | [DownloadConfig](#downloadconfig) | 是 | 下载的配置信息。 |
+
+**返回值：**
+
+| 类型 | 说明 |
+  | -------- | -------- |
+| Promise&lt;[DownloadTask](#downloadtask)&gt; | 返回下载任务。 |
+
+**错误码：**
+以下错误码的详细介绍请参见[上传下载错误码](../errorcodes/errorcode-request.md)。
+
+| 错误码ID | 错误码信息 |
+| -------- | -------- |
+| 13400001 | File operation error. |
+| 13400002 | Bad file path. |
+| 13400003 | Task manager service error. |
+
+**示例：**
+
+  ```js
+  let downloadTask;
+  request.downloadFile(globalThis.abilityContext, { url: 'https://xxxx/xxxx.hap' }).then((data) => {
+      downloadTask = data;
+  }).catch((err) => {
+      console.error('Failed to request the download. Cause: ' + JSON.stringify(err));
+  })
+  ```
+
+
+## request.downloadFile<sup>9+</sup>
+
+downloadFile(context: BaseContext, config: DownloadConfig, callback: AsyncCallback&lt;DownloadTask&gt;): void;
+
+下载，异步方法，使用callback形式返回结果。
+
+**需要权限**：ohos.permission.INTERNET
+
+**系统能力**: SystemCapability.MiscServices.Download
+
+**参数：**
+
+| 参数名 | 参数类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+| context | BaseContext | 是 | 基于应用程序的上下文。 |
+| config | [DownloadConfig](#downloadconfig) | 是 | 下载的配置信息。 |
+| callback | AsyncCallback&lt;[DownloadTask](#downloadtask)&gt; | 否 | 下载接口的回调函数。 |
+
+**错误码：**
+以下错误码的详细介绍请参见[上传下载错误码](../errorcodes/errorcode-request.md)。
+
+| 错误码ID | 错误码信息 |
+| -------- | -------- |
+| 13400001 | File operation error. |
+| 13400002 | Bad file path. |
+| 13400003 | Task manager service error. |
+
+**示例：**
+
+  ```js
+  let downloadTask;
+  request.downloadFile(globalThis.abilityContext, { url: 'https://xxxx/xxxxx.hap', 
+  filePath: 'xxx/xxxxx.hap'}, (err, data) => {
+      if (err) {
+          console.error('Failed to request the download. Cause: ' + JSON.stringify(err));
+          return;
+      }
+      downloadTask = data;
+  });
+  ```
+
+
 ## DownloadTask
 
 下载任务。
@@ -899,6 +1171,8 @@ remove(): Promise&lt;boolean&gt;
 
 移除下载的任务，异步方法，使用promise形式返回结果。
 
+>  **说明：** 从API Version 9开始废弃，建议使用[delete<sup>9+</sup>](#delete9-2)替代。
+
 **需要权限**：ohos.permission.INTERNET
 
 **系统能力**: SystemCapability.MiscServices.Download
@@ -929,6 +1203,8 @@ remove(): Promise&lt;boolean&gt;
 remove(callback: AsyncCallback&lt;boolean&gt;): void
 
 移除下载的任务，异步方法，使用callback形式返回结果。
+
+>  **说明：** 从API Version 9开始废弃，建议使用[delete<sup>9+</sup>](#delete9-3)替代。
 
 **需要权限**：ohos.permission.INTERNET
 
@@ -963,6 +1239,8 @@ query(): Promise&lt;DownloadInfo&gt;
 
 查询下载任务，异步方法，使用promise形式返回DownloadInfo里的信息。
 
+>  **说明：** 从API Version 9开始废弃，建议使用[getTaskInfo<sup>9+</sup>](#gettaskinfo9)替代。
+
 **需要权限**：ohos.permission.INTERNET
 
 **系统能力**: SystemCapability.MiscServices.Download
@@ -988,6 +1266,8 @@ query(): Promise&lt;DownloadInfo&gt;
 query(callback: AsyncCallback&lt;DownloadInfo&gt;): void
 
 查询下载的任务，异步方法，使用callback形式返回结果。
+
+>  **说明：** 从API Version 9开始废弃，建议使用[getTaskInfo<sup>9+</sup>](#gettaskinfo9-1)替代。
 
 **需要权限**：ohos.permission.INTERNET
 
@@ -1018,6 +1298,8 @@ queryMimeType(): Promise&lt;string&gt;
 
 查询下载的任务的 MimeType，异步方法，使用promise形式返回结果。
 
+>  **说明：** 从API Version 9开始废弃，建议使用[getTaskMimeType<sup>9+</sup>](#gettaskmimetype9)替代。
+
 **需要权限**：ohos.permission.INTERNET
 
 **系统能力**: SystemCapability.MiscServices.Download
@@ -1044,6 +1326,8 @@ queryMimeType(): Promise&lt;string&gt;
 queryMimeType(callback: AsyncCallback&lt;string&gt;): void;
 
 查询下载的任务的 MimeType，异步方法，使用callback形式返回结果。
+
+>  **说明：** 从API Version 9开始废弃，建议使用[getTaskMimeType<sup>9+</sup>](#gettaskmimetype9-1)替代。
 
 **需要权限**：ohos.permission.INTERNET
 
@@ -1074,6 +1358,8 @@ pause(): Promise&lt;void&gt;
 
 暂停下载任务，异步方法，使用promise形式返回结果。
 
+>  **说明：** 从API Version 9开始废弃，建议使用[suspend<sup>9+</sup>](#suspend9)替代。
+
 **需要权限**：ohos.permission.INTERNET
 
 **系统能力**: SystemCapability.MiscServices.Download
@@ -1102,6 +1388,8 @@ pause(): Promise&lt;void&gt;
 ### pause<sup>7+</sup>
 
 pause(callback: AsyncCallback&lt;void&gt;): void
+
+>  **说明：** 从API Version 9开始废弃，建议使用[suspend<sup>9+</sup>](#suspend9-1)替代。
 
 暂停下载任务，异步方法，使用callback形式返回结果。
 
@@ -1138,6 +1426,8 @@ resume(): Promise&lt;void&gt;
 
 重新启动暂停的下载任务，异步方法，使用promise形式返回结果。
 
+>  **说明：** 从API Version 9开始废弃，建议使用[restore<sup>9+</sup>](#restore9)替代。
+
 **需要权限**：ohos.permission.INTERNET
 
 **系统能力**: SystemCapability.MiscServices.Download
@@ -1168,6 +1458,8 @@ resume(): Promise&lt;void&gt;
 
 resume(callback: AsyncCallback&lt;void&gt;): void
 
+>  **说明：** 从API Version 9开始废弃，建议使用[restore<sup>9+</sup>](#restore9-1)替代。
+
 重新启动暂停的下载任务，异步方法，使用callback形式返回结果。
 
 **需要权限**：ohos.permission.INTERNET
@@ -1197,6 +1489,310 @@ resume(callback: AsyncCallback&lt;void&gt;): void
   ```
 
 
+### delete<sup>9+</sup>
+
+delete(): Promise&lt;boolean&gt;
+
+移除下载的任务，异步方法，使用promise形式返回结果。
+
+**需要权限**：ohos.permission.INTERNET
+
+**系统能力**: SystemCapability.MiscServices.Download
+
+**返回值：**
+
+| 类型 | 说明 |
+  | -------- | -------- |
+| Promise&lt;boolean&gt; | 移除任务是否成功。 |
+
+**示例：**
+
+  ```js
+  downloadTask.delete().then((result) => {
+      if (result) {
+          console.info('Download task removed.');
+      } else {
+          console.error('Failed to remove the download task.');
+      }
+  }).catch ((err) => {
+      console.error('Failed to remove the download task.');
+  });
+  ```
+
+
+### delete<sup>9+</sup>
+
+delete(callback: AsyncCallback&lt;boolean&gt;): void
+
+移除下载的任务，异步方法，使用callback形式返回结果。
+
+**需要权限**：ohos.permission.INTERNET
+
+**系统能力**: SystemCapability.MiscServices.Download
+
+**参数：**
+
+| 参数名 | 参数类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+| callback | AsyncCallback&lt;boolean&gt; | 是 | 移除任务是否成功。 |
+
+**示例：**
+
+  ```js
+  downloadTask.delete((err, result)=>{
+      if(err) {
+          console.error('Failed to remove the download task.');
+          return;
+      } 
+      if (result) {
+          console.info('Download task removed.');
+      } else {
+          console.error('Failed to remove the download task.');
+      } 
+  });
+  ```
+
+
+### getTaskInfo<sup>9+</sup>
+
+getTaskInfo(): Promise&lt;DownloadInfo&gt;
+
+查询下载任务，异步方法，使用promise形式返回DownloadInfo里的信息。
+
+**需要权限**：ohos.permission.INTERNET
+
+**系统能力**: SystemCapability.MiscServices.Download
+
+**参数：**
+| 类型 | 说明 |
+| -------- | -------- |
+| Promise&lt;[DownloadInfo](#downloadinfo7)&gt; | 查询下载任务信息。 |
+
+**示例：**
+
+  ```js
+  downloadTask.getTaskInfo().then((downloadInfo) => {    
+      console.info('Download task queried. Data:' + JSON.stringify(downloadInfo))
+  }) .catch((err) => {
+      console.error('Failed to query the download task. Cause:' + err)
+  });
+  ```
+
+
+### getTaskInfo<sup>9+</sup>
+
+query(callback: AsyncCallback&lt;DownloadInfo&gt;): void
+
+查询下载的任务，异步方法，使用callback形式返回结果。
+
+**需要权限**：ohos.permission.INTERNET
+
+**系统能力**: SystemCapability.MiscServices.Download
+
+**参数：**
+
+| 参数名 | 参数类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+| callback | AsyncCallback&lt;[DownloadInfo](#downloadinfo7)&gt; | 是 | 查询下载任务的回调函数。 |
+
+**示例：**
+
+  ```js
+  downloadTask.getTaskInfo((err, downloadInfo)=>{
+      if(err) {
+          console.error('Failed to query the download mimeType. Cause:' + JSON.stringify(err));
+      } else {
+          console.info('download query success. data:'+ JSON.stringify(downloadInfo));
+      }
+  });
+  ```
+
+
+### getTaskMimeType<sup>9+</sup>
+
+getTaskMimeType(): Promise&lt;string&gt;
+
+查询下载的任务的 MimeType，异步方法，使用promise形式返回结果。
+
+**需要权限**：ohos.permission.INTERNET
+
+**系统能力**: SystemCapability.MiscServices.Download
+
+**返回值：**
+
+| 类型 | 说明 |
+  | -------- | -------- |
+| Promise&lt;string&gt; | 查询下载任务的MimeType。 |
+
+**示例：**
+
+  ```js
+  downloadTask.getTaskMimeType().then((data) => {    
+      console.info('Download task queried. Data:' + JSON.stringify(data));
+  }).catch((err) => {
+      console.error('Failed to query the download MimeType. Cause:' + JSON.stringify(err))
+  });
+  ```
+
+
+### getTaskMimeType<sup>9+</sup>
+
+getTaskMimeType(callback: AsyncCallback&lt;string&gt;): void;
+
+查询下载的任务的 MimeType，异步方法，使用callback形式返回结果。
+
+**需要权限**：ohos.permission.INTERNET
+
+**系统能力**: SystemCapability.MiscServices.Download
+
+**参数：**
+
+| 参数名 | 参数类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+| callback | AsyncCallback&lt;string&gt; | 是 | 查询下载任务的MimeType的回调函数。 |
+
+**示例：**
+
+  ```js
+  downloadTask.getTaskMimeType((err, data)=>{
+      if(err) {
+          console.error('Failed to query the download mimeType. Cause:' + JSON.stringify(err));
+      } else {
+          console.info('Download task queried. data:' + JSON.stringify(data));
+      }
+  });
+  ```
+
+
+### suspend<sup>9+</sup>
+
+suspend(): Promise&lt;void&gt;
+
+暂停下载任务，异步方法，使用promise形式返回结果。
+
+**需要权限**：ohos.permission.INTERNET
+
+**系统能力**: SystemCapability.MiscServices.Download
+
+**返回值：**
+
+| 类型 | 说明 |
+  | -------- | -------- |
+| Promise&lt;void&gt; | 暂停下载任务是否成功。 |
+
+**示例：**
+
+  ```js
+  downloadTask.suspend().then((result) => {    
+      if (result) {
+           console.info('Download task paused. ');
+      } else {
+          console.error('Failed to pause the download task. Cause:' + JSON.stringify(result));
+      }
+  }).catch((err) => {
+      console.error('Failed to pause the download task. Cause:' + JSON.stringify(err));
+  });
+  ```
+
+
+### suspend<sup>9+</sup>
+
+suspend(callback: AsyncCallback&lt;void&gt;): void
+
+暂停下载任务，异步方法，使用callback形式返回结果。
+
+**需要权限**：ohos.permission.INTERNET
+
+**系统能力**: SystemCapability.MiscServices.Download
+
+**参数：**
+
+| 参数名 | 参数类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+| callback | AsyncCallback&lt;void&gt; | 是 | 暂停下载任务的回调函数。 |
+
+**示例：**
+
+  ```js
+  downloadTask.suspend((err, result)=>{
+      if(err) {
+          console.error('Failed to pause the download task. Cause:' + JSON.stringify(err));
+          return;
+      }
+      if (result) {
+           console.info('Download task paused. ');
+      } else {
+          console.error('Failed to pause the download task. Cause:' + JSON.stringify(result));
+      }
+  });
+  ```
+
+
+### restore<sup>9+</sup>
+
+restore(): Promise&lt;void&gt;
+
+重新启动暂停的下载任务，异步方法，使用promise形式返回结果。
+
+**需要权限**：ohos.permission.INTERNET
+
+**系统能力**: SystemCapability.MiscServices.Download
+
+**参数：**
+
+| 类型 | 说明 |
+  | -------- | -------- |
+| Promise&lt;void&gt; | 重新启动暂停的下载任务是否成功。 |
+
+**示例：**
+
+  ```js
+  downloadTask.restore().then((result) => {
+      if (result) {
+          console.info('Download task resumed.')
+      } else {
+          console.error('Failed to resume the download task. ');
+      }
+      console.info('Download task resumed.')
+  }).catch((err) => {
+      console.error('Failed to resume the download task. Cause:' + err);
+  });
+  ```
+
+
+### restore<sup>9+</sup>
+
+restore(callback: AsyncCallback&lt;void&gt;): void
+
+重新启动暂停的下载任务，异步方法，使用callback形式返回结果。
+
+**需要权限**：ohos.permission.INTERNET
+
+**系统能力**: SystemCapability.MiscServices.Download
+
+**参数：**
+
+| 参数名 | 参数类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+| callback | AsyncCallback&lt;void&gt; | 是 | 重新启动暂停的下载任务的回调函数。 |
+
+**示例：**
+
+  ```js
+  downloadTask.restore((err, result)=>{
+      if (err) {
+          console.error('Failed to resume the download task. Cause:' + err);
+          return;
+      } 
+      if (result) {
+          console.info('Download task resumed.');
+      } else {
+          console.error('Failed to resume the download task.');
+      }
+  });
+  ```
+
+
 ## DownloadConfig
 
 **需要权限**：ohos.permission.INTERNET
@@ -1206,7 +1802,7 @@ resume(callback: AsyncCallback&lt;void&gt;): void
 | 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | url | string | 是 | 资源地址。 |
-| header | object | 否 | 添加要包含在下载请求中的HTTP或HTTPS标志头。 |
+| header | object | 否 | 添加要包含在下载请求中的HTTPS标志头。<br/>开发者可以通过header的X-TLS-Version参数指定需要使用的TLS版本(如果不指定，则默认使用CURL_SSLVERSION_TLSv1_2版本，指定则使用指定版本。)<br/>CURL_SSLVERSION_TLSv1_0<br/>CURL_SSLVERSION_TLSv1_1<br/>CURL_SSLVERSION_TLSv1_2<br/>CURL_SSLVERSION_TLSv1_3<br/>通过header的X-Cipher-List参数指定需要使用的密码套件(如果不指定，则默认使用安全密码套件，指定则使用指定密码套件。)<br/>-1.2允许使用的密码套件白名单：<br/>TLS_DHE_RSA_WITH_AES_128_GCM_SHA256,TLS_DHE_RSA_WITH_AES_256_GCM_SHA384,<br/>TLS_DHE_DSS_WITH_AES_128_GCM_SHA256,TLS_DSS_RSA_WITH_AES_256_GCM_SHA384,<br/>TLS_PSK_WITH_AES_256_GCM_SHA384,TLS_DHE_PSK_WITH_AES_128_GCM_SHA256,<br/>TLS_DHE_PSK_WITH_AES_256_GCM_SHA384,TLS_DHE_PSK_WITH_CHACHA20_POLY1305_SHA256,<br/>TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256,TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384,<br/>TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256,TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384,<br/>TLS_ECDHE_RSA_WITH_CHACHA20_POLY1305_SHA256,TLS_ECDHE_PSK_WITH_CHACHA20_POLY1305_SHA256,<br/>TLS_ECDHE_PSK_WITH_AES_128_GCM_SHA256,TLS_ECDHE_PSK_WITH_AES_256_GCM_SHA384,<br/>TLS_ECDHE_PSK_WITH_AES_128_GCM_SHA256,TLS_DHE_RSA_WITH_AES_128_CCM,<br/>TLS_DHE_RSA_WITH_AES_256_CCM,TLS_DHE_RSA_WITH_CHACHA20_POLY1305_SHA256,<br/>TLS_PSK_WITH_AES_256_CCM,TLS_DHE_PSK_WITH_AES_128_CCM,<br/>TLS_DHE_PSK_WITH_AES_256_CCM,TLS_ECDHE_ECDSA_WITH_AES_128_CCM,<br/>TLS_ECDHE_ECDSA_WITH_AES_256_CCM,TLS_ECDHE_ECDSA_WITH_CHACHA20_POLY1305_SHA256<br/>-1.3允许使用的密码套件白名单：<br/>TLS_AES_128_GCM_SHA256,TLS_AES_256_GCM_SHA384,TLS_CHACHA20_POLY1305_SHA256,TLS_AES_128_CCM_SHA256<br/>-1.3新增国密算法套：<br/>TLS_SM4_GCM_SM3,TLS_SM4_CCM_SM3 |
 | enableMetered | boolean | 否 | 设置是否允许在按流量计费的连接下下载。<br/>-&nbsp;true：是<br/>-&nbsp;false：否 |
 | enableRoaming | boolean | 否 | 设置是否允许在漫游网络中下载。 <br/>-&nbsp;true：是<br/>-&nbsp;false：否|
 | description | string | 否 | 设置下载会话的描述。 |

@@ -10,6 +10,9 @@
 
 Recommended use case: Use **TreeSet** when you need to store data in sorted order.
 
+This topic uses the following to identify the use of generics:
+- T: Type
+
 ## Modules to Import
 
 ```ts
@@ -29,7 +32,7 @@ import TreeSet from '@ohos.util.TreeSet';
 
 ### constructor
 
-constructor(comparator?:(firstValue: T, secondValue: T) => boolean)
+constructor(comparator?: (firstValue: T, secondValue: T) => boolean)
 
 A constructor used to create a **TreeSet** instance.
 
@@ -118,8 +121,8 @@ Obtains the value of the first element in this container.
 
 ```ts
 let treeSet = new TreeSet();
-treeSet.add("Ahfbrgrbgnutfodgorrogorgrogofdfdf");
-treeSet.add("sdfs");
+treeSet.add("squirrel");
+treeSet.add("sparrow");
 let result = treeSet.getFirstValue();
 ```
 
@@ -142,8 +145,8 @@ Obtains the value of the last element in this container.
 
 ```ts
 let treeSet = new TreeSet();
-treeSet.add("Ahfbrgrbgnutfodgorrogorgrogofdfdf");
-treeSet.add("sdfs");
+treeSet.add("squirrel");
+treeSet.add("sparrow");
 let result = treeSet.getLastValue();
 ```
 
@@ -172,7 +175,7 @@ Adds an element to this container.
 
 ```ts
 let treeSet = new TreeSet();
-let result = treeSet.add("Ahfbrgrbgnutfodgorrogorgrogofdfdf");
+let result = treeSet.add("squirrel");
 ```
 
 
@@ -200,9 +203,9 @@ Removes the element with the specified key from this container.
 
 ```ts
 let treeSet = new TreeSet();
-treeSet.add("Ahfbrgrbgnutfodgorrogorgrogofdfdf");
-treeSet.add("sdfs");
-let result = treeSet.remove("sdfs");
+treeSet.add("squirrel");
+treeSet.add("sparrow");
+let result = treeSet.remove("sparrow");
 ```
 
 
@@ -230,10 +233,10 @@ Obtains the value that is placed in front of the input key in this container.
 
 ```ts
 let treeSet = new TreeSet();
-treeSet.add("Ahfbrgrbgnutfodgorrogorgrogofdfdf");
-treeSet.add("sdfs");
-treeSet.add("zdfgsd");
-let result = treeSet.getLowerValue("sdfs");
+treeSet.add("squirrel");
+treeSet.add("sparrow");
+treeSet.add("gander");
+let result = treeSet.getLowerValue("sparrow");
 ```
 
 
@@ -261,10 +264,10 @@ Obtains the value that is placed next to the input key in this container.
 
 ```ts
 let treeSet = new TreeSet();
-treeSet.add("Ahfbrgrbgnutfodgorrogorgrogofdfdf");
-treeSet.add("sdfs");
-treeSet.add("zdfgsd");
-let result = treeSet.getHigherValue("sdfs");
+treeSet.add("squirrel");
+treeSet.add("sparrow");
+treeSet.add("gander");
+let result = treeSet.getHigherValue("sparrow");
 ```
 
 
@@ -286,8 +289,8 @@ Removes the first element in this container.
 
 ```ts
 let treeSet = new TreeSet();
-treeSet.add("Ahfbrgrbgnutfodgorrogorgrogofdfdf");
-treeSet.add("sdfs");
+treeSet.add("squirrel");
+treeSet.add("sparrow");
 let result = treeSet.popFirst();
 ```
 
@@ -310,8 +313,8 @@ Removes the last element in this container.
 
 ```ts
 let treeSet = new TreeSet();
-treeSet.add("Ahfbrgrbgnutfodgorrogorgrogofdfdf");
-treeSet.add("sdfs");
+treeSet.add("squirrel");
+treeSet.add("sparrow");
 let result = treeSet.popLast();
 ```
 
@@ -328,8 +331,8 @@ Clears this container and sets its length to **0**.
 
 ```ts
 let treeSet = new TreeSet();
-treeSet.add("Ahfbrgrbgnutfodgorrogorgrogofdfdf");
-treeSet.add("sdfs");
+treeSet.add("squirrel");
+treeSet.add("sparrow");
 treeSet.clear();
 ```
 
@@ -352,8 +355,8 @@ Obtains an iterator that contains all the values in this container.
 
 ```ts
 let treeSet = new TreeSet();
-treeSet.add("Ahfbrgrbgnutfodgorrogorgrogofdfdf");
-treeSet.add("sdfs");
+treeSet.add("squirrel");
+treeSet.add("sparrow");
 let iter = treeSet.values();
 let temp = iter.next().value;
 while(temp != undefined) {
@@ -389,8 +392,8 @@ callbackfn
 
 ```ts
 let treeSet = new TreeSet();
-treeSet.add("sdfs");
-treeSet.add("dfsghsf");
+treeSet.add("sparrow");
+treeSet.add("gull");
 treeSet.forEach((value, key) => {
   console.log("value:" + value, key)
 });
@@ -415,8 +418,8 @@ Obtains an iterator that contains all the elements in this container.
 
 ```ts
 let treeSet = new TreeSet();
-treeSet.add("Ahfbrgrbgnutfodgorrogorgrogofdfdf");
-treeSet.add("sdfs");
+treeSet.add("squirrel");
+treeSet.add("sparrow");
 let iter = treeSet.entries();
 let temp = iter.next().value;
 while(temp != undefined) {
@@ -445,8 +448,8 @@ Obtains an iterator, each item of which is a JavaScript object.
 
 ```ts
 let treeSet = new TreeSet();
-treeSet.add("Ahfbrgrbgnutfodgorrogorgrogofdfdf");
-treeSet.add("sdfs");
+treeSet.add("squirrel");
+treeSet.add("sparrow");
   
 // Method 1:
 for (let item of treeSet) { 

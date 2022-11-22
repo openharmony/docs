@@ -51,18 +51,17 @@ show(options?: ShowNotificationOptions): void
 
 **示例：**
 ```javascript
-export default {    
-  show() {        
-    notification.show({            
-      contentTitle: 'title info',            
-        contentText: 'text',            
-        clickAction: {                
-          bundleName: 'com.example.testapp',                
-          abilityName: 'notificationDemo',                
-          uri: '/path/to/notification',            
-         },
-     });    
-  },
+export default {
+    show() {
+        notification.show({
+            contentTitle: 'title info',
+            contentText: 'text',
+            clickAction: {
+                bundleName: 'com.example.testapp',
+                abilityName: 'notificationDemo',
+                uri: '/path/to/notification',
+            },
+        });
+    },
 }
-;
 ```

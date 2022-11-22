@@ -6,7 +6,9 @@ The **RemoteAbilityInfo** module provides information about a remote ability.
 >
 > The initial APIs of this module are supported since API version 8. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
-## RemoteAbilityInfo
+## RemoteAbilityInfo<sup>(deprecated)<sup>
+
+> This API is deprecated since API version 9. You are advised to use [RemoteAbilityInfo](js-apis-bundleManager-remoteAbilityInfo.md) instead.
 
 **System capability**: SystemCapability.BundleManager.DistributedBundleFramework
 

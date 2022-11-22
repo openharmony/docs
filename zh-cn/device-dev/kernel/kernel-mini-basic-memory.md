@@ -45,12 +45,12 @@ OpenHarmony LiteOS-M的静态内存管理主要为用户提供以下功能，接
 
   **表1** 静态内存模块接口
 
-| 功能分类 | 接口名 | 
+| 功能分类 | 接口名 |
 | -------- | -------- |
-| 初始化静态内存池 | LOS_MemboxInit：初始化一个静态内存池，根据入参设定其起始地址、总大小及每个内存块大小。 | 
-| 清除静态内存块内容 | LOS_MemboxClr:清零从静态内存池中申请的静态内存块的内容。 | 
-| 申请、释放静态内存 | -&nbsp;LOS_MemboxAlloc：从指定的静态内存池中申请一块静态内存块。<br/>-&nbsp;LOS_MemboxFree：释放从静态内存池中申请的一块静态内存块。 | 
-| 获取、打印静态内存池信息 | -&nbsp;LOS_MemboxStatisticsGet:获取指定静态内存池的信息，包括内存池中总内存块数量、已经分配出去的内存块数量、每个内存块的大小。<br/>-&nbsp;LOS_ShowBox:打印指定静态内存池所有节点信息（打印等级是LOS_INFO_LEVEL），包括内存池起始地址、内存块大小、总内存块数量、每个空闲内存块的起始地址、所有内存块的起始地址。 | 
+| 初始化静态内存池 | LOS_MemboxInit：初始化一个静态内存池，根据入参设定其起始地址、总大小及每个内存块大小。 |
+| 清除静态内存块内容 | LOS_MemboxClr：清零从静态内存池中申请的静态内存块的内容。 |
+| 申请、释放静态内存 | &nbsp;LOS_MemboxAlloc：从指定的静态内存池中申请一块静态内存块。<br/>&nbsp;LOS_MemboxFree：释放从静态内存池中申请的一块静态内存块。 |
+| 获取、打印静态内存池信息 | &nbsp;LOS_MemboxStatisticsGet：获取指定静态内存池的信息，包括内存池中总内存块数量、已经分配出去的内存块数量、每个内存块的大小。<br/>&nbsp;LOS_ShowBox：打印指定静态内存池所有节点信息，打印等级是LOG_INFO_LEVEL（当前打印等级配置是PRINT_LEVEL），包括内存池起始地址、内存块大小、总内存块数量、每个空闲内存块的起始地址、所有内存块的起始地址。 |
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
 > 初始化后的内存池的内存块数量，不等于总大小除于内存块大小，因为内存池的控制块和每个内存块的控制头，都存在内存开销，设置总大小时，需要将这些因素考虑进去。
@@ -91,21 +91,26 @@ OpenHarmony LiteOS-M的静态内存管理主要为用户提供以下功能，接
 
 6. 释放该内存块。
    示例代码如下：
+   
+   本演示代码在 ./kernel/liteos_m/testsuites/src/osTest.c 中编译验证，在TestTaskEntry中调用验证入口函数ExampleStaticMem。
 
-  
+
 ```
 #include "los_membox.h"
 
-VOID Example_StaticMem(VOID)
+#define MEMBOX_POOL_SIZE    100
+#define MEMBOX_BLOCK_SZIE   10
+#define MEMBOX_WR_TEST_NUM  828
+VOID ExampleStaticMem(VOID)
 {
     UINT32 *mem = NULL;
-    UINT32 blkSize = 10;
-    UINT32 boxSize = 100;
-    UINT32 boxMem[1000];
+    UINT32 blkSize = MEMBOX_BLOCK_SZIE;
+    UINT32 poolSize = MEMBOX_POOL_SIZE;
+    UINT32 boxMem[MEMBOX_POOL_SIZE];
     UINT32 ret;
 
-    /*内存池初始化*/
-    ret = LOS_MemboxInit(&boxMem[0], boxSize, blkSize);
+    /* 内存池初始化 */
+    ret = LOS_MemboxInit(&boxMem[0], poolSize, blkSize);
     if(ret != LOS_OK) {
         printf("Membox init failed!\n");
         return;
@@ -113,23 +118,23 @@ VOID Example_StaticMem(VOID)
         printf("Membox init success!\n");
     }
 
-    /*申请内存块*/
+    /* 申请内存块 */
     mem = (UINT32 *)LOS_MemboxAlloc(boxMem);
-    if (NULL == mem) {
+    if (mem == NULL) {
         printf("Mem alloc failed!\n");
         return;
     }
     printf("Mem alloc success!\n");
 
-    /*赋值*/
-    *mem = 828;
+    /* 内存地址读写验证 */
+    *mem = MEMBOX_WR_TEST_NUM;
     printf("*mem = %d\n", *mem);
 
-    /*清除内存内容*/
+    /* 清除内存内容 */
     LOS_MemboxClr(boxMem, mem);
-    printf("Mem clear success \n *mem = %d\n", *mem);
+    printf("Mem clear success \n*mem = %d\n", *mem);
 
-    /*释放内存*/
+    /* 释放内存 */
     ret = LOS_MemboxFree(boxMem, mem);
     if (LOS_OK == ret) {
         printf("Mem free success!\n");
@@ -139,6 +144,7 @@ VOID Example_StaticMem(VOID)
 
     return;
 }
+
 ```
 
 
@@ -146,7 +152,7 @@ VOID Example_StaticMem(VOID)
 
 输出结果如下：
 
-  
+
 ```
 Membox init success!
 Mem alloc success!
@@ -197,7 +203,7 @@ OpenHarmony LiteOS-M动态内存在TLSF算法的基础上，对区间的划分�
 
 2. 获取下一个内存区域的开始地址和长度，计算该内存区域和上一块内存区域的间隔大小gapSize。
 
-3. 把内存区域间隔部分视为虚拟的已使用节点，使用上一个内存区域的尾节点，设置其大小为gapSize+ OS_MEM_NODE_HEAD_SIZE。
+3. 把内存区域间隔部分视为虚拟的已使用节点，使用上一个内存区域的尾节点，设置其大小为gapSize + OS_MEM_NODE_HEAD_SIZE（即sizeof(struct OsMemUsedNodeHead)）。
 
 4. 把当前内存区域划分为一个空闲内存节点和一个尾节点，把空闲内存节点插入到空闲链表，并设置各个节点的前后链接关系。
 
@@ -218,14 +224,14 @@ OpenHarmony LiteOS-M的动态内存管理主要为用户提供以下功能，接
 
   **表1** 动态内存模块接口
 
-| 功能分类 | 接口描述 | 
+| 功能分类 | 接口描述 |
 | -------- | -------- |
-| 初始化和删除内存池 | -&nbsp;LOS_MemInit:初始化一块指定的动态内存池，大小为size。<br/>-&nbsp;LOS_MemDeInit:删除指定内存池，仅打开LOSCFG_MEM_MUL_POOL时有效。 | 
-| 申请、释放动态内存 | -&nbsp;LOS_MemAlloc:从指定动态内存池中申请size长度的内存。<br/>-&nbsp;LOS_MemFree:释放从指定动态内存中申请的内存。<br/>-&nbsp;LOS_MemRealloc:释放从指定动态内存中申请的内存。 | 
-| 获取内存池信息 | -&nbsp;LOS_MemPoolSizeGet:获取指定动态内存池的总大小。<br/>-&nbsp;LOS_MemTotalUsedGet:获取指定动态内存池的总使用量大小。<br/>-&nbsp;LOS_MemInfoGet:获取指定内存池的内存结构信息，包括空闲内存大小、已使用内存大小、空闲内存块数量、已使用的内存块数量、最大的空闲内存块大小。<br/>-&nbsp;LOS_MemPoolList:打印系统中已初始化的所有内存池，包括内存池的起始地址、内存池大小、空闲内存总大小、已使用内存总大小、最大的空闲内存块大小、空闲内存块数量、已使用的内存块数量。仅打开LOSCFG_MEM_MUL_POOL时有效。 | 
-| 获取内存块信息 | -&nbsp;LOS_MemFreeNodeShow:打印指定内存池的空闲内存块的大小及数量。<br/>-&nbsp;LOS_MemUsedNodeShow:打印指定内存池的已使用内存块的大小及数量。 | 
-| 检查指定内存池的完整性 | LOS_MemIntegrityCheck:对指定内存池做完整性检查，仅打开LOSCFG_BASE_MEM_NODE_INTEGRITY_CHECK时有效。 | 
-| 增加非连续性内存区域 | LOS_MemRegionsAdd:支持多段非连续性内存区域，把非连续性内存区域逻辑上整合为一个统一的内存池。仅打开LOSCFG_MEM_MUL_REGIONS时有效。如果内存池指针参数pool为空，则使用多段内存的第一个初始化为内存池，其他内存区域，作为空闲节点插入；如果内存池指针参数pool不为空，则把多段内存作为空闲节点，插入到指定的内存池。 | 
+| 初始化和删除内存池 | &nbsp;LOS_MemInit：初始化一块指定的动态内存池，大小为size。<br/>&nbsp;LOS_MemDeInit：删除指定内存池，仅打开编译控制开关LOSCFG_MEM_MUL_POOL时有效。 |
+| 申请、释放动态内存 | &nbsp;LOS_MemAlloc：从指定动态内存池中申请size长度的内存。<br/>&nbsp;LOS_MemFree：释放从指定动态内存中申请的内存。<br/>&nbsp;LOS_MemRealloc：释放从指定动态内存中申请的内存。 |
+| 获取内存池信息 | &nbsp;LOS_MemPoolSizeGet：获取指定动态内存池的总大小。<br/>&nbsp;LOS_MemTotalUsedGet：获取指定动态内存池的总使用量大小。<br/>&nbsp;LOS_MemInfoGet：获取指定内存池的内存结构信息，包括空闲内存大小、已使用内存大小、空闲内存块数量、已使用的内存块数量、最大的空闲内存块大小。<br/>&nbsp;LOS_MemPoolList：打印系统中已初始化的所有内存池，包括内存池的起始地址、内存池大小、空闲内存总大小、已使用内存总大小、最大的空闲内存块大小、空闲内存块数量、已使用的内存块数量。仅打开编译控制开关LOSCFG_MEM_MUL_POOL时有效。 |
+| 获取内存块信息 | &nbsp;LOS_MemFreeNodeShow：打印指定内存池的空闲内存块的大小及数量。<br/>&nbsp;LOS_MemUsedNodeShow：打印指定内存池的已使用内存块的大小及数量。 |
+| 检查指定内存池的完整性 | LOS_MemIntegrityCheck：对指定内存池做完整性检查，仅打开编译控制开关LOSCFG_BASE_MEM_NODE_INTEGRITY_CHECK时有效。 |
+| 增加非连续性内存区域 | LOS_MemRegionsAdd：支持多段非连续性内存区域，把非连续性内存区域逻辑上整合为一个统一的内存池。仅打开LOSCFG_MEM_MUL_REGIONS时有效。如果内存池指针参数pool为空，则使用多段内存的第一个初始化为内存池，其他内存区域，作为空闲节点插入；如果内存池指针参数pool不为空，则把多段内存作为空闲节点，插入到指定的内存池。 |
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
 > - 由于动态内存管理需要管理控制块数据结构来管理内存，这些数据结构会额外消耗内存，故实际用户可使用内存总量小于配置项OS_SYS_MEM_SIZE的大小。
@@ -265,18 +271,24 @@ OpenHarmony LiteOS-M的动态内存管理主要为用户提供以下功能，接
 
 示例代码如下：
 
-  
+本演示代码在 ./kernel/liteos_m/testsuites/src/osTest.c 中编译验证，在TestTaskEntry中调用验证入口函数ExampleDynMem。
+
+
 ```
 #include "los_memory.h"
+
 #define TEST_POOL_SIZE (2*1024)
-__attribute__((aligned(4))) UINT8 g_testPool[TEST_POOL_SIZE];
-VOID Example_DynMem(VOID)
+#define MEMBOX_WR_TEST_NUM  828
+
+__attribute__((aligned(4))) UINT8 g_testDynPool[TEST_POOL_SIZE];
+
+VOID ExampleDynMem(VOID)
 {
     UINT32 *mem = NULL;
     UINT32 ret;
 
-    /*初始化内存池*/
-    ret = LOS_MemInit(g_testPool, TEST_POOL_SIZE);
+    /* 初始化内存池 */
+    ret = LOS_MemInit(g_testDynPool, TEST_POOL_SIZE);
     if (LOS_OK  == ret) {
         printf("Mem init success!\n");
     } else {
@@ -284,20 +296,20 @@ VOID Example_DynMem(VOID)
         return;
     }
 
-    /*分配内存*/
-    mem = (UINT32 *)LOS_MemAlloc(g_testPool, 4);
-    if (NULL == mem) {
+    /* 申请内存块 */
+    mem = (UINT32 *)LOS_MemAlloc(g_testDynPool, 4);
+    if (mem == NULL) {
         printf("Mem alloc failed!\n");
         return;
     }
     printf("Mem alloc success!\n");
 
-    /*赋值*/
-    *mem = 828;
+    /* 内存地址读写验证 */
+    *mem = MEMBOX_WR_TEST_NUM;
     printf("*mem = %d\n", *mem);
 
-    /*释放内存*/
-    ret = LOS_MemFree(g_testPool, mem);
+    /* 释放内存 */
+    ret = LOS_MemFree(g_testDynPool, mem);
     if (LOS_OK == ret) {
         printf("Mem free success!\n");
     } else {
@@ -313,7 +325,7 @@ VOID Example_DynMem(VOID)
 
 输出结果如下：
 
-  
+
 ```
 Mem init success!
 Mem alloc success!

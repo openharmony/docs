@@ -21,9 +21,9 @@ import sensor from '@system.sensor';
 
 ## Error Codes
 
-| Error Code | Description            |
-| ---- | -------------- |
-| 900  | The current device does not support the corresponding sensor.|
+| Error Code | Description                              |
+| ---------- | ---------------------------------------- |
+| 900        | The current device does not support the corresponding sensor. |
 
 ## sensor.subscribeAccelerometer
 
@@ -37,19 +37,19 @@ Subscribes to data changes of the acceleration sensor. If this API is called mul
 
 **Parameters**
 
-| Name     | Type      | Mandatory  | Description                                      |
-| -------- | -------- | ---- | ---------------------------------------- |
-| interval | string   | Yes   | Execution frequency of the callback for returning the acceleration sensor data.<br>The default value is **normal**. The options are as follows:<br>- **game**: called at an interval of 20 ms, which is applicable to gaming scenarios.<br>- **ui**: called at an interval of 60 ms, which is applicable to UI updating scenarios.<br>- **normal**: called at an interval of 200 ms, which is applicable to power-saving scenarios.|
-| success  | Function | Yes   | Called when the acceleration sensor data changes.                       |
-| fail     | Function | No   | Callback upon failure.                            |
+| Name     | Type     | Mandatory | Description                              |
+| -------- | -------- | --------- | ---------------------------------------- |
+| interval | string   | Yes       | Execution frequency of the callback for returning the acceleration sensor data.<br>The default value is **normal**. The options are as follows:<br>- **game**: called at an interval of 20 ms, which is applicable to gaming scenarios.<br>- **ui**: called at an interval of 60 ms, which is applicable to UI updating scenarios.<br>- **normal**: called at an interval of 200 ms, which is applicable to power-saving scenarios. |
+| success  | Function | Yes       | Called when the acceleration sensor data changes. |
+| fail     | Function | No        | Callback upon failure.                   |
 
 Return values of the success callback
 
-| Name | Type    | Description     |
-| ---- | ------ | ------- |
-| x    | number | Acceleration on the x-axis.|
-| y    | number | Acceleration on the y-axis.|
-| z    | number | Acceleration on the z-axis.|
+| Name | Type   | Description                 |
+| ---- | ------ | --------------------------- |
+| x    | number | Acceleration on the x-axis. |
+| y    | number | Acceleration on the y-axis. |
+| z    | number | Acceleration on the z-axis. |
 
 **Example**
 
@@ -97,16 +97,16 @@ Subscribes to data changes of the compass sensor. If this API is called multiple
 
 **Parameters**
 
-| Name    | Type      | Mandatory  | Description             |
-| ------- | -------- | ---- | --------------- |
-| success | Function | Yes   | Called when the compass sensor data changes.|
-| fail    | Function | No   | Callback upon failure.   |
+| Name    | Type     | Mandatory | Description                              |
+| ------- | -------- | --------- | ---------------------------------------- |
+| success | Function | Yes       | Called when the compass sensor data changes. |
+| fail    | Function | No        | Callback upon failure.                   |
 
 Return values of the success callback
 
-| Name      | Type    | Description        |
-| --------- | ------ | ---------- |
-| direction | number | Direction of the device, in degrees.|
+| Name      | Type   | Description                          |
+| --------- | ------ | ------------------------------------ |
+| direction | number | Direction of the device, in degrees. |
 
 **Example**
 
@@ -149,16 +149,16 @@ Subscribes to data changes of the proximity sensor. If this API is called multip
 
 **Parameters**
 
-| Name    | Type      | Mandatory  | Description               |
-| ------- | -------- | ---- | ----------------- |
-| success | Function | Yes   | Called when the proximity sensor data changes.|
-| fail    | Function | No   | Callback upon failure.     |
+| Name    | Type     | Mandatory | Description                              |
+| ------- | -------- | --------- | ---------------------------------------- |
+| success | Function | Yes       | Called when the proximity sensor data changes. |
+| fail    | Function | No        | Callback upon failure.                   |
 
 Return values of the success callback
 
-| Name     | Type    | Description                   |
-| -------- | ------ | --------------------- |
-| distance | number | Distance between a visible object and the device screen.|
+| Name     | Type   | Description                              |
+| -------- | ------ | ---------------------------------------- |
+| distance | number | Distance between a visible object and the device screen. |
 
 **Example**
 
@@ -201,16 +201,16 @@ Subscribes to data changes of the ambient light sensor. If this API is called mu
 
 **Parameters**
 
-| Name    | Type      | Mandatory  | Description             |
-| ------- | -------- | ---- | --------------- |
-| success | Function | Yes   | Called when the ambient light sensor data changes|
-| fail    | Function | No   | Callback upon failure.   |
+| Name    | Type     | Mandatory | Description                              |
+| ------- | -------- | --------- | ---------------------------------------- |
+| success | Function | Yes       | Called when the ambient light sensor data changes |
+| fail    | Function | No        | Callback upon failure.                   |
 
 Return values of the success callback
 
-| Name      | Type    | Description          |
-| --------- | ------ | ------------ |
-| intensity | number | Light intensity, in lux.|
+| Name      | Type   | Description              |
+| --------- | ------ | ------------------------ |
+| intensity | number | Light intensity, in lux. |
 
 **Example**
 
@@ -255,16 +255,16 @@ Subscribes to data changes of the step counter sensor. If this API is called mul
 
 **Parameters**
 
-| Name    | Type      | Mandatory  | Description              |
-| ------- | -------- | ---- | ---------------- |
-| success | Function | Yes   | Called when the step counter sensor data changes.|
-| fail    | Function | No   | Callback upon failure.    |
+| Name    | Type     | Mandatory | Description                              |
+| ------- | -------- | --------- | ---------------------------------------- |
+| success | Function | Yes       | Called when the step counter sensor data changes. |
+| fail    | Function | No        | Callback upon failure.                   |
 
 Return values of the success callback
 
-| Name  | Type    | Description                   |
-| ----- | ------ | --------------------- |
-| steps | number | Number of counted steps after the sensor is restarted.<br>|
+| Name  | Type   | Description                              |
+| ----- | ------ | ---------------------------------------- |
+| steps | number | Number of counted steps after the sensor is restarted.<br> |
 
 **Example**
 
@@ -302,7 +302,7 @@ sensor.unsubscribeStepCounter();
 
 ## sensor.subscribeBarometer
 
-subcribeBarometer(Object): void
+subscribeBarometer(Object): void
 
 Subscribes to data changes of the barometer sensor. If this API is called multiple times for the same application, the last call takes effect.
 
@@ -310,16 +310,16 @@ Subscribes to data changes of the barometer sensor. If this API is called multip
 
 **Parameters**
 
-| Name    | Type      | Mandatory  | Description              |
-| ------- | -------- | ---- | ---------------- |
-| success | Function | Yes   | Called when the barometer sensor data changes.|
-| fail    | Function | No   | Callback upon failure.    |
+| Name    | Type     | Mandatory | Description                              |
+| ------- | -------- | --------- | ---------------------------------------- |
+| success | Function | Yes       | Called when the barometer sensor data changes. |
+| fail    | Function | No        | Callback upon failure.                   |
 
 Return values of the success callback
 
-| Name     | Type    | Description         |
-| -------- | ------ | ----------- |
-| pressure | number | Pressure, in pascal.|
+| Name     | Type   | Description          |
+| -------- | ------ | -------------------- |
+| pressure | number | Pressure, in pascal. |
 
 **Example**
 
@@ -366,16 +366,16 @@ Subscribes to data changes of the heart rate sensor. If this API is called multi
 
 **Parameters**
 
-| Name    | Type      | Mandatory  | Description                       |
-| ------- | -------- | ---- | ------------------------- |
-| success | Function | Yes   | Called when the heart rate sensor data changes. This callback is invoked every five seconds.|
-| fail    | Function | No   | Callback upon failure.             |
+| Name    | Type     | Mandatory | Description                              |
+| ------- | -------- | --------- | ---------------------------------------- |
+| success | Function | Yes       | Called when the heart rate sensor data changes. This callback is invoked every five seconds. |
+| fail    | Function | No        | Callback upon failure.                   |
 
 Return values of the success callback
 
-| Name      | Type    | Description  |
-| --------- | ------ | ---- |
-| heartRate | number | Heart rate.|
+| Name      | Type   | Description |
+| --------- | ------ | ----------- |
+| heartRate | number | Heart rate. |
 
 **Example**
 
@@ -421,16 +421,16 @@ Subscribes to changes of the wearing state of a wearable device. If this API is 
 
 **Parameters**
 
-| Name    | Type      | Mandatory  | Description           |
-| ------- | -------- | ---- | ------------- |
-| success | Function | Yes   | Called when the wearing state changes.|
-| fail    | Function | No   | Callback upon failure. |
+| Name    | Type     | Mandatory | Description                            |
+| ------- | -------- | --------- | -------------------------------------- |
+| success | Function | Yes       | Called when the wearing state changes. |
+| fail    | Function | No        | Callback upon failure.                 |
 
 Return values of the success callback
 
-| Name  | Type     | Description    |
-| ----- | ------- | ------ |
-| value | boolean | Whether the wearable device is worn.|
+| Name  | Type    | Description                          |
+| ----- | ------- | ------------------------------------ |
+| value | boolean | Whether the wearable device is worn. |
 
 **Example**
 
@@ -473,17 +473,17 @@ Obtains the wearing state of a wearable device.
 
 **Parameters**
 
-| Name     | Type      | Mandatory  | Description          |
-| -------- | -------- | ---- | ------------ |
-| success  | Function | No   | Callback upon success.|
-| fail     | Function | No   | Callback upon failure.|
-| complete | Function | No   | Called when the execution is complete.|
+| Name     | Type     | Mandatory | Description                            |
+| -------- | -------- | --------- | -------------------------------------- |
+| success  | Function | No        | Callback upon success.                 |
+| fail     | Function | No        | Callback upon failure.                 |
+| complete | Function | No        | Called when the execution is complete. |
 
 Return values of the success callback
 
-| Name  | Type     | Description    |
-| ----- | ------- | ------ |
-| value | boolean | Whether the wearable device is worn.|
+| Name  | Type    | Description                          |
+| ----- | ------- | ------------------------------------ |
+| value | boolean | Whether the wearable device is worn. |
 
 **Example**
 
@@ -510,18 +510,18 @@ If this API is called multiple times for the same application, the last call tak
 
 **Parameters**
 
-| Name     | Type      | Mandatory  | Description                                      |
-| -------- | -------- | ---- | ---------------------------------------- |
-| interval | string   | Yes   | Interval at which the callback is invoked to return the device orientation sensor data.<br>The default value is **normal**. The options are as follows:<br>- **game**: called at an interval of 20 ms, which is applicable to gaming scenarios.<br>- **ui**: called at an interval of 60 ms, which is applicable to UI updating scenarios.<br>- **normal**: called at an interval of 200 ms, which is applicable to power-saving scenarios.|
-| success  | Function | Yes   | Called when the device orientation sensor data changes.                   |
-| fail     | Function | No   | Callback upon failure.                            |
+| Name     | Type     | Mandatory | Description                              |
+| -------- | -------- | --------- | ---------------------------------------- |
+| interval | string   | Yes       | Interval at which the callback is invoked to return the device orientation sensor data.<br>The default value is **normal**. The options are as follows:<br>- **game**: called at an interval of 20 ms, which is applicable to gaming scenarios.<br>- **ui**: called at an interval of 60 ms, which is applicable to UI updating scenarios.<br>- **normal**: called at an interval of 200 ms, which is applicable to power-saving scenarios. |
+| success  | Function | Yes       | Called when the device orientation sensor data changes. |
+| fail     | Function | No        | Callback upon failure.                   |
 
  Return values of the success callback
-| Name  | Type    | Description                                      |
+| Name  | Type   | Description                              |
 | ----- | ------ | ---------------------------------------- |
-| alpha | number | Rotation angle around the Z axis when the X/Y axis of the device coincides with the X/Y axis of the earth.|
-| beta  | number | Rotation angle around the X axis when the Y/Z axis of the device coincides with the Y/Z axis of the earth.|
-| gamma | number | Rotation angle around the Y axis when the X/Z axis of the device coincides with the X/Z axis of the earth.|
+| alpha | number | Rotation angle around the Z axis when the X/Y axis of the device coincides with the X/Y axis of the earth. |
+| beta  | number | Rotation angle around the X axis when the Y/Z axis of the device coincides with the Y/Z axis of the earth. |
+| gamma | number | Rotation angle around the Y axis when the X/Z axis of the device coincides with the X/Z axis of the earth. |
 
 **Example**
 
@@ -571,19 +571,19 @@ If this API is called multiple times for the same application, the last call tak
 
 **Parameters**
 
-| Name     | Type      | Mandatory  | Description                                      |
-| -------- | -------- | ---- | ---------------------------------------- |
-| interval | string   | Yes   | Interval at which the callback is invoked to return the gyroscope sensor data.<br>The default value is **normal**. The options are as follows:<br>- **game**: called at an interval of 20 ms, which is applicable to gaming scenarios.<br>- **ui**: called at an interval of 60 ms, which is applicable to UI updating scenarios.<br>- **normal**: called at an interval of 200 ms, which is applicable to power-saving scenarios.|
-| success  | Function | Yes   | Called when the gyroscope sensor data changes.                       |
-| fail     | Function | No   | Callback upon failure.                            |
+| Name     | Type     | Mandatory | Description                              |
+| -------- | -------- | --------- | ---------------------------------------- |
+| interval | string   | Yes       | Interval at which the callback is invoked to return the gyroscope sensor data.<br>The default value is **normal**. The options are as follows:<br>- **game**: called at an interval of 20 ms, which is applicable to gaming scenarios.<br>- **ui**: called at an interval of 60 ms, which is applicable to UI updating scenarios.<br>- **normal**: called at an interval of 200 ms, which is applicable to power-saving scenarios. |
+| success  | Function | Yes       | Called when the gyroscope sensor data changes. |
+| fail     | Function | No        | Callback upon failure.                   |
 
 Return values of the success callback
 
-| Name | Type    | Description       |
-| ---- | ------ | --------- |
-| x    | number | Rotation angular velocity of the X axis.|
-| y    | number | Rotation angular velocity of the Y axis.|
-| z    | number | Rotation angular velocity of the Z axis.|
+| Name | Type   | Description                              |
+| ---- | ------ | ---------------------------------------- |
+| x    | number | Rotation angular velocity of the X axis. |
+| y    | number | Rotation angular velocity of the Y axis. |
+| z    | number | Rotation angular velocity of the Z axis. |
 
 **Example**
 

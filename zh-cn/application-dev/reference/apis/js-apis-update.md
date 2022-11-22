@@ -31,25 +31,33 @@ getOnlineUpdater(upgradeInfo: UpgradeInfo): Updater
 
 | 参数名         | 类型                          | 必填   | 说明     |
 | ----------- | --------------------------- | ---- | ------ |
-| upgradeInfo | [UpgradeInfo](#upgradeinfo) | 是    | 升级信息对象 |
+| upgradeInfo | [UpgradeInfo](#upgradeinfo) | 是    | 升级信息对象。 |
 
 **返回值：**
 
 | 类型                  | 说明   |
 | ------------------- | ---- |
-| [Updater](#updater) | 升级对象 |
+| [Updater](#updater) | 升级对象。 |
+
+**错误码**：
+
+以下的错误码的详细介绍请参见[升级错误码](../errorcodes/errorcode-update.md)
+
+| 类型       | 说明                                                  |
+| -------  | ---------------------------------------------------- |
+| 11500104 | BusinessError 11500104: IPC error.                   |
 
 **示例：**
 
 ```ts
 try {
-  var upgradeInfo = {
+  const upgradeInfo = {
     upgradeApp: "com.ohos.ota.updateclient",
     businessType: {
       vendor: update.BusinessVendor.PUBLIC,
       subType: update.BusinessSubType.FIRMWARE
     }
-  }
+  };
   let updater = update.getOnlineUpdater(upgradeInfo);
 } catch(error) {
   console.error(`Fail to get updater error: ${error}`);
@@ -69,7 +77,15 @@ getRestorer(): Restorer
 
 | 类型                    | 说明     |
 | --------------------- | ------ |
-| [Restorer](#restorer) | 恢复出厂对象 |
+| [Restorer](#restorer) | 恢复出厂对象。 |
+
+**错误码**：
+
+以下的错误码的详细介绍请参见[升级错误码](../errorcodes/errorcode-update.md)
+
+| 类型       | 说明                                                  |
+| -------  | ---------------------------------------------------- |
+| 11500104 | BusinessError 11500104: IPC error.                   |
 
 **示例：**
 
@@ -93,7 +109,15 @@ getLocalUpdater(): LocalUpdater
 
 | 类型                            | 说明     |
 | ----------------------------- | ------ |
-| [LocalUpdater](#localupdater) | 本地升级对象 |
+| [LocalUpdater](#localupdater) | 本地升级对象。 |
+
+**错误码**：
+
+以下的错误码的详细介绍请参见[升级错误码](../errorcodes/errorcode-update.md)
+
+| 类型       | 说明                                                  |
+| -------  | ---------------------------------------------------- |
+| 11500104 | BusinessError 11500104: IPC error.                   |
 
 **示例：**
 
@@ -102,7 +126,7 @@ try {
   let localUpdater = update.getLocalUpdater();
 } catch(error) {
   console.error(`Fail to get localUpdater error: ${error}`);
-}
+};
 ```
 
 ## Updater
@@ -122,6 +146,14 @@ checkNewVersion(callback: AsyncCallback\<CheckResult>): void
 | 参数名      | 类型                                       | 必填   | 说明             |
 | -------- | ---------------------------------------- | ---- | -------------- |
 | callback | AsyncCallback\<[CheckResult](#checkresult)> | 是    | 回调函数，返回搜包结果对象。 |
+
+**错误码**：
+
+以下的错误码的详细介绍请参见[升级错误码](../errorcodes/errorcode-update.md)
+
+| 类型       | 说明                                                  |
+| -------  | ---------------------------------------------------- |
+| 11500104 | BusinessError 11500104: IPC error.                   |
 
 **示例：**
 
@@ -146,6 +178,14 @@ checkNewVersion(): Promise\<CheckResult>
 | 类型                                    | 说明                  |
 | ------------------------------------- | ------------------- |
 | Promise\<[CheckResult](#checkresult)> | Promise对象，返回搜包结果对象。 |
+
+**错误码**：
+
+以下的错误码的详细介绍请参见[升级错误码](../errorcodes/errorcode-update.md)
+
+| 类型       | 说明                                                  |
+| -------  | ---------------------------------------------------- |
+| 11500104 | BusinessError 11500104: IPC error.                   |
 
 **示例:**
 
@@ -175,6 +215,14 @@ getNewVersionInfo(callback: AsyncCallback\<NewVersionInfo>): void
 | -------- | ---------------------------------------- | ---- | --------------- |
 | callback | AsyncCallback\<[NewVersionInfo](#newversioninfo)> | 是    | 回调函数，返回新版本信息对象。 |
 
+**错误码**：
+
+以下的错误码的详细介绍请参见[升级错误码](../errorcodes/errorcode-update.md)
+
+| 类型       | 说明                                                  |
+| -------  | ---------------------------------------------------- |
+| 11500104 | BusinessError 11500104: IPC error.                   |
+
 **示例：**
 
 ```ts
@@ -199,6 +247,14 @@ getNewVersionInfo(): Promise\<NewVersionInfo>
 | 类型                                       | 说明                   |
 | ---------------------------------------- | -------------------- |
 | Promise\<[NewVersionInfo](#newversioninfo)> | Promise对象，返回新版本信息对象。 |
+
+**错误码**：
+
+以下的错误码的详细介绍请参见[升级错误码](../errorcodes/errorcode-update.md)
+
+| 类型       | 说明                                                  |
+| -------  | ---------------------------------------------------- |
+| 11500104 | BusinessError 11500104: IPC error.                   |
 
 **示例：**
 
@@ -225,23 +281,31 @@ getNewVersionDescription(versionDigestInfo: VersionDigestInfo, descriptionOption
 
 | 参数名                | 类型                                       | 必填   | 说明             |
 | ------------------ | ---------------------------------------- | ---- | -------------- |
-| versionDigestInfo  | [VersionDigestInfo](#versiondigestinfo)  | 是    | 版本摘要信息         |
-| descriptionOptions | [DescriptionOptions](#descriptionoptions) | 是    | 描述文件选项         |
-| callback           | AsyncCallback\<Array\<[ComponentDescription](#componentdescription)>>) | 是    | 回调函数，返回新版本描述文件 |
+| versionDigestInfo  | [VersionDigestInfo](#versiondigestinfo)  | 是    | 版本摘要信息。         |
+| descriptionOptions | [DescriptionOptions](#descriptionoptions) | 是    | 描述文件选项。        |
+| callback           | AsyncCallback\<Array\<[ComponentDescription](#componentdescription)>>) | 是    | 回调函数，返回新版本描述文件。 |
+
+**错误码**：
+
+以下的错误码的详细介绍请参见[升级错误码](../errorcodes/errorcode-update.md)
+
+| 类型       | 说明                                                  |
+| -------  | ---------------------------------------------------- |
+| 11500104 | BusinessError 11500104: IPC error.                   |
 
 **示例：**
 
 ```ts
 // 版本摘要信息
-var versionDigestInfo = {
+const versionDigestInfo = {
   versionDigest: "versionDigest" // 检测结果中的版本摘要信息
-}
+};
 
 // 描述文件选项
-var descriptionOptions = {
+const descriptionOptions = {
   format: update.DescriptionFormat.STANDARD, // 标准格式
   language: "zh-cn" // 中文
-}
+};
 
 updater.getNewVersionDescription(versionDigestInfo, descriptionOptions, (err, info) => {
   console.log(`getNewVersionDescription info ${JSON.stringify(info)}`);
@@ -263,28 +327,36 @@ getNewVersionDescription(versionDigestInfo: VersionDigestInfo, descriptionOption
 
 | 参数名                | 类型                                       | 必填   | 说明     |
 | ------------------ | ---------------------------------------- | ---- | ------ |
-| versionDigestInfo  | [VersionDigestInfo](#versiondigestinfo)  | 是    | 版本摘要信息 |
-| descriptionOptions | [DescriptionOptions](#descriptionoptions) | 是    | 描述文件选项 |
+| versionDigestInfo  | [VersionDigestInfo](#versiondigestinfo)  | 是    | 版本摘要信息。 |
+| descriptionOptions | [DescriptionOptions](#descriptionoptions) | 是    | 描述文件选项。 |
 
 **返回值：**
 
 | 类型                                       | 说明                  |
 | ---------------------------------------- | ------------------- |
-| Promise\<Array\<[ComponentDescription](#componentdescription)>> | Promise对象，返回新版本描述文件 |
+| Promise\<Array\<[ComponentDescription](#componentdescription)>> | Promise对象，返回新版本描述文件。 |
+
+**错误码**：
+
+以下的错误码的详细介绍请参见[升级错误码](../errorcodes/errorcode-update.md)
+
+| 类型       | 说明                                                  |
+| -------  | ---------------------------------------------------- |
+| 11500104 | BusinessError 11500104: IPC error.                   |
 
 **示例：**
 
 ```ts
 // 版本摘要信息
-var versionDigestInfo = {
+const versionDigestInfo = {
   versionDigest: "versionDigest" // 检测结果中的版本摘要信息
-}
+};
 
 // 描述文件选项
-var descriptionOptions = {
+const descriptionOptions = {
   format: update.DescriptionFormat.STANDARD, // 标准格式
   language: "zh-cn" // 中文
-}
+};
 
 updater.getNewVersionDescription(versionDigestInfo, descriptionOptions).then(info => {
   console.log(`getNewVersionDescription promise info ${JSON.stringify(info)}`);
@@ -308,6 +380,14 @@ getCurrentVersionInfo(callback: AsyncCallback\<CurrentVersionInfo>): void
 | 参数名      | 类型                                       | 必填   | 说明               |
 | -------- | ---------------------------------------- | ---- | ---------------- |
 | callback | AsyncCallback\<[CurrentVersionInfo](#currentversioninfo)> | 是    | 回调函数，返回当前版本信息对象。 |
+
+**错误码**：
+
+以下的错误码的详细介绍请参见[升级错误码](../errorcodes/errorcode-update.md)
+
+| 类型       | 说明                                                  |
+| -------  | ---------------------------------------------------- |
+| 11500104 | BusinessError 11500104: IPC error.                   |
 
 **示例：**
 
@@ -335,6 +415,14 @@ getCurrentVersionInfo(): Promise\<CurrentVersionInfo>
 | ---------------------------------------- | ------------------- |
 | Promise\<[CurrentVersionInfo](#currentversioninfo)> | Promise对象，返回当前版本对象。 |
 
+**错误码**：
+
+以下的错误码的详细介绍请参见[升级错误码](../errorcodes/errorcode-update.md)
+
+| 类型       | 说明                                                  |
+| -------  | ---------------------------------------------------- |
+| 11500104 | BusinessError 11500104: IPC error.                   |
+
 **示例：**
 
 ```ts
@@ -361,17 +449,25 @@ getCurrentVersionDescription(descriptionOptions: DescriptionOptions, callback: A
 
 | 参数名                | 类型                                       | 必填   | 说明              |
 | ------------------ | ---------------------------------------- | ---- | --------------- |
-| descriptionOptions | [DescriptionOptions](#descriptionoptions) | 是    | 描述文件选项          |
-| callback           | AsyncCallback\<Array\<[ComponentDescription](#componentdescription)>>) | 是    | 回调函数，返回当前版本描述文件 |
+| descriptionOptions | [DescriptionOptions](#descriptionoptions) | 是    | 描述文件选项。          |
+| callback           | AsyncCallback\<Array\<[ComponentDescription](#componentdescription)>>) | 是    | 回调函数，返回当前版本描述文件。 |
+
+**错误码**：
+
+以下的错误码的详细介绍请参见[升级错误码](../errorcodes/errorcode-update.md)
+
+| 类型       | 说明                                                  |
+| -------  | ---------------------------------------------------- |
+| 11500104 | BusinessError 11500104: IPC error.                   |
 
 **示例：**
 
 ```ts
 // 描述文件选项
-var descriptionOptions = {
+const descriptionOptions = {
   format: update.DescriptionFormat.STANDARD, // 标准格式
   language: "zh-cn" // 中文
-}
+};
 
 updater.getCurrentVersionDescription(descriptionOptions, (err, info) => {
   console.log(`getCurrentVersionDescription info ${JSON.stringify(info)}`);
@@ -393,22 +489,30 @@ getCurrentVersionDescription(descriptionOptions: DescriptionOptions): Promise\<A
 
 | 参数名                | 类型                                       | 必填   | 说明     |
 | ------------------ | ---------------------------------------- | ---- | ------ |
-| descriptionOptions | [DescriptionOptions](#descriptionoptions) | 是    | 描述文件选项 |
+| descriptionOptions | [DescriptionOptions](#descriptionoptions) | 是    | 描述文件选项。 |
 
 **返回值：**
 
 | 类型                                       | 说明                   |
 | ---------------------------------------- | -------------------- |
-| Promise\<Array\<[ComponentDescription](#componentdescription)>> | Promise对象，返回当前版本描述文件 |
+| Promise\<Array\<[ComponentDescription](#componentdescription)>> | Promise对象，返回当前版本描述文件。 |
+
+**错误码**：
+
+以下的错误码的详细介绍请参见[升级错误码](../errorcodes/errorcode-update.md)
+
+| 类型       | 说明                                                  |
+| -------  | ---------------------------------------------------- |
+| 11500104 | BusinessError 11500104: IPC error.                   |
 
 **示例：**
 
 ```ts
 // 描述文件选项
-var descriptionOptions = {
+const descriptionOptions = {
   format: update.DescriptionFormat.STANDARD, // 标准格式
   language: "zh-cn" // 中文
-}
+};
 
 updater.getCurrentVersionDescription(descriptionOptions).then(info => {
   console.log(`getCurrentVersionDescription promise info ${JSON.stringify(info)}`);
@@ -432,6 +536,14 @@ getTaskInfo(callback: AsyncCallback\<TaskInfo>): void
 | 参数名      | 类型                                    | 必填   | 说明               |
 | -------- | ------------------------------------- | ---- | ---------------- |
 | callback | AsyncCallback\<[TaskInfo](#taskinfo)> | 是    | 回调函数，返回升级任务信息对象。 |
+
+**错误码**：
+
+以下的错误码的详细介绍请参见[升级错误码](../errorcodes/errorcode-update.md)
+
+| 类型       | 说明                                                  |
+| -------  | ---------------------------------------------------- |
+| 11500104 | BusinessError 11500104: IPC error.                   |
 
 **示例：**
 
@@ -457,6 +569,14 @@ getTaskInfo(): Promise\<TaskInfo>
 | ------------------------------- | ------------------- |
 | Promise\<[TaskInfo](#taskinfo)> | Promise对象，返回任务信息对象。 |
 
+**错误码**：
+
+以下的错误码的详细介绍请参见[升级错误码](../errorcodes/errorcode-update.md)
+
+| 类型       | 说明                                                  |
+| -------  | ---------------------------------------------------- |
+| 11500104 | BusinessError 11500104: IPC error.                   |
+
 **示例：**
 
 ```ts
@@ -481,23 +601,31 @@ download(versionDigestInfo: VersionDigestInfo, downloadOptions: DownloadOptions,
 
 | 参数名               | 类型                                      | 必填   | 说明                                 |
 | ----------------- | --------------------------------------- | ---- | ---------------------------------- |
-| versionDigestInfo | [VersionDigestInfo](#versiondigestinfo) | 是    | 版本摘要信息                             |
-| downloadOptions   | [DownloadOptions](#downloadoptions)     | 是    | 下载选项                               |
+| versionDigestInfo | [VersionDigestInfo](#versiondigestinfo) | 是    | 版本摘要信息。                             |
+| downloadOptions   | [DownloadOptions](#downloadoptions)     | 是    | 下载选项。                               |
 | callback          | AsyncCallback\<void>                    | 是    | 回调函数。当下载成功时，err为undefined，否则为错误对象。 |
+
+**错误码**：
+
+以下的错误码的详细介绍请参见[升级错误码](../errorcodes/errorcode-update.md)
+
+| 类型       | 说明                                                  |
+| -------  | ---------------------------------------------------- |
+| 11500104 | BusinessError 11500104: IPC error.                   |
 
 **示例：**
 
 ```ts
 // 版本摘要信息
-var versionDigestInfo = {
+const versionDigestInfo = {
   versionDigest: "versionDigest" // 检测结果中的版本摘要信息
-}
+};
 
 // 下载选项
-var downloadOptions = {
+const downloadOptions = {
   allowNetwork: update.NetType.CELLULAR, // 允许数据网络下载
   order: update.Order.DOWNLOAD // 下载
-}
+};
 updater.download(versionDigestInfo, downloadOptions, (err) => {
   console.log(`download error ${JSON.stringify(err)}`);
 });
@@ -517,8 +645,8 @@ download(versionDigestInfo: VersionDigestInfo, downloadOptions: DownloadOptions)
 
 | 参数名               | 类型                                      | 必填   | 说明     |
 | ----------------- | --------------------------------------- | ---- | ------ |
-| versionDigestInfo | [VersionDigestInfo](#versiondigestinfo) | 是    | 版本摘要信息 |
-| downloadOptions   | [DownloadOptions](#downloadoptions)     | 是    | 下载选项   |
+| versionDigestInfo | [VersionDigestInfo](#versiondigestinfo) | 是    | 版本摘要信息。 |
+| downloadOptions   | [DownloadOptions](#downloadoptions)     | 是    | 下载选项。   |
 
 **返回值：**
 
@@ -526,19 +654,27 @@ download(versionDigestInfo: VersionDigestInfo, downloadOptions: DownloadOptions)
 | -------------- | -------------------------- |
 | Promise\<void> | Promise对象。无返回结果的Promise对象。 |
 
+**错误码**：
+
+以下的错误码的详细介绍请参见[升级错误码](../errorcodes/errorcode-update.md)
+
+| 类型       | 说明                                                  |
+| -------  | ---------------------------------------------------- |
+| 11500104 | BusinessError 11500104: IPC error.                   |
+
 **示例：**
 
 ```ts
 // 版本摘要信息
-var versionDigestInfo = {
+const versionDigestInfo = {
   versionDigest: "versionDigest" // 检测结果中的版本摘要信息
-}
+};
 
 // 下载选项
-var downloadOptions = {
+const downloadOptions = {
   allowNetwork: update.NetType.CELLULAR, // 允许数据网络下载
   order: update.Order.DOWNLOAD // 下载
-}
+};
 updater.download(versionDigestInfo, downloadOptions).then(() => {
   console.log(`download start`);
 }).catch(err => {
@@ -560,22 +696,30 @@ resumeDownload(versionDigestInfo: VersionDigestInfo, resumeDownloadOptions: Resu
 
 | 参数名                   | 类型                                       | 必填   | 说明                                   |
 | --------------------- | ---------------------------------------- | ---- | ------------------------------------ |
-| versionDigestInfo     | [VersionDigestInfo](#versiondigestinfo)  | 是    | 版本摘要信息                               |
-| resumeDownloadOptions | [ResumeDownloadOptions](#resumedownloadoptions) | 是    | 恢复下载选项                               |
+| versionDigestInfo     | [VersionDigestInfo](#versiondigestinfo)  | 是    | 版本摘要信息。                               |
+| resumeDownloadOptions | [ResumeDownloadOptions](#resumedownloadoptions) | 是    | 恢复下载选项。                               |
 | callback              | AsyncCallback\<void>                     | 是    | 回调函数。当恢复下载成功时，err为undefined，否则为错误对象。 |
+
+**错误码**：
+
+以下的错误码的详细介绍请参见[升级错误码](../errorcodes/errorcode-update.md)
+
+| 类型       | 说明                                                  |
+| -------  | ---------------------------------------------------- |
+| 11500104 | BusinessError 11500104: IPC error.                   |
 
 **示例：**
 
 ```ts
 // 版本摘要信息
-var versionDigestInfo = {
+const versionDigestInfo = {
   versionDigest: "versionDigest" // 检测结果中的版本摘要信息
-}
+};
 
 // 恢复下载选项
-var resumeDownloadOptions = {
+const resumeDownloadOptions = {
   allowNetwork: update.NetType.CELLULAR, // 允许数据网络下载
-}
+};
 updater.resumeDownload(versionDigestInfo, resumeDownloadOptions, (err) => {
   console.log(`resumeDownload error ${JSON.stringify(err)}`);
 });
@@ -595,8 +739,8 @@ resumeDownload(versionDigestInfo: VersionDigestInfo, resumeDownloadOptions: Resu
 
 | 参数名                   | 类型                                       | 必填   | 说明     |
 | --------------------- | ---------------------------------------- | ---- | ------ |
-| versionDigestInfo     | [VersionDigestInfo](#versiondigestinfo)  | 是    | 版本摘要信息 |
-| resumeDownloadOptions | [ResumeDownloadOptions](#resumedownloadoptions) | 是    | 恢复下载选项 |
+| versionDigestInfo     | [VersionDigestInfo](#versiondigestinfo)  | 是    | 版本摘要信息。 |
+| resumeDownloadOptions | [ResumeDownloadOptions](#resumedownloadoptions) | 是    | 恢复下载选项。 |
 
 **返回值：**
 
@@ -604,18 +748,26 @@ resumeDownload(versionDigestInfo: VersionDigestInfo, resumeDownloadOptions: Resu
 | -------------- | -------------------------- |
 | Promise\<void> | Promise对象。无返回结果的Promise对象。 |
 
+**错误码**：
+
+以下的错误码的详细介绍请参见[升级错误码](../errorcodes/errorcode-update.md)
+
+| 类型       | 说明                                                  |
+| -------  | ---------------------------------------------------- |
+| 11500104 | BusinessError 11500104: IPC error.                   |
+
 **示例：**
 
 ```ts
 // 版本摘要信息
-var versionDigestInfo = {
+const versionDigestInfo = {
   versionDigest: "versionDigest" // 检测结果中的版本摘要信息
-}
+};
 
 // 恢复下载选项
-var resumeDownloadOptions = {
+const resumeDownloadOptions = {
   allowNetwork: update.NetType.CELLULAR, // 允许数据网络下载
-}
+};
 updater.resumeDownload(versionDigestInfo, resumeDownloadOptions).then(value => {
   console.log(`resumeDownload start`);
 }).catch(err => {
@@ -637,22 +789,30 @@ pauseDownload(versionDigestInfo: VersionDigestInfo, pauseDownloadOptions: PauseD
 
 | 参数名                  | 类型                                       | 必填   | 说明                                   |
 | -------------------- | ---------------------------------------- | ---- | ------------------------------------ |
-| versionDigestInfo    | [VersionDigestInfo](#versiondigestinfo)  | 是    | 版本摘要信息                               |
-| pauseDownloadOptions | [PauseDownloadOptions](#pausedownloadoptions) | 是    | 暂停下载选项                               |
+| versionDigestInfo    | [VersionDigestInfo](#versiondigestinfo)  | 是    | 版本摘要信息。                               |
+| pauseDownloadOptions | [PauseDownloadOptions](#pausedownloadoptions) | 是    | 暂停下载选项。                               |
 | callback             | AsyncCallback\<void>                     | 是    | 回调函数。当暂停下载成功时，err为undefined，否则为错误对象。 |
+
+**错误码**：
+
+以下的错误码的详细介绍请参见[升级错误码](../errorcodes/errorcode-update.md)
+
+| 类型       | 说明                                                  |
+| -------  | ---------------------------------------------------- |
+| 11500104 | BusinessError 11500104: IPC error.                   |
 
 **示例：**
 
 ```ts
 // 版本摘要信息
-var versionDigestInfo = {
+const versionDigestInfo = {
   versionDigest: "versionDigest" // 检测结果中的版本摘要信息
-}
+};
 
 // 暂停下载选项
-var pauseDownloadOptions = {
+const pauseDownloadOptions = {
   isAllowAutoResume: true // 允许自动恢复下载
-}
+};
 updater.pauseDownload(versionDigestInfo, pauseDownloadOptions, (err) => {
   console.log(`pauseDownload error ${JSON.stringify(err)}`);
 });
@@ -672,8 +832,8 @@ pauseDownload(versionDigestInfo: VersionDigestInfo, pauseDownloadOptions: PauseD
 
 | 参数名                  | 类型                                       | 必填   | 说明     |
 | -------------------- | ---------------------------------------- | ---- | ------ |
-| versionDigestInfo    | [VersionDigestInfo](#versiondigestinfo)  | 是    | 版本摘要信息 |
-| pauseDownloadOptions | [PauseDownloadOptions](#pausedownloadoptions) | 是    | 暂停下载选项 |
+| versionDigestInfo    | [VersionDigestInfo](#versiondigestinfo)  | 是    | 版本摘要信息。 |
+| pauseDownloadOptions | [PauseDownloadOptions](#pausedownloadoptions) | 是    | 暂停下载选项。 |
 
 **返回值：**
 
@@ -681,18 +841,26 @@ pauseDownload(versionDigestInfo: VersionDigestInfo, pauseDownloadOptions: PauseD
 | -------------- | -------------------------- |
 | Promise\<void> | Promise对象。无返回结果的Promise对象。 |
 
+**错误码**：
+
+以下的错误码的详细介绍请参见[升级错误码](../errorcodes/errorcode-update.md)
+
+| 类型       | 说明                                                  |
+| -------  | ---------------------------------------------------- |
+| 11500104 | BusinessError 11500104: IPC error.                   |
+
 **示例：**
 
 ```ts
 // 版本摘要信息
-var versionDigestInfo = {
+const versionDigestInfo = {
   versionDigest: "versionDigest" // 检测结果中的版本摘要信息
-}
+};
 
 // 暂停下载选项
-var pauseDownloadOptions = {
+const pauseDownloadOptions = {
   isAllowAutoResume: true // 允许自动恢复下载
-}
+};
 updater.pauseDownload(versionDigestInfo, pauseDownloadOptions).then(value => {
   console.log(`pauseDownload`);
 }).catch(err => {
@@ -714,22 +882,30 @@ upgrade(versionDigestInfo: VersionDigestInfo, upgradeOptions: UpgradeOptions, ca
 
 | 参数名               | 类型                                      | 必填   | 说明                                   |
 | ----------------- | --------------------------------------- | ---- | ------------------------------------ |
-| versionDigestInfo | [VersionDigestInfo](#versiondigestinfo) | 是    | 版本摘要信息                               |
-| upgradeOptions    | [UpgradeOptions](#upgradeoptions)       | 是    | 更新选项                                 |
+| versionDigestInfo | [VersionDigestInfo](#versiondigestinfo) | 是    | 版本摘要信息。                               |
+| upgradeOptions    | [UpgradeOptions](#upgradeoptions)       | 是    | 更新选项。                                 |
 | callback          | AsyncCallback\<void>                    | 是    | 回调函数。当升级执行成功时，err为undefined，否则为错误对象。 |
+
+**错误码**：
+
+以下的错误码的详细介绍请参见[升级错误码](../errorcodes/errorcode-update.md)
+
+| 类型       | 说明                                                  |
+| -------  | ---------------------------------------------------- |
+| 11500104 | BusinessError 11500104: IPC error.                   |
 
 **示例：**
 
 ```ts
 // 版本摘要信息
-var versionDigestInfo = {
+const versionDigestInfo = {
   versionDigest: "versionDigest" // 检测结果中的版本摘要信息
-}
+};
 
 // 安装选项
-var upgradeOptions = {
+const upgradeOptions = {
   order: update.Order.INSTALL // 安装指令
-}
+};
 updater.upgrade(versionDigestInfo, upgradeOptions, (err) => {
   console.log(`upgrade error ${JSON.stringify(err)}`);
 });
@@ -749,8 +925,8 @@ upgrade(versionDigestInfo: VersionDigestInfo, upgradeOptions: UpgradeOptions): P
 
 | 参数名               | 类型                                      | 必填   | 说明     |
 | ----------------- | --------------------------------------- | ---- | ------ |
-| versionDigestInfo | [VersionDigestInfo](#versiondigestinfo) | 是    | 版本摘要信息 |
-| upgradeOptions    | [UpgradeOptions](#upgradeoptions)       | 是    | 更新选项   |
+| versionDigestInfo | [VersionDigestInfo](#versiondigestinfo) | 是    | 版本摘要信息。 |
+| upgradeOptions    | [UpgradeOptions](#upgradeoptions)       | 是    | 更新选项。   |
 
 **返回值：**
 
@@ -758,18 +934,26 @@ upgrade(versionDigestInfo: VersionDigestInfo, upgradeOptions: UpgradeOptions): P
 | -------------- | -------------------------- |
 | Promise\<void> | Promise对象。无返回结果的Promise对象。 |
 
+**错误码**：
+
+以下的错误码的详细介绍请参见[升级错误码](../errorcodes/errorcode-update.md)
+
+| 类型       | 说明                                                  |
+| -------  | ---------------------------------------------------- |
+| 11500104 | BusinessError 11500104: IPC error.                   |
+
 **示例：**
 
 ```ts
 // 版本摘要信息
-var versionDigestInfo = {
+const versionDigestInfo = {
   versionDigest: "versionDigest" // 检测结果中的版本摘要信息
-}
+};
 
 // 安装选项
-var upgradeOptions = {
+const upgradeOptions = {
   order: update.Order.INSTALL // 安装指令
-}
+};
 updater.upgrade(versionDigestInfo, upgradeOptions).then(() => {
   console.log(`upgrade start`);
 }).catch(err => {
@@ -791,22 +975,30 @@ clearError(versionDigestInfo: VersionDigestInfo, clearOptions: ClearOptions, cal
 
 | 参数名               | 类型                                      | 必填   | 说明                                   |
 | ----------------- | --------------------------------------- | ---- | ------------------------------------ |
-| versionDigestInfo | [VersionDigestInfo](#versiondigestinfo) | 是    | 版本摘要信息                               |
-| clearOptions      | [ClearOptions](#clearoptions)           | 是    | 清除选项                                 |
+| versionDigestInfo | [VersionDigestInfo](#versiondigestinfo) | 是    | 版本摘要信息。                               |
+| clearOptions      | [ClearOptions](#clearoptions)           | 是    | 清除选项。                                 |
 | callback          | AsyncCallback\<void>                    | 是    | 回调函数。当清除异常成功时，err为undefined，否则为错误对象。 |
+
+**错误码**：
+
+以下的错误码的详细介绍请参见[升级错误码](../errorcodes/errorcode-update.md)
+
+| 类型       | 说明                                                  |
+| -------  | ---------------------------------------------------- |
+| 11500104 | BusinessError 11500104: IPC error.                   |
 
 **示例：**
 
 ```ts
 // 版本摘要信息
-var versionDigestInfo = {
+const versionDigestInfo = {
   versionDigest: "versionDigest" // 检测结果中的版本摘要信息
-}
+};
 
 // 清除选项
-var clearOptions = {
+const clearOptions = {
   status: update.UpgradeStatus.UPGRADE_FAIL,
-}
+};
 updater.clearError(versionDigestInfo, clearOptions, (err) => {
   console.log(`clearError error ${JSON.stringify(err)}`);
 });
@@ -826,8 +1018,8 @@ clearError(versionDigestInfo: VersionDigestInfo, clearOptions: ClearOptions): Pr
 
 | 参数名               | 类型                                      | 必填   | 说明     |
 | ----------------- | --------------------------------------- | ---- | ------ |
-| versionDigestInfo | [VersionDigestInfo](#versiondigestinfo) | 是    | 版本摘要信息 |
-| clearOptions      | [ClearOptions](#clearoptions)           | 是    | 更新选项   |
+| versionDigestInfo | [VersionDigestInfo](#versiondigestinfo) | 是    | 版本摘要信息。 |
+| clearOptions      | [ClearOptions](#clearoptions)           | 是    | 更新选项。   |
 
 **返回值：**
 
@@ -835,18 +1027,26 @@ clearError(versionDigestInfo: VersionDigestInfo, clearOptions: ClearOptions): Pr
 | -------------- | -------------------------- |
 | Promise\<void> | Promise对象。无返回结果的Promise对象。 |
 
+**错误码**：
+
+以下的错误码的详细介绍请参见[升级错误码](../errorcodes/errorcode-update.md)
+
+| 类型       | 说明                                                  |
+| -------  | ---------------------------------------------------- |
+| 11500104 | BusinessError 11500104: IPC error.                   |
+
 **示例：**
 
 ```ts
 // 版本摘要信息
-var versionDigestInfo = {
+const versionDigestInfo = {
   versionDigest: "versionDigest" // 检测结果中的版本摘要信息
-}
+};
 
 // 清除选项
-var clearOptions = {
+const clearOptions = {
   status: update.UpgradeStatus.UPGRADE_FAIL,
-}
+};
 updater.clearError(versionDigestInfo, clearOptions).then(() => {
   console.log(`clearError success`);
 }).catch(err => {
@@ -868,7 +1068,15 @@ getUpgradePolicy(callback: AsyncCallback\<UpgradePolicy>): void
 
 | 参数名      | 类型                                       | 必填   | 说明              |
 | -------- | ---------------------------------------- | ---- | --------------- |
-| callback | AsyncCallback\<[UpgradePolicy](#upgradepolicy)> | 是    | 回调函数，返回升级策略信息对象 |
+| callback | AsyncCallback\<[UpgradePolicy](#upgradepolicy)> | 是    | 回调函数，返回升级策略信息对象。 |
+
+**错误码**：
+
+以下的错误码的详细介绍请参见[升级错误码](../errorcodes/errorcode-update.md)
+
+| 类型       | 说明                                                  |
+| -------  | ---------------------------------------------------- |
+| 11500104 | BusinessError 11500104: IPC error.                   |
 
 **示例：**
 
@@ -895,6 +1103,14 @@ getUpgradePolicy(): Promise\<UpgradePolicy>
 | ---------------------------------------- | --------------------- |
 | Promise\<[UpgradePolicy](#upgradepolicy)> | Promise对象，返回升级策略信息对象。 |
 
+**错误码**：
+
+以下的错误码的详细介绍请参见[升级错误码](../errorcodes/errorcode-update.md)
+
+| 类型       | 说明                                                  |
+| -------  | ---------------------------------------------------- |
+| 11500104 | BusinessError 11500104: IPC error.                   |
+
 **示例：**
 
 ```ts
@@ -920,17 +1136,25 @@ setUpgradePolicy(policy: UpgradePolicy, callback: AsyncCallback\<void>): void
 
 | 参数名      | 类型                              | 必填   | 说明            |
 | -------- | ------------------------------- | ---- | ------------- |
-| policy   | [UpgradePolicy](#upgradepolicy) | 是    | 升级策略          |
-| callback | AsyncCallback\<void>            | 是    | 回调函数，返回设置结果对象 |
+| policy   | [UpgradePolicy](#upgradepolicy) | 是    | 升级策略。          |
+| callback | AsyncCallback\<void>            | 是    | 回调函数，返回设置结果对象。 |
+
+**错误码**：
+
+以下的错误码的详细介绍请参见[升级错误码](../errorcodes/errorcode-update.md)
+
+| 类型       | 说明                                                  |
+| -------  | ---------------------------------------------------- |
+| 11500104 | BusinessError 11500104: IPC error.                   |
 
 **示例：**
 
 ```ts
-let policy = {
+const policy = {
   downloadStrategy: false,
   autoUpgradeStrategy: false,
   autoUpgradePeriods: [ { start: 120, end: 240 } ] // 自动升级时间段，用分钟表示
-}
+};
 updater.setUpgradePolicy(policy, (err) => {
   console.log(`setUpgradePolicy result: ${err}`);
 });
@@ -950,7 +1174,7 @@ setUpgradePolicy(policy: UpgradePolicy): Promise\<void>
 
 | 参数名    | 类型                              | 必填   | 说明   |
 | ------ | ------------------------------- | ---- | ---- |
-| policy | [UpgradePolicy](#upgradepolicy) | 是    | 升级策略 |
+| policy | [UpgradePolicy](#upgradepolicy) | 是    | 升级策略。 |
 
 **返回值：**
 
@@ -958,14 +1182,22 @@ setUpgradePolicy(policy: UpgradePolicy): Promise\<void>
 | -------------- | ------------------- |
 | Promise\<void> | Promise对象，返回设置结果对象。 |
 
+**错误码**：
+
+以下的错误码的详细介绍请参见[升级错误码](../errorcodes/errorcode-update.md)
+
+| 类型       | 说明                                                  |
+| -------  | ---------------------------------------------------- |
+| 11500104 | BusinessError 11500104: IPC error.                   |
+
 **示例：**
 
 ```ts
-let policy = {
+const policy = {
   downloadStrategy: false,
   autoUpgradeStrategy: false,
   autoUpgradePeriods: [ { start: 120, end: 240 } ] // 自动升级时间段，用分钟表示
-}
+};
 updater.setUpgradePolicy(policy).then(() => {
   console.log(`setUpgradePolicy success`);
 }).catch(err => {
@@ -988,6 +1220,14 @@ terminateUpgrade(callback: AsyncCallback\<void>): void
 | 参数名      | 类型                   | 必填   | 说明                                     |
 | -------- | -------------------- | ---- | -------------------------------------- |
 | callback | AsyncCallback\<void> | 是    | 回调函数。当清除升级缓存成功时，err为undefined，否则为错误对象。 |
+
+**错误码**：
+
+以下的错误码的详细介绍请参见[升级错误码](../errorcodes/errorcode-update.md)
+
+| 类型       | 说明                                                  |
+| -------  | ---------------------------------------------------- |
+| 11500104 | BusinessError 11500104: IPC error.                   |
 
 **示例：**
 
@@ -1013,6 +1253,14 @@ terminateUpgrade(): Promise\<void>
 | -------------- | -------------------------- |
 | Promise\<void> | Promise对象。无返回结果的Promise对象。 |
 
+**错误码**：
+
+以下的错误码的详细介绍请参见[升级错误码](../errorcodes/errorcode-update.md)
+
+| 类型       | 说明                                                  |
+| -------  | ---------------------------------------------------- |
+| 11500104 | BusinessError 11500104: IPC error.                   |
+
 **示例：**
 
 ```ts
@@ -1035,16 +1283,24 @@ on(eventClassifyInfo: EventClassifyInfo, taskCallback: UpgradeTaskCallback): voi
 
 | 参数名               | 类型                                       | 必填   | 说明   |
 | ----------------- | ---------------------------------------- | ---- | ---- |
-| eventClassifyInfo | [EventClassifyInfo](#eventclassifyinfo)  | 是    | 事件信息 |
-| taskCallback      | [UpgradeTaskCallback](#upgradetaskcallback) | 是    | 事件回调 |
+| eventClassifyInfo | [EventClassifyInfo](#eventclassifyinfo)  | 是    | 事件信息。 |
+| taskCallback      | [UpgradeTaskCallback](#upgradetaskcallback) | 是    | 事件回调。 |
+
+**错误码**：
+
+以下的错误码的详细介绍请参见[升级错误码](../errorcodes/errorcode-update.md)
+
+| 类型       | 说明                                                  |
+| -------  | ---------------------------------------------------- |
+| 11500104 | BusinessError 11500104: IPC error.                   |
 
 **示例：**
 
 ```ts
-var eventClassifyInfo = {
+const eventClassifyInfo = {
   eventClassify: update.EventClassify.TASK, // 订阅升级更新事件
   extraInfo: ""
-}
+};
 
 updater.on(eventClassifyInfo, (eventInfo) => {
   console.log("updater on " + JSON.stringify(eventInfo));
@@ -1062,16 +1318,24 @@ off(eventClassifyInfo: EventClassifyInfo, taskCallback?: UpgradeTaskCallback): v
 
 | 参数名               | 类型                                       | 必填   | 说明   |
 | ----------------- | ---------------------------------------- | ---- | ---- |
-| eventClassifyInfo | [EventClassifyInfo](#eventclassifyinfo)  | 是    | 事件信息 |
-| taskCallback      | [UpgradeTaskCallback](#upgradetaskcallback) | 否    | 事件回调 |
+| eventClassifyInfo | [EventClassifyInfo](#eventclassifyinfo)  | 是    | 事件信息。 |
+| taskCallback      | [UpgradeTaskCallback](#upgradetaskcallback) | 否    | 事件回调。 |
+
+**错误码**：
+
+以下的错误码的详细介绍请参见[升级错误码](../errorcodes/errorcode-update.md)
+
+| 类型       | 说明                                                  |
+| -------  | ---------------------------------------------------- |
+| 11500104 | BusinessError 11500104: IPC error.                   |
 
 **示例：**
 
 ```ts
-var eventClassifyInfo = {
+const eventClassifyInfo = {
   eventClassify: update.EventClassify.TASK, // 订阅升级更新事件
   extraInfo: ""
-}
+};
 
 updater.off(eventClassifyInfo, (eventInfo) => {
   console.log("updater off " + JSON.stringify(eventInfo));
@@ -1096,6 +1360,14 @@ factoryReset(callback: AsyncCallback\<void>): void
 | -------- | -------------------- | ---- | -------------------------------------- |
 | callback | AsyncCallback\<void> | 是    | 回调函数。当恢复出厂执行成功时，err为undefined，否则为错误对象。 |
 
+**错误码**：
+
+以下的错误码的详细介绍请参见[升级错误码](../errorcodes/errorcode-update.md)
+
+| 类型       | 说明                                                  |
+| -------  | ---------------------------------------------------- |
+| 11500104 | BusinessError 11500104: IPC error.                   |
+
 **示例：**
 
 ```ts
@@ -1119,6 +1391,14 @@ factoryReset(): Promise\<void>
 | 类型             | 说明                         |
 | -------------- | -------------------------- |
 | Promise\<void> | Promise对象。无返回结果的Promise对象。 |
+
+**错误码**：
+
+以下的错误码的详细介绍请参见[升级错误码](../errorcodes/errorcode-update.md)
+
+| 类型       | 说明                                                  |
+| -------  | ---------------------------------------------------- |
+| 11500104 | BusinessError 11500104: IPC error.                   |
 
 **示例:**
 
@@ -1146,17 +1426,25 @@ verifyUpgradePackage(upgradeFile: UpgradeFile, certsFile: string, callback: Asyn
 
 | 参数名         | 类型                          | 必填   | 说明               |
 | ----------- | --------------------------- | ---- | ---------------- |
-| upgradeFile | [UpgradeFile](#upgradefile) | 是    | 升级文件             |
-| certsFile   | string                      | 是    | 证书文件路径           |
-| callback    | AsyncCallback\<void>        | 是    | 回调函数，返回升级包校验结果对象 |
+| upgradeFile | [UpgradeFile](#upgradefile) | 是    | 升级文件。             |
+| certsFile   | string                      | 是    | 证书文件路径。           |
+| callback    | AsyncCallback\<void>        | 是    | 回调函数，返回升级包校验结果对象。 |
+
+**错误码**：
+
+以下的错误码的详细介绍请参见[升级错误码](../errorcodes/errorcode-update.md)
+
+| 类型       | 说明                                                  |
+| -------  | ---------------------------------------------------- |
+| 11500104 | BusinessError 11500104: IPC error.                   |
 
 **示例：**
 
 ```ts
-var upgradeFile = {
+const upgradeFile = {
   fileType: update.ComponentType.OTA, // OTA包
   filePath: "path" // 本地升级包路径
-}
+};
 
 localUpdater.verifyUpgradePackage(upgradeFile, "cerstFilePath", (err) => {
   console.log(`factoryReset error ${JSON.stringify(err)}`);
@@ -1177,8 +1465,8 @@ verifyUpgradePackage(upgradeFile: UpgradeFile, certsFile: string): Promise\<void
 
 | 参数名         | 类型                          | 必填   | 说明     |
 | ----------- | --------------------------- | ---- | ------ |
-| upgradeFile | [UpgradeFile](#upgradefile) | 是    | 升级文件   |
-| certsFile   | string                      | 是    | 证书文件路径 |
+| upgradeFile | [UpgradeFile](#upgradefile) | 是    | 升级文件。   |
+| certsFile   | string                      | 是    | 证书文件路径。 |
 
 **返回值:**
 
@@ -1186,13 +1474,21 @@ verifyUpgradePackage(upgradeFile: UpgradeFile, certsFile: string): Promise\<void
 | -------------- | ---------------------- |
 | Promise\<void> | Promise对象，返回升级包校验结果对象。 |
 
+**错误码**：
+
+以下的错误码的详细介绍请参见[升级错误码](../errorcodes/errorcode-update.md)
+
+| 类型       | 说明                                                  |
+| -------  | ---------------------------------------------------- |
+| 11500104 | BusinessError 11500104: IPC error.                   |
+
 **示例:**
 
 ```ts
-var upgradeFile = {
+const upgradeFile = {
   fileType: update.ComponentType.OTA, // OTA包
   filePath: "path" // 本地升级包路径
-}
+};
 localUpdater.verifyUpgradePackage(upgradeFile, "cerstFilePath").then(() => {
   console.log(`verifyUpgradePackage success`);
 }).catch(err => {
@@ -1213,16 +1509,24 @@ applyNewVersion(upgradeFiles: Array<[UpgradeFile](#upgradefile)>, callback: Asyn
 
 | 参数名         | 类型                                 | 必填   | 说明                                      |
 | ----------- | ---------------------------------- | ---- | --------------------------------------- |
-| upgradeFile | Array<[UpgradeFile](#upgradefile)> | 是    | 升级文件                                    |
+| upgradeFile | Array<[UpgradeFile](#upgradefile)> | 是    | 升级文件。                                    |
 | callback    | AsyncCallback\<void>               | 是    | 回调函数。当安装升级包执行成功时，err为undefined，否则为错误对象。 |
+
+**错误码**：
+
+以下的错误码的详细介绍请参见[升级错误码](../errorcodes/errorcode-update.md)
+
+| 类型       | 说明                                                  |
+| -------  | ---------------------------------------------------- |
+| 11500104 | BusinessError 11500104: IPC error.                   |
 
 **示例：**
 
 ```ts
-var upgradeFiles = [{
+const upgradeFiles = [{
   fileType: update.ComponentType.OTA, // OTA包
   filePath: "path" // 本地升级包路径
-}]
+}];
 
 localUpdater.applyNewVersion(upgradeFiles, (err) => {
   console.log(`applyNewVersion error ${JSON.stringify(err)}`);
@@ -1245,13 +1549,21 @@ applyNewVersion(upgradeFiles: Array<[UpgradeFile](#upgradefile)>): Promise\<void
 | -------------- | -------------------------- |
 | Promise\<void> | Promise对象。无返回结果的Promise对象。 |
 
+**错误码**：
+
+以下的错误码的详细介绍请参见[升级错误码](../errorcodes/errorcode-update.md)
+
+| 类型       | 说明                                                  |
+| -------  | ---------------------------------------------------- |
+| 11500104 | BusinessError 11500104: IPC error.                   |
+
 **示例:**
 
 ```ts
-var upgradeFiles = [{
+const upgradeFiles = [{
   fileType: update.ComponentType.OTA, // OTA包
   filePath: "path" // 本地升级包路径
-}]
+}];
 localUpdater.applyNewVersion(upgradeFiles).then(() => {
   console.log(`applyNewVersion success`);
 }).catch(err => {
@@ -1270,16 +1582,24 @@ on(eventClassifyInfo: EventClassifyInfo, taskCallback: UpgradeTaskCallback): voi
 
 | 参数名               | 类型                                       | 必填   | 说明   |
 | ----------------- | ---------------------------------------- | ---- | ---- |
-| eventClassifyInfo | [EventClassifyInfo](#eventclassifyinfo)  | 是    | 事件信息 |
-| taskCallback      | [UpgradeTaskCallback](#upgradetaskcallback) | 是    | 事件回调 |
+| eventClassifyInfo | [EventClassifyInfo](#eventclassifyinfo)  | 是    | 事件信息。 |
+| taskCallback      | [UpgradeTaskCallback](#upgradetaskcallback) | 是    | 事件回调。 |
+
+**错误码**：
+
+以下的错误码的详细介绍请参见[升级错误码](../errorcodes/errorcode-update.md)
+
+| 类型       | 说明                                                  |
+| -------  | ---------------------------------------------------- |
+| 11500104 | BusinessError 11500104: IPC error.                   |
 
 **示例：**
 
 ```ts
-var eventClassifyInfo = {
+const eventClassifyInfo = {
   eventClassify: update.EventClassify.TASK, // 订阅升级更新事件
   extraInfo: ""
-}
+};
 
 function onTaskUpdate(eventInfo) {
   console.log(`on eventInfo id `, eventInfo.eventId);
@@ -1299,16 +1619,24 @@ off(eventClassifyInfo: EventClassifyInfo, taskCallback?: UpgradeTaskCallback): v
 
 | 参数名               | 类型                                       | 必填   | 说明   |
 | ----------------- | ---------------------------------------- | ---- | ---- |
-| eventClassifyInfo | [EventClassifyInfo](#eventclassifyinfo)  | 是    | 事件信息 |
-| taskCallback      | [UpgradeTaskCallback](#upgradetaskcallback) | 是    | 事件回调 |
+| eventClassifyInfo | [EventClassifyInfo](#eventclassifyinfo)  | 是    | 事件信息。 |
+| taskCallback      | [UpgradeTaskCallback](#upgradetaskcallback) | 是    | 事件回调。 |
+
+**错误码**：
+
+以下的错误码的详细介绍请参见[升级错误码](../errorcodes/errorcode-update.md)
+
+| 类型       | 说明                                                  |
+| -------  | ---------------------------------------------------- |
+| 11500104 | BusinessError 11500104: IPC error.                   |
 
 **示例：**
 
 ```ts
-var eventClassifyInfo = {
+const eventClassifyInfo = {
   eventClassify: update.EventClassify.TASK, // 订阅升级更新事件
   extraInfo: ""
-}
+};
 
 function onTaskUpdate(eventInfo) {
   console.log(`on eventInfo id `, eventInfo.eventId);
@@ -1325,8 +1653,8 @@ localUpdater.off(eventClassifyInfo, onTaskUpdate);
 
 | 名称           | 参数类型                          | 必填   | 说明     |
 | ------------ | ----------------------------- | ---- | ------ |
-| upgradeApp   | string                        | 是    | 调用方包名  |
-| businessType | [BusinessType](#businesstype) | 是    | 升级业务类型 |
+| upgradeApp   | string                        | 是    | 调用方包名。  |
+| businessType | [BusinessType](#businesstype) | 是    | 升级业务类型。 |
 
 ## BusinessType
 
@@ -1336,8 +1664,8 @@ localUpdater.off(eventClassifyInfo, onTaskUpdate);
 
 | 名称      | 参数类型                                | 必填   | 说明   |
 | ------- | ----------------------------------- | ---- | ---- |
-| vendor  | [BusinessVendor](#businessvendor)   | 是    | 供应商  |
-| subType | [BusinessSubType](#businesssubtype) | 是    | 类型   |
+| vendor  | [BusinessVendor](#businessvendor)   | 是    | 供应商。  |
+| subType | [BusinessSubType](#businesssubtype) | 是    | 类型。   |
 
 ## CheckResult
 
@@ -1347,8 +1675,8 @@ localUpdater.off(eventClassifyInfo, onTaskUpdate);
 
 | 名称                | 参数类型                              | 必填   | 说明     |
 | ----------------- | --------------------------------- | ---- | ------ |
-| isExistNewVersion | bool                              | 是    | 是否有新版本 |
-| newVersionInfo    | [NewVersionInfo](#newversioninfo) | 否    | 新版本数据  |
+| isExistNewVersion | bool                              | 是    | 是否有新版本。 |
+| newVersionInfo    | [NewVersionInfo](#newversioninfo) | 否    | 新版本数据。  |
 
 ## NewVersionInfo
 
@@ -1358,8 +1686,8 @@ localUpdater.off(eventClassifyInfo, onTaskUpdate);
 
 | 名称                | 参数类型                                     | 必填   | 说明   |
 | ----------------- | ---------------------------------------- | ---- | ---- |
-| versionDigestInfo | [VersionDigestInfo](#versiondigestinfo)  | 是    | 版本摘要 |
-| versionComponents | Array\<[VersionComponent](#versioncomponent)> | 是    | 版本组件 |
+| versionDigestInfo | [VersionDigestInfo](#versiondigestinfo)  | 是    | 版本摘要。 |
+| versionComponents | Array\<[VersionComponent](#versioncomponent)> | 是    | 版本组件。 |
 
 ## VersionDigestInfo
 
@@ -1369,7 +1697,7 @@ localUpdater.off(eventClassifyInfo, onTaskUpdate);
 
 | 名称            | 参数类型   | 必填   | 说明   |
 | ------------- | ------ | ---- | ---- |
-| versionDigest | string | 是    | 版本摘要 |
+| versionDigest | string | 是    | 版本摘要。 |
 
 ## VersionComponent
 
@@ -1379,14 +1707,14 @@ localUpdater.off(eventClassifyInfo, onTaskUpdate);
 
 | 名称              | 参数类型                                | 必填   | 说明       |
 | --------------- | ----------------------------------- | ---- | -------- |
-| componentId     | string                              | 是    | 组件标识     |
-| componentType   | [ComponentType](#componenttype)     | 是    | 组件类型     |
-| upgradeAction   | [UpgradeAction](#upgradeaction)     | 是    | 升级方式     |
-| displayVersion  | string                              | 是    | 显示版本号    |
-| innerVersion    | string                              | 是    | 版本号      |
-| size            | number                              | 是    | 升级包大小    |
-| effectiveMode   | [EffectiveMode](#effectivemode)     | 是    | 生效模式     |
-| descriptionInfo | [DescriptionInfo](#descriptioninfo) | 是    | 版本描述文件信息 |
+| componentId     | string                              | 是    | 组件标识。     |
+| componentType   | [ComponentType](#componenttype)     | 是    | 组件类型。     |
+| upgradeAction   | [UpgradeAction](#upgradeaction)     | 是    | 升级方式。     |
+| displayVersion  | string                              | 是    | 显示版本号。    |
+| innerVersion    | string                              | 是    | 版本号。      |
+| size            | number                              | 是    | 升级包大小。    |
+| effectiveMode   | [EffectiveMode](#effectivemode)     | 是    | 生效模式。     |
+| descriptionInfo | [DescriptionInfo](#descriptioninfo) | 是    | 版本描述文件信息。 |
 
 ## DescriptionOptions
 
@@ -1396,8 +1724,8 @@ localUpdater.off(eventClassifyInfo, onTaskUpdate);
 
 | 名称       | 参数类型                                    | 必填   | 说明     |
 | -------- | --------------------------------------- | ---- | ------ |
-| format   | [DescriptionFormat](#descriptionformat) | 是    | 描述文件格式 |
-| language | string                                  | 是    | 描述文件语言 |
+| format   | [DescriptionFormat](#descriptionformat) | 是    | 描述文件格式。 |
+| language | string                                  | 是    | 描述文件语言。 |
 
 ## ComponentDescription
 
@@ -1407,8 +1735,8 @@ localUpdater.off(eventClassifyInfo, onTaskUpdate);
 
 | 名称              | 参数类型                                | 必填   | 说明     |
 | --------------- | ----------------------------------- | ---- | ------ |
-| componentId     | string                              | 是    | 组件标识   |
-| descriptionInfo | [DescriptionInfo](#descriptioninfo) | 是    | 描述文件信息 |
+| componentId     | string                              | 是    | 组件标识。   |
+| descriptionInfo | [DescriptionInfo](#descriptioninfo) | 是    | 描述文件信息。 |
 
 ## DescriptionInfo
 
@@ -1418,8 +1746,8 @@ localUpdater.off(eventClassifyInfo, onTaskUpdate);
 
 | 名称              | 参数类型                                | 必填   | 说明     |
 | --------------- | ----------------------------------- | ---- | ------ |
-| descriptionType | [DescriptionType](#descriptiontype) | 是    | 描述文件类型 |
-| content         | string                              | 是    | 描述文件内容 |
+| descriptionType | [DescriptionType](#descriptiontype) | 是    | 描述文件类型。 |
+| content         | string                              | 是    | 描述文件内容。 |
 
 ## CurrentVersionInfo
 
@@ -1429,9 +1757,9 @@ localUpdater.off(eventClassifyInfo, onTaskUpdate);
 
 | 名称                | 参数类型                                     | 必填   | 说明    |
 | ----------------- | ---------------------------------------- | ---- | ----- |
-| osVersion         | string                                   | 是    | 系统版本号 |
-| deviceName        | string                                   | 是    | 设备名   |
-| versionComponents | Array\<[VersionComponent](#versioncomponent)> | 否    | 版本组件  |
+| osVersion         | string                                   | 是    | 系统版本号。 |
+| deviceName        | string                                   | 是    | 设备名。   |
+| versionComponents | Array\<[VersionComponent](#versioncomponent)> | 否    | 版本组件。  |
 
 ## DownloadOptions
 
@@ -1441,8 +1769,8 @@ localUpdater.off(eventClassifyInfo, onTaskUpdate);
 
 | 名称           | 参数类型                | 必填   | 说明   |
 | ------------ | ------------------- | ---- | ---- |
-| allowNetwork | [NetType](#nettype) | 是    | 网络类型 |
-| order        | [Order](#order)     | 是    | 升级指令 |
+| allowNetwork | [NetType](#nettype) | 是    | 网络类型。 |
+| order        | [Order](#order)     | 是    | 升级指令。 |
 
 ## ResumeDownloadOptions
 
@@ -1452,7 +1780,7 @@ localUpdater.off(eventClassifyInfo, onTaskUpdate);
 
 | 名称           | 参数类型                | 必填   | 说明   |
 | ------------ | ------------------- | ---- | ---- |
-| allowNetwork | [NetType](#nettype) | 是    | 网络类型 |
+| allowNetwork | [NetType](#nettype) | 是    | 网络类型。 |
 
 ## PauseDownloadOptions
 
@@ -1462,7 +1790,7 @@ localUpdater.off(eventClassifyInfo, onTaskUpdate);
 
 | 名称                | 参数类型 | 必填   | 说明       |
 | ----------------- | ---- | ---- | -------- |
-| isAllowAutoResume | bool | 是    | 是否允许自动恢复 |
+| isAllowAutoResume | bool | 是    | 是否允许自动恢复。 |
 
 ## UpgradeOptions
 
@@ -1472,7 +1800,7 @@ localUpdater.off(eventClassifyInfo, onTaskUpdate);
 
 | 名称    | 参数类型            | 必填   | 说明   |
 | ----- | --------------- | ---- | ---- |
-| order | [Order](#order) | 是    | 升级指令 |
+| order | [Order](#order) | 是    | 升级指令。 |
 
 ## ClearOptions
 
@@ -1482,7 +1810,7 @@ localUpdater.off(eventClassifyInfo, onTaskUpdate);
 
 | 名称     | 参数类型                            | 必填   | 说明   |
 | ------ | ------------------------------- | ---- | ---- |
-| status | [UpgradeStatus](#upgradestatus) | 是    | 异常状态 |
+| status | [UpgradeStatus](#upgradestatus) | 是    | 异常状态。 |
 
 ## UpgradePolicy
 
@@ -1492,9 +1820,9 @@ localUpdater.off(eventClassifyInfo, onTaskUpdate);
 
 | 名称                  | 参数类型                                    | 必填   | 说明      |
 | ------------------- | --------------------------------------- | ---- | ------- |
-| downloadStrategy    | bool                                    | 是    | 自动下载策略  |
-| autoUpgradeStrategy | bool                                    | 是    | 自动升级策略  |
-| autoUpgradePeriods  | Array\<[UpgradePeriod](#upgradeperiod)> | 是    | 自动升级时间段 |
+| downloadStrategy    | bool                                    | 是    | 自动下载策略。  |
+| autoUpgradeStrategy | bool                                    | 是    | 自动升级策略。  |
+| autoUpgradePeriods  | Array\<[UpgradePeriod](#upgradeperiod)> | 是    | 自动升级时间段。 |
 
 ## UpgradePeriod
 
@@ -1504,8 +1832,8 @@ localUpdater.off(eventClassifyInfo, onTaskUpdate);
 
 | 名称    | 参数类型   | 必填   | 说明   |
 | ----- | ------ | ---- | ---- |
-| start | number | 是    | 开始时间 |
-| end   | number | 是    | 结束时间 |
+| start | number | 是    | 开始时间。 |
+| end   | number | 是    | 结束时间。 |
 
 ## TaskInfo
 
@@ -1515,8 +1843,8 @@ localUpdater.off(eventClassifyInfo, onTaskUpdate);
 
 | 名称        | 参数类型                  | 必填   | 说明     |
 | --------- | --------------------- | ---- | ------ |
-| existTask | bool                  | 是    | 是否存在任务 |
-| taskBody  | [TaskBody](#taskinfo) | 是    | 任务数据   |
+| existTask | bool                  | 是    | 是否存在任务。 |
+| taskBody  | [TaskBody](#taskinfo) | 是    | 任务数据。   |
 
 ## EventInfo
 
@@ -1526,8 +1854,8 @@ localUpdater.off(eventClassifyInfo, onTaskUpdate);
 
 | 名称       | 参数类型                  | 必填   | 说明   |
 | -------- | --------------------- | ---- | ---- |
-| eventId  | [EventId](#eventid)   | 是    | 事件ID |
-| taskBody | [TaskBody](#taskinfo) | 是    | 任务数据 |
+| eventId  | [EventId](#eventid)   | 是    | 事件ID。 |
+| taskBody | [TaskBody](#taskinfo) | 是    | 任务数据。 |
 
 ## TaskBody
 
@@ -1537,13 +1865,13 @@ localUpdater.off(eventClassifyInfo, onTaskUpdate);
 
 | 名称                | 参数类型                                     | 必填   | 说明   |
 | ----------------- | ---------------------------------------- | ---- | ---- |
-| versionDigestInfo | [VersionDigestInfo](#versiondigestinfo)  | 是    | 版本摘要 |
-| status            | [UpgradeStatus](#upgradestatus)          | 是    | 升级状态 |
-| subStatus         | number                                   | 否    | 子状态  |
-| progress          | number                                   | 是    | 进度   |
-| installMode       | number                                   | 是    | 安装模式 |
-| errorMessages     | Array\<[ErrorMessage](#errormessage)>    | 否    | 错误信息 |
-| versionComponents | Array\<[VersionComponent](#versioncomponent)> | 是    | 版本组件 |
+| versionDigestInfo | [VersionDigestInfo](#versiondigestinfo)  | 是    | 版本摘要。 |
+| status            | [UpgradeStatus](#upgradestatus)          | 是    | 升级状态。 |
+| subStatus         | number                                   | 否    | 子状态。  |
+| progress          | number                                   | 是    | 进度。   |
+| installMode       | number                                   | 是    | 安装模式。 |
+| errorMessages     | Array\<[ErrorMessage](#errormessage)>    | 否    | 错误信息。 |
+| versionComponents | Array\<[VersionComponent](#versioncomponent)> | 是    | 版本组件。 |
 
 ## ErrorMessage
 
@@ -1553,8 +1881,8 @@ localUpdater.off(eventClassifyInfo, onTaskUpdate);
 
 | 名称           | 参数类型   | 必填   | 说明   |
 | ------------ | ------ | ---- | ---- |
-| errorCode    | number | 是    | 错误码  |
-| errorMessage | string | 是    | 错误描述 |
+| errorCode    | number | 是    | 错误码。  |
+| errorMessage | string | 是    | 错误描述。 |
 
 ## EventClassifyInfo
 
@@ -1564,8 +1892,8 @@ localUpdater.off(eventClassifyInfo, onTaskUpdate);
 
 | 名称            | 参数类型                            | 必填   | 说明   |
 | ------------- | ------------------------------- | ---- | ---- |
-| eventClassify | [EventClassify](#eventclassify) | 是    | 事件类型 |
-| extraInfo     | string                          | 是    | 额外信息 |
+| eventClassify | [EventClassify](#eventclassify) | 是    | 事件类型。 |
+| extraInfo     | string                          | 是    | 额外信息。 |
 
 ## UpgradeFile
 
@@ -1575,8 +1903,8 @@ localUpdater.off(eventClassifyInfo, onTaskUpdate);
 
 | 名称       | 参数类型                            | 必填   | 说明   |
 | -------- | ------------------------------- | ---- | ---- |
-| fileType | [ComponentType](#componenttype) | 是    | 文件类型 |
-| filePath | string                          | 是    | 文件路径 |
+| fileType | [ComponentType](#componenttype) | 是    | 文件类型。 |
+| filePath | string                          | 是    | 文件路径。 |
 
 ## UpgradeTaskCallback
 
@@ -1588,7 +1916,7 @@ localUpdater.off(eventClassifyInfo, onTaskUpdate);
 
 | 名称        | 参数类型                    | 必填   | 说明   |
 | --------- | ----------------------- | ---- | ---- |
-| eventInfo | [EventInfo](#eventinfo) | 是    | 事件信息 |
+| eventInfo | [EventInfo](#eventinfo) | 是    | 事件信息。 |
 
 ## BusinessVendor
 
@@ -1598,7 +1926,7 @@ localUpdater.off(eventClassifyInfo, onTaskUpdate);
 
 | 参数名    | 默认值      | 说明   |
 | ------ | -------- | ---- |
-| PUBLIC | "public" | 开源   |
+| PUBLIC | "public" | 开源。   |
 
 ## BusinessSubType
 
@@ -1608,7 +1936,7 @@ localUpdater.off(eventClassifyInfo, onTaskUpdate);
 
 | 参数名      | 默认值  | 说明   |
 | -------- | ---- | ---- |
-| FIRMWARE | 1    | 固件   |
+| FIRMWARE | 1    | 固件。   |
 
 ## ComponentType
 
@@ -1618,7 +1946,7 @@ localUpdater.off(eventClassifyInfo, onTaskUpdate);
 
 | 参数名  | 默认值  | 说明   |
 | ---- | ---- | ---- |
-| OTA  | 1    | 固件   |
+| OTA  | 1    | 固件。   |
 
 ## UpgradeAction
 
@@ -1628,8 +1956,8 @@ localUpdater.off(eventClassifyInfo, onTaskUpdate);
 
 | 参数名      | 默认值        | 说明   |
 | -------- | ---------- | ---- |
-| UPGRADE  | "upgrade"  | 差分包  |
-| RECOVERY | "recovery" | 修复包  |
+| UPGRADE  | "upgrade"  | 差分包。  |
+| RECOVERY | "recovery" | 修复包。  |
 
 ## EffectiveMode
 
@@ -1639,9 +1967,9 @@ localUpdater.off(eventClassifyInfo, onTaskUpdate);
 
 | 参数名           | 默认值  | 说明   |
 | ------------- | ---- | ---- |
-| COLD          | 1    | 冷升级  |
-| LIVE          | 2    | 热升级  |
-| LIVE_AND_COLD | 3    | 融合升级 |
+| COLD          | 1    | 冷升级。  |
+| LIVE          | 2    | 热升级。  |
+| LIVE_AND_COLD | 3    | 融合升级。 |
 
 ## DescriptionType
 
@@ -1651,8 +1979,8 @@ localUpdater.off(eventClassifyInfo, onTaskUpdate);
 
 | 参数名     | 默认值  | 说明   |
 | ------- | ---- | ---- |
-| CONTENT | 0    | 内容   |
-| URI     | 1    | 链接   |
+| CONTENT | 0    | 内容。   |
+| URI     | 1    | 链接。   |
 
 ## DescriptionFormat
 
@@ -1662,8 +1990,8 @@ localUpdater.off(eventClassifyInfo, onTaskUpdate);
 
 | 参数名        | 默认值  | 说明   |
 | ---------- | ---- | ---- |
-| STANDARD   | 0    | 标准格式 |
-| SIMPLIFIED | 1    | 简易格式 |
+| STANDARD   | 0    | 标准格式。 |
+| SIMPLIFIED | 1    | 简易格式。 |
 
 ## NetType
 
@@ -1673,11 +2001,11 @@ localUpdater.off(eventClassifyInfo, onTaskUpdate);
 
 | 参数名               | 默认值  | 说明        |
 | ----------------- | ---- | --------- |
-| CELLULAR          | 1    | 数据网络      |
-| METERED_WIFI      | 2    | 热点WIFI    |
-| NOT_METERED_WIFI  | 4    | 非热点WIFI   |
-| WIFI              | 6    | WIFI      |
-| CELLULAR_AND_WIFI | 7    | 数据网络和WIFI |
+| CELLULAR          | 1    | 数据网络。      |
+| METERED_WIFI      | 2    | 热点WIFI。    |
+| NOT_METERED_WIFI  | 4    | 非热点WIFI。   |
+| WIFI              | 6    | WIFI。      |
+| CELLULAR_AND_WIFI | 7    | 数据网络和WIFI。 |
 
 ## Order
 
@@ -1687,11 +2015,11 @@ localUpdater.off(eventClassifyInfo, onTaskUpdate);
 
 | 参数名                  | 默认值  | 说明    |
 | -------------------- | ---- | ----- |
-| DOWNLOAD             | 1    | 下载    |
-| INSTALL              | 2    | 安装    |
-| DOWNLOAD_AND_INSTALL | 3    | 下载并安装 |
-| APPLY                | 4    | 生效    |
-| INSTALL_AND_APPLY    | 6    | 安装并生效 |
+| DOWNLOAD             | 1    | 下载。    |
+| INSTALL              | 2    | 安装。    |
+| DOWNLOAD_AND_INSTALL | 3    | 下载并安装。 |
+| APPLY                | 4    | 生效。    |
+| INSTALL_AND_APPLY    | 6    | 安装并生效。 |
 
 ## UpgradeStatus
 
@@ -1701,16 +2029,16 @@ localUpdater.off(eventClassifyInfo, onTaskUpdate);
 
 | 参数名              | 默认值  | 说明   |
 | ---------------- | ---- | ---- |
-| WAITING_DOWNLOAD | 20   | 待下载  |
-| DOWNLOADING      | 21   | 下载中  |
-| DOWNLOAD_PAUSED  | 22   | 下载暂停 |
-| DOWNLOAD_FAIL    | 23   | 下载失败 |
-| WAITING_INSTALL  | 30   | 待安装  |
-| UPDATING         | 31   | 更新中  |
-| WAITING_APPLY    | 40   | 待生效  |
-| APPLYING         | 21   | 生效中  |
-| UPGRADE_SUCCESS  | 50   | 升级成功 |
-| UPGRADE_FAIL     | 51   | 升级失败 |
+| WAITING_DOWNLOAD | 20   | 待下载。  |
+| DOWNLOADING      | 21   | 下载中。  |
+| DOWNLOAD_PAUSED  | 22   | 下载暂停。 |
+| DOWNLOAD_FAIL    | 23   | 下载失败。 |
+| WAITING_INSTALL  | 30   | 待安装。  |
+| UPDATING         | 31   | 更新中。  |
+| WAITING_APPLY    | 40   | 待生效。  |
+| APPLYING         | 21   | 生效中。  |
+| UPGRADE_SUCCESS  | 50   | 升级成功。 |
+| UPGRADE_FAIL     | 51   | 升级失败。 |
 
 ## EventClassify
 
@@ -1720,7 +2048,7 @@ localUpdater.off(eventClassifyInfo, onTaskUpdate);
 
 | 参数名  | 默认值        | 说明   |
 | ---- | ---------- | ---- |
-| TASK | 0x01000000 | 任务事件 |
+| TASK | 0x01000000 | 任务事件。 |
 
 ## EventId
 
@@ -1730,20 +2058,20 @@ localUpdater.off(eventClassifyInfo, onTaskUpdate);
 
 | 参数名                    | 默认值        | 说明     |
 | ---------------------- | ---------- | ------ |
-| EVENT_TASK_BASE        | 0x01000000 | 任务事件   |
-| EVENT_TASK_RECEIVE     | 0x01000001 | 收到任务   |
-| EVENT_TASK_CANCEL      | 0x01000010 | 取消任务   |
-| EVENT_DOWNLOAD_WAIT    | 0x01000011 | 待下载    |
-| EVENT_DOWNLOAD_START   | 0x01000100 | 开始下载   |
-| EVENT_DOWNLOAD_UPDATE  | 0x01000101 | 下载进度更新 |
-| EVENT_DOWNLOAD_PAUSE   | 0x01000110 | 下载暂停   |
-| EVENT_DOWNLOAD_RESUME  | 0x01000111 | 恢复下载   |
-| EVENT_DOWNLOAD_SUCCESS | 0x01001000 | 下载成功   |
-| EVENT_DOWNLOAD_FAIL    | 0x01001001 | 下载失败   |
-| EVENT_UPGRADE_WAIT     | 0x01001010 | 待升级    |
-| EVENT_UPGRADE_START    | 0x01001011 | 开始升级   |
-| EVENT_UPGRADE_UPDATE   | 0x01001100 | 升级中    |
-| EVENT_APPLY_WAIT       | 0x01001101 | 待生效    |
-| EVENT_APPLY_START      | 0x01001110 | 开始生效   |
-| EVENT_UPGRADE_SUCCESS  | 0x01001111 | 更新成功   |
-| EVENT_UPGRADE_FAIL     | 0x01010000 | 更新失败   |
+| EVENT_TASK_BASE        | 0x01000000 | 任务事件。   |
+| EVENT_TASK_RECEIVE     | 0x01000001 | 收到任务。   |
+| EVENT_TASK_CANCEL      | 0x01000010 | 取消任务。   |
+| EVENT_DOWNLOAD_WAIT    | 0x01000011 | 待下载。    |
+| EVENT_DOWNLOAD_START   | 0x01000100 | 开始下载。   |
+| EVENT_DOWNLOAD_UPDATE  | 0x01000101 | 下载进度更新。 |
+| EVENT_DOWNLOAD_PAUSE   | 0x01000110 | 下载暂停。   |
+| EVENT_DOWNLOAD_RESUME  | 0x01000111 | 恢复下载。   |
+| EVENT_DOWNLOAD_SUCCESS | 0x01001000 | 下载成功。   |
+| EVENT_DOWNLOAD_FAIL    | 0x01001001 | 下载失败。   |
+| EVENT_UPGRADE_WAIT     | 0x01001010 | 待升级。    |
+| EVENT_UPGRADE_START    | 0x01001011 | 开始升级。   |
+| EVENT_UPGRADE_UPDATE   | 0x01001100 | 升级中。    |
+| EVENT_APPLY_WAIT       | 0x01001101 | 待生效。    |
+| EVENT_APPLY_START      | 0x01001110 | 开始生效。   |
+| EVENT_UPGRADE_SUCCESS  | 0x01001111 | 更新成功。   |
+| EVENT_UPGRADE_FAIL     | 0x01010000 | 更新失败。   |

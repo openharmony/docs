@@ -319,7 +319,7 @@ Checks whether the called number is an emergency number based on the specified p
 **Example**
 
 ```js
-call.isEmergencyPhoneNumber("112", {slotId: 1}, (err, value) => {
+call.isEmergencyPhoneNumber("112", {slotId: 1}, (err, data) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
 ```
@@ -403,7 +403,7 @@ A formatted phone number is a standard numeric string, for example, 555 0100.
 **Example**
 
 ```js
-call.formatPhoneNumber("138xxxxxxxx",{
+call.formatPhoneNumber("138xxxxxxxx", {
     countryCode: "CN"
 }, (err, data) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
@@ -468,9 +468,7 @@ The phone number must match the specified country code. For example, for a China
 **Example**
 
 ```js
-call.formatPhoneNumberToE164("138xxxxxxxx",{
-    countryCode: "CN"
-}, (err, data) => {
+call.formatPhoneNumberToE164("138xxxxxxxx", "CN", (err, data) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
 ```
@@ -504,9 +502,7 @@ All country codes are supported.
 **Example**
 
 ```js
-let promise = call.formatPhoneNumberToE164("138xxxxxxxx", {
-    countryCode: "CN"
-});
+let promise = call.formatPhoneNumberToE164("138xxxxxxxx", "CN");
 promise.then(data => {
     console.log(`formatPhoneNumberToE164 success, promise: data->${JSON.stringify(data)}`);
 }).catch(err => {
@@ -800,7 +796,7 @@ call.reject(rejectMessageOptions, (err, data) => {
 
 ## call.reject<sup>7+</sup>
 
-reject(callId: number, callback: AsyncCallback<void\>): <void\>
+reject(callId: number, callback: AsyncCallback\<void>): void
 
 Rejects a call based on the specified call ID. This API uses an asynchronous callback to return the result.
 
@@ -815,26 +811,18 @@ This is a system API.
 | callId   | number                    | Yes  | Call ID. You can obtain the value by subscribing to **callDetailsChange** events.|
 | callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result.                                     |
 
-**Return value**
-
-| Type               | Description                       |
-| ------------------- | --------------------------- |
-| Promise&lt;void&gt; | Promise used to return the result.|
 
 **Example**
 
 ```js
-let promise = call.reject(1);
-promise.then(data => {
-    console.log(`reject success, promise: data->${JSON.stringify(data)}`);
-}).catch(err => {
-    console.error(`reject fail, promise: err->${JSON.stringify(err)}`);
+call.reject(1, (err, data) => {
+    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
 ```
 
 ## call.reject<sup>7+</sup>
 
-reject\(callId: number, options: RejectMessageOption, callback: AsyncCallback<void\>\): void
+reject\(callId: number, options: RejectMessageOptions, callback: AsyncCallback<void\>\): void
 
 Rejects a call based on the specified call ID and options. This API uses an asynchronous callback to return the result.
 
@@ -1628,8 +1616,8 @@ This is a system API.
 **Example**
 
 ```js
-call.on('callDetailsChange', (err, data) => {
-    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+call.on('callDetailsChange', data => {
+    console.log(`callback: data->${JSON.stringify(data)}`);
 });
 ```
 
@@ -1653,8 +1641,8 @@ This is a system API.
 **Example**
 
 ```js
-call.on('callEventChange', (err, data) => {
-    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+call.on('callEventChange', data => {
+    console.log(`callback: data->${JSON.stringify(data)}`);
 });
 ```
 
@@ -1678,8 +1666,8 @@ This is a system API.
 **Example**
 
 ```js
-call.on('callDisconnectedCause', (err, data) => {
-    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+call.on('callDisconnectedCause', data => {
+    console.log(`callback: data->${JSON.stringify(data)}`);
 });
 ```
 
@@ -1703,8 +1691,8 @@ This is a system API.
 **Example**
 
 ```js
-isNewCallAllowedcall.on('mmiCodeResult', (err, data) => {
-    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+call.on('mmiCodeResult', data => {
+    console.log(`callback: data->${JSON.stringify(data)}`);
 });
 ```
 
@@ -1728,8 +1716,8 @@ This is a system API.
 **Example**
 
 ```js
-call.off('callDetailsChange', (err, data) => {
-    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+call.off('callDetailsChange', data => {
+    console.log(`callback: data->${JSON.stringify(data)}`);
 });
 ```
 
@@ -1753,8 +1741,8 @@ This is a system API.
 **Example**
 
 ```js
-call.off('callEventChange', (err, data) => {
-    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+call.off('callEventChange', data => {
+    console.log(`callback: data->${JSON.stringify(data)}`);
 });
 ```
 
@@ -1778,8 +1766,8 @@ This is a system API.
 **Example**
 
 ```js
-call.off('callDisconnectedCause', (err, data) => {
-    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+call.off('callDisconnectedCause', data => {
+    console.log(`callback: data->${JSON.stringify(data)}`);
 });
 ```
 
@@ -1803,8 +1791,8 @@ This is a system API.
 **Example**
 
 ```js
-call.off('mmiCodeResult', (err, data) => {
-    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+call.off('mmiCodeResult', data => {
+    console.log(`callback: data->${JSON.stringify(data)}`);
 });
 ```
 
@@ -2072,9 +2060,6 @@ This is a system API.
 **Example**
 
 ```js
-let callTransferTyp={
-    CallTransferType: 1
-}
 call.getCallTransferInfo(0, callTransferTyp, (err, data) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
@@ -2107,10 +2092,7 @@ This is a system API.
 **Example**
 
 ```js
-let callTransferTyp={
-    CallTransferType: 1
-}
-let promise = call.getCallTransferInfo(0, callTransferTyp);
+let promise = call.getCallTransferInfo(0, call.CallTransferType.TRANSFER_TYPE_BUSY);
 promise.then(data => {
     console.log(`getCallTransferInfo success, promise: data->${JSON.stringify(data)}`);
 }).catch(err => {
@@ -2399,7 +2381,7 @@ This is a system API.
 let audioDeviceOptions={
     bluetoothAddress: "IEEE 802-2014"
 }
-call.setAudioDevice(1, bluetoothAddress, (err, value) => {
+call.setAudioDevice(1, audioDeviceOptions, (err, data) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
 ```
@@ -2463,7 +2445,10 @@ This is a system API.
 **Example**
 
 ```js
-call.joinConference(1, "138XXXXXXXX", (err, data) => {
+let callNumberList: Array<string> = [
+    "138XXXXXXXX"
+];
+call.joinConference(1, callNumberList, (err, data) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
 ```
@@ -2494,7 +2479,10 @@ This is a system API.
 **Example**
 
 ```js
-let promise = call.joinConference(1, "138XXXXXXXX");
+let callNumberList: Array<string> = [
+    "138XXXXXXXX"
+];
+let promise = call.joinConference(1, callNumberList);
 promise.then(data => {
     console.log(`joinConference success, promise: data->${JSON.stringify(data)}`);
 }).catch(err => {

@@ -6,9 +6,10 @@ The table below lists the APIs changes of the web subsystem in OpenHarmony 3.2 B
 
 | Module| Class| Function| Change Type|
 |---|---|---|---|
-| web | WebAttribute | "onShowFileSelector(callback: (event?: { result: FileSelectorResult, fileSelector: FileSelectorParam }) => boolean): WebAttribute;" | Added|
+| web | WebAttribute | onShowFileSelector(callback: (event?: { result: FileSelectorResult, fileSelector: FileSelectorParam }) => boolean): WebAttribute; | Added|
 | web | WebAttribute | webDebuggingAccess(webDebuggingAccess: boolean): WebAttribute; | Added|
 | web | WebAttribute | fileFromUrlAccess(fileFromUrlAccess: boolean): WebAttribute; | Added|
+| web | WebAttribute | onRenderExited(callback: (event?: { renderExitReason: RenderExitReason }) => void): WebAttribute; | Added|
 | web | WebController | getCookieManager() : WebCookie | Added|
 | web | WebCookie | deleteExpiredCookie(): void; | Added|
 | web | WebCookie | deleteSessionCookie(): void; | Added|
@@ -22,6 +23,7 @@ The table below lists the APIs changes of the web subsystem in OpenHarmony 3.2 B
 | web | WebCookie | isFileURICookieAllowed(): boolean; | Added|
 | web | WebCookie | isThirdPartyCookieAllowed(): boolean; | Added|
 | web | WebCookie | isCookieAllowed(): boolean; | Added|
+| web | WebCookie | setCookie(url: string, value: string): boolean; | Added|
 | web | FileSelectorResult | handleFileList(fileList: Array\<string>): void; | Added|
 | web | FileSelectorResult | constructor(); | Added|
 | web | FileSelectorParam | isCapture(): boolean; | Added|

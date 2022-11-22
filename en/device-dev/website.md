@@ -197,10 +197,28 @@
 
         - [Overall Description of Compilation Form Factors](quick-start/quickstart-build.md)
   - [Obtaining Source Code](get-code/sourcecode-acquire.md)
+- Privacy and Security
   - [Privacy Protection](security/security-privacy-protection.md)
   - [Security Guidelines](security/security-guidelines-overall.md)
 
 - Porting
+  - Mini System SoC Porting Guide
+    - Porting Preparations
+      - [Before You Start](porting/porting-chip-prepare-knows.md)
+      - [Building Adaptation Process](porting/porting-chip-prepare-process.md)
+    - Kernel Porting
+      - [Overview](porting/porting-chip-kernel-overview.md)
+      - [Basic Kernel Adaptation](porting/porting-chip-kernel-adjustment.md)
+      - [Kernel Porting Verification](porting/porting-chip-kernel-verify.md)
+    - Board-Level OS Porting
+      - [Overview](porting/porting-chip-board-overview.md)
+      - [Board-Level Driver Adaptation](porting/porting-chip-board-driver.md)
+      - [Implementation of APIs at the HAL](porting/porting-chip-board-hal.md)
+      - [System Modules](porting/porting-chip-board-component.md)
+      - [lwIP Module Adaptation](porting/porting-chip-board-lwip.md)
+      - [Third-party Module Adaptation](porting/porting-chip-board-bundle.md)
+      - [XTS](porting/porting-chip-board-xts.md)
+    - [FAQs](porting/porting-chip-faqs.md)
   - Small System SoC Porting Guide
 
     - Porting Preparations
@@ -395,6 +413,7 @@
           - [Doubly Linked List](kernel/kernel-small-apx-dll.md)
           - [Bitwise Operation](kernel/kernel-small-apx-bitwise.md)
         - [Standard Library](kernel/kernel-small-apx-library.md)
+        - [Kernel Coding Specification](kernel/kernel-mini-appx-code.md)
     - Kernel for Standard Systems
       - [Linux Kernel Overview](kernel/kernel-standard-overview.md)
       - [Applying Patches on OpenHarmony Development Boards](kernel/kernel-standard-patch.md)
@@ -450,6 +469,7 @@
     - Peripheral Driver Usage
       - [Audio](driver/driver-peripherals-audio-des.md)
       - [Camera](driver/driver-peripherals-camera-des.md)
+      - [Codec](driver/driver-peripherals-codec-des.md)
       - [Facial Authentication](driver/driver-peripherals-face_auth-des.md)
       - [Fingerprint Authentication](driver/driver-peripherals-fingerprint_auth-des.md)
       - [LCD](driver/driver-peripherals-lcd-des.md)
@@ -467,18 +487,18 @@
     - [Build System Coding Specifications and Best Practices](subsystems/subsys-build-gn-coding-style-and-best-practice.md)
     - [Building the Kconfig Visual Configuration](subsystems/subsys-build-gn-kconfig-visual-config-guide.md)
     - References
-       - [Subsystem Configuration Rules](subsystems/subsys-build-subsystem.md#configuration-rules)
-       - [Product Configuration Rules](subsystems/subsys-build-product.md#configuration-rules)
-       - [Subsystem Configuration Rules](subsystems/subsys-build-subsystem.md#configuration-rules)
-       - [Component Configuration Rules](subsystems/subsys-build-component.md#configuration-rules)
-       - [Module Configuration Rules](subsystems/subsys-build-module.md#configuration-rules)
-       - [Chipset Solution Configuration Rules](subsystems/subsys-build-chip_solution.md#configuration-rules)
-       - [Feature Configuration Rules](subsystems/subsys-build-feature.md#configuration-rules)
-       - [System Capabilities Configuration Rules](subsystems/subsys-build-syscap.md#configuring-system-capabilities-for-a-component)
-       - [deps and external_deps](subsystems/subsys-build-reference.md#deps-and-external_deps)
-       - [Information Collected by the Open Source Software Notice](subsystems/subsys-build-reference.md#information-collected-by-the-open-source-software-notice)
-       - [Parameters for Accelerating Local Build](subsystems/subsys-build-reference.md#parameters-for-accelerating-local-build)
-       - [Viewing Ninja Build Information](subsystems/subsys-build-reference.md#viewing-ninja-build-information)
+       - [Subsystem Configuration Rules](subsystems/subsys-build-subsystem.md
+       - [Product Configuration Rules](subsystems/subsys-build-product.md)
+       - [Subsystem Configuration Rules](subsystems/subsys-build-subsystem.md)
+       - [Component Configuration Rules](subsystems/subsys-build-component.md)
+       - [Module Configuration Rules](subsystems/subsys-build-module.md)
+       - [Chipset Solution Configuration Rules](subsystems/subsys-build-chip_solution.md)
+       - [Feature Configuration Rules](subsystems/subsys-build-feature.md)
+       - [System Capabilities Configuration Rules](subsystems/subsys-build-syscap.md)
+       - [deps and external_deps](subsystems/subsys-build-reference.md)
+       - [Information Collected by the Open Source Software Notice](subsystems/subsys-build-reference.md)
+       - [Parameters for Accelerating Local Build](subsystems/subsys-build-reference.md)
+       - [Viewing Ninja Build Information](subsystems/subsys-build-reference.md)
        - [HAP Build Guide](subsystems/subsys-build-gn-hap-compilation-guide.md)
        - [FAQs](subsystems/subsys-build-FAQ.md)
   - [Distributed Remote Startup](subsystems/subsys-remote-start.md)
@@ -502,21 +522,7 @@
     - [Utils Overview](subsystems/subsys-utils-overview.md)
     - [Utils Development](subsystems/subsys-utils-guide.md)
     - [Utils FAQ](subsystems/subsys-utils-faqs.md)
-  - AI Framework
-    - [AI Engine Framework](subsystems/subsys-aiframework-guide.md)
-    - [Development Environment](subsystems/subsys-aiframework-envbuild.md)
-    - Technical Specifications
-      - [Code Management](subsystems/subsys-aiframework-tech-codemanage.md)
-      - [Naming](subsystems/subsys-aiframework-tech-name.md)
-      - [API Development](subsystems/subsys-aiframework-tech-interface.md)
-    - Development Guidelines
-      - [SDK](subsystems/subsys-aiframework-devguide-sdk.md)
-      - [Plug-in](subsystems/subsys-aiframework-devguide-plugin.md)
-      - [Configuration File](subsystems/subsys-aiframework-devguide-conf.md)
-    - Development Examples
-      - [KWS SDK](subsystems/subsys-aiframework-demo-sdk.md)
-      - [KWS Plug-in](subsystems/subsys-aiframework-demo-plugin.md)
-      - [KWS Configuration File](subsystems/subsys-aiframework-demo-conf.md)
+  - [AI Framework Development](subsystems/subsys-ai-aiframework-devguide.md)
   - Data Management
     - RDB
       - [RDB Overview](subsystems/subsys-data-relational-database-overview.md)
@@ -547,7 +553,7 @@
     - [Development on Application Permission Management](subsystems/subsys-security-rightmanagement.md)
     - [Development on IPC Authentication](subsystems/subsys-security-communicationverify.md)
     - [Development on Device Security Level Management](subsystems/subsys-security-devicesecuritylevel.md)
-
+    - [Development on HUKS](subsystems/subsys-security-huks-guide.md)
   - Startup
     - [Startup](subsystems/subsys-boot-overview.md)
     - init Module
@@ -561,11 +567,11 @@
     - [bootstrap Module](subsystems/subsys-boot-bootstrap.md)
     - [FAQs](subsystems/subsys-boot-faqs.md)
     - [Reference](subsystems/subsys-boot-ref.md)
-  - DFX
+- DFX
     - [DFX](subsystems/subsys-dfx-overview.md)
     - [HiLog Development](subsystems/subsys-dfx-hilog-rich.md)
     - [HiLog\_Lite Development](subsystems/subsys-dfx-hilog-lite.md)
-    - [HiTrace Development](subsystems/subsys-dfx-hitrace.md)
+    - [HiTraceChain Development](subsystems/subsys-dfx-hitracechain.md)
     - [HiCollie Development](subsystems/subsys-dfx-hicollie.md)
     - HiSysEvent Development
       - [HiSysEvent Logging Configuration](subsystems/subsys-dfx-hisysevent-logging-config.md)
@@ -577,7 +583,7 @@
     - [HiChecker Development](subsystems/subsys-dfx-hichecker.md)
     - [FaultLogger Development](subsystems/subsys-dfx-faultlogger.md)
     - [Hiview Development](subsystems/subsys-dfx-hiview.md)
-
+  
 - Featured Topics
   - HPM Part
     - [HPM Part Overview](hpm-part/hpm-part-about.md)
@@ -592,13 +598,6 @@
     - WLAN-connected Products
       - [LED Peripheral Control](guide/device-wlan-led-control.md)
       - [Third-Party SDK Integration](guide/device-wlan-sdk.md)
-    - Cameras Without a Screen
-      - Camera Control
-        - [Overview](guide/device-iotcamera-control-overview.md)
-        - Development Guidelines
-          - [Photographing](guide/device-iotcamera-control-demo-photodevguide.md)
-          - [Video Recording](guide/device-iotcamera-control-demo-videodevguide.md)
-        - [Use Case](guide/device-iotcamera-control-example.md)
     - Cameras with a Screen
       - Screen and Camera Control
         - [Overview](guide/device-camera-control-overview.md)
@@ -643,11 +642,7 @@
     - [Kernel](faqs/faqs-kernel.md)
     - [Porting](faqs/faqs-porting.md)
     - [Startup](faqs/faqs-startup.md)
-    - [System Applications](faqs/faqs-system-applications.md)
-
-
-
-
+    - [System Applications](faqs/faqs-system-applications.md) 
 
 
 

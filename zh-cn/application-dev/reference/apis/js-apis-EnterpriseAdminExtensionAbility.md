@@ -49,3 +49,55 @@ export default class EnterpriseAdminAbility extends EnterpriseAdminExtensionAbil
   }
 };
 ```
+
+## EnterpriseAdminExtensionAbility.onBundleAdded
+
+onBundleAdded(bundleName: string): void
+
+应用安装事件回调。
+
+**系统能力**：SystemCapability.Customization.EnterpriseDeviceManager
+
+**系统API**: 此接口为系统接口。
+
+**参数：**
+
+| 参数名   | 类型                                  | 必填   | 说明      |
+| ----- | ----------------------------------- | ---- | ------- |
+| bundleName | string | 是    | 安装应用包名。 |
+
+**示例：**
+
+```ts
+export default class EnterpriseAdminAbility extends EnterpriseAdminExtensionAbility {
+  onBundleAdded(bundleName: string) {
+    console.log("added bundle name: " + bundleName);
+  }
+};
+```
+
+## EnterpriseAdminExtensionAbility.onBundleRemoved
+
+onBundleRemoved(bundleName: string): void
+
+应用卸载事件回调。
+
+**系统能力**：SystemCapability.Customization.EnterpriseDeviceManager
+
+**系统API**: 此接口为系统接口。
+
+**参数：**
+
+| 参数名   | 类型                                  | 必填   | 说明      |
+| ----- | ----------------------------------- | ---- | ------- |
+| bundleName | string | 是    | 卸载应用包名。 |
+
+**示例：**
+
+```ts
+export default class EnterpriseAdminAbility extends EnterpriseAdminExtensionAbility {
+  onBundleAdded(bundleName: string) {
+    console.log("removed bundle name: " + bundleName);
+  }
+};
+```

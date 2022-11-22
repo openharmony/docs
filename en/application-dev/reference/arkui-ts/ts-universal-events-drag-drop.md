@@ -27,9 +27,9 @@ A drag event is triggered when a component is dragged.
 
 ## extraParam
 
-  Provides additional information required for dragging an item.
+Provides additional information required for dragging an item.
 
-  **extraParam** is a string converted from a JSON object. You can obtain the following attributes using the JSON object converted from **Json.parse**.
+**extraParam** is a string converted from a JSON object. You can obtain the following attributes using the JSON object converted from **Json.parse**.
 
 | Name         | Type  | Description                                      |
 | ------------- | ------ | ---------------------------------------- |
@@ -38,7 +38,7 @@ A drag event is triggered when a component is dragged.
 
 ## DragEvent
 
-| Sample Code    | Return Value Type | Description            |
+| Name    | Return Value Type | Description            |
 | ------ | ------ | ---------------- |
 | getX() | number | X-coordinate of the item that is being dragged, in vp.|
 | getY() | number | Y-coordinate of the item that is being dragged, in vp.|

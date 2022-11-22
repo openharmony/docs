@@ -4,7 +4,7 @@ The **EffectKit** module provides basic image processing capabilities, including
 
 This module provides the following classes:
 
-- [Filter](#filter): a class that provides the effect chain.
+- [Filter](#filter): a class that provides the effect chain, which is a linked list of image processing effects.
 - [Color](#color): a class used to store the color picked.
 - [ColorPicker](#colorpicker): a smart color picker.
 
@@ -155,7 +155,7 @@ Obtains the main color of the image and writes the result to a **[Color](#color)
 ```js
 colorPicker.getMainColor().then(color => {
     console.log('Succeeded in getting main color.');
-    console.info("color[ARGB]=" + color.alpha + "," + color.red + "," + color.green + "," + color.blue);
+    console.info(`color[ARGB]=${color.alpha},${color.red},${color.green},${color.blue}`);
 }).catch(error => {
     console.log('Failed to get main color.');
 })

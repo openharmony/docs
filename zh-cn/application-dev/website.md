@@ -1,18 +1,28 @@
 # OpenHarmony应用开发文档
+
 - [应用开发导读](application-dev-guide.md)
 - 快速开始
-
   - 快速入门
     - [开发准备](quick-start/start-overview.md)
-    - [使用eTS语言开发（Stage模型）](quick-start/start-with-ets-stage.md)
-    - [使用eTS语言开发（FA模型）](quick-start/start-with-ets-fa.md)
+    - [使用ArkTS语言开发（Stage模型）](quick-start/start-with-ets-stage.md)
+    - [使用ArkTS语言开发（FA模型）](quick-start/start-with-ets-fa.md)
     - [使用JS语言开发（FA模型）](quick-start/start-with-js-fa.md)
-
   - 开发基础知识
     - [应用包结构说明(FA模型)](quick-start/package-structure.md)
     - [应用包结构说明(Stage模型)](quick-start/stage-structure.md)
     - [SysCap说明](quick-start/syscap.md)
     - [HarmonyAppProvision配置文件](quick-start/app-provision-structure.md)
+    - 学习ArkTS语言
+      - [初识ArkTS语言](quick-start/arkts-get-started.md)
+      - ArkTS语法（声明式UI）
+        - [基本UI描述](quick-start/arkts-basic-ui-description.md)
+        - 状态管理
+          - [基本概念](quick-start/arkts-state-mgmt-concepts.md)
+          - [页面级变量的状态管理](quick-start/arkts-state-mgmt-page-level.md)
+          - [应用级变量的状态管理](quick-start/arkts-state-mgmt-application-level.md)
+        - [动态构建UI元素](quick-start/arkts-dynamic-ui-elememt-building.md)
+        - [渲染控制](quick-start/arkts-rendering-control.md)
+        - [使用限制与扩展](quick-start/arkts-restrictions-and-extensions.md)
 - 开发
   - Ability开发
     - [Ability框架概述](ability/ability-brief.md)
@@ -37,60 +47,20 @@
       - [测试框架使用指导](ability/ability-delegator.md)
   - UI开发
     - [方舟开发框架（ArkUI）概述](ui/arkui-overview.md)
-    - 基于TS扩展的声明式开发范式
+    - 基于ArkTS的声明式开发范式
       - [概述](ui/ui-ts-overview.md)
       - 框架说明
         - 文件组织
           - [目录结构](ui/ts-framework-directory.md)
           - [应用代码文件访问规则](ui/ts-framework-file-access-rules.md)
-        - [js标签配置](ui/ts-framework-js-tag.md)
         - 资源管理
           - [资源文件的分类](ui/ui-ts-basic-resource-file-categories.md)
           - [资源访问](ui/ts-resource-access.md)
         - [像素单位](ui/ts-pixel-units.md)
-      - 声明式语法
-        - [描述规范使用说明](ui/ts-syntax-intro.md)
-        - 通用UI描述规范
-          - [基本概念](ui/ts-general-ui-concepts.md)
-          - 声明式UI描述规范
-            - [无构造参数配置](ui/ts-parameterless-configuration.md)
-            - [必选参数构造配置](ui/ts-configuration-with-mandatory-parameters.md)
-            - [属性配置](ui/ts-attribution-configuration.md)
-            - [事件配置](ui/ts-event-configuration.md)
-            - [子组件配置](ui/ts-child-component-configuration.md)
-          - 组件化
-            - [@Component](ui/ts-component-based-component.md)
-            - [@Entry](ui/ts-component-based-entry.md)
-            - [@Preview](ui/ts-component-based-preview.md)
-            - [@Builder](ui/ts-component-based-builder.md)
-            - [@Extend](ui/ts-component-based-extend.md)
-            - [@CustomDialog](ui/ts-component-based-customdialog.md)
-            - [@Styles](ui/ts-component-based-styles.md)
-        - UI状态管理
-          - [基本概念](ui/ts-ui-state-mgmt-concepts.md)
-          - 管理组件拥有的状态
-            - [@State](ui/ts-component-states-state.md)
-            - [@Prop](ui/ts-component-states-prop.md)
-            - [@Link](ui/ts-component-states-link.md)
-          - 管理应用程序的状态
-            - [应用程序的数据存储](ui/ts-application-states-appstorage.md)
-            - [Ability数据存储](ui/ui-ts-local-storage.md)
-            - [持久化数据管理](ui/ts-application-states-apis-persistentstorage.md)
-            - [环境变量](ui/ts-application-states-apis-environment.md)
-          - 其他类目的状态管理
-            - [Observed和ObjectLink数据管理](ui/ts-other-states-observed-objectlink.md)
-            - [@Consume和@Provide数据管理](ui/ts-other-states-consume-provide.md)
-            - [@Watch](ui/ts-other-states-watch.md)
-        - 渲染控制语法
-          - [条件渲染](ui/ts-rending-control-syntax-if-else.md)
-          - [循环渲染](ui/ts-rending-control-syntax-foreach.md)
-          - [数据懒加载](ui/ts-rending-control-syntax-lazyforeach.md)
         - 深入理解组件化
-          - [build函数](ui/ts-function-build.md)
           - [自定义组件初始化](ui/ts-custom-component-initialization.md)
           - [自定义组件生命周期回调函数](ui/ts-custom-component-lifecycle-callbacks.md)
           - [组件创建和重新初始化示例](ui/ts-component-creation-re-initialization.md)
-        - [语法糖](ui/ts-syntactic-sugar.md)
       - 常见组件开发指导
         - [Button开发指导](ui/ui-ts-basic-components-button.md)
         - [Web开发指导](ui/ui-ts-components-web.md)
@@ -108,7 +78,7 @@
         - [构建食物分类Grid布局](ui/ui-ts-building-category-grid-layout.md)
         - [页面跳转与数据传递](ui/ui-ts-page-redirection-data-transmission.md)
       - [性能提升的推荐方法](ui/ts-performance-improvement-recommendation.md)
-    - 基于JS扩展的类Web开发范式
+    - 兼容JS的类Web开发范式
       - [概述](ui/ui-js-overview.md)
       - 框架说明
         - [文件组织](ui/js-framework-file.md)
@@ -184,9 +154,6 @@
     - [公共事件与通知概述](notification/notification-brief.md)
     - [公共事件开发指导](notification/common-event.md)
     - [通知开发指导](notification/notification-guidelines.md)
-    - 后台代理提醒
-      - [后台代理提醒开发概述](notification/background-agent-scheduled-reminder-overview.md)
-      - [后台代理提醒开发指导](notification/background-agent-scheduled-reminder-guide.md)
     - [调试助手使用指导](notification/assistant-guidelines.md)
   - 窗口管理
     - [窗口开发概述](windowmanager/window-overview.md)
@@ -202,6 +169,7 @@
       - [音频播放开发指导](media/audio-playback.md)
       - [音频录制开发指导](media/audio-recorder.md)
       - [音频渲染开发指导](media/audio-renderer.md)
+      - [音频流管理开发指导](media/audio-stream-manager.md)
       - [音频采集开发指导](media/audio-capturer.md)
       - [OpenSL ES播放开发指导](media/opensles-playback.md)
       - [OpenSL ES录音开发指导](media/opensles-capture.md)
@@ -213,10 +181,12 @@
       - [图片开发指导](media/image.md)
     - 相机
       - [相机开发指导](media/camera.md)
+      - [分布式相机开发指导](media/remote-camera.md)
   - 安全
     - 访问控制
       - [访问控制开发概述](security/accesstoken-overview.md)
-      - [访问控制开发指导](security/accesstoken-guidelines.md)
+      - [访问控制授权申请指导](security/accesstoken-guidelines.md)
+      - [访问控制权限校验指导](security/permission-verify-guidelines.md)
       - [权限定义列表](security/permission-list.md)
     - 用户认证
       - [用户认证开发概述](security/userauth-overview.md)
@@ -224,6 +194,9 @@
     - 密钥管理
       - [HUKS开发概述](security/huks-overview.md)
       - [HUKS开发指导](security/huks-guidelines.md)
+    - 加密算法库框架
+      - [加密算法库框架概述](security/cryptoFramework-overview.md)
+      - [加密算法框架开发指导](security/cryptoFramework-guidelines.md)
     - Hap包签名工具
       - [Hap包签名工具概述](security/hapsigntool-overview.md)
       - [Hap包签名工具指导](security/hapsigntool-guidelines.md)
@@ -260,10 +233,13 @@
   - 任务管理
     - 后台任务
       - [后台任务概述](task-management/background-task-overview.md)
-      - [后台任务开发指导](task-management/background-task-dev-guide.md)
-    - 延迟任务调度
-      - [延迟任务调度概述](task-management/work-scheduler-overview.md)
-      - [延迟任务调度开发指导](task-management/work-scheduler-dev-guide.md)
+      - [短时任务开发指导](task-management/transient-task-dev-guide.md)
+      - [长时任务开发指导](task-management/continuous-task-dev-guide.md)
+      - [延迟任务开发指导](task-management/work-scheduler-dev-guide.md)
+      - [申请能效资源开发指导](task-management/efficiency-resources-apply-dev-guide.md)
+    - 后台代理提醒
+      - [后台代理提醒开发概述](task-management/background-agent-scheduled-reminder-overview.md)
+      - [后台代理提醒开发指导](task-management/background-agent-scheduled-reminder-guide.md)
   - 设备管理
     - USB服务
       - [USB服务开发概述](device/usb-overview.md)
@@ -301,78 +277,66 @@
     - [Intl开发指导](internationalization/intl-guidelines.md)
     - [I18n开发指导](internationalization/i18n-guidelines.md)
   - 一次开发，多端部署
-    - [前言](key-features/multi-device-app-dev/about-this-document.md)
+    - [前言](key-features/multi-device-app-dev/foreword.md)
     - [简介](key-features/multi-device-app-dev/introduction.md)
+    - [从一个例子开始](key-features/multi-device-app-dev/start-with-a-example.md)
     - 应用UX设计
       - [设计原则和要点](key-features/multi-device-app-dev/design-principles.md)
       - 应用架构设计
         - [应用导航结构设计要求](key-features/multi-device-app-dev/navigation-design.md)
         - [应用页面结构设计](key-features/multi-device-app-dev/page-design.md)
       - 界面布局
-        - [概述](key-features/multi-device-app-dev/layout-design-intro.md)
+        - [概述](key-features/multi-device-app-dev/interface-layout-design-intro.md)
         - 布局基础
-          - [栅格系统](key-features/multi-device-app-dev/layout-grid.md)
-          - [自适应布局](key-features/multi-device-app-dev/layout-adaptive.md)
-          - [响应式布局](key-features/multi-device-app-dev/layout-responsive.md)
-        - [布局基础运用案例](key-features/multi-device-app-dev/layout-design-cases.md)
+          - [栅格系统](key-features/multi-device-app-dev/design-grid.md)
+          - [自适应布局](key-features/multi-device-app-dev/design-adaptive-layout.md)
+          - [响应式布局](key-features/multi-device-app-dev/design-responsive-layout.md)
+        - [布局基础运用案例](key-features/multi-device-app-dev/design-layout-cases.md)
       - 人机交互
         - [交互基础](key-features/multi-device-app-dev/interaction-basics.md)
         - [常见输入方式](key-features/multi-device-app-dev/common-input-modes.md)
-        - [交互事件归一](key-features/multi-device-app-dev/design-interaction-events-unification.md)
+        - [交互事件归一](key-features/multi-device-app-dev/design-interaction-event-normalization.md)
       - 视觉风格
-        - [视觉基础](key-features/multi-device-app-dev/visual-style-basics.md)
+        - [视觉基础](key-features/multi-device-app-dev/visual-basics.md)
         - [色彩](key-features/multi-device-app-dev/visual-style-color.md)
         - [字体](key-features/multi-device-app-dev/visual-style-font.md)
         - [图标](key-features/multi-device-app-dev/visual-style-icon.md)
-      - [多态控件](key-features/multi-device-app-dev/design-polymorphic-components.md)
+      - [多态控件](key-features/multi-device-app-dev/design-polymorphic-controls.md)
       - [设计自检表](key-features/multi-device-app-dev/design-checklist.md)
-      - [资源](key-features/multi-device-app-dev/resource.md)
-    - [IDE使用](key-features/multi-device-app-dev/ide-usage.md)
-    - 一多能力的页面开发介绍
+      - [设计交付](key-features/multi-device-app-dev/design-delivery.md)
+      - [资源](key-features/multi-device-app-dev/design-resources.md)
+    - [工程管理](key-features/multi-device-app-dev/ide-using.md)
+    - 页面开发的一多能力介绍
+      - [简介](key-features/multi-device-app-dev/page-development-intro.md)
       - 布局能力
-        - [布局能力简介](key-features/multi-device-app-dev/layout-intro.md)
-        - 自适应布局
-          - [自适应布局简介](key-features/multi-device-app-dev/adaptive-layout-intro.md)
-          - [拉伸能力](key-features/multi-device-app-dev/adaptive-layout-stretching.md)
-          - [均分能力](key-features/multi-device-app-dev/adaptive-layout-equalization.md)
-          - [占比能力](key-features/multi-device-app-dev/adaptive-layout-proportion.md)
-          - [缩放能力](key-features/multi-device-app-dev/adaptive-layout-scaling.md)
-          - [延伸能力](key-features/multi-device-app-dev/adaptive-layout-extension.md)
-          - [隐藏能力](key-features/multi-device-app-dev/adaptive-layout-hiding.md)
-          - [折行能力](key-features/multi-device-app-dev/adaptive-layout-wrapping.md)
-        - 响应式布局
-          - [栅格断点系统](key-features/multi-device-app-dev/grid-breakpoint.md)
-          - [媒体查询](key-features/multi-device-app-dev/media-query.md)
-          - [典型场景](key-features/multi-device-app-dev/responsive-layout-cases.md)
-      - [交互归一](key-features/multi-device-app-dev/interaction-events-unification.md)
-      - [多态组件](key-features/multi-device-app-dev/polymorphic-components.md)
+        - [布局简介](key-features/multi-device-app-dev/layout-intro.md)
+        - [自适应布局](key-features/multi-device-app-dev/adaptive-layout.md)
+        - [响应式布局](key-features/multi-device-app-dev/responsive-layout.md)
+        - [典型布局场景](key-features/multi-device-app-dev/typical-layout-scenario.md)
+        - 典型页面场景
+          - [应用市场首页](key-features/multi-device-app-dev/appgallery-home-page.md)
+          - [音乐专辑页](key-features/multi-device-app-dev/music-album-page.md)
+      - [交互归一](key-features/multi-device-app-dev/interaction-event-normalization.md)
+      - [多态组件](key-features/multi-device-app-dev/polymorphic-controls.md)
       - [资源使用](key-features/multi-device-app-dev/resource-usage.md)
-    - [一多能力的功能开发介绍](key-features/multi-device-app-dev/development-intro.md)
-    - 案例应用
-      - 短信应用
-        - [概览](key-features/multi-device-app-dev/sms-intro.md)
-        - 会话详情页面
-          - [页面结构](key-features/multi-device-app-dev/sms-session-page-structure.md)
-          - [顶部标题栏](key-features/multi-device-app-dev/sms-session-page-title-bar.md)
-          - [底部输入栏](key-features/multi-device-app-dev/sms-session-page-input-field.md)
-          - [信息列表](key-features/multi-device-app-dev/sms-session-page-message-list.md)
-          - [组合成型](key-features/multi-device-app-dev/sms-session-page-combined.md)
-        - [总结](key-features/multi-device-app-dev/sms-session-summary.md)
-      - [桌面应用](key-features/multi-device-app-dev/cases-home-screen.md)
-    - [常见问题](key-features/multi-device-app-dev/faqs.md)
+    - [功能开发的一多能力介绍](key-features/multi-device-app-dev/development-intro.md)
+    - [案例应用](key-features/multi-device-app-dev/case.md)
+    - [常见问题](key-features/multi-device-app-dev/faq.md)
   - [IDL工具规格及使用说明书](IDL/idl-guidelines.md)
   - Native API的相关指导
     - [Native API在应用工程中的使用指导](napi/napi-guidelines.md)
     - [Drawing开发指导](napi/drawing-guidelines.md)
     - [Rawfile开发指导](napi/rawfile-guidelines.md)
     - [Window开发指导](napi/native-window-guidelines.md)
+    - [使用MindSpore Lite引擎进行模型推理](napi/mindspore-lite-guidelines.md)
 - 工具
   - [DevEco Studio（OpenHarmony）使用指南](quick-start/deveco-studio-user-guide-for-openharmony.md)
 - 示例教程
   - [示例代码](https://gitee.com/openharmony/applications_app_samples/blob/master/README_zh.md)
   - [Codelabs](https://gitee.com/openharmony/codelabs/blob/master/README.md)
 - API参考
-  - 组件参考（基于TS扩展的声明式开发范式）
+  - [Syscap列表](reference/syscap-list.md)
+  - 组件参考（基于ArkTS的声明式开发范式）
     - 组件通用信息
       - 通用事件
         - [点击事件](reference/arkui-ts/ts-universal-events-click.md)
@@ -412,6 +376,8 @@
         - [触摸热区设置](reference/arkui-ts/ts-universal-attributes-touch-target.md)
         - [多态样式](reference/arkui-ts/ts-universal-attributes-polymorphic-style.md)
         - [触摸测试控制](reference/arkui-ts/ts-universal-attributes-hit-test-behavior.md)
+        - [背景模糊设置](reference/arkui-ts/ts-universal-attributes-backgroundBlurStyle.md)
+        - [分布式迁移标识](reference/arkui-ts/ts-universal-attributes-restoreId.md)
       - 手势处理
         - [绑定手势方法](reference/arkui-ts/ts-gesture-settings.md)
         - 基础手势
@@ -470,10 +436,13 @@
       - [Counter](reference/arkui-ts/ts-container-counter.md)
       - [Flex](reference/arkui-ts/ts-container-flex.md)
       - [GridContainer](reference/arkui-ts/ts-container-gridcontainer.md)
+      - [GridCol](reference/arkui-ts/ts-container-gridcol.md)
+      - [GridRow](reference/arkui-ts/ts-container-gridrow.md)
       - [Grid](reference/arkui-ts/ts-container-grid.md)
       - [GridItem](reference/arkui-ts/ts-container-griditem.md)
       - [List](reference/arkui-ts/ts-container-list.md)
       - [ListItem](reference/arkui-ts/ts-container-listitem.md)
+      - [ListItemGroup](reference/arkui-ts/ts-container-listitemgroup.md)
       - [Navigator](reference/arkui-ts/ts-container-navigator.md)
       - [Panel](reference/arkui-ts/ts-container-panel.md)
       - [Refresh](reference/arkui-ts/ts-container-refresh.md)
@@ -500,12 +469,12 @@
     - 画布组件
       - [Canvas](reference/arkui-ts/ts-components-canvas-canvas.md)
       - [CanvasRenderingContext2D对象](reference/arkui-ts/ts-canvasrenderingcontext2d.md)
-      - [OffscreenCanvasRenderingConxt2D对象](reference/arkui-ts/ts-offscreencanvasrenderingcontext2d.md)
-      - [Lottie](reference/arkui-ts/ts-components-canvas-lottie.md)
-      - [Path2D对象](reference/arkui-ts/ts-components-canvas-path2d.md)
       - [CanvasGradient对象](reference/arkui-ts/ts-components-canvas-canvasgradient.md)
       - [ImageBitmap对象](reference/arkui-ts/ts-components-canvas-imagebitmap.md)
       - [ImageData对象](reference/arkui-ts/ts-components-canvas-imagedata.md)
+      - [OffscreenCanvasRenderingContext2D对象](reference/arkui-ts/ts-offscreencanvasrenderingcontext2d.md)
+      - [Path2D对象](reference/arkui-ts/ts-components-canvas-path2d.md)
+      - [Lottie](reference/arkui-ts/ts-components-canvas-lottie.md)
     - 动画
       - [属性动画](reference/arkui-ts/ts-animatorproperty.md)
       - [显式动画](reference/arkui-ts/ts-explicit-animation.md)
@@ -514,8 +483,7 @@
         - [组件内转场](reference/arkui-ts/ts-transition-animation-component.md)
         - [共享元素转场](reference/arkui-ts/ts-transition-animation-shared-elements.md)
       - [路径动画](reference/arkui-ts/ts-motion-path-animation.md)
-      - [矩阵变换](reference/arkui-ts/ts-matrix-transformation.md)
-      - [插值计算](reference/arkui-ts/ts-interpolation-calculation.md)
+
     - 全局UI方法
       - 弹窗
         - [警告弹窗](reference/arkui-ts/ts-methods-alert-dialog-box.md)
@@ -527,7 +495,7 @@
       - [菜单](reference/arkui-ts/ts-methods-menu.md)
     - [枚举说明](reference/arkui-ts/ts-appendix-enums.md)
     - [类型说明](reference/arkui-ts/ts-types.md)
-  - 组件参考（基于JS扩展的类Web开发范式）
+  - 组件参考（兼容JS的类Web开发范式）
     - 组件通用信息
       - [通用属性](reference/arkui-js/js-components-common-attributes.md)
       - [通用样式](reference/arkui-js/js-components-common-styles.md)
@@ -631,44 +599,44 @@
     - [数据类型说明](reference/arkui-js/js-appendix-types.md)
   - JS服务卡片UI组件参考
     - JS服务卡片UI框架说明
-        - [文件组织](reference/js-service-widget-ui/js-service-widget-file.md)
-        - 语法
-            - [HML语法参考](reference/js-service-widget-ui/js-service-widget-syntax-hml.md)
-            - [CSS语法参考](reference/js-service-widget-ui/js-service-widget-syntax-css.md)
-            - [配置数据和事件](reference/js-service-widget-ui/js-service-widget-configuration.md)
-        - [多语言支持](reference/js-service-widget-ui/js-service-widget-multiple-languages.md)
-        - [低版本兼容](reference/js-service-widget-ui/js-service-widget-version-compatibility.md)
+      - [文件组织](reference/js-service-widget-ui/js-service-widget-file.md)
+      - 语法
+        - [HML语法参考](reference/js-service-widget-ui/js-service-widget-syntax-hml.md)
+        - [CSS语法参考](reference/js-service-widget-ui/js-service-widget-syntax-css.md)
+        - [配置数据和事件](reference/js-service-widget-ui/js-service-widget-configuration.md)
+      - [多语言支持](reference/js-service-widget-ui/js-service-widget-multiple-languages.md)
+      - [低版本兼容](reference/js-service-widget-ui/js-service-widget-version-compatibility.md)
     - 组件
-        - 通用
-            - [通用属性](reference/js-service-widget-ui/js-service-widget-common-attributes.md)
-            - [通用样式](reference/js-service-widget-ui/js-service-widget-common-styles.md)
-            - [通用事件](reference/js-service-widget-ui/js-service-widget-common-events.md)
-            - [渐变样式](reference/js-service-widget-ui/js-service-widget-common-gradient.md)
-            - [媒体查询](reference/js-service-widget-ui/js-service-widget-common-mediaquery.md)
-            - [自定义字体样式](reference/js-service-widget-ui/js-service-widget-common-customizing-font.md)
-            - [无障碍](reference/js-service-widget-ui/js-service-widget-common-accessibility.md)
-            - [原子布局](reference/js-service-widget-ui/js-service-widget-common-atomic-layout.md)
-        - 容器组件
-            - [div](reference/js-service-widget-ui/js-service-widget-container-div.md)
-            - [list](reference/js-service-widget-ui/js-service-widget-container-list.md)
-            - [list-item](reference/js-service-widget-ui/js-service-widget-container-list-item.md)
-            - [stack](reference/js-service-widget-ui/js-service-widget-container-stack.md)
-            - [swiper](reference/js-service-widget-ui/js-service-widget-container-swiper.md)
-        - 基础组件
-            - [button](reference/js-service-widget-ui/js-service-widget-basic-button.md)
-            - [calendar](reference/js-service-widget-ui/js-service-widget-basic-calendar.md)
-            - [chart](reference/js-service-widget-ui/js-service-widget-basic-chart.md)
-            - [clock](reference/js-service-widget-ui/js-service-widget-basic-clock.md)
-            - [divider](reference/js-service-widget-ui/js-service-widget-basic-divider.md)
-            - [image](reference/js-service-widget-ui/js-service-widget-basic-image.md)
-            - [input](reference/js-service-widget-ui/js-service-widget-basic-input.md)
-            - [progress](reference/js-service-widget-ui/js-service-widget-basic-progress.md)
-            - [span](reference/js-service-widget-ui/js-service-widget-basic-span.md)
-            - [text](reference/js-service-widget-ui/js-service-widget-basic-text.md)
+      - 通用
+        - [通用属性](reference/js-service-widget-ui/js-service-widget-common-attributes.md)
+        - [通用样式](reference/js-service-widget-ui/js-service-widget-common-styles.md)
+        - [通用事件](reference/js-service-widget-ui/js-service-widget-common-events.md)
+        - [渐变样式](reference/js-service-widget-ui/js-service-widget-common-gradient.md)
+        - [媒体查询](reference/js-service-widget-ui/js-service-widget-common-mediaquery.md)
+        - [自定义字体样式](reference/js-service-widget-ui/js-service-widget-common-customizing-font.md)
+        - [无障碍](reference/js-service-widget-ui/js-service-widget-common-accessibility.md)
+        - [原子布局](reference/js-service-widget-ui/js-service-widget-common-atomic-layout.md)
+      - 容器组件
+        - [div](reference/js-service-widget-ui/js-service-widget-container-div.md)
+        - [list](reference/js-service-widget-ui/js-service-widget-container-list.md)
+        - [list-item](reference/js-service-widget-ui/js-service-widget-container-list-item.md)
+        - [stack](reference/js-service-widget-ui/js-service-widget-container-stack.md)
+        - [swiper](reference/js-service-widget-ui/js-service-widget-container-swiper.md)
+      - 基础组件
+        - [button](reference/js-service-widget-ui/js-service-widget-basic-button.md)
+        - [calendar](reference/js-service-widget-ui/js-service-widget-basic-calendar.md)
+        - [chart](reference/js-service-widget-ui/js-service-widget-basic-chart.md)
+        - [clock](reference/js-service-widget-ui/js-service-widget-basic-clock.md)
+        - [divider](reference/js-service-widget-ui/js-service-widget-basic-divider.md)
+        - [image](reference/js-service-widget-ui/js-service-widget-basic-image.md)
+        - [input](reference/js-service-widget-ui/js-service-widget-basic-input.md)
+        - [progress](reference/js-service-widget-ui/js-service-widget-basic-progress.md)
+        - [span](reference/js-service-widget-ui/js-service-widget-basic-span.md)
+        - [text](reference/js-service-widget-ui/js-service-widget-basic-text.md)
     - 自定义组件
-        - [自定义组件基本用法](reference/js-service-widget-ui/js-service-widget-custom-basic-usage.md)
-        - [自定义事件](reference/js-service-widget-ui/js-service-widget-custom-events.md)
-        - [Props](reference/js-service-widget-ui/js-service-widget-custom-props.md)
+      - [自定义组件基本用法](reference/js-service-widget-ui/js-service-widget-custom-basic-usage.md)
+      - [自定义事件](reference/js-service-widget-ui/js-service-widget-custom-events.md)
+      - [Props](reference/js-service-widget-ui/js-service-widget-custom-props.md)
     - [数据类型说明](reference/js-service-widget-ui/js-service-widget-appendix-types.md)
   - 接口参考（JS及TS API）
     - [开发说明](reference/apis/development-intro.md)
@@ -716,6 +684,7 @@
         - [@ohos.application.formInfo (FormInfo)](reference/apis/js-apis-formInfo.md)
         - [@ohos.application.formProvider (FormProvider)](reference/apis/js-apis-formprovider.md)
         - [@ohos.application.missionManager (missionManager)](reference/apis/js-apis-missionManager.md)
+        - [@ohos.application.quickFixManager (quickFixManager)](reference/apis/js-apis-application-quickFixManager.md)
         - [@ohos.application.Want (Want)](reference/apis/js-apis-application-Want.md)
         - [@ohos.continuation.continuationManager (ContinuationExtraParams)](reference/apis/js-apis-continuation-continuationExtraParams.md)
         - [@ohos.continuation.continuationManager (continuationManager)](reference/apis/js-apis-continuation-continuationManager.md)
@@ -727,8 +696,9 @@
         - [ExtensionRunningInfo (ExtensionRunningInfo)](reference/apis/js-apis-extensionrunninginfo.md)
         - [MissionSnapshot (MissionSnapshot)](reference/apis/js-apis-application-MissionSnapshot.md)
         - [ProcessRunningInfo (ProcessRunningInfo)](reference/apis/js-apis-processrunninginfo.md)
+        - [ProcessRunningInformation (ProcessRunningInformation)](reference/apis/js-apis-processrunninginformation.md)
         - [shellCmdResult (ShellCmdResult)](reference/apis/js-apis-application-shellCmdResult.md)
-        - [ContinuationResult (ContinuationResult)](reference/apis/js-apis-continuation-continuationResult.md)
+        - continuation/[ContinuationResult (ContinuationResult)](reference/apis/js-apis-continuation-continuationResult.md)
     - 公共事件与通知
       - [@ohos.commonEvent (公共事件模块)](reference/apis/js-apis-commonEvent.md)
       - [@ohos.events.emitter (Emitter)](reference/apis/js-apis-emitter.md)
@@ -746,6 +716,7 @@
       - [ApplicationInfo (ApplicationInfo)](reference/apis/js-apis-bundle-ApplicationInfo.md)
       - [BundleInfo (BundleInfo)](reference/apis/js-apis-bundle-BundleInfo.md)
       - [BundleInstaller (BundleInstaller)](reference/apis/js-apis-bundle-BundleInstaller.md)
+      - [BundleStatusCallback (BundleStatusCallback)](reference/apis/js-apis-Bundle-BundleStatusCallback.md)
       - [CustomizeData (CustomizeData)](reference/apis/js-apis-bundle-CustomizeData.md)
       - [DispatchInfo (DispatchInfo)](reference/apis/js-apis-dispatchInfo.md)
       - [ElementName (ElementName)](reference/apis/js-apis-bundle-ElementName.md)
@@ -754,10 +725,10 @@
       - [LauncherAbilityInfo (LauncherAbilityInfo)](reference/apis/js-apis-bundle-LauncherAbilityInfo.md)
       - [Metadata (Metadata)](reference/apis/js-apis-bundle-Metadata.md)
       - [ModuleInfo (ModuleInfo)](reference/apis/js-apis-bundle-ModuleInfo.md)
+      - [PackInfo (PackInfo)](reference/apis/js-apis-bundle-PackInfo.md)
       - [PermissionDef (PermissionDef)](reference/apis/js-apis-bundle-PermissionDef.md)
       - [RemoteAbilityInfo (RemoteAbilityInfo)](reference/apis/js-apis-bundle-remoteAbilityInfo.md)
       - [ShortcutInfo (ShortcutInfo)](reference/apis/js-apis-bundle-ShortcutInfo.md)
-      - [PackInfo (PackInfo)](reference/apis/js-apis-bundle-PackInfo.md)
     - UI界面
       - [@ohos.animator (动画)](reference/apis/js-apis-animator.md)
       - [@ohos.mediaquery (媒体查询)](reference/apis/js-apis-mediaquery.md)
@@ -768,6 +739,7 @@
       - [@ohos.animation.windowAnimationManager (窗口动画管理)](reference/apis/js-apis-windowAnimationManager.md)
       - [@ohos.display (屏幕属性)](reference/apis/js-apis-display.md)
       - [@ohos.effectKit (图像效果)](reference/apis/js-apis-effectKit.md)
+      - [@ohos.graphics.colorSpaceManager（色彩管理）](reference/apis/js-apis-colorSpaceManager.md)
       - [@ohos.screen (屏幕)](reference/apis/js-apis-screen.md)
       - [@ohos.screenshot (屏幕截图)](reference/apis/js-apis-screenshot.md)
       - [@ohos.window (窗口)](reference/apis/js-apis-window.md)
@@ -778,7 +750,6 @@
       - [@ohos.multimedia.camera (相机管理)](reference/apis/js-apis-camera.md)
       - [@ohos.multimedia.image (图片处理)](reference/apis/js-apis-image.md)
       - [@ohos.multimedia.media (媒体服务)](reference/apis/js-apis-media.md)
-      - [@ohos.multimedia.medialibrary (媒体库管理)](reference/apis/js-apis-medialibrary.md)
     - 资源管理
       - [@ohos.i18n (国际化-I18n)](reference/apis/js-apis-i18n.md)
       - [@ohos.intl (国际化-Intl)](reference/apis/js-apis-intl.md)
@@ -790,12 +761,15 @@
       - [@ohos.WorkSchedulerExtensionAbility (延迟任务调度回调)](reference/apis/js-apis-WorkSchedulerExtensionAbility.md)
     - 定制管理
       - [@ohos.configPolicy (配置策略)](reference/apis/js-apis-config-policy.md)
-      - [@ohos.enterpriseDeviceManager (企业设备管理)](reference/apis/js-apis-enterprise-device-manager.md)
       - [@ohos.EnterpriseAdminExtensionAbility (EnterpriseAdminExtensionAbility)](reference/apis/js-apis-EnterpriseAdminExtensionAbility.md)
+      - [@ohos.enterpriseDeviceManager (企业设备管理)](reference/apis/js-apis-enterprise-device-manager.md)
+      - [DeviceSettingsManager(设备设置管理)](reference/apis/js-apis-enterpriseDeviceManager-DeviceSettingsManager.md)
     - 安全
       - [@ohos.abilityAccessCtrl (访问控制管理)](reference/apis/js-apis-abilityAccessCtrl.md)
       - [@ohos.privacyManager (隐私管理)](reference/apis/js-apis-privacyManager.md)
+      - [@ohos.security.cryptoFramework (加密算法库框架)](reference/apis/js-apis-cryptoFramework.md)
       - [@ohos.security.huks (通用密钥库系统)](reference/apis/js-apis-huks.md)
+      - [@ohos.userIAM.faceAuth (人脸认证)](reference/apis/js-apis-useriam-faceauth.md)
       - [@ohos.userIAM.userAuth (用户认证)](reference/apis/js-apis-useriam-userauth.md)
       - [@system.cipher (加密算法)](reference/apis/js-apis-system-cipher.md)
     - 数据管理
@@ -810,28 +784,36 @@
       - [@ohos.data.ValuesBucket (数据集)](reference/apis/js-apis-data-ValuesBucket.md)
       - [resultSet (结果集)](reference/apis/js-apis-data-resultset.md)
     - 文件管理
+      - [@ohos.data.fileAccess (公共文件访问与管理)](reference/apis/js-apis-fileAccess.md)
       - [@ohos.document (文件交互)](reference/apis/js-apis-document.md)
       - [@ohos.environment (目录环境能力)](reference/apis/js-apis-environment.md)
+      - [@ohos.fileExtensionInfo (公共文件访问与管理属性信息)](reference/apis/js-apis-fileExtensionInfo.md)
       - [@ohos.fileio (文件管理)](reference/apis/js-apis-fileio.md)
-      - [@ohos.fileManager (公共文件访问与管理)](reference/apis/js-apis-filemanager.md)
+      - [@ohos.filemanagement.userfile_manager (用户数据管理)](reference/apis/js-apis-userfilemanager.md)
+      - [@ohos.multimedia.medialibrary (媒体库管理)](reference/apis/js-apis-medialibrary.md)
+      - [@ohos.securityLabel (数据标签)](reference/apis/js-apis-securityLabel.md)
       - [@ohos.statfs (statfs)](reference/apis/js-apis-statfs.md)
       - [@ohos.storageStatistics (应用空间统计)](reference/apis/js-apis-storage-statistics.md)
       - [@ohos.volumeManager (卷管理)](reference/apis/js-apis-volumemanager.md)
-      - [@ohos.securityLabel (数据标签)](reference/apis/js-apis-securityLabel.md)
     - 电话服务
       - [@ohos.contact (联系人)](reference/apis/js-apis-contact.md)
       - [@ohos.telephony.call (拨打电话)](reference/apis/js-apis-call.md)
+      - [@ohos.telephony.data (蜂窝数据)](reference/apis/js-apis-telephony-data.md)
       - [@ohos.telephony.observer (observer)](reference/apis/js-apis-observer.md)
       - [@ohos.telephony.radio (网络搜索)](reference/apis/js-apis-radio.md)
       - [@ohos.telephony.sim (SIM卡管理)](reference/apis/js-apis-sim.md)
       - [@ohos.telephony.sms (短信服务)](reference/apis/js-apis-sms.md)
-      - [@ohos.telephony.data (蜂窝数据)](reference/apis/js-apis-telephony-data.md)
     - 网络管理
       - [@ohos.net.connection (网络连接管理)](reference/apis/js-apis-net-connection.md)
+      - [@ohos.net.ethernet (以太网连接管理)](reference/apis/js-apis-net-ethernet.md)
       - [@ohos.net.http (数据请求)](reference/apis/js-apis-http.md)
-      - [@ohos.request (上传下载)](reference/apis/js-apis-request.md)
+      - [@ohos.net.policy (网络策略管理)](reference/apis/js-apis-net-policy.md)
+      - [@ohos.net.sharing (网络共享管理)](reference/apis/js-apis-net-sharing.md)
       - [@ohos.net.socket (Socket连接)](reference/apis/js-apis-socket.md)
+      - [@ohos.net.statistics (网络流量管理)](reference/apis/js-apis-net-statistics.md)
+      - [@ohos.net.tlsSocket (TLSSocket连接)](reference/apis/js-apis-tlsSocket.md)
       - [@ohos.net.webSocket (WebSocket连接)](reference/apis/js-apis-webSocket.md)
+      - [@ohos.request (上传下载)](reference/apis/js-apis-request.md)
     - 通信与连接
       - [@ohos.bluetooth (蓝牙)](reference/apis/js-apis-bluetooth.md)
       - [@ohos.connectedTag (有源标签)](reference/apis/js-apis-connectedTag.md)
@@ -841,8 +823,11 @@
       - [@ohos.rpc (RPC通信)](reference/apis/js-apis-rpc.md)
       - [@ohos.wifi (WLAN)](reference/apis/js-apis-wifi.md)
       - [@ohos.wifiext (WLAN)](reference/apis/js-apis-wifiext.md)
+      - [nfctech (标准NFC-Tag Nfc 技术)](reference/apis/js-apis-nfctech.md)
+      - [tagSession (标准NFC-Tag TagSession)](reference/apis/js-apis-tagSession.md)
     - 系统基础能力
       - [@ohos.accessibility (辅助功能)](reference/apis/js-apis-accessibility.md)
+      - [@ohos.accessibility.config (系统辅助功能配置)](reference/apis/js-apis-accessibility-config.md)
       - [@ohos.faultLogger (故障日志获取)](reference/apis/js-apis-faultLogger.md)
       - [@ohos.hiAppEvent (应用打点)](reference/apis/js-apis-hiappevent.md)
       - [@ohos.hichecker (检测模式)](reference/apis/js-apis-hichecker.md)
@@ -851,13 +836,15 @@
       - [@ohos.hiSysEvent (系统事件打点)](reference/apis/js-apis-hisysevent.md)
       - [@ohos.hiTraceChain (分布式跟踪)](reference/apis/js-apis-hitracechain.md)
       - [@ohos.hiTraceMeter (性能打点)](reference/apis/js-apis-hitracemeter.md)
-      - [@ohos.inputMethod (输入法框架)](reference/apis/js-apis-inputmethod.md)
-      - [@ohos.inputMethodEngine (输入法服务)](reference/apis/js-apis-inputmethodengine.md)
+      - [@ohos.inputmethod (输入法框架)](reference/apis/js-apis-inputmethod.md)
+      - [@ohos.inputmethodengine (输入法服务)](reference/apis/js-apis-inputmethodengine.md)
+      - [@ohos.inputmethodextensionability (InputMethodExtensionAbility)](reference/apis/js-apis-inputmethod-extension-ability.md)
+      - [@ohos.inputmethodextensioncontext (InputMethodExtensionContext)](reference/apis/js-apis-inputmethod-extension-context.md)
       - [@ohos.pasteboard (剪贴板)](reference/apis/js-apis-pasteboard.md)
       - [@ohos.screenLock (锁屏管理)](reference/apis/js-apis-screen-lock.md)
-      - [@ohos.systemTime (设置系统时间)](reference/apis/js-apis-system-time.md)
+      - [@ohos.systemTime (系统时间、时区)](reference/apis/js-apis-system-time.md)
+      - [@ohos.systemTimer(系统定时器)](reference/apis/js-apis-system-timer.md)
       - [@ohos.wallpaper (壁纸)](reference/apis/js-apis-wallpaper.md)
-      - [@ohos.systemTimer(设置系统时间)](reference/apis/js-apis-system-timer.md)
       - [Timer (定时器)](reference/apis/js-apis-timer.md)
     - 设备管理
       - [@ohos.batteryInfo (电量信息)](reference/apis/js-apis-battery-info.md)
@@ -873,6 +860,7 @@
       - [@ohos.multimodalInput.keyCode (键值)](reference/apis/js-apis-keycode.md)
       - [@ohos.multimodalInput.keyEvent (按键输入事件)](reference/apis/js-apis-keyevent.md)
       - [@ohos.multimodalInput.mouseEvent (鼠标输入事件)](reference/apis/js-apis-mouseevent.md)
+      - [@ohos.multimodalInput.pointer (鼠标指针)](reference/apis/js-apis-pointer.md)
       - [@ohos.multimodalInput.touchEvent (触摸输入事件)](reference/apis/js-apis-touchevent.md)
       - [@ohos.power (系统电源管理)](reference/apis/js-apis-power.md)
       - [@ohos.runningLock (Runninglock锁)](reference/apis/js-apis-runninglock.md)
@@ -888,6 +876,7 @@
       - [@ohos.account.distributedAccount (分布式帐号管理)](reference/apis/js-apis-distributed-account.md)
       - [@ohos.account.osAccount (系统帐号管理)](reference/apis/js-apis-osAccount.md)
     - 语言基础类库
+      - [@ohos.buffer (Buffer)](reference/apis/js-apis-buffer.md)
       - [@ohos.convertxml (xml转换JavaScript)](reference/apis/js-apis-convertxml.md)
       - [@ohos.process (获取进程相关的信息)](reference/apis/js-apis-process.md)
       - [@ohos.uri (URI字符串解析)](reference/apis/js-apis-uri.md)
@@ -935,15 +924,19 @@
       - [@system.storage (数据存储)](reference/apis/js-apis-system-storage.md)
       - [@system.vibrator (振动)](reference/apis/js-apis-system-vibrate.md)
       - [console (日志打印)](reference/apis/js-apis-logs.md)
+
   - 接口参考（Native API）
     - 模块
       - [Native XComponent](reference/native-apis/_o_h___native_x_component.md)
       - [HiLog](reference/native-apis/_hi_log.md)
       - [NativeWindow](reference/native-apis/_native_window.md)
+      - [OH_NativeBuffer](reference/native-apis/_o_h___native_buffer.md)
       - [Drawing](reference/native-apis/_drawing.md)
       - [OH_NativeImage](reference/native-apis/_o_h___native_image.md)
       - [NativeVsync](reference/native-apis/_native_vsync.md)
+      - [Image](reference/native-apis/image.md)
       - [Rawfile](reference/native-apis/rawfile.md)
+      - [MindSpore](reference/native-apis/_mind_spore.md)
     - 头文件
       - [drawing_bitmap.h](reference/native-apis/drawing__bitmap_8h.md)
       - [drawing_brush.h](reference/native-apis/drawing__brush_8h.md)
@@ -965,6 +958,13 @@
       - [raw_dir.h](reference/native-apis/raw__dir_8h.md)
       - [raw_file_manager.h](reference/native-apis/raw__file__manager_8h.md)
       - [raw_file.h](reference/native-apis/raw__file_8h.md)
+      - [context.h](reference/native-apis/context_8h.md)
+      - [data_type.h](reference/native-apis/data__type_8h.md)
+      - [format.h](reference/native-apis/format_8h.md)
+      - [model.h](reference/native-apis/model_8h.md)
+      - [status.h](reference/native-apis/status_8h.md)
+      - [tensor.h](reference/native-apis/tensor_8h.md)
+      - [types.h](reference/native-apis/types_8h.md)
     - 结构体
       - [OH_Drawing_BitmapFormat](reference/native-apis/_o_h___drawing___bitmap_format.md)
       - [OH_NativeBuffer_Config](reference/native-apis/_o_h___native_buffer___config.md)
@@ -973,8 +973,15 @@
       - [OH_NativeXComponent_MouseEvent_Callback](reference/native-apis/_o_h___native_x_component___mouse_event___callback.md)
       - [OH_NativeXComponent_TouchEvent](reference/native-apis/_o_h___native_x_component___touch_event.md)
       - [OH_NativeXComponent_TouchPoint](reference/native-apis/_o_h___native_x_component___touch_point.md)
+      - [OHExtDataHandle](reference/native-apis/_o_h_ext_data_handle.md)
+      - [OHHDRMetaData](reference/native-apis/_o_h_h_d_r_meta_data.md)
       - [OhosPixelMapInfo](reference/native-apis/_ohos_pixel_map_info.md)
       - [RawFileDescriptor](reference/native-apis/_raw_file_descriptor.md)
+      - [Region](reference/native-apis/_region.md)
+      - [Rect](reference/native-apis/_rect.md)
+      - [OH_AI_CallBackParam](reference/native-apis/_o_h___a_i___call_back_param.md)
+      - [OH_AI_ShapeInfo](reference/native-apis/_o_h___a_i___shape_info.md)
+      - [OH_AI_TensorHandleArray](reference/native-apis/_o_h___a_i___tensor_handle_array.md)
     - 标准库
       - [Node_API](reference/native-lib/third_party_napi/napi.md)
       - [libuv](reference/native-lib/third_party_libuv/libuv.md)
@@ -985,3 +992,16 @@
         - [Native api中导出的OpenGL ES 3.0符号列表](reference/native-lib/third_party_opengl/openglesv3-symbol.md)  
 - 常见问题
   - [full-SDK替换指南](quick-start/full-sdk-switch-guide.md)
+  - [Ability框架开发常见问题](faqs/faqs-ability.md)
+  - [UI框架（JS）开发常见问题](faqs/faqs-ui-js.md)
+  - [UI框架（ArkTS）开发常见问题](faqs/faqs-ui-ets.md)
+  - [图形图像开发常见问题](faqs/faqs-graphics.md)
+  - [文件管理开发常见问题](faqs/faqs-file-management.md)
+  - [网络与连接开发常见问题](faqs/faqs-connectivity.md)
+  - [数据管理开发常见问题](faqs/faqs-data-management.md)
+  - [设备管理开发常见问题](faqs/faqs-device-management.md)
+  - [Native API使用常见问题](faqs/faqs-native.md)
+  - [三四方库使用常见问题](faqs/faqs-third-party-library.md)
+  - [IDE使用常见问题](faqs/faqs-ide.md)
+  - [hdc_std命令使用常见问题](faqs/faqs-hdc-std.md)
+  - [开发板使用常见问题](faqs/faqs-development-board.md)

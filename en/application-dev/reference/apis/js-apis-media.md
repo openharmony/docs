@@ -1,7 +1,6 @@
 # Media
 
 > **NOTE**
->
 > The initial APIs of this module are supported since API version 6. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 The multimedia subsystem provides a set of simple and easy-to-use APIs for you to access the system and use media resources.
@@ -53,7 +52,7 @@ Creates a **VideoPlayer** instance. This API uses an asynchronous callback to re
 
 | Name  | Type                                       | Mandatory| Description                          |
 | -------- | ------------------------------------------- | ---- | ------------------------------ |
-| callback | AsyncCallback<[VideoPlayer](#videoplayer8)> | Yes  | Callback used to return the **VideoPlayer** instance created.|
+| callback | AsyncCallback<[VideoPlayer](#videoplayer8)> | Yes  | Callback used to return the result. If the operation is successful, the **VideoPlayer** instance is returned; otherwise, **null** is returned. The instance can be used to manage and play video media.|
 
 **Example**
 
@@ -80,9 +79,9 @@ Creates a **VideoPlayer** instance. This API uses a promise to return the result
 
 **Return value**
 
-| Type                                 | Description                               |
-| ------------------------------------- | ----------------------------------- |
-| Promise<[VideoPlayer](#videoplayer8)> | Promise used to return the **VideoPlayer** instance created.|
+| Type                                 | Description                                                        |
+| ------------------------------------- | ------------------------------------------------------------ |
+| Promise<[VideoPlayer](#videoplayer8)> | Promise used to return the result. If the operation is successful, the **VideoPlayer** instance is returned; otherwise, **null** is returned. The instance can be used to manage and play video media.|
 
 **Example**
 
@@ -112,9 +111,9 @@ Only one **AudioRecorder** instance can be created per device.
 
 **Return value**
 
-| Type                           | Description                                     |
-| ------------------------------- | ----------------------------------------- |
-| [AudioRecorder](#audiorecorder) | Returns the **AudioRecorder** instance if the operation is successful; returns **null** otherwise.|
+| Type                           | Description                                                        |
+| ------------------------------- | ------------------------------------------------------------ |
+| [AudioRecorder](#audiorecorder) | Returns the **AudioRecorder** instance if the operation is successful; returns **null** otherwise. The instance can be used to record audio media.|
 
 **Example**
 
@@ -135,7 +134,7 @@ Only one **AudioRecorder** instance can be created per device.
 
 | Name  | Type                                           | Mandatory| Description                          |
 | -------- | ----------------------------------------------- | ---- | ------------------------------ |
-| callback | AsyncCallback<[VideoRecorder](#videorecorder9)> | Yes  | Callback used to return the **VideoRecorder** instance created.|
+| callback | AsyncCallback<[VideoRecorder](#videorecorder9)> | Yes  | Callback used to return the result. If the operation is successful, the **VideoRecorder** instance is returned; otherwise, **null** is returned. The instance can be used to record video media.|
 
 **Example**
 
@@ -163,9 +162,9 @@ Only one **AudioRecorder** instance can be created per device.
 
 **Return value**
 
-| Type                                     | Description                               |
-| ----------------------------------------- | ----------------------------------- |
-| Promise<[VideoRecorder](#videorecorder9)> | Promise used to return the **VideoRecorder** instance created.|
+| Type                                     | Description                                                        |
+| ----------------------------------------- | ------------------------------------------------------------ |
+| Promise<[VideoRecorder](#videorecorder9)> | Promise used to return the result. If the operation is successful, the **VideoRecorder** instance is returned; otherwise, **null** is returned. The instance can be used to record video media.|
 
 **Example**
 
@@ -229,7 +228,7 @@ Enumerates the codec MIME types.
 | VIDEO_MPEG2  | 'video/mpeg2'         | Video in MPEG-2 format.    |
 | VIDEO_MPEG4  | 'video/mp4v-es'       | Video in MPEG-4 format.    |
 | VIDEO_VP8    | 'video/x-vnd.on2.vp8' | Video in VP8 format.      |
-| AUDIO_AAC    | "audio/mp4a-latm"     | Audio in MP4A-LATM format.|
+| AUDIO_AAC    | 'audio/mp4a-latm'     | Audio in MP4A-LATM format.|
 | AUDIO_VORBIS | 'audio/vorbis'        | Audio in Vorbis format.   |
 | AUDIO_FLAC   | 'audio/flac'          | Audio in FLAC format.     |
 
@@ -241,16 +240,16 @@ Enumerates the media description keys.
 
 | Name                    | Value             | Description                                                        |
 | ------------------------ | --------------- | ------------------------------------------------------------ |
-| MD_KEY_TRACK_INDEX       | "track_index"   | Track index, which is a number.                      |
-| MD_KEY_TRACK_TYPE        | "track_type"    | Track type, which is a number. For details, see [MediaType](#mediatype8).|
-| MD_KEY_CODEC_MIME        | "codec_mime"    | Codec MIME type, which is a string.                |
-| MD_KEY_DURATION          | "duration"      | Media duration, which is a number, in units of ms.    |
-| MD_KEY_BITRATE           | "bitrate"       | Bit rate, which is a number, in units of bit/s.   |
-| MD_KEY_WIDTH             | "width"         | Video width, which is a number, in units of pixel.    |
-| MD_KEY_HEIGHT            | "height"        | Video height, which is a number, in units of pixel.    |
-| MD_KEY_FRAME_RATE        | "frame_rate"    | Video frame rate, which is a number, in units of 100 fps.|
-| MD_KEY_AUD_CHANNEL_COUNT | "channel_count" | Number of audio channels, which is a number.                        |
-| MD_KEY_AUD_SAMPLE_RATE   | "sample_rate"   | Sampling rate, which is a number, in units of Hz.      |
+| MD_KEY_TRACK_INDEX       | 'track_index'   | Track index, which is a number.                      |
+| MD_KEY_TRACK_TYPE        | 'track_type'    | Track type, which is a number. For details, see [MediaType](#mediatype8).|
+| MD_KEY_CODEC_MIME        | 'codec_mime'    | Codec MIME type, which is a string.                |
+| MD_KEY_DURATION          | 'duration'      | Media duration, which is a number, in units of ms.    |
+| MD_KEY_BITRATE           | 'bitrate'       | Bit rate, which is a number, in units of bit/s.   |
+| MD_KEY_WIDTH             | 'width'         | Video width, which is a number, in units of pixel.    |
+| MD_KEY_HEIGHT            | 'height'        | Video height, which is a number, in units of pixel.    |
+| MD_KEY_FRAME_RATE        | 'frame_rate'    | Video frame rate, which is a number, in units of 100 fps.|
+| MD_KEY_AUD_CHANNEL_COUNT | 'channel_count' | Number of audio channels, which is a number.                        |
+| MD_KEY_AUD_SAMPLE_RATE   | 'sample_rate'   | Sampling rate, which is a number, in units of Hz.      |
 
 ## BufferingInfoType<sup>8+</sup>
 
@@ -263,7 +262,7 @@ Enumerates the buffering event types.
 | BUFFERING_START   | 1    | Buffering starts.                  |
 | BUFFERING_END     | 2    | Buffering ends.                  |
 | BUFFERING_PERCENT | 3    | Buffering progress, in percent.                |
-| CACHED_DURATION   | 4    | Cache duration, in milliseconds.|
+| CACHED_DURATION   | 4    | Cache duration, in ms.|
 
 ## AudioPlayer
 
@@ -275,15 +274,15 @@ For details about the audio playback demo, see [Audio Playback Development](../.
 
 **System capability**: SystemCapability.Multimedia.Media.AudioPlayer
 
-| Name                           | Type                               | Readable| Writable| Description                                                        |
-| ------------------------------- | ----------------------------------- | ---- | ---- | ------------------------------------------------------------ |
-| src                             | string                              | Yes  | Yes  | Audio file URI. The mainstream audio formats (M4A, AAC, MPEG-3, OGG, and WAV) are supported.<br>**Examples of supported URI schemes**:<br>1. FD: fd://xx<br>![](figures/en-us_image_url.png)<br>2. HTTP: http://xx<br>3. HTTPS: https://xx<br>4. HLS: http://xx or https://xx<br>**Required permissions**: ohos.permission.INTERNET|
-| fdSrc<sup>9+</sup>              | [AVFileDescriptor](#avfiledescriptor9)  | Yes  | Yes  | Description of the audio file. This attribute is required when audio resources of an application are continuously stored in a file.<br>**Example:**<br>Assume that a music file that stores continuous music resources consists of the following:<br>Music 1 (address offset: 0, byte length: 100)<br>Music 2 (address offset: 101; byte length: 50)<br>Music 3 (address offset: 151, byte length: 150)<br>1. To play music 1: AVFileDescriptor {fd = resource handle; offset = 0; length = 100; }<br>2. To play music 2: AVFileDescriptor {fd = resource handle; offset = 101; length = 50; }<br>3. To play music 3: AVFileDescriptor {fd = resource handle; offset = 151; length = 150; }<br>If the file is an independent music file, use **src=fd://xx**.<br>|
-| loop                            | boolean                             | Yes  | Yes  | Whether to loop audio playback. The value **true** means to loop audio playback, and **false** means the opposite.                |
-| audioInterruptMode<sup>9+</sup> | [audio.InterruptMode](js-apis-audio.md#interruptmode9)    | Yes  | Yes  | Audio interruption mode.                                             |
-| currentTime                     | number                              | Yes  | No  | Current audio playback position, in ms.                      |
-| duration                        | number                              | Yes  | No  | Audio duration, in ms.                                |
-| state                           | [AudioState](#audiostate)           | Yes  | No  | Audio playback state. This state cannot be used as the condition for triggering the call of **play()**, **pause()**, or **stop()**.|
+| Name                           | Type                                                  | Readable| Writable| Description                                                        |
+| ------------------------------- | ------------------------------------------------------ | ---- | ---- | ------------------------------------------------------------ |
+| src                             | string                                                 | Yes  | Yes  | Audio file URI. The mainstream audio formats (M4A, AAC, MPEG-3, OGG, and WAV) are supported.<br>**Examples of supported URI schemes**:<br>1. FD: fd://xx<br>![](figures/en-us_image_url.png)<br>2. HTTP: http://xx<br>3. HTTPS: https://xx<br>4. HLS: http://xx or https://xx<br>**Required permissions**: ohos.permission.READ_MEDIA or ohos.permission.INTERNET|
+| fdSrc<sup>9+</sup>              | [AVFileDescriptor](#avfiledescriptor9)                 | Yes  | Yes  | Description of the audio file. This attribute is required when audio resources of an application are continuously stored in a file.<br>**Example:**<br>Assume that a music file that stores continuous music resources consists of the following:<br>Music 1 (address offset: 0, byte length: 100)<br>Music 2 (address offset: 101; byte length: 50)<br>Music 3 (address offset: 151, byte length: 150)<br>1. To play music 1: AVFileDescriptor {fd = resource handle; offset = 0; length = 100; }<br>2. To play music 2: AVFileDescriptor {fd = resource handle; offset = 101; length = 50; }<br>3. To play music 3: AVFileDescriptor {fd = resource handle; offset = 151; length = 150; }<br>If the file is an independent music file, use **src=fd://xx**.<br>|
+| loop                            | boolean                                                | Yes  | Yes  | Whether to loop audio playback. The value **true** means to loop audio playback, and **false** means the opposite.                |
+| audioInterruptMode<sup>9+</sup> | [audio.InterruptMode](js-apis-audio.md#interruptmode9) | Yes  | Yes  | Audio interruption mode.                                              |
+| currentTime                     | number                                                 | Yes  | No  | Current audio playback position, in ms.                      |
+| duration                        | number                                                 | Yes  | No  | Audio duration, in ms.                                |
+| state                           | [AudioState](#audiostate)                              | Yes  | No  | Audio playback state. This state cannot be used as the condition for triggering the call of **play()**, **pause()**, or **stop()**.|
 ### play<a name=audioplayer_play></a>
 
 play(): void
@@ -362,9 +361,9 @@ Seeks to the specified playback position.
 
 **Parameters**
 
-| Name| Type  | Mandatory| Description                                |
-| ------ | ------ | ---- | ------------------------------------ |
-| timeMs | number | Yes  | Position to seek to, in milliseconds.|
+| Name| Type  | Mandatory| Description                                                       |
+| ------ | ------ | ---- | ----------------------------------------------------------- |
+| timeMs | number | Yes  | Position to seek to, in ms. The value range is [0, duration].|
 
 **Example**
 
@@ -427,9 +426,9 @@ Obtains the audio track information. This API uses an asynchronous callback to r
 
 **Parameters**
 
-| Name  | Type                                                        | Mandatory| Description                      |
-| -------- | ------------------------------------------------------------ | ---- | -------------------------- |
-| callback | AsyncCallback<Array<[MediaDescription](#mediadescription8)>> | Yes  | Callback used to return the audio track information obtained.|
+| Name  | Type                                                        | Mandatory| Description                                      |
+| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------ |
+| callback | AsyncCallback<Array<[MediaDescription](#mediadescription8)>> | Yes  | Callback used to return a **MediaDescription** array, which records the audio track information.|
 
 **Example**
 
@@ -442,10 +441,10 @@ function printfDescription(obj) {
     }
 }
 
-audioPlayer.getTrackDescription((error,  ) => {
-    if (arrlist != null) {
-        for (let i = 0; i < arrlist.length; i++) {
-            printfDescription(arrlist[i]);
+audioPlayer.getTrackDescription((error, arrList) => {
+    if (arrList != null) {
+        for (let i = 0; i < arrList.length; i++) {
+            printfDescription(arrList[i]);
         }
     } else {
         console.log(`audio getTrackDescription fail, error:${error}`);
@@ -463,9 +462,9 @@ Obtains the audio track information. This API uses a promise to return the resul
 
 **Return value**
 
-| Type                                                  | Description                           |
-| ------------------------------------------------------ | ------------------------------- |
-| Promise<Array<[MediaDescription](#mediadescription8)>> | Promise used to return the audio track information obtained.|
+| Type                                                  | Description                                           |
+| ------------------------------------------------------ | ----------------------------------------------- |
+| Promise<Array<[MediaDescription](#mediadescription8)>> | Promise used to return a **MediaDescription** array, which records the audio track information.|
 
 **Example**
 
@@ -478,9 +477,9 @@ function printfDescription(obj) {
     }
 }
 let arrayDescription = null
-audioPlayer.getTrackDescription().then((arrlist) => {
-    if (arrlist != null) {
-        arrayDescription = arrlist;
+audioPlayer.getTrackDescription().then((arrList) => {
+    if (arrList != null) {
+        arrayDescription = arrList;
     } else {
         console.log('audio getTrackDescription fail');
     }
@@ -497,7 +496,7 @@ for (let i = 0; i < arrayDescription.length; i++) {
 
 on(type: 'bufferingUpdate', callback: (infoType: [BufferingInfoType](#bufferinginfotype8), value: number) => void): void
 
-Subscribes to the audio buffering update event.
+Subscribes to the audio buffering update event. Only network playback supports this subscription.
 
 **System capability**: SystemCapability.Multimedia.Media.AudioPlayer
 
@@ -594,7 +593,7 @@ audioPlayer.src = fdPath;  // Set the src attribute and trigger the 'dataLoad' e
 
 on(type: 'timeUpdate', callback: Callback\<number>): void
 
-Subscribes to the **'timeUpdate'** event.
+Subscribes to the **'timeUpdate'** event. This event is reported every second when the audio playback is in progress.
 
 **System capability**: SystemCapability.Multimedia.Media.AudioPlayer
 
@@ -680,7 +679,7 @@ For details about the video playback demo, see [Video Playback Development](../.
 
 | Name                    | Type                              | Readable| Writable| Description                                                        |
 | ------------------------ | ---------------------------------- | ---- | ---- | ------------------------------------------------------------ |
-| url<sup>8+</sup>         | string                             | Yes  | Yes  | Video media URL. The mainstream video formats (MPEG-4, MPEG-TS, WebM, and MKV) are supported.<br>**Example of supported URIs**:<br>1. FD: fd://xx<br>![](figures/en-us_image_url.png)<br>2. HTTP: http://xx<br>3. HTTPS: https://xx<br>4. HLS: http://xx or https://xx<br>**Required permissions**: ohos.permission.INTERNET|
+| url<sup>8+</sup>         | string                             | Yes  | Yes  | Video media URL. The mainstream video formats (MPEG-4, MPEG-TS, WebM, and MKV) are supported.<br>**Example of supported URIs**:<br>1. FD: fd://xx<br>![](figures/en-us_image_url.png)<br>2. HTTP: http://xx<br>3. HTTPS: https://xx<br>4. HLS: http://xx or https://xx<br>|
 | fdSrc<sup>9+</sup> | [AVFileDescriptor](#avfiledescriptor9) | Yes| Yes| Description of a video file. This attribute is required when video resources of an application are continuously stored in a file.<br>**Example:**<br>Assume that a music file that stores continuous music resources consists of the following:<br>Video 1 (address offset: 0, byte length: 100)<br>Video 2 (address offset: 101; byte length: 50)<br>Video 3 (address offset: 151, byte length: 150)<br>1. To play video 1: AVFileDescriptor {fd = resource handle; offset = 0; length = 100; }<br>2. To play video 2: AVFileDescriptor {fd = resource handle; offset = 101; length = 50; }<br>3. To play video 3: AVFileDescriptor {fd = resource handle; offset = 151; length = 150; }<br>To play an independent video file, use **src=fd://xx**.<br>|
 | loop<sup>8+</sup>        | boolean                            | Yes  | Yes  | Whether to loop video playback. The value **true** means to loop video playback, and **false** means the opposite.                |
 | videoScaleType<sup>9+</sup>        | [VideoScaleType](#videoscaletype9)                   | Yes  | Yes  | Video scale type.      |
@@ -1014,10 +1013,10 @@ Seeks to the specified playback position. The next key frame at the specified po
 
 **Parameters**
 
-| Name  | Type    | Mandatory| Description                                |
-| -------- | -------- | ---- | ------------------------------------ |
-| timeMs   | number   | Yes  | Position to seek to, in milliseconds.|
-| callback | function | Yes  | Callback used to return the result.      |
+| Name  | Type    | Mandatory| Description                                                        |
+| -------- | -------- | ---- | ------------------------------------------------------------ |
+| timeMs   | number   | Yes  | Position to seek to, in ms. The value range is [0, duration].|
+| callback | function | Yes  | Callback used to return the result.                              |
 
 **Example**
 
@@ -1042,11 +1041,11 @@ Seeks to the specified playback position. This API uses an asynchronous callback
 
 **Parameters**
 
-| Name  | Type                  | Mandatory| Description                                |
-| -------- | ---------------------- | ---- | ------------------------------------ |
-| timeMs   | number                 | Yes  | Position to seek to, in milliseconds.|
-| mode     | [SeekMode](#seekmode8) | Yes  | Seek mode.                          |
-| callback | function               | Yes  | Callback used to return the result.      |
+| Name  | Type                  | Mandatory| Description                                                        |
+| -------- | ---------------------- | ---- | ------------------------------------------------------------ |
+| timeMs   | number                 | Yes  | Position to seek to, in ms. The value range is [0, duration].|
+| mode     | [SeekMode](#seekmode8) | Yes  | Seek mode.                                                  |
+| callback | function               | Yes  | Callback used to return the result.                              |
 
 **Example**
 
@@ -1072,16 +1071,16 @@ Seeks to the specified playback position. If **mode** is not specified, the next
 
 **Parameters**
 
-| Name| Type                  | Mandatory| Description                                |
-| ------ | ---------------------- | ---- | ------------------------------------ |
-| timeMs | number                 | Yes  | Position to seek to, in milliseconds.|
-| mode   | [SeekMode](#seekmode8) | No  | Seek mode.                          |
+| Name| Type                  | Mandatory| Description                                                        |
+| ------ | ---------------------- | ---- | ------------------------------------------------------------ |
+| timeMs | number                 | Yes  | Position to seek to, in ms. The value range is [0, duration].|
+| mode   | [SeekMode](#seekmode8) | No  | Seek mode.                                                  |
 
 **Return value**
 
-| Type          | Description                               |
-| -------------- | ----------------------------------- |
-| Promise\<void> | Promise used to return the result.|
+| Type          | Description                                       |
+| -------------- | ------------------------------------------- |
+| Promise\<number> | Promise used to return the playback position, in ms.|
 
 **Example**
 
@@ -1220,9 +1219,9 @@ Obtains the video track information. This API uses an asynchronous callback to r
 
 **Parameters**
 
-| Name  | Type                                                        | Mandatory| Description                      |
-| -------- | ------------------------------------------------------------ | ---- | -------------------------- |
-| callback | AsyncCallback<Array<[MediaDescription](#mediadescription8)>> | Yes  | Callback used to return the video track information obtained.|
+| Name  | Type                                                        | Mandatory| Description                                      |
+| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------ |
+| callback | AsyncCallback<Array<[MediaDescription](#mediadescription8)>> | Yes  | Callback used to return a **MediaDescription** array, which records the video track information.|
 
 **Example**
 
@@ -1235,10 +1234,10 @@ function printfDescription(obj) {
     }
 }
 
-videoPlayer.getTrackDescription((error, arrlist) => {
-    if ((arrlist) != null) {
-        for (let i = 0; i < arrlist.length; i++) {
-            printfDescription(arrlist[i]);
+videoPlayer.getTrackDescription((error, arrList) => {
+    if ((arrList) != null) {
+        for (let i = 0; i < arrList.length; i++) {
+            printfDescription(arrList[i]);
         }
     } else {
         console.log(`video getTrackDescription fail, error:${error}`);
@@ -1256,9 +1255,9 @@ Obtains the video track information. This API uses a promise to return the resul
 
 **Return value**
 
-| Type                                                  | Description                           |
-| ------------------------------------------------------ | ------------------------------- |
-| Promise<Array<[MediaDescription](#mediadescription8)>> | Promise used to return the video track information obtained.|
+| Type                                                  | Description                                           |
+| ------------------------------------------------------ | ----------------------------------------------- |
+| Promise<Array<[MediaDescription](#mediadescription8)>> | Promise used to return a **MediaDescription** array, which records the video track information.|
 
 **Example**
 
@@ -1272,9 +1271,9 @@ function printfDescription(obj) {
 }
 
 let arrayDescription;
-videoPlayer.getTrackDescription().then((arrlist) => {
-    if (arrlist != null) {
-        arrayDescription = arrlist;
+videoPlayer.getTrackDescription().then((arrList) => {
+    if (arrList != null) {
+        arrayDescription = arrList;
     } else {
         console.log('video getTrackDescription fail');
     }
@@ -1332,9 +1331,9 @@ Sets the video playback speed. This API uses a promise to return the result.
 
 **Return value**
 
-| Type            | Description                     |
-| ---------------- | ------------------------- |
-| Promise\<number> | Promise used to return the result.|
+| Type            | Description                                                        |
+| ---------------- | ------------------------------------------------------------ |
+| Promise\<number> | Promise used to return playback speed. For details, see [PlaybackSpeed](#playbackspeed8).|
 
 **Example**
 
@@ -1389,13 +1388,13 @@ Selects a bit rate from available ones, which can be obtained by calling [availa
 
 | Name | Type  | Mandatory| Description                                        |
 | ------- | ------ | ---- | -------------------------------------------- |
-| bitrate | number | Yes  | Bit rate to select, which is used in the HLS multi-bit rate scenario. The unit is bit/s.|
+| bitrate | number | Yes  | Bit rate, which is used in the HLS multi-bit rate scenario. The unit is bit/s.|
 
 **Return value**
 
-| Type            | Description                     |
-| ---------------- | ------------------------- |
-| Promise\<number> | Promise used to return the result.|
+| Type            | Description                       |
+| ---------------- | --------------------------- |
+| Promise\<number> | Promise used to return the bit rate.|
 
 **Example**
 
@@ -1435,7 +1434,7 @@ videoPlayer.on('playbackCompleted', () => {
 
 on(type: 'bufferingUpdate', callback: (infoType: BufferingInfoType, value: number) => void): void
 
-Subscribes to the video buffering update event.
+Subscribes to the video buffering update event. Only network playback supports this subscription.
 
 **System capability**: SystemCapability.Multimedia.Media.VideoPlayer
 
@@ -1618,10 +1617,10 @@ function printfItemDescription(obj, key) {
     console.info('audio value is ' + property); // Obtain the value of the key. The value can be any type. For details about the types, see [MediaDescriptionKey].
 }
 let audioPlayer = media.createAudioPlayer();
-audioPlayer.getTrackDescription((error, arrlist) => {
-    if (arrlist != null) {
-        for (let i = 0; i < arrlist.length; i++) {
-            printfItemDescription(arrlist[i], media.MediaDescriptionKey.MD_KEY_TRACK_TYPE);  // Print the MD_KEY_TRACK_TYPE value of each track.
+audioPlayer.getTrackDescription((error, arrList) => {
+    if (arrList != null) {
+        for (let i = 0; i < arrList.length; i++) {
+            printfItemDescription(arrList[i], media.MediaDescriptionKey.MD_KEY_TRACK_TYPE);  // Print the MD_KEY_TRACK_TYPE value of each track.
         }
     } else {
         console.log(`audio getTrackDescription fail, error:${error}`);
@@ -1795,7 +1794,7 @@ Subscribes to the audio recording events.
 ```js
 let audioRecorder = media.createAudioRecorder();                                  // Create an AudioRecorder instance.
 let audioRecorderConfig = {
-    audioEncoder : media.AudioEncoder.AAC_LC, ,
+    audioEncoder : media.AudioEncoder.AAC_LC,
     audioEncodeBitRate : 22050,
     audioSampleRate : 22050,
     numberOfChannels : 2,
@@ -1850,7 +1849,7 @@ Subscribes to audio recording error events. After an error event is reported, yo
 
 ```js
 let audioRecorderConfig = {
-    audioEncoder : media.AudioEncoder.AAC_LC, ,
+    audioEncoder : media.AudioEncoder.AAC_LC,
     audioEncodeBitRate : 22050,
     audioSampleRate : 22050,
     numberOfChannels : 2,
@@ -1974,29 +1973,13 @@ let videoConfig = {
 }
 
 // asyncallback
-let videoRecorder = null;
-let events = require('events');
-let eventEmitter = new events.EventEmitter();
-
-eventEmitter.on('prepare', () => {
-    videoRecorder.prepare(videoConfig, (err) => {
-        if (err == null) {
-            console.info('prepare success');
-        } else {
-            console.info('prepare failed and error is ' + err.message);
-        }
-    });
-});
-
-media.createVideoRecorder((err, recorder) => {
-    if (err == null && recorder != null) {
-        videoRecorder = recorder;
-        console.info('createVideoRecorder success');
-        eventEmitter.emit('prepare');                                        // Trigger the 'prepare' event.
+videoRecorder.prepare(videoConfig, (err) => {
+    if (err == null) {
+        console.info('prepare success');
     } else {
-        console.info('createVideoRecorder failed and error is ' + err.message);
+        console.info('prepare failed and error is ' + err.message);
     }
-});
+})
 ```
 
 ### prepare<sup>9+</sup><a name=videorecorder_prepare2></a>
@@ -2047,21 +2030,10 @@ let videoConfig = {
 }
 
 // promise
-let videoRecorder = null;
-media.createVideoRecorder().then((recorder) => {
-    if (recorder != null) {
-        videoRecorder = recorder;
-        console.info('createVideoRecorder success');
-        videoRecorder.prepare(videoConfig).then(() => {
-            console.info('prepare success');
-        }).catch((err) => {
-            console.info('prepare failed and catch error is ' + err.message);
-        });
-    } else {
-        console.info('createVideoRecorder failed');
-    }
+videoRecorder.prepare(videoConfig).then(() => {
+    console.info('prepare success');
 }).catch((err) => {
-    console.info('catch err error message is ' + err.message);
+    console.info('prepare failed and catch error is ' + err.message);
 });
 ```
 
@@ -2475,11 +2447,10 @@ Subscribes to video recording error events. After an error event is reported, yo
 **Example**
 
 ```js
+// This event is reported when an error occurs during the retrieval of videoRecordState.
 videoRecorder.on('error', (error) => {                                  // Set the 'error' event callback.
     console.info(`audio error called, error: ${error}`); 
-}
-// This event is reported when an error occurs during the retrieval of videoRecordState.
-});
+})
 ```
 
 ## VideoRecordState<sup>9+</sup>
@@ -2561,8 +2532,8 @@ Enumerates the container format types (CFTs).
 
 | Name       | Value   | Description                 |
 | ----------- | ----- | --------------------- |
-| CFT_MPEG_4  | "mp4" | Video container format MPEG-4.|
-| CFT_MPEG_4A | "m4a" | Audio container format M4A.|
+| CFT_MPEG_4  | 'mp4' | Video container format MPEG-4.|
+| CFT_MPEG_4A | 'm4a' | Audio container format M4A.|
 
 ## Location
 

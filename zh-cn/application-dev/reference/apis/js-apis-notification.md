@@ -34,7 +34,11 @@ publish(request: NotificationRequest, callback: AsyncCallback\<void\>): void
 ```js
 //publish回调
 function publishCallback(err) {
-	console.info("==========================>publishCallback=======================>");
+    if (err.code) {
+        console.info("publish failed " + JSON.stringify(err));
+    } else {
+        console.info("publish success");
+    }
 }
 //通知Request对象
 var notificationRequest = {
@@ -83,7 +87,7 @@ var notificationRequest = {
     }
 }
 Notification.publish(notificationRequest).then(() => {
-	console.info("==========================>publishCallback=======================>");
+	console.info("publish sucess");
 });
 
 ```
@@ -113,7 +117,11 @@ publish(request: NotificationRequest, userId: number, callback: AsyncCallback\<v
 ```js
 //publish回调
 function publishCallback(err) {
-	console.info("==========================>publishCallback=======================>");
+    if (err.code) {
+        console.info("publish failed " + JSON.stringify(err));
+    } else {
+        console.info("publish success");
+    }
 }
 // 接收通知的用户ID
 var userId = 1
@@ -169,7 +177,7 @@ var notificationRequest = {
 var userId = 1
 
 Notification.publish(notificationRequest, userId).then(() => {
-	console.info("==========================>publishCallback=======================>");
+	console.info("publish sucess");
 });
 ```
 
@@ -195,7 +203,11 @@ cancel(id: number, label: string, callback: AsyncCallback\<void\>): void
 ```js
 //cancel回调
 function cancelCallback(err) {
-	console.info("==========================>cancelCallback=======================>");
+    if (err.code) {
+        console.info("cancel failed " + JSON.stringify(err));
+    } else {
+        console.info("cancel success");
+    }
 }
 Notification.cancel(0, "label", cancelCallback)
 ```
@@ -221,7 +233,7 @@ cancel(id: number, label?: string): Promise\<void\>
 
 ```js
 Notification.cancel(0).then(() => {
-	console.info("==========================>cancelCallback=======================>");
+	console.info("cancel sucess");
 });
 ```
 
@@ -247,7 +259,11 @@ cancel(id: number, callback: AsyncCallback\<void\>): void
 ```js
 //cancel回调
 function cancelCallback(err) {
-	console.info("==========================>cancelCallback=======================>");
+    if (err.code) {
+        console.info("cancel failed " + JSON.stringify(err));
+    } else {
+        console.info("cancel success");
+    }
 }
 Notification.cancel(0, cancelCallback)
 ```
@@ -273,7 +289,11 @@ cancelAll(callback: AsyncCallback\<void\>): void
 ```js
 //cancel回调
 function cancelAllCallback(err) {
-	console.info("==========================>cancelAllCallback=======================>");
+    if (err.code) {
+        console.info("cancelAll failed " + JSON.stringify(err));
+    } else {
+        console.info("cancelAll success");
+    }
 }
 Notification.cancelAll(cancelAllCallback)
 ```
@@ -292,7 +312,7 @@ cancelAll(): Promise\<void\>
 
 ```js
 Notification.cancelAll().then(() => {
-	console.info("==========================>cancelAllCallback=======================>");
+	console.info("cancelAll sucess");
 });
 ```
 
@@ -322,7 +342,11 @@ addSlot(slot: NotificationSlot, callback: AsyncCallback\<void\>): void
 ```js
 //addslot回调
 function addSlotCallBack(err) {
-	console.info("==========================>addSlotCallBack=======================>");
+    if (err.code) {
+        console.info("addSlot failed " + JSON.stringify(err));
+    } else {
+        console.info("addSlot success");
+    }
 }
 //通知slot对象
 var notificationSlot = {
@@ -359,7 +383,7 @@ var notificationSlot = {
     type: Notification.SlotType.SOCIAL_COMMUNICATION
 }
 Notification.addSlot(notificationSlot).then(() => {
-	console.info("==========================>addSlotCallback=======================>");
+	console.info("addSlot sucess");
 });
 ```
 
@@ -385,7 +409,11 @@ addSlot(type: SlotType, callback: AsyncCallback\<void\>): void
 ```js
 //addslot回调
 function addSlotCallBack(err) {
-	console.info("==========================>addSlotCallBack=======================>");
+    if (err.code) {
+        console.info("addSlot failed " + JSON.stringify(err));
+    } else {
+        console.info("addSlot success");
+    }
 }
 Notification.addSlot(Notification.SlotType.SOCIAL_COMMUNICATION, addSlotCallBack)
 ```
@@ -410,7 +438,7 @@ addSlot(type: SlotType): Promise\<void\>
 
 ```js
 Notification.addSlot(Notification.SlotType.SOCIAL_COMMUNICATION).then(() => {
-	console.info("==========================>addSlotCallback=======================>");
+	console.info("addSlot sucess");
 });
 ```
 
@@ -440,7 +468,11 @@ addSlots(slots: Array\<NotificationSlot\>, callback: AsyncCallback\<void\>): voi
 ```js
 //addSlots回调
 function addSlotsCallBack(err) {
-	console.info("==========================>addSlotsCallBack=======================>");
+    if (err.code) {
+        console.info("addSlots failed " + JSON.stringify(err));
+    } else {
+        console.info("addSlots success");
+    }
 }
 //通知slot对象
 var notificationSlot = {
@@ -485,7 +517,7 @@ var notificationSlotArray = new Array();
 notificationSlotArray[0] = notificationSlot;
 
 Notification.addSlots(notificationSlotArray).then(() => {
-	console.info("==========================>addSlotCallback=======================>");
+	console.info("addSlots sucess");
 });
 ```
 
@@ -511,7 +543,11 @@ getSlot(slotType: SlotType, callback: AsyncCallback\<NotificationSlot\>): void
 ```js
 //getSlot回调
 function getSlotCallback(err,data) {
-	console.info("==========================>getSlotCallback=======================>");
+    if (err.code) {
+        console.info("getSlot failed " + JSON.stringify(err));
+    } else {
+        console.info("getSlot success");
+    }
 }
 var slotType = Notification.SlotType.SOCIAL_COMMUNICATION;
 Notification.getSlot(slotType, getSlotCallback)
@@ -544,7 +580,7 @@ getSlot(slotType: SlotType): Promise\<NotificationSlot\>
 ```js
 var slotType = Notification.SlotType.SOCIAL_COMMUNICATION;
 Notification.getSlot(slotType).then((data) => {
-	console.info("==========================>getSlotCallback=======================>");
+	console.info("getSlot sucess, data: " + JSON.stringify(data));
 });
 ```
 
@@ -569,7 +605,11 @@ getSlots(callback: AsyncCallback<Array\<NotificationSlot\>>): void
 ```js
 //getSlots回调
 function getSlotsCallback(err,data) {
-	console.info("==========================>getSlotsCallback=======================>");
+    if (err.code) {
+        console.info("getSlots failed " + JSON.stringify(err));
+    } else {
+        console.info("getSlots success");
+    }
 }
 Notification.getSlots(getSlotsCallback)
 ```
@@ -594,7 +634,7 @@ getSlots(): Promise\<Array\<NotificationSlot\>>
 
 ```js
 Notification.getSlots().then((data) => {
-	console.info("==========================>getSlotsCallback=======================>");
+	console.info("getSlots sucess, data: " + JSON.stringify(data));
 });
 ```
 
@@ -620,7 +660,11 @@ removeSlot(slotType: SlotType, callback: AsyncCallback\<void\>): void
 ```js
 //removeSlot回调
 function removeSlotCallback(err) {
-	console.info("==========================>removeSlotCallback=======================>");
+    if (err.code) {
+        console.info("removeSlot failed " + JSON.stringify(err));
+    } else {
+        console.info("removeSlot success");
+    }
 }
 var slotType = Notification.SlotType.SOCIAL_COMMUNICATION;
 Notification.removeSlot(slotType,removeSlotCallback)
@@ -647,7 +691,7 @@ removeSlot(slotType: SlotType): Promise\<void\>
 ```js
 var slotType = Notification.SlotType.SOCIAL_COMMUNICATION;
 Notification.removeSlot(slotType).then(() => {
-	console.info("==========================>removeSlotCallback=======================>");
+	console.info("removeSlot sucess");
 });
 ```
 
@@ -671,7 +715,11 @@ removeAllSlots(callback: AsyncCallback\<void\>): void
 
 ```js
 function removeAllCallBack(err) {
-	console.info("================>removeAllCallBack=======================>");
+    if (err.code) {
+        console.info("removeAllSlots failed " + JSON.stringify(err));
+    } else {
+        console.info("removeAllSlots success");
+    }
 }
 Notification.removeAllSlots(removeAllCallBack)
 ```
@@ -690,7 +738,7 @@ removeAllSlots(): Promise\<void\>
 
 ```js
 Notification.removeAllSlots().then(() => {
-	console.info("==========================>removeAllCallBack=======================>");
+	console.info("removeAllSlots sucess");
 });
 ```
 
@@ -721,10 +769,14 @@ subscribe(subscriber: NotificationSubscriber, info: NotificationSubscribeInfo, c
 ```js
 //subscribe回调
 function subscribeCallback(err) {
-	console.info("==========================>subscribeCallback=======================>");
+    if (err.code) {
+        console.info("subscribe failed " + JSON.stringify(err));
+    } else {
+        console.info("subscribe success");
+    }
 }
 function onConsumeCallback(data) {
-	console.info("==========================>onConsumeCallback=======================>");
+	console.info("Consume callback: " + JSON.stringify(data));
 }
 var subscriber = {
     onConsume: onConsumeCallback
@@ -760,10 +812,14 @@ subscribe(subscriber: NotificationSubscriber, callback: AsyncCallback\<void\>): 
 
 ```js
 function subscribeCallback(err) {
-	console.info("==========================>subscribeCallback=======================>");
+    if (err.code) {
+        console.info("subscribe failed " + JSON.stringify(err));
+    } else {
+        console.info("subscribe success");
+    }
 }
 function onConsumeCallback(data) {
-	console.info("==========================>onConsumeCallback=======================>");
+	console.info("Consume callback: " + JSON.stringify(data));
 }
 var subscriber = {
     onConsume: onConsumeCallback
@@ -796,13 +852,17 @@ subscribe(subscriber: NotificationSubscriber, info?: NotificationSubscribeInfo):
 
 ```js
 function onConsumeCallback(data) {
-	console.info("==========================>onConsumeCallback=======================>");
+    if (err.code) {
+        console.info("subscribe failed " + JSON.stringify(err));
+    } else {
+        console.info("subscribe success");
+    }
 }
 var subscriber = {
     onConsume: onConsumeCallback
 };
 Notification.subscribe(subscriber).then(() => {
-	console.info("==========================>subscribeCallback=======================>");
+	console.info("subscribe sucess");
 });
 ```
 
@@ -831,13 +891,17 @@ unsubscribe(subscriber: NotificationSubscriber, callback: AsyncCallback\<void\>)
 
 ```js
 function unsubscribeCallback(err) {
-	console.info("==========================>unsubscribeCallback=======================>");
+    if (err.code) {
+        console.info("unsubscribe failed " + JSON.stringify(err));
+    } else {
+        console.info("unsubscribe success");
+    }
 }
-function onConsumeCallback(data) {
-	console.info("==========================>onConsumeCallback=======================>");
+function onCancelCallback(data) {
+	console.info("Cancel callback: " + JSON.stringify(data));
 }
 var subscriber = {
-    onConsume: onConsumeCallback
+    onCancel: onCancelCallback
 }
 Notification.unsubscribe(subscriber, unsubscribeCallback);
 ```
@@ -865,14 +929,14 @@ unsubscribe(subscriber: NotificationSubscriber): Promise\<void\>
 **示例：**
 
 ```js
-function onConsumeCallback(data) {
-	console.info("==========================>onConsumeCallback=======================>");
+function onCancelCallback(data) {
+	console.info("Cancel callback: " + JSON.stringify(data));
 }
 var subscriber = {
-    onConsume: onConsumeCallback
+    onCancel: onCancelCallback
 };
 Notification.unsubscribe(subscriber).then(() => {
-	console.info("==========================>unsubscribeCallback=======================>");
+	console.info("unsubscribe sucess");
 });
 ```
 
@@ -902,7 +966,11 @@ enableNotification(bundle: BundleOption, enable: boolean, callback: AsyncCallbac
 
 ```js
 function enableNotificationCallback(err) {
-	console.info("==========================>enableNotificationCallback=======================>");
+    if (err.code) {
+        console.info("enableNotification failed " + JSON.stringify(err));
+    } else {
+        console.info("enableNotification success");
+    }
 }
 var bundle = {
     bundle: "bundleName1",
@@ -938,7 +1006,7 @@ var bundle = {
     bundle: "bundleName1",
 }
 Notification.enableNotification(bundle, false).then(() => {
-	console.info("==========================>enableNotificationCallback=======================>");
+	console.info("enableNotification sucess");
 });
 ```
 
@@ -967,7 +1035,11 @@ isNotificationEnabled(bundle: BundleOption, callback: AsyncCallback\<boolean\>):
 
 ```js
 function isNotificationEnabledCallback(err, data) {
-	console.info("==========================>isNotificationEnabledCallback=======================>");
+    if (err.code) {
+        console.info("isNotificationEnabled failed " + JSON.stringify(err));
+    } else {
+        console.info("isNotificationEnabled success");
+    }
 }
 var bundle = {
     bundle: "bundleName1",
@@ -1008,7 +1080,7 @@ var bundle = {
     bundle: "bundleName1",
 }
 Notification.isNotificationEnabled(bundle).then((data) => {
-	console.info("==========================>isNotificationEnabledCallback=======================>");
+	console.info("isNotificationEnabled sucess, data: " + JSON.stringify(data));
 });
 ```
 
@@ -1036,7 +1108,11 @@ isNotificationEnabled(callback: AsyncCallback\<boolean\>): void
 
 ```js
 function isNotificationEnabledCallback(err, data) {
-	console.info("==========================>isNotificationEnabledCallback=======================>");
+    if (err.code) {
+        console.info("isNotificationEnabled failed " + JSON.stringify(err));
+    } else {
+        console.info("isNotificationEnabled success");
+    }
 }
 
 Notification.isNotificationEnabled(isNotificationEnabledCallback);
@@ -1072,7 +1148,7 @@ isNotificationEnabled(): Promise\<boolean\>
 
 ```js
 Notification.isNotificationEnabled().then((data) => {
-	console.info("==========================>isNotificationEnabledCallback=======================>");
+	console.info("isNotificationEnabled sucess, data: " + JSON.stringify(data));
 });
 ```
 
@@ -1102,7 +1178,11 @@ displayBadge(bundle: BundleOption, enable: boolean, callback: AsyncCallback\<voi
 
 ```js
 function displayBadgeCallback(err) {
-	console.info("==========================>displayBadgeCallback=======================>");
+    if (err.code) {
+        console.info("displayBadge failed " + JSON.stringify(err));
+    } else {
+        console.info("displayBadge success");
+    }
 }
 var bundle = {
     bundle: "bundleName1",
@@ -1138,7 +1218,7 @@ var bundle = {
     bundle: "bundleName1",
 }
 Notification.displayBadge(bundle, false).then(() => {
-	console.info("==========================>displayBadgeCallback=======================>");
+	console.info("displayBadge sucess");
 });
 ```
 
@@ -1167,7 +1247,11 @@ isBadgeDisplayed(bundle: BundleOption, callback: AsyncCallback\<boolean\>): void
 
 ```js
 function isBadgeDisplayedCallback(err, data) {
-	console.info("==========================>isBadgeDisplayedCallback=======================>");
+    if (err.code) {
+        console.info("isBadgeDisplayed failed " + JSON.stringify(err));
+    } else {
+        console.info("isBadgeDisplayed success");
+    }
 }
 var bundle = {
     bundle: "bundleName1",
@@ -1208,7 +1292,7 @@ var bundle = {
     bundle: "bundleName1",
 }
 Notification.isBadgeDisplayed(bundle).then((data) => {
-	console.info("==========================>isBadgeDisplayedCallback=======================>");
+	console.info("isBadgeDisplayed sucess, data: " + JSON.stringify(data));
 });
 ```
 
@@ -1238,7 +1322,11 @@ setSlotByBundle(bundle: BundleOption, slot: NotificationSlot, callback: AsyncCal
 
 ```js
 function setSlotByBundleCallback(err) {
-	console.info("==========================>setSlotByBundleCallback=======================>");
+    if (err.code) {
+        console.info("setSlotByBundle failed " + JSON.stringify(err));
+    } else {
+        console.info("setSlotByBundle success");
+    }
 }
 var bundle = {
     bundle: "bundleName1",
@@ -1280,7 +1368,7 @@ var notificationSlot = {
     type: Notification.SlotType.SOCIAL_COMMUNICATION
 }
 Notification.setSlotByBundle(bundle, notificationSlot).then(() => {
-	console.info("==========================>setSlotByBundleCallback=======================>");
+	console.info("setSlotByBundle sucess");
 });
 ```
 
@@ -1309,7 +1397,11 @@ getSlotsByBundle(bundle: BundleOption, callback: AsyncCallback<Array\<Notificati
 
 ```js
 function getSlotsByBundleCallback(err, data) {
-	console.info("==========================>getSlotsByBundleCallback=======================>");
+    if (err.code) {
+        console.info("getSlotsByBundle failed " + JSON.stringify(err));
+    } else {
+        console.info("getSlotsByBundle success");
+    }
 }
 var bundle = {
     bundle: "bundleName1",
@@ -1350,7 +1442,7 @@ var bundle = {
     bundle: "bundleName1",
 }
 Notification.getSlotsByBundle(bundle).then((data) => {
-	console.info("==========================>getSlotsByBundleCallback=======================>");
+	console.info("getSlotsByBundle sucess, data: " + JSON.stringify(data));
 });
 ```
 
@@ -1379,7 +1471,11 @@ getSlotNumByBundle(bundle: BundleOption, callback: AsyncCallback\<number\>): voi
 
 ```js
 function getSlotNumByBundleCallback(err, data) {
-	console.info("==========================>getSlotNumByBundleCallback=======================>");
+    if (err.code) {
+        console.info("getSlotNumByBundle failed " + JSON.stringify(err));
+    } else {
+        console.info("getSlotNumByBundle success");
+    }
 }
 var bundle = {
     bundle: "bundleName1",
@@ -1420,7 +1516,7 @@ var bundle = {
     bundle: "bundleName1",
 }
 Notification.getSlotNumByBundle(bundle).then((data) => {
-	console.info("==========================>getSlotNumByBundleCallback=======================>");
+	console.info("getSlotNumByBundle sucess, data: " + JSON.stringify(data));
 });
 ```
 
@@ -1451,7 +1547,11 @@ remove(bundle: BundleOption, notificationKey: NotificationKey, reason: RemoveRea
 
 ```js
 function removeCallback(err) {
-	console.info("==========================>removeCallback=======================>");
+    if (err.code) {
+        console.info("remove failed " + JSON.stringify(err));
+    } else {
+        console.info("remove success");
+    }
 }
 var bundle = {
     bundle: "bundleName1",
@@ -1498,7 +1598,7 @@ var notificationKey = {
 }
 var reason = Notification.RemoveReason.CLICK_REASON_REMOVE;
 Notification.remove(bundle, notificationKey, reason).then(() => {
-	console.info("==========================>removeCallback=======================>");
+	console.info("remove sucess");
 });
 ```
 
@@ -1530,7 +1630,11 @@ remove(hashCode: string, reason: RemoveReason, callback: AsyncCallback\<void\>):
 var hashCode = 'hashCode'
 
 function removeCallback(err) {
-	console.info("==========================>removeCallback=======================>");
+    if (err.code) {
+        console.info("remove failed " + JSON.stringify(err));
+    } else {
+        console.info("remove success");
+    }
 }
 var reason = Notification.RemoveReason.CANCEL_REASON_REMOVE;
 Notification.remove(hashCode, reason, removeCallback);
@@ -1563,7 +1667,7 @@ remove(hashCode: string, reason: RemoveReason): Promise\<void\>
 var hashCode = 'hashCode'
 var reason = Notification.RemoveReason.CLICK_REASON_REMOVE;
 Notification.remove(hashCode, reason).then(() => {
-	console.info("==========================>removeCallback=======================>");
+	console.info("remove sucess");
 });
 ```
 
@@ -1592,7 +1696,11 @@ removeAll(bundle: BundleOption, callback: AsyncCallback\<void\>): void
 
 ```js
 function removeAllCallback(err) {
-	console.info("==========================>removeAllCallback=======================>");
+    if (err.code) {
+        console.info("removeAll failed " + JSON.stringify(err));
+    } else {
+        console.info("removeAll success");
+    }
 }
 var bundle = {
     bundle: "bundleName1",
@@ -1624,7 +1732,11 @@ removeAll(callback: AsyncCallback\<void\>): void
 
 ```js
 function removeAllCallback(err) {
-	console.info("==========================>removeAllCallback=======================>");
+    if (err.code) {
+        console.info("removeAll failed " + JSON.stringify(err));
+    } else {
+        console.info("removeAll success");
+    }
 }
 
 Notification.removeAll(removeAllCallback);
@@ -1654,7 +1766,7 @@ removeAll(bundle?: BundleOption): Promise\<void\>
 
 ```js
 Notification.removeAll().then(() => {
-	console.info("==========================>removeAllCallback=======================>");
+	console.info("removeAll sucess");
 });
 ```
 
@@ -1681,7 +1793,11 @@ removeAll(userId: number, callback: AsyncCallback\<void>): void
 
 ```js
 function removeAllCallback(err) {
-	console.info("==========================>removeAllCallback=======================>");
+    if (err.code) {
+        console.info("removeAll failed " + JSON.stringify(err));
+    } else {
+        console.info("removeAll success");
+    }
 }
 
 var userId = 1
@@ -1711,7 +1827,11 @@ removeAll(userId: number): Promise\<void>
 
 ```js
 function removeAllCallback(err) {
-	console.info("==========================>removeAllCallback=======================>");
+    if (err.code) {
+        console.info("removeAll failed " + JSON.stringify(err));
+    } else {
+        console.info("removeAll success");
+    }
 }
 
 var userId = 1
@@ -1742,7 +1862,11 @@ getAllActiveNotifications(callback: AsyncCallback<Array\<NotificationRequest\>>)
 
 ```js
 function getAllActiveNotificationsCallback(err, data) {
-	console.info("==========================>getAllActiveNotificationsCallback=======================>");
+    if (err.code) {
+        console.info("getAllActiveNotifications failed " + JSON.stringify(err));
+    } else {
+        console.info("getAllActiveNotifications success");
+    }
 }
 
 Notification.getAllActiveNotifications(getAllActiveNotificationsCallback);
@@ -1772,7 +1896,7 @@ getAllActiveNotifications(): Promise\<Array\<[NotificationRequest](#notification
 
 ```js
 Notification.getAllActiveNotifications().then((data) => {
-	console.info("==========================>getAllActiveNotificationsCallback=======================>");
+	console.info("getAllActiveNotifications sucess, data: " + JSON.stringify(data));
 });
 ```
 
@@ -1796,7 +1920,11 @@ getActiveNotificationCount(callback: AsyncCallback\<number\>): void
 
 ```js
 function getActiveNotificationCountCallback(err, data) {
-	console.info("==========================>getActiveNotificationCountCallback=======================>");
+    if (err.code) {
+        console.info("getActiveNotificationCount failed " + JSON.stringify(err));
+    } else {
+        console.info("getActiveNotificationCount success");
+    }
 }
 
 Notification.getActiveNotificationCount(getActiveNotificationCountCallback);
@@ -1822,7 +1950,7 @@ getActiveNotificationCount(): Promise\<number\>
 
 ```js
 Notification.getActiveNotificationCount().then((data) => {
-	console.info("==========================>getActiveNotificationCountCallback=======================>");
+	console.info("getActiveNotificationCount sucess, data: " + JSON.stringify(data));
 });
 ```
 
@@ -1846,7 +1974,11 @@ getActiveNotifications(callback: AsyncCallback<Array\<NotificationRequest\>>): v
 
 ```js
 function getActiveNotificationsCallback(err, data) {
-	console.info("==========================>getActiveNotificationsCallback=======================>");
+    if (err.code) {
+        console.info("getActiveNotifications failed " + JSON.stringify(err));
+    } else {
+        console.info("getActiveNotifications success");
+    }
 }
 
 Notification.getActiveNotifications(getActiveNotificationsCallback);
@@ -1872,7 +2004,7 @@ getActiveNotifications(): Promise\<Array\<[NotificationRequest](#notificationreq
 
 ```js
 Notification.getActiveNotifications().then((data) => {
-	console.info("==========================>getActiveNotificationsCallback=======================>");
+	console.info("removeGroupByBundle sucess, data: " + JSON.stringify(data));
 });
 ```
 
@@ -1897,7 +2029,11 @@ cancelGroup(groupName: string, callback: AsyncCallback\<void\>): void
 
 ```js
 function cancelGroupCallback(err) {
-   console.info("==========================>cancelGroupCallback=======================>");
+    if (err.code) {
+        console.info("cancelGroup failed " + JSON.stringify(err));
+    } else {
+        console.info("cancelGroup success");
+    }
 }
 
 var groupName = "GroupName";
@@ -1926,7 +2062,7 @@ cancelGroup(groupName: string): Promise\<void\>
 ```js
 var groupName = "GroupName";
 Notification.cancelGroup(groupName).then(() => {
-	console.info("==========================>cancelGroupPromise=======================>");
+	console.info("cancelGroup sucess");
 });
 ```
 
@@ -1956,7 +2092,11 @@ removeGroupByBundle(bundle: BundleOption, groupName: string, callback: AsyncCall
 
 ```js
 function removeGroupByBundleCallback(err) {
-   console.info("==========================>removeGroupByBundleCallback=======================>");
+    if (err.code) {
+        console.info("removeGroupByBundle failed " + JSON.stringify(err));
+    } else {
+        console.info("removeGroupByBundle success");
+    }
 }
 
 var bundleOption = {bundle: "Bundle"};
@@ -1992,7 +2132,7 @@ removeGroupByBundle(bundle: BundleOption, groupName: string): Promise\<void\>
 var bundleOption = {bundle: "Bundle"};
 var groupName = "GroupName";
 Notification.removeGroupByBundle(bundleOption, groupName).then(() => {
-	console.info("==========================>removeGroupByBundlePromise=======================>");
+	console.info("removeGroupByBundle sucess");
 });
 ```
 
@@ -2021,7 +2161,11 @@ setDoNotDisturbDate(date: DoNotDisturbDate, callback: AsyncCallback\<void\>): vo
 
 ```js
 function setDoNotDisturbDateCallback(err) {
-   console.info("==========================>setDoNotDisturbDateCallback=======================>");
+    if (err.code) {
+        console.info("setDoNotDisturbDate failed " + JSON.stringify(err));
+    } else {
+        console.info("setDoNotDisturbDate success");
+    }
 }
 
 var doNotDisturbDate = {
@@ -2062,7 +2206,7 @@ var doNotDisturbDate = {
     end: new Date(2021, 11, 15, 18, 0)
 }
 Notification.setDoNotDisturbDate(doNotDisturbDate).then(() => {
-	console.info("==========================>setDoNotDisturbDatePromise=======================>");
+	console.info("setDoNotDisturbDate sucess");
 });
 ```
 
@@ -2091,7 +2235,11 @@ setDoNotDisturbDate(date: DoNotDisturbDate, userId: number, callback: AsyncCallb
 
 ```js
 function setDoNotDisturbDateCallback(err) {
-   console.info("==========================>setDoNotDisturbDateCallback=======================>");
+    if (err.code) {
+        console.info("setDoNotDisturbDate failed " + JSON.stringify(err));
+    } else {
+        console.info("setDoNotDisturbDate success");
+    }
 }
 
 var doNotDisturbDate = {
@@ -2138,7 +2286,7 @@ var doNotDisturbDate = {
 var userId = 1
 
 Notification.setDoNotDisturbDate(doNotDisturbDate, userId).then(() => {
-	console.info("==========================>setDoNotDisturbDatePromise=======================>");
+	console.info("setDoNotDisturbDate sucess");
 });
 ```
 
@@ -2165,7 +2313,11 @@ getDoNotDisturbDate(callback: AsyncCallback\<DoNotDisturbDate\>): void
 
 ```js
 function getDoNotDisturbDateCallback(err,data) {
-   console.info("==========================>getDoNotDisturbDateCallback=======================>");
+    if (err.code) {
+        console.info("getDoNotDisturbDate failed " + JSON.stringify(err));
+    } else {
+        console.info("getDoNotDisturbDate success");
+    }
 }
 
 Notification.getDoNotDisturbDate(getDoNotDisturbDateCallback);
@@ -2195,7 +2347,7 @@ getDoNotDisturbDate(): Promise\<DoNotDisturbDate\>
 
 ```js
 Notification.getDoNotDisturbDate().then((data) => {
-	console.info("==========================>getDoNotDisturbDatePromise=======================>");
+	console.info("getDoNotDisturbDate sucess, data: " + JSON.stringify(data));
 });
 ```
 
@@ -2223,7 +2375,11 @@ getDoNotDisturbDate(userId: number, callback: AsyncCallback\<DoNotDisturbDate\>)
 
 ```js
 function getDoNotDisturbDateCallback(err,data) {
-   console.info("==========================>getDoNotDisturbDateCallback=======================>");
+    if (err.code) {
+        console.info("getDoNotDisturbDate failed " + JSON.stringify(err));
+    } else {
+        console.info("getDoNotDisturbDate success");
+    }
 }
 
 var userId = 1
@@ -2263,7 +2419,7 @@ getDoNotDisturbDate(userId: number): Promise\<DoNotDisturbDate\>
 var userId = 1
 
 Notification.getDoNotDisturbDate(userId).then((data) => {
-	console.info("==========================>getDoNotDisturbDatePromise=======================>");
+	console.info("getDoNotDisturbDate sucess, data: " + JSON.stringify(data));
 });
 ```
 
@@ -2290,7 +2446,11 @@ supportDoNotDisturbMode(callback: AsyncCallback\<boolean\>): void
 
 ```js
 function supportDoNotDisturbModeCallback(err,data) {
-   console.info("==========================>supportDoNotDisturbModeCallback=======================>");
+    if (err.code) {
+        console.info("supportDoNotDisturbMode failed " + JSON.stringify(err));
+    } else {
+        console.info("supportDoNotDisturbMode success");
+    }
 }
 
 Notification.supportDoNotDisturbMode(supportDoNotDisturbModeCallback);
@@ -2320,7 +2480,7 @@ supportDoNotDisturbMode(): Promise\<boolean\>
 
 ```js
 Notification.supportDoNotDisturbMode().then((data) => {
-	console.info("==========================>supportDoNotDisturbModePromise=======================>");
+	console.info("supportDoNotDisturbMode sucess, data: " + JSON.stringify(data));
 });
 ```
 
@@ -2346,7 +2506,11 @@ isSupportTemplate(templateName: string, callback: AsyncCallback\<boolean\>): voi
 ```javascript
 var templateName = 'process';
 function isSupportTemplateCallback(err, data) {
-    console.info("isSupportTemplateCallback");
+    if (err.code) {
+        console.info("isSupportTemplate failed " + JSON.stringify(err));
+    } else {
+        console.info("isSupportTemplate success");
+    }
 }
 
 Notification.isSupportTemplate(templateName, isSupportTemplateCallback);
@@ -2380,7 +2544,7 @@ isSupportTemplate(templateName: string): Promise\<boolean\>
 var templateName = 'process';
 
 Notification.isSupportTemplate(templateName).then((data) => {
-    console.info("isSupportTemplateCallback");
+    console.info("isSupportTemplate success, data: " + JSON.stringify(data));
 });
 ```
 
@@ -2404,7 +2568,11 @@ requestEnableNotification(callback: AsyncCallback\<void\>): void
 
 ```javascript
 function requestEnableNotificationCallback() {
-    console.log('------------- requestEnabledNotification --------------');
+    if (err.code) {
+        console.info("requestEnableNotification failed " + JSON.stringify(err));
+    } else {
+        console.info("requestEnableNotification success");
+    }
 };
 
 Notification.requestEnableNotification(requestEnableNotificationCallback);
@@ -2425,7 +2593,7 @@ requestEnableNotification(): Promise\<void\>
 ```javascript
 Notification.requestEnableNotification()
     .then(() => {
-        console.info("requestEnableNotification ");
+        console.info("requestEnableNotification sucess");
 	});
 ```
 
@@ -2453,7 +2621,11 @@ enableDistributed(enable: boolean, callback: AsyncCallback\<void\>): void
 
 ```javascript
 function enabledNotificationCallback() {
-    console.log('----------- enableDistributed ------------');
+    if (err.code) {
+        console.info("enableDistributed failed " + JSON.stringify(err));
+    } else {
+        console.info("enableDistributed success");
+    }
 };
 
 var enable = true
@@ -2488,7 +2660,7 @@ var enable = true
 
 Notification.enableDistributed(enable)
     .then(() => {
-        console.log('-------- enableDistributed ----------');
+        console.info("enableDistributed sucess");
     });
 ```
 
@@ -2511,7 +2683,11 @@ isDistributedEnabled(callback: AsyncCallback\<boolean>): void
 
 ```javascript
 function isDistributedEnabledCallback() {
-    console.log('----------- isDistributedEnabled ------------');
+    if (err.code) {
+        console.info("isDistributedEnabled failed " + JSON.stringify(err));
+    } else {
+        console.info("isDistributedEnabled success");
+    }
 };
 
 Notification.isDistributedEnabled(isDistributedEnabledCallback);
@@ -2538,7 +2714,7 @@ isDistributedEnabled(): Promise\<boolean>
 ```javascript
 Notification.isDistributedEnabled()
     .then((data) => {
-        console.log('-------- isDistributedEnabled ----------');
+        console.info("isDistributedEnabled sucess, data: " + JSON.stringify(data));
     });
 ```
 
@@ -2567,7 +2743,11 @@ enableDistributedByBundle(bundle: BundleOption, enable: boolean, callback: Async
 
 ```javascript
 function enableDistributedByBundleCallback() {
-    console.log('----------- enableDistributedByBundle ------------');
+    if (err.code) {
+        console.info("enableDistributedByBundle failed " + JSON.stringify(err));
+    } else {
+        console.info("enableDistributedByBundle success");
+    }
 };
 
 var bundle = {
@@ -2611,7 +2791,7 @@ var enable = true
 
 Notification.enableDistributedByBundle(bundle, enable)
     .then(() => {
-        console.log('-------- enableDistributedByBundle ----------');
+        console.info("enableDistributedByBundle sucess");
     });
 ```
 
@@ -2638,7 +2818,11 @@ isDistributedEnabledByBundle(bundle: BundleOption, callback: AsyncCallback\<bool
 
 ```javascript
 function isDistributedEnabledByBundleCallback(data) {
-    console.log('----------- isDistributedEnabledByBundle ------------', data);
+    if (err.code) {
+        console.info("isDistributedEnabledByBundle failed " + JSON.stringify(err));
+    } else {
+        console.info("isDistributedEnabledByBundle success");
+    }
 };
 
 var bundle = {
@@ -2683,7 +2867,7 @@ var bundle = {
 
 Notification.isDistributedEnabledByBundle(bundle)
     .then((data) => {
-        console.log('-------- isDistributedEnabledByBundle ----------', data);
+        console.info("isDistributedEnabledByBundle sucess, data: " + JSON.stringify(data));
     });
 ```
 
@@ -2710,7 +2894,11 @@ getDeviceRemindType(callback: AsyncCallback\<DeviceRemindType\>): void
 
 ```javascript
 function getDeviceRemindTypeCallback(data) {
-    console.log('----------- getDeviceRemindType ------------', data);
+    if (err.code) {
+        console.info("getDeviceRemindType failed " + JSON.stringify(err));
+    } else {
+        console.info("getDeviceRemindType success");
+    }
 };
 
 Notification.getDeviceRemindType(getDeviceRemindTypeCallback);
@@ -2741,7 +2929,7 @@ getDeviceRemindType(): Promise\<DeviceRemindType\>
 ```javascript
 Notification.getDeviceRemindType()
     .then((data) => {
-        console.log('-------- getDeviceRemindType ----------', data);
+        console.info("getDeviceRemindType sucess, data: " + JSON.stringify(data));
     });
 ```
 
@@ -2772,7 +2960,11 @@ publishAsBundle(request: NotificationRequest, representativeBundle: string, user
 ```js
 //publishAsBundle回调
 function publishAsBundleCallback(err) {
-	console.info("==========================>publishAsBundleCallback=======================>");
+    if (err.code) {
+        console.info("publishAsBundle failed " + JSON.stringify(err));
+    } else {
+        console.info("publishAsBundle success");
+    }
 }
 // 被代理应用的包名
 let representativeBundle = "com.example.demo"
@@ -2836,7 +3028,7 @@ var notificationRequest = {
 }
 
 Notification.publishAsBundle(notificationRequest, representativeBundle, userId).then(() => {
-	console.info("==========================>publishAsBundleCallback=======================>");
+	console.info("publishAsBundle sucess");
 });
 ```
 
@@ -2868,7 +3060,11 @@ cancelAsBundle(id: number, representativeBundle: string, userId: number, callbac
 ```js
 //cancelAsBundle
 function cancelAsBundleCallback(err) {
-	console.info("==========================>cancelAsBundleCallback=======================>");
+    if (err.code) {
+        console.info("cancelAsBundle failed " + JSON.stringify(err));
+    } else {
+        console.info("cancelAsBundle success");
+    }
 }
 // 被代理应用的包名
 let representativeBundle = "com.example.demo"
@@ -2909,7 +3105,7 @@ let representativeBundle = "com.example.demo"
 let userId = 100
 
 Notification.cancelAsBundle(0, representativeBundle, userId).then(() => {
-	console.info("==========================>cancelAsBundleCallback=======================>");
+	console.info("cancelAsBundle success");
 });
 ```
 
@@ -2939,7 +3135,11 @@ enableNotificationSlot(bundle: BundleOption, type: SlotType, enable: boolean, ca
 ```js
 //enableNotificationSlot
 function enableSlotCallback(err) {
-    console.log('===================>enableSlotCallback==================>');
+    if (err.code) {
+        console.info("enableNotificationSlot failed " + JSON.stringify(err));
+    } else {
+        console.info("enableNotificationSlot success");
+    }
 };
 
 Notification.enableNotificationSlot(
@@ -2977,7 +3177,7 @@ Notification.enableNotificationSlot(
     { bundle: "ohos.samples.notification", },
     Notification.SlotType.SOCIAL_COMMUNICATION,
     true).then(() => {
-        console.log('====================>enableNotificationSlot====================>');
+        console.info("enableNotificationSlot sucess");
     });
 ```
 
@@ -3006,7 +3206,11 @@ isNotificationSlotEnabled(bundle: BundleOption, type: SlotType, callback: AsyncC
 ```js
 //isNotificationSlotEnabled
 function getEnableSlotCallback(err, data) {
-    console.log('===================>getEnableSlotCallback==================');
+    if (err.code) {
+        console.info("isNotificationSlotEnabled failed " + JSON.stringify(err));
+    } else {
+        console.info("isNotificationSlotEnabled success");
+    }
 };
 
 Notification.isNotificationSlotEnabled(
@@ -3048,7 +3252,7 @@ Notification.isNotificationSlotEnabled(
     { bundle: "ohos.samples.notification", },
     Notification.SlotType.SOCIAL_COMMUNICATION
     ).then((data) => {
-      console.log('====================>isNotificationSlotEnabled====================>');
+      console.info("isNotificationSlotEnabled success, data: " + JSON.stringify(data));
     });
 ```
 
@@ -3080,7 +3284,11 @@ let userId = 100;
 let enable = true;
 
 function setSyncNotificationEnabledWithoutAppCallback(err) {
-    console.log('setSyncNotificationEnabledWithoutAppCallback');
+    if (err.code) {
+        console.info("setSyncNotificationEnabledWithoutApp failed " + JSON.stringify(err));
+    } else {
+        console.info("setSyncNotificationEnabledWithoutApp success");
+    }
 }
 
 Notification.setSyncNotificationEnabledWithoutApp(userId, enable, setSyncNotificationEnabledWithoutAppCallback);
@@ -3119,11 +3327,11 @@ let userId = 100;
 let enable = true;
 
 Notification.setSyncNotificationEnabledWithoutApp(userId, enable)
-    .then((data) => {
-        console.log('setSyncNotificationEnabledWithoutApp');
+    .then(() => {
+        console.info('setSyncNotificationEnabledWithoutApp');
     })
     .catch((err) => {
-        console.log('setSyncNotificationEnabledWithoutApp, err:', err);
+        console.info('setSyncNotificationEnabledWithoutApp, err:', err);
     });
 ```
 
@@ -3154,9 +3362,9 @@ let userId = 100;
 
 function getSyncNotificationEnabledWithoutAppCallback(data, err) {
     if (err) {
-        console.log('getSyncNotificationEnabledWithoutAppCallback, err' + err);
+        console.info('getSyncNotificationEnabledWithoutAppCallback, err' + err);
     } else {
-        console.log('getSyncNotificationEnabledWithoutAppCallback, data' + data);
+        console.info('getSyncNotificationEnabledWithoutAppCallback, data' + data);
     }
 }
 
@@ -3195,16 +3403,18 @@ let userId = 100;
 
 Notification.getSyncNotificationEnabledWithoutApp(userId)
     .then((data) => {
-        console.log('getSyncNotificationEnabledWithoutApp, data:', data);
+        console.info('getSyncNotificationEnabledWithoutApp, data:', data);
     })
     .catch((err) => {
-        console.log('getSyncNotificationEnabledWithoutApp, err:', err);
+        console.info('getSyncNotificationEnabledWithoutApp, err:', err);
     });
 ```
 
 
 
 ## NotificationSubscriber
+
+提供订阅者接收到新通知或取消通知时的回调方法。
 
 **系统API**：此接口为系统接口，三方应用不支持调用。
 
@@ -3216,7 +3426,7 @@ onConsume?: (data: [SubscribeCallbackData](#subscribecallbackdata)) => void
 
 **系统能力**：SystemCapability.Notification.Notification
 
-**系统API**: 此接口为系统接口，三方应用不支持调用。
+**系统接口**: 此接口为系统接口，三方应用不支持调用。
 
 **参数：**
 
@@ -3242,7 +3452,7 @@ function onConsumeCallback(data) {
     let wantAgent = data.wantAgent;
     wantAgent .getWant(wantAgent)
         .then((data1) => {
-            console.log('===> getWant success want:' + JSON.stringify(data1));
+            console.info('===> getWant success want:' + JSON.stringify(data1));
         })
         .catch((err) => {
             console.error('===> getWant failed because' + JSON.stringify(err));
@@ -3626,6 +3836,8 @@ Notification.subscribe(subscriber, subscribeCallback);
 
 ## NotificationActionButton
 
+描述通知中显示的操作按钮。
+
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Notification.Notification
 
 | 名称      | 可读 | 可写 | 类型                                            | 描述                      |
@@ -3638,6 +3850,8 @@ Notification.subscribe(subscriber, subscribeCallback);
 
 ## NotificationBasicContent
 
+描述普通文本通知。
+
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Notification.Notification
 
 | 名称           | 可读 | 可写 | 类型   | 描述                               |
@@ -3648,6 +3862,8 @@ Notification.subscribe(subscriber, subscribeCallback);
 
 
 ## NotificationLongTextContent
+
+描述长文本通知。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Notification.Notification
 
@@ -3663,6 +3879,8 @@ Notification.subscribe(subscriber, subscribeCallback);
 
 ## NotificationMultiLineContent
 
+描述多行文本通知。
+
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Notification.Notification
 
 | 名称           | 可读 | 可写 | 类型            | 描述                             |
@@ -3676,6 +3894,8 @@ Notification.subscribe(subscriber, subscribeCallback);
 
 
 ## NotificationPictureContent
+
+描述附有图片的通知。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Notification.Notification
 
@@ -3691,6 +3911,8 @@ Notification.subscribe(subscriber, subscribeCallback);
 
 ## NotificationContent
 
+描述通知类型。
+
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Notification.Notification
 
 | 名称        | 可读 | 可写 | 类型                                                         | 描述               |
@@ -3704,9 +3926,11 @@ Notification.subscribe(subscriber, subscribeCallback);
 
 ## NotificationFlagStatus<sup>8+</sup>
 
+描述通知标志状态。
+
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Notification.Notification
 
-**系统API**：此接口为系统接口，三方应用不支持调用。
+**系统接口**：此接口为系统接口，三方应用不支持调用。
 
 | 名称           | 值  | 描述                               |
 | -------------- | --- | --------------------------------- |
@@ -3717,6 +3941,8 @@ Notification.subscribe(subscriber, subscribeCallback);
 
 ## NotificationFlags<sup>8+</sup>
 
+描述通知标志的实例。
+
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Notification.Notification
 
 | 名称             | 可读 | 可写 | 类型                    | 描述                               |
@@ -3726,6 +3952,8 @@ Notification.subscribe(subscriber, subscribeCallback);
 
 
 ## NotificationRequest
+
+描述通知的请求。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Notification.Notification
 
@@ -3739,10 +3967,10 @@ Notification.subscribe(subscriber, subscribeCallback);
 | deliveryTime          | 是  | 是  | number                                        | 通知发送时间。               |
 | tapDismissed          | 是  | 是  | boolean                                       | 通知是否自动清除。           |
 | autoDeletedTime       | 是  | 是  | number                                        | 自动清除的时间。             |
-| wantAgent             | 是  | 是  | WantAgent                                     | 点击跳转的WantAgent。        |
+| wantAgent             | 是  | 是  | WantAgent                                     | WantAgent封装了应用的行为意图，点击通知时触发该行为。 |
 | extraInfo             | 是  | 是  | {[key: string]: any}                          | 扩展参数。                   |
-| color                 | 是  | 是  | number                                        | 通知背景颜色。               |
-| colorEnabled          | 是  | 是  | boolean                                       | 通知背景颜色是否使能。       |
+| color                 | 是  | 是  | number                                        | 通知背景颜色。暂不支持。       |
+| colorEnabled          | 是  | 是  | boolean                                       | 通知背景颜色是否使能。暂不支持。  |
 | isAlertOnce           | 是  | 是  | boolean                                       | 设置是否仅有一次此通知警报。 |
 | isStopwatch           | 是  | 是  | boolean                                       | 是否显示已用时间。           |
 | isCountDown           | 是  | 是  | boolean                                       | 是否显示倒计时时间。         |
@@ -3772,6 +4000,8 @@ Notification.subscribe(subscriber, subscribeCallback);
 
 ## DistributedOptions<sup>8+</sup>
 
+描述分布式选项。
+
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Notification.Notification
 
 | 名称                   | 可读 | 可写 | 类型            | 描述                               |
@@ -3783,6 +4013,8 @@ Notification.subscribe(subscriber, subscribeCallback);
 
 
 ## NotificationSlot
+
+描述通知槽
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Notification.Notification
 
@@ -3804,6 +4036,8 @@ Notification.subscribe(subscriber, subscribeCallback);
 
 ## NotificationSorting
 
+提供有关活动通知的排序信息。
+
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Notification.Notification
 
 **系统API**: 此接口为系统接口，三方应用不支持调用。
@@ -3817,6 +4051,8 @@ Notification.subscribe(subscriber, subscribeCallback);
 
 ## NotificationSortingMap
 
+提供关于已订阅的所有通知中活动通知的排序信息
+
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Notification.Notification
 
 **系统API**：此接口为系统接口，三方应用不支持调用。
@@ -3828,6 +4064,8 @@ Notification.subscribe(subscriber, subscribeCallback);
 
 
 ## NotificationSubscribeInfo
+
+设置订阅所需通知的发布者的信息。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Notification.Notification
 
@@ -3841,6 +4079,8 @@ Notification.subscribe(subscriber, subscribeCallback);
 
 ## NotificationTemplate<sup>8+</sup>
 
+通知模板。
+
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Notification.Notification
 
 | 名称 | 参数类型               | 可读 | 可写 | 说明       |
@@ -3850,6 +4090,8 @@ Notification.subscribe(subscriber, subscribeCallback);
 
 
 ## NotificationUserInput<sup>8+</sup>
+
+保存用户输入的通知消息。
 
 **系统能力**：SystemCapability.Notification.Notification
 

@@ -1,31 +1,32 @@
 # Zip模块(JS端SDK接口)
 
+本模块提供压缩解压缩文件的能力
+
 > **说明：** 
 >
 > 本模块首批接口从API version 7开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
-## 使用限制
-
-无。
 ## 导入模块
 
 ```javascript
 import zlib from '@ohos.zlib';
 ```
 
-## zlib.zipFile
-zipFile(inFile:string, outFile:string, options: Options): Promise&lt;void&gt;
+## zlib.zipFile<sup>(deprecated)</sup>
+zipFile(inFile: string, outFile: string, options: Options): Promise&lt;void&gt;
 
 压缩接口（Promise形式）。
+
+> 从api9开始不再维护，建议使用[zlib.compressFile](#zlibcompressfile9)
 
 **系统能力：** SystemCapability.BundleManager.Zlib
 
 **参数：**
 
-| 参数名  | 类型                | 必填 | 描述                                                         |
+| 参数名  | 类型                | 必填 | 说明                                                         |
 | ------- | ------------------- | ---- | ------------------------------------------------------------ |
 | inFile  | string              | 是   | 指定压缩的文件夹路径或者文件路径，对应的路径参考[FA模型](js-apis-Context.md)，[Stage模型](js-apis-application-context.md) |
-| outFile | string              | 是   | 指定的压缩结果的文件路径（文件的扩展名zip）                  |
+| outFile | string              | 是   | 指定压缩结果的文件路径（文件的扩展名zip）                    |
 | options | [Options](#options) | 否   | 压缩的可选参数                                               |
 
 **返回值：**
@@ -36,57 +37,57 @@ zipFile(inFile:string, outFile:string, options: Options): Promise&lt;void&gt;
 
 **示例1：**
 
-```javascript
-
+```typescript
 //【压缩文件 例子1】 
-import zlib from '@ohos.zlib'
-var inFile = "/xxx/filename.xxx";
-var outFile = "/xxx/xxx.zip";
-var options = {
+import zlib from '@ohos.zlib';
+let inFile = '/xxx/filename.xxx';
+let outFile = '/xxx/xxx.zip';
+let options = {
   level: zlib.CompressLevel.COMPRESS_LEVEL_DEFAULT_COMPRESSION,
   memLevel: zlib.MemLevel.MEM_LEVEL_DEFAULT,
   strategy: zlib.CompressStrategy.COMPRESS_STRATEGY_DEFAULT_STRATEGY
 };
 
 zlib.zipFile(inFile, outFile, options).then((data) => {
-    console.log("zipFile result：" + data);
-}).catch((err)=>{
-    console.log("catch((err)=>" + err);
+    console.log('zipFile result is ' + JSON.Stringify(data));
+}).catch((err) => {
+    console.log('error is ' + JSON.Stringify(err));
 });
-
 ```
 
 **示例2：**
 
-```
+```typescript
 // 【压缩文件夹 例子2】
-import zlib from '@ohos.zlib'
-var inFile = "/xxx/xxx";
-var outFile = "/xxx/xxx.zip";
-var options = {
+import zlib from '@ohos.zlib';
+let inFile = '/xxx/xxx';
+let outFile = '/xxx/xxx.zip';
+let options = {
   level: zlib.CompressLevel.COMPRESS_LEVEL_DEFAULT_COMPRESSION,
   memLevel: zlib.MemLevel.MEM_LEVEL_DEFAULT,
   strategy: zlib.CompressStrategy.COMPRESS_STRATEGY_DEFAULT_STRATEGY
 };
 
 zlib.zipFile(inFile , outFile, options).then((data) => {
-    console.log("zipFile result：" + data);
+    console.log('zipFile result is ' + JSON.Stringify(data));
 }).catch((err)=>{
-    console.log("catch((err)=>" + err);
+    console.log('error is ' + JSON.Stringify(err));
 });
 ```
 
-## zlib.unzipFile
+## zlib.unzipFile<sup>(deprecated)</sup>
 
 unzipFile(inFile:string, outFile:string, options: Options): Promise&lt;void&gt;
 
 解压文件，解压完成返回执行结果（Promise形式）。
 
+> 从api9开始不再看护，建议使用[zlib.decompressFile](#zlibdecompressfile9)
+
 **系统能力：** SystemCapability.BundleManager.Zlib
 
 **参数：**
 
-| 参数名  | 类型                | 必填 | 描述                                                         |
+| 参数名  | 类型                | 必填 | 说明                                                         |
 | ------- | ------------------- | ---- | ------------------------------------------------------------ |
 | inFile  | string              | 是   | 指定压缩的文件夹路径或者文件路径，对应的路径参考[FA模型](js-apis-Context.md)，[stage模型](js-apis-application-context.md) |
 | outFile | string              | 是   | 指定的解压文件路径                                           |
@@ -100,11 +101,11 @@ unzipFile(inFile:string, outFile:string, options: Options): Promise&lt;void&gt;
 
 **示例：**
 
-```javascript
-// 【解压例子1】 
-import zlib from '@ohos.zlib'
-var inFile = "/xx/xxx.zip";
-var outFile = "/xxx";
+```typescript
+// 【解压缩 例子1】 
+import zlib from '@ohos.zlib';
+let inFile = '/xx/xxx.zip';
+let outFile = '/xxx';
 
 let options = {
   level: zlib.CompressLevel.COMPRESS_LEVEL_DEFAULT_COMPRESSION,
@@ -112,11 +113,202 @@ let options = {
   strategy: zlib.CompressStrategy.COMPRESS_STRATEGY_DEFAULT_STRATEGY
 };
 zlib.unzipFile(inFile, outFile, options).then((data) => {
-    console.log("unzipFile result：" + data);
+    console.log('unzipFile result is ' + JSON.Stringify(data));
 }).catch((err)=>{
-    console.log("catch((err)=>" + err);
+    console.log('error is ' + JSON.Stringify(err));
 })
-	
+```
+
+## zlib.compressFile<sup>9+</sup>
+
+compressFile(inFile: string, outFile: string, options: Options, callback: AsyncCallback\<void>): void;
+
+压缩文件，压缩的结果通过callback返回。成功时返回null，失败时返回错误码ID。
+
+**系统能力：** SystemCapability.BundleManager.Zlib
+
+**参数：**
+
+| 参数名                  | 类型                | 必填 | 说明                                                         |
+| ----------------------- | ------------------- | ---- | ------------------------------------------------------------ |
+| inFile                  | string              | 是   | 指定压缩的文件夹路径或者文件路径，对应的路径参考[FA模型](js-apis-Context.md)，[stage模型](js-apis-application-context.md) |
+| outFile                 | string              | 是   | 指定的解压文件路径                                           |
+| options                 | [Options](#options) | 是   | 压缩的配置参数                                               |
+| AsyncCallback<**void**> | callback            | 否   | 压缩时的回调函数                                             |
+
+**相关错误码**
+
+| 错误码ID | 错误信息                               |
+| -------- | -------------------------------------- |
+| 401      | wrong param type                       |
+| 900001   | The Input source file is invalid.      |
+| 900002   | The Input destination file is invalid. |
+
+**示例**
+
+```typescript
+// 【压缩文件 例子1】
+// 代码中使用的路径需为应用的沙箱路径，如/data/storage/el2/base/haps,也可以通过context获取
+import zlib from '@ohos.zlib';
+let inFile = '/xxx/filename.xxx';
+let outFile = '/xxx/xxx.zip';
+let options = {
+  level: zlib.CompressLevel.COMPRESS_LEVEL_DEFAULT_COMPRESSION,
+  memLevel: zlib.MemLevel.MEM_LEVEL_DEFAULT,
+  strategy: zlib.CompressStrategy.COMPRESS_STRATEGY_DEFAULT_STRATEGY
+};
+
+try {
+    zlib.compressFile(inFile, outFile, options, (errData) => {
+        if (errData !== null) {
+            console.log(`errData is errCode:${errData.errCode}  message:${errData.message}`);
+        }
+    })
+} catch(errData) {
+    console.log(`errData is errCode:${errData.errCode}  message:${errData.message}`);
+}
+```
+
+compressFile(inFile: string, outFile: string, options: Options): Promise\<void>;
+
+压缩文件，压缩的结果通过promise返回，成功时返回null，失败时返回错误码。
+
+**系统能力：** SystemCapability.BundleManager.Zlib
+
+**参数：**
+
+| 参数名  | 类型                | 必填 | 说明                                                         |
+| ------- | ------------------- | ---- | ------------------------------------------------------------ |
+| inFile  | string              | 是   | 指定压缩的文件夹路径或者文件路径，对应的路径参考[FA模型](js-apis-Context.md)，[stage模型](js-apis-application-context.md) |
+| outFile | string              | 是   | 指定的解压文件路径                                           |
+| options | [Options](#options) | 是   | 压缩的配置参数                                               |
+
+**相关错误码**
+
+| 错误码ID | 错误信息                               |
+| -------- | -------------------------------------- |
+| 401      | wrong param type                       |
+| 900001   | The Input source file is invalid.      |
+| 900002   | The Input destination file is invalid. |
+
+```typescript
+// 【压缩文件 例子2】
+// 代码中使用的路径需为应用的沙箱路径，如/data/storage/el2/base/haps,也可以通过context获取
+import zlib from '@ohos.zlib';
+let inFile = '/xxx/filename.xxx';
+let outFile = '/xxx/xxx.zip';
+let options = {
+  level: zlib.CompressLevel.COMPRESS_LEVEL_DEFAULT_COMPRESSION,
+  memLevel: zlib.MemLevel.MEM_LEVEL_DEFAULT,
+  strategy: zlib.CompressStrategy.COMPRESS_STRATEGY_DEFAULT_STRATEGY
+};
+
+try {
+    zlib.compressFile(inFile, outFile, options).then((data) => {
+        console.info('compressFile success');
+    }).catch((errData) => {
+        console.log(`errData is errCode:${errData.errCode}  message:${errData.message}`);
+    })
+} catch(errData) {
+    console.log(`errData is errCode:${errData.errCode}  message:${errData.message}`);
+}
+```
+
+
+
+## zlib.decompressFile<sup>9+</sup>
+
+decompressFile(inFile: string, outFile: string, options: Options, callback: AsyncCallback\<void>): void;
+
+解压文件，解压的结果通过callback返回，成功时返回null，失败时返回错误码。
+
+**系统能力：** SystemCapability.BundleManager.Zlib
+
+**参数：**
+
+| 参数名                  | 类型                | 必填 | 说明                                                         |
+| ----------------------- | ------------------- | ---- | ------------------------------------------------------------ |
+| inFile                  | string              | 是   | 指定的待解压缩文件的文件路径，对应的路径参考[FA模型](js-apis-Context.md)，[stage模型](js-apis-application-context.md) |
+| outFile                 | string              | 是   | 指定的解压后的目录路径                                       |
+| options                 | [Options](#options) | 是   | 解压的配置参数                                               |
+| AsyncCallback<**void**> | callback            | 否   | 解压是的回调函数                                             |
+
+**相关错误码**
+
+| 错误码ID | 错误信息                               |
+| -------- | -------------------------------------- |
+| 401      | wrong param type                       |
+| 900001   | The Input source file is invalid.      |
+| 900002   | The Input destination file is invalid. |
+
+**示例**
+
+```typescript
+// 【解压缩 例子1】
+// 代码中使用的路径需为应用的沙箱路径，如/data/storage/el2/base/haps,也可以通过context获取
+import zlib from '@ohos.zlib';
+let inFile = '/xx/xxx.zip';
+let outFile = '/xxx';
+let options = {
+  level: zlib.CompressLevel.COMPRESS_LEVEL_DEFAULT_COMPRESSION,
+  memLevel: zlib.MemLevel.MEM_LEVEL_DEFAULT,
+  strategy: zlib.CompressStrategy.COMPRESS_STRATEGY_DEFAULT_STRATEGY
+};
+
+try {
+    zlib.decompressFile(inFile, outFile, options, (errData) => {
+        if (errData !== null) {
+            console.log(`errData is errCode:${errData.errCode}  message:${errData.message}`);
+        }
+    })
+} catch(errData) {
+    console.log(`errData is errCode:${errData.errCode}  message:${errData.message}`);
+}
+```
+
+decompressFile(inFile: string, outFile: string, options: Options): Promise\<void>;
+
+解压文件，解压的结果通过promise返回，成功时返回null，失败时返回错误码。
+
+**系统能力：** SystemCapability.BundleManager.Zlib
+
+**参数：**
+
+| 参数名  | 类型                | 必填 | 说明                                                         |
+| ------- | ------------------- | ---- | ------------------------------------------------------------ |
+| inFile  | string              | 是   | 指定的待解压缩文件的文件路径，对应的路径参考[FA模型](js-apis-Context.md)，[stage模型](js-apis-application-context.md) |
+| outFile | string              | 是   | 指定的解压后的目录路径                                       |
+| options | [Options](#options) | 是   | 解压时的配置参数                                             |
+
+**相关错误码**
+
+| 错误码 | 错误信息                               |
+| ------ | -------------------------------------- |
+| 401    | wrong param type                       |
+| 900001 | The Input source file is invalid.      |
+| 900002 | The Input destination file is invalid. |
+
+```typescript
+// 【解压缩 例子2】
+// 代码中使用的路径需为应用的沙箱路径，如/data/storage/el2/base/haps,也可以通过context获取
+import zlib from '@ohos.zlib';
+let inFile = '/xx/xxx.zip';
+let outFile = '/xxx';
+let options = {
+  level: zlib.CompressLevel.COMPRESS_LEVEL_DEFAULT_COMPRESSION,
+  memLevel: zlib.MemLevel.MEM_LEVEL_DEFAULT,
+  strategy: zlib.CompressStrategy.COMPRESS_STRATEGY_DEFAULT_STRATEGY
+};
+
+try {
+    zlib.decompressFile(inFile, outFile, options).then((data) => {
+        console.info('decompressFile success');
+    }).catch((errData) => {
+        console.log(`errData is errCode:${errData.errCode}  message:${errData.message}`);
+    })
+} catch(errData) {
+    console.log(`errData is errCode:${errData.errCode}  message:${errData.message}`);
+}
 ```
 
 ## Options
@@ -129,16 +321,6 @@ zlib.unzipFile(inFile, outFile, options).then((data) => {
 | memLevel | MemLevel         | 否   | 参考[zip.MemLevel枚举定义](#zipmemlevel)                 |
 | strategy | CompressStrategy | 否   | 参考[zip.CompressStrategy枚举定义](#zipcompressstrategy) |
 
-## zip.MemLevel
-
-**系统能力：** SystemCapability.BundleManager.Zlib
-
-| 名称              | 值   | 说明                             |
-| ----------------- | ---- | -------------------------------- |
-| MEM_LEVEL_MIN     | 1    | zip 接口在压缩过程中最小使用内存 |
-| MEM_LEVEL_MAX     | 9    | zip 接口在压缩过程中最大使用内存 |
-| MEM_LEVEL_DEFAULT | 8    | zip 接口在压缩过程中默认使用内存 |
-
 ## zip.CompressLevel
 
 **系统能力：** SystemCapability.BundleManager.Zlib
@@ -149,6 +331,16 @@ zlib.unzipFile(inFile, outFile, options).then((data) => {
 | COMPRESS_LEVEL_BEST_SPEED          | 1    | 最佳速度压缩等级  |
 | COMPRESS_LEVEL_BEST_COMPRESSION    | 9    | 最佳压缩等级      |
 | COMPRESS_LEVEL_DEFAULT_COMPRESSION | -1   | 默认压缩等级      |
+
+## zip.MemLevel
+
+**系统能力：** SystemCapability.BundleManager.Zlib
+
+| 名称              | 值   | 说明                             |
+| ----------------- | ---- | -------------------------------- |
+| MEM_LEVEL_MIN     | 1    | zip 接口在压缩过程中最小使用内存 |
+| MEM_LEVEL_MAX     | 9    | zip 接口在压缩过程中最大使用内存 |
+| MEM_LEVEL_DEFAULT | 8    | zip 接口在压缩过程中默认使用内存 |
 
 ## zip.CompressStrategy
 

@@ -1,6 +1,7 @@
 # HiDebug
 
-> **NOTE**<br>
+> **NOTE**
+> 
 > The initial APIs of this module are supported since API version 8. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 You can run the hidebug command to obtain the memory usage of an application, including the static heap memory (native heap) and proportional set size (PSS) occupied by the application process. You can also export VM memory slices and collect VM CPU profiling data.
@@ -16,7 +17,7 @@ import hidebug from '@ohos.hidebug';
 
 getNativeHeapSize(): bigint
 
-Obtains the total size of the native heap memory.
+Obtains the total size of the heap memory of this application.
 
 This API is defined but not implemented in OpenHarmony 3.1 Release.
 
@@ -26,7 +27,7 @@ This API is defined but not implemented in OpenHarmony 3.1 Release.
 
 | Type  | Description                       |
 | ------ | --------------------------- |
-| bigint | Total size of the native heap memory, in kB.|
+| bigint | Total size of the heap memory of this application, in kB.|
 
 
 **Example**
@@ -39,7 +40,7 @@ This API is defined but not implemented in OpenHarmony 3.1 Release.
 
 getNativeHeapAllocatedSize(): bigint
 
-Obtains the size of the allocated native heap memory.
+Obtains the size of the allocated heap memory of this application.
 
 This API is defined but not implemented in OpenHarmony 3.1 Release.
 
@@ -49,7 +50,7 @@ This API is defined but not implemented in OpenHarmony 3.1 Release.
 **Return value**
 | Type  | Description                             |
 | ------ | --------------------------------- |
-| bigint | Size of the allocated native heap memory, in kB.|
+| bigint | Size of the allocated heap memory of this application, in kB.|
 
 
 **Example**
@@ -62,7 +63,7 @@ This API is defined but not implemented in OpenHarmony 3.1 Release.
 
 getNativeHeapFreeSize(): bigint
 
-Obtains the size of the free native heap memory.
+Obtains the size of the free heap memory of this application.
 
 This API is defined but not implemented in OpenHarmony 3.1 Release.
 
@@ -72,7 +73,7 @@ This API is defined but not implemented in OpenHarmony 3.1 Release.
 **Return value**
 | Type  | Description                           |
 | ------ | ------------------------------- |
-| bigint | Size of the free native heap memory, in kB.|
+| bigint | Size of the free heap memory of this application, in kB.|
 
 
 **Example**
@@ -85,7 +86,7 @@ This API is defined but not implemented in OpenHarmony 3.1 Release.
 
 getPss(): bigint
 
-Obtains the PSS of this process.
+Obtains the size of the used physical memory of this process.
 
 **System capability**: SystemCapability.HiviewDFX.HiProfiler.HiDebug
 
@@ -93,7 +94,7 @@ Obtains the PSS of this process.
 **Return value**
 | Type  | Description                     |
 | ------ | ------------------------- |
-| bigint | PSS of the process, in kB.|
+| bigint | Used physical memory of this process, in kB.|
 
 
 **Example**
@@ -114,7 +115,7 @@ Obtains the size of the shared dirty memory of this process.
 **Return value**
 | Type  | Description                      |
 | ------ | -------------------------- |
-| bigint | Size of the shared dirty memory of the process, in kB.|
+| bigint | Size of the shared dirty memory of this process, in kB.|
 
 
 **Example**
@@ -134,7 +135,7 @@ Obtains the size of the private dirty memory of this process.
 **Return value**
 | Type  | Description                      |
 | ------ | -------------------------- |
-| bigint | Size of the private dirty memory of the process, in kB.|
+| bigint | Size of the private dirty memory of this process, in kB.|
 
 
 **Example**
@@ -156,7 +157,7 @@ For example, if the CPU usage is **50%**, **0.5** is returned.
 **Return value**
 | Type  | Description                      |
 | ------ | -------------------------- |
-| number | CPU usage of the process.|
+| number | CPU usage of this process.|
 
 
 **Example**
@@ -220,7 +221,7 @@ Exports data from the specified heap file.
 
 | Name  | Type  | Mandatory | Description                                                        |
 | -------- | ------ | ---- | ------------------------------------------------------------ |
-| filename | string | Yes  | User-defined heap file name. The `filename.heapsnapshot` file is generated in the `files` directory of the app based on the specified `filename`.|
+| filename | string | Yes  | User-defined heap file name. The `filename.heapsnapshot` file is generated in the `files` directory of the application based on the specified `filename`.|
 
 **Example**
 

@@ -8,7 +8,7 @@ The **\<CheckboxGroup>** component is used to select or deselect all check boxes
 
 ## Child Components
 
-None
+Not supported
 
 ## APIs
 
@@ -17,8 +17,6 @@ CheckboxGroup(options?: { group?: string })
 Creates a check box group so that you can select or deselect all check boxes in the group at the same time. Check boxes and the check box group that share the group name belong to the same group.
 
 **Parameters**
-
-
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |

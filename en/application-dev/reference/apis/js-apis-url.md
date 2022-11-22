@@ -128,7 +128,7 @@ Obtains an ES6 iterator. Each item of the iterator is a JavaScript array, and th
 
 | Type| Description|
 | -------- | -------- |
-| IterableIterator&lt;[string,&nbsp;string]&gt; | ES6 iterator.|
+| IterableIterator&lt;[string, string]&gt; | ES6 iterator.|
 
 **Example**
 
@@ -192,7 +192,7 @@ Obtains the value of the first key-value pair based on the specified key.
 | Type| Description|
 | -------- | -------- |
 | string | Returns the value of the first key-value pair if obtained.|
-| null | Returns null if no value is obtained.|
+| null | Returns **null** if no value is obtained.|
 
 **Example**
 
@@ -333,7 +333,7 @@ Obtains an ES6 iterator. Each item of the iterator is a JavaScript array, and th
 
 | Type| Description|
 | -------- | -------- |
-| IterableIterator&lt;[string,&nbsp;string]&gt; | ES6 iterator.|
+| IterableIterator&lt;[string, string]&gt; | ES6 iterator.|
 
 **Example**
 
@@ -404,7 +404,7 @@ Creates a URL.
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | url | string | Yes| Input object.|
-| base | string&nbsp;\|&nbsp;URL | No| Input parameter, which can be any of the following:<br>- **string**: string<br>- **URL**: string or object|
+| base | string \| URL | No| Input parameter, which can be any of the following:<br>- **string**: string<br>- **URL**: string or object|
 
 **Example**
 
@@ -442,7 +442,7 @@ Converts the parsed URL into a string.
 
 ```js
 const url = new Url.URL('http://username:password@host:8080/directory/file?query=pppppp#qwer=da');
-url.toString()
+url.toString();
 ```
 
 
@@ -463,5 +463,5 @@ Converts the parsed URL into a JSON string.
 **Example**
 ```js
 const url = new Url.URL('http://username:password@host:8080/directory/file?query=pppppp#qwer=da');
-url.toJSON()
+url.toJSON();
 ```

@@ -1,18 +1,17 @@
-# &lt;picker&gt; Development
+# \<picker> Development
+
+The **\<picker>** component supports common, date, time, data and time, and multi-column text selectors. For details, see [picker](../reference/arkui-js/js-components-basic-picker.md).
 
 
-The **&lt;picker&gt;** component supports common, date, time, data and time, and multi-column text selectors. For details, see [picker](../reference/arkui-js/js-components-basic-picker.md).
+## Creating a \<picker> Component
 
-
-## Creating a &lt;picker&gt; Component
-
-Create a **&lt;picker&gt;** component in the .hml file under **pages/index**.
+Create a **\<picker>** component in the .hml file under **pages/index**.
 
 ```html
 <!-- xxx.hml -->
 <div class="container">
   <picker>    picker  </picker>
-<div>
+</div>
 ```
 
 ```css
@@ -32,7 +31,7 @@ Create a **&lt;picker&gt;** component in the .hml file under **pages/index**.
 
 ## Setting the Picker Type
 
-Set the **type** attribute of the **&lt;picker&gt;** component. For example, set it to **date**.
+Set the **type** attribute of the **\<picker>** component. For example, set it to **date**.
 
 ```html
 <!-- xxx.hml -->
@@ -71,14 +70,13 @@ export default {
 ![en-us_image_0000001267647893](figures/en-us_image_0000001267647893.gif)
 
 > **NOTE**
-> 
->When setting the value range of a common selector, you must use the data binding mode.
+>
+> When setting the value range of a common selector, you must use the data binding mode.
 
 
 ## Setting the Time Format
 
-Set the **hours** attribute to specify the time format used by the time selector. Available values include **12** and **24**, indicating the 12-hour format and 24-hour format, respectively.
-
+Set the **hours** attribute to specify the time format used by the time picker. Available values include **12** and **24**, indicating the 12-hour format and 24-hour format, respectively.
 
 ```html
 <!-- xxx.hml -->
@@ -115,7 +113,7 @@ Set the **hours** attribute to specify the time format used by the time selector
 
 ## Adding Response Events
 
-To confirm and cancel selection, add **change** and **cancel** events.
+Add the **change** event to confirm selection and the **cancel** event to cancel selection.
 
 ```html
 <!-- xxx.hml -->
@@ -169,7 +167,7 @@ export default {
 ## Example Scenario
 
 
-Implement a health check-in application by using the **&lt;picker&gt;** component.
+Implement a health check-in application by using the **\<picker>** component.
 
 
 ```html

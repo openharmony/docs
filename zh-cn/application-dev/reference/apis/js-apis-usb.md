@@ -1,22 +1,22 @@
 # USB管理
 
-本模块主要提供管理USB设备的相关功能，包括查询USB设备列表、批量数据传输、控制命令传输、权限控制等。
+本模块主要提供管理USB设备的相关功能，包括主设备上查询USB设备列表、批量数据传输、控制命令传输、权限控制等；从设备上端口管理、功能切换及查询等。
 
 >  **说明：**
 > 
-> 本模块首批接口从API version 8开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+> 本模块首批接口从API version 9开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
 ## 导入模块
 
 ```js
-import usb from "@ohos.usb";
+import usb from "@ohos.usbV9";
 ```
 
 ## usb.getDevices
 
 getDevices(): Array&lt;Readonly&lt;USBDevice&gt;&gt;
 
-获取USB设备列表。
+获取接入主设备的USB设备列表。如果没有设备接入，那么将会返回一个空的列表。
 
 **系统能力：**  SystemCapability.USB.USBManager
 
@@ -89,7 +89,7 @@ connectDevice(device: USBDevice): Readonly&lt;USBDevicePipe&gt;
 
 打开USB设备。
 
-需要调用[usb.getDevices](#usbgetdevices)获取设备信息以及device，再调用[usb.requestRight](#usbrequestright)获取设备请求权限。
+需要调用[usb.getDevices](#usbgetdevices)获取设备信息以及device，再调用[usb.requestRight](#usbrequestright)请求使用该设备的权限。
 
 **系统能力：**  SystemCapability.USB.USBManager
 
@@ -105,10 +105,26 @@ connectDevice(device: USBDevice): Readonly&lt;USBDevicePipe&gt;
 | -------- | -------- |
 | Readonly&lt;[USBDevicePipe](#usbdevicepipe)&gt; | 指定的传输通道对象。 |
 
+**错误码：**
+
+以下错误码的详细介绍参见[USB错误码](../errorcodes/errorcode-usb.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 14400001 |Permission denied. Need call requestRight to get permission. |
+
 **示例：**
 
 ```js
-let devicepipe= usb.connectDevice(device);
+let devicesList = usb.getDevices();
+if (devicesList.length == 0) {
+  console.log(`device list is empty`);
+  return;
+}
+
+let device = devicesList[0];
+usb.requestRight(device.name);
+let devicepipe = usb.connectDevice(device);
 console.log(`devicepipe = ${JSON.stringify(devicepipe)}`);
 ```
 
@@ -167,6 +183,70 @@ let devicesName="1-1";
 usb.requestRight(devicesName).then((ret) => {
   console.log(`requestRight = ${JSON.stringify(ret)}`);
 });
+```
+
+## usb.removeRight
+
+removeRight(deviceName: string): boolean;
+
+移除软件包访问设备的权限。
+
+**系统能力：**  SystemCapability.USB.USBManager
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| deviceName | string | 是 | 设备名称。 |
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| boolean | 返回权限移除结果。返回true表示权限移除成功；返回false则表示权限移除失败。 |
+
+**示例：**
+
+```js
+let devicesName="1-1";
+if (usb.removeRight(devicesName) {
+  console.log(`Succeed in removing right`);
+}
+```
+
+## usb.addRight
+
+addRight(bundleName: string, deviceName: string): boolean;
+
+添加软件包访问设备的权限。
+
+[requestRight](#usbrequestright)的会触发弹框请求用户授权；addRight不会触发弹框，而是直接添加软件包访问设备的权限。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：**  SystemCapability.USB.USBManager
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| deviceName | string | 是 | 设备名称。 |
+| bundleName | string | 是 | 软件包名称。|
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| boolean | 返回权限添加结果。返回true表示权限添加成功；返回false则表示权限添加失败。 |
+
+**示例：**
+
+```js
+let devicesName = "1-1";
+let bundleName = "com.example.hello";
+if (usb.addRight(bundleName, devicesName) {
+  console.log(`Succeed in adding right`);
+}
 ```
 
 ## usb.claimInterface
@@ -443,7 +523,7 @@ let ret = usb.closePipe(devicepipe);
 console.log(`closePipe = ${ret}`);
 ```
 
-## usb.usbFunctionsFromString<sup>9+</sup>
+## usb.usbFunctionsFromString
 
 usbFunctionsFromString(funcs: string): number
 
@@ -472,7 +552,7 @@ let funcs = "acm";
 let ret = usb.usbFunctionsFromString(funcs);
 ```
 
-## usb.usbFunctionsToString<sup>9+</sup>
+## usb.usbFunctionsToString
 
 usbFunctionsToString(funcs: FunctionType): string
 
@@ -486,7 +566,7 @@ usbFunctionsToString(funcs: FunctionType): string
 
 | 参数名 | 类型                           | 必填 | 说明              |
 | ------ | ------------------------------ | ---- | ----------------- |
-| funcs  | [FunctionType](#functiontype9) | 是   | USB功能数字掩码。 |
+| funcs  | [FunctionType](#functiontype) | 是   | USB功能数字掩码。 |
 
 **返回值：**
 
@@ -501,7 +581,7 @@ let funcs = ACM | ECM;
 let ret = usb.usbFunctionsToString(funcs);
 ```
 
-## usb.setCurrentFunctions<sup>9+</sup>
+## usb.setCurrentFunctions
 
 setCurrentFunctions(funcs: FunctionType): Promise\<boolean\>
 
@@ -515,7 +595,7 @@ setCurrentFunctions(funcs: FunctionType): Promise\<boolean\>
 
 | 参数名 | 类型                           | 必填 | 说明              |
 | ------ | ------------------------------ | ---- | ----------------- |
-| funcs  | [FunctionType](#functiontype9) | 是   | USB功能数字掩码。 |
+| funcs  | [FunctionType](#functiontype) | 是   | USB功能数字掩码。 |
 
 **返回值：**
 
@@ -530,7 +610,7 @@ let funcs = HDC;
 let ret = usb.setCurrentFunctions(funcs);
 ```
 
-## usb.getCurrentFunctions<sup>9+</sup>
+## usb.getCurrentFunctions
 
 getCurrentFunctions(): FunctionType
 
@@ -544,7 +624,7 @@ getCurrentFunctions(): FunctionType
 
 | 类型                           | 说明                              |
 | ------------------------------ | --------------------------------- |
-| [FunctionType](#functiontype9) | 当前的USB功能列表的数字组合掩码。 |
+| [FunctionType](#functiontype) | 当前的USB功能列表的数字组合掩码。 |
 
 **示例：**
 
@@ -552,7 +632,7 @@ getCurrentFunctions(): FunctionType
 let ret = usb.getCurrentFunctions();
 ```
 
-## usb.getPorts<sup>9+</sup>
+## usb.getPorts
 
 getPorts(): Array\<USBPort\>
 
@@ -566,7 +646,7 @@ getPorts(): Array\<USBPort\>
 
 | 类型                          | 说明                  |
 | ----------------------------- | --------------------- |
-| [Array\<USBPort\>](#usbport9) | USB端口描述信息列表。 |
+| [Array\<USBPort\>](#usbport) | USB端口描述信息列表。 |
 
 **示例：**
 
@@ -574,7 +654,7 @@ getPorts(): Array\<USBPort\>
 let ret = usb.getPorts();
 ```
 
-## usb.getSupportedModes<sup>9+</sup>
+## usb.getSupportedModes
 
 getSupportedModes(portId: number): PortModeType
 
@@ -594,7 +674,7 @@ getSupportedModes(portId: number): PortModeType
 
 | 类型                           | 说明                       |
 | ------------------------------ | -------------------------- |
-| [PortModeType](#portmodetype9) | 支持的模式列表的组合掩码。 |
+| [PortModeType](#portmodetype) | 支持的模式列表的组合掩码。 |
 
 **示例：**
 
@@ -602,7 +682,7 @@ getSupportedModes(portId: number): PortModeType
 let ret = usb.getSupportedModes(0);
 ```
 
-## usb.setPortRoles<sup>9+</sup>
+## usb.setPortRoles
 
 setPortRoles(portId: number, powerRole: PowerRoleType, dataRole: DataRoleType): Promise\<boolean\>
 
@@ -617,8 +697,8 @@ setPortRoles(portId: number, powerRole: PowerRoleType, dataRole: DataRoleType): 
 | 参数名    | 类型                             | 必填 | 说明             |
 | --------- | -------------------------------- | ---- | ---------------- |
 | portId    | number                           | 是   | 端口号。         |
-| powerRole | [PowerRoleType](#powerroletype9) | 是   | 充电的角色。     |
-| dataRole  | [DataRoleType](#dataroletype9)   | 是   | 数据传输的角色。 |
+| powerRole | [PowerRoleType](#powerroletype) | 是   | 充电的角色。     |
+| dataRole  | [DataRoleType](#dataroletype)   | 是   | 数据传输的角色。 |
 
 **返回值：**
 
@@ -729,7 +809,7 @@ USB设备消息传输通道，用于确定设备。
 | index   | number                                          | 请求参数value对应的索引值。 |
 | data    | Uint8Array                                      | 用于写入或读取的缓冲区。     |
 
-## USBPort<sup>9+</sup>
+## USBPort
 
 USB设备端口。
 
@@ -740,10 +820,10 @@ USB设备端口。
 | 名称           | 参数类型                         | 说明                                |
 | -------------- | -------------------------------- | ----------------------------------- |
 | id             | number                           | USB端口唯一标识。                   |
-| supportedModes | [PortModeType](#portmodetype9)   | USB端口所支持的模式的数字组合掩码。 |
-| status         | [USBPortStatus](#usbportstatus9) | USB端口角色。                       |
+| supportedModes | [PortModeType](#portmodetype)   | USB端口所支持的模式的数字组合掩码。 |
+| status         | [USBPortStatus](#usbportstatus) | USB端口角色。                       |
 
-## USBPortStatus<sup>9+</sup>
+## USBPortStatus
 
 USB设备端口角色信息。
 
@@ -793,7 +873,7 @@ USB设备端口角色信息。
 | USB_REQUEST_DIR_TO_DEVICE   | 0    | 写数据，主设备往从设备。 |
 | USB_REQUEST_DIR_FROM_DEVICE | 0x80 | 读数据，从设备往主设备。 |
 
-## FunctionType<sup>9+</sup>
+## FunctionType
 
 USB设备侧功能。
 
@@ -814,7 +894,7 @@ USB设备侧功能。
 | AUDIO_SOURCE | 128  | 暂不支持。 |
 | NCM          | 256  | 暂不支持。 |
 
-## PortModeType<sup>9+</sup>
+## PortModeType
 
 USB端口模式类型。
 
@@ -830,7 +910,7 @@ USB端口模式类型。
 | DRP       | 3    | 既可以做DFP(Host)，也可以做UFP(Device)，当前不支持。 |
 | NUM_MODES | 4    | 当前不支持。                                         |
 
-## PowerRoleType<sup>9+</sup>
+## PowerRoleType
 
 电源角色类型。
 
@@ -844,7 +924,7 @@ USB端口模式类型。
 | SOURCE | 1    | 外部供电。 |
 | SINK   | 2    | 内部供电。 |
 
-## DataRoleType<sup>9+</sup>
+## DataRoleType
 
 数据角色类型。
 

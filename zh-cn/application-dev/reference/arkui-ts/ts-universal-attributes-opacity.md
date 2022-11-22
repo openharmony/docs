@@ -12,7 +12,7 @@
 
 | 名称      | 参数类型                                     | 描述                                       |
 | ------- | ---------------------------------------- | ---------------------------------------- |
-| opacity | number&nbsp;\|&nbsp;[Resource](ts-types.md#resource) | 元素的不透明度，取值范围为0到1，1表示为不透明，0表示为完全透明。<br>默认值：1 |
+| opacity | number&nbsp;\|&nbsp;[Resource](ts-types.md#resource) | 元素的不透明度，取值范围为0到1，1表示不透明，0表示完全透明, 达到隐藏组件效果，但是在布局中占位。<br>**说明：**<br/>子组件可以继承父组件的此属性。默认值：1 |
 
 
 ## 示例
@@ -30,6 +30,10 @@ struct OpacityExample {
       Text().width('90%').height(50).opacity(0.7).backgroundColor(0xAFEEEE)
       Text('opacity(0.4)').fontSize(9).width('90%').fontColor(0xCCCCCC)
       Text().width('90%').height(50).opacity(0.4).backgroundColor(0xAFEEEE)
+      Text('opacity(0.1)').fontSize(9).width('90%').fontColor(0xCCCCCC)
+      Text().width('90%').height(50).opacity(0.1).backgroundColor(0xAFEEEE)
+      Text('opacity(0)').fontSize(9).width('90%').fontColor(0xCCCCCC)
+      Text().width('90%').height(50).opacity(0).backgroundColor(0xAFEEEE)
     }
     .width('100%')
     .padding({ top: 5 })
@@ -37,4 +41,4 @@ struct OpacityExample {
 }
 ```
 
-![zh-cn_image_0000001219662647](figures/zh-cn_image_0000001219662647.gif)
+![opacity.png](figures/opacity.png)

@@ -163,6 +163,22 @@ By parsing the <strong>*.cfg</strong> file, you can obtain **service** fields, a
    | int StartServiceByTimer(const char *serviceName, uint64_t timeout) | Starts a service by timer.| Return value: Returns **0** if the operation is successful; returns **-1** otherwise.<br> Arguments:<br> **serviceName**: service name.<br> timeout: timeout interval.|
    | int StopServiceTimer(const char *serviceName)  | Stops a service timer.| Return value: Returns **0** if the operation is successful; returns **-1** otherwise.<br> Arguments:<br> **serviceName**: service name.|
 
+-  DAC configuration for service control APIs
+
+   Go to **/base/startup/init/services/etc/group** and add the correct user ID to **servicectrl**. For example:
+
+   ```java
+   servicectrl:x:1050:root,shell,system,samgr,hdf_devmgr
+   ```
+
+-  SELinux configuration for service control APIs
+
+   Add the required SELinux permissions to the **init.te** file. For example, grant the system parameter write permission for services such as **init**, **samgr**, and **hdf_devmgr**.
+
+   ```java
+   allow { init samgr hdf_devmgr } servicectrl_param:parameter_service { set };
+   ```
+
 ### How to Develop
    The following describes how to add a system service named **MySystemApp**:
 

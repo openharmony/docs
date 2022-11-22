@@ -11,7 +11,7 @@ id为组件的唯一标识，在整个应用内唯一。本模块提供组件标
 
 | 名称   | 参数说明     | 描述                         |
 | -----| -------- | ----------------------------- |
-| id   | string   | 组件的唯一标识，唯一性由使用者保证。<br>默认值：''|
+| id   | string   | 组件的唯一标识，唯一性由使用者保证。<br>默认值：'' |
 
 
 ## 接口
@@ -77,7 +77,7 @@ sendTouchEvent(event: TouchObject): boolean
 
 | 参数      | 类型            | 必填  | 描述                                                         |
 | ----- | ----------- | ---- | ------------------------------------------------------------ |
-| event | TouchObject | 是    | 触发触摸事件的位置，event参数见[TouchEvent](ts-universal-events-touch.md#touchevent对象说明)中TouchObject的介绍。 |
+| event | [TouchObject](ts-universal-events-touch.md#touchobject对象说明) | 是    | 触发触摸事件的位置，event参数见[TouchEvent](ts-universal-events-touch.md#touchevent对象说明)中TouchObject的介绍。 |
 
 **返回值:**
 
@@ -95,7 +95,7 @@ sendKeyEvent(event: KeyEvent): boolean
 
 | 参数    | 类型     | 必填      | 描述                                                         |
 | ----- | -------- | ----  | ------------------------------------------------------------ |
-| event | KeyEvent | 是     | 按键事件，event参数见[KeyEvent](ts-universal-events-key.md#keyevent对象说明)介绍。 |
+| event | [KeyEvent](ts-universal-events-key.md#keyevent对象说明) | 是     | 按键事件，event参数见[KeyEvent](ts-universal-events-key.md#keyevent对象说明)介绍。 |
 
 **返回值:**
 
@@ -113,7 +113,7 @@ sendMouseEvent(event: MouseEvent): boolean
 
 | 参数     | 类型       | 必填       | 描述                                     |
 | ----- | ---------- | ----  | --------------------------------------- |
-| event | MouseEvent | 是    | 鼠标事件，event参数见[MouseEvent](ts-universal-mouse-key.md#mouseevent对象说明)介绍。 |
+| event | [MouseEvent](ts-universal-mouse-key.md#mouseevent对象说明) | 是    | 鼠标事件，event参数见[MouseEvent](ts-universal-mouse-key.md#mouseevent对象说明)介绍。 |
 
 **返回值：**
 
@@ -126,18 +126,19 @@ sendMouseEvent(event: MouseEvent): boolean
 ```ts
 // xxx.ets
 class Utils {
-  static rect_left;
-  static rect_top;
-  static rect_right;
-  static rect_bottom;
-  static rect_value;
+  static rect_left
+  static rect_top
+  static rect_right
+  static rect_bottom
+  static rect_value
 
+  //获取组件所占矩形区域坐标
   static getComponentRect(key) {
-    let strJson = getInspectorByKey(key);
-    let obj = JSON.parse(strJson);
-    console.info("[getInspectorByKey] current component obj is: " + JSON.stringify(obj));
+    let strJson = getInspectorByKey(key)
+    let obj = JSON.parse(strJson)
+    console.info("[getInspectorByKey] current component obj is: " + JSON.stringify(obj))
     let rectInfo = JSON.parse('[' + obj.$rect + ']')
-    console.info("[getInspectorByKey] rectInfo is: " + rectInfo);
+    console.info("[getInspectorByKey] rectInfo is: " + rectInfo)
     this.rect_left = JSON.parse('[' + rectInfo[0] + ']')[0]
     this.rect_top = JSON.parse('[' + rectInfo[0] + ']')[1]
     this.rect_right = JSON.parse('[' + rectInfo[1] + ']')[0]
@@ -171,7 +172,7 @@ struct IdExample {
         console.info(getInspectorTree())
         this.text = "Button 'click to start' is clicked"
         setTimeout(() => {
-          sendEventByKey("longClick", 11, "")
+          sendEventByKey("longClick", 11, "") // 向id为"longClick"的组件发送长按事件
         }, 2000)
       }).id('click')
 
@@ -183,18 +184,18 @@ struct IdExample {
         console.info('long clicked')
         this.text = "Button 'longClick' is longclicked"
         setTimeout(() => {
-          let rect = Utils.getComponentRect('onTouch')
+          let rect = Utils.getComponentRect('onTouch') // 获取id为"onTouch"组件的矩形区域坐标
           let touchPoint: TouchObject = {
             id: 1,
-            x: rect.left + (rect.right - rect.left) / 2,
-            y: rect.top + (rect.bottom - rect.top) / 2,
+            x: rect.left + (rect.right - rect.left) / 2, // 组件中心点x坐标
+            y: rect.top + (rect.bottom - rect.top) / 2, // 组件中心点y坐标
             type: TouchType.Down,
-            screenX: rect.left + (rect.right - rect.left) / 2,
-            screenY: rect.left + (rect.right - rect.left) / 2,
+            screenX: rect.left + (rect.right - rect.left) / 2, // 组件中心点x坐标
+            screenY: rect.left + (rect.right - rect.left) / 2, // 组件中心点y坐标
           }
-          sendTouchEvent(touchPoint)
+          sendTouchEvent(touchPoint) // 发送触摸事件
           touchPoint.type = TouchType.Up
-          sendTouchEvent(touchPoint)
+          sendTouchEvent(touchPoint) // 发送触摸事件
         }, 2000)
       })).id('longClick')
 
@@ -205,14 +206,14 @@ struct IdExample {
         console.info('onTouch is clicked')
         this.text = "Button 'onTouch' is clicked"
         setTimeout(() => {
-          let rect = Utils.getComponentRect('onMouse')
+          let rect = Utils.getComponentRect('onMouse') // 获取id为"onMouse"组件的矩形区域坐标
           let mouseEvent: MouseEvent = {
             button: MouseButton.Left,
             action: MouseAction.Press,
-            x: rect.left + (rect.right - rect.left) / 2,
-            y: rect.top + (rect.bottom - rect.top) / 2,
-            screenX: rect.left + (rect.right - rect.left) / 2,
-            screenY: rect.top + (rect.bottom - rect.top) / 2,
+            x: rect.left + (rect.right - rect.left) / 2, // 组件中心点x坐标
+            y: rect.top + (rect.bottom - rect.top) / 2, // 组件中心点y坐标
+            screenX: rect.left + (rect.right - rect.left) / 2, // 组件中心点x坐标
+            screenY: rect.top + (rect.bottom - rect.top) / 2, // 组件中心点y坐标
             timestamp: 1,
             target: {
               area: {
@@ -228,9 +229,13 @@ struct IdExample {
                 }
               }
             },
-            source: SourceType.Mouse
+            source: SourceType.Mouse,
+            pressure: 1,
+            tiltX: 1,
+            tiltY: 1,
+            sourceTool: SourceTool.Unknown
           }
-          sendMouseEvent(mouseEvent)
+          sendMouseEvent(mouseEvent) // 发送鼠标事件
         }, 2000)
       }).id('onTouch')
 
@@ -250,7 +255,7 @@ struct IdExample {
             metaKey: 0,
             timestamp: 0
           }
-          sendKeyEvent(keyEvent)
+          sendKeyEvent(keyEvent) // 发送按键事件
         }, 2000)
       }).id('onMouse')
 

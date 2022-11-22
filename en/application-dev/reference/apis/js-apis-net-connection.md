@@ -16,7 +16,7 @@ import connection from '@ohos.net.connection'
 
 getDefaultNet(callback: AsyncCallback\<NetHandle>): void
 
-Obtains the default active data network. This API uses an asynchronous callback to return the result.
+Obtains the default active data network. This API uses an asynchronous callback to return the result. You can use [getNetCapabilities](#connectiongetnetcapabilities) to obtain information such as the network type and capabilities.
 
 **Required permission**: ohos.permission.GET_NETWORK_INFO
 
@@ -41,13 +41,13 @@ connection.getDefaultNet(function (error, netHandle) {
 
 getDefaultNet(): Promise\<NetHandle>
 
-Obtains the default active data network. This API uses a promise to return the result.
+Obtains the default active data network. This API uses a promise to return the result. You can use [getNetCapabilities](#connectiongetnetcapabilities) to obtain information such as the network type and capabilities.
 
 **Required permission**: ohos.permission.GET_NETWORK_INFO
 
 **System capability**: SystemCapability.Communication.NetManager.Core
 
-**Return Value**
+**Return value**
 
 | Type                             | Description                                 |
 | --------------------------------- | ------------------------------------- |
@@ -61,11 +61,36 @@ connection.getDefaultNet().then(function (netHandle) {
 })
 ```
 
+## connection.getDefaultNetSync
+
+getDefaultNetSync(): NetHandle;
+
+Obtains the default active data network in synchronous mode. You can use [getNetCapabilities](#connectiongetnetcapabilities) to obtain information such as the network type and capabilities.
+
+**Required permission**: ohos.permission.GET_NETWORK_INFO
+
+**System capability**: SystemCapability.Communication.NetManager.Core
+
+**Return value**
+
+| Type     | Description                              |
+| --------- | ---------------------------------- |
+| NetHandle | Handle of the default active data network.|
+
+**Example**
+
+```js
+let netHandle = connection.getDefaultNetSync();
+```
+
+
 ## connection.hasDefaultNet
 
 hasDefaultNet(callback: AsyncCallback\<boolean>): void
 
-Checks whether the default data network is activated. This API uses an asynchronous callback to return the result.
+Checks whether the default data network is activated. This API uses an asynchronous callback to return the result. You can use [getDefaultNet](#connectiongetdefaultnet) to obtain the default data network, if any.
+
+**Required permission**: ohos.permission.GET_NETWORK_INFO
 
 **System capability**: SystemCapability.Communication.NetManager.Core
 
@@ -88,11 +113,13 @@ connection.hasDefaultNet(function (error, has) {
 
 hasDefaultNet(): Promise\<boolean>
 
-Checks whether the default data network is activated. This API uses a promise to return the result.
+Checks whether the default data network is activated. This API uses a promise to return the result. You can use [getDefaultNet](#connectiongetdefaultnet) to obtain the default data network, if any.
+
+**Required permission**: ohos.permission.GET_NETWORK_INFO
 
 **System capability**: SystemCapability.Communication.NetManager.Core
 
-**Return Value**
+**Return value**
 
 | Type             | Description                                           |
 | ----------------- | ----------------------------------------------- |
@@ -117,6 +144,7 @@ Obtains the list of all active data networks. This API uses an asynchronous call
 **System capability**: SystemCapability.Communication.NetManager.Core
 
 **Parameters**
+
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | callback | AsyncCallback&lt;Array&lt;[NetHandle](#nethandle)&gt;&gt; | Yes| Callback used to return the result.|
@@ -141,7 +169,8 @@ Obtains the list of all active data networks. This API uses a promise to return 
 
 **System capability**: SystemCapability.Communication.NetManager.Core
 
-**Return Value**
+**Return value**
+
 | Type| Description|
 | -------- | -------- |
 | Promise&lt;Array&lt;[NetHandle](#nethandle)&gt;&gt; | Promise used to return the result.|
@@ -158,7 +187,7 @@ connection.getAllNets().then(function (nets) {
 
 getConnectionProperties(netHandle: NetHandle, callback: AsyncCallback\<ConnectionProperties>): void
 
-Obtains connection properties of the network corresponding to given network handle. This API uses an asynchronous callback to return the result.
+Obtains connection properties of the network corresponding to the given network handle. This API uses an asynchronous callback to return the result.
 
 **Required permission**: ohos.permission.GET_NETWORK_INFO
 
@@ -198,7 +227,7 @@ Obtains connection properties of the network corresponding to **netHandle**. Thi
 | --------- | ----------------------- | ---- | ---------------- |
 | netHandle | [NetHandle](#nethandle) | Yes  | Handle of the data network.|
 
-**Return Value**
+**Return value**
 
 | Type                                                   | Description                             |
 | ------------------------------------------------------- | --------------------------------- |
@@ -258,7 +287,7 @@ Obtains capability information of the network corresponding to **netHandle**. Th
 | --------- | ----------------------- | ---- | ---------------- |
 | netHandle | [NetHandle](#nethandle) | Yes  | Handle of the data network.|
 
-**Return Value**
+**Return value**
 
 | Type                                         | Description                             |
 | --------------------------------------------- | --------------------------------- |
@@ -280,11 +309,14 @@ reportNetConnected(netHandle: NetHandle, callback: AsyncCallback&lt;void&gt;): v
 
 Reports connection of the data network. This API uses an asynchronous callback to return the result.
 
+If this API is called, the application considers that the network connection state (**ohos.net.connection.NetCap.NET_CAPABILITY_VAILDATED**) is inconsistent with that in the network management module.
+
 **Permission required**: ohos.permission.GET_NETWORK_INFO and ohos.permission.INTERNET
 
 **System capability**: SystemCapability.Communication.NetManager.Core
 
 **Parameters**
+
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | netHandle | [NetHandle](#nethandle) | Yes| Handle of the data network. For details, see [NetHandle](#nethandle).|
@@ -307,19 +339,23 @@ reportNetConnected(netHandle: NetHandle): Promise&lt;void&gt;
 
 Reports connection of the data network. This API uses a promise to return the result.
 
+If this API is called, the application considers that the network connection state (**ohos.net.connection.NetCap.NET_CAPABILITY_VAILDATED**) is inconsistent with that in the network management module.
+
 **Permission required**: ohos.permission.GET_NETWORK_INFO and ohos.permission.INTERNET
 
 **System capability**: SystemCapability.Communication.NetManager.Core
 
 **Parameters**
+
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | netHandle | [NetHandle](#nethandle) | Yes| Handle of the data network. For details, see [NetHandle](#nethandle).|
 
-**Return Value**
+**Return value**
+
 | Type| Description|
 | -------- | -------- |
-| Promise&lt;void&gt; | Promise used to return the result.|
+| Promise&lt;void&gt; | Promise that returns no value.|
 
 **Example**
 
@@ -338,11 +374,14 @@ reportNetDisconnected(netHandle: NetHandle, callback: AsyncCallback&lt;void&gt;)
 
 Reports disconnection of the data network. This API uses an asynchronous callback to return the result.
 
+If this API is called, the application considers that the network connection state (**ohos.net.connection.NetCap.NET_CAPABILITY_VAILDATED**) is inconsistent with that in the network management module.
+
 **Permission required**: ohos.permission.GET_NETWORK_INFO and ohos.permission.INTERNET
 
 **System capability**: SystemCapability.Communication.NetManager.Core
 
 **Parameters**
+
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | netHandle | [NetHandle](#nethandle) | Yes| Handle of the data network. For details, see [NetHandle](#nethandle).|
@@ -365,19 +404,23 @@ reportNetDisconnected(netHandle: NetHandle): Promise&lt;void&gt;
 
 Reports disconnection of the data network. This API uses a promise to return the result.
 
+If this API is called, the application considers that the network connection state (**ohos.net.connection.NetCap.NET_CAPABILITY_VAILDATED**) is inconsistent with that in the network management module.
+
 **Permission required**: ohos.permission.GET_NETWORK_INFO and ohos.permission.INTERNET
 
 **System capability**: SystemCapability.Communication.NetManager.Core
 
 **Parameters**
+
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | netHandle | [NetHandle](#nethandle) | Yes| Handle of the data network. For details, see [NetHandle](#nethandle).|
 
-**Return Value**
+**Return value**
+
 | Type| Description|
 | -------- | -------- |
-| Promise&lt;void&gt; | Promise used to return the result.|
+| Promise&lt;void&gt; | Promise that returns no value.|
 
 **Example**
 
@@ -432,7 +475,7 @@ Resolves the host name by using the default network to obtain all IP addresses. 
 | ------ | ------ | ---- | ------------------ |
 | host   | string | Yes  | Host name to be resolved.|
 
-**Return Value**
+**Return value**
 
 | Type                                       | Description                         |
 | ------------------------------------------- | ----------------------------- |
@@ -486,7 +529,7 @@ This is a system API.
 
 | Type                                       | Description                         |
 | ------------------------------------------- | ----------------------------- |
-| Promise\<void> | Promise used to return the result.|
+| Promise\<void> | Promise that returns no value.|
 
 **Example**
 
@@ -535,7 +578,7 @@ This is a system API.
 
 | Type                                       | Description                         |
 | ------------------------------------------- | ----------------------------- |
-| Promise\<void> | Promise used to return the result.|
+| Promise\<void> | Promise that returns no value.|
 
 **Example**
 
@@ -561,7 +604,7 @@ Obtains the handle of the network specified by **netSpecifier**.
 | netSpecifier | [NetSpecifier](#netspecifier) | No  | Network specifier. If this parameter is not set, the default network is used.                  |
 | timeout      | number                        | No  | Timeout interval for obtaining the network specified by **netSpecifier**. This parameter is valid only when **netSpecifier** is set.|
 
-**Return Value**
+**Return value**
 
 | Type                           | Description                |
 | ------------------------------- | -------------------- |
@@ -784,6 +827,108 @@ Before invoking NetHandle APIs, call **getNetHandle** to obtain a **NetHandle** 
 | ------ | ------ | ------------------------- |
 | netId  | number | Network ID. The value must be greater than or equal to 100.|
 
+### bindSocket
+
+bindSocket(socketParam: TCPSocket \| UDPSocket, callback: AsyncCallback\<void>): void;
+
+Binds a **TCPSocket** or **UDPSocket** object to the data network. This API uses an asynchronous callback to return the result.
+
+**Required permission**: ohos.permission.GET_NETWORK_INFO
+
+**System capability**: SystemCapability.Communication.NetManager.Core
+
+**Parameters**
+
+| Name     | Type                    | Mandatory| Description                           |
+| ----------- | ------------------------ | ---- | -------------------------------|
+| socketParam | [TCPSocket](js-apis-socket.md#tcpsocket) \| [UDPSocket](js-apis-socket.md#udpsocket) | Yes| **TCPSocket** or **UDPSocket** object.|
+| callback    | AsyncCallback\<void>      | Yes  | Callback used to return the result.                       |
+
+**Example**
+
+```js
+connection.getDefaultNet().then(function (netHandle) {
+    var tcp = socket.constructTCPSocketInstance();
+    var udp = socket.constructUDPSocketInstance();
+    let socketType = "xxxx";
+    if (socketType == "TCPSocket") {
+        tcp.bind({
+            address: "xxxx", port: xxxx, family: xxxx
+        }, err => {
+            netHandle.bindSocket(tcp, function (error, data) {
+            console.log(JSON.stringify(error))
+            console.log(JSON.stringify(data))
+        })
+    } else {
+        udp.on('message', callback);
+        udp.bind({
+            address: "xxxx", port: xxxx, family: xxxx
+        }, err => {
+            udp.on('message', (data) => {
+            console.log(JSON.stringify(data))
+            });
+            netHandle.bindSocket(udp, function (error, data) {
+            console.log(JSON.stringify(error))
+            console.log(JSON.stringify(data))
+            });
+        })
+     }
+}
+```
+
+### bindSocket
+
+bindSocket(socketParam: TCPSocket \| UDPSocket): Promise\<void>;
+
+Binds a **TCPSocket** or **UDPSocket** object to the data network. This API uses a promise to return the result.
+
+**Required permission**: ohos.permission.GET_NETWORK_INFO
+
+**System capability**: SystemCapability.Communication.NetManager.Core
+
+**Parameters**
+
+| Name         | Type                 | Mandatory | Description                          |
+| --------------- | --------------------- | ---- | ------------------------------ |
+| socketParam     | [TCPSocket](js-apis-socket.md#tcpsocket) \| [UDPSocket](js-apis-socket.md#udpsocket) | Yes  | **TCPSocket** or **UDPSocket** object.|
+
+**Return value**
+
+| Type          | Description                  |
+| -------------- | ---------------------- |
+| Promise\<void> | Promise that returns no value.|
+
+**Example**
+
+```js
+connection.getDefaultNet().then(function (netHandle) {
+    var tcp = socket.constructTCPSocketInstance();
+    var udp = socket.constructUDPSocketInstance();
+    let socketType = "xxxx";
+    if(socketType == "TCPSocket") {
+        tcp.bind({
+            address: "xxxx", port: xxxx, family: xxxx
+        }, err => {
+            netHandle.bindSocket(tcp).then(err, data) {
+            console.log(JSON.stringify(data))
+        })
+    } else {
+        udp.on('message', callback);
+        udp.bind({
+            address: "xxxx", port: xxxx, family: xxxx
+        }, err => {
+            udp.on('message', (data) => {
+            console.log(JSON.stringify(data))
+            });
+            netHandle.bindSocket(tcp).then(err, data) {
+            console.log(JSON.stringify(data))
+            });
+        })
+     }
+}
+```
+
+
 ### getAddressesByName
 
 getAddressesByName(host: string, callback: AsyncCallback\<Array\<NetAddress>>): void
@@ -829,7 +974,7 @@ Resolves the host name by using the corresponding network to obtain all IP addre
 | ------ | ------ | ---- | ------------------ |
 | host   | string | Yes  | Host name to be resolved.|
 
-**Return Value**
+**Return value**
 
 | Type                                       | Description                         |
 | ------------------------------------------- | ----------------------------- |
@@ -891,7 +1036,7 @@ Resolves the host name by using the corresponding network to obtain the first IP
 | ------ | ------ | ---- | ------------------ |
 | host   | string | Yes  | Host name to be resolved.|
 
-**Return Value**
+**Return value**
 
 | Type                               | Description                           |
 | ----------------------------------- | ------------------------------- |

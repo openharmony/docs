@@ -16,31 +16,32 @@
 
 Polygon(value?: {width?: string | number, height?: string | number})
 
-- 参数
-  | 参数名 | 参数类型 | 必填 | 默认值 | 参数描述 | 
-  | -------- | -------- | -------- | -------- | -------- |
-  | width | string \| number | 否 | 0 | 宽度。 | 
-  | height | string \| number | 否 | 0 | 高度。 | 
+**参数：**
+
+| 参数名 | 参数类型 | 必填 | 默认值 | 参数描述 |
+| -------- | -------- | -------- | -------- | -------- |
+| width | string \| number | 否 | 0 | 宽度。 |
+| height | string \| number | 否 | 0 | 高度。 |
 
 
 ## 属性
 
 除支持[通用属性](ts-universal-attributes-size.md)外，还支持以下属性：
 
-| 参数名称 | 参数类型 | 默认值 | 必填 | 参数描述 | 
-| -------- | -------- | -------- | -------- | -------- |
-| points | Array&lt;Point&gt; | [] | 否 | 多边形的顶点坐标列表。 |
-| fill | [ResourceColor](ts-types.md) | Color.Black | 否 | 设置填充区域颜色。 |
-| fillOpacity | number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[Resource](ts-types.md#resource类型) | 1 | 否 | 设置填充区域透明度。 |
-| stroke | [ResourceColor](ts-types.md) | Color.Black | 否 | 设置线条颜色。 |
-| strokeDashArray | Array&lt;Length&gt; | [] | 否 | 设置线条间隙。 |
-| strokeDashOffset | number&nbsp;\|&nbsp;string | 0 | 否 | 线条绘制起点的偏移量。 |
-| strokeLineCap | [LineCapStyle](ts-appendix-enums.md#linecapstyle) | LineCapStyle.Butt | 否 | 设置线条端点绘制样式。 |
-| strokeLineJoin | [LineJoinStyle](ts-appendix-enums.md#linejoinstyle) | LineJoinStyle.Miter | 否 | 设置线条拐角绘制样式。 |
-| strokeMiterLimit | number&nbsp;\|&nbsp;string | 4 | 否 | 设置锐角绘制成斜角的极限值。 |
-| strokeOpacity | number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[Resource](ts-types.md#resource类型) | 1 | 否 | 设置线条透明度。 |
-| strokeWidth | Length | 1 | 否 | 设置线条宽度。 |
-| antiAlias | boolean | true | 否 | 是否开启抗锯齿效果。 |
+| 名称 | 类型 | 默认值 | 描述 |
+| -------- | -------- | -------- | -------- |
+| points | Array&lt;Point&gt; | [] | 多边形的顶点坐标列表。 |
+| fill | [ResourceColor](ts-types.md) | Color.Black | 设置填充区域颜色。 |
+| fillOpacity | number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[Resource](ts-types.md#resource类型) | 1 | 设置填充区域透明度。 |
+| stroke | [ResourceColor](ts-types.md) | - | 设置边框颜色，不设置时，默认没有边框线条。 |
+| strokeDashArray | Array&lt;Length&gt; | [] | 设置边框间隙。 |
+| strokeDashOffset | number&nbsp;\|&nbsp;string | 0 | 边框绘制起点的偏移量。 |
+| strokeLineCap | [LineCapStyle](ts-appendix-enums.md#linecapstyle) | LineCapStyle.Butt | 设置边框端点绘制样式。 |
+| strokeLineJoin | [LineJoinStyle](ts-appendix-enums.md#linejoinstyle) | LineJoinStyle.Miter | 设置边框拐角绘制样式。 |
+| strokeMiterLimit | number&nbsp;\|&nbsp;string | 4 | 设置锐角绘制成斜角的极限值。 |
+| strokeOpacity | number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[Resource](ts-types.md#resource类型) | 1 | 设置边框透明度。 |
+| strokeWidth | Length | 1 | 设置边框宽度。 |
+| antiAlias | boolean | true | 是否开启抗锯齿效果。 |
 
 ## Point
 
@@ -59,18 +60,25 @@ Polygon(value?: {width?: string | number, height?: string | number})
 @Component
 struct PolygonExample {
   build() {
-    Column({ space: 5 }) {
-      Flex({ justifyContent: FlexAlign.SpaceAround }) {
-        // 在 100 * 100 的矩形框中绘制一个三角形，起点(0, 0)，经过(50, 100)，终点(100, 0)
-        Polygon({ width: 100, height: 100 }).points([[0, 0], [50, 100], [100, 0]])
-        // 在 100 * 100 的矩形框中绘制一个四边形，起点(0, 0)，经过(0, 100)和(100, 100)，终点(100, 0)
-        Polygon().width(100).height(100).points([[0, 0], [0, 100], [100, 100], [100, 0]])
-        // 在 100 * 100 的矩形框中绘制一个五边形，起点(50, 0)，依次经过(0, 50)、(20, 100)和(80, 100)，终点(100, 50)
-        Polygon().width(100).height(100).points([[50, 0], [0, 50], [20, 100], [80, 100], [100, 50]])
-      }.width('100%')
-    }.margin({ top: 5 })
+    Column({ space: 10 }) {
+      // 在 100 * 100 的矩形框中绘制一个三角形，起点(0, 0)，经过(50, 100)，终点(100, 0)
+      Polygon({ width: 100, height: 100 })
+        .points([[0, 0], [50, 100], [100, 0]])
+        .fill(Color.Green)
+      // 在 100 * 100 的矩形框中绘制一个四边形，起点(0, 0)，经过(0, 100)和(100, 100)，终点(100, 0)
+      Polygon().width(100).height(100)
+        .points([[0, 0], [0, 100], [100, 100], [100, 0]])
+        .fillOpacity(0)
+        .strokeWidth(5)
+        .stroke(Color.Blue)
+      // 在 100 * 100 的矩形框中绘制一个五边形，起点(50, 0)，依次经过(0, 50)、(20, 100)和(80, 100)，终点(100, 50)
+      Polygon().width(100).height(100)
+        .points([[50, 0], [0, 50], [20, 100], [80, 100], [100, 50]])
+        .fill(Color.Red)
+        .fillOpacity(0.6)
+    }.width('100%').margin({ top: 10 })
   }
 }
 ```
 
-![zh-cn_image_0000001174582856](figures/zh-cn_image_0000001174582856.gif)
+![zh-cn_image_0000001174582856](figures/zh-cn_image_0000001174582856.png)

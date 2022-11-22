@@ -37,16 +37,18 @@ constructor()
   ```js
   import userIAM_faceAuth from '@ohos.userIAM.faceAuth';
 
-  let faceAuthManager = new userIAM_faceAuth.FaceAuthManager()
+  let faceAuthManager = new userIAM_faceAuth.FaceAuthManager();
   ```
 
 ### setSurfaceId
 
-setSurfaceId(surfaceId: string): ResultCode;
+setSurfaceId(surfaceId: string): void;
 
-设置录入流程中人脸预览界面 [XComponent](../arkui-ts/ts-basic-components-xcomponent.md#getxcomponentsurfaceid) 持有 Surface 的 ID, 返回值表示操作是否成功。
+设置录入流程中人脸预览界面 [XComponent](../arkui-ts/ts-basic-components-xcomponent.md#getxcomponentsurfaceid) 持有 Surface 的 ID。
 
 **系统能力：** SystemCapability.UserIAM.UserAuth.FaceAuth
+
+**需要权限：** ohos.permission.MANAGE_USER_IDM
 
 **参数：**
 
@@ -54,28 +56,17 @@ setSurfaceId(surfaceId: string): ResultCode;
 | -------------- | ---------------------------------- | ---- | -------------------------- |
 | surfaceId       | string     | 是   | [XComponent](../arkui-ts/ts-basic-components-xcomponent.md#getxcomponentsurfaceid) 持有 Surface 的 ID。 |
 
-**返回值：**
-
-| 类型       | 说明                                                         |
-| ---------- | ------------------------------------------------------------ |
-| [ResultCode](#resultcode) | 表示操作是否成功 |
-
 **示例：**
 
   ```js
-  import userIAM_faceAuth from '@ohos.userIAM.faceAuth';
+  import faceAuth from '@ohos.userIAM.faceAuth';
 
-  let faceAuthManager = new userIAM_faceAuth.FaceAuthManager()
-  faceAuthManager.setSurfaceId("0");
+  let surfaceId = "123456";
+  let manager = new faceAuth.FaceAuthManager();
+  try {
+      manager.setSurfaceId(surfaceId);
+      console.info("set surface id success");
+  } catch (e) {
+      console.error("set surface id failed, error = " + e);
+  }
   ```
-
-## ResultCode
-
- 表示执行结果的枚举。
-
- **系统能力：** SystemCapability.UserIAM.UserAuth.FaceAuth
-
-| 名称                    | 默认值 | 描述                 |
-| ----------------------- | ------ | -------------------- |
-| SUCCESS                 | 0      | 执行成功。           |
-| FAIL                    | 1      | 执行失败。           |

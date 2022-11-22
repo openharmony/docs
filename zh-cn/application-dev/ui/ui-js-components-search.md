@@ -62,7 +62,7 @@
 
 ## 添加样式
 
-通过color、placeholder和caret-color样式来设置搜索框的文本颜色、提示文本颜色和光标颜色。
+通过color、placeholder-color和caret-color样式来设置搜索框的文本颜色、提示文本颜色和光标颜色。
 
 
 ```html
@@ -84,7 +84,9 @@
   background-color: #F1F3F5;
 }
 search{
-  color: black;  placeholder-color: black;  caret-color: red;
+  color: black;
+  placeholder-color: black;
+  caret-color: red;
 }
 ```
 

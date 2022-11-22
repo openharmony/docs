@@ -11,7 +11,7 @@ IPC/RPC的主要工作是让运行在不同进程的Proxy和Stub互相通信，�
 
 | 类/接口 | 方法 | 功能说明 | 
 | -------- | -------- | -------- |
-| IRemoteBroker | sptr&lt;IRemoteObject&gt; AsObject() | 返回通信对象。派生类需要实现，Stub端返回RemoteObject对象本身，Proxy端返回代理对象。 | 
+| [IRemoteBroker](../reference/apis/js-apis-rpc.md#iremotebroker) | sptr&lt;IRemoteObject&gt; AsObject() | 返回通信对象。派生类需要实现，Stub端返回RemoteObject对象本身，Proxy端返回代理对象。 | 
 | IRemoteStub | virtual int OnRemoteRequest(uint32_t code, MessageParcel &amp;data, MessageParcel &amp;reply, MessageOption &amp;option) | 请求处理方法，派生类需要重写该方法用来处理Proxy的请求并返回结果。 | 
 | IRemoteProxy |  | 业务Proxy类，派生自IRemoteProxy类。 | 
 
@@ -27,10 +27,10 @@ IPC/RPC的主要工作是让运行在不同进程的Proxy和Stub互相通信，�
    ```
    class ITestAbility : public IRemoteBroker {
    public:
-   // DECLARE_INTERFACE_DESCRIPTOR是必需的，入参需使用std::u16string；
-   DECLARE_INTERFACE_DESCRIPTOR(u"test.ITestAbility");
-   int TRANS_ID_PING_ABILITY = 1; // 定义消息码
-   virtual int TestPingAbility(const std::u16string &dummy) = 0; // 定义业务函数
+       // DECLARE_INTERFACE_DESCRIPTOR是必需的，入参需使用std::u16string；
+       DECLARE_INTERFACE_DESCRIPTOR("test.ITestAbility");
+       int TRANS_ID_PING_ABILITY = 1; // 定义消息码
+       virtual int TestPingAbility(const std::u16string &dummy) = 0; // 定义业务函数
    };
    ```
 

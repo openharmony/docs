@@ -2,7 +2,7 @@
 
 The **\<Tabs>** component is a container component that allows users to switch between content views through tabs. Each tab page corresponds to a content view.
 
->  **NOTE**<br>
+>  **NOTE**
 >
 >  This component is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
@@ -54,7 +54,7 @@ In addition to the [universal attributes](ts-universal-attributes-size.md), the 
 
 ## Events
 
-In addition to the universal events (ts-universal-events-click.md), the following events are supported.
+In addition to the [universal events](ts-universal-events-click.md), the following events are supported.
 
 | Name| Description|
 | -------- | -------- |

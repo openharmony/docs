@@ -4,20 +4,3136 @@
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
 > 本模块首批接口从API version 7开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+> 本模块从API version 9开始支持异常返回功能。
 
 
 ## 导入模块
-
 
 ```
 import rpc from '@ohos.rpc';
 ```
 
 
-## MessageParcel
+## MessageSequence<sup>9+</sup>
+
+  在RPC过程中，发送方可以使用MessageSequence提供的写方法，将待发送的数据以特定格式写入该对象。接收方可以使用MessageSequence提供的读方法从该对象中读取特定格式的数据。数据格式包括：基础类型及数组、IPC对象、接口描述符和自定义序列化对象。
+
+### create
+
+  create(): MessageSequence
+
+  静态方法，创建MessageSequence对象。
+
+**系统能力**：SystemCapability.Communication.IPC.Core
+
+**返回值：**
+
+  | 类型            | 说明                            |
+  | --------------- | ------------------------------- |
+  | MessageSequence | 返回创建的MessageSequence对象。 |
+
+**示例：**
+
+  ```
+  let data = rpc.MessageSequence.create();
+  console.log("RpcClient: data is " + data);
+  ```
+
+### reclaim
+
+reclaim(): void
+
+释放不再使用的MessageSequence对象。
+
+**系统能力**：SystemCapability.Communication.IPC.Core
+
+**示例：**
+
+  ```
+  let reply = rpc.MessageSequence.create();
+  reply.reclaim();
+  ```
+
+### writeRemoteObject
+
+writeRemoteObject(object: [IRemoteObject](#iremoteobject)): void
+
+序列化远程对象并将其写入MessageSequence对象。
+
+**系统能力**：SystemCapability.Communication.IPC.Core
+
+**参数：**
+
+  | 参数名 | 类型                            | 必填 | 说明                                      |
+  | ------ | ------------------------------- | ---- | ----------------------------------------- |
+  | object | [IRemoteObject](#iremoteobject) | 是   | 要序列化并写入MessageSequence的远程对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.rpc错误码](../errorcodes/errorcode-rpc.md)
+
+  | 错误码ID | 错误信息 |
+  | -------- | ------- |
+  | 1900008 | proxy or remote object is invalid |
+  | 1900009 | write data to message sequence failed |
+
+**示例：**
+
+  ```
+  class MyDeathRecipient {
+      onRemoteDied() {
+          console.log("server died");
+      }
+  }
+  class TestRemoteObject extends rpc.RemoteObject {
+      constructor(descriptor) {
+          super(descriptor);
+      }
+      try {
+          registerDeathRecipient(recipient: MyDeathRecipient, flags: number);
+          unregisterDeathRecipient(recipient: MyDeathRecipient, flags: number);
+      } catch(error) {
+          console.info("Rpc register deathRecipient fail, errorCode " + error.code);
+          console.info("Rpc register deathRecipient fail, errorMessage " + error.message);
+      }
+      isObjectDead(): boolean {
+          return false;
+      }
+  }
+  let data = rpc.MessageSequence.create();
+  let testRemoteObject = new TestRemoteObject("testObject");
+  try {
+      data.writeRemoteObject(testRemoteObject);
+  } catch(error) {
+      console.info("Rpc write remote object fail, errorCode " + error.code);
+      console.info("Rpc write remote object fail, errorMessage " + error.message);
+  }
+  ```
+
+### readRemoteObject
+
+readRemoteObject(): IRemoteObject
+
+从MessageSequence读取远程对象。此方法用于反序列化MessageSequence对象以生成IRemoteObject。远程对象按写入MessageSequence的顺序读取。
+
+**系统能力**：SystemCapability.Communication.IPC.Core
+
+**返回值：**
+
+  | 类型                            | 说明               |
+  | ------------------------------- | ------------------ |
+  | [IRemoteObject](#iremoteobject) | 读取到的远程对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.rpc错误码](../errorcodes/errorcode-rpc.md)
+
+  | 错误码ID | 错误信息 |
+  | ------- | -------- |
+  | 1900008 | proxy or remote object is invalid |
+  | 1900010 | read data from message sequence failed |
+
+**示例：**
+
+  ```
+  class MyDeathRecipient {
+      onRemoteDied() {
+          console.log("server died");
+      }
+  }
+  class TestRemoteObject extends rpc.RemoteObject {
+      constructor(descriptor) {
+          super(descriptor);
+      }
+      try {
+          registerDeathRecipient(recipient: MyDeathRecipient, flags: number);
+          unregisterDeathRecipient(recipient: MyDeathRecipient, flags: number);
+      } catch(error) {
+          console.info("Rpc register deathRecipient fail, errorCode " + error.code);
+          console.info("Rpc register deathRecipient fail, errorMessage " + error.message);
+      }
+      isObjectDead(): boolean {
+          return false;
+      }
+  }
+  let data = rpc.MessageSequence.create();
+  let testRemoteObject = new TestRemoteObject("testObject");
+  try {
+      data.writeRemoteObject(testRemoteObject);
+      let proxy = data.readRemoteObject();
+  } catch(error) {
+      console.info("Rpc write remote object fail, errorCode " + error.code);
+      console.info("Rpc write remote object fail, errorMessage " + error.message);
+  }
+  ```
+
+### writeInterfaceToken
+
+writeInterfaceToken(token: string): void
+
+将接口描述符写入MessageSequence对象，远端对象可使用该信息校验本次通信。
+
+**系统能力**：SystemCapability.Communication.IPC.Core
+
+**参数：**
+
+  | 参数名 | 类型   | 必填 | 说明               |
+  | ------ | ------ | ---- | ------------------ |
+  | token  | string | 是   | 字符串类型描述符。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.rpc错误码](../errorcodes/errorcode-rpc.md)
+
+  | 错误码ID | 错误信息 |
+  | ------- | -------- |
+  | 1900009 | write data to message sequence failed |
+
+**示例：**
+
+  ```
+  let data = rpc.MessageSequence.create();
+  try {
+      data.writeInterfaceToken("aaa");
+  } catch(error) {
+      console.info("rpc write interface fail, errorCode " + error.code);
+      console.info("rpc write interface fail, errorMessage " + error.message);
+  }
+  ```
+
+### readInterfaceToken
+
+readInterfaceToken(): string
+
+从MessageSequence中读取接口描述符，接口描述符按写入MessageSequence的顺序读取，本地对象可使用该信息检验本次通信。
+
+**系统能力**：SystemCapability.Communication.IPC.Core
+
+**返回值：**
+
+  | 类型   | 说明                     |
+  | ------ | ------------------------ |
+  | string | 返回读取到的接口描述符。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.rpc错误码](../errorcodes/errorcode-rpc.md)
+
+  | 错误码ID | 错误信息 |
+  | ------- | ----- |
+  | 1900010 | read data from message sequence failed |
+
+
+**示例：**
+
+  ```
+  class Stub extends rpc.RemoteObject {
+      onRemoteRequest(code, data, reply, option) {
+          try {
+              let interfaceToken = data.readInterfaceToken();
+              console.log("RpcServer: interfaceToken is " + interfaceToken);
+          } catch(error) {
+              console.info("RpcServer: read interfaceToken failed, errorCode " + error.code);
+              console.info("RpcServer: read interfaceToken failed, errorMessage " + error.message);
+          }
+          return true;
+      }
+  }
+  ```
+
+### getSize
+
+getSize(): number
+
+获取当前MessageSequence的数据大小。
+
+**系统能力**：SystemCapability.Communication.IPC.Core
+
+**返回值：**
+
+  | 类型   | 说明                                            |
+  | ------ | ----------------------------------------------- |
+  | number | 获取的MessageSequence的数据大小。以字节为单位。 |
+
+**示例：**
+
+  ```
+  let data = rpc.MessageSequence.create();
+  let size = data.getSize();
+  console.log("RpcClient: size is " + size);
+  ```
+
+### getCapacity
+
+getCapacity(): number
+
+获取当前MessageSequence的容量。
+
+**系统能力**：SystemCapability.Communication.IPC.Core
+
+**返回值：**
+
+  | 类型   | 说明 |
+  | ------ | ----- |
+  | number | 获取的MessageSequence的容量大小。以字节为单位。 |
+
+**示例：**
+
+  ```
+  let data = rpc.MessageSequence.create();
+  let result = data.getCapacity();
+  console.log("RpcClient: capacity is " + result);
+  ```
+
+### setSize
+
+setSize(size: number): void
+
+设置MessageSequence实例中包含的数据大小。
+
+**系统能力**：SystemCapability.Communication.IPC.Core
+
+**参数：**
+
+  | 参数名 | 类型   | 必填 | 说明 |
+  | ------ | ------ | ---- | ------ |
+  | size   | number | 是   | MessageSequence实例的数据大小。以字节为单位。 |
+
+**示例：**
+
+  ```
+  let data = rpc.MessageSequence.create();
+  try {
+      data.setSize(16);
+      console.log("RpcClient: setSize is " + setSize);
+  } catch(error) {
+      console.info("rpc set size of MessageSequence fail, errorCode " + error.code);
+      console.info("rpc set size of MessageSequence fail, errorMessage " + error.message);
+  }
+  ```
+
+### setCapacity
+
+setCapacity(size: number): void
+
+设置MessageSequence实例的存储容量。
+
+**系统能力**：SystemCapability.Communication.IPC.Core
+
+**参数：**
+
+  | 参数名 | 类型   | 必填 | 说明                                          |
+  | ------ | ------ | ---- | --------------------------------------------- |
+  | size   | number | 是   | MessageSequence实例的存储容量。以字节为单位。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.rpc错误码](../errorcodes/errorcode-rpc.md)
+
+  | 错误码ID | 错误信息 |
+  | -------- | ------ |
+  | 1900011 | parcel memory alloc failed |
+
+**示例：**
+
+  ```
+  let data = rpc.MessageSequence.create();
+  try {
+      data.setCapacity(100);
+      console.log("RpcClient: setCapacity is " + result);
+  } catch(error) {
+      console.info("rpc memory alloc fail, errorCode " + error.code);
+      console.info("rpc memory alloc fail, errorMessage " + error.message);
+  }
+  ```
+
+### getWritableBytes
+
+getWritableBytes(): number
+
+获取MessageSequence的可写字节空间。
+
+**系统能力**：SystemCapability.Communication.IPC.Core
+
+**返回值：**
+
+  | 类型 | 说明 |
+  | ------ | ------ |
+  | number | 获取到的MessageSequence的可写字节空间。以字节为单位。 |
+
+**示例：**
+
+  ```
+  class Stub extends rpc.RemoteObject {
+      onRemoteRequest(code, data, reply, option) {
+          let getWritableBytes = data.getWritableBytes();
+          console.log("RpcServer: getWritableBytes is " + getWritableBytes);
+          return true;
+      }
+  }
+  ```
+
+### getReadableBytes
+
+getReadableBytes(): number
+
+获取MessageSequence的可读字节空间。
+
+**系统能力**：SystemCapability.Communication.IPC.Core
+
+**返回值：**
+
+  | 类型 | 说明 |
+  | ------ | ------- |
+  | number | 获取到的MessageSequence的可读字节空间。以字节为单位。 |
+
+**示例：**
+
+  ```
+  class Stub extends rpc.RemoteObject {
+      onRemoteRequest(code, data, reply, option) {
+          let result = data.getReadableBytes();
+          console.log("RpcServer: getReadableBytes is " + result);
+          return true;
+      }
+  }
+  ```
+
+### getReadPosition
+
+getReadPosition(): number
+
+获取MessageSequence的读位置。
+
+**系统能力**：SystemCapability.Communication.IPC.Core
+
+**返回值：**
+
+  | 类型 | 说明 |
+  | ------ | ------ |
+  | number | 返回MessageSequence实例中的当前读取位置。 |
+
+**示例：**
+
+  ```
+  let data = rpc.MessageSequence.create();
+  let readPos = data.getReadPosition();
+  console.log("RpcClient: readPos is " + readPos);
+  ```
+
+### getWritePosition
+
+getWritePosition(): number
+
+获取MessageSequence的写位置。
+
+**系统能力**：SystemCapability.Communication.IPC.Core
+
+**返回值：**
+
+  | 类型 | 说明 |
+  | ------ | ----- |
+  | number | 返回MessageSequence实例中的当前写入位置。 |
+
+**示例：**
+
+  ```
+  let data = rpc.MessageSequence.create();
+  data.writeInt(10);
+  let bwPos = data.getWritePosition();
+  console.log("RpcClient: bwPos is " + bwPos);
+  ```
+
+### rewindRead
+
+rewindRead(pos: number): void
+
+重新偏移读取位置到指定的位置。
+
+**系统能力**：SystemCapability.Communication.IPC.Core
+
+**参数：**
+
+  | 参数名 | 类型 | 必填 | 说明 |
+  | ------ | ------ | ---- | ------- |
+  | pos    | number | 是   | 开始读取数据的目标位置。 |
+
+**示例：**
+
+  ```
+  let data = rpc.MessageSequence.create();
+  data.writeInt(12);
+  data.writeString("sequence");
+  let number = data.readInt();
+  console.log("RpcClient: number is " + number);
+  try {
+      data.rewindRead(0);
+  } catch(error) {
+      console.info("rpc rewind read data fail, errorCode " + error.code);
+      console.info("rpc rewind read data fail, errorMessage " + error.message);
+  }
+  let number2 = data.readInt();
+  console.log("RpcClient: rewindRead is " + number2);
+  ```
+
+### rewindWrite
+
+rewindWrite(pos: number): void
+
+重新偏移写位置到指定的位置。
+
+**系统能力**：SystemCapability.Communication.IPC.Core
+
+**参数：**
+
+  | 参数名 | 类型 | 必填 | 说明 |
+  | ------ | ------ | ---- | ----- |
+  | pos    | number | 是   | 开始写入数据的目标位置。 |
+
+**示例：**
+
+  ```
+  let data = rpc.MessageSequence.create();
+  data.writeInt(4);
+  try {
+      data.rewindWrite(0);
+  } catch(error) {
+      console.info("rpc rewind read data fail, errorCode " + error.code);
+      console.info("rpc rewind read data fail, errorMessage " + error.message);
+  }
+  data.writeInt(5);
+  let number = data.readInt();
+  console.log("RpcClient: rewindWrite is: " + number);
+  ```
+
+### writeByte
+
+writeByte(val: number): void
+
+将字节值写入MessageSequence实例。
+
+**系统能力**：SystemCapability.Communication.IPC.Core
+
+**参数：**
+
+  | 参数名 | 类型   | 必填 | 说明 |
+  | ----- | ------ | ---- | ----- |
+  | val | number | 是 | 要写入的字节值。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.rpc错误码](../errorcodes/errorcode-rpc.md)
+
+  | 错误码ID | 错误信息 |
+  | -------- | ------- |
+  | 1900009 | write data to message sequence failed |
+
+**示例：**
+
+  ```
+  let data = rpc.MessageSequence.create();
+  try {
+      data.writeByte(2);
+  } catch(error) {
+    console.info("rpc write byte fail, errorCode " + error.code);
+    console.info("rpc write byte fail, errorMessage" + error.message);
+  }
+  ```
+
+### readByte
+
+readByte(): number
+
+从MessageSequence实例读取字节值。
+
+**系统能力**：SystemCapability.Communication.IPC.Core
+
+**返回值：**
+
+  | 类型   | 说明 |
+  | ------ | ----- |
+  | number | 返回字节值。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.rpc错误码](../errorcodes/errorcode-rpc.md)
+
+  | 错误码ID | 错误信息 |
+  | ------- | --------  |
+  | 1900010 | read data from message sequence failed |
+
+**示例：**
+
+  ```
+  let data = rpc.MessageSequence.create();
+  try {
+      data.writeByte(2);
+  } catch(error) {
+    console.info("rpc write byte fail, errorCode " + error.code);
+    console.info("rpc write byte fail, errorMessage" + error.message);
+  }
+  try {
+      let ret = data.readByte();
+      console.log("RpcClient: readByte is: " + ret);
+  } catch(error) {
+    console.info("rpc write byte fail, errorCode " + error.code);
+    console.info("rpc write byte fail, errorMessage" + error.message);
+  }
+  ```
+
+### writeShort
+
+writeShort(val: number): void
+
+将短整数值写入MessageSequence实例。
+
+**系统能力**：SystemCapability.Communication.IPC.Core
+
+**参数：**
+
+  | 参数名 | 类型   | 必填 | 说明 |
+  | ------ | ------ | --- | --- |
+  | val | number | 是 | 要写入的短整数值。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.rpc错误码](../errorcodes/errorcode-rpc.md)
+
+  | 错误码ID | 错误信息 |
+  | ------- | ------ |
+  | 1900009 | write data to message sequence failed |
+
+**示例：**
+
+  ```
+  let data = rpc.MessageSequence.create();
+  try {
+      data.writeShort(8);
+  } catch(error) {
+      console.info("rpc write short fail, errorCode " + error.code);
+      console.info("rpc write short fail, errorMessage" + error.message);
+  }
+  ```
+
+### readShort
+
+readShort(): number
+
+从MessageSequence实例读取短整数值。
+
+**系统能力**：SystemCapability.Communication.IPC.Core
+
+**返回值：**
+
+  | 类型   | 说明           |
+  | ------ | -------------- |
+  | number | 返回短整数值。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.rpc错误码](../errorcodes/errorcode-rpc.md)
+
+  | 错误码ID | 错误信息 |
+  | ------- | -------- |
+  | 1900010 | read data from message sequence failed |
+
+**示例：**
+
+  ```
+  let data = rpc.MessageSequence.create();
+  try {
+      data.writeShort(8);
+  } catch(error) {
+      console.info("rpc write short fail, errorCode " + error.code);
+      console.info("rpc write short fail, errorMessage" + error.message);
+  }
+  try {
+      let ret = data.readShort(8);
+  } catch(error) {
+      console.info("rpc read short fail, errorCode " + error.code);
+      console.info("rpc read short fail, errorMessage" + error.message);
+  }
+  console.log("RpcClient: readByte is: " + ret);
+  ```
+
+### writeInt
+
+writeInt(val: number): void
+
+将整数值写入MessageSequence实例。
+
+**系统能力**：SystemCapability.Communication.IPC.Core
+
+**参数：**
+
+  | 参数名 | 类型   | 必填 | 说明             |
+  | ------ | ------ | ---- | ---------------- |
+  | val    | number | 是   | 要写入的整数值。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.rpc错误码](../errorcodes/errorcode-rpc.md)
+
+  | 错误码ID | 错误信息 |
+  | -------- | ------- |
+  | 1900009 | write data to message sequence failed |
+
+**示例：**
+
+  ```
+  let data = rpc.MessageSequence.create();
+  try {
+      data.writeInt(10);
+  } catch(error) {
+      console.info("rpc write int fail, errorCode " + error.code);
+      console.info("rpc write int fail, errorMessage" + error.message);
+  }
+  ```
+
+### readInt
+
+readInt(): number
+
+从MessageSequence实例读取整数值。
+
+**系统能力**：SystemCapability.Communication.IPC.Core
+
+**返回值：**
+
+  | 类型   | 说明         |
+  | ------ | ------------ |
+  | number | 返回整数值。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.rpc错误码](../errorcodes/errorcode-rpc.md)
+
+  | 错误码ID | 错误信息 |
+  | ------- | ------- |
+  | 1900010 | read data from message sequence failed |
+
+**示例：**
+
+  ```
+  let data = rpc.MessageSequence.create();
+  try {
+      data.writeInt(10);
+  } catch(error) {
+      console.info("rpc write int fail, errorCode " + error.code);
+      console.info("rpc write int fail, errorMessage" + error.message);
+  }
+  try {
+      let ret = data.readInt();
+  } catch(error) {
+      console.info("rpc read int fail, errorCode " + error.code);
+      console.info("rpc read int fail, errorMessage" + error.message);
+  }
+  console.log("RpcClient: readInt is " + ret);
+  ```
+
+### writeLong
+
+writeLong(val: number): void
+
+将长整数值写入MessageSequence实例。
+
+**系统能力**：SystemCapability.Communication.IPC.Core
+
+**参数：**
+
+  | 参数名 | 类型   | 必填 | 说明             |
+  | ------ | ------ | ---- | ---------------- |
+  | val    | number | 是   | 要写入的长整数值 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.rpc错误码](../errorcodes/errorcode-rpc.md)
+
+  | 错误码ID | 错误信息 |
+  | ------- | ------- |
+  | 1900009 | write data to message sequence failed |
+
+**示例：**
+
+  ```
+  let data = rpc.MessageSequence.create();
+  try {
+      data.writeLong(10000);
+  } catch(error) {
+      console.info("rpc write long fail, errorCode " + error.code);
+      console.info("rpc write long fail, errorMessage" + error.message);
+  }
+  ```
+
+### readLong
+
+readLong(): number
+
+从MessageSequence实例中读取长整数值。
+
+**系统能力**：SystemCapability.Communication.IPC.Core
+
+**返回值：**
+
+  | 类型   | 说明           |
+  | ------ | -------------- |
+  | number | 返回长整数值。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.rpc错误码](../errorcodes/errorcode-rpc.md)
+
+  | 错误码ID | 错误信息 |
+  | ------- | -------- |
+  | 1900010 | read data from message sequence failed |
+
+**示例：**
+
+  ```
+  let data = rpc.MessageSequence.create();
+  try {
+      data.writeLong(10000);
+  } catch(error) {
+      console.info("rpc write long fail, errorCode " + error.code);
+      console.info("rpc write long fail, errorMessage" + error.message);
+  }
+  try {
+      let ret = data.readLong();
+  } catch(error) {
+      console.info("rpc read long fail, errorCode " + error.code);
+      console.info("rpc read long fail, errorMessage" + error.message);
+  }
+  console.log("RpcClient: readLong is " + ret);
+  ```
+
+### writeFloat
+
+writeFloat(val: number): void
+
+将浮点值写入MessageSequence实例。
+
+**系统能力**：SystemCapability.Communication.IPC.Core
+
+**参数：**
+
+  | 参数名 | 类型 | 必填 | 说明 |
+  | ----- | ---- | ---- | ----- |
+  | val | number | 是 | 要写入的浮点值。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.rpc错误码](../errorcodes/errorcode-rpc.md)
+
+  | 错误码ID | 错误信息 |
+  | ------- | ------- |
+  | 1900010 | write data to message sequence failed |
+
+**示例：**
+
+  ```
+  let data = rpc.MessageSequence.create();
+  try {
+      data.writeFloat(1.2);
+  } catch(error) {
+      console.info("rpc write float fail, errorCode " + error.code);
+      console.info("rpc write float fail, errorMessage" + error.message);
+  }
+  ```
+
+### readFloat
+
+readFloat(): number
+
+从MessageSequence实例中读取浮点值。
+
+**系统能力**：SystemCapability.Communication.IPC.Core
+
+**返回值：**
+
+  | 类型   | 说明         |
+  | ------ | ------------ |
+  | number | 返回浮点值。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.rpc错误码](../errorcodes/errorcode-rpc.md)
+
+  | 错误码ID | 错误信息 |
+  | ------- | -------- |
+  | 1900010 | read data from message sequence failed |
+
+**示例：**
+
+  ```
+  let data = rpc.MessageSequence.create();
+  try {
+      data.writeFloat(1.2);
+  } catch(error) {
+      console.info("rpc write float fail, errorCode " + error.code);
+      console.info("rpc write float fail, errorMessage" + error.message);
+  }
+  try {
+      let ret = data.readFloat();
+  } catch(error) {
+      console.info("rpc read float fail, errorCode " + error.code);
+      console.info("rpc read float fail, errorMessage" + error.message);
+  }
+  console.log("RpcClient: readFloat is " + ret);
+  ```
+
+### writeDouble
+
+writeDouble(val: number): void
+
+将双精度浮点值写入MessageSequence实例。
+
+**系统能力**：SystemCapability.Communication.IPC.Core
+
+**参数：**
+
+  | 参数名 | 类型 | 必填 | 说明 |
+  | ------ | ------ | ---- | ------ |
+  | val  number | 是 | 要写入的双精度浮点值。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.rpc错误码](../errorcodes/errorcode-rpc.md)
+
+  | 错误码ID | 错误信息 |
+  | ------- | -------- |
+  | 1900009 | write data to message sequence failed |
+
+**示例：**
+
+  ```
+  let data = rpc.MessageSequence.create();
+  try {
+      data.writeDouble(10.2);
+  } catch(error) {
+      console.info("rpc read float fail, errorCode " + error.code);
+      console.info("rpc read float fail, errorMessage" + error.message);
+  }
+  ```
+
+### readDouble
+
+readDouble(): number
+
+从MessageSequence实例读取双精度浮点值。
+
+**系统能力**：SystemCapability.Communication.IPC.Core
+
+**返回值：**
+
+  | 类型   | 说明               |
+  | ------ | ------------------ |
+  | number | 返回双精度浮点值。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.rpc错误码](../errorcodes/errorcode-rpc.md)
+
+  | 错误码ID | 错误信息 |
+  | ------- | -------- |
+  | 1900010 | read data from message sequence failed |
+
+**示例：**
+
+  ```
+  let data = rpc.MessageSequence.create();
+  try {
+      data.writeDouble(10.2);
+  } catch(error) {
+      console.info("rpc write double fail, errorCode " + error.code);
+      console.info("rpc write double fail, errorMessage" + error.message);
+  }
+  try {
+      let ret = data.readDouble();
+  } catch(error) {
+      console.info("rpc read double fail, errorCode " + error.code);
+      console.info("rpc read double fail, errorMessage" + error.message);
+  }
+  console.log("RpcClient: readDouble is " + ret);
+  ```
+
+### writeBoolean
+
+writeBoolean(val: boolean): void
+
+将布尔值写入MessageSequence实例。
+
+**系统能力**：SystemCapability.Communication.IPC.Core
+
+**参数：**
+
+  | 参数名 | 类型    | 必填 | 说明             |
+  | ------ | ------- | ---- | ---------------- |
+  | val    | boolean | 是   | 要写入的布尔值。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.rpc错误码](../errorcodes/errorcode-rpc.md)
+
+  | 错误码ID | 错误信息 |
+  | ------- | ------- |
+  | 1900009 | write data to message sequence failed |
+
+**示例：**
+
+  ```
+  let data = rpc.MessageSequence.create();
+  try {
+      data.writeBoolean(false);
+  } catch(error) {
+      console.info("rpc write boolean fail, errorCode " + error.code);
+      console.info("rpc write boolean fail, errorMessage" + error.message);
+  }
+  ```
+
+### readBoolean
+
+readBoolean(): boolean
+
+从MessageSequence实例读取布尔值。
+
+**系统能力**：SystemCapability.Communication.IPC.Core
+
+**返回值：**
+
+  | 类型    | 说明                 |
+  | ------- | -------------------- |
+  | boolean | 返回读取到的布尔值。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.rpc错误码](../errorcodes/errorcode-rpc.md)
+
+  | 错误码ID | 错误信息 |
+  | -------- | ------- |
+  | 1900010 | read data from message sequence failed |
+
+**示例：**
+
+  ```
+  let data = rpc.MessageSequence.create();
+  try {
+      data.writeBoolean(false);
+  } catch(error) {
+      console.info("rpc write boolean fail, errorCode " + error.code);
+      console.info("rpc write boolean fail, errorMessage" + error.message);
+  }
+  try {
+      let ret = data.readBoolean();
+  } catch(error) {
+      console.info("rpc read boolean fail, errorCode " + error.code);
+      console.info("rpc read boolean fail, errorMessage" + error.message);
+  }
+  console.log("RpcClient: readBoolean is " + ret);
+  ```
+
+### writeChar
+
+writeChar(val: number): void
+
+将单个字符值写入MessageSequence实例。
+
+**系统能力**：SystemCapability.Communication.IPC.Core
+
+**参数：**
+
+  | 参数名 | 类型   | 必填 | 说明                 |
+  | ------ | ------ | ---- | -------------------- |
+  | val    | number | 是   | 要写入的单个字符值。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.rpc错误码](../errorcodes/errorcode-rpc.md)
+
+  | 错误码ID | 错误信息 |
+  | ------- | -------- |
+  | 1900009 | write data to message sequence failed |
+
+**示例：**
+
+  ```
+  let data = rpc.MessageSequence.create();
+  try {
+      data.writeChar(97);
+  } catch(error) {
+      console.info("rpc write char fail, errorCode " + error.code);
+      console.info("rpc write char fail, errorMessage" + error.message);
+  }
+  ```
+
+### readChar
+
+readChar(): number
+
+从MessageSequence实例中读取单个字符值。
+
+**系统能力**：SystemCapability.Communication.IPC.Core
+
+**返回值：**
+
+  | 类型   | 说明 |
+  | ------ | ---- |
+  | number | 返回单个字符值。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.rpc错误码](../errorcodes/errorcode-rpc.md)
+
+  | 错误码ID | 错误信息 |
+  | ------ | --------- |
+  | 1900010 | read data from message sequence failed |
+
+**示例：**
+
+  ```
+  let data = rpc.MessageSequence.create();
+  try {
+      data.writeChar(97);
+  } catch(error) {
+      console.info("rpc write char fail, errorCode " + error.code);
+      console.info("rpc write char fail, errorMessage" + error.message);
+  }
+  try {
+      let ret = data.readChar();
+  } catch(error) {
+      console.info("rpc read char fail, errorCode " + error.code);
+      console.info("rpc read char fail, errorMessage" + error.message);
+  }
+  console.log("RpcClient: readChar is " + ret);
+  ```
+
+### writeString
+
+writeString(val: string): void
+
+将字符串值写入MessageSequence实例。
+
+**系统能力**：SystemCapability.Communication.IPC.Core
+
+**参数：**
+
+  | 参数名 | 类型   | 必填 | 说明                                      |
+  | ------ | ------ | ---- | ----------------------------------------- |
+  | val    | string | 是   | 要写入的字符串值，其长度应小于40960字节。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.rpc错误码](../errorcodes/errorcode-rpc.md)
+
+  | 错误码ID | 错误信息 |
+  | ------- | -------- |
+  | 1900009 | write data to message sequence failed |
+
+**示例：**
+
+  ```
+  let data = rpc.MessageSequence.create();
+  try {
+      data.writeString('abc');
+  } catch(error) {
+      console.info("rpc write string fail, errorCode " + error.code);
+      console.info("rpc write string fail, errorMessage" + error.message);
+  }
+  ```
+
+### readString
+
+readString(): string
+
+从MessageSequence实例读取字符串值。
+
+**系统能力**：SystemCapability.Communication.IPC.Core
+
+**返回值：**
+
+  | 类型   | 说明           |
+  | ------ | -------------- |
+  | string | 返回字符串值。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.rpc错误码](../errorcodes/errorcode-rpc.md)
+
+  | 错误码ID | 错误信息 |
+  | ------- | -------- |
+  | 1900010 | read data from message sequence failed |
+
+**示例：**
+
+  ```
+  let data = rpc.MessageSequence.create();
+  try {
+      data.writeString('abc');
+  } catch(error) {
+      console.info("rpc write string fail, errorCode " + error.code);
+      console.info("rpc write string fail, errorMessage" + error.message);
+  }
+  try {
+      let ret = data.readString();
+  } catch(error) {
+      console.info("rpc read string fail, errorCode " + error.code);
+      console.info("rpc read string fail, errorMessage" + error.message);
+  }
+  console.log("RpcClient: readString is " + ret);
+  ```
+
+### writeParcelable
+
+writeParcelable(val: Parcelable): void
+
+将自定义序列化对象写入MessageSequence实例。
+
+**系统能力**：SystemCapability.Communication.IPC.Core
+
+**参数：**
+
+  | 参数名 | 类型 | 必填 | 说明 |
+  | ------ | --------- | ---- | ------ |
+  | val    | Parcelable | 是   | 要写入的可序列对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.rpc错误码](../errorcodes/errorcode-rpc.md)
+
+  | 错误码ID | 错误信息 |
+  | ------- | -------- |
+  | 1900009 | write data to message sequence failed |
+
+**示例：**
+
+  ```
+  class MySequenceable {
+      num: number;
+      str: string;
+      constructor(num, str) {
+          this.num = num;
+          this.str = str;
+      }
+      marshalling(messageSequence) {
+          messageSequence.writeInt(this.num);
+          messageSequence.writeString(this.str);
+          return true;
+      }
+      unmarshalling(messageSequence) {
+          this.num = messageSequence.readInt();
+          this.str = messageSequence.readString();
+          return true;
+      }
+  }
+  let parcelable = new MyParcelable(1, "aaa");
+  let data = rpc.MessageSequence.create();
+  try {
+      data.writeParcelable(parcelable);
+  } catch(error) {
+      console.info("rpc write parcelable fail, errorCode " + error.code);
+      console.info("rpc write parcelable fail, errorMessage" + error.message);
+  }
+  ```
+
+### readParcelable
+
+readParcelable(dataIn: Parcelable) : void
+
+从MessageSequence实例中读取成员变量到指定的对象（dataIn）。
+
+**系统能力**：SystemCapability.Communication.IPC.Core
+
+**参数：**
+
+  | 参数名 | 类型                      | 必填 | 说明                                      |
+  | ------ | ------------------------- | ---- | ----------------------------------------- |
+  | dataIn | Parcelable | 是   | 需要从MessageSequence读取成员变量的对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.rpc错误码](../errorcodes/errorcode-rpc.md)
+
+  | 错误码ID | 错误信息 |
+  | -------- | ------- |
+  | 1900010 | read data from message sequence failed |
+  | 1900012 | call js callback function failed |
+
+**示例：**
+
+  ```
+  class MySequenceable {
+      num: number;
+      str: string;
+      constructor(num, str) {
+          this.num = num;
+          this.str = str;
+      }
+      marshalling(messageSequence) {
+          messageSequence.writeInt(this.num);
+          messageSequence.writeString(this.str);
+          return true;
+      }
+      unmarshalling(messageSequence) {
+          this.num = messageSequence.readInt();
+          this.str = messageSequence.readString();
+          return true;
+      }
+  }
+  let parcelable = new MyParcelable(1, "aaa");
+  let data = rpc.MessageSequence.create();
+  data.writeParcelable(parcelable);
+  let ret = new MyParcelable(0, "");
+  try {
+      data.readParcelable(ret);
+  }catch{
+      console.info("rpc read parcelable fail, errorCode " + error.code);
+      console.info("rpc read parcelable fail, errorMessage" + error.message);
+  }
+  ```
+
+### writeByteArray
+
+writeByteArray(byteArray: number[]): void
+
+将字节数组写入MessageSequence实例。
+
+**系统能力**：SystemCapability.Communication.IPC.Core
+
+**参数：**
+
+  | 参数名    | 类型     | 必填 | 说明               |
+  | --------- | -------- | ---- | ------------------ |
+  | byteArray | number[] | 是   | 要写入的字节数组。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.rpc错误码](../errorcodes/errorcode-rpc.md)
+
+  | 错误码ID | 错误信息 |
+  | ------- | -------- |
+  | 1900009 | write data to message sequence failed |
+
+**示例：**
+
+  ```
+  let data = rpc.MessageSequence.create();
+  let ByteArrayVar = [1, 2, 3, 4, 5];
+  try {
+      data.writeByteArray(ByteArrayVar);
+  } catch(error) {
+      console.info("rpc write byteArray fail, errorCode " + error.code);
+      console.info("rpc write byteArray fail, errorMessage" + error.message);
+  }
+  ```
+
+### readByteArray
+
+readByteArray(dataIn: number[]) : void
+
+从MessageSequence实例读取字节数组。
+
+**系统能力**：SystemCapability.Communication.IPC.Core
+
+**参数：**
+
+  | 参数名 | 类型     | 必填 | 说明               |
+  | ------ | -------- | ---- | ------------------ |
+  | dataIn | number[] | 是   | 要读取的字节数组。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.rpc错误码](../errorcodes/errorcode-rpc.md)
+
+  | 错误码ID | 错误信息 |
+  | ------- | -------- |
+  | 1900010 | read data from message sequence failed |
+
+**示例：**
+
+  ```
+  let data = rpc.MessageSequence.create();
+  let ByteArrayVar = [1, 2, 3, 4, 5];
+  try {
+      data.writeByteArray(ByteArrayVar);
+  } catch(error) {
+      console.info("rpc write byteArray fail, errorCode " + error.code);
+      console.info("rpc write byteArray fail, errorMessage" + error.message);
+  }
+  try {
+      let array = new Array(5);
+      data.readByteArray(array);
+  } catch(error) {
+      console.info("rpc write byteArray fail, errorCode " + error.code);
+      console.info("rpc write byteArray fail, errorMessage" + error.message);
+  }
+  ```
+
+### readByteArray
+
+readByteArray(): number[]
+
+从MessageSequence实例中读取字节数组。
+
+**系统能力**：SystemCapability.Communication.IPC.Core
+
+**返回值：**
+
+  | 类型     | 说明           |
+  | -------- | -------------- |
+  | number[] | 返回字节数组。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.rpc错误码](../errorcodes/errorcode-rpc.md)
+
+  | 错误码ID | 错误信息 |
+  | -------- | ------- |
+  | 1900010 | read data from message sequence failed |
+
+**示例：**
+
+  ```
+  let data = rpc.MessageSequence.create();
+  let ByteArrayVar = [1, 2, 3, 4, 5];
+  try {
+      data.writeByteArray(ByteArrayVar);
+      console.log("RpcClient: readByteArray is " + array);
+  } catch(error) {
+      console.info("rpc write byteArray fail, errorCode " + error.code);
+      console.info("rpc write byteArray fail, errorMessage" + error.message);
+  }
+  try {
+      let array = data.readByteArray();
+  } catch(error) {
+      console.info("rpc read byteArray fail, errorCode " + error.code);
+      console.info("rpc read byteArray fail, errorMessage" + error.message);
+  }
+  ```
+
+### writeShortArray
+
+writeShortArray(shortArray: number[]): void
+
+将短整数数组写入MessageSequence实例。
+
+**系统能力**：SystemCapability.Communication.IPC.Core
+
+**参数：**
+
+  | 参数名     | 类型     | 必填 | 说明                 |
+  | ---------- | -------- | ---- | -------------------- |
+  | shortArray | number[] | 是   | 要写入的短整数数组。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.rpc错误码](../errorcodes/errorcode-rpc.md)
+
+  | 错误码ID | 错误信息 |
+  | ----- | ----- |
+  | 1900009 | write data to message sequence failed |
+
+**示例：**
+
+  ```
+  let data = rpc.MessageSequence.create();
+  try {
+      data.writeShortArray([11, 12, 13]);
+  } catch(error) {
+      console.info("rpc read byteArray fail, errorCode " + error.code);
+      console.info("rpc read byteArray fail, errorMessage" + error.message);
+  }
+  ```
+
+### readShortArray
+
+readShortArray(dataIn: number[]) : void
+
+从MessageSequence实例中读取短整数数组。
+
+**系统能力**：SystemCapability.Communication.IPC.Core
+
+**参数：**
+
+  | 参数名 | 类型     | 必填 | 说明                 |
+  | ------ | -------- | ---- | -------------------- |
+  | dataIn | number[] | 是   | 要读取的短整数数组。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.rpc错误码](../errorcodes/errorcode-rpc.md)
+
+  | 错误码ID | 错误信息 |
+  | ------ | ------- |
+  | 1900010 | read data from message sequence failed |
+
+**示例：**
+
+  ```
+  let data = rpc.MessageSequence.create();
+  try {
+      data.writeShortArray([11, 12, 13]);
+  } catch(error) {
+      console.info("rpc write shortArray fail, errorCode " + error.code);
+      console.info("rpc write shortArray fail, errorMessage" + error.message);
+  }
+  try {
+      let array = new Array(3);
+      data.readShortArray(array);
+  } catch(error) {
+      console.info("rpc read shortArray fail, errorCode " + error.code);
+      console.info("rpc read shortArray fail, errorMessage" + error.message);
+  }
+  ```
+
+### readShortArray
+
+readShortArray(): number[]
+
+从MessageSequence实例中读取短整数数组。
+
+**系统能力**：SystemCapability.Communication.IPC.Core
+
+**返回值：**
+
+  | 类型     | 说明             |
+  | -------- | ---------------- |
+  | number[] | 返回短整数数组。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.rpc错误码](../errorcodes/errorcode-rpc.md)
+
+  | 错误码ID | 错误信息 |
+  | -------- | ------- |
+  | 1900010 | read data from message sequence failed |
+
+**示例：**
+
+  ```
+  let data = rpc.MessageSequence.create();
+  try {
+      data.writeShortArray([11, 12, 13]);
+  } catch(error) {
+      console.info("rpc write shortArray fail, errorCode " + error.code);
+      console.info("rpc write shortArray fail, errorMessage" + error.message);
+  }
+  try {
+      let array = data.readShortArray();
+      console.log("RpcClient: readShortArray is " + array);
+  } catch(error) {
+      console.info("rpc read shortArray fail, errorCode " + error.code);
+      console.info("rpc read shortArray fail, errorMessage" + error.message);
+  }
+  ```
+
+### writeIntArray
+
+writeIntArray(intArray: number[]): void
+
+将整数数组写入MessageSequence实例。
+
+**系统能力**：SystemCapability.Communication.IPC.Core
+
+**参数：**
+
+  | 参数名   | 类型     | 必填 | 说明               |
+  | -------- | -------- | ---- | ------------------ |
+  | intArray | number[] | 是   | 要写入的整数数组。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.rpc错误码](../errorcodes/errorcode-rpc.md)
+
+  | 错误码ID | 错误信息 |
+  | ----- | --------- |
+  | 1900009 | write data to message sequence failed |
+
+**示例：**
+
+  ```
+  let data = rpc.MessageSequence.create();
+  try {
+      data.writeIntArray([100, 111, 112]);
+  } catch(error) {
+      console.info("rpc write intArray fail, errorCode " + error.code);
+      console.info("rpc write intArray fail, errorMessage" + error.message);
+  }
+  ```
+
+### readIntArray
+
+readIntArray(dataIn: number[]) : void
+
+从MessageSequence实例中读取整数数组。
+
+**系统能力**：SystemCapability.Communication.IPC.Core
+
+**参数：**
+
+  | 参数名 | 类型     | 必填 | 说明               |
+  | ------ | -------- | ---- | ------------------ |
+  | dataIn | number[] | 是   | 要读取的整数数组。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.rpc错误码](../errorcodes/errorcode-rpc.md)
+
+  | 错误码ID | 错误信息 |
+  | ------- | -------- |
+  | 1900010 | read data from message sequence failed |
+
+**示例：**
+
+  ```
+  let data = rpc.MessageSequence.create();
+  try {
+      data.writeIntArray([100, 111, 112]);
+  } catch(error) {
+      console.info("rpc write intArray fail, errorCode " + error.code);
+      console.info("rpc write intArray fail, errorMessage" + error.message);
+  }
+  let array = new Array(3);
+  try {
+      data.readIntArray(array);
+  } catch(error) {
+      console.info("rpc read intArray fail, errorCode " + error.code);
+      console.info("rpc read intArray fail, errorMessage" + error.message);
+  }
+  ```
+
+### readIntArray
+
+readIntArray(): number[]
+
+从MessageSequence实例中读取整数数组。
+
+**系统能力**：SystemCapability.Communication.IPC.Core
+
+**返回值：**
+
+  | 类型     | 说明           |
+  | -------- | -------------- |
+  | number[] | 返回整数数组。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.rpc错误码](../errorcodes/errorcode-rpc.md)
+
+  | 错误码ID | 错误信息 |
+  | ----- | ------- |
+  | 1900010 | read data from message sequence failed |
+
+**示例：**
+
+  ```
+  let data = rpc.MessageSequence.create();
+  try {
+      data.writeIntArray([100, 111, 112]);
+  } catch(error) {
+      console.info("rpc write intArray fail, errorCode " + error.code);
+      console.info("rpc write intArray fail, errorMessage" + error.message);
+  }
+  try {
+    let array = data.readIntArray();
+    console.log("RpcClient: readIntArray is " + array);
+  } catch(error) {
+      console.info("rpc read intArray fail, errorCode " + error.code);
+      console.info("rpc read intArray fail, errorMessage" + error.message);
+  }
+  ```
+
+### writeLongArray
+
+writeLongArray(longArray: number[]): void
+
+将长整数数组写入MessageSequence实例。
+
+**系统能力**：SystemCapability.Communication.IPC.Core
+
+**参数：**
+
+  | 参数名    | 类型     | 必填 | 说明                 |
+  | --------- | -------- | ---- | -------------------- |
+  | longArray | number[] | 是   | 要写入的长整数数组。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.rpc错误码](../errorcodes/errorcode-rpc.md)
+
+  | 错误码ID | 错误信息 |
+  | -------  | ----- |
+  | 1900009 | write data to message sequence failed |
+
+**示例：**
+
+  ```
+  let data = rpc.MessageSequence.create();
+  try {
+      data.writeLongArray([1111, 1112, 1113]);
+  }cathc(error){
+      console.info("rpc write longArray fail, errorCode " + error.code);
+      console.info("rpc write longArray fail, errorMessage" + error.message);
+  }
+  ```
+
+### readLongArray
+
+readLongArray(dataIn: number[]) : void
+
+从MessageSequence实例读取长整数数组。
+
+**系统能力**：SystemCapability.Communication.IPC.Core
+
+**参数：**
+
+  | 参数名 | 类型     | 必填 | 说明                 |
+  | ------ | -------- | ---- | -------------------- |
+  | dataIn | number[] | 是   | 要读取的长整数数组。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.rpc错误码](../errorcodes/errorcode-rpc.md)
+
+  | 错误码ID | 错误信息 |
+  | ------- | ------ |
+  | 1900010 | read data from message sequence failed |
+
+**示例：**
+
+  ```
+  let data = rpc.MessageSequence.create();
+  try {
+      data.writeLongArray([1111, 1112, 1113]);
+  } catch(error) {
+      console.info("rpc write longArray fail, errorCode " + error.code);
+      console.info("rpc write longArray fail, errorMessage" + error.message);
+  }
+  let array = new Array(3);
+  try {
+      data.readLongArray(array);
+  } catch(error) {
+      console.info("rpc read longArray fail, errorCode " + error.code);
+      console.info("rpc read longArray fail, errorMessage" + error.message);
+  }
+  ```
+
+### readLongArray
+
+readLongArray(): number[]
+
+从MessageSequence实例中读取长整数数组。
+
+**系统能力**：SystemCapability.Communication.IPC.Core
+
+**返回值：**
+
+  | 类型     | 说明             |
+  | -------- | ---------------- |
+  | number[] | 返回长整数数组。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.rpc错误码](../errorcodes/errorcode-rpc.md)
+
+  | 错误码ID | 错误信息 |
+  | ------- | -------- |
+  | 1900010 | read data from message sequence failed |
+
+**示例：**
+
+  ```
+  let data = rpc.MessageSequence.create();
+  try {
+      data.writeLongArray([1111, 1112, 1113]);
+  } catch(error) {
+      console.info("rpc write longArray fail, errorCode " + error.code);
+      console.info("rpc write longArray fail, errorMessage" + error.message);
+  }
+  try {
+      let array = data.readLongArray();
+      console.log("RpcClient: readLongArray is " + array);
+  } catch(error) {
+      console.info("rpc read longArray fail, errorCode " + error.code);
+      console.info("rpc read longArray fail, errorMessage" + error.message);
+  }
+  ```
+
+### writeFloatArray
+
+writeFloatArray(floatArray: number[]): void
+
+将浮点数组写入MessageSequence实例。
+
+**系统能力**：SystemCapability.Communication.IPC.Core
+
+**参数：**
+
+  | 参数名     | 类型     | 必填 | 说明                                                                                                                    |
+  | ---------- | -------- | ---- | ----------------------------------------------------------------------------------------------------------------------- |
+  | floatArray | number[] | 是   | 要写入的浮点数组。由于系统内部对float类型的数据是按照double处理的，使用时对于数组所占的总字节数应按照double类型来计算。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.rpc错误码](../errorcodes/errorcode-rpc.md)
+
+  | 错误码ID | 错误信息 |
+  | ------- | -------- |
+  | 1900009 | write data to message sequence failed |
+
+**示例：**
+
+  ```
+  let data = rpc.MessageSequence.create();
+  try {
+      data.writeFloatArray([1.2, 1.3, 1.4]);
+  } catch(error) {
+      console.info("rpc write floatArray fail, errorCode " + error.code);
+      console.info("rpc write floatArray fail, errorMessage" + error.message);
+  }
+  ```
+
+### readFloatArray
+
+readFloatArray(dataIn: number[]) : void
+
+从MessageSequence实例中读取浮点数组。
+
+**系统能力**：SystemCapability.Communication.IPC.Core
+
+**参数：**
+
+  | 参数名 | 类型     | 必填 | 说明                                                                                                                    |
+  | ------ | -------- | ---- | ----------------------------------------------------------------------------------------------------------------------- |
+  | dataIn | number[] | 是   | 要读取的浮点数组。由于系统内部对float类型的数据是按照double处理的，使用时对于数组所占的总字节数应按照double类型来计算。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.rpc错误码](../errorcodes/errorcode-rpc.md)
+
+  | 错误码ID | 错误信息 |
+  | ------- | -------- |
+  | 1900010 | read data from message sequence failed |
+
+**示例：**
+
+  ```
+  let data = rpc.MessageSequence.create();
+  try {
+      data.writeFloatArray([1.2, 1.3, 1.4]);
+  }cath(error){
+      console.info("rpc write floatArray fail, errorCode " + error.code);
+      console.info("rpc write floatArray fail, errorMessage" + error.message);
+  }
+  let array = new Array(3);
+  try {
+      data.readFloatArray(array);
+  } catch(error) {
+      console.info("rpc read floatArray fail, errorCode " + error.code);
+      console.info("rpc read floatArray fail, errorMessage" + error.message);
+  }
+  ```
+
+### readFloatArray
+
+readFloatArray(): number[]
+
+从MessageSequence实例中读取浮点数组。
+
+**系统能力**：SystemCapability.Communication.IPC.Core
+
+**返回值：**
+
+  | 类型     | 说明           |
+  | -------- | -------------- |
+  | number[] | 返回浮点数组。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.rpc错误码](../errorcodes/errorcode-rpc.md)
+
+  | 错误码ID | 错误信息 |
+  | ------- | -------- |
+  | 1900010 | read data from message sequence failed |
+
+**示例：**
+
+  ```
+  let data = rpc.MessageSequence.create();
+  try {
+      data.writeFloatArray([1.2, 1.3, 1.4]);
+  } catch(error) {
+      console.info("rpc write floatArray fail, errorCode " + error.code);
+      console.info("rpc write floatArray fail, errorMessage" + error.message);
+  }
+  try {
+      let array = data.readFloatArray();
+      console.log("RpcClient: readFloatArray is " + array);
+  } catch(error) {
+      console.info("rpc read floatArray fail, errorCode " + error.code);
+      console.info("rpc read floatArray fail, errorMessage" + error.message);
+  }
+  ```
+
+### writeDoubleArray
+
+writeDoubleArray(doubleArray: number[]): void
+
+将双精度浮点数组写入MessageSequence实例。
+
+**系统能力**：SystemCapability.Communication.IPC.Core
+
+**参数：**
+
+  | 参数名      | 类型     | 必填 | 说明                     |
+  | ----------- | -------- | ---- | ------------------------ |
+  | doubleArray | number[] | 是   | 要写入的双精度浮点数组。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.rpc错误码](../errorcodes/errorcode-rpc.md)
+
+  | 错误码ID | 错误信息 |
+  | ------- | -------- |
+  | 1900009 | write data to message sequence failed |
+
+**示例：**
+
+  ```
+  let data = rpc.MessageSequence.create();
+  try {
+      data.writeDoubleArray([11.1, 12.2, 13.3]);
+  } catch(error) {
+      console.info("rpc write doubleArray fail, errorCode " + error.code);
+      console.info("rpc write doubleArray fail, errorMessage" + error.message);
+  }
+  ```
+
+### readDoubleArray
+
+readDoubleArray(dataIn: number[]) : void
+
+从MessageSequence实例中读取双精度浮点数组。
+
+**系统能力**：SystemCapability.Communication.IPC.Core
+
+**参数：**
+
+  | 参数名 | 类型     | 必填 | 说明                     |
+  | ------ | -------- | ---- | ------------------------ |
+  | dataIn | number[] | 是   | 要读取的双精度浮点数组。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.rpc错误码](../errorcodes/errorcode-rpc.md)
+
+  | 错误码ID | 错误信息 |
+  | ------- | -------- |
+  | 1900010 | read data from message sequence failed |
+
+**示例：**
+
+  ```
+  let data = rpc.MessageSequence.create();
+  try {
+      data.writeDoubleArray([11.1, 12.2, 13.3]);
+  } catch(error) {
+      console.info("rpc write doubleArray fail, errorCode " + error.code);
+      console.info("rpc write doubleArray fail, errorMessage" + error.message);
+  }
+  let array = new Array(3);
+  try {
+      data.readDoubleArray(array);
+  } catch(error) {
+      console.info("rpc read doubleArray fail, errorCode " + error.code);
+      console.info("rpc read doubleArray fail, errorMessage" + error.message);
+  }
+  ```
+
+### readDoubleArray
+
+readDoubleArray(): number[]
+
+从MessageSequence实例读取双精度浮点数组。
+
+**系统能力**：SystemCapability.Communication.IPC.Core
+
+**返回值：**
+
+  | 类型     | 说明                 |
+  | -------- | -------------------- |
+  | number[] | 返回双精度浮点数组。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.rpc错误码](../errorcodes/errorcode-rpc.md)
+
+  | 错误码ID | 错误信息 |
+  | ------- | -------- |
+  | 1900010 | read data from message sequence failed |
+
+**示例：**
+
+  ```
+  let data = rpc.MessageSequence.create();
+  try {
+      data.writeDoubleArray([11.1, 12.2, 13.3]);
+  } catch(error) {
+      console.info("rpc write doubleArray fail, errorCode " + error.code);
+      console.info("rpc write doubleArray fail, errorMessage" + error.message);
+  }
+  try {
+      let array = data.readDoubleArray();
+      console.log("RpcClient: readDoubleArray is " + array);
+  } catch(error) {
+      console.info("rpc read doubleArray fail, errorCode " + error.code);
+      console.info("rpc read doubleArray fail, errorMessage" + error.message);
+  }
+  ```
+
+### writeBooleanArray
+
+writeBooleanArray(booleanArray: boolean[]): void
+
+将布尔数组写入MessageSequence实例。
+
+**系统能力**：SystemCapability.Communication.IPC.Core
+
+**参数：**
+
+  | 参数名       | 类型      | 必填 | 说明               |
+  | ------------ | --------- | ---- | ------------------ |
+  | booleanArray | boolean[] | 是   | 要写入的布尔数组。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.rpc错误码](../errorcodes/errorcode-rpc.md)
+
+  | 错误码ID | 错误信息 |
+  | ------- | -------- |
+  | 1900009 | write data to message sequence failed |
+
+**示例：**
+
+  ```
+  let data = rpc.MessageSequence.create();
+  try {
+      data.writeBooleanArray([false, true, false]);
+  } catch(error) {
+      console.info("rpc write booleanArray fail, errorCode " + error.code);
+      console.info("rpc write booleanArray fail, errorMessage" + error.message);
+  }
+  ```
+
+### readBooleanArray
+
+readBooleanArray(dataIn: boolean[]) : void
+
+从MessageSequence实例中读取布尔数组。
+
+**系统能力**：SystemCapability.Communication.IPC.Core
+
+**参数：**
+
+  | 参数名 | 类型      | 必填 | 说明               |
+  | ------ | --------- | ---- | ------------------ |
+  | dataIn | boolean[] | 是   | 要读取的布尔数组。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.rpc错误码](../errorcodes/errorcode-rpc.md)
+
+  | 错误码ID | 错误信息 |
+  | ------- | -------- |
+  | 1900010 | read data from message sequence failed |
+
+**示例：**
+
+  ```
+  let data = rpc.MessageSequence.create();
+  try {
+      data.writeBooleanArray([false, true, false]);
+  } catch(error) {
+      console.info("rpc write booleanArray fail, errorCode " + error.code);
+      console.info("rpc write booleanArray fail, errorMessage" + error.message);
+  }
+  let array = new Array(3);
+  try {
+      data.readBooleanArray(array);
+  } catch(error) {
+      console.info("rpc read booleanArray fail, errorCode " + error.code);
+      console.info("rpc read booleanArray fail, errorMessage" + error.message);
+  }
+  ```
+
+### readBooleanArray
+
+readBooleanArray(): boolean[]
+
+从MessageSequence实例中读取布尔数组。
+
+**系统能力**：SystemCapability.Communication.IPC.Core
+
+**返回值：**
+
+  | 类型      | 说明           |
+  | --------- | -------------- |
+  | boolean[] | 返回布尔数组。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.rpc错误码](../errorcodes/errorcode-rpc.md)
+
+  | 错误码ID | 错误信息 |
+  | ------- | -------- |
+  | 1900010 | read data from message sequence failed |
+
+**示例：**
+
+  ```
+  let data = rpc.MessageSequence.create();
+  try {
+      data.writeBooleanArray([false, true, false]);
+  } catch(error) {
+      console.info("rpc write booleanArray fail, errorCode " + error.code);
+      console.info("rpc write booleanArray fail, errorMessage" + error.message);
+  }
+  try {
+      let array = data.readBooleanArray();
+      console.log("RpcClient: readBooleanArray is " + array);
+  } catch(error) {
+      console.info("rpc read booleanArray fail, errorCode " + error.code);
+      console.info("rpc read booleanArray fail, errorMessage" + error.message);
+  }
+  ```
+
+### writeCharArray
+
+writeCharArray(charArray: number[]): void
+
+将单个字符数组写入MessageSequence实例。
+
+**系统能力**：SystemCapability.Communication.IPC.Core
+
+**参数：**
+
+  | 参数名    | 类型     | 必填 | 说明                   |
+  | --------- | -------- | ---- | ---------------------- |
+  | charArray | number[] | 是   | 要写入的单个字符数组。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.rpc错误码](../errorcodes/errorcode-rpc.md)
+
+  | 错误码ID | 错误信息 |
+  | -------- | ------ |
+  | 1900009 | write data to message sequence failed |
+
+**示例：**
+
+  ```
+  let data = rpc.MessageSequence.create();
+  try {
+      data.writeCharArray([97, 98, 88]);
+  } catch(error) {
+      console.info("rpc write charArray fail, errorCode " + error.code);
+      console.info("rpc write charArray fail, errorMessage" + error.message);
+  }
+  ```
+
+### readCharArray
+
+readCharArray(dataIn: number[]) : void
+
+从MessageSequence实例中读取单个字符数组。
+
+**系统能力**：SystemCapability.Communication.IPC.Core
+
+**参数：**
+
+  | 参数名 | 类型     | 必填 | 说明                   |
+  | ------ | -------- | ---- | ---------------------- |
+  | dataIn | number[] | 是   | 要读取的单个字符数组。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.rpc错误码](../errorcodes/errorcode-rpc.md)
+
+  | 错误码ID | 错误信息 |
+  | ------- | -------- |
+  | 1900010 | read data from message sequence failed |
+
+**示例：**
+
+  ```
+  let data = rpc.MessageSequence.create();
+  try {
+      data.writeCharArray([97, 98, 88]);
+  } catch(error) {
+      console.info("rpc write charArray fail, errorCode " + error.code);
+      console.info("rpc write charArray fail, errorMessage" + error.message);
+  }
+  let array = new Array(3);
+  try {
+      data.readCharArray(array);
+  } catch(error) {
+      console.info("rpc read charArray fail, errorCode " + error.code);
+      console.info("rpc read charArray fail, errorMessage" + error.message);
+  }
+  ```
+
+### readCharArray
+
+readCharArray(): number[]
+
+从MessageSequence实例读取单个字符数组。
+
+**系统能力**：SystemCapability.Communication.IPC.Core
+
+**返回值：**
+
+  | 类型     | 说明               |
+  | -------- | ------------------ |
+  | number[] | 返回单个字符数组。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.rpc错误码](../errorcodes/errorcode-rpc.md)
+
+  | 错误码ID | 错误信息 |
+  | ------- | -------- |
+  | 1900010 | read data from message sequence failed |
+
+**示例：**
+
+  ```
+  let data = rpc.MessageSequence.create();
+  try {
+      data.writeCharArray([97, 98, 88]);
+  } catch(error) {
+      console.info("rpc write charArray fail, errorCode " + error.code);
+      console.info("rpc write charArray fail, errorMessage" + error.message);
+  }
+  let array = new Array(3);
+  try {
+      let array = data.readCharArray();
+      console.log("RpcClient: readCharArray is " + array);
+  } catch(error) {
+      console.info("rpc read charArray fail, errorCode " + error.code);
+      console.info("rpc read charArray fail, errorMessage" + error.message);
+  }
+  ```
+
+### writeStringArray
+
+writeStringArray(stringArray: string[]): void
+
+将字符串数组写入MessageSequence实例。
+
+**系统能力**：SystemCapability.Communication.IPC.Core
+
+**参数：**
+
+  | 参数名      | 类型     | 必填 | 说明                                                    |
+  | ----------- | -------- | ---- | ------------------------------------------------------- |
+  | stringArray | string[] | 是   | 要写入的字符串数组，数组单个元素的长度应小于40960字节。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.rpc错误码](../errorcodes/errorcode-rpc.md)
+
+  | 错误码ID | 错误信息 |
+  | ------- | -------- |
+  | 1900009 | write data to message sequence failed |
+
+**示例：**
+
+  ```
+  let data = rpc.MessageSequence.create();
+  try {
+      data.writeStringArray(["abc", "def"]);
+  } catch(error) {
+      console.info("rpc write stringArray fail, errorCode " + error.code);
+      console.info("rpc write stringArray fail, errorMessage" + error.message);
+  }
+  ```
+
+### readStringArray
+
+readStringArray(dataIn: string[]) : void
+
+从MessageSequence实例读取字符串数组。
+
+**系统能力**：SystemCapability.Communication.IPC.Core
+
+**参数：**
+
+  | 参数名 | 类型     | 必填 | 说明                 |
+  | ------ | -------- | ---- | -------------------- |
+  | dataIn | string[] | 是   | 要读取的字符串数组。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.rpc错误码](../errorcodes/errorcode-rpc.md)
+
+  | 错误码ID | 错误信息 |
+  | ------- | -------- |
+  | 1900010 | read data from message sequence failed |
+
+**示例：**
+
+  ```
+  let data = rpc.MessageSequence.create();
+  try {
+      data.writeStringArray(["abc", "def"]);
+  } catch(error) {
+      console.info("rpc write stringArray fail, errorCode " + error.code);
+      console.info("rpc write stringArray fail, errorMessage" + error.message);
+  }
+  let array = new Array(2);
+  try {
+      data.readStringArray(array);
+  } catch(error) {
+      console.info("rpc read stringArray fail, errorCode " + error.code);
+      console.info("rpc read stringArray fail, errorMessage" + error.message);
+  }
+  ```
+
+### readStringArray
+
+readStringArray(): string[]
+
+从MessageSequence实例读取字符串数组。
+
+**系统能力**：SystemCapability.Communication.IPC.Core
+
+**返回值：**
+
+  | 类型     | 说明             |
+  | -------- | ---------------- |
+  | string[] | 返回字符串数组。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.rpc错误码](../errorcodes/errorcode-rpc.md)
+
+  | 错误码ID | 错误信息 |
+  | ------- | -------- |
+  | 1900010 | read data from message sequence failed |
+
+**示例：**
+
+  ```
+  let data = rpc.MessageSequence.create();
+  try {
+      data.writeStringArray(["abc", "def"]);
+  } catch(error) {
+      console.info("rpc write stringArray fail, errorCode " + error.code);
+      console.info("rpc write stringArray fail, errorMessage" + error.message);
+  }
+  try {
+      let array = data.readStringArray();
+      console.log("RpcClient: readStringArray is " + array);
+  } catch(error) {
+      console.info("rpc read stringArray fail, errorCode " + error.code);
+      console.info("rpc read stringArray fail, errorMessage" + error.message);
+  }
+  ```
+
+### writeNoException
+
+writeNoException(): void
+
+向MessageSequence写入“指示未发生异常”的信息。
+
+**系统能力**：SystemCapability.Communication.IPC.Core
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.rpc错误码](../errorcodes/errorcode-rpc.md)
+
+  | 错误码ID | 错误信息 |
+  | ------- | -------- |
+  | 1900009 | write data to message sequence failed |
+
+**示例：**
+
+  ```
+  class MyDeathRecipient {
+      onRemoteDied() {
+          console.log("server died");
+      }
+  }
+  class TestRemoteObject extends rpc.RemoteObject {
+      constructor(descriptor) {
+          super(descriptor);
+      }
+      registerDeathRecipient(recipient: MyDeathRecipient, flags: number);
+      unregisterDeathRecipient(recipient: MyDeathRecipient, flags: number);
+      isObjectDead(): boolean {
+          return false;
+      }
+      onRemoteRequest(code, data, reply, option) {
+          if (code === 1) {
+              console.log("RpcServer: onRemoteRequest called");
+              try {
+                  reply.writeNoException();
+              } catch(error) {
+                  console.info("rpc write no exception fail, errorCode " + error.code);
+                  console.info("rpc write no exception fail, errorMessage" + error.message);
+              }
+              return true;
+          } else {
+              console.log("RpcServer: unknown code: " + code);
+              return false;
+          }
+      }
+  }
+  ```
+
+### readException
+
+readException(): void
+
+从MessageSequence中读取异常。
+
+**系统能力**：SystemCapability.Communication.IPC.Core
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.rpc错误码](../errorcodes/errorcode-rpc.md)
+
+  | 错误码ID | 错误信息 |
+  | ------- | -------- |
+  | 1900010 | read data from message sequence failed |
+
+**示例：**
+
+  ```
+  import FA from "@ohos.ability.featureAbility";
+  let proxy;
+  let connect = {
+      onConnect: function(elementName, remoteProxy) {
+          console.log("RpcClient: js onConnect called.");
+          proxy = remoteProxy;
+      },
+      onDisconnect: function(elementName) {
+          console.log("RpcClient: onDisconnect");
+      },
+      onFailed: function() {
+          console.log("RpcClient: onFailed");
+      }
+  };
+  let want = {
+      "bundleName": "com.ohos.server",
+      "abilityName": "com.ohos.server.MainAbility",
+  };
+  FA.connectAbility(want, connect);
+  let option = new rpc.MessageOption();
+  let data = rpc.MessageSequence.create();
+  let reply = rpc.MessageSequence.create();
+  data.writeInt(1);
+  data.writeString("hello");
+  proxy.sendMessageRequest(1, data, reply, option)
+      .then(function(errCode) {
+          if (errCode === 0) {
+              console.log("sendMessageRequest got result");
+              try {
+                  reply.readException();
+              } catch(error) {
+                  console.info("rpc read exception fail, errorCode " + error.code);
+                  console.info("rpc read no exception fail, errorMessage" + error.message);
+              }
+              let msg = reply.readString();
+              console.log("RPCTest: reply msg: " + msg);
+          } else {
+              console.log("RPCTest: sendMessageRequest failed, errCode: " + errCode);
+          }
+      }).catch(function(e) {
+          console.log("RPCTest: sendMessageRequest got exception: " + e.message);
+      }).finally (() => {
+          console.log("RPCTest: sendMessageRequest ends, reclaim parcel");
+          data.reclaim();
+          reply.reclaim();
+      });
+  ```
+
+### writeParcelableArray
+
+writeParcelableArray(parcelableArray: Parcelable[]): void
+
+将可序列化对象数组写入MessageSequence实例。
+
+**系统能力**：SystemCapability.Communication.IPC.Core
+
+**参数：**
+
+  | 参数名          | 类型         | 必填 | 说明                       |
+  | --------------- | ------------ | ---- | -------------------------- |
+  | parcelableArray | Parcelable[] | 是   | 要写入的可序列化对象数组。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.rpc错误码](../errorcodes/errorcode-rpc.md)
+
+  | 错误码ID | 错误信息 |
+  | ------- | -------- |
+  | 1900009 | write data to message sequence failed |
+
+**示例：**
+
+  ```
+  class MyParcelable {
+      num: number;
+      str: string;
+      constructor(num, str) {
+          this.num = num;
+          this.str = str;
+      }
+      marshalling(messageSequence) {
+          messageSequence.writeInt(this.num);
+          messageSequence.writeString(this.str);
+          return true;
+      }
+      unmarshalling(messageSequence) {
+          this.num = messageSequence.readInt();
+          this.str = messageSequence.readString();
+          return true;
+      }
+  }
+  let parcelable = new MyParcelable(1, "aaa");
+  let parcelable2 = new MyParcelable(2, "bbb");
+  let parcelable3 = new MyParcelable(3, "ccc");
+  let a = [parcelable, parcelable2, parcelable3];
+  let data = rpc.MessageSequence.create();
+  try {
+      data.writeParcelableArray(a);
+  } catch(error) {
+      console.info("rpc write parcelable array fail, errorCode " + error.code);
+      console.info("rpc write parcelable array fail, errorMessage" + error.message);
+  }
+  ```
+
+### readParcelableArray
+
+readParcelableArray(parcelableArray: Parcelable[]): void
+
+从MessageSequence实例读取可序列化对象数组。
+
+**系统能力**：SystemCapability.Communication.IPC.Core
+
+**参数：**
+
+  | 参数名          | 类型         | 必填 | 说明                       |
+  | --------------- | ------------ | ---- | -------------------------- |
+  | parcelableArray | Parcelable[] | 是   | 要读取的可序列化对象数组。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.rpc错误码](../errorcodes/errorcode-rpc.md)
+
+  | 错误码ID | 错误信息 |
+  | ------- | -------- |
+  | 1900010 | read data from message sequence failed |
+  | 1900012 | call js callback function failed |
+
+**示例：**
+
+  ```
+  class MyParcelable {
+      num: number;
+      str: string;
+      constructor(num, str) {
+          this.num = num;
+          this.str = str;
+      }
+      marshalling(messageSequence) {
+          messageSequence.writeInt(this.num);
+          messageSequence.writeString(this.str);
+          return true;
+      }
+      unmarshalling(messageSequence) {
+          this.num = messageSequence.readInt();
+          this.str = messageSequence.readString();
+          return true;
+      }
+  }
+  let parcelable = new MyParcelable(1, "aaa");
+  let parcelable2 = new MyParcelable(2, "bbb");
+  let parcelable3 = new MyParcelable(3, "ccc");
+  let a = [parcelable, parcelable2, parcelable3];
+  let data = rpc.MessageSequence.create();
+  let result = data.writeParcelableArray(a);
+  console.log("RpcClient: writeParcelableArray is " + result);
+  let b = [new MyParcelable(0, ""), new MyParcelable(0, ""), new MyParcelable(0, "")];
+  try {
+      data.readParcelableArray(b);
+  } catch(error) {
+      console.info("rpc read parcelable array fail, errorCode " + error.code);
+      console.info("rpc read parcelable array fail, errorMessage" + error.message);
+  }
+  data.readParcelableArray(b);
+  ```
+
+### writeRemoteObjectArray
+
+writeRemoteObjectArray(objectArray: IRemoteObject[]): void
+
+将IRemoteObject对象数组写入MessageSequence。
+
+**系统能力**：SystemCapability.Communication.IPC.Core
+
+**参数：**
+  | 参数名      | 类型            | 必填 | 说明                                           |
+  | ----------- | --------------- | ---- | ---------------------------------------------- |
+  | objectArray | IRemoteObject[] | 是   | 要写入MessageSequence的IRemoteObject对象数组。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.rpc错误码](../errorcodes/errorcode-rpc.md)
+
+  | 错误码ID | 错误信息 |
+  | ------- | ------- |
+  | 1900009 | write data to message sequence failed |
+
+**示例：**
+
+  ```
+  class MyDeathRecipient {
+      onRemoteDied() {
+          console.log("server died");
+      }
+  }
+  class TestRemoteObject extends rpc.RemoteObject {
+      constructor(descriptor) {
+          super(descriptor);
+          this.modifyLocalInterface(this, descriptor);
+      }
+      registerDeathRecipient(recipient: MyDeathRecipient, flags: number);
+      unregisterDeathRecipient(recipient: MyDeathRecipient, flags: number);
+      isObjectDead(): boolean {
+          return false;
+      }
+      asObject(): rpc.IRemoteObject {
+          return this;
+      }
+  }
+  let a = [new TestRemoteObject("testObject1"), new TestRemoteObject("testObject2"), new TestRemoteObject("testObject3")];
+  let data = rpc.MessageSequence.create();
+  let result = data.writeRemoteObjectArray(a);
+  try {
+      data.writeRemoteObjectArray(a);
+  } catch(error) {
+      console.info("rpc write remote object array fail, errorCode " + error.code);
+      console.info("rpc write remote object array fail, errorMessage" + error.message);
+  }
+  console.log("RpcClient: writeRemoteObjectArray is " + result);
+  ```
+
+### readRemoteObjectArray
+
+readRemoteObjectArray(objects: IRemoteObject[]): void
+
+从MessageSequence读取IRemoteObject对象数组。
+
+**系统能力**：SystemCapability.Communication.IPC.Core
+
+**参数：**
+
+  | 参数名  | 类型            | 必填 | 说明                                           |
+  | ------- | --------------- | ---- | ---------------------------------------------- |
+  | objects | IRemoteObject[] | 是   | 从MessageSequence读取的IRemoteObject对象数组。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.rpc错误码](../errorcodes/errorcode-rpc.md)
+
+  | 错误码ID | 错误信息 |
+  | ------- | -------- |
+  | 1900010 | read data from message sequence failed |
+
+**示例：**
+
+  ```
+  class MyDeathRecipient {
+      onRemoteDied() {
+          console.log("server died");
+      }
+  }
+  class TestRemoteObject extends rpc.RemoteObject {
+      constructor(descriptor) {
+          super(descriptor);
+          this.modifyLocalInterface(this, descriptor);
+      }
+      registerDeathRecipient(recipient: MyDeathRecipient, flags: number);
+      unregisterDeathRecipient(recipient: MyDeathRecipient, flags: number);
+      isObjectDead(): boolean {
+          return false;
+      }
+      asObject(): rpc.IRemoteObject {
+          return this;
+      }
+  }
+  let a = [new TestRemoteObject("testObject1"), new TestRemoteObject("testObject2"), new TestRemoteObject("testObject3")];
+  let data = rpc.MessageSequence.create();
+  data.writeRemoteObjectArray(a);
+  let b = new Array(3);
+  try {
+      data.readRemoteObjectArray(b);
+  } catch(error) {
+      console.info("rpc read remote object array fail, errorCode " + error.code);
+      console.info("rpc read remote object array fail, errorMessage" + error.message);
+  }
+  data.readRemoteObjectArray(b);
+  ```
+
+### readRemoteObjectArray
+
+readRemoteObjectArray(): IRemoteObject[]
+
+从MessageSequence读取IRemoteObject对象数组。
+
+**系统能力**：SystemCapability.Communication.IPC.Core
+
+**返回值：**
+
+  | 类型            | 说明                        |
+  | --------------- | --------------------------- |
+  | IRemoteObject[] | 返回IRemoteObject对象数组。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.rpc错误码](../errorcodes/errorcode-rpc.md)
+
+  | 错误码ID | 错误信息 |
+  | ------- | -------- |
+  | 1900010 | read data from message sequence failed |
+
+**示例：**
+
+  ```
+  class MyDeathRecipient {
+      onRemoteDied() {
+          console.log("server died");
+      }
+  }
+  class TestRemoteObject extends rpc.RemoteObject {
+      constructor(descriptor) {
+          super(descriptor);
+          this.modifyLocalInterface(this, descriptor);
+      }
+      registerDeathRecipient(recipient: MyDeathRecipient, flags: number);
+      unregisterDeathRecipient(recipient: MyDeathRecipient, flags: number);
+      isObjectDead(): boolean {
+          return false;
+      }
+      asObject(): rpc.IRemoteObject {
+          return this;
+      }
+  }
+  let a = [new TestRemoteObject("testObject1"), new TestRemoteObject("testObject2"), new TestRemoteObject("testObject3")];
+  let data = rpc.MessageSequence.create();
+  data.writeRemoteObjectArray(a);
+  try {
+      let b = data.readRemoteObjectArray();
+  } catch(error) {
+      console.info("rpc read remote object array fail, errorCode " + error.code);
+      console.info("rpc read remote object array fail, errorMessage" + error.message);
+  }
+  console.log("RpcClient: readRemoteObjectArray is " + b);
+  ```
+
+
+### closeFileDescriptor<sup>8+</sup>
+
+static closeFileDescriptor(fd: number): void
+
+关闭给定的文件描述符。
+
+**系统能力**：SystemCapability.Communication.IPC.Core
+
+**参数：**
+
+  | 参数名 | 类型   | 必填 | 说明                 |
+  | ------ | ------ | ---- | -------------------- |
+  | fd     | number | 是   | 要关闭的文件描述符。 |
+
+**示例：**
+
+  ```
+  import fileio from '@ohos.fileio';
+  let filePath = "path/to/file";
+  let fd = fileio.openSync(filePath, 0o2| 0o100, 0o666);
+  try {
+      rpc.MessageSequence.closeFileDescriptor(fd);
+  } catch(error) {
+      console.info("rpc close file descriptor fail, errorCode " + error.code);
+      console.info("rpc close file descriptor fail, errorMessage" + error.message);
+  }
+  ```
+
+### dupFileDescriptor
+
+static dupFileDescriptor(fd: number) :number
+
+复制给定的文件描述符。
+
+**系统能力**：SystemCapability.Communication.IPC.Core
+
+**参数：**
+
+  | 参数名 | 类型   | 必填 | 说明                     |
+  | ------ | ------ | ---- | ------------------------ |
+  | fd     | number | 是   | 表示已存在的文件描述符。 |
+
+**返回值：**
+
+  | 类型   | 说明                 |
+  | ------ | -------------------- |
+  | number | 返回新的文件描述符。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.rpc错误码](../errorcodes/errorcode-rpc.md)
+
+  | 错误码ID | 错误信息 |
+  | ------- | ------- |
+  | 1900013 | call os dup function failed |
+
+**示例：**
+
+  ```
+  import fileio from '@ohos.fileio';
+  let filePath = "path/to/file";
+  let fd = fileio.openSync(filePath, 0o2| 0o100, 0o666);
+  try {
+      let newFd = rpc.MessageSequence.dupFileDescriptor(fd);
+  } catch(error) {
+      console.info("rpc dup file descriptor fail, errorCode " + error.code);
+      console.info("rpc dup file descriptor fail, errorMessage" + error.message);
+  }
+  ```
+
+### containFileDescriptors
+
+containFileDescriptors(): boolean
+
+检查此MessageSequence对象是否包含文件描述符。
+
+**系统能力**：SystemCapability.Communication.IPC.Core
+
+**返回值：**
+
+  | 类型    | 说明                                                                 |
+  | ------- | -------------------------------------------------------------------- |
+  | boolean | 如果此MessageSequence对象包含文件描述符，则返回true；否则返回false。 |
+
+**示例：**
+
+
+  ```
+  import fileio from '@ohos.fileio';
+  let sequence = new rpc.MessageSequence();
+  let filePath = "path/to/file";
+  let r1 = sequence.containFileDescriptors();
+  let fd = fileio.openSync(filePath, 0o2| 0o100, 0o666);
+  try {
+      sequence.writeFileDescriptor(fd);
+  } catch(error) {
+      console.info("rpc write file descriptor fail, errorCode " + error.code);
+      console.info("rpc write file descriptor fail, errorMessage" + error.message);
+  }
+  try {
+      let containFD = sequence.containFileDescriptors();
+  } catch(error) {
+      console.info("rpc contain file descriptor fail, errorCode " + error.code);
+      console.info("rpc contain file descriptor fail, errorMessage" + error.message);
+  }
+  console.log("RpcTest: sequence after write fd containFd result is : " + containFD);
+  ```
+
+### writeFileDescriptor
+
+writeFileDescriptor(fd: number): void
+
+写入文件描述符到MessageSequence。
+
+**系统能力**：SystemCapability.Communication.IPC.Core
+
+**参数：**
+
+  | 参数名 | 类型   | 必填 | 说明         |
+  | ------ | ------ | ---- | ------------ |
+  | fd     | number | 是   | 文件描述符。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.rpc错误码](../errorcodes/errorcode-rpc.md)
+
+  | 错误码ID | 错误信息 |
+  | -------- | ------ |
+  | 1900009 | write data to message sequence failed |
+
+**示例：**
+
+  ```
+  import fileio from '@ohos.fileio';
+  let sequence = new rpc.MessageSequence();
+  let filePath = "path/to/file";
+  let fd = fileio.openSync(filePath, 0o2| 0o100, 0o666);
+  try {
+      sequence.writeFileDescriptor(fd);
+  } catch(error) {
+      console.info("rpc write file descriptor fail, errorCode " + error.code);
+      console.info("rpc write file descriptor fail, errorMessage" + error.message);
+  }
+  ```
+
+
+### readFileDescriptor
+
+readFileDescriptor(): number
+
+从MessageSequence中读取文件描述符。
+
+**系统能力**：SystemCapability.Communication.IPC.Core
+
+**返回值：**
+
+  | 类型   | 说明             |
+  | ------ | ---------------- |
+  | number | 返回文件描述符。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.rpc错误码](../errorcodes/errorcode-rpc.md)
+
+  | 错误码ID | 错误信息 |
+  | ------- | -------- |
+  | 1900010 | read data from message sequence failed |
+
+**示例：**
+
+  ```
+  import fileio from '@ohos.fileio';
+  let sequence = new rpc.MessageSequence();
+  let filePath = "path/to/file";
+  let fd = fileio.openSync(filePath, 0o2| 0o100, 0o666);
+  try {
+      sequence.writeFileDescriptor(fd);
+  } catch(error) {
+      console.info("rpc write file descriptor fail, errorCode " + error.code);
+      console.info("rpc write file descriptor fail, errorMessage" + error.message);
+  }
+  try {
+      let readFD = sequence.readFileDescriptor();
+  } catch(error) {
+      console.info("rpc read file descriptor fail, errorCode " + error.code);
+      console.info("rpc read file descriptor fail, errorMessage" + error.message);
+  }
+  ```
+
+
+### writeAshmem
+
+writeAshmem(ashmem: Ashmem): void
+
+将指定的匿名共享对象写入此MessageSequence。
+
+**系统能力**：SystemCapability.Communication.IPC.Core
+
+**参数：**
+
+  | 参数名 | 类型   | 必填 | 说明                                  |
+  | ------ | ------ | ---- | ------------------------------------- |
+  | ashmem | Ashmem | 是   | 要写入MessageSequence的匿名共享对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.rpc错误码](../errorcodes/errorcode-rpc.md)
+
+  | 错误码ID | 错误信息 |
+  | ------- | ------- |
+  | 1900009 | write data to message sequence failed |
+
+**示例：**
+
+  ```
+  let sequence = new rpc.MessageSequence();
+  try {
+      let ashmem = rpc.Ashmem.create("ashmem", 1024);
+  } catch(error) {
+      console.info("rpc create ashmem fail, errorCode " + error.code);
+      console.info("rpc creat ashmem fail, errorMessage" + error.message);
+  }
+  try {
+      sequence.writeAshmem(ashmem);
+  } catch(error) {
+      console.info("rpc write ashmem fail, errorCode " + error.code);
+      console.info("rpc write ashmem fail, errorMessage" + error.message);
+  }
+  ```
+
+
+### readAshmem
+
+readAshmem(): Ashmem
+
+从MessageSequence读取匿名共享对象。
+
+**系统能力**：SystemCapability.Communication.IPC.Core
+
+**返回值：**
+
+  | 类型   | 说明               |
+  | ------ | ------------------ |
+  | Ashmem | 返回匿名共享对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.rpc错误码](../errorcodes/errorcode-rpc.md)
+
+  | 错误码ID | 错误信息 |
+  | ------- | -------- |
+  | 1900010 | read data from message sequence failed |
+
+**示例：**
+
+  ```
+  let sequence = new rpc.MessageSequence();
+  try {
+      let ashmem = rpc.Ashmem.create("ashmem", 1024);
+  } catch(error) {
+      console.info("rpc create ashmem fail, errorCode " + error.code);
+      console.info("rpc creat ashmem fail, errorMessage" + error.message);
+  }
+  try {
+      sequence.writeAshmem(ashmem);
+  } catch(error) {
+      console.info("rpc write ashmem fail, errorCode " + error.code);
+      console.info("rpc write ashmem fail, errorMessage" + error.message);
+  }
+  try {
+        let readAshmem = sequence.readAshmem();
+  } catch(error) {
+      console.info("rpc read ashmem fail, errorCode " + error.code);
+      console.info("rpc read ashmem fail, errorMessage" + error.message);
+  }
+  console.log("RpcTest: read ashmem to result is : " + readAshmem);
+  ```
+
+
+### getRawDataCapacity
+
+getRawDataCapacity(): number
+
+获取MessageSequence可以容纳的最大原始数据量。
+
+**系统能力**：SystemCapability.Communication.IPC.Core
+
+**返回值：**
+
+  | 类型   | 说明                                                         |
+  | ------ | ------------------------------------------------------------ |
+  | number | 返回MessageSequence可以容纳的最大原始数据量，即128&nbsp;Mb。 |
+
+**示例：**
+
+  ```
+  let sequence = new rpc.MessageSequence();
+  let result = sequence.getRawDataCapacity();
+  console.log("RpcTest: sequence get RawDataCapacity result is : " + result);
+  ```
+
+
+### writeRawData
+
+writeRawData(rawData: number[], size: number): void
+
+将原始数据写入MessageSequence对象。
+
+**系统能力**：SystemCapability.Communication.IPC.Core
+
+**参数：**
+
+  | 参数名  | 类型     | 必填 | 说明                               |
+  | ------- | -------- | ---- | ---------------------------------- |
+  | rawData | number[] | 是   | 要写入的原始数据。                 |
+  | size    | number   | 是   | 发送的原始数据大小，以字节为单位。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.rpc错误码](../errorcodes/errorcode-rpc.md)
+
+  | 错误码ID | 错误信息 |
+  | ------- | ------ |
+  | 1900009 | write data to message sequence failed |
+
+**示例：**
+
+  ```
+  let sequence = new rpc.MessageSequence();
+  let arr = [1, 2, 3, 4, 5];
+  try {
+      sequence.writeRawData(arr, arr.length);
+  } catch(error) {
+      console.info("rpc write rawdata fail, errorCode " + error.code);
+      console.info("rpc write rawdata fail, errorMessage" + error.message);
+  }
+  ```
+
+
+### readRawData
+
+readRawData(size: number): number[]
+
+从MessageSequence读取原始数据。
+
+**系统能力**：SystemCapability.Communication.IPC.Core
+
+**参数：**
+
+  | 参数名 | 类型   | 必填 | 说明                     |
+  | ------ | ------ | ---- | ------------------------ |
+  | size   | number | 是   | 要读取的原始数据的大小。 |
+
+**返回值：**
+
+  | 类型     | 说明                           |
+  | -------- | ------------------------------ |
+  | number[] | 返回原始数据（以字节为单位）。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.rpc错误码](../errorcodes/errorcode-rpc.md)
+
+  | 错误码ID | 错误信息 |
+  | ------- | -------- |
+  | 1900010 | read data from message sequence failed |
+
+**示例：**
+
+  ```
+  let sequence = new rpc.MessageSequence();
+  let arr = [1, 2, 3, 4, 5];
+  try {
+      sequence.writeRawData(arr, arr.length);
+  } catch(error) {
+      console.info("rpc write rawdata fail, errorCode " + error.code);
+      console.info("rpc write rawdata fail, errorMessage" + error.message);
+  }
+  try {
+      let result = sequence.readRawData(5);
+  } catch(error) {
+      console.info("rpc read rawdata fail, errorCode " + error.code);
+      console.info("rpc read rawdata fail, errorMessage" + error.message);
+  }
+  console.log("RpcTest: sequence read raw data result is : " + result);
+  ```
+
+## MessageParcel<sup>(deprecated)</sup>
+
+>从API version 9 开始不再维护，建议使用[MessageSequence](#messagesequence9)类替代。
 
 在RPC过程中，发送方可以使用MessageParcel提供的写方法，将待发送的数据以特定格式写入该对象。接收方可以使用MessageParcel提供的读方法从该对象中读取特定格式的数据。数据格式包括：基础类型及数组、IPC对象、接口描述符和自定义序列化对象。
-
 
 ### create
 
@@ -29,8 +3145,8 @@ create(): MessageParcel
 
 **返回值：**
 
-  | 类型 | 说明 |
-  | -------- | -------- |
+  | 类型          | 说明                          |
+  | ------------- | ----------------------------- |
   | MessageParcel | 返回创建的MessageParcel对象。 |
 
 **示例：**
@@ -39,7 +3155,6 @@ create(): MessageParcel
   let data = rpc.MessageParcel.create();
   console.log("RpcClient: data is " + data);
   ```
-
 
 ### reclaim
 
@@ -56,25 +3171,24 @@ reclaim(): void
   reply.reclaim();
   ```
 
-
 ### writeRemoteObject
 
 writeRemoteObject(object: [IRemoteObject](#iremoteobject)): boolean
 
-  序列化远程对象并将其写入MessageParcel对象。
+序列化远程对象并将其写入MessageParcel对象。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
 **参数：**
 
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | object | [IRemoteObject](#iremoteobject) | 是 | 要序列化并写入MessageParcel的远程对象。 |
+  | 参数名 | 类型                            | 必填 | 说明                                    |
+  | ------ | ------------------------------- | ---- | --------------------------------------- |
+  | object | [IRemoteObject](#iremoteobject) | 是   | 要序列化并写入MessageParcel的远程对象。 |
 
 **返回值：**
 
-  | 类型 | 说明 |
-  | -------- | -------- |
+  | 类型    | 说明                                      |
+  | ------- | ----------------------------------------- |
   | boolean | 如果操作成功，则返回true；否则返回false。 |
 
 **示例：**
@@ -104,7 +3218,6 @@ writeRemoteObject(object: [IRemoteObject](#iremoteobject)): boolean
   data.writeRemoteObject(testRemoteObject);
   ```
 
-
 ### readRemoteObject
 
 readRemoteObject(): IRemoteObject
@@ -115,8 +3228,8 @@ readRemoteObject(): IRemoteObject
 
 **返回值：**
 
-  | 类型 | 说明 |
-  | -------- | -------- |
+  | 类型                            | 说明               |
+  | ------------------------------- | ------------------ |
   | [IRemoteObject](#iremoteobject) | 读取到的远程对象。 |
 
 **示例：**
@@ -147,7 +3260,6 @@ readRemoteObject(): IRemoteObject
   let proxy = data.readRemoteObject();
   ```
 
-
 ### writeInterfaceToken
 
 writeInterfaceToken(token: string): boolean
@@ -158,14 +3270,14 @@ writeInterfaceToken(token: string): boolean
 
 **参数：**
 
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | token | string | 是 | 字符串类型描述符。 |
+  | 参数名 | 类型   | 必填 | 说明               |
+  | ------ | ------ | ---- | ------------------ |
+  | token  | string | 是   | 字符串类型描述符。 |
 
 **返回值：**
 
-  | 类型 | 说明 |
-  | -------- | -------- |
+  | 类型    | 说明                                      |
+  | ------- | ----------------------------------------- |
   | boolean | 如果操作成功，则返回true；否则返回false。 |
 
 **示例：**
@@ -187,15 +3299,15 @@ readInterfaceToken(): string
 
 **返回值：**
 
-  | 类型 | 说明 |
-  | -------- | -------- |
+  | 类型   | 说明                     |
+  | ------ | ------------------------ |
   | string | 返回读取到的接口描述符。 |
 
 **示例：**
 
   ```
   class Stub extends rpc.RemoteObject {
-      onRemoteRequest(code, data, reply, option) {
+      onRemoteMessageRequest(code, data, reply, option) {
           let interfaceToken = data.readInterfaceToken();
           console.log("RpcServer: interfaceToken is " + interfaceToken);
           return true;
@@ -214,8 +3326,8 @@ getSize(): number
 
 **返回值：**
 
-  | 类型 | 说明 |
-  | -------- | -------- |
+  | 类型   | 说明                                          |
+  | ------ | --------------------------------------------- |
   | number | 获取的MessageParcel的数据大小。以字节为单位。 |
 
 **示例：**
@@ -237,8 +3349,8 @@ getCapacity(): number
 
 **返回值：**
 
-  | 类型 | 说明 |
-  | -------- | -------- |
+  | 类型   | 说明                                          |
+  | ------ | --------------------------------------------- |
   | number | 获取的MessageParcel的容量大小。以字节为单位。 |
 
 **示例：**
@@ -260,14 +3372,14 @@ setSize(size: number): boolean
 
 **参数：**
 
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | size | number | 是 | MessageParcel实例的数据大小。以字节为单位。 |
+  | 参数名 | 类型   | 必填 | 说明                                        |
+  | ------ | ------ | ---- | ------------------------------------------- |
+  | size   | number | 是   | MessageParcel实例的数据大小。以字节为单位。 |
 
 **返回值：**
 
-  | 类型 | 说明 |
-  | -------- | -------- |
+  | 类型    | 说明                              |
+  | ------- | --------------------------------- |
   | boolean | 设置成功返回true，否则返回false。 |
 
 **示例：**
@@ -289,14 +3401,14 @@ setCapacity(size: number): boolean
 
 **参数：**
 
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | size | number | 是 | MessageParcel实例的存储容量。以字节为单位。 |
+  | 参数名 | 类型   | 必填 | 说明                                        |
+  | ------ | ------ | ---- | ------------------------------------------- |
+  | size   | number | 是   | MessageParcel实例的存储容量。以字节为单位。 |
 
 **返回值：**
 
-  | 类型 | 说明 |
-  | -------- | -------- |
+  | 类型    | 说明                              |
+  | ------- | --------------------------------- |
   | boolean | 设置成功返回true，否则返回false。 |
 
 **示例：**
@@ -318,15 +3430,15 @@ getWritableBytes(): number
 
 **返回值：**
 
-  | 类型 | 说明 |
-  | -------- | -------- |
+  | 类型   | 说明                                                |
+  | ------ | --------------------------------------------------- |
   | number | 获取到的MessageParcel的可写字节空间。以字节为单位。 |
 
 **示例：**
 
   ```
   class Stub extends rpc.RemoteObject {
-      onRemoteRequest(code, data, reply, option) {
+      onRemoteMessageRequest(code, data, reply, option) {
           let getWritableBytes = data.getWritableBytes();
           console.log("RpcServer: getWritableBytes is " + getWritableBytes);
           return true;
@@ -345,8 +3457,8 @@ getReadableBytes(): number
 
 **返回值：**
 
-  | 类型 | 说明 |
-  | -------- | -------- |
+  | 类型   | 说明                                                |
+  | ------ | --------------------------------------------------- |
   | number | 获取到的MessageParcel的可读字节空间。以字节为单位。 |
 
 **示例：**
@@ -372,8 +3484,8 @@ getReadPosition(): number
 
 **返回值：**
 
-  | 类型 | 说明 |
-  | -------- | -------- |
+  | 类型   | 说明                                    |
+  | ------ | --------------------------------------- |
   | number | 返回MessageParcel实例中的当前读取位置。 |
 
 **示例：**
@@ -395,8 +3507,8 @@ getWritePosition(): number
 
 **返回值：**
 
-  | 类型 | 说明 |
-  | -------- | -------- |
+  | 类型   | 说明                                    |
+  | ------ | --------------------------------------- |
   | number | 返回MessageParcel实例中的当前写入位置。 |
 
 **示例：**
@@ -419,14 +3531,14 @@ rewindRead(pos: number): boolean
 
 **参数：**
 
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | pos | number | 是 | 开始读取数据的目标位置。 |
+  | 参数名 | 类型   | 必填 | 说明                     |
+  | ------ | ------ | ---- | ------------------------ |
+  | pos    | number | 是   | 开始读取数据的目标位置。 |
 
 **返回值：**
 
-  | 类型 | 说明 |
-  | -------- | -------- |
+  | 类型    | 说明                                              |
+  | ------- | ------------------------------------------------- |
   | boolean | 如果读取位置发生更改，则返回true；否则返回false。 |
 
 **示例：**
@@ -453,14 +3565,14 @@ rewindWrite(pos: number): boolean
 
 **参数：**
 
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | pos | number | 是 | 开始写入数据的目标位置。 |
+  | 参数名 | 类型   | 必填 | 说明                     |
+  | ------ | ------ | ---- | ------------------------ |
+  | pos    | number | 是   | 开始写入数据的目标位置。 |
 
 **返回值：**
 
-  | 类型 | 说明 |
-  | -------- | -------- |
+  | 类型    | 说明                                          |
+  | ------- | --------------------------------------------- |
   | boolean | 如果写入位置更改，则返回true；否则返回false。 |
 
 **示例：**
@@ -485,14 +3597,14 @@ writeByte(val: number): boolean
 
 **参数：**
 
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | val | number | 是 | 要写入的字节值。 |
+  | 参数名 | 类型   | 必填 | 说明             |
+  | ------ | ------ | ---- | ---------------- |
+  | val    | number | 是   | 要写入的字节值。 |
 
 **返回值：**
 
-  | 类型 | 说明 |
-  | -------- | -------- |
+  | 类型    | 说明                          |
+  | ------- | ----------------------------- |
   | boolean | 写入返回成功，否则返回false。 |
 
 **示例：**
@@ -514,8 +3626,8 @@ readByte(): number
 
 **返回值：**
 
-  | 类型 | 说明 |
-  | -------- | -------- |
+  | 类型   | 说明         |
+  | ------ | ------------ |
   | number | 返回字节值。 |
 
 **示例：**
@@ -539,14 +3651,14 @@ writeShort(val: number): boolean
 
 **参数：**
 
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | val | number | 是 | 要写入的短整数值。 |
+  | 参数名 | 类型   | 必填 | 说明               |
+  | ------ | ------ | ---- | ------------------ |
+  | val    | number | 是   | 要写入的短整数值。 |
 
 **返回值：**
 
-  | 类型 | 说明 |
-  | -------- | -------- |
+  | 类型    | 说明                          |
+  | ------- | ----------------------------- |
   | boolean | 写入返回true，否则返回false。 |
 
 **示例：**
@@ -568,8 +3680,8 @@ readShort(): number
 
 **返回值：**
 
-  | 类型 | 说明 |
-  | -------- | -------- |
+  | 类型   | 说明           |
+  | ------ | -------------- |
   | number | 返回短整数值。 |
 
 **示例：**
@@ -593,14 +3705,14 @@ writeInt(val: number): boolean
 
 **参数：**
 
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | val | number | 是 | 要写入的整数值。 |
+  | 参数名 | 类型   | 必填 | 说明             |
+  | ------ | ------ | ---- | ---------------- |
+  | val    | number | 是   | 要写入的整数值。 |
 
 **返回值：**
 
-  | 类型 | 说明 |
-  | -------- | -------- |
+  | 类型    | 说明                          |
+  | ------- | ----------------------------- |
   | boolean | 写入返回成功，否则返回false。 |
 
 **示例：**
@@ -622,8 +3734,8 @@ readInt(): number
 
 **返回值：**
 
-  | 类型 | 说明 |
-  | -------- | -------- |
+  | 类型   | 说明         |
+  | ------ | ------------ |
   | number | 返回整数值。 |
 
 **示例：**
@@ -647,14 +3759,14 @@ writeLong(val: number): boolean
 
 **参数：**
 
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | val | number | 是 | 要写入的长整数值 |
+  | 参数名 | 类型   | 必填 | 说明             |
+  | ------ | ------ | ---- | ---------------- |
+  | val    | number | 是   | 要写入的长整数值 |
 
 **返回值：**
 
-  | 类型 | 说明 |
-  | -------- | -------- |
+  | 类型    | 说明                              |
+  | ------- | --------------------------------- |
   | boolean | 写入成功返回true，否则返回false。 |
 
 **示例：**
@@ -676,8 +3788,8 @@ readLong(): number
 
 **返回值：**
 
-  | 类型 | 说明 |
-  | -------- | -------- |
+  | 类型   | 说明           |
+  | ------ | -------------- |
   | number | 返回长整数值。 |
 
 **示例：**
@@ -701,14 +3813,14 @@ writeFloat(val: number): boolean
 
 **参数：**
 
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | val | number | 是 | 要写入的浮点值。 |
+  | 参数名 | 类型   | 必填 | 说明             |
+  | ------ | ------ | ---- | ---------------- |
+  | val    | number | 是   | 要写入的浮点值。 |
 
 **返回值：**
 
-  | 类型 | 说明 |
-  | -------- | -------- |
+  | 类型    | 说明                              |
+  | ------- | --------------------------------- |
   | boolean | 写入成功返回true，否则返回false。 |
 
 **示例：**
@@ -730,8 +3842,8 @@ readFloat(): number
 
 **返回值：**
 
-  | 类型 | 说明 |
-  | -------- | -------- |
+  | 类型   | 说明         |
+  | ------ | ------------ |
   | number | 返回浮点值。 |
 
 **示例：**
@@ -755,14 +3867,14 @@ writeDouble(val: number): boolean
 
 **参数：**
 
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | val | number | 是 | 要写入的双精度浮点值。 |
+  | 参数名 | 类型   | 必填 | 说明                   |
+  | ------ | ------ | ---- | ---------------------- |
+  | val    | number | 是   | 要写入的双精度浮点值。 |
 
 **返回值：**
 
-  | 类型 | 说明 |
-  | -------- | -------- |
+  | 类型    | 说明                              |
+  | ------- | --------------------------------- |
   | boolean | 写入成功返回true，否则返回false。 |
 
 **示例：**
@@ -784,8 +3896,8 @@ readDouble(): number
 
 **返回值：**
 
-  | 类型 | 说明 |
-  | -------- | -------- |
+  | 类型   | 说明               |
+  | ------ | ------------------ |
   | number | 返回双精度浮点值。 |
 
 **示例：**
@@ -798,7 +3910,6 @@ readDouble(): number
   console.log("RpcClient: readDouble is " + ret);
   ```
 
-
 ### writeBoolean
 
 writeBoolean(val: boolean): boolean
@@ -809,14 +3920,14 @@ writeBoolean(val: boolean): boolean
 
 **参数：**
 
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | val | boolean | 是 | 要写入的布尔值。 |
+  | 参数名 | 类型    | 必填 | 说明             |
+  | ------ | ------- | ---- | ---------------- |
+  | val    | boolean | 是   | 要写入的布尔值。 |
 
 **返回值：**
 
-  | 类型 | 说明 |
-  | -------- | -------- |
+  | 类型    | 说明                              |
+  | ------- | --------------------------------- |
   | boolean | 写入成功返回true，否则返回false。 |
 
 **示例：**
@@ -838,8 +3949,8 @@ readBoolean(): boolean
 
 **返回值：**
 
-  | 类型 | 说明 |
-  | -------- | -------- |
+  | 类型    | 说明                 |
+  | ------- | -------------------- |
   | boolean | 返回读取到的布尔值。 |
 
 **示例：**
@@ -863,14 +3974,14 @@ writeChar(val: number): boolean
 
 **参数：**
 
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | val | number | 是 | 要写入的单个字符值。 |
+  | 参数名 | 类型   | 必填 | 说明                 |
+  | ------ | ------ | ---- | -------------------- |
+  | val    | number | 是   | 要写入的单个字符值。 |
 
 **返回值：**
 
-  | 类型 | 说明 |
-  | -------- | -------- |
+  | 类型    | 说明                          |
+  | ------- | ----------------------------- |
   | boolean | 写入返回true，否则返回false。 |
 
 **示例：**
@@ -892,8 +4003,8 @@ readChar(): number
 
 **返回值：**
 
-  | 类型 | 说明 |
-  | -------- | -------- |
+  | 类型   | 说明             |
+  | ------ | ---------------- |
   | number | 返回单个字符值。 |
 
 **示例：**
@@ -917,14 +4028,14 @@ writeString(val: string): boolean
 
 **参数：**
 
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | val | string | 是 | 要写入的字符串值，其长度应小于40960字节。 |
+  | 参数名 | 类型   | 必填 | 说明                                      |
+  | ------ | ------ | ---- | ----------------------------------------- |
+  | val    | string | 是   | 要写入的字符串值，其长度应小于40960字节。 |
 
 **返回值：**
 
-  | 类型 | 说明 |
-  | -------- | -------- |
+  | 类型    | 说明                              |
+  | ------- | --------------------------------- |
   | boolean | 写入成功返回true，否则返回false。 |
 
 **示例：**
@@ -946,8 +4057,8 @@ readString(): string
 
 **返回值：**
 
-  | 类型 | 说明 |
-  | -------- | -------- |
+  | 类型   | 说明           |
+  | ------ | -------------- |
   | string | 返回字符串值。 |
 
 **示例：**
@@ -971,14 +4082,14 @@ writeSequenceable(val: Sequenceable): boolean
 
 **参数：**
 
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | val | [Sequenceable](#sequenceable) | 是 | 要写入的可序列对象。 |
+  | 参数名 | 类型                          | 必填 | 说明                 |
+  | ------ | ----------------------------- | ---- | -------------------- |
+  | val    | [Sequenceable](#sequenceable) | 是   | 要写入的可序列对象。 |
 
 **返回值：**
 
-  | 类型 | 说明 |
-  | -------- | -------- |
+  | 类型    | 说明                              |
+  | ------- | --------------------------------- |
   | boolean | 写入成功返回true，否则返回false。 |
 
 **示例：**
@@ -1019,14 +4130,14 @@ readSequenceable(dataIn: Sequenceable) : boolean
 
 **参数：**
 
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | dataIn | [Sequenceable](#sequenceable) | 是 | 需要从MessageParcel读取成员变量的对象。 |
+  | 参数名 | 类型                          | 必填 | 说明                                    |
+  | ------ | ----------------------------- | ---- | --------------------------------------- |
+  | dataIn | [Sequenceable](#sequenceabledeprecated) | 是   | 需要从MessageParcel读取成员变量的对象。 |
 
 **返回值：**
 
-  | 类型 | 说明 |
-  | -------- | -------- |
+  | 类型    | 说明                                        |
+  | ------- | ------------------------------------------- |
   | boolean | 如果反序列成功，则返回true；否则返回false。 |
 
 **示例：**
@@ -1070,14 +4181,14 @@ writeByteArray(byteArray: number[]): boolean
 
 **参数：**
 
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | byteArray | number[] | 是 | 要写入的字节数组。 |
+  | 参数名    | 类型     | 必填 | 说明               |
+  | --------- | -------- | ---- | ------------------ |
+  | byteArray | number[] | 是   | 要写入的字节数组。 |
 
 **返回值：**
 
-  | 类型 | 说明 |
-  | -------- | -------- |
+  | 类型    | 说明                              |
+  | ------- | --------------------------------- |
   | boolean | 写入成功返回true，否则返回false。 |
 
 **示例：**
@@ -1100,9 +4211,9 @@ readByteArray(dataIn: number[]) : void
 
 **参数：**
 
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | dataIn | number[] | 是 | 要读取的字节数组。 |
+  | 参数名 | 类型     | 必填 | 说明               |
+  | ------ | -------- | ---- | ------------------ |
+  | dataIn | number[] | 是   | 要读取的字节数组。 |
 
 **示例：**
 
@@ -1126,8 +4237,8 @@ readByteArray(): number[]
 
 **返回值：**
 
-  | 类型 | 说明 |
-  | -------- | -------- |
+  | 类型     | 说明           |
+  | -------- | -------------- |
   | number[] | 返回字节数组。 |
 
 **示例：**
@@ -1152,14 +4263,14 @@ writeShortArray(shortArray: number[]): boolean
 
 **参数：**
 
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | shortArray | number[] | 是 | 要写入的短整数数组。 |
+  | 参数名     | 类型     | 必填 | 说明                 |
+  | ---------- | -------- | ---- | -------------------- |
+  | shortArray | number[] | 是   | 要写入的短整数数组。 |
 
 **返回值：**
 
-  | 类型 | 说明 |
-  | -------- | -------- |
+  | 类型    | 说明                          |
+  | ------- | ----------------------------- |
   | boolean | 写入返回true，否则返回false。 |
 
 **示例：**
@@ -1181,9 +4292,9 @@ readShortArray(dataIn: number[]) : void
 
 **参数：**
 
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | dataIn | number[] | 是 | 要读取的短整数数组。 |
+  | 参数名 | 类型     | 必填 | 说明                 |
+  | ------ | -------- | ---- | -------------------- |
+  | dataIn | number[] | 是   | 要读取的短整数数组。 |
 
 **示例：**
 
@@ -1206,8 +4317,8 @@ readShortArray(): number[]
 
 **返回值：**
 
-  | 类型 | 说明 |
-  | -------- | -------- |
+  | 类型     | 说明             |
+  | -------- | ---------------- |
   | number[] | 返回短整数数组。 |
 
 **示例：**
@@ -1217,7 +4328,7 @@ readShortArray(): number[]
   let result = data.writeShortArray([11, 12, 13]);
   console.log("RpcClient: writeShortArray is " + result);
   let array = data.readShortArray();
-  console.log("RpcClient: readShortArray is " + array);
+ console.log("RpcClient: readShortArray is " + array);
   ```
 
 
@@ -1231,14 +4342,14 @@ writeIntArray(intArray: number[]): boolean
 
 **参数：**
 
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | intArray | number[] | 是 | 要写入的整数数组。 |
+  | 参数名   | 类型     | 必填 | 说明               |
+  | -------- | -------- | ---- | ------------------ |
+  | intArray | number[] | 是   | 要写入的整数数组。 |
 
 **返回值：**
 
-  | 类型 | 说明 |
-  | -------- | -------- |
+  | 类型    | 说明                          |
+  | ------- | ----------------------------- |
   | boolean | 写入返回true，否则返回false。 |
 
 **示例：**
@@ -1260,9 +4371,9 @@ readIntArray(dataIn: number[]) : void
 
 **参数：**
 
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | dataIn | number[] | 是 | 要读取的整数数组。 |
+  | 参数名 | 类型     | 必填 | 说明               |
+  | ------ | -------- | ---- | ------------------ |
+  | dataIn | number[] | 是   | 要读取的整数数组。 |
 
 **示例：**
 
@@ -1285,8 +4396,8 @@ readIntArray(): number[]
 
 **返回值：**
 
-  | 类型 | 说明 |
-  | -------- | -------- |
+  | 类型     | 说明           |
+  | -------- | -------------- |
   | number[] | 返回整数数组。 |
 
 **示例：**
@@ -1310,14 +4421,14 @@ writeLongArray(longArray: number[]): boolean
 
 **参数：**
 
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | longArray | number[] | 是 | 要写入的长整数数组。 |
+  | 参数名    | 类型     | 必填 | 说明                 |
+  | --------- | -------- | ---- | -------------------- |
+  | longArray | number[] | 是   | 要写入的长整数数组。 |
 
 **返回值：**
 
-  | 类型 | 说明 |
-  | -------- | -------- |
+  | 类型    | 说明                          |
+  | ------- | ----------------------------- |
   | boolean | 写入返回true，否则返回false。 |
 
 **示例：**
@@ -1339,9 +4450,9 @@ readLongArray(dataIn: number[]) : void
 
 **参数：**
 
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | dataIn | number[] | 是 | 要读取的长整数数组。 |
+  | 参数名 | 类型     | 必填 | 说明                 |
+  | ------ | -------- | ---- | -------------------- |
+  | dataIn | number[] | 是   | 要读取的长整数数组。 |
 
 **示例：**
 
@@ -1364,9 +4475,9 @@ readLongArray(): number[]
 
 **返回值：**
 
-  | 类型 | 说明 |
-  | -------- | -------- |
-  | number[] | 返回长整数数组。 |
+ | 类型     | 说明             |
+ | -------- | ---------------- |
+ | number[] | 返回长整数数组。 |
 
 **示例：**
 
@@ -1390,13 +4501,13 @@ writeFloatArray(floatArray: number[]): boolean
 **参数：**
 
   | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | floatArray | number[] | 是 | 要写入的浮点数组。由于系统内部对float类型的数据是按照double处理的，使用时对于数组所占的总字节数应按照double类型来计算。 |
+  | ---------- | -------- | ---- | --- |
+  | floatArray | number[] | 是   | 要写入的浮点数组。由于系统内部对float类型的数据是按照double处理的，使用时对于数组所占的总字节数应按照double类型来计算。 |
 
 **返回值：**
 
-  | 类型 | 说明 |
-  | -------- | -------- |
+  | 类型    | 说明                          |
+  | ------- | ----------------------------- |
   | boolean | 写入返回true，否则返回false。 |
 
 **示例：**
@@ -1419,9 +4530,8 @@ readFloatArray(dataIn: number[]) : void
 **参数：**
 
   | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | dataIn | number[] | 是 | 要读取的浮点数组。由于系统内部对float类型的数据是按照double处理的，使用时对于数组所占的总字节数应按照double类型来计算。 |
-
+  | ------ | -------- | ---- | ------ |
+  | dataIn | number[] | 是   | 要读取的浮点数组。由于系统内部对float类型的数据是按照double处理的，使用时对于数组所占的总字节数应按照double类型来计算。 |
 
 **示例：**
 
@@ -1444,8 +4554,8 @@ readFloatArray(): number[]
 
 **返回值：**
 
-  | 类型 | 说明 |
-  | -------- | -------- |
+  | 类型     | 说明           |
+  | -------- | -------------- |
   | number[] | 返回浮点数组。 |
 
 **示例：**
@@ -1469,14 +4579,14 @@ writeDoubleArray(doubleArray: number[]): boolean
 
 **参数：**
 
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | doubleArray | number[] | 是 | 要写入的双精度浮点数组。 |
+  | 参数名      | 类型     | 必填 | 说明                     |
+  | ----------- | -------- | ---- | ------------------------ |
+  | doubleArray | number[] | 是   | 要写入的双精度浮点数组。 |
 
 **返回值：**
 
-  | 类型 | 说明 |
-  | -------- | -------- |
+  | 类型    | 说明                          |
+  | ------- | ----------------------------- |
   | boolean | 写入返回true，否则返回false。 |
 
 **示例：**
@@ -1498,9 +4608,9 @@ readDoubleArray(dataIn: number[]) : void
 
 **参数：**
 
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | dataIn | number[] | 是 | 要读取的双精度浮点数组。 |
+  | 参数名 | 类型     | 必填 | 说明                     |
+  | ------ | -------- | ---- | ------------------------ |
+  | dataIn | number[] | 是   | 要读取的双精度浮点数组。 |
 
 **示例：**
 
@@ -1523,8 +4633,8 @@ readDoubleArray(): number[]
 
 **返回值：**
 
-  | 类型 | 说明 |
-  | -------- | -------- |
+  | 类型     | 说明                 |
+  | -------- | -------------------- |
   | number[] | 返回双精度浮点数组。 |
 
 **示例：**
@@ -1548,14 +4658,14 @@ writeBooleanArray(booleanArray: boolean[]): boolean
 
 **参数：**
 
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | booleanArray | boolean[] | 是 | 要写入的布尔数组。 |
+  | 参数名       | 类型      | 必填 | 说明               |
+  | ------------ | --------- | ---- | ------------------ |
+  | booleanArray | boolean[] | 是   | 要写入的布尔数组。 |
 
 **返回值：**
 
-  | 类型 | 说明 |
-  | -------- | -------- |
+  | 类型    | 说明                              |
+  | ------- | --------------------------------- |
   | boolean | 写入成功返回true，否则返回false。 |
 
 **示例：**
@@ -1577,9 +4687,9 @@ readBooleanArray(dataIn: boolean[]) : void
 
 **参数：**
 
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | dataIn | boolean[] | 是 | 要读取的布尔数组。 |
+  | 参数名 | 类型      | 必填 | 说明               |
+  | ------ | --------- | ---- | ------------------ |
+  | dataIn | boolean[] | 是   | 要读取的布尔数组。 |
 
 **示例：**
 
@@ -1602,10 +4712,11 @@ readBooleanArray(): boolean[]
 
 **返回值：**
 
-  | 类型 | 说明 |
-  | -------- | -------- |
+  | 类型      | 说明           |
+  | --------- | -------------- |
   | boolean[] | 返回布尔数组。 |
 
+**示例：**
 
   ```
   let data = rpc.MessageParcel.create();
@@ -1626,14 +4737,14 @@ writeCharArray(charArray: number[]): boolean
 
 **参数：**
 
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | charArray | number[] | 是 | 要写入的单个字符数组。 |
+  | 参数名    | 类型     | 必填 | 说明                   |
+  | --------- | -------- | ---- | ---------------------- |
+  | charArray | number[] | 是   | 要写入的单个字符数组。 |
 
 **返回值：**
 
-  | 类型 | 说明 |
-  | -------- | -------- |
+  | 类型    | 说明                              |
+  | ------- | --------------------------------- |
   | boolean | 写入成功返回true，否则返回false。 |
 
 **示例：**
@@ -1655,9 +4766,9 @@ readCharArray(dataIn: number[]) : void
 
 **参数：**
 
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | dataIn | number[] | 是 | 要读取的单个字符数组。 |
+  | 参数名 | 类型     | 必填 | 说明                   |
+  | ------ | -------- | ---- | ---------------------- |
+  | dataIn | number[] | 是   | 要读取的单个字符数组。 |
 
 **示例：**
 
@@ -1680,8 +4791,8 @@ readCharArray(): number[]
 
 **返回值：**
 
-  | 类型 | 说明 |
-  | -------- | -------- |
+  | 类型     | 说明               |
+  | -------- | ------------------ |
   | number[] | 返回单个字符数组。 |
 
 **示例：**
@@ -1705,14 +4816,14 @@ writeStringArray(stringArray: string[]): boolean
 
 **参数：**
 
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | stringArray | string[] | 是 | 要写入的字符串数组，数组单个元素的长度应小于40960字节。 |
+  | 参数名      | 类型     | 必填 | 说明 |
+  | ----------- | -------- | ---- | ---------------- |
+  | stringArray | string[] | 是   | 要写入的字符串数组，数组单个元素的长度应小于40960字节。 |
 
 **返回值：**
 
-  | 类型 | 说明 |
-  | -------- | -------- |
+  | 类型    | 说明 |
+  | ------- | --------------------------------- |
   | boolean | 写入成功返回true，否则返回false。 |
 
 **示例：**
@@ -1734,9 +4845,9 @@ readStringArray(dataIn: string[]) : void
 
 **参数：**
 
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | dataIn | string[] | 是 | 要读取的字符串数组。 |
+  | 参数名 | 类型     | 必填 | 说明                 |
+  | ------ | -------- | ---- | -------------------- |
+  | dataIn | string[] | 是   | 要读取的字符串数组。 |
 
 **示例：**
 
@@ -1759,8 +4870,8 @@ readStringArray(): string[]
 
 **返回值：**
 
-  | 类型 | 说明 |
-  | -------- | -------- |
+  | 类型     | 说明             |
+  | -------- | ---------------- |
   | string[] | 返回字符串数组。 |
 
 **示例：**
@@ -1816,7 +4927,6 @@ writeNoException(): void
   }
   ```
 
-
 ### readException<sup>8+</sup>
 
 readException(): void
@@ -1852,25 +4962,24 @@ readException(): void
   let reply = rpc.MessageParcel.create();
   data.writeInt(1);
   data.writeString("hello");
-  proxy.sendRequestAsync(1, data, reply, option)
+  proxy.sendMessageRequest(1, data, reply, option)
       .then(function(errCode) {
           if (errCode === 0) {
-              console.log("sendRequestAsync got result");
+              console.log("sendMessageRequest got result");
               reply.readException();
               let msg = reply.readString();
               console.log("RPCTest: reply msg: " + msg);
           } else {
-              console.log("RPCTest: sendRequestAsync failed, errCode: " + errCode);
+              console.log("RPCTest: sendMessageRequest failed, errCode: " + errCode);
           }
       }).catch(function(e) {
-          console.log("RPCTest: sendRequestAsync got exception: " + e.message);
+          console.log("RPCTest: sendMessageRequest got exception: " + e.message);
       }).finally (() => {
-          console.log("RPCTest: sendRequestAsync ends, reclaim parcel");
+          console.log("RPCTest: sendMessageRequest ends, reclaim parcel");
           data.reclaim();
           reply.reclaim();
       });
   ```
-
 
 ### writeSequenceableArray
 
@@ -1882,14 +4991,14 @@ writeSequenceableArray(sequenceableArray: Sequenceable[]): boolean
 
 **参数：**
 
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | sequenceableArray | Sequenceable[] | 是 | 要写入的可序列化对象数组。 |
+  | 参数名            | 类型           | 必填 | 说明                       |
+  | ----------------- | -------------- | ---- | -------------------------- |
+  | sequenceableArray | Sequenceable[] | 是   | 要写入的可序列化对象数组。 |
 
 **返回值：**
 
-  | 类型 | 说明 |
-  | -------- | -------- |
+  | 类型    | 说明                              |
+  | ------- | --------------------------------- |
   | boolean | 写入成功返回true，否则返回false。 |
 
 **示例：**
@@ -1933,9 +5042,9 @@ readSequenceableArray(sequenceableArray: Sequenceable[]): void
 
 **参数：**
 
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | sequenceableArray | Sequenceable[] | 是 | 要读取的可序列化对象数组。 |
+  | 参数名            | 类型           | 必填 | 说明                       |
+  | ----------------- | -------------- | ---- | -------------------------- |
+  | sequenceableArray | Sequenceable[] | 是   | 要读取的可序列化对象数组。 |
 
 **示例：**
 
@@ -1980,14 +5089,14 @@ writeRemoteObjectArray(objectArray: IRemoteObject[]): boolean
 
 **参数：**
 
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | objectArray | IRemoteObject[] | 是 | 要写入MessageParcel的IRemoteObject对象数组。 |
+  | 参数名      | 类型            | 必填 | 说明 |
+  | ----------- | --------------- | ---- | ----- |
+  | objectArray | IRemoteObject[] | 是   | 要写入MessageParcel的IRemoteObject对象数组。 |
 
 **返回值：**
 
-  | 类型 | 说明 |
-  | -------- | -------- |
+  | 类型    | 说明                                                                                                                 |
+  | ------- | -------------------------------------------------------------------------------------------------------------------- |
   | boolean | 如果IRemoteObject对象数组成功写入MessageParcel，则返回true；如果对象为null或数组写入MessageParcel失败，则返回false。 |
 
 **示例：**
@@ -2033,9 +5142,9 @@ readRemoteObjectArray(objects: IRemoteObject[]): void
 
 **参数：**
 
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | objects | IRemoteObject[] | 是 | 从MessageParcel读取的IRemoteObject对象数组。 |
+  | 参数名  | 类型            | 必填 | 说明 |
+  | ------- | --------------- | ---- | --------- |
+  | objects | IRemoteObject[] | 是   | 从MessageParcel读取的IRemoteObject对象数组。 |
 
 **示例：**
 
@@ -2057,7 +5166,7 @@ readRemoteObjectArray(objects: IRemoteObject[]): void
           return true;
       }
       isObjectDead(): boolean {
-          return false;
+         return false;
       }
       asObject(): rpc.IRemoteObject {
           return this;
@@ -2082,7 +5191,7 @@ readRemoteObjectArray(): IRemoteObject[]
 **返回值：**
 
   | 类型 | 说明 |
-  | -------- | -------- |
+  | --------------- | -------- |
   | IRemoteObject[] | 返回IRemoteObject对象数组。 |
 
 **示例：**
@@ -2130,9 +5239,9 @@ static closeFileDescriptor(fd: number): void
 
 **参数：**
 
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | fd | number | 是 | 要关闭的文件描述符。 |
+  | 参数名 | 类型   | 必填 | 说明                 |
+  | ------ | ------ | ---- | -------------------- |
+  | fd     | number | 是   | 要关闭的文件描述符。 |
 
 **示例：**
 
@@ -2154,14 +5263,14 @@ static dupFileDescriptor(fd: number) :number
 
 **参数：**
 
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | fd | number | 是 | 表示已存在的文件描述符。 |
+  | 参数名 | 类型   | 必填 | 说明                     |
+  | ------ | ------ | ---- | ------------------------ |
+  | fd     | number | 是   | 表示已存在的文件描述符。 |
 
 **返回值：**
 
-  | 类型 | 说明 |
-  | -------- | -------- |
+  | 类型   | 说明                 |
+  | ------ | -------------------- |
   | number | 返回新的文件描述符。 |
 
 **示例：**
@@ -2184,8 +5293,8 @@ containFileDescriptors(): boolean
 
 **返回值：**
 
-  | 类型 | 说明 |
-  | -------- | -------- |
+  | 类型    | 说明                                                               |
+  | ------- | ------------------------------------------------------------------ |
   | boolean | 如果此MessageParcel对象包含文件描述符，则返回true；否则返回false。 |
 
 **示例：**
@@ -2213,14 +5322,14 @@ writeFileDescriptor(fd: number): boolean
 
 **参数：**
 
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | fd | number | 是 | 文件描述符。 |
+  | 参数名 | 类型   | 必填 | 说明         |
+  | ------ | ------ | ---- | ------------ |
+  | fd     | number | 是   | 文件描述符。 |
 
 **返回值：**
 
-  | 类型 | 说明 |
-  | -------- | -------- |
+  | 类型    | 说明                                      |
+  | ------- | ----------------------------------------- |
   | boolean | 如果操作成功，则返回true；否则返回false。 |
 
 **示例：**
@@ -2245,8 +5354,8 @@ readFileDescriptor(): number
 
 **返回值：**
 
-  | 类型 | 说明 |
-  | -------- | -------- |
+  | 类型   | 说明             |
+  | ------ | ---------------- |
   | number | 返回文件描述符。 |
 
 **示例：**
@@ -2272,14 +5381,14 @@ writeAshmem(ashmem: Ashmem): boolean
 
 **参数：**
 
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | ashmem | Ashmem | 是 | 要写入MessageParcel的匿名共享对象。 |
+  | 参数名 | 类型   | 必填 | 说明                                |
+  | ------ | ------ | ---- | ----------------------------------- |
+  | ashmem | Ashmem | 是   | 要写入MessageParcel的匿名共享对象。 |
 
 **返回值：**
 
-  | 类型 | 说明 |
-  | -------- | -------- |
+  | 类型    | 说明                                                                 |
+  | ------- | -------------------------------------------------------------------- |
   | boolean | 如果匿名共享对象成功写入此MessageParcel，则返回true；否则返回false。 |
 
 **示例：**
@@ -2302,8 +5411,8 @@ readAshmem(): Ashmem
 
 **返回值：**
 
-  | 类型 | 说明 |
-  | -------- | -------- |
+  | 类型   | 说明               |
+  | ------ | ------------------ |
   | Ashmem | 返回匿名共享对象。 |
 
 **示例：**
@@ -2328,8 +5437,8 @@ getRawDataCapacity(): number
 
 **返回值：**
 
-  | 类型 | 说明 |
-  | -------- | -------- |
+  | 类型   | 说明                                                       |
+  | ------ | ---------------------------------------------------------- |
   | number | 返回MessageParcel可以容纳的最大原始数据量，即128&nbsp;Mb。 |
 
 **示例：**
@@ -2351,15 +5460,15 @@ writeRawData(rawData: number[], size: number): boolean
 
 **参数：**
 
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | rawData | number[] | 是 | 要写入的原始数据。 |
-  | size | number | 是 | 发送的原始数据大小，以字节为单位。 |
+  | 参数名  | 类型     | 必填 | 说明                               |
+  | ------- | -------- | ---- | ---------------------------------- |
+  | rawData | number[] | 是   | 要写入的原始数据。                 |
+  | size    | number   | 是   | 发送的原始数据大小，以字节为单位。 |
 
 **返回值：**
 
-  | 类型 | 说明 |
-  | -------- | -------- |
+  | 类型    | 说明                                      |
+  | ------- | ----------------------------------------- |
   | boolean | 如果操作成功，则返回true；否则返回false。 |
 
 **示例：**
@@ -2382,14 +5491,14 @@ readRawData(size: number): number[]
 
 **参数：**
 
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | size | number | 是 | 要读取的原始数据的大小。 |
+  | 参数名 | 类型   | 必填 | 说明                     |
+  | ------ | ------ | ---- | ------------------------ |
+  | size   | number | 是   | 要读取的原始数据的大小。 |
 
 **返回值：**
 
-  | 类型 | 说明 |
-  | -------- | -------- |
+  | 类型     | 说明                           |
+  | -------- | ------------------------------ |
   | number[] | 返回原始数据（以字节为单位）。 |
 
 **示例：**
@@ -2403,10 +5512,118 @@ readRawData(size: number): number[]
   console.log("RpcTest: parcel read raw data result is : " + result);
   ```
 
-## Sequenceable
+
+## Parcelable<sup>9+</sup>
+
+在进程间通信（IPC）期间，将类的对象写入MessageSequence并从MessageSequence中恢复它们。
+
+### marshalling
+
+marshalling(dataOut: MessageSequence): boolean
+
+将此可序列对象封送到MessageSequence中。
+
+**系统能力**：SystemCapability.Communication.IPC.Core
+
+**参数：**
+
+  | 参数名  | 类型            | 必填 | 说明                                        |
+  | ------- | --------------- | ---- | ------------------------------------------- |
+  | dataOut | MessageSequence | 是   | 可序列对象将被封送到的MessageSequence对象。 |
+
+**返回值：**
+
+  | 类型    | 说明                                      |
+  | ------- | ----------------------------------------- |
+  | boolean | 如果封送成功，则返回true；否则返回false。 |
+
+**示例：**
+
+  ```
+  class MyParcelable {
+      num: number;
+      str: string;
+      constructor(num, str) {
+          this.num = num;
+          this.str = str;
+      }
+      marshalling(messageSequence) {
+          messageSequence.writeInt(this.num);
+          messageSequence.writeString(this.str);
+          return true;
+      }
+      unmarshalling(messageSequence) {
+          this.num = messageSequence.readInt();
+          this.str = messageSequence.readString();
+          return true;
+      }
+  }
+  let parcelable = new MyParcelable(1, "aaa");
+  let data = rpc.MessageSequence.create();
+  let result = data.writeParcelable(parcelable);
+  console.log("RpcClient: writeParcelable is " + result);
+  let ret = new MyParcelable(0, "");
+  let result2 = data.readParcelable(ret);
+  console.log("RpcClient: readParcelable is " + result2);
+  ```
+
+
+### unmarshalling
+
+unmarshalling(dataIn: MessageSequence) : boolean
+
+从MessageSequence中解封此可序列对象。
+
+**系统能力**：SystemCapability.Communication.IPC.Core
+
+**参数：**
+
+  | 参数名 | 类型            | 必填 | 说明                                            |
+  | ------ | --------------- | ---- | ----------------------------------------------- |
+  | dataIn | MessageSequence | 是   | 已将可序列对象封送到其中的MessageSequence对象。 |
+
+**返回值：**
+
+  | 类型    | 说明                                          |
+  | ------- | --------------------------------------------- |
+  | boolean | 如果可序列化成功，则返回true；否则返回false。 |
+
+**示例：**
+
+  ```
+  class MyParcelable {
+      num: number;
+      str: string;
+      constructor(num, str) {
+          this.num = num;
+          this.str = str;
+      }
+      marshalling(messageSequence) {
+          messageSequence.writeInt(this.num);
+          messageSequence.writeString(this.str);
+          return true;
+      }
+      unmarshalling(messageSequence) {
+          this.num = messageSequence.readInt();
+          this.str = messageSequence.readString();
+          return true;
+      }
+  }
+  let parcelable = new MyParcelable(1, "aaa");
+  let data = rpc.MessageSequence.create();
+  let result = data.writeParcelable(parcelable);
+  console.log("RpcClient: writeParcelable is " + result);
+  let ret = new MyParcelable(0, "");
+  let result2 = data.readParcelable(ret);
+  console.log("RpcClient: readParcelable is " + result2);
+  ```
+
+
+## Sequenceable<sup>(deprecated)</sup>
+
+>从API version 9 开始不再维护，建议使用[Parcelable](#parcelable9)类替代。
 
 在进程间通信（IPC）期间，将类的对象写入MessageParcel并从MessageParcel中恢复它们。
-
 
 ### marshalling
 
@@ -2418,14 +5635,14 @@ marshalling(dataOut: MessageParcel): boolean
 
 **参数：**
 
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | dataOut | [MessageParcel](#messageparcel) | 是 | 可序列对象将被封送到的MessageParcel对象。 |
+  | 参数名  | 类型                            | 必填 | 说明                                      |
+  | ------- | ------------------------------- | ---- | ----------------------------------------- |
+  | dataOut | [MessageParcel](#messageparceldeprecated) | 是   | 可序列对象将被封送到的MessageParcel对象。 |
 
 **返回值：**
 
-  | 类型 | 说明 |
-  | -------- | -------- |
+  | 类型    | 说明                                      |
+  | ------- | ----------------------------------------- |
   | boolean | 如果封送成功，则返回true；否则返回false。 |
 
 **示例：**
@@ -2469,14 +5686,14 @@ unmarshalling(dataIn: MessageParcel) : boolean
 
 **参数：**
 
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | dataIn | [MessageParcel](#messageparcel) | 是 | 已将可序列对象封送到其中的MessageParcel对象。 |
+  | 参数名 | 类型                            | 必填 | 说明                                          |
+  | ------ | ------------------------------- | ---- | --------------------------------------------- |
+  | dataIn | [MessageParcel](#messageparceldeprecated) | 是   | 已将可序列对象封送到其中的MessageParcel对象。 |
 
 **返回值：**
 
-  | 类型 | 说明 |
-  | -------- | -------- |
+  | 类型    | 说明                                          |
+  | ------- | --------------------------------------------- |
   | boolean | 如果可序列化成功，则返回true；否则返回false。 |
 
 **示例：**
@@ -2514,7 +5731,6 @@ unmarshalling(dataIn: MessageParcel) : boolean
 
 远端对象的代理持有者。用于获取代理对象。
 
-
 ### asObject
 
 asObject(): IRemoteObject
@@ -2525,9 +5741,9 @@ asObject(): IRemoteObject
 
 **返回值：**
 
-  | 类型 | 说明 |
-  | -------- | -------- |
-  | [IRemoteObject](#iremoteobject) | 如果调用者是[RemoteObject](#ashmem8)对象，则直接返回本身；如果调用者是[RemoteProxy](#remoteproxy)对象，则返回它的持有者[IRemoteObject](#iremoteobject)。 |
+  | 类型  | 说明 |
+  | ---- | ----- |
+  | [IRemoteObject](#iremoteobject) | 如果调用者是RemoteObject对象，则直接返回本身；如果调用者是[RemoteProxy](#remoteproxy)对象，则返回它的持有者[IRemoteObject](#iremoteobject)。 |
 
 **示例：**
 
@@ -2553,11 +5769,9 @@ asObject(): IRemoteObject
   }
   ```
 
-
 ## DeathRecipient
 
 用于订阅远端对象的死亡通知。当被订阅该通知的远端对象死亡时，本端可收到消息，调用[onRemoteDied](#onremotedied)接口。远端对象死亡可以为远端对象所在进程死亡，远端对象所在设备关机或重启，当远端对象与本端对象属于不同设备时，也可为远端对象离开组网时。
-
 
 ### onRemoteDied
 
@@ -2577,27 +5791,61 @@ onRemoteDied(): void
   }
   ```
 
-
-## SendRequestResult<sup>8+</sup>
+## RequestResult<sup>9+</sup>
 
 发送请求的响应结果。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Communication.IPC.Core。
 
-  | 参数 | 值 | 说明 |
-| -------- | -------- | -------- |
-| errCode | number | 错误码。 |
-| code | number | 消息代码。 |
-| data | MessageParcel | 发送给对端进程的MessageParcel对象。 |
-| reply | MessageParcel | 对端进程返回的MessageParcel对象。 |
+  | 参数名  | 类型            | 必填 | 说明                                   |
+  | ------- | --------------- | ---- | ------------------------------------- |
+  | errCode | number          | 是   | 错误码。                              |
+  | code    | number          | 是   | 消息代码。                            |
+  | data    | MessageSequence | 是   | 发送给对端进程的MessageSequence对象。 |
+  | reply   | MessageSequence | 是   | 对端进程返回的MessageSequence对象。   |
 
+## SendRequestResult<sup>8+(deprecated)</sup>
+
+>从API version 9 开始不再维护，建议使用[RequestResult](#requestresult9)类替代。
+
+发送请求的响应结果。
+
+**系统能力**：以下各项对应的系统能力均为SystemCapability.Communication.IPC.Core。
+
+  | 参数名  | 类型          | 必填 | 说明                                 |
+  | ------- | ------------- | ---- | ----------------------------------- |
+  | errCode | number        | 是   | 错误码。                            |
+  | code    | number        | 是   | 消息代码。                          |
+  | data    | MessageParcel | 是   | 发送给对端进程的MessageParcel对象。 |
+  | reply   | MessageParcel | 是   | 对端进程返回的MessageParcel对象。   |
 
 ## IRemoteObject
 
 该接口可用于查询或获取接口描述符、添加或删除死亡通知、转储对象状态到特定文件、发送消息。
 
+### getLocalInterface<sup>9+</sup>
 
-### queryLocalInterface
+getLocalInterface(descriptor: string): IRemoteBroker
+
+查询接口。
+
+**系统能力**：SystemCapability.Communication.IPC.Core
+
+**参数：**
+
+  | 参数名     | 类型   | 必填 | 说明                 |
+  | ---------- | ------ | ---- | -------------------- |
+  | descriptor | string | 是   | 接口描述符的字符串。 |
+
+**返回值：**
+
+  | 类型          | 说明                                          |
+  | ------------- | --------------------------------------------- |
+  | IRemoteBroker | 返回绑定到指定接口描述符的IRemoteBroker对象。 |
+
+### queryLocalInterface<sup>(deprecated)</sup>
+
+>从API version 9 开始不再维护，建议使用[getLocalInterface](#getlocalinterface9)类替代。
 
 queryLocalInterface(descriptor: string): IRemoteBroker
 
@@ -2607,21 +5855,20 @@ queryLocalInterface(descriptor: string): IRemoteBroker
 
 **参数：**
 
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | descriptor | string | 是 | 接口描述符的字符串。 |
+  | 参数名     | 类型   | 必填 | 说明                 |
+  | ---------- | ------ | ---- | -------------------- |
+  | descriptor | string | 是   | 接口描述符的字符串。 |
 
 **返回值：**
 
-  | 类型 | 说明 |
-  | -------- | -------- |
+  | 类型          | 说明                                          |
+  | ------------- | --------------------------------------------- |
   | IRemoteBroker | 返回绑定到指定接口描述符的IRemoteBroker对象。 |
 
 
 ### sendRequest<sup>(deprecated)</sup>
 
-> **说明：**
-> 从 API Version 8 开始废弃，建议使用[sendRequestAsync<sup>9+</sup>](#sendrequestasync9)替代。
+>从API version 9 开始不再维护，建议使用[sendMessageRequest](#sendmessagerequest9)类替代。
 
 sendRequest(code : number, data : MessageParcel, reply : MessageParcel, options : MessageOption): boolean
 
@@ -2631,24 +5878,23 @@ sendRequest(code : number, data : MessageParcel, reply : MessageParcel, options 
 
 **参数：**
 
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | code | number | 是 | 本次请求调用的消息码，由通信双方确定。如果接口由IDL工具生成，则消息代码由IDL自动生成。 |
-  | data | [MessageParcel](#messageparcel) | 是 | 保存待发送数据的&nbsp;MessageParcel对象。 |
-  | reply | [MessageParcel](#messageparcel) | 是 | 接收应答数据的MessageParcel对象。 |
-  | options | [MessageOption](#messageoption) | 是 | 本次请求的同异步模式，默认同步调用。 |
+  | 参数名  | 类型 | 必填 | 说明  |
+  | ------- | ------------------------------- | ---- | ---- |
+  | code    | number                          | 是   | 本次请求调用的消息码，由通信双方确定。如果接口由IDL工具生成，则消息代码由IDL自动生成。 |
+  | data    | [MessageParcel](#messageparceldeprecated) | 是   | 保存待发送数据的&nbsp;MessageParcel对象。                                              |
+  | reply   | [MessageParcel](#messageparceldeprecated) | 是   | 接收应答数据的MessageParcel对象。                                                      |
+  | options | [MessageOption](#messageoption) | 是   | 本次请求的同异步模式，默认同步调用。                                                   |
 
 **返回值：**
 
-  | 类型 | 说明 |
-  | -------- | -------- |
-  | boolean | 返回一个布尔值，true表示成功，false表示失败。|
+  | 类型    | 说明                                          |
+  | ------- | --------------------------------------------- |
+  | boolean | 返回一个布尔值，true表示成功，false表示失败。 |
 
 
 ### sendRequest<sup>8+(deprecated)</sup>
 
-> **说明：**
-> 从 API Version 9 开始废弃，建议使用[sendRequestAsync<sup>9+</sup>](#sendrequestasync9)替代。
+>从API version 9 开始不再维护，建议使用[sendMessageRequest](#sendmessagerequest9)类替代。
 
 sendRequest(code : number, data : MessageParcel, reply : MessageParcel, options : MessageOption): Promise&lt;SendRequestResult&gt;
 
@@ -2658,43 +5904,66 @@ sendRequest(code : number, data : MessageParcel, reply : MessageParcel, options 
 
 **参数：**
 
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | code | number | 是 | 本次请求调用的消息码，由通信双方确定。如果接口由IDL工具生成，则消息代码由IDL自动生成。 |
-  | data | [MessageParcel](#messageparcel) | 是 | 保存待发送数据的&nbsp;MessageParcel对象。 |
-  | reply | [MessageParcel](#messageparcel) | 是 | 接收应答数据的MessageParcel对象。 |
-  | options | [MessageOption](#messageoption) | 是 | 本次请求的同异步模式，默认同步调用。 |
+  | 参数名  | 类型                            | 必填 | 说明                                                                                   |
+  | ------- | ------------------------------- | ---- | -------------------------------------------------------------------------------------- |
+  | code    | number                          | 是   | 本次请求调用的消息码，由通信双方确定。如果接口由IDL工具生成，则消息代码由IDL自动生成。 |
+  | data    | [MessageParcel](#messageparceldeprecated) | 是   | 保存待发送数据的&nbsp;MessageParcel对象。                                              |
+  | reply   | [MessageParcel](#messageparceldeprecated) | 是   | 接收应答数据的MessageParcel对象。                                                      |
+  | options | [MessageOption](#messageoption) | 是   | 本次请求的同异步模式，默认同步调用。                                                   |
 
 **返回值：**
 
-  | 类型 | 说明 |
-  | -------- | -------- |
-  | Promise&lt;SendRequestResult&gt; | 返回一个期约，兑现值是sendRequestResult实例。|
+  | 类型                             | 说明                                          |
+  | -------------------------------- | --------------------------------------------- |
+  | Promise&lt;SendRequestResult&gt; | 返回一个期约，兑现值是sendRequestResult实例。 |
 
-### sendRequestAsync<sup>9+</sup>
 
-sendRequestAsync(code : number, data : MessageParcel, reply : MessageParcel, options : MessageOption): Promise&lt;SendRequestResult&gt;
+### sendMessageRequest<sup>9+</sup>
 
-以同步或异步方式向对端进程发送MessageParcel消息。如果为选项设置了异步模式，则期约立即兑现，reply报文里没有内容。如果为选项设置了同步模式，则期约将在sendRequestAsync返回时兑现，回复内容在reply报文里。
+sendMessageRequest(code : number, data : MessageSequence, reply : MessageSequence, options : MessageOption): Promise&lt;RequestResult&gt;
+
+以同步或异步方式向对端进程发送MessageSequence消息。如果为选项设置了异步模式，则期约立即兑现，reply报文里没有内容。如果为选项设置了同步模式，则期约将在sendMessageRequest返回时兑现，回复内容在reply报文里。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
 **参数：**
 
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | code | number | 是 | 本次请求调用的消息码，由通信双方确定。如果接口由IDL工具生成，则消息代码由IDL自动生成。 |
-  | data | [MessageParcel](#messageparcel) | 是 | 保存待发送数据的&nbsp;MessageParcel对象。 |
-  | reply | [MessageParcel](#messageparcel) | 是 | 接收应答数据的MessageParcel对象。 |
-  | options | [MessageOption](#messageoption) | 是 | 本次请求的同异步模式，默认同步调用。 |
+  | 参数名  | 类型                            | 必填 | 说明                                                                                   |
+  | ------- | ------------------------------- | ---- | -------------------------------------------------------------------------------------- |
+  | code    | number                          | 是   | 本次请求调用的消息码，由通信双方确定。如果接口由IDL工具生成，则消息代码由IDL自动生成。 |
+  | data    | [MessageSequence](#messagesequence9) | 是   | 保存待发送数据的&nbsp;MessageSequence对象。                                            |
+  | reply   | [MessageSequence](#messagesequence9) | 是   | 接收应答数据的MessageSequence对象。                                                    |
+  | options | [MessageOption](#messageoption) | 是   | 本次请求的同异步模式，默认同步调用。                                                   |
 
 **返回值：**
 
-  | 类型 | 说明 |
-  | -------- | -------- |
-  | Promise&lt;SendRequestResult&gt; | 返回一个期约，兑现值是sendRequestResult实例。|
+  | 类型                         | 说明                                      |
+  | ---------------------------- | ----------------------------------------- |
+  | Promise&lt;RequestResult&gt; | 返回一个期约，兑现值是requestResult实例。 |
 
-### sendRequest<sup>8+</sup>
+
+### sendMessageRequest<sup>9+</sup>
+
+sendMessageRequest(code: number, data: MessageSequence, reply: MessageSequence, options: MessageOption, callback: AsyncCallback&lt;RequestResult&gt;): void
+
+以同步或异步方式向对端进程发送MessageSequence消息。如果为选项设置了异步模式，则立即收到回调，reply报文里没有内容。如果为选项设置了同步模式，则将在sendRequest返回时收到回调，回复内容在reply报文里。
+
+**系统能力**：SystemCapability.Communication.IPC.Core
+
+**参数：**
+
+  | 参数名   | 类型                               | 必填 | 说明                                                                                   |
+  | -------- | ---------------------------------- | ---- | -------------------------------------------------------------------------------------- |
+  | code     | number                             | 是   | 本次请求调用的消息码，由通信双方确定。如果接口由IDL工具生成，则消息代码由IDL自动生成。 |
+  | data     | [MessageSequence](#messagesequence9) | 是   | 保存待发送数据的&nbsp;MessageSequence对象。                                            |
+  | reply    | [MessageSequence](#messagesequence9) | 是   | 接收应答数据的MessageSequence对象。                                                    |
+  | options  | [MessageOption](#messageoption)    | 是   | 本次请求的同异步模式，默认同步调用。                                                   |
+  | callback | AsyncCallback&lt;RequestResult&gt; | 是   | 接收发送结果的回调。                                                                   |
+
+
+### sendRequest<sup>8+(deprecated)</sup>
+
+>从API version 9 开始不再维护，建议使用[sendMessageRequest](#sendmessagerequest9)类替代。
 
 sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: MessageOption, callback: AsyncCallback&lt;SendRequestResult&gt;): void
 
@@ -2704,16 +5973,42 @@ sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: Me
 
 **参数：**
 
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | code | number | 是 | 本次请求调用的消息码，由通信双方确定。如果接口由IDL工具生成，则消息代码由IDL自动生成。 |
-  | data | [MessageParcel](#messageparcel) | 是 | 保存待发送数据的&nbsp;MessageParcel对象。 |
-  | reply | [MessageParcel](#messageparcel) | 是 | 接收应答数据的MessageParcel对象。 |
-  | options | [MessageOption](#messageoption) | 是 | 本次请求的同异步模式，默认同步调用。 |
-  | callback | AsyncCallback&lt;SendRequestResult&gt; | 是 | 接收发送结果的回调。 |
+  | 参数名   | 类型                                   | 必填 | 说明                                                                                   |
+  | -------- | -------------------------------------- | ---- | -------------------------------------------------------------------------------------- |
+  | code     | number                                 | 是   | 本次请求调用的消息码，由通信双方确定。如果接口由IDL工具生成，则消息代码由IDL自动生成。 |
+  | data     | [MessageParcel](#messageparceldeprecated)        | 是   | 保存待发送数据的&nbsp;MessageParcel对象。                                              |
+  | reply    | [MessageParcel](#messageparceldeprecated)        | 是   | 接收应答数据的MessageParcel对象。                                                      |
+  | options  | [MessageOption](#messageoption)        | 是   | 本次请求的同异步模式，默认同步调用。                                                   |
+  | callback | AsyncCallback&lt;SendRequestResult&gt; | 是   | 接收发送结果的回调。                                                                   |
 
 
-### addDeathrecipient
+### registerDeathRecipient<sup>9+</sup>
+
+registerDeathRecipient(recipient: DeathRecipient, flags: number): void
+
+注册用于接收远程对象死亡通知的回调。如果与RemoteProxy对象匹配的远程对象进程死亡，则调用此方法。
+
+**系统能力**：SystemCapability.Communication.IPC.Core
+
+**参数：**
+
+  | 参数名    | 类型                              | 必填 | 说明           |
+  | --------- | --------------------------------- | ---- | -------------- |
+  | recipient | [DeathRecipient](#deathrecipient) | 是   | 要注册的回调。 |
+  | flags     | number                            | 是   | 死亡通知标志。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.rpc错误码](../errorcodes/errorcode-rpc.md)
+
+  | 错误码ID | 错误信息 |
+  | ------- | -------- |
+  | 1900008 | proxy or remote object is invalid |
+
+
+### addDeathrecipient<sup>(deprecated)</sup>
+
+>从API version 9 开始不再维护，建议使用[registerDeathRecipient](#registerdeathrecipient9)类替代。
 
 addDeathRecipient(recipient: DeathRecipient, flags: number): boolean
 
@@ -2723,19 +6018,45 @@ addDeathRecipient(recipient: DeathRecipient, flags: number): boolean
 
 **参数：**
 
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | recipient | [DeathRecipient](#deathrecipient) | 是 | 要注册的回调。 |
-  | flags | number | 是 | 死亡通知标志。 |
+  | 参数名    | 类型                              | 必填 | 说明           |
+  | --------- | --------------------------------- | ---- | -------------- |
+  | recipient | [DeathRecipient](#deathrecipient) | 是   | 要注册的回调。 |
+  | flags     | number                            | 是   | 死亡通知标志。 |
 
 **返回值：**
 
-  | 类型 | 说明 |
-  | -------- | -------- |
+  | 类型    | 说明                                          |
+  | ------- | --------------------------------------------- |
   | boolean | 如果回调注册成功，则返回true；否则返回false。 |
 
 
-### removeDeathRecipient
+### unregisterDeathRecipient<sup>9+</sup>
+
+removeDeathRecipient(recipient: DeathRecipient, flags: number): void
+
+注销用于接收远程对象死亡通知的回调。
+
+**系统能力**：SystemCapability.Communication.IPC.Core
+
+**参数：**
+
+  | 参数名    | 类型                              | 必填 | 说明           |
+  | --------- | --------------------------------- | ---- | -------------- |
+  | recipient | [DeathRecipient](#deathrecipient) | 是   | 要注销的回调。 |
+  | flags     | number                            | 是   | 死亡通知标志。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.rpc错误码](../errorcodes/errorcode-rpc.md)
+
+  | 错误码ID | 错误信息 |
+  | ------- | -------- |
+  | 1900008 | proxy or remote object is invalid |
+
+
+### removeDeathRecipient<sup>(deprecated)</sup>
+
+>从API version 9 开始不再维护，建议使用[unregisterDeathRecipient](#unregisterdeathrecipient9)类替代。
 
 removeDeathRecipient(recipient: DeathRecipient, flags: number): boolean
 
@@ -2745,19 +6066,44 @@ removeDeathRecipient(recipient: DeathRecipient, flags: number): boolean
 
 **参数：**
 
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | recipient | [DeathRecipient](#deathrecipient) | 是 | 要注销的回调。 |
-  | flags | number | 是 | 死亡通知标志。 |
+  | 参数名    | 类型                              | 必填 | 说明           |
+  | --------- | --------------------------------- | ---- | -------------- |
+  | recipient | [DeathRecipient](#deathrecipient) | 是   | 要注销的回调。 |
+  | flags     | number                            | 是   | 死亡通知标志。 |
 
 **返回值：**
 
-  | 类型 | 说明 |
-  | -------- | -------- |
+  | 类型    | 说明                                          |
+  | ------- | --------------------------------------------- |
   | boolean | 如果回调成功注销，则返回true；否则返回false。 |
 
 
-### getInterfaceDescriptor
+### getDescriptor<sup>9+</sup>
+
+getDescriptor(): string
+
+获取对象的接口描述符。接口描述符为字符串。
+
+**系统能力**：SystemCapability.Communication.IPC.Core
+
+**返回值：**
+
+  | 类型   | 说明             |
+  | ------ | ---------------- |
+  | string | 返回接口描述符。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.rpc错误码](../errorcodes/errorcode-rpc.md)
+
+  | 错误码ID | 错误信息 |
+  | ------- | -------- |
+  | 1900008 | proxy or remote object is invalid |
+
+
+### getInterfaceDescriptor<sup>(deprecated)</sup>
+
+>从API version 9 开始不再维护，建议使用[getDescriptor](#getdescriptor9)类替代。
 
 getInterfaceDescriptor(): string
 
@@ -2767,8 +6113,8 @@ getInterfaceDescriptor(): string
 
 **返回值：**
 
-  | 类型 | 说明 |
-  | -------- | -------- |
+  | 类型   | 说明             |
+  | ------ | ---------------- |
   | string | 返回接口描述符。 |
 
 
@@ -2782,8 +6128,8 @@ isObjectDead(): boolean
 
 **返回值：**
 
-  | 类型 | 说明 |
-  | -------- | -------- |
+  | 类型    | 说明                                        |
+  | ------- | ------------------------------------------- |
   | boolean | 如果对象已死亡，则返回true；否则返回false。 |
 
 
@@ -2793,21 +6139,18 @@ isObjectDead(): boolean
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Communication.IPC.Core。
 
-| 参数                  | 值                      | 说明                              |
+| 名称                  | 值                      | 说明                              |
 | --------------------- | ----------------------- | --------------------------------- |
 | PING_TRANSACTION      | 1599098439 (0x5f504e47) | 内部指令码，用于测试IPC服务正常。 |
-| DUMP_TRANSACTION      | 1598311760 (0x5f444d50) | 内部指令码，获取Binder内部状态。 |
+| DUMP_TRANSACTION      | 1598311760 (0x5f444d50) | 内部指令码，获取Binder内部状态。  |
 | INTERFACE_TRANSACTION | 1598968902 (0x5f4e5446) | 内部指令码，获取对端接口描述符。  |
 | MIN_TRANSACTION_ID    | 1 (0x00000001)          | 最小有效指令码。                  |
 | MAX_TRANSACTION_ID    | 16777215 (0x00FFFFFF)   | 最大有效指令码。                  |
 
 
-
-
 ### sendRequest<sup>(deprecated)</sup>
 
-> **说明：**
-> 从 API Version 8 开始废弃，建议使用[sendRequestAsync<sup>9+</sup>](#sendrequestasync9-1)替代。
+>从API version 9 开始不再维护，建议使用[sendMessageRequest](#sendmessagerequest9)类替代。
 
 sendRequest(code : number, data : MessageParcel, reply : MessageParcel, options : MessageOption): boolean
 
@@ -2817,19 +6160,18 @@ sendRequest(code : number, data : MessageParcel, reply : MessageParcel, options 
 
 **参数：**
 
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | code | number | 是 | 本次请求调用的消息码，由通信双方确定。如果接口由IDL工具生成，则消息代码由IDL自动生成。 |
-  | data | [MessageParcel](#messageparcel) | 是 | 保存待发送数据的&nbsp;MessageParcel对象。 |
-  | reply | [MessageParcel](#messageparcel) | 是 | 接收应答数据的MessageParcel对象。 |
-  | options | [MessageOption](#messageoption) | 是 | 本次请求的同异步模式，默认同步调用。 |
+  | 参数名  | 类型                            | 必填 | 说明                                                                                   |
+  | ------- | ------------------------------- | ---- | -------------------------------------------------------------------------------------- |
+  | code    | number                          | 是   | 本次请求调用的消息码，由通信双方确定。如果接口由IDL工具生成，则消息代码由IDL自动生成。 |
+  | data    | [MessageParcel](#messageparceldeprecated) | 是   | 保存待发送数据的&nbsp;MessageParcel对象。                                              |
+  | reply   | [MessageParcel](#messageparceldeprecated) | 是   | 接收应答数据的MessageParcel对象。                                                      |
+  | options | [MessageOption](#messageoption) | 是   | 本次请求的同异步模式，默认同步调用。                                                   |
 
 **返回值：**
 
-  | 类型 | 说明 |
-  | -------- | -------- |
-  | boolean | 返回一个布尔值，true表示成功，false表示失败。|
-
+  | 类型    | 说明                                          |
+  | ------- | --------------------------------------------- |
+  | boolean | 返回一个布尔值，true表示成功，false表示失败。 |
 
 **示例：**
 
@@ -2871,10 +6213,79 @@ sendRequest(code : number, data : MessageParcel, reply : MessageParcel, options 
   reply.reclaim();
   ```
 
+
+### sendMessageRequest<sup>9+</sup>
+
+sendMessageRequest(code : number, data : MessageSequence, reply : MessageSequence, options : MessageOption): Promise&lt;RequestResult&gt;
+以同步或异步方式向对端进程发送MessageSequence消息。如果为选项设置了异步模式，则期约立即兑现，reply报文里没有内容。如果为选项设置了同步模式，则期约将在sendMessageRequest返回时兑现，回复内容在reply报文里。
+
+**系统能力**：SystemCapability.Communication.IPC.Core
+
+**参数：**
+
+  | 参数名  | 类型                            | 必填 | 说明                                                                                   |
+  | ------- | ------------------------------- | ---- | -------------------------------------------------------------------------------------- |
+  | code    | number                          | 是   | 本次请求调用的消息码，由通信双方确定。如果接口由IDL工具生成，则消息代码由IDL自动生成。 |
+  | data    | [MessageSequence](#messagesequence9) | 是   | 保存待发送数据的&nbsp;MessageSequence对象。                                            |
+  | reply   | [MessageSequence](#messagesequence9)  | 是   | 接收应答数据的MessageSequence对象。                                                    |
+  | options | [MessageOption](#messageoption) | 是   | 本次请求的同异步模式，默认同步调用。                                                   |
+
+**返回值：**
+
+  | 类型                         | 说明                                      |
+  | ---------------------------- | ----------------------------------------- |
+  | Promise&lt;RequestResult&gt; | 返回一个期约，兑现值是requestResult实例。 |
+
+**示例：**
+
+  ```
+  import FA from "@ohos.ability.featureAbility";
+  let proxy;
+  let connect = {
+      onConnect: function(elementName, remoteProxy) {
+          console.log("RpcClient: js onConnect called.");
+          proxy = remoteProxy;
+      },
+      onDisconnect: function(elementName) {
+          console.log("RpcClient: onDisconnect");
+      },
+      onFailed: function() {
+          console.log("RpcClient: onFailed");
+      }
+  };
+  let want = {
+      "bundleName": "com.ohos.server",
+      "abilityName": "com.ohos.server.MainAbility",
+  };
+  FA.connectAbility(want, connect);
+  let option = new rpc.MessageOption();
+  let data = rpc.MessageSequence.create();
+  let reply = rpc.MessageSequence.create();
+  data.writeInt(1);
+  data.writeString("hello");
+  proxy.sendMessageRequest(1, data, reply, option)
+      .then(function(result) {
+          if (result.errCode === 0) {
+              console.log("sendMessageRequest got result");
+              result.reply.readException();
+              let msg = result.reply.readString();
+              console.log("RPCTest: reply msg: " + msg);
+          } else {
+              console.log("RPCTest: sendMessageRequest failed, errCode: " + result.errCode);
+          }
+      }).catch(function(e) {
+          console.log("RPCTest: sendMessageRequest got exception: " + e.message);
+      }).finally (() => {
+          console.log("RPCTest: sendMessageRequest ends, reclaim parcel");
+          data.reclaim();
+          reply.reclaim();
+      });
+  ```
+
+
 ### sendRequest<sup>8+(deprecated)</sup>
 
-> **说明：**
-> 从 API Version 9 开始废弃，建议使用[sendRequestAsync<sup>9+</sup>](#sendrequestasync9-1)替代。
+>从API version 9 开始不再维护，建议使用[sendMessageRequest](#sendmessagerequest9)类替代。
 
 sendRequest(code : number, data : MessageParcel, reply : MessageParcel, options : MessageOption): Promise&lt;SendRequestResult&gt;
 
@@ -2884,18 +6295,18 @@ sendRequest(code : number, data : MessageParcel, reply : MessageParcel, options 
 
 **参数：**
 
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | code | number | 是 | 本次请求调用的消息码，由通信双方确定。如果接口由IDL工具生成，则消息代码由IDL自动生成。 |
-  | data | [MessageParcel](#messageparcel) | 是 | 保存待发送数据的&nbsp;MessageParcel对象。 |
-  | reply | [MessageParcel](#messageparcel) | 是 | 接收应答数据的MessageParcel对象。 |
-  | options | [MessageOption](#messageoption) | 是 | 本次请求的同异步模式，默认同步调用。 |
+  | 参数名  | 类型                            | 必填 | 说明                                                                                   |
+  | ------- | ------------------------------- | ---- | -------------------------------------------------------------------------------------- |
+  | code    | number                          | 是   | 本次请求调用的消息码，由通信双方确定。如果接口由IDL工具生成，则消息代码由IDL自动生成。 |
+  | data    | [MessageParcel](#messageparceldeprecated) | 是   | 保存待发送数据的&nbsp;MessageParcel对象。                                              |
+  | reply   | [MessageParcel](#messageparceldeprecated) | 是   | 接收应答数据的MessageParcel对象。                                                      |
+  | options | [MessageOption](#messageoption) | 是   | 本次请求的同异步模式，默认同步调用。                                                   |
 
 **返回值：**
 
-  | 类型 | 说明 |
-  | -------- | -------- |
-  | Promise&lt;SendRequestResult&gt; | 返回一个期约，兑现值是sendRequestResult实例。|
+  | 类型                             | 说明                                          |
+  | -------------------------------- | --------------------------------------------- |
+  | Promise&lt;SendRequestResult&gt; | 返回一个期约，兑现值是sendRequestResult实例。 |
 
 **示例：**
 
@@ -2943,28 +6354,24 @@ sendRequest(code : number, data : MessageParcel, reply : MessageParcel, options 
       });
   ```
 
-### sendRequestAsync<sup>9+</sup>
+### sendMessageRequest<sup>9+</sup>
 
-sendRequestAsync(code : number, data : MessageParcel, reply : MessageParcel, options : MessageOption): Promise&lt;SendRequestResult&gt;
+sendMessageRequest(code: number, data: MessageSequence, reply: MessageSequence, options: MessageOption, callback: AsyncCallback&lt;RequestResult&gt;): void
 
-以同步或异步方式向对端进程发送MessageParcel消息。如果为选项设置了异步模式，则期约立即兑现，reply报文里没有内容。如果为选项设置了同步模式，则期约将在sendRequestAsync返回时兑现，回复内容在reply报文里。
+以同步或异步方式向对端进程发送MessageSequence消息。如果为选项设置了异步模式，则立即收到回调，reply报文里没有内容。如果为选项设置了同步模式，则将在sendMessageRequest返回后的某个时机执行回调，回复内容在RequestResult的reply报文里。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
 **参数：**
 
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | code | number | 是 | 本次请求调用的消息码，由通信双方确定。如果接口由IDL工具生成，则消息代码由IDL自动生成。 |
-  | data | [MessageParcel](#messageparcel) | 是 | 保存待发送数据的&nbsp;MessageParcel对象。 |
-  | reply | [MessageParcel](#messageparcel) | 是 | 接收应答数据的MessageParcel对象。 |
-  | options | [MessageOption](#messageoption) | 是 | 本次请求的同异步模式，默认同步调用。 |
+  | 参数名   | 类型                               | 必填 | 说明                                                                                   |
+  | -------- | ---------------------------------- | ---- | -------------------------------------------------------------------------------------- |
+  | code     | number                             | 是   | 本次请求调用的消息码，由通信双方确定。如果接口由IDL工具生成，则消息代码由IDL自动生成。 |
+  | data     | [MessageSequence](#messagesequence9) | 是   | 保存待发送数据的&nbsp;MessageSequence对象。                                            |
+  | reply    | [MessageSequence](#messagesequence9) | 是   | 接收应答数据的MessageSequence对象。                                                    |
+  | options  | [MessageOption](#messageoption)    | 是   | 本次请求的同异步模式，默认同步调用。                                                   |
+  | callback | AsyncCallback&lt;RequestResult&gt; | 是   | 接收发送结果的回调。                                                                   |
 
-**返回值：**
-
-  | 类型 | 说明 |
-  | -------- | -------- |
-  | Promise&lt;SendRequestResult&gt; | 返回一个期约，兑现值是sendRequestResult实例。|
 
 **示例：**
 
@@ -2987,48 +6394,52 @@ sendRequestAsync(code : number, data : MessageParcel, reply : MessageParcel, opt
       "bundleName": "com.ohos.server",
       "abilityName": "com.ohos.server.MainAbility",
   };
+  function sendRequestCallback(result) {
+      if (result.errCode === 0) {
+          console.log("sendRequest got result");
+          result.reply.readException();
+          let msg = result.reply.readString();
+          console.log("RPCTest: reply msg: " + msg);
+      } else {
+          console.log("RPCTest: sendRequest failed, errCode: " + result.errCode);
+      }
+      console.log("RPCTest: sendRequest ends, reclaim parcel");
+      result.data.reclaim();
+      result.reply.reclaim();
+  }
   FA.connectAbility(want, connect);
   let option = new rpc.MessageOption();
-  let data = rpc.MessageParcel.create();
-  let reply = rpc.MessageParcel.create();
+  let data = rpc.MessageSequence.create();
+  let reply = rpc.MessageSequence.create();
   data.writeInt(1);
   data.writeString("hello");
-  proxy.sendRequestAsync(1, data, reply, option)
-      .then(function(result) {
-          if (result.errCode === 0) {
-              console.log("sendRequestAsync got result");
-              result.reply.readException();
-              let msg = result.reply.readString();
-              console.log("RPCTest: reply msg: " + msg);
-          } else {
-              console.log("RPCTest: sendRequestAsync failed, errCode: " + result.errCode);
-          }
-      }).catch(function(e) {
-          console.log("RPCTest: sendRequestAsync got exception: " + e.message);
-      }).finally (() => {
-          console.log("RPCTest: sendRequestAsync ends, reclaim parcel");
-          data.reclaim();
-          reply.reclaim();
-      });
+  try {
+      proxy.sendRequest(1, data, reply, option, sendRequestCallback);
+  } catch(error) {
+      console.info("rpc send sequence request fail, errorCode " + error.code);
+      console.info("rpc send sequence request fail, errorMessage " + error.message);
+  }
   ```
 
-### sendRequest<sup>8+</sup>
+
+### sendRequest<sup>8+(deprecated)</sup>
+
+>从API version 9 开始不再维护，建议使用[sendMessageRequest](#sendmessagerequest9)类替代。
 
 sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: MessageOption, callback: AsyncCallback&lt;SendRequestResult&gt;): void
-
 以同步或异步方式向对端进程发送MessageParcel消息。如果为选项设置了异步模式，则立即收到回调，reply报文里没有内容。如果为选项设置了同步模式，则将在sendRequest返回时收到回调，回复内容在reply报文里。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
 **参数：**
 
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | code | number | 是 | 本次请求调用的消息码，由通信双方确定。如果接口由IDL工具生成，则消息代码由IDL自动生成。 |
-  | data | [MessageParcel](#messageparcel) | 是 | 保存待发送数据的&nbsp;MessageParcel对象。 |
-  | reply | [MessageParcel](#messageparcel) | 是 | 接收应答数据的MessageParcel对象。 |
-  | options | [MessageOption](#messageoption) | 是 | 本次请求的同异步模式，默认同步调用。 |
-  | callback | AsyncCallback&lt;SendRequestResult&gt; | 是 | 接收发送结果的回调。 |
+  | 参数名   | 类型                                   | 必填 | 说明                                                                                   |
+  | -------- | -------------------------------------- | ---- | -------------------------------------------------------------------------------------- |
+  | code     | number                                 | 是   | 本次请求调用的消息码，由通信双方确定。如果接口由IDL工具生成，则消息代码由IDL自动生成。 |
+  | data     | [MessageParcel](#messageparceldeprecated)        | 是   | 保存待发送数据的&nbsp;MessageParcel对象。                                              |
+  | reply    | [MessageParcel](#messageparceldeprecated)        | 是   | 接收应答数据的MessageParcel对象。                                                      |
+  | options  | [MessageOption](#messageoption)        | 是   | 本次请求的同异步模式，默认同步调用。                                                   |
+  | callback | AsyncCallback&lt;SendRequestResult&gt; | 是   | 接收发送结果的回调。                                                                   |
 
 **示例：**
 
@@ -3074,7 +6485,62 @@ sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: Me
   ```
 
 
-### queryLocalInterface
+### getLocalInterface<sup>9+</sup>
+
+getLocalInterface(interface: string): IRemoteBroker
+
+查询并获取当前接口描述符对应的本地接口对象。
+
+**系统能力**：SystemCapability.Communication.IPC.Core
+
+**参数：**
+
+  | 参数名    | 类型   | 必填 | 说明                   |
+  | --------- | ------ | ---- | ---------------------- |
+  | interface | string | 是   | 需要查询的接口描述符。 |
+
+**返回值：**
+
+  | 类型          | 说明                                       |
+  | ------------- | ------------------------------------------ |
+  | IRemoteBroker | 默认返回Null，标识该接口是一个代理侧接口。 |
+
+
+**示例：**
+
+  ```
+  import FA from "@ohos.ability.featureAbility";
+  let proxy;
+  let connect = {
+      onConnect: function(elementName, remoteProxy) {
+          console.log("RpcClient: js onConnect called.");
+          proxy = remoteProxy;
+      },
+      onDisconnect: function (elementName) {
+          console.log("RpcClient: onDisconnect");
+      },
+      onFailed: function() {
+          console.log("RpcClient: onFailed");
+      }
+  };
+  let want = {
+      "bundleName":"com.ohos.server",
+      "abilityName":"com.ohos.server.MainAbility",
+  };
+  FA.connectAbility(want, connect);
+  try {
+      let broker = proxy.getLocalInterface("testObject");
+      console.log("RpcClient: getLocalInterface is " + broker);
+  } catch(error) {
+      console.info("rpc get local interface fail, errorCode " + error.code);
+      console.info("rpc get local interface fail, errorMessage " + error.message);
+  }
+  ```
+
+
+### queryLocalInterface<sup>(deprecated)</sup>
+
+>从API version 9 开始不再维护，建议使用[getLocalInterface](#getlocalinterface9)类替代。
 
 queryLocalInterface(interface: string): IRemoteBroker
 
@@ -3084,14 +6550,14 @@ queryLocalInterface(interface: string): IRemoteBroker
 
 **参数：**
 
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | interface | string | 是 | 需要查询的接口描述符。 |
+  | 参数名    | 类型   | 必填 | 说明                   |
+  | --------- | ------ | ---- | ---------------------- |
+  | interface | string | 是   | 需要查询的接口描述符。 |
 
 **返回值：**
 
-  | 类型 | 说明 |
-  | -------- | -------- |
+  | 类型          | 说明                                       |
+  | ------------- | ------------------------------------------ |
   | IRemoteBroker | 默认返回Null，标识该接口是一个代理侧接口。 |
 
 **示例：**
@@ -3121,7 +6587,69 @@ queryLocalInterface(interface: string): IRemoteBroker
   ```
 
 
-### addDeathRecippient
+### registerDeathRecipient<sup>9+</sup>
+
+registerDeathRecipient(recipient: DeathRecipient, flags: number): void
+
+注册用于接收远程对象死亡通知的回调。如果与RemoteProxy对象匹配的远程对象进程死亡，则调用此方法。
+
+**系统能力**：SystemCapability.Communication.IPC.Core
+
+**参数：**
+
+  | 参数名    | 类型                              | 必填 | 说明           |
+  | --------- | --------------------------------- | ---- | -------------- |
+  | recipient | [DeathRecipient](#deathrecipient) | 是   | 要注册的回调。 |
+  | flags     | number                            | 是   | 死亡通知标志。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.rpc错误码](../errorcodes/errorcode-rpc.md)
+
+  | 错误码ID | 错误信息 |
+  | ------- | -------- |
+  | 1900008 | proxy or remote object is invalid |
+
+**示例：**
+
+  ```
+  import FA from "@ohos.ability.featureAbility";
+  let proxy;
+  let connect = {
+      onConnect: function(elementName, remoteProxy) {
+          console.log("RpcClient: js onConnect called.");
+          proxy = remoteProxy;
+      },
+      onDisconnect: function(elementName) {
+          console.log("RpcClient: onDisconnect");
+      },
+      onFailed: function() {
+          console.log("RpcClient: onFailed");
+      }
+  };
+  let want = {
+      "bundleName": "com.ohos.server",
+      "abilityName": "com.ohos.server.MainAbility",
+  };
+  FA.connectAbility(want, connect);
+  class MyDeathRecipient {
+      onRemoteDied() {
+          console.log("server died");
+      }
+  }
+  let deathRecipient = new MyDeathRecipient();
+  try {
+      proxy.registerDeathRecippient(deathRecipient, 0);
+  } catch(error) {
+      console.info(proxy register deathRecipient fail, errorCode " + error.code);
+      console.info(proxy register deathRecipient fail, errorMessage " + error.message);
+  }
+  ```
+
+
+### addDeathRecippient<sup>(deprecated)</sup>
+
+>从API version 9 开始不再维护，建议使用[registerDeathRecipient](#registerdeathrecipient9)类替代。
 
 addDeathRecipient(recipient : DeathRecipient, flags : number): boolean
 
@@ -3131,15 +6659,15 @@ addDeathRecipient(recipient : DeathRecipient, flags : number): boolean
 
 **参数：**
 
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | recipient | [DeathRecipient](#deathrecipient) | 是 | 收件人表示要注册的回调。 |
-  | flags | number | 是 | 死亡通知标志。保留参数。设置为0。 |
+  | 参数名    | 类型                              | 必填 | 说明                              |
+  | --------- | --------------------------------- | ---- | --------------------------------- |
+  | recipient | [DeathRecipient](#deathrecipient) | 是   | 收件人表示要注册的回调。          |
+  | flags     | number                            | 是   | 死亡通知标志。保留参数。设置为0。 |
 
 **返回值：**
 
-  | 类型 | 说明 |
-  | -------- | -------- |
+  | 类型    | 说明                                          |
+  | ------- | --------------------------------------------- |
   | boolean | 如果回调注册成功，则返回true；否则返回false。 |
 
 **示例：**
@@ -3173,8 +6701,70 @@ addDeathRecipient(recipient : DeathRecipient, flags : number): boolean
   proxy.addDeathRecippient(deathRecipient, 0);
   ```
 
+### unregisterDeathRecipient<sup>9+</sup>
 
-### removeDeathRecipient
+unregisterDeathRecipient(recipient: DeathRecipient, flags: number): void
+
+注销用于接收远程对象死亡通知的回调。
+
+**系统能力**：SystemCapability.Communication.IPC.Core
+
+**参数：**
+
+  | 参数名    | 类型                              | 必填 | 说明           |
+  | --------- | --------------------------------- | ---- | -------------- |
+  | recipient | [DeathRecipient](#deathrecipient) | 是   | 要注销的回调。 |
+  | flags     | number                            | 是   | 死亡通知标志。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.rpc错误码](../errorcodes/errorcode-rpc.md)
+
+  | 错误码ID | 错误信息 |
+  | ------- | -------- |
+  | 1900008 | proxy or remote object is invalid |
+
+**示例：**
+
+  ```
+  import FA from "@ohos.ability.featureAbility";
+  let proxy;
+  let connect = {
+      onConnect: function(elementName, remoteProxy) {
+          console.log("RpcClient: js onConnect called.");
+          proxy = remoteProxy;
+      },
+      onDisconnect: function(elementName) {
+          console.log("RpcClient: onDisconnect");
+      },
+      onFailed: function() {
+          console.log("RpcClient: onFailed");
+      }
+  };
+  let want = {
+      "bundleName": "com.ohos.server",
+      "abilityName": "com.ohos.server.MainAbility",
+  };
+  FA.connectAbility(want, connect);
+  class MyDeathRecipient {
+      onRemoteDied() {
+          console.log("server died");
+      }
+  }
+  let deathRecipient = new MyDeathRecipient();
+  try {
+      proxy.registerDeathRecippient(deathRecipient, 0);
+      proxy.unregisterDeathRecippient(deathRecipient, 0);
+  } catch(error) {
+      console.info(proxy register deathRecipient fail, errorCode " + error.code);
+      console.info(proxy register deathRecipient fail, errorMessage " + error.message);
+  }
+  ```
+
+
+### removeDeathRecipient<sup>(deprecated)</sup>
+
+>从API version 9 开始不再维护，建议使用[unregisterDeathRecipient](#unregisterdeathrecipient9)类替代。
 
 removeDeathRecipient(recipient : DeathRecipient, flags : number): boolean
 
@@ -3184,15 +6774,15 @@ removeDeathRecipient(recipient : DeathRecipient, flags : number): boolean
 
 **参数：**
 
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | recipient | [DeathRecipient](#deathrecipient) | 是 | 要注销的死亡回调。 |
-  | flags | number | 是 | 死亡通知标志。保留参数。设置为0。 |
+  | 参数名    | 类型                              | 必填 | 说明                              |
+  | --------- | --------------------------------- | ---- | --------------------------------- |
+  | recipient | [DeathRecipient](#deathrecipient) | 是   | 要注销的死亡回调。                |
+  | flags     | number                            | 是   | 死亡通知标志。保留参数。设置为0。 |
 
 **返回值：**
 
-  | 类型 | 说明 |
-  | -------- | -------- |
+  | 类型    | 说明                                          |
+  | ------- | --------------------------------------------- |
   | boolean | 如果回调成功注销，则返回true；否则返回false。 |
 
 **示例：**
@@ -3228,7 +6818,64 @@ removeDeathRecipient(recipient : DeathRecipient, flags : number): boolean
   ```
 
 
-### getInterfaceDescriptor
+### getDescriptor<sup>9+</sup>
+
+getInterfaceDescriptor(): string
+
+获取对象的接口描述符。接口描述符为字符串。
+
+**系统能力**：SystemCapability.Communication.IPC.Core
+
+**返回值：**
+
+  | 类型   | 说明             |
+  | ------ | ---------------- |
+  | string | 返回接口描述符。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.rpc错误码](../errorcodes/errorcode-rpc.md)
+
+  | 错误码ID | 错误信息 |
+  | -------- | ------- |
+  | 1900008 | proxy or remote object is invalid |
+  | 1900007 | communication failed              |
+
+**示例：**
+
+  ```
+  import FA from "@ohos.ability.featureAbility";
+  let proxy;
+  let connect = {
+      onConnect: function(elementName, remoteProxy) {
+          console.log("RpcClient: js onConnect called.");
+          proxy = remoteProxy;
+      },
+      onDisconnect: function(elementName) {
+          console.log("RpcClient: onDisconnect");
+      },
+      onFailed: function() {
+          console.log("RpcClient: onFailed");
+      }
+  };
+  let want = {
+      "bundleName": "com.ohos.server",
+      "abilityName": "com.ohos.server.MainAbility",
+  };
+  FA.connectAbility(want, connect);
+  try {
+      let descriptor = proxy.getDescriptor();
+      console.log("RpcClient: descriptor is " + descriptor);
+  } catch(error) {
+      console.info("rpc get interface descriptor fail, errorCode " + error.code);
+      console.info("rpc get interface descriptor fail, errorMessage " + error.message);
+  }
+  ```
+
+
+### getInterfaceDescriptor<sup>(deprecated)</sup>
+
+>从API version 9 开始不再维护，建议使用[getDescriptor](#getdescriptor9)类替代。
 
 getInterfaceDescriptor(): string
 
@@ -3238,8 +6885,8 @@ getInterfaceDescriptor(): string
 
 **返回值：**
 
-  | 类型 | 说明 |
-  | -------- | -------- |
+  | 类型   | 说明               |
+  | ------ | ------------------ |
   | string | 当前的接口描述符。 |
 
 **示例：**
@@ -3279,8 +6926,8 @@ isObjectDead(): boolean
 
 **返回值：**
 
-  | 类型 | 说明 |
-  | -------- | -------- |
+  | 类型    | 说明                                                      |
+  | ------- | --------------------------------------------------------- |
   | boolean | 如果对应的RemoteObject已经死亡，返回true，否则返回false。 |
 
 **示例：**
@@ -3316,12 +6963,27 @@ isObjectDead(): boolean
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Communication.IPC.Core。
 
-  | 参数 | 值 | 说明 |
-| -------- | -------- | -------- |
-| TF_SYNC | 0 | 同步调用。 |
-| TF_ASYNC | 1 | 异步调用。 |
-| TF_ACCEPT_FDS | 0x10 | 指示[sendRequestAsync](#sendrequestasync9)接口可以返回文件描述符。 |
-| TF_WAIT_TIME | 8 | 等待时间。单位秒。 |
+  | 名称          | 值   | 说明                                                        |
+  | ------------- | ---- | ----------------------------------------------------------- |
+  | TF_SYNC       | 0    | 同步调用标识。                                                  |
+  | TF_ASYNC      | 1    | 异步调用标识。                                                  |
+  | TF_ACCEPT_FDS | 0x10 | 指示sendMessageRequest<sup>9+</sup>接口可以返回文件描述符。 |
+  | TF_WAIT_TIME  | 8    | 默认等待时间(单位/秒)。                                          |
+
+
+### constructor<sup>9+</sup>
+
+constructor(async?: boolean);
+
+MessageOption构造函数。
+
+**系统能力**：SystemCapability.Communication.IPC.Core
+
+**参数：**
+
+  | 参数名    | 类型   | 必填 | 说明                                   |
+  | --------- | ------ | ---- | -------------------------------------- |
+  | syncFlags | number | 否   | 同步调用或异步调用标志。默认同步调用。 |
 
 
 ### constructor
@@ -3334,10 +6996,34 @@ MessageOption构造函数。
 
 **参数：**
 
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | syncFlags | number | 否 | 同步调用或异步调用标志。默认同步调用。 |
-  | waitTime | number | 否 | 调用rpc最长等待时间。默认&nbsp;TF_WAIT_TIME。 |
+  | 参数名    | 类型   | 必填 | 说明                                          |
+  | --------- | ------ | ---- | --------------------------------------------- |
+  | syncFlags | number | 否   | 同步调用或异步调用标志。默认同步调用。        |
+  | waitTime  | number | 否   | 调用rpc最长等待时间。默认&nbsp;TF_WAIT_TIME。 |
+
+
+### isAsync<sup>9+</sup>
+
+isAsync(): boolean;
+
+获取SendMessageRequest调用中确定同步或是异步的标志。
+
+**系统能力**：SystemCapability.Communication.IPC.Core
+
+**返回值：**
+
+  | 类型    | 说明                                 |
+  | ------- | ------------------------------------ |
+  | boolean | 调用成功返回同步调用或异步调用标志。 |
+
+
+### setAsync<sup>9+</sup>
+
+setAsync(async: boolean): void;
+
+设置SendMessageRequest调用中确定同步或是异步的标志。
+
+**系统能力**：SystemCapability.Communication.IPC.Core
 
 
 ### getFlags
@@ -3350,8 +7036,8 @@ getFlags(): number
 
 **返回值：**
 
-  | 类型 | 说明 |
-  | -------- | -------- |
+  | 类型   | 说明                                 |
+  | ------ | ------------------------------------ |
   | number | 调用成功返回同步调用或异步调用标志。 |
 
 
@@ -3365,9 +7051,9 @@ setFlags(flags: number): void
 
 **参数：**
 
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | flags | number | 是 | 同步调用或异步调用标志。 |
+  | 参数名 | 类型   | 必填 | 说明                     |
+  | ------ | ------ | ---- | ------------------------ |
+  | flags  | number | 是   | 同步调用或异步调用标志。 |
 
 
 ### getWaitTime
@@ -3380,8 +7066,8 @@ getWaitTime(): number
 
 **返回值：**
 
-  | 类型 | 说明 |
-  | -------- | -------- |
+  | 类型   | 说明              |
+  | ------ | ----------------- |
   | number | rpc最长等待时间。 |
 
 
@@ -3395,15 +7081,14 @@ setWaitTime(waitTime: number): void
 
 **参数：**
 
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | waitTime | number | 是 | rpc调用最长等待时间。 |
+  | 参数名   | 类型   | 必填 | 说明                  |
+  | -------- | ------ | ---- | --------------------- |
+  | waitTime | number | 是   | rpc调用最长等待时间。 |
 
 
 ## IPCSkeleton
 
 用于获取IPC上下文信息，包括获取UID和PID、获取本端和对端设备ID、检查接口调用是否在同一设备上。
-
 
 ### getContextObject
 
@@ -3415,8 +7100,8 @@ static getContextObject(): IRemoteObject
 
 **返回值：**
 
-  | 类型 | 说明 |
-  | -------- | -------- |
+  | 类型                            | 说明                 |
+  | ------------------------------- | -------------------- |
   | [IRemoteObject](#iremoteobject) | 返回系统能力管理者。 |
 
 **示例：**
@@ -3437,20 +7122,20 @@ static getCallingPid(): number
 
 **返回值：**
 
-  | 类型 | 说明 |
-  | -------- | -------- |
+  | 类型   | 说明              |
+  | ------ | ----------------- |
   | number | 返回调用者的PID。 |
 
 **示例：**
 
   ```
   class Stub extends rpc.RemoteObject {
-      onRemoteRequest(code, data, reply, option) {
+      onRemoteMessageRequest(code, data, reply, option) {
           let callerPid = rpc.IPCSkeleton.getCallingPid();
           console.log("RpcServer: getCallingPid result: " + callerPid);
           return true;
       }
-  }
+ }
   ```
 
 
@@ -3464,21 +7149,22 @@ static getCallingUid(): number
 
 **返回值：**
 
-  | 类型 | 说明 |
-  | -------- | -------- |
+  | 类型   | 说明              |
+  | ------ | ----------------- |
   | number | 返回调用者的UID。 |
 
 **示例：**
 
   ```
   class Stub extends rpc.RemoteObject {
-      onRemoteRequest(code, data, reply, option) {
+      onRemoteMessageRequest(code, data, reply, option) {
           let callerUid = rpc.IPCSkeleton.getCallingUid();
           console.log("RpcServer: getCallingUid result: " + callerUid);
           return true;
       }
   }
   ```
+
 
 ### getCallingTokenId<sup>8+</sup>
 
@@ -3488,17 +7174,18 @@ static getCallingTokenId(): number;
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
+
 * 返回值
-
+* 
     | 类型   | 说明                  |
-  | ------ | --------------------- |
-  | number | 返回调用者的TokenId。 |
-
+    | ------ | --------------------- |
+    | number | 返回调用者的TokenId。 |
+  
 * 示例
 
   ```
   class Stub extends rpc.RemoteObject {
-      onRemoteRequest(code, data, reply, option) {
+      onRemoteMessageRequest(code, data, reply, option) {
           let callerTokenId = rpc.IPCSkeleton.getCallingTokenId();
           console.log("RpcServer: getCallingTokenId result: " + callerTokenId);
           return true;
@@ -3517,15 +7204,15 @@ static getCallingDeviceID(): string
 
 **返回值：**
 
-  | 类型 | 说明 |
-  | -------- | -------- |
+  | 类型   | 说明                         |
+  | ------ | ---------------------------- |
   | string | 返回调用者进程所在的设备ID。 |
 
 **示例：**
 
   ```
   class Stub extends rpc.RemoteObject {
-      onRemoteRequest(code, data, reply, option) {
+      onRemoteMessageRequest(code, data, reply, option) {
           let callerDeviceID = rpc.IPCSkeleton.getCallingDeviceID();
           console.log("RpcServer: callerDeviceID is: " + callerDeviceID);
           return true;
@@ -3544,15 +7231,15 @@ static getLocalDeviceID(): string
 
 **返回值：**
 
-  | 类型 | 说明 |
-  | -------- | -------- |
+  | 类型   | 说明               |
+  | ------ | ------------------ |
   | string | 返回本地设备的ID。 |
 
 **示例：**
 
   ```
   class Stub extends rpc.RemoteObject {
-      onRemoteRequest(code, data, reply, option) {
+      onRemoteMessageRequest(code, data, reply, option) {
           let localDeviceID = rpc.IPCSkeleton.getLocalDeviceID();
           console.log("RpcServer: localDeviceID is: " + localDeviceID);
           return true;
@@ -3571,15 +7258,15 @@ static isLocalCalling(): boolean
 
 **返回值：**
 
-  | 类型 | 说明 |
-  | -------- | -------- |
+  | 类型    | 说明                                                      |
+  | ------- | --------------------------------------------------------- |
   | boolean | 如果调用是在同一设备上进行的，则返回true，否则返回false。 |
 
 **示例：**
 
   ```
   class Stub extends rpc.RemoteObject {
-      onRemoteRequest(code, data, reply, option) {
+      onRemoteMessageRequest(code, data, reply, option) {
           let isLocalCalling = rpc.IPCSkeleton.isLocalCalling();
           console.log("RpcServer: isLocalCalling is: " + isLocalCalling);
           return true;
@@ -3588,7 +7275,52 @@ static isLocalCalling(): boolean
   ```
 
 
-### flushCommands
+### flushCmdBuffer<sup>9+</sup>
+
+static flushCmdBuffer(object : IRemoteObject): void
+
+将所有挂起的命令从指定的RemoteProxy刷新到相应的RemoteObject。建议在执行任何时间敏感操作之前调用此方法。
+
+**系统能力**：SystemCapability.Communication.IPC.Core
+
+**参数：**
+
+  | 参数名 | 类型                            | 必填 | 说明                |
+  | ------ | ------------------------------- | ---- | ------------------- |
+  | object | [IRemoteObject](#iremoteobject) | 是   | 指定的RemoteProxy。 |
+
+
+**示例：**
+
+  ```
+  class MyDeathRecipient {
+      onRemoteDied() {
+          console.log("server died");
+      }
+  }
+  class TestRemoteObject extends rpc.RemoteObject {
+      constructor(descriptor) {
+          super(descriptor);
+      }
+      registerDeathRecipient(recipient: MyDeathRecipient, flags: number);
+      unregisterDeathRecipient(recipient: MyDeathRecipient, flags: number);
+      isObjectDead(): boolean {
+          return false;
+      }
+  }
+  let remoteObject = new TestRemoteObject("aaa");
+  try {
+      rpc.IPCSkeleton.flushCmdBuffer(remoteObject);
+  } catch(error) {
+      console.info(proxy set calling identity fail, errorCode " + error.code);
+      console.info(proxy set calling identity fail, errorMessage " + error.message);
+  }
+  ```
+
+
+### flushCommands<sup>(deprecated)</sup>
+
+>从API version 9 开始不再维护，建议使用[flushCmdBuffer](#flushcmdbuffer9)类替代。
 
 static flushCommands(object : IRemoteObject): number
 
@@ -3598,15 +7330,14 @@ static flushCommands(object : IRemoteObject): number
 
 **参数：**
 
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | object | [IRemoteObject](#iremoteobject) | 是 | 指定的RemoteProxy。 |
-
+  | 参数名 | 类型                            | 必填 | 说明                |
+  | ------ | ------------------------------- | ---- | ------------------- |
+  | object | [IRemoteObject](#iremoteobject) | 是   | 指定的RemoteProxy。 |
 
 **返回值：**
 
-  | 类型 | 说明 |
-  | -------- | -------- |
+  | 类型   | 说明                                                                              |
+  | ------ | --------------------------------------------------------------------------------- |
   | number | 如果操作成功，返回0；如果输入对象为空或RemoteObject，或者操作失败，返回错误代码。 |
 
 **示例：**
@@ -3636,7 +7367,6 @@ static flushCommands(object : IRemoteObject): number
   console.log("RpcServer: flushCommands result: " + ret);
   ```
 
-
 ### resetCallingIdentity
 
 static resetCallingIdentity(): string
@@ -3647,15 +7377,15 @@ static resetCallingIdentity(): string
 
 **返回值：**
 
-  | 类型 | 说明 |
-  | -------- | -------- |
+  | 类型   | 说明                                 |
+  | ------ | ------------------------------------ |
   | string | 返回包含远程用户的UID和PID的字符串。 |
 
 **示例：**
 
   ```
   class Stub extends rpc.RemoteObject {
-      onRemoteRequest(code, data, reply, option) {
+      onRemoteMessageRequest(code, data, reply, option) {
           let callingIdentity = rpc.IPCSkeleton.resetCallingIdentity();
           console.log("RpcServer: callingIdentity is: " + callingIdentity);
           return true;
@@ -3664,7 +7394,41 @@ static resetCallingIdentity(): string
   ```
 
 
-### setCallingIdentity
+### restoreCallingIdentity<sup>9+</sup>
+
+static restoreCallingIdentity(identity : string): void
+
+将远程用户的UID和PID替换为本地用户的UID和PID。它可以用于身份验证等场景。
+
+**系统能力**：SystemCapability.Communication.IPC.Core
+
+**参数：**
+
+  | 参数名   | 类型   | 必填 | 说明                                                               |
+  | -------- | ------ | ---- | ------------------------------------------------------------------ |
+  | identity | string | 是   | 标识表示包含远程用户UID和PID的字符串。由resetCallingIdentity返回。 |
+
+**示例：**
+
+  ```
+  class Stub extends rpc.RemoteObject {
+      onRemoteMessageRequest(code, data, reply, option) {
+          let callingIdentity = null;
+          try {
+              callingIdentity = rpc.IPCSkeleton.resetCallingIdentity();
+              console.log("RpcServer: callingIdentity is: " + callingIdentity);
+          } finally {
+              rpc.IPCSkeleton.restoreCallingIdentity("callingIdentity ");
+          }
+          return true;
+      }
+  }
+  ```
+
+
+### setCallingIdentity<sup>(deprecated)</sup>
+
+>从API version 9 开始不再维护，建议使用[restoreCallingIdentity](#restorecallingidentity9)类替代。
 
 static setCallingIdentity(identity : string): boolean
 
@@ -3674,21 +7438,21 @@ static setCallingIdentity(identity : string): boolean
 
 **参数：**
 
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | identity | string | 是 | 标识表示包含远程用户UID和PID的字符串。由resetCallingIdentity返回。 |
+  | 参数名   | 类型   | 必填 | 说明                                                               |
+  | -------- | ------ | ---- | ------------------------------------------------------------------ |
+  | identity | string | 是   | 标识表示包含远程用户UID和PID的字符串。由resetCallingIdentity返回。 |
 
 **返回值：**
 
-  | 类型 | 说明 |
-  | -------- | -------- |
+  | 类型    | 说明                                      |
+  | ------- | ----------------------------------------- |
   | boolean | 如果操作成功，则返回true；否则返回false。 |
 
 **示例：**
 
   ```
   class Stub extends rpc.RemoteObject {
-      onRemoteRequest(code, data, reply, option) {
+      onRemoteMessageRequest(code, data, reply, option) {
           let callingIdentity = null;
           try {
               callingIdentity = rpc.IPCSkeleton.resetCallingIdentity();
@@ -3707,7 +7471,6 @@ static setCallingIdentity(identity : string): boolean
 
 实现远程对象。服务提供者必须继承此类。
 
-
 ### constructor
 
 constructor(descriptor: string)
@@ -3718,15 +7481,14 @@ RemoteObject构造函数。
 
 **参数：**
 
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | descriptor | string | 是 | 接口描述符。 |
+  | 参数名     | 类型   | 必填 | 说明         |
+  | ---------- | ------ | ---- | ------------ |
+  | descriptor | string | 是   | 接口描述符。 |
 
 
 ### sendRequest<sup>(deprecated)</sup>
 
-> **说明：**
-> 从 API Version 8 开始废弃，建议使用[sendRequestAsync<sup>9+</sup>](#sendrequestasync9-2)替代。
+>从API version 9 开始不再维护，建议使用[sendMessageRequest](#sendmessagerequest9)类替代。
 
 sendRequest(code : number, data : MessageParcel, reply : MessageParcel, options : MessageOption): boolean
 
@@ -3736,19 +7498,18 @@ sendRequest(code : number, data : MessageParcel, reply : MessageParcel, options 
 
 **参数：**
 
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | code | number | 是 | 本次请求调用的消息码，由通信双方确定。如果接口由IDL工具生成，则消息代码由IDL自动生成。 |
-  | data | [MessageParcel](#messageparcel) | 是 | 保存待发送数据的&nbsp;MessageParcel对象。 |
-  | reply | [MessageParcel](#messageparcel) | 是 | 接收应答数据的MessageParcel对象。 |
-  | options | [MessageOption](#messageoption) | 是 | 本次请求的同异步模式，默认同步调用。 |
+  | 参数名  | 类型                            | 必填 | 说明                                                                                   |
+  | ------- | ------------------------------- | ---- | -------------------------------------------------------------------------------------- |
+  | code    | number                          | 是   | 本次请求调用的消息码，由通信双方确定。如果接口由IDL工具生成，则消息代码由IDL自动生成。 |
+  | data    | [MessageParcel](#messageparceldeprecated) | 是   | 保存待发送数据的&nbsp;MessageParcel对象。                                              |
+  | reply   | [MessageParcel](#messageparceldeprecated) | 是   | 接收应答数据的MessageParcel对象。                                                      |
+  | options | [MessageOption](#messageoption) | 是   | 本次请求的同异步模式，默认同步调用。                                                   |
 
 **返回值：**
 
-  | 类型 | 说明 |
-  | -------- | -------- |
-  | boolean | 返回一个布尔值，true表示成功，false表示失败。|
-
+  | 类型    | 说明                                          |
+  | ------- | --------------------------------------------- |
+  | boolean | 返回一个布尔值，true表示成功，false表示失败。 |
 
 **示例：**
 
@@ -3794,8 +7555,7 @@ sendRequest(code : number, data : MessageParcel, reply : MessageParcel, options 
 
 ### sendRequest<sup>8+(deprecated)</sup>
 
-> **说明：**
-> 从 API Version 9 开始废弃，建议使用[sendRequestAsync<sup>9+</sup>](#sendrequestasync9-2)替代。
+>从API version 9 开始不再维护，建议使用[sendMessageRequest](#sendmessagerequest9)类替代。
 
 sendRequest(code : number, data : MessageParcel, reply : MessageParcel, options : MessageOption): Promise&lt;SendRequestResult&gt;
 
@@ -3805,19 +7565,18 @@ sendRequest(code : number, data : MessageParcel, reply : MessageParcel, options 
 
 **参数：**
 
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | code | number | 是 | 本次请求调用的消息码，由通信双方确定。如果接口由IDL工具生成，则消息代码由IDL自动生成。 |
-  | data | [MessageParcel](#messageparcel) | 是 | 保存待发送数据的&nbsp;MessageParcel对象。 |
-  | reply | [MessageParcel](#messageparcel) | 是 | 接收应答数据的MessageParcel对象。 |
-  | options | [MessageOption](#messageoption) | 是 | 本次请求的同异步模式，默认同步调用。 |
+  | 参数名  | 类型                            | 必填 | 说明                                                                                   |
+  | ------- | ------------------------------- | ---- | -------------------------------------------------------------------------------------- |
+  | code    | number                          | 是   | 本次请求调用的消息码，由通信双方确定。如果接口由IDL工具生成，则消息代码由IDL自动生成。 |
+  | data    | [MessageParcel](#messageparceldeprecated) | 是   | 保存待发送数据的&nbsp;MessageParcel对象。                                              |
+  | reply   | [MessageParcel](#messageparceldeprecated) | 是   | 接收应答数据的MessageParcel对象。                                                      |
+  | options | [MessageOption](#messageoption) | 是   | 本次请求的同异步模式，默认同步调用。                                                   |
 
 **返回值：**
 
-  | 类型 | 说明 |
-  | -------- | -------- |
-  | Promise&lt;SendRequestResult&gt; | 返回一个期约，兑现值是sendRequestResult实例。|
-
+  | 类型                             | 说明                                          |
+  | -------------------------------- | --------------------------------------------- |
+  | Promise&lt;SendRequestResult&gt; | 返回一个期约，兑现值是sendRequestResult实例。 |
 
 **示例：**
 
@@ -3866,28 +7625,28 @@ sendRequest(code : number, data : MessageParcel, reply : MessageParcel, options 
       });
   ```
 
-### sendRequestAsync<sup>9+</sup>
+### sendMessageRequest<sup>9+</sup>
 
-sendRequestAsync(code : number, data : MessageParcel, reply : MessageParcel, options : MessageOption): Promise&lt;SendRequestResult&gt;
+sendMessageRequest(code : number, data : MessageSequence, reply : MessageSequence, options : MessageOption): Promise&lt;RequestResult&gt;
 
-以同步或异步方式向对端进程发送MessageParcel消息。如果为选项设置了异步模式，则期约立即兑现，reply报文里没有内容。如果为选项设置了同步模式，则期约将在sendRequestAsync返回时兑现，回复内容在reply报文里。
+以同步或异步方式向对端进程发送MessageSequence消息。如果为选项设置了异步模式，则期约立即兑现，reply报文里没有内容。如果为选项设置了同步模式，则期约将在sendMessageRequest返回时兑现，回复内容在reply报文里。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
 **参数：**
 
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | code | number | 是 | 本次请求调用的消息码，由通信双方确定。如果接口由IDL工具生成，则消息代码由IDL自动生成。 |
-  | data | [MessageParcel](#messageparcel) | 是 | 保存待发送数据的&nbsp;MessageParcel对象。 |
-  | reply | [MessageParcel](#messageparcel) | 是 | 接收应答数据的MessageParcel对象。 |
-  | options | [MessageOption](#messageoption) | 是 | 本次请求的同异步模式，默认同步调用。 |
+  | 参数名  | 类型                            | 必填 | 说明                                                                                   |
+  | ------- | ------------------------------- | ---- | -------------------------------------------------------------------------------------- |
+  | code    | number                          | 是   | 本次请求调用的消息码，由通信双方确定。如果接口由IDL工具生成，则消息代码由IDL自动生成。 |
+  | data    | [MessageSequence](#messagesequence9) | 是   | 保存待发送数据的&nbsp;MessageSequence对象。                                            |
+  | reply   | [MessageSequence](#messagesequence9) | 是   | 接收应答数据的MessageSequence对象。                                                    |
+  | options | [MessageOption](#messageoption) | 是   | 本次请求的同异步模式，默认同步调用。                                                   |
 
 **返回值：**
 
-  | 类型 | 说明 |
-  | -------- | -------- |
-  | Promise&lt;SendRequestResult&gt; | 返回一个期约，兑现值是sendRequestResult实例。|
+  | 类型                         | 说明                                          |
+  | ---------------------------- | --------------------------------------------- |
+  | Promise&lt;RequestResult&gt; | 返回一个期约，兑现值是sendRequestResult实例。 |
 
 **示例：**
 
@@ -3901,42 +7660,100 @@ sendRequestAsync(code : number, data : MessageParcel, reply : MessageParcel, opt
       constructor(descriptor) {
           super(descriptor);
       }
-      addDeathRecipient(recipient: MyDeathRecipient, flags: number): boolean {
-          return true;
-      }
-      removeDeathRecipient(recipient: MyDeathRecipient, flags: number): boolean {
-          return true;
-      }
+      registerDeathRecipient(recipient: MyDeathRecipient, flags: number);
+      unregisterDeathRecipient(recipient: MyDeathRecipient, flags: number);
       isObjectDead(): boolean {
           return false;
       }
   }
   let testRemoteObject = new TestRemoteObject("testObject");
   let option = new rpc.MessageOption();
-  let data = rpc.MessageParcel.create();
-  let reply = rpc.MessageParcel.create();
+  let data = rpc.MessageSequence.create();
+  let reply = rpc.MessageSequence.create();
   data.writeInt(1);
   data.writeString("hello");
-  testRemoteObject.sendRequestAsync(1, data, reply, option)
+  testRemoteObject.sendMessageRequest(1, data, reply, option)
       .then(function(result) {
           if (result.errCode === 0) {
-              console.log("sendRequestAsync got result");
+              console.log("sendMessageRequest got result");
               result.reply.readException();
               let msg = result.reply.readString();
               console.log("RPCTest: reply msg: " + msg);
           } else {
-              console.log("RPCTest: sendRequestAsync failed, errCode: " + result.errCode);
+              console.log("RPCTest: sendMessageRequest failed, errCode: " + result.errCode);
           }
       }).catch(function(e) {
-          console.log("RPCTest: sendRequestAsync got exception: " + e.message);
+          console.log("RPCTest: sendMessageRequest got exception: " + e.message);
       }).finally (() => {
-          console.log("RPCTest: sendRequestAsync ends, reclaim parcel");
+          console.log("RPCTest: sendMessageRequest ends, reclaim parcel");
           data.reclaim();
           reply.reclaim();
       });
   ```
 
-### sendRequest<sup>8+</sup>
+
+### sendMessageRequest<sup>9+</sup>
+
+sendMessageRequest(code: number, data: MessageSequence, reply: MessageSequence, options: MessageOption, callback: AsyncCallback&lt;RequestResult&gt;): void
+
+以同步或异步方式向对端进程发送MessageSequence消息。如果为选项设置了异步模式，则立即收到回调，reply报文里没有内容。如果为选项设置了同步模式，则将在sendMessageRequest返回时收到回调，回复内容在reply报文里。
+
+**系统能力**：SystemCapability.Communication.IPC.Core
+
+**参数：**
+
+  | 参数名        | 类型                               | 必填 | 说明                                                                                   |
+  | ------------- | ---------------------------------- | ---- | -------------------------------------------------------------------------------------- |
+  | code          | number                             | 是   | 本次请求调用的消息码，由通信双方确定。如果接口由IDL工具生成，则消息代码由IDL自动生成。 |
+  | data          | [MessageSequence](#messagesequence9) | 是   | 保存待发送数据的&nbsp;MessageSequence对象。                                            |
+  | reply         | [MessageSequence](#messagesequence9) | 是   | 接收应答数据的MessageSequence对象。                                                    |
+  | options       | [MessageOption](#messageoption)    | 是   | 本次请求的同异步模式，默认同步调用。                                                   |
+  | AsyncCallback | AsyncCallback&lt;RequestResult&gt; | 是   | 接收发送结果的回调。                                                                   |
+
+**示例：**
+
+  ```
+  class MyDeathRecipient {
+      onRemoteDied() {
+          console.log("server died");
+      }
+  }
+  class TestRemoteObject extends rpc.RemoteObject {
+      constructor(descriptor) {
+          super(descriptor);
+      }
+      registerDeathRecipient(recipient: MyDeathRecipient, flags: number);
+      unregisterDeathRecipient(recipient: MyDeathRecipient, flags: number);
+      isObjectDead(): boolean {
+          return false;
+      }
+  }
+  function sendRequestCallback(result) {
+      if (result.errCode === 0) {
+          console.log("sendRequest got result");
+          result.reply.readException();
+          let msg = result.reply.readString();
+          console.log("RPCTest: reply msg: " + msg);
+      } else {
+          console.log("RPCTest: sendRequest failed, errCode: " + result.errCode);
+      }
+      console.log("RPCTest: sendRequest ends, reclaim parcel");
+      result.data.reclaim();
+      result.reply.reclaim();
+  }
+  let testRemoteObject = new TestRemoteObject("testObject");
+  let option = new rpc.MessageOption();
+  let data = rpc.MessageSequence.create();
+  let reply = rpc.MessageSequence.create();
+  data.writeInt(1);
+  data.writeString("hello");
+  testRemoteObject.sendRequest(1, data, reply, option, sendRequestCallback);
+  ```
+
+
+### sendRequest<sup>8+(deprecated)</sup>
+
+>从API version 9 开始不再维护，建议使用[sendMessageRequest](#sendmessagerequest9)类替代。
 
 sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: MessageOption, callback: AsyncCallback&lt;SendRequestResult&gt;): void
 
@@ -3946,14 +7763,13 @@ sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: Me
 
 **参数：**
 
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | code | number | 是 | 本次请求调用的消息码，由通信双方确定。如果接口由IDL工具生成，则消息代码由IDL自动生成。 |
-  | data | [MessageParcel](#messageparcel) | 是 | 保存待发送数据的&nbsp;MessageParcel对象。 |
-  | reply | [MessageParcel](#messageparcel) | 是 | 接收应答数据的MessageParcel对象。 |
-  | options | [MessageOption](#messageoption) | 是 | 本次请求的同异步模式，默认同步调用。 |
-  | AsyncCallback | AsyncCallback&lt;SendRequestResult&gt; | 是 | 接收发送结果的回调。 |
-
+  | 参数名        | 类型                                   | 必填 | 说明                                                                                   |
+  | ------------- | -------------------------------------- | ---- | -------------------------------------------------------------------------------------- |
+  | code          | number                                 | 是   | 本次请求调用的消息码，由通信双方确定。如果接口由IDL工具生成，则消息代码由IDL自动生成。 |
+  | data          | [MessageParcel](#messageparceldeprecated)        | 是   | 保存待发送数据的&nbsp;MessageParcel对象。                                              |
+  | reply         | [MessageParcel](#messageparceldeprecated)        | 是   | 接收应答数据的MessageParcel对象。                                                      |
+  | options       | [MessageOption](#messageoption)        | 是   | 本次请求的同异步模式，默认同步调用。                                                   |
+  | AsyncCallback | AsyncCallback&lt;SendRequestResult&gt; | 是   | 接收发送结果的回调。                                                                   |
 
 **示例：**
 
@@ -4002,30 +7818,28 @@ sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: Me
 
 ### onRemoteRequest<sup>8+(deprecated)</sup>
 
+>从API version 9 开始不再维护，建议使用[onRemoteMessageRequest](#onremotemessagerequest9)类替代。
 
 onRemoteRequest(code : number, data : MessageParcel, reply: MessageParcel, options : MessageOption): boolean
-> **说明：**
-> 从 API Version 9 开始废弃，建议使用[onRemoteRequestEx<sup>9+</sup>](#onremoterequestex9)替代。
 
-sendRequestAsync请求的响应处理函数，服务端在该函数里处理请求，回复结果。
+sendMessageRequest请求的响应处理函数，服务端在该函数里处理请求，回复结果。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
 **参数：**
 
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | code | number | 是 | 对端发送的服务请求码。 |
-  | data | [MessageParcel](#messageparcel) | 是 | 携带客户端调用参数的MessageParcel对象。 |
-  | reply | [MessageParcel](#messageparcel) | 是 | 写入结果的MessageParcel对象。 |
-  | option | [MessageOption](#messageoption) | 是 | 指示操作是同步还是异步。 |
+  | 参数名 | 类型                            | 必填 | 说明                                    |
+  | ------ | ------------------------------- | ---- | --------------------------------------- |
+  | code   | number                          | 是   | 对端发送的服务请求码。                  |
+  | data   | [MessageParcel](#messageparceldeprecated) | 是   | 携带客户端调用参数的MessageParcel对象。 |
+  | reply  | [MessageParcel](#messageparceldeprecated) | 是   | 写入结果的MessageParcel对象。           |
+  | option | [MessageOption](#messageoption) | 是   | 指示操作是同步还是异步。                |
 
 **返回值：**
 
-  | 类型 | 说明 |
-  | -------- | -------- |
+  | 类型    | 说明                                      |
+  | ------- | ----------------------------------------- |
   | boolean | 如果操作成功，则返回true；否则返回false。 |
-
 
 **示例：**
 
@@ -4048,7 +7862,6 @@ sendRequestAsync请求的响应处理函数，服务端在该函数里处理请�
       isObjectDead(): boolean {
           return false;
       }
-
       onRemoteRequest(code, data, reply, option) {
           if (code === 1) {
               console.log("RpcServer: onRemoteRequest called");
@@ -4060,36 +7873,37 @@ sendRequestAsync请求的响应处理函数，服务端在该函数里处理请�
       }
   }
   ```
-### onRemoteRequestEx<sup>9+</sup>
 
-onRemoteRequestEx(code : number, data : MessageParcel, reply: MessageParcel, options : MessageOption): boolean | Promise <boolean>
+### onRemoteMessageRequest<sup>9+</sup>
+
+onRemoteMessageRequest(code : number, data : MessageSequence, reply: MessageSequence, options : MessageOption): boolean | Promise\<boolean>
 
 > **说明：**
->- 开发者应优先选择重载onRemoteRequestEx方法，其中可以自由实现同步和异步的消息处理。
->- 开发者同时重载onRemoteRequest和onRemoteRequestEx方法时，仅onRemoteRequestEx方法生效。
+>
+>* 开发者应优先选择重载onRemoteMessageRequest方法，其中可以自由实现同步和异步的消息处理。
+>* 开发者同时重载onRemoteRequest和onRemoteMessageRequest方法时，仅onRemoteMessageRequest方法生效。
 
-sendRequestAsync请求的响应处理函数，服务端在该函数里同步或异步地处理请求，回复结果。
+sendMessageRequest请求的响应处理函数，服务端在该函数里同步或异步地处理请求，回复结果。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
 **参数：**
 
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | code | number | 是 | 对端发送的服务请求码。 |
-  | data | [MessageParcel](#messageparcel) | 是 | 携带客户端调用参数的MessageParcel对象。 |
-  | reply | [MessageParcel](#messageparcel) | 是 | 写入结果的MessageParcel对象。 |
-  | option | [MessageOption](#messageoption) | 是 | 指示操作是同步还是异步。 |
+  | 参数名 | 类型                            | 必填 | 说明                                      |
+  | ------ | ------------------------------- | ---- | ----------------------------------------- |
+  | code   | number                          | 是   | 对端发送的服务请求码。                    |
+  | data   | [MessageSequence](#messagesequence9) | 是   | 携带客户端调用参数的MessageSequence对象。 |
+  | reply  | [MessageSequence](#messagesequence9) | 是   | 写入结果的MessageSequence对象。           |
+  | option | [MessageOption](#messageoption) | 是   | 指示操作是同步还是异步。                  |
 
 **返回值：**
 
-  | 类型 | 说明 |
-  | -------- | -------- |
-  | boolean | 若在onRemoteRequestEx中同步地处理请求，则返回一个布尔值：操作成功，则返回true；否则返回false。 |
-  | Promise <boolean> | 若在onRemoteRequestEx中异步地处理请求，则返回一个Promise对象。 |
+  | 类型              | 说明                                                                                           |
+  | ----------------- | ---------------------------------------------------------------------------------------------- |
+  | boolean           | 若在onRemoteMessageRequest中同步地处理请求，则返回一个布尔值：操作成功，则返回true；否则返回false。 |
+  | Promise\<boolean> | 若在onRemoteMessageRequest中异步地处理请求，则返回一个Promise对象。                                 |
 
-
-**重载onRemoteRequestEx方法同步处理请求示例：**
+**重载onRemoteMessageRequest方法同步处理请求示例：**
 
   ```ets
   class MyDeathRecipient {
@@ -4101,18 +7915,14 @@ sendRequestAsync请求的响应处理函数，服务端在该函数里同步或�
       constructor(descriptor) {
           super(descriptor);
       }
-      addDeathRecipient(recipient: MyDeathRecipient, flags: number): boolean {
-          return true;
-      }
-      removeDeathRecipient(recipient: MyDeathRecipient, flags: number): boolean {
-          return true;
-      }
+      registerDeathRecipient(recipient: MyDeathRecipient, flags: number);
+      unregisterDeathRecipient(recipient: MyDeathRecipient, flags: number);
       isObjectDead(): boolean {
           return false;
       }
-      onRemoteRequestEx(code, data, reply, option) {
+      onRemoteMessageRequest(code, data, reply, option) {
           if (code === 1) {
-              console.log("RpcServer: sync onRemoteRequestEx is called");
+              console.log("RpcServer: sync onRemoteMessageRequest is called");
               return true;
           } else {
               console.log("RpcServer: unknown code: " + code);
@@ -4121,7 +7931,8 @@ sendRequestAsync请求的响应处理函数，服务端在该函数里同步或�
       }
   }
   ```
-  **重载onRemoteRequestEx方法异步处理请求示例：**
+
+  **重载onRemoteMessageRequest方法异步处理请求示例：**
 
   ```ets
   class MyDeathRecipient {
@@ -4133,18 +7944,14 @@ sendRequestAsync请求的响应处理函数，服务端在该函数里同步或�
       constructor(descriptor) {
           super(descriptor);
       }
-      addDeathRecipient(recipient: MyDeathRecipient, flags: number): boolean {
-          return true;
-      }
-      removeDeathRecipient(recipient: MyDeathRecipient, flags: number): boolean {
-          return true;
-      }
+      registerDeathRecipient(recipient: MyDeathRecipient, flags: number);
+      unregisterDeathRecipient(recipient: MyDeathRecipient, flags: number);
       isObjectDead(): boolean {
           return false;
       }
-      async onRemoteRequestEx(code, data, reply, option) {
+      async onRemoteMessageRequest(code, data, reply, option) {
           if (code === 1) {
-              console.log("RpcServer: async onRemoteRequestEx is called");
+              console.log("RpcServer: async onRemoteMessageRequest is called");
           } else {
               console.log("RpcServer: unknown code: " + code);
               return false;
@@ -4156,7 +7963,8 @@ sendRequestAsync请求的响应处理函数，服务端在该函数里同步或�
       }
   }
   ```
-**同时重载onRemoteRequestEx和onRemoteRequest方法同步处理请求示例：**
+
+**同时重载onRemoteMessageRequest和onRemoteRequest方法同步处理请求示例：**
 
   ```ets
   class MyDeathRecipient {
@@ -4168,38 +7976,35 @@ sendRequestAsync请求的响应处理函数，服务端在该函数里同步或�
       constructor(descriptor) {
           super(descriptor);
       }
-      addDeathRecipient(recipient: MyDeathRecipient, flags: number): boolean {
-          return true;
-      }
-      removeDeathRecipient(recipient: MyDeathRecipient, flags: number): boolean {
-          return true;
-      }
+      registerDeathRecipient(recipient: MyDeathRecipient, flags: number);
+      unregisterDeathRecipient(recipient: MyDeathRecipient, flags: number);
       isObjectDead(): boolean {
           return false;
       }
       onRemoteRequest(code, data, reply, option) {
           if (code === 1) {
-              console.log("RpcServer: sync onRemoteRequestEx is called");
+              console.log("RpcServer: sync onRemoteMessageRequest is called");
               return true;
           } else {
               console.log("RpcServer: unknown code: " + code);
               return false;
           }
       }
-      // 同时调用仅会执行onRemoteRequestEx
-      onRemoteRequestEx(code, data, reply, option) {
+      // 同时调用仅会执行onRemoteMessageRequest
+      onRemoteMessageRequest(code, data, reply, option) {
           if (code === 1) {
-              console.log("RpcServer: async onRemoteRequestEx is called");
+              console.log("RpcServer: async onRemoteMessageRequest is called");
           } else {
               console.log("RpcServer: unknown code: " + code);
               return false;
           }
-          
+         
           return true;
       }
   }
   ```
-  **同时重载onRemoteRequestEx和onRemoteRequest方法异步处理请求示例：**
+
+  **同时重载onRemoteMessageRequest和onRemoteRequest方法异步处理请求示例：**
 
   ```ets
   class MyDeathRecipient {
@@ -4211,39 +8016,37 @@ sendRequestAsync请求的响应处理函数，服务端在该函数里同步或�
       constructor(descriptor) {
           super(descriptor);
       }
-      addDeathRecipient(recipient: MyDeathRecipient, flags: number): boolean {
-          return true;
-      }
-      removeDeathRecipient(recipient: MyDeathRecipient, flags: number): boolean {
-          return true;
-      }
+      registerDeathRecipient(recipient: MyDeathRecipient, flags: number);
+      unregisterDeathRecipient(recipient: MyDeathRecipient, flags: number);
       isObjectDead(): boolean {
           return false;
       }
       onRemoteRequest(code, data, reply, option) {
           if (code === 1) {
-              console.log("RpcServer: sync onRemoteRequestEx is called");
+              console.log("RpcServer: sync onRemoteRequest is called");
               return true;
           } else {
               console.log("RpcServer: unknown code: " + code);
               return false;
           }
       }
-      // 同时调用仅会执行onRemoteRequestEx
-      async onRemoteRequestEx(code, data, reply, option) {
+      // 同时调用仅会执行onRemoteMessageRequest
+      async onRemoteMessageRequest(code, data, reply, option) {
           if (code === 1) {
-              console.log("RpcServer: async onRemoteRequestEx is called");
+              console.log("RpcServer: async onRemoteMessageRequest is called");
           } else {
               console.log("RpcServer: unknown code: " + code);
               return false;
           }
-          await new Promise((resolve) => {
+         await new Promise((resolve) => {
             setTimeout(resolve, 100);
           })
           return true;
       }
   }
   ```
+
+
 ### getCallingUid
 
 getCallingUid(): number
@@ -4253,11 +8056,9 @@ getCallingUid(): number
 **系统能力**：SystemCapability.Communication.IPC.Core
 
 **返回值：**
-
-  | 类型 | 说明 |
-  | -------- | -------- |
+  | 类型   | 说明                    |
+  | ------ | ----------------------- |
   | number | 返回通信对端的进程Uid。 |
-
 
 **示例：**
 
@@ -4271,12 +8072,8 @@ getCallingUid(): number
       constructor(descriptor) {
           super(descriptor);
       }
-      addDeathRecipient(recipient: MyDeathRecipient, flags: number): boolean {
-          return true;
-      }
-      removeDeathRecipient(recipient: MyDeathRecipient, flags: number): boolean {
-          return true;
-      }
+      registerDeathRecipient(recipient: MyDeathRecipient, flags: number);
+      unregisterDeathRecipient(recipient: MyDeathRecipient, flags: number);
       isObjectDead(): boolean {
           return false;
       }
@@ -4284,7 +8081,6 @@ getCallingUid(): number
   let testRemoteObject = new TestRemoteObject("testObject");
   console.log("RpcServer: getCallingUid: " + testRemoteObject.getCallingUid());
   ```
-
 
 ### getCallingPid
 
@@ -4296,9 +8092,51 @@ getCallingPid(): number
 
 **返回值：**
 
-  | 类型 | 说明 |
-  | -------- | -------- |
+  | 类型   | 说明                    |
+  | ------ | ----------------------- |
   | number | 返回通信对端的进程Pid。 |
+
+**示例：**
+
+  ```
+  class MyDeathRecipient {
+      onRemoteDied() {
+          console.log("server died");
+      }
+  }
+  class TestRemoteObject extends rpc.RemoteObject {
+      constructor(descriptor) {
+          super(descriptor);
+      }
+      registerDeathRecipient(recipient: MyDeathRecipient, flags: number);
+      unregisterDeathRecipient(recipient: MyDeathRecipient, flags: number);
+      isObjectDead(): boolean {
+          return false;
+      }
+  }
+  let testRemoteObject = new TestRemoteObject("testObject");
+  console.log("RpcServer: getCallingPid: " + testRemoteObject.getCallingPid());
+  ```
+
+### getLocalInterface<sup>9+</sup>
+
+getLocalInterface(descriptor: string): IRemoteBroker
+
+查询接口。
+
+**系统能力**：SystemCapability.Communication.IPC.Core
+
+**参数：**
+
+  | 参数名     | 类型   | 必填 | 说明                 |
+  | ---------- | ------ | ---- | -------------------- |
+  | descriptor | string | 是   | 接口描述符的字符串。 |
+
+**返回值：**
+
+  | 类型          | 说明                                          |
+  | ------------- | --------------------------------------------- |
+  | IRemoteBroker | 返回绑定到指定接口描述符的IRemoteBroker对象。 |
 
 
 **示例：**
@@ -4313,22 +8151,25 @@ getCallingPid(): number
       constructor(descriptor) {
           super(descriptor);
       }
-      addDeathRecipient(recipient: MyDeathRecipient, flags: number): boolean {
-          return true;
-      }
-      removeDeathRecipient(recipient: MyDeathRecipient, flags: number): boolean {
-          return true;
-      }
+      registerDeathRecipient(recipient: MyDeathRecipient, flags: number);
+      unregisterDeathRecipient(recipient: MyDeathRecipient, flags: number);
       isObjectDead(): boolean {
           return false;
       }
   }
   let testRemoteObject = new TestRemoteObject("testObject");
-  console.log("RpcServer: getCallingPid: " + testRemoteObject.getCallingPid());
+  try {
+      let broker = testRemoteObject.getLocalInterface("testObject");
+  } catch(error) {
+      console.info(rpc get local interface fail, errorCode " + error.code);
+      console.info(rpc get local interface fail, errorMessage " + error.message);
+  }
   ```
 
 
-### queryLocalInterface
+### queryLocalInterface<sup>(deprecated)</sup>
+
+>从API version 9 开始不再维护，建议使用[getLocalInterface](#getlocalinterface9)类替代。
 
 queryLocalInterface(descriptor: string): IRemoteBroker
 
@@ -4338,16 +8179,15 @@ queryLocalInterface(descriptor: string): IRemoteBroker
 
 **参数：**
 
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | descriptor | string | 是 | 需要查询的接口描述符。 |
+  | 参数名     | 类型   | 必填 | 说明                   |
+  | ---------- | ------ | ---- | ---------------------- |
+  | descriptor | string | 是   | 需要查询的接口描述符。 |
 
 **返回值：**
 
-  | 类型 | 说明 |
-  | -------- | -------- |
+  | 类型          | 说明                                                               |
+  | ------------- | ------------------------------------------------------------------ |
   | IRemoteBroker | 如果接口描述符对应的远端对象存在，则返回该远端对象，否则返回Null。 |
-
 
 **示例：**
 
@@ -4376,7 +8216,60 @@ queryLocalInterface(descriptor: string): IRemoteBroker
   ```
 
 
-### getInterfaceDescriptor
+### getDescriptor<sup>9+</sup>
+
+getInterfaceDescriptor(): string
+
+获取对象的接口描述符。接口描述符为字符串。
+
+**系统能力**：SystemCapability.Communication.IPC.Core
+
+**返回值：**
+
+  | 类型   | 说明             |
+  | ------ | ---------------- |
+  | string | 返回接口描述符。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.rpc错误码](../errorcodes/errorcode-rpc.md)
+
+  | 错误码ID | 错误信息 |
+  | ------- | -------- |
+  | 1900008 | proxy or remote object is invalid |
+
+**示例：**
+
+  ```
+  class MyDeathRecipient {
+      onRemoteDied() {
+          console.log("server died");
+      }
+  }
+  class TestRemoteObject extends rpc.RemoteObject {
+      constructor(descriptor) {
+          super(descriptor);
+      }
+      addDeathRecipient(recipient: MyDeathRecipient, flags: number);
+      unregisterDeathRecipient(recipient: MyDeathRecipient, flags: number);
+      isObjectDead(): boolean {
+          return false;
+      }
+  }
+  let testRemoteObject = new TestRemoteObject("testObject");
+  try {
+      let descriptor = testRemoteObject.getDescriptor();
+  } catch(error) {
+      console.info(rpc get local interface fail, errorCode " + error.code);
+      console.info(rpc get local interface fail, errorMessage " + error.message);
+  }
+  console.log("RpcServer: descriptor is: " + descriptor);
+  ```
+
+
+### getInterfaceDescriptor<sup>(deprecated)</sup>
+
+>从API version 9 开始不再维护，建议使用[getDescriptor](#getdescriptor9)类替代。
 
 getInterfaceDescriptor(): string
 
@@ -4386,10 +8279,9 @@ getInterfaceDescriptor(): string
 
 **返回值：**
 
-  | 类型 | 说明 |
-  | -------- | -------- |
+  | 类型   | 说明             |
+  | ------ | ---------------- |
   | string | 返回接口描述符。 |
-
 
 **示例：**
 
@@ -4419,7 +8311,55 @@ getInterfaceDescriptor(): string
   ```
 
 
-### attachLocalInterface
+### modifyLocalInterface<sup>9+</sup>
+
+modifyLocalInterface(localInterface: IRemoteBroker, descriptor: string): void
+
+此接口用于把接口描述符和IRemoteBroker对象绑定。
+
+**系统能力**：SystemCapability.Communication.IPC.Core
+
+**参数：**
+
+  | 参数名         | 类型          | 必填 | 说明                                  |
+  | -------------- | ------------- | ---- | ------------------------------------- |
+  | localInterface | IRemoteBroker | 是   | 将与描述符绑定的IRemoteBroker对象。   |
+  | descriptor     | string        | 是   | 用于与IRemoteBroker对象绑定的描述符。 |
+
+
+**示例：**
+
+  ```
+  class MyDeathRecipient {
+      onRemoteDied() {
+          console.log("server died");
+      }
+  }
+  class TestRemoteObject extends rpc.RemoteObject {
+      constructor(descriptor) {
+          super(descriptor);
+          try {
+              this.modifyLocalInterface(this, descriptor);
+          } catch(error) {
+              console.info(rpc attach local interface fail, errorCode " + error.code);
+              console.info(rpc attach local interface fail, errorMessage " + error.message);
+          }
+      }
+      registerDeathRecipient(recipient: MyDeathRecipient, flags: number);
+      unregisterDeathRecipient(recipient: MyDeathRecipient, flags: number);
+      isObjectDead(): boolean {
+          return false;
+      }
+      asObject(): rpc.IRemoteObject {
+          return this;
+      }
+  }
+  let testRemoteObject = new TestRemoteObject("testObject");
+  ```
+
+### attachLocalInterface<sup>(deprecated)</sup>
+
+>从API version 9 开始不再维护，建议使用[modifyLocalInterface](#modifylocalinterface9)类替代。
 
 attachLocalInterface(localInterface: IRemoteBroker, descriptor: string): void
 
@@ -4429,11 +8369,10 @@ attachLocalInterface(localInterface: IRemoteBroker, descriptor: string): void
 
 **参数：**
 
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | localInterface | IRemoteBroker | 是 | 将与描述符绑定的IRemoteBroker对象。 |
-  | descriptor | string | 是 | 用于与IRemoteBroker对象绑定的描述符。 |
-
+  | 参数名         | 类型          | 必填 | 说明                                  |
+  | -------------- | ------------- | ---- | ------------------------------------- |
+  | localInterface | IRemoteBroker | 是   | 将与描述符绑定的IRemoteBroker对象。   |
+  | descriptor     | string        | 是   | 用于与IRemoteBroker对象绑定的描述符。 |
 
 **示例：**
 
@@ -4473,15 +8412,53 @@ attachLocalInterface(localInterface: IRemoteBroker, descriptor: string): void
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Communication.IPC.Core。
 
-  | 参数名 | 值 | 说明 |
-| -------- | -------- | -------- |
-| PROT_EXEC | 4 | 映射的内存可执行 |
-| PROT_NONE | 0 | 映射的内存不可访问 |
-| PROT_READ | 1 | 映射的内存可读 |
-| PROT_WRITE | 2 | 映射的内存可写 |
+  | 名称       | 值  | 说明               |
+  | ---------- | --- | ------------------ |
+  | PROT_EXEC  | 4   | 映射的内存可执行   |
+  | PROT_NONE  | 0   | 映射的内存不可访问 |
+  | PROT_READ  | 1   | 映射的内存可读     |
+  | PROT_WRITE | 2   | 映射的内存可写     |
 
 
-### createAshmem<sup>8+</sup>
+### create<sup>9+</sup>
+
+static create(name: string, size: number): Ashmem
+
+根据指定的名称和大小创建Ashmem对象。
+
+**系统能力**：SystemCapability.Communication.IPC.Core
+
+**参数：**
+
+  | 参数名 | 类型   | 必填 | 说明                         |
+  | ------ | ------ | ---- | ---------------------------- |
+  | name   | string | 是   | 名称，用于查询Ashmem信息。   |
+  | size   | number | 是   | Ashmem的大小，以字节为单位。 |
+
+**返回值：**
+
+  | 类型   | 说明                                           |
+  | ------ | ---------------------------------------------- |
+  | Ashmem | 返回创建的Ashmem对象；如果创建失败，返回null。 |
+
+
+**示例：**
+
+  ```
+  try {
+      let ashmem = rpc.Ashmem.create("ashmem", 1024*1024);
+  } catch(error) {
+      console.info("Rpc creat ashmem fail, errorCode " + error.code);
+      console.info("Rpc creat ashmem  fail, errorMessage " + error.message);
+  }
+  let size = ashmem.getAshmemSize();
+  console.log("RpcTest: get ashemm by create : " + ashmem + " size is : " + size);
+  ```
+
+
+### createAshmem<sup>8+(deprecated)</sup>
+
+>从API version 9 开始不再维护，建议使用[create](#create9)类替代。
 
 static createAshmem(name: string, size: number): Ashmem
 
@@ -4491,17 +8468,16 @@ static createAshmem(name: string, size: number): Ashmem
 
 **参数：**
 
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | name | string | 是 | 名称，用于查询Ashmem信息。 |
-  | size | number | 是 | Ashmem的大小，以字节为单位。 |
+  | 参数名 | 类型   | 必填 | 说明                         |
+  | ------ | ------ | ---- | ---------------------------- |
+  | name   | string | 是   | 名称，用于查询Ashmem信息。   |
+  | size   | number | 是   | Ashmem的大小，以字节为单位。 |
 
 **返回值：**
 
-  | 类型 | 说明 |
-  | -------- | -------- |
+  | 类型   | 说明                                           |
+  | ------ | ---------------------------------------------- |
   | Ashmem | 返回创建的Ashmem对象；如果创建失败，返回null。 |
-
 
 **示例：**
 
@@ -4512,7 +8488,51 @@ static createAshmem(name: string, size: number): Ashmem
   ```
 
 
-### createAshmemFromExisting<sup>8+</sup>
+### create<sup>9+</sup>
+
+static create(ashmem: Ashmem): Ashmem
+
+通过复制现有Ashmem对象的文件描述符(fd)来创建Ashmem对象。两个Ashmem对象指向同一个共享内存区域。
+
+**系统能力**：SystemCapability.Communication.IPC.Core
+
+**参数：**
+
+  | 参数名 | 类型   | 必填 | 说明                 |
+  | ------ | ------ | ---- | -------------------- |
+  | ashmem | Ashmem | 是   | 已存在的Ashmem对象。 |
+
+**返回值：**
+
+  | 类型   | 说明                   |
+  | ------ | ---------------------- |
+  | Ashmem | 返回创建的Ashmem对象。 |
+
+
+**示例：**
+
+  ```
+  try {
+      let ashmem = rpc.Ashmem.create("ashmem", 1024*1024);
+  } catch(error) {
+      console.info("Rpc creat ashmem fail, errorCode " + error.code);
+      console.info("Rpc creat ashmem fail, errorMessage " + error.message);
+  }
+  try {
+      let ashmem = rpc.Ashmem.create("ashmem", 1024*1024);
+      let ashmem2 = rpc.Ashmem.create(ashmem);
+  } catch(error) {
+      console.info("Rpc creat ashmem from existing fail, errorCode " + error.code);
+      console.info("Rpc creat ashmem from existing  fail, errorMessage " + error.message);
+  }
+  let size = ashmem2.getAshmemSize();
+  console.log("RpcTest: get ashemm by create : " + ashmem2 + " size is : " + size);
+  ```
+
+
+### createAshmemFromExisting<sup>8+(deprecated)</sup>
+
+>从API version 9 开始不再维护，建议使用[create](#create9)类替代。
 
 static createAshmemFromExisting(ashmem: Ashmem): Ashmem
 
@@ -4522,16 +8542,15 @@ static createAshmemFromExisting(ashmem: Ashmem): Ashmem
 
 **参数：**
 
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | ashmem | Ashmem | 是 | 已存在的Ashmem对象。 |
+  | 参数名 | 类型   | 必填 | 说明                 |
+  | ------ | ------ | ---- | -------------------- |
+  | ashmem | Ashmem | 是   | 已存在的Ashmem对象。 |
 
 **返回值：**
 
-  | 类型 | 说明 |
-  | -------- | -------- |
+  | 类型   | 说明                   |
+  | ------ | ---------------------- |
   | Ashmem | 返回创建的Ashmem对象。 |
-
 
 **示例：**
 
@@ -4554,7 +8573,7 @@ closeAshmem(): void
 **示例：**
 
   ```
-  let ashmem = rpc.Ashmem.createAshmem("ashmem", 1024*1024);
+  let ashmem = rpc.Ashmem.create("ashmem", 1024*1024);
   ashmem.closeAshmem();
   ```
 
@@ -4570,7 +8589,7 @@ unmapAshmem(): void
 **示例：**
 
   ```
-  let ashmem = rpc.Ashmem.createAshmem("ashmem", 1024*1024);
+  let ashmem = rpc.Ashmem.create("ashmem", 1024*1024);
   ashmem.unmapAshmem();
   ```
 
@@ -4585,8 +8604,8 @@ getAshmemSize(): number
 
 **返回值：**
 
-  | 类型 | 说明 |
-  | -------- | -------- |
+  | 类型   | 说明                       |
+  | ------ | -------------------------- |
   | number | 返回Ashmem对象的内存大小。 |
 
 **示例：**
@@ -4598,7 +8617,44 @@ getAshmemSize(): number
   ```
 
 
-### mapAshmem<sup>8+</sup>
+### mapTypedAshmem<sup>9+</sup>
+
+mapTypedAshmem(mapType: number): void
+
+在此进程的虚拟地址空间上创建共享文件映射，映射区域大小由此Ashmem对象指定。
+
+**系统能力**：SystemCapability.Communication.IPC.Core
+
+**参数：**
+
+  | 参数名  | 类型   | 必填 | 说明                           |
+  | ------- | ------ | ---- | ------------------------------ |
+  | mapType | number | 是   | 指定映射的内存区域的保护等级。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.rpc错误码](../errorcodes/errorcode-rpc.md)
+
+  | 错误码ID | 错误信息 |
+  | ------- | ------ |
+  | 1900001     | call mmap function failed |
+
+**示例：**
+
+  ```
+  let ashmem = rpc.Ashmem.create("ashmem", 1024*1024);
+  try {
+      ashmem.mapTypedAshmem(ashmem.PROT_READ | ashmem.PROT_WRITE);
+  } catch(error) {
+      console.info("Rpc map ashmem fail, errorCode " + error.code);
+      console.info("Rpc map ashmem fail, errorMessage " + error.message);
+  }
+  ```
+
+
+### mapAshmem<sup>8+(deprecated)</sup>
+
+>从API version 9 开始不再维护，建议使用[mapTypedAshmem](#maptypedashmem9)类替代。
 
 mapAshmem(mapType: number): boolean
 
@@ -4608,14 +8664,14 @@ mapAshmem(mapType: number): boolean
 
 **参数：**
 
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | mapType | number | 是 | 指定映射的内存区域的保护等级。 |
+  | 参数名  | 类型   | 必填 | 说明                           |
+  | ------- | ------ | ---- | ------------------------------ |
+  | mapType | number | 是   | 指定映射的内存区域的保护等级。 |
 
 **返回值：**
 
-  | 类型 | 说明 |
-  | -------- | -------- |
+  | 类型    | 说明                                      |
+  | ------- | ----------------------------------------- |
   | boolean | 如果映射成功，则返回true；否则返回false。 |
 
 **示例：**
@@ -4627,7 +8683,38 @@ mapAshmem(mapType: number): boolean
   ```
 
 
-### mapReadAndWriteAshmem<sup>8+</sup>
+### mapReadWriteAshmem<sup>9+</sup>
+
+mapReadAndWriteAshmem(): void
+
+在此进程虚拟地址空间上创建可读写的共享文件映射。
+
+**系统能力**：SystemCapability.Communication.IPC.Core
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.rpc错误码](../errorcodes/errorcode-rpc.md)
+
+  | 错误码ID | 错误信息 |
+  | ------- | -------- |
+  | 1900001 | call mmap function failed |
+
+**示例：**
+
+  ```
+  let ashmem = rpc.Ashmem.create("ashmem", 1024*1024);
+  try {
+      ashmem.mapReadWriteAshmem();
+  } catch(error) {
+      console.info("Rpc map read and write ashmem fail, errorCode " + error.code);
+      console.info("Rpc map read and write ashmem fail, errorMessage " + error.message);
+  }
+  ```
+
+
+### mapReadAndWriteAshmem<sup>8+(deprecated)</sup>
+
+>从API version 9 开始不再维护，建议使用[mapReadWriteAshmem](#mapreadwriteashmem9)类替代。
 
 mapReadAndWriteAshmem(): boolean
 
@@ -4637,8 +8724,8 @@ mapReadAndWriteAshmem(): boolean
 
 **返回值：**
 
-  | 类型 | 说明 |
-  | -------- | -------- |
+  | 类型    | 说明                                      |
+  | ------- | ----------------------------------------- |
   | boolean | 如果映射成功，则返回true；否则返回false。 |
 
 **示例：**
@@ -4650,7 +8737,38 @@ mapReadAndWriteAshmem(): boolean
   ```
 
 
-### mapReadOnlyAshmem<sup>8+</sup>
+### mapReadonlyAshmem<sup>9+</sup>
+
+mapReadonlyAshmem(): void
+
+在此进程虚拟地址空间上创建只读的共享文件映射。
+
+**系统能力**：SystemCapability.Communication.IPC.Core
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.rpc错误码](../errorcodes/errorcode-rpc.md)
+
+  | 错误码ID | 错误信息 |
+  | ------- | -------- |
+  | 1900001 | call mmap function failed |
+
+**示例：**
+
+  ```
+  let ashmem = rpc.Ashmem.create("ashmem", 1024*1024);
+  try {
+      ashmem.mapReadonlyAshmem();
+  } catch(error) {
+      console.info("Rpc map read and write ashmem fail, errorCode " + error.code);
+      console.info("Rpc map read and write ashmem fail, errorMessage " + error.message);
+  }
+  ```
+
+
+### mapReadOnlyAshmem<sup>8+(deprecated)</sup>
+
+>从API version 9 开始不再维护，建议使用[mapReadonlyAshmem](#mapreadonlyashmem9)类替代。
 
 mapReadOnlyAshmem(): boolean
 
@@ -4660,8 +8778,8 @@ mapReadOnlyAshmem(): boolean
 
 **返回值：**
 
-  | 类型 | 说明 |
-  | -------- | -------- |
+  | 类型    | 说明                                      |
+  | ------- | ----------------------------------------- |
   | boolean | 如果映射成功，则返回true；否则返回false。 |
 
 **示例：**
@@ -4673,7 +8791,44 @@ mapReadOnlyAshmem(): boolean
   ```
 
 
-### setProtection<sup>8+</sup>
+### setProtectionType<sup>9+</sup>
+
+setProtectionType(protectionType: number): void
+
+设置映射内存区域的保护等级。
+
+**系统能力**：SystemCapability.Communication.IPC.Core
+
+**参数：**
+
+  | 参数名         | 类型   | 必填 | 说明               |
+  | -------------- | ------ | ---- | ------------------ |
+  | protectionType | number | 是   | 要设置的保护类型。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.rpc错误码](../errorcodes/errorcode-rpc.md)
+
+  | 错误码ID | 错误信息 |
+  | -------- | ------- |
+  | 1900002 | call os ioctl function failed |
+
+**示例：**
+
+  ```
+  let ashmem = rpc.Ashmem.create("ashmem", 1024*1024);
+  try {
+      ashmem.setProtection(ashmem.PROT_READ);
+  } catch(error) {
+      console.info("Rpc set protection type fail, errorCode " + error.code);
+      console.info("Rpc set protection type fail, errorMessage " + error.message);
+  }
+  ```
+
+
+### setProtection<sup>8+(deprecated)</sup>
+
+>从API version 9 开始不再维护，建议使用[setProtectionType](#setprotectiontype9)类替代。
 
 setProtection(protectionType: number): boolean
 
@@ -4683,14 +8838,14 @@ setProtection(protectionType: number): boolean
 
 **参数：**
 
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | protectionType | number | 是 | 要设置的保护类型。 |
+  | 参数名         | 类型   | 必填 | 说明               |
+  | -------------- | ------ | ---- | ------------------ |
+  | protectionType | number | 是   | 要设置的保护类型。 |
 
 **返回值：**
 
-  | 类型 | 说明 |
-  | -------- | -------- |
+  | 类型    | 说明                                      |
+  | ------- | ----------------------------------------- |
   | boolean | 如果设置成功，则返回true；否则返回false。 |
 
 **示例：**
@@ -4702,7 +8857,48 @@ setProtection(protectionType: number): boolean
   ```
 
 
-### writeToAshmem<sup>8+</sup>
+### writeAshmem<sup>9+</sup>
+
+writeAshmem(buf: number[], size: number, offset: number): void
+
+将数据写入此Ashmem对象关联的共享文件。
+
+**系统能力**：SystemCapability.Communication.IPC.Core
+
+**参数：**
+
+  | 参数名 | 类型     | 必填 | 说明                                               |
+  | ------ | -------- | ---- | -------------------------------------------------- |
+  | buf    | number[] | 是   | 写入Ashmem对象的数据。                             |
+  | size   | number   | 是   | 要写入的数据大小。                                 |
+  | offset | number   | 是   | 要写入的数据在此Ashmem对象关联的内存区间的起始位置 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.rpc错误码](../errorcodes/errorcode-rpc.md)
+
+  | 错误码ID | 错误信息 |
+  | ------- | -------- |
+  | 1900003 | write to ashmem failed |
+
+**示例：**
+
+  ```
+  let ashmem = rpc.Ashmem.create("ashmem", 1024*1024);
+  ashmem.mapReadWriteAshmem();
+  var ByteArrayVar = [1, 2, 3, 4, 5];
+  try {
+      ashmem.writeAshmem(ByteArrayVar, 5, 0);
+  } catch(error) {
+      console.info("Rpc write to ashmem fail, errorCode " + error.code);
+      console.info("Rpc write to ashmem fail, errorMessage " + error.message);
+  }
+  ```
+
+
+### writeToAshmem<sup>8+(deprecated)</sup>
+
+>从API version 9 开始不再维护，建议使用[writeAshmem](#writeashmem9)类替代。
 
 writeToAshmem(buf: number[], size: number, offset: number): boolean
 
@@ -4712,16 +8908,16 @@ writeToAshmem(buf: number[], size: number, offset: number): boolean
 
 **参数：**
 
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | buf | number[] | 是 | 写入Ashmem对象的数据。 |
-  | size | number | 是 | 要写入的数据大小。 |
-  | offset | number | 是 | 要写入的数据在此Ashmem对象关联的内存区间的起始位置 |
+  | 参数名 | 类型     | 必填 | 说明                                               |
+  | ------ | -------- | ---- | -------------------------------------------------- |
+  | buf    | number[] | 是   | 写入Ashmem对象的数据。                             |
+  | size   | number   | 是   | 要写入的数据大小。                                 |
+  | offset | number   | 是   | 要写入的数据在此Ashmem对象关联的内存区间的起始位置 |
 
 **返回值：**
 
-  | 类型 | 说明 |
-  | -------- | -------- |
+  | 类型    | 说明                                                                                      |
+  | ------- | ----------------------------------------------------------------------------------------- |
   | boolean | 如果数据写入成功，则返回true；在其他情况下，如数据写入越界或未获得写入权限，则返回false。 |
 
 **示例：**
@@ -4736,7 +8932,55 @@ writeToAshmem(buf: number[], size: number, offset: number): boolean
   ```
 
 
-### readFromAshmem<sup>8+</sup>
+### readAshmem<sup>9+</sup>
+
+readAshmem(size: number, offset: number): number[]
+
+从此Ashmem对象关联的共享文件中读取数据。
+
+**系统能力**：SystemCapability.Communication.IPC.Core
+
+**参数：**
+
+  | 参数名 | 类型   | 必填 | 说明                                               |
+  | ------ | ------ | ---- | -------------------------------------------------- |
+  | size   | number | 是   | 要读取的数据的大小。                               |
+  | offset | number | 是   | 要读取的数据在此Ashmem对象关联的内存区间的起始位置 |
+
+**返回值：**
+
+  | 类型     | 说明             |
+  | -------- | ---------------- |
+  | number[] | 返回读取的数据。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.rpc错误码](../errorcodes/errorcode-rpc.md)
+
+  | 错误码ID  | 错误信息 |
+  | -------- | -------- |
+  | 1900004 | read from ashmem failed |
+
+**示例：**
+
+  ```
+  let ashmem = rpc.Ashmem.create("ashmem", 1024*1024);
+  ashmem.mapReadWriteAshmem();
+  var ByteArrayVar = [1, 2, 3, 4, 5];
+  ashmem.writeAshmem(ByteArrayVar, 5, 0);
+  try {
+      let readResult = ashmem.readAshmem(5, 0);
+      console.log("RpcTest: read from Ashmem result is  : " + readResult);
+  } catch(error) {
+      console.info("Rpc read from ashmem fail, errorCode " + error.code);
+      console.info("Rpc read from ashmem fail, errorMessage " + error.message);
+  }
+  ```
+
+
+### readFromAshmem<sup>8+(deprecated)</sup>
+
+>从API version 9 开始不再维护，建议使用[readAshmem](#readashmem9)类替代。
 
 readFromAshmem(size: number, offset: number): number[]
 
@@ -4746,21 +8990,20 @@ readFromAshmem(size: number, offset: number): number[]
 
 **参数：**
 
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | size | number | 是 | 要读取的数据的大小。 |
-  | offset | number | 是 | 要读取的数据在此Ashmem对象关联的内存区间的起始位置 |
+  | 参数名 | 类型   | 必填 | 说明                                               |
+  | ------ | ------ | ---- | -------------------------------------------------- |
+  | size   | number | 是   | 要读取的数据的大小。                               |
+  | offset | number | 是   | 要读取的数据在此Ashmem对象关联的内存区间的起始位置 |
 
 **返回值：**
 
-  | 类型 | 说明 |
-  | -------- | -------- |
+  | 类型     | 说明             |
+  | -------- | ---------------- |
   | number[] | 返回读取的数据。 |
-
 
 **示例：**
 
-  ```
+ ```
   let ashmem = rpc.Ashmem.createAshmem("ashmem", 1024*1024);
   let mapResult = ashmem.mapReadAndWriteAshmem();
   console.info("RpcTest map ashmem result is " + mapResult);

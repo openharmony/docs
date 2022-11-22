@@ -32,19 +32,19 @@ URI示例：
 **表1** Data中相关生命周期API功能介绍
 |接口名|描述|
 |:------|:------|
-|onInitialized?(info: AbilityInfo): void|在Ability初始化调用，通过此回调方法执行RDB等初始化操作。|
-|update?(uri: string, valueBucket: rdb.ValuesBucket, predicates: dataAbility.DataAbilityPredicates, callback: AsyncCallback\<number>): void|更新数据库中的数据。|
-|query?(uri: string, columns: Array\<string>, predicates: dataAbility.DataAbilityPredicates, callback: AsyncCallback\<ResultSet>): void|查询数据库中的数据。|
-|delete?(uri: string, predicates: dataAbility.DataAbilityPredicates, callback: AsyncCallback\<number>): void|删除一条或多条数据。|
-|normalizeUri?(uri: string, callback: AsyncCallback\<string>): void|对URI进行规范化。一个规范化的URI可以支持跨设备使用、持久化、备份和还原等，当上下文改变时仍然可以引用到相同的数据项。|
-|batchInsert?(uri: string, valueBuckets: Array\<rdb.ValuesBucket>, callback: AsyncCallback\<number>): void|向数据库中插入多条数据。|
-|denormalizeUri?(uri: string, callback: AsyncCallback\<string>): void|将一个由normalizeUri生产的规范化URI转换成非规范化的URI。|
-|insert?(uri: string, valueBucket: rdb.ValuesBucket, callback: AsyncCallback\<number>): void|向数据中插入一条数据。|
-|openFile?(uri: string, mode: string, callback: AsyncCallback\<number>): void|打开一个文件。|
-|getFileTypes?(uri: string, mimeTypeFilter: string, callback: AsyncCallback\<Array\<string>>): void|获取文件的MIME类型。|
-|getType?(uri: string, callback: AsyncCallback\<string>): void|获取URI指定数据相匹配的MIME类型。|
-|executeBatch?(ops: Array\<DataAbilityOperation>, callback: AsyncCallback\<Array\<DataAbilityResult>>): void|批量操作数据库中的数据。|
-|call?(method: string, arg: string, extras: PacMap, callback: AsyncCallback\<PacMap>): void|自定义方法。|
+|onInitialized(info: AbilityInfo): void|在Ability初始化调用，通过此回调方法执行RDB等初始化操作。|
+|update(uri: string, valueBucket: rdb.ValuesBucket, predicates: dataAbility.DataAbilityPredicates, callback: AsyncCallback\<number>): void|更新数据库中的数据。|
+|query(uri: string, columns: Array\<string>, predicates: dataAbility.DataAbilityPredicates, callback: AsyncCallback\<ResultSet>): void|查询数据库中的数据。|
+|delete(uri: string, predicates: dataAbility.DataAbilityPredicates, callback: AsyncCallback\<number>): void|删除一条或多条数据。|
+|normalizeUri(uri: string, callback: AsyncCallback\<string>): void|对URI进行规范化。一个规范化的URI可以支持跨设备使用、持久化、备份和还原等，当上下文改变时仍然可以引用到相同的数据项。|
+|batchInsert(uri: string, valueBuckets: Array\<rdb.ValuesBucket>, callback: AsyncCallback\<number>): void|向数据库中插入多条数据。|
+|denormalizeUri(uri: string, callback: AsyncCallback\<string>): void|将一个由normalizeUri生产的规范化URI转换成非规范化的URI。|
+|insert(uri: string, valueBucket: rdb.ValuesBucket, callback: AsyncCallback\<number>): void|向数据中插入一条数据。|
+|openFile(uri: string, mode: string, callback: AsyncCallback\<number>): void|打开一个文件。|
+|getFileTypes(uri: string, mimeTypeFilter: string, callback: AsyncCallback\<Array\<string>>): void|获取文件的MIME类型。|
+|getType(uri: string, callback: AsyncCallback\<string>): void|获取URI指定数据相匹配的MIME类型。|
+|executeBatch(ops: Array\<DataAbilityOperation>, callback: AsyncCallback\<Array\<DataAbilityResult>>): void|批量操作数据库中的数据。|
+|call(method: string, arg: string, extras: PacMap, callback: AsyncCallback\<PacMap>): void|自定义方法。|
 
 
 ## 开发步骤
@@ -55,6 +55,7 @@ URI示例：
     创建Data的代码示例如下：
 
    ```javascript
+    import featureAbility from '@ohos.ability.featureAbility'
     import dataAbility from '@ohos.data.dataAbility'
     import dataRdb from '@ohos.data.rdb'
 
@@ -66,7 +67,8 @@ URI示例：
     export default {
     onInitialized(abilityInfo) {
         console.info('DataAbility onInitialized, abilityInfo:' + abilityInfo.bundleName)
-        dataRdb.getRdbStore(STORE_CONFIG, 1, (err, store) => {
+        let context = featureAbility.getContext()
+        dataRdb.getRdbStore(context, STORE_CONFIG, 1, (err, store) => {
             console.info('DataAbility getRdbStore callback')
             store.executeSql(SQL_CREATE_TABLE, [])
             rdbStore = store
@@ -311,4 +313,4 @@ URI示例：
 
 针对DataAbility开发，有以下相关实例可供参考：
 
-- [`DataAbility`：DataAbility的创建与访问（eTS）（API8）](https://gitee.com/openharmony/applications_app_samples/tree/master/ability/DataAbility)
+- [`DataAbility`：DataAbility的创建与访问（ArkTS）（API8）](https://gitee.com/openharmony/applications_app_samples/tree/master/ability/DataAbility)

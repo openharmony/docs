@@ -316,7 +316,7 @@ udp.bind({address: '192.168.xx.xxx', port: xxxx, family: 1}, err => {
 	return;
   }
   console.log('bind success');
-  let promise = udp.getState({});
+  let promise = udp.getState();
   promise.then(data => {
 	console.log('getState success:' + JSON.stringify(data));
   }).catch(err => {
@@ -626,7 +626,7 @@ Defines the parameters for sending data over the UDPSocket connection.
 
 | Name | Type                              | Mandatory| Description          |
 | ------- | ---------------------------------- | ---- | -------------- |
-| data    | string                             | Yes  | Data to send.  |
+| data    | string \| ArrayBuffer<sup>7+</sup>                             | Yes  | Data to send.  |
 | address | [NetAddress](#netaddress) | Yes  | Destination address.|
 
 ## UDPExtraOptions
@@ -1041,7 +1041,7 @@ promise1.then(() => {
   console.log('connect success');
   let promise2 = tcp.getRemoteAddress();
   promise2.then(() => {
-	console.log('getRemoteAddress success:' + JSON.stringify(data));
+	console.log('getRemoteAddress success');
   }).catch(err => {
 	console.log('getRemoteAddressfail');
   });
@@ -1120,7 +1120,7 @@ promise.then(() => {
   console.log('connect success');
   let promise1 = tcp.getState();
   promise1.then(() => {
-	console.log('getState success:' + JSON.stringify(data));
+	console.log('getState success');
   }).catch(err => {
 	console.log('getState fail');
   });
@@ -1434,7 +1434,7 @@ Defines the parameters for sending data over the TCPSocket connection.
 
 | Name  | Type  | Mandatory| Description                                                        |
 | -------- | ------ | ---- | ------------------------------------------------------------ |
-| data     | string | Yes  | Data to send.                                                |
+| data     | string\| ArrayBuffer<sup>7+</sup> | Yes  | Data to send.                                                |
 | encoding | string | No  | Character encoding format. The options are as follows: **UTF-8**, **UTF-16BE**, **UTF-16LE**, **UTF-16**, **US-AECII**, and **ISO-8859-1**. The default value is **UTF-8**.|
 
 ## TCPExtraOptions

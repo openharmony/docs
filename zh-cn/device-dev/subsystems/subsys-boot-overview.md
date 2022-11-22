@@ -341,6 +341,134 @@
 
 有些开发板没有采用ramdisk启动引导，直接通过内核挂载system.img。此场景需要修改productdefine中的产品配置文件，通过"enable_ramdisk"开关关闭ramdisk生成，init也不会从ramdisk里二次启动到system。
 
-此场景的主要启动过程与上述流程类似，只是有ramdisk时，init会把system.img挂载到/usr目录，然后chroot到/usr下，并且执行/etc/init.cfg入口脚本文件；而没有ramdisk时，没有chroot过程，切init执行的入口启动脚本是init.without_two_stages.cfg文件。
+此场景的主要启动过程与上述流程类似，只是有ramdisk时，init会把system.img挂载到/usr目录，然后chroot到/usr下；而没有ramdisk时，没有chroot过程，但是都会读取init.cfg文件从而执行脚本。
 
 对于无ramdisk的启动加载，即system as root. 在bootloader阶段将根文件系统所在的块设备通过bootargs传给内核，如root=/dev/mmcblk0p5，rootfstype=ext4。内核在初始化根文件系统时，解析bootargs中root，完成根文件系统的挂载。
+
+
+### A/B分区启动
+
+OpenHarmony现支持A/B双分区启动（主备系统分区），即在设备的存储介质上同时存放两套系统分区A和B，启动时根据当前的活动分区标记（我们称之为active partition slot）来决定加载哪一套系统分区。目前支持A/B启动的分区有system分区和chipset分区。
+
+- bootslots
+
+  bootslots是指当前支持的启动分区个数，当前bootslots的值被设置为2，表示支持A/B双系统分区启动，如果该值为1，则表示不支持A/B分区启动，仅可从默认系统分区启动。
+
+  init启动的第一阶段将会读取bootslots值，根据该值判断当前系统是否支持A/B分区，若不支持，则按照默认fstab挂载系统分区；若支持，则继续判断本次启动需要挂载哪一套系统分区。init获取bootslots的主要接口如下：
+  ```
+  int GetBootSlots(void)
+  {
+      int bootSlots = GetSlotInfoFromParameter("bootslots");
+      BEGET_CHECK_RETURN_VALUE(bootSlots <= 0, bootSlots);
+      BEGET_LOGI("No valid slot value found from parameter, try to get it from cmdline");
+      return GetSlotInfoFromCmdLine("bootslots");
+  }
+  ```
+  在系统正常启动后，用户可以在控制台通过系统参数ohos.boot.bootslots来获取bootslots的值，以查看当前系统是否支持A/B分区启动。获取该系统参数的具体命令如下：
+  ```
+  param get ohos.boot.bootslots
+  ```
+
+- currentslot
+
+  currentslot是指当前启动的系统分区，比如A分区或B分区。currentslot的值使用数字表示，比如数字1表示当前启动A分区，数字2表示当前启动B分区。
+
+  init在启动的第一阶段通过bootslots判断系统是否支持A/B分区，若不支持，将不再获取currentslot值，直接启动默认系统分区；若支持，将会继续获取currentslot值，根据该值判断当前启动的系统分区为A分区或B分区。init获取currentslot的主要接口如下：
+  ```
+  int GetCurrentSlot(void)
+  {
+      // get current slot from parameter
+      int currentSlot = GetSlotInfoFromParameter("currentslot");
+      BEGET_CHECK_RETURN_VALUE(currentSlot <= 0, currentSlot);
+      BEGET_LOGI("No valid slot value found from parameter, try to get it from cmdline");
+
+      // get current slot from cmdline
+      currentSlot = GetSlotInfoFromCmdLine("currentslot");
+      BEGET_CHECK_RETURN_VALUE(currentSlot <= 0, currentSlot);
+      BEGET_LOGI("No valid slot value found from cmdline, try to get it from misc");
+
+      // get current slot from misc
+      return GetSlotInfoFromMisc(MISC_PARTITION_ACTIVE_SLOT_OFFSET, MISC_PARTITION_ACTIVE_SLOT_SIZE);
+  }
+  ```
+
+- A/B分区启动流程
+
+  1. 获取当前启动的A/B分区信息，即currentslot信息。
+  2. 以原始fstab为基础构造新的分区挂载配置，为支持A/B启动的分区（目前支持的分区有system分区和chipset分区）添加对应的"_a"或"_b"后缀。
+  3. 按照构造后的分区挂载配置挂载带有相应后缀的分区并切换到启动的第二阶段，启动第二阶段将在具体的A分区或B分区中进行，涉及A/B分区启动部分至此结束。
+
+  调整分区挂载配置的主要接口如下：
+  ```
+  static void AdjustPartitionNameByPartitionSlot(FstabItem *item)
+  {
+      BEGET_CHECK_ONLY_RETURN(strstr(item->deviceName, "/system") != NULL ||
+          strstr(item->deviceName, "/chipset") != NULL);
+      char buffer[MAX_BUFFER_LEN] = {0};
+      int slot = GetCurrentSlot();
+      BEGET_ERROR_CHECK(slot > 0 && slot <= MAX_SLOT, slot = 1, "slot value %d is invalid, set default value", slot);
+      BEGET_INFO_CHECK(slot > 1, return, "default partition doesn't need to add suffix");
+      BEGET_ERROR_CHECK(sprintf_s(buffer, sizeof(buffer), "%s_%c", item->deviceName, 'a' + slot - 1) > 0,
+          return, "Failed to format partition name suffix, use default partition name");
+      free(item->deviceName);
+      item->deviceName = strdup(buffer);
+      BEGET_LOGI("partition name with slot suffix: %s", item->deviceName);
+  }
+  ```
+
+- A/B分区挂载与启动实例
+
+  下面以rk3568平台为例，演示系统从默认分区启动到支持A/B分区启动的过程。
+
+  1. 烧写原始镜像并查看各分区设备信息
+
+      ![原始分区](figures/ABStartup_1.png)
+
+      使用原始镜像构造A/B分区镜像，测试A/B分区启动功能
+      - 复制system、vendor镜像并添加_b后缀。
+      - 在分区表（parameter.txt）中添加system_b、vendor_b分区。
+
+  2. 烧写A/B分区镜像
+
+     - 在rk3568烧写工具中导入配置，选择带有system_b和vendor_b分区的parameter.txt。
+     - 按照新的分区表配置选择镜像（注意新增的system_b和vendor_b镜像），选择完成后烧写。
+
+  3. 启动完成后
+
+      1. 执行cat /proc/cmdline，能够找到bootslot=2，说明当前系统支持A/B分区启动。
+
+          ![cmdline](figures/ABStartup_2.png)
+      2. 执行param get ohos.boot.bootslot，得到的结果是2，说明bootslot信息被成功写到了parameter中。
+
+      3. 执行ls -l /dev/block/by-name，能够找到system_b、vendor_b，说明新增的B分区设备节点创建成功。
+
+          ![设备信息](figures/ABStartup_3.png)
+
+      4. 执行df -h 查看当前系统挂载分区。
+
+          ![分区信息](figures/ABStartup_4.png)
+
+          可以看到根文件系统（一个 ” / ” 表示）挂载的是mmcblk0p6，从上一张图中可以找到对应mmcblk0p6的是system；也可以看到/vendor中挂载的是mmcblk0p7，从上一张图中可以找到对应mmcblk0p7的是vendor。也就是说，现在挂载的是默认分区（就是原来的没有后缀的system和vendor分区，可以理解为默认分区就是A分区）。
+
+          接下来，我们将尝试B分区启动。
+
+          1）执行partitionslot setactive 2，将活动分区slot设置为2，也就是B分区的slot。
+
+          ![设置slot](figures/ABStartup_5.png)
+
+          2）执行partitionslot getslot，查看刚刚设置的slot值是否设置成功。
+
+          ![查看slot](figures/ABStartup_6.png)
+
+          current slot: 2表示活动分区slot被成功设置为2
+
+          3）重启设备后，执行df -h，查看当前系统挂载分区
+          发现当前根文件系统挂载的是mmcblk0p11，/vendor挂载的是mmcblk0p12。
+
+          ![挂载信息](figures/ABStartup_7.png)
+
+          4）再次执行ls -l /dev/block/by-name。
+
+          ![新增设备信息](figures/ABStartup_8.png)
+
+          找到mmcblk0p11对应的是system_b，mmcblk0p12对应的是vendor_b，也就是说，本次启动系统已经成功从B分区挂载启动。

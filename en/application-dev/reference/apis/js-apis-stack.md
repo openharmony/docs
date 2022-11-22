@@ -10,6 +10,9 @@ Unlike **[Queue](js-apis-queue.md)**, which is implemented based on the queue da
 
 **Recommended use case**: Use **Stack** in LOFI scenarios.
 
+This topic uses the following to identify the use of generics:
+- T: Type
+
 ## Modules to Import
 
 ```ts
@@ -73,7 +76,7 @@ let result = stack.push("a");
 let result1 = stack.push(1);
 let b = [1, 2, 3];
 stack.push(b);
-let c = {name : "lala", age : "13"};
+let c = {name : "Dylon", age : "13"};
 let result3 = stack.push(c);
 ```
 

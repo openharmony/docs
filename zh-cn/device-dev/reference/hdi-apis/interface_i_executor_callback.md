@@ -3,6 +3,16 @@
 
 ## **概述**
 
+定义异步API接口回调，用于返回异步接口的请求处理结果和获取信息。使用细节见[IExecutor](interface_i_executor.md)。
+
+**Since：**
+
+3.2
+
+**Version:**
+
+1.0
+
 **所属模块:**
 
 [HdfFaceAuth](_hdf_face_auth.md)
@@ -13,23 +23,10 @@
 
 ### Public 成员函数
 
-  | Public&nbsp;成员函数 | 描述 | 
+  | 名称 | 描述 | 
 | -------- | -------- |
-| [OnResult](#onresult)&nbsp;([in]&nbsp;int&nbsp;result,&nbsp;[in]&nbsp;unsigned&nbsp;char[]&nbsp;extraInfo) | 定义操作结果回调函数。&nbsp;[更多...](#onresult) | 
-| [OnAcquireInfo](#onacquireinfo)&nbsp;([in]&nbsp;int&nbsp;acquire,&nbsp;[in]&nbsp;unsigned&nbsp;char[]&nbsp;extraInfo) | 定义操作过程信息反馈回调函数。&nbsp;[更多...](#onacquireinfo) | 
-
-
-## **详细描述**
-
-定义异步API接口回调，用于返回异步接口的请求处理结果和获取信息。使用细节见[IExecutor](interface_i_executor.md)。
-
-**Since：**
-
-3.2
-
-**Version:**
-
-1.0
+| [OnResult](#onresult)&nbsp;([in]&nbsp;int&nbsp;result,&nbsp;[in]&nbsp;unsigned&nbsp;char[]&nbsp;extraInfo) | 定义操作结果回调函数。 | 
+| [OnAcquireInfo](#onacquireinfo)&nbsp;([in]&nbsp;int&nbsp;acquire,&nbsp;[in]&nbsp;unsigned&nbsp;char[]&nbsp;extraInfo) | 定义操作过程信息反馈回调函数。 | 
 
 
 ## **成员函数说明**

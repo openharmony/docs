@@ -65,7 +65,7 @@ Enumerates ability continuation results.
 
 ## AbilityConstant.WindowMode
 
-Enumerates the window modes when an ability is started.
+Enumerates the window modes in which an ability can be displayed at startup.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -76,3 +76,15 @@ Enumerates the window modes when an ability is started.
 | WINDOW_MODE_SPLIT_PRIMARY   | 100 | The ability is displayed in the primary window in split-screen mode.  |
 | WINDOW_MODE_SPLIT_SECONDARY | 101 | The ability is displayed in the secondary window in split-screen mode.  |
 | WINDOW_MODE_FLOATING        | 102 | The ability is displayed in a floating window.|
+
+## AbilityConstant.MemoryLevel
+
+Enumerates the memory levels.
+
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
+| Name                        | Value| Description               |
+| ---                         | --- | ---                  |
+| MEMORY_LEVEL_MODERATE       | 0   | Moderate memory usage.      |
+| MEMORY_LEVEL_LOW            | 1   | Low memory usage.           |
+| MEMORY_LEVEL_CRITICAL       | 2   | High memory usage.  |

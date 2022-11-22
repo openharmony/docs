@@ -45,55 +45,50 @@ Stage model:
 import AbilityStage from '@ohos.application.Ability'
 let kvManager;
 export default class MyAbilityStage extends AbilityStage {
-  onCreate() {
-    console.log("MyAbilityStage onCreate")
-    let context = this.context
-    const kvManagerConfig = {
-      context: context,
-      bundleName: 'com.example.datamanagertest',
-      userInfo: {
-        userId: '0',
-        userType: distributedData.UserType.SAME_USER_ID
-      }
+    onCreate() {
+        console.log("MyAbilityStage onCreate")
+        let context = this.context
+        const kvManagerConfig = {
+            context: context,
+            bundleName: 'com.example.datamanagertest',
+            userInfo: {
+                userId: '0',
+                userType: distributedData.UserType.SAME_USER_ID
+            }
+        }
+        distributedData.createKVManager(kvManagerConfig, function (err, manager) {
+            if (err) {
+                console.log("Failed to create KVManager: " + JSON.stringify(err));
+                return;
+            }
+            console.log("Created KVManager successfully");
+            kvManager = manager;
+        });
     }
-    distributedData.createKVManager(kvManagerConfig, function (err, manager) {
-      if (err) {
-        console.log("Failed to create KVManager: " + JSON.stringify(err));
-        return;
-      }
-      console.log("Created KVManager successfully");
-      kvManager = manager;
-    });
-  }
 }
 ```
 
 FA model:
 ```js
-import AbilityStage from '@ohos.application.Ability'
+import featureAbility from '@ohos.ability.featureAbility'
 let kvManager;
-export default class MyAbilityStage extends AbilityStage {
-  onCreate() {
-    console.log("MyAbilityStage onCreate")
-    let context = this.context
-    const kvManagerConfig = {
-      context: context.getApplicationContext(),
-      bundleName: 'com.example.datamanagertest',
-      userInfo: {
+let context = featureAbility.getContext()
+const kvManagerConfig = {
+    context: context,
+    bundleName: 'com.example.datamanagertest',
+    userInfo: {
         userId: '0',
         userType: distributedData.UserType.SAME_USER_ID
-      }
     }
-    distributedData.createKVManager(kvManagerConfig, function (err, manager) {
-      if (err) {
+}
+distributedData.createKVManager(kvManagerConfig, function (err, manager) {
+    if (err) {
         console.log("Failed to create KVManager: " + JSON.stringify(err));
         return;
-      }
-      console.log("Created KVManager successfully");
-      kvManager = manager;
-    });
-  }
-}
+    }
+    console.log("Created KVManager successfully");
+    kvManager = manager;
+});
 ```
 
 ## distributedData.createKVManager
@@ -123,55 +118,46 @@ Stage model:
 import AbilityStage from '@ohos.application.Ability'
 let kvManager;
 export default class MyAbilityStage extends AbilityStage {
-  onCreate() {
-    console.log("MyAbilityStage onCreate")
-    let context = this.context
-    const kvManagerConfig = {
-      context: context,
-      bundleName: 'com.example.datamanagertest',
-      userInfo: {
-        userId: '0',
-        userType: distributedData.UserType.SAME_USER_ID
-      }
+    onCreate() {
+        console.log("MyAbilityStage onCreate")
+        let context = this.context
+        const kvManagerConfig = {
+            context: context,
+            bundleName: 'com.example.datamanagertest',
+            userInfo: {
+                userId: '0',
+                userType: distributedData.UserType.SAME_USER_ID
+            }
+        }
+        distributedData.createKVManager(kvManagerConfig).then((manager) => {
+            console.log("Created KVManager successfully");
+            kvManager = manager;
+        }).catch((err) => {
+            console.log("Failed to create KVManager: " + JSON.stringify(err));
+        });
     }
-    distributedData.createKVManager(kvManagerConfig, function (err, manager) {
-      if (err) {
-        console.log("Failed to create KVManager: " + JSON.stringify(err));
-        return;
-      }
-      console.log("Created KVManager successfully");
-      kvManager = manager;
-    });
-  }
 }
 ```
 
 FA model:
 ```js
-import AbilityStage from '@ohos.application.Ability'
+import featureAbility from '@ohos.ability.featureAbility'
 let kvManager;
-export default class MyAbilityStage extends AbilityStage {
-  onCreate() {
-    console.log("MyAbilityStage onCreate")
-    let context = this.context
-    const kvManagerConfig = {
-      context: context.getApplicationContext(),
-      bundleName: 'com.example.datamanagertest',
-      userInfo: {
+let context = featureAbility.getContext()
+const kvManagerConfig = {
+    context: context,
+    bundleName: 'com.example.datamanagertest',
+    userInfo: {
         userId: '0',
         userType: distributedData.UserType.SAME_USER_ID
-      }
     }
-    distributedData.createKVManager(kvManagerConfig, function (err, manager) {
-      if (err) {
-        console.log("Failed to create KVManager: " + JSON.stringify(err));
-        return;
-      }
-      console.log("Created KVManager successfully");
-      kvManager = manager;
-    });
-  }
 }
+distributedData.createKVManager(kvManagerConfig).then((manager) => {
+    console.log("Created KVManager successfully");
+    kvManager = manager;
+}).catch((err) => {
+    console.log("Failed to create KVManager: " + JSON.stringify(err));
+});
 ```
 
 ## KVManagerConfig
@@ -320,7 +306,7 @@ Closes a KV store. This API uses an asynchronous callback to return the result.
 | appId    | string              | Yes  | Bundle name of the app that invokes the KV store.        |
 | storeId  | string  | Yes  | Unique identifier of the KV store to close. The length cannot exceed [MAX_STORE_ID_LENGTH](#constants).|
 | kvStore  | [KVStore](#kvstore) | Yes  | KV store to close.    |
-| callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result.|
+| callback | AsyncCallback&lt;void&gt; | Yes  | Callback invoked to return the result.|
 
 **Example**
 
@@ -328,21 +314,21 @@ Closes a KV store. This API uses an asynchronous callback to return the result.
 let kvStore;
 let kvManager;
 const options = {
-    createIfMissing : true,
-    encrypt : false,
-    backup : false,
-    autoSync : true,
-    kvStoreType : distributedData.KVStoreType.SINGLE_VERSION,
-    schema : '',
-    securityLevel : distributedData.SecurityLevel.S2,
- }
- try {
+    createIfMissing: true,
+    encrypt: false,
+    backup: false,
+    autoSync: true,
+    kvStoreType: distributedData.KVStoreType.SINGLE_VERSION,
+    schema: '',
+    securityLevel: distributedData.SecurityLevel.S2,
+}
+try {
     kvManager.getKVStore('storeId', options, async function (err, store) {
-    console.log('getKVStore success');
-    kvStore = store;
-    kvManager.closeKVStore('appId', 'storeId', kvStore, function (err, data) {
-        console.log('closeKVStore success');
-    });
+        console.log('getKVStore success');
+        kvStore = store;
+        kvManager.closeKVStore('appId', 'storeId', kvStore, function (err, data) {
+            console.log('closeKVStore success');
+        });
     });
 } catch (e) {
     console.log('closeKVStore e ' + e);
@@ -378,29 +364,29 @@ Closes a KV store. This API uses a promise to return the result.
 let kvManager;
 let kvStore;
 const options = {
-    createIfMissing : true,
-    encrypt : false,
-    backup : false,
-    autoSync : true,
-    kvStoreType : distributedData.KVStoreType.SINGLE_VERSION,
-    schema : '',
-    securityLevel : distributedData.SecurityLevel.S2,
+    createIfMissing: true,
+    encrypt: false,
+    backup: false,
+    autoSync: true,
+    kvStoreType: distributedData.KVStoreType.SINGLE_VERSION,
+    schema: '',
+    securityLevel: distributedData.SecurityLevel.S2,
 }
- try {
+try {
     kvManager.getKVStore('storeId', options).then(async (store) => {
-    console.log('getKVStore success');
-    kvStore = store;
-    kvManager.closeKVStore('appId', 'storeId', kvStore).then(() => {
-        console.log('closeKVStore success');
-    }).catch((err) => {
-        console.log('closeKVStore err ' + JSON.stringify(err));
-    });
+        console.log('getKVStore success');
+        kvStore = store;
+        kvManager.closeKVStore('appId', 'storeId', kvStore).then(() => {
+            console.log('closeKVStore success');
+        }).catch((err) => {
+            console.log('closeKVStore err ' + JSON.stringify(err));
+        });
     }).catch((err) => {
         console.log('CloseKVStore getKVStore err ' + JSON.stringify(err));
     });
- } catch (e) {
+} catch (e) {
     console.log('closeKVStore e ' + e);
-}  
+}
 ```
 
 
@@ -418,7 +404,7 @@ Deletes a KV store. This API uses an asynchronous callback to return the result.
 | -----  | ------  | ----  | ----------------------- |
 | appId  | string  | Yes  | Bundle name of the app that invokes the KV store.    |
 | storeId | string | Yes  | Unique identifier of the KV store to delete. The length cannot exceed [MAX_STORE_ID_LENGTH](#constants).|
-| callback | AsyncCallback&lt;void&gt;  | Yes  | Callback used to return the result.|
+| callback | AsyncCallback&lt;void&gt;  | Yes  | Callback invoked to return the result.|
 
 **Example**
 
@@ -514,7 +500,7 @@ Obtains the IDs of all KV stores that are created by [getKVStore()](#getkvstore)
 | Name | Type| Mandatory | Description                   |
 | -----  | ------  | ----  | ----------------------- |
 | appId  | string  | Yes   | Bundle name of the app that invokes the KV store.    |
-| callback | AsyncCallback&lt;string[]&gt; | Yes  |Callback used to return the KV store IDs obtained. |
+| callback | AsyncCallback&lt;string[]&gt; | Yes  |Callback invoked to return the KV store IDs obtained. |
 
 **Example**
 
@@ -574,7 +560,7 @@ try {
 
 on(event: 'distributedDataServiceDie', deathCallback: Callback&lt;void&gt;): void
 
-Subscribes to service status changes.
+Subscribes to service status changes. This API returns the result synchronously.
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.DistributedKVStore
 
@@ -590,7 +576,6 @@ Subscribes to service status changes.
 ```js
 let kvManager;
 try {
-    
     console.log('KVManagerOn');
     const deathCallback = function () {
         console.log('death callback call');
@@ -606,7 +591,7 @@ try {
 
 off(event: 'distributedDataServiceDie', deathCallback?: Callback&lt;void&gt;): void
 
-Unsubscribes from service status changes.
+Unsubscribes from service status changes. This API returns the result synchronously.
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.DistributedKVStore
 
@@ -615,7 +600,7 @@ Unsubscribes from service status changes.
 | Name | Type| Mandatory | Description                   |
 | -----  | ------  | ----  | ----------------------- |
 | event  | string | Yes   | Event to unsubscribe from. The value is **distributedDataServiceDie**, which indicates a service status change event.|
-| deathCallback  | Callback&lt;void&gt;  | No   | Callback used to return a service status change event.|
+| deathCallback  | Callback&lt;void&gt;  | No   | Callback for the service status change event.|
 
 
 **Example**
@@ -666,16 +651,14 @@ Enumerates the KV store types.
 
 Enumerates the KV store security levels.
 
-**System capability**: SystemCapability.DistributedDataManager.KVStore.Core
-
 | Name | Value| Description                   |
 | ---   | ----  | ----------------------- |
-| NO_LEVEL  | 0 | No security level is set for the KV store.  |
-| S0  | 1 | The KV store security level is public.|
-| S1  | 2 | The KV store security level is low. If data leakage occurs, minor impact will be caused on the database. For example, a KV store that contains system data such as wallpapers.|
-| S2  | 3 | The KV store security level is medium. If data leakage occurs, moderate impact will be caused on the database. For example, a KV store that contains information created by users or call records, such as audio or video clips.|
-| S3  | 5 | The KV store security level is high. If data leakage occurs, major impact will be caused on the database. For example, a KV store that contains information such as user fitness, health, and location data.|
-| S4  | 6 | The KV store security level is critical. If data leakage occurs, severe impact will be caused on the database. For example, a KV store that contains information such as authentication credentials and financial data.|
+| NO_LEVEL  | 0 | No security level is set for the KV store.<br>**System capability**: SystemCapability.DistributedDataManager.KVStore.DistributedKVStore  |
+| S0  | 1 | The KV store security level is public.<br>**System capability**: SystemCapability.DistributedDataManager.KVStore.Core   |
+| S1  | 2 | The KV store security level is low. If data leakage occurs, minor impact will be caused on the database. For example, a KV store that contains system data such as wallpapers.<br>**System capability**: SystemCapability.DistributedDataManager.KVStore.Core   |
+| S2  | 3 | The KV store security level is medium. If data leakage occurs, moderate impact will be caused on the database. For example, a KV store that contains information created by users or call records, such as audio or video clips.<br>**System capability**: SystemCapability.DistributedDataManager.KVStore.Core   |
+| S3  | 5 | The KV store security level is high. If data leakage occurs, major impact will be caused on the database. For example, a KV store that contains information such as user fitness, health, and location data.<br>**System capability**: SystemCapability.DistributedDataManager.KVStore.Core   |
+| S4  | 6 | The KV store security level is critical. If data leakage occurs, severe impact will be caused on the database. For example, a KV store that contains information such as authentication credentials and financial data.<br>**System capability**: SystemCapability.DistributedDataManager.KVStore.Core   |
 
 
 ## Constants
@@ -1025,7 +1008,7 @@ try {
     }).catch((err) => {
         console.log('getResultSet failed: ' + err);
     });
-    const moved5 = resultSet.move();
+    const moved5 = resultSet.move(1);
     console.log("move succeed:" + moved5);
 } catch (e) {
     console.log("move failed: " + e);
@@ -1065,7 +1048,7 @@ try {
     }).catch((err) => {
         console.log('getResultSet failed: ' + err);
     });
-    const moved6 = resultSet.moveToPosition();
+    const moved6 = resultSet.moveToPosition(1);
     console.log("moveToPosition succeed: " + moved6);
 } catch (e) {
     console.log("moveToPosition failed: " + e);
@@ -2156,7 +2139,7 @@ Adds a KV pair of the specified type to this KV store. This API uses an asynchro
 | -----  | ------  | ----  | ----------------------- |
 | key    | string  | Yes   |Key of the KV pair to add. It cannot be empty, and the length cannot exceed [MAX_KEY_LENGTH](#constants).  |
 | value  | Uint8Array \| string \| number \| boolean | Yes   |Value of the KV pair to add. The value type can be Uint8Array, number, string, or boolean. A value of the Uint8Array or string type cannot exceed [MAX_VALUE_LENGTH](#constants).  |
-| callback | AsyncCallback&lt;void&gt; | Yes   |Callback used to return the result.  |
+| callback | AsyncCallback&lt;void&gt; | Yes   |Callback invoked to return the result.  |
 
 **Example**
 
@@ -2229,7 +2212,7 @@ Deletes a KV pair from this KV store. This API uses an asynchronous callback to 
 | Name | Type| Mandatory | Description                   |
 | -----  | ------  | ----  | ----------------------- |
 | key    | string  | Yes   |Key of the KV pair to delete. It cannot be empty, and the length cannot exceed [MAX_KEY_LENGTH](#constants).  |
-| callback  | AsyncCallback&lt;void&gt;  | Yes   |Callback used to return the result.  |
+| callback  | AsyncCallback&lt;void&gt;  | Yes   |Callback invoked to return the result.  |
 
 **Example**
 
@@ -2314,7 +2297,7 @@ Deletes KV pairs that meet the specified conditions. This API uses an asynchrono
 | Name | Type| Mandatory | Description                   |
 | -----  | ------  | ----  | ----------------------- |
 | predicates    | [DataSharePredicates](js-apis-data-dataSharePredicates.md#datasharepredicates)  | Yes   |Conditions for deleting data. If this parameter is **null**, define the processing logic.|
-| callback  | AsyncCallback&lt;void&gt;  | Yes   |Callback used to return the result.  |
+| callback  | AsyncCallback&lt;void&gt;  | Yes   |Callback invoked to return the result.  |
 
 **Example**
 
@@ -2395,8 +2378,8 @@ Backs up an RDB store. This API uses an asynchronous callback to return the resu
 
 | Name  | Type                 | Mandatory| Description                                                        |
 | -------- | ------------------------- | ---- | ------------------------------------------------------------ |
-| file     | string                    | Yes  | Name of the database. The value cannot be empty or exceed [MAX_KEY_LENGTH](#constants).|
-| callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is the error object. |
+| file     | string                    | Yes  | Name of the RDB store. The value cannot be empty or exceed [MAX_KEY_LENGTH](#constants).|
+| callback | AsyncCallback&lt;void&gt; | Yes  | Callback invoked to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is the error object.|
 
 **Example**
 
@@ -2429,7 +2412,7 @@ Backs up an RDB store. This API uses a promise to return the result.
 
 | Name| Type| Mandatory| Description                                                        |
 | ------ | -------- | ---- | ------------------------------------------------------------ |
-| file   | string   | Yes  | Name of the database. This parameter cannot be empty and its length cannot exceed [MAX_KEY_LENGTH](#constants).|
+| file   | string   | Yes  | Name of the RDB store. The value cannot be empty or exceed [MAX_KEY_LENGTH](#constants).|
 
 **Return value**
 
@@ -2467,7 +2450,7 @@ Restores an RDB store from a database file. This API uses an asynchronous callba
 | Name  | Type                 | Mandatory| Description                                                        |
 | -------- | ------------------------- | ---- | ------------------------------------------------------------ |
 | file     | string                    | Yes  | Name of the database file. The value cannot be empty or exceed [MAX_KEY_LENGTH](#constants).|
-| callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.|
+| callback | AsyncCallback&lt;void&gt; | Yes  | Callback invoked to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.|
 
 **Example**
 
@@ -2600,7 +2583,7 @@ try {
 
 on(event: 'dataChange', type: SubscribeType, listener: Callback&lt;ChangeNotification&gt;): void
 
-Subscribes to data changes of the specified type.
+Subscribes to data changes of the specified type. This API returns the result synchronously.
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.Core
 
@@ -2610,7 +2593,7 @@ Subscribes to data changes of the specified type.
 | -----  | ------  | ----  | ----------------------- |
 | event  |string  | Yes   |Event to subscribe to. The value is **dataChange**, which indicates a data change event.      |
 | type  |[SubscribeType](#subscribetype) | Yes   |Type of data change.    |
-| listener |Callback&lt;[ChangeNotification](#changenotification)&gt; | Yes   |Callback used to return a data change event.|
+| listener |Callback&lt;[ChangeNotification](#changenotification)&gt; | Yes   |Callback invoked to return a data change event.|
 
 **Example**
 
@@ -2626,7 +2609,7 @@ kvStore.on('dataChange', distributedData.SubscribeType.SUBSCRIBE_TYPE_LOCAL, fun
 
 on(event: 'syncComplete', syncCallback: Callback&lt;Array&lt;[string, number]&gt;&gt;): void
 
-Subscribes to synchronization complete events.
+Subscribes to synchronization complete events. This API returns the result synchronously.
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.Core
 
@@ -2635,7 +2618,7 @@ Subscribes to synchronization complete events.
 | Name | Type| Mandatory | Description                   |
 | -----  | ------  | ----  | ----------------------- |
 | event  |string | Yes   |Event to subscribe to. The value is **syncComplete**, which indicates a synchronization complete event.      |
-| syncCallback  |Callback&lt;Array&lt;[string, number]&gt;&gt; | Yes   |Callback used to return a synchronization complete event.    |
+| syncCallback  |Callback&lt;Array&lt;[string, number]&gt;&gt; | Yes   |Callback invoked to return a synchronization complete event.|
 
 **Example**
 
@@ -2650,7 +2633,7 @@ kvStore.on('syncComplete', function (data) {
 
 off(event:'dataChange', listener?: Callback&lt;ChangeNotification&gt;): void
 
-Unsubscribes from data changes.
+Unsubscribes from data changes. This API returns the result synchronously.
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.Core
 
@@ -2659,7 +2642,7 @@ Unsubscribes from data changes.
 | Name | Type| Mandatory | Description                   |
 | -----  | ------  | ----  | ----------------------- |
 | event  |string  | Yes   |Event to unsubscribe from. The value is **dataChange**, which indicates a data change event.      |
-| listener |Callback&lt;[ChangeNotification](#changenotification)&gt; |No   |Callback used to return a data change event.|
+| listener |Callback&lt;[ChangeNotification](#changenotification)&gt; |No   |Callback for the data change event.|
 
 **Example**
 
@@ -2686,7 +2669,7 @@ class KvstoreModel {
 
 off(event: 'syncComplete', syncCallback?: Callback&lt;Array&lt;[string, number]&gt;&gt;): void
 
-Unsubscribes from data changes. This API returns the result synchronously.
+Unsubscribes from the synchronization complete events. This API returns the result synchronously.
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.Core
 
@@ -2695,7 +2678,7 @@ Unsubscribes from data changes. This API returns the result synchronously.
 | Name | Type| Mandatory | Description                   |
 | -----  | ------  | ----  | ----------------------- |
 | event  |string  | Yes   |Event to unsubscribe from. The value is **syncComplete**, which indicates a synchronization complete event.      |
-| syncCallback  |Callback&lt;Array&lt;[string, number]&gt;&gt;   | No   |Callback used to return a synchronization complete event.   |
+| syncCallback  |Callback&lt;Array&lt;[string, number]&gt;&gt;   | No   |Callback for the synchronization complete event.   |
 
 **Example**
 
@@ -2732,7 +2715,7 @@ Inserts KV pairs in batches to this KV store. This API uses an asynchronous call
 | Name | Type| Mandatory | Description                   |
 | -----  | ------  | ----  | ----------------------- |
 | entries  |[Entry](#entry)[] | Yes   |KV pairs to insert in batches. |
-| callback |Asyncallback&lt;void&gt; |Yes    |Callback used to return the result.|
+| callback |Asyncallback&lt;void&gt; |Yes    |Callback invoked to return the result.|
 
 **Example**
 
@@ -2835,7 +2818,7 @@ Writes data to this KV store. This API  uses an asynchronous callback to return 
 | Name | Type| Mandatory | Description                   |
 | -----  | ------  | ----  | ----------------------- |
 | value   |Array&lt;[ValuesBucket](js-apis-data-ValuesBucket.md#valuesbucket)&gt; | Yes   |Data to write.  |
-| callback |Asyncallback&lt;void&gt; |Yes    |Callback used to return the result.|
+| callback |Asyncallback&lt;void&gt; |Yes    |Callback invoked to return the result.|
 
 **Example**
 
@@ -2921,7 +2904,7 @@ Deletes KV pairs in batches from this KV store. This API uses an asynchronous ca
 | Name | Type| Mandatory | Description                   |
 | -----  | ------  | ----  | ----------------------- |
 | keys  |string[] | Yes   |KV pairs to delete in batches. |
-| callback  |AsyncCallback&lt;void&gt; | Yes   |Callback used to return the result. |
+| callback  |AsyncCallback&lt;void&gt; | Yes   |Callback invoked to return the result. |
 
 **Example**
 
@@ -3023,7 +3006,7 @@ Starts the transaction in this KV store. This API uses an asynchronous callback 
 
 | Name | Type| Mandatory | Description                   |
 | -----  | ------  | ----  | ----------------------- |
-| callback  |AsyncCallback&lt;void&gt; | Yes   |Callback used to return the result. |
+| callback  |AsyncCallback&lt;void&gt; | Yes   |Callback invoked to return the result. |
 
 **Example**
 
@@ -3110,7 +3093,7 @@ Commits the transaction in this KV store. This API uses an asynchronous callback
 
 | Name | Type| Mandatory | Description                   |
 | -----  | ------  | ----  | ----------------------- |
-| callback  |AsyncCallback&lt;void&gt; | Yes   |Callback used to return the result. |
+| callback  |AsyncCallback&lt;void&gt; | Yes   |Callback invoked to return the result. |
 
 **Example**
 
@@ -3172,7 +3155,7 @@ Rolls back the transaction in this KV store. This API uses an asynchronous callb
 
 | Name | Type| Mandatory | Description                   |
 | -----  | ------  | ----  | ----------------------- |
-| callback  |AsyncCallback&lt;void&gt; | Yes   |Callback used to return the result. |
+| callback  |AsyncCallback&lt;void&gt; | Yes   |Callback invoked to return the result. |
 
 **Example**
 
@@ -3235,7 +3218,7 @@ Sets data synchronization, which can be enabled or disabled. This API uses an as
 | Name | Type| Mandatory | Description                   |
 | -----  | ------  | ----  | ----------------------- |
 | enabled  |boolean | Yes   |Whether to enable data synchronization. The value **true** means to enable data synchronization, and **false** means the opposite. |
-| callback  |AsyncCallback&lt;void&gt; | Yes   |Callback used to return the result. |
+| callback  |AsyncCallback&lt;void&gt; | Yes   |Callback invoked to return the result. |
 
 **Example**
 
@@ -3305,7 +3288,7 @@ Sets the data synchronization range. This API uses an asynchronous callback to r
 | -----  | ------  | ----  | ----------------------- |
 | localLabels  |string[] | Yes   |Synchronization labels set for the local device. |
 | remoteSupportLabels  |string[] | Yes   |Synchronization labels set for remote devices. |
-| callback  |AsyncCallback&lt;void&gt; | Yes   |Callback used to return the result. |
+| callback  |AsyncCallback&lt;void&gt; | Yes   |Callback invoked to return the result. |
 
 **Example**
 
@@ -3632,7 +3615,7 @@ Obtains the KV pairs that match the specified **Query** object. This API uses an
 | Name | Type| Mandatory | Description                   |
 | -----  | ------  | ----  | ----------------------- |
 | query  |[Query](#query8)   | Yes   |Key prefix to match. |
-| callback  |AsyncCallback&lt;[Entry](#entry)[]&gt;   | Yes   |Callback used to return the KV pairs obtained. |
+| callback  |AsyncCallback&lt;[Entry](#entry)[]&gt;   | Yes   |Callback invoked to return the KV pairs obtained. |
 
 **Example**
 
@@ -4033,7 +4016,7 @@ Closes the **KvStoreResultSet** object obtained by [SingleKvStore.getResultSet](
 | Name | Type| Mandatory | Description                   |
 | -----  | ------   | ----  | ----------------------- |
 | resultSet  |[KvStoreResultSet](#kvstoreresultset8)   | Yes   |**KvStoreResultSet** object to close.            |
-| callback  |AsyncCallback&lt;void&gt;   | Yes   |Callback used to return the result.            |
+| callback  |AsyncCallback&lt;void&gt;   | Yes   |Callback invoked to return the result.            |
 
 **Example**
 
@@ -4205,7 +4188,7 @@ Deletes data of a device. This API uses an asynchronous callback to return the r
 | Name | Type| Mandatory | Description                   |
 | -----  | ------   | ----  | ----------------------- |
 | deviceId  |string   | Yes   |ID of the target device.      |
-| callback  |AsyncCallback&lt;void&gt;   | Yes   |Callback used to return the result.     |
+| callback  |AsyncCallback&lt;void&gt;   | Yes   |Callback invoked to return the result.     |
 
 **Example**
 
@@ -4287,7 +4270,7 @@ try {
 
 on(event: 'syncComplete', syncCallback: Callback&lt;Array&lt;[string, number]&gt;&gt;): void
 
-Subscribes to synchronization complete events.
+Subscribes to synchronization complete events. This API returns the result synchronously.
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.Core
 
@@ -4323,7 +4306,7 @@ try {
 
 off(event: 'syncComplete', syncCallback?: Callback&lt;Array&lt;[string, number]&gt;&gt;): void
 
-Unsubscribes from synchronization complete events.
+Unsubscribes from synchronization complete events. This API returns the result synchronously.
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.Core
 
@@ -4332,7 +4315,7 @@ Unsubscribes from synchronization complete events.
 | Name | Type| Mandatory | Description                   |
 | -----  | ------   | ----  | ----------------------- |
 | event  |string   | Yes   |Event to unsubscribe from. The value is **syncComplete**, which indicates a synchronization complete event.   |
-| syncCallback  |Callback&lt;Array&lt;[string, number]&gt;&gt;   | No   |Callback used to return a synchronization complete event.   |
+| syncCallback  |Callback&lt;Array&lt;[string, number]&gt;&gt;   | No   |Callback for the synchronization complete event.   |
 
 **Example**
 
@@ -4394,7 +4377,7 @@ Unsubscribes from data changes. This API returns the result synchronously.
 | Name | Type| Mandatory | Description                   |
 | -----  | ------  | ----  | ----------------------- |
 | event  |string  | Yes   |Event to unsubscribe from. The value is **dataChange**, which indicates a data change event.      |
-| listener |Callback&lt;[ChangeNotification](#changenotification)&gt; |No   |Callback used to return a data change event.|
+| listener |Callback&lt;[ChangeNotification](#changenotification)&gt; |No   |Callback for the data change event.|
 
 **Example**
 
@@ -4421,7 +4404,7 @@ class KvstoreModel {
 
 sync(deviceIds: string[], mode: SyncMode, delayMs?: number): void
 
-Synchronizes the KV store manually. For details about the synchronization modes of the distributed data service, see [Distributed Data Service Overview] (../../database/database-mdds-overview.md).
+Synchronizes the KV store manually. For details about the synchronization modes of the distributed data service, see [Distributed Data Service Overview](../../database/database-mdds-overview.md).
 
 **Required permissions**: ohos.permission.DISTRIBUTED_DATASYNC
 
@@ -4445,7 +4428,7 @@ kvStore.sync('deviceIds', distributedData.SyncMode.PULL_ONLY, 1000);
 ### sync<sup>9+</sup>
 sync(deviceIds: string[], query: Query, mode: SyncMode, delayMs?: number): void
 
-Synchronizes the KV store manually. This API returns the result synchronously. For details about the synchronization modes of the distributed data service, see [Distributed Data Service Overview] (../../database/database-mdds-overview.md).
+Synchronizes the KV store manually. This API returns the result synchronously. For details about the synchronization modes of the distributed data service, see [Distributed Data Service Overview](../../database/database-mdds-overview.md).
 
 **Required permissions**: ohos.permission.DISTRIBUTED_DATASYNC
 
@@ -4497,7 +4480,7 @@ Sets the default delay allowed for KV store synchronization. This API uses an as
 | Name | Type| Mandatory | Description                   |
 | -----  | ------   | ----  | ----------------------- |
 | defaultAllowedDelayMs  |number  | Yes   |Default delay allowed for database synchronization, in ms.   |
-| callback  |AsyncCallback&lt;void&gt;  | Yes  |Callback used to return the result.  |
+| callback  |AsyncCallback&lt;void&gt;  | Yes  |Callback invoked to return the result.  |
 
 **Example**
 
@@ -4634,7 +4617,7 @@ Obtains a string value that matches the specified device ID and key. This API us
 | -----  | ------   | ----  | ----------------------- |
 | deviceId  |string  | Yes   |ID of the target device.   |
 | key       |string  | Yes   |Key to match.   |
-| callback  |AsyncCallback&lt;boolean\|string\|number\|Uint8Array&gt;  | Yes   |Callback used to return the value obtained.   |
+| callback  |AsyncCallback&lt;boolean\|string\|number\|Uint8Array&gt;  | Yes   |Callback invoked to return the value obtained.   |
 
 **Example**
 
@@ -4713,7 +4696,7 @@ Obtains all KV pairs that match the specified device ID and key prefix. This API
 | -----  | ------   | ----  | ----------------------- |
 | deviceId  |string  | Yes   |ID of the target device.   |
 | keyPrefix |string  | Yes   |Key prefix to match.   |
-| callback  |AsyncCallback&lt;[Entry](#entry)[]&gt;  | Yes |Callback used to return the KV pairs obtained.   |
+| callback  |AsyncCallback&lt;[Entry](#entry)[]&gt;  | Yes |Callback invoked to return the KV pairs obtained.   |
 
 **Example**
 
@@ -4819,7 +4802,7 @@ Obtains the KV pairs that match the specified **Query** object. This API uses an
 | Name | Type| Mandatory | Description                   |
 | -----  | ------   | ----  | ----------------------- |
 | query  |[Query](#query8)  | Yes   |**Query** object to match.   |
-| callback |AsyncCallback&lt;[Entry](#entry)[]&gt;  | Yes   |Callback used to return the KV pairs obtained.   |
+| callback |AsyncCallback&lt;[Entry](#entry)[]&gt;  | Yes   |Callback invoked to return the KV pairs obtained.   |
 
 **Example**
 
@@ -5355,7 +5338,7 @@ Closes the **KvStoreResultSet** object obtained by [DeviceKVStore.getResultSet](
 | Name | Type| Mandatory | Description                   |
 | -----  | ------   | ----  | ----------------------- |
 | resultSet  |[KvStoreResultSet](#getresultset8)  | Yes   |**KvStoreResultSet** object to close.  |
-| callback   |AsyncCallback&lt;void&gt;                 | Yes   |Callback used to return the result.   |
+| callback   |AsyncCallback&lt;void&gt;                 | Yes   |Callback invoked to return the result.   |
 
 **Example**
 
@@ -5634,7 +5617,7 @@ Deletes data of the specified device from this KV store. This API uses an asynch
 | Name | Type| Mandatory | Description                   |
 | -----  | ------   | ----  | ----------------------- |
 | deviceId  |string                       | Yes   |ID of the target device. |
-| callback  |AsyncCallback&lt;void&gt;    | Yes   |Callback used to return the result.   |
+| callback  |AsyncCallback&lt;void&gt;    | Yes   |Callback invoked to return the result.   |
 
 **Example**
 
@@ -5716,7 +5699,7 @@ try {
 
 sync(deviceIds: string[], mode: SyncMode, delayMs?: number): void
 
-Synchronizes the KV store manually. For details about the synchronization modes of the distributed data service, see [Distributed Data Service Overview] (../../database/database-mdds-overview.md).
+Synchronizes the KV store manually. For details about the synchronization modes of the distributed data service, see [Distributed Data Service Overview](../../database/database-mdds-overview.md).
 
 **Required permissions**: ohos.permission.DISTRIBUTED_DATASYNC
 
@@ -5755,7 +5738,7 @@ try {
 
 sync(deviceIds: string[], query: Query, mode: SyncMode, delayMs?: number): void
 
-Synchronizes the KV store manually. This API returns the result synchronously. For details about the synchronization modes of the distributed data service, see [Distributed Data Service Overview] (../../database/database-mdds-overview.md).
+Synchronizes the KV store manually. This API returns the result synchronously. For details about the synchronization modes of the distributed data service, see [Distributed Data Service Overview](../../database/database-mdds-overview.md).
 
 **Required permissions**: ohos.permission.DISTRIBUTED_DATASYNC
 
@@ -5797,7 +5780,7 @@ try {
 
 on(event: 'syncComplete', syncCallback: Callback&lt;Array&lt;[string, number]&gt;&gt;): void
 
-Subscribes to synchronization complete events.
+Subscribes to synchronization complete events. This API returns the result synchronously.
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.Core
 
@@ -5842,7 +5825,7 @@ Unsubscribes from synchronization complete events. This API returns the result s
 | Name | Type| Mandatory | Description                   |
 | -----  | ------   | ----  | ----------------------- |
 | event         |string                           | Yes   |Event to unsubscribe from. The value is **syncComplete**, which indicates a synchronization complete event.|
-| syncCallback  |Callback<Array&lt;[string, number]&gt;&gt; | No   |Callback used to return a synchronization complete event. |
+| syncCallback  |Callback<Array&lt;[string, number]&gt;&gt; | No   |Callback for the synchronization complete event. |
 
 **Example**
 
@@ -5904,7 +5887,7 @@ Unsubscribes from data changes. This API returns the result synchronously.
 | Name | Type| Mandatory | Description                   |
 | -----  | ------  | ----  | ----------------------- |
 | event  |string  | Yes   |Event to unsubscribe from. The value is **dataChange**, which indicates a data change event.      |
-| listener |Callback&lt;[ChangeNotification](#changenotification)&gt; |No   |Callback used to return a data change event.|
+| listener |Callback&lt;[ChangeNotification](#changenotification)&gt; |No   |Callback for the data change event.|
 
 **Example**
 

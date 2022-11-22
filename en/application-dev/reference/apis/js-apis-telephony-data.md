@@ -63,9 +63,32 @@ promise.then((data) => {
 });
 ```
 
+## data.getDefaultCellularDataSlotIdSync
+
+getDefaultCellularDataSlotIdSync(): number
+
+Obtains the default SIM card used for mobile data synchronously.
+
+**Required permission**: ohos.permission.GET_NETWORK_INFO
+
+**System capability**: SystemCapability.Telephony.CellularData
+
+**Return value**
+
+| Type             | Description                                                        |
+| ------ | -------------------------------------------------- |
+| number | Card slot ID.<br>**0**: card slot 1<br>**1**: card slot 2|
+
+**Example**
+
+```js
+console.log("Result: "+ data.getDefaultCellularDataSlotIdSync())
+```
+
+
 ## data.setDefaultCellularDataSlotId
 
-setDefaultCellularDataSlotId(slotId: number,callback: AsyncCallback\<void\>): void 
+setDefaultCellularDataSlotId(slotId: number, callback: AsyncCallback\<void\>): void 
 
 Sets the default slot of the SIM card used for mobile data. This API uses an asynchronous callback to return the result. 
 
@@ -85,7 +108,7 @@ This is a system API.
 **Example**
 
 ```js
-data.setDefaultCellularDataSlotId(0,(err, data) => {
+data.setDefaultCellularDataSlotId(0, (err, data) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
 ```
@@ -290,7 +313,7 @@ Checks whether the cellular data roaming service is enabled. This API uses an as
 **Example**
 
 ```js
-data.isCellularDataRoamingEnabled(0,(err, data) => {
+data.isCellularDataRoamingEnabled(0, (err, data) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
 ```

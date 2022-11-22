@@ -14,7 +14,38 @@
 import util from '@ohos.util';
 ```
 
-## util.printf
+## util.format<sup>9+</sup>
+
+format(format: string,  ...args: Object[]): string
+
+通过式样化字符串对输入的内容按特定格式输出。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**参数：**
+
+| 参数名  | 类型     | 必填 | 说明           |
+| ------- | -------- | ---- | -------------- |
+| format  | string   | 是   | 式样化字符串。 |
+| ...args | Object[] | 否   | 待式样化数据。 |
+
+**返回值：**
+
+| 类型   | 说明                         |
+| ------ | ---------------------------- |
+| string | 按特定格式式样化后的字符串。 |
+
+**示例：**
+
+  ```js
+let res = util.format("%s", "hello world!");
+console.log(res);
+  ```
+
+## util.printf<sup>(deprecated)</sup>
+
+> **说明：**<br/>
+> 从API Version 9开始废弃，建议使用[util.format9+](#utilformat9)替代。
 
 printf(format: string,  ...args: Object[]): string
 
@@ -27,7 +58,7 @@ printf(format: string,  ...args: Object[]): string
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | format | string | 是 | 式样化字符串。 |
-| ...args | Object[] | 否 | 待式样化数据。 |
+| ...args | Object[] | 否 | 替换式样化字符串通配符的数据。 |
 
 **返回值：**
 
@@ -41,8 +72,38 @@ printf(format: string,  ...args: Object[]): string
   console.log(res);
   ```
 
+## util.errnoToString<sup>9+</sup>
 
-## util.getErrorString
+errnoToString(errno: number): string
+
+获取系统错误码对应的详细信息。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                       |
+| ------ | ------ | ---- | -------------------------- |
+| errno  | number | 是   | 系统发生错误产生的错误码。 |
+
+**返回值：**
+
+| 类型   | 说明                   |
+| ------ | ---------------------- |
+| string | 错误码对应的详细信息。 |
+
+**示例：**
+
+  ```js
+let errnum = 10; // 10 : a system error number
+let result = util.errnoToString(errnum);
+console.log("result = " + result);
+  ```
+
+## util.getErrorString<sup>(deprecated)</sup>
+
+> **说明：**<br/>
+> 从API Version 9开始废弃，建议使用[util.errnoToString9+](#utilerrnotostring9)替代。
 
 getErrorString(errno: number): string
 
@@ -68,7 +129,6 @@ getErrorString(errno: number): string
   let result = util.getErrorString(errnum);
   console.log("result = " + result);
   ```
-
 
 ## util.callbackWrapper
 
@@ -102,30 +162,6 @@ callbackWrapper(original: Function): (err: Object, value: Object )=&gt;void
       console.log(ret);
   }, err)
   ```
-
-
-## util.promiseWrapper<sup>(deprecated)</sup>
-
-promiseWrapper(original: (err: Object, value: Object) =&gt; void): Object
-
-> **说明：**<br/>
-> 从API Version 9开始废弃，建议使用[util.promisify9+](#utilpromisify9)替代。
-
-对异步函数处理并返回一个promise的版本。
-
-**系统能力：** SystemCapability.Utils.Lang
-
-**参数：**
-
-| 参数名 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| original | Function | 是 | 异步函数。 |
-
-**返回值：**
-
-| 类型 | 说明 |
-| -------- | -------- |
-| Function | 采用遵循常见的错误优先的回调风格的函数（也就是将&nbsp;(err,&nbsp;value)&nbsp;=&gt;&nbsp;...&nbsp;回调作为最后一个参数），并返回一个返回&nbsp;promise&nbsp;的版本。 |
 
 ## util.promisify<sup>9+</sup>
 
@@ -161,6 +197,29 @@ promisify(original: (err: Object, value: Object) =&gt; void): Function
     console.log(res);
   })
   ```
+
+## util.promiseWrapper<sup>(deprecated)</sup>
+
+promiseWrapper(original: (err: Object, value: Object) =&gt; void): Object
+
+> **说明：**<br/>
+> 从API Version 9开始废弃，建议使用[util.promisify9+](#utilpromisify9)替代。
+
+对异步函数处理并返回一个promise的版本。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| original | Function | 是 | 异步函数。 |
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| Function | 采用遵循常见的错误优先的回调风格的函数（也就是将&nbsp;(err,&nbsp;value)&nbsp;=&gt;&nbsp;...&nbsp;回调作为最后一个参数），并返回一个返回&nbsp;promise&nbsp;的版本。 |
 
 ## util.randomUUID<sup>9+</sup>
 
@@ -244,7 +303,7 @@ parseUUID(uuid: string): Uint8Array
   console.log(JSON.stringify(uuid));
   // 输出：
   // 132,189,247,150,102,204,70,85,155,137,214,33,141,16,15,156
-  ```  
+  ```
 
 ## TextDecoder
 
@@ -258,8 +317,45 @@ parseUUID(uuid: string): Uint8Array
 | fatal | boolean | 是 | 否 | 是否显示致命错误。 |
 | ignoreBOM | boolean | 是 | 否 | 是否忽略BOM（byte&nbsp;order&nbsp;marker）标记，默认值为false&nbsp;，表示解码结果包含BOM标记。 |
 
+### constructor<sup>9+</sup>
 
-### constructor
+constructor()
+
+TextDecoder的构造函数。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+### create<sup>9+</sup>
+
+create(encoding?: string,options?: { fatal?: boolean; ignoreBOM?: boolean },): TextDecoder;
+
+替代有参构造功能。
+
+**参数：**
+
+| 参数名   | 类型   | 必填 | 说明                                             |
+| -------- | ------ | ---- | ------------------------------------------------ |
+| encoding | string | 否   | 编码格式。                                       |
+| options  | Object | 否   | 编码相关选项参数，存在两个属性fatal和ignoreBOM。 |
+
+  **表1.1**options
+
+| 名称      | 参数类型 | 必填 | 说明               |
+| --------- | -------- | ---- | ------------------ |
+| fatal     | boolean  | 否   | 是否显示致命错误。 |
+| ignoreBOM | boolean  | 否   | 是否忽略BOM标记。  |
+
+**示例：**
+
+  ```js
+let textDecoder = new util.TextDecoder()
+textDecoder.create('utf-8', { ignoreBOM : true });
+  ```
+
+### constructor<sup>(deprecated)</sup>
+
+> **说明：**<br/>
+> 从API Version 9开始废弃，建议使用[constructor9+](#constructor9)替代。
 
 constructor(encoding?: string, options?: { fatal?: boolean; ignoreBOM?: boolean },)
 
@@ -285,7 +381,6 @@ TextDecoder的构造函数。
   ```js
   let textDecoder = new util.TextDecoder("utf-8",{ignoreBOM: true});
   ```
-
 
 ### decode
 
@@ -397,8 +492,39 @@ TextEncoder的构造函数。
   let textEncoder = new util.TextEncoder();
   ```
 
+### encodeInto<sup>9+</sup>
 
-### encode
+encodeInto(input?: string): Uint8Array
+
+通过输入参数编码后输出对应文本。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明               |
+| ------ | ------ | ---- | ------------------ |
+| input  | string | 是   | 需要编码的字符串。 |
+
+**返回值：**
+
+| 类型       | 说明               |
+| ---------- | ------------------ |
+| Uint8Array | 返回编码后的文本。 |
+
+**示例：**
+
+  ```js
+let textEncoder = new util.TextEncoder();
+let buffer = new ArrayBuffer(20);
+let result = new Uint8Array(buffer);
+result = textEncoder.encodeInto("\uD800¥¥");
+  ```
+
+### encode<sup>(deprecated)</sup>
+
+> **说明：**<br/>
+> 从API Version 9开始废弃，建议使用[encodeInto9+](#encodeinto9)替代。
 
 encode(input?: string): Uint8Array
 
@@ -426,8 +552,41 @@ encode(input?: string): Uint8Array
   result = textEncoder.encode("\uD800¥¥");
   ```
 
+### encodeIntoUint8Array<sup>9+</sup>
 
-### encodeInto
+encodeIntoUint8Array(input: string, dest: Uint8Array, ): { read: number; written: number }
+
+放置生成的UTF-8编码文本。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**参数：**
+
+| 参数名 | 类型       | 必填 | 说明                                                    |
+| ------ | ---------- | ---- | ------------------------------------------------------- |
+| input  | string     | 是   | 需要编码的字符串。                                      |
+| dest   | Uint8Array | 是   | Uint8Array对象实例，用于将生成的UTF-8编码文本放入其中。 |
+
+**返回值：**
+
+| 类型       | 说明               |
+| ---------- | ------------------ |
+| Uint8Array | 返回编码后的文本。 |
+
+**示例：**
+
+  ```js
+let that = new util.TextEncoder()
+let buffer = new ArrayBuffer(4)
+let dest = new Uint8Array(buffer)
+let result = new Object()
+result = that.encodeInto('abcd', dest)
+  ```
+
+### encodeInto<sup>(deprecated)</sup>
+
+> **说明：**<br/>
+> 从API Version 9开始废弃，建议使用[encodeIntoUint8Array9+](#encodeintouint8array9)替代。
 
 encodeInto(input: string, dest: Uint8Array, ): { read: number; written: number }
 
@@ -459,8 +618,46 @@ encodeInto(input: string, dest: Uint8Array, ): { read: number; written: number }
 
 ## RationalNumber<sup>8+</sup>
 
+### constructor<sup>9+</sup>
 
-### constructor<sup>8+</sup>
+constructor()
+
+RationalNumber的构造函数。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**示例：**
+
+  ```js
+let rationalNumber = new util.RationalNumber();
+  ```
+
+### parseRationalNumber<sup>9+</sup>
+
+parseRationalNumber(numerator: number,denominator: number)
+
+替代原有参构造的参数处理。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**参数：**
+
+| 参数名      | 类型   | 必填 | 说明             |
+| ----------- | ------ | ---- | ---------------- |
+| numerator   | number | 是   | 分子，整数类型。 |
+| denominator | number | 是   | 分母，整数类型。 |
+
+**示例：**
+
+  ```js
+let rationalNumber = new util.RationalNumber();
+rationalNumber.parseRationalNumber(1,2)
+  ```
+
+### constructor<sup>8+(deprecated)</sup>
+
+> **说明：**<br/>
+> 从API Version 9开始废弃，建议使用[constructor9+](#constructor9)替代。
 
 constructor(numerator: number,denominator: number)
 
@@ -476,10 +673,10 @@ RationalNumber的构造函数。
 | denominator | number | 是 | 分母，整数类型。 |
 
 **示例：**
+
   ```js
   let rationalNumber = new util.RationalNumber(1,2);
   ```
-
 
 ### createRationalFromString<sup>8+</sup>
 
@@ -507,8 +704,38 @@ static createRationalFromString​(rationalString: string): RationalNumber​
   let rational = util.RationalNumber.createRationalFromString("3/4");
   ```
 
+### compare<sup>9+</sup>
 
-### compareTo<sup>8+</sup>
+compare​(another: RationalNumber): number​
+
+将当前的RationalNumber对象与给定的对象进行比较。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**参数：**
+
+| 参数名  | 类型           | 必填 | 说明               |
+| ------- | -------------- | ---- | ------------------ |
+| another | RationalNumber | 是   | 其他的有理数对象。 |
+
+**返回值：**
+
+| 类型   | 说明                                                         |
+| ------ | ------------------------------------------------------------ |
+| number | 如果两个对象相等，则返回0；如果给定对象小于当前对象，则返回1；如果给定对象大于当前对象，则返回-1。 |
+
+**示例：**
+
+  ```js
+let rationalNumber = new util.RationalNumber(1,2);
+let rational = util.RationalNumber.createRationalFromString("3/4");
+let result = rationalNumber.compare(rational);
+  ```
+
+### compareTo<sup>8+</sup><sup>(deprecated)</sup>
+
+> **说明：**<br/>
+> 从API Version 9开始废弃，建议使用[compare9+](#compare9)替代。
 
 compareTo​(another: RationalNumber): number​
 
@@ -535,7 +762,6 @@ compareTo​(another: RationalNumber): number​
   let result = rationalNumber.compareTo(rational);
   ```
 
-
 ### valueOf<sup>8+</sup>
 
 valueOf(): number
@@ -555,7 +781,6 @@ valueOf(): number
   let rationalNumber = new util.RationalNumber(1,2);
   let result = rationalNumber.valueOf();
   ```
-
 
 ### equals<sup>8+</sup>
 
@@ -584,8 +809,37 @@ equals​(obj: Object): boolean
   let result = rationalNumber.equals(rational);
   ```
 
+### getCommonFactor<sup>9+</sup>
 
-### getCommonDivisor<sup>8+</sup>
+getCommonFactor(number1: number,number2: number): number
+
+获取两个指定整数的最大公约数。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**参数：**
+
+| 参数名  | 类型   | 必填 | 说明       |
+| ------- | ------ | ---- | ---------- |
+| number1 | number | 是   | 整数类型。 |
+| number2 | number | 是   | 整数类型。 |
+
+**返回值：**
+
+| 类型   | 说明                           |
+| ------ | ------------------------------ |
+| number | 返回两个给定数字的最大公约数。 |
+
+**示例：**
+
+  ```js
+let rationalNumber = new util.RationalNumber(1,2);
+let result = util.RationalNumber.getCommonFactor(4,6);
+  ```
+
+### getCommonDivisor<sup>8+(deprecated)</sup>
+> **说明：**<br/>
+> 从API Version 9开始废弃，建议使用[getCommonFactor9+](#getcommonfactor9)替代。
 
 static getCommonDivisor​(number1: number,number2: number): number
 
@@ -612,7 +866,6 @@ static getCommonDivisor​(number1: number,number2: number): number
   let result = util.RationalNumber.getCommonDivisor(4,6);
   ```
 
-
 ### getNumerator<sup>8+</sup>
 
 getNumerator​(): number
@@ -632,7 +885,6 @@ getNumerator​(): number
   let rationalNumber = new util.RationalNumber(1,2);
   let result = rationalNumber.getNumerator();
   ```
-
 
 ### getDenominator<sup>8+</sup>
 
@@ -654,7 +906,6 @@ getDenominator​(): number
   let result = rationalNumber.getDenominator();
   ```
 
-
 ### isZero<sup>8+</sup>
 
 isZero​():boolean
@@ -674,7 +925,6 @@ isZero​():boolean
   let rationalNumber = new util.RationalNumber(1,2);
   let result = rationalNumber.isZero();
   ```
-
 
 ### isNaN<sup>8+</sup>
 
@@ -696,7 +946,6 @@ isNaN​(): boolean
   let result = rationalNumber.isNaN();
   ```
 
-
 ### isFinite<sup>8+</sup>
 
 isFinite​():boolean
@@ -716,7 +965,6 @@ isFinite​():boolean
   let rationalNumber = new util.RationalNumber(1,2);
   let result = rationalNumber.isFinite();
   ```
-
 
 ### toString<sup>8+</sup>
 
@@ -738,7 +986,555 @@ toString​(): string
   let result = rationalNumber.toString();
   ```
 
-## LruBuffer<sup>8+</sup>
+
+## LRUCache<sup>9+</sup>
+
+### 属性
+
+**系统能力：** 以下各项对应的系统能力均为SystemCapability.Utils.Lang。
+
+| 名称   | 类型   | 可读 | 可写 | 说明                   |
+| ------ | ------ | ---- | ---- | ---------------------- |
+| length | number | 是   | 否   | 当前缓冲区中值的总数。 |
+
+**示例：**
+
+  ```js
+let pro = new util.LRUCache();
+pro.put(2,10);
+pro.put(1,8);
+let result = pro.length;
+  ```
+
+### constructor<sup>9+</sup>
+
+constructor(capacity?: number)
+
+默认构造函数用于创建一个新的LruBuffer实例，默认容量为64。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**参数：**
+
+| 参数名   | 类型   | 必填 | 说明                         |
+| -------- | ------ | ---- | ---------------------------- |
+| capacity | number | 否   | 指示要为缓冲区自定义的容量。 |
+
+**示例：**
+
+  ```js
+let lrubuffer= new util.LRUCache();
+  ```
+
+
+### updateCapacity<sup>9+</sup>
+
+updateCapacity(newCapacity: number): void
+
+将缓冲区容量更新为指定容量，如果newCapacity小于或等于0，则抛出异常。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**参数：**
+
+| 参数名      | 类型   | 必填 | 说明                         |
+| ----------- | ------ | ---- | ---------------------------- |
+| newCapacity | number | 是   | 指示要为缓冲区自定义的容量。 |
+
+**示例：**
+
+  ```js
+let pro = new util.LRUCache();
+let result = pro.updateCapacity(100);
+  ```
+
+
+### toString<sup>9+</sup>
+
+toString(): string
+
+返回对象的字符串表示形式。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**返回值：**
+
+| 类型   | 说明                       |
+| ------ | -------------------------- |
+| string | 返回对象的字符串表示形式。 |
+
+**示例：**
+
+  ```js
+let pro = new util.LRUCache();
+pro.put(2,10);
+pro.get(2);
+pro.remove(20);
+let result = pro.toString();
+  ```
+
+
+### getCapacity<sup>9+</sup>
+
+getCapacity(): number
+
+获取当前缓冲区的容量。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**返回值：**
+
+| 类型   | 说明                   |
+| ------ | ---------------------- |
+| number | 返回当前缓冲区的容量。 |
+
+**示例：**
+
+  ```js
+let pro = new util.LRUCache();
+let result = pro.getCapacity();
+  ```
+
+
+### clear<sup>9+</sup>
+
+clear(): void
+
+从当前缓冲区清除键值对。后续会调用afterRemoval()方法执行后续操作。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**示例：**
+
+  ```js
+let pro = new util.LRUCache();
+pro.put(2,10);
+let result = pro.length;
+pro.clear();
+  ```
+
+
+### getCreateCount<sup>9+</sup>
+
+getCreateCount(): number
+
+获取createDefault()返回值的次数。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**返回值：**
+
+| 类型   | 说明                              |
+| ------ | --------------------------------- |
+| number | 返回createDefault()返回值的次数。 |
+
+**示例：**
+
+  ```js
+let pro = new util.LRUCache();
+pro.put(1,8);
+let result = pro.getCreateCount();
+  ```
+
+
+### getMissCount<sup>9+</sup>
+
+getMissCount(): number
+
+获取查询值不匹配的次数。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**返回值：**
+
+| 类型   | 说明                     |
+| ------ | ------------------------ |
+| number | 返回查询值不匹配的次数。 |
+
+**示例：**
+
+  ```js
+let pro = new util.LRUCache();
+pro.put(2,10);
+pro.get(2);
+let result = pro.getMissCount();
+  ```
+
+
+### getRemovalCount<sup>9+</sup>
+
+getRemovalCount(): number
+
+获取从缓冲区中逐出值的次数。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**返回值：**
+
+| 类型   | 说明                       |
+| ------ | -------------------------- |
+| number | 返回从缓冲区中驱逐的次数。 |
+
+**示例：**
+
+  ```js
+let pro = new util.LRUCache();
+pro.put(2,10);
+pro.updateCapacity(2);
+pro.put(50,22);
+let result = pro.getRemovalCount();
+  ```
+
+
+### getMatchCount<sup>9+</sup>
+
+getMatchCount(): number
+
+获取查询值匹配成功的次数。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**返回值：**
+
+| 类型   | 说明                       |
+| ------ | -------------------------- |
+| number | 返回查询值匹配成功的次数。 |
+
+**示例：**
+
+  ```js
+let pro = new util.LRUCache();
+pro.put(2,10);
+pro.get(2);
+let result = pro.getMatchCount();
+  ```
+
+
+### getPutCount<sup>9+</sup>
+
+getPutCount(): number
+
+获取将值添加到缓冲区的次数。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**返回值：**
+
+| 类型   | 说明                         |
+| ------ | ---------------------------- |
+| number | 返回将值添加到缓冲区的次数。 |
+
+**示例：**
+
+  ```js
+let pro = new util.LRUCache();
+pro.put(2,10);
+let result = pro.getPutCount();
+  ```
+
+
+### isEmpty<sup>9+</sup>
+
+isEmpty(): boolean
+
+检查当前缓冲区是否为空。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**返回值：**
+
+| 类型    | 说明                                     |
+| ------- | ---------------------------------------- |
+| boolean | 如果当前缓冲区不包含任何值，则返回true。 |
+
+**示例：**
+
+  ```js
+let pro = new util.LRUCache();
+pro.put(2,10);
+let result = pro.isEmpty();
+  ```
+
+
+### get<sup>9+</sup>
+
+get(key: K): V | undefined
+
+表示要查询的键。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明         |
+| ------ | ---- | ---- | ------------ |
+| key    | K    | 是   | 要查询的键。 |
+
+**返回值：**
+
+| 类型                     | 说明                                                         |
+| ------------------------ | ------------------------------------------------------------ |
+| V&nbsp;\|&nbsp;undefined | 如果指定的键存在于缓冲区中，则返回与键关联的值；否则返回undefined。 |
+
+**示例：**
+
+  ```js
+let pro = new util.LRUCache();
+pro.put(2,10);
+let result  = pro.get(2);
+  ```
+
+
+### put<sup>9+</sup>
+
+put(key: K,value: V): V
+
+将键值对添加到缓冲区。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明                       |
+| ------ | ---- | ---- | -------------------------- |
+| key    | K    | 是   | 要添加的密钥。             |
+| value  | V    | 是   | 指示与要添加的键关联的值。 |
+
+**返回值：**
+
+| 类型 | 说明                                                         |
+| ---- | ------------------------------------------------------------ |
+| V    | 返回与添加的键关联的值；如果要添加的键已经存在，则返回原始值，如果键或值为空，则抛出此异常。 |
+
+**示例：**
+
+  ```js
+let pro = new util.LRUCache();
+let result = pro.put(2,10);
+  ```
+
+### values<sup>9+</sup>
+
+values(): V[]
+
+获取当前缓冲区中所有值从最近访问到最近最少访问的顺序列表 。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**返回值：**
+
+| 类型      | 说明                                                         |
+| --------- | ------------------------------------------------------------ |
+| V&nbsp;[] | 按从最近访问到最近最少访问的顺序返回当前缓冲区中所有值的列表。 |
+
+**示例：**
+
+  ```js
+let pro = new util.LRUCache();
+pro.put(2,10);
+pro.put(2,"anhu");
+pro.put("afaf","grfb");
+let result = pro.values();
+  ```
+
+
+### keys<sup>9+</sup>
+
+keys(): K[]
+
+获取当前缓冲区中所有键从最近访问到最近最少访问的升序列表。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**返回值：**
+
+| 类型      | 说明                                                         |
+| --------- | ------------------------------------------------------------ |
+| K&nbsp;[] | 按升序返回当前缓冲区中所有键的列表，从最近访问到最近最少访问。 |
+
+**示例：**
+
+  ```js
+let pro = new util.LRUCache();
+pro.put(2,10);
+let result = pro.keys();
+  ```
+
+
+### remove<sup>9+</sup>
+
+remove(key: K): V | undefined
+
+从当前缓冲区中删除指定的键及其关联的值。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明           |
+| ------ | ---- | ---- | -------------- |
+| key    | K    | 是   | 要删除的密钥。 |
+
+**返回值：**
+
+| 类型                     | 说明                                                         |
+| ------------------------ | ------------------------------------------------------------ |
+| V&nbsp;\|&nbsp;undefined | 返回一个包含已删除键值对的Optional对象；如果key不存在，则返回一个空的Optional对象，如果key为null，则抛出异常。 |
+
+**示例：**
+
+  ```js
+let pro = new util.LRUCache();
+pro.put(2,10);
+let result = pro.remove(20);
+  ```
+
+
+### afterRemoval<sup>9+</sup>
+
+afterRemoval(isEvict: boolean,key: K,value: V,newValue: V): void
+
+删除值后执行后续操作。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**参数：**
+
+| 参数名   | 类型    | 必填 | 说明                                                         |
+| -------- | ------- | ---- | ------------------------------------------------------------ |
+| isEvict  | boolean | 否   | 因容量不足而调用该方法时，参数值为true，其他情况为false。    |
+| key      | K       | 是   | 表示删除的键。                                               |
+| value    | V       | 是   | 表示删除的值。                                               |
+| newValue | V       | 否   | 如果已调用put方法并且要添加的键已经存在，则参数值是关联的新值。其他情况下参数值为空。 |
+
+**示例：**
+
+  ```js
+let arr = [];
+class ChildLruBuffer<K, V> extends util.LRUCache<K, V>
+{
+	constructor()
+	{
+		super();
+	}
+	afterRemoval(isEvict, key, value, newValue)
+	{
+		if (isEvict === false)
+		{
+			arr = [key, value, newValue];
+		}
+	}
+}
+let lru = new ChildLruBuffer();
+lru.afterRemoval(false,10,30,null);
+  ```
+
+
+### contains<sup>9+</sup>
+
+contains(key: K): boolean
+
+检查当前缓冲区是否包含指定的键。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明             |
+| ------ | ---- | ---- | ---------------- |
+| key    | K    | 是   | 表示要检查的键。 |
+
+**返回值：**
+
+| 类型    | 说明                                       |
+| ------- | ------------------------------------------ |
+| boolean | 如果缓冲区包含指定的键，则返回&nbsp;true。 |
+
+**示例：**
+
+  ```js
+let pro = new util.LRUCache();
+pro.put(2,10);
+let result = pro.contains(20);
+  ```
+
+
+### createDefault<sup>9+</sup>
+
+createDefault(key: K): V
+
+如果未计算特定键的值，则执行后续操作，参数表示丢失的键，返回与键关联的值。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明           |
+| ------ | ---- | ---- | -------------- |
+| key    | K    | 是   | 表示丢失的键。 |
+
+**返回值：**
+
+| 类型 | 说明               |
+| ---- | ------------------ |
+| V    | 返回与键关联的值。 |
+
+**示例：**
+
+  ```js
+let pro = new util.LRUCache();
+let result = pro.createDefault(50);
+  ```
+
+
+### entries<sup>9+</sup>
+
+entries(): IterableIterator&lt;[K,V]&gt;
+
+允许迭代包含在这个对象中的所有键值对。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**返回值：**
+
+| 类型        | 说明                 |
+| ----------- | -------------------- |
+| [K,&nbsp;V] | 返回一个可迭代数组。 |
+
+**示例：**
+
+  ```js
+let pro = new util.LRUCache();
+pro.put(2,10);
+let result = pro.entries();
+  ```
+
+### [Symbol.iterator]<sup>9+</sup>
+
+[Symbol.iterator]\(): IterableIterator&lt;[K, V]&gt;
+
+返回一个键值对形式的二维数组。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**返回值：**
+
+| 类型        | 说明                           |
+| ----------- | ------------------------------ |
+| [K,&nbsp;V] | 返回一个键值对形式的二维数组。 |
+
+**示例：**
+
+  ```js
+let pro = new util.LRUCache();
+pro.put(2,10);
+let result = pro[Symbol.iterator]();
+  ```
+
+## LruBuffer<sup>8+(deprecated)</sup>
+
+> **说明：**<br/>
+> 从API Version 9开始废弃，建议使用[LRUCache9+](#lrucache9)替代。
 
 ### 属性
 
@@ -756,8 +1552,10 @@ toString​(): string
   let result = pro.length;
   ```
 
+### constructor<sup>8+(deprecated)</sup>
 
-### constructor<sup>8+</sup>
+> **说明：**<br/>
+> 从API Version 9开始废弃，建议使用[constructor9+](#constructor9)替代。
 
 constructor(capacity?: number)
 
@@ -776,8 +1574,10 @@ constructor(capacity?: number)
   let lrubuffer= new util.LruBuffer();
   ```
 
+### updateCapacity<sup>8+(deprecated)</sup>
 
-### updateCapacity<sup>8+</sup>
+> **说明：**<br/>
+> 从API Version 9开始废弃，建议使用[updateCapacity9+](#updatecapacity9)替代。
 
 updateCapacity(newCapacity: number): void
 
@@ -797,8 +1597,10 @@ updateCapacity(newCapacity: number): void
   let result = pro.updateCapacity(100);
   ```
 
+### toString<sup>8+(deprecated)</sup>
 
-### toString<sup>8+</sup>
+> **说明：**<br/>
+> 从API Version 9开始废弃，建议使用[toString9+](#tostring9)替代。
 
 toString(): string
 
@@ -821,8 +1623,10 @@ toString(): string
   let result = pro.toString();
   ```
 
+### getCapacity<sup>8+(deprecated)</sup>
 
-### getCapacity<sup>8+</sup>
+> **说明：**<br/>
+> 从API Version 9开始废弃，建议使用[getCapacity9+](#getcapacity9)替代。
 
 getCapacity(): number
 
@@ -842,8 +1646,10 @@ getCapacity(): number
   let result = pro.getCapacity();
   ```
 
+### clear<sup>8+(deprecated)</sup>
 
-### clear<sup>8+</sup>
+> **说明：**<br/>
+> 从API Version 9开始废弃，建议使用[clear9+](#clear9)替代。
 
 clear(): void
 
@@ -859,8 +1665,10 @@ clear(): void
   pro.clear();
   ```
 
+### getCreateCount<sup>8+(deprecated)</sup>
 
-### getCreateCount<sup>8+</sup>
+> **说明：**<br/>
+> 从API Version 9开始废弃，建议使用[getCreateCount9+](#getcreatecount9)替代。
 
 getCreateCount(): number
 
@@ -881,8 +1689,10 @@ getCreateCount(): number
   let result = pro.getCreateCount();
   ```
 
+### getMissCount<sup>8+(deprecated)</sup>
 
-### getMissCount<sup>8+</sup>
+> **说明：**<br/>
+> 从API Version 9开始废弃，建议使用[getMissCount9+](#getmisscount9)替代。
 
 getMissCount(): number
 
@@ -904,8 +1714,10 @@ getMissCount(): number
   let result = pro.getMissCount();
   ```
 
+### getRemovalCount<sup>8+(deprecated)</sup>
 
-### getRemovalCount<sup>8+</sup>
+> **说明：**<br/>
+> 从API Version 9开始废弃，建议使用[getRemovalCount9+](#getremovalcount9)替代。
 
 getRemovalCount(): number
 
@@ -928,8 +1740,10 @@ getRemovalCount(): number
   let result = pro.getRemovalCount();
   ```
 
+### getMatchCount<sup>8+(deprecated)</sup>
 
-### getMatchCount<sup>8+</sup>
+> **说明：**<br/>
+> 从API Version 9开始废弃，建议使用[getMatchCount9+](#getmatchcount9)替代。
 
 getMatchCount(): number
 
@@ -951,8 +1765,10 @@ getMatchCount(): number
   let result = pro.getMatchCount();
   ```
 
+### getPutCount<sup>8+(deprecated)</sup>
 
-### getPutCount<sup>8+</sup>
+> **说明：**<br/>
+> 从API Version 9开始废弃，建议使用[getPutCount9+](#getputcount9)替代。
 
 getPutCount(): number
 
@@ -973,8 +1789,10 @@ getPutCount(): number
   let result = pro.getPutCount();
   ```
 
+### isEmpty<sup>8+(deprecated)</sup>
 
-### isEmpty<sup>8+</sup>
+> **说明：**<br/>
+> 从API Version 9开始废弃，建议使用[isEmpty9+](#isempty9)替代。
 
 isEmpty(): boolean
 
@@ -995,8 +1813,10 @@ isEmpty(): boolean
   let result = pro.isEmpty();
   ```
 
+### get<sup>8+(deprecated)</sup>
 
-### get<sup>8+</sup>
+> **说明：**<br/>
+> 从API Version 9开始废弃，建议使用[get9+](#get9)替代。
 
 get(key: K): V | undefined
 
@@ -1023,8 +1843,10 @@ get(key: K): V | undefined
   let result  = pro.get(2);
   ```
 
+### put<sup>8+(deprecated)</sup>
 
-### put<sup>8+</sup>
+> **说明：**<br/>
+> 从API Version 9开始废弃，建议使用[put9+](#put9)替代。
 
 put(key: K,value: V): V
 
@@ -1051,7 +1873,10 @@ put(key: K,value: V): V
   let result = pro.put(2,10);
   ```
 
-### values<sup>8+</sup>
+### values<sup>8+(deprecated)</sup>
+
+> **说明：**<br/>
+> 从API Version 9开始废弃，建议使用[values9+](#values9)替代。
 
 values(): V[]
 
@@ -1074,8 +1899,10 @@ values(): V[]
   let result = pro.values();
   ```
 
+### keys<sup>8+(deprecated)</sup>
 
-### keys<sup>8+</sup>
+> **说明：**<br/>
+> 从API Version 9开始废弃，建议使用[keys9+](#keys9)替代。
 
 keys(): K[]
 
@@ -1096,8 +1923,10 @@ keys(): K[]
   let result = pro.keys();
   ```
 
+### remove<sup>8+(deprecated)</sup>
 
-### remove<sup>8+</sup>
+> **说明：**<br/>
+> 从API Version 9开始废弃，建议使用[remove9+](#remove9)替代。
 
 remove(key: K): V | undefined
 
@@ -1124,8 +1953,10 @@ remove(key: K): V | undefined
   let result = pro.remove(20);
   ```
 
+### afterRemoval<sup>8+(deprecated)</sup>
 
-### afterRemoval<sup>8+</sup>
+> **说明：**<br/>
+> 从API Version 9开始废弃，建议使用[afterRemoval9+](#afterremoval9)替代。
 
 afterRemoval(isEvict: boolean,key: K,value: V,newValue: V): void
 
@@ -1163,8 +1994,10 @@ afterRemoval(isEvict: boolean,key: K,value: V,newValue: V): void
   lru.afterRemoval(false,10,30,null);
   ```
 
+### contains<sup>8+(deprecated)</sup>
 
-### contains<sup>8+</sup>
+> **说明：**<br/>
+> 从API Version 9开始废弃，建议使用[contains9+](#contains9)替代。
 
 contains(key: K): boolean
 
@@ -1191,8 +2024,10 @@ contains(key: K): boolean
   let result = pro.contains(20);
   ```
 
+### createDefault<sup>8+(deprecated)</sup>
 
-### createDefault<sup>8+</sup>
+> **说明：**<br/>
+> 从API Version 9开始废弃，建议使用[createDefault9+](#createdefault9)替代。
 
 createDefault(key: K): V
 
@@ -1218,8 +2053,10 @@ createDefault(key: K): V
   let result = pro.createDefault(50);
   ```
 
+### entries<sup>8+(deprecated)</sup>
 
-### entries<sup>8+</sup>
+> **说明：**<br/>
+> 从API Version 9开始废弃，建议使用[entries9+](#entries9)替代。
 
 entries(): IterableIterator&lt;[K,V]&gt;
 
@@ -1240,8 +2077,10 @@ entries(): IterableIterator&lt;[K,V]&gt;
   let result = pro.entries();
   ```
 
+### [Symbol.iterator]<sup>8+(deprecated)</sup>
 
-### [Symbol.iterator]<sup>8+</sup>
+> **说明：**<br/>
+> 从API Version 9开始废弃，建议使用[Symbol.iterator9+](#symboliterator9)替代。
 
 [Symbol.iterator]\(): IterableIterator&lt;[K, V]&gt;
 
@@ -1261,10 +2100,6 @@ entries(): IterableIterator&lt;[K,V]&gt;
   pro.put(2,10);
   let result = pro[Symbol.iterator]();
   ```
-
-
-## Scope<sup>8+</sup>
-
 
 ### ScopeType<sup>8+</sup>
 
@@ -1302,8 +2137,370 @@ class Temperature{
 }
 ```
 
+## ScopeHelper<sup>9+</sup>
 
-### constructor<sup>8+</sup>
+### constructor<sup>9+</sup>
+
+constructor(lowerObj: ScopeType, upperObj: ScopeType)
+
+用于创建指定下限和上限的作用域实例的构造函数，返回一个ScopeHelper对象。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**参数：**
+
+| 参数名   | 类型                     | 必填 | 说明                   |
+| -------- | ------------------------ | ---- | ---------------------- |
+| lowerObj | [ScopeType](#scopetype8) | 是   | 指定作用域实例的下限。 |
+| upperObj | [ScopeType](#scopetype8) | 是   | 指定作用域实例的上限。 |
+
+**示例：**
+
+  ```js
+let tempLower = new Temperature(30);
+let tempUpper = new Temperature(40);
+let range = new util.ScopeHelper(tempLower, tempUpper);
+  ```
+
+
+### toString<sup>9+</sup>
+
+toString(): string
+
+该字符串化方法返回一个包含当前范围的字符串表示形式。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**返回值：**
+
+| 类型   | 说明                                   |
+| ------ | -------------------------------------- |
+| string | 返回包含当前范围对象的字符串表示形式。 |
+
+**示例：**
+
+  ```js
+let tempLower = new Temperature(30);
+let tempUpper = new Temperature(40);
+let range = new util.ScopeHelper(tempLower, tempUpper);
+let result = range.toString();
+  ```
+
+
+### intersect<sup>9+</sup>
+
+intersect(range: ScopeHelper): ScopeHelper
+
+获取给定范围和当前范围的交集。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**参数：**
+
+| 参数名 | 类型                           | 必填 | 说明               |
+| ------ | ------------------------------ | ---- | ------------------ |
+| range  | [ScopeHelper9+](#scopehelper9) | 是   | 传入一个给定范围。 |
+
+**返回值：**
+
+| 类型                           | 说明                           |
+| ------------------------------ | ------------------------------ |
+| [ScopeHelper9+](#scopehelper9) | 返回给定范围和当前范围的交集。 |
+
+**示例：**
+
+  ```js
+let tempLower = new Temperature(30);
+let tempUpper = new Temperature(40);
+let range = new util.ScopeHelper(tempLower, tempUpper);
+let tempMiDF = new Temperature(35);
+let tempMidS = new Temperature(39);
+let rangeFir = new util.ScopeHelper(tempMiDF, tempMidS);
+range.intersect(rangeFir );
+  ```
+
+
+### intersect<sup>9+</sup>
+
+intersect(lowerObj:ScopeType,upperObj:ScopeType):ScopeHelper
+
+获取当前范围与给定下限和上限范围的交集。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**参数：**
+
+| 参数名   | 类型                     | 必填 | 说明             |
+| -------- | ------------------------ | ---- | ---------------- |
+| lowerObj | [ScopeType](#scopetype8) | 是   | 给定范围的下限。 |
+| upperObj | [ScopeType](#scopetype8) | 是   | 给定范围的上限。 |
+
+**返回值：**
+
+| 类型                           | 说明                                     |
+| ------------------------------ | ---------------------------------------- |
+| [ScopeHelper9+](#scopehelper9) | 返回当前范围与给定下限和上限范围的交集。 |
+
+**示例：**
+
+  ```js
+let tempLower = new Temperature(30);
+let tempUpper = new Temperature(40);
+let tempMiDF = new Temperature(35);
+let tempMidS = new Temperature(39);
+let range = new util.ScopeHelper(tempLower, tempUpper);
+let result = range.intersect(tempMiDF, tempMidS);
+  ```
+
+
+### getUpper<sup>9+</sup>
+
+getUpper(): ScopeType
+
+获取当前范围的上限。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**返回值：**
+
+| 类型                     | 说明                   |
+| ------------------------ | ---------------------- |
+| [ScopeType](#scopetype8) | 返回当前范围的上限值。 |
+
+**示例：**
+
+  ```js
+let tempLower = new Temperature(30);
+let tempUpper = new Temperature(40);
+let range = new util.ScopeHelper(tempLower, tempUpper);
+let result = range.getUpper();
+  ```
+
+
+### getLower<sup>9+</sup>
+
+getLower(): ScopeType
+
+获取当前范围的下限。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**返回值：**
+
+| 类型                     | 说明                   |
+| ------------------------ | ---------------------- |
+| [ScopeType](#scopetype8) | 返回当前范围的下限值。 |
+
+**示例：**
+
+  ```js
+let tempLower = new Temperature(30);
+let tempUpper = new Temperature(40);
+let range = new util.ScopeHelper(tempLower, tempUpper);
+let result = range.getLower();
+  ```
+
+
+### expand<sup>9+</sup>
+
+expand(lowerObj: ScopeType,upperObj: ScopeType): ScopeHelper
+
+创建并返回包括当前范围和给定下限和上限的并集。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**参数：**
+
+| 参数名   | 类型                     | 必填 | 说明             |
+| -------- | ------------------------ | ---- | ---------------- |
+| lowerObj | [ScopeType](#scopetype8) | 是   | 给定范围的下限。 |
+| upperObj | [ScopeType](#scopetype8) | 是   | 给定范围的上限。 |
+
+**返回值：**
+
+| 类型                           | 说明                                 |
+| ------------------------------ | ------------------------------------ |
+| [ScopeHelper9+](#scopehelper9) | 返回当前范围和给定下限和上限的并集。 |
+
+**示例：**
+
+  ```js
+let tempLower = new Temperature(30);
+let tempUpper = new Temperature(40);
+let tempMiDF = new Temperature(35);
+let tempMidS = new Temperature(39);
+let range = new util.ScopeHelper(tempLower, tempUpper);
+let result = range.expand(tempMiDF, tempMidS);
+  ```
+
+
+### expand<sup>9+</sup>
+
+expand(range: ScopeHelper): ScopeHelper
+
+创建并返回包括当前范围和给定范围的并集。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**参数：**
+
+| 参数名 | 类型                           | 必填 | 说明               |
+| ------ | ------------------------------ | ---- | ------------------ |
+| range  | [ScopeHelper9+](#scopehelper9) | 是   | 传入一个给定范围。 |
+
+**返回值：**
+
+| 类型                           | 说明                               |
+| ------------------------------ | ---------------------------------- |
+| [ScopeHelper9+](#scopehelper9) | 返回包括当前范围和给定范围的并集。 |
+
+**示例：**
+
+  ```js
+let tempLower = new Temperature(30);
+let tempUpper = new Temperature(40);
+let tempMiDF = new Temperature(35);
+let tempMidS = new Temperature(39);
+let range = new util.ScopeHelper(tempLower, tempUpper);
+let rangeFir = new util.ScopeHelper(tempMiDF, tempMidS);
+let result = range.expand(rangeFir);
+  ```
+
+
+### expand<sup>9+</sup>
+
+expand(value: ScopeType): ScopeHelper
+
+创建并返回包括当前范围和给定值的并集。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**参数：**
+
+| 参数名 | 类型                     | 必填 | 说明             |
+| ------ | ------------------------ | ---- | ---------------- |
+| value  | [ScopeType](#scopetype8) | 是   | 传入一个给定值。 |
+
+**返回值：**
+
+| 类型                           | 说明                             |
+| ------------------------------ | -------------------------------- |
+| [ScopeHelper9+](#scopehelper9) | 返回包括当前范围和给定值的并集。 |
+
+**示例：**
+
+  ```js
+let tempLower = new Temperature(30);
+let tempUpper = new Temperature(40);
+let tempMiDF = new Temperature(35);
+let range = new util.ScopeHelper(tempLower, tempUpper);
+let result = range.expand(tempMiDF);
+  ```
+
+
+### contains<sup>9+</sup>
+
+contains(value: ScopeType): boolean
+
+检查给定value是否包含在当前范围内。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**参数：**
+
+| 参数名 | 类型                     | 必填 | 说明             |
+| ------ | ------------------------ | ---- | ---------------- |
+| value  | [ScopeType](#scopetype8) | 是   | 传入一个给定值。 |
+
+**返回值：**
+
+| 类型    | 说明                                                |
+| ------- | --------------------------------------------------- |
+| boolean | 如果给定值包含在当前范围内返回true，否则返回false。 |
+
+**示例：**
+
+  ```js
+let tempLower = new Temperature(30);
+let tempUpper = new Temperature(40);
+let tempMiDF = new Temperature(35);
+let range = new util.ScopeHelper(tempLower, tempUpper);
+range.contains(tempMiDF);
+  ```
+
+
+### contains<sup>9+</sup>
+
+contains(range: ScopeHelper): boolean
+
+检查给定range是否在当前范围内。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**参数：**
+
+| 参数名 | 类型                           | 必填 | 说明               |
+| ------ | ------------------------------ | ---- | ------------------ |
+| range  | [ScopeHelper9+](#scopehelper9) | 是   | 传入一个给定范围。 |
+
+**返回值：**
+
+| 类型    | 说明                                                  |
+| ------- | ----------------------------------------------------- |
+| boolean | 如果给定范围包含在当前范围内返回true，否则返回false。 |
+
+**示例：**
+
+  ```js
+let tempLower = new Temperature(30);
+let tempUpper = new Temperature(40);
+let range = new util.ScopeHelper(tempLower, tempUpper);
+let tempLess = new Temperature(20);
+let tempMore = new Temperature(45);
+let rangeSec = new util.ScopeHelper(tempLess, tempMore);
+let result = range.contains(rangeSec);
+  ```
+
+
+### clamp<sup>9+</sup>
+
+clamp(value: ScopeType): ScopeType
+
+将给定值限定到当前范围内。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**参数：**
+
+| 参数名 | 类型                     | 必填 | 说明           |
+| ------ | ------------------------ | ---- | -------------- |
+| value  | [ScopeType](#scopetype8) | 是   | 传入的给定值。 |
+
+**返回值：**
+
+| 类型                     | 说明                                                         |
+| ------------------------ | ------------------------------------------------------------ |
+| [ScopeType](#scopetype8) | 如果传入的value小于下限，则返回lowerObj；如果大于上限值则返回upperObj；如果在当前范围内，则返回value。 |
+
+**示例：**
+
+  ```js
+let tempLower = new Temperature(30);
+let tempUpper = new Temperature(40);
+let tempMiDF = new Temperature(35);
+let range = new util.ScopeHelper(tempLower, tempUpper);
+let result = range.clamp(tempMiDF);
+  ```
+
+## Scope<sup>8+(deprecated)</sup>
+
+> **说明：**<br/>
+> 从API Version 9开始废弃，建议使用[ScopeHelper9+](#scopehelper9)替代。
+
+### constructor<sup>8+(deprecated)</sup>
+
+> **说明：**<br/>
+> 从API Version 9开始废弃，建议使用[constructor9+](#constructor9)替代。
 
 constructor(lowerObj: ScopeType, upperObj: ScopeType)
 
@@ -1325,8 +2522,10 @@ constructor(lowerObj: ScopeType, upperObj: ScopeType)
   let range = new util.Scope(tempLower, tempUpper);
   ```
 
+### toString<sup>8+(deprecated)</sup>
 
-### toString<sup>8+</sup>
+> **说明：**<br/>
+> 从API Version 9开始废弃，建议使用[toString9+](#tostring9)替代。
 
 toString(): string
 
@@ -1348,8 +2547,10 @@ toString(): string
   let result = range.toString();
   ```
 
+### intersect<sup>8+(deprecated)</sup>
 
-### intersect<sup>8+</sup>
+> **说明：**<br/>
+> 从API Version 9开始废弃，建议使用[intersect9+](#intersect9)替代。
 
 intersect(range: Scope): Scope
 
@@ -1370,6 +2571,7 @@ intersect(range: Scope): Scope
 | [Scope](#scope8) | 返回给定范围和当前范围的交集。 |
 
 **示例：**
+
   ```js
   let tempLower = new Temperature(30);
   let tempUpper = new Temperature(40);
@@ -1380,8 +2582,10 @@ intersect(range: Scope): Scope
   range.intersect(rangeFir );
   ```
 
+### intersect<sup>8+(deprecated)</sup>
 
-### intersect<sup>8+</sup>
+> **说明：**<br/>
+> 从API Version 9开始废弃，建议使用[intersect9+](#intersect9)替代。
 
 intersect(lowerObj:ScopeType,upperObj:ScopeType):Scope
 
@@ -1412,8 +2616,10 @@ intersect(lowerObj:ScopeType,upperObj:ScopeType):Scope
   let result = range.intersect(tempMiDF, tempMidS);
   ```
 
+### getUpper<sup>8+(deprecated)</sup>
 
-### getUpper<sup>8+</sup>
+> **说明：**<br/>
+> 从API Version 9开始废弃，建议使用[getUpper9+](#getupper9)替代。
 
 getUpper(): ScopeType
 
@@ -1435,8 +2641,10 @@ getUpper(): ScopeType
   let result = range.getUpper();
   ```
 
+### getLower<sup>8+(deprecated)</sup>
 
-### getLower<sup>8+</sup>
+> **说明：**<br/>
+> 从API Version 9开始废弃，建议使用[getLower9+](#getlower9)替代。
 
 getLower(): ScopeType
 
@@ -1458,8 +2666,10 @@ getLower(): ScopeType
   let result = range.getLower();
   ```
 
+### expand<sup>8+(deprecated)</sup>
 
-### expand<sup>8+</sup>
+> **说明：**<br/>
+> 从API Version 9开始废弃，建议使用[expand9+](#expand9)替代。
 
 expand(lowerObj: ScopeType,upperObj: ScopeType): Scope
 
@@ -1491,8 +2701,10 @@ expand(lowerObj: ScopeType,upperObj: ScopeType): Scope
   let result = range.expand(tempMiDF, tempMidS);
   ```
 
+### expand<sup>8+(deprecated)</sup>
 
-### expand<sup>8+</sup>
+> **说明：**<br/>
+> 从API Version 9开始废弃，建议使用[expand9+](#expand9)替代。
 
 expand(range: Scope): Scope
 
@@ -1523,8 +2735,10 @@ expand(range: Scope): Scope
   let result = range.expand(rangeFir);
   ```
 
+### expand<sup>8+(deprecated)</sup>
 
-### expand<sup>8+</sup>
+> **说明：**<br/>
+> 从API Version 9开始废弃，建议使用[expand9+](#expand9)替代。
 
 expand(value: ScopeType): Scope
 
@@ -1553,8 +2767,10 @@ expand(value: ScopeType): Scope
   let result = range.expand(tempMiDF);
   ```
 
+### contains<sup>8+(deprecated)</sup>
 
-### contains<sup>8+</sup>
+> **说明：**<br/>
+> 从API Version 9开始废弃，建议使用[contains9+](#contains9)替代。
 
 contains(value: ScopeType): boolean
 
@@ -1583,8 +2799,10 @@ contains(value: ScopeType): boolean
   range.contains(tempMiDF);
   ```
 
+### contains<sup>8+(deprecated)</sup>
 
-### contains<sup>8+</sup>
+> **说明：**<br/>
+> 从API Version 9开始废弃，建议使用[contains9+](#contains9)替代。
 
 contains(range: Scope): boolean
 
@@ -1605,6 +2823,7 @@ contains(range: Scope): boolean
 | boolean | 如果给定范围包含在当前范围内返回true，否则返回false。 |
 
 **示例：**
+
   ```js
   let tempLower = new Temperature(30);
   let tempUpper = new Temperature(40);
@@ -1615,8 +2834,10 @@ contains(range: Scope): boolean
   let result = range.contains(rangeSec);
   ```
 
+### clamp<sup>8+(deprecated)</sup>
 
-### clamp<sup>8+</sup>
+> **说明：**<br/>
+> 从API Version 9开始废弃，建议使用[clamp9+](#clamp9)替代。
 
 clamp(value: ScopeType): ScopeType
 
@@ -1645,11 +2866,217 @@ clamp(value: ScopeType): ScopeType
   let result = range.clamp(tempMiDF);
   ```
 
+## Base64Helper<sup>9+</sup>
 
-## Base64<sup>8+</sup>
+### constructor<sup>9+</sup>
+
+constructor()
+
+Base64Helper的构造函数。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**示例：**
+
+  ```js
+let base64 = new  util.Base64Helper();
+  ```
+
+### encodeSync<sup>9+</sup>
+
+encodeSync(src: Uint8Array): Uint8Array
+
+通过输入参数编码后输出对应文本。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**参数：**
+
+| 参数名 | 类型       | 必填 | 说明                |
+| ------ | ---------- | ---- | ------------------- |
+| src    | Uint8Array | 是   | 编码输入Uint8数组。 |
+
+**返回值：**
+
+| 类型       | 说明                          |
+| ---------- | ----------------------------- |
+| Uint8Array | 返回编码后新分配的Uint8数组。 |
+
+**示例：**
+
+  ```js
+let that = new util.Base64Helper();
+let array = new Uint8Array([115,49,51]);
+let result = that.encodeSync(array);
+  ```
 
 
-### constructor<sup>8+</sup>
+### encodeToStringSync<sup>9+</sup>
+
+encodeToStringSync(src: Uint8Array): string
+
+通过输入参数编码后输出对应文本。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**参数：**
+
+| 参数名 | 类型       | 必填 | 说明                |
+| ------ | ---------- | ---- | ------------------- |
+| src    | Uint8Array | 是   | 编码输入Uint8数组。 |
+
+**返回值：**
+
+| 类型   | 说明                 |
+| ------ | -------------------- |
+| string | 返回编码后的字符串。 |
+
+**示例：**
+
+  ```js
+let that = new util.Base64Helper();
+let array = new Uint8Array([115,49,51]);
+let result = that.encodeToStringSync(array);
+  ```
+
+
+### decodeSync<sup>9+</sup>
+
+decodeSync(src: Uint8Array | string): Uint8Array
+
+通过输入参数解码后输出对应文本。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**参数：**
+
+| 参数名 | 类型                           | 必填 | 说明                          |
+| ------ | ------------------------------ | ---- | ----------------------------- |
+| src    | Uint8Array&nbsp;\|&nbsp;string | 是   | 解码输入Uint8数组或者字符串。 |
+
+**返回值：**
+
+| 类型       | 说明                          |
+| ---------- | ----------------------------- |
+| Uint8Array | 返回解码后新分配的Uint8数组。 |
+
+**示例：**
+
+  ```js
+let that = new util.Base64Helper();
+let buff = 'czEz';
+let result = that.decodeSync(buff);
+  ```
+
+
+### encode<sup>9+</sup>
+
+encode(src: Uint8Array): Promise&lt;Uint8Array&gt;
+
+通过输入参数异步编码后输出对应文本。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**参数：**
+
+| 参数名 | 类型       | 必填 | 说明                    |
+| ------ | ---------- | ---- | ----------------------- |
+| src    | Uint8Array | 是   | 异步编码输入Uint8数组。 |
+
+**返回值：**
+
+| 类型                      | 说明                              |
+| ------------------------- | --------------------------------- |
+| Promise&lt;Uint8Array&gt; | 返回异步编码后新分配的Uint8数组。 |
+
+**示例：**
+
+  ```js
+let that = new util.Base64Helper();
+let array = new Uint8Array([115,49,51]);
+let rarray = new Uint8Array([99,122,69,122]);
+that.encode(array).then(val=>{    
+    for (var i = 0; i < rarray.length; i++) {        
+        console.log(val[i].toString())
+    }
+})
+  ```
+
+
+### encodeToString<sup>9+</sup>
+
+encodeToString(src: Uint8Array): Promise&lt;string&gt;
+
+通过输入参数异步编码后输出对应文本。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**参数：**
+
+| 参数名 | 类型       | 必填 | 说明                    |
+| ------ | ---------- | ---- | ----------------------- |
+| src    | Uint8Array | 是   | 异步编码输入Uint8数组。 |
+
+**返回值：**
+
+| 类型                  | 说明                     |
+| --------------------- | ------------------------ |
+| Promise&lt;string&gt; | 返回异步编码后的字符串。 |
+
+**示例：**
+
+  ```js
+let that = new util.Base64Helper();
+let array = new Uint8Array([115,49,51]);
+that.encodeToString(array).then(val=>{    
+    console.log(val)
+})
+  ```
+
+
+### decode<sup>9+</sup>
+
+decode(src: Uint8Array | string): Promise&lt;Uint8Array&gt;
+
+通过输入参数异步解码后输出对应文本。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**参数：**
+
+| 参数名 | 类型                           | 必填 | 说明                              |
+| ------ | ------------------------------ | ---- | --------------------------------- |
+| src    | Uint8Array&nbsp;\|&nbsp;string | 是   | 异步解码输入Uint8数组或者字符串。 |
+
+**返回值：**
+
+| 类型                      | 说明                              |
+| ------------------------- | --------------------------------- |
+| Promise&lt;Uint8Array&gt; | 返回异步解码后新分配的Uint8数组。 |
+
+**示例：**
+
+  ```js
+let that = new util.Base64Helper();
+let array = new Uint8Array([99,122,69,122]);
+let rarray = new Uint8Array([115,49,51]);
+that.decode(array).then(val=>{    
+    for (var i = 0; i < rarray.length; i++) {        
+        console.log(val[i].toString())
+    }
+})
+  ```
+
+
+## Base64<sup>8+(deprecated)</sup>
+
+> **说明：**<br/>
+> 从API Version 9开始废弃，建议使用[Base64Helper9+](#base64helper9)替代。
+
+### constructor<sup>8+(deprecated)</sup>
+
+> **说明：**<br/>
+> 从API Version 9开始废弃，建议使用[constructor9+](#constructor9)替代。
 
 constructor()
 
@@ -1662,8 +3089,10 @@ Base64的构造函数。
   let base64 = new  util.Base64();
   ```
 
+### encodeSync<sup>8+(deprecated)</sup>
 
-### encodeSync<sup>8+</sup>
+> **说明：**<br/>
+> 从API Version 9开始废弃，建议使用[encodeSync9+](#encodesync9)替代。
 
 encodeSync(src: Uint8Array): Uint8Array
 
@@ -1684,14 +3113,17 @@ encodeSync(src: Uint8Array): Uint8Array
 | Uint8Array | 返回编码后新分配的Uint8数组。 |
 
 **示例：**
+
   ```js
   let that = new util.Base64();
   let array = new Uint8Array([115,49,51]);
   let result = that.encodeSync(array);
   ```
 
+### encodeToStringSync<sup>8+(deprecated)</sup>
 
-### encodeToStringSync<sup>8+</sup>
+> **说明：**<br/>
+> 从API Version 9开始废弃，建议使用[encodeToStringSync9+](#encodetostringsync9)替代。
 
 encodeToStringSync(src: Uint8Array): string
 
@@ -1718,8 +3150,10 @@ encodeToStringSync(src: Uint8Array): string
   let result = that.encodeToStringSync(array);
   ```
 
+### decodeSync<sup>8+(deprecated)</sup>
 
-### decodeSync<sup>8+</sup>
+> **说明：**<br/>
+> 从API Version 9开始废弃，建议使用[decodeSync9+](#decodesync9)替代。
 
 decodeSync(src: Uint8Array | string): Uint8Array
 
@@ -1746,8 +3180,10 @@ decodeSync(src: Uint8Array | string): Uint8Array
   let result = that.decodeSync(buff);
   ```
 
+### encode<sup>8+(deprecated)</sup>
 
-### encode<sup>8+</sup>
+> **说明：**<br/>
+> 从API Version 9开始废弃，建议使用[encode9+](#encode9)替代。
 
 encode(src: Uint8Array): Promise&lt;Uint8Array&gt;
 
@@ -1779,8 +3215,10 @@ encode(src: Uint8Array): Promise&lt;Uint8Array&gt;
   })
   ```
 
+### encodeToString<sup>8+(deprecated)</sup>
 
-### encodeToString<sup>8+</sup>
+> **说明：**<br/>
+> 从API Version 9开始废弃，建议使用[encodeToString9+](#encodetostring9)替代。
 
 encodeToString(src: Uint8Array): Promise&lt;string&gt;
 
@@ -1809,8 +3247,10 @@ encodeToString(src: Uint8Array): Promise&lt;string&gt;
   })
   ```
 
+### decode<sup>8+(deprecated)</sup>
 
-### decode<sup>8+</sup>
+> **说明：**<br/>
+> 从API Version 9开始废弃，建议使用[decode9+](#decode9)替代。
 
 decode(src: Uint8Array | string): Promise&lt;Uint8Array&gt;
 
@@ -1841,7 +3281,6 @@ decode(src: Uint8Array | string): Promise&lt;Uint8Array&gt;
       }
   })
   ```
-
 
 ## types<sup>8+</sup>
 
@@ -2927,3 +4366,4 @@ isSharedArrayBuffer(value: Object): boolean
   let that = new util.types();
   let result = that.isSharedArrayBuffer(new SharedArrayBuffer(0));
   ```
+  <!--no_check-->

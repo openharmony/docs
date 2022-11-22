@@ -1,66 +1,26 @@
 # UI Development
 
 - [ArkUI Overview](arkui-overview.md)
-- TypeScript-based Declarative Development Paradigm
+- UI Development with eTS-based Declarative Development Paradigm
     - [Overview](ui-ts-overview.md)
     - Framework Overview
         - File Organization
             - [Directory Structure](ts-framework-directory.md)
             - [Rules for Accessing Application Code Files](ts-framework-file-access-rules.md)
-        - ["js" Tag](ts-framework-js-tag.md)
         - Resource Management
             - [Resource File Categories](ui-ts-basic-resource-file-categories.md)
-            - [Accessing Resources](ts-resource-access.md)
+            - [Resource Access](ts-resource-access.md)
         - [Pixel Units](ts-pixel-units.md)
-    - Declarative Syntax
-        - [Overview](ts-syntax-intro.md)
-        - General UI Description Specifications
-            - [Basic Concepts](ts-general-ui-concepts.md)
-            - Declarative UI Description Specifications
-                - [Configuration Without Parameters](ts-parameterless-configuration.md)
-                - [Configuration with Mandatory Parameters](ts-configuration-with-mandatory-parameters.md)
-    
-            - [Attribute Configuration](ts-attribution-configuration.md)
-                - [Event Configuration](ts-event-configuration.md)
-                - [Child Component Configuration](ts-child-component-configuration.md)
-            - Componentization
-                - [@Component](ts-component-based-component.md)
-                - [@Entry](ts-component-based-entry.md)
-                - [@Preview](ts-component-based-preview.md)
-                - [@Builder](ts-component-based-builder.md)
-                - [@Extend](ts-component-based-extend.md)
-                - [@CustomDialog](ts-component-based-customdialog.md)
-                - [@Styles](ts-component-based-styles.md)
-        - About UI State Management
-            - [Basic Concepts](ts-ui-state-mgmt-concepts.md)
-            - Managing Component States
-                - [@State](ts-component-states-state.md)
-                - [@Prop](ts-component-states-prop.md)
-                - [@Link](ts-component-states-link.md)
-            - Managing Application States
-                - [AppStorage](ts-application-states-appstorage.md)
-                - [LocalStorage](ui-ts-local-storage.md)
-                - [PersistentStorage](ts-application-states-apis-persistentstorage.md)
-                - [Environment](ts-application-states-apis-environment.md)
-            - Managing Other States
-                - [@Observed and @ObjectLink](ts-other-states-observed-objectlink.md)
-                - [@Consume and @Provide](ts-other-states-consume-provide.md)
-                - [@Watch](ts-other-states-watch.md)
-            - About Rendering Control Syntax
-                - [if/else](ts-rending-control-syntax-if-else.md)
-                - [ForEach](ts-rending-control-syntax-foreach.md)
-                - [LazyForEach](ts-rending-control-syntax-lazyforeach.md)
-        - About @Component
-            - [build Function](ts-function-build.md)
+        
+        - Componentization
             - [Initialization of Custom Components' Member Variables](ts-custom-component-initialization.md)
             - [Custom Component Lifecycle Callbacks](ts-custom-component-lifecycle-callbacks.md)
             - [Component Creation and Re-initialization](ts-component-creation-re-initialization.md)
-        - [About Syntactic Sugar](ts-syntactic-sugar.md)
     - Common Component Development Guidelines
         - [Button](ui-ts-basic-components-button.md)
         - [Web](ui-ts-components-web.md)
     - Common Layout Development Guidelines
-        - [Flex Layout](ui-ts-layout-flex.md)
+        - [Flexible Layout](ui-ts-layout-flex.md)
         - [Grid Layout](ui-ts-layout-grid-container.md)
         - [Media Query](ui-ts-layout-mediaquery.md)
     - Experiencing the Declarative UI
@@ -74,9 +34,9 @@
         - [Implementing Page Redirection and Data Transmission](ui-ts-page-redirection-data-transmission.md)
     - [Recommendations for Improving Performance](ts-performance-improvement-recommendation.md)
     
-- JavaScript-based Web-like Development Paradigm
+- UI Development with JavaScript-compatible Web-like Development Paradigm
     - [Overview](ui-js-overview.md)
-    - Framework
+    - Framework Overview
         - [File Organization](js-framework-file.md)
         - ["js" Tag](js-framework-js-tag.md)
         - [app.js](js-framework-js-file.md)
@@ -100,14 +60,14 @@
         - [Defining Gesture Events](ui-js-building-ui-event.md)
         - [Defining Page Routes](ui-js-building-ui-routes.md)
     - Common Component Development Guidelines
-        - Container Components
+        - Container Component Development
             - [List Development](ui-js-components-list.md)
             - [Dialog Development](ui-js-components-dialog.md)
             - [Form Development](ui-js-components-form.md)
             - [Stepper Development](ui-js-components-stepper.md)
             - [Tabs Development](ui-js-component-tabs.md)
             - [Swiper Development](ui-js-components-swiper.md)
-        - Basic Components
+        - Basic Component Development
             - [Text Development](ui-js-components-text.md)
             - [Input Development](ui-js-components-input.md)
             - [Button Development](ui-js-components-button.md)
@@ -128,8 +88,8 @@
             - [CanvasRenderingContext2D](ui-js-components-canvasrenderingcontext2d.md)
             - [Path2D](ui-js-components-path2d.md)
             - [OffscreenCanvas](ui-js-components-offscreencanvas.md)
-        - [Grid-container Development](ui-js-components-grid.md)
-        - Svg
+        - [Grid Container Development](ui-js-components-grid.md)
+        - SVG Development
             - [Basics](ui-js-components-svg-overview.md)
             - [Graph Drawing](ui-js-components-svg-graphics.md)
             - [Path Drawing](ui-js-components-svg-path.md)

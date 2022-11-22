@@ -155,7 +155,7 @@ policy.setPolicyByUid(Number.parseInt(this.firstParam), Number.parseInt(this.cur
 
 setPolicyByUid(uid: number, policy: NetUidPolicy): Promise\<void>;
 
-设置对应uid应用的访问计量网络的策略，使用callback方式作为异步方法。
+设置对应uid应用的访问计量网络的策略，使用Promise方式作为异步方法。
 
 **需要权限**：ohos.permission.CONNECTIVITY_INTERNAL
 
@@ -871,6 +871,7 @@ policy.updateRemindPolicy(Number.parseInt(this.netType), this.firstParam, Number
 });
 ```
 
+
 ## policy.updateRemindPolicy
 
 updateRemindPolicy(netType: NetBearType, iccid: string, remindType: RemindType): Promise\<void>;
@@ -1059,8 +1060,8 @@ policy.on('netBackgroundPolicyChange', (data) => {
 | 参数名                  | 类型                                | 说明                                                         |
 | ----------------------- | ----------------------------------- | ------------------------------------------------------------ |
 | netType           | [NetBearType](js-apis-net-connection.md#netbeartype) | 网络类型。 |
-| iccid             | string                      | 计量蜂窝网络的SIM卡的标识值。以太网，wify网络不会用到 |
-| ident             | string                      | 计量蜂窝网络中配合iccid联合使用。以太网，wify网络单独使用。用于标记类型。 |
+| iccid             | string                      | 计量蜂窝网络的SIM卡的标识值。以太网，wifi网络不会用到 |
+| ident             | string                      | 计量蜂窝网络中配合iccid联合使用。以太网，wifi网络单独使用。用于标记类型。 |
 | periodDuration    | string                      | 计量开始时间。 |
 | warningBytes      | number                      | 发出警告的流量阈值。 |
 | limitBytes        | number                      | 流量设置的配额。 |

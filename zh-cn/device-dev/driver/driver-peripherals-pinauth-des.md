@@ -340,8 +340,8 @@ Pin_auth驱动的主要工作是为上层用户认证框架和Pin_auth服务提�
        }
    
        info.executorType = EXECUTOR_TYPE;
-       info.remainTimes = infoRet.remainTimes;
-       info.freezingTime = infoRet.freezingTime;
+       info.remainAttempts = infoRet.remainTimes;
+       info.lockoutDuration = infoRet.freezingTime;
    
        return HDF_SUCCESS;
    }

@@ -39,21 +39,7 @@
   - [Utils Overview](subsys-utils-overview.md)
   - [Utils Development](subsys-utils-guide.md)
   - [Utils FAQ](subsys-utils-faqs.md)
-- AI Framework
-  - [AI Engine Framework](subsys-aiframework-guide.md)
-  - [Development Environment](subsys-aiframework-envbuild.md)
-  - Technical Specifications
-    - [Code Management](subsys-aiframework-tech-codemanage.md)
-    - [Naming](subsys-aiframework-tech-name.md)
-    - [API Development](subsys-aiframework-tech-interface.md)
-  - Development Guidelines
-    - [SDK](subsys-aiframework-devguide-sdk.md)
-    - [Plug-in](subsys-aiframework-devguide-plugin.md)
-    - [Configuration File](subsys-aiframework-devguide-conf.md)
-  - Development Examples
-    - [KWS SDK](subsys-aiframework-demo-sdk.md)
-    - [KWS Plug-in](subsys-aiframework-demo-plugin.md)
-    - [KWS Configuration File](subsys-aiframework-demo-conf.md)
+- [AI Framework Development](subsys-ai-aiframework-devguide.md)
 - Data Management
   - RDB
     - [RDB Overview](subsys-data-relational-database-overview.md)
@@ -85,6 +71,8 @@
   - [Development on IPC Authentication](subsys-security-communicationverify.md)
   - [Development on Device Security Level Management](subsys-security-devicesecuritylevel.md)
   - [Development on HUKS](subsys-security-huks-guide.md)
+  - [Application Privilege Configuration Guide](subsys-app-privilege-config-guide.md)
+  - [Preset Application Configuration Guide](subsys-preinstall-app-config-guide.md)
 - Startup
   - [Startup](subsys-boot-overview.md)
   - init Module
@@ -103,7 +91,7 @@
   - [DFX Overview](subsys-dfx-overview.md)
   - [HiLog Development](subsys-dfx-hilog-rich.md)
   - [HiLog\_Lite Development](subsys-dfx-hilog-lite.md)
-  - [HiTrace Development](subsys-dfx-hitrace.md)
+  - [HiTraceChain Development](subsys-dfx-hitracechain.md)
   - [HiCollie Development](subsys-dfx-hicollie.md)
   - HiSysEvent Development
     - [HiSysEvent Logging Configuration](subsys-dfx-hisysevent-logging-config.md)

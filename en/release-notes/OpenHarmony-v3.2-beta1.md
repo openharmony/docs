@@ -172,8 +172,7 @@ This version has the following updates to OpenHarmony 3.1 Release.
 
 ### API Updates
 
-
-*[API Differences](api-change/v3.2-beta1/readme.md)*
+*[API Differences](api-change/v3.2-beta1/Readme-EN.md)*
 
 ### Chip and Development Board Adaptation
 
@@ -186,31 +185,29 @@ For details about the adaptation status, see [SIG-Devboard](https://gitee.com/op
 
 | Subsystem| Sample| Introduction| Programming Language|
 | -------- | -------- | -------- | -------- |
-| ArkUI | MouseEvent | This sample simulates a minesweeper game that calls mouse event-related APIs.| eTS |
-| ArkUI | Vibrator | This sample simulates the countdown scenario to show the use of the vibrator APIs.| eTS |
-| DFX | FaultLogger | This sample illustrates how to obtain fault information of an application in eTS.| eTS |
-| ArkUI | Gallery | This sample demonstrates the functions of different components such as universal events, universal attributes, and gestures.| eTS |
-| Graphics| JsWebGL | This sample shows how to use WebGL APIs to draw pentagrams and rectangles by invoking GPU resources.| JS |
-| ArkUI | Clock | This sample exemplifies how to implement a simple clock application using the eTS UI capability.| eTS |
-| Network management| Http | This sample simulates Postman, which requires the input of an API address and outputs the data obtained, to show the use of the data request APIs.| eTS |
-| ArkUI | FlishLight | This sample simulates a flashlight by changing the screen brightness. If the screen becomes brighter, the flashlight is turned on. If the screen becomes darker, the flashlight is turned off.| eTS |
-| Network management| Socket | This sample demonstrates the application of Socket in network communication, including connection authentication and chat communication between two devices.| eTS |
-| Distributed data management| DistributedRdb | This sample shows how to add, delete, modify, query, and synchronize data in the distributed relational database with eTS.| eTS |
-| Ability| BackgroundTaskManager | This sample simulates the download function. Being processed by the background task management, a download task can continue after the application exits. It stops until the download is complete.| eTS |
-| Ability| BringApp | This sample uses the **FeatureAbility** APIs to start a system application based on the application's bundle name and ability name.| eTS |
-| Media| VideoPlayer | This sample shows how to play a video using the **VideoPlayer** APIs in eTS. It also provides an ability that can be invoked by other applications to play the video.| eTS |
-| Ability| DistributeCalc | This sample implements a simple calculator application using JS distributed features. The calculator can perform simple numerical calculations and start a remote calculator FA to perform collaborative calculation.| eTS |
-| Multimedia| JSRecorder | This sample shows how to implement audio recording and playback by calling media-related APIs.| eTS |
-| Web | Browser | This sample uses the stage model and related APIs to show a simple browser.| eTS |
-| Ability| DeviceUsageStatistics | This sample shows the device usage statistics.| eTS |
-| ArkUI | AdaptiveCapabilities | This sample shows multi-device adaptation in eTS, including resource qualifiers, atomic layouts, and responsive layouts.| eTS |
-| ArkUI | Game2048 | This sample shows how to develop a 2048 game using the **\<Grid>** component.| eTS |
-| Window Manager| Window | This sample shows how to create a window, display an application over another application in the form of a floating window, and display an application on split screens.| eTS |
-| Distributed data management| Preference | This sample shows the theme switching function of preferences.| eTS |
-| ArkUI | NativeAPI | This sample shows how to call C++ APIs in eTS and how C++ APIs call back JS APIs to play the Gomoku game. The native APIs implement the calculation logic, and eTS implements UI rendering and re-rendering.| eTS/C++ |
-| Globalization| International | This sample shows how to use APIs related to i18n, intl, and resourceManager in eTS to set the system language, region, time, and time zone. It also provides locale setting examples.| eTS |
+| ArkUI | [MouseEvent](https://gitee.com/openharmony/applications_app_samples/tree/master/ETSUI/MouseEvent) | This sample simulates a minesweeper game that calls mouse event-related APIs.| eTS |
+| ArkUI | [Vibrator](https://gitee.com/openharmony/applications_app_samples/tree/master/device/Vibrator) | This sample simulates the countdown scenario to show the use of the vibrator APIs.| eTS |
+| DFX | [FaultLogger](https://gitee.com/openharmony/applications_app_samples/tree/master/DFX/FaultLogger) | This sample illustrates how to obtain fault information of an application in eTS.| eTS |
+| ArkUI | [Gallery](https://gitee.com/openharmony/applications_app_samples/tree/master/ETSUI/Gallery) | This sample demonstrates the functions of different components such as universal events, universal attributes, and gestures.| eTS |
+| Graphics| [JsWebGL](https://gitee.com/openharmony/applications_app_samples/tree/master/Graphics/JsWebGL) | This sample shows how to use WebGL APIs to draw pentagrams and rectangles by invoking GPU resources.| JS |
+| ArkUI | [Clock](https://gitee.com/openharmony/applications_app_samples/tree/master/Preset/Clock) | This sample exemplifies how to implement a simple clock application using the eTS UI capability.| eTS |
+| Network management| [Http](https://gitee.com/openharmony/applications_app_samples/tree/master/Network/Http) | This sample simulates Postman, which requires the input of an API address and outputs the data obtained, to show the use of the data request APIs.| eTS |
+| Network management| [Socket](https://gitee.com/openharmony/applications_app_samples/tree/master/Network/Socket) | This sample demonstrates the application of Socket in network communication, including connection authentication and chat communication between two devices.| eTS |
+| Distributed data management| [DistributedRdb](https://gitee.com/openharmony/applications_app_samples/tree/master/data/DistributedRdb) | This sample shows how to add, delete, modify, query, and synchronize data in the distributed relational database with eTS.| eTS |
+| Ability| [BackgroundTaskManager](https://gitee.com/openharmony/applications_app_samples/tree/master/ResourcesSchedule/BackgroundTaskManager) | This sample simulates the download function. Being processed by the background task management, a download task can continue after the application exits. It stops until the download is complete.| eTS |
+| Ability| [BringApp](https://gitee.com/openharmony/applications_app_samples/tree/master/ETSUI/BringApp) | This sample uses the **FeatureAbility** APIs to start a system application based on the application's bundle name and ability name.| eTS |
+| Media| [VideoPlayer](https://gitee.com/openharmony/applications_app_samples/tree/master/media/VideoPlayer) | This sample shows how to play a video using the **VideoPlayer** APIs in eTS. It also provides an ability that can be invoked by other applications to play the video.| eTS |
+| Ability| [DistributeCalc](https://gitee.com/openharmony/applications_app_samples/tree/master/Preset/DistributeCalc) | This sample implements a simple calculator application using JS distributed features. The calculator can perform simple numerical calculations and start a remote calculator FA to perform collaborative calculation.| eTS |
+| Web | [Browser](https://gitee.com/openharmony/applications_app_samples/tree/master/device/Browser) | This sample uses the stage model and related APIs to show a simple browser.| eTS |
+| Ability| [DeviceUsageStatistics](https://gitee.com/openharmony/applications_app_samples/tree/master/device/DeviceUsageStatistics) | This sample shows the device usage statistics.| eTS |
+| ArkUI | [AdaptiveCapabilities](https://gitee.com/openharmony/applications_app_samples/tree/master/MultiDeviceAppDev/AdaptiveCapabilities) | This sample shows multi-device adaptation in eTS, including resource qualifiers, atomic layouts, and responsive layouts.| eTS |
+| ArkUI | [Game2048](https://gitee.com/openharmony/applications_app_samples/tree/master/ETSUI/Game2048) | This sample shows how to develop a 2048 game using the **\<Grid>** component.| eTS |
+| Window Manager| [Window](https://gitee.com/openharmony/applications_app_samples/tree/master/Graphics/Window) | This sample shows how to create a window, display an application over another application in the form of a floating window, and display an application on split screens.| eTS |
+| Distributed data management| [Preference](https://gitee.com/openharmony/applications_app_samples/tree/master/data/Preferences) | This sample shows the theme switching function of preferences.| eTS |
+| ArkUI | [NativeAPI](https://gitee.com/openharmony/applications_app_samples/tree/master/Native/NativeAPI) | This sample shows how to call C++ APIs in eTS and how C++ APIs call back JS APIs to play the Gomoku game. The native APIs implement the calculation logic, and eTS implements UI rendering and re-rendering.| eTS/C++ |
+| Globalization| [International](https://gitee.com/openharmony/applications_app_samples/tree/master/common/International) | This sample shows how to use APIs related to i18n, intl, and resourceManager in eTS to set the system language, region, time, and time zone. It also provides locale setting examples.| eTS |
 
-For more information, visit [Samples](https://gitee.com/openharmony/app_samples).
+For more information, visit [Samples](https://gitee.com/openharmony/applications_app_samples).
 
 ## Resolved Issues
 
@@ -229,4 +226,3 @@ For more information, visit [Samples](https://gitee.com/openharmony/app_samples)
 | ------------------------------------------------------------ | ---------------------------------------------------------- | ------------------------------------------------------------ | ------------ |
 | [I4Z3G9](https://gitee.com/openharmony/graphic_graphic_2d/issues/I4Z3G9) | [RK3568] Screen flickering occurs when the secondary window is opened in the immersive primary window.| Developer experience is affected.                                              | 2022-06-15   |
 | [I59M4Q](https://gitee.com/openharmony/developtools_hdc/issues/I59M4Q) | There is a low probability that the device is disconnected when hdc_std of API version 9 is used to connect to the device.                      | This issue occurs at a low probability (less than 1/30). It can be resolved by restarting the IDE or hdc_std.| 2022-06-30   |
-| [I54D32](https://gitee.com/openharmony/multimedia_camera_standard/issues/I54D32) | [RK3568] A black screen is displayed when the camera has been recording videos for multiple consecutive times.                        | Developer experience is affected.                                              | 2022-06-15   |

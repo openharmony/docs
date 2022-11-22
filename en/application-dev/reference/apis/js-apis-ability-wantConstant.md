@@ -4,12 +4,12 @@ The **wantConstant** module provides the actions, entities, and flags used in **
 
 > **NOTE**
 > 
-> The initial APIs of this module are supported since API 6. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+> The initial APIs of this module are supported since API version 6. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 ## Modules to Import
 
-```
-import wantConstant from '@ohos.ability.wantConstant'
+```js
+import wantConstant from '@ohos.ability.wantConstant';
 ```
 
 ## wantConstant.Action
@@ -46,8 +46,13 @@ Enumerates the action constants of the **Want** object.
 |  ACTION_FILE_SELECT<sup>7+</sup>            | ohos.action.fileSelect                   | Action of selecting a file.                                         |
 |  PARAMS_STREAM<sup>7+</sup>                 | ability.params.stream                    | URI of the data stream associated with the target when the data is sent.                         |
 |  ACTION_APP_ACCOUNT_OAUTH <sup>8+</sup>     | ohos.account.appAccount.action.oauth     | Action of providing the OAuth service.                                    |
-|  ACTION_MARKER_DOWNLOAD <sup>9+</sup>    | ohos.want.action.marketDownload     | Action of downloading an application from the application market.<br>**System API**: This is a system API and cannot be called by third-party applications. |
-
+|  ACTION_MARKET_DOWNLOAD <sup>9+</sup>    | ohos.want.action.marketDownload     | Action of downloading an application from the application market.<br>**System API**: This is a system API and cannot be called by third-party applications. |
+|  ACTION_MARKET_CROWDTEST <sup>9+</sup>    | ohos.want.action.marketCrowdTest     | Action of crowdtesting an application from the application market.<br>**System API**: This is a system API and cannot be called by third-party applications. |
+|   DLP_PARAMS_SANDBOX<sup>9+</sup>    |ohos.dlp.params.sandbox  | Action of obtaining the sandbox flag.<br>**System API**: This is a system API and cannot be called by third-party applications. |
+|   DLP_PARAMS_BUNDLE_NAME<sup>9+</sup>    |ohos.dlp.params.bundleName  |Action of obtaining the DLP bundle name.<br>**System API**: This is a system API and cannot be called by third-party applications. |
+|   DLP_PARAMS_MODULE_NAME<sup>9+</sup>    |ohos.dlp.params.moduleName      |Action of obtaining the DLP module name.<br>**System API**: This is a system API and cannot be called by third-party applications. |
+|   DLP_PARAMS_ABILITY_NAME<sup>9+</sup>    |ohos.dlp.params.abilityName      |Action of obtaining the DLP ability name.<br>**System API**: This is a system API and cannot be called by third-party applications. |
+|   DLP_PARAMS_INDEX<sup>9+</sup>    |ohos.dlp.params.index      |Action of obtaining the DLP index.<br>**System API**: This is a system API and cannot be called by third-party applications. |
 
 ## wantConstant.Entity
 

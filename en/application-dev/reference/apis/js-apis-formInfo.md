@@ -3,7 +3,7 @@
 The **FormInfo** module provides widget information and state.
 
 > **NOTE**
-> 
+>
 > The initial APIs of this module are supported since API version 8. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 ## Modules to Import
@@ -120,3 +120,14 @@ Enumerates the widget dimensions.
 | Dimension_2_4<sup>9+</sup>      | 3   | 2 x 4.  |
 | Dimension_4_4<sup>9+</sup>      | 4   | 4 x 4.  |
 | Dimension_2_1<sup>9+</sup>      | 5   | 2 x 1.  |
+
+
+## FormInfoFilter
+
+Defines the widget information filter. Only the widget information that meets the filter is returned.
+
+**System capability**: SystemCapability.Ability.Form
+
+| Name       |  Yes  | Description        |
+| ----------- | ---- | ------------ |
+| moduleName<sup>9+</sup>   | No  | Module name.|

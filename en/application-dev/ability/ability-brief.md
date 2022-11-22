@@ -5,7 +5,7 @@ An ability is the abstraction of a functionality that an application can provide
 The ability framework model has two forms:
 
 - FA model, which applies to application development using API version 8 and earlier versions. In the FA model, there is Feature Ability (FA) and Particle Ability (PA). The FA supports Page abilities, and the PA supports Service, Data, and Form abilities. 
-- Stage model, which is introduced since API version 9. In the stage model, there is `Ability` and `ExtensionAbility`. `ExtensionAbility` is further extended to `ServiceExtensionAbility`, `FormExtensionAbility`, `DataShareExtensionAbility`, and more.
+- Stage model, which is introduced since API version 9. In the stage model, there is `PageAbility` and `ExtensionAbility`. `ExtensionAbility` is further extended to `ServiceExtensionAbility`, `FormExtensionAbility`, `DataShareExtensionAbility`, and more.
 
 The stage model is designed to make it easier to develop complex applications in the distributed environment. The table below lists the design differences between the two models.
 

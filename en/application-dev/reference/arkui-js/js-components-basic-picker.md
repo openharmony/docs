@@ -172,7 +172,7 @@ In addition to the [universal methods](../arkui-js/js-components-common-methods.
         </option>
   </select>
   <picker id="picker0" type="text" value="{{textvalue}}" selected="{{textselect}}" range="{{rangetext}}" onchange="textonchange"
-    oncancel="textoncancel" class="pickertext"  "></picker>
+    oncancel="textoncancel" class="pickertext"></picker>
 
   <picker id="picker1" type="date" value="{{datevalue}}" start="2002-2-5" end="2030-6-5" selected="{{dateselect}}" lunarswitch="true"
     onchange="dateonchange" oncancel="dateoncancel" class="pickerdate" show="false"></picker>

@@ -2104,6 +2104,7 @@ Called to return the result of an authentication request.
 **System capability**: SystemCapability.Account.AppAccount
 
 **Parameters**
+
 | Name   | Type                  | Mandatory  | Description    |
 | ------ | -------------------- | ---- | ------ |
 | code   | number               | Yes   | Authentication result code.|
@@ -2134,6 +2135,7 @@ Called to redirect a request.
 **System capability**: SystemCapability.Account.AppAccount
 
 **Parameters**
+
 | Name    | Type  | Mandatory  | Description        |
 | ------- | ---- | ---- | ---------- |
 | request | Want | Yes   | Request to be redirected.|
@@ -2191,6 +2193,7 @@ Implicitly adds an app account based on the specified authentication type and op
 **System capability**: SystemCapability.Account.AppAccount
 
 **Parameters**
+
 | Name             | Type                   | Mandatory  | Description             |
 | ---------------- | --------------------- | ---- | --------------- |
 | authType         | string                | Yes   | Authentication type.     |
@@ -2207,6 +2210,7 @@ Authenticates an app account to obtain the OAuth token. This API uses an asynchr
 **System capability**: SystemCapability.Account.AppAccount
 
 **Parameters**
+
 | Name             | Type                   | Mandatory  | Description             |
 | ---------------- | --------------------- | ---- | --------------- |
 | name             | string                | Yes   | Name of the target app account.       |
@@ -2224,6 +2228,7 @@ Verifies the credential of an app account. This API uses an asynchronous callbac
 **System capability**: SystemCapability.Account.AppAccount
 
 **Parameters**
+
 | Name             | Type                   | Mandatory  | Description             |
 | ---------------- | --------------------- | ---- | --------------- |
 | name      | string                   | Yes   | Name of the target app account.             |
@@ -2239,6 +2244,7 @@ Sets authenticator properties. This API uses an asynchronous callback to return 
 **System capability**: SystemCapability.Account.AppAccount
 
 **Parameters**
+
 | Name             | Type                   | Mandatory  | Description             |
 | ---------------- | --------------------- | ---- | --------------- |
 | options   | [SetPropertiesOptions](#setpropertiesoptions9)  | Yes   | Authenticator properties to set.           |
@@ -2253,6 +2259,7 @@ Checks the account labels. This API uses an asynchronous callback to return the 
 **System capability**: SystemCapability.Account.AppAccount
 
 **Parameters**
+
 | Name             | Type                   | Mandatory  | Description             |
 | ---------------- | --------------------- | ---- | --------------- |
 | name      | string                | Yes   | Name of the target app account.             |
@@ -2268,6 +2275,7 @@ Checks whether an app account can be deleted. This API uses an asynchronous call
 **System capability**: SystemCapability.Account.AppAccount
 
 **Parameters**
+
 | Name             | Type                   | Mandatory  | Description             |
 | ---------------- | --------------------- | ---- | --------------- |
 | name      | string                | Yes   | Name of the target app account.             |

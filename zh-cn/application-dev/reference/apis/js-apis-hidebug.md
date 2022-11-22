@@ -162,9 +162,11 @@ getCpuUsage(): number
   let cpuUsage = hidebug.getCpuUsage();
   ```
 
-## hidebug.startProfiling
+## hidebug.startProfiling<sup>(deprecated)</sup>
 
 startProfiling(filename : string) : void
+
+> **说明：** 从 API Version 9 开始废弃，建议使用[hidebug.startJsCpuProfiling](#hidebugstartjscpuprofiling9)替代。
 
 启动虚拟机Profiling方法跟踪，`startProfiling()`方法的调用需要与`stopProfiling()`方法的调用一一对应，先开启后关闭，严禁使用`start->start->stop`，`start->stop->stop`，`start->start->stop->stop`等类似的顺序调用。
 
@@ -188,9 +190,11 @@ hidebug.stopProfiling();
 
 
 
-## hidebug.stopProfiling
+## hidebug.stopProfiling<sup>(deprecated)</sup>
 
 stopProfiling() : void
+
+> **说明：** 从 API Version 9 开始废弃，建议使用[hidebug.stopJsCpuProfiling](#hidebugstopjscpuprofiling9)替代。
 
 停止虚拟机Profiling方法跟踪，`stopProfiling()`方法的调用需要与`startProfiling()`方法的调用一一对应，先开启后关闭，严禁使用`start->start->stop`，`start->stop->stop`，`start->start->stop->stop`等类似的顺序调用。
 
@@ -206,9 +210,11 @@ hidebug.startProfiling("cpuprofiler-20220216");
 hidebug.stopProfiling();
 ```
 
-## hidebug.dumpHeapData
+## hidebug.dumpHeapData<sup>(deprecated)</sup>
 
 dumpHeapData(filename : string) : void
+
+> **说明：** 从 API Version 9 开始废弃，建议使用[hidebug.dumpJsHeapData](#hidebugdumpjsheapdata9)替代。
 
 虚拟机堆导出。
 
@@ -228,11 +234,11 @@ hidebug.dumpHeapData("heap-20220216");
 
 ## hidebug.getServiceDump<sup>9+<sup>
 
-getServiceDump(serviceid : number) : string
+getServiceDump(serviceid : number, fd : number, args : Array<string>) : void
 
 获取系统服务信息。
 
-此接口为系统接口，三方应用不可用。
+**需要权限**: ohos.permission.DUMP
 
 **系统能力：** SystemCapability.HiviewDFX.HiProfiler.HiDebug
 
@@ -241,16 +247,115 @@ getServiceDump(serviceid : number) : string
 | 参数名   | 类型   | 必填 | 说明                                                         |
 | -------- | ------ | ---- | ------------------------------------------------------------ |
 | serviceid | number | 是   | 基于该用户输入的service id获取系统服务信息。|
+| fd | number | 是   | 文件描述符，该接口会往该fd中写入数据。|
+| args | Array<string> | 是   | 系统服务的Dump接口所对应的参数列表。|
 
-**返回值：**
-
-| 类型   | 说明                       |
-| ------ | -------------------------- |
-| string | 返回dump的service信息文件的绝对路径。 |
 
 **示例：**
 
 ```js
-let serviceId = 10;
-let pathName = hidebug.getServiceDump(serviceId);
+import fileio from '@ohos.fileio'
+import hidebug from '@ohos.hidebug'
+import featureAbility from '@ohos.ability.featureAbility'
+
+let context = featureAbility.getContext();
+context.getFilesDir().then((data) => {
+  var path = data + "/serviceInfo.txt"
+  console.info("output path: " + path)
+  let fd = fileio.openSync(path, 0o102, 0o666)
+  var serviceId = 10
+  var args = new Array("allInfo")
+  try {
+    hidebug.getServiceDump(serviceId, fd, args)
+  } catch (error) {
+    console.info(error.code)
+    console.info(error.message)
+  }
+  fileio.closeSync(fd);
+})
+```
+
+## hidebug.startJsCpuProfiling<sup>9+</sup>
+
+startJsCpuProfiling(filename : string) : void
+
+启动虚拟机Profiling方法跟踪，`startJsCpuProfiling()`方法的调用需要与`stopJsCpuProfiling()`方法的调用一一对应，先开启后关闭，严禁使用`start->start->stop`，`start->stop->stop`，`start->start->stop->stop`等类似的顺序调用。
+
+**系统能力：** SystemCapability.HiviewDFX.HiProfiler.HiDebug
+
+**参数：**
+
+| 参数名   | 类型   | 必填 | 说明                                                         |
+| -------- | ------ | ---- | ------------------------------------------------------------ |
+| filename | string | 是   | 用户自定义的profiling文件名，根据传入的`filename`，将在应用的`files`目录生成`filename.json`文件。 |
+
+**示例：**
+
+```js
+import hidebug from '@ohos.hidebug'
+
+try {
+  hidebug.startJsCpuProfiling("cpu_profiling");
+  ...
+  hidebug.stopJsCpuProfiling();
+} catch (error) {
+  console.info(error.code)
+  console.info(error.message)
+}
+```
+
+## hidebug.stopJsCpuProfiling<sup>9+</sup>
+
+stopJsCpuProfiling() : void
+
+停止虚拟机Profiling方法跟踪，`startJsCpuProfiling()`方法的调用需要与`stopJsCpuProfiling()`方法的调用一一对应，先开启后关闭，严禁使用`start->start->stop`，`start->stop->stop`，`start->start->stop->stop`等类似的顺序调用。
+
+**系统能力：** SystemCapability.HiviewDFX.HiProfiler.HiDebug
+
+**参数：**
+
+| 参数名   | 类型   | 必填 | 说明                                                         |
+| -------- | ------ | ---- | ------------------------------------------------------------ |
+| filename | string | 是   | 用户自定义的profiling文件名，根据传入的`filename`，将在应用的`files`目录生成`filename.json`文件。 |
+
+**示例：**
+
+```js
+import hidebug from '@ohos.hidebug'
+
+try {
+  hidebug.startJsCpuProfiling("cpu_profiling");
+  ...
+  hidebug.stopJsCpuProfiling();
+} catch (error) {
+  console.info(error.code)
+  console.info(error.message)
+}
+```
+
+## hidebug.dumpJsHeapData<sup>9+</sup>
+
+dumpJsHeapData(filename : string) : void
+
+虚拟机堆导出。
+
+**系统能力：** SystemCapability.HiviewDFX.HiProfiler.HiDebug
+
+**参数：**
+
+| 参数名   | 类型   | 必填 | 说明                                                         |
+| -------- | ------ | ---- | ------------------------------------------------------------ |
+| filename | string | 是   | 用户自定义的虚拟机堆文件名，根据传入的`filename`，将在应用的`files`目录生成`filename.heapsnapshot`文件。 |
+
+**示例：**
+
+```js
+import hidebug from '@ohos.hidebug'
+
+try {
+  hidebug.dumpJsHeapData("heapData");
+} catch (error) {
+  console.info(error.code)
+  console.info(error.message)
+}
 ```

@@ -1,10 +1,11 @@
 # 焦点事件
 
-焦点事件指页面焦点在组件间移动时触发的事件，组件可使用焦点事件来更改内容。
+焦点事件指页面焦点在可获焦组件间移动时触发的事件，组件可使用焦点事件来处理相关逻辑。
 
 >  **说明：**
 >
 >  - 从API Version 8开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+>
 >  - 目前仅支持通过外接键盘的tab键、方向键触发。
 
 
@@ -12,12 +13,8 @@
 
 | **名称**                                   | **支持冒泡** | **功能描述**        |
 | ---------------------------------------- | -------- | --------------- |
-| onFocus(event:&nbsp;()&nbsp;=&gt;&nbsp;void) | 否        | 当前组件获取焦点时触发的回调。 |
+| onFocus(event:&nbsp;()&nbsp;=&gt;&nbsp;void) | 否   | 当前组件获取焦点时触发的回调。 |
 | onBlur(event:()&nbsp;=&gt;&nbsp;void)    | 否        | 当前组件失去焦点时触发的回调。 |
-
->  **说明：**
->
->  支持焦点事件的组件：Button、Text、Image、List、Grid。
 
 
 ## 示例
@@ -27,44 +24,52 @@
 @Entry
 @Component
 struct FocusEventExample {
-  @State textOne: string = ''
-  @State textTwo: string = ''
-  @State textThree: string = ''
-  @State oneButtonColor: string = '#FF0000'
+  @State oneButtonColor: string = '#FFC0CB'
   @State twoButtonColor: string = '#87CEFA'
   @State threeButtonColor: string = '#90EE90'
 
   build() {
-    Column({ space:20 }){
-      Button(this.textOne)
+    Column({ space: 20 }) {
+      // 通过外接键盘的上下键可以让焦点在三个按钮间移动，按钮获焦时颜色变化，失焦时变回原背景色
+      Button('First Button')
         .backgroundColor(this.oneButtonColor)
-        .width(260).height(70).fontColor(Color.Black)
+        .width(260)
+        .height(70)
+        .fontColor(Color.Black)
         .focusable(true)
         .onFocus(() => {
-          this.textOne = 'First Button onFocus'
-          this.oneButtonColor = '#AFEEEE'
+          this.oneButtonColor = '#FF0000'
         })
         .onBlur(() => {
-          this.textOne = 'First Button onBlur'
           this.oneButtonColor = '#FFC0CB'
         })
-      Button(this.textTwo)
+      Button('Second Button')
         .backgroundColor(this.twoButtonColor)
-        .width(260).height(70).fontColor(Color.Black)
-        .focusable(true)
-      Button(this.textThree)
-        .backgroundColor(this.threeButtonColor)
-        .width(260).height(70).fontColor(Color.Black)
+        .width(260)
+        .height(70)
+        .fontColor(Color.Black)
         .focusable(true)
         .onFocus(() => {
-          this.textThree = 'Third Button onFocus'
-          this.threeButtonColor = '#AFEEEE'
+          this.twoButtonColor = '#FF0000'
         })
         .onBlur(() => {
-          this.textThree = 'Third Button onBlur'
-          this.threeButtonColor = '#FFC0CB'
+          this.twoButtonColor = '#87CEFA'
         })
-    }.width('100%').margin({ top:20 })
+      Button('Third Button')
+        .backgroundColor(this.threeButtonColor)
+        .width(260)
+        .height(70)
+        .fontColor(Color.Black)
+        .focusable(true)
+        .onFocus(() => {
+          this.threeButtonColor = '#FF0000'
+        })
+        .onBlur(() => {
+          this.threeButtonColor = '#90EE90'
+        })
+    }.width('100%').margin({ top: 20 })
   }
 }
 ```
+
+ ![focus](figures/focus.png) 

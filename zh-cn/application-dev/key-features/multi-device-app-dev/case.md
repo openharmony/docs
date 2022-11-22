@@ -103,7 +103,7 @@
 
 - alignItems: ItemAlign.Start：子组件在Flex容器交叉轴（水平方向）上首部对齐。
 
-可以查看[Flex组件](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/arkui-ts/ts-container-flex.md)及[Text组件](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/arkui-ts/ts-basic-components-text.md)了解这两个组件各个属性的含义及详细用法。
+可以查看[Flex组件](../../reference/arkui-ts/ts-container-flex.md)及[Text组件](../../reference/arkui-ts/ts-basic-components-text.md)了解这两个组件各个属性的含义及详细用法。
 
   | 默认设备 | 平板 | 
 | -------- | -------- |
@@ -123,7 +123,7 @@
  }
 ```
 
-接下来我们通过width属性和height属性设置四个图标的宽高（详见[尺寸设置](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/arkui-ts/ts-universal-attributes-size.md)），并将它们与联系人姓名和电话以及Blank组件一起放到Flex父容器中。为了便于查看效果，对顶部标题栏设置了淡蓝色的背景色。
+接下来我们通过width属性和height属性设置四个图标的宽高（详见[尺寸设置](../../reference/arkui-ts/ts-universal-attributes-size.md)），并将它们与联系人姓名和电话以及Blank组件一起放到Flex父容器中。为了便于查看效果，对顶部标题栏设置了淡蓝色的背景色。
 
   | 默认设备 | 平板 | 
 | -------- | -------- |
@@ -161,7 +161,7 @@
  }
 ```
 
-当前标题栏中子组件的布局同预期还有些差异，接下来通过margin属性，设置各个元素的左右间距（详见[尺寸设置](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/arkui-ts/ts-universal-attributes-size.md)）。如下图所示，最终顶部工具栏在默认设备和平板上都可以达到预期显示效果。
+当前标题栏中子组件的布局同预期还有些差异，接下来通过margin属性，设置各个元素的左右间距（详见[尺寸设置](../../reference/arkui-ts/ts-universal-attributes-size.md)）。如下图所示，最终顶部工具栏在默认设备和平板上都可以达到预期显示效果。
 
   | 默认设备 | 平板 | 
 | -------- | -------- |
@@ -205,11 +205,11 @@
 
 ### 底部输入栏
 
-有了顶部工具栏的开发经验，可以发现底部输入栏的结构更为简单，它同样以Flex组件作为父容器，同时包含文本输入框（请访问[文本输入组件](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/arkui-ts/ts-basic-components-textarea.md)查看详细介绍）和消息发送图标两个子节点。
+有了顶部工具栏的开发经验，可以发现底部输入栏的结构更为简单，它同样以Flex组件作为父容器，同时包含文本输入框（请访问[文本输入组件](../../reference/arkui-ts/ts-basic-components-textarea.md)查看详细介绍）和消息发送图标两个子节点。
 
 ![zh-cn_image_0000001335380378](figures/zh-cn_image_0000001335380378.jpg)
 
-为了便于查看的效果，我们同样给底部输入栏设置了淡蓝色到背景色。注意这里有一个特殊的地方，我们给TextArea设置了flexGrow(1)属性。flexGrow属性仅在父组件是Flex组件时生效，表示Flex容器的剩余空间分配给此属性所在的组件的比例，flexGrow(1)表示父容器的剩余空间全部分配给此组件，详见[Flex布局](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/arkui-ts/ts-universal-attributes-flex-layout.md)。
+为了便于查看的效果，我们同样给底部输入栏设置了淡蓝色到背景色。注意这里有一个特殊的地方，我们给TextArea设置了flexGrow(1)属性。flexGrow属性仅在父组件是Flex组件时生效，表示Flex容器的剩余空间分配给此属性所在的组件的比例，flexGrow(1)表示父容器的剩余空间全部分配给此组件，详见[Flex布局](../../reference/arkui-ts/ts-universal-attributes-flex-layout.md)。
 
   | 默认设备 | 平板 | 
 | -------- | -------- |
@@ -258,7 +258,7 @@
 
 **消息气泡**
 
-先做一个最简单的消息气泡，通过borderRadius属性可以设置边框的圆角半径（详见[边框设置](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/arkui-ts/ts-universal-attributes-border.md)）。
+先做一个最简单的消息气泡，通过borderRadius属性可以设置边框的圆角半径（详见[边框设置](../../reference/arkui-ts/ts-universal-attributes-border.md)）。
 
   | 默认设备 | 平板 | 
 | -------- | -------- |
@@ -290,7 +290,7 @@ struct MessageBubble {
 
 注意这个简单的消息气泡，左上角（或右上角）的样式，与实际期望不符。我们先修改发送消息右上角的样式，接收消息左上角的实现与之类似。
 
-[Stack组件](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/arkui-ts/ts-container-stack.md)是一个堆叠容器，其子组件按照轴方向依次堆叠，后一个子组件覆盖前一个子组件。通过其alignContent接口，可以设置子组件在容器内的对齐方式，如alignContent: Alignment.TopStart代表子组件从左上角对齐。
+[Stack组件](../../reference/arkui-ts/ts-container-stack.md)是一个堆叠容器，其子组件按照轴方向依次堆叠，后一个子组件覆盖前一个子组件。通过其alignContent接口，可以设置子组件在容器内的对齐方式，如alignContent: Alignment.TopStart代表子组件从左上角对齐。
 
   | 默认设备 | 平板 | 
 | -------- | -------- |
@@ -455,7 +455,7 @@ const globalMessageList:any[] = [
  ]
 ```
 
-结合[栅格组件](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/arkui-ts/ts-container-gridcontainer.md)的定义，考虑我们当前的实际场景，GridRow的各参数设置如下。
+结合[栅格组件](../../reference/arkui-ts/ts-container-gridcontainer.md)的定义，考虑我们当前的实际场景，GridRow的各参数设置如下。
 
 - columns：栅格组件中的列数，当前场景默认12列即可。
 
@@ -524,9 +524,9 @@ struct Conversation {
 
 现在会话详情页面的顶部标题栏、信息列表及底部输入栏都已经准备完毕，将这三部分组合起来即可得到完整的页面。
 
-- 通过[Flex组件](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/arkui-ts/ts-container-flex.md)将三个部分组合起来，注意justifyContent: FlexAlign.SpaceBetween配置项是将Flex组件中的元素按照主轴方向均匀分配，其中第一个元素与顶部对齐，最后一个元素与底部对齐。
+- 通过[Flex组件](../../reference/arkui-ts/ts-container-flex.md)将三个部分组合起来，注意justifyContent: FlexAlign.SpaceBetween配置项是将Flex组件中的元素按照主轴方向均匀分配，其中第一个元素与顶部对齐，最后一个元素与底部对齐。
 
-- 通过[List组件](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/arkui-ts/ts-container-list.md)和[ForEach语法](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/ui/ts-rending-control-syntax-foreach.md)，显示整个消息列表。
+- 通过[List组件](../../reference/arkui-ts/ts-container-list.md)和[ForEach语法](../../quick-start/arkts-rendering-control.md#循环渲染)，显示整个消息列表。
 
   | 默认设备 | 平板 | 
   | -------- | -------- |

@@ -52,15 +52,12 @@ The following modules work cooperatively to implement OpenHarmony sensors: Senso
 
 1. To obtain data of the following sensors, you must claim the required permissions.
 
-    Table 7 Sensor data permissions
-
-| Sensor                      | Permission                             | Sensitivity        | Permission Description                   |
-| ------------------------- | -------------------------------- | ------------ | ----------------------- |
-| Acceleration sensor, uncalibrated acceleration sensor, and linear acceleration sensor| ohos.permission.ACCELEROMETER    | system_grant | Allows an application to subscribe to data of these acceleration-related sensors in the motion category.|
-| Gyroscope sensor and uncalibrated gyroscope sensor         | ohos.permission.GYROSCOPE        | system_grant | Allows an application to subscribe to data of the gyroscope-related sensors in the motion category.|
-| Pedometer sensor                      | ohos.permission.ACTIVITY_MOTION  | user_grant   | Allows an application to subscribe to the motion status.               |
-| Heart rate sensor                      | ohos.permission.READ_HEALTH_DATA | user_grant   | Allows an application to read health data.               |
-
-
-
+    | Sensor                      | Permission                             | Sensitivity        | Permission Description                   |
+    | ------------------------- | -------------------------------- | ------------ | ----------------------- |
+    | Acceleration sensor, uncalibrated acceleration sensor, and linear acceleration sensor| ohos.permission.ACCELEROMETER    | system_grant | Allows an application to subscribe to data of these acceleration-related sensors in the motion category.|
+    | Gyroscope sensor and uncalibrated gyroscope sensor         | ohos.permission.GYROSCOPE        | system_grant | Allows an application to subscribe to data of the gyroscope-related sensors in the motion category.|
+    | Pedometer sensor                      | ohos.permission.ACTIVITY_MOTION  | user_grant   | Allows an application to subscribe to the motion status.               |
+    | Heart rate sensor                      | ohos.permission.READ_HEALTH_DATA | user_grant   | Allows an application to read health data.               |
+    
 2. The APIs for subscribing to and unsubscribing from sensor data work in pairs. If you do not need sensor data, call the unsubscription API to stop sensor data reporting.
+    

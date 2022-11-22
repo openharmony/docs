@@ -22,15 +22,16 @@ import stats from '@ohos.bundleState';
 | function queryAppUsagePriorityGroup(callback: AsyncCallback&lt;number&gt;): void | Queries the priority group of this application. This API uses an asynchronous callback to return the result.|
 | function queryAppUsagePriorityGroup(): Promise&lt;number&gt;; | Queries the priority group of this application. This API uses a promise to return the result.|
 | function isIdleState(bundleName: string, callback: AsyncCallback&lt;boolean&gt;): void | Checks whether the application specified by **bundleName** is in the idle state. |
-| function getRecentlyUsedModules(maxNum? : number, callback: AsyncCallback&lt;BundleActiveModuleInfo&gt;): void | Obtains the number of FA usage records specified by **maxNum**. If **maxNum** is not specified, the default value **1000** is used.|
+| function getRecentlyUsedModules(callback: AsyncCallback&lt;BundleActiveModuleInfo&gt;): void | Obtains a maximum of 1000 FA usage records. |
+| function getRecentlyUsedModules(maxNum: number, callback: AsyncCallback&lt;BundleActiveModuleInfo&gt;): void | Obtains the number of FA usage records specified by **maxNum**, which cannot exceed 1000.|
 | function queryAppNotificationNumber(begin: number, end: number, callback: AsyncCallback&lt;Array&lt;BundleActiveEventState&gt;&gt;): void | Queries the number of notifications from all applications based on the specified start time and end time.|
 | function queryBundleActiveEventStates(begin: number, end: number, callback: AsyncCallback&lt;Array&lt;BundleActiveEventState&gt;&gt;): void | Queries statistics about system events (hibernation, wakeup, unlocking, and screen locking) that occur between the specified start time and end time.|
-| function queryAppUsagePriorityGroup(bundleName? : string, callback: AsyncCallback&lt;number&gt;): void | Queries the priority group of the application specified by **bundleName**. If **bundleName** is not specified, the priority group of the current application is queried. This API uses an asynchronous callback to return the result.|
+| function queryAppUsagePriorityGroup(bundleName : string, callback: AsyncCallback&lt;number&gt;): void | Queries the priority group of the application specified by **bundleName**. This API uses an asynchronous callback to return the result.|
 | function queryAppUsagePriorityGroup(bundleName? : string): Promise&lt;number&gt;; | Queries the priority group of the application specified by **bundleName**. If **bundleName** is not specified, the priority group of the current application is queried. This API uses a promise to return the result.|
 | function setBundleGroup(bundleName : string, newGroup: GroupType, callback: AsyncCallback&gt;boolean&gt;): void | Sets the group for the application specified by **bundleName**. This API uses an asynchronous callback to return the result.|
 | function setBundleGroup(bundleName : string, newGroup : GroupType): Promise&gt;boolean&gt;; | Sets the group for the application specified by **bundleName**. This API uses a promise to return the result.|
-| function registerGroupCallBack(callback: Callback&gt;BundleActiveGroupCallbackInfo&gt;, callback: AsyncCallback&gt;boolean&gt;): void | Registers a callback for application group changes. When an application group of the user changes, the change is returned to all applications that have registered the callback. This API uses an asynchronous callback to return the result.|
-| function registerGroupCallBack(callback: Callback&gt;BundleActiveGroupCallbackInfo&gt;): Promise&gt;boolean&gt;; | Registers a callback for application group changes. When an application group of the user changes, the change is returned to all applications that have registered the callback. This API uses a promise to return the result.|
+| function registerGroupCallBack(groupCallback: Callback&gt;BundleActiveGroupCallbackInfo&gt;, callback: AsyncCallback&gt;boolean&gt;): void | Registers a callback for application group changes. When an application group of the user changes, the change is returned to all applications that have registered the callback. This API uses an asynchronous callback to return the result.|
+| function registerGroupCallBack(groupCallback: Callback&gt;BundleActiveGroupCallbackInfo&gt;): Promise&gt;boolean&gt;; | Registers a callback for application group changes. When an application group of the user changes, the change is returned to all applications that have registered the callback. This API uses a promise to return the result.|
 | function unRegisterGroupCallBack(callback: AsyncCallback&gt;boolean&gt;): void | Deregisters the callback for application group changes. This API uses an asynchronous callback to return the result.|
 | function unRegisterGroupCallBack(): Promise&gt;boolean&gt;; | Deregisters the callback for application group changes. This API uses a promise to return the result.|
 
@@ -325,14 +326,14 @@ import stats from '@ohos.bundleState';
      ```js
      import stats from '@ohos.bundleState'
 
-     // Promise mode without parameters
+     // Promise mode when bundleName is not specified
      stats.queryAppUsagePriorityGroup().then(res => {
          console.log('BUNDLE_ACTIVE queryAppUsagePriorityGroup promise succeeded. result: ' + JSON.stringify(res));
      }).catch(err => {
          console.log('BUNDLE_ACTIVE queryAppUsagePriorityGroup promise failed. because: ' + err.code);
      });
 
-     // Asynchronous callback mode without parameters
+     // Asynchronous callback mode when bundleName is not specified
      stats.queryAppUsagePriorityGroup((err, res) => {
          if (err) {
              console.log('BUNDLE_ACTIVE queryAppUsagePriorityGroup callback failed. because: ' + err.code);
@@ -340,16 +341,16 @@ import stats from '@ohos.bundleState';
              console.log('BUNDLE_ACTIVE queryAppUsagePriorityGroup callback succeeded. result: ' + JSON.stringify(res));
          }
      });
-
-     // Promise mode with parameters
-     stats.queryAppUsagePriorityGroup(this.bundleName).then(res => {
+    let bundleName = "com.ohos.camera";
+     // Promise mode when bundleName is specified
+     stats.queryAppUsagePriorityGroup(bundleName).then(res => {
          console.log('BUNDLE_ACTIVE QueryPackageGroup promise succeeded. result: ' + JSON.stringify(res));
      }).catch(err => {
          console.log('BUNDLE_ACTIVE QueryPackageGroup promise failed. because: ' + err.code);
      });
 
-     // Asynchronous callback mode with parameters
-     stats.queryAppUsagePriorityGroup(this.bundleName, (err, res) => {
+     // Asynchronous callback mode when bundleName is specified
+     stats.queryAppUsagePriorityGroup(bundleName, (err, res) => {
          if (err) {
              console.log('BUNDLE_ACTIVE QueryPackageGroup callback failed. because: ' + err.code);
          } else {
@@ -436,3 +437,4 @@ import stats from '@ohos.bundleState';
         }
     });
     ```
+

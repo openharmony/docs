@@ -10,6 +10,9 @@ Both **Vector** and **[ArrayList](js-apis-arraylist.md)** are implemented based 
 
 **Recommended use case**: Use **Vector** when the data volume is large.
 
+This topic uses the following to identify the use of generics:
+- T: Type
+
 ## Modules to Import
 
 ```ts
@@ -71,7 +74,7 @@ let result = vector.add("a");
 let result1 = vector.add(1);
 let b = [1, 2, 3];
 vector.add(b);
-let c = {name : "lala", age : "13"};
+let c = {name : "Dylon", age : "13"};
 let result3 = vector.add(c);
 ```
 
@@ -123,9 +126,9 @@ Checks whether this container has the specified element.
 
 ```ts
 let vector = new Vector();
-let result = vector.has("Ahfbrgrbgnutfodgorrogorgrogofdfdf");
-vector.add("Ahfbrgrbgnutfodgorrogorgrogofdfdf");
-let result1 = vector.has("Ahfbrgrbgnutfodgorrogorgrogofdfdf");
+let result = vector.has("squirrel");
+vector.add("squirrel");
+let result1 = vector.has("squirrel");
 ```
 
 ### getIndexOf
@@ -862,7 +865,6 @@ Obtains an iterator. Each item of the iterator is a JavaScript object.
 **System capability**: SystemCapability.Utils.Lang
 
 **Return value**
-
 | Type| Description|
 | -------- | -------- |
 | IterableIterator&lt;T&gt; | Iterator obtained.|

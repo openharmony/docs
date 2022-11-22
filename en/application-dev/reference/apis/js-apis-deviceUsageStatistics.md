@@ -41,7 +41,7 @@ Checks whether the application specified by **bundleName** is in the idle state.
 | Name       | Type                          | Mandatory  | Description                                      |
 | ---------- | ---------------------------- | ---- | ---------------------------------------- |
 | bundleName | string                       | Yes   | Bundle name of an application.                          |
-| callback   | AsyncCallback&lt;boolean&gt; | Yes   | Callback used to return the result. If the value of <b class="+ topic/ph hi-d/b " id="b597417553714">bundleName</b> is valid, <b class="+ topic/ph hi-d/b " id="b1897411555719">null</b> will be returned.|
+| callback   | AsyncCallback&lt;boolean&gt; | Yes   | Callback used to return the result. Returns the idle state of the application if the specified **bundleName** is valid; returns **null** otherwise.|
 
 **Example**
 
@@ -73,7 +73,7 @@ Checks whether the application specified by **bundleName** is in the idle state.
 
 | Type                    | Description                                      |
 | ---------------------- | ---------------------------------------- |
-| Promise&lt;boolean&gt; | Promise used to return the result. If the value of **bundleName** is valid, **null** will be returned.|
+| Promise&lt;boolean&gt; | Promise used to return the result. Returns the idle state of the application if the specified **bundleName** is valid; returns **null** otherwise.|
 
 **Example**
 
@@ -275,7 +275,7 @@ Queries the application usage duration statistics in the specified time frame at
 
 | Type                                      | Description                                      |
 | ---------------------------------------- | ---------------------------------------- |
-| Promise&lt;Array&lt;[BundleStateInfo](#bundlestateinfo)&gt;&gt; | Promise used to return the result.|
+| Promise&lt;Array&lt;[BundleStateInfo](#bundlestateinfo)&gt;&gt; | Promise used to return the result. |
 
 **Example**
 
@@ -309,7 +309,7 @@ Queries events of all applications based on the specified start time and end tim
 | -------- | ---------------------------------------- | ---- | --------------------------------------- |
 | begin    | number                                   | Yes   | Start time.                                  |
 | end      | number                                   | Yes   | End time.                                  |
-| callback | AsyncCallback&lt;Array&lt;[BundleActiveState](#bundleactivestate)&gt;&gt; | Yes   | Callback used to return the result.|
+| callback | AsyncCallback&lt;Array&lt;[BundleActiveState](#bundleactivestate)&gt;&gt; | Yes   | Callback used to return the result. |
 
 **Example**
 
@@ -350,7 +350,7 @@ Queries events of all applications based on the specified start time and end tim
 
 | Type                                      | Description                                    |
 | ---------------------------------------- | -------------------------------------- |
-| Promise&lt;Array&lt;[BundleActiveState](#bundleactivestate)&gt;&gt; | Promise used to return the result.|
+| Promise&lt;Array&lt;[BundleActiveState](#bundleactivestate)&gt;&gt; | Promise used to return the result. |
 
 **Example**
 
@@ -380,7 +380,7 @@ Queries events of this application based on the specified start time and end tim
 | -------- | ---------------------------------------- | ---- | --------------------------------------- |
 | begin    | number                                   | Yes   | Start time.                                  |
 | end      | number                                   | Yes   | End time.                                  |
-| callback | AsyncCallback&lt;Array&lt;[BundleActiveState](#bundleactivestate)&gt;&gt; | Yes   | Callback used to return the result.|
+| callback | AsyncCallback&lt;Array&lt;[BundleActiveState](#bundleactivestate)&gt;&gt; | Yes   | Callback used to return the result. |
 
 **Example**
 
@@ -417,7 +417,7 @@ Queries events of this application based on the specified start time and end tim
 
 | Type                                      | Description                                    |
 | ---------------------------------------- | -------------------------------------- |
-| Promise&lt;Array&lt;[BundleActiveState](#bundleactivestate)&gt;&gt; | Promise used to return the result.|
+| Promise&lt;Array&lt;[BundleActiveState](#bundleactivestate)&gt;&gt; | Promise used to return the result. |
 
 **Example**
 
@@ -455,7 +455,7 @@ Obtains the number of FA usage records specified by **maxNum**. This API uses a 
 
 | Type                                      | Description                                |
 | ---------------------------------------- | ---------------------------------- |
-| Promise&lt;Array&lt;[BundleActiveModuleInfo](#bundleactivemoduleinfo9)&gt;&gt; | Promise used to return the result.|
+| Promise&lt;Array&lt;[BundleActiveModuleInfo](#bundleactivemoduleinfo9)&gt;&gt; | Promise used to return the result. |
 
 **Example**
 
@@ -484,7 +484,41 @@ Obtains the number of FA usage records specified by **maxNum**. This API uses a 
 
 ## bundleState.getRecentlyUsedModules<sup>9+</sup>
 
-getRecentlyUsedModules(maxNum?: number, callback: AsyncCallback&lt;Array&lt;BundleActiveModuleInfo&gt;&gt;): void
+getRecentlyUsedModules(callback: AsyncCallback&lt;Array&lt;BundleActiveModuleInfo&gt;&gt;): void
+
+Obtains FA usage records. This API uses an asynchronous callback to return a maximum of 1000 FA usage records sorted by time in descending order.
+
+**Required permissions**: ohos.permission.BUNDLE_ACTIVE_INFO
+
+**System capability**: SystemCapability.ResourceSchedule.UsageStatistics.App
+
+**System API**: This is a system API and cannot be called by third-party applications.
+
+**Parameters**
+
+| Name     | Type                                      | Mandatory  | Description                                 |
+| -------- | ---------------------------------------- | ---- | ----------------------------------- |
+| callback | AsyncCallback&lt;Array&lt;[BundleActiveModuleInfo](#bundleactivemoduleinfo9)&gt;&gt; | Yes   | Callback used to return the result. |
+
+**Example**
+
+  ```js
+    bundleState.getRecentlyUsedModules((err, res) => {
+        if(err) {
+            console.log('BUNDLE_ACTIVE getRecentlyUsedModules callback failed, because: ' + err.code);
+        } else {
+            console.log('BUNDLE_ACTIVE getRecentlyUsedModules callback succeeded.');
+                for (let i = 0; i < res.length; i++) {
+                    console.log('BUNDLE_ACTIVE getRecentlyUsedModules callback number : ' + (i + 1));
+                    console.log('BUNDLE_ACTIVE getRecentlyUsedModules callback result ' + JSON.stringify(res[i]));
+                }
+            }
+    });
+  ```
+
+## bundleState.getRecentlyUsedModules<sup>9+</sup>
+
+getRecentlyUsedModules(maxNum: number, callback: AsyncCallback&lt;Array&lt;BundleActiveModuleInfo&gt;&gt;): void
 
 Obtains the number of FA usage records specified by **maxNum**. This API uses an asynchronous callback to return the records sorted by time (most recent first).
 
@@ -498,8 +532,8 @@ Obtains the number of FA usage records specified by **maxNum**. This API uses an
 
 | Name     | Type                                      | Mandatory  | Description                                 |
 | -------- | ---------------------------------------- | ---- | ----------------------------------- |
-| maxNum   | number                                   | No   | Maximum number of returned records. The maximum and default value is **1000**. If this parameter is not specified, **1000** is used. |
-| callback | AsyncCallback&lt;Array&lt;[BundleActiveModuleInfo](#bundleactivemoduleinfo9)&gt;&gt; | Yes   | Callback used to return the result.|
+| maxNum   | number                                   | Yes   | Maximum number of returned records. The maximum value is **1000**.|
+| callback | AsyncCallback&lt;Array&lt;[BundleActiveModuleInfo](#bundleactivemoduleinfo9)&gt;&gt; | Yes   | Callback used to return the result. |
 
 **Example**
 
@@ -514,19 +548,6 @@ Obtains the number of FA usage records specified by **maxNum**. This API uses an
                     console.log('BUNDLE_ACTIVE getRecentlyUsedModules callback result ' + JSON.stringify(res[i]));
                 }
         }
-    });
-
-    // Invocation when maxNum is not passed
-    bundleState.getRecentlyUsedModules((err, res) => {
-        if(err) {
-            console.log('BUNDLE_ACTIVE getRecentlyUsedModules callback failed, because: ' + err.code);
-        } else {
-            console.log('BUNDLE_ACTIVE getRecentlyUsedModules callback succeeded.');
-                for (let i = 0; i < res.length; i++) {
-                    console.log('BUNDLE_ACTIVE getRecentlyUsedModules callback number : ' + (i + 1));
-                    console.log('BUNDLE_ACTIVE getRecentlyUsedModules callback result ' + JSON.stringify(res[i]));
-                }
-            }
     });
   ```
 
@@ -557,14 +578,14 @@ Queries the priority group of the application specified by **bundleName**. If **
 **Example**
 
 ```javascript
-// Promise with bundleName
+// Promise mode when bundleName is specified
 let bundleName = "com.ohos.camera";
 bundleState.queryAppUsagePriorityGroup(bundleName).then( res => {
     console.log('BUNDLE_ACTIVE QueryPackageGroup promise succeeded. result: ' + JSON.stringify(res));
 }).catch( err => {
     console.log('BUNDLE_ACTIVE QueryPackageGroup promise failed. because: ' + err.code);
 });
-// Promise without bundleName
+// Promise mode when bundleName is not specified
 bundleState.queryAppUsagePriorityGroup().then( res => {
     console.log('BUNDLE_ACTIVE QueryPackageGroup promise succeeded. result: ' + JSON.stringify(res));
 }).catch( err => {
@@ -574,9 +595,9 @@ bundleState.queryAppUsagePriorityGroup().then( res => {
 
 ## bundleState.queryAppUsagePriorityGroup<sup>9+</sup>
 
-queryAppUsagePriorityGroup(bundleName? : string, callback: AsyncCallback&lt;number&gt;): void
+queryAppUsagePriorityGroup(callback: AsyncCallback&lt;number&gt;): void
 
-Queries the priority group of the application specified by **bundleName**. If **bundleName** is not specified, the priority group of the current application is queried. This API uses an asynchronous callback to return the result.
+Queries the priority group of this application. This API uses an asynchronous callback to return the result.
 
 **Required permissions**: ohos.permission.BUNDLE_ACTIVE_INFO
 
@@ -588,23 +609,44 @@ Queries the priority group of the application specified by **bundleName**. If **
 
 | Name       | Type                   | Mandatory  | Description                                      |
 | ---------- | --------------------- | ---- | ---------------------------------------- |
-| bundleName | string                | No   | Bundle name of the target application. If this parameter is not specified, the priority group of the current application is queried.|
-| callback   | AsyncCallback&lt;number&gt; | Yes   | Callback used to return the result.              |
+| callback   | AsyncCallback&lt;number&gt; | Yes   | Callback used to return the result.               |
 
 **Example**
 
 ```javascript
-// Callback with bundleName
-let bundleName = "com.ohos.camera";
-bundleState.queryAppUsagePriorityGroup(bundleName, (err, res) => {
+bundleState.queryAppUsagePriorityGroup((err, res) => {
     if(err) {
         console.log('BUNDLE_ACTIVE QueryPackageGroup callback failed. because: ' + err.code);
     } else {
         console.log('BUNDLE_ACTIVE QueryPackageGroup callback succeeded. result: ' + JSON.stringify(res));
     }
 });
-// Callback without bundleName
-bundleState.queryAppUsagePriorityGroup((err, res) => {
+```
+
+## bundleState.queryAppUsagePriorityGroup<sup>9+</sup>
+
+queryAppUsagePriorityGroup(bundleName : string, callback: AsyncCallback&lt;number&gt;): void
+
+Queries the priority group of the application specified by **bundleName**. This API uses an asynchronous callback to return the result.
+
+**Required permissions**: ohos.permission.BUNDLE_ACTIVE_INFO
+
+**System capability**: SystemCapability.ResourceSchedule.UsageStatistics.AppGroup
+
+**System API**: This is a system API and cannot be called by third-party applications.
+
+**Parameters**
+
+| Name       | Type                   | Mandatory  | Description                                      |
+| ---------- | --------------------- | ---- | ---------------------------------------- |
+| bundleName | string                | Yes   | Bundle name of the target application.|
+| callback   | AsyncCallback&lt;number&gt; | Yes   | Callback used to return the result. |
+
+**Example**
+
+```javascript
+let bundleName = "com.ohos.camera";
+bundleState.queryAppUsagePriorityGroup(bundleName, (err, res) => {
     if(err) {
         console.log('BUNDLE_ACTIVE QueryPackageGroup callback failed. because: ' + err.code);
     } else {
@@ -636,7 +678,7 @@ Sets the group for the application specified by **bundleName**. This API uses a 
 
 | Type           | Description                       |
 | ------------- | ------------------------- |
-| Promise&lt;void&gt; | Promise used to return the result.|
+| Promise&lt;void&gt; | Promise used to return the result. |
 
 **Example**
 
@@ -669,7 +711,7 @@ Sets the group for the application specified by **bundleName**. This API uses an
 | ---------- | ------------------- | ---- | ------------------------- |
 | bundleName | string              | Yes   | Bundle name of an application.                     |
 | newGroup   | [GroupType](#grouptype)           | Yes   | Application group.                     |
-| callback   | AsyncCallback&lt;void&gt; | Yes   | Callback used to return the result.|
+| callback   | AsyncCallback&lt;void&gt; | Yes   | Callback used to return the result. |
 
 **Example**
 
@@ -688,7 +730,7 @@ bundleState.setBundleGroup(bundleName, newGroup, (err) => {
 
 ## bundleState.registerGroupCallBack<sup>9+</sup>
 
-registerGroupCallBack(callback: Callback&lt;BundleActiveGroupCallbackInfo&gt;): Promise&lt;void&gt;
+registerGroupCallBack(groupCallback: Callback&lt;BundleActiveGroupCallbackInfo&gt;): Promise&lt;void&gt;
 
 Registers a callback for application group changes. When an application group of the user changes, a **[BundleActiveGroupCallbackInfo](#bundleactivegroupcallbackinfo9)** instance is returned to all applications that have registered the callback. This API uses a promise to return the result.
 
@@ -708,7 +750,7 @@ Registers a callback for application group changes. When an application group of
 
 | Type           | Description                     |
 | ------------- | ----------------------- |
-| Promise&lt;void&gt; | Promise used to return the result.|
+| Promise&lt;void&gt; | Promise used to return the result. |
 
 **Example**
 
@@ -730,7 +772,7 @@ bundleState.registerGroupCallBack(onBundleGroupChanged).then( () => {
 
 ## bundleState.registerGroupCallBack<sup>9+</sup>
 
-registerGroupCallBack(callback: Callback&lt;BundleActiveGroupCallbackInfo&gt;, callback: AsyncCallback&lt;void&gt;): void
+registerGroupCallBack(groupCallback: Callback&lt;BundleActiveGroupCallbackInfo&gt;, callback: AsyncCallback&lt;void&gt;): void
 
 Registers a callback for application group changes. When an application group of the user changes, a **[BundleActiveGroupCallbackInfo](#bundleactivegroupcallbackinfo9)** instance is returned to all applications that have registered the callback. This API uses an asynchronous callback to return the result.
 
@@ -785,7 +827,7 @@ Deregisters the callback for application group changes. This API uses a promise 
 
 | Type           | Description                      |
 | ------------- | ------------------------ |
-| Promise&lt;void&gt; | Promise used to return the result.|
+| Promise&lt;void&gt; | Promise used to return the result. |
 
 **Example**
 
@@ -850,7 +892,7 @@ Queries statistics about system events (hibernation, wakeup, unlocking, and scre
 
 | Type                                      | Description                                      |
 | ---------------------------------------- | ---------------------------------------- |
-| Promise&lt;Array&lt;[BundleActiveEventState](#bundleactiveeventstate9)&gt;&gt; | Promise used to return the result.|
+| Promise&lt;Array&lt;[BundleActiveEventState](#bundleactiveeventstate9)&gt;&gt; | Promise used to return the result. |
 
 **Example**
 
@@ -881,7 +923,7 @@ Queries statistics about system events (hibernation, wakeup, unlocking, and scre
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
 | begin    | number                                   | Yes   | Start time.                                   |
 | end      | number                                   | Yes   | End time.                                   |
-| callback | AsyncCallback&lt;Array&lt;[BundleActiveEventState](#bundleactiveeventstate9)&gt;&gt; | Yes   | Callback used to return the result.|
+| callback | AsyncCallback&lt;Array&lt;[BundleActiveEventState](#bundleactiveeventstate9)&gt;&gt; | Yes   | Callback used to return the result. |
 
 **Example**
 
@@ -919,7 +961,7 @@ Queries the number of notifications from all applications based on the specified
 
 | Type                                      | Description                                      |
 | ---------------------------------------- | ---------------------------------------- |
-| Promise&lt;Array&lt;[BundleActiveEventState](#bundleactiveeventstate9)&gt;&gt; | Promise used to return the result.|
+| Promise&lt;Array&lt;[BundleActiveEventState](#bundleactiveeventstate9)&gt;&gt; | Promise used to return the result. |
 
 **Example**
 
@@ -950,7 +992,7 @@ Queries the number of notifications from all applications based on the specified
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
 | begin    | number                                   | Yes   | Start time.                                   |
 | end      | number                                   | Yes   | End time.                                   |
-| callback | AsyncCallback&lt;Array&lt;[BundleActiveEventState](#bundleactiveeventstate9)&gt;&gt; | Yes   | Callback used to return the result.|
+| callback | AsyncCallback&lt;Array&lt;[BundleActiveEventState](#bundleactiveeventstate9)&gt;&gt; | Yes   | Callback used to return the result. |
 
 **Example**
 
@@ -969,6 +1011,8 @@ Queries the number of notifications from all applications based on the specified
 Provides the information about the FA usage.
 
 **System capability**: SystemCapability.ResourceSchedule.UsageStatistics.App
+
+**System API**: This is a system API and cannot be called by third-party applications.
 
 | Name                 | Type                                      | Mandatory  | Description                           |
 | -------------------- | ---------------------------------------- | ---- | ----------------------------- |
@@ -991,6 +1035,8 @@ Provides the FA widget usage information.
 
 **System capability**: SystemCapability.ResourceSchedule.UsageStatistics.App
 
+**System API**: This is a system API and cannot be called by third-party applications.
+
 | Name             | Type    | Mandatory  | Description         |
 | ---------------- | ------ | ---- | ----------- |
 | formName         | string | Yes   | Widget name.      |
@@ -1004,6 +1050,8 @@ Provides the FA widget usage information.
 Provides the application group changes returned through a callback.
 
 **System capability**: SystemCapability.ResourceSchedule.UsageStatistics.AppGroup
+
+**System API**: This is a system API and cannot be called by third-party applications.
 
 | Name          | Type  | Mandatory| Description            |
 | ---------------- | ------ | ---- | ---------------- |
@@ -1033,20 +1081,6 @@ Provides the usage duration information of applications.
 | fgAbilityPrevAccessTime  | number | No   | Last time when the application accessed the foreground.<br>This API is defined but not implemented in OpenHarmony 3.1 Release. It will be available for use in OpenHarmony 3.1 MR.|
 | infosBeginTime           | number | No   | Time logged in the first application usage record in the **BundleActiveInfo** object.<br>This API is defined but not implemented in OpenHarmony 3.1 Release. It will be available for use in OpenHarmony 3.1 MR.|
 | infosEndTime             | number | No   | Time logged in the last application usage record in the **BundleActiveInfo** object.<br>This API is defined but not implemented in OpenHarmony 3.1 Release. It will be available for use in OpenHarmony 3.1 MR.|
-
-### merge
-
-merge(toMerge: BundleStateInfo): void
-
-Merges the application usage information that has the same bundle name.
-
-**System capability**: SystemCapability.ResourceSchedule.UsageStatistics.App
-
-**Parameters**
-
-| Name    | Type                                 | Mandatory  | Description            |
-| ------- | ----------------------------------- | ---- | -------------- |
-| toMerge | [BundleStateInfo](#bundlestateinfo) | Yes   | Application usage information to merge.|
 
 ## BundleActiveState
 
@@ -1106,6 +1140,8 @@ Enumerates the interval types for querying the application usage duration.
 Enumerates the application group types.
 
 **System capability**: SystemCapability.ResourceSchedule.UsageStatistics.AppGroup
+
+**System API**: This is a system API and cannot be called by third-party applications.
 
 | Name                | Default Value | Description               |
 | ------------------ | ---- | ----------------- |

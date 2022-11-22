@@ -21,12 +21,13 @@ Obtains a **DistributedAccountAbility** instance.
 
 **System capability**: SystemCapability.Account.OsAccount
 
-- Return value
+**Return value**
+
   | Type| Description|
   | -------- | -------- |
   | [DistributedAccountAbility](#distributedaccountability) | **DistributedAccountAbility** instance obtained. This instance provides methods for querying and updating the login state of a distributed account.|
 
-- Example
+**Example**
   ```js
   const accountAbility = account_distributedAccount.getDistributedAccountAbility();
   ```
@@ -45,12 +46,13 @@ Obtains distributed account information. This API uses an asynchronous callback 
 
 **Required permissions**: ohos.permission.MANAGE_LOCAL_ACCOUNTS or ohos.permission.DISTRIBUTED_DATASYNC
 
-- Parameters
+**Parameters**
+
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | callback | AsyncCallback&lt;[DistributedInfo](#distributedinfo)&gt; | Yes| Callback invoked to return the distributed account information obtained.|
 
-- Example
+**Example**
   ```js
   const accountAbility = account_distributedAccount.getDistributedAccountAbility();
   accountAbility.queryOsAccountDistributedInfo((err, data) => { 
@@ -70,12 +72,13 @@ Obtains distributed account information. This API uses a promise to return the r
 
 **Required permissions**: ohos.permission.MANAGE_LOCAL_ACCOUNTS or ohos.permission.DISTRIBUTED_DATASYNC
 
-- Return value
+**Return value**
+
   | Type| Description|
   | -------- | -------- |
   | Promise&lt;[DistributedInfo](#distributedinfo)&gt; | Promise used to return the distributed account information obtained.|
 
-- Example
+**Example**
   ```js
   const accountAbility = account_distributedAccount.getDistributedAccountAbility();
   accountAbility.queryOsAccountDistributedInfo().then((data) => { 
@@ -96,13 +99,14 @@ Updates distributed account information. This API uses an asynchronous callback 
 
 **Required permissions**: ohos.permission.MANAGE_LOCAL_ACCOUNTS
 
-- Parameters
+**Parameters**
+
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | accountInfo | [DistributedInfo](#distributedinfo) | Yes| Distributed account information.|
   | callback | AsyncCallback&lt;void&gt; | Yes| Callback invoked when the distributed account information is updated.|
 
-- Example
+**Example**
   ```js
   const accountAbility = account_distributedAccount.getDistributedAccountAbility();
   let accountInfo = {id: '12345', name: 'ZhangSan', event: 'Ohos.account.event.LOGIN'};
@@ -121,17 +125,19 @@ Updates distributed account information. This API uses a promise to return the r
 
 **Required permissions**: ohos.permission.MANAGE_LOCAL_ACCOUNTS
 
-- Parameters
+**Parameters**
+
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | accountInfo | [DistributedInfo](#distributedinfo) | Yes| Distributed account information.|
 
-- Return value
+**Return value**
+
   | Type| Description|
   | -------- | -------- |
   | Promise&lt;void&gt; | Promise used to return the result.|
 
-- Example
+**Example**
   ```js
   const accountAbility = account_distributedAccount.getDistributedAccountAbility();
   let accountInfo = {id: '12345', name: 'ZhangSan', event: 'Ohos.account.event.LOGIN'};

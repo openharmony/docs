@@ -16,7 +16,7 @@ import rpc from '@ohos.rpc';
 
 ## MessageParcel
 
-Provides methods for reading and writing basic data types and arrays, inter-process communication (IPC) objects, interface tokens, and sequenceable objects.
+Provides APIs for reading and writing data in specific format. During RPC, the sender can use the **write()** method provided **MessageParcel** to write data to a **MessageParcel** object in specific format. The receiver can use the **read()** method provided by **MessageParcel** to read data in specific format from a **MessageParcel** object. The data formats include basic data types and arrays, IPC objects, interface tokens, and custom sequenceable objects.
 
 
 ### create
@@ -28,7 +28,8 @@ Creates a **MessageParcel** object. This method is a static method.
 **System capability**: SystemCapability.Communication.IPC.Core
 
 **Return value**
-    | Type| Description|
+
+  | Type| Description|
   | -------- | -------- |
   | MessageParcel | **MessageParcel** object created.|
 
@@ -65,12 +66,14 @@ writeRemoteObject(object: [IRemoteObject](#iremoteobject)): boolean
 **System capability**: SystemCapability.Communication.IPC.Core
 
 **Parameters**
-    | Name| Type| Mandatory| Description|
+
+  | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | object | [IRemoteObject](#iremoteobject) | Yes| Remote object to serialize and write to the **MessageParcel** object.|
 
 **Return value**
-    | Type| Description|
+
+  | Type| Description|
   | -------- | -------- |
   | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
 
@@ -111,7 +114,8 @@ Reads the remote object from this **MessageParcel** object. You can use this met
 **System capability**: SystemCapability.Communication.IPC.Core
 
 **Return value**
-    | Type| Description|
+
+  | Type| Description|
   | -------- | -------- |
   | [IRemoteObject](#iremoteobject) | Remote object obtained.|
 
@@ -148,17 +152,19 @@ Reads the remote object from this **MessageParcel** object. You can use this met
 
 writeInterfaceToken(token: string): boolean
 
-Writes an interface token to this **MessageParcel** object.
+Writes an interface token to this **MessageParcel** object. The remote object can use this interface token to verify the communication.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
 **Parameters**
-    | Name| Type| Mandatory| Description|
+
+  | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | token | string | Yes| Interface token to write.|
 
 **Return value**
-    | Type| Description|
+
+  | Type| Description|
   | -------- | -------- |
   | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
 
@@ -175,12 +181,13 @@ Writes an interface token to this **MessageParcel** object.
 
 readInterfaceToken(): string
 
-Reads the interface token from this **MessageParcel** object. The interface tokens are read in the order in which they are written into the **MessageParcel** object.
+Reads the interface token from this **MessageParcel** object. The interface token is read in the sequence in which it is written to the **MessageParcel** object. The local object can use it to verify the communication.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
 **Return value**
-    | Type| Description|
+
+  | Type| Description|
   | -------- | -------- |
   | string | Interface token obtained.|
 
@@ -206,7 +213,8 @@ Obtains the data size of this **MessageParcel** object.
 **System capability**: SystemCapability.Communication.IPC.Core
 
 **Return value**
-    | Type| Description|
+
+  | Type| Description|
   | -------- | -------- |
   | number | Size of the **MessageParcel** object obtained, in bytes.|
 
@@ -228,7 +236,8 @@ Obtains the capacity of this **MessageParcel** object.
 **System capability**: SystemCapability.Communication.IPC.Core
 
 **Return value**
-    | Type| Description|
+
+  | Type| Description|
   | -------- | -------- |
   | number | **MessageParcel** capacity obtained, in bytes.|
 
@@ -250,12 +259,14 @@ Sets the size of data contained in this **MessageParcel** object.
 **System capability**: SystemCapability.Communication.IPC.Core
 
 **Parameters**
-    | Name| Type| Mandatory| Description|
+
+  | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | size | number | Yes| Data size to set, in bytes.|
 
 **Return value**
-    | Type| Description|
+
+  | Type| Description|
   | -------- | -------- |
   | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
 
@@ -277,12 +288,14 @@ Sets the storage capacity of this **MessageParcel** object.
 **System capability**: SystemCapability.Communication.IPC.Core
 
 **Parameters**
-    | Name| Type| Mandatory| Description|
+
+  | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | size | number | Yes| Storage capacity to set, in bytes.|
 
 **Return value**
-    | Type| Description|
+
+  | Type| Description|
   | -------- | -------- |
   | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
 
@@ -304,7 +317,8 @@ Obtains the writable capacity of this **MessageParcel** object.
 **System capability**: SystemCapability.Communication.IPC.Core
 
 **Return value**
-    | Type| Description|
+
+  | Type| Description|
   | -------- | -------- |
   | number | **MessageParcel** writable capacity obtained, in bytes.|
 
@@ -330,7 +344,8 @@ Obtains the readable capacity of this **MessageParcel** object.
 **System capability**: SystemCapability.Communication.IPC.Core
 
 **Return value**
-    | Type| Description|
+
+  | Type| Description|
   | -------- | -------- |
   | number | **MessageParcel** object readable capacity, in bytes.|
 
@@ -356,7 +371,8 @@ Obtains the read position of this **MessageParcel** object.
 **System capability**: SystemCapability.Communication.IPC.Core
 
 **Return value**
-    | Type| Description|
+
+  | Type| Description|
   | -------- | -------- |
   | number | Current read position of the **MessageParcel** object.|
 
@@ -378,7 +394,8 @@ Obtains the write position of this **MessageParcel** object.
 **System capability**: SystemCapability.Communication.IPC.Core
 
 **Return value**
-    | Type| Description|
+
+  | Type| Description|
   | -------- | -------- |
   | number | Current write position of the **MessageParcel** object.|
 
@@ -401,12 +418,14 @@ Moves the read pointer to the specified position.
 **System capability**: SystemCapability.Communication.IPC.Core
 
 **Parameters**
-    | Name| Type| Mandatory| Description|
+
+  | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | pos | number | Yes| Position from which data is to read.|
 
 **Return value**
-    | Type| Description|
+
+  | Type| Description|
   | -------- | -------- |
   | boolean | Returns **true** if the read position changes; returns **false** otherwise.|
 
@@ -433,12 +452,14 @@ Moves the write pointer to the specified position.
 **System capability**: SystemCapability.Communication.IPC.Core
 
 **Parameters**
-    | Name| Type| Mandatory| Description|
+
+  | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | pos | number | Yes| Position from which data is to write.|
 
 **Return value**
-    | Type| Description|
+
+  | Type| Description|
   | -------- | -------- |
   | boolean | Returns **true** if the write position changes; returns **false** otherwise.|
 
@@ -463,12 +484,14 @@ Writes a Byte value to this **MessageParcel** object.
 **System capability**: SystemCapability.Communication.IPC.Core
 
 **Parameters**
-    | Name| Type| Mandatory| Description|
+
+  | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | val | number | Yes| Byte value to write.|
 
 **Return value**
-    | Type| Description|
+
+  | Type| Description|
   | -------- | -------- |
   | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
 
@@ -490,7 +513,8 @@ Reads the Byte value from this **MessageParcel** object.
 **System capability**: SystemCapability.Communication.IPC.Core
 
 **Return value**
-    | Type| Description|
+
+  | Type| Description|
   | -------- | -------- |
   | number | Byte value read.|
 
@@ -514,12 +538,14 @@ Writes a Short int value to this **MessageParcel** object.
 **System capability**: SystemCapability.Communication.IPC.Core
 
 **Parameters**
-    | Name| Type| Mandatory| Description|
+
+  | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | val | number | Yes| Short int value to write.|
 
 **Return value**
-    | Type| Description|
+
+  | Type| Description|
   | -------- | -------- |
   | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
 
@@ -541,7 +567,8 @@ Reads the Short int value from this **MessageParcel** object.
 **System capability**: SystemCapability.Communication.IPC.Core
 
 **Return value**
-    | Type| Description|
+
+  | Type| Description|
   | -------- | -------- |
   | number | Short int value read.|
 
@@ -565,12 +592,14 @@ Writes an Int value to this **MessageParcel** object.
 **System capability**: SystemCapability.Communication.IPC.Core
 
 **Parameters**
-    | Name| Type| Mandatory| Description|
+
+  | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | val | number | Yes| Int value to write.|
 
 **Return value**
-    | Type| Description|
+
+  | Type| Description|
   | -------- | -------- |
   | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
 
@@ -592,7 +621,8 @@ Reads the Int value from this **MessageParcel** object.
 **System capability**: SystemCapability.Communication.IPC.Core
 
 **Return value**
-    | Type| Description|
+
+  | Type| Description|
   | -------- | -------- |
   | number | Int value read.|
 
@@ -616,12 +646,14 @@ Writes a Long int value to this **MessageParcel** object.
 **System capability**: SystemCapability.Communication.IPC.Core
 
 **Parameters**
-    | Name| Type| Mandatory| Description|
+
+  | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | val | number | Yes| Long int value to write.|
 
 **Return value**
-    | Type| Description|
+
+  | Type| Description|
   | -------- | -------- |
   | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
 
@@ -643,7 +675,8 @@ Reads the Long int value from this **MessageParcel** object.
 **System capability**: SystemCapability.Communication.IPC.Core
 
 **Return value**
-    | Type| Description|
+
+  | Type| Description|
   | -------- | -------- |
   | number | Long int value read.|
 
@@ -667,12 +700,14 @@ Writes a Float value to this **MessageParcel** object.
 **System capability**: SystemCapability.Communication.IPC.Core
 
 **Parameters**
-    | Name| Type| Mandatory| Description|
+
+  | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | val | number | Yes| Float value to write.|
 
 **Return value**
-    | Type| Description|
+
+  | Type| Description|
   | -------- | -------- |
   | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
 
@@ -694,7 +729,8 @@ Reads the Float value from this **MessageParcel** object.
 **System capability**: SystemCapability.Communication.IPC.Core
 
 **Return value**
-    | Type| Description|
+
+  | Type| Description|
   | -------- | -------- |
   | number | Float value read.|
 
@@ -718,12 +754,14 @@ Writes a Double value to this **MessageParcel** object.
 **System capability**: SystemCapability.Communication.IPC.Core
 
 **Parameters**
-    | Name| Type| Mandatory| Description|
+
+  | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | val | number | Yes| Double value to write.|
 
 **Return value**
-    | Type| Description|
+
+  | Type| Description|
   | -------- | -------- |
   | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
 
@@ -745,7 +783,8 @@ Reads the Double value from this **MessageParcel** object.
 **System capability**: SystemCapability.Communication.IPC.Core
 
 **Return value**
-    | Type| Description|
+
+  | Type| Description|
   | -------- | -------- |
   | number | Double value read.|
 
@@ -769,12 +808,14 @@ Writes a Boolean value to this **MessageParcel** object.
 **System capability**: SystemCapability.Communication.IPC.Core
 
 **Parameters**
-    | Name| Type| Mandatory| Description|
+
+  | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | val | boolean | Yes| Boolean value to write.|
 
 **Return value**
-    | Type| Description|
+
+  | Type| Description|
   | -------- | -------- |
   | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
 
@@ -796,7 +837,8 @@ Reads the Boolean value from this **MessageParcel** object.
 **System capability**: SystemCapability.Communication.IPC.Core
 
 **Return value**
-    | Type| Description|
+
+  | Type| Description|
   | -------- | -------- |
   | boolean | Boolean value read.|
 
@@ -820,12 +862,14 @@ Writes a Char value to this **MessageParcel** object.
 **System capability**: SystemCapability.Communication.IPC.Core
 
 **Parameters**
-    | Name| Type| Mandatory| Description|
+
+  | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | val | number | Yes| Char value to write.|
 
 **Return value**
-    | Type| Description|
+
+  | Type| Description|
   | -------- | -------- |
   | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
 
@@ -847,7 +891,8 @@ Reads the Char value from this **MessageParcel** object.
 **System capability**: SystemCapability.Communication.IPC.Core
 
 **Return value**
-    | Type| Description|
+
+  | Type| Description|
   | -------- | -------- |
   | number | Char value read.|
 
@@ -871,12 +916,14 @@ Writes a string to this **MessageParcel** object.
 **System capability**: SystemCapability.Communication.IPC.Core
 
 **Parameters**
-    | Name| Type| Mandatory| Description|
+
+  | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | val | string | Yes| String to write. The length of the string must be less than 40960 bytes.|
 
 **Return value**
-    | Type| Description|
+
+  | Type| Description|
   | -------- | -------- |
   | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
 
@@ -898,7 +945,8 @@ Reads a string from this **MessageParcel** object.
 **System capability**: SystemCapability.Communication.IPC.Core
 
 **Return value**
-    | Type| Description|
+
+  | Type| Description|
   | -------- | -------- |
   | string | String read.|
 
@@ -922,12 +970,14 @@ Writes a sequenceable object to this **MessageParcel** object.
 **System capability**: SystemCapability.Communication.IPC.Core
 
 **Parameters**
-    | Name| Type| Mandatory| Description|
+
+  | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | val | [Sequenceable](#sequenceable) | Yes| Sequenceable object to write.|
 
 **Return value**
-    | Type| Description|
+
+  | Type| Description|
   | -------- | -------- |
   | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
 
@@ -968,12 +1018,14 @@ Reads member variables from this **MessageParcel** object.
 **System capability**: SystemCapability.Communication.IPC.Core
 
 **Parameters**
-    | Name| Type| Mandatory| Description|
+
+  | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | dataIn | [Sequenceable](#sequenceable) | Yes| Object that reads member variables from the **MessageParcel** object.|
 
 **Return value**
-    | Type| Description|
+
+  | Type| Description|
   | -------- | -------- |
   | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
 
@@ -1017,12 +1069,14 @@ Writes a byte array to this **MessageParcel** object.
 **System capability**: SystemCapability.Communication.IPC.Core
 
 **Parameters**
-    | Name| Type| Mandatory| Description|
+
+  | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | byteArray | number[] | Yes| Byte array to write.|
 
 **Return value**
-    | Type| Description|
+
+  | Type| Description|
   | -------- | -------- |
   | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
 
@@ -1045,7 +1099,8 @@ Reads a byte array from this **MessageParcel** object.
 **System capability**: SystemCapability.Communication.IPC.Core
 
 **Parameters**
-    | Name| Type| Mandatory| Description|
+
+  | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | dataIn | number[] | Yes| Byte array to read.|
 
@@ -1070,7 +1125,8 @@ Reads the byte array from this **MessageParcel** object.
 **System capability**: SystemCapability.Communication.IPC.Core
 
 **Return value**
-    | Type| Description|
+
+  | Type| Description|
   | -------- | -------- |
   | number[] | Byte array read.|
 
@@ -1095,12 +1151,14 @@ Writes a short array to this **MessageParcel** object.
 **System capability**: SystemCapability.Communication.IPC.Core
 
 **Parameters**
-    | Name| Type| Mandatory| Description|
+
+  | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | shortArray | number[] | Yes| Short array to write.|
 
 **Return value**
-    | Type| Description|
+
+  | Type| Description|
   | -------- | -------- |
   | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
 
@@ -1122,7 +1180,8 @@ Reads a short array from this **MessageParcel** object.
 **System capability**: SystemCapability.Communication.IPC.Core
 
 **Parameters**
-    | Name| Type| Mandatory| Description|
+
+  | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | dataIn | number[] | Yes| Short array to read.|
 
@@ -1146,7 +1205,8 @@ Reads the short array from this **MessageParcel** object.
 **System capability**: SystemCapability.Communication.IPC.Core
 
 **Return value**
-    | Type| Description|
+
+  | Type| Description|
   | -------- | -------- |
   | number[] | Short array read.|
 
@@ -1170,12 +1230,14 @@ Writes an integer array to this **MessageParcel** object.
 **System capability**: SystemCapability.Communication.IPC.Core
 
 **Parameters**
-    | Name| Type| Mandatory| Description|
+
+  | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | intArray | number[] | Yes| Integer array to write.|
 
 **Return value**
-    | Type| Description|
+
+  | Type| Description|
   | -------- | -------- |
   | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
 
@@ -1197,7 +1259,8 @@ Reads an integer array from this **MessageParcel** object.
 **System capability**: SystemCapability.Communication.IPC.Core
 
 **Parameters**
-    | Name| Type| Mandatory| Description|
+
+  | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | dataIn | number[] | Yes| Integer array to read.|
 
@@ -1221,7 +1284,8 @@ Reads the integer array from this **MessageParcel** object.
 **System capability**: SystemCapability.Communication.IPC.Core
 
 **Return value**
-    | Type| Description|
+
+  | Type| Description|
   | -------- | -------- |
   | number[] | Integer array read.|
 
@@ -1245,12 +1309,14 @@ Writes a long array to this **MessageParcel** object.
 **System capability**: SystemCapability.Communication.IPC.Core
 
 **Parameters**
-    | Name| Type| Mandatory| Description|
+
+  | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | longArray | number[] | Yes| Long array to write.|
 
 **Return value**
-    | Type| Description|
+
+  | Type| Description|
   | -------- | -------- |
   | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
 
@@ -1272,7 +1338,8 @@ Reads a long array from this **MessageParcel** object.
 **System capability**: SystemCapability.Communication.IPC.Core
 
 **Parameters**
-    | Name| Type| Mandatory| Description|
+
+  | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | dataIn | number[] | Yes| Long array to read.|
 
@@ -1296,7 +1363,8 @@ Reads the long array from this **MessageParcel** object.
 **System capability**: SystemCapability.Communication.IPC.Core
 
 **Return value**
-    | Type| Description|
+
+  | Type| Description|
   | -------- | -------- |
   | number[] | Long array read.|
 
@@ -1320,12 +1388,14 @@ Writes a FloatArray to this **MessageParcel** object.
 **System capability**: SystemCapability.Communication.IPC.Core
 
 **Parameters**
-    | Name| Type| Mandatory| Description|
+
+  | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | floatArray | number[] | Yes| FloatArray to write. The system processes Float data as that of the Double type. Therefore, the total number of bytes occupied by a FloatArray must be calculated as the Double type.|
 
 **Return value**
-    | Type| Description|
+
+  | Type| Description|
   | -------- | -------- |
   | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
 
@@ -1347,7 +1417,8 @@ Reads a FloatArray from this **MessageParcel** object.
 **System capability**: SystemCapability.Communication.IPC.Core
 
 **Parameters**
-    | Name| Type| Mandatory| Description|
+
+  | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | dataIn | number[] | Yes| FloatArray to read. The system processes Float data as that of the Double type. Therefore, the total number of bytes occupied by a FloatArray must be calculated as the Double type.|
 
@@ -1372,7 +1443,8 @@ Reads the FloatArray from this **MessageParcel** object.
 **System capability**: SystemCapability.Communication.IPC.Core
 
 **Return value**
-    | Type| Description|
+
+  | Type| Description|
   | -------- | -------- |
   | number[] | FloatArray read.|
 
@@ -1396,12 +1468,14 @@ Writes a DoubleArray to this **MessageParcel** object.
 **System capability**: SystemCapability.Communication.IPC.Core
 
 **Parameters**
-    | Name| Type| Mandatory| Description|
+
+  | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | doubleArray | number[] | Yes| DoubleArray to write.|
 
 **Return value**
-    | Type| Description|
+
+  | Type| Description|
   | -------- | -------- |
   | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
 
@@ -1423,7 +1497,8 @@ Reads a DoubleArray from this **MessageParcel** object.
 **System capability**: SystemCapability.Communication.IPC.Core
 
 **Parameters**
-    | Name| Type| Mandatory| Description|
+
+  | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | dataIn | number[] | Yes| DoubleArray to read.|
 
@@ -1447,7 +1522,8 @@ Reads the DoubleArray from this **MessageParcel** object.
 **System capability**: SystemCapability.Communication.IPC.Core
 
 **Return value**
-    | Type| Description|
+
+  | Type| Description|
   | -------- | -------- |
   | number[] | DoubleArray read.|
 
@@ -1471,12 +1547,14 @@ Writes a Boolean array to this **MessageParcel** object.
 **System capability**: SystemCapability.Communication.IPC.Core
 
 **Parameters**
-    | Name| Type| Mandatory| Description|
+
+  | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | booleanArray | boolean[] | Yes| Boolean array to write.|
 
 **Return value**
-    | Type| Description|
+
+  | Type| Description|
   | -------- | -------- |
   | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
 
@@ -1498,7 +1576,8 @@ Reads a Boolean array from this **MessageParcel** object.
 **System capability**: SystemCapability.Communication.IPC.Core
 
 **Parameters**
-    | Name| Type| Mandatory| Description|
+
+  | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | dataIn | boolean[] | Yes| Boolean array to read.|
 
@@ -1522,7 +1601,8 @@ Reads the Boolean array from this **MessageParcel** object.
 **System capability**: SystemCapability.Communication.IPC.Core
 
 **Return value**
-    | Type| Description|
+
+  | Type| Description|
   | -------- | -------- |
   | boolean[] | Boolean array read.|
 
@@ -1545,12 +1625,14 @@ Writes a character array to this **MessageParcel** object.
 **System capability**: SystemCapability.Communication.IPC.Core
 
 **Parameters**
-    | Name| Type| Mandatory| Description|
+
+  | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | charArray | number[] | Yes| Character array to write.|
 
 **Return value**
-    | Type| Description|
+
+  | Type| Description|
   | -------- | -------- |
   | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
 
@@ -1572,7 +1654,8 @@ Reads a character array from this **MessageParcel** object.
 **System capability**: SystemCapability.Communication.IPC.Core
 
 **Parameters**
-    | Name| Type| Mandatory| Description|
+
+  | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | dataIn | number[] | Yes| Character array to read.|
 
@@ -1596,7 +1679,8 @@ Reads the character array from this **MessageParcel** object.
 **System capability**: SystemCapability.Communication.IPC.Core
 
 **Return value**
-    | Type| Description|
+
+  | Type| Description|
   | -------- | -------- |
   | number[] | Character array read.|
 
@@ -1620,12 +1704,14 @@ Writes a string array to this **MessageParcel** object.
 **System capability**: SystemCapability.Communication.IPC.Core
 
 **Parameters**
-    | Name| Type| Mandatory| Description|
+
+  | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | stringArray | string[] | Yes| String array to write. The length of a single element in the array must be less than 40960 bytes.|
 
 **Return value**
-    | Type| Description|
+
+  | Type| Description|
   | -------- | -------- |
   | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
 
@@ -1647,7 +1733,8 @@ Reads a string array from this **MessageParcel** object.
 **System capability**: SystemCapability.Communication.IPC.Core
 
 **Parameters**
-    | Name| Type| Mandatory| Description|
+
+  | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | dataIn | string[] | Yes| String array to read.|
 
@@ -1671,7 +1758,8 @@ Reads the string array from this **MessageParcel** object.
 **System capability**: SystemCapability.Communication.IPC.Core
 
 **Return value**
-    | Type| Description|
+
+  | Type| Description|
   | -------- | -------- |
   | string[] | String array read.|
 
@@ -1793,12 +1881,14 @@ Writes a sequenceable array to this **MessageParcel** object.
 **System capability**: SystemCapability.Communication.IPC.Core
 
 **Parameters**
-    | Name| Type| Mandatory| Description|
+
+  | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | sequenceableArray | Sequenceable[] | Yes| Sequenceable array to write.|
 
 **Return value**
-    | Type| Description|
+
+  | Type| Description|
   | -------- | -------- |
   | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
 
@@ -1842,7 +1932,8 @@ Reads a sequenceable array from this **MessageParcel** object.
 **System capability**: SystemCapability.Communication.IPC.Core
 
 **Parameters**
-    | Name| Type| Mandatory| Description|
+
+  | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | sequenceableArray | Sequenceable[] | Yes| Sequenceable array to read.|
 
@@ -1888,12 +1979,14 @@ Writes an array of **IRemoteObject** objects to this **MessageParcel** object.
 **System capability**: SystemCapability.Communication.IPC.Core
 
 **Parameters**
-    | Name| Type| Mandatory| Description|
+
+  | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | objectArray | IRemoteObject[] | Yes| Array of **IRemoteObject** objects to write.|
 
 **Return value**
-    | Type| Description|
+
+  | Type| Description|
   | -------- | -------- |
   | boolean | Returns **true** if the operation is successful; returns **false** if the operation fails or if the **IRemoteObject** array is null.|
 
@@ -1939,7 +2032,8 @@ Reads an **IRemoteObject** array from this **MessageParcel** object.
 **System capability**: SystemCapability.Communication.IPC.Core
 
 **Parameters**
-    | Name| Type| Mandatory| Description|
+
+  | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | objects | IRemoteObject[] | Yes| **IRemoteObject** array to read.|
 
@@ -1986,7 +2080,8 @@ Reads the **IRemoteObject** array from this **MessageParcel** object.
 **System capability**: SystemCapability.Communication.IPC.Core
 
 **Return value**
-    | Type| Description|
+
+  | Type| Description|
   | -------- | -------- |
   | IRemoteObject[] | **IRemoteObject** object array obtained.|
 
@@ -2034,7 +2129,8 @@ Closes a file descriptor.
 **System capability**: SystemCapability.Communication.IPC.Core
 
 **Parameters**
-    | Name| Type| Mandatory| Description|
+
+  | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | fd | number | Yes| File descriptor to close.|
 
@@ -2057,12 +2153,14 @@ Duplicates a file descriptor.
 **System capability**: SystemCapability.Communication.IPC.Core
 
 **Parameters**
-    | Name| Type| Mandatory| Description|
+
+  | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | fd | number | Yes| File descriptor to duplicate.|
 
 **Return value**
-    | Type| Description|
+
+  | Type| Description|
   | -------- | -------- |
   | number | New file descriptor.|
 
@@ -2085,7 +2183,8 @@ Checks whether this **MessageParcel** object contains a file descriptor.
 **System capability**: SystemCapability.Communication.IPC.Core
 
 **Return value**
-    | Type| Description|
+
+  | Type| Description|
   | -------- | -------- |
   | boolean | Returns **true** if the **MessageParcel** object contains a file descriptor; returns **false** otherwise.|
 
@@ -2113,12 +2212,14 @@ Writes a file descriptor to this **MessageParcel** object.
 **System capability**: SystemCapability.Communication.IPC.Core
 
 **Parameters**
-    | Name| Type| Mandatory| Description|
+
+  | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | fd | number | Yes| File descriptor to write.|
 
 **Return value**
-    | Type| Description|
+
+  | Type| Description|
   | -------- | -------- |
   | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
 
@@ -2143,7 +2244,8 @@ Reads the file descriptor from this **MessageParcel** object.
 **System capability**: SystemCapability.Communication.IPC.Core
 
 **Return value**
-    | Type| Description|
+
+  | Type| Description|
   | -------- | -------- |
   | number | File descriptor read.|
 
@@ -2169,12 +2271,14 @@ Writes an anonymous shared object to this **MessageParcel** object.
 **System capability**: SystemCapability.Communication.IPC.Core
 
 **Parameters**
-    | Name| Type| Mandatory| Description|
+
+  | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | ashmem | Ashmem | Yes| Anonymous shared object to write.|
 
 **Return value**
-    | Type| Description|
+
+  | Type| Description|
   | -------- | -------- |
   | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
 
@@ -2197,7 +2301,8 @@ Reads the anonymous shared object from this **MessageParcel** object.
 **System capability**: SystemCapability.Communication.IPC.Core
 
 **Return value**
-    | Type| Description|
+
+  | Type| Description|
   | -------- | -------- |
   | Ashmem | Anonymous share object obtained.|
 
@@ -2222,7 +2327,8 @@ Obtains the maximum amount of raw data that can be held by this **MessageParcel*
 **System capability**: SystemCapability.Communication.IPC.Core
 
 **Return value**
-    | Type| Description|
+
+  | Type| Description|
   | -------- | -------- |
   | number | 128 MB, which is the maximum amount of raw data that can be held by this **MessageParcel** object.|
 
@@ -2244,13 +2350,15 @@ Writes raw data to this **MessageParcel** object.
 **System capability**: SystemCapability.Communication.IPC.Core
 
 **Parameters**
-    | Name| Type| Mandatory| Description|
+
+  | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | rawData | number[] | Yes| Raw data to write.|
   | size | number | Yes| Size of the raw data, in bytes.|
 
 **Return value**
-    | Type| Description|
+
+  | Type| Description|
   | -------- | -------- |
   | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
 
@@ -2273,12 +2381,14 @@ Reads raw data from this **MessageParcel** object.
 **System capability**: SystemCapability.Communication.IPC.Core
 
 **Parameters**
-    | Name| Type| Mandatory| Description|
+
+  | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | size | number | Yes| Size of the raw data to read.|
 
 **Return value**
-    | Type| Description|
+
+  | Type| Description|
   | -------- | -------- |
   | number[] | Raw data obtained, in bytes.|
 
@@ -2307,12 +2417,14 @@ Marshals the sequenceable object into a **MessageParcel** object.
 **System capability**: SystemCapability.Communication.IPC.Core
 
 **Parameters**
-    | Name| Type| Mandatory| Description|
+
+  | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | dataOut | [MessageParcel](#messageparcel) | Yes| **MessageParcel** object to which the sequenceable object is to be marshaled.|
 
 **Return value**
-    | Type| Description|
+
+  | Type| Description|
   | -------- | -------- |
   | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
 
@@ -2356,12 +2468,14 @@ Unmarshals this sequenceable object from a **MessageParcel** object.
 **System capability**: SystemCapability.Communication.IPC.Core
 
 **Parameters**
-    | Name| Type| Mandatory| Description|
+
+  | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | dataIn | [MessageParcel](#messageparcel) | Yes| **MessageParcel** object in which the sequenceable object is to be unmarshaled.|
 
 **Return value**
-    | Type| Description|
+
+  | Type| Description|
   | -------- | -------- |
   | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
 
@@ -2405,12 +2519,13 @@ Provides the holder of a remote proxy object.
 
 asObject(): IRemoteObject
 
-Obtains a proxy or remote object. This method must be implemented by its derived classes.
+Obtains a proxy or remote object. This API must be implemented by its derived classes.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
 **Return value**
-    | Type| Description|
+
+  | Type| Description|
   | -------- | -------- |
   | [IRemoteObject](#iremoteobject) | Returns the [RemoteObject](#ashmem8) if it is the caller; returns the [IRemoteObject](#iremoteobject), the holder of this **RemoteProxy** object, if the caller is a [RemoteProxy](#remoteproxy) object.|
 
@@ -2491,29 +2606,32 @@ Obtains the interface.
 **System capability**: SystemCapability.Communication.IPC.Core
 
 **Parameters**
-    | Name| Type| Mandatory| Description|
+
+  | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | descriptor | string | Yes| Interface descriptor.|
 
 **Return value**
-    | Type| Description|
+
+  | Type| Description|
   | -------- | -------- |
   | IRemoteBroker | **IRemoteBroker** object bound to the specified interface descriptor.|
 
 
 ### sendRequest<sup>(deprecated)</sup>
 
+sendRequest(code : number, data : MessageParcel, reply : MessageParcel, options : MessageOption): boolean
+
 > **NOTE**<br/>
 > This API is deprecated since API version 8. You are advised to use [sendRequestAsync<sup>9+</sup>](#sendrequestasync9).
-
-sendRequest(code : number, data : MessageParcel, reply : MessageParcel, options : MessageOption): boolean
 
 Sends a **MessageParcel** message to the remote process in synchronous or asynchronous mode. If **options** is the asynchronous mode, a promise will be fulfilled immediately and the reply message does not contain any content. If **options** is the synchronous mode, a promise will be fulfilled when the response to **sendRequest** is returned, and the reply message contains the returned information.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
 **Parameters**
-    | Name| Type| Mandatory| Description|
+
+  | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | code | number | Yes| Message code called by the request, which is determined by the client and server. If the method is generated by an IDL tool, the message code is automatically generated by the IDL tool.|
   | data | [MessageParcel](#messageparcel) | Yes| **MessageParcel** object holding the data to send.|
@@ -2521,24 +2639,26 @@ Sends a **MessageParcel** message to the remote process in synchronous or asynch
   | options | [MessageOption](#messageoption) | Yes| Request sending mode, which can be synchronous (default) or asynchronous.|
 
 **Return value**
-    | Type| Description|
+
+  | Type| Description|
   | -------- | -------- |
   | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
 
 
 ### sendRequest<sup>8+(deprecated)</sup>
 
-> **NOTE**<br/>
-> This API is deprecated since API Version 9. You are advised to use [sendRequestAsync<sup>9+</sup>](#sendrequestasync9).
-
 sendRequest(code : number, data : MessageParcel, reply : MessageParcel, options : MessageOption): Promise&lt;SendRequestResult&gt;
+
+> **NOTE**<br/>
+> This API is deprecated since API version 9. You are advised to use [sendRequestAsync<sup>9+</sup>](#sendrequestasync9).
 
 Sends a **MessageParcel** message to the remote process in synchronous or asynchronous mode. If **options** is the asynchronous mode, a promise will be fulfilled immediately and the reply message does not contain any content. If **options** is the synchronous mode, a promise will be fulfilled when the response to **sendRequest** is returned, and the reply message contains the returned information.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
 **Parameters**
-    | Name| Type| Mandatory| Description|
+
+  | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | code | number | Yes| Message code called by the request, which is determined by the client and server. If the method is generated by an IDL tool, the message code is automatically generated by the IDL tool.|
   | data | [MessageParcel](#messageparcel) | Yes| **MessageParcel** object holding the data to send.|
@@ -2546,7 +2666,8 @@ Sends a **MessageParcel** message to the remote process in synchronous or asynch
   | options | [MessageOption](#messageoption) | Yes| Request sending mode, which can be synchronous (default) or asynchronous.|
 
 **Return value**
-    | Type| Description|
+
+  | Type| Description|
   | -------- | -------- |
   | Promise&lt;SendRequestResult&gt; | Promise used to return the **sendRequestResult** object.|
 
@@ -2559,7 +2680,8 @@ Sends a **MessageParcel** message to the remote process in synchronous or asynch
 **System capability**: SystemCapability.Communication.IPC.Core
 
 **Parameters**
-    | Name| Type| Mandatory| Description|
+
+  | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | code | number | Yes| Message code called by the request, which is determined by the client and server. If the method is generated by an IDL tool, the message code is automatically generated by the IDL tool.|
   | data | [MessageParcel](#messageparcel) | Yes| **MessageParcel** object holding the data to send.|
@@ -2567,7 +2689,8 @@ Sends a **MessageParcel** message to the remote process in synchronous or asynch
   | options | [MessageOption](#messageoption) | Yes| Request sending mode, which can be synchronous (default) or asynchronous.|
 
 **Return value**
-    | Type| Description|
+
+  | Type| Description|
   | -------- | -------- |
   | Promise&lt;SendRequestResult&gt; | Promise used to return the **sendRequestResult** object.|
 
@@ -2580,7 +2703,8 @@ Sends a **MessageParcel** message to the remote process in synchronous or asynch
 **System capability**: SystemCapability.Communication.IPC.Core
 
 **Parameters**
-    | Name| Type| Mandatory| Description|
+
+  | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | code | number | Yes| Message code called by the request, which is determined by the client and server. If the method is generated by an IDL tool, the message code is automatically generated by the IDL tool.|
   | data | [MessageParcel](#messageparcel) | Yes| **MessageParcel** object holding the data to send.|
@@ -2598,13 +2722,15 @@ Adds a callback for receiving death notifications of the remote object. This met
 **System capability**: SystemCapability.Communication.IPC.Core
 
 **Parameters**
-    | Name| Type| Mandatory| Description|
+
+  | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | recipient | [DeathRecipient](#deathrecipient) | Yes| Callback to add.|
   | flags | number | Yes| Flag of the death notification.|
 
 **Return value**
-    | Type| Description|
+
+  | Type| Description|
   | -------- | -------- |
   | boolean | Returns **true** if the callback is added successfully; returns **false** otherwise.|
 
@@ -2618,13 +2744,15 @@ Removes the callback used to receive death notifications of the remote object.
 **System capability**: SystemCapability.Communication.IPC.Core
 
 **Parameters**
-    | Name| Type| Mandatory| Description|
+
+  | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | recipient | [DeathRecipient](#deathrecipient) | Yes| Callback to remove.|
   | flags | number | Yes| Flag of the death notification.|
 
 **Return value**
-    | Type| Description|
+
+  | Type| Description|
   | -------- | -------- |
   | boolean | Returns **true** if the callback is removed successfully; returns **false** otherwise.|
 
@@ -2638,7 +2766,8 @@ Obtains the interface descriptor of this object. The interface descriptor is a s
 **System capability**: SystemCapability.Communication.IPC.Core
 
 **Return value**
-    | Type| Description|
+
+  | Type| Description|
   | -------- | -------- |
   | string | Interface descriptor obtained.|
 
@@ -2652,7 +2781,8 @@ Checks whether this object is dead.
 **System capability**: SystemCapability.Communication.IPC.Core
 
 **Return value**
-    | Type| Description|
+
+  | Type| Description|
   | -------- | -------- |
   | boolean | Returns **true** if the object is dead; returns **false** otherwise.|
 
@@ -2676,17 +2806,18 @@ Provides methods to implement **IRemoteObject**.
 
 ### sendRequest<sup>(deprecated)</sup>
 
-> **NOTE**<br/>
-> This API is deprecated since API Version 8. You are advised to use [sendRequestAsync<sup>9+</sup>](#sendrequestasync9-1).
-
 sendRequest(code : number, data : MessageParcel, reply : MessageParcel, options : MessageOption): boolean
+
+> **NOTE**<br/>
+> This API is deprecated since API version 8. You are advised to use [sendRequestAsync<sup>9+</sup>](#sendrequestasync9-1).
 
 Sends a **MessageParcel** message to the remote process in synchronous or asynchronous mode. If **options** is the asynchronous mode, a promise will be fulfilled immediately and the reply message does not contain any content. If **options** is the synchronous mode, a promise will be fulfilled when the response to **sendRequest** is returned, and the reply message contains the returned information.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
 **Parameters**
-    | Name| Type| Mandatory| Description|
+
+  | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | code | number | Yes| Message code called by the request, which is determined by the client and server. If the method is generated by an IDL tool, the message code is automatically generated by the IDL tool.|
   | data | [MessageParcel](#messageparcel) | Yes| **MessageParcel** object holding the data to send.|
@@ -2694,7 +2825,8 @@ Sends a **MessageParcel** message to the remote process in synchronous or asynch
   | options | [MessageOption](#messageoption) | Yes| Request sending mode, which can be synchronous (default) or asynchronous.|
 
 **Return value**
-    | Type| Description|
+
+  | Type| Description|
   | -------- | -------- |
   | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
 
@@ -2741,17 +2873,18 @@ Sends a **MessageParcel** message to the remote process in synchronous or asynch
 
 ### sendRequest<sup>8+(deprecated)</sup>
 
-> **NOTE**<br/>
-> This API is deprecated since API Version 9. You are advised to use [sendRequestAsync<sup>9+</sup>](#sendrequestasync9-1).
-
 sendRequest(code : number, data : MessageParcel, reply : MessageParcel, options : MessageOption): Promise&lt;SendRequestResult&gt;
+
+> **NOTE**<br/>
+> This API is deprecated since API version 9. You are advised to use [sendRequestAsync<sup>9+</sup>](#sendrequestasync9-1).
 
 Sends a **MessageParcel** message to the remote process in synchronous or asynchronous mode. If **options** is the asynchronous mode, a promise will be fulfilled immediately and the reply message does not contain any content. If **options** is the synchronous mode, a promise will be fulfilled when the response to **sendRequest** is returned, and the reply message contains the returned information.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
 **Parameters**
-    | Name| Type| Mandatory| Description|
+
+  | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | code | number | Yes| Message code called by the request, which is determined by the client and server. If the method is generated by an IDL tool, the message code is automatically generated by the IDL tool.|
   | data | [MessageParcel](#messageparcel) | Yes| **MessageParcel** object holding the data to send.|
@@ -2759,7 +2892,8 @@ Sends a **MessageParcel** message to the remote process in synchronous or asynch
   | options | [MessageOption](#messageoption) | Yes| Request sending mode, which can be synchronous (default) or asynchronous.|
 
 **Return value**
-    | Type| Description|
+
+  | Type| Description|
   | -------- | -------- |
   | Promise&lt;SendRequestResult&gt; | Promise used to return the **sendRequestResult** object.|
 
@@ -2818,7 +2952,8 @@ Sends a **MessageParcel** message to the remote process in synchronous or asynch
 **System capability**: SystemCapability.Communication.IPC.Core
 
 **Parameters**
-    | Name| Type| Mandatory| Description|
+
+  | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | code | number | Yes| Message code called by the request, which is determined by the client and server. If the method is generated by an IDL tool, the message code is automatically generated by the IDL tool.|
   | data | [MessageParcel](#messageparcel) | Yes| **MessageParcel** object holding the data to send.|
@@ -2826,7 +2961,8 @@ Sends a **MessageParcel** message to the remote process in synchronous or asynch
   | options | [MessageOption](#messageoption) | Yes| Request sending mode, which can be synchronous (default) or asynchronous.|
 
 **Return value**
-    | Type| Description|
+
+  | Type| Description|
   | -------- | -------- |
   | Promise&lt;SendRequestResult&gt; | Promise used to return the **sendRequestResult** object.|
 
@@ -2885,7 +3021,8 @@ Sends a **MessageParcel** message to the remote process in synchronous or asynch
 **System capability**: SystemCapability.Communication.IPC.Core
 
 **Parameters**
-    | Name| Type| Mandatory| Description|
+
+  | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | code | number | Yes| Message code called by the request, which is determined by the client and server. If the method is generated by an IDL tool, the message code is automatically generated by the IDL tool.|
   | data | [MessageParcel](#messageparcel) | Yes| **MessageParcel** object holding the data to send.|
@@ -2946,12 +3083,14 @@ Obtains the **LocalInterface** object of an interface descriptor.
 **System capability**: SystemCapability.Communication.IPC.Core
 
 **Parameters**
-    | Name| Type| Mandatory| Description|
+
+  | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | interface | string | Yes| Interface descriptor.|
 
 **Return value**
-    | Type| Description|
+
+  | Type| Description|
   | -------- | -------- |
   | IRemoteBroker | Returns **Null** by default, which indicates a proxy interface.|
 
@@ -2991,13 +3130,15 @@ Adds a callback for receiving the death notifications of the remote object, incl
 **System capability**: SystemCapability.Communication.IPC.Core
 
 **Parameters**
-    | Name| Type| Mandatory| Description|
+
+  | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | recipient | [DeathRecipient](#deathrecipient) | Yes| Callback to add.|
   | flags | number | Yes| Flag of the death notification. This parameter is reserved. It is set to **0**.|
 
 **Return value**
-    | Type| Description|
+
+  | Type| Description|
   | -------- | -------- |
   | boolean | Returns **true** if the callback is added successfully; returns **false** otherwise.|
 
@@ -3042,13 +3183,15 @@ Removes the callback used to receive death notifications of the remote object.
 **System capability**: SystemCapability.Communication.IPC.Core
 
 **Parameters**
-    | Name| Type| Mandatory| Description|
+
+  | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | recipient | [DeathRecipient](#deathrecipient) | Yes| Callback to remove.|
   | flags | number | Yes| Flag of the death notification. This parameter is reserved. It is set to **0**.|
 
 **Return value**
-    | Type| Description|
+
+  | Type| Description|
   | -------- | -------- |
   | boolean | Returns **true** if the callback is removed successfully; returns **false** otherwise.|
 
@@ -3094,7 +3237,8 @@ Obtains the interface descriptor of this proxy object.
 **System capability**: SystemCapability.Communication.IPC.Core
 
 **Return value**
-    | Type| Description|
+
+  | Type| Description|
   | -------- | -------- |
   | string | Interface descriptor obtained.|
 
@@ -3134,7 +3278,8 @@ Checks whether the **RemoteObject** is dead.
 **System capability**: SystemCapability.Communication.IPC.Core
 
 **Return value**
-    | Type| Description|
+
+  | Type| Description|
   | -------- | -------- |
   | boolean | Returns **true** if the **RemoteObject** is dead; returns **false** otherwise.|
 
@@ -3188,7 +3333,8 @@ A constructor used to create a **MessageOption** object.
 **System capability**: SystemCapability.Communication.IPC.Core
 
 **Parameters**
-    | Name| Type| Mandatory| Description|
+
+  | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | syncFlags | number | No| Call flag, which can be synchronous or asynchronous. The default value is **synchronous**.|
   | waitTime | number | No| Maximum wait time for an RPC call. The default value is **TF_WAIT_TIME**.|
@@ -3203,7 +3349,8 @@ Obtains the call flag, which can be synchronous or asynchronous.
 **System capability**: SystemCapability.Communication.IPC.Core
 
 **Return value**
-    | Type| Description|
+
+  | Type| Description|
   | -------- | -------- |
   | number | Call mode obtained.|
 
@@ -3217,7 +3364,8 @@ Sets the call flag, which can be synchronous or asynchronous.
 **System capability**: SystemCapability.Communication.IPC.Core
 
 **Parameters**
-    | Name| Type| Mandatory| Description|
+
+  | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | flags | number | Yes| Call flag to set.|
 
@@ -3231,7 +3379,8 @@ Obtains the maximum wait time for this RPC call.
 **System capability**: SystemCapability.Communication.IPC.Core
 
 **Return value**
-    | Type| Description|
+
+  | Type| Description|
   | -------- | -------- |
   | number | Maximum wait time obtained.|
 
@@ -3245,7 +3394,8 @@ Sets the maximum wait time for this RPC call.
 **System capability**: SystemCapability.Communication.IPC.Core
 
 **Parameters**
-    | Name| Type| Mandatory| Description|
+
+  | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | waitTime | number | Yes| Maximum wait time to set.|
 
@@ -3264,7 +3414,8 @@ Obtains the system capability manager.
 **System capability**: SystemCapability.Communication.IPC.Core
 
 **Return value**
-    | Type| Description|
+
+  | Type| Description|
   | -------- | -------- |
   | [IRemoteObject](#iremoteobject) | System capability manager obtained.|
 
@@ -3285,7 +3436,8 @@ Obtains the PID of the caller. This method is invoked by the **RemoteObject** ob
 **System capability**: SystemCapability.Communication.IPC.Core
 
 **Return value**
-    | Type| Description|
+
+  | Type| Description|
   | -------- | -------- |
   | number | PID of the caller.|
 
@@ -3311,7 +3463,8 @@ Obtains the UID of the caller. This method is invoked by the **RemoteObject** ob
 **System capability**: SystemCapability.Communication.IPC.Core
 
 **Return value**
-    | Type| Description|
+
+  | Type| Description|
   | -------- | -------- |
   | number | UID of the caller.|
 
@@ -3363,7 +3516,8 @@ Obtains the ID of the device hosting the caller's process.
 **System capability**: SystemCapability.Communication.IPC.Core
 
 **Return value**
-    | Type| Description|
+
+  | Type| Description|
   | -------- | -------- |
   | string | Device ID obtained.|
 
@@ -3389,7 +3543,8 @@ Obtains the local device ID.
 **System capability**: SystemCapability.Communication.IPC.Core
 
 **Return value**
-    | Type| Description|
+
+  | Type| Description|
   | -------- | -------- |
   | string | Local device ID obtained.|
 
@@ -3415,7 +3570,8 @@ Checks whether the remote process is a process of the local device.
 **System capability**: SystemCapability.Communication.IPC.Core
 
 **Return value**
-    | Type| Description|
+
+  | Type| Description|
   | -------- | -------- |
   | boolean | Returns **true** if the local and remote processes are on the same device; returns **false** otherwise.|
 
@@ -3441,13 +3597,15 @@ Flushes all suspended commands from the specified **RemoteProxy** to the corresp
 **System capability**: SystemCapability.Communication.IPC.Core
 
 **Parameters**
-    | Name| Type| Mandatory| Description|
+
+  | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | object | [IRemoteObject](#iremoteobject) | Yes| **RemoteProxy** specified. |
 
 
 **Return value**
-    | Type| Description|
+
+  | Type| Description|
   | -------- | -------- |
   | number | Returns **0** if the operation is successful; returns an error code if the input object is null or a **RemoteObject**, or if the operation fails.|
 
@@ -3488,7 +3646,8 @@ Changes the UID and PID of the remote user to the UID and PID of the local user.
 **System capability**: SystemCapability.Communication.IPC.Core
 
 **Return value**
-    | Type| Description|
+
+  | Type| Description|
   | -------- | -------- |
   | string | String containing the UID and PID of the remote user.|
 
@@ -3514,12 +3673,14 @@ Restores the UID and PID of the remote user. It is usually called when the UID a
 **System capability**: SystemCapability.Communication.IPC.Core
 
 **Parameters**
-    | Name| Type| Mandatory| Description|
+
+  | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | identity | string | Yes| String containing the remote user UID and PID, which are returned by **resetCallingIdentity**.|
 
 **Return value**
-    | Type| Description|
+
+  | Type| Description|
   | -------- | -------- |
   | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
 
@@ -3556,24 +3717,26 @@ A constructor used to create a **RemoteObject** object.
 **System capability**: SystemCapability.Communication.IPC.Core
 
 **Parameters**
-    | Name| Type| Mandatory| Description|
+
+  | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | descriptor | string | Yes| Interface descriptor.|
 
 
 ### sendRequest<sup>(deprecated)</sup>
 
-> **NOTE**<br/>
-> This API is deprecated since API Version 8. You are advised to use [sendRequestAsync<sup>9+</sup>](#sendrequestasync9-2).
-
 sendRequest(code : number, data : MessageParcel, reply : MessageParcel, options : MessageOption): boolean
+
+> **NOTE**<br/>
+> This API is deprecated since API version 8. You are advised to use [sendRequestAsync<sup>9+</sup>](#sendrequestasync9-2).
 
 Sends a **MessageParcel** message to the remote process in synchronous or asynchronous mode. If **options** is the asynchronous mode, a promise will be fulfilled immediately and the reply message does not contain any content. If **options** is the synchronous mode, a promise will be fulfilled when the response to **sendRequest** is returned, and the reply message contains the returned information.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
 **Parameters**
-    | Name| Type| Mandatory| Description|
+
+  | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | code | number | Yes| Message code called by the request, which is determined by the client and server. If the method is generated by an IDL tool, the message code is automatically generated by the IDL tool.|
   | data | [MessageParcel](#messageparcel) | Yes| **MessageParcel** object holding the data to send.|
@@ -3581,7 +3744,8 @@ Sends a **MessageParcel** message to the remote process in synchronous or asynch
   | options | [MessageOption](#messageoption) | Yes| Request sending mode, which can be synchronous (default) or asynchronous.|
 
 **Return value**
-    | Type| Description|
+
+  | Type| Description|
   | -------- | -------- |
   | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
 
@@ -3630,17 +3794,18 @@ Sends a **MessageParcel** message to the remote process in synchronous or asynch
 
 ### sendRequest<sup>8+(deprecated)</sup>
 
-> **NOTE**<br/>
-> This API is deprecated since API Version 9. You are advised to use [sendRequestAsync<sup>9+</sup>](#sendrequestasync9-2).
-
 sendRequest(code : number, data : MessageParcel, reply : MessageParcel, options : MessageOption): Promise&lt;SendRequestResult&gt;
+
+> **NOTE**<br/>
+> This API is deprecated since API version 9. You are advised to use [sendRequestAsync<sup>9+</sup>](#sendrequestasync9-2).
 
 Sends a **MessageParcel** message to the remote process in synchronous or asynchronous mode. If **options** is the asynchronous mode, a promise will be fulfilled immediately and the reply message does not contain any content. If **options** is the synchronous mode, a promise will be fulfilled when the response to **sendRequest** is returned, and the reply message contains the returned information.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
 **Parameters**
-    | Name| Type| Mandatory| Description|
+
+  | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | code | number | Yes| Message code called by the request, which is determined by the client and server. If the method is generated by an IDL tool, the message code is automatically generated by the IDL tool.|
   | data | [MessageParcel](#messageparcel) | Yes| **MessageParcel** object holding the data to send.|
@@ -3648,7 +3813,8 @@ Sends a **MessageParcel** message to the remote process in synchronous or asynch
   | options | [MessageOption](#messageoption) | Yes| Request sending mode, which can be synchronous (default) or asynchronous.|
 
 **Return value**
-    | Type| Description|
+
+  | Type| Description|
   | -------- | -------- |
   | Promise&lt;SendRequestResult&gt; | Promise used to return the **sendRequestResult** object.|
 
@@ -3709,7 +3875,8 @@ Sends a **MessageParcel** message to the remote process in synchronous or asynch
 **System capability**: SystemCapability.Communication.IPC.Core
 
 **Parameters**
-    | Name| Type| Mandatory| Description|
+
+  | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | code | number | Yes| Message code called by the request, which is determined by the client and server. If the method is generated by an IDL tool, the message code is automatically generated by the IDL tool.|
   | data | [MessageParcel](#messageparcel) | Yes| **MessageParcel** object holding the data to send.|
@@ -3717,7 +3884,8 @@ Sends a **MessageParcel** message to the remote process in synchronous or asynch
   | options | [MessageOption](#messageoption) | Yes| Request sending mode, which can be synchronous (default) or asynchronous.|
 
 **Return value**
-    | Type| Description|
+
+  | Type| Description|
   | -------- | -------- |
   | Promise&lt;SendRequestResult&gt; | Promise used to return the **sendRequestResult** object.|
 
@@ -3777,7 +3945,8 @@ Sends a **MessageParcel** message to the remote process in synchronous or asynch
 **System capability**: SystemCapability.Communication.IPC.Core
 
 **Parameters**
-    | Name| Type| Mandatory| Description|
+
+  | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | code | number | Yes| Message code called by the request, which is determined by the client and server. If the method is generated by an IDL tool, the message code is automatically generated by the IDL tool.|
   | data | [MessageParcel](#messageparcel) | Yes| **MessageParcel** object holding the data to send.|
@@ -3831,16 +4000,21 @@ Sends a **MessageParcel** message to the remote process in synchronous or asynch
   ```
 
 
-### onRemoteRequest
+### onRemoteRequest<sup>8+(deprecated)</sup>
+
 
 onRemoteRequest(code : number, data : MessageParcel, reply: MessageParcel, options : MessageOption): boolean
+
+> **NOTE**<br/>
+> This API is deprecated since API version 9. You are advised to use [onRemoteRequestEx<sup>9+</sup>](#onremoterequestex9).
 
 Provides a response to **sendRequestAsync()**. The server processes the request and returns a response in this function.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
 **Parameters**
-    | Name| Type| Mandatory| Description|
+
+  | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | code | number | Yes| Service request code sent by the remote end.|
   | data | [MessageParcel](#messageparcel) | Yes| **MessageParcel** object that holds the parameters called by the client.|
@@ -3848,14 +4022,15 @@ Provides a response to **sendRequestAsync()**. The server processes the request 
   | option | [MessageOption](#messageoption) | Yes| Whether the operation is synchronous or asynchronous.|
 
 **Return value**
-    | Type| Description|
+
+  | Type| Description|
   | -------- | -------- |
   | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
 
 
 **Example**
 
-  ```
+  ```ets
   class MyDeathRecipient {
       onRemoteDied() {
           console.log("server died");
@@ -3886,8 +4061,190 @@ Provides a response to **sendRequestAsync()**. The server processes the request 
       }
   }
   ```
+### onRemoteRequestEx<sup>9+</sup>
+
+onRemoteRequestEx(code : number, data : MessageParcel, reply: MessageParcel, options : MessageOption): boolean | Promise <boolean>
+
+> **NOTE**<br/>
+>- You are advised to overload **onRemoteRequestEx** preferentially, which implements synchronous and asynchronous message processing.
+>- If both **onRemoteRequest** and **onRemoteRequestEx** are overloaded, only **onRemoteRequestEx** takes effect.
+
+Provides a response to **sendRequestAsync()**. The server processes the request synchronously or asynchronously and returns the result in this API.
+
+**System capability**: SystemCapability.Communication.IPC.Core
+
+**Parameters**
+
+  | Name| Type| Mandatory| Description|
+  | -------- | -------- | -------- | -------- |
+  | code | number | Yes| Service request code sent by the remote end.|
+  | data | [MessageParcel](#messageparcel) | Yes| **MessageParcel** object that holds the parameters called by the client.|
+  | reply | [MessageParcel](#messageparcel) | Yes| **MessageParcel** object carrying the result.|
+  | option | [MessageOption](#messageoption) | Yes| Whether the operation is synchronous or asynchronous.|
+
+**Return value**
+
+  | Type| Description|
+  | -------- | -------- |
+  | boolean | Returns a Boolean value if the request is processed synchronously in **onRemoteRequestEx**. If the operation is successful, **true** is returned. Otherwise, **false** is returned.|
+  | Promise <boolean> | Returns a promise object if the request is processed asynchronously in **onRemoteRequestEx**.|
 
 
+**Example**: Overload **onRemoteRequestEx** to process a request synchronously.
+
+  ```ets
+  class MyDeathRecipient {
+      onRemoteDied() {
+          console.log("server died");
+      }
+  }
+  class TestRemoteObject extends rpc.RemoteObject {
+      constructor(descriptor) {
+          super(descriptor);
+      }
+      addDeathRecipient(recipient: MyDeathRecipient, flags: number): boolean {
+          return true;
+      }
+      removeDeathRecipient(recipient: MyDeathRecipient, flags: number): boolean {
+          return true;
+      }
+      isObjectDead(): boolean {
+          return false;
+      }
+      onRemoteRequestEx(code, data, reply, option) {
+          if (code === 1) {
+              console.log("RpcServer: sync onRemoteRequestEx is called");
+              return true;
+          } else {
+              console.log("RpcServer: unknown code: " + code);
+              return false;
+          }
+      }
+  }
+  ```
+  **Example**: Overload **onRemoteRequestEx** to process a request asynchronously.
+
+  ```ets
+  class MyDeathRecipient {
+      onRemoteDied() {
+          console.log("server died");
+      }
+  }
+  class TestRemoteObject extends rpc.RemoteObject {
+      constructor(descriptor) {
+          super(descriptor);
+      }
+      addDeathRecipient(recipient: MyDeathRecipient, flags: number): boolean {
+          return true;
+      }
+      removeDeathRecipient(recipient: MyDeathRecipient, flags: number): boolean {
+          return true;
+      }
+      isObjectDead(): boolean {
+          return false;
+      }
+      async onRemoteRequestEx(code, data, reply, option) {
+          if (code === 1) {
+              console.log("RpcServer: async onRemoteRequestEx is called");
+          } else {
+              console.log("RpcServer: unknown code: " + code);
+              return false;
+          }
+          await new Promise((resolve) => {
+            setTimeout(resolve, 100);
+          })
+          return true;
+      }
+  }
+  ```
+**Example**: Overload **onRemoteRequestEx** and **onRemoteRequest** to process requests synchronously.
+
+  ```ets
+  class MyDeathRecipient {
+      onRemoteDied() {
+          console.log("server died");
+      }
+  }
+  class TestRemoteObject extends rpc.RemoteObject {
+      constructor(descriptor) {
+          super(descriptor);
+      }
+      addDeathRecipient(recipient: MyDeathRecipient, flags: number): boolean {
+          return true;
+      }
+      removeDeathRecipient(recipient: MyDeathRecipient, flags: number): boolean {
+          return true;
+      }
+      isObjectDead(): boolean {
+          return false;
+      }
+      onRemoteRequest(code, data, reply, option) {
+          if (code === 1) {
+              console.log("RpcServer: sync onRemoteRequestEx is called");
+              return true;
+          } else {
+              console.log("RpcServer: unknown code: " + code);
+              return false;
+          }
+      }
+      // Only onRemoteRequestEx is executed when onRemoteRequestEx and onRemoteRequest are called.
+      onRemoteRequestEx(code, data, reply, option) {
+          if (code === 1) {
+              console.log("RpcServer: async onRemoteRequestEx is called");
+          } else {
+              console.log("RpcServer: unknown code: " + code);
+              return false;
+          }
+          
+          return true;
+      }
+  }
+  ```
+  **Example**: Overload **onRemoteRequestEx** and **onRemoteRequest** to process requests asynchronously.
+
+  ```ets
+  class MyDeathRecipient {
+      onRemoteDied() {
+          console.log("server died");
+      }
+  }
+  class TestRemoteObject extends rpc.RemoteObject {
+      constructor(descriptor) {
+          super(descriptor);
+      }
+      addDeathRecipient(recipient: MyDeathRecipient, flags: number): boolean {
+          return true;
+      }
+      removeDeathRecipient(recipient: MyDeathRecipient, flags: number): boolean {
+          return true;
+      }
+      isObjectDead(): boolean {
+          return false;
+      }
+      onRemoteRequest(code, data, reply, option) {
+          if (code === 1) {
+              console.log("RpcServer: sync onRemoteRequestEx is called");
+              return true;
+          } else {
+              console.log("RpcServer: unknown code: " + code);
+              return false;
+          }
+      }
+      // Only onRemoteRequestEx is executed when onRemoteRequestEx and onRemoteRequest are called.
+      async onRemoteRequestEx(code, data, reply, option) {
+          if (code === 1) {
+              console.log("RpcServer: async onRemoteRequestEx is called");
+          } else {
+              console.log("RpcServer: unknown code: " + code);
+              return false;
+          }
+          await new Promise((resolve) => {
+            setTimeout(resolve, 100);
+          })
+          return true;
+      }
+  }
+  ```
 ### getCallingUid
 
 getCallingUid(): number
@@ -3897,7 +4254,8 @@ Obtains the UID of the remote process.
 **System capability**: SystemCapability.Communication.IPC.Core
 
 **Return value**
-    | Type| Description|
+
+  | Type| Description|
   | -------- | -------- |
   | number | UID of the remote process obtained.|
 
@@ -3938,7 +4296,8 @@ Obtains the PID of the remote process.
 **System capability**: SystemCapability.Communication.IPC.Core
 
 **Return value**
-    | Type| Description|
+
+  | Type| Description|
   | -------- | -------- |
   | number | PID of the remote process obtained.|
 
@@ -3979,12 +4338,14 @@ Checks whether the remote object corresponding to the specified interface descri
 **System capability**: SystemCapability.Communication.IPC.Core
 
 **Parameters**
-    | Name| Type| Mandatory| Description|
+
+  | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | descriptor | string | Yes| Interface descriptor.|
 
 **Return value**
-    | Type| Description|
+
+  | Type| Description|
   | -------- | -------- |
   | IRemoteBroker | Returns the remote object if a match is found; returns **Null** otherwise.|
 
@@ -4025,7 +4386,8 @@ Obtains the interface descriptor.
 **System capability**: SystemCapability.Communication.IPC.Core
 
 **Return value**
-    | Type| Description|
+
+  | Type| Description|
   | -------- | -------- |
   | string | Interface descriptor obtained.|
 
@@ -4067,7 +4429,8 @@ Binds an interface descriptor to an **IRemoteBroker** object.
 **System capability**: SystemCapability.Communication.IPC.Core
 
 **Parameters**
-    | Name| Type| Mandatory| Description|
+
+  | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | localInterface | IRemoteBroker | Yes| **IRemoteBroker** object.|
   | descriptor | string | Yes| Interface descriptor.|
@@ -4128,13 +4491,15 @@ Creates an **Ashmem** object with the specified name and size.
 **System capability**: SystemCapability.Communication.IPC.Core
 
 **Parameters**
-    | Name| Type| Mandatory| Description|
+
+  | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | name | string | Yes| Name of the **Ashmem** object to create.|
   | size | number | Yes| Size (in bytes) of the **Ashmem** object to create.|
 
 **Return value**
-    | Type| Description|
+
+  | Type| Description|
   | -------- | -------- |
   | Ashmem | Returns the **Ashmem** object if it is created successfully; returns null otherwise.|
 
@@ -4157,12 +4522,14 @@ Creates an **Ashmem** object by copying the file descriptor (FD) of an existing 
 **System capability**: SystemCapability.Communication.IPC.Core
 
 **Parameters**
-    | Name| Type| Mandatory| Description|
+
+  | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | ashmem | Ashmem | Yes| Existing **Ashmem** object.|
 
 **Return value**
-    | Type| Description|
+
+  | Type| Description|
   | -------- | -------- |
   | Ashmem | **Ashmem** object created.|
 
@@ -4218,7 +4585,8 @@ Obtains the memory size of this **Ashmem** object.
 **System capability**: SystemCapability.Communication.IPC.Core
 
 **Return value**
-    | Type| Description|
+
+  | Type| Description|
   | -------- | -------- |
   | number | **Ashmem** size obtained.|
 
@@ -4240,12 +4608,14 @@ Creates the shared file mapping on the virtual address space of this process. Th
 **System capability**: SystemCapability.Communication.IPC.Core
 
 **Parameters**
-    | Name| Type| Mandatory| Description|
+
+  | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | mapType | number | Yes| Protection level of the memory region to which the shared file is mapped.|
 
 **Return value**
-    | Type| Description|
+
+  | Type| Description|
   | -------- | -------- |
   | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
 
@@ -4267,7 +4637,8 @@ Maps the shared file to the readable and writable virtual address space of the p
 **System capability**: SystemCapability.Communication.IPC.Core
 
 **Return value**
-    | Type| Description|
+
+  | Type| Description|
   | -------- | -------- |
   | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
 
@@ -4289,7 +4660,8 @@ Maps the shared file to the read-only virtual address space of the process.
 **System capability**: SystemCapability.Communication.IPC.Core
 
 **Return value**
-    | Type| Description|
+
+  | Type| Description|
   | -------- | -------- |
   | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
 
@@ -4311,12 +4683,14 @@ Sets the protection level of the memory region to which the shared file is mappe
 **System capability**: SystemCapability.Communication.IPC.Core
 
 **Parameters**
-    | Name| Type| Mandatory| Description|
+
+  | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | protectionType | number | Yes| Protection type to set.|
 
 **Return value**
-    | Type| Description|
+
+  | Type| Description|
   | -------- | -------- |
   | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
 
@@ -4338,14 +4712,16 @@ Writes data to the shared file associated with this **Ashmem** object.
 **System capability**: SystemCapability.Communication.IPC.Core
 
 **Parameters**
-    | Name| Type| Mandatory| Description|
+
+  | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | buf | number[] | Yes| Data to write.|
   | size | number | Yes| Size of the data to write.|
   | offset | number | Yes| Start position of the data to write in the memory region associated with this **Ashmem** object.|
 
 **Return value**
-    | Type| Description|
+
+  | Type| Description|
   | -------- | -------- |
   | boolean | Returns **true** is the data is written successfully; returns **false** otherwise.|
 
@@ -4370,13 +4746,15 @@ Reads data from the shared file associated with this **Ashmem** object.
 **System capability**: SystemCapability.Communication.IPC.Core
 
 **Parameters**
-    | Name| Type| Mandatory| Description|
+
+  | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | size | number | Yes| Size of the data to read.|
   | offset | number | Yes| Start position of the data to read in the memory region associated with this **Ashmem** object.|
 
 **Return value**
-    | Type| Description|
+
+  | Type| Description|
   | -------- | -------- |
   | number[] | Data read.|
 

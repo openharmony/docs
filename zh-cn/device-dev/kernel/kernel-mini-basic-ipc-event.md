@@ -16,14 +16,12 @@
 
 ## 运行机制
 
-
 ### 事件控制块
+
+由事件初始化函数配置的一个结构体，在事件读写等操作时作为参数传入，用于标识不同的事件，控制块数据结构如下：
 
 
 ```
-/**
-  * 事件控制块数据结构
-  */
 typedef struct tagEvent {
     UINT32 uwEventID;        /* 事件集合，表示已经处理（写入和清零）的事件集合 */
     LOS_DL_LIST stEventList; /* 等待特定事件的任务链表 */
@@ -33,7 +31,7 @@ typedef struct tagEvent {
 
 ### 事件运作原理
 
-**事件初始化**：会创建一个事件控制块，该控制块维护一个已处理的事件集合，以及等待特定事件的任务链表。
+**事件初始化**：创建一个事件控制块，该控制块维护一个已处理的事件集合，以及等待特定事件的任务链表。
 
 **写事件**：会向事件控制块写入指定的事件，事件控制块更新事件集合，并遍历任务链表，根据任务等待具体条件满足情况决定是否唤醒相关任务。
 
@@ -96,31 +94,29 @@ typedef struct tagEvent {
 
 ### 实例描述
 
-示例中，任务Example_TaskEntry创建一个任务Example_Event，Example_Event读事件阻塞，Example_TaskEntry向该任务写事件。可以通过示例日志中打印的先后顺序理解事件操作时伴随的任务切换。
+示例中，任务ExampleEvent创建一个任务EventReadTask，EventReadTask读事件阻塞，ExampleEvent向该任务写事件。可以通过示例日志中打印的先后顺序理解事件操作时伴随的任务切换。
 
-1. 在任务Example_TaskEntry创建任务Example_Event，其中任务Example_Event优先级高于Example_TaskEntry。
+1. 在任务ExampleEvent创建任务EventReadTask，其中任务EventReadTask优先级高于ExampleEvent。
 
-2. 在任务Example_Event中读事件0x00000001，阻塞，发生任务切换，执行任务Example_TaskEntry。
+2. 在任务EventReadTask中读事件0x00000001，阻塞，发生任务切换，执行任务ExampleEvent。
 
-3. 在任务Example_TaskEntry向任务Example_Event写事件0x00000001，发生任务切换，执行任务Example_Event。
+3. 在任务ExampleEvent写事件0x00000001，发生任务切换，执行任务EventReadTask。
 
-4. Example_Event得以执行，直到任务结束。
+4. EventReadTask得以执行，直到任务结束。
 
-5. Example_TaskEntry得以执行，直到任务结束。
+5. ExampleEvent得以执行，直到任务结束。
 
 
 ### 示例代码
 
 示例代码如下：
 
+本演示代码在 ./kernel/liteos_m/testsuites/src/osTest.c 中编译验证，在TestTaskEntry中调用验证入口函数ExampleEvent。
+
 
 ```
 #include "los_event.h"
 #include "los_task.h"
-#include "securec.h"
-
-/* 任务ID */
-UINT32 g_testTaskId;
 
 /* 事件控制结构体 */
 EVENT_CB_S g_exampleEvent;
@@ -128,8 +124,11 @@ EVENT_CB_S g_exampleEvent;
 /* 等待的事件类型 */
 #define EVENT_WAIT 0x00000001
 
+/* 等待超时时间 */
+#define EVENT_TIMEOUT 100
+
 /* 用例任务入口函数 */
-VOID Example_Event(VOID)
+VOID EventReadTask(VOID)
 {
     UINT32 ret;
     UINT32 event;
@@ -137,39 +136,39 @@ VOID Example_Event(VOID)
     /* 超时等待方式读事件,超时时间为100 ticks, 若100 ticks后未读取到指定事件，读事件超时，任务直接唤醒 */
     printf("Example_Event wait event 0x%x \n", EVENT_WAIT);
 
-    event = LOS_EventRead(&g_exampleEvent, EVENT_WAIT, LOS_WAITMODE_AND, 100);
+    event = LOS_EventRead(&g_exampleEvent, EVENT_WAIT, LOS_WAITMODE_AND, EVENT_TIMEOUT);
     if (event == EVENT_WAIT) {
-        printf("Example_Event,read event :0x%x\n", event);
+        printf("Example_Event, read event :0x%x\n", event);
     } else {
-        printf("Example_Event,read event timeout\n");
+        printf("Example_Event, read event timeout\n");
     }
 }
 
-UINT32 Example_TaskEntry(VOID)
+UINT32 ExampleEvent(VOID)
 {
     UINT32 ret;
-    TSK_INIT_PARAM_S task1;
+    UINT32 taskId;
+    TSK_INIT_PARAM_S taskParam = { 0 };
 
     /* 事件初始化 */
     ret = LOS_EventInit(&g_exampleEvent);
     if (ret != LOS_OK) {
         printf("init event failed .\n");
-        return -1;
+        return LOS_NOK;
     }
 
     /* 创建任务 */
-    (VOID)memset_s(&task1, sizeof(TSK_INIT_PARAM_S), 0, sizeof(TSK_INIT_PARAM_S));
-    task1.pfnTaskEntry = (TSK_ENTRY_FUNC)Example_Event;
-    task1.pcName       = "EventTsk1";
-    task1.uwStackSize  = OS_TSK_DEFAULT_STACK_SIZE;
-    task1.usTaskPrio   = 5;
-    ret = LOS_TaskCreate(&g_testTaskId, &task1);
+    taskParam.pfnTaskEntry = (TSK_ENTRY_FUNC)EventReadTask;
+    taskParam.pcName       = "EventReadTask";
+    taskParam.uwStackSize  = LOSCFG_BASE_CORE_TSK_DEFAULT_STACK_SIZE;
+    taskParam.usTaskPrio   = 3;
+    ret = LOS_TaskCreate(&taskId, &taskParam);
     if (ret != LOS_OK) {
         printf("task create failed.\n");
         return LOS_NOK;
     }
 
-    /* 写g_testTaskId 等待事件 */
+    /* 写事件 */
     printf("Example_TaskEntry write event.\n");
 
     ret = LOS_EventWrite(&g_exampleEvent, EVENT_WAIT);
@@ -183,10 +182,10 @@ UINT32 Example_TaskEntry(VOID)
     LOS_EventClear(&g_exampleEvent, ~g_exampleEvent.uwEventID);
     printf("EventMask:%d\n", g_exampleEvent.uwEventID);
 
-    /* 删除任务 */
-    ret = LOS_TaskDelete(g_testTaskId);
+    /* 删除事件 */
+    ret = LOS_EventDestroy(&g_exampleEvent);
     if (ret != LOS_OK) {
-        printf("task delete failed.\n");
+        printf("destory event failed .\n");
         return LOS_NOK;
     }
 
@@ -202,9 +201,9 @@ UINT32 Example_TaskEntry(VOID)
 
 
 ```
-Example_Event wait event 0x1 
+Example_Event wait event 0x1
 Example_TaskEntry write event.
-Example_Event,read event :0x1
+Example_Event, read event :0x1
 EventMask:1
 EventMask:0
 ```

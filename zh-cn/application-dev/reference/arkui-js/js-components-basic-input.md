@@ -23,14 +23,14 @@
 | -------------------------------- | ----------------------- | --------- | ---- | ---------------------------------------- |
 | type                             | string                  | text<br/> | 否    | input组件类型，可选值为text，email，date，time，number，password，button，checkbox，radio。<br/>其中text，email，date，time，number，password这六种类型之间支持动态切换修改。<br/>button，checkbox，radio不支持动态修改。可选值定义如下：<br/>-&nbsp;button：定义可点击的按钮；<br/>-&nbsp;checkbox：定义多选框；<br/>-&nbsp;radio：定义单选按钮，允许在多个拥有相同name值的选项中选中其中一个；<br/>-&nbsp;text：定义一个单行的文本字段；<br/>-&nbsp;email：定义用于e-mail地址的字段；<br/>-&nbsp;date：定义&nbsp;date&nbsp;控件（包括年、月、日，不包括时间）；<br/>-&nbsp;time：定义用于输入时间的控件（不带时区）；<br/>-&nbsp;number：定义用于输入数字的字段；<br/>-&nbsp;password：定义密码字段（字段中的字符会被遮蔽）。 |
 | checked                          | boolean                 | false     | 否    | 当前组件是否选中，仅type为checkbox和radio生效。         |
-| name                             | string                  | -         | 否    | input组件的名称。<br>type为radio时，name为必填。            |
+| name                             | string                  | -         | 否    | input组件的名称。<br>type为radio时，name为必填。      |
 | value                            | string                  | -         | 否    | input组件的value值，当类型为radio时必填且相同name值的选项该值唯一。 |
 | placeholder                      | string                  | -         | 否    | 设置提示文本的内容，仅在type为text\|email\|date\|time\|number\|password时生效。 |
 | maxlength                        | number                  | -         | 否    | 输入框可输入的最多字符数量，不填表示不限制输入框中字符数量。           |
 | enterkeytype                     | string                  | default   | 否    | 不支持动态修改。<br/>设置软键盘Enter按钮的类型，可选值为：<br/>-&nbsp;default：默认<br/>-&nbsp;next：下一项<br/>-&nbsp;go：前往<br/>-&nbsp;done：完成<br/>-&nbsp;send：发送<br/>-&nbsp;search：搜索<br/>除“next”外，点击后会自动收起软键盘。 |
 | headericon                       | string                  | -         | 否    | 在文本输入前的图标资源路径，该图标不支持点击事件（button，checkbox和radio不生效），图标格式为jpg，png和svg。 |
 | showcounter<sup>5+</sup>         | boolean                 | false     | 否    | 文本输入框是否显示计数下标，需要配合maxlength一起使用。         |
-| menuoptions<sup>5+</sup>         | Array&lt;MeunOption&gt; | -         | 否    | 设置文本选择弹框点击更多按钮之后显示的菜单项。                  |
+| menuoptions<sup>5+</sup>         | Array&lt;MenuOption&gt; | -         | 否    | 设置文本选择弹框点击更多按钮之后显示的菜单项。                  |
 | autofocus<sup>6+</sup>           | boolean                 | false     | 否    | 是否自动获焦。<br/>应用首页中设置不生效，可在onActive中延迟（100-500ms左右）调用focus方法实现输入框在首页中自动获焦。 |
 | selectedstart<sup>6+</sup>       | number                  | -1        | 否    | 开始选择文本时初始选择位置。                           |
 | selectedend<sup>6+</sup>         | number                  | -1        | 否    | 开始选择文本时结尾选择位置。                           |
@@ -64,8 +64,8 @@
 除支持[通用事件](../arkui-js/js-components-common-events.md)外，还支持如下事件：
 
 - 当input类型为text、email、date、time、number、password时，支持如下事件：
-  
-  | 名称                      | 参数                                       | 描述                                       |
+
+  | 名称                        | 参数                                       | 描述                                       |
   | ------------------------- | ---------------------------------------- | ---------------------------------------- |
   | change                    | {<br>&nbsp;value: inputValue<br>&nbsp;}  | 输入框输入内容发生变化时触发该事件，返回用户当前输入值。<br/>改变value属性值不会触发该回调。 |
   | enterkeyclick             | {<br>&nbsp;value: enterKey<br>&nbsp;}    | 软键盘enter键点击后触发该事件，返回enter按钮的类型，enterKey类型为number，可选值为：<br/>-&nbsp;2：设置enterkeytype属性为go时生效。<br/>-&nbsp;3：设置enterkeytype属性为search时生效。<br/>-&nbsp;4：设置enterkeytype属性为send时生效。<br/>-&nbsp;5：设置enterkeytype属性为next时生效。<br/>-&nbsp;6：不设置enterkeytype或者设置enterkeytype属性为default、done时生效。 |
@@ -76,7 +76,7 @@
   | selectchange<sup>6+</sup> | {<br>start:&nbsp;number,<br>end:&nbsp;number<br>&nbsp;} | 文本选择变化时触发事件。                             |
 
 - 当input类型为checkbox、radio时，支持如下事件：
-  
+
   | 名称     | 参数                                       | 描述                                       |
   | ------ | ---------------------------------------- | ---------------------------------------- |
   | change | {<br>&nbsp;checked:true&nbsp;\|&nbsp;false&nbsp;<br>} | checkbox多选框或radio单选框的checked状态发生变化时触发该事件。 |
@@ -101,26 +101,28 @@
        headericon="/common/search.svg" placeholder="Please input text" onchange="change"
        onenterkeyclick="enterkeyClick">
      </input>
-     <input class="button" type="button" value="Submit" onclick="buttonClick"></input>
+     <input class="button" type="button" value="Submit" onclick="buttonClick" style="color: blue"></input>
    </div>
    ```
 
    ```css
    /* xxx.css */
    .content {
-     width: 60%;
+     width: 100%;
      flex-direction: column;
      align-items: center;
    }
    .input {
+     width: 60%;
      placeholder-color: gray;
    }
    .button {
+     width: 60%;
      background-color: gray;
      margin-top: 20px;
-   }
+    }
    ```
-
+   
    ```js
    // xxx.js
    import prompt from '@system.prompt'
@@ -142,8 +144,9 @@
          error: 'error text'
        });
      },
-   }
+    }
    ```
+
 
    ![zh-cn_image_0000001252835901](figures/zh-cn_image_0000001252835901.png)
 

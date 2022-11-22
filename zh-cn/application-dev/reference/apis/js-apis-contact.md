@@ -204,8 +204,8 @@ updateContact(contact: Contact, attrs: ContactAttributes, callback: AsyncCallbac
   contact.updateContact({
       name: {fullName: 'xxx'},
       phoneNumbers: [{phoneNumber: '138xxxxxxxx'}]
-  },{
-      attributes:[contact.Attribute.ATTR_EMAIL, contact.Attribute.ATTR_NAME]
+  }, {
+      attributes: [contact.Attribute.ATTR_EMAIL, contact.Attribute.ATTR_NAME]
   }, (err) => {
       if (err) {
           console.log('updateContact callback: err->${JSON.stringify(err)}');
@@ -433,7 +433,7 @@ queryMyCard(attrs: ContactAttributes, callback: AsyncCallback&lt;Contact&gt;): v
 
   ```js
   contact.queryMyCard({
-      attributes:[contact.Attribute.ATTR_EMAIL, contact.Attribute.ATTR_NAME]
+      attributes: [contact.Attribute.ATTR_EMAIL, contact.Attribute.ATTR_NAME]
   }, (err, data) => {
       if (err) {
           console.log(`queryMyCard callback: err->${JSON.stringify(err)}`);
@@ -469,7 +469,7 @@ queryMyCard(attrs?: ContactAttributes): Promise&lt;Contact&gt;
 
   ```js
   let promise = contact.queryMyCard({
-      attributes:[contact.Attribute.ATTR_EMAIL, contact.Attribute.ATTR_NAME]
+      attributes: [contact.Attribute.ATTR_EMAIL, contact.Attribute.ATTR_NAME]
   });
   promise.then((data) => {
       console.log(`queryMyCard success: data->${JSON.stringify(data)}`);
@@ -487,7 +487,7 @@ selectContact(callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
 
 **需要权限**：ohos.permission.READ_CONTACTS
 
-**系统能力**：SystemCapability.Applications.ContactsData
+**系统能力**：SystemCapability.Applications.Contacts
 
 **参数：**
 
@@ -516,7 +516,7 @@ selectContact(): Promise&lt;Array&lt;Contact&gt;&gt;
 
 **需要权限**：ohos.permission.READ_CONTACTS
 
-**系统能力**：SystemCapability.Applications.Contacts、SystemCapability.Applications.ContactsData
+**系统能力**：SystemCapability.Applications.Contacts
 
 **返回值：**
 

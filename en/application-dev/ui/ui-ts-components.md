@@ -6,7 +6,7 @@ Before customizing a component, get to know what the [component and decorator](#
 
 ## Components and Decorators
 
-In a declarative UI, all pages are composed of components. The data structure of the component is struct, and the decorator [@Component](ts-component-based-component.md) is the component-based flag. The struct decorated by @Component indicates that the struct has the component capability.
+In a declarative UI, all pages are composed of components. The data structure of the component is struct, and the decorator @Component is the component-based flag. The struct decorated by @Component indicates that the struct has the component capability.
 
 The method for declaring a custom component is as follows:
 
@@ -23,7 +23,7 @@ interface Builder {
 }
 ```
 
-The component decorated by [@Entry](../ui/ts-component-based-entry.md) is the main entry, or in other words, the root node, of the page. Note that a page must have one and only one @Entry. Only the @Entry decorated component and its child components are displayed on the page.
+The component decorated by @Entry is the main entry, or in other words, the root node, of the page. Note that a page must have one and only one @Entry. Only the @Entry decorated component and its child components are displayed on the page.
 
 @Component and @Entry are basic and important decorators. To put it simply, a decorator assigns a capability to an object to be decorated. For example, @Entry assigns the capability of the page entry, and @Component assigns the component capability.
 

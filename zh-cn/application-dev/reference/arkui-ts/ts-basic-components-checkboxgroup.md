@@ -14,7 +14,7 @@
 
 CheckboxGroup(options?: { group?: string })
 
-创建多选框群组，可以控制群组内的Checkbox全选或者不全选，相同group的Checkbox和CheckboxGroup为同一群组。
+创建多选框群组，可以控制群组内的Checkbox全选或者不全选，group值相同的Checkbox和CheckboxGroup为同一群组。
 
 **参数:**
 
@@ -30,7 +30,7 @@ CheckboxGroup(options?: { group?: string })
 
 | 名称 | 参数类型 | 描述 |
 | -------- | -------- | -------- |
-| selectAll | boolean | 设置是否全选。<br/>默认值：false |
+| selectAll | boolean | 设置是否全选。<br/>默认值：false，若同组的Checkbox显式设置select，则Checkbox的优先级高。 |
 | selectedColor | [ResourceColor](ts-types.md#resourcecolor) | 设置被选中或部分选中状态的颜色。 |
 
 ## 事件
@@ -39,13 +39,13 @@ CheckboxGroup(options?: { group?: string })
 
 | 名称 | 功能描述 |
 | -------- | -------- |
-| onChange (callback: (event: CheckboxGroupResult) => void ) |CheckboxGroup的选中状态或群组内的Checkbox的选中状态发生变化时，触发回调。|
+| onChange (callback: (event: [CheckboxGroupResult](#checkboxgroupresult对象说明)) => void ) |CheckboxGroup的选中状态或群组内的Checkbox的选中状态发生变化时，触发回调。|
 
 ## CheckboxGroupResult对象说明
 | 名称     | 类型   | 描述      |
 | ------ | ------ | ------- |
 | name   | Array&lt;string&gt; | 群组内所有被选中的多选框名称。 |
-| status | SelectStatus | 选中状态。 |
+| status | [SelectStatus](#selectstatus枚举说明) | 选中状态。 |
 
 ## SelectStatus枚举说明
 
@@ -66,18 +66,19 @@ struct CheckboxExample {
   build() {
     Scroll() {
       Column() {
+        // 全选按钮
         Flex({ justifyContent: FlexAlign.Start, alignItems: ItemAlign.Center }) {
           CheckboxGroup({ group: 'checkboxGroup' })
             .selectedColor(0xed6f21)
             .onChange((itemName: CheckboxGroupResult) => {
-              console.info("TextPicker::dialogResult is" + JSON.stringify(itemName))
+              console.info("checkbox group content" + JSON.stringify(itemName))
             })
-          Text('select all').fontSize(20)
+          Text('Select All').fontSize(20)
         }
 
+        // 选项1
         Flex({ justifyContent: FlexAlign.Start, alignItems: ItemAlign.Center }) {
           Checkbox({ name: 'checkbox1', group: 'checkboxGroup' })
-            .select(true)
             .selectedColor(0x39a2db)
             .onChange((value: boolean) => {
               console.info('Checkbox1 change is' + value)
@@ -85,9 +86,9 @@ struct CheckboxExample {
           Text('Checkbox1').fontSize(20)
         }
 
+        // 选项2
         Flex({ justifyContent: FlexAlign.Start, alignItems: ItemAlign.Center }) {
           Checkbox({ name: 'checkbox2', group: 'checkboxGroup' })
-            .select(false)
             .selectedColor(0x39a2db)
             .onChange((value: boolean) => {
               console.info('Checkbox2 change is' + value)
@@ -95,9 +96,9 @@ struct CheckboxExample {
           Text('Checkbox2').fontSize(20)
         }
 
+        // 选项3
         Flex({ justifyContent: FlexAlign.Start, alignItems: ItemAlign.Center }) {
           Checkbox({ name: 'checkbox3', group: 'checkboxGroup' })
-            .select(true)
             .selectedColor(0x39a2db)
             .onChange((value: boolean) => {
               console.info('Checkbox3 change is' + value)
@@ -109,4 +110,10 @@ struct CheckboxExample {
   }
 }
 ```
-![](figures/checkboxgroup.gif)
+多选框组三种状态图示：
+
+![](figures/checkboxgroup1.png)
+
+![](figures/checkboxgroup2.png)
+
+![](figures/checkboxgroup3.png)

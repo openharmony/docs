@@ -14,13 +14,13 @@
 
   | 输入 | 开发接口 | 触控屏 | 鼠标 | 触控板 | 
 | -------- | -------- | -------- | -------- | -------- |
-| 点击 | [onClick](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/arkui-ts/ts-universal-events-click.md) | √ | √ | √ | 
-| 长按 | [LongPressGesture](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/arkui-ts/ts-basic-gestures-longpressgesture.md) | √ | √ | × | 
-| 双击 | [TapGesture](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/arkui-ts/ts-basic-gestures-tapgesture.md) | √ | √ | √ | 
-| 轻扫 | [SwipeGesture](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/arkui-ts/ts-basic-gestures-swipegesture.md) | √ | √ | √ | 
-| 滚动及平移 | [PanGesture](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/arkui-ts/ts-basic-gestures-pangesture.md) | √ | √ | √ | 
-| 缩放 | [PinchGesture](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/arkui-ts/ts-basic-gestures-pinchgesture.md) | √ | √ | √ | 
-| 旋转 | [RotationGesture](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/arkui-ts/ts-basic-gestures-rotationgesture.md) | √ | NA | √ | 
+| 点击 | [onClick](../../reference/arkui-ts/ts-universal-events-click.md) | √ | √ | √ | 
+| 长按 | [LongPressGesture](../../reference/arkui-ts/ts-basic-gestures-longpressgesture.md) | √ | √ | × | 
+| 双击 | [TapGesture](../../reference/arkui-ts/ts-basic-gestures-tapgesture.md) | √ | √ | √ | 
+| 轻扫 | [SwipeGesture](../../reference/arkui-ts/ts-basic-gestures-swipegesture.md) | √ | √ | √ | 
+| 滚动及平移 | [PanGesture](../../reference/arkui-ts/ts-basic-gestures-pangesture.md) | √ | √ | √ | 
+| 缩放 | [PinchGesture](../../reference/arkui-ts/ts-basic-gestures-pinchgesture.md) | √ | √ | √ | 
+| 旋转 | [RotationGesture](../../reference/arkui-ts/ts-basic-gestures-rotationgesture.md) | √ | NA | √ | 
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
 > - 点击事件（onClick）其实是点击手势（TapGesture）的一个特殊场景（单指单次点击）。该场景使用的非常广泛，为了方便开发者使用及符合传统开发习惯，所以专门提供了开发接口。

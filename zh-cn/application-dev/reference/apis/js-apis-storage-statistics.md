@@ -4,8 +4,7 @@
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
 >
-> - 本模块首批接口从API version 8开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
-> - API 9当前为Canary版本，仅供试用，不保证接口可稳定调用。
+> 本模块首批接口从API version 8开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
 ## 导入模块
 
@@ -52,7 +51,7 @@ getTotalSizeOfVolume(volumeUuid: string): Promise&lt;number&gt;
 
 ## storageStatistics.getTotalSizeOfVolume
 
-getTotalSizeOfVolume(volumeUuid: string, callback:AsyncCallback&lt;number&gt;):void
+getTotalSizeOfVolume(volumeUuid: string, callback: AsyncCallback&lt;number&gt;): void
 
 异步获取指定卷的总空间大小，以callback方式返回。
 
@@ -69,7 +68,7 @@ getTotalSizeOfVolume(volumeUuid: string, callback:AsyncCallback&lt;number&gt;):v
   | 参数名     | 类型                                 | 必填 | 说明                       |
   | ---------- | ------------------------------------ | ---- | -------------------------- |
   | volumeUuid | string                               | 是   | 卷id                       |
-  | callback   | callback:AsyncCallback&lt;number&gt; | 是   | 获取指定卷总空间之后的回调 |
+  | callback   | callback: AsyncCallback&lt;number&gt; | 是   | 获取指定卷总空间之后的回调 |
 
 **示例：**
 
@@ -121,7 +120,7 @@ getFreeSizeOfVolume(volumeUuid: string): Promise&lt;number&gt;
 
 ## storageStatistics.getFreeSizeOfVolume
 
-getFreeSizeOfVolume(volumeUuid: string, callback:AsyncCallback&lt;number&gt;):void
+getFreeSizeOfVolume(volumeUuid: string, callback: AsyncCallback&lt;number&gt;): void
 
 异步获取指定卷的可用空间大小，以callback方式返回。
 
@@ -138,7 +137,7 @@ getFreeSizeOfVolume(volumeUuid: string, callback:AsyncCallback&lt;number&gt;):vo
   | 参数名     | 类型                                 | 必填 | 说明                         |
   | ---------- | ------------------------------------ | ---- | ---------------------------- |
   | volumeUuid | string                               | 是   | 卷id                         |
-  | callback   | callback:AsyncCallback&lt;number&gt; | 是   | 获取指定卷可用空间之后的回调 |
+  | callback   | callback: AsyncCallback&lt;number&gt; | 是   | 获取指定卷可用空间之后的回调 |
 
 **示例：**
 
@@ -206,7 +205,7 @@ getBundleStats(packageName: string,  callback: AsyncCallback&lt;BundleStats&gt;)
   | 参数名   | 类型                                                      | 必填 | 说明                                 |
   | -------- | --------------------------------------------------------- | ---- | ------------------------------------ |
   | packageName | string | 是   | 应用包名 |
-  | callback | callback:AsyncCallback&lt;[Bundlestats](#bundlestats)&gt; | 是   | 获取指定卷上的应用存储数据之后的回调 |
+  | callback | callback: AsyncCallback&lt;[Bundlestats](#bundlestats)&gt; | 是   | 获取指定卷上的应用存储数据之后的回调 |
 
 **示例：**
 
@@ -251,7 +250,7 @@ getCurrentBundleStats(callback: AsyncCallback&lt;BundleStats&gt;): void
 
   | 参数名    | 类型                                                       | 必填  | 说明                                 |
   | -------- | --------------------------------------------------------- | ---- | ------------------------------------ |
-  | callback | callback:AsyncCallback&lt;[BundleStats](#bundlestats)&gt; | 是   | 获取指定卷上的应用存储状态之后的回调        |
+  | callback | callback: AsyncCallback&lt;[BundleStats](#bundlestats)&gt; | 是   | 获取指定卷上的应用存储状态之后的回调        |
 
 **示例：**
 
@@ -323,7 +322,7 @@ getTotalSize(callback: AsyncCallback&lt;number&gt;): void
 
   | 参数名    | 类型                                  | 必填  | 说明                     |
   | -------- | ------------------------------------ | ---- | ------------------------ |
-  | callback | callback:AsyncCallback&lt;number&gt; | 是   | 获取内卡的总空间大小之后的回调 |
+  | callback | callback: AsyncCallback&lt;number&gt; | 是   | 获取内卡的总空间大小之后的回调 |
 
 **示例：**
 
@@ -381,7 +380,7 @@ getFreeSize(callback: AsyncCallback&lt;number&gt;): void
 
   | 参数名    | 类型                                  | 必填 | 说明                       |
   | -------- | ------------------------------------ | ---- | ------------------------- |
-  | callback | callback:AsyncCallback&lt;number&gt; | 是   | 获取内卡的可用空间大小之后的回调 |
+  | callback | callback: AsyncCallback&lt;number&gt; | 是   | 获取内卡的可用空间大小之后的回调 |
 
 **示例：**
 
@@ -424,7 +423,7 @@ getSystemSize(): Promise&lt;number&gt;
 
 ## storageStatistics.getSystemSize<sup>9+</sup>
 
-getSystemSize(callback:AsyncCallback&lt;number&gt;):void
+getSystemSize(callback: AsyncCallback&lt;number&gt;): void
 
 异步获取系统空间大小，以callback方式返回。
 
@@ -440,7 +439,7 @@ getSystemSize(callback:AsyncCallback&lt;number&gt;):void
 
   | 参数名     | 类型                                 | 必填 | 说明                       |
   | ---------- | ------------------------------------ | ---- | -------------------------- |
-  | callback   | callback:AsyncCallback&lt;number&gt; | 是   | 获取系统空间大小之后的回调 |
+  | callback   | callback: AsyncCallback&lt;number&gt; | 是   | 获取系统空间大小之后的回调 |
 
 **示例：**
 
@@ -475,7 +474,7 @@ getUserStorageStats(userId? : number): Promise&lt;StorageStats&gt;
 
   | 类型                  | 说明             |
   | --------------------- | ---------------- |
-  | Promise&lt;[StorageStats](#StorageStats)&gt; | 返回各类别数据大小 |
+  | Promise&lt;[StorageStats](#storagestats)&gt; | 返回各类别数据大小 |
 
 **示例：**
 
@@ -490,7 +489,7 @@ getUserStorageStats(userId? : number): Promise&lt;StorageStats&gt;
 
 ## storageStatistics.getUserStorageStats<sup>9+</sup>
 
-getUserStorageStats(userId: number, callback:AsyncCallback&lt;StorageStats&gt;):void
+getUserStorageStats(userId: number, callback: AsyncCallback&lt;StorageStats&gt;): void
 
 异步获取用户各类别数据大小，以callback方式返回。
 
@@ -507,7 +506,7 @@ getUserStorageStats(userId: number, callback:AsyncCallback&lt;StorageStats&gt;):
   | 参数名     | 类型                                 | 必填 | 说明                       |
   | ---------- | ------------------------------------ | ---- | -------------------------- |
   | userId | number                               | 否   | 用户id <br/>确认当前用户：<br/>-&nbsp;有值：表示指定用户。<br/>-&nbsp;无值：表示当前用户。                       |
-  | callback   | callback:AsyncCallback&lt;[StorageStats](#StorageStats)&gt; | 是   | 返回各类别数据大小之后的回调 |
+  | callback   | callback: AsyncCallback&lt;[StorageStats](#storagestats)&gt; | 是   | 返回各类别数据大小之后的回调 |
 
 **示例：**
 

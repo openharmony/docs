@@ -59,7 +59,9 @@ Sets an attribute.
 let arrayBuffer = new ArrayBuffer(1024);
 let bufView = new DataView(arrayBuffer);
 let thatSer = new xml.XmlSerializer(bufView);
-thatSer.setAttributes("importance", "high");  
+thatSer.startElement("note");
+thatSer.setAttributes("importance", "high");
+thatSer.endElement();
 ```
 
 
@@ -339,8 +341,8 @@ let strXml =
 let arrayBuffer = new ArrayBuffer(strXml.length);
 let bufView = new Uint8Array(arrayBuffer);
 let strLen = strXml.length;
-for (var i = 0; i < strLen; ++i) {
-    bufView[i] = strXml.charCodeAt(i);
+for (var tmp = 0; tmp < strLen; ++tmp) {
+    bufView[tmp] = strXml.charCodeAt(tmp);
 }
 let that = new xml.XmlPullParser(arrayBuffer);
 let arrTag = {};

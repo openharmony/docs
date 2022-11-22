@@ -191,6 +191,42 @@ OpenHarmony-3.0-LTS
 
 设备进入hdc shell下， 执行sandbox -s service_name命令，模拟当前服务进入沙盒场景， 通过 ls 等shell命令查看当前服务沙盒目录。具体参考[沙盒命令](../subsystems/subsys-boot-init-plugin.md)
 
+### Bootevent部分事件的ready阶段的时间戳为0
+
+**现象描述**
+
+Bootevent手动模式下，开机完成之后在执行dump_service all bootevent命令后有部分事件的ready阶段的时间戳为0。
+
+**可能原因**
+
+1. 服务没有发送bootevent事件。
+2. 服务发送bootevent事件， 但是没有相关权限。
+
+**解决方法**
+
+1. 服务配置了bootevent，但是没有发送该bootevent事件，请相关服务在代码中发送该bootevent事件。
+2. 在代码中已经执行到设置bootevent的操作，但是ready的状态就是为零，此时请检查服务是否有设置bootevent参数的权限。
+
+### A/B分区启动过程因只烧写原始分区导致的无法启动
+
+**现象描述**
+
+烧写完成后系统无法正常启动，并且可以在串口日志中找到类似如下打印：
+
+```
+wait for file:/dev/block/platform/fe310000.sdhci/by-name/system_b failed after 5 second.
+Mount /dev/block/platform/fe310000.sdhci/by-name/system_b to /usr failed 2
+```
+
+**可能原因**
+
+当前系统已经支持了A/B分区启动，根据日志可知本次启动尝试挂载了带"_b"后缀的system分区，即本次启动从B分区启动，但是并没有找到设备，导致挂载失败。这种情况是由于当前misc分区中的active slot值被设置为了2（B分区），但是并没有烧写对应B分区导致的。
+
+**解决方法**
+
+1. 可以清空misc分区（使用空misc镜像烧写对应分区），将其中的active slot值擦除，再次启动即可从默认分区启动。
+2. 使用配置了B分区的分区表将system_b和vendor_b镜像烧写到开发板中，再次启动即可从对应B分区正常启动。
+
 ## Appspawn应用孵化常见问题
 
 ### 设备启动中，appspawn启动失败
@@ -221,11 +257,15 @@ OpenHarmony-3.0-LTS
 
 1. 冷启动状态未打开。
 2. 冷启动命令参数输入错误。
+3. socket请求超时。
+4. selinux打开。
 
 **解决办法**
 
-1. 冷启动不使能， 通过param get appspawn.cold.boot命令查看状态，如果冷启动状态是false, 通过param set appspawn.cold.boot true 命令打开冷启动状态。
+1. 冷启动不使能， 通过param get startup.appspawn.cold.boot命令查看状态，如果冷启动状态是0, 通过param set startup.appspawn.cold.boot 1 命令打开冷启动状态。
 2. 冷启动命令参数不正确， 查看并确认冷启动参数。
+3. 设置超时时间>3秒，执行 param set persist.appspawn.client.timeout 5 命令。
+4. 关闭selinux, 执行 setenforce 0 命令。
 
 ### 应用沙盒创建失败
 

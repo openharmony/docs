@@ -140,7 +140,7 @@ You can obtain the distributed table name for a remote device based on the local
 
 | Class    | API                                                      | Description                                                        |
 | -------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| RdbStore | sync(mode: SyncMode, predicates: RdbPredicates): Promise\<Array\<[string, number]>> | Synchronizes data between devices. This API uses a promise to return the result.<br>- **mode**: synchronization mode.  **SYNC_MODE_PUSH** means to push data from the local device to a remote device. **SYNC_MODE_PULL** means to pull data from a remote device to the local device.<br>- **predicates**: specifies the data and devices to synchronize.<br>- **string**: device ID. <br>- **number**: synchronization status of that device. The value **0** indicates a successful synchronization. Other values indicate a synchronization failure.|
+| RdbStore | sync(mode: SyncMode, predicates: RdbPredicates): Promise\<Array\<[string, number]>> | Synchronizes data between devices. This API uses a promise to return the result.<br>- **mode**: synchronization mode.  **SYNC_MODE_PUSH** means to push data from the local device to a remote device. **SYNC_MODE_PULL** means to pull data from a remote device to the local device.<br>- **predicates**: specifies the data and devices to synchronize.<br>- **string**: device ID. <br>- **number**: synchronization status of each device. The value **0** indicates a successful synchronization. Other values indicate a synchronization failure.|
 
 **Registering an RDB Store Observer**
 
@@ -196,17 +196,41 @@ Table 15 Transaction APIs
 
    (3) Create an RDB store.
 
-   The sample code is as follows:
+   FA model:
 
     ```js
-    import data_rdb from '@ohos.data.rdb'
+   import data_rdb from '@ohos.data.rdb'
+    // Obtain the context.
+   import featureAbility from '@ohos.ability.featureAbility'
+   let context = featureAbility.getContext()
 
-    const CREATE_TABLE_TEST = "CREATE TABLE IF NOT EXISTS test (" + "id INTEGER PRIMARY KEY AUTOINCREMENT, " + "name TEXT NOT NULL, " + "age INTEGER, " + "salary REAL, " + "blobType BLOB)";
-    const STORE_CONFIG = { name: "rdbstore.db" }
-    data_rdb.getRdbStore(this.context, STORE_CONFIG, 1, function (err, rdbStore) {
+   const CREATE_TABLE_TEST = "CREATE TABLE IF NOT EXISTS test (" + "id INTEGER PRIMARY KEY AUTOINCREMENT, " + "name TEXT NOT NULL, " + "age INTEGER, " + "salary REAL, " + "blobType BLOB)";
+
+   const STORE_CONFIG = { name: "RdbTest.db" }
+   data_rdb.getRdbStore(context, STORE_CONFIG, 1, function (err, rdbStore) {
       rdbStore.executeSql(CREATE_TABLE_TEST)
       console.info('create table done.')
-    })
+   })
+    ```
+    Stage model:
+     ```ts
+   import data_rdb from '@ohos.data.rdb'
+    // Obtain the context.
+   import Ability from '@ohos.application.Ability'
+   let context = null
+   class MainAbility extends Ability {
+       onWindowStageCreate(windowStage) {
+         context = this.context
+       }
+   }
+
+   const CREATE_TABLE_TEST = "CREATE TABLE IF NOT EXISTS test (" + "id INTEGER PRIMARY KEY AUTOINCREMENT, " + "name TEXT NOT NULL, " + "age INTEGER, " + "salary REAL, " + "blobType BLOB)";
+
+   const STORE_CONFIG = { name: "rdbstore.db" }
+   data_rdb.getRdbStore(context, STORE_CONFIG, 1, function (err, rdbStore) {
+       rdbStore.executeSql(CREATE_TABLE_TEST)
+       console.info('create table done.')
+   })
     ```
 
 2. Insert data.

@@ -20,6 +20,8 @@ Canvas组件提供画布，用于自定义绘制图形。具体用法请参考[C
 ```css
 /* xxx.css */
 .container{
+  width: 100%;
+  height: 100%;
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -118,8 +120,6 @@ import prompt from '@system.prompt';
 export default {
   data:{
     dataURL:null,
-    antialia: false,
-    porc:'open',
   },
   onShow(){
     let el = this.$refs.canvas1;

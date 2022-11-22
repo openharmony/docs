@@ -267,6 +267,6 @@
 
 针对页面布局与连接，有以下示例工程可供参考：
 
-- [`DefiningPageLayoutAndConnection`：页面布局和连接（eTS）（API8）](https://gitee.com/openharmony/app_samples/tree/master/ETSUI/DefiningPageLayoutAndConnection)
+- [`DefiningPageLayoutAndConnection`：页面布局和连接（ArkTS）（API8）](https://gitee.com/openharmony/app_samples/tree/master/ETSUI/DefiningPageLayoutAndConnection)
 
   本示例构建了食物分类列表页面和食物详情页，向开发者展示了List布局、Grid布局以及页面路由的基本用法。

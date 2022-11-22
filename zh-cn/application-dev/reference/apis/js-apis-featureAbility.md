@@ -271,6 +271,9 @@ featureAbility.terminateSelfWithResult(
             }
         },
     },
+    (err) => {
+        console.info("err: " + JSON.stringify(err))
+    }
 );
 ```
 
@@ -464,7 +467,11 @@ terminateSelf(callback: AsyncCallback\<void>): void
 
 ```javascript
 import featureAbility from '@ohos.ability.featureAbility';
-featureAbility.terminateSelf();
+featureAbility.terminateSelf(
+    (err) => {
+        console.info("err: " + JSON.stringify(err))
+    }
+)
 ```
 
 ## featureAbility.terminateSelf<sup>7+</sup>
@@ -592,8 +599,8 @@ var connectId = featureAbility.connectAbility(
     },
 );
 var result = featureAbility.disconnectAbility(connectId,
-    (error,data) => {
-        console.log('featureAbilityTest DisConnectJsSameBundleName result errCode : ' + error.code + " data: " + data)
+    (error) => {
+        console.log('featureAbilityTest DisConnectJsSameBundleName result errCode : ' + error.code)
     },
 );
 ```

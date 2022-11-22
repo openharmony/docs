@@ -689,7 +689,7 @@ promise.then(data => {
 
 ## sim.**setShowName**<sup>8+</sup>
 
-setShowName\(slotId: number, name: string,callback: AsyncCallback<void\>\): void
+setShowName\(slotId: number, name: string, callback: AsyncCallback<void\>\): void
 
 设置指定卡槽SIM卡显示的名称。使用callback异步回调。
 
@@ -710,7 +710,7 @@ setShowName\(slotId: number, name: string,callback: AsyncCallback<void\>\): void
 **示例：**
 
 ```js
-let name = '中国移动';
+let name = "ShowName";
 sim.setShowName(0, name, (err, data) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
@@ -744,7 +744,7 @@ setShowName\(slotId: number, name: string\): Promise\<void\>
 **示例：**
 
 ```js
-let name = '中国移动';
+let name = "ShowName";
 let promise = sim.setShowName(0, name);
 promise.then(data => {
     console.log(`setShowName success, promise: data->${JSON.stringify(data)}`);
@@ -818,7 +818,7 @@ promise.then(data => {
 
 ## sim.**setShowNumber**<sup>8+</sup>
 
-setShowNumber\(slotId: number, number: string,callback: AsyncCallback<void\>\): void
+setShowNumber\(slotId: number, number: string, callback: AsyncCallback<void\>\): void
 
 设置指定卡槽SIM卡的号码。使用callback异步回调。
 
@@ -848,7 +848,7 @@ sim.setShowNumber(0, number, (err, data) => {
 
 ## sim.**setShowNumber**<sup>8+</sup>
 
-setShowNumber\(slotId: number,number: string\): Promise\<void\>
+setShowNumber\(slotId: number, number: string\): Promise\<void\>
 
 设置指定卡槽SIM卡的号码。使用Promise异步回调。
 
@@ -885,7 +885,7 @@ promise.then(data => {
 
 ## sim.**getShowNumber**<sup>8+</sup>
 
-getShowNumber(slotId: number,callback: AsyncCallback<string\>): void
+getShowNumber(slotId: number, callback: AsyncCallback<string\>): void
 
 获取指定卡槽SIM卡的号码。使用callback异步回调。
 
@@ -1097,7 +1097,7 @@ setLockState(slotId: number, options: LockInfo, callback: AsyncCallback<LockStat
 ```js
 let lockInfo = {
     lockType: sim.LockType.PIN_LOCK,
-    password = "1234",
+    password: "1234",
     state: sim.LockState.LOCK_OFF
 };
 sim.setLockState(0, lockInfo, (err, data) => {
@@ -1136,7 +1136,7 @@ setLockState(slotId: number, options: LockInfo): Promise<LockStatusResponse\>
 ```js
 let lockInfo = {
     lockType: sim.LockType.PIN_LOCK,
-    password = "1234",
+    password: "1234",
     state: sim.LockState.LOCK_OFF
 };
 let promise = sim.setLockState(0, lockInfo);
@@ -1154,6 +1154,8 @@ getLockState(slotId: number, lockType: LockType, callback: AsyncCallback<LockSta
 获取指定卡槽SIM卡的锁状态。使用callback异步回调。
 
 此接口为系统接口。
+
+**需要权限**：ohos.permission.GET_TELEPHONY_STATE
 
 **系统能力**：SystemCapability.Telephony.CoreService
 
@@ -1181,6 +1183,8 @@ getLockState(slotId: number, lockType: LockType): Promise<LockState\>
 获取指定卡槽SIM卡的锁状态。使用Promise异步回调。
 
 此接口为系统接口。
+
+**需要权限**：ohos.permission.GET_TELEPHONY_STATE
 
 **系统能力**：SystemCapability.Telephony.CoreService
 
@@ -1344,7 +1348,7 @@ promise.then(data => {
 
 ## sim.**unlockPin**<sup>7+</sup>
 
-unlockPin(slotId: number,pin: string ,callback: AsyncCallback<LockStatusResponse\>): void
+unlockPin(slotId: number, pin: string, callback: AsyncCallback<LockStatusResponse\>): void
 
 解锁指定卡槽SIM卡密码。使用callback异步回调。
 
@@ -1374,7 +1378,7 @@ sim.unlockPin(0, pin, (err, data) => {
 
 ## sim.**unlockPin**<sup>7+</sup>
 
-unlockPin(slotId: number,pin: string): Promise&lt;LockStatusResponse\>
+unlockPin(slotId: number, pin: string): Promise&lt;LockStatusResponse\>
 
 解锁指定卡槽SIM卡密码。使用Promise异步回调。
 
@@ -1411,7 +1415,7 @@ promise.then(data => {
 
 ## sim.**unlockPuk**<sup>7+</sup>
 
-unlockPuk(slotId: number,newPin: string,puk: string ,callback: AsyncCallback<LockStatusResponse\>): void
+unlockPuk(slotId: number, newPin: string, puk: string, callback: AsyncCallback<LockStatusResponse\>): void
 
 解锁指定卡槽SIM卡密码的解锁密码。使用callback异步回调。
 
@@ -1443,7 +1447,7 @@ sim.unlockPuk(0, newPin, puk, (err, data) => {
 
 ## sim.**unlockPuk**<sup>7+</sup>
 
-unlockPuk(slotId: number,newPin: string,puk: string): Promise&lt;LockStatusResponse\>
+unlockPuk(slotId: number, newPin: string, puk: string): Promise&lt;LockStatusResponse\>
 
 解锁指定卡槽SIM卡密码的解锁密码。使用Promise异步回调。
 
@@ -1482,7 +1486,7 @@ promise.then(data => {
 
 ## sim.**unlockPin**2<sup>8+</sup>
 
-unlockPin2(slotId: number,pin2: string ,callback: AsyncCallback<LockStatusResponse\>): void
+unlockPin2(slotId: number, pin2: string, callback: AsyncCallback<LockStatusResponse\>): void
 
 解锁指定卡槽SIM卡密码。使用callback异步回调。
 
@@ -1512,7 +1516,7 @@ sim.unlockPin2(0, pin2, (err, data) => {
 
 ## sim.**unlockPin**2<sup>8+</sup>
 
-unlockPin2(slotId: number,pin2: string): Promise&lt;LockStatusResponse\>
+unlockPin2(slotId: number, pin2: string): Promise&lt;LockStatusResponse\>
 
 解锁指定卡槽SIM卡密码。使用Promise异步回调。
 
@@ -1539,7 +1543,7 @@ unlockPin2(slotId: number,pin2: string): Promise&lt;LockStatusResponse\>
 
 ```js
 let pin2='1234';
-let promise = sim.unlockPin2(0,pin2);
+let promise = sim.unlockPin2(0, pin2);
 promise.then(data => {
     console.log(`unlockPin2 success, promise: data->${JSON.stringify(data)}`);
 }).catch(err => {
@@ -1851,7 +1855,7 @@ setVoiceMailInfo(slotId: number, mailName: string, mailNumber: string, callback:
 **示例：**
 
 ```js
-sim.setVoiceMailInfo(0, "mail", "xxx@xxx.com" , (err, data) => {
+sim.setVoiceMailInfo(0, "mail", "xxx@xxx.com", (err, data) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
 ```
@@ -2238,7 +2242,6 @@ addIccDiallingNumbers(slotId: number, type: ContactType, diallingNumbers: Dialli
 let diallingNumbersInof = {
     alphaTag: "alpha",
     number: "138xxxxxxxx",
-    recordNumber: 123,
     pin2: "1234"
 };
 sim.addIccDiallingNumbers(0, sim.ContactType.GENERAL_CONTACT, diallingNumbersInof, (err, data) => {
@@ -2278,9 +2281,7 @@ addIccDiallingNumbers(slotId: number, type: ContactType, diallingNumbers: Dialli
 ```js
 let diallingNumbersInof = {
     alphaTag: "alpha",
-    number: "138xxxxxxxx",
-    recordNumber: 123,
-    pin2: "1234"
+    number: "138xxxxxxxx"
 };
 let promise = sim.addIccDiallingNumbers(0, sim.ContactType.GENERAL_CONTACT, diallingNumbersInof);
 promise.then(data => {
@@ -2357,9 +2358,7 @@ delIccDiallingNumbers(slotId: number, type: ContactType, diallingNumbers: Dialli
 ```js
 let diallingNumbersInof = {
     alphaTag: "alpha",
-    number: "138xxxxxxxx",
-    recordNumber: 123,
-    pin2: "1234"
+    number: "138xxxxxxxx"
 };
 let promise = sim.delIccDiallingNumbers(0, sim.ContactType.GENERAL_CONTACT, diallingNumbersInof);
 promise.then(data => {
@@ -2437,8 +2436,7 @@ updateIccDiallingNumbers(slotId: number, type: ContactType, diallingNumbers: Dia
 let diallingNumbersInof = {
     alphaTag: "alpha",
     number: "138xxxxxxxx",
-    recordNumber: 123,
-    pin2: "1234"
+    recordNumber: 123
 };
 let promise = sim.updateIccDiallingNumbers(0, sim.ContactType.GENERAL_CONTACT, diallingNumbersInof);
 promise.then(data => {
@@ -2602,8 +2600,8 @@ unlockSimLock(slotId: number, lockInfo: PersoLockInfo, callback: AsyncCallback<L
 
 ```js
 let persoLockInfo = {
-    lockType = sim.PersoLockType.PN_PIN_LOCK,
-    password = "1234"
+    lockType: sim.PersoLockType.PN_PIN_LOCK,
+    password: "1234"
 };
 sim.unlockSimLock(0, persoLockInfo, (err, data) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
@@ -2640,8 +2638,8 @@ unlockSimLock(slotId: number, lockInfo: PersoLockInfo): Promise<LockStatusRespon
 
 ```js
 let persoLockInfo = {
-    lockType = sim.PersoLockType.PN_PIN_LOCK,
-    password = "1234"
+    lockType: sim.PersoLockType.PN_PIN_LOCK,
+    password: "1234"
 };
 let promise = sim.unlockSimLock(0, persoLockInfo);
 promise.then(data => {
@@ -2656,8 +2654,6 @@ promise.then(data => {
 getOpKey(slotId: number, callback: AsyncCallback<string\>): void
 
 获取指定卡槽中SIM卡的opkey。使用callback异步回调。
-
-此接口为系统接口。
 
 **系统能力**：SystemCapability.Telephony.CoreService
 
@@ -2682,8 +2678,6 @@ sim.getOpKey(0, (err, data) => {
 getOpKey(slotId: number): Promise<string\>
 
 获取指定卡槽中SIM卡的opkey。使用Promise异步回调。
-
-此接口为系统接口。
 
 **系统能力**：SystemCapability.Telephony.CoreService
 
@@ -2716,8 +2710,6 @@ getOpName(slotId: number, callback: AsyncCallback<string\>): void
 
 获取指定卡槽中SIM卡的OpName。使用callback异步回调。
 
-此接口为系统接口。
-
 **系统能力**：SystemCapability.Telephony.CoreService
 
 **参数：**
@@ -2741,8 +2733,6 @@ sim.getOpName(0, (err, data) => {
 getOpName(slotId: number): Promise<string\>
 
 获取指定卡槽中SIM卡的OpName。使用Promise异步回调。
-
-此接口为系统接口。
 
 **系统能力**：SystemCapability.Telephony.CoreService
 

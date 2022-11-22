@@ -22,42 +22,7 @@ For details about the APIs, see [Vibrator](../reference/apis/js-apis-vibrator.md
 
 ## How to Develop
 
-1. Declare the permissions required for controlling vibrators on the hardware device in the `config.json` file.  
-
-   ```
-   "reqPermissions": [
-       {
-           "name": "ohos.permission.ACCELEROMETER",
-           "reason": "",
-           "usedScene": {
-               "ability": [
-                   ".MainAbility"
-               ],
-               "when": "inuse"
-           }
-       },
-       {
-           "name": "ohos.permission.VIBRATE",
-           "reason": "",
-           "usedScene": {
-               "ability": [
-                   ".MainAbility"
-               ],
-               "when": "inuse"
-           }
-       },
-       {
-           "name": "ohos.permission.ACTIVITY_MOTION",
-           "reason": "",
-           "usedScene": {
-               "ability": [
-                   ".MainAbility"
-               ],
-               "when": "inuse"
-           }
-       }
-   ]
-   ```
+1. Before using the vibrator on a device, you must declare the **ohos.permission.VIBRATE** permission. For details about how to configure a permission, see [Declaring Permissions](../security/accesstoken-guidelines.md).
 
 2. Trigger the device to vibrate.
 

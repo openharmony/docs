@@ -7,15 +7,15 @@ HiSysEvent provides event logging APIs for OpenHarmony to record important infor
 
 The key modules of HiSysEvent are described as follows:
 
-- Event configuration: enables you to define HiSysEvent events in YAML files.
+- [HiSysEvent logging configuration](subsys-dfx-hisysevent-logging-config.md): enables you to define HiSysEvent events in YAML files.
 
-- Trace point configuration: provides trace point APIs and supports flushing of HiSysEvent events to disks.
+- [HiSysEvent logging](subsys-dfx-hisysevent-logging.md): provides trace point APIs and supports flushing of HiSysEvent events to disks.
 
-- Event subscription: provides APIs for you to subscribe to HiSysEvent events by event domain and event name.
+- [HiSysEvent listening](subsys-dfx-hisysevent-listening.md): provides APIs for you to subscribe to HiSysEvent events by event domain and event name.
 
-- Event query: provides APIs for you to query HiSysEvent events by event domain and event name.
+- [HiSysEvent query](subsys-dfx-hisysevent-query.md): provides APIs for you to query HiSysEvent events by event domain and event name.
 
-- Event debugging tool: allows you to subscribe to real-time HiSysEvent events and query historical HiSysEvent events.
+- [HiSysEvent tool](subsys-dfx-hisysevent-tool.md): allows you to subscribe to real-time HiSysEvent events and query historical HiSysEvent events.
 
 ## Reference
 

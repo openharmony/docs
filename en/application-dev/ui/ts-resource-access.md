@@ -1,4 +1,4 @@
-# Accessing Application Resources
+# Resource Access
 
 
 ## Accessing Application Resources

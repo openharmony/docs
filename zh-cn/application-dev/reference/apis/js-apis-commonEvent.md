@@ -3,8 +3,8 @@
 本模块提供了公共事件的能力，包括公共事件的权限列表，发布公共事件，订阅或取消订阅公共事件，获取或修改公共事件结果代码、结果数据等。
 
 > **说明：**
->
-> 本模块首批接口从API version 7开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+> - 从API Version 9开始，该接口不再维护，推荐使用新接口[@ohos.commonEventManager](js-apis-commonEventManager.md)。
+> - 本模块首批接口从API version 7开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
 ## 导入模块
 
@@ -66,15 +66,11 @@ CommonEvent模块支持的事件类型。名称指的是系统公共事件宏；
 | COMMON_EVENT_USER_STARTED                                    | usual.event.USER_STARTED                                    | 无                                                           | 表示用户已启动的公共事件的动作。      |
 | COMMON_EVENT_USER_BACKGROUND                                 | usual.event.USER_BACKGROUND                                 | 无                                                           | 表示用户已被带到后台的公共事件的动作。      |
 | COMMON_EVENT_USER_FOREGROUND                                 | usual.event.USER_FOREGROUND                                 | 无                                                           | 表示用户已被带到前台的公共事件的动作。        |
-| COMMON_EVENT_USER_SWITCHED                                   | usual.event.USER_SWITCHED                                   | ohos.permission.MANAGE_USERS                                 | 表示用户切换正在发生的公共事件的动作。      |
-| COMMON_EVENT_USER_STARTING                                   | usual.event.USER_STARTING                                   | ohos.permission.INTERACT_ACROSS_USERS                        | 表示要启动用户的公共事件的动作。        |
+| COMMON_EVENT_USER_SWITCHED                                   | usual.event.USER_SWITCHED                                   | ohos.permission.MANAGE_LOCAL_ACCOUNTS                                 | 表示用户切换正在发生的公共事件的动作。      |
+| COMMON_EVENT_USER_STARTING                                   | usual.event.USER_STARTING                                   | ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS                        | 表示要启动用户的公共事件的动作。        |
 | COMMON_EVENT_USER_UNLOCKED                                   | usual.event.USER_UNLOCKED                                   | 无                                                           | 设备重启后解锁时，当前用户的凭据加密存储已解锁的公共事件的动作。     |
-| COMMON_EVENT_USER_STOPPING                                   | usual.event.USER_STOPPING                                   | ohos.permission.INTERACT_ACROSS_USERS                        | 表示要停止用户的公共事件的动作。    |
+| COMMON_EVENT_USER_STOPPING                                   | usual.event.USER_STOPPING                                   | ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS                        | 表示要停止用户的公共事件的动作。    |
 | COMMON_EVENT_USER_STOPPED                                    | usual.event.USER_STOPPED                                    | 无                                                           | 表示用户已停止的公共事件的动作。    |
-| COMMON_EVENT_HWID_LOGIN                                      | common.event.HWID_LOGIN                                     | 无                                                           | 华为账号ID用户登录公共事件的动作。         |
-| COMMON_EVENT_HWID_LOGOUT                                     | common.event.HWID_LOGOUT                                    | 无                                                           | 华为帐号ID用户下线的公共事件动作。           |
-| COMMON_EVENT_HWID_TOKEN_INVALID                              | common.event.HWID_TOKEN_INVALID                             | 无                                                           | 华为帐号ID无效的公共事件的动作。       |
-| COMMON_EVENT_HWID_LOGOFF                                     | common.event.HWID_LOGOFF                                    | 无                                                           | 华为账号ID注销公共事件的动作。       |
 | COMMON_EVENT_WIFI_POWER_STATE                                | usual.event.wifi.POWER_STATE                                | 无                                                           | Wi-Fi状态公共事件的动作，如启用和禁用。      |
 | COMMON_EVENT_WIFI_SCAN_FINISHED                              | usual.event.wifi.SCAN_FINISHED                              | ohos.permission.LOCATION                                     | 表示Wi-Fi接入点已被扫描并证明可用的公共事件的操作。       |
 | COMMON_EVENT_WIFI_RSSI_VALUE                                 | usual.event.wifi.RSSI_VALUE                                 | ohos.permission.GET_WIFI_INFO                                | 表示Wi-Fi信号强度（RSSI）改变的公共事件的动作。      |
@@ -133,8 +129,8 @@ CommonEvent模块支持的事件类型。名称指的是系统公共事件宏；
 | COMMON_EVENT_CHARGING                                        | usual.event.CHARGING                                        | 无                                                           | 表示系统开始为电池充电的公共事件的动作。    |
 | COMMON_EVENT_DEVICE_IDLE_MODE_CHANGED                        | usual.event.DEVICE_IDLE_MODE_CHANGED                        | 无                                                           | 表示系统空闲模式已更改的公共事件的动作。    |
 | COMMON_EVENT_POWER_SAVE_MODE_CHANGED                         | usual.event.POWER_SAVE_MODE_CHANGED                         | 无                                                           | 表示系统节能模式更改的公共事件的动作。      |
-| COMMON_EVENT_USER_ADDED                                      | usual.event.USER_ADDED                                      | ohos.permission.MANAGE_USERS                                 | 表示用户已添加到系统中的公共事件的动作。        |
-| COMMON_EVENT_USER_REMOVED                                    | usual.event.USER_REMOVED                                    | ohos.permission.MANAGE_USERS                                 | 表示用户已从系统中删除的公共事件的动作。        |
+| COMMON_EVENT_USER_ADDED                                      | usual.event.USER_ADDED                                      | ohos.permission.MANAGE_LOCAL_ACCOUNTS                                 | 表示用户已添加到系统中的公共事件的动作。        |
+| COMMON_EVENT_USER_REMOVED                                    | usual.event.USER_REMOVED                                    | ohos.permission.MANAGE_LOCAL_ACCOUNTS                                 | 表示用户已从系统中删除的公共事件的动作。        |
 | COMMON_EVENT_ABILITY_ADDED                                   | usual.event.ABILITY_ADDED                                   | ohos.permission.LISTEN_BUNDLE_CHANGE                         | 表示已添加能力的公共事件的动作。     |
 | COMMON_EVENT_ABILITY_REMOVED                                 | usual.event.ABILITY_REMOVED                                 | ohos.permission.LISTEN_BUNDLE_CHANGE                         | 表示已删除能力的公共事件的动作。     |
 | COMMON_EVENT_ABILITY_UPDATED                                 | usual.event.ABILITY_UPDATED                                 | ohos.permission.LISTEN_BUNDLE_CHANGE                         | 表示能力已更新的公共事件的动作。     |
@@ -156,22 +152,22 @@ CommonEvent模块支持的事件类型。名称指的是系统公共事件宏；
 | COMMON_EVENT_USB_DEVICE_DETACHED                             | usual.event.hardware.usb.action.USB_DEVICE_DETACHED         | 无                                                           | 当用户设备作为USB主机时，USB设备被卸载的公共事件的动作。       | 
 | COMMON_EVENT_USB_ACCESSORY_ATTACHED                          | usual.event.hardware.usb.action.USB_ACCESSORY_ATTACHED      | 无                                                           | 表示已连接USB附件的公共事件的动作。       |
 | COMMON_EVENT_USB_ACCESSORY_DETACHED                          | usual.event.hardware.usb.action.USB_ACCESSORY_DETACHED      | 无                                                           | 表示USB附件被卸载的公共事件的动作。     |
-| COMMON_EVENT_DISK_REMOVED                                    | usual.event.data.DISK_REMOVED                               | ohos.permission.WRITE_USER_STORAGE 或 ohos.permission.READ_USER_STORAGE | 外部存储设备状态变更为移除时发送此公共事件。     |
-| COMMON_EVENT_DISK_UNMOUNTED                                  | usual.event.data.DISK_UNMOUNTED                             | ohos.permission.WRITE_USER_STORAGE 或 ohos.permission.READ_USER_STORAGE | 外部存储设备状态变更为卸载时发送此公共事件。     |
-| COMMON_EVENT_DISK_MOUNTED                                    | usual.event.data.DISK_MOUNTED                               | ohos.permission.WRITE_USER_STORAGE 或 ohos.permission.READ_USER_STORAGE | 外部存储设备状态变更为挂载时发送此公共事件。     |
-| COMMON_EVENT_DISK_BAD_REMOVAL                                | usual.event.data.DISK_BAD_REMOVAL                           | ohos.permission.WRITE_USER_STORAGE 或 ohos.permission.READ_USER_STORAGE | 外部存储设备状态变更为挂载状态下移除时发送此公共事件。       |
-| COMMON_EVENT_DISK_UNMOUNTABLE                                | usual.event.data.DISK_UNMOUNTABLE                           | ohos.permission.WRITE_USER_STORAGE 或 ohos.permission.READ_USER_STORAGE | 外部存储设备状态变更为插卡情况下无法挂载时发送此公共事件。     |
-| COMMON_EVENT_DISK_EJECT                                      | usual.event.data.DISK_EJECT                                 | ohos.permission.WRITE_USER_STORAGE 或 ohos.permission.READ_USER_STORAGE | 用户已表示希望删除外部存储介质时发送此公共事件。       |
-| COMMON_EVENT_VOLUME_REMOVED<sup>9+<sup>                                  | usual.event.data.VOLUME_REMOVED                             | ohos.permission.WRITE_USER_STORAGE 或 ohos.permission.READ_USER_STORAGE | 外部存储设备状态变更为移除时发送此公共事件。     |
-| COMMON_EVENT_VOLUME_UNMOUNTED<sup>9+<sup>                                | usual.event.data.VOLUME_UNMOUNTED                           | ohos.permission.WRITE_USER_STORAGE 或 ohos.permission.READ_USER_STORAGE | 外部存储设备状态变更为卸载时发送此公共事件。     |
-| COMMON_EVENT_VOLUME_MOUNTED<sup>9+<sup>                                  | usual.event.data.VOLUME_MOUNTED                             | ohos.permission.WRITE_USER_STORAGE 或 ohos.permission.READ_USER_STORAGE | 外部存储设备状态变更为挂载时发送此公共事件。     |
-| COMMON_EVENT_VOLUME_BAD_REMOVAL<sup>9+<sup>                              | usual.event.data.VOLUME_BAD_REMOVAL                         | ohos.permission.WRITE_USER_STORAGE 或 ohos.permission.READ_USER_STORAGE | 外部存储设备状态变更为挂载状态下移除时发送此公共事件。       |
-| COMMON_EVENT_VOLUME_EJECT<sup>9+<sup>                                    | usual.event.data.VOLUME_EJECT                               | ohos.permission.WRITE_USER_STORAGE 或 ohos.permission.READ_USER_STORAGE | 用户已表示希望删除外部存储介质时发送此公共事件。       |
+| COMMON_EVENT_DISK_REMOVED                                    | usual.event.data.DISK_REMOVED                               | ohos.permission.STORAGE_MANAGER | 外部存储设备状态变更为移除时发送此公共事件。     |
+| COMMON_EVENT_DISK_UNMOUNTED                                  | usual.event.data.DISK_UNMOUNTED                             | ohos.permission.STORAGE_MANAGER | 外部存储设备状态变更为卸载时发送此公共事件。     |
+| COMMON_EVENT_DISK_MOUNTED                                    | usual.event.data.DISK_MOUNTED                               | ohos.permission.STORAGE_MANAGER | 外部存储设备状态变更为挂载时发送此公共事件。     |
+| COMMON_EVENT_DISK_BAD_REMOVAL                                | usual.event.data.DISK_BAD_REMOVAL                           | ohos.permission.STORAGE_MANAGER | 外部存储设备状态变更为挂载状态下移除时发送此公共事件。       |
+| COMMON_EVENT_DISK_UNMOUNTABLE                                | usual.event.data.DISK_UNMOUNTABLE                           | ohos.permission.STORAGE_MANAGER | 外部存储设备状态变更为插卡情况下无法挂载时发送此公共事件。     |
+| COMMON_EVENT_DISK_EJECT                                      | usual.event.data.DISK_EJECT                                 | ohos.permission.STORAGE_MANAGER | 用户已表示希望删除外部存储介质时发送此公共事件。       |
+| COMMON_EVENT_VOLUME_REMOVED<sup>9+<sup>                                  | usual.event.data.VOLUME_REMOVED                             | ohos.permission.STORAGE_MANAGER | 外部存储设备状态变更为移除时发送此公共事件。     |
+| COMMON_EVENT_VOLUME_UNMOUNTED<sup>9+<sup>                                | usual.event.data.VOLUME_UNMOUNTED                           | ohos.permission.STORAGE_MANAGER | 外部存储设备状态变更为卸载时发送此公共事件。     |
+| COMMON_EVENT_VOLUME_MOUNTED<sup>9+<sup>                                  | usual.event.data.VOLUME_MOUNTED                             | ohos.permission.STORAGE_MANAGER | 外部存储设备状态变更为挂载时发送此公共事件。     |
+| COMMON_EVENT_VOLUME_BAD_REMOVAL<sup>9+<sup>                              | usual.event.data.VOLUME_BAD_REMOVAL                         | ohos.permission.STORAGE_MANAGER | 外部存储设备状态变更为挂载状态下移除时发送此公共事件。       |
+| COMMON_EVENT_VOLUME_EJECT<sup>9+<sup>                                    | usual.event.data.VOLUME_EJECT                               | ohos.permission.STORAGE_MANAGER | 用户已表示希望删除外部存储介质时发送此公共事件。       |
 | COMMON_EVENT_VISIBLE_ACCOUNTS_UPDATED                        | usual.event.data.VISIBLE_ACCOUNTS_UPDATED                   | ohos.permission.GET_APP_ACCOUNTS                             | 表示帐户可见更改的公共事件的动作。        |
 | COMMON_EVENT_ACCOUNT_DELETED                                 | usual.event.data.ACCOUNT_DELETED                            | ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS               | 删除帐户的公共事件的动作。      |
 | COMMON_EVENT_FOUNDATION_READY                                | usual.event.data.FOUNDATION_READY                           | ohos.permission.RECEIVER_STARTUP_COMPLETED                   | 表示foundation已准备好的公共事件的动作。      |
 | COMMON_EVENT_AIRPLANE_MODE_CHANGED                           | usual.event.AIRPLANE_MODE                                   | 无                                                           | 表示设备飞行模式已更改的公共事件的动作。      |
-| COMMON_EVENT_SPLIT_SCREEN<sup>8+<sup>                                    | usual.event.SPLIT_SCREEN                                    | ohos.permission.RECEIVER_SPLIT_SCREEN                        | 表示分屏的公共事件的动作。      |
+| COMMON_EVENT_SPLIT_SCREEN<sup>8+<sup>                                    | usual.event.SPLIT_SCREEN                                    | 无                        | 表示分屏的公共事件的动作。      |
 | COMMON_EVENT_SLOT_CHANGE<sup>9+<sup>                                    | usual.event.SLOT_CHANGE                                    | ohos.permission.NOTIFICATION_CONTROLLER                        | 表示通知通道更新的动作。      |
 | COMMON_EVENT_SPN_INFO_CHANGED <sup>9+<sup>                                    | usual.event.SPN_INFO_CHANGED                                    | 无                        | 表示spn显示信息已更新的公共事件的动作。      |
 | COMMON_EVENT_QUICK_FIX_APPLY_RESULT <sup>9+<sup>                                    | usual.event.QUICK_FIX_APPLY_RESULT                        | 无                        | 指示快速修复应用的动作。      |
@@ -231,7 +227,7 @@ publish(event: string, options: CommonEventPublishData, callback: AsyncCallback\
 
 ```js
 //公共事件相关信息
-var options = {
+let options = {
 	code: 0,			 //公共事件的初始代码
 	data: "initial data",//公共事件的初始数据
 	isOrdered: true	 //有序公共事件
@@ -283,7 +279,7 @@ function PublishAsUserCallBack(err) {
 }
 
 //指定发送的用户
-var userId = 100;
+let userId = 100;
 
 //发布公共事件
 CommonEvent.publishAsUser("event", userId, PublishAsUserCallBack);
@@ -315,7 +311,7 @@ publishAsUser(event: string, userId: number, options: CommonEventPublishData, ca
 
 ```js
 //公共事件相关信息
-var options = {
+let options = {
 	code: 0,			 //公共事件的初始代码
 	data: "initial data",//公共事件的初始数据
 }
@@ -330,7 +326,7 @@ function PublishAsUserCallBack(err) {
 }
 
 //指定发送的用户
-var userId = 100;
+let userId = 100;
 
 //发布公共事件
 CommonEvent.publishAsUser("event", userId, options, PublishAsUserCallBack);
@@ -357,10 +353,10 @@ createSubscriber(subscribeInfo: CommonEventSubscribeInfo, callback: AsyncCallbac
 
 
 ```js
-var subscriber; //用于保存创建成功的订阅者对象，后续使用其完成订阅及退订的动作
+let subscriber; //用于保存创建成功的订阅者对象，后续使用其完成订阅及退订的动作
 
 //订阅者信息
-var subscribeInfo = {
+let subscribeInfo = {
 	events: ["event"]
 };
 
@@ -402,10 +398,10 @@ createSubscriber(subscribeInfo: CommonEventSubscribeInfo): Promise\<CommonEventS
 **示例：**
 
 ```js
-var subscriber; //用于保存创建成功的订阅者对象，后续使用其完成订阅及退订的动作
+let subscriber; //用于保存创建成功的订阅者对象，后续使用其完成订阅及退订的动作
 
 //订阅者信息
-var subscribeInfo = {
+let subscribeInfo = {
 	events: ["event"]
 };
 
@@ -438,10 +434,10 @@ subscribe(subscriber: CommonEventSubscriber, callback: AsyncCallback\<CommonEven
 **示例：**
 
 ```js
-var subscriber; //用于保存创建成功的订阅者对象，后续使用其完成订阅及退订的动作
+let subscriber; //用于保存创建成功的订阅者对象，后续使用其完成订阅及退订的动作
 
 //订阅者信息
-var subscribeInfo = {
+let subscribeInfo = {
     events: ["event"]
 };
 
@@ -490,10 +486,10 @@ unsubscribe(subscriber: CommonEventSubscriber, callback?: AsyncCallback\<void>):
 **示例：**
 
 ```js
-var subscriber;	//用于保存创建成功的订阅者对象，后续使用其完成订阅及退订的动作
+let subscriber;	//用于保存创建成功的订阅者对象，后续使用其完成订阅及退订的动作
 
 //订阅者信息
-var subscribeInfo = {
+let subscribeInfo = {
 	events: ["event"]
 };
 
@@ -553,7 +549,7 @@ getCode(callback: AsyncCallback\<number>): void
 **示例：**
 
 ```js
-var subscriber;	//创建成功的订阅者对象
+let subscriber;	//创建成功的订阅者对象
 
 //获取有序公共事件的结果代码回调
 function getCodeCallback(err, Code) {
@@ -583,7 +579,7 @@ getCode(): Promise\<number>
 **示例：**
 
 ```js
-var subscriber;	//创建成功的订阅者对象
+let subscriber;	//创建成功的订阅者对象
 
 subscriber.getCode().then((Code) => {
     console.info("getCode " + JSON.stringify(Code));
@@ -610,7 +606,7 @@ setCode(code: number, callback: AsyncCallback\<void>): void
 **示例：**
 
 ```js
-var subscriber;	//创建成功的订阅者对象
+let subscriber;	//创建成功的订阅者对象
 
 //设置有序公共事件的结果代码回调
 function setCodeCallback(err) {
@@ -646,7 +642,7 @@ setCode(code: number): Promise\<void>
 **示例：**
 
 ```js
-var subscriber;	//创建成功的订阅者对象
+let subscriber;	//创建成功的订阅者对象
 
 subscriber.setCode(1).then(() => {
     console.info("setCode");
@@ -672,7 +668,7 @@ getData(callback: AsyncCallback\<string>): void
 **示例：**
 
 ```js
-var subscriber;	//创建成功的订阅者对象
+let subscriber;	//创建成功的订阅者对象
 
 //获取有序公共事件的结果数据回调
 function getDataCallback(err, Data) {
@@ -702,7 +698,7 @@ getData(): Promise\<string>
 **示例：**
 
 ```js
-var subscriber;	//创建成功的订阅者对象
+let subscriber;	//创建成功的订阅者对象
 
 subscriber.getData().then((Data) => {
     console.info("getData " + JSON.stringify(Data));
@@ -729,7 +725,7 @@ setData(data: string, callback: AsyncCallback\<void>): void
 **示例：**
 
 ```js
-var subscriber;	//创建成功的订阅者对象
+let subscriber;	//创建成功的订阅者对象
 
 //设置有序公共事件的结果数据回调
 function setDataCallback(err) {
@@ -765,7 +761,7 @@ setData(data: string): Promise\<void>
 **示例：**
 
 ```js
-var subscriber;	//创建成功的订阅者对象
+let subscriber;	//创建成功的订阅者对象
 
 subscriber.setData("publish_data_changed").then(() => {
     console.info("setData");
@@ -793,7 +789,7 @@ setCodeAndData(code: number, data: string, callback:AsyncCallback\<void>): void
 **示例：**
 
 ```js
-var subscriber;	//创建成功的订阅者对象
+let subscriber;	//创建成功的订阅者对象
 
 //设置有序公共事件的结果代码和结果数据回调
 function setCodeDataCallback(err) {
@@ -830,7 +826,7 @@ setCodeAndData(code: number, data: string): Promise\<void>
 **示例：**
 
 ```js
-var subscriber;	//创建成功的订阅者对象
+let subscriber;	//创建成功的订阅者对象
 
 subscriber.setCodeAndData(1, "publish_data_changed").then(() => {
     console.info("setCodeAndData");
@@ -858,7 +854,7 @@ isOrderedCommonEvent(callback: AsyncCallback\<boolean>): void
 **示例：**
 
 ```js
-var subscriber;	//创建成功的订阅者对象
+let subscriber;	//创建成功的订阅者对象
 
 //获取当前公共事件是否为有序事件的回调
 function isOrderedCallback(err, isOrdered) {
@@ -890,7 +886,7 @@ isOrderedCommonEvent(): Promise\<boolean>
 **示例：**
 
 ```js
-var subscriber;	//创建成功的订阅者对象
+let subscriber;	//创建成功的订阅者对象
 
 subscriber.isOrderedCommonEvent().then((isOrdered) => {
     console.info("isOrdered " + JSON.stringify(isOrdered));
@@ -918,7 +914,7 @@ isStickyCommonEvent(callback: AsyncCallback\<boolean>): void
 **示例：**
 
 ```js
-var subscriber;	//创建成功的订阅者对象
+let subscriber;	//创建成功的订阅者对象
 
 //获取当前公共事件是否为粘性事件的回调
 function isStickyCallback(err, isSticky) {
@@ -950,7 +946,7 @@ isStickyCommonEvent(): Promise\<boolean>
 **示例：**
 
 ```js
-var subscriber;	//创建成功的订阅者对象
+let subscriber;	//创建成功的订阅者对象
 
 subscriber.isStickyCommonEvent().then((isSticky) => {
     console.info("isSticky " + JSON.stringify(isSticky));
@@ -976,7 +972,7 @@ abortCommonEvent(callback: AsyncCallback\<void>): void
 **示例：**
 
 ```js
-var subscriber;	//创建成功的订阅者对象
+let subscriber;	//创建成功的订阅者对象
 
 //取消当前有序公共事件的回调
 function abortCallback(err) {
@@ -1006,7 +1002,7 @@ abortCommonEvent(): Promise\<void>
 **示例：**
 
 ```js
-var subscriber;	//创建成功的订阅者对象
+let subscriber;	//创建成功的订阅者对象
 
 subscriber.abortCommonEvent().then(() => {
     console.info("abortCommonEvent");
@@ -1032,7 +1028,7 @@ clearAbortCommonEvent(callback: AsyncCallback\<void>): void
 **示例：**
 
 ```js
-var subscriber;	//创建成功的订阅者对象
+let subscriber;	//创建成功的订阅者对象
 
 //清除当前公共事件取消状态的回调
 function clearAbortCallback(err) {
@@ -1062,7 +1058,7 @@ clearAbortCommonEvent(): Promise\<void>
 **示例：**
 
 ```js
-var subscriber;	//创建成功的订阅者对象
+let subscriber;	//创建成功的订阅者对象
 
 subscriber.clearAbortCommonEvent().then(() => {
     console.info("clearAbortCommonEvent");
@@ -1088,7 +1084,7 @@ getAbortCommonEvent(callback: AsyncCallback\<boolean>): void
 **示例：**
 
 ```js
-var subscriber;	//创建成功的订阅者对象
+let subscriber;	//创建成功的订阅者对象
 
 //获取当前有序公共事件是否取消的回调
 function getAbortCallback(err, AbortCommonEvent) {
@@ -1118,7 +1114,7 @@ getAbortCommonEvent(): Promise\<boolean>
 **示例：**
 
 ```js
-var subscriber;	//创建成功的订阅者对象
+let subscriber;	//创建成功的订阅者对象
 
 subscriber.getAbortCommonEvent().then((AbortCommonEvent) => {
     console.info("AbortCommonEvent " + JSON.stringify(AbortCommonEvent));
@@ -1144,7 +1140,7 @@ getSubscribeInfo(callback: AsyncCallback\<CommonEventSubscribeInfo>): void
 **示例：**
 
 ```js
-var subscriber;	//创建成功的订阅者对象
+let subscriber;	//创建成功的订阅者对象
 
 //获取订阅者信息回调
 function getSubscribeInfoCallback(err, SubscribeInfo) {
@@ -1174,7 +1170,7 @@ getSubscribeInfo(): Promise\<CommonEventSubscribeInfo>
 **示例：**
 
 ```js
-var subscriber;	//创建成功的订阅者对象
+let subscriber;	//创建成功的订阅者对象
 
 subscriber.getSubscribeInfo().then((SubscribeInfo) => {
     console.info("SubscribeInfo " + JSON.stringify(SubscribeInfo));
@@ -1200,7 +1196,7 @@ finishCommonEvent(callback: AsyncCallback\<void\>): void
 **示例：**
 
 ```js
-var subscriber; //创建成功的订阅者对象
+let subscriber; //创建成功的订阅者对象
 
 //结束当前有序公共事件的回调
 function finishCommonEventCallback(err) {
@@ -1230,7 +1226,7 @@ finishCommonEvent(): Promise\<void\>
 **示例：**
 
 ```js
-var subscriber;	//创建成功的订阅者对象
+let subscriber;	//创建成功的订阅者对象
 
 subscriber.finishCommonEvent().then(() => {
     console.info("FinishCommonEvent");
@@ -1240,6 +1236,8 @@ subscriber.finishCommonEvent().then(() => {
 ```
 
 ## CommonEventData
+
+公共事件数据体。
 
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.Notification.CommonEvent
 
@@ -1254,6 +1252,8 @@ subscriber.finishCommonEvent().then(() => {
 
 ## CommonEventPublishData
 
+公共事件发送的数据体，包含公共事件内容和属性。
+
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.Notification.CommonEvent
 
 | 名称                  | 可读 | 可写 | 类型                 | 描述                         |
@@ -1263,10 +1263,12 @@ subscriber.finishCommonEvent().then(() => {
 | data                  | 是  | 否  | string               | 表示公共事件的自定义结果数据。 |
 | subscriberPermissions | 是  | 否  | Array\<string>       | 表示订阅者的权限。             |
 | isOrdered             | 是  | 否  | boolean              | 表示是否是有序事件。           |
-| isSticky              | 是  | 否  | boolean              | 表示是否是粘性事件。           |
+| isSticky              | 是  | 否  | boolean              | 表示是否是粘性事件。仅系统应用或系统服务允许发送粘性事件。 |
 | parameters            | 是  | 否  | {[key: string]: any} | 表示公共事件的附加信息。       |
 
 ## CommonEventSubscribeInfo
+
+订阅者信息。
 
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.Notification.CommonEvent
 

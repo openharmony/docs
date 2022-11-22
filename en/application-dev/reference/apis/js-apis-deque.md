@@ -12,6 +12,9 @@ Double-ended queue (deque) is a sequence container implemented based on the queu
 
 **Recommended use case**: Use **Deque** when you need to frequently insert or remove elements at both the ends of a container.
 
+This topic uses the following to identify the use of generics:
+- T: Type
+
 ## Modules to Import
 
 ```ts
@@ -64,7 +67,7 @@ deque.insertFront("a");
 deque.insertFront(1);
 let b = [1, 2, 3];
 deque.insertFront(b);
-let c = {name : "lala", age : "13"};
+let c = {name : "Dylon", age : "13"};
 deque.insertFront(false);
 ```
 
@@ -90,7 +93,7 @@ deque.insertEnd("a");
 deque.insertEnd(1);
 let b = [1, 2, 3];
 deque.insertEnd(b);
-let c = {name : "lala", age : "13"};
+let c = {name : "Dylon", age : "13"};
 deque.insertEnd(false);
 ```
 
@@ -118,9 +121,9 @@ Checks whether this container has the specified element.
 
 ```ts
 let deque = new Deque();
-let result = deque.has("Ahfbrgrbgnutfodgorrogorg");
-deque.insertFront("Ahfbrgrbgnutfodgorrogorg");
-let result1 = deque.has("Ahfbrgrbgnutfodgorrogorg");
+let result = deque.has("squirrel");
+deque.insertFront("squirrel");
+let result1 = deque.has("squirrel");
 ```
 
 ### popFirst

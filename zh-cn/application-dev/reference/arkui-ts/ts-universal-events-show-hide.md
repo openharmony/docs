@@ -12,37 +12,43 @@
 | 名称                                             | 支持冒泡 | 功能描述                   |
 | ------------------------------------------------ | -------- | -------------------------- |
 | onAppear(event:&nbsp;()&nbsp;=&gt;&nbsp;void)    | 否       | 组件挂载显示时触发此回调。 |
-| onDisappear(event:&nbsp;()&nbsp;=&gt;&nbsp;void) | 否       | 组件卸载消失时触发此回调。 |
+| onDisAppear(event:&nbsp;()&nbsp;=&gt;&nbsp;void) | 否       | 组件卸载消失时触发此回调。 |
 
 
 ## 示例
 
 ```ts
 // xxx.ets
-import prompt from '@system.prompt'
+import prompt from '@ohos.prompt'
 
 @Entry
 @Component
 struct AppearExample {
   @State isShow: boolean = true
+  @State changeAppear: string = 'Hide Text'
   private myText: string = 'Text for onAppear'
-  private changeAppear: string = 'Hide Text'
 
   build() {
     Column() {
       Button(this.changeAppear)
         .onClick(() => {
           this.isShow = !this.isShow
-        }).margin(3).backgroundColor(0x2788D9)
+        }).margin(15)
       if (this.isShow) {
-        Text(this.myText)
+        Text(this.myText).fontSize(26).fontWeight(FontWeight.Bold)
           .onAppear(() => {
-            this.changeAppear = 'Show Text'
-            prompt.showToast({ message: 'The text is shown', duration: 2000 })
+            this.changeAppear = 'Hide Text'
+            prompt.showToast({
+              message: 'The text is shown',
+              duration: 2000
+            })
           })
           .onDisAppear(() => {
-            this.changeAppear = 'Hide Text'
-            prompt.showToast({ message: 'The text is hidden', duration: 2000 })
+            this.changeAppear = 'Show Text'
+            prompt.showToast({
+              message: 'The text is hidden',
+              duration: 2000
+            })
           })
       }
     }.padding(30).width('100%')

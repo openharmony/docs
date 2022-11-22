@@ -1,10 +1,11 @@
 # OffscreenCanvasRenderingContext2D对象
 
+使用OffscreenCanvasRenderingContext2D在Canvas上进行离屏绘制，绘制对象可以是矩形、文本、图片等。离屏绘制是指将需要绘制的内容先绘制在缓存区，然后将其转换成图片，一次性绘制到canvas上，加快了绘制速度。
+
 >  **说明：**
-> 从 API Version 8 开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+> 
+>  从 API Version 8 开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
-
-使用OffscreenCanvasRenderingContext2D在Canvas上进行离屏绘制，绘制对象可以是矩形、文本、图片等。离屏绘制是指将需要绘制的内容先绘制在缓存区，然后将其转换成图片，一次性绘制绘制到canvas上，加快了绘制速度。
 
 
 ## 接口
@@ -13,11 +14,11 @@ OffscreenCanvasRenderingContext2D(width: number, height: number, setting: Render
 
 **参数：**
 
-| 参数名     | 参数类型                                     | 必填   | 默认值  | 参数描述                           |
-| ------- | ---------------------------------------- | ---- | ---- | ------------------------------ |
-| width   | number                                   | 是    | -    | 离屏画布的宽度                        |
-| height  | number                                   | 是    | -    | 离屏画布的高度                        |
-| setting | [RenderingContextSettings](ts-canvasrenderingcontext2d.md#renderingcontextsettings) | 是    | -    | 见RenderingContextSettings接口描述。 |
+| 参数名  | 参数类型                                                     | 必填 | 参数描述                             |
+| ------- | ------------------------------------------------------------ | ---- | ------------------------------------ |
+| width   | number                                                       | 是   | 离屏画布的宽度                       |
+| height  | number                                                       | 是   | 离屏画布的高度                       |
+| setting | [RenderingContextSettings](ts-canvasrenderingcontext2d.md#renderingcontextsettings) | 是   | 见RenderingContextSettings接口描述。 |
 
 
 ## 属性
@@ -27,24 +28,23 @@ OffscreenCanvasRenderingContext2D(width: number, height: number, setting: Render
 | [fillStyle](#fillstyle)                  | string&nbsp;\|&nbsp;[CanvasGradient](ts-components-canvas-canvasgradient.md)&nbsp;\|&nbsp;[CanvasPattern](#canvaspattern) | 指定绘制的填充色。<br/>-&nbsp;类型为string时，表示设置填充区域的颜色。<br/>-&nbsp;类型为CanvasGradient时，表示渐变对象，使用[createLinearGradient](#createlineargradient)方法创建。<br/>-&nbsp;类型为CanvasPattern时，使用[createPattern](#createpattern)方法创建。 |
 | [lineWidth](#linewidth)                  | number                                   | 设置绘制线条的宽度。                               |
 | [strokeStyle](#strokestyle)              | string&nbsp;\|&nbsp;[CanvasGradient](ts-components-canvas-canvasgradient.md)&nbsp;\|&nbsp;[CanvasPattern](#canvaspattern) | 设置描边的颜色。<br/>-&nbsp;类型为string时，表示设置描边使用的颜色。<br/>-&nbsp;类型为CanvasGradient时，表示渐变对象，使用[createLinearGradient](#createlineargradient)方法创建。<br/>-&nbsp;类型为CanvasPattern时，使用[createPattern](#createpattern)方法创建。 |
-| [lineCap](#linecap)                      | CanvasLineCap                                   | 指定线端点的样式，可选值为：<br/>-&nbsp;'butt'：线端点以方形结束。<br/>-&nbsp;'round'：线端点以圆形结束。<br/>-&nbsp;'square'：线端点以方形结束，该样式下会增加一个长度和线段厚度相同，宽度是线段厚度一半的矩形。<br/>-&nbsp;默认值：'butt'。 |
-| [lineJoin](#linejoin)                    | CanvasLineJoin                                   | 指定线段间相交的交点样式，可选值为：<br/>-&nbsp;'round'：在线段相连处绘制一个扇形，扇形的圆角半径是线段的宽度。<br/>-&nbsp;'bevel'：在线段相连处使用三角形为底填充，&nbsp;每个部分矩形拐角独立。<br/>-&nbsp;'miter'：在相连部分的外边缘处进行延伸，使其相交于一点，形成一个菱形区域，该属性可以通过设置miterLimit属性展现效果。<br/>-&nbsp;默认值：'miter'。 |
-| [miterLimit](#miterlimit)                | number                                   | 设置斜接面限制值，该值指定了线条相交处内角和外角的距离。  <br/>-&nbsp;默认值：10。           |
-| [font](#font)                            | string                                   | 设置文本绘制中的字体样式。<br/>语法：ctx.font='font-size&nbsp;font-family'<br/>-&nbsp;font-size(可选)，指定字号和行高，单位只支持px。<br/>-&nbsp;font-family(可选)，指定字体系列。<br/>语法：ctx.font='font-style&nbsp;font-weight&nbsp;font-size&nbsp;font-family'<br/>-&nbsp;font-style(可选)，用于指定字体样式，支持如下几种样式：'normal','italic'。<br/>-&nbsp;font-weight(可选)，用于指定字体的粗细，支持如下几种类型：'normal',&nbsp;'bold',&nbsp;'bolder',&nbsp;'lighter',&nbsp;100,&nbsp;200,&nbsp;300,&nbsp;400,&nbsp;500,&nbsp;600,&nbsp;700,&nbsp;800,&nbsp;900。<br/>-&nbsp;font-size(可选)，指定字号和行高，单位只支持px。<br/>-&nbsp;font-family(可选)，指定字体系列，支持如下几种类型：'sans-serif',&nbsp;'serif',&nbsp;'monospace'。<br/>-&nbsp;默认值：'normal normal 14px sans-serif'。  |
-| [textAlign](#textalign)                  | CanvasTextAlign                                   | 设置文本绘制中的文本对齐方式，可选值为：<br/>-&nbsp;'left'：文本左对齐。<br/>-&nbsp;'right'：文本右对齐。<br/>-&nbsp;'center'：文本居中对齐。<br/>-&nbsp;'start'：文本对齐界线开始的地方。<br/>-&nbsp;'end'：文本对齐界线结束的地方。<br/>>&nbsp;![icon-note.gif](public_sys-resources/icon-note.gif)&nbsp;**说明：**<br/>>&nbsp;ltr布局模式下'start'和'left'一致，rtl布局模式下'start'和'right'一致·。<br/>-&nbsp;默认值：'left'。 |
-| [textBaseline](#textbaseline)            | CanvasTextBaseline                                  | 设置文本绘制中的水平对齐方式，可选值为：<br/>-&nbsp;'alphabetic'：文本基线是标准的字母基线。<br/>-&nbsp;'top'：文本基线在文本块的顶部。<br/>-&nbsp;'hanging'：文本基线是悬挂基线。<br/>-&nbsp;'middle'：文本基线在文本块的中间。<br/>-&nbsp;'ideographic'：文字基线是表意字基线；如果字符本身超出了alphabetic基线，那么ideograhpic基线位置在字符本身的底部。<br/>-&nbsp;'bottom'：文本基线在文本块的底部。&nbsp;与ideographic基线的区别在于ideographic基线不需要考虑下行字母。<br/>-&nbsp;默认值：'alphabetic'。 |
+| [lineCap](#linecap)                      | CanvasLineCap                            | 指定线端点的样式，可选值为：<br/>-&nbsp;'butt'：线端点以方形结束。<br/>-&nbsp;'round'：线端点以圆形结束。<br/>-&nbsp;'square'：线端点以方形结束，该样式下会增加一个长度和线段厚度相同，宽度是线段厚度一半的矩形。<br/>-&nbsp;默认值：'butt'。 |
+| [lineJoin](#linejoin)                    | CanvasLineJoin                           | 指定线段间相交的交点样式，可选值为：<br/>-&nbsp;'round'：在线段相连处绘制一个扇形，扇形的圆角半径是线段的宽度。<br/>-&nbsp;'bevel'：在线段相连处使用三角形为底填充，&nbsp;每个部分矩形拐角独立。<br/>-&nbsp;'miter'：在相连部分的外边缘处进行延伸，使其相交于一点，形成一个菱形区域，该属性可以通过设置miterLimit属性展现效果。<br/>-&nbsp;默认值：'miter'。 |
+| [miterLimit](#miterlimit)                | number                                   | 设置斜接面限制值，该值指定了线条相交处内角和外角的距离。  <br/>-&nbsp;默认值：10。 |
+| [font](#font)                            | string                                   | 设置文本绘制中的字体样式。<br/>语法：ctx.font='font-size&nbsp;font-family'<br/>-&nbsp;font-size(可选)，指定字号和行高，单位只支持px。<br/>-&nbsp;font-family(可选)，指定字体系列。<br/>语法：ctx.font='font-style&nbsp;font-weight&nbsp;font-size&nbsp;font-family'<br/>-&nbsp;font-style(可选)，用于指定字体样式，支持如下几种样式：'normal','italic'。<br/>-&nbsp;font-weight(可选)，用于指定字体的粗细，支持如下几种类型：'normal',&nbsp;'bold',&nbsp;'bolder',&nbsp;'lighter',&nbsp;100,&nbsp;200,&nbsp;300,&nbsp;400,&nbsp;500,&nbsp;600,&nbsp;700,&nbsp;800,&nbsp;900。<br/>-&nbsp;font-size(可选)，指定字号和行高，单位只支持px。<br/>-&nbsp;font-family(可选)，指定字体系列，支持如下几种类型：'sans-serif',&nbsp;'serif',&nbsp;'monospace'。<br/>-&nbsp;默认值：'normal normal 14px sans-serif'。 |
+| [textAlign](#textalign)                  | CanvasTextAlign                          | 设置文本绘制中的文本对齐方式，可选值为：<br/>-&nbsp;'left'：文本左对齐。<br/>-&nbsp;'right'：文本右对齐。<br/>-&nbsp;'center'：文本居中对齐。<br/>-&nbsp;'start'：文本对齐界线开始的地方。<br/>-&nbsp;'end'：文本对齐界线结束的地方。<br/>>&nbsp;![icon-note.gif](public_sys-resources/icon-note.gif)&nbsp;**说明：**<br/>>&nbsp;ltr布局模式下'start'和'left'一致，rtl布局模式下'start'和'right'一致·。<br/>-&nbsp;默认值：'left'。 |
+| [textBaseline](#textbaseline)            | CanvasTextBaseline                       | 设置文本绘制中的水平对齐方式，可选值为：<br/>-&nbsp;'alphabetic'：文本基线是标准的字母基线。<br/>-&nbsp;'top'：文本基线在文本块的顶部。<br/>-&nbsp;'hanging'：文本基线是悬挂基线。<br/>-&nbsp;'middle'：文本基线在文本块的中间。<br/>-&nbsp;'ideographic'：文字基线是表意字基线；如果字符本身超出了alphabetic基线，那么ideograhpic基线位置在字符本身的底部。<br/>-&nbsp;'bottom'：文本基线在文本块的底部。&nbsp;与ideographic基线的区别在于ideographic基线不需要考虑下行字母。<br/>-&nbsp;默认值：'alphabetic'。 |
 | [globalAlpha](#globalalpha)              | number                                   | 设置透明度，0.0为完全透明，1.0为完全不透明。                |
-| [lineDashOffset](#linedashoffset)        | number                                   | 设置画布的虚线偏移量，精度为float。    <br/>-&nbsp;默认值：0.0。                 |
+| [lineDashOffset](#linedashoffset)        | number                                   | 设置画布的虚线偏移量，精度为float。    <br/>-&nbsp;默认值：0.0。 |
 | [globalCompositeOperation](#globalcompositeoperation) | string                                   | 设置合成操作的方式。类型字段可选值有'source-over'，'source-atop'，'source-in'，'source-out'，'destination-over'，'destination-atop'，'destination-in'，'destination-out'，'lighter'，'copy'，'xor'。<br/>-&nbsp;默认值：'source-over'。 |
-| [shadowBlur](#shadowblur)                | number                                   | 设置绘制阴影时的模糊级别，值越大越模糊，精度为float。   <br/>-&nbsp;默认值：0.0。          |
-| [shadowColor](#shadowcolor)              | string                            | 设置绘制阴影时的阴影颜色。                            |
+| [shadowBlur](#shadowblur)                | number                                   | 设置绘制阴影时的模糊级别，值越大越模糊，精度为float。   <br/>-&nbsp;默认值：0.0。 |
+| [shadowColor](#shadowcolor)              | string                                   | 设置绘制阴影时的阴影颜色。                            |
 | [shadowOffsetX](#shadowoffsetx)          | number                                   | 设置绘制阴影时和原有对象的水平偏移值。                      |
 | [shadowOffsetY](#shadowoffsety)          | number                                   | 设置绘制阴影时和原有对象的垂直偏移值。                      |
-| [imageSmoothingEnabled](#imagesmoothingenabled) | boolean                                  | 用于设置绘制图片时是否进行图像平滑度调整，true为启用，false为不启用。 <br/>-&nbsp;默认值：true。  |
-| imageSmoothingQuality                    | string                                   | 用于设置图像平滑度，支持如下三种类型：'low',&nbsp;'medium',&nbsp;'high'。<br/>-&nbsp;默认值：'low'。 |
+| [imageSmoothingEnabled](#imagesmoothingenabled) | boolean                                  | 用于设置绘制图片时是否进行图像平滑度调整，true为启用，false为不启用。 <br/>-&nbsp;默认值：true。 |
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
->fillStyle、shadowColor与 strokeStyle 中string类型格式为 'rgb(255, 255, 255)'，'rgba(255, 255, 255, 1.0)'，'\#FFFFFF'。
+> fillStyle、shadowColor与 strokeStyle 中string类型格式为 'rgb(255, 255, 255)'，'rgba(255, 255, 255, 1.0)'，'\#FFFFFF'。
 
 
 ### fillStyle
@@ -67,8 +67,8 @@ struct FillStyleExample {
         .onReady(() =>{
           this.offContext.fillStyle = '#0000ff'
           this.offContext.fillRect(20, 160, 150, 100)
-          var image = this.offContext.transferToImageBitmap();
-          this.context.transferFromImageBitmap(image);
+          var image = this.offContext.transferToImageBitmap()
+          this.context.transferFromImageBitmap(image)
         })
     }
     .width('100%')
@@ -445,8 +445,8 @@ struct LineDashOffset {
         .onReady(() =>{
           this.offContext.arc(100, 75, 50, 0, 6.28)
           this.offContext.setLineDash([10,20])
-          this.offContext.lineDashOffset = 10.0;
-          this.offContext.stroke();
+          this.offContext.lineDashOffset = 10.0
+          this.offContext.stroke()
           var image = this.offContext.transferToImageBitmap()
           this.context.transferFromImageBitmap(image)
       })
@@ -572,8 +572,7 @@ struct ShadowColor {
           this.offContext.shadowColor = 'rgb(0,0,255)'
           this.offContext.fillStyle = 'rgb(255,0,0)'
           this.offContext.fillRect(30, 30, 100, 100)
-          var image = this.offContext.transferToImageBitmap
-()
+          var image = this.offContext.transferToImageBitmap()
           this.context.transferFromImageBitmap(image)
       })
     }
@@ -703,12 +702,12 @@ fillRect(x: number, y: number, w: number, h: number): void
 
  **参数：**
 
-  | 参数     | 类型     | 必填   | 默认值  | 说明            |
-  | ------ | ------ | ---- | ---- | ------------- |
-  | x      | number | 是    | 0    | 指定矩形左上角点的x坐标。 |
-  | y      | number | 是    | 0    | 指定矩形左上角点的y坐标。 |
-  | width  | number | 是    | 0    | 指定矩形的宽度。      |
-  | height | number | 是    | 0    | 指定矩形的高度。      |
+| 参数     | 类型     | 必填   | 默认值  | 说明            |
+| ------ | ------ | ---- | ---- | ------------- |
+| x      | number | 是    | 0    | 指定矩形左上角点的x坐标。 |
+| y      | number | 是    | 0    | 指定矩形左上角点的y坐标。 |
+| width  | number | 是    | 0    | 指定矩形的宽度。      |
+| height | number | 是    | 0    | 指定矩形的高度。      |
 
  **示例：**
 
@@ -739,7 +738,7 @@ fillRect(x: number, y: number, w: number, h: number): void
   }
   ```
 
-  ![zh-cn_image_0000001238832407](figures/zh-cn_image_0000001238832407.png)
+  ![zh-cn_image_0000001194192436](figures/zh-cn_image_0000001194192436.png)
 
 
 ### strokeRect
@@ -750,12 +749,12 @@ strokeRect(x: number, y: number, w: number, h: number): void
 
  **参数：**
 
-  | 参数     | 类型     | 必填   | 默认值  | 说明           |
-  | ------ | ------ | ---- | ---- | ------------ |
-  | x      | number | 是    | 0    | 指定矩形的左上角x坐标。 |
-  | y      | number | 是    | 0    | 指定矩形的左上角y坐标。 |
-  | width  | number | 是    | 0    | 指定矩形的宽度。     |
-  | height | number | 是    | 0    | 指定矩形的高度。     |
+| 参数     | 类型     | 必填   | 默认值  | 说明           |
+| ------ | ------ | ---- | ---- | ------------ |
+| x      | number | 是    | 0    | 指定矩形的左上角x坐标。 |
+| y      | number | 是    | 0    | 指定矩形的左上角y坐标。 |
+| width  | number | 是    | 0    | 指定矩形的宽度。     |
+| height | number | 是    | 0    | 指定矩形的高度。     |
 
  **示例：**
 
@@ -767,6 +766,7 @@ strokeRect(x: number, y: number, w: number, h: number): void
     private settings: RenderingContextSettings = new RenderingContextSettings(true)
     private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
     private offContext: OffscreenCanvasRenderingContext2D = new OffscreenCanvasRenderingContext2D(600, 600, this.settings)
+
     build() {
       Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
         Canvas(this.context)
@@ -785,7 +785,7 @@ strokeRect(x: number, y: number, w: number, h: number): void
   }
   ```
 
-  ![zh-cn_image_0000001238712441](figures/zh-cn_image_0000001238712441.png)
+  ![zh-cn_image_0000001194352436](figures/zh-cn_image_0000001194352436.png)
 
 
 ### clearRect
@@ -796,12 +796,12 @@ clearRect(x: number, y: number, w: number, h: number): void
 
  **参数：**
 
-  | 参数     | 类型     | 必填   | 默认值  | 描述            |
-  | ------ | ------ | ---- | ---- | ------------- |
-  | x      | number | 是    | 0    | 指定矩形上的左上角x坐标。 |
-  | y      | number | 是    | 0    | 指定矩形上的左上角y坐标。 |
-  | width  | number | 是    | 0    | 指定矩形的宽度。      |
-  | height | number | 是    | 0    | 指定矩形的高度。      |
+| 参数     | 类型     | 必填   | 默认值  | 描述            |
+| ------ | ------ | ---- | ---- | ------------- |
+| x      | number | 是    | 0    | 指定矩形上的左上角x坐标。 |
+| y      | number | 是    | 0    | 指定矩形上的左上角y坐标。 |
+| width  | number | 是    | 0    | 指定矩形的宽度。      |
+| height | number | 是    | 0    | 指定矩形的高度。      |
 
  **示例：**
 
@@ -813,6 +813,7 @@ clearRect(x: number, y: number, w: number, h: number): void
     private settings: RenderingContextSettings = new RenderingContextSettings(true)
     private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
     private offContext: OffscreenCanvasRenderingContext2D = new OffscreenCanvasRenderingContext2D(600, 600, this.settings)
+
     build() {
       Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
         Canvas(this.context)
@@ -821,8 +822,8 @@ clearRect(x: number, y: number, w: number, h: number): void
           .backgroundColor('#ffff00')
           .onReady(() =>{
             this.offContext.fillStyle = 'rgb(0,0,255)'
-            this.offContext.fillRect(0,0,500,500)
-            this.offContext.clearRect(20,20,150,100)
+            this.offContext.fillRect(20,20,200,200)
+            this.offContext.clearRect(30,30,150,100)
             var image = this.offContext.transferToImageBitmap()
             this.context.transferFromImageBitmap(image)
         })
@@ -833,7 +834,7 @@ clearRect(x: number, y: number, w: number, h: number): void
   }
   ```
 
-  ![zh-cn_image_0000001194192458](figures/zh-cn_image_0000001194192458.png)
+  ![zh-cn_image_0000001238952377](figures/zh-cn_image_0000001238952377.png)
 
 
 ### fillText
@@ -844,12 +845,12 @@ fillText(text: string, x: number, y: number, maxWidth?: number): void
 
 **参数：**
 
-  | 参数   | 类型     | 必填   | 默认值  | 说明              |
-  | ---- | ------ | ---- | ---- | --------------- |
-  | text | string | 是    | “”   | 需要绘制的文本内容。      |
-  | x    | number | 是    | 0    | 需要绘制的文本的左下角x坐标。 |
-  | y    | number | 是    | 0    | 需要绘制的文本的左下角y坐标。 |
-  | maxWidth    | number | 否    | -   | 指定文本允许的最大宽度。 |
+| 参数       | 类型     | 必填   | 默认值  | 说明              |
+| -------- | ------ | ---- | ---- | --------------- |
+| text     | string | 是    | ""   | 需要绘制的文本内容。      |
+| x        | number | 是    | 0    | 需要绘制的文本的左下角x坐标。 |
+| y        | number | 是    | 0    | 需要绘制的文本的左下角y坐标。 |
+| maxWidth | number | 否    | -    | 指定文本允许的最大宽度。    |
 
  **示例：**
 
@@ -861,6 +862,7 @@ fillText(text: string, x: number, y: number, maxWidth?: number): void
     private settings: RenderingContextSettings = new RenderingContextSettings(true)
     private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
     private offContext: OffscreenCanvasRenderingContext2D = new OffscreenCanvasRenderingContext2D(600, 600, this.settings)
+
     build() {
       Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
         Canvas(this.context)
@@ -880,7 +882,7 @@ fillText(text: string, x: number, y: number, maxWidth?: number): void
   }
   ```
 
-  ![zh-cn_image_0000001194352454](figures/zh-cn_image_0000001194352454.png)
+  ![zh-cn_image_0000001194032458](figures/zh-cn_image_0000001194032458.png)
 
 
 ### strokeText
@@ -891,12 +893,12 @@ strokeText(text: string, x: number, y: number): void
 
 **参数：**
 
-  | 参数   | 类型     | 必填   | 默认值  | 描述              |
-  | ---- | ------ | ---- | ---- | --------------- |
-  | text | string | 是    | “”   | 需要绘制的文本内容。      |
-  | x    | number | 是    | 0    | 需要绘制的文本的左下角x坐标。 |
-  | y    | number | 是    | 0    | 需要绘制的文本的左下角y坐标。 |
-  | maxWidth   | number | 否    | -    | 需要绘制的文本的最大宽度 。|
+| 参数       | 类型     | 必填   | 默认值  | 描述              |
+| -------- | ------ | ---- | ---- | --------------- |
+| text     | string | 是    | ""   | 需要绘制的文本内容。      |
+| x        | number | 是    | 0    | 需要绘制的文本的左下角x坐标。 |
+| y        | number | 是    | 0    | 需要绘制的文本的左下角y坐标。 |
+| maxWidth | number | 否    | -    | 需要绘制的文本的最大宽度 。  |
 
  **示例：**
 
@@ -908,6 +910,7 @@ strokeText(text: string, x: number, y: number): void
     private settings: RenderingContextSettings = new RenderingContextSettings(true)
     private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
     private offContext: OffscreenCanvasRenderingContext2D = new OffscreenCanvasRenderingContext2D(600, 600, this.settings)
+
     build() {
       Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
         Canvas(this.context)
@@ -938,33 +941,33 @@ measureText(text: string): TextMetrics
 
  **参数：**
 
-  | 参数   | 类型     | 必填   | 默认值  | 说明         |
-  | ---- | ------ | ---- | ---- | ---------- |
-  | text | string | 是    | ""   | 需要进行测量的文本。 |
+| 参数   | 类型     | 必填   | 默认值  | 说明         |
+| ---- | ------ | ---- | ---- | ---------- |
+| text | string | 是    | ""   | 需要进行测量的文本。 |
 
  **返回值：**
 
-  | 类型          | 说明      |
-  | ----------- | ------- |
-  | TextMetrics | 文本的尺寸信息 |
+| 类型          | 说明      |
+| ----------- | ------- |
+| TextMetrics | 文本的尺寸信息 |
 
 **TextMetrics类型描述:**
 
-  | 属性                     | 类型     | 描述      |
-  | -----                    | ------ | ------- |
-  | width                    | number | 字符串的宽度。 |
-  | height                   | number | 字符串的高度。 |
-  | actualBoundingBoxAscent  | number | 从CanvasRenderingContext2D.textBaseline 属性标明的水平线到渲染文本的矩形边界顶部的距离，当前值为0。 |
-  | actualBoundingBoxDescent | number | 从CanvasRenderingContext2D.textBaseline 属性标明的水平线到渲染文本的矩形边界底部的距离，当前值为0。 |
-  | actualBoundingBoxLeft    | number | 平行于基线，从CanvasRenderingContext2D.textAlign 属性确定的对齐点到文本矩形边界左侧的距离，当前值为0。 |
-  | actualBoundingBoxRight   | number | 平行于基线，从CanvasRenderingContext2D.textAlign 属性确定的对齐点到文本矩形边界右侧的距离，当前值为0。|
-  | alphabeticBaseline       | number | 从CanvasRenderingContext2D.textBaseline 属性标明的水平线到线框的 alphabetic 基线的距离，当前值为0。|
-  | emHeightAscent           | number | 从CanvasRenderingContext2D.textBaseline 属性标明的水平线到线框中 em 方块顶部的距离，当前值为0。|
-  | emHeightDescent          | number | 从CanvasRenderingContext2D.textBaseline 属性标明的水平线到线框中 em 方块底部的距离，当前值为0。|
-  | fontBoundingBoxAscent    | number | 从CanvasRenderingContext2D.textBaseline 属性标明的水平线到渲染文本的所有字体的矩形最高边界顶部的距离，当前值为0。|
-  | fontBoundingBoxDescent   | number | 从CanvasRenderingContext2D.textBaseline 属性标明的水平线到渲染文本的所有字体的矩形边界最底部的距离，当前值为0。|
-  | hangingBaseline          | number | 从CanvasRenderingContext2D.textBaseline 属性标明的水平线到线框的 hanging 基线的距离，当前值为0。|
-  | ideographicBaseline      | number | 从CanvasRenderingContext2D.textBaseline 属性标明的水平线到线框的 ideographic 基线的距离，当前值为0。|
+| 属性                       | 类型     | 描述                                       |
+| ------------------------ | ------ | ---------------------------------------- |
+| width                    | number | 字符串的宽度。                                  |
+| height                   | number | 字符串的高度。                                  |
+| actualBoundingBoxAscent  | number | 从CanvasRenderingContext2D.textBaseline 属性标明的水平线到渲染文本的矩形边界顶部的距离，当前值为0。 |
+| actualBoundingBoxDescent | number | 从CanvasRenderingContext2D.textBaseline 属性标明的水平线到渲染文本的矩形边界底部的距离，当前值为0。 |
+| actualBoundingBoxLeft    | number | 平行于基线，从CanvasRenderingContext2D.textAlign 属性确定的对齐点到文本矩形边界左侧的距离，当前值为0。 |
+| actualBoundingBoxRight   | number | 平行于基线，从CanvasRenderingContext2D.textAlign 属性确定的对齐点到文本矩形边界右侧的距离，当前值为0。 |
+| alphabeticBaseline       | number | 从CanvasRenderingContext2D.textBaseline 属性标明的水平线到线框的 alphabetic 基线的距离，当前值为0。 |
+| emHeightAscent           | number | 从CanvasRenderingContext2D.textBaseline 属性标明的水平线到线框中 em 方块顶部的距离，当前值为0。 |
+| emHeightDescent          | number | 从CanvasRenderingContext2D.textBaseline 属性标明的水平线到线框中 em 方块底部的距离，当前值为0。 |
+| fontBoundingBoxAscent    | number | 从CanvasRenderingContext2D.textBaseline 属性标明的水平线到渲染文本的所有字体的矩形最高边界顶部的距离，当前值为0。 |
+| fontBoundingBoxDescent   | number | 从CanvasRenderingContext2D.textBaseline 属性标明的水平线到渲染文本的所有字体的矩形边界最底部的距离，当前值为0。 |
+| hangingBaseline          | number | 从CanvasRenderingContext2D.textBaseline 属性标明的水平线到线框的 hanging 基线的距离，当前值为0。 |
+| ideographicBaseline      | number | 从CanvasRenderingContext2D.textBaseline 属性标明的水平线到线框的 ideographic 基线的距离，当前值为0。 |
 
  **示例：**
 
@@ -976,6 +979,7 @@ measureText(text: string): TextMetrics
     private settings: RenderingContextSettings = new RenderingContextSettings(true)
     private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
     private offContext: OffscreenCanvasRenderingContext2D = new OffscreenCanvasRenderingContext2D(600, 600, this.settings)
+
     build() {
       Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
         Canvas(this.context)
@@ -1007,9 +1011,9 @@ stroke(path?: Path2D): void
 
  **参数：**
 
-  | 参数   | 类型                                       | 必填   | 默认值  | 描述           |
-  | ---- | ---------------------------------------- | ---- | ---- | ------------ |
-  | path | [Path2D](ts-components-canvas-path2d.md) | 否    | null | 需要绘制的Path2D。 |
+| 参数   | 类型                                       | 必填   | 默认值  | 描述           |
+| ---- | ---------------------------------------- | ---- | ---- | ------------ |
+| path | [Path2D](ts-components-canvas-path2d.md) | 否    | null | 需要绘制的Path2D。 |
 
  **示例：**
 
@@ -1021,6 +1025,7 @@ stroke(path?: Path2D): void
     private settings: RenderingContextSettings = new RenderingContextSettings(true)
     private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
     private offContext: OffscreenCanvasRenderingContext2D = new OffscreenCanvasRenderingContext2D(600, 600, this.settings)
+
     build() {
       Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
         Canvas(this.context)
@@ -1030,6 +1035,8 @@ stroke(path?: Path2D): void
           .onReady(() =>{
             this.offContext.moveTo(25, 25)
             this.offContext.lineTo(25, 105)
+            this.offContext.lineTo(75, 105)
+            this.offContext.lineTo(75, 25)
             this.offContext.strokeStyle = 'rgb(0,0,255)'
             this.offContext.stroke()
             var image = this.offContext.transferToImageBitmap()
@@ -1042,7 +1049,7 @@ stroke(path?: Path2D): void
   }
   ```
 
-  ![zh-cn_image_0000001239032427](figures/zh-cn_image_0000001239032427.png)
+  ![zh-cn_image_0000001238832389](figures/zh-cn_image_0000001238832389.png)
 
 
 ### beginPath
@@ -1061,6 +1068,7 @@ beginPath(): void
     private settings: RenderingContextSettings = new RenderingContextSettings(true)
     private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
     private offContext: OffscreenCanvasRenderingContext2D = new OffscreenCanvasRenderingContext2D(600, 600, this.settings)
+
     build() {
       Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
         Canvas(this.context)
@@ -1095,10 +1103,10 @@ moveTo(x: number, y: number): void
 
  **参数：**
 
-  | 参数   | 类型     | 必填   | 默认值  | 说明        |
-  | ---- | ------ | ---- | ---- | --------- |
-  | x    | number | 是    | 0    | 指定位置的x坐标。 |
-  | y    | number | 是    | 0    | 指定位置的y坐标。 |
+| 参数   | 类型     | 必填   | 默认值  | 说明        |
+| ---- | ------ | ---- | ---- | --------- |
+| x    | number | 是    | 0    | 指定位置的x坐标。 |
+| y    | number | 是    | 0    | 指定位置的y坐标。 |
 
  **示例：**
 
@@ -1110,6 +1118,7 @@ moveTo(x: number, y: number): void
     private settings: RenderingContextSettings = new RenderingContextSettings(true)
     private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
     private offContext: OffscreenCanvasRenderingContext2D = new OffscreenCanvasRenderingContext2D(600, 600, this.settings)
+
     build() {
       Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
         Canvas(this.context)
@@ -1142,10 +1151,10 @@ lineTo(x: number, y: number): void
 
  **参数：**
 
-  | 参数   | 类型     | 必填   | 默认值  | 描述        |
-  | ---- | ------ | ---- | ---- | --------- |
-  | x    | number | 是    | 0    | 指定位置的x坐标。 |
-  | y    | number | 是    | 0    | 指定位置的y坐标。 |
+| 参数   | 类型     | 必填   | 默认值  | 描述        |
+| ---- | ------ | ---- | ---- | --------- |
+| x    | number | 是    | 0    | 指定位置的x坐标。 |
+| y    | number | 是    | 0    | 指定位置的y坐标。 |
 
  **示例：**
 
@@ -1157,6 +1166,7 @@ lineTo(x: number, y: number): void
     private settings: RenderingContextSettings = new RenderingContextSettings(true)
     private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
     private offContext: OffscreenCanvasRenderingContext2D = new OffscreenCanvasRenderingContext2D(600, 600, this.settings)
+
     build() {
       Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
         Canvas(this.context)
@@ -1197,6 +1207,7 @@ closePath(): void
     private settings: RenderingContextSettings = new RenderingContextSettings(true)
     private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
     private offContext: OffscreenCanvasRenderingContext2D = new OffscreenCanvasRenderingContext2D(600, 600, this.settings)
+
     build() {
       Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
         Canvas(this.context)
@@ -1231,16 +1242,16 @@ createPattern(image: ImageBitmap, repetition: string | null): CanvasPattern | nu
 
 **参数：**
 
-  | 参数         | 类型                                       | 必填   | 默认值  | 描述                                       |
-  | ---------- | ---------------------------------------- | ---- | ---- | ---------------------------------------- |
-  | image      | [ImageBitmap](ts-components-canvas-imagebitmap.md) | 是    | null | 图源对象，具体参考ImageBitmap对象。                  |
-  | repetition | string                                   | 是    | “”   | 设置图像重复的方式，取值为：'repeat'、'repeat-x'、&nbsp;'repeat-y'、'no-repeat'。 |
+| 参数         | 类型                                       | 必填   | 默认值  | 描述                                       |
+| ---------- | ---------------------------------------- | ---- | ---- | ---------------------------------------- |
+| image      | [ImageBitmap](ts-components-canvas-imagebitmap.md) | 是    | null | 图源对象，具体参考ImageBitmap对象。                  |
+| repetition | string                                   | 是    | “”   | 设置图像重复的方式，取值为：'repeat'、'repeat-x'、&nbsp;'repeat-y'、'no-repeat'。 |
 
 **返回值：**
 
-  | 类型         | 说明                                       | 
-  | ---------- | ---------------------------------------- |
-  |  [CanvasPattern](#canvaspattern)     | 通过指定图像和重复方式创建图片填充的模板对象。 |
+| 类型                              | 说明                      |
+| ------------------------------- | ----------------------- |
+| [CanvasPattern](#canvaspattern) | 通过指定图像和重复方式创建图片填充的模板对象。 |
 
  **示例：**
 
@@ -1253,6 +1264,7 @@ createPattern(image: ImageBitmap, repetition: string | null): CanvasPattern | nu
     private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
     private img:ImageBitmap = new ImageBitmap("common/images/icon.jpg")
     private offContext: OffscreenCanvasRenderingContext2D = new OffscreenCanvasRenderingContext2D(600, 600, this.settings)
+
     build() {
       Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
         Canvas(this.context)
@@ -1284,14 +1296,14 @@ bezierCurveTo(cp1x: number, cp1y: number, cp2x: number, cp2y: number, x: number,
 
  **参数：**
 
-  | 参数   | 类型     | 必填   | 默认值  | 描述             |
-  | ---- | ------ | ---- | ---- | -------------- |
-  | cp1x | number | 是    | 0    | 第一个贝塞尔参数的x坐标值。 |
-  | cp1y | number | 是    | 0    | 第一个贝塞尔参数的y坐标值。 |
-  | cp2x | number | 是    | 0    | 第二个贝塞尔参数的x坐标值。 |
-  | cp2y | number | 是    | 0    | 第二个贝塞尔参数的y坐标值。 |
-  | x    | number | 是    | 0    | 路径结束时的x坐标值。    |
-  | y    | number | 是    | 0    | 路径结束时的y坐标值。    |
+| 参数   | 类型     | 必填   | 默认值  | 描述             |
+| ---- | ------ | ---- | ---- | -------------- |
+| cp1x | number | 是    | 0    | 第一个贝塞尔参数的x坐标值。 |
+| cp1y | number | 是    | 0    | 第一个贝塞尔参数的y坐标值。 |
+| cp2x | number | 是    | 0    | 第二个贝塞尔参数的x坐标值。 |
+| cp2y | number | 是    | 0    | 第二个贝塞尔参数的y坐标值。 |
+| x    | number | 是    | 0    | 路径结束时的x坐标值。    |
+| y    | number | 是    | 0    | 路径结束时的y坐标值。    |
 
  **示例：**
 
@@ -1303,6 +1315,7 @@ bezierCurveTo(cp1x: number, cp1y: number, cp2x: number, cp2y: number, x: number,
     private settings: RenderingContextSettings = new RenderingContextSettings(true)
     private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
     private offContext: OffscreenCanvasRenderingContext2D = new OffscreenCanvasRenderingContext2D(600, 600, this.settings)
+
     build() {
       Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
         Canvas(this.context)
@@ -1335,12 +1348,12 @@ quadraticCurveTo(cpx: number, cpy: number, x: number, y: number): void
 
  **参数：**
 
-  | 参数   | 类型     | 必填   | 默认值  | 描述          |
-  | ---- | ------ | ---- | ---- | ----------- |
-  | cpx  | number | 是    | 0    | 贝塞尔参数的x坐标值。 |
-  | cpy  | number | 是    | 0    | 贝塞尔参数的y坐标值。 |
-  | x    | number | 是    | 0    | 路径结束时的x坐标值。 |
-  | y    | number | 是    | 0    | 路径结束时的y坐标值。 |
+| 参数   | 类型     | 必填   | 默认值  | 描述          |
+| ---- | ------ | ---- | ---- | ----------- |
+| cpx  | number | 是    | 0    | 贝塞尔参数的x坐标值。 |
+| cpy  | number | 是    | 0    | 贝塞尔参数的y坐标值。 |
+| x    | number | 是    | 0    | 路径结束时的x坐标值。 |
+| y    | number | 是    | 0    | 路径结束时的y坐标值。 |
 
  **示例：**
 
@@ -1352,6 +1365,7 @@ quadraticCurveTo(cpx: number, cpy: number, x: number, y: number): void
     private settings: RenderingContextSettings = new RenderingContextSettings(true)
     private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
     private offContext: OffscreenCanvasRenderingContext2D = new OffscreenCanvasRenderingContext2D(600, 600, this.settings)
+
     build() {
       Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
         Canvas(this.context)
@@ -1359,10 +1373,10 @@ quadraticCurveTo(cpx: number, cpy: number, x: number, y: number): void
           .height('100%')
           .backgroundColor('#ffff00')
           .onReady(() =>{
-            this.offContext.beginPath();
-            this.offContext.moveTo(20, 20);
-            this.offContext.quadraticCurveTo(100, 100, 200, 20);
-            this.offContext.stroke();
+            this.offContext.beginPath()
+            this.offContext.moveTo(20, 20)
+            this.offContext.quadraticCurveTo(100, 100, 200, 20)
+            this.offContext.stroke()
             var image = this.offContext.transferToImageBitmap()
             this.context.transferFromImageBitmap(image)
         })
@@ -1384,14 +1398,14 @@ arc(x: number, y: number, radius: number, startAngle: number, endAngle: number, 
 
  **参数：**
 
-  | 参数            | 类型      | 必填   | 默认值   | 描述         |
-  | ------------- | ------- | ---- | ----- | ---------- |
-  | x             | number  | 是    | 0     | 弧线圆心的x坐标值。 |
-  | y             | number  | 是    | 0     | 弧线圆心的y坐标值。 |
-  | radius        | number  | 是    | 0     | 弧线的圆半径。    |
-  | startAngle    | number  | 是    | 0     | 弧线的起始弧度。   |
-  | endAngle      | number  | 是    | 0     | 弧线的终止弧度。   |
-  | counterclockwise | boolean | 否    | false | 是否逆时针绘制圆弧。 |
+| 参数               | 类型      | 必填   | 默认值   | 描述         |
+| ---------------- | ------- | ---- | ----- | ---------- |
+| x                | number  | 是    | 0     | 弧线圆心的x坐标值。 |
+| y                | number  | 是    | 0     | 弧线圆心的y坐标值。 |
+| radius           | number  | 是    | 0     | 弧线的圆半径。    |
+| startAngle       | number  | 是    | 0     | 弧线的起始弧度。   |
+| endAngle         | number  | 是    | 0     | 弧线的终止弧度。   |
+| counterclockwise | boolean | 否    | false | 是否逆时针绘制圆弧。 |
 
  **示例：**
 
@@ -1403,6 +1417,7 @@ arc(x: number, y: number, radius: number, startAngle: number, endAngle: number, 
     private settings: RenderingContextSettings = new RenderingContextSettings(true)
     private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
     private offContext: OffscreenCanvasRenderingContext2D = new OffscreenCanvasRenderingContext2D(600, 600, this.settings)
+
     build() {
       Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
         Canvas(this.context)
@@ -1434,13 +1449,13 @@ arcTo(x1: number, y1: number, x2: number, y2: number, radius: number): void
 
  **参数：**
 
-  | 参数     | 类型     | 必填   | 默认值  | 描述              |
-  | ------ | ------ | ---- | ---- | --------------- |
-  | x1     | number | 是    | 0    | 圆弧经过的第一个点的x坐标值。 |
-  | y1     | number | 是    | 0    | 圆弧经过的第一个点的y坐标值。 |
-  | x2     | number | 是    | 0    | 圆弧经过的第二个点的x坐标值。 |
-  | y2     | number | 是    | 0    | 圆弧经过的第二个点的y坐标值。 |
-  | radius | number | 是    | 0    | 圆弧的圆半径值。        |
+| 参数     | 类型     | 必填   | 默认值  | 描述              |
+| ------ | ------ | ---- | ---- | --------------- |
+| x1     | number | 是    | 0    | 圆弧经过的第一个点的x坐标值。 |
+| y1     | number | 是    | 0    | 圆弧经过的第一个点的y坐标值。 |
+| x2     | number | 是    | 0    | 圆弧经过的第二个点的x坐标值。 |
+| y2     | number | 是    | 0    | 圆弧经过的第二个点的y坐标值。 |
+| radius | number | 是    | 0    | 圆弧的圆半径值。        |
 
  **示例：**
 
@@ -1452,6 +1467,7 @@ arcTo(x1: number, y1: number, x2: number, y2: number, radius: number): void
     private settings: RenderingContextSettings = new RenderingContextSettings(true)
     private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
     private offContext: OffscreenCanvasRenderingContext2D = new OffscreenCanvasRenderingContext2D(600, 600, this.settings)
+
     build() {
       Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
         Canvas(this.context)
@@ -1459,9 +1475,9 @@ arcTo(x1: number, y1: number, x2: number, y2: number, radius: number): void
           .height('100%')
           .backgroundColor('#ffff00')
           .onReady(() =>{
-            this.offContext.moveTo(100, 20);
-            this.offContext.arcTo(150, 20, 150, 70, 50);
-            this.offContext.stroke();
+            this.offContext.moveTo(100, 20)
+            this.offContext.arcTo(150, 20, 150, 70, 50)
+            this.offContext.stroke()
             var image = this.offContext.transferToImageBitmap()
             this.context.transferFromImageBitmap(image)
           })
@@ -1483,16 +1499,16 @@ ellipse(x: number, y: number, radiusX: number, radiusY: number, rotation: number
 
  **参数：**
 
-  | 参数            | 类型      | 必填   | 默认值   | 说明                |
-  | ------------- | ------- | ---- | ----- | ----------------- |
-  | x             | number  | 是    | 0     | 椭圆圆心的x轴坐标。        |
-  | y             | number  | 是    | 0     | 椭圆圆心的y轴坐标。        |
-  | radiusX       | number  | 是    | 0     | 椭圆x轴的半径长度。        |
-  | radiusY       | number  | 是    | 0     | 椭圆y轴的半径长度。        |
-  | rotation      | number  | 是    | 0     | 椭圆的旋转角度，单位为弧度。    |
-  | startAngle    | number  | 是    | 0     | 椭圆绘制的起始点角度，以弧度表示。 |
-  | endAngle      | number  | 是    | 0     | 椭圆绘制的结束点角度，以弧度表示。 |
-  | counterclockwise | boolean | 否    | false | 是否以逆时针方向绘制椭圆。     |
+| 参数               | 类型      | 必填   | 默认值   | 说明                |
+| ---------------- | ------- | ---- | ----- | ----------------- |
+| x                | number  | 是    | 0     | 椭圆圆心的x轴坐标。        |
+| y                | number  | 是    | 0     | 椭圆圆心的y轴坐标。        |
+| radiusX          | number  | 是    | 0     | 椭圆x轴的半径长度。        |
+| radiusY          | number  | 是    | 0     | 椭圆y轴的半径长度。        |
+| rotation         | number  | 是    | 0     | 椭圆的旋转角度，单位为弧度。    |
+| startAngle       | number  | 是    | 0     | 椭圆绘制的起始点角度，以弧度表示。 |
+| endAngle         | number  | 是    | 0     | 椭圆绘制的结束点角度，以弧度表示。 |
+| counterclockwise | boolean | 否    | false | 是否以逆时针方向绘制椭圆。<br>true:逆时针方向绘制椭圆。<br>false:顺时针方向绘制椭圆。     |
 
  **示例：**
 
@@ -1512,7 +1528,7 @@ ellipse(x: number, y: number, radiusX: number, radiusY: number, rotation: number
           .backgroundColor('#ffff00')
           .onReady(() =>{
             this.offContext.beginPath()
-            this.offContext.ellipse(200, 200, 50, 100, Math.PI * 0.25, Math.PI * 0.5, Math.PI)
+            this.offContext.ellipse(200, 200, 50, 100, Math.PI * 0.25, Math.PI * 0.5, Math.PI * 2)
             this.offContext.stroke()
             var image = this.offContext.transferToImageBitmap()
             this.context.transferFromImageBitmap(image)
@@ -1524,7 +1540,7 @@ ellipse(x: number, y: number, radiusX: number, radiusY: number, rotation: number
   }
   ```
 
-  ![zh-cn_image_0000001238832411](figures/zh-cn_image_0000001238832411.png)
+  ![zh-cn_image_0000001194192440](figures/zh-cn_image_0000001194192440.png)
 
 
 ### rect
@@ -1535,12 +1551,12 @@ rect(x: number, y: number, w: number, h: number): void
 
  **参数：**
 
-  | 参数     | 类型     | 必填   | 默认值  | 描述            |
-  | ------ | ------ | ---- | ---- | ------------- |
-  | x      | number | 是    | 0    | 指定矩形的左上角x坐标值。 |
-  | y      | number | 是    | 0    | 指定矩形的左上角y坐标值。 |
-  | w  | number | 是    | 0    | 指定矩形的宽度。      |
-  | h | number | 是    | 0    | 指定矩形的高度。      |
+| 参数   | 类型     | 必填   | 默认值  | 描述            |
+| ---- | ------ | ---- | ---- | ------------- |
+| x    | number | 是    | 0    | 指定矩形的左上角x坐标值。 |
+| y    | number | 是    | 0    | 指定矩形的左上角y坐标值。 |
+| w    | number | 是    | 0    | 指定矩形的宽度。      |
+| h    | number | 是    | 0    | 指定矩形的高度。      |
 
  **示例：**
 
@@ -1552,6 +1568,7 @@ rect(x: number, y: number, w: number, h: number): void
     private settings: RenderingContextSettings = new RenderingContextSettings(true)
     private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
     private offContext: OffscreenCanvasRenderingContext2D = new OffscreenCanvasRenderingContext2D(600, 600, this.settings)
+
     build() {
       Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
         Canvas(this.context)
@@ -1576,11 +1593,15 @@ rect(x: number, y: number, w: number, h: number): void
 
 ### fill
 
-fill(): void
+fill(fillRule?: CanvasFillRule): void
 
 对封闭路径进行填充。
 
- **示例：**
+**参数:** 
+
+| 参数       | 类型             | 必填   | 默认值       | 描述                                       |
+| -------- | -------------- | ---- | --------- | ---------------------------------------- |
+| fillRule | CanvasFillRule | 否    | "nonzero" | 指定要填充对象的规则。<br/>可选参数为："nonzero", "evenodd"。 |
 
   ```ts
   // xxx.ets
@@ -1590,6 +1611,7 @@ fill(): void
     private settings: RenderingContextSettings = new RenderingContextSettings(true)
     private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
     private offContext: OffscreenCanvasRenderingContext2D = new OffscreenCanvasRenderingContext2D(600, 600, this.settings)
+
     build() {
       Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
         Canvas(this.context)
@@ -1612,11 +1634,72 @@ fill(): void
   ![zh-cn_image_0000001194192462](figures/zh-cn_image_0000001194192462.png)
 
 
+fill(path: Path2D, fillRule?: CanvasFillRule): void
+
+对封闭路径进行填充。
+
+**参数:** 
+
+| 参数       | 类型             | 必填   | 默认值       | 描述                                       |
+| -------- | -------------- | ---- | --------- | ---------------------------------------- |
+| path     | Path2D         | 是    |           | Path2D填充路径。                              |
+| fillRule | CanvasFillRule | 否    | "nonzero" | 指定要填充对象的规则。<br/>可选参数为："nonzero", "evenodd"。 |
+
+
+**示例:**   
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct Fill {
+  private settings: RenderingContextSettings = new RenderingContextSettings(true)
+  private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
+  private offContext: OffscreenCanvasRenderingContext2D = new OffscreenCanvasRenderingContext2D(600, 600, this.settings)
+
+  build() {
+    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
+      Canvas(this.context)
+        .width('100%')
+        .height('100%')
+        .backgroundColor('#ffff00')
+        .onReady(() =>{
+          let region = new Path2D()
+          region.moveTo(30, 90)
+          region.lineTo(110, 20)
+          region.lineTo(240, 130)
+          region.lineTo(60, 130)
+          region.lineTo(190, 20)
+          region.lineTo(270, 90)
+          region.closePath()
+          // Fill path
+          this.offContext.fillStyle = 'green'
+          this.offContext.fill(region, "evenodd")
+          var image = this.offContext.transferToImageBitmap()
+          this.context.transferFromImageBitmap(image)
+        })
+    }
+    .width('100%')
+    .height('100%')
+  }
+}
+```
+
+ ![zh-cn_image_000000127777775](figures/zh-cn_image_000000127777775.png)
+
+
+
 ### clip
 
-clip(): void
+clip(fillRule?: CanvasFillRule): void
 
 设置当前路径为剪切路径。
+
+**参数:** 
+
+| 参数       | 类型             | 必填   | 默认值       | 描述                                       |
+| -------- | -------------- | ---- | --------- | ---------------------------------------- |
+| fillRule | CanvasFillRule | 否    | "nonzero" | 指定要剪切对象的规则。<br/>可选参数为："nonzero", "evenodd"。 |
 
  **示例：**
 
@@ -1628,6 +1711,7 @@ clip(): void
     private settings: RenderingContextSettings = new RenderingContextSettings(true)
     private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
     private offContext: OffscreenCanvasRenderingContext2D = new OffscreenCanvasRenderingContext2D(600, 600, this.settings)
+
     build() {
       Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
         Canvas(this.context)
@@ -1635,11 +1719,11 @@ clip(): void
           .height('100%')
           .backgroundColor('#ffff00')
           .onReady(() =>{
-            this.offContext.rect(0, 0, 200, 200)
+            this.offContext.rect(0, 0, 100, 200)
             this.offContext.stroke()
             this.offContext.clip()
             this.offContext.fillStyle = "rgb(255,0,0)"
-            this.offContext.fillRect(0, 0, 150, 150)
+            this.offContext.fillRect(0, 0, 200, 200)
             var image = this.offContext.transferToImageBitmap()
             this.context.transferFromImageBitmap(image)
           })
@@ -1650,7 +1734,90 @@ clip(): void
   }
   ```
 
-  ![zh-cn_image_0000001194352458](figures/zh-cn_image_0000001194352458.png)
+  ![zh-cn_image_0000001194032462](figures/zh-cn_image_0000001194032462.png)
+
+
+clip(path:Path2D, fillRule?: CanvasFillRule): void
+
+设置封闭路径为剪切路径。
+
+**参数:** 
+
+| 参数       | 类型             | 必填   | 默认值       | 描述                                       |
+| -------- | -------------- | ---- | --------- | ---------------------------------------- |
+| path | Path2D | 是    |  | Path2D剪切路径。 |
+| fillRule | CanvasFillRule | 否    | "nonzero" | 指定要剪切对象的规则。<br/>可选参数为："nonzero", "evenodd"。 |
+
+ **示例：**
+
+  ```ts
+  // xxx.ets
+@Entry
+@Component
+struct Clip {
+  private settings: RenderingContextSettings = new RenderingContextSettings(true)
+  private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
+  private offContext: OffscreenCanvasRenderingContext2D = new OffscreenCanvasRenderingContext2D(600, 600, this.settings)
+
+  build() {
+    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
+      Canvas(this.context)
+        .width('100%')
+        .height('100%')
+        .backgroundColor('#ffff00')
+        .onReady(() =>{
+          let region = new Path2D()
+          region.rect(80,10,20,130)
+          region.rect(40,50,100,50)
+          this.offContext.clip(region,"evenodd")
+          this.offContext.fillStyle = "rgb(255,0,0)"
+          this.offContext.fillRect(0, 0, 600, 600)
+          var image = this.offContext.transferToImageBitmap()
+          this.context.transferFromImageBitmap(image)
+        })
+    }
+    .width('100%')
+    .height('100%')
+  }
+}
+  ```
+
+  ![zh-cn_image_000000127777779](figures/zh-cn_image_000000127777779.png)
+
+
+
+### filter
+
+filter(filter: string): void
+
+为Canvas图形设置各类滤镜效果。该接口为空接口。
+
+**参数:**
+
+| 参数     | 类型     | 必填   | 默认值  | 说明           |
+| ------ | ------ | ---- | ---- | ------------ |
+| filter | string | 是    | -    | 接受各类滤镜效果的函数。 |
+
+
+### getTransform
+
+getTransform(): Matrix2D
+
+获取当前被应用到上下文的转换矩阵。该接口为空接口。
+
+
+### resetTransform
+
+resetTransform(): void
+
+使用单位矩阵重新设置当前变形。该接口为空接口。
+
+
+### direction
+
+direction(direction: CanvasDirection): void
+
+绘制文本时，描述当前文本方向的属性。该接口为空接口。
 
 
 ### rotate
@@ -1661,9 +1828,9 @@ rotate(angle: number): void
 
  **参数：**
 
-  | 参数     | 类型     | 必填   | 默认值  | 描述                                       |
-  | ------ | ------ | ---- | ---- | ---------------------------------------- |
-  | angle | number | 是    | 0    | 设置顺时针旋转的弧度值，可以通过Math.PI&nbsp;/&nbsp;180将角度转换为弧度值。 |
+| 参数    | 类型     | 必填   | 默认值  | 描述                                       |
+| ----- | ------ | ---- | ---- | ---------------------------------------- |
+| angle | number | 是    | 0    | 设置顺时针旋转的弧度值，可以通过Math.PI&nbsp;/&nbsp;180将角度转换为弧度值。 |
 
  **示例：**
 
@@ -1675,6 +1842,7 @@ rotate(angle: number): void
     private settings: RenderingContextSettings = new RenderingContextSettings(true)
     private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
     private offContext: OffscreenCanvasRenderingContext2D = new OffscreenCanvasRenderingContext2D(600, 600, this.settings)
+
     build() {
       Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
         Canvas(this.context)
@@ -1682,7 +1850,7 @@ rotate(angle: number): void
           .height('100%')
           .backgroundColor('#ffff00')
           .onReady(() =>{
-            this.offContext.rotate(45 * Math.PI / 180) // Rotate the rectangle 45 degrees
+            this.offContext.rotate(45 * Math.PI / 180)
             this.offContext.fillRect(70, 20, 50, 50)
             var image = this.offContext.transferToImageBitmap()
             this.context.transferFromImageBitmap(image)
@@ -1705,10 +1873,10 @@ scale(x: number, y: number): void
 
  **参数：**
 
-  | 参数   | 类型     | 必填   | 默认值  | 描述          |
-  | ---- | ------ | ---- | ---- | ----------- |
-  | x    | number | 是    | 0    | 设置水平方向的缩放值。 |
-  | y    | number | 是    | 0    | 设置垂直方向的缩放值。 |
+| 参数   | 类型     | 必填   | 默认值  | 描述          |
+| ---- | ------ | ---- | ---- | ----------- |
+| x    | number | 是    | 0    | 设置水平方向的缩放值。 |
+| y    | number | 是    | 0    | 设置垂直方向的缩放值。 |
 
  **示例：**
 
@@ -1720,6 +1888,7 @@ scale(x: number, y: number): void
     private settings: RenderingContextSettings = new RenderingContextSettings(true)
     private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
     private offContext: OffscreenCanvasRenderingContext2D = new OffscreenCanvasRenderingContext2D(600, 600, this.settings)
+
     build() {
       Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
         Canvas(this.context)
@@ -1727,9 +1896,10 @@ scale(x: number, y: number): void
           .height('100%')
           .backgroundColor('#ffff00')
           .onReady(() =>{
-            this.offContext.strokeRect(10, 10, 25, 25)
+            this.offContext.lineWidth = 3
+            this.offContext.strokeRect(30, 30, 50, 50)
             this.offContext.scale(2, 2) // Scale to 200%
-            this.offContext.strokeRect(10, 10, 25, 25)
+            this.offContext.strokeRect(30, 30, 50, 50)
             var image = this.offContext.transferToImageBitmap()
             this.context.transferFromImageBitmap(image)
           })
@@ -1740,7 +1910,7 @@ scale(x: number, y: number): void
   }
   ```
 
-  ![zh-cn_image_0000001194032484](figures/zh-cn_image_0000001194032484.png)
+  ![zh-cn_image_0000001193872498](figures/zh-cn_image_0000001193872498.png)
 
 
 ### transform
@@ -1758,14 +1928,14 @@ transform方法对应一个变换矩阵，想对一个图形进行变化的时�
 
 **参数：**
 
-  | 参数         | 类型     | 必填   | 默认值  | 描述       |
-  | ---------- | ------ | ---- | ---- | -------- |
-  | a      | number | 是    | 0    |scaleX: 指定水平缩放值。 |
-  | b      | number | 是    | 0    |skewX: 指定水平倾斜值。 |
-  | c      | number | 是    | 0    |skewY: 指定垂直倾斜值。 |
-  | d      | number | 是    | 0    |scaleY: 指定垂直缩放值。 |
-  | e      | number | 是    | 0    |translateX: 指定水平移动值。 |
-  | f      | number | 是    | 0    |translateY: 指定垂直移动值。 |
+| 参数   | 类型     | 必填   | 默认值  | 描述                   |
+| ---- | ------ | ---- | ---- | -------------------- |
+| a    | number | 是    | 0    | scaleX: 指定水平缩放值。     |
+| b    | number | 是    | 0    | skewX: 指定水平倾斜值。      |
+| c    | number | 是    | 0    | skewY: 指定垂直倾斜值。      |
+| d    | number | 是    | 0    | scaleY: 指定垂直缩放值。     |
+| e    | number | 是    | 0    | translateX: 指定水平移动值。 |
+| f    | number | 是    | 0    | translateY: 指定垂直移动值。 |
 
  **示例：**
 
@@ -1777,6 +1947,7 @@ transform方法对应一个变换矩阵，想对一个图形进行变化的时�
     private settings: RenderingContextSettings = new RenderingContextSettings(true)
     private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
     private offContext: OffscreenCanvasRenderingContext2D = new OffscreenCanvasRenderingContext2D(600, 600, this.settings)
+
     build() {
       Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
         Canvas(this.context)
@@ -1809,18 +1980,18 @@ transform方法对应一个变换矩阵，想对一个图形进行变化的时�
 
 setTransform(a: number, b: number, c: number, d: number, e: number, f: number): void
 
-setTransfrom方法使用的参数和transform()方法相同，但setTransform()方法会重置现有的变换矩阵并创建新的变换矩阵。
+setTransform方法使用的参数和transform()方法相同，但setTransform()方法会重置现有的变换矩阵并创建新的变换矩阵。
 
 **参数：**
 
-  | 参数         | 类型     | 必填   | 默认值  | 描述       |
-  | ---------- | ------ | ---- | ---- | -------- |
-  | a      | number | 是    | 0    |scaleX: 指定水平缩放值。 |
-  | b      | number | 是    | 0    |skewX: 指定水平倾斜值。 |
-  | c      | number | 是    | 0    |skewY: 指定垂直倾斜值。 |
-  | d      | number | 是    | 0    |scaleY: 指定垂直缩放值。 |
-  | e      | number | 是    | 0    |translateX: 指定水平移动值。 |
-  | f      | number | 是    | 0    |translateY: 指定垂直移动值。 |
+| 参数   | 类型     | 必填   | 默认值  | 描述                   |
+| ---- | ------ | ---- | ---- | -------------------- |
+| a    | number | 是    | 0    | scaleX: 指定水平缩放值。     |
+| b    | number | 是    | 0    | skewX: 指定水平倾斜值。      |
+| c    | number | 是    | 0    | skewY: 指定垂直倾斜值。      |
+| d    | number | 是    | 0    | scaleY: 指定垂直缩放值。     |
+| e    | number | 是    | 0    | translateX: 指定水平移动值。 |
+| f    | number | 是    | 0    | translateY: 指定垂直移动值。 |
 
  **示例：**
 
@@ -1832,6 +2003,7 @@ setTransfrom方法使用的参数和transform()方法相同，但setTransform()�
     private settings: RenderingContextSettings = new RenderingContextSettings(true)
     private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
     private offContext: OffscreenCanvasRenderingContext2D = new OffscreenCanvasRenderingContext2D(600, 600, this.settings)
+
     build() {
       Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
         Canvas(this.context)
@@ -1865,10 +2037,10 @@ translate(x: number, y: number): void
 
  **参数：**
 
-  | 参数   | 类型     | 必填   | 默认值  | 描述       |
-  | ---- | ------ | ---- | ---- | -------- |
-  | x    | number | 是    | 0    | 设置水平平移量。 |
-  | y    | number | 是    | 0    | 设置竖直平移量。 |
+| 参数   | 类型     | 必填   | 默认值  | 描述       |
+| ---- | ------ | ---- | ---- | -------- |
+| x    | number | 是    | 0    | 设置水平平移量。 |
+| y    | number | 是    | 0    | 设置竖直平移量。 |
 
  **示例：**
 
@@ -1880,6 +2052,7 @@ translate(x: number, y: number): void
     private settings: RenderingContextSettings = new RenderingContextSettings(true)
     private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
     private offContext: OffscreenCanvasRenderingContext2D = new OffscreenCanvasRenderingContext2D(600, 600, this.settings)
+
     build() {
       Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
         Canvas(this.context)
@@ -1915,17 +2088,17 @@ drawImage(image: ImageBitmap | PixelMap, sx: number, sy: number, sw: number, sh:
 
  **参数：**
 
-  | 参数      | 类型                                       | 必填   | 默认值  | 描述                   |
-  | ------- | ---------------------------------------- | ---- | ---- | -------------------- |
-  | image   | [ImageBitmap](ts-components-canvas-imagebitmap.md) 或[PixelMap](../apis/js-apis-image.md#pixelmap7)| 是    | null | 图片资源，请参考ImageBitmap或PixelMap。 |
-  | sx      | number                                   | 否    | 0    | 裁切源图像时距离源图像左上角的x坐标值。 |
-  | sy      | number                                   | 否    | 0    | 裁切源图像时距离源图像左上角的y坐标值。 |
-  | sw      | number                                   | 否    | 0    | 裁切源图像时需要裁切的宽度。       |
-  | sh | number                                   | 否    | 0    | 裁切源图像时需要裁切的高度。       |
-  | dx      | number                                   | 是    | 0    | 绘制区域左上角在x轴的位置。       |
-  | dy      | number                                   | 是    | 0    | 绘制区域左上角在y&nbsp;轴的位置。 |
-  | dw      | number                                   | 否    | 0    | 绘制区域的宽度。             |
-  | dh      | number                                   | 否    | 0    | 绘制区域的高度。             |
+| 参数    | 类型                                       | 必填   | 默认值  | 描述                            |
+| ----- | ---------------------------------------- | ---- | ---- | ----------------------------- |
+| image | [ImageBitmap](ts-components-canvas-imagebitmap.md) 或[PixelMap](../apis/js-apis-image.md#pixelmap7) | 是    | null | 图片资源，请参考ImageBitmap或PixelMap。 |
+| sx    | number                                   | 否    | 0    | 裁切源图像时距离源图像左上角的x坐标值。          |
+| sy    | number                                   | 否    | 0    | 裁切源图像时距离源图像左上角的y坐标值。          |
+| sw    | number                                   | 否    | 0    | 裁切源图像时需要裁切的宽度。                |
+| sh    | number                                   | 否    | 0    | 裁切源图像时需要裁切的高度。                |
+| dx    | number                                   | 是    | 0    | 绘制区域左上角在x轴的位置。                |
+| dy    | number                                   | 是    | 0    | 绘制区域左上角在y&nbsp;轴的位置。          |
+| dw    | number                                   | 否    | 0    | 绘制区域的宽度。                      |
+| dh    | number                                   | 否    | 0    | 绘制区域的高度。                      |
 
 
  **示例：**
@@ -1934,7 +2107,7 @@ drawImage(image: ImageBitmap | PixelMap, sx: number, sy: number, sw: number, sh:
   // xxx.ets
   @Entry
   @Component
-  struct Index {
+  struct DrawImage {
     private settings: RenderingContextSettings = new RenderingContextSettings(true)
     private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
     private img:ImageBitmap = new ImageBitmap("common/images/icon.jpg")
@@ -1964,33 +2137,31 @@ drawImage(image: ImageBitmap | PixelMap, sx: number, sy: number, sw: number, sh:
 
 createImageData(sw: number, sh: number): ImageData
 
-根据宽高创建ImageData对象，请参考[ImageData](ts-components-canvas-imagebitmap.md)。
+根据宽高创建ImageData对象，请参考[ImageData](ts-components-canvas-imagedata.md)。
 
  **参数：**
 
-  | 参数     | 类型     | 必填   | 默认   | 描述            |
-  | ------ | ------ | ---- | ---- | ------------- |
-  | sw  | number | 是    | 0    | ImageData的宽度。 |
-  | sh  | number | 是    | 0    | ImageData的高度。 |
+| 参数   | 类型     | 必填   | 默认   | 描述            |
+| ---- | ------ | ---- | ---- | ------------- |
+| sw   | number | 是    | 0    | ImageData的宽度。 |
+| sh   | number | 是    | 0    | ImageData的高度。 |
 
-
-### createImageData
 
 createImageData(imageData: ImageData): ImageData
 
-根据已创建的ImageData对象创建新的ImageData对象，请参考[ImageData](ts-components-canvas-imagebitmap.md)。
+根据已创建的ImageData对象创建新的ImageData对象，请参考[ImageData](ts-components-canvas-imagedata.md)。
 
  **参数：**
 
-  | 参数        | 类型                                       | 必填   | 默认   | 描述               |
-  | --------- | ---------------------------------------- | ---- | ---- | ---------------- |
-  | imagedata | [ImageData](ts-components-canvas-imagebitmap.md) | 是    | null | 被复制的ImageData对象。 |
+| 参数        | 类型                                       | 必填   | 默认   | 描述               |
+| --------- | ---------------------------------------- | ---- | ---- | ---------------- |
+| imagedata | [ImageData](ts-components-canvas-imagedata.md) | 是    | null | 被复制的ImageData对象。 |
 
  **返回值：**
 
-  | 类型         | 说明                                       | 
-  | ---------- | ---------------------------------------- |
-  |  [ImageData](ts-components-canvas-imagebitmap.md)     | 新的ImageData对象 |
+| 类型                                       | 说明            |
+| ---------------------------------------- | ------------- |
+| [ImageData](ts-components-canvas-imagedata.md) | 新的ImageData对象 |
 
 ### getPixelMap
 
@@ -2000,40 +2171,75 @@ getPixelMap(sx: number, sy: number, sw: number, sh: number): PixelMap
 
  **参数：**
 
-  | 参数 | 类型 | 必填 | 默认值 | 描述 |
-  | -------- | -------- | -------- | -------- | -------- |
-  | sx | number | 是 | 0 | 需要输出的区域的左上角x坐标。 |
-  | sy | number | 是 | 0 | 需要输出的区域的左上角y坐标。 |
-  | sw | number | 是 | 0 | 需要输出的区域的宽度。 |
-  | sh | number | 是 | 0 | 需要输出的区域的高度。 |
+| 参数   | 类型     | 必填   | 默认值  | 描述              |
+| ---- | ------ | ---- | ---- | --------------- |
+| sx   | number | 是    | 0    | 需要输出的区域的左上角x坐标。 |
+| sy   | number | 是    | 0    | 需要输出的区域的左上角y坐标。 |
+| sw   | number | 是    | 0    | 需要输出的区域的宽度。     |
+| sh   | number | 是    | 0    | 需要输出的区域的高度。     |
 
 **返回值：**
 
-  | 类型         | 说明                                       | 
-  | ---------- | ---------------------------------------- |
-  | [PixelMap](../apis/js-apis-image.md#pixelmap7)   | 新的PixelMap对象 |
+| 类型                                       | 说明           |
+| ---------------------------------------- | ------------ |
+| [PixelMap](../apis/js-apis-image.md#pixelmap7) | 新的PixelMap对象 |
 
 
 ### getImageData
 
 getImageData(sx: number, sy: number, sw: number, sh: number): ImageData
 
-以当前canvas指定区域内的像素创建[ImageData](ts-components-canvas-imagebitmap.md)对象。
+以当前canvas指定区域内的像素创建[ImageData](ts-components-canvas-imagedata.md)对象。
 
  **参数：**
 
-  | 参数   | 类型     | 必填   | 默认值  | 描述              |
-  | ---- | ------ | ---- | ---- | --------------- |
-  | sx   | number | 是    | 0    | 需要输出的区域的左上角x坐标。 |
-  | sy   | number | 是    | 0    | 需要输出的区域的左上角y坐标。 |
-  | sw   | number | 是    | 0    | 需要输出的区域的宽度。     |
-  | sh   | number | 是    | 0    | 需要输出的区域的高度。     |
+| 参数   | 类型     | 必填   | 默认值  | 描述              |
+| ---- | ------ | ---- | ---- | --------------- |
+| sx   | number | 是    | 0    | 需要输出的区域的左上角x坐标。 |
+| sy   | number | 是    | 0    | 需要输出的区域的左上角y坐标。 |
+| sw   | number | 是    | 0    | 需要输出的区域的宽度。     |
+| sh   | number | 是    | 0    | 需要输出的区域的高度。     |
 
    **返回值：**
 
-  | 类型         | 说明                                       | 
-  | ---------- | ---------------------------------------- |
-  |  [ImageData](ts-components-canvas-imagebitmap.md)     | 新的ImageData对象 |
+| 类型                                       | 说明            |
+| ---------------------------------------- | ------------- |
+| [ImageData](ts-components-canvas-imagedata.md) | 新的ImageData对象 |
+
+
+**示例：**
+
+  ```ts
+  // xxx.ets
+@Entry
+@Component
+struct GetImageData {
+  private settings: RenderingContextSettings = new RenderingContextSettings(true)
+  private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
+  private offContext: OffscreenCanvasRenderingContext2D = new OffscreenCanvasRenderingContext2D(600, 600, this.settings)
+  private img:ImageBitmap = new ImageBitmap("/common/images/1234.png")
+
+  build() {
+    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
+      Canvas(this.context)
+        .width('100%')
+        .height('100%')
+        .backgroundColor('#ffff00')
+        .onReady(() =>{
+          this.offContext.drawImage(this.img,0,0,130,130)
+          var imagedata = this.offContext.getImageData(50,50,130,130)
+          this.offContext.putImageData(imagedata,150,150)
+          var image = this.offContext.transferToImageBitmap()
+          this.context.transferFromImageBitmap(image)
+        })
+    }
+    .width('100%')
+    .height('100%')
+  }
+}
+  ```
+
+  ![zh-cn_image_000000127777780](figures/zh-cn_image_000000127777780.png)
 
 
 ### putImageData
@@ -2042,19 +2248,19 @@ putImageData(imageData: Object, dx: number, dy: number): void
 
 putImageData(imageData: Object, dx: number, dy: number, dirtyX: number, dirtyY: number, dirtyWidth?: number, dirtyHeight: number): void
 
-使用[ImageData](ts-components-canvas-imagebitmap.md)数据填充新的矩形区域。
+使用[ImageData](ts-components-canvas-imagedata.md)数据填充新的矩形区域。
 
  **参数：**
 
-  | 参数          | 类型     | 必填   | 默认值          | 描述                            |
-  | ----------- | ------ | ---- | ------------ | ----------------------------- |
-  | imagedata   | Object | 是    | null         | 包含像素值的ImageData对象。            |
-  | dx          | number | 是    | 0            | 填充区域在x轴方向的偏移量。                |
-  | dy          | number | 是    | 0            | 填充区域在y轴方向的偏移量。                |
-  | dirtyX      | number | 否    | 0            | 源图像数据矩形裁切范围左上角距离源图像左上角的x轴偏移量。 |
-  | dirtyY      | number | 否    | 0            | 源图像数据矩形裁切范围左上角距离源图像左上角的y轴偏移量。 |
-  | dirtyWidth  | number | 否    | imagedata的宽度 | 源图像数据矩形裁切范围的宽度。               |
-  | dirtyHeight | number | 否    | imagedata的高度 | 源图像数据矩形裁切范围的高度。               |
+| 参数          | 类型     | 必填   | 默认值          | 描述                            |
+| ----------- | ------ | ---- | ------------ | ----------------------------- |
+| imagedata   | Object | 是    | null         | 包含像素值的ImageData对象。            |
+| dx          | number | 是    | 0            | 填充区域在x轴方向的偏移量。                |
+| dy          | number | 是    | 0            | 填充区域在y轴方向的偏移量。                |
+| dirtyX      | number | 否    | 0            | 源图像数据矩形裁切范围左上角距离源图像左上角的x轴偏移量。 |
+| dirtyY      | number | 否    | 0            | 源图像数据矩形裁切范围左上角距离源图像左上角的y轴偏移量。 |
+| dirtyWidth  | number | 否    | imagedata的宽度 | 源图像数据矩形裁切范围的宽度。               |
+| dirtyHeight | number | 否    | imagedata的高度 | 源图像数据矩形裁切范围的高度。               |
 
  **示例：**
 
@@ -2101,8 +2307,8 @@ setLineDash(segments: number[]): void
 
 **参数：** 
 
-| 参数       | 类型    | 描述                   |
-| -------- | ----- | -------------------- |
+| 参数       | 类型       | 描述                  |
+| -------- | -------- | ------------------- |
 | segments | number[] | 描述线段如何交替和线段间距长度的数组。 |
 
 **示例：** 
@@ -2124,7 +2330,7 @@ struct SetLineDash {
         .onReady(() =>{
           this.offContext.arc(100, 75, 50, 0, 6.28)
           this.offContext.setLineDash([10,20])
-          this.offContext.stroke();
+          this.offContext.stroke()
           var image = this.offContext.transferToImageBitmap()
           this.context.transferFromImageBitmap(image)
       })
@@ -2145,85 +2351,54 @@ getLineDash(): number[]
 
 **返回值：** 
 
-| 类型    | 说明                       |
-| ----- | ------------------------ |
+| 类型       | 说明                       |
+| -------- | ------------------------ |
 | number[] | 返回数组，该数组用来描述线段如何交替和间距长度。 |
 
 **示例：** 
 
   ```ts
   // xxx.ets
-  @Entry
-  @Component
-  struct GetLineDash {
+@Entry
+@Component
+struct OffscreenCanvasGetLineDash {
+  @State message: string = 'Hello World'
   private settings: RenderingContextSettings = new RenderingContextSettings(true)
   private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
   private offContext: OffscreenCanvasRenderingContext2D = new OffscreenCanvasRenderingContext2D(600, 600, this.settings)
-    
-    build() {
-      Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
+  build() {
+    Row() {
+      Column() {
+        Text(this.message)
+          .fontSize(50)
+          .fontWeight(FontWeight.Bold)
+          .onClick(()=>{
+            console.error('before getlinedash clicked')
+            let res = this.offContext.getLineDash()
+            console.error(JSON.stringify(res))
+          })
         Canvas(this.context)
           .width('100%')
           .height('100%')
           .backgroundColor('#ffff00')
-          .onReady(() =>{
-            var grad = this.context.createLinearGradient(50,0, 300,100)
+          .onReady(() => {
             this.offContext.arc(100, 75, 50, 0, 6.28)
             this.offContext.setLineDash([10,20])
-            this.offContext.stroke();
+            this.offContext.stroke()
             let res = this.offContext.getLineDash()
             var image = this.offContext.transferToImageBitmap()
             this.context.transferFromImageBitmap(image)
           })
       }
       .width('100%')
-      .height('100%')
     }
+    .height('100%')
   }
+}
   ```
+![zh-cn_image_000000127777778](figures/zh-cn_image_000000127777778.png) 
 
 
-### transferFromImageBitmap
-
-transferFromImageBitmap(bitmap: ImageBitmap): void
-
-显示给定的ImageBitmap对象。
-
-**参数：** 
-
-| 参数     | 类型          | 描述                 |
-| ------ | ----------- | ------------------ |
-| bitmap | [ImageData](ts-components-canvas-imagebitmap.md) | 待显示的ImageBitmap对象。 |
-
-**示例：** 
-
-  ```ts
-  // xxx.ets
-  @Entry
-  @Component
-  struct GetLineDash {
-  private settings: RenderingContextSettings = new RenderingContextSettings(true)
-  private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
-  private offContext: OffscreenCanvasRenderingContext2D = new OffscreenCanvasRenderingContext2D(600, 600, this.settings)
-    
-    build() {
-      Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
-        Canvas(this.context)
-          .width('100%')
-          .height('100%')
-          .backgroundColor('#ffff00')
-          .onReady(() =>{
-            this.offContext.fillRect(0, 0, 200, 200)
-            var image = this.offContext.transferToImageBitmap()
-            this.context.transferFromImageBitmap(image)
-          })
-      }
-      .width('100%')
-      .height('100%')
-    }
-  }
-  ```
-  ![zh-cn_image_000000127777773](figures/zh-cn_image_000000127777773.png) 
 
 ### toDataURL
 
@@ -2247,7 +2422,7 @@ toDataURL(type?: string, quality?: number): string
 **示例：**
 
   ```ts
-  // xxx.ets
+// xxx.ets
 @Entry
 @Component
 struct ToDataURL {
@@ -2262,7 +2437,7 @@ struct ToDataURL {
         .height('100%')
         .backgroundColor('#ffff00')
         .onReady(() =>{
-          var dataURL = this.offContext.toDataURL();
+          var dataURL = this.offContext.toDataURL()
         })
     }
     .width('100%')
@@ -2270,6 +2445,19 @@ struct ToDataURL {
   }
 }
   ```
+
+
+### imageSmoothingQuality
+
+imageSmoothingQuality(quality: imageSmoothingQuality)
+
+用于设置图像平滑度。该接口为空接口。
+
+ **参数：** 
+
+| 参数      | 类型                    | 描述                                       |
+| ------- | --------------------- | ---------------------------------------- |
+| quality | imageSmoothingQuality | 支持如下三种类型：'low',&nbsp;'medium',&nbsp;'high'。 |
 
 
 ### transferToImageBitmap
@@ -2282,7 +2470,7 @@ transferToImageBitmap(): ImageBitmap
 
 | 类型                                       | 说明              |
 | ---------------------------------------- | --------------- |
-| [ImageData](ts-components-canvas-imagebitmap.md)| 存储离屏画布上渲染的像素数据。 |
+| [ImageBitmap](ts-components-canvas-imagebitmap.md) | 存储离屏画布上渲染的像素数据。 |
 
 
  **示例：**
@@ -2291,10 +2479,11 @@ transferToImageBitmap(): ImageBitmap
   // xxx.ets
   @Entry
   @Component
-  struct CanvasExample {
+  struct PutImageData {
     private settings: RenderingContextSettings = new RenderingContextSettings(true)
     private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
     private offContext: OffscreenCanvasRenderingContext2D = new OffscreenCanvasRenderingContext2D(600, 600, this.settings)
+
     build() {
       Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
         Canvas(this.context)
@@ -2302,7 +2491,14 @@ transferToImageBitmap(): ImageBitmap
           .height('100%')
           .backgroundColor('#ffff00')
           .onReady(() =>{
-            this.offContext.restore()
+            var imageData = this.offContext.createImageData(100, 100)
+            for (var i = 0; i < imageData.data.length; i += 4) {
+              imageData.data[i + 0] = 255
+              imageData.data[i + 1] = 0
+              imageData.data[i + 2] = 255
+              imageData.data[i + 3] = 255
+            }
+            this.offContext.putImageData(imageData, 10, 10)
             var image = this.offContext.transferToImageBitmap()
             this.context.transferFromImageBitmap(image)
           })
@@ -2312,6 +2508,7 @@ transferToImageBitmap(): ImageBitmap
     }
   }
   ```
+![zh-cn_image_0000001238952387](figures/zh-cn_image_0000001238952387.png) 
 
 ### restore
 
@@ -2323,29 +2520,35 @@ restore(): void
 
   ```ts
   // xxx.ets
-  @Entry
-  @Component
-  struct CanvasExample {
-    private settings: RenderingContextSettings = new RenderingContextSettings(true)
-    private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
-    private offContext: OffscreenCanvasRenderingContext2D = new OffscreenCanvasRenderingContext2D(600, 600, this.settings)
-    build() {
-      Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
-        Canvas(this.context)
-          .width('100%')
-          .height('100%')
-          .backgroundColor('#ffff00')
-          .onReady(() =>{
-            this.offContext.restore()
-            var image = this.offContext.transferToImageBitmap()
-            this.context.transferFromImageBitmap(image)
-          })
-      }
-      .width('100%')
-      .height('100%')
+@Entry
+@Component
+struct CanvasExample {
+  private settings: RenderingContextSettings = new RenderingContextSettings(true)
+  private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
+  private offContext: OffscreenCanvasRenderingContext2D = new OffscreenCanvasRenderingContext2D(600, 600, this.settings)
+  
+  build() {
+    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
+      Canvas(this.context)
+        .width('100%')
+        .height('100%')
+        .backgroundColor('#ffff00')
+        .onReady(() =>{
+          this.offContext.save() // save the default state
+          this.offContext.fillStyle = "green"
+          this.offContext.fillRect(20, 20, 100, 100)
+          this.offContext.restore() // restore to the default state
+          this.offContext.fillRect(150, 75, 100, 100)
+          var image = this.offContext.transferToImageBitmap()
+          this.context.transferFromImageBitmap(image)
+        })
     }
+    .width('100%')
+    .height('100%')
   }
+}
   ```
+![zh-cn_image_000000127777781](figures/zh-cn_image_000000127777781.png) 
 
 
 ### save
@@ -2358,29 +2561,35 @@ save(): void
 
   ```ts
   // xxx.ets
-  @Entry
-  @Component
-  struct CanvasExample {
-    private settings: RenderingContextSettings = new RenderingContextSettings(true)
-    private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
-    private offContext: OffscreenCanvasRenderingContext2D = new OffscreenCanvasRenderingContext2D(600, 600, this.settings)
-    build() {
-      Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
-        Canvas(this.context)
-          .width('100%')
-          .height('100%')
-          .backgroundColor('#ffff00')
-          .onReady(() =>{
-            this.offContext.save()
-            var image = this.offContext.transferToImageBitmap()
-            this.context.transferFromImageBitmap(image)
+@Entry
+@Component
+struct CanvasExample {
+  private settings: RenderingContextSettings = new RenderingContextSettings(true)
+  private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
+  private offContext: OffscreenCanvasRenderingContext2D = new OffscreenCanvasRenderingContext2D(600, 600, this.settings)
+  
+  build() {
+    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
+      Canvas(this.context)
+        .width('100%')
+        .height('100%')
+        .backgroundColor('#ffff00')
+        .onReady(() =>{
+          this.offContext.save() // save the default state
+          this.offContext.fillStyle = "green"
+          this.offContext.fillRect(20, 20, 100, 100)
+          this.offContext.restore() // restore to the default state
+          this.offContext.fillRect(150, 75, 100, 100)
+          var image = this.offContext.transferToImageBitmap()
+          this.context.transferFromImageBitmap(image)
         })
-      }
-      .width('100%')
-      .height('100%')
     }
+    .width('100%')
+    .height('100%')
   }
+}
   ```
+![zh-cn_image_000000127777781](figures/zh-cn_image_000000127777781.png) 
 
 
 ### createLinearGradient
@@ -2391,12 +2600,12 @@ createLinearGradient(x0: number, y0: number, x1: number, y1: number): void
 
  **参数：**
 
-  | 参数   | 类型     | 必填   | 默认值  | 描述       |
-  | ---- | ------ | ---- | ---- | -------- |
-  | x0   | number | 是    | 0    | 起点的x轴坐标。 |
-  | y0   | number | 是    | 0    | 起点的y轴坐标。 |
-  | x1   | number | 是    | 0    | 终点的x轴坐标。 |
-  | y1   | number | 是    | 0    | 终点的y轴坐标。 |
+| 参数   | 类型     | 必填   | 默认值  | 描述       |
+| ---- | ------ | ---- | ---- | -------- |
+| x0   | number | 是    | 0    | 起点的x轴坐标。 |
+| y0   | number | 是    | 0    | 起点的y轴坐标。 |
+| x1   | number | 是    | 0    | 终点的x轴坐标。 |
+| y1   | number | 是    | 0    | 终点的y轴坐标。 |
 
  **示例：** 
 
@@ -2443,14 +2652,14 @@ createRadialGradient(x0: number, y0: number, r0: number, x1: number, y1: number,
 
   **参数：**
 
-  | 参数   | 类型     | 必填   | 默认值  | 描述                |
-  | ---- | ------ | ---- | ---- | ----------------- |
-  | x0   | number | 是    | 0    | 起始圆的x轴坐标。         |
-  | y0   | number | 是    | 0    | 起始圆的y轴坐标。         |
-  | r0   | number | 是    | 0    | 起始圆的半径。必须是非负且有限的。 |
-  | x1   | number | 是    | 0    | 终点圆的x轴坐标。         |
-  | y1   | number | 是    | 0    | 终点圆的y轴坐标。         |
-  | r1   | number | 是    | 0    | 终点圆的半径。必须为非负且有限的。 |
+| 参数   | 类型     | 必填   | 默认值  | 描述                |
+| ---- | ------ | ---- | ---- | ----------------- |
+| x0   | number | 是    | 0    | 起始圆的x轴坐标。         |
+| y0   | number | 是    | 0    | 起始圆的y轴坐标。         |
+| r0   | number | 是    | 0    | 起始圆的半径。必须是非负且有限的。 |
+| x1   | number | 是    | 0    | 终点圆的x轴坐标。         |
+| y1   | number | 是    | 0    | 终点圆的y轴坐标。         |
+| r1   | number | 是    | 0    | 终点圆的半径。必须为非负且有限的。 |
 
   **示例：**  
 
