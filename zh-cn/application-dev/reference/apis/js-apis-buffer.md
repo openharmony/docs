@@ -19,7 +19,7 @@ import buffer from '@ohos.buffer';
 
 **系统能力：** SystemCapability.Utils.Lang
 
-| 名称 | 参数类型 | 可读 | 可写 | 说明 |
+| 名称 | 类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
 | length | number | 是 | 否 | buffer的字节长度。 |
 | buffer | ArrayBuffer | 是 | 否 | ArrayBuffer对象。 |
@@ -29,7 +29,7 @@ import buffer from '@ohos.buffer';
 
 以下错误码的详细介绍请参见[buffer错误码](../errorcodes/errorcode-buffer.md)。
 
-| 错误码ID | 错误码信息 |
+| 错误码ID | 错误信息 |
 | -------- | -------- |
 | 10200013 | Cannot set property ${propertyName} of Buffer which has only a getter. |
 
@@ -271,7 +271,7 @@ concat(list: Buffer[] | Uint8Array[], totalLength?: number): Buffer
 
 以下错误码的详细介绍请参见[buffer错误码](../errorcodes/errorcode-buffer.md)。
 
-| 错误码ID | 错误码信息 |
+| 错误码ID | 错误信息 |
 | -------- | -------- |
 | 10200001 | The value of "totalLength" is out of range. |
 
@@ -359,7 +359,7 @@ from(arrayBuffer: ArrayBuffer | SharedArrayBuffer, byteOffset?: number, length?:
 
 以下错误码的详细介绍请参见[buffer错误码](../errorcodes/errorcode-buffer.md)。
 
-| 错误码ID | 错误码信息 |
+| 错误码ID | 错误信息 |
 | -------- | -------- |
 | 10200001 | The value of "[byteOffset/length]" is out of range. |
 
@@ -433,8 +433,8 @@ from(object: Object, offsetOrEncoding: number | string, length: number): Buffer
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | object | Object | 是 | 支持Symbol.toPrimitive或valueOf()的对象 |
-| offsetOrEncoding | number&nbsp;\|&nbsp;string | 否 | 字节偏移量或编码。 |
-| length | number | 否 | 字节长度。 |
+| offsetOrEncoding | number&nbsp;\|&nbsp;string | 是 | 字节偏移量或编码。 |
+| length | number | 是 | 字节长度。 |
 
 **返回值：**
 
@@ -630,7 +630,7 @@ copy(target: Buffer| Uint8Array, targetStart?: number, sourceStart?: number, sou
 
 以下错误码的详细介绍请参见[buffer错误码](../errorcodes/errorcode-buffer.md)。
 
-| 错误码ID | 错误码信息 |
+| 错误码ID | 错误信息 |
 | -------- | -------- |
 | 10200001 | The value of "[targetStart/sourceStart/sourceEnd]" is out of range. |
 
@@ -751,7 +751,7 @@ fill(value: string | Buffer | Uint8Array | number, offset?: number, end?: number
 
 以下错误码的详细介绍请参见[buffer错误码](../errorcodes/errorcode-buffer.md)。
 
-| 错误码ID | 错误码信息 |
+| 错误码ID | 错误信息 |
 | -------- | -------- |
 | 10200001 | The value of "[offset/end]" is out of range. |
 
@@ -951,7 +951,7 @@ readBigInt64BE(offset?: number): bigint
 
 以下错误码的详细介绍请参见[buffer错误码](../errorcodes/errorcode-buffer.md)。
 
-| 错误码ID | 错误码信息 |
+| 错误码ID | 错误信息 |
 | -------- | -------- |
 | 10200001 | The value of "offset" is out of range. |
 
@@ -997,7 +997,7 @@ readBigInt64LE(offset?: number): bigint
 
 以下错误码的详细介绍请参见[buffer错误码](../errorcodes/errorcode-buffer.md)。
 
-| 错误码ID | 错误码信息 |
+| 错误码ID | 错误信息 |
 | -------- | -------- |
 | 10200001 | The value of "offset" is out of range. |
 
@@ -1043,7 +1043,7 @@ readBigUInt64BE(offset?: number): bigint
 
 以下错误码的详细介绍请参见[buffer错误码](../errorcodes/errorcode-buffer.md)。
 
-| 错误码ID | 错误码信息 |
+| 错误码ID | 错误信息 |
 | -------- | -------- |
 | 10200001 | The value of "offset" is out of range. |
 
@@ -1089,7 +1089,7 @@ readBigUInt64LE(offset?: number): bigint
 
 以下错误码的详细介绍请参见[buffer错误码](../errorcodes/errorcode-buffer.md)。
 
-| 错误码ID | 错误码信息 |
+| 错误码ID | 错误信息 |
 | -------- | -------- |
 | 10200001 | The value of "offset" is out of range. |
 
@@ -1135,7 +1135,7 @@ readDoubleBE(offset?: number): number
 
 以下错误码的详细介绍请参见[buffer错误码](../errorcodes/errorcode-buffer.md)。
 
-| 错误码ID | 错误码信息 |
+| 错误码ID | 错误信息 |
 | -------- | -------- |
 | 10200001 | The value of "offset" is out of range. |
 
@@ -1180,7 +1180,7 @@ readDoubleLE(offset?: number): number
 
 以下错误码的详细介绍请参见[buffer错误码](../errorcodes/errorcode-buffer.md)。
 
-| 错误码ID | 错误码信息 |
+| 错误码ID | 错误信息 |
 | -------- | -------- |
 | 10200001 | The value of "offset" is out of range. |
 
@@ -1225,7 +1225,7 @@ readFloatBE(offset?: number): number
 
 以下错误码的详细介绍请参见[buffer错误码](../errorcodes/errorcode-buffer.md)。
 
-| 错误码ID | 错误码信息 |
+| 错误码ID | 错误信息 |
 | -------- | -------- |
 | 10200001 | The value of "offset" is out of range. |
 
@@ -1270,7 +1270,7 @@ readFloatLE(offset?: number): number
 
 以下错误码的详细介绍请参见[buffer错误码](../errorcodes/errorcode-buffer.md)。
 
-| 错误码ID | 错误码信息 |
+| 错误码ID | 错误信息 |
 | -------- | -------- |
 | 10200001 | The value of "offset" is out of range. |
 
@@ -1315,7 +1315,7 @@ readInt8(offset?: number): number
 
 以下错误码的详细介绍请参见[buffer错误码](../errorcodes/errorcode-buffer.md)。
 
-| 错误码ID | 错误码信息 |
+| 错误码ID | 错误信息 |
 | -------- | -------- |
 | 10200001 | The value of "offset" is out of range. |
 
@@ -1361,7 +1361,7 @@ readInt16BE(offset?: number): number
 
 以下错误码的详细介绍请参见[buffer错误码](../errorcodes/errorcode-buffer.md)。
 
-| 错误码ID | 错误码信息 |
+| 错误码ID | 错误信息 |
 | -------- | -------- |
 | 10200001 | The value of "offset" is out of range. |
 
@@ -1406,7 +1406,7 @@ readInt16LE(offset?: number): number
 
 以下错误码的详细介绍请参见[buffer错误码](../errorcodes/errorcode-buffer.md)。
 
-| 错误码ID | 错误码信息 |
+| 错误码ID | 错误信息 |
 | -------- | -------- |
 | 10200001 | The value of "offset" is out of range. |
 
@@ -1451,7 +1451,7 @@ readInt32BE(offset?: number): number
 
 以下错误码的详细介绍请参见[buffer错误码](../errorcodes/errorcode-buffer.md)。
 
-| 错误码ID | 错误码信息 |
+| 错误码ID | 错误信息 |
 | -------- | -------- |
 | 10200001 | The value of "offset" is out of range. |
 
@@ -1496,7 +1496,7 @@ readInt32LE(offset?: number): number
 
 以下错误码的详细介绍请参见[buffer错误码](../errorcodes/errorcode-buffer.md)。
 
-| 错误码ID | 错误码信息 |
+| 错误码ID | 错误信息 |
 | -------- | -------- |
 | 10200001 | The value of "offset" is out of range. |
 
@@ -1543,7 +1543,7 @@ readIntBE(offset: number, byteLength: number): number
 
 以下错误码的详细介绍请参见[buffer错误码](../errorcodes/errorcode-buffer.md)。
 
-| 错误码ID | 错误码信息 |
+| 错误码ID | 错误信息 |
 | -------- | -------- |
 | 10200001 | The value of "[offset/byteLength]" is out of range. |
 
@@ -1592,7 +1592,7 @@ readIntLE(offset: number, byteLength: number): number
 
 以下错误码的详细介绍请参见[buffer错误码](../errorcodes/errorcode-buffer.md)。
 
-| 错误码ID | 错误码信息 |
+| 错误码ID | 错误信息 |
 | -------- | -------- |
 | 10200001 | The value of "[offset/byteLength]" is out of range. |
 
@@ -1638,7 +1638,7 @@ readUInt8(offset?: number): number
 
 以下错误码的详细介绍请参见[buffer错误码](../errorcodes/errorcode-buffer.md)。
 
-| 错误码ID | 错误码信息 |
+| 错误码ID | 错误信息 |
 | -------- | -------- |
 | 10200001 | The value of "offset" is out of range. |
 
@@ -1685,7 +1685,7 @@ readUInt16BE(offset?: number): number
 
 以下错误码的详细介绍请参见[buffer错误码](../errorcodes/errorcode-buffer.md)。
 
-| 错误码ID | 错误码信息 |
+| 错误码ID | 错误信息 |
 | -------- | -------- |
 | 10200001 | The value of "offset" is out of range. |
 
@@ -1732,7 +1732,7 @@ readUInt16LE(offset?: number): number
 
 以下错误码的详细介绍请参见[buffer错误码](../errorcodes/errorcode-buffer.md)。
 
-| 错误码ID | 错误码信息 |
+| 错误码ID | 错误信息 |
 | -------- | -------- |
 | 10200001 | The value of "offset" is out of range. |
 
@@ -1779,7 +1779,7 @@ readUInt32BE(offset?: number): number
 
 以下错误码的详细介绍请参见[buffer错误码](../errorcodes/errorcode-buffer.md)。
 
-| 错误码ID | 错误码信息 |
+| 错误码ID | 错误信息 |
 | -------- | -------- |
 | 10200001 | The value of "offset" is out of range. |
 
@@ -1825,7 +1825,7 @@ readUInt32LE(offset?: number): number
 
 以下错误码的详细介绍请参见[buffer错误码](../errorcodes/errorcode-buffer.md)。
 
-| 错误码ID | 错误码信息 |
+| 错误码ID | 错误信息 |
 | -------- | -------- |
 | 10200001 | The value of "offset" is out of range. |
 
@@ -1872,7 +1872,7 @@ readUIntBE(offset: number, byteLength: number): number
 
 以下错误码的详细介绍请参见[buffer错误码](../errorcodes/errorcode-buffer.md)。
 
-| 错误码ID | 错误码信息 |
+| 错误码ID | 错误信息 |
 | -------- | -------- |
 | 10200001 | The value of "[offset/byteLength]" is out of range. |
 
@@ -1919,7 +1919,7 @@ readUIntLE(offset: number, byteLength: number): number
 
 以下错误码的详细介绍请参见[buffer错误码](../errorcodes/errorcode-buffer.md)。
 
-| 错误码ID | 错误码信息 |
+| 错误码ID | 错误信息 |
 | -------- | -------- |
 | 10200001 | The value of "[offset/byteLength]" is out of range. |
 
@@ -1995,7 +1995,7 @@ swap16(): Buffer
 
 以下错误码的详细介绍请参见[buffer错误码](../errorcodes/errorcode-buffer.md)。
 
-| 错误码ID | 错误码信息 |
+| 错误码ID | 错误信息 |
 | -------- | -------- |
 | 10200009 | Buffer size must be a multiple of 16-bits |
 
@@ -2037,7 +2037,7 @@ swap32(): Buffer
 
 以下错误码的详细介绍请参见[buffer错误码](../errorcodes/errorcode-buffer.md)。
 
-| 错误码ID | 错误码信息 |
+| 错误码ID | 错误信息 |
 | -------- | -------- |
 | 10200009 | Buffer size must be a multiple of 32-bits |
 
@@ -2079,7 +2079,7 @@ swap64(): Buffer
 
 以下错误码的详细介绍请参见[buffer错误码](../errorcodes/errorcode-buffer.md)。
 
-| 错误码ID | 错误码信息 |
+| 错误码ID | 错误信息 |
 | -------- | -------- |
 | 10200009 | Buffer size must be a multiple of 64-bits |
 
@@ -2196,7 +2196,7 @@ for (let value of buf1.values()) {
 
 ### write
 
-write(str: string, offset?: number, length?: number, encoding?: string): number
+write(str: string, offset?: number, length?: number, encoding?: BufferEncoding): number
 
 从buf的offset偏移写入指定编码的字符串str,写入的字节长度为length
 
@@ -2222,7 +2222,7 @@ write(str: string, offset?: number, length?: number, encoding?: string): number
 
 以下错误码的详细介绍请参见[buffer错误码](../errorcodes/errorcode-buffer.md)。
 
-| 错误码ID | 错误码信息 |
+| 错误码ID | 错误信息 |
 | -------- | -------- |
 | 10200001 | The value of "[offset/length]" is out of range. |
 
@@ -2287,7 +2287,7 @@ writeBigInt64BE(value: bigint, offset?: number): number
 
 以下错误码的详细介绍请参见[buffer错误码](../errorcodes/errorcode-buffer.md)。
 
-| 错误码ID | 错误码信息 |
+| 错误码ID | 错误信息 |
 | -------- | -------- |
 | 10200001 | The value of "[value/offset]" is out of range. |
 
@@ -2333,7 +2333,7 @@ writeBigInt64LE(value: bigint, offset?: number): number
 
 以下错误码的详细介绍请参见[buffer错误码](../errorcodes/errorcode-buffer.md)。
 
-| 错误码ID | 错误码信息 |
+| 错误码ID | 错误信息 |
 | -------- | -------- |
 | 10200001 | The value of "[value/offset]" is out of range. |
 
@@ -2379,7 +2379,7 @@ writeBigUInt64BE(value: bigint, offset?: number): number
 
 以下错误码的详细介绍请参见[buffer错误码](../errorcodes/errorcode-buffer.md)。
 
-| 错误码ID | 错误码信息 |
+| 错误码ID | 错误信息 |
 | -------- | -------- |
 | 10200001 | The value of "[value/offset]" is out of range. |
 
@@ -2425,7 +2425,7 @@ writeBigUInt64LE(value: bigint, offset?: number): number
 
 以下错误码的详细介绍请参见[buffer错误码](../errorcodes/errorcode-buffer.md)。
 
-| 错误码ID | 错误码信息 |
+| 错误码ID | 错误信息 |
 | -------- | -------- |
 | 10200001 | The value of "[value/offset]" is out of range. |
 
@@ -2471,7 +2471,7 @@ writeDoubleBE(value: number, offset?: number): number
 
 以下错误码的详细介绍请参见[buffer错误码](../errorcodes/errorcode-buffer.md)。
 
-| 错误码ID | 错误码信息 |
+| 错误码ID | 错误信息 |
 | -------- | -------- |
 | 10200001 | The value of "[value/offset]" is out of range. |
 
@@ -2517,7 +2517,7 @@ writeDoubleLE(value: number, offset?: number): number
 
 以下错误码的详细介绍请参见[buffer错误码](../errorcodes/errorcode-buffer.md)。
 
-| 错误码ID | 错误码信息 |
+| 错误码ID | 错误信息 |
 | -------- | -------- |
 | 10200001 | The value of "[value/offset]" is out of range. |
 
@@ -2563,7 +2563,7 @@ writeFloatBE(value: number, offset?: number): number
 
 以下错误码的详细介绍请参见[buffer错误码](../errorcodes/errorcode-buffer.md)。
 
-| 错误码ID | 错误码信息 |
+| 错误码ID | 错误信息 |
 | -------- | -------- |
 | 10200001 | The value of "[value/offset]" is out of range. |
 
@@ -2610,7 +2610,7 @@ writeFloatLE(value: number, offset?: number): number
 
 以下错误码的详细介绍请参见[buffer错误码](../errorcodes/errorcode-buffer.md)。
 
-| 错误码ID | 错误码信息 |
+| 错误码ID | 错误信息 |
 | -------- | -------- |
 | 10200001 | The value of "[value/offset]" is out of range. |
 
@@ -2656,7 +2656,7 @@ writeInt8(value: number, offset?: number): number
 
 以下错误码的详细介绍请参见[buffer错误码](../errorcodes/errorcode-buffer.md)。
 
-| 错误码ID | 错误码信息 |
+| 错误码ID | 错误信息 |
 | -------- | -------- |
 | 10200001 | The value of "[value/offset]" is out of range. |
 
@@ -2704,7 +2704,7 @@ writeInt16BE(value: number, offset?: number): number
 
 以下错误码的详细介绍请参见[buffer错误码](../errorcodes/errorcode-buffer.md)。
 
-| 错误码ID | 错误码信息 |
+| 错误码ID | 错误信息 |
 | -------- | -------- |
 | 10200001 | The value of "[value/offset]" is out of range. |
 
@@ -2751,7 +2751,7 @@ writeInt16LE(value: number, offset?: number): number
 
 以下错误码的详细介绍请参见[buffer错误码](../errorcodes/errorcode-buffer.md)。
 
-| 错误码ID | 错误码信息 |
+| 错误码ID | 错误信息 |
 | -------- | -------- |
 | 10200001 | The value of "[value/offset]" is out of range. |
 
@@ -2797,7 +2797,7 @@ writeInt32BE(value: number, offset?: number): number
 
 以下错误码的详细介绍请参见[buffer错误码](../errorcodes/errorcode-buffer.md)。
 
-| 错误码ID | 错误码信息 |
+| 错误码ID | 错误信息 |
 | -------- | -------- |
 | 10200001 | The value of "[value/offset]" is out of range. |
 
@@ -2844,7 +2844,7 @@ writeInt32LE(value: number, offset?: number): number
 
 以下错误码的详细介绍请参见[buffer错误码](../errorcodes/errorcode-buffer.md)。
 
-| 错误码ID | 错误码信息 |
+| 错误码ID | 错误信息 |
 | -------- | -------- |
 | 10200001 | The value of "[value/offset]" is out of range. |
 
@@ -2891,7 +2891,7 @@ writeIntBE(value: number, offset: number, byteLength: number): number
 
 以下错误码的详细介绍请参见[buffer错误码](../errorcodes/errorcode-buffer.md)。
 
-| 错误码ID | 错误码信息 |
+| 错误码ID | 错误信息 |
 | -------- | -------- |
 | 10200001 | The value of "[value/offset/byteLength]" is out of range. |
 
@@ -2939,7 +2939,7 @@ writeIntLE(value: number, offset: number, byteLength: number): number
 
 以下错误码的详细介绍请参见[buffer错误码](../errorcodes/errorcode-buffer.md)。
 
-| 错误码ID | 错误码信息 |
+| 错误码ID | 错误信息 |
 | -------- | -------- |
 | 10200001 | The value of "[value/offset/byteLength]" is out of range. |
 
@@ -2985,7 +2985,7 @@ writeUInt8(value: number, offset?: number): number
 
 以下错误码的详细介绍请参见[buffer错误码](../errorcodes/errorcode-buffer.md)。
 
-| 错误码ID | 错误码信息 |
+| 错误码ID | 错误信息 |
 | -------- | -------- |
 | 10200001 | The value of "[value/offset]" is out of range. |
 
@@ -3034,7 +3034,7 @@ writeUInt16BE(value: number, offset?: number): number
 
 以下错误码的详细介绍请参见[buffer错误码](../errorcodes/errorcode-buffer.md)。
 
-| 错误码ID | 错误码信息 |
+| 错误码ID | 错误信息 |
 | -------- | -------- |
 | 10200001 | The value of "[value/offset]" is out of range. |
 
@@ -3081,7 +3081,7 @@ writeUInt16LE(value: number, offset?: number): number
 
 以下错误码的详细介绍请参见[buffer错误码](../errorcodes/errorcode-buffer.md)。
 
-| 错误码ID | 错误码信息 |
+| 错误码ID | 错误信息 |
 | -------- | -------- |
 | 10200001 | The value of "[value/offset]" is out of range. |
 
@@ -3128,7 +3128,7 @@ writeUInt32BE(value: number, offset?: number): number
 
 以下错误码的详细介绍请参见[buffer错误码](../errorcodes/errorcode-buffer.md)。
 
-| 错误码ID | 错误码信息 |
+| 错误码ID | 错误信息 |
 | -------- | -------- |
 | 10200001 | The value of "[value/offset]" is out of range. |
 
@@ -3174,7 +3174,7 @@ writeUInt32LE(value: number, offset?: number): number
 
 以下错误码的详细介绍请参见[buffer错误码](../errorcodes/errorcode-buffer.md)。
 
-| 错误码ID | 错误码信息 |
+| 错误码ID | 错误信息 |
 | -------- | -------- |
 | 10200001 | The value of "[value/offset]" is out of range. |
 
@@ -3221,7 +3221,7 @@ writeUIntBE(value: number, offset: number, byteLength: number): number
 
 以下错误码的详细介绍请参见[buffer错误码](../errorcodes/errorcode-buffer.md)。
 
-| 错误码ID | 错误码信息 |
+| 错误码ID | 错误信息 |
 | -------- | -------- |
 | 10200001 | The value of "[value/offset/byteLength]" is out of range. |
 
@@ -3268,7 +3268,7 @@ writeUIntLE(value: number, offset: number, byteLength: number): number
 
 以下错误码的详细介绍请参见[buffer错误码](../errorcodes/errorcode-buffer.md)。
 
-| 错误码ID | 错误码信息 |
+| 错误码ID | 错误信息 |
 | -------- | -------- |
 | 10200001 | The value of "[value/offset/byteLength]" is out of range. |
 
@@ -3345,7 +3345,7 @@ try {
 
 **系统能力：** SystemCapability.Utils.Lang
 
-| 名称 | 参数类型 | 可读 | 可写 | 说明 |
+| 名称 | 类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
 | size | number | 是 | 否 | Blob实例的总字节大小。 |
 | type | string | 是 | 否 | Blob实例的内容类型。 |
