@@ -255,11 +255,11 @@ startBackgroundRunning(context: Context, bgMode: BackgroundMode, wantAgent: Want
 **示例**：
 
 ```js
+import Ability from '@ohos.application.Ability'
 import backgroundTaskManager from '@ohos.resourceschedule.backgroundTaskManager';  
-import featureAbility from '@ohos.ability.featureAbility';
 import wantAgent from '@ohos.wantAgent';
 
-function callback(error, data) {
+function callback(err, data) {
     if (error) {
         console.error(`Operation startBackgroundRunning failed. code is ${error.code} message is ${error.message}`);
     } else {
@@ -267,27 +267,30 @@ function callback(error, data) {
     }
 }
 
-let wantAgentInfo = {
-    wants: [
-        {
-            bundleName: "com.example.myapplication",
-            abilityName: "com.example.myapplication.MainAbility"
-        }
-    ],
-    operationType: wantAgent.OperationType.START_ABILITY,
-    requestCode: 0,
-    wantAgentFlags: [wantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
-};
+export default class MainAbility extends Ability {
+    onCreate(want, launchParam) {
+        let wantAgentInfo = {
+            wants: [
+                {
+                    bundleName: "com.example.myapplication",
+                    abilityName: "MainAbility"
+                }
+            ],
+            operationType: wantAgent.OperationType.START_ABILITY,
+            requestCode: 0,
+            wantAgentFlags: [wantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
+        };
 
-wantAgent.getWantAgent(wantAgentInfo).then((wantAgentObj) => {
-    try {
-        backgroundTaskManager.startBackgroundRunning(featureAbility.getContext(),
-            backgroundTaskManager.BackgroundMode.DATA_TRANSFER, wantAgentObj, callback)
-    } catch (error) {
-        console.error(`Operation startBackgroundRunning failed. code is ${error.code} message is ${error.message}`);
+        wantAgent.getWantAgent(wantAgentInfo).then((wantAgentObj) => {
+            try {
+                backgroundTaskManager.startBackgroundRunning(this.context,
+                    backgroundTaskManager.BackgroundMode.LOCATION, wantAgentObj, callback)
+            } catch (error) {
+                console.error(`Operation startBackgroundRunning failed. code is ${error.code} message is ${error.message}`);
+            }
+        });
     }
-});
-
+};
 ```
 
 ## backgroundTaskManager.startBackgroundRunning:promise
@@ -331,35 +334,38 @@ startBackgroundRunning(context: Context, bgMode: BackgroundMode, wantAgent: Want
 **示例**：
 
 ```js
-import backgroundTaskManager from '@ohos.resourceschedule.backgroundTaskManager';  
-import featureAbility from '@ohos.ability.featureAbility';
+import Ability from '@ohos.application.Ability'
+import backgroundTaskManager from '@ohos.resourceschedule.backgroundTaskManager'; 
 import wantAgent from '@ohos.wantAgent';
 
-let wantAgentInfo = {
-    wants: [
-        {
-            bundleName: "com.example.myapplication",
-            abilityName: "com.example.myapplication.MainAbility"
-        }
-    ],
-    operationType: wantAgent.OperationType.START_ABILITY,
-    requestCode: 0,
-    wantAgentFlags: [wantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
-};
+export default class MainAbility extends Ability {
+    onCreate(want, launchParam) {
+        let wantAgentInfo = {
+            wants: [
+                {
+                    bundleName: "com.example.myapplication",
+                    abilityName: "MainAbility"
+                }
+            ],
+            operationType: wantAgent.OperationType.START_ABILITY,
+            requestCode: 0,
+            wantAgentFlags: [wantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
+        };
 
-wantAgent.getWantAgent(wantAgentInfo).then((wantAgentObj) => {
-    try {
-        backgroundTaskManager.startBackgroundRunning(featureAbility.getContext(),
-            backgroundTaskManager.BackgroundMode.DATA_TRANSFER, wantAgentObj).then(() => {
-            console.info("Operation startBackgroundRunning succeeded");
-        }).catch((error) => {
-            console.error(`Operation startBackgroundRunning failed. code is ${error.code} message is ${error.message}`);
+        wantAgent.getWantAgent(wantAgentInfo).then((wantAgentObj) => {
+            try {
+                backgroundTaskManager.startBackgroundRunning(this.context,
+                    backgroundTaskManager.BackgroundMode.LOCATION, wantAgentObj).then(() => {
+                    console.info("Operation startBackgroundRunning succeeded");
+                }).catch((error) => {
+                    console.error(`Operation startBackgroundRunning failed. code is ${error.code} message is ${error.message}`);
+                });
+            } catch (error) {
+                console.error(`Operation startBackgroundRunning failed. code is ${error.code} message is ${error.message}`);
+            }
         });
-    } catch (error) {
-        console.error(`Operation startBackgroundRunning failed. code is ${error.code} message is ${error.message}`);
     }
-});
-
+};
 ```
 
 ## backgroundTaskManager.stopBackgroundRunning:callback
@@ -394,8 +400,8 @@ stopBackgroundRunning(context: Context, callback: AsyncCallback&lt;void&gt;): vo
 **示例**：
 
 ```js
+import Ability from '@ohos.application.Ability'
 import backgroundTaskManager from '@ohos.resourceschedule.backgroundTaskManager';  
-import featureAbility from '@ohos.ability.featureAbility';
 
 function callback(error, data) {
     if (error) {
@@ -405,12 +411,15 @@ function callback(error, data) {
     }
 }
 
-try {
-    backgroundTaskManager.stopBackgroundRunning(featureAbility.getContext(), callback);
-} catch (error) {
-    console.error(`Operation stopBackgroundRunning failed. code is ${error.code} message is ${error.message}`);
-}
-
+export default class MainAbility extends Ability {
+    onCreate(want, launchParam) {
+        try {
+            backgroundTaskManager.stopBackgroundRunning(this.context, callback);
+        } catch (error) {
+            console.error(`Operation stopBackgroundRunning failed. code is ${error.code} message is ${error.message}`);
+        }
+    }
+};
 ```
 
 ## backgroundTaskManager.stopBackgroundRunning:promise
@@ -452,19 +461,22 @@ stopBackgroundRunning(context: Context): Promise&lt;void&gt;
 **示例**：
 
 ```js
+import Ability from '@ohos.application.Ability'
 import backgroundTaskManager from '@ohos.resourceschedule.backgroundTaskManager';  
-import featureAbility from '@ohos.ability.featureAbility';
 
-try {
-    backgroundTaskManager.stopBackgroundRunning(featureAbility.getContext()).then(() => {
-        console.info("Operation stopBackgroundRunning succeeded");
-    }).catch((error) => {
-        console.error(`Operation stopBackgroundRunning failed. code is ${error.code} message is ${error.message}`);
-    });
-} catch (error) {
-    console.error(`Operation stopBackgroundRunning failed. code is ${error.code} message is ${error.message}`);
-}
-
+export default class MainAbility extends Ability {
+    onCreate(want, launchParam) {
+        try {
+            backgroundTaskManager.stopBackgroundRunning(this.context).then(() => {
+                console.info("Operation stopBackgroundRunning succeeded");
+            }).catch((err) => {
+                console.error(`Operation stopBackgroundRunning failed. code is ${error.code} message is ${error.message}`);
+            });
+        } catch (error) {
+            console.error(`Operation stopBackgroundRunning failed. code is ${error.code} message is ${error.message}`);
+        }
+    }
+};
 ```
 
 ## backgroundTaskManager.applyEfficiencyResources
