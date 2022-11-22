@@ -15,7 +15,7 @@ import InputEvent from '@ohos.multimodalInput.inputEvent';
 
 **系统能力**：SystemCapability.MultimodalInput.Input.Core
 
-| 名称         | 参数类型   | 可读   | 可写   | 描述             |
+| 名称         | 类型   | 可读   | 可写   | 说明             |
 | ---------- | ------ | ---- | ---- | -------------- |
 | id         | number | 是    | 否    | 事件id |
 | deviceId   | number | 是    | 否    | 上报输入事件的设备id    |

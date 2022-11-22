@@ -27,7 +27,7 @@ injectEvent({KeyEvent: KeyEvent}): void
 
 **参数：**
 
-| 参数       | 类型                    | 必填   | 说明        |
+| 参数名       | 类型                    | 必填   | 说明        |
 | -------- | --------------------- | ---- | --------- |
 | KeyEvent | [KeyEvent](#keyevent) | 是    | 按键注入描述信息。 |
 
@@ -62,10 +62,10 @@ try {
 
 **系统能力：** SystemCapability.MultimodalInput.Input.InputSimulator
 
-| 参数            | 类型    | 必填 | 说明                       |
-| --------------- | ------- | ---- | -------------------------- |
-| isPressed       | boolean | 是   | 按键是否按下。               |
-| keyCode         | number  | 是   | 按键键值，当前只支持back键。 |
-| keyDownDuration | number  | 是   | 按键按下持续时间。           |
-| isIntercepted   | boolean | 是   | 按键是否可以被拦截。         |
+| 名称        | 类型   | 可读   | 可写   | 说明      |
+| --------- | ------ | ---- | ---- | ------- |
+| isPressed       | boolean | 是    |  否 | 按键是否按下。               |
+| keyCode         | number  | 是    |  否 | 按键键值，当前只支持back键。 |
+| keyDownDuration | number  | 是    |  否 | 按键按下持续时间。           |
+| isIntercepted   | boolean | 是    |  否 | 按键是否可以被拦截。         |
 

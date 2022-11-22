@@ -4,7 +4,9 @@
 
 > **说明**
 >
-> 本模块首批接口从API version 9开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+>   - 本模块首批接口从API version 9开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+>
+>  - 本模块接口均为系统接口。
 
 ## 导入模块
 
@@ -18,7 +20,7 @@ enable(enable: boolean, callback: AsyncCallback&lt;void&gt;): void
 
 开启、关闭键鼠穿越，使用AsyncCallback异步方式返回结果。
 
-**系统能力**: SystemCapability.MultimodalInput.Input.InputDeviceCooperate
+**系统能力**: SystemCapability.MultimodalInput.Input.Cooperate
 
 **参数**：
 
@@ -52,7 +54,7 @@ enable(enable: boolean): Promise&lt;void&gt;
 开启、关闭键鼠穿越，使用Promise异步方式返回结果。
 
 
-**系统能力**： SystemCapability.MultimodalInput.Input.InputDeviceCooperate
+**系统能力**： SystemCapability.MultimodalInput.Input.Cooperate
 
 **参数**：
 
@@ -90,7 +92,7 @@ start(sinkDeviceDescriptor: string, srcInputDeviceId: number, callback: AsyncCal
 
 启动键鼠穿越，使用AsyncCallback异步方式返回结果。
 
-**系统能力**：SystemCapability.MultimodalInput.Input.InputDeviceCooperate
+**系统能力**：SystemCapability.MultimodalInput.Input.Cooperate
 
 **参数**：
 
@@ -133,7 +135,7 @@ start(sinkDeviceDescriptor: string, srcInputDeviceId: number): Promise\<void>
 
 启动键鼠穿越，使用Promise异步方式返回结果。
 
-**系统能力**: SystemCapability.MultimodalInput.Input.InputDeviceCooperate
+**系统能力**: SystemCapability.MultimodalInput.Input.Cooperate
 
 **参数**：
 
@@ -181,7 +183,7 @@ stop(callback: AsyncCallback\<void>): void
 
 停止键鼠穿越，使用AsyncCallback异步方式返回结果。
 
-**系统能力**：SystemCapability.MultimodalInput.Input.InputDeviceCooperate
+**系统能力**：SystemCapability.MultimodalInput.Input.Cooperate
 
 **参数**：
 
@@ -213,9 +215,9 @@ stop(): Promise\<void>
 
 停止键鼠穿越，使用Promise异步方式返回结果。
 
-**系统能力**：SystemCapability.MultimodalInput.Input.InputDeviceCooperate
+**系统能力**：SystemCapability.MultimodalInput.Input.Cooperate
 
-**参数**：
+**返回值**：
 
 | 参数名                | 说明                            |
 | --------             | ----------------------------   |
@@ -241,7 +243,7 @@ getState(deviceDescriptor: string, callback: AsyncCallback<{ state: boolean }>):
 
 获取键鼠穿越开关的状态，使用AsyncCallback异步方式返回结果。
 
-**系统能力**：SystemCapability.MultimodalInput.Input.InputDeviceCooperate
+**系统能力**：SystemCapability.MultimodalInput.Input.Cooperate
 
 **参数**：
 
@@ -273,7 +275,7 @@ getState(deviceDescriptor: string): Promise<{ state: boolean }>
 
 获取键鼠穿越开关的状态，使用Promise异步方式返回结果。
 
-**系统能力**：SystemCapability.MultimodalInput.Input.InputDeviceCooperate
+**系统能力**：SystemCapability.MultimodalInput.Input.Cooperate
 
 **参数**：
 
@@ -312,7 +314,7 @@ on(type: 'cooperation', callback: AsyncCallback<{ deviceDescriptor: string, even
 
 注册监听键鼠穿越状态。
 
-**系统能力**：SystemCapability.MultimodalInput.Input.InputDeviceCooperate
+**系统能力**：SystemCapability.MultimodalInput.Input.Cooperate
 
 **参数**：
 
@@ -341,7 +343,7 @@ off(type: 'cooperation', callback?: AsyncCallback\<void>): void
 
 关闭监听键鼠穿越状态。
 
-**系统能力**：SystemCapability.MultimodalInput.Input.InputDeviceCooperate
+**系统能力**：SystemCapability.MultimodalInput.Input.Cooperate
 
 **参数**：
 
@@ -385,9 +387,9 @@ try {
 
 键鼠穿越事件。
 
-**系统能力**：SystemCapability.MultimodalInput.Input.InputDeviceCooperate
+**系统能力**：SystemCapability.MultimodalInput.Input.Cooperate
 
-| 参数名                        | 值        | 说明                              |
+| 名称                       | 值        | 说明                              |
 | --------                     | --------- |  -----------------               |
 | MSG_COOPERATE_INFO_START     | 200       |  键鼠穿越消息，表示键鼠穿越开始。       |
 | MSG_COOPERATE_INFO_SUCCESS   | 201       |  键鼠穿越消息，表示键鼠穿越成功。      |
