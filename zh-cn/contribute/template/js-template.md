@@ -1,6 +1,7 @@
 # API接口说明模板
 
 ## 总体写作说明
+
 > **说明：** <br/>所有的写作说明，在完成写作后，都要删除。
 
 |      | 说明项                            | 细则                                                         |
@@ -8,10 +9,10 @@
 | 1    | 客户化写作基本要求                | **写作中，请变身开发者，对于开发者使用该API时所需的使用场景、参数选取原则、开发建议/经验、示例等信息进行清晰描述，达到指导开发者顺利使用本API进行开发的目标。** |
 | 2    | 上传路径                          | markdown文件：docs/zh-cn/application-dev/reference/apis<br>图片路径：docs/zh-cn/application-dev/reference/apis/figures，并在markdown文件中通过路径`![](figures/xxx.jpg)`或`![](figures/xxx.png)`引用。 |
 | 3    | 文件命名                          | 一个d.ts对应一个js api文档，文件名称应与模块名称保持一致，格式为：**js-apis-模块名.md**。<br/>示例：<br/>媒体@ohos.multimedia.audio，文件命名为：js-apis-audio.md<br/>电话@ohos.telephony.sms，文件命名为：js-apis-sms.md |
-| 4    | 目录修改                          | 新增文件，需要修改对应的Readme，即`docs/zh-cn/application-dev/reference/apis/Readme-CN.md`。 |
-| 5    | 文档结构                          | - 模块说明<br/>- 起始版本说明<br/>- 导入模块/使用说明<br/>- 接口（属性、方法、枚举、自定义类型）<br/>  描述顺序和代码保持一致，如果某些接口具有逻辑顺序，请注意排列。 |
+| 4    | 目录修改                          | 新增文件，需要修改对应的Readme，即`docs/zh-cn/application-dev/reference/apis/Readme-CN.md`。<br/>目录按字母顺序排列。 |
+| 5    | 文档结构                          | - 模块说明<br/>- 起始版本说明<br/>- 导入模块/使用说明<br/>- 接口（属性、常量、方法、枚举、自定义类型）<br/>  描述顺序和代码保持一致，如果某些接口具有逻辑顺序，请注意排列。 |
 | 6    | 接口版本说明                      | 1. 每个模块要有起始版本说明，使用引用语法“>”对接口的起始版本进行说明。接口没有标记的，默认与模块同一个起始版本。<br/>2. 已有模块新增接口使用\<sup>标签标记对应版本号。写法：`<sup>版本号+</sup>`<br/> 例如`<sup>7+</sup>`<br/> 示例：API 6已有的模块，在API 7新增了一个属性字段，则在属性后加标记，即newAttribute<sup>7+</sup>。<br/>如果新增了一个方法，则在方法标题后增加标记，即 sim.getSimIccId<sup>7+</sup>，interface、class、枚举等同理。 |
-| 7    | 废弃接口说明                      | 废弃内容不能直接删去，在废弃内容后面加标注deprecated，并使用“>”引用语法建议使用的替代方式，加上对应的链接。<br/>示例：abandonmentMethod<sup>(deprecated) </sup><br/>> 从API version 7 开始不再维护，建议使用[newMethod]\(#newmethod)替代。 |
+| 7    | 废弃接口说明                      | 1. 废弃内容不能直接删去，在废弃内容后面加标注deprecated，并使用“>”引用语法建议使用的替代方式，加上对应的链接。<br/>示例：abandonmentMethod<sup>(deprecated) </sup><br/>> 从API version 7 开始不再维护，建议使用[newMethod]\(#newmethod)替代。 <br/>2. 当接口同时存在起始版本和废弃版本需要说明时，上标仅保留(deprecated)，起始版本在“>”里说明。<br/>示例：abandonmentMethod<sup>(deprecated) </sup><br/>> 从API version 4 开始支持，从API version 7 开始不再维护，建议使用[newMethod]\(#newmethod)替代。|
 | 8    | 权限说明                          | 与代码保持一致，下沉到各个方法、枚举、属性字段中。<br/>1. 如果仅系统应用可申请，格式：<br/>    **需要权限：** ohos.permission.xxxx，仅系统应用可用。<br/>2. 如果该权限所有应用可申请，格式：<br/>    **需要权限：** ohos.permission.xxxx   <br/>3. 如果该接口涉及多个权限，则采用“和、或”进行分割，格式：<br/>    **需要权限：** ohos.permission.A 和 ohos.permission.B<br/>    **需要权限：** ohos.permission.A 或 ohos.permission.B |
 | 9   | @syscap                           | 1. 每个方法都需要进行描述，格式：<br/>    **系统能力**：SystemCapability.xxx.xxx<br/>2. 每个表格（属性、枚举、常量、变量）可统一进行说明，分两种情况：<br/>    1）每个表格下系统能力无差异的，同方法的写法：<br/>          **系统能力**：SystemCapability.xxx.xxx<br/>    2）有差异的：在每一个表格项里进行描述。 |
 | 10   | @system api                       | 1. 如果某个模块全部接口均为system api，则在模块开头的版本说明下一行，增加：<br/>    - 本模块接口为系统接口。<br/>2. 如果某个接口为system api，仅供OEM厂商使用，则需要在描述中增加：<br/>    **系统接口：** 此接口为系统接口。 |
@@ -107,6 +108,21 @@ import call from '@ohos.telephony.call';
 | ---------------- | ----------------------------------------- | ---- | ---- | ------------------------------------------ |
 | pluggedType      | [BatteryPluggedType](#batterypluggedtype) | 是   | 否   | 表示当前设备连接的充电器类型。             |
 | isBatteryPresent | boolean                                   | 是   | 否   | 表示当前设备是否支持电池或者电池是否在位。 |
+
+## 常量
+
+> *写作说明*
+>
+> 1. 可选，如果没有常量可删除此二级标题，对应d.ts中的const。
+>
+> 2. 类型如果为自定义类型，需要建立链接到对应的interface或enum中。
+
+**系统能力：** SystemCapability.xxx.xxx。（必选）
+
+| 名称             | 类型                                      | 说明                                       |
+| ---------------- | ----------------------------------------- | ------------------------------------------ |
+| uid              | number                                    | 进程的用户标识。                           |
+| pid              | number                                    | 当前进程的pid。                            |
 
 ## 方法
 
@@ -283,16 +299,38 @@ import call from '@ohos.telephony.call';
 ## CustomType
 
 仅有k-v键值对的自定义类型示例。
+
 **系统能力：** SystemCapability.xxx.xxx（必选）
 
-| 名称         | 类型                | 可读 | 可写 | 说明                                                         |
-| ------------ | ------------------- | ---- | ---- | ------------------------------------------------------------ |
-| parameterUrl | string              | 是   | 是   | 媒体输出URI。支持： <br/>1. 协议类型为“internal”的相对路径，示例如下： 临时目录：internal://cache/test.mp4 <br/>2. 文件的绝对路径，示例如下： file:///data/data/ohos.xxx.xxx/files/test.mp4 |
-| parameterOne | [CustomEnum](#枚举) | 是   | 是   | 属性描述，要求与参数说明类似。                               |
+| 名称         | 类型                | 必填  | 说明                                                         |
+| ------------ | ------------------- | ---- | ------------------------------------------------------------ |
+| parameterUrl | string              | 是  | 媒体输出URI。支持： <br/>1. 协议类型为“internal”的相对路径，示例如下： 临时目录：internal://cache/test.mp4 <br/>2. 文件的绝对路径，示例如下： file:///data/data/ohos.xxx.xxx/files/test.mp4 |
+| parameterOne | [CustomEnum](#枚举) | 否   | 属性描述，要求与参数说明类似。                               |
+
+## Type
+
+> *写作说明*
+>
+> 1. 可选，如果没有可删除此二级标题，对应d.ts中的type联合类型。
+>
+> 2. 默认第一列为“类型”。如果全部为具体字符串，可将第一列修改为“取值”。
+>
+> 3. 类型如果为自定义类型，需要建立链接到对应的interface或enum中。
+
+在此处给出该联合类型的简要描述。如：表示允许的数据字段类型。
+
+**系统能力：** SystemCapability.xxx.xxx（必选）
+
+| 类型       | 说明                          |
+| -----------| ---------------------------- |
+| number     | 表示值类型为数字。             |
+| string     | 表示值类型为字符。             |
 
 ## 变更日志
-| 变更说明 | 日期 |
-| -------- | ---- |
-| 1. 总体写作说明整理为表格。<br/>2. “图片路径”中，增加图片的引用方式说明。<br/>3. 增加“文档结构”，对文档各节点顺序进行说明。<br/>4. “权限说明”中，增加多权限的描述方式。<br/>5. 增加@FAModelOnly/@StageModelOnly标记在文档的描述方式。<br/>6. 增加异步接口说明（callback、Promise）。<br/>7. 增加示例代码语言的标准和规范。<br/>8. 增加文档链接的标准写法。<br/>9. 增加模块描述的固定句式、示例。<br/>10. 增加“on/off”等订阅方法的说明。<br/>11. 修改@syscap的描述方式，除表格内的差异项，其余保持一致。 <br/>12. 修改@systemapi的描述方式，仅保留“该系统为系统接口。”。<br/>13. 删除MR版本说明。 |2022/6/24|
+| 变更说明                                                                 | 日期         |
+| ----------------------------------------------------------------------- | ------------ |
+| 1. 总体写作说明整理为表格。<br/>2. “图片路径”中，增加图片的引用方式说明。<br/>3. 增加“文档结构”，对文档各节点顺序进行说明。<br/>4. “权限说明”中，增加多权限的描述方式。<br/>5. 增加@FAModelOnly/@StageModelOnly标记在文档的描述方式。<br/>6. 增加异步接口说明（callback、Promise）。<br/>7. 增加示例代码语言的标准和规范。<br/>8. 增加文档链接的标准写法。<br/>9. 增加模块描述的固定句式、示例。<br/>10. 增加“on/off”等订阅方法的说明。<br/>11. 修改@syscap的描述方式，除表格内的差异项，其余保持一致。 <br/>12. 修改@systemapi的描述方式，仅保留“该系统为系统接口。”。<br/>13. 删除MR版本说明。                                                                 |  2022/6/24  |
+| 增加错误码说明。                                                          | 2022/10/11  |
+| 1. 增加**常量const**、**类型type**的模板。<br/> 2. 修改自定义类型interface的表格，去除“可读、可写”，与d.ts保持一致，增加“必填”。<br/> 3. 针对同时存在起始版本和废弃版本的接口，增加废弃说明的模板。                          |2022/11/22   |
 
 <!--no_check-->
