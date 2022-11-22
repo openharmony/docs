@@ -38,6 +38,8 @@
   - [分布式数据对象错误码](errorcode-distributed-dataObject.md)
   - [分布式键值数据库错误码](errorcode-distributedKVStore.md)
   - [首选项错误码](errorcode-preferences.md)
+- 文件管理
+  - [文件管理子系统错误码](errorcode-filemanagement.md)
 - 网络管理
   - [上传下载错误码](errorcode-request.md)
 - 通信与连接
