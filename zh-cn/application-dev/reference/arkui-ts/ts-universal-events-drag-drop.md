@@ -42,15 +42,27 @@ extraParams是Json对象转换的string字符串，可以通过Json.parse转换�
 
 ```ts
 // xxx.ets
+@Extend(Text) function textStyle () {
+  .width('25%')
+  .height(35)
+  .fontSize(16)
+  .textAlign(TextAlign.Center)
+  .backgroundColor(0xAFEEEE)
+}
+
 @Entry
 @Component
 struct DragExample {
-  @State numbers: string[] = ['one', 'two', 'three', 'four', 'five', 'six'];
-  @State text: string = '';
-  @State bool: boolean = false;
-  @State appleVisible: Visibility = Visibility.Visible;
-  @State orangeVisible: Visibility = Visibility.Visible;
-  @State bananaVisible: Visibility = Visibility.Visible;
+  @State numbers: string[] = ['one', 'two', 'three', 'four', 'five', 'six']
+  @State text: string = ''
+  @State bool: boolean = true
+  @State eventType: string = ''
+  @State appleVisible: Visibility = Visibility.Visible
+  @State orangeVisible: Visibility = Visibility.Visible
+  @State bananaVisible: Visibility = Visibility.Visible
+  private dragList: string[] = ['apple', 'orange', 'banana']
+  @State fruitVisible: Visibility[] = [Visibility.Visible, Visibility.Visible, Visibility.Visible]
+  @State index: number = 0
 
   // 自定义拖拽过程中显示的内容
   @Builder pixelMapBuilder() {
@@ -74,46 +86,29 @@ struct DragExample {
         .textAlign(TextAlign.Start)
         .margin(5)
       Row({ space: 15 }) {
-        Text('apple')
-          .width('25%')
-          .height(35)
-          .fontSize(16)
-          .textAlign(TextAlign.Center)
-          .backgroundColor(0xAFEEEE)
-          .visibility(this.appleVisible)
-          .onDragStart(() => {
-            this.bool = true;
-            this.text = 'apple';
-            this.appleVisible = Visibility.None;
-            return this.pixelMapBuilder;
-          })
-        Text('orange')
-          .width('25%')
-          .height(35)
-          .fontSize(16)
-          .textAlign(TextAlign.Center)
-          .backgroundColor(0xAFEEEE)
-          .visibility(this.orangeVisible)
-          .onDragStart(() => {
-            this.bool = true;
-            this.text = 'orange';
-            this.orangeVisible = Visibility.None;
-            return this.pixelMapBuilder;
-          })
-        Text('banana')
-          .width('25%')
-          .height(35)
-          .fontSize(16)
-          .textAlign(TextAlign.Center)
-          .backgroundColor(0xAFEEEE)
-          .visibility(this.bananaVisible)
-          .onDragStart((event: DragEvent, extraParams: string) => {
-            console.log('Text onDragStart, ' + extraParams + 'X:' + event.getX() + 'Y:' + event.getY());
-            this.bool = true;
-            this.text = 'banana';
-            this.bananaVisible = Visibility.None;
-            return this.pixelMapBuilder;
-          })
+        ForEach(this.dragList, (item, index) => {
+          Text(item)
+            .textStyle()
+            .visibility(this.fruitVisible[index])
+            .onDragStart(() => {
+              this.bool = true
+              this.text = item
+              this.fruitVisible[index] = Visibility.None
+              return this.pixelMapBuilder
+            })
+            .onTouch((event: TouchEvent) => {
+              if (event.type === TouchType.Down) {
+                this.eventType = 'Down'
+                this.index = index
+              }
+              if (event.type === TouchType.Up) {
+                this.eventType = 'Up'
+                if (this.bool) {
+                  this.fruitVisible[index] = Visibility.Visible
+                }
+              }
+            })
+        })
       }.padding({ top: 10, bottom: 10 }).margin(10)
 
       Text('This is a List element')
@@ -142,21 +137,22 @@ struct DragExample {
       .padding(15)
       .divider({ strokeWidth: 2, color: 0xFFFFFF, startMargin: 20, endMargin: 20 })
       .onDragEnter((event: DragEvent, extraParams: string) => {
-        console.log('List onDragEnter, ' + extraParams + 'X:' + event.getX() + 'Y:' + event.getY());
+        console.log('List onDragEnter, ' + extraParams + 'X:' + event.getX() + 'Y:' + event.getY())
       })
       .onDragMove((event: DragEvent, extraParams: string) => {
-        console.log('List onDragMove, ' + extraParams + 'X:' + event.getX() + 'Y:' + event.getY());
+        console.log('List onDragMove, ' + extraParams + 'X:' + event.getX() + 'Y:' + event.getY())
       })
       .onDragLeave((event: DragEvent, extraParams: string) => {
-        console.log('List onDragLeave, ' + extraParams + 'X:' + event.getX() + 'Y:' + event.getY());
+        console.log('List onDragLeave, ' + extraParams + 'X:' + event.getX() + 'Y:' + event.getY())
       })
       .onDrop((event: DragEvent, extraParams: string) => {
-        var jsonString = JSON.parse(extraParams);
+        let jsonString = JSON.parse(extraParams);
         if (this.bool) {
           // 通过splice方法插入元素
-          this.numbers.splice(jsonString.insertIndex, 0, this.text);
-          this.bool = false;
+          this.numbers.splice(jsonString.insertIndex, 0, this.text)
+          this.bool = false
         }
+        this.fruitVisible[this.index] = Visibility.None
       })
     }.width('100%').height('100%').padding({ top: 20 }).margin({ top: 20 })
   }

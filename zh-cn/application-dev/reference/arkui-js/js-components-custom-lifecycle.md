@@ -37,10 +37,8 @@ export default {
     console.log("组件创建")
   },
   onAttached() {
-    this.value = "组件挂载"
-  },
-  onDetached() {
-    this.value = ""
+    this.value = "组件挂载",
+    console.log("组件挂载")
   },
   onShow() {
     console.log("Page显示")

@@ -108,9 +108,6 @@ export default {
       this.qr_type = 'circle'
     }
   },
-  setvalue(e) {
-    this.qr_value = e.newValue
-  },
   setcol(e) {
     this.qr_col = e.newValue
   },
@@ -121,5 +118,4 @@ export default {
 ```
 
 ![zh-cn_image_0000001222948301](figures/zh-cn_image_0000001222948301.gif)
-
 
