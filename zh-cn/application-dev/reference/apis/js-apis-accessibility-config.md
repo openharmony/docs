@@ -245,7 +245,7 @@ off(type: 'enabledAccessibilityExtensionListChange', callback?: Callback&lt;void
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| type |  string | 否 | 参数固定为enabledAccessibilityExtensionListChange，监听启用的辅助扩展的列表变化。 |
+| type |  string | 是 | 参数固定为enabledAccessibilityExtensionListChange，监听启用的辅助扩展的列表变化。 |
 | callback | Callback&lt;void&gt; | 否 | 要取消的监听回调函数。 |
 
 **示例：**
