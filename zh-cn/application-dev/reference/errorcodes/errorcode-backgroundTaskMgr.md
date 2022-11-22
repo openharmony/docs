@@ -154,7 +154,7 @@ Transient task verification failed.
 
 **错误信息**
 
-Caller information verification failed for efficiency resources apply.
+Caller information verification failed when applying for efficiency resources.
 
 **可能原因**
 
