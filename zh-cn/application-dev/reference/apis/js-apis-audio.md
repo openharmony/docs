@@ -24,7 +24,7 @@ import audio from '@ohos.multimedia.audio';
 | --------------------------------------- | ----------| ---- | ---- | ------------------ |
 | LOCAL_NETWORK_ID<sup>9+</sup>           | string    | 是   | 否   | 本地设备网络id。<br/>此接口为系统接口。<br> **系统能力：** SystemCapability.Multimedia.Audio.Device  |
 | DEFAULT_VOLUME_GROUP_ID<sup>9+</sup>    | number    | 是   | 否   | 默认音量组id。<br> **系统能力：** SystemCapability.Multimedia.Audio.Volume       |
-| DEFAULT_INTERRUPT_GROUP_ID<sup>9+</sup> | number | 是   | 否   | 默认音频中断组id。<br> **系统能力：** SystemCapability.Multimedia.Audio.Interrupt       |
+| DEFAULT_INTERRUPT_GROUP_ID<sup>9+</sup> | number    | 是   | 否   | 默认音频中断组id。<br> **系统能力：** SystemCapability.Multimedia.Audio.Interrupt       |
 
 **示例：**
 
@@ -73,7 +73,10 @@ createAudioRenderer(options: AudioRendererOptions, callback: AsyncCallback\<Audi
 **示例：**
 
 ```js
+import featureAbility from '@ohos.ability.featureAbility';
+import fileio from '@ohos.fileio';
 import audio from '@ohos.multimedia.audio';
+
 let audioStreamInfo = {
   samplingRate: audio.AudioSamplingRate.SAMPLE_RATE_44100,
   channels: audio.AudioChannel.CHANNEL_1,
@@ -125,6 +128,8 @@ createAudioRenderer(options: AudioRendererOptions): Promise<AudioRenderer\>
 **示例：**
 
 ```js
+import featureAbility from '@ohos.ability.featureAbility';
+import fileio from '@ohos.fileio';
 import audio from '@ohos.multimedia.audio';
 
 let audioStreamInfo = {
@@ -321,14 +326,19 @@ createTonePlayer(options: AudioRendererInfo): Promise&lt;TonePlayer&gt;
 
 ```js
 import audio from '@ohos.multimedia.audio';
+let tonePlayer;
 async function createTonePlayer(){
   let audioRendererInfo = {
-    "contentType": audio.ContentType.CONTENT_TYPE_MUSIC,
-    "streamUsage": audio.StreamUsage.STREAM_USAGE_MEDIA,
-    "rendererFlags": 0
+    contentType : audio.ContentType.CONTENT_TYPE_MUSIC,
+    streamUsage : audio.StreamUsage.STREAM_USAGE_MEDIA,
+    rendererFlags : 0
   }
-  let tonePlayer = await audio.createTonePlayer(audioRendererInfo);
+   createTonePlayer();
 }
+async function createTonePlayer(){
+   tonePlayer = await audio.createTonePlayer(audioRendererInfo);
+}
+
 ```
 
 ## AudioVolumeType
@@ -622,12 +632,12 @@ async function createTonePlayer(){
 
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.Audio.Core
 
-| 名称         | 类型                                               | 必填 | 说明               |
-| ------------ | ------------------------------------------------- | ---- | ------------------ |
-| samplingRate | [AudioSamplingRate](#audiosamplingrate8)          | 是   | 音频文件的采样率。 |
-| channels     | [AudioChannel](#audiochannel8)                    | 是   | 音频文件的通道数。 |
-| sampleFormat | [AudioSampleFormat](#audiosampleformat8)          | 是   | 音频采样格式。     |
-| encodingType | [AudioEncodingType](#audioencodingtype8)          | 是   | 音频编码格式。     |
+| 名称         | 类型                                               | 可读 | 可写 | 说明               |
+| ------------ | ------------------------------------------------- | ---- | ---- | ------------------ |
+| samplingRate | [AudioSamplingRate](#audiosamplingrate8)          | 是   | 是   | 音频文件的采样率。 |
+| channels     | [AudioChannel](#audiochannel8)                    | 是   | 是   | 音频文件的通道数。 |
+| sampleFormat | [AudioSampleFormat](#audiosampleformat8)          | 是   | 是   | 音频采样格式。     |
+| encodingType | [AudioEncodingType](#audioencodingtype8)          | 是   | 是   | 音频编码格式。     |
 
 ## AudioRendererInfo<sup>8+</sup>
 
@@ -635,11 +645,11 @@ async function createTonePlayer(){
 
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.Audio.Core
 
-| 名称          | 类型                        | 必填 | 说明             |
-| ------------- | --------------------------- | ---- | ---------------- |
-| content       | [ContentType](#contenttype) | 是   | 媒体类型。       |
-| usage         | [StreamUsage](#streamusage) | 是   | 音频流使用类型。 |
-| rendererFlags | number                      | 是   | 音频渲染器标志。 |
+| 名称          | 类型                        | 可读  | 可写  | 说明             |
+| ------------- | --------------------------- | ---- | ---- | ---------------- |
+| content       | [ContentType](#contenttype) | 是   | 是   | 媒体类型。       |
+| usage         | [StreamUsage](#streamusage) | 是   | 是   | 音频流使用类型。 |
+| rendererFlags | number                      | 是   | 是   | 音频渲染器标志。 |
 
 ## InterruptResult<sup>9+</sup>
 
@@ -649,10 +659,10 @@ async function createTonePlayer(){
 
 **系统接口：** 该接口为系统接口
 
-| 名称          | 类型                                                            | 必填 | 说明             |
-| --------------| -------------------------------------------------------------- | ---- | ---------------- |
-| requestResult | [InterruptRequestResultType](#interruptrequestresulttype9)     | 是   | 表示音频请求中断类型。 |
-| interruptNode | number                                                         | 是   | 音频请求中断的节点。 |
+| 名称          | 类型                                                            | 可读 | 可写 | 说明             |
+| --------------| -------------------------------------------------------------- | ---- | ---- | ---------------- |
+| requestResult | [InterruptRequestResultType](#interruptrequestresulttype9)     | 是   | 是   | 表示音频请求中断类型。 |
+| interruptNode | number                                                         | 是   | 是   | 音频请求中断的节点。 |
 
 ## AudioRendererOptions<sup>8+</sup>
 
@@ -660,10 +670,10 @@ async function createTonePlayer(){
 
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.Audio.Renderer
 
-| 名称         | 类型                                     | 必填 | 说明             |
-| ------------ | ---------------------------------------- | ---- | ---------------- |
-| streamInfo   | [AudioStreamInfo](#audiostreaminfo8)     | 是   | 表示音频流信息。 |
-| rendererInfo | [AudioRendererInfo](#audiorendererinfo8) | 是   | 表示渲染器信息。 |
+| 名称         | 类型                                     | 可读  | 可写 | 说明             |
+| ------------ | ---------------------------------------- | ---- | ---- | ---------------- |
+| streamInfo   | [AudioStreamInfo](#audiostreaminfo8)     | 是   | 是   | 表示音频流信息。 |
+| rendererInfo | [AudioRendererInfo](#audiorendererinfo8) | 是   | 是   | 表示渲染器信息。 |
 
 ## InterruptEvent<sup>9+</sup>
 
@@ -671,11 +681,11 @@ async function createTonePlayer(){
 
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.Audio.Renderer
 
-| 名称      | 类型                                       | 必填 | 说明                                 |
-| --------- | ------------------------------------------ | ---- | ------------------------------------ |
-| eventType | [InterruptType](#interrupttype)            | 是   | 中断事件类型，开始或是结束。         |
-| forceType | [InterruptForceType](#interruptforcetype9) | 是   | 操作是由系统执行或是由应用程序执行。 |
-| hintType  | [InterruptHint](#interrupthint)            | 是   | 中断提示。                           |
+| 名称      | 类型                                       |可读   |可写 | 说明                                 |
+| --------- | ------------------------------------------ | ---- | ---- | ------------------------------------ |
+| eventType | [InterruptType](#interrupttype)            | 是   | 是   | 中断事件类型，开始或是结束。         |
+| forceType | [InterruptForceType](#interruptforcetype9) | 是   | 是   | 操作是由系统执行或是由应用程序执行。 |
+| hintType  | [InterruptHint](#interrupthint)            | 是   | 是   | 中断提示。                           |
 
 ## VolumeEvent<sup>8+</sup>
 
@@ -685,13 +695,13 @@ async function createTonePlayer(){
 
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.Audio.Volume
 
-| 名称       | 类型                                | 必填 | 说明                                                     |
-| ---------- | ----------------------------------- | ---- | -------------------------------------------------------- |
-| volumeType | [AudioVolumeType](#audiovolumetype) | 是   | 音量流类型。                                             |
-| volume     | number                              | 是   | 音量等级，可设置范围通过getMinVolume和getMaxVolume获取。 |
-| updateUi   | boolean                             | 是   | 在UI中显示音量变化。                                     |
-| volumeGroupId<sup>9+</sup>   | number            | 是   | 音量组id。可用于getGroupManager入参                      |
-| networkId<sup>9+</sup>    | string               | 是   | 网络id。                                                |
+| 名称       | 类型                                | 可读 | 可写 | 说明                                                     |
+| ---------- | ----------------------------------- | ---- | ---- | -------------------------------------------------------- |
+| volumeType | [AudioVolumeType](#audiovolumetype) | 是   | 是   | 音量流类型。                                             |
+| volume     | number                              | 是   | 是   | 音量等级，可设置范围通过getMinVolume和getMaxVolume获取。 |
+| updateUi   | boolean                             | 是   | 是   | 在UI中显示音量变化。                                     |
+| volumeGroupId<sup>9+</sup>   | number            | 是   | 是   | 音量组id。可用于getGroupManager入参                      |
+| networkId<sup>9+</sup>    | string               | 是   | 是   | 网络id。                                                |
 
 ## MicStateChangeEvent<sup>9+</sup>
 
@@ -699,9 +709,9 @@ async function createTonePlayer(){
 
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.Audio.Device
 
-| 名称       | 类型                                | 必填 | 说明                                                     |
-| ---------- | ----------------------------------- | ---- | -------------------------------------------------------- |
-| mute | boolean | 是   | 回调返回系统麦克风静音状态，true为静音，false为非静音。          |
+| 名称       | 类型                                | 可读 | 可写 | 说明                                                     |
+| ---------- | ----------------------------------- | ---- | ---- | -------------------------------------------------------- |
+| mute | boolean | 是   | 是   | 回调返回系统麦克风静音状态，true为静音，false为非静音。          |
 
 ## ConnectType<sup>9+</sup>
 
@@ -746,10 +756,10 @@ async function createTonePlayer(){
 
 **系统能力：** SystemCapability.Multimedia.Audio.Device
 
-| 名称              | 类型                                              | 必填 | 说明               |
-| :---------------- | :------------------------------------------------ | :--- | :----------------- |
-| type              | [DeviceChangeType](#devicechangetype)             | 是   | 设备连接状态变化。 |
-| deviceDescriptors | [AudioDeviceDescriptors](#audiodevicedescriptors) | 是   | 设备信息。         |
+| 名称              | 类型                                              | 可读 | 可写 | 说明               |
+| :---------------- | :------------------------------------------------ | :--- | :--- | :----------------- |
+| type              | [DeviceChangeType](#devicechangetype)             | 是   | 是   | 设备连接状态变化。 |
+| deviceDescriptors | [AudioDeviceDescriptors](#audiodevicedescriptors) | 是   | 是   | 设备信息。         |
 
 ## DeviceChangeType
 
@@ -768,10 +778,10 @@ async function createTonePlayer(){
 
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.Audio.Capturer
 
-| 名称         | 类型                                    | 必填 | 说明             |
-| ------------ | --------------------------------------- | ---- | ---------------- |
-| streamInfo   | [AudioStreamInfo](#audiostreaminfo8)    | 是   | 表示音频流信息。 |
-| capturerInfo | [AudioCapturerInfo](#audiocapturerinfo) | 是   | 表示采集器信息。 |
+| 名称         | 类型                                    | 可读 | 可写 | 说明             |
+| ------------ | --------------------------------------- | ---- | ---- | ---------------- |
+| streamInfo   | [AudioStreamInfo](#audiostreaminfo8)    | 是   | 是   | 表示音频流信息。 |
+| capturerInfo | [AudioCapturerInfo](#audiocapturerinfo) | 是   | 是   | 表示采集器信息。 |
 
 ## AudioCapturerInfo<sup>8+</sup><a name="audiocapturerinfo"></a>
 
@@ -1211,8 +1221,13 @@ getVolumeGroupManager(groupId: number\): Promise<AudioVolumeGroupManager\>
 
 ```js
 let groupid = audio.DEFAULT_VOLUME_GROUP_ID;
-let audioVolumeGroupManager = await audioVolumeManager.getVolumeGroupManager(groupid);
-console.info('Callback invoked to indicate that the volume group infos list is obtained.');
+let audioVolumeGroupManager;
+getVolumeGroupManager();
+async function getVolumeGroupManager(){
+  audioVolumeGroupManager = await audioVolumeManager.getVolumeGroupManager(groupid);
+  console.info('Callback invoked to indicate that the volume group infos list is obtained.');
+}
+
 ```
 
 ### on('volumeChange')<sup>9+</sup>
@@ -2859,7 +2874,7 @@ audioStreamManager.on('audioRendererChange',  (AudioRendererChangeInfoArray) => 
 | -------------------| ----------------------------------------- | ---- | ---- | ---------------------------- |
 | streamId           | number                                    | 是   | 否   | 音频流唯一id。                |
 | clientUid          | number                                    | 是   | 否   | 音频采集器客户端应用程序的Uid。<br/>此接口为系统接口。 |
-| capturerInfo       | [AudioCapturerInfo](#audiocapturerinfo8)   | 是   | 否   | 音频采集器信息。               |
+| capturerInfo       | [AudioCapturerInfo](#audiocapturerinfo8)  | 是   | 否   | 音频采集器信息。               |
 | capturerState      | [AudioState](#audiostate)                 | 是   | 否   | 音频状态。<br/>此接口为系统接口。|
 
 **示例：**
@@ -2960,11 +2975,11 @@ promise.then(function (value) {
 
 **系统接口：** 该接口为系统接口
 
-| 名称          | 类型                                     | 必填  | 说明          |
-| -------------| ---------------------------------------- | ---- | -------------- |
-| uid          | number                                   |  是  | 表示应用ID。<br> **系统能力：** SystemCapability.Multimedia.Audio.Core|
-| rendererInfo | [AudioRendererInfo](#audiorendererinfo8) |  否  | 表示渲染器信息。<br> **系统能力：** SystemCapability.Multimedia.Audio.Renderer|
-| rendererId   | number                                   |  否  | 音频流唯一id。<br> **系统能力：** SystemCapability.Multimedia.Audio.Renderer|
+| 名称          | 类型                                     | 可读 | 可写 | 说明          |
+| -------------| ---------------------------------------- | ---- | ----| -------------- |
+| uid          | number                                   |  是  |  是  | 表示应用ID。<br> **系统能力：** SystemCapability.Multimedia.Audio.Core|
+| rendererInfo | [AudioRendererInfo](#audiorendererinfo8) |  是  |  是  | 表示渲染器信息。<br> **系统能力：** SystemCapability.Multimedia.Audio.Renderer|
+| rendererId   | number                                   |  是  |  是  | 音频流唯一id。<br> **系统能力：** SystemCapability.Multimedia.Audio.Renderer|
 
 **示例：**
 
@@ -3827,49 +3842,53 @@ on(type: 'audioInterrupt', callback: Callback\<InterruptEvent>): void
 ```js
 let isPlay;
 let started;
-audioRenderer.on('audioInterrupt', async(interruptEvent) => {
-  if (interruptEvent.forceType == audio.InterruptForceType.INTERRUPT_FORCE) {
-    switch (interruptEvent.hintType) {
-      case audio.InterruptHint.INTERRUPT_HINT_PAUSE:
-        console.info('Force paused. Stop writing');
-        isPlay = false;
-        break;
-      case audio.InterruptHint.INTERRUPT_HINT_STOP:
-        console.info('Force stopped. Stop writing');
-        isPlay = false;
-        break;
-    }
-  } else if (interruptEvent.forceType == audio.InterruptForceType.INTERRUPT_SHARE) {
-    switch (interruptEvent.hintType) {
-      case audio.InterruptHint.INTERRUPT_HINT_RESUME:
-        console.info('Resume force paused renderer or ignore');
-        await audioRenderer.start().then(async function () {
-          console.info('AudioInterruptMusic: renderInstant started :SUCCESS ');
-          started = true;
-        }).catch((err) => {
-          console.error(`AudioInterruptMusic: renderInstant start :ERROR : ${err}`);
-          started = false;
-        });
-        if (started) {
-          isPlay = true;
-          console.info(`AudioInterruptMusic Renderer started : isPlay : ${isPlay}`);
-        } else {
-          console.error('AudioInterruptMusic Renderer start failed');
-        }
-        break;
-      case audio.InterruptHint.INTERRUPT_HINT_PAUSE:
-        console.info('Choose to pause or ignore');
-        if (isPlay == true) {
-          isPlay == false;
-          console.info('AudioInterruptMusic: Media PAUSE : TRUE');
-        } else {
-          isPlay = true;
-          console.info('AudioInterruptMusic: Media PLAY : TRUE');
-        }
-        break;
-    }
-  }
-});
+onAudioInterrupt();
+
+async function onAudioInterrupt(){
+  audioRenderer.on('audioInterrupt', async(interruptEvent) => {
+    if (interruptEvent.forceType == audio.InterruptForceType.INTERRUPT_FORCE) {
+      switch (interruptEvent.hintType) {
+        case audio.InterruptHint.INTERRUPT_HINT_PAUSE:
+          console.info('Force paused. Stop writing');
+          isPlay = false;
+          break;
+        case audio.InterruptHint.INTERRUPT_HINT_STOP:
+          console.info('Force stopped. Stop writing');
+          isPlay = false;
+          break;
+      }
+    } else if (interruptEvent.forceType == audio.InterruptForceType.INTERRUPT_SHARE) {
+      switch (interruptEvent.hintType) {
+        case audio.InterruptHint.INTERRUPT_HINT_RESUME:
+          console.info('Resume force paused renderer or ignore');
+          await audioRenderer.start().then(async function () {
+            console.info('AudioInterruptMusic: renderInstant started :SUCCESS ');
+            started = true;
+          }).catch((err) => {
+            console.error(`AudioInterruptMusic: renderInstant start :ERROR : ${err}`);
+            started = false;
+          });
+          if (started) {
+            isPlay = true;
+            console.info(`AudioInterruptMusic Renderer started : isPlay : ${isPlay}`);
+          } else {
+            console.error('AudioInterruptMusic Renderer start failed');
+          }
+          break;
+        case audio.InterruptHint.INTERRUPT_HINT_PAUSE:
+          console.info('Choose to pause or ignore');
+          if (isPlay == true) {
+            isPlay == false;
+            console.info('AudioInterruptMusic: Media PAUSE : TRUE');
+          } else {
+            isPlay = true;
+            console.info('AudioInterruptMusic: Media PLAY : TRUE');
+          }
+          break;
+      }
+   }
+  });
+}
 ```
 
 ### on('markReach')<sup>8+</sup>
@@ -4685,6 +4704,8 @@ load(type: ToneType, callback: AsyncCallback&lt;void&gt;): void
 
 加载DTMF音调配置。使用callback方式异步返回结果。
 
+**系统接口：** 该接口为系统接口
+
 **系统能力：** SystemCapability.Multimedia.Audio.Tone
 
 **参数：**
@@ -4712,6 +4733,8 @@ tonePlayer.load(audio.ToneType.TONE_TYPE_DIAL_5, (err) => {
 load(type: ToneType): Promise&lt;void&gt;
 
 加载DTMF音调配置。使用Promise方式异步返回结果。
+
+**系统接口：** 该接口为系统接口
 
 **系统能力：** SystemCapability.Multimedia.Audio.Tone
 
@@ -4743,6 +4766,8 @@ start(callback: AsyncCallback&lt;void&gt;): void
 
 启动DTMF音调播放。使用callback方式异步返回结果。
 
+**系统接口：** 该接口为系统接口
+
 **系统能力：** SystemCapability.Multimedia.Audio.Tone
 
 **参数：**
@@ -4770,6 +4795,8 @@ start(): Promise&lt;void&gt;
 
 启动DTMF音调播放。使用Promise方式异步返回结果。
 
+**系统接口：** 该接口为系统接口
+
 **系统能力：** SystemCapability.Multimedia.Audio.Tone
 
 **返回值：**
@@ -4793,6 +4820,8 @@ tonePlayer.start().then(() => {
 stop(callback: AsyncCallback&lt;void&gt;): void
 
 停止当前正在播放的音调。使用callback方式异步返回结果。
+
+**系统接口：** 该接口为系统接口
 
 **系统能力：** SystemCapability.Multimedia.Audio.Tone
 
@@ -4821,6 +4850,8 @@ stop(): Promise&lt;void&gt;
 
 停止当前正在播放的音调。使用Promise方式异步返回结果。
 
+**系统接口：** 该接口为系统接口
+
 **系统能力：** SystemCapability.Multimedia.Audio.Tone
 
 **返回值：**
@@ -4844,6 +4875,8 @@ tonePlayer.stop().then(() => {
 release(callback: AsyncCallback&lt;void&gt;): void
 
 释放与此TonePlay对象关联的资源。使用callback方式异步返回结果。
+
+**系统接口：** 该接口为系统接口
 
 **系统能力：** SystemCapability.Multimedia.Audio.Tone
 
@@ -4871,6 +4904,8 @@ tonePlayer.release((err) => {
 release(): Promise&lt;void&gt;
 
 释放与此TonePlay对象关联的资源。使用Promise方式异步返回结果。
+
+**系统接口：** 该接口为系统接口
 
 **系统能力：** SystemCapability.Multimedia.Audio.Tone
 
@@ -4927,11 +4962,11 @@ tonePlayer.release().then(() => {
 
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.Audio.Renderer
 
-| 名称            | 类型                        | 必填 | 说明                                                         |
-| --------------- | --------------------------- | ---- | ------------------------------------------------------------ |
-| streamUsage     | [StreamUsage](#streamusage) | 是   | 音频流使用类型。                                             |
-| contentType     | [ContentType](#contenttype) | 是   | 音频打断媒体类型。                                           |
-| pauseWhenDucked | boolean                     | 是   | 音频打断时是否可以暂停音频播放（true表示音频播放可以在音频打断期间暂停，false表示相反）。 |
+| 名称            | 类型                        | 可读 | 可写 | 说明                                                         |
+| --------------- | --------------------------- | ---- | ---- | ------------------------------------------------------------ |
+| streamUsage     | [StreamUsage](#streamusage) | 是   | 是   | 音频流使用类型。                                             |
+| contentType     | [ContentType](#contenttype) | 是   | 是   | 音频打断媒体类型。                                           |
+| pauseWhenDucked | boolean                     | 是   | 是   | 音频打断时是否可以暂停音频播放（true表示音频播放可以在音频打断期间暂停，false表示相反）。 |
 
 ## InterruptAction<sup>(deprecated)</sup>
 
@@ -4942,12 +4977,12 @@ tonePlayer.release().then(() => {
 
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.Audio.Renderer
 
-| 名称       | 类型                                        | 必填 | 说明                                                         |
-| ---------- | ------------------------------------------- | ---- | ------------------------------------------------------------ |
-| actionType | [InterruptActionType](#interruptactiontype) | 是   | 事件返回类型。TYPE_ACTIVATED为焦点触发事件，TYPE_INTERRUPT为音频打断事件。 |
-| type       | [InterruptType](#interrupttype)             | 否   | 打断事件类型。                                               |
-| hint       | [InterruptHint](#interrupthint)              | 否   | 打断事件提示。                                               |
-| activated  | boolean                                     | 否   | 获得/释放焦点。true表示焦点获取/释放成功，false表示焦点获得/释放失败。 |
+| 名称       | 类型                                        | 可读 | 可写 | 说明                                                         |
+| ---------- | ------------------------------------------- | ---- | ---- | ------------------------------------------------------------ |
+| actionType | [InterruptActionType](#interruptactiontype) | 是   | 是   | 事件返回类型。TYPE_ACTIVATED为焦点触发事件，TYPE_INTERRUPT为音频打断事件。 |
+| type       | [InterruptType](#interrupttype)             | 否   | 是   | 打断事件类型。                                               |
+| hint       | [InterruptHint](#interrupthint)             | 否   | 是   | 打断事件提示。                                               |
+| activated  | boolean                                     | 否   | 是   | 获得/释放焦点。true表示焦点获取/释放成功，false表示焦点获得/释放失败。 |
 
 ### setVolume<sup>(deprecated)</sup>
 
