@@ -8,11 +8,11 @@ If an application has a task that needs to be continued when the application is 
 
 If an application has a service that can be intuitively perceived by users and needs to run in the background for a long period of time (for example, music playback in the background), the application can request a continuous task.
 
-If a privileged system application needs to use certain system resources (for example, resources required to receive common events) when suspended, it can request efficiency resources.
+If a privileged system application needs to use certain system resources (for example, it wants to receive common events when suspended), it can request efficiency resources.
 
 >  **NOTE**
->
->  The initial APIs of this module are supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+> - This module is deprecated since API version 9. You are advised to use [@ohos.resourceschedule.backgroundTaskManager](js-apis-resourceschedule-backgroundTaskManager.md) instead.
+> - The initial APIs of this module are supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 
 ## Modules to Import
@@ -28,17 +28,19 @@ requestSuspendDelay(reason: string, callback: Callback&lt;void&gt;): DelaySuspen
 
 Requests delayed suspension after the application switches to the background.
 
-The default duration of delayed suspension is 180000 when the battery level is higher than or equal to the broadcast low battery level and 60000 when the battery level is lower than the broadcast low battery level.
+The default duration of delayed suspension is 3 minutes when the battery level is higher than or equal to the broadcast low battery level and 1 minute when the battery level is lower than the broadcast low battery level.
 
 **System capability**: SystemCapability.ResourceSchedule.BackgroundTaskManager.TransientTask
 
 **Parameters**
+
 | Name     | Type                  | Mandatory  | Description                            |
 | -------- | -------------------- | ---- | ------------------------------ |
 | reason   | string               | Yes   | Reason for delayed transition to the suspended state.                    |
 | callback | Callback&lt;void&gt; | Yes   | Invoked when a delay is about to time out. Generally, this callback is used to notify the application 6 seconds before the delay times out.|
 
 **Return value**
+
 | Type                                   | Description       |
 | ------------------------------------- | --------- |
 | [DelaySuspendInfo](#delaysuspendinfo) | Information about the suspension delay.|
@@ -46,13 +48,15 @@ The default duration of delayed suspension is 180000 when the battery level is h
 **Example**
 
   ```js
+  import backgroundTaskManager from '@ohos.backgroundTaskManager';
+
   let myReason = 'test requestSuspendDelay';
   let delayInfo = backgroundTaskManager.requestSuspendDelay(myReason, () => {
       console.info("Request suspension delay will time out.");
   })
-  
-  var id = delayInfo.requestId;
-  var time = delayInfo.actualDelayTime;
+
+  let id = delayInfo.requestId;
+  let time = delayInfo.actualDelayTime;
   console.info("The requestId is: " + id);
   console.info("The actualDelayTime is: " + time);
   ```
@@ -67,16 +71,19 @@ Obtains the remaining duration before the application is suspended. This API use
 **System capability**: SystemCapability.ResourceSchedule.BackgroundTaskManager.TransientTask
 
 **Parameters**
+
 | Name      | Type                         | Mandatory  | Description                                      |
 | --------- | --------------------------- | ---- | ---------------------------------------- |
-| requestId | number                      | Yes   | ID of the suspension delay request.                              |
+| requestId | number                      | Yes   | ID of the suspension delay request. The value is obtained by calling [requestSuspendDelay](#backgroundtaskmanagerrequestsuspenddelay).|
 | callback  | AsyncCallback&lt;number&gt; | Yes   | Callback used to return the remaining duration before the application is suspended, in milliseconds.|
 
 **Example**
 
   ```js
-  let id = 1;
-  backgroundTaskManager.getRemainingDelayTime(id, (err, res) => {
+  import backgroundTaskManager from '@ohos.backgroundTaskManager';
+
+  let delayInfo = backgroundTaskManager.requestSuspendDelay("test", () => {});
+  backgroundTaskManager.getRemainingDelayTime(delayInfo.requestId, (err, res) => {
       if(err) {
           console.log('callback => Operation getRemainingDelayTime failed. Cause: ' + err.code);
       } else {
@@ -95,19 +102,22 @@ Obtains the remaining duration before the application is suspended. This API use
 **System capability**: SystemCapability.ResourceSchedule.BackgroundTaskManager.TransientTask
 
 **Parameters**
+
 | Name      | Type    | Mandatory  | Description        |
 | --------- | ------ | ---- | ---------- |
-| requestId | number | Yes   | ID of the suspension delay request.|
+| requestId | number | Yes   | ID of the suspension delay request. The value is obtained by calling [requestSuspendDelay](#backgroundtaskmanagerrequestsuspenddelay).|
 
 **Return value**
+
 | Type                   | Description                                      |
 | --------------------- | ---------------------------------------- |
 | Promise&lt;number&gt; | Promise used to return the remaining duration before the application is suspended, in milliseconds.|
 
 **Example**
+
   ```js
-  let id = 1;
-  backgroundTaskManager.getRemainingDelayTime(id).then( res => {
+  let delayInfo = backgroundTaskManager.requestSuspendDelay("test", () => {});
+  backgroundTaskManager.getRemainingDelayTime(delayInfo.requestId).then( res => {
       console.log('promise => Operation getRemainingDelayTime succeeded. Data: ' + JSON.stringify(res));
   }).catch( err => {
       console.log('promise => Operation getRemainingDelayTime failed. Cause: ' + err.code);
@@ -124,14 +134,16 @@ Cancels the suspension delay.
 **System capability**: SystemCapability.ResourceSchedule.BackgroundTaskManager.TransientTask
 
 **Parameters**
+
 | Name      | Type    | Mandatory  | Description        |
 | --------- | ------ | ---- | ---------- |
-| requestId | number | Yes   | ID of the suspension delay request.|
+| requestId | number | Yes   | ID of the suspension delay request. The value is obtained by calling [requestSuspendDelay](#backgroundtaskmanagerrequestsuspenddelay).|
 
 **Example**
+
   ```js
-  let id = 1;
-  backgroundTaskManager.cancelSuspendDelay(id);
+  let delayInfo = backgroundTaskManager.requestSuspendDelay("test", () => {});
+  backgroundTaskManager.cancelSuspendDelay(delayInfo.requestId);
   ```
 
 
@@ -146,6 +158,7 @@ Requests a continuous task from the system. This API uses an asynchronous callba
 **System capability**: SystemCapability.ResourceSchedule.BackgroundTaskManager.ContinuousTask
 
 **Parameters**
+
 | Name      | Type                                | Mandatory  | Description                                      |
 | --------- | ---------------------------------- | ---- | ---------------------------------------- |
 | context   | Context                            | Yes   | Application context.<br>For the application context of the FA model, see [Context](js-apis-Context.md).<br>For the application context of the stage model, see [Context](js-apis-ability-context.md).|
@@ -154,6 +167,9 @@ Requests a continuous task from the system. This API uses an asynchronous callba
 | callback  | AsyncCallback&lt;void&gt;          | Yes   | Callback used to return the result.                  |
 
 **Example**
+
+FA model:
+
 ```js
 import backgroundTaskManager from '@ohos.backgroundTaskManager';
 import featureAbility from '@ohos.ability.featureAbility';
@@ -181,9 +197,46 @@ let wantAgentInfo = {
 
 wantAgent.getWantAgent(wantAgentInfo).then((wantAgentObj) => {
     backgroundTaskManager.startBackgroundRunning(featureAbility.getContext(),
-        backgroundTaskManager.BackgroundMode.DATA_TRANSFER, wantAgentObj, callback)
+        backgroundTaskManager.BackgroundMode.LOCATION, wantAgentObj, callback)
 });
 
+```
+
+Stage model:
+
+```ts
+import Ability from '@ohos.application.Ability'
+import backgroundTaskManager from '@ohos.backgroundTaskManager';
+import wantAgent from '@ohos.wantAgent';
+
+function callback(err, data) {
+    if (err) {
+        console.error("Operation startBackgroundRunning failed Cause: " + err);
+    } else {
+        console.info("Operation startBackgroundRunning succeeded");
+    }
+}
+
+export default class MainAbility extends Ability {
+    onCreate(want, launchParam) {
+        let wantAgentInfo = {
+            wants: [
+                {
+                    bundleName: "com.example.myapplication",
+                    abilityName: "com.example.myapplication.MainAbility"
+                }
+            ],
+            operationType: wantAgent.OperationType.START_ABILITY,
+            requestCode: 0,
+            wantAgentFlags: [wantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
+        };
+
+        wantAgent.getWantAgent(wantAgentInfo).then((wantAgentObj) => {
+            backgroundTaskManager.startBackgroundRunning(this.context,
+                backgroundTaskManager.BackgroundMode.LOCATION, wantAgentObj, callback)
+        });
+    }
+};
 ```
 
 ## backgroundTaskManager.startBackgroundRunning<sup>8+</sup>
@@ -205,11 +258,15 @@ Requests a continuous task from the system. This API uses a promise to return th
 | wantAgent | [WantAgent](js-apis-wantAgent.md)  | Yes   | Notification parameter, which is used to specify the target page that is redirected to when a continuous task notification is clicked.                 |
 
 **Return value**
+
 | Type            | Description              |
 | -------------- | ---------------- |
 | Promise\<void> | Promise used to return the result.|
 
 **Example**
+
+FA model:
+
 ```js
 import backgroundTaskManager from '@ohos.backgroundTaskManager';
 import featureAbility from '@ohos.ability.featureAbility';
@@ -229,13 +286,45 @@ let wantAgentInfo = {
 
 wantAgent.getWantAgent(wantAgentInfo).then((wantAgentObj) => {
     backgroundTaskManager.startBackgroundRunning(featureAbility.getContext(),
-        backgroundTaskManager.BackgroundMode.DATA_TRANSFER, wantAgentObj).then(() => {
+        backgroundTaskManager.BackgroundMode.LOCATION, wantAgentObj).then(() => {
         console.info("Operation startBackgroundRunning succeeded");
     }).catch((err) => {
         console.error("Operation startBackgroundRunning failed Cause: " + err);
     });
 });
+```
 
+Stage model:
+
+```ts
+import Ability from '@ohos.application.Ability'
+import backgroundTaskManager from '@ohos.backgroundTaskManager';
+import wantAgent from '@ohos.wantAgent';
+
+export default class MainAbility extends Ability {
+    onCreate(want, launchParam) {
+        let wantAgentInfo = {
+            wants: [
+                {
+                    bundleName: "com.example.myapplication",
+                    abilityName: "com.example.myapplication.MainAbility"
+                }
+            ],
+            operationType: wantAgent.OperationType.START_ABILITY,
+            requestCode: 0,
+            wantAgentFlags: [wantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
+        };
+
+        wantAgent.getWantAgent(wantAgentInfo).then((wantAgentObj) => {
+            backgroundTaskManager.startBackgroundRunning(this.context,
+                backgroundTaskManager.BackgroundMode.LOCATION, wantAgentObj).then(() => {
+                console.info("Operation startBackgroundRunning succeeded");
+            }).catch((err) => {
+                console.error("Operation startBackgroundRunning failed Cause: " + err);
+            });
+        });
+    }
+};
 ```
 
 ## backgroundTaskManager.stopBackgroundRunning<sup>8+</sup>
@@ -247,12 +336,16 @@ Requests to cancel a continuous task. This API uses an asynchronous callback to 
 **System capability**: SystemCapability.ResourceSchedule.BackgroundTaskManager.ContinuousTask
 
 **Parameters**
+
 | Name     | Type                       | Mandatory  | Description                                      |
 | -------- | ------------------------- | ---- | ---------------------------------------- |
 | context  | Context                   | Yes   | Application context.<br>For the application context of the FA model, see [Context](js-apis-Context.md).<br>For the application context of the stage model, see [Context](js-apis-ability-context.md).|
 | callback | AsyncCallback&lt;void&gt; | Yes   | Callback used to return the result.                  |
 
 **Example**
+
+FA model:
+
 ```js
 import backgroundTaskManager from '@ohos.backgroundTaskManager';
 import featureAbility from '@ohos.ability.featureAbility';
@@ -269,6 +362,27 @@ backgroundTaskManager.stopBackgroundRunning(featureAbility.getContext(), callbac
 
 ```
 
+Stage model:
+
+```ts
+import Ability from '@ohos.application.Ability'
+import backgroundTaskManager from '@ohos.backgroundTaskManager';
+
+function callback(err, data) {
+    if (err) {
+        console.error("Operation stopBackgroundRunning failed Cause: " + err);
+    } else {
+        console.info("Operation stopBackgroundRunning succeeded");
+    }
+}
+
+export default class MainAbility extends Ability {
+    onCreate(want, launchParam) {
+        backgroundTaskManager.stopBackgroundRunning(this.context, callback);
+    }
+};
+```
+
 ## backgroundTaskManager.stopBackgroundRunning<sup>8+</sup>
 
 stopBackgroundRunning(context: Context): Promise&lt;void&gt;
@@ -278,16 +392,21 @@ Requests to cancel a continuous task. This API uses a promise to return the resu
 **System capability**: SystemCapability.ResourceSchedule.BackgroundTaskManager.ContinuousTask
 
 **Parameters**
+
 | Name    | Type     | Mandatory  | Description                                      |
 | ------- | ------- | ---- | ---------------------------------------- |
 | context | Context | Yes   | Application context.<br>For the application context of the FA model, see [Context](js-apis-Context.md).<br>For the application context of the stage model, see [Context](js-apis-ability-context.md).|
 
 **Return value**
+
 | Type            | Description              |
 | -------------- | ---------------- |
 | Promise\<void> | Promise used to return the result.|
 
 **Example**
+
+FA model:
+
 ```js
 import backgroundTaskManager from '@ohos.backgroundTaskManager';
 import featureAbility from '@ohos.ability.featureAbility';
@@ -300,62 +419,21 @@ backgroundTaskManager.stopBackgroundRunning(featureAbility.getContext()).then(()
 
 ```
 
-## backgroundTaskManager.applyEfficiencyResources<sup>9+</sup>
+Stage model:
 
-applyEfficiencyResources(request: [EfficiencyResourcesRequest](#efficiencyresourcesrequest9)): boolean
-
-Requests efficiency resources from the system.
-A process and its application can request the same type of resources at the same time, for example, CPU resources. When the application releases the resources, the same type of resources requested by the process are also released.
-
-**System capability**: SystemCapability.ResourceSchedule.BackgroundTaskManager.EfficiencyResourcesApply
-
-**System API**: This is a system API.
-
-**Parameters**
-
-| Name    | Type     | Mandatory  | Description                                      |
-| ------- | ------- | ---- | ---------------------------------------- |
-| request | [EfficiencyResourcesRequest](#efficiencyresourcesrequest9) | Yes   | Necessary information carried in the request, including the resource type and timeout interval. For details, see [EfficiencyResourcesRequest](#efficiencyresourcesrequest9).|
-
-**Return value**
-| Type            | Description              |
-| -------------- | ---------------- |
-| boolean | Returns **true** if the request for the resources is successful; returns **false** otherwise.|
-
-**Example**
-
-```js
+```ts
+import Ability from '@ohos.application.Ability'
 import backgroundTaskManager from '@ohos.backgroundTaskManager';
 
-let request = {
-    resourceTypes: backgroundTaskManager.ResourceType.CPU,
-    isApply: true,
-    timeOut: 0,
-    reason: "apply",
-    isPersist: true,
-    isProcess: false,
+export default class MainAbility extends Ability {
+    onCreate(want, launchParam) {
+        backgroundTaskManager.stopBackgroundRunning(this.context).then(() => {
+            console.info("Operation stopBackgroundRunning succeeded");
+        }).catch((err) => {
+            console.error("Operation stopBackgroundRunning failed Cause: " + err);
+        });
+    }
 };
-let res = backgroundTaskManager.applyEfficiencyResources(request);
-console.info("result of applyEfficiencyResources is: " + res)
-```
-
-## backgroundTaskManager.resetAllEfficiencyResources<sup>9+</sup>
-
-resetAllEfficiencyResources(): void
-
-Releases all resources that have been requested.
-
-**System capability**: SystemCapability.ResourceSchedule.BackgroundTaskManager.EfficiencyResourcesApply
-
-**System API**: This is a system API.
-
-**Example**
-
-```js
-import backgroundTaskManager from '@ohos.backgroundTaskManager';
-
-backgroundTaskManager.backgroundTaskManager.resetAllEfficiencyResources();
-
 ```
 
 ## DelaySuspendInfo
@@ -374,49 +452,14 @@ Provides the information about the suspension delay.
 
 **System capability**: SystemCapability.ResourceSchedule.BackgroundTaskManager.ContinuousTask
 
-| Name                    | Value | Description                   |
-| ----------------------- | ---- | --------------------- |
-| DATA_TRANSFER           | 1    | Data transfer.                 |
-| AUDIO_PLAYBACK          | 2    | Audio playback.                 |
-| AUDIO_RECORDING         | 3    | Audio recording.                   |
-| LOCATION                | 4    | Positioning and navigation.                 |
-| BLUETOOTH_INTERACTION   | 5    | Bluetooth-related task.                 |
-| MULTI_DEVICE_CONNECTION | 6    | Multi-device connection.                |
-| WIFI_INTERACTION        | 7    | WLAN-related.<br>This is a system API.|
-| VOIP                    | 8    | Audio and video calls.<br>This is a system API. |
-| TASK_KEEPING            | 9    | Computing task (effective only for specific devices).       |
-
-## EfficiencyResourcesRequest<sup>9+</sup>
-
-Describes the parameters for requesting efficiency resources.
-
-**System capability**: SystemCapability.ResourceSchedule.BackgroundTaskManager.EfficiencyResourcesApply
-
-**System API**: This is a system API.
-
-| Name            | Type    | Mandatory  | Description                                      |
-| --------------- | ------ | ---- | ---------------------------------------- |
-| resourceTypes   | number  | Yes   | Type of the resource to request.                              |
-| isApply         | boolean | Yes   | Whether the request is used to apply for resources. The value **true** means that the request is used to apply for resources, and **false** means that the request is used to release resources.         |
-| timeOut         | number  | Yes   | Duration for which the resource will be used, in milliseconds.               |
-| isPersist       | boolean | No   | Whether the resource is permanently held. If the value is **true**, **timeOut** is invalid.   |
-| isProcess       | boolean | No   | Whether the request is initiated by a process. The value **true** means that the request is initiated by a process, and **false** means that the request is initiated by an application.         |
-| reason          | string  | Yes   | Reason for requesting the resource.               |
-
-## ResourceType<sup>9+</sup>
-
-Enumerates the efficiency resource types.
-
-**System capability**: SystemCapability.ResourceSchedule.BackgroundTaskManager.EfficiencyResourcesApply
-
-**System API**: This is a system API.
-
-| Name                    | Value | Description                   |
-| ----------------------- | ---- | --------------------- |
-| CPU                     | 1    | CPU resources, which prevent the application from being suspended.            |
-| COMMON_EVENT            | 2    | A type of software resources, which prevent common events from being proxied when the application is suspended. |
-| TIMER                   | 4    | A type of software resources, which prevent timers from being proxied when the application is suspended.   |
-| WORK_SCHEDULER          | 8    | WORK_SCHEDULER resources, which ensure that the application has more time to execute the task.     |
-| BLUETOOTH               | 16   | A type of hardware resources, which prevent Bluetooth resources from being proxied when the application is suspended. |
-| GPS                     | 32   | A type of hardware resources, which prevent GPS resources from being proxied when the application is suspended. |
-| AUDIO                   | 64   | A type of hardware resources, which prevent audio resources from being proxied when the application is suspended.|
+| Name                    | Description                   |
+| ----------------------- | --------------------- |
+| DATA_TRANSFER           | Data transfer.                 |
+| AUDIO_PLAYBACK          | Audio playback.                 |
+| AUDIO_RECORDING         | Audio recording.                   |
+| LOCATION                | Positioning and navigation.                 |
+| BLUETOOTH_INTERACTION   | Bluetooth-related task.                 |
+| MULTI_DEVICE_CONNECTION | Multi-device connection.                |
+| WIFI_INTERACTION        | WLAN-related (system API).|
+| VOIP                    | Audio and video calls (system API). |
+| TASK_KEEPING            | Computing task (effective only for specific devices).       |
