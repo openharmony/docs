@@ -30,7 +30,7 @@
         "descriptPackageId": "abcdefg1234567ABCDEFG"
     }],
     "descriptInfo": [{
-        "descriptPackageId": "abcdefg1234567ABCDEFG",
+        "descriptionType": 0,
         "content": "This package is used for update."
     }]
 }
