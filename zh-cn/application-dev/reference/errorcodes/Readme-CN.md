@@ -68,6 +68,7 @@
   - [振动错误码](errorcode-vibrator.md)
   - [系统参数错误码](errorcode-system-parameterV9.md)
   - [USB服务错误码](errorcode-usb.md)
+  - [升级错误码](errorcode-update.md)
 - 定制管理
   - [企业设备管理错误码](errorcode-enterpriseDeviceManager.md)
 - 语言基础类库
