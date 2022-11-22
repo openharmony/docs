@@ -348,7 +348,7 @@ off(type: 'cooperation', callback?: AsyncCallback\<void>): void
 | 参数名                | 类型                                                              | 必填    | 说明                           |
 | --------             | ----------------------------                                     | ----   | ----------------------------   |
 | type                 | string                                                           |  是    | 注册类型，取值“cooperation”。         |
-| callback             | AsyncCallback<void> |  否  | 需要取消注册的回调函数，若无此参数，则取消当前应用注册的所有回调函数。 |
+| callback             | AsyncCallback\<void> |  否  | 需要取消注册的回调函数，若无此参数，则取消当前应用注册的所有回调函数。 |
 
 
 

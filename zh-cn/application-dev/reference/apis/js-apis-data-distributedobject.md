@@ -131,7 +131,7 @@ setSessionId(sessionId: string, callback: AsyncCallback&lt;void&gt;): void
 
 **错误码：**
 
-  以下错误码的详细介绍参见[分布式数据对象错误码](../errorcodes/errorcode-distributed-data_object.md)。
+  以下错误码的详细介绍参见[分布式数据对象错误码](../errorcodes/errorcode-distributed-dataObject.md)。
 
   | 类型 | 说明 |
   | -------- | -------- |
@@ -189,7 +189,7 @@ setSessionId(callback: AsyncCallback&lt;void&gt;): void
 
 **错误码：**
 
-  以下错误码的详细介绍参见[分布式数据对象错误码](../errorcodes/errorcode-distributed-data_object.md)。
+  以下错误码的详细介绍参见[分布式数据对象错误码](../errorcodes/errorcode-distributed-dataObject.md)。
 
   | 类型 | 说明 |
   | -------- | -------- |
@@ -261,7 +261,7 @@ setSessionId(sessionId?: string): Promise&lt;void&gt;
 
 **错误码：**
 
-  以下错误码的详细介绍参见[分布式数据对象错误码](../errorcodes/errorcode-distributed-data_object.md)。
+  以下错误码的详细介绍参见[分布式数据对象错误码](../errorcodes/errorcode-distributed-dataObject.md)。
 
   | 类型 | 说明 |
   | -------- | -------- |
