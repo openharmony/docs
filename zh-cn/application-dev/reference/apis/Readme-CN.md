@@ -40,7 +40,7 @@
     - [@ohos.application.abilityManager (AbilityManager)](js-apis-application-abilityManager.md)
     - [@ohos.application.appManager (appManager)](js-apis-appmanager.md)
     - [@ohos.application.Configuration (Configuration)](js-apis-application-configuration.md)
-    - [@ohos.application.ConfigurationConstant (ConfigurationConstant)](js-apis-application-configurationconstant.md)
+    - [@ohos.application.ConfigurationConstant (ConfigurationConstant)](js-apis-application-configurationConstant.md)
     - [@ohos.application.errorManager (ErrorManager)](js-apis-errorManager.md)
     - [@ohos.application.formBindingData (卡片数据绑定类)](js-apis-formbindingdata.md)
     - [@ohos.application.formError (FormError)](js-apis-formerror.md)
