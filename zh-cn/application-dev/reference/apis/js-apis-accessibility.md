@@ -48,7 +48,7 @@ import accessibility from '@ohos.accessibility';
 
 | 名称 | 类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| id | number | 是 | 否 | ability&nbsp;id。 |
+| id | string | 是 | 否 | ability&nbsp;id。 |
 | name | string | 是 | 否 | ability 名。 |
 | bundleName | string | 是 | 否 | 包名。 |
 | targetBundleNames<sup>9+</sup> | Array&lt;string&gt; | 是 | 否 | 关注的目标包名。 |

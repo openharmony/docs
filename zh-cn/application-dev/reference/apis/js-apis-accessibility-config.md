@@ -29,7 +29,7 @@ import config from '@ohos.accessibility.config';
 | shortkey | [Config](#config)\<boolean>| 是 | 是 | 表示辅助扩展快捷键功能启用状态。 |
 | shortkeyTarget | [Config](#config)\<string>| 是 | 是 | 表示辅助扩展快捷键的目标配置。取值为辅助应用的名称，格式为：'bundleName/abilityName'。 |
 | captions | [Config](#config)\<boolean>| 是 | 是 | 表示辅助字幕功能启用状态。 |
-| captionsStyle | [Config](#config)\<[CaptionsStyle](js-apis-accessibility.md#captionsstyle8)>| 是 | 是 | 表示辅助字幕的配置。 |
+| captionsStyle | [Config](#config)\<[accessibility.CaptionsStyle](js-apis-accessibility.md#captionsstyle8)>| 是 | 是 | 表示辅助字幕的配置。 |
 
 ## enableAbility
 
@@ -44,7 +44,7 @@ enableAbility(name: string, capability: Array&lt;accessibility.Capability&gt;): 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | name | string | 是 | 辅助应用的名称，格式为：'bundleName/abilityName'。 |
-| capability | Array&lt;[accessibility.Capability](js-apis-accessibility.md#capability)&gt;) | 是 | 辅助应用的能力属性。 |
+| capability | Array&lt;[accessibility.Capability](js-apis-accessibility.md#capability)&gt; | 是 | 辅助应用的能力属性。 |
 
 **返回值：**
 
@@ -370,7 +370,7 @@ get(callback: AsyncCallback&lt;T&gt;): void;
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| callback | AsyncCallback&lt;void&gt; | 是 | 回调函数，返回属性值。 |
+| callback | AsyncCallback&lt;T&gt; | 是 | 回调函数，返回属性值。 |
 
 **示例：**
 
