@@ -458,7 +458,7 @@ import featureAbility from '@ohos.ability.featureAbility';
 try {
     backgroundTaskManager.stopBackgroundRunning(featureAbility.getContext()).then(() => {
         console.info("Operation stopBackgroundRunning succeeded");
-    }).catch((err) => {
+    }).catch((error) => {
         console.error(`Operation stopBackgroundRunning failed. code is ${error.code} message is ${error.message}`);
     });
 } catch (error) {
@@ -546,7 +546,7 @@ resetAllEfficiencyResources(): void
 import backgroundTaskManager from '@ohos.resourceschedule.backgroundTaskManager';  
 
 try {
-    backgroundTaskManager.backgroundTaskManager.resetAllEfficiencyResources();
+    backgroundTaskManager.resetAllEfficiencyResources();
 } catch (error) {
     console.error(`resetAllEfficiencyResources failed. code is ${error.code} message is ${error.message}`);
 }
