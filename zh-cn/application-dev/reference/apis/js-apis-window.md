@@ -52,7 +52,7 @@ import window from '@ohos.window';
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
-| 名称 | 参数类型 | 必填 | 说明 |
+| 名称 | 类型 | 必填 | 说明 |
 | ---------- | -------------------------- | -- | ----------------------------------- |
 | name       | string                     | 是 | 子窗口名字。                         |
 | windowType | [WindowType](#windowtype7) | 是 | 子窗口类型。                         |
@@ -108,7 +108,7 @@ import window from '@ohos.window';
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
-| 名称                                   | 参数类型 | 可读 | 可写 | 必填 | 说明                                                         |
+| 名称                                   | 类型 | 可读 | 可写 | 必填 | 说明                                                         |
 | -------------------------------------- | -------- | ---- | ---- | ---- | ------------------------------------------------------------ |
 | statusBarColor                         | string   | 否   | 是   | 否   | 状态栏背景颜色，为十六进制RGB或ARGB颜色，不区分大小写，例如`#00FF00`或`#FF00FF00`。默认值：`#0x66000000`。 |
 | isStatusBarLightIcon<sup>7+</sup>      | boolean  | 否   | 是   | 否   | 状态栏图标是否为高亮状态。true表示高亮；false表示不高亮。默认值：false。 |
@@ -161,7 +161,7 @@ import window from '@ohos.window';
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
-| 名称            | 参数类型                  | 可读 | 可写 | 说明                                                         |
+| 名称            | 类型                  | 可读 | 可写 | 说明                                                         |
 | --------------- | ------------------------- | ---- | ---- | ------------------------------------------------------------ |
 | type            | [WindowType](#windowtype7) | 是   | 否   | 当前属性改变的系统栏类型，仅支持类型为导航栏、状态栏的系统栏。 |
 | isEnable        | boolean                   | 是   | 否   | 当前系统栏是否显示。true表示显示；false表示不显示。 |
@@ -177,7 +177,7 @@ import window from '@ohos.window';
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
-| 名称       | 参数类型                                            | 可读 | 可写 | 说明                         |
+| 名称       | 类型                                            | 可读 | 可写 | 说明                         |
 | ---------- | --------------------------------------------------- | ---- | ---- | ---------------------------- |
 | displayId  | number                                              | 是   | 否   | 当前物理屏幕id。             |
 | regionTint | Array<[SystemBarRegionTint](#systembarregiontint8)> | 是   | 否   | 当前已改变的所有系统栏信息。 |
@@ -188,7 +188,7 @@ import window from '@ohos.window';
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
-| 名称   | 参数类型 | 可读 | 可写 | 说明               |
+| 名称   | 类型 | 可读 | 可写 | 说明               |
 | ------ | -------- | ---- | ---- | ------------------ |
 | left   | number   | 是   | 是   | 矩形区域的左边界。 |
 | top    | number   | 是   | 是   | 矩形区域的上边界。 |
@@ -201,7 +201,7 @@ import window from '@ohos.window';
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
-| 名称       | 参数类型      | 可读 | 可写 | 说明               |
+| 名称       | 类型      | 可读 | 可写 | 说明               |
 | ---------- | ------------- | ---- | ---- | ------------------ |
 | visible<sup>9+</sup>    | boolean       | 是   | 是   | 规避区域是否可见。true表示可见；false表示不可见。 |
 | leftRect   | [Rect](#rect7) | 是   | 是   | 屏幕左侧的矩形区。 |
@@ -215,7 +215,7 @@ import window from '@ohos.window';
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
-| 名称   | 参数类型 | 可读 | 可写 | 说明       |
+| 名称   | 类型 | 可读 | 可写 | 说明       |
 | ------ | -------- | ---- | ---- | ---------- |
 | width  | number   | 是   | 是   | 窗口宽度。 |
 | height | number   | 是   | 是   | 窗口高度。 |
@@ -226,7 +226,7 @@ import window from '@ohos.window';
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
-| 名称                                  | 参数类型                  | 可读 | 可写 | 说明                                                         |
+| 名称                                  | 类型                  | 可读 | 可写 | 说明                                                         |
 | ------------------------------------- | ------------------------- | ---- | ---- | ------------------------------------------------------------ |
 | windowRect<sup>7+</sup>               | [Rect](#rect7)             | 是   | 是   | 窗口尺寸。                                                   |
 | type<sup>7+</sup>                     | [WindowType](#windowtype7) | 是   | 是   | 窗口类型。                                                   |
@@ -261,7 +261,7 @@ import window from '@ohos.window';
 
 **系统能力**：SystemCapability.WindowManager.WindowManager.Core
 
-| 名称   | 参数类型 | 可读 | 可写 | 说明                                               |
+| 名称   | 类型 | 可读 | 可写 | 说明                                               |
 | ------ | -------- | ---- | ---- | -------------------------------------------------- |
 | x      | number   | 否   | 是   | X轴的缩放参数，默认值为1.0。                       |
 | y      | number   | 否   | 是   | Y轴的缩放参数，默认值为1.0。                       |
@@ -276,7 +276,7 @@ import window from '@ohos.window';
 
 **系统能力**：SystemCapability.WindowManager.WindowManager.Core
 
-| 名称   | 参数类型 | 可读 | 可写 | 说明                                               |
+| 名称   | 类型 | 可读 | 可写 | 说明                                               |
 | ------ | -------- | ---- | ---- | -------------------------------------------------- |
 | x      | number   | 否   | 是   | 绕X轴的旋转角度，默认值为0.0。                     |
 | y      | number   | 否   | 是   | 绕Y轴的旋转角度，默认值为0.0。                     |
@@ -292,7 +292,7 @@ import window from '@ohos.window';
 
 **系统能力**：SystemCapability.WindowManager.WindowManager.Core
 
-| 名称 | 参数类型 | 可读 | 可写 | 说明                         |
+| 名称 | 类型 | 可读 | 可写 | 说明                         |
 | ---- | -------- | ---- | ---- | ---------------------------- |
 | x    | number   | 否   | 是   | X轴的平移参数，默认值为0.0。 |
 | y    | number   | 否   | 是   | Y轴的平移参数，默认值为0.0。 |
@@ -6012,7 +6012,7 @@ createSubWindow(name: string, callback: AsyncCallback&lt;Window&gt;): void
 
 | 参数名   | 类型                                   | 必填 | 说明                                          |
 | -------- | -------------------------------------- | ---- | --------------------------------------------- |
-| name     | String                                 | 是   | 子窗口的名字。                                |
+| name     | string                                 | 是   | 子窗口的名字。                                |
 | callback | AsyncCallback&lt;[Window](#window)&gt; | 是   | 回调函数。返回当前WindowStage下的子窗口对象。 |
 
 **错误码：**
@@ -6063,7 +6063,7 @@ createSubWindow(name: string): Promise&lt;Window&gt;
 
 | 参数名 | 类型   | 必填 | 说明           |
 | ------ | ------ | ---- | -------------- |
-| name   | String | 是   | 子窗口的名字。 |
+| name   | string | 是   | 子窗口的名字。 |
 
 **返回值：**
 
@@ -6528,7 +6528,7 @@ class myAbility extends Ability {
 
 **系统能力**：SystemCapability.WindowManager.WindowManager.Core
 
-| 名称                  | 参数类型          | 可读 | 可写 | 说明             |
+| 名称                  | 类型          | 可读 | 可写 | 说明             |
 | --------------------- | ----------------- | ---- | ---- | ---------------- |
 | toWindow<sup>9+</sup> | [Window](#window) | 是   | 是   | 动画的目标窗口。 |
 

@@ -20,7 +20,7 @@ import screenshot from '@ohos.screenshot';
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
 
-| 参数名                 | 类型          | 必填 | 说明                                                         |
+| 名称                 | 类型          | 必填 | 说明                                                         |
 | ---------------------- | ------------- | ---- | ------------------------------------------------------------ |
 | screenRect             | [Rect](#rect) | 否   | 表示截取图像的区域，不传值默认为全屏。                       |
 | imageSize              | [Size](#size) | 否   | 表示截取图像的大小，不传值默认为全屏。                       |
@@ -34,7 +34,7 @@ import screenshot from '@ohos.screenshot';
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
-| 参数名 | 类型   | 必填 | 说明                                                         |
+| 名称 | 类型   | 必填 | 说明                                                         |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
 | left   | number | 是   | 表示截取图像区域的左边界。|
 | top    | number | 是   | 表示截取图像区域的上边界。|
@@ -48,7 +48,7 @@ import screenshot from '@ohos.screenshot';
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
-| 参数名 | 类型   | 必填 | 说明                                                         |
+| 名称 | 类型   | 必填 | 说明                                                         |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
 | width  | number | 是   | 表示截取图像的宽度。|
 | height | number | 是   | 表示截取图像的高度。|
