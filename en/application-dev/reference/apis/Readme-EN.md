@@ -144,8 +144,10 @@
   - [@ohos.data.ValuesBucket](js-apis-data-ValuesBucket.md)
   - data/rdb/[resultSet](js-apis-data-resultset.md)
 - File Management
+  - [@ohos.data.fileAccess](js-apis-fileAccess.md)
   - [@ohos.document](js-apis-document.md)
   - [@ohos.environment](js-apis-environment.md)
+  - [@ohos.fileExtensionInfo](js-apis-fileExtensionInfo.md)
   - [@ohos.fileio](js-apis-fileio.md)
   - [@ohos.fileManager](js-apis-filemanager.md)
   - [@ohos.filemanagement.userfile_manager](js-apis-userfilemanager.md)
