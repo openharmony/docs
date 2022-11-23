@@ -154,7 +154,7 @@ makeExpand(options:Array&lt;ExpandOption&gt;, callback: AsyncCallback&lt;number&
 | 参数名   | 类型                                       | 必填 | 说明                             |
 | -------- | ------------------------------------------ | ---- | -------------------------------- |
 | options  | Array&lt;[ExpandOption](#expandoption)&gt; | 是   | 设置扩展屏幕的参数集合。         |
-| callback | Callback&lt;number&gt;                     | 是   | 回调函数。返回扩展屏幕的群组id。 |
+| callback | AsyncCallback&lt;number&gt;                     | 是   | 回调函数。返回扩展屏幕的群组id。 |
 
 **错误码：**
 
@@ -709,7 +709,7 @@ try {
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
-| 名称     | 参数类型 | 可读 | 可写 | 说明                |
+| 名称     | 类型 | 可读 | 可写 | 说明                |
 | -------- | -------- | ---- | ---- | ------------------- |
 | screenId | number   | 是   | 是   | 屏幕的id。          |
 | startX   | number   | 是   | 是   | 屏幕的起始X轴坐标。 |
@@ -721,7 +721,7 @@ try {
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
-| 名称      | 参数类型 | 可读 | 可写 | 说明                      |
+| 名称      | 类型 | 可读 | 可写 | 说明                      |
 | --------- | -------- | ---- | ---- | ------------------------- |
 | name      | string   | 是   | 是   | 指定虚拟屏幕的名称。      |
 | width     | number   | 是   | 是   | 指定虚拟屏幕的宽度。      |
@@ -737,7 +737,7 @@ try {
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
-| 名称              | 参数类型                                       | 可读 | 可写 | 说明                   |
+| 名称              | 类型                                       | 可读 | 可写 | 说明                   |
 | ----------------- | ---------------------------------------------- | ---- | ---- | ---------------------- |
 | id                | number                                         | 是   | 否   | 屏幕的id。             |
 | parent            | number                                         | 是   | 否   | 屏幕所属群组的id。     |
@@ -1003,7 +1003,7 @@ try {
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
-| 名称        | 参数类型 | 可读 | 可写 | 说明                                               |
+| 名称        | 类型 | 可读 | 可写 | 说明                                               |
 | ----------- | -------- | ---- | ---- | -------------------------------------------------- |
 | id          | number   | 是   | 是   | 模式id，所支持的模式由具体设备分辨率和刷新率决定。 |
 | width       | number   | 是   | 是   | 屏幕的宽度。                                       |

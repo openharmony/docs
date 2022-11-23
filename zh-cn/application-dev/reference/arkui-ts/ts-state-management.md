@@ -701,7 +701,7 @@ EnvProp\<S>(key: string, value: S): boolean
 
 | key          |       类型    |      说明            |
 | ------------ | ------------- | ------------------- |
-| accessibilityEnabled | boolean | 无障碍屏幕朗读是否启用。            |
+| accessibilityEnabled | string | 无障碍屏幕朗读是否启用。            |
 | colorMode | ColorMode | 深浅色模式，可选值为：<br>- ColorMode.LIGHT：浅色模式；<br>- ColorMode.DARK：深色模式。   |
 | fontScale | number | 字体大小比例。            |
 | fontWeightScale | number | 字重比例。            |

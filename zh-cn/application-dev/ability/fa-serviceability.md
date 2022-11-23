@@ -128,7 +128,7 @@ let promise = featureAbility.startAbility(
 
     使用OpenHarmony IDL（OpenHarmony Interface Definition Language）来自动生成对应客户端服务端及IRemoteObject代码，具体示例代码和说明请参考：
 
-   - [`OpenHarmony IDL`：TS开发步骤](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/IDL/idl-guidelines.md#ts开发步骤)
+   - [`OpenHarmony IDL`：TS开发步骤](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/IDL/idl-guidelines.md#ts%E5%BC%80%E5%8F%91%E6%AD%A5%E9%AA%A4)
 
 2. 在对应文件编写代码
 
@@ -176,7 +176,7 @@ let promise = featureAbility.startAbility(
 
     ```javascript
     import featureAbility from '@ohos.ability.featureAbility';
-    let connId = featureAbility.connectAbility(
+    let connectId = featureAbility.connectAbility(
         {
             bundleName: "com.jstest.service",
             abilityName: "com.jstest.service.ServiceAbility",
@@ -293,7 +293,7 @@ function getRemoteDeviceId() {
 
 ```ts
 import featureAbility from '@ohos.ability.featureAbility';
-let connId = featureAbility.connectAbility(
+let connectId = featureAbility.connectAbility(
     {
         deviceId: getRemoteDeviceId(),
         bundleName: "ohos.samples.etsDemo",

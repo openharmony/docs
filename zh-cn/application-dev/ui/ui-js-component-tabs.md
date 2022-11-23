@@ -15,7 +15,7 @@ tabs是一种常见的界面导航结构。通过页签容器，用户可以快�
             <text>item1</text>
             <text>item2</text>
         </tab-bar>
-        <tab-content>
+        <tab-content class="tabContent">
             <div class="text">
                 <text>content1</text>
             </div>
@@ -34,6 +34,10 @@ tabs是一种常见的界面导航结构。通过页签容器，用户可以快�
   justify-content: center;
   align-items: center;
   background-color: #F1F3F5;
+}
+.tabContent{
+  width: 100%;
+  height: 100%;
 }
 .text{
   width: 100%;

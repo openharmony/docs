@@ -9,18 +9,18 @@
 
 ## 接口说明
 
-userIAM_userAuth模块提供了用户认证的相关方法，包括查询认证能力、发起认证和取消认证等，用户可以使用人脸、指纹等生物特征信息进行认证操作。具体接口说明可以查阅[API参考](../reference/apis/js-apis-useriam-userauth.md)。
+userIAM_userAuth模块提供了用户认证的相关方法，包括查询认证能力、发起认证和取消认证等，用户可以使用人脸、指纹等生物特征信息进行认证操作。具体接口说明可以查阅[API参考文档](../reference/apis/js-apis-useriam-userauth.md)。
 
-在执行认证前，需要指认证类型和认证等级，查询设备是否支持该认证能力。如果不支持，需要考虑使用其他认证能力。
+在执行认证前，需要指定[认证类型](../reference/apis/js-apis-useriam-userauth.md#userauthtype8)和[认证等级](../reference/apis/js-apis-useriam-userauth.md#authtrustlevel8)，查询设备是否支持该认证能力。
 
 **表1** 用户认证开放能力列表
 
-| 接口名称                                                       | 功能描述                                                     |
-| ------------------------------------------------------------ | ------------------------------------------------------------ |
-| getVersion() : number                                        | 获取认证对象的版本信息。                                     |
-| getAvailableStatus(authType : UserAuthType, authTrustLevel : AuthTrustLevel) : number | 根据指定的认证类型、认证等级，检测当前设备是否支持相应的认证能力。 |
-| auth(challenge: Uint8Array, authType: UserAuthType, authTrustLevel: AuthTrustLevel, callback: IUserAuthCallback): Uint8Array | 执行用户认证，使用callback方式作为异步方法返回结果。                 |
-| cancelAuth(contextID : Uint8Array) : number                  | 通过contextID取消本次认证操作。                              |
+| 接口名称    | 功能描述                |
+| ---------- | ----------------------- |
+| getVersion() : number      | 获取认证对象的版本信息。            |
+| getAvailableStatus(authType : UserAuthType, authTrustLevel : AuthTrustLevel): void | 根据指定的认证类型、认证等级，检测当前设备是否支持相应的认证能力。 |
+| start: void  | 执行用户认证。        |
+| cancel: void | 取消本次认证操作。    |
 
 ## 获取认证对象的版本信息
 
@@ -28,16 +28,17 @@ userIAM_userAuth模块提供了用户认证的相关方法，包括查询认证�
 
 1. 申请权限。调用getVersion接口，需要在module.json5文件的requestPermissions对象中配置ohos.permission.ACCESS_BIOMETRIC权限。更多配置信息[应用包结构配置文件的说明](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/quick-start/stage-structure.md)。
 
-2. 获取认证对象。
-
-3. 调用getVersion接口获取版本信息。
+2. 调用getVersion接口获取版本信息。
 
 ```js
-import userIAM_userAuth from '@ohos.userIAM.userAuth'
+import userIAM_userAuth from '@ohos.userIAM.userAuth';
 
-let auth = new userIAM_userAuth.UserAuth();
-let version = auth.getVersion();
-console.info("auth version = " + version);
+try {
+    let version = userIAM_userAuth.getVersion();
+    console.info("auth version = " + version);
+} catch (error) {
+    console.info("get version failed, error = " + error);
+}
 ```
 
 ## 查询当前设备是否支持相应的认证能力
@@ -46,63 +47,139 @@ console.info("auth version = " + version);
 
 1. 申请权限。调用getAvailableStatus接口，需要在module.json5文件的requestPermissions对象中配置ohos.permission.ACCESS_BIOMETRIC权限。更多配置信息[应用包结构配置文件的说明](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/quick-start/stage-structure.md)。
 
-2. 获取认证对象。
-
-3. 指定认证类型和认证等级，调用getAvailableStatus接口查询当前的设备是否支持相应的认证能力。
+2. 指定[认证类型](../reference/apis/js-apis-useriam-userauth.md#userauthtype8)和[认证等级](../reference/apis/js-apis-useriam-userauth.md#authtrustlevel8)，调用getAvailableStatus接口查询当前的设备是否支持相应的认证能力。
 
 ```js
-import userIAM_userAuth from '@ohos.userIAM.userAuth'
+import userIAM_userAuth from '@ohos.userIAM.userAuth';
 
-let auth = new userIAM_userAuth.UserAuth();
-let checkCode = auth.getAvailableStatus(userIAM_userAuth.UserAuthType.FACE, userIAM_userAuth.AuthTrustLevel.ATL1);
-if (checkCode == userIAM_userAuth.ResultCode.SUCCESS) {
-    console.info("check auth support success");
-    // 此处添加支持相应认证能力的逻辑
-} else {
-    console.error("check auth support fail, code = " + checkCode);
-    // 此处添加不支持相应认证能力的逻辑
+try {
+    userIAM_userAuth.getAvailableStatus(userIAM_userAuth.UserAuthType.FACE, userIAM_userAuth.AuthTrustLevel.ATL1);
+    console.info("current auth trust level is supported");
+} catch (error) {
+    console.info("current auth trust level is not supported, error = " + error);
 }
 ```
 
-## 执行认证操作
+## 执行认证操作并请阅认证结果
 
 ### 开发步骤
 
 1. 申请权限。调用auth接口，需要在module.json5文件的requestPermissions对象中配置ohos.permission.ACCESS_BIOMETRIC权限。更多配置信息[应用包结构配置文件的说明](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/quick-start/stage-structure.md)。
 
-2. 获取认证对象。
+2. 指定challenge、[认证类型](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-useriam-userauth.md#userauthtype8)和[认证等级](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-useriam-userauth.md#authtrustlevel8)，获取认证对象。
 
-3. 指定认证类型和认证等级，调用auth接口发起认证，通过onResult回调返回认证结果，通过onAcquireInfo回调返回认证过程中的提示信息。
+3. 调用on接口订阅认证结果。
+
+4. 调用start接口发起认证，通过callback回调返回认证结果。
+
+5. 调用off接口取消订阅认证结果。
 
 ```js
-import userIAM_userAuth from '@ohos.userIAM.userAuth'
+import userIAM_userAuth from '@ohos.userIAM.userAuth';
 
-let auth = new userIAM_userAuth.UserAuth();
-auth.auth(null, userIAM_userAuth.UserAuthType.FACE, userIAM_userAuth.AuthTrustLevel.ATL1, {
-    onResult: (result, extraInfo) => {
-        try {
-            console.info("auth onResult result = " + result);
-            console.info("auth onResult extraInfo = " + JSON.stringify(extraInfo));
-            if (result == userIAM_userAuth.ResultCode.SUCCESS) {
-                // 此处添加认证成功逻辑
-            }  else {
-                // 此处添加认证失败逻辑
+let challenge = new Uint8Array([1, 2, 3, 4, 5, 6, 7, 8]);
+let authType = userIAM_userAuth.UserAuthType.FACE;
+let authTrustLevel = userIAM_userAuth.AuthTrustLevel.ATL1;
+let auth;
+try {
+    auth = userIAM_userAuth.getAuthInstance(challenge, authType, authTrustLevel);
+    console.log("get auth instance success");
+} catch (error) {
+    console.log("get auth instance failed" + error);
+}
+
+try {
+    // 订阅认证结果
+    auth.on("result", {
+        callback: (result: userIAM_userAuth.AuthResultInfo) => {
+            console.log("authV9 result " + result.result);
+            console.log("authV9 token " + result.token);
+            console.log("authV9 remainAttempts " + result.remainAttempts);
+            console.log("authV9 lockoutDuration " + result.lockoutDuration);
+        }
+    });
+    console.log("subscribe authentication event success");
+} catch (error) {
+    console.log("subscribe authentication event failed " + error);
+}
+
+try {
+    auth.start();
+    console.info("authV9 start auth success");
+} catch (error) {
+    console.info("authV9 start auth failed, error = " + error);
+}
+
+// 取消订阅认证结果
+try {
+    auth.off("result");
+    console.info("cancel subscribe authentication event success");
+} catch (error) {
+    console.info("cancel subscribe authentication event failed, error = " + error);
+}
+```
+
+## 执行认证操作并订阅认证过程中的提示信息
+
+### 开发步骤
+
+1. 申请权限。调用auth接口，需要在module.json5文件的requestPermissions对象中配置ohos.permission.ACCESS_BIOMETRIC权限。更多配置信息[应用包结构配置文件的说明](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/quick-start/stage-structure.md)。
+
+2. 指定challenge、[认证类型](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-useriam-userauth.md#userauthtype8)和[认证等级](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-useriam-userauth.md#authtrustlevel8)，获取认证对象。
+
+3. 调用on接口订阅认证过程中的提示信息。
+
+4. 调用start接口发起认证，通过callback回调返回认证过程中的提示信息。
+
+5. 调用off接口取消订阅认证过程中的提示信息。
+
+```js
+import userIAM_userAuth from '@ohos.userIAM.userAuth';
+
+let challenge = new Uint8Array([1, 2, 3, 4, 5, 6, 7, 8]);
+let authType = userIAM_userAuth.UserAuthType.FACE;
+let authTrustLevel = userIAM_userAuth.AuthTrustLevel.ATL1;
+let auth;
+try {
+    auth = userIAM_userAuth.getAuthInstance(challenge, authType, authTrustLevel);
+    console.log("get auth instance success");
+} catch (error) {
+    console.log("get auth instance failed" + error);
+}
+
+try {
+    // 订阅认证过程中的提示信息
+    auth.on("tip", {
+        callback : (result : userIAM_userAuth.TipInfo) => {
+            switch (result.tip) {
+                case userIAM_userAuth.FaceTips.FACE_AUTH_TIP_TOO_BRIGHT:
+                // do something;
+                case userIAM_userAuth.FaceTips.FACE_AUTH_TIP_TOO_DARK:
+                // do something;
+                default:
+                // do others
             }
-        } catch (e) {
-            console.info("auth onResult error = " + e);
         }
-    },
+    });
+    console.log("subscribe authentication event success");
+} catch (error) {
+    console.log("subscribe authentication event failed " + error);
+}
 
-    onAcquireInfo: (module, acquire, extraInfo) => {
-        try {
-            console.info("auth onAcquireInfo module = " + module);
-            console.info("auth onAcquireInfo acquire = " + acquire);
-            console.info("auth onAcquireInfo extraInfo = " + JSON.stringify(extraInfo));
-        } catch (e) {
-            console.info("auth onAcquireInfo error = " + e);
-        }
-    }
-});
+try {
+    auth.start();
+    console.info("authV9 start auth success");
+} catch (error) {
+    console.info("authV9 start auth failed, error = " + error);
+}
+
+// 取消订阅认证结果
+try {
+    auth.off("tip");
+    console.info("cancel subscribe tip information success");
+} catch (error) {
+    console.info("cancel subscribe tip information failed, error = " + error);
+}
 ```
 
 ## 认证过程中取消认证
@@ -111,30 +188,37 @@ auth.auth(null, userIAM_userAuth.UserAuthType.FACE, userIAM_userAuth.AuthTrustLe
 
 1. 申请权限。调用cancelAuth接口，需要在module.json5文件的requestPermissions对象中配置ohos.permission.ACCESS_BIOMETRIC权限。更多配置信息[应用包结构配置文件的说明](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/quick-start/stage-structure.md)。
 
-2. 获取认证对象。
+2. 指定challenge、[认证类型](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-useriam-userauth.md#userauthtype8)和[认证等级](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-useriam-userauth.md#authtrustlevel8)，获取认证对象。
 
-3. 指定认证类型和认证等级，调用auth接口发起认证，通过onResult回调返回认证结果，通过onAcquireInfo回调返回认证过程中的提示信息。
+3. 调用start接口发起认证。
 
-4. 通过调用cancelAuth接口取消本次认证。
+4. 通过调用cancel接口取消本次认证。
 
 ```js
-import userIAM_userAuth from '@ohos.userIAM.userAuth'
+import userIAM_userAuth from '@ohos.userIAM.userAuth';
 
-let auth = new userIAM_userAuth.UserAuth();
-// contextId通过auth接口获取
-let contextId = auth.auth(null, userIAM_userAuth.UserAuthType.FACE, userIAM_userAuth.AuthTrustLevel.ATL1, {
-    onResult: (result, extraInfo) => {
-        console.info("auth onResult result = " + result);
-    },
+let challenge = new Uint8Array([1, 2, 3, 4, 5, 6, 7, 8]);
+let authType = userIAM_userAuth.UserAuthType.FACE;
+let authTrustLevel = userIAM_userAuth.AuthTrustLevel.ATL1;
+let auth;
+try {
+    auth = userIAM_userAuth.getAuthInstance(challenge, authType, authTrustLevel);
+    console.log("get auth instance success");
+} catch (error) {
+    console.log("get auth instance failed" + error);
+}
 
-    onAcquireInfo: (module, acquire, extraInfo) => {
-        console.info("auth onAcquireInfo module = " + module);
-    }
-});
-let cancelCode = auth.cancelAuth(contextId);
-if (cancelCode == userIAM_userAuth.ResultCode.SUCCESS) {
+try {
+    auth.start();
+    console.info("authV9 start auth success");
+} catch (error) {
+    console.info("authV9 start auth failed, error = " + error);
+}
+
+try {
+    auth.cancel();
     console.info("cancel auth success");
-} else {
-    console.error("cancel auth fail");
+} catch (error) {
+    console.info("cancel auth failed, error = " + error);
 }
 ```

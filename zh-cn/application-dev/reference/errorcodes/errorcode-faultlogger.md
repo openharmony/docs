@@ -1,4 +1,4 @@
-# faultlogger 错误码
+# Faultlogger 错误码
 
 ## 10600001 服务未启动或故障
 

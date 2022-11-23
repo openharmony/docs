@@ -26,7 +26,7 @@ requestSuspendDelay(reason: string, callback: Callback&lt;void&gt;): DelaySuspen
 
 后台应用申请延迟挂起。
 
-延迟挂起时间一般情况下默认值为180000，低电量（依据系统低电量广播）时默认值为60000。
+延迟挂起时间一般情况下默认值为3分钟，低电量（依据系统低电量广播）时默认值为1分钟。
 
 **系统能力:** SystemCapability.ResourceSchedule.BackgroundTaskManager.TransientTask
 
@@ -255,8 +255,8 @@ startBackgroundRunning(context: Context, bgMode: BackgroundMode, wantAgent: Want
 **示例**：
 
 ```js
+import Ability from '@ohos.application.Ability'
 import backgroundTaskManager from '@ohos.resourceschedule.backgroundTaskManager';  
-import featureAbility from '@ohos.ability.featureAbility';
 import wantAgent from '@ohos.wantAgent';
 
 function callback(error, data) {
@@ -267,27 +267,30 @@ function callback(error, data) {
     }
 }
 
-let wantAgentInfo = {
-    wants: [
-        {
-            bundleName: "com.example.myapplication",
-            abilityName: "com.example.myapplication.MainAbility"
-        }
-    ],
-    operationType: wantAgent.OperationType.START_ABILITY,
-    requestCode: 0,
-    wantAgentFlags: [wantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
-};
+export default class MainAbility extends Ability {
+    onCreate(want, launchParam) {
+        let wantAgentInfo = {
+            wants: [
+                {
+                    bundleName: "com.example.myapplication",
+                    abilityName: "MainAbility"
+                }
+            ],
+            operationType: wantAgent.OperationType.START_ABILITY,
+            requestCode: 0,
+            wantAgentFlags: [wantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
+        };
 
-wantAgent.getWantAgent(wantAgentInfo).then((wantAgentObj) => {
-    try {
-        backgroundTaskManager.startBackgroundRunning(featureAbility.getContext(),
-            backgroundTaskManager.BackgroundMode.DATA_TRANSFER, wantAgentObj, callback)
-    } catch (error) {
-        console.error(`Operation startBackgroundRunning failed. code is ${error.code} message is ${error.message}`);
+        wantAgent.getWantAgent(wantAgentInfo).then((wantAgentObj) => {
+            try {
+                backgroundTaskManager.startBackgroundRunning(this.context,
+                    backgroundTaskManager.BackgroundMode.LOCATION, wantAgentObj, callback)
+            } catch (error) {
+                console.error(`Operation startBackgroundRunning failed. code is ${error.code} message is ${error.message}`);
+            }
+        });
     }
-});
-
+};
 ```
 
 ## backgroundTaskManager.startBackgroundRunning:promise
@@ -331,35 +334,38 @@ startBackgroundRunning(context: Context, bgMode: BackgroundMode, wantAgent: Want
 **示例**：
 
 ```js
-import backgroundTaskManager from '@ohos.resourceschedule.backgroundTaskManager';  
-import featureAbility from '@ohos.ability.featureAbility';
+import Ability from '@ohos.application.Ability'
+import backgroundTaskManager from '@ohos.resourceschedule.backgroundTaskManager'; 
 import wantAgent from '@ohos.wantAgent';
 
-let wantAgentInfo = {
-    wants: [
-        {
-            bundleName: "com.example.myapplication",
-            abilityName: "com.example.myapplication.MainAbility"
-        }
-    ],
-    operationType: wantAgent.OperationType.START_ABILITY,
-    requestCode: 0,
-    wantAgentFlags: [wantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
-};
+export default class MainAbility extends Ability {
+    onCreate(want, launchParam) {
+        let wantAgentInfo = {
+            wants: [
+                {
+                    bundleName: "com.example.myapplication",
+                    abilityName: "MainAbility"
+                }
+            ],
+            operationType: wantAgent.OperationType.START_ABILITY,
+            requestCode: 0,
+            wantAgentFlags: [wantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
+        };
 
-wantAgent.getWantAgent(wantAgentInfo).then((wantAgentObj) => {
-    try {
-        backgroundTaskManager.startBackgroundRunning(featureAbility.getContext(),
-            backgroundTaskManager.BackgroundMode.DATA_TRANSFER, wantAgentObj).then(() => {
-            console.info("Operation startBackgroundRunning succeeded");
-        }).catch((error) => {
-            console.error(`Operation startBackgroundRunning failed. code is ${error.code} message is ${error.message}`);
+        wantAgent.getWantAgent(wantAgentInfo).then((wantAgentObj) => {
+            try {
+                backgroundTaskManager.startBackgroundRunning(this.context,
+                    backgroundTaskManager.BackgroundMode.LOCATION, wantAgentObj).then(() => {
+                    console.info("Operation startBackgroundRunning succeeded");
+                }).catch((error) => {
+                    console.error(`Operation startBackgroundRunning failed. code is ${error.code} message is ${error.message}`);
+                });
+            } catch (error) {
+                console.error(`Operation startBackgroundRunning failed. code is ${error.code} message is ${error.message}`);
+            }
         });
-    } catch (error) {
-        console.error(`Operation startBackgroundRunning failed. code is ${error.code} message is ${error.message}`);
     }
-});
-
+};
 ```
 
 ## backgroundTaskManager.stopBackgroundRunning:callback
@@ -394,8 +400,8 @@ stopBackgroundRunning(context: Context, callback: AsyncCallback&lt;void&gt;): vo
 **示例**：
 
 ```js
+import Ability from '@ohos.application.Ability'
 import backgroundTaskManager from '@ohos.resourceschedule.backgroundTaskManager';  
-import featureAbility from '@ohos.ability.featureAbility';
 
 function callback(error, data) {
     if (error) {
@@ -405,12 +411,15 @@ function callback(error, data) {
     }
 }
 
-try {
-    backgroundTaskManager.stopBackgroundRunning(featureAbility.getContext(), callback);
-} catch (error) {
-    console.error(`Operation stopBackgroundRunning failed. code is ${error.code} message is ${error.message}`);
-}
-
+export default class MainAbility extends Ability {
+    onCreate(want, launchParam) {
+        try {
+            backgroundTaskManager.stopBackgroundRunning(this.context, callback);
+        } catch (error) {
+            console.error(`Operation stopBackgroundRunning failed. code is ${error.code} message is ${error.message}`);
+        }
+    }
+};
 ```
 
 ## backgroundTaskManager.stopBackgroundRunning:promise
@@ -452,19 +461,22 @@ stopBackgroundRunning(context: Context): Promise&lt;void&gt;
 **示例**：
 
 ```js
+import Ability from '@ohos.application.Ability'
 import backgroundTaskManager from '@ohos.resourceschedule.backgroundTaskManager';  
-import featureAbility from '@ohos.ability.featureAbility';
 
-try {
-    backgroundTaskManager.stopBackgroundRunning(featureAbility.getContext()).then(() => {
-        console.info("Operation stopBackgroundRunning succeeded");
-    }).catch((err) => {
-        console.error(`Operation stopBackgroundRunning failed. code is ${error.code} message is ${error.message}`);
-    });
-} catch (error) {
-    console.error(`Operation stopBackgroundRunning failed. code is ${error.code} message is ${error.message}`);
-}
-
+export default class MainAbility extends Ability {
+    onCreate(want, launchParam) {
+        try {
+            backgroundTaskManager.stopBackgroundRunning(this.context).then(() => {
+                console.info("Operation stopBackgroundRunning succeeded");
+            }).catch((err) => {
+                console.error(`Operation stopBackgroundRunning failed. code is ${error.code} message is ${error.message}`);
+            });
+        } catch (error) {
+            console.error(`Operation stopBackgroundRunning failed. code is ${error.code} message is ${error.message}`);
+        }
+    }
+};
 ```
 
 ## backgroundTaskManager.applyEfficiencyResources
@@ -546,7 +558,7 @@ resetAllEfficiencyResources(): void
 import backgroundTaskManager from '@ohos.resourceschedule.backgroundTaskManager';  
 
 try {
-    backgroundTaskManager.backgroundTaskManager.resetAllEfficiencyResources();
+    backgroundTaskManager.resetAllEfficiencyResources();
 } catch (error) {
     console.error(`resetAllEfficiencyResources failed. code is ${error.code} message is ${error.message}`);
 }
@@ -576,8 +588,8 @@ try {
 | LOCATION                | 4    | 定位导航。                  |
 | BLUETOOTH_INTERACTION   | 5    | 蓝牙相关。                  |
 | MULTI_DEVICE_CONNECTION | 6    | 多设备互联。                 |
-| WIFI_INTERACTION        | 7    | WLAN相关<br />此接口为系统接口。 |
-| VOIP                    | 8    | 音视频通话<br />此接口为系统接口。  |
+| WIFI_INTERACTION        | 7    | WLAN相关（此接口为系统接口）。 |
+| VOIP                    | 8    | 音视频通话（此接口为系统接口）。  |
 | TASK_KEEPING            | 9    | 计算任务（仅在特定设备生效）。        |
 
 ## EfficiencyResourcesRequest
@@ -605,13 +617,13 @@ try {
 
 **系统API**: 此接口为系统接口。
 
-| 参数名                     | 参数值  | 描述                    |
-| ----------------------- | ---- | --------------------- |
-| CPU                     | 1    | CPU资源，申请后不被挂起。             |
-| COMMON_EVENT            | 2    | 公共事件，申请后挂起状态下不被代理掉。  |
-| TIMER                   | 4    | 计时器，申请后挂起状态下不被代理掉。    |
-| WORK_SCHEDULER          | 8    | 延迟任务，申请后有更长的执行时间。      |
-| BLUETOOTH               | 16   | 蓝牙相关，申请后挂起状态下不被代理掉。  |
-| GPS                     | 32   | GPS相关，申请后挂起状态下不被代理掉。  |
-| AUDIO                   | 64   | 音频资源，申请后挂起状态下不被代理掉。 |
+| 参数名                     | 描述                    |
+| ----------------------- | --------------------- |
+| CPU                     | CPU资源，申请后不被挂起。             |
+| COMMON_EVENT            | 公共事件，申请后挂起状态下不被代理掉。  |
+| TIMER                   | 计时器，申请后挂起状态下不被代理掉。    |
+| WORK_SCHEDULER          | 延迟任务，申请后有更长的执行时间。      |
+| BLUETOOTH               | 蓝牙相关，申请后挂起状态下不被代理掉。  |
+| GPS                     | GPS相关，申请后挂起状态下不被代理掉。  |
+| AUDIO                   | 音频资源，申请后挂起状态下不被代理掉。 |
 

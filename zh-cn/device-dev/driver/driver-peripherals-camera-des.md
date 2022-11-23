@@ -47,7 +47,8 @@ Camera模块主要针对相机预览、拍照、视频流等场景，对这些�
 
 ### 接口说明<a name="6"></a>
 
-注：以下接口列举的为IDL接口描述生成的对应C++语言函数接口，接口声明见idl文件（/drivers/interface/camera/v1_0/）。
+注：以下接口列举的为IDL接口描述生成的对应C++语言函数接口，接口声明见idl文件（/drivers/interface/camera/v1_0/）。         
+在HDI使用中下发的配置参数不能超出GetCameraAbility上报的能力范围。即使通过UpdateSettings、CommitStreams、Capture等接口可以下发超出该范围的配置参数，且接口调用不会返回失败，但设置后的行为是不确定的。
 - icamera_device.h
 
   | 功能描述                     | 接口名称                                                     |
@@ -634,7 +635,7 @@ Camera驱动的开发过程主要包含以下步骤：
 
 在/drivers/peripheral/camera/hal/init目录下有一个关于Camera的demo，开机后会在/vendor/bin下生成可执行文件ohos_camera_demo，该demo可以完成Camera的预览，拍照等基础功能。下面我们就以此demo为例讲述怎样用HDI接口去编写预览PreviewOn()和拍照CaptureON()的用例，可参考[ohos_camera_demo](https://gitee.com/openharmony/drivers_peripheral/tree/master/camera/hal/init)。
 
-1. 在main函数中构造一个CameraDemo 对象，该对象中有对Ｃamera初始化、启停流、释放等控制的方法。下面mainDemo->InitSensors()函数为初始化CameraHost，mainDemo->InitCameraDevice()函数为初始化CameraDevice。
+1. 在main函数中构造一个CameraDemo 对象，该对象中有对Camera初始化、启停流、释放等控制的方法。下面mainDemo->InitSensors()函数为初始化CameraHost，mainDemo->InitCameraDevice()函数为初始化CameraDevice。
 
    ```c++
    int main(int argc, char** argv)
@@ -849,7 +850,7 @@ Camera驱动的开发过程主要包含以下步骤：
    }
    ```
 
-   CaptureON()接口调用streamOperator的Capture()方法获取Ｃamera数据并轮转buffer，拉起一个线程接收相应类型的数据。
+   CaptureON()接口调用streamOperator的Capture()方法获取Camera数据并轮转buffer，拉起一个线程接收相应类型的数据。
 
    ```c++
    RetCode OhosCameraDemo::CaptureON(const int streamId,

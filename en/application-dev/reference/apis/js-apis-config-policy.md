@@ -1,12 +1,12 @@
 # Configuration Policy
 
-The configuration policy provides the capability of obtaining the custom configuration directory and file path based on the predefined custom configuration level.
+The **configPolicy** module provides APIs for obtaining the custom configuration directory and file path based on the predefined custom configuration level.
 
 >  **NOTE**
 >
 >  The initial APIs of this module are supported since API version 8. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 >
->  The APIs of this module are system APIs and cannot be called by third-party applications.
+>  The APIs provided by this module are system APIs.
 
 ## Modules to Import
 
@@ -32,7 +32,7 @@ For example, if the **config.xml** file is stored in **/system/etc/config.xml** 
 **Example**
   ```js
   configPolicy.getOneCfgFile('etc/config.xml', (error, value) => {
-      if (error == undefined) {
+      if (error == null) {
           console.log("value is " + value);
       } else {
           console.log("error occurs "+ error);
@@ -73,7 +73,8 @@ Obtains the path of a configuration file with the specified name and highest pri
 
 getCfgFiles(relPath: string, callback: AsyncCallback&lt;Array&lt;string&gt;&gt;)
 
-Obtains all configuration files with the specified name and lists them in ascending order of priority. This API uses an asynchronous callback to return the result. For example, if the **config.xml** file is stored in **/system/etc/config.xml** and **/sys_pod/etc/config.xml**, then **/system/etc/config.xml, /sys_pod/etc/config.xml** is returned.
+Obtains a list of configuration files with the specified name, sorted in ascending order of priority. This API uses an asynchronous callback to return the result.
+For example, if the **config.xml** file is stored in **/system/etc/config.xml** and **/sys_pod/etc/config.xml** (in ascending order of priority), then **/system/etc/config.xml, /sys_pod/etc/config.xml** is returned.
 
 **System capability**: SystemCapability.Customization.ConfigPolicy
 
@@ -86,7 +87,7 @@ Obtains all configuration files with the specified name and lists them in ascend
 **Example**
   ```js
   configPolicy.getCfgFiles('etc/config.xml', (error, value) => {
-      if (error == undefined) {
+      if (error == null) {
           console.log("value is " + value);
       } else {
           console.log("error occurs "+ error);
@@ -99,7 +100,7 @@ Obtains all configuration files with the specified name and lists them in ascend
 
 getCfgFiles(relPath: string): Promise&lt;Array&lt;string&gt;&gt;
 
-Obtains all configuration files with the specified name and lists them in ascending order of priority. This API uses a promise to return the result.
+Obtains a list of configuration files with the specified name, sorted in ascending order of priority. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Customization.ConfigPolicy
 
@@ -127,7 +128,7 @@ Obtains all configuration files with the specified name and lists them in ascend
 
 getCfgDirList(callback: AsyncCallback&lt;Array&lt;string&gt;&gt;)
 
-Obtains the configuration level directory list. This API uses an asynchronous callback to return the result.
+Obtains the list of configuration level directories. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Customization.ConfigPolicy
 
@@ -139,7 +140,7 @@ Obtains the configuration level directory list. This API uses an asynchronous ca
 **Example**
   ```js
   configPolicy.getCfgDirList((error, value) => {
-      if (error == undefined) {
+      if (error == null) {
           console.log("value is " + value);
       } else {
           console.log("error occurs "+ error);
@@ -152,7 +153,7 @@ Obtains the configuration level directory list. This API uses an asynchronous ca
 
 getCfgDirList(): Promise&lt;Array&lt;string&gt;&gt;
 
-Obtains the configuration level directory list. This API uses a promise to return the result.
+Obtains the list of configuration level directories. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Customization.ConfigPolicy
 

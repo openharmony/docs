@@ -18,7 +18,7 @@ import userIAM_userAuth from '@ohos.userIAM.userAuth';
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.UserIAM.UserAuth.Core。
 
-| 参数名         | 参数类型   | 必填 | 说明                 |
+| 参数名称         | 参数类型   | 必填 | 说明                 |
 | ------------ | ---------- | ---- | -------------------- |
 | result        | number | 是   | 认证结果。       |
 | token        | Uint8Array | 否   | 用户身份认证通过的凭证。 |
@@ -44,8 +44,8 @@ import userIAM_userAuth from '@ohos.userIAM.userAuth';
 
 | 取值类型    | 说明                       |
 | --------- | ----------------------- |
-| [AuthResultInfo](#authresultinfo9)    | 获取到的认证结果信息  |
-| [TipInfo](#tipinfo9)    | 认证过程中的提示信息      |
+| [AuthResultInfo](#authresultinfo9)    | 获取到的认证结果信息。  |
+| [TipInfo](#tipinfo9)    | 认证过程中的提示信息。      |
 
 ## AuthEventKey<sup>9+</sup>
 
@@ -70,9 +70,9 @@ callback: (result : EventInfo) => void
 
 **参数：**
 
-| 参数名    | 类型                       | 必填 | 说明                                                         |
-| --------- | -------------------------- | ---- | -------------------------------------------------------- |
-| result    | [EventInfo](#eventinfo9)                     | 是   | 返回的认证结果信息或提示信息。                   |
+| 参数名称    | 类型                       | 必填 | 说明                           |
+| --------- | -------------------------- | ---- | ------------------------------ |
+| result    | [EventInfo](#eventinfo9)     | 是   | 返回的认证结果信息或提示信息。  |
 
 **示例：**
 
@@ -86,12 +86,12 @@ let authTrustLevel = userIAM_userAuth.AuthTrustLevel.ATL1;
 try {
     let auth = userIAM_userAuth.getAuthInstance(challenge, authType, authTrustLevel);
     auth.on("result", {
-    callback: (result: userIAM_userAuth.AuthResultInfo) => {
-        console.log("authV9 result " + result.result);
-        console.log("authV9 token " + result.token);
-        console.log("authV9 remainAttempts " + result.remainAttempts);
-        console.log("authV9 lockoutDuration " + result.lockoutDuration);
-    }
+        callback: (result: userIAM_userAuth.AuthResultInfo) => {
+            console.log("authV9 result " + result.result);
+            console.log("authV9 token " + result.token);
+            console.log("authV9 remainAttempts " + result.remainAttempts);
+            console.log("authV9 lockoutDuration " + result.lockoutDuration);
+        }
     });
     auth.start();
     console.log("authV9 start success");
@@ -103,16 +103,16 @@ try {
 try {
     let auth = userIAM_userAuth.getAuthInstance(challenge, authType, authTrustLevel);
     auth.on("tip", {
-    callback : (result : userIAM_userAuth.TipInfo) => {
-        switch (result.tip) {
-            case userIAM_userAuth.FaceTips.FACE_AUTH_TIP_TOO_BRIGHT:
-            // do something;
-            case userIAM_userAuth.FaceTips.FACE_AUTH_TIP_TOO_DARK:
-            // do something;
-            default:
-            // do others
+        callback : (result : userIAM_userAuth.TipInfo) => {
+            switch (result.tip) {
+                case userIAM_userAuth.FaceTips.FACE_AUTH_TIP_TOO_BRIGHT:
+                // do something;
+                case userIAM_userAuth.FaceTips.FACE_AUTH_TIP_TOO_DARK:
+                // do something;
+                default:
+                // do others
+            }
         }
-    }
     });
     auth.start();
     console.log("authV9 start success");
@@ -132,16 +132,19 @@ on(name : AuthEventKey, callback : AuthEvent) : void
 
 订阅指定类型的用户认证事件。
 
+> **说明：**
+> 使用获取到的[AuthInstance](#authinstance9)对象调用该接口进行订阅。
+
 **系统能力**：SystemCapability.UserIAM.UserAuth.Core
 
 **参数：**
 
-| 参数名    | 类型                        | 必填 | 说明                       |
+| 参数名称    | 类型                        | 必填 | 说明                       |
 | --------- | -------------------------- | ---- | ------------------------- |
 | name  | [AuthEventKey](#autheventkey9) | 是   | 表示认证事件类型，取值为"result"时，回调函数返回认证结果；取值为"tip"时，回调函数返回认证过程中的提示信息。 |
 | callback  | [AuthEvent](#authevent9)   | 是   | 认证接口的回调函数，用于返回认证结果或认证过程中的提示信息。          |
 
-以下错误码的详细介绍请参见[用户认证错误码](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/errorcodes/errcode-useriam.md)
+以下错误码的详细介绍请参见[用户认证错误码](../errorcodes/errcode-useriam.md)
 
 **错误码：**
 
@@ -162,25 +165,25 @@ try {
     let auth = userIAM_userAuth.getAuthInstance(challenge, authType, authTrustLevel);
     // 订阅认证结果
     auth.on("result", {
-    callback: (result: userIAM_userAuth.AuthResultInfo) => {
-        console.log("authV9 result " + result.result);
-        console.log("authV9 token " + result.token);
-        console.log("authV9 remainAttempts " + result.remainAttempts);
-        console.log("authV9 lockoutDuration " + result.lockoutDuration);
-    }
+        callback: (result: userIAM_userAuth.AuthResultInfo) => {
+            console.log("authV9 result " + result.result);
+            console.log("authV9 token " + result.token);
+            console.log("authV9 remainAttempts " + result.remainAttempts);
+            console.log("authV9 lockoutDuration " + result.lockoutDuration);
+        }
     });
     // 订阅认证过程中的提示信息
     auth.on("tip", {
-    callback : (result : userIAM_userAuth.TipInfo) => {
-        switch (result.tip) {
-            case userIAM_userAuth.FaceTips.FACE_AUTH_TIP_TOO_BRIGHT:
-            // do something;
-            case userIAM_userAuth.FaceTips.FACE_AUTH_TIP_TOO_DARK:
-            // do something;
-            default:
-            // do others
+        callback : (result : userIAM_userAuth.TipInfo) => {
+            switch (result.tip) {
+                case userIAM_userAuth.FaceTips.FACE_AUTH_TIP_TOO_BRIGHT:
+                // do something;
+                case userIAM_userAuth.FaceTips.FACE_AUTH_TIP_TOO_DARK:
+                // do something;
+                default:
+                // do others
+            }
         }
-    }
     });
     auth.start();
     console.log("authV9 start success");
@@ -196,13 +199,16 @@ off(name : AuthEventKey) : void
 
 取消订阅特定类型的认证事件。
 
+> **说明：**
+> 需要使用已经成功订阅事件的[AuthInstance](#authinstance9)对象调用该接口进行取消订阅。
+
 **系统能力**：SystemCapability.UserIAM.UserAuth.Core
 
-| 参数名    | 类型                        | 必填 | 说明                       |
+| 参数名称    | 类型                        | 必填 | 说明                       |
 | --------- | -------------------------- | ---- | ------------------------- |
 | name    | [AuthEventKey](#autheventkey9)      | 是   | 表示认证事件类型，取值为"result"时，取消订阅认证结果；取值为"tip"时，取消订阅认证过程中的提示信息。 |
 
-以下错误码的详细介绍请参见[用户认证错误码](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/errorcodes/errcode-useriam.md)
+以下错误码的详细介绍请参见[用户认证错误码](../errorcodes/errcode-useriam.md)
 
 **错误码：**
 
@@ -230,12 +236,12 @@ try {
 try {
     // 订阅认证结果
     auth.on("result", {
-    callback: (result: userIAM_userAuth.AuthResultInfo) => {
-        console.log("authV9 result " + result.result);
-        console.log("authV9 token " + result.token);
-        console.log("authV9 remainAttempts " + result.remainAttempts);
-        console.log("authV9 lockoutDuration " + result.lockoutDuration);
-    }
+        callback: (result: userIAM_userAuth.AuthResultInfo) => {
+            console.log("authV9 result " + result.result);
+            console.log("authV9 token " + result.token);
+            console.log("authV9 remainAttempts " + result.remainAttempts);
+            console.log("authV9 lockoutDuration " + result.lockoutDuration);
+        }
     });
     console.log("subscribe authentication event success");
 } catch (error) {
@@ -263,7 +269,7 @@ start() : void
 
 **系统能力**：SystemCapability.UserIAM.UserAuth.Core
 
-以下错误码的详细介绍请参见[用户认证错误码](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/errorcodes/errcode-useriam.md)
+以下错误码的详细介绍请参见[用户认证错误码](../errorcodes/errcode-useriam.md)
 
 **错误码：**
 
@@ -301,13 +307,13 @@ cancel(): void
 取消认证。
 
 > **说明：**
-> 使用获取到的[AuthInstance](#authinstance9)对象调用该接口进行取消认证，此[AuthInstance](#authinstance9)应该是正在进行认证的对象。
+> 使用获取到的[AuthInstance](#authinstance9)对象调用该接口进行取消认证，此[AuthInstance](#authinstance9)需要是正在进行认证的对象。
 
 **需要权限**：ohos.permission.ACCESS_BIOMETRIC
 
 **系统能力**：SystemCapability.UserIAM.UserAuth.Core
 
-以下错误码的详细介绍请参见[用户认证错误码](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/errorcodes/errcode-useriam.md)
+以下错误码的详细介绍请参见[用户认证错误码](../errorcodes/errcode-useriam.md)
 
 **错误码：**
 
@@ -348,7 +354,7 @@ getAuthInstance(challenge : Uint8Array, authType : UserAuthType, authTrustLevel 
 
 **参数：**
 
-| 参数名         | 类型                                     | 必填 | 说明                     |
+| 参数名称         | 类型                                     | 必填 | 说明                     |
 | -------------- | ---------------------------------------- | ---- | ------------------------ |
 | challenge      | Uint8Array                               | 是   | 挑战值，最大长度为32字节，可以填null。     |
 | authType       | [UserAuthType](#userauthtype8)           | 是   | 认证类型，当前支持FACE。 |
@@ -360,7 +366,7 @@ getAuthInstance(challenge : Uint8Array, authType : UserAuthType, authTrustLevel 
 | ----------------------------------------- | ------------ |
 | [AuthInstance](#authinstance9) | 认证器对象。 |
 
-以下错误码的详细介绍请参见[用户认证错误码](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/errorcodes/errcode-useriam.md)
+以下错误码的详细介绍请参见[用户认证错误码](../errorcodes/errcode-useriam.md)
 
 **错误码：**
 
@@ -404,7 +410,7 @@ getVersion(): number
 | ------ | ---------------------- |
 | number | 认证器版本信息。 |
 
-以下错误码的详细介绍请参见[用户认证错误码](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/errorcodes/errcode-useriam.md)
+以下错误码的详细介绍请参见[用户认证错误码](../errorcodes/errcode-useriam.md)
 
 **错误码：**
 
@@ -438,12 +444,12 @@ getAvailableStatus(authType : UserAuthType, authTrustLevel : AuthTrustLevel): vo
 
 **参数：**
 
-| 参数名         | 类型                               | 必填 | 说明                       |
+| 参数名称         | 类型                               | 必填 | 说明                       |
 | -------------- | ---------------------------------- | ---- | -------------------------- |
 | authType       | [UserAuthType](#userauthtype8)     | 是   | 认证类型，当前只支持FACE。 |
 | authTrustLevel | [AuthTrustLevel](#authtrustlevel8) | 是   | 认证信任等级。       |
 
-以下错误码的详细介绍请参见[用户认证错误码](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/errorcodes/errcode-useriam.md)
+以下错误码的详细介绍请参见[用户认证错误码](../errorcodes/errcode-useriam.md)
 
 **错误码：**
 
@@ -564,7 +570,7 @@ getAvailableStatus(authType : UserAuthType, authTrustLevel : AuthTrustLevel) : n
 
 **参数：**
 
-| 参数名         | 类型                               | 必填 | 说明                       |
+| 参数名称         | 类型                               | 必填 | 说明                       |
 | -------------- | ---------------------------------- | ---- | -------------------------- |
 | authType       | [UserAuthType](#userauthtype8)     | 是   | 认证类型，当前只支持FACE。 |
 | authTrustLevel | [AuthTrustLevel](#authtrustlevel8) | 是   | 认证信任等级。       |
@@ -605,12 +611,12 @@ auth(challenge: Uint8Array, authType: UserAuthType, authTrustLevel: AuthTrustLev
 
 **参数：**
 
-| 参数名         | 类型                                     | 必填 | 说明                     |
+| 参数名称         | 类型                                     | 必填 | 说明                     |
 | -------------- | ---------------------------------------- | ---- | ------------------------ |
 | challenge      | Uint8Array                               | 是   | 挑战值，可以填null。     |
 | authType       | [UserAuthType](#userauthtype8)           | 是   | 认证类型，当前支持FACE。 |
-| authTrustLevel | [AuthTrustLevel](#authtrustlevel8)       | 是   | 认证信任等级。               |
-| callback       | [IUserAuthCallback](#iuserauthcallbackdeprecated) | 是   | 回调函数。               |
+| authTrustLevel | [AuthTrustLevel](#authtrustlevel8)       | 是   | 认证信任等级。             |
+| callback       | [IUserAuthCallback](#iuserauthcallbackdeprecated) | 是   | 回调函数。        |
 
 **返回值：**
 
@@ -657,7 +663,7 @@ cancelAuth(contextID : Uint8Array) : number
 
 **参数：**
 
-| 参数名    | 类型       | 必填 | 说明                                       |
+| 参数名称    | 类型       | 必填 | 说明                                       |
 | --------- | ---------- | ---- | ------------------------------------------ |
 | contextID | Uint8Array | 是   | 上下文的标识，通过[auth](#authdeprecated)接口获取。 |
 
@@ -705,9 +711,9 @@ onResult: (result : number, extraInfo : AuthResult) => void
 
 **参数：**
 
-| 参数名    | 类型                       | 必填 | 说明                                                         |
-| --------- | -------------------------- | ---- | ------------------------------------------------------------ |
-| result    | number                     | 是   | 认证结果，参见[ResultCode](#resultcodedeprecated)。                   |
+| 参数名称    | 类型                       | 必填 | 说明        |
+| --------- | -------------------------- | ---- | ------------------------------------------------ |
+| result    | number           | 是   | 认证结果，参见[ResultCode](#resultcodedeprecated)。 |
 | extraInfo | [AuthResult](#authresultdeprecated) | 是   | 扩展信息，不同情况下的具体信息，<br/>如果身份验证通过，则在extraInfo中返回用户认证令牌，<br/>如果身份验证失败，则在extraInfo中返回剩余的用户认证次数，<br/>如果身份验证执行器被锁定，则在extraInfo中返回冻结时间。 |
 
 
@@ -748,7 +754,7 @@ onAcquireInfo ?: (module : number, acquire : number, extraInfo : any) => void
 
 **参数：**
 
-| 参数名    | 类型   | 必填 | 说明                           |
+| 参数名称    | 类型   | 必填 | 说明                           |
 | --------- | ------ | ---- | ------------------------------ |
 | module    | number | 是   | 发送提示信息的模块标识。             |
 | acquire   | number | 是   | 认证执过程中的提示信息。 |
@@ -808,7 +814,6 @@ auth.auth(null, userIAM_userAuth.UserAuthType.FACE, userIAM_userAuth.AuthTrustLe
 | TYPE_NOT_SUPPORT        | 5      | 不支持的认证类型。   |
 | TRUST_LEVEL_NOT_SUPPORT | 6      | 不支持的认证等级。   |
 | BUSY                    | 7      | 忙碌状态。           |
-| INVALID_PARAMETERS      | 8      | 无效参数。           |
 | LOCKED                  | 9      | 认证器已锁定。       |
 | NOT_ENROLLED            | 10     | 用户未录入认证信息。 |
 
@@ -917,13 +922,13 @@ execute(type: AuthType, level: SecureLevel, callback: AsyncCallback&lt;number&gt
 
 **参数：**
 
-| 参数名   | 类型                        | 必填 | 说明                                                         |
-| -------- | --------------------------- | ---- | ------------------------------------------------------------ |
+| 参数名称   | 类型                        | 必填 | 说明                      |
+| -------- | --------------------------- | ---- | -------------------------- |
 | type     | AuthType                      | 是   | 认证类型，当前只支持"FACE_ONLY"。<br/>ALL为预留参数，当前版本暂不支持ALL类型的认证。 |
-| level    | SecureLevel                      | 是   | 安全级别，对应认证的安全级别，有效值为"S1"（最低）、"S2"、"S3"、"S4"（最高）。<br/>具备3D人脸识别能力的设备支持"S3"及以下安全级别的认证。<br/>具备2D人脸识别能力的设备支持"S2"及以下安全级别的认证。 |
-| callback | AsyncCallback&lt;number&gt; | 否   | 回调函数。                                                   |
+| level    | SecureLevel  | 是   | 安全级别，对应认证的安全级别，有效值为"S1"（最低）、"S2"、"S3"、"S4"（最高）。<br/>具备3D人脸识别能力的设备支持"S3"及以下安全级别的认证。<br/>具备2D人脸识别能力的设备支持"S2"及以下安全级别的认证。 |
+| callback | AsyncCallback&lt;number&gt; | 否   | 回调函数。    |
 
- callback返回值：
+callback返回值：
 
 | 类型   | 说明                                                         |
 | ------ | ------------------------------------------------------------ |
@@ -958,7 +963,7 @@ execute(type : AuthType, level : SecureLevel): Promise&lt;number&gt;
 
 **参数：**
 
-| 参数名 | 类型   | 必填 | 说明                                                         |
+| 参数名称 | 类型   | 必填 | 说明                                                         |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
 | type   | AuthType | 是   | 认证类型，当前只支持"FACE_ONLY"。<br/>ALL为预留参数，当前版本暂不支持ALL类型的认证。 |
 | level  | SecureLevel | 是   | 安全级别，对应认证的安全级别，有效值为"S1"（最低）、"S2"、"S3"、"S4"（最高）。<br/>具备3D人脸识别能力的设备支持"S3"及以下安全级别的认证。<br/>具备2D人脸识别能力的设备支持"S2"及以下安全级别的认证。 |

@@ -157,11 +157,11 @@ onAbilityContinue(ability: Ability): void;
     
 
   ```js
-  import AbilityStage from "@ohos.application.AbilityStage";
+  import Ability from "@ohos.application.Ability";
   
-  export default class MyAbilityStage extends AbilityStage {
+  export default class MyAbility extends Ability {
       onCreate() {
-          console.log("MyAbilityStage onCreate")
+          console.log("MyAbility onCreate")
           let AbilityLifecycleCallback  =  {
               onAbilityCreate(ability){
                   console.log("AbilityLifecycleCallback onAbilityCreate ability:" + JSON.stringify(ability));        
@@ -200,6 +200,12 @@ onAbilityContinue(ability: Ability): void;
           // 2.通过applicationContext注册监听应用内生命周期
           let lifecycleid = applicationContext.registerAbilityLifecycleCallback(AbilityLifecycleCallback);
           console.log("registerAbilityLifecycleCallback number: " + JSON.stringify(lifecycleid));       
+      },
+      onDestroy() {
+          let applicationContext = this.context.getApplicationContext();
+          applicationContext.unregisterAbilityLifecycleCallback(lifecycleid, (error, data) => {
+              console.log("unregisterAbilityLifecycleCallback success, err: " + JSON.stringify(error));
+          });
       }
   }
   ```

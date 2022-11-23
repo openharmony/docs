@@ -4691,10 +4691,16 @@ onResult: (code: number, result?: AuthResult) =&gt; void
   let appAccountManager = account_appAccount.createAppAccountManager();
   var sessionId = "1234";
   appAccountManager.getAuthCallback(sessionId).then((callback) => {
-      var result = {[account_appAccount.Constants.KEY_NAME]: "LiSi",
-                    [account_appAccount.Constants.KEY_OWNER]: "com.example.accountjsdemo",
-                    [account_appAccount.Constants.KEY_AUTH_TYPE]: "getSocialData",
-                    [account_appAccount.Constants.KEY_TOKEN]: "xxxxxx"};
+      var result = {
+          accountInfo: {
+            name: "Lisi",
+            owner: "com.example.accountjsdemo",
+          },
+          tokenInfo: {
+            token: "xxxxxx",
+            authType: "getSocialData"
+          }
+      };
       callback.onResult(account_appAccount.ResultCode.SUCCESS, result);
   }).catch((err) => {
       console.log("getAuthCallback err: "  + JSON.stringify(err));
@@ -4727,9 +4733,16 @@ onRequestRedirected: (request: Want) =&gt; void
       }
 
       auth(name, authType, options, callback) {
-          var result = {[account_appAccount.Constants.KEY_NAME]: name,
-                        [account_appAccount.Constants.KEY_AUTH_TYPE]: authType,
-                        [account_appAccount.Constants.KEY_TOKEN]: "xxxxxx"};
+          var result = {
+            accountInfo: {
+              name: "Lisi",
+              owner: "com.example.accountjsdemo",
+            },
+            tokenInfo: {
+              token: "xxxxxx",
+              authType: "getSocialData"
+            }
+          };
           callback.onResult(account_appAccount.ResultCode.SUCCESS, result);
       }
   }

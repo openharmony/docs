@@ -4,7 +4,7 @@
 
 **错误信息**
 
-invalid parameter.
+Invalid parameter.
 
 **错误描述**
 
@@ -22,7 +22,7 @@ invalid parameter.
 
 **错误信息**
 
-allocate memory failed.
+Memory allocation failure.
 
 **错误描述**
 
@@ -42,7 +42,7 @@ allocate memory failed.
 
 **错误信息**
 
-Operation not permit at current state.
+Unsupported state.
 
 **错误描述**
 
@@ -61,7 +61,7 @@ Operation not permit at current state.
 
 **错误信息**
 
-unsupported operation.
+Unsupported parameter value.
 
 **错误描述**
 
@@ -80,7 +80,7 @@ unsupported operation.
 
 **错误信息**
 
-time out.
+Processing timeout.
 
 **错误描述**
 
@@ -98,7 +98,7 @@ time out.
 
 **错误信息**
 
-stream number limited.
+Too many audio streams.
 
 **错误描述**
 
@@ -116,7 +116,7 @@ stream number limited.
 
 **错误信息**
 
-system error.
+System error.
 
 **错误描述**
 

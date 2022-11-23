@@ -3,8 +3,8 @@
 该模块提供用户数据管理能力，包括访问、修改用户等用户公共媒体数据信息等常用功能。
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
-> 该模块从API Version 9开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
-> 本模块下的接口均为系统接口
+> 本模块首批接口从API version 9开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+> 本模块接口为系统接口。
 
 ## 导入模块
 
@@ -26,7 +26,7 @@ getUserFileMgr(context: Context): UserFileManager
 
 | 参数名  | 类型    | 必填 | 说明                       |
 | ------- | ------- | ---- | -------------------------- |
-| context | [Context](#../apis/js-apis-Context.md) | 是   | 传入Ability实例的Context。 |
+| context | [Context](js-apis-Context.md) | 是   | 传入Ability实例的Context。 |
 
 **返回值：**
 
@@ -38,7 +38,7 @@ getUserFileMgr(context: Context): UserFileManager
 
 ```ts
 const context = getContext(this);
-let mgr = userfilemanager.getUserFileMgr(context);
+let mgr = userFileManager.getUserFileMgr(context);
 ```
 
 ## userFileManager.getUserFileMgr
@@ -62,7 +62,7 @@ getUserFileMgr(): UserFileManager
 **示例：**
 
 ```ts
-let mgr = userfilemanager.getUserFileMgr();
+let mgr = userFileManager.getUserFileMgr();
 ```
 
 ## UserFileManager
@@ -90,6 +90,8 @@ getPhotoAssets(options: FetchOptions, callback: AsyncCallback&lt;FetchResult&lt;
 **示例：**
 
 ```ts
+import dataSharePredicates from '@ohos.data.dataSharePredicates';
+
 async function example() {
   console.info('getPhotoAssets');
   let predicates = new dataSharePredicates.DataSharePredicates();
@@ -138,6 +140,8 @@ getPhotoAssets(options: FetchOptions): Promise&lt;FetchResult&lt;FileAsset&gt;&g
 **示例：**
 
 ```ts
+import dataSharePredicates from '@ohos.data.dataSharePredicates';
+
 async function example() {
   console.info('getPhotoAssets');
   let predicates = new dataSharePredicates.DataSharePredicates();
@@ -180,6 +184,8 @@ createPhotoAsset(displayName: string, albumUri: string, callback: AsyncCallback&
 **示例：**
 
 ```ts
+import dataSharePredicates from '@ohos.data.dataSharePredicates';
+
 async function example() {
   console.info('createPhotoAssetDemo')
   let predicates = new dataSharePredicates.DataSharePredicates();
@@ -291,6 +297,8 @@ getPhotoAlbums(options: AlbumFetchOptions, callback: AsyncCallback&lt;FetchResul
 **示例：**
 
 ```ts
+import dataSharePredicates from '@ohos.data.dataSharePredicates';
+
 async function example() {
   console.info('getPhotoAlbumsDemo')
   let predicates = new dataSharePredicates.DataSharePredicates();
@@ -340,6 +348,8 @@ getPhotoAlbums(options: AlbumFetchOptions): Promise&lt;FetchResult&lt;Album&gt;&
 **示例：**
 
 ```ts
+import dataSharePredicates from '@ohos.data.dataSharePredicates';
+
 async function example() {
   console.info('getPhotoAlbumsDemo')
   let predicates = new dataSharePredicates.DataSharePredicates();
@@ -450,6 +460,8 @@ getAudioAssets(options: FetchOptions, callback: AsyncCallback&lt;FetchResult&lt;
 **示例：**
 
 ```ts
+import dataSharePredicates from '@ohos.data.dataSharePredicates';
+
 async function example() {
   console.info('getAudioAssets');
   let predicates = new dataSharePredicates.DataSharePredicates();
@@ -498,6 +510,8 @@ getAudioAssets(options: FetchOptions): Promise&lt;FetchResult&lt;FileAsset&gt;&g
 **示例：**
 
 ```ts
+import dataSharePredicates from '@ohos.data.dataSharePredicates';
+
 async function example() {
   console.info('getAudioAssets');
   let predicates = new dataSharePredicates.DataSharePredicates();
@@ -540,6 +554,8 @@ delete(uri: string, callback: AsyncCallback&lt;void&gt;): void;
 **示例**：
 
 ```ts
+import dataSharePredicates from '@ohos.data.dataSharePredicates';
+
 async function example() {
   console.info('deleteAssetDemo')
   let predicates = new dataSharePredicates.DataSharePredicates();
@@ -592,6 +608,8 @@ delete(uri: string): Promise&lt;void&gt;;
 **示例**：
 
 ```ts
+import dataSharePredicates from '@ohos.data.dataSharePredicates';
+
 async function example() {
   console.info('deleteDemo')
   let predicates = new dataSharePredicates.DataSharePredicates();
@@ -934,7 +952,10 @@ get(member: string): MemberType;
 | member | string | 是    | 成员参数名称例如：ImageVideoKey.URI |
 
 **示例：**
+
 ```ts
+import dataSharePredicates from '@ohos.data.dataSharePredicates';
+
 async function example() {
   console.info('fileAssetGetDemo')
   try {
@@ -970,7 +991,10 @@ set(member: string, value: string): void;
 | value | string | 是    | 设置成员参数名称，只能修改ImageVideoKey.TITLE的值 |
 
 **示例：**
+
 ```ts
+import dataSharePredicates from '@ohos.data.dataSharePredicates';
+
 async function example() {
   console.info('fileAssetSetDemo')
   try {
@@ -1008,6 +1032,8 @@ commitModify(callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
 ```ts
+import dataSharePredicates from '@ohos.data.dataSharePredicates';
+
 async function example() {
   console.info('commitModifyDemo')
   let predicates = new dataSharePredicates.DataSharePredicates();
@@ -1051,6 +1077,8 @@ commitModify(): Promise&lt;void&gt;
 **示例：**  
 
 ```ts
+import dataSharePredicates from '@ohos.data.dataSharePredicates';
+
 async function example() {
   console.info('commitModifyDemo')
   let predicates = new dataSharePredicates.DataSharePredicates();
@@ -1173,6 +1201,8 @@ close(fd: number, callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
 ```ts
+import dataSharePredicates from '@ohos.data.dataSharePredicates';
+
 async function example() {
   console.info('closeDemo')
   try {
@@ -1221,6 +1251,8 @@ close(fd: number): Promise&lt;void&gt;
 **示例：**
 
 ```ts
+import dataSharePredicates from '@ohos.data.dataSharePredicates';
+
 async function example() {
   console.info('closeDemo')
   try {
@@ -1255,11 +1287,13 @@ getThumbnail(callback: AsyncCallback&lt;image.PixelMap&gt;): void
 
 | 参数名      | 类型                                  | 必填   | 说明               |
 | -------- | ----------------------------------- | ---- | ---------------- |
-| callback | AsyncCallback&lt;[image.PixelMap](#../apis/js-apis-image.md#pixelmap7)&gt; | 是    | 回调返回缩略图的PixelMap |
+| callback | AsyncCallback&lt;[image.PixelMap](js-apis-image.md#pixelmap7)&gt; | 是    | 回调返回缩略图的PixelMap |
 
 **示例：**
 
 ```ts
+import dataSharePredicates from '@ohos.data.dataSharePredicates';
+
 async function example() {
   console.info('getThumbnailDemo')
   let predicates = new dataSharePredicates.DataSharePredicates();
@@ -1295,11 +1329,13 @@ getThumbnail(size: Size, callback: AsyncCallback&lt;image.PixelMap&gt;): void
 | 参数名      | 类型                                  | 必填   | 说明               |
 | -------- | ----------------------------------- | ---- | ---------------- |
 | size     | Size                      | 是    | 缩略图尺寸            |
-| callback | AsyncCallback&lt;[image.PixelMap](#../apis/js-apis-image.md#pixelmap7)&gt; | 是    | 回调返回缩略图的PixelMap |
+| callback | AsyncCallback&lt;[image.PixelMap](js-apis-image.md#pixelmap7)&gt; | 是    | 回调返回缩略图的PixelMap |
 
 **示例：**
 
 ```ts
+import dataSharePredicates from '@ohos.data.dataSharePredicates';
+
 async function example() {
   console.info('getThumbnailDemo')
   let predicates = new dataSharePredicates.DataSharePredicates();
@@ -1341,11 +1377,13 @@ getThumbnail(size?: Size): Promise&lt;image.PixelMap&gt;
 
 | 类型                            | 说明                    |
 | ----------------------------- | --------------------- |
-| Promise&lt;[image.PixelMap](#../apis/js-apis-image.md#pixelmap7)&gt; | Promise返回缩略图的PixelMap |
+| Promise&lt;[image.PixelMap](js-apis-image.md#pixelmap7)&gt; | Promise返回缩略图的PixelMap |
 
 **示例：**
 
 ```ts
+import dataSharePredicates from '@ohos.data.dataSharePredicates';
+
 async function example() {
   console.info('getThumbnailDemo')
   let predicates = new dataSharePredicates.DataSharePredicates();
@@ -1385,6 +1423,8 @@ favorite(isFavorite: boolean, callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
 ```ts
+import dataSharePredicates from '@ohos.data.dataSharePredicates';
+
 async function example() {
   console.info('favoriteDemo')
   let predicates = new dataSharePredicates.DataSharePredicates();
@@ -1429,6 +1469,8 @@ favorite(isFavorite: boolean): Promise&lt;void&gt;
 **示例：**
 
 ```ts
+import dataSharePredicates from '@ohos.data.dataSharePredicates';
+
 async function example() {
   console.info('favoriteDemo')
   let predicates = new dataSharePredicates.DataSharePredicates();
@@ -1467,6 +1509,8 @@ getCount(): number
 **示例**：
 
 ```ts
+import dataSharePredicates from '@ohos.data.dataSharePredicates';
+
 async function example() {
   console.info('getCountDemo')
   let predicates = new dataSharePredicates.DataSharePredicates();
@@ -1497,6 +1541,8 @@ isAfterLast(): boolean
 **示例**：
 
 ```ts
+import dataSharePredicates from '@ohos.data.dataSharePredicates';
+
 async function example() {
   let predicates = new dataSharePredicates.DataSharePredicates();
   let fetchOption = {
@@ -1526,6 +1572,8 @@ close(): void
 **示例**：
 
 ```ts
+import dataSharePredicates from '@ohos.data.dataSharePredicates';
+
 async function example() {
   console.info('fetchResultCloseDemo')
   let predicates = new dataSharePredicates.DataSharePredicates();
@@ -1556,6 +1604,8 @@ getFirstObject(callback: AsyncCallback&lt;T&gt;): void
 **示例**：
 
 ```ts
+import dataSharePredicates from '@ohos.data.dataSharePredicates';
+
 async function example() {
   console.info('getFirstObjectDemo')
   let predicates = new dataSharePredicates.DataSharePredicates();
@@ -1591,6 +1641,8 @@ getFirstObject(): Promise&lt;T&gt;
 **示例**：
 
 ```ts
+import dataSharePredicates from '@ohos.data.dataSharePredicates';
+
 async function example() {
   console.info('getFirstObjectDemo')
   let predicates = new dataSharePredicates.DataSharePredicates();
@@ -1621,6 +1673,8 @@ async function example() {
 **示例**：
 
 ```ts
+import dataSharePredicates from '@ohos.data.dataSharePredicates';
+
 async function example() {
   console.info('getNextObjectDemo')
   let predicates = new dataSharePredicates.DataSharePredicates();
@@ -1659,6 +1713,8 @@ async function example() {
 **示例**：
 
 ```ts
+import dataSharePredicates from '@ohos.data.dataSharePredicates';
+
 async function example() {
   console.info('getNextObjectDemo')
   let predicates = new dataSharePredicates.DataSharePredicates();
@@ -1692,6 +1748,8 @@ getLastObject(callback: AsyncCallback&lt;T&gt;): void
 **示例**：
 
 ```ts
+import dataSharePredicates from '@ohos.data.dataSharePredicates';
+
 async function example() {
   console.info('getLastObjectDemo')
   let predicates = new dataSharePredicates.DataSharePredicates();
@@ -1727,6 +1785,8 @@ getLastObject(): Promise&lt;T&gt;
 **示例**：
 
 ```ts
+import dataSharePredicates from '@ohos.data.dataSharePredicates';
+
 async function example() {
   console.info('getLastObjectDemo')
   let predicates = new dataSharePredicates.DataSharePredicates();
@@ -1758,6 +1818,8 @@ getPositionObject(index: number, callback: AsyncCallback&lt;T&gt;): void
 **示例**：
 
 ```ts
+import dataSharePredicates from '@ohos.data.dataSharePredicates';
+
 async function example() {
   console.info('getPositionObjectDemo')
   let predicates = new dataSharePredicates.DataSharePredicates();
@@ -1799,6 +1861,8 @@ getPositionObject(index: number): Promise&lt;T&gt;
 **示例**：
 
 ```ts
+import dataSharePredicates from '@ohos.data.dataSharePredicates';
+
 async function example() {
   console.info('getPositionObjectDemo')
   let predicates = new dataSharePredicates.DataSharePredicates();
@@ -1848,6 +1912,8 @@ getPhotoAssets(options: FetchOptions, callback: AsyncCallback&lt;FetchResult&lt;
 **示例**：
 
 ```ts
+import dataSharePredicates from '@ohos.data.dataSharePredicates';
+
 async function example() {
   console.info('albumGetFileAssetsDemoCallback')
 
@@ -1890,6 +1956,8 @@ getPhotoAssets(options: FetchOptions): Promise&lt;FetchResult&lt;FileAsset&gt;&g
 **示例**：
 
 ```ts
+import dataSharePredicates from '@ohos.data.dataSharePredicates';
+
 async function example() {
   console.info('albumGetFileAssetsDemoPromise')
 
@@ -1930,6 +1998,8 @@ commitModify(callback: AsyncCallback&lt;void&gt;): void;
 **示例**：
 
 ```ts
+import dataSharePredicates from '@ohos.data.dataSharePredicates';
+
 async function example() {
   console.info('albumCommitModifyDemo')
   let predicates = new dataSharePredicates.DataSharePredicates();
@@ -1968,6 +2038,8 @@ commitModify(): Promise&lt;void&gt;;
 **示例**：
 
 ```ts
+import dataSharePredicates from '@ohos.data.dataSharePredicates';
+
 async function example() {
   console.info('albumCommitModifyDemo')
   let predicates = new dataSharePredicates.DataSharePredicates();
@@ -2024,6 +2096,8 @@ getPhotoAssets(options: FetchOptions, callback: AsyncCallback&lt;FetchResult&lt;
 **示例**：
 
 ```ts
+import dataSharePredicates from '@ohos.data.dataSharePredicates';
+
 async function example() {
   console.info('privateAlbumGetFileAssetsDemoCallback')
   let albumList = await mgr.getPrivateAlbum(userFileManager.PrivateAlbumType.TYPE_TRASH);
@@ -2069,6 +2143,8 @@ getPhotoAssets(options: FetchOptions): Promise&lt;FetchResult&lt;FileAsset&gt;&g
 **示例**：
 
 ```ts
+import dataSharePredicates from '@ohos.data.dataSharePredicates';
+
 async function example() {
   console.info('privateAlbumGetFileAssetsDemoPromise')
   let albumList = await mgr.getPrivateAlbum(userFileManager.PrivateAlbumType.TYPE_TRASH);
@@ -2103,6 +2179,8 @@ delete(uri: string, callback: AsyncCallback&lt;void&gt;): void;
 **示例**：
 
 ```ts
+import dataSharePredicates from '@ohos.data.dataSharePredicates';
+
 async function example() {
   console.info('privateAlbumDeleteCallback');
   let albumList = await mgr.getPrivateAlbum(userFileManager.PrivateAlbumType.TYPE_TRASH);
@@ -2149,6 +2227,8 @@ delete(uri: string): Promise&lt;void&gt;;
 **示例**：
 
 ```ts
+import dataSharePredicates from '@ohos.data.dataSharePredicates';
+
 async function example() {
   console.info('privateAlbumDeleteDemoPromise')
   let albumList = await mgr.getPrivateAlbum(userFileManager.PrivateAlbumType.TYPE_TRASH);
@@ -2189,6 +2269,8 @@ recover(uri: string, callback: AsyncCallback&lt;void&gt;): void;
 **示例**：
 
 ```ts
+import dataSharePredicates from '@ohos.data.dataSharePredicates';
+
 async function example() {
   console.info('privateAlbumRecoverDemoCallback');
   let albumList = await mgr.getPrivateAlbum(userFileManager.PrivateAlbumType.TYPE_TRASH);
@@ -2235,6 +2317,8 @@ recover(uri: string): Promise&lt;void&gt;;
 **示例**：
 
 ```ts
+import dataSharePredicates from '@ohos.data.dataSharePredicates';
+
 async function example() {
   console.info('privateAlbumRecoverDemoPromise')
   let albumList = await mgr.getPrivateAlbum(userFileManager.PrivateAlbumType.TYPE_TRASH);
@@ -2383,7 +2467,7 @@ async function example() {
 | 名称                   | 类型                | 必填 | 说明                                              |
 | ---------------------- | ------------------- | ---- |------------------------------------------------ |
 | fetchColumns           | Array&lt;string&gt; | 是   | 检索条件，指定列名查询，如果该参数为空时默认查询uri、name、fileType。示例：<br />fetchColumns: "uri"|
-| predicates           | [dataSharePredicates.DataSharePredicates](#../js-apis-data-dataSharePredicates.md) | 是   | 谓词查询，显示过滤条件 |
+| predicates           | [dataSharePredicates.DataSharePredicates](js-apis-data-dataSharePredicates.md) | 是   | 谓词查询，显示过滤条件 |
 
 ## AlbumFetchOptions
 
@@ -2393,5 +2477,5 @@ async function example() {
 
 | 名称                   | 类型                | 必填 | 说明                                              |
 | ---------------------- | ------------------- | ---- |------------------------------------------------ |
-| predicates           | [dataSharePredicates.DataSharePredicates](#../js-apis-data-dataSharePredicates.md) | 是   | 谓词查询，显示过滤条件 |
+| predicates           | [dataSharePredicates.DataSharePredicates](js-apis-data-dataSharePredicates.md) | 是   | 谓词查询，显示过滤条件 |
 

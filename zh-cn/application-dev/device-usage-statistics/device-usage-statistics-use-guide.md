@@ -277,7 +277,7 @@ import usageStatistics from '@ohos.resourceschedule.usageStatistics';
         console.log('BUNDLE_ACTIVE queryModuleUsageRecords throw error, code is: ' + error.code + ',message is: ' + error.message);
     }
 
-    // 无maNum参数异步方法promise方式
+    // 无maxNum参数异步方法promise方式
     try{
         usageStatistics.queryModuleUsageRecords().then( res => {
             console.log('BUNDLE_ACTIVE queryModuleUsageRecords promise succeeded');
@@ -309,7 +309,7 @@ import usageStatistics from '@ohos.resourceschedule.usageStatistics';
         console.log('BUNDLE_ACTIVE queryModuleUsageRecords throw error, code is: ' + error.code + ',message is: ' + error.message);
     }
 
-    // 无maNum参数异步方法callback方式
+    // 无maxNum参数异步方法callback方式
     try{
         usageStatistics.queryModuleUsageRecords((err, res) => {
         if(err) {

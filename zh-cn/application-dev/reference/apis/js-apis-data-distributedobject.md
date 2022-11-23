@@ -131,7 +131,7 @@ setSessionId(sessionId: string, callback: AsyncCallback&lt;void&gt;): void
 
 **错误码：**
 
-  以下错误码的详细介绍参见[分布式数据对象错误码](../errorcodes/errorcode-distributed-data_object.md)。
+  以下错误码的详细介绍参见[分布式数据对象错误码](../errorcodes/errorcode-distributed-dataObject.md)。
 
   | 类型 | 说明 |
   | -------- | -------- |
@@ -189,7 +189,7 @@ setSessionId(callback: AsyncCallback&lt;void&gt;): void
 
 **错误码：**
 
-  以下错误码的详细介绍参见[分布式数据对象错误码](../errorcodes/errorcode-distributed-data_object.md)。
+  以下错误码的详细介绍参见[分布式数据对象错误码](../errorcodes/errorcode-distributed-dataObject.md)。
 
   | 类型 | 说明 |
   | -------- | -------- |
@@ -261,7 +261,7 @@ setSessionId(sessionId?: string): Promise&lt;void&gt;
 
 **错误码：**
 
-  以下错误码的详细介绍参见[分布式数据对象错误码](../errorcodes/errorcode-distributed-data_object.md)。
+  以下错误码的详细介绍参见[分布式数据对象错误码](../errorcodes/errorcode-distributed-dataObject.md)。
 
   | 类型 | 说明 |
   | -------- | -------- |
@@ -632,7 +632,7 @@ import distributedObject from '@ohos.data.distributedDataObject';
 import featureAbility from '@ohos.ability.featureAbility';
 // 获取context
 let context = featureAbility.getContext();
-let g_object = distributedObject.create({name:"Amy", age:18, isVis:false});
+let g_object = distributedObject.create(context,{name:"Amy", age:18, isVis:false});
 g_object.setSessionId("123456");
 g_object.save("local").then((result) => {
     console.log("save callback");
@@ -654,7 +654,7 @@ class MainAbility extends Ability{
         context = this.context
     }
 }
-let g_object = distributedObject.create({name:"Amy", age:18, isVis:false});
+let g_object = distributedObject.create(context,{name:"Amy", age:18, isVis:false});
 g_object.setSessionId("123456");
 g_object.save("local").then((result) => {
     console.log("save callback");

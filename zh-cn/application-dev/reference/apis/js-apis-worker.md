@@ -174,7 +174,7 @@ on(type: string, listener: WorkerEventListener): void
 | 参数名   | 类型                                         | 必填 | 说明                   |
 | -------- | -------------------------------------------- | ---- | ---------------------- |
 | type     | string                                       | 是   | 监听的事件类型。       |
-| listener | [WorkerEventListener](#workereventlistener9) | 是是 | 回调的事件。回调事件。 |
+| listener | [WorkerEventListener](#workereventlistener9) | 是 | 回调的事件。回调事件。 |
 
 **示例：**
 
@@ -199,7 +199,7 @@ once(type: string, listener: WorkerEventListener): void
 | 参数名   | 类型                                         | 必填 | 说明                   |
 | -------- | -------------------------------------------- | ---- | ---------------------- |
 | type     | string                                       | 是   | 监听的事件类型。       |
-| listener | [WorkerEventListener](#workereventlistener9) | 是是 | 回调的事件。回调事件。 |
+| listener | [WorkerEventListener](#workereventlistener9) | 是 | 回调的事件。回调事件。 |
 
 **示例：**
 
@@ -224,7 +224,7 @@ off(type: string, listener?: WorkerEventListener): void
 | 参数名   | 类型                                         | 必填 | 说明                         |
 | -------- | -------------------------------------------- | ---- | ---------------------------- |
 | type     | string                                       | 是   | 需要删除的事件类型。         |
-| listener | [WorkerEventListener](#workereventlistener9) | 是否 | 回调的事件。删除的回调事件。 |
+| listener | [WorkerEventListener](#workereventlistener9) | 否 | 回调的事件。删除的回调事件。 |
 
 **示例：**
 
@@ -388,7 +388,7 @@ removeEventListener(type: string, callback?: WorkerEventListener): void
 | 参数名   | 类型                                         | 必填 | 说明                         |
 | -------- | -------------------------------------------- | ---- | ---------------------------- |
 | type     | string                                       | 是   | 需要删除的监听事件类型。     |
-| callback | [WorkerEventListener](#workereventlistener9) | 是否 | 回调的事件。删除的回调事件。 |
+| callback | [WorkerEventListener](#workereventlistener9) | 否 | 回调的事件。删除的回调事件。 |
 
 **示例：**
 

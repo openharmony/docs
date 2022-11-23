@@ -194,7 +194,7 @@ getSupportedOutputCapability(camera:CameraDevice, callback: AsyncCallback<Camera
 **示例：**
 
 ```js
-cameraManager.getSupportedOutputCapability(cameradevice, (err, cameras) => {
+cameraManager.getSupportedOutputCapability(cameradevice, (err, CameraOutputCapability) => {
     if (err) {
         console.error(`Failed to get the cameras. ${err.message}`);
         return;
@@ -250,7 +250,7 @@ isCameraMuted(): boolean
 **示例：**
 
 ```js
-let ismuted = await cameraManager.isCameraMuted();
+let ismuted = cameraManager.isCameraMuted();
 ```
 
 ### isCameraMuteSupported
@@ -270,7 +270,7 @@ isCameraMuteSupported(): boolean
 **示例：**
 
 ```js
-let ismutesuppotred = await cameraManager.isCameraMuteSupported();
+let ismutesuppotred = cameraManager.isCameraMuteSupported();
 ```
 
 ### muteCamera
@@ -1092,7 +1092,7 @@ cameraInput.on('error', camera, (cameraInputError) => {
 | -------------------------- | ---- | ------------ |
 | FOCUS_MODE_MANUAL          | 0    | 手动对焦。     |
 | FOCUS_MODE_CONTINUOUS_AUTO | 1    | 连续自动对焦。 |
-| FOCUS_MODE_AUTO            | 2    | 自动变焦。     |
+| FOCUS_MODE_AUTO            | 2    | 自动对焦。     |
 | FOCUS_MODE_LOCKED          | 3    | 对焦锁定。     |
 
 ## FocusState
@@ -2106,8 +2106,8 @@ getExposureBiasRange(): Promise<Array<number\>\>
 **示例：**
 
 ```js
-captureSession.isExposureModeSupported(camera.ExposureMode.EXPOSURE_MODE_LOCKED).then((isSupported) => {
-    console.log(`Promise returned with exposure mode supported : ${isSupported}`);
+captureSession.getExposureBiasRange().then((biasRangeArray) => {
+    console.log('Promise returned with the array of compenstation range: ' + JSON.stringify(biasRangeArray));
 })
 ```
 

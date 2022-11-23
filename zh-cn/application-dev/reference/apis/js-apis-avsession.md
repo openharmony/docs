@@ -1,4 +1,4 @@
- # 媒体会话管理
+# 媒体会话管理
 
 媒体会话管理提供媒体播控相关功能的接口，目的是让应用接入播控中心。
 
@@ -54,10 +54,9 @@ import featureAbility from '@ohos.ability.featureAbility';
 
 let session;
 let tag = "createNewSession";
-let type = "audio";
 let context = featureAbility.getContext();
 
-await avSession.createAVSession(context, tag, type).then((avSession) => {
+await avSession.createAVSession(context, tag, "audio").then((avSession) => {
     session = avSession;
     console.info(`CreateAVSession : SUCCESS : sessionId = ${session.sessionId}`);
 }).catch((err) => {
@@ -96,10 +95,9 @@ import featureAbility from '@ohos.ability.featureAbility';
 
 let session;
 let tag = "createNewSession";
-let type = "audio";
 let context = featureAbility.getContext();
 
-avSession.createAVSession(context, tag, type, function (err, avSession) {
+avSession.createAVSession(context, tag, "audio", function (err, avSession) {
     if (err) {
         console.info(`CreateAVSession BusinessError: code: ${err.code}, message: ${err.message}`);
     } else {

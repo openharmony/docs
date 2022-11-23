@@ -21,8 +21,7 @@ import freeInstall from '@ohos.bundle.freeInstall';
 | ohos.permission.GET_BUNDLE_INFO_PRIVILEGED | system_basic | 可查询所有应用信息 |
 | ohos.permission.INSTALL_BUNDLE             | system_core  | 可安装、卸载应用   |
 
-权限等级参考[权限等级说明](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/accesstoken-overview.md#%E6%9D%83%E9%99%90%E7%AD%89%E7%BA%A7%E8%AF%B4%E6%98%8E)
-
+权限等级参考[权限等级说明](../../security/accesstoken-overview.md#权限等级说明)。
 ## UpgradeFlag
 
 **系统接口：** 此接口为系统接口。
@@ -62,7 +61,7 @@ setHapModuleUpgradeFlag(bundleName: string, moduleName: string, upgradeFlag: Upg
 
 **参数：**
 
-| 名称        | 类型                        | 必填 | 描述                         |
+| 参数名     | 类型                        | 必填 | 说明                       |
 | ----------- | --------------------------- | ---- | ---------------------------- |
 | bundleName  | string                      | 是   | 应用程序包名称。             |
 | moduleName  | string                      | 是   | 应用程序模块名称。           |
@@ -71,9 +70,9 @@ setHapModuleUpgradeFlag(bundleName: string, moduleName: string, upgradeFlag: Upg
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.bundle错误码](../errorcodes/errcode-bundle.md)。
+以下错误码的详细介绍请参见[ohos.bundle错误码](../errorcodes/errorcode-bundle.md)。
 
-| 错误码ID        |    错误新息(此处仅提供错误抛出的关键信息)                   |
+| 错误码ID        |    错误信息                   |
 |---------------|-------------------------|
 |  201         | Permission denied.|
 |  401       | The parameter check failed. |
@@ -115,7 +114,7 @@ setHapModuleUpgradeFlag(bundleName: string, moduleName: string, upgradeFlag: Upg
 
 **参数：**
 
-| 名称        | 类型                        | 必填 | 描述                   |
+| 参数名      | 类型                        | 必填 | 说明                   |
 | ----------- | --------------------------- | ---- | ---------------------- |
 | bundleName  | string                      | 是   | 应用程序包名称。       |
 | moduleName  | string                      | 是   | 应用程序模块名称。     |
@@ -129,9 +128,9 @@ setHapModuleUpgradeFlag(bundleName: string, moduleName: string, upgradeFlag: Upg
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.bundle错误码](../errorcodes/errcode-bundle.md)。
+以下错误码的详细介绍请参见[ohos.bundle错误码](../errorcodes/errorcode-bundle.md)。
 
-| 错误码ID        |    错误新息(此处仅提供错误抛出的关键信息)                   |
+| 错误码ID        |    错误信息                   |
 |---------------|-------------------------|
 |  201         | Permission denied.|
 |  401       | The parameter check failed. |
@@ -171,7 +170,7 @@ isHapModuleRemovable(bundleName: string, moduleName: string, callback: AsyncCall
 
 **参数：**
 
-| 名称       | 类型                   | 必填 | 描述                                          |
+| 参数名      | 类型                   | 必填 | 说明                                          |
 | ---------- | ---------------------- | ---- | --------------------------------------------- |
 | bundleName | string                 | 是   | 应用程序包名称。                              |
 | moduleName | string                 | 是   | 应用程序模块名称。                            |
@@ -179,9 +178,9 @@ isHapModuleRemovable(bundleName: string, moduleName: string, callback: AsyncCall
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.bundle错误码](../errorcodes/errcode-bundle.md)。
+以下错误码的详细介绍请参见[ohos.bundle错误码](../errorcodes/errorcode-bundle.md)。
 
-| 错误码ID        |    错误新息(此处仅提供错误抛出的关键信息)                   |
+| 错误码ID        |    错误信息                   |
 |---------------|-------------------------|
 |  201         | Permission denied.|
 |  401       | The parameter check failed. |
@@ -222,7 +221,7 @@ isHapModuleRemovable(bundleName: string, moduleName: string): Promise\<boolean>;
 
 **参数：**
 
-| 名称       | 类型   | 必填 | 描述               |
+| 参数名     | 类型   | 必填 | 说明               |
 | ---------- | ------ | ---- | ------------------ |
 | bundleName | string | 是   | 应用程序包名称。   |
 | moduleName | string | 是   | 应用程序模块名称。 |
@@ -235,9 +234,9 @@ isHapModuleRemovable(bundleName: string, moduleName: string): Promise\<boolean>;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.bundle错误码](../errorcodes/errcode-bundle.md)。
+以下错误码的详细介绍请参见[ohos.bundle错误码](../errorcodes/errorcode-bundle.md)。
 
-| 错误码ID        |    错误新息(此处仅提供错误抛出的关键信息)                   |
+| 错误码ID        |    错误信息                   |
 |---------------|-------------------------|
 |  201         | Permission denied.|
 |  401       | The parameter check failed. |
@@ -276,17 +275,17 @@ getBundlePackInfo(bundleName: string, bundlePackFlag : BundlePackFlag, callback:
 
 **参数：**
 
-| 名称           | 类型                                                         | 必填 | 描述                                                 |
-| -------------- | ------------------------------------------------------------ | ---- | ---------------------------------------------------- |
-| bundleName     | string                                                       | 是   | 应用程序包名称。                                     |
-| bundlePackFlag | [BundlePackFlag](#bundlepackflag)            | 是   | 指示要查询的应用包标志                               |
+| 参数名         | 类型                                                         | 必填 | 说明                                                         |
+| -------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| bundleName     | string                                                       | 是   | 应用程序包名称。                                             |
+| bundlePackFlag | [BundlePackFlag](#bundlepackflag)                            | 是   | 指示要查询的应用包标志                                       |
 | callback       | AsyncCallback<[BundlePackInfo](js-apis-bundleManager-packInfo.md)> | 是   | 回调函数。当函数调用成功，err为null，data为获取到的BundlePackInfo信息。否则为错误对象。 |
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.bundle错误码](../errorcodes/errcode-bundle.md)。
+以下错误码的详细介绍请参见[ohos.bundle错误码](../errorcodes/errorcode-bundle.md)。
 
-| 错误码ID        |    错误新息(此处仅提供错误抛出的关键信息)                   |
+| 错误码ID        |    错误信息                   |
 |---------------|-------------------------|
 |  201         | Permission denied.|
 |  401       | The parameter check failed. |
@@ -298,9 +297,9 @@ getBundlePackInfo(bundleName: string, bundlePackFlag : BundlePackFlag, callback:
 ```js
 import freeInstall from '@ohos.bundle.freeInstall';
 let bundleName = 'com.example.myapplication';
-let upgradeFlag = freeInstall.UpgradeFlag.GET_PACK_INFO_ALL;
+let bundlePackFlag = freeInstall.BundlePackFlag.GET_PACK_INFO_ALL;
 try {
-    freeInstall.getBundlePackInfo(bundleName, upgradeFlag, (err, data) => {
+    freeInstall.getBundlePackInfo(bundleName, bundlePackFlag, (err, data) => {
         if (err) {
             console.error('Operation failed:' + JSON.stringify(err));
         } else {
@@ -325,9 +324,9 @@ getBundlePackInfo(bundleName: string, bundlePackFlag : BundlePackFlag): Promise\
 
 **参数：**
 
-| 名称           | 类型                                              | 必填 | 描述                   |
-| -------------- | ------------------------------------------------- | ---- | ---------------------- |
-| bundleName     | string                                            | 是   | 应用程序包名称。       |
+| 参数名         | 类型                              | 必填 | 说明                   |
+| -------------- | --------------------------------- | ---- | ---------------------- |
+| bundleName     | string                            | 是   | 应用程序包名称。       |
 | bundlePackFlag | [BundlePackFlag](#bundlepackflag) | 是   | 指示要查询的应用包标志 |
 
 **返回值：**
@@ -338,9 +337,9 @@ getBundlePackInfo(bundleName: string, bundlePackFlag : BundlePackFlag): Promise\
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.bundle错误码](../errorcodes/errcode-bundle.md)。
+以下错误码的详细介绍请参见[ohos.bundle错误码](../errorcodes/errorcode-bundle.md)。
 
-| 错误码ID        |    错误新息(此处仅提供错误抛出的关键信息)                   |
+| 错误码ID        |    错误信息                   |
 |---------------|-------------------------|
 |  201         | Permission denied.|
 |  401       | The parameter check failed. |
@@ -352,9 +351,9 @@ getBundlePackInfo(bundleName: string, bundlePackFlag : BundlePackFlag): Promise\
 ```js
 import freeInstall from '@ohos.bundle.freeInstall';
 let bundleName = 'com.example.myapplication';
-let upgradeFlag = freeInstall.UpgradeFlag.GET_PACK_INFO_ALL;
+let bundlePackFlag = freeInstall.BundlePackFlag.GET_PACK_INFO_ALL;
 try {
-    freeInstall.getBundlePackInfo(bundleName, upgradeFlag).then(data => {
+    freeInstall.getBundlePackInfo(bundleName, bundlePackFlag).then(data => {
         console.info('Operation succeed:' + JSON.stringify(data));
     }).catch(err => {
         console.error('Operation failed:' + JSON.stringify(err));
@@ -378,15 +377,15 @@ getDispatchInfo(callback: AsyncCallback\<DispatchInfo>): void;
 
 **参数：**
 
-| 名称     | 类型                                                   | 必填 | 描述                                                         |
-| -------- | ------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| 参数名   | 类型                                                         | 必填 | 说明                                                         |
+| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | callback | AsyncCallback<[DispatchInfo](js-apis-bundleManager-dispatchInfo.md)> | 是   | 回调函数。当函数调用成功，err为null，data为获取到的[DispatchInfo](js-apis-bundleManager-dispatchInfo.md)信息。否则为错误对象。 |
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.bundle错误码](../errorcodes/errcode-bundle.md)。
+以下错误码的详细介绍请参见[ohos.bundle错误码](../errorcodes/errorcode-bundle.md)。
 
-| 错误码ID        |    错误新息(此处仅提供错误抛出的关键信息)                   |
+| 错误码ID        |    错误信息                   |
 |---------------|-------------------------|
 |  201         | Permission denied.|
 |  801       | Capability not supported. |
@@ -428,9 +427,9 @@ getDispatchInfo(): Promise\<DispatchInfo>;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.bundle错误码](../errorcodes/errcode-bundle.md)。
+以下错误码的详细介绍请参见[ohos.bundle错误码](../errorcodes/errorcode-bundle.md)。
 
-| 错误码ID        |    错误新息(此处仅提供错误抛出的关键信息)                   |
+| 错误码ID        |    错误信息                   |
 |---------------|-------------------------|
 |  201         | Permission denied.|
 |  801       | Capability not supported. |

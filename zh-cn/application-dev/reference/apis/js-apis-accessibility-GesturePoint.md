@@ -22,7 +22,7 @@ import GesturePoint from '@ohos.accessibility.GesturePoint';
 
 ### 属性
 
-| 名称        | 参数类型   | 可读   | 可写   | 说明      |
+| 名称        | 类型   | 可读   | 可写   | 说明      |
 | --------- | ------ | ---- | ---- | ------- |
 | positionX | number | 是    | 是    | 触摸点X坐标。 |
 | positionY | number | 是    | 是    | 触摸点Y坐标。 |
@@ -37,7 +37,7 @@ constructor(positionX: number, positionY: number);
 
 **参数：**
 
-| 参数名 | 参数类型 | 必填 | 说明 |
+| 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | positionX | number | 是 | 触摸点X坐标。 |
 | positionY | number | 是  | 触摸点Y坐标。 |
@@ -45,7 +45,5 @@ constructor(positionX: number, positionY: number);
 **示例：**
 
 ```ts
-let positionX = 1;
-let positionY = 2;
-let gesturePoint = new GesturePoint(positionX, positionY);
+let gesturePoint = new GesturePoint.GesturePoint(1, 2);
 ```

@@ -35,11 +35,11 @@ publishReminder(reminderReq: ReminderRequest, callback: AsyncCallback&lt;number&
 
 **错误码：**
 
-以下错误码的详细介绍请参见[@ohos.reminderAgentManager (后台代理提醒)](../errorcodes/errcode-reminderAgentManager.md)错误码。
+以下错误码的详细介绍请参见[@ohos.reminderAgentManager (后台代理提醒)](../errorcodes/errorcode-reminderAgentManager.md)错误码。
 
 | 错误码ID   | 错误码信息 |
 | --------- | ------- |
-| 1700001    | Notification does not enable. |
+| 1700001    | Notification is not enabled. |
 | 1700002    | The number of reminders exceeds the limit. |
 
 **示例**：
@@ -84,11 +84,11 @@ publishReminder(reminderReq: ReminderRequest): Promise&lt;number&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[@ohos.reminderAgentManager (后台代理提醒)](../errorcodes/errcode-reminderAgentManager.md)错误码。
+以下错误码的详细介绍请参见[@ohos.reminderAgentManager (后台代理提醒)](../errorcodes/errorcode-reminderAgentManager.md)错误码。
 
 | 错误码ID   | 错误码信息 |
 | --------- | ------- |
-| 1700001    | Notification does not enable. |
+| 1700001    | Notification is not enabled. |
 | 1700002    | The number of reminders exceeds the limit. |
 
 **示例**：
@@ -126,12 +126,12 @@ cancelReminder(reminderId: number, callback: AsyncCallback&lt;void&gt;): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[@ohos.reminderAgentManager (后台代理提醒)](../errorcodes/errcode-reminderAgentManager.md)错误码。
+以下错误码的详细介绍请参见[@ohos.reminderAgentManager (后台代理提醒)](../errorcodes/errorcode-reminderAgentManager.md)错误码。
 
 | 错误码ID   | 错误码信息 |
 | --------- | ------- |
 | 1700003    | The reminder does not exist. |
-| 1700004    | The package name does not exist. |
+| 1700004    | The bundle name does not exist. |
 
 **示例**：
 
@@ -172,12 +172,12 @@ cancelReminder(reminderId: number): Promise&lt;void&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[@ohos.reminderAgentManager (后台代理提醒)](../errorcodes/errcode-reminderAgentManager.md)错误码。
+以下错误码的详细介绍请参见[@ohos.reminderAgentManager (后台代理提醒)](../errorcodes/errorcode-reminderAgentManager.md)错误码。
 
 | 错误码ID   | 错误码信息 |
 | --------- | ------- |
 | 1700003    | The reminder does not exist. |
-| 1700004    | The package name does not exist. |
+| 1700004    | The bundle name does not exist. |
 
 **示例**：
 
@@ -210,11 +210,11 @@ getValidReminders(callback: AsyncCallback&lt;Array&lt;ReminderRequest&gt;&gt;): 
 
 **错误码：**
 
-以下错误码的详细介绍请参见[@ohos.reminderAgentManager (后台代理提醒)](../errorcodes/errcode-reminderAgentManager.md)错误码。
+以下错误码的详细介绍请参见[@ohos.reminderAgentManager (后台代理提醒)](../errorcodes/errorcode-reminderAgentManager.md)错误码。
 
 | 错误码ID   | 错误码信息 |
 | --------- | ------- |
-| 1700004    | The package name does not exist. |
+| 1700004    | The bundle name does not exist. |
 
 **示例**：
 
@@ -270,11 +270,11 @@ getValidReminders(): Promise&lt;Array&lt;ReminderRequest&gt;&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[@ohos.reminderAgentManager (后台代理提醒)](../errorcodes/errcode-reminderAgentManager.md)错误码。
+以下错误码的详细介绍请参见[@ohos.reminderAgentManager (后台代理提醒)](../errorcodes/errorcode-reminderAgentManager.md)错误码。
 
 | 错误码ID   | 错误码信息 |
 | --------- | ------- |
-| 1700004    | The package name does not exist. |
+| 1700004    | The bundle name does not exist. |
 
 **示例**：
 
@@ -328,11 +328,11 @@ cancelAllReminders(callback: AsyncCallback&lt;void&gt;): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[@ohos.reminderAgentManager (后台代理提醒)](../errorcodes/errcode-reminderAgentManager.md)错误码。
+以下错误码的详细介绍请参见[@ohos.reminderAgentManager (后台代理提醒)](../errorcodes/errorcode-reminderAgentManager.md)错误码。
 
 | 错误码ID   | 错误码信息 |
 | --------- | ------- |
-| 1700004    | The package name does not exist. |
+| 1700004    | The bundle name does not exist. |
 
 **示例**：
 
@@ -367,11 +367,11 @@ cancelAllReminders(): Promise&lt;void&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[@ohos.reminderAgentManager (后台代理提醒)](../errorcodes/errcode-reminderAgentManager.md)错误码。
+以下错误码的详细介绍请参见[@ohos.reminderAgentManager (后台代理提醒)](../errorcodes/errorcode-reminderAgentManager.md)错误码。
 
 | 错误码ID   | 错误码信息 |
 | --------- | ------- |
-| 1700004    | The package name does not exist. |
+| 1700004    | The bundle name does not exist. |
 
 **示例**：
 

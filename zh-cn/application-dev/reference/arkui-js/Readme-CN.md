@@ -96,10 +96,8 @@
 
 - 自定义组件
     - [基本用法](js-components-custom-basic-usage.md)
+    - [数据传递与处理](js-components-custom-props.md)
     - [继承样式](js-components-custom-style.md)
-    - [自定义事件](js-components-custom-events.md)
-    - [Props](js-components-custom-props.md)
-    - [事件参数](js-components-custom-event-parameter.md)
     - [slot插槽](js-components-custom-slot.md)
     - [生命周期定义](js-components-custom-lifecycle.md)
 - [动态创建组件](js-components-create-elements.md)

@@ -1,6 +1,6 @@
 # OpenSL ES Audio Playback Development
 
-## When to Use
+## Introduction
 
 You can use OpenSL ES to develop the audio playback function in OpenHarmony. Currently, only some [OpenSL ES APIs](https://gitee.com/openharmony/third_party_opensles/blob/master/api/1.0.1/OpenSLES.h) are implemented. If an API that has not been implemented is called, **SL_RESULT_FEATURE_UNSUPPORTED** will be returned.
  
@@ -58,7 +58,7 @@ To use OpenSL ES to develop the audio playback function in OpenHarmony, perform 
 
 5. Obtain the **bufferQueueItf** instance of the **SL_IID_OH_BUFFERQUEUE** interface.
 
-    ```
+    ```c++
     SLOHBufferQueueItf bufferQueueItf;
     (*pcmPlayerObject)->GetInterface(pcmPlayerObject, SL_IID_OH_BUFFERQUEUE, &bufferQueueItf);
     ```

@@ -56,7 +56,7 @@ setSurfaceId(surfaceId: string): void;
 | -------------- | ---------------------------------- | ---- | -------------------------- |
 | surfaceId       | string     | 是   | [XComponent](../arkui-ts/ts-basic-components-xcomponent.md#getxcomponentsurfaceid) 持有 Surface 的 ID。 |
 
-以下错误码的详细介绍请参见[用户认证错误码](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/errorcodes/errcode-useriam.md)
+以下错误码的详细介绍请参见[用户认证错误码](../errorcodes/errcode-useriam.md)
 
 **错误码：**
 
@@ -69,10 +69,10 @@ setSurfaceId(surfaceId: string): void;
 **示例：**
 
 ```js
-import faceAuth from '@ohos.userIAM.faceAuth';
+import userIAM_faceAuth from '@ohos.userIAM.faceAuth';
 
 let surfaceId = "123456";
-let manager = new faceAuth.FaceAuthManager();
+let manager = new userIAM_faceAuth.FaceAuthManager();
 try {
     manager.setSurfaceId(surfaceId);
     console.info("set surface id success");

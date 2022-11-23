@@ -2278,7 +2278,7 @@ PanelSimpleUnprepare负责灭屏的硬件时序初始化
 
 实例化后使用RegisterPanel接口向display模型注册该panel驱动即可
 
-需要说明的是，dauy200上的这款lcd 使用的时候DRM显示框架
+需要说明的是，dayu200上的这款lcd 使用的是DRM显示框架
 
 ### hcs配置
 
