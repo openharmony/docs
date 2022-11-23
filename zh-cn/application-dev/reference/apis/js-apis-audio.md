@@ -283,7 +283,7 @@ createTonePlayer(options: AudioRendererInfo, callback: AsyncCallback&lt;TonePlay
 import audio from '@ohos.multimedia.audio';
 
 let audioRendererInfo = {
-  content : audio.ContentType.CONTENT_TYPE_MUSIC,
+  content : audio.ContentType.CONTENT_TYPE_SONIFICATION,
   usage : audio.StreamUsage.STREAM_USAGE_MEDIA,
   rendererFlags : 0
 }
