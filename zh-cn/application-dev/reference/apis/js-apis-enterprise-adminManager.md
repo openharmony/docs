@@ -9,10 +9,10 @@
 ## 导入模块
 
 ```js
-import enterpriseDeviceManager from '@ohos.enterpriseDeviceManager';
+import adminManager from '@ohos.enterprise.adminManager';
 ```
 
-## enterpriseDeviceManager.enableAdmin
+## adminManager.enableAdmin
 
 enableAdmin(admin: Want, enterpriseInfo: EnterpriseInfo, type: AdminType, callback: AsyncCallback\<void>): void
 
@@ -54,7 +54,7 @@ let enterpriseInfo = {
     name: "enterprise name",
     description: "enterprise description"
 }
-enterpriseDeviceManager.enableAdmin(wantTemp, enterpriseInfo, enterpriseDeviceManager.AdminType.ADMIN_TYPE_NORMAL, error => {
+adminManager.enableAdmin(wantTemp, enterpriseInfo, adminManager.AdminType.ADMIN_TYPE_NORMAL, error => {
     if (error != null) {
         console.log("error occurs" + error);
         return;
@@ -63,7 +63,7 @@ enterpriseDeviceManager.enableAdmin(wantTemp, enterpriseInfo, enterpriseDeviceMa
 });
 ```
 
-## enterpriseDeviceManager.enableAdmin
+## adminManager.enableAdmin
 
 enableAdmin(admin: Want, enterpriseInfo: EnterpriseInfo, type: AdminType, userId: number, callback: AsyncCallback\<void>): void
 
@@ -106,7 +106,7 @@ let enterpriseInfo = {
     name: "enterprise name",
     description: "enterprise description"
 }
-enterpriseDeviceManager.enableAdmin(wantTemp, enterpriseInfo, enterpriseDeviceManager.AdminType.ADMIN_TYPE_NORMAL, 100, error => {
+adminManager.enableAdmin(wantTemp, enterpriseInfo, adminManager.AdminType.ADMIN_TYPE_NORMAL, 100, error => {
     if (error != null) {
         console.log("error occurs" + error);
         return;
@@ -115,7 +115,7 @@ enterpriseDeviceManager.enableAdmin(wantTemp, enterpriseInfo, enterpriseDeviceMa
 });
 ```
 
-## enterpriseDeviceManager.enableAdmin
+## adminManager.enableAdmin
 
 enableAdmin(admin: Want, enterpriseInfo: EnterpriseInfo, type: AdminType, userId?: number): Promise\<void>
 
@@ -163,13 +163,13 @@ let enterpriseInfo = {
     name: "enterprise name",
     description: "enterprise description"
 }
-enterpriseDeviceManager.enableAdmin(wantTemp, enterpriseInfo, enterpriseDeviceManager.AdminType.ADMIN_TYPE_NORMAL, 100)
+adminManager.enableAdmin(wantTemp, enterpriseInfo, adminManager.AdminType.ADMIN_TYPE_NORMAL, 100)
 .catch(error => {
     console.log("error occurs" + error);
 });
 ```
 
-## enterpriseDeviceManager.disableAdmin
+## adminManager.disableAdmin
 
 disableAdmin(admin: Want, callback: AsyncCallback\<void>): void
 
@@ -203,7 +203,7 @@ let wantTemp = {
     bundleName: "bundleName",
     abilityName: "abilityName",
 };
-enterpriseDeviceManager.disableAdmin(wantTemp, error => {
+adminManager.disableAdmin(wantTemp, error => {
     if (error != null) {
         console.log("error occurs" + error);
         return;
@@ -212,7 +212,7 @@ enterpriseDeviceManager.disableAdmin(wantTemp, error => {
 });
 ```
 
-## enterpriseDeviceManager.disableAdmin
+## adminManager.disableAdmin
 
 disableAdmin(admin: Want, userId: number, callback: AsyncCallback\<void>): void
 
@@ -247,7 +247,7 @@ let wantTemp = {
     bundleName: "bundleName",
     abilityName: "abilityName",
 };
-enterpriseDeviceManager.disableAdmin(wantTemp, 100, error => {
+adminManager.disableAdmin(wantTemp, 100, error => {
     if (error != null) {
         console.log("error occurs" + error);
         return;
@@ -256,7 +256,7 @@ enterpriseDeviceManager.disableAdmin(wantTemp, 100, error => {
 });
 ```
 
-## enterpriseDeviceManager.disableAdmin
+## adminManager.disableAdmin
 
 disableAdmin(admin: Want, userId?: number): Promise\<void>
 
@@ -296,12 +296,12 @@ let wantTemp = {
     bundleName: "bundleName",
     abilityName: "abilityName",
 };
-enterpriseDeviceManager.disableAdmin(wantTemp, 100).catch(error => {
+adminManager.disableAdmin(wantTemp, 100).catch(error => {
     console.log("error occurs" + error);
 });
 ```
 
-## enterpriseDeviceManager.disableSuperAdmin
+## adminManager.disableSuperAdmin
 
 disableSuperAdmin(bundleName: String, callback: AsyncCallback\<void>): void
 
@@ -332,7 +332,7 @@ disableSuperAdmin(bundleName: String, callback: AsyncCallback\<void>): void
 
 ```js
 let bundleName = "com.example.myapplication";
-enterpriseDeviceManager.disableSuperAdmin(bundleName, error => {
+adminManager.disableSuperAdmin(bundleName, error => {
     if (error != null) {
         console.log("error occurs" + error);
         return;
@@ -341,7 +341,7 @@ enterpriseDeviceManager.disableSuperAdmin(bundleName, error => {
 });
 ```
 
-## enterpriseDeviceManager.disableSuperAdmin
+## adminManager.disableSuperAdmin
 
 disableSuperAdmin(bundleName: String): Promise\<void>
 
@@ -377,12 +377,12 @@ disableSuperAdmin(bundleName: String): Promise\<void>
 
 ```js
 let bundleName = "com.example.myapplication";
-enterpriseDeviceManager.disableSuperAdmin(bundleName).catch(error => {
+adminManager.disableSuperAdmin(bundleName).catch(error => {
     console.log("error occurs" + error);
 });
 ```
 
-## enterpriseDeviceManager.isAdminEnabled
+## adminManager.isAdminEnabled
 
 isAdminEnabled(admin: Want, callback: AsyncCallback\<boolean>): void
 
@@ -414,7 +414,7 @@ let wantTemp = {
     bundleName: "bundleName",
     abilityName: "abilityName",
 };
-enterpriseDeviceManager.isAdminEnabled(wantTemp, (error, result) => {
+adminManager.isAdminEnabled(wantTemp, (error, result) => {
     if (error != null) {
         console.log("error occurs" + error);
         return;
@@ -423,7 +423,7 @@ enterpriseDeviceManager.isAdminEnabled(wantTemp, (error, result) => {
 });
 ```
 
-## enterpriseDeviceManager.isAdminEnabled
+## adminManager.isAdminEnabled
 
 isAdminEnabled(admin: Want, userId: number, callback: AsyncCallback\<boolean>): void
 
@@ -448,7 +448,7 @@ let wantTemp = {
     bundleName: "bundleName",
     abilityName: "abilityName",
 };
-enterpriseDeviceManager.isAdminEnabled(wantTemp, 100, (error, result) => {
+adminManager.isAdminEnabled(wantTemp, 100, (error, result) => {
     if (error != null) {
         console.log("error occurs" + error);
         return;
@@ -457,7 +457,7 @@ enterpriseDeviceManager.isAdminEnabled(wantTemp, 100, (error, result) => {
 });
 ```
 
-## enterpriseDeviceManager.isAdminEnabled
+## adminManager.isAdminEnabled
 
 isAdminEnabled(admin: Want, userId?: number): Promise\<boolean>
 
@@ -487,14 +487,14 @@ let wantTemp = {
     bundleName: "bundleName",
     abilityName: "abilityName",
 };
-enterpriseDeviceManager.isAdminEnabled(wantTemp, 100).then((result) => {
+adminManager.isAdminEnabled(wantTemp, 100).then((result) => {
     console.log("result is " + result);
 }).catch(error => {
     console.log("error occurs" + error);
 });
 ```
 
-## enterpriseDeviceManager.isSuperAdmin
+## adminManager.isSuperAdmin
 
 isSuperAdmin(bundleName: String, callback: AsyncCallback\<boolean>): void
 
@@ -515,7 +515,7 @@ isSuperAdmin(bundleName: String, callback: AsyncCallback\<boolean>): void
 
 ```js
 let bundleName = "com.example.myapplication";
-enterpriseDeviceManager.isSuperAdmin(bundleName, (error, result) => {
+adminManager.isSuperAdmin(bundleName, (error, result) => {
     if (error != null) {
         console.log("error occurs" + error);
         return;
@@ -524,7 +524,7 @@ enterpriseDeviceManager.isSuperAdmin(bundleName, (error, result) => {
 });
 ```
 
-## enterpriseDeviceManager.isSuperAdmin
+## adminManager.isSuperAdmin
 
 isSuperAdmin(bundleName: String): Promise\<boolean>
 
@@ -550,96 +550,14 @@ isSuperAdmin(bundleName: String): Promise\<boolean>
 
 ```js
 let bundleName = "com.example.myapplication";
-enterpriseDeviceManager.isSuperAdmin(bundleName).then((result) => {
+adminManager.isSuperAdmin(bundleName).then((result) => {
     console.log("result is " + result);
 }).catch(error => {
     console.log("error occurs" + error);
 });
 ```
 
-## enterpriseDeviceManager.getDeviceSettingsManager
-
-getDeviceSettingsManager(callback: AsyncCallback&lt;DeviceSettingsManager&gt;): void
-
-获取DeviceSettingsManager对象，使用callback形式返回DeviceSettingsManager对象。
-
-**系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
-
-**参数：**
-
-| 参数名      | 类型                                      | 必填   | 说明                                  |
-| -------- | --------------------------------------- | ---- | ----------------------------------- |
-| callback | AsyncCallback<[DeviceSettingsManager](js-apis-enterpriseDeviceManager-DeviceSettingsManager.md)&gt; | 是    | callback方式返回DeviceSettingsManager对象 |
-
-**错误码**：
-
-以下的错误码的详细介绍请参见[企业设备管理错误码](../errorcodes/errorcode-enterpriseDeviceManager.md)
-
-| 类型      | 说明                                                                         |          
-| ------- | ---------------------------------------------------------------------------- |
-| 9200001 | The application is not a administrator of the device.                        |
-| 9200002 | The administrator application does not have permission to manage the device. |
-
-**示例：**
-
-```js
-let wantTemp = {
-    bundleName: "bundleName",
-    abilityName: "abilityName",
-};
-enterpriseDeviceManager.getDeviceSettingsManager((error, mgr) => {
-    if (error != null) {
-        console.log("error code:" + error.code);
-        return;
-    }
-    mgr.setDateTime(wantTemp, 1526003846000, (error) => { 
-        if (error != null) {
-            console.log("error code:" + error.code);
-        }
-    });
-});
-```
-
-## enterpriseDeviceManager.getDeviceSettingsManager
-
-getDeviceSettingsManager(): Promise&lt;DeviceSettingsManager&gt;
-
-获取DeviceSettingsManager对象，使用Promise形式返回DeviceSettingsManager对象。
-
-**系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
-
-**返回值：**
-
-| 类型                                   | 说明                                 |
-| ------------------------------------ | ---------------------------------- |
-| Promise&lt;[DeviceSettingsManager](js-apis-enterpriseDeviceManager-DeviceSettingsManager.md)&gt; | Promise方式返回DeviceSettingsManager对象 |
-
-**错误码**：
-
-以下的错误码的详细介绍请参见[企业设备管理错误码](../errorcodes/errorcode-enterpriseDeviceManager.md)
-
-| 类型      | 说明                                                                         |          
-| ------- | ---------------------------------------------------------------------------- |
-| 9200001 | The application is not a administrator of the device.                        |
-| 9200002 | The administrator application does not have permission to manage the device. |
-
-**示例：**
-
-```js
-let wantTemp = {
-    bundleName: "bundleName",
-    abilityName: "abilityName",
-};
-enterpriseDeviceManager.getDeviceSettingsManager().then((mgr) => {
-    mgr.setDateTime(wantTemp, 1526003846000).catch((error) => {
-        console.log("error code:" + error.code);
-    })
-}).catch((error) => {
-    console.log("error code:" + error.code);
-})
-```
-
-## enterpriseDeviceManager.setEnterpriseInfo
+## adminManager.setEnterpriseInfo
 
 setEnterpriseInfo(admin: Want, enterpriseInfo: EnterpriseInfo, callback: AsyncCallback\<void>;): void
 
@@ -678,7 +596,7 @@ let enterpriseInfo = {
     name: "enterprise name",
     description: "enterprise description"
 }
-enterpriseDeviceManager.setEnterpriseInfo(wantTemp, enterpriseInfo, error => {
+adminManager.setEnterpriseInfo(wantTemp, enterpriseInfo, error => {
     if (error != null) {
         console.log("error occurs" + error);
         return;
@@ -687,7 +605,7 @@ enterpriseDeviceManager.setEnterpriseInfo(wantTemp, enterpriseInfo, error => {
 });
 ```
 
-## enterpriseDeviceManager.setEnterpriseInfo
+## adminManager.setEnterpriseInfo
 
 setEnterpriseInfo(admin: Want, enterpriseInfo: EnterpriseInfo): Promise\<void>;
 
@@ -731,12 +649,12 @@ let enterpriseInfo = {
     name: "enterprise name",
     description: "enterprise description"
 }
-enterpriseDeviceManager.setEnterpriseInfo(wantTemp, enterpriseInfo).catch(error => {
+adminManager.setEnterpriseInfo(wantTemp, enterpriseInfo).catch(error => {
     console.log("error occurs" + error);
 });
 ```
 
-## enterpriseDeviceManager.getEnterpriseInfo
+## adminManager.getEnterpriseInfo
 
 getEnterpriseInfo(admin: Want, callback: AsyncCallback&lt;EnterpriseInfo&gt;): void
 
@@ -768,7 +686,7 @@ let wantTemp = {
     bundleName: "com.example.myapplication",
     abilityName: "com.example.myapplication.MainAbility",
 };
-enterpriseDeviceManager.getEnterpriseInfo(wantTemp, (error, result) => {
+adminManager.getEnterpriseInfo(wantTemp, (error, result) => {
     if (error != null) {
         console.log("error occurs" + error);
         return;
@@ -778,7 +696,7 @@ enterpriseDeviceManager.getEnterpriseInfo(wantTemp, (error, result) => {
 });
 ```
 
-## enterpriseDeviceManager.getEnterpriseInfo
+## adminManager.getEnterpriseInfo
 
 getEnterpriseInfo(admin: Want): Promise&lt;EnterpriseInfo&gt;
 
@@ -815,7 +733,7 @@ let wantTemp = {
     bundleName: "com.example.myapplication",
     abilityName: "com.example.myapplication.MainAbility",
 };
-enterpriseDeviceManager.getEnterpriseInfo(wantTemp).then((result) => {
+adminManager.getEnterpriseInfo(wantTemp).then((result) => {
     console.log(result.name);
     console.log(result.description);
 }).catch(error => {
@@ -823,7 +741,7 @@ enterpriseDeviceManager.getEnterpriseInfo(wantTemp).then((result) => {
 });
 ```
 
-## enterpriseDeviceManager.subscribeManagedEvent
+## adminManager.subscribeManagedEvent
 
 subscribeManagedEvent(admin: Want, managedEvents: Array\<ManagedEvent>, callback: AsyncCallback\<void>): void
 
@@ -851,14 +769,14 @@ let wantTemp = {
     abilityName: "abilityName",
 };
 let events = [0, 1];
-enterpriseDeviceManager.subscribeManagedEvent(wantTemp, events, (error) => {
+adminManager.subscribeManagedEvent(wantTemp, events, (error) => {
     if (error) {
         console.log("error code:" + error.code + " error message:" + error.message);
     }
 });
 ```
 
-## enterpriseDeviceManager.subscribeManagedEvent
+## adminManager.subscribeManagedEvent
 
 subscribeManagedEvent(admin: Want, managedEvents: Array\<ManagedEvent>): Promise\<void>
 
@@ -891,13 +809,13 @@ let wantTemp = {
     abilityName: "abilityName",
 };
 let events = [0, 1];
-enterpriseDeviceManager.subscribeManagedEvent(wantTemp, events).then(() => {
+adminManager.subscribeManagedEvent(wantTemp, events).then(() => {
 }).catch((error) => {
     console.log("error code:" + error.code + " error message:" + error.message);
 })
 ```
 
-## enterpriseDeviceManager.unsubscribeManagedEvent
+## adminManager.unsubscribeManagedEvent
 
 unsubscribeManagedEvent(admin: Want, managedEvents: Array\<ManagedEvent>, callback: AsyncCallback\<void>): void
 
@@ -925,14 +843,14 @@ let wantTemp = {
     abilityName: "abilityName",
 };
 let events = [0, 1];
-enterpriseDeviceManager.unsubscribeManagedEvent(wantTemp, events, (error) => {
+adminManager.unsubscribeManagedEvent(wantTemp, events, (error) => {
     if (error) {
         console.log("error code:" + error.code + " error message:" + error.message);
     }
 });
 ```
 
-## enterpriseDeviceManager.unsubscribeManagedEvent
+## adminManager.unsubscribeManagedEvent
 
 unsubscribeManagedEvent(admin: Want, managedEvents: Array\<ManagedEvent>): Promise\<void>
 
@@ -965,7 +883,7 @@ let wantTemp = {
     abilityName: "abilityName",
 };
 let events = [0, 1];
-enterpriseDeviceManager.unsubscribeManagedEvent(wantTemp, events).then(() => {
+adminManager.unsubscribeManagedEvent(wantTemp, events).then(() => {
 }).catch((error) => {
     console.log("error code:" + error.code + " error message:" + error.message);
 })
