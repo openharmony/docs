@@ -349,3 +349,57 @@ struct ImageExample3 {
 ```
 
 ![zh-cn_image_0000001205972610](figures/zh-cn_image_0000001205972610.gif)
+
+###  渲染沙箱路径图片
+
+```ts
+import fileio from '@ohos.fileio'
+import context from '@ohos.application.context'
+
+@Entry
+@Component
+struct LoadImageExample {
+  @State resourcesPath: string = ''
+  @State sandboxPath: string = ''
+  context: context.AbilityContext
+
+  aboutToAppear() {
+    this.context = getContext(this) as context.AbilityContext
+  }
+
+  build() {
+    Column() {
+      Button('读取沙箱图片')
+        .margin({ bottom: 10, top: 10 })
+        .onClick(() => {
+          this.sandboxPath = this.context.getApplicationContext().filesDir + '/icon.png'
+          console.log(`读取沙箱图片=========>${this.sandboxPath}`)
+          let fd = fileio.openSync(this.sandboxPath, 0o100, 0o666)
+          console.log(`create file========>${fd}`)
+          let srcPath = this.context.bundleCodeDir + '/entry/resources/base/media/icon.png'
+          console.log('mySrcpath' + srcPath)
+          fileio.copyFileSync(srcPath, this.sandboxPath) // 复制图片到沙箱路径
+          this.sandboxPath = 'file://' + this.context.getApplicationContext().filesDir + '/icon.png'
+        })
+      Button('读取资源图片')
+        .margin({ bottom: 10 })
+        .onClick(() => {
+          this.resourcesPath = 'file://' + this.context.bundleCodeDir + '/entry/resources/base/media/icon.png'
+        })
+      Text(`资源图片路径:${this.resourcesPath}`)
+        .fontSize(20)
+        .margin({ bottom: 10 })
+      Image(this.resourcesPath)
+        .width(100)
+        .height(100)
+      Text(`沙箱图片路径:${this.sandboxPath}`)
+        .fontSize(20)
+        .margin({ bottom: 10 })
+      Image(this.sandboxPath)
+        .width(100)
+        .height(100)
+    }
+    .width('100%').height('100%')
+  }
+}
+```
