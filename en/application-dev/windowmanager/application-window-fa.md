@@ -31,7 +31,7 @@ The table below lists the common APIs used for application window development. F
 | Window | setFullScreen(isFullScreen: boolean, callback: AsyncCallback&lt;void&gt;): void | Sets whether to enable the full-screen mode for this window.|
 | Window | setLayoutFullScreen(isLayoutFullScreen: boolean, callback: AsyncCallback&lt;void&gt;): void | Sets whether to enable the full-screen mode for the window layout. |
 | Window | setSystemBarEnable(names: Array&lt;'status'\|'navigation'&gt;): Promise&lt;void&gt; | Sets whether to display the status bar and navigation bar in this window.|
-| Window | setSystemBarProperties(systemBarProperties: SystemBarProperties, callback: AsyncCallback&lt;void&gt;): void | Sets the properties of the status bar and navigation bar in this window.<br>`systemBarProperties`: properties of the status bar and navigation bar.|
+| Window | setSystemBarProperties(systemBarProperties: SystemBarProperties, callback: AsyncCallback&lt;void&gt;): void | Sets the properties of the status bar and navigation bar in this window.<br>**systemBarProperties**: properties of the status bar and navigation bar.|
 | Window | show(callback: AsyncCallback\<void>): void | Shows this window.|
 | Window | on(type: 'touchOutside', callback: Callback&lt;void&gt;): void | Enables listening for click events outside this window.|
 | Window | destroy(callback: AsyncCallback&lt;void&gt;): void | Destroys this window.|
@@ -46,9 +46,9 @@ You can create a subwindow, such as a dialog box, and set its properties.
 
 1. Create or obtain a subwindow.
 
-   - Call `window.create` to create a subwindow.
-   - Call `window.getTopWindow` to obtain the top window – subwindow.
-   - Call `window.find` to find an available subwindow.
+   - Call **window.create** to create a subwindow.
+   - Call **window.getTopWindow** to obtain the top window – subwindow.
+   - Call **window.find** to find an available subwindow.
 
    ```js
    import window from '@ohos.window';
@@ -89,61 +89,58 @@ You can create a subwindow, such as a dialog box, and set its properties.
    
    ```js
    // Move the subwindow.
-   windowClass.moveTo(300, 300, (err, data) => {
+   windowClass.moveTo(300, 300, (err) => {
      if (err.code) {
        console.error('Failed to move the window. Cause:' + JSON.stringify(err));
        return;
      }
-     console.info('Succeeded in moving the window. Data: ' + JSON.stringify(data));
+     console.info('Succeeded in moving the window.');
    });
    // Change the size of the subwindow.
-   windowClass.resetSize(500, 1000, (err, data) => {
+   windowClass.resetSize(500, 1000, (err) => {
      if (err.code) {
        console.error('Failed to change the window size. Cause:' + JSON.stringify(err));
        return;
      }
-     console.info('Succeeded in changing the window size. Data: ' + JSON.stringify(data));
+     console.info('Succeeded in changing the window size.');
    });
    ```
 
 3. Load content for the subwindow and show it.
 
-   Call `loadContent` and `show` to load and display the content in the subwindow.
+   Call **loadContent** and **show** to load and display the content in the subwindow.
    
    ```js
    // Load the page content to the subwindow.
-   windowClass.loadContent("pages/page2", (err, data) => {
+   windowClass.loadContent("pages/page2", (err) => {
        if (err.code) {
            console.error('Failed to load the content. Cause: ' + JSON.stringify(err));
            return;
        }
-       console.info('Succeeded in loading the content. Data: ' + JSON.stringify(data));
+       console.info('Succeeded in loading the content.');
        // Show the subwindow.
-       windowClass.show((err, data) => {
+       windowClass.show((err) => {
         if (err.code) {
                console.error('Failed to show the window. Cause: ' + JSON.stringify(err));
                return;
            }
-           console.info('Succeeded in showing the window. Data: ' + JSON.stringify(data));
+           console.info('Succeeded in showing the window.');
        });
    });
    ```
    
 4. Destroy the subwindow.
 
-   When the subwindow is no longer needed, you can call `destroy` to destroy it.
+   When the subwindow is no longer needed, you can call **destroy()** to destroy it.
    
    ```js
-   // Destroy the subwindow when a click event outside the window is detected.
-   windowClass.on('touchOutside', () => {
-       console.info('touch outside');
-       windowClass.destroy((err, data) => {
-           if (err.code) {
-               console.error('Failed to destroy the subwindow. Cause:' + JSON.stringify(err));
-               return;
-           }
-           console.info('Succeeded in destroying the subwindow. Data: ' + JSON.stringify(data));
-       });
+   // Call destroy() to destroy the subwindow when it is no longer needed.
+   windowClass.destroy((err) => {
+       if (err.code) {
+           console.error('Failed to destroy the subwindow. Cause:' + JSON.stringify(err));
+           return;
+       }
+       console.info('Succeeded in destroying the subwindow.');
    });
    ```
 
@@ -161,7 +158,7 @@ To create a better video watching and gaming experience, you can use the immersi
    >
    > The immersive window feature can be implemented only after the main window is obtained.
    >
-   > Ensure that the top window of the application is the main window. You can use `window.getTopWindow` to obtain the main window.
+   > Ensure that the top window of the application is the main window. You can use **window.getTopWindow** to obtain the main window.
    
    ```js
    import window from '@ohos.window';
@@ -180,76 +177,73 @@ To create a better video watching and gaming experience, you can use the immersi
 
 2. Implement the immersive effect. You can use any of the following methods:
 
-   - Method 1: Call `setFullScreen` to set the main window to be displayed in full screen. In this case, the navigation bar and status bar are hidden.
-   - Method 2: Call `setSystemBarEnable` to hide the navigation bar and status bar.
-   - Method 3: Call `setLayoutFullScreen` to enable the full-screen mode for the main window layout. Call `setSystemProperties` to set the opacity, background color, text color, and highlighted icon of the navigation bar and status bar to ensure that their display effect is consistent with that of the main window.
+   - Method 1: Call **setFullScreen** to set the main window to be displayed in full screen. In this case, the navigation bar and status bar are hidden.
+   - Method 2: Call **setSystemBarEnable** to hide the navigation bar and status bar.
+   - Method 3: Call **setLayoutFullScreen** to enable the full-screen mode for the main window layout. Call **setSystemProperties** to set the opacity, background color, text color, and highlighted icon of the navigation bar and status bar to ensure that their display effect is consistent with that of the main window.
 
    ```js
    // Use method 1 to implement the immersive effect.
    let isFullScreen = true;
-   mainWindowClass.setFullScreen(isFullScreen, (err, data) => {
+   mainWindowClass.setFullScreen(isFullScreen, (err) => {
      if (err.code) {
        console.error('Failed to enable the full-screen mode. Cause:' + JSON.stringify(err));
        return;
      }
-     console.info('Succeeded in enabling the full-screen mode. Data: ' + JSON.stringify(data));
+     console.info('Succeeded in enabling the full-screen mode.');
    });
    // Use method 2 to implement the immersive effect.
    let names = [];
-   mainWindowClass.setSystemBarEnable(names, (err, data) => {
+   mainWindowClass.setSystemBarEnable(names, (err) => {
      if (err.code) {
        console.error('Failed to set the system bar to be visible. Cause:' + JSON.stringify(err));
        return;
      }
-     console.info('Succeeded in setting the system bar to be visible. Data: ' + JSON.stringify(data));
+     console.info('Succeeded in setting the system bar to be visible.');
    });
    // Use method 3 to implement the immersive effect.
    let isLayoutFullScreen = true;
-   mainWindowClass.setLayoutFullScreen(isLayoutFullScreen, (err, data) => {
+   mainWindowClass.setLayoutFullScreen(isLayoutFullScreen, (err) => {
      if (err.code) {
        console.error('Failed to set the window layout to full-screen mode. Cause:' + JSON.stringify(err));
        return;
      }
-     console.info('Succeeded in setting the window layout to full-screen mode. Data: ' + JSON.stringify(data));
+     console.info('Succeeded in setting the window layout to full-screen mode.');
    });
    let sysBarProps = {
      statusBarColor: '#ff00ff',
      navigationBarColor: '#00ff00',
-     // The following properties are supported since API version 7.
-     isStatusBarLightIcon: false,
-     isNavigationBarLightIcon: false,
      // The following properties are supported since API version 8.
      statusBarContentColor: '#ffffff',
      navigationBarContentColor: '#ffffff'
    };
-   mainWindowClass.setSystemBarProperties(sysBarProps, (err, data) => {
+   mainWindowClass.setSystemBarProperties(sysBarProps, (err) => {
      if (err.code) {
        console.error('Failed to set the system bar properties. Cause: ' + JSON.stringify(err));
        return;
      }
-     console.info('Succeeded in setting the system bar properties. Data: ' + JSON.stringify(data));
+     console.info('Succeeded in setting the system bar properties.');
    });
    ```
    
 3. Load content for the immersive window and show it.
 
-   Call `loadContent` and `show` to load and display the content in the immersive window.
+   Call **loadContent** and **show** to load and display the content in the immersive window.
    
    ```js
    // Load the page content to the immersive window.
-   mainWindowClass.loadContent("pages/page3", (err, data) => {
+   mainWindowClass.loadContent("pages/page3", (err) => {
        if (err.code) {
            console.error('Failed to load the content. Cause: ' + JSON.stringify(err));
            return;
        }
-       console.info('Succeeded in loading the content. Data: ' + JSON.stringify(data));
+       console.info('Succeeded in loading the content.');
        // Show the immersive window.
-       mainWindowClass.show((err, data) => {
+       mainWindowClass.show((err) => {
            if (err.code) {
                console.error('Failed to show the window. Cause: ' + JSON.stringify(err));
                return;
            }
-           console.info('Succeeded in showing the window. Data: ' + JSON.stringify(data));
+           console.info('Succeeded in showing the window.');
        });
    });
    ```
