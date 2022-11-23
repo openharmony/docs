@@ -69,42 +69,42 @@ struct CheckboxExample {
         // 全选按钮
         Flex({ justifyContent: FlexAlign.Start, alignItems: ItemAlign.Center }) {
           CheckboxGroup({ group: 'checkboxGroup' })
-            .selectedColor(0xed6f21)
+            .selectedColor('#007DFF')
             .onChange((itemName: CheckboxGroupResult) => {
               console.info("checkbox group content" + JSON.stringify(itemName))
             })
-          Text('Select All').fontSize(20)
+          Text('Select All').fontSize(14).lineHeight(20).fontColor('#182431').fontWeight(500)
         }
 
         // 选项1
         Flex({ justifyContent: FlexAlign.Start, alignItems: ItemAlign.Center }) {
           Checkbox({ name: 'checkbox1', group: 'checkboxGroup' })
-            .selectedColor(0x39a2db)
+            .selectedColor('#007DFF')
             .onChange((value: boolean) => {
               console.info('Checkbox1 change is' + value)
             })
-          Text('Checkbox1').fontSize(20)
-        }
+          Text('Checkbox1').fontSize(14).lineHeight(20).fontColor('#182431').fontWeight(500)
+        }.margin({ left: 36 })
 
         // 选项2
         Flex({ justifyContent: FlexAlign.Start, alignItems: ItemAlign.Center }) {
           Checkbox({ name: 'checkbox2', group: 'checkboxGroup' })
-            .selectedColor(0x39a2db)
+            .selectedColor('#007DFF')
             .onChange((value: boolean) => {
               console.info('Checkbox2 change is' + value)
             })
-          Text('Checkbox2').fontSize(20)
-        }
+          Text('Checkbox2').fontSize(14).lineHeight(20).fontColor('#182431').fontWeight(500)
+        }.margin({ left: 36 })
 
         // 选项3
         Flex({ justifyContent: FlexAlign.Start, alignItems: ItemAlign.Center }) {
           Checkbox({ name: 'checkbox3', group: 'checkboxGroup' })
-            .selectedColor(0x39a2db)
+            .selectedColor('#007DFF')
             .onChange((value: boolean) => {
               console.info('Checkbox3 change is' + value)
             })
-          Text('Checkbox3').fontSize(20)
-        }
+          Text('Checkbox3').fontSize(14).lineHeight(20).fontColor('#182431').fontWeight(500)
+        }.margin({ left: 36 })
       }
     }
   }
