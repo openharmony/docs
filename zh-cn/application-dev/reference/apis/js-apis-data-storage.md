@@ -891,7 +891,7 @@ off(type: 'change', callback: Callback&lt;StorageObserver&gt;): void
 
 **参数：**
 
-| 参数名   | 类型                                                | 说明 |必填                                   |
+| 参数名   | 类型                                                | 必填 |  说明                                 |
 | -------- | --------------------------------------------------- | ------ |---------------------------------------- |
 | type     | string                                              |是| 事件类型，固定值'change'，表示数据变更。 |
 | callback | Callback&lt;[StorageObserver](#storageobserver)&gt; | 是|需要取消的回调对象实例。                 |
