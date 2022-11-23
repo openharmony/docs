@@ -70,7 +70,7 @@
  - **应用后台启动应用组件**
    - OpenHarmony 3.2-beta3 版本规则：
       - 应用位于后台时，启动应用组件不受任何限制。
-   - OpenHarmony 3.2-Release 版本新规则：
+   - OpenHarmony 3.2-beta4 版本新规则：
      - 当应用位于后台时，启动应用组件需鉴权，需申请的权限如下：
       - ```json
         {
@@ -86,9 +86,9 @@
           <br> 2. 对于API8以及之前的SDK，启动serviceAbility和dataAbility不受此规则限制。
 
  - **跨应用启动invisible应用组件**
-   - OpenHarmony 3.2.beta3 版本规则：
+   - OpenHarmony 3.2-beta3 版本规则：
      - 对于APL为normal的应用，无法跨应用启动invisible的应用组件
-   - OpenHarmony 3.2-Release 版本新规则：
+   - OpenHarmony 3.2-beta4 版本新规则：
      - 所有应用，若需要跨应用启动invisible的应用组件，需鉴权，需申请的权限如下：
      - ```json
         {
@@ -102,16 +102,16 @@
 
  - **跨应用启动FA模型的serviceAbility与dataAbility**
 
-   - OpenHarmony 3.2.beta3 版本规则：
+   - OpenHarmony 3.2-beta3 版本规则：
      - 可任意跨应用启动serviceAbility与dataAbility
-   - OpenHarmony 3.2-Release 版本新规则：
+   - OpenHarmony 3.2-beta4 版本新规则：
      - serviceAbility与dataAbility的提供方应用需配置关联启动，否则无法被跨应用拉起。（普通应用无法配置关联启动）
 
 
  - **startAbilityByCall接口**
-   - OpenHarmony 3.2.beta3 版本规则：
+   - OpenHarmony 3.2-beta3 版本规则：
      - 可任意进行Call调用
-   - OpenHarmony 3.2-Release 版本新规则：
+   - OpenHarmony 3.2-beta4 版本新规则：
      - 不支持同应用startAbilityByCall调用
       - 跨应用startAbilityByCall调用需鉴权，需申请的权限如下：
 
@@ -173,7 +173,7 @@
  - **应用后台启动应用组件**
    - OpenHarmony 3.2-beta3 版本规则：
       - 应用位于后台时，启动应用组件不受任何限制。
-   - OpenHarmony 3.2-Release 版本新规则：
+   - OpenHarmony 3.2-beta4 版本新规则：
      - 当应用位于后台时，启动应用组件需鉴权，需申请的权限如下：
       - ```json
         {
@@ -189,9 +189,9 @@
           <br> 2. 对于API8以及之前的SDK，启动serviceAbility不受此规则限制。
 
  - **跨应用启动invisible应用组件**
-   - OpenHarmony 3.2.beta3 版本规则：
+   - OpenHarmony 3.2-beta3 版本规则：
      - 无法跨应用启动invisible的应用组件
-   - OpenHarmony 3.2-Release 版本新规则：
+   - OpenHarmony 3.2-beta4 版本新规则：
      - 若需要跨应用启动invisible的应用组件，需鉴权，需申请的权限如下：
      - ```json
         {
@@ -205,9 +205,9 @@
 
  - **跨应用启动FA模型的serviceAbility**
 
-   - OpenHarmony 3.2.beta3 版本规则：
+   - OpenHarmony 3.2-beta3 版本规则：
      - 可任意跨应用启动serviceAbility
-   - OpenHarmony 3.2-Release 版本新规则：
+   - OpenHarmony 3.2-beta4 版本新规则：
      - serviceAbility的提供方应用需配置关联启动，否则无法被跨应用拉起。（普通应用无法配置关联启动）
      - 关联启动配置
      - ```json
