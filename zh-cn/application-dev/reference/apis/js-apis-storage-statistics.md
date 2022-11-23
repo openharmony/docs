@@ -68,7 +68,7 @@ getTotalSizeOfVolume(volumeUuid: string, callback: AsyncCallback&lt;number&gt;):
   | 参数名     | 类型                                 | 必填 | 说明                       |
   | ---------- | ------------------------------------ | ---- | -------------------------- |
   | volumeUuid | string                               | 是   | 卷id                       |
-  | callback   | callback: AsyncCallback&lt;number&gt; | 是   | 获取指定卷总空间之后的回调 |
+  | callback   | AsyncCallback&lt;number&gt;          | 是   | 获取指定卷总空间之后的回调 |
 
 **示例：**
 
@@ -137,7 +137,7 @@ getFreeSizeOfVolume(volumeUuid: string, callback: AsyncCallback&lt;number&gt;): 
   | 参数名     | 类型                                 | 必填 | 说明                         |
   | ---------- | ------------------------------------ | ---- | ---------------------------- |
   | volumeUuid | string                               | 是   | 卷id                         |
-  | callback   | callback: AsyncCallback&lt;number&gt; | 是   | 获取指定卷可用空间之后的回调 |
+  | callback   | AsyncCallback&lt;number&gt;          | 是   | 获取指定卷可用空间之后的回调 |
 
 **示例：**
 
@@ -173,7 +173,7 @@ getBundleStats(packageName: string): Promise&lt;BundleStats&gt;
 
   | 类型                                       | 说明                       |
   | ------------------------------------------ | -------------------------- |
-  | Promise&lt;[Bundlestats](#bundlestats)&gt; | 返回指定卷上的应用存储数据 |
+  | Promise&lt;[Bundlestats](#bundlestats9)&gt; | 返回指定卷上的应用存储数据 |
 
 **示例：**
 
@@ -205,7 +205,7 @@ getBundleStats(packageName: string,  callback: AsyncCallback&lt;BundleStats&gt;)
   | 参数名   | 类型                                                      | 必填 | 说明                                 |
   | -------- | --------------------------------------------------------- | ---- | ------------------------------------ |
   | packageName | string | 是   | 应用包名 |
-  | callback | callback: AsyncCallback&lt;[Bundlestats](#bundlestats)&gt; | 是   | 获取指定卷上的应用存储数据之后的回调 |
+  | callback | AsyncCallback&lt;[Bundlestats](#bundlestats9)&gt; | 是   | 获取指定卷上的应用存储数据之后的回调 |
 
 **示例：**
 
@@ -229,7 +229,7 @@ getCurrentBundleStats(): Promise&lt;BundleStats&gt;
 
   | 类型                                        | 说明                       |
   | ------------------------------------------ | -------------------------- |
-  | Promise&lt;[Bundlestats](#bundlestats)&gt; | 返回指定卷上的应用存储状态      |
+  | Promise&lt;[Bundlestats](#bundlestats9)&gt; | 返回指定卷上的应用存储状态      |
 
 **示例：**
 
@@ -250,7 +250,7 @@ getCurrentBundleStats(callback: AsyncCallback&lt;BundleStats&gt;): void
 
   | 参数名    | 类型                                                       | 必填  | 说明                                 |
   | -------- | --------------------------------------------------------- | ---- | ------------------------------------ |
-  | callback | callback: AsyncCallback&lt;[BundleStats](#bundlestats)&gt; | 是   | 获取指定卷上的应用存储状态之后的回调        |
+  | callback | AsyncCallback&lt;[BundleStats](#bundlestats9)&gt;          | 是   | 获取指定卷上的应用存储状态之后的回调        |
 
 **示例：**
 
@@ -270,11 +270,11 @@ getCurrentBundleStats(callback: AsyncCallback&lt;BundleStats&gt;): void
 
 该接口为系统接口，三方应用不支持调用
 
-| 名称      | 类型   | 说明           |
-| --------- | ------ | -------------- |
-| appSize   | number | app数据大小    |
-| cacheSize | number | 缓存数据大小   |
-| dataSize  | number | 应用总数据大小 |
+| 名称      | 类型   | 可读 | 可写 | 说明           |
+| --------- | ------ | --- | ---- | -------------- |
+| appSize   | number | 是 | 否 | app数据大小    |
+| cacheSize | number | 是 | 否 | 缓存数据大小   |
+| dataSize  | number | 是 | 否 | 应用总数据大小 |
 
 
 ## storageStatistics.getTotalSize<sup>9+</sup>
@@ -322,7 +322,7 @@ getTotalSize(callback: AsyncCallback&lt;number&gt;): void
 
   | 参数名    | 类型                                  | 必填  | 说明                     |
   | -------- | ------------------------------------ | ---- | ------------------------ |
-  | callback | callback: AsyncCallback&lt;number&gt; | 是   | 获取内卡的总空间大小之后的回调 |
+  | callback | AsyncCallback&lt;number&gt;          | 是   | 获取内卡的总空间大小之后的回调 |
 
 **示例：**
 
@@ -380,7 +380,7 @@ getFreeSize(callback: AsyncCallback&lt;number&gt;): void
 
   | 参数名    | 类型                                  | 必填 | 说明                       |
   | -------- | ------------------------------------ | ---- | ------------------------- |
-  | callback | callback: AsyncCallback&lt;number&gt; | 是   | 获取内卡的可用空间大小之后的回调 |
+  | callback | AsyncCallback&lt;number&gt;          | 是   | 获取内卡的可用空间大小之后的回调 |
 
 **示例：**
 
@@ -439,7 +439,7 @@ getSystemSize(callback: AsyncCallback&lt;number&gt;): void
 
   | 参数名     | 类型                                 | 必填 | 说明                       |
   | ---------- | ------------------------------------ | ---- | -------------------------- |
-  | callback   | callback: AsyncCallback&lt;number&gt; | 是   | 获取系统空间大小之后的回调 |
+  | callback   |  AsyncCallback&lt;number&gt;         | 是   | 获取系统空间大小之后的回调 |
 
 **示例：**
 
@@ -474,7 +474,7 @@ getUserStorageStats(userId? : number): Promise&lt;StorageStats&gt;
 
   | 类型                  | 说明             |
   | --------------------- | ---------------- |
-  | Promise&lt;[StorageStats](#storagestats)&gt; | 返回各类别数据大小 |
+  | Promise&lt;[StorageStats](#storagestats9)&gt; | 返回各类别数据大小 |
 
 **示例：**
 
@@ -506,7 +506,7 @@ getUserStorageStats(userId: number, callback: AsyncCallback&lt;StorageStats&gt;)
   | 参数名     | 类型                                 | 必填 | 说明                       |
   | ---------- | ------------------------------------ | ---- | -------------------------- |
   | userId | number                               | 否   | 用户id <br/>确认当前用户：<br/>-&nbsp;有值：表示指定用户。<br/>-&nbsp;无值：表示当前用户。                       |
-  | callback   | callback: AsyncCallback&lt;[StorageStats](#storagestats)&gt; | 是   | 返回各类别数据大小之后的回调 |
+  | callback   | AsyncCallback&lt;[StorageStats](#storagestats9)&gt; | 是   | 返回各类别数据大小之后的回调 |
 
 **示例：**
 
@@ -528,11 +528,11 @@ getUserStorageStats(userId: number, callback: AsyncCallback&lt;StorageStats&gt;)
 
 该接口为系统接口，三方应用不支持调用
 
-| 名称      | 类型   | 说明           |
-| --------- | ------ | -------------- |
-| total   | number | 内卡总空间大小    |
-| audio | number | 音频数据大小   |
-| video  | number | 视频数据大小 |
-| image   | number | 图像数据大小    |
-| file | number | 文件数据大小   |
-| app  | number | 应用数据大小 |
+| 名称      | 类型   | 可读  | 可写  | 说明           |
+| --------- | ------ | ---- | ----- | -------------- |
+| total   | number | 是 | 否 | 内卡总空间大小    |
+| audio | number  |是 | 否 | 音频数据大小   |
+| video  | number | 是 | 否 | 视频数据大小 |
+| image   | number | 是 | 否 | 图像数据大小    |
+| file | number | 是 | 否 | 文件数据大小   |
+| app  | number | 是 | 否 | 应用数据大小 |
