@@ -198,12 +198,11 @@ export default {
 		let triggerTime = new Date().getTime()
         triggerTime += 3000
         systemTimer.startTimer(timerId, triggerTime)
-        systemTimer.stopTimer(timerId, (error, data) => {
+        systemTimer.stopTimer(timerId, (error) => {
             if (error) {
                 console.error(`failed to systemTime.startTimer ` + JSON.stringify(error));
                 return;
             }
-            console.log(`systemTime.startTimer success data : ` + JSON.stringify(data));
         });
     }
 }
@@ -275,12 +274,11 @@ export default {
         triggerTime += 3000
         systemTimer.startTimer(timerId, triggerTime)
         systemTimer.stopTimer(timerId)
-        systemTimer.destroyTimer(timerId, (error, data) => {
+        systemTimer.destroyTimer(timerId, (error) => {
             if (error) {
                 console.error(`failed to systemTime.startTimer ` + JSON.stringify(error));
                 return;
             }
-            console.log(`systemTime.startTimer success data : ` + JSON.stringify(data));
         });
     }
 }
