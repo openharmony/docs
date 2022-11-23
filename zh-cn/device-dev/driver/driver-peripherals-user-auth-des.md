@@ -45,7 +45,7 @@
 
 - 用户认证框架公钥 & 执行器公钥
 
-  用户身份认证处理需要保证用户数据安全以及认证结果的准确性，用户认证框架与基础认证服务间的关键交互信息需要做数据完整性保护，各基础认证服务将提供的执行器能力对接到用户认证框架时，需要交互各自的公钥，其中：
+  用户身份认证处理需要保证用户数据安全以及认证结果的准确性，用户认证框架与基础认证服务间的关键交互信息需要做数据完整性保护，各基础认证服务将提供的执行器能力对接到用户认证框架时，需要交换各自的公钥，其中：
 
     - 执行器通过用户认证框架公钥校验调度指令的准确性，如锁定一个人脸模板，这种情况导致无法使用人脸功能，属于敏感操作，需要确保指令准确，才可处理。
 
@@ -121,7 +121,7 @@ User_auth驱动的主要工作是为User_auth服务提供稳定的用户凭据�
 | UpdateIdentificationResult(uint64_t contextId, const std::vector<uint8_t>& scheduleResult,<br/>        IdentifyResultInfo& info) | 更新识别结果，进行此次识别方案结果的评估。                   |
 | CancelIdentification(uint64_t contextId)                     | 取消此次识别。                                               |
 | GetAuthTrustLevel(int32_t userId, AuthType authType, uint32_t& authTrustLevel) | 获取此用户当前认证类型的认证可信等级。                       |
-| GetValidSolution(int32_t userId, const std::vector<AuthType>& authTypes, uint32_t authTrustLevel,<br/>        std::vector<AuthType>& validTypes) | 筛选此用户当前认证可信等级下可用认证方式。                   |
+| GetValidSolution(int32_t userId, const std::vector<AuthType>& authTypes, uint32_t authTrustLevel,<br/>        std::vector<AuthType>& validTypes) | 筛选此用户当前认证可信等级下可用的认证方式。                   |
 
 ### 开发步骤
 

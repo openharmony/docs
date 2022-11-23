@@ -34,11 +34,11 @@ constructor()
 
 **示例：**
 
-  ```js
-  import userIAM_faceAuth from '@ohos.userIAM.faceAuth';
+```js
+import userIAM_faceAuth from '@ohos.userIAM.faceAuth';
 
-  let faceAuthManager = new userIAM_faceAuth.FaceAuthManager();
-  ```
+let faceAuthManager = new userIAM_faceAuth.FaceAuthManager();
+```
 
 ### setSurfaceId
 
@@ -56,6 +56,10 @@ setSurfaceId(surfaceId: string): void;
 | -------------- | ---------------------------------- | ---- | -------------------------- |
 | surfaceId       | string     | 是   | [XComponent](../arkui-ts/ts-basic-components-xcomponent.md#getxcomponentsurfaceid) 持有 Surface 的 ID。 |
 
+以下错误码的详细介绍请参见[用户认证错误码](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/errorcodes/errcode-useriam.md)
+
+**错误码：**
+
 | 错误码ID | 错误信息 |
 | -------- | ------- |
 | 201 | Permission verification failed. |
@@ -64,15 +68,15 @@ setSurfaceId(surfaceId: string): void;
 
 **示例：**
 
-  ```js
-  import faceAuth from '@ohos.userIAM.faceAuth';
+```js
+import faceAuth from '@ohos.userIAM.faceAuth';
 
-  let surfaceId = "123456";
-  let manager = new faceAuth.FaceAuthManager();
-  try {
-      manager.setSurfaceId(surfaceId);
-      console.info("set surface id success");
-  } catch (e) {
-      console.error("set surface id failed, error = " + e);
-  }
-  ```
+let surfaceId = "123456";
+let manager = new faceAuth.FaceAuthManager();
+try {
+    manager.setSurfaceId(surfaceId);
+    console.info("set surface id success");
+} catch (e) {
+    console.error("set surface id failed, error = " + e);
+}
+```

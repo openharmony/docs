@@ -12,181 +12,6 @@
 import userIAM_userAuth from '@ohos.userIAM.userAuth';
 ```
 
-## 完整示例
-
-```js
-// API version 9
-import userIAM_userAuth from '@ohos.userIAM.userAuth';
-
-export default {
-    getVersion() {
-        try {
-            let version = userIAM_userAuth.getVersion();
-            console.info("auth version = " + version);
-        } catch (error) {
-            console.info("get version failed, error = " + error);
-        }
-    },
-
-    start() {
-        console.info("start auth");
-        let challenge = new Uint8Array([1, 2, 3, 4, 5, 6, 7, 8]);
-        let authType = userIAM_userAuth.UserAuthType.FACE;
-        let authTrustLevel = userIAM_userAuth.AuthTrustLevel.ATL1;
-        try {
-            let auth = userIAM_userAuth.getAuthInstance(challenge, authType, authTrustLevel);
-            auth.on("result", {
-                callback: (result: userIAM_userAuth.AuthResultInfo) => {
-                    console.log("authV9 result " + result.result);
-                    console.log("authV9 token " + result.token);
-                    console.log("authV9 remainAttempts " + result.remainAttempts);
-                    console.log("authV9 lockoutDuration " + result.lockoutDuration);
-                }
-            });
-            // if need tip
-            auth.on("tip", {
-            callback : (result : userIAM_userAuth.TipInfo) => {
-                switch (result.tip) {
-                    case userIAM_userAuth.FaceTips.FACE_AUTH_TIP_TOO_BRIGHT:
-                    // do something;
-                    case userIAM_userAuth.FaceTips.FACE_AUTH_TIP_TOO_DARK:
-                    // do something;
-                    // ...
-                    default:
-                    // do others
-                }
-            }
-            });
-            auth.start();
-            console.log("authV9 start success");
-        } catch (error) {
-            console.log("authV9 error = " + error);
-            // do error
-        }
-    },
-
-    getAvailableStatus() {
-        console.info("start check auth support");
-        try {
-            userIAM_userAuth.getAvailableStatus(userIAM_userAuth.UserAuthType.FACE, userIAM_userAuth.AuthTrustLevel.ATL1);
-            console.info("current auth trust level is supported");
-        } catch (error) {
-            console.info("current auth trust level is not supported, error = " + error);
-        }
-    },
-
-    cancel() {
-        console.info("start cancel auth");
-        let challenge = new Uint8Array([1, 2, 3, 4, 5, 6, 7, 8]);
-        let authType = userIAM_userAuth.UserAuthType.FACE;
-        let authTrustLevel = userIAM_userAuth.AuthTrustLevel.ATL1;
-
-        try {
-            let auth = userIAM_userAuth.getAuthInstance(challenge, authType, authTrustLevel);
-            auth.start();
-            auth.cancel();
-            console.info("cancel auth success");
-        } catch (error) {
-            console.info("cancel auth failed, error = " + error);
-        }
-    }
-}
-```
-
-```js
-// API version 8
-import userIAM_userAuth from '@ohos.userIAM.userAuth';
-let auth = new userIAM_userAuth.UserAuth();
-
-export default {
-    getVersion() {
-        console.info("start get version");
-        let version = auth.getVersion();
-        console.info("auth version = " + version);
-    },
-
-    startAuth() {
-        console.info("start auth");
-        auth.auth(null, userIAM_userAuth.UserAuthType.FACE, userIAM_userAuth.AuthTrustLevel.ATL1, {
-            onResult: (result, extraInfo) => {
-                try {
-                    console.info("auth onResult result = " + result);
-                    console.info("auth onResult extraInfo = " + JSON.stringify(extraInfo));
-                    if (result == userIAM_userAuth.ResultCode.SUCCESS) {
-                        // 此处添加认证成功逻辑
-                    }  else {
-                        // 此处添加认证失败逻辑
-                    }
-                } catch (e) {
-                    console.info("auth onResult error = " + e);
-                }
-            },
-
-            onAcquireInfo: (module, acquire, extraInfo) => {
-                try {
-                    console.info("auth onAcquireInfo module = " + module);
-                    console.info("auth onAcquireInfo acquire = " + acquire);
-                    console.info("auth onAcquireInfo extraInfo = " + JSON.stringify(extraInfo));
-                } catch (e) {
-                    console.info("auth onAcquireInfo error = " + e);
-                }
-            }
-        });
-    },
-
-    checkAuthSupport() {
-        console.info("start check auth support");
-        let checkCode = this.auth.getAvailableStatus(userIAM_userAuth.UserAuthType.FACE, userIAM_userAuth.AuthTrustLevel.ATL1);
-        if (checkCode == userIAM_userAuth.ResultCode.SUCCESS) {
-            console.info("check auth support success");
-            // 此处添加支持指定类型认证的逻辑
-        } else {
-            console.error("check auth support fail, code = " + checkCode);
-            // 此处添加不支持指定类型认证的逻辑
-        }
-    },
-
-    cancelAuth() {
-        console.info("start cancel auth");
-        // contextId通过auth接口获取
-        let contextId = auth.auth(null, userIAM_userAuth.UserAuthType.FACE, userIAM_userAuth.AuthTrustLevel.ATL1, {
-            onResult: (result, extraInfo) => {
-                console.info("auth onResult result = " + result);
-            },
-
-            onAcquireInfo: (module, acquire, extraInfo) => {
-                console.info("auth onAcquireInfo module = " + module);
-            }
-        });
-        let cancelCode = this.auth.cancel(contextId);
-        if (cancelCode == userIAM_userAuth.ResultCode.SUCCESS) {
-            console.info("cancel auth success");
-        } else {
-            console.error("cancel auth fail");
-        }
-    }
-}
-```
-
-```js
-// API version 6
-import userIAM_userAuth from '@ohos.userIAM.userAuth';
-
-export default {
-    startAuth() {
-        console.info("start auth");
-        let auth = userIAM_userAuth.getAuthenticator();
-        auth.execute("FACE_ONLY", "S2").then((code)=>{
-            console.info("auth success");
-            // 此处添加认证成功逻辑
-        }).catch((code)=>{
-            console.error("auth fail, code = " + code);
-            // 此处添加认证失败逻辑
-        });
-    }
-}
-```
-
 ## AuthResultInfo<sup>9+</sup>
 
 表示认证结果信息。
@@ -251,51 +76,51 @@ callback: (result : EventInfo) => void
 
 **示例：**
 
-  ```js
-    import userIAM_userAuth from '@ohos.userIAM.userAuth';
+```js
+import userIAM_userAuth from '@ohos.userIAM.userAuth';
 
-    let challenge = new Uint8Array([1, 2, 3, 4, 5, 6, 7, 8]);
-    let authType = userIAM_userAuth.UserAuthType.FACE;
-    let authTrustLevel = userIAM_userAuth.AuthTrustLevel.ATL1;
-    // 通过callback获取认证结果
-    try {
-        let auth = userIAM_userAuth.getAuthInstance(challenge, authType, authTrustLevel);
-        auth.on("result", {
-        callback: (result: userIAM_userAuth.AuthResultInfo) => {
-            console.log("authV9 result " + result.result);
-            console.log("authV9 token " + result.token);
-            console.log("authV9 remainAttempts " + result.remainAttempts);
-            console.log("authV9 lockoutDuration " + result.lockoutDuration);
-        }
-        });
-        auth.start();
-        console.log("authV9 start success");
-    } catch (error) {
-        console.log("authV9 error = " + error);
-        // do error
+let challenge = new Uint8Array([1, 2, 3, 4, 5, 6, 7, 8]);
+let authType = userIAM_userAuth.UserAuthType.FACE;
+let authTrustLevel = userIAM_userAuth.AuthTrustLevel.ATL1;
+// 通过callback获取认证结果
+try {
+    let auth = userIAM_userAuth.getAuthInstance(challenge, authType, authTrustLevel);
+    auth.on("result", {
+    callback: (result: userIAM_userAuth.AuthResultInfo) => {
+        console.log("authV9 result " + result.result);
+        console.log("authV9 token " + result.token);
+        console.log("authV9 remainAttempts " + result.remainAttempts);
+        console.log("authV9 lockoutDuration " + result.lockoutDuration);
     }
-    // 通过callback获取认证过程中的提示信息
-    try {
-        let auth = userIAM_userAuth.getAuthInstance(challenge, authType, authTrustLevel);
-        auth.on("tip", {
-        callback : (result : userIAM_userAuth.TipInfo) => {
-            switch (result.tip) {
-                case userIAM_userAuth.FaceTips.FACE_AUTH_TIP_TOO_BRIGHT:
-                // do something;
-                case userIAM_userAuth.FaceTips.FACE_AUTH_TIP_TOO_DARK:
-                // do something;
-                default:
-                // do others
-            }
+    });
+    auth.start();
+    console.log("authV9 start success");
+} catch (error) {
+    console.log("authV9 error = " + error);
+    // do error
+}
+// 通过callback获取认证过程中的提示信息
+try {
+    let auth = userIAM_userAuth.getAuthInstance(challenge, authType, authTrustLevel);
+    auth.on("tip", {
+    callback : (result : userIAM_userAuth.TipInfo) => {
+        switch (result.tip) {
+            case userIAM_userAuth.FaceTips.FACE_AUTH_TIP_TOO_BRIGHT:
+            // do something;
+            case userIAM_userAuth.FaceTips.FACE_AUTH_TIP_TOO_DARK:
+            // do something;
+            default:
+            // do others
         }
-        });
-        auth.start();
-        console.log("authV9 start success");
-    } catch (error) {
-        console.log("authV9 error = " + error);
-        // do error
     }
-  ```
+    });
+    auth.start();
+    console.log("authV9 start success");
+} catch (error) {
+    console.log("authV9 error = " + error);
+    // do error
+}
+```
 
 ## AuthInstance<sup>9+</sup>
 
@@ -316,6 +141,8 @@ on(name : AuthEventKey, callback : AuthEvent) : void
 | name  | [AuthEventKey](#autheventkey9) | 是   | 表示认证事件类型，取值为"result"时，回调函数返回认证结果；取值为"tip"时，回调函数返回认证过程中的提示信息。 |
 | callback  | [AuthEvent](#authevent9)   | 是   | 认证接口的回调函数，用于返回认证结果或认证过程中的提示信息。          |
 
+以下错误码的详细介绍请参见[用户认证错误码](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/errorcodes/errcode-useriam.md)
+
 **错误码：**
 
 | 错误码ID | 错误信息 |
@@ -325,43 +152,43 @@ on(name : AuthEventKey, callback : AuthEvent) : void
 
 **示例：**
 
-  ```js
-    import userIAM_userAuth from '@ohos.userIAM.userAuth';
+```js
+import userIAM_userAuth from '@ohos.userIAM.userAuth';
 
-    let challenge = new Uint8Array([1, 2, 3, 4, 5, 6, 7, 8]);
-    let authType = userIAM_userAuth.UserAuthType.FACE;
-    let authTrustLevel = userIAM_userAuth.AuthTrustLevel.ATL1;
-    try {
-        let auth = userIAM_userAuth.getAuthInstance(challenge, authType, authTrustLevel);
-        // 订阅认证结果
-        auth.on("result", {
-        callback: (result: userIAM_userAuth.AuthResultInfo) => {
-            console.log("authV9 result " + result.result);
-            console.log("authV9 token " + result.token);
-            console.log("authV9 remainAttempts " + result.remainAttempts);
-            console.log("authV9 lockoutDuration " + result.lockoutDuration);
-        }
-        });
-        // 订阅认证过程中的提示信息
-        auth.on("tip", {
-        callback : (result : userIAM_userAuth.TipInfo) => {
-            switch (result.tip) {
-                case userIAM_userAuth.FaceTips.FACE_AUTH_TIP_TOO_BRIGHT:
-                // do something;
-                case userIAM_userAuth.FaceTips.FACE_AUTH_TIP_TOO_DARK:
-                // do something;
-                default:
-                // do others
-            }
-        }
-        });
-        auth.start();
-        console.log("authV9 start success");
-    } catch (error) {
-        console.log("authV9 error = " + error);
-        // do error
+let challenge = new Uint8Array([1, 2, 3, 4, 5, 6, 7, 8]);
+let authType = userIAM_userAuth.UserAuthType.FACE;
+let authTrustLevel = userIAM_userAuth.AuthTrustLevel.ATL1;
+try {
+    let auth = userIAM_userAuth.getAuthInstance(challenge, authType, authTrustLevel);
+    // 订阅认证结果
+    auth.on("result", {
+    callback: (result: userIAM_userAuth.AuthResultInfo) => {
+        console.log("authV9 result " + result.result);
+        console.log("authV9 token " + result.token);
+        console.log("authV9 remainAttempts " + result.remainAttempts);
+        console.log("authV9 lockoutDuration " + result.lockoutDuration);
     }
-  ```
+    });
+    // 订阅认证过程中的提示信息
+    auth.on("tip", {
+    callback : (result : userIAM_userAuth.TipInfo) => {
+        switch (result.tip) {
+            case userIAM_userAuth.FaceTips.FACE_AUTH_TIP_TOO_BRIGHT:
+            // do something;
+            case userIAM_userAuth.FaceTips.FACE_AUTH_TIP_TOO_DARK:
+            // do something;
+            default:
+            // do others
+        }
+    }
+    });
+    auth.start();
+    console.log("authV9 start success");
+} catch (error) {
+    console.log("authV9 error = " + error);
+    // do error
+}
+```
 
 ### off<sup>9+</sup>
 
@@ -375,6 +202,8 @@ off(name : AuthEventKey) : void
 | --------- | -------------------------- | ---- | ------------------------- |
 | name    | [AuthEventKey](#autheventkey9)      | 是   | 表示认证事件类型，取值为"result"时，取消订阅认证结果；取值为"tip"时，取消订阅认证过程中的提示信息。 |
 
+以下错误码的详细介绍请参见[用户认证错误码](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/errorcodes/errcode-useriam.md)
+
 **错误码：**
 
 | 错误码ID | 错误信息 |
@@ -384,42 +213,42 @@ off(name : AuthEventKey) : void
 
 **示例：**
 
-  ```js
-    import userIAM_userAuth from '@ohos.userIAM.userAuth';
+```js
+import userIAM_userAuth from '@ohos.userIAM.userAuth';
 
-    let challenge = new Uint8Array([1, 2, 3, 4, 5, 6, 7, 8]);
-    let authType = userIAM_userAuth.UserAuthType.FACE;
-    let authTrustLevel = userIAM_userAuth.AuthTrustLevel.ATL1;
-    let auth;
-    try {
-        auth = userIAM_userAuth.getAuthInstance(challenge, authType, authTrustLevel);
-        console.log("get auth instance success");
-    } catch (error) {
-        console.log("get auth instance failed" + error);
-    }
+let challenge = new Uint8Array([1, 2, 3, 4, 5, 6, 7, 8]);
+let authType = userIAM_userAuth.UserAuthType.FACE;
+let authTrustLevel = userIAM_userAuth.AuthTrustLevel.ATL1;
+let auth;
+try {
+    auth = userIAM_userAuth.getAuthInstance(challenge, authType, authTrustLevel);
+    console.log("get auth instance success");
+} catch (error) {
+    console.log("get auth instance failed" + error);
+}
 
-    try {
-        // 订阅认证结果
-        auth.on("result", {
-        callback: (result: userIAM_userAuth.AuthResultInfo) => {
-            console.log("authV9 result " + result.result);
-            console.log("authV9 token " + result.token);
-            console.log("authV9 remainAttempts " + result.remainAttempts);
-            console.log("authV9 lockoutDuration " + result.lockoutDuration);
-        }
-        });
-        console.log("subscribe authentication event success");
-    } catch (error) {
-        console.log("subscribe authentication event failed " + error);
+try {
+    // 订阅认证结果
+    auth.on("result", {
+    callback: (result: userIAM_userAuth.AuthResultInfo) => {
+        console.log("authV9 result " + result.result);
+        console.log("authV9 token " + result.token);
+        console.log("authV9 remainAttempts " + result.remainAttempts);
+        console.log("authV9 lockoutDuration " + result.lockoutDuration);
     }
-    // 取消订阅认证结果
-    try {
-        auth.off("result");
-        console.info("cancel subscribe authentication event success");
-    } catch (error) {
-        console.info("cancel subscribe authentication event failed, error = " + error);
-    }
-  ```
+    });
+    console.log("subscribe authentication event success");
+} catch (error) {
+    console.log("subscribe authentication event failed " + error);
+}
+// 取消订阅认证结果
+try {
+    auth.off("result");
+    console.info("cancel subscribe authentication event success");
+} catch (error) {
+    console.info("cancel subscribe authentication event failed, error = " + error);
+}
+```
 
 ### start<sup>9+</sup>
 
@@ -434,6 +263,8 @@ start() : void
 
 **系统能力**：SystemCapability.UserIAM.UserAuth.Core
 
+以下错误码的详细介绍请参见[用户认证错误码](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/errorcodes/errcode-useriam.md)
+
 **错误码：**
 
 | 错误码ID | 错误信息 |
@@ -447,21 +278,21 @@ start() : void
 
 **示例：**
 
-  ```js
-    import userIAM_userAuth from '@ohos.userIAM.userAuth';
+```js
+import userIAM_userAuth from '@ohos.userIAM.userAuth';
 
-    let challenge = new Uint8Array([1, 2, 3, 4, 5, 6, 7, 8]);
-    let authType = userIAM_userAuth.UserAuthType.FACE;
-    let authTrustLevel = userIAM_userAuth.AuthTrustLevel.ATL1;
+let challenge = new Uint8Array([1, 2, 3, 4, 5, 6, 7, 8]);
+let authType = userIAM_userAuth.UserAuthType.FACE;
+let authTrustLevel = userIAM_userAuth.AuthTrustLevel.ATL1;
 
-    try {
-        let auth = userIAM_userAuth.getAuthInstance(challenge, authType, authTrustLevel);
-        auth.start();
-        console.info("authV9 start auth success");
-    } catch (error) {
-        console.info("authV9 start auth failed, error = " + error);
-    }
-  ```
+try {
+    let auth = userIAM_userAuth.getAuthInstance(challenge, authType, authTrustLevel);
+    auth.start();
+    console.info("authV9 start auth success");
+} catch (error) {
+    console.info("authV9 start auth failed, error = " + error);
+}
+```
 
 ### cancel<sup>9+</sup>
 
@@ -476,6 +307,8 @@ cancel(): void
 
 **系统能力**：SystemCapability.UserIAM.UserAuth.Core
 
+以下错误码的详细介绍请参见[用户认证错误码](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/errorcodes/errcode-useriam.md)
+
 **错误码：**
 
 | 错误码ID | 错误信息 |
@@ -486,21 +319,21 @@ cancel(): void
 
 **示例：**
 
-  ```js
-    import userIAM_userAuth from '@ohos.userIAM.userAuth';
+```js
+import userIAM_userAuth from '@ohos.userIAM.userAuth';
 
-    let challenge = new Uint8Array([1, 2, 3, 4, 5, 6, 7, 8]);
-    let authType = userIAM_userAuth.UserAuthType.FACE;
-    let authTrustLevel = userIAM_userAuth.AuthTrustLevel.ATL1;
+let challenge = new Uint8Array([1, 2, 3, 4, 5, 6, 7, 8]);
+let authType = userIAM_userAuth.UserAuthType.FACE;
+let authTrustLevel = userIAM_userAuth.AuthTrustLevel.ATL1;
 
-    try {
-        let auth = userIAM_userAuth.getAuthInstance(challenge, authType, authTrustLevel);
-        auth.cancel();
-        console.info("cancel auth success");
-    } catch (error) {
-        console.info("cancel auth failed, error = " + error);
-    }
-  ```
+try {
+    let auth = userIAM_userAuth.getAuthInstance(challenge, authType, authTrustLevel);
+    auth.cancel();
+    console.info("cancel auth success");
+} catch (error) {
+    console.info("cancel auth failed, error = " + error);
+}
+```
 
 ## userIAM_userAuth.getAuthInstance<sup>9+</sup>
 
@@ -527,6 +360,8 @@ getAuthInstance(challenge : Uint8Array, authType : UserAuthType, authTrustLevel 
 | ----------------------------------------- | ------------ |
 | [AuthInstance](#authinstance9) | 认证器对象。 |
 
+以下错误码的详细介绍请参见[用户认证错误码](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/errorcodes/errcode-useriam.md)
+
 **错误码：**
 
 | 错误码ID | 错误信息 |
@@ -537,20 +372,21 @@ getAuthInstance(challenge : Uint8Array, authType : UserAuthType, authTrustLevel 
 | 12500006 | The authentication trust level is not supported. |
 
 **示例：**
-  ```js
-    import userIAM_userAuth from '@ohos.userIAM.userAuth';
 
-    let challenge = new Uint8Array([1, 2, 3, 4, 5, 6, 7, 8]);
-    let authType = userIAM_userAuth.UserAuthType.FACE;
-    let authTrustLevel = userIAM_userAuth.AuthTrustLevel.ATL1;
+```js
+import userIAM_userAuth from '@ohos.userIAM.userAuth';
 
-    try {
-        let auth = userIAM_userAuth.getAuthInstance(challenge, authType, authTrustLevel);
-        console.info("get auth instance success");
-    } catch (error) {
-        console.info("get auth instance success failed, error = " + error);
-    }
-  ```
+let challenge = new Uint8Array([1, 2, 3, 4, 5, 6, 7, 8]);
+let authType = userIAM_userAuth.UserAuthType.FACE;
+let authTrustLevel = userIAM_userAuth.AuthTrustLevel.ATL1;
+
+try {
+    let auth = userIAM_userAuth.getAuthInstance(challenge, authType, authTrustLevel);
+    console.info("get auth instance success");
+} catch (error) {
+    console.info("get auth instance success failed, error = " + error);
+}
+```
 
 ## userIAM_userAuth.getVersion<sup>9+</sup>
 
@@ -568,6 +404,8 @@ getVersion(): number
 | ------ | ---------------------- |
 | number | 认证器版本信息。 |
 
+以下错误码的详细介绍请参见[用户认证错误码](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/errorcodes/errcode-useriam.md)
+
 **错误码：**
 
 | 错误码ID | 错误信息 |
@@ -577,16 +415,16 @@ getVersion(): number
 
 **示例：**
 
-  ```js
-    import userIAM_userAuth from '@ohos.userIAM.userAuth';
+```js
+import userIAM_userAuth from '@ohos.userIAM.userAuth';
 
-    try {
-        let version = userIAM_userAuth.getVersion();
-        console.info("auth version = " + version);
-    } catch (error) {
-        console.info("get version failed, error = " + error);
-    }
-  ```
+try {
+    let version = userIAM_userAuth.getVersion();
+    console.info("auth version = " + version);
+} catch (error) {
+    console.info("get version failed, error = " + error);
+}
+```
 
 ## userIAM_userAuth.getAvailableStatus<sup>9+</sup>
 
@@ -605,6 +443,8 @@ getAvailableStatus(authType : UserAuthType, authTrustLevel : AuthTrustLevel): vo
 | authType       | [UserAuthType](#userauthtype8)     | 是   | 认证类型，当前只支持FACE。 |
 | authTrustLevel | [AuthTrustLevel](#authtrustlevel8) | 是   | 认证信任等级。       |
 
+以下错误码的详细介绍请参见[用户认证错误码](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/errorcodes/errcode-useriam.md)
+
 **错误码：**
 
 | 错误码ID | 错误信息 |
@@ -618,16 +458,16 @@ getAvailableStatus(authType : UserAuthType, authTrustLevel : AuthTrustLevel): vo
 
 **示例：**
 
-  ```js
-    import userIAM_userAuth from '@ohos.userIAM.userAuth';
+```js
+import userIAM_userAuth from '@ohos.userIAM.userAuth';
 
-    try {
-        userIAM_userAuth.getAvailableStatus(userIAM_userAuth.UserAuthType.FACE, userIAM_userAuth.AuthTrustLevel.ATL1);
-        console.info("current auth trust level is supported");
-    } catch (error) {
-        console.info("current auth trust level is not supported, error = " + error);
-    }
-  ```
+try {
+    userIAM_userAuth.getAvailableStatus(userIAM_userAuth.UserAuthType.FACE, userIAM_userAuth.AuthTrustLevel.ATL1);
+    console.info("current auth trust level is supported");
+} catch (error) {
+    console.info("current auth trust level is not supported, error = " + error);
+}
+```
 
   ## ResultCodeV9<sup>9+</sup>
 
@@ -672,11 +512,11 @@ constructor()
 
 **示例：**
 
-  ```js
-  import userIAM_userAuth from '@ohos.userIAM.userAuth';
+```js
+import userIAM_userAuth from '@ohos.userIAM.userAuth';
 
-  let auth = new userIAM_userAuth.UserAuth();
-  ```
+let auth = new userIAM_userAuth.UserAuth();
+```
 
 ### getVersion<sup>(deprecated)</sup>
 
@@ -700,13 +540,13 @@ getVersion() : number
 
 **示例：**
 
-  ```js
-  import userIAM_userAuth from '@ohos.userIAM.userAuth';
+```js
+import userIAM_userAuth from '@ohos.userIAM.userAuth';
 
-  let auth = new userIAM_userAuth.UserAuth();
-  let version = auth.getVersion();
-  console.info("auth version = " + version);
-  ```
+let auth = new userIAM_userAuth.UserAuth();
+let version = auth.getVersion();
+console.info("auth version = " + version);
+```
 
 ### getAvailableStatus<sup>(deprecated)</sup>
 
@@ -737,17 +577,17 @@ getAvailableStatus(authType : UserAuthType, authTrustLevel : AuthTrustLevel) : n
 
 **示例：**
 
-  ```js
-  import userIAM_userAuth from '@ohos.userIAM.userAuth';
+```js
+import userIAM_userAuth from '@ohos.userIAM.userAuth';
 
-  let auth = new userIAM_userAuth.UserAuth();
-  let checkCode = auth.getAvailableStatus(userIAM_userAuth.UserAuthType.FACE, userIAM_userAuth.AuthTrustLevel.ATL1);
-  if (checkCode == userIAM_userAuth.ResultCode.SUCCESS) {
-      console.info("check auth support success");
-  } else {
-      console.error("check auth support fail, code = " + checkCode);
-  }
-  ```
+let auth = new userIAM_userAuth.UserAuth();
+let checkCode = auth.getAvailableStatus(userIAM_userAuth.UserAuthType.FACE, userIAM_userAuth.AuthTrustLevel.ATL1);
+if (checkCode == userIAM_userAuth.ResultCode.SUCCESS) {
+    console.info("check auth support success");
+} else {
+    console.error("check auth support fail, code = " + checkCode);
+}
+```
 
 ### auth<sup>(deprecated)</sup>
 
@@ -780,26 +620,26 @@ auth(challenge: Uint8Array, authType: UserAuthType, authTrustLevel: AuthTrustLev
 
 **示例：**
 
-  ```js
-  import userIAM_userAuth from '@ohos.userIAM.userAuth';
+```js
+import userIAM_userAuth from '@ohos.userIAM.userAuth';
 
-  let auth = new userIAM_userAuth.UserAuth();
-  auth.auth(null, userIAM_userAuth.UserAuthType.FACE, userIAM_userAuth.AuthTrustLevel.ATL1, {
-      onResult: (result, extraInfo) => {
-          try {
-              console.info("auth onResult result = " + result);
-              console.info("auth onResult extraInfo = " + JSON.stringify(extraInfo));
-              if (result == userIAM_userAuth.ResultCode.SUCCESS) {
-                  // 此处添加认证成功逻辑
-              } else {
-                  // 此处添加认证失败逻辑
-              }
-          } catch (e) {
-              console.info("auth onResult error = " + e);
-          }
-      }
-  });
-  ```
+let auth = new userIAM_userAuth.UserAuth();
+auth.auth(null, userIAM_userAuth.UserAuthType.FACE, userIAM_userAuth.AuthTrustLevel.ATL1, {
+    onResult: (result, extraInfo) => {
+        try {
+            console.info("auth onResult result = " + result);
+            console.info("auth onResult extraInfo = " + JSON.stringify(extraInfo));
+            if (result == userIAM_userAuth.ResultCode.SUCCESS) {
+                // 此处添加认证成功逻辑
+            } else {
+                // 此处添加认证失败逻辑
+            }
+        } catch (e) {
+            console.info("auth onResult error = " + e);
+        }
+    }
+});
+```
 
 ### cancelAuth<sup>(deprecated)</sup>
 
@@ -829,19 +669,19 @@ cancelAuth(contextID : Uint8Array) : number
 
 **示例：**
 
-  ```js
-  import userIAM_userAuth from '@ohos.userIAM.userAuth';
+```js
+import userIAM_userAuth from '@ohos.userIAM.userAuth';
 
-  // contextId可通过auth接口获取，此处直接定义
-  let contextId = new Uint8Array([0, 1, 2, 3, 4, 5, 6, 7]);
-  let auth = new userIAM_userAuth.UserAuth();
-  let cancelCode = auth.cancelAuth(contextId);
-  if (cancelCode == userIAM_userAuth.ResultCode.SUCCESS) {
-      console.info("cancel auth success");
-  } else {
-      console.error("cancel auth fail");
-  }
-  ```
+// contextId可通过auth接口获取，此处直接定义
+let contextId = new Uint8Array([0, 1, 2, 3, 4, 5, 6, 7]);
+let auth = new userIAM_userAuth.UserAuth();
+let cancelCode = auth.cancelAuth(contextId);
+if (cancelCode == userIAM_userAuth.ResultCode.SUCCESS) {
+    console.info("cancel auth success");
+} else {
+    console.error("cancel auth fail");
+}
+```
 
 ## IUserAuthCallback<sup>(deprecated)</sup>
 
@@ -873,26 +713,26 @@ onResult: (result : number, extraInfo : AuthResult) => void
 
 **示例：**
 
-  ```js
-  import userIAM_userAuth from '@ohos.userIAM.userAuth';
+```js
+import userIAM_userAuth from '@ohos.userIAM.userAuth';
 
-  let auth = new userIAM_userAuth.UserAuth();
-  auth.auth(null, userIAM_userAuth.UserAuthType.FACE, userIAM_userAuth.AuthTrustLevel.ATL1, {
-      onResult: (result, extraInfo) => {
-          try {
-              console.info("auth onResult result = " + result);
-              console.info("auth onResult extraInfo = " + JSON.stringify(extraInfo));
-              if (result == userIAM_userAuth.ResultCode.SUCCESS) {
-                  // 此处添加认证成功逻辑
-              }  else {
-                  // 此处添加认证失败逻辑
-              }
-          } catch (e) {
-              console.info("auth onResult error = " + e);
-          }
-      }
-  });
-  ```
+let auth = new userIAM_userAuth.UserAuth();
+auth.auth(null, userIAM_userAuth.UserAuthType.FACE, userIAM_userAuth.AuthTrustLevel.ATL1, {
+    onResult: (result, extraInfo) => {
+        try {
+            console.info("auth onResult result = " + result);
+            console.info("auth onResult extraInfo = " + JSON.stringify(extraInfo));
+            if (result == userIAM_userAuth.ResultCode.SUCCESS) {
+                // 此处添加认证成功逻辑
+            }  else {
+                // 此处添加认证失败逻辑
+            }
+        } catch (e) {
+            console.info("auth onResult error = " + e);
+        }
+    }
+});
+```
 
 ### onAcquireInfo<sup>(deprecated)</sup>
 
@@ -916,22 +756,22 @@ onAcquireInfo ?: (module : number, acquire : number, extraInfo : any) => void
 
 **示例：**
 
-  ```js
-  import userIAM_userAuth from '@ohos.userIAM.userAuth';
+```js
+import userIAM_userAuth from '@ohos.userIAM.userAuth';
 
-  let auth = new userIAM_userAuth.UserAuth();
-  auth.auth(null, userIAM_userAuth.UserAuthType.FACE, userIAM_userAuth.AuthTrustLevel.ATL1, {
-      onAcquireInfo: (module, acquire, extraInfo) => {
-          try {
-              console.info("auth onAcquireInfo module = " + module);
-              console.info("auth onAcquireInfo acquire = " + acquire);
-              console.info("auth onAcquireInfo extraInfo = " + JSON.stringify(extraInfo));
-          } catch (e) {
-              console.info("auth onAcquireInfo error = " + e);
-          }
-      }
-  });
-  ```
+let auth = new userIAM_userAuth.UserAuth();
+auth.auth(null, userIAM_userAuth.UserAuthType.FACE, userIAM_userAuth.AuthTrustLevel.ATL1, {
+    onAcquireInfo: (module, acquire, extraInfo) => {
+        try {
+            console.info("auth onAcquireInfo module = " + module);
+            console.info("auth onAcquireInfo acquire = " + acquire);
+            console.info("auth onAcquireInfo extraInfo = " + JSON.stringify(extraInfo));
+        } catch (e) {
+            console.info("auth onAcquireInfo error = " + e);
+        }
+    }
+});
+```
 
 ## AuthResult<sup>(deprecated)</sup>
 
@@ -1090,16 +930,17 @@ execute(type: AuthType, level: SecureLevel, callback: AsyncCallback&lt;number&gt
 | number | 表示认证结果，参见[AuthenticationResult](#authenticationresultdeprecated)。 |
 
 **示例：**
-  ```js
-  let authenticator = userIAM_userAuth.getAuthenticator();
-  authenticator.execute("FACE_ONLY", "S2", (error, code)=>{
-      if (code === userIAM_userAuth.ResultCode.SUCCESS) {
-          console.info("auth success");
-          return;
-      }
-      console.error("auth fail, code = " + code);
-  });
-  ```
+
+```js
+let authenticator = userIAM_userAuth.getAuthenticator();
+authenticator.execute("FACE_ONLY", "S2", (error, code)=>{
+    if (code === userIAM_userAuth.ResultCode.SUCCESS) {
+        console.info("auth success");
+        return;
+    }
+    console.error("auth fail, code = " + code);
+});
+```
 
 
 ### execute<sup>(deprecated)</sup>
@@ -1130,14 +971,14 @@ execute(type : AuthType, level : SecureLevel): Promise&lt;number&gt;
 
 **示例：**
 
-  ```js
-  let authenticator = userIAM_userAuth.getAuthenticator();
-  authenticator.execute("FACE_ONLY", "S2").then((code)=>{
-      console.info("auth success");
-  }).catch((error)=>{
-      console.error("auth fail, code = " + error);
-  });
-  ```
+```js
+let authenticator = userIAM_userAuth.getAuthenticator();
+authenticator.execute("FACE_ONLY", "S2").then((code)=>{
+    console.info("auth success");
+}).catch((error)=>{
+    console.error("auth fail, code = " + error);
+});
+```
 
 ## AuthenticationResult<sup>(deprecated)</sup>
 
