@@ -53,12 +53,12 @@ import launcherBundleManager from '@ohos.bundle.launcherBundleManager';
 try {
     launcherBundleManager.getLauncherAbilityInfo('com.example.demo', 100, (errData, data) => {
         if (errData !== null) {
-            console.log(`errData is errCode:${errData.errCode}  message:${errData.message}`);
+            console.log(`errData is errCode:${errData.code}  message:${errData.message}`);
         }
         console.log("data is " + JSON.Stringify(data));
     })
 } catch (errData) {
-    console.log(`errData is errCode:${errData.errCode}  message:${errData.message}`);
+    console.log(`errData is errCode:${errData.code}  message:${errData.message}`);
 }
 ```
 
@@ -99,12 +99,12 @@ import launcherBundleManager from '@ohos.bundle.launcherBundleManager';
 
 try {
     launcherBundleManager.getLauncherAbilityInfo("com.example.demo", 100).then(data => {
-        console.log("data is " + JSON.Stringify(data));
+        console.log("data is " + JSON.stringify(data));
     }).catch (errData => {
-        console.log(`errData is errCode:${errData.errCode}  message:${errData.message}`);
+        console.log(`errData is errCode:${errData.code}  message:${errData.message}`);
     })
 } catch (errData) {
-    console.log(`errData is errCode:${errData.errCode}  message:${errData.message}`);
+    console.log(`errData is errCode:${errData.code}  message:${errData.message}`);
 }
 ```
 
@@ -146,12 +146,12 @@ import launcherBundleManager from '@ohos.bundle.launcherBundleManager';
 try {
     launcherBundleManager.getAllLauncherAbilityInfo(100, (errData, data) => {
         if (errData !== null) {
-            console.log(`errData is errCode:${errData.errCode}  message:${errData.message}`);
+            console.log(`errData is errCode:${errData.code}  message:${errData.message}`);
         }
-        console.log("data is " + JSON.Stringify(data));
+        console.log("data is " + JSON.stringify(data));
     })
 } catch (errData) {
-    console.log(`errData is errCode:${errData.errCode}  message:${errData.message}`);
+    console.log(`errData is errCode:${errData.code}  message:${errData.message}`);
 }
 ```
 
@@ -184,12 +184,12 @@ import launcherBundleManager from '@ohos.bundle.launcherBundleManager';
 
 try {
     launcherBundleManager.getAllLauncherAbilityInfo(100).then(data => {
-        console.log("data is " + JSON.Stringify(data));
+        console.log("data is " + JSON.stringify(data));
     }).catch (errData => {
-        console.log(`errData is errCode:${errData.errCode}  message:${errData.message}`);
+        console.log(`errData is errCode:${errData.code}  message:${errData.message}`);
     })
 } catch (errData) {
-    console.log(`errData is errCode:${errData.errCode}  message:${errData.message}`);
+    console.log(`errData is errCode:${errData.code}  message:${errData.message}`);
 }
 ```
 
@@ -223,12 +223,12 @@ import launcherBundleManager from '@ohos.bundle.launcherBundleManager';
 try {
     launcherBundleManager.getShortcutInfo("com.example.demo", (errData, data) => {
         if (errData !== null) {
-            console.log(`errData is errCode:${errData.errCode}  message:${errData.message}`);
+            console.log(`errData is errCode:${errData.code}  message:${errData.message}`);
         }
-        console.log("data is " + JSON.Stringify(data));
+        console.log("data is " + JSON.stringify(data));
     })
 } catch (errData) {
-    console.log(`errData is errCode:${errData.errCode}  message:${errData.message}`);
+    console.log(`errData is errCode:${errData.code}  message:${errData.message}`);
 }
 ```
 
@@ -257,11 +257,11 @@ import launcherBundleManager from '@ohos.bundle.launcherBundleManager';
 
 try {
     launcherBundleManager.getShortcutInfo("com.example.demo").then(data => {
-        console.log("data is " + JSON.Stringify(data));
+        console.log("data is " + JSON.stringify(data));
     }).catch (errData => {
-        console.log(`errData is errCode:${errData.errCode}  message:${errData.message}`);
+        console.log(`errData is errCode:${errData.code}  message:${errData.message}`);
     })
 } catch (errData) {
-    console.log(`errData is errCode:${errData.errCode}  message:${errData.message}`);
+    console.log(`errData is errCode:${errData.code}  message:${errData.message}`);
 }
 ```
