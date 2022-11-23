@@ -51,10 +51,10 @@ requestSuspendDelay(reason: string, callback: Callback&lt;void&gt;): DelaySuspen
 | ---- | --------------------- |
 | 9800001 | Memory operation failed. |
 | 9800002 | Parcel operation failed. |
-| 9800003 | Inner transact failed. | |
+| 9800003 | IPC failed. | |
 | 9800004 | System service operation failed. |
-| 9900001 | Caller information verification failed. |
-| 9900002 | Background task verification failed. |
+| 9900001 | Caller information verification failed for a transient task. |
+| 9900002 | Transient task verification failed. |
 
 **示例**：
 
@@ -99,10 +99,10 @@ getRemainingDelayTime(requestId: number, callback: AsyncCallback&lt;number&gt;):
 | ---- | --------------------- |
 | 9800001 | Memory operation failed. |
 | 9800002 | Parcel operation failed. |
-| 9800003 | Inner transact failed. | |
+| 9800003 | IPC failed. | |
 | 9800004 | System service operation failed. |
-| 9900001 | Caller information verification failed. |
-| 9900002 | Background task verification failed. |
+| 9900001 | Caller information verification failed for a transient task. |
+| 9900002 | Transient task verification failed. |
 
 
 **示例**：
@@ -155,10 +155,10 @@ getRemainingDelayTime(requestId: number): Promise&lt;number&gt;
 | ---- | --------------------- |
 | 9800001 | Memory operation failed. |
 | 9800002 | Parcel operation failed. |
-| 9800003 | Inner transact failed. | |
+| 9800003 | IPC failed. | |
 | 9800004 | System service operation failed. |
-| 9900001 | Caller information verification failed. |
-| 9900002 | Background task verification failed. |
+| 9900001 | Caller information verification failed for a transient task. |
+| 9900002 | Transient task verification failed. |
 
 **示例**：
 
@@ -200,10 +200,10 @@ cancelSuspendDelay(requestId: number): void
 | ---- | --------------------- |
 | 9800001 | Memory operation failed. |
 | 9800002 | Parcel operation failed. |
-| 9800003 | Inner transact failed. | |
+| 9800003 | IPC failed. | |
 | 9800004 | System service operation failed. |
-| 9900001 | Caller information verification failed. |
-| 9900002 | Background task verification failed. |
+| 9900001 | Caller information verification failed for a transient task. |
+| 9900002 | Transient task verification failed. |
 
 **示例**：
 
@@ -246,9 +246,9 @@ startBackgroundRunning(context: Context, bgMode: BackgroundMode, wantAgent: Want
 | ---- | --------------------- |
 | 9800001 | Memory operation failed. |
 | 9800002 | Parcel operation failed. |
-| 9800003 | Inner transact failed. | |
+| 9800003 | IPC failed. | |
 | 9800004 | System service operation failed. |
-| 9800005 | Background task verification failed. |
+| 9800005 | Continuous task verification failed. |
 | 9800006 | Notification verification failed. |
 | 9800007 | Task storage failed. |
 
@@ -325,9 +325,9 @@ startBackgroundRunning(context: Context, bgMode: BackgroundMode, wantAgent: Want
 | ---- | --------------------- |
 | 9800001 | Memory operation failed. |
 | 9800002 | Parcel operation failed. |
-| 9800003 | Inner transact failed. | |
+| 9800003 | IPC failed. | |
 | 9800004 | System service operation failed. |
-| 9800005 | Background task verification failed. |
+| 9800005 | Continuous task verification failed. |
 | 9800006 | Notification verification failed. |
 | 9800007 | Task storage failed. |
 
@@ -391,9 +391,9 @@ stopBackgroundRunning(context: Context, callback: AsyncCallback&lt;void&gt;): vo
 | ---- | --------------------- |
 | 9800001 | Memory operation failed. |
 | 9800002 | Parcel operation failed. |
-| 9800003 | Inner transact failed. | |
+| 9800003 | IPC failed. | |
 | 9800004 | System service operation failed. |
-| 9800005 | Background task verification failed. |
+| 9800005 | Continuous task verification failed. |
 | 9800006 | Notification verification failed. |
 | 9800007 | Task storage failed. |
 
@@ -452,9 +452,9 @@ stopBackgroundRunning(context: Context): Promise&lt;void&gt;
 | ---- | --------------------- |
 | 9800001 | Memory operation failed. |
 | 9800002 | Parcel operation failed. |
-| 9800003 | Inner transact failed. | |
+| 9800003 | IPC failed. | |
 | 9800004 | System service operation failed. |
-| 9800005 | Background task verification failed. |
+| 9800005 | Continuous task verification failed. |
 | 9800006 | Notification verification failed. |
 | 9800007 | Task storage failed. |
 
@@ -505,9 +505,9 @@ applyEfficiencyResources(request: [EfficiencyResourcesRequest](#efficiencyresour
 | ---- | --------------------- |
 | 9800001 | Memory operation failed. |
 | 9800002 | Parcel operation failed. |
-| 9800003 | Inner transact failed. | |
+| 9800003 | IPC failed. | |
 | 9800004 | System service operation failed. |
-| 18700001 | Caller information verification failed. |
+| 18700001 | Caller information verification failed when applying for efficiency resources. |
 
 **示例**：
 
@@ -548,9 +548,9 @@ resetAllEfficiencyResources(): void
 | ---- | --------------------- |
 | 9800001 | Memory operation failed. |
 | 9800002 | Parcel operation failed. |
-| 9800003 | Inner transact failed. | |
+| 9800003 | IPC failed. | |
 | 9800004 | System service operation failed. |
-| 18700001 | Caller information verification failed. |
+| 18700001 | Caller information verification failed when applying for efficiency resources. |
 
 **示例**：
 
