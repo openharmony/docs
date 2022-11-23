@@ -75,10 +75,10 @@
 
 ```html
 <div class="container" onswipe="touchMove">
-	<text style="margin: 10px; box-sizing: content-box; width: 300px;height: 300px; border: blue; border-width: 20px;">
+	<text style="margin: 10px; box-sizing: content-box; width: 300px;height: 300px; border-color: blue; border-width: 20px;">
 		contentBox
 	</text>
-	<text style="margin: 10px; box-sizing: border-box; width: 300px;height: 300px;border: blue; border-width: 20px;">
+	<text style="margin: 10px; box-sizing: border-box; width: 300px;height: 300px;border-color: blue; border-width: 20px;">
 		borderBox
 	</text>
 </div>
