@@ -100,8 +100,8 @@ var appId = "com.example.myapplication_xxxxx";
 var want = {bundleName: 'com.example.myapplication'};
 
 try {
-    appControl.setDisposedStatus(appId, want, (err, data) => {
-        if (err) {
+    appControl.setDisposedStatus(appId, want, (error, data) => {
+        if (error) {
             console.error('setDisposedStatus failed ' + error.message);
             return;
         }
@@ -194,8 +194,8 @@ getDisposedStatus(appId: string, callback: AsyncCallback\<Want>): void;
 var appId = "com.example.myapplication_xxxxx";
 
 try {
-    appControl.getDisposedStatus(appId, (err, data) => {
-        if (err) {
+    appControl.getDisposedStatus(appId, (error, data) => {
+        if (error) {
             console.error('getDisposedStatus failed ' + error.message);
             return;
         }
@@ -287,8 +287,8 @@ deleteDisposedStatus(appId: string, callback: AsyncCallback\<void>) : void
 ```ts
 var appId = "com.example.myapplication_xxxxx";
 try {
-    appControl.deleteDisposedStatus(appId, (err, data) => {
-        if (err) {
+    appControl.deleteDisposedStatus(appId, (error, data) => {
+        if (error) {
             console.error('deleteDisposedStatus failed ' + error.message);
             return;
         }
