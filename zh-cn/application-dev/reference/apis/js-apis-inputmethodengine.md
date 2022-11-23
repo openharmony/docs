@@ -714,7 +714,7 @@ hide(callback: AsyncCallback&lt;void&gt;): void
 
 以下错误码的详细介绍请参见[输入法框架错误码](../errorcodes/errorcode-inputmethod-framework.md)。
 
-| 错误码ID | 错误码信息                 |
+| 错误码ID | 错误信息                 |
 | -------- | -------------------------- |
 | 12800003 | Input method client error. |
 
@@ -748,7 +748,7 @@ hide(): Promise&lt;void&gt;
 
 以下错误码的详细介绍请参见[输入法框架错误码](../errorcodes/errorcode-inputmethod-framework.md)。
 
-| 错误码ID | 错误码信息                 |
+| 错误码ID | 错误信息                 |
 | -------- | -------------------------- |
 | 12800003 | Input method client error. |
 
@@ -843,7 +843,7 @@ sendKeyFunction(action:number, callback: AsyncCallback&lt;boolean&gt;): void
 
 以下错误码的详细介绍请参见[输入法框架错误码](../errorcodes/errorcode-inputmethod-framework.md)。
 
-| 错误码ID | 错误码信息                 |
+| 错误码ID | 错误信息                 |
 | -------- | -------------------------- |
 | 12800003 | Input method client error. |
 
@@ -891,7 +891,7 @@ sendKeyFunction(action:number): Promise&lt;boolean&gt;
 
 以下错误码的详细介绍请参见[输入法框架错误码](../errorcodes/errorcode-inputmethod-framework.md)。
 
-| 错误码ID | 错误码信息                 |
+| 错误码ID | 错误信息                 |
 | -------- | -------------------------- |
 | 12800003 | Input method client error. |
 
@@ -932,7 +932,7 @@ getForward(length:number, callback: AsyncCallback&lt;string&gt;): void
 
 以下错误码的详细介绍请参见[输入法框架错误码](../errorcodes/errorcode-inputmethod-framework.md)。
 
-| 错误码ID | 错误码信息                     |
+| 错误码ID | 错误信息                     |
 | -------- | ------------------------------ |
 | 12800003 | Input method client error.     |
 | 12800006 | Input method controller error. |
@@ -978,7 +978,7 @@ getForward(length:number): Promise&lt;string&gt;
 
 以下错误码的详细介绍请参见[输入法框架错误码](../errorcodes/errorcode-inputmethod-framework.md)。
 
-| 错误码ID | 错误码信息                     |
+| 错误码ID | 错误信息                     |
 | -------- | ------------------------------ |
 | 12800003 | Input method client error.     |
 | 12800006 | Input method controller error. |
@@ -1017,7 +1017,7 @@ getBackward(length:number, callback: AsyncCallback&lt;string&gt;): void
 
 以下错误码的详细介绍请参见[输入法框架错误码](../errorcodes/errorcode-inputmethod-framework.md)。
 
-| 错误码ID | 错误码信息                     |
+| 错误码ID | 错误信息                     |
 | -------- | ------------------------------ |
 | 12800003 | Input method client error.     |
 | 12800006 | Input method controller error. |
@@ -1063,7 +1063,7 @@ getBackward(length:number): Promise&lt;string&gt;
 
 以下错误码的详细介绍请参见[输入法框架错误码](../errorcodes/errorcode-inputmethod-framework.md)。
 
-| 错误码ID | 错误码信息                     |
+| 错误码ID | 错误信息                     |
 | -------- | ------------------------------ |
 | 12800003 | Input method client error.     |
 | 12800006 | Input method controller error. |
@@ -1102,7 +1102,7 @@ deleteForward(length:number, callback: AsyncCallback&lt;boolean&gt;): void
 
 以下错误码的详细介绍请参见[输入法框架错误码](../errorcodes/errorcode-inputmethod-framework.md)。
 
-| 错误码ID | 错误码信息                 |
+| 错误码ID | 错误信息                 |
 | -------- | -------------------------- |
 | 12800002 | Input method engine error. |
 | 12800003 | Input method client error. |
@@ -1152,7 +1152,7 @@ deleteForward(length:number): Promise&lt;boolean&gt;
 
 以下错误码的详细介绍请参见[输入法框架错误码](../errorcodes/errorcode-inputmethod-framework.md)。
 
-| 错误码ID | 错误码信息                 |
+| 错误码ID | 错误信息                 |
 | -------- | -------------------------- |
 | 12800002 | Input method engine error. |
 | 12800003 | Input method client error. |
@@ -1195,7 +1195,7 @@ deleteBackward(length:number, callback: AsyncCallback&lt;boolean&gt;): void
 
 以下错误码的详细介绍请参见[输入法框架错误码](../errorcodes/errorcode-inputmethod-framework.md)。
 
-| 错误码ID | 错误码信息                 |
+| 错误码ID | 错误信息                 |
 | -------- | -------------------------- |
 | 12800002 | Input method engine error. |
 | 12800003 | Input method client error. |
@@ -1245,7 +1245,7 @@ deleteBackward(length:number): Promise&lt;boolean&gt;
 
 以下错误码的详细介绍请参见[输入法框架错误码](../errorcodes/errorcode-inputmethod-framework.md)。
 
-| 错误码ID | 错误码信息                 |
+| 错误码ID | 错误信息                 |
 | -------- | -------------------------- |
 | 12800002 | Input method engine error. |
 | 12800003 | Input method client error. |
@@ -1284,7 +1284,7 @@ insertText(text:string, callback: AsyncCallback&lt;boolean&gt;): void
 
 以下错误码的详细介绍请参见[输入法框架错误码](../errorcodes/errorcode-inputmethod-framework.md)。
 
-| 错误码ID | 错误码信息                 |
+| 错误码ID | 错误信息                 |
 | -------- | -------------------------- |
 | 12800002 | Input method engine error. |
 | 12800003 | Input method client error. |
@@ -1329,7 +1329,7 @@ insertText(text:string): Promise&lt;boolean&gt;
 
 以下错误码的详细介绍请参见[输入法框架错误码](../errorcodes/errorcode-inputmethod-framework.md)。
 
-| 错误码ID | 错误码信息                 |
+| 错误码ID | 错误信息                 |
 | -------- | -------------------------- |
 | 12800002 | Input method engine error. |
 | 12800003 | Input method client error. |
@@ -1370,7 +1370,7 @@ getEditorAttribute(callback: AsyncCallback&lt;EditorAttribute&gt;): void
 
 以下错误码的详细介绍请参见[输入法框架错误码](../errorcodes/errorcode-inputmethod-framework.md)。
 
-| 错误码ID | 错误码信息                 |
+| 错误码ID | 错误信息                 |
 | -------- | -------------------------- |
 | 12800003 | Input method client error. |
 
@@ -1405,7 +1405,7 @@ getEditorAttribute(): Promise&lt;EditorAttribute&gt;
 
 以下错误码的详细介绍请参见[输入法框架错误码](../errorcodes/errorcode-inputmethod-framework.md)。
 
-| 错误码ID | 错误码信息                 |
+| 错误码ID | 错误信息                 |
 | -------- | -------------------------- |
 | 12800003 | Input method client error. |
 
@@ -1439,7 +1439,7 @@ moveCursor(direction: number, callback: AsyncCallback&lt;void&gt;): void
 
 以下错误码的详细介绍请参见[输入法框架错误码](../errorcodes/errorcode-inputmethod-framework.md)。
 
-| 错误码ID | 错误码信息                 |
+| 错误码ID | 错误信息                 |
 | -------- | -------------------------- |
 | 12800003 | Input method client error. |
 
@@ -1483,7 +1483,7 @@ moveCursor(direction: number): Promise&lt;void&gt;
 
 以下错误码的详细介绍请参见[输入法框架错误码](../errorcodes/errorcode-inputmethod-framework.md)。
 
-| 错误码ID | 错误码信息                 |
+| 错误码ID | 错误信息                 |
 | -------- | -------------------------- |
 | 12800003 | Input method client error. |
 
