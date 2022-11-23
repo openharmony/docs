@@ -552,7 +552,7 @@ stopInputSession(callback: AsyncCallback&lt;boolean&gt;): void
 
 ```js
 try {
-    InputMethodController.stopInputSession((error, result) => {
+    inputMethodController.stopInputSession((error, result) => {
         if (error) {
             console.error('stopInputSession err: ' + JSON.stringify(error));
             return;
@@ -595,7 +595,7 @@ stopInputSession(): Promise&lt;boolean&gt;
 
 ```js
 try {
-    InputMethodController.stopInputSession().then((result) => {
+    inputMethodController.stopInputSession().then((result) => {
         if (result) {
             console.info('Success to stopInputSession.');
         } else {
@@ -637,7 +637,7 @@ showSoftKeyboard(callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
 ```js
-InputMethodController.showSoftKeyboard((err) => {
+inputMethodController.showSoftKeyboard((err) => {
     if (err === undefined) {
         console.info('showSoftKeyboard success');
     } else {
@@ -674,7 +674,7 @@ showSoftKeyboard(): Promise&lt;void&gt;
 **示例：**
 
 ```js
-InputMethodController.showSoftKeyboard().then(async (err) => {
+inputMethodController.showSoftKeyboard().then(async (err) => {
     console.log('showSoftKeyboard success');
 }).catch((err) => {
     console.error('showSoftKeyboard err: ' + JSON.stringify(err));
@@ -709,7 +709,7 @@ hideSoftKeyboard(callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
 ```js
-InputMethodController.hideSoftKeyboard((err) => {
+inputMethodController.hideSoftKeyboard((err) => {
     if (err === undefined) {
         console.info('hideSoftKeyboard success');
     } else {
@@ -746,7 +746,7 @@ hideSoftKeyboard(): Promise&lt;void&gt;
 **示例：**
 
 ```js
-InputMethodController.hideSoftKeyboard().then(async (err) => {
+inputMethodController.hideSoftKeyboard().then(async (err) => {
     console.log('hideSoftKeyboard success');
 }).catch((err) => {
     console.error('hideSoftKeyboard err: ' + JSON.stringify(err));
@@ -774,7 +774,7 @@ stopInput(callback: AsyncCallback&lt;boolean&gt;): void
 **示例：**
 
 ```js
-InputMethodController.stopInput((error, result) => {
+inputMethodController.stopInput((error, result) => {
     if (error) {
         console.error('failed to stopInput because: ' + JSON.stringify(error));
         return;
@@ -808,7 +808,7 @@ stopInput(): Promise&lt;boolean&gt;
 **示例：**
 
 ```js
-InputMethodController.stopInput().then((result) => {
+inputMethodController.stopInput().then((result) => {
     if (result) {
         console.info('Success to stopInput.');
     } else {
