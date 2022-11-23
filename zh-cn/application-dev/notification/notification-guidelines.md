@@ -118,7 +118,7 @@ var subscriber = {
     },
   };
 
-  Notification.subscribe(subscriber, (err, data) => { // callback形式调用异步接口
+  Notification.subscribe(subscriber, (err) => { // callback形式调用异步接口
     if (err.code) {
       console.error('===>failed to subscribe because ' + JSON.stringify(err));
       return;
@@ -154,7 +154,7 @@ var notificationRequest = {
 }
 
 //通知发送
-Notification.publish(notificationRequest) .then((data) => {
+Notification.publish(notificationRequest) .then(() => {
 	console.info('===>publish promise success req.id : ' + notificationRequest.id);
 }).catch((err) => {
 	console.error('===>publish promise failed because ' + JSON.stringify(err));
@@ -223,7 +223,7 @@ var notificationRequest = {
 }
 
 //通知发送
-Notification.publish(notificationRequest) .then((data) => {
+Notification.publish(notificationRequest) .then(() => {
 	console.info('===>publish promise success req.id : ' + notificationRequest.id);
 }).catch((err) => {
 	console.error('===>publish promise failed because ' + JSON.stringify(err));
