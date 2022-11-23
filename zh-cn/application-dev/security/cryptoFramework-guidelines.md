@@ -262,14 +262,14 @@ function stringToUint8Array(str) {
   return new Uint8Array(arr);
 }
 
-// 字节流转成可理解的字符串
+// 字节流以16进制输出
 function uint8ArrayToShowStr(uint8Array) {
   return Array.prototype.map
     .call(uint8Array, (x) => ('00' + x.toString(16)).slice(-2))
     .join('');
 }
 
-// 字节流以16进制输出
+// 字节流转成可理解的字符串
 function uint8ArrayToString(array) {
   let arrayString = '';
   for (let i = 0; i < array.length; i++) {
@@ -381,14 +381,14 @@ function stringToUint8Array(str) {
   return new Uint8Array(arr);
 }
 
-// 字节流转成可理解的字符串
+// 字节流以16进制输出
 function uint8ArrayToShowStr(uint8Array) {
   return Array.prototype.map
     .call(uint8Array, (x) => ('00' + x.toString(16)).slice(-2))
     .join('');
 }
 
-// 字节流以16进制输出
+// 字节流转成可理解的字符串
 function uint8ArrayToString(array) {
   let arrayString = '';
   for (let i = 0; i < array.length; i++) {
@@ -922,7 +922,7 @@ Mac(message authentication code)可以对消息进行完整性校验，通过使
 
 | 实例名          | 接口名                                                       | 描述                                                |
 | --------------- | ------------------------------------------------------------ | --------------------------------------------------- |
-| cryptoFramework | function createMd(algName : string) : Md;                    | 指定摘要算法，生成消息认证码实例Mac                 |
+| cryptoFramework | function createMac(algName : string) : Mac;                  | 指定摘要算法，生成消息认证码实例Mac                 |
 | Mac             | init(key : SymKey, callback : AsyncCallback\<void\>) : void; | 接收输入对称密钥，通过Callback的方式，异步初始化MAC |
 | Mac             | init(key : SymKey) : Promise\<void\>;                        | 接收输入对称密钥，通过Promise的方式，异步初始化MAC  |
 | Mac             | update(input : DataBlob, callback : AsyncCallback\<void\>) : void; | 接受输入数据，通过Callback的方式，异步更新MAC       |
