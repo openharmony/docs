@@ -329,7 +329,7 @@ import audio from '@ohos.multimedia.audio';
 let tonePlayer;
 async function createTonePlayerBefore(){
   let audioRendererInfo = {
-    contentType : audio.ContentType.CONTENT_TYPE_MUSIC,
+    contentType : audio.ContentType.CONTENT_TYPE_SONIFICATION,
     streamUsage : audio.StreamUsage.STREAM_USAGE_MEDIA,
     rendererFlags : 0
   }
