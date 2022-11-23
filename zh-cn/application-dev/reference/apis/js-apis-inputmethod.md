@@ -19,7 +19,7 @@ import inputMethod from '@ohos.inputmethod';
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
-| 参数名 | 参数类型 | 常量值 | 说明 |
+| 参数名 | 类型 | 常量值 | 说明 |
 | -------- | -------- | -------- | -------- |
 | MAX_TYPE_NUM | number | 128 | 可支持的最大输入法个数。 |
 
@@ -29,7 +29,7 @@ import inputMethod from '@ohos.inputmethod';
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
-| 名称 | 参数类型 | 可读 | 可写 | 说明 |
+| 名称 | 类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
 | packageName<sup>(deprecated)</sup> | string | 是 | 否 | 输入法包名。<br/>**说明：** 从API8开始支持，从API9开始废弃，建议使用name替代。 |
 | methodId<sup>(deprecated)</sup> | string | 是 | 否 | 输入法唯一标识。<br/>**说明：** 从API8开始支持，从API9开始废弃，建议使用id替代。 |
@@ -58,14 +58,14 @@ getController(): InputMethodController
 
 以下错误码的详细介绍请参见[输入法框架错误码](../errorcodes/errorcode-inputmethod-framework.md)。
 
-| 错误码ID | 错误码信息                     |
+| 错误码ID | 错误信息                     |
 | -------- | ------------------------------ |
 | 12800006 | Input method controller error. |
 
 **示例：**
 
 ```js
-let InputMethodController = inputMethod.getController();
+let inputMethodController = inputMethod.getController();
 ```
 
 ## inputMethod.getSetting<sup>9+</sup>
@@ -86,14 +86,14 @@ getSetting(): InputMethodSetting
 
 以下错误码的详细介绍请参见[输入法框架错误码](../errorcodes/errorcode-inputmethod-framework.md)。
 
-| 错误码ID | 错误码信息                             |
+| 错误码ID | 错误信息                             |
 | -------- | -------------------------------------- |
 | 12800007 | Input method settings extension error. |
 
 **示例：**
 
 ```js
-let InputMethodSetting = inputMethod.getSetting();
+let inputMethodSetting = inputMethod.getSetting();
 ```
 
 ## inputMethod.switchInputMethod<sup>9+</sup>
@@ -117,7 +117,7 @@ switchInputMethod(target: InputMethodProperty, callback: AsyncCallback&lt;boolea
 
 以下错误码的详细介绍请参见[输入法框架错误码](../errorcodes/errorcode-inputmethod-framework.md)。
 
-| 错误码ID | 错误码信息                             |
+| 错误码ID | 错误信息                             |
 | -------- | -------------------------------------- |
 | 12800005 | Configuration persisting error.        |
 | 12800008 | Input method settings extension error. |
@@ -154,7 +154,7 @@ switchInputMethod(target: InputMethodProperty): Promise&lt;boolean&gt;
 
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  |target |  [InputmethodProperty](#inputmethodproperty8)| 是 | 传入要切换的目标输入法。 |
+  |target |  [InputMethodProperty](#inputmethodproperty8)| 是 | 传入要切换的目标输入法。 |
 
 **返回值：**
 
@@ -166,7 +166,7 @@ switchInputMethod(target: InputMethodProperty): Promise&lt;boolean&gt;
 
 以下错误码的详细介绍请参见[输入法框架错误码](../errorcodes/errorcode-inputmethod-framework.md)。
 
-| 错误码ID | 错误码信息                             |
+| 错误码ID | 错误信息                             |
 | -------- | -------------------------------------- |
 | 12800005 | Configuration persisting error.        |
 | 12800008 | Input method settings extension error. |
@@ -201,7 +201,7 @@ getCurrentInputMethod(): InputMethodProperty
 
 | 类型                                         | 说明                     |
 | -------------------------------------------- | ------------------------ |
-| [InputmethodProperty](#inputmethodproperty8) | 返回当前输入法属性对象。 |
+| [InputMethodProperty](#inputmethodproperty8) | 返回当前输入法属性对象。 |
 
 **示例：**
 
@@ -230,7 +230,7 @@ switchCurrentInputMethodSubtype(target: InputMethodSubtype, callback: AsyncCallb
 
 以下错误码的详细介绍请参见[输入法框架错误码](../errorcodes/errorcode-inputmethod-framework.md)。
 
-| 错误码ID | 错误码信息                             |
+| 错误码ID | 错误信息                             |
 | -------- | -------------------------------------- |
 | 12800005 | Configuration persisting error.        |
 | 12800008 | Input method settings extension error. |
@@ -239,7 +239,7 @@ switchCurrentInputMethodSubtype(target: InputMethodSubtype, callback: AsyncCallb
 
 ```js
 let inputMethodSubtype = {
-    id: "com.example.kikainput",
+    id: "com.example.kikakeyboard",
     label: "ServiceExtAbility",
     name: "",
     mode: "upper",
@@ -292,7 +292,7 @@ switchCurrentInputMethodSubtype(target: InputMethodSubtype): Promise&lt;boolean&
 
 以下错误码的详细介绍请参见[输入法框架错误码](../errorcodes/errorcode-inputmethod-framework.md)。
 
-| 错误码ID | 错误码信息                             |
+| 错误码ID | 错误信息                             |
 | -------- | -------------------------------------- |
 | 12800005 | Configuration persisting error.        |
 | 12800008 | Input method settings extension error. |
@@ -301,7 +301,7 @@ switchCurrentInputMethodSubtype(target: InputMethodSubtype): Promise&lt;boolean&
 
 ```js
 let inputMethodSubtype = {
-    id: "com.example.kikainput",
+    id: "com.example.kikakeyboard",
     label: "ServiceExtAbility",
     name: "",
     mode: "upper",
@@ -368,7 +368,7 @@ switchCurrentInputMethodAndSubtype(inputMethodProperty: InputMethodProperty, inp
 
 以下错误码的详细介绍请参见[输入法框架错误码](../errorcodes/errorcode-inputmethod-framework.md)。
 
-| 错误码ID | 错误码信息                             |
+| 错误码ID | 错误信息                             |
 | -------- | -------------------------------------- |
 | 12800005 | Configuration persisting error.        |
 | 12800008 | Input method settings extension error. |
@@ -382,7 +382,7 @@ let inputMethodProperty = {
     extra: {}
 }
 let inputMethodSubProperty = {
-    id: "com.example.kikainput",
+    id: "com.example.kikakeyboard",
     label: "ServiceExtAbility",
     name: "",
     mode: "upper",
@@ -436,7 +436,7 @@ switchCurrentInputMethodAndSubtype(inputMethodProperty: InputMethodProperty, inp
 
 以下错误码的详细介绍请参见[输入法框架错误码](../errorcodes/errorcode-inputmethod-framework.md)。
 
-| 错误码ID | 错误码信息                             |
+| 错误码ID | 错误信息                             |
 | -------- | -------------------------------------- |
 | 12800005 | Configuration persisting error.        |
 | 12800008 | Input method settings extension error. |
@@ -445,19 +445,23 @@ switchCurrentInputMethodAndSubtype(inputMethodProperty: InputMethodProperty, inp
 
 ```js
 let inputMethodProperty = {
-    name: "com.example.kikakeyboard",
-    id: "ServiceExtAbility"
+    packageName: "com.example.kikakeyboard",
+    methodId: "ServiceExtAbility",
+    extra: {}
 }
 let inputMethodSubProperty = {
     id: "com.example.kikakeyboard",
-	name: "",
-	locale: "",
     label: "ServiceExtAbility",
-	language: "",
-	extra : {}
+    name: "",
+    mode: "upper",
+    locale: "",
+    language: "",
+    icon: "",
+    iconId: 0,
+    extra: {}
 }
 try {
-    inputMethod.switchCurrentInputMethodAndSubtype(property, subType).then((result) => {
+    inputMethod.switchCurrentInputMethodAndSubtype(inputMethodProperty, inputMethodSubProperty).then((result) => {
         if (result) {
             console.info('Success to switchCurrentInputMethodAndSubtype.');
         } else {
@@ -492,7 +496,7 @@ getInputMethodController(): InputMethodController
 **示例：**
 
 ```js
-let InputMethodController = inputMethod.getInputMethodController();
+let inputMethodController = inputMethod.getInputMethodController();
 ```
 
 ## inputMethod.getInputMethodSetting<sup>(deprecated)</sup>
@@ -514,7 +518,7 @@ getInputMethodSetting(): InputMethodSetting
 **示例：**
 
 ```js
-let InputMethodSetting = inputMethod.getInputMethodSetting();
+let inputMethodSetting = inputMethod.getInputMethodSetting();
 ```
 
 ## InputMethodController
@@ -539,7 +543,7 @@ stopInputSession(callback: AsyncCallback&lt;boolean&gt;): void
 
 以下错误码的详细介绍请参见[输入法框架错误码](../errorcodes/errorcode-inputmethod-framework.md)。
 
-| 错误码ID | 错误码信息                             |
+| 错误码ID | 错误信息                             |
 | -------- | -------------------------------------- |
 | 12800003 | Input method client error.             |
 | 12800008 | Input method settings extension error. |
@@ -582,7 +586,7 @@ stopInputSession(): Promise&lt;boolean&gt;
 
 以下错误码的详细介绍请参见[输入法框架错误码](../errorcodes/errorcode-inputmethod-framework.md)。
 
-| 错误码ID | 错误码信息                             |
+| 错误码ID | 错误信息                             |
 | -------- | -------------------------------------- |
 | 12800003 | Input method client error.             |
 | 12800008 | Input method settings extension error. |
@@ -617,7 +621,7 @@ showSoftKeyboard(callback: AsyncCallback&lt;void&gt;): void
 
 **参数：**
 
-| 参数名   | 参数类型                  | 必填 | 说明       |
+| 参数名   | 类型                  | 必填 | 说明       |
 | -------- | ------------------------- | ---- | ---------- |
 | callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。当软键盘显示成功。err为undefined，否则为错误对象。 |
 
@@ -625,7 +629,7 @@ showSoftKeyboard(callback: AsyncCallback&lt;void&gt;): void
 
 以下错误码的详细介绍请参见[输入法框架错误码](../errorcodes/errorcode-inputmethod-framework.md)。
 
-| 错误码ID | 错误码信息                             |
+| 错误码ID | 错误信息                             |
 | -------- | -------------------------------------- |
 | 12800003 | Input method client error.             |
 | 12800008 | Input method settings extension error. |
@@ -662,7 +666,7 @@ showSoftKeyboard(): Promise&lt;void&gt;
 
 以下错误码的详细介绍请参见[输入法框架错误码](../errorcodes/errorcode-inputmethod-framework.md)。
 
-| 错误码ID | 错误码信息                             |
+| 错误码ID | 错误信息                             |
 | -------- | -------------------------------------- |
 | 12800003 | Input method client error.             |
 | 12800008 | Input method settings extension error. |
@@ -689,7 +693,7 @@ hideSoftKeyboard(callback: AsyncCallback&lt;void&gt;): void
 
 **参数：**
 
-| 参数名   | 参数类型                  | 必填 | 说明       |
+| 参数名   | 类型                  | 必填 | 说明       |
 | -------- | ------------------------- | ---- | ---------- |
 | callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。当软键盘隐藏成功。err为undefined，否则为错误对象。 |
 
@@ -697,7 +701,7 @@ hideSoftKeyboard(callback: AsyncCallback&lt;void&gt;): void
 
 以下错误码的详细介绍请参见[输入法框架错误码](../errorcodes/errorcode-inputmethod-framework.md)。
 
-| 错误码ID | 错误码信息                             |
+| 错误码ID | 错误信息                             |
 | -------- | -------------------------------------- |
 | 12800003 | Input method client error.             |
 | 12800008 | Input method settings extension error. |
@@ -734,7 +738,7 @@ hideSoftKeyboard(): Promise&lt;void&gt;
 
 以下错误码的详细介绍请参见[输入法框架错误码](../errorcodes/errorcode-inputmethod-framework.md)。
 
-| 错误码ID | 错误码信息                             |
+| 错误码ID | 错误信息                             |
 | -------- | -------------------------------------- |
 | 12800003 | Input method client error.             |
 | 12800008 | Input method settings extension error. |
@@ -837,10 +841,8 @@ on(type: 'imeChange', callback: (inputMethodProperty: InputMethodProperty, input
 **示例：**
 
 ```js
-let InputMethodSetting = inputMethod.getSetting();
-InputMethodSetting.on('imeChange', (inputMethodProperty, inputMethodSubtype) => {
-    InputMethodProperty = inputMethodProperty;
-    InputMethodSubtype = inputMethodSubtype;
+inputMethodSetting.on('imeChange', (inputMethodProperty, inputMethodSubtype) => {
+    console.info('Succeeded in subscribing imeChange: inputMethodProperty: ' + JSON.stringify(inputMethodProperty) + " , inputMethodSubtype: " + JSON.stringify(inputMethodSubtype));
 });
 ```
 
@@ -862,8 +864,7 @@ off(type: 'imeChange', callback?: (inputMethodProperty: InputMethodProperty, inp
 **示例：**
 
 ```js
-let InputMethodSetting = inputMethod.getSetting();
-InputMethodSetting.off('imeChange');
+inputMethodSetting.off('imeChange');
 ```
 
 ### listInputMethodSubtype<sup>9+</sup>
@@ -879,13 +880,13 @@ listInputMethodSubtype(inputMethodProperty: InputMethodProperty, callback: Async
 | 参数名   | 类型                                               | 必填 | 说明                   |
 | -------- | -------------------------------------------------- | ---- | ---------------------- |
 | inputMethodProperty | InputMethodProperty| 是 | 指定获取子类型所属的输入法应用。 |
-| callback | Array<[InputMethodSubtype](./js-apis-inputmethod-subtype.md#inputmethodsubtype)> | 是 | 回调函数，返回指定输入法应用的所有子类型。 |
+| callback | AsyncCallback&lt;Array<[InputMethodSubtype](./js-apis-inputmethod-subtype.md#inputmethodsubtype)>&gt; | 是 | 回调函数，返回指定输入法应用的所有子类型。 |
 
 **错误码：**
 
 以下错误码的详细介绍请参见[输入法框架错误码](../errorcodes/errorcode-inputmethod-framework.md)。
 
-| 错误码ID | 错误码信息                             |
+| 错误码ID | 错误信息                             |
 | -------- | -------------------------------------- |
 | 12800001 | Package manager error.                 |
 | 12800008 | Input method settings extension error. |
@@ -899,7 +900,7 @@ let inputMethodProperty = {
     extra:{}
 }
 try {
-    InputMethodSetting.listInputMethodSubtype(inputMethodProperty, (err,data) => {
+    inputMethodSetting.listInputMethodSubtype(inputMethodProperty, (err,data) => {
         if (err) {
             console.error('listInputMethodSubtype failed: ' + JSON.stringify(err));
             return;
@@ -935,7 +936,7 @@ listInputMethodSubtype(inputMethodProperty: InputMethodProperty): Promise&lt;Arr
 
 以下错误码的详细介绍请参见[输入法框架错误码](../errorcodes/errorcode-inputmethod-framework.md)。
 
-| 错误码ID | 错误码信息                             |
+| 错误码ID | 错误信息                             |
 | -------- | -------------------------------------- |
 | 12800001 | Package manager error.                 |
 | 12800008 | Input method settings extension error. |
@@ -949,7 +950,7 @@ let inputMethodProperty = {
     extra:{}
 }
 try {
-    InputMethodSetting.listInputMethodSubtype(inputMethodProperty).then((data) => {
+    inputMethodSetting.listInputMethodSubtype(inputMethodProperty).then((data) => {
         console.info('listInputMethodSubtype success');
     }).catch((err) => {
         console.error('listInputMethodSubtype err: ' + JSON.stringify(err));
@@ -971,13 +972,13 @@ listCurrentInputMethodSubtype(callback: AsyncCallback&lt;Array&lt;InputMethodSub
 
 | 参数名   | 类型                                               | 必填 | 说明                   |
 | -------- | -------------------------------------------------- | ---- | ---------------------- |
-| callback | Array<[InputMethodSubtype](./js-apis-inputmethod-subtype.md#inputmethodsubtype)> | 是   | 回调函数，返回当前输入法应用的所有子类型。 |
+| callback | AsyncCallback&lt;Array<[InputMethodSubtype](./js-apis-inputmethod-subtype.md#inputmethodsubtype)>&gt; | 是   | 回调函数，返回当前输入法应用的所有子类型。 |
 
 **错误码：**
 
 以下错误码的详细介绍请参见[输入法框架错误码](../errorcodes/errorcode-inputmethod-framework.md)。
 
-| 错误码ID | 错误码信息                             |
+| 错误码ID | 错误信息                             |
 | -------- | -------------------------------------- |
 | 12800001 | Package manager error.                 |
 | 12800008 | Input method settings extension error. |
@@ -986,7 +987,7 @@ listCurrentInputMethodSubtype(callback: AsyncCallback&lt;Array&lt;InputMethodSub
 
 ```js
 try {
-    InputMethodSetting.listCurrentInputMethodSubtype((err, data) => {
+    inputMethodSetting.listCurrentInputMethodSubtype((err, data) => {
         if (err) {
             console.error('listCurrentInputMethodSubtype failed: ' + JSON.stringify(err));
             return;
@@ -1016,7 +1017,7 @@ listCurrentInputMethodSubtype(): Promise&lt;Array&lt;InputMethodSubtype&gt;&gt;
 
 以下错误码的详细介绍请参见[输入法框架错误码](../errorcodes/errorcode-inputmethod-framework.md)。
 
-| 错误码ID | 错误码信息                             |
+| 错误码ID | 错误信息                             |
 | -------- | -------------------------------------- |
 | 12800001 | Package manager error.                 |
 | 12800008 | Input method settings extension error. |
@@ -1025,7 +1026,7 @@ listCurrentInputMethodSubtype(): Promise&lt;Array&lt;InputMethodSubtype&gt;&gt;
 
 ```js
 try {
-    InputMethodSetting.listCurrentInputMethodSubtype().then((data) => {
+    inputMethodSetting.listCurrentInputMethodSubtype().then((data) => {
         console.info('listCurrentInputMethodSubtype success');
     }).catch((err) => {
         console.error('listCurrentInputMethodSubtype err: ' + err);
@@ -1048,13 +1049,13 @@ getInputMethods(enable: boolean, callback: AsyncCallback&lt;Array&lt;InputMethod
 | 参数名   | 类型                                                | 必填 | 说明                          |
 | -------- | --------------------------------------------------- | ---- | ----------------------------- |
 | enable   | boolean                                             | 是   | 指定返回已激活/未激活。       |
-| callback | Array<[InputMethodProperty](#inputmethodproperty8)> | 是   | 回调函数，返回已激活/未激活输入法列表。 |
+| callback | AsyncCallback&lt;Array<[InputMethodProperty](#inputmethodproperty8)>&gt; | 是   | 回调函数，返回已激活/未激活输入法列表。 |
 
 **错误码：**
 
 以下错误码的详细介绍请参见[输入法框架错误码](../errorcodes/errorcode-inputmethod-framework.md)。
 
-| 错误码ID | 错误码信息                             |
+| 错误码ID | 错误信息                             |
 | -------- | -------------------------------------- |
 | 12800001 | Package manager error.                 |
 | 12800008 | Input method settings extension error. |
@@ -1063,7 +1064,7 @@ getInputMethods(enable: boolean, callback: AsyncCallback&lt;Array&lt;InputMethod
 
 ```js
 try {
-    InputMethodSetting.getInputMethods(true, (err,data) => {
+    inputMethodSetting.getInputMethods(true, (err,data) => {
         if (err) {
             console.error('getInputMethods failed: ' + JSON.stringify(err));
             return;
@@ -1093,7 +1094,7 @@ getInputMethods(enable: boolean): Promise&lt;Array&lt;InputMethodProperty&gt;&gt
 
 以下错误码的详细介绍请参见[输入法框架错误码](../errorcodes/errorcode-inputmethod-framework.md)。
 
-| 错误码ID | 错误码信息                             |
+| 错误码ID | 错误信息                             |
 | -------- | -------------------------------------- |
 | 12800001 | Package manager error.                 |
 | 12800008 | Input method settings extension error. |
@@ -1108,7 +1109,7 @@ getInputMethods(enable: boolean): Promise&lt;Array&lt;InputMethodProperty&gt;&gt
 
 ```js
 try {
-    InputMethodSetting.getInputMethods(true).then((data) => {
+    inputMethodSetting.getInputMethods(true).then((data) => {
         console.info('getInputMethods success');
     }).catch((err) => {
         console.error('getInputMethods err: ' + JSON.stringify(err));
@@ -1138,7 +1139,7 @@ showOptionalInputMethods(callback: AsyncCallback&lt;boolean&gt;): void
 
 以下错误码的详细介绍请参见[输入法框架错误码](../errorcodes/errorcode-inputmethod-framework.md)。
 
-| 错误码ID | 错误码信息                             |
+| 错误码ID | 错误信息                             |
 | -------- | -------------------------------------- |
 | 12800008 | Input method settings extension error. |
 
@@ -1146,7 +1147,7 @@ showOptionalInputMethods(callback: AsyncCallback&lt;boolean&gt;): void
 
 ```js
 try {
-    InputMethodSetting.showOptionalInputMethods((err, data) => {
+    inputMethodSetting.showOptionalInputMethods((err, data) => {
         if (err) {
             console.error('showOptionalInputMethods failed: ' + JSON.stringify(err));
             return;
@@ -1178,14 +1179,14 @@ showOptionalInputMethods(): Promise&lt;boolean&gt;
 
 以下错误码的详细介绍请参见[输入法框架错误码](../errorcodes/errorcode-inputmethod-framework.md)。
 
-| 错误码ID | 错误码信息                             |
+| 错误码ID | 错误信息                             |
 | -------- | -------------------------------------- |
 | 12800008 | Input method settings extension error. |
 
 **示例：**
 
 ```js
-InputMethodSetting.showOptionalInputMethods().then((data) => {
+inputMethodSetting.showOptionalInputMethods().then((data) => {
     console.info('displayOptionalInputMethod success.');
 }).catch((err) => {
     console.error('displayOptionalInputMethod err: ' + err);
@@ -1208,12 +1209,12 @@ listInputMethod(callback: AsyncCallback&lt;Array&lt;InputMethodProperty&gt;&gt;)
 
 | 参数名   | 类型                                               | 必填 | 说明                   |
 | -------- | -------------------------------------------------- | ---- | ---------------------- |
-| callback | Array<[InputMethodProperty](#inputmethodproperty8)> | 是   | 回调函数，返回已安装的输入法列表。 |
+| callback | AsyncCallback&lt;Array<[InputMethodProperty](#inputmethodproperty8)>&gt; | 是   | 回调函数，返回已安装的输入法列表。 |
 
 **示例：**
 
 ```js
-InputMethodSetting.listInputMethod((err,data) => {
+inputMethodSetting.listInputMethod((err,data) => {
     if (err) {
         console.error('listInputMethod failed because: ' + JSON.stringify(err));
         return;
@@ -1243,7 +1244,7 @@ listInputMethod(): Promise&lt;Array&lt;InputMethodProperty&gt;&gt;
 **示例：**
 
 ```js
-InputMethodSetting.listInputMethod().then((data) => {
+inputMethodSetting.listInputMethod().then((data) => {
     console.info('listInputMethod success');
 }).catch((err) => {
     console.error('listInputMethod err: ' + JSON.stringify(err));
@@ -1271,7 +1272,7 @@ displayOptionalInputMethod(callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
 ```js
-InputMethodSetting.displayOptionalInputMethod((err) => {
+inputMethodSetting.displayOptionalInputMethod((err) => {
     if (err) {
         console.error('displayOptionalInputMethod failed because: ' + JSON.stringify(err));
         return;
@@ -1301,7 +1302,7 @@ displayOptionalInputMethod(): Promise&lt;void&gt;
 **示例：**
 
 ```js
-InputMethodSetting.displayOptionalInputMethod().then(() => {
+inputMethodSetting.displayOptionalInputMethod().then(() => {
     console.info('displayOptionalInputMethod success');
 }).catch((err) => {
     console.error('displayOptionalInputMethod err: ' + err);

@@ -24,7 +24,9 @@ SystemCapability.BundleManager.DistributedBundleFramework
 
 For details, see [Permission Levels](../../security/accesstoken-overview.md#permission-levels).
 
-## distributedBundle.getRemoteAbilityInfo
+## distributedBundle.getRemoteAbilityInfo<sup>deprecated<sup>
+
+> This API is deprecated since API version 9. You are advised to use [getRemoteAbilityInfo](js-apis-distributedBundle.md) instead.
 
 getRemoteAbilityInfo(elementName: ElementName, callback: AsyncCallback&lt;RemoteAbilityInfo&gt;): void;
 
@@ -51,7 +53,9 @@ This is a system API and cannot be called by third-party applications.
 
 
 
-## distributedBundle.getRemoteAbilityInfo
+## distributedBundle.getRemoteAbilityInfo<sup>deprecated<sup>
+
+> This API is deprecated since API version 9. You are advised to use [getRemoteAbilityInfo](js-apis-distributedBundle.md) instead.
 
 getRemoteAbilityInfo(elementName: ElementName): Promise&lt;RemoteAbilityInfo&gt;
 
@@ -81,7 +85,9 @@ This is a system API and cannot be called by third-party applications.
 | ------------------------------------------------------------ | --------------------------------- |
 | Promise\<[RemoteAbilityInfo](js-apis-bundle-remoteAbilityInfo.md)> | Promise used to return the remote ability information.|
 
-## distributedBundle.getRemoteAbilityInfos
+## distributedBundle.getRemoteAbilityInfos<sup>deprecated<sup>
+
+> This API is deprecated since API version 9. You are advised to use [getRemoteAbilityInfo](js-apis-distributedBundle.md) instead.
 
 getRemoteAbilityInfos(elementNames: Array&lt;ElementName&gt;, callback: AsyncCallback&lt;Array&lt;RemoteAbilityInfo&gt;&gt;): void;
 
@@ -104,11 +110,13 @@ This is a system API and cannot be called by third-party applications.
 | Name        | Type                                                        | Mandatory| Description                                              |
 | ------------ | ------------------------------------------------------------ | ---- | -------------------------------------------------- |
 | elementNames | Array<[ElementName](js-apis-bundle-ElementName.md)>          | Yes  | **ElementName** array, whose maximum length is 10.                  |
-| callback     | AsyncCallback< Array<[RemoteAbilityInfo](js-apis-bundle-remoteAbilityInfo.md)>> | Yes  | Callback used to return an array of the remote ability information.|
+| callback     | AsyncCallback< Array<[RemoteAbilityInfo](js-apis-bundle-remoteAbilityInfo.md)>> | Yes  | Callback used to return the remote ability information.|
 
 
 
-## distributedBundle.getRemoteAbilityInfos
+## distributedBundle.getRemoteAbilityInfos<sup>deprecated<sup>
+
+> This API is deprecated since API version 9. You are advised to use [getRemoteAbilityInfo](js-apis-distributedBundle.md) instead.
 
 getRemoteAbilityInfos(elementNames: Array&lt;ElementName&gt;): Promise&lt;Array&lt;RemoteAbilityInfo&gt;&gt;
 

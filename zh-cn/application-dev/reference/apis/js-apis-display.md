@@ -33,7 +33,7 @@ import display from '@ohos.display';
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
-| 名称   | 参数类型 | 可读 | 可写 | 说明               |
+| 名称   | 类型 | 可读 | 可写 | 说明               |
 | ------ | -------- | ---- | ---- | ------------------ |
 | left   | number   | 是   | 是   | 矩形区域的左边界。 |
 | top    | number   | 是   | 是   | 矩形区域的上边界。 |
@@ -46,7 +46,7 @@ import display from '@ohos.display';
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
-| 名称   | 参数类型      | 可读 | 可写 | 说明               |
+| 名称   | 类型      | 可读 | 可写 | 说明               |
 | ------ | ------------- | ---- | ---- | ------------------ |
 | left   | [Rect](#rect9) | 是   | 否   | 瀑布曲面区域的左侧矩形区域。 |
 | top    | [Rect](#rect9) | 是   | 否   | 瀑布曲面区域的顶部矩形区域。 |
@@ -59,7 +59,7 @@ import display from '@ohos.display';
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
-| 名称                        | 参数类型      | 可读 | 可写 | 说明               |
+| 名称                        | 类型      | 可读 | 可写 | 说明               |
 | --------------------------- | ------------- | ---- | ---- | ------------------ |
 | boundingRects                | Array\<[Rect](#rect9)> | 是   | 否   | 挖孔、刘海等区域的边界矩形。 |
 | waterfallDisplayAreaRects   | [WaterfallDisplayAreaRects](#waterfalldisplayarearects9) | 是 | 否 | 瀑布屏曲面部分显示区域。 |
@@ -94,7 +94,7 @@ try {
     displayClass = display.getDefaultDisplaySync();
 } catch (exception) {
     console.error('Failed to obtain the default display object. Code: ' + JSON.stringify(exception));
-};
+}
 ```
 
 ## display.getAllDisplays<sup>9+</sup>
@@ -204,25 +204,24 @@ hasPrivateWindow(displayId: number): boolean
 let displayClass = null;
 try {
     displayClass = display.getDefaultDisplaySync();
+
+    let ret = undefined;
+    try {
+        ret = display.hasPrivateWindow(displayClass.id);
+    } catch (exception) {
+        console.error('Failed to check has privateWindow or not. Code: ' + JSON.stringify(exception));
+    }
+    if (ret == undefined) {
+        console.log("Failed to check has privateWindow or not.");
+    }
+    if (ret) {
+        console.log("There has privateWindow.");
+    } else if (!ret) {
+        console.log("There has no privateWindow.");
+    }
 } catch (exception) {
     console.error('Failed to obtain the default display object. Code: ' + JSON.stringify(exception));
-    return;
-};
-
-let ret = undefined;
-try {
-    ret = display.hasPrivateWindow(displayClass.id);
-} catch (exception) {
-    console.error('Failed to check has privateWindow or not. Code: ' + JSON.stringify(exception));
-};
-if (ret == undefined) {
-  console.log("Failed to check has privateWindow or not.");
 }
-if (ret) {
-  console.log("There has privateWindow.");
-} else if (!ret) {
-  console.log("There has no privateWindow.");
-};
 ```
 
 ## display.on('add'|'remove'|'change')
@@ -250,7 +249,7 @@ try {
     display.on("add", callback);
 } catch (exception) {
     console.error('Failed to register callback. Code: ' + JSON.stringify(exception));
-};
+}
 ```
 
 ## display.off('add'|'remove'|'change')
@@ -275,7 +274,7 @@ try {
     display.off("remove");
 } catch (exception) {
     console.error('Failed to unregister callback. Code: ' + JSON.stringify(exception));
-};
+}
 ```
 
 ## display.getDefaultDisplay<sup>(deprecated)</sup>
@@ -407,7 +406,7 @@ promise.then((data) => {
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
-| 名称 | 参数类型 | 可读 | 可写 | 说明 |
+| 名称 | 类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
 | id | number | 是 | 否 | 显示设备的id号。|
 | name | string | 是 | 否 | 显示设备的名称。|
@@ -450,17 +449,17 @@ getCutoutInfo(callback: AsyncCallback&lt;CutoutInfo&gt;): void
 let displayClass = null;
 try {
     displayClass = display.getDefaultDisplaySync();
+
+    displayClass.getCutoutInfo((err, data) => {
+        if (err.code) {
+            console.error('Failed to get cutoutInfo. Code: ' + JSON.stringify(err));
+            return;
+        }
+        console.info('Succeeded in getting cutoutInfo. data: ' + JSON.stringify(data));
+    });
 } catch (exception) {
     console.error('Failed to obtain the default display object. Code: ' + JSON.stringify(exception));
-};
-
-displayClass.getCutoutInfo((err, data) => {
-    if (err.code) {
-        console.error('Failed to get cutoutInfo. Code: ' + JSON.stringify(err));
-        return;
-    }
-    console.info('Succeeded in getting cutoutInfo. data: ' + JSON.stringify(data));
-});
+}
 ```
 ### getCutoutInfo<sup>9+</sup>
 getCutoutInfo(): Promise&lt;CutoutInfo&gt;
@@ -489,12 +488,14 @@ getCutoutInfo(): Promise&lt;CutoutInfo&gt;
 let displayClass = null;
 try {
     displayClass = display.getDefaultDisplaySync();
+
+    let promise = displayClass.getCutoutInfo();
+    promise.then((data) => {
+        console.info('Succeeded in getting cutoutInfo. Data: ' + JSON.stringify(data));
+    }).catch((err) => {
+        console.error('Failed to obtain all the display objects. Code: ' + JSON.stringify(err));
+    });
 } catch (exception) {
     console.error('Failed to obtain the default display object. Code: ' + JSON.stringify(exception));
-};
-
-let promise = displayClass.getCutoutInfo();
-promise.then((data) => {
-    console.info('Succeeded in getting cutoutInfo. Data: ' + JSON.stringify(data));
-});
+}
 ```

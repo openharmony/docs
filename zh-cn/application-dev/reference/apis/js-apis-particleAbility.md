@@ -415,7 +415,7 @@ connectAbility(request: Want, options:ConnectOptions): number
         function onFailedCallback(code){
             console.log('particleAbilityTest ConnectAbility onFailed errCode : ' + code)
         }
-        var connId = particleAbility.connectAbility(
+        var connectId = particleAbility.connectAbility(
             {
                 bundleName: "com.ix.ServiceAbility",
                 abilityName: "ServiceAbilityA",
@@ -427,7 +427,7 @@ connectAbility(request: Want, options:ConnectOptions): number
             },
         );
 
-        particleAbility.disconnectAbility(connId).then((data)=>{
+        particleAbility.disconnectAbility(connectId).then((data)=>{
             console.log( " data: " + data);
         }).catch((error)=>{
             console.log('particleAbilityTest result errCode : ' + error.code )
@@ -464,7 +464,7 @@ import rpc from '@ohos.rpc'
         function onFailedCallback(code){
             console.log('particleAbilityTest ConnectAbility onFailed errCode : ' + code)
         }
-        var connId = particleAbility.connectAbility(
+        var connectId = particleAbility.connectAbility(
             {
                 bundleName: "com.ix.ServiceAbility",
                 abilityName: "ServiceAbilityA",
@@ -475,7 +475,7 @@ import rpc from '@ohos.rpc'
                 onFailed: onFailedCallback,
             },
         );
-        var result =  particleAbility.disconnectAbility(connId).then((data)=>{
+        var result =  particleAbility.disconnectAbility(connectId).then((data)=>{
             console.log( " data: " + data);
         }).catch((error)=>{
             console.log('particleAbilityTest result errCode : ' + error.code )
@@ -511,7 +511,7 @@ function onConnectCallback(element, remote){
         function onFailedCallback(code){
             console.log('particleAbilityTest ConnectAbility onFailed errCode : ' + code)
         }
-        var connId = particleAbility.connectAbility(
+        var connectId = particleAbility.connectAbility(
             {
                 bundleName: "com.ix.ServiceAbility",
                 abilityName: "ServiceAbilityA",
@@ -523,7 +523,7 @@ function onConnectCallback(element, remote){
             },
         );
 
-         particleAbility.disconnectAbility(connId).then((data)=>{
+         particleAbility.disconnectAbility(connectId).then((data)=>{
             console.log( " data: " + data);
         }).catch((error)=>{
             console.log('particleAbilityTest result errCode : ' + error.code )

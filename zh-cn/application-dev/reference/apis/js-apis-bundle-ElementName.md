@@ -7,7 +7,7 @@
 
 ElementName信息，通过接口[Context.getElementName](js-apis-Context.md)获取。
 
-## ElementName<sup>(deprecated)<sup>
+## ElementName<sup>(deprecated)</sup>
 
 > 从API version 9开始不再维护，建议使用[ElementName](js-apis-bundleManager-elementName.md)替代。
 

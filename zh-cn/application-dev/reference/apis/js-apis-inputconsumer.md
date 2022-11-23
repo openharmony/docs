@@ -27,7 +27,7 @@ on(type: "key", keyOptions: KeyOptions, callback: Callback&lt;KeyOptions&gt;): v
 
 **参数：** 
 
-| 参数         | 类型                         | 必填   | 说明                                       |
+| 参数名         | 类型                         | 必填   | 说明                                       |
 | ---------- | -------------------------- | ---- | ---------------------------------------- |
 | type       | string                     | 是    | 事件类型，目前只支持”key“。                       |
 | keyOptions | [keyOptions](#keyoptions)  | 是    | 组合键选项。                 |
@@ -58,7 +58,7 @@ off(type: "key", keyOptions: KeyOptions, callback?: Callback&lt;KeyOptions&gt;):
 
 **参数：** 
 
-| 参数         | 类型                         | 必填   | 说明                              |
+| 参数名         | 类型                         | 必填   | 说明                              |
 | ---------- | -------------------------- | ---- | ------------------------------- |
 | type       | string                     | 是    | 事件类型，当前只支持”key“。              |
 | keyOptions | [keyOptions](#keyoptions)  | 是    | 组合键选项。             |
@@ -106,9 +106,9 @@ try {
 
 **系统能力：** SystemCapability.MultimodalInput.Input.InputConsumer
 
-| 参数                   | 类型      | 必填   | 说明                       |
-| -------------------- | ------- | ---- | ------------------------ |
-| preKeys              | Array   | 是    | 前置按键集合，数量范围[0, 4]，前置按键无顺序要求。 |
-| finalKey             | Number  | 是    | 最终按键，此项必填，最终按键触发上报回调函数。 |
-| isFinalKeyDown       | boolean | 是    | 最终按键状态。 |
-| finalKeyDownDuration | Number  | 是    | 最终按键保持按下持续时间，为0时立即触发回调函数，大于0时，当isFinalKeyDown为true，则最终按键按下超过此时长后触发回调函数，当isFinalKeyDown为false，则最终按键按下到抬起时间小于此时长时触发回调函数。   |
+| 名称        | 类型   | 可读   | 可写   | 说明      |
+| --------- | ------ | ---- | ---- | ------- |
+| preKeys              | Array   | 是    | 否 | 前置按键集合，数量范围[0, 4]，前置按键无顺序要求。 |
+| finalKey             | Number  | 是    |  否 | 最终按键，此项必填，最终按键触发上报回调函数。 |
+| isFinalKeyDown       | boolean | 是    |  否 | 最终按键状态。 |
+| finalKeyDownDuration | Number  | 是    |  否 | 最终按键保持按下持续时间，为0时立即触发回调函数，大于0时，当isFinalKeyDown为true，则最终按键按下超过此时长后触发回调函数，当isFinalKeyDown为false，则最终按键按下到抬起时间小于此时长时触发回调函数。   |

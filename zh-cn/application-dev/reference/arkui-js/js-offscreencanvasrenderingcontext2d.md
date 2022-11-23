@@ -18,7 +18,7 @@
 **示例：** 
 ```html
 <!-- xxx.hml -->
-<div style="width: 180px; height: 60px;">
+<div style="width: 500px; height: 500px;">
   <canvas ref="canvasId" style="width: 500px; height: 500px; background-color: #ffff00;"></canvas>
 </div>
 ```
@@ -94,7 +94,7 @@ isPointInPath(path?: Path2D, x: number, y: number): boolean
 **示例：** 
 ```html
 <!-- xxx.hml -->
-<div style="width: 180px; height: 60px;">
+<div style="width: 500px; height: 500px;">
   <text>In path:{{textValue}}</text>
   <canvas ref="canvas" style="width: 500px; height: 500px; background-color: #ffff00;"></canvas>
 </div>
@@ -144,7 +144,7 @@ isPointInStroke(path?: Path2D, x: number, y: number): boolean
 **示例：** 
 ```html
 <!-- xxx.hml -->
-<div style="width: 180px; height: 60px;">
+<div style="width: 500px; height: 500px;">
   <text>In path:{{textValue}}</text>
   <canvas ref="canvas" style="width: 500px; height: 500px; background-color: #ffff00;"></canvas>
 </div>
@@ -180,7 +180,7 @@ resetTransform(): void
 **示例：** 
 ```html
 <!-- xxx.hml -->
-<div style="width: 180px; height: 60px;">
+<div style="width: 500px; height: 500px;">
   <text>In path:{{textValue}}</text>
   <canvas ref="canvas" style="width: 500px; height: 500px; background-color: #ffff00;"></canvas>
 </div>

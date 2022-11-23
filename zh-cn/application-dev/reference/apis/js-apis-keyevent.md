@@ -16,7 +16,7 @@ import {Action, Key, KeyEvent} from '@ohos.multimodalInput.keyEvent';
 
 **系统能力**：SystemCapability.MultimodalInput.Input.Core
 
-| 名称   | 参数类型 | 可读 | 可写 | 描述     |
+| 名称   | 类型 | 可读 | 可写 | 说明     |
 | ------ | -------- | ---- | ---- | -------- |
 | CANCEL | number   | 是   | 否   | 按键取消 |
 | DOWN   | number   | 是   | 否   | 按键按下 |
@@ -26,7 +26,7 @@ import {Action, Key, KeyEvent} from '@ohos.multimodalInput.keyEvent';
 
 **系统能力**：SystemCapability.MultimodalInput.Input.Core
 
-| 名称        | 参数类型 | 可读 | 可写 | 描述           |
+| 名称        | 类型 | 可读 | 可写 | 说明           |
 | ----------- | -------- | ---- | ---- | -------------- |
 | code        | KeyCode  | 是   | 否   | 按键码         |
 | pressedTime | number   | 是   | 否   | 按键按下时间 |
@@ -36,7 +36,7 @@ import {Action, Key, KeyEvent} from '@ohos.multimodalInput.keyEvent';
 
 **系统能力**：SystemCapability.MultimodalInput.Input.Core
 
-| 名称        | 参数类型 | 可读 | 可写 | 描述                           |
+| 名称        | 类型 | 可读 | 可写 | 说明                           |
 | ----------- | -------- | ---- | ---- | ------------------------------ |
 | action      | Action   | 是   | 否   | 按键动作                       |
 | key         | Key      | 是   | 否   | 当前上报的按键             |

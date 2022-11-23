@@ -22,7 +22,7 @@ import GesturePath from '@ohos.accessibility.GesturePath';
 
 ### 属性
 
-| 名称           | 参数类型                                     | 可读   | 可写   | 说明     |
+| 名称           | 类型                                     | 可读   | 可写   | 说明     |
 | ------------ | ---------------------------------------- | ---- | ---- | ------ |
 | points       | Array&lt;[GesturePoint](js-apis-accessibility-GesturePoint.md#gesturepoint)&gt; | 是    | 是    | 手势触摸点。    |
 | durationTime | number                                   | 是    | 是    | 手势总耗时, 单位为毫秒。 |
@@ -37,7 +37,7 @@ constructor(durationTime: number);
 
 **参数：**
 
-| 参数名 | 参数类型 | 必填 | 说明 |
+| 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | durationTime | number | 是 | 手势总耗时,单位为毫秒。 |
 

@@ -1,5 +1,10 @@
 # Hi3516标准系统入门（IDE方式）
 
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+>
+> 从3.2版本起，标准系统不再针对Hi3516DV300进行适配验证，建议您使用RK3568进行标准系统的设备开发。
+>
+> 如您仍然需要使用Hi3516DV300进行标准系统相关开发操作，则可能会出现无法适配的现象，此时请联系芯片供应商获取相关适配指导，或自行完成适配。
 
 除小型系统外，Hi3516DV300开发板还支持标准系统。此章节简要介绍如何使用IDE在Hi3516DV300开发板上进行标准系统的开发。
 
@@ -157,7 +162,7 @@ applications/sample/hello
    在productdefine/common/products/Hi3516DV300.json中添加对应的hello部件，直接添加到原有部件后即可。
 
    > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
-   > 本章节操作是以OpenHarmony-v3.1-Release版本为例进行操作的，该版本中，Hi3516的配置文件为productdefine/common/products/Hi3516DV300.json；若源码版本大于OpenHarmony-v3.1-Release时，Hi3516的配置文件为vendor/hisilicon/Hi3516DV300/config.json。
+   > 本章节操作是以OpenHarmony-v3.1-Release版本为例进行操作的，该版本中，Hi3516的配置文件为productdefine/common/products/Hi3516DV300.json；从OpenHarmony-v3.2-Beta2版本开始，Hi3516的配置文件为vendor/hisilicon/Hi3516DV300/config.json。
 
    
    ```

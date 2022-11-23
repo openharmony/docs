@@ -28,7 +28,7 @@ import PlainArray from '@ohos.util.PlainArray';
 
 **系统能力：** SystemCapability.Utils.Lang
 
-| 名称 | 参数类型 | 可读 | 可写 | 说明 |
+| 名称 | 类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
 | length | number | 是 | 否 | PlainArray的元素个数。 |
 
@@ -45,7 +45,7 @@ PlainArray的构造函数。
 
 以下错误码的详细介绍请参见[containers错误码](../errorcodes/errorcode-containers.md)。
 
-| 错误码ID | 错误码信息 |
+| 错误码ID | 错误信息 |
 | -------- | -------- |
 | 10200012 | The PlainArray's constructor cannot be directly invoked. |
 
@@ -79,7 +79,7 @@ isEmpty(): boolean
 
 以下错误码的详细介绍请参见[containers错误码](../errorcodes/errorcode-containers.md)。
 
-| 错误码ID | 错误码信息 |
+| 错误码ID | 错误信息 |
 | -------- | -------- |
 | 10200011 | The isEmpty method cannot be bound. |
 
@@ -120,7 +120,7 @@ has(key: number): boolean
 
 以下错误码的详细介绍请参见[containers错误码](../errorcodes/errorcode-containers.md)。
 
-| 错误码ID | 错误码信息 |
+| 错误码ID | 错误信息 |
 | -------- | -------- |
 | 10200011 | The has method cannot be bound. |
 
@@ -163,7 +163,7 @@ get(key: number): T
 
 以下错误码的详细介绍请参见[containers错误码](../errorcodes/errorcode-containers.md)。
 
-| 错误码ID | 错误码信息 |
+| 错误码ID | 错误信息 |
 | -------- | -------- |
 | 10200011 | The get method cannot be bound. |
 
@@ -206,7 +206,7 @@ getIndexOfKey(key: number): number
 
 以下错误码的详细介绍请参见[containers错误码](../errorcodes/errorcode-containers.md)。
 
-| 错误码ID | 错误码信息 |
+| 错误码ID | 错误信息 |
 | -------- | -------- |
 | 10200011 | The getIndexOfKey method cannot be bound. |
 
@@ -249,7 +249,7 @@ getIndexOfValue(value: T): number
 
 以下错误码的详细介绍请参见[containers错误码](../errorcodes/errorcode-containers.md)。
 
-| 错误码ID | 错误码信息 |
+| 错误码ID | 错误信息 |
 | -------- | -------- |
 | 10200011 | The getIndexOfValue method cannot be bound. |
 
@@ -292,7 +292,7 @@ getKeyAt(index: number): number
 
 以下错误码的详细介绍请参见[containers错误码](../errorcodes/errorcode-containers.md)。
 
-| 错误码ID | 错误码信息 |
+| 错误码ID | 错误信息 |
 | -------- | -------- |
 | 10200011 | The getKeyAt method cannot be bound. |
 
@@ -334,7 +334,7 @@ getValueAt(index: number): T
 
 以下错误码的详细介绍请参见[containers错误码](../errorcodes/errorcode-containers.md)。
 
-| 错误码ID | 错误码信息 |
+| 错误码ID | 错误信息 |
 | -------- | -------- |
 | 10200011 | The getValueAt method cannot be bound. |
 | 10200001 | The value of parameters are out of range. |
@@ -376,7 +376,7 @@ clone(): PlainArray&lt;T&gt;
 
 以下错误码的详细介绍请参见[containers错误码](../errorcodes/errorcode-containers.md)。
 
-| 错误码ID | 错误码信息 |
+| 错误码ID | 错误信息 |
 | -------- | -------- |
 | 10200011 | The clone method cannot be bound. |
 
@@ -414,7 +414,7 @@ add(key: number, value: T): void
 
 以下错误码的详细介绍请参见[containers错误码](../errorcodes/errorcode-containers.md)。
 
-| 错误码ID | 错误码信息 |
+| 错误码ID | 错误信息 |
 | -------- | -------- |
 | 10200011 | The add method cannot be bound. |
 
@@ -455,7 +455,7 @@ remove(key: number): T
 
 以下错误码的详细介绍请参见[containers错误码](../errorcodes/errorcode-containers.md)。
 
-| 错误码ID | 错误码信息 |
+| 错误码ID | 错误信息 |
 | -------- | -------- |
 | 10200011 | The remove method cannot be bound. |
 
@@ -498,7 +498,7 @@ removeAt(index: number): T
 
 以下错误码的详细介绍请参见[containers错误码](../errorcodes/errorcode-containers.md)。
 
-| 错误码ID | 错误码信息 |
+| 错误码ID | 错误信息 |
 | -------- | -------- |
 | 10200011 | The removeAt method cannot be bound. |
 
@@ -542,7 +542,7 @@ removeRangeFrom(index: number, size: number): number
 
 以下错误码的详细介绍请参见[containers错误码](../errorcodes/errorcode-containers.md)。
 
-| 错误码ID | 错误码信息 |
+| 错误码ID | 错误信息 |
 | -------- | -------- |
 | 10200011 | The removeRangeFrom method cannot be bound. |
 | 10200001 | The value of parameters are out of range. |
@@ -586,7 +586,7 @@ setValueAt(index: number, value: T): void
 
 以下错误码的详细介绍请参见[containers错误码](../errorcodes/errorcode-containers.md)。
 
-| 错误码ID | 错误码信息 |
+| 错误码ID | 错误信息 |
 | -------- | -------- |
 | 10200011 | The setValueAt method cannot be bound. |
 | 10200001 | The value of parameters are out of range. |
@@ -629,7 +629,7 @@ toString(): String
 
 以下错误码的详细介绍请参见[containers错误码](../errorcodes/errorcode-containers.md)。
 
-| 错误码ID | 错误码信息 |
+| 错误码ID | 错误信息 |
 | -------- | -------- |
 | 10200011 | The toString method cannot be bound. |
 
@@ -660,7 +660,7 @@ clear(): void
 
 以下错误码的详细介绍请参见[containers错误码](../errorcodes/errorcode-containers.md)。
 
-| 错误码ID | 错误码信息 |
+| 错误码ID | 错误信息 |
 | -------- | -------- |
 | 10200011 | The clear method cannot be bound. |
 
@@ -705,7 +705,7 @@ callbackfn的参数说明：
 
 以下错误码的详细介绍请参见[containers错误码](../errorcodes/errorcode-containers.md)。
 
-| 错误码ID | 错误码信息 |
+| 错误码ID | 错误信息 |
 | -------- | -------- |
 | 10200011 | The forEach method cannot be bound. |
 
@@ -746,7 +746,7 @@ try {
 
 以下错误码的详细介绍请参见[containers错误码](../errorcodes/errorcode-containers.md)。
 
-| 错误码ID | 错误码信息 |
+| 错误码ID | 错误信息 |
 | -------- | -------- |
 | 10200011 | The Symbol.iterator method cannot be bound. |
 
