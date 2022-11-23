@@ -312,7 +312,7 @@
     .padding(10)
     .backgroundColor(0xAFEEEE)
     ```
-  
+   
     ![zh-cn_image_0000001218739570](figures/zh-cn_image_0000001218739570.png)
 
 - ItemAlign. Baseline：交叉轴方向文本基线对齐。
