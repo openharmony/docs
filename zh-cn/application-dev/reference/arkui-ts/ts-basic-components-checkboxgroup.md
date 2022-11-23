@@ -110,10 +110,4 @@ struct CheckboxExample {
   }
 }
 ```
-多选框组三种状态图示：
-
-![](figures/checkboxgroup1.png)
-
-![](figures/checkboxgroup2.png)
-
-![](figures/checkboxgroup3.png)
+![checkboxGroup](figures/checkboxGroup.gif)

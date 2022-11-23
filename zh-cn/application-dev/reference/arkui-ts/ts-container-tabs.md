@@ -147,3 +147,4 @@ struct TabsExample {
 }
 ```
 
+![tabs2](figures/tabs2.gif)

@@ -28,9 +28,9 @@ DataPanel(options:{values: number[], max?: number, type?: DataPanelType})
 
 
 ## DataPanelType枚举说明
-| 名称 | 描述 | 
+| 名称 | 描述 |
 | -------| ------------ |
-| Line   | 线型数据面板。 | 
+| Line   | 线型数据面板。 |
 | Circle | 环形数据面板。 |
 
 
@@ -83,4 +83,4 @@ struct DataPanelExample {
 }
 ```
 
-![zh-cn_image_0000001236876377](figures/zh-cn_image_0000001236876377.jpg)
+![dataPanel](figures/dataPanel.PNG)
