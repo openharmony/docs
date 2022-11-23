@@ -161,11 +161,11 @@ let options = {
 try {
     zlib.compressFile(inFile, outFile, options, (errData) => {
         if (errData !== null) {
-            console.log(`errData is errCode:${errData.errCode}  message:${errData.message}`);
+            console.log(`errData is errCode:${errData.code}  message:${errData.message}`);
         }
     })
 } catch(errData) {
-    console.log(`errData is errCode:${errData.errCode}  message:${errData.message}`);
+    console.log(`errData is errCode:${errData.code}  message:${errData.message}`);
 }
 ```
 
@@ -207,10 +207,10 @@ try {
     zlib.compressFile(inFile, outFile, options).then((data) => {
         console.info('compressFile success');
     }).catch((errData) => {
-        console.log(`errData is errCode:${errData.errCode}  message:${errData.message}`);
+        console.log(`errData is errCode:${errData.code}  message:${errData.message}`);
     })
 } catch(errData) {
-    console.log(`errData is errCode:${errData.errCode}  message:${errData.message}`);
+    console.log(`errData is errCode:${errData.code}  message:${errData.message}`);
 }
 ```
 
@@ -258,11 +258,11 @@ let options = {
 try {
     zlib.decompressFile(inFile, outFile, options, (errData) => {
         if (errData !== null) {
-            console.log(`errData is errCode:${errData.errCode}  message:${errData.message}`);
+            console.log(`errData is errCode:${errData.code}  message:${errData.message}`);
         }
     })
 } catch(errData) {
-    console.log(`errData is errCode:${errData.errCode}  message:${errData.message}`);
+    console.log(`errData is errCode:${errData.code}  message:${errData.message}`);
 }
 ```
 
@@ -304,10 +304,10 @@ try {
     zlib.decompressFile(inFile, outFile, options).then((data) => {
         console.info('decompressFile success');
     }).catch((errData) => {
-        console.log(`errData is errCode:${errData.errCode}  message:${errData.message}`);
+        console.log(`errData is errCode:${errData.code}  message:${errData.message}`);
     })
 } catch(errData) {
-    console.log(`errData is errCode:${errData.errCode}  message:${errData.message}`);
+    console.log(`errData is errCode:${errData.code}  message:${errData.message}`);
 }
 ```
 
