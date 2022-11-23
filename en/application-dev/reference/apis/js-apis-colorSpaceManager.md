@@ -64,6 +64,14 @@ Creates a standard color space object.
 | ------------------ | ------------------------ |
 | [ColorSpaceManager](#colorspacemanager)  | Color space object created.              |
 
+**Error codes**
+
+For details about the error codes, see [colorSpaceManager Error Codes](../errorcodes/errorcode-colorspace-manager.md).
+
+| ID| Error Message|
+| ------- | ----------------------- |
+| 18600001 | Parameter value is abnormal. |
+
 **Example**
 
 ```js
@@ -95,6 +103,14 @@ Creates a custom color space object.
 | Type               | Description                    |
 | ------------------ | ------------------------ |
 | [ColorSpaceManager](#colorspacemanager)  | Color space object created.<br>The color space type is **CUSTOM** of [ColorSpace](#colorspace).|
+
+**Error codes**
+
+For details about the error codes, see [colorSpaceManager Error Codes](../errorcodes/errorcode-colorspace-manager.md).
+
+| ID| Error Message|
+| ------- | ----------------------- |
+| 18600001 | Parameter value is abnormal. |
 
 **Example**
 
@@ -138,11 +154,19 @@ Obtains the color space type.
 | ------------------ | ------------------------ |
 | [ColorSpace](#colorspace)  | Color space type.|
 
+**Error codes**
+
+For details about the error codes, see [colorSpaceManager Error Codes](../errorcodes/errorcode-colorspace-manager.md).
+
+| ID| Error Message|
+| ------- | ----------------------- |
+| 18600001 | Parameter value is abnormal. |
+
 **Example**
 
 ```js
 try {
-    let csType = colorSpace.getColorSpaceName();
+    colorSpace.getColorSpaceName();
 } catch (err) {
     console.log(`Fail to get colorSpace's name. Cause: ` + JSON.stringify(err));
 }
@@ -162,11 +186,19 @@ Obtains the coordinates of the white point of the color space.
 | ------------------ | ------------------------ |
 | Array\<number\>  | Coordinates [x, y] of the white point.|
 
+**Error codes**
+
+For details about the error codes, see [colorSpaceManager Error Codes](../errorcodes/errorcode-colorspace-manager.md).
+
+| ID| Error Message|
+| ------- | ----------------------- |
+| 18600001 | Parameter value is abnormal. |
+
 **Example**
 
 ```js
 try {
-    let wp = colorSpace.getWhitePoint();
+    colorSpace.getWhitePoint();
 } catch (err) {
     console.log(`Failed to get white point. Cause: ` + JSON.stringify(err));
 }
@@ -186,11 +218,19 @@ Obtains the gamma of the color space.
 | ------------------ | ------------------------ |
 | number  | Gamma of the color space.|
 
+**Error codes**
+
+For details about the error codes, see [colorSpaceManager Error Codes](../errorcodes/errorcode-colorspace-manager.md).
+
+| ID| Error Message|
+| ------- | ----------------------- |
+| 18600001 | Parameter value is abnormal. |
+
 **Example**
 
 ```js
 try {
-    let gamma = colorSpace.getGamma();
+    colorSpace.getGamma();
 } catch (err) {
     console.log(`Failed to get gamma. Cause: ` + JSON.stringify(err));
 }
