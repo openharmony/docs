@@ -333,12 +333,8 @@ async function createTonePlayerBefore(){
     streamUsage : audio.StreamUsage.STREAM_USAGE_MEDIA,
     rendererFlags : 0
   }
-   createTonePlayer();
+  tonePlayer = await audio.createTonePlayer(audioRendererInfo);
 }
-async function createTonePlayer(){
-   tonePlayer = await audio.createTonePlayer(audioRendererInfo);
-}
-
 ```
 
 ## AudioVolumeType
