@@ -244,6 +244,7 @@ getFocusElement(isAccessibilityFocus: boolean, callback: AsyncCallback\<Accessib
 
 ```ts
 let focusElement;
+let isAccessibilityFocus = true;
 try {
     axContext.getFocusElement(isAccessibilityFocus, (err, data) => {
     if (err) {
@@ -368,6 +369,7 @@ getWindowRootElement(windowId: number, callback: AsyncCallback\<AccessibilityEle
 
 ```ts
 let rootElement;
+let windowId = 10;
 try {
     axContext.getWindowRootElement(windowId, (err, data) => {
     if (err) {
@@ -698,7 +700,7 @@ let rootElement;
 try {
     rootElement.attributeValue(attributeName).then((data) => {
         console.log('get attribute value by name success');
-        attribtueValue = data;
+        attributeValue = data;
     }).catch((err) => {
         console.log('failed to get attribute value, because '  + JSON.stringify(err));
     });
