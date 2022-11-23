@@ -202,6 +202,24 @@
   - [Security Guidelines](security/security-guidelines-overall.md)
 
 - Porting
+
+  - Mini System SoC Porting Guide
+    - Porting Preparations
+      - [Before You Start](porting/porting-chip-prepare-knows.md)
+      - [Building Adaptation Process](porting/porting-chip-prepare-process.md)
+    - Kernel Porting
+      - [Overview](porting/porting-chip-kernel-overview.md)
+      - [Basic Kernel Adaptation](porting/porting-chip-kernel-adjustment.md)
+      - [Kernel Porting Verification](porting/porting-chip-kernel-verify.md)
+    - Board-Level OS Porting
+      - [Overview](porting/porting-chip-board-overview.md)
+      - [Board-Level Driver Adaptation](porting/porting-chip-board-driver.md)
+      - [Implementation of APIs at the HAL](porting/porting-chip-board-hal.md)
+      - [System Modules](porting/porting-chip-board-component.md)
+      - [lwIP Module Adaptation](porting/porting-chip-board-lwip.md)
+      - [Third-party Module Adaptation](porting/porting-chip-board-bundle.md)
+      - [XTS](porting/porting-chip-board-xts.md)
+    - [FAQs](porting/porting-chip-faqs.md)
   - Small System SoC Porting Guide
 
     - Porting Preparations
@@ -548,6 +566,7 @@
     - [Development on Application Permission Management](subsystems/subsys-security-rightmanagement.md)
     - [Development on IPC Authentication](subsystems/subsys-security-communicationverify.md)
     - [Development on Device Security Level Management](subsystems/subsys-security-devicesecuritylevel.md)
+    - [Development on HUKS](subsystems/subsys-security-huks-guide.md)
 
   - Startup
     - [Startup](subsystems/subsys-boot-overview.md)
@@ -637,17 +656,16 @@
   - [Codelabs](https://gitee.com/openharmony/codelabs/blob/master/README.md)
 - References
   - FAQs
-    - [FAQs Overview](faqs/faqs-overview.md)
-    - [Environment Setup](faqs/faqs-environment-setup.md)
-    - [Compilation and Building](faqs/faqs-building.md)
-    - [Burning](faqs/faqs-burning.md)
-    - [Kernel](faqs/faqs-kernel.md)
-    - [Porting](faqs/faqs-porting.md)
-    - [Startup](faqs/faqs-startup.md)
-    - [System Applications](faqs/faqs-system-applications.md)
-
-
-
+    - [Overview of FAQs](faqs-overview.md)
+    - [Environment Setup](faqs-environment-setup.md)
+    - [Compilation and Building](faqs-building.md)
+    - [Burning](faqs-burning.md)
+    - [File Management Development](faqs-file-management.md)
+    - [Data Management Development](faqs-data-management.md)
+    - [Kernel](faqs-kernel.md)
+    - [Porting](faqs-porting.md)
+    - [Startup](faqs-startup.md)
+    - [System Applications](faqs-system-applications.md)
 
 
 
