@@ -381,22 +381,22 @@ onAnimationFinish():void
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
-| 参数      | 类型     | 描述 |
-| ------- | ------ | ----------------------- |
-| bundleName  | string | 动画目标窗口所对应的包名。 |
-| abilityName | string | 动画目标窗口所对应的Ability名称。 |
-| windowBounds | [RRect](#rrect) | 动画目标窗口所对应的实际大小。 |
-| missionId  | number | 任务ID，多任务中用于与ability进行匹配。|
+| 名称      | 类型     | 必填 | 说明 |
+| ------- | ------ | ------ | ----------------------- |
+| bundleName  | string | 是 |动画目标窗口所对应的包名。 |
+| abilityName | string | 是 |动画目标窗口所对应的Ability名称。 |
+| windowBounds | [RRect](#rrect) | 是 |动画目标窗口所对应的实际大小。 |
+| missionId  | number | 是 |任务ID，多任务中用于与ability进行匹配。|
 
 ## RRect
 圆角矩形。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
-| 参数      | 类型     | 描述 |
-| ------- | ------ | ----------------------- |
-| left  | number | 动画目标窗口左上角相对于屏幕的横坐标。 |
-| top | number | 动画目标窗口左上角相对于屏幕的纵坐标。 |
-| width | number | 动画目标窗口的宽度大小。 |
-| height | number | 动画目标窗口的高度大小。 |
-| radius | number | 动画目标窗口的圆角大小。 |
+| 名称      | 类型     | 必填 | 说明 |
+| ------- | ------ | ------|----------------------- |
+| left  | number | 是 |动画目标窗口左上角相对于屏幕的横坐标。 |
+| top | number | 是 |动画目标窗口左上角相对于屏幕的纵坐标。 |
+| width | number | 是 |动画目标窗口的宽度大小。 |
+| height | number | 是 |动画目标窗口的高度大小。 |
+| radius | number | 是 |动画目标窗口的圆角大小。 |
