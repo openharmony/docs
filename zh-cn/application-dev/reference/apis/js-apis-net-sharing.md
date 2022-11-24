@@ -1,6 +1,6 @@
 # 网络共享管理
 
-网络共享管理分享设备已有网络给其他连接设备，支持Wi-Fi热点共享、蓝牙共享和USB共享，同时提供网络共享状态、共享流量查询功能。
+网络共享管理分享设备已有网络给其他连接设备，支持Wi-Fi热点共享和蓝牙共享，同时提供网络共享状态、共享流量查询功能。
 
 > **说明：**
 >
@@ -735,7 +735,7 @@ sharing.off('sharingUpstreamChange', (error, data) => {
 
 ## SharingIfaceType
 
-网络共享类型。
+网络共享类型（暂不支持USB共享）。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Communication.NetManager.Core。
 
