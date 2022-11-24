@@ -49,10 +49,23 @@ A constructor used to create a **HashSet** instance.
 
 **System capability**: SystemCapability.Utils.Lang
 
+**Error codes**
+
+For details about the error codes, see [containers Error Codes](../errorcodes/errorcode-containers.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 10200012 | The HashSet's constructor cannot be directly invoked. |
+
 **Example**
 
 ```ts
 let hashSet = new HashSet();
+try {
+  let hashSet2 = HashSet();
+} catch(err) {
+  console.log(`${err.code} - ${err.name} - ${err.message}`);
+}
 ```
 
 
@@ -70,11 +83,24 @@ Checks whether this container is empty (contains no element).
 | -------- | -------- |
 | boolean | Returns **true** if the container is empty; returns **false** otherwise.|
 
+**Error codes**
+
+For details about the error codes, see [containers Error Codes](../errorcodes/errorcode-containers.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 10200011 | The isEmpty method cannot be bound. |
+
 **Example**
 
 ```ts
 const hashSet = new HashSet();
 let result = hashSet.isEmpty();
+try {
+  hashSet.isEmpty.bind({})(); // bind() creates a new bound function that, when called, has its this keyword set to the provided value. It is used to test exception capture.
+} catch(err) {
+  console.log(`${err.code} - ${err.name} - ${err.message}`);
+}
 ```
 
 
@@ -98,6 +124,14 @@ Checks whether this container contains the specified element.
 | -------- | -------- |
 | boolean | Returns **true** if the specified element is contained; returns **false** otherwise.|
 
+**Error codes**
+
+For details about the error codes, see [containers Error Codes](../errorcodes/errorcode-containers.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 10200011 | The has method cannot be bound. |
+
 **Example**
 
 ```ts
@@ -105,6 +139,11 @@ let hashSet = new HashSet();
 let result = hashSet.has("squirrel");
 hashSet.add("squirrel");
 let result1 = hashSet.has("squirrel");
+try {
+  hashSet.has.bind({}, "squirrel")(); // bind() creates a new bound function that, when called, has its this keyword set to the provided value. It is used to test exception capture.
+} catch(err) {
+  console.log(`${err.code} - ${err.name} - ${err.message}`);
+}
 ```
 
 
@@ -128,11 +167,24 @@ Adds an element to this container.
 | -------- | -------- |
 | boolean | Returns **true** if the element is added successfully; returns **false** otherwise.|
 
+**Error codes**
+
+For details about the error codes, see [containers Error Codes](../errorcodes/errorcode-containers.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 10200011 | The add method cannot be bound. |
+
 **Example**
 
 ```ts
 let hashSet = new HashSet();
 let result = hashSet.add("squirrel");
+try {
+  hashSet.add.bind({}, "squirrel")(); // bind() creates a new bound function that, when called, has its this keyword set to the provided value. It is used to test exception capture.
+} catch(err) {
+  console.log(`${err.code} - ${err.name} - ${err.message}`);
+}
 ```
 
 
@@ -156,6 +208,14 @@ Removes an element from this container.
 | -------- | -------- |
 | boolean | Returns **true** if the element is removed successfully; returns **false** otherwise.|
 
+**Error codes**
+
+For details about the error codes, see [containers Error Codes](../errorcodes/errorcode-containers.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 10200011 | The remove method cannot be bound. |
+
 **Example**
 
 ```ts
@@ -163,6 +223,11 @@ let hashSet = new HashSet();
 hashSet.add("squirrel");
 hashSet.add("sparrow");
 let result = hashSet.remove("sparrow");
+try {
+  hashSet.remove.bind({}, "sparrow")(); // bind() creates a new bound function that, when called, has its this keyword set to the provided value. It is used to test exception capture.
+} catch(err) {
+  console.log(`${err.code} - ${err.name} - ${err.message}`);
+}
 ```
 
 
@@ -174,6 +239,14 @@ Clears this container and sets its length to **0**.
 
 **System capability**: SystemCapability.Utils.Lang
 
+**Error codes**
+
+For details about the error codes, see [containers Error Codes](../errorcodes/errorcode-containers.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 10200011 | The clear method cannot be bound. |
+
 **Example**
 
 ```ts
@@ -181,6 +254,11 @@ let hashSet = new HashSet();
 hashSet.add("squirrel");
 hashSet.add("sparrow");
 hashSet.clear();
+try {
+  hashSet.remove.bind({})(); // bind() creates a new bound function that, when called, has its this keyword set to the provided value. It is used to test exception capture.
+} catch(err) {
+  console.log(`${err.code} - ${err.name} - ${err.message}`);
+}
 ```
 
 
@@ -198,6 +276,14 @@ Obtains an iterator that contains all the values in this container.
 | -------- | -------- |
 | IterableIterator&lt;T&gt; | Iterator obtained.|
 
+**Error codes**
+
+For details about the error codes, see [containers Error Codes](../errorcodes/errorcode-containers.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 10200011 | The values method cannot be bound. |
+
 **Example**
 
 ```ts
@@ -209,7 +295,12 @@ let temp = iter.next().value;
 while(temp != undefined) {
   console.log("value:" + temp);
   temp = iter.next().value;
-} 
+}
+try {
+  hashSet.values.bind({})(); // bind() creates a new bound function that, when called, has its this keyword set to the provided value. It is used to test exception capture.
+} catch(err) {
+  console.log(`${err.code} - ${err.name} - ${err.message}`);
+}
 ```
 
 
@@ -235,6 +326,14 @@ callbackfn
 | key | T | No| Key of the element that is currently traversed (same as **value**).|
 | set | HashSet&lt;T&gt; | No| Instance that invokes the **forEach** method.|
 
+**Error codes**
+
+For details about the error codes, see [containers Error Codes](../errorcodes/errorcode-containers.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 10200011 | The forEach method cannot be bound. |
+
 **Example**
 
 ```ts
@@ -244,6 +343,13 @@ hashSet.add("squirrel");
 hashSet.forEach((value, key) => {
   console.log("value:" + value, key);
 });
+try {
+  hashSet.forEach.bind({}, (value, key) => {
+    console.log("value:" + value, key);
+  })(); // bind() creates a new bound function that, when called, has its this keyword set to the provided value. It is used to test exception capture.
+} catch(err) {
+  console.log(`${err.code} - ${err.name} - ${err.message}`);
+}
 ```
 
 
@@ -260,6 +366,14 @@ Obtains an iterator that contains all the elements in this container.
 | -------- | -------- |
 | IterableIterator<[T, T]> | Iterator obtained.|
 
+**Error codes**
+
+For details about the error codes, see [containers Error Codes](../errorcodes/errorcode-containers.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 10200011 | The entries method cannot be bound. |
+
 **Example**
 
 ```ts
@@ -272,6 +386,11 @@ while(temp != undefined) {
   console.log("key:" + temp[0]);
   console.log("value:" + temp[1]);
   temp = iter.next().value;
+}
+try {
+  hashSet.entries.bind({})(); // bind() creates a new bound function that, when called, has its this keyword set to the provided value. It is used to test exception capture.
+} catch(err) {
+  console.log(`${err.code} - ${err.name} - ${err.message}`);
 }
 ```
 
@@ -289,6 +408,14 @@ Obtains an iterator, each item of which is a JavaScript object.
 | Type| Description|
 | -------- | -------- |
 | IterableIterator&lt;T&gt; | Iterator obtained.|
+
+**Error codes**
+
+For details about the error codes, see [containers Error Codes](../errorcodes/errorcode-containers.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 10200011 | The Symbol.iterator method cannot be bound. |
 
 **Example**
 
@@ -308,5 +435,10 @@ let temp = iter.next().value;
 while(temp != undefined) {
   console.log("value: " + temp);
   temp = iter.next().value;
+}
+try {
+  hashSet[Symbol.iterator].bind({})(); // bind() creates a new bound function that, when called, has its this keyword set to the provided value. It is used to test exception capture.
+} catch(err) {
+  console.log(`${err.code} - ${err.name} - ${err.message}`);
 }
 ```
