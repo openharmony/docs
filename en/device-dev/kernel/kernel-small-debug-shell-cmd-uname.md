@@ -78,7 +78,7 @@ Example 1: all information of the operating system
 
 ```
 OHOS:/$ uname -a
-LiteOS hisilicon  *IP Address* Huawei LiteOS *IP Address*  Oct 21 2021 17:39:32 Cortex-A7
+LiteOS hisilicon  IP Address Huawei LiteOS IP Address  Oct 21 2021 17:39:32 Cortex-A7
 OHOS:/$
 ```
 
