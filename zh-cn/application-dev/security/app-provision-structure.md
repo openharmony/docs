@@ -94,3 +94,13 @@ debug-info对象包含应用调试场景下的信息，主要是设备管控的�
 | ------------------------ | ------------------------------- | ------- | ------- | --------- |
 | device-id-type | 表示设备ID的类型，当前系统仅提供udid的设备ID类型。 | 字符串    | 可选 | 不可缺省   |
 | device-ids | 表示应用调试场景下允许调试的设备ID列表。 | 字符串数组    | 可选 | 不可缺省   |
+
+## 修改HarmonyAppProvision配置文件
+
+开发者可以参考以下步骤，修改HarmonyAppProvision配置文件。
+
+1. 打开OpenHarmony SDK所在目录（可通过DevEco Studio菜单栏中单击File > Settings > OpenHarmony SDK界面查看 ）。
+2. 在SDK目录下，进入Toolchains > {Version} > lib文件夹，打开“UnsgnedReleasedProfileTemplate.json”文件。
+3. 根据实际需求，修改对应的字段。
+
+完成配置文件修改后，开发者可以参考[Hap包签名工具使用指导](hapsigntool-overview.md)进行应用签名。
