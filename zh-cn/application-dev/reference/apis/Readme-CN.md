@@ -264,9 +264,9 @@
 
 - 定制管理
   - [@ohos.configPolicy (配置策略)](js-apis-config-policy.md)
-  - [@ohos.EnterpriseAdminExtensionAbility (EnterpriseAdminExtensionAbility)](js-apis-EnterpriseAdminExtensionAbility.md)
-  - [@ohos.enterpriseDeviceManager (企业设备管理)](js-apis-enterprise-device-manager.md)
-  - enterpriseDeviceManager/[DeviceSettingsManager(设备设置管理)](js-apis-enterpriseDeviceManager-DeviceSettingsManager.md)
+  - [@ohos.enterprise.EnterpriseAdminExtensionAbility (EnterpriseAdminExtensionAbility)](js-apis-EnterpriseAdminExtensionAbility.md)
+  - [@ohos.enterprise.adminManager (企业设备管理)](js-apis-enterprise-adminManager.md)
+  - [@ohos.enterprise.dateTimeManager（系统时间管理）](js-apis-enterprise-dateTimeManager.md)
 
 - 语言基础类库
   - [@ohos.buffer (Buffer)](js-apis-buffer.md)
