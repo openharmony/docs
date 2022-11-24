@@ -317,7 +317,7 @@ updateOsAccountDistributedInfo(accountInfo: DistributedInfo): Promise&lt;void&gt
 
 **系统能力：** SystemCapability.Account.OsAccount
 
-| 参数名 | 类型 | 必填 | 说明 |
+| 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | name | string | 是 | 分布式帐号名称，非空字符串。 |
 | id | string | 是 | 分布式帐号UID，非空字符串。 |
