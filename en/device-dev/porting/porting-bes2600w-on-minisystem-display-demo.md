@@ -1422,7 +1422,7 @@ For details about product compatibility specifications, see [Introduction to Pro
 
 ### XTS Test Cases
 
-For details about the `XTS` test cases, see [XTS](https://gitee.com/openharmony/docs/blob/master/en/device-dev/subsystems/subsys-xts-guide.md). To adapt the `XTS` subsystem, you need to add the `xts_acts`/`xts_tools` component in the `config.json` file, as shown below:
+For details about the `XTS` test cases, see [XTS](https://gitee.com/openharmony/docs/blob/master/en/device-dev/device-test/xts.md). To adapt the `XTS` subsystem, you need to add the `xts_acts`/`xts_tools` component in the `config.json` file, as shown below:
 
     {
       "subsystem": "xts",
