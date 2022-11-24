@@ -20,7 +20,7 @@ Column(value?:&nbsp;{space?: string&nbsp;|&nbsp;number})
 
 | 参数名 | 参数类型 | 必填 | 参数描述 |
 | -------- | -------- | -------- | -------- |
-| space | string&nbsp;\|&nbsp;number | 否 | 纵向布局元素垂直方向间距。<br/>默认值：0 |
+| space | string&nbsp;\|&nbsp;number | 否 | 纵向布局元素垂直方向间距。<br/>从API version 9开始，space为负数时不生效。<br/>默认值：0 |
 
 ## 属性
 

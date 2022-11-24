@@ -38,8 +38,8 @@
   height: 428px;
   background-color: #860303;
   transform: rotate(45deg);
-  margin-top: 230px;
-  margin-left: 266px;
+  margin-top: 284px;
+  margin-left: 148px;
 }
 .content{
   margin-top: 500px;
@@ -52,7 +52,7 @@
   width: 100px;
   height: 150px;
   background-color: #1033d9;
-  transform: translate(150px,-150px);
+  transform: translate(150px,-137px);
 }
 .window{
   z-index: 1;
@@ -85,7 +85,7 @@
   height: 100px;
   border-radius: 15px;
   background-color: #9a7404;
-  transform: translate(200px,-830px) skewX(-5deg);
+  transform: translate(200px,-710px) skewX(-5deg);
 }
 ```
 
@@ -254,13 +254,13 @@
 .rect4 {
   width: 100px;
   height: 100px;
-  animation: rotate3d1 17ms infinite;
+  animation: rotate3d1 1000ms infinite;
   background: linear-gradient(#e6c4ec, #be15d9)
 }
 .rect5 {
   width: 100px;
   height: 100px;
-  animation: rotate3d1 17ms infinite;
+  animation: rotate3d1 1000ms infinite;
   margin-left: 100px;
   background: linear-gradient(#e6c4ec, #be15d9)
 }
@@ -270,7 +270,7 @@
   height: 100px;
   border-radius: 50px;
   border: 1px solid #e70303;
-  animation: rotate3d2 17ms infinite;
+  animation: rotate3d2 1000ms infinite;
 }
 /* 眼睛的动效 */
 @keyframes rotate3d1 {
@@ -483,6 +483,8 @@ transform可以设置多个值并且多个值可同时设置，下面案例中�
 ```css
 /* xxx.css */
 .container{
+  width: 100%;
+  height: 100%;
   flex-direction:column;
   background-color:#F1F3F5;
   padding:50px;

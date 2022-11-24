@@ -3967,10 +3967,10 @@ Notification.subscribe(subscriber, subscribeCallback);
 | deliveryTime          | 是  | 是  | number                                        | 通知发送时间。               |
 | tapDismissed          | 是  | 是  | boolean                                       | 通知是否自动清除。           |
 | autoDeletedTime       | 是  | 是  | number                                        | 自动清除的时间。             |
-| wantAgent             | 是  | 是  | WantAgent                                     | 点击跳转的WantAgent。        |
+| wantAgent             | 是  | 是  | WantAgent                                     | WantAgent封装了应用的行为意图，点击通知时触发该行为。 |
 | extraInfo             | 是  | 是  | {[key: string]: any}                          | 扩展参数。                   |
-| color                 | 是  | 是  | number                                        | 通知背景颜色。               |
-| colorEnabled          | 是  | 是  | boolean                                       | 通知背景颜色是否使能。       |
+| color                 | 是  | 是  | number                                        | 通知背景颜色。暂不支持。       |
+| colorEnabled          | 是  | 是  | boolean                                       | 通知背景颜色是否使能。暂不支持。  |
 | isAlertOnce           | 是  | 是  | boolean                                       | 设置是否仅有一次此通知警报。 |
 | isStopwatch           | 是  | 是  | boolean                                       | 是否显示已用时间。           |
 | isCountDown           | 是  | 是  | boolean                                       | 是否显示倒计时时间。         |

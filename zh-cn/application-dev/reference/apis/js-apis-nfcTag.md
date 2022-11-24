@@ -315,11 +315,271 @@ getTagInfo(want: [Want](js-apis-application-Want.md#Want)): [TagInfo](#taginfo)
 | ------------------ | --------------------------|
 | [TagInfo](#taginfo) | TagInfo对象，用于获取不同技术类型的Tag对象。 |
 
+
+## tag.ndef.makeUriRecord<sup>9+</sup>
+
+makeUriRecord(uri: string): [NdefRecord](#ndefrecord9);
+
+根据输入的URI，构建NDEF标签的Record数据对象。
+
+**系统能力**：SystemCapability.Communication.NFC.Core
+
+**参数：**
+
+| 参数名   | 类型                    | 必填 | 说明                                   |
+| -------- | ----------------------- | ---- | -------------------------------------- |
+| uri | string | 是 | 写入到NDEF Record里面的数据内容。 |
+
+**返回值：**
+| **类型** | **说明**                             |
+| ------------------ | --------------------------|
+| [NdefRecord](#ndefrecord9) | NDEF标签的Record，详见NDEF技术规范《NFCForum-TS-NDEF_1.0》。 |
+
+**示例：**
+```js
+import tag from '@ohos.nfc.tag';
+
+try {
+    let uri = "https://gitee.com/openharmony"; // change it to be correct.
+    let ndefRecord = tag.ndef.makeUriRecord(uri);
+    if (ndefRecord != undefined) {
+        console.log("ndefMessage makeUriRecord rtdType: " + ndefRecord.rtdType);
+        console.log("ndefMessage makeUriRecord payload: " + ndefRecord.payload);
+    } else {
+        console.log("ndefMessage makeUriRecord ndefRecord: " + ndefRecord);
+    }
+} catch (busiError) {
+    console.log("ndefMessage makeUriRecord catched busiError: " + busiError);
+}
+```
+
+## tag.ndef.makeTextRecord<sup>9+</sup>
+
+makeTextRecord(text: string, locale: string): [NdefRecord](#ndefrecord9);
+
+根据输入的文本数据和编码类型，构建NDEF标签的Record。
+
+**系统能力**：SystemCapability.Communication.NFC.Core
+
+**参数：**
+| 参数名   | 类型                    | 必填 | 说明                                   |
+| -------- | ----------------------- | ---- | -------------------------------------- |
+| text | string | 是   | 写入到NDEF Record里面的文本数据内容。 |
+| locale | string | 是   | 文本数据内容的编码方式。 |
+
+**返回值：**
+| **类型** | **说明**                             |
+| ------------------ | --------------------------|
+| [NdefRecord](#ndefrecord9) | NDEF标签的Record，详见NDEF技术规范《NFCForum-TS-NDEF_1.0》。 |
+
+**示例：**
+```js
+import tag from '@ohos.nfc.tag';
+
+try {
+    let text = "Hello World";   // change it to be correct.
+    let locale = "en"; // change it to be correct.
+    let ndefRecord = tag.ndef.makeTextRecord(text, locale);
+    if (ndefRecord != undefined) {
+        console.log("ndefMessage makeTextRecord rtdType: " + ndefRecord.rtdType);
+        console.log("ndefMessage makeTextRecord payload: " + ndefRecord.payload);
+    } else {
+        console.log("ndefMessage makeTextRecord ndefRecord: " + ndefRecord);
+    }
+} catch (busiError) {
+    console.log("ndefMessage makeTextRecord catched busiError: " + busiError);
+}
+```
+
+
+## tag.ndef.makeMimeRecord<sup>9+</sup>
+
+makeMimeRecord(mimeType: string, mimeData: number[]): [NdefRecord](#ndefrecord9);
+
+根据输入的MIME数据和类型，构建NDEF标签的Record。
+
+**系统能力**：SystemCapability.Communication.NFC
+
+**参数：**
+| 参数名   | 类型                    | 必填 | 说明                                   |
+| -------- | ----------------------- | ---- | -------------------------------------- |
+| mimeType | string | 是   | 符合RFC规则的MIME类型，比如"text/plain"或"image/jpeg"。 |
+| mimeData | number[] | 是   | MIME数据内容，每个number十六进制表示，范围是0x00~0xFF。 |
+
+**返回值：**
+| **类型** | **说明**                             |
+| ------------------ | --------------------------|
+| [NdefRecord](#ndefrecord9) | NDEF标签的Record，详见NDEF技术规范《NFCForum-TS-NDEF_1.0》。 |
+
+**示例：**
+```js
+import tag from '@ohos.nfc.tag';
+
+try {
+    let mimeType = "text/plain";   // change it to be correct.
+    let mimeData = [0x01, 0x02, 0x03, 0x04, ...]; // change it to be correct.
+    let ndefRecord = tag.ndef.makeMimeRecord(mimeType, mimeData);
+    if (ndefRecord != undefined) {
+        console.log("ndefMessage makeMimeRecord rtdType: " + ndefRecord.rtdType);
+        console.log("ndefMessage makeMimeRecord payload: " + ndefRecord.payload);
+    } else {
+        console.log("ndefMessage makeMimeRecord ndefRecord: " + ndefRecord);
+    }
+} catch (busiError) {
+    console.log("ndefMessage makeMimeRecord catched busiError: " + busiError);
+}
+```
+## tag.ndef.makeExternalRecord<sup>9+</sup>
+
+makeExternalRecord(domainName: string, type: string, externalData: number[]): [NdefRecord](#ndefrecord9);
+
+根据应用程序特定的外部数据，构建NDEF标签的Record。
+
+**系统能力**：SystemCapability.Communication.NFC
+
+**参数：**
+| 参数名   | 类型                    | 必填 | 说明                                   |
+| -------- | ----------------------- | ---- | -------------------------------------- |
+| domainName | string | 是   | 外部数据发布组织的域名，一般是应用程序的包名。 |
+| type | string | 是   | 外部数据的指定类型。 |
+| externalData | number[] | 是   | 外部数据内容，每个number十六进制表示，范围是0x00~0xFF。 |
+
+**返回值：**
+| **类型** | **说明**                             |
+| ------------------ | --------------------------|
+| [NdefRecord](#ndefrecord9) | NDEF标签的Record，详见NDEF技术规范《NFCForum-TS-NDEF_1.0》。 |
+
+**示例：**
+```js
+import tag from '@ohos.nfc.tag';
+
+try {
+    let domainName = "ohos.nfc.application"; // change it to be correct.
+    let type = "test"; // change it to be correct.
+    let externalData = [0x01, 0x02, 0x03, 0x04, ...]; // change it to be correct.
+    let ndefRecord = tag.ndef.makeExternalRecord(domainName, type, externalData);
+    if (ndefRecord != undefined) {
+        console.log("ndefMessage makeExternalRecord rtdType: " + ndefRecord.rtdType);
+        console.log("ndefMessage makeExternalRecord payload: " + ndefRecord.payload);
+    } else {
+        console.log("ndefMessage makeExternalRecord ndefRecord: " + ndefRecord);
+    }
+} catch (busiError) {
+    console.log("ndefMessage makeExternalRecord catched busiError: " + busiError);
+}
+```
+
+## tag.ndef.messageToBytes<sup>9+</sup>
+
+messageToBytes(ndefMessage: [NdefMessage](js-apis-nfctech.md#ndefmessage9)): number[];
+
+把输入的NDEF消息数据对象，转换为字节格式的数据。
+
+**系统能力**：SystemCapability.Communication.NFC
+
+**参数：**
+| 参数名   | 类型                    | 必填 | 说明                                   |
+| -------- | ----------------------- | ---- | -------------------------------------- |
+| ndefMessage | [NdefMessage](js-apis-nfctech.md#ndefmessage9) | 是   | NDEF消息数据对象。 |
+
+**返回值：**
+| **类型** | **说明**                             |
+| ------------------ | --------------------------|
+| number[] | NDEF消息数据对象，所转换成的字节格式的数据。每个number十六进制表示，范围是0x00~0xFF。 |
+
+**示例：**
+```js
+import tag from '@ohos.nfc.tag';
+
+let rawData = [0xD1, 0x01, 0x03, 0x54, 0x4E, 0x46, 0x43]; // MUST can be parsed as NDEF Record.
+let ndefMessage;
+try {
+    ndefMessage = tag.ndef.createNdefMessage(rawData);
+    console.log("ndef createNdefMessage, ndefMessage: " + ndefMessage);
+} catch (busiError) {
+    console.log("ndef createNdefMessage busiError: " + busiError);
+}
+
+try {
+    let rawData2 = tag.ndef.messageToBytes(ndefMessage);
+    console.log("ndefMessage messageToBytes rawData2: " + rawData2);
+} catch (busiError) {
+    console.log("ndefMessage messageToBytes catched busiError: " + busiError);
+}
+```
+## tag.ndef.createNdefMessage<sup>9+</sup>
+
+createNdefMessage(data: number[]): [NdefMessage](js-apis-nfctech.md#ndefmessage9)
+
+使用原始字节数据创建NDEF标签的Message。该数据必须符合NDEF Record数据格式，如果不符合格式，则返回的NdeMessage数据对象，所包含的NDE Record列表会为空。
+
+**系统能力**：SystemCapability.Communication.NFC
+
+**参数：**
+| **参数名** | **类型** | **必填** | **说明** |
+| -------- | -------- | -------- | -------- |
+| data | number[] | 是 | 原始字节，每个number十六进制表示，范围是0x00~0xFF。要求必须满足NDEF Record的格式。 |
+
+**返回值：**
+| **类型** | **说明**                             |
+| ------------------ | --------------------------|
+| [NdefMessage](js-apis-nfctech.md#ndefmessage9) | NDEF标签的Message，详见NDEF技术规范《NFCForum-TS-NDEF_1.0》。 |
+
+**示例：**
+```js
+import tag from '@ohos.nfc.tag';
+
+let rawData = [0xD1, 0x01, 0x03, 0x54, 0x4E, 0x46, 0x43];  // MUST can be parsed as NDEF Record.
+let ndefMessage;
+try {
+    ndefMessage = tag.ndef.createNdefMessage(rawData);
+    console.log("ndef createNdefMessage, ndefMessage: " + ndefMessage);
+} catch (busiError) {
+    console.log("ndef createNdefMessage busiError: " + busiError);
+}
+```
+
+## tag.ndef.createNdefMessage<sup>9+</sup>
+
+createNdefMessage(ndefRecords: NdefRecord[]): [NdefMessage](js-apis-nfctech.md#ndefmessage9)
+
+使用NDEF Records列表，创建NDEF Message。
+
+**系统能力**：SystemCapability.Communication.NFC.Core
+
+**参数：**
+| **参数名** | **类型** | **必填** | **说明** |
+| -------- | -------- | -------- | -------- |
+| ndefRecords | [NdefRecord](js-apis-nfcTag.md#ndefrecord9)[] | 是 | NDEF标签的Record列表，详见NDEF技术规范《NFCForum-TS-NDEF_1.0》。 |
+
+**返回值：**
+| **类型** | **说明**                             |
+| ------------------ | --------------------------|
+| [NdefMessage](js-apis-nfctech.md#ndefmessage9) | NDEF标签的Message，详见NDEF技术规范《NFCForum-TS-NDEF_1.0》。|
+
+**示例：**
+```js
+import tag from '@ohos.nfc.tag';
+
+let uriRecord = tag.ndef.makeUriRecord("https://gitee.com/openharmony");
+let textRecord = tag.ndef.makeTextRecord("Hello World", "en");
+let ndefRecords = [uriRecord, textRecord];
+let ndefMessage;
+try {
+    ndefMessage = tag.ndef.createNdefMessage(ndefRecords);
+    console.log("ndef createNdefMessage ndefMessage: " + ndefMessage);
+} catch (busiError) {
+    console.log("ndef createNdefMessage busiError: " + busiError);
+}
+```
+
 ## TagInfo
 
 NFC服务在读取到标签时给出的对象，通过改对象属性，应用知道该标签支持哪些技术类型，并使用匹配的技术类型来调用相关接口。
 
 **系统能力**：SystemCapability.Communication.NFC.Core
+
+**需要权限**：ohos.permission.NFC_TAG
 
 | **参数名** | **类型** |  **说明** |
 | -------- | -------- | -------- |
@@ -331,6 +591,7 @@ NFC服务在读取到标签时给出的对象，通过改对象属性，应用�
 NDEF标签Record属性的定义，参考NDEF标签技术规范《NFCForum-TS-NDEF_1.0》的定义细节。
 
 **系统能力**：SystemCapability.Communication.NFC.Core
+
 | **参数名** | **类型** |  **说明** |
 | -------- | -------- | -------- |
 | tnf | number |  NDEF Record的TNF(Type Name Field)。 |
@@ -342,22 +603,24 @@ NDEF标签Record属性的定义，参考NDEF标签技术规范《NFCForum-TS-NDE
 NFC Tag有多种不同的技术类型，定义常量描述不同的技术类型。
 
 **系统能力**：SystemCapability.Communication.NFC.Core
+
 | **参数名** | **常量值** |  **说明** |
 | -------- | -------- | -------- |
-| NFC_A | 1 | NFC-A(ISO 14443-3A)技术。|
-| NFC_B  | 2 | NFC-A(ISO 14443-3B)技术。|
-| ISO_DEP | 3 | ISO-DEP(ISO 14443-4)技术。|
-| NFC_F  | 4 | NFC-F(JIS 6319-4)技术。|
-| NFC_V | 5 | NFC-V(ISO 15693)技术。|
+| NFC_A | 1 | NFC-A (ISO 14443-3A)技术。|
+| NFC_B  | 2 | NFC-A (ISO 14443-3B)技术。|
+| ISO_DEP | 3 | ISO-DEP (ISO 14443-4)技术。|
+| NFC_F  | 4 | NFC-F (JIS 6319-4)技术。|
+| NFC_V | 5 | NFC-V (ISO 15693)技术。|
 | NDEF  | 6 | NDEF技术。|
+| NDEF_FORMATABLE<sup>9+</sup> | 7 | 可以格式化的NDEF技术。|
 | MIFARE_CLASSIC | 8 | MIFARE Classic技术。|
 | MIFARE_ULTRALIGHT | 9 | MIFARE Utralight技术。|
-| NDEF_FORMATABLE<sup>9+</sup> | 10 | 可以格式化的NDEF技术。|
 
 ## TnfType<sup>9+</sup>
 NDEF Record的TNF(Type Name Field)类型值，参考NDEF标签技术规范《NFCForum-TS-NDEF_1.0》的定义细节。
 
 **系统能力**：SystemCapability.Communication.NFC.Core
+
 | **参数名** | **常量值** |  **说明** |
 | -------- | -------- | -------- |
 | TNF_EMPTY | 0x0 | Empty。|
@@ -372,6 +635,7 @@ NDEF Record的TNF(Type Name Field)类型值，参考NDEF标签技术规范《NFC
 NDEF Record的RTD(Record Type Definition)类型值，参考NDEF标签技术规范《NFCForum-TS-NDEF_1.0》的定义细节。
 
 **系统能力**：SystemCapability.Communication.NFC.Core
+
 | **参数名** | **常量值** |  **说明** |
 | -------- | -------- | -------- |
 | RTD_TEXT<sup>9+</sup> | [0x54] | 文本类型的NDEF Record。|
@@ -381,6 +645,7 @@ NDEF Record的RTD(Record Type Definition)类型值，参考NDEF标签技术规�
 NFC Forum标准里面Tag类型的定义。
 
 **系统能力**：SystemCapability.Communication.NFC.Core
+
 | **参数名** | **常量值** |  **说明** |
 | -------- | -------- | -------- |
 | NFC_FORUM_TYPE_1 | 1 |  NFC论坛类型1。 |
@@ -393,9 +658,10 @@ NFC Forum标准里面Tag类型的定义。
 MIFARE Classic标签类型的定义。
 
 **系统能力**：SystemCapability.Communication.NFC.Core
+
 | **参数名** | **常量值** |  **说明** |
 | -------- | -------- | -------- |
-| TYPE_UNKNOWN | 0 |  未知MIFARE类型。 |
+| TYPE_UNKNOWN | 0 |  未知的MIFARE类型。 |
 | TYPE_CLASSIC | 1 |  MIFARE Classic类型。|
 | TYPE_PLUS   | 2 |  MIFARE Plus类型。|
 | TYPE_PRO  | 3 |  MIFARE Pro类型。 |
@@ -404,6 +670,7 @@ MIFARE Classic标签类型的定义。
 MIFARE Classic标签存储大小的定义。
 
 **系统能力**：SystemCapability.Communication.NFC.Core
+
 | **参数名** | **常量值** |  **说明** |
 | -------- | -------- | -------- |
 | MC_SIZE_MINI | 320 |  每个标签5个扇区，每个扇区4个块。 |
@@ -415,6 +682,7 @@ MIFARE Classic标签存储大小的定义。
 MIFARE Ultralight标签类型的定义。
 
 **系统能力**：SystemCapability.Communication.NFC.Core
+
 | **参数名** | **常量值** |  **说明** |
 | -------- | -------- | -------- |
 | TYPE_UNKOWN  | 0 |  未知的 MIFARE 类型。 |

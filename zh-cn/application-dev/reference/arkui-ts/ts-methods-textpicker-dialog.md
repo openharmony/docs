@@ -13,7 +13,7 @@ show(options?: TextPickerDialogOptions)
 
 定义文本滑动选择器弹窗并弹出。
 
-**TextPickerDialogOptions参数说明：**
+**TextPickerDialogOptions参数：**
 
 | 参数名 | 参数类型 | 必填 |  参数描述 |
 | -------- | -------- | -------- |  -------- |

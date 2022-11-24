@@ -8,7 +8,6 @@
 import faultLogger from '@ohos.faultLogger'
 ```
 
-
 ## FaultType
 
 故障类型枚举。

@@ -30,8 +30,6 @@ isSupported(feature: number): boolean
 
 是否支持某种类型的卡模拟。
 
-**需要权限**：ohos.permission.NFC_CARD_EMULATION
-
 **系统能力**：SystemCapability.Communication.NFC.Core
 
 **参数：**

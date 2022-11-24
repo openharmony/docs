@@ -11,7 +11,7 @@
 
 | 名称 | 参数类型 | 默认值 | 描述 |
 | -------- | -------- | -------- | -------- |
-| motionPath | {<br/>path:&nbsp;string,<br/>from?:&nbsp;number,<br/>to?:&nbsp;number,<br/>rotatable?:&nbsp;boolean<br/>}<br/>**说明：**<br/>path中支持使用start和end进行起点和终点的替代，如：<br/>'Mstart.x&nbsp;start.y&nbsp;L50&nbsp;50&nbsp;Lend.x&nbsp;end.y&nbsp;Z'| {<br/>'',<br/>0.0,<br/>1.0,<br/>false<br/>} | 设置组件的运动路径，入参说明如下：<br/>-&nbsp;path：位移动画的运动路径，使用svg路径字符串。<br/>-&nbsp;from：运动路径的起点，默认为0.0。<br/>-&nbsp;to：运动路径的终点，默认为1.0。<br/>-&nbsp;rotatable：是否跟随路径进行旋转。 |
+| motionPath | {<br/>path:&nbsp;string,<br/>from?:&nbsp;number,<br/>to?:&nbsp;number,<br/>rotatable?:&nbsp;boolean<br/>}<br/>**说明：**<br/>path中支持使用start和end进行起点和终点的替代，如：<br/>'Mstart.x&nbsp;start.y&nbsp;L50&nbsp;50&nbsp;Lend.x&nbsp;end.y&nbsp;Z'，更多说明请参考[绘制路径](../../ui/ui-js-components-svg-path.md)。 | {<br/>'',<br/>0.0,<br/>1.0,<br/>false<br/>} | 设置组件的运动路径，入参说明如下：<br/>-&nbsp;path：位移动画的运动路径，使用svg路径字符串。<br/>-&nbsp;from：运动路径的起点，默认为0.0。<br/>-&nbsp;to：运动路径的终点，默认为1.0。<br/>-&nbsp;rotatable：是否跟随路径进行旋转。 |
 
 
 ## 示例

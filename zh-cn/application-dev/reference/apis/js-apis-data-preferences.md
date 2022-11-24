@@ -475,7 +475,7 @@ get(key: string, defValue: ValueType, callback: AsyncCallback&lt;ValueType&gt;):
 
 ```js
 try {
-    data_preferences.get('startup', 'default', function (err, val) {
+    preferences.get('startup', 'default', function (err, val) {
         if (err) {
             console.info("Failed to get value of 'startup'. code =" + err.code + ", message =" + err.message);
             return;

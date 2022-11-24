@@ -102,7 +102,7 @@ animate( keyframes: Keyframes, options: Options)：void
       start
     </button>
     <button @click="cancel">
-      cancels
+      cancel
     </button>
   </div>
 </div>

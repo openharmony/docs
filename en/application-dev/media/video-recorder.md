@@ -1,16 +1,26 @@
 # Video Recording Development
 
-## When to Use
+## Introduction
 
-During video recording, audio and video signals are captured, encoded, and saved to files. You can specify parameters such as the encoding format, encapsulation format, and file path for video recording.
+You can use video recording APIs to capture audio and video signals, encode them, and save them to files. You can start, suspend, resume, and stop recording, and release resources. You can also specify parameters such as the encoding format, encapsulation format, and file path for video recording.
+
+## Working Principles
+
+The following figures show the video recording state transition and the interaction with external modules for video recording.
 
 **Figure 1** Video recording state transition
 
 ![en-us_image_video_recorder_state_machine](figures/en-us_image_video_recorder_state_machine.png)
 
-**Figure 2** Layer 0 diagram of video recording
+**Figure 2** Interaction with external modules for video recording
 
 ![en-us_image_video_recorder_zero](figures/en-us_image_video_recorder_zero.png)
+
+**NOTE**: When a third-party camera application or system camera calls a JS interface provided by the JS interface layer, the framework layer uses the media service of the native framework to invoke the audio component. Through the audio HDI, the audio component captures audio data, encodes the audio data through software, and saves the encoded audio data to a file. The graphics subsystem captures image data through the video HDI, encodes the image data through the video codec HDI, and saves the encoded image data to a file. In this way, video recording is implemented.
+
+## Constraints
+
+Before developing video recording, configure the permissions **ohos.permission.MICROPHONE** and **ohos.permission.CAMERA** for your application. For details about the configuration, see [Permission Application Guide](../security/accesstoken-guidelines.md).
 
 ## How to Develop
 
@@ -147,3 +157,4 @@ export class VideoRecorderDemo {
   }
 }
 ```
+

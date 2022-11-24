@@ -27,20 +27,20 @@ Path(value?: { width?: number | string; height?: number | string; commands?: str
 
 除支持[通用属性](ts-universal-attributes-size.md)外，还支持以下属性：
 
-| 参数名称     | 参数类型                                | 默认值  | 必填   | 参数描述                                     |
-| -------- | ----------------------------------- | ---- | ---- | ---------------------------------------- |
-| commands | string                              | ''   | 否  | 路径绘制的命令字符串，单位为px。像素单位转换方法请参考[像素单位转换](ts-pixel-units.md)。 |
-| fill | [ResourceColor](ts-types.md) | Color.Black | 否 | 设置填充区域颜色。 |
-| fillOpacity | number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[Resource](ts-types.md#resource类型) | 1 | 否 | 设置填充区域透明度。 |
-| stroke | [ResourceColor](ts-types.md) | - | 否 | 设置线条颜色。 |
-| strokeDashArray | Array&lt;Length&gt; | [] | 否 | 设置线条间隙。 |
-| strokeDashOffset | number&nbsp;\|&nbsp;string | 0 | 否 | 线条绘制起点的偏移量。 |
-| strokeLineCap | [LineCapStyle](ts-appendix-enums.md#linecapstyle) | LineCapStyle.Butt | 否 | 设置线条端点绘制样式。 |
-| strokeLineJoin | [LineJoinStyle](ts-appendix-enums.md#linejoinstyle) | LineJoinStyle.Miter | 否 | 设置线条拐角绘制样式。 |
-| strokeMiterLimit | number&nbsp;\|&nbsp;string | 4 | 否 | 设置锐角绘制成斜角的极限值。 |
-| strokeOpacity | number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[Resource](ts-types.md#resource类型) | 1 | 否 | 设置线条透明度。 |
-| strokeWidth | Length | 1 | 否 | 设置线条宽度。 |
-| antiAlias | boolean | true | 否 | 是否开启抗锯齿效果。 |
+| 名称     | 类型                                | 默认值  | 描述                                     |
+| -------- | ----------------------------------- | ---- | ---------------------------------------- |
+| commands | string                              | ''   | 路径绘制的命令字符串，单位为px。像素单位转换方法请参考[像素单位转换](ts-pixel-units.md)。 |
+| fill | [ResourceColor](ts-types.md) | Color.Black | 设置填充区域颜色。 |
+| fillOpacity | number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[Resource](ts-types.md#resource类型) | 1 | 设置填充区域透明度。 |
+| stroke | [ResourceColor](ts-types.md) | - | 设置线条颜色。 |
+| strokeDashArray | Array&lt;Length&gt; | [] | 设置线条间隙。 |
+| strokeDashOffset | number&nbsp;\|&nbsp;string | 0 | 线条绘制起点的偏移量。 |
+| strokeLineCap | [LineCapStyle](ts-appendix-enums.md#linecapstyle) | LineCapStyle.Butt | 设置线条端点绘制样式。 |
+| strokeLineJoin | [LineJoinStyle](ts-appendix-enums.md#linejoinstyle) | LineJoinStyle.Miter | 设置线条拐角绘制样式。 |
+| strokeMiterLimit | number&nbsp;\|&nbsp;string | 4 | 设置锐角绘制成斜角的极限值。 |
+| strokeOpacity | number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[Resource](ts-types.md#resource类型) | 1 | 设置线条透明度。<br/>**说明：**<br/>该属性的取值范围是[0.0, 1.0]，若给定值小于0.0，则取值为0.0；若给定值大于1.0，则取值为1.0。 |
+| strokeWidth | Length | 1 | 设置线条宽度。 |
+| antiAlias | boolean | true | 是否开启抗锯齿效果。 |
 
 commands支持的绘制命令如下：
 

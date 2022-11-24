@@ -15,7 +15,7 @@ import {Action,Button,Axis,AxisValue,MouseEvent} from '@ohos.multimodalInput.mou
 
 **系统能力**：SystemCapability.MultimodalInput.Input.Core
 
-| 名称        | 参数类型 | 可读 | 可写 | 描述                 |
+| 名称        | 类型 | 可读 | 可写 | 说明                 |
 | ----------- | -------- | ---- | ---- | -------------------- |
 | CANCEL      | number   | 是   | 否   | 取消             |
 | MOVE        | number   | 是   | 否   | 鼠标移动             |
@@ -30,7 +30,7 @@ import {Action,Button,Axis,AxisValue,MouseEvent} from '@ohos.multimodalInput.mou
 
 **系统能力**：SystemCapability.MultimodalInput.Input.Core
 
-| 名称      | 参数类型   | 可读   | 可写   | 描述    |
+| 名称      | 类型   | 可读   | 可写   | 说明    |
 | ------- | ------ | ---- | ---- | ----- |
 | LEFT    | number | 是    | 否    | 鼠标左键  |
 | MIDDLE  | number | 是    | 否    | 鼠标中键  |
@@ -45,7 +45,7 @@ import {Action,Button,Axis,AxisValue,MouseEvent} from '@ohos.multimodalInput.mou
 
 **系统能力**：SystemCapability.MultimodalInput.Input.Core
 
-| 名称                | 参数类型   | 可读   | 可写   | 描述    |
+| 名称                | 类型   | 可读   | 可写   | 说明    |
 | ----------------- | ------ | ---- | ---- | ----- |
 | SCROLL_VERTICAL   | number | 是    | 否    | 垂直滚动轴 |
 | SCROLL_HORIZONTAL | number | 是    | 否    | 水平滚动轴 |
@@ -56,7 +56,7 @@ import {Action,Button,Axis,AxisValue,MouseEvent} from '@ohos.multimodalInput.mou
 
 **系统能力**：SystemCapability.MultimodalInput.Input.Core
 
-| 名称    | 参数类型   | 可读   | 可写   | 描述   |
+| 名称    | 类型   | 可读   | 可写   | 说明   |
 | ----- | ------ | ---- | ---- | ---- |
 | axis  | Axis   | 是    | 否    | 轴类型  |
 | value | number | 是    | 否    | 轴的值  |
@@ -66,7 +66,7 @@ import {Action,Button,Axis,AxisValue,MouseEvent} from '@ohos.multimodalInput.mou
 
 **系统能力**：SystemCapability.MultimodalInput.Input.Core
 
-| 名称             | 参数类型        | 可读   | 可写   | 描述                                       |
+| 名称             | 类型        | 可读   | 可写   | 说明                                       |
 | -------------- | ----------- | ---- | ---- | ---------------------------------------- |
 | action         | Action      | 是    | 否    | 鼠标事件动作                                   |
 | screenX        | number      | 是    | 否    | 鼠标光标在屏幕中的横坐标                             |
