@@ -1181,6 +1181,13 @@ getEncoded() : DataBlob
 **示例：**
 
 ```js
+function uint8ArrayToShowStr(uint8Array) {
+  return Array.prototype.map
+    .call(uint8Array, (x) => ('00' + x.toString(16)).slice(-2))
+    .join('');
+}
+
+let key; // key为使用非对称密钥生成器生成的非对称密钥的公钥对象，此处省略生成过程
 console.info("key format:" + key.format);
 console.info("key algName:" + key.algName);
 var encodedKey = key.getEncoded();
@@ -1217,6 +1224,13 @@ getEncoded() : DataBlob
 **示例：**
 
 ```js
+function uint8ArrayToShowStr(uint8Array) {
+  return Array.prototype.map
+    .call(uint8Array, (x) => ('00' + x.toString(16)).slice(-2))
+    .join('');
+}
+
+let key; // key为使用非对称密钥生成器生成的非对称密钥的私钥对象，此处省略生成过程
 console.info("key format:" + key.format);
 console.info("key algName:" + key.algName);
 var encodedKey = key.getEncoded();
@@ -1234,6 +1248,7 @@ clearMem() : void
 **示例：**
 
 ```js
+let key; // key为使用非对称密钥生成器生成的非对称密钥的私钥对象，此处省略生成过程
 key.clearMem();
 ```
 
@@ -1562,6 +1577,8 @@ convertKey(pubKey : DataBlob, priKey : DataBlob, callback : AsyncCallback\<KeyPa
 import cryptoFramework from "@ohos.security.cryptoFramework"
 
 let asyKeyGenerator = cryptoFramework.createAsyKeyGenerator("ECC256");
+let pubKey; // pubKey为使用非对称密钥生成器生成的非对称密钥的公钥对象，此处省略生成过程
+let priKey; // priKey为使用非对称密钥生成器生成的非对称密钥的私钥对象，此处省略生成过程
 asyKeyGenerator.convertKey(pubKey, priKey, (err, keyPair) => {
   if (err) {
     console.error("convertKey: error.");
@@ -1598,6 +1615,8 @@ convertKey(pubKey : DataBlob, priKey : DataBlob) : Promise\<KeyPair>
 import cryptoFramework from "@ohos.security.cryptoFramework"
 
 let asyKeyGenerator = cryptoFramework.createAsyKeyGenerator("ECC256");
+let pubKey; // pubKey为使用非对称密钥生成器生成的非对称密钥的公钥对象，此处省略生成过程
+let priKey; // priKey为使用非对称密钥生成器生成的非对称密钥的私钥对象，此处省略生成过程
 let keyGenPromise = asyKeyGenerator.convertKey(pubKey, priKey);
 keyGenPromise.then( keyPair => {
   console.info("convertKey success.");
@@ -1987,12 +2006,21 @@ cipher.doFinal(data)
 ```javascript
 import cryptoFramework from "@ohos.security.cryptoFramework"
 
+function stringToUint8Array(str) {
+  let arr = [];
+  for (let i = 0, j = str.length; i < j; ++i) {
+    arr.push(str.charCodeAt(i));
+  }
+  return new Uint8Array(arr);
+}
+
 let rsaGenerator = cryptoFramework.createAsyKeyGenerator("RSA1024|PRIMES_2");
 let cipher = cryptoFramework.createCipher("RSA1024|PKCS1");
 rsaGenerator.generateKeyPair(function (err, keyPair) {
   let pubKey = keyPair.pubKey;
   cipher.init(cryptoFramework.CryptoMode.ENCRYPT_MODE, pubKey, null, function (err, data) {
-    let input = {data : stringToUint8Array(plan) };
+    let plainText = "this is cipher text";
+    let input = {data : stringToUint8Array(plainText) };
     cipher.doFinal(input, function (err, data) {
       AlertDialog.show({ message : "EncryptOutPut is " + data.data} );
     });
@@ -2005,6 +2033,14 @@ rsaGenerator.generateKeyPair(function (err, keyPair) {
 ```javascript
 import cryptoFramework from "@ohos.security.cryptoFramework"
 
+function stringToUint8Array(str) {
+  let arr = [];
+  for (let i = 0, j = str.length; i < j; ++i) {
+    arr.push(str.charCodeAt(i));
+  }
+  return new Uint8Array(arr);
+}
+
 let rsaGenerator = cryptoFramework.createAsyKeyGenerator("RSA1024|PRIMES_2");
 let cipher = cryptoFramework.createCipher("RSA1024|PKCS1");
 let keyGenPromise = rsaGenerator.generateKeyPair();
@@ -2012,7 +2048,8 @@ keyGenPromise.then(rsaKeyPair => {
   let pubKey = rsaKeyPair.pubKey;
   return cipher.init(cryptoFramework.CryptoMode.ENCRYPT_MODE, pubKey, null); // 传入私钥和DECRYPT_MODE可初始化解密模式
 }).then(() => {
-  let input = { data : stringToUint8Array(plan) };
+  let plainText = "this is cipher text";
+  let input = { data : stringToUint8Array(plainText) };
   return cipher.doFinal(input);
 }).then(dataBlob => {
   console.info("EncryptOutPut is " + dataBlob.data);
@@ -2169,13 +2206,15 @@ import cryptoFramework from "@ohos.security.cryptoFramework"
 let rsaGenerator = cryptoFramework.createAsyKeyGenerator("RSA1024|PRIMES_2");
 let signer = cryptoFramework.createSign("RSA1024|PKCS1|SHA256");
 rsaGenerator.generateKeyPair(function (err, keyPair) {
-  globalKeyPair = keyPair;
+  let globalKeyPair = keyPair;
   let priKey = globalKeyPair.priKey;
+  let input1 = null;
+  let input2 = null;
   signer.init(priKey, function (err, data) {
     signer.update(input1, function (err, data) {
       signer.sign(input2, function (err, data) {
-        SignMessageBlob = data;
-        console.info("sign output is " + SignMessageBlob.data); 
+        let signMessageBlob = data;
+        console.info("sign output is " + signMessageBlob.data);
       });
     });
   });
@@ -2190,8 +2229,10 @@ import cryptoFramework from "@ohos.security.cryptoFramework"
 let rsaGenerator = cryptoFramework.createAsyKeyGenerator("RSA1024|PRIMES_2");
 let signer = cryptoFramework.createSign("RSA1024|PKCS1|SHA256");
 let keyGenPromise = rsaGenerator.generateKeyPair();
+let input1 = null;
+let input2 = null;
 keyGenPromise.then( keyPair => {
-  globalKeyPair = keyPair;
+  let globalKeyPair = keyPair;
   let priKey = globalKeyPair.priKey;
   return signer.init(priKey);
 }).then(() => {
@@ -2199,8 +2240,8 @@ keyGenPromise.then( keyPair => {
 }).then(() => {
   return signer.sign(input2);
 }).then(dataBlob => {
-  SignMessageBlob = dataBlob;
-  console.info("sign output is " + SignMessageBlob.data);
+  let signMessageBlob = dataBlob;
+  console.info("sign output is " + signMessageBlob.data);
 });
 ```
 
@@ -2350,10 +2391,14 @@ verify(data : DataBlob, signatureData : DataBlob) : Promise\<boolean>
 ```javascript
 import cryptoFramework from "@ohos.security.cryptoFramework"
 
+let globalKeyPair; // globalKeyPair为使用非对称密钥生成器生成的非对称密钥对象，此处省略生成过程
+let input1 = null;
+let input2 = null;
+let signMessageBlob = null;
 let verifyer = cryptoFramework.createVerify("RSA1024|PKCS1|SHA25");
 verifyer.init(globalKeyPair.pubKey, function (err, data) {
   verifyer.update(input1, function(err, data) {
-    verifyer.verify(input2, SignMessageBlob, function(err, data) {
+    verifyer.verify(input2, signMessageBlob, function(err, data) {
       console.info("verify result is " + data);
     })
   });
@@ -2365,12 +2410,16 @@ verifyer.init(globalKeyPair.pubKey, function (err, data) {
 ```javascript
 import cryptoFramework from "@ohos.security.cryptoFramework"
 
+let globalKeyPair; // globalKeyPair为使用非对称密钥生成器生成的非对称密钥对象，此处省略生成过程
 let verifyer = cryptoFramework.createVerify("RSA1024|PKCS1|SHA256");
 let verifyInitPromise = verifyer.init(globalKeyPair.pubKey);
+let input1 = null;
+let input2 = null;
+let signMessageBlob = null;
 verifyInitPromise.then(() => {
   return verifyer.update(input1);
 }).then(() => {
-  return verifyer.verify(input2, SignMessageBlob);
+  return verifyer.verify(input2, signMessageBlob);
 }).then(res => {
   console.log("Verify result is " + res);
 });
@@ -2452,6 +2501,7 @@ generateSecret(priKey : PriKey, pubKey : PubKey) : Promise\<DataBlob>
 import cryptoFramework from "@ohos.security.cryptoFramework"
 
 let keyAgreement = cryptoFramework.createKeyAgreement("ECC256");
+let globalKeyPair; // globalKeyPair为使用非对称密钥生成器生成的非对称密钥对象，此处省略生成过程
 keyAgreement.generateSecret(globalKeyPair.priKey, globalKeyPair.pubKey, function (err, secret) {
   if (err) {
     console.error("keyAgreement error.");
@@ -2467,6 +2517,7 @@ keyAgreement.generateSecret(globalKeyPair.priKey, globalKeyPair.pubKey, function
 import cryptoFramework from "@ohos.security.cryptoFramework"
 
 let keyAgreement = cryptoFramework.createKeyAgreement("ECC256");
+let globalKeyPair; // globalKeyPair为使用非对称密钥生成器生成的非对称密钥对象，此处省略生成过程
 let keyAgreementPromise = keyAgreement.generateSecret(globalKeyPair.priKey, globalKeyPair.pubKey);
 keyAgreementPromise.then((secret) => {
   console.info("keyAgreement output is " + secret.data);
@@ -2505,9 +2556,9 @@ let encodingBlob = {
 };
 cryptoFramework.createX509Cert(encodingBlob, function (error, x509Cert) {
     if (error != null) {
-        Console.log("createX509Cert failed, errCode: " + error.code + ", errMsg: " + error.message);
+        console.log("createX509Cert failed, errCode: " + error.code + ", errMsg: " + error.message);
     } else {
-        Console.log("createX509Cert success");
+        console.log("createX509Cert success");
     }
 });
 ```
@@ -2545,9 +2596,9 @@ let encodingBlob = {
     encodingFormat: cryptoFramework.EncodingFormat.FORMAT_PEM
 };
 cryptoFramework.createX509Cert(encodingBlob).then(x509Cert => {
-    Console.log("createX509Cert success");
+    console.log("createX509Cert success");
 }, error => {
-    Console.log("createX509Cert failed, errCode: " + error.code + ", errMsg: " + error.message);
+    console.log("createX509Cert failed, errCode: " + error.code + ", errMsg: " + error.message);
 });
 ```
 
@@ -2585,16 +2636,16 @@ let encodingBlob = {
 };
 cryptoFramework.createX509Cert(encodingBlob, function (error, x509Cert) {
     if (error != null) {
-        Console.log("createX509Cert failed, errCode: " + error.code + ", errMsg: " + error.message);
+        console.log("createX509Cert failed, errCode: " + error.code + ", errMsg: " + error.message);
     } else {
-        Console.log("createX509Cert success");
+        console.log("createX509Cert success");
         // 业务需通过AsyKeyGenerator生成PubKey或通过上级X509Cert证书对象的getPublicKey获取PubKey
 		let pubKey = null;
         x509Cert.verify(pubKey, function (error, data) {
             if (error != null) {
-                Console.log("verify failed, errCode: " + error.code + ", errMsg: " + error.message);
+                console.log("verify failed, errCode: " + error.code + ", errMsg: " + error.message);
             } else {
-                Console.log("verify success");
+                console.log("verify success");
             }
         });
     }
@@ -2634,16 +2685,16 @@ let encodingBlob = {
     encodingFormat: cryptoFramework.EncodingFormat.FORMAT_PEM
 };
 cryptoFramework.createX509Cert(encodingBlob).then(x509Cert => {
-    Console.log("createX509Cert success");
+    console.log("createX509Cert success");
     // 业务需通过AsyKeyGenerator生成PubKey或通过上级X509Cert证书对象的getPublicKey获取PubKey
 	let pubKey = null;
     x509Cert.verify(pubKey).then(result => {
-        Console.log("verify success");
+        console.log("verify success");
     }, error => {
-        Console.log("verify failed, errCode: " + error.code + ", errMsg: " + error.message);
+        console.log("verify failed, errCode: " + error.code + ", errMsg: " + error.message);
     });
 }, error => {
-    Console.log("createX509Cert failed, errCode: " + error.code + ", errMsg: " + error.message);
+    console.log("createX509Cert failed, errCode: " + error.code + ", errMsg: " + error.message);
 });
 ```
 
@@ -2676,14 +2727,14 @@ let encodingBlob = {
 };
 cryptoFramework.createX509Cert(encodingBlob, function (error, x509Cert) {
     if (error != null) {
-        Console.log("createX509Cert failed, errCode: " + error.code + ", errMsg: " + error.message);
+        console.log("createX509Cert failed, errCode: " + error.code + ", errMsg: " + error.message);
     } else {
-        Console.log("createX509Cert success");
+        console.log("createX509Cert success");
         x509Cert.getEncoded(function (error, data) {
            if (error != null) {
-               Console.log("getEncoded failed, errCode: " + error.code + ", errMsg: " + error.message);
+               console.log("getEncoded failed, errCode: " + error.code + ", errMsg: " + error.message);
            } else {
-               Console.log("getEncoded success");
+               console.log("getEncoded success");
            }
         });
     }
@@ -2717,14 +2768,14 @@ let encodingBlob = {
     encodingFormat: cryptoFramework.EncodingFormat.FORMAT_PEM
 };
 cryptoFramework.createX509Cert(encodingBlob).then(x509Cert => {
-    Console.log("createX509Cert success");
+    console.log("createX509Cert success");
     x509Cert.getEncoded().then(result => {
-        Console.log("getEncoded success");
+        console.log("getEncoded success");
     }, error => {
-        Console.log("getEncoded failed, errCode: " + error.code + ", errMsg: " + error.message);
+        console.log("getEncoded failed, errCode: " + error.code + ", errMsg: " + error.message);
     });
 }, error => {
-    Console.log("createX509Cert failed, errCode: " + error.code + ", errMsg: " + error.message);
+    console.log("createX509Cert failed, errCode: " + error.code + ", errMsg: " + error.message);
 });
 ```
 
@@ -2757,14 +2808,14 @@ let encodingBlob = {
 };
 cryptoFramework.createX509Cert(encodingBlob, function (error, x509Cert) {
     if (error != null) {
-        Console.log("createX509Cert failed, errCode: " + error.code + ", errMsg: " + error.message);
+        console.log("createX509Cert failed, errCode: " + error.code + ", errMsg: " + error.message);
     } else {
-        Console.log("createX509Cert success");
+        console.log("createX509Cert success");
         x509Cert.getPublicKey(function (error, pubKey) {
            if (error != null) {
-               Console.log("getPublicKey failed, errCode: " + error.code + ", errMsg: " + error.message);
+               console.log("getPublicKey failed, errCode: " + error.code + ", errMsg: " + error.message);
            } else {
-               Console.log("getPublicKey success");
+               console.log("getPublicKey success");
            }
         });
     }
@@ -2798,14 +2849,14 @@ let encodingBlob = {
     encodingFormat: cryptoFramework.EncodingFormat.FORMAT_PEM
 };
 cryptoFramework.createX509Cert(encodingBlob).then(x509Cert => {
-    Console.log("createX509Cert success");
+    console.log("createX509Cert success");
     x509Cert.getPublicKey().then(pubKey => {
-        Console.log("getPublicKey success");
+        console.log("getPublicKey success");
     }, error => {
-        Console.log("getPublicKey failed, errCode: " + error.code + ", errMsg: " + error.message);
+        console.log("getPublicKey failed, errCode: " + error.code + ", errMsg: " + error.message);
     });
 }, error => {
-    Console.log("createX509Cert failed, errCode: " + error.code + ", errMsg: " + error.message);
+    console.log("createX509Cert failed, errCode: " + error.code + ", errMsg: " + error.message);
 });
 ```
 
@@ -2839,15 +2890,15 @@ let encodingBlob = {
 };
 cryptoFramework.createX509Cert(encodingBlob, function (error, x509Cert) {
     if (error != null) {
-        Console.log("createX509Cert failed, errCode: " + error.code + ", errMsg: " + error.message);
+        console.log("createX509Cert failed, errCode: " + error.code + ", errMsg: " + error.message);
     } else {
-        Console.log("createX509Cert success");
+        console.log("createX509Cert success");
         let date = "150527000001Z";
         x509Cert.checkValidityWithDate(date, function (error, data) {
            if (error != null) {
-               Console.log("checkValidityWithDate failed, errCode: " + error.code + ", errMsg: " + error.message);
+               console.log("checkValidityWithDate failed, errCode: " + error.code + ", errMsg: " + error.message);
            } else {
-               Console.log("checkValidityWithDate success");
+               console.log("checkValidityWithDate success");
            }
         });
     }
@@ -2887,15 +2938,15 @@ let encodingBlob = {
     encodingFormat: cryptoFramework.EncodingFormat.FORMAT_PEM
 };
 cryptoFramework.createX509Cert(encodingBlob).then(x509Cert => {
-    Console.log("createX509Cert success");
+    console.log("createX509Cert success");
     let date = "150527000001Z";
     x509Cert.checkValidityWithDate(date).then(result => {
-        Console.log("checkValidityWithDate success");
+        console.log("checkValidityWithDate success");
     }, error => {
-        Console.log("checkValidityWithDate failed, errCode: " + error.code + ", errMsg: " + error.message);
+        console.log("checkValidityWithDate failed, errCode: " + error.code + ", errMsg: " + error.message);
     });
 }, error => {
-    Console.log("createX509Cert failed, errCode: " + error.code + ", errMsg: " + error.message);
+    console.log("createX509Cert failed, errCode: " + error.code + ", errMsg: " + error.message);
 });
 ```
 
@@ -2927,9 +2978,9 @@ let encodingBlob = {
 };
 cryptoFramework.createX509Cert(encodingBlob, function (error, x509Cert) {
     if (error != null) {
-        Console.log("createX509Cert failed, errCode: " + error.code + ", errMsg: " + error.message);
+        console.log("createX509Cert failed, errCode: " + error.code + ", errMsg: " + error.message);
     } else {
-        Console.log("createX509Cert success");
+        console.log("createX509Cert success");
         let version = x509Cert.getVersion();
     }
 });
@@ -2963,9 +3014,9 @@ let encodingBlob = {
 };
 cryptoFramework.createX509Cert(encodingBlob, function (error, x509Cert) {
     if (error != null) {
-        Console.log("createX509Cert failed, errCode: " + error.code + ", errMsg: " + error.message);
+        console.log("createX509Cert failed, errCode: " + error.code + ", errMsg: " + error.message);
     } else {
-        Console.log("createX509Cert success");
+        console.log("createX509Cert success");
         let serialNumber = x509Cert.getSerialNumber();
     }
 });
@@ -2999,9 +3050,9 @@ let encodingBlob = {
 };
 cryptoFramework.createX509Cert(encodingBlob, function (error, x509Cert) {
     if (error != null) {
-        Console.log("createX509Cert failed, errCode: " + error.code + ", errMsg: " + error.message);
+        console.log("createX509Cert failed, errCode: " + error.code + ", errMsg: " + error.message);
     } else {
-        Console.log("createX509Cert success");
+        console.log("createX509Cert success");
         let issuerName = x509Cert.getIssuerName();
     }
 });
@@ -3035,9 +3086,9 @@ let encodingBlob = {
 };
 cryptoFramework.createX509Cert(encodingBlob, function (error, x509Cert) {
     if (error != null) {
-        Console.log("createX509Cert failed, errCode: " + error.code + ", errMsg: " + error.message);
+        console.log("createX509Cert failed, errCode: " + error.code + ", errMsg: " + error.message);
     } else {
-        Console.log("createX509Cert success");
+        console.log("createX509Cert success");
         let subjectName = x509Cert.getSubjectName();
     }
 });
@@ -3071,9 +3122,9 @@ let encodingBlob = {
 };
 cryptoFramework.createX509Cert(encodingBlob, function (error, x509Cert) {
     if (error != null) {
-        Console.log("createX509Cert failed, errCode: " + error.code + ", errMsg: " + error.message);
+        console.log("createX509Cert failed, errCode: " + error.code + ", errMsg: " + error.message);
     } else {
-        Console.log("createX509Cert success");
+        console.log("createX509Cert success");
         let notBefore = x509Cert.getNotBeforeTime();
     }
 });
@@ -3107,9 +3158,9 @@ let encodingBlob = {
 };
 cryptoFramework.createX509Cert(encodingBlob, function (error, x509Cert) {
     if (error != null) {
-        Console.log("createX509Cert failed, errCode: " + error.code + ", errMsg: " + error.message);
+        console.log("createX509Cert failed, errCode: " + error.code + ", errMsg: " + error.message);
     } else {
-        Console.log("createX509Cert success");
+        console.log("createX509Cert success");
         let notAfter = x509Cert.getNotAfterTime();
     }
 });
@@ -3143,9 +3194,9 @@ let encodingBlob = {
 };
 cryptoFramework.createX509Cert(encodingBlob, function (error, x509Cert) {
     if (error != null) {
-        Console.log("createX509Cert failed, errCode: " + error.code + ", errMsg: " + error.message);
+        console.log("createX509Cert failed, errCode: " + error.code + ", errMsg: " + error.message);
     } else {
-        Console.log("createX509Cert success");
+        console.log("createX509Cert success");
         let signature = x509Cert.getSignature();
     }
 });
@@ -3179,9 +3230,9 @@ let encodingBlob = {
 };
 cryptoFramework.createX509Cert(encodingBlob, function (error, x509Cert) {
     if (error != null) {
-        Console.log("createX509Cert failed, errCode: " + error.code + ", errMsg: " + error.message);
+        console.log("createX509Cert failed, errCode: " + error.code + ", errMsg: " + error.message);
     } else {
-        Console.log("createX509Cert success");
+        console.log("createX509Cert success");
         let sigAlgName = x509Cert.getSignatureAlgName();
     }
 });
@@ -3215,9 +3266,9 @@ let encodingBlob = {
 };
 cryptoFramework.createX509Cert(encodingBlob, function (error, x509Cert) {
     if (error != null) {
-        Console.log("createX509Cert failed, errCode: " + error.code + ", errMsg: " + error.message);
+        console.log("createX509Cert failed, errCode: " + error.code + ", errMsg: " + error.message);
     } else {
-        Console.log("createX509Cert success");
+        console.log("createX509Cert success");
         let sigAlgOid = x509Cert.getSignatureAlgOid();
     }
 });
@@ -3251,9 +3302,9 @@ let encodingBlob = {
 };
 cryptoFramework.createX509Cert(encodingBlob, function (error, x509Cert) {
     if (error != null) {
-        Console.log("createX509Cert failed, errCode: " + error.code + ", errMsg: " + error.message);
+        console.log("createX509Cert failed, errCode: " + error.code + ", errMsg: " + error.message);
     } else {
-        Console.log("createX509Cert success");
+        console.log("createX509Cert success");
         let sigAlgParams = x509Cert.getSignatureAlgParams();
     }
 });
@@ -3287,9 +3338,9 @@ let encodingBlob = {
 };
 cryptoFramework.createX509Cert(encodingBlob, function (error, x509Cert) {
     if (error != null) {
-        Console.log("createX509Cert failed, errCode: " + error.code + ", errMsg: " + error.message);
+        console.log("createX509Cert failed, errCode: " + error.code + ", errMsg: " + error.message);
     } else {
-        Console.log("createX509Cert success");
+        console.log("createX509Cert success");
         let keyUsage = x509Cert.getKeyUsage();
     }
 });
@@ -3323,9 +3374,9 @@ let encodingBlob = {
 };
 cryptoFramework.createX509Cert(encodingBlob, function (error, x509Cert) {
     if (error != null) {
-        Console.log("createX509Cert failed, errCode: " + error.code + ", errMsg: " + error.message);
+        console.log("createX509Cert failed, errCode: " + error.code + ", errMsg: " + error.message);
     } else {
-        Console.log("createX509Cert success");
+        console.log("createX509Cert success");
         let extKeyUsage = x509Cert.getExtKeyUsage();
     }
 });
@@ -3359,9 +3410,9 @@ let encodingBlob = {
 };
 cryptoFramework.createX509Cert(encodingBlob, function (error, x509Cert) {
     if (error != null) {
-        Console.log("createX509Cert failed, errCode: " + error.code + ", errMsg: " + error.message);
+        console.log("createX509Cert failed, errCode: " + error.code + ", errMsg: " + error.message);
     } else {
-        Console.log("createX509Cert success");
+        console.log("createX509Cert success");
         let basicConstraints = x509Cert.getBasicConstraints();
     }
 });
@@ -3395,9 +3446,9 @@ let encodingBlob = {
 };
 cryptoFramework.createX509Cert(encodingBlob, function (error, x509Cert) {
     if (error != null) {
-        Console.log("createX509Cert failed, errCode: " + error.code + ", errMsg: " + error.message);
+        console.log("createX509Cert failed, errCode: " + error.code + ", errMsg: " + error.message);
     } else {
-        Console.log("createX509Cert success");
+        console.log("createX509Cert success");
         let subjectAltNames = x509Cert.getSubjectAltNames();
     }
 });
@@ -3431,9 +3482,9 @@ let encodingBlob = {
 };
 cryptoFramework.createX509Cert(encodingBlob, function (error, x509Cert) {
     if (error != null) {
-        Console.log("createX509Cert failed, errCode: " + error.code + ", errMsg: " + error.message);
+        console.log("createX509Cert failed, errCode: " + error.code + ", errMsg: " + error.message);
     } else {
-        Console.log("createX509Cert success");
+        console.log("createX509Cert success");
         let issuerAltNames = x509Cert.getIssuerAltNames();
     }
 });
@@ -3469,9 +3520,9 @@ let encodingBlob = {
 };
 cryptoFramework.createX509Crl(encodingBlob, function (error, x509Crl) {
     if (error != null) {
-        Console.log("createX509Crl failed, errCode: " + error.code + ", errMsg: " + error.message);
+        console.log("createX509Crl failed, errCode: " + error.code + ", errMsg: " + error.message);
     } else {
-        Console.log("createX509Crl success");
+        console.log("createX509Crl success");
     }
 });
 ```
@@ -3509,9 +3560,9 @@ let encodingBlob = {
     encodingFormat: cryptoFramework.EncodingFormat.FORMAT_PEM
 };
 cryptoFramework.createX509Crl(encodingBlob).then(x509Crl => {
-    Console.log("createX509Crl success");
+    console.log("createX509Crl success");
 }, error => {
-    Console.log("createX509Crl failed, errCode: " + error.code + ", errMsg: " + error.message);
+    console.log("createX509Crl failed, errCode: " + error.code + ", errMsg: " + error.message);
 });
 ```
 
@@ -3549,16 +3600,16 @@ let encodingBlob = {
 };
 cryptoFramework.createX509Crl(encodingBlob, function (error, x509Crl) {
     if (error != null) {
-        Console.log("createX509Crl failed, errCode: " + error.code + ", errMsg: " + error.message);
+        console.log("createX509Crl failed, errCode: " + error.code + ", errMsg: " + error.message);
     } else {
-        Console.log("createX509Crl success");
+        console.log("createX509Crl success");
         // 业务需自行生成X509Cert证书对象
         let x509Cert = null;
         x509Crl.isRevoked(x509Cert, function (error, isRevoked) {
            if (error != null) {
-               Console.log("call isRevoked failed, errCode: " + error.code + ", errMsg: " + error.message);
+               console.log("call isRevoked failed, errCode: " + error.code + ", errMsg: " + error.message);
            } else {
-               Console.log("call isRevoked success");
+               console.log("call isRevoked success");
            }
         });
     }
@@ -3598,16 +3649,16 @@ let encodingBlob = {
     encodingFormat: cryptoFramework.EncodingFormat.FORMAT_PEM
 };
 cryptoFramework.createX509Crl(encodingBlob).then(x509Crl => {
-    Console.log("createX509Crl success");
+    console.log("createX509Crl success");
     // 业务需自行生成X509Cert证书对象
     let x509Cert = null;
     x509Crl.isRevoked(x509Cert).then(isRevoked => {
-        Console.log("call isRevoked success");
+        console.log("call isRevoked success");
     }, error => {
-        Console.log("call isRevoked failed, errCode: " + error.code + ", errMsg: " + error.message);
+        console.log("call isRevoked failed, errCode: " + error.code + ", errMsg: " + error.message);
     });
 }, error => {
-    Console.log("createX509Crl failed, errCode: " + error.code + ", errMsg: " + error.message);
+    console.log("createX509Crl failed, errCode: " + error.code + ", errMsg: " + error.message);
 });
 ```
 
@@ -3639,9 +3690,9 @@ let encodingBlob = {
 };
 cryptoFramework.createX509Crl(encodingBlob, function (error, x509Crl) {
     if (error != null) {
-        Console.log("createX509Crl failed, errCode: " + error.code + ", errMsg: " + error.message);
+        console.log("createX509Crl failed, errCode: " + error.code + ", errMsg: " + error.message);
     } else {
-        Console.log("createX509Crl success");
+        console.log("createX509Crl success");
         let type = x509Crl.getType();
     }
 });
@@ -3676,14 +3727,14 @@ let encodingBlob = {
 };
 cryptoFramework.createX509Crl(encodingBlob, function (error, x509Crl) {
     if (error != null) {
-        Console.log("createX509Crl failed, errCode: " + error.code + ", errMsg: " + error.message);
+        console.log("createX509Crl failed, errCode: " + error.code + ", errMsg: " + error.message);
     } else {
-        Console.log("createX509Crl success");
+        console.log("createX509Crl success");
         x509Crl.getEncoded(function (error, data) {
            if (error != null) {
-               Console.log("getEncoded failed, errCode: " + error.code + ", errMsg: " + error.message);
+               console.log("getEncoded failed, errCode: " + error.code + ", errMsg: " + error.message);
            } else {
-               Console.log("getEncoded success");
+               console.log("getEncoded success");
            }
         });
     }
@@ -3717,14 +3768,14 @@ let encodingBlob = {
     encodingFormat: cryptoFramework.EncodingFormat.FORMAT_PEM
 };
 cryptoFramework.createX509Crl(encodingBlob).then(x509Crl => {
-    Console.log("createX509Crl success");
+    console.log("createX509Crl success");
     x509Crl.getEncoded().then(result => {
-        Console.log("getEncoded success");
+        console.log("getEncoded success");
     }, error => {
-        Console.log("getEncoded failed, errCode: " + error.code + ", errMsg: " + error.message);
+        console.log("getEncoded failed, errCode: " + error.code + ", errMsg: " + error.message);
     });
 }, error => {
-    Console.log("createX509Crl failed, errCode: " + error.code + ", errMsg: " + error.message);
+    console.log("createX509Crl failed, errCode: " + error.code + ", errMsg: " + error.message);
 });
 ```
 
@@ -3758,16 +3809,16 @@ let encodingBlob = {
 };
 cryptoFramework.createX509Crl(encodingBlob, function (error, x509Crl) {
     if (error != null) {
-        Console.log("createX509Crl failed, errCode: " + error.code + ", errMsg: " + error.message);
+        console.log("createX509Crl failed, errCode: " + error.code + ", errMsg: " + error.message);
     } else {
-        Console.log("createX509Crl success");
+        console.log("createX509Crl success");
         // 业务需通过AsyKeyGenerator生成PubKey
         let pubKey = null;
         x509Crl.verify(pubKey, function (error, data) {
            if (error != null) {
-               Console.log("verify failed, errCode: " + error.code + ", errMsg: " + error.message);
+               console.log("verify failed, errCode: " + error.code + ", errMsg: " + error.message);
            } else {
-               Console.log("verify success");
+               console.log("verify success");
            }
         });
     }
@@ -3807,16 +3858,16 @@ let encodingBlob = {
     encodingFormat: cryptoFramework.EncodingFormat.FORMAT_PEM
 };
 cryptoFramework.createX509Crl(encodingBlob).then(x509Crl => {
-    Console.log("createX509Crl success");
+    console.log("createX509Crl success");
     // 业务需通过AsyKeyGenerator生成PubKey
     let pubKey = null;
     x509Crl.verify(pubKey).then(result => {
-        Console.log("verify success");
+        console.log("verify success");
     }, error => {
-        Console.log("verify failed, errCode: " + error.code + ", errMsg: " + error.message);
+        console.log("verify failed, errCode: " + error.code + ", errMsg: " + error.message);
     });
 }, error => {
-    Console.log("createX509Crl failed, errCode: " + error.code + ", errMsg: " + error.message);
+    console.log("createX509Crl failed, errCode: " + error.code + ", errMsg: " + error.message);
 });
 ```
 
@@ -3848,9 +3899,9 @@ let encodingBlob = {
 };
 cryptoFramework.createX509Crl(encodingBlob, function (error, x509Crl) {
     if (error != null) {
-        Console.log("createX509Crl failed, errCode: " + error.code + ", errMsg: " + error.message);
+        console.log("createX509Crl failed, errCode: " + error.code + ", errMsg: " + error.message);
     } else {
-        Console.log("createX509Crl success");
+        console.log("createX509Crl success");
         let version = x509Crl.getVersion();
     }
 });
@@ -3884,9 +3935,9 @@ let encodingBlob = {
 };
 cryptoFramework.createX509Crl(encodingBlob, function (error, x509Crl) {
     if (error != null) {
-        Console.log("createX509Crl failed, errCode: " + error.code + ", errMsg: " + error.message);
+        console.log("createX509Crl failed, errCode: " + error.code + ", errMsg: " + error.message);
     } else {
-        Console.log("createX509Crl success");
+        console.log("createX509Crl success");
         let issuerName = x509Crl.getIssuerName();
     }
 });
@@ -3920,9 +3971,9 @@ let encodingBlob = {
 };
 cryptoFramework.createX509Crl(encodingBlob, function (error, x509Crl) {
     if (error != null) {
-        Console.log("createX509Crl failed, errCode: " + error.code + ", errMsg: " + error.message);
+        console.log("createX509Crl failed, errCode: " + error.code + ", errMsg: " + error.message);
     } else {
-        Console.log("createX509Crl success");
+        console.log("createX509Crl success");
         let lastUpdate = x509Crl.getLastUpdate();
     }
 });
@@ -3956,9 +4007,9 @@ let encodingBlob = {
 };
 cryptoFramework.createX509Crl(encodingBlob, function (error, x509Crl) {
     if (error != null) {
-        Console.log("createX509Crl failed, errCode: " + error.code + ", errMsg: " + error.message);
+        console.log("createX509Crl failed, errCode: " + error.code + ", errMsg: " + error.message);
     } else {
-        Console.log("createX509Crl success");
+        console.log("createX509Crl success");
         let nextUpdate = x509Crl.getNextUpdate();
     }
 });
@@ -3994,16 +4045,16 @@ let encodingBlob = {
 };
 cryptoFramework.createX509Crl(encodingBlob, function (error, x509Crl) {
     if (error != null) {
-        Console.log("createX509Crl failed, errCode: " + error.code + ", errMsg: " + error.message);
+        console.log("createX509Crl failed, errCode: " + error.code + ", errMsg: " + error.message);
     } else {
-        Console.log("createX509Crl success");
+        console.log("createX509Crl success");
         // 业务需赋值为对应证书的序列号
         let serialNumber = 1000;
         x509Crl.getRevokedCert(serialNumber, function (error, entry) {
             if (error != null) {
-                Console.log("getRevokedCert failed, errCode: " + error.code + ", errMsg: " + error.message);
+                console.log("getRevokedCert failed, errCode: " + error.code + ", errMsg: " + error.message);
             } else {
-                Console.log("getRevokedCert success");
+                console.log("getRevokedCert success");
             }
         });
     }
@@ -4043,16 +4094,16 @@ let encodingBlob = {
     encodingFormat: cryptoFramework.EncodingFormat.FORMAT_PEM
 };
 cryptoFramework.createX509Crl(encodingBlob).then(x509Crl => {
-    Console.log("createX509Crl success");
+    console.log("createX509Crl success");
     // 业务需赋值为对应证书的序列号
     let serialNumber = 1000;
     x509Crl.getRevokedCert(serialNumber).then(entry => {
-        Console.log("getRevokedCert success");
+        console.log("getRevokedCert success");
     }, error => {
-        Console.log("getRevokedCert failed, errCode: " + error.code + ", errMsg: " + error.message);
+        console.log("getRevokedCert failed, errCode: " + error.code + ", errMsg: " + error.message);
     });
 }, error => {
-    Console.log("createX509Crl failed, errCode: " + error.code + ", errMsg: " + error.message);
+    console.log("createX509Crl failed, errCode: " + error.code + ", errMsg: " + error.message);
 });
 ```
 
@@ -4086,16 +4137,16 @@ let encodingBlob = {
 };
 cryptoFramework.createX509Crl(encodingBlob, function (error, x509Crl) {
     if (error != null) {
-        Console.log("createX509Crl failed, errCode: " + error.code + ", errMsg: " + error.message);
+        console.log("createX509Crl failed, errCode: " + error.code + ", errMsg: " + error.message);
     } else {
-        Console.log("createX509Crl success");
+        console.log("createX509Crl success");
         // 业务需自行生成X509Cert证书对象
         let x509Cert = null;
         x509Crl.getRevokedCertWithCert(x509Cert, function (error, entry) {
             if (error != null) {
-                Console.log("getRevokedCertWithCert failed, errCode: " + error.code + ", errMsg: " + error.message);
+                console.log("getRevokedCertWithCert failed, errCode: " + error.code + ", errMsg: " + error.message);
             } else {
-                Console.log("getRevokedCertWithCert success");
+                console.log("getRevokedCertWithCert success");
             }
         });
     }
@@ -4135,16 +4186,16 @@ let encodingBlob = {
     encodingFormat: cryptoFramework.EncodingFormat.FORMAT_PEM
 };
 cryptoFramework.createX509Crl(encodingBlob).then(x509Crl => {
-    Console.log("createX509Crl success");
+    console.log("createX509Crl success");
     // 业务需自行生成X509Cert证书对象
     let x509Cert = null;
     x509Crl.getRevokedCertWithCert(x509Cert).then(entry => {
-        Console.log("getRevokedCertWithCert success");
+        console.log("getRevokedCertWithCert success");
     }, error => {
-        Console.log("getRevokedCertWithCert failed, errCode: " + error.code + ", errMsg: " + error.message);
+        console.log("getRevokedCertWithCert failed, errCode: " + error.code + ", errMsg: " + error.message);
     });
 }, error => {
-    Console.log("createX509Crl failed, errCode: " + error.code + ", errMsg: " + error.message);
+    console.log("createX509Crl failed, errCode: " + error.code + ", errMsg: " + error.message);
 });
 ```
 
@@ -4177,14 +4228,14 @@ let encodingBlob = {
 };
 cryptoFramework.createX509Crl(encodingBlob, function (error, x509Crl) {
     if (error != null) {
-        Console.log("createX509Crl failed, errCode: " + error.code + ", errMsg: " + error.message);
+        console.log("createX509Crl failed, errCode: " + error.code + ", errMsg: " + error.message);
     } else {
-        Console.log("createX509Crl success");
+        console.log("createX509Crl success");
         x509Crl.getRevokedCerts(function (error, array) {
             if (error != null) {
-                Console.log("getRevokedCerts failed, errCode: " + error.code + ", errMsg: " + error.message);
+                console.log("getRevokedCerts failed, errCode: " + error.code + ", errMsg: " + error.message);
             } else {
-                Console.log("getRevokedCerts success");
+                console.log("getRevokedCerts success");
             }
         });
     }
@@ -4218,14 +4269,14 @@ let encodingBlob = {
     encodingFormat: cryptoFramework.EncodingFormat.FORMAT_PEM
 };
 cryptoFramework.createX509Crl(encodingBlob).then(x509Crl => {
-    Console.log("createX509Crl success");
+    console.log("createX509Crl success");
     x509Crl.getRevokedCerts().then(array => {
-        Console.log("getRevokedCerts success");
+        console.log("getRevokedCerts success");
     }, error => {
-        Console.log("getRevokedCerts failed, errCode: " + error.code + ", errMsg: " + error.message);
+        console.log("getRevokedCerts failed, errCode: " + error.code + ", errMsg: " + error.message);
     });
 }, error => {
-    Console.log("createX509Crl failed, errCode: " + error.code + ", errMsg: " + error.message);
+    console.log("createX509Crl failed, errCode: " + error.code + ", errMsg: " + error.message);
 });
 ```
 
@@ -4258,14 +4309,14 @@ let encodingBlob = {
 };
 cryptoFramework.createX509Crl(encodingBlob, function (error, x509Crl) {
     if (error != null) {
-        Console.log("createX509Crl failed, errCode: " + error.code + ", errMsg: " + error.message);
+        console.log("createX509Crl failed, errCode: " + error.code + ", errMsg: " + error.message);
     } else {
-        Console.log("createX509Crl success");
+        console.log("createX509Crl success");
         x509Crl.getTbsInfo(function (error, tbsInfo) {
             if (error != null) {
-                Console.log("getTbsInfo failed, errCode: " + error.code + ", errMsg: " + error.message);
+                console.log("getTbsInfo failed, errCode: " + error.code + ", errMsg: " + error.message);
             } else {
-                Console.log("getTbsInfo success");
+                console.log("getTbsInfo success");
             }
         });
     }
@@ -4299,14 +4350,14 @@ let encodingBlob = {
     encodingFormat: cryptoFramework.EncodingFormat.FORMAT_PEM
 };
 cryptoFramework.createX509Crl(encodingBlob).then(x509Crl => {
-    Console.log("createX509Crl success");
+    console.log("createX509Crl success");
     x509Crl.getTbsInfo().then(tbsInfo => {
-        Console.log("getTbsInfo success");
+        console.log("getTbsInfo success");
     }, error => {
-        Console.log("getTbsInfo failed, errCode: " + error.code + ", errMsg: " + error.message);
+        console.log("getTbsInfo failed, errCode: " + error.code + ", errMsg: " + error.message);
     });
 }, error => {
-    Console.log("createX509Crl failed, errCode: " + error.code + ", errMsg: " + error.message);
+    console.log("createX509Crl failed, errCode: " + error.code + ", errMsg: " + error.message);
 });
 ```
 
@@ -4338,9 +4389,9 @@ let encodingBlob = {
 };
 cryptoFramework.createX509Crl(encodingBlob, function (error, x509Crl) {
     if (error != null) {
-        Console.log("createX509Crl failed, errCode: " + error.code + ", errMsg: " + error.message);
+        console.log("createX509Crl failed, errCode: " + error.code + ", errMsg: " + error.message);
     } else {
-        Console.log("createX509Crl success");
+        console.log("createX509Crl success");
         let signature = x509Crl.getSignature();
     }
 });
@@ -4374,9 +4425,9 @@ let encodingBlob = {
 };
 cryptoFramework.createX509Crl(encodingBlob, function (error, x509Crl) {
     if (error != null) {
-        Console.log("createX509Crl failed, errCode: " + error.code + ", errMsg: " + error.message);
+        console.log("createX509Crl failed, errCode: " + error.code + ", errMsg: " + error.message);
     } else {
-        Console.log("createX509Crl success");
+        console.log("createX509Crl success");
         let sigAlgName = x509Crl.getSignatureAlgName();
     }
 });
@@ -4410,9 +4461,9 @@ let encodingBlob = {
 };
 cryptoFramework.createX509Crl(encodingBlob, function (error, x509Crl) {
     if (error != null) {
-        Console.log("createX509Crl failed, errCode: " + error.code + ", errMsg: " + error.message);
+        console.log("createX509Crl failed, errCode: " + error.code + ", errMsg: " + error.message);
     } else {
-        Console.log("createX509Crl success");
+        console.log("createX509Crl success");
         let sigAlgOid = x509Crl.getSignatureAlgOid();
     }
 });
@@ -4446,9 +4497,9 @@ let encodingBlob = {
 };
 cryptoFramework.createX509Crl(encodingBlob, function (error, x509Crl) {
     if (error != null) {
-        Console.log("createX509Crl failed, errCode: " + error.code + ", errMsg: " + error.message);
+        console.log("createX509Crl failed, errCode: " + error.code + ", errMsg: " + error.message);
     } else {
-        Console.log("createX509Crl success");
+        console.log("createX509Crl success");
         let sigAlgParams = x509Crl.getSignatureAlgParams();
     }
 });
@@ -4521,9 +4572,9 @@ let certChainData = {
 };
 validator.validate(certChainData, function (error, data) {
     if (error != null) {
-        Console.log("validate failed, errCode: " + error.code + ", errMsg: " + error.message);
+        console.log("validate failed, errCode: " + error.code + ", errMsg: " + error.message);
     } else {
-        Console.log("validate success");
+        console.log("validate success");
     }
 });
 ```
@@ -4566,9 +4617,9 @@ let certChainData = {
     encodingFormat: cryptoFramework.EncodingFormat.FORMAT_PEM 
 };
 validator.validate(certChainData).then(result => {
-    Console.log("validate success");
+    console.log("validate success");
 }, error => {
-    Console.log("validate failed, errCode: " + error.code + ", errMsg: " + error.message);
+    console.log("validate failed, errCode: " + error.code + ", errMsg: " + error.message);
 });
 ```
 
@@ -4623,9 +4674,9 @@ import cryptoFramework from '@ohos.security.cryptoFramework';
 let x509CrlEntry = null;
 x509CrlEntry.getEncoded(function (error, data) {
     if (error != null) {
-        Console.log("getEncoded failed, errCode: " + error.code + ", errMsg: " + error.message);
+        console.log("getEncoded failed, errCode: " + error.code + ", errMsg: " + error.message);
     } else {
-        Console.log("getEncoded success");
+        console.log("getEncoded success");
     }
 });
 ```
@@ -4652,9 +4703,9 @@ import cryptoFramework from '@ohos.security.cryptoFramework';
 // 业务需通过X509Crl的getRevokedCert相关方法获取X509CrlEntry
 let x509CrlEntry = null;
 x509CrlEntry.getEncoded().then(result => {
-    Console.log("getEncoded success");
+    console.log("getEncoded success");
 }, error => {
-    Console.log("getEncoded failed, errCode: " + error.code + ", errMsg: " + error.message);
+    console.log("getEncoded failed, errCode: " + error.code + ", errMsg: " + error.message);
 });
 ```
 
@@ -4706,9 +4757,9 @@ import cryptoFramework from '@ohos.security.cryptoFramework';
 let x509CrlEntry = null;
 x509CrlEntry.getCertIssuer(function (error, issuer) {
     if (error != null) {
-        Console.log("getCertIssuer failed, errCode: " + error.code + ", errMsg: " + error.message);
+        console.log("getCertIssuer failed, errCode: " + error.code + ", errMsg: " + error.message);
     } else {
-        Console.log("getCertIssuer success");
+        console.log("getCertIssuer success");
     }
 });
 ```
@@ -4735,9 +4786,9 @@ import cryptoFramework from '@ohos.security.cryptoFramework';
 // 业务需通过X509Crl的getRevokedCert相关方法获取X509CrlEntry
 let x509CrlEntry = null;
 x509CrlEntry.getCertIssuer().then(issuer => {
-    Console.log("getCertIssuer success");
+    console.log("getCertIssuer success");
 }, error => {
-    Console.log("getCertIssuer failed, errCode: " + error.code + ", errMsg: " + error.message);
+    console.log("getCertIssuer failed, errCode: " + error.code + ", errMsg: " + error.message);
 });
 ```
 
@@ -4765,9 +4816,9 @@ import cryptoFramework from '@ohos.security.cryptoFramework';
 let x509CrlEntry = null;
 x509CrlEntry.getRevocationDate(function (error, date) {
     if (error != null) {
-        Console.log("getRevocationDate failed, errCode: " + error.code + ", errMsg: " + error.message);
+        console.log("getRevocationDate failed, errCode: " + error.code + ", errMsg: " + error.message);
     } else {
-        Console.log("getRevocationDate success");
+        console.log("getRevocationDate success");
     }
 });
 ```
@@ -4794,8 +4845,8 @@ import cryptoFramework from '@ohos.security.cryptoFramework';
 // 业务需通过X509Crl的getRevokedCert相关方法获取X509CrlEntry
 let x509CrlEntry = null;
 x509CrlEntry.getRevocationDate().then(date => {
-    Console.log("getRevocationDate success");
+    console.log("getRevocationDate success");
 }, error => {
-    Console.log("getRevocationDate failed, errCode: " + error.code + ", errMsg: " + error.message);
+    console.log("getRevocationDate failed, errCode: " + error.code + ", errMsg: " + error.message);
 });
 ```
