@@ -97,3 +97,4 @@ struct MarqueeExample {
 }
 ```
 
+![marquee](figures/marquee.gif)

@@ -94,4 +94,4 @@ struct RatingExample {
 }
 ```
 
-![zh-cn_image_0000001219662659](figures/zh-cn_image_0000001219662659.gif)
+![rating](figures/rating.gif)

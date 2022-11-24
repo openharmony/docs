@@ -118,7 +118,7 @@ struct StepperExample {
       // 第四个步骤页
       StepperItem() {
         Column() {
-          Text('Page four')
+          Text('Page Four')
             .itemTextStyle()
         }.itemStyle()
       }
@@ -141,5 +141,5 @@ struct StepperExample {
 ```
 
 
-![zh-cn_image_0000001250678457](figures/zh-cn_image_0000001250678457.gif)
+![stepper](figures/stepper.gif)
 
