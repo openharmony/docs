@@ -15,6 +15,85 @@ import userIAM_userAuth from '@ohos.userIAM.userAuth';
 ## Sample Code
 
 ```js
+// API version 9
+import userIAM_userAuth from '@ohos.userIAM.userAuth';
+
+export default {
+    getVersion() {
+        try {
+            let version = userIAM_userAuth.getVersion();
+            console.info("auth version = " + version);
+        } catch (error) {
+            console.info("get version failed, error = " + error);
+        }
+    },
+
+    start() {
+        console.info("start auth");
+        let challenge = new Uint8Array([1, 2, 3, 4, 5, 6, 7, 8]);
+        let authType = userIAM_userAuth.UserAuthType.FACE;
+        let authTrustLevel = userIAM_userAuth.AuthTrustLevel.ATL1;
+        try {
+            let auth = userIAM_userAuth.getAuthInstance(challenge, authType, authTrustLevel);
+            auth.on("result", {
+                callback: (result: userIAM_userAuth.AuthResultInfo) => {
+                    console.log("authV9 result " + result.result);
+                    console.log("authV9 token " + result.token);
+                    console.log("authV9 remainAttempts " + result.remainAttempts);
+                    console.log("authV9 lockoutDuration " + result.lockoutDuration);
+                }
+            });
+            // If tips are needed
+            auth.on("tip", {
+            callback : (result : userIAM_userAuth.TipInfo) => {
+                switch (result.tip) {
+                    case userIAM_userAuth.FaceTips.FACE_AUTH_TIP_TOO_BRIGHT:
+                    // Do something;
+                    case userIAM_userAuth.FaceTips.FACE_AUTH_TIP_TOO_DARK:
+                    // Do something;
+                    // ...
+                    default:
+                    // Do others.
+                }
+            }
+            });
+            auth.start();
+            console.log("authV9 start success");
+        } catch (error) {
+            console.log("authV9 error = " + error);
+            // do error
+        }
+    },
+
+    getAvailableStatus() {
+        console.info("start check auth support");
+        try {
+            userIAM_userAuth.getAvailableStatus(userIAM_userAuth.UserAuthType.FACE, userIAM_userAuth.AuthTrustLevel.ATL1);
+            console.info("current auth trust level is supported");
+        } catch (error) {
+            console.info("current auth trust level is not supported, error = " + error);
+        }
+    },
+
+    cancel() {
+        console.info("start cancel auth");
+        let challenge = new Uint8Array([1, 2, 3, 4, 5, 6, 7, 8]);
+        let authType = userIAM_userAuth.UserAuthType.FACE;
+        let authTrustLevel = userIAM_userAuth.AuthTrustLevel.ATL1;
+
+        try {
+            let auth = userIAM_userAuth.getAuthInstance(challenge, authType, authTrustLevel);
+            auth.start();
+            auth.cancel();
+            console.info("cancel auth success");
+        } catch (error) {
+            console.info("cancel auth failed, error = " + error);
+        }
+    }
+}
+```
+
+```js
 // API version 8
 import userIAM_userAuth from '@ohos.userIAM.userAuth';
 let auth = new userIAM_userAuth.UserAuth();
@@ -22,13 +101,13 @@ let auth = new userIAM_userAuth.UserAuth();
 export default {
     getVersion() {
         console.info("start get version");
-        let version = this.auth.getVersion();
+        let version = auth.getVersion();
         console.info("auth version = " + version);
     },
 
     startAuth() {
         console.info("start auth");
-        this.auth.auth(null, userIAM_userAuth.UserAuthType.FACE, userIAM_userAuth.AuthTrustLevel.ATL1, {
+        auth.auth(null, userIAM_userAuth.UserAuthType.FACE, userIAM_userAuth.AuthTrustLevel.ATL1, {
             onResult: (result, extraInfo) => {
                 try {
                     console.info("auth onResult result = " + result);
@@ -108,14 +187,387 @@ export default {
 }
 ```
 
+## EventInfo<sup>9+</sup>
+
+Defines the event information used in authentication.
+
+**System capability**: SystemCapability.UserIAM.UserAuth.Core
+
+| Type   | Description                      |
+| --------- | ----------------------- |
+| [AuthResultInfo](#authresultinfo9)    | Authentication result information. |
+| [TipInfo](#tipinfo9)    | Authentication tip information.     |
+
+## AuthEvent<sup>9+</sup>
+
+Provides callbacks to return authentication events.
+
+### callback<sup>9+</sup>
+
+callback: (result : EventInfo) => void
+
+Called to return the authentication result or authentication tips.
+
+**System capability**: SystemCapability.UserIAM.UserAuth.Core
+
+**Parameters**
+
+| Name   | Type                      | Mandatory| Description                                                        |
+| --------- | -------------------------- | ---- | -------------------------------------------------------- |
+| result    | [EventInfo](#eventinfo9)                     | Yes  | Authentication result or tip information.                  |
+
+**Example**
+
+  ```js
+    import userIAM_userAuth from '@ohos.userIAM.userAuth';
+
+    let challenge = new Uint8Array([1, 2, 3, 4, 5, 6, 7, 8]);
+    let authType = userIAM_userAuth.UserAuthType.FACE;
+    let authTrustLevel = userIAM_userAuth.AuthTrustLevel.ATL1;
+    try {
+        let auth = userIAM_userAuth.getAuthInstance(challenge, authType, authTrustLevel);
+        auth.on("result", {
+        callback: (result: userIAM_userAuth.AuthResultInfo) => {
+            console.log("authV9 result " + result.result);
+            console.log("authV9 token " + result.token);
+            console.log("authV9 remainAttempts " + result.remainAttempts);
+            console.log("authV9 lockoutDuration " + result.lockoutDuration);
+        }
+        });
+        auth.start();
+        console.log("authV9 start success");
+    } catch (error) {
+        console.log("authV9 error = " + error);
+        // do error
+    }
+  ```
+
+## AuthResultInfo<sup>9+</sup>
+
+Defines the authentication result information.
+
+**System capability**: SystemCapability.UserIAM.UserAuth.Core
+
+| Name        | Type  | Mandatory| Description                |
+| ------------ | ---------- | ---- | -------------------- |
+| result        | number | Yes  | Authentication result.      |
+| token        | Uint8Array | No  | Token that has passed the user identity authentication.|
+| remainAttempts  | number     | No  | Number of remaining authentication times allowed.|
+| lockoutDuration | number     | No  | Time for which the authentication operation is frozen.|
+
+## TipInfo<sup>9+</sup>
+
+Defines the authentication tip information.
+
+**System capability**: SystemCapability.UserIAM.UserAuth.Core
+
+| Name        | Type  | Mandatory| Description                |
+| ------------ | ---------- | ---- | -------------------- |
+| module        | number | No  | Authentication module.      |
+| tip        | number | No  | Tip to be given during the authentication process.      |
+
+## AuthEventKey<sup>9+</sup>
+
+Defines the keyword of an authentication event.
+
+| Value      | Description                   |
+| ---------- | ----------------------- |
+| "result" | Indicates authentication result.|
+| "tip"    | If **AuthEventKey** is **result**, the callback returns the authentication tip information.|
+
+## AuthInstance<sup>9+</sup>
+
+Implements user authentication.
+
+### on<sup>9+</sup>
+
+on(name : AuthEventKey, callback : AuthEvent) : void
+
+Enables authentication event listening.
+
+**System capability**: SystemCapability.UserIAM.UserAuth.Core
+
+**Parameters**
+
+| Name   | Type                       | Mandatory| Description                      |
+| --------- | -------------------------- | ---- | ------------------------- |
+| name    | AuthEventKey                 | Yes  | Keyword of the authentication event to listen for.         |
+| callback    | AuthEvent                | Yes  | Callback invoked to return the authentication event.         |
+
+**Example**
+
+  ```js
+    import userIAM_userAuth from '@ohos.userIAM.userAuth';
+
+    let challenge = new Uint8Array([1, 2, 3, 4, 5, 6, 7, 8]);
+    let authType = userIAM_userAuth.UserAuthType.FACE;
+    let authTrustLevel = userIAM_userAuth.AuthTrustLevel.ATL1;
+    try {
+        let auth = userIAM_userAuth.getAuthInstance(challenge, authType, authTrustLevel);
+        auth.on("result", {
+        callback: (result: userIAM_userAuth.AuthResultInfo) => {
+            console.log("authV9 result " + result.result);
+            console.log("authV9 token " + result.token);
+            console.log("authV9 remainAttempts " + result.remainAttempts);
+            console.log("authV9 lockoutDuration " + result.lockoutDuration);
+        }
+        });
+        // If tips are needed
+        auth.on("tip", {
+        callback : (result : userIAM_userAuth.TipInfo) => {
+            switch (result.tip) {
+                case userIAM_userAuth.FaceTips.FACE_AUTH_TIP_TOO_BRIGHT:
+                // Do something;
+                case userIAM_userAuth.FaceTips.FACE_AUTH_TIP_TOO_DARK:
+                // Do something;
+                // ...
+                default:
+                // Do others.
+            }
+        }
+        });
+        auth.start();
+        console.log("authV9 start success");
+    } catch (error) {
+        console.log("authV9 error = " + error);
+        // do error
+    }
+  ```
+
+### off<sup>9+</sup>
+
+off(name : AuthEventKey) : void
+
+Disables authentication event listening.
+
+**System capability**: SystemCapability.UserIAM.UserAuth.Core
+
+| Name   | Type                       | Mandatory| Description                      |
+| --------- | -------------------------- | ---- | ------------------------- |
+| name    | AuthEventKey                 | Yes  | Keyword of the authentication event.         |
+
+**Example**
+
+  ```js
+    import userIAM_userAuth from '@ohos.userIAM.userAuth';
+
+    let challenge = new Uint8Array([1, 2, 3, 4, 5, 6, 7, 8]);
+    let authType = userIAM_userAuth.UserAuthType.FACE;
+    let authTrustLevel = userIAM_userAuth.AuthTrustLevel.ATL1;
+
+    try {
+        let auth = userIAM_userAuth.getAuthInstance(challenge, authType, authTrustLevel);
+        auth.on("result", {
+        callback: (result: userIAM_userAuth.AuthResultInfo) => {
+            console.log("authV9 result " + result.result);
+            console.log("authV9 token " + result.token);
+            console.log("authV9 remainAttempts " + result.remainAttempts);
+            console.log("authV9 lockoutDuration " + result.lockoutDuration);
+        }
+        });
+        console.log("turn on authentication event listening success");
+    } catch (error) {
+        console.log("turn off authentication event listening failed " + error);
+        // do error
+    }
+
+    try {
+        let auth = userIAM_userAuth.getAuthInstance(challenge, authType, authTrustLevel);
+        auth.off("result");
+        console.info("turn off authentication event listening success");
+    } catch (error) {
+        console.info("turn off authentication event listening failed, error = " + error);
+    }
+  ```
+
+### start<sup>9+</sup>
+
+start() : void
+
+Starts authentication.
+
+**Required permissions**: ohos.permission.ACCESS_BIOMETRIC
+
+**System capability**: SystemCapability.UserIAM.UserAuth.Core
+
+**Example**
+
+  ```js
+    import userIAM_userAuth from '@ohos.userIAM.userAuth';
+
+    let challenge = new Uint8Array([1, 2, 3, 4, 5, 6, 7, 8]);
+    let authType = userIAM_userAuth.UserAuthType.FACE;
+    let authTrustLevel = userIAM_userAuth.AuthTrustLevel.ATL1;
+
+    try {
+        let auth = userIAM_userAuth.getAuthInstance(challenge, authType, authTrustLevel);
+        auth.start();
+        console.info("authV9 start auth success");
+    } catch (error) {
+        console.info("authV9 start auth failed, error = " + error);
+    }
+  ```
+
+### cancel<sup>9+</sup>
+
+cancel(): void
+
+Cancels the authentication.
+
+**Required permissions**: ohos.permission.ACCESS_BIOMETRIC
+
+**System capability**: SystemCapability.UserIAM.UserAuth.Core
+
+**Example**
+
+  ```js
+    import userIAM_userAuth from '@ohos.userIAM.userAuth';
+
+    let challenge = new Uint8Array([1, 2, 3, 4, 5, 6, 7, 8]);
+    let authType = userIAM_userAuth.UserAuthType.FACE;
+    let authTrustLevel = userIAM_userAuth.AuthTrustLevel.ATL1;
+
+    try {
+        let auth = userIAM_userAuth.getAuthInstance(challenge, authType, authTrustLevel);
+        auth.start();
+        auth.cancel();
+        console.info("cancel auth success");
+    } catch (error) {
+        console.info("cancel auth failed, error = " + error);
+    }
+  ```
+
+## userIAM_userAuth.getAuthInstance<sup>9+</sup>
+
+getAuthInstance(challenge : Uint8Array, authType : UserAuthType, authTrustLevel : AuthTrustLevel): AuthInstance
+
+Obtains an **AuthInstance** instance for user authentication.
+
+> **NOTE**<br>
+> Each **AuthInstance** can be used to initiate an authentication only once.
+
+**System capability**: SystemCapability.UserIAM.UserAuth.Core
+
+**Parameters**
+
+| Name        | Type                                    | Mandatory| Description                    |
+| -------------- | ---------------------------------------- | ---- | ------------------------ |
+| challenge      | Uint8Array                               | Yes  | Challenge value. The maximum length is 32 bytes. The value can be **null**.    |
+| authType       | [UserAuthType](#userauthtype8)           | Yes  | Authentication type. Only **FACE** is supported.|
+| authTrustLevel | [AuthTrustLevel](#authtrustlevel8)       | Yes  | Authentication trust level.              |
+
+**Return value**
+
+| Type                                     | Description        |
+| ----------------------------------------- | ------------ |
+| [AuthInstance](#authinstance9) | **Authenticator** object obtained.|
+
+**Example**
+  ```js
+    import userIAM_userAuth from '@ohos.userIAM.userAuth';
+
+    let challenge = new Uint8Array([1, 2, 3, 4, 5, 6, 7, 8]);
+    let authType = userIAM_userAuth.UserAuthType.FACE;
+    let authTrustLevel = userIAM_userAuth.AuthTrustLevel.ATL1;
+
+    try {
+        let auth = userIAM_userAuth.getAuthInstance(challenge, authType, authTrustLevel);
+        console.info("get auth instance success");
+    } catch (error) {
+        console.info("get auth instance success failed, error = " + error);
+    }
+  ```
+
+## userIAM_userAuth.getVersion<sup>9+</sup>
+
+getVersion(): number
+
+Obtains the version of this authenticator.
+
+**Required permissions**: ohos.permission.ACCESS_BIOMETRIC
+
+**System capability**: SystemCapability.UserIAM.UserAuth.Core
+
+**Return value**
+
+| Type  | Description                  |
+| ------ | ---------------------- |
+| number | Authenticator version obtained.|
+
+**Example**
+
+  ```js
+    import userIAM_userAuth from '@ohos.userIAM.userAuth';
+
+    try {
+        let version = userIAM_userAuth.getVersion();
+        console.info("auth version = " + version);
+    } catch (error) {
+        console.info("get version failed, error = " + error);
+    }
+  ```
+
+## userIAM_userAuth.getAvailableStatus<sup>9+</sup>
+
+getAvailableStatus(authType : UserAuthType, authTrustLevel : AuthTrustLevel): void
+
+Checks whether the authentication capability of the specified trust level is available.
+
+**Required permissions**: ohos.permission.ACCESS_BIOMETRIC
+
+**System capability**: SystemCapability.UserIAM.UserAuth.Core
+
+**Parameters**
+
+| Name        | Type                              | Mandatory| Description                      |
+| -------------- | ---------------------------------- | ---- | -------------------------- |
+| authType       | [UserAuthType](#userauthtype8)     | Yes  | Authentication type. Only **FACE** is supported.|
+| authTrustLevel | [AuthTrustLevel](#authtrustlevel8) | Yes  | Trust level of the authentication result.      |
+
+**Example**
+
+  ```js
+    import userIAM_userAuth from '@ohos.userIAM.userAuth';
+
+    try {
+        userIAM_userAuth.getAvailableStatus(userIAM_userAuth.UserAuthType.FACE, userIAM_userAuth.AuthTrustLevel.ATL1);
+        console.info("current auth trust level is supported");
+    } catch (error) {
+        console.info("current auth trust level is not supported, error = " + error);
+    }
+  ```
+
+  ## ResultCodeV9<sup>9+</sup>
+
+Enumerates the operation results.
+
+**System capability**: SystemCapability.UserIAM.UserAuth.Core
+
+| Name                   | Default Value| Description                |
+| ----------------------- | ------ | -------------------- |
+| SUCCESS                 | 12500000      | The operation is successful.          |
+| FAIL                    | 12500001      | The operation failed.          |
+| GENERAL_ERROR           | 12500002      | A common operation error occurred.      |
+| CANCELED                | 12500003      | The operation is canceled.          |
+| TIMEOUT                 | 12500004      | The operation timed out.          |
+| TYPE_NOT_SUPPORT        | 12500005      | The authentication type is not supported.  |
+| TRUST_LEVEL_NOT_SUPPORT | 12500006      | The authentication trust level is not supported.  |
+| BUSY                    | 12500007      | Indicates the busy state.          |
+| INVALID_PARAMETERS      | 12500008      | Invalid parameters are detected.          |
+| LOCKED                  | 12500009      | The authentication executor is locked.      |
+| NOT_ENROLLED            | 12500010      | The user has not entered the authentication information.|
 
 ## UserAuth<sup>8+</sup>
 
 Provides methods to manage an **Authenticator** object.
 
-### constructor<sup>8+</sup>
+### constructor<sup>(deprecated)</sup>
 
 constructor()
+
+> **NOTE**
+>
+>This API is supported since API version 8 and deprecated since API version 9. You are advised to use [getAuthInstance](#useriam_userauthgetauthinstance9).
 
 A constructor used to create an **authenticator** object.
 
@@ -135,9 +587,13 @@ A constructor used to create an **authenticator** object.
   let auth = new userIAM_userAuth.UserAuth();
   ```
 
-### getVersion<sup>8+</sup>
+### getVersion<sup>(deprecated)</sup>
 
 getVersion() : number
+
+> **NOTE**
+> 
+>This API is supported since API version 8 and deprecated since API version 9. You are advised to use [getVersion](#useriam_userauthgetversion9).
 
 Obtains the authentication executor version.
 
@@ -161,11 +617,15 @@ Obtains the authentication executor version.
   console.info("auth version = " + version);
   ```
 
-### getAvailableStatus<sup>8+</sup>
+### getAvailableStatus<sup>(deprecated)</sup>
 
 getAvailableStatus(authType : UserAuthType, authTrustLevel : AuthTrustLevel) : number
 
-Checks whether the authentication capability of the specified trust level is available.
+> **NOTE**
+> 
+>This API is supported since API version 8 and deprecated since API version 9. You are advised to use [getAvailableStatus](#useriam_userauthgetavailablestatus9).
+
+Obtains the available status of the specified authentication trust level.
 
 **Required permissions**: ohos.permission.ACCESS_BIOMETRIC
 
@@ -182,7 +642,7 @@ Checks whether the authentication capability of the specified trust level is ava
 
 | Type  | Description                                                        |
 | ------ | ------------------------------------------------------------ |
-| number | Whether the authentication capability of the specified trust level is available. For details, see [ResultCode](#resultcode8).|
+| number | Available status obtained. For details, see [ResultCode](#resultcodedeprecated).|
 
 **Example**
 
@@ -200,9 +660,13 @@ Checks whether the authentication capability of the specified trust level is ava
   }
   ```
 
-### auth<sup>8+</sup>
+### auth<sup>(deprecated)</sup>
 
 auth(challenge: Uint8Array, authType: UserAuthType, authTrustLevel: AuthTrustLevel, callback: IUserAuthCallback): Uint8Array
+
+> **NOTE**
+> 
+>This API is supported since API version 8 and deprecated since API version 9. You are advised to use [start](#start9).
 
 Performs user authentication. This API uses a callback to return the result.
 
@@ -217,13 +681,13 @@ Performs user authentication. This API uses a callback to return the result.
 | challenge      | Uint8Array                               | Yes  | Challenge value, which can be null.    |
 | authType       | [UserAuthType](#userauthtype8)           | Yes  | Authentication type. Only **FACE** is supported.|
 | authTrustLevel | [AuthTrustLevel](#authtrustlevel8)       | Yes  | Trust level.              |
-| callback       | [IUserAuthCallback](#iuserauthcallback8) | Yes  | Callback used to return the result.              |
+| callback       | [IUserAuthCallback](#iuserauthcallbackdeprecated) | Yes  | Callback used to return the result.              |
 
 **Return value**
 
 | Type      | Description                                                        |
 | ---------- | ------------------------------------------------------------ |
-| Uint8Array | ContextId, which is used as the input parameter of [cancelAuth](#cancelauth8).|
+| Uint8Array | Context ID, which is used as the input parameter of [cancelAuth](#cancelauthdeprecated).|
 
 **Example**
 
@@ -248,9 +712,13 @@ Performs user authentication. This API uses a callback to return the result.
   });
   ```
 
-### cancelAuth<sup>8+</sup>
+### cancelAuth<sup>(deprecated)</sup>
 
 cancelAuth(contextID : Uint8Array) : number
+
+> **NOTE**
+> 
+>This API is supported since API version 8 and deprecated since API version 9. You are advised to use [cancel](#cancel9).
 
 Cancels an authentication.
 
@@ -262,7 +730,7 @@ Cancels an authentication.
 
 | Name   | Type      | Mandatory| Description                                      |
 | --------- | ---------- | ---- | ------------------------------------------ |
-| contextID | Uint8Array | Yes  | Context ID, which is obtained using [auth](#auth8).|
+| contextID | Uint8Array | Yes  | Context ID, which is obtained by using [auth](#authdeprecated).|
 
 **Return value**
 
@@ -286,13 +754,21 @@ Cancels an authentication.
   }
   ```
 
-## IUserAuthCallback<sup>8+</sup>
+## IUserAuthCallback<sup>(deprecated)</sup>
+
+> **NOTE**
+> 
+>This object is supported since API version 8 and deprecated since API version 9. You are advised to use [AuthEvent](#authevent9).
 
 Defines the object of the result returned by the callback during authentication.
 
-### onResult<sup>8+</sup>
+### onResult<sup>(deprecated)</sup>
 
 onResult: (result : number, extraInfo : AuthResult) => void
+
+> **NOTE**
+> 
+>This API is supported since API version 8 and deprecated since API version 9. You are advised to use [callback](#callback9).
 
 Obtains the authentication result.
 
@@ -302,8 +778,8 @@ Obtains the authentication result.
 
 | Name   | Type                      | Mandatory| Description                                                        |
 | --------- | -------------------------- | ---- | ------------------------------------------------------------ |
-| result    | number                     | Yes  | Authentication result obtained. For details, see [ResultCode](#resultcode8).                  |
-| extraInfo | [AuthResult](#authresult8) | Yes  | Extended information, which varies depending on the authentication result.<br>If the authentication is successful, the user authentication token will be returned in **extraInfo**.<br>If the authentication fails, the remaining number of authentication times will be returned in **extraInfo**.<br>If the authentication executor is locked, the freeze time will be returned in **extraInfo**.|
+| result    | number                     | Yes  | Authentication result. For details, see [ResultCode](#resultcodedeprecated).                  |
+| extraInfo | [AuthResult](#authresultdeprecated) | Yes  | Extended information, which varies depending on the authentication result.<br>If the authentication is successful, the user authentication token will be returned in **extraInfo**.<br>If the authentication fails, the remaining number of authentication times will be returned in **extraInfo**.<br>If the authentication executor is locked, the freeze time will be returned in **extraInfo**.|
 
 
 **Example**
@@ -339,9 +815,13 @@ Obtains the authentication result.
   });
   ```
 
-### onAcquireInfo<sup>8+</sup>
+### onAcquireInfo<sup>(deprecated)</sup>
 
 onAcquireInfo ?: (module : number, acquire : number, extraInfo : any) => void
+
+> **NOTE**
+> 
+>This API is supported since API version 8 and deprecated since API version 9. You are advised to use [callback](#callback9).
 
 Obtains the tip code information during authentication. This function is optional.
 
@@ -388,7 +868,11 @@ Obtains the tip code information during authentication. This function is optiona
   });
   ```
 
-## AuthResult<sup>8+</sup>
+## AuthResult<sup>(deprecated)</sup>
+
+> **NOTE**
+> 
+>This object is supported since API version 8 and deprecated since API version 9. You are advised to use [AuthResultInfo](#authresultinfo9).
 
 Represents the authentication result object.
 
@@ -400,7 +884,10 @@ Represents the authentication result object.
 | remainTimes  | number     | No  | Number of remaining authentication operations.|
 | freezingTime | number     | No  | Time for which the authentication operation is frozen.|
 
-## ResultCode<sup>8+</sup>
+## ResultCode<sup>(deprecated)</sup>
+
+> **NOTE**<br>
+> This object is deprecated since API version 9. You are advised to use [ResultCodeV9](#resultcodev99).
 
 Enumerates the operation results.
 
@@ -416,7 +903,6 @@ Enumerates the operation results.
 | TYPE_NOT_SUPPORT        | 5      | The authentication type is not supported.  |
 | TRUST_LEVEL_NOT_SUPPORT | 6      | The authentication trust level is not supported.  |
 | BUSY                    | 7      | Indicates the busy state.          |
-| INVALID_PARAMETERS      | 8      | Invalid parameters are detected.          |
 | LOCKED                  | 9      | The authentication executor is locked.      |
 | NOT_ENROLLED            | 10     | The user has not entered the authentication information.|
 
@@ -487,7 +973,7 @@ Enumerates the trust levels of the authentication result.
 getAuthenticator(): Authenticator
 
 > **NOTE**<br>
-> This API is not longer maintained since API version 8. You are advised to use [constructor](#constructor8).
+> This API is deprecated since API version 8. You are advised to use [constructor](#constructordeprecated).
 
 Obtains an **Authenticator** object for user authentication.
 
@@ -507,7 +993,7 @@ Obtains an **Authenticator** object for user authentication.
 ## Authenticator<sup>(deprecated)</sup>
 
 > **NOTE**<br>
-> This object is not longer maintained since API version 8. You are advised to use [UserAuth](#userauth8).
+> This object is deprecated since API version 8. You are advised to use [UserAuth](#userauth8).
 
 Provides methods to manage an **Authenticator** object.
 
@@ -517,7 +1003,7 @@ Provides methods to manage an **Authenticator** object.
 execute(type: AuthType, level: SecureLevel, callback: AsyncCallback&lt;number&gt;): void
 
 > **NOTE**<br>
-> This API is not longer maintained since API version 8. You are advised to use [auth](#auth8).
+> This API is deprecated since API version 8. You are advised to use [auth](#authdeprecated).
 
 Performs user authentication. This API uses asynchronous callback to return the result.
 
@@ -557,7 +1043,7 @@ Performs user authentication. This API uses asynchronous callback to return the 
 execute(type:AuthType, level:SecureLevel): Promise&lt;number&gt;
 
 > **NOTE**<br>
-> This API is not longer maintained since API version 8. You are advised to use [auth](#auth8).
+> This API is deprecated since API version 8. You are advised to use [auth](#authdeprecated).
 
 Performs user authentication. This API uses a promise to return the result.
 
@@ -592,7 +1078,7 @@ Performs user authentication. This API uses a promise to return the result.
 ## AuthenticationResult<sup>(deprecated)</sup>
 
 > **NOTE**<br>
-> This parameter is not longer maintained since API version 8. You are advised to use [ResultCode](#resultcode8).
+> This object is discarded since API version 8. You are advised to use [ResultCode](#resultcodedeprecated).
 
 Enumerates the authentication results.
 
