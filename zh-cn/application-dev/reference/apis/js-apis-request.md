@@ -514,10 +514,6 @@ off(type: 'headerReceive', callback?: (header: object) =&gt; void): void
   
   ```js
   let uploadTask;
-  uploadTask.off('progress', function callback(uploadedSize, totalSize) {
-      console.info('uploadedSize: ' + uploadedSize, 'totalSize: ' + totalSize);
-  }
-  );
   uploadTask.off('headerReceive', function callback(headers) {
       console.info("upOnHeader headers:" + JSON.stringify(headers));
   }
@@ -551,10 +547,6 @@ off(type: 'headerReceive', callback?: (header: object) =&gt; void): void
   
   ```js
   let uploadTask;
-  uploadTask.off('progress', function callback(uploadedSize, totalSize) {
-      console.info('uploadedSize: ' + uploadedSize, 'totalSize: ' + totalSize);
-  }
-  );
   uploadTask.off('complete', function callback(taskStates) {
     for (let i = 0; i < taskStates.length; i++ ) {
       console.info("upOnComplete taskState:" + JSON.stringify(taskStates[i]));
