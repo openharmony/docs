@@ -1986,8 +1986,8 @@ setWindowSystemBarEnable(names: Array<'status' | 'navigation'>, callback: AsyncC
 **参数：**
 
 | 参数名 | 类型 | 必填 | 说明 |
-| -------- | ------------------------- | -- | --------- |
-| names    | Array                     | 是 | 设置状态栏和导航栏是否显示。<br>例如，需全部显示，该参数设置为['status',&nbsp;'navigation']；不设置，则默认不显示。 |
+| -------- | ---------------------------- | -- | --------- |
+| names    | Array<'status'|'navigation'> | 是 | 设置状态栏和导航栏是否显示。<br>例如，需全部显示，该参数设置为['status',&nbsp;'navigation']；不设置，则默认不显示。 |
 | callback | AsyncCallback&lt;void&gt; | 是 | 回调函数。 |
 
 **错误码：**
@@ -2028,8 +2028,8 @@ setWindowSystemBarEnable(names: Array<'status' | 'navigation'>): Promise&lt;void
 **参数：**
 
 | 参数名 | 类型  | 必填 | 说明 |
-| ----- | ----- | -- | ------------------------------------------------------------------------------------------------------------ |
-| names | Array | 是 | 设置状态栏和导航栏是否显示。<br>例如，需全部显示，该参数设置为['status',&nbsp;'navigation']；不设置，则默认不显示。 |
+| ----- | ---------------------------- | -- | --------------------------------- |
+| names | Array<'status'|'navigation'> | 是 | 设置状态栏和导航栏是否显示。<br>例如，需全部显示，该参数设置为['status',&nbsp;'navigation']；不设置，则默认不显示。 |
 
 **返回值：**
 
@@ -4808,8 +4808,8 @@ setSystemBarEnable(names: Array<'status' | 'navigation'>, callback: AsyncCallbac
 **参数：**
 
 | 参数名   | 类型                      | 必填 | 说明                                                         |
-| -------- | ------------------------- | ---- | ------------------------------------------------------------ |
-| names    | Array                     | 是   | 设置状态栏和导航栏是否显示。<br>例如，需全部显示，该参数设置为['status',&nbsp;'navigation']；不设置，则默认不显示。 |
+| -------- | ---------------------------- | ---- | ------------------------------------------------------------ |
+| names    | Array<'status'|'navigation'> | 是   | 设置状态栏和导航栏是否显示。<br>例如，需全部显示，该参数设置为['status',&nbsp;'navigation']；不设置，则默认不显示。 |
 | callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。                                                   |
 
 **示例：**
@@ -4841,8 +4841,8 @@ setSystemBarEnable(names: Array<'status' | 'navigation'>): Promise&lt;void&gt;
 **参数：**
 
 | 参数名 | 类型  | 必填 | 说明                                                         |
-| ------ | ----- | ---- | ------------------------------------------------------------ |
-| names  | Array | 是   | 设置状态栏和导航栏是否显示。<br>例如，需全部显示，该参数设置为['status',&nbsp;'navigation']；不设置，则默认不显示。 |
+| ------ | ---------------------------- | ---- | ------------------------ |
+| names  | Array<'status'|'navigation'> | 是   | 设置状态栏和导航栏是否显示。<br>例如，需全部显示，该参数设置为['status',&nbsp;'navigation']；不设置，则默认不显示。 |
 
 **返回值：**
 
