@@ -33,7 +33,7 @@ import colorSpaceManager from '@ohos.graphics.colorSpaceManager';
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.ColorManager.Core
 
-| 名称                          | 参数类型 | 可读 | 可写 | 说明                                                         |
+| 名称                          | 类型 | 可读 | 可写 | 说明                                                         |
 | ---------------------------- | -------- | ---- | ---- | ----------------------------------------------------- |
 | redX                         | number   | 是   | 是   | 标准红色在色彩空间的x坐标值。 |
 | redY                         | number   | 是   | 是   | 标准红色在色彩空间的y坐标值。 |
@@ -166,7 +166,7 @@ getColorSpaceName(): ColorSpace
 
 ```js
 try {
-    let csType = colorSpace.getColorSpaceName();
+    colorSpace.getColorSpaceName();
 } catch (err) {
     console.log(`Fail to get colorSpace's name. Cause: ` + JSON.stringify(err));
 }
@@ -198,7 +198,7 @@ getWhitePoint(): Array\<number\>
 
 ```js
 try {
-    let wp = colorSpace.getWhitePoint();
+    colorSpace.getWhitePoint();
 } catch (err) {
     console.log(`Failed to get white point. Cause: ` + JSON.stringify(err));
 }
@@ -230,9 +230,8 @@ getGamma(): number
 
 ```js
 try {
-    let gamma = colorSpace.getGamma();
+    colorSpace.getGamma();
 } catch (err) {
     console.log(`Failed to get gamma. Cause: ` + JSON.stringify(err));
 }
 ```
-

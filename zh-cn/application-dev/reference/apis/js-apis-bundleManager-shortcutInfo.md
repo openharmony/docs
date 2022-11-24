@@ -15,7 +15,7 @@
 | ------------------------- | ------ | ---- | ---- | -------------------- |
 | targetBundle              | string | 是   | 否   | 快捷方式的目标bundleName |
 | targetModule              | string | 是   | 否   | 快捷方式的目标moduleName   |
-| targetAbility               | string | 是   | 否   | 快捷方式所需的目标abilityName |
+| targetAbility             | string | 是   | 否   | 快捷方式所需的目标abilityName |
 
 ## ShortcutInfo
 

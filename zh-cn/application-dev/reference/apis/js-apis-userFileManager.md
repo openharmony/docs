@@ -3,8 +3,8 @@
 该模块提供用户数据管理能力，包括访问、修改用户等用户公共媒体数据信息等常用功能。
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
-> 该模块从API Version 9开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
-> 本模块下的接口均为系统接口
+> 本模块首批接口从API version 9开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+> 本模块接口为系统接口。
 
 ## 导入模块
 
@@ -26,7 +26,7 @@ getUserFileMgr(context: Context): UserFileManager
 
 | 参数名  | 类型    | 必填 | 说明                       |
 | ------- | ------- | ---- | -------------------------- |
-| context | [Context](#../apis/js-apis-Context.md) | 是   | 传入Ability实例的Context。 |
+| context | [Context](js-apis-Context.md) | 是   | 传入Ability实例的Context。 |
 
 **返回值：**
 
@@ -1287,7 +1287,7 @@ getThumbnail(callback: AsyncCallback&lt;image.PixelMap&gt;): void
 
 | 参数名      | 类型                                  | 必填   | 说明               |
 | -------- | ----------------------------------- | ---- | ---------------- |
-| callback | AsyncCallback&lt;[image.PixelMap](#../apis/js-apis-image.md#pixelmap7)&gt; | 是    | 回调返回缩略图的PixelMap |
+| callback | AsyncCallback&lt;[image.PixelMap](js-apis-image.md#pixelmap7)&gt; | 是    | 回调返回缩略图的PixelMap |
 
 **示例：**
 
@@ -1329,7 +1329,7 @@ getThumbnail(size: Size, callback: AsyncCallback&lt;image.PixelMap&gt;): void
 | 参数名      | 类型                                  | 必填   | 说明               |
 | -------- | ----------------------------------- | ---- | ---------------- |
 | size     | Size                      | 是    | 缩略图尺寸            |
-| callback | AsyncCallback&lt;[image.PixelMap](#../apis/js-apis-image.md#pixelmap7)&gt; | 是    | 回调返回缩略图的PixelMap |
+| callback | AsyncCallback&lt;[image.PixelMap](js-apis-image.md#pixelmap7)&gt; | 是    | 回调返回缩略图的PixelMap |
 
 **示例：**
 
@@ -1377,7 +1377,7 @@ getThumbnail(size?: Size): Promise&lt;image.PixelMap&gt;
 
 | 类型                            | 说明                    |
 | ----------------------------- | --------------------- |
-| Promise&lt;[image.PixelMap](#../apis/js-apis-image.md#pixelmap7)&gt; | Promise返回缩略图的PixelMap |
+| Promise&lt;[image.PixelMap](js-apis-image.md#pixelmap7)&gt; | Promise返回缩略图的PixelMap |
 
 **示例：**
 
@@ -2467,7 +2467,7 @@ async function example() {
 | 名称                   | 类型                | 必填 | 说明                                              |
 | ---------------------- | ------------------- | ---- |------------------------------------------------ |
 | fetchColumns           | Array&lt;string&gt; | 是   | 检索条件，指定列名查询，如果该参数为空时默认查询uri、name、fileType。示例：<br />fetchColumns: "uri"|
-| predicates           | [dataSharePredicates.DataSharePredicates](../apis/js-apis-data-dataSharePredicates.md) | 是   | 谓词查询，显示过滤条件 |
+| predicates           | [dataSharePredicates.DataSharePredicates](js-apis-data-dataSharePredicates.md) | 是   | 谓词查询，显示过滤条件 |
 
 ## AlbumFetchOptions
 
@@ -2477,5 +2477,5 @@ async function example() {
 
 | 名称                   | 类型                | 必填 | 说明                                              |
 | ---------------------- | ------------------- | ---- |------------------------------------------------ |
-| predicates           | [dataSharePredicates.DataSharePredicates](../apis/js-apis-data-dataSharePredicates.md) | 是   | 谓词查询，显示过滤条件 |
+| predicates           | [dataSharePredicates.DataSharePredicates](js-apis-data-dataSharePredicates.md) | 是   | 谓词查询，显示过滤条件 |
 

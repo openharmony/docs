@@ -174,7 +174,7 @@ on(type: string, listener: WorkerEventListener): void
 | 参数名   | 类型                                         | 必填 | 说明                   |
 | -------- | -------------------------------------------- | ---- | ---------------------- |
 | type     | string                                       | 是   | 监听的事件类型。       |
-| listener | [WorkerEventListener](#workereventlistener9) | 是是 | 回调的事件。回调事件。 |
+| listener | [WorkerEventListener](#workereventlistener9) | 是 | 回调的事件。回调事件。 |
 
 **示例：**
 
@@ -199,7 +199,7 @@ once(type: string, listener: WorkerEventListener): void
 | 参数名   | 类型                                         | 必填 | 说明                   |
 | -------- | -------------------------------------------- | ---- | ---------------------- |
 | type     | string                                       | 是   | 监听的事件类型。       |
-| listener | [WorkerEventListener](#workereventlistener9) | 是是 | 回调的事件。回调事件。 |
+| listener | [WorkerEventListener](#workereventlistener9) | 是 | 回调的事件。回调事件。 |
 
 **示例：**
 
@@ -224,7 +224,7 @@ off(type: string, listener?: WorkerEventListener): void
 | 参数名   | 类型                                         | 必填 | 说明                         |
 | -------- | -------------------------------------------- | ---- | ---------------------------- |
 | type     | string                                       | 是   | 需要删除的事件类型。         |
-| listener | [WorkerEventListener](#workereventlistener9) | 是否 | 回调的事件。删除的回调事件。 |
+| listener | [WorkerEventListener](#workereventlistener9) | 否 | 回调的事件。删除的回调事件。 |
 
 **示例：**
 
@@ -388,7 +388,7 @@ removeEventListener(type: string, callback?: WorkerEventListener): void
 | 参数名   | 类型                                         | 必填 | 说明                         |
 | -------- | -------------------------------------------- | ---- | ---------------------------- |
 | type     | string                                       | 是   | 需要删除的监听事件类型。     |
-| callback | [WorkerEventListener](#workereventlistener9) | 是否 | 回调的事件。删除的回调事件。 |
+| callback | [WorkerEventListener](#workereventlistener9) | 否 | 回调的事件。删除的回调事件。 |
 
 **示例：**
 
@@ -422,7 +422,7 @@ dispatchEvent(event: Event): boolean
 
 ```js
 const workerInstance = new worker.ThreadWorker("workers/worker.js");
-workerInstance.dispatchEvent({type:"alert"});
+workerInstance.dispatchEvent({type: "alert"});
 ```
 
 
@@ -444,7 +444,7 @@ workerInstance.removeAllListener();
 
 ## ThreadWorkerGlobalScope<sup>9+</sup>
 
-Worker线程用于与宿主线程通信的类，通过postMessage接口发送消息给宿主线程、close接口销毁Worker线程。DedicatedWorkerGlobalScope类继承[GlobalScope<sup>9+</sup>](#globalscope9)。
+Worker线程用于与宿主线程通信的类，通过postMessage接口发送消息给宿主线程、close接口销毁Worker线程。ThreadWorkerGlobalScope类继承[GlobalScope<sup>9+</sup>](#globalscope9)。
 
 
 ### postMessage<sup>9+</sup>
@@ -609,7 +609,7 @@ workerInstance.addEventListener("alert", (e)=>{
 
 ## GlobalScope<sup>9+</sup>
 
-Worker线程自身的运行环境，WorkerGlobalScope类继承[WorkerEventTarget](#workereventtarget9)。
+Worker线程自身的运行环境，GlobalScope类继承[WorkerEventTarget](#workereventtarget9)。
 
 ### 属性
 
@@ -1401,7 +1401,7 @@ parentPort.onerror = function(e){
 ```js
 // main.js
 import worker from '@ohos.worker';
-const workerInstance = new worker.Thread("workers/worker.js");
+const workerInstance = new worker.ThreadWorker("workers/worker.js");
 workerInstance.postMessage("message from main to worker");
 workerInstance.onmessage = function(d) {
   // 当worker线程传递obj2时，data即为obj2。data没有Init、SetName的方法
@@ -1413,12 +1413,9 @@ workerInstance.onmessage = function(d) {
 import worker from '@ohos.worker';
 const parentPort = worker.workerPort;
 class MyModel {
+    name:"undefined"
     Init() {
-        this.name = "wzy"
-        this.age = 18
-    }
-    SetName() {
-        this.name = "WZY"
+        this.name = "MyModel"
     }
 }
 parentPort.onmessage = function(d) {

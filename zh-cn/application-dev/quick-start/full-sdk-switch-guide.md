@@ -95,3 +95,22 @@ full-SDK需要手动下载。请参考[版本说明书](../../release-notes/Open
    c.验证系统API接口
 
    ![image-20220613213038104](figures/zh-cn_image_0000001655129372.png)
+
+## 附录:MacOS安全告警处理
+
+官网下载的full-SDK放到MacOS上的DevEcoStudio中替换后，打开预览器会出现告警
+
+![alarm](figures/alarm.png)
+
+我们可以操作以下步骤来处理此问题：
+
+1.打开Terminal终端应用
+
+2.在终端中输入命令:sudo spctl -- master - disable
+
+3.进入系统偏好设置中的[安全与隐私]面板中，打开"任何来源"选项
+
+![alarmHand](figures/alarmHand.png)
+
+此时第三方源下载安装的软件就都不会被阻止执行了，为了安全起见，使用后建议将这里的"任何来源"的选项进行变更。
+

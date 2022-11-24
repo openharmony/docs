@@ -210,6 +210,7 @@ getFocusElement(callback: AsyncCallback\<AccessibilityElement>): void;
 **示例：**
 
 ```ts
+let focusElement;
 try {
     axContext.getFocusElement((err, data) => {
         if (err) {
@@ -242,6 +243,8 @@ getFocusElement(isAccessibilityFocus: boolean, callback: AsyncCallback\<Accessib
 **示例：**
 
 ```ts
+let focusElement;
+let isAccessibilityFocus = true;
 try {
     axContext.getFocusElement(isAccessibilityFocus, (err, data) => {
     if (err) {
@@ -324,6 +327,7 @@ getWindowRootElement(callback: AsyncCallback\<AccessibilityElement>): void;
 **示例：**
 
 ```ts
+let rootElement;
 try {
     axContext.getWindowRootElement((err, data) => {
     if (err) {
@@ -364,6 +368,8 @@ getWindowRootElement(windowId: number, callback: AsyncCallback\<AccessibilityEle
 **示例：**
 
 ```ts
+let rootElement;
+let windowId = 10;
 try {
     axContext.getWindowRootElement(windowId, (err, data) => {
     if (err) {
@@ -536,10 +542,11 @@ injectGesture(gesturePath: GesturePath): Promise\<void>;
 
 ```ts
 import GesturePath from "@ohos.accessibility.GesturePath";
-let gesturePath = new GesturePath(100);
+import GesturePoint from '@ohos.accessibility.GesturePoint';
+let gesturePath = new GesturePath.GesturePath(100);
 try {
     for (let i = 0; i < 10; i++) {
-        let gesturePoint = new GesturePoint(100, i * 200);
+        let gesturePoint = new GesturePoint.GesturePoint(100, i * 200);
         gesturePath.points.push(gesturePoint);
     }
     axContext.injectGesture(gesturePath).then(() => {
@@ -578,10 +585,11 @@ injectGesture(gesturePath: GesturePath, callback: AsyncCallback\<void>): void
 
 ```ts
 import GesturePath from "@ohos.accessibility.GesturePath";
-let gesturePath = new GesturePath(100);
+import GesturePoint from '@ohos.accessibility.GesturePoint';
+let gesturePath = new GesturePath.GesturePath(100);
 try {
     for (let i = 0; i < 10; i++) {
-        let gesturePoint = new GesturePoint(100, i * 200);
+        let gesturePoint = new GesturePoint.GesturePoint(100, i * 200);
         gesturePath.points.push(gesturePoint);
     }
     axContext.injectGesture(gesturePath, (err, data) => {
@@ -687,10 +695,12 @@ attributeValue\<T extends keyof ElementAttributeValues>(attributeName: T): Promi
 
 ```ts
 let attributeName = 'name';
+let attributeValue;
+let rootElement;
 try {
     rootElement.attributeValue(attributeName).then((data) => {
         console.log('get attribute value by name success');
-        attribtueValue = data;
+        attributeValue = data;
     }).catch((err) => {
         console.log('failed to get attribute value, because '  + JSON.stringify(err));
     });

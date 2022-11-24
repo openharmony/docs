@@ -32,7 +32,7 @@ import AccessibilityExtensionAbility from '@ohos.application.AccessibilityExtens
 
 | 名称        | 类型                                     | 可读   | 可写   | 说明         |
 | --------- | ---------------------------------------- | ---- | ---- | ---------- |
-| eventType | [EventType](js-apis-accessibility.md#EventType) \| [WindowUpdateType](js-apis-accessibility.md#WindowUpdateType) \| [TouchGuideType](#touchguidetype) \| [GestureType](#gesturetype) \| [PageUpdateType](#pageupdatetype) | 是    | 否    | 具体事件类型。    |
+| eventType | [accessibility.EventType](js-apis-accessibility.md#EventType) \| [accessibility.WindowUpdateType](js-apis-accessibility.md#WindowUpdateType) \| [TouchGuideType](#touchguidetype) \| [GestureType](#gesturetype) \| [PageUpdateType](#pageupdatetype) | 是    | 否    | 具体事件类型。    |
 | target    | AccessibilityElement                     | 是    | 否    | 发生事件的目标组件。 |
 | timeStamp | number                                   | 是    | 否    | 事件时间戳。     |
 

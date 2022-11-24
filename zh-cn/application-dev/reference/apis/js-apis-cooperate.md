@@ -4,7 +4,9 @@
 
 > **说明**
 >
-> 本模块首批接口从API version 9开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+>   - 本模块首批接口从API version 9开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+>
+>  - 本模块接口均为系统接口。
 
 ## 导入模块
 
@@ -18,7 +20,7 @@ enable(enable: boolean, callback: AsyncCallback&lt;void&gt;): void
 
 开启、关闭键鼠穿越，使用AsyncCallback异步方式返回结果。
 
-**系统能力**: SystemCapability.MultimodalInput.Input.InputDeviceCooperate
+**系统能力**: SystemCapability.MultimodalInput.Input.Cooperate
 
 **参数**：
 
@@ -52,7 +54,7 @@ enable(enable: boolean): Promise&lt;void&gt;
 开启、关闭键鼠穿越，使用Promise异步方式返回结果。
 
 
-**系统能力**： SystemCapability.MultimodalInput.Input.InputDeviceCooperate
+**系统能力**： SystemCapability.MultimodalInput.Input.Cooperate
 
 **参数**：
 
@@ -90,7 +92,7 @@ start(sinkDeviceDescriptor: string, srcInputDeviceId: number, callback: AsyncCal
 
 启动键鼠穿越，使用AsyncCallback异步方式返回结果。
 
-**系统能力**：SystemCapability.MultimodalInput.Input.InputDeviceCooperate
+**系统能力**：SystemCapability.MultimodalInput.Input.Cooperate
 
 **参数**：
 
@@ -112,6 +114,8 @@ start(sinkDeviceDescriptor: string, srcInputDeviceId: number, callback: AsyncCal
 **示例**：
 
 ```js
+let sinkDeviceDescriptor = "descriptor";
+let srcInputDeviceId = 0;
 try {
   inputDeviceCooperate.start(sinkDeviceDescriptor, srcInputDeviceId, (error) => {
     if (error) {
@@ -131,7 +135,7 @@ start(sinkDeviceDescriptor: string, srcInputDeviceId: number): Promise\<void>
 
 启动键鼠穿越，使用Promise异步方式返回结果。
 
-**系统能力**: SystemCapability.MultimodalInput.Input.InputDeviceCooperate
+**系统能力**: SystemCapability.MultimodalInput.Input.Cooperate
 
 **参数**：
 
@@ -160,6 +164,8 @@ start(sinkDeviceDescriptor: string, srcInputDeviceId: number): Promise\<void>
 **示例**：
 
 ```js
+let sinkDeviceDescriptor = "descriptor";
+let srcInputDeviceId = 0;
 try {
   inputDeviceCooperate.start(sinkDeviceDescriptor, srcInputDeviceId).then(() => {
     console.log(`Start Keyboard mouse crossing success.`);
@@ -177,7 +183,7 @@ stop(callback: AsyncCallback\<void>): void
 
 停止键鼠穿越，使用AsyncCallback异步方式返回结果。
 
-**系统能力**：SystemCapability.MultimodalInput.Input.InputDeviceCooperate
+**系统能力**：SystemCapability.MultimodalInput.Input.Cooperate
 
 **参数**：
 
@@ -209,13 +215,13 @@ stop(): Promise\<void>
 
 停止键鼠穿越，使用Promise异步方式返回结果。
 
-**系统能力**：SystemCapability.MultimodalInput.Input.InputDeviceCooperate
+**系统能力**：SystemCapability.MultimodalInput.Input.Cooperate
 
-**参数**：
+**返回值**：
 
 | 参数名                | 说明                            |
 | --------             | ----------------------------   |
-| Promise\<void>       |  Promise对象，异步返回停止键鼠穿越结果。      | 
+| Promise\<void>       |  Promise对象，异步返回停止键鼠穿越结果。      |
 
 **示例**：
 
@@ -237,7 +243,7 @@ getState(deviceDescriptor: string, callback: AsyncCallback<{ state: boolean }>):
 
 获取键鼠穿越开关的状态，使用AsyncCallback异步方式返回结果。
 
-**系统能力**：SystemCapability.MultimodalInput.Input.InputDeviceCooperate
+**系统能力**：SystemCapability.MultimodalInput.Input.Cooperate
 
 **参数**：
 
@@ -249,6 +255,7 @@ getState(deviceDescriptor: string, callback: AsyncCallback<{ state: boolean }>):
 **示例**：
 
 ```js
+let deviceDescriptor = "descriptor";
 try {
   inputDeviceCooperate.getState(deviceDescriptor, (error, data) => {
     if (error) {
@@ -268,7 +275,7 @@ getState(deviceDescriptor: string): Promise<{ state: boolean }>
 
 获取键鼠穿越开关的状态，使用Promise异步方式返回结果。
 
-**系统能力**：SystemCapability.MultimodalInput.Input.InputDeviceCooperate
+**系统能力**：SystemCapability.MultimodalInput.Input.Cooperate
 
 **参数**：
 
@@ -289,6 +296,7 @@ getState(deviceDescriptor: string): Promise<{ state: boolean }>
 **示例**：
 
 ```js
+let deviceDescriptor = "descriptor";
 try {
   inputDeviceCooperate.getState(deviceDescriptor).then((data) => {
     console.log(`Get the status success, data: ${JSON.stringify(data)}`);
@@ -306,7 +314,7 @@ on(type: 'cooperation', callback: AsyncCallback<{ deviceDescriptor: string, even
 
 注册监听键鼠穿越状态。
 
-**系统能力**：SystemCapability.MultimodalInput.Input.InputDeviceCooperate
+**系统能力**：SystemCapability.MultimodalInput.Input.Cooperate
 
 **参数**：
 
@@ -324,7 +332,7 @@ try {
   inputDeviceCooperate.on('cooperation', (data) => {
     console.log(`Keyboard mouse crossing event: ${JSON.stringify(data)}`);
   });
-} catch (err) {
+} catch (error) {
   console.log(`Register failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
@@ -335,14 +343,14 @@ off(type: 'cooperation', callback?: AsyncCallback\<void>): void
 
 关闭监听键鼠穿越状态。
 
-**系统能力**：SystemCapability.MultimodalInput.Input.InputDeviceCooperate
+**系统能力**：SystemCapability.MultimodalInput.Input.Cooperate
 
 **参数**：
 
 | 参数名                | 类型                                                              | 必填    | 说明                           |
 | --------             | ----------------------------                                     | ----   | ----------------------------   |
 | type                 | string                                                           |  是    | 注册类型，取值“cooperation”。         |
-| callback             | AsyncCallback<void> |  否  | 需要取消注册的回调函数，若无此参数，则取消当前应用注册的所有回调函数。 |
+| callback             | AsyncCallback\<void> |  否  | 需要取消注册的回调函数，若无此参数，则取消当前应用注册的所有回调函数。 |
 
 
 
@@ -350,25 +358,25 @@ off(type: 'cooperation', callback?: AsyncCallback\<void>): void
 
 ```js
 // 取消注册单个回调函数
-callback: function(event) {
+function callback(event) {
   console.log(`Keyboard mouse crossing event: ${JSON.stringify(event)}`);
   return false;
-},
+}
 try {
-  inputDeviceCooperate.on('cooperation', this.callback);
-  inputDeviceCooperate.off("cooperation", this.callback);
+  inputDeviceCooperate.on('cooperation', callback);
+  inputDeviceCooperate.off("cooperation", callback);
 } catch (error) {
   console.log(`Execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 ```js
 // 取消注册所有回调函数
-callback: function(event) {
+function callback(event) {
   console.log(`Keyboard mouse crossing event: ${JSON.stringify(event)}`);
   return false;
-},
+}
 try {
-  inputDeviceCooperate.on('cooperation', this.callback);
+  inputDeviceCooperate.on('cooperation', callback);
   inputDeviceCooperate.off("cooperation");
 } catch (error) {
   console.log(`Execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
@@ -379,9 +387,9 @@ try {
 
 键鼠穿越事件。
 
-**系统能力**：SystemCapability.MultimodalInput.Input.InputDeviceCooperate
+**系统能力**：SystemCapability.MultimodalInput.Input.Cooperate
 
-| 参数名                        | 值        | 说明                              |
+| 名称                       | 值        | 说明                              |
 | --------                     | --------- |  -----------------               |
 | MSG_COOPERATE_INFO_START     | 200       |  键鼠穿越消息，表示键鼠穿越开始。       |
 | MSG_COOPERATE_INFO_SUCCESS   | 201       |  键鼠穿越消息，表示键鼠穿越成功。      |

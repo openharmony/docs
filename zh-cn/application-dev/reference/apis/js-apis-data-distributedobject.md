@@ -131,9 +131,9 @@ setSessionId(sessionId: string, callback: AsyncCallback&lt;void&gt;): void
 
 **错误码：**
 
-  以下错误码的详细介绍参见[分布式数据对象错误码](../errorcodes/errorcode-distributed-data_object.md)。
+  以下错误码的详细介绍参见[分布式数据对象错误码](../errorcodes/errorcode-distributed-dataObject.md)。
 
-  | 类型 | 说明 |
+  | 错误码ID | 错误信息 |
   | -------- | -------- |
   | 15400001 | 创建内存数据库失败。|
 
@@ -189,9 +189,9 @@ setSessionId(callback: AsyncCallback&lt;void&gt;): void
 
 **错误码：**
 
-  以下错误码的详细介绍参见[分布式数据对象错误码](../errorcodes/errorcode-distributed-data_object.md)。
+  以下错误码的详细介绍参见[分布式数据对象错误码](../errorcodes/errorcode-distributed-dataObject.md)。
 
-  | 类型 | 说明 |
+  | 错误码ID | 错误信息 |
   | -------- | -------- |
   | 15400001 | 创建内存数据库失败。|
 
@@ -261,9 +261,9 @@ setSessionId(sessionId?: string): Promise&lt;void&gt;
 
 **错误码：**
 
-  以下错误码的详细介绍参见[分布式数据对象错误码](../errorcodes/errorcode-distributed-data_object.md)。
+  以下错误码的详细介绍参见[分布式数据对象错误码](../errorcodes/errorcode-distributed-dataObject.md)。
 
-  | 类型 | 说明 |
+  | 错误码ID | 错误信息 |
   | -------- | -------- |
   | 15400001 | 创建内存数据库失败。|
 
@@ -681,7 +681,7 @@ revokeSave(callback: AsyncCallback&lt;RevokeSaveSuccessResponse&gt;): void
 
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | callback | AsyncCallback&lt;[RevokeSaveSuccessResponse](#revokesavesuccessresponse9)&gt; | 否 | 回调函数。返回RevokeSaveSuccessResponse，包含sessionId。 |
+  | callback | AsyncCallback&lt;[RevokeSaveSuccessResponse](#revokesavesuccessresponse9)&gt; | 是 | 回调函数。返回RevokeSaveSuccessResponse，包含sessionId。 |
 
 **示例：**
 

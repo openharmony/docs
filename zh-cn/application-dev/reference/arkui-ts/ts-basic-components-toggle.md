@@ -116,4 +116,4 @@ struct ToggleExample {
 }
 ```
 
-![zh-cn_image_0000001174104402](figures/zh-cn_image_0000001174104402.gif)
+![toggle](figures/toggle.gif)

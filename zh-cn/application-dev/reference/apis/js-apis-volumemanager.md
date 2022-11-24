@@ -5,7 +5,6 @@
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
 >
 > - 本模块首批接口从API version 9开始支持。
-> - API 9当前为Canary版本，仅供试用，不保证接口可稳定调用。
 > - 本模块接口为系统接口，三方应用不支持调用。
 
 ## 导入模块
@@ -52,7 +51,7 @@ getAllVolumes(callback: AsyncCallback&lt;Array&lt;Volume&gt;&gt;): void
 
   | 参数名   | 类型                                              | 必填 | 说明                                 |
   | -------- | ------------------------------------------------- | ---- | ------------------------------------ |
-  | callback | callback: AsyncCallback&lt;[Volume](#volume)[]&gt; | 是   | 获取当前所有可获得的卷信息之后的回调 |
+  | callback | AsyncCallback&lt;[Volume](#volume)[]&gt; | 是   | 获取当前所有可获得的卷信息之后的回调 |
 
 **示例：**
 
@@ -110,7 +109,7 @@ mount(volumeId: string, callback:AsyncCallback&lt;boolean&gt;):void
   | 参数名   | 类型                                  | 必填 | 说明                 |
   | -------- | ------------------------------------- | ---- | -------------------- |
   | volumeId | string                                | 是   | 卷id                 |
-  | callback | callback: AsyncCallback&lt;boolean&gt; | 是   | 挂载指定卷之后的回调 |
+  | callback | AsyncCallback&lt;boolean&gt; | 是   | 挂载指定卷之后的回调 |
 
 **示例：**
 
@@ -167,7 +166,7 @@ unmount(volumeId: string, callback: AsyncCallback&lt;boolean&gt;): void
   | 参数名   | 类型                                  | 必填 | 说明                 |
   | -------- | ------------------------------------- | ---- | -------------------- |
   | volumeId | string                                | 是   | 卷id                 |
-  | callback | callback: AsyncCallback&lt;boolean&gt; | 是   | 卸载指定卷之后的回调 |
+  | callback | AsyncCallback&lt;boolean&gt; | 是   | 卸载指定卷之后的回调 |
 
 **示例：**
 
@@ -226,7 +225,7 @@ getVolumeByUuid(uuid: string, callback: AsyncCallback&lt;Volume&gt;): void
   | 参数名    | 类型                                                 | 必填 | 说明                 |
   | -------- | ------------------------------------------------ | ---- | -------------------- |
   | uuid | string                                                 | 是   | 卷uuid                 |
-  | callback | callback: AsyncCallback&lt;[Volume](#volume)&gt;  | 是   | 获取卷信息之后的回调 |
+  | callback | AsyncCallback&lt;[Volume](#volume)&gt;  | 是   | 获取卷信息之后的回调 |
 
 **示例：**
 
@@ -285,7 +284,7 @@ getVolumeById(volumeId: string, callback: AsyncCallback&lt;Volume&gt;): void
   | 参数名   | 类型                      | 必填 | 说明                          |
   | -------- | ------------------------- | ---- | ----------------------------- |
   | volumeId | string                    | 是   | 卷id                |
-  | callback | callback:AsyncCallback&lt;[Volume](#volume)&gt; | 是   | 获取卷信息之后的回调  |
+  | callback | AsyncCallback&lt;[Volume](#volume)&gt; | 是   | 获取卷信息之后的回调  |
 
 **示例：**
 
@@ -347,7 +346,7 @@ setVolumeDescription(uuid: string, description: string, callback: AsyncCallback&
   | ---------- | --------------------------------------- | ---- | ---------------- |
   | uuid       | string                                  | 是   | 卷uuid            |
   | description | string                                 | 是   | 卷描述            |
-  | callback   | callback: AsyncCallback&lt;void&gt;   | 是   | 设置卷描述之后的回调 |
+  | callback   | AsyncCallback&lt;void&gt;   | 是   | 设置卷描述之后的回调 |
 
 **示例：**
 
@@ -410,7 +409,7 @@ format(volumeId: string, fsType: string, callback: AsyncCallback&lt;void&gt;): v
   | -------- | ------------------------- | ---- | ----------------------------- |
   | volumeId | string                    | 是   | 卷id                |
   | fsType    | string | 是   | 文件系统类型 |
-  | callback | callback: AsyncCallback&lt;void&gt;  | 是   | 对指定卷格式化后的回调  |
+  | callback | AsyncCallback&lt;void&gt;  | 是   | 对指定卷格式化后的回调  |
 
 **示例：**
 
@@ -473,7 +472,7 @@ partition(diskId: string, type: number, callback: AsyncCallback&lt;void&gt;): vo
   | -------- | --------------------------------------- | ---- | ---------------- |
   | diskId   | string                                  | 是   | 卷所属的磁盘id      |
   | type     | number                                  | 是   | 分区类型           |
-  | callback | callback: AsyncCallback&lt;void&gt;   | 是   | 对磁盘进行分区      |
+  | callback | AsyncCallback&lt;void&gt;   | 是   | 对磁盘进行分区      |
 
 **示例：**
 
@@ -491,12 +490,12 @@ partition(diskId: string, type: number, callback: AsyncCallback&lt;void&gt;): vo
 
 ### 属性
 
-| 名称         | 类型    | 说明                 |
-| ----------- | ------- | -------------------- |
-| id          | string  | 卷id                 |
-| uuid        | string  | 卷uuid               |
-| diskId      | string  | 卷所属的磁盘id        |
-| description | string  | 卷相关描述           |
-| removable   | boolean | 是否为可移动存储设备 |
-| state       | number  | 当前卷状态           |
-| path        | string  | 卷的挂载地址         |
+| 名称         | 类型    | 可读   | 可写   | 说明                 |
+| ----------- | ------- | ------- | ----- | -------------------- |
+| id          | string  | 是 | 否 | 卷id                 |
+| uuid        | string  | 是 | 否 | 卷uuid               |
+| diskId      | string  | 是 | 否 | 卷所属的磁盘id        |
+| description | string  | 是 | 否 | 卷相关描述           |
+| removable   | boolean | 是 | 否 | 是否为可移动存储设备 |
+| state       | number  | 是 | 否 | 当前卷状态           |
+| path        | string  | 是 | 否 | 卷的挂载地址         |

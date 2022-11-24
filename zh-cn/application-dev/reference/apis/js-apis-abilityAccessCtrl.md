@@ -379,7 +379,7 @@ let permissionFlag = 1;
 try {
     atManager.getPermissionFlags(tokenID, "ohos.permission.GRANT_SENSITIVE_PERMISSIONS").then((data) => {
         console.log(`getPermissionFlags success, data->${JSON.stringify(data)}`);
-    }).catch((err) = > {
+    }).catch((err) => {
         console.log(`getPermissionFlags fail, err->${JSON.stringify(err)}`);
     });
 } catch(err) {

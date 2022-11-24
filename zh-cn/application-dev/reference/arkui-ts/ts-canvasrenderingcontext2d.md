@@ -1745,7 +1745,7 @@ rotate(angle: number): void
           .height('100%')
           .backgroundColor('#ffff00')
           .onReady(() =>{
-            this.context.rotate(45 * Math.PI / 180) // Rotate the rectangle 45 degrees
+            this.context.rotate(45 * Math.PI / 180)
             this.context.fillRect(70, 20, 50, 50)
           })
       }

@@ -76,84 +76,66 @@
 
 
 ## 示例
-
+1. 
 ```html
 <!-- xxx.hml -->
 <div class="container">
-  <div class="content">
-    <text class="title">
-      Hello {{ title }}
-    </text>
-  </div>
+    <text class="title">default text</text>
+    <text class="title textcolor">hello world with color</text>
+    <text class="title textsize">hello world with font-size</text>
+    <text class="title textletterspacing">hello world with letter-spacing</text>
+    <text class="title textwordspacing">hello world with word-spacing</text>
+    <text class="title textstyle">hello world with italic</text>
+    <text class="title textweight">hello world with font-weight</text>
+    <text class="title textdecoration1">hello world with underline</text>
+    <text class="title textdecoration2">hello world with line-through</text>
+    <text class="title textalign">hello world with text-align:right</text>
 </div>
 ```
 
 ```css
 /* xxx.css */
 .container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.content{
-  width: 400px;
-  height: 400px;
-  border: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
 }
 .title {
-  font-size: 80px;
-  text-align: center;
-  width: 400px;
-  height: 400px;
+    text-align: center;
+    width: 800px;
+    height: 60px;
+}
+.textcolor {
+    color: indianred;
+}
+.textsize {
+    font-size: 40px;
+}
+.textletterspacing {
+    letter-spacing: -3px;
+}
+.textwordspacing {
+    word-spacing: 20px;
+}
+.textstyle {
+    font-style: italic;
+}
+.textweight {
+    font-weight: 700;
+}
+.textdecoration1 {
+    text-decoration: underline;
+}
+.textdecoration2 {
+    text-decoration: line-through;
+    text-decoration-color: red;
+}
+.textalign {
+    text-align: right;
 }
 ```
 
-```js
-// xxx.js
-export default {
-  data: {
-    title: 'World'
-  }
-}
-```
 
-![zh-cn_image_0000001167823076](figures/zh-cn_image_0000001167823076.png)
+![zh-cn_image_0000001167823076](figures/text.png)
 
-```html
-<!-- xxx.hml -->
-<div class="container">
-  <text class="text1">
-    This is a passage
-  </text>
-  <text class="text2">
-    This is a passage
-  </text>
-</div>
-```
-
-```css
-/* xxx.css */
-.container {
-  flex-direction: column;
-  align-items: center;
-  background-color: #F1F3F5;
-  justify-content: center;
-}
-.text1{
-  word-spacing: 10px;
-  adapt-height: true;
-}
-.text2{
-  width: 200px;
-  max-lines: 1;
-  text-overflow: ellipsis;
-  text-valign: middle;
-  line-height: 40px;
-  text-decoration: underline;
-  text-decoration-color: red;
-  text-indent: 20px;
-  white-space: pre;
-}
-```
-
-![zh-cn_image_0000001213103299](figures/zh-cn_image_0000001213103299.png)

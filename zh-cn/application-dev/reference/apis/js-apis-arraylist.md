@@ -26,7 +26,7 @@ import ArrayList from '@ohos.util.ArrayList';
 
 **系统能力：** SystemCapability.Utils.Lang
 
-| 名称 | 参数类型 | 可读 | 可写 | 说明 |
+| 名称 | 类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
 | length | number | 是 | 否 | ArrayList的元素个数。 |
 
@@ -43,7 +43,7 @@ ArrayList的构造函数。
 
 以下错误码的详细介绍请参见[containers错误码](../errorcodes/errorcode-containers.md)。
 
-| 错误码ID | 错误码信息 |
+| 错误码ID | 错误信息 |
 | -------- | -------- |
 | 10200012 | The ArrayList's constructor cannot be directly invoked. |
 
@@ -83,7 +83,7 @@ add(element: T): boolean
 
 以下错误码的详细介绍请参见[containers错误码](../errorcodes/errorcode-containers.md)。
 
-| 错误码ID | 错误码信息 |
+| 错误码ID | 错误信息 |
 | -------- | -------- |
 | 10200011 | The add method cannot be bound. |
 
@@ -99,7 +99,7 @@ add(element: T): boolean
   let result3 = arrayList.add(c);
   let result4 = arrayList.add(false);
   try {
-    arraylist.add.bind({}, "b")(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
+    arrayList.add.bind({}, "b")(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
   } catch(err) {
     console.log(`${err.code} - ${err.name} - ${err.message}`);
   }
@@ -124,7 +124,7 @@ insert(element: T, index: number): void
 
 以下错误码的详细介绍请参见[containers错误码](../errorcodes/errorcode-containers.md)。
 
-| 错误码ID | 错误码信息 |
+| 错误码ID | 错误信息 |
 | -------- | -------- |
 | 10200011 | The insert method cannot be bound. |
 | 10200001 | The value of parameters are out of range. |
@@ -137,7 +137,7 @@ arrayList.insert("A", 0);
 arrayList.insert(0, 1);
 arrayList.insert(true, 2);
 try {
-  arraylist.insert.bind({}, 1, 2)(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
+  arrayList.insert.bind({}, 1, 2)(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
 } catch(err) {
   console.log(`${err.code} - ${err.name} - ${err.message}`);
 }
@@ -177,7 +177,7 @@ has(element: T): boolean
 
 以下错误码的详细介绍请参见[containers错误码](../errorcodes/errorcode-containers.md)。
 
-| 错误码ID | 错误码信息 |
+| 错误码ID | 错误信息 |
 | -------- | -------- |
 | 10200011 | The has method cannot be bound. |
 
@@ -189,7 +189,7 @@ let result = arrayList.has("squirrel");
 arrayList.add("squirrel");
 let result1 = arrayList.has("squirrel");
 try {
-  arraylist.has.bind({}, "squirrel")(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
+  arrayList.has.bind({}, "squirrel")(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
 } catch(err) {
   console.log(`${err.code} - ${err.name} - ${err.message}`);
 }
@@ -219,7 +219,7 @@ getIndexOf(element: T): number
 
 以下错误码的详细介绍请参见[containers错误码](../errorcodes/errorcode-containers.md)。
 
-| 错误码ID | 错误码信息 |
+| 错误码ID | 错误信息 |
 | -------- | -------- |
 | 10200011 | The getIndexOf method cannot be bound. |
 
@@ -236,7 +236,7 @@ arrayList.add(2);
 arrayList.add(4);
 let result = arrayList.getIndexOf(2);
 try {
-  arraylist.getIndexOf.bind({}, 2)(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
+  arrayList.getIndexOf.bind({}, 2)(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
 } catch(err) {
   console.log(`${err.code} - ${err.name} - ${err.message}`);
 }
@@ -266,7 +266,7 @@ getLastIndexOf(element: T): number
 
 以下错误码的详细介绍请参见[containers错误码](../errorcodes/errorcode-containers.md)。
 
-| 错误码ID | 错误码信息 |
+| 错误码ID | 错误信息 |
 | -------- | -------- |
 | 10200011 | The getLastIndexOf method cannot be bound. |
 
@@ -283,7 +283,7 @@ arrayList.add(2);
 arrayList.add(4);
 let result = arrayList.getLastIndexOf(2);
 try {
-  arraylist.getLastIndexOf.bind({}, 2)(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
+  arrayList.getLastIndexOf.bind({}, 2)(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
 } catch(err) {
   console.log(`${err.code} - ${err.name} - ${err.message}`);
 }
@@ -313,7 +313,7 @@ removeByIndex(index: number): T
 
 以下错误码的详细介绍请参见[containers错误码](../errorcodes/errorcode-containers.md)。
 
-| 错误码ID | 错误码信息 |
+| 错误码ID | 错误信息 |
 | -------- | -------- |
 | 10200011 | The removeByIndex method cannot be bound. |
 | 10200001 | The value of parameters are out of range. |
@@ -329,17 +329,17 @@ arrayList.add(2);
 arrayList.add(4);
 let result = arrayList.removeByIndex(2);
 try {
-  arraylist.removeByIndex.bind({}, 2)(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
+  arrayList.removeByIndex.bind({}, 2)(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
 } catch(err) {
   console.log(`${err.code} - ${err.name} - ${err.message}`);
 }
 try {
-  arraylist.removeByIndex("a"); // 测试类型异常
+  arrayList.removeByIndex("a"); // 测试类型异常
 } catch(err) {
   console.log(`${err.code} - ${err.name} - ${err.message}`);
 }
 try {
-  arraylist.removeByIndex(8); // 测试越界异常
+  arrayList.removeByIndex(8); // 测试越界异常
 } catch(err) {
   console.log(`${err.code} - ${err.name} - ${err.message}`);
 }
@@ -369,7 +369,7 @@ remove(element: T): boolean
 
 以下错误码的详细介绍请参见[containers错误码](../errorcodes/errorcode-containers.md)。
 
-| 错误码ID | 错误码信息 |
+| 错误码ID | 错误信息 |
 | -------- | -------- |
 | 10200011 | The remove method cannot be bound. |
 
@@ -383,7 +383,7 @@ arrayList.add(5);
 arrayList.add(4);
 let result = arrayList.remove(2);
 try {
-  arraylist.remove.bind({}, 2)(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
+  arrayList.remove.bind({}, 2)(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
 } catch(err) {
   console.log(`${err.code} - ${err.name} - ${err.message}`);
 }
@@ -408,7 +408,7 @@ removeByRange(fromIndex: number, toIndex: number): void
 
 以下错误码的详细介绍请参见[containers错误码](../errorcodes/errorcode-containers.md)。
 
-| 错误码ID | 错误码信息 |
+| 错误码ID | 错误信息 |
 | -------- | -------- |
 | 10200011 | The removeByRange method cannot be bound. |
 | 10200001 | The value of parameters are out of range. |
@@ -423,12 +423,12 @@ arrayList.add(5);
 arrayList.add(4);
 arrayList.removeByRange(2, 4);
 try {
-  arraylist.removeByRange.bind({}, 2, 4)(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
+  arrayList.removeByRange.bind({}, 2, 4)(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
 } catch(err) {
   console.log(`${err.code} - ${err.name} - ${err.message}`);
 }
 try {
-  arraylist.removeByRange(8, 4); // 测试越界异常
+  arrayList.removeByRange(8, 4); // 测试越界异常
 } catch(err) {
   console.log(`${err.code} - ${err.name} - ${err.message}`);
 }
@@ -462,7 +462,7 @@ callbackfn的参数说明：
 
 以下错误码的详细介绍请参见[containers错误码](../errorcodes/errorcode-containers.md)。
 
-| 错误码ID | 错误码信息 |
+| 错误码ID | 错误信息 |
 | -------- | -------- |
 | 10200011 | The replaceAllElements method cannot be bound. |
 
@@ -481,7 +481,7 @@ arrayList.replaceAllElements((value: number, index: number) => {
   return value = value - 2;
 });
 try {
-  arraylist.replaceAllElements.bind({}, (value: number, index: number)=> {
+  arrayList.replaceAllElements.bind({}, (value: number, index: number)=> {
     return value = 2 * value;
   })(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
 } catch(err) {
@@ -517,7 +517,7 @@ callbackfn的参数说明：
 
 以下错误码的详细介绍请参见[containers错误码](../errorcodes/errorcode-containers.md)。
 
-| 错误码ID | 错误码信息 |
+| 错误码ID | 错误信息 |
 | -------- | -------- |
 | 10200011 | The forEach method cannot be bound. |
 
@@ -533,7 +533,7 @@ arrayList.forEach((value, index) => {
   console.log(`value:${value}`, index);
 });
 try {
-  arraylist.forEach.bind({}, (value, index) => {
+  arrayList.forEach.bind({}, (value, index) => {
     console.log(`value:${value}`, index);
   })(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
 } catch(err) {
@@ -566,7 +566,7 @@ comparator的参数说明：
 
 以下错误码的详细介绍请参见[containers错误码](../errorcodes/errorcode-containers.md)。
 
-| 错误码ID | 错误码信息 |
+| 错误码ID | 错误信息 |
 | -------- | -------- |
 | 10200011 | The sort method cannot be bound. |
 
@@ -582,7 +582,7 @@ arrayList.sort((a: number, b: number) => a - b);
 arrayList.sort((a: number, b: number) => b - a);
 arrayList.sort();
 try {
-  arraylist.sort.bind({})(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
+  arrayList.sort.bind({})(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
 } catch(err) {
   console.log(`${err.code} - ${err.name} - ${err.message}`);
 }
@@ -613,7 +613,7 @@ subArrayList(fromIndex: number, toIndex: number): ArrayList&lt;T&gt;
 
 以下错误码的详细介绍请参见[containers错误码](../errorcodes/errorcode-containers.md)。
 
-| 错误码ID | 错误码信息 |
+| 错误码ID | 错误信息 |
 | -------- | -------- |
 | 10200011 | The subArrayList method cannot be bound. |
 | 10200001 | The value of parameters are out of range. |
@@ -630,12 +630,12 @@ let result1 = arrayList.subArrayList(2, 4);
 let result2 = arrayList.subArrayList(4, 3);
 let result3 = arrayList.subArrayList(2, 6);
 try {
-  arraylist.subArrayList.bind({}, 2, 4)(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
+  arrayList.subArrayList.bind({}, 2, 4)(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
 } catch(err) {
   console.log(`${err.code} - ${err.name} - ${err.message}`);
 }
 try {
-  arraylist.subArrayList(6, 4);
+  arrayList.subArrayList(6, 4);
 } catch(err) {
   console.log(`${err.code} - ${err.name} - ${err.message}`);
 }
@@ -653,7 +653,7 @@ clear(): void
 
 以下错误码的详细介绍请参见[containers错误码](../errorcodes/errorcode-containers.md)。
 
-| 错误码ID | 错误码信息 |
+| 错误码ID | 错误信息 |
 | -------- | -------- |
 | 10200011 | The clear method cannot be bound. |
 
@@ -667,7 +667,7 @@ arrayList.add(5);
 arrayList.add(4);
 arrayList.clear();
 try {
-  arraylist.clear.bind({})(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
+  arrayList.clear.bind({})(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
 } catch(err) {
   console.log(`${err.code} - ${err.name} - ${err.message}`);
 }
@@ -692,7 +692,7 @@ clone(): ArrayList&lt;T&gt;
 
 以下错误码的详细介绍请参见[containers错误码](../errorcodes/errorcode-containers.md)。
 
-| 错误码ID | 错误码信息 |
+| 错误码ID | 错误信息 |
 | -------- | -------- |
 | 10200011 | The clone method cannot be bound. |
 
@@ -706,7 +706,7 @@ arrayList.add(5);
 arrayList.add(4);
 let result = arrayList.clone();
 try {
-  arraylist.clone.bind({})(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
+  arrayList.clone.bind({})(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
 } catch(err) {
   console.log(`${err.code} - ${err.name} - ${err.message}`);
 }
@@ -730,7 +730,7 @@ getCapacity(): number
 
 以下错误码的详细介绍请参见[containers错误码](../errorcodes/errorcode-containers.md)。
 
-| 错误码ID | 错误码信息 |
+| 错误码ID | 错误信息 |
 | -------- | -------- |
 | 10200011 | The getCapacity method cannot be bound. |
 
@@ -744,7 +744,7 @@ arrayList.add(5);
 arrayList.add(4);
 let result = arrayList.getCapacity();
 try {
-  arraylist.getCapacity.bind({})(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
+  arrayList.getCapacity.bind({})(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
 } catch(err) {
   console.log(`${err.code} - ${err.name} - ${err.message}`);
 }
@@ -768,7 +768,7 @@ convertToArray(): Array&lt;T&gt;
 
 以下错误码的详细介绍请参见[containers错误码](../errorcodes/errorcode-containers.md)。
 
-| 错误码ID | 错误码信息 |
+| 错误码ID | 错误信息 |
 | -------- | -------- |
 | 10200011 | The convertToArray method cannot be bound. |
 
@@ -782,7 +782,7 @@ arrayList.add(5);
 arrayList.add(4);
 let result = arrayList.convertToArray();
 try {
-  arraylist.convertToArray.bind({})(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
+  arrayList.convertToArray.bind({})(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
 } catch(err) {
   console.log(`${err.code} - ${err.name} - ${err.message}`);
 }
@@ -806,7 +806,7 @@ isEmpty(): boolean
 
 以下错误码的详细介绍请参见[containers错误码](../errorcodes/errorcode-containers.md)。
 
-| 错误码ID | 错误码信息 |
+| 错误码ID | 错误信息 |
 | -------- | -------- |
 | 10200011 | The isEmpty method cannot be bound. |
 
@@ -820,7 +820,7 @@ arrayList.add(5);
 arrayList.add(4);
 let result = arrayList.isEmpty();
 try {
-  arraylist.isEmpty.bind({})(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
+  arrayList.isEmpty.bind({})(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
 } catch(err) {
   console.log(`${err.code} - ${err.name} - ${err.message}`);
 }
@@ -844,7 +844,7 @@ increaseCapacityTo(newCapacity: number): void
 
 以下错误码的详细介绍请参见[containers错误码](../errorcodes/errorcode-containers.md)。
 
-| 错误码ID | 错误码信息 |
+| 错误码ID | 错误信息 |
 | -------- | -------- |
 | 10200011 | The increaseCapacityTo method cannot be bound. |
 
@@ -859,7 +859,7 @@ arrayList.add(4);
 arrayList.increaseCapacityTo(2);
 arrayList.increaseCapacityTo(8);
 try {
-  arraylist.increaseCapacityTo.bind({}, 5)(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
+  arrayList.increaseCapacityTo.bind({}, 5)(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
 } catch(err) {
   console.log(`${err.code} - ${err.name} - ${err.message}`);
 }
@@ -877,7 +877,7 @@ trimToCurrentLength(): void
 
 以下错误码的详细介绍请参见[containers错误码](../errorcodes/errorcode-containers.md)。
 
-| 错误码ID | 错误码信息 |
+| 错误码ID | 错误信息 |
 | -------- | -------- |
 | 10200011 | The trimToCurrentLength method cannot be bound. |
 
@@ -891,7 +891,7 @@ arrayList.add(5);
 arrayList.add(4);
 arrayList.trimToCurrentLength();
 try {
-  arraylist.trimToCurrentLength.bind({})(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
+  arrayList.trimToCurrentLength.bind({})(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
 } catch(err) {
   console.log(`${err.code} - ${err.name} - ${err.message}`);
 }
@@ -915,7 +915,7 @@ try {
 
 以下错误码的详细介绍请参见[containers错误码](../errorcodes/errorcode-containers.md)。
 
-| 错误码ID | 错误码信息 |
+| 错误码ID | 错误信息 |
 | -------- | -------- |
 | 10200011 | The Symbol.iterator method cannot be bound. |
 
@@ -941,7 +941,7 @@ while(temp != undefined) {
   temp = iter.next().value;
 }
 try {
-  arraylist[Symbol.iterator].bind({})(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
+  arrayList[Symbol.iterator].bind({})(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
 } catch(err) {
   console.log(`${err.code} - ${err.name} - ${err.message}`);
 }

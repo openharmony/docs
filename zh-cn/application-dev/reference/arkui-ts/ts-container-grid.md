@@ -66,7 +66,7 @@ Grid只展示固定行列数的元素，其余元素不展示，且Grid不可滚
 ## GridDirection<sup>8+</sup>枚举说明
 
 | 名称   | 描述                                   |
-  | ------ | -------------------------------------- |
+| ------ | -------------------------------------- |
 | Row  | 主轴布局方向沿水平方向布局，即自左往右先填满一行，再去填下一行。 |
 | Column | 主轴布局方向沿垂直方向布局，即自上往下先填满一列，再去填下一列。 |
 | RowReverse    | 主轴布局方向沿水平方向反向布局，即自右往左先填满一行，再去填下一行。 |
@@ -100,6 +100,7 @@ Grid只展示固定行列数的元素，其余元素不展示，且Grid不可滚
 @Component
 struct GridExample {
   @State Number: String[] = ['0', '1', '2', '3', '4']
+  scroller: Scroller = new Scroller()
 
   build() {
     Column({ space: 5 }) {
@@ -126,7 +127,7 @@ struct GridExample {
       .height(300)
 
       Text('scroll').fontColor(0xCCCCCC).fontSize(9).width('90%')
-      Grid() {
+      Grid(this.scroller) {
         ForEach(this.Number, (day: string) => {
           ForEach(this.Number, (day: string) => {
             GridItem() {
@@ -149,6 +150,10 @@ struct GridExample {
       .width('90%')
       .backgroundColor(0xFAEEE0)
       .height(300)
+      Button('next page')
+        .onClick(() => { // 点击后滑到下一页
+          this.scroller.scrollPage({ next: true })
+        })
     }.width('100%').margin({ top: 5 })
   }
 }

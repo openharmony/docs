@@ -125,6 +125,8 @@
 - Security
   - [@ohos.abilityAccessCtrl](js-apis-abilityAccessCtrl.md)
   - [@ohos.privacyManager](js-apis-privacyManager.md)
+  - [@ohos.security.cert](js-apis-cert.md)
+  - [@ohos.security.cryptoFramework]js-apis-cryptoFramework.md)
   - [@ohos.security.huks ](js-apis-huks.md)
   - [@ohos.userIAM.faceAuth](js-apis-useriam-faceauth.md)
   - [@ohos.userIAM.userAuth ](js-apis-useriam-userauth.md)
@@ -146,6 +148,8 @@
 
   - [@ohos.document](js-apis-document.md)
   - [@ohos.environment](js-apis-environment.md)
+  - [@ohos.data.fileAccess](js-apis-fileAccess.md)
+  - [@ohos.fileExtensionInfo](js-apis-fileExtensionInfo.md)
   - [@ohos.fileio](js-apis-fileio.md)
   - [@ohos.filemanagement.userfile_manager](js-apis-userfilemanager.md)
   - [@ohos.multimedia.medialibrary](js-apis-medialibrary.md)

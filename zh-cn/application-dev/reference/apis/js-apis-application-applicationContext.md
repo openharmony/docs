@@ -39,13 +39,13 @@ registerAbilityLifecycleCallback(callback: AbilityLifecycleCallback): **number**
 **示例：**
 
   ```js
-import AbilityStage from "@ohos.application.AbilityStage";
+import Ability from "@ohos.application.Ability";
 
 var lifecycleId;
 
-export default class MyAbilityStage extends AbilityStage {
+export default class MyAbility extends Ability {
     onCreate() {
-        console.log("MyAbilityStage onCreate")
+        console.log("MyAbility onCreate")
         let AbilityLifecycleCallback  =  {
             onAbilityCreate(ability){
                 console.log("AbilityLifecycleCallback onAbilityCreate ability:" + JSON.stringify(ability));        
@@ -84,7 +84,7 @@ export default class MyAbilityStage extends AbilityStage {
         // 2.通过applicationContext注册监听应用内生命周期
         lifecycleId = applicationContext.registerAbilityLifecycleCallback(AbilityLifecycleCallback);
         console.log("registerAbilityLifecycleCallback number: " + JSON.stringify(lifecycleId));
-    }
+    },
     onDestroy() {
         let applicationContext = this.context.getApplicationContext();
         applicationContext.unregisterAbilityLifecycleCallback(lifecycleId, (error, data) => {
@@ -144,13 +144,13 @@ registerEnvironmentCallback(callback: EnvironmentCallback): **number**;
 **示例：**
 
   ```js
-import AbilityStage from "@ohos.application.AbilityStage";
+import Ability from "@ohos.application.Ability";
 
 var callbackId;
 
-export default class MyAbilityStage extends AbilityStage {
+export default class MyAbility extends Ability {
     onCreate() {
-        console.log("MyAbilityStage onCreate")
+        console.log("MyAbility onCreate")
         globalThis.applicationContext = this.context.getApplicationContext();
         let EnvironmentCallback = {
             onConfigurationUpdated(config){

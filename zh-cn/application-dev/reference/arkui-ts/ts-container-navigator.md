@@ -78,7 +78,7 @@ import router from '@ohos.router'
 @Component
 struct DetailExample {
   // 接收Navigator.ets的传参
-  @State text: any = router.getParams().text
+  @State text: any = router.getParams()['text']
 
   build() {
     Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Start, justifyContent: FlexAlign.SpaceBetween }) {

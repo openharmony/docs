@@ -11,7 +11,7 @@
 
 | **名称**               | **参数类型** | **描述**                                   |
 | -------------------- | -------- | ---------------------------------------- |
-| focusable            | boolean  | 设置当前组件是否可以获焦。<br/>**说明：**<br/>存在默认交互逻辑的组件例如Button、TextInput等，默认即为可获焦，Text、Image等组件则默认状态为不可获焦。             |
+| focusable            | boolean  | 设置当前组件是否可以获焦。<br/>**说明：**<br/>存在默认交互逻辑的组件例如Button、TextInput等，默认即为可获焦，Text、Image等组件则默认状态为不可获焦。不可获焦状态下，无法触发[焦点事件](ts-universal-focus-event.md)。 |
 | tabIndex<sup>9+<sup> | number   | 自定义组件tab键走焦能力，走焦顺序为：tabIndex大于0的组件依次递增走焦, tabIndex等于0的组件按组件树先后顺序走焦。<br />- tabIndex >= 0：表示元素是可聚焦的，并且可以通过tab键走焦来访问到该元素，tabIndex值越小，则优先获焦；反之，则后获焦。如果多个元素拥有相同的tabIndex，按照元素在当前组件树中的先后顺序获焦<br />- tabIndex < 0（通常是tabIndex = -1）：表示元素是可聚焦的，但是不能通过tab键走焦来访问到该元素。<br/>默认值：0 |
 | defaultFocus<sup>9+<sup> | boolean  | 设置当前组件是否为当前页面上的默认焦点，仅在初次创建的页面第一次进入时生效。<br/>默认值：false |
 | groupDefaultFocus<sup>9+<sup> | boolean  | 设置当前组件是否为当前组件所在容器获焦时的默认焦点，仅在初次创建容器节点第一次获焦时生效。<br/>默认值：false<br/>**说明：** 必须与tabIndex联合使用，当某个容器设置了tabIndex，且容器内某子组件设置了groupDefaultFocus，当该容器首次获焦时，会自动将焦点转移至该组件上。<br/> |
