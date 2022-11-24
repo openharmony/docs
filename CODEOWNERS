@@ -323,13 +323,13 @@ zh-cn/application-dev/reference/apis/js-apis-treeset.md @ge-yafang
 zh-cn/application-dev/reference/apis/js-apis-vector.md @ge-yafang
 zh-cn/application-dev/reference/apis/js-apis-worker.md @ge-yafang
 zh-cn/application-dev/reference/apis/js-apis-xml.md @ge-yafang
-zh-cn/application-dev/reference/apis/js-apis-testRunner.md @HelloCrease
+zh-cn/application-dev/reference/apis/js-apis-testRunner.md @RayShih
+zh-cn/application-dev/reference/apis/js-apis-resourceschedule-backgroundTaskManager.md @HelloCrease
 zh-cn/application-dev/reference/apis/js-apis-uitest.md @HelloCrease
 zh-cn/application-dev/reference/apis/js-apis-hisysevent.md @zengyawen
 zh-cn/application-dev/reference/apis/js-apis-privacyManager.md @zengyawen
 zh-cn/application-dev/reference/apis/js-apis-EnterpriseAdminExtensionAbility.md @HelloCrease
 zh-cn/application-dev/reference/apis/js-apis-animator.md @HelloCrease @qieqiewl @tomatodevboy @niulihua
-zh-cn/application-dev/reference/apis/js-apis-uiappearance.md @HelloCrease @qieqiewl @tomatodevboy @niulihua
 zh-cn/application-dev/reference/apis/js-apis-useriam-faceauth.md @zengyawen
 zh-cn/application-dev/reference/apis/js-apis-userfilemanager.md @zengyawen
 zh-cn/application-dev/reference/apis/js-apis-cryptoFramework.md @zengyawen
