@@ -41,30 +41,6 @@ const context = getContext(this);
 let mgr = userFileManager.getUserFileMgr(context);
 ```
 
-## userFileManager.getUserFileMgr
-
-getUserFileMgr(): UserFileManager
-
-获取用户数据管理模块的实例，用于访问和修改用户等用户公共媒体数据信息（如音频、视频、图片、文档等）。
-
-**模型约束：** 此接口仅可在FA模型下使用。
-
-> **说明**： 推荐使用Stage模型接口[UserFileManager.getUserFileMgr](#userfilemanagergetuserfilemgr)。
-
-**系统能力**：SystemCapability.FileManagement.UserFileManager.Core
-
-**返回值：**
-
-| 类型                          | 说明       |
-| ----------------------------- | :--------- |
-| [UserFileManager](#userfilemanager) | 媒体库实例 |
-
-**示例：**
-
-```ts
-let mgr = userFileManager.getUserFileMgr();
-```
-
 ## UserFileManager
 
 ### getPhotoAssets
@@ -194,7 +170,8 @@ async function example() {
   };
   let albums = await mgr.getPhotoAlbums(fetchOptions)
   let album = await albums.getFirstObject()
-  mgr.createPhotoAsset('testFile.jpg', album.albumUri, (err, fileAsset) => {
+  let testFileName = "testFile" + Date.now() + ".jpg";
+  mgr.createPhotoAsset(testFileName, album.albumUri, (err, fileAsset) => {
     if (fileAsset != undefined) {
       console.info('createPhotoAsset file displayName' + fileAsset.displayName);
       console.info('createPhotoAsset successfully');
@@ -227,7 +204,8 @@ createPhotoAsset(displayName: string, callback: AsyncCallback&lt;FileAsset&gt;):
 ```ts
 async function example() {
   console.info('createPhotoAssetDemo')
-  mgr.createPhotoAsset('testFile.jpg', (err, fileAsset) => {
+  let testFileName = "testFile" + Date.now() + ".jpg";
+  mgr.createPhotoAsset(testFileName, (err, fileAsset) => {
     if (fileAsset != undefined) {
       console.info('createPhotoAsset file displayName' + fileAsset.displayName);
       console.info('createPhotoAsset successfully');
@@ -240,7 +218,7 @@ async function example() {
 
 ### createPhotoAsset
 
-createPhotoAsset(displayName: string, albumUri？: string): Promise&lt;FileAsset&gt;;
+createPhotoAsset(displayName: string, albumUri?: string): Promise&lt;FileAsset&gt;;
 
 创建图片或视频资源，使用Promise方式返回结果。
 
@@ -267,7 +245,8 @@ createPhotoAsset(displayName: string, albumUri？: string): Promise&lt;FileAsset
 async function example() {
   console.info('createPhotoAssetDemo')
   try {
-    let fileAsset = await mgr.createPhotoAsset('testFile.jpg')
+    let testFileName = "testFile" + Date.now() + ".jpg";
+    let fileAsset = await mgr.createPhotoAsset(testFileName)
     console.info('createPhotoAsset file displayName' + fileAsset.displayName);
     console.info('createPhotoAsset successfully');
   } catch (err) {
@@ -1110,7 +1089,7 @@ open(mode: string, callback: AsyncCallback&lt;number&gt;): void
 
 **注意**：当前写操作是互斥的操作，写操作完成后需要调用close进行释放
 
-**需要权限**：ohos.permission.READ_IMAGEVIDEO 或 ohos.permission.READ_AUDIO 或 ohos.permission.WRITE_MEDIA 或 ohos.permission.WRITE_IMAGEVIDEO 或 ohos.permission.WRITE_AUDIO
+**需要权限**：ohos.permission.READ_IMAGEVIDEO 或 ohos.permission.READ_AUDIO 或 ohos.permission.WRITE_IMAGEVIDEO 或 ohos.permission.WRITE_AUDIO
 
 
 **系统能力**：SystemCapability.FileManagement.UserFileManager.Core
@@ -1127,7 +1106,8 @@ open(mode: string, callback: AsyncCallback&lt;number&gt;): void
 ```ts
 async function example() {
   console.info('openDemo')
-  const fileAsset = await mgr.createPhotoAsset("image00003.jpg");
+   let testFileName = "testFile" + Date.now() + ".jpg";
+  const fileAsset = await mgr.createPhotoAsset(testFileName);
   fileAsset.open('rw', (err, fd) => {
     if (fd != undefined) {
       console.info('File fd' + fd);
@@ -1147,7 +1127,7 @@ open(mode: string): Promise&lt;number&gt;
 
 **注意**：当前写操作是互斥的操作，写操作完成后需要调用close进行释放
 
-**需要权限**：ohos.permission.READ_IMAGEVIDEO 或 ohos.permission.READ_AUDIO 或 ohos.permission.WRITE_MEDIA 或 ohos.permission.WRITE_IMAGEVIDEO 或 ohos.permission.WRITE_AUDIO
+**需要权限**：ohos.permission.READ_IMAGEVIDEO 或 ohos.permission.READ_AUDIO 或 ohos.permission.WRITE_IMAGEVIDEO 或 ohos.permission.WRITE_AUDIO
 
 **系统能力**：SystemCapability.FileManagement.UserFileManager.Core
 
@@ -1169,7 +1149,8 @@ open(mode: string): Promise&lt;number&gt;
 async function example() {
   console.info('openDemo')
   try {
-    const fileAsset = await mgr.createPhotoAsset("image00003.jpg");
+    let testFileName = "testFile" + Date.now() + ".jpg";
+    const fileAsset = await mgr.createPhotoAsset(testFileName);
     let fd = await fileAsset.open('rw')
     if (fd != undefined) {
       console.info('File fd' + fd);
@@ -1316,7 +1297,7 @@ async function example() {
 
 ### getThumbnail
 
-getThumbnail(size: Size, callback: AsyncCallback&lt;image.PixelMap&gt;): void
+getThumbnail(size: image.Size, callback: AsyncCallback&lt;image.PixelMap&gt;): void
 
 获取文件的缩略图，传入缩略图尺寸，使用callback方式返回异步结果。
 
@@ -1359,7 +1340,7 @@ async function example() {
 
 ### getThumbnail
 
-getThumbnail(size?: Size): Promise&lt;image.PixelMap&gt;
+getThumbnail(size?: image.Size): Promise&lt;image.PixelMap&gt;
 
 获取文件的缩略图，传入缩略图尺寸，使用promise方式返回异步结果。
 
@@ -1581,9 +1562,13 @@ async function example() {
     fetchColumns: [],
     predicates: predicates
   };
-  let fetchResult = await mgr.getPhotoAssets(fetchOption);
-  await fetchResult.close();
-  console.info('close succeed.')
+  try {
+    let fetchResult = await mgr.getPhotoAssets(fetchOption);
+    await fetchResult.close();
+    console.info('close succeed.');
+  } catch (err) {
+    console.info('close fail. message = ' + err);
+  }
 }
 ```
 
@@ -1898,7 +1883,7 @@ getPhotoAssets(options: FetchOptions, callback: AsyncCallback&lt;FetchResult&lt;
 
 获取相册中的文件。该方法使用callback形式来返回文件
 
-**需要权限**：ohos.permission.WRITE_IMAGEVIDEO
+**需要权限**：ohos.permission.READ_IMAGEVIDEO
 
 **系统能力**：SystemCapability.FileManagement.UserFileManager.Core
 
@@ -1942,7 +1927,7 @@ getPhotoAssets(options: FetchOptions): Promise&lt;FetchResult&lt;FileAsset&gt;&g
 
 获取相册中的文件。该方法使用Promise来返回文件
 
-**需要权限**：ohos.permission.WRITE_IMAGEVIDEO
+**需要权限**：ohos.permission.READ_IMAGEVIDEO
 
 **系统能力**：SystemCapability.FileManagement.UserFileManager.Core
 
@@ -2082,7 +2067,7 @@ getPhotoAssets(options: FetchOptions, callback: AsyncCallback&lt;FetchResult&lt;
 
 获取系统相册中的文件。该方法使用callback形式来返回文件
 
-**需要权限**：ohos.permission.WRITE_IMAGEVIDEO
+**需要权限**：ohos.permission.READ_IMAGEVIDEO
 
 **系统能力**：SystemCapability.FileManagement.UserFileManager.Core
 
@@ -2124,7 +2109,7 @@ getPhotoAssets(options: FetchOptions): Promise&lt;FetchResult&lt;FileAsset&gt;&g
 
 获取系统相册中的文件。该方法使用Promise来返回文件
 
-**需要权限**：ohos.permission.WRITE_IMAGEVIDEO
+**需要权限**：ohos.permission.READ_IMAGEVIDEO
 
 **系统能力**：SystemCapability.FileManagement.UserFileManager.Core
 
@@ -2255,7 +2240,7 @@ recover(uri: string, callback: AsyncCallback&lt;void&gt;): void;
 
 恢复系统相册中的文件
 
-**需要权限**：ohos.permission.WRITE_IMAGEVIDEO
+**需要权限**：ohos.permission.READ_IMAGEVIDEO 和 ohos.permission.WRITE_IMAGEVIDEO 或 ohos.permission.READ_AUDIO 和 ohos.permission.WRITE_AUDIO
 
 **系统能力**：SystemCapability.FileManagement.UserFileManager.Core
 
@@ -2298,7 +2283,7 @@ recover(uri: string): Promise&lt;void&gt;;
 
 恢复系统相册中的文件
 
-**需要权限**：ohos.permission.WRITE_IMAGEVIDEO
+**需要权限**：ohos.permission.READ_IMAGEVIDEO 和 ohos.permission.WRITE_IMAGEVIDEO 或 ohos.permission.READ_AUDIO 和 ohos.permission.WRITE_AUDIO
 
 **系统能力**：SystemCapability.FileManagement.UserFileManager.Core
 
@@ -2343,28 +2328,28 @@ async function example() {
 
 成员类型。
 
-**系统能力：** 以下各项对应的系统能力均为SystemCapability.FileManagement.UserFileManager.DistributedCore
-
-| 名称  |  类型 |
-| ----- |  ---- |
-| number |  number |
-| string |  string |
-| boolean |  boolean |
+**系统能力：** 以下各项对应的系统能力均为SystemCapability.FileManagement.UserFileManager.Core
+ 
+| 名称  |  类型 |  可读  |  可写  |  说明  |
+| ----- |  ---- |  ---- |  ---- |  ---- |
+| number |  number | 是 | 是 | number类型 | 
+| string |  string | 是 | 是 | string类型 | 
+| boolean |  boolean | 是 | 是 | boolean类型 | 
 
 ## ChangeEvent
 
 变更监听的媒体文件类型。
 
-**系统能力：** 以下各项对应的系统能力均为SystemCapability.FileManagement.UserFileManager.DistributedCore
+**系统能力：** 以下各项对应的系统能力均为SystemCapability.FileManagement.UserFileManager.Core
 
-| 名称  |  说明 |
-| ----- |  ---- |
-| deviceChange |  设备 |
-| albumChange |  相册 |
-| imageChange |  图片 |
-| audioChange |  音频 |
-| videoChange |  视频 |
-| remoteFileChange |  远程文件 |
+| 名称  |  类型 |  可读  |  可写    说明 |
+| ----- |  ---- |  ---- |  ---- |  ---- |
+| deviceChange |  string | 是 | 是 |  设备 |
+| albumChange |  string | 是 | 是 |  相册 |
+| imageChange |  string | 是 | 是 |  图片 |
+| audioChange |  string | 是 | 是 |  音频 |
+| videoChange |  string | 是 | 是 |  视频 |
+| remoteFileChange |  string | 是 | 是 |  远程文件 |
 
 ## PeerInfo
 
@@ -2385,11 +2370,11 @@ async function example() {
 
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.FileManagement.UserFileManager.Core
 
-| 名称  |  说明 |
-| ----- |  ---- |
-| IMAGE |  图片 |
-| VIDEO |  视频 |
-| AUDIO |  音频 |
+| 名称  |  值 |  说明 |
+| ----- |  ---- |  ---- |
+| IMAGE |  1 |  图片 |
+| VIDEO |  2 |  视频 |
+| AUDIO |  3 |  音频 |
 
 ## PrivateAlbumType
 
@@ -2397,10 +2382,10 @@ async function example() {
 
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.FileManagement.UserFileManager.Core
 
-| 名称    |   说明   |
-| -----   |  ----     |
-| TYPE_FAVORITE |  收藏夹相册 |
-| TYPE_TRASH |  回收站相册 |
+| 名称    |  值 |   说明   |
+| -----   |  ----  |   ----  |
+| TYPE_FAVORITE |  0 |  收藏夹相册 |
+| TYPE_TRASH |  1 |  回收站相册 |
 
 
 
@@ -2410,7 +2395,7 @@ async function example() {
 
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.FileManagement.UserFileManager.Core
 
-| 名称          | 默认值              | 说明                                                       |
+| 名称          |   值              | 说明                                                       |
 | ------------- | ------------------- | ---------------------------------------------------------- |
 | URI           | uri                 | 文件uri                                                   |
 | DISPLAY_NAME  | display_name        | 显示名字                                                   |
@@ -2428,7 +2413,7 @@ async function example() {
 
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.FileManagement.UserFileManager.Core
 
-| 名称          | 默认值              | 说明                                                       |
+| 名称          | 值              | 说明                                                       |
 | ------------- | ------------------- | ---------------------------------------------------------- |
 | URI           | uri                 | 文件uri                                                   |
 | FILE_TYPE     | file_type           | 媒体文件类型                                              |
@@ -2449,7 +2434,7 @@ async function example() {
 
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.FileManagement.UserFileManager.Core
 
-| 名称          | 默认值              | 说明                                                       |
+| 名称          | 值              | 说明                                                       |
 | ------------- | ------------------- | ---------------------------------------------------------- |
 | URI           | uri                 | 相册uri                                                   |
 | FILE_TYPE     | file_type           | 媒体文件类型                                              |
@@ -2464,10 +2449,10 @@ async function example() {
 
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.FileManagement.UserFileManager.Core
 
-| 名称                   | 类型                | 必填 | 说明                                              |
-| ---------------------- | ------------------- | ---- |------------------------------------------------ |
-| fetchColumns           | Array&lt;string&gt; | 是   | 检索条件，指定列名查询，如果该参数为空时默认查询uri、name、fileType。示例：<br />fetchColumns: "uri"|
-| predicates           | [dataSharePredicates.DataSharePredicates](js-apis-data-dataSharePredicates.md) | 是   | 谓词查询，显示过滤条件 |
+| 名称                   | 类型                | 可读 | 可写 | 说明                                              |
+| ---------------------- | ------------------- | ---- |---- | ------------------------------------------------ |
+| fetchColumns           | Array&lt;string&gt; | 是   | 是   | 检索条件，指定列名查询，如果该参数为空时默认查询uri、name、fileType。示例：<br />fetchColumns: "uri"|
+| predicates           | [dataSharePredicates.DataSharePredicates](js-apis-data-dataSharePredicates.md) | 是   | 是   | 谓词查询，显示过滤条件 |
 
 ## AlbumFetchOptions
 
@@ -2475,7 +2460,7 @@ async function example() {
 
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.FileManagement.UserFileManager.Core
 
-| 名称                   | 类型                | 必填 | 说明                                              |
-| ---------------------- | ------------------- | ---- |------------------------------------------------ |
-| predicates           | [dataSharePredicates.DataSharePredicates](js-apis-data-dataSharePredicates.md) | 是   | 谓词查询，显示过滤条件 |
+| 名称                   | 类型                | 可读 | 可写 | 说明                                              |
+| ---------------------- | ------------------- | ---- |---- | ------------------------------------------------ |
+| predicates           | [dataSharePredicates.DataSharePredicates](js-apis-data-dataSharePredicates.md) | 是   | 是   | 谓词查询，显示过滤条件 |
 
