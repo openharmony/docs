@@ -45,7 +45,7 @@ struct RotationGestureExample {
       .padding(20)
       .border({ width: 3 })
       .margin(80)
-      .rotate({ angle: this.angle })
+      .rotate({ z: 1, angle: this.angle })
       // 双指旋转触发该手势事件
       .gesture(
       RotationGesture()

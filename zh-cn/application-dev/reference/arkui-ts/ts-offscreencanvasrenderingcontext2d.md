@@ -1508,7 +1508,7 @@ ellipse(x: number, y: number, radiusX: number, radiusY: number, rotation: number
 | rotation      | number  | 是    | 0     | 椭圆的旋转角度，单位为弧度。    |
 | startAngle    | number  | 是    | 0     | 椭圆绘制的起始点角度，以弧度表示。 |
 | endAngle      | number  | 是    | 0     | 椭圆绘制的结束点角度，以弧度表示。 |
-| counterclockwise | boolean | 否    | false | 是否以逆时针方向绘制椭圆。     |
+| counterclockwise | boolean | 否    | false | 是否以逆时针方向绘制椭圆。<br>true:逆时针方向绘制椭圆。<br>false:顺时针方向绘制椭圆。    |
 
  **示例：**
 

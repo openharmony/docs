@@ -54,14 +54,14 @@
 
 ## MouseButton
 
-| Name   | Description            |
-| ------- | ---------------- |
-| Left    | Left button on the mouse.      |
-| Right   | Right button on the mouse.      |
-| Middle  | Middle button on the mouse.      |
-| Back    | Back button on the left of the mouse.|
-| Forward | Forward button on the left of the mouse.|
-| None    | No button.        |
+| Name    | Description                              |
+| ------- | ---------------------------------------- |
+| Left    | Left button on the mouse.                |
+| Right   | Right button on the mouse.               |
+| Middle  | Middle button on the mouse.              |
+| Back    | Back button on the left of the mouse.    |
+| Forward | Forward button on the left of the mouse. |
+| None    | No button.                               |
 
 ## MouseAction
 

@@ -1,70 +1,72 @@
 # RotationGesture
 
+**RotationGesture** is used to trigger a rotation gesture, which requires two to five fingers with a minimum 1-degree rotation angle.
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
-> This gesture is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
-
-
-## Required Permissions
-
-None
+>  **NOTE**
+>
+>  This gesture is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
 
 ## APIs
 
-RotationGesture(options?: { fingers?: number, angle?: number })
+RotationGesture(value?: { fingers?: number, angle?: number })
 
-- Parameters
-    | Name | Type | Mandatory | Default Value | Description |
-  | -------- | -------- | -------- | -------- | -------- |
-  | fingers | number | No | 2 | Minimum number of fingers to trigger a rotation. The value ranges from 2 to 5. |
-  | angle | number | No | 1.0 | Minimum degree that can trigger the rotation gesture. |
+**Parameters**
+
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| fingers | number | No| Minimum number of fingers to trigger a rotation. The value ranges from 2 to 5.<br>Default value: **2**|
+| angle | number | No| Minimum degree that can trigger the rotation gesture.<br>Default value: **1**|
 
 
 ## Events
 
-| Name | Description |
+| Parameter| Description|
 | -------- | -------- |
-| onActionStart((event?: GestureEvent) =&gt; void) | Callback invoked when a rotation gesture is recognized. |
-| onActionUpdate((event?: GestureEvent) =&gt; void) | Callback invoked during the movement of the rotation gesture. |
-| onActionEnd((event?: GestureEvent) =&gt; void) | Callback invoked when the finger used for the rotation gesture is lift. |
-| onActionCancel(event: () =&gt; void) | Callback invoked when a tap cancellation event is received after the rotation gesture is recognized. |
-
-- GestureEvent attributes related to the rotation gesture  
-    | Name | Type | Description |
-  | -------- | -------- | -------- |
-  | angle | number | Rotation angle. |
+| onActionStart(event:(event?:&nbsp;[GestureEvent](ts-gesture-settings.md))&nbsp;=&gt;&nbsp;void) | Triggered when a rotation gesture is recognized.|
+| onActionUpdate(event:(event?:&nbsp;[GestureEvent](ts-gesture-settings.md))&nbsp;=&gt;&nbsp;void) | Triggered when the user moves the finger in a rotation gesture on the screen.|
+| onActionEnd(event:(event?:&nbsp;[GestureEvent](ts-gesture-settings.md))&nbsp;=&gt;&nbsp;void) | Triggered when the finger used for the rotation gesture is lift.|
+| onActionCancel(event:&nbsp;()&nbsp;=&gt;&nbsp;void) | Triggered when a tap cancellation event is received after the rotation gesture is recognized.|
 
 
 ## Example
 
-
-```
+```ts
+// xxx.ets
 @Entry
 @Component
 struct RotationGestureExample {
-  @State angle: number = 0
+  @State angle: number = 0;
+  @State rotateValue: number = 0;
 
   build() {
-    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.SpaceBetween }) {
-      Text('RotationGesture angle:' + this.angle)
-    }
-    .height(100).width(200).padding(20).border({ width:1 })
-    .margin(80).rotate({ x:1, y:2, z:3, angle: this.angle })
-    .gesture(
+    Column() {
+      Column() {
+        Text('RotationGesture angle:' + this.angle)
+      }
+      .height(200)
+      .width(300)
+      .padding(20)
+      .border({ width: 3 })
+      .margin(80)
+      .rotate({ angle: this.angle })
+      // The gesture event is triggered by rotating with two fingers.
+      .gesture(
       RotationGesture()
         .onActionStart((event: GestureEvent) => {
-          console.log('Rotation start')
+          console.info('Rotation start');
         })
         .onActionUpdate((event: GestureEvent) => {
-          this.angle = event.angle
+          this.angle = this.rotateValue + event.angle;
         })
         .onActionEnd(() => {
-          console.log('Rotation end')
+          this.rotateValue = this.angle;
+          console.info('Rotation end');
         })
-    )
+      )
+    }.width('100%')
   }
 }
 ```
 
-![en-us_image_0000001256858403](figures/en-us_image_0000001256858403.gif)
+ ![en-us_image_0000001174264372](figures/en-us_image_0000001174264372.png)

@@ -1,27 +1,22 @@
 # Overlay
 
+You can set overlay text for a component.
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
-> This attribute is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
-
-
-## Required Permissions
-
-None
-
+>  **NOTE**
+>
+> The APIs of this module are supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
 ## Attributes
 
-
-| Name | Type | Default Value | Description |
-| -------- | -------- | -------- | -------- |
-| overlay | title: string,<br/>options: {<br/>align?: [Alignment](ts-appendix-enums.md#alignment-enums),<br/>offset?: {x: number, y: number}<br/>} | {<br/>align: Alignment.Center,<br/>offset: {0, 0}<br/>} | Mask added to the component. The mask has the same layout as the component. |
+| Name      | Type                         | Description                      |
+| ------- | ----------------------------- | ------------------------- |
+| overlay | value: string,<br/>options?: {<br/>align?: [Alignment](ts-appendix-enums.md#alignment), <br/>offset?: {x?: number, y?: number}<br/>} | Overlay added to the component. The overlay has the same layout as the component.<br>Default value:<br>{<br>align: Alignment.Center,<br>offset: {0, 0}<br>} |
 
 
 ## Example
 
-
-```
+```ts
+// xxx.ets
 @Entry
 @Component
 struct OverlayExample {

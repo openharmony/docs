@@ -4,7 +4,7 @@
 
 以下示例创建了一个OffscreenCanvas画布，再在画布上创建一个getContext2d对象，并设置filter属性改变图片样式。
 
-```
+```html
 <!-- xxx.hml -->
 <div class="container">
   <canvas ref="canvas1"></canvas>
@@ -23,9 +23,11 @@
 </div>
 ```
 
-```
+```css
 /* xxx.css */
 .container{
+  width: 100%;
+  height: 100%;
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -45,7 +47,7 @@ select{
 }
 ```
 
-```
+```js
 // xxx.js
 import prompt from '@system.prompt';
 export default {
@@ -89,7 +91,7 @@ export default {
 使用isPointInPath判断坐标点是否在路径的区域内，使用isPointInStroke判断坐标点是否在路径的边缘线上，并在页面上显示返回结果。
 
 
-```
+```html
 <!-- xxx.hml -->
 <div class="container">
   <div class="content">
@@ -103,9 +105,11 @@ export default {
 ```
 
 
-```
+```css
 /* xxx.css */
 .container{
+  width: 100%;
+  height: 100%;
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -136,7 +140,7 @@ button{
 ```
 
 
-```
+```js
 // xxx.js
 export default {
   data: {

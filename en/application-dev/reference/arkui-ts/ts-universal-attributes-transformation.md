@@ -1,29 +1,23 @@
 # Transformation
 
+Transformation attributes allow you to rotate, translate, scale, or transform a component.
 
 > **NOTE**
 >
 > The APIs of this module are supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
-
-## Required Permissions
-
-None
-
-
 ## Attributes
 
 
+| Name       | Type                                                          | Description                                      |
+| --------- | ------------------------------------------------------------------------ | ---------------------------------------- |
+| rotate    | {<br/>x?: number,<br/>y?: number,<br/>z?: number,<br/>angle?: number \| string,<br/>centerX?: number \| string,<br/>centerY?: number \| string<br/>} | Rotation axis. A positive angle indicates a clockwise rotation, and a negative angle indicates a counterclockwise rotation. The default value is **0**. **centerX** and **centerY** are used to set the rotation center point.<br>Default value:<br>**{<br>x: 0,<br>y: 0,<br>z: 0,<br>angle: 0,<br>centerX: '50%',<br>centerY: '50%'<br>}** |
+| translate | {<br/>x?: number \| string,<br/>y?: number \| string,<br/>z? : number \| string<br/>}  | Translation distance along the x-, y-, and z-axis. The translation direction is determined by the positive and negative values. The value cannot be a percentage.<br>Default value:<br>**{<br>x: 0,<br>y: 0,<br>z: 0<br>}** |
+| scale     | {<br/>x?: number,<br/>y?: number,<br/>z?: number,<br/>centerX?: number \| string,<br/>centerY?: number \| string<br/>} | Scale ratio of the x-, y-, and z-axis. The default value is **1**. **centerX** and **centerY** are used to set the scale center point.<br>Default value:<br>**{<br>x: 1,<br>y: 1,<br>z: 1,<br>centerX:'50%',<br>centerY:'50%'<br>}** |
+| transform | matrix: Matrix4                                                 | Transformation matrix of the component.                            |
 
-| Name | Type | Default Value | Description |
-| -------- | -------- | -------- | -------- |
-| rotate | {<br/>x?: number,<br/>y?: number,<br/>z?: number,<br/>angle?: Angle,<br/>centerX?: Length,<br/>centerY?: Length<br/>} | {<br/>x: 0,<br/>y: 0,<br/>z: 0,<br/>angle: 0,<br/>centerX: '50%',<br/>centerY: '50%'<br/>} | The vector (x, y, z) specifies a rotation axis. A positive angle indicates a clockwise rotation, and a negative angle indicates a counterclockwise rotation. The default value is **0**. **centerX** and **centerY** are used to set the rotation center point. |
-| translate | {<br/>x?: Length,<br/>y?: Length,<br/>z? : Length<br/>} | {<br/>x: 0,<br/>y: 0,<br/>z: 0<br/>} | Translation distance along the x-, y-, and z-axis. The translation direction is determined by the positive and negative values. The default value is **0**. |
-| scale | {<br/>x?: number,<br/>y?: number,<br/>z?: number,<br/>centerX?: Length,<br/>centerY?: Length<br/>} | {<br/>x: 1,<br/>y: 1,<br/>z: 1,<br/>centerX:'50%',<br/>centerY:'50%'<br/>} | Scale ratio of the x-, y-, and z-axis. The default value is **1**. **centerX** and **centerY** are used to set the scale center point. |
-| transform | matrix: Matrix4 | - | Transformation matrix of the component. |
 
 ## Example
-
 
 ```ts
 // xxx.ets

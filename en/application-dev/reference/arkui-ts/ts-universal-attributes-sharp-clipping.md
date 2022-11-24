@@ -1,27 +1,22 @@
 # Shape Clipping
 
+Shape clipping changes the visible portion of a component through clipping or masking.
 
 > **NOTE**
 >
 > The APIs of this module are supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
 
-## Required Permissions
-
-None
-
-
 ## Attributes
 
 
-| Name | Type | Default Value | Description |
-| -------- | -------- | -------- | -------- |
-| clip | Shape \| boolean | false | Clip mode. The value **Shape** indicates that the current component is cropped based on the specified shape. The value **boolean** specifies whether to clip the component based on the edge outline. |
-| mask | Shape | - | Mask of the specified shape for the current component. |
+| Name | Type                                    | Description                                 |
+| -----| ------------------------------------------ | ------------------------------------ |
+| clip | [Circle](ts-drawing-components-circle.md) \| [Ellipse](ts-drawing-components-ellipse.md) \| [Path](ts-drawing-components-path.md) \| [Rect](ts-drawing-components-rect.md) \| boolean | Specifies a clip mode. The value **Shape** indicates that the current component is cropped based on the specified shape. The value **boolean** specifies whether to clip the component based on the edge outline.<br>Default value: **false**|
+| mask | [Circle](ts-drawing-components-circle.md) \| [Ellipse](ts-drawing-components-ellipse.md) \| [Path](ts-drawing-components-path.md) \| [Rect](ts-drawing-components-rect.md) | Adds a mask of the specified shape to the current component.|
 
 
 ## Example
-
 
 ```ts
 // xxx.ets

@@ -1,16 +1,10 @@
 # TimePicker
 
-
 The **\<TimePicker>** component allows users to select a time from the given range.
 
-> **NOTE**<br>
+>  **NOTE**
 >
-> This component is supported since API version 8. Updates will be marked with a superscript to indicate their earliest API version.
-
-
-## Required Permissions
-
-No
+>  This component is supported since API version 8. Updates will be marked with a superscript to indicate their earliest API version.
 
 
 ## Child Components
@@ -20,34 +14,35 @@ Not supported
 
 ## APIs
 
-TimePicker(options?: TimePickerOptions)
+TimePicker(options?: {selected?: Date})
 
 Creates a time picker whose default time range is from 00:00 to 23:59.
 
-- options parameters
-  | Name     | Type | Mandatory | Default Value       | Description                |
-  | -------- | ---- | --------- | ------------------- | -------------------------- |
-  | selected | Date | No        | Current system time | Time of the selected item. |
+**Parameters**
+
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| selected | Date | No| Time of the selected item.<br>Default value: current system time|
 
 
 ## Attributes
 
-| Name            | Type    | Default Value | Description                              |
-| --------------- | ------- | ------------- | ---------------------------------------- |
-| useMilitaryTime | boolean | false         | Whether to display time in 24-hour format. The value cannot be modified dynamically. |
+| Name| Type| Description|
+| -------- | -------- | -------- |
+| useMilitaryTime | boolean | Whether to display time in 24-hour format. The value cannot be modified dynamically.<br>Default value: **false**|
 
 
 ## Events
 
-| Name                                     | Description                        |
-| ---------------------------------------- | ---------------------------------- |
-| onChange(callback:&nbsp;(value:&nbsp;TimePickerResult )&nbsp;=&gt;&nbsp;void) | Triggered when a time is selected. |
+| Name                                      | Description       |
+| ---------------------------------------- | ----------- |
+| onChange(callback: (value: TimePickerResult ) =&gt; void) | Triggered when a time is selected.|
 
 ### TimePickerResult
-| Name   | Type   | Description                          |
-| ------ | ------ | ------------------------------------ |
-| hour   | number | Hour portion of the selected time.   |
-| minute | number | Minute portion of the selected time. |
+| Name    | Type  | Description     |
+| ------ | ------ | ------- |
+| hour   | number | Hour portion of the selected time.|
+| minute | number | Minute portion of the selected time.|
 
 
 ## Example

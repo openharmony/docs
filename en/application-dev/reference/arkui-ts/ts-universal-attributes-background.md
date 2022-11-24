@@ -2,26 +2,18 @@
 
 You can set the background of a component.
 
-> **NOTE**
+>  **NOTE**
 >
-> This attribute is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
-
-
-## Required Permissions
-
-None
-
+>  The APIs of this module are supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
 ## Attributes
 
-
-| Name | Type | Description |
+| Name| Type| Description|
 | -------- | -------- | -------- |
-| backgroundColor | [ResourceColor](ts-types.md#resourcecolor) | Background color of a component. |
-| backgroundImage | src:&nbsp;[ResourceStr](ts-types.md#resourcestr),<br/>repeat?:&nbsp;[ImageRepeat](ts-appendix-enums.md#imagerepeat) | **src**: image address, which can be the address of an Internet or a local image. (SVG images are not supported.)<br/>**repeat**: whether the background image is repeatedly used. By default, the background image is not repeatedly used. |
-| backgroundImageSize | {<br/>width?:&nbsp;[Length](ts-types.md#length),<br/>height?:&nbsp;[Length](ts-types.md#length)<br/>}&nbsp;\|&nbsp;[ImageSize](ts-appendix-enums.md#imagesize) | Width and height of the background image. When the input is a **{width: Length, height: Length}** object, if only one attribute is set, the other attribute is the set value multiplied by the original aspect ratio of the image. By default, the original image aspect ratio remains unchanged.<br>Default value: **ImageSize.Auto** |
-| backgroundImagePosition | {<br/>x?:&nbsp;[Length](ts-types.md#length),<br/>y?:&nbsp;[Length](ts-types.md#length)<br/>}&nbsp;\|&nbsp;[Alignment](ts-appendix-enums.md#alignment) | Position of the background image in the component. |
-
+| backgroundColor | [ResourceColor](ts-types.md#resourcecolor) | Background color of the component. |
+| backgroundImage | src: [ResourceStr](ts-types.md#resourcestr),<br>repeat?: [ImageRepeat](ts-appendix-enums.md#imagerepeat) | Background image of the component.<br>**src**: image address, which can be the address of an Internet or a local image. (SVG images are not supported.)<br>**repeat**: whether the background image is repeatedly used. By default, the background image is not repeatedly used. |
+| backgroundImageSize | {<br>width?: [Length](ts-types.md#length),<br>height?: [Length](ts-types.md#length)<br>} \| [ImageSize](ts-appendix-enums.md#imagesize) | Width and height of the background image. If the input is a **{width: Length, height: Length}** object and only one attribute is set, the other attribute is the set value multiplied by the original aspect ratio of the image. By default, the original image aspect ratio remains unchanged.<br>Default value: **ImageSize.Auto**|
+| backgroundImagePosition | {<br/>x?: [Length](ts-types.md#length),<br/>y?: [Length](ts-types.md#length)<br/>} \| [Alignment](ts-appendix-enums.md#alignment) | Position of the background image in the component.<br>Default value:<br>**{<br>x: 0,<br>y: 0<br>}** |
 
 ## Example
 

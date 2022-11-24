@@ -31,7 +31,7 @@ JS文件用来定义HML页面的业务逻辑，支持ECMA规范的JavaScript语�
 
   示例代码
 
-  ```
+  ```js
   // app.js
   export default {
     onCreate() {
@@ -51,7 +51,7 @@ JS文件用来定义HML页面的业务逻辑，支持ECMA规范的JavaScript语�
   };
   ```
 
-  ```
+  ```js
   // index.js页面逻辑代码
   export default {
     data: {
@@ -91,7 +91,7 @@ JS文件用来定义HML页面的业务逻辑，支持ECMA规范的JavaScript语�
 
   示例代码
 
-  ```
+  ```js
   // index.js
   export default {
     data: {
@@ -141,7 +141,7 @@ JS文件用来定义HML页面的业务逻辑，支持ECMA规范的JavaScript语�
 
   示例：
 
-  ```
+  ```js
   this.$rootElement().scrollTo({position: 0})
   this.$rootElement().scrollTo({id: 'id', duration: 200, timingFunction: 'ease-in', complete: ()=>void})
   ```
@@ -150,14 +150,14 @@ JS文件用来定义HML页面的业务逻辑，支持ECMA规范的JavaScript语�
 ## 获取DOM元素
 
 1. 通过$refs获取DOM元素
-   ```
+   ```html
    <!-- index.hml -->
    <div class="container">
      <image-animator class="image-player" ref="animator" images="{{images}}" duration="1s" onclick="handleClick"></image-animator>
    </div>
    ```
 
-   ```
+   ```js
    // index.js
    export default {
      data: {
@@ -182,14 +182,14 @@ JS文件用来定义HML页面的业务逻辑，支持ECMA规范的JavaScript语�
    ```
 
 2. 通过$element获取DOM元素
-   ```
+   ```html
    <!-- index.hml -->
    <div class="container" style="width:500px;height: 700px; margin: 100px;">
      <image-animator class="image-player" id="animator" images="{{images}}" duration="1s" onclick="handleClick"></image-animator>
    </div>
    ```
 
-   ```
+   ```js
    // index.js
    export default {
      data: {
@@ -219,7 +219,7 @@ JS文件用来定义HML页面的业务逻辑，支持ECMA规范的JavaScript语�
 
 根节点所在页面：
 
-```
+```html
 <!-- root.hml -->
 <element name='parentComp' src='../../common/component/parent/parent.hml'></element>
 <div class="container">
@@ -230,7 +230,7 @@ JS文件用来定义HML页面的业务逻辑，支持ECMA规范的JavaScript语�
 </div>
 ```
 
-```
+```js
 // root.js
 export default {
   data: {
@@ -243,25 +243,25 @@ export default {
 
 自定义parent组件：
 
-```
+```html
 <!-- parent.hml -->
 <element name='childComp' src='../child/child.hml'></element>
 <div class="item" onclick="textClicked">
   <text class="text-style" onclick="parentClicked">parent component click</text>
-  <text class="text-style" if="{{show}}">hello parent component!</text>
+  <text class="text-style" if="{{showValue}}">hello parent component!</text>
   <childComp id = "selfDefineChild"></childComp>
 </div>
 ```
 
-```
+```js
 // parent.js
 export default {
   data: {
-    show: false,
+    showValue: false,
     text: 'I am parent component!',
   },
   parentClicked () {
-    this.show = !this.show;
+    this.showValue = !this.showValue
     console.info('parent component get parent text');
     console.info(`${this.$parent().text}`);
     console.info("parent component get child function");
@@ -272,7 +272,7 @@ export default {
 
 自定义child组件：
 
-```
+```html
 <!-- child.hml -->
 <div class="item" onclick="textClicked">
   <text class="text-style" onclick="childClicked">child component clicked</text>
@@ -280,7 +280,7 @@ export default {
 </div>
 ```
 
-```
+```js
 // child.js
 export default {
   data: {

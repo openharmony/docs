@@ -1,27 +1,23 @@
 # Text Style
 
-The text style attribute is used to set the style for text in a component.
 
-> **NOTE**
+The text style attributes are used to set the style for text in a component.
+
+>  **NOTE**
 >
-> This attribute is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
-
-
-## Required Permissions
-
-None
+> The APIs of this module are supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
 
 ## Attributes
 
 
-| Name | Type | Default Value | Description |
-| -------- | -------- | -------- | -------- |
-| fontColor | Color | - | Text color. |
-| fontSize | Length | - | Text size. If the value is of the number type, the unit fp is used. |
-| fontStyle | [FontStyle](ts-appendix-enums.md#fontstyle) | FontStyle.Normal | Font style of the text. |
-| fontWeight | number&nbsp;\|[FontWeight](ts-appendix-enums.md#fontweight) | FontWeight.FontWeightNormal | Font weight. For the number type, the value ranges from 100 to 900, at an interval of 100. The default value is **400**. A larger value indicates a larger font weight.<br/>For common values of the **FontWeight** type, see **FontWeight** enums. |
-| fontFamily | string | - | Font family of the text. Use commas (,) to separate multiple fonts. The priority the fonts is the sequence in which they are placed. An example value is **Arial, sans-serif**. |
+| Name        | Type                                     | Description                                   |
+| -----------| ---------------------------------------- | ------------------------------------ |
+| fontColor  | Color  | Font color.                                |
+| fontSize   | Length  | Font size. If the value is of the number type, the unit fp is used.    |
+| fontStyle  | [FontStyle](ts-appendix-enums.md#fontstyle)  | Font style.<br>Default value: **FontStyle.Normal**        |
+| fontWeight | number \| [FontWeight](ts-appendix-enums.md#fontweight)  | Font weight. For the number type, the value ranges from 100 to 900, at an interval of 100. The default value is **400**. A larger value indicates a larger font weight.<br>Default value: **FontWeight.FontWeightNormal** |
+| fontFamily | string  | Font family. Use commas (,) to separate multiple fonts, for example, **'Arial, sans-serif'**. The priority of the fonts is the sequence in which they are placed.|
 
 
 ## Example

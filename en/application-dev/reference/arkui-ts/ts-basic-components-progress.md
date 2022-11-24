@@ -1,17 +1,10 @@
 # Progress
 
+The **\<Progress>** component is used to provide a progress indicator that displays the progress of content loading or an operation.
 
-> **NOTE**
+>  **NOTE**
 >
-> This component is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
-
-
-The **\<Progress>** component is used to provide a progress bar that displays the progress of content loading or an operation.
-
-
-## Required Permissions
-
-None
+>  This component is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
 
 ## Child Components
@@ -21,39 +14,49 @@ Not supported
 
 ## APIs
 
-Progress(value: {value: number, total?: number, type?: ProgressType})
+Progress(options: {value: number, total?: number, style?: ProgressStyle, type?: ProgressType})
 
-Creates a progress bar.
+Creates a progress indicator.
 
-- Parameters
-  | Name | Type | Mandatory | Default Value | Description |
-  | -------- | -------- | -------- | -------- | -------- |
-  | value | number | Yes | - | Current progress. |
-  | total | number | No | 100 | Total progress. |
-  | type | ProgressType | No | ProgressType.Linear | Type of the progress bar. |
+**Parameters**
 
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| value | number | Yes| Current progress.|
+| total | number | No| Total progress.<br>Default value: **100**|
+| type<sup>8+</sup> | ProgressType | No| Type of the progress indicator.<br>Default value: **ProgressType.Linear**|
+| style<sup>deprecated</sup> | ProgressStyle | No| Style the progress indicator.<br>This parameter is deprecated since API version 8. You are advised to use **type** instead.<br>Default value: **ProgressStyle.Linear**|
 
-- ProgressType enums
-  | Name | Description |
-  | -------- | -------- |
-  | Linear | Linear type. |
-  | Ring<sup>8+</sup> | Ring type without scale. The ring fills up as the progress increases. |
-  | Eclipse | Eclipse type, which visualizes the progress in a way similar to the moon waxing from new to full. |
-  | ScaleRing<sup>8+</sup> | Ring type with scale, which is similar to the clock scale style. |
-  | Capsule<sup>8+</sup> | Capsule type. At both ends, the progress bar changes from an arc to a straight line and from a straight line to an arc. In the middle part of the capsule, the progress bar moves to the right. |
+## ProgressType
 
+| Name| Description|
+| -------- | -------- |
+| Linear | Linear type.|
+| Ring<sup>8+</sup> | Indeterminate ring type. The ring fills up as the progress increases.|
+| Eclipse | Eclipse type, which visualizes the progress in a way similar to the moon waxing from new to full.|
+| ScaleRing<sup>8+</sup> | Determinate ring type, which is similar to the clock scale.|
+| Capsule<sup>8+</sup> | Capsule type. At both ends, the progress indicator works in a same manner as the eclipse type. In the middle part of the capsule, the progress indicator works in a same manner as the linear type.|
+
+##  ProgressStyle
+
+| Name     | Description                                                        |
+| --------- | ------------------------------------------------------------ |
+| Linear    | Linear type.                                                  |
+| Ring      | Indeterminate ring type. The ring fills up as the progress increases.            |
+| Eclipse   | Eclipse type, which visualizes the progress in a way similar to the moon waxing from new to full.|
+| ScaleRing | Determinate ring type, which is similar to the clock scale.        |
+| Capsule   | Capsule type. At both ends, the progress indicator works in a same manner as the eclipse type. In the middle part of the capsule, the progress indicator works in a same manner as the linear type.|
 
 ## Attributes
 
-| Name | Type | Default Value | Description |
-| -------- | -------- | -------- | -------- |
-| value | number | - | Current progress. |
-| color | Color | - | Background color of the progress bar. |
-| style<sup>8+</sup> | {<br/>strokeWidth? : Length,<br/>scaleCount? : number,<br/>scaleWidth? : Length<br/>} | - | Component style.<br/>- **strokeWidth**: width of the progress bar.<br/>- **scaleCount**: scale count of the circular progress bar.<br/>- **scaleWidth**: scale width of the circular progress bar.<br/>If the scale thickness is greater than the progress bar width, the default scale thickness is used. |
+| Name| Type| Description|
+| -------- | -------- | -------- |
+| value | number | Current progress.|
+| color | [ResourceColor](ts-types.md#resourcecolor8) | Background color of the progress indicator.|
+| style<sup>8+</sup> | {<br>strokeWidth?: [Length](ts-types.md#length),<br>scaleCount?: number,<br>scaleWidth?: [Length](ts-types.md#length)<br>} | Component style.<br>- **strokeWidth**: stroke width of the progress indicator.<br>- **scaleCount**: number of divisions on the determinate ring-type process indicator.<br>- **scaleWidth**: scale bar width of the determinate ring-type process indicator. If it is greater than the progress indicator width, the default value is used instead.|
 
 
 ## Example
-
 
 ```ts
 // xxx.ets

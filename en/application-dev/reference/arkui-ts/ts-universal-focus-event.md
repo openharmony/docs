@@ -1,30 +1,28 @@
 # Focus Event
 
+A focus event is triggered when the page focus moves between components. It can be used to change the content of a component.
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
-> This component is supported since API version 8. Updates will be marked with a superscript to indicate their earliest API version.
-
-
-## Required Permissions
-
-None
+>  **NOTE**
+>
+>  The APIs of this module are supported since API version 8. Updates will be marked with a superscript to indicate their earliest API version.
 
 
 ## Events
 
-  | **Name** | **Bubble Supported** | **Description** | 
-| -------- | -------- | -------- |
-| onFocus(callback: () =&gt; void) | No | Triggered when the current component obtains focus. | 
-| onBlur(callback:() =&gt; void) | No | Triggered when the current component loses focus. | 
+| Name                                  | Bubbling Supported| Description       |
+| ---------------------------------------- | -------- | --------------- |
+| onFocus(event: () =&gt; void) | No       | Triggered when the current component obtains focus.|
+| onBlur(event:() =&gt; void)    | No       | Triggered when the current component loses focus.|
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
-> The following components support focus events: **&lt;Button&gt;**, **&lt;Text&gt;**, **&lt;Image&gt;**, **&lt;List&gt;**, and **&lt;Grid&gt;**.
+>  **NOTE**
+>
+>  The following components support focus events: **\<Button>**, **\<Text>**, **\<Image>**, **\<List>**, and **\<Grid>**.
 
 
 ## Example
 
-  
-```
+```ts
+// xxx.ets
 @Entry
 @Component
 struct FocusEventExample {

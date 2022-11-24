@@ -243,8 +243,8 @@
       - [Distributed Data Object Development](database/database-distributedobject-guidelines.md)
   - Task Management
     - Background Task Management
-      - [Background Task Management Overview](background-task-management/background-task-overview.md)
-      - [Background Task Management Development](background-task-management/background-task-dev-guide.md)
+      - [Background Task Management Overview](task-management/background-task-overview.md)
+      - [Background Task Management Development](task-management/background-task-dev-guide.md)
     - Work Scheduler
       - [Work Scheduler Overview](task-management/work-scheduler-overview.md)
       - [Work Scheduler Development](task-management/work-scheduler-dev-guide.md)

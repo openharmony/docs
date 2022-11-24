@@ -19,6 +19,19 @@ UiTest提供模拟UI操作的能力，供开发者在测试场景使用，主要
 import {UiDriver,BY,MatchPattern} from '@ohos.uitest'
 ```
 
+## MatchPattern
+
+控件属性支持的匹配模式。
+
+**系统能力**：以下各项对应的系统能力均为SystemCapability.Test.UiTest
+
+| 名称        | 值   | 说明           |
+| ----------- | ---- | -------------- |
+| EQUALS      | 0    | 等于给定值。   |
+| CONTAINS    | 1    | 包含给定值。   |
+| STARTS_WITH | 2    | 从给定值开始。 |
+| ENDS_WITH   | 3    | 以给定值结束。 |
+
 ## By
 
 UiTest框架通过By类提供了丰富的控件特征描述API，用以进行控件筛选来匹配/查找出目标控件。<br>
@@ -322,7 +335,7 @@ let by = BY.isAfter(BY.text('123')) //使用静态构造器BY创建by对象，�
 
 ## UiComponent
 
-UiTest中，UiComponent类代表了UI界面上的一个控件，提供控件属性获取，控件点击，滑动查找，文本注入等API。
+UiTest中，UiComponent类代表了UI界面上的一个控件，提供控件属性获取，控件点击，滑动查找，文本注入等能力。
 该类提供的所有方法都使用Promise方式作为异步方法，需使用await调用。
 
 ### UiComponent.click
@@ -678,7 +691,7 @@ async function demo() {
 
 ## UiDriver
 
-UiDriver类为uitest测试框架的总入口，提供控件匹配/查找，按键注入，坐标点击/滑动，截图等API。
+UiDriver类为uitest测试框架的总入口，提供控件匹配/查找，按键注入，坐标点击/滑动，截图等能力。
 该类提供的方法除UiDriver.create()以外的所有方法都使用Promise方式作为异步方法，需使用await调用。
 
 ### UiDriver.create
@@ -788,7 +801,7 @@ async function demo() {
 
 assertComponentExist(by: By): Promise\<void>
 
-断言API，用于断言当前界面存在满足给出的目标控件属性的控件; 如果控件不存在，该API将抛出JS异常，使当前测试用例失败。
+断言API，用于断言当前界面存在满足给出控件属性的控件; 如果控件不存在，将抛出JS异常，使当前测试用例失败。
 
 **系统能力**：SystemCapability.Test.UiTest
 
@@ -923,7 +936,7 @@ async function demo() {
 
 swipe(startx: number, starty: number, endx: number, endy: number, speed: number): Promise\<void>
 
-UiDriver对象采取如下操作：从给出的起始坐标点滑向给出的目的坐标点。
+UiDriver对象采取如下操作：从起始坐标点滑向目的坐标点。
 
 **系统能力**：SystemCapability.Test.UiTest
 
@@ -974,16 +987,3 @@ async function demo() {
     await driver.screenCap('/local/tmp/')
 }
 ```
-
-## MatchPattern
-
-控件属性支持的匹配模式。
-
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Test.UiTest
-
-| 名称        | 值   | 说明           |
-| ----------- | ---- | -------------- |
-| EQUALS      | 0    | 等于给定值。   |
-| CONTAINS    | 1    | 包含给定值。   |
-| STARTS_WITH | 2    | 从给定值开始。 |
-| ENDS_WITH   | 3    | 以给定值结束。 |

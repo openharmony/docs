@@ -1,6 +1,6 @@
 # Border
 
-The border attribute is used to set border styles for components.
+The border attributes are used to set border styles for components.
 
 >  **NOTE**
 >
@@ -9,16 +9,13 @@ The border attribute is used to set border styles for components.
 
 ## Attributes
 
-
-| Name        | Type     | Description                    |
-| ------------ | ------------- | ------------------------ |
-| border       | {<br/>width?:&nbsp;[Length](ts-types.md#length),<br/>color?:&nbsp;[ResourceColor](ts-types.md#resourcecolor),<br/>radius?:&nbsp;[Length](ts-types.md#length),<br/>style?:&nbsp;[BorderStyle](ts-appendix-enums.md#borderstyle)<br/>}s | Unified border style.  |
-| borderStyle  | [BorderStyle](ts-appendix-enums.md#borderstyle)   | Border style of an element.<br>Default value: **BorderStyle.Solid** |
-| borderWidth  | [Length](ts-types.md#length)        | Border width of an element.    |
-| borderColor  | [ResourceColor](ts-types.md#resourcecolor)         | Border color of an element.    |
-| borderRadius | [Length](ts-types.md#length)        | Border radius of an element.|
-
-
+| Name        | Type                                                    | Description                                                        |
+| ------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| border       | {<br>width?: [Length](ts-types.md#length),<br>color?:  [ResourceColor](ts-types.md#resourcecolor),<br>radius?:  [Length](ts-types.md#length),<br>style?: [BorderStyle](ts-appendix-enums.md#borderstyle)<br>} | Unified border style. |
+| borderStyle  | [BorderStyle](ts-appendix-enums.md#borderstyle) | Border style of an element.<br>Default value: **BorderStyle.Solid**          |
+| borderWidth  | [Length](ts-types.md#length)     | Border width.                                        |
+| borderColor  | [ResourceColor](ts-types.md#resourcecolor) | Border color of an element.                                        |
+| borderRadius | [Length](ts-types.md#length) | Border radius.                                    |
 
 ## Example
 
@@ -27,6 +24,7 @@ The border attribute is used to set border styles for components.
 @Entry
 @Component
 struct BorderExample {
+  
   build() {
     Flex({ justifyContent: FlexAlign.SpaceAround, alignItems: ItemAlign.Center }) {
       // Dashed border

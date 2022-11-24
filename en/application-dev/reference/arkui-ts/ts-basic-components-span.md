@@ -1,55 +1,53 @@
 # Span
 
+The **\<Span>** component is used to display inline text in the **\<Text>** component.
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
-> This component is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
-
-
-The **&lt;Span&gt;** component is used to display a paragraph of textual information. It can be used only as a child component in the **&lt;Text&gt;** component.
-
-
-## Required Permissions
-
-None
+>  **NOTE**
+>
+>  This component is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
 
 ## Child Components
 
-None
+Not supported
 
 
 ## APIs
 
-Span(content: string)
+Span(value: string | Resource)
 
-- Parameters
-    | Name | Type | Mandatory | Default Value | Description |
-  | -------- | -------- | -------- | -------- | -------- |
-  | content | string | Yes | - | Text content. |
+**Parameters**
+
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| value | string \| [Resource](ts-types.md#resource) | Yes| Plain text.|
+
 
 
 ## Attributes
 
-In addition to the text style attributes, the attributes below are supported.
+In addition to the [universal text style](ts-universal-attributes-text-style.md) attributes, the following attributes are supported.
 
-| Name | Type | Default Value | Description |
-| -------- | -------- | -------- | -------- |
-| decoration | {<br/>type: [TextDecorationType](ts-appendix-enums.md#textdecorationtype-enums),<br/>color?: Color<br/>} | {<br/>type: TextDecorationType.None<br/>} | Style and color of the text decorative line. |
-| textCase | [TextCase](ts-appendix-enums.md#textcase-enums) | Normal | Text case. |
+| Name| Type| Description|
+| -------- | -------- | -------- |
+| decoration | {<br>type: [TextDecorationType](ts-appendix-enums.md#textdecorationtype),<br>color?: [ResourceColor](ts-types.md#resourcecolor)<br>} | Style and color of the text decorative line.<br>Default value: {<br>type: TextDecorationType.None<br>color: Color.Black<br>} |
+| letterSpacing       | number \| string  | Letter spacing.                                |
+| textCase | [TextCase](ts-appendix-enums.md#textcase) | Text case.<br>Default value: **Normal** |
 
 
 ## Events
 
-Among all the universal events, only the click event is supported.
+Among all the [universal events](ts-universal-attributes-click.md), only the click event is supported.
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
-> As the **&lt;Span&gt;** component does not have size information, the **target** attribute of the **ClickEvent** object returned by the click event is invalid.
+>  **NOTE**
+>
+>  As the **\<Span>** component does not include size information, the **target** attribute of the **ClickEvent** object returned by the click event is invalid.
 
 
 ## Example
 
-
-```
+```ts
+// xxx.ets
 @Entry
 @Component
 struct SpanExample {

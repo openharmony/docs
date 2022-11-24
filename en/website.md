@@ -52,6 +52,7 @@
         - [User IAM subsystem](release-notes/api-change/v3.1-Release/js-apidiff-user-authentication.md)
         - [Window manager subsystem](release-notes/api-change/v3.1-Release/js-apidiff-window.md)
       - [Native API Differences](release-notes/api-change/v3.1-Release/native-apidiff-v3.1-release.md)
+      - [Updates (OpenHarmony 3.1 Beta -> OpenHarmony 3.1 Release)](release-notes/api-change/v3.1-Release/changelog-v3.1-release.md)      
 - Contribution
   - [How to Contribute](contribute/how-to-contribute.md)
   - [Code of Conduct](contribute/code-of-conduct.md)

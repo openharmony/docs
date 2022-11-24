@@ -2,22 +2,15 @@
 
 The visibility attribute controls whether a component is visible.
 
-> **NOTE**
+>  **NOTE**
 >
-> This attribute is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
-
-
-## Required Permissions
-
-None
-
+> This event is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
 ## Attributes
 
-
-| Name| Type| Default Value| Description|
-| -------- | -------- | -------- | -------- |
-| visibility | [Visibility](ts-appendix-enums.md#visibility) | Visibility.Visible | Whether the component is visible. |
+| Name        | Type                       | Description                                        |
+| ---------- | ---------------------------- | ------------------------------------------ |
+| visibility | [Visibility](ts-appendix-enums.md#visibility) | Whether the component is visible.<br>Default value: **Visibility.Visible** |
 
 
 ## Example

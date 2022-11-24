@@ -7,11 +7,6 @@
 列表弹窗。
 
 
-## 权限
-
-无
-
-
 ## ActionSheet.show
 
 show(value: {&nbsp;title: string&nbsp;|&nbsp;Resource,&nbsp;message: string&nbsp;|&nbsp;Resource,&nbsp;confirm?: {value: string&nbsp;|&nbsp;Resource,&nbsp;action:() => void},&nbsp;cancel?:()=>void,&nbsp;sheets: Array&lt;SheetInfo&gt;,&nbsp;autoCancel?:boolean,&nbsp;alignment?: DialogAlignment,&nbsp;offset?: { dx: number | string | Resource; dy: number | string | Resource } })
@@ -34,8 +29,8 @@ show(value: {&nbsp;title: string&nbsp;|&nbsp;Resource,&nbsp;message: string&nbsp
 
 | 参数名 | 参数类型                                                     | 必填 | 参数描述          |
 | ------ | ------------------------------------------------------------ | ---- | ----------------- |
-| title  | string&nbsp;\|&nbsp;[Resource](../../ui/ts-types.md#resource) | 是   | 选项的文本内容。       |
-| icon   | string&nbsp;\|&nbsp;[Resource](../../ui/ts-types.md#resource) | 否   | 选项的图标，默认无图标显示。     |
+| title  | string&nbsp;\|&nbsp;[Resource](ts-types.md#resource) | 是   | 选项的文本内容。       |
+| icon   | string&nbsp;\|&nbsp;[Resource](ts-types.md#resource) | 否   | 选项的图标，默认无图标显示。     |
 | action | ()=&gt;void                                                  | 是   | 选项选中的回调。 |
 
 

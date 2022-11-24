@@ -1,6 +1,6 @@
 # Component Transition
 
-Configure the component transition animations for when a component is inserted or deleted. This feature takes effect only when **animateTo** is used. The animation duration, curve, and delay are the same as those configured in **animateTo**.
+Configure the component transition animations for when a component is inserted or deleted. This feature takes effect only when [animateTo](ts-explicit-animation.md) is used. The animation duration, curve, and delay are the same as those configured in **animateTo**.
 
 >  **NOTE**
 >
@@ -10,18 +10,19 @@ Configure the component transition animations for when a component is inserted o
 ## Attributes
 
 
-| Name| Type| Default Value| Description|
-| -------- | -------- | -------- | -------- |
-| transition | Object | - | All parameters are optional. For details, see **transition**.|
+| Name| Type| Description|
+| -------- | -------- | -------- |
+| transition | Object | Transition parameters, which are all optional. For details, see **transition**. |
 
 - transition
-  | Name| Type| Default Value| Mandatory| Description|
-  | -------- | -------- | -------- | -------- | -------- |
-  | type | [TransitionType](ts-appendix-enums.md#transitiontype)  | TransitionType.All | No| Transition type, which includes component addition and deletion by default.<br>**NOTE**<br>If **type** is not specified, insertion and deletion use the same transition type.|
-  | opacity | number | 1 | No| Opacity of the component during transition, which is the value of the start point of insertion and the end point of deletion.|
-  | translate | {<br>x? : number,<br>y? : number,<br>z? : number<br>} | - | No| Translation of the component during transition, which is the value of the start point of insertion and the end point of deletion.<br>-**x**: distance to translate along the x-axis.<br>-**y**: distance to translate along the y-axis.<br>-**z**: distance to translate along the z-axis.|
-  | scale | {<br>x? : number,<br>y? : number,<br>z? : number,<br>centerX? : number,<br>centerY? : number<br>} | - | No| Scaling of the component during transition, which is the value of the start point of insertion and the end point of deletion.<br>- **x**: scale factor along the x-axis.<br>- **y**: scale factor along the y-axis.<br>- **z**: scale factor along the z-axis.<br>- **centerX** and **centerY**: x coordinate and y coordinate of the scale center, respectively.<br>- If the center point is 0, it indicates the upper left corner of the component. |
-  | rotate | {<br>x?: number,<br>y?: number,<br>z?: number,<br>angle?: Angle,<br>centerX?: Length,<br>centerY?: Length<br>} | - | No| Rotation of the component during transition, which is the value of the start point of insertion and the end point of deletion.<br>- **x**: rotation vector along the x-axis.<br>- **y**: rotation vector along the y-axis.<br>- **z**: rotation vector along the z-axis.<br>- **centerX** and **centerY**: x coordinate and y coordinate of the rotation center, respectively.<br>- If the center point is (0, 0), it indicates the upper left corner of the component.|
+
+  | Name      | Type                                                         | Mandatory | Description                                                  |
+  | --------- | ------------------------------------------------------------ | --------- | ------------------------------------------------------------ |
+  | type      | [TransitionType](ts-appendix-enums.md#transitiontype)        | No        | Transition type, which includes component addition and deletion by default.<br>Default value: **TransitionType.All**<br>**NOTE**<br>If **type** is not specified, insertion and deletion use the same transition type. |
+  | opacity   | number                                                       | No        | Opacity of the component during transition, which is the value of the start point of insertion and the end point of deletion.<br>Default value: **1** |
+  | translate | {<br>x? : number,<br>y? : number,<br>z? : number<br>}        | No        | Translation of the component during transition, which is the value of the start point of insertion and the end point of deletion.<br>-**x**: distance to translate along the x-axis.<br>-**y**: distance to translate along the y-axis.<br>-**z**: distance to translate along the z-axis. |
+  | scale     | {<br>x? : number,<br>y? : number,<br>z? : number,<br>centerX? : number,<br>centerY? : number<br>} | No        | Scaling of the component during transition, which is the value of the start point of insertion and the end point of deletion.<br>- **x**: scale factor along the x-axis.<br>- **y**: scale factor along the y-axis.<br>- **z**: scale factor along the z-axis.<br>- **centerX** and **centerY**: x coordinate and y coordinate of the scale center, respectively.<br>- If the center point is 0, it indicates the upper left corner of the component.<br> |
+  | rotate    | {<br>x?: number,<br>y?: number,<br>z?: number,<br>angle?: Angle,<br>centerX?: Length,<br>centerY?: Length<br>} | No        | Rotation of the component during transition, which is the value of the start point of insertion and the end point of deletion.<br>- **x**: rotation vector along the x-axis.<br>- **y**: rotation vector along the y-axis.<br>- **z**: rotation vector along the z-axis.<br>- **centerX** and **centerY**: x coordinate and y coordinate of the rotation center, respectively.<br>- If the center point is (0, 0), it indicates the upper left corner of the component. |
 
 
 ## Example

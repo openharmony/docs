@@ -1,20 +1,27 @@
 # Property Animator
 
-You can create a property animator to animate the universal attributes of a component.
+You can create a property animator to animate certain universal attributes of a component, including **width**, **height**, **backgroundColor**, **opacity**, **scale**, **rotate**, and **translate**.
 
 > **NOTE**
 >
 > The APIs of this module are supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
+animation(value: {duration?: number, tempo?: number, curve?: string | Curve, delay?:number, iterations: number, playMode?: PlayMode, onFinish?: () => void})
+
+Applies a property animator to the component to animate its attributes over time.
+
+**Parameters**
 
 
-| Name        | Type                                    | Default Value            | Description                     |
-| ---------- | ---------------------------------------- | --------------- | ----------------------- |
-| duration   | number                                   | 1000            | Animation duration, in ms. The default duration is 1000 ms.   |
-| curve      | [Curve](ts-appendix-enums.md#curve)        | Curve.Linear    | Animation curve. The default curve is linear.               |
-| delay      | number                                   | 0               | Delay of animation playback, in ms. By default, the playback is not delayed.         |
-| iterations | number                                   | 1               | Number of times that the animation is played. By default, the animation is played once. The value **-1** indicates that the animation is played for an unlimited number of times.  |
-| playMode   | [PlayMode](ts-appendix-enums.md#playmode) | PlayMode.Normal | Animation playback mode. By default, the animation is played from the beginning after the playback is complete.|
+| Name        | Type                                      | Mandatory   | Description                                                        |
+| ---------- | ------------------------------------------| ---- | ------------------------------------------------------------ |
+| duration   | number                                    | No   | Animation duration, in ms.<br>Default value: **1000**|
+| tempo      | number                                    | No   | Animation playback speed. A greater value indicates a higher animation playback speed.<br>The value **0** indicates that no animation is applied.<br>Default value: **1**|
+| curve      | string&nbsp;\|&nbsp;[Curve](ts-appendix-enums.md#curve) | No  | Animation curve.<br>Default value: **Curve.Linear**  |
+| delay      | number                                    | No   | Delay of animation playback, in ms. The value **0** indicates that the playback is not delayed.<br>Default value: **0**  |
+| iterations | number                                    | No   | Number of times that the animation is played. The value **-1** indicates that the animation is played for an unlimited number of times.<br>Default value: **1**|
+| playMode   | [PlayMode](ts-appendix-enums.md#playmode) | No   | Animation playback mode. By default, the animation is played from the beginning after the playback is complete.<br>Default value: **PlayMode.Normal**|
+| onFinish   | () => void                                | No   | Callback invoked when the animation playback is complete.                       |
 
 
 ## Example

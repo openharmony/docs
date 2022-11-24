@@ -52,28 +52,6 @@ struct KeyEventExample {
       Text(this.text).padding(15)
     }.height(300).width('100%').padding(35)
   }
-}// xxx.ets
-@Entry
-@Component
-struct KeyEventExample {
-  @State text: string = ''
-  @State eventType: string = ''
-
-  build() {
-    Column() {
-      Button('KeyEvent').backgroundColor(0x2788D9)
-        .onKeyEvent((event: KeyEvent) => {
-          if (event.type === KeyType.Down) {
-            this.eventType = 'Down'
-          }
-          if (event.type === KeyType.Up) {
-            this.eventType = 'Up'
-          }
-          console.info(this.text = 'KeyType:' + this.eventType + '\nkeyCode:' + event.keyCode + '\nkeyText:' + event.keyText)
-        })
-      Text(this.text).padding(15)
-    }.height(300).width('100%').padding(35)
-  }
 }
 ```
 

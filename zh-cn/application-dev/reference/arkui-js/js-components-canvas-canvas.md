@@ -37,7 +37,7 @@
 
 ### getContext
 
-getContext(type: '2d', options?:  ContextAttrOptions): CanvasRendering2dContext
+getContext(type: '2d', options?:  ContextAttrOptions): CanvasRenderingContext2D
 
 获取canvas绘图上下文。不支持在onInit和onReady中进行调用。
 
@@ -77,7 +77,7 @@ toDataURL(type?: string, quality?: number): string
 
 ## 示例
 
-```
+```html
 <!-- xxx.hml -->
 <div>
   <canvas ref="canvas1" style="width: 200px; height: 150px; background-color: #ffff00;"></canvas>
@@ -85,7 +85,7 @@ toDataURL(type?: string, quality?: number): string
 </div>
 ```
 
-```
+```css
 // xxx.js
 export default {
   handleClick() {

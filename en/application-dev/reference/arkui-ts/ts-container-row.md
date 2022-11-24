@@ -1,16 +1,10 @@
 # Row
 
-
 The **<Row\>** component lays out child components horizontally.
 
-> **NOTE**
+>  **NOTE**
 >
-> This component is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
-
-
-## Required Permissions
-
-None
+>  This component is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
 
 ## Child Components
@@ -20,20 +14,21 @@ Supported
 
 ## APIs
 
-Row(value?:{space?: string&nbsp;|&nbsp;number})
+Row(value?:{space?:  string \| number })
 
 **Parameters**
-| Name| Type| Mandatory| Default Value| Description|
-| -------- | -------- | -------- | -------- | -------- |
-| space | string&nbsp;\|&nbsp;number | No| 0 | Space between two adjacent child components in the horizontal layout.|
+
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| space | string \| number | No| Space between two adjacent child components in the horizontal layout.<br>Default value: **0**, in vp |
 
 
 ## Attributes
 
-| Name| Type| Default Value| Description|
-| -------- | -------- | -------- | -------- |
-| alignItems | [VerticalAlign](ts-appendix-enums.md#verticalalign) | VerticalAlign.Center | Alignment mode of the child components in the vertical direction.|
-| justifyContent<sup>8+</sup> | [FlexAlign](ts-appendix-enums.md#flexalign) | FlexAlign.Start | Alignment mode of the child components in the horizontal direction.|
+| Name| Type| Description|
+| -------- | -------- | -------- |
+| alignItems | [VerticalAlign](ts-appendix-enums.md#verticalalign) | Alignment mode of child components in the vertical direction.<br>Default value: **VerticalAlign.Center**|
+| justifyContent<sup>8+</sup> | [FlexAlign](ts-appendix-enums.md#flexalign) | Alignment mode of the child components in the horizontal direction.<br>Default value: **FlexAlign.Start** |
 
 
 ## Example
@@ -79,4 +74,4 @@ struct RowExample {
 }
 ```
 
-![en-us_image_0000001174422908](figures/row.png)
+![en_us_image_0000001174422908](figures/row.png)

@@ -1,15 +1,10 @@
 # TextArea
 
-The **\<TextArea>** component provides multi-line text input and responds to certain input events.
+The **\<TextArea>** component provides multi-line text input.
 
 >  **NOTE**
 >
-> This component is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
-
-
-## Required Permissions
-
-None
+>  This component is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
 
 ## Child Components
@@ -23,34 +18,33 @@ TextArea(value?:{placeholder?: ResourceStr, text?: ResourceStr, controller?: Tex
 
 **Parameters**
 
-| Name                    | Type                                    | Mandatory  | Default Value | Description          |
-| ----------------------- | ---------------------------------------- | ---- | ---- | -------------- |
-| placeholder      | [ResourceStr](ts-types.md#resourcestr8) | No   | -    | Text displayed when there is no input.    |
-| text             | [ResourceStr](ts-types.md#resourcestr8) | No   | -    | Current text input.    |
-| controller<sup>8+</sup> | [TextAreaController](#textareacontroller8) | No   | -    | Text area controller.|
+| Name                    | Type                                    | Mandatory  | Description          |
+| ----------------------- | ---------------------------------------- | ---- | -------------- |
+| placeholder      | [ResourceStr](ts-types.md#resourcestr8) | No   | Text displayed when there is no input.    |
+| text             | [ResourceStr](ts-types.md#resourcestr8) | No   | Current text input.    |
+| controller<sup>8+</sup> | [TextAreaController](#textareacontroller8) | No   | Text area controller.|
 
 
 ## Attributes
 
-In addition to universal attributes, the following attributes are supported.
+In addition to the [universal attributes](ts-universal-attributes-size.md), the following attributes are supported.
 
-| Name                      | Type                                    | Default Value  | Description                                      |
-| ------------------------ | ---------------------------------------- | ----- | ---------------------------------------- |
-| placeholderColor         | [ResourceColor](ts-types.md#resourcecolor8)                                     | -     | Placeholder text color.                      |
-| placeholderFont          | [Font](ts-types.md#font) | -     | Placeholder text style.<br>- **size**: font size. If the value is of the number type, the unit is fp.<br>- **weight**: font weight. For the number type, the value ranges from 100 to 900, at an interval of 100. The default value is **400**. A larger value indicates a larger font weight.<br>- **family**: font family. Use commas (,) to separate multiple fonts, for example, **'Arial, sans-serif'**. The priority of the fonts is the sequence in which they are placed.<br>- **style**: font style.|
-| textAlign                | [TextAlign](ts-appendix-enums.md#textalign) | Start | Horizontal alignment of the text.<br/>Default value: **TextAlign.Start** |
-| caretColor               | [ResourceColor](ts-types.md#resourcecolor8)                                    | -     | Color of the caret in the text box.                              |
-| inputFilter<sup>8+</sup> | {<br/>value:&nbsp;[ResourceStr](ts-types.md#resourcestr8)<sup>8+</sup>,<br/>error?:&nbsp;(value:&nbsp;string)&nbsp;=&gt;&nbsp;void<br/>} | -     | Regular expression for input filtering. Only inputs that comply with the regular expression can be displayed. Other inputs are ignored. The specified regular expression can match single characters, but not strings. Example: ^(?=.\*\d)(?=.\*[a-z])(?=.\*[A-Z]).{8,10}$. Strong passwords containing 8 to 10 characters cannot be filtered.<br>- **value**: regular expression to set.<br>- **error**: ignored content to return when regular expression matching fails.|
-
+| Name                      | Type                                    | Description                                      |
+| ------------------------ | ---------------------------------------- | ---------------------------------------- |
+| placeholderColor         | [ResourceColor](ts-types.md#resourcecolor8) | Placeholder text color.                      |
+| placeholderFont          | [Font](ts-types.md#font) | Placeholder text style.                                   |
+| textAlign                | [TextAlign](ts-appendix-enums.md#textalign) | Horizontal alignment of the text.<br>Default value: **TextAlign.Start**|
+| caretColor               | [ResourceColor](ts-types.md#resourcecolor8) | Color of the caret in the text box.                              |
+| inputFilter<sup>8+</sup> | {<br>value: [ResourceStr](ts-types.md#resourcestr8)<sup>8+</sup>,<br>error?: (value: string) => void<br>} | Regular expression for input filtering. Only inputs that comply with the regular expression can be displayed. Other inputs are ignored. The specified regular expression can match single characters, but not strings. Example: ^(?=.\*\d)(?=.\*[a-z])(?=.\*[A-Z]).{8,10}$. Strong passwords containing 8 to 10 characters cannot be filtered.<br>- **value**: regular expression to set.<br>- **error**: ignored content to return when regular expression matching fails.|
 
 ## Events
 
-| Name                                      | Description                                    |
-| ---------------------------------------- | ---------------------------------------- |
-| onChange(callback: (value: string) =&gt; void) | Triggered when the input changes.                           |
-| onCopy<sup>8+</sup>(callback:(value: string) =&gt; void) | Triggered when the copy button on the pasteboard, which displays when the text box is long pressed, is clicked.<br>**value**: text to be copied.|
-| onCut<sup>8+</sup>(callback:(value: string) =&gt; void) | Triggered when the cut button on the pasteboard, which displays when the text box is long pressed, is clicked.<br>**value**: text to be cut.|
-| onPaste<sup>8+</sup>(callback:(value: string) =&gt; void) | Triggered when the paste button on the pasteboard, which displays when the text box is long pressed, is clicked.<br>**value**: text to be pasted.|
+| Name                                                        | Description                                                    |
+| ------------------------------------------------------------ | ------------------------------------------------------------ |
+| onChange(callback: (value: string) =&gt; void) | Triggered when the input changes.                                  |
+| onCopy<sup>8+</sup>(callback:(value: string) =&gt; void) | Triggered when the copy button on the pasteboard, which displays when the text box is long pressed, is clicked.<br>- **value**: text to be copied.|
+| onCut<sup>8+</sup>(callback:(value: string) =&gt; void) | Triggered when the cut button on the pasteboard, which displays when the text box is long pressed, is clicked.<br>- **value**: text to be cut.|
+| onPaste<sup>8+</sup>(callback:(value: string) =&gt; void) | Triggered when the paste button on the pasteboard, which displays when the text box is long pressed, is clicked.<br>- **value**: text to be pasted.|
 
 ## TextAreaController<sup>8+</sup>
 
@@ -60,7 +54,6 @@ Defines the controller for controlling the **\<TextArea>** component.
 
 ```
 controller: TextAreaController = new TextAreaController()
-
 ```
 
 ### caretPosition<sup>8+</sup>
@@ -71,9 +64,9 @@ Sets the position of the caret.
 
 **Parameters**
 
-| Name  | Type  | Mandatory  | Default Value | Description               |
-| ----- | ------ | ---- | ---- | ------------------- |
-| value | number | Yes   | -    | Length from the start of the string to the position where the caret is located.|
+| Name| Type| Mandatory| Description                              |
+| ------ | -------- | ---- | -------------------------------------- |
+| value  | number   | Yes  | Length from the start of the string to the position where the caret is located.|
 
 
 ## Example

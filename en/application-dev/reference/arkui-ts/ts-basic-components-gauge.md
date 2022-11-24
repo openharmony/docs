@@ -1,50 +1,54 @@
 # Gauge
 
-
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
-> This component is supported since API version 8. Updates will be marked with a superscript to indicate their earliest API version.
+The **\<Gauge>** component is used to display data in a ring chart.
 
 
-Data gauge chart widget, which is used to display data in a ring chart.
-
-
-## Required Permissions
-
-None
+>  **NOTE**
+>
+>  This component is supported since API version 8. Updates will be marked with a superscript to indicate their earliest API version.
 
 
 ## Child Components
 
-None
+Not supported
 
 
 ## APIs
 
-Gauge(value:{value: number, min?: number, max?: number})
+Gauge(options:{value: number, min?: number, max?: number})
 
-- Parameter
-    | Name | Type | Mandatory | Default Value | Description |
-  | -------- | -------- | -------- | -------- | -------- |
-  | value | number | Yes | - | Current data value. |
-  | min | number | No | 0 | Minimum value of the current data segment. |
-  | max | number | No | 100 | Maximum value of the current data segment. |
+**Parameters**
 
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| value | number | Yes| Current data value.|
+| min | number | No| Minimum value of the current data segment.<br>Default value: **0**|
+| max | number | No| Maximum value of the current data segment.<br>Default value: **100**|
 
 ## Attributes
 
-| Name | Type | Default Value | Description |
-| -------- | -------- | -------- | -------- |
-| value | number | 0 | Sets the value of the current data chart. |
-| startAngle | Angle | -150 | Set the start angle. Clock 0 indicates 0 degree, and the clockwise direction indicates the positive angle. |
-| endAngle | Angle | 150 | Sets the end angle position. The clock 0 point is 0 degree, and the clockwise direction is the positive angle. |
-| colors | Color \| Array&lt;ColorStop&gt; | - | Set the color of the chart. You can set the pure color or segmental gradient color. |
-| strokeWidth | Length | - | Sets the ring thickness of a ring chart. |
+| Name| Type| Description|
+| -------- | -------- | -------- |
+| value | number | Value of the chart.<br>Default value: **0**|
+| startAngle | number | Start angle of the chart. The value 0 indicates 0 degrees, and a positive value indicates the clockwise direction.<br>Default value: **-150**|
+| endAngle | number | End angle of the chart. The value 0 indicates 0 degrees, and a positive value indicates the clockwise direction.<br>Default value: **150**|
+| colors | Array&lt;ColorStop&gt; | Colors of the chart. Colors can be set for individual segments.|
+| strokeWidth | [Length](ts-types.md#length) | Stroke width of the chart.|
+
+## ColorStop
+
+Describes a gradient stop.
+
+| Name     | Type            | Description                                                        |
+| --------- | -------------------- | ------------------------------------------------------------ |
+| ColorStop | [[ResourceColor](ts-types.md#resourcecolor8), number] | Type of the gradient stop. The first parameter specifies the color, and the second parameter specifies the offset, which ranges from 0 to 1.|
 
 
 ## Example
 
 
-```
+```ts
+// xxx.ets
 @Entry
 @Component
 struct GaugeExample {

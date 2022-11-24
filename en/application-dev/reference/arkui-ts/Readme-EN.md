@@ -1,4 +1,4 @@
-# TypeScript-based Declarative Development Paradigm
+# eTS-based Declarative Development Paradigm
 
 - Universal Component Information
     - Universal Events
@@ -120,12 +120,13 @@
 - Canvas Components
     - [Canvas](ts-components-canvas-canvas.md)
     - [CanvasRenderingContext2D](ts-canvasrenderingcontext2d.md)
-    - [OffscreenCanvasRenderingConxt2D](ts-offscreencanvasrenderingcontext2d.md)
-    - [Lottie](ts-components-canvas-lottie.md)
-    - [Path2D](ts-components-canvas-path2d.md)
     - [CanvasGradient](ts-components-canvas-canvasgradient.md)
     - [ImageBitmap](ts-components-canvas-imagebitmap.md)
     - [ImageData](ts-components-canvas-imagedata.md)
+    - [OffscreenCanvasRenderingContext2D](ts-offscreencanvasrenderingcontext2d.md)
+    - [Path2D](ts-components-canvas-path2d.md)
+    - [Lottie](ts-components-canvas-lottie.md)
+
 - Animation
     - [AnimatorProperty](ts-animatorproperty.md)
     - [Explicit Animation](ts-explicit-animation.md)
@@ -136,8 +137,9 @@
     - [Motion Path Animation](ts-motion-path-animation.md)
     - [Matrix Transformation](ts-matrix-transformation.md)
     - [Interpolation Calculation](ts-interpolation-calculation.md)
+
 - Global UI Methods
-    - Pop-up Window
+    - Dialog Box
         - [Alert Dialog Box](ts-methods-alert-dialog-box.md)
         - [Action Sheet](ts-methods-action-sheet.md)
         - [Custom Dialog Box](ts-methods-custom-dialog-box.md)

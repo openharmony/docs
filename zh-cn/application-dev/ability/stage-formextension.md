@@ -175,8 +175,8 @@ FormProvider类具体的API介绍详见[接口文档](../reference/apis/js-apis-
   | supportDimensions   | 表示卡片支持的外观规格，取值范围：<br />1 * 2：表示1行2列的二宫格。<br />2 * 2：表示2行2列的四宫格。<br />2 * 4：表示2行4列的八宫格。<br />4 * 4：表示4行4列的十六宫格。 | 字符串数组 | 否                       |
   | defaultDimension    | 表示卡片的默认外观规格，取值必须在该卡片supportDimensions配置的列表中。 | 字符串     | 否                       |
   | updateEnabled       | 表示卡片是否支持周期性刷新，取值范围：<br />true：表示支持周期性刷新，可以在定时刷新（updateDuration）和定点刷新（scheduledUpdateTime）两种方式任选其一，优先选择定时刷新。<br />false：表示不支持周期性刷新。 | 布尔类型   | 否                       |
-  | scheduledUpdateTime | 表示卡片的定点刷新的时刻，采用24小时制，精确到分钟。         | 字符串     | 可缺省，缺省值为“0:0”。  |
-  | updateDuration      | 表示卡片定时刷新的更新周期，单位为30分钟，取值为自然数。<br />当取值为0时，表示该参数不生效。<br />当取值为正整数N时，表示刷新周期为30*N分钟。 | 数值       | 可缺省，缺省值为“0”。    |
+  | scheduledUpdateTime | 表示卡片的定点刷新的时刻，采用24小时制，精确到分钟。<br />updateDuration参数优先级高于scheduledUpdateTime，两者同时配置时，以updateDuration配置的刷新时间为准。 | 字符串     | 可缺省，缺省值为“0:0”。  |
+  | updateDuration      | 表示卡片定时刷新的更新周期，单位为30分钟，取值为自然数。<br />当取值为0时，表示该参数不生效。<br />当取值为正整数N时，表示刷新周期为30*N分钟。<br />updateDuration参数优先级高于scheduledUpdateTime，两者同时配置时，以updateDuration配置的刷新时间为准。 | 数值       | 可缺省，缺省值为“0”。    |
   | formConfigAbility   | 表示卡片的配置跳转链接，采用URI格式。                        | 字符串     | 可缺省，缺省值为空。     |
   | formVisibleNotify   | 标识是否允许卡片使用卡片可见性通知。                         | 字符串     | 可缺省，缺省值为空。     |
   | metaData            | 表示卡片的自定义信息，包含customizeData数组标签。            | 对象       | 可缺省，缺省值为空。     |
@@ -199,7 +199,6 @@ FormProvider类具体的API介绍详见[接口文档](../reference/apis/js-apis-
           "defaultDimension": "2*2",
           "updateEnabled": true,
           "scheduledUpdateTime": "10:30",
-          "updateDuration": 1,
           "formConfigAbility": "ability://ohos.samples.FormApplication.MainAbility"
       }]
   }
@@ -345,7 +344,7 @@ onUpdate(formId) {
      "actions": {
        "routerEvent": {
          "action": "router",
-         "abilityName": "com.example.MyApplication.hmservice.FormAbility",
+         "abilityName": "MainAbility",
          "params": {
            "message": "add detail"
          }
@@ -354,6 +353,66 @@ onUpdate(formId) {
    }
    ```
 
-最终可以得到，如下卡片：
+最终可以得到如下卡片：
 
 ![fa-form-example](figures/fa-form-example.png)
+
+### 开发卡片事件
+
+卡片支持为组件设置action，包括router事件和message事件，其中router事件用于Ability跳转，message事件用于卡片开发人员自定义点击事件。关键步骤说明如下：
+
+1. 在hml中为组件设置onclick属性，其值对应到json文件的actions字段中。
+2. 若设置router事件，则
+   - action属性值为"router"；
+   - abilityName为跳转目标的Ability名，如目前DevEco创建的Stage模型的MainAbility默认名为MainAbility；
+   - params为跳转目标Ability的自定义参数，可以按需填写。其值可以在目标Ability启动时的want中的parameters里获取。如Stage模型MainAbility的onCreate生命周期里的入参want的parameters字段下获取到配置的参数；
+3. 若设置message事件，则
+   - action属性值为"message"；
+   - params为message事件的用户自定义参数，可以按需填写。其值可以在卡片生命周期函数onEvent中的message里获取；
+
+示例如下：
+
+   - hml:
+   ```html
+   <div class="container">
+       <stack>
+           <div class="container-img">
+               <image src="/common/widget.png" class="bg-img"></image>
+           </div>
+           <div class="container-inner">
+               <text class="title" onclick="routerEvent">{{title}}</text>
+               <text class="detail_text" onclick="messageEvent">{{detail}}</text>
+           </div>
+       </stack>
+   </div>
+   ```
+
+   - json:
+   ```json
+   {
+     "data": {
+       "title": "TitleDefault",
+       "detail": "TextDefault"
+     },
+     "actions": {
+       "routerEvent": {
+         "action": "router",
+         "abilityName": "MainAbility",
+         "params": {
+           "message": "add detail"
+         }
+       },
+       "messageEvent": {
+         "action": "message",
+         "params": {
+           "message": "add detail"
+         }
+       }
+     }
+   }
+   ```
+## 相关实例
+
+针对Stage模型卡片提供方的开发，有以下相关实例可供参考：
+- [`FormExtAbility`：Stage模型卡片（eTS JS）（API9）](https://gitee.com/openharmony/app_samples/tree/master/ability/FormExtAbility)
+

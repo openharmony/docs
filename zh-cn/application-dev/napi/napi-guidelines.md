@@ -636,6 +636,3 @@ export default {
   }
 }
 ```
-## 相关实例
-针对Native API的开发，有以下相关实例可供参考：
-- [`NativeAPI`：NativeAPI（eTS）（API8）](https://gitee.com/openharmony/applications_app_samples/tree/master/Native/NativeAPI)

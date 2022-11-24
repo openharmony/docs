@@ -1,17 +1,56 @@
 # ImageBitmap
 
+An **ImageBitmap** object stores pixel data rendered on a canvas.
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
-> This component is supported since API version 8. Updates will be marked with a superscript to indicate their earliest API version.
+> **NOTE**
+> 
+> The APIs of this module are supported since API version 8. Updates will be marked with a superscript to indicate their earliest API version.
 
-
-**CanvasImageData** stores pixel data rendered on a canvas.
 
 
 ## Attributes
 
-  | Name | Type | Description | 
+| Name| Type| Description| 
 | -------- | -------- | -------- |
-| width | number | Actual width of the rectangle on the canvas, in pixels. | 
-| height | number | Actual height of the rectangle on the canvas, in pixels. | 
-| data | &lt;Uint8ClampedArray&gt; | A one-dimensional array of color values. The values range from 0 to 255. | 
+| width | number | Pixel width of the **ImageBitmap** object.| 
+| height | number | Pixel height of the **ImageBitmap** object.| 
+
+**Example**
+
+  ```ts
+  // xxx.ets
+  @Entry
+  @Component
+  struct ImageExample {
+    private settings: RenderingContextSettings = new RenderingContextSettings(true);
+    private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings);
+    private img:ImageBitmap = new ImageBitmap("common/images/example.jpg");
+
+    build() {
+      Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
+        Canvas(this.context)
+          .width('100%')
+          .height('100%')
+          .backgroundColor('#ffff00')
+          .onReady(() =>{
+            this.context.drawImage( this.img,0,0,500,500,0,0,400,200);
+        })
+      }
+      .width('100%')
+      .height('100%')
+    }
+  }
+  ```
+
+  ![en-us_image_0000001194352442](figures/en-us_image_0000001194352442.png)
+
+
+
+## Methods
+
+
+### close
+
+close()
+
+Releases all graphics resources associated with this **ImageBitmap** object. This API is a void API.

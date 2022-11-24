@@ -2,21 +2,16 @@
 
 The hover effect is applied to a component in hover state.
 
-> **NOTE**
-> 
+>  **NOTE**
+>
 > The APIs of this module are supported since API version 8. Updates will be marked with a superscript to indicate their earliest API version.
-
-
-## Required Permissions
-
-None
 
 
 ## Attributes
 
-| Name| Type| Default Value| Description|
-| -------- | -------- | -------- | -------- |
-| hoverEffect | [HoverEffect](ts-appendix-enums.md#hovereffect8) | HoverEffect.Auto | Hover effect of the component in hover state.|
+| Name         | Type                                              | Description                                               |
+| ----------- | --------------------------------------------------| ------------------------------------------------ |
+| hoverEffect | [HoverEffect](ts-appendix-enums.md#hovereffect8)  | Hover effect of the component in hover state.<br>Default value: **HoverEffect.Auto**|
 
 
 ## Example

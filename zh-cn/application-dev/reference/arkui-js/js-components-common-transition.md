@@ -42,7 +42,7 @@
 
 PageA跳转到PageB，跳转的共享元素为image， shareid为“shareImage”。
 
-```
+```html
 <!-- PageA -->
 <!-- xxx.hml -->
 <div>
@@ -57,7 +57,7 @@ PageA跳转到PageB，跳转的共享元素为image， shareid为“shareImage�
 </div>
 ```
 
-```
+```js
 // xxx.js
 import router from '@system.router';
 export default {
@@ -70,7 +70,7 @@ export default {
 }
 ```
 
-```
+```css
 /* xxx.css */
 .shared-transition-style {
   shared-transition-effect: exchange;
@@ -82,7 +82,7 @@ export default {
 }
 ```
 
-```
+```html
 <!-- PageB -->
 <!-- xxx.hml -->
 <div>
@@ -90,7 +90,7 @@ export default {
 </div>
 ```
 
-```
+```js
 // xxx.js
 import router from '@system.router';
 export default {
@@ -100,7 +100,7 @@ export default {
 }
 ```
 
-```
+```css
 /* xxx.css */
 .shared-transition-style {
   shared-transition-effect: exchange;
@@ -130,7 +130,7 @@ export default {
 
 source_page包含顶部内容以及卡片列表，点击卡片可以跳转到target_page。
 
-```
+```html
 <!-- source_page -->
 <!-- xxx.hml -->
 <div class="container">
@@ -145,7 +145,7 @@ source_page包含顶部内容以及卡片列表，点击卡片可以跳转到tar
 </div>
 ```
 
-```
+```js
 // xxx.js
 import router from '@system.router'
 export default {
@@ -164,7 +164,7 @@ export default {
 }
 ```
 
-```
+```css
 /* xxx.css */
 .container {
   flex-direction: column;
@@ -184,7 +184,7 @@ export default {
 }
 ```
 
-```
+```html
 <!-- target_page -->
 <!-- xxx.hml -->
 <div class="container">
@@ -194,7 +194,7 @@ export default {
 </div>
 ```
 
-```
+```css
 /* xxx.css */
 .container {
   flex-direction: column;
@@ -245,7 +245,7 @@ Page1有一个不透明盒子，点击盒子会跳转到Page2，当点击Page2�
 
 1. Page1
 
-   ```
+   ```html
    <!-- xxx.hml -->
    <div class="container">
        <text>index</text>
@@ -253,7 +253,7 @@ Page1有一个不透明盒子，点击盒子会跳转到Page2，当点击Page2�
    </div>
    ```
 
-   ```
+   ```js
    <!-- xxx.js -->
    import router from '@system.router';
    export default {
@@ -268,7 +268,7 @@ Page1有一个不透明盒子，点击盒子会跳转到Page2，当点击Page2�
    }
    ```
 
-   ```
+   ```css
    <!-- xxx.css -->
    .container {
        flex-direction: column;
@@ -315,15 +315,15 @@ Page1有一个不透明盒子，点击盒子会跳转到Page2，当点击Page2�
 
 2. Page2
 
-   ```
+   ```html
    <!-- xxx.hml -->
    <div class="container">
        <text>transition</text>
        <div class="move_page" onclick="jumpBack"></div>
-   </div
+   </div>
    ```
 
-   ```
+   ```js
    <!-- xxx.js -->
    import router from '@system.router';
    export default {
@@ -336,7 +336,7 @@ Page1有一个不透明盒子，点击盒子会跳转到Page2，当点击Page2�
    }
    ```
 
-   ```
+   ```css
    <!-- xxx.css -->
    .container {
        flex-direction: column;

@@ -1,26 +1,21 @@
 # Show/Hide Event
 
+The show/hide event is triggered when a component is mounted or unmounted from the component tree. A component appears when mounted to the component tree and disappears when unmounted from the component tree.
 
 > **NOTE**
 >
 > The APIs of this module are supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
 
-## Required Permissions
-
-None
-
-
 ## Events
 
-| Name | Bubble Supported | Description |
-| -------- | -------- | -------- |
-| onAppear(callback: () =&gt; void) | No | Called when the component is displayed. |
-| onDisappear(callback: () =&gt; void) | No | Called when the component disappears. |
+| Name                                            | Bubbling Supported| Description                  |
+| ------------------------------------------------ | -------- | -------------------------- |
+| onAppear(event: () =&gt; void)    | No      | Triggered when the component is displayed.|
+| onDisappear(event: () =&gt; void) | No      | Triggered when the component disappears.|
 
 
 ## Example
-
 
 ```ts
 // xxx.ets

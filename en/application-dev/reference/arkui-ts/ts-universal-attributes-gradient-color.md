@@ -7,19 +7,14 @@ Create a more gorgeous look for a component by applying a gradient color effect 
 > This attribute is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
 
-## Required Permissions
-
-None
-
-
 ## Attributes
 
 
 | Name| Type| Default Value| Description|
 | -------- | -------- | -------- | -------- |
-| linearGradient | {<br/>angle?: number\|string,<br/>direction?: [GradientDirection](ts-appendix-enums.md#gradientdirection),<br/>colors: Array&lt;any&gt;<br/>repeating?: boolean<br/>} | - | Linear gradient.<br>**angle**: angle of the linear gradient.<br>**direction**: direction of the linear gradient. It does not take effect when **angle** is set.<br>**colors**: description of the gradient colors.<br>**repeating**: whether the colors are repeated.|
-| sweepGradient | {<br/>center: Point,<br/>start?: angle,<br/>end?: angle,<br/>colors: Array&lt;any&gt;<br/>repeating?: boolean<br/>} | - | Angle gradient.<br>**center**: center point of the angle gradient.<br>**start**: start point of the angle gradient.<br>**end**: end point of the angle gradient.<br>**colors**: description of the gradient colors.<br>**repeating**: whether the colors are repeated.|
-| radialGradient | {<br/>center: Point,<br/>radius: Length,<br/>colors: Array&lt;any&gt;<br/>repeating: boolean<br/>} | - | Radial gradient.<br>**center**: center point of the radial gradient.<br>**radius**: radius of the radial gradient.<br>**colors**: description of the gradient colors.<br>**repeating**: whether the colors are repeated.|
+| linearGradient | {<br>angle?: number \| string,<br>direction?: [GradientDirection](ts-appendix-enums.md#gradientdirection),<br>colors: Array&lt;[ColorStop](ts-basic-components-gauge.md#colorstop)&gt;,<br>repeating?: boolean<br>} | - | Linear gradient.<br>**angle**: angle of the linear gradient.<br>**direction**: direction of the linear gradient. It does not take effect when **angle** is set.<br>**colors**: description of the gradient colors.<br>**repeating**: whether the colors are repeated.|
+| sweepGradient | {<br>center: Point,<br>start?: number \| string,<br>end?: number \| string,<br>rotation?: number\|string,<br>colors: Array&lt;[ColorStop](ts-basic-components-gauge.md#colorstop)&gt;,<br>repeating?: boolean<br>} | - | Angle gradient.<br>**center**: center point of the angle gradient.<br>**start**: start point of the angle gradient.<br>**end**: end point of the angle gradient.<br>**rotation**: rotation angle of the angle gradient.<br>**colors**: description of the gradient colors.<br>**repeating**: whether the colors are repeated.|
+| radialGradient | {<br>center: Point,<br>radius: number \| string,<br>colors: Array&lt;[ColorStop](ts-basic-components-gauge.md#colorstop)&gt;,<br>repeating?: boolean<br>} | - | Radial gradient.<br>**center**: center point of the radial gradient.<br>**radius**: radius of the radial gradient.<br>**colors**: description of the gradient colors.<br>**repeating**: whether the colors are repeated.|
 
 
 ## Example

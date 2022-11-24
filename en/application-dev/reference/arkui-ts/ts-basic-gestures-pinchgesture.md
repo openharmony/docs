@@ -1,43 +1,32 @@
 # PinchGesture
 
+**PinchGesture** is used to trigger a pinch gesture, which requires two to five fingers with a minimum 3 vp distance between the fingers.
 
-> **NOTE**
+>  **NOTE**
 >
-> This gesture is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
-
-
-## Required Permissions
-
-None
+>  This gesture is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
 
 ## APIs
 
-PinchGesture(options?: { fingers?: number, distance?: number })
+PinchGesture(value?: { fingers?: number, distance?: number })
 
 **Parameters**
 
-| Name | Type | Mandatory | Default Value | Description |
-| -------- | -------- | -------- | -------- | -------- |
-| fingers | number | No | 2 | Minimum number of fingers to trigger a pinch. The value ranges from 2 to 5. |
-| distance | number | No | 3.0 | Minimum recognition distance, in vp. |
+| Name     | Type   | Mandatory | Description                              |
+| -------- | ------ | --------- | ---------------------------------------- |
+| fingers  | number | No        | Minimum number of fingers to trigger a pinch. The value ranges from 2 to 5.<br>Default value: **2** |
+| distance | number | No        | Minimum recognition distance, in vp.<br>Default value: **3** |
 
 
 ## Events
 
-| Name | Description |
-| -------- | -------- |
-| onActionStart((event?: GestureEvent) =&gt; void) | Callback invoked when a pinch gesture is recognized. |
-| onActionUpdate((event?: GestureEvent) =&gt; void) | Callback invoked during the movement of a pinch gesture. |
-| onActionEnd((event?: GestureEvent) =&gt; void) | Callback invoked when the finger used for a pinch gesture is lift. |
-| onActionCancel(event: () =&gt; void) | Callback invoked when a tap cancellation event is received after a pinch gesture is recognized. |
-
-## GestureEvent Attributes Related to the Pinch Gesture
-| Name | Type | Description |
-| -------- | -------- | -------- |
-| scale | number | Scale ratio. This attribute is used for the pinch gesture. |
-| pinchCenterX | number | X-coordinate of the center of the pinch gesture, in px. |
-| pinchCenterY | number | Y-coordinate of the center of the pinch gesture, in px. |
+| Name                                     | Description                              |
+| ---------------------------------------- | ---------------------------------------- |
+| onActionStart(event:(event?: [GestureEvent](ts-gesture-settings.md)) =&gt; void) | Triggered when a pinch gesture is recognized. |
+| onActionUpdate(event:(event?: [GestureEvent](ts-gesture-settings.md)) =&gt; void) | Triggered when the user moves the finger in a pinch gesture on the screen. |
+| onActionEnd(event:(event?: [GestureEvent](ts-gesture-settings.md)) =&gt; void) | Triggered when the finger used for a pinch gesture is lift. |
+| onActionCancel(event: () =&gt; void)     | Triggered when a tap cancellation event is received after a pinch gesture is recognized. |
 
 
 ## Example
@@ -47,28 +36,42 @@ PinchGesture(options?: { fingers?: number, distance?: number })
 @Entry
 @Component
 struct PinchGestureExample {
-  @State scaleValue: number = 1
+  @State scaleValue: number = 1;
+  @State pinchValue: number = 1;
+  @State pinchX: number = 0;
+  @State pinchY: number = 0;
 
   build() {
-    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.SpaceBetween }) {
-      Text('PinchGesture scale:' + this.scale)
-    }
-    .height(100).width(200).padding(20).border({ width: 1 }).margin(80)
-    .scale({ x: this.scaleValue, y: this.scaleValue, z: this.scaleValue })
-    .gesture(
-      PinchGesture()
+    Column() {
+      Column() {
+        Text('PinchGesture scale:\n' + this.scaleValue)
+        Text('PinchGesture center:\n(' + this.pinchX + ',' + this.pinchY + ')')
+      }
+      .height(200)
+      .width(300)
+      .padding(20)
+      .border({ width: 3 })
+      .margin({ top: 100 })
+      .scale({ x: this.scaleValue, y: this.scaleValue, z: 1 })
+      // The gesture event is triggered by pinching three fingers together.
+      .gesture(
+      PinchGesture({ fingers: 3 })
         .onActionStart((event: GestureEvent) => {
-          console.info('Pinch start')
+          console.info('Pinch start');
         })
         .onActionUpdate((event: GestureEvent) => {
-          this.scaleValue = event.scale
+          this.scaleValue = this.pinchValue * event.scale;
+          this.pinchX = event.pinchCenterX;
+          this.pinchY = event.pinchCenterY;
         })
         .onActionEnd(() => {
-          console.info('Pinch end')
+          this.pinchValue = this.scaleValue;
+          console.info('Pinch end');
         })
-    )
+      )
+    }.width('100%')
   }
 }
 ```
 
-![en-us_image_0000001257058419](figures/en-us_image_0000001257058419.gif)
+ ![en-us_image_0000001174582848](figures/en-us_image_0000001174582848.png)

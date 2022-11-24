@@ -1,51 +1,46 @@
 # TextTimer
 
+The **\<TextTimer>** component displays timing information and is controlled in text format.
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
-> This component is supported since API version 8. Updates will be marked with a superscript to indicate their earliest API version.
-
-
-The **&lt;TextTimer&gt;** component supports custom time formats.
-
-
-## Required Permissions
-
-None
+>  **NOTE**
+>
+>  This component is supported since API version 8. Updates will be marked with a superscript to indicate their earliest API version.
 
 
 ## Child Components
 
-None
+Not supported
 
 
 ## APIs
 
-TextTimer(options: { isCountDown?: boolean, count?: number, controller?: TextTimerController })
+TextTimer(options?: { isCountDown?: boolean, count?: number, controller?: TextTimerController })
 
-- Parameters
-    | Name | Type | Mandatory | Default Value | Description |
-  | -------- | -------- | -------- | -------- | -------- |
-  | isCountDown | boolean | No | false | Whether to count down. |
-  | count | number | No | 60000 | Countdown time, in milliseconds. This parameter is valid only when **isCountDown** is set to **true**.<br/>- If the value of **count** is less than or equal to 0, the default value is used.<br/>- If the value of **count** is greater than 0, it is used. |
-  | controller | [TextTimerController](#texttimercontroller) | No | null | **&lt;TextTimer&gt;** controller. |
+**Parameters**
+
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| isCountDown | boolean | No| Whether to count down.<br/>Default value: **false** |
+| count | number | No| Countdown time, in milliseconds. This parameter is valid only when **isCountDown** is set to **true**.<br>If the value of **count** is less than or equal to 0, the default value is used.<br>If the value of **count** is greater than 0, it is used.<br/>Default value: **60000** |
+| controller | [TextTimerController](#texttimercontroller) | No| **\<TextTimer>** controller.|
 
 ## Attributes
 
-| Name | Type | Default Value | Description |
-| -------- | -------- | -------- | -------- |
-| format | string | 'hh:mm:ss.ms' | Custom format. The value must contain at least one of the following keywords: **hh**, **mm**, **ss**, and **ms**. |
+| Name| Type| Description|
+| -------- | -------- | -------- |
+| format | string | Custom format. The value must contain at least one of the following keywords: **hh**, **mm**, **ss**, and **ms**.<br>Default value: **'hh:mm:ss.ms'** |
 
 
 ## Events
 
-| Name | Description |
+| Name| Description|
 | -------- | -------- |
-| onTimer(callback: (utc: number, elapsedTime: number) =&gt; void) | Triggered when the time text changes.<br/>**utc**: currently displayed time, in milliseconds.<br/>**elapsedTime**: elapsed time of the timer, in milliseconds. |
+| onTimer(event: (utc: number, elapsedTime: number) =&gt; void) | Triggered when the time text changes.<br>**utc**: currently displayed time, in milliseconds.<br>**elapsedTime**: elapsed time of the timer, in milliseconds.|
 
 
 ## TextTimerController
 
-Defines the controller for controlling the **&lt;TextTimer&gt;** component.
+Implements the controller for controlling the **\<TextTimer>** component. A **\<TextTimer>** component can be bound to only one controller.
 
 ### Objects to Import
 
@@ -64,7 +59,7 @@ Starts the timer.
 
 pause()
 
-Pauses the timer. 
+Pauses the timer.
 
 ### reset
 
@@ -75,8 +70,8 @@ Resets the timer.
 
 ## Example
 
-
-```
+```ts
+// xxx.ets
 @Entry
 @Component
 struct TextTimerExample {
@@ -88,9 +83,9 @@ struct TextTimerExample {
       TextTimer({controller: this.textTimerController})
         .format(this.format)
         .fontColor(Color.Black)
-        .fontSize(this.textSize)
+        .fontSize(50)
         .onTimer((utc: number, elapsedTime: number) => {
-          console.info('textTimer notCountDown utc is:' + utc + ', elapsedTime: ' + elapsedTime)
+          console.info('textTimer notCountDown utc is: ' + utc + ', elapsedTime: ' + elapsedTime)
         })
       Row() {
         Button("start").onClick(() => {

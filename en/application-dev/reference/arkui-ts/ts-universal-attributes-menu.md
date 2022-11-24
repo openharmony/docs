@@ -2,25 +2,21 @@
 
 A menu – a vertical list of items – can be bound to a component and displayed by long-pressing, clicking, or right-clicking the component.
 
-> **NOTE**
-> 
-> The APIs of this module are supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
-
-
-## Required Permissions
-
-None
+>  **NOTE**
+>
+>  The APIs of this module are supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
 
 ## Attributes
 
 
-| Name                          | Type                                    | Description                                |
-| ---------------------------- | ---------------------------------------- | ---------------------------------- |
+| Name                          | Type                                                       | Description                                                        |
+| ---------------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
 | bindMenu                     | Array<MenuItem&gt; \| [CustomBuilder](ts-types.md#custombuilder8) | Menu bound to the component, which is displayed when you click the component. Textual and custom menu items are supported.|
-| bindContextMenu<sup>8+</sup> | content: [CustomBuilder](ts-types.md#custombuilder8)<br>responseType: [ResponseType](ts-appendix-enums.md#responsetype8) | Context menu bound to the component, which is displayed when you long-press or right-click the component. Only custom menu items are supported. |
+| bindContextMenu<sup>8+</sup> | content: [CustomBuilder](ts-types.md#custombuilder8)<br>responseType: [ResponseType](ts-appendix-enums.md#responsetype8) | Context menu bound to the component, which is displayed when you long-press or right-click the component. Only custom menu items are supported.|
 
 ## MenuItem
+
 | Name    | Type                     | Description         |
 | ------ | ----------------------- | ----------- |
 | value  | string                  | Menu item text.     |
@@ -66,7 +62,7 @@ struct MenuExample {
 
 ```ts
 // xxx.ets
-import router from '@system.router';
+import router from '@system.router'
 
 @Entry
 @Component
