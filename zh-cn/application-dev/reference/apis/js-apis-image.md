@@ -2081,7 +2081,7 @@ creator.dequeueImage((err, img) => {
     if (err) {
         console.info('dequeueImage succeeded.');
     }
-    console.info('dequeueImage failed.'));
+    console.info('dequeueImage failed.');
 });
 ```
 
