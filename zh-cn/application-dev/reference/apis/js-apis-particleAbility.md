@@ -38,8 +38,9 @@ startAbility(parameter: StartAbilityParameter, callback: AsyncCallback\<void>): 
 ```js
 import particleAbility from '@ohos.ability.particleAbility'
 import wantConstant from '@ohos.ability.wantConstant'
+
 particleAbility.startAbility(
-	{
+    {
         want:
         {
             action: "action.system.home",
@@ -49,11 +50,11 @@ particleAbility.startAbility(
             deviceId: "",
             bundleName: "com.example.Data",
             abilityName: "com.example.Data.MainAbility",
-            uri:""
+            uri: ""
         },
     },
     (error, result) => {
-		console.log('particleAbility startAbility errCode:' + error + 'result:' + result)
+        console.log('particleAbility startAbility errCode:' + error + 'result:' + result)
     },
 )
 ```
@@ -86,8 +87,9 @@ startAbility(parameter: StartAbilityParameter): Promise\<void>;
 ```js
 import particleAbility from '@ohos.ability.particleAbility'
 import wantConstant from '@ohos.ability.wantConstant'
+
 particleAbility.startAbility(
-	{
+    {
         want:
         {
             action: "action.system.home",
@@ -97,15 +99,13 @@ particleAbility.startAbility(
             deviceId: "",
             bundleName: "com.example.Data",
             abilityName: "com.example. Data.MainAbility",
-            uri:""
+            uri: ""
         },
     },
 ).then((data) => {
     console.info("particleAbility startAbility");
 });
 ```
-
-
 
 ## particleAbility.terminateSelf
 
@@ -125,14 +125,13 @@ terminateSelf(callback: AsyncCallback\<void>): void
 
 ```js
 import particleAbility from '@ohos.ability.particleAbility'
+
 particleAbility.terminateSelf(
     (error, result) => {
-		console.log('particleAbility terminateSelf errCode:' + error + 'result:' + result)
+        console.log('particleAbility terminateSelf errCode:' + error + 'result:' + result)
     }
 )
 ```
-
-
 
 ## particleAbility.terminateSelf
 
@@ -152,6 +151,7 @@ terminateSelf(): Promise\<void>
 
 ```js
 import particleAbility from '@ohos.ability.particleAbility'
+
 particleAbility.terminateSelf().then((data) => {
 	console.info("particleAbility terminateSelf");
 });
@@ -182,7 +182,8 @@ acquireDataAbilityHelper(uri: string): DataAbilityHelper
 **示例：**
 
 ```js
-import particleAbility from '@ohos.ability.particleAbility'     
+import particleAbility from '@ohos.ability.particleAbility'
+
 var uri = "";
 particleAbility.acquireDataAbilityHelper(uri)
 ```
@@ -375,7 +376,6 @@ particleAbility.cancelBackgroundRunning().then(() => {
 
 ```
 
-
 ## particleAbility.connectAbility
 
 connectAbility(request: Want, options:ConnectOptions): number
@@ -405,37 +405,39 @@ connectAbility(request: Want, options:ConnectOptions): number
 **示例**：
 
 ```js
-        import rpc from '@ohos.rpc'
-        function onConnectCallback(element, remote){
-            console.log('ConnectAbility onConnect remote is proxy:' + (remote instanceof rpc.RemoteProxy));
-        }
-        function onDisconnectCallback(element){
-            console.log('ConnectAbility onDisconnect element.deviceId : ' + element.deviceId)
-        }
-        function onFailedCallback(code){
-            console.log('particleAbilityTest ConnectAbility onFailed errCode : ' + code)
-        }
-        var connectId = particleAbility.connectAbility(
-            {
-                bundleName: "com.ix.ServiceAbility",
-                abilityName: "ServiceAbilityA",
-            },
-            {
-                onConnect: onConnectCallback,
-                onDisconnect: onDisconnectCallback,
-                onFailed: onFailedCallback,
-            },
-        );
+import rpc from '@ohos.rpc'
 
-        particleAbility.disconnectAbility(connectId).then((data)=>{
-            console.log( " data: " + data);
-        }).catch((error)=>{
-            console.log('particleAbilityTest result errCode : ' + error.code )
-        });
+function onConnectCallback(element, remote) {
+    console.log('ConnectAbility onConnect remote is proxy:' + (remote instanceof rpc.RemoteProxy));
+}
+
+function onDisconnectCallback(element) {
+    console.log('ConnectAbility onDisconnect element.deviceId : ' + element.deviceId)
+}
+
+function onFailedCallback(code) {
+    console.log('particleAbilityTest ConnectAbility onFailed errCode : ' + code)
+}
+
+var connId = particleAbility.connectAbility(
+    {
+        bundleName: "com.ix.ServiceAbility",
+        abilityName: "ServiceAbilityA",
+    },
+    {
+        onConnect: onConnectCallback,
+        onDisconnect: onDisconnectCallback,
+        onFailed: onFailedCallback,
+    },
+);
+
+particleAbility.disconnectAbility(connId).then((data) => {
+    console.log(" data: " + data);
+}).catch((error) => {
+    console.log('particleAbilityTest result errCode : ' + error.code)
+});
     
-
 ```
-
 
 ## particleAbility.disconnectAbility
 
@@ -455,32 +457,35 @@ disconnectAbility(connection: number, callback:AsyncCallback\<void>): void;
 
 ```js
 import rpc from '@ohos.rpc'
- function onConnectCallback(element, remote){
-            console.log('ConnectAbility onConnect remote is proxy:' + (remote instanceof rpc.RemoteProxy));
-        }
-        function onDisconnectCallback(element){
-            console.log('ConnectAbility onDisconnect element.deviceId : ' + element.deviceId)
-        }
-        function onFailedCallback(code){
-            console.log('particleAbilityTest ConnectAbility onFailed errCode : ' + code)
-        }
-        var connectId = particleAbility.connectAbility(
-            {
-                bundleName: "com.ix.ServiceAbility",
-                abilityName: "ServiceAbilityA",
-            },
-            {
-                onConnect: onConnectCallback,
-                onDisconnect: onDisconnectCallback,
-                onFailed: onFailedCallback,
-            },
-        );
-        var result =  particleAbility.disconnectAbility(connectId).then((data)=>{
-            console.log( " data: " + data);
-        }).catch((error)=>{
-            console.log('particleAbilityTest result errCode : ' + error.code )
-        });
 
+function onConnectCallback(element, remote) {
+    console.log('ConnectAbility onConnect remote is proxy:' + (remote instanceof rpc.RemoteProxy));
+}
+
+function onDisconnectCallback(element) {
+    console.log('ConnectAbility onDisconnect element.deviceId : ' + element.deviceId)
+}
+
+function onFailedCallback(code) {
+    console.log('particleAbilityTest ConnectAbility onFailed errCode : ' + code)
+}
+
+var connId = particleAbility.connectAbility(
+    {
+        bundleName: "com.ix.ServiceAbility",
+        abilityName: "ServiceAbilityA",
+    },
+    {
+        onConnect: onConnectCallback,
+        onDisconnect: onDisconnectCallback,
+        onFailed: onFailedCallback,
+    },
+);
+var result = particleAbility.disconnectAbility(connId).then((data) => {
+    console.log(" data: " + data);
+}).catch((error) => {
+    console.log('particleAbilityTest result errCode : ' + error.code)
+});
 ```
 
 
@@ -502,32 +507,36 @@ disconnectAbility(connection: number): Promise\<void>;
 
 ```js
 import rpc from '@ohos.rpc'
-function onConnectCallback(element, remote){
-            console.log('ConnectAbility onConnect remote is proxy:' + (remote instanceof rpc.RemoteProxy));
-        }
-        function onDisconnectCallback(element){
-            console.log('ConnectAbility onDisconnect element.deviceId : ' + element.deviceId)
-        }
-        function onFailedCallback(code){
-            console.log('particleAbilityTest ConnectAbility onFailed errCode : ' + code)
-        }
-        var connectId = particleAbility.connectAbility(
-            {
-                bundleName: "com.ix.ServiceAbility",
-                abilityName: "ServiceAbilityA",
-            },
-            {
-                onConnect: onConnectCallback,
-                onDisconnect: onDisconnectCallback,
-                onFailed: onFailedCallback,
-            },
-        );
 
-         particleAbility.disconnectAbility(connectId).then((data)=>{
-            console.log( " data: " + data);
-        }).catch((error)=>{
-            console.log('particleAbilityTest result errCode : ' + error.code )
-        });
+function onConnectCallback(element, remote) {
+    console.log('ConnectAbility onConnect remote is proxy:' + (remote instanceof rpc.RemoteProxy));
+}
+
+function onDisconnectCallback(element) {
+    console.log('ConnectAbility onDisconnect element.deviceId : ' + element.deviceId)
+}
+
+function onFailedCallback(code) {
+    console.log('particleAbilityTest ConnectAbility onFailed errCode : ' + code)
+}
+
+var connId = particleAbility.connectAbility(
+    {
+        bundleName: "com.ix.ServiceAbility",
+        abilityName: "ServiceAbilityA",
+    },
+    {
+        onConnect: onConnectCallback,
+        onDisconnect: onDisconnectCallback,
+        onFailed: onFailedCallback,
+    },
+);
+
+particleAbility.disconnectAbility(connId).then((data) => {
+    console.log(" data: " + data);
+}).catch((error) => {
+    console.log('particleAbilityTest result errCode : ' + error.code)
+});
 
 ```
 
