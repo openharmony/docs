@@ -80,24 +80,9 @@ writeRemoteObject(object: [IRemoteObject](#iremoteobject)): void
 **示例：**
 
   ```
-  class MyDeathRecipient {
-      onRemoteDied() {
-          console.log("server died");
-      }
-  }
   class TestRemoteObject extends rpc.RemoteObject {
       constructor(descriptor) {
           super(descriptor);
-      }
-      try {
-          registerDeathRecipient(recipient: MyDeathRecipient, flags: number);
-          unregisterDeathRecipient(recipient: MyDeathRecipient, flags: number);
-      } catch(error) {
-          console.info("Rpc register deathRecipient fail, errorCode " + error.code);
-          console.info("Rpc register deathRecipient fail, errorMessage " + error.message);
-      }
-      isObjectDead(): boolean {
-          return false;
       }
   }
   let data = rpc.MessageSequence.create();
@@ -136,24 +121,9 @@ readRemoteObject(): IRemoteObject
 **示例：**
 
   ```
-  class MyDeathRecipient {
-      onRemoteDied() {
-          console.log("server died");
-      }
-  }
   class TestRemoteObject extends rpc.RemoteObject {
       constructor(descriptor) {
           super(descriptor);
-      }
-      try {
-          registerDeathRecipient(recipient: MyDeathRecipient, flags: number);
-          unregisterDeathRecipient(recipient: MyDeathRecipient, flags: number);
-      } catch(error) {
-          console.info("Rpc register deathRecipient fail, errorCode " + error.code);
-          console.info("Rpc register deathRecipient fail, errorMessage " + error.message);
-      }
-      isObjectDead(): boolean {
-          return false;
       }
   }
   let data = rpc.MessageSequence.create();
@@ -305,7 +275,7 @@ setSize(size: number): void
   let data = rpc.MessageSequence.create();
   try {
       data.setSize(16);
-      console.log("RpcClient: setSize is " + setSize);
+      console.log("RpcClient: setSize is " + data.getSize());
   } catch(error) {
       console.info("rpc set size of MessageSequence fail, errorCode " + error.code);
       console.info("rpc set size of MessageSequence fail, errorMessage " + error.message);
@@ -340,7 +310,7 @@ setCapacity(size: number): void
   let data = rpc.MessageSequence.create();
   try {
       data.setCapacity(100);
-      console.log("RpcClient: setCapacity is " + result);
+      console.log("RpcClient: setCapacity is " + data.getCapacity());
   } catch(error) {
       console.info("rpc memory alloc fail, errorCode " + error.code);
       console.info("rpc memory alloc fail, errorMessage " + error.message);
@@ -724,11 +694,11 @@ readInt(): number
   }
   try {
       let ret = data.readInt();
+      console.log("RpcClient: readInt is " + ret);
   } catch(error) {
       console.info("rpc read int fail, errorCode " + error.code);
       console.info("rpc read int fail, errorMessage" + error.message);
   }
-  console.log("RpcClient: readInt is " + ret);
   ```
 
 ### writeLong
@@ -799,11 +769,11 @@ readLong(): number
   }
   try {
       let ret = data.readLong();
+      console.log("RpcClient: readLong is " + ret);
   } catch(error) {
       console.info("rpc read long fail, errorCode " + error.code);
       console.info("rpc read long fail, errorMessage" + error.message);
   }
-  console.log("RpcClient: readLong is " + ret);
   ```
 
 ### writeFloat
@@ -874,11 +844,11 @@ readFloat(): number
   }
   try {
       let ret = data.readFloat();
+      console.log("RpcClient: readFloat is " + ret);
   } catch(error) {
       console.info("rpc read float fail, errorCode " + error.code);
       console.info("rpc read float fail, errorMessage" + error.message);
   }
-  console.log("RpcClient: readFloat is " + ret);
   ```
 
 ### writeDouble
@@ -949,11 +919,11 @@ readDouble(): number
   }
   try {
       let ret = data.readDouble();
+      console.log("RpcClient: readDouble is " + ret);
   } catch(error) {
       console.info("rpc read double fail, errorCode " + error.code);
       console.info("rpc read double fail, errorMessage" + error.message);
   }
-  console.log("RpcClient: readDouble is " + ret);
   ```
 
 ### writeBoolean
@@ -1024,11 +994,11 @@ readBoolean(): boolean
   }
   try {
       let ret = data.readBoolean();
+      console.log("RpcClient: readBoolean is " + ret);
   } catch(error) {
       console.info("rpc read boolean fail, errorCode " + error.code);
       console.info("rpc read boolean fail, errorMessage" + error.message);
   }
-  console.log("RpcClient: readBoolean is " + ret);
   ```
 
 ### writeChar
@@ -1099,11 +1069,11 @@ readChar(): number
   }
   try {
       let ret = data.readChar();
+      console.log("RpcClient: readChar is " + ret);
   } catch(error) {
       console.info("rpc read char fail, errorCode " + error.code);
       console.info("rpc read char fail, errorMessage" + error.message);
   }
-  console.log("RpcClient: readChar is " + ret);
   ```
 
 ### writeString
@@ -1174,11 +1144,11 @@ readString(): string
   }
   try {
       let ret = data.readString();
+      console.log("RpcClient: readString is " + ret);
   } catch(error) {
       console.info("rpc read string fail, errorCode " + error.code);
       console.info("rpc read string fail, errorMessage" + error.message);
   }
-  console.log("RpcClient: readString is " + ret);
   ```
 
 ### writeParcelable
@@ -1224,7 +1194,7 @@ writeParcelable(val: Parcelable): void
           return true;
       }
   }
-  let parcelable = new MyParcelable(1, "aaa");
+  let parcelable = new MySequenceable(1, "aaa");
   let data = rpc.MessageSequence.create();
   try {
       data.writeParcelable(parcelable);
@@ -1278,13 +1248,13 @@ readParcelable(dataIn: Parcelable) : void
           return true;
       }
   }
-  let parcelable = new MyParcelable(1, "aaa");
+  let parcelable = new MySequenceable(1, "aaa");
   let data = rpc.MessageSequence.create();
   data.writeParcelable(parcelable);
-  let ret = new MyParcelable(0, "");
+  let ret = new MySequenceable(0, "");
   try {
       data.readParcelable(ret);
-  }catch{
+  }catch(error) {
       console.info("rpc read parcelable fail, errorCode " + error.code);
       console.info("rpc read parcelable fail, errorMessage" + error.message);
   }
@@ -1393,16 +1363,16 @@ readByteArray(): number[]
 
   ```
   let data = rpc.MessageSequence.create();
-  let ByteArrayVar = [1, 2, 3, 4, 5];
+  let byteArrayVar = [1, 2, 3, 4, 5];
   try {
-      data.writeByteArray(ByteArrayVar);
-      console.log("RpcClient: readByteArray is " + array);
+      data.writeByteArray(byteArrayVar);
   } catch(error) {
       console.info("rpc write byteArray fail, errorCode " + error.code);
       console.info("rpc write byteArray fail, errorMessage" + error.message);
   }
   try {
       let array = data.readByteArray();
+      console.log("RpcClient: readByteArray is " + array);
   } catch(error) {
       console.info("rpc read byteArray fail, errorCode " + error.code);
       console.info("rpc read byteArray fail, errorMessage" + error.message);
@@ -1669,7 +1639,7 @@ writeLongArray(longArray: number[]): void
   let data = rpc.MessageSequence.create();
   try {
       data.writeLongArray([1111, 1112, 1113]);
-  }cathc(error){
+  }catch(error){
       console.info("rpc write longArray fail, errorCode " + error.code);
       console.info("rpc write longArray fail, errorMessage" + error.message);
   }
@@ -1819,7 +1789,7 @@ readFloatArray(dataIn: number[]) : void
   let data = rpc.MessageSequence.create();
   try {
       data.writeFloatArray([1.2, 1.3, 1.4]);
-  }cath(error){
+  }catch(error){
       console.info("rpc write floatArray fail, errorCode " + error.code);
       console.info("rpc write floatArray fail, errorMessage" + error.message);
   }
@@ -2357,20 +2327,11 @@ writeNoException(): void
 **示例：**
 
   ```
-  class MyDeathRecipient {
-      onRemoteDied() {
-          console.log("server died");
-      }
-  }
   class TestRemoteObject extends rpc.RemoteObject {
       constructor(descriptor) {
           super(descriptor);
       }
-      registerDeathRecipient(recipient: MyDeathRecipient, flags: number);
-      unregisterDeathRecipient(recipient: MyDeathRecipient, flags: number);
-      isObjectDead(): boolean {
-          return false;
-      }
+
       onRemoteRequest(code, data, reply, option) {
           if (code === 1) {
               console.log("RpcServer: onRemoteRequest called");
@@ -2597,21 +2558,12 @@ writeRemoteObjectArray(objectArray: IRemoteObject[]): void
 **示例：**
 
   ```
-  class MyDeathRecipient {
-      onRemoteDied() {
-          console.log("server died");
-      }
-  }
   class TestRemoteObject extends rpc.RemoteObject {
       constructor(descriptor) {
           super(descriptor);
           this.modifyLocalInterface(this, descriptor);
       }
-      registerDeathRecipient(recipient: MyDeathRecipient, flags: number);
-      unregisterDeathRecipient(recipient: MyDeathRecipient, flags: number);
-      isObjectDead(): boolean {
-          return false;
-      }
+
       asObject(): rpc.IRemoteObject {
           return this;
       }
@@ -2663,11 +2615,7 @@ readRemoteObjectArray(objects: IRemoteObject[]): void
           super(descriptor);
           this.modifyLocalInterface(this, descriptor);
       }
-      registerDeathRecipient(recipient: MyDeathRecipient, flags: number);
-      unregisterDeathRecipient(recipient: MyDeathRecipient, flags: number);
-      isObjectDead(): boolean {
-          return false;
-      }
+
       asObject(): rpc.IRemoteObject {
           return this;
       }
@@ -2710,21 +2658,12 @@ readRemoteObjectArray(): IRemoteObject[]
 **示例：**
 
   ```
-  class MyDeathRecipient {
-      onRemoteDied() {
-          console.log("server died");
-      }
-  }
   class TestRemoteObject extends rpc.RemoteObject {
       constructor(descriptor) {
           super(descriptor);
           this.modifyLocalInterface(this, descriptor);
       }
-      registerDeathRecipient(recipient: MyDeathRecipient, flags: number);
-      unregisterDeathRecipient(recipient: MyDeathRecipient, flags: number);
-      isObjectDead(): boolean {
-          return false;
-      }
+ 
       asObject(): rpc.IRemoteObject {
           return this;
       }
@@ -2734,11 +2673,11 @@ readRemoteObjectArray(): IRemoteObject[]
   data.writeRemoteObjectArray(a);
   try {
       let b = data.readRemoteObjectArray();
+      console.log("RpcClient: readRemoteObjectArray is " + b);
   } catch(error) {
       console.info("rpc read remote object array fail, errorCode " + error.code);
       console.info("rpc read remote object array fail, errorMessage" + error.message);
   }
-  console.log("RpcClient: readRemoteObjectArray is " + b);
   ```
 
 
@@ -2843,11 +2782,11 @@ containFileDescriptors(): boolean
   }
   try {
       let containFD = sequence.containFileDescriptors();
+      console.log("RpcTest: sequence after write fd containFd result is : " + containFD);
   } catch(error) {
       console.info("rpc contain file descriptor fail, errorCode " + error.code);
       console.info("rpc contain file descriptor fail, errorMessage" + error.message);
   }
-  console.log("RpcTest: sequence after write fd containFd result is : " + containFD);
   ```
 
 ### writeFileDescriptor
@@ -2958,8 +2897,9 @@ writeAshmem(ashmem: Ashmem): void
 
   ```
   let sequence = new rpc.MessageSequence();
+  let ashmem;
   try {
-      let ashmem = rpc.Ashmem.create("ashmem", 1024);
+      ashmem = rpc.Ashmem.create("ashmem", 1024);
   } catch(error) {
       console.info("rpc create ashmem fail, errorCode " + error.code);
       console.info("rpc creat ashmem fail, errorMessage" + error.message);
@@ -2999,8 +2939,9 @@ readAshmem(): Ashmem
 
   ```
   let sequence = new rpc.MessageSequence();
+  let ashmem;
   try {
-      let ashmem = rpc.Ashmem.create("ashmem", 1024);
+      ashmem = rpc.Ashmem.create("ashmem", 1024);
   } catch(error) {
       console.info("rpc create ashmem fail, errorCode " + error.code);
       console.info("rpc creat ashmem fail, errorMessage" + error.message);
@@ -3012,12 +2953,12 @@ readAshmem(): Ashmem
       console.info("rpc write ashmem fail, errorMessage" + error.message);
   }
   try {
-        let readAshmem = sequence.readAshmem();
+      let readAshmem = sequence.readAshmem();
+      console.log("RpcTest: read ashmem to result is : " + readAshmem);
   } catch(error) {
       console.info("rpc read ashmem fail, errorCode " + error.code);
       console.info("rpc read ashmem fail, errorMessage" + error.message);
   }
-  console.log("RpcTest: read ashmem to result is : " + readAshmem);
   ```
 
 
@@ -3122,11 +3063,11 @@ readRawData(size: number): number[]
   }
   try {
       let result = sequence.readRawData(5);
+      console.log("RpcTest: sequence read raw data result is : " + result);
   } catch(error) {
       console.info("rpc read rawdata fail, errorCode " + error.code);
       console.info("rpc read rawdata fail, errorMessage" + error.message);
   }
-  console.log("RpcTest: sequence read raw data result is : " + result);
   ```
 
 ## MessageParcel<sup>(deprecated)</sup>
@@ -6641,8 +6582,8 @@ registerDeathRecipient(recipient: DeathRecipient, flags: number): void
   try {
       proxy.registerDeathRecippient(deathRecipient, 0);
   } catch(error) {
-      console.info(proxy register deathRecipient fail, errorCode " + error.code);
-      console.info(proxy register deathRecipient fail, errorMessage " + error.message);
+      console.info("proxy register deathRecipient fail, errorCode " + error.code);
+      console.info("proxy register deathRecipient fail, errorMessage " + error.message);
   }
   ```
 
@@ -6756,8 +6697,8 @@ unregisterDeathRecipient(recipient: DeathRecipient, flags: number): void
       proxy.registerDeathRecippient(deathRecipient, 0);
       proxy.unregisterDeathRecippient(deathRecipient, 0);
   } catch(error) {
-      console.info(proxy register deathRecipient fail, errorCode " + error.code);
-      console.info(proxy register deathRecipient fail, errorMessage " + error.message);
+      console.info("proxy register deathRecipient fail, errorCode " + error.code);
+      console.info("proxy register deathRecipient fail, errorMessage " + error.message);
   }
   ```
 
@@ -7293,27 +7234,17 @@ static flushCmdBuffer(object : IRemoteObject): void
 **示例：**
 
   ```
-  class MyDeathRecipient {
-      onRemoteDied() {
-          console.log("server died");
-      }
-  }
   class TestRemoteObject extends rpc.RemoteObject {
       constructor(descriptor) {
           super(descriptor);
-      }
-      registerDeathRecipient(recipient: MyDeathRecipient, flags: number);
-      unregisterDeathRecipient(recipient: MyDeathRecipient, flags: number);
-      isObjectDead(): boolean {
-          return false;
       }
   }
   let remoteObject = new TestRemoteObject("aaa");
   try {
       rpc.IPCSkeleton.flushCmdBuffer(remoteObject);
   } catch(error) {
-      console.info(proxy set calling identity fail, errorCode " + error.code);
-      console.info(proxy set calling identity fail, errorMessage " + error.message);
+      console.info("proxy set calling identity fail, errorCode " + error.code);
+      console.info("proxy set calling identity fail, errorMessage " + error.message);
   }
   ```
 
@@ -7651,19 +7582,9 @@ sendMessageRequest(code : number, data : MessageSequence, reply : MessageSequenc
 **示例：**
 
   ```
-  class MyDeathRecipient {
-      onRemoteDied() {
-          console.log("server died");
-      }
-  }
   class TestRemoteObject extends rpc.RemoteObject {
       constructor(descriptor) {
           super(descriptor);
-      }
-      registerDeathRecipient(recipient: MyDeathRecipient, flags: number);
-      unregisterDeathRecipient(recipient: MyDeathRecipient, flags: number);
-      isObjectDead(): boolean {
-          return false;
       }
   }
   let testRemoteObject = new TestRemoteObject("testObject");
@@ -7713,19 +7634,9 @@ sendMessageRequest(code: number, data: MessageSequence, reply: MessageSequence, 
 **示例：**
 
   ```
-  class MyDeathRecipient {
-      onRemoteDied() {
-          console.log("server died");
-      }
-  }
   class TestRemoteObject extends rpc.RemoteObject {
       constructor(descriptor) {
           super(descriptor);
-      }
-      registerDeathRecipient(recipient: MyDeathRecipient, flags: number);
-      unregisterDeathRecipient(recipient: MyDeathRecipient, flags: number);
-      isObjectDead(): boolean {
-          return false;
       }
   }
   function sendRequestCallback(result) {
@@ -7747,7 +7658,7 @@ sendMessageRequest(code: number, data: MessageSequence, reply: MessageSequence, 
   let reply = rpc.MessageSequence.create();
   data.writeInt(1);
   data.writeString("hello");
-  testRemoteObject.sendRequest(1, data, reply, option, sendRequestCallback);
+  testRemoteObject.sendMessageRequest(1, data, reply, option, sendRequestCallback);
   ```
 
 
@@ -7906,20 +7817,11 @@ sendMessageRequest请求的响应处理函数，服务端在该函数里同步�
 **重载onRemoteMessageRequest方法同步处理请求示例：**
 
   ```ets
-  class MyDeathRecipient {
-      onRemoteDied() {
-          console.log("server died");
-      }
-  }
   class TestRemoteObject extends rpc.RemoteObject {
       constructor(descriptor) {
           super(descriptor);
       }
-      registerDeathRecipient(recipient: MyDeathRecipient, flags: number);
-      unregisterDeathRecipient(recipient: MyDeathRecipient, flags: number);
-      isObjectDead(): boolean {
-          return false;
-      }
+
       onRemoteMessageRequest(code, data, reply, option) {
           if (code === 1) {
               console.log("RpcServer: sync onRemoteMessageRequest is called");
@@ -7935,20 +7837,11 @@ sendMessageRequest请求的响应处理函数，服务端在该函数里同步�
   **重载onRemoteMessageRequest方法异步处理请求示例：**
 
   ```ets
-  class MyDeathRecipient {
-      onRemoteDied() {
-          console.log("server died");
-      }
-  }
   class TestRemoteObject extends rpc.RemoteObject {
       constructor(descriptor) {
           super(descriptor);
       }
-      registerDeathRecipient(recipient: MyDeathRecipient, flags: number);
-      unregisterDeathRecipient(recipient: MyDeathRecipient, flags: number);
-      isObjectDead(): boolean {
-          return false;
-      }
+
       async onRemoteMessageRequest(code, data, reply, option) {
           if (code === 1) {
               console.log("RpcServer: async onRemoteMessageRequest is called");
@@ -7967,20 +7860,11 @@ sendMessageRequest请求的响应处理函数，服务端在该函数里同步�
 **同时重载onRemoteMessageRequest和onRemoteRequest方法同步处理请求示例：**
 
   ```ets
-  class MyDeathRecipient {
-      onRemoteDied() {
-          console.log("server died");
-      }
-  }
   class TestRemoteObject extends rpc.RemoteObject {
       constructor(descriptor) {
           super(descriptor);
       }
-      registerDeathRecipient(recipient: MyDeathRecipient, flags: number);
-      unregisterDeathRecipient(recipient: MyDeathRecipient, flags: number);
-      isObjectDead(): boolean {
-          return false;
-      }
+
       onRemoteRequest(code, data, reply, option) {
           if (code === 1) {
               console.log("RpcServer: sync onRemoteMessageRequest is called");
@@ -8007,20 +7891,11 @@ sendMessageRequest请求的响应处理函数，服务端在该函数里同步�
   **同时重载onRemoteMessageRequest和onRemoteRequest方法异步处理请求示例：**
 
   ```ets
-  class MyDeathRecipient {
-      onRemoteDied() {
-          console.log("server died");
-      }
-  }
   class TestRemoteObject extends rpc.RemoteObject {
       constructor(descriptor) {
           super(descriptor);
       }
-      registerDeathRecipient(recipient: MyDeathRecipient, flags: number);
-      unregisterDeathRecipient(recipient: MyDeathRecipient, flags: number);
-      isObjectDead(): boolean {
-          return false;
-      }
+
       onRemoteRequest(code, data, reply, option) {
           if (code === 1) {
               console.log("RpcServer: sync onRemoteRequest is called");
@@ -8063,19 +7938,9 @@ getCallingUid(): number
 **示例：**
 
   ```
-  class MyDeathRecipient {
-      onRemoteDied() {
-          console.log("server died");
-      }
-  }
   class TestRemoteObject extends rpc.RemoteObject {
       constructor(descriptor) {
           super(descriptor);
-      }
-      registerDeathRecipient(recipient: MyDeathRecipient, flags: number);
-      unregisterDeathRecipient(recipient: MyDeathRecipient, flags: number);
-      isObjectDead(): boolean {
-          return false;
       }
   }
   let testRemoteObject = new TestRemoteObject("testObject");
@@ -8099,19 +7964,9 @@ getCallingPid(): number
 **示例：**
 
   ```
-  class MyDeathRecipient {
-      onRemoteDied() {
-          console.log("server died");
-      }
-  }
   class TestRemoteObject extends rpc.RemoteObject {
       constructor(descriptor) {
           super(descriptor);
-      }
-      registerDeathRecipient(recipient: MyDeathRecipient, flags: number);
-      unregisterDeathRecipient(recipient: MyDeathRecipient, flags: number);
-      isObjectDead(): boolean {
-          return false;
       }
   }
   let testRemoteObject = new TestRemoteObject("testObject");
@@ -8445,8 +8300,9 @@ static create(name: string, size: number): Ashmem
 **示例：**
 
   ```
+  let ashmem;
   try {
-      let ashmem = rpc.Ashmem.create("ashmem", 1024*1024);
+      ashmem = rpc.Ashmem.create("ashmem", 1024*1024);
   } catch(error) {
       console.info("Rpc creat ashmem fail, errorCode " + error.code);
       console.info("Rpc creat ashmem  fail, errorMessage " + error.message);
@@ -8512,12 +8368,7 @@ static create(ashmem: Ashmem): Ashmem
 **示例：**
 
   ```
-  try {
-      let ashmem = rpc.Ashmem.create("ashmem", 1024*1024);
-  } catch(error) {
-      console.info("Rpc creat ashmem fail, errorCode " + error.code);
-      console.info("Rpc creat ashmem fail, errorMessage " + error.message);
-  }
+  let ashmem2;
   try {
       let ashmem = rpc.Ashmem.create("ashmem", 1024*1024);
       let ashmem2 = rpc.Ashmem.create(ashmem);
