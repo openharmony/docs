@@ -469,7 +469,7 @@ export default class MainAbility extends Ability {
         try {
             backgroundTaskManager.stopBackgroundRunning(this.context).then(() => {
                 console.info("Operation stopBackgroundRunning succeeded");
-            }).catch((err) => {
+            }).catch((error) => {
                 console.error(`Operation stopBackgroundRunning failed. code is ${error.code} message is ${error.message}`);
             });
         } catch (error) {

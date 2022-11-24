@@ -1575,7 +1575,8 @@ convertKey(pubKey : DataBlob, priKey : DataBlob, callback : AsyncCallback\<KeyPa
 
 ```javascript
 import cryptoFramework from "@ohos.security.cryptoFramework"
-
+let pubKey; // X.509规范、DER格式的公钥数据，此处省略数据。
+let priKey; // PKCS#8规范、DER格式的私钥数据，此处省略数据。
 let asyKeyGenerator = cryptoFramework.createAsyKeyGenerator("ECC256");
 let pubKey; // pubKey为使用非对称密钥生成器生成的非对称密钥的公钥对象，此处省略生成过程
 let priKey; // priKey为使用非对称密钥生成器生成的非对称密钥的私钥对象，此处省略生成过程
@@ -2218,7 +2219,7 @@ rsaGenerator.generateKeyPair(function (err, keyPair) {
       });
     });
   });
-});
+}
 ```
 
 **promise示例：**
@@ -2500,6 +2501,8 @@ generateSecret(priKey : PriKey, pubKey : PubKey) : Promise\<DataBlob>
 ```javascript
 import cryptoFramework from "@ohos.security.cryptoFramework"
 
+let globalKeyPair; // 生成的密钥对，此处省略生成过程
+
 let keyAgreement = cryptoFramework.createKeyAgreement("ECC256");
 let globalKeyPair; // globalKeyPair为使用非对称密钥生成器生成的非对称密钥对象，此处省略生成过程
 keyAgreement.generateSecret(globalKeyPair.priKey, globalKeyPair.pubKey, function (err, secret) {
@@ -2516,6 +2519,7 @@ keyAgreement.generateSecret(globalKeyPair.priKey, globalKeyPair.pubKey, function
 ```javascript
 import cryptoFramework from "@ohos.security.cryptoFramework"
 
+let globalKeyPair; // 生成的密钥对，此处省略生成过程
 let keyAgreement = cryptoFramework.createKeyAgreement("ECC256");
 let globalKeyPair; // globalKeyPair为使用非对称密钥生成器生成的非对称密钥对象，此处省略生成过程
 let keyAgreementPromise = keyAgreement.generateSecret(globalKeyPair.priKey, globalKeyPair.pubKey);
