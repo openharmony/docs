@@ -155,9 +155,9 @@ zh-cn/application-dev/work-scheduler/ @HelloCrease
 zh-cn/application-dev/internationalization/ @HelloCrease
 zh-cn/application-dev/device/usb-overview.md @ge-yafang
 zh-cn/application-dev/device/usb-guidelines.md @ge-yafang
-zh-cn/application-dev/device/device-location-overview.md @zengyawen
-zh-cn/application-dev/device/device-location-info.md @zengyawen
-zh-cn/application-dev/device/device-location-geocoding.md @zengyawen
+zh-cn/application-dev/device/device-location-overview.md @RayShih
+zh-cn/application-dev/device/device-location-info.md @RayShih
+zh-cn/application-dev/device/device-location-geocoding.md @RayShih
 zh-cn/application-dev/device/sensor-overview.md @HelloCrease
 zh-cn/application-dev/device/sensor-guidelines.md @HelloCrease
 zh-cn/application-dev/device/vibrator-overview.md @HelloCrease
@@ -181,7 +181,7 @@ zh-cn/application-dev/napi/drawing-guidelines.md @ge-yafang
 zh-cn/application-dev/napi/rawfile-guidelines.md @HelloCrease
 zh-cn/application-dev/reference/js-service-widget-ui/ @HelloCrease
 zh-cn/application-dev/faqs/ @zengyawen
-zh-cn/application-dev/file-management/ @qinxiaowang
+zh-cn/application-dev/file-management/ @zengyawen
 zh-cn/application-dev/application-test/ @HelloCrease
 zh-cn/application-dev/device-usage-statistics/ @HelloCrease
 
@@ -212,7 +212,7 @@ zh-cn/application-dev/reference/apis/js-apis-audio.md @zengyawen
 zh-cn/application-dev/reference/apis/js-apis-camera.md @zengyawen
 zh-cn/application-dev/reference/apis/js-apis-image.md @zengyawen
 zh-cn/application-dev/reference/apis/js-apis-media.md @zengyawen
-zh-cn/application-dev/reference/apis/js-apis-medialibrary.md @qinxiaowang
+zh-cn/application-dev/reference/apis/js-apis-medialibrary.md @zengyawen
 zh-cn/application-dev/reference/apis/js-apis-i18n.md @HelloCrease
 zh-cn/application-dev/reference/apis/js-apis-intl.md @HelloCrease
 zh-cn/application-dev/reference/apis/js-apis-resource-manager.md @HelloCrease
@@ -239,13 +239,13 @@ zh-cn/application-dev/reference/apis/js-apis-system-storage.md @ge-yafang
 zh-cn/application-dev/reference/apis/js-apis-data-rdb.md @ge-yafang
 zh-cn/application-dev/reference/apis/js-apis-settings.md @ge-yafang
 zh-cn/application-dev/reference/apis/js-apis-data-resultset.md @ge-yafang
-zh-cn/application-dev/reference/apis/js-apis-document.md @qinxiaowang
-zh-cn/application-dev/reference/apis/js-apis-environment.md @qinxiaowang
-zh-cn/application-dev/reference/apis/js-apis-fileio.md @qinxiaowang
-zh-cn/application-dev/reference/apis/js-apis-filemanager.md @qinxiaowang
-zh-cn/application-dev/reference/apis/js-apis-statfs.md @qinxiaowang
-zh-cn/application-dev/reference/apis/js-apis-storage-statistics.md @qinxiaowang
-zh-cn/application-dev/reference/apis/js-apis-volumemanager.md @qinxiaowang
+zh-cn/application-dev/reference/apis/js-apis-document.md @zengyawen
+zh-cn/application-dev/reference/apis/js-apis-environment.md @zengyawen
+zh-cn/application-dev/reference/apis/js-apis-fileio.md @zengyawen
+zh-cn/application-dev/reference/apis/js-apis-filemanager.md @zengyawen
+zh-cn/application-dev/reference/apis/js-apis-statfs.md @zengyawen
+zh-cn/application-dev/reference/apis/js-apis-storage-statistics.md @zengyawen
+zh-cn/application-dev/reference/apis/js-apis-volumemanager.md @zengyawen
 zh-cn/application-dev/reference/apis/js-apis-contact.md @zengyawen
 zh-cn/application-dev/reference/apis/js-apis-call.md @zengyawen
 zh-cn/application-dev/reference/apis/js-apis-observer.md @zengyawen
@@ -302,27 +302,27 @@ zh-cn/application-dev/reference/apis/js-apis-vibrator.md @HelloCrease
 zh-cn/application-dev/reference/apis/js-apis-appAccount.md @zengyawen
 zh-cn/application-dev/reference/apis/js-apis-distributed-account.md @zengyawen
 zh-cn/application-dev/reference/apis/js-apis-osAccount.md @zengyawen
-zh-cn/application-dev/reference/apis/js-apis-convertxml.md @zengyawen
-zh-cn/application-dev/reference/apis/js-apis-process.md @zengyawen
-zh-cn/application-dev/reference/apis/js-apis-uri.md @zengyawen
-zh-cn/application-dev/reference/apis/js-apis-url.md @zengyawen
-zh-cn/application-dev/reference/apis/js-apis-util.md @zengyawen
-zh-cn/application-dev/reference/apis/js-apis-arraylist.md @zengyawen
-zh-cn/application-dev/reference/apis/js-apis-deque.md @zengyawen
-zh-cn/application-dev/reference/apis/js-apis-hashmap.md @zengyawen
-zh-cn/application-dev/reference/apis/js-apis-hashset.md @zengyawen
-zh-cn/application-dev/reference/apis/js-apis-lightweightmap.md @zengyawen
-zh-cn/application-dev/reference/apis/js-apis-lightweightset.md @zengyawen
-zh-cn/application-dev/reference/apis/js-apis-linkedlist.md @zengyawen
-zh-cn/application-dev/reference/apis/js-apis-list.md @zengyawen
-zh-cn/application-dev/reference/apis/js-apis-plainarray.md @zengyawen
-zh-cn/application-dev/reference/apis/js-apis-queue.md @zengyawen
-zh-cn/application-dev/reference/apis/js-apis-stack.md @zengyawen
-zh-cn/application-dev/reference/apis/js-apis-treemap.md @zengyawen
-zh-cn/application-dev/reference/apis/js-apis-treeset.md @zengyawen
-zh-cn/application-dev/reference/apis/js-apis-vector.md @zengyawen
-zh-cn/application-dev/reference/apis/js-apis-worker.md @zengyawen
-zh-cn/application-dev/reference/apis/js-apis-xml.md @zengyawen
+zh-cn/application-dev/reference/apis/js-apis-convertxml.md @ge-yafang
+zh-cn/application-dev/reference/apis/js-apis-process.md @ge-yafang
+zh-cn/application-dev/reference/apis/js-apis-uri.md @ge-yafang
+zh-cn/application-dev/reference/apis/js-apis-url.md @ge-yafang
+zh-cn/application-dev/reference/apis/js-apis-util.md @ge-yafang
+zh-cn/application-dev/reference/apis/js-apis-arraylist.md @ge-yafang
+zh-cn/application-dev/reference/apis/js-apis-deque.md @ge-yafang
+zh-cn/application-dev/reference/apis/js-apis-hashmap.md @ge-yafang
+zh-cn/application-dev/reference/apis/js-apis-hashset.md @ge-yafang
+zh-cn/application-dev/reference/apis/js-apis-lightweightmap.md @ge-yafang
+zh-cn/application-dev/reference/apis/js-apis-lightweightset.md @ge-yafang
+zh-cn/application-dev/reference/apis/js-apis-linkedlist.md @ge-yafang
+zh-cn/application-dev/reference/apis/js-apis-list.md @ge-yafang
+zh-cn/application-dev/reference/apis/js-apis-plainarray.md @ge-yafang
+zh-cn/application-dev/reference/apis/js-apis-queue.md @ge-yafang
+zh-cn/application-dev/reference/apis/js-apis-stack.md @ge-yafang
+zh-cn/application-dev/reference/apis/js-apis-treemap.md @ge-yafang
+zh-cn/application-dev/reference/apis/js-apis-treeset.md @ge-yafang
+zh-cn/application-dev/reference/apis/js-apis-vector.md @ge-yafang
+zh-cn/application-dev/reference/apis/js-apis-worker.md @ge-yafang
+zh-cn/application-dev/reference/apis/js-apis-xml.md @ge-yafang
 zh-cn/application-dev/reference/apis/js-apis-testRunner.md @HelloCrease
 zh-cn/application-dev/reference/apis/js-apis-uitest.md @HelloCrease
 zh-cn/application-dev/reference/apis/js-apis-hisysevent.md @zengyawen
@@ -331,9 +331,9 @@ zh-cn/application-dev/reference/apis/js-apis-EnterpriseAdminExtensionAbility.md 
 zh-cn/application-dev/reference/apis/js-apis-animator.md @HelloCrease @qieqiewl @tomatodevboy @niulihua
 zh-cn/application-dev/reference/apis/js-apis-uiappearance.md @HelloCrease @qieqiewl @tomatodevboy @niulihua
 zh-cn/application-dev/reference/apis/js-apis-useriam-faceauth.md @zengyawen
-zh-cn/application-dev/reference/apis/js-apis-userfilemanager.md @qinxiaowang
+zh-cn/application-dev/reference/apis/js-apis-userfilemanager.md @zengyawen
 zh-cn/application-dev/reference/apis/js-apis-cryptoFramework.md @zengyawen
-zh-cn/application-dev/reference/apis/js-apis-buffer.md @zengyawen
+zh-cn/application-dev/reference/apis/js-apis-buffer.md @ge-yafang
 zh-cn/application-dev/reference/apis/development-intro.md @zengyawen
 zh-cn/application-dev/reference/apis/js-apis-accessibility-extension-context.md @RayShih
 zh-cn/application-dev/reference/apis/js-apis-application-applicationContext.md @RayShih
@@ -366,7 +366,7 @@ zh-cn/application-dev/reference/apis/js-apis-mouseevent.md @HelloCrease
 zh-cn/application-dev/reference/apis/js-apis-nfcController.md @RayShih
 zh-cn/application-dev/reference/apis/js-apis-nfctech.md @RayShih
 zh-cn/application-dev/reference/apis/js-apis-pointer.md @HelloCrease
-zh-cn/application-dev/reference/apis/js-apis-securityLabel.md @qinxiaowang
+zh-cn/application-dev/reference/apis/js-apis-securityLabel.md @zengyawen
 zh-cn/application-dev/reference/apis/js-apis-system-app.md @RayShih @shuaytao @wangzhen107 @inter515
 zh-cn/application-dev/reference/apis/js-apis-system-battery.md @zengyawen
 zh-cn/application-dev/reference/apis/js-apis-system-bluetooth.md @RayShih
@@ -374,7 +374,7 @@ zh-cn/application-dev/reference/apis/js-apis-system-brightness.md @zengyawen
 zh-cn/application-dev/reference/apis/js-apis-system-configuration.md @HelloCrease
 zh-cn/application-dev/reference/apis/js-apis-system-device.md @zengyawen
 zh-cn/application-dev/reference/apis/js-apis-system-fetch.md @zengyawen
-zh-cn/application-dev/reference/apis/js-apis-system-file.md @qinxiaowang
+zh-cn/application-dev/reference/apis/js-apis-system-file.md @zengyawen
 zh-cn/application-dev/reference/apis/js-apis-system-location.md @RayShih
 zh-cn/application-dev/reference/apis/js-apis-system-mediaquery.md @HelloCrease @qieqiewl @tomatodevboy @niulihua
 zh-cn/application-dev/reference/apis/js-apis-system-network.md @zengyawen
@@ -390,8 +390,8 @@ zh-cn/application-dev/reference/apis/js-apis-accessibility-config.md @RayShih
 zh-cn/application-dev/reference/apis/js-apis-Bundle-BundleStatusCallback.md @RayShih @shuaytao @wangzhen107 @inter515
 zh-cn/application-dev/reference/apis/js-apis-bundle-PackInfo.md @RayShih @shuaytao @wangzhen107 @inter515
 zh-cn/application-dev/reference/apis/js-apis-enterpriseDeviceManager-DeviceSettingsManager.md @HelloCrease
-zh-cn/application-dev/reference/apis/js-apis-fileAccess.md @qinxiaowang
-zh-cn/application-dev/reference/apis/js-apis-fileExtensionInfo.md @qinxiaowang
+zh-cn/application-dev/reference/apis/js-apis-fileAccess.md @zengyawen
+zh-cn/application-dev/reference/apis/js-apis-fileExtensionInfo.md @zengyawen
 zh-cn/application-dev/reference/apis/js-apis-net-ethernet.md @zengyawen
 zh-cn/application-dev/reference/apis/js-apis-net-policy.md @zengyawen
 zh-cn/application-dev/reference/apis/js-apis-net-sharing.md @zengyawen
@@ -450,16 +450,6 @@ zh-cn/application-dev/reference/apis/js-apis-formprovider.md @RayShih @littlejer
 zh-cn/application-dev/reference/apis/js-apis-inputmethod-extension-ability.md @ge-yafang
 zh-cn/application-dev/reference/apis/js-apis-inputmethod-extension-context.md @ge-yafang
 zh-cn/application-dev/reference/apis/js-apis-inputmethod-subtype.md @ge-yafang
-zh-cn/application-dev/reference/errorcodes/errcode-inputmethod-framework.md @ge-yafang
-zh-cn/application-dev/reference/errorcodes/errcode-usb.md @ge-yafang
-zh-cn/application-dev/reference/errorcodes/errorcode-datashare.md @ge-yafang
-zh-cn/application-dev/reference/errorcodes/errorcode-colorspace-manager.md @ge-yafang
-zh-cn/application-dev/reference/errorcodes/errorcode-display.md @ge-yafang
-zh-cn/application-dev/reference/errorcodes/errorcode-distributed-data_object.md @ge-yafang
-zh-cn/application-dev/reference/errorcodes/errorcode-distributedKVStore.md @ge-yafang
-zh-cn/application-dev/reference/errorcodes/errorcode-pasteboard.md @ge-yafang
-zh-cn/application-dev/reference/errorcodes/errorcode-preferences.md @ge-yafang
-zh-cn/application-dev/reference/errorcodes/errorcode-window.md @ge-yafang
 zh-cn/application-dev/reference/apis/js-apis-application-quickFixManager.md @RayShih @littlejerry1 @gwang2008 @ccllee @chengxingzhen
 zh-cn/application-dev/reference/apis/js-apis-missionManager.md @RayShih @littlejerry1 @gwang2008 @ccllee @chengxingzhen
 zh-cn/application-dev/reference/apis/js-apis-particleAbility.md @RayShih @littlejerry1 @gwang2008 @ccllee @chengxingzhen
@@ -470,3 +460,62 @@ zh-cn/application-dev/reference/apis/js-apis-service-extension-ability.md @RaySh
 zh-cn/application-dev/reference/apis/js-apis-service-extension-context.md @RayShih @littlejerry1 @gwang2008 @ccllee @chengxingzhen
 zh-cn/application-dev/reference/apis/js-apis-wantAgent.md @RayShih @littlejerry1 @gwang2008 @ccllee @chengxingzhen
 
+zh-cn/application-dev/reference/errorcodes/errcode-ability.md @RayShih
+zh-cn/application-dev/reference/errorcodes/errcode-access-token.md @zengyawen
+zh-cn/application-dev/reference/errorcodes/errcode-accessibility.md @RayShih
+zh-cn/application-dev/reference/errorcodes/errcode-account.md @zengyawen
+zh-cn/application-dev/reference/errorcodes/errcode-animator.md @HelloCrease
+zh-cn/application-dev/reference/errorcodes/errcode-app-account.md @zengyawen
+zh-cn/application-dev/reference/errorcodes/errcode-audio.md @zengyawen
+zh-cn/application-dev/reference/errorcodes/errcode-avsession.md @zengyawen
+zh-cn/application-dev/reference/errorcodes/errcode-backgroundTaskMgr.md @HelloCrease
+zh-cn/application-dev/reference/errorcodes/errcode-batteryStatistics.md @zengyawen
+zh-cn/application-dev/reference/errorcodes/errcode-brightness.md @zengyawen
+zh-cn/application-dev/reference/errorcodes/errcode-buffer.md @ge-yafang
+zh-cn/application-dev/reference/errorcodes/errcode-bundle.md @RayShih
+zh-cn/application-dev/reference/errorcodes/errcode-colorspace-manager.md @ge-yafang
+zh-cn/application-dev/reference/errorcodes/errcode-CommonEventService.md @RayShih
+zh-cn/application-dev/reference/errorcodes/errcode-containers.md @ge-yafang
+zh-cn/application-dev/reference/errorcodes/errcode-data-rdb.md @ge-yafang
+zh-cn/application-dev/reference/errorcodes/errcode-datashare.md @ge-yafang
+zh-cn/application-dev/reference/errorcodes/errcode-device-manager.md @qinxiaowang
+zh-cn/application-dev/reference/errorcodes/errcode-DeviceUsageStatistics.md @HelloCrease
+zh-cn/application-dev/reference/errorcodes/errcode-display.md @ge-yafang
+zh-cn/application-dev/reference/errorcodes/errcode-distributed-dataObject.md @ge-yafang
+zh-cn/application-dev/reference/errorcodes/errcode-distributedKVStore.md @ge-yafang
+zh-cn/application-dev/reference/errorcodes/errcode-DistributedNotificationService.md @RayShih
+zh-cn/application-dev/reference/errorcodes/errcode-DistributedSchedule.md @RayShih
+zh-cn/application-dev/reference/errorcodes/errcode-enterpriseDeviceManager.md @HelloCrease
+zh-cn/application-dev/reference/errorcodes/errcode-faultlogger.md @zengyawen
+zh-cn/application-dev/reference/errorcodes/errcode-filemanagement.md @zengyawen
+zh-cn/application-dev/reference/errorcodes/errcode-geoLocationManager.md @RayShih
+zh-cn/application-dev/reference/errorcodes/errcode-hiappevent.md @zengyawen
+zh-cn/application-dev/reference/errorcodes/errcode-hisysevent.md @zengyawen
+zh-cn/application-dev/reference/errorcodes/errcode-hiviewdfx-hidebug.md @zengyawen
+zh-cn/application-dev/reference/errorcodes/errcode-huks.md @zengyawen
+zh-cn/application-dev/reference/errorcodes/errcode-i18n.md @HelloCrease
+zh-cn/application-dev/reference/errorcodes/errcode-inputmethod-framework.md @ge-yafang
+zh-cn/application-dev/reference/errorcodes/errcode-multimodalinput.md @HelloCrease
+zh-cn/application-dev/reference/errorcodes/errcode-nfc.md @RayShih
+zh-cn/application-dev/reference/errorcodes/errcode-pasteboard.md @ge-yafang
+zh-cn/application-dev/reference/errorcodes/errcode-power.md @zengyawen
+zh-cn/application-dev/reference/errorcodes/errcode-preferences.md @ge-yafang
+zh-cn/application-dev/reference/errorcodes/errcode-promptAction.md @HelloCrease
+zh-cn/application-dev/reference/errorcodes/errcode-reminderAgentManager.md @HelloCrease
+zh-cn/application-dev/reference/errorcodes/errcode-request.md @zengyawen
+zh-cn/application-dev/reference/errorcodes/errcode-resource-manager.md @HelloCrease
+zh-cn/application-dev/reference/errorcodes/errcode-router.md @HelloCrease
+zh-cn/application-dev/reference/errorcodes/errcode-rpc.md @qinxiaowang
+zh-cn/application-dev/reference/errorcodes/errcode-runninglock.md @zengyawen
+zh-cn/application-dev/reference/errorcodes/errcode-sensor.md @HelloCrease
+zh-cn/application-dev/reference/errorcodes/errcode-system-parameterV9.md @zengyawen
+zh-cn/application-dev/reference/errorcodes/errcode-thermal.md @zengyawen
+zh-cn/application-dev/reference/errorcodes/errcode-uitest.md @HelloCrease
+zh-cn/application-dev/reference/errorcodes/errcode-universal.md @RayShih
+zh-cn/application-dev/reference/errorcodes/errcode-update.md @HelloCrease
+zh-cn/application-dev/reference/errorcodes/errcode-usb.md @ge-yafang
+zh-cn/application-dev/reference/errorcodes/errcode-vibrator.md @HelloCrease
+zh-cn/application-dev/reference/errorcodes/errcode-webview.md @HelloCrease
+zh-cn/application-dev/reference/errorcodes/errcode-window.md @ge-yafang
+zh-cn/application-dev/reference/errorcodes/errcode-workScheduler.md @HelloCrease
+zh-cn/application-dev/reference/errorcodes/errcode-zlib.md @RayShih
