@@ -85,22 +85,22 @@ import bundleManager from '@ohos.bundle.bundleManager'
  **系统能力:** 以下各项对应的系统能力均为SystemCapability.BundleManager.BundleFramework.Core。
 
 | 名称 | 值 | 说明 |
-|:----------------:|:---:|:---:|
-| FORM             | 0   | 卡片的extensionAbility |
-| WORK_SCHEDULER   | 1   | 延时任务的extensionAbility |
-| INPUT_METHOD     | 2   | 输入法的extensionAbility |
-| SERVICE          | 3   | 后台运行的service组件,只有系统应用才能使用 |
-| ACCESSIBILITY    | 4   | 辅助能力的extensionAbility |
-| DATA_SHARE       | 5   | 数据共享的extensionAbility,只有系统应用才能使用 |
-| FILE_SHARE       | 6   | 文件共享的extensionAbility |
-| STATIC_SUBSCRIBER| 7   | 静态广播的extensionAbility |
-| WALLPAPER        | 8   | 壁纸的extensionAbility |
-| BACKUP           |  9  | 数据备份的extensionAbility  |
-| WINDOW           |  10 | 这个extensionAbility会在启动过程中创建一个window,为开发者提供界面开发。开发者开发出来的界面将通过abilityComponent控件组合到其他应用的窗口中 |
-| ENTERPRISE_ADMIN |  11 | 管理员用户的extensionAbility |
-| THUMBNAIL        | 13  | 获取文件缩略图的extensionAbility,开发者可以对自定义文件类型的文件提供缩略图 |
-| PREVIEW          | 14  | 这个extensionAbility会将文件解析后在一个窗口中显示,开发者可以通过将此窗口组合到其他应用窗口中 |
-| UNSPECIFIED      | 255 | 未指明用户的extensionAbility |
+|:----------------:|:---:|-----|
+| FORM             | 0   | [FormExtensionAbility](../../ability/stage-formextension.md)：卡片扩展能力，提供卡片开发能力。 |
+| WORK_SCHEDULER   | 1   | [WorkSchedulerExtensionAbility](../../task-management/work-scheduler-dev-guide.md)：延时任务扩展能力，允许应用在系统闲时执行实时性不高的任务。 |
+| INPUT_METHOD     | 2   | [InputMethodExtensionAbility](js-apis-inputmethod-extension-ability.md)：输入法扩展能力，用于开发输入法应用。 |
+| SERVICE          | 3   | [ServiceExtensionAbility](../../ability/stage-serviceextension.md)：后台服务扩展能力，提供后台运行并对外提供相应能力。 |
+| ACCESSIBILITY    | 4   | [AccessibilityExtensionAbility](js-apis-application-AccessibilityExtensionAbility.md)：无障碍服务扩展能力，支持访问与操作前台界面。 |
+| DATA_SHARE       | 5   | [DataShareExtensionAbility](../../database/database-datashare-guidelines.md)：数据共享扩展能力，用于对外提供数据读写服务。 |
+| FILE_SHARE       | 6   | FileShareExtensionAbility：文件共享扩展能力，用于应用间的文件分享。预留能力，当前暂未支持。 |
+| STATIC_SUBSCRIBER| 7   | [StaticSubscriberExtensionAbility](js-apis-application-staticSubscriberExtensionAbility.md)：静态广播扩展能力，用于处理静态事件，比如开机事件。 |
+| WALLPAPER        | 8   | WallpaperExtensionAbility：壁纸扩展能力，用于实现桌面壁纸。预留能力，当前暂未支持。 |
+| BACKUP           |  9  | BackupExtensionAbility：数据备份扩展能力，提供应用数据和公共数据备份回复能力。预留能力，当前暂未支持。 |
+| WINDOW           |  10 | [WindowExtensionAbility](js-apis-application-WindowExtensionAbility.md)：界面组合扩展能力，允许系统应用进行跨应用的界面拉起和嵌入。 |
+| ENTERPRISE_ADMIN |  11 | [EnterpriseAdminExtensionAbility](js-apis-EnterpriseAdminExtensionAbility.md)：企业设备管理扩展能力，提供企业管理时处理管理事件的能力，比如设备上应用安装事件、锁屏密码输入错误次数过多事件等。 |
+| THUMBNAIL        | 13  | ThumbnailExtensionAbility：文件缩略图扩展能力，用于为文件提供图标缩略图的能力。预留能力，当前暂未支持。 |
+| PREVIEW          | 14  | PreviewExtensionAbility：文件预览扩展能力，提供文件预览的能力，其他应用可以直接在应用中嵌入显示。预留能力，当前暂未支持。 |
+| UNSPECIFIED      | 255 | 不指定类型，配合queryExtensionAbilityInfo接口可以查询所有类型的ExtensionAbility。 |
 
 
 ### PermissionGrantState
