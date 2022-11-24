@@ -49,7 +49,7 @@ System service operation failed.
 
 **错误信息**
 
-Check workInfo failed.
+Checking workInfo failed.
 
 **可能原因**
 
