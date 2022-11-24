@@ -2130,7 +2130,7 @@ setOsAccountProfilePhoto(localId: number, photo: string, callback: AsyncCallback
 | -------- | ------------------------- | ---- | ------------ |
 | localId  | number                    | 是   | 系统帐号ID。 |
 | photo    | string                    | 是   | 头像信息。   |
-| callback | AsyncCallback&lt;void&gt; | 是   | 回调结果。   |
+| callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。如果设置成功，err为null，否则为错误对象。  |
 
 **错误码：**
 
@@ -3985,7 +3985,7 @@ getProperty(request: GetPropertyRequest): Promise&lt;ExecutorProperty&gt;;
 
 ### setProperty<sup>8+</sup>
 
-setProperty(request: SetPropertyRequest, callback: AsyncCallback&lt;number&gt;): void;
+setProperty(request: SetPropertyRequest, callback: AsyncCallback&lt;void&gt;): void;
 
 设置可用于初始化算法的属性。使用callback异步回调。
 
@@ -4000,7 +4000,7 @@ setProperty(request: SetPropertyRequest, callback: AsyncCallback&lt;number&gt;):
 | 参数名    | 类型                                                  | 必填 | 说明                                                                    |
 | -------- | ----------------------------------------------------- | ---- | ---------------------------------------------------------------------- |
 | request  | [SetPropertyRequest](#setpropertyrequest8)| 是   | 请求信息，包括认证类型和要设置的密钥值。                                   |
-| callback | AsyncCallback&lt;number&gt;                           | 是   | 回调函数。如果设置成功，err为null，data为一个[数值](#resultcode8)，指示属性设置是否成功；否则为错误对象。 |
+| callback | AsyncCallback&lt;void&gt;                           | 是   | 回调函数。如果设置成功，err为null，否则为错误对象。 |
 
 **错误码：**
 
@@ -4018,9 +4018,12 @@ setProperty(request: SetPropertyRequest, callback: AsyncCallback&lt;number&gt;):
     setInfo: new Uint8Array([0])
   };
   try {
-    userAuth.setProperty(request, (err, result) => {
-        console.log('setProperty error = ' + JSON.stringify(err));
-        console.log('setProperty result = ' + JSON.stringify(result));
+    userAuth.setProperty(request, (err) => {
+      if (err) {
+        console.log('setProperty failed, error = ' + JSON.stringify(err));
+      } else {
+        console.log('setProperty successfully');
+      }
     });
   } catch (e) {
     console.log('setProperty exception = ' + JSON.stringify(e));
@@ -4029,7 +4032,7 @@ setProperty(request: SetPropertyRequest, callback: AsyncCallback&lt;number&gt;):
 
 ### setProperty<sup>8+</sup>
 
-setProperty(request: SetPropertyRequest): Promise&lt;number&gt;;
+setProperty(request: SetPropertyRequest): Promise&lt;void&gt;;
 
 设置可用于初始化算法的属性。使用Promise异步回调。
 
@@ -4049,7 +4052,7 @@ setProperty(request: SetPropertyRequest): Promise&lt;number&gt;;
 
 | 类型                  | 说明                                                           |
 | :-------------------- | :------------------------------------------------------------ |
-| Promise&lt;number&gt; | Promise对象，返回一个[数值](#resultcode8)，指示属性设置是否成功。 |
+| Promise&lt;void&gt; | Promise对象。无返回结果的Promise对象。 |
 
 **错误码：**
 
@@ -4067,10 +4070,10 @@ setProperty(request: SetPropertyRequest): Promise&lt;number&gt;;
     setInfo: new Uint8Array([0])
   };
   try {
-    userAuth.setProperty(request).then((result) => {
-      console.log('setProperty result = ' + JSON.stringify(result));
+    userAuth.setProperty(request).then(() => {
+      console.log('setProperty successfully');
     }).catch((err) => {
-      console.log('setProperty error = ' + JSON.stringify(err));
+      console.log('setProperty failed, error = ' + JSON.stringify(err));
     });
   } catch (e) {
     console.log('setProperty exception = ' + JSON.stringify(e));
