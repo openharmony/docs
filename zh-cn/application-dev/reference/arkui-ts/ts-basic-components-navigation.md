@@ -217,7 +217,7 @@ struct NavigationExample {
       }
       .title(this.NavigationTitle)
       .menus(this.NavigationMenus)
-      .titleMode(NavigationTitleMode.Free)
+      .titleMode(NavigationTitleMode.Full)
       .toolBar(this.NavigationToolbar)
       .hideTitleBar(false)
       .hideToolBar(false)
@@ -228,3 +228,5 @@ struct NavigationExample {
   }
 }
 ```
+
+![zh-cn_image_0000001192655288](figures/zh-cn_image_0000001192655288.gif)
