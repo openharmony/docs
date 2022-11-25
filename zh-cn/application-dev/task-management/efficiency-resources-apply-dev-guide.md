@@ -10,10 +10,10 @@
 
 **表1** 申请能效资源主要接口
 
-| 接口名                                      | 描述                                       |
-| ---------------------------------------- | ---------------------------------------- |
-| applyEfficiencyResources(request: [EfficiencyResourcesRequest](../reference/apis/js-apis-backgroundTaskManager.md#efficiencyresourcesrequest9)): boolean | 申请能效资源。 |
-| resetAllEfficiencyResources():void | 释放申请的能效资源。   |
+| 接口名                                      | 描述         |
+| ---------------------------------------- | ---------- |
+| applyEfficiencyResources(request: [EfficiencyResourcesRequest](../reference/apis/js-apis-resourceschedule-backgroundTaskManager.md#efficiencyresourcesrequest)): boolean | 申请能效资源。    |
+| resetAllEfficiencyResources():void       | 释放申请的能效资源。 |
 
 
 ### 开发步骤

@@ -62,10 +62,10 @@
 
 除支持[通用事件](../arkui-js/js-components-common-events.md)外，还支持如下事件：
 
-| 名称             | 参数                                       | 描述                        |
-| -------------- | ---------------------------------------- | ------------------------- |
-| complete(Rich) | {<br>&nbsp;width：width，<br>&nbsp;height：height<br>&nbsp;} | 图片成功加载时触发该回调，返回成功加载的图源尺寸。 |
-| error(Rich)    | {<br>&nbsp;width：width，<br>&nbsp;height：height<br>&nbsp;} | 图片加载出现异常时触发该回调，异常时长宽为零。   |
+| 名称       | 参数                                       | 描述                        |
+| -------- | ---------------------------------------- | ------------------------- |
+| complete | {<br>&nbsp;width：width，<br>&nbsp;height：height<br>&nbsp;} | 图片成功加载时触发该回调，返回成功加载的图源尺寸。 |
+| error    | {<br>&nbsp;width：width，<br>&nbsp;height：height<br>&nbsp;} | 图片加载出现异常时触发该回调，异常时长宽为零。   |
 
 ## 方法
 

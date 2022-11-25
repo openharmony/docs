@@ -69,32 +69,32 @@ You can create resource group sub-directories (including element, media, animati
 
 **Table 3** Resource group sub-directories
 
-| Resource Group Sub-directory | Description                                                  | Resource File                                                |
-| ---------------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| Resource Group Sub-directory | Description                              | Resource File                            |
+| ---------------------------- | ---------------------------------------- | ---------------------------------------- |
 | element                      | Element resources. Each type of data is represented by a JSON file. The options are as follows:<br>- **boolean**: boolean data<br>- **color**: color data<br>- **float**: floating-point data<br>- **intarray**: array of integer<br>- **integer**: integer data<br>- **pattern**: pattern data<br>- **plural**: plural form data<br>- **strarray**: array of strings<br>- **string**: string data | It is recommended that files in the **element** sub-directory be named the same as the following files, each of which can contain only data of the same type:<br>- boolean.json<br>- color.json<br>- float.json<br>- intarray.json<br>- integer.json<br>- pattern.json<br>- plural.json<br>- strarray.json<br>- string.json |
-| media                        | Media resources, including non-text files such as images, audios, and videos. | The file name can be customized, for example, **icon.png**.  |
-| profile                      | Other types of files, which are stored in their raw formats. | The file name can be customized.                             |
+| media                        | Media resources, including non-text files such as images, audios, and videos. | The file name can be customized, for example, **icon.png**. |
+| profile                      | Other types of files, which are stored in their raw formats. | The file name can be customized.         |
 
 ### Media Resource Types
 
 **Table 4** Image resource types
 
-| Format| File Name Extension|
-| -------- | -------- |
-| JPEG | .jpg |
-| PNG | .png |
-| GIF | .gif |
-| SVG | .svg |
-| WEBP | .webp |
-| BMP | .bmp |
+| Format | File Name Extension |
+| ------ | ------------------- |
+| JPEG   | .jpg                |
+| PNG    | .png                |
+| GIF    | .gif                |
+| SVG    | .svg                |
+| WEBP   | .webp               |
+| BMP    | .bmp                |
 
 **Table 5** Audio and video resource types
-| Format| File Name Extension|
-| -------- | -------- |
-| H.263 | .3gp <br>.mp4 |
-| H.264 AVC <br> Baseline Profile (BP) | .3gp <br>.mp4 |
-| MPEG-4 SP | .3gp |
-| VP8 | .webm <br> .mkv |
+| Format                               | File Name Extension |
+| ------------------------------------ | ------------------- |
+| H.263                                | .3gp <br>.mp4       |
+| H.264 AVC <br> Baseline Profile (BP) | .3gp <br>.mp4       |
+| MPEG-4 SP                            | .3gp                |
+| VP8                                  | .webm <br> .mkv     |
 ## Creating a Resource File
 
 You can create a sub-directory and its files under the **resources** directory based on the above descriptions of the qualifiers sub-directories and resource group sub-directories.
