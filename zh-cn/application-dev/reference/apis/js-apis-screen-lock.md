@@ -336,7 +336,7 @@ screenlock.lock().then((data) => {
 
 **系统能力：** SystemCapability.MiscServices.ScreenLock
 
-| 名称               | 说明                     |
+| 事件类型            | 说明                     |
 | ------------------ | ------------------------ |
 | beginWakeUp        | 表示事件开始时开始唤醒。 |
 | endWakeUp          | 表示事件结束时结束唤醒。 |
@@ -360,10 +360,10 @@ screenlock.lock().then((data) => {
 
 **系统能力：** SystemCapability.MiscServices.ScreenLock
 
-| 名称      | 说明                 |
-| --------- | -------------------- |
-| eventType | 系统事件类型。       |
-| params    | 系统事件的事件参数。 |
+| 名称    | 类型   | 必填 |       说明        |
+| --------- | ------ | ---- | ------------- |
+| eventType   | [EventType](#eventtype) | 是   | 系统事件类型。 |
+| params | string | 是   | 系统事件的事件参数。 |
 
 ## screenlock.onSystemEvent<sup>9+</sup>
 
