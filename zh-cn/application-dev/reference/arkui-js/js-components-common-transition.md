@@ -59,12 +59,12 @@ PageA跳转到PageB，跳转的共享元素为image， shareid为“shareImage�
 
 ```js
 // xxx.js
-import router from '@system.router';
+import router from '@ohos.router';
 export default {
   jump() {
     router.push({
       // 路径要与config.json配置里面的相同
-      uri: 'pages/detailpage',
+      url: 'pages/detailpage',
     });
   },
 }
@@ -92,7 +92,7 @@ export default {
 
 ```js
 // xxx.js
-import router from '@system.router';
+import router from '@ohos.router';
 export default {
   jumpBack() {
     router.back();
@@ -138,7 +138,7 @@ source_page包含顶部内容以及卡片列表，点击卡片可以跳转到tar
     <text style="font-size: 23px; margin-bottom: 20px" >MAIN TITLE</text>
   </div>
   <list style="width:340px;height:600px;flex-direction:column;justify-content:center;align-items:center">
-    <list-item type="listItem" class="item" card="true" for="list" id="{{$item.id}}" onclick="jumpPage({{$item.id}}, {{$item.uri}})">
+    <list-item type="listItem" class="item" card="true" for="list" id="{{$item.id}}" onclick="jumpPage({{$item.id}}, {{$item.url}})">
       <text style="margin-left: 10px; font-size: 23px;">{{$item.title}}</text>
     </list-item>
   </list>
@@ -147,19 +147,19 @@ source_page包含顶部内容以及卡片列表，点击卡片可以跳转到tar
 
 ```js
 // xxx.js
-import router from '@system.router'
+import router from '@ohos.router'
 export default {
   data: { list: [] },
   onInit() {
     for(var i = 0; i < 10; i++) {
-      var item = { uri: "pages/card_transition/target_page/index", 
+      var item = { url: "pages/card_transition/target_page/index", 
                    title: "this is title" + i, id: "item_" + i }
       this.list.push(item);
     }
   },
-  jumpPage(id, uri) {
+  jumpPage(id, url) {
     var cardId = this.$element(id).ref;
-    router.push({ uri: uri, params : { ref : cardId } });
+    router.push({ url: url, params : { ref : cardId } });
   }
 }
 ```
@@ -167,6 +167,8 @@ export default {
 ```css
 /* xxx.css */
 .container {
+  width: 100%;
+  height: 100%;
   flex-direction: column;
   align-items: center;
   background-color: #ABDAFF;
@@ -197,6 +199,8 @@ export default {
 ```css
 /* xxx.css */
 .container {
+  width: 100%;
+  height: 100%; 
   flex-direction: column;
   align-items: center;
   background-color: #EBFFD7;
@@ -255,14 +259,14 @@ Page1有一个不透明盒子，点击盒子会跳转到Page2，当点击Page2�
 
    ```js
    <!-- xxx.js -->
-   import router from '@system.router';
+   import router from '@ohos.router';
    export default {
        data: {
    
        },
        jump() {
            router.push({
-               uri:'pages/transition2/transition2'
+               url:'pages/transition2/transition2'
            })
        }
    }
@@ -325,7 +329,7 @@ Page1有一个不透明盒子，点击盒子会跳转到Page2，当点击Page2�
 
    ```js
    <!-- xxx.js -->
-   import router from '@system.router';
+   import router from '@ohos.router';
    export default {
        data: {
    
@@ -334,9 +338,10 @@ Page1有一个不透明盒子，点击盒子会跳转到Page2，当点击Page2�
            router.back()
        }
    }
-   ```
-
-   ```css
+   
+```
+   
+```css
    <!-- xxx.css -->
    .container {
        flex-direction: column;
@@ -379,4 +384,4 @@ Page1有一个不透明盒子，点击盒子会跳转到Page2，当点击Page2�
    }
    ```
    
-   ![transition](figures/transition.gif)
+![transition](figures/transition.gif)
