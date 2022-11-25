@@ -238,7 +238,7 @@ unlock(callback: AsyncCallback&lt;boolean&gt;): void
 
 | 参数名   | 类型          | 必填 | 说明                                 |
 | -------- | --------------------- | ---- | ------------------------- |
-| callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。返回true表示屏幕解锁成功，返回false表示屏幕解锁失败。 |
+| callback | AsyncCallback&lt;boolean&gt; | 是   | 回调函数。返回true表示屏幕解锁成功，返回false表示屏幕解锁失败。 |
 
 **示例：** 
 
@@ -261,10 +261,10 @@ unlock(): Promise&lt;boolean&gt;
 **系统能力：** SystemCapability.MiscServices.ScreenLock
 
 **返回值：** 
-
+boolean
 | 类型                | 说明                                                         |
 | ------------------- | ------------------------------------------------------------ |
-| Promise&lt;void&gt; | Promise对象。返回true表示屏幕解锁成功，返回false表示屏幕解锁失败。 |
+| Promise&lt;boolean&gt; | Promise对象。返回true表示屏幕解锁成功，返回false表示屏幕解锁失败。 |
 
 **示例：** 
 

@@ -129,7 +129,7 @@ upload(config: UploadConfig, callback: AsyncCallback&lt;UploadTask&gt;): void
 
 **参数：**
 
-  | 参数名 | 参数类型 | 必填 | 说明 |
+  | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | config | [UploadConfig](#uploadconfig) | 是 | 上传的配置信息。 |
   | callback | AsyncCallback&lt;[UploadTask](#uploadtask)&gt; | 否 | 回调函数，异步返回UploadTask对象。 |
@@ -212,7 +212,7 @@ upload(context: BaseContext, config: UploadConfig, callback: AsyncCallback&lt;Up
 
 **参数：**
 
-  | 参数名 | 参数类型 | 必填 | 说明 |
+  | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | context | BaseContext | 是 | 基于应用程序的上下文。 |
   | config | [UploadConfig](#uploadconfig) | 是 | 上传的配置信息。 |
@@ -266,7 +266,7 @@ uploadFile(context: BaseContext, config: UploadConfig): Promise&lt;UploadTask&gt
 **错误码：**
 以下错误码的详细介绍请参见[上传下载错误码](../errorcodes/errorcode-request.md)。
 
-| 错误码ID | 错误码信息 |
+| 错误码ID | 错误信息 |
 | -------- | -------- |
 | 13400002 | Bad file path. |
 
@@ -301,7 +301,7 @@ uploadFile(context: BaseContext, config: UploadConfig, callback: AsyncCallback&l
 
 **参数：**
 
-| 参数名 | 参数类型 | 必填 | 说明 |
+| 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
 | context | BaseContext | 是 | 基于应用程序的上下文。 |
 | config | [UploadConfig](#uploadconfig) | 是 | 上传的配置信息。 |
@@ -310,7 +310,7 @@ uploadFile(context: BaseContext, config: UploadConfig, callback: AsyncCallback&l
 **错误码：**
 以下错误码的详细介绍请参见[上传下载错误码](../errorcodes/errorcode-request.md)。
 
-| 错误码ID | 错误码信息 |
+| 错误码ID | 错误信息 |
 | -------- | -------- |
 | 13400002 | Bad file path. |
 
@@ -424,7 +424,7 @@ on(type: 'headerReceive', callback:  (header: object) =&gt; void): void
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | type | string | 是 | 订阅的事件类型，取值为'complete'，表示上传任务完成；取值为'fail'，表示上传任务失败。|
-  | callback | function | 是 | 上传任务完成或失败的回调函数。 |
+  | callback | Callback&lt;Array&lt;TaskState&gt;&gt; | 是 | 上传任务完成或失败的回调函数。 |
 
   回调函数的参数
 
@@ -464,7 +464,7 @@ off(type:  'progress',  callback?: (uploadedSize: number, totalSize: number) =&g
 
 **参数：**
 
-  | 参数名 | 参数类型 | 必填 | 说明 |
+  | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | type | string | 是 | 取消订阅的事件类型，取值为'progress'（上传的进度信息）。 |
   | callback | function | 否 | 上传任务的回调函数。 |
@@ -499,7 +499,7 @@ off(type: 'headerReceive', callback?: (header: object) =&gt; void): void
 
 **参数：**
 
-  | 参数名 | 参数类型 | 必填 | 说明 |
+  | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | type | string | 是 | 取消订阅的事件类型，取值为'headerReceive'（接收响应头）。 |
   | callback | function | 否 | HTTP&nbsp;Response&nbsp;Header事件的回调函数。 |
@@ -535,7 +535,7 @@ off(type: 'headerReceive', callback?: (header: object) =&gt; void): void
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | type | string | 是 | 订阅的事件类型，取值为'complete'，表示上传任务完成；取值为'fail'，表示上传任务失败。|
-  | callback | function | 否 | 上传任务完成或失败的回调函数。 |
+  | callback | Callback&lt;Array&lt;TaskState&gt;&gt; | 否 | 上传任务完成或失败的回调函数。 |
 
   回调函数的参数
 
@@ -611,7 +611,7 @@ remove(callback: AsyncCallback&lt;boolean&gt;): void
 
 **参数：**
 
-  | 参数名 | 参数类型 | 必填 | 说明 |
+  | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | callback | AsyncCallback&lt;boolean&gt; | 是 | 移除任务的回调函数。 |
 
@@ -677,7 +677,7 @@ delete(callback: AsyncCallback&lt;boolean&gt;): void
 
 **参数：**
 
-| 参数名 | 参数类型 | 必填 | 说明 |
+| 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
 | callback | AsyncCallback&lt;boolean&gt; | 是 | 移除任务的回调函数。 |
 
@@ -805,7 +805,7 @@ download(config: DownloadConfig, callback: AsyncCallback&lt;DownloadTask&gt;): v
 
 **参数：**
 
-  | 参数名 | 参数类型 | 必填 | 说明 |
+  | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | config | [DownloadConfig](#downloadconfig) | 是 | 下载的配置信息。 |
   | callback | AsyncCallback&lt;[DownloadTask](#downloadtask)&gt; | 否 | 下载接口的回调函数。 |
@@ -875,7 +875,7 @@ download(context: BaseContext, config: DownloadConfig, callback: AsyncCallback&l
 
 **参数：**
 
-  | 参数名 | 参数类型 | 必填 | 说明 |
+  | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | context | BaseContext | 是 | 基于应用程序的上下文。 |
   | config | [DownloadConfig](#downloadconfig) | 是 | 下载的配置信息。 |
@@ -922,7 +922,7 @@ downloadFile(context: BaseContext, config: DownloadConfig): Promise&lt;DownloadT
 **错误码：**
 以下错误码的详细介绍请参见[上传下载错误码](../errorcodes/errorcode-request.md)。
 
-| 错误码ID | 错误码信息 |
+| 错误码ID | 错误信息 |
 | -------- | -------- |
 | 13400001 | File operation error. |
 | 13400002 | Bad file path. |
@@ -952,7 +952,7 @@ downloadFile(context: BaseContext, config: DownloadConfig, callback: AsyncCallba
 
 **参数：**
 
-| 参数名 | 参数类型 | 必填 | 说明 |
+| 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
 | context | BaseContext | 是 | 基于应用程序的上下文。 |
 | config | [DownloadConfig](#downloadconfig) | 是 | 下载的配置信息。 |
@@ -961,7 +961,7 @@ downloadFile(context: BaseContext, config: DownloadConfig, callback: AsyncCallba
 **错误码：**
 以下错误码的详细介绍请参见[上传下载错误码](../errorcodes/errorcode-request.md)。
 
-| 错误码ID | 错误码信息 |
+| 错误码ID | 错误信息 |
 | -------- | -------- |
 | 13400001 | File operation error. |
 | 13400002 | Bad file path. |
@@ -1034,7 +1034,7 @@ off(type: 'progress', callback?: (receivedSize: number, totalSize: number) =&gt;
 
 **参数：**
 
-  | 参数名 | 参数类型 | 必填 | 说明 |
+  | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | type | string | 是 | 取消订阅的事件类型，取值为'progress'（下载的进度信息）。 |
   | callback | function | 否 | 下载任务的回调函数。 |
@@ -1228,7 +1228,7 @@ remove(callback: AsyncCallback&lt;boolean&gt;): void
 
 **参数：**
 
-  | 参数名 | 参数类型 | 必填 | 说明 |
+  | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | callback | AsyncCallback&lt;boolean&gt; | 是 | 移除任务是否成功。 |
 
@@ -1262,8 +1262,9 @@ query(): Promise&lt;DownloadInfo&gt;
 
 **系统能力**: SystemCapability.MiscServices.Download
 
-**参数：**
-    | 类型 | 说明 |
+**返回值：**
+
+  | 类型 | 说明 |
   | -------- | -------- |
   | Promise&lt;[DownloadInfo](#downloadinfo7)&gt; | 查询下载任务信息。 |
 
@@ -1293,7 +1294,7 @@ query(callback: AsyncCallback&lt;DownloadInfo&gt;): void
 
 **参数：**
 
-  | 参数名 | 参数类型 | 必填 | 说明 |
+  | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | callback | AsyncCallback&lt;[DownloadInfo](#downloadinfo7)&gt; | 是 | 查询下载任务的回调函数。 |
 
@@ -1355,7 +1356,7 @@ queryMimeType(callback: AsyncCallback&lt;string&gt;): void;
 
 **参数：**
 
-  | 参数名 | 参数类型 | 必填 | 说明 |
+  | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | callback | AsyncCallback&lt;string&gt; | 是 | 查询下载任务的MimeType的回调函数。 |
 
@@ -1421,7 +1422,7 @@ pause(callback: AsyncCallback&lt;void&gt;): void
 
 **参数：**
 
-  | 参数名 | 参数类型 | 必填 | 说明 |
+  | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | callback | AsyncCallback&lt;void&gt; | 是 | 暂停下载任务的回调函数。 |
 
@@ -1455,7 +1456,7 @@ resume(): Promise&lt;void&gt;
 
 **系统能力**: SystemCapability.MiscServices.Download
 
-**参数：**
+**返回值：**
 
   | 类型 | 说明 |
   | -------- | -------- |
@@ -1492,7 +1493,7 @@ resume(callback: AsyncCallback&lt;void&gt;): void
 
 **参数：**
 
-  | 参数名 | 参数类型 | 必填 | 说明 |
+  | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | callback | AsyncCallback&lt;void&gt; | 是 | 重新启动暂停的下载任务的回调函数。 |
 
@@ -1558,7 +1559,7 @@ delete(callback: AsyncCallback&lt;boolean&gt;): void
 
 **参数：**
 
-| 参数名 | 参数类型 | 必填 | 说明 |
+| 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
 | callback | AsyncCallback&lt;boolean&gt; | 是 | 移除任务是否成功。 |
 
@@ -1590,7 +1591,8 @@ getTaskInfo(): Promise&lt;DownloadInfo&gt;
 
 **系统能力**: SystemCapability.MiscServices.Download
 
-**参数：**
+**返回值：**
+
 | 类型 | 说明 |
 | -------- | -------- |
 | Promise&lt;[DownloadInfo](#downloadinfo7)&gt; | 查询下载任务信息。 |
@@ -1619,7 +1621,7 @@ query(callback: AsyncCallback&lt;DownloadInfo&gt;): void
 
 **参数：**
 
-| 参数名 | 参数类型 | 必填 | 说明 |
+| 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
 | callback | AsyncCallback&lt;[DownloadInfo](#downloadinfo7)&gt; | 是 | 查询下载任务的回调函数。 |
 
@@ -1677,7 +1679,7 @@ getTaskMimeType(callback: AsyncCallback&lt;string&gt;): void;
 
 **参数：**
 
-| 参数名 | 参数类型 | 必填 | 说明 |
+| 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
 | callback | AsyncCallback&lt;string&gt; | 是 | 查询下载任务的MimeType的回调函数。 |
 
@@ -1697,7 +1699,7 @@ getTaskMimeType(callback: AsyncCallback&lt;string&gt;): void;
 
 ### suspend<sup>9+</sup>
 
-suspend(): Promise&lt;void&gt;
+suspend(): Promise&lt;boolean&gt;
 
 暂停下载任务，异步方法，使用promise形式返回结果。
 
@@ -1709,7 +1711,7 @@ suspend(): Promise&lt;void&gt;
 
 | 类型 | 说明 |
   | -------- | -------- |
-| Promise&lt;void&gt; | 暂停下载任务是否成功。 |
+| Promise&lt;boolean&gt; | 暂停下载任务是否成功。 |
 
 **示例：**
 
@@ -1729,7 +1731,7 @@ suspend(): Promise&lt;void&gt;
 
 ### suspend<sup>9+</sup>
 
-suspend(callback: AsyncCallback&lt;void&gt;): void
+suspend(callback: AsyncCallback&lt;boolean&gt;): void
 
 暂停下载任务，异步方法，使用callback形式返回结果。
 
@@ -1739,9 +1741,9 @@ suspend(callback: AsyncCallback&lt;void&gt;): void
 
 **参数：**
 
-| 参数名 | 参数类型 | 必填 | 说明 |
+| 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-| callback | AsyncCallback&lt;void&gt; | 是 | 暂停下载任务的回调函数。 |
+| callback | AsyncCallback&lt;boolean&gt; | 是 | 暂停下载任务的回调函数。 |
 
 **示例：**
 
@@ -1763,7 +1765,7 @@ suspend(callback: AsyncCallback&lt;void&gt;): void
 
 ### restore<sup>9+</sup>
 
-restore(): Promise&lt;void&gt;
+restore(): Promise&lt;boolean&gt;
 
 重新启动暂停的下载任务，异步方法，使用promise形式返回结果。
 
@@ -1771,11 +1773,11 @@ restore(): Promise&lt;void&gt;
 
 **系统能力**: SystemCapability.MiscServices.Download
 
-**参数：**
+**返回值：**
 
 | 类型 | 说明 |
   | -------- | -------- |
-| Promise&lt;void&gt; | 重新启动暂停的下载任务是否成功。 |
+| Promise&lt;boolean&gt; | 重新启动暂停的下载任务是否成功。 |
 
 **示例：**
 
@@ -1796,7 +1798,7 @@ restore(): Promise&lt;void&gt;
 
 ### restore<sup>9+</sup>
 
-restore(callback: AsyncCallback&lt;void&gt;): void
+restore(callback: AsyncCallback&lt;boolean&gt;): void
 
 重新启动暂停的下载任务，异步方法，使用callback形式返回结果。
 
@@ -1806,9 +1808,9 @@ restore(callback: AsyncCallback&lt;void&gt;): void
 
 **参数：**
 
-| 参数名 | 参数类型 | 必填 | 说明 |
+| 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-| callback | AsyncCallback&lt;void&gt; | 是 | 重新启动暂停的下载任务的回调函数。 |
+| callback | AsyncCallback&lt;boolean&gt; | 是 | 重新启动暂停的下载任务的回调函数。 |
 
 **示例：**
 
