@@ -238,7 +238,7 @@ unlock(callback: AsyncCallback&lt;boolean&gt;): void
 
 | 参数名   | 类型          | 必填 | 说明                                 |
 | -------- | --------------------- | ---- | ------------------------- |
-| callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。返回true表示屏幕解锁成功，返回false表示屏幕解锁失败。 |
+| callback | AsyncCallback&lt;boolean&gt; | 是   | 回调函数。返回true表示屏幕解锁成功，返回false表示屏幕解锁失败。 |
 
 **示例：** 
 
@@ -264,7 +264,7 @@ unlock(): Promise&lt;boolean&gt;
 
 | 类型                | 说明                                                         |
 | ------------------- | ------------------------------------------------------------ |
-| Promise&lt;void&gt; | Promise对象。返回true表示屏幕解锁成功，返回false表示屏幕解锁失败。 |
+| Promise&lt;boolean&gt; | Promise对象。返回true表示屏幕解锁成功，返回false表示屏幕解锁失败。 |
 
 **示例：** 
 
@@ -336,7 +336,7 @@ screenlock.lock().then((data) => {
 
 **系统能力：** SystemCapability.MiscServices.ScreenLock
 
-| 名称               | 说明                     |
+| 事件类型            | 说明                     |
 | ------------------ | ------------------------ |
 | beginWakeUp        | 表示事件开始时开始唤醒。 |
 | endWakeUp          | 表示事件结束时结束唤醒。 |
@@ -360,10 +360,10 @@ screenlock.lock().then((data) => {
 
 **系统能力：** SystemCapability.MiscServices.ScreenLock
 
-| 名称      | 说明                 |
-| --------- | -------------------- |
-| eventType | 系统事件类型。       |
-| params    | 系统事件的事件参数。 |
+| 名称    | 类型   | 必填 |       说明        |
+| --------- | ------ | ---- | ------------- |
+| eventType   | [EventType](#eventtype) | 是   | 系统事件类型。 |
+| params | string | 是   | 系统事件的事件参数。 |
 
 ## screenlock.onSystemEvent<sup>9+</sup>
 
