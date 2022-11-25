@@ -232,6 +232,8 @@ staticClear(): boolean
 
 删除所有的属性。
 
+**该属性在api9上已废弃，使用Clear属性替代**
+
 **返回值：**
 
 | 类型    | 描述                                                         |
@@ -240,6 +242,22 @@ staticClear(): boolean
 
 ```ts
 let simple = AppStorage.staticClear()
+```
+
+### Clear
+
+Clear(): boolean
+
+删除所有的属性。
+
+**返回值：**
+
+| 类型    | 描述                                                         |
+| ------- | ------------------------------------------------------------ |
+| boolean | 删除所有的属性，如果当前有状态变量依旧引用此属性，返回false。 |
+
+```typescript
+let simple = AppStorage.Clear()
 ```
 
 ### IsMutable
