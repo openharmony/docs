@@ -2,7 +2,7 @@
 
 ## Common Build Problems and Solutions
 
-###  "usr/sbin/ninja: invalid option -- w" Displayed During the Build Process
+###  "usr/sbin/ninja: invalid option -- w"
 
 - **Symptom**
 
@@ -16,7 +16,7 @@
 
   Uninstall Ninja and GN, and [install Ninja and GN of the required version](../../device-dev/get-code/gettools-ide.md).
 
-### "/usr/bin/ld: cannot find -lncurses" Displayed During the Build Process
+### "/usr/bin/ld: cannot find -lncurses"
 
 - **Symptom**
 
@@ -32,7 +32,7 @@
   sudo apt-get install lib32ncurses5-dev
   ```
 
-### "line 77: mcopy: command not found" Displayed During the Build Process
+### "line 77: mcopy: command not found"
 
 - **Symptom**
 
@@ -48,7 +48,7 @@
   sudo apt-get install dosfstools mtools
   ```
 
-### "riscv32-unknown-elf-gcc: error trying to exec 'cc1': execvp: No such file or directory" Displayed During the Build Process
+### "riscv32-unknown-elf-gcc: error trying to exec 'cc1': execvp: No such file or directory"
 
 - **Symptom**
 
@@ -72,7 +72,7 @@
   
      
 
-### "No module named 'Crypto'" Displayed During the Build Process
+### "No module named 'Crypto'"
 
 - **Symptom**
 
@@ -96,7 +96,7 @@
      sudo pip3 install pycryptodome
      ```
 
-### "xx.sh : xx unexpected operator" Displayed During the Build Process
+### "xx.sh : xx unexpected operator"
 
 - **Symptom**
 
@@ -114,7 +114,7 @@
   ```
 
 
-### "some services are not authenticated. Listed as follows" Displayed During the Build Process
+### "some services are not authenticated. Listed as follows"
 
 - **Symptom**
 
