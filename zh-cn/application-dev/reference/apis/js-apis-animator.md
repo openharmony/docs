@@ -181,9 +181,11 @@ onframe: (progress: number) => void
 | progress | number | 是    | 动画的当前进度。 |
 
 **示例：**
-
 ```js
-animator.onframe();
+let animatorResult = animator.create(options)
+animatorResult.onframe = function(value) {
+  console.info("onframe callback")
+}
 ```
 
 ### onfinish
@@ -197,7 +199,10 @@ onfinish: () => void
 **示例：**
 
 ```js
-animator.onfinish();
+let animatorResult = animator.create(options)
+animatorResult.onfinish = function() {
+  console.info("onfinish callback")
+}
 ```
 
 ### oncancel
@@ -211,7 +216,10 @@ oncancel: () => void
 **示例：**
 
 ```js
-animator.oncancel();
+let animatorResult = animator.create(options)
+animatorResult.oncancel = function() {
+  console.info("oncancel callback")
+}
 ```
 
 ### onrepeat
@@ -225,7 +233,10 @@ onrepeat: () => void
 **示例：**
 
 ```js
-animator.onrepeat();
+let animatorResult = animator.create(options)
+animatorResult.onrepeat = function() {
+  console.info("onrepeat callback")
+}
 ```
 
 
@@ -249,6 +260,7 @@ animator.onrepeat();
 
 
 ## 完整示例
+### 基于JS扩展的类Web开发范式
 
 ```html
 <!-- hml -->
@@ -305,6 +317,152 @@ export default {
 ```
 
   ![zh-cn_image_00007](figures/zh-cn_image_00007.gif)
+
+### 基于TS扩展的声明式开发范式
+
+```ts
+import animator from '@ohos.animator';
+
+@Entry
+@Component
+struct AnimatorTest {
+  private TAG: string = '[AnimatorTest]'
+  private backAnimator: any = undefined
+  private flag: boolean = false
+  @State wid: number = 100
+  @State hei: number = 100
+
+  create() {
+    let _this = this
+    this.backAnimator = animator.create({
+      duration: 2000,
+      easing: 'ease',
+      delay: 0,
+      fill: 'none',
+      direction: 'normal',
+      iterations: 1,
+      begin: 100,
+      end: 200
+    })
+    this.backAnimator.onfinish = function () {
+      _this.flag = true
+      console.info(_this.TAG, 'backAnimator onfinish')
+    }
+    this.backAnimator.onrepeat = function () {
+      console.info(_this.TAG, 'backAnimator repeat')
+    }
+    this.backAnimator.oncancel = function () {
+      console.info(_this.TAG, 'backAnimator cancel')
+    }
+    this.backAnimator.onframe = function (value) {
+      _this.wid = value
+      _this.hei = value
+    }
+  }
+
+  build() {
+    Column() {
+      Column() {
+        Column()
+          .width(this.wid)
+          .height(this.hei)
+          .backgroundColor(Color.Red)
+      }
+      .width('100%')
+      .height(300)
+
+      Column() {
+        Row() {
+          Button('create')
+            .fontSize(30)
+            .fontColor(Color.Black)
+            .onClick(() => {
+              this.create()
+            })
+        }
+        .padding(10)
+
+        Row() {
+          Button('play')
+            .fontSize(30)
+            .fontColor(Color.Black)
+            .onClick(() => {
+              this.flag = false
+              this.backAnimator.play()
+            })
+        }
+        .padding(10)
+
+        Row() {
+          Button('pause')
+            .fontSize(30)
+            .fontColor(Color.Black)
+            .onClick(() => {
+              this.backAnimator.pause()
+            })
+        }
+        .padding(10)
+
+        Row() {
+          Button('finish')
+            .fontSize(30)
+            .fontColor(Color.Black)
+            .onClick(() => {
+              this.flag = true
+              this.backAnimator.finish()
+            })
+        }
+        .padding(10)
+
+        Row() {
+          Button('reverse')
+            .fontSize(30)
+            .fontColor(Color.Black)
+            .onClick(() => {
+              this.flag = false
+              this.backAnimator.reverse()
+            })
+        }
+        .padding(10)
+
+        Row() {
+          Button('cancel')
+            .fontSize(30)
+            .fontColor(Color.Black)
+            .onClick(() => {
+              this.backAnimator.cancel()
+            })
+        }
+        .padding(10)
+
+        Row() {
+          Button('reset')
+            .fontSize(30)
+            .fontColor(Color.Black)
+            .onClick(() => {
+              if (this.flag) {
+                this.flag = false
+                this.backAnimator.reset({
+                  duration: 5000,
+                  easing: 'ease-in',
+                  delay: 0,
+                  fill: 'none',
+                  direction: 'normal',
+                  iterations: 4,
+                  begin: 100,
+                  end: 300
+                })
+              } else {
+                console.info(this.TAG, 'Animation not ended')
+              }
+            })
+        }
+        .padding(10)
+      }
+    }
+  }
+}
+```
 
 ## update<sup>(deprecated)</sup>
 
