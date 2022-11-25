@@ -42,16 +42,16 @@ import {UiComponent, UiDriver, Component, Driver, UiWindow, ON, BY, MatchPattern
 
 **系统能力**：SystemCapability.Test.UiTest
 
-| 名称       | 说明     |
-| ---------- | -------- |
-| LEFT       | 左方。   |
-| RIGHT      | 右方。   |
-| UP         | 上方。   |
-| DOWN       | 下方。   |
-| LEFT_UP    | 左上方。 |
-| LEFT_DOWN  | 左下方。 |
-| RIGHT_UP   | 右上方。 |
-| RIGHT_DOWN | 右下方。 |
+| 名称       | 值   | 说明     |
+| ---------- | ---- | -------- |
+| LEFT       | 0    | 左方。   |
+| RIGHT      | 1    | 右方。   |
+| UP         | 2    | 上方。   |
+| DOWN       | 3    | 下方。   |
+| LEFT_UP    | 4    | 左上方。 |
+| LEFT_DOWN  | 5    | 左下方。 |
+| RIGHT_UP   | 6    | 右上方。 |
+| RIGHT_DOWN | 7    | 右下方。 |
 
 ## Point<sup>9+</sup>
 
@@ -59,10 +59,10 @@ import {UiComponent, UiDriver, Component, Driver, UiWindow, ON, BY, MatchPattern
 
 **系统能力**：SystemCapability.Test.UiTest
 
-| 名称 | 参数类型 | 可读 | 可写 | 描述             |
-| ---- | -------- | ---- | ---- | ---------------- |
-| X    | number   | 是   | 否   | 坐标点的横坐标。 |
-| Y    | number   | 是   | 否   | 坐标点的纵坐标。 |
+| 名称 | 类型   | 可读 | 可写 | 说明             |
+| ---- | ------ | ---- | ---- | ---------------- |
+| X    | number | 是   | 否   | 坐标点的横坐标。 |
+| Y    | number | 是   | 否   | 坐标点的纵坐标。 |
 
 ## Rect<sup>9+</sup>
 
@@ -70,12 +70,12 @@ import {UiComponent, UiDriver, Component, Driver, UiWindow, ON, BY, MatchPattern
 
 **系统能力**：SystemCapability.Test.UiTest
 
-| 名称    | 参数类型 | 可读 | 可写 | 描述                      |
-| ------- | -------- | ---- | ---- | ------------------------- |
-| leftX   | number   | 是   | 否   | 控件边框的左上角的X坐标。 |
-| topY    | number   | 是   | 否   | 控件边框的左上角的Y坐标。 |
-| rightX  | number   | 是   | 否   | 控件边框的右下角的X坐标。 |
-| bottomY | number   | 是   | 否   | 控件边框的右下角的Y坐标。 |
+| 名称    | 类型   | 可读 | 可写 | 说明                      |
+| ------- | ------ | ---- | ---- | ------------------------- |
+| leftX   | number | 是   | 否   | 控件边框的左上角的X坐标。 |
+| topY    | number | 是   | 否   | 控件边框的左上角的Y坐标。 |
+| rightX  | number | 是   | 否   | 控件边框的右下角的X坐标。 |
+| bottomY | number | 是   | 否   | 控件边框的右下角的Y坐标。 |
 
 ## WindowMode<sup>9+</sup>
 
@@ -83,12 +83,12 @@ import {UiComponent, UiDriver, Component, Driver, UiWindow, ON, BY, MatchPattern
 
 窗口的窗口模式。
 
-| 名称       | 说明       |
-| ---------- | ---------- |
-| FULLSCREEN | 全屏模式。 |
-| PRIMARY    | 主窗口。   |
-| SECONDARY  | 第二窗口。 |
-| FLOATING   | 浮动窗口。 |
+| 名称       | 值   | 说明       |
+| ---------- | ---- | ---------- |
+| FULLSCREEN | 0    | 全屏模式。 |
+| PRIMARY    | 1    | 主窗口。   |
+| SECONDARY  | 2    | 第二窗口。 |
+| FLOATING   | 3    | 浮动窗口。 |
 
 ## DisplayRotation<sup>9+</sup>
 
@@ -96,12 +96,12 @@ import {UiComponent, UiDriver, Component, Driver, UiWindow, ON, BY, MatchPattern
 
 设备显示器的显示方向。
 
-| 名称         | 说明                                     |
-| ------------ | ---------------------------------------- |
-| ROTATION_0   | 设备显示器不旋转，初始形态垂直显示。     |
-| ROTATION_90  | 设备显示器顺时针旋转90°，水平显示。      |
-| ROTATION_180 | 设备显示器顺时针旋转180°，逆向垂直显示。 |
-| ROTATION_270 | 设备显示器顺时针旋转270°，逆向水平显示。 |
+| 名称         | 值   | 说明                                     |
+| ------------ | ---- | ---------------------------------------- |
+| ROTATION_0   | 0    | 设备显示器不旋转，初始形态垂直显示。     |
+| ROTATION_90  | 1    | 设备显示器顺时针旋转90°，水平显示。      |
+| ROTATION_180 | 2    | 设备显示器顺时针旋转180°，逆向垂直显示。 |
+| ROTATION_270 | 3    | 设备显示器顺时针旋转270°，逆向水平显示。 |
 
 ## WindowFilter<sup>9+</sup>
 
@@ -109,12 +109,12 @@ import {UiComponent, UiDriver, Component, Driver, UiWindow, ON, BY, MatchPattern
 
 **系统能力**：SystemCapability.Test.UiTest
 
-| 名称       | 参数类型 | 必填 | 可读 | 可写 | 描述                       |
-| ---------- | -------- | ---- | ---- | ---- | -------------------------- |
-| bundleName | string   | 否   | 是   | 否   | 窗口归属应用的包名。       |
-| title      | string   | 否   | 是   | 否   | 窗口的标题信息。           |
-| focused    | boolean  | 否   | 是   | 否   | 窗口是否处于获焦状态。     |
-| actived    | boolean  | 否   | 是   | 否   | 窗口是否正与用户进行交互。 |
+| 名称       | 类型    | 可读 | 可写 | 说明                       |
+| ---------- | ------- | ---- | ---- | -------------------------- |
+| bundleName | string  | 是   | 否   | 窗口归属应用的包名。       |
+| title      | string  | 是   | 否   | 窗口的标题信息。           |
+| focused    | boolean | 是   | 否   | 窗口是否处于获焦状态。     |
+| actived    | boolean | 是   | 否   | 窗口是否正与用户进行交互。 |
 
 ## On<sup>9+</sup>
 
@@ -485,7 +485,7 @@ click(): Promise\<void>
 
 以下错误码的详细介绍请参见[uitest测试框架错误码](../errorcodes/errorcode-uitest.md)。
 
-| 错误码ID | 错误码信息                               |
+| 错误码ID | 错误信息                                 |
 | -------- | ---------------------------------------- |
 | 17000002 | API does not allow calling concurrently. |
 | 17000004 | Component lost/UiWindow lost.            |
@@ -512,7 +512,7 @@ doubleClick(): Promise\<void>
 
 以下错误码的详细介绍请参见[uitest测试框架错误码](../errorcodes/errorcode-uitest.md)。
 
-| 错误码ID | 错误码信息                               |
+| 错误码ID | 错误信息                                 |
 | -------- | ---------------------------------------- |
 | 17000002 | API does not allow calling concurrently. |
 | 17000004 | Component lost/UiWindow lost.            |
@@ -539,7 +539,7 @@ longClick(): Promise\<void>
 
 以下错误码的详细介绍请参见[uitest测试框架错误码](../errorcodes/errorcode-uitest.md)。
 
-| 错误码ID | 错误码信息                               |
+| 错误码ID | 错误信息                                 |
 | -------- | ---------------------------------------- |
 | 17000002 | API does not allow calling concurrently. |
 | 17000004 | Component lost/UiWindow lost.            |
@@ -572,7 +572,7 @@ getId(): Promise\<string>
 
 以下错误码的详细介绍请参见[uitest测试框架错误码](../errorcodes/errorcode-uitest.md)。
 
-| 错误码ID | 错误码信息                               |
+| 错误码ID | 错误信息                                 |
 | -------- | ---------------------------------------- |
 | 17000002 | API does not allow calling concurrently. |
 | 17000004 | Component lost/UiWindow lost.            |
@@ -605,7 +605,7 @@ getText(): Promise\<string>
 
 以下错误码的详细介绍请参见[uitest测试框架错误码](../errorcodes/errorcode-uitest.md)。
 
-| 错误码ID | 错误码信息                               |
+| 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
 | 17000002 | API does not allow calling concurrently. |
 | 17000004 | Component lost/UiWindow lost.            |
@@ -638,7 +638,7 @@ getType(): Promise\<string>
 
 以下错误码的详细介绍请参见[uitest测试框架错误码](../errorcodes/errorcode-uitest.md)。
 
-| 错误码ID | 错误码信息                               |
+| 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
 | 17000002 | API does not allow calling concurrently. |
 | 17000004 | Component lost/UiWindow lost.            |
@@ -671,7 +671,7 @@ getBounds(): Promise\<Rect>
 
 以下错误码的详细介绍请参见[uitest测试框架错误码](../errorcodes/errorcode-uitest.md)。
 
-| 错误码ID | 错误码信息                               |
+| 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
 | 17000002 | API does not allow calling concurrently. |
 | 17000004 | Component lost/UiWindow lost.            |
@@ -704,7 +704,7 @@ getBoundsCenter(): Promise\<Point>
 
 以下错误码的详细介绍请参见[uitest测试框架错误码](../errorcodes/errorcode-uitest.md)。
 
-| 错误码ID | 错误码信息                               |
+| 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
 | 17000002 | API does not allow calling concurrently. |
 | 17000004 | Component lost/UiWindow lost.            |
@@ -737,7 +737,7 @@ isClickable(): Promise\<boolean>
 
 以下错误码的详细介绍请参见[uitest测试框架错误码](../errorcodes/errorcode-uitest.md)。
 
-| 错误码ID | 错误码信息                               |
+| 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
 | 17000002 | API does not allow calling concurrently. |
 | 17000004 | Component lost/UiWindow lost.            |
@@ -774,7 +774,7 @@ isLongClickable(): Promise\<boolean>
 
 以下错误码的详细介绍请参见[uitest测试框架错误码](../errorcodes/errorcode-uitest.md)。
 
-| 错误码ID | 错误码信息                               |
+| 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
 | 17000002 | API does not allow calling concurrently. |
 | 17000004 | Component lost/UiWindow lost.            |
@@ -811,7 +811,7 @@ isChecked(): Promise\<boolean>
 
 以下错误码的详细介绍请参见[uitest测试框架错误码](../errorcodes/errorcode-uitest.md)。
 
-| 错误码ID | 错误码信息                               |
+| 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
 | 17000002 | API does not allow calling concurrently. |
 | 17000004 | Component lost/UiWindow lost.            |
@@ -840,7 +840,7 @@ isCheckable(): Promise\<boolean>
 
 **返回值：**
 
-| 错误码ID          | 错误码信息                                                   |
+| 错误码ID          | 错误信息                                                   |
 | ----------------- | ------------------------------------------------------------ |
 | Promise\<boolean> | 以Promise形式返回控件对象能否可被勾选属性，true：可被勾选，false：不可被勾选。 |
 
@@ -885,7 +885,7 @@ isScrollable(): Promise\<boolean>
 
 以下错误码的详细介绍请参见[uitest测试框架错误码](../errorcodes/errorcode-uitest.md)。
 
-| 错误码ID | 错误码信息                               |
+| 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
 | 17000002 | API does not allow calling concurrently. |
 | 17000004 | Component lost/UiWindow lost.            |
@@ -923,7 +923,7 @@ isEnabled(): Promise\<boolean>
 
 以下错误码的详细介绍请参见[uitest测试框架错误码](../errorcodes/errorcode-uitest.md)。
 
-| 错误码ID | 错误码信息                               |
+| 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
 | 17000002 | API does not allow calling concurrently. |
 | 17000004 | Component lost/UiWindow lost.            |
@@ -961,7 +961,7 @@ isFocused(): Promise\<boolean>
 
 以下错误码的详细介绍请参见[uitest测试框架错误码](../errorcodes/errorcode-uitest.md)。
 
-| 错误码ID | 错误码信息                               |
+| 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
 | 17000002 | API does not allow calling concurrently. |
 | 17000004 | Component lost/UiWindow lost.            |
@@ -998,7 +998,7 @@ isSelected(): Promise\<boolean>
 
 以下错误码的详细介绍请参见[uitest测试框架错误码](../errorcodes/errorcode-uitest.md)。
 
-| 错误码ID | 错误码信息                               |
+| 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
 | 17000002 | API does not allow calling concurrently. |
 | 17000004 | Component lost/UiWindow lost.            |
@@ -1035,7 +1035,7 @@ inputText(text: string): Promise\<void>
 
 以下错误码的详细介绍请参见[uitest测试框架错误码](../errorcodes/errorcode-uitest.md)。
 
-| 错误码ID | 错误码信息                               |
+| 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
 | 17000002 | API does not allow calling concurrently. |
 | 17000004 | Component lost/UiWindow lost.            |
@@ -1060,7 +1060,7 @@ clearText(): Promise\<void>
 
 **错误码：**
 
-| 错误码ID | 错误码信息                               |
+| 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
 | 17000002 | API does not allow calling concurrently. |
 | 17000004 | Component lost/UiWindow lost.            |
@@ -1077,7 +1077,7 @@ async function demo() {
 
 ### scrollSearch<sup>9+</sup>
 
-scrollSearch(on: ON): Promise\<Component>
+scrollSearch(on: On): Promise\<Component>
 
 在控件上滑动查找目标控件(适用支持滑动的控件)。
 
@@ -1099,7 +1099,7 @@ scrollSearch(on: ON): Promise\<Component>
 
 以下错误码的详细介绍请参见[uitest测试框架错误码](../errorcodes/errorcode-uitest.md)。
 
-| 错误码ID | 错误码信息                               |
+| 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
 | 17000002 | API does not allow calling concurrently. |
 | 17000004 | Component lost/UiWindow lost.            |
@@ -1132,7 +1132,7 @@ scrollToTop(speed?: number): Promise\<void>
 
 以下错误码的详细介绍请参见[uitest测试框架错误码](../errorcodes/errorcode-uitest.md)。
 
-| 错误码ID | 错误码信息                               |
+| 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
 | 17000002 | API does not allow calling concurrently. |
 | 17000004 | Component lost/UiWindow lost.            |
@@ -1165,7 +1165,7 @@ scrollToBottom(speed?: number): Promise\<void>
 
 以下错误码的详细介绍请参见[uitest测试框架错误码](../errorcodes/errorcode-uitest.md)。
 
-| 错误码ID | 错误码信息                               |
+| 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
 | 17000002 | API does not allow calling concurrently. |
 | 17000004 | Component lost/UiWindow lost.            |
@@ -1198,7 +1198,7 @@ dragTo(target: Component): Promise\<void>
 
 以下错误码的详细介绍请参见[uitest测试框架错误码](../errorcodes/errorcode-uitest.md)。
 
-| 错误码ID | 错误码信息                               |
+| 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
 | 17000002 | API does not allow calling concurrently. |
 | 17000004 | Component lost/UiWindow lost.            |
@@ -1232,7 +1232,7 @@ pinchOut(scale: number): Promise\<void>
 
 以下错误码的详细介绍请参见[uitest测试框架错误码](../errorcodes/errorcode-uitest.md)。
 
-| 错误码ID | 错误码信息                               |
+| 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
 | 17000002 | API does not allow calling concurrently. |
 | 17000004 | Component lost/UiWindow lost.            |
@@ -1265,7 +1265,7 @@ pinchIn(scale: number): Promise\<void>
 
 以下错误码的详细介绍请参见[uitest测试框架错误码](../errorcodes/errorcode-uitest.md)。
 
-| 错误码ID | 错误码信息                               |
+| 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
 | 17000002 | API does not allow calling concurrently. |
 | 17000004 | Component lost/UiWindow lost.            |
@@ -1295,7 +1295,7 @@ static create(): Driver
 
 **返回值：**
 
-| 错误码ID | 错误码信息             |
+| 错误码ID | 错误信息             |
 | -------- | ---------------------- |
 | Driver   | 返回构造的Driver对象。 |
 
@@ -1333,7 +1333,7 @@ Driver对象在给定的时间内延时。
 
 以下错误码的详细介绍请参见[uitest测试框架错误码](../errorcodes/errorcode-uitest.md)。
 
-| 错误码ID | 错误码信息                               |
+| 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
 | 17000002 | API does not allow calling concurrently. |
 
@@ -1370,7 +1370,7 @@ findComponent(on: On): Promise\<Component>
 
 以下错误码的详细介绍请参见[uitest测试框架错误码](../errorcodes/errorcode-uitest.md)。
 
-| 错误码ID | 错误码信息                               |
+| 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
 | 17000002 | API does not allow calling concurrently. |
 
@@ -1407,7 +1407,7 @@ findComponents(on: On): Promise\<Array\<Component>>
 
 以下错误码的详细介绍请参见[uitest测试框架错误码](../errorcodes/errorcode-uitest.md)。
 
-| 错误码ID | 错误码信息                               |
+| 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
 | 17000002 | API does not allow calling concurrently. |
 
@@ -1444,7 +1444,7 @@ findWindow(filter: WindowFilter): Promise\<UiWindow>
 
 以下错误码的详细介绍请参见[uitest测试框架错误码](../errorcodes/errorcode-uitest.md)。
 
-| 错误码ID | 错误码信息                               |
+| 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
 | 17000002 | API does not allow calling concurrently. |
 
@@ -1482,7 +1482,7 @@ waitForComponent(on: On, time: number): Promise\<Component>
 
 以下错误码的详细介绍请参见[uitest测试框架错误码](../errorcodes/errorcode-uitest.md)。
 
-| 错误码ID | 错误码信息                               |
+| 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
 | 17000002 | API does not allow calling concurrently. |
 
@@ -1513,7 +1513,7 @@ assertComponentExist(on: On): Promise\<void>
 
 以下错误码的详细介绍请参见[uitest测试框架错误码](../errorcodes/errorcode-uitest.md)。
 
-| 错误码ID | 错误码信息                               |
+| 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
 | 17000002 | API does not allow calling concurrently. |
 | 17000003 | Component existence assertion failed.    |
@@ -1539,7 +1539,7 @@ Driver对象进行点击BACK键的操作。
 
 以下错误码的详细介绍请参见[uitest测试框架错误码](../errorcodes/errorcode-uitest.md)。
 
-| 错误码ID | 错误码信息                               |
+| 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
 | 17000002 | API does not allow calling concurrently. |
 
@@ -1570,7 +1570,7 @@ Driver对象采取如下操作：传入key值实现模拟点击对应按键的�
 
 以下错误码的详细介绍请参见[uitest测试框架错误码](../errorcodes/errorcode-uitest.md)。
 
-| 错误码ID | 错误码信息                               |
+| 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
 | 17000002 | API does not allow calling concurrently. |
 
@@ -1603,7 +1603,7 @@ Driver对象通过给定的key值，找到对应组合键并点击。例如，Ke
 
 以下错误码的详细介绍请参见[uitest测试框架错误码](../errorcodes/errorcode-uitest.md)。
 
-| 错误码ID | 错误码信息                               |
+| 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
 | 17000002 | API does not allow calling concurrently. |
 
@@ -1636,7 +1636,7 @@ Driver对象采取如下操作：在目标坐标点单击。
 
 以下错误码的详细介绍请参见[uitest测试框架错误码](../errorcodes/errorcode-uitest.md)。
 
-| 错误码ID | 错误码信息                               |
+| 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
 | 17000002 | API does not allow calling concurrently. |
 
@@ -1668,7 +1668,7 @@ Driver对象采取如下操作：在目标坐标点双击。
 
 以下错误码的详细介绍请参见[uitest测试框架错误码](../errorcodes/errorcode-uitest.md)。
 
-| 错误码ID | 错误码信息                               |
+| 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
 | 17000002 | API does not allow calling concurrently. |
 
@@ -1700,7 +1700,7 @@ Driver对象采取如下操作：在目标坐标点长按。
 
 以下错误码的详细介绍请参见[uitest测试框架错误码](../errorcodes/errorcode-uitest.md)。
 
-| 错误码ID | 错误码信息                               |
+| 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
 | 17000002 | API does not allow calling concurrently. |
 
@@ -1735,7 +1735,7 @@ Driver对象采取如下操作：从起始坐标点滑向目的坐标点。
 
 以下错误码的详细介绍请参见[uitest测试框架错误码](../errorcodes/errorcode-uitest.md)。
 
-| 错误码ID | 错误码信息                               |
+| 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
 | 17000002 | API does not allow calling concurrently. |
 
@@ -1770,7 +1770,7 @@ Driver对象采取如下操作：从起始坐标点拖拽至目的坐标点。
 
 以下错误码的详细介绍请参见[uitest测试框架错误码](../errorcodes/errorcode-uitest.md)。
 
-| 错误码ID | 错误码信息                               |
+| 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
 | 17000002 | API does not allow calling concurrently. |
 
@@ -1807,7 +1807,7 @@ Driver对象采取如下操作：捕获当前屏幕，并保存为PNG格式的�
 
 以下错误码的详细介绍请参见[uitest测试框架错误码](../errorcodes/errorcode-uitest.md)。
 
-| 错误码ID | 错误码信息                               |
+| 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
 | 17000002 | API does not allow calling concurrently. |
 
@@ -1816,7 +1816,7 @@ Driver对象采取如下操作：捕获当前屏幕，并保存为PNG格式的�
 ```js
 async function demo() {
     let driver = Driver.create();
-    await driver.screenCap('/local/tmp/');
+    await driver.screenCap('/local/tmp/1.png');
 }
 ```
 
@@ -1838,7 +1838,7 @@ setDisplayRotation(rotation: DisplayRotation): Promise\<void>
 
 以下错误码的详细介绍请参见[uitest测试框架错误码](../errorcodes/errorcode-uitest.md)。
 
-| 错误码ID | 错误码信息                               |
+| 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
 | 17000002 | API does not allow calling concurrently. |
 
@@ -1869,7 +1869,7 @@ getDisplayRotation(): Promise\<DisplayRotation>
 
 以下错误码的详细介绍请参见[uitest测试框架错误码](../errorcodes/errorcode-uitest.md)。
 
-| 错误码ID | 错误码信息                               |
+| 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
 | 17000002 | API does not allow calling concurrently. |
 
@@ -1900,7 +1900,7 @@ setDisplayRotationEnabled(enabled: boolean): Promise\<void>
 
 以下错误码的详细介绍请参见[uitest测试框架错误码](../errorcodes/errorcode-uitest.md)。
 
-| 错误码ID | 错误码信息                               |
+| 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
 | 17000002 | API does not allow calling concurrently. |
 
@@ -1931,7 +1931,7 @@ getDisplaySize(): Promise\<Point>
 
 以下错误码的详细介绍请参见[uitest测试框架错误码](../errorcodes/errorcode-uitest.md)。
 
-| 错误码ID | 错误码信息                               |
+| 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
 | 17000002 | API does not allow calling concurrently. |
 
@@ -1962,7 +1962,7 @@ getDisplayDensity(): Promise\<Point>
 
 以下错误码的详细介绍请参见[uitest测试框架错误码](../errorcodes/errorcode-uitest.md)。
 
-| 错误码ID | 错误码信息                               |
+| 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
 | 17000002 | API does not allow calling concurrently. |
 
@@ -1987,7 +1987,7 @@ wakeUpDisplay(): Promise\<void>
 
 以下错误码的详细介绍请参见[uitest测试框架错误码](../errorcodes/errorcode-uitest.md)。
 
-| 错误码ID | 错误码信息                               |
+| 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
 | 17000002 | API does not allow calling concurrently. |
 
@@ -2012,7 +2012,7 @@ pressHome(): Promise\<void>
 
 以下错误码的详细介绍请参见[uitest测试框架错误码](../errorcodes/errorcode-uitest.md)。
 
-| 错误码ID | 错误码信息                               |
+| 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
 | 17000002 | API does not allow calling concurrently. |
 
@@ -2050,7 +2050,7 @@ waitForIdle(idleTime: number, timeout: number): Promise\<boolean>
 
 以下错误码的详细介绍请参见[uitest测试框架错误码](../errorcodes/errorcode-uitest.md)。
 
-| 错误码ID | 错误码信息                               |
+| 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
 | 17000002 | API does not allow calling concurrently. |
 
@@ -2084,7 +2084,7 @@ fling(from: Point, to: Point, stepLen: number, speed: number): Promise\<void>
 
 以下错误码的详细介绍请参见[uitest测试框架错误码](../errorcodes/errorcode-uitest.md)。
 
-| 错误码ID | 错误码信息                               |
+| 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
 | 17000002 | API does not allow calling concurrently. |
 
@@ -2122,7 +2122,7 @@ injectMultiPointerAction(pointers: PointerMatrix, speed?: number): Promise\<bool
 
 以下错误码的详细介绍请参见[uitest测试框架错误码](../errorcodes/errorcode-uitest.md)。
 
-| 错误码ID | 错误码信息                               |
+| 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
 | 17000002 | API does not allow calling concurrently. |
 
@@ -2228,7 +2228,7 @@ getBundleName(): Promise\<string>
 
 以下错误码的详细介绍请参见[uitest测试框架错误码](../errorcodes/errorcode-uitest.md)。
 
-| 错误码ID | 错误码信息                               |
+| 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
 | 17000002 | API does not allow calling concurrently. |
 | 17000004 | Component lost/UiWindow lost.            |
@@ -2261,7 +2261,7 @@ getBounds(): Promise\<Rect>
 
 以下错误码的详细介绍请参见[uitest测试框架错误码](../errorcodes/errorcode-uitest.md)。
 
-| 错误码ID | 错误码信息                               |
+| 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
 | 17000002 | API does not allow calling concurrently. |
 | 17000004 | Component lost/UiWindow lost.            |
@@ -2294,7 +2294,7 @@ getTitle(): Promise\<string>
 
 以下错误码的详细介绍请参见[uitest测试框架错误码](../errorcodes/errorcode-uitest.md)。
 
-| 错误码ID | 错误码信息                               |
+| 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
 | 17000002 | API does not allow calling concurrently. |
 | 17000004 | Component lost/UiWindow lost.            |
@@ -2327,7 +2327,7 @@ getWindowMode(): Promise\<WindowMode>
 
 以下错误码的详细介绍请参见[uitest测试框架错误码](../errorcodes/errorcode-uitest.md)。
 
-| 错误码ID | 错误码信息                               |
+| 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
 | 17000002 | API does not allow calling concurrently. |
 | 17000004 | Component lost/UiWindow lost.            |
@@ -2360,7 +2360,7 @@ isFocused(): Promise\<boolean>
 
 以下错误码的详细介绍请参见[uitest测试框架错误码](../errorcodes/errorcode-uitest.md)。
 
-| 错误码ID | 错误码信息                               |
+| 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
 | 17000002 | API does not allow calling concurrently. |
 | 17000004 | Component lost/UiWindow lost.            |
@@ -2393,7 +2393,7 @@ isActived(): Promise\<boolean>
 
 以下错误码的详细介绍请参见[uitest测试框架错误码](../errorcodes/errorcode-uitest.md)。
 
-| 错误码ID | 错误码信息                               |
+| 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
 | 17000002 | API does not allow calling concurrently. |
 | 17000004 | Component lost/UiWindow lost.            |
@@ -2420,7 +2420,7 @@ focus(): Promise\<void>
 
 以下错误码的详细介绍请参见[uitest测试框架错误码](../errorcodes/errorcode-uitest.md)。
 
-| 错误码ID | 错误码信息                               |
+| 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
 | 17000002 | API does not allow calling concurrently. |
 | 17000004 | Component lost/UiWindow lost.            |
@@ -2454,7 +2454,7 @@ moveTo(x: number, y: number): Promise\<void>
 
 以下错误码的详细介绍请参见[uitest测试框架错误码](../errorcodes/errorcode-uitest.md)。
 
-| 错误码ID | 错误码信息                               |
+| 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
 | 17000002 | API does not allow calling concurrently. |
 | 17000004 | Component lost/UiWindow lost.            |
@@ -2490,7 +2490,7 @@ resize(wide: number, height: number, direction: ResizeDirection): Promise\<void>
 
 以下错误码的详细介绍请参见[uitest测试框架错误码](../errorcodes/errorcode-uitest.md)。
 
-| 错误码ID | 错误码信息                               |
+| 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
 | 17000002 | API does not allow calling concurrently. |
 | 17000004 | Component lost/UiWindow lost.            |
@@ -2546,7 +2546,7 @@ maximize(): Promise\<void>
 
 以下错误码的详细介绍请参见[uitest测试框架错误码](../errorcodes/errorcode-uitest.md)。
 
-| 错误码ID | 错误码信息                               |
+| 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
 | 17000002 | API does not allow calling concurrently. |
 | 17000004 | Component lost/UiWindow lost.            |
@@ -2574,7 +2574,7 @@ minimize(): Promise\<void>
 
 以下错误码的详细介绍请参见[uitest测试框架错误码](../errorcodes/errorcode-uitest.md)。
 
-| 错误码ID | 错误码信息                               |
+| 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
 | 17000002 | API does not allow calling concurrently. |
 | 17000004 | Component lost/UiWindow lost.            |
@@ -2602,7 +2602,7 @@ resume(): Promise\<void>
 
 以下错误码的详细介绍请参见[uitest测试框架错误码](../errorcodes/errorcode-uitest.md)。
 
-| 错误码ID | 错误码信息                               |
+| 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
 | 17000002 | API does not allow calling concurrently. |
 | 17000004 | Component lost/UiWindow lost.            |
@@ -2630,7 +2630,7 @@ close(): Promise\<void>
 
 以下错误码的详细介绍请参见[uitest测试框架错误码](../errorcodes/errorcode-uitest.md)。
 
-| 错误码ID | 错误码信息                               |
+| 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
 | 17000002 | API does not allow calling concurrently. |
 | 17000004 | Component lost/UiWindow lost.            |
@@ -2678,7 +2678,7 @@ text(txt: string, pattern?: MatchPattern): By
 
 | 类型                | 说明                               |
 | ------------------- | ---------------------------------- |
-| [By<sup>(deprecated)</sup>](#bydeprecated) | 返回指定目标控件文本属性的By对象。 |
+| [By](#bydeprecated) | 返回指定目标控件文本属性的By对象。 |
 
 **示例：**
 
@@ -2707,7 +2707,7 @@ key(key: string): By
 
 | 类型                | 说明                                |
 | ------------------- | ----------------------------------- |
-| [By<sup>(deprecated)</sup>](#bydeprecated) | 返回指定目标控件key值属性的By对象。 |
+| [By](#bydeprecated) | 返回指定目标控件key值属性的By对象。 |
 
 **示例：**
 
@@ -2736,7 +2736,7 @@ id(id: number): By
 
 | 类型                | 说明                             |
 | ------------------- | -------------------------------- |
-| [By<sup>(deprecated)</sup>](#bydeprecated) | 返回指定目标控件id属性的By对象。 |
+| [By](#bydeprecated) | 返回指定目标控件id属性的By对象。 |
 
 **示例：**
 
@@ -2765,7 +2765,7 @@ type(tp: string): By
 
 | 类型                | 说明                                     |
 | ------------------- | ---------------------------------------- |
-| [By<sup>(deprecated)</sup>](#bydeprecated) | 返回指定目标控件的控件类型属性的By对象。 |
+| [By](#bydeprecated) | 返回指定目标控件的控件类型属性的By对象。 |
 
 **示例：**
 
@@ -2794,7 +2794,7 @@ clickable(b?: boolean): By
 
 | 类型                | 说明                                       |
 | ------------------- | ------------------------------------------ |
-| [By<sup>(deprecated)</sup>](#bydeprecated) | 返回指定目标控件的可点击状态属性的By对象。 |
+| [By](#bydeprecated) | 返回指定目标控件的可点击状态属性的By对象。 |
 
 **示例：**
 
@@ -2823,7 +2823,7 @@ scrollable(b?: boolean): By
 
 | 类型                | 说明                                       |
 | ------------------- | ------------------------------------------ |
-| [By<sup>(deprecated)</sup>](#bydeprecated) | 返回指定目标控件的可滑动状态属性的By对象。 |
+| [By](#bydeprecated) | 返回指定目标控件的可滑动状态属性的By对象。 |
 
 **示例：**
 
@@ -2851,7 +2851,7 @@ enabled(b?: boolean): By
 
 | 类型                | 说明                                     |
 | ------------------- | ---------------------------------------- |
-| [By<sup>(deprecated)</sup>](#bydeprecated) | 返回指定目标控件的使能状态属性的By对象。 |
+| [By](#bydeprecated) | 返回指定目标控件的使能状态属性的By对象。 |
 
 **示例：**
 
@@ -2879,7 +2879,7 @@ focused(b?: boolean): By
 
 | 类型                | 说明                                     |
 | ------------------- | ---------------------------------------- |
-| [By<sup>(deprecated)</sup>](#bydeprecated) | 返回指定目标控件的获焦状态属性的By对象。 |
+| [By](#bydeprecated) | 返回指定目标控件的获焦状态属性的By对象。 |
 
 **示例：**
 
@@ -2907,7 +2907,7 @@ selected(b?: boolean): By
 
 | 类型                | 说明                                       |
 | ------------------- | ------------------------------------------ |
-| [By<sup>(deprecated)</sup>](#bydeprecated) | 返回指定目标控件的被选中状态属性的By对象。 |
+| [By](#bydeprecated) | 返回指定目标控件的被选中状态属性的By对象。 |
 
 **示例：**
 
@@ -2929,13 +2929,13 @@ isBefore(by: By): By
 
 | 参数名 | 类型                | 必填 | 说明             |
 | ------ | ------------------- | ---- | ---------------- |
-| by     | [By<sup>(deprecated)</sup>](#bydeprecated) | 是   | 特征控件的属性。 |
+| by     | [By](#bydeprecated) | 是   | 特征控件的属性。 |
 
 **返回值：**
 
 | 类型                | 说明                                                 |
 | ------------------- | ---------------------------------------------------- |
-| [By<sup>(deprecated)</sup>](#bydeprecated) | 返回指定目标控件位于给出的特征属性控件之前的By对象。 |
+| [By](#bydeprecated) | 返回指定目标控件位于给出的特征属性控件之前的By对象。 |
 
 **示例：**
 
@@ -2957,13 +2957,13 @@ isAfter(by: By): By
 
 | 参数名 | 类型                | 必填 | 说明             |
 | ------ | ------------------- | ---- | ---------------- |
-| by     | [By<sup>(deprecated)</sup>](#bydeprecated) | 是   | 特征控件的属性。 |
+| by     | [By](#bydeprecated) | 是   | 特征控件的属性。 |
 
 **返回值：**
 
 | 类型                | 说明                                                 |
 | ------------------- | ---------------------------------------------------- |
-| [By<sup>(deprecated)</sup>](#bydeprecated) | 返回指定目标控件位于给出的特征属性控件之后的By对象。 |
+| [By](#bydeprecated) | 返回指定目标控件位于给出的特征属性控件之后的By对象。 |
 
 **示例：**
 
@@ -3334,13 +3334,13 @@ scrollSearch(by: By): Promise\<UiComponent>
 
 | 参数名 | 类型                | 必填 | 说明                 |
 | ------ | ------------------- | ---- | -------------------- |
-| by     | [By<sup>(deprecated)</sup>](#bydeprecated) | 是   | 目标控件的属性要求。 |
+| by     | [By](#bydeprecated) | 是   | 目标控件的属性要求。 |
 
 **返回值：**
 
-| 类型                                                         | 说明                                  |
-| ------------------------------------------------------------ | ------------------------------------- |
-| Promise\<[UiComponent<sup>(deprecated)</sup>](#uicomponentdeprecated)> | 以Promise形式返回找到的目标控件对象。 |
+| 类型                                            | 说明                                  |
+| ----------------------------------------------- | ------------------------------------- |
+| Promise\<[UiComponent](#uicomponentdeprecated)> | 以Promise形式返回找到的目标控件对象。 |
 
 **示例：**
 
@@ -3422,13 +3422,13 @@ findComponent(by: By): Promise\<UiComponent>
 
 | 参数名 | 类型                | 必填 | 说明                 |
 | ------ | ------------------- | ---- | -------------------- |
-| by     | [By<sup>(deprecated)</sup>](#bydeprecated) | 是   | 目标控件的属性要求。 |
+| by     | [By](#bydeprecated) | 是   | 目标控件的属性要求。 |
 
 **返回值：**
 
-| 类型                                                         | 说明                              |
-| ------------------------------------------------------------ | --------------------------------- |
-| Promise\<[UiComponent<sup>(deprecated)</sup>](#uicomponentdeprecated)> | 以Promise形式返回找到的控件对象。 |
+| 类型                                            | 说明                              |
+| ----------------------------------------------- | --------------------------------- |
+| Promise\<[UiComponent](#uicomponentdeprecated)> | 以Promise形式返回找到的控件对象。 |
 
 **示例：**
 
@@ -3453,13 +3453,13 @@ findComponents(by: By): Promise\<Array\<UiComponent>>
 
 | 参数名 | 类型                | 必填 | 说明                 |
 | ------ | ------------------- | ---- | -------------------- |
-| by     | [By<sup>(deprecated)</sup>](#bydeprecated) | 是   | 目标控件的属性要求。 |
+| by     | [By](#bydeprecated) | 是   | 目标控件的属性要求。 |
 
 **返回值：**
 
-| 类型                                                         | 说明                                    |
-| ------------------------------------------------------------ | --------------------------------------- |
-| Promise\<Array\<[UiComponent<sup>(deprecated)</sup>](#uicomponentdeprecated)>> | 以Promise形式返回找到的控件对象的列表。 |
+| 类型                                                    | 说明                                    |
+| ------------------------------------------------------- | --------------------------------------- |
+| Promise\<Array\<[UiComponent](#uicomponentdeprecated)>> | 以Promise形式返回找到的控件对象的列表。 |
 
 **示例：**
 
@@ -3484,7 +3484,7 @@ assertComponentExist(by: By): Promise\<void>
 
 | 参数名 | 类型                | 必填 | 说明                 |
 | ------ | ------------------- | ---- | -------------------- |
-| by     | [By<sup>(deprecated)</sup>](#bydeprecated) | 是   | 目标控件的属性要求。 |
+| by     | [By](#bydeprecated) | 是   | 目标控件的属性要求。 |
 
 **示例：**
 
