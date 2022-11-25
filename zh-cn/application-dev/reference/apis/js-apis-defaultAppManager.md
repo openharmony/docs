@@ -11,6 +11,16 @@
 ```
 import defaultAppMgr from '@ohos.bundle.defaultAppManager';
 ```
+
+## 权限列表
+
+| 权限                                    | 权限等级    | 描述             |
+| --------------------------------------- | ----------- | ---------------- |
+| ohos.permission.GET_DEFAULT_APPLICATION | system_core | 默认应用相关权限。 |
+
+权限等级参考[权限等级说明](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/accesstoken-overview.md#%E6%9D%83%E9%99%90%E7%AD%89%E7%BA%A7%E8%AF%B4%E6%98%8E)
+
+
 ## defaultAppMgr.ApplicationType
 
 应用类型
@@ -48,9 +58,14 @@ isDefaultApplication(type: string): Promise\<boolean>
 | ------------------------- | ------------------ |
 | Promise\<boolean> | Promise形式返回当前应用是否是默认应用，true表示是默认应用，false表示不是默认应用。 |
 
+**错误码：**
+
+错误码的详细介绍请参见[ohos.bundle错误码](../errorcodes/errorcode-bundle.md)。
+
+
 **示例：**
 
-```js
+```ts
 import defaultAppMgr from '@ohos.bundle.defaultAppManager';
 defaultAppMgr.isDefaultApplication(defaultAppMgr.ApplicationType.BROWSER)
 .then((data) => {
@@ -74,6 +89,10 @@ isDefaultApplication(type: string, callback: AsyncCallback\<boolean>): void
 | ----------- | ------------------------------- | ---- | --------------------------------------- |
 | type  | string                          | 是    | 要查询的应用类型，取[ApplicationType](#defaultappmgrapplicationtype)中的值。                            |
 | callback    | AsyncCallback\<boolean> | 是    | 程序启动作为入参的回调函数，返回当前应用是否是默认应用，true表示是默认应用，false表示不是默认应用。 |
+
+**错误码：**
+
+错误码的详细介绍请参见[ohos.bundle错误码](../errorcodes/errorcode-bundle.md)。
 
 **示例：**
 
@@ -114,6 +133,8 @@ getDefaultApplication(type: string, userId?: number): Promise\<BundleInfo>
 | Promise\<[BundleInfo](js-apis-bundle-BundleInfo.md)> | Promise形式返回默认应用包信息。 |
 
 **错误码：**
+
+以下错误码的详细介绍请参见[ohos.bundle错误码](../errorcodes/errorcode-bundle.md)。
 
 | 错误码ID | 错误信息                                  |
 | -------- | ----------------------------------------- |
@@ -164,6 +185,8 @@ getDefaultApplication(type: string, userId: number, callback: AsyncCallback\<Bun
 
 **错误码：**
 
+以下错误码的详细介绍请参见[ohos.bundle错误码](../errorcodes/errorcode-bundle.md)。
+
 | 错误码ID | 错误信息                                  |
 | -------- | ----------------------------------------- |
 | 17700004 | The specified user id is not found.       |
@@ -212,6 +235,8 @@ getDefaultApplication(type: string, callback: AsyncCallback\<BundleInfo>) : void
 | callback    | AsyncCallback\<[BundleInfo](js-apis-bundle-BundleInfo.md)> | 是    | 程序启动作为入参的回调函数，返回包信息。                    |
 
 **错误码：**
+
+以下错误码的详细介绍请参见[ohos.bundle错误码](../errorcodes/errorcode-bundle.md)。
 
 | 错误码ID | 错误信息                                  |
 | -------- | ----------------------------------------- |
@@ -272,6 +297,8 @@ setDefaultApplication(type: string, elementName: ElementName, userId?: number): 
 | Promise\<void> | Promise对象，无返回结果的Promise。 |
 
 **错误码：**
+
+以下错误码的详细介绍请参见[ohos.bundle错误码](../errorcodes/errorcode-bundle.md)。
 
 | 错误码ID | 错误信息                                       |
 | -------- | ---------------------------------------------- |
@@ -338,6 +365,8 @@ setDefaultApplication(type: string, elementName: ElementName, userId: number, ca
 
 **错误码：**
 
+以下错误码的详细介绍请参见[ohos.bundle错误码](../errorcodes/errorcode-bundle.md)。
+
 | 错误码ID | 错误信息                                       |
 | -------- | ---------------------------------------------- |
 | 17700004 | The specified user id is not found.            |
@@ -396,6 +425,8 @@ setDefaultApplication(type: string, elementName: ElementName, callback: AsyncCal
 
 **错误码：**
 
+以下错误码的详细介绍请参见[ohos.bundle错误码](../errorcodes/errorcode-bundle.md)。
+
 | 错误码ID | 错误信息                                       |
 | -------- | ---------------------------------------------- |
 | 17700004 | The specified user id is not found.            |
@@ -404,7 +435,7 @@ setDefaultApplication(type: string, elementName: ElementName, callback: AsyncCal
 
 **示例：**
 
-```js
+```ts
 import defaultAppMgr from '@ohos.bundle.defaultAppManager';
 defaultAppMgr.setDefaultApplication(defaultAppMgr.ApplicationType.BROWSER, {
     bundleName: "com.test.app",
@@ -451,6 +482,8 @@ resetDefaultApplication(type: string, userId?: number): Promise\<void>
 | userId  | number | 否    | 用户ID。默认值：调用方所在用户。                           |
 
 **错误码：**
+
+以下错误码的详细介绍请参见[ohos.bundle错误码](../errorcodes/errorcode-bundle.md)。
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
@@ -501,6 +534,8 @@ resetDefaultApplication(type: string, userId: number, callback: AsyncCallback\<v
 
 **错误码：**
 
+以下错误码的详细介绍请参见[ohos.bundle错误码](../errorcodes/errorcode-bundle.md)。
+
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
 | 17700004 | The specified user id is not found. |
@@ -549,6 +584,8 @@ resetDefaultApplication(type: string, callback: AsyncCallback\<void>) : void;
 
 **错误码：**
 
+以下错误码的详细介绍请参见[ohos.bundle错误码](../errorcodes/errorcode-bundle.md)。
+
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
 | 17700004 | The specified user id is not found. |
@@ -556,7 +593,7 @@ resetDefaultApplication(type: string, callback: AsyncCallback\<void>) : void;
 
 **示例：**
 
-```js
+```ts
 import defaultAppMgr from '@ohos.bundle.defaultAppManager';
 defaultAppMgr.resetDefaultApplication(defaultAppMgr.ApplicationType.BROWSER, (err, data) => {
     if (err) {
