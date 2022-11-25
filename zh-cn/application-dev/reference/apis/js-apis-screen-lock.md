@@ -261,7 +261,7 @@ unlock(): Promise&lt;boolean&gt;
 **系统能力：** SystemCapability.MiscServices.ScreenLock
 
 **返回值：** 
-boolean
+
 | 类型                | 说明                                                         |
 | ------------------- | ------------------------------------------------------------ |
 | Promise&lt;boolean&gt; | Promise对象。返回true表示屏幕解锁成功，返回false表示屏幕解锁失败。 |
