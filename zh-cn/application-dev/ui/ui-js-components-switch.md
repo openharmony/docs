@@ -12,7 +12,7 @@ switch为开关选择器，切换开启或关闭状态。具体用法请参考[s
 ```html
 <!-- xxx.hml -->
 <div class="container">
-    <switch></switch>
+    <switch checked="true"></switch>
 </div>
 ```
 
@@ -30,7 +30,7 @@ switch为开关选择器，切换开启或关闭状态。具体用法请参考[s
 
 ## 添加属性和方法
 
-  witch组件通过textoff和showtext属性设置文本选中和未选中时的状态。设置checked属性值为true（组件为打开状态）。添加change事件，当组件状态改变时触发，触发后执行switchChange函数获取组件当前状态（关闭/打开）。
+  switch组件通过textoff和showtext属性设置文本选中和未选中时的状态。设置checked属性值为true（组件为打开状态）。添加change事件，当组件状态改变时触发，触发后执行switchChange函数获取组件当前状态（关闭/打开）。
 
 ```html
 <!-- xxx.hml -->
