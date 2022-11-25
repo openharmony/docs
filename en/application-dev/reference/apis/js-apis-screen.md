@@ -154,7 +154,7 @@ Sets the screen to the expanded mode. This API uses an asynchronous callback to 
 | Name  | Type                                      | Mandatory| Description                            |
 | -------- | ------------------------------------------ | ---- | -------------------------------- |
 | options  | Array&lt;[ExpandOption](#expandoption)&gt; | Yes  | Parameters for expanding the screen.        |
-| callback | Callback&lt;number&gt;                     | Yes  | Callback used to return the group ID of the expanded screens.|
+| callback | AsyncCallback&lt;number&gt;                     | Yes  | Callback used to return the group ID of the expanded screens.|
 
 **Error codes**
 
