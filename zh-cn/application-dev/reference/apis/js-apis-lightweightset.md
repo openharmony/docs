@@ -330,7 +330,7 @@ increaseCapacityTo(minimumCapacity: number): void
 | 错误码ID | 错误信息 |
 | -------- | -------- |
 | 10200011 | The increaseCapacityTo method cannot be bound. |
-| 10200001 | The value of parameters are out of range. |
+| 10200001 | The parameter value is out of range. |
 
 **示例：**
 
