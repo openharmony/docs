@@ -55,7 +55,7 @@ try {
         if (errData !== null) {
             console.log(`errData is errCode:${errData.code}  message:${errData.message}`);
         }
-        console.log("data is " + JSON.Stringify(data));
+        console.log("data is " + JSON.stringify(data));
     })
 } catch (errData) {
     console.log(`errData is errCode:${errData.code}  message:${errData.message}`);
