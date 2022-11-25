@@ -440,7 +440,7 @@ createPreviewOutput(profile: Profile, surfaceId: string, callback: AsyncCallback
 **示例：**
 
 ```js
-cameraManager.createPreviewOutput(profile, surfaceId, (err, previewoutput) => {
+cameraManager.createPreviewOutput(profile, surfaceId, (err, previewOutput) => {
     if (err) {
         console.error(`Failed to gcreate previewOutput. ${err.message}`);
         return;
@@ -473,7 +473,7 @@ createPreviewOutput(profile: Profile, surfaceId: string): Promise<PreviewOutput\
 **示例：**
 
 ```js
-cameraManager.createPreviewOutput(profile, surfaceId).then((previewoutput) => {
+cameraManager.createPreviewOutput(profile, surfaceId).then((previewOutput) => {
     console.log('Promise returned with previewOutput created.');
 })
 ```
@@ -497,7 +497,7 @@ createPhotoOutput(profile: Profile, surfaceId: string, callback: AsyncCallback<P
 **示例：**
 
 ```js
-cameraManager.createPhotoOutput(profile, surfaceId, (err, photooutput) => {
+cameraManager.createPhotoOutput(profile, surfaceId, (err, photoOutput) => {
     if (err) {
         console.error(`Failed to create photoOutput. ${err.message}`);
         return;
@@ -530,7 +530,7 @@ createPhotoOutput(profile: Profile, surfaceId: string): Promise<PhotoOutput\>
 **示例：**
 
 ```js
-cameraManager.createPhotoOutput(profile, surfaceId).then((photooutput) => {
+cameraManager.createPhotoOutput(profile, surfaceId).then((photoOutput) => {
     console.log('Promise returned with photoOutput created.');
 })
 ```
@@ -554,7 +554,7 @@ createVideoOutput(profile: VideoProfile, surfaceId: string, callback: AsyncCallb
 **示例：**
 
 ```js
-cameraManager.createVideoOutput(profile, surfaceId, (err, videooutput) => {
+cameraManager.createVideoOutput(profile, surfaceId, (err, videoOutput) => {
     if (err) {
         console.error(`Failed to create videoOutput. ${err.message}`);
         return;
@@ -587,7 +587,7 @@ createVideoOutput(profile: VideoProfile, surfaceId: string): Promise<VideoOutput
 **示例：**
 
 ```js
-cameraManager.createVideoOutput(profile, surfaceId).then((videooutput) => {
+cameraManager.createVideoOutput(profile, surfaceId).then((videoOutput) => {
     console.log('Promise returned with videoOutput created.');
 })
 ```
@@ -610,7 +610,7 @@ createMetadataOutput(metadataObjectTypes:Array<MetadataObjectType\>, callback: A
 **示例：**
 
 ```js
-cameraManager.createMetadataOutput(metadataObjectTypes, (err, metadataoutput) => {
+cameraManager.createMetadataOutput(metadataObjectTypes, (err, metadataOutput) => {
     if (err) {
         console.error(`Failed to create metadataOutput. ${err.message}`);
         return;
@@ -642,7 +642,7 @@ createMetadataOutput(metadataObjectTypes:Array<MetadataObjectType\>): Promise<Me
 **示例：**
 
 ```js
-cameraManager.createMetadataOutput().then((metadataoutput) => {
+cameraManager.createMetadataOutput().then((metadataOutput) => {
     console.log('Promise returned with metadataOutput created.');
 })
 ```
