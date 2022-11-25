@@ -96,7 +96,7 @@ let wantTemp = {
     bundleName: "bundleName",
     abilityName: "abilityName",
 };
-dateTimeManager.setDateTime(admin, 1526003846000).then(() => {
+dateTimeManager.setDateTime(wantTemp, 1526003846000).then(() => {
 }).catch((error) => {
     console.log("error code:" + error.code + " error message:" + error.message);
 })
