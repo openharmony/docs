@@ -182,7 +182,6 @@
   - [@ohos.net.http (数据请求)](js-apis-http.md)
   - [@ohos.net.sharing (网络共享管理)](js-apis-net-sharing.md)
   - [@ohos.net.socket (Socket连接)](js-apis-socket.md)
-  - [@ohos.net.tlsSocket (TLSSocket连接)](js-apis-tlsSocket.md)
   - [@ohos.net.webSocket (WebSocket连接)](js-apis-webSocket.md)
   - [@ohos.request (上传下载)](js-apis-request.md)
 
