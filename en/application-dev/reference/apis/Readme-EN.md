@@ -128,6 +128,8 @@
 - Security
   - [@ohos.abilityAccessCtrl](js-apis-abilityAccessCtrl.md)
   - [@ohos.privacyManager](js-apis-privacyManager.md)
+  - [@ohos.security.cert](js-apis-cert.md)
+  - [@ohos.security.cryptoFramework]js-apis-cryptoFramework.md)
   - [@ohos.security.huks ](js-apis-huks.md)
   - [@ohos.userIAM.faceAuth](js-apis-useriam-faceauth.md)
   - [@ohos.userIAM.userAuth ](js-apis-useriam-userauth.md)
