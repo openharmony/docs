@@ -1652,6 +1652,8 @@ update(table: string, values: ValuesBucket, predicates: dataSharePredicates.Data
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
+**系统接口：** 此接口为系统接口。
+
 **参数：**
 
 | 参数名     | 类型                                                         | 必填 | 说明                                                         |
@@ -1689,6 +1691,8 @@ update(table: string, values: ValuesBucket, predicates: dataSharePredicates.Data
 根据DataSharePredicates的指定实例对象更新数据库中的数据，使用Promise异步回调。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
+
+**系统接口：** 此接口为系统接口。
 
 **参数：**
 
@@ -1794,6 +1798,8 @@ delete(table: string, predicates: dataSharePredicates.DataSharePredicates, callb
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
+**系统接口：** 此接口为系统接口。
+
 **参数：**
 
 | 参数名     | 类型                                                         | 必填 | 说明                                          |
@@ -1824,6 +1830,8 @@ delete(table: string, predicates: dataSharePredicates.DataSharePredicates):Promi
 根据DataSharePredicates的指定实例对象从数据库中删除数据，使用Promise异步回调。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
+
+**系统接口：** 此接口为系统接口。
 
 **参数：**
 
@@ -1926,6 +1934,8 @@ query(table: string, predicates: dataSharePredicates.DataSharePredicates, column
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
+**系统接口：** 此接口为系统接口。
+
 **参数：**
 
 | 参数名     | 类型                                                         | 必填 | 说明                                                        |
@@ -1958,6 +1968,8 @@ query(table: string, predicates: dataSharePredicates.DataSharePredicates, column
 根据指定条件查询数据库中的数据，使用Promise异步回调。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
+
+**系统接口：** 此接口为系统接口。
 
 **参数：**
 
