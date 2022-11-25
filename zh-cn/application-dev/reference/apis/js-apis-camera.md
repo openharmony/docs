@@ -664,7 +664,7 @@ createCaptureSession(callback: AsyncCallback<CaptureSession\>): void
 **示例：**
 
 ```js
-cameraManager.createCaptureSession((err, capturesession) => {
+cameraManager.createCaptureSession((err, captureSession) => {
     if (err) {
         console.error(`Failed to create captureSession. ${err.message}`);
         return;
@@ -690,7 +690,7 @@ createCaptureSession(): Promise<CaptureSession\>
 **示例：**
 
 ```js
-cameraManager.createCaptureSession().then((capturesession) => {
+cameraManager.createCaptureSession().then((captureSession) => {
     console.log('Promise returned with captureSession created.');
 })
 ```
