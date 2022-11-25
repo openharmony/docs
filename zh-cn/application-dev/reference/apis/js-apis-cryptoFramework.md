@@ -1191,7 +1191,7 @@ let key; // key为使用非对称密钥生成器生成的非对称密钥的公�
 console.info("key format:" + key.format);
 console.info("key algName:" + key.algName);
 var encodedKey = key.getEncoded();
-console.info("key encoded:" + Uint8ArrayToShowStr(encodedKey.data));
+console.info("key encoded:" + uint8ArrayToShowStr(encodedKey.data));
 ```
 
 ## PriKey
@@ -1234,7 +1234,7 @@ let key; // key为使用非对称密钥生成器生成的非对称密钥的私�
 console.info("key format:" + key.format);
 console.info("key algName:" + key.algName);
 var encodedKey = key.getEncoded();
-console.info("key encoded:" + Uint8ArrayToShowStr(encodedKey.data));
+console.info("key encoded:" + uint8ArrayToShowStr(encodedKey.data));
 ```
 
 ### clearMem
@@ -1578,8 +1578,6 @@ import cryptoFramework from "@ohos.security.cryptoFramework"
 let pubKey; // X.509规范、DER格式的公钥数据，此处省略数据。
 let priKey; // PKCS#8规范、DER格式的私钥数据，此处省略数据。
 let asyKeyGenerator = cryptoFramework.createAsyKeyGenerator("ECC256");
-let pubKey; // pubKey为使用非对称密钥生成器生成的非对称密钥的公钥对象，此处省略生成过程
-let priKey; // priKey为使用非对称密钥生成器生成的非对称密钥的私钥对象，此处省略生成过程
 asyKeyGenerator.convertKey(pubKey, priKey, (err, keyPair) => {
   if (err) {
     console.error("convertKey: error.");
@@ -2204,18 +2202,34 @@ sign(data : DataBlob) : Promise\<DataBlob>
 ```javascript
 import cryptoFramework from "@ohos.security.cryptoFramework"
 
-let rsaGenerator = cryptoFramework.createAsyKeyGenerator("RSA1024|PRIMES_2");
-let signer = cryptoFramework.createSign("RSA1024|PKCS1|SHA256");
-rsaGenerator.generateKeyPair(function (err, keyPair) {
-  let globalKeyPair = keyPair;
-  let priKey = globalKeyPair.priKey;
-  let input1 = null;
-  let input2 = null;
-  signer.init(priKey, function (err, data) {
-    signer.update(input1, function (err, data) {
-      signer.sign(input2, function (err, data) {
-        let signMessageBlob = data;
-        console.info("sign output is " + signMessageBlob.data);
+function stringToUint8Array(str) {
+  var arr = [];
+  for (var i = 0, j = str.length; i < j; ++i) {
+    arr.push(str.charCodeAt(i));
+  }
+  var tmpArray = new Uint8Array(arr);
+  return tmpArray;
+}
+
+let globalKeyPair;
+let SignMessageBlob;
+let plan1 = "This is Sign test plan1";
+let plan2 = "This is Sign test plan1";
+let input1 = { data : stringToUint8Array(plan1) };
+let input2 = { data : stringToUint8Array(plan2) };
+
+function signMessageCallback() {
+  let rsaGenerator = cryptoFramework.createAsyKeyGenerator("RSA1024|PRIMES_2");
+  let signer = cryptoFramework.createSign("RSA1024|PKCS1|SHA256");
+  rsaGenerator.generateKeyPair(function (err, keyPair) {
+    globalKeyPair = keyPair;
+    let priKey = globalKeyPair.priKey;
+    signer.init(priKey, function (err, data) {
+      signer.update(input1, function (err, data) {
+        signer.sign(input2, function (err, data) {
+          SignMessageBlob = data;
+          AlertDialog.show({message : "res" +  SignMessageBlob.data});
+        });
       });
     });
   });
@@ -2227,23 +2241,40 @@ rsaGenerator.generateKeyPair(function (err, keyPair) {
 ```javascript
 import cryptoFramework from "@ohos.security.cryptoFramework"
 
-let rsaGenerator = cryptoFramework.createAsyKeyGenerator("RSA1024|PRIMES_2");
-let signer = cryptoFramework.createSign("RSA1024|PKCS1|SHA256");
-let keyGenPromise = rsaGenerator.generateKeyPair();
-let input1 = null;
-let input2 = null;
-keyGenPromise.then( keyPair => {
-  let globalKeyPair = keyPair;
-  let priKey = globalKeyPair.priKey;
-  return signer.init(priKey);
-}).then(() => {
-  return signer.update(input1);
-}).then(() => {
-  return signer.sign(input2);
-}).then(dataBlob => {
-  let signMessageBlob = dataBlob;
-  console.info("sign output is " + signMessageBlob.data);
-});
+function stringToUint8Array(str) {
+  var arr = [];
+  for (var i = 0, j = str.length; i < j; ++i) {
+    arr.push(str.charCodeAt(i));
+  }
+  var tmpArray = new Uint8Array(arr);
+  return tmpArray;
+}
+
+let globalKeyPair;
+let SignMessageBlob;
+let plan1 = "This is Sign test plan1";
+let plan2 = "This is Sign test plan1";
+let input1 = { data : stringToUint8Array(plan1) };
+let input2 = { data : stringToUint8Array(plan2) };
+
+function signMessagePromise() {
+  let rsaGenerator = cryptoFramework.createAsyKeyGenerator("RSA1024|PRIMES_2");
+  let signer = cryptoFramework.createSign("RSA1024|PKCS1|SHA256");
+  let keyGenPromise = rsaGenerator.generateKeyPair();
+  keyGenPromise.then( keyPair => {
+    globalKeyPair = keyPair;
+    let priKey = globalKeyPair.priKey;
+    return signer.init(priKey);
+  }).then(() => {
+    return signer.update(input1);
+  }).then(() => {
+    return signer.sign(input2);
+  }).then(dataBlob => {
+    SignMessageBlob = dataBlob;
+    console.info("sign output is " + SignMessageBlob.data);
+    AlertDialog.show({message : "output" +  SignMessageBlob.data});
+  });
+}
 ```
 
 ## cryptoFramework.createVerify
@@ -2395,7 +2426,7 @@ import cryptoFramework from "@ohos.security.cryptoFramework"
 let globalKeyPair; // globalKeyPair为使用非对称密钥生成器生成的非对称密钥对象，此处省略生成过程
 let input1 = null;
 let input2 = null;
-let signMessageBlob = null;
+let signMessageBlob = null; // 签名后的数据，此处省略
 let verifyer = cryptoFramework.createVerify("RSA1024|PKCS1|SHA25");
 verifyer.init(globalKeyPair.pubKey, function (err, data) {
   verifyer.update(input1, function(err, data) {
@@ -2416,7 +2447,7 @@ let verifyer = cryptoFramework.createVerify("RSA1024|PKCS1|SHA256");
 let verifyInitPromise = verifyer.init(globalKeyPair.pubKey);
 let input1 = null;
 let input2 = null;
-let signMessageBlob = null;
+let signMessageBlob = null; // 签名后的数据，此处省略
 verifyInitPromise.then(() => {
   return verifyer.update(input1);
 }).then(() => {
@@ -2501,10 +2532,8 @@ generateSecret(priKey : PriKey, pubKey : PubKey) : Promise\<DataBlob>
 ```javascript
 import cryptoFramework from "@ohos.security.cryptoFramework"
 
-let globalKeyPair; // 生成的密钥对，此处省略生成过程
-
-let keyAgreement = cryptoFramework.createKeyAgreement("ECC256");
 let globalKeyPair; // globalKeyPair为使用非对称密钥生成器生成的非对称密钥对象，此处省略生成过程
+let keyAgreement = cryptoFramework.createKeyAgreement("ECC256");
 keyAgreement.generateSecret(globalKeyPair.priKey, globalKeyPair.pubKey, function (err, secret) {
   if (err) {
     console.error("keyAgreement error.");
@@ -2519,9 +2548,8 @@ keyAgreement.generateSecret(globalKeyPair.priKey, globalKeyPair.pubKey, function
 ```javascript
 import cryptoFramework from "@ohos.security.cryptoFramework"
 
-let globalKeyPair; // 生成的密钥对，此处省略生成过程
-let keyAgreement = cryptoFramework.createKeyAgreement("ECC256");
 let globalKeyPair; // globalKeyPair为使用非对称密钥生成器生成的非对称密钥对象，此处省略生成过程
+let keyAgreement = cryptoFramework.createKeyAgreement("ECC256");
 let keyAgreementPromise = keyAgreement.generateSecret(globalKeyPair.priKey, globalKeyPair.pubKey);
 keyAgreementPromise.then((secret) => {
   console.info("keyAgreement output is " + secret.data);
