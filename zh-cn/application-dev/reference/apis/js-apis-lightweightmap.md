@@ -421,7 +421,7 @@ getKeyAt(index: number): K
 | 错误码ID | 错误信息 |
 | -------- | -------- |
 | 10200011 | The getKeyAt method cannot be bound. |
-| 10200001 | The value of parameters are out of range. |
+| 10200001 | The parameter value is out of range. |
 
 **示例：**
 
@@ -636,7 +636,7 @@ setValueAt(index: number, newValue: V): boolean
 | 错误码ID | 错误信息 |
 | -------- | -------- |
 | 10200011 | The setValueAt method cannot be bound. |
-| 10200001 | The value of parameters are out of range. |
+| 10200001 | The parameter value is out of range. |
 
 **示例：**
 
@@ -685,7 +685,7 @@ getValueAt(index: number): V
 | 错误码ID | 错误信息 |
 | -------- | -------- |
 | 10200011 | The getValueAt method cannot be bound. |
-| 10200001 | The value of parameters are out of range. |
+| 10200001 | The parameter value is out of range. |
 
 **示例：**
 

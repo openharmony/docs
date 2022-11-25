@@ -126,7 +126,7 @@ insert(element: T, index: number): void
 | 错误码ID | 错误信息 |
 | -------- | -------- |
 | 10200011 | The insert method cannot be bound. |
-| 10200001 | The value of parameters are out of range. |
+| 10200001 | The parameter value is out of range. |
 
 **示例：**
 
@@ -408,7 +408,7 @@ removeByIndex(index: number): T
 | 错误码ID | 错误信息 |
 | -------- | -------- |
 | 10200011 | The removeByIndex method cannot be bound. |
-| 10200001 | The value of parameters are out of range. |
+| 10200001 | The parameter value is out of range. |
 
 **示例：**
 
@@ -658,7 +658,7 @@ getSubList(fromIndex: number, toIndex: number): List&lt;T&gt;
 | 错误码ID | 错误信息 |
 | -------- | -------- |
 | 10200011 | The getSubList method cannot be bound. |
-| 10200001 | The value of parameters are out of range. |
+| 10200001 | The parameter value is out of range. |
 
 **示例：**
 
@@ -743,7 +743,7 @@ set(index: number, element: T): T
 | 错误码ID | 错误信息 |
 | -------- | -------- |
 | 10200011 | The set method cannot be bound. |
-| 10200001 | The value of parameters are out of range. |
+| 10200001 | The parameter value is out of range. |
 
 **示例：**
 
