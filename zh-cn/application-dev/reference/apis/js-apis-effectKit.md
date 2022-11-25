@@ -27,7 +27,7 @@ createEffect(source: image.PixelMap): Filter
 
 **参数：**
 
-| 名称    | 类型               | 必填 | 说明     |
+| 参数名    | 类型               | 必填 | 说明     |
 | ------- | ----------------- | ---- | -------- |
 | source  | [image.PixelMap](js-apis-image.md#pixelmap7) | 是   | image模块创建的PixelMap实例。   |
 
@@ -59,7 +59,7 @@ createColorPicker(source: image.PixelMap): Promise\<ColorPicker>
 
 **参数：**
 
-| 名称     | 类型         | 必填 | 说明                       |
+| 参数名     | 类型         | 必填 | 说明                       |
 | -------- | ----------- | ---- | -------------------------- |
 | source   | [image.PixelMap](js-apis-image.md#pixelmap7) | 是   |  image模块创建的PixelMap实例。 |
 
@@ -93,7 +93,7 @@ createColorPicker(source: image.PixelMap, callback: AsyncCallback\<ColorPicker>)
 
 **参数：**
 
-| 名称     | 类型                | 必填 | 说明                       |
+| 参数名     | 类型                | 必填 | 说明                       |
 | -------- | ------------------ | ---- | -------------------------- |
 | source   | [image.PixelMap](js-apis-image.md#pixelmap7) | 是  |image模块创建的PixelMap实例。  |
 | callback | AsyncCallback\<[ColorPicker](#colorpicker)> | 是  | 回调函数。返回创建的ColorPicker实例。 |
