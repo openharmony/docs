@@ -119,7 +119,7 @@ hiAppEvent.write({
 
 **系统能力：** SystemCapability.HiviewDFX.HiAppEvent
 
-| 名称      | 参数类型                | 必填 | 说明       |
+| 名称      | 类型                    | 必填 | 说明       |
 | --------- | ----------------------- | ---- | ---------- |
 | domain    | string                  | 是   | 事件领域。 |
 | name      | string                  | 是   | 事件名称。 |
@@ -168,7 +168,7 @@ hiAppEvent.configure({
 
 **系统能力：** SystemCapability.HiviewDFX.HiAppEvent
 
-| 参数名     | 类型    | 必填 | 说明                                                         |
+| 名称       | 类型    | 必填 | 说明                                                         |
 | ---------- | ------- | ---- | ------------------------------------------------------------ |
 | disable    | boolean | 否   | 打点功能开关，默认值为false。true：关闭打点功能，false：不关闭打点功能。 |
 | maxStorage | string  | 否   | 打点数据存放目录的配额大小，默认值为“10M”。<br>在目录大小超出配额后，下次打点会触发对目录的清理操作：按从旧到新的顺序逐个删除打点数据文件，直到目录大小不超出配额时结束。 |
@@ -299,7 +299,7 @@ hiAppEvent.removeWatcher(watcher);
 
 **系统能力：** SystemCapability.HiviewDFX.HiAppEvent
 
-| 名称             | 参数类型                                                     | 必填 | 说明                                                         |
+| 名称             | 类型                                                         | 必填 | 说明                                                         |
 | ---------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | name             | string                                                       | 是   | 观察者名称，用于唯一标识观察者。                             |
 | triggerCondition | [TriggerCondition](#triggercondition)                        | 否   | 订阅回调触发条件，需要与回调函数一同传入才会生效。           |
@@ -312,11 +312,11 @@ hiAppEvent.removeWatcher(watcher);
 
 **系统能力：** SystemCapability.HiviewDFX.HiAppEvent
 
-| 名称    | 参数类型 | 必填 | 说明                                   |
-| ------- | -------- | ---- | -------------------------------------- |
-| row     | number   | 否   | 满足触发回调的事件总数量。             |
-| size    | number   | 否   | 满足触发回调的事件总大小，单位为byte。 |
-| timeOut | number   | 否   | 满足触发回调的超时时长，单位为30s。    |
+| 名称    | 类型   | 必填 | 说明                                   |
+| ------- | ------ | ---- | -------------------------------------- |
+| row     | number | 否   | 满足触发回调的事件总数量。             |
+| size    | number | 否   | 满足触发回调的事件总大小，单位为byte。 |
+| timeOut | number | 否   | 满足触发回调的超时时长，单位为30s。    |
 
 ## AppEventFilter
 
@@ -324,7 +324,7 @@ hiAppEvent.removeWatcher(watcher);
 
 **系统能力：** SystemCapability.HiviewDFX.HiAppEvent
 
-| 名称       | 参数类型                  | 必填 | 说明                     |
+| 名称       | 类型                      | 必填 | 说明                     |
 | ---------- | ------------------------- | ---- | ------------------------ |
 | domain     | string                    | 是   | 需要订阅的事件领域。     |
 | eventTypes | [EventType](#eventtype)[] | 否   | 需要订阅的事件类型集合。 |
@@ -411,12 +411,12 @@ let eventPkg = holder.takeNext();
 
 **系统能力：** SystemCapability.HiviewDFX.HiAppEvent
 
-| 名称      | 参数类型 | 说明                           |
-| --------- | -------- | ------------------------------ |
-| packageId | number   | 事件包ID，从0开始自动递增。    |
-| row       | number   | 事件包的事件数量。             |
-| size      | number   | 事件包的事件大小，单位为byte。 |
-| data      | string[] | 事件包的事件信息。             |
+| 名称      | 类型     | 必填 | 说明                           |
+| --------- | -------- | ---- | ------------------------------ |
+| packageId | number   | 是   | 事件包ID，从0开始自动递增。    |
+| row       | number   | 是   | 事件包的事件数量。             |
+| size      | number   | 是   | 事件包的事件大小，单位为byte。 |
+| data      | string[] | 是   | 事件包的事件信息。             |
 
 ## hiAppEvent.clearData
 
@@ -439,12 +439,12 @@ hiAppEvent.clearData();
 
 **系统能力：** SystemCapability.HiviewDFX.HiAppEvent
 
-| 名称      | 默认值 | 说明           |
-| --------- | ------ | -------------- |
-| FAULT     | 1      | 故障类型事件。 |
-| STATISTIC | 2      | 统计类型事件。 |
-| SECURITY  | 3      | 安全类型事件。 |
-| BEHAVIOR  | 4      | 行为类型事件。 |
+| 名称      | 值   | 说明           |
+| --------- | ---- | -------------- |
+| FAULT     | 1    | 故障类型事件。 |
+| STATISTIC | 2    | 统计类型事件。 |
+| SECURITY  | 3    | 安全类型事件。 |
+| BEHAVIOR  | 4    | 行为类型事件。 |
 
 
 ## Event
@@ -453,11 +453,11 @@ hiAppEvent.clearData();
 
 **系统能力：** SystemCapability.HiviewDFX.HiAppEvent
 
-| 名称                      | 参数类型 | 可读 | 可写 | 说明                 |
-| ------------------------- | -------- | ---- | ---- | -------------------- |
-| USER_LOGIN                | string   | 是   | 否   | 用户登录事件。       |
-| USER_LOGOUT               | string   | 是   | 否   | 用户登出事件。       |
-| DISTRIBUTED_SERVICE_START | string   | 是   | 否   | 分布式服务启动事件。 |
+| 名称                      | 类型   | 可读 | 可写 | 说明                 |
+| ------------------------- | ------ | ---- | ---- | -------------------- |
+| USER_LOGIN                | string | 是   | 否   | 用户登录事件。       |
+| USER_LOGOUT               | string | 是   | 否   | 用户登出事件。       |
+| DISTRIBUTED_SERVICE_START | string | 是   | 否   | 分布式服务启动事件。 |
 
 
 ## Param
@@ -466,8 +466,8 @@ hiAppEvent.clearData();
 
 **系统能力：** SystemCapability.HiviewDFX.HiAppEvent
 
-| 名称                            | 参数类型 | 可读 | 可写 | 说明               |
-| ------------------------------- | -------- | ---- | ---- | ------------------ |
-| USER_ID                         | string   | 是   | 否   | 用户自定义ID。     |
-| DISTRIBUTED_SERVICE_NAME        | string   | 是   | 否   | 分布式服务名称。   |
-| DISTRIBUTED_SERVICE_INSTANCE_ID | string   | 是   | 否   | 分布式服务实例ID。 |
+| 名称                            | 类型   | 可读 | 可写 | 说明               |
+| ------------------------------- | ------ | ---- | ---- | ------------------ |
+| USER_ID                         | string | 是   | 否   | 用户自定义ID。     |
+| DISTRIBUTED_SERVICE_NAME        | string | 是   | 否   | 分布式服务名称。   |
+| DISTRIBUTED_SERVICE_INSTANCE_ID | string | 是   | 否   | 分布式服务实例ID。 |
