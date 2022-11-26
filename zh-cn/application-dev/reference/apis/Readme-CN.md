@@ -1,4 +1,4 @@
-﻿# 接口
+﻿﻿# 接口
 
 - [开发说明](development-intro.md)
 
@@ -260,7 +260,7 @@
   - [@ohos.account.osAccount (系统帐号管理)](js-apis-osAccount.md)
 
 - 定制管理
-  - [@ohos.configPolicy (配置策略)](js-apis-config-policy.md)
+  - [@ohos.configPolicy (配置策略)](js-apis-configPolicy.md)
   - [@ohos.enterprise.EnterpriseAdminExtensionAbility (EnterpriseAdminExtensionAbility)](js-apis-EnterpriseAdminExtensionAbility.md)
   - [@ohos.enterprise.adminManager (企业设备管理)](js-apis-enterprise-adminManager.md)
   - [@ohos.enterprise.dateTimeManager（系统时间管理）](js-apis-enterprise-dateTimeManager.md)
