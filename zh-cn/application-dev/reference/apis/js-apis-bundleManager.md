@@ -14,10 +14,10 @@ import bundleManager from '@ohos.bundle.bundleManager'
 
 | 权限                                       | 权限等级     | 描述            |
 | ------------------------------------------ | ------------ | ------------------|
-| ohos.permission.GET_BUNDLE_INFO            | normal       | 查询指定应用信息   |
-| ohos.permission.GET_BUNDLE_INFO_PRIVILEGED | system_basic | 可查询所有应用信息 |
-| ohos.permission.REMOVE_CACHE_FILES         | system_basic | 清理应用缓存       |
-|ohos.permission.CHANGE_ABILITY_ENABLED_STATE| system_basic | 设置禁用使能所需的权限  |
+| ohos.permission.GET_BUNDLE_INFO            | normal       | 查询指定应用信息。   |
+| ohos.permission.GET_BUNDLE_INFO_PRIVILEGED | system_basic | 可查询所有应用信息。 |
+| ohos.permission.REMOVE_CACHE_FILES         | system_basic | 清理应用缓存。       |
+|ohos.permission.CHANGE_ABILITY_ENABLED_STATE| system_basic | 设置禁用使能所需的权限。  |
 
 权限等级参考[权限等级说明](../../security/accesstoken-overview.md#权限等级说明)。
 
@@ -25,21 +25,25 @@ import bundleManager from '@ohos.bundle.bundleManager'
 
 ### BundleFlag
 
+包信息标志，指示需要获取的包信息的内容。
+
  **系统能力:** 以下各项对应的系统能力均为SystemCapability.BundleManager.BundleFramework.Core。
 
 | 名称                                      | 值         | 说明                                                         |
 | ----------------------------------------- | ---------- | ------------------------------------------------------------ |
-| GET_BUNDLE_INFO_DEFAULT                   | 0x00000000 | 用于获取默认bundleInfo，获取的bundleInfo不包含signatureInfo、applicationInfo、hapModuleInfo、ability、extensionAbility和permission的信息 |
-| GET_BUNDLE_INFO_WITH_APPLICATION          | 0x00000001 | 用于获取包含applicationInfo的bundleInfo，获取的bundleInfo不包含signatureInfo、hapModuleInfo、ability、extensionAbility和permission的信息 |
-| GET_BUNDLE_INFO_WITH_HAP_MODULE           | 0x00000002 | 用于获取包含hapModuleInfo的bundleInfo，获取的bundleInfo不包含signatureInfo、applicationInfo、ability、extensionAbility和permission的信息 |
-| GET_BUNDLE_INFO_WITH_ABILITY              | 0x00000004 | 用于获取包含ability的bundleInfo，获取的bundleInfo不包含signatureInfo、applicationInfo、extensionAbility和permission的信息。它不能单独使用，需要与GET_BUNDLE_INFO_WITH_HAP_MODULE一起使用 |
+| GET_BUNDLE_INFO_DEFAULT                   | 0x00000000 | 用于获取默认bundleInfo，获取的bundleInfo不包含signatureInfo、applicationInfo、hapModuleInfo、ability、extensionAbility和permission的信息。 |
+| GET_BUNDLE_INFO_WITH_APPLICATION          | 0x00000001 | 用于获取包含applicationInfo的bundleInfo，获取的bundleInfo不包含signatureInfo、hapModuleInfo、ability、extensionAbility和permission的信息。 |
+| GET_BUNDLE_INFO_WITH_HAP_MODULE           | 0x00000002 | 用于获取包含hapModuleInfo的bundleInfo，获取的bundleInfo不包含signatureInfo、applicationInfo、ability、extensionAbility和permission的信息。 |
+| GET_BUNDLE_INFO_WITH_ABILITY              | 0x00000004 | 用于获取包含ability的bundleInfo，获取的bundleInfo不包含signatureInfo、applicationInfo、extensionAbility和permission的信息。它不能单独使用，需要与GET_BUNDLE_INFO_WITH_HAP_MODULE一起使用。 |
 | GET_BUNDLE_INFO_WITH_EXTENSION_ABILITY    | 0x00000008 | 用于获取包含extensionAbility的bundleInfo，获取的bundleInfo不包含signatureInfo、applicationInfo、ability 和permission的信息。它不能单独使用，需要与GET_BUNDLE_INFO_WITH_HAP_MODULE一起使用。 |
-| GET_BUNDLE_INFO_WITH_REQUESTED_PERMISSION | 0x00000010 | 用于获取包含permission的bundleInfo。获取的bundleInfo不包含signatureInfo、applicationInfo、hapModuleInfo、extensionAbility和ability的信息 |
-| GET_BUNDLE_INFO_WITH_METADATA             | 0x00000020 | 用于获取applicationInfo、moduleInfo和abilityInfo中包含的metadata。它不能单独使用，它需要与GET_BUNDLE_INFO_WITH_APPLICATION、GET_BUNDLE_INFO_WITH_HAP_MODULE、GET_BUNDLE_INFO_WITH_ABILITY、GET_BUNDLE_INFO_WITH_EXTENSION_ABILITY一起使用 |
-| GET_BUNDLE_INFO_WITH_DISABLE              | 0x00000040 | 用于获取application被禁用的BundleInfo和被禁用的Ability信息。获取的bundleInfo不包含signatureInfo、applicationInfo、hapModuleInfo、ability、extensionAbility和permission的信息 |
-| GET_BUNDLE_INFO_WITH_SIGNATURE_INFO       | 0x00000080 | 用于获取包含signatureInfo的bundleInfo。获取的bundleInfo不包含applicationInfo、hapModuleInfo、extensionAbility、ability和permission的信息 |
+| GET_BUNDLE_INFO_WITH_REQUESTED_PERMISSION | 0x00000010 | 用于获取包含permission的bundleInfo。获取的bundleInfo不包含signatureInfo、applicationInfo、hapModuleInfo、extensionAbility和ability的信息。 |
+| GET_BUNDLE_INFO_WITH_METADATA             | 0x00000020 | 用于获取applicationInfo、moduleInfo和abilityInfo中包含的metadata。它不能单独使用，它需要与GET_BUNDLE_INFO_WITH_APPLICATION、GET_BUNDLE_INFO_WITH_HAP_MODULE、GET_BUNDLE_INFO_WITH_ABILITY、GET_BUNDLE_INFO_WITH_EXTENSION_ABILITY一起使用。 |
+| GET_BUNDLE_INFO_WITH_DISABLE              | 0x00000040 | 用于获取application被禁用的BundleInfo和被禁用的Ability信息。获取的bundleInfo不包含signatureInfo、applicationInfo、hapModuleInfo、ability、extensionAbility和permission的信息。 |
+| GET_BUNDLE_INFO_WITH_SIGNATURE_INFO       | 0x00000080 | 用于获取包含signatureInfo的bundleInfo。获取的bundleInfo不包含applicationInfo、hapModuleInfo、extensionAbility、ability和permission的信息。 |
 
 ### ApplicationFlag
+
+应用信息标志，指示需要获取的应用信息的内容。
 
  **系统能力:** 以下各项对应的系统能力均为SystemCapability.BundleManager.BundleFramework.Core。
 
@@ -47,12 +51,14 @@ import bundleManager from '@ohos.bundle.bundleManager'
 
 | 名称                                 | 值         | 说明                                                         |
 | ------------------------------------ | ---------- | ------------------------------------------------------------ |
-| GET_APPLICATION_INFO_DEFAULT         | 0x00000000 | 用于获取默认的applicationInfo，获取的applicationInfo不包含permission和metadata信息 |
-| GET_APPLICATION_INFO_WITH_PERMISSION | 0x00000001 | 用于获取包含permission的applicationInfo                    |
-| GET_APPLICATION_INFO_WITH_METADATA   | 0x00000002 | 用于获取包含metadata的applicationInfo                      |
-| GET_APPLICATION_INFO_WITH_DISABLE    | 0x00000004 | 用于获取包含禁用应用程序的applicationInfo                  |
+| GET_APPLICATION_INFO_DEFAULT         | 0x00000000 | 用于获取默认的applicationInfo，获取的applicationInfo不包含permission和metadata信息。 |
+| GET_APPLICATION_INFO_WITH_PERMISSION | 0x00000001 | 用于获取包含permission的applicationInfo。                    |
+| GET_APPLICATION_INFO_WITH_METADATA   | 0x00000002 | 用于获取包含metadata的applicationInfo。                      |
+| GET_APPLICATION_INFO_WITH_DISABLE    | 0x00000004 | 用于获取包含禁用应用程序的applicationInfo。                  |
 
 ### AbilityFlag
+
+功能组件信息标志，指示需要获取的功能组件信息的内容。
 
  **系统能力:** 以下各项对应的系统能力均为SystemCapability.BundleManager.BundleFramework.Core。
 
@@ -60,14 +66,16 @@ import bundleManager from '@ohos.bundle.bundleManager'
 
 | 名称                              | 值         | 说明                                                         |
 | --------------------------------- | ---------- | ------------------------------------------------------------ |
-| GET_ABILITY_INFO_DEFAULT          | 0x00000000 | 用于获取默认abilityInfo，获取的abilityInfo不包含permission、metadata和禁用的abilityInfo |
-| GET_ABILITY_INFO_WITH_PERMISSION  | 0x00000001 | 用于获取包含permission的abilityInfo                          |
-| GET_ABILITY_INFO_WITH_APPLICATION | 0x00000002 | 用于获取包含applicationInfo的abilityInfo                     |
-| GET_ABILITY_INFO_WITH_METADATA    | 0x00000004 | 用于获取包含metadata的abilityInfo                            |
-| GET_ABILITY_INFO_WITH_DISABLE     | 0x00000008 | 用于获取包含禁用的abilityInfo的abilityInfo                   |
-| GET_ABILITY_INFO_ONLY_SYSTEM_APP  | 0x00000010 | 用于仅为系统应用程序获取abilityInfo                          |
+| GET_ABILITY_INFO_DEFAULT          | 0x00000000 | 用于获取默认abilityInfo，获取的abilityInfo不包含permission、metadata和禁用的abilityInfo。 |
+| GET_ABILITY_INFO_WITH_PERMISSION  | 0x00000001 | 用于获取包含permission的abilityInfo。                          |
+| GET_ABILITY_INFO_WITH_APPLICATION | 0x00000002 | 用于获取包含applicationInfo的abilityInfo。                     |
+| GET_ABILITY_INFO_WITH_METADATA    | 0x00000004 | 用于获取包含metadata的abilityInfo。                            |
+| GET_ABILITY_INFO_WITH_DISABLE     | 0x00000008 | 用于获取包含禁用的abilityInfo的abilityInfo。                   |
+| GET_ABILITY_INFO_ONLY_SYSTEM_APP  | 0x00000010 | 用于仅为系统应用程序获取abilityInfo。                         |
 
 ### ExtensionAbilityFlag
+
+扩展组件信息标志，指示需要获取的扩展组件信息的内容。
 
  **系统能力:** 以下各项对应的系统能力均为SystemCapability.BundleManager.BundleFramework.Core。
 
@@ -75,12 +83,14 @@ import bundleManager from '@ohos.bundle.bundleManager'
 
 | 名称                                        | 值         | 说明                                                         |
 | ------------------------------------------- | ---------- | ------------------------------------------------------------ |
-| GET_EXTENSION_ABILITY_INFO_DEFAULT          | 0x00000000 | 用于获取默认extensionAbilityInfo。获取的extensionAbilityInfo不包含permission、metadata 和禁用的abilityInfo |
-| GET_EXTENSION_ABILITY_INFO_WITH_PERMISSION  | 0x00000001 | 用于获取包含permission的extensionAbilityInfo               |
-| GET_EXTENSION_ABILITY_INFO_WITH_APPLICATION | 0x00000002 | 用于获取包含applicationInfo的extensionAbilityInfo         |
-| GET_EXTENSION_ABILITY_INFO_WITH_METADATA    | 0x00000004 | 用于获取包含metadata的extensionAbilityInfo                 |
+| GET_EXTENSION_ABILITY_INFO_DEFAULT          | 0x00000000 | 用于获取默认extensionAbilityInfo。获取的extensionAbilityInfo不包含permission、metadata 和禁用的abilityInfo。 |
+| GET_EXTENSION_ABILITY_INFO_WITH_PERMISSION  | 0x00000001 | 用于获取包含permission的extensionAbilityInfo。               |
+| GET_EXTENSION_ABILITY_INFO_WITH_APPLICATION | 0x00000002 | 用于获取包含applicationInfo的extensionAbilityInfo。         |
+| GET_EXTENSION_ABILITY_INFO_WITH_METADATA    | 0x00000004 | 用于获取包含metadata的extensionAbilityInfo。                 |
 
 ### ExtensionAbilityType
+
+指示扩展组件的类型。
 
  **系统能力:** 以下各项对应的系统能力均为SystemCapability.BundleManager.BundleFramework.Core。
 
@@ -105,34 +115,42 @@ import bundleManager from '@ohos.bundle.bundleManager'
 
 ### PermissionGrantState
 
+指示权限授予信息。
+
  **系统能力:** 以下各项对应的系统能力均为SystemCapability.BundleManager.BundleFramework.Core。
 
 | 名称 | 值 | 说明 |
 |:----------------:|:---:|:---:|
-| PERMISSION_DENIED|  -1 | 拒绝授予权限 |
-| PERMISSION_GRANTED |  0  |  授予权限  |
+| PERMISSION_DENIED|  -1 | 拒绝授予权限。 |
+| PERMISSION_GRANTED |  0  |  授予权限。  |
 
 ### SupportWindowMode
 
+标识该组件所支持的窗口模式。
+
  **系统能力:** 以下各项对应的系统能力均为SystemCapability.BundleManager.BundleFramework.Core。
 
 | 名称 | 值 | 说明 |
 |:----------------:|:---:|:---:|
-| FULL_SCREEN      | 0   | 窗口支持全屏显示 |
-| SPLIT            | 1   | 窗口支持分屏显示 |
-| FLOATING         | 2   | 支持窗口化显示 |
+| FULL_SCREEN      | 0   | 窗口支持全屏显示。 |
+| SPLIT            | 1   | 窗口支持分屏显示。 |
+| FLOATING         | 2   | 支持窗口化显示。   |
 
 ### LaunchType
 
+指示组件的启动方式。
+
  **系统能力:** 以下各项对应的系统能力均为SystemCapability.BundleManager.BundleFramework.Core。
 
 | 名称 | 值 | 说明 |
 |:----------------:|:---:|:---:|
-| SINGLETON        | 0   | ability的启动模式,表示单实例 |
-| STANDARD         | 1   | ability的启动模式,表示普通多实例 |
-| SPECIFIED        | 2   | ability的启动模式,表示该ability内部根据业务自己置顶多实例 |
+| SINGLETON        | 0   | ability的启动模式,表示单实例。 |
+| STANDARD         | 1   | ability的启动模式,表示普通多实例。 |
+| SPECIFIED        | 2   | ability的启动模式,表示该ability内部根据业务自己置顶多实例。 |
 
 ### AbilityType
+
+指示Ability组件的类型。
 
  **模型约束:** 仅可在FA模型下使用
 
@@ -140,29 +158,31 @@ import bundleManager from '@ohos.bundle.bundleManager'
 
 |  名称   | 值   |                            说明                            |
 | :-----: | ---- | :--------------------------------------------------------: |
-|  PAGE   | 1    |     表示基于Page模板开发的FA，用于提供与用户交互的能力     |
-| SERVICE | 2    |  表示基于Service模板开发的PA，用于提供后台运行任务的能力   |
-|  DATA   | 3    | 表示基于Data模板开发的PA，用于对外部提供统一的数据访问对象 |
+|  PAGE   | 1    |     表示基于Page模板开发的FA，用于提供与用户交互的能力。     |
+| SERVICE | 2    |  表示基于Service模板开发的PA，用于提供后台运行任务的能力。   |
+|  DATA   | 3    | 表示基于Data模板开发的PA，用于对外部提供统一的数据访问对象。 |
 
 ### DisplayOrientation
+
+标识该Ability的显示模式。该标签仅适用于page类型的Ability。
 
  **系统能力:** 以下各项对应的系统能力均为SystemCapability.BundleManager.BundleFramework.Core。
 
 | 名称                               |值 |说明 |
 |:----------------------------------|---|---|
-| UNSPECIFIED                        |0 |表示未定义方向模式，由系统判定 |
-| LANDSCAPE                          |1 |表示横屏显示模式 |
-| PORTRAIT                           |2 |表示竖屏显示模式 |
-| FOLLOW_RECENT                      |3 |表示跟随上一个显示模式 |
-| LANDSCAPE_INVERTED                 |4 |表示反向横屏显示模式 |
-| PORTRAIT_INVERTED                  |5 |表示反向竖屏显示模式 |
-| AUTO_ROTATION                      |6 |表示传感器自动旋转模式 |
-| AUTO_ROTATION_LANDSCAPE            |7 |表示传感器自动横向旋转模式 |
-| AUTO_ROTATION_PORTRAIT             |8 |表示传感器自动竖向旋转模式 |
-| AUTO_ROTATION_RESTRICTED           |9 |表示受开关控制的自动旋转模式 |
-| AUTO_ROTATION_LANDSCAPE_RESTRICTED |10|表述受开关控制的自动横向旋转模式|
-| AUTO_ROTATION_PORTRAIT_RESTRICTED  |11|表示受开关控制的自动竖向旋转模式|
-| LOCKED                             |12|表示锁定模式|
+| UNSPECIFIED                        |0 |表示未定义方向模式，由系统判定。 |
+| LANDSCAPE                          |1 |表示横屏显示模式。 |
+| PORTRAIT                           |2 |表示竖屏显示模式。 |
+| FOLLOW_RECENT                      |3 |表示跟随上一个显示模式。 |
+| LANDSCAPE_INVERTED                 |4 |表示反向横屏显示模式。 |
+| PORTRAIT_INVERTED                  |5 |表示反向竖屏显示模式。 |
+| AUTO_ROTATION                      |6 |表示传感器自动旋转模式。 |
+| AUTO_ROTATION_LANDSCAPE            |7 |表示传感器自动横向旋转模式。 |
+| AUTO_ROTATION_PORTRAIT             |8 |表示传感器自动竖向旋转模式。 |
+| AUTO_ROTATION_RESTRICTED           |9 |表示受开关控制的自动旋转模式。 |
+| AUTO_ROTATION_LANDSCAPE_RESTRICTED |10|表述受开关控制的自动横向旋转模式。|
+| AUTO_ROTATION_PORTRAIT_RESTRICTED  |11|表示受开关控制的自动竖向旋转模式。|
+| LOCKED                             |12|表示锁定模式。|
 
 ## 方法
 
@@ -178,17 +198,19 @@ getBundleInfoForSelf(bundleFlags: [number](#bundleflag)): Promise\<[BundleInfo](
 
 | 参数名     | 类型   | 必填 | 说明                |
 | ----------- | ------ | ---- | --------------------- |
-| bundleFlags | [number](#bundleflag) | 是   | 指定返回的BundleInfo所包含的信息 |
+| bundleFlags | [number](#bundleflag) | 是   | 指定返回的BundleInfo所包含的信息。 |
 
 **返回值：**
 
 | 类型                                                        | 说明                                  |
 | ----------------------------------------------------------- | ------------------------------------- |
-| Promise\<[BundleInfo](js-apis-bundleManager-bundleInfo.md)> | Promise对象，返回当前应用的BundleInfo |
+| Promise\<[BundleInfo](js-apis-bundleManager-bundleInfo.md)> | Promise对象，返回当前应用的BundleInfo。|
 
 **错误码：**
 
 错误码的详细介绍请参见[ohos.bundle错误码](../errorcodes/errorcode-bundle.md)。
+
+**示例：**
 
 ```ts
 import bundleManager from '@ohos.bundle.bundleManager'
@@ -216,8 +238,8 @@ getBundleInfoForSelf(bundleFlags: [number](#bundleflag), callback: AsyncCallback
 
 | 参数名     | 类型   | 必填 | 说明                |
 | ----------- | ------ | ---- | --------------------- |
-| bundleFlags | [number](#bundleflag) | 是   | 指定返回的BundleInfo所包含的信息 |
-| callback | AsyncCallback\<[BundleInfo](js-apis-bundleManager-bundleInfo.md)> | 是 | 回调函数，当获取成功时，err为null，data为获取到的当前应用的BundleInfo；否则为错误对象 |
+| bundleFlags | [number](#bundleflag) | 是   | 指定返回的BundleInfo所包含的信息。 |
+| callback | AsyncCallback\<[BundleInfo](js-apis-bundleManager-bundleInfo.md)> | 是 | 回调函数，当获取成功时，err为null，data为获取到的当前应用的BundleInfo；否则为错误对象。 |
 
 **错误码：**
 
@@ -258,10 +280,10 @@ getBundleInfo(bundleName: string, bundleFlags: number, userId: number, callback:
 
 | 参数名  | 类型   | 必填 | 说明                       |
 | ----------- | ------ | ---- | ---------------------------- |
-| bundleName  | string | 是   | 表示要查询的应用程序包名称    |
-| bundleFlags | [number](#bundleflag) | 是   | 指定返回的BundleInfo所包含的信息|
-| userId      | number | 是   | 表示用户ID  |
-| callback | AsyncCallback\<[BundleInfo](js-apis-bundleManager-bundleInfo.md)> | 是 | 回调函数，当获取成功时，err为null，data为获取到的bundleInfo；否则为错误对象 |
+| bundleName  | string | 是   | 表示要查询的应用程序包名称。    |
+| bundleFlags | [number](#bundleflag) | 是   | 指定返回的BundleInfo所包含的信息。|
+| userId      | number | 是   | 表示用户ID。  |
+| callback | AsyncCallback\<[BundleInfo](js-apis-bundleManager-bundleInfo.md)> | 是 | 回调函数，当获取成功时，err为null，data为获取到的bundleInfo；否则为错误对象。 |
 
 **错误码：**
 
@@ -269,9 +291,9 @@ getBundleInfo(bundleName: string, bundleFlags: number, userId: number, callback:
 
 | 错误码ID | 错误信息                              |
 | -------- | ------------------------------------- |
-| 17700001 | The specified bundleName is not found |
-| 17700004 | The specified userId is not found     |
-| 17700026 | The specified bundle is disabled      |
+| 17700001 | The specified bundleName is not found. |
+| 17700004 | The specified userId is not found.     |
+| 17700026 | The specified bundle is disabled.      |
 
 **示例：**
 
@@ -295,7 +317,7 @@ try {
 }
 ```
 
-```
+```ts
 // 额外获取ApplicationInfo中的metadata
 import bundleManager from '@ohos.bundle.bundleManager'
 let bundleName = 'com.example.myapplication';
@@ -331,9 +353,9 @@ getBundleInfo(bundleName: string, bundleFlags: number, callback: AsyncCallback\<
 
 | 参数名     | 类型   | 必填 | 说明                       |
 | ----------- | ------ | ---- | ---------------------------- |
-| bundleName  | string | 是   | 表示要查询的应用程序包名称    |
-| bundleFlags | [number](#bundleflag) | 是   | 指定返回的BundleInfo所包含的信息|
-| callback | AsyncCallback\<[BundleInfo](js-apis-bundleManager-bundleInfo.md)> | 是 | 回调函数，当获取成功时，err为null，data为获取到的BundleInfo；否则为错误对象 |
+| bundleName  | string | 是   | 表示要查询的应用程序包名称。    |
+| bundleFlags | [number](#bundleflag) | 是   | 指定返回的BundleInfo所包含的信息。|
+| callback | AsyncCallback\<[BundleInfo](js-apis-bundleManager-bundleInfo.md)> | 是 | 回调函数，当获取成功时，err为null，data为获取到的BundleInfo；否则为错误对象。 |
 
 **错误码：**
 
@@ -341,8 +363,8 @@ getBundleInfo(bundleName: string, bundleFlags: number, callback: AsyncCallback\<
 
 | 错误码ID | 错误信息                              |
 | -------- | ------------------------------------- |
-| 17700001 | The specified bundleName is not found |
-| 17700026 | The specified bundle is disabled      |
+| 17700001 | The specified bundleName is not found. |
+| 17700026 | The specified bundle is disabled.      |
 
 **示例：**
 
@@ -381,24 +403,24 @@ getBundleInfo(bundleName: string, bundleFlags: [number](#bundleflag), userId?: n
 
 | 参数名     | 类型   | 必填 | 说明                       |
 | ----------- | ------ | ---- | ---------------------------- |
-| bundleName  | string | 是   | 表示要查询的应用程序包名称 |
-| bundleFlags | [number](#bundleflag) | 是   | 指定返回的BundleInfo所包含的信息       |
-| userId      | number | 否   | 表示用户ID  |
+| bundleName  | string | 是   | 表示要查询的应用程序包名称。 |
+| bundleFlags | [number](#bundleflag) | 是   | 指定返回的BundleInfo所包含的信息。       |
+| userId      | number | 否   | 表示用户ID。  |
 
 **返回值：**
 
 | 类型                                                        | 说明                        |
 | ----------------------------------------------------------- | --------------------------- |
-| Promise\<[BundleInfo](js-apis-bundleManager-bundleInfo.md)> | Promise对象，返回BundleInfo |
+| Promise\<[BundleInfo](js-apis-bundleManager-bundleInfo.md)> | Promise对象，返回BundleInfo。 |
 
 **错误码：**
 
 以下错误码的详细介绍请参见[ohos.bundle错误码](../errorcodes/errorcode-bundle.md)。
 | 错误码ID | 错误信息                            |
 | -------- | --------------------------------------|
-| 17700001 | The specified bundleName is not found |
-| 17700004 | The specified userId is not found     |
-| 17700026 | The specified bundle is disabled      |
+| 17700001 | The specified bundleName is not found. |
+| 17700004 | The specified userId is not found.     |
+| 17700026 | The specified bundle is disabled.      |
 
 **示例：**
 
@@ -453,10 +475,10 @@ getApplicationInfo(bundleName: string, appFlags: [number](#applicationflag), use
 
 | 参数名    | 类型   | 必填 | 说明                       |
 | ---------- | ------ | ---- | ---------------------------- |
-| bundleName | string | 是   | 表示要查询的应用程序包名称 |
-| appFlags   | [number](#applicationflag) | 是   | 指定返回的ApplicationInfo所包含的信息    |
-| userId     | number | 是   | 表示用户ID  |
-| callback | AsyncCallback\<[ApplicationInfo](js-apis-bundleManager-applicationInfo.md)> | 是 | 回调函数，当获取成功时，err为null，data为获取到的ApplicationInfo；否则为错误对象 |
+| bundleName | string | 是   | 表示要查询的应用程序包名称。 |
+| appFlags   | [number](#applicationflag) | 是   | 指定返回的ApplicationInfo所包含的信息。    |
+| userId     | number | 是   | 表示用户ID。  |
+| callback | AsyncCallback\<[ApplicationInfo](js-apis-bundleManager-applicationInfo.md)> | 是 | 回调函数，当获取成功时，err为null，data为获取到的ApplicationInfo；否则为错误对象。 |
 
 **错误码：**
 
@@ -464,9 +486,9 @@ getApplicationInfo(bundleName: string, appFlags: [number](#applicationflag), use
 
 | 错误码ID | 错误信息                             |
 | -------- | --------------------------------------|
-| 17700001 | The specified bundleName is not found |
-| 17700004 | The specified userId is not found     |
-| 17700026 | The specified bundle is disabled      |
+| 17700001 | The specified bundleName is not found. |
+| 17700004 | The specified userId is not found.     |
+| 17700026 | The specified bundle is disabled.      |
 
 **示例：**
 
@@ -505,9 +527,9 @@ getApplicationInfo(bundleName: string, appFlags: [number](#applicationflag), cal
 
 | 参数名    | 类型   | 必填 | 说明                       |
 | ---------- | ------ | ---- | ---------------------------- |
-| bundleName | string | 是   | 表示要查询的应用程序包名称 |
-| appFlags   | [number](#applicationflag) | 是   | 指定返回的ApplicationInfo所包含的信息    |
-| callback | AsyncCallback\<[ApplicationInfo](js-apis-bundleManager-applicationInfo.md)> | 是 | 回调函数，当获取成功时，err为null，data为获取到的ApplicationInfo；否则为错误对象 |
+| bundleName | string | 是   | 表示要查询的应用程序包名称。 |
+| appFlags   | [number](#applicationflag) | 是   | 指定返回的ApplicationInfo所包含的信息。    |
+| callback | AsyncCallback\<[ApplicationInfo](js-apis-bundleManager-applicationInfo.md)> | 是 | 回调函数，当获取成功时，err为null，data为获取到的ApplicationInfo；否则为错误对象。 |
 
 **错误码：**
 
@@ -515,8 +537,8 @@ getApplicationInfo(bundleName: string, appFlags: [number](#applicationflag), cal
 
 | 错误码ID | 错误信息                             |
 | -------- | --------------------------------------|
-| 17700001 | The specified bundleName is not found |
-| 17700026 | The specified bundle is disabled      |
+| 17700001 | The specified bundleName is not found. |
+| 17700026 | The specified bundle is disabled.      |
 
 **示例：**
 
@@ -554,15 +576,15 @@ getApplicationInfo(bundleName: string, appFlags: [number](#applicationflag), use
 
 | 参数名    | 类型   | 必填 | 说明                       |
 | ---------- | ------ | ---- | ---------------------------- |
-| bundleName | string | 是   | 表示要查询的应用程序包名称 |
-| appFlags   | [number](#applicationflag) | 是   | 指定返回的ApplicationInfo所包含的信息    |
-| userId     | number | 否   | 表示用户ID |
+| bundleName | string | 是   | 表示要查询的应用程序包名称。 |
+| appFlags   | [number](#applicationflag) | 是   | 指定返回的ApplicationInfo所包含的信息。    |
+| userId     | number | 否   | 表示用户ID。 |
 
 **返回值：**
 
 | 类型                                                         | 说明                             |
 | ------------------------------------------------------------ | -------------------------------- |
-| Promise\<[ApplicationInfo](js-apis-bundleManager-applicationInfo.md)> | Promise对象，返回ApplicationInfo |
+| Promise\<[ApplicationInfo](js-apis-bundleManager-applicationInfo.md)> | Promise对象，返回ApplicationInfo。 |
 
 **错误码：**
 
@@ -570,9 +592,9 @@ getApplicationInfo(bundleName: string, appFlags: [number](#applicationflag), use
 
 | 错误码ID | 错误信息                             |
 | -------- | ------------------------------------- |
-| 17700001 | The specified bundleName is not found |
-| 17700004 | The specified userId is not found     |
-| 17700026 | The specified bundle is disabled      |
+| 17700001 | The specified bundleName is not found. |
+| 17700004 | The specified userId is not found.     |
+| 17700026 | The specified bundle is disabled.      |
 
 **示例：**
 
@@ -609,9 +631,9 @@ getAllBundleInfo(bundleFlags: [number](#bundleflag), userId: number, callback: A
 
 | 参数名     | 类型   | 必填 | 说明                                             |
 | ----------- | ------ | ---- | -------------------------------------------------- |
-| bundleFlags | [number](#bundleflag) | 是   | 指定返回的BundleInfo所包含的信息                    |
-| userId      | number | 是   | 表示用户ID                      |
-| callback | AsyncCallback<Array\<[BundleInfo](js-apis-bundleManager-bundleInfo.md)>> | 是 | 回调函数，当获取成功时，err为null，data为获取到的Array\<BundleInfo>；否则为错误对象 |
+| bundleFlags | [number](#bundleflag) | 是   | 指定返回的BundleInfo所包含的信息。                    |
+| userId      | number | 是   | 表示用户ID。                      |
+| callback | AsyncCallback<Array\<[BundleInfo](js-apis-bundleManager-bundleInfo.md)>> | 是 | 回调函数，当获取成功时，err为null，data为获取到的Array\<BundleInfo>；否则为错误对象。 |
 
 **错误码：**
 
@@ -619,7 +641,7 @@ getAllBundleInfo(bundleFlags: [number](#bundleflag), userId: number, callback: A
 
 | 错误码ID | 错误信息                         |
 | -------- | --------------------------------- |
-| 17700004 | The specified userId is not found |
+| 17700004 | The specified userId is not found. |
 
 **示例：**
 
@@ -657,8 +679,8 @@ getAllBundleInfo(bundleFlags: [number](#bundleflag), callback: AsyncCallback<Arr
 
 | 参数名     | 类型   | 必填 | 说明                                             |
 | ----------- | ------ | ---- | -------------------------------------------------- |
-| bundleFlags | [number](#bundleflag) | 是   | 指定返回的BundleInfo所包含的信息   |
-| callback | AsyncCallback<Array\<[BundleInfo](js-apis-bundleManager-bundleInfo.md)>> | 是 | 回调函数，当获取成功时，err为null，data为获取到的Array\<BundleInfo>；否则为错误对象 |
+| bundleFlags | [number](#bundleflag) | 是   | 指定返回的BundleInfo所包含的信息。   |
+| callback | AsyncCallback<Array\<[BundleInfo](js-apis-bundleManager-bundleInfo.md)>> | 是 | 回调函数，当获取成功时，err为null，data为获取到的Array\<BundleInfo>；否则为错误对象。 |
 
 **错误码：**
 
@@ -699,14 +721,14 @@ getAllBundleInfo(bundleFlags: [number](#bundleflag), userId?: number): Promise<A
 
 | 参数名     | 类型   | 必填 | 说明                                             |
 | ----------- | ------ | ---- | -------------------------------------------------- |
-| bundleFlags | [number](#bundleflag) | 是   | 指定返回的BundleInfo所包含的信息                   |
-| userId      | number | 否   | 表示用户ID                          |
+| bundleFlags | [number](#bundleflag) | 是   | 指定返回的BundleInfo所包含的信息。                   |
+| userId      | number | 否   | 表示用户ID。                         |
 
 **返回值：**
 
 | 类型                                                         | 说明                                |
 | ------------------------------------------------------------ | ----------------------------------- |
-| Promise<Array\<[BundleInfo](js-apis-bundleManager-bundleInfo.md)>> | Promise对象，返回Array\<BundleInfo> |
+| Promise<Array\<[BundleInfo](js-apis-bundleManager-bundleInfo.md)>> | Promise对象，返回Array\<BundleInfo>。 |
 
 **错误码：**
 
@@ -714,7 +736,7 @@ getAllBundleInfo(bundleFlags: [number](#bundleflag), userId?: number): Promise<A
 
 | 错误码ID | 错误信息                         |
 | -------- | ---------------------------------- |
-| 17700004 | The specified userId is not found |
+| 17700004 | The specified userId is not found. |
 
 **示例：**
 
@@ -749,9 +771,9 @@ getAllApplicationInfo(appFlags: [number](#applicationflag), userId: number, call
 
 | 参数名  | 类型   | 必填 | 说明                                                      |
 | -------- | ------ | ---- | ----------------------------------------------------------- |
-| appFlags | [number](#applicationflag) | 是   | 指定返回的ApplicationInfo所包含的信息                       |
-| userId   | number | 是   | 表示用户ID         |
-| callback | AsyncCallback<Array\<[ApplicationInfo](js-apis-bundleManager-applicationInfo.md)>> | 是 | 回调函数，当获取成功时，err为null，data为获取到的Array\<ApplicationInfo>；否则为错误对象 |
+| appFlags | [number](#applicationflag) | 是   | 指定返回的ApplicationInfo所包含的信息。                       |
+| userId   | number | 是   | 表示用户ID。         |
+| callback | AsyncCallback<Array\<[ApplicationInfo](js-apis-bundleManager-applicationInfo.md)>> | 是 | 回调函数，当获取成功时，err为null，data为获取到的Array\<ApplicationInfo>；否则为错误对象。 |
 
 **错误码：**
 
@@ -759,7 +781,7 @@ getAllApplicationInfo(appFlags: [number](#applicationflag), userId: number, call
 
 | 错误码ID | 错误信息                         |
 | -------- | ---------------------------------- |
-| 17700004 | The specified userId is not found |
+| 17700004 | The specified userId is not found. |
 
 **示例：**
 
@@ -797,8 +819,8 @@ getAllApplicationInfo(appFlags: [number](#applicationflag), callback: AsyncCallb
 
 | 参数名  | 类型   | 必填 | 说明                                                      |
 | -------- | ------ | ---- | ----------------------------------------------------------- |
-| appFlags | [number](#applicationflag) | 是   | 指定返回的ApplicationInfo所包含的信息                       |
-| callback | AsyncCallback<Array\<[ApplicationInfo](js-apis-bundleManager-applicationInfo.md)>> | 是 | 回调函数，当获取成功时，err为null，data为获取到的Array\<ApplicationInfo>；否则为错误对象 |
+| appFlags | [number](#applicationflag) | 是   | 指定返回的ApplicationInfo所包含的信息。                       |
+| callback | AsyncCallback<Array\<[ApplicationInfo](js-apis-bundleManager-applicationInfo.md)>> | 是 | 回调函数，当获取成功时，err为null，data为获取到的Array\<ApplicationInfo>；否则为错误对象。 |
 
 **错误码：**
 
@@ -839,14 +861,14 @@ getAllApplicationInfo(appFlags: [number](#applicationflag), userId?: number): Pr
 
 | 参数名  | 类型   | 必填 | 说明                                                      |
 | -------- | ------ | ---- | ---------------------------------------------------------- |
-| appFlags | [number](#applicationflag) | 是   | 指定返回的ApplicationInfo所包含的信息                       |
-| userId   | number | 否   | 表示用户ID                                   |
+| appFlags | [number](#applicationflag) | 是   | 指定返回的ApplicationInfo所包含的信息。                       |
+| userId   | number | 否   | 表示用户ID。                                  |
 
 **返回值：**
 
 | 类型                                                         | 说明                                     |
 | ------------------------------------------------------------ | ---------------------------------------- |
-| Promise<Array\<[ApplicationInfo](js-apis-bundleManager-applicationInfo.md)>> | Promise对象，返回Array\<ApplicationInfo> |
+| Promise<Array\<[ApplicationInfo](js-apis-bundleManager-applicationInfo.md)>> | Promise对象，返回Array\<ApplicationInfo>。 |
 
 **错误码：**
 
@@ -854,7 +876,7 @@ getAllApplicationInfo(appFlags: [number](#applicationflag), userId?: number): Pr
 
 | 错误码ID | 错误信息                         |
 | -------- | ---------------------------------- |
-| 17700004 | The specified userId is not found |
+| 17700004 | The specified userId is not found. |
 
 **示例：**
 
@@ -890,10 +912,10 @@ queryAbilityInfo(want: Want, abilityFlags: [number](#abilityflag), userId: numbe
 
 | 参数名      | 类型   | 必填 | 说明                                                  |
 | ------------ | ------ | ---- | ------------------------------------------------------- |
-| want         | Want   | 是   | 表示包含要查询的应用程序包名称的Want                    |
-| abilityFlags | [number](#abilityflag) | 是   | 指定返回的AbilityInfo所包含的信息                       |
-| userId       | number | 是   | 表示用户ID                               |
-| callback | AsyncCallback<Array\<[AbilityInfo](js-apis-bundleManager-abilityInfo.md)>> | 是 | 回调函数，当获取成功时，err为null，data为获取到的Array\<AbilityInfo>；否则为错误对象 |
+| want         | Want   | 是   | 表示包含要查询的应用程序包名称的Want。                    |
+| abilityFlags | [number](#abilityflag) | 是   | 指定返回的AbilityInfo所包含的信息。                       |
+| userId       | number | 是   | 表示用户ID。                               |
+| callback | AsyncCallback<Array\<[AbilityInfo](js-apis-bundleManager-abilityInfo.md)>> | 是 | 回调函数，当获取成功时，err为null，data为获取到的Array\<AbilityInfo>；否则为错误对象。 |
 
 **错误码：**
 
@@ -901,11 +923,11 @@ queryAbilityInfo(want: Want, abilityFlags: [number](#abilityflag), userId: numbe
 
 | 错误码ID | 错误信息                             |
 | -------- | -------------------------------------- |
-| 17700001 | The specified bundleName is not found |
-| 17700003 | The specified ability is not found   |
-| 17700004 | The specified userId is invalid       |
-| 17700026 | The specified bundle is disabled      |
-| 17700029 | The specified ability is disabled     |
+| 17700001 | The specified bundleName is not found. |
+| 17700003 | The specified ability is not found.    |
+| 17700004 | The specified userId is invalid.       |
+| 17700026 | The specified bundle is disabled.      |
+| 17700029 | The specified ability is disabled.     |
 
 **示例：**
 
@@ -947,9 +969,9 @@ queryAbilityInfo(want: Want, abilityFlags: [number](#abilityflag), callback: Asy
 
 | 参数名      | 类型   | 必填 | 说明                                                  |
 | ------------ | ------ | ---- | -------------------------------------------------------|
-| want         | Want   | 是   | 表示包含要查询的应用程序包名称的Want                    |
-| abilityFlags | [number](#abilityflag) | 是   | 指定返回的AbilityInfo所包含的信息       |
-| callback | AsyncCallback<Array\<[AbilityInfo](js-apis-bundleManager-abilityInfo.md)>> | 是 | 回调函数，当获取成功时，err为null，data为获取到的Array\<AbilityInfo>；否则为错误对象 |
+| want         | Want   | 是   | 表示包含要查询的应用程序包名称的Want。                    |
+| abilityFlags | [number](#abilityflag) | 是   | 指定返回的AbilityInfo所包含的信息。       |
+| callback | AsyncCallback<Array\<[AbilityInfo](js-apis-bundleManager-abilityInfo.md)>> | 是 | 回调函数，当获取成功时，err为null，data为获取到的Array\<AbilityInfo>；否则为错误对象。 |
 
 **错误码：**
 
@@ -957,10 +979,10 @@ queryAbilityInfo(want: Want, abilityFlags: [number](#abilityflag), callback: Asy
 
 | 错误码ID | 错误信息                             |
 | -------- | -------------------------------------- |
-| 17700001 | The specified bundleName is not found |
-| 17700003 | The specified ability is not found   |
-| 17700026 | The specified bundle is disabled      |
-| 17700029 | The specified ability is disabled     |
+| 17700001 | The specified bundleName is not found. |
+| 17700003 | The specified ability is not found.    |
+| 17700026 | The specified bundle is disabled.      |
+| 17700029 | The specified ability is disabled.     |
 
 **示例：**
 
@@ -1001,15 +1023,15 @@ queryAbilityInfo(want: Want, abilityFlags: [number](#abilityflag), userId?: numb
 
 | 参数名      | 类型   | 必填 | 说明                                                  |
 | ------------ | ------ | ---- | ------------------------------------------------------- |
-| want         | Want   | 是   | 表示包含要查询的应用程序包名称的Want                    |
-| abilityFlags | [number](#abilityflag) | 是   | 表示指定返回的AbilityInfo所包含的信息 |
-| userId       | number | 否   | 表示用户ID                               |
+| want         | Want   | 是   | 表示包含要查询的应用程序包名称的Want。                    |
+| abilityFlags | [number](#abilityflag) | 是   | 表示指定返回的AbilityInfo所包含的信息。 |
+| userId       | number | 否   | 表示用户ID。                               |
 
 **返回值：**
 
 | 类型                                                         | 说明                                 |
 | ------------------------------------------------------------ | ------------------------------------ |
-| Promise<Array\<[AbilityInfo](js-apis-bundleManager-abilityInfo.md)>> | Promise对象，返回Array\<AbilityInfo> |
+| Promise<Array\<[AbilityInfo](js-apis-bundleManager-abilityInfo.md)>> | Promise对象，返回Array\<AbilityInfo>。 |
 
 **错误码：**
 
@@ -1017,11 +1039,11 @@ queryAbilityInfo(want: Want, abilityFlags: [number](#abilityflag), userId?: numb
 
 | 错误码ID | 错误信息                             |
 | -------- | ------------------------------------- |
-| 17700001 | The specified bundleName is not found |
-| 17700003 | The specified ability is not found    |
-| 17700004 | The specified userId is invalid       |
-| 17700026 | The specified bundle is disabled      |
-| 17700029 | The specified ability is disabled     |
+| 17700001 | The specified bundleName is not found. |
+| 17700003 | The specified ability is not found.    |
+| 17700004 | The specified userId is invalid.       |
+| 17700026 | The specified bundle is disabled.      |
+| 17700029 | The specified ability is disabled.     |
 
 **示例：**
 
@@ -1080,11 +1102,11 @@ queryExtensionAbilityInfo(want: Want, extensionAbilityType: [ExtensionAbilityTyp
 
 | 参数名                | 类型                                                         | 必填 | 说明                                                         |
 | --------------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| want                  | Want                                                         | 是   | 表示包含要查询的应用程序包名称的Want                         |
-| extensionAbilityType  | [ExtensionAbilityType](#extensionabilitytype)                | 是   | 标识extensionAbility的类型                                   |
-| extensionAbilityFlags | [number](#extensionabilityflag)                              | 是   | 表示用于指定将返回的ExtensionInfo对象中包含的信息的标志      |
-| userId                | number                                                       | 是   | 表示用户ID                                                   |
-| callback              | AsyncCallback<Array\<[ExtensionAbilityInfo](js-apis-bundleManager-extensionAbilityInfo.md)>> | 是   | 回调函数，当获取成功时，err为null，data为获取到Array\<ExtensionAbilityInfo>；否则为错误对象 |
+| want                  | Want                                                         | 是   | 表示包含要查询的应用程序包名称的Want。                         |
+| extensionAbilityType  | [ExtensionAbilityType](#extensionabilitytype)                | 是   | 标识extensionAbility的类型。                                   |
+| extensionAbilityFlags | [number](#extensionabilityflag)                              | 是   | 表示用于指定将返回的ExtensionInfo对象中包含的信息的标志。      |
+| userId                | number                                                       | 是   | 表示用户ID。                                                   |
+| callback              | AsyncCallback<Array\<[ExtensionAbilityInfo](js-apis-bundleManager-extensionAbilityInfo.md)>> | 是   | 回调函数，当获取成功时，err为null，data为获取到Array\<ExtensionAbilityInfo>；否则为错误对象。 |
 
 **错误码：**
 
@@ -1092,10 +1114,10 @@ queryExtensionAbilityInfo(want: Want, extensionAbilityType: [ExtensionAbilityTyp
 
 | 错误码ID | 错误信息                                    |
 | -------- | ------------------------------------------- |
-| 17700001 | The specified bundleName is not found       |
-| 17700003 | The specified extensionAbility is not found |
-| 17700004 | The specified userId is invalid             |
-| 17700026 | The specified bundle is disabled            |
+| 17700001 | The specified bundleName is not found.       |
+| 17700003 | The specified extensionAbility is not found. |
+| 17700004 | The specified userId is invalid.             |
+| 17700026 | The specified bundle is disabled.            |
 
 **示例：**
 
@@ -1138,10 +1160,10 @@ queryExtensionAbilityInfo(want: Want, extensionAbilityType: [ExtensionAbilityTyp
 
 | 参数名                | 类型                                                         | 必填 | 说明                                                         |
 | --------------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| want                  | Want                                                         | 是   | 表示包含要查询的应用程序包名称的Want                         |
-| extensionAbilityType  | [ExtensionAbilityType](#extensionabilitytype)                | 是   | 标识extensionAbility的类型                                   |
-| extensionAbilityFlags | [number](#extensionabilityflag)                              | 是   | 表示用于指定将返回的ExtensionInfo对象中包含的信息的标志      |
-| callback              | AsyncCallback<Array\<[ExtensionAbilityInfo](js-apis-bundleManager-extensionAbilityInfo.md)>> | 是   | 回调函数，当获取成功时，err为null，data为获取到Array\<ExtensionAbilityInfo>；否则为错误对象 |
+| want                  | Want                                                         | 是   | 表示包含要查询的应用程序包名称的Want。                         |
+| extensionAbilityType  | [ExtensionAbilityType](#extensionabilitytype)                | 是   | 标识extensionAbility的类型。                                   |
+| extensionAbilityFlags | [number](#extensionabilityflag)                              | 是   | 表示用于指定将返回的ExtensionInfo对象中包含的信息的标志。      |
+| callback              | AsyncCallback<Array\<[ExtensionAbilityInfo](js-apis-bundleManager-extensionAbilityInfo.md)>> | 是   | 回调函数，当获取成功时，err为null，data为获取到Array\<ExtensionAbilityInfo>；否则为错误对象。 |
 
 **错误码：**
 
@@ -1149,9 +1171,9 @@ queryExtensionAbilityInfo(want: Want, extensionAbilityType: [ExtensionAbilityTyp
 
 | 错误码ID | 错误信息                                    |
 | -------- | ------------------------------------------- |
-| 17700001 | The specified bundleName is not found       |
-| 17700003 | The specified extensionAbility is not found |
-| 17700026 | The specified bundle is disabled            |
+| 17700001 | The specified bundleName is not found.       |
+| 17700003 | The specified extensionAbility is not found. |
+| 17700026 | The specified bundle is disabled.            |
 
 **示例：**
 
@@ -1193,16 +1215,16 @@ queryExtensionAbilityInfo(want: Want, extensionAbilityType: [ExtensionAbilityTyp
 
 | 参数名                | 类型                                          | 必填 | 说明                                                    |
 | --------------------- | --------------------------------------------- | ---- | ------------------------------------------------------- |
-| want                  | Want                                          | 是   | 表示包含要查询的应用程序包名称的Want                    |
-| extensionAbilityType  | [ExtensionAbilityType](#extensionabilitytype) | 是   | 标识extensionAbility的类型                              |
-| extensionAbilityFlags | [number](#extensionabilityflag)               | 是   | 表示用于指定将返回的ExtensionInfo对象中包含的信息的标志 |
-| userId                | number                                        | 否   | 表示用户ID                                              |
+| want                  | Want                                          | 是   | 表示包含要查询的应用程序包名称的Want。                    |
+| extensionAbilityType  | [ExtensionAbilityType](#extensionabilitytype) | 是   | 标识extensionAbility的类型。                              |
+| extensionAbilityFlags | [number](#extensionabilityflag)               | 是   | 表示用于指定将返回的ExtensionInfo对象中包含的信息的标志。 |
+| userId                | number                                        | 否   | 表示用户ID。                                              |
 
 **返回值：**
 
 | 类型                                                         | 说明                                          |
 | ------------------------------------------------------------ | --------------------------------------------- |
-| Promise<Array\<[ExtensionAbilityInfo](js-apis-bundleManager-extensionAbilityInfo.md)>> | Promise对象，返回Array\<ExtensionAbilityInfo> |
+| Promise<Array\<[ExtensionAbilityInfo](js-apis-bundleManager-extensionAbilityInfo.md)>> | Promise对象，返回Array\<ExtensionAbilityInfo>。 |
 
 **错误码：**
 
@@ -1210,10 +1232,10 @@ queryExtensionAbilityInfo(want: Want, extensionAbilityType: [ExtensionAbilityTyp
 
 | 错误码ID | 错误信息                             |
 | -------- | --------------------------------------|
-| 17700001 | The specified bundleName is not found |
-| 17700003 | The specified extensionAbility is not found    |
-| 17700004 | The specified userId is invalid       |
-| 17700026 | The specified bundle is disabled      |
+| 17700001 | The specified bundleName is not found. |
+| 17700003 | The specified extensionAbility is not found.    |
+| 17700004 | The specified userId is invalid.       |
+| 17700026 | The specified bundle is disabled.      |
 
 **示例：**
 
@@ -1275,8 +1297,8 @@ getBundleNameByUid(uid: number, callback: AsyncCallback\<string>): void;
 
 | 参数名   | 类型                   | 必填 | 说明                                                         |
 | -------- | ---------------------- | ---- | ------------------------------------------------------------ |
-| uid      | number                 | 是   | 表示应用程序的UID                                            |
-| callback | AsyncCallback\<string> | 是   | 回调函数，当获取成功时，err为null，data为获取到的BundleName；否则为错误对象 |
+| uid      | number                 | 是   | 表示应用程序的UID。                                            |
+| callback | AsyncCallback\<string> | 是   | 回调函数，当获取成功时，err为null，data为获取到的BundleName；否则为错误对象。 |
 
 **错误码：**
 
@@ -1284,7 +1306,7 @@ getBundleNameByUid(uid: number, callback: AsyncCallback\<string>): void;
 
 | 错误码ID | 错误信息            |
 | -------- | --------------------- |
-| 17700021 | The uid is not found |
+| 17700021 | The uid is not found. |
 
 **示例：**
 
@@ -1320,13 +1342,13 @@ getBundleNameByUid(uid: number): Promise\<string>;
 
 | 参数名 | 类型   | 必填 | 说明                |
 | ---- | ------ | ---- | ------------------ |
-| uid  | number | 是   | 表示应用程序的UID |
+| uid  | number | 是   | 表示应用程序的UID。 |
 
 **返回值：**
 
 | 类型             | 说明                        |
 | ---------------- | --------------------------- |
-| Promise\<string> | Promise对象，返回bundleName |
+| Promise\<string> | Promise对象，返回bundleName。 |
 
 **错误码：**
 
@@ -1334,7 +1356,7 @@ getBundleNameByUid(uid: number): Promise\<string>;
 
 | 错误码ID | 错误信息            |
 | -------- | ---------------------|
-| 17700021 | The uid is not found |
+| 17700021 | The uid is not found. |
 
 **示例：**
 
@@ -1368,9 +1390,9 @@ getBundleArchiveInfo(hapFilePath: string, bundleFlags: [number](#bundleflag), ca
 
 | 参数名       | 类型   | 必填 | 说明                                                         |
 | ----------- | ------ | ---- | ----------------------------------------------------------- |
-| hapFilePath | string | 是   | 表示存储HAP的路径，路径应该是当前应用程序数据目录的相对路径 |
-| bundleFlags | [number](#bundleflag) | 是   | 表示用于指定要返回的BundleInfo对象中包含的信息的标志       |
-| callback | AsyncCallback\<[BundleInfo](js-apis-bundleManager-bundleInfo.md)> | 是 | 回调函数，当获取成功时，err为null，data为获取到的BundleInfo；否则为错误对象 |
+| hapFilePath | string | 是   | 表示存储HAP的路径，路径应该是当前应用程序数据目录的相对路径。 |
+| bundleFlags | [number](#bundleflag) | 是   | 表示用于指定要返回的BundleInfo对象中包含的信息的标志。       |
+| callback | AsyncCallback\<[BundleInfo](js-apis-bundleManager-bundleInfo.md)> | 是 | 回调函数，当获取成功时，err为null，data为获取到的BundleInfo；否则为错误对象。 |
 
 **错误码：**
 
@@ -1378,7 +1400,7 @@ getBundleArchiveInfo(hapFilePath: string, bundleFlags: [number](#bundleflag), ca
 
 | 错误码ID | 错误信息                  |
 | -------- | --------------------------- |
-| 17700022 | The hapFilePath is invalid |
+| 17700022 | The hapFilePath is invalid. |
 
 **示例：**
 
@@ -1416,14 +1438,14 @@ getBundleArchiveInfo(hapFilePath: string,  bundleFlags: [number](#bundleflag)): 
 
 | 参数名       | 类型   | 必填 | 说明                                                         |
 | ----------- | ------ | ---- | ------------------------------------------------------------ |
-| hapFilePath | string | 是   | 表示存储HAP的路径，路径应该是当前应用程序数据目录的相对路径 |
-| bundleFlags | [number](#bundleflag) | 是   | 表示用于指定要返回的BundleInfo对象中包含的信息的标志       |
+| hapFilePath | string | 是   | 表示存储HAP的路径，路径应该是当前应用程序数据目录的相对路径。 |
+| bundleFlags | [number](#bundleflag) | 是   | 表示用于指定要返回的BundleInfo对象中包含的信息的标志。       |
 
 **返回值：**
 
 | 类型                                                        | 说明                        |
 | ----------------------------------------------------------- | --------------------------- |
-| Promise\<[BundleInfo](js-apis-bundleManager-bundleInfo.md)> | Promise对象，返回BundleInfo |
+| Promise\<[BundleInfo](js-apis-bundleManager-bundleInfo.md)> | Promise对象，返回BundleInfo。 |
 
 **错误码：**
 
@@ -1431,7 +1453,7 @@ getBundleArchiveInfo(hapFilePath: string,  bundleFlags: [number](#bundleflag)): 
 
 | 错误码ID | 错误信息                   |
 | -------- | -------------------------- |
-| 17700022 | The hapFilePath is invalid |
+| 17700022 | The hapFilePath is invalid. |
 
 **示例：**
 
@@ -1467,8 +1489,8 @@ cleanBundleCacheFiles(bundleName: string, callback: AsyncCallback\<void>): void;
 
 | 参数名     | 类型                 | 必填 | 说明                                                         |
 | ---------- | -------------------- | ---- | ------------------------------------------------------------ |
-| bundleName | string               | 是   | 表示要清理其缓存数据的应用程序的bundleName                   |
-| callback   | AsyncCallback\<void> | 是   | 回调函数，当清理应用缓存目录数据成功，err为null，否则为错误对象 |
+| bundleName | string               | 是   | 表示要清理其缓存数据的应用程序的bundleName。                   |
+| callback   | AsyncCallback\<void> | 是   | 回调函数，当清理应用缓存目录数据成功，err为null，否则为错误对象。 |
 
 **错误码：**
 
@@ -1476,8 +1498,8 @@ cleanBundleCacheFiles(bundleName: string, callback: AsyncCallback\<void>): void;
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 17700001 | The specified bundleName is not found                        |
-| 17700030 | The specified bundleName does not support cleaning cache files |
+| 17700001 | The specified bundleName is not found.                        |
+| 17700030 | The specified bundleName does not support cleaning cache files. |
 
 **示例：**
 
@@ -1514,13 +1536,13 @@ cleanBundleCacheFiles(bundleName: string): Promise\<void>;
 
 | 参数名     | 类型   | 必填 | 说明                                       |
 | ---------- | ------ | ---- | ------------------------------------------ |
-| bundleName | string | 是   | 表示要清理其缓存数据的应用程序的bundleName |
+| bundleName | string | 是   | 表示要清理其缓存数据的应用程序的bundleName。 |
 
 **返回值：**
 
 | 类型           | 说明                                                         |
 | -------------- | ------------------------------------------------------------ |
-| Promise\<void> | Promise对象，返回true表示清理应用缓存目录数据成功，返回false表示清理应用缓存目录数据失败 |
+| Promise\<void> | Promise对象，返回true表示清理应用缓存目录数据成功，返回false表示清理应用缓存目录数据失败。 |
 
 **错误码：**
 
@@ -1528,8 +1550,8 @@ cleanBundleCacheFiles(bundleName: string): Promise\<void>;
 
 | 错误码ID | 错误信息                                                   |
 | -------- | ---------------------------------------------------------- |
-| 17700001 | The specified bundleName is not found                      |
-| 17700030 | The specified bundle does not support cleaning cache files |
+| 17700001 | The specified bundleName is not found.                      |
+| 17700030 | The specified bundle does not support cleaning cache files. |
 
 **示例：**
 
@@ -1564,9 +1586,9 @@ setApplicationEnabled(bundleName: string, isEnabled: boolean, callback: AsyncCal
 
 | 参数名      | 类型    | 必填 | 说明                                  |
 | ---------- | ------- | ---- | ------------------------------------- |
-| bundleName | string  | 是   | 指定应用的bundleName                |
-| isEnabled  | boolean | 是   | 值为true表示使能，值为false表示禁用 |
-| callback | AsyncCallback\<void> | 是 | 回调函数，当设置应用禁用使能状态成功时，err为null，否则为错误对象 |
+| bundleName | string  | 是   | 指定应用的bundleName。                |
+| isEnabled  | boolean | 是   | 值为true表示使能，值为false表示禁用。 |
+| callback | AsyncCallback\<void> | 是 | 回调函数，当设置应用禁用使能状态成功时，err为null，否则为错误对象。 |
 
 **错误码：**
 
@@ -1574,7 +1596,7 @@ setApplicationEnabled(bundleName: string, isEnabled: boolean, callback: AsyncCal
 
 | 错误码ID | 错误信息                             |
 | -------- | -------------------------------------- |
-| 17700001 | The specified bundleName is not found |
+| 17700001 | The specified bundleName is not found. |
 
 **示例：**
 
@@ -1611,14 +1633,14 @@ setApplicationEnabled(bundleName: string, isEnabled: boolean): Promise\<void>;
 
 | 参数名      | 类型    | 必填 | 说明                                  |
 | ---------- | ------- | ---- | ------------------------------------- |
-| bundleName | string  | 是   | 表示应用程序的bundleName            |
-| isEnabled  | boolean | 是   | 值为true表示使能，值为false表示禁用 |
+| bundleName | string  | 是   | 表示应用程序的bundleName。            |
+| isEnabled  | boolean | 是   | 值为true表示使能，值为false表示禁用。 |
 
 **返回值：**
 
 | 类型           | 说明                                 |
 | -------------- | ------------------------------------ |
-| Promise\<void> | Promise对象。无返回结果的Promise对象 |
+| Promise\<void> | Promise对象。无返回结果的Promise对象。 |
 
 **错误码：**
 
@@ -1626,7 +1648,7 @@ setApplicationEnabled(bundleName: string, isEnabled: boolean): Promise\<void>;
 
 | 错误码ID | 错误信息                             |
 | -------- | -------------------------------------- |
-| 17700001 | The specified bundleName is not found |
+| 17700001 | The specified bundleName is not found. |
 
 **示例：**
 
@@ -1661,9 +1683,9 @@ setAbilityEnabled(info: [AbilityInfo](js-apis-bundleManager-abilityInfo.md), isE
 
 | 参数名    | 类型        | 必填 | 说明                                  |
 | -------- | ----------- | ---- | ------------------------------------- |
-| info     | [AbilityInfo](js-apis-bundleManager-abilityInfo.md) | 是   | 需要被设置的组件              |
-| isEnabled| boolean     | 是   | 值为true表示使能，值为false表示禁用 |
-| callback | AsyncCallback\<void> |  | 回调函数，当设置组件禁用使能状态成功时，err为null，否则为错误对象 |
+| info     | [AbilityInfo](js-apis-bundleManager-abilityInfo.md) | 是   | 需要被设置的组件。              |
+| isEnabled| boolean     | 是   | 值为true表示使能，值为false表示禁用。 |
+| callback | AsyncCallback\<void> | 是 | 回调函数，当设置组件禁用使能状态成功时，err为null，否则为错误对象。 |
 
 **错误码：**
 
@@ -1671,8 +1693,8 @@ setAbilityEnabled(info: [AbilityInfo](js-apis-bundleManager-abilityInfo.md), isE
 
 | 错误码ID | 错误信息                              |
 | -------- | ---------------------------------------|
-| 17700001 | The specified bundleName is not found  |
-| 17700003 | The specified abilityInfo is not found |
+| 17700001 | The specified bundleName is not found.  |
+| 17700003 | The specified abilityInfo is not found. |
 
 **示例：**
 
@@ -1722,14 +1744,14 @@ setAbilityEnabled(info: [AbilityInfo](js-apis-bundleManager-abilityInfo.md), isE
 
 | 参数名    | 类型        | 必填 | 说明                                  |
 | -------- | ----------- | ---- | ------------------------------------- |
-| info     | [AbilityInfo](js-apis-bundleManager-abilityInfo.md) | 是   | 需要被设置的组件                   |
-| isEnabled| boolean     | 是   | 值为true表示使能，值为false表示禁用 |
+| info     | [AbilityInfo](js-apis-bundleManager-abilityInfo.md) | 是   | 需要被设置的组件。                   |
+| isEnabled| boolean     | 是   | 值为true表示使能，值为false表示禁用。 |
 
 **返回值：**
 
 | 类型           | 说明                              |
 | -------------- | --------------------------------- |
-| Promise\<void> | Promise对象。无返回结果的Promise对象 |
+| Promise\<void> | Promise对象。无返回结果的Promise对象。 |
 
 **错误码：**
 
@@ -1737,8 +1759,8 @@ setAbilityEnabled(info: [AbilityInfo](js-apis-bundleManager-abilityInfo.md), isE
 
 | 错误码ID | 错误信息                              |
 | -------- | -------------------------------------- |
-| 17700001 | The specified bundleName is not found  |
-| 17700003 | The specified abilityInfo is not found |
+| 17700001 | The specified bundleName is not found.  |
+| 17700003 | The specified abilityInfo is not found. |
 
 **示例：**
 
@@ -1784,8 +1806,8 @@ isApplicationEnabled(bundleName: string, callback: AsyncCallback\<boolean>): voi
 
 | 参数名      | 类型   | 必填 | 说明                       |
 | ---------- | ------ | ---- | -------------------------- |
-| bundleName | string | 是   | 表示应用程序的bundleName |
-| callback | AsyncCallback\<boolean> | 是 | 回调函数，返回true表示当前应用为使能状态，返回false表示应用为禁用状态 |
+| bundleName | string | 是   | 表示应用程序的bundleName。 |
+| callback | AsyncCallback\<boolean> | 是 | 回调函数，返回true表示当前应用为使能状态，返回false表示应用为禁用状态。 |
 
 **错误码：**
 
@@ -1793,7 +1815,7 @@ isApplicationEnabled(bundleName: string, callback: AsyncCallback\<boolean>): voi
 
 | 错误码ID | 错误信息                             |
 | -------- | -------------------------------------- |
-| 17700001 | The specified bundleName is not found |
+| 17700001 | The specified bundleName is not found. |
 
 **示例：**
 
@@ -1828,7 +1850,7 @@ isApplicationEnabled(bundleName: string): Promise\<boolean>;
 
 | 参数名      | 类型   | 必填 | 说明                       |
 | ---------- | ------ | ---- | -------------------------- |
-| bundleName | string | 是   | 表示应用程序的bundleName  |
+| bundleName | string | 是   | 表示应用程序的bundleName。  |
 
 **返回值：**
 
@@ -1842,7 +1864,7 @@ isApplicationEnabled(bundleName: string): Promise\<boolean>;
 
 | 错误码ID | 错误信息                             |
 | -------- | -------------------------------------- |
-| 17700001 | The specified bundleName is not found |
+| 17700001 | The specified bundleName is not found. |
 
 **示例：**
 
@@ -1875,8 +1897,8 @@ isAbilityEnabled(info: [AbilityInfo](js-apis-bundleManager-abilityInfo.md), call
 
 | 参数名 | 类型        | 必填 | 说明                        |
 | ---- | ----------- | ---- | --------------------------- |
-| info | [AbilityInfo](js-apis-bundleManager-abilityInfo.md) | 是   | 表示关于检查ability的信息 |
-| callback | AsyncCallback\<boolean> | 是 | 回调函数，返回true表示当前应用组件为使能状态，返回false表示应用组件为禁用状态 |
+| info | [AbilityInfo](js-apis-bundleManager-abilityInfo.md) | 是   | 表示关于检查ability的信息。 |
+| callback | AsyncCallback\<boolean> | 是 | 回调函数，返回true表示当前应用组件为使能状态，返回false表示应用组件为禁用状态。 |
 
 **错误码：**
 
@@ -1884,8 +1906,8 @@ isAbilityEnabled(info: [AbilityInfo](js-apis-bundleManager-abilityInfo.md), call
 
 | 错误码ID | 错误信息                              |
 | -------- | --------------------------------------- |
-| 17700001 | The specified bundleName is not found  |
-| 17700003 | The specified abilityName is not found |
+| 17700001 | The specified bundleName is not found.  |
+| 17700003 | The specified abilityName is not found. |
 
 **示例：**
 
@@ -1933,7 +1955,7 @@ isAbilityEnabled(info: [AbilityInfo](js-apis-bundleManager-abilityInfo.md)): Pro
 
 | 参数名 | 类型        | 必填 | 说明                        |
 | ---- | ----------- | ---- | --------------------------- |
-| info | [AbilityInfo](js-apis-bundleManager-abilityInfo.md) | 是   | 表示关于检查ability的信息 |
+| info | [AbilityInfo](js-apis-bundleManager-abilityInfo.md) | 是   | 表示关于检查ability的信息。 |
 
 **返回值：**
 
@@ -1947,8 +1969,8 @@ isAbilityEnabled(info: [AbilityInfo](js-apis-bundleManager-abilityInfo.md)): Pro
 
 | 错误码ID | 错误信息                              |
 | -------- | --------------------------------------- |
-| 17700001 | The specified bundleName is not found  |
-| 17700003 | The specified abilityName is not found |
+| 17700001 | The specified bundleName is not found.  |
+| 17700003 | The specified abilityName is not found. |
 
 **示例：**
 
@@ -1996,9 +2018,9 @@ getLaunchWantForBundle(bundleName: string, userId: number, callback: AsyncCallba
 
 | 参数名     | 类型                 | 必填 | 说明                                                         |
 | ---------- | -------------------- | ---- | ------------------------------------------------------------ |
-| bundleName | string               | 是   | 表示应用程序的bundleName                                     |
-| userId     | number               | 是   | 表示用户ID                                                   |
-| callback   | AsyncCallback\<Want> | 是   | 回调函数，当获取成功时，err为null，data为获取到的Want；否则为错误对象 |
+| bundleName | string               | 是   | 表示应用程序的bundleName。                                     |
+| userId     | number               | 是   | 表示用户ID。                                                   |
+| callback   | AsyncCallback\<Want> | 是   | 回调函数，当获取成功时，err为null，data为获取到的Want；否则为错误对象。 |
 
 **错误码：**
 
@@ -2006,9 +2028,9 @@ getLaunchWantForBundle(bundleName: string, userId: number, callback: AsyncCallba
 
 | 错误码ID | 错误信息                             |
 | -------- | --------------------------------------|
-| 17700001 | The specified bundleName is not found |
-| 17700004 | The specified userId is not found     |
-| 17700026 | The specified bundle is disabled      |
+| 17700001 | The specified bundleName is not found. |
+| 17700004 | The specified userId is not found.     |
+| 17700026 | The specified bundle is disabled.      |
 
 **示例：**
 
@@ -2046,8 +2068,8 @@ getLaunchWantForBundle(bundleName: string, callback: AsyncCallback\<Want>): void
 
 | 参数名     | 类型                 | 必填 | 说明                                                         |
 | ---------- | -------------------- | ---- | ------------------------------------------------------------ |
-| bundleName | string               | 是   | 表示应用程序的bundleName                                     |
-| callback   | AsyncCallback\<Want> | 是   | 回调函数，当获取成功时，err为null，data为获取到的Want；否则为错误对象 |
+| bundleName | string               | 是   | 表示应用程序的bundleName。                                     |
+| callback   | AsyncCallback\<Want> | 是   | 回调函数，当获取成功时，err为null，data为获取到的Want；否则为错误对象。 |
 
 **错误码：**
 
@@ -2055,8 +2077,8 @@ getLaunchWantForBundle(bundleName: string, callback: AsyncCallback\<Want>): void
 
 | 错误码ID | 错误信息                             |
 | -------- | --------------------------------------|
-| 17700001 | The specified bundleName is not found |
-| 17700026 | The specified bundle is disabled      |
+| 17700001 | The specified bundleName is not found. |
+| 17700026 | The specified bundle is disabled.      |
 
 **示例：**
 
@@ -2091,16 +2113,16 @@ getLaunchWantForBundle(bundleName: string, userId?: number): Promise\<Want>;
 
 **参数：**
 
-| 参数名      | 类型   | 必填 | 说明                     |
-| ---------- | ------ | ---- | ------------------------ |
-| bundleName | string | 是   | 表示应用程序的bundleName |
-| userId     | number | 否   | 表示用户ID|
+| 参数名     | 类型   | 必填 | 说明                       |
+| ---------- | ------ | ---- | ------------------------- |
+| bundleName | string | 是   | 表示应用程序的bundleName。 |
+| userId     | number | 否   | 表示用户ID。               |
 
 **返回值：**
 
 | 类型           | 说明                      |
 | -------------- | ------------------------- |
-| Promise\<Want> | Promise对象，返回Want对象 |
+| Promise\<Want> | Promise对象，返回Want对象。 |
 
 **错误码：**
 
@@ -2108,9 +2130,9 @@ getLaunchWantForBundle(bundleName: string, userId?: number): Promise\<Want>;
 
 | 错误码ID | 错误信息                             |
 | -------- | --------------------------------------|
-| 17700001 | The specified bundleName is not found |
-| 17700004 | The specified userId is not found     |
-| 17700026 | The specified bundle is disabled      |
+| 17700001 | The specified bundleName is not found. |
+| 17700004 | The specified userId is not found.     |
+| 17700026 | The specified bundle is disabled.      |
 
 **示例：**
 
@@ -2142,10 +2164,10 @@ getProfileByAbility(moduleName: string, abilityName: string, metadataName: strin
 
 | 参数名       | 类型                          | 必填 | 说明                                                         |
 | ------------ | ----------------------------- | ---- | ------------------------------------------------------------ |
-| moduleName   | string                        | 是   | 表示应用程序的moduleName                                     |
-| abilityName  | string                        | 是   | 表示应用程序的abilityName                                    |
-| metadataName | string                        | 是   | 表示应用程序的metadataName                                   |
-| callback     | AsyncCallback<Array\<string>> | 是   | 回调函数，当获取成功时，err为null，data为获取到的Array\<string>；否则为错误对象 |
+| moduleName   | string                        | 是   | 表示应用程序的moduleName。                                     |
+| abilityName  | string                        | 是   | 表示应用程序的abilityName。                                    |
+| metadataName | string                        | 是   | 表示应用程序的metadataName。                                  |
+| callback     | AsyncCallback<Array\<string>> | 是   | 回调函数，当获取成功时，err为null，data为获取到的Array\<string>；否则为错误对象。 |
 
 **错误码：**
 
@@ -2153,11 +2175,11 @@ getProfileByAbility(moduleName: string, abilityName: string, metadataName: strin
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 17700002 | The specified moduleName is not existed                      |
-| 17700003 | The specified abilityName is not existed                     |
-| 17700024 | The specified metadataName is not existed or the profile is not json-format |
-| 17700026 | The specified bundle is disabled                             |
-| 17700029 | The specified ability is disabled                            |
+| 17700002 | The specified moduleName is not existed.                      |
+| 17700003 | The specified abilityName is not existed.                     |
+| 17700024 | The specified metadataName is not existed or the profile is not json-format. |
+| 17700026 | The specified bundle is disabled.                             |
+| 17700029 | The specified ability is disabled.                            |
 
 **示例：**
 
@@ -2192,15 +2214,15 @@ getProfileByAbility(moduleName: string, abilityName: string, metadataName?: stri
 
 | 参数名       | 类型   | 必填 | 说明                       |
 | ------------ | ------ | ---- | -------------------------- |
-| moduleName   | string | 是   | 表示应用程序的moduleName   |
-| abilityName  | string | 是   | 表示应用程序的abilityName  |
-| metadataName | string | 否   | 表示应用程序的metadataName |
+| moduleName   | string | 是   | 表示应用程序的moduleName。   |
+| abilityName  | string | 是   | 表示应用程序的abilityName。  |
+| metadataName | string | 否   | 表示应用程序的metadataName。 |
 
 **返回值：**
 
 | 类型                    | 说明                            |
 | ----------------------- | ------------------------------- |
-| Promise<Array\<string>> | Promise对象，返回Array\<string> |
+| Promise<Array\<string>> | Promise对象，返回Array\<string>。 |
 
 **错误码：**
 
@@ -2208,11 +2230,11 @@ getProfileByAbility(moduleName: string, abilityName: string, metadataName?: stri
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 17700002 | The specified moduleName is not existed                      |
-| 17700003 | The specified abilityName is not existed                     |
-| 17700024 | The specified metadataName is not existed or the profile is not json-format |
-| 17700026 | The specified bundle is disabled                             |
-| 17700029 | The specified ability is disabled                            |
+| 17700002 | The specified moduleName is not existed.                      |
+| 17700003 | The specified abilityName is not existed.                     |
+| 17700024 | The specified metadataName is not existed or the profile is not json-format. |
+| 17700026 | The specified bundle is disabled.                             |
+| 17700029 | The specified ability is disabled.                            |
 
 **示例：**
 
@@ -2220,7 +2242,6 @@ getProfileByAbility(moduleName: string, abilityName: string, metadataName?: stri
 import bundleManager from '@ohos.bundle.bundleManager'
 let moduleName = 'entry';
 let abilityName = 'MainAbility';
-let metadataName = 'com.example.myapplication.metadata';
 
 try {
     bundleManager.getProfileByAbility(moduleName, abilityName).then((data) => {
@@ -2231,7 +2252,13 @@ try {
 } catch (error) {
     console.error('getProfileByAbility failed. Cause: ' + error.message);
 }
+```
 
+```ts
+import bundleManager from '@ohos.bundle.bundleManager'
+let moduleName = 'entry';
+let abilityName = 'MainAbility';
+let metadataName = 'com.example.myapplication.metadata';
 try {
     bundleManager.getProfileByAbility(moduleName, abilityName, metadataName).then((data) => {
         console.info('getProfileByAbility successfully. Data: ' + JSON.stringify(data));
@@ -2255,10 +2282,10 @@ getProfileByExtensionAbility(moduleName: string, extensionAbilityName: string, m
 
 | 名称                 | 类型                          | 必填 | 说明                                                         |
 | -------------------- | ----------------------------- | ---- | ------------------------------------------------------------ |
-| moduleName           | string                        | 是   | 表示应用程序的moduleName                                     |
-| extensionAbilityName | string                        | 是   | 表示应用程序的extensionAbilityName                           |
-| metadataName         | string                        | 是   | 表示应用程序的metadataName                                   |
-| callback             | AsyncCallback<Array\<string>> | 是   | 回调函数，当获取成功时，err为null，data为获取到的Array\<string>；否则为错误对象 |
+| moduleName           | string                        | 是   | 表示应用程序的moduleName。                                     |
+| extensionAbilityName | string                        | 是   | 表示应用程序的extensionAbilityName。                           |
+| metadataName         | string                        | 是   | 表示应用程序的metadataName。                                   |
+| callback             | AsyncCallback<Array\<string>> | 是   | 回调函数，当获取成功时，err为null，data为获取到的Array\<string>；否则为错误对象。 |
 
 **错误码：**
 
@@ -2266,10 +2293,10 @@ getProfileByExtensionAbility(moduleName: string, extensionAbilityName: string, m
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 17700002 | The specified moduleName is not existed                      |
-| 17700003 | The specified extensionAbilityName is not existed            |
-| 17700024 | The specified metadataName is not existed or the profile is not json-format |
-| 17700026 | The specified bundle is disabled                             |
+| 17700002 | The specified moduleName is not existed.                      |
+| 17700003 | The specified extensionAbilityName is not existed.            |
+| 17700024 | The specified metadataName is not existed or the profile is not json-format. |
+| 17700026 | The specified bundle is disabled.                             |
 
 **示例：**
 
@@ -2304,15 +2331,15 @@ getProfileByExtensionAbility(moduleName: string, extensionAbilityName: string, m
 
 | 名称                 | 类型   | 必填 | 说明                               |
 | -------------------- | ------ | ---- | ---------------------------------- |
-| moduleName           | string | 是   | 表示应用程序的moduleName           |
-| extensionAbilityName | string | 是   | 表示应用程序的extensionAbilityName |
-| metadataName         | string | 否   | 表示应用程序的metadataName         |
+| moduleName           | string | 是   | 表示应用程序的moduleName。           |
+| extensionAbilityName | string | 是   | 表示应用程序的extensionAbilityName。 |
+| metadataName         | string | 否   | 表示应用程序的metadataName。         |
 
 **返回值：**
 
 | 类型                    | 说明                                |
 | ----------------------- | ----------------------------------- |
-| Promise<Array\<string>> | Promise对象，返回Array\<string>对象 |
+| Promise<Array\<string>> | Promise对象，返回Array\<string>对象。 |
 
 **错误码：**
 
@@ -2320,10 +2347,10 @@ getProfileByExtensionAbility(moduleName: string, extensionAbilityName: string, m
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 17700002 | The specified moduleName is not existed                      |
-| 17700003 | The specified extensionAbilityName is not existed            |
-| 17700024 | The specified metadataName is not existed or the profile is not json-format |
-| 17700026 | The specified bundle is disabled                             |
+| 17700002 | The specified moduleName is not existed.                      |
+| 17700003 | The specified extensionAbilityName is not existed.            |
+| 17700024 | The specified metadataName is not existed or the profile is not json-format. |
+| 17700026 | The specified bundle is disabled.                             |
 
 **示例：**
 
@@ -2370,8 +2397,8 @@ getPermissionDef(permissionName: string, callback: AsyncCallback\<[PermissionDef
 
 | 名称           | 类型                                                         | 必填 | 说明                                                         |
 | -------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| permissionName | string                                                       | 是   | 表示权限名称                                                 |
-| callback       | AsyncCallback\<[PermissionDef](js-apis-bundleManager-permissionDef.md)> | 是   | 回调函数，当获取成功时，err为null，data为获取到的Array\<PermissionDef>；否则为错误对象 |
+| permissionName | string                                                       | 是   | 表示权限名称。                                                 |
+| callback       | AsyncCallback\<[PermissionDef](js-apis-bundleManager-permissionDef.md)> | 是   | 回调函数，当获取成功时，err为null，data为获取到的Array\<PermissionDef>；否则为错误对象。 |
 
 **错误码：**
 
@@ -2379,7 +2406,7 @@ getPermissionDef(permissionName: string, callback: AsyncCallback\<[PermissionDef
 
 | 错误码ID | 错误信息                              |
 | -------- | ------------------------------------- |
-| 17700006 | The specified permission is not found |
+| 17700006 | The specified permission is not found. |
 
 **示例：**
 
@@ -2415,13 +2442,13 @@ getPermissionDef(permissionName: string): Promise\<[PermissionDef](js-apis-bundl
 
 | 名称           | 类型   | 必填 | 说明           |
 | -------------- | ------ | ---- | -------------- |
-| permissionName | string | 是   | 表示权限参数名 |
+| permissionName | string | 是   | 表示权限参数名。 |
 
 **返回值：**
 
 | 类型                                                         | 说明                                       |
 | ------------------------------------------------------------ | ------------------------------------------ |
-| Promise\<[PermissionDef](js-apis-bundleManager-permissionDef.md)> | Promise对象，返回Array\<PermissionDef>对象 |
+| Promise\<[PermissionDef](js-apis-bundleManager-permissionDef.md)> | Promise对象，返回Array\<PermissionDef>对象。 |
 
 **错误码：**
 
@@ -2429,7 +2456,7 @@ getPermissionDef(permissionName: string): Promise\<[PermissionDef](js-apis-bundl
 
 | 错误码ID | 错误信息                              |
 | -------- | ------------------------------------- |
-| 17700006 | The specified permission is not found |
+| 17700006 | The specified permission is not found. |
 
 **示例：**
 
@@ -2463,10 +2490,10 @@ getAbilityLabel(bundleName: string, moduleName: string, abilityName: string, cal
 
 | 参数名      | 类型                   | 必填 | 说明                                                         |
 | ----------- | ---------------------- | ---- | ------------------------------------------------------------ |
-| bundleName  | string                 | 是   | 表示应用程序的bundleName                                     |
-| moduleName  | string                 | 是   | 表示应用程序的moduleName                                     |
-| abilityName | string                 | 是   | 表示应用程序的abilityName                                    |
-| callback    | AsyncCallback\<string> | 是   | 回调函数，当获取成功时，err为null，data为获指定组件的Label值；否则为错误对象 |
+| bundleName  | string                 | 是   | 表示应用程序的bundleName。                                     |
+| moduleName  | string                 | 是   | 表示应用程序的moduleName。                                     |
+| abilityName | string                 | 是   | 表示应用程序的abilityName。                                    |
+| callback    | AsyncCallback\<string> | 是   | 回调函数，当获取成功时，err为null，data为获指定组件的Label值；否则为错误对象。 |
 
 **错误码：**
 
@@ -2474,11 +2501,11 @@ getAbilityLabel(bundleName: string, moduleName: string, abilityName: string, cal
 
 | 错误码ID | 错误信息                               |
 | -------- | -------------------------------------- |
-| 17700001 | The specified bundleName is not found  |
-| 17700002 | The specified moduleName is not found  |
-| 17700003 | The specified abilityName is not found |
-| 17700026 | The specified bundle is disabled       |
-| 17700029 | The specified ability is disabled      |
+| 17700001 | The specified bundleName is not found.  |
+| 17700002 | The specified moduleName is not found.  |
+| 17700003 | The specified abilityName is not found. |
+| 17700026 | The specified bundle is disabled.       |
+| 17700029 | The specified ability is disabled.      |
 
 **示例：**
 
@@ -2517,15 +2544,15 @@ getAbilityLabel(bundleName: string, moduleName: string, abilityName: string): Pr
 
 | 参数名      | 类型   | 必填 | 说明                      |
 | ----------- | ------ | ---- | ------------------------- |
-| bundleName  | string | 是   | 表示应用程序的bundleName  |
-| moduleName  | string | 是   | 表示应用程序的moduleName  |
-| abilityName | string | 是   | 表示应用程序的abilityName |
+| bundleName  | string | 是   | 表示应用程序的bundleName。  |
+| moduleName  | string | 是   | 表示应用程序的moduleName。  |
+| abilityName | string | 是   | 表示应用程序的abilityName。 |
 
 **返回值：**
 
 | 类型             | 说明                                |
 | ---------------- | ----------------------------------- |
-| Promise\<string> | Promise对象，返回指定组件的Lablel值 |
+| Promise\<string> | Promise对象，返回指定组件的Lablel值。 |
 
 **错误码：**
 
@@ -2533,11 +2560,11 @@ getAbilityLabel(bundleName: string, moduleName: string, abilityName: string): Pr
 
 | 错误码ID | 错误信息                              |
 | -------- | --------------------------------------- |
-| 17700001 | The specified bundleName is not found  |
-| 17700002 | The specified moduleName is not found  |
-| 17700003 | The specified abilityName is not found |
-| 17700026 | The specified bundle is disabled       |
-| 17700029 | The specified ability is disabled      |
+| 17700001 | The specified bundleName is not found.  |
+| 17700002 | The specified moduleName is not found.  |
+| 17700003 | The specified abilityName is not found. |
+| 17700026 | The specified bundle is disabled.       |
+| 17700029 | The specified ability is disabled.      |
 
 **示例：**
 
@@ -2574,10 +2601,10 @@ getAbilityIcon(bundleName: string, moduleName: string, abilityName: string, call
 
 | 参数名      | 类型                                                        | 必填 | 说明                                                         |
 | ----------- | ----------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| bundleName  | string                                                      | 是   | 表示应用程序的bundleName                                     |
-| moduleName  | string                                                      | 是   | 表示应用程序的moduleName                                     |
-| abilityName | string                                                      | 是   | 表示应用程序的abilityName                                    |
-| callback    | AsyncCallback<[image.PixelMap](js-apis-image.md#pixelmap7)> | 是   | 回调函数，当获取成功时，err为null，data为指定组件icon的PixelMap对象；否则为错误对象 |
+| bundleName  | string                                                      | 是   | 表示应用程序的bundleName。                                     |
+| moduleName  | string                                                      | 是   | 表示应用程序的moduleName。                                     |
+| abilityName | string                                                      | 是   | 表示应用程序的abilityName。                                    |
+| callback    | AsyncCallback<[image.PixelMap](js-apis-image.md#pixelmap7)> | 是   | 回调函数，当获取成功时，err为null，data为指定组件icon的PixelMap对象；否则为错误对象。 |
 
 **错误码：**
 
@@ -2585,11 +2612,11 @@ getAbilityIcon(bundleName: string, moduleName: string, abilityName: string, call
 
 | 错误码ID | 错误信息                              |
 | -------- | -------------------------------------- |
-| 17700001 | The specified bundleName is not found  |
-| 17700002 | The specified moduleName is not found  |
-| 17700003 | The specified abilityName is not found |
-| 17700026 | The specified bundle is disabled       |
-| 17700029 | The specified ability is disabled      |
+| 17700001 | The specified bundleName is not found.  |
+| 17700002 | The specified moduleName is not found.  |
+| 17700003 | The specified abilityName is not found. |
+| 17700026 | The specified bundle is disabled.       |
+| 17700029 | The specified ability is disabled.      |
 
 **示例：**
 
@@ -2628,15 +2655,15 @@ getAbilityIcon(bundleName: string, moduleName: string, abilityName: string): Pro
 
 | 参数名      | 类型   | 必填 | 说明                      |
 | ----------- | ------ | ---- | ------------------------- |
-| bundleName  | string | 是   | 表示应用程序的bundleName  |
-| moduleName  | string | 是   | 表示应用程序的moduleName  |
-| abilityName | string | 是   | 表示应用程序的abilityName |
+| bundleName  | string | 是   | 表示应用程序的bundleName。  |
+| moduleName  | string | 是   | 表示应用程序的moduleName。  |
+| abilityName | string | 是   | 表示应用程序的abilityName。 |
 
 **返回值：**
 
 | 类型                                                  | 说明                                        |
 | ----------------------------------------------------- | ------------------------------------------- |
-| Promise<[image.PixelMap](js-apis-image.md#pixelmap7)> | Promise对象，返回指定组件icon的PixelMap对象 |
+| Promise<[image.PixelMap](js-apis-image.md#pixelmap7)> | Promise对象，返回指定组件icon的PixelMap对象。 |
 
 **错误码：**
 
@@ -2644,11 +2671,11 @@ getAbilityIcon(bundleName: string, moduleName: string, abilityName: string): Pro
 
 | 错误码ID | 错误信息                               |
 | -------- | -------------------------------------- |
-| 17700001 | The specified bundleName is not found  |
-| 17700002 | The specified moduleName is not found  |
-| 17700003 | The specified abilityName is not found |
-| 17700026 | The specified bundle is disabled       |
-| 17700029 | The specified ability is disabled      |
+| 17700001 | The specified bundleName is not found.  |
+| 17700002 | The specified moduleName is not found.  |
+| 17700003 | The specified abilityName is not found. |
+| 17700026 | The specified bundle is disabled.       |
+| 17700029 | The specified ability is disabled.      |
 
 **示例：**
 
@@ -2685,15 +2712,15 @@ getApplicationInfoSync(bundleName: string, applicationFlags: number, userId: num
 
 | 参数名       | 类型   | 必填 | 说明                                                       |
 | ----------- | ------ | ---- | ----------------------------------------------------------|
-| bundleName  | string | 是   | 表示应用程序的bundleName                                  |
-| applicationFlags | [number](#applicationflag) | 是   | 表示用于指定将返回的ApplicationInfo对象中包含的信息       |
-| userId      | number | 是   | 表示用户ID                                         |
+| bundleName  | string | 是   | 表示应用程序的bundleName。                                  |
+| applicationFlags | [number](#applicationflag) | 是   | 表示用于指定将返回的ApplicationInfo对象中包含的信息。       |
+| userId      | number | 是   | 表示用户ID。                                         |
 
 **返回值：**
 
 | 类型            | 说明                      |
 | --------------- | ------------------------- |
-| [ApplicationInfo](js-apis-bundleManager-applicationInfo.md) | 返回ApplicationInfo对象 |
+| [ApplicationInfo](js-apis-bundleManager-applicationInfo.md) | 返回ApplicationInfo对象。 |
 
 **错误码：**
 
@@ -2701,9 +2728,9 @@ getApplicationInfoSync(bundleName: string, applicationFlags: number, userId: num
 
 | 错误码ID | 错误信息                             |
 | -------- | -------------------------------------- |
-| 17700001 | The specified bundleName is not found |
-| 17700004 | The specified userId is not found     |
-| 17700026 | The specified bundle is disabled      |
+| 17700001 | The specified bundleName is not found. |
+| 17700004 | The specified userId is not found.     |
+| 17700026 | The specified bundle is disabled.      |
 
 **示例：**
 
@@ -2737,14 +2764,14 @@ getApplicationInfoSync(bundleName: string, applicationFlags: number) : [Applicat
 
 | 参数名       | 类型   | 必填 | 说明                                                       |
 | ----------- | ------ | ---- | ----------------------------------------------------------|
-| bundleName  | string | 是   | 表示应用程序的bundleName                                  |
-| applicationFlags | [number](#applicationflag) | 是   | 表示用于指定将返回的ApplicationInfo对象中包含的信息       |
+| bundleName  | string | 是   | 表示应用程序的bundleName。                                  |
+| applicationFlags | [number](#applicationflag) | 是   | 表示用于指定将返回的ApplicationInfo对象中包含的信息。       |
 
 **返回值：**
 
 | 类型            | 说明                      |
 | --------------- | ------------------------- |
-| [ApplicationInfo](js-apis-bundleManager-applicationInfo.md) | 返回ApplicationInfo对象 |
+| [ApplicationInfo](js-apis-bundleManager-applicationInfo.md) | 返回ApplicationInfo对象。 |
 
 **错误码：**
 
@@ -2752,8 +2779,8 @@ getApplicationInfoSync(bundleName: string, applicationFlags: number) : [Applicat
 
 | 错误码ID | 错误信息                             |
 | -------- | -------------------------------------- |
-| 17700001 | The specified bundleName is not found |
-| 17700026 | The specified bundle is disabled      |
+| 17700001 | The specified bundleName is not found. |
+| 17700026 | The specified bundle is disabled.      |
 
 **示例：**
 
@@ -2786,15 +2813,15 @@ getBundleInfoSync(bundleName: string, bundleFlags: [number](#bundleflag), userId
 
 | 参数名       | 类型   | 必填 | 说明                                                     |
 | ----------- | ------ | ---- | -------------------------------------------------------- |
-| bundleName  | string | 是   | 表示应用程序的bundleName                                 |
-| bundleFlags | [number](#bundleflag) | 是   | 表示用于指定将返回的BundleInfo对象中包含的信息的标志 |
-| userId      | number | 是   | 表示用户ID                                             |
+| bundleName  | string | 是   | 表示应用程序的bundleName。                                 |
+| bundleFlags | [number](#bundleflag) | 是   | 表示用于指定将返回的BundleInfo对象中包含的信息的标志。 |
+| userId      | number | 是   | 表示用户ID。                                             |
 
 **返回值：**
 
 | 类型       | 说明                 |
 | ---------- | -------------------- |
-| [BundleInfo](js-apis-bundleManager-bundleInfo.md) | 返回BundleInfo对象 |
+| [BundleInfo](js-apis-bundleManager-bundleInfo.md) | 返回BundleInfo对象。 |
 
 **错误码：**
 
@@ -2802,9 +2829,9 @@ getBundleInfoSync(bundleName: string, bundleFlags: [number](#bundleflag), userId
 
 | 错误码ID | 错误信息                             |
 | -------- | ------------------------------------- |
-| 17700001 | The specified bundleName is not found |
-| 17700004 | The specified userId is not found     |
-| 17700026 | The specified bundle is disabled      |
+| 17700001 | The specified bundleName is not found. |
+| 17700004 | The specified userId is not found.     |
+| 17700026 | The specified bundle is disabled.      |
 
 **示例：**
 
@@ -2838,14 +2865,14 @@ getBundleInfoSync(bundleName: string, bundleFlags: [number](#bundleflag)): [Bund
 
 | 参数名       | 类型   | 必填 | 说明                                                     |
 | ----------- | ------ | ---- | -------------------------------------------------------- |
-| bundleName  | string | 是   | 表示应用程序的bundleName                                 |
-| bundleFlags | [number](#bundleflag) | 是   | 表示用于指定将返回的BundleInfo对象中包含的信息的标志 |
+| bundleName  | string | 是   | 表示应用程序的bundleName。                                 |
+| bundleFlags | [number](#bundleflag) | 是   | 表示用于指定将返回的BundleInfo对象中包含的信息的标志。 |
 
 **返回值：**
 
 | 类型       | 说明                 |
 | ---------- | -------------------- |
-| [BundleInfo](js-apis-bundleManager-bundleInfo.md) | 返回BundleInfo对象 |
+| [BundleInfo](js-apis-bundleManager-bundleInfo.md) | 返回BundleInfo对象。 |
 
 **错误码：**
 
@@ -2853,8 +2880,8 @@ getBundleInfoSync(bundleName: string, bundleFlags: [number](#bundleflag)): [Bund
 
 | 错误码ID | 错误信息                             |
 | -------- | ------------------------------------- |
-| 17700001 | The specified bundleName is not found |
-| 17700026 | The specified bundle is disabled      |
+| 17700001 | The specified bundleName is not found. |
+| 17700026 | The specified bundle is disabled.      |
 
 **示例：**
 
