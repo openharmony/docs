@@ -2,7 +2,7 @@
 
 fileAccess模块是基于extension机制实现的一个对公共文件访问和操作的框架。该模块一方面对接各类文件管理服务，如媒体库、外置存储管理服务等，另一方面为系统应用提供一套统一的文件访问管理接口。其中，媒体库服务提供本地设备、分布式设备等公共文件访问服务；外置存储管理服务可以提供共享盘、U盘、SD卡等设备的公共文件访问服务。
 
->![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+>**说明：**
 >
 >- 本模块首批接口从API version 9开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 >- 本模块接口为系统接口，三方应用不支持调用，当前只支持filepicker、文件管理器调用。
@@ -21,11 +21,7 @@ getFileAccessAbilityInfo( ) : Promise&lt;Array&lt;Want&gt;&gt;
 
 **系统能力**：SystemCapability.FileManagement.UserFileService
 
-**需要权限**：ohos.permission.FILE_ACCESS_MANAGER
-
-**参数：**
-
-无
+**需要权限**：ohos.permission.FILE_ACCESS_MANAGER 和 ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
 
 **返回值：**
 
@@ -55,7 +51,7 @@ createFileAccessHelper(context: Context, wants: Array&lt;Want&gt;) : FileAccessH
 
 **系统能力**：SystemCapability.FileManagement.UserFileService
 
-**需要权限**：ohos.permission.FILE_ACCESS_MANAGER
+**需要权限**：ohos.permission.FILE_ACCESS_MANAGER 和 ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
 
 **参数：**
 
@@ -75,7 +71,7 @@ createFileAccessHelper(context: Context, wants: Array&lt;Want&gt;) : FileAccessH
   ```js
   createFileAccessHelper() {
     let fileAccesssHelper = null;
-    // wantInfo 从getFileAccessAbilityInfo()获取
+    // wantInfos 从getFileAccessAbilityInfo()获取
     // 创建只连接媒体库服务的helper对象
     let wantInfos = [
       {
@@ -84,6 +80,7 @@ createFileAccessHelper(context: Context, wants: Array&lt;Want&gt;) : FileAccessH
       },
     ]
     try {
+      // this.context 是MainAbility 传过来的context
       fileAccesssHelper = fileAccess.createFileAccessHelper(this.context, wantInfos);
       if (!fileAccesssHelper)
         console.error("createFileAccessHelper interface returns an undefined object");
@@ -101,7 +98,7 @@ createFileAccessHelper(context: Context) : FileAccessHelper
 
 **系统能力**：SystemCapability.FileManagement.UserFileService
 
-**需要权限**：ohos.permission.FILE_ACCESS_MANAGER
+**需要权限**：ohos.permission.FILE_ACCESS_MANAGER 和 ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
 
 **参数：**
 
@@ -122,6 +119,7 @@ createFileAccessHelper(context: Context) : FileAccessHelper
     let fileAccesssHelperAllServer = null;
     // 创建连接系统内所有配置fileAccess的文件管理类服务的helper对象
     try {
+      // this.context 是MainAbility 传过来的context
       fileAccesssHelperAllServer = fileAccess.createFileAccessHelper(this.context);
       if (!fileAccesssHelperAllServer)
         console.error("createFileAccessHelper interface returns an undefined object");
@@ -142,10 +140,6 @@ getRoots( ) : Promise&lt;RootIterator&gt;
 
 **需要权限**：ohos.permission.FILE_ACCESS_MANAGER
 
-**参数：**
-
-无
-
 **返回值：**
 
   | 类型 | 说明 |
@@ -160,7 +154,7 @@ getRoots( ) : Promise&lt;RootIterator&gt;
     let rootinfos = [];
     let isDone = false;
     try {
-      rootIterator = await fileAccesssHelper.getRoots();
+      rootIterator = await fileAccessHelper.getRoots();
       if (!rootIterator) {
         console.error("getRoots interface returns an undefined object");
         return;
@@ -406,8 +400,10 @@ createFile(uri: string, displayName: string) : Promise&lt;string&gt;
 **示例：**
 
   ```js
-  // 以共享盘uri为例
-  let sourceUri = "datashare:///com.ohos.UserFile.ExternalFileManager/data/storage/el1/bundle/storage_daemon";
+  // 以媒体库uri为例
+  // 示例代码sourceUri表示Download目录，该uri是对应的fileInfo中uri
+  // 开发者应根据自己实际获取的uri进行开发
+  let sourceUri = "datashare:///media/file/6";
   let displayName = "file1"
   let fileUri = null;
   try {
@@ -448,8 +444,10 @@ mkDir(parentUri: string, displayName: string) : Promise&lt;string&gt;
 **示例：**
 
   ```js
-  // 以共享盘uri为例
-  let sourceUri = "datashare:///com.ohos.UserFile.ExternalFileManager/data/storage/el1/bundle/storage_daemon";
+  // 以媒体库uri为例
+  // 示例代码sourceUri表示Download目录，该uri是对应的fileInfo中uri
+  // 开发者应根据自己实际获取的uri进行开发
+  let sourceUri = "datashare:///media/file/6";
   let dirName = "dirTest"
   let dirUri = null;
   try {
@@ -466,7 +464,7 @@ mkDir(parentUri: string, displayName: string) : Promise&lt;string&gt;
 
 ## FileAccessHelper.openFile
 
-openFile(uri: string, flags: [OPENFLAGS](#openflags)) : Promise&lt;number&gt;
+openFile(uri: string, flags: OPENFLAGS) : Promise&lt;number&gt;
 
 以异步方法打开文件，返回文件句柄。使用Promise异步回调。
 
@@ -479,7 +477,7 @@ openFile(uri: string, flags: [OPENFLAGS](#openflags)) : Promise&lt;number&gt;
   | 参数名 | 类型 | 必填 | 说明 |
   | --- | --- | --- | -- |
   | uri | string | 是 | 待打开文件的uri |
-  | flags | OPENFLAGS | 文件打开的标志 |
+  | flags | [OPENFLAGS](#openflags) | 是 | 文件打开的标志 |
 
 **返回值：**
 
@@ -490,11 +488,13 @@ openFile(uri: string, flags: [OPENFLAGS](#openflags)) : Promise&lt;number&gt;
 **示例：**
 
   ```js
-  // 以共享盘uri为例
-  let targetUri = "datashare:///com.ohos.UserFile.ExternalFileManager/data/storage/el1/bundle/storage_daemon/file1";
+  // 以媒体库uri为例
+  // 示例代码targetUri表示Download目录下文件，该uri是对应的fileInfo中uri
+  // 开发者应根据自己实际获取的uri进行开发
+  let targetUri  = "datashare:///media/file/100";
   try {
     let fd = await fileAccessHelper.openFile(targetUri, OPENFLAGS.READ);
-  } cache (error) {
+  } catch (error) {
     console.error("openFile failed, error " + error);
   };
   ```
@@ -524,13 +524,15 @@ delete(uri: string) : Promise&lt;number&gt;
 **示例：**
 
   ```js
-  // 以共享盘uri为例
-  let targetUri = "datashare:///com.ohos.UserFile.ExternalFileManager/data/storage/el1/bundle/storage_daemon/file1";
+  // 以媒体库uri为例
+  // 示例代码targetUri表示Download目录下文件，该uri是对应的fileInfo中uri
+  // 开发者应根据自己实际获取的uri进行开发
+  let targetUri = "datashare:///media/file/100";
   try {
     let code = await fileAccessHelper.delete(targetUri);
     if (code != 0)
       console.error("delete failed, code " + code);
-  } cache (error) {
+  } catch (error) {
     console.error("delete failed, error " + error);
   };
   ```
@@ -561,13 +563,15 @@ move(sourceFile: string, destFile: string) : Promise&lt;string&gt;
 **示例：**
 
   ```js
-  // 以共享盘uri为例
-  let sourceFile = "datashare:///com.ohos.UserFile.ExternalFileManager/data/storage/el1/bundle/storage_daemon/file1";
-  let destFile = "datashare:///com.ohos.UserFile.ExternalFileManager/data/storage/el1/bundle/storage_daemon/dirTest";
+  // 以媒体库uri为例
+  // 示例代码sourceFile destFile表示Download目录下文件或文件夹，该uri是对应的fileInfo中uri
+  // 开发者应根据自己实际获取的uri进行开发
+  let sourceFile = "datashare:///media/file/102";
+  let destFile = "datashare:///media/file/101";
   try {
     let fileUri = await fileAccessHelper.move(sourceFile, destFile);
     console.log("move sucess， fileUri: " + JSON.stringify(fileUri));
-  } cache (error) {
+  } catch (error) {
     console.error("move failed, error " + error);
   };
   ```
@@ -598,12 +602,14 @@ rename(uri: string, displayName: string) : Promise&lt;string&gt;
 **示例：**
 
   ```js
-  // 以共享盘uri为例
-  let sourceDir = "datashare:///com.ohos.UserFile.ExternalFileManager/data/storage/el1/bundle/storage_daemon/dirTest";
+  // 以媒体库uri为例
+  // 示例代码sourceDir表示Download目录下文件，该uri是对应的fileInfo中uri
+  // 开发者应根据自己实际获取的uri进行开发
+  let sourceDir = "datashare:///media/file/100";
   try {
     let DestDir = await fileAccessHelper.rename(sourceDir, "testDir");
     console.log("rename sucess， DestDir: " + JSON.stringify(DestDir));
-  } cache (error) {
+  } catch (error) {
     console.error("rename failed, error " + error);
   };
   ```
@@ -633,15 +639,17 @@ access(sourceFileUri: string) : Promise&lt;boolean&gt;
 **示例：**
 
   ```js
-  // 以共享盘uri为例
-  let sourceDir = "datashare:///com.ohos.UserFile.ExternalFileManager/data/storage/el1/bundle/storage_daemon/dirTest";
+  // 以媒体库uri为例
+  // 示例代码sourceDir表示Download目录下文件，该uri是对应的fileInfo中uri
+  // 开发者应根据自己实际获取的uri进行开发
+  let sourceDir = "datashare:///media/file/100";
   try {
     let existJudgment = await fileAccessHelper.access(sourceDir);
     if (existJudgment)
       console.log("sourceDir exists");
     else
       console.log("sourceDir does not exist");
-  } cache (error) {
+  } catch (error) {
     console.error("rename failed, error " + error);
   };
   ```
@@ -655,10 +663,6 @@ RootIterator表示设备根目录的迭代器对象，可以通过next同步方�
 **系统能力**：SystemCapability.FileManagement.UserFileService。
 
 **需要权限**：ohos.permission.FILE_ACCESS_MANAGER
-
-**参数：**
-
-无
 
 **返回值：**
 
@@ -675,10 +679,6 @@ FileIterator表示文件夹的迭代器对象，可以通过next同步方法获�
 **系统能力**：SystemCapability.FileManagement.UserFileService。
 
 **需要权限**：ohos.permission.FILE_ACCESS_MANAGER
-
-**参数：**
-
-无
 
 **返回值：**
 
