@@ -203,7 +203,7 @@ Requests a continuous task from the system. This API uses an asynchronous callba
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | id | number | Yes| Notification ID of a continuous task.|
-  | request | NotificationRequest | Yes| Notification parameter, which is used to display information in the notification bar.|
+  | request | [NotificationRequest](js-apis-notification.md#notificationrequest) | Yes| Notification parameter, which is used to display information in the notification bar.|
   | callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result.|
 
  **Example**
@@ -215,7 +215,7 @@ import wantAgent from '@ohos.wantAgent';
 
 function callback(err, data) {
     if (err) {
-        console.error("Operation failed Cause: " + err);
+        console.error("Operation failed cause: " + JSON.stringify(err));
     } else {
         console.info("Operation succeeded");
     }
@@ -267,7 +267,7 @@ Requests a continuous task from the system. This API uses a promise to return th
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | id | number | Yes| Notification ID of a continuous task.|
-| request | NotificationRequest | Yes| Notification parameter, which is used to display information in the notification bar.|
+| request | [NotificationRequest](js-apis-notification.md#notificationrequest) | Yes| Notification parameter, which is used to display information in the notification bar.|
 
 **Return value**
 
@@ -311,7 +311,7 @@ wantAgent.getWantAgent(wantAgentInfo).then((wantAgentObj) => {
     particleAbility.startBackgroundRunning(id, request).then(() => {
         console.info("Operation succeeded");
     }).catch((err) => {
-        console.error("Operation failed Cause: " + err);
+        console.error("Operation failed cause: " + JSON.stringify(err));
     });
 });
 
@@ -338,7 +338,7 @@ import particleAbility from '@ohos.ability.particleAbility';
 
 function callback(err, data) {
     if (err) {
-        console.error("Operation failed Cause: " + err);
+        console.error("Operation failed cause: " + JSON.stringify(err));
     } else {
         console.info("Operation succeeded");
     }
@@ -370,7 +370,7 @@ import particleAbility from '@ohos.ability.particleAbility';
 particleAbility.cancelBackgroundRunning().then(() => {
     console.info("Operation succeeded");
 }).catch((err) => {
-    console.error("Operation failed Cause: " + err);
+    console.error("Operation failed cause: " + JSON.stringify(err));
 });
 
 ```
