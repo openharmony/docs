@@ -1579,7 +1579,7 @@ struct Fill {
           region.lineTo(270, 90)
           region.closePath()
           // Fill path
-          this.context.fillStyle = 'green'
+          this.context.fillStyle = '#00ff00'
           this.context.fill(region, "evenodd")
         })
     }
@@ -2412,7 +2412,7 @@ restore(): void
           .backgroundColor('#ffff00')
           .onReady(() =>{
             this.context.save() // save the default state
-            this.context.fillStyle = "green"
+            this.context.fillStyle = "#00ff00"
             this.context.fillRect(20, 20, 100, 100)
             this.context.restore() // restore to the default state
             this.context.fillRect(150, 75, 100, 100)
@@ -2450,7 +2450,7 @@ save(): void
           .backgroundColor('#ffff00')
           .onReady(() =>{
             this.context.save() // save the default state
-            this.context.fillStyle = "green"
+            this.context.fillStyle = "#00ff00"
             this.context.fillRect(20, 20, 100, 100)
             this.context.restore() // restore to the default state
             this.context.fillRect(150, 75, 100, 100)
@@ -2497,9 +2497,9 @@ createLinearGradient(x0: number, y0: number, x1: number, y1: number): void
           .backgroundColor('#ffff00')
           .onReady(() =>{
             var grad = this.context.createLinearGradient(50,0, 300,100)
-            grad.addColorStop(0.0, 'red')
-            grad.addColorStop(0.5, 'white')
-            grad.addColorStop(1.0, 'green')
+            grad.addColorStop(0.0, '#ff0000')
+            grad.addColorStop(0.5, '#ffffff')
+            grad.addColorStop(1.0, '#00ff00')
             this.context.fillStyle = grad
             this.context.fillRect(0, 0, 500, 500)
           })
@@ -2548,9 +2548,9 @@ createRadialGradient(x0: number, y0: number, r0: number, x1: number, y1: number,
           .backgroundColor('#ffff00')
           .onReady(() =>{
             var grad = this.context.createRadialGradient(200,200,50, 200,200,200)
-            grad.addColorStop(0.0, 'red')
-            grad.addColorStop(0.5, 'white')
-            grad.addColorStop(1.0, 'green')
+            grad.addColorStop(0.0, '#ff0000')
+            grad.addColorStop(0.5, '#ffffff')
+            grad.addColorStop(1.0, '#00ff00')
             this.context.fillStyle = grad
             this.context.fillRect(0, 0, 500, 500)
           })
