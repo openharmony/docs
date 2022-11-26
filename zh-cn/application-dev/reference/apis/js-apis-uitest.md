@@ -840,7 +840,7 @@ isCheckable(): Promise\<boolean>
 
 **返回值：**
 
-| 错误码ID          | 错误信息                                                   |
+| 类型              | 说明                                                         |
 | ----------------- | ------------------------------------------------------------ |
 | Promise\<boolean> | 以Promise形式返回控件对象能否可被勾选属性，true：可被勾选，false：不可被勾选。 |
 
@@ -848,7 +848,7 @@ isCheckable(): Promise\<boolean>
 
 以下错误码的详细介绍请参见[uitest测试框架错误码](../errorcodes/errorcode-uitest.md)。
 
-| 类型     | 说明                                     |
+| 错误码ID | 错误信息                                 |
 | -------- | ---------------------------------------- |
 | 17000002 | API does not allow calling concurrently. |
 | 17000004 | Component lost/UiWindow lost.            |
@@ -1295,7 +1295,7 @@ static create(): Driver
 
 **返回值：**
 
-| 错误码ID | 错误信息             |
+| 类型 | 说明           |
 | -------- | ---------------------- |
 | Driver   | 返回构造的Driver对象。 |
 
@@ -1303,7 +1303,7 @@ static create(): Driver
 
 以下错误码的详细介绍请参见[uitest测试框架错误码](../errorcodes/errorcode-uitest.md)。
 
-| 类型     | 说明               |
+| 错误码ID | 错误信息           |
 | -------- | ------------------ |
 | 17000001 | Initialize failed. |
 
@@ -2518,7 +2518,7 @@ split(): Promise\<void>
 
 以下错误码的详细介绍请参见[uitest测试框架错误码](../errorcodes/errorcode-uitest.md)。
 
-| 类型     | 说明                                     |
+| 错误码ID | 错误信息                                 |
 | -------- | ---------------------------------------- |
 | 17000002 | API does not allow calling concurrently. |
 | 17000004 | Component lost/UiWindow lost.            |
