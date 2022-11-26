@@ -16,11 +16,11 @@ import {Action, Key, KeyEvent} from '@ohos.multimodalInput.keyEvent';
 
 **系统能力**：SystemCapability.MultimodalInput.Input.Core
 
-| 名称   | 类型 | 可读 | 可写 | 说明     |
-| ------ | -------- | ---- | ---- | -------- |
-| CANCEL | number   | 是   | 否   | 按键取消 |
-| DOWN   | number   | 是   | 否   | 按键按下 |
-| UP     | number   | 是   | 否   | 按键抬起 |
+| 名称   | 值  | 说明     |
+| ------ | ------- | -------- |
+| CANCEL | 0    | 按键取消 |
+| DOWN   | 1    | 按键按下 |
+| UP     | 2    | 按键抬起 |
 
 ## Key
 
