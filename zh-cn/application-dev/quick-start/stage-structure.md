@@ -36,7 +36,7 @@
 | targetAPIVersion               | 该标签标识应用运行需要的API目标版本。   | 数值     | 可缺省，缺省值为bundle-profile.json5中的compileSdkVersion。|
 | apiReleaseType                 | 该标签标识应用运行需要的API目标版本的类型，采用字符串类型表示。取值为“CanaryN”、“BetaN”或者“Release”，其中，N代表大于零的整数。<br />Canary :受限发布的版本。<br/>Beta :公开发布的Beta版本。<br/>Release :公开发布的正式版本。<br/>该字段由IDE读取当前使用的SDK的stage来生成。 | 字符串   | 可缺省，由IDE生成并覆盖。             |
 | distributedNotificationEnabled | 该标签标记该应用是否开启分布式通知。                         | 布尔值   | 可缺省，缺省值为true。                |
-| entityType                     | 该标签标记该应用的类别，具体有 :游戏类(game)，影音类（media）、社交通信类（communication）、新闻类（news）、<br />出行类（travel）、工具类（utility）、购物类（shopping）、教育类（education）、少儿类（kids）、商务类（business）、拍摄类（photography）。 | 字符串   | 可缺省，缺省值为"unspecified"。         |
+| entityType                     | 该标签标记该应用的类别，具体有 :游戏类(game)，影音类（media）、社交通信类（communication）、新闻类（news）、<br />出行类（travel）、工具类（utility）、购物类（shopping）、教育类（education）、少儿类（kids）、商务类（business）、拍摄类（photography）、未指定（unspecified）。 | 字符串   | 可缺省，缺省值为"unspecified"。         |
 | multiProjects | 标识当前工程是否支持多工程。 | 布尔值 | 可缺省，缺省值为false。 |
 | 设备类型                       | 该标签可以配置多个，表示具体设备上的特殊配置信息，具体的设备类型有："tablet"、"tv"、"wearable"、"car"、"default"，可包含的字段有：minAPIVersion、distributedNotificationEnabled。 | 对象     | 可缺省，缺省值使用app下面相关的字段。 |
 
