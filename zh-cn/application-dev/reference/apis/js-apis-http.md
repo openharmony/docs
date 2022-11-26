@@ -360,7 +360,7 @@ httpRequest.once('headersReceive', (header) => {
 | method         | [RequestMethod](#requestmethod)               | 否   | 请求方式。                                                   |
 | extraData      | string \| Object  \| ArrayBuffer<sup>6+</sup> | 否   | 发送请求的额外数据。<br />- 当HTTP请求为POST、PUT等方法时，此字段为HTTP请求的content。<br />- 当HTTP请求为GET、OPTIONS、DELETE、TRACE、CONNECT等方法时，此字段为HTTP请求的参数补充，参数内容会拼接到URL中进行发送。<sup>6+</sup><br />- 开发者传入string对象，开发者需要自行编码，将编码后的string传入。<sup>6+</sup> |
 | expectDataType<sup>9+</sup>  | [HttpDataType](#httpdatatype9)   | 否   | 指定返回数据的类型。如果设置了此参数，系统将优先返回指定的类型。 |
-| usingCache<sup>9+</sup>      | boolean                         | 否   | 是否使用缓存，默认位true。   |
+| usingCache<sup>9+</sup>      | boolean                         | 否   | 是否使用缓存，默认为true。   |
 | priority<sup>9+</sup>        | number                          | 否   | 优先级，范围\[1,1000]，默认是1。                           |
 | header         | Object                                        | 否   | HTTP请求头字段。默认{'Content-Type': 'application/json'}。   |
 | readTimeout    | number                                        | 否   | 读取超时时间。单位为毫秒（ms），默认为60000ms。              |
