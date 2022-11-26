@@ -24,7 +24,7 @@ Create a badge.
 | count | number | Yes| - | Number of notifications.|
 | position | [BadgePosition](#badgeposition) | No| BadgePosition.RightTop | Position to display the badge relative to the parent component.|
 | maxCount | number | No| 99 | Maximum number of notifications. When the maximum number is reached, only **maxCount+** is displayed.|
-| style | [BadgeStyle](#badgestyle) | Yes| - | Style of the badge, including the font color, font size, badge color, and badge size. |
+| style | [BadgeStyle](#badgestyle) | Yes| - | Style of the badge, including the font color, font size, badge color, and badge size.|
 
 **Method 2**: Badge(value: {value: string, position?: BadgePosition, style: BadgeStyle})
 
@@ -36,7 +36,7 @@ Creates a badge based on the given string.
 | -------- | -------- | -------- | -------- | -------- |
 | value | string | Yes| - | Prompt content.|
 | position | [BadgePosition](#badgeposition) | No| BadgePosition.RightTop | Position to display the badge relative to the parent component.|
-| style | [BadgeStyle](#badgestyle) | Yes| - | Style of the badge, including the font color, font size, badge color, and badge size. |
+| style | [BadgeStyle](#badgestyle) | Yes| - | Style of the badge, including the font color, font size, badge color, and badge size.|
 
 ## BadgePosition
 
@@ -47,12 +47,13 @@ Creates a badge based on the given string.
 | Left | The badge is vertically centered on the left of the parent component.|
 
 ## BadgeStyle
-| Name| Type| Mandatory| Default Value| Description|
-| -------- | -------- | -------- | -------- | -------- |
-| color | [ResourceColor](ts-types.md#resourcecolor) | No| Color.White | Font color. |
-| fontSize | number&nbsp;\|&nbsp;string | No| 10 | Font size. |
-| badgeSize | number&nbsp;\|&nbsp;string | Yes| - | Badge size.|
-| badgeColor | [ResourceColor](ts-types.md#resourcecolor) | No| Color.Red | Badge color.|
+
+| Name      | Type                                      | Mandatory| Default Value     | Description                                       |
+| ---------- | ------------------------------------------ | ---- | ----------- | ------------------------------------------- |
+| color      | [ResourceColor](ts-types.md#resourcecolor) | No  | Color.White | Font color.                                 |
+| fontSize   | number \| string                 | No  | 10          | Font size, in vp.                    |
+| badgeSize  | number \| string                 | No  | 16          | Badge size, in vp. This parameter cannot be set in percentage. If it is set to an invalid value, the default value is used.|
+| badgeColor | [ResourceColor](ts-types.md#resourcecolor) | No  | Color.Red   | Badge color.                              |
 
 ## Example
 

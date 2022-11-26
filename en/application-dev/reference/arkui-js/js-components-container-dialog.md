@@ -1,61 +1,67 @@
 # dialog
 
-The **&lt;dialog&gt;** component is a custom pop-up container.
+>  **NOTE**
+>
+>  This component is supported since API version 4. Updates will be marked with a superscript to indicate their earliest API version.
+
+The **\<dialog>** component is a custom dialog box.
 
 ## Required Permissions
 
 None
 
+
 ## Child Components
 
-A single child component is supported.
+This component supports only one child component.
+
 
 ## Attributes
 
-In addition to the attributes in [Universal Attributes](js-components-common-attributes.md), the following attributes are supported.
+In addition to the [universal attributes](../arkui-js/js-components-common-attributes.md), the following attributes are supported.
 
+| Name                   | Type     | Default Value  | Mandatory  | Description          |
+| --------------------- | ------- | ----- | ---- | ------------ |
+| dragable<sup>7+</sup> | boolean | false | No   | Whether the dialog box can be dragged.|
 
-
-| Name                  | Type    | Default Value | Mandatory | Description                        |
-| --------------------- | ------- | ------------- | --------- | ---------------------------------- |
-| dragable<sup>7+</sup> | boolean | false         | No        | Whether the pop-up can be dragged. |
-
-> ![img](https://gitee.com/openharmony/docs/raw/master/en/application-dev/public_sys-resources/icon-note.gif) **NOTE:**
+>  **NOTE**
 >
-> - The **&lt;dialog&gt;** component does not support the **focusable** and **click-effect** attributes.
+>  The **\<dialog>** component does not support the **focusable** and **click-effect** attributes.
+
 
 ## Styles
 
-Only the **width**, **height**, **margin**, **margin-[left|top|right|bottom]**, and **margin-[start|end]** styles in [Universal Styles](js-components-common-styles.md) are supported.
+Only the **width**, **height**, **margin**, **margin-[left|top|right|bottom]**, and **margin-[start|end]** styles in [Universal Styles](../arkui-js/js-components-common-styles.md) are supported.
+
 
 ## Events
 
-Events in [Universal Events](js-components-common-events.md) are not supported. The following table lists the supported event.
+The following events are supported. The [universal events](../arkui-js/js-components-common-events.md) are not supported.
 
+| Name                | Parameter  | Description                        |
+| ------------------ | ---- | -------------------------- |
+| cancel             | -    | Triggered when a user touches an area outside the dialog box to cancel the dialog box.|
+| show<sup>7+</sup>  | -    | Triggered when the dialog box is displayed.              |
+| close<sup>7+</sup> | -    | Triggered when the dialog box is closed.              |
 
-
-| Name    | Parameter | Description                                                  |
-| ------- | --------- | ------------------------------------------------------------ |
-| cancel  | -         | Triggered when a user taps a non-dialog area to cancel the pop-up. |
-| show7+  | -         | Triggered when the pop-up is displayed.                      |
-| close7+ | -         | Triggered when the pop-up is closed.                         |
 
 ## Methods
 
-Methods in [Universal Methods](js-components-common-methods.md) are not supported. The following table lists the supported methods.
+The following methods are supported. The [universal methods](../arkui-js/js-components-common-methods.md) are not supported.
+
+| Name   | Parameter  | Description    |
+| ----- | ---- | ------ |
+| show  | -    | Shows a dialog box.|
+| close | -    | Close the dialog box.|
+
+>  **NOTE**
+>
+>  Attributes and styles of a **\<dialog>** component cannot be dynamically updated.
 
 
+## Example
 
-| Name  | Parameter | Description          |
-| ----- | --------- | -------------------- |
-| show  | -         | Shows a dialog box.  |
-| close | -         | Closes a dialog box. |
-
-> ![img](https://gitee.com/openharmony/docs/raw/master/en/application-dev/public_sys-resources/icon-note.gif) **NOTE:** Attributes and styles of a **\<dialog>** component cannot be dynamically updated.
-
-## Example Code
-
-```
+```html
 <!-- xxx.hml -->
 <div class="doc-page">
   <div class="btn-div">
@@ -73,6 +79,9 @@ Methods in [Universal Methods](js-components-common-methods.md) are not supporte
     </div>
   </dialog>
 </div>
+```
+
+```css
 /* xxx.css */
 .doc-page {
   flex-direction: column;
@@ -119,30 +128,33 @@ Methods in [Universal Methods](js-components-common-methods.md) are not supporte
   background-color: #F2F2F2;
   text-color: #0D81F2;
 }
+```
+
+```js
 // xxx.js
 import prompt from '@system.prompt';
 export default {
-  showDialog(e) {
+  showDialog() {
     this.$element('simpledialog').show()
   },
-  cancelDialog(e) {
+  cancelDialog() {
     prompt.showToast({
       message: 'Dialog cancelled'
     })
   },
-  cancelSchedule(e) {
+  cancelSchedule() {
     this.$element('simpledialog').close()
     prompt.showToast({
       message: 'Successfully cancelled'
     })
   },
-  setSchedule(e) {
+  setSchedule() {
     this.$element('simpledialog').close()
     prompt.showToast({
       message: 'Successfully confirmed'
     })
   },
-  doubleclick(e){
+  doubleclick(){
     prompt.showToast({
       message: 'doubleclick'
     })
@@ -150,4 +162,4 @@ export default {
 }
 ```
 
-![img](figures/4.gif)
+![4](figures/4.gif)
