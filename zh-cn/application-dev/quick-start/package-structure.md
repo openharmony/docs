@@ -403,7 +403,7 @@ metaData示例：
 | label            | 标识Ability对用户显示的名称。取值可以是Ability名称，也可以是对该名称的资源索引，以支持多语言。如果在该Ability的skills属性中，actions的取值包含 “action.system.home”，entities取值中包含“entity.system.home”，则该Ability的label将同时作为应用的label。如果存在多个符合条件的Ability，则取位置靠前的Ability的label作为应用的label。<br /> 说明： 应用的“icon”和“label”是用户可感知配置项，需要区别于当前所有已有的应用“icon”或“label”（至少有一个不同）。该标签为资源文件中定义的字符串的引用，或以"{}"包括的字符串。该标签最大长度为255。 | 字符串     | 可缺省，缺省值为空。                                     |
 | uri              | 标识Ability的统一资源标识符。该标签最大长度为255。           | 字符串     | 可缺省，对于data类型的Ability不可缺省。                  |
 | launchType       | 标识Ability的启动模式，支持“standard”和“singleton”两种模式：<br />standard：表示该Ability可以有多实例。该模式适用于大多数应用场景。<br />singleton：表示该Ability在所有任务栈中仅可以有一个实例。例如，具有全局唯一性的呼叫来电界面即采用“singleton”模式。该标签仅适用于默认设备、平板、智慧屏、车机、智能穿戴。 | 字符串     | 可缺省，缺省值为“singleton”。                            |
-| visible          | 标识Ability是否可以被其他应用调用。<br />true：可以被其他应用调用。<br />false：不能被其他应用调用。 | 布尔值   | 可缺省，缺省值为“false”。                                |
+| visible          | 标识Ability是否可以被其他应用调用。<br />true：可以被其他应用调用。<br />false：不能被其他应用调用。 | 布尔值   | 可缺省，缺省值为false。                                |
 | permissions      | 标识其他应用的Ability调用此Ability时需要申请的权限集合，一个数组元素为一个权限名称。通常采用反向域名格式（最大255字节），取值为系统预定义的权限。 | 字符串数组 | 可缺省，缺省值为空。                                     |
 | skills           | 标识Ability能够接收的want的特征。                            | 对象数组   | 可缺省，缺省值为空。                                     |
 | deviceCapability | 标识Ability运行时要求设备具有的能力，采用字符串数组的格式表示。该标签为数组，支持最多配置512个元素，单个元素最大字节长度为64。 | 字符串数组 | 可缺省，缺省值为空。                                     |
@@ -419,7 +419,7 @@ metaData示例：
 | targetAbility    | 标识当前Ability重用的目标Ability。该标签仅适用于page类型的Ability。如果配置了targetAbility属性，则当前Ability（即别名Ability）的属性中仅name、icon、label、visible、permissions、skills生效，其它属性均沿用targetAbility中的属性值。目标Ability必须与别名Ability在同一应用中，且在配置文件中目标Ability必须在别名之前进行声明。该标签仅适用于默认设备、平板、智慧屏、车机、智能穿戴。 | 字符串     | 可缺省，缺省值为空。表示当前Ability不是一个别名Ability。 |
 | formsEnabled     | 标识Ability是否支持卡片（forms）功能。该标签仅适用于page类型的Ability。<br />true表示支持卡片能力，false表示不支持卡片能力。 | 布尔值 | 可缺省，缺省值为false。                                |
 | forms            | 标识服务卡片的属性。该标签仅当formsEnabled为“true”时，才能生效。参考表26。 | 对象数组   | 可缺省，缺省值为空。                                     |
-| srcLanguage      | Ability开发语言的类型，开发者创建工程时由开发者手动选择开发语言。                                      | 字符串     | 可缺省，取值为js或ets                                      |
+| srcLanguage      | Ability开发语言的类型，开发者创建工程时由开发者手动选择开发语言。                                      | 字符串     | 可缺省，取值为"js"或"ets"                                      |
 | srcPath          | 该标签标识Ability对应的JS组件代码路径，该标签最大长度为127字节。                        | 字符串     | 可缺省，缺省值为空。                                     |
 | uriPermission    | 标识该Ability有权访问的应用程序数据。此属性由模式和路径子属性组成。此属性仅对类型提供者的能力有效。运行OHOS的设备不支持此属性。参考表16。 | 对象       | 可缺省，缺省值为空。                                     |
 | startWindowIcon    | 标识该Ability启动页面图标资源文件的索引。该标签仅适用于page类型的ability。取值示例：$media:icon。 | 字符串       | 可缺省，缺省值为空。|
@@ -431,7 +431,7 @@ metaData示例：
 | 属性名称 | 含义                    | 数据类型 | 是否可缺省                |
 | -------- | ----------------------- | -------- | ------------------------- |
 | path     | uriPermission标识的路径，该标签最大字节长度为255个字节。 | 字符串   | 不可缺省。                  |
-| mode     | uriPermission的匹配模式 | 字符串   | 可缺省，缺省值为default。 |
+| mode     | uriPermission的匹配模式 | 字符串   | 可缺省，缺省值为"default"。 |
 
 abilities示例：
 
@@ -550,13 +550,13 @@ skills示例：
 | 属性名称        | 含义                                                         | 数据类型<div style="width:20px"> | 是否可缺省              |
 | --------------- | ------------------------------------------------------------ | -------- | ----------------------- |
 | designWidth     | 标识页面设计基准宽度。以此为基准，根据实际设备宽度来缩放元素大小。 | 数值     | 可缺省，缺省值为720px。   |
-| autoDesignWidth | 标识页面设计基准宽度是否自动计算。当配置为true时，designWidth将会被忽略，设计基准宽度由设备宽度与屏幕密度计算得出。 | 布尔值   | 可缺省，缺省值为“false”。 |
+| autoDesignWidth | 标识页面设计基准宽度是否自动计算。当配置为true时，designWidth将会被忽略，设计基准宽度由设备宽度与屏幕密度计算得出。 | 布尔值   | 可缺省，缺省值为false。 |
 
 表23 mode对象的内部结构说明
 
 | 属性名称 | 含义                 | 数据类型                            | 是否可缺省                  |
 | -------- | -------------------- | ----------------------------------- | --------------------------- |
-| type     | 定义JS组件的功能类型 | 字符串，取值为"pageAbility"、"form" | 可缺省，缺省值为pageAbility。 |
+| type     | 定义JS组件的功能类型 | 字符串，取值为"pageAbility"、"form" | 可缺省，缺省值为"pageAbility"。 |
 | syntax   | 定义JS组件的语法类型 | 字符串，取值为"hml"，"ets"          | 可缺省，缺省值为"hml"。       |
 
 js示例：
@@ -638,7 +638,7 @@ shortcuts示例：
 | defaultDimension    | 标识卡片的默认外观规格，取值必须在该卡片supportDimensions配置的列表中。 | 字符串     | 不可缺省。                 |
 | updateEnabled       | 标识卡片是否支持周期性刷新，取值范围：<br />true：表示支持周期性刷新，可以在定时刷新（updateDuration）和定点刷新（scheduledUpdateTime）两种方式任选其一，优先选择定时刷新。<br />false：表示不支持周期性刷新。 | 布尔值   | 不可缺省。                 |
 | scheduledUpdateTime | 标识卡片的定点刷新的时刻，采用24小时制，精确到分钟。         | 字符串     | 可缺省，缺省值为“0:0”。  |
-| updateDuration      | 标识卡片定时刷新的更新周期，单位为30分钟，取值为自然数。<br />当取值为0时，表示该参数不生效。<br />当取值为正整数N时，表示刷新周期为30*N分钟。 | 数值       | 可缺省，缺省值为“0”。    |
+| updateDuration      | 标识卡片定时刷新的更新周期，单位为30分钟，取值为自然数。<br />当取值为0时，表示该参数不生效。<br />当取值为正整数N时，表示刷新周期为30*N分钟。 | 数值       | 可缺省，缺省值为0。    |
 | formConfigAbility   | 标识用于调整卡片的设施或活动的名称。                         | 字符串     | 可缺省，缺省值为空。     |
 | formVisibleNotify   | 标识是否允许卡片使用卡片可见性通知                           | 字符串     | 可缺省，缺省值为空。     |
 | jsComponentName     | 标识JS卡片的Component名称。字符串最大长度为127字节。仅当卡片类型为JS卡片时，需要配置该标签。 | 字符串     | 不可缺省。                 |
@@ -855,8 +855,8 @@ definePermission仅支持系统应用配置，三方应用配置不生效。
 | 属性名称                | 含义                                                         | 数据类型<div style="width:20px"> | 是否可缺省 |
 | ----------------------- | ------------------------------------------------------------ | -------- | ---------- |
 | name                    | 标识权限的名称，该标签最大长度为255字节。                                               | 字符串   | 不可缺省。   |
-| grantMode               | 标识权限的授予方式，支持如下两种授予模式：<br />system_grant:安装后系统自动授予该权限。<br />user_grant:使用时动态申请，用户授权后才可使用。 | 字符串   | 可缺省，缺省值为system_grant。   |
-| availableLevel          | 标识权限限制类别。可选值如下：<br />system_core：系统核心权限。<br />system_basic：系统基础权限。<br />normal：普通权限。所有应用允许申请的权限。 | 字符串   | 可缺省，缺省值为normal。     |
+| grantMode               | 标识权限的授予方式，支持如下两种授予模式：<br />system_grant:安装后系统自动授予该权限。<br />user_grant:使用时动态申请，用户授权后才可使用。 | 字符串   | 可缺省，缺省值为"system_grant"。   |
+| availableLevel          | 标识权限限制类别。可选值如下：<br />system_core：系统核心权限。<br />system_basic：系统基础权限。<br />normal：普通权限。所有应用允许申请的权限。 | 字符串   | 可缺省，缺省值为"normal"。     |
 | provisionEnable         | 标识权限是否支持证书方式申请权限，包括高级别的权限。配置为true标识需要开发者可以通过provision方式申请权限。 | 布尔值   | 可缺省，缺省值为true。     |
 | distributedSceneEnabled | 标识权限是否支持分布式场景下使用该权限。 | 布尔值   | 可缺省，缺省值为false。     |
 | label                   | 标识权限的简短描述，配置为对描述内容的资源索引。             | 字符串   | 可缺省，缺省值为空。     |

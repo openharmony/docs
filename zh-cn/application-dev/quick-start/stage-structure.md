@@ -85,7 +85,7 @@ HAP包的配置信息，该标签下的配置只对当前HAP包生效。
 | deliveryWithInstall  | 该标签标识当前HAP是否在用户主动安装的时候安装，true表示主动安装时安装，false表示主动安装时不安装。 | 布尔值     | 不可缺省。                                             |
 | installationFree     | 标识当前HAP是否支持免安装特性。所有Hap包都需要配置不可缺省。<br/>true :表示支持免安装特性，且符合免安装约束。<br/>false :表示不支持免安装特性。<br/><br/>当entry.hap该字段配置为true时，与该entry.hap相关的所有feature.hap该字段也需要配置为true。<br/>当entry.hap该字段配置为false时，与该entry.hap相关的各feature.hap该字段可按业务需求配置true或false。 | 布尔值     | 不可缺省。                                             |
 | virtualMachine       | 该标签用于标识当前HAP运行的目标虚拟机类型，供云端分发使用，如应用市场和分发中心。<br/>该标签值为字符串。如果目标虚拟机类型为方舟虚拟机，则其值为"ark + 版本号"。 该标签由IDE构建HAP的时候自动插入。 | 字符串     | 该标签由IDE构建HAP的时候自动插入。                            |
-| uiSyntax(deprecated) | syntax定义该JS Component的语法类型。<br />hml标识该JS Component使用hml/css/js进行开发；<br/>ets标识该JS Component使用ets声明式语法进行开发。 | 字符串     | 可缺省，缺省值为hml，该字段从API9开始废弃。            |
+| uiSyntax(deprecated) | syntax定义该JS Component的语法类型。<br />hml标识该JS Component使用hml/css/js进行开发；<br/>ets标识该JS Component使用ets声明式语法进行开发。 | 字符串     | 可缺省，缺省值为"hml"，该字段从API9开始废弃。            |
 | pages                | 标识当前Module的profile资源，用于列举JS Component中每个页面信息。该标签最大长度为255个字节。 | 字符串       | 在有ability的场景下，不可缺省。                        |
 | metadata             | 该标签标识Hap的自定义元信息。参考[metadata对象内部结构](#metadata对象内部结构)。 | 对象数组       | 可缺省，缺省值为空。                                   |
 | abilities            | 描述元能力的配置信息，该标签下的配置只对当前ability生效。参考[abilities对象内部结构](#abilities对象内部结构)。 | 对象数组       | 可缺省，缺省值为空。                                   |
