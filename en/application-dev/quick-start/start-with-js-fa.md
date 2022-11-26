@@ -51,7 +51,6 @@
 1. Use the **\<Text>** component.
 
    After the project synchronization is complete, choose **entry** > **src** > **main** > **js** > **MainAbility** > **pages** > **index** in the **Project** window and open the **index.hml** file. You can see that the file contains a **<Text>** component. The sample code in the **index.hml** file is shown below:
-
    
    ```html
    <!-- index.hml -->
@@ -65,7 +64,6 @@
 2. Add a button and bind the **onclick** method to this button.
 
    On the default page, add a **\<Button>** component to respond to user clicks and implement redirection to another page. The sample code in the **index.hml** file is shown below:
-
    
    ```html
    <!-- index.hml -->
@@ -82,7 +80,6 @@
 3. Set the page style in the **index.css** file.
 
    From the **Project** window, choose **entry** > **src** > **main** > **js** > **MainAbility** > **pages** > **index**, open the **index.css** file, and set the page styles, such as the width, height, font size, and spacing. The sample code in the **index.css** file is shown below:
-
    
    ```css
    /* index.css */
@@ -131,7 +128,6 @@
 2. Add **\<Text>** and **\<Button>** components.
 
    Add **\<Text>** and **\<Button>** components and set their styles, as you do for the first page. The sample code in the **second.hml** file is shown below:
-
    
    ```html
    <!-- second.hml -->
@@ -186,7 +182,6 @@ You can implement page redirection through the [page router](../reference/apis/j
 1. Implement redirection from the first page to the second page.
 
    In the **index.js** file of the first page, bind the **onclick** method to the button so that clicking the button redirects the user to the second page. The sample code in the **index.js** file is shown below:
-
    
    ```js
    // index.js
@@ -204,7 +199,6 @@ You can implement page redirection through the [page router](../reference/apis/j
 2. Implement redirection from the second page to the first page.
 
    In the **second.ets** file of the second page, bind the **back** method to the **Back** button so that clicking the button redirects the user back to the first page. The sample code in the **second.js** file is shown below:
-
    
    ```js
    // second.js
