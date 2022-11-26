@@ -44,10 +44,23 @@ A constructor used to create a **TreeSet** instance.
 | -------- | -------- | -------- | -------- |
 | comparator | function | No| Custom comparator.|
 
+**Error codes**
+
+For details about the error codes, see [containers Error Codes](../errorcodes/errorcode-containers.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 10200012 | The TreeSet's constructor cannot be directly invoked. |
+
 **Example**
 
 ```ts
 let treeSet = new TreeSet();
+try {
+  let treeSet2 = TreeSet();
+} catch(err) {
+  console.log(`${err.code} - ${err.name} - ${err.message}`);
+}
 ```
 
 
@@ -65,11 +78,24 @@ Checks whether this container is empty (contains no element).
 | -------- | -------- |
 | boolean | Returns **true** if the container is empty; returns **false** otherwise.|
 
+**Error codes**
+
+For details about the error codes, see [containers Error Codes](../errorcodes/errorcode-containers.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 10200011 | The isEmpty method cannot be bound. |
+
 **Example**
 
 ```ts
 const treeSet = new TreeSet();
 let result = treeSet.isEmpty();
+try {
+  treeSet.isEmpty.bind({})(); // bind() creates a new bound function that, when called, has its this keyword set to the provided value. It is used to test exception capture.
+} catch(err) {
+  console.log(`${err.code} - ${err.name} - ${err.message}`);
+}
 ```
 
 
@@ -93,6 +119,14 @@ Checks whether this container has the specified value.
 | -------- | -------- |
 | boolean | Returns **true** if the specified value is contained; returns **false** otherwise.|
 
+**Error codes**
+
+For details about the error codes, see [containers Error Codes](../errorcodes/errorcode-containers.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 10200011 | The has method cannot be bound. |
+
 **Example**
 
 ```ts
@@ -100,6 +134,11 @@ let treeSet = new TreeSet();
 treeSet.has(123);
 treeSet.add(123);
 let result1 = treeSet.has(123);
+try {
+  treeSet.has.bind({}, 123)(); // bind() creates a new bound function that, when called, has its this keyword set to the provided value. It is used to test exception capture.
+} catch(err) {
+  console.log(`${err.code} - ${err.name} - ${err.message}`);
+}
 ```
 
 
@@ -117,6 +156,14 @@ Obtains the value of the first element in this container.
 | -------- | -------- |
 | T | Value obtained.|
 
+**Error codes**
+
+For details about the error codes, see [containers Error Codes](../errorcodes/errorcode-containers.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 10200011 | The getFirstValue method cannot be bound. |
+
 **Example**
 
 ```ts
@@ -124,6 +171,11 @@ let treeSet = new TreeSet();
 treeSet.add("squirrel");
 treeSet.add("sparrow");
 let result = treeSet.getFirstValue();
+try {
+  treeSet.getFirstValue.bind({})(); // bind() creates a new bound function that, when called, has its this keyword set to the provided value. It is used to test exception capture.
+} catch(err) {
+  console.log(`${err.code} - ${err.name} - ${err.message}`);
+}
 ```
 
 
@@ -141,6 +193,14 @@ Obtains the value of the last element in this container.
 | -------- | -------- |
 | T | Value obtained.|
 
+**Error codes**
+
+For details about the error codes, see [containers Error Codes](../errorcodes/errorcode-containers.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 10200011 | The getLastValue method cannot be bound. |
+
 **Example**
 
 ```ts
@@ -148,6 +208,11 @@ let treeSet = new TreeSet();
 treeSet.add("squirrel");
 treeSet.add("sparrow");
 let result = treeSet.getLastValue();
+try {
+  treeSet.getLastValue.bind({})(); // bind() creates a new bound function that, when called, has its this keyword set to the provided value. It is used to test exception capture.
+} catch(err) {
+  console.log(`${err.code} - ${err.name} - ${err.message}`);
+}
 ```
 
 
@@ -171,11 +236,24 @@ Adds an element to this container.
 | -------- | -------- |
 | boolean | Returns **true** if the element is added successfully; returns **false** otherwise.|
 
+**Error codes**
+
+For details about the error codes, see [containers Error Codes](../errorcodes/errorcode-containers.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 10200011 | The add method cannot be bound. |
+
 **Example**
 
 ```ts
 let treeSet = new TreeSet();
 let result = treeSet.add("squirrel");
+try {
+  treeSet.add.bind({}, "squirrel")(); // bind() creates a new bound function that, when called, has its this keyword set to the provided value. It is used to test exception capture.
+} catch(err) {
+  console.log(`${err.code} - ${err.name} - ${err.message}`);
+}
 ```
 
 
@@ -199,6 +277,14 @@ Removes the element with the specified key from this container.
 | -------- | -------- |
 | boolean | Returns **true** if the element is removed successfully; returns **false** otherwise.|
 
+**Error codes**
+
+For details about the error codes, see [containers Error Codes](../errorcodes/errorcode-containers.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 10200011 | The remove method cannot be bound. |
+
 **Example**
 
 ```ts
@@ -206,6 +292,11 @@ let treeSet = new TreeSet();
 treeSet.add("squirrel");
 treeSet.add("sparrow");
 let result = treeSet.remove("sparrow");
+try {
+  treeSet.remove.bind({}, "sparrow")(); // bind() creates a new bound function that, when called, has its this keyword set to the provided value. It is used to test exception capture.
+} catch(err) {
+  console.log(`${err.code} - ${err.name} - ${err.message}`);
+}
 ```
 
 
@@ -229,6 +320,14 @@ Obtains the value that is placed in front of the input key in this container.
 | -------- | -------- |
 | T | Value obtained.|
 
+**Error codes**
+
+For details about the error codes, see [containers Error Codes](../errorcodes/errorcode-containers.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 10200011 | The getLowerValue method cannot be bound. |
+
 **Example**
 
 ```ts
@@ -237,6 +336,11 @@ treeSet.add("squirrel");
 treeSet.add("sparrow");
 treeSet.add("gander");
 let result = treeSet.getLowerValue("sparrow");
+try {
+  treeSet.getLowerValue.bind({}, "sparrow")(); // bind() creates a new bound function that, when called, has its this keyword set to the provided value. It is used to test exception capture.
+} catch(err) {
+  console.log(`${err.code} - ${err.name} - ${err.message}`);
+}
 ```
 
 
@@ -260,6 +364,14 @@ Obtains the value that is placed next to the input key in this container.
 | -------- | -------- |
 | T | Value obtained.|
 
+**Error codes**
+
+For details about the error codes, see [containers Error Codes](../errorcodes/errorcode-containers.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 10200011 | The getHigherValue method cannot be bound. |
+
 **Example**
 
 ```ts
@@ -268,6 +380,11 @@ treeSet.add("squirrel");
 treeSet.add("sparrow");
 treeSet.add("gander");
 let result = treeSet.getHigherValue("sparrow");
+try {
+  treeSet.getHigherValue.bind({}, "sparrow")(); // bind() creates a new bound function that, when called, has its this keyword set to the provided value. It is used to test exception capture.
+} catch(err) {
+  console.log(`${err.code} - ${err.name} - ${err.message}`);
+}
 ```
 
 
@@ -285,6 +402,14 @@ Removes the first element in this container.
 | -------- | -------- |
 | T | Element removed.|
 
+**Error codes**
+
+For details about the error codes, see [containers Error Codes](../errorcodes/errorcode-containers.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 10200011 | The popFirst method cannot be bound. |
+
 **Example**
 
 ```ts
@@ -292,6 +417,11 @@ let treeSet = new TreeSet();
 treeSet.add("squirrel");
 treeSet.add("sparrow");
 let result = treeSet.popFirst();
+try {
+  treeSet.popFirst.bind({})(); // bind() creates a new bound function that, when called, has its this keyword set to the provided value. It is used to test exception capture.
+} catch(err) {
+  console.log(`${err.code} - ${err.name} - ${err.message}`);
+}
 ```
 
 
@@ -309,6 +439,14 @@ Removes the last element in this container.
 | -------- | -------- |
 | T | Element removed.|
 
+**Error codes**
+
+For details about the error codes, see [containers Error Codes](../errorcodes/errorcode-containers.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 10200011 | The popLast method cannot be bound. |
+
 **Example**
 
 ```ts
@@ -316,6 +454,11 @@ let treeSet = new TreeSet();
 treeSet.add("squirrel");
 treeSet.add("sparrow");
 let result = treeSet.popLast();
+try {
+  treeSet.popLast.bind({})(); // bind() creates a new bound function that, when called, has its this keyword set to the provided value. It is used to test exception capture.
+} catch(err) {
+  console.log(`${err.code} - ${err.name} - ${err.message}`);
+}
 ```
 
 
@@ -327,6 +470,14 @@ Clears this container and sets its length to **0**.
 
 **System capability**: SystemCapability.Utils.Lang
 
+**Error codes**
+
+For details about the error codes, see [containers Error Codes](../errorcodes/errorcode-containers.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 10200011 | The clear method cannot be bound. |
+
 **Example**
 
 ```ts
@@ -334,6 +485,11 @@ let treeSet = new TreeSet();
 treeSet.add("squirrel");
 treeSet.add("sparrow");
 treeSet.clear();
+try {
+  treeSet.clear.bind({})(); // bind() creates a new bound function that, when called, has its this keyword set to the provided value. It is used to test exception capture.
+} catch(err) {
+  console.log(`${err.code} - ${err.name} - ${err.message}`);
+}
 ```
 
 
@@ -351,6 +507,14 @@ Obtains an iterator that contains all the values in this container.
 | -------- | -------- |
 | IterableIterator&lt;T&gt; | Iterator obtained.|
 
+**Error codes**
+
+For details about the error codes, see [containers Error Codes](../errorcodes/errorcode-containers.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 10200011 | The values method cannot be bound. |
+
 **Example**
 
 ```ts
@@ -362,7 +526,12 @@ let temp = iter.next().value;
 while(temp != undefined) {
   console.log("value:" + temp);
   temp = iter.next().value;
-} 
+}
+try {
+  treeSet.values.bind({})(); // bind() creates a new bound function that, when called, has its this keyword set to the provided value. It is used to test exception capture.
+} catch(err) {
+  console.log(`${err.code} - ${err.name} - ${err.message}`);
+}
 ```
 
 
@@ -388,6 +557,14 @@ callbackfn
 | key | T | No| Key of the element that is currently traversed (same as **value**).|
 | set | TreeSet&lt;T&gt; | No| Instance that invokes the **forEach** method.|
 
+**Error codes**
+
+For details about the error codes, see [containers Error Codes](../errorcodes/errorcode-containers.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 10200011 | The forEach method cannot be bound. |
+
 **Example**
 
 ```ts
@@ -397,6 +574,13 @@ treeSet.add("gull");
 treeSet.forEach((value, key) => {
   console.log("value:" + value, key)
 });
+try {
+  treeSet.forEach.bind({}, (value, key) => {
+    console.log("value:" + value, key)
+  })(); // bind() creates a new bound function that, when called, has its this keyword set to the provided value. It is used to test exception capture.
+} catch(err) {
+  console.log(`${err.code} - ${err.name} - ${err.message}`);
+}
 ```
 
 
@@ -414,6 +598,14 @@ Obtains an iterator that contains all the elements in this container.
 | -------- | -------- |
 | IterableIterator<[T, T]> | Iterator obtained.|
 
+**Error codes**
+
+For details about the error codes, see [containers Error Codes](../errorcodes/errorcode-containers.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 10200011 | The entries method cannot be bound. |
+
 **Example**
 
 ```ts
@@ -426,6 +618,11 @@ while(temp != undefined) {
   console.log("key:" + temp[0]);
   console.log("value:" + temp[1]);
   temp = iter.next().value;
+}
+try {
+  treeSet.entries.bind({})(); // bind() creates a new bound function that, when called, has its this keyword set to the provided value. It is used to test exception capture.
+} catch(err) {
+  console.log(`${err.code} - ${err.name} - ${err.message}`);
 }
 ```
 
@@ -443,6 +640,14 @@ Obtains an iterator, each item of which is a JavaScript object.
 | Type| Description|
 | -------- | -------- |
 | IterableIterator&lt;T&gt; | Iterator obtained.|
+
+**Error codes**
+
+For details about the error codes, see [containers Error Codes](../errorcodes/errorcode-containers.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 10200011 | The Symbol.iterator method cannot be bound. |
 
 **Example**
 
@@ -462,5 +667,10 @@ let temp = iter.next().value;
 while(temp != undefined) {
   console.log("value:" + temp);
   temp = iter.next().value;
+}
+try {
+  treeSet[Symbol.iterator].bind({})(); // bind() creates a new bound function that, when called, has its this keyword set to the provided value. It is used to test exception capture.
+} catch(err) {
+  console.log(`${err.code} - ${err.name} - ${err.message}`);
 }
 ```

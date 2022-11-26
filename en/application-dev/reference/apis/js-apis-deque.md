@@ -39,10 +39,23 @@ A constructor used to create a **Deque** instance.
 
 **System capability**: SystemCapability.Utils.Lang
 
+**Error codes**
+
+For details about the error codes, see [containers Error Codes](../errorcodes/errorcode-containers.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 10200012 | The Deque's constructor cannot be directly invoked. |
+
 **Example**
 
 ```ts
 let deque = new Deque();
+try {
+  let deque2 = Deque();
+} catch(err) {
+  console.log(`${err.code} - ${err.name} - ${err.message}`);
+}
 ```
 
 ### insertFront
@@ -59,6 +72,14 @@ Inserts an element at the front of this container.
 | -------- | -------- | -------- | -------- |
 | element | T | Yes| Target element.|
 
+**Error codes**
+
+For details about the error codes, see [containers Error Codes](../errorcodes/errorcode-containers.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 10200011 | The insertFront method cannot be bound. |
+
 **Example**
 
 ```ts
@@ -68,7 +89,13 @@ deque.insertFront(1);
 let b = [1, 2, 3];
 deque.insertFront(b);
 let c = {name : "Dylon", age : "13"};
+deque.insertFront(c);
 deque.insertFront(false);
+try {
+  deque.insertFront.bind({}, "b")(); // bind() creates a new bound function that, when called, has its this keyword set to the provided value. It is used to test exception capture.
+} catch(err) {
+  console.log(`${err.code} - ${err.name} - ${err.message}`);
+}
 ```
 
 ### insertEnd
@@ -85,6 +112,14 @@ Inserts an element at the end of this container.
 | -------- | -------- | -------- | -------- |
 | element | T | Yes| Target element.|
 
+**Error codes**
+
+For details about the error codes, see [containers Error Codes](../errorcodes/errorcode-containers.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 10200011 | The insertEnd method cannot be bound. |
+
 **Example**
 
 ```ts
@@ -94,7 +129,13 @@ deque.insertEnd(1);
 let b = [1, 2, 3];
 deque.insertEnd(b);
 let c = {name : "Dylon", age : "13"};
+deque.insertEnd(c);
 deque.insertEnd(false);
+try {
+  deque.insertEnd.bind({}, "b")(); // bind() creates a new bound function that, when called, has its this keyword set to the provided value. It is used to test exception capture.
+} catch(err) {
+  console.log(`${err.code} - ${err.name} - ${err.message}`);
+}
 ```
 
 ### has
@@ -117,6 +158,14 @@ Checks whether this container has the specified element.
 | -------- | -------- |
 | boolean | Returns **true** if the specified element is contained; returns **false** otherwise.|
 
+**Error codes**
+
+For details about the error codes, see [containers Error Codes](../errorcodes/errorcode-containers.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 10200011 | The has method cannot be bound. |
+
 **Example**
 
 ```ts
@@ -124,6 +173,11 @@ let deque = new Deque();
 let result = deque.has("squirrel");
 deque.insertFront("squirrel");
 let result1 = deque.has("squirrel");
+try {
+  deque.has.bind({}, "b")(); // bind() creates a new bound function that, when called, has its this keyword set to the provided value. It is used to test exception capture.
+} catch(err) {
+  console.log(`${err.code} - ${err.name} - ${err.message}`);
+}
 ```
 
 ### popFirst
@@ -140,6 +194,14 @@ Removes the first element of this container.
 | -------- | -------- |
 | T | Element removed.|
 
+**Error codes**
+
+For details about the error codes, see [containers Error Codes](../errorcodes/errorcode-containers.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 10200011 | The popFirst method cannot be bound. |
+
 **Example**
 
 ```ts
@@ -150,6 +212,11 @@ deque.insertEnd(5);
 deque.insertFront(2);
 deque.insertFront(4);
 let result = deque.popFirst();
+try {
+  deque.popFirst.bind({})(); // bind() creates a new bound function that, when called, has its this keyword set to the provided value. It is used to test exception capture.
+} catch(err) {
+  console.log(`${err.code} - ${err.name} - ${err.message}`);
+}
 ```
 
 ### popLast
@@ -166,6 +233,14 @@ Removes the last element of this container.
 | -------- | -------- |
 | T | Element removed.|
 
+**Error codes**
+
+For details about the error codes, see [containers Error Codes](../errorcodes/errorcode-containers.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 10200011 | The popLast method cannot be bound. |
+
 **Example**
 
 ```ts
@@ -176,6 +251,11 @@ deque.insertFront(5);
 deque.insertFront(2);
 deque.insertFront(4);
 let result = deque.popLast();
+try {
+  deque.popLast.bind({})(); // bind() creates a new bound function that, when called, has its this keyword set to the provided value. It is used to test exception capture.
+} catch(err) {
+  console.log(`${err.code} - ${err.name} - ${err.message}`);
+}
 ```
 
 ### forEach
@@ -202,6 +282,14 @@ callbackfn
 | index | number | No| Position index of the element that is currently traversed.|
 | deque | Deque&lt;T&gt; | No| Instance that invokes the **forEach** method.|
 
+**Error codes**
+
+For details about the error codes, see [containers Error Codes](../errorcodes/errorcode-containers.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 10200011 | The forEach method cannot be bound. |
+
 **Example**
 
 ```ts
@@ -213,6 +301,13 @@ deque.insertEnd(4);
 deque.forEach((value, index) => {
   console.log("value:" + value, index);
 });
+try {
+  deque.forEach.bind({}, (value, index) => {
+    console.log("value:" + value, index);
+  })(); // bind() creates a new bound function that, when called, has its this keyword set to the provided value. It is used to test exception capture.
+} catch(err) {
+  console.log(`${err.code} - ${err.name} - ${err.message}`);
+}
 ```
 
 ### getFirst
@@ -229,6 +324,14 @@ Obtains the first element of this container.
 | -------- | -------- |
 | T | Element obtained.|
 
+**Error codes**
+
+For details about the error codes, see [containers Error Codes](../errorcodes/errorcode-containers.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 10200011 | The getFirst method cannot be bound. |
+
 **Example**
 
 ```ts
@@ -238,6 +341,11 @@ deque.insertEnd(4);
 deque.insertFront(5);
 deque.insertFront(4);
 let result = deque.getFirst();
+try {
+  deque.getFirst.bind({})(); // bind() creates a new bound function that, when called, has its this keyword set to the provided value. It is used to test exception capture.
+} catch(err) {
+  console.log(`${err.code} - ${err.name} - ${err.message}`);
+}
 ```
 
 ### getLast
@@ -254,6 +362,14 @@ Obtains the last element of this container.
 | -------- | -------- |
 | T | Element obtained.|
 
+**Error codes**
+
+For details about the error codes, see [containers Error Codes](../errorcodes/errorcode-containers.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 10200011 | The getLast method cannot be bound. |
+
 **Example**
 
 ```ts
@@ -263,6 +379,11 @@ deque.insertFront(4);
 deque.insertFront(5);
 deque.insertFront(4);
 let result = deque.getLast();
+try {
+  deque.getLast.bind({})(); // bind() creates a new bound function that, when called, has its this keyword set to the provided value. It is used to test exception capture.
+} catch(err) {
+  console.log(`${err.code} - ${err.name} - ${err.message}`);
+}
 ```
 
 ### [Symbol.iterator]
@@ -278,6 +399,14 @@ Obtains an iterator, each item of which is a JavaScript object.
 | Type| Description|
 | -------- | -------- |
 | IterableIterator&lt;T&gt; | Iterator obtained.|
+
+**Error codes**
+
+For details about the error codes, see [containers Error Codes](../errorcodes/errorcode-containers.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 10200011 | The Symbol.iterator method cannot be bound. |
 
 **Example**
 ```ts
@@ -298,5 +427,10 @@ let temp = iter.next().value;
 while(temp != undefined) {
   console.log("value:" + temp);
   temp = iter.next().value;
+}
+try {
+  deque[Symbol.iterator].bind({})(); // bind() creates a new bound function that, when called, has its this keyword set to the provided value. It is used to test exception capture.
+} catch(err) {
+  console.log(`${err.code} - ${err.name} - ${err.message}`);
 }
 ```
