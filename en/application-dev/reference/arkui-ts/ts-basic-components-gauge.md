@@ -21,7 +21,7 @@ Gauge(options:{value: number, min?: number, max?: number})
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| value | number | Yes| Current data value.|
+| value | number | Yes| Current value of the chart, that is, the position to which the pointer points in the chart. It is used as the initial value of the chart when the component is created.|
 | min | number | No| Minimum value of the current data segment.<br>Default value: **0**|
 | max | number | No| Maximum value of the current data segment.<br>Default value: **100**|
 
@@ -31,10 +31,10 @@ In addition to the [universal attributes](ts-universal-attributes-size.md), the 
 
 | Name| Type| Description|
 | -------- | -------- | -------- |
-| value | number | Value of the chart.<br>Default value: **0**|
-| startAngle | number | Start angle of the chart. The value 0 indicates 0 degrees, and a positive value indicates the clockwise direction.<br>Default value: **-150**|
-| endAngle | number | End angle of the chart. The value 0 indicates 0 degrees, and a positive value indicates the clockwise direction.<br>Default value: **150**|
-| colors | Array&lt;ColorStop&gt; | Colors of the chart. Colors can be set for individual segments.|
+| value | number | Value of the chart. It can be dynamically changed.<br>Default value: **0**|
+| startAngle | number | Start angle of the chart. The value **0** indicates 0 degrees, and a positive value indicates the clockwise direction.<br>Default value: **0**|
+| endAngle | number | End angle of the chart. The value **0** indicates 0 degrees, and a positive value indicates the clockwise direction.<br>Default value: **360**|
+| colors | Array&lt;[ColorStop](#colorstop)&gt; | Colors of the chart. Colors can be set for individual segments.|
 | strokeWidth | Length | Stroke width of the chart.|
 
 ## ColorStop
@@ -43,7 +43,7 @@ Describes a gradient stop.
 
 | Name     | Type            | Description                                                        |
 | --------- | -------------------- | ------------------------------------------------------------ |
-| ColorStop | [[ResourceColor](ts-types.md#resourcecolor), number] | Type of the gradient stop. The first parameter specifies the color, and the second parameter specifies the offset, which ranges from 0 to 1.|
+| ColorStop | [[ResourceColor](ts-types.md#resourcecolor), number] | Type of the gradient stop. The first parameter indicates the color value. If it is set to a non-color value, the black color is used. The second parameter indicates the color weight. If it is set to a negative number or a non-numeric value, the color weight is 0, which means that the color is not displayed.|
 
 
 ## Example
@@ -55,15 +55,30 @@ Describes a gradient stop.
 @Component
 struct GaugeExample {
   build() {
-    Column() {
-      Gauge({ value: 50, min: 0, max: 100 })
-        .startAngle(210).endAngle(150)
-        .colors([[0x317AF7, 1], [0x5BA854, 1], [0xE08C3A, 1], [0x9C554B, 1], [0xD94838, 1]])
-        .strokeWidth(20)
+    Column({ space: 20 }) {
+      // Use the default value of min and max, which is 0-100, and the default values of startAngle and endAngle, which are 0 and 360, respectively.
+      // Set the current value to 75.
+      Gauge({ value: 75 })
         .width(200).height(200)
+        .colors([[0x317AF7, 1], [0x5BA854, 1], [0xE08C3A, 1], [0x9C554B, 1]])
+      
+      // Set the value parameter to 75 and the value attribute to 25. The attribute setting is used.
+      Gauge({ value: 75 })
+        .value(25) // If both the attribute and parameter are set, the parameter setting is used.
+        .width(200).height(200)
+        .colors([[0x317AF7, 1], [0x5BA854, 1], [0xE08C3A, 1], [0x9C554B, 1]])
+      
+      // A ring chart of 210 to 150 degrees
+      Gauge({ value: 30, min: 0, max: 100 })
+        .startAngle(210)
+        .endAngle(150)
+        .colors([[0x317AF7, 0.1], [0x5BA854, 0.2], [0xE08C3A, 0.3], [0x9C554B, 0.4]])
+        .strokeWidth(20)
+        .width(200)
+        .height(200)
     }.width('100%').margin({ top: 5 })
   }
 }
 ```
 
-![en-us_image_0000001174422916](figures/en-us_image_0000001174422916.png)
+![gauge](figures/gauge-image.png)
