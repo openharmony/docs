@@ -142,7 +142,7 @@ Obtains the color space type.
 
 ```js
 try {
-    let csType = colorSpace.getColorSpaceName();
+    colorSpace.getColorSpaceName();
 } catch (err) {
     console.log(`Fail to get colorSpace's name. Cause: ` + JSON.stringify(err));
 }
@@ -166,7 +166,7 @@ Obtains the coordinates of the white point of the color space.
 
 ```js
 try {
-    let wp = colorSpace.getWhitePoint();
+    colorSpace.getWhitePoint();
 } catch (err) {
     console.log(`Failed to get white point. Cause: ` + JSON.stringify(err));
 }
@@ -190,7 +190,7 @@ Obtains the gamma of the color space.
 
 ```js
 try {
-    let gamma = colorSpace.getGamma();
+    colorSpace.getGamma();
 } catch (err) {
     console.log(`Failed to get gamma. Cause: ` + JSON.stringify(err));
 }
