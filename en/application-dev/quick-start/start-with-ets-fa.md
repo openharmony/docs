@@ -1,9 +1,9 @@
-# Getting Started with eTS in FA Model
+# Getting Started with ArkTS in FA Model
 
 
 >  **NOTE**
 >
->  To use eTS, your DevEco Studio must be V3.0.0.601 Beta1 or later.
+>  To use ArkTS, your DevEco Studio must be V3.0.0.601 Beta1 or later.
 >
 >  For best possible results, use [DevEco Studio V3.0.0.993](https://developer.harmonyos.com/cn/develop/deveco-studio#download) for your development.
 
@@ -37,7 +37,7 @@
   - **src > main > ets > MainAbility > pages**: pages contained in **MainAbility**.
   - **src > main > ets > MainAbility > pages > index.ets**: the first page in the **pages** list, also referred to as the entry to the application.
   - **src > main > ets > MainAbility > app.ets**: ability lifecycle file.
-  - **src > main > resources**: a collection of resource files used by your application/service, such as graphics, multimedia, character strings, and layout files. For details about resource files, see [Resource File Categories](../ui/ui-ts-basic-resource-file-categories.md).
+  - **src > main > resources**: a collection of resource files used by your application/service, such as graphics, multimedia, character strings, and layout files. For details about resource files, see [Resource Categories and Access](resource-categories-and-access.md#resource-categories).
   - **src > main > config.json**: module configuration file. This file describes the global configuration information of the application/service, the device-specific configuration information, and the configuration information of the HAP file. For details about the configuration file, see [Application Package Structure Configuration File (FA Model)](package-structure.md).
   - **build-profile.json5**: current module information and build configuration options, including **buildOption** and **targets**.
   - **hvigorfile.js**: module-level compilation and build task script. You can customize related tasks and code implementation.
@@ -52,7 +52,6 @@
 1. Use the **\<Text>** component.
 
    After the project synchronization is complete, choose **entry** > **src** > **main** > **ets** > **MainAbility** > **pages** in the **Project** window and open the **index.ets** file. You can see that the file contains a **\<Text>** component. The sample code in the **index.ets** file is shown below:
-
    
    ```ts
    // index.ets
@@ -78,7 +77,6 @@
 2. Add a **\<Button>** component.
 
    On the default page, add a **\<Button>** component to respond to user clicks and implement redirection to another page. The sample code in the **index.ets** file is shown below:
-
    
    ```ts
    // index.ets
@@ -149,7 +147,6 @@
 2. Add **\<Text>** and **\<Button>** components.
 
    Add **\<Text>** and **\<Button>** components and set their styles, as you do for the first page. The sample code in the **second.ets** file is shown below:
-
    
    ```ts
    // second.ets
@@ -192,7 +189,6 @@ You can implement page redirection through the [page router](../reference/apis/j
 1. Implement redirection from the first page to the second page.
 
    In the **index.ets** file of the first page, bind the **onClick** event to the **Next** button so that clicking the button redirects the user to the second page. The sample code in the **index.ets** file is shown below:
-
    
    ```ts
    // index.ets
@@ -237,7 +233,6 @@ You can implement page redirection through the [page router](../reference/apis/j
 2. Implement redirection from the second page to the first page.
 
    In the **second.ets** file of the second page, bind the **onClick** event to the **Back** button so that clicking the button redirects the user back to the first page. The sample code in the **second.ets** file is shown below:
-
    
    ```ts
    // second.ets
@@ -295,4 +290,4 @@ You can implement page redirection through the [page router](../reference/apis/j
 
    ![en-us_image_0000001363934577](figures/en-us_image_0000001363934577.png)
 
-Congratulations! You have finished developing your OpenHarmony application in eTS in the FA model. To learn more about OpenHarmony application development, see [Application Development Overview](../application-dev-guide.md).
+Congratulations! You have finished developing your OpenHarmony application in ArkTS in the FA model. To learn more about OpenHarmony application development, see [Application Development Overview](../application-dev-guide.md).
