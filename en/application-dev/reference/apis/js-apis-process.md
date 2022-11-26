@@ -28,10 +28,209 @@ import process from '@ohos.process';
 | tid<sup>8+</sup> | number | Yes| No| Thread ID (TID) of a process.|
 
 
+## ProcessManager<sup>9+</sup>	
+
+Provides APIs for throwing exceptions during the addition of a process.
+
+### process.isAppUid<sup>9+</sup>
+
+isAppUid(v: number): boolean
+
+Checks whether a UID belongs to this application.
+
+**System capability**: SystemCapability.Utils.Lang
+
+**Parameters**
+
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| v | number | Yes| UID.|
+
+**Return value**
+
+| Type| Description|
+| -------- | -------- |
+| boolean | Returns **true** if the UID is the application's UID; returns **false** otherwise.|
+
+**Example**
+
+```js
+let pro = new process.ProcessManager();
+let result = pro.isAppUid(688);
+```
+
+
+### process.getUidForName<sup>9+</sup>
+
+getUidForName(v: string): number
+
+Obtains the process UID based on the process name.
+
+**System capability**: SystemCapability.Utils.Lang
+
+**Parameters**
+
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| v | string | Yes| Name of a process.|
+
+**Return value**
+
+| Type| Description|
+| -------- | -------- |
+| number | Process UID.|
+
+**Example**
+
+```js
+let pro = new process.ProcessManager();
+let pres = pro .getUidForName("tool");
+```
+
+
+### process.getThreadPriority<sup>9+</sup>
+
+getThreadPriority(v: number): number
+
+Obtains the thread priority based on the specified TID.
+
+**System capability**: SystemCapability.Utils.Lang
+
+**Parameters**
+
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| v | number | Yes| TID.|
+
+**Return value**
+
+| Type| Description|
+| -------- | -------- |
+| number | Priority of the thread.|
+
+**Example**
+
+```js
+let pro = new process.ProcessManager();
+let tid = process.tid;
+let pres = pro.getThreadPriority(tid);
+```
+
+
+### process.getSystemConfig<sup>9+</sup>
+
+getSystemConfig(name: number): number
+
+Obtains the system configuration.
+
+**System capability**: SystemCapability.Utils.Lang
+
+**Parameters**
+
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| name | number | Yes| System configuration parameter name.|
+
+**Return value**
+
+| Type| Description|
+| -------- | -------- |
+| number | System configuration obtained.|
+
+**Example**
+
+```js
+let pro = new process.ProcessManager();
+let _SC_ARG_MAX = 0;
+let pres = pro.getSystemConfig(_SC_ARG_MAX);
+```
+
+
+### process.getEnvironmentVar<sup>9+</sup>
+
+getEnvironmentVar(name: string): string
+
+Obtains the value of an environment variable.
+
+**System capability**: SystemCapability.Utils.Lang
+
+**Parameters**
+
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| name | string | Yes| Environment variable name.|
+
+**Return value**
+
+| Type| Description|
+| -------- | -------- |
+| string | Value of the environment variable.|
+
+**Example**
+
+```js
+let pro = new process.ProcessManager();
+let pres = pro.getEnvironmentVar("PATH");
+```
+
+
+### process.exit<sup>9+</sup>
+
+exit(code: number): void
+
+Terminates this process.
+
+Exercise caution when using this API.
+
+**System capability**: SystemCapability.Utils.Lang
+
+**Parameters**
+
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| code | number | Yes| Exit code of the process.|
+
+**Example**
+
+```js
+let pro = new process.ProcessManager();
+pro.exit(0);
+```
+
+
+### process.kill<sup>9+</sup>
+
+kill(signal: number, pid: number): boolean
+
+Sends a signal to the specified process to terminate it.
+
+**System capability**: SystemCapability.Utils.Lang
+
+**Parameters**
+
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| pid | number | Yes| PID of the process, to which the signal will be sent.|
+| signal | number | Yes| Signal to send.|
+
+**Return value**
+
+| Type| Description|
+| -------- | -------- |
+| boolean | Returns **true** if the signal is sent successfully; returns **false** otherwise.|
+
+**Example**
+
+```js
+let pro = new process.ProcessManager();
+let pres = process.pid;
+let result = pro.kill(28, pres);
+```
+
+
 ## ChildProcess
 
 Allows a process to obtain the standard input and output of its child processes, send signals, and close its child processes.
-
 
 ### Attributes
 
@@ -193,7 +392,7 @@ let result = process.isIsolatedProcess();
 
 isAppUid(v: number): boolean
 
-Checks whether a UID belongs to this app.
+Checks whether a UID belongs to this application.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -207,7 +406,7 @@ Checks whether a UID belongs to this app.
 
 | Type| Description|
 | -------- | -------- |
-| boolean | Returns **true** if the UID is the app's UID; returns **false** otherwise.|
+| boolean | Returns **true** if the UID is the application's UID; returns **false** otherwise.|
 
 **Example**
 
