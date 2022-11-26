@@ -247,7 +247,7 @@ animatorResult.onrepeat = function() {
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称         | 参数类型                                     | 必填   | 说明                                       |
+| 名称         | 类型                                     | 必填   | 说明                                       |
 | ---------- | ---------------------------------------- | ---- | ---------------------------------------- |
 | duration   | number                                   | 是    | 动画播放的时长，单位毫秒，默认为0。                       |
 | easing     | string                                   | 是    | 动画插值曲线，默认为'ease'。                        |
