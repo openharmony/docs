@@ -402,7 +402,7 @@ distroFilter示例 :
 | scheme   | 标识URI的协议名部分，常见的有http、https、file、ftp等。 | 字符串   | 当配置type时可缺省，缺省值为空。没有配置type时不可缺省。           |
 | host     | 标识URI的主机地址部分，常见的有域名的方式，如example.com，ip地址的方式，如192.0.0.1。该字段要在scheme存在时才有意义。   | 字符串   | 可缺省，缺省值为空。 |
 | port     | 标识URI的端口部分。如http默认端口为80，https默认端口是443，ftp默认端口是21。该字段要在scheme和host都存在时才有意义。| 字符串   | 可缺省，缺省值为空。 |
-| path \| pathStartWith <br />\| pathRegex   | 标识URI的路径部分，path、pathStartWith和pathRegex配置时三选一。path标识URI与want中的路径部分全匹配，<br />pathStartWith标识URI与want中的路径部分允许前缀匹配，pathRegex标识URI与want中的路径部分允许正则匹配。<br />该字段要在scheme和host都存在时才有意义。| 字符串   | 可缺省，缺省值为空。 |
+| path \| pathStartWith \| <br />pathRegex   | 标识URI的路径部分，path、pathStartWith和pathRegex配置时三选一。path标识URI与want中的路径部分全匹配，<br />pathStartWith标识URI与want中的路径部分允许前缀匹配，pathRegex标识URI与want中的路径部分允许正则匹配。<br />该字段要在scheme和host都存在时才有意义。| 字符串   | 可缺省，缺省值为空。 |
 | type     | 标识数据类型，使用MIME（Multipurpose Internet Mail Extensions）类型规范。可与scheme同时配置，也可以单独配置。| 字符串   | 可缺省，缺省值为空。 |
 
 skills示例 ：
