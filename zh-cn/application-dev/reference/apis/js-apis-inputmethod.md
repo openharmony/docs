@@ -836,7 +836,7 @@ on(type: 'imeChange', callback: (inputMethodProperty: InputMethodProperty, input
 | 参数名   | 类型                            | 必填 | 说明                                                         |
 | -------- | ------------------------------- | ---- | ------------------------------------------------------------ |
 | type     | string                        | 是   | 设置监听类型。<br/>-type为‘imeChange’时表示订阅输入法及子类型变化监听事件。 |
-| callback | [InputMethodProperty](#inputmethodproperty8), [InputMethodSubtype](./js-apis-inputmethod-subtype.md#inputmethodsubtype) | 是 | 回调函数，返回输入法属性对象及输入法子类型对象。 |
+| callback | (inputMethodProperty: [InputMethodProperty](#inputmethodproperty8), inputMethodSubtype: [InputMethodSubtype](./js-apis-inputmethod-subtype.md#inputmethodsubtype)) => void  | 是 | 回调函数，返回输入法属性对象及输入法子类型对象。 |
 
 **示例：**
 
@@ -859,7 +859,7 @@ off(type: 'imeChange', callback?: (inputMethodProperty: InputMethodProperty, inp
 | 参数名   | 类型                            | 必填 | 说明                                                         |
 | -------- | ------------------------------- | ---- | ------------------------------------------------------------ |
 | type     | string                        | 是   | 设置监听类型。<br/>-type为‘imeChange’时表示取消订阅输入法及子类型变化监听事件。 |
-| callback | [InputMethodProperty](#inputmethodproperty8), [InputMethodSubtype](./js-apis-inputmethod-subtype.md#inputmethodsubtype) | 否 | 回调函数，返回取消订阅的输入法属性对象及输入法子类型对象。 |
+| callback | (inputMethodProperty: [InputMethodProperty](#inputmethodproperty8), inputMethodSubtype: [InputMethodSubtype](./js-apis-inputmethod-subtype.md#inputmethodsubtype)) => void  | 否 | 回调函数，返回取消订阅的输入法属性对象及输入法子类型对象。 |
 
 **示例：**
 
