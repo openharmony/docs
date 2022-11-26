@@ -2656,7 +2656,7 @@ try {
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
-| 参数名        | 类型          | 必填 | 说明                                                      |
+| 名称        | 类型          | 必填 | 说明                                                      |
 | ------------- | ------------- | ---- | --------------------------------------------------------- |
 | name          | string        | 是   | 数据库文件名。                                            |
 | securityLevel | SecurityLevel | 是   | 设置数据库安全级别                                        |
@@ -4649,7 +4649,7 @@ try {
 
 **系统能力：**SystemCapability.DistributedDataManager.RelationalStore.Core
 
-| 参数名 | 类型 | 必填 | 说明 |
+| 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | name | string | 是 | 数据库文件名。 |
 
