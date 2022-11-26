@@ -38,7 +38,7 @@ pushUrl(options: RouterOptions): Promise&lt;void&gt;
 
 以下错误码的详细介绍请参见[ohos.router(页面路由)](../errorcodes/errorcode-router.md)错误码。
 
-| 错误码ID   | 错误码信息 |
+| 错误码ID   | 错误信息 |
 | --------- | ------- |
 | 100001    | Internal error. |
 | 100002    | Uri error. The uri of router is not exist. |
@@ -87,7 +87,7 @@ pushUrl(options: RouterOptions, callback: AsyncCallback&lt;void&gt;): void
 
 以下错误码的详细介绍请参见[ohos.router(页面路由)](../errorcodes/errorcode-router.md)错误码。
 
-| 错误码ID   | 错误码信息 |
+| 错误码ID   | 错误信息 |
 | --------- | ------- |
 | 100001    | Internal error. |
 | 100002    | Uri error. The uri of router is not exist. |
@@ -141,7 +141,7 @@ pushUrl(options: RouterOptions, mode: RouterMode): Promise&lt;void&gt;
 
 以下错误码的详细介绍请参见[ohos.router(页面路由)](../errorcodes/errorcode-router.md)错误码。
 
-| 错误码ID   | 错误码信息 |
+| 错误码ID   | 错误信息 |
 | --------- | ------- |
 | 100001    | Internal error. |
 | 100002    | Uri error. The uri of router is not exist. |
@@ -191,7 +191,7 @@ pushUrl(options: RouterOptions, mode: RouterMode, callback: AsyncCallback&lt;voi
 
 以下错误码的详细介绍请参见[ohos.router(页面路由)](../errorcodes/errorcode-router.md)错误码。
 
-| 错误码ID   | 错误码信息 |
+| 错误码ID   | 错误信息 |
 | --------- | ------- |
 | 100001    | Internal error. |
 | 100002    | Uri error. The uri of router is not exist. |
@@ -245,7 +245,7 @@ replaceUrl(options: RouterOptions): Promise&lt;void&gt;
 
 以下错误码的详细介绍请参见[ohos.router(页面路由)](../errorcodes/errorcode-router.md)错误码。
 
-| 错误码ID   | 错误码信息 |
+| 错误码ID   | 错误信息 |
 | --------- | ------- |
 | 100001    | Internal error. |
 | 200002    | Uri error. The uri of router is not exist. |
@@ -290,7 +290,7 @@ replaceUrl(options: RouterOptions, callback: AsyncCallback&lt;void&gt;): void
 
 以下错误码的详细介绍请参见[ohos.router(页面路由)](../errorcodes/errorcode-router.md)错误码。
 
-| 错误码ID   | 错误码信息 |
+| 错误码ID   | 错误信息 |
 | --------- | ------- |
 | 100001    | Internal error. |
 | 200002    | Uri error. The uri of router is not exist. |
@@ -342,7 +342,7 @@ replaceUrl(options: RouterOptions, mode: RouterMode): Promise&lt;void&gt;
 
 以下错误码的详细介绍请参见[ohos.router(页面路由)](../errorcodes/errorcode-router.md)错误码。
 
-| 错误码ID   | 错误码信息 |
+| 错误码ID   | 错误信息 |
 | --------- | ------- |
 | 100001    | Internal error. |
 | 200002    | Uri error. The uri of router is not exist. |
@@ -388,7 +388,7 @@ replaceUrl(options: RouterOptions, mode: RouterMode, callback: AsyncCallback&lt;
 
 以下错误码的详细介绍请参见[ohos.router(页面路由)](../errorcodes/errorcode-router.md)错误码。
 
-| 错误码ID   | 错误码信息 |
+| 错误码ID   | 错误信息 |
 | --------- | ------- |
 | 100001    | Internal error. |
 | 200002    | Uri error. The uri of router is not exist. |
@@ -522,7 +522,7 @@ enableBackPageAlert(options: EnableAlertOptions): void
 
 以下错误码的详细介绍请参见[ohos.router(页面路由)](../errorcodes/errorcode-router.md)错误码。
 
-| 错误码ID   | 错误码信息 |
+| 错误码ID   | 错误信息 |
 | --------- | ------- |
 | 100001    | Internal error. |
 

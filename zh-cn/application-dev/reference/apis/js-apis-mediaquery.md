@@ -14,11 +14,6 @@ import mediaquery from '@ohos.mediaquery'
 ```
 
 
-## 权限
-
-无
-
-
 ## mediaquery.matchMediaSync
 
 matchMediaSync(condition: string): MediaQueryListener
@@ -28,19 +23,22 @@ matchMediaSync(condition: string): MediaQueryListener
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
+
 | 参数名       | 类型     | 必填   | 说明                                       |
 | --------- | ------ | ---- | ---------------------------------------- |
 | condition | string | 是    | 媒体事件的匹配条件，具体可参考[媒体查询语法规则](../../ui/ui-ts-layout-mediaquery.md#语法规则)。 |
 
 **返回值：** 
+
 | 类型                 | 说明                     |
 | ------------------ | ---------------------- |
 | MediaQueryListener | 媒体事件监听句柄，用于注册和去注册监听回调。 |
 
 **示例：** 
-  ```js
+
+```js
 let listener = mediaquery.matchMediaSync('(orientation: landscape)'); //监听横屏事件
-  ```
+```
 
 
 ## MediaQueryListener
@@ -66,12 +64,14 @@ on(type: 'change', callback: Callback&lt;MediaQueryResult&gt;): void
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
+
 | 参数名      | 类型                               | 必填   | 说明               |
 | -------- | -------------------------------- | ---- | ---------------- |
 | type     | string                           | 是    | 必须填写字符串'change'。 |
 | callback | Callback&lt;MediaQueryResult&gt; | 是    | 向媒体查询注册的回调       |
 
 **示例：** 
+
   详见[off示例](#off)。
 
 
@@ -84,12 +84,14 @@ off(type: 'change', callback?: Callback&lt;MediaQueryResult&gt;): void
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
+
 | 参数名      | 类型                               | 必填   | 说明                            |
 | -------- | -------------------------------- | ---- | ----------------------------- |
 | type     | boolean                          | 是    | 必须填写字符串'change'。              |
 | callback | Callback&lt;MediaQueryResult&gt; | 否    | 需要去注册的回调，如果参数缺省则去注册该句柄下所有的回调。 |
 
 **示例：** 
+
   ```js
     import mediaquery from '@ohos.mediaquery'
     

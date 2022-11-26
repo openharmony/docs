@@ -27,6 +27,7 @@ create(options: AnimatorOptions): AnimatorResult
 | options | [AnimatorOptions](#animatoroptions) | 是    | 定义动画选项。 |
 
 **返回值：** 
+
 | 类型                                | 说明            |
 | --------------------------------- | ------------- |
 | [AnimatorResult](#animatorresult) | Animator结果接口。 |
@@ -51,8 +52,6 @@ create(options: AnimatorOptions): AnimatorResult
 
 定义Animator结果接口。
 
-<span id = "#resetsup9sup"></span>
-
 ### reset<sup>9+</sup>
 
 reset(options: AnimatorOptions): void
@@ -71,7 +70,7 @@ reset(options: AnimatorOptions): void
 
 以下错误码的详细介绍请参见[ohos.animator(动画)](../errorcodes/errorcode-animator.md)错误码。
 
-| 错误码ID   | 错误码信息 |
+| 错误码ID   | 错误信息 |
 | --------- | ------- |
 | 100001    | Internal error. |
 
@@ -181,6 +180,7 @@ onframe: (progress: number) => void
 | progress | number | 是    | 动画的当前进度。 |
 
 **示例：**
+
 ```js
 let animatorResult = animator.create(options)
 animatorResult.onframe = function(value) {
@@ -208,7 +208,7 @@ animatorResult.onfinish = function() {
 ### oncancel
 
 oncancel: () => void
-不再维护
+
 动画被取消时回调。
 
 **系统能力：**  SystemCapability.ArkUI.ArkUI.Full
@@ -247,7 +247,7 @@ animatorResult.onrepeat = function() {
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称         | 参数类型                                     | 必填   | 说明                                       |
+| 名称         | 类型                                     | 必填   | 说明                                       |
 | ---------- | ---------------------------------------- | ---- | ---------------------------------------- |
 | duration   | number                                   | 是    | 动画播放的时长，单位毫秒，默认为0。                       |
 | easing     | string                                   | 是    | 动画插值曲线，默认为'ease'。                        |
