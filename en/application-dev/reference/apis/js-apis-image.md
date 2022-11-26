@@ -37,7 +37,7 @@ Creates a **PixelMap** object with the default BGRA_8888 format and pixel proper
 **Example**
 
 ```js
-const color = new ArrayBuffer(96);
+const color = new ArrayBuffer(96);  // 96 is the size of the pixel map buffer to create. The value is calculated as follows: height x width x 4.
 let bufferArr = new Uint8Array(color);
 let opts = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } }
 image.createPixelMap(color, opts).then((pixelmap) => {
@@ -66,7 +66,7 @@ Creates a **PixelMap** object with the default BGRA_8888 format and pixel proper
 **Example**
 
 ```js
-const color = new ArrayBuffer(96);
+const color = new ArrayBuffer(96);  // 96 is the size of the pixel map buffer to create. The value is calculated as follows: height x width x 4.
 let bufferArr = new Uint8Array(color);
 let opts = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } }
 image.createPixelMap(color, opts, (error, pixelmap) => {
@@ -113,7 +113,7 @@ Reads data of this pixel map and writes the data to an **ArrayBuffer**. This API
 **Example**
 
 ```js
-const readBuffer = new ArrayBuffer(96);
+const readBuffer = new ArrayBuffer(96);  // 96 is the size of the pixel map buffer to create. The value is calculated as follows: height x width x 4.
 pixelmap.readPixelsToBuffer(readBuffer).then(() => {
     console.log('Succeeded in reading image pixel data.'); // Called if the condition is met.
 }).catch(error => {
@@ -139,7 +139,7 @@ Reads data of this pixel map and writes the data to an **ArrayBuffer**. This API
 **Example**
 
 ```js
-const readBuffer = new ArrayBuffer(96);
+const readBuffer = new ArrayBuffer(96);  // 96 is the size of the pixel map buffer to create. The value is calculated as follows: height x width x 4.
 pixelmap.readPixelsToBuffer(readBuffer, (err, res) => {
     if(err) {
         console.log('Failed to read image pixel data.');  // Called if no condition is met.
@@ -203,7 +203,7 @@ Reads image pixel map data in an area. This API uses an asynchronous callback to
 **Example**
 
 ```js
-const color = new ArrayBuffer(96);
+const color = new ArrayBuffer(96);  // 96 is the size of the pixel map buffer to create. The value is calculated as follows: height x width x 4.
 let bufferArr = new Uint8Array(color);
 let opts = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } }
 image.createPixelMap(color, opts, (err, pixelmap) => {
@@ -244,7 +244,7 @@ Writes image pixel map data to an area. This API uses a promise to return the op
 **Example**
 
 ```js
-const color = new ArrayBuffer(96);
+const color = new ArrayBuffer(96);  // 96 is the size of the pixel map buffer to create. The value is calculated as follows: height x width x 4.
 let bufferArr = new Uint8Array(color);
 let opts = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } }
 image.createPixelMap(color, opts)
@@ -329,7 +329,7 @@ Reads image data in an **ArrayBuffer** and writes the data to a **PixelMap** obj
 **Example**
 
 ```js
-const color = new ArrayBuffer(96);
+const color = new ArrayBuffer(96);  // 96 is the size of the pixel map buffer to create. The value is calculated as follows: height x width x 4.
 let bufferArr = new Uint8Array(color);
 for (var i = 0; i < bufferArr.length; i++) {
     bufferArr[i] = i + 1;
@@ -359,7 +359,7 @@ Reads image data in an **ArrayBuffer** and writes the data to a **PixelMap** obj
 **Example**
 
 ```js
-const color = new ArrayBuffer(96);
+const color = new ArrayBuffer(96);  // 96 is the size of the pixel map buffer to create. The value is calculated as follows: height x width x 4.
 let bufferArr = new Uint8Array(color);
 for (var i = 0; i < bufferArr.length; i++) {
     bufferArr[i] = i + 1;
@@ -391,7 +391,7 @@ Obtains pixel map information of this image. This API uses a promise to return t
 **Example**
 
 ```js
-const color = new ArrayBuffer(96);
+const color = new ArrayBuffer(96);  // 96 is the size of the pixel map buffer to create. The value is calculated as follows: height x width x 4.
 let opts = { editable: true, pixelFormat: 2, size: { height: 6, width: 8 } }
 image.createPixelMap(color, opts).then(pixelmap => {
     if (pixelmap == undefined) {
@@ -425,7 +425,7 @@ Obtains pixel map information of this image. This API uses an asynchronous callb
 **Example**
 
 ```js
-const color = new ArrayBuffer(96);
+const color = new ArrayBuffer(96);  // 96 is the size of the pixel map buffer to create. The value is calculated as follows: height x width x 4.
 let opts = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } }
 image.createPixelMap(color, opts, (err, pixelmap) => {
     if (pixelmap == undefined) {
@@ -459,7 +459,7 @@ Obtains the number of bytes per row of this image pixel map.
 **Example**
 
 ```js
-const color = new ArrayBuffer(96);
+const color = new ArrayBuffer(96);  // 96 is the size of the pixel map buffer to create. The value is calculated as follows: height x width x 4.
 let bufferArr = new Uint8Array(color);
 let opts = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } }
 image.createPixelMap(color, opts, (err,pixelmap) => {
@@ -931,7 +931,7 @@ Creates an **ImageSource** instance based on the URI.
 
 | Name| Type  | Mandatory| Description                              |
 | ------ | ------ | ---- | ---------------------------------- |
-| uri    | string | Yes  | Image path. Currently, only the application sandbox path is supported.<br>Currently, the following raw formats are supported: .jpg, .png, .gif, .bmp, and .webp.|
+| uri    | string | Yes  | Image path. Currently, only the application sandbox path is supported.<br>Currently, the following formats are supported: JPG, PNG, GIF, BMP, Webp, and RAW.|
 
 **Return value**
 
@@ -958,7 +958,7 @@ Creates an **ImageSource** instance based on the URI.
 
 | Name | Type                           | Mandatory| Description                               |
 | ------- | ------------------------------- | ---- | ----------------------------------- |
-| uri     | string                          | Yes  | Image path. Currently, only the application sandbox path is supported.<br>Currently, the following raw formats are supported: .jpg, .png, .gif, .bmp, and .webp.|
+| uri     | string                          | Yes  | Image path. Currently, only the application sandbox path is supported.<br>Currently, the following formats are supported: JPG, PNG, GIF, BMP, Webp, and RAW.|
 | options | [SourceOptions](#sourceoptions9) | Yes  | Image properties, including the image index and default property value.|
 
 **Return value**
@@ -1045,7 +1045,7 @@ Creates an **ImageSource** instance based on the buffers.
 **Example**
 
 ```js
-const buf = new ArrayBuffer(96);
+const buf = new ArrayBuffer(96);  // 96 is the size of the pixel map buffer to create. The value is calculated as follows: height x width x 4.
 const imageSourceApi = image.createImageSource(buf);
 ```
 
@@ -1100,7 +1100,7 @@ Creates an **ImageSource** instance in incremental mode based on the buffers.
 **Example**
 
 ```js
-const buf = new ArrayBuffer(96);
+const buf = new ArrayBuffer(96);  // 96 is the size of the pixel map buffer to create. The value is calculated as follows: height x width x 4.
 const imageSourceIncrementalSApi = image.createIncrementalSource(buf);
 ```
 
@@ -1128,7 +1128,7 @@ Creates an **ImageSource** instance in incremental mode based on the buffers.
 **Example**
 
 ```js
-const buf = new ArrayBuffer(96);
+const buf = new ArrayBuffer(96);  // 96 is the size of the pixel map buffer to create. The value is calculated as follows: height x width x 4.
 const imageSourceIncrementalSApi = image.createIncrementalSource(buf);
 ```
 
@@ -1663,7 +1663,7 @@ Packs an image. This API uses an asynchronous callback to return the result.
 **Example**
 
 ```js
-const color = new ArrayBuffer(96);
+const color = new ArrayBuffer(96);  // 96 is the size of the pixel map buffer to create. The value is calculated as follows: height x width x 4.
 let bufferArr = new Uint8Array(color);
 let opts = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } }
 image.createPixelMap(color, opts).then((pixelmap) => {
@@ -1698,7 +1698,7 @@ Packs an image. This API uses a promise to return the result.
 **Example**
 
 ```js
-const color = new ArrayBuffer(96);
+const color = new ArrayBuffer(96);  // 96 is the size of the pixel map buffer to create. The value is calculated as follows: height x width x 4.
 let bufferArr = new Uint8Array(color);
 let opts = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } }
 image.createPixelMap(color, opts).then((pixelmap) => {
@@ -1772,7 +1772,7 @@ Creates an **ImageReceiver** instance by specifying the image width, height, for
 | -------- | ------ | ---- | ---------------------- |
 | width    | number | Yes  | Default image width.      |
 | height   | number | Yes  | Default image height.      |
-| format   | number | Yes  | Image format, which is a constant of [ImageFormat](#imageformat9). |
+| format   | number | Yes  | Image format, which is a constant of [ImageFormat](#imageformat9). (Currently, the value of this parameter is agreed between the user and camera. In the future, there may be other application scenarios. The receiver is used only for transfer. Currently, only **ImageFormat:JPEG** is supported.) |
 | capacity | number | Yes  | Maximum number of images that can be accessed at the same time.|
 
 **Return value**
@@ -1784,7 +1784,7 @@ Creates an **ImageReceiver** instance by specifying the image width, height, for
 **Example**
 
 ```js
-var receiver = image.createImageReceiver(8192, 8, 4, 8);
+var receiver = image.createImageReceiver(8192, 8, 2000, 8);
 ```
 
 ## ImageReceiver<sup>9+</sup>
@@ -2049,7 +2049,7 @@ var creator = image.createImageCreator(8192, 8, 4, 8);
 
 ## ImageCreator<sup>9+</sup>
 
-Requests an image native data area, and provides APIs for applications to compile native image data.
+Provides APIs for applications to request an image native data area and compile native image data.
 Before calling any APIs in **ImageCreator**, you must create an **ImageCreator** instance.
 
 ### Attributes
@@ -2082,7 +2082,7 @@ creator.dequeueImage((err, img) => {
     if (err) {
         console.info('dequeueImage succeeded.');
     }
-    console.info('dequeueImage failed.'));
+    console.info('dequeueImage failed.');
 });
 ```
 
@@ -2498,8 +2498,8 @@ Defines the option for image packing.
 
 | Name   | Type  | Readable| Writable| Description                                               |
 | ------- | ------ | ---- | ---- | --------------------------------------------------- |
-| format  | string | Yes  | Yes  | Format of the packed image.<br>Currently, the following raw formats are supported: .jpg, .png, .gif, .bmp, and .webp.|
-| quality | number | Yes  | Yes  | Quality of the output image during JPEG encoding. The value ranges from 1 to 100.|
+| format  | string | Yes  | Yes  | Format of the packed image.<br>Currently, the following formats are supported: JPG, PNG, GIF, BMP, Webp, and RAW.|
+| quality | number | Yes  | Yes  | Quality of the output image in JPEG encoding. The value ranges from 1 to 100.|
 | bufferSize<sup>9+</sup> | number | Yes  | Yes  | Buffer size, which is used to set the image size. The default value is 10 MB.|
 
 ## GetImagePropertyOptions<sup>7+</sup>
@@ -2531,7 +2531,7 @@ Describes the exchangeable image file format (EXIF) information of an image.
 | GPS_LONGITUDE_REF | "GPSLongitudeRef"       | Longitude reference, for example, W or E.   |
 | DATE_TIME_ORIGINAL<sup>9+</sup> | "DateTimeOriginal" | Shooting time, for example, 2022:09:06 15:48:00.    |
 | EXPOSURE_TIME<sup>9+</sup>      | "ExposureTime"     | Exposure time, for example, 1/33 sec.|
-| SCENE_TYPE<sup>9+</sup>         | "SceneType"        | Shooting scene mode, for example, portrait, scenery, motion, and night sight.    |
+| SCENE_TYPE<sup>9+</sup>         | "SceneType"        | Shooting scene type, for example, portrait, scenery, motion, and night.    |
 | ISO_SPEED_RATINGS<sup>9+</sup>  | "ISOSpeedRatings"  | ISO sensitivity or ISO speed, for example, 400.    |
 | F_NUMBER<sup>9+</sup>           | "FNumber"          | Aperture, for example, f/1.8.    |
 
