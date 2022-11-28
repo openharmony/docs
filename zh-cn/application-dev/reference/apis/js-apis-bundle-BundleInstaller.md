@@ -25,7 +25,7 @@ SystemCapability.BundleManager.BundleFramework
 
 **参数：**
 
-| 名称            | 类型                                                 | 必填 | 描述                                                         |
+| 参数名          | 类型                                                 | 必填 | 说明                                                         |
 | --------------- | ---------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | bundleFilePaths | Array&lt;string&gt;                                  | 是   | 指示存储hap包的沙箱路径。沙箱路径的获取方法参见[获取应用的沙箱路径](#获取应用的沙箱路径)|
 | param           | [InstallParam](#installparamdeprecated)                        | 是   | 指定安装所需的其他参数。                                     |
@@ -75,7 +75,7 @@ SystemCapability.BundleManager.BundleFramework
 
 **参数：**
 
-| 名称       | 类型                                                 | 必填 | 描述                                           |
+| 参数名     | 类型                                                 | 必填 | 说明                                           |
 | ---------- | ---------------------------------------------------- | ---- | ---------------------------------------------- |
 | bundleName | string                                               | 是   | 包名                                           |
 | param      | [InstallParam](#installparamdeprecated)                        | 是   | 指定卸载所需的其他参数。                       |
@@ -124,7 +124,7 @@ SystemCapability.BundleManager.BundleFramework
 
 **参数：**
 
-| 名称       | 类型                                                 | 必填 | 描述                                           |
+| 参数名     | 类型                                                 | 必填 | 说明                                           |
 | ---------- | ---------------------------------------------------- | ---- | ---------------------------------------------- |
 | bundleName | string                                               | 是   | 应用包名。                                           |
 | param      | [InstallParam](#installparamdeprecated)                        | 是   | 指定应用恢复所需的其他参数。                       |

@@ -115,6 +115,6 @@ Next
 
 Congratulations! You have finished all steps! Proceed to develop samples to better familiarize yourself with OpenHarmony development:
 
-- [LED Peripheral Control](guide/device-wlan-led-control.md)
+- [LED Peripheral Control](../guide/device-wlan-led-control.md)
 
-- [Third-Party SDK Integration](guide/device-wlan-sdk.md)
+- [Third-Party SDK Integration](../guide/device-wlan-sdk.md)
