@@ -3,7 +3,7 @@
 为屏蔽底层硬件和算法库，向上提供统一的密码算法库加解密和证书相关接口。
 
 > **说明：**
-> 
+>
 > 本模块首批接口从API version 9开始支持。
 
 ## 导入模块
@@ -18,33 +18,37 @@ import cryptoFramework from "@ohos.security.cryptoFramework"
 
  **系统能力：** SystemCapability.Security.CryptoFramework
 
-| 名称                                  | 默认值   | 描述                          |
-| --------------------------------------| -------- | ------------------------------|
-| INVALID_PARAMS                        | 401      | 非法入参。                    |
-| NOT_SUPPORT                           | 801      | 操作不支持。                  |
-| ERR_OUT_OF_MEMORY                     | 17620001 | 内存错误。                    |
-| ERR_RUNTIME_ERROR                     | 17620002 | 运行时外部错误。                  |
-| ERR_CRYPTO_OPERATION                  | 17630001 | 调用三方算法库API出错。       |
-| ERR_CERT_SIGNATURE_FAILURE            | 17630002 | 证书签名验证错误。            |
-| ERR_CERT_NOT_YET_VALID                | 17630003 | 证书尚未生效。                |
-| ERR_CERT_HAS_EXPIRED                  | 17630004 | 证书过期。                    |
-| ERR_UNABLE_TO_GET_ISSUER_CERT_LOCALLY | 17630005 | 无法获取证书的颁发者。        |
-| ERR_KEYUSAGE_NO_CERTSIGN              | 17630006 | 证书的秘钥用途不含证书签名。  |
-| ERR_KEYUSAGE_NO_DIGITAL_SIGNATURE     | 17630007 |  证书的秘钥用途不含数字签名。 |
+| 名称                                  |    值   |   说明                         |
+| ------------------------------------- | -------- | ---------------------------- |
+| INVALID_PARAMS                        | 401      | 非法入参。                   |
+| NOT_SUPPORT                           | 801      | 操作不支持。                 |
+| ERR_OUT_OF_MEMORY                     | 17620001 | 内存错误。                   |
+| ERR_RUNTIME_ERROR                     | 17620002 | 运行时外部错误。             |
+| ERR_CRYPTO_OPERATION                  | 17630001 | 调用三方算法库API出错。      |
+| ERR_CERT_SIGNATURE_FAILURE            | 17630002 | 证书签名验证错误。           |
+| ERR_CERT_NOT_YET_VALID                | 17630003 | 证书尚未生效。               |
+| ERR_CERT_HAS_EXPIRED                  | 17630004 | 证书过期。                   |
+| ERR_UNABLE_TO_GET_ISSUER_CERT_LOCALLY | 17630005 | 无法获取证书的颁发者。       |
+| ERR_KEYUSAGE_NO_CERTSIGN              | 17630006 | 证书的秘钥用途不含证书签名。 |
+| ERR_KEYUSAGE_NO_DIGITAL_SIGNATURE     | 17630007 | 证书的秘钥用途不含数字签名。 |
 
 ## DataBlob
+
 buffer数组。
  **系统能力：** SystemCapability.Security.CryptoFramework
-| 名称           | 类型           | 可读 | 可写 | 描述               |
-| -------------- | -------------- | ---- | ---- | ----------------|
-| data           | Uint8Array     | 是   | 是   | 数据。    |
+
+| 名称 | 类型       | 可读 | 可写 | 说明   |
+| ---- | ---------- | ---- | ---- | ------ |
+| data | Uint8Array | 是   | 是   | 数据。 |
 
 ## DataArray
+
 buffer数组的列表。
  **系统能力：** SystemCapability.Security.CryptoFramework
-| 名称           | 类型           | 可读 | 可写 | 描述               |
-| -------------- | -------------- | ---- | ---- | ----------------|
-| data           | Uint8Array     | 是   | 是   | 数据列表。    |
+
+| 名称 | 类型       | 可读 | 可写 |  说明       |
+| ---- | ---------- | ---- | ---- | ---------- |
+| data | Uint8Array | 是   | 是   | 数据列表。 |
 
 ## EncodingFormat
 
@@ -52,10 +56,10 @@ buffer数组的列表。
 
  **系统能力：** SystemCapability.Security.CryptoFramework
 
-| 名称        | 默认值   | 描述       |
-| ------------| ---------| -----------|
-| FORMAT_DER  | 0        | DER格式。  |
-| FORMAT_PEM  | 1        | PEM格式。  |
+| 名称       | 值 |  说明      |
+| ---------- | ------ | --------- |
+| FORMAT_DER | 0      | DER格式。 |
+| FORMAT_PEM | 1      | PEM格式。 |
 
 
 ## EncodingBlob
@@ -66,10 +70,10 @@ buffer数组的列表。
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
-| 名称           | 类型           | 可读 | 可写 | 描述                              |
-| -------------- | -------------- | ---- | ---- | ----------------------------------|
-| data           | Uint8Array     | 是   | 是   | 传入的数据中，包含的证书数量。    |
-| encodingFormat | [EncodingFormat](#encodingformat) | 是   | 是   | 指明证书编码格式。 |
+| 名称           | 类型                              | 可读 | 可写 | 说明                           |
+| -------------- | --------------------------------- | ---- | ---- | ------------------------------ |
+| data           | Uint8Array                        | 是   | 是   | 传入的证书数据。 |
+| encodingFormat | [EncodingFormat](#encodingformat) | 是   | 是   | 指明证书编码格式。             |
 
 
 ## CertChainData
@@ -80,11 +84,11 @@ buffer数组的列表。
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
-| 名称           | 类型           | 可读 | 可写 | 描述                                                         |
-| -------------- | -------------- | ---- | ---- | ------------------------------------------------------------ |
-| data           | Uint8Array     | 是   | 是   | 证书数据，按照长度(2字节)-数据的形式传入，如：08ABCDEFGH07ABCDEFG,第一本证书，前2个字节表示证书的长度为8字节，后面附加8字节的证书数据；第2本证书前2个字节表示证书的长度为7字节，后面附加7字节的证书数据。   |
-| count          | number         | 是   | 是   | 传入的数据中，包含的证书数量。                             |
-| encodingFormat | [EncodingFormat](#encodingformat) | 是   | 是   | 指明证书编码格式。 |
+| 名称           | 类型                              | 可读 | 可写 | 说明                                                         |
+| -------------- | --------------------------------- | ---- | ---- | ------------------------------------------------------------ |
+| data           | Uint8Array                        | 是   | 是   | 证书数据，按照长度(2字节)-数据的形式传入，如：08ABCDEFGH07ABCDEFG,第一本证书，前2个字节表示证书的长度为8字节，后面附加8字节的证书数据；第2本证书前2个字节表示证书的长度为7字节，后面附加7字节的证书数据。 |
+| count          | number                            | 是   | 是   | 传入的数据中，包含的证书数量。                               |
+| encodingFormat | [EncodingFormat](#encodingformat) | 是   | 是   | 指明证书编码格式。                                           |
 
 
 ## cryptoFramework.createMac
@@ -107,6 +111,12 @@ createMac(algName : string) : Mac
 | ---- | --------------------------------------- |
 | Mac  | 返回由输入算法指定生成的[Mac](#mac)对象 |
 
+**错误码：**
+
+| 错误码ID | 错误信息           |
+| -------- | ------------------ |
+| 17620001 | memory error       |
+
 **示例：**
 
 ```javascript
@@ -114,6 +124,7 @@ import cryptoFramework from "@ohos.security.cryptoFramework"
 
 var mac;
 try {
+    // 参数选择请参考上述算法支持范围
     mac = cryptoFramework.createMac("SHA256");
 } catch (error) {
     console.error("[Promise]: error code: " + error.code + ", message is: " + error.message);
@@ -124,9 +135,9 @@ try {
 
 Mac类，调用Mac方法可以进行MAC（Message Authentication Code）加密计算。调用前，需要通过[createMac](#cryptoframeworkcreatemac)构造Mac实例。
 
-### **属性**
+### 属性
 
-**系统能力：**SystemCapability.Security.CryptoFramework
+**系统能力：** SystemCapability.Security.CryptoFramework
 
 | 名称    | 类型   | 可读 | 可写 | 说明                 |
 | ------- | ------ | ---- | ---- | -------------------- |
@@ -142,10 +153,16 @@ init(key : SymKey, callback : AsyncCallback\<void>) : void;
 
 **参数：**
 
-| 参数名   | 类型                  | 必填 | 说明               |
-| -------- | --------------------- | ---- | ------------------ |
-| key   | SymKey                   | 是   | 共享对称密钥       |
-| callback | AsyncCallback\<void> | 是   | 回调函数 |
+| 参数名   | 类型                 | 必填 | 说明         |
+| -------- | -------------------- | ---- | ------------ |
+| key      | SymKey               | 是   | 共享对称密钥 |
+| callback | AsyncCallback\<void> | 是   | 回调函数     |
+
+**错误码：**
+
+| 错误码ID | 错误信息               |
+| -------- | ---------------------- |
+| 17630001 | crypto operation error |
 
 **示例：**
 
@@ -172,8 +189,6 @@ symKeyGenerator.convertKey(KeyBlob, (err, symKey) => {
 });
 ```
 
-
-
 ### init
 
 init(key : SymKey) : Promise\<void>;
@@ -190,9 +205,15 @@ init(key : SymKey) : Promise\<void>;
 
 **返回值：**
 
-| 类型            | 说明         |
-| --------------- | ------------ |
+| 类型           | 说明        |
+| -------------- | ----------- |
 | Promise\<void> | Promise对象 |
+
+**错误码：**
+
+| 错误码ID | 错误信息               |
+| -------- | ---------------------- |
+| 17630001 | crypto operation error |
 
 **示例：**
 
@@ -203,9 +224,7 @@ var mac;
 try {
     mac = cryptoFramework.createMac("SHA256");
 } catch (error) {
-    AlertDialog.show({message: "[Promise]: error code: " + error.code + ", message is: " + error.message});
     console.error("[Promise]: error code: " + error.code + ", message is: " + error.message);
-    
 }
 console.error("Mac algName is: " + mac.algName);
 
@@ -229,10 +248,18 @@ update(input : DataBlob, callback : AsyncCallback\<void>) : void;
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
-| 参数名   | 类型                  | 必填 | 说明               |
-| -------- | --------------------- | ---- | ---------- |
-| input    | DataBlob              | 是   | 传入的消息         |
-| callback | AsyncCallback\<void> | 是   | 回调函数 |
+**参数：**
+
+| 参数名   | 类型                 | 必填 | 说明       |
+| -------- | -------------------- | ---- | ---------- |
+| input    | DataBlob             | 是   | 传入的消息 |
+| callback | AsyncCallback\<void> | 是   | 回调函数   |
+
+**错误码：**
+
+| 错误码ID | 错误信息               |
+| -------- | ---------------------- |
+| 17630001 | crypto operation error |
 
 **示例：**
 
@@ -244,7 +271,6 @@ var mac;
 try {
     mac = cryptoFramework.createMac("SHA256");
 } catch (error) {
-    AlertDialog.show({message: "[Callback]: error code: " + error.code + ", message is: " + error.message});
     console.error("[Callback]: error code: " + error.code + ", message is: " + error.message);
 }
 var symKeyGenerator = cryptoFramework.createSymKeyGenerator("AES128");
@@ -274,15 +300,25 @@ update(input : DataBlob) : Promise\<void>;
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
+**参数：**
+
 | 参数名 | 类型     | 必填 | 说明       |
 | ------ | -------- | ---- | ---------- |
 | input  | DataBlob | 是   | 传入的消息 |
 
 **返回值：**
 
-| 类型            | 说明         |
-| --------------- | ----------- |
+| 类型           | 说明        |
+| -------------- | ----------- |
 | Promise\<void> | Promise对象 |
+
+**错误码：**
+
+| 错误码ID | 错误信息               |
+| -------- | ---------------------- |
+| 17630001 | crypto operation error |
+
+**示例：**
 
 ```javascript
 import cryptoFramework from "@ohos.security.cryptoFramework"
@@ -291,14 +327,11 @@ var mac;
 try {
     mac = cryptoFramework.createMac("SHA256");
 } catch (error) {
-    AlertDialog.show({message: "[Promise]: error code: " + error.code + ", message is: " + error.message});
     console.error("[Promise]: error code: " + error.code + ", message is: " + error.message);
 }
 console.error("Mac algName is: " + mac.algName);
-AlertDialog.show({message: "Mac algName is: " + mac.algName});
 
 var KeyBlob;
-
 var symKeyGenerator = cryptoFramework.createSymKeyGenerator("AES128");
 var promiseConvertKey = symKeyGenerator.convertKey(KeyBlob);
 promiseConvertKey.then(symKey => {
@@ -314,8 +347,6 @@ promiseConvertKey.then(symKey => {
 
 ```
 
-
-
 ### doFinal
 
 doFinal(callback : AsyncCallback\<DataBlob>) : void;
@@ -324,9 +355,18 @@ doFinal(callback : AsyncCallback\<DataBlob>) : void;
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
-| 参数名   | 类型                      | 必填 | 说明           |
-| -------- | ------------------------- | ---- | -------- |
+**参数：**
+
+| 参数名   | 类型                     | 必填 | 说明     |
+| -------- | ------------------------ | ---- | -------- |
 | callback | AsyncCallback\<DataBlob> | 是   | 回调函数 |
+
+**错误码：**
+
+| 错误码ID | 错误信息               |
+| -------- | ---------------------- |
+| 17620001 | memory error           |
+| 17630001 | crypto operation error |
 
 **示例：**
 
@@ -338,7 +378,6 @@ var mac;
 try {
     mac = cryptoFramework.createMac("SHA256");
 } catch (error) {
-    AlertDialog.show({message: "[Callback]: error code: " + error.code + ", message is: " + error.message});
     console.error("[Callback]: error code: " + error.code + ", message is: " + error.message);  
 }
 var symKeyGenerator = cryptoFramework.createSymKeyGenerator("AES128");
@@ -377,9 +416,16 @@ doFinal() : Promise\<DataBlob>
 
 **返回值：**
 
-| 类型              | 说明        |
-| ------------------- | ----------- |
+| 类型               | 说明        |
+| ------------------ | ----------- |
 | Promise\<DataBlob> | Promise对象 |
+
+**错误码：**
+
+| 错误码ID | 错误信息               |
+| -------- | ---------------------- |
+| 17620001 | memory error           |
+| 17630001 | crypto operation error |
 
 **示例：**
 
@@ -393,7 +439,6 @@ try {
     console.error("[Promise]: error code: " + error.code + ", message is: " + error.message);  
 }
 console.error("Mac algName is: " + mac.algName);
-AlertDialog.show({message: "Mac algName is: " + mac.algName});
 
 var KeyBlob;
 var symKeyGenerator = cryptoFramework.createSymKeyGenerator("AES128");
@@ -429,6 +474,12 @@ getMacLength() : number
 | ------ | ------------------------- |
 | number | 返回mac计算结果的字节长度 |
 
+**错误码：**
+
+| 错误码ID | 错误信息               |
+| -------- | ---------------------- |
+| 17630001 | crypto operation error |
+
 **示例：**
 
 ```javascript
@@ -441,7 +492,6 @@ try {
     console.error("[Promise]: error code: " + error.code + ", message is: " + error.message);
 }
 console.error("Mac algName is: " + mac.algName);
-AlertDialog.show({message: "Mac algName is: " + mac.algName});
 
 var KeyBlob;
 var symKeyGenerator = cryptoFramework.createSymKeyGenerator("AES128");
@@ -459,7 +509,7 @@ promiseConvertKey.then(symKey => {
 }).then(macOutput => {
     console.error("[Promise]: HMAC result: " + macOutput.data);
     let macLen = mac.getMacLength();
-	AlertDialog.show({message: "MAC len: " + macLen});
+	console.error("MAC len: " + macLen);
 }).catch(error => {
     console.error("[Promise]: error: " + error.message);
 });
@@ -485,6 +535,12 @@ createMd(algName : string) : Md
 | ---- | ------------------------------------- |
 | Md   | 返回由输入算法指定生成的[Md](#md)对象 |
 
+**错误码：**
+
+| 错误码ID | 错误信息           |
+| -------- | ------------------ |
+| 17620001 | memory error       |
+
 **示例：**
 
 ```javascript
@@ -492,6 +548,7 @@ import cryptoFramework from "@ohos.security.cryptoFramework"
 
 var md;
 try {
+    // 参数选择请参考上述算法支持范围
     md = cryptoFramework.createMd("SHA256");
 } catch (error) {
     console.error("[Promise]: error code: " + error.code + ", message is: " + error.message);
@@ -502,9 +559,9 @@ try {
 
 Md类，调用Md方法可以进行MD（Message Digest）摘要计算。调用前，需要通过[createMd](#cryptoframeworkcreatemd)构造Md实例。
 
-### **属性**
+### 属性
 
-**系统能力：**SystemCapability.Security.CryptoFramework
+**系统能力：** SystemCapability.Security.CryptoFramework
 
 | 名称    | 类型   | 可读 | 可写 | 说明                 |
 | ------- | ------ | ---- | ---- | -------------------- |
@@ -518,16 +575,18 @@ update(input : DataBlob, callback : AsyncCallback\<void>) : void;
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
-| 参数名   | 类型                  | 必填 | 说明         |
-| -------- | --------------------- | ---- | ------------ |
-| input    | DataBlob              | 是   | 传入的消息   |
-| callback | AsyncCallback\<void> | 是   | 回调函数 |
+**参数：**
 
-**返回值：**
+| 参数名   | 类型                 | 必填 | 说明       |
+| -------- | -------------------- | ---- | ---------- |
+| input    | DataBlob             | 是   | 传入的消息 |
+| callback | AsyncCallback\<void> | 是   | 回调函数   |
 
-| 类型            | 说明         |
-| --------------- | ------------ |
-| Promise\<void> | Promise对象 |
+**错误码：**
+
+| 错误码ID | 错误信息               |
+| -------- | ---------------------- |
+| 17630001 | crypto operation error |
 
 **示例：**
 
@@ -564,9 +623,15 @@ update(input : DataBlob) : Promise\<void>;
 
 **返回值：**
 
-| 类型            | 说明         |
-| --------------- | ------------ |
+| 类型           | 说明        |
+| -------------- | ----------- |
 | Promise\<void> | Promise对象 |
+
+**错误码：**
+
+| 错误码ID | 错误信息               |
+| -------- | ---------------------- |
+| 17630001 | crypto operation error |
 
 **示例：**
 
@@ -598,9 +663,16 @@ digest(callback : AsyncCallback\<DataBlob>) : void
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
-| 参数名   | 类型                      | 必填 | 说明                 |
-| -------- | ------------------------- | ---- | -------------------- |
+| 参数名   | 类型                     | 必填 | 说明     |
+| -------- | ------------------------ | ---- | -------- |
 | callback | AsyncCallback\<DataBlob> | 是   | 回调函数 |
+
+**错误码：**
+
+| 错误码ID | 错误信息               |
+| -------- | ---------------------- |
+| 17620001 | memory error           |
+| 17630001 | crypto operation error |
 
 **示例：**
 
@@ -640,9 +712,16 @@ digest() : Promise\<DataBlob>
 
 **返回值：**
 
-| 类型              | 说明        |
-| ------------------- | ----------- |
+| 类型               | 说明        |
+| ------------------ | ----------- |
 | Promise\<DataBlob> | Promise对象 |
+
+**错误码：**
+
+| 错误码ID | 错误信息               |
+| -------- | ---------------------- |
+| 17620001 | memory error           |
+| 17630001 | crypto operation error |
 
 **示例：**
 
@@ -683,6 +762,12 @@ getMdLength() : number
 | ------ | ------------------------ |
 | number | 返回md计算结果的字节长度 |
 
+**错误码：**
+
+| 错误码ID | 错误信息               |
+| -------- | ---------------------- |
+| 17630001 | crypto operation error |
+
 **示例：**
 
 ```javascript
@@ -704,7 +789,7 @@ promiseMdUpdate.then(() => {
 }).then(mdOutput => {
     console.error("[Promise]: MD result: " + mdOutput.data);
     let mdLen = md.getMdLength();
-	AlertDialog.show({message: "MD len: " + mdLen});
+	console.error("MD len: " + mdLen);
 }).catch(error => {
     console.error("[Promise]: error: " + error.message);
 });
@@ -723,6 +808,12 @@ createRandom() : Random
 | 类型   | 说明                                          |
 | ------ | --------------------------------------------- |
 | Random | 返回由输入算法指定生成的[Random](#random)对象 |
+
+**错误码：**
+
+| 错误码ID | 错误信息     |
+| -------- | ------------ |
+| 17620001 | memory error |
 
 **示例：**
 
@@ -748,10 +839,19 @@ generateRandom(len : number, callback: AsyncCallback\<DataBlob>) : void;
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
-| 参数名   | 类型                      | 必填 | 说明                 |
-| -------- | ------------------------- | ---- | -------------------- |
-| len      | number                    | 是   | 表示生成随机数的长度 |
-| callback | AsyncCallback\<DataBlob> | 是   | 回调函数 |
+**参数：**
+
+| 参数名   | 类型                     | 必填 | 说明                 |
+| -------- | ------------------------ | ---- | -------------------- |
+| len      | number                   | 是   | 表示生成随机数的长度 |
+| callback | AsyncCallback\<DataBlob> | 是   | 回调函数             |
+
+**错误码：**
+
+| 错误码ID | 错误信息               |
+| -------- | ---------------------- |
+| 17620001 | memory error           |
+| 17630001 | crypto operation error |
 
 **示例：**
 
@@ -781,15 +881,24 @@ generateRandom(len : number) : Promise\<DataBlob>;
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
+**参数：**
+
 | 参数名 | 类型   | 必填 | 说明                 |
 | ------ | ------ | ---- | -------------------- |
 | len    | number | 是   | 表示生成随机数的长度 |
 
 **返回值：**
 
-| 类型              | 说明        |
-| ------------------- | ----------- |
+| 类型               | 说明        |
+| ------------------ | ----------- |
 | Promise\<DataBlob> | Promise对象 |
+
+**错误码：**
+
+| 错误码ID | 错误信息               |
+| -------- | ---------------------- |
+| 17620001 | memory error           |
+| 17630001 | crypto operation error |
 
 **示例：**
 
@@ -819,10 +928,16 @@ setSeed(seed : DataBlob, callback : AsyncCallback\<void>) : void;
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
-| 参数名   | 类型                 | 必填 | 说明         |
-| -------- | -------------------- | ---- | ------------ |
-| seed     | DataBlob             | 是   | 设置的种子   |
-| callback | AsyncCallback\<void\> | 是   | 回调函数 |
+| 参数名   | 类型                  | 必填 | 说明       |
+| -------- | --------------------- | ---- | ---------- |
+| seed     | DataBlob              | 是   | 设置的种子 |
+| callback | AsyncCallback\<void\> | 是   | 回调函数   |
+
+**错误码：**
+
+| 错误码ID | 错误信息           |
+| -------- | ------------------ |
+| 17620001 | memory error       |
 
 **示例：**
 
@@ -860,9 +975,19 @@ setSeed(seed : DataBlob) : Promise\<void>;
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
+**参数：**
+
 | 参数名 | 类型     | 必填 | 说明       |
 | ------ | -------- | ---- | ---------- |
 | seed   | DataBlob | 是   | 设置的种子 |
+
+**错误码：**
+
+| 错误码ID | 错误信息           |
+| -------- | ------------------ |
+| 17620001 | memory error       |
+
+**示例：**
 
 ```javascript
 import cryptoFramework from "@ohos.security.cryptoFramework"
@@ -888,47 +1013,59 @@ promiseGenerateRand.then(randData => {
 
 ## ParamsSpec
 
-加解密参数，在进行对称加解密时需要构造其子类对象，并将子类对象传入[init()](#init-2)方法。适用于需要iv等参数的对称加解密模式（对于无iv等参数的模式如ECB模式，不需要构造其子类对象）。
+加解密参数，在进行对称加解密时需要构造其子类对象，并将子类对象传入[init()](#init-2)方法。<br/>适用于需要iv等参数的对称加解密模式（对于无iv等参数的模式如ECB模式，无需构造，在[init()](#init-2)中传入null即可）。
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
-| 名称    | 类型   | 可读 | 可写 | 描述                   |
-| ------- | ------ | ---- | ---- | ---------------------- |
+| 名称     | 类型   | 可读 | 可写 | 说明                    |
+| -------- | ------ | ---- | ---- | ----------------------- |
 | algoName | string | 是   | 是   | 指明对称加解密参数的算法模式。可选值如下:<br/>- "IvParamsSpec": 适用于CBC\|CTR\|OFB\|CFB模式<br/>- "GcmParamsSpec": 适用于GCM模式<br/>- "CcmParamsSpec": 适用于CCM模式 |
+
+> **说明：** 
+> 由于[init()](#init-2)的params参数是ParamsSpec类型（父类），而实际需要传入具体的子类对象（如IvParamsSpec），因此在构造子类对象时应设置其父类ParamsSpec的algoName参数，使算法库在init()时知道传入的是哪种子类对象。
 
 ## IvParamsSpec
 
-适用于CBC、CTR、OFB、CFB模式，仅使用iv的加解密参数，在对称加解密时构造并传入[init()](#init-2)方法作为参数。
+加解密参数[ParamsSpec](#paramsspec)的子类，用于在对称加解密时作为[init()](#init-2)方法的参数。<br/>适用于CBC、CTR、OFB、CFB这些仅使用iv作为参数的加解密模式。
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
-| 名称    | 类型   | 可读 | 可写 | 描述                   |
-| ------- | ------ | ---- | ---- | ---------------------- |
-| iv | [DataBlob](#datablob) | 是   | 是   | 指明加解密参数iv。常见取值如下：<br/>- AES的CBC\|CTR\|OFB\|CFB模式：iv长度为16字节<br/>- 3DES的CBC\|OFB\|CFB模式：iv长度为8字节|
+| 名称 | 类型                  | 可读 | 可写 | 说明                                                         |
+| ---- | --------------------- | ---- | ---- | ------------------------------------------------------------ |
+| iv   | [DataBlob](#datablob) | 是   | 是   | 指明加解密参数iv。常见取值如下：<br/>- AES的CBC\|CTR\|OFB\|CFB模式：iv长度为16字节<br/>- 3DES的CBC\|OFB\|CFB模式：iv长度为8字节 |
+
+> **说明：** 
+> 传入[init()](#init-2)方法前需要指定其algoName属性（来源于父类[ParamsSpec](#paramsspec)）。
 
 ## GcmParamsSpec
 
-适用于GCM模式的加解密参数，在对称加解密时构造并传入[init()](#init-2)方法作为参数。
+加解密参数[ParamsSpec](#paramsspec)的子类，用于在对称加解密时作为[init()](#init-2)方法的参数。<br/>适用于GCM模式。
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
-| 名称    | 类型   | 可读 | 可写 | 描述                   |
-| ------- | ------ | ---- | ---- | ---------------------- |
-| iv | [DataBlob](#datablob) | 是   | 是   | 指明加解密参数iv，长度为12字节|
-| aad | [DataBlob](#datablob) | 是   | 是   | 指明加解密参数aad，长度为8字节|
-| authTag | [DataBlob](#datablob) | 是   | 是   | 指明加解密参数authTag，长度为16字节。<br/>采用GCM模式加密时，需要获取[doFinal()](#dofinal-2)输出的[DataBlob](#datablob)，将其末尾16字节作为解密时[GcmParamsSpec](#gcmparamsspec)中的authTag |
+| 名称    | 类型                  | 可读 | 可写 | 说明                                                         |
+| ------- | --------------------- | ---- | ---- | ------------------------------------------------------------ |
+| iv      | [DataBlob](#datablob) | 是   | 是   | 指明加解密参数iv，长度为12字节                               |
+| aad     | [DataBlob](#datablob) | 是   | 是   | 指明加解密参数aad，长度为8字节                               |
+| authTag | [DataBlob](#datablob) | 是   | 是   | 指明加解密参数authTag，长度为16字节。<br/>采用GCM模式加密时，需要获取[doFinal()](#dofinal-2)输出的[DataBlob](#datablob)，取出其末尾16字节作为解密时[init()](#init-2)方法的入参[GcmParamsSpec](#gcmparamsspec)中的的authTag |
+
+> **说明：** 
+> 传入[init()](#init-2)方法前需要指定其algoName属性（来源于父类[ParamsSpec](#paramsspec)）。
 
 ## CcmParamsSpec
 
-适用于CCM模式的加解密参数，在对称加解密时构造并传入[init()](#init-2)方法作为参数。
+加解密参数[ParamsSpec](#paramsspec)的子类，用于在对称加解密时作为[init()](#init-2)方法的参数。<br/>适用于CCM模式。
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
-| 名称    | 类型     | 可读 | 可写 | 描述                                                         |
-| ------- | -------- | ---- | ---- | -------------------------------|
+| 名称    | 类型                  | 可读 | 可写 | 说明                                                         |
+| ------- | --------------------- | ---- | ---- | ------------------------------------------------------------ |
 | iv      | [DataBlob](#datablob) | 是   | 是   | 指明加解密参数iv，长度为7字节                                |
 | aad     | [DataBlob](#datablob) | 是   | 是   | 指明加解密参数aad，长度为8字节                               |
-| authTag | [DataBlob](#datablob) | 是   | 是   | 指明加解密参数authTag，长度为12字节。<br/>采用CCM模式加密时，需要获取[doFinal()](#dofinal-2)输出的[DataBlob](#datablob)，将其末尾12字节作为解密时[CcmParamsSpec](#ccmparamsspec)中的authTag |
+| authTag | [DataBlob](#datablob) | 是   | 是   | 指明加解密参数authTag，长度为12字节。<br/>采用CCM模式加密时，需要获取[doFinal()](#dofinal-2)输出的[DataBlob](#datablob)，取出其末尾12字节作为解密时[init()](#init-2)方法的入参[CcmParamsSpec](#ccmparamsspec)中的authTag |
+
+> **说明：** 
+> 传入[init()](#init-2)方法前需要指定其algoName属性（来源于父类[ParamsSpec](#paramsspec)）。
 
 ## CryptoMode
 
@@ -936,23 +1073,23 @@ promiseGenerateRand.then(randData => {
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
-| 名称         | 值        | 描述                             |
-| ------------ | -------- | -------------------------------- |
-| ENCRYPT_MODE | 0        | 表示进行加密操作                    |
-| DECRYPT_MODE | 1        | 表示进行解密操作                    |
+| 名称         | 值   | 说明             |
+| ------------ | ---- | ---------------- |
+| ENCRYPT_MODE | 0    | 表示进行加密操作 |
+| DECRYPT_MODE | 1    | 表示进行解密操作 |
 
 ## Key
 
-密钥（父类），在运行密码算法（如加解密）时需要提前生成其子类对象，并传入[Cipher](#cipher)实例的[init()](#init-2)方法。密钥可以通过密钥生成器来生成。
+密钥（父类），在运行密码算法（如加解密）时需要提前生成其子类对象，并传入[Cipher](#cipher)实例的[init()](#init-2)方法。<br/>密钥可以通过密钥生成器来生成。
 
 ### 属性
 
 **系统能力：** SystemCapability.Security.CryptoFramework 
 
-| 名称    | 类型   | 可读 | 可写 | 描述                   |
-| ------- | ------ | ---- | ---- | ---------------------- |
-| format | string | 是   | 否   | 密钥的格式。|
-| algName | string | 是   | 否   | 密钥对应的算法名（含长度）。|
+| 名称    | 类型   | 可读 | 可写 | 说明                         |
+| ------- | ------ | ---- | ---- | ---------------------------- |
+| format  | string | 是   | 否   | 密钥的格式。                 |
+| algName | string | 是   | 否   | 密钥对应的算法名（含长度）。 |
 
 ### getEncoded
 
@@ -964,13 +1101,14 @@ getEncoded() : DataBlob
 
 **返回值：**
 
-| 类型   |描述                   |
-| ------- | ----------- |
-| [DataBlob](#datablob) | 用于查看密钥的具体内容。|
+| 类型                  | 说明                     |
+| --------------------- | ------------------------ |
+| [DataBlob](#datablob) | 用于查看密钥的具体内容。 |
 
 **示例：**
 
 ```js
+import cryptoFramework from "@ohos.security.cryptoFramework"
 function uint8ArrayToShowStr(uint8Array) {
   return Array.prototype.map
     .call(uint8Array, (x) => ('00' + x.toString(16)).slice(-2))
@@ -984,19 +1122,20 @@ console.info("key hex:" + uint8ArrayToShowStr(encodedKey.data));
 
 ## SymKey
 
-对称密钥，是[Key](#key)的子类，在对称加解密时需要将其对象传入[Cipher](#cipher)实例的[init()](#init-2)方法使用。对称密钥可以通过对称密钥生成器[SymKeyGenerator](#symkeygenerator)来生成。
+对称密钥，是[Key](#key)的子类，在对称加解密时需要将其对象传入[Cipher](#cipher)实例的[init()](#init-2)方法使用。<br/>对称密钥可以通过对称密钥生成器[SymKeyGenerator](#symkeygenerator)来生成。
 
 ### clearMem
 
 clearMem() : void
 
-以同步方法，将系统底层内存中的的密钥内容清零。
+以同步方法，将系统底层内存中的的密钥内容清零。建议在不再使用对称密钥实例时，调用本函数，避免内存中密钥数据存留过久。
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
 **示例：**
 
 ```js
+import cryptoFramework from "@ohos.security.cryptoFramework"
 function uint8ArrayToShowStr(uint8Array) {
   return Array.prototype.map
     .call(uint8Array, (x) => ('00' + x.toString(16)).slice(-2))
@@ -1013,75 +1152,89 @@ console.info("key hex:" + uint8ArrayToShowStr(encodedKey.data));    // 输出全
 
 ## PubKey
 
-公钥，是Key的子类，在非对称加解密、验签、密钥协商时需要将其对象作为输入使用。公钥可以通过非对称密钥生成器AsyKeyGenerator来生成。
+公钥，是Key的子类，在非对称加解密、验签、密钥协商时需要将其对象作为输入使用。<br/>公钥可以通过非对称密钥生成器AsyKeyGenerator来生成。
 
 ### 属性
 
 **系统能力：** SystemCapability.Security.CryptoFramework 
 
-| 名称    | 类型   | 可读 | 可写 | 描述                   |
-| ------- | ------ | ---- | ---- | ---------------------- |
-| format | string | 是   | 否   | 密钥的格式。|
-| algName | string | 是   | 否   | 密钥对应的算法名（含长度）。|
+| 名称    | 类型   | 可读 | 可写 | 说明                         |
+| ------- | ------ | ---- | ---- | ---------------------------- |
+| format  | string | 是   | 否   | 密钥的格式。                 |
+| algName | string | 是   | 否   | 密钥对应的算法名（含长度）。 |
 
 
 ### getEncoded
 
 getEncoded() : DataBlob
 
-以同步方法，获取二进制形式的密钥内容。
+以同步方法，获取二进制形式的密钥内容。公钥格式满足ASN.1语法、X.509规范、DER编码格式。
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
 **返回值：**
 
-| 类型   |描述                   |
-| ------- | ----------- |
-| [DataBlob](#datablob) | 用于查看密钥的具体内容。|
+| 类型                  | 说明                     |
+| --------------------- | ------------------------ |
+| [DataBlob](#datablob) | 用于查看密钥的具体内容。 |
 
 **示例：**
 
 ```js
+function uint8ArrayToShowStr(uint8Array) {
+  return Array.prototype.map
+    .call(uint8Array, (x) => ('00' + x.toString(16)).slice(-2))
+    .join('');
+}
+
+let key; // key为使用非对称密钥生成器生成的非对称密钥的公钥对象，此处省略生成过程
 console.info("key format:" + key.format);
 console.info("key algName:" + key.algName);
 var encodedKey = key.getEncoded();
-console.info("key encoded:" + Uint8ArrayToShowStr(encodedKey.data));
+console.info("key encoded:" + uint8ArrayToShowStr(encodedKey.data));
 ```
 
 ## PriKey
 
-私钥，是Key的子类，在非对称加解密、签名、密钥协商时需要将其作为输入使用。私钥可以通过非对称密钥生成器AsyKeyGenerator来生成。
+私钥，是Key的子类，在非对称加解密、签名、密钥协商时需要将其作为输入使用。<br/>私钥可以通过非对称密钥生成器AsyKeyGenerator来生成。
 
 ### 属性
 
 **系统能力：** SystemCapability.Security.CryptoFramework 
 
-| 名称    | 类型   | 可读 | 可写 | 描述                   |
-| ------- | ------ | ---- | ---- | ---------------------- |
-| format | string | 是   | 否   | 密钥的格式。|
-| algName | string | 是   | 否   | 密钥对应的算法名（含长度）。|
+| 名称    | 类型   | 可读 | 可写 | 说明                         |
+| ------- | ------ | ---- | ---- | ---------------------------- |
+| format  | string | 是   | 否   | 密钥的格式。                 |
+| algName | string | 是   | 否   | 密钥对应的算法名（含长度）。 |
 
 ### getEncoded
 
 getEncoded() : DataBlob
 
-以同步方法，获取二进制形式的密钥内容。
+以同步方法，获取二进制形式的密钥内容。私钥格式满足ASN.1语法，PKCS#8规范、DER编码方式。
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
 **返回值：**
 
-| 类型   |描述                   |
-| ------- | ----------- |
-| [DataBlob](#datablob) | 用于查看密钥的具体内容。|
+| 类型                  | 说明                     |
+| --------------------- | ------------------------ |
+| [DataBlob](#datablob) | 用于查看密钥的具体内容。 |
 
 **示例：**
 
 ```js
+function uint8ArrayToShowStr(uint8Array) {
+  return Array.prototype.map
+    .call(uint8Array, (x) => ('00' + x.toString(16)).slice(-2))
+    .join('');
+}
+
+let key; // key为使用非对称密钥生成器生成的非对称密钥的私钥对象，此处省略生成过程
 console.info("key format:" + key.format);
 console.info("key algName:" + key.algName);
 var encodedKey = key.getEncoded();
-console.info("key encoded:" + Uint8ArrayToShowStr(encodedKey.data));
+console.info("key encoded:" + uint8ArrayToShowStr(encodedKey.data));
 ```
 
 ### clearMem
@@ -1095,26 +1248,41 @@ clearMem() : void
 **示例：**
 
 ```js
+let key; // key为使用非对称密钥生成器生成的非对称密钥的私钥对象，此处省略生成过程
 key.clearMem();
 ```
+
+## KeyPair
+
+非对称密钥对，包含：公钥与私钥，。<br/>可以通过非对称密钥生成器AsyKeyGenerator来生成。
+
+### 属性
+
+**系统能力：** SystemCapability.Security.CryptoFramework
+
+| 名称    | 类型   | 可读 | 可写 | 说明           |
+| ------- | ------ | ---- | ---- | ------------ |
+| priKey  | [PriKey](#prikey) | 是   | 否   | 私钥。      |
+| pubKey | [PubKey](#pubkey) | 是   | 否   | 公钥。       |
+
 
 ## cryptoFramework.createSymKeyGenerator
 
 createSymKeyGenerator(algName : string) : SymKeyGenerator
 
-通过指定算法名称的字符串，获取相应的对称密钥生成器实例。支持的对称密钥参数详见框架概述“[密钥生成规格](../../security/cryptoFramework-overview.md#密钥生成规格)”一节中“生成密钥的字符串”。
+通过指定算法名称的字符串，获取相应的对称密钥生成器实例。<br/>支持的规格详见框架概述“[密钥生成规格](../../security/cryptoFramework-overview.md#密钥生成规格)”一节。
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
 **参数：**
 
-| 参数名  | 类型   | 必填 | 说明                             |
-| ------- | ------ | ---- | ----------------------------- |
-| algName | string | 是   | 待生成对称密钥生成器的算法名称。 |
+| 参数名  | 类型   | 必填 | 说明                                                         |
+| ------- | ------ | ---- | ------------------------------------------------------------ |
+| algName | string | 是   | 待生成对称密钥生成器的算法名称。<br/>具体取值详见框架概述“[密钥生成规格](../../security/cryptoFramework-overview.md#密钥生成规格)”一节中的“字符串参数”。 |
 
 **返回值：**
 
-| 类型            | 说明                       |
+| 类型                                | 说明                       |
 | ----------------------------------- | -------------------------- |
 | [SymKeyGenerator](#symkeygenerator) | 返回对称密钥生成器的对象。 |
 
@@ -1127,29 +1295,35 @@ let symKeyGenerator = cryptoFramework.createSymKeyGenerator('3DES192');
 
 ## SymKeyGenerator
 
-对称密钥生成器。在使用该类的方法前，需要先使用[createSymKeyGenerator](#cryptoframeworkcreatesymkeygenerator)方法构建一个symKeyGenerator实例。
+对称密钥生成器。<br/>在使用该类的方法前，需要先使用[createSymKeyGenerator](#cryptoframeworkcreatesymkeygenerator)方法构建一个symKeyGenerator实例。
 
 ### 属性
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
-| 名称    | 类型   | 可读 | 可写 | 描述                         |
-| ------- | ------ | ---- | ---- | ---------------------------- |
+| 名称    | 类型   | 可读 | 可写 | 说明                           |
+| ------- | ------ | ---- | ---- | ------------------------------ |
 | algName | string | 是   | 否   | 对称密钥生成器指定的算法名称。 |
 
 ### generateSymKey
 
 generateSymKey(callback : AsyncCallback\<SymKey>) : void
 
-异步获取对称密钥生成器随机生成的密钥，通过注册回调函数获取结果。
+异步获取对称密钥生成器随机生成的密钥，通过注册回调函数获取结果。<br/>必须在使用[createSymKeyGenerator](#cryptoframeworkcreatesymkeygenerator)创建对称密钥生成器后，才能使用本函数。<br/>目前支持使用OpenSSL的RAND_priv_bytes()作为底层能力生成随机密钥。
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
 **参数：**
 
-| 名称     | 类型               | 必填 | 说明                 |
-| -------- | ----------------- | ---- | ------------------- |
-| callback | AsyncCallback\<[SymKey](#symkey)> | 是  | 回调函数，用于获取对称密钥。 |
+| 参数名     | 类型                              | 必填 | 说明                                                         |
+| -------- | --------------------------------- | ---- | ------------------------------------------------------------ |
+| callback | AsyncCallback\<[SymKey](#symkey)> | 是   | 回调函数。当生成对称密钥成功，err为undefined，data为获取到的SymKey；否则为错误对象。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息      |
+| -------- | ------------- |
+| 17620001 | memory error. |
 
 **示例：**
 
@@ -1158,11 +1332,11 @@ import cryptoFramework from '@ohos.security.cryptoFramework';
 let symAlgoName = '3DES192';
 let symKeyGenerator = cryptoFramework.createSymKeyGenerator(symAlgoName);
 symKeyGenerator.generateSymKey((err, symKey) => {
-    if (err) {
-        console.error('Failed to generate symKey');
-        return;
-    }
-    console.log('Generate symKey success, algName: ' + symKey.algName);
+  if (err) {
+    console.error(`Generate symKey failed, ${err.code}, ${err.message}`);
+  } else {
+    console.info(`Generate symKey success, algName: ${symKey.algName}`);
+  }
 })
 ```
 
@@ -1170,15 +1344,21 @@ symKeyGenerator.generateSymKey((err, symKey) => {
 
 generateSymKey() : Promise\<SymKey>
 
-异步获取该对称密钥生成器随机生成的密钥，通过Promise获取结果。
+异步获取该对称密钥生成器随机生成的密钥，通过Promise获取结果。<br/>必须在使用[createSymKeyGenerator](#cryptoframeworkcreatesymkeygenerator)创建对称密钥生成器后，才能使用本函数。<br/>目前支持使用OpenSSL的RAND_priv_bytes()作为底层能力生成随机密钥。
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
 **返回值：**
 
-| 类型                  | 说明                            |
-| --------------------- | ------------------------------- |
-| Promise\<[SymKey](#symkey)> | 使用Promise的方式获取对称密钥。 |
+| 类型                        | 说明                              |
+| --------------------------- | --------------------------------- |
+| Promise\<[SymKey](#symkey)> | Promise对象，返回对称密钥SymKey。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息      |
+| -------- | ------------- |
+| 17620001 | memory error. |
 
 **示例：**
 
@@ -1186,8 +1366,11 @@ generateSymKey() : Promise\<SymKey>
 import cryptoFramework from '@ohos.security.cryptoFramework';
 let symAlgoName = 'AES128';
 let symKeyGenerator = cryptoFramework.createSymKeyGenerator(symAlgoName);
-symKeyGenerator.generateSymKey().then((symKey) => {
-    console.log('Generate symKey success, algName:' + symKey.algName);
+symKeyGenerator.generateSymKey()
+.then(symKey => {
+  console.info(`Generate symKey success, algName: ${symKey.algName}`);
+}, error => {
+  console.error(`Generate symKey failed, ${error.code}, ${error.message}`);
 })
 ```
 
@@ -1195,16 +1378,22 @@ symKeyGenerator.generateSymKey().then((symKey) => {
 
 convertKey(key : DataBlob, callback : AsyncCallback\<SymKey>) : void
 
-异步获取指定数据生成对称密钥，通过注册回调函数获取结果。
+异步根据指定数据生成对称密钥，通过注册回调函数获取结果。<br/>必须在使用[createSymKeyGenerator](#cryptoframeworkcreatesymkeygenerator)创建对称密钥生成器后，才能使用本函数。
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
 **参数：**
 
-| 名称     | 类型                | 必填 | 说明                  |
-| -------- | ----------------- | ---- | ---------------------- |
-| key      | [DataBlob](#datablob)  | 是   | 指定的对称密钥材料。         |
-| callback | AsyncCallback\<[SymKey](#symkey)> | 是   | 回调函数，用于获取对称密钥。 |
+| 参数名     | 类型                              | 必填 | 说明                                                         |
+| -------- | --------------------------------- | ---- | ------------------------------------------------------------ |
+| key      | [DataBlob](#datablob)             | 是   | 指定的对称密钥材料。                                         |
+| callback | AsyncCallback\<[SymKey](#symkey)> | 是   | 回调函数。当生成对称密钥成功，err为undefined，data为获取到的SymKey；否则为错误对象。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息                                               |
+| -------- | --------------------------------------------------- |
+| 17620001 | memory error.                                       |
 
 **示例：**
 
@@ -1223,12 +1412,12 @@ function genKeyMaterialBlob() {
 let symAlgoName = '3DES192';
 let symKeyGenerator = cryptoFramework.createSymKeyGenerator(symAlgoName);
 let keyMaterialBlob = genKeyMaterialBlob();
-symKeyGenerator.convertKey(keyMaterial, (err,  symKey) => {
-    if (err) {
-        console.error('Failed to convert symKey');
-        return;
-    }
-    console.log('Convert symKey success, algName:' + symKey.algName);
+symKeyGenerator.convertKey(keyMaterialBlob, (err, symKey) => {
+  if (err) {
+    console.error(`Convert symKey failed, ${err.code}, ${err.message}`);
+  } else {
+    console.info(`Convert symKey success, algName: ${symKey.algName}`);
+  }
 })
 ```
 
@@ -1236,21 +1425,27 @@ symKeyGenerator.convertKey(keyMaterial, (err,  symKey) => {
 
 convertKey(key : DataBlob) : Promise\<SymKey>
 
-异步获取指定数据生成对称密钥，通过Promise获取结果。
+异步根据指定数据生成对称密钥，通过Promise获取结果。<br/>必须在使用[createSymKeyGenerator](#cryptoframeworkcreatesymkeygenerator)创建对称密钥生成器后，才能使用本函数。
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
 **参数：**
 
-| 名称 | 类型     | 必填 | 说明                 |
-| ---- | -------- | ---- | -------------------- |
+| 参数名 | 类型                  | 必填 | 说明                 |
+| ---- | --------------------- | ---- | -------------------- |
 | key  | [DataBlob](#datablob) | 是   | 指定的密钥材料数据。 |
 
 **返回值：**
 
-| 类型                  | 说明                            |
-| --------------------- | ------------------------------- |
-| Promise\<[SymKey](#symkey)> | 使用Promise的方式获取对称密钥。 |
+| 类型                        | 说明                              |
+| --------------------------- | --------------------------------- |
+| Promise\<[SymKey](#symkey)> | Promise对象，返回对称密钥SymKey。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息                                          |
+| -------- | --------------------------------------------- |
+| 17620001 | memory error.                                |
 
 **示例：**
 
@@ -1269,14 +1464,18 @@ function genKeyMaterialBlob() {
 let symAlgoName = '3DES192';
 let symKeyGenerator = cryptoFramework.createSymKeyGenerator(symAlgoName);
 let keyMaterialBlob = genKeyMaterialBlob();
-symKeyGenerator.convertKey(keyMaterial).then((symKey) => {
-    console.log('Convert symKey success, algName:' + symKey.algName);
+symKeyGenerator.convertKey(keyMaterialBlob)
+.then(symKey => {
+  console.info(`Convert symKey success, algName: ${symKey.algName}`);
+}, error => {
+  console.error(`Convert symKey failed, ${error.code}, ${error.message}`);
 })
 ```
 
 ## cryptoFramework.createAsyKeyGenerator
 
 createAsyKeyGenerator(algName : string) : AsyKeyGenerator
+
 通过指定算法名称的字符串，获取相应的非对称密钥生成器实例。
 
 **系统能力：** SystemCapability.Security.CryptoFramework
@@ -1289,8 +1488,8 @@ createAsyKeyGenerator(algName : string) : AsyKeyGenerator
 
 **返回值：**
 
-| 类型            | 说明                       |
-| --------------- | -------------------------- |
+| 类型            | 说明                         |
+| --------------- | ---------------------------- |
 | asyKeyGenerator | 返回非对称密钥生成器的对象。 |
 
 **示例：**
@@ -1309,23 +1508,22 @@ let asyKeyGenerator = cryptoFramework.createAsyKeyGenerator("ECC256");
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
-| 名称           | 类型           | 可读 | 可写 | 描述                              |
-| -------------- | -------------- | ---- | ---- | ----------------------------------|
-| algName        | string         | 是   | 否   | 非对称密钥生成器指定的算法名称。  |
-
-
+| 名称    | 类型   | 可读 | 可写 | 说明                             |
+| ------- | ------ | ---- | ---- | -------------------------------- |
+| algName | string | 是   | 否   | 非对称密钥生成器指定的算法名称。 |
 
 ### generateKeyPair
 
 generateKeyPair(callback : AsyncCallback\<KeyPair>) : void;
+
 异步获取非对称密钥生成器随机生成的密钥，通过注册回调函数获取结果。
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
 **参数：**
 
-| 名称     | 类型                       | 必填 | 说明                         |
-| -------- | -------------------------- | ---- | ---------------------------- |
+| 参数名     | 类型                    | 必填 | 说明                           |
+| -------- | ----------------------- | ---- | ------------------------------ |
 | callback | AsyncCallback\<KeyPair> | 是   | 回调函数，用于获取非对称密钥。 |
 
 **示例：**
@@ -1347,14 +1545,15 @@ asyKeyGenerator.generateKeyPair((err, keyPair) => {
 ### generateKeyPair
 
 generateKeyPair() : Promise\<KeyPair>
+
 异步获取该非对称密钥生成器随机生成的密钥，通过Promise获取结果。
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
 **返回值：**
 
-| 类型                  | 说明                            |
-| --------------------- | ------------------------------- |
+| 类型              | 说明                              |
+| ----------------- | --------------------------------- |
 | Promise\<KeyPair> | 使用Promise的方式获取非对称密钥。 |
 
 **示例：**
@@ -1374,23 +1573,25 @@ keyGenPromise.then( keyPair => {
 ### convertKey
 
 convertKey(pubKey : DataBlob, priKey : DataBlob, callback : AsyncCallback\<KeyPair\>) : void
+
 异步获取指定数据生成非对称密钥，通过注册回调函数获取结果。详情请看下方**密钥转换说明**
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
 **参数：**
 
-| 名称     | 类型                       | 必填 | 说明                         |
-| -------- | -------------------------- | ---- | ---------------------------- |
-| pubKey      | DataBlob                   | 否   | 指定的公钥材料。         |
-| priKey      | DataBlob                   | 否   | 指定的私钥材料。         |
+| 参数名     | 类型                    | 必填 | 说明                           |
+| -------- | ----------------------- | ---- | ------------------------------ |
+| pubKey   | DataBlob                | 否   | 指定的公钥材料。               |
+| priKey   | DataBlob                | 否   | 指定的私钥材料。               |
 | callback | AsyncCallback\<KeyPair> | 是   | 回调函数，用于获取非对称密钥。 |
 
 **示例：**
 
 ```javascript
 import cryptoFramework from "@ohos.security.cryptoFramework"
-
+let pubKey; // X.509规范、DER格式的公钥数据，此处省略数据。
+let priKey; // PKCS#8规范、DER格式的私钥数据，此处省略数据。
 let asyKeyGenerator = cryptoFramework.createAsyKeyGenerator("ECC256");
 asyKeyGenerator.convertKey(pubKey, priKey, (err, keyPair) => {
   if (err) {
@@ -1404,21 +1605,22 @@ asyKeyGenerator.convertKey(pubKey, priKey, (err, keyPair) => {
 ### convertKey
 
 convertKey(pubKey : DataBlob, priKey : DataBlob) : Promise\<KeyPair>
+
 异步获取指定数据生成非对称密钥，通过Promise获取结果。详情请看下方**密钥转换说明**
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
 **参数：**
 
-| 名称 | 类型     | 必填 | 说明                 |
-| ---- | -------- | ---- | -------------------- |
-| pubKey      | DataBlob                   | 否   | 指定的公钥材料。         |
-| priKey      | DataBlob                   | 否   | 指定的私钥材料。         |
+| 参数名   | 类型     | 必填 | 说明             |
+| ------ | -------- | ---- | ---------------- |
+| pubKey | DataBlob | 否   | 指定的公钥材料。 |
+| priKey | DataBlob | 否   | 指定的私钥材料。 |
 
 **返回值：**
 
-| 类型                  | 说明                            |
-| --------------------- | ------------------------------- |
+| 类型              | 说明                              |
+| ----------------- | --------------------------------- |
 | Promise\<KeyPair> | 使用Promise的方式获取非对称密钥。 |
 
 **示例：**
@@ -1427,6 +1629,8 @@ convertKey(pubKey : DataBlob, priKey : DataBlob) : Promise\<KeyPair>
 import cryptoFramework from "@ohos.security.cryptoFramework"
 
 let asyKeyGenerator = cryptoFramework.createAsyKeyGenerator("ECC256");
+let pubKey; // pubKey为使用非对称密钥生成器生成的非对称密钥的公钥对象，此处省略生成过程
+let priKey; // priKey为使用非对称密钥生成器生成的非对称密钥的私钥对象，此处省略生成过程
 let keyGenPromise = asyKeyGenerator.convertKey(pubKey, priKey);
 keyGenPromise.then( keyPair => {
   console.info("convertKey success.");
@@ -1437,29 +1641,32 @@ keyGenPromise.then( keyPair => {
 
 **密钥转换说明**
 
-1. RSA二进制密钥数据，按keysize(32位) ，nsize(keysize/8), esize(e实际长度)，dsize(keysize/8)，nval(大数n的二进制数据)，eval(大数e的二进制数据)，dval(大数d的二进制数据)拼接形成。
-2. RSA二进制密钥数据中，nsize和dsize为密钥位数/8，esize为具体的实际长度。
-3. RSA私钥数据需要包含keysize，nsize，esize，dsize，nval，eval，dval的全部数据，公钥材料中dsize设置为0，缺省dval的数据。
-4. RSA二进制密钥数据中，keysize、nsize、esize和dsize为32位二进制数据，数据的大小端格式请按设备CPU默认格式，密钥材料（nval、eval、dval）统一为大端格式。
-5. convertKey接口中，公钥和私钥二进制数据为可选项，可单独传入公钥或私钥的数据，生成对应只包含公钥或私钥的KeyPair对象。
+1. 非对称密钥（RSA、ECC）的公钥和私钥调用getEncoded()方法后，分别返回X.509格式和PKCS#8格式的二进制数据，此数据可用于跨应用传输或持久化存储。
+2. 当调用convertKey方法将外来二进制数据转换为算法库非对称密钥对象时，公钥应满足ASN.1语法、X.509规范、DER编码格式，私钥应满足ASN.1语法、PKCS#8规范、DER编码格式。
+3. convertKey方法中，公钥和密钥二进制数据非必选项，可单独传入公钥或私钥的数据，生成对应只包含公钥或私钥的KeyPair对象。
 
 ## cryptoFramework.createCipher
 
 createCipher(transformation : string) : Cipher
-通过指定算法名称，获取相应的[Cipher](#cipher)实例。支持的算法名参数详见框架概述“[加解密规格](../../security/cryptoFramework-overview.md#加解密规格)”一节中的“指定算法名称字符串”。
+
+通过指定算法名称，获取相应的[Cipher](#cipher)实例。<br/>支持的规格详见框架概述“[加解密规格](../../security/cryptoFramework-overview.md#加解密规格)”一节。
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
 **参数：**
 
-| 参数名         | 类型   |  必填  |  说明                                                         |
-| -------------- | ------ | -------- | ------------------------------------------------------------ |
-| transformation | string | 是   | 待生成Cipher的算法名称、加密模式以及填充方法的组合。输入可以为"RSA1024\|PKCS1", "RSA1024\|PKCS1_OAEP\|SHA256\|SHA256"等 |
+| 参数名         | 类型   | 必填 | 说明                                                         |
+| -------------- | ------ | ---- | ------------------------------------------------------------ |
+| transformation | string | 是   | 待生成Cipher的算法名称（含密钥长度）、加密模式以及填充方法的组合。<br/>具体取值详见框架概述“[加解密规格](../../security/cryptoFramework-overview.md#加解密规格)”一节中的“字符串参数”。 |
+
+> **说明：** 
+> 1. 目前对称加解密中，PKCS5和PKCS7的实现相同，其padding长度和分组长度保持一致（即PKCS5和PKCS7在3DES中均按照8字节填充，在AES中均按照16字节填充），另有NoPadding表示不填充。<br/>开发者需要自行了解密码学不同分组模式的差异，以便选择合适的参数规格。例如选择ECB和CBC模式时，建议启用填充，否则必须确保明文长度是分组大小的整数倍；选择其他模式时，可以不启用填充，此时密文长度和明文长度一致（即可能不是分组大小的整数倍）。
+> 2. 使用RSA进行非对称加解密时，必须创建两个Cipher对象分别进行加密和解密操作，而不能对同一个Cipher对象进行加解密。对称加解密没有此要求（即只要算法规格一样，可以对同一个Cipher对象进行加解密操作）。
 
 **返回值：**
 
-| 类型   | 说明                     |
-| ------ | ------------------------ |
+| 类型              | 说明                     |
+| ----------------- | ------------------------ |
 | [Cipher](#cipher) | 返回加解密生成器的对象。 |
 
 **示例：**
@@ -1474,39 +1681,51 @@ try {
   console.info(`cipher algName: ${cipher.algName}`);
 } catch (error) {
   console.error(`createCipher failed, ${error.code}, ${error.message}`);
-  return;
 }
 ```
 
 ## Cipher
 
-提供加解密的算法操作功能，按序调用本类中的[init()](#init-2)、[update()](#update-4)、[doFinal()](#dofinal-2)方法，可以实现对称加密/对称解密/非对称加密/非对称解密。完整的加解密流程示例可参考开发指导中的“[使用加解密操作](../../security/cryptoFramework-guidelines.md#使用加解密操作)”一节。
+提供加解密的算法操作功能，按序调用本类中的[init()](#init-2)、[update()](#update-4)、[doFinal()](#dofinal-2)方法，可以实现对称加密/对称解密/非对称加密/非对称解密。<br/>完整的加解密流程示例可参考开发指导中的“[使用加解密操作](../../security/cryptoFramework-guidelines.md#使用加解密操作)”一节。
+
+一次完整的加/解密流程在对称加密和非对称加密中略有不同：
+
+- 对称加解密：init为必选，update为可选（且允许多次update加/解密大数据），doFinal为必选；doFinal结束后可以重新init开始新一轮加/解密流程。
+- RSA非对称加解密：init为必选，不支持update操作，doFinal为必选（允许连续多次doFinal加/解密大数据）；doFinal后不支持重新init。
 
 ### 属性
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
 
-| 名称    | 类型   | 可读  | 可写  | 描述                         |
-| ------- | ------ | -------- | ----------- | ---------------------------- |
+| 名称    | 类型   | 可读 | 可写 | 说明                         |
+| ------- | ------ | ---- | ---- | ---------------------------- |
 | algName | string | 是   | 否   | 加解密生成器指定的算法名称。 |
 
 ### init
 
 init(opMode : CryptoMode, key : Key, params : ParamsSpec, callback : AsyncCallback\<void>) : void
 
-初始化加解密的[cipher](#cipher)对象，通过注册回调函数获取结果。
+初始化加解密的[cipher](#cipher)对象，通过注册回调函数获取结果。<br/>必须在使用[createCipher](#cryptoframeworkcreatecipher)创建[Cipher](#cipher)实例后，才能使用本函数。
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
 **参数：**
 
-| 名称     | 类型                     | 必填    | 说明                     |
-| -------- | ------------------------ | ------- | ------------------------ |
-| opMode   | [CryptoMode](#cryptomode)      | 是   | 加密或者解密模式。       |
-| key      | [Key](#key)           | 是   | 指定加密或解密的密钥。   |
-| params   | [ParamsSpec](#paramsspec)               | 是   | 指定加密或解密的参数。   |
-| callback | AsyncCallback\<void> | 是   | 回调函数。 |
+| 参数名     | 类型                      | 必填 | 说明                                                         |
+| -------- | ------------------------- | ---- | ------------------------------------------------------------ |
+| opMode   | [CryptoMode](#cryptomode) | 是   | 加密或者解密模式。                                           |
+| key      | [Key](#key)               | 是   | 指定加密或解密的密钥。                                       |
+| params   | [ParamsSpec](#paramsspec) | 是   | 指定加密或解密的参数，对于ECB等没有参数的算法模式，可以传入null。 |
+| callback | AsyncCallback\<void>      | 是   | 回调函数。当初始化成功，err为undefined，否则为错误对象。     |
+
+**错误码：**
+
+| 错误码ID | 错误信息                                                 |
+| -------- | --------------------------------------------------------- |
+| 17620001 | memory error.                                            |
+| 17620002 | runtime error.                                           |
+| 17630001 | crypto operation error.|
 
 **示例：**
 
@@ -1514,13 +1733,14 @@ init(opMode : CryptoMode, key : Key, params : ParamsSpec, callback : AsyncCallba
 import cryptoFramework from '@ohos.security.cryptoFramework';
 let symKey;     // 此处省略生成对称密钥的过程
 let cipher;         // 此处省略生成cipher实例的过程
+
 cipher.init(cryptoFramework.CryptoMode.ENCRYPT_MODE, symKey, null, (err, ) => {
   if (err) {
-    console.error('Failed to init cipher');
-    return;
+    console.error(`Failed to init cipher, ${err.code}, ${err.message}`);
+  } else {
+    console.info(`Init cipher success`);
+    // 此处进行update等后续操作
   }
-  console.log('Init cipher success');
-  // 此处进行update等后续操作
 })
 ```
 
@@ -1528,23 +1748,31 @@ cipher.init(cryptoFramework.CryptoMode.ENCRYPT_MODE, symKey, null, (err, ) => {
 
 init(opMode : CryptoMode, key : Key, params : ParamsSpec) : Promise\<void>
 
-初始化加解密的cipher对象，通过Promise获取结果。
+初始化加解密的cipher对象，通过Promise获取结果。<br/>必须在使用[createCipher](#cryptoframeworkcreatecipher)创建[Cipher](#cipher)实例后，才能使用本函数。
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
 **参数：**
 
-| 名称   | 类型       | 必填 | 说明                   |
-| ------ | ---------- | ---- | ---------------------- |
-| opMode |  [CryptoMode](#cryptomode)  | 是   | 加密或者解密模式。     |
-| key    |  [Key](#key)       | 是   | 指定加密或解密的密钥。 |
+| 参数名   | 类型                      | 必填 | 说明                                                         |
+| ------ | ------------------------- | ---- | ------------------------------------------------------------ |
+| opMode | [CryptoMode](#cryptomode) | 是   | 加密或者解密模式。                                           |
+| key    | [Key](#key)               | 是   | 指定加密或解密的密钥。                                       |
 | params | [ParamsSpec](#paramsspec) | 是   | 指定加密或解密的参数，对于ECB等没有参数的算法模式，可以传入null。 |
 
 **返回值：**
 
-| 类型                | 说明                        |
-| ------------------- | --------------------------- |
-| Promise\<void> | 使用Promise的方式获取结果。 |
+| 类型           | 说明                                   |
+| -------------- | -------------------------------------- |
+| Promise\<void> | Promise对象。无返回结果的Promise对象。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息                                          |
+| -------- | ------------------------------------------------- |
+| 17620001 | memory error.                                     |
+| 17620002 | runtime error.                                    |
+| 17630001 | crypto operation error.|
 
 **示例：**
 
@@ -1552,9 +1780,12 @@ init(opMode : CryptoMode, key : Key, params : ParamsSpec) : Promise\<void>
 import cryptoFramework from '@ohos.security.cryptoFramework';
 let symKey;     // 此处省略生成对称密钥的过程
 let cipher;         // 此处省略生成cipher实例的过程
-cipher.init(cryptoFramework.CryptoMode.ENCRYPT_MODE, symKey, null).then(() => {
-  console.log('Init cipher success');
+cipher.init(cryptoFramework.CryptoMode.ENCRYPT_MODE, symKey, null)
+.then(() => {
+  console.info(`Init cipher success`);
   // 此处进行update等后续操作
+}, error => {
+  console.error(`Failed to init cipher, ${error.code}, ${error.message}`);
 })
 ```
 
@@ -1562,16 +1793,29 @@ cipher.init(cryptoFramework.CryptoMode.ENCRYPT_MODE, symKey, null).then(() => {
 
 update(data : DataBlob, callback : AsyncCallback\<DataBlob>) : void
 
-分段更新加密或者解密数据操作，通过注册回调函数获取加密或者解密数据。（根据数据量，可不调用update或调用多次update）
+分段更新加密或者解密数据操作，通过注册回调函数获取加/解密数据。 <br/>必须在对[Cipher](#cipher)实例使用[init()](init-2)初始化后，才能使用本函数。
+
+> **说明：** 
+> 1. 在进行对称加解密操作的时候，如果开发者对各个分组模式不够熟悉，建议对每次update和doFinal的结果都判断是否为null，并在结果不为null时取出其中的数据进行拼接，形成完整的密文/明文。这是因为选择的分组模式等各项规格都可能对update和[doFinal](#dofinal-2)结果产生影响。<br/>（例如对于ECB和CBC模式，不论update传入的数据是否为分组长度的整数倍，都会以分组作为基本单位进行加/解密，并输出本次update新产生的加/解密分组结果。<br/>可以理解为，update只要凑满一个新的分组就会有输出，如果没有凑满则此次update输出为null，把当前还没被加/解密的数据留着，等下一次update/doFinal传入数据的时候，拼接起来继续凑分组。<br/>最后doFinal的时候，会把剩下的还没加/解密的数据，根据[createCipher](#cryptoframeworkcreatecipher)时设置的padding模式进行填充，补齐到分组的整数倍长度，再输出剩余加解密结果。<br/>而对于可以将分组密码转化为流模式实现的模式，还可能出现密文长度和明文长度相同的情况等。）
+> 2. 根据数据量，可以不调用update（即[init](#init-2)完成后直接调用[doFinal](#dofinal-2)）或多次调用update。<br/>算法库目前没有对update（单次或累计）的数据量设置大小限制，建议对于大数据量的对称加解密，采用多次update的方式传入数据。
+> 3. RSA非对称加解密不支持update操作。
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
 **参数：**
 
-| 名称     | 类型                         | 必填 | 说明                                       |
-| -------- | ---------------------------- | ---- | ------------------------------------------ |
-| data     | [DataBlob](#datablob)                  | 是   | 加密或者解密的数据。                       |
-| callback | AsyncCallback\<[DataBlob](#datablob)> | 是   | 回调函数，用于获取加密或者解密的数据结果。 |
+| 参数名     | 类型                                  | 必填 | 说明                                                         |
+| -------- | ------------------------------------- | ---- | ------------------------------------------------------------ |
+| data     | [DataBlob](#datablob)                 | 是   | 加密或者解密的数据。data不能为null，也不允许传入{data : Uint8Array(空) }            |
+| callback | AsyncCallback\<[DataBlob](#datablob)> | 是   | 回调函数。当更新加/解密数据成功，err为undefined，data为此次更新的加/解密结果DataBlob；否则为错误对象。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息                                    |
+| -------- | ------------------------------------------- |
+| 17620001 | memory error.                               |
+| 17620002 | runtime error.                              |
+| 17630001 | crypto operation error.                     |
 
 **示例：**
 
@@ -1591,11 +1835,14 @@ let cipher;         // 此处省略生成cipher实例的过程
 let plainText = {data : stringToUint8Array('this is test!')};
 cipher.update(plainText, (err, output) => {       // 加密过程举例
   if (err) {
-    console.error('Failed to update cipher');
-    return;
+    console.error(`Failed to update cipher`);
+  } else {
+    console.info(`Update cipher success`);
+    if (output != null) {
+      // 拼接output.data到密文
+    }
+    // 此处进行doFinal等后续操作
   }
-  console.log('Update cipher success');
-  // 此处进行doFinal等后续操作
 })
 ```
 
@@ -1603,21 +1850,34 @@ cipher.update(plainText, (err, output) => {       // 加密过程举例
 
 update(data : DataBlob) : Promise\<DataBlob>
 
-分段更新加密或者解密数据操作，通过Promise获取结果。（根据数据量，可不调用update或调用多次update）
+分段更新加密或者解密数据操作，通过通过Promise获取加/解密数据。<br/>必须在对[Cipher](#cipher)实例使用[init()](init-2)初始化后，才能使用本函数。
+
+> **说明：** 
+> 1. 在进行对称加解密操作的时候，如果开发者对各个分组模式不够熟悉，建议对每次update和doFinal的结果都判断是否为null，并在结果不为null时取出其中的数据进行拼接，形成完整的密文/明文。这是因为选择的分组模式等各项规格都可能对update和[doFinal](#dofinal-2)结果产生影响。<br/>（例如对于ECB和CBC模式，不论update传入的数据是否为分组长度的整数倍，都会以分组作为基本单位进行加/解密，并输出本次update新产生的加/解密分组结果。<br/>可以理解为，update只要凑满一个新的分组就会有输出，如果没有凑满则此次update输出为null，把当前还没被加/解密的数据留着，等下一次update/doFinal传入数据的时候，拼接起来继续凑分组。<br/>最后doFinal的时候，会把剩下的还没加/解密的数据，根据[createCipher](#cryptoframeworkcreatecipher)时设置的padding模式进行填充，补齐到分组的整数倍长度，再输出剩余加解密结果。<br/>而对于可以将分组密码转化为流模式实现的模式，还可能出现密文长度和明文长度相同的情况等。）
+> 2. 根据数据量，可以不调用update（即[init](#init-2)完成后直接调用[doFinal](#dofinal-2)）或多次调用update。<br/>算法库目前没有对update（单次或累计）的数据量设置大小限制，建议对于大数据量的对称加解密，可以采用多次update的方式传入数据。
+> 3. RSA非对称加解密不支持update操作。
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
 **参数：**
 
-| 名称 | 类型     | 必填 | 说明                 |
-| ---- | -------- | ---- | -------------------- |
-| data |  [DataBlob](#datablob) | 是   | 加密或者解密的数据。 |
+| 参数名 | 类型                  | 必填 | 说明                 |
+| ---- | --------------------- | ---- | -------------------- |
+| data | [DataBlob](#datablob) | 是   | 加密或者解密的数据。data不能为null，也不允许传入{data : Uint8Array(空) } |
 
 **返回值：**
 
-| 类型                    | 说明                        |
-| ----------------------- | --------------------------- |
-| Promise\<[DataBlob](#datablob)> | 使用Promise的方式获取结果。 |
+| 类型                            | 说明                                             |
+| ------------------------------- | ------------------------------------------------ |
+| Promise\<[DataBlob](#datablob)> | Promise对象，返回此次更新的加/解密结果DataBlob。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息                                     |
+| -------- | -------------------------------------------- |
+| 17620001 | memory error.                                |
+| 17620002 | runtime error.                               |
+| 17630001 | crypto operation error.                      |
 
 **示例：**
 
@@ -1635,9 +1895,15 @@ function stringToUint8Array(str) {
 let cipher;         // 此处省略生成cipher实例的过程
 // 此处省略init()过程
 let plainText = {data : stringToUint8Array('this is test!')};
-cipher.update(data).then((output) => {
-  console.log('Update cipher success');
+cipher.update(plainText)
+.then((output) => {
+  console.info(`Update cipher success.`);
+  if (output != null) {
+    // 拼接output.data到密文
+  }
   // 此处进行doFinal等后续操作
+}, error => {
+  console.info(`Update cipher failed.`);
 })
 ```
 
@@ -1645,16 +1911,33 @@ cipher.update(data).then((output) => {
 
 doFinal(data : DataBlob, callback : AsyncCallback\<DataBlob>) : void
 
-最后结束加密或者解密数据操作，通过注册回调函数获取加密或者解密数据。如果在本次加解密过程中已经使用[update](#update-4)传入过数据，可以在doFinal的data参数处传入null。<br/>根据对称加解密的模式不同，doFinal的输出可能不同：<br/>对于GCM和CCM模式的对称加密，doFinal的结果是剩余密文和authTag的拼接，即末尾的16字节（GCM模式）或12字节（CCM模式）是authTag（因此如果doFinal的data参数传入null，则doFinal的结果就是authTag）。在doFinal完成后需要将authTag暂存，填入解密时的[GcmParamsSpec](#gcmparamsspec)或[CcmParamsSpec](#ccmparamsspec)。<br/>对于其他模式的对称加解密，根据不同的模式特点，存在两种情况（1）update输出一部分加解密结果，doFinal输出剩余加解密结果；（2）加解密结果全部由update输出，doFinal输出空。
+（1）在对称加解密中，doFinal加/解密（分组模式产生的）剩余数据和本次传入的数据，最后结束加密或者解密数据操作，通过注册回调函数获取加密或者解密数据。<br/>如果数据量较小，可以在doFinal中一次性传入数据，而不使用update；如果在本次加解密流程中，已经使用[update](#update-4)传入过数据，可以在doFinal的data参数处传入null。<br/>根据对称加解密的模式不同，doFinal的输出有如下区别：
+
+- 对于GCM和CCM模式的对称加密：一次加密流程中，如果将每一次update和doFinal的结果拼接起来，会得到“密文+authTag”，即末尾的16字节（GCM模式）或12字节（CCM模式）是authTag，而其余部分均为密文。（也就是说，如果doFinal的data参数传入null，则doFinal的结果就是authTag）<br/>authTag需要填入解密时的[GcmParamsSpec](#gcmparamsspec)或[CcmParamsSpec](#ccmparamsspec)；密文则作为解密时的入参data。
+- 对于其他模式的对称加解密、GCM和CCM模式的对称解密：一次加/解密流程中，每一次update和doFinal的结果拼接起来，得到完整的明文/密文。
+
+（2）在RSA非对称加解密中，doFinal加/解密本次传入的数据，通过注册回调函数获取加密或者解密数据。如果数据量较大，可以多次调用doFinal，拼接结果得到完整的明文/密文。
+
+>  **说明：** 
+>  1. 对称加解密中，调用doFinal标志着一次加解密流程已经完成，即[Cipher](#cipher)实例的状态被清除，因此当后续开启新一轮加解密流程时，需要重新调用[init()](init-2)并传入完整的参数列表进行初始化<br/>（比如即使是对同一个Cipher实例，采用同样的对称密钥，进行加密然后解密，则解密中调用init的时候仍需填写params参数，而不能直接省略为null）。
+>  2. 如果遇到解密失败，需检查加解密数据和[init](#init-2)时的参数是否匹配，包括GCM模式下加密得到的authTag是否填入解密时的GcmParamsSpec等。
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
 **参数：**
 
-| 名称     | 类型                         | 必填 | 说明                                       |
-| -------- | ---------------------------- | ---- | ------------------------------------------ |
-| data     |  [DataBlob](#datablob)                     | 是   | 加密或者解密的数据。                       |
-| callback | AsyncCallback\<[DataBlob](#datablob)> | 是   | 回调函数，用于获取加密或者解密的数据结果。 |
+| 参数名     | 类型                                  | 必填 | 说明                                                         |
+| -------- | ------------------------------------- | ---- | ------------------------------------------------------------ |
+| data     | [DataBlob](#datablob)                 | 是   | 加密或者解密的数据。在对称加解密中允许为null，但不允许传入{data : Uint8Array(空) }。       |
+| callback | AsyncCallback\<[DataBlob](#datablob)> | 是   | 回调函数。当最终加/解密数据成功，err为undefined，data为剩余数据的加/解密结果DataBlob；否则为错误对象。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息                |
+| -------- | ----------------------- |
+| 17620001 | memory error.           |
+| 17620002 | runtime error.          |
+| 17630001 | crypto operation error. |
 
 **示例：**
 
@@ -1666,10 +1949,13 @@ let data;           // 此处省略准备待加密/解密数据的过程
 // 此处省略init()和update()过程
 cipher.doFinal(data, (err, output) => {
   if (err) {
-    console.error('Failed to final cipher');
-    return;
+    console.error(`Failed to finalize cipher, ${err.code}, ${err.message}`);
+  } else {
+    console.info(`Finalize cipher success`);
+    if (output != null) {
+      // 拼接output.data得到完整的明文/密文(及authTag)
+    }
   }
-  console.log('Final cipher success');
 })
 ```
 
@@ -1677,21 +1963,38 @@ cipher.doFinal(data, (err, output) => {
 
 doFinal(data : DataBlob) : Promise\<DataBlob>
 
-最后结束加密或者解密数据操作，通过Promise获取结果。如果在本次加解密过程中已经使用[update](#update-4)传入过数据，可以在doFinal的data参数处传入null。<br/>根据对称加解密的模式不同，doFinal的输出可能不同：<br/>对于GCM和CCM模式的对称加密，doFinal的结果是剩余密文和authTag的拼接，即末尾的16字节（GCM模式）或12字节（CCM模式）是authTag（因此如果doFinal的data参数传入null，则doFinal的结果就是authTag）。在doFinal完成后需要将authTag暂存，填入解密时的[GcmParamsSpec](#gcmparamsspec)或[CcmParamsSpec](#ccmparamsspec)。<br/>对于其他模式的对称加解密，根据不同的模式特点，存在两种情况（1）update输出一部分加解密结果，doFinal输出剩余加解密结果；（2）加解密结果全部由update输出，doFinal输出空。
+（1）在对称加解密中，doFinal加/解密（分组模式产生的）剩余数据和本次传入的数据，最后结束加密或者解密数据操作，通过Promise获取加密或者解密数据。<br/>如果数据量较小，可以在doFinal中一次性传入数据，而不使用update；如果在本次加解密流程中，已经使用[update](#update-4)传入过数据，可以在doFinal的data参数处传入null。<br/>根据对称加解密的模式不同，doFinal的输出有如下区别：
+
+- 对于GCM和CCM模式的对称加密：一次加密流程中，如果将每一次update和doFinal的结果拼接起来，会得到“密文+authTag”，即末尾的16字节（GCM模式）或12字节（CCM模式）是authTag，而其余部分均为密文。（也就是说，如果doFinal的data参数传入null，则doFinal的结果就是authTag）<br/>authTag需要填入解密时的[GcmParamsSpec](#gcmparamsspec)或[CcmParamsSpec](#ccmparamsspec)；密文则作为解密时的入参data。
+- 对于其他模式的对称加解密、GCM和CCM模式的对称解密：一次加/解密流程中，每一次update和doFinal的结果拼接起来，得到完整的明文/密文。
+
+（2）在RSA非对称加解密中，doFinal加/解密本次传入的数据，通过Promise获取加密或者解密数据。如果数据量较大，可以多次调用doFinal，拼接结果得到完整的明文/密文。
+
+>  **说明：** 
+>  1. 对称加解密中，调用doFinal标志着一次加解密流程已经完成，即[Cipher](#cipher)实例的状态被清除，因此当后续开启新一轮加解密流程时，需要重新调用[init()](init-2)并传入完整的参数列表进行初始化<br/>（比如即使是对同一个Cipher实例，采用同样的对称密钥，进行加密然后解密，则解密中调用init的时候仍需填写params参数，而不能直接省略为null）。
+>  2. 如果遇到解密失败，需检查加解密数据和[init](#init-2)时的参数是否匹配，包括GCM模式下加密得到的authTag是否填入解密时的GcmParamsSpec等。
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
 **参数：**
 
-| 名称 | 类型     | 必填 | 说明                 |
-| ---- | -------- | ---- | -------------------- |
-| data | [DataBlob](#datablob) | 是   | 加密或者解密的数据。 |
+| 参数名 | 类型                  | 必填 | 说明                 |
+| ---- | --------------------- | ---- | -------------------- |
+| data | [DataBlob](#datablob) | 是   | 加密或者解密的数据。data参数允许为null，但不允许传入{data : Uint8Array(空) } |
 
 **返回值：**
 
-| 类型                    | 说明                        |
-| ----------------------- | --------------------------- |
-| Promise\<[DataBlob](#datablob)> | 使用Promise的方式获取结果。 |
+| 类型                            | 说明                                             |
+| ------------------------------- | ------------------------------------------------ |
+| Promise\<[DataBlob](#datablob)> | Promise对象，返回剩余数据的加/解密结果DataBlob。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息                                     |
+| -------- | -------------------------------------------- |
+| 17620001 | memory error.                                |
+| 17620002 | runtime error.                               |
+| 17630001 | crypto operation error.                      |
 
 **示例：**
 
@@ -1701,22 +2004,37 @@ import cryptoFramework from '@ohos.security.cryptoFramework';
 let cipher;         // 此处省略生成cipher实例的过程
 let data;           // 此处省略准备待加密/解密数据的过程
 // 此处省略init()和update()过程
-cipher.doFinal(data).then((output) => {
-    console.log('Final cipher success');
+cipher.doFinal(data)
+.then(output => {
+  console.info(`Finalize cipher success`);
+    if (output != null) {
+    // 拼接output.data得到完整的明文/密文(及authTag)
+  }
+}, error => {
+  console.error(`Failed to finalize cipher, ${error.code}, ${error.message}`);
 })
 ```
 
-**callback示例：**
+**使用RSA加密的callback完整示例：**
 
 ```javascript
 import cryptoFramework from "@ohos.security.cryptoFramework"
+
+function stringToUint8Array(str) {
+  let arr = [];
+  for (let i = 0, j = str.length; i < j; ++i) {
+    arr.push(str.charCodeAt(i));
+  }
+  return new Uint8Array(arr);
+}
 
 let rsaGenerator = cryptoFramework.createAsyKeyGenerator("RSA1024|PRIMES_2");
 let cipher = cryptoFramework.createCipher("RSA1024|PKCS1");
 rsaGenerator.generateKeyPair(function (err, keyPair) {
   let pubKey = keyPair.pubKey;
   cipher.init(cryptoFramework.CryptoMode.ENCRYPT_MODE, pubKey, null, function (err, data) {
-    let input = {data : stringToUint8Array(plan) };
+    let plainText = "this is cipher text";
+    let input = {data : stringToUint8Array(plainText) };
     cipher.doFinal(input, function (err, data) {
       AlertDialog.show({ message : "EncryptOutPut is " + data.data} );
     });
@@ -1724,10 +2042,18 @@ rsaGenerator.generateKeyPair(function (err, keyPair) {
 });
 ```
 
-**promise示例：**
+**使用RSA加密的promise完整示例：**
 
 ```javascript
 import cryptoFramework from "@ohos.security.cryptoFramework"
+
+function stringToUint8Array(str) {
+  let arr = [];
+  for (let i = 0, j = str.length; i < j; ++i) {
+    arr.push(str.charCodeAt(i));
+  }
+  return new Uint8Array(arr);
+}
 
 let rsaGenerator = cryptoFramework.createAsyKeyGenerator("RSA1024|PRIMES_2");
 let cipher = cryptoFramework.createCipher("RSA1024|PKCS1");
@@ -1736,13 +2062,16 @@ keyGenPromise.then(rsaKeyPair => {
   let pubKey = rsaKeyPair.pubKey;
   return cipher.init(cryptoFramework.CryptoMode.ENCRYPT_MODE, pubKey, null); // 传入私钥和DECRYPT_MODE可初始化解密模式
 }).then(() => {
-  let input = { data : stringToUint8Array(plan) };
+  let plainText = "this is cipher text";
+  let input = { data : stringToUint8Array(plainText) };
   return cipher.doFinal(input);
 }).then(dataBlob => {
   console.info("EncryptOutPut is " + dataBlob.data);
 });
 ```
 
+> **说明：** 
+> 更多加解密流程的完整示例可参考开发指导中的“[使用加解密操作](../../security/cryptoFramework-guidelines.md#使用加解密操作)”一节。
 
 ## cryptoFramework.createSign
 
@@ -1760,9 +2089,9 @@ Sign实例生成
 
 **返回值**：
 
-| 类型 | 说明                           |
-| ---- | ------------------------------ |
-| Sign   | 返回由输入算法指定生成的Sign对象 |
+| 类型 | 说明                             |
+| ---- | -------------------------------- |
+| Sign | 返回由输入算法指定生成的Sign对象 |
 
 **示例：**
 
@@ -1788,10 +2117,10 @@ init(priKey : PriKey, callback : AsyncCallback\<void>) : void
 
 **参数：**
 
-| 参数名   | 类型                  | 必填 | 说明               |
-| -------- | --------------------- | ---- | ------------------ |
-| priKey   | Key |是| 用于Sign的初始化 |
-| callback | AsyncCallback\<void> | 是   | 回调函数的 |
+| 参数名   | 类型                 | 必填 | 说明             |
+| -------- | -------------------- | ---- | ---------------- |
+| priKey   | PriKey                  | 是   | 用于Sign的初始化 |
+| callback | AsyncCallback\<void> | 是   | 回调函数的       |
 
 ### init
 
@@ -1803,15 +2132,15 @@ init(opMode : CryptoMode, key : Key, params : ParamsSpec) : Promise\<void>
 
 **参数：**
 
-| 参数名   | 类型                  | 必填 | 说明               |
-| -------- | --------------------- | ---- | ------------------ |
-| priKey   | Key |是| 用于Sign的初始化 |
+| 参数名 | 类型 | 必填 | 说明             |
+| ------ | ---- | ---- | ---------------- |
+| priKey | PriKey  | 是   | 用于Sign的初始化 |
 
 **返回值：**
 
-| 类型          | 说明        |
-| ------------- | ----------- |
-| Promise<void> | Promise对象 |
+| 类型           | 说明        |
+| -------------- | ----------- |
+| Promise\<void> | Promise对象 |
 
 ### update
 
@@ -1823,10 +2152,10 @@ update(data : DataBlob, callback : AsyncCallback\<void>) : void
 
 **参数：**
 
-| 参数名   | 类型                  | 必填 | 说明               |
-| -------- | --------------------- | ---- | ------------------ |
-| data    | DataBlob              | 是   | 传入的消息         |
-| callback | AsyncCallback<void> | 是   | 回调函数 |
+| 参数名   | 类型                 | 必填 | 说明       |
+| -------- | -------------------- | ---- | ---------- |
+| data     | DataBlob             | 是   | 传入的消息 |
+| callback | AsyncCallback\<void> | 是   | 回调函数   |
 
 ### update
 
@@ -1840,12 +2169,12 @@ update(data : DataBlob) : Promise\<void>;
 
 | 参数名 | 类型     | 必填 | 说明       |
 | ------ | -------- | ---- | ---------- |
-| data  | DataBlob | 是   | 传入的消息 |
+| data   | DataBlob | 是   | 传入的消息 |
 
 **返回值：**
 
-| 类型          | 说明        |
-| ------------- | ----------- |
+| 类型           | 说明        |
+| -------------- | ----------- |
 | Promise\<void> | Promise对象 |
 
 ### sign
@@ -1858,10 +2187,10 @@ sign(data : DataBlob, callback : AsyncCallback\<DataBlob>) : void
 
 **参数：**
 
-| 参数名   | 类型                  | 必填 | 说明               |
-| -------- | --------------------- | ---- | ------------------ |
-| data    | DataBlob              | 是   | 传入的消息         |
-| callback | AsyncCallback\<void> | 是   | 回调函数 |
+| 参数名   | 类型                 | 必填 | 说明       |
+| -------- | -------------------- | ---- | ---------- |
+| data     | DataBlob             | 是   | 传入的消息 |
+| callback | AsyncCallback\<DataBlob> | 是   | 回调函数   |
 
 ### sign
 
@@ -1875,53 +2204,92 @@ sign(data : DataBlob) : Promise\<DataBlob>
 
 | 参数名 | 类型     | 必填 | 说明       |
 | ------ | -------- | ---- | ---------- |
-| data  | DataBlob | 是   | 传入的消息 |
+| data   | DataBlob | 是   | 传入的消息 |
 
 **返回值：**
 
-| 类型          | 说明        |
-| ------------- | ----------- |
+| 类型           | 说明        |
+| -------------- | ----------- |
 | Promise\<void> | Promise对象 |
 
 **callback示例：**
+
 ```javascript
 import cryptoFramework from "@ohos.security.cryptoFramework"
 
-let rsaGenerator = cryptoFramework.createAsyKeyGenerator("RSA1024|PRIMES_2");
-let signer = cryptoFramework.createSign("RSA1024|PKCS1|SHA256");
-rsaGenerator.generateKeyPair(function (err, keyPair) {
-  globalKeyPair = keyPair;
-  let priKey = globalKeyPair.priKey;
-  signer.init(priKey, function (err, data) {
-    signer.update(input1, function (err, data) {
-      signer.sign(input2, function (err, data) {
-        SignMessageBlob = data;
-        console.info("sign output is " + SignMessageBlob.data); 
+function stringToUint8Array(str) {
+  var arr = [];
+  for (var i = 0, j = str.length; i < j; ++i) {
+    arr.push(str.charCodeAt(i));
+  }
+  var tmpArray = new Uint8Array(arr);
+  return tmpArray;
+}
+
+let globalKeyPair;
+let SignMessageBlob;
+let plan1 = "This is Sign test plan1";
+let plan2 = "This is Sign test plan1";
+let input1 = { data : stringToUint8Array(plan1) };
+let input2 = { data : stringToUint8Array(plan2) };
+
+function signMessageCallback() {
+  let rsaGenerator = cryptoFramework.createAsyKeyGenerator("RSA1024|PRIMES_2");
+  let signer = cryptoFramework.createSign("RSA1024|PKCS1|SHA256");
+  rsaGenerator.generateKeyPair(function (err, keyPair) {
+    globalKeyPair = keyPair;
+    let priKey = globalKeyPair.priKey;
+    signer.init(priKey, function (err, data) {
+      signer.update(input1, function (err, data) {
+        signer.sign(input2, function (err, data) {
+          SignMessageBlob = data;
+          AlertDialog.show({message : "res" +  SignMessageBlob.data});
+        });
       });
     });
   });
-});
+}
 ```
 
 **promise示例：**
+
 ```javascript
 import cryptoFramework from "@ohos.security.cryptoFramework"
 
-let rsaGenerator = cryptoFramework.createAsyKeyGenerator("RSA1024|PRIMES_2");
-let signer = cryptoFramework.createSign("RSA1024|PKCS1|SHA256");
-let keyGenPromise = rsaGenerator.generateKeyPair();
-keyGenPromise.then( keyPair => {
-  globalKeyPair = keyPair;
-  let priKey = globalKeyPair.priKey;
-  return signer.init(priKey);
-}).then(() => {
-  return signer.update(input1);
-}).then(() => {
-  return signer.sign(input2);
-}).then(dataBlob => {
-  SignMessageBlob = dataBlob;
-  console.info("sign output is " + SignMessageBlob.data);
-});
+function stringToUint8Array(str) {
+  var arr = [];
+  for (var i = 0, j = str.length; i < j; ++i) {
+    arr.push(str.charCodeAt(i));
+  }
+  var tmpArray = new Uint8Array(arr);
+  return tmpArray;
+}
+
+let globalKeyPair;
+let SignMessageBlob;
+let plan1 = "This is Sign test plan1";
+let plan2 = "This is Sign test plan1";
+let input1 = { data : stringToUint8Array(plan1) };
+let input2 = { data : stringToUint8Array(plan2) };
+
+function signMessagePromise() {
+  let rsaGenerator = cryptoFramework.createAsyKeyGenerator("RSA1024|PRIMES_2");
+  let signer = cryptoFramework.createSign("RSA1024|PKCS1|SHA256");
+  let keyGenPromise = rsaGenerator.generateKeyPair();
+  keyGenPromise.then( keyPair => {
+    globalKeyPair = keyPair;
+    let priKey = globalKeyPair.priKey;
+    return signer.init(priKey);
+  }).then(() => {
+    return signer.update(input1);
+  }).then(() => {
+    return signer.sign(input2);
+  }).then(dataBlob => {
+    SignMessageBlob = dataBlob;
+    console.info("sign output is " + SignMessageBlob.data);
+    AlertDialog.show({message : "output" +  SignMessageBlob.data});
+  });
+}
 ```
 
 ## cryptoFramework.createVerify
@@ -1940,9 +2308,9 @@ Verify实例生成
 
 **返回值**：
 
-| 类型 | 说明                           |
-| ---- | ------------------------------ |
-| Verify   | 返回由输入算法指定生成的Verify对象 |
+| 类型   | 说明                               |
+| ------ | ---------------------------------- |
+| Verify | 返回由输入算法指定生成的Verify对象 |
 
 **示例：**
 
@@ -1953,6 +2321,7 @@ let verifyer1 = cryptoFramework.createVerify("RSA1024|PKCS1|SHA256");
 
 let verifyer2 = cryptoFramework.createVerify("RSA1024|PKCS1_OAEP|SHA256|MGF1_SHA256")
 ```
+
 ## Verify
 
 Verify类，使用Verify方法之前需要创建该类的实例进行操作，通过createVerify(algName : string) : Verify方法构造此实例。
@@ -1961,34 +2330,35 @@ Verify类，使用Verify方法之前需要创建该类的实例进行操作，�
 
 init(pubKey : PubKey, callback : AsyncCallback\<void>) : void
 
-传入私钥初始化Verify对象，Callback形式
+传入公钥初始化Verify对象，Callback形式
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
 **参数：**
 
-| 参数名   | 类型                  | 必填 | 说明               |
-| -------- | --------------------- | ---- | ------------------ |
-| pubKey   | Key |是| 公钥对象，用于Verify的初始化 |
-| callback | AsyncCallback\<void> | 是   | 回调函数 |
+| 参数名   | 类型                 | 必填 | 说明                         |
+| -------- | -------------------- | ---- | ---------------------------- |
+| pubKey   | PubKey                  | 是   | 公钥对象，用于Verify的初始化 |
+| callback | AsyncCallback\<void> | 是   | 回调函数                     |
 
 ### init
+
 init(pubKey : PubKey) : Promise\<void>
 
-传入私钥初始化Verify对象，Promise形式
+传入公钥初始化Verify对象，Promise形式
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
 **参数：**
 
-| 参数名   | 类型                  | 必填 | 说明               |
-| -------- | --------------------- | ---- | ------------------ |
-| pubKey   | Key |是|公钥对象，用于Verify的初始化 |
+| 参数名 | 类型 | 必填 | 说明                         |
+| ------ | ---- | ---- | ---------------------------- |
+| pubKey | PubKey  | 是   | 公钥对象，用于Verify的初始化 |
 
 **返回值：**
 
-| 类型            | 说明         |
-| --------------- | ------------ |
+| 类型           | 说明        |
+| -------------- | ----------- |
 | Promise\<void> | Promise对象 |
 
 ### update
@@ -2001,10 +2371,10 @@ update(data : DataBlob, callback : AsyncCallback\<void>) : void
 
 **参数：**
 
-| 参数名   | 类型                  | 必填 | 说明               |
-| -------- | --------------------- | ---- | ------------------ |
-| data    | DataBlob              | 是   | 传入的消息         |
-| callback | AsyncCallback\<void> | 是   | 回调函数 |
+| 参数名   | 类型                 | 必填 | 说明       |
+| -------- | -------------------- | ---- | ---------- |
+| data     | DataBlob             | 是   | 传入的消息 |
+| callback | AsyncCallback\<void> | 是   | 回调函数   |
 
 ### update
 
@@ -2018,59 +2388,64 @@ update(data : DataBlob) : Promise\<void>;
 
 | 参数名 | 类型     | 必填 | 说明       |
 | ------ | -------- | ---- | ---------- |
-| data  | DataBlob | 是   | 传入的消息 |
+| data   | DataBlob | 是   | 传入的消息 |
 
 **返回值：**
 
-| 类型          | 说明        |
-| ------------- | ----------- |
+| 类型           | 说明        |
+| -------------- | ----------- |
 | Promise\<void> | Promise对象 |
 
 ### verify
 
 verify(data : DataBlob, signatureData : DataBlob, callback : AsyncCallback\<boolean>) : void
 
-对数据进行签名，返回签名结果，callback方式
+对数据进行验签，返回验签结果，callback方式
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
 **参数：**
 
-| 参数名   | 类型                  | 必填 | 说明               |
-| -------- | --------------------- | ---- | ------------------ |
-| data    | DataBlob              | 是   | 传入的消息         |
-| signatureData    | DataBlob              | 是   | 签名数据        |
-| callback | AsyncCallback\<void> | 是   | 回调函数 |
+| 参数名        | 类型                 | 必填 | 说明       |
+| ------------- | -------------------- | ---- | ---------- |
+| data          | DataBlob             | 是   | 传入的消息 |
+| signatureData | DataBlob             | 是   | 签名数据   |
+| callback      | AsyncCallback\<boolean> | 是   | 回调函数   |
 
 ### verify
 
 verify(data : DataBlob, signatureData : DataBlob) : Promise\<boolean>
 
-对数据进行签名，返回签名结果，promise方式
+对数据进行验签，返回验签结果，promise方式
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
 **参数：**
 
-| 参数名 | 类型     | 必填 | 说明       |
-| ------ | -------- | ---- | ---------- |
-| data  | DataBlob | 是   | 传入的消息 |
-| signatureData    | DataBlob| 是 | 签名数据 |
+| 参数名        | 类型     | 必填 | 说明       |
+| ------------- | -------- | ---- | ---------- |
+| data          | DataBlob | 是   | 传入的消息 |
+| signatureData | DataBlob | 是   | 签名数据   |
 
 **返回值：**
 
-| 类型            | 说明         |
-| --------------- | ------------ |
-| Promise\<boolean> | 异步返回值，代表验签是否通过|
+| 类型              | 说明                         |
+| ----------------- | ---------------------------- |
+| Promise\<boolean> | 异步返回值，代表验签是否通过 |
 
 **callback示例：**
+
 ```javascript
 import cryptoFramework from "@ohos.security.cryptoFramework"
 
+let globalKeyPair; // globalKeyPair为使用非对称密钥生成器生成的非对称密钥对象，此处省略生成过程
+let input1 = null;
+let input2 = null;
+let signMessageBlob = null; // 签名后的数据，此处省略
 let verifyer = cryptoFramework.createVerify("RSA1024|PKCS1|SHA25");
 verifyer.init(globalKeyPair.pubKey, function (err, data) {
   verifyer.update(input1, function(err, data) {
-    verifyer.verify(input2, SignMessageBlob, function(err, data) {
+    verifyer.verify(input2, signMessageBlob, function(err, data) {
       console.info("verify result is " + data);
     })
   });
@@ -2078,19 +2453,25 @@ verifyer.init(globalKeyPair.pubKey, function (err, data) {
 ```
 
 **promise示例：**
+
 ```javascript
 import cryptoFramework from "@ohos.security.cryptoFramework"
 
+let globalKeyPair; // globalKeyPair为使用非对称密钥生成器生成的非对称密钥对象，此处省略生成过程
 let verifyer = cryptoFramework.createVerify("RSA1024|PKCS1|SHA256");
 let verifyInitPromise = verifyer.init(globalKeyPair.pubKey);
+let input1 = null;
+let input2 = null;
+let signMessageBlob = null; // 签名后的数据，此处省略
 verifyInitPromise.then(() => {
   return verifyer.update(input1);
 }).then(() => {
-  return verifyer.verify(input2, SignMessageBlob);
+  return verifyer.verify(input2, signMessageBlob);
 }).then(res => {
   console.log("Verify result is " + res);
 });
 ```
+
 ## cryptoFramework.createKeyAgreement
 
 createKeyAgreement(algName : string) : KeyAgreement
@@ -2101,15 +2482,15 @@ KeyAgreement实例生成
 
 **参数：**
 
-| 参数名  | 类型   | 必填 | 说明                                                         |
-| ------- | ------ | ---- | ------------------------------------------------------------ |
+| 参数名  | 类型   | 必填 | 说明                            |
+| ------- | ------ | ---- | ------------------------------- |
 | algName | string | 是   | 指定密钥协商算法：目前仅支持ECC |
 
 **返回值**：
 
-| 类型 | 说明                           |
-| ---- | ------------------------------ |
-| KeyAgreement   | 返回由输入算法指定生成的KeyAgreement对象 |
+| 类型         | 说明                                     |
+| ------------ | ---------------------------------------- |
+| KeyAgreement | 返回由输入算法指定生成的KeyAgreement对象 |
 
 **示例：**
 
@@ -2134,13 +2515,14 @@ generateSecret(priKey : PriKey, pubKey : PubKey, callback : AsyncCallback\<DataB
 
 **参数：**
 
-| 参数名   | 类型                  | 必填 | 说明               |
-| -------- | --------------------- | ---- | ------------------ |
-| priKey   | PriKey |是| 设置密钥协商的私钥输入 |
-| pubKey   | PubKey |是| 设置密钥协商的公钥输入 |
+| 参数名   | 类型                     | 必填 | 说明                   |
+| -------- | ------------------------ | ---- | ---------------------- |
+| priKey   | PriKey                   | 是   | 设置密钥协商的私钥输入 |
+| pubKey   | PubKey                   | 是   | 设置密钥协商的公钥输入 |
 | callback | AsyncCallback\<DataBlob> | 是   | 异步接受共享秘密的回调 |
 
 ### generateSecret
+
 generateSecret(priKey : PriKey, pubKey : PubKey) : Promise\<DataBlob>
 
 基于传入的私钥与公钥进行密钥协商，返回共享秘密，Promise形式
@@ -2149,21 +2531,23 @@ generateSecret(priKey : PriKey, pubKey : PubKey) : Promise\<DataBlob>
 
 **参数：**
 
-| 参数名   | 类型                  | 必填 | 说明               |
-| -------- | --------------------- | ---- | ------------------ |
-| priKey   | PriKey |是| 设置密钥协商的私钥输入 |
-| pubKey   | PubKey |是| 设置密钥协商的公钥输入 |
+| 参数名 | 类型   | 必填 | 说明                   |
+| ------ | ------ | ---- | ---------------------- |
+| priKey | PriKey | 是   | 设置密钥协商的私钥输入 |
+| pubKey | PubKey | 是   | 设置密钥协商的公钥输入 |
 
 **返回值：**
 
-| 类型            | 说明         |
-| --------------- | ------------ |
+| 类型               | 说明     |
+| ------------------ | -------- |
 | Promise\<DataBlob> | 共享秘密 |
 
 **callback示例：**
+
 ```javascript
 import cryptoFramework from "@ohos.security.cryptoFramework"
 
+let globalKeyPair; // globalKeyPair为使用非对称密钥生成器生成的非对称密钥对象，此处省略生成过程
 let keyAgreement = cryptoFramework.createKeyAgreement("ECC256");
 keyAgreement.generateSecret(globalKeyPair.priKey, globalKeyPair.pubKey, function (err, secret) {
   if (err) {
@@ -2175,9 +2559,11 @@ keyAgreement.generateSecret(globalKeyPair.priKey, globalKeyPair.pubKey, function
 ```
 
 **promise示例：**
+
 ```javascript
 import cryptoFramework from "@ohos.security.cryptoFramework"
 
+let globalKeyPair; // globalKeyPair为使用非对称密钥生成器生成的非对称密钥对象，此处省略生成过程
 let keyAgreement = cryptoFramework.createKeyAgreement("ECC256");
 let keyAgreementPromise = keyAgreement.generateSecret(globalKeyPair.priKey, globalKeyPair.pubKey);
 keyAgreementPromise.then((secret) => {
@@ -2186,6 +2572,7 @@ keyAgreementPromise.then((secret) => {
   console.error("keyAgreement error.");
 });
 ```
+
 ## cryptoFramework.createX509Cert
 
 createX509Cert(inStream : EncodingBlob, callback : AsyncCallback\<X509Cert>) : void
@@ -2196,10 +2583,10 @@ createX509Cert(inStream : EncodingBlob, callback : AsyncCallback\<X509Cert>) : v
 
 **参数**：
 
-| 参数名   | 类型          | 必填 | 说明               |
-| -------- | ------------- | ---- | ------------------ |
-| inStream | [EncodingBlob](#encodingblob)  | 是   | X509证书序列化数据 |
-| callback | AsyncCallback\<X509Cert> | 否   | 回调函数。表示X509证书对象           |
+| 参数名   | 类型                          | 必填 | 说明                       |
+| -------- | ----------------------------- | ---- | -------------------------- |
+| inStream | [EncodingBlob](#encodingblob) | 是   | X509证书序列化数据         |
+| callback | AsyncCallback\<X509Cert>      | 否   | 回调函数。表示X509证书对象 |
 
 
 **示例**：
@@ -2216,9 +2603,9 @@ let encodingBlob = {
 };
 cryptoFramework.createX509Cert(encodingBlob, function (error, x509Cert) {
     if (error != null) {
-        Console.log("createX509Cert failed, errCode: " + error.code + ", errMsg: " + error.message);
+        console.log("createX509Cert failed, errCode: " + error.code + ", errMsg: " + error.message);
     } else {
-        Console.log("createX509Cert success");
+        console.log("createX509Cert success");
     }
 });
 ```
@@ -2233,15 +2620,15 @@ createX509Cert(inStream : EncodingBlob) : Promise\<X509Cert>
 
 **参数**：
 
-| 参数名   | 类型         | 必填 | 说明               |
-| -------- | ------------ | ---- | ------------------ |
+| 参数名   | 类型                          | 必填 | 说明               |
+| -------- | ----------------------------- | ---- | ------------------ |
 | inStream | [EncodingBlob](#encodingblob) | 是   | X509证书序列化数据 |
 
 **返回值**：
 
 | 类型     | 说明             |
-| :------- | ---------------- |
-| X509Cert | 表示X509证书对象 |
+| ------- | ---------------- |
+| Promise\<X509Cert> | 表示X509证书对象 |
 
 **示例**：
 
@@ -2256,9 +2643,9 @@ let encodingBlob = {
     encodingFormat: cryptoFramework.EncodingFormat.FORMAT_PEM
 };
 cryptoFramework.createX509Cert(encodingBlob).then(x509Cert => {
-    Console.log("createX509Cert success");
+    console.log("createX509Cert success");
 }, error => {
-    Console.log("createX509Cert failed, errCode: " + error.code + ", errMsg: " + error.message);
+    console.log("createX509Cert failed, errCode: " + error.code + ", errMsg: " + error.message);
 });
 ```
 
@@ -2276,10 +2663,10 @@ verify(key : PubKey, callback : AsyncCallback\<void>) : void
 
 **参数**：
 
-| 参数名   | 类型          | 必填 | 说明               |
-| -------- | ------------- | ---- | ------------------ |
-| key      | [PubKey](#pubkey)        | 是   | 用于验签的公钥对象 |
-| callback | AsyncCallback\<void>) | 否   | 回调函数。使用AsyncCallback的第一个error参数判断是否验签成功，error为null表示成功，不为null表示失败           |
+| 参数名   | 类型                  | 必填 | 说明                                                         |
+| -------- | --------------------- | ---- | ------------------------------------------------------------ |
+| key      | [PubKey](#pubkey)     | 是   | 用于验签的公钥对象                                           |
+| callback | AsyncCallback\<void>) | 否   | 回调函数。使用AsyncCallback的第一个error参数判断是否验签成功，error为null表示成功，不为null表示失败 |
 
 
 **示例**：
@@ -2296,16 +2683,16 @@ let encodingBlob = {
 };
 cryptoFramework.createX509Cert(encodingBlob, function (error, x509Cert) {
     if (error != null) {
-        Console.log("createX509Cert failed, errCode: " + error.code + ", errMsg: " + error.message);
+        console.log("createX509Cert failed, errCode: " + error.code + ", errMsg: " + error.message);
     } else {
-        Console.log("createX509Cert success");
+        console.log("createX509Cert success");
         // 业务需通过AsyKeyGenerator生成PubKey或通过上级X509Cert证书对象的getPublicKey获取PubKey
 		let pubKey = null;
         x509Cert.verify(pubKey, function (error, data) {
             if (error != null) {
-                Console.log("verify failed, errCode: " + error.code + ", errMsg: " + error.message);
+                console.log("verify failed, errCode: " + error.code + ", errMsg: " + error.message);
             } else {
-                Console.log("verify success");
+                console.log("verify success");
             }
         });
     }
@@ -2322,14 +2709,14 @@ verify(key : PubKey) : Promise\<void>
 
 **参数**：
 
-| 参数名 | 类型   | 必填 | 说明               |
-| ------ | ------ | ---- | ------------------ |
+| 参数名 | 类型              | 必填 | 说明               |
+| ------ | ----------------- | ---- | ------------------ |
 | key    | [PubKey](#pubkey) | 是   | 用于验签的公钥对象 |
 
 **返回值**：
 
-| 类型 | 说明                                                         |
-| ---- | ------------------------------------------------------------ |
+| 类型           | 说明        |
+| -------------- | ----------- |
 | Promise\<void> | Promise对象 |
 
 **示例**：
@@ -2345,16 +2732,16 @@ let encodingBlob = {
     encodingFormat: cryptoFramework.EncodingFormat.FORMAT_PEM
 };
 cryptoFramework.createX509Cert(encodingBlob).then(x509Cert => {
-    Console.log("createX509Cert success");
+    console.log("createX509Cert success");
     // 业务需通过AsyKeyGenerator生成PubKey或通过上级X509Cert证书对象的getPublicKey获取PubKey
 	let pubKey = null;
     x509Cert.verify(pubKey).then(result => {
-        Console.log("verify success");
+        console.log("verify success");
     }, error => {
-        Console.log("verify failed, errCode: " + error.code + ", errMsg: " + error.message);
+        console.log("verify failed, errCode: " + error.code + ", errMsg: " + error.message);
     });
 }, error => {
-    Console.log("createX509Cert failed, errCode: " + error.code + ", errMsg: " + error.message);
+    console.log("createX509Cert failed, errCode: " + error.code + ", errMsg: " + error.message);
 });
 ```
 
@@ -2368,8 +2755,8 @@ getEncoded(callback : AsyncCallback\<EncodingBlob>) : void
 
 **参数**：
 
-| 参数名   | 类型          | 必填 | 说明     |
-| -------- | ------------- | ---- | -------- |
+| 参数名   | 类型                                          | 必填 | 说明                             |
+| -------- | --------------------------------------------- | ---- | -------------------------------- |
 | callback | AsyncCallback\<[EncodingBlob](#encodingblob)> | 否   | 回调函数。表示X509证书序列化数据 |
 
 
@@ -2387,14 +2774,14 @@ let encodingBlob = {
 };
 cryptoFramework.createX509Cert(encodingBlob, function (error, x509Cert) {
     if (error != null) {
-        Console.log("createX509Cert failed, errCode: " + error.code + ", errMsg: " + error.message);
+        console.log("createX509Cert failed, errCode: " + error.code + ", errMsg: " + error.message);
     } else {
-        Console.log("createX509Cert success");
+        console.log("createX509Cert success");
         x509Cert.getEncoded(function (error, data) {
            if (error != null) {
-               Console.log("getEncoded failed, errCode: " + error.code + ", errMsg: " + error.message);
+               console.log("getEncoded failed, errCode: " + error.code + ", errMsg: " + error.message);
            } else {
-               Console.log("getEncoded success");
+               console.log("getEncoded success");
            }
         });
     }
@@ -2411,8 +2798,8 @@ getEncoded() : Promise\<EncodingBlob>
 
 **返回值**：
 
-| 类型         | 说明                   |
-| ------------ | ---------------------- |
+| 类型                                    | 说明                   |
+| --------------------------------------- | ---------------------- |
 | Promise\<[EncodingBlob](#encodingblob)> | 表示X509证书序列化数据 |
 
 **示例**：
@@ -2428,14 +2815,14 @@ let encodingBlob = {
     encodingFormat: cryptoFramework.EncodingFormat.FORMAT_PEM
 };
 cryptoFramework.createX509Cert(encodingBlob).then(x509Cert => {
-    Console.log("createX509Cert success");
+    console.log("createX509Cert success");
     x509Cert.getEncoded().then(result => {
-        Console.log("getEncoded success");
+        console.log("getEncoded success");
     }, error => {
-        Console.log("getEncoded failed, errCode: " + error.code + ", errMsg: " + error.message);
+        console.log("getEncoded failed, errCode: " + error.code + ", errMsg: " + error.message);
     });
 }, error => {
-    Console.log("createX509Cert failed, errCode: " + error.code + ", errMsg: " + error.message);
+    console.log("createX509Cert failed, errCode: " + error.code + ", errMsg: " + error.message);
 });
 ```
 
@@ -2449,8 +2836,8 @@ getPublicKey(callback : AsyncCallback\<PubKey>) : void
 
 **参数**：
 
-| 参数名   | 类型          | 必填 | 说明     |
-| -------- | ------------- | ---- | -------- |
+| 参数名   | 类型          | 必填 | 说明                       |
+| -------- | ------------- | ---- | -------------------------- |
 | callback | AsyncCallback | 否   | 回调函数，X509证书公钥对象 |
 
 
@@ -2468,14 +2855,14 @@ let encodingBlob = {
 };
 cryptoFramework.createX509Cert(encodingBlob, function (error, x509Cert) {
     if (error != null) {
-        Console.log("createX509Cert failed, errCode: " + error.code + ", errMsg: " + error.message);
+        console.log("createX509Cert failed, errCode: " + error.code + ", errMsg: " + error.message);
     } else {
-        Console.log("createX509Cert success");
+        console.log("createX509Cert success");
         x509Cert.getPublicKey(function (error, pubKey) {
            if (error != null) {
-               Console.log("getPublicKey failed, errCode: " + error.code + ", errMsg: " + error.message);
+               console.log("getPublicKey failed, errCode: " + error.code + ", errMsg: " + error.message);
            } else {
-               Console.log("getPublicKey success");
+               console.log("getPublicKey success");
            }
         });
     }
@@ -2509,14 +2896,14 @@ let encodingBlob = {
     encodingFormat: cryptoFramework.EncodingFormat.FORMAT_PEM
 };
 cryptoFramework.createX509Cert(encodingBlob).then(x509Cert => {
-    Console.log("createX509Cert success");
+    console.log("createX509Cert success");
     x509Cert.getPublicKey().then(pubKey => {
-        Console.log("getPublicKey success");
+        console.log("getPublicKey success");
     }, error => {
-        Console.log("getPublicKey failed, errCode: " + error.code + ", errMsg: " + error.message);
+        console.log("getPublicKey failed, errCode: " + error.code + ", errMsg: " + error.message);
     });
 }, error => {
-    Console.log("createX509Cert failed, errCode: " + error.code + ", errMsg: " + error.message);
+    console.log("createX509Cert failed, errCode: " + error.code + ", errMsg: " + error.message);
 });
 ```
 
@@ -2530,9 +2917,9 @@ checkValidityWithDate(date: string, callback : AsyncCallback\<void>) : void
 
 **参数**：
 
-| 参数名   | 类型          | 必填 | 说明     |
-| -------- | ------------- | ---- | -------- |
-| date     | string        | 是   | 日期     |
+| 参数名   | 类型                 | 必填 | 说明                                                         |
+| -------- | -------------------- | ---- | ------------------------------------------------------------ |
+| date     | string               | 是   | 日期                                                         |
 | callback | AsyncCallback\<void> | 否   | 回调函数。使用AsyncCallback的第一个error参数判断是否检查成功，error为null表示成功，不为null表示失败 |
 
 
@@ -2550,15 +2937,15 @@ let encodingBlob = {
 };
 cryptoFramework.createX509Cert(encodingBlob, function (error, x509Cert) {
     if (error != null) {
-        Console.log("createX509Cert failed, errCode: " + error.code + ", errMsg: " + error.message);
+        console.log("createX509Cert failed, errCode: " + error.code + ", errMsg: " + error.message);
     } else {
-        Console.log("createX509Cert success");
+        console.log("createX509Cert success");
         let date = "150527000001Z";
         x509Cert.checkValidityWithDate(date, function (error, data) {
            if (error != null) {
-               Console.log("checkValidityWithDate failed, errCode: " + error.code + ", errMsg: " + error.message);
+               console.log("checkValidityWithDate failed, errCode: " + error.code + ", errMsg: " + error.message);
            } else {
-               Console.log("checkValidityWithDate success");
+               console.log("checkValidityWithDate success");
            }
         });
     }
@@ -2598,15 +2985,15 @@ let encodingBlob = {
     encodingFormat: cryptoFramework.EncodingFormat.FORMAT_PEM
 };
 cryptoFramework.createX509Cert(encodingBlob).then(x509Cert => {
-    Console.log("createX509Cert success");
+    console.log("createX509Cert success");
     let date = "150527000001Z";
     x509Cert.checkValidityWithDate(date).then(result => {
-        Console.log("checkValidityWithDate success");
+        console.log("checkValidityWithDate success");
     }, error => {
-        Console.log("checkValidityWithDate failed, errCode: " + error.code + ", errMsg: " + error.message);
+        console.log("checkValidityWithDate failed, errCode: " + error.code + ", errMsg: " + error.message);
     });
 }, error => {
-    Console.log("createX509Cert failed, errCode: " + error.code + ", errMsg: " + error.message);
+    console.log("createX509Cert failed, errCode: " + error.code + ", errMsg: " + error.message);
 });
 ```
 
@@ -2638,9 +3025,9 @@ let encodingBlob = {
 };
 cryptoFramework.createX509Cert(encodingBlob, function (error, x509Cert) {
     if (error != null) {
-        Console.log("createX509Cert failed, errCode: " + error.code + ", errMsg: " + error.message);
+        console.log("createX509Cert failed, errCode: " + error.code + ", errMsg: " + error.message);
     } else {
-        Console.log("createX509Cert success");
+        console.log("createX509Cert success");
         let version = x509Cert.getVersion();
     }
 });
@@ -2674,9 +3061,9 @@ let encodingBlob = {
 };
 cryptoFramework.createX509Cert(encodingBlob, function (error, x509Cert) {
     if (error != null) {
-        Console.log("createX509Cert failed, errCode: " + error.code + ", errMsg: " + error.message);
+        console.log("createX509Cert failed, errCode: " + error.code + ", errMsg: " + error.message);
     } else {
-        Console.log("createX509Cert success");
+        console.log("createX509Cert success");
         let serialNumber = x509Cert.getSerialNumber();
     }
 });
@@ -2692,8 +3079,8 @@ getIssuerName() : DataBlob
 
 **返回值**：
 
-| 类型     | 说明                   |
-| -------- | ---------------------- |
+| 类型                  | 说明                   |
+| --------------------- | ---------------------- |
 | [DataBlob](#datablob) | 表示X509证书颁发者名称 |
 
 **示例**：
@@ -2710,9 +3097,9 @@ let encodingBlob = {
 };
 cryptoFramework.createX509Cert(encodingBlob, function (error, x509Cert) {
     if (error != null) {
-        Console.log("createX509Cert failed, errCode: " + error.code + ", errMsg: " + error.message);
+        console.log("createX509Cert failed, errCode: " + error.code + ", errMsg: " + error.message);
     } else {
-        Console.log("createX509Cert success");
+        console.log("createX509Cert success");
         let issuerName = x509Cert.getIssuerName();
     }
 });
@@ -2728,8 +3115,8 @@ getSubjectName() : DataBlob
 
 **返回值**：
 
-| 类型     | 说明                 |
-| -------- | -------------------- |
+| 类型                  | 说明                 |
+| --------------------- | -------------------- |
 | [DataBlob](#datablob) | 表示X509证书主体名称 |
 
 **示例**：
@@ -2746,9 +3133,9 @@ let encodingBlob = {
 };
 cryptoFramework.createX509Cert(encodingBlob, function (error, x509Cert) {
     if (error != null) {
-        Console.log("createX509Cert failed, errCode: " + error.code + ", errMsg: " + error.message);
+        console.log("createX509Cert failed, errCode: " + error.code + ", errMsg: " + error.message);
     } else {
-        Console.log("createX509Cert success");
+        console.log("createX509Cert success");
         let subjectName = x509Cert.getSubjectName();
     }
 });
@@ -2782,9 +3169,9 @@ let encodingBlob = {
 };
 cryptoFramework.createX509Cert(encodingBlob, function (error, x509Cert) {
     if (error != null) {
-        Console.log("createX509Cert failed, errCode: " + error.code + ", errMsg: " + error.message);
+        console.log("createX509Cert failed, errCode: " + error.code + ", errMsg: " + error.message);
     } else {
-        Console.log("createX509Cert success");
+        console.log("createX509Cert success");
         let notBefore = x509Cert.getNotBeforeTime();
     }
 });
@@ -2818,9 +3205,9 @@ let encodingBlob = {
 };
 cryptoFramework.createX509Cert(encodingBlob, function (error, x509Cert) {
     if (error != null) {
-        Console.log("createX509Cert failed, errCode: " + error.code + ", errMsg: " + error.message);
+        console.log("createX509Cert failed, errCode: " + error.code + ", errMsg: " + error.message);
     } else {
-        Console.log("createX509Cert success");
+        console.log("createX509Cert success");
         let notAfter = x509Cert.getNotAfterTime();
     }
 });
@@ -2836,8 +3223,8 @@ getSignature() : DataBlob
 
 **返回值**：
 
-| 类型     | 说明                 |
-| -------- | -------------------- |
+| 类型                  | 说明                 |
+| --------------------- | -------------------- |
 | [DataBlob](#datablob) | 表示X509证书签名数据 |
 
 **示例**：
@@ -2854,9 +3241,9 @@ let encodingBlob = {
 };
 cryptoFramework.createX509Cert(encodingBlob, function (error, x509Cert) {
     if (error != null) {
-        Console.log("createX509Cert failed, errCode: " + error.code + ", errMsg: " + error.message);
+        console.log("createX509Cert failed, errCode: " + error.code + ", errMsg: " + error.message);
     } else {
-        Console.log("createX509Cert success");
+        console.log("createX509Cert success");
         let signature = x509Cert.getSignature();
     }
 });
@@ -2890,9 +3277,9 @@ let encodingBlob = {
 };
 cryptoFramework.createX509Cert(encodingBlob, function (error, x509Cert) {
     if (error != null) {
-        Console.log("createX509Cert failed, errCode: " + error.code + ", errMsg: " + error.message);
+        console.log("createX509Cert failed, errCode: " + error.code + ", errMsg: " + error.message);
     } else {
-        Console.log("createX509Cert success");
+        console.log("createX509Cert success");
         let sigAlgName = x509Cert.getSignatureAlgName();
     }
 });
@@ -2926,9 +3313,9 @@ let encodingBlob = {
 };
 cryptoFramework.createX509Cert(encodingBlob, function (error, x509Cert) {
     if (error != null) {
-        Console.log("createX509Cert failed, errCode: " + error.code + ", errMsg: " + error.message);
+        console.log("createX509Cert failed, errCode: " + error.code + ", errMsg: " + error.message);
     } else {
-        Console.log("createX509Cert success");
+        console.log("createX509Cert success");
         let sigAlgOid = x509Cert.getSignatureAlgOid();
     }
 });
@@ -2944,8 +3331,8 @@ getSignatureAlgParams() : DataBlob
 
 **返回值**：
 
-| 类型     | 说明                     |
-| -------- | ------------------------ |
+| 类型                  | 说明                     |
+| --------------------- | ------------------------ |
 | [DataBlob](#datablob) | 表示X509证书签名算法参数 |
 
 **示例**：
@@ -2962,9 +3349,9 @@ let encodingBlob = {
 };
 cryptoFramework.createX509Cert(encodingBlob, function (error, x509Cert) {
     if (error != null) {
-        Console.log("createX509Cert failed, errCode: " + error.code + ", errMsg: " + error.message);
+        console.log("createX509Cert failed, errCode: " + error.code + ", errMsg: " + error.message);
     } else {
-        Console.log("createX509Cert success");
+        console.log("createX509Cert success");
         let sigAlgParams = x509Cert.getSignatureAlgParams();
     }
 });
@@ -2980,8 +3367,8 @@ getKeyUsage() : DataBlob
 
 **返回值**：
 
-| 类型     | 说明                 |
-| -------- | -------------------- |
+| 类型                  | 说明                 |
+| --------------------- | -------------------- |
 | [DataBlob](#datablob) | 表示X509证书秘钥用途 |
 
 **示例**：
@@ -2998,9 +3385,9 @@ let encodingBlob = {
 };
 cryptoFramework.createX509Cert(encodingBlob, function (error, x509Cert) {
     if (error != null) {
-        Console.log("createX509Cert failed, errCode: " + error.code + ", errMsg: " + error.message);
+        console.log("createX509Cert failed, errCode: " + error.code + ", errMsg: " + error.message);
     } else {
-        Console.log("createX509Cert success");
+        console.log("createX509Cert success");
         let keyUsage = x509Cert.getKeyUsage();
     }
 });
@@ -3016,8 +3403,8 @@ getExtKeyUsage() : DataArray
 
 **返回值**：
 
-| 类型      | 说明                     |
-| --------- | ------------------------ |
+| 类型                    | 说明                     |
+| ----------------------- | ------------------------ |
 | [DataArray](#dataarray) | 表示X509证书扩展秘钥用途 |
 
 **示例**：
@@ -3034,9 +3421,9 @@ let encodingBlob = {
 };
 cryptoFramework.createX509Cert(encodingBlob, function (error, x509Cert) {
     if (error != null) {
-        Console.log("createX509Cert failed, errCode: " + error.code + ", errMsg: " + error.message);
+        console.log("createX509Cert failed, errCode: " + error.code + ", errMsg: " + error.message);
     } else {
-        Console.log("createX509Cert success");
+        console.log("createX509Cert success");
         let extKeyUsage = x509Cert.getExtKeyUsage();
     }
 });
@@ -3070,9 +3457,9 @@ let encodingBlob = {
 };
 cryptoFramework.createX509Cert(encodingBlob, function (error, x509Cert) {
     if (error != null) {
-        Console.log("createX509Cert failed, errCode: " + error.code + ", errMsg: " + error.message);
+        console.log("createX509Cert failed, errCode: " + error.code + ", errMsg: " + error.message);
     } else {
-        Console.log("createX509Cert success");
+        console.log("createX509Cert success");
         let basicConstraints = x509Cert.getBasicConstraints();
     }
 });
@@ -3088,8 +3475,8 @@ getSubjectAltNames() : DataArray
 
 **返回值**：
 
-| 类型      | 说明                     |
-| --------- | ------------------------ |
+| 类型                    | 说明                     |
+| ----------------------- | ------------------------ |
 | [DataArray](#dataarray) | 表示X509证书主体可选名称 |
 
 **示例**：
@@ -3106,9 +3493,9 @@ let encodingBlob = {
 };
 cryptoFramework.createX509Cert(encodingBlob, function (error, x509Cert) {
     if (error != null) {
-        Console.log("createX509Cert failed, errCode: " + error.code + ", errMsg: " + error.message);
+        console.log("createX509Cert failed, errCode: " + error.code + ", errMsg: " + error.message);
     } else {
-        Console.log("createX509Cert success");
+        console.log("createX509Cert success");
         let subjectAltNames = x509Cert.getSubjectAltNames();
     }
 });
@@ -3124,8 +3511,8 @@ getIssuerAltNames() : DataArray
 
 **返回值**：
 
-| 类型      | 说明                       |
-| --------- | -------------------------- |
+| 类型                    | 说明                       |
+| ----------------------- | -------------------------- |
 | [DataArray](#dataarray) | 表示X509证书颁发者可选名称 |
 
 **示例**：
@@ -3142,9 +3529,9 @@ let encodingBlob = {
 };
 cryptoFramework.createX509Cert(encodingBlob, function (error, x509Cert) {
     if (error != null) {
-        Console.log("createX509Cert failed, errCode: " + error.code + ", errMsg: " + error.message);
+        console.log("createX509Cert failed, errCode: " + error.code + ", errMsg: " + error.message);
     } else {
-        Console.log("createX509Cert success");
+        console.log("createX509Cert success");
         let issuerAltNames = x509Cert.getIssuerAltNames();
     }
 });
@@ -3160,10 +3547,10 @@ createX509Crl(inStream : EncodingBlob, callback : AsyncCallback\<X509Crl>) : voi
 
 **参数**：
 
-| 参数名   | 类型          | 必填 | 说明                       |
-| -------- | ------------- | ---- | -------------------------- |
-| inStream | [EncodingBlob](#encodingblob)  | 是   | 表示证书吊销列表序列化数据 |
-| callback | AsyncCallback\<X509Crl> | 否   | 回调函数。表示证书吊销列表对象                   |
+| 参数名   | 类型                          | 必填 | 说明                           |
+| -------- | ----------------------------- | ---- | ------------------------------ |
+| inStream | [EncodingBlob](#encodingblob) | 是   | 表示证书吊销列表序列化数据     |
+| callback | AsyncCallback\<X509Crl>       | 否   | 回调函数。表示证书吊销列表对象 |
 
 
 **示例**：
@@ -3180,9 +3567,9 @@ let encodingBlob = {
 };
 cryptoFramework.createX509Crl(encodingBlob, function (error, x509Crl) {
     if (error != null) {
-        Console.log("createX509Crl failed, errCode: " + error.code + ", errMsg: " + error.message);
+        console.log("createX509Crl failed, errCode: " + error.code + ", errMsg: " + error.message);
     } else {
-        Console.log("createX509Crl success");
+        console.log("createX509Crl success");
     }
 });
 ```
@@ -3197,14 +3584,14 @@ createX509Crl(inStream : EncodingBlob) : Promise\<X509Crl>
 
 **参数**：
 
-| 参数名   | 类型         | 必填 | 说明                       |
-| -------- | ------------ | ---- | -------------------------- |
+| 参数名   | 类型                          | 必填 | 说明                       |
+| -------- | ----------------------------- | ---- | -------------------------- |
 | inStream | [EncodingBlob](#encodingblob) | 是   | 表示证书吊销列表序列化数据 |
 
 **返回值**：
 
-| 类型    | 说明                 |
-| ------- | -------------------- |
+| 类型              | 说明                 |
+| ----------------- | -------------------- |
 | Promise\<X509Crl> | 表示证书吊销列表对象 |
 
 **示例**：
@@ -3220,9 +3607,9 @@ let encodingBlob = {
     encodingFormat: cryptoFramework.EncodingFormat.FORMAT_PEM
 };
 cryptoFramework.createX509Crl(encodingBlob).then(x509Crl => {
-    Console.log("createX509Crl success");
+    console.log("createX509Crl success");
 }, error => {
-    Console.log("createX509Crl failed, errCode: " + error.code + ", errMsg: " + error.message);
+    console.log("createX509Crl failed, errCode: " + error.code + ", errMsg: " + error.message);
 });
 ```
 
@@ -3240,10 +3627,10 @@ isRevoked(cert : X509Cert, callback : AsyncCallback\<boolean>) : void
 
 **参数**：
 
-| 参数名   | 类型          | 必填 | 说明                 |
-| -------- | ------------- | ---- | -------------------- |
-| cert     | [X509Cert](#x509cert)      | 是   | 表示被检查的证书对象 |
-| callback | AsyncCallback\<boolean> | 否   | 回调函数。表示证书吊销状态，true表示已吊销，false表示未吊销             |
+| 参数名   | 类型                    | 必填 | 说明                                                        |
+| -------- | ----------------------- | ---- | ----------------------------------------------------------- |
+| cert     | [X509Cert](#x509cert)   | 是   | 表示被检查的证书对象                                        |
+| callback | AsyncCallback\<boolean> | 否   | 回调函数。表示证书吊销状态，true表示已吊销，false表示未吊销 |
 
 
 **示例**：
@@ -3260,16 +3647,16 @@ let encodingBlob = {
 };
 cryptoFramework.createX509Crl(encodingBlob, function (error, x509Crl) {
     if (error != null) {
-        Console.log("createX509Crl failed, errCode: " + error.code + ", errMsg: " + error.message);
+        console.log("createX509Crl failed, errCode: " + error.code + ", errMsg: " + error.message);
     } else {
-        Console.log("createX509Crl success");
+        console.log("createX509Crl success");
         // 业务需自行生成X509Cert证书对象
         let x509Cert = null;
         x509Crl.isRevoked(x509Cert, function (error, isRevoked) {
            if (error != null) {
-               Console.log("call isRevoked failed, errCode: " + error.code + ", errMsg: " + error.message);
+               console.log("call isRevoked failed, errCode: " + error.code + ", errMsg: " + error.message);
            } else {
-               Console.log("call isRevoked success");
+               console.log("call isRevoked success");
            }
         });
     }
@@ -3292,8 +3679,8 @@ isRevoked(cert : X509Cert) : Promise\<boolean>
 
 **返回值**：
 
-| 类型    | 说明                                              |
-| ------- | ------------------------------------------------- |
+| 类型              | 说明                                              |
+| ----------------- | ------------------------------------------------- |
 | Promise\<boolean> | 表示证书吊销状态，true表示已吊销，false表示未吊销 |
 
 **示例**：
@@ -3309,16 +3696,16 @@ let encodingBlob = {
     encodingFormat: cryptoFramework.EncodingFormat.FORMAT_PEM
 };
 cryptoFramework.createX509Crl(encodingBlob).then(x509Crl => {
-    Console.log("createX509Crl success");
+    console.log("createX509Crl success");
     // 业务需自行生成X509Cert证书对象
     let x509Cert = null;
     x509Crl.isRevoked(x509Cert).then(isRevoked => {
-        Console.log("call isRevoked success");
+        console.log("call isRevoked success");
     }, error => {
-        Console.log("call isRevoked failed, errCode: " + error.code + ", errMsg: " + error.message);
+        console.log("call isRevoked failed, errCode: " + error.code + ", errMsg: " + error.message);
     });
 }, error => {
-    Console.log("createX509Crl failed, errCode: " + error.code + ", errMsg: " + error.message);
+    console.log("createX509Crl failed, errCode: " + error.code + ", errMsg: " + error.message);
 });
 ```
 
@@ -3350,9 +3737,9 @@ let encodingBlob = {
 };
 cryptoFramework.createX509Crl(encodingBlob, function (error, x509Crl) {
     if (error != null) {
-        Console.log("createX509Crl failed, errCode: " + error.code + ", errMsg: " + error.message);
+        console.log("createX509Crl failed, errCode: " + error.code + ", errMsg: " + error.message);
     } else {
-        Console.log("createX509Crl success");
+        console.log("createX509Crl success");
         let type = x509Crl.getType();
     }
 });
@@ -3368,9 +3755,9 @@ getEncoded(callback : AsyncCallback\<EncodingBlob>) : void
 
 **参数**：
 
-| 参数名   | 类型          | 必填 | 说明     |
-| -------- | ------------- | ---- | -------- |
-| callback |  AsyncCallback\<EncodingBlob> | 否   | 回调函数，表示X509证书吊销列表的序列化数据 |
+| 参数名   | 类型                         | 必填 | 说明                                       |
+| -------- | ---------------------------- | ---- | ------------------------------------------ |
+| callback | AsyncCallback\<EncodingBlob> | 否   | 回调函数，表示X509证书吊销列表的序列化数据 |
 
 
 **示例**：
@@ -3387,14 +3774,14 @@ let encodingBlob = {
 };
 cryptoFramework.createX509Crl(encodingBlob, function (error, x509Crl) {
     if (error != null) {
-        Console.log("createX509Crl failed, errCode: " + error.code + ", errMsg: " + error.message);
+        console.log("createX509Crl failed, errCode: " + error.code + ", errMsg: " + error.message);
     } else {
-        Console.log("createX509Crl success");
+        console.log("createX509Crl success");
         x509Crl.getEncoded(function (error, data) {
            if (error != null) {
-               Console.log("getEncoded failed, errCode: " + error.code + ", errMsg: " + error.message);
+               console.log("getEncoded failed, errCode: " + error.code + ", errMsg: " + error.message);
            } else {
-               Console.log("getEncoded success");
+               console.log("getEncoded success");
            }
         });
     }
@@ -3411,8 +3798,8 @@ getEncoded() : Promise\<EncodingBlob>
 
 **返回值**：
 
-| 类型         | 说明                             |
-| ------------ | -------------------------------- |
+| 类型                   | 说明                             |
+| ---------------------- | -------------------------------- |
 | Promise\<EncodingBlob> | 表示X509证书吊销列表的序列化数据 |
 
 **示例**：
@@ -3428,14 +3815,14 @@ let encodingBlob = {
     encodingFormat: cryptoFramework.EncodingFormat.FORMAT_PEM
 };
 cryptoFramework.createX509Crl(encodingBlob).then(x509Crl => {
-    Console.log("createX509Crl success");
+    console.log("createX509Crl success");
     x509Crl.getEncoded().then(result => {
-        Console.log("getEncoded success");
+        console.log("getEncoded success");
     }, error => {
-        Console.log("getEncoded failed, errCode: " + error.code + ", errMsg: " + error.message);
+        console.log("getEncoded failed, errCode: " + error.code + ", errMsg: " + error.message);
     });
 }, error => {
-    Console.log("createX509Crl failed, errCode: " + error.code + ", errMsg: " + error.message);
+    console.log("createX509Crl failed, errCode: " + error.code + ", errMsg: " + error.message);
 });
 ```
 
@@ -3449,10 +3836,10 @@ verify(key : PubKey, callback : AsyncCallback\<void>) : void
 
 **参数**：
 
-| 参数名   | 类型          | 必填 | 说明                   |
-| -------- | ------------- | ---- | ---------------------- |
-| key      | PubKey        | 是   | 表示用于验签的公钥对象 |
-| callback | AsyncCallback\<void> | 否   | 回调函数,使用AsyncCallback的第一个error参数判断是否验签成功，error为null表示成功，error不为null表示失败。       |
+| 参数名   | 类型                 | 必填 | 说明                                                         |
+| -------- | -------------------- | ---- | ------------------------------------------------------------ |
+| key      | PubKey               | 是   | 表示用于验签的公钥对象                                       |
+| callback | AsyncCallback\<void> | 否   | 回调函数,使用AsyncCallback的第一个error参数判断是否验签成功，error为null表示成功，error不为null表示失败。 |
 
 
 **示例**：
@@ -3469,16 +3856,16 @@ let encodingBlob = {
 };
 cryptoFramework.createX509Crl(encodingBlob, function (error, x509Crl) {
     if (error != null) {
-        Console.log("createX509Crl failed, errCode: " + error.code + ", errMsg: " + error.message);
+        console.log("createX509Crl failed, errCode: " + error.code + ", errMsg: " + error.message);
     } else {
-        Console.log("createX509Crl success");
+        console.log("createX509Crl success");
         // 业务需通过AsyKeyGenerator生成PubKey
         let pubKey = null;
         x509Crl.verify(pubKey, function (error, data) {
            if (error != null) {
-               Console.log("verify failed, errCode: " + error.code + ", errMsg: " + error.message);
+               console.log("verify failed, errCode: " + error.code + ", errMsg: " + error.message);
            } else {
-               Console.log("verify success");
+               console.log("verify success");
            }
         });
     }
@@ -3495,14 +3882,14 @@ verify(key : PubKey) : Promise\<void>
 
 **参数**：
 
-| 参数名 | 类型   | 必填 | 说明                   |
-| ------ | ------ | ---- | ---------------------- |
+| 参数名 | 类型              | 必填 | 说明                   |
+| ------ | ----------------- | ---- | ---------------------- |
 | key    | [PubKey](#pubkey) | 是   | 表示用于验签的公钥对象 |
 
 **返回值**：
 
-| 类型 | 说明                                                         |
-| ---- | ------------------------------------------------------------ |
+| 类型           | 说明                                                         |
+| -------------- | ------------------------------------------------------------ |
 | Promise\<void> | 使用AsyncCallback的第一个error参数判断是否验签成功，error为null表示成功，error不为null表示失败 |
 
 **示例**：
@@ -3518,16 +3905,16 @@ let encodingBlob = {
     encodingFormat: cryptoFramework.EncodingFormat.FORMAT_PEM
 };
 cryptoFramework.createX509Crl(encodingBlob).then(x509Crl => {
-    Console.log("createX509Crl success");
+    console.log("createX509Crl success");
     // 业务需通过AsyKeyGenerator生成PubKey
     let pubKey = null;
     x509Crl.verify(pubKey).then(result => {
-        Console.log("verify success");
+        console.log("verify success");
     }, error => {
-        Console.log("verify failed, errCode: " + error.code + ", errMsg: " + error.message);
+        console.log("verify failed, errCode: " + error.code + ", errMsg: " + error.message);
     });
 }, error => {
-    Console.log("createX509Crl failed, errCode: " + error.code + ", errMsg: " + error.message);
+    console.log("createX509Crl failed, errCode: " + error.code + ", errMsg: " + error.message);
 });
 ```
 
@@ -3559,9 +3946,9 @@ let encodingBlob = {
 };
 cryptoFramework.createX509Crl(encodingBlob, function (error, x509Crl) {
     if (error != null) {
-        Console.log("createX509Crl failed, errCode: " + error.code + ", errMsg: " + error.message);
+        console.log("createX509Crl failed, errCode: " + error.code + ", errMsg: " + error.message);
     } else {
-        Console.log("createX509Crl success");
+        console.log("createX509Crl success");
         let version = x509Crl.getVersion();
     }
 });
@@ -3577,8 +3964,8 @@ getIssuerName() : DataBlob
 
 **返回值**：
 
-| 类型     | 说明                           |
-| -------- | ------------------------------ |
+| 类型                  | 说明                           |
+| --------------------- | ------------------------------ |
 | [DataBlob](#datablob) | 表示X509证书吊销列表颁发者名称 |
 
 **示例**：
@@ -3595,9 +3982,9 @@ let encodingBlob = {
 };
 cryptoFramework.createX509Crl(encodingBlob, function (error, x509Crl) {
     if (error != null) {
-        Console.log("createX509Crl failed, errCode: " + error.code + ", errMsg: " + error.message);
+        console.log("createX509Crl failed, errCode: " + error.code + ", errMsg: " + error.message);
     } else {
-        Console.log("createX509Crl success");
+        console.log("createX509Crl success");
         let issuerName = x509Crl.getIssuerName();
     }
 });
@@ -3631,9 +4018,9 @@ let encodingBlob = {
 };
 cryptoFramework.createX509Crl(encodingBlob, function (error, x509Crl) {
     if (error != null) {
-        Console.log("createX509Crl failed, errCode: " + error.code + ", errMsg: " + error.message);
+        console.log("createX509Crl failed, errCode: " + error.code + ", errMsg: " + error.message);
     } else {
-        Console.log("createX509Crl success");
+        console.log("createX509Crl success");
         let lastUpdate = x509Crl.getLastUpdate();
     }
 });
@@ -3667,9 +4054,9 @@ let encodingBlob = {
 };
 cryptoFramework.createX509Crl(encodingBlob, function (error, x509Crl) {
     if (error != null) {
-        Console.log("createX509Crl failed, errCode: " + error.code + ", errMsg: " + error.message);
+        console.log("createX509Crl failed, errCode: " + error.code + ", errMsg: " + error.message);
     } else {
-        Console.log("createX509Crl success");
+        console.log("createX509Crl success");
         let nextUpdate = x509Crl.getNextUpdate();
     }
 });
@@ -3685,10 +4072,10 @@ getRevokedCert(serialNumber : number, callback : AsyncCallback\<X509CrlEntry>) :
 
 **参数**：
 
-| 参数名       | 类型          | 必填 | 说明           |
-| ------------ | ------------- | ---- | -------------- |
-| serialNumber | number        | 是   | 表示证书序列号 |
-| callback     | AsyncCallback\<X509CrlEntry> | 否   | 回调函数。表示被吊销X509证书对象       |
+| 参数名       | 类型                         | 必填 | 说明                             |
+| ------------ | ---------------------------- | ---- | -------------------------------- |
+| serialNumber | number                       | 是   | 表示证书序列号                   |
+| callback     | AsyncCallback\<X509CrlEntry> | 否   | 回调函数。表示被吊销X509证书对象 |
 
 
 **示例**：
@@ -3705,16 +4092,16 @@ let encodingBlob = {
 };
 cryptoFramework.createX509Crl(encodingBlob, function (error, x509Crl) {
     if (error != null) {
-        Console.log("createX509Crl failed, errCode: " + error.code + ", errMsg: " + error.message);
+        console.log("createX509Crl failed, errCode: " + error.code + ", errMsg: " + error.message);
     } else {
-        Console.log("createX509Crl success");
+        console.log("createX509Crl success");
         // 业务需赋值为对应证书的序列号
         let serialNumber = 1000;
         x509Crl.getRevokedCert(serialNumber, function (error, entry) {
             if (error != null) {
-                Console.log("getRevokedCert failed, errCode: " + error.code + ", errMsg: " + error.message);
+                console.log("getRevokedCert failed, errCode: " + error.code + ", errMsg: " + error.message);
             } else {
-                Console.log("getRevokedCert success");
+                console.log("getRevokedCert success");
             }
         });
     }
@@ -3737,8 +4124,8 @@ getRevokedCert(serialNumber : number) : Promise\<X509CrlEntry>
 
 **返回值**:
 
-| 类型         | 说明                   |
-| ------------ | ---------------------- |
+| 类型                   | 说明                   |
+| ---------------------- | ---------------------- |
 | Promise\<X509CrlEntry> | 表示被吊销X509证书对象 |
 
 **示例**：
@@ -3754,16 +4141,16 @@ let encodingBlob = {
     encodingFormat: cryptoFramework.EncodingFormat.FORMAT_PEM
 };
 cryptoFramework.createX509Crl(encodingBlob).then(x509Crl => {
-    Console.log("createX509Crl success");
+    console.log("createX509Crl success");
     // 业务需赋值为对应证书的序列号
     let serialNumber = 1000;
     x509Crl.getRevokedCert(serialNumber).then(entry => {
-        Console.log("getRevokedCert success");
+        console.log("getRevokedCert success");
     }, error => {
-        Console.log("getRevokedCert failed, errCode: " + error.code + ", errMsg: " + error.message);
+        console.log("getRevokedCert failed, errCode: " + error.code + ", errMsg: " + error.message);
     });
 }, error => {
-    Console.log("createX509Crl failed, errCode: " + error.code + ", errMsg: " + error.message);
+    console.log("createX509Crl failed, errCode: " + error.code + ", errMsg: " + error.message);
 });
 ```
 
@@ -3777,10 +4164,10 @@ getRevokedCertWithCert(cert : X509Cert, callback : AsyncCallback\<X509CrlEntry>)
 
 **参数**：
 
-| 参数名   | 类型          | 必填 | 说明         |
-| -------- | ------------- | ---- | ------------ |
-| cert     | X509Cert      | 是   | 表示证书对象 |
-| callback | AsyncCallback\<X509CrlEntry> | 否   | 回调函数,表示被吊销X509证书对象    |
+| 参数名   | 类型                         | 必填 | 说明                            |
+| -------- | ---------------------------- | ---- | ------------------------------- |
+| cert     | X509Cert                     | 是   | 表示证书对象                    |
+| callback | AsyncCallback\<X509CrlEntry> | 否   | 回调函数,表示被吊销X509证书对象 |
 
 
 **示例**：
@@ -3797,16 +4184,16 @@ let encodingBlob = {
 };
 cryptoFramework.createX509Crl(encodingBlob, function (error, x509Crl) {
     if (error != null) {
-        Console.log("createX509Crl failed, errCode: " + error.code + ", errMsg: " + error.message);
+        console.log("createX509Crl failed, errCode: " + error.code + ", errMsg: " + error.message);
     } else {
-        Console.log("createX509Crl success");
+        console.log("createX509Crl success");
         // 业务需自行生成X509Cert证书对象
         let x509Cert = null;
         x509Crl.getRevokedCertWithCert(x509Cert, function (error, entry) {
             if (error != null) {
-                Console.log("getRevokedCertWithCert failed, errCode: " + error.code + ", errMsg: " + error.message);
+                console.log("getRevokedCertWithCert failed, errCode: " + error.code + ", errMsg: " + error.message);
             } else {
-                Console.log("getRevokedCertWithCert success");
+                console.log("getRevokedCertWithCert success");
             }
         });
     }
@@ -3829,8 +4216,8 @@ getRevokedCertWithCert(cert : X509Cert) : Promise\<X509CrlEntry>
 
 **返回值**:
 
-| 类型         | 说明                   |
-| ------------ | ---------------------- |
+| 类型                   | 说明                   |
+| ---------------------- | ---------------------- |
 | Promise\<X509CrlEntry> | 表示被吊销X509证书对象 |
 
 **示例**：
@@ -3846,16 +4233,16 @@ let encodingBlob = {
     encodingFormat: cryptoFramework.EncodingFormat.FORMAT_PEM
 };
 cryptoFramework.createX509Crl(encodingBlob).then(x509Crl => {
-    Console.log("createX509Crl success");
+    console.log("createX509Crl success");
     // 业务需自行生成X509Cert证书对象
     let x509Cert = null;
     x509Crl.getRevokedCertWithCert(x509Cert).then(entry => {
-        Console.log("getRevokedCertWithCert success");
+        console.log("getRevokedCertWithCert success");
     }, error => {
-        Console.log("getRevokedCertWithCert failed, errCode: " + error.code + ", errMsg: " + error.message);
+        console.log("getRevokedCertWithCert failed, errCode: " + error.code + ", errMsg: " + error.message);
     });
 }, error => {
-    Console.log("createX509Crl failed, errCode: " + error.code + ", errMsg: " + error.message);
+    console.log("createX509Crl failed, errCode: " + error.code + ", errMsg: " + error.message);
 });
 ```
 
@@ -3869,8 +4256,8 @@ getRevokedCerts(callback : AsyncCallback<Array\<X509CrlEntry>>) : void
 
 **参数**：
 
-| 参数名   | 类型          | 必填 | 说明     |
-| -------- | ------------- | ---- | -------- |
+| 参数名   | 类型                                | 必填 | 说明                             |
+| -------- | ----------------------------------- | ---- | -------------------------------- |
 | callback | AsyncCallback<Array\<X509CrlEntry>> | 否   | 回调函数。表示被吊销X509证书列表 |
 
 
@@ -3888,14 +4275,14 @@ let encodingBlob = {
 };
 cryptoFramework.createX509Crl(encodingBlob, function (error, x509Crl) {
     if (error != null) {
-        Console.log("createX509Crl failed, errCode: " + error.code + ", errMsg: " + error.message);
+        console.log("createX509Crl failed, errCode: " + error.code + ", errMsg: " + error.message);
     } else {
-        Console.log("createX509Crl success");
+        console.log("createX509Crl success");
         x509Crl.getRevokedCerts(function (error, array) {
             if (error != null) {
-                Console.log("getRevokedCerts failed, errCode: " + error.code + ", errMsg: " + error.message);
+                console.log("getRevokedCerts failed, errCode: " + error.code + ", errMsg: " + error.message);
             } else {
-                Console.log("getRevokedCerts success");
+                console.log("getRevokedCerts success");
             }
         });
     }
@@ -3912,9 +4299,9 @@ getRevokedCerts() : Promise<Array\<X509CrlEntry>>
 
 **返回值**:
 
-| 类型                | 说明                   |
-| ------------------- | ---------------------- |
-|Promise<Array\<X509CrlEntry>> | 表示被吊销X509证书列表 |
+| 类型                          | 说明                   |
+| ----------------------------- | ---------------------- |
+| Promise<Array\<X509CrlEntry>> | 表示被吊销X509证书列表 |
 
 **示例**：
 
@@ -3929,14 +4316,14 @@ let encodingBlob = {
     encodingFormat: cryptoFramework.EncodingFormat.FORMAT_PEM
 };
 cryptoFramework.createX509Crl(encodingBlob).then(x509Crl => {
-    Console.log("createX509Crl success");
+    console.log("createX509Crl success");
     x509Crl.getRevokedCerts().then(array => {
-        Console.log("getRevokedCerts success");
+        console.log("getRevokedCerts success");
     }, error => {
-        Console.log("getRevokedCerts failed, errCode: " + error.code + ", errMsg: " + error.message);
+        console.log("getRevokedCerts failed, errCode: " + error.code + ", errMsg: " + error.message);
     });
 }, error => {
-    Console.log("createX509Crl failed, errCode: " + error.code + ", errMsg: " + error.message);
+    console.log("createX509Crl failed, errCode: " + error.code + ", errMsg: " + error.message);
 });
 ```
 
@@ -3950,8 +4337,8 @@ getTbsInfo(callback : AsyncCallback\<DataBlob>) : void
 
 **参数**：
 
-| 参数名   | 类型          | 必填 | 说明     |
-| -------- | ------------- | ---- | -------- |
+| 参数名   | 类型                                  | 必填 | 说明                                        |
+| -------- | ------------------------------------- | ---- | ------------------------------------------- |
 | callback | AsyncCallback\<[DataBlob](#datablob)> | 否   | 回调函数。表示证书吊销列表的tbsCertList信息 |
 
 
@@ -3969,14 +4356,14 @@ let encodingBlob = {
 };
 cryptoFramework.createX509Crl(encodingBlob, function (error, x509Crl) {
     if (error != null) {
-        Console.log("createX509Crl failed, errCode: " + error.code + ", errMsg: " + error.message);
+        console.log("createX509Crl failed, errCode: " + error.code + ", errMsg: " + error.message);
     } else {
-        Console.log("createX509Crl success");
+        console.log("createX509Crl success");
         x509Crl.getTbsInfo(function (error, tbsInfo) {
             if (error != null) {
-                Console.log("getTbsInfo failed, errCode: " + error.code + ", errMsg: " + error.message);
+                console.log("getTbsInfo failed, errCode: " + error.code + ", errMsg: " + error.message);
             } else {
-                Console.log("getTbsInfo success");
+                console.log("getTbsInfo success");
             }
         });
     }
@@ -3993,8 +4380,8 @@ getTbsInfo() : Promise\<DataBlob>
 
 **返回值**:
 
-| 类型     | 说明                              |
-| -------- | --------------------------------- |
+| 类型                            | 说明                              |
+| ------------------------------- | --------------------------------- |
 | Promise\<[DataBlob](#datablob)> | 表示证书吊销列表的tbsCertList信息 |
 
 **示例**：
@@ -4010,14 +4397,14 @@ let encodingBlob = {
     encodingFormat: cryptoFramework.EncodingFormat.FORMAT_PEM
 };
 cryptoFramework.createX509Crl(encodingBlob).then(x509Crl => {
-    Console.log("createX509Crl success");
+    console.log("createX509Crl success");
     x509Crl.getTbsInfo().then(tbsInfo => {
-        Console.log("getTbsInfo success");
+        console.log("getTbsInfo success");
     }, error => {
-        Console.log("getTbsInfo failed, errCode: " + error.code + ", errMsg: " + error.message);
+        console.log("getTbsInfo failed, errCode: " + error.code + ", errMsg: " + error.message);
     });
 }, error => {
-    Console.log("createX509Crl failed, errCode: " + error.code + ", errMsg: " + error.message);
+    console.log("createX509Crl failed, errCode: " + error.code + ", errMsg: " + error.message);
 });
 ```
 
@@ -4031,8 +4418,8 @@ getSignature() : DataBlob
 
 **返回值**：
 
-| 类型     | 说明                           |
-| -------- | ------------------------------ |
+| 类型                  | 说明                           |
+| --------------------- | ------------------------------ |
 | [DataBlob](#datablob) | 表示X509证书吊销列表的签名数据 |
 
 **示例**：
@@ -4049,9 +4436,9 @@ let encodingBlob = {
 };
 cryptoFramework.createX509Crl(encodingBlob, function (error, x509Crl) {
     if (error != null) {
-        Console.log("createX509Crl failed, errCode: " + error.code + ", errMsg: " + error.message);
+        console.log("createX509Crl failed, errCode: " + error.code + ", errMsg: " + error.message);
     } else {
-        Console.log("createX509Crl success");
+        console.log("createX509Crl success");
         let signature = x509Crl.getSignature();
     }
 });
@@ -4085,9 +4472,9 @@ let encodingBlob = {
 };
 cryptoFramework.createX509Crl(encodingBlob, function (error, x509Crl) {
     if (error != null) {
-        Console.log("createX509Crl failed, errCode: " + error.code + ", errMsg: " + error.message);
+        console.log("createX509Crl failed, errCode: " + error.code + ", errMsg: " + error.message);
     } else {
-        Console.log("createX509Crl success");
+        console.log("createX509Crl success");
         let sigAlgName = x509Crl.getSignatureAlgName();
     }
 });
@@ -4121,9 +4508,9 @@ let encodingBlob = {
 };
 cryptoFramework.createX509Crl(encodingBlob, function (error, x509Crl) {
     if (error != null) {
-        Console.log("createX509Crl failed, errCode: " + error.code + ", errMsg: " + error.message);
+        console.log("createX509Crl failed, errCode: " + error.code + ", errMsg: " + error.message);
     } else {
-        Console.log("createX509Crl success");
+        console.log("createX509Crl success");
         let sigAlgOid = x509Crl.getSignatureAlgOid();
     }
 });
@@ -4139,8 +4526,8 @@ getSignatureAlgParams() : DataBlob
 
 **返回值**：
 
-| 类型     | 说明                               |
-| -------- | ---------------------------------- |
+| 类型                  | 说明                               |
+| --------------------- | ---------------------------------- |
 | [DataBlob](#datablob) | 表示X509证书吊销列表签名的算法参数 |
 
 **示例**：
@@ -4157,9 +4544,9 @@ let encodingBlob = {
 };
 cryptoFramework.createX509Crl(encodingBlob, function (error, x509Crl) {
     if (error != null) {
-        Console.log("createX509Crl failed, errCode: " + error.code + ", errMsg: " + error.message);
+        console.log("createX509Crl failed, errCode: " + error.code + ", errMsg: " + error.message);
     } else {
-        Console.log("createX509Crl success");
+        console.log("createX509Crl success");
         let sigAlgParams = x509Crl.getSignatureAlgParams();
     }
 });
@@ -4197,6 +4584,16 @@ let validator = cryptoFramework.createCertChainValidator("PKIX");
 
 证书链校验器对象。
 
+
+### 属性
+
+**系统能力：** SystemCapability.Security.CryptoFramework
+
+| 名称    | 类型   | 可读 | 可写 | 说明                         |
+| ------- | ------ | ---- | ---- | -------------------------- |
+| algorithm  | string | 是   | 否   | X509证书链校验器算法名称。 |
+
+
 ### validate
 
 validate(certChain : CertChainData, callback : AsyncCallback\<void>) : void
@@ -4208,10 +4605,10 @@ validate(certChain : CertChainData, callback : AsyncCallback\<void>) : void
 
 **参数**：
 
-| 参数名    | 类型          | 必填 | 说明                     |
-| --------- | ------------- | ---- | ------------------------ |
-| certChain | [CertChainData](#certchaindata) | 是   | 表示X509证书链序列化数据 |
-| callback  | AsyncCallback\<void> | 否   | 回调函数。使用AsyncCallback的第一个error参数判断是否校验成功，error为null表示成功，error不为null表示失败                 |
+| 参数名    | 类型                            | 必填 | 说明                                                         |
+| --------- | ------------------------------- | ---- | ------------------------------------------------------------ |
+| certChain | [CertChainData](#certchaindata) | 是   | 表示X509证书链序列化数据                                     |
+| callback  | AsyncCallback\<void>            | 否   | 回调函数。使用AsyncCallback的第一个error参数判断是否校验成功，error为null表示成功，error不为null表示失败 |
 
 
 **示例**：
@@ -4232,9 +4629,9 @@ let certChainData = {
 };
 validator.validate(certChainData, function (error, data) {
     if (error != null) {
-        Console.log("validate failed, errCode: " + error.code + ", errMsg: " + error.message);
+        console.log("validate failed, errCode: " + error.code + ", errMsg: " + error.message);
     } else {
-        Console.log("validate success");
+        console.log("validate success");
     }
 });
 ```
@@ -4250,14 +4647,14 @@ validate(certChain : CertChainData) : Promise\<void>
 
 **参数**：
 
-| 参数名    | 类型          | 必填 | 说明                     |
-| --------- | ------------- | ---- | ------------------------ |
+| 参数名    | 类型                            | 必填 | 说明                       |
+| --------- | ------------------------------- | ---- | -------------------------- |
 | certChain | [CertChainData](#certchaindata) | 是   | 表示X509证书链序列化数据。 |
 
 **返回值**：
 
-| 类型 | 说明                                                         |
-| ---- | ------------------------------------------------------------ |
+| 类型           | 说明        |
+| -------------- | ----------- |
 | Promise\<void> | Promise对象 |
 
 **示例**：
@@ -4277,25 +4674,12 @@ let certChainData = {
     encodingFormat: cryptoFramework.EncodingFormat.FORMAT_PEM 
 };
 validator.validate(certChainData).then(result => {
-    Console.log("validate success");
+    console.log("validate success");
 }, error => {
-    Console.log("validate failed, errCode: " + error.code + ", errMsg: " + error.message);
+    console.log("validate failed, errCode: " + error.code + ", errMsg: " + error.message);
 });
 ```
 
-### algorithm
-
-algorithm : string
-
-表示X509证书链校验器算法名称。
-
-**系统能力**：SystemCapability.Security.CryptoFramework
-
-**返回值**：
-
-| 类型   | 说明                     |
-| ------ | ------------------------ |
-| string | 表示证书链校验器算法名称 |
 
 **示例**：
 
@@ -4320,8 +4704,8 @@ getEncoded(callback : AsyncCallback\<EncodingBlob>) : void
 
 **参数**：
 
-| 参数名   | 类型          | 必填 | 说明     |
-| -------- | ------------- | ---- | -------- |
+| 参数名   | 类型                                          | 必填 | 说明                                 |
+| -------- | --------------------------------------------- | ---- | ------------------------------------ |
 | callback | AsyncCallback\<[EncodingBlob](#encodingblob)> | 否   | 回调函数。表示被吊销证书的序列化数据 |
 
 
@@ -4334,9 +4718,9 @@ import cryptoFramework from '@ohos.security.cryptoFramework';
 let x509CrlEntry = null;
 x509CrlEntry.getEncoded(function (error, data) {
     if (error != null) {
-        Console.log("getEncoded failed, errCode: " + error.code + ", errMsg: " + error.message);
+        console.log("getEncoded failed, errCode: " + error.code + ", errMsg: " + error.message);
     } else {
-        Console.log("getEncoded success");
+        console.log("getEncoded success");
     }
 });
 ```
@@ -4351,8 +4735,8 @@ getEncoded() : Promise\<EncodingBlob>
 
 **返回值**：
 
-| 类型         | 说明                       |
-| ------------ | -------------------------- |
+| 类型                                    | 说明                       |
+| --------------------------------------- | -------------------------- |
 | Promise\<[EncodingBlob](#encodingblob)> | 表示被吊销证书的序列化数据 |
 
 **示例**：
@@ -4363,9 +4747,9 @@ import cryptoFramework from '@ohos.security.cryptoFramework';
 // 业务需通过X509Crl的getRevokedCert相关方法获取X509CrlEntry
 let x509CrlEntry = null;
 x509CrlEntry.getEncoded().then(result => {
-    Console.log("getEncoded success");
+    console.log("getEncoded success");
 }, error => {
-    Console.log("getEncoded failed, errCode: " + error.code + ", errMsg: " + error.message);
+    console.log("getEncoded failed, errCode: " + error.code + ", errMsg: " + error.message);
 });
 ```
 
@@ -4403,8 +4787,8 @@ getCertIssuer(callback : AsyncCallback\<DataBlob>) : void
 
 **参数**：
 
-| 参数名   | 类型          | 必填 | 说明     |
-| -------- | ------------- | ---- | -------- |
+| 参数名   | 类型                                  | 必填 | 说明                                 |
+| -------- | ------------------------------------- | ---- | ------------------------------------ |
 | callback | AsyncCallback\<[DataBlob](#datablob)> | 否   | 回调函数。表示被吊销证书的颁发者信息 |
 
 
@@ -4417,9 +4801,9 @@ import cryptoFramework from '@ohos.security.cryptoFramework';
 let x509CrlEntry = null;
 x509CrlEntry.getCertIssuer(function (error, issuer) {
     if (error != null) {
-        Console.log("getCertIssuer failed, errCode: " + error.code + ", errMsg: " + error.message);
+        console.log("getCertIssuer failed, errCode: " + error.code + ", errMsg: " + error.message);
     } else {
-        Console.log("getCertIssuer success");
+        console.log("getCertIssuer success");
     }
 });
 ```
@@ -4434,8 +4818,8 @@ getCertIssuer() : Promise\<DataBlob>
 
 **返回值**：
 
-| 类型     | 说明                       |
-| -------- | -------------------------- |
+| 类型                            | 说明                       |
+| ------------------------------- | -------------------------- |
 | Promise\<[DataBlob](#datablob)> | 表示被吊销证书的颁发者信息 |
 
 **示例**：
@@ -4446,9 +4830,9 @@ import cryptoFramework from '@ohos.security.cryptoFramework';
 // 业务需通过X509Crl的getRevokedCert相关方法获取X509CrlEntry
 let x509CrlEntry = null;
 x509CrlEntry.getCertIssuer().then(issuer => {
-    Console.log("getCertIssuer success");
+    console.log("getCertIssuer success");
 }, error => {
-    Console.log("getCertIssuer failed, errCode: " + error.code + ", errMsg: " + error.message);
+    console.log("getCertIssuer failed, errCode: " + error.code + ", errMsg: " + error.message);
 });
 ```
 
@@ -4462,8 +4846,8 @@ getRevocationDate(callback : AsyncCallback\<string>) : void
 
 **参数**：
 
-| 参数名   | 类型          | 必填 | 说明     |
-| -------- | ------------- | ---- | -------- |
+| 参数名   | 类型                   | 必填 | 说明                           |
+| -------- | ---------------------- | ---- | ------------------------------ |
 | callback | AsyncCallback\<string> | 否   | 回调函数。表示证书被吊销的日期 |
 
 
@@ -4476,9 +4860,9 @@ import cryptoFramework from '@ohos.security.cryptoFramework';
 let x509CrlEntry = null;
 x509CrlEntry.getRevocationDate(function (error, date) {
     if (error != null) {
-        Console.log("getRevocationDate failed, errCode: " + error.code + ", errMsg: " + error.message);
+        console.log("getRevocationDate failed, errCode: " + error.code + ", errMsg: " + error.message);
     } else {
-        Console.log("getRevocationDate success");
+        console.log("getRevocationDate success");
     }
 });
 ```
@@ -4493,8 +4877,8 @@ getRevocationDate() : Promise\<string>
 
 **返回值**：
 
-| 类型   | 说明                 |
-| ------ | -------------------- |
+| 类型             | 说明                 |
+| ---------------- | -------------------- |
 | Promise\<string> | 表示证书被吊销的日期 |
 
 **示例**：
@@ -4505,8 +4889,8 @@ import cryptoFramework from '@ohos.security.cryptoFramework';
 // 业务需通过X509Crl的getRevokedCert相关方法获取X509CrlEntry
 let x509CrlEntry = null;
 x509CrlEntry.getRevocationDate().then(date => {
-    Console.log("getRevocationDate success");
+    console.log("getRevocationDate success");
 }, error => {
-    Console.log("getRevocationDate failed, errCode: " + error.code + ", errMsg: " + error.message);
+    console.log("getRevocationDate failed, errCode: " + error.code + ", errMsg: " + error.message);
 });
 ```
