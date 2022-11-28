@@ -58,11 +58,10 @@ xcomponentController: XComponentController = new XComponentController()
 
 ### getXComponentSurfaceId
 
-getXComponentSurfaceId()
+getXComponentSurfaceId(): string
 
 获取XComponent对应Surface的ID，供@ohos接口使用，比如camera相关接口。
 
-**系统接口：** 此接口为系统接口。
 
 **返回值:**
 
@@ -73,11 +72,10 @@ getXComponentSurfaceId()
 
 ### setXComponentSurfaceSize
 
-setXComponentSurfaceSize(value: {surfaceWidth: number, surfaceHeight: number})
+setXComponentSurfaceSize(value: {surfaceWidth: number, surfaceHeight: number}): void
 
 设置XComponent持有Surface的宽度和高度。
 
-**系统接口：** 此接口为系统接口。
 
 **参数:**
 
@@ -89,7 +87,7 @@ setXComponentSurfaceSize(value: {surfaceWidth: number, surfaceHeight: number})
 
 ### getXComponentContext
 
-getXComponentContext()
+getXComponentContext(): Object
 
 获取XComponent实例对象的context。
 
@@ -102,12 +100,10 @@ getXComponentContext()
 
 ## 示例
 
-提供surface类型XComponent，支持相机预览等能力。  
 示例效果请以真机运行为准，当前IDE预览器不支持。
 
 ```ts
 // xxx.ets
-import camera from '@ohos.multimedia.camera'
 @Entry
 @Component
 struct PreviewArea {
@@ -123,9 +119,6 @@ struct PreviewArea {
         .onLoad(() => {
           this.xcomponentController.setXComponentSurfaceSize({surfaceWidth:1920,surfaceHeight:1080});
           this.surfaceId = this.xcomponentController.getXComponentSurfaceId()
-          camera.createPreviewOutput(this.surfaceId).then((previewOutput) => {
-            console.log('Promise returned with the PreviewOutput instance')
-          })
         })
         .width('640px')
         .height('480px')

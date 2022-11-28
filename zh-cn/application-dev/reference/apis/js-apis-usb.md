@@ -428,7 +428,7 @@ let ret = usb.getFileDescriptor(devicepipe);
 
 ## usb.controlTransfer
 
-controlTransfer(pipe: USBDevicePipe, contrlparam: USBControlParams, timeout?: number): Promise&lt;number&gt;
+controlTransfer(pipe: USBDevicePipe, controlparam: USBControlParams, timeout?: number): Promise&lt;number&gt;
 
 控制传输。
 
@@ -441,7 +441,7 @@ controlTransfer(pipe: USBDevicePipe, contrlparam: USBControlParams, timeout?: nu
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | pipe | [USBDevicePipe](#usbdevicepipe) | 是 | 用于确定设备。 |
-| contrlparam | [USBControlParams](#usbcontrolparams) | 是 | 控制传输参数。 |
+| controlparam | [USBControlParams](#usbcontrolparams) | 是 | 控制传输参数。 |
 | timeout | number | 否 | 超时时间（单位：ms），可选参数，默认为0不超时。 |
 
 **返回值：**
