@@ -446,7 +446,7 @@ SystemCapability.BundleManager.BundleFramework
 | -------- | ------------------------------------------------------------ | ---- | ---------------- |
 | callback | AsyncCallback<[BundleInstaller](js-apis-bundle-BundleInstaller.md)> | 是   | 安装应用程序包。 |
 
-## bundle.cleanBundleCacheFiles<sup>deprecated<sup>
+## bundle.cleanBundleCacheFiles<sup>8+</sup> <sup>deprecated<sup>
 
 > 从API version 9开始不再维护，建议使用[bundleManager.cleanBundleCacheFiles](js-apis-bundleManager.md#bundlemanagercleanbundlecachefiles)替代。
 
@@ -473,7 +473,7 @@ SystemCapability.BundleManager.BundleFramework
 | bundleName | string              | 是   | 指示要清除其缓存数据的应用程序包名称. |
 | callback   | AsyncCallback\<void> | 是   | 为返回操作结果而调用的回调。          |
 
-## bundle.cleanBundleCacheFiles<sup>deprecated<sup>
+## bundle.cleanBundleCacheFiles<sup>8+</sup> <sup>deprecated<sup>
 
 > 从API version 9开始不再维护，建议使用[bundleManager.cleanBundleCacheFiles](js-apis-bundleManager.md#bundlemanagercleanbundlecachefiles)替代。
 
@@ -505,7 +505,7 @@ SystemCapability.BundleManager.BundleFramework
 | ------------- | ------------------------------------ |
 | Promise\<void> | 返回值为Promise对象，Promise中为空。 |
 
-## bundle.setApplicationEnabled<sup>deprecated<sup>
+## bundle.setApplicationEnabled<sup>8+</sup> <sup>deprecated<sup>
 
 > 从API version 9开始不再维护，建议使用[bundleManager.setApplicationEnabled](js-apis-bundleManager.md#bundlemanagersetapplicationenabled)替代。
 
@@ -533,7 +533,7 @@ SystemCapability.BundleManager.BundleFramework
 | isEnable   | boolean             | 是   | 指定是否启用应用程序。true表示启用，false禁用。 |
 | callback   | AsyncCallback\<void> | 是   | 为返回操作结果而调用的回调。                    |
 
-## bundle.setApplicationEnabled<sup>deprecated<sup>
+## bundle.setApplicationEnabled<sup>8+</sup> <sup>deprecated<sup>
 
 > 从API version 9开始不再维护，建议使用[bundleManager.setApplicationEnabled](js-apis-bundleManager.md#bundlemanagersetapplicationenabled)替代。
 
@@ -566,7 +566,7 @@ SystemCapability.BundleManager.BundleFramework
 | ------------- | ------------------------------------ |
 | Promise\<void> | 返回值为Promise对象，Promise中为空。 |
 
-## bundle.setAbilityEnabled<sup>deprecated<sup>
+## bundle.setAbilityEnabled<sup>8+</sup> <sup>deprecated<sup>
 
 > 从API version 9开始不再维护，建议使用[bundleManager.setAbilityEnabled](js-apis-bundleManager.md#bundlemanagersetabilityenabled)替代。
 
@@ -594,7 +594,7 @@ SystemCapability.BundleManager.BundleFramework
 | isEnable | boolean                                      | 是   | 指定是否启用应用程序。true表示启用，false禁用。 |
 | callback | AsyncCallback\<void>                         | 是   | 为返回操作结果而调用的回调。                    |
 
-## bundle.setAbilityEnabled<sup>deprecated<sup>
+## bundle.setAbilityEnabled<sup>8+</sup> <sup>deprecated<sup>
 
 > 从API version 9开始不再维护，建议使用[bundleManager.setAbilityEnabled](js-apis-bundleManager.md#bundlemanagersetabilityenabled)替代。
 
@@ -627,7 +627,7 @@ SystemCapability.BundleManager.BundleFramework
 | ------------- | ------------------------------------ |
 | Promise\<void> | 返回值为Promise对象，Promise中为空。 |
 
-## bundle.getPermissionDef<sup>deprecated<sup>
+## bundle.getPermissionDef<sup>8+</sup> <sup>deprecated<sup>
 
 > 从API version 9开始不再维护，建议使用[bundleManager.getPermissionDef](js-apis-bundleManager.md#bundlemanagergetpermissiondef)替代。
 
@@ -654,7 +654,7 @@ SystemCapability.BundleManager.BundleFramework
 | permissionName | string                                                       | 是   | 指定权限的名称。                                 |
 | callback       | AsyncCallback<[PermissionDef](js-apis-bundle-PermissionDef)> | 是   | 程序启动作为入参的回调函数，返回定义的权限信息。 |
 
-## bundle.getPermissionDef<sup>deprecated<sup>
+## bundle.getPermissionDef<sup>8+</sup> <sup>deprecated<sup>
 
 > 从API version 9开始不再维护，建议使用[bundleManager.getPermissionDef](js-apis-bundleManager.md#bundlemanagergetpermissiondef)替代。
 
@@ -708,7 +708,7 @@ SystemCapability.BundleManager.BundleFramework
 | 参数名      | 类型   | 必填 | 说明                                                         |
 | ----------- | ------ | ---- | ------------------------------------------------------------ |
 | bundleFlags | number | 是   | 用于指定返回的应用信息对象中包含信息的标记。默认值：0，取值范围：参考[BundleFlag说明](#bundleflag)中应用信息相关flag |
-| userId      | number | 否   | 用户ID。默认值：调用方所在用户，取值范围：大于等于0。        |
+| userId      | number | 是   | 用户ID。默认值：调用方所在用户，取值范围：大于等于0。        |
 
 **返回值：**
 
@@ -750,7 +750,7 @@ SystemCapability.BundleManager.BundleFramework
 | 参数名      | 类型                                                         | 必填 | 说明                                                         |
 | ----------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | bundleFlags | number                                                       | 是   | 用于指定返回的应用信息对象中包含信息的标记。默认值：0，取值范围：参考[BundleFlag说明](#bundleflag)中应用信息相关flag |
-| userId      | number                                                       | 否   | 用户ID。默认值：调用方所在用户，取值范围：大于等于0。        |
+| userId      | number                                                       | 是   | 用户ID。默认值：调用方所在用户，取值范围：大于等于0。        |
 | callback    | AsyncCallback<Array\<[ApplicationInfo](js-apis-bundle-ApplicationInfo.md)>> | 是   | 程序启动作为入参的回调函数，返回应用信息列表。               |
 
 **示例：**
@@ -956,7 +956,7 @@ bundle.getAbilityInfo(bundleName, abilityName, (err, data) => {
 })
 ```
 
-## bundle.getAbilityLabel<sup>deprecated<sup>
+## bundle.getAbilityLabel<sup>8+</sup> <sup>deprecated<sup>
 
 > 从API version 9开始不再维护，建议使用[bundleManager.getAbilityLabel](js-apis-bundleManager.md#bundlemanagergetabilitylabel)替代。
 
@@ -998,7 +998,7 @@ bundle.getAbilityLabel(bundleName, abilityName)
 })
 ```
 
-## bundle.getAbilityLabel<sup>deprecated<sup>
+## bundle.getAbilityLabel<sup>8+</sup> <sup>deprecated<sup>
 
 > 从API version 9开始不再维护，建议使用[bundleManager.getAbilityLabel](js-apis-bundleManager.md#bundlemanagergetabilitylabel)替代。
 
@@ -1036,7 +1036,7 @@ bundle.getAbilityLabel(bundleName, abilityName, (err, data) => {
 })
 ```
 
-## bundle.isAbilityEnabled<sup>deprecated<sup>
+## bundle.isAbilityEnabled<sup>8+</sup> <sup>deprecated<sup>
 
 > 从API version 9开始不再维护，建议使用[bundleManager.isAbilityEnabled](js-apis-bundleManager.md#bundlemanagerisabilityenabled)替代。
 
@@ -1074,7 +1074,7 @@ bundle.getAbilityInfo(bundleName, abilityName).then((abilityInfo)=>{
 })
 ```
 
-## bundle.isAbilityEnabled<sup>deprecated<sup>
+## bundle.isAbilityEnabled<sup>8+</sup> <sup>deprecated<sup>
 
 > 从API version 9开始不再维护，建议使用[bundleManager.isAbilityEnabled](js-apis-bundleManager.md#bundlemanagerisabilityenabled)替代。
 
@@ -1109,7 +1109,7 @@ bundle.getAbilityInfo(bundleName, abilityName).then((abilityInfo)=>{
 })
 ```
 
-## bundle.isApplicationEnabled<sup>deprecated<sup>
+## bundle.isApplicationEnabled<sup>8+</sup> <sup>deprecated<sup>
 
 > 从API version 9开始不再维护，建议使用[bundleManager.isApplicationEnabled](js-apis-bundleManager.md#bundlemanagerisapplicationenabled)替代。
 
@@ -1145,7 +1145,7 @@ bundle.isApplicationEnabled(bundleName)
 })
 ```
 
-## bundle.isApplicationEnabled<sup>deprecated<sup>
+## bundle.isApplicationEnabled<sup>8+</sup> <sup>deprecated<sup>
 
 > 从API version 9开始不再维护，建议使用[bundleManager.isApplicationEnabled](js-apis-bundleManager.md#bundlemanagerisapplicationenabled)替代。
 
@@ -1388,7 +1388,7 @@ bundle.getLaunchWantForBundle(bundleName, (err, data) => {
 ```
 
 
-## bundle.getNameForUid<sup>deprecated<sup>
+## bundle.getNameForUid<sup>8+</sup> <sup>deprecated<sup>
 
 > 从API version 9开始不再维护，建议使用[bundleManager.getBundleNameByUid](js-apis-bundleManager.md#bundlemanagergetbundlenamebyuid)替代。
 
@@ -1423,7 +1423,7 @@ bundle.getNameForUid(uid)
 })
 ```
 
-## bundle.getNameForUid<sup>deprecated<sup>
+## bundle.getNameForUid<sup>8+</sup> <sup>deprecated<sup>
 
 > 从API version 9开始不再维护，建议使用[bundleManager.getBundleNameByUid](js-apis-bundleManager.md#bundlemanagergetbundlenamebyuid)替代。
 
@@ -1456,7 +1456,7 @@ bundle.getNameForUid(uid, (err, data) => {
 ```
 
 
-## bundle.getAbilityIcon<sup>deprecated<sup>
+## bundle.getAbilityIcon<sup>8+</sup> <sup>deprecated<sup>
 
 > 从API version 9开始不再维护，建议使用[bundleManager.getAbilityIcon](js-apis-bundleManager.md#bundlemanagergetabilityicon)替代。
 
@@ -1497,7 +1497,7 @@ bundle.getAbilityIcon(bundleName, abilityName)
 })
 ```
 
-## bundle.getAbilityIcon<sup>deprecated<sup>
+## bundle.getAbilityIcon<sup>8+</sup> <sup>deprecated<sup>
 
 > 从API version 9开始不再维护，建议使用[bundleManager.getAbilityIcon](js-apis-bundleManager.md#bundlemanagergetabilityicon)替代。
 
@@ -1593,7 +1593,7 @@ bundle.getAbilityIcon(bundleName, abilityName, (err, data) => {
 
  **系统能力:** SystemCapability.BundleManager.BundleFramework
 
-| 参数名 | 类型   | 可读 | 可写 | 说明                                                  |
+| 名称   | 类型   | 可读 | 可写 | 说明                                                  |
 | ------ | ------ | ---- | ---- | ----------------------------------------------------- |
 | userId | number | 是   | 是   | 用户ID。默认值：调用方所在用户，取值范围：大于等于0。 |
 
@@ -1605,7 +1605,7 @@ Ability类型
 
  **系统能力:** 以下各项对应的系统能力均为SystemCapability.BundleManager.BundleFramework
 
-| 参数名  | 类型 | 说明                        |
+| 名称 | 值 | 说明                        |
 | ------- | ---- | --------------------------- |
 | UNKNOWN | 无   | 未知Ability类型             |
 | PAGE    | 无   | 表示基于Page模板开发的FA，用于提供与用户交互的能力        |
@@ -1620,7 +1620,7 @@ Ability类型
 
  **系统能力:** 以下各项对应的系统能力均为SystemCapability.BundleManager.BundleFramework
 
-| 参数名        | 类型 | 说明                     |
+| 名称          | 值   | 说明                     |
 | ------------- | ---- | ------------------------ |
 | UNSPECIFIED   | 无   | 屏幕方向--不指定         |
 | LANDSCAPE     | 无   | 屏幕方向--横屏           |
@@ -1634,7 +1634,7 @@ Ability类型
 
  **系统能力:** 以下各项对应的系统能力均为SystemCapability.BundleManager.BundleFramework
 
-| 参数名    | 类型 | 说明                |
+| 名称      | 值   | 说明                |
 | --------- | ---- | ------------------- |
 | SINGLETON | 0    | Ability只有一个实例 |
 | STANDARD  | 1    | Ability有多个实例   |
@@ -1646,7 +1646,7 @@ Ability的子类型
 
  **系统能力:** 以下各项对应的系统能力均为SystemCapability.BundleManager.BundleFramework
 
-| 参数名      | 类型 | 说明                          |
+| 名称        | 值   | 说明                          |
 | ----------- | ---- | ----------------------------- |
 | UNSPECIFIED | 0    | 未定义Ability子类型           |
 | CA          | 1    | Ability子类型是带有 UI 的服务 |
@@ -1658,7 +1658,7 @@ Ability的子类型
 
  **系统能力:** 以下各项对应的系统能力均为SystemCapability.BundleManager.BundleFramework
 
-| 参数名     | 类型 | 说明     |
+| 名称       | 值   | 说明     |
 | ---------- | ---- | -------- |
 | AUTO_MODE  | -1   | 自动模式 |
 | DARK_MODE  | 0    | 黑色模式 |
@@ -1673,7 +1673,7 @@ Ability的子类型
 
  **系统能力:** 以下各项对应的系统能力均为SystemCapability.BundleManager.BundleFramework
 
-| 参数名             | 类型 | 说明         |
+| 名称               | 值   | 说明         |
 | ------------------ | ---- | ------------ |
 | PERMISSION_DENIED  | -1   | 拒绝授予权限 |
 | PERMISSION_GRANTED | 0    | 授予权限     |
