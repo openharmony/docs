@@ -13,7 +13,7 @@
 1. 随机生成算法库密钥对象。该对象可用于后续的加解密等操作。
 2. 根据指定数据生成算法库密钥对象（也就是将外部或存储的二进制数据转换为算法库的密钥对象）。该对象可用于后续的加解密等操作。
 3. 获取算法库密钥对象的二进制数据，用于存储或传输。
-> **说明**：密钥对象Key包括对称密钥SymKey和非对称密钥（公钥PubKey和私钥PriKey），其中公钥和私钥组成密钥对KeyPair。密钥之间的具体关系可参考[接口声明](../reference/apis/js-apis-cryptoFramework.md)。
+> **说明**：密钥对象Key包括对称密钥SymKey和非对称密钥（公钥PubKey和私钥PriKey），其中公钥和私钥组成密钥对KeyPair。密钥之间的具体关系可参考[API参考](../reference/apis/js-apis-cryptoFramework.md)。
 
 
 **接口及参数说明**
@@ -100,21 +100,17 @@ function testGenerateAesKey() {
 
 示例3：根据指定的RSA非对称密钥二进制数据，生成KeyPair对象（场景2）
 
-1. 获取RSA二进制密钥数据封装成DataBlob对象，按keysize(32位的密钥位数) 、nsize(32位，值为keysize/8)、 esize(32位的大数e的实际长度，单位Byte)、dsize(32位，值位keysize/8)、nval(大数n的二进制数据)、eval(大数e的二进制数据)和dval(大数d的二进制数据)拼接形成。
-2. 调用convertKey方法，传入公钥二进制和私钥二进制（二者非必选项，可只传入其中一个），转换为KeyPair对象。
+1. 获取RSA公钥或私钥二进制数据，公钥需满足ASN.1语法、X.509规范、DER编码格式，私钥需满足ASN.1语法、PKCS#8规范、DER编码格式。
+2. 创建AsyKeyGenerator对象，调用convertKey方法，传入公钥二进制和私钥二进制（二者非必选项，可只传入其中一个），转换为KeyPair对象。
 
 ```javascript
 import cryptoFramework from '@ohos.security.cryptoFramework';
 
 function convertAsyKey() {
   let rsaGenerator = cryptoFramework.createAsyKeyGenerator("RSA1024");
-  // 公钥二进制数据
-  let pkval = new Uint8Array([0,4,0,0,128,0,0,0,3,0,0,0,0,0,0,0,182,22,137,81,111,129,17,47,33,97,67,85,251,53,127,42,130,150,93,144,129,104,14,73,110,189,138,82,53,74,114,86,24,186,143,65,87,110,237,69,206,207,5,81,24,32,41,160,209,125,162,92,0,148,49,241,235,0,71,198,1,28,136,106,152,22,25,249,77,241,57,149,154,44,200,6,0,83,246,63,162,106,242,131,80,227,143,162,210,28,127,136,123,172,26,247,2,194,16,1,100,122,180,251,57,22,69,133,232,145,107,66,80,201,151,46,114,175,116,57,45,170,188,77,86,230,111,45,1,0,1]);
-  // 封装成DataBlob对象
+  let pkval = new Uint8Array([48,129,159,48,13,6,9,42,134,72,134,247,13,1,1,1,5,0,3,129,141,0,48,129,137,2,129,129,0,174,203,113,83,113,3,143,213,194,79,91,9,51,142,87,45,97,65,136,24,166,35,5,179,42,47,212,79,111,74,134,120,73,67,21,19,235,80,46,152,209,133,232,87,192,140,18,206,27,106,106,169,106,46,135,111,118,32,129,27,89,255,183,116,247,38,12,7,238,77,151,167,6,102,153,126,66,28,253,253,216,64,20,138,117,72,15,216,178,37,208,179,63,204,39,94,244,170,48,190,21,11,73,169,156,104,193,3,17,100,28,60,50,92,235,218,57,73,119,19,101,164,192,161,197,106,105,73,2,3,1,0,1]);
   let pkBlob = {data : pkval};
-  // 调用密钥转换函数
-  let convertKeyPromise = rsaGenerator.convertKey(pkBlob, null);
-  convertKeyPromise.then( keyPair => {
+  rsaGenerator.convertKey(pkBlob, null, function(err, keyPair) {
     if (keyPair == null) {
       AlertDialog.show({message : "Convert keypair fail"});
     }
@@ -125,10 +121,7 @@ function convertAsyKey() {
 
 **说明**
 
-1. nsize和dsize为密钥位数/8，esize为具体的实际长度。
-2. 私钥材料需要包含keysize，nsize，esize，dsize，nval，eval，dval的全部数据，公钥材料中dsize设置为为0，缺省dval的数据。
-3. 公钥和私钥二进制数据为可选项，可单独传入公钥或私钥的数据，生成对应只包含公钥或私钥的KeyPair对象。
-4. keysize、nsize、esize和dsize为32位二进制数据，数据的大小端格式请按设备CPU默认格式，密钥材料（nval、eval、dval）统一为大端格式。
+ 当前convertKey操作，公钥只支持转换满足X.509规范的DER格式，私钥只支持PKCS#8规范的DER格式；
 
 示例4：根据指定的ECC非对称密钥二进制数据，生成KeyPair对象（场景2、3）
 
@@ -269,14 +262,14 @@ function stringToUint8Array(str) {
   return new Uint8Array(arr);
 }
 
-// 字节流转成可理解的字符串
+// 字节流以16进制输出
 function uint8ArrayToShowStr(uint8Array) {
   return Array.prototype.map
     .call(uint8Array, (x) => ('00' + x.toString(16)).slice(-2))
     .join('');
 }
 
-// 字节流以16进制输出
+// 字节流转成可理解的字符串
 function uint8ArrayToString(array) {
   let arrayString = '';
   for (let i = 0; i < array.length; i++) {
@@ -388,14 +381,14 @@ function stringToUint8Array(str) {
   return new Uint8Array(arr);
 }
 
-// 字节流转成可理解的字符串
+// 字节流以16进制输出
 function uint8ArrayToShowStr(uint8Array) {
   return Array.prototype.map
     .call(uint8Array, (x) => ('00' + x.toString(16)).slice(-2))
     .join('');
 }
 
-// 字节流以16进制输出
+// 字节流转成可理解的字符串
 function uint8ArrayToString(array) {
   let arrayString = '';
   for (let i = 0; i < array.length; i++) {
@@ -544,6 +537,12 @@ function encryptMessageCallback() {
   })
 }
 ```
+
+**说明**
+
+1. 使用RSA加解密时，Cipher对象不可重复调用init方法初始化，在创建了一个加密Cipher对象后，如果要进行解密，则需要重新创建另一个Cipher对象执行解密操作。
+2. RSA加密有长度限制，允许加密明文的最大长度见[加解密算法库框架概述](cryptoFramework-overview.md)中的基本概念章节。
+3. RSA解密每次允许解密的密文长度为，RSA密钥的位数/8。
 
 ## 使用签名验签操作
 
@@ -923,7 +922,7 @@ Mac(message authentication code)可以对消息进行完整性校验，通过使
 
 | 实例名          | 接口名                                                       | 描述                                                |
 | --------------- | ------------------------------------------------------------ | --------------------------------------------------- |
-| cryptoFramework | function createMd(algName : string) : Md;                    | 指定摘要算法，生成消息认证码实例Mac                 |
+| cryptoFramework | function createMac(algName : string) : Mac;                  | 指定摘要算法，生成消息认证码实例Mac                 |
 | Mac             | init(key : SymKey, callback : AsyncCallback\<void\>) : void; | 接收输入对称密钥，通过Callback的方式，异步初始化MAC |
 | Mac             | init(key : SymKey) : Promise\<void\>;                        | 接收输入对称密钥，通过Promise的方式，异步初始化MAC  |
 | Mac             | update(input : DataBlob, callback : AsyncCallback\<void\>) : void; | 接受输入数据，通过Callback的方式，异步更新MAC       |
