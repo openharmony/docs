@@ -170,7 +170,7 @@
       - [OpenSL ES录音开发指导](media/opensles-capture.md)
       - [音频焦点模式开发指导](media/audio-interruptmode.md)
       - [音量管理开发指导](media/audio-volume-manager.md)
-      - [路由、设备管理开发指导](media/ audio-routing-manager.md)
+      - [路由、设备管理开发指导](media/audio-routing-manager.md)
     - 视频
       - [视频播放开发指导](media/video-playback.md)
       - [视频录制开发指导](media/video-recorder.md)
@@ -269,7 +269,7 @@
       - [示例服务器开发指导](device/sample-server-guidelines.md)
   - 设备使用信息统计
     - [设备使用信息统计概述](device-usage-statistics/device-usage-statistics-overview.md)
-    - [设备使用信息统计开发指导](device-usage-statistics/device-usage-statistics-dev-guide.md)
+    - [设备使用信息统计开发指导](device-usage-statistics/device-usage-statistics-use-guide.md)
   - DFX
     - 应用事件打点
       - [应用事件打点概述](dfx/hiappevent-overview.md)
@@ -618,8 +618,8 @@
       - [继承样式](reference/arkui-js/js-components-custom-style.md)
       - [slot插槽](reference/arkui-js/js-components-custom-slot.md)
       - [生命周期定义](reference/arkui-js/js-components-custom-lifecycle.md)
-    - [动态创建组件](reference/arkui-js/reference/arkui-js/js-components-create-elements.md)
-    - [数据类型说明](reference/arkui-js/reference/arkui-js/js-appendix-types.md)
+    - [动态创建组件](reference/arkui-js/js-components-create-elements.md)
+    - [数据类型说明](reference/arkui-js/js-appendix-types.md)
   - JS服务卡片UI组件参考
     - JS服务卡片UI框架说明
       - [文件组织](reference/js-service-widget-ui/js-service-widget-file.md)
