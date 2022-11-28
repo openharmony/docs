@@ -627,37 +627,3 @@ try {
 | GPS                     | 32   | GPS相关，申请后挂起状态下不被代理掉。  |
 | AUDIO                   | 64   | 音频资源，申请后挂起状态下不被代理掉。 |
 
-## EfficiencyResourcesRequest<sup>9+</sup>
-
-能效资源申请参数。
-
-**系统能力:** SystemCapability.ResourceSchedule.BackgroundTaskManager.EfficiencyResourcesApply
-
-**系统API**: 此接口为系统接口。
-
-| 名称             | 类型     | 必填   | 说明                                       |
-| --------------- | ------ | ---- | ---------------------------------------- |
-| resourceTypes   | number  | 是    | 申请的资源类型。                               |
-| isApply         | boolean | 是    | 申请资源或者是释放资源。          |
-| timeOut         | number  | 是    | 资源的使用时间，以毫秒为单位。                |
-| isPersist       | boolean | 否    | 是否永久持有资源，如果是true，那么timeOut就无效。    |
-| isProcess       | boolean | 否    | 应用申请或者是进程申请。          |
-| reason          | string  | 是    | 申请资源的原因。                |
-
-## ResourceType<sup>9+</sup>
-
-能效资源类型。
-
-**系统能力:** SystemCapability.ResourceSchedule.BackgroundTaskManager.EfficiencyResourcesApply
-
-**系统API**: 此接口为系统接口。
-
-| 名称                     | 参数值  | 描述                    |
-| ----------------------- | ---- | --------------------- |
-| CPU                     | 1    | CPU资源，申请后不被挂起。             |
-| COMMON_EVENT            | 2    | 公共事件，申请后挂起状态下不被代理掉。  |
-| TIMER                   | 4    | 计时器，申请后挂起状态下不被代理掉。    |
-| WORK_SCHEDULER          | 8    | 延迟任务，申请后有更长的执行时间。      |
-| BLUETOOTH               | 16   | 蓝牙相关，申请后挂起状态下不被代理掉。  |
-| GPS                     | 32   | GPS相关，申请后挂起状态下不被代理掉。  |
-| AUDIO                   | 64   | 音频资源，申请后挂起状态下不被代理掉。 |
