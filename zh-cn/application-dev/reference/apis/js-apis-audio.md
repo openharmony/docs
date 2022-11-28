@@ -487,7 +487,7 @@ async function createTonePlayerBefore(){
 
 ## AudioSamplingRate<sup>8+</sup>
 
-枚举，音频采样率。
+枚举，音频采样率，具体设备支持的采样率规格可能不同。
 
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.Audio.Core
 
@@ -706,7 +706,7 @@ async function createTonePlayerBefore(){
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.Audio.Device
 
 | 名称       | 类型                                | 必填 | 说明                                                     |
-| ---------- | ----------------------------------- | ---- | ---- | -------------------------------------------------------- |
+| ---------- | ----------------------------------- | ---- |-------------------------------------------------------- |
 | mute | boolean | 是   | 回调返回系统麦克风静音状态，true为静音，false为非静音。          |
 
 ## ConnectType<sup>9+</sup>
@@ -1920,7 +1920,7 @@ getCurrentAudioRendererInfoArray(callback: AsyncCallback&lt;AudioRendererChangeI
 
 **参数：**
 
-| 名称     | 类型                                 | 必填     | 说明                         |
+| 参数名     | 类型                                 | 必填     | 说明                         |
 | -------- | ----------------------------------- | -------- | --------------------------- |
 | callback | AsyncCallback<[AudioRendererChangeInfoArray](#audiorendererchangeinfoarray9)> | 是     |  回调函数，返回当前音频渲染器的信息。 |
 
@@ -2014,7 +2014,7 @@ getCurrentAudioCapturerInfoArray(callback: AsyncCallback&lt;AudioCapturerChangeI
 
 **参数：**
 
-| 名称       | 类型                                 | 必填      | 说明                                                      |
+| 参数名        | 类型                                 | 必填      | 说明                                                      |
 | ---------- | ----------------------------------- | --------- | -------------------------------------------------------- |
 | callback   | AsyncCallback<[AudioCapturerChangeInfoArray](#audiocapturerchangeinfoarray9)> | 是    | 回调函数，返回当前音频采集器的信息。 |
 
@@ -2104,7 +2104,7 @@ on(type: "audioRendererChange", callback: Callback&lt;AudioRendererChangeInfoArr
 
 **参数：**
 
-| 名称     | 类型        | 必填      | 说明                                                                     |
+| 参数名      | 类型        | 必填      | 说明                                                                     |
 | -------- | ---------- | --------- | ------------------------------------------------------------------------ |
 | type     | string     | 是        | 事件类型，支持的事件`'audioRendererChange'`：当音频渲染器发生更改时触发。     |
 | callback | Callback<[AudioRendererChangeInfoArray](#audiorendererchangeinfoarray9)> | 是  |  回调函数。        |
@@ -2154,7 +2154,7 @@ off(type: "audioRendererChange"): void
 
 **参数：**
 
-| 名称     | 类型     | 必填 | 说明              |
+| 参数名     | 类型     | 必填 | 说明              |
 | -------- | ------- | ---- | ---------------- |
 | type     | string  | 是   | 事件类型，支持的事件`'audioRendererChange'`：音频渲染器更改事件。 |
 
@@ -2183,7 +2183,7 @@ on(type: "audioCapturerChange", callback: Callback&lt;AudioCapturerChangeInfoArr
 
 **参数：**
 
-| 名称     | 类型     | 必填      | 说明                                                                                           |
+| 参数名     | 类型     | 必填      | 说明                                                                                           |
 | -------- | ------- | --------- | ----------------------------------------------------------------------- |
 | type     | string  | 是        | 事件类型，支持的事件`'audioCapturerChange'`：当音频采集器发生更改时触发。     |
 | callback | Callback<[AudioCapturerChangeInfoArray](#audiocapturerchangeinfoarray9)> | 是     | 回调函数。   |
@@ -2232,7 +2232,7 @@ off(type: "audioCapturerChange"): void;
 
 **参数：**
 
-| 名称      | 类型     | 必填 | 说明                                                          |
+| 参数名       | 类型     | 必填 | 说明                                                          |
 | -------- | -------- | --- | ------------------------------------------------------------- |
 | type     | string   |是   | 事件类型，支持的事件`'audioCapturerChange'`：音频采集器更改事件。 |
 

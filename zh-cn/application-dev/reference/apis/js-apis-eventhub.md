@@ -23,7 +23,6 @@ export default class MainAbility extends Ability {
 }
 ```
 
-
 ## EventHub.on
 
 on(event: string, callback: Function): void;

@@ -9,7 +9,7 @@ quickFixManager模块提供快速修复的能力，快速修复是OpenHarmony提
 ## 导入模块
 
 ```
-import quickFixManager from '@ohos.application.quickFixManager';
+import quickFixManager from '@ohos.app.ability.quickFixManager';
 ```
 
 ## HapModuleQuickFixInfo
@@ -65,7 +65,7 @@ applyQuickFix(hapModuleQuickFixFiles: Array\<string>, callback: AsyncCallback\<v
 **示例：**
     
 ```js
-  import quickFixManager from '@ohos.application.quickFixManager'
+  import quickFixManager from '@ohos.app.ability.quickFixManager'
 
   let hapModuleQuickFixFiles = ["/data/storage/el2/base/entry.hqf"]
   quickFixManager.applyQuickFix(hapModuleQuickFixFiles, (error) => {
@@ -104,7 +104,7 @@ applyQuickFix(hapModuleQuickFixFiles: Array\<string>): Promise\<void>;
 **示例：**
     
 ```js
-  import quickFixManager from '@ohos.application.quickFixManager'
+  import quickFixManager from '@ohos.app.ability.quickFixManager'
 
   let hapModuleQuickFixFiles = ["/data/storage/el2/base/entry.hqf"]
   quickFixManager.applyQuickFix(hapModuleQuickFixFiles).then(() => {
@@ -136,7 +136,7 @@ getApplicationQuickFixInfo(bundleName: string, callback: AsyncCallback\<Applicat
 **示例：**
     
 ```js
-  import quickFixManager from '@ohos.application.quickFixManager'
+  import quickFixManager from '@ohos.app.ability.quickFixManager'
 
   let bundleName = "bundleName"
   quickFixManager.getApplicationQuickFixInfo(bundleName, (error, data) => {
@@ -175,7 +175,7 @@ getApplicationQuickFixInfo(bundleName: string): Promise\<ApplicationQuickFixInfo
 **示例：**
     
   ```js 
-  import quickFixManager from '@ohos.application.quickFixManager'
+  import quickFixManager from '@ohos.app.ability.quickFixManager'
 
   let bundleName = "bundleName"
   quickFixManager.getApplicationQuickFixInfo(bundleName).then((data) => {

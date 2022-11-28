@@ -1,9 +1,9 @@
-# NewIP内核协议栈介绍
+# New IP内核协议栈介绍
 
 
 ## 基本概念
 
-NewIP在现有IP能力的基础上，以灵活轻量级报头和可变长多语义地址为基础，通过二三层协议融合，对协议去冗和压缩，减少冗余字节，实现高能效比，高净吞吐，提升通信效率。打造终端之间高效的横向通信，支撑超级终端的体验，实现异构网络的端到端互联。
+New IP在现有IP能力的基础上，以灵活轻量级报头和可变长多语义地址为基础，通过二三层协议融合，对协议去冗和压缩，减少冗余字节，实现高能效比，高净吞吐，提升通信效率。打造终端之间高效的横向通信，支撑超级终端的体验，实现异构网络的端到端互联。
 
 目前WiFi协议报文，三层报头和地址开销使得报文开销大，传输效率较低。
 
@@ -14,21 +14,21 @@ IPv4地址长度固定4字节，IPv6地址长度固定16字节。
 IPv4网络层报头长度20~60字节，IPv6网络层报头长度40字节。
 ```
 
-NewIP支持**可变长多语义地址（最短1字节）**，**可变长定制化报头封装（最短5字节）**，通过精简报文头开销，提升数据传输效率。
+New IP支持**可变长多语义地址（最短1字节）**，**可变长定制化报头封装（最短5字节）**，通过精简报文头开销，提升数据传输效率。
 
-NewIP报头开销，相比IPv4节省25.9%，相比IPv6节省44.9%。
+New IP报头开销，相比IPv4节省25.9%，相比IPv6节省44.9%。
 
-NewIP载荷传输效率，相比IPv4提高最少1%，相比IPv6提高最少2.33%。
+New IP载荷传输效率，相比IPv4提高最少1%，相比IPv6提高最少2.33%。
 
-| 对比场景       | 报头开销     | 载荷传输效率（WiFi MTU=1500B，BT MTU=255B） |
-| -------------- | ------------ | ------------------------------------------- |
-| IPv4 for WiFi  | 30+8+20=58 B | (1500-58)/1500=96.13%                       |
-| IPv6 for WiFi  | 30+8+40=78 B | (1500-78)/1500=94.8%                        |
-| NewIP for WiFi | 30+8+5=43 B  | (1500-43)/1500=97.13%                       |
+| 对比场景        | 报头开销     | 载荷传输效率（WiFi MTU=1500B，BT MTU=255B） |
+| --------------- | ------------ | ------------------------------------------- |
+| IPv4 for WiFi   | 30+8+20=58 B | (1500-58)/1500=96.13%                       |
+| IPv6 for WiFi   | 30+8+40=78 B | (1500-78)/1500=94.8%                        |
+| New IP for WiFi | 30+8+5=43 B  | (1500-43)/1500=97.13%                       |
 
 ## 可变长报头格式
 
-NewIP WiFi灵活极简报文头如下图所示，通过LLC Header中的EtherType = 0xEADD标识NewIP灵活极简报文。Bitmap是一组由0和1组成的二进制序列，每个二进制位的数值用于表示特定目标特性的存在性。
+New IP WiFi灵活极简报文头如下图所示，通过LLC Header中的EtherType = 0xEADD标识New IP报文。Bitmap是一组由0和1组成的二进制序列，每个二进制位的数值用于表示特定目标字段的存在性。
 
 ![zh-cn_image-20220915140627223](figures/zh-cn_image-20220915140627223.png)
 
@@ -39,34 +39,34 @@ NewIP WiFi灵活极简报文头如下图所示，通过LLC Header中的EtherType
 
 **Bitmap字段定义如下：**
 
-| 极简Bitmap标识             | Bitops | 字段长度         | 置位策略       | 备注                                    |
-| -------------------------- | ------ | ---------------- | -------------- | --------------------------------------- |
-| Bitmap 1st Byte:           | -      | -                | -              | -                                       |
-| 标记位Dispatch             | 0      | 不表示具体字段   | 置0            | 0：极简帧，1：普通帧。                  |
-| TTL                        | 1      | 1 Byte           | 置1            | 剩余跳数。                              |
-| Total Length               | 2      | 2 Byte           | UDP置0，TCP置1 | NewIP报文总长度（包含报头长度）。       |
-| Next Header                | 3      | 1 Byte           | 置1            | 协议类型。                              |
-| Reserve                    | 4      | 保留             | 置0            | 保留字段。                              |
-| Dest Address               | 5      | 变长（1~8 Byte） | 置1            | 目的地址。                              |
-| Source Address             | 6      | 变长（1~8 Byte） | 由协议自行确定 | 源地址。                                |
-| 标记位，标志是否有2nd Byte | 7      | 不表示具体字段   | -              | 0：bitmap结束，1：后跟另外8bit bitmap。 |
-| Bitmap 2nd Byte:           | -      | -                | -              | -                                       |
-| Header Length              | 0      | 1 Byte           | -              | NewIP报头长度。                         |
-| Reserve                    | 1      | 保留             | 置0            | -                                       |
-| Reserve                    | 2      | 保留             | 置0            | -                                       |
-| Reserve                    | 3      | 保留             | 置0            | -                                       |
-| Reserve                    | 4      | 保留             | 置0            | -                                       |
-| Reserve                    | 5      | 保留             | 置0            | -                                       |
-| Reserve                    | 6      | 保留             | 置0            | -                                       |
-| 标记位，标志是否有3rd Byte | 7      | 不表示具体字段   | 置0            | 0：bitmap结束，1：后跟另外8bit bitmap。 |
+| 极简Bitmap标识               | Bitops | 携带字段的长度   | 置位策略       | 备注                                    |
+| ---------------------------- | ------ | ---------------- | -------------- | --------------------------------------- |
+| Bitmap 1st Byte:             | -      | -                | -              | 下面8bit是从高位到低位排列。            |
+| 标记位Dispatch               | 0      | -                | 置0            | 0：极简封装报头，1：非极简封装报头。    |
+| 报文头是否携带TTL            | 1      | 1 Byte           | 置1            | 剩余跳数。                              |
+| 报文头是否携带Total Length   | 2      | 2 Byte           | UDP置0，TCP置1 | New IP报文总长度（包含报头长度）。      |
+| 报文头是否携带Next Header    | 3      | 1 Byte           | 置1            | 协议类型。                              |
+| Reserve                      | 4      | 保留             | 置0            | 保留字段。                              |
+| 报文头是否携带Dest Address   | 5      | 变长（1~8 Byte） | 置1            | 目的地址。                              |
+| 报文头是否携带Source Address | 6      | 变长（1~8 Byte） | 由协议自行确定 | 源地址。                                |
+| 标记位，标志是否有2nd Byte   | 7      | -                | -              | 0：bitmap结束，1：后跟另外8bit bitmap。 |
+| Bitmap 2nd Byte:             | -      | -                | -              | 下面8bit是从高位到低位排列。            |
+| 报文头是否携带Header Length  | 0      | 1 Byte           | -              | New IP报头长度。                        |
+| Reserve                      | 1      | 保留             | 置0            | -                                       |
+| Reserve                      | 2      | 保留             | 置0            | -                                       |
+| Reserve                      | 3      | 保留             | 置0            | -                                       |
+| Reserve                      | 4      | 保留             | 置0            | -                                       |
+| Reserve                      | 5      | 保留             | 置0            | -                                       |
+| Reserve                      | 6      | 保留             | 置0            | -                                       |
+| 标记位，标志是否有3rd Byte   | 7      | -                | -              | 0：bitmap结束，1：后跟另外8bit bitmap。 |
 
-NewIP数据报头（极简模式）解析遇到新bitmap字段时的处理方法：
+New IP报头（极简封装）解析遇到新bitmap字段时的处理方法：
 
 仅解析当前版本协议中已定义的bitmap字段，从第一个未知语义的bitmap字段开始，跳过后面的所有bitmap字段，直接通过header length定位到报文开始位置并解析报文。如果报头中携带了未知语义的bitmap字段，且未携带header length字段，则丢弃该数据包。
 
 ## 可变长地址格式
 
-NewIP采用自解释编码，编码格式如下所示：
+New IP支持可变长地址（IPv4/IPv6地址长度固定），支持自解析地址长度，报文头中可以不携带地址长度字段，New IP地址编码格式如下所示：
 
 | First Byte | Semantics                                                    | 地址段有效范围                                               |
 | ---------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
@@ -87,13 +87,13 @@ NewIP采用自解释编码，编码格式如下所示：
 
 
 
-## NewIP配置指导
+## New IP配置指导
 
-启用NewIP，需要通过编译内核时打开相应的配置项及依赖，NewIP相关CONFIG如下：
+启用New IP，需要通过编译内核时打开相应的配置项及依赖，New IP相关CONFIG如下：
 
 ```c
-CONFIG_NEWIP=y          // 使能NewIP内核协议栈
-CONFIG_NEWIP_HOOKS=y    // 使能NewIP内核侵入式修改插桩函数注册，使能NewIP的同时必须使用NewIP插桩功能
+CONFIG_NEWIP=y          // 使能New IP内核协议栈
+CONFIG_NEWIP_HOOKS=y    // 使能New IP内核侵入式修改插桩函数注册，使能New IP的同时必须使用New IP HOOKS功能
 ```
 
 另有部分CONFIG被依赖：
@@ -104,15 +104,15 @@ VENDOR_HOOKS=y          // 使能内核插桩基础框架
 
 备注：
 
-1. 只在Linux 5.10内核上支持NewIP内核协议栈。
+1. 只在Linux 5.10内核上支持New IP内核协议栈。
 2. OpenHarmony linux内核要求所有原生内核代码侵入式修改，都要修改成插桩方式。
 
 ```c
-/* 将NewIP ehash函数注册到内核 */
+/* 将New IP ehash函数注册到内核 */
 register_trace_ninet_ehashfn_hook(&ninet_ehashfn_hook, NULL);
 
 
-/* 下面是IPv4，IPv6协议栈总入口函数，在总入口函数内新增NewIP协议栈相关处理 */
+/* 下面是IPv4，IPv6协议栈总入口函数，在总入口函数内新增New IP协议栈相关处理 */
 static u32 sk_ehashfn(const struct sock *sk)
 {
     /* IPv6 */
@@ -128,7 +128,7 @@ static u32 sk_ehashfn(const struct sock *sk)
 	if (sk->sk_family == AF_NINET) {
 		u32 ret = 0;
 
-        /* NewIP注册的ehash函数 */
+        /* New IP注册的ehash函数 */
 		trace_ninet_ehashfn_hook(sock_net(sk), &sk->sk_nip_rcv_saddr, sk->sk_num,
 					 &sk->sk_nip_daddr, sk->sk_dport, &ret);
 		return ret;
@@ -144,7 +144,7 @@ static u32 sk_ehashfn(const struct sock *sk)
 
 
 
-代码编译完成后，通过下面命令可以确认newip协议栈代码是否使能成功。
+代码编译完成后，通过下面命令可以确认New IP协议栈代码是否使能成功。
 
 ```c
 find out/ -name *nip*.o
@@ -157,32 +157,32 @@ out/kernel/OBJ/linux-5.10/net/newip/tcp_nip_output.o
 ...
 ```
 
-禁用NewIP内核协议栈，删除CONFIG_NEWIP使能开关，删除out/kernel目录后重新编译。
+禁用New IP内核协议栈，删除CONFIG_NEWIP使能开关，删除out/kernel目录后重新编译。
 
 ```c
 # CONFIG_NEWIP is not set
 # CONFIG_NEWIP_HOOKS is not set
 ```
 
-## NewIP相关接口
+## New IP相关接口
 
-用户态应用程序调用Socket API创建NewIP socket，采用NewIP极简帧头封装进行收发包，NewIP协议socket接口列表如下：
+用户态应用程序调用Socket API创建New IP socket，采用New IP极简封装进行收发包，New IP协议socket接口列表如下：
 
 | 函数     | 输入                                                         | 输出                                           | 返回值           | 接口具体描述                                                 |
 | -------- | ------------------------------------------------------------ | ---------------------------------------------- | ---------------- | ------------------------------------------------------------ |
-| socket   | int **domain**, int type, int **protocol**                   | NA                                             | Socket句柄sockfd | 创建NewIP 协议类型socket，并返回socket实例所对应的句柄。**domain参数填写 AF_NINET，表示创建NewIP协议类型socket。protocol参数填写IPPROTO_TCP或IPPROTO_UDP**。 |
+| socket   | int **domain**, int type, int **protocol**                   | NA                                             | Socket句柄sockfd | 创建New IP 协议类型socket，并返回socket实例所对应的句柄。**domain参数填写 AF_NINET，表示创建New IP协议类型socket。protocol参数填写IPPROTO_TCP或IPPROTO_UDP**。 |
 | bind     | int sockfd, const **struct sockaddr_nin** *myaddr, socklen_t addrlen | NA                                             | int，返回错误码  | 将创建的socket绑定到指定的IP地址和端口上。**myaddr->sin_family填写AF_NINET**。 |
-| listen   | int socket, int backlog                                      | NA                                             | int，返回错误码  | 服务端监听NewIP地址和端口。                                  |
+| listen   | int socket, int backlog                                      | NA                                             | int，返回错误码  | 服务端监听New IP地址和端口。                                 |
 | connect  | int sockfd, const **struct sockaddr_nin** *addr, aocklen_t addrlen | NA                                             | int，返回错误码  | 客户端创建至服务端的连接。                                   |
 | accept   | int sockfd, **struct sockaddr_nin** *address, socklen_t *address_len | NA                                             | 返回socket的fd   | 服务端返回已建链成功的socket。                               |
-| send     | int sockfd, const void *msg, int len, unsigned int flags, const **struct sockaddr_nin** *dst_addr, int addrlen | NA                                             | int，返回错误码  | 用于socket已连接的NewIP类型数据发送。                        |
-| recv     | int sockfd, size_t len, int flags, **struct sockaddr_nin** *src_addr, | void  **buf, int* *fromlen                     | int，返回错误码  | 用于socket已连接的NewIP类型数据接收。                        |
+| send     | int sockfd, const void *msg, int len, unsigned int flags, const **struct sockaddr_nin** *dst_addr, int addrlen | NA                                             | int，返回错误码  | 用于socket已连接的New IP类型数据发送。                       |
+| recv     | int sockfd, size_t len, int flags, **struct sockaddr_nin** *src_addr, | void  **buf, int* *fromlen                     | int，返回错误码  | 用于socket已连接的New IP类型数据接收。                       |
 | close    | int sockfd                                                   | NA                                             | int，返回错误码  | 关闭socket，释放资源。                                       |
-| ioctl    | int sockfd, unsigned long cmd, ...                           | NA                                             | int，返回错误码  | 对NewIP协议栈相关信息进行查询或更改。                        |
-| sendto   | int sockfd, const void *msg, int len, unsigned int flags, const **struct sockaddr** *dst_addr, int addrlen | NA                                             | int，返回错误码  | 用于socket无连接的NewIP类型数据发送。                        |
-| recvfrom | int sockfd, size_t len, int flags,                           | void *buf, struct sockaddr *from, int *fromlen | int，返回错误码  | 用于socket无连接的NewIP类型数据接收。                        |
+| ioctl    | int sockfd, unsigned long cmd, ...                           | NA                                             | int，返回错误码  | 对New IP协议栈相关信息进行查询或更改。                       |
+| sendto   | int sockfd, const void *msg, int len, unsigned int flags, const **struct sockaddr** *dst_addr, int addrlen | NA                                             | int，返回错误码  | 用于socket无连接的New IP类型数据发送。                       |
+| recvfrom | int sockfd, size_t len, int flags,                           | void *buf, struct sockaddr *from, int *fromlen | int，返回错误码  | 用于socket无连接的New IP类型数据接收。                       |
 
-NewIP短地址结构如下：
+New IP短地址结构如下：
 
 ```c
 enum nip_8bit_addr_index {
@@ -244,21 +244,21 @@ struct sockaddr_nin {
 };
 ```
 
-## NewIP开发说明
+## New IP开发说明
 
-目前只在OpenHarmony Linux-5.10内核支持NewIP内核协议栈，只能在用户态人工配置NewIP地址和路由到内核，两台设备通过路由器WiFi连接。如果想配置NewIP地址和路由后自动切换到NewIP内核协议栈通信，应用可以参考下面蓝框中描述。
+目前只在OpenHarmony Linux-5.10内核支持New IP内核协议栈，只能在用户态人工配置New IP地址和路由到内核，两台设备通过路由器WiFi连接。如果想配置New IP地址和路由后自动切换到New IP内核协议栈通信，应用可以参考下面蓝框中描述。
 
 ![zh-cn_image-20221009112548444](figures/zh-cn_image-20221009112548444.png)
 
-上图中NewIP地址，路由配置程序可以参考[代码仓examples代码](https://gitee.com/openharmony/communication_sfc_newip/tree/master/examples)，根据CPU硬件差异更改Makefile中CC定义编译成二级制文件后推送到开发板，参考上图命令给设备配置NewIP地址和路由。
+上图中New IP地址，路由配置程序可以参考[代码仓examples代码](https://gitee.com/openharmony/kernel_common_modules_newip/tree/master/examples)，根据CPU硬件差异更改Makefile中CC定义编译成二级制文件后推送到开发板，参考上图命令给设备配置New IP地址和路由。
 
-| 文件名             | 功能                                                   |
-| ------------------ | ------------------------------------------------------ |
-| nip_addr.c         | NewIP可变长地址配置demo代码（可配置任意有效NewIP地址） |
-| nip_route.c        | NewIP路由配置demo代码（可配置任意有效NewIP地址）       |
-| check_nip_enable.c | 获取本机NewIP能力                                      |
+| 文件名             | 功能                                                     |
+| ------------------ | -------------------------------------------------------- |
+| nip_addr.c         | New IP可变长地址配置demo代码（可配置任意有效New IP地址） |
+| nip_route.c        | New IP路由配置demo代码（可配置任意有效New IP地址）       |
+| check_nip_enable.c | 获取本机New IP能力                                       |
 
-设备1上查看NewIP地址和路由：
+设备1上查看New IP地址和路由：
 
 ```sh
 # cat /proc/net/nip_addr
@@ -268,7 +268,7 @@ struct sockaddr_nin {
 01      01      2149580801 wlan0  # 本机自发自收路由
 ```
 
-设备2上查看NewIP地址和路由：
+设备2上查看New IP地址和路由：
 
 ```sh
 # cat /proc/net/nip_addr
@@ -278,19 +278,19 @@ struct sockaddr_nin {
 02      02      2149580801 wlan0  # 本机自发自收路由
 ```
 
-## NewIP收发包代码示例
+## New IP收发包代码示例
 
-NewIP可变长地址配置，路由配置，UDP/TCP收发包demo代码链接如下，NewIP协议栈用户态接口使用方法可以参考[代码仓examples代码](https://gitee.com/openharmony/communication_sfc_newip/tree/master/examples)。demo代码内配置固定地址和路由，执行编译后二进制程序时不需要人工指定地址和路由。
+New IP可变长地址配置，路由配置，UDP/TCP收发包demo代码链接如下，New IP协议栈用户态接口使用方法可以参考[代码仓examples代码](https://gitee.com/openharmony/kernel_common_modules_newip/tree/master/examples)。demo代码内配置固定地址和路由，执行编译后二进制程序时不需要人工指定地址和路由。
 
-| 文件名                | 功能                          |
-| --------------------- | ----------------------------- |
-| nip_addr_cfg_demo.c   | NewIP可变长地址配置demo代码   |
-| nip_route_cfg_demo.c  | NewIP路由配置demo代码         |
-| nip_udp_server_demo.c | NewIP UDP收发包服务端demo代码 |
-| nip_udp_client_demo.c | NewIP UDP收发包客户端demo代码 |
-| nip_tcp_server_demo.c | NewIP TCP收发包服务端demo代码 |
-| nip_tcp_client_demo.c | NewIP TCP收发包客户端demo代码 |
-| nip_lib.c             | 接口索引获取等API接口demo代码 |
+| 文件名                | 功能                           |
+| --------------------- | ------------------------------ |
+| nip_addr_cfg_demo.c   | New IP可变长地址配置demo代码   |
+| nip_route_cfg_demo.c  | New IP路由配置demo代码         |
+| nip_udp_server_demo.c | New IP UDP收发包服务端demo代码 |
+| nip_udp_client_demo.c | New IP UDP收发包客户端demo代码 |
+| nip_tcp_server_demo.c | New IP TCP收发包服务端demo代码 |
+| nip_tcp_client_demo.c | New IP TCP收发包客户端demo代码 |
+| nip_lib.c             | 接口索引获取等API接口demo代码  |
 
 **基础操作步骤：**
 
@@ -302,9 +302,9 @@ NewIP可变长地址配置，路由配置，UDP/TCP收发包demo代码链接如�
 
 3. 执行“ifconfig wlan0 up”开启网卡设备。
 
-4. 在设备1的sh下执行“./nip_addr_cfg_demo server”给服务端配置0xDE00（2字节）变长地址，在设备2的sh下执。行“./nip_addr_cfg_demo client”给客户端配置0x50（1字节）变长地址，通过“cat /proc/net/nip_addr”查看内核地址配置结果。
+4. 在设备1的shell下执行“./nip_addr_cfg_demo server”给服务端配置0xDE00（2字节）变长地址，在设备2的shell下执。行“./nip_addr_cfg_demo client”给客户端配置0x50（1字节）变长地址，通过“cat /proc/net/nip_addr”查看内核地址配置结果。
 
-5. 在设备1的sh下执行“./nip_route_cfg_demo server”给服务端配置路由，在设备2的sh下执行“./nip_route_cfg_demo client”给客户端配置路由，通过“cat /proc/net/nip_route”查看内核路由配置结果。
+5. 在设备1的shell下执行“./nip_route_cfg_demo server”给服务端配置路由，在设备2的shell下执行“./nip_route_cfg_demo client”给客户端配置路由，通过“cat /proc/net/nip_route”查看内核路由配置结果。
 
 以上步骤操作完成后，可以进行UDP/TCP收发包，收发包demo默认使用上面步骤中配置的地址和路由。
 
@@ -312,10 +312,10 @@ NewIP可变长地址配置，路由配置，UDP/TCP收发包demo代码链接如�
 
 **UDP收发包操作步骤：**
 
-先在服务端执行“./nip_udp_server_demo”，然后再在客户端执行“./nip_udp_client_demo”，客户端会发送10个NewIP报文，客户端收到报文后再发送给服务端。
+先在服务端执行“./nip_udp_server_demo”，然后再在客户端执行“./nip_udp_client_demo”，客户端会发送10个New IP报文，服务端收到报文后再发送给客户端。
 
 ```
-服务端sh窗口打印内容：
+服务端shell窗口打印内容：
 Received -- 1661826989 498038 NIP_UDP #      0 -- from 0x50:57605
 Sending  -- 1661826989 498038 NIP_UDP #      0 -- to 0x50:57605
 Received -- 1661826990  14641 NIP_UDP #      1 -- from 0x50:57605
@@ -338,10 +338,10 @@ Received --1661827011 590576 NIP_UDP #      9 sock 3 success:    10/    10/no=  
 
 **TCP收发包操作步骤：**
 
-先在服务端执行“./nip_tcp_server_demo”，然后再在客户端执行“./nip_tcp_client_demo”，客户端会发送10个NewIP报文，客户端收到报文后再发送给服务端。
+先在服务端执行“./nip_tcp_server_demo”，然后再在客户端执行“./nip_tcp_client_demo”，客户端会发送10个New IP报文，服务端收到报文后再发送给客户端。
 
 ```
-服务端sh窗口打印内容：
+服务端shell窗口打印内容：
 Received -- 1661760202 560605 NIP_TCP #      0 --:1024
 Sending  -- 1661760202 560605 NIP_TCP #      0 --:1024
 Received -- 1661760203  69254 NIP_TCP #      1 --:1024
@@ -352,7 +352,7 @@ Sending  -- 1661760203 571604 NIP_TCP #      2 --:1024
 Received -- 1661760207  86544 NIP_TCP #      9 --:1024
 Sending  -- 1661760207  86544 NIP_TCP #      9 --:1024
 
-客户端sh窗口打印内容：
+客户端shell窗口打印内容：
 Received --1661760202 560605 NIP_TCP #      0 sock 3 success:     1/     1/no=     0
 Received --1661760203  69254 NIP_TCP #      1 sock 3 success:     2/     2/no=     1
 ...
@@ -361,7 +361,7 @@ Received --1661760207  86544 NIP_TCP #      9 sock 3 success:    10/    10/no=  
 
 ## selinux规则说明
 
-用户态进程操作NewIP socket需要添加selinux policy，否则操作会被拦截。
+用户态进程操作New IP socket需要添加selinux policy，否则操作会被拦截。
 
 ```sh
 # base\security\selinux\sepolicy\ohos_policy\xxx\xxx.te
@@ -379,18 +379,18 @@ allowxperm thread_xxx thread_xxx:socket ioctl { 0x8933 0x8916 0x890B };
 
 ## WireShark报文解析模板
 
-Wireshark默认报文解析规则无法解析NewIP报文，在WireShark配置中添加NewIP报文解析模板可以实现NewIP报文解析，[NewIP报文解析模板](https://gitee.com/openharmony/communication_sfc_newip/blob/master/tools/wireshark_cfg_for_newip.lua)详见代码仓。
+Wireshark默认报文解析规则无法解析New IP报文，在WireShark配置中添加New IP报文解析模板可以实现New IP报文解析，[New IP报文解析模板](https://gitee.com/openharmony/kernel_common_modules_newip/blob/master/tools/wireshark_cfg_for_newip.lua)详见代码仓。
 
 报文解析模板配置文件的方法：
 
-依次单击 Help -> About Wireshark -> Folders，打开Global Configuration目录，编辑init.lua文件。在末尾添加dofile(DATA_DIR..”newip.lua”)，其中DATA_DIR即为newip.lua插件所在路径。
+依次单击 Help -> About Wireshark -> Folders，打开Global Configuration目录，编辑init.lua文件。在末尾添加dofile(DATA_DIR..”newip.lua”)，其中DATA_DIR即为newip.lua报文解析模板所在路径。
 
 ![zh-cn_image-20220930141628922](figures/zh-cn_image-20220930141628922.png)
 
-NewIP报文解析模板添加样例：
+New IP报文解析模板添加样例：
 
 ```
-NewIP报文解析模板存放路径：
+New IP报文解析模板存放路径：
 D:\tools\WireShark\wireshark_cfg_for_newip.lua
 
 WireShark配置文件路径：
@@ -404,7 +404,9 @@ dofile("D:\\tools\\WireShark\\wireshark_cfg_for_newip.lua")
 
 #### ND请求
 
-NewIP邻居发现请求报文格式如下，NewIP极简报文头包含1字节的bitmap（0x76），bitmap标识后面携带TTL，报文总长度，上层协议类型，目的地址，源地址。NewIP ND请求报文包含报文类型，操作码，校验和和请求地址。
+New IP邻居发现(Neighbor Discovery)请求报文格式如下，New IP极简报文头包含1字节的bitmap（0x76），bitmap标识后面携带TTL，报文总长度，上层协议类型，目的地址，源地址。New IP ND请求报文包含报文类型，操作码，校验和和请求地址。
+
+备注：New IP支持变长地址（1字节~8字节），下图中1字节地址仅表示当前报文头中携带的地址是1字节。
 
 ![zh-cn_image-20221011144901470](figures/zh-cn_image-20221011144901470.png)
 
@@ -412,7 +414,9 @@ NewIP邻居发现请求报文格式如下，NewIP极简报文头包含1字节的
 
 #### ND应答
 
-NewIP邻居发现应答报文格式如下，NewIP极简报文头包含2字节的bitmap（0x77，0x00），bitmap1标识后面携带TTL，报文总长度，上层协议类型，目的地址，源地址。bitmap2是字节对齐不携带任何数据（rk3568开发板链路层数据发送要求数据长度是偶数字节）。NewIP ND应答报文包含报文类型，操作码，校验和和邻居MAC地址长度，邻居MAC地址。
+New IP邻居发现(Neighbor Discovery)应答报文格式如下，New IP极简报文头包含2字节的bitmap（0x77，0x00），bitmap1标识后面携带TTL，报文总长度，上层协议类型，目的地址，源地址。bitmap2是字节对齐不携带任何数据（rk3568开发板链路层数据发送要求数据长度是偶数字节）。New IP ND应答报文包含报文类型，操作码，校验和和邻居MAC地址长度，邻居MAC地址。
+
+备注：New IP支持变长地址（1字节~8字节），下图中1字节地址仅表示当前报文头中携带的地址是1字节。
 
 ![zh-cn_image-20221011145157288](figures/zh-cn_image-20221011145157288.png)
 
@@ -420,7 +424,9 @@ NewIP邻居发现应答报文格式如下，NewIP极简报文头包含2字节的
 
 #### TCP握手
 
-TCP三次握手SYN报文格式如下，NewIP极简报文头包含2字节的bitmap（0x77，0x00），bitmap1标识后面携带TTL，报文总长度，上层协议类型，目的地址，源地址。bitmap2是字节对齐不携带任何数据（rk3568开发板链路层数据发送要求数据长度是偶数字节）。
+TCP三次握手SYN报文格式如下，New IP极简报文头包含2字节的bitmap（0x77，0x00），bitmap1标识后面携带TTL，报文总长度，上层协议类型，目的地址，源地址。bitmap2是字节对齐不携带任何数据（rk3568开发板链路层数据发送要求数据长度是偶数字节）。
+
+备注：New IP支持变长地址（1字节~8字节），下图中1字节地址仅表示当前报文头中携带的地址是1字节。
 
 ![image-20221011150018915](figures/zh-cn_image-20221011150018915.png)
 
@@ -428,7 +434,9 @@ TCP三次握手SYN报文格式如下，NewIP极简报文头包含2字节的bitma
 
 #### TCP数据包
 
-TCP数据格式如下，NewIP极简报文头包含2字节的bitmap（0x77，0x00），bitmap1标识后面携带TTL，报文总长度，上层协议类型，目的地址，源地址。bitmap2是字节对齐不携带任何数据（rk3568开发板链路层数据发送要求数据长度是偶数字节）。
+TCP数据格式如下，New IP极简报文头包含2字节的bitmap（0x77，0x00），bitmap1标识后面携带TTL，报文总长度，上层协议类型，目的地址，源地址。bitmap2是字节对齐不携带任何数据（rk3568开发板链路层数据发送要求数据长度是偶数字节）。
+
+备注：New IP支持变长地址（1字节~8字节），下图中1字节地址仅表示当前报文头中携带的地址是1字节。
 
 ![image-20221011150215316](figures/zh-cn_image-20221011150215316.png)
 

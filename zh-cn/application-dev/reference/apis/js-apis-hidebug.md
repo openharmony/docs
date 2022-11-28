@@ -234,7 +234,7 @@ hidebug.dumpHeapData("heap-20220216");
 
 ## hidebug.getServiceDump<sup>9+<sup>
 
-getServiceDump(serviceid : number, fd : number, args : Array<string>) : void
+getServiceDump(serviceid : number, fd : number, args : Array\<string>) : void
 
 获取系统服务信息。
 
@@ -248,7 +248,7 @@ getServiceDump(serviceid : number, fd : number, args : Array<string>) : void
 | -------- | ------ | ---- | ------------------------------------------------------------ |
 | serviceid | number | 是   | 基于该用户输入的service id获取系统服务信息。|
 | fd | number | 是   | 文件描述符，该接口会往该fd中写入数据。|
-| args | Array<string> | 是   | 系统服务的Dump接口所对应的参数列表。|
+| args | Array\<string> | 是   | 系统服务的Dump接口所对应的参数列表。|
 
 
 **示例：**
