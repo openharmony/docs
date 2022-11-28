@@ -30,9 +30,9 @@ Worker构造函数的选项信息，用于为Worker添加其他信息。
 
 | 名称 | 参数类型 | 可读 | 可写 | 说明           |
 | ---- | -------- | ---- | ---- | -------------- |
-| type | classic \| module | 是   | 是   | Worker执行脚本的模式类型。 |
+| type | classic \| module | 是   | 是   | Worker执行脚本的模式类型，默认为classic类型，暂不支持module类型。 |
 | name | string   | 是   | 是   | Worker的名称。 |
-| shared | boolean | 是   | 是   | Worker是否共享。 |
+| shared | boolean | 是   | 是   | Worker是否共享，暂不支持共享Worker功能。 |
 
 
 ## ThreadWorker<sup>9+</sup>
