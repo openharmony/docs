@@ -312,7 +312,7 @@ New IP可变长地址配置，路由配置，UDP/TCP收发包demo代码链接如
 
 **UDP收发包操作步骤：**
 
-先在服务端执行“./nip_udp_server_demo”，然后再在客户端执行“./nip_udp_client_demo”，客户端会发送10个New IP报文，客户端收到报文后再发送给服务端。
+先在服务端执行“./nip_udp_server_demo”，然后再在客户端执行“./nip_udp_client_demo”，客户端会发送10个New IP报文，服务端收到报文后再发送给客户端。
 
 ```
 服务端shell窗口打印内容：
@@ -338,7 +338,7 @@ Received --1661827011 590576 NIP_UDP #      9 sock 3 success:    10/    10/no=  
 
 **TCP收发包操作步骤：**
 
-先在服务端执行“./nip_tcp_server_demo”，然后再在客户端执行“./nip_tcp_client_demo”，客户端会发送10个New IP报文，客户端收到报文后再发送给服务端。
+先在服务端执行“./nip_tcp_server_demo”，然后再在客户端执行“./nip_tcp_client_demo”，客户端会发送10个New IP报文，服务端收到报文后再发送给客户端。
 
 ```
 服务端shell窗口打印内容：
@@ -389,7 +389,7 @@ Wireshark默认报文解析规则无法解析New IP报文，在WireShark配置�
 
 New IP报文解析模板添加样例：
 
-```c
+```
 New IP报文解析模板存放路径：
 D:\tools\WireShark\wireshark_cfg_for_newip.lua
 
