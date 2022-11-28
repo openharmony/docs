@@ -2955,7 +2955,7 @@ get(key: string, callback: AsyncCallback&lt;Uint8Array | string | boolean | numb
 | 参数名  | 类型 | 必填  | 说明                    |
 | -----  | ------  | ----  | ----------------------- |
 | key    |string   | 是    |要查询数据的key，不能为空且长度不大于[MAX_KEY_LENGTH](#constants)。  |
-| callback  |AsyncCallback&lt;Uint8Array \| string \| boolean \| number&gt;) | 是    |回调函数。返回获取查询的值。  |
+| callback  |AsyncCallback&lt;Uint8Array \| string \| boolean \| number&gt; | 是    |回调函数。返回获取查询的值。  |
 
 **示例：**
 
