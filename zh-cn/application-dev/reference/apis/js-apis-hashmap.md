@@ -27,7 +27,7 @@ import HashMap from '@ohos.util.HashMap';
 
 **系统能力：** SystemCapability.Utils.Lang
 
-| 名称 | 参数类型 | 可读 | 可写 | 说明 |
+| 名称 | 类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
 | length | number | 是 | 否 | HashMap的元素个数。 |
 
@@ -44,7 +44,7 @@ HashMap的构造函数。
 
 以下错误码的详细介绍请参见[containers错误码](../errorcodes/errorcode-containers.md)。
 
-| 错误码ID | 错误码信息 |
+| 错误码ID | 错误信息 |
 | -------- | -------- |
 | 10200012 | The HashMap's constructor cannot be directly invoked. |
 
@@ -78,7 +78,7 @@ isEmpty(): boolean
 
 以下错误码的详细介绍请参见[containers错误码](../errorcodes/errorcode-containers.md)。
 
-| 错误码ID | 错误码信息 |
+| 错误码ID | 错误信息 |
 | -------- | -------- |
 | 10200011 | The isEmpty method cannot be bound. |
 
@@ -119,7 +119,7 @@ hasKey(key: K): boolean
 
 以下错误码的详细介绍请参见[containers错误码](../errorcodes/errorcode-containers.md)。
 
-| 错误码ID | 错误码信息 |
+| 错误码ID | 错误信息 |
 | -------- | -------- |
 | 10200011 | The hasKey method cannot be bound. |
 
@@ -162,7 +162,7 @@ hasValue(value: V): boolean
 
 以下错误码的详细介绍请参见[containers错误码](../errorcodes/errorcode-containers.md)。
 
-| 错误码ID | 错误码信息 |
+| 错误码ID | 错误信息 |
 | -------- | -------- |
 | 10200011 | The hasValue method cannot be bound. |
 
@@ -205,7 +205,7 @@ get(key: K): V
 
 以下错误码的详细介绍请参见[containers错误码](../errorcodes/errorcode-containers.md)。
 
-| 错误码ID | 错误码信息 |
+| 错误码ID | 错误信息 |
 | -------- | -------- |
 | 10200011 | The get method cannot be bound. |
 
@@ -242,7 +242,7 @@ setAll(map: HashMap<K, V>): void
 
 以下错误码的详细介绍请参见[containers错误码](../errorcodes/errorcode-containers.md)。
 
-| 错误码ID | 错误码信息 |
+| 错误码ID | 错误信息 |
 | -------- | -------- |
 | 10200011 | The setAll method cannot be bound. |
 
@@ -287,7 +287,7 @@ set(key: K, value: V): Object
 
 以下错误码的详细介绍请参见[containers错误码](../errorcodes/errorcode-containers.md)。
 
-| 错误码ID | 错误码信息 |
+| 错误码ID | 错误信息 |
 | -------- | -------- |
 | 10200011 | The set method cannot be bound. |
 
@@ -328,7 +328,7 @@ remove(key: K): V
 
 以下错误码的详细介绍请参见[containers错误码](../errorcodes/errorcode-containers.md)。
 
-| 错误码ID | 错误码信息 |
+| 错误码ID | 错误信息 |
 | -------- | -------- |
 | 10200011 | The remove method cannot be bound. |
 
@@ -359,7 +359,7 @@ clear(): void
 
 以下错误码的详细介绍请参见[containers错误码](../errorcodes/errorcode-containers.md)。
 
-| 错误码ID | 错误码信息 |
+| 错误码ID | 错误信息 |
 | -------- | -------- |
 | 10200011 | The clear method cannot be bound. |
 
@@ -396,7 +396,7 @@ keys(): IterableIterator&lt;K&gt;
 
 以下错误码的详细介绍请参见[containers错误码](../errorcodes/errorcode-containers.md)。
 
-| 错误码ID | 错误码信息 |
+| 错误码ID | 错误信息 |
 | -------- | -------- |
 | 10200011 | The keys method cannot be bound. |
 
@@ -438,7 +438,7 @@ values(): IterableIterator&lt;V&gt;
 
 以下错误码的详细介绍请参见[containers错误码](../errorcodes/errorcode-containers.md)。
 
-| 错误码ID | 错误码信息 |
+| 错误码ID | 错误信息 |
 | -------- | -------- |
 | 10200011 | The values method cannot be bound. |
 
@@ -487,7 +487,7 @@ replace(key: K, newValue: V): boolean
 
 以下错误码的详细介绍请参见[containers错误码](../errorcodes/errorcode-containers.md)。
 
-| 错误码ID | 错误码信息 |
+| 错误码ID | 错误信息 |
 | -------- | -------- |
 | 10200011 | The replace method cannot be bound. |
 
@@ -531,7 +531,7 @@ callbackfn的参数说明：
 
 以下错误码的详细介绍请参见[containers错误码](../errorcodes/errorcode-containers.md)。
 
-| 错误码ID | 错误码信息 |
+| 错误码ID | 错误信息 |
 | -------- | -------- |
 | 10200011 | The forEach method cannot be bound. |
 
@@ -572,7 +572,7 @@ entries(): IterableIterator&lt;[K, V]&gt;
 
 以下错误码的详细介绍请参见[containers错误码](../errorcodes/errorcode-containers.md)。
 
-| 错误码ID | 错误码信息 |
+| 错误码ID | 错误信息 |
 | -------- | -------- |
 | 10200011 | The entries method cannot be bound. |
 
@@ -615,7 +615,7 @@ try {
 
 以下错误码的详细介绍请参见[containers错误码](../errorcodes/errorcode-containers.md)。
 
-| 错误码ID | 错误码信息 |
+| 错误码ID | 错误信息 |
 | -------- | -------- |
 | 10200011 | The Symbol.iterator method cannot be bound. |
 

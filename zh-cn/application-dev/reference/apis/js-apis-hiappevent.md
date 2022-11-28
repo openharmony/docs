@@ -3,7 +3,7 @@
 本模块提供了应用事件打点能力，包括对打点数据的落盘，以及对打点功能的管理配置。
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
-> - 本模块接口从API version 9开始废弃，建议使用新接口[@ohos.hiviewdfx.hiAppEvent](js-apis-hiviewdfx-hiappevent.md)替代。
+> - 本模块接口从API version 9开始废弃，建议使用新接口[`@ohos.hiviewdfx.hiAppEvent`](js-apis-hiviewdfx-hiappevent.md)替代。
 > - 本模块首批接口从API version 7开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
 
@@ -58,7 +58,7 @@ write(eventName: string, eventType: EventType, keyValues: object, callback: Asyn
 | eventName | string                    | 是   | 事件名称。     |
 | eventType | [EventType](#eventtype)   | 是   | 事件类型。     |
 | keyValues | object                    | 是   | 事件参数。     |
-| callback  | AsyncCallback&lt;void&gt; | 否   | 事件回调函数。 |
+| callback  | AsyncCallback&lt;void&gt; | 是   | 事件回调函数。 |
 
 **示例：**
 
@@ -151,7 +151,7 @@ hiAppEvent.configure({
 
 **系统能力：** SystemCapability.HiviewDFX.HiAppEvent
 
-| 参数名     | 类型    | 必填 | 说明                                                         |
+| 名称       | 类型    | 必填 | 说明                                                         |
 | ---------- | ------- | ---- | ------------------------------------------------------------ |
 | disable    | boolean | 否   | 应用打点功能开关。配置值为true表示关闭打点功能，false表示不关闭打点功能。 |
 | maxStorage | string  | 否   | 打点数据本地存储文件所在目录的配额大小，默认限额为“10M”。所在目录大小超出限额后会对目录进行清理操作，会按从旧到新的顺序逐个删除打点数据文件，直到目录大小不超出限额时停止。 |
@@ -163,12 +163,12 @@ hiAppEvent.configure({
 
 **系统能力：** SystemCapability.HiviewDFX.HiAppEvent
 
-| 名称      | 默认值 | 说明           |
-| --------- | ------ | -------------- |
-| FAULT     | 1      | 故障类型事件。 |
-| STATISTIC | 2      | 统计类型事件。 |
-| SECURITY  | 3      | 安全类型事件。 |
-| BEHAVIOR  | 4      | 行为类型事件。 |
+| 名称      | 值   | 说明           |
+| --------- | ---- | -------------- |
+| FAULT     | 1    | 故障类型事件。 |
+| STATISTIC | 2    | 统计类型事件。 |
+| SECURITY  | 3    | 安全类型事件。 |
+| BEHAVIOR  | 4    | 行为类型事件。 |
 
 
 ## Event
@@ -177,11 +177,11 @@ hiAppEvent.configure({
 
 **系统能力：** SystemCapability.HiviewDFX.HiAppEvent
 
-| 名称                      | 参数类型 | 可读 | 可写 | 说明                 |
-| ------------------------- | -------- | ---- | ---- | -------------------- |
-| USER_LOGIN                | string   | 是   | 否   | 用户登录事件。       |
-| USER_LOGOUT               | string   | 是   | 否   | 用户登出事件。       |
-| DISTRIBUTED_SERVICE_START | string   | 是   | 否   | 分布式服务启动事件。 |
+| 名称                      | 类型   | 可读 | 可写 | 说明                 |
+| ------------------------- | ------ | ---- | ---- | -------------------- |
+| USER_LOGIN                | string | 是   | 否   | 用户登录事件。       |
+| USER_LOGOUT               | string | 是   | 否   | 用户登出事件。       |
+| DISTRIBUTED_SERVICE_START | string | 是   | 否   | 分布式服务启动事件。 |
 
 
 ## Param
@@ -190,8 +190,8 @@ hiAppEvent.configure({
 
 **系统能力：** SystemCapability.HiviewDFX.HiAppEvent
 
-| 名称                            | 参数类型 | 可读 | 可写 | 说明               |
-| ------------------------------- | -------- | ---- | ---- | ------------------ |
-| USER_ID                         | string   | 是   | 否   | 用户自定义ID。     |
-| DISTRIBUTED_SERVICE_NAME        | string   | 是   | 否   | 分布式服务名称。   |
-| DISTRIBUTED_SERVICE_INSTANCE_ID | string   | 是   | 否   | 分布式服务实例ID。 |
+| 名称                            | 类型   | 可读 | 可写 | 说明               |
+| ------------------------------- | ------ | ---- | ---- | ------------------ |
+| USER_ID                         | string | 是   | 否   | 用户自定义ID。     |
+| DISTRIBUTED_SERVICE_NAME        | string | 是   | 否   | 分布式服务名称。   |
+| DISTRIBUTED_SERVICE_INSTANCE_ID | string | 是   | 否   | 分布式服务实例ID。 |

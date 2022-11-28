@@ -41,7 +41,7 @@
    
    ```js
    var locale = "zh-CN";
-   var options = {caseFirst: false, calendar: "chinese", collation: "pinyin"};
+   var options = {caseFirst: "false", calendar: "chinese", collation: "pinyin"};
    var localeObj = new intl.Locale(locale, options);
    ```
 

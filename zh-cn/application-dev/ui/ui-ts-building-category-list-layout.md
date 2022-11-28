@@ -26,6 +26,12 @@
    ```
 
 3. 引入FoodData类和initializeOnStartup方法。
+
+应用代码中文件访问方法主要有下面两种：
+- **相对路径**：使用相对路径引用代码文件，以"../"访问上一级目录，以"./"访问当前目录，也可以省略不写。
+- **绝对路径**：使用当前模块根路径引用代码文件，比如：common/utils/utils。
+这里使用相对路径访问：
+
    ```
    import { FoodData } from '../model/FoodData'
    import { initializeOnStartup } from '../model/FoodDataModels'

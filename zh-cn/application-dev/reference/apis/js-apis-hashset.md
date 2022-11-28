@@ -24,7 +24,7 @@ import HashSet from '@ohos.util.HashSet';
 
 **系统能力：** SystemCapability.Utils.Lang
 
-| 名称 | 参数类型 | 可读 | 可写 | 说明 |
+| 名称 | 类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
 | length | number | 是 | 否 | HashSet的元素个数。 |
 
@@ -52,7 +52,7 @@ HashSet的构造函数。
 
 以下错误码的详细介绍请参见[containers错误码](../errorcodes/errorcode-containers.md)。
 
-| 错误码ID | 错误码信息 |
+| 错误码ID | 错误信息 |
 | -------- | -------- |
 | 10200012 | The HashSet's constructor cannot be directly invoked. |
 
@@ -86,7 +86,7 @@ isEmpty(): boolean
 
 以下错误码的详细介绍请参见[containers错误码](../errorcodes/errorcode-containers.md)。
 
-| 错误码ID | 错误码信息 |
+| 错误码ID | 错误信息 |
 | -------- | -------- |
 | 10200011 | The isEmpty method cannot be bound. |
 
@@ -127,7 +127,7 @@ has(value: T): boolean
 
 以下错误码的详细介绍请参见[containers错误码](../errorcodes/errorcode-containers.md)。
 
-| 错误码ID | 错误码信息 |
+| 错误码ID | 错误信息 |
 | -------- | -------- |
 | 10200011 | The has method cannot be bound. |
 
@@ -170,7 +170,7 @@ add(value: T): boolean
 
 以下错误码的详细介绍请参见[containers错误码](../errorcodes/errorcode-containers.md)。
 
-| 错误码ID | 错误码信息 |
+| 错误码ID | 错误信息 |
 | -------- | -------- |
 | 10200011 | The add method cannot be bound. |
 
@@ -211,7 +211,7 @@ remove(value: T): boolean
 
 以下错误码的详细介绍请参见[containers错误码](../errorcodes/errorcode-containers.md)。
 
-| 错误码ID | 错误码信息 |
+| 错误码ID | 错误信息 |
 | -------- | -------- |
 | 10200011 | The remove method cannot be bound. |
 
@@ -242,7 +242,7 @@ clear(): void
 
 以下错误码的详细介绍请参见[containers错误码](../errorcodes/errorcode-containers.md)。
 
-| 错误码ID | 错误码信息 |
+| 错误码ID | 错误信息 |
 | -------- | -------- |
 | 10200011 | The clear method cannot be bound. |
 
@@ -279,7 +279,7 @@ values(): IterableIterator&lt;T&gt;
 
 以下错误码的详细介绍请参见[containers错误码](../errorcodes/errorcode-containers.md)。
 
-| 错误码ID | 错误码信息 |
+| 错误码ID | 错误信息 |
 | -------- | -------- |
 | 10200011 | The values method cannot be bound. |
 
@@ -329,7 +329,7 @@ callbackfn的参数说明：
 
 以下错误码的详细介绍请参见[containers错误码](../errorcodes/errorcode-containers.md)。
 
-| 错误码ID | 错误码信息 |
+| 错误码ID | 错误信息 |
 | -------- | -------- |
 | 10200011 | The forEach method cannot be bound. |
 
@@ -369,7 +369,7 @@ entries(): IterableIterator<[T, T]>
 
 以下错误码的详细介绍请参见[containers错误码](../errorcodes/errorcode-containers.md)。
 
-| 错误码ID | 错误码信息 |
+| 错误码ID | 错误信息 |
 | -------- | -------- |
 | 10200011 | The entries method cannot be bound. |
 
@@ -412,7 +412,7 @@ try {
 
 以下错误码的详细介绍请参见[containers错误码](../errorcodes/errorcode-containers.md)。
 
-| 错误码ID | 错误码信息 |
+| 错误码ID | 错误信息 |
 | -------- | -------- |
 | 10200011 | The Symbol.iterator method cannot be bound. |
 

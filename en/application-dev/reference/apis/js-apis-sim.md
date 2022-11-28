@@ -710,7 +710,7 @@ Sets a display name for the SIM card in the specified slot. This API uses an asy
 **Example**
 
 ```js
-let name = "China Mobile";
+let name = "ShowName";
 sim.setShowName(0, name, (err, data) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
@@ -744,7 +744,7 @@ Sets a display name for the SIM card in the specified slot. This API uses a prom
 **Example**
 
 ```js
-let name = "China Mobile";
+let name = "ShowName";
 let promise = sim.setShowName(0, name);
 promise.then(data => {
     console.log(`setShowName success, promise: data->${JSON.stringify(data)}`);

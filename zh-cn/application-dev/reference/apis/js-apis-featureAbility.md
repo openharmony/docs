@@ -14,7 +14,7 @@ FeatureAbility模块的接口只能在Page类型的Ability调用
 ## 导入模块
 
 ```
-import featureAbility from '@ohos.ability.featureAbility'
+import featureAbility from '@ohos.ability.featureAbility';
 ```
 
 ## featureAbility.startAbility
@@ -27,7 +27,7 @@ startAbility(parameter: StartAbilityParameter, callback: AsyncCallback\<number>)
 
 **参数：**
 
-| 名称        | 类型                                       | 必填   | 描述             |
+| 参数名        | 类型                                       | 必填   | 说明             |
 | --------- | ---------------------------------------- | ---- | -------------- |
 | parameter | [StartAbilityParameter](#startabilityparameter) | 是    | 表示被启动的Ability。 |
 | callback  | AsyncCallback\<number>                   | 是    | 被指定的回调方法。      |
@@ -35,8 +35,8 @@ startAbility(parameter: StartAbilityParameter, callback: AsyncCallback\<number>)
 **示例：**
 
 ```javascript
-import featureAbility from '@ohos.ability.featureAbility'
-import wantConstant from '@ohos.ability.wantConstant'
+import featureAbility from '@ohos.ability.featureAbility';
+import wantConstant from '@ohos.ability.wantConstant';
 featureAbility.startAbility(
     {
         want:
@@ -53,7 +53,7 @@ featureAbility.startAbility(
         },
     },
     (err, data) => {
-        console.info("err: " + JSON.stringify(err) + "data: " + JSON.stringify(data))
+        console.info("startAbility err: " + JSON.stringify(err) + "data: " + JSON.stringify(data));
     }
 );
 ```
@@ -70,15 +70,15 @@ startAbility(parameter: StartAbilityParameter): Promise\<number>
 
 **参数：**
 
-| 名称        | 类型                                       | 必填   | 描述             |
+| 参数名        | 类型                                       | 必填   | 说明             |
 | --------- | ---------------------------------------- | ---- | -------------- |
 | parameter | [StartAbilityParameter](#startabilityparameter) | 是    | 表示被启动的Ability。 |
 
 **示例：**
 
 ```javascript
-import featureAbility from '@ohos.ability.featureAbility'
-import wantConstant from '@ohos.ability.wantConstant'
+import featureAbility from '@ohos.ability.featureAbility';
+import wantConstant from '@ohos.ability.wantConstant';
 featureAbility.startAbility(
     {
         want:
@@ -86,7 +86,7 @@ featureAbility.startAbility(
             action: "action.system.home",
             entities: ["entity.system.home"],
             type: "MIMETYPE",
-			flags: wantConstant.Flags.FLAG_AUTH_READ_URI_PERMISSION,
+            flags: wantConstant.Flags.FLAG_AUTH_READ_URI_PERMISSION,
             deviceId: "",
             bundleName: "com.example.myapplication",
             /* FA模型中abilityName由package + Ability name组成 */
@@ -95,7 +95,7 @@ featureAbility.startAbility(
         },
     }
 ).then((data) => {
-	console.info("==========================>startAbility=======================>");
+    console.info("startAbility data: " + JSON.stringify(data));
 });
 ```
 
@@ -109,7 +109,7 @@ acquireDataAbilityHelper(uri: string): DataAbilityHelper
 
 **参数：**
 
-| 名称   | 类型     | 必填   | 描述           |
+| 参数名   | 类型     | 必填   | 说明           |
 | ---- | ------ | ---- | ------------ |
 | uri  | string | 是    | 指示要打开的文件的路径。 |
 
@@ -122,10 +122,10 @@ acquireDataAbilityHelper(uri: string): DataAbilityHelper
 **示例：**
 
 ```javascript
-import featureAbility from '@ohos.ability.featureAbility'
-featureAbility.acquireDataAbilityHelper(
+import featureAbility from '@ohos.ability.featureAbility';
+var dataAbilityHelper = featureAbility.acquireDataAbilityHelper(
     "dataability:///com.example.DataAbility"
-)
+);
 ```
 
 ## featureAbility.startAbilityForResult<sup>7+</sup>
@@ -138,7 +138,7 @@ startAbilityForResult(parameter: StartAbilityParameter, callback: AsyncCallback\
 
 **参数：**
 
-| 名称        | 类型                                       | 必填   | 描述             |
+| 参数名        | 类型                                       | 必填   | 说明             |
 | --------- | ---------------------------------------- | ---- | -------------- |
 | parameter | [StartAbilityParameter](#startabilityparameter) | 是    | 表示被启动的Ability。 |
 | callback  | AsyncCallback\<[AbilityResult](#abilityresult)> | 是    | 被指定的回调方法。      |
@@ -147,7 +147,7 @@ startAbilityForResult(parameter: StartAbilityParameter, callback: AsyncCallback\
 
 ```javascript
 import featureAbility from '@ohos.ability.featureAbility';
-import wantConstant from '@ohos.ability.wantConstant'
+import wantConstant from '@ohos.ability.wantConstant';
 featureAbility.startAbilityForResult(
    {
         want:
@@ -164,9 +164,9 @@ featureAbility.startAbilityForResult(
         },
     },
     (err, data) => {
-        console.info("err: " + JSON.stringify(err) + "data: " + JSON.stringify(data))
+        console.info("startAbilityForResult err: " + JSON.stringify(err) + "data: " + JSON.stringify(data));
     }
-)
+);
 ```
 
 ## featureAbility.startAbilityForResult<sup>7+</sup>
@@ -179,7 +179,7 @@ startAbilityForResult(parameter: StartAbilityParameter): Promise\<AbilityResult>
 
 **参数：**
 
-| 名称        | 类型                                       | 必填   | 描述            |
+| 参数名        | 类型                                       | 必填   | 说明            |
 | --------- | ---------------------------------------- | ---- | ------------- |
 | parameter | [StartAbilityParameter](#startabilityparameter) | 是    | 表示被启动的Ability |
 
@@ -193,7 +193,7 @@ startAbilityForResult(parameter: StartAbilityParameter): Promise\<AbilityResult>
 
 ```javascript
 import featureAbility from '@ohos.ability.featureAbility';
-import wantConstant from '@ohos.ability.wantConstant'
+import wantConstant from '@ohos.ability.wantConstant';
 featureAbility.startAbilityForResult(
     {
         want:
@@ -221,7 +221,7 @@ featureAbility.startAbilityForResult(
         },
     },
 ).then((data) => {
-    console.info("==========================>startAbilityForResult=======================>");
+    console.info("startAbilityForResult data: " + JSON.stringify(data));
 });
 ```
 
@@ -235,7 +235,7 @@ terminateSelfWithResult(parameter: AbilityResult, callback: AsyncCallback\<void>
 
 **参数：**
 
-| 名称        | 类型                              | 必填   | 描述             |
+| 参数名        | 类型                              | 必填   | 说明             |
 | --------- | ------------------------------- | ---- | -------------- |
 | parameter | [AbilityResult](#abilityresult) | 是    | 表示被启动的Ability。 |
 | callback  | AsyncCallback\<void>            | 是    | 被指定的回调方法。      |
@@ -243,8 +243,8 @@ terminateSelfWithResult(parameter: AbilityResult, callback: AsyncCallback\<void>
 **示例：**
 
 ```javascript
-import featureAbility from '@ohos.ability.featureAbility'
-import wantConstant from '@ohos.ability.wantConstant'
+import featureAbility from '@ohos.ability.featureAbility';
+import wantConstant from '@ohos.ability.wantConstant';
 featureAbility.terminateSelfWithResult(
     {
         resultCode: 1,
@@ -271,8 +271,8 @@ featureAbility.terminateSelfWithResult(
             }
         },
     },
-    (err, data) => {
-        console.info("err: " + JSON.stringify(err) + "data: " + JSON.stringify(data))
+    (err) => {
+        console.info("err: " + JSON.stringify(err))
     }
 );
 ```
@@ -287,7 +287,7 @@ terminateSelfWithResult(parameter: AbilityResult): Promise\<void>
 
 **参数：**
 
-| 名称        | 类型                              | 必填   | 描述            |
+| 参数名        | 类型                              | 必填   | 说明            |
 | --------- | ------------------------------- | ---- | ------------- |
 | parameter | [AbilityResult](#abilityresult) | 是    | 表示被启动的Ability |
 
@@ -301,7 +301,7 @@ terminateSelfWithResult(parameter: AbilityResult): Promise\<void>
 
 ```javascript
 import featureAbility from '@ohos.ability.featureAbility';
-import wantConstant from '@ohos.ability.wantConstant'
+import wantConstant from '@ohos.ability.wantConstant';
 featureAbility.terminateSelfWithResult(
     {
         resultCode: 1,
@@ -343,7 +343,7 @@ hasWindowFocus(callback: AsyncCallback\<boolean>): void
 
 **参数：**
 
-| 名称       | 类型                      | 必填   | 描述                                       |
+| 参数名       | 类型                      | 必填   | 说明                                       |
 | -------- | ----------------------- | ---- | ---------------------------------------- |
 | callback | AsyncCallback\<boolean> | 是    | 被指定的回调方法。<br>如果此Ability当前具有视窗焦点，则返回true；否则返回false。 |
 
@@ -351,11 +351,9 @@ hasWindowFocus(callback: AsyncCallback\<boolean>): void
 
 ```javascript
 import featureAbility from '@ohos.ability.featureAbility';
-featureAbility.hasWindowFocus(
-    (err, data) => {
-        console.info("err: " + JSON.stringify(err) + "data: " + JSON.stringify(data))
-    }
-)
+featureAbility.hasWindowFocus((err, data) => {
+    console.info("hasWindowFocus err: " + JSON.stringify(err) + "data: " + JSON.stringify(data));
+});
 ```
 
 ## featureAbility.hasWindowFocus<sup>7+<sup>
@@ -377,7 +375,7 @@ hasWindowFocus(): Promise\<boolean>
 ```javascript
 import featureAbility from '@ohos.ability.featureAbility';
 featureAbility.hasWindowFocus().then((data) => {
-    console.info("==========================>hasWindowFocus=======================>");
+    console.info("hasWindowFocus data: " + JSON.stringify(data));
 });
 ```
 
@@ -391,7 +389,7 @@ getWant(callback: AsyncCallback\<Want>): void
 
 **参数：**
 
-| 名称       | 类型                            | 必填   | 描述        |
+| 参数名       | 类型                            | 必填   | 说明        |
 | -------- | ----------------------------- | ---- | --------- |
 | callback | AsyncCallback\<[Want](js-apis-application-Want.md)> | 是    | 被指定的回调方法。 |
 
@@ -399,11 +397,9 @@ getWant(callback: AsyncCallback\<Want>): void
 
 ```javascript
 import featureAbility from '@ohos.ability.featureAbility';
-featureAbility.getWant(
-    (err, data) => {
-        console.info("err: " + JSON.stringify(err) + "data: " + JSON.stringify(data))
-    }
-)
+featureAbility.getWant((err, data) => {
+    console.info("getWant err: " + JSON.stringify(err) + "data: " + JSON.stringify(data));
+});
 ```
 
 ## featureAbility.getWant
@@ -425,7 +421,7 @@ getWant(): Promise\<Want>
 ```javascript
 import featureAbility from '@ohos.ability.featureAbility';
 featureAbility.getWant().then((data) => {
-	console.info("==========================>getWantCallBack=======================>");
+    console.info("getWant data: " + JSON.stringify(data));
 });
 ```
 
@@ -448,7 +444,9 @@ getContext(): Context
 ```javascript
 import featureAbility from '@ohos.ability.featureAbility';
 var context = featureAbility.getContext()
-context.getBundleName()
+context.getBundleName((err, data) => {
+    console.info("getBundleName err: " + JSON.stringify(err) + "data: " + JSON.stringify(data));
+});
 ```
 
 ## featureAbility.terminateSelf<sup>7+</sup>
@@ -461,7 +459,7 @@ terminateSelf(callback: AsyncCallback\<void>): void
 
 **参数：**
 
-| 名称       | 类型                   | 必填   | 描述       |
+| 参数名       | 类型                   | 必填   | 说明       |
 | -------- | -------------------- | ---- | -------- |
 | callback | AsyncCallback\<void> | 是    | 被指定的回调方法 |
 
@@ -470,8 +468,8 @@ terminateSelf(callback: AsyncCallback\<void>): void
 ```javascript
 import featureAbility from '@ohos.ability.featureAbility';
 featureAbility.terminateSelf(
-    (err, data) => {
-        console.info("err: " + JSON.stringify(err) + "data: " + JSON.stringify(data))
+    (err) => {
+        console.info("err: " + JSON.stringify(err))
     }
 )
 ```
@@ -495,7 +493,7 @@ terminateSelf(): Promise\<void>
 ```javascript
 import featureAbility from '@ohos.ability.featureAbility';
 featureAbility.terminateSelf().then((data) => {
-    console.info("==========================>terminateSelfCallBack=======================>");
+    console.info("==========================>terminateSelf=======================>");
 });
 ```
 
@@ -509,7 +507,7 @@ connectAbility(request: Want, options:ConnectOptions): number
 
 **参数：**
 
-| 名称      | 类型             | 必填   | 描述                    |
+| 参数名      | 类型             | 必填   | 说明                    |
 | ------- | -------------- | ---- | --------------------- |
 | request | [Want](js-apis-application-Want.md)  | 是    | 表示被连接的ServiceAbility。 |
 | options | [ConnectOptions](#connectoptions) | 是    | 被指定的回调方法。             |
@@ -520,7 +518,7 @@ ConnectOptions类型说明
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
 
-| 名称           | 读写属性 | 类型       | 必填   | 描述                        |
+| 参数名           | 读写属性 | 类型       | 必填   | 说明                        |
 | ------------ | ---- | -------- | ---- | ------------------------- |
 | onConnect<sup>7+</sup>    | 只读   | function | 是    | 连接成功时的回调函数。               |
 | onDisconnect<sup>7+</sup> | 只读   | function | 是    | 连接失败时的回调函数。               |
@@ -535,8 +533,8 @@ ConnectOptions类型说明
 **示例：**
 
 ```javascript
-import rpc from '@ohos.rpc'
-import featureAbility from '@ohos.ability.featureAbility'
+import rpc from '@ohos.rpc';
+import featureAbility from '@ohos.ability.featureAbility';
 function onConnectCallback(element, remote){
     console.log('ConnectAbility onConnect remote is proxy:' + (remote instanceof rpc.RemoteProxy));
 }
@@ -546,7 +544,7 @@ function onDisconnectCallback(element){
 function onFailedCallback(code){
     console.log('featureAbilityTest ConnectAbility onFailed errCode : ' + code)
 }
-var connId = featureAbility.connectAbility(
+var connectId = featureAbility.connectAbility(
     {
         deviceId: "",
         bundleName: "com.ix.ServiceAbility",
@@ -570,7 +568,7 @@ disconnectAbility(connection: number, callback:AsyncCallback\<void>): void
 
 **参数：**
 
-| 名称         | 类型                   | 必填   | 描述                      |
+| 参数名         | 类型                   | 必填   | 说明                      |
 | ---------- | -------------------- | ---- | ----------------------- |
 | connection | number               | 是    | 指定断开连接的ServiceAbilityID |
 | callback   | AsyncCallback\<void> | 是    | 被指定的回调方法                |
@@ -578,8 +576,8 @@ disconnectAbility(connection: number, callback:AsyncCallback\<void>): void
 **示例：**
 
 ```javascript
-import rpc from '@ohos.rpc'
-import featureAbility from '@ohos.ability.featureAbility'
+import rpc from '@ohos.rpc';
+import featureAbility from '@ohos.ability.featureAbility';
 function onConnectCallback(element, remote){
     console.log('ConnectAbility onConnect remote is proxy:' + (remote instanceof rpc.RemoteProxy));
 }
@@ -589,7 +587,7 @@ function onDisconnectCallback(element){
 function onFailedCallback(code){
     console.log('featureAbilityTest ConnectAbility onFailed errCode : ' + code)
 }
-var connId = featureAbility.connectAbility(
+var connectId = featureAbility.connectAbility(
     {
         bundleName: "com.ix.ServiceAbility",
         abilityName: "ServiceAbilityA",
@@ -600,9 +598,9 @@ var connId = featureAbility.connectAbility(
         onFailed: onFailedCallback,
     },
 );
-var result = featureAbility.disconnectAbility(connId,
-    (error, data) => {
-        console.log('featureAbilityTest DisConnectJsSameBundleName result errCode : ' + error.code + " data: " + data)
+var result = featureAbility.disconnectAbility(connectId,
+    (error) => {
+        console.log('featureAbilityTest DisConnectJsSameBundleName result errCode : ' + error.code)
     },
 );
 ```
@@ -617,7 +615,7 @@ disconnectAbility(connection: number): Promise\<void>
 
 **参数：**
 
-| 名称         | 类型     | 必填   | 描述                      |
+| 参数名         | 类型     | 必填   | 说明                      |
 | ---------- | ------ | ---- | ----------------------- |
 | connection | number | 是    | 指定断开连接的ServiceAbilityID |
 
@@ -630,8 +628,8 @@ disconnectAbility(connection: number): Promise\<void>
 **示例：**
 
 ```javascript
-import rpc from '@ohos.rpc'
-import featureAbility from '@ohos.ability.featureAbility'
+import rpc from '@ohos.rpc';
+import featureAbility from '@ohos.ability.featureAbility';
 function onConnectCallback(element, remote){
     console.log('ConnectAbility onConnect remote is proxy:' + (remote instanceof rpc.RemoteProxy));
 }
@@ -641,7 +639,7 @@ function onDisconnectCallback(element){
 function onFailedCallback(code){
     console.log('featureAbilityTest ConnectAbility onFailed errCode : ' + code)
 }
-var connId = featureAbility.connectAbility(
+var connectId = featureAbility.connectAbility(
     {
         bundleName: "com.ix.ServiceAbility",
         abilityName: "ServiceAbilityA",
@@ -653,7 +651,7 @@ var connId = featureAbility.connectAbility(
     },
 );
 
-featureAbility.disconnectAbility(connId).then((data) => {
+featureAbility.disconnectAbility(connectId).then((data) => {
     console.log('data : '  + data);
 }).catch((error)=>{
     console.log('featureAbilityTest result errCode : ' + error.code);
@@ -671,18 +669,16 @@ getWindow(callback: AsyncCallback\<window.Window>): void
 
 **参数：**
 
-| 名称     | 类型                          | 必填 | 描述                          |
+| 参数名     | 类型                          | 必填 | 说明                          |
 | -------- | ----------------------------- | ---- | ----------------------------- |
 | callback | AsyncCallback\<window.Window> | 是   | 返回与当前Ability对应的窗口。 |
 
 **示例：**
 
 ```javascript
-featureAbility.getWindow(
-    (err, data) => {
-        console.info("err: " + JSON.stringify(err) + "data: " + JSON.stringify(data))
-    }
-)
+featureAbility.getWindow((err, data) => {
+    console.info("getWindow err: " + JSON.stringify(err) + "data: " + typeof(data));
+});
 ```
 
 ## featureAbility.getWindow<sup>7+</sup>
@@ -703,7 +699,7 @@ getWindow(): Promise\<window.Window>;
 
 ```javascript
 featureAbility.getWindow().then((data) => {
-  console.info("=============getWindowPromise========== " +  JSON.stringify(data)); 
+    console.info("getWindow data: " + typeof(data));
 });
 ```
 
@@ -717,7 +713,7 @@ onConnect(elementName: ElementName, remote: rpc.IRemoteObject): void;
 
 **参数：**
 
-| 名称          | 类型                | 必填   | 描述       |
+| 参数名          | 类型                | 必填   | 说明       |
 | ----------- | ----------------- | ---- | -------- |
 | elementName | ElementName       | 是    | 元素名。     |
 | remote      | rpc.IRemoteObject | 是    | rpc远程对象。 |
@@ -725,8 +721,8 @@ onConnect(elementName: ElementName, remote: rpc.IRemoteObject): void;
 **示例：**
 
 ```javascript
-import rpc from '@ohos.rpc'
-import featureAbility from '@ohos.ability.featureAbility'
+import rpc from '@ohos.rpc';
+import featureAbility from '@ohos.ability.featureAbility';
 function onConnectCallback(element, remote){
     console.log('ConnectAbility onConnect remote is proxy:' + (remote instanceof rpc.RemoteProxy));
 }
@@ -736,7 +732,7 @@ function onDisconnectCallback(element){
 function onFailedCallback(code){
     console.log('featureAbilityTest ConnectAbility onFailed errCode : ' + code)
 }
-var connId = featureAbility.connectAbility(
+var connectId = featureAbility.connectAbility(
     {
         deviceId: "",
         bundleName: "com.ix.ServiceAbility",
@@ -760,15 +756,15 @@ onDisconnect(elementName: ElementName): void;
 
 **参数：**
 
-| 名称          | 类型          | 必填   | 描述   |
+| 参数名          | 类型          | 必填   | 说明   |
 | ----------- | ----------- | ---- | ---- |
 | elementName | ElementName | 是    | 元素名。 |
 
 **示例：**
 
 ```javascript
-import rpc from '@ohos.rpc'
-import featureAbility from '@ohos.ability.featureAbility'
+import rpc from '@ohos.rpc';
+import featureAbility from '@ohos.ability.featureAbility';
 function onConnectCallback(element, remote){
     console.log('ConnectAbility onConnect remote is proxy:' + (remote instanceof rpc.RemoteProxy));
 }
@@ -778,7 +774,7 @@ function onDisconnectCallback(element){
 function onFailedCallback(code){
     console.log('featureAbilityTest ConnectAbility onFailed errCode : ' + code)
 }
-var connId = featureAbility.connectAbility(
+var connectId = featureAbility.connectAbility(
     {
         deviceId: "",
         bundleName: "com.ix.ServiceAbility",
@@ -802,15 +798,15 @@ ConnectAbility调用失败时的回调函数。
 
 **参数：**
 
-| 名称   | 类型     | 必填   | 描述        |
+| 参数名   | 类型     | 必填   | 说明        |
 | ---- | ------ | ---- | --------- |
 | code | number | 是    | number类型。 |
 
 **示例：**
 
 ```javascript
-import rpc from '@ohos.rpc'
-import featureAbility from '@ohos.ability.featureAbility'
+import rpc from '@ohos.rpc';
+import featureAbility from '@ohos.ability.featureAbility';
 function onConnectCallback(element, remote){
     console.log('ConnectAbility onConnect remote is proxy:' + (remote instanceof rpc.RemoteProxy));
 }
@@ -820,7 +816,7 @@ function onDisconnectCallback(element){
 function onFailedCallback(code){
     console.log('featureAbilityTest ConnectAbility onFailed errCode : ' + code)
 }
-var connId = featureAbility.connectAbility(
+var connectId = featureAbility.connectAbility(
     {
         deviceId: "",
         bundleName: "com.ix.ServiceAbility",
@@ -850,7 +846,7 @@ featureAbility.AbilityWindowConfiguration.WINDOW_MODE_UNDEFINED
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.FAModel
 
-| 名称                                       | 参数   | 描述                                       |
+| 名称                                     | 值   | 说明                                       |
 | ---------------------------------------- | ---- | ---------------------------------------- |
 | WINDOW_MODE_UNDEFINED<sup>7+</sup>       | 0    | 未定义。 |
 | WINDOW_MODE_FULLSCREEN<sup>7+</sup>      | 1    | 全屏。    |
@@ -873,11 +869,11 @@ featureAbility.AbilityStartSetting.BOUNDS_KEY
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.FAModel
 
-| 名称                           | 参数              | 描述                                       |
+| 名称                           | 值              | 说明                                       |
 | ---------------------------- | --------------- | ---------------------------------------- |
-| BOUNDS_KEY<sup>7+</sup>      | "abilityBounds" | 窗口显示大小属性的名称。 |
-| WINDOW_MODE_KEY<sup>7+</sup> | "windowMode"    | 窗口显示模式属性的名称。|
-| DISPLAY_ID_KEY<sup>7+</sup>  | "displayId"     | 窗口显示设备ID属性的名称。 |
+| BOUNDS_KEY<sup>7+</sup>      | "abilityBounds" | 窗口显示大小属性的参数名。 |
+| WINDOW_MODE_KEY<sup>7+</sup> | "windowMode"    | 窗口显示模式属性的参数名。|
+| DISPLAY_ID_KEY<sup>7+</sup>  | "displayId"     | 窗口显示设备ID属性的参数名。 |
 
 ## ErrorCode
 
@@ -885,7 +881,7 @@ featureAbility.AbilityStartSetting.BOUNDS_KEY
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.FAModel
 
-| 变量                             | 值    | 说明                                       |
+| 名称                             | 值    | 说明                                       |
 | ------------------------------ | ---- | ---------------------------------------- |
 | NO_ERROR<sup>7+</sup>          | 0    | 没有错误。 |
 | INVALID_PARAMETER<sup>7+</sup> | -1   | 无效的参数。 |
@@ -899,7 +895,7 @@ featureAbility.AbilityStartSetting.BOUNDS_KEY
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.FAModel
 
-| 变量                       | 值    | 说明                                       |
+| 名称                       | 值    | 说明                                       |
 | ------------------------ | ---- | ---------------------------------------- |
 | TYPE_INSERT<sup>7+</sup> | 1    | 插入类型。 |
 | TYPE_UPDATE<sup>7+</sup> | 2    | 修改类型。 |
@@ -912,25 +908,25 @@ featureAbility.AbilityStartSetting.BOUNDS_KEY
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityBase
 
-| 名称                      | 读写属性 | 类型            | 必填   | 描述                                    |
-| ----------------------- | ---- | ------------- | ---- | ------------------------------------- |
-| resultCode<sup>7+</sup> | 只读   | number        | 是    | 指示销毁该能力后返回的结果代码。您可以定义结果代码来识别错误（暂不支持）。 |
-| want<sup>7+</sup>       | 只读   | [Want](js-apis-application-Want.md) | 否    | 指示销毁该能力后返回的数据。您可以定义返回的数据。此参数可以为null。  |
+| 名称                   |   类型   | 可读| 可写            | 必填   | 说明                                    |
+| ---------------        |-------- | ------ | ------------- | ---- | ------------------------------------- |
+| resultCode<sup>7+</sup>| number| 是   |    否     | 是    | 指示销毁该能力后返回的结果代码。您可以定义结果代码来识别错误（暂不支持）。 |
+| want<sup>7+</sup>      | [Want](js-apis-application-Want.md)| 是   | 否 | 否    | 指示销毁该能力后返回的数据。您可以定义返回的数据。此参数可以为null。  |
 
 ## StartAbilityParameter
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.FAModel
 
-| 名称                  | 读写属性 | 类型                   | 必填   | 描述                                     |
-| ------------------- | ---- | -------------------- | ---- | -------------------------------------- |
-| want                | 只读   | [Want](js-apis-application-Want.md)        | 是    | 表示需要包含有关目标启动能力的信息。                     |
-| abilityStartSetting | 只读   | {[key: string]: any} | 否    | 表示能力的特殊属性，当开发者启动能力时，该属性可以作为调用中的输入参数传递。 |
+| 参数名               |   类型   | 可读| 可写            | 必填   | 说明                                    |
+| ------------------- | -------- | -------------------- | ---- | -------------------------------------- |
+| want                | [Want](js-apis-application-Want.md)|   是   |   否      | 是    | 表示需要包含有关目标启动能力的信息。                     |
+| abilityStartSetting | {[key: string]: any} |  是  |否  | 否    | 表示能力的特殊属性，当开发者启动能力时，该属性可以作为调用中的输入参数传递。 |
 
 ## flags说明
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityBase
 
-| 名称                                   | 参数         | 描述                                       |
+| 名称                                   | 值         | 说明                                       |
 | ------------------------------------ | ---------- | ---------------------------------------- |
 | FLAG_AUTH_READ_URI_PERMISSION        | 0x00000001 | 指示对URI执行读取操作的授权。                         |
 | FLAG_AUTH_WRITE_URI_PERMISSION       | 0x00000002 | 指示对URI执行写入操作的授权。                         |

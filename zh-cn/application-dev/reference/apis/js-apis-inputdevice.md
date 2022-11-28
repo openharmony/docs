@@ -26,7 +26,7 @@ getDeviceList(callback: AsyncCallback&lt;Array&lt;number&gt;&gt;): void
 
 **参数**：
 
-| 参数     | 类型                                     | 必填 | 说明                                     |
+| 参数名     | 类型                                     | 必填 | 说明                                     |
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
 | callback | AsyncCallback&lt;Array&lt;number&gt;&gt; | 是   | 回调函数，异步返回所有输入设备的id列表。 |
 
@@ -82,7 +82,7 @@ getDeviceInfo(deviceId: number, callback: AsyncCallback&lt;InputDeviceData&gt;):
 
 **参数**：
 
-| 参数     | 类型                                                     | 必填 | 说明                                    |
+| 参数名     | 类型                                                     | 必填 | 说明                                    |
 | -------- | -------------------------------------------------------- | ---- | --------------------------------------- |
 | deviceId | number                                                   | 是   | 输入设备id。                  |
 | callback | AsyncCallback&lt;[InputDeviceData](#inputdevicedata)&gt; | 是   | 回调函数，异步返回输入设备信息。 |
@@ -114,7 +114,7 @@ getDeviceInfo(deviceId: number): Promise&lt;InputDeviceData&gt;
 
 **参数**：
 
-| 参数     | 类型   | 必填 | 说明                   |
+| 参数名     | 类型   | 必填 | 说明                   |
 | -------- | ------ | ---- | ---------------------- |
 | deviceId | number | 是   | 输入设备id。 |
 
@@ -147,7 +147,7 @@ on(type: "change", listener: Callback&lt;DeviceListener&gt;): void
 
 **参数**：
 
-| 参数       | 类型                                       | 必填   | 说明          |
+| 参数名       | 类型                                       | 必填   | 说明          |
 | -------- | ---------------------------------------- | ---- | ----------- |
 | type     | string                                   | 是    | 输入设备的事件类型。  |
 | listener | Callback&lt;[DeviceListener](#devicelistener9)&gt; | 是    | 回调函数，异步上报输入设备热插拔事件。 |
@@ -186,7 +186,7 @@ off(type: "change", listener?: Callback&lt;DeviceListener&gt;): void
 
 **参数**：
 
-| 参数       | 类型                                       | 必填   | 说明          |
+| 参数名       | 类型                                       | 必填   | 说明          |
 | -------- | ---------------------------------------- | ---- | ----------- |
 | type     | string                                   | 是    | 输入设备的事件类型。  |
 | listener | Callback&lt;[DeviceListener](#devicelistener9)&gt; | 否    | 取消监听的回调函数。 |
@@ -231,7 +231,7 @@ getDeviceIds(callback: AsyncCallback&lt;Array&lt;number&gt;&gt;): void
 
 **参数**：
 
-| 参数     | 类型                                     | 必填 | 说明                                     |
+| 参数名     | 类型                                     | 必填 | 说明                                     |
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
 | callback | AsyncCallback&lt;Array&lt;number&gt;&gt; | 是   | 回调函数，异步返回所有输入设备的id列表。 |
 
@@ -283,7 +283,7 @@ getDevice(deviceId: number, callback: AsyncCallback&lt;InputDeviceData&gt;): voi
 
 **参数**：
 
-| 参数     | 类型                                                     | 必填 | 说明                             |
+| 参数名     | 类型                                                     | 必填 | 说明                             |
 | -------- | -------------------------------------------------------- | ---- | -------------------------------- |
 | deviceId | number                                                   | 是   | 输入设备id。                     |
 | callback | AsyncCallback&lt;[InputDeviceData](#inputdevicedata)&gt; | 是   | 回调函数，异步返回输入设备信息。 |
@@ -313,7 +313,7 @@ getDevice(deviceId: number): Promise&lt;InputDeviceData&gt;
 
 **参数**：
 
-| 参数     | 类型   | 必填 | 说明         |
+| 参数名     | 类型   | 必填 | 说明         |
 | -------- | ------ | ---- | ------------ |
 | deviceId | number | 是   | 输入设备id。 |
 
@@ -334,19 +334,19 @@ inputDevice.getDeviceInfo(1).then((deviceData) => {
 
 ## inputDevice.supportKeys<sup>9+</sup>
 
-supportKeys(deviceId: number, keys: Array&lt;KeyCode&gt;, callback: Callback&lt;Array&lt;boolean&gt;&gt;): void
+supportKeys(deviceId: number, keys: Array&lt;KeyCode&gt;, callback: AsyncCallback &lt;Array&lt;boolean&gt;&gt;): void
 
-获取输入设备是否支持指定的键码值，使用Callback异步方式返回结果。
+获取输入设备是否支持指定的键码值，使用AsyncCallback异步方式返回结果。
 
 **系统能力**：SystemCapability.MultimodalInput.Input.InputDevice
 
 **参数**：
 
-| 参数     | 类型                                 | 必填 | 说明                                                   |
-| -------- | ------------------------------------ | ---- | ------------------------------------------------------ |
-| deviceId | number                               | 是   | 输入设备id，同一个物理设备反复插拔，设备id会发生变化。 |
-| keys     | Array&lt;KeyCode&gt;                 | 是   | 需要查询的键码值，最多支持5个按键查询。                |
-| callback | Callback&lt;Array&lt;boolean&gt;&gt; | 是   | 回调函数，异步返回查询结果。                           |
+| 参数名     | 类型                                      | 必填 | 说明                                                   |
+| -------- | ----------------------------------------- | ---- | ------------------------------------------------------ |
+| deviceId | number                                    | 是   | 输入设备id，同一个物理设备反复插拔，设备id会发生变化。 |
+| keys     | Array&lt;KeyCode&gt;                      | 是   | 需要查询的键码值，最多支持5个按键查询。                |
+| callback | AsyncCallback&lt;Array&lt;boolean&gt;&gt; | 是   | 回调函数，异步返回查询结果。                           |
 
 **示例**：
 
@@ -371,7 +371,7 @@ supportKeys(deviceId: number, keys: Array&lt;KeyCode&gt;): Promise&lt;Array&lt;b
 
 **参数**：
 
-| 参数     | 类型                 | 必填 | 说明                                                   |
+| 参数名     | 类型                 | 必填 | 说明                                                   |
 | -------- | -------------------- | ---- | ------------------------------------------------------ |
 | deviceId | number               | 是   | 输入设备id，同一个物理设备反复插拔，设备id会发生变化。 |
 | keys     | Array&lt;KeyCode&gt; | 是   | 需要查询的键码值，最多支持5个按键查询。                |
@@ -405,7 +405,7 @@ getKeyboardType(deviceId: number, callback: AsyncCallback&lt;KeyboardType&gt;): 
 
 **参数**：
 
-| 参数     | 类型                                                | 必填 | 说明                                                         |
+| 参数名     | 类型                                                | 必填 | 说明                                                         |
 | -------- | --------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | deviceId | number                                              | 是   | 输入设备的唯一标识，同一个物理设备反复插拔，设备id会发生变化。 |
 | callback | AsyncCallback&lt;[KeyboardType](#keyboardtype9)&gt; | 是   | 回调函数，异步返回查询结果。                                 |
@@ -437,7 +437,7 @@ getKeyboardType(deviceId: number): Promise&lt;KeyboardType&gt;
 
 **参数**：
 
-| 参数     | 类型   | 必填 | 说明                                                         |
+| 参数名     | 类型   | 必填 | 说明                                                         |
 | -------- | ------ | ---- | ------------------------------------------------------------ |
 | deviceId | number | 是   | 输入设备的唯一标识，同一个物理设备反复插拔，设备id会发生变化。 |
 
@@ -466,10 +466,10 @@ try {
 
 **系统能力**：SystemCapability.MultimodalInput.Input.InputDevice
 
-| 名称     | 参数类型                    | 说明                                                         |
-| -------- | --------------------------- | ------------------------------------------------------------ |
-| type     | [ChangedType](#changedtype) | 输入设备插入或者移除。                                       |
-| deviceId | number                      | 输入设备的唯一标识，同一个物理设备反复插拔，设备id会发生变化。 |
+| 名称        | 类型   | 可读   | 可写   | 说明      |
+| --------- | ------ | ---- | ---- | ------- |
+| type     | [ChangedType](#changedtype) | 是 | 否 | 输入设备插入或者移除。|
+| deviceId | number                      | 是 | 否 | 输入设备的唯一标识，同一个物理设备反复插拔，设备id会发生变化。 |
 
 ## InputDeviceData
 
@@ -477,18 +477,18 @@ try {
 
 **系统能力**：SystemCapability.MultimodalInput.Input.InputDevice
 
-| 名称                 | 参数类型                               | 说明                                                         |
-| -------------------- | -------------------------------------- | ------------------------------------------------------------ |
-| id                   | number                                 | 输入设备的唯一标识，同一个物理设备反复插拔，设备id会发生变化。 |
-| name                 | string                                 | 输入设备的名字。                                             |
-| sources              | Array&lt;[SourceType](#sourcetype)&gt; | 输入设备支持的源类型。比如有的键盘上附带触摸板，则此设备有keyboard和touchpad两种输入源。 |
-| axisRanges           | Array&lt;[axisRanges](#axisrange)&gt;  | 输入设备的轴信息。                                           |
-| bus<sup>9+</sup>     | number                                 | 输入设备的总线类型。                                         |
-| product<sup>9+</sup> | number                                 | 输入设备的产品信息。                                         |
-| vendor<sup>9+</sup>  | number                                 | 输入设备的厂商信息。                                         |
-| version<sup>9+</sup> | number                                 | 输入设备的版本信息。                                         |
-| phys<sup>9+</sup>    | string                                 | 输入设备的物理地址。                                         |
-| uniq<sup>9+</sup>    | string                                 | 输入设备的唯一标识。                                         |
+| 名称        | 类型   | 可读   | 可写   | 说明      |
+| --------- | ------ | ---- | ---- | ------- |
+| id                   | number                                 | 是 | 否 | 输入设备的唯一标识，同一个物理设备反复插拔，设备id会发生变化。 |
+| name                 | string                                 | 是 | 否 | 输入设备的名字。                                             |
+| sources              | Array&lt;[SourceType](#sourcetype)&gt; | 是 | 否 | 输入设备支持的源类型。比如有的键盘上附带触摸板，则此设备有keyboard和touchpad两种输入源。 |
+| axisRanges           | Array&lt;[AxisRange](#axisrange)&gt;  | 是 | 否 | 输入设备的轴信息。                                           |
+| bus<sup>9+</sup>     | number                                 | 是 | 否 | 输入设备的总线类型。                                         |
+| product<sup>9+</sup> | number                                 | 是 | 否 | 输入设备的产品信息。                                         |
+| vendor<sup>9+</sup>  | number                                 | 是 | 否 | 输入设备的厂商信息。                                         |
+| version<sup>9+</sup> | number                                 | 是 | 否 | 输入设备的版本信息。                                         |
+| phys<sup>9+</sup>    | string                                 | 是 | 否 | 输入设备的物理地址。                                         |
+| uniq<sup>9+</sup>    | string                                 | 是 | 否 | 输入设备的唯一标识。                                         |
 
 ## AxisType<sup>9+</sup>
 
@@ -496,17 +496,17 @@ try {
 
 **系统能力**：SystemCapability.MultimodalInput.Input.InputDevice
 
-| 名称          | 参数类型   | 说明              |
-| ----------- | ------ | --------------- |
-| touchMajor  | string | 表示touchMajor轴。  |
-| touchMinor  | string | 表示touchMinor轴。  |
-| toolMinor   | string | 表示toolMinor轴。   |
-| toolMajor   | string | 表示toolMajor轴。   |
-| orientation | string | 表示orientation轴。 |
-| pressure    | string | 表示pressure轴。    |
-| x           | string | 表示x轴。           |
-| y           | string | 表示y轴。           |
-| NULL        | string | 无。              |
+| 名称        | 类型   | 可读   | 可写   | 说明      |
+| --------- | ------ | ---- | ---- | ------- |
+| touchMajor  | string | 是 | 否 | 表示touchMajor轴。  |
+| touchMinor  | string | 是 | 否 | 表示touchMinor轴。  |
+| toolMinor   | string | 是 | 否 | 表示toolMinor轴。   |
+| toolMajor   | string | 是 | 否 | 表示toolMajor轴。   |
+| orientation | string | 是 | 否 | 表示orientation轴。 |
+| pressure    | string | 是 | 否 | 表示pressure轴。    |
+| x           | string | 是 | 否 | 表示x轴。           |
+| y           | string | 是 | 否 | 表示y轴。           |
+| NULL        | string | 是 | 否 | 无。              |
 
 ## AxisRange
 
@@ -514,41 +514,41 @@ try {
 
 **系统能力**： SystemCapability.MultimodalInput.Input.InputDevice
 
-| 名称                      | 参数类型                      | 说明       |
-| ----------------------- | ------------------------- | -------- |
-| source                  | [SourceType](#sourcetype) | 轴的输入源类型。 |
-| axis                    | [AxisType](#axistype9)    | 轴的类型。    |
-| max                     | number                    | 轴的最大值。   |
-| min                     | number                    | 轴的最小值。   |
-| fuzz<sup>9+</sup>       | number                    | 轴的模糊值。   |
-| flat<sup>9+</sup>       | number                    | 轴的基准值。   |
-| resolution<sup>9+</sup> | number                    | 轴的分辨率。   |
+| 名称        | 类型   | 可读   | 可写   | 说明      |
+| --------- | ------ | ---- | ---- | ------- |
+| source                  | [SourceType](#sourcetype) | 是 | 否 | 轴的输入源类型。 |
+| axis                    | [AxisType](#axistype9)    | 是 | 否 | 轴的类型。    |
+| max                     | number                    | 是 | 否 | 轴的最大值。   |
+| min                     | number                    | 是 | 否 | 轴的最小值。   |
+| fuzz<sup>9+</sup>       | number                    | 是 | 否 | 轴的模糊值。   |
+| flat<sup>9+</sup>       | number                    | 是 | 否 | 轴的基准值。   |
+| resolution<sup>9+</sup> | number                    | 是 | 否 | 轴的分辨率。   |
 
-## SourceType
+## SourceType<sup>9+</sup>
 
 轴的输入源类型。比如鼠标设备可上报x轴事件，则x轴的输入源就是鼠标。
 
 **系统能力**：SystemCapability.MultimodalInput.Input.InputDevice
 
-| 名称          | 参数类型   | 说明          |
-| ----------- | ------ | ----------- |
-| keyboard    | string | 表示输入设备是键盘。  |
-| touchscreen | string | 表示输入设备是触摸屏。 |
-| mouse       | string | 表示输入设备是鼠标。  |
-| trackball   | string | 表示输入设备是轨迹球。 |
-| touchpad    | string | 表示输入设备是触摸板。 |
-| joystick    | string | 表示输入设备是操纵杆。 |
+| 名称        | 类型   | 可读   | 可写   | 说明      |
+| --------- | ------ | ---- | ---- | ------- |
+| keyboard    | string | 是 | 否 | 表示输入设备是键盘。  |
+| touchscreen | string | 是 | 否 | 表示输入设备是触摸屏。 |
+| mouse       | string | 是 | 否 | 表示输入设备是鼠标。  |
+| trackball   | string | 是 | 否 | 表示输入设备是轨迹球。 |
+| touchpad    | string | 是 | 否 | 表示输入设备是触摸板。 |
+| joystick    | string | 是 | 否 | 表示输入设备是操纵杆。 |
 
-## ChangedType
+## ChangedType<sup>9+</sup>
 
 定义监听设备热插拔事件。
 
 **系统能力**：SystemCapability.MultimodalInput.Input.InputDevice
 
-| 名称     | 参数类型   | 说明        |
-| ------ | ------ | --------- |
-| add    | string | 表示输入设备插入。 |
-| remove | string | 表示输入设备移除。 |
+| 名称        | 类型   | 可读   | 可写   | 说明      |
+| --------- | ------ | ---- | ---- | ------- |
+| add    | string | 是 | 否 | 表示输入设备插入。 |
+| remove | string | 是 | 否 | 表示输入设备移除。 |
 
 ## KeyboardType<sup>9+</sup>
 
@@ -556,11 +556,11 @@ try {
 
 **系统能力**：SystemCapability.MultimodalInput.Input.InputDevice
 
-| 名称                  | 参数类型   | 值    | 说明        |
-| ------------------- | ------ | ---- | --------- |
-| NONE                | number | 0    | 表示无按键设备。  |
-| UNKNOWN             | number | 1    | 表示未知按键设备。 |
-| ALPHABETIC_KEYBOARD | number | 2    | 表示全键盘设备。  |
-| DIGITAL_KEYBOARD    | number | 3    | 表示小键盘设备。  |
-| HANDWRITING_PEN     | number | 4    | 表示手写笔设备。  |
-| REMOTE_CONTROL      | number | 5    | 表示遥控器设备。  |
+| 名称                  | 值    | 说明        |
+| ------------------- | ---- | --------- |
+| NONE                | 0    | 表示无按键设备。  |
+| UNKNOWN             | 1    | 表示未知按键设备。 |
+| ALPHABETIC_KEYBOARD | 2    | 表示全键盘设备。  |
+| DIGITAL_KEYBOARD    | 3    | 表示小键盘设备。  |
+| HANDWRITING_PEN     | 4    | 表示手写笔设备。  |
+| REMOTE_CONTROL      | 5    | 表示遥控器设备。  |

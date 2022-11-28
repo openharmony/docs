@@ -16,7 +16,7 @@ import pasteboard from '@ohos.pasteboard';
 
 **系统能力：** SystemCapability.MiscServices.Pasteboard
 
-| 名称 | 参数类型 | 值 | 说明 |
+| 名称 | 类型 | 值 | 说明 |
 | -------- | -------- | -------- | -------- |
 | MAX_RECORD_NUM<sup>7+</sup> | number | 512 | 单个PasteData中所能包含的最大条目数。 |
 | MIMETYPE_TEXT_HTML<sup>7+</sup> | string | 'text/html' | HTML内容的MIME类型定义。 |
@@ -374,7 +374,7 @@ let record = pasteboard.createUriRecord('dataability:///com.example.myapplicatio
 
 **系统能力：** SystemCapability.MiscServices.Pasteboard
 
-| 名称 | 参数类型 | 可读 | 可写 | 说明 |
+| 名称 | 类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
 | additions<sup>7+</sup> | {[key:string]:object} | 是 | 是 | 设置的其他附加属性数据。 |
 | mimeTypes<sup>7+</sup> | Array&lt;string&gt; | 是 | 否 | 剪贴板内容条目的数据类型，非重复的类型列表。 |
@@ -391,7 +391,7 @@ let record = pasteboard.createUriRecord('dataability:///com.example.myapplicatio
 
 **系统能力：** SystemCapability.MiscServices.Pasteboard
 
-| 名称 | 参数类型 | 可读 | 可写 | 说明 |
+| 名称 | 类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
 | htmlText<sup>7+</sup> | string | 是 | 否 | HTML内容。 |
 | want<sup>7+</sup> | [Want](js-apis-application-Want.md) | 是 | 否 | Want内容。 |
@@ -636,8 +636,8 @@ let opt = {
   scaleMode: 1
 };
 image.createPixelMap(buffer, opt).then((pixelMap) => {
-    let pasteData = pasteboard.createPixelMapData(pixelMap);
-    let pixelMap = pasteData.getPrimaryPixelMap();
+    let pasteData = pasteboard.createData('app/xml',pixelMap);
+    let PixelMap = pasteData.getPrimaryPixelMap();
 });
 ```
 
@@ -687,6 +687,7 @@ addRecord(mimeType: string, value: ValueType): void
 **错误码：**
 
 以下错误码的详细介绍请参见[剪贴板错误码](../errorcodes/errorcode-pasteboard.md)。
+
 | 错误码ID | 错误信息 |
 | -------- | -------- |
 | 12900002 | The number of record exceeds the maximum limit. |
@@ -808,6 +809,7 @@ getRecord(index: number): PasteDataRecord
 **错误码：**
 
 以下错误码的详细介绍请参见[剪贴板错误码](../errorcodes/errorcode-pasteboard.md)。
+
 | 错误码ID | 错误信息 |
 | -------- | -------- |
 | 12900001 | The index is out of range. |
@@ -905,6 +907,7 @@ removeRecord(index: number): void
 **错误码：**
 
 以下错误码的详细介绍请参见[剪贴板错误码](../errorcodes/errorcode-pasteboard.md)。
+
 | 错误码ID | 错误信息 |
 | -------- | -------- |
 | 12900001 | The index is out of range. |
@@ -934,6 +937,7 @@ replaceRecord(index: number, record: PasteDataRecord): void
 **错误码：**
 
 以下错误码的详细介绍请参见[剪贴板错误码](../errorcodes/errorcode-pasteboard.md)。
+
 | 错误码ID | 错误信息 |
 | -------- | -------- |
 | 12900001 | The index is out of range. |
@@ -1226,6 +1230,7 @@ off(type:  'update', callback?: () =&gt;void ): void
 **示例：**
 
 ```js
+let systemPasteboard = pasteboard.getSystemPasteboard();
 let listener = () => {
     console.info('The system pasteboard has changed.');
 };
@@ -1249,6 +1254,7 @@ clearData(callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
 ```js
+let systemPasteboard = pasteboard.getSystemPasteboard();
 systemPasteboard.clearData((err, data) => { 
     if (err) {
         console.error(`Failed to clear the pasteboard. Cause: ${err.message}`);
@@ -1275,6 +1281,7 @@ clearData(): Promise&lt;void&gt;
 **示例：**
 
 ```js
+let systemPasteboard = pasteboard.getSystemPasteboard();
 systemPasteboard.clearData().then((data) => { 
     console.info('Succeeded in clearing the pasteboard.');
 }).catch((err) => {
@@ -1300,6 +1307,7 @@ setData(data: PasteData, callback: AsyncCallback&lt;void&gt;): void
 **错误码：**
 
 以下错误码的详细介绍请参见[剪贴板错误码](../errorcodes/errorcode-pasteboard.md)。
+
 | 错误码ID | 错误信息 |
 | -------- | -------- |
 | 12900003 | Another copy or paste is in progress. |
@@ -1342,6 +1350,7 @@ setData(data: PasteData): Promise&lt;void&gt;
 **错误码：**
 
 以下错误码的详细介绍请参见[剪贴板错误码](../errorcodes/errorcode-pasteboard.md)。
+
 | 错误码ID | 错误信息 |
 | -------- | -------- |
 | 12900003 | Another copy or paste is in progress. |
@@ -1376,6 +1385,7 @@ getData( callback: AsyncCallback&lt;PasteData&gt;): void
 **错误码：**
 
 以下错误码的详细介绍请参见[剪贴板错误码](../errorcodes/errorcode-pasteboard.md)。
+
 | 错误码ID | 错误信息 |
 | -------- | -------- |
 | 12900003 | Another copy or paste is in progress. |
@@ -1410,6 +1420,7 @@ getData(): Promise&lt;PasteData&gt;
 **错误码：**
 
 以下错误码的详细介绍请参见[剪贴板错误码](../errorcodes/errorcode-pasteboard.md)。
+
 | 错误码ID | 错误信息 |
 | -------- | -------- |
 | 12900003 | Another copy or paste is in progress. |
@@ -1442,6 +1453,7 @@ hasData(callback:  AsyncCallback&lt;boolean&gt;): void
 **示例：**
 
 ```js
+let systemPasteboard = pasteboard.getSystemPasteboard();
 systemPasteboard.hasData((err, data) => {
     if (err) {
         console.error(`Failed to check the PasteData. Cause: ${err.message}`);
@@ -1468,6 +1480,7 @@ hasData(): Promise&lt;boolean&gt;
 **示例：**
 
 ```js
+let systemPasteboard = pasteboard.getSystemPasteboard();
 systemPasteboard.hasData().then((data) => { 
     console.info(`Succeeded in checking the PasteData. Data: ${data}`);
 }).catch((err) => {

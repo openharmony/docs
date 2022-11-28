@@ -5,6 +5,34 @@
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
 > 本模块首批接口从API version 9开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
+## 申请权限
+
+应用在使用系统能力前，需要检查是否已经获取用户授权访问设备位置信息。如未获得授权，可以向用户申请需要的位置权限，申请方式请参考下文。
+
+系统提供的定位权限有：
+- ohos.permission.LOCATION
+
+- ohos.permission.APPROXIMATELY_LOCATION
+
+- ohos.permission.LOCATION_IN_BACKGROUND
+
+访问设备的位置信息，必须申请权限，并且获得用户授权。
+
+API9之前的版本，申请ohos.permission.LOCATION即可。
+
+API9及之后的版本，需要申请ohos.permission.APPROXIMATELY_LOCATION或者同时申请ohos.permission.APPROXIMATELY_LOCATION和ohos.permission.LOCATION；无法单独申请ohos.permission.LOCATION。
+
+| 使用的API版本 | 申请位置权限 | 申请结果 | 位置的精确度 |
+| -------- | -------- | -------- | -------- |
+| 小于9 | ohos.permission.LOCATION | 成功 | 获取到精准位置，精准度在米级别。 |
+| 大于等于9 | ohos.permission.LOCATION | 失败 | 无法获取位置。 |
+| 大于等于9 | ohos.permission.APPROXIMATELY_LOCATION | 成功 | 获取到模糊位置，精确度为5公里。 |
+| 大于等于9 | ohos.permission.APPROXIMATELY_LOCATION和ohos.permission.LOCATION | 成功 | 获取到精准位置，精准度在米级别。 |
+
+如果应用在后台运行时也需要访问设备位置，除需要将应用声明为允许后台运行外，还必须申请ohos.permission.LOCATION_IN_BACKGROUND权限，这样应用在切入后台之后，系统可以继续上报位置信息。
+
+开发者可以在应用配置文件中声明所需要的权限，具体可参考[授权申请指导](../../security/accesstoken-guidelines.md)。
+
 
 ## 导入模块
 
@@ -46,7 +74,12 @@ on(type: 'countryCodeChange', callback: Callback&lt;CountryCode&gt;): void;
   var callback = (code) => {
       console.log('countryCodeChange: ' + JSON.stringify(code));
   }
-  geoLocationManager.on('countryCodeChange', callback);
+
+  try {
+      geoLocationManager.on('countryCodeChange', callback);
+  } catch (err) {
+      console.error("errCode:" + err.code + ",errMessage:" + err.message);
+  }
   ```
 
 
@@ -63,7 +96,7 @@ off(type: 'countryCodeChange', callback?: Callback&lt;CountryCode&gt;): void;
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | type | string | 是 | 设置事件类型。type为“countryCodeChange”，表示取消订阅国家码信息变化事件。 |
-  | callback | Callback&lt;[CountryCode](#countrycode)&gt; | 是 | 接收国家码信息上报。 |
+  | callback | Callback&lt;[CountryCode](#countrycode)&gt; | 否 | 需要取消订阅的回调函数。若无此参数，则取消当前类型的所有订阅。 |
 
 **错误码**：
 
@@ -82,8 +115,12 @@ off(type: 'countryCodeChange', callback?: Callback&lt;CountryCode&gt;): void;
   var callback = (code) => {
       console.log('countryCodeChange: ' + JSON.stringify(code));
   }
-  geoLocationManager.on('countryCodeChange', callback);
-  geoLocationManager.off('countryCodeChange', callback);
+  try {
+      geoLocationManager.on('countryCodeChange', callback);
+      geoLocationManager.off('countryCodeChange', callback);
+  } catch (err) {
+      console.error("errCode:" + err.code + ",errMessage:" + err.message);
+  }
   ```
 
 
@@ -139,9 +176,9 @@ enableLocation(): Promise&lt;void&gt;
 
 **返回值**：
 
-  | 参数名 | 说明 |
-  | -------- | -------- |
-  | Promise&lt;void&gt; | 返回错误码信息。 |
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | Promise&lt;void&gt;  | void | NA | 返回错误码信息。 |
 
 **错误码**：
 
@@ -193,11 +230,15 @@ disableLocation(callback: AsyncCallback&lt;void&gt;): void;
   
   ```ts
   import geoLocationManager from '@ohos.geoLocationManager';
-  geoLocationManager.disableLocation((err, data) => {
-      if (err) {
-          console.log('disableLocation: err=' + JSON.stringify(err));
-      }
-  });
+  try {
+      geoLocationManager.disableLocation((err, data) => {
+          if (err) {
+              console.log('disableLocation: err=' + JSON.stringify(err));
+          }
+      });
+  } catch (err) {
+      console.error("errCode:" + err.code + ",errMessage:" + err.message);
+  }
   ```
 
 
@@ -215,9 +256,9 @@ disableLocation(): Promise&lt;void&gt;
 
 **返回值**：
 
-  | 参数名 | 说明 |
-  | -------- | -------- |
-  | Promise&lt;void&gt; | 返回错误码。 |
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | Promise&lt;void&gt; | void | NA |返回错误码。 |
 
 **错误码**：
 
@@ -298,9 +339,9 @@ isLocationPrivacyConfirmed(type : LocationPrivacyType,): Promise&lt;boolean&gt;;
 
 **返回值**：
 
-  | 参数名 | 说明 |
-  | -------- | -------- |
-  | Promise&lt;boolean&gt; | 表示用户是否同意定位服务隐私申明。 |
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | Promise&lt;boolean&gt; |boolean| NA | 表示用户是否同意定位服务隐私申明。 |
 
 **错误码**：
 
@@ -381,9 +422,9 @@ setLocationPrivacyConfirmStatus(type : LocationPrivacyType, isConfirmed : boolea
 
 **返回值**：
 
-  | 参数名 | 说明 |
-  | -------- | -------- |
-  | Promise&lt;void&gt; | 接收错误码。 |
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | Promise&lt;void&gt; |void|NA| 接收错误码。 |
 
 **错误码**：
 
@@ -452,15 +493,11 @@ getCountryCode(): Promise&lt;CountryCode&gt;;
 
 **系统能力**：SystemCapability.Location.Location.Core
 
-**参数**：
-
-无
-
 **返回值**：
 
-  | 参数名 | 说明 |
-  | -------- | -------- |
-  | Promise&lt;[CountryCode](#countrycode)&gt; | 返回国家码。 |
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | Promise&lt;[CountryCode](#countrycode)&gt; | [CountryCode](#countrycode) | NA | 用来接收国家码。 |
 
 **错误码**：
 
@@ -531,15 +568,11 @@ enableLocationMock(): Promise&lt;void&gt;;
 
 **系统API**：此接口为系统接口，三方应用不支持调用。
 
-**参数**：
-
-无
-
 **返回值**：
 
-  | 参数名 | 说明 |
-  | -------- | -------- |
-  | Promise&lt;void&gt; | 用来接收执行结果，如果执行成功就返回nullptr，否则就返回错误信息。  |
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | Promise&lt;void&gt; | void|NA|用来接收执行结果，如果执行成功就返回nullptr，否则就返回错误信息。  |
 
 **错误码**：
 
@@ -613,15 +646,11 @@ disableLocationMock(): Promise&lt;void&gt;;
 
 **系统API**：此接口为系统接口，三方应用不支持调用。
 
-**参数**：
-
-无
-
 **返回值**：
 
-  | 参数名 | 说明 |
-  | -------- | -------- |
-  | Promise&lt;void&gt; | 用来接收执行结果，如果执行成功就返回nullptr，否则就返回错误信息。  |
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | Promise&lt;void&gt; |void|NA| 用来接收执行结果，如果执行成功就返回nullptr，否则就返回错误信息。  |
 
 **错误码**：
 
@@ -711,9 +740,9 @@ setMockedLocations(config: LocationMockConfig): Promise&lt;void&gt;;
 
 **返回值**：
 
-  | 参数名 | 说明 |
-  | -------- | -------- |
-  | Promise&lt;void&gt; | 用来接收执行结果，如果执行成功就返回nullptr，否则就返回错误信息。  |
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | Promise&lt;void&gt; |void|NA| 用来接收执行结果，如果执行成功就返回nullptr，否则就返回错误信息。  |
 
 **错误码**：
 
@@ -794,15 +823,11 @@ enableReverseGeocodingMock(): Promise&lt;void&gt;;
 
 **系统API**：此接口为系统接口，三方应用不支持调用。
 
-**参数**：
-
-无
-
 **返回值**：
 
-  | 参数名 | 说明 |
-  | -------- | -------- |
-  | Promise&lt;void&gt; | 用来接收执行结果，如果执行成功就返回nullptr，否则就返回错误信息。  |
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | Promise&lt;void&gt; | void|NA|用来接收执行结果，如果执行成功就返回nullptr，否则就返回错误信息。  |
 
 **错误码**：
 
@@ -874,15 +899,11 @@ disableReverseGeocodingMock(): Promise&lt;void&gt;;
 
 **系统API**：此接口为系统接口，三方应用不支持调用。
 
-**参数**：
-
-无
-
 **返回值**：
 
-  | 参数名 | 说明 |
-  | -------- | -------- |
-  | Promise&lt;void&gt; | 用来接收执行结果，如果执行成功就返回nullptr，否则就返回错误信息。  |
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | Promise&lt;void&gt; |void|NA| 用来接收执行结果，如果执行成功就返回nullptr，否则就返回错误信息。  |
 
 **错误码**：
 
@@ -970,9 +991,9 @@ setReverseGeocodingMockInfo(mockInfos: Array&lt;ReverseGeocodingMockInfo&gt;): P
 
 **返回值**：
 
-  | 参数名 | 说明 |
-  | -------- | -------- |
-  | Promise&lt;void&gt; | 用来接收执行结果，如果执行成功就返回nullptr，否则就返回错误信息。  |
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | Promise&lt;void&gt; | void | NA | 用来接收执行结果，如果执行成功就返回nullptr，否则就返回错误信息。  |
 
 **错误码**：
 
@@ -1011,7 +1032,7 @@ setReverseGeocodingMockInfo(mockInfos: Array&lt;ReverseGeocodingMockInfo&gt;): P
 
 **系统能力**：SystemCapability.Location.Location.Core
 
-| 名称 | 默认值 | 说明 |
+| 名称 | 值 | 说明 |
 | -------- | -------- | -------- |
 | UNSET | 0x200 | 表示未设置优先级。 |
 | ACCURACY | 0x201 | 表示精度优先。 |
@@ -1025,7 +1046,7 @@ setReverseGeocodingMockInfo(mockInfos: Array&lt;ReverseGeocodingMockInfo&gt;): P
 
 **系统能力**：SystemCapability.Location.Location.Core
 
-| 名称 | 默认值 | 说明 |
+| 名称 | 值 | 说明 |
 | -------- | -------- | -------- |
 | UNSET | 0x300 | 表示未设置场景信息。 |
 | NAVIGATION | 0x301 | 表示导航场景。 |
@@ -1041,12 +1062,12 @@ setReverseGeocodingMockInfo(mockInfos: Array&lt;ReverseGeocodingMockInfo&gt;): P
 
 **系统能力**：SystemCapability.Location.Location.Geocoder
 
-| 名称 | 参数类型 | 必填 | 说明 |
+| 名称 | 类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- |
-| locale | string | 否 | 指定位置描述信息的语言，“zh”代表中文，“en”代表英文。 |
-| latitude | number | 是 | 表示纬度信息，正值表示北纬，负值表示南纬。 |
-| longitude | number | 是 | 表示经度信息，正值表示东经，负值表示西经。 |
-| maxItems | number | 否 | 指定返回位置信息的最大个数。 |
+| locale | string | 是 | 是 | 指定位置描述信息的语言，“zh”代表中文，“en”代表英文。 |
+| latitude | number | 是 | 是 | 表示纬度信息，正值表示北纬，负值表示南纬。 |
+| longitude | number | 是 | 是 | 表示经度信息，正值表示东经，负值表示西经。 |
+| maxItems | number | 是 | 是 | 指定返回位置信息的最大个数。 |
 
 
 ## GeoCodeRequest
@@ -1055,15 +1076,15 @@ setReverseGeocodingMockInfo(mockInfos: Array&lt;ReverseGeocodingMockInfo&gt;): P
 
 **系统能力**：SystemCapability.Location.Location.Geocoder
 
-| 名称 | 参数类型 | 必填 | 说明 |
+| 名称 | 类型 | 可读|可写 | 说明 |
 | -------- | -------- | -------- | -------- |
-| locale | string | 否 | 表示位置描述信息的语言，“zh”代表中文，“en”代表英文。 |
-| description | number | 是 | 表示位置信息描述，如“上海市浦东新区xx路xx号”。 |
-| maxItems | number | 否 | 表示返回位置信息的最大个数。 |
-| minLatitude | number | 否 | 表示最小纬度信息，与下面三个参数一起，表示一个经纬度范围。 |
-| minLongitude | number | 否 | 表示最小经度信息。 |
-| maxLatitude | number | 否 | 表示最大纬度信息。 |
-| maxLongitude | number | 否 | 表示最大经度信息。 |
+| locale | string | 是 | 是 | 表示位置描述信息的语言，“zh”代表中文，“en”代表英文。 |
+| description | number | 是 | 是 | 表示位置信息描述，如“上海市浦东新区xx路xx号”。 |
+| maxItems | number | 是 | 是 | 表示返回位置信息的最大个数。 |
+| minLatitude | number | 是 | 是 | 表示最小纬度信息，与下面三个参数一起，表示一个经纬度范围。 |
+| minLongitude | number | 是 | 是 | 表示最小经度信息。 |
+| maxLatitude | number | 是 | 是 | 表示最大纬度信息。 |
+| maxLongitude | number | 是 | 是 | 表示最大经度信息。 |
 
 
 ## GeoAddress
@@ -1072,27 +1093,27 @@ setReverseGeocodingMockInfo(mockInfos: Array&lt;ReverseGeocodingMockInfo&gt;): P
 
 **系统能力**：SystemCapability.Location.Location.Geocoder
 
-| 名称 | 参数类型 | 必填 | 说明 |
+| 名称 | 类型 | 可读|可写 | 说明 |
 | -------- | -------- | -------- | -------- |
-| latitude | number | 否 | 表示纬度信息，正值表示北纬，负值表示南纬。 |
-| longitude | number | 否 | 表示经度信息，正值表示东经，负值表是西经。 |
-| locale | string | 否 | 表示位置描述信息的语言，“zh”代表中文，“en”代表英文。 |
-| placeName | string | 否 | 表示地区信息。 |
-| countryCode | string | 否 | 表示国家码信息。 |
-| countryName | string | 否 | 表示国家信息。 |
-| administrativeArea | string | 否 | 表示省份区域信息。 |
-| subAdministrativeArea | string | 否 | 表示表示子区域信息。 |
-| locality | string | 否 | 表示城市信息。 |
-| subLocality | string | 否 | 表示子城市信息。 |
-| roadName | string | 否 | 表示路名信息。 |
-| subRoadName | string | 否 | 表示子路名信息。 |
-| premises | string | 否 | 表示门牌号信息。 |
-| postalCode | string | 否 | 表示邮政编码信息。 |
-| phoneNumber | string | 否 | 表示联系方式信息。 |
-| addressUrl | string | 否 | 表示位置信息附件的网址信息。 |
-| descriptions | Array&lt;string&gt; | 否 | 表示附加的描述信息。 |
-| descriptionsSize | number | 否 | 表示附加的描述信息数量。 |
-| isFromMock | Boolean | 否 | 表示地名信息是否来自于逆地理编码模拟功能。 |
+| latitude | number | 是 | 否  | 表示纬度信息，正值表示北纬，负值表示南纬。 |
+| longitude | number | 是 | 否  | 表示经度信息，正值表示东经，负值表是西经。 |
+| locale | string | 是 | 否  | 表示位置描述信息的语言，“zh”代表中文，“en”代表英文。 |
+| placeName | string | 是 | 否  | 表示地区信息。 |
+| countryCode | string | 是 | 否  | 表示国家码信息。 |
+| countryName | string| 是 | 否 | 表示国家信息。 |
+| administrativeArea | string | 是 | 否 | 表示省份区域信息。 |
+| subAdministrativeArea | string | 是 | 否 | 表示表示子区域信息。 |
+| locality | string | 是 | 否 | 表示城市信息。 |
+| subLocality | string | 是 | 否 | 表示子城市信息。 |
+| roadName | string | 是 | 否 |表示路名信息。 |
+| subRoadName | string | 是 | 否 | 表示子路名信息。 |
+| premises | string| 是 | 否|表示门牌号信息。 |
+| postalCode | string | 是 | 否 | 表示邮政编码信息。 |
+| phoneNumber | string | 是 | 否 | 表示联系方式信息。 |
+| addressUrl | string | 是 | 否 | 表示位置信息附件的网址信息。 |
+| descriptions | Array&lt;string&gt; | 是 | 否 | 表示附加的描述信息。 |
+| descriptionsSize | number | 是 | 否 | 表示附加的描述信息数量。 |
+| isFromMock | Boolean | 是 | 否 | 表示地名信息是否来自于逆地理编码模拟功能。 |
 
 
 ## LocationRequest
@@ -1101,13 +1122,13 @@ setReverseGeocodingMockInfo(mockInfos: Array&lt;ReverseGeocodingMockInfo&gt;): P
 
 **系统能力**：SystemCapability.Location.Location.Core
 
-| 名称 | 参数类型 | 必填 | 说明 |
+| 名称 | 类型 | 可读|可写 | 说明 |
 | -------- | -------- | -------- | -------- |
-| priority | [LocationRequestPriority](#locationrequestpriority) | 否 | 表示优先级信息。 |
-| scenario | [LocationRequestScenario](#locationrequestscenario) | 是 | 表示场景信息。 |
-| timeInterval | number | 否 | 表示上报位置信息的时间间隔。 |
-| distanceInterval | number | 否 | 表示上报位置信息的距离间隔。 |
-| maxAccuracy | number | 否 | 表示精度信息。仅在精确位置功能场景下有效，模糊位置功能生效场景下该字段无意义。 |
+| priority | [LocationRequestPriority](#locationrequestpriority) | 是 | 是 | 表示优先级信息。 |
+| scenario | [LocationRequestScenario](#locationrequestscenario) | 是 | 是 | 表示场景信息。 |
+| timeInterval | number | 是 | 是 | 表示上报位置信息的时间间隔。 |
+| distanceInterval | number | 是 | 是 | 表示上报位置信息的距离间隔。 |
+| maxAccuracy | number | 是 | 是 | 表示精度信息。仅在精确位置功能场景下有效，模糊位置功能生效场景下该字段无意义。 |
 
 
 ## CurrentLocationRequest
@@ -1116,12 +1137,12 @@ setReverseGeocodingMockInfo(mockInfos: Array&lt;ReverseGeocodingMockInfo&gt;): P
 
 **系统能力**：SystemCapability.Location.Location.Core
 
-| 名称 | 参数类型 | 必填 | 说明 |
+| 名称 | 类型 | 可读|可写 | 说明 |
 | -------- | -------- | -------- | -------- |
-| priority | [LocationRequestPriority](#locationrequestpriority) | 否 | 表示优先级信息。 |
-| scenario | [LocationRequestScenario](#locationrequestscenario) | 否 | 表示场景信息。 |
-| maxAccuracy | number | 否 | 表示精度信息，单位是米。仅在精确位置功能场景下有效，模糊位置功能生效场景下该字段无意义。 |
-| timeoutMs | number | 否 | 表示超时时间，单位是毫秒，最小为1000毫秒。 |
+| priority | [LocationRequestPriority](#locationrequestpriority) | 是 | 是 | 表示优先级信息。 |
+| scenario | [LocationRequestScenario](#locationrequestscenario) | 是 | 是 | 表示场景信息。 |
+| maxAccuracy | number | 是 | 是| 表示精度信息，单位是米。仅在精确位置功能场景下有效，模糊位置功能生效场景下该字段无意义。 |
+| timeoutMs | number | 是 | 是 | 表示超时时间，单位是毫秒，最小为1000毫秒。 |
 
 
 ## SatelliteStatusInfo
@@ -1130,14 +1151,14 @@ setReverseGeocodingMockInfo(mockInfos: Array&lt;ReverseGeocodingMockInfo&gt;): P
 
 **系统能力**：SystemCapability.Location.Location.Gnss
 
-| 名称 | 参数类型 | 必填 | 说明 |
+| 名称 | 类型 | 可读|可写 | 说明 |
 | -------- | -------- | -------- | -------- |
-| satellitesNumber | number | 是 | 表示卫星个数。 |
-| satelliteIds | Array&lt;number&gt; | 是 | 表示每个卫星的ID，数组类型。 |
-| carrierToNoiseDensitys | Array&lt;number&gt; | 是 | 表示载波噪声功率谱密度比，即cn0。 |
-| altitudes | Array&lt;number&gt; | 是 | 表示高程信息。 |
-| azimuths | Array&lt;number&gt; | 是 | 表示方位角。 |
-| carrierFrequencies | Array&lt;number&gt; | 是 | 表示载波频率。 |
+| satellitesNumber | number | 是 | 否 | 表示卫星个数。 |
+| satelliteIds | Array&lt;number&gt; | 是 | 否 | 表示每个卫星的ID，数组类型。 |
+| carrierToNoiseDensitys | Array&lt;number&gt; | 是 | 否 | 表示载波噪声功率谱密度比，即cn0。 |
+| altitudes | Array&lt;number&gt; | 是 | 否 | 表示高程信息。 |
+| azimuths | Array&lt;number&gt; | 是 | 否 | 表示方位角。 |
+| carrierFrequencies | Array&lt;number&gt; | 是 | 否 | 表示载波频率。 |
 
 
 ## CachedGnssLocationsRequest
@@ -1146,10 +1167,10 @@ setReverseGeocodingMockInfo(mockInfos: Array&lt;ReverseGeocodingMockInfo&gt;): P
 
 **系统能力**：SystemCapability.Location.Location.Gnss
 
-| 名称 | 参数类型 | 必填 | 说明 |
+| 名称 | 类型 | 可读|可写 | 说明 |
 | -------- | -------- | -------- | -------- |
-| reportingPeriodSec | number | 是 | 表示GNSS缓存位置上报的周期，单位是毫秒。 |
-| wakeUpCacheQueueFull | boolean | 是 | true表示GNSS芯片底层缓存队列满之后会主动唤醒AP芯片，并把缓存位置上报给应用。<br/>false表示GNSS芯片底层缓存队列满之后不会主动唤醒AP芯片，会把缓存位置直接丢弃。 |
+| reportingPeriodSec | number | 是 | 是 | 表示GNSS缓存位置上报的周期，单位是毫秒。 |
+| wakeUpCacheQueueFull | boolean | 是 | 是  | true表示GNSS芯片底层缓存队列满之后会主动唤醒AP芯片，并把缓存位置上报给应用。<br/>false表示GNSS芯片底层缓存队列满之后不会主动唤醒AP芯片，会把缓存位置直接丢弃。 |
 
 
 ## Geofence
@@ -1172,11 +1193,11 @@ GNSS围栏的配置参数。目前只支持圆形围栏。
 
 **系统能力**：SystemCapability.Location.Location.Geofence
 
-| 名称 | 参数类型 | 必填 | 说明 |
+| 名称 | 类型 | 可读|可写 | 说明 |
 | -------- | -------- | -------- | -------- |
-| priority | [LocationRequestPriority](#locationrequestpriority) | 是 | 表示位置信息优先级。 |
-| scenario | [LocationRequestScenario](#locationrequestscenario) | 是 | 表示定位场景。 |
-| geofence |  [Geofence](#geofence) | 是 | 表示围栏信息。 |
+| priority | [LocationRequestPriority](#locationrequestpriority) | 是 | 是  | 表示位置信息优先级。 |
+| scenario | [LocationRequestScenario](#locationrequestscenario) | 是 | 是  | 表示定位场景。 |
+| geofence |  [Geofence](#geofence) | 是 | 是  | 表示围栏信息。 |
 
 
 ## LocationPrivacyType
@@ -1185,7 +1206,7 @@ GNSS围栏的配置参数。目前只支持圆形围栏。
 
 **系统能力**：SystemCapability.Location.Location.Core
 
-| 名称 | 默认值 | 说明 |
+| 名称 | 值 | 说明 |
 | -------- | -------- | -------- |
 | OTHERS | 0 | 其他场景。 |
 | STARTUP | 1 | 开机向导场景下的隐私协议。 |
@@ -1198,10 +1219,10 @@ GNSS围栏的配置参数。目前只支持圆形围栏。
 
 **系统能力**：SystemCapability.Location.Location.Core
 
-| 名称 | 参数类型 | 必填 | 说明 |
+| 名称 | 类型 | 可读|可写 | 说明 |
 | -------- | -------- | -------- | -------- |
-| scenario | [LocationRequestScenario](#locationrequestscenario) | 是 | 表示定位场景。 |
-| command | string | 是 | 扩展命令字符串。 |
+| scenario | [LocationRequestScenario](#locationrequestscenario)  | 是 | 是  | 表示定位场景。 |
+| command | string | 是 | 是  | 扩展命令字符串。 |
 
 
 ## Location
@@ -1210,19 +1231,19 @@ GNSS围栏的配置参数。目前只支持圆形围栏。
 
 **系统能力**：SystemCapability.Location.Location.Core
 
-| 名称 | 参数类型 | 必填 | 说明 |
+| 名称 | 类型 | 可读|可写 | 说明 |
 | -------- | -------- | -------- | -------- |
-| latitude | number | 是 | 表示纬度信息，正值表示北纬，负值表示南纬。 |
-| longitude | number | 是 | 表示经度信息，正值表示东经，负值表是西经。 |
-| altitude | number | 是 | 表示高度信息，单位米。 |
-| accuracy | number | 是 | 表示精度信息，单位米。 |
-| speed | number | 是 | 表示速度信息，单位米每秒。 |
-| timeStamp | number | 是 | 表示位置时间戳，UTC格式。 |
-| direction | number | 是 | 表示航向信息。 |
-| timeSinceBoot | number | 是 | 表示位置时间戳，开机时间格式。 |
-| additions | Array&lt;string&gt; | 否 | 附加信息。 |
-| additionSize | number | 否 | 附加信息数量。 |
-| isFromMock | Boolean | 否 | 表示位置信息是否来自于位置模拟功能。 |
+| latitude | number| 是 | 否 | 表示纬度信息，正值表示北纬，负值表示南纬。 |
+| longitude | number| 是 | 否 | 表示经度信息，正值表示东经，负值表是西经。 |
+| altitude | number | 是 | 否 | 表示高度信息，单位米。 |
+| accuracy | number | 是 | 否 | 表示精度信息，单位米。 |
+| speed | number | 是 | 否 |表示速度信息，单位米每秒。 |
+| timeStamp | number | 是 | 否 | 表示位置时间戳，UTC格式。 |
+| direction | number | 是 | 否 | 表示航向信息。 |
+| timeSinceBoot | number | 是 | 否 | 表示位置时间戳，开机时间格式。 |
+| additions | Array&lt;string&gt; | 是 | 否 | 附加信息。 |
+| additionSize | number | 是 | 否 | 附加信息数量。 |
+| isFromMock | Boolean | 是 | 否 | 表示位置信息是否来自于位置模拟功能。 |
 
 
 ## ReverseGeocodingMockInfo
@@ -1233,10 +1254,10 @@ GNSS围栏的配置参数。目前只支持圆形围栏。
 
 **系统API**：此接口为系统接口，三方应用不支持调用。
 
-| 名称 | 参数类型 | 必填 | 说明 |
+| 名称 | 类型 | 可读|可写 | 说明 |
 | -------- | -------- | -------- | -------- |
-| location |  [ReverseGeoCodeRequest](#reversegeocoderequest) | 是 | 表示经纬度信息。 |
-| geoAddress |  [GeoAddress](#geoaddress) | 是 | 表示地名信息。 |
+| location |  [ReverseGeoCodeRequest](#reversegeocoderequest) | 是 | 是 | 表示经纬度信息。 |
+| geoAddress |  [GeoAddress](#geoaddress) | 是 | 是 |表示地名信息。 |
 
 
 ## LocationMockConfig
@@ -1247,10 +1268,10 @@ GNSS围栏的配置参数。目前只支持圆形围栏。
 
 **系统API**：此接口为系统接口，三方应用不支持调用。
 
-| 名称 | 参数类型 | 必填 | 说明 |
+| 名称 | 类型 | 可读|可写 | 说明 |
 | -------- | -------- | -------- | -------- |
-| timeInterval | number | 是 | 表示模拟位置上报的时间间隔，单位是秒。 |
-| locations | Array&lt;Location&gt; | 是 | 表示模拟位置数组。 |
+| timeInterval | number | 是 | 是 | 表示模拟位置上报的时间间隔，单位是秒。 |
+| locations | Array&lt;Location&gt; | 是 | 是 | 表示模拟位置数组。 |
 
 
 ## CountryCode
@@ -1259,10 +1280,10 @@ GNSS围栏的配置参数。目前只支持圆形围栏。
 
 **系统能力**：SystemCapability.Location.Location.Core
 
-| 名称 | 参数类型 | 必填 | 说明 |
+| 名称 | 类型 | 可读|可写 | 说明 |
 | -------- | -------- | -------- | -------- |
-| country | string | 是 | 表示国家码字符串。 |
-| type |  [CountryCodeType](#countrycodetype)| 是 | 表示国家码信息来源。 |
+| country | string | 是 | 否 | 表示国家码字符串。 |
+| type |  [CountryCodeType](#countrycodetype) | 是 | 否 | 表示国家码信息来源。 |
 
 
 ## CountryCodeType
@@ -1271,7 +1292,7 @@ GNSS围栏的配置参数。目前只支持圆形围栏。
 
 **系统能力**：SystemCapability.Location.Location.Core
 
-| 名称 | 默认值 | 说明 |
+| 名称 | 值 | 说明 |
 | -------- | -------- | -------- |
 | COUNTRY_CODE_FROM_LOCALE | 1 | 从全球化模块的语言配置信息中获取到的国家码。 |
 | COUNTRY_CODE_FROM_SIM | 2 | 从SIM卡中获取到的国家码。 |

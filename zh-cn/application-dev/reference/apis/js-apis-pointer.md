@@ -22,7 +22,7 @@ setPointerVisible(visible: boolean, callback: AsyncCallback&lt;void&gt;): void
 
 **参数**：
 
-| 参数       | 类型                        | 必填   | 说明                                       |
+| 参数名       | 类型                        | 必填   | 说明                                       |
 | -------- | ------------------------- | ---- | ---------------------------------------- |
 | visible  | boolean                   | 是    | 鼠标指针是否显示。 |
 | callback | AsyncCallback&lt;void&gt; | 是    | 回调函数。 |
@@ -53,7 +53,7 @@ setPointerVisible(visible: boolean): Promise&lt;void&gt;
 
 **参数**：
 
-| 参数      | 类型      | 必填   | 说明                                       |
+| 参数名      | 类型      | 必填   | 说明                                       |
 | ------- | ------- | ---- | ---------------------------------------- |
 | visible | boolean | 是    | 鼠标指针是否显示。 |
 
@@ -85,7 +85,7 @@ isPointerVisible(callback: AsyncCallback&lt;boolean&gt;): void
 
 **参数**：
 
-| 参数       | 类型                           | 必填   | 说明             |
+| 参数名       | 类型                           | 必填   | 说明             |
 | -------- | ---------------------------- | ---- | -------------- |
 | callback | AsyncCallback&lt;boolean&gt; | 是    | 回调函数，异步返回鼠标指针显示或隐藏状态。 |
 
@@ -135,9 +135,11 @@ setPointerSpeed(speed: number, callback: AsyncCallback&lt;void&gt;): void
 
 **系统能力**：SystemCapability.MultimodalInput.Input.Pointer
 
+**系统API**: 此接口为系统接口。
+
 **参数**：
 
-| 参数       | 类型                        | 必填   | 说明                                    |
+| 参数名       | 类型                        | 必填   | 说明                                    |
 | -------- | ------------------------- | ---- | ------------------------------------- |
 | speed    | number                    | 是    | 鼠标移动速度，范围1-11，默认为5。   |
 | callback | AysncCallback&lt;void&gt; | 是    | 回调函数。 |
@@ -166,9 +168,11 @@ setPointerSpeed(speed: number): Promise&lt;void&gt;
 
 **系统能力**：SystemCapability.MultimodalInput.Input.Pointer
 
+**系统API**: 此接口为系统接口。
+
 **参数**：
 
-| 参数    | 类型     | 必填   | 说明                                  |
+| 参数名    | 类型     | 必填   | 说明                                  |
 | ----- | ------ | ---- | ----------------------------------- |
 | speed | number | 是    | 鼠标移动速度，范围1-11，默认为5。 |
 
@@ -198,9 +202,11 @@ getPointerSpeed(callback: AsyncCallback&lt;number&gt;): void
 
 **系统能力**：SystemCapability.MultimodalInput.Input.Pointer
 
+**系统API**: 此接口为系统接口。
+
 **参数**：
 
-| 参数       | 类型                          | 必填   | 说明             |
+| 参数名       | 类型                          | 必填   | 说明             |
 | -------- | --------------------------- | ---- | -------------- |
 | callback | AsyncCallback&lt;number&gt; | 是    | 回调函数，异步返回鼠标移动速度。 |
 
@@ -227,6 +233,8 @@ getPointerSpeed(): Promise&lt;number&gt;
 获取当前鼠标移动速度，使用Promise异步方式返回结果。
 
 **系统能力**：SystemCapability.MultimodalInput.Input.Pointer
+
+**系统API**: 此接口为系统接口。
 
 **返回值**：
 
@@ -256,7 +264,7 @@ getPointerStyle(windowId: number, callback: AsyncCallback&lt;PointerStyle&gt;): 
 
 **参数**：
 
-| 参数       | 类型                                       | 必填   | 说明             |
+| 参数名       | 类型                                       | 必填   | 说明             |
 | -------- | ---------------------------------------- | ---- | -------------- |
 | windowId | number                                   | 是    | 窗口id。    |
 | callback | AsyncCallback&lt;[PointerStyle](#pointerstyle9)&gt; | 是    | 回调函数，异步返回鼠标样式类型。 |
@@ -294,7 +302,7 @@ getPointerStyle(windowId: number): Promise&lt;PointerStyle&gt;
 
 **参数**：
 
-| 参数     | 类型   | 必填 | 说明     |
+| 参数名     | 类型   | 必填 | 说明     |
 | -------- | ------ | ---- | -------- |
 | windowId | number | 是   | 窗口id。 |
 
@@ -337,7 +345,7 @@ setPointerStyle(windowId: number, pointerStyle: PointerStyle, callback: AsyncCal
 
 **参数**：
 
-| 参数           | 类型                             | 必填   | 说明                                  |
+| 参数名           | 类型                             | 必填   | 说明                                  |
 | ------------ | ------------------------------ | ---- | ----------------------------------- |
 | windowId     | number                         | 是    | 窗口id。                          |
 | pointerStyle | [PointerStyle](#pointerstyle9) | 是    | 鼠标样式id。                             |
@@ -375,7 +383,7 @@ setPointerStyle(windowId: number, pointerStyle: PointerStyle): Promise&lt;void&g
 
 **参数**：
 
-| 参数                  | 类型                             | 必填   | 说明               |
+| 参数名                  | 类型                             | 必填   | 说明               |
 | ------------------- | ------------------------------ | ---- | ---------------- |
 | windowId            | number                         | 是    | 窗口id。       |
 | pointerStyle        | [PointerStyle](#pointerstyle9) | 是    | 鼠标样式id。          |

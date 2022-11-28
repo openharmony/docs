@@ -29,7 +29,7 @@ import LightWeightMap from '@ohos.util.LightWeightMap';
 
 **系统能力：** SystemCapability.Utils.Lang
 
-| 名称 | 参数类型 | 可读 | 可写 | 说明 |
+| 名称 | 类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
 | length | number | 是 | 否 | LightWeightMap的元素个数。 |
 
@@ -47,7 +47,7 @@ LightWeightMap的构造函数。
 
 以下错误码的详细介绍请参见[containers错误码](../errorcodes/errorcode-containers.md)。
 
-| 错误码ID | 错误码信息 |
+| 错误码ID | 错误信息 |
 | -------- | -------- |
 | 10200012 | The LightWeightMap's constructor cannot be directly invoked. |
 
@@ -81,7 +81,7 @@ isEmpty(): boolean
 
 以下错误码的详细介绍请参见[containers错误码](../errorcodes/errorcode-containers.md)。
 
-| 错误码ID | 错误码信息 |
+| 错误码ID | 错误信息 |
 | -------- | -------- |
 | 10200011 | The isEmpty method cannot be bound. |
 
@@ -122,7 +122,7 @@ hasAll(map: LightWeightMap<K, V>): boolean
 
 以下错误码的详细介绍请参见[containers错误码](../errorcodes/errorcode-containers.md)。
 
-| 错误码ID | 错误码信息 |
+| 错误码ID | 错误信息 |
 | -------- | -------- |
 | 10200011 | The hasAll method cannot be bound. |
 
@@ -167,7 +167,7 @@ hasKey(key: K): boolean;
 
 以下错误码的详细介绍请参见[containers错误码](../errorcodes/errorcode-containers.md)。
 
-| 错误码ID | 错误码信息 |
+| 错误码ID | 错误信息 |
 | -------- | -------- |
 | 10200011 | The hasKey method cannot be bound. |
 
@@ -211,7 +211,7 @@ hasValue(value: V): boolean
 
 以下错误码的详细介绍请参见[containers错误码](../errorcodes/errorcode-containers.md)。
 
-| 错误码ID | 错误码信息 |
+| 错误码ID | 错误信息 |
 | -------- | -------- |
 | 10200011 | The hasValue method cannot be bound. |
 
@@ -242,7 +242,7 @@ increaseCapacityTo(minimumCapacity: number): void
 
 以下错误码的详细介绍请参见[containers错误码](../errorcodes/errorcode-containers.md)。
 
-| 错误码ID | 错误码信息 |
+| 错误码ID | 错误信息 |
 | -------- | -------- |
 | 10200011 | The increaseCapacityTo method cannot be bound. |
 
@@ -289,7 +289,7 @@ get(key: K): V
 
 以下错误码的详细介绍请参见[containers错误码](../errorcodes/errorcode-containers.md)。
 
-| 错误码ID | 错误码信息 |
+| 错误码ID | 错误信息 |
 | -------- | -------- |
 | 10200011 | The get method cannot be bound. |
 
@@ -332,7 +332,7 @@ getIndexOfKey(key: K): number
 
 以下错误码的详细介绍请参见[containers错误码](../errorcodes/errorcode-containers.md)。
 
-| 错误码ID | 错误码信息 |
+| 错误码ID | 错误信息 |
 | -------- | -------- |
 | 10200011 | The getIndexOfKey method cannot be bound. |
 
@@ -375,7 +375,7 @@ getIndexOfValue(value: V): number
 
 以下错误码的详细介绍请参见[containers错误码](../errorcodes/errorcode-containers.md)。
 
-| 错误码ID | 错误码信息 |
+| 错误码ID | 错误信息 |
 | -------- | -------- |
 | 10200011 | The getIndexOfValue method cannot be bound. |
 
@@ -418,10 +418,10 @@ getKeyAt(index: number): K
 
 以下错误码的详细介绍请参见[containers错误码](../errorcodes/errorcode-containers.md)。
 
-| 错误码ID | 错误码信息 |
+| 错误码ID | 错误信息 |
 | -------- | -------- |
 | 10200011 | The getKeyAt method cannot be bound. |
-| 10200001 | The value of parameters are out of range. |
+| 10200001 | The parameter value is out of range. |
 
 **示例：**
 
@@ -461,7 +461,7 @@ setAll(map: LightWeightMap<K, V>): void
 
 以下错误码的详细介绍请参见[containers错误码](../errorcodes/errorcode-containers.md)。
 
-| 错误码ID | 错误码信息 |
+| 错误码ID | 错误信息 |
 | -------- | -------- |
 | 10200011 | The setAll method cannot be bound. |
 
@@ -505,7 +505,7 @@ set(key: K, value: V): Object
 
 以下错误码的详细介绍请参见[containers错误码](../errorcodes/errorcode-containers.md)。
 
-| 错误码ID | 错误码信息 |
+| 错误码ID | 错误信息 |
 | -------- | -------- |
 | 10200011 | The set method cannot be bound. |
 
@@ -546,7 +546,7 @@ remove(key: K): V
 
 以下错误码的详细介绍请参见[containers错误码](../errorcodes/errorcode-containers.md)。
 
-| 错误码ID | 错误码信息 |
+| 错误码ID | 错误信息 |
 | -------- | -------- |
 | 10200011 | The remove method cannot be bound. |
 
@@ -589,7 +589,7 @@ removeAt(index: number): boolean
 
 以下错误码的详细介绍请参见[containers错误码](../errorcodes/errorcode-containers.md)。
 
-| 错误码ID | 错误码信息 |
+| 错误码ID | 错误信息 |
 | -------- | -------- |
 | 10200011 | The removeAt method cannot be bound. |
 
@@ -633,10 +633,10 @@ setValueAt(index: number, newValue: V): boolean
 
 以下错误码的详细介绍请参见[containers错误码](../errorcodes/errorcode-containers.md)。
 
-| 错误码ID | 错误码信息 |
+| 错误码ID | 错误信息 |
 | -------- | -------- |
 | 10200011 | The setValueAt method cannot be bound. |
-| 10200001 | The value of parameters are out of range. |
+| 10200001 | The parameter value is out of range. |
 
 **示例：**
 
@@ -682,10 +682,10 @@ getValueAt(index: number): V
 
 以下错误码的详细介绍请参见[containers错误码](../errorcodes/errorcode-containers.md)。
 
-| 错误码ID | 错误码信息 |
+| 错误码ID | 错误信息 |
 | -------- | -------- |
 | 10200011 | The getValueAt method cannot be bound. |
-| 10200001 | The value of parameters are out of range. |
+| 10200001 | The parameter value is out of range. |
 
 **示例：**
 
@@ -719,7 +719,7 @@ clear(): void
 
 以下错误码的详细介绍请参见[containers错误码](../errorcodes/errorcode-containers.md)。
 
-| 错误码ID | 错误码信息 |
+| 错误码ID | 错误信息 |
 | -------- | -------- |
 | 10200011 | The clear method cannot be bound. |
 
@@ -756,7 +756,7 @@ keys(): IterableIterator&lt;K&gt;
 
 以下错误码的详细介绍请参见[containers错误码](../errorcodes/errorcode-containers.md)。
 
-| 错误码ID | 错误码信息 |
+| 错误码ID | 错误信息 |
 | -------- | -------- |
 | 10200011 | The keys method cannot be bound. |
 
@@ -798,7 +798,7 @@ values(): IterableIterator&lt;V&gt;
 
 以下错误码的详细介绍请参见[containers错误码](../errorcodes/errorcode-containers.md)。
 
-| 错误码ID | 错误码信息 |
+| 错误码ID | 错误信息 |
 | -------- | -------- |
 | 10200011 | The values method cannot be bound. |
 
@@ -848,7 +848,7 @@ callbackfn的参数说明：
 
 以下错误码的详细介绍请参见[containers错误码](../errorcodes/errorcode-containers.md)。
 
-| 错误码ID | 错误码信息 |
+| 错误码ID | 错误信息 |
 | -------- | -------- |
 | 10200011 | The forEach method cannot be bound. |
 
@@ -889,7 +889,7 @@ entries(): IterableIterator<[K, V]>
 
 以下错误码的详细介绍请参见[containers错误码](../errorcodes/errorcode-containers.md)。
 
-| 错误码ID | 错误码信息 |
+| 错误码ID | 错误信息 |
 | -------- | -------- |
 | 10200011 | The entries method cannot be bound. |
 
@@ -931,7 +931,7 @@ toString(): String
 
 以下错误码的详细介绍请参见[containers错误码](../errorcodes/errorcode-containers.md)。
 
-| 错误码ID | 错误码信息 |
+| 错误码ID | 错误信息 |
 | -------- | -------- |
 | 10200011 | The toString method cannot be bound. |
 
@@ -967,7 +967,7 @@ try {
 
 以下错误码的详细介绍请参见[containers错误码](../errorcodes/errorcode-containers.md)。
 
-| 错误码ID | 错误码信息 |
+| 错误码ID | 错误信息 |
 | -------- | -------- |
 | 10200011 | The Symbol.iterator method cannot be bound. |
 

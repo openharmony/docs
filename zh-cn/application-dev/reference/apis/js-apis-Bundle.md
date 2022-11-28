@@ -20,7 +20,7 @@ import bundle from '@ohos.bundle';
 | ohos.permission.INSTALL_BUNDLE             | system_core  | 可安装、卸载应用   |
 | ohos.permission.MANAGE_DISPOSED_APP_STATUS | system_core  | 可设置和查询应用的处置状态   |
 
-权限等级参考[权限等级说明](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/accesstoken-overview.md#%E6%9D%83%E9%99%90%E7%AD%89%E7%BA%A7%E8%AF%B4%E6%98%8E)
+权限等级参考[权限等级说明](../../security/accesstoken-overview.md#权限等级说明)。
 
 ## bundle.getApplicationInfo<sup>deprecated<sup>
 
@@ -41,7 +41,7 @@ SystemCapability.BundleManager.BundleFramework
 
 **参数：**
 
-| 名称        | 类型   | 必填 | 描述                                                         |
+| 参数名      | 类型   | 必填 | 说明                                                         |
 | ----------- | ------ | ---- | ------------------------------------------------------------ |
 | bundleName  | string | 是   | 要查询的应用程序包名称。                                     |
 | bundleFlags | number | 是   | 用于指定返回的应用信息对象中包含信息的标记。取值范围请参考[BundleFlag说明](#bundleflagdeprecated)中应用信息相关flag。 |
@@ -86,12 +86,12 @@ SystemCapability.BundleManager.BundleFramework
 
 **参数：**
 
-| 名称        | 类型                                                         | 必填 | 描述                                                         |
+| 参数名      | 类型                                                         | 必填 | 说明                                                         |
 | ----------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | bundleName  | string                                                       | 是   | 要查询的应用程序包名称。                                     |
 | bundleFlags | number                                                       | 是   | 用于指定返回的应用信息对象中包含信息的标记。取值范围：参考[BundleFlag说明](#bundleflag)中应用信息相关flag。 |
 | userId      | number                                                       | 是   | 用户ID。取值范围：大于等于0。        |
-| callback    | AsyncCallback\<[ApplicationInfo](js-apis-bundle-ApplicationInfo.md)> | 是   | 程序启动作为入参的回调函数，获取成功时data为应用程序信息，失败时err为错误数字1。               |
+| callback    | AsyncCallback\<[ApplicationInfo](js-apis-bundle-ApplicationInfo.md)> | 是   | 程序启动作为入参的回调函数，返回应用程序信息。               |
 
 **示例：**
 
@@ -127,7 +127,7 @@ SystemCapability.BundleManager.BundleFramework
 
 **参数：**
 
-| 名称        | 类型                                                         | 必填 | 描述                                                         |
+| 参数名      | 类型                                                         | 必填 | 说明                                                         |
 | ----------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | bundleName  | string                                                       | 是   | 要查询的应用程序包名称。                                     |
 | bundleFlags | number                                                       | 是   | 用于指定返回的应用信息对象中包含信息的标记。取值范围：参考[BundleFlag说明](#bundleflag)中应用信息相关flag |
@@ -166,7 +166,7 @@ SystemCapability.BundleManager.BundleFramework
 
 **参数：**
 
-| 名称       | 类型       | 必填 | 描述                                                         |
+| 参数名     | 类型       | 必填 | 说明                                                         |
 | ---------- | ---------- | ---- | ------------------------------------------------------------ |
 | bundleFlag | BundleFlag | 是   | 用于指定返回的包信息对象中包含信息的标记。取值范围：参考[BundleFlag说明](#bundleflag)中包信息相关flag。 |
 | userId     | number     | 否   | 用户ID。默认值：调用方所在用户，取值范围：大于等于0。        |
@@ -209,7 +209,7 @@ SystemCapability.BundleManager.BundleFramework
 
 **参数：**
 
-| 名称       | 类型                                                         | 必填 | 描述                                                         |
+| 参数名     | 类型                                                         | 必填 | 说明                                                         |
 | ---------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | bundleFlag | BundleFlag                                                   | 是   | 用于指定返回的应用信息对象中包含信息的标记。默认值：0，取值范围：参考[BundleFlag说明](#bundleflag)中包信息相关flag。 |
 | callback   | AsyncCallback<Array\<[BundleInfo](js-apis-bundle-BundleInfo.md)>> | 是   | 程序启动作为入参的回调函数，返回所有可用的BundleInfo。       |
@@ -246,11 +246,12 @@ SystemCapability.BundleManager.BundleFramework
 
 **参数：**
 
-| 名称       | 类型                                                         | 必填 | 描述                                                         |
+| 参数名     | 类型                                                         | 必填 | 说明                                                         |
 | ---------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | bundleFlag | BundleFlag                                                   | 是   | 用于指定返回的应用信息对象中包含信息的标记。取值范围：参考[BundleFlag说明](#bundleflag)中包信息相关flag。 |
 | userId     | number                                                       | 是   | 用户ID。默认值：调用方所在用户，取值范围：大于等于0。        |
-| callback   | AsyncCallback<Array\<[BundleInfo](js-apis-bundle-BundleInfo.md)>> | 是   | 程序启动作为入参的回调函数，获取成功时data为指定用户下所有包的BundleInfo，失败时err为错误数字1。       |
+| callback   | AsyncCallback<Array\<[BundleInfo](js-apis-bundle-BundleInfo.md)>> | 是   | 程序启动作为入参的回调函数，返回指定用户下所有包的BundleInfo
+       |
 
 **示例：**
 
@@ -286,7 +287,7 @@ SystemCapability.BundleManager.BundleFramework
 
 **参数：**
 
-| 名称          | 类型            | 必填   | 描述                                      |
+| 参数名         | 类型            | 必填   | 说明                                      |
 | ----------- | ------------- | ---- | --------------------------------------- |
 | bundleName  | string        | 是    | 要查询的应用程序包名。                                      |
 | bundleFlags | number        | 是    | 用于指定返回的应用信息对象中包含信息的标记。取值范围：参考[BundleFlag说明](#bundleflag)中包信息相关flag。 |
@@ -296,7 +297,7 @@ SystemCapability.BundleManager.BundleFramework
 
 | 类型                   | 说明                           |
 | -------------------- | ---------------------------- |
-| Promise\<[BundleInfo](js-apis-bundle-BundleInfo.md)> | Promise对象，获取成功时返回包信息，失败时返回错误数字1。 |
+| Promise\<[BundleInfo](js-apis-bundle-BundleInfo.md)> | Promise对象，获取成功时返回包信息。 |
 
 **示例：**
 
@@ -333,11 +334,11 @@ SystemCapability.BundleManager.BundleFramework
 
 **参数：**
 
-| 名称        | 类型                                                       | 必填 | 描述                                                         |
+| 参数名      | 类型                                                       | 必填 | 说明                                                         |
 | ----------- | ---------------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | bundleName  | string                                                     | 是   | 需要查询的应用程序包名。                                                         |
 | bundleFlags | number                                                     | 是   | 用于指定返回的应用信息对象中包含信息的标记。取值范围：参考[BundleFlag说明](#bundleflag)中包信息相关flag。 |
-| callback    | AsyncCallback\<[BundleInfo](js-apis-bundle-BundleInfo.md)> | 是   | 程序启动作为入参的回调函数，获取成功时data为包信息，失败时err为错误数字1。                     |
+| callback    | AsyncCallback\<[BundleInfo](js-apis-bundle-BundleInfo.md)> | 是   | 程序启动作为入参的回调函数，返回包信息。                     |
 
 **示例：**
 
@@ -373,12 +374,12 @@ SystemCapability.BundleManager.BundleFramework
 
 **参数：**
 
-| 名称        | 类型                                                       | 必填 | 描述                                                         |
-| ----------- | ---------------------------------------------------------- | --- | ------------------------------------------------------------ |
-| bundleName  | string                                                     | 是   | 需要查询的应用程序包名。                                                         |
-| bundleFlags | number                                                     | 是   | 用于指定返回的应用信息对象中包含信息的标记。取值范围：参考[BundleFlag说明](#bundleflag)中包信息相关flag。 |
-| options     | [BundleOptions](#bundleoptions)                            | 是   | 包含userid的查询选项。                                                 |
-| callback    | AsyncCallback\<[BundleInfo](js-apis-bundle-BundleInfo.md)> | 是   | 程序启动作为入参的回调函数，获取成功时data为包信息，失败时err为错误数字1。                     |
+| 参数名      | 类型                                                       | 必填 | 说明                                                         |
+| ----------- | ---------------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| bundleName  | string                                                     | 是   | 包名                                                         |
+| bundleFlags | number                                                     | 是   | 用于指定返回的应用信息对象中包含信息的标记。默认值：0，取值范围：参考[BundleFlag说明](#bundleflag)中包信息相关flag |
+| options     | [BundleOptions](#bundleoptions)                            | 是   | 包含userid。                                                 |
+| callback    | AsyncCallback\<[BundleInfo](js-apis-bundle-BundleInfo.md)> | 是   | 程序启动作为入参的回调函数，返回包信息。                     |
 
 **示例：**
 
@@ -457,7 +458,7 @@ SystemCapability.BundleManager.BundleFramework
 
 **参数：**
 
-| 名称     | 类型                                                         | 必填 | 描述             |
+| 参数名   | 类型                                                         | 必填 | 说明             |
 | -------- | ------------------------------------------------------------ | ---- | ---------------- |
 | callback | AsyncCallback<[BundleInstaller](js-apis-bundle-BundleInstaller.md)> | 是   | 回调函数，返回安装接口对象。 |
 
@@ -494,7 +495,7 @@ SystemCapability.BundleManager.BundleFramework
 
 **参数：**
 
-| 名称       | 类型                | 必填 | 描述                                  |
+| 参数名      | 类型                | 必填 | 说明                                  |
 | ---------- | ------------------- | ---- | ------------------------------------- |
 | bundleName | string              | 是   | 指示要清除其缓存数据的应用程序包名称。 |
 | callback   | AsyncCallback\<void> | 是   | 回调函数。          |
@@ -535,7 +536,7 @@ SystemCapability.BundleManager.BundleFramework
 
 **参数：**
 
-| 名称       | 类型   | 必填 | 描述                                  |
+| 参数名     | 类型   | 必填 | 说明                                  |
 | ---------- | ------ | ---- | ------------------------------------- |
 | bundleName | string | 是   | 指示要清除其缓存数据的应用程序包名称。 |
 
@@ -579,7 +580,7 @@ SystemCapability.BundleManager.BundleFramework
 
 **参数：**
 
-| 名称       | 类型                | 必填 | 描述                                            |
+| 参数名      | 类型                | 必填 | 说明                                            |
 | ---------- | ------------------- | ---- | ----------------------------------------------- |
 | bundleName | string              | 是   | 应用程序包名称。                                |
 | isEnable   | boolean             | 是   | 指定是否启用应用程序。true表示启用，false表示禁用。 |
@@ -621,7 +622,7 @@ SystemCapability.BundleManager.BundleFramework
 
 **参数：**
 
-| 名称       | 类型    | 必填 | 描述                                            |
+| 参数名     | 类型    | 必填 | 说明                                            |
 | ---------- | ------- | ---- | ----------------------------------------------- |
 | bundleName | string  | 是   | 应用程序包名称。                                |
 | isEnable   | boolean | 是   | 指定是否启用应用程序。true表示启用，false禁用。 |
@@ -666,36 +667,11 @@ SystemCapability.BundleManager.BundleFramework
 
 **参数：**
 
-| 名称     | 类型                                         | 必填 | 描述                                            |
+| 参数名   | 类型                                         | 必填 | 说明                                            |
 | -------- | -------------------------------------------- | ---- | ----------------------------------------------- |
 | info     | [AbilityInfo](js-apis-bundle-AbilityInfo.md) | 是   | Ability信息，指示需要设置启用状态的Ability。                                   |
 | isEnable | boolean                                      | 是   | 指定是否启用应用程序。true表示启用，false禁用。 |
-| callback | AsyncCallback\<void>                          | 是   | 回调函数。                    |
-
-**示例：**
-
-```ts
-let flag = bundle.BundleFlag.GET_ABILITY_INFO_WITH_PERMISSION;
-let userId = 100;
-let want = {
-    bundleName : "com.example.myapplication",
-    abilityName : "com.example.myapplication.MainAbility"
-};
-
-bundle.getAbilityInfo(want, flag, userId).then((abilityInfo) => {
-    console.info('getAbilityInfo successfully. Data: ' + JSON.stringify(abilitiesInfo));
-
-    bundle.setAbilityEnabled(abilityInfo, false, err => {
-        if (err) {
-            console.error('setAbilityEnabled failed:' + JSON.stringify(err));
-        } else {
-            console.info('setAbilityEnabled successfully.');
-        }
-    });
-}).catch(error => {
-    console.error('getAbilityInfo failed. Cause: ' + JSON.stringify(error));
-});
-```
+| callback | AsyncCallback\<void>                         | 是   | 为返回操作结果而调用的回调。                    |
 
 ## bundle.setAbilityEnabled<sup>deprecated<sup>
 
@@ -719,7 +695,7 @@ SystemCapability.BundleManager.BundleFramework
 
 **参数：**
 
-| 名称     | 类型                                         | 必填 | 描述                                            |
+| 参数名   | 类型                                         | 必填 | 说明                                            |
 | -------- | -------------------------------------------- | ---- | ----------------------------------------------- |
 | info     | [AbilityInfo](js-apis-bundle-AbilityInfo.md) | 是   | Ability信息，指示需要设置启用状态的Ability。                                   |
 | isEnable | boolean                                      | 是   | 指定是否启用应用程序。true表示启用，false禁用。 |
@@ -774,7 +750,7 @@ SystemCapability.BundleManager.BundleFramework
 
 **参数：**
 
-| 名称           | 类型                                                         | 必填 | 描述                                             |
+| 参数名         | 类型                                                         | 必填 | 说明                                             |
 | -------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------ |
 | permissionName | string                                                       | 是   | 需要查询的权限的名称。                                 |
 | callback       | AsyncCallback<[PermissionDef](js-apis-bundle-PermissionDef)> | 是   | 程序启动作为入参的回调函数，返回定义的权限信息。 |
@@ -798,7 +774,7 @@ bundleManager.getPermissionDef(permission, (err, data) => {
 
 getPermissionDef(permissionName: string): Promise&lt;PermissionDef&gt;
 
-按权限名称获取权限的详细信息，使用promise异步回调。获取成功时返回权限详细信息，失败时返回错误数字1。
+按权限名称获取权限的详细信息，使用promise异步回调。。
 
 **需要权限：**
 
@@ -814,7 +790,7 @@ SystemCapability.BundleManager.BundleFramework
 
 **参数：**
 
-| 名称           | 类型   | 必填 | 描述             |
+| 参数名         | 类型   | 必填 | 说明             |
 | -------------- | ------ | ---- | ---------------- |
 | permissionName | string | 是   | 需要查询的权限的名称。 |
 
@@ -822,7 +798,7 @@ SystemCapability.BundleManager.BundleFramework
 
 | 类型                                                   | 说明                                                   |
 | ------------------------------------------------------ | ------------------------------------------------------ |
-| Promise<[PermissionDef](js-apis-bundle-PermissionDef)> | Promise对象，获取成功时返回权限详细信息，失败时返回错误数字1。 |
+| Promise<[PermissionDef](js-apis-bundle-PermissionDef)> | Promise对象，获取成功时返回权限详细信息。 |
 
 **示例：**
 
@@ -853,7 +829,7 @@ SystemCapability.BundleManager.BundleFramework
 
 **参数：**
 
-| 名称        | 类型   | 必填 | 描述                                                         |
+| 参数名      | 类型   | 必填 | 说明                                                         |
 | ----------- | ------ | ---- | ------------------------------------------------------------ |
 | bundleFlags | number | 是   | 用于指定返回的应用信息对象中包含信息的标记。取值范围：参考[BundleFlag说明](#bundleflag)中应用信息相关flag。 |
 | userId      | number | 否   | 用户ID。默认值：调用方所在用户，取值范围：大于等于0。        |
@@ -862,7 +838,7 @@ SystemCapability.BundleManager.BundleFramework
 
 | 类型                               | 说明                              |
 | -------------------------------- | ------------------------------- |
-| Promise<Array\<[ApplicationInfo](js-apis-bundle-ApplicationInfo.md)>> | Promise对象，获取成功时返回应用信息列表，失败时返回错误数字1。 |
+| Promise<Array\<[ApplicationInfo](js-apis-bundle-ApplicationInfo.md)>> | Promise对象，获取成功时返回应用信息列表。 |
 
 **示例：**
 
@@ -883,7 +859,7 @@ bundle.getAllApplicationInfo(bundleFlags, userId)
 
 getAllApplicationInfo(bundleFlags: number, userId: number, callback: AsyncCallback<Array\<ApplicationInfo>>): void
 
-获取指定用户下所有已安装的应用信息，使用callback异步回调。获取成功时data为应用信息列表，失败时err为错误数字1。
+获取指定用户下所有已安装的应用信息，使用callback异步回调。
 
 **需要权限：**
 
@@ -895,11 +871,11 @@ SystemCapability.BundleManager.BundleFramework
 
 **参数：**
 
-| 名称        | 类型                                                         | 必填 | 描述                                                         |
+| 参数名      | 类型                                                         | 必填 | 说明                                                         |
 | ----------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | bundleFlags | number                                                       | 是   | 用于指定返回的应用信息对象中包含信息的标记。取值范围：参考[BundleFlag说明](#bundleflag)中应用信息相关flag。 |
 | userId      | number                                                       | 否   | 用户ID。默认值：调用方所在用户，取值范围：大于等于0。        |
-| callback    | AsyncCallback<Array\<[ApplicationInfo](js-apis-bundle-ApplicationInfo.md)>> | 是   | 程序启动作为入参的回调函数，获取成功时data为应用信息列表，失败时err为错误数字1。               |
+| callback    | AsyncCallback<Array\<[ApplicationInfo](js-apis-bundle-ApplicationInfo.md)>> | 是   | 程序启动作为入参的回调函数，返回应用信息列表。               |
 
 **示例：**
 
@@ -922,7 +898,7 @@ bundle.getAllApplicationInfo(bundleFlags, userId, (err, data) => {
 
 getAllApplicationInfo(bundleFlags: number, callback: AsyncCallback<Array\<ApplicationInfo>>) : void;
 
-获取所有已安装的应用信息，使用callback异步回调。获取成功时data为应用信息列表，失败时err为错误数字1。
+获取所有已安装的应用信息，使用callback异步回调。
 
 **需要权限：**
 
@@ -934,10 +910,10 @@ SystemCapability.BundleManager.BundleFramework
 
 **参数：**
 
-| 名称        | 类型                                                         | 必填 | 描述                                                         |
+| 参数名      | 类型                                                         | 必填 | 说明                                                         |
 | ----------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | bundleFlags | number                                                       | 是   | 用于指定返回的应用信息对象中包含信息的标记。取值范围：参考[BundleFlag说明](#bundleflag)中应用信息相关flag。 |
-| callback    | AsyncCallback<Array\<[ApplicationInfo](js-apis-bundle-ApplicationInfo.md)>> | 是   | 程序启动作为入参的回调函数，获取成功时data为应用信息列表，失败时err为错误数字1。               |
+| callback    | AsyncCallback<Array\<[ApplicationInfo](js-apis-bundle-ApplicationInfo.md)>> | 是   | 程序启动作为入参的回调函数，返回应用信息列表。               |
 
 **示例：**
 
@@ -966,7 +942,7 @@ SystemCapability.BundleManager.BundleFramework
 
 **参数：**
 
-| 名称         | 类型     | 必填   | 描述           |
+| 参数名        | 类型     | 必填   | 说明           |
 | ---------- | ------ | ---- | ------------ |
 | hapFilePath | string | 是    | HAP存放路径。路径应指向当前应用程序的数据目录的相对目录。 |
 | bundleFlags | number | 是    | 用于指定要返回的BundleInfo对象中包含信息的标记。取值范围：参考[BundleFlag说明](#bundleflag)中包信息相关flag。 |
@@ -1003,7 +979,7 @@ SystemCapability.BundleManager.BundleFramework
 
 **参数：**
 
-| 名称         | 类型     | 必填   | 描述           |
+| 参数名        | 类型     | 必填   | 说明           |
 | ---------- | ------ | ---- | ------------ |
 | hapFilePath | string | 是    | HAP存放路径，支持当前应用程序的绝对路径和数据目录沙箱路径。 |
 | bundleFlags | number | 是    | 用于指定要返回的BundleInfo对象中包含信息的标记。取值范围：参考[BundleFlag说明](#bundleflag)中包信息相关flag。 |
@@ -1043,7 +1019,7 @@ SystemCapability.BundleManager.BundleFramework
 
 **参数：**
 
-| 名称          | 类型     | 必填   | 描述               |
+| 参数名         | 类型     | 必填   | 说明               |
 | ----------- | ------ | ---- | ---------------- |
 | bundleName  | string | 是    | 应用程序包名。     |
 | abilityName | string | 是    | Ability组件名称。 |
@@ -1086,7 +1062,7 @@ SystemCapability.BundleManager.BundleFramework
 
 **参数：**
 
-| 名称         | 类型     | 必填   | 描述            |
+| 参数名        | 类型     | 必填   | 说明            |
 | ----------- | ------------ | ---- | ---------------- |
 | bundleName  | string | 是    | 应用程序包名。     |
 | abilityName | string | 是    | Ability名称。 |
@@ -1125,7 +1101,7 @@ SystemCapability.BundleManager.BundleFramework
 
 **参数：**
 
-| 名称          | 类型     | 必填   | 描述               |
+| 参数名         | 类型     | 必填   | 说明               |
 | ----------- | ------ | ---- | ---------------- |
 | bundleName  | string | 是    | 应用程序包名。     |
 | abilityName | string | 是    | Ability名称。 |
@@ -1168,7 +1144,7 @@ SystemCapability.BundleManager.BundleFramework
 
 **参数：**
 
-| 名称          | 类型                     | 必填   | 描述               |
+| 参数名         | 类型                     | 必填   | 说明               |
 | ----------- | ---------------------- | ---- | ---------------- |
 | bundleName  | string                 | 是    | 应用程序包名。     |
 | abilityName | string                 | 是    | Ability名称。 |
@@ -1202,9 +1178,9 @@ SystemCapability.BundleManager.BundleFramework
 
 **参数：**
 
-| 名称   | 类型          | 必填   | 描述           |
-| ---- | ----------- | ---- | ------------ |
-| info | [AbilityInfo](js-apis-bundle-AbilityInfo.md) | 是    | Ability信息 |
+| 参数名 | 类型                                         | 必填 | 说明              |
+| ------ | -------------------------------------------- | ---- | ----------------- |
+| info   | [AbilityInfo](js-apis-bundle-AbilityInfo.md) | 是   | Ability的配置信息 |
 
 **返回值：**
 
@@ -1240,10 +1216,10 @@ SystemCapability.BundleManager.BundleFramework
 
 **参数：**
 
-| 名称       | 类型                      | 必填   | 描述              |
-| -------- | ----------------------- | ---- | --------------- |
-| info     | [AbilityInfo](js-apis-bundle-AbilityInfo.md)             | 是    | Ability的配置信息    |
-| callback | AsyncCallback\<boolean> | 是    | 返回boolean代表是否启用 |
+| 参数名   | 类型                                         | 必填 | 说明                    |
+| -------- | -------------------------------------------- | ---- | ----------------------- |
+| info     | [AbilityInfo](js-apis-bundle-AbilityInfo.md) | 是   | Ability的配置信息       |
+| callback | AsyncCallback\<boolean>                      | 是   | 返回boolean代表是否启用 |
 
 **示例：**
 
@@ -1275,9 +1251,9 @@ SystemCapability.BundleManager.BundleFramework
 
 **参数：**
 
-| 名称         | 类型     | 必填   | 描述           |
-| ---------- | ------ | ---- | ------------ |
-| bundleName | string | 是    | 要查询的应用程序包名称。 |
+| 参数名     | 类型   | 必填 | 说明                     |
+| ---------- | ------ | ---- | ------------------------ |
+| bundleName | string | 是   | 要查询的应用程序包名称。 |
 
 **返回值：**
 
@@ -1311,10 +1287,10 @@ SystemCapability.BundleManager.BundleFramework
 
 **参数：**
 
-| 名称         | 类型                      | 必填   | 描述              |
-| ---------- | ----------------------- | ---- | --------------- |
-| bundleName | string                  | 是    | 要查询的应用程序包名称。    |
-| callback   | AsyncCallback\<boolean> | 是    | 返回boolean代表是否启用。 |
+| 参数名     | 类型                    | 必填 | 说明                     |
+| ---------- | ----------------------- | ---- | ------------------------ |
+| bundleName | string                  | 是   | 要查询的应用程序包名称。 |
+| callback   | AsyncCallback\<boolean> | 是   | 返回boolean代表是否启用  |
 
 **示例：**
 
@@ -1348,7 +1324,7 @@ SystemCapability.BundleManager.BundleFramework
 
 **参数：**
 
-| 名称          | 类型     | 必填   | 描述                                    |
+| 参数名         | 类型     | 必填   | 说明                                    |
 | ----------- | ------ | ---- | ------------------------------------- |
 | want        | [Want](js-apis-application-Want.md)   | 是    | 包含要查询的应用程序包名称的意图。                     |
 | bundleFlags | number | 是    | 用于指定返回abilityInfo信息。取值范围：参考[BundleFlag说明](#bundleflag)中Ability信息相关flag。 |
@@ -1398,7 +1374,7 @@ SystemCapability.BundleManager.BundleFramework
 
 **参数：**
 
-| 名称        | 类型                                                         | 必填 | 描述                                                         |
+| 参数名      | 类型                                                         | 必填 | 说明                                                         |
 | ----------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | want        | [Want](js-apis-application-Want.md)                          | 是   | 指示包含要查询的应用程序包名称的意图。                       |
 | bundleFlags | number                                                       | 是   | 用于指定返回abilityInfo信息。默认值：0，取值范围：参考[BundleFlag说明](#bundleflag)中Ability信息相关flag。 |
@@ -1442,7 +1418,7 @@ SystemCapability.BundleManager.BundleFramework
 
 **参数：**
 
-| 名称        | 类型                                                         | 必填 | 描述                                                         |
+| 参数名      | 类型                                                         | 必填 | 说明                                                         |
 | ----------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | want        | [Want](js-apis-application-Want.md)                          | 是   | 指示包含要查询的应用程序包名称的意图。                       |
 | bundleFlags | number                                                       | 是   | 用于指定返回abilityInfo信息。默认值：0，取值范围：参考[BundleFlag说明](#bundleflag)中Ability信息相关flag。 |
@@ -1485,9 +1461,9 @@ SystemCapability.BundleManager.BundleFramework
 
 **参数：**
 
-| 名称         | 类型     | 必填   | 描述           |
-| ---------- | ------ | ---- | ------------ |
-| bundleName | string | 是    | 要查询的应用程序包名称。 |
+| 参数名     | 类型   | 必填 | 说明                     |
+| ---------- | ------ | ---- | ------------------------ |
+| bundleName | string | 是   | 要查询的应用程序包名称。 |
 
 **返回值：**
 | 类型             | 说明                                     |
@@ -1524,10 +1500,10 @@ SystemCapability.BundleManager.BundleFramework
 
 **参数：**
 
-| 名称         | 类型                   | 必填   | 描述                             |
-| ---------- | -------------------- | ---- | ------------------------------ |
-| bundleName | string               | 是    | 要查询的应用程序包名称。                   |
-| callback   | AsyncCallback\<[Want](js-apis-application-Want.md)> | 是    | 程序启动作为入参的回调函数，返回拉起指定应用的want对象。 |
+| 参数名     | 类型                                                | 必填 | 说明                                                     |
+| ---------- | --------------------------------------------------- | ---- | -------------------------------------------------------- |
+| bundleName | string                                              | 是   | 要查询的应用程序包名称。                                 |
+| callback   | AsyncCallback\<[Want](js-apis-application-Want.md)> | 是   | 程序启动作为入参的回调函数，返回拉起指定应用的want对象。 |
 
 **示例：**
 
@@ -1557,9 +1533,9 @@ SystemCapability.BundleManager.BundleFramework
 
 **参数：**
 
-| 名称   | 类型     | 必填   | 描述       |
-| ---- | ------ | ---- | -------- |
-| uid  | number | 是    | 要查询的uid。 |
+| 参数名 | 类型   | 必填 | 说明          |
+| ------ | ------ | ---- | ------------- |
+| uid    | number | 是   | 要查询的uid。 |
 
 **返回值：**
 | 类型               | 说明                                |
@@ -1592,10 +1568,10 @@ SystemCapability.BundleManager.BundleFramework
 
 **参数：**
 
-| 名称       | 类型                     | 必填   | 描述                        |
-| -------- | ---------------------- | ---- | ------------------------- |
-| uid      | number                 | 是    | 要查询的uid。                  |
-| callback | AsyncCallback\<string> | 是    | 程序启动作为入参的回调函数，返回指定uid的包名。 |
+| 参数名   | 类型                   | 必填 | 说明                                            |
+| -------- | ---------------------- | ---- | ----------------------------------------------- |
+| uid      | number                 | 是   | 要查询的uid。                                   |
+| callback | AsyncCallback\<string> | 是   | 程序启动作为入参的回调函数，返回指定uid的包名。 |
 
 **示例：**
 
@@ -1630,10 +1606,10 @@ SystemCapability.BundleManager.BundleFramework
 
 **参数：**
 
-| 名称          | 类型                                       | 必填   | 描述                                       |
-| ----------- | ---------------------------------------- | ---- | ---------------------------------------- |
-| bundleName  | string                                   | 是    | 要查询的应用包名称。                          |
-| abilityName | string                                   | 是    | 要查询的ability名称。                         |
+| 参数名      | 类型   | 必填 | 说明                  |
+| ----------- | ------ | ---- | --------------------- |
+| bundleName  | string | 是   | 要查询的bundleName。  |
+| abilityName | string | 是   | 要查询的abilityName。 |
 
 **返回值：**
 | 类型                  | 说明                                                         |
@@ -1673,7 +1649,7 @@ SystemCapability.BundleManager.BundleFramework
 
 **参数：**
 
-| 名称          | 类型                                       | 必填   | 描述                                       |
+| 参数名         | 类型                                       | 必填   | 说明                                       |
 | ----------- | ---------------------------------------- | ---- | ---------------------------------------- |
 | bundleName  | string                                   | 是    | 要查询的应用包名。                      |
 | abilityName | string                                   | 是    | 要查询的Ability组件名。                         |
@@ -1698,28 +1674,28 @@ bundle.getAbilityIcon(bundleName, abilityName, (err, data) => {
 
  **系统能力:** SystemCapability.BundleManager.BundleFramework
 
-| 名称                                       | 默认值  | 说明                        |
-| ---------------------------------------- | ---- | ------------------------- |
-| SUCCESS                                  | 0    | 安装成功。                      |
-| STATUS_INSTALL_FAILURE                   | 1    | 安装失败（不存在安装的应用）。            |
-| STATUS_INSTALL_FAILURE_ABORTED           | 2    | 安装中止。                      |
-| STATUS_INSTALL_FAILURE_INVALID           | 3    | 安装参数无效。                    |
-| STATUS_INSTALL_FAILURE_CONFLICT          | 4    | 安装冲突 （常见于升级和已有应用基本信息不一致）。  |
-| STATUS_INSTALL_FAILURE_STORAGE           | 5    | 存储包信息失败。                   |
-| STATUS_INSTALL_FAILURE_INCOMPATIBLE      | 6    | 安装不兼容（常见于版本降级安装或者签名信息错误）。  |
-| STATUS_UNINSTALL_FAILURE                 | 7    | 卸载失败 （不存在卸载的应用）。           |
-| STATUS_UNINSTALL_FAILURE_BLOCKED         | 8    | 卸载中止 （没有使用）。               |
-| STATUS_UNINSTALL_FAILURE_ABORTED         | 9    | 卸载中止 （参数无效导致）。             |
-| STATUS_UNINSTALL_FAILURE_CONFLICT        | 10   | 卸载冲突 （卸载系统应用失败， 结束应用进程失败）。 |
-| STATUS_INSTALL_FAILURE_DOWNLOAD_TIMEOUT  | 0x0B | 安装失败 （下载超时）。               |
-| STATUS_INSTALL_FAILURE_DOWNLOAD_FAILED   | 0x0C | 安装失败 （下载失败）。               |
-| STATUS_RECOVER_FAILURE_INVALID<sup>8+</sup> | 0x0D | 恢复预置应用失败。                  |
-| STATUS_ABILITY_NOT_FOUND                 | 0x40 | Ability未找到。                |
-| STATUS_BMS_SERVICE_ERROR                 | 0x41 | BMS服务错误。                   |
-| STATUS_FAILED_NO_SPACE_LEFT<sup>8+</sup> | 0x42 | 设备空间不足。                    |
-| STATUS_GRANT_REQUEST_PERMISSIONS_FAILED<sup>8+</sup> | 0x43 | 应用授权失败。                    |
-| STATUS_INSTALL_PERMISSION_DENIED<sup>8+</sup> | 0x44 | 安装权限拒绝。                    |
-| STATUS_UNINSTALL_PERMISSION_DENIED<sup>8+</sup> | 0x45 | 卸载权限拒绝。                    |
+| 名称                                                 | 值   | 说明                                             |
+| ---------------------------------------------------- | ---- | ------------------------------------------------ |
+| SUCCESS                                              | 0    | 安装成功                                         |
+| STATUS_INSTALL_FAILURE                               | 1    | 安装失败（不存在安装的应用）                     |
+| STATUS_INSTALL_FAILURE_ABORTED                       | 2    | 安装中止                                         |
+| STATUS_INSTALL_FAILURE_INVALID                       | 3    | 安装参数无效                                     |
+| STATUS_INSTALL_FAILURE_CONFLICT                      | 4    | 安装冲突 （常见于升级和已有应用基本信息不一致）  |
+| STATUS_INSTALL_FAILURE_STORAGE                       | 5    | 存储包信息失败                                   |
+| STATUS_INSTALL_FAILURE_INCOMPATIBLE                  | 6    | 安装不兼容（常见于版本降级安装或者签名信息错误） |
+| STATUS_UNINSTALL_FAILURE                             | 7    | 卸载失败 （不存在卸载的应用）                    |
+| STATUS_UNINSTALL_FAILURE_BLOCKED                     | 8    | 卸载中止 （没有使用）                            |
+| STATUS_UNINSTALL_FAILURE_ABORTED                     | 9    | 卸载中止 （参数无效导致）                        |
+| STATUS_UNINSTALL_FAILURE_CONFLICT                    | 10   | 卸载冲突 （卸载系统应用失败， 结束应用进程失败） |
+| STATUS_INSTALL_FAILURE_DOWNLOAD_TIMEOUT              | 0x0B | 安装失败 （下载超时）                            |
+| STATUS_INSTALL_FAILURE_DOWNLOAD_FAILED               | 0x0C | 安装失败 （下载失败）                            |
+| STATUS_RECOVER_FAILURE_INVALID<sup>8+</sup>          | 0x0D | 恢复预置应用失败                                 |
+| STATUS_ABILITY_NOT_FOUND                             | 0x40 | Ability未找到                                    |
+| STATUS_BMS_SERVICE_ERROR                             | 0x41 | BMS服务错误                                      |
+| STATUS_FAILED_NO_SPACE_LEFT<sup>8+</sup>             | 0x42 | 设备空间不足                                     |
+| STATUS_GRANT_REQUEST_PERMISSIONS_FAILED<sup>8+</sup> | 0x43 | 应用授权失败                                     |
+| STATUS_INSTALL_PERMISSION_DENIED<sup>8+</sup>        | 0x44 | 缺少安装权限                                     |
+| STATUS_UNINSTALL_PERMISSION_DENIED<sup>8+</sup>      | 0x45 | 缺少卸载权限                                     |
 
 ## BundleFlag<sup>deprecated<sup>
 
@@ -1733,20 +1709,20 @@ bundle.getAbilityIcon(bundleName, abilityName, (err, data) => {
 
  **系统能力:** 以下各项对应的系统能力均为SystemCapability.BundleManager.BundleFramework
 
-| 名称                                       | 值        | 说明                  |
-| ---------------------------------------- | ---------- | ------------------- |
-| GET_BUNDLE_DEFAULT                       | 0x00000000 | 获取默认的应用信息。           |
-| GET_BUNDLE_WITH_ABILITIES                | 0x00000001 | 获取包括Ability信息的包信息。   |
-| GET_ABILITY_INFO_WITH_PERMISSION         | 0x00000002 | 获取包括权限的Ability信息。    |
-| GET_ABILITY_INFO_WITH_APPLICATION        | 0x00000004 | 获取包括应用的Ability信息。    |
-| GET_APPLICATION_INFO_WITH_PERMISSION     | 0x00000008 | 获取包括权限的应用信息。         |
-| GET_BUNDLE_WITH_REQUESTED_PERMISSION     | 0x00000010 | 获取包括所需权限的包信息。        |
-| GET_ABILITY_INFO_WITH_METADATA<sup>8+</sup> | 0x00000020 | 获取ability的元数据信息。     |
-| GET_APPLICATION_INFO_WITH_METADATA<sup>8+</sup> | 0x00000040 | 获取应用的元数据信息。          |
-| GET_ABILITY_INFO_SYSTEMAPP_ONLY<sup>8+</sup> | 0x00000080 | 获取仅包括系统应用的ability信息。 |
-| GET_ABILITY_INFO_WITH_DISABLE<sup>8+</sup> | 0x00000100 | 获取包括被禁用的ability信息。   |
-| GET_APPLICATION_INFO_WITH_DISABLE<sup>8+</sup> | 0x00000200 | 获取包括被禁用的应用信息。        |
-| GET_ALL_APPLICATION_INFO                 | 0xFFFF0000 | 获取应用所有的信息。           |
+| 名称                                            | 值         | 说明                            |
+| ----------------------------------------------- | ---------- | ------------------------------- |
+| GET_BUNDLE_DEFAULT                              | 0x00000000 | 获取默认的应用信息              |
+| GET_BUNDLE_WITH_ABILITIES                       | 0x00000001 | 获取包括Ability信息的包信息     |
+| GET_ABILITY_INFO_WITH_PERMISSION                | 0x00000002 | 获取包括权限的Ability信息       |
+| GET_ABILITY_INFO_WITH_APPLICATION               | 0x00000004 | 获取包括Application的ability信息       |
+| GET_APPLICATION_INFO_WITH_PERMISSION            | 0x00000008 | 获取包括权限的应用信息          |
+| GET_BUNDLE_WITH_REQUESTED_PERMISSION            | 0x00000010 | 获取包括所需权限的包信息        |
+| GET_ABILITY_INFO_WITH_METADATA<sup>8+</sup>     | 0x00000020 | 获取ability的元数据信息         |
+| GET_APPLICATION_INFO_WITH_METADATA<sup>8+</sup> | 0x00000040 | 获取应用的元数据信息            |
+| GET_ABILITY_INFO_SYSTEMAPP_ONLY<sup>8+</sup>    | 0x00000080 | 获取仅包括系统应用的ability信息 |
+| GET_ABILITY_INFO_WITH_DISABLE<sup>8+</sup>      | 0x00000100 | 获取包括被禁用的ability信息     |
+| GET_APPLICATION_INFO_WITH_DISABLE<sup>8+</sup>  | 0x00000200 | 获取包括被禁用的应用信息        |
+| GET_ALL_APPLICATION_INFO                        | 0xFFFF0000 | 获取应用所有的信息              |
 
 ## BundleOptions<sup>deprecated<sup>
 > 从API version 9开始不再维护，不推荐使用。
@@ -1755,9 +1731,9 @@ bundle.getAbilityIcon(bundleName, abilityName, (err, data) => {
 
  **系统能力:** SystemCapability.BundleManager.BundleFramework
 
-| 名称     | 类型     | 可读   | 可写   | 说明                           |
-| ------ | ------ | ---- | ---- | ---------------------------- |
-| userId | number | 是    | 是    | 用户ID。默认值：调用方所在用户，取值范围：大于等于0。 |
+| 参数名 | 类型   | 可读 | 可写 | 说明                                                  |
+| ------ | ------ | ---- | ---- | ----------------------------------------------------- |
+| userId | number | 是   | 是   | 用户ID。默认值：调用方所在用户，取值范围：大于等于0。 |
 
 ## AbilityType<sup>deprecated<sup>
 
@@ -1767,12 +1743,12 @@ Ability组件类型。
 
  **系统能力:** 以下各项对应的系统能力均为SystemCapability.BundleManager.BundleFramework
 
-| 名称      | 类型   | 说明                |
-| ------- | ---- | ----------------- |
-| UNKNOWN | 无    | 未知Ability类型       |
-| PAGE    | 无    | Ability有一个UI界面    |
-| SERVICE | 无    | Ability没有UI界面     |
-| DATA    | 无    | Ability用于提供数据访问服务 |
+| 参数名  | 类型 | 说明                        |
+| ------- | ---- | --------------------------- |
+| UNKNOWN | 无   | 未知Ability类型             |
+| PAGE    | 无   | 表示基于Page模板开发的FA，用于提供与用户交互的能力        |
+| SERVICE | 无   | 表示基于Service模板开发的PA，用于提供后台运行任务的能力           |
+| DATA    | 无   | 表示基于Data模板开发的PA，用于对外部提供统一的数据访问对象 |
 
 ## DisplayOrientation<sup>deprecated<sup>
 
@@ -1782,12 +1758,12 @@ Ability组件类型。
 
  **系统能力:** 以下各项对应的系统能力均为SystemCapability.BundleManager.BundleFramework
 
-| 名称            | 类型   | 说明            |
-| ------------- | ---- | ------------- |
-| UNSPECIFIED   | 无    | 屏幕方向--不指定     |
-| LANDSCAPE     | 无    | 屏幕方向--横屏      |
-| PORTRAIT      | 无    | 屏幕方向--竖屏      |
-| FOLLOW_RECENT | 无    | 屏幕方向--紧跟上一个组件 |
+| 参数名        | 类型 | 说明                     |
+| ------------- | ---- | ------------------------ |
+| UNSPECIFIED   | 无   | 屏幕方向--不指定         |
+| LANDSCAPE     | 无   | 屏幕方向--横屏           |
+| PORTRAIT      | 无   | 屏幕方向--竖屏           |
+| FOLLOW_RECENT | 无   | 屏幕方向--紧跟上一个组件 |
 ## LaunchMode<sup>deprecated<sup>
 
 > 从API version 9开始不再维护，建议使用[bundleManager.LaunchType](js-apis-bundleManager.md#launchtype)替代。
@@ -1796,10 +1772,10 @@ Ability组件的启动模式。
 
  **系统能力:** 以下各项对应的系统能力均为SystemCapability.BundleManager.BundleFramework
 
-| 名称        | 类型   | 说明            |
-| --------- | ---- | ------------- |
-| SINGLETON | 0    | Ability只有一个实例。 |
-| STANDARD  | 1    | Ability有多个实例。  |
+| 参数名    | 类型 | 说明                |
+| --------- | ---- | ------------------- |
+| SINGLETON | 0    | Ability只有一个实例 |
+| STANDARD  | 1    | Ability有多个实例   |
 
 ## AbilitySubType<sup>deprecated<sup>
 > 从API version 9开始不再维护，不推荐使用。
@@ -1808,10 +1784,10 @@ Ability组件的子类型。
 
  **系统能力:** 以下各项对应的系统能力均为SystemCapability.BundleManager.BundleFramework
 
-| 名称          | 类型   | 说明                   |
-| ----------- | ---- | -------------------- |
-| UNSPECIFIED | 0    | 未定义Ability子类型。        |
-| CA          | 1    | Ability子类型是带有 UI 的服务。 |
+| 参数名      | 类型 | 说明                          |
+| ----------- | ---- | ----------------------------- |
+| UNSPECIFIED | 0    | 未定义Ability子类型           |
+| CA          | 1    | Ability子类型是带有 UI 的服务 |
 
 ## ColorMode<sup>deprecated<sup>
 > 从API version 9开始不再维护，不推荐使用。
@@ -1820,11 +1796,11 @@ Ability组件的子类型。
 
  **系统能力:** 以下各项对应的系统能力均为SystemCapability.BundleManager.BundleFramework
 
-| 名称         | 类型   | 说明   |
-| ---------- | ---- | ---- |
-| AUTO_MODE  | -1   | 自动模式。 |
-| DARK_MODE  | 0    | 黑色模式。 |
-| LIGHT_MODE | 1    | 亮度模式。 |
+| 参数名     | 类型 | 说明     |
+| ---------- | ---- | -------- |
+| AUTO_MODE  | -1   | 自动模式 |
+| DARK_MODE  | 0    | 黑色模式 |
+| LIGHT_MODE | 1    | 亮度模式 |
 
 
 ## GrantStatus<sup>deprecated<sup>
@@ -1835,7 +1811,7 @@ Ability组件的子类型。
 
  **系统能力:** 以下各项对应的系统能力均为SystemCapability.BundleManager.BundleFramework
 
-| 名称                 | 类型   | 说明   |
-| ------------------ | ---- | ---- |
-| PERMISSION_DENIED  | -1   | 拒绝许可。 |
-| PERMISSION_GRANTED | 0    | 批准许可。   |
+| 参数名             | 类型 | 说明         |
+| ------------------ | ---- | ------------ |
+| PERMISSION_DENIED  | -1   | 拒绝授予权限 |
+| PERMISSION_GRANTED | 0    | 授予权限     |

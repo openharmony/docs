@@ -28,9 +28,9 @@ setDisposedStatus(appId: string, disposedWant: Want): Promise\<void>
 
 **参数：**
 
-| 名称          | 类型     | 必填   | 描述                                      |
+| 参数名       | 类型     | 必填   | 说明                                    |
 | ----------- | ------ | ---- | --------------------------------------- |
-| appId  | string | 是    | 需要设置处置状态的应用的appId。<br> appId是应用的唯一标识，由应用的包名和签名信息决定，可以通过getBundleInfo接口获取。                    |
+| appId  | string | 是    | 需要设置处置状态的应用的appId。<br> appId是应用的唯一标识，由应用的包名和签名信息决定，获取方法参见[获取应用的appId](#获取应用的appid)。                    |
 | disposedWant | Want  | 是 | 对应用的处置意图。 |
 
 **返回值：**
@@ -41,32 +41,16 @@ setDisposedStatus(appId: string, disposedWant: Want): Promise\<void>
 
 **错误码**
 
-以下错误码的详细介绍请参见[ohos.bundle错误码](../errorcodes/errcode-bundle.md)。
+以下错误码的详细介绍请参见[ohos.bundle错误码](../errorcodes/errorcode-bundle.md)。
 
-| 错误码 | 错误信息                                |
+| 错误码ID | 错误信息                                |
 | ------ | -------------------------------------- |
 | 17700005 |  The specified appId was not found.  |
 
 **示例：**
 
 ```ts
-import appControl from '@ohos.bundle.appControl'
-import bundleManager from '@ohos.bundle.bundleManager';
-
-// 获取appId
-var bundleName = 'com.example.myapplication';
-var appId;
-try {
-    bundleManager.getBundleInfo(bundleName, bundleManager.BundleFlag.GET_BUNDLE_INFO_WITH_SIGNATURE_INFO)
-        .then((data) => {
-            appId = data.signatureInfo.appId;
-        }, error => {
-            console.error("getBundleInfo failed " + error.message);
-        });
-} catch (error) {
-    console.error("getBundleInfo failed " + error.message);
-}
-
+var appId = "com.example.myapplication_xxxxx";
 var want = {bundleName: 'com.example.myapplication'};
 
 try {
@@ -95,49 +79,33 @@ setDisposedStatus(appId: string, disposedWant: Want, callback: AsyncCallback\<vo
 
 **参数：**
 
-| 名称          | 类型                              | 必填   | 描述                                      |
+| 参数名       | 类型                              | 必填   | 说明                                    |
 | ----------- | ------------------------------- | ---- | --------------------------------------- |
-| appId  | string | 是    | 需要设置处置的应用的appId<br> appId是应用的唯一标识，由应用的包名和签名信息决定，可以通过getBundleInfo接口获取。                           |
+| appId  | string | 是    | 需要设置处置的应用的appId<br> appId是应用的唯一标识，由应用的包名和签名信息决定，获取方法参见[获取应用的appId](#获取应用的appid)。                           |
 | disposedWant | Want  | 是 | 对应用的处置意图。 |
 | callback    | AsyncCallback\<void> | 是    | 回调函数，当设置处置状态成功，err为undefined，否则为错误对象。 |
 
 **错误码**
 
-以下错误码的详细介绍请参见[ohos.bundle错误码](../errorcodes/errcode-bundle.md)。
+以下错误码的详细介绍请参见[ohos.bundle错误码](../errorcodes/errorcode-bundle.md)。
 
-| 错误码 | 错误信息                                |
+| 错误码ID | 错误信息                                |
 | ------ | -------------------------------------- |
 | 17700005 |  The specified appId was not found.  |
 
 **示例：**
 
 ```ts
-import appControl from '@ohos.bundle.appControl'
-import bundleManager from '@ohos.bundle.bundleManager';
-
-// 获取appId
-var bundleName = 'com.example.myapplication';
-var appId;
-try {
-    bundleManager.getBundleInfo(bundleName, bundleManager.BundleFlag.GET_BUNDLE_INFO_WITH_SIGNATURE_INFO)
-        .then((data) => {
-            appId = data.signatureInfo.appId;
-        }, error => {
-            console.error("getBundleInfo failed " + error.message);
-        });
-} catch (error) {
-    console.error("getBundleInfo failed " + error.message);
-}
-
+var appId = "com.example.myapplication_xxxxx";
 var want = {bundleName: 'com.example.myapplication'};
 
 try {
-    appControl.setDisposedStatus(appId, want, (err, data) => {
-        if (err) {
+    appControl.setDisposedStatus(appId, want, (error, data) => {
+        if (error) {
             console.error('setDisposedStatus failed ' + error.message);
             return;
         }
-         console.info('setDisposedStatus success');
+        console.info('setDisposedStatus success');
     });
 } catch (error) {
     console.error('setDisposedStatus failed ' + error.message);
@@ -158,9 +126,9 @@ getDisposedStatus(appId: string): Promise\<Want>;
 
 **参数：**
 
-| 名称          | 类型     | 必填   | 描述                                      |
+| 参数名       | 类型     | 必填   | 说明                                    |
 | ----------- | ------ | ---- | --------------------------------------- |
-| appId  | string | 是    | 要查询的应用的appId<br> appId是应用的唯一标识，由应用的包名和签名信息决定，可以通过getBundleInfo接口获取。       |
+| appId  | string | 是    | 要查询的应用的appId<br> appId是应用的唯一标识，由应用的包名和签名信息决定，获取方法参见[获取应用的appId](#获取应用的appid)。       |
 
 **返回值：**
 
@@ -170,31 +138,16 @@ getDisposedStatus(appId: string): Promise\<Want>;
 
 **错误码**
 
-以下错误码的详细介绍请参见[ohos.bundle错误码](../errorcodes/errcode-bundle.md)。
+以下错误码的详细介绍请参见[ohos.bundle错误码](../errorcodes/errorcode-bundle.md)。
 
-| 错误码 | 错误信息                                |
+| 错误码ID | 错误信息                                |
 | ------ | -------------------------------------- |
 | 17700005 |  The specified appId was not found.  |
 
 **示例：**
 
 ```ts
-import appControl from '@ohos.bundle.appControl'
-import bundleManager from '@ohos.bundle.bundleManager';
-
-// 获取appId
-var bundleName = 'com.example.myapplication';
-var appId;
-try {
-    bundleManager.getBundleInfo(bundleName, bundleManager.BundleFlag.GET_BUNDLE_INFO_WITH_SIGNATURE_INFO)
-        .then((data) => {
-            appId = data.signatureInfo.appId;
-        }, error => {
-            console.error("getBundleInfo failed " + error.message);
-        });
-} catch (error) {
-    console.error("getBundleInfo failed " + error.message);
-}
+var appId = "com.example.myapplication_xxxxx";
 
 try {
     appControl.getDisposedStatus(appId)
@@ -222,42 +175,27 @@ getDisposedStatus(appId: string, callback: AsyncCallback\<Want>): void;
 
 **参数：**
 
-| 名称          | 类型     | 必填   | 描述                                      |
+| 参数名       | 类型     | 必填   | 说明                                  |
 | ----------- | ------ | ---- | --------------------------------------- |
-| appId  | string | 是    | 要查询的应用的appId<br> appId是应用的唯一标识，由应用的包名和签名信息决定，可以通过getBundleInfo接口获取。        |
+| appId  | string | 是    | 要查询的应用的appId<br> appId是应用的唯一标识，由应用的包名和签名信息决定，获取方法参见[获取应用的appId](#获取应用的appid)。       |
 | callback    | AsyncCallback\<Want> | 是    | 回调函数。当获取应用的处置状态成功时，err为undefined，data为获取到的处置状态；否则为错误对象。                    |
 
 **错误码**
 
-以下错误码的详细介绍请参见[ohos.bundle错误码](../errorcodes/errcode-bundle.md)。
+以下错误码的详细介绍请参见[ohos.bundle错误码](../errorcodes/errorcode-bundle.md)。
 
-| 错误码 | 错误信息                                |
+| 错误码ID | 错误信息                                |
 | ------ | -------------------------------------- |
 | 17700005 |  The specified appId was not found.  |
 
 **示例：**
 
 ```ts
-import appControl from '@ohos.bundle.appControl'
-import bundleManager from '@ohos.bundle.bundleManager';
-
-// 获取appId
-var bundleName = 'com.example.myapplication';
-var appId;
-try {
-    bundleManager.getBundleInfo(bundleName, bundleManager.BundleFlag.GET_BUNDLE_INFO_WITH_SIGNATURE_INFO)
-        .then((data) => {
-            appId = data.signatureInfo.appId;
-        }, error => {
-            console.error("getBundleInfo failed " + error.message);
-        });
-} catch (error) {
-    console.error("getBundleInfo failed " + error.message);
-}
+var appId = "com.example.myapplication_xxxxx";
 
 try {
-    appControl.getDisposedStatus(appId, (err, data) => {
-        if (err) {
+    appControl.getDisposedStatus(appId, (error, data) => {
+        if (error) {
             console.error('getDisposedStatus failed ' + error.message);
             return;
         }
@@ -282,9 +220,9 @@ deleteDisposedStatus(appId: string): Promise\<void>
 
 **参数：**
 
-| 名称          | 类型     | 必填   | 描述                                      |
+| 参数名       | 类型     | 必填   | 说明                                    |
 | ----------- | ------ | ---- | --------------------------------------- |
-| appId  | string | 是    | 要删除处置状态的应用的appId<br> appId是应用的唯一标识，由应用的包名和签名信息决定，可以通过getBundleInfo接口获取。       |                        |
+| appId  | string | 是    | 要删除处置状态的应用的appId<br> appId是应用的唯一标识，由应用的包名和签名信息决定，获取方法参见[获取应用的appId](#获取应用的appid)。       |
 
 **返回值：**
 
@@ -294,31 +232,16 @@ deleteDisposedStatus(appId: string): Promise\<void>
 
 **错误码**
 
-以下错误码的详细介绍请参见[ohos.bundle错误码](../errorcodes/errcode-bundle.md)。
+以下错误码的详细介绍请参见[ohos.bundle错误码](../errorcodes/errorcode-bundle.md)。
 
-| 错误码 | 错误信息                                |
+| 错误码ID | 错误信息                                |
 | ------ | -------------------------------------- |
 | 17700005 |  The specified appId was not found.  |
 
 **示例：**
 
 ```ts
-import appControl from '@ohos.bundle.appControl'
-import bundleManager from '@ohos.bundle.bundleManager';
-
-// 获取appId
-var bundleName = 'com.example.myapplication';
-var appId;
-try {
-    bundleManager.getBundleInfo(bundleName, bundleManager.BundleFlag.GET_BUNDLE_INFO_WITH_SIGNATURE_INFO)
-        .then((data) => {
-            appId = data.signatureInfo.appId;
-        }, error => {
-            console.error("getBundleInfo failed " + error.message);
-        });
-} catch (error) {
-    console.error("getBundleInfo failed " + error.message);
-}
+var appId = "com.example.myapplication_xxxxx";
 
 try {
     appControl.deleteDisposedStatus(appId)
@@ -346,42 +269,26 @@ deleteDisposedStatus(appId: string, callback: AsyncCallback\<void>) : void
 
 **参数：**
 
-| 名称          | 类型     | 必填   | 描述                                      |
+| 参数名       | 类型     | 必填   | 说明                                    |
 | ----------- | ------ | ---- | --------------------------------------- |
-| appId  | string | 是    | 要查询的应用的appId。<br> appId是应用的唯一标识，由应用的包名和签名信息决定，可以通过getBundleInfo接口获取。       |
+| appId  | string | 是    | 要查询的应用的appId。<br> appId是应用的唯一标识，由应用的包名和签名信息决定，获取方法参见[获取应用的appId](#获取应用的appid)。       |
 | callback    | AsyncCallback\<void> | 是    | 回调函数，当设置处置状态成功时，err返回undefined。否则回调函数返回具体错误对象。                   |
 
 **错误码**
 
-以下错误码的详细介绍请参见[ohos.bundle错误码](../errorcodes/errcode-bundle.md)。
+以下错误码的详细介绍请参见[ohos.bundle错误码](../errorcodes/errorcode-bundle.md)。
 
-| 错误码 | 错误信息                                |
+| 错误码ID | 错误信息                                |
 | ------ | -------------------------------------- |
 | 17700005 |  The specified appId was not found.  |
 
 **示例：**
 
 ```ts
-import appControl from '@ohos.bundle.appControl'
-import bundleManager from '@ohos.bundle.bundleManager';
-
-// 获取appId
-var bundleName = 'com.example.myapplication';
-var appId;
+var appId = "com.example.myapplication_xxxxx";
 try {
-    bundleManager.getBundleInfo(bundleName, bundleManager.BundleFlag.GET_BUNDLE_INFO_WITH_SIGNATURE_INFO)
-        .then((data) => {
-            appId = data.signatureInfo.appId;
-        }, error => {
-            console.error("getBundleInfo failed " + error.message);
-        });
-} catch (error) {
-    console.error("getBundleInfo failed " + error.message);
-}
-
-try {
-    appControl.deleteDisposedStatus(appId, (err, data) => {
-        if (err) {
+    appControl.deleteDisposedStatus(appId, (error, data) => {
+        if (error) {
             console.error('deleteDisposedStatus failed ' + error.message);
             return;
         }
@@ -392,3 +299,26 @@ try {
 }
 ```
 
+## 获取应用的appId
+
+appId是应用的唯一标识，由应用的包名和签名信息决定，可以通过[getBundleInfo](js-apis-bundleManager.md#bundlemanagergetbundleinfo)接口获取。
+
+**示例：**
+
+```ts
+import bundleManager from '@ohos.bundle.bundleManager';
+
+var bundleName = 'com.example.myapplication';
+var appId;
+try {
+    bundleManager.getBundleInfo(bundleName, bundleManager.BundleFlag.GET_BUNDLE_INFO_WITH_SIGNATURE_INFO)
+        .then((data) => {
+            appId = data.signatureInfo.appId;
+            console.info("appId is " + appId);
+        }).catch((error) => {
+            console.error("getBundleInfo failed " + error.message);
+        });
+} catch (error) {
+    console.error("getBundleInfo failed " + error.message);
+}
+```

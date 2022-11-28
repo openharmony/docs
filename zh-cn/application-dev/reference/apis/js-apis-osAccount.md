@@ -37,7 +37,7 @@ getAccountManager(): AccountManager
 
 **系统能力：** SystemCapability.Account.OsAccount。
 
-| 参数   | 默认值 | 说明         |
+| 名称   | 值 | 说明         |
 | ------ | ------ | ----------- |
 | ADMIN  | 0      | 管理员帐号。 |
 | NORMAL | 1      | 普通帐号。   |
@@ -523,7 +523,7 @@ checkOsAccountVerified(localId: number, callback: AsyncCallback&lt;boolean&gt;):
 
 | 参数名   | 类型                         | 必填 | 说明                                                            |
 | -------- | ---------------------------- | ---- | ------------------------------------------------------------- |
-| localId  | number                       | 否   | 系统帐号ID。                              |
+| localId  | number                       | 是   | 系统帐号ID。                              |
 | callback | AsyncCallback&lt;boolean&gt; | 是   | 回调函数。返回true表示指定帐号已验证；返回false表示指定帐号未验证。 |
 
 **错误码：**
@@ -2130,7 +2130,7 @@ setOsAccountProfilePhoto(localId: number, photo: string, callback: AsyncCallback
 | -------- | ------------------------- | ---- | ------------ |
 | localId  | number                    | 是   | 系统帐号ID。 |
 | photo    | string                    | 是   | 头像信息。   |
-| callback | AsyncCallback&lt;void&gt; | 是   | 回调结果。   |
+| callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。如果设置成功，err为null，否则为错误对象。  |
 
 **错误码：**
 
@@ -2381,7 +2381,7 @@ querySerialNumberByOsAccountLocalId(localId: number): Promise&lt;number&gt;
 
 on(type: 'activate' | 'activating', name: string, callback: Callback&lt;number&gt;): void
 
-订阅系统帐号的变动信息。使用callback异步回调。
+订阅系统帐号的激活完成与激活中的事件。使用callback异步回调。
 
 **系统接口：** 此接口为系统接口。
 
@@ -2395,7 +2395,7 @@ on(type: 'activate' | 'activating', name: string, callback: Callback&lt;number&g
 | -------- | -------------------------- | ---- | ------------------------------------------------------------ |
 | type     | 'activate' \| 'activating' | 是   | 订阅类型，activate表示订阅的是帐号已激活完成的事件，activating表示订阅的是帐号正在激活的事件。 |
 | name     | string                     | 是   | 订阅名称，可自定义，要求非空且长度不超过1024字节。           |
-| callback | Callback&lt;number&gt;     | 是   | 订阅系统帐号变动信息的回调，表示当前事件对应的系统帐号ID。    |
+| callback | Callback&lt;number&gt;     | 是   | 订阅系统帐号激活完成与激活中的事件回调，表示激活完成后或正在激活中的系统帐号ID。    |
 
 **错误码：**
 
@@ -2423,7 +2423,7 @@ on(type: 'activate' | 'activating', name: string, callback: Callback&lt;number&g
 
 off(type: 'activate' | 'activating', name: string, callback?: Callback&lt;number&gt;): void
 
-取消订阅系统帐号的变动信息。使用callback异步回调。
+取消订阅系统帐号的激活完成与激活中的事件。使用callback异步回调。
 
 **系统接口：** 此接口为系统接口。
 
@@ -2437,7 +2437,7 @@ off(type: 'activate' | 'activating', name: string, callback?: Callback&lt;number
 | -------- | -------------------------- | ---- | ------------------------------------------------------------ |
 | type     | 'activate' \| 'activating' | 是   | 取消订阅类型，activate表示取消订阅帐号已激活完成的事件，activating取消订阅帐号正在激活的事件。 |
 | name     | string                     | 是   | 订阅名称，可自定义，，要求非空且长度不超过1024字节，需要与订阅接口传入的值保持一致。 |
-| callback | Callback&lt;number&gt;     | 否   | 取消订阅系统帐号变化的回调，默认返回0。                      |
+| callback | Callback&lt;number&gt;     | 否   | 取消订阅系统帐号激活完成与激活中的事件回调，默认返回0。                      |
 
 **错误码：**
 
@@ -3031,7 +3031,7 @@ isOsAccountVerified(localId: number, callback: AsyncCallback&lt;boolean&gt;): vo
 
 | 参数名   | 类型                         | 必填 | 说明                                                            |
 | -------- | ---------------------------- | ---- | ------------------------------------------------------------- |
-| localId  | number                       | 否   | 系统帐号ID。                             |
+| localId  | number                       | 是   | 系统帐号ID。                             |
 | callback | AsyncCallback&lt;boolean&gt; | 是   | 回调函数。返回true表示指定帐号已验证；返回false表示指定帐号未验证。 |
 
 **示例：**
@@ -3985,7 +3985,7 @@ getProperty(request: GetPropertyRequest): Promise&lt;ExecutorProperty&gt;;
 
 ### setProperty<sup>8+</sup>
 
-setProperty(request: SetPropertyRequest, callback: AsyncCallback&lt;number&gt;): void;
+setProperty(request: SetPropertyRequest, callback: AsyncCallback&lt;void&gt;): void;
 
 设置可用于初始化算法的属性。使用callback异步回调。
 
@@ -4000,7 +4000,7 @@ setProperty(request: SetPropertyRequest, callback: AsyncCallback&lt;number&gt;):
 | 参数名    | 类型                                                  | 必填 | 说明                                                                    |
 | -------- | ----------------------------------------------------- | ---- | ---------------------------------------------------------------------- |
 | request  | [SetPropertyRequest](#setpropertyrequest8)| 是   | 请求信息，包括认证类型和要设置的密钥值。                                   |
-| callback | AsyncCallback&lt;number&gt;                           | 是   | 回调函数。如果设置成功，err为null，data为一个[数值](#resultcode8)，指示属性设置是否成功；否则为错误对象。 |
+| callback | AsyncCallback&lt;void&gt;                           | 是   | 回调函数。如果设置成功，err为null，否则为错误对象。 |
 
 **错误码：**
 
@@ -4018,9 +4018,12 @@ setProperty(request: SetPropertyRequest, callback: AsyncCallback&lt;number&gt;):
     setInfo: new Uint8Array([0])
   };
   try {
-    userAuth.setProperty(request, (err, result) => {
-        console.log('setProperty error = ' + JSON.stringify(err));
-        console.log('setProperty result = ' + JSON.stringify(result));
+    userAuth.setProperty(request, (err) => {
+      if (err) {
+        console.log('setProperty failed, error = ' + JSON.stringify(err));
+      } else {
+        console.log('setProperty successfully');
+      }
     });
   } catch (e) {
     console.log('setProperty exception = ' + JSON.stringify(e));
@@ -4029,7 +4032,7 @@ setProperty(request: SetPropertyRequest, callback: AsyncCallback&lt;number&gt;):
 
 ### setProperty<sup>8+</sup>
 
-setProperty(request: SetPropertyRequest): Promise&lt;number&gt;;
+setProperty(request: SetPropertyRequest): Promise&lt;void&gt;;
 
 设置可用于初始化算法的属性。使用Promise异步回调。
 
@@ -4049,7 +4052,7 @@ setProperty(request: SetPropertyRequest): Promise&lt;number&gt;;
 
 | 类型                  | 说明                                                           |
 | :-------------------- | :------------------------------------------------------------ |
-| Promise&lt;number&gt; | Promise对象，返回一个[数值](#resultcode8)，指示属性设置是否成功。 |
+| Promise&lt;void&gt; | Promise对象。无返回结果的Promise对象。 |
 
 **错误码：**
 
@@ -4067,10 +4070,10 @@ setProperty(request: SetPropertyRequest): Promise&lt;number&gt;;
     setInfo: new Uint8Array([0])
   };
   try {
-    userAuth.setProperty(request).then((result) => {
-      console.log('setProperty result = ' + JSON.stringify(result));
+    userAuth.setProperty(request).then(() => {
+      console.log('setProperty successfully');
     }).catch((err) => {
-      console.log('setProperty error = ' + JSON.stringify(err));
+      console.log('setProperty failed, error = ' + JSON.stringify(err));
     });
   } catch (e) {
     console.log('setProperty exception = ' + JSON.stringify(e));
@@ -4974,7 +4977,7 @@ onResult: (result: number, extraInfo: RequestResult) => void;
 | 参数名     | 类型                                    | 必填 | 说明                     |
 | --------- | --------------------------------------- | ---- | ----------------------- |
 | result    | number                                  | 是   | 表示身份认证结果代码。    |
-| extraInfo | [AuthResult](#authresult8)  | 是   | 针对不同情况传递具体信息。|
+| extraInfo | [RequestResult](#requestresult8)  | 是   | 针对不同情况传递具体信息。|
 
 **示例：**
   ```js
@@ -5027,7 +5030,7 @@ onAcquireInfo?: (module: number, acquire: number, extraInfo: any) => void;
 
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.Account.OsAccount
 
-| 参数名    | 类型                                                          | 必填   | 说明                   |
+| 名称    | 类型                                                          | 必填   | 说明                   |
 | -------- | ------------------------------------------------------------- | ----- | ----------------------- |
 | authType | [AuthType](#authtype8)                            | 是    | 身份验证凭据类型。        |
 | keys     | Array&lt;[GetPropertyType](#getpropertytype8)&gt; | 是    | 指示要获取的属性类型数组。 |
@@ -5040,7 +5043,7 @@ onAcquireInfo?: (module: number, acquire: number, extraInfo: any) => void;
 
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.Account.OsAccount
 
-| 参数名    | 类型                                             | 必填   | 说明                 |
+| 名称    | 类型                                             | 必填   | 说明                 |
 | -------- | ------------------------------------------------ | ----- | -------------------- |
 | authType | [AuthType](#authtype8)               | 是    | 身份验证凭据类型。     |
 | key     | [SetPropertyType](#setpropertytype8) | 是    | 指示要设置的属性类型。 |
@@ -5054,7 +5057,7 @@ onAcquireInfo?: (module: number, acquire: number, extraInfo: any) => void;
 
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.Account.OsAccount
 
-| 参数名        | 类型                                     | 必填   | 说明              |
+| 名称        | 类型                                     | 必填   | 说明              |
 | ------------ | ---------------------------------------- | ----- | ----------------- |
 | result       | number                                   | 是    | 指示结果。         |
 | authSubType  | [AuthSubType](#authsubtype8) | 是    | 指示认证凭据子类型。|
@@ -5069,7 +5072,7 @@ onAcquireInfo?: (module: number, acquire: number, extraInfo: any) => void;
 
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.Account.OsAccount
 
-| 参数名        | 类型        | 必填   | 说明              |
+| 名称        | 类型        | 必填   | 说明              |
 | ------------ | ----------- | ----- | ----------------- |
 | token        | Uint8Array  | 否    | 指示认证令牌。     |
 | remainTimes  | number      | 否    | 指示剩余时间。     |
@@ -5083,7 +5086,7 @@ onAcquireInfo?: (module: number, acquire: number, extraInfo: any) => void;
 
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.Account.OsAccount
 
-| 参数名        | 类型                                     | 必填   | 说明              |
+| 名称        | 类型                                     | 必填   | 说明              |
 | ------------ | ---------------------------------------- | ----- | ----------------- |
 | credType     | [AuthType](#authtype8)       | 是    | 指示凭据类型。     |
 | credSubType  | [AuthSubType](#authsubtype8) | 是    | 指示凭据子类型。   |
@@ -5097,7 +5100,7 @@ onAcquireInfo?: (module: number, acquire: number, extraInfo: any) => void;
 
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.Account.OsAccount
 
-| 参数名        | 类型        | 必填   | 说明              |
+| 名称        | 类型        | 必填   | 说明              |
 | ------------ | ----------- | ----- | ----------------- |
 | credentialId | Uint8Array  | 否    | 指示凭据索引。     |
 
@@ -5109,7 +5112,7 @@ onAcquireInfo?: (module: number, acquire: number, extraInfo: any) => void;
 
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.Account.OsAccount
 
-| 参数名        | 类型                                     | 必填   | 说明              |
+| 名称        | 类型                                     | 必填   | 说明              |
 | ------------ | ---------------------------------------- | ----- | ------------------- |
 | credentialId | Uint8Array                               | 是    | 指示凭据索引。       |
 | authType     | [AuthType](#authtype8)       | 是    | 指示认证凭据类型。   |
@@ -5124,7 +5127,7 @@ onAcquireInfo?: (module: number, acquire: number, extraInfo: any) => void;
 
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.Account.OsAccount
 
-| 参数           | 默认值 | 说明      |
+| 名称           | 值 | 说明      |
 | ------------- | ------ | --------- |
 | AUTH_SUB_TYPE | 1      | 认证子类型。 |
 | REMAIN_TIMES  | 2      | 剩余时间。   |
@@ -5138,7 +5141,7 @@ onAcquireInfo?: (module: number, acquire: number, extraInfo: any) => void;
 
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.Account.OsAccount
 
-| 参数           | 默认值 | 说明        |
+| 名称           | 值 | 说明        |
 | -------------- | ----- | ----------- |
 | INIT_ALGORITHM | 1     | 初始化算法。 |
 
@@ -5150,7 +5153,7 @@ onAcquireInfo?: (module: number, acquire: number, extraInfo: any) => void;
 
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.Account.OsAccount
 
-| 参数  | 默认值 | 说明             |
+| 名称  | 值 | 说明             |
 | ----- | ----- | ---------------- |
 | PIN   | 1     | 指示PIN认证类型。 |
 | FACE  | 2     | 指示脸部认证类型。|
@@ -5163,7 +5166,7 @@ onAcquireInfo?: (module: number, acquire: number, extraInfo: any) => void;
 
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.Account.OsAccount
 
-| 参数       | 默认值 | 说明               |
+| 名称       | 值 | 说明               |
 | ---------- | ----- | ------------------ |
 | PIN_SIX    | 10000 | 表示6位凭证。       |
 | PIN_NUMBER | 10001 | 表示自定义数字凭证。 |
@@ -5179,7 +5182,7 @@ onAcquireInfo?: (module: number, acquire: number, extraInfo: any) => void;
 
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.Account.OsAccount
 
-| 参数  | 默认值 | 说明        |
+| 名称  | 值 | 说明        |
 | ---- | ------ | ----------- |
 | ATL1 | 10000  | 信任级别 1。 |
 | ATL2 | 20000  | 信任级别 2。 |
@@ -5194,7 +5197,7 @@ onAcquireInfo?: (module: number, acquire: number, extraInfo: any) => void;
 
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.Account.OsAccount
 
-| 参数       | 默认值 | 说明                     |
+| 名称       | 值 | 说明                     |
 | --------- | ------ | ------------------------ |
 | FACE_AUTH | 1      | 表示从人脸认证获取的信息。 |
 
@@ -5206,7 +5209,7 @@ onAcquireInfo?: (module: number, acquire: number, extraInfo: any) => void;
 
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.Account.OsAccount
 
-| 参数                    | 默认值 | 说明                                     |
+| 名称                    | 值 | 说明                                     |
 | ----------------------- | ----- | ---------------------------------------- |
 | SUCCESS                 | 0     | 表示身份验证成功或支持此功能。             |
 | FAIL                    | 1     | 表示验证器无法识别用户。                   |
@@ -5228,7 +5231,7 @@ onAcquireInfo?: (module: number, acquire: number, extraInfo: any) => void;
 
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.Account.OsAccount
 
-| 参数                          | 默认值 | 说明                                     |
+| 名称                          | 值 | 说明                                     |
 | ----------------------------- | ----- | ---------------------------------------- |
 | FACE_AUTH_TIP_TOO_BRIGHT      | 1     | 表示由于高照明，获得的面部图像太亮。         |
 | FACE_AUTH_TIP_TOO_DARK        | 2     | 表示由于照明度低，获得的面部图像太暗。       |
@@ -5250,7 +5253,7 @@ onAcquireInfo?: (module: number, acquire: number, extraInfo: any) => void;
 
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.Account.OsAccount
 
-| 参数                          | 默认值 | 说明                                            |
+| 名称                          | 值 | 说明                                            |
 | ----------------------------- | ----- | ----------------------------------------------- |
 | FINGERPRINT_TIP_GOOD          | 0     | 表明采集的图像良好。                              |
 | FINGERPRINT_TIP_IMAGER_DIRTY  | 1     | 表示由于传感器上可疑或检测到污垢，指纹图像噪声过大。 |
@@ -5265,7 +5268,7 @@ onAcquireInfo?: (module: number, acquire: number, extraInfo: any) => void;
 
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.Account.OsAccount。
 
-| 参数名                         | 类型                                                         | 必填 | 说明                              |
+| 名称                         | 类型                                                         | 必填 | 说明                              |
 | ------------------------------ | ------------------------------------------------------------ | ---- | --------------------------------- |
 | localId                        | number                                                       | 是   | 系统帐号ID。                      |
 | localName                      | string                                                       | 是   | 系统帐号名称。                    |
@@ -5287,7 +5290,7 @@ onAcquireInfo?: (module: number, acquire: number, extraInfo: any) => void;
 
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.Account.OsAccount。
 
-| 参数名      | 类型   | 必填 | 说明       |
+| 名称      | 类型   | 必填 | 说明       |
 | ----------- | ------ | ---- | ---------- |
 | domain      | string | 是   | 域名。     |
 | accountName | string | 是   | 域帐号名。 |
@@ -5368,7 +5371,7 @@ onAcquireInfo?: (module: number, acquire: number, extraInfo: any) => void;
 
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.Account.OsAccount。
 
-| 参数名      | 类型   | 必填 | 说明       |
+| 名称      | 类型   | 必填 | 说明       |
 | ----------- | ------ | ---- | ---------- |
 | localId      | number | 是   | 系统帐号ID     |
 | type | [ConstraintSourceType](#constraintsourcetype) | 是   | 约束来源类型 |
@@ -5381,7 +5384,7 @@ onAcquireInfo?: (module: number, acquire: number, extraInfo: any) => void;
 
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.Account.OsAccount。
 
-| 参数   | 默认值 | 说明         |
+| 名称   | 值 | 说明         |
 | ------ | ------ | ------------ |
 | CONSTRAINT_NOT_EXIST  | 0      | 约束不存在 |
 | CONSTRAINT_TYPE_BASE | 1      | 约束源自系统设置   |

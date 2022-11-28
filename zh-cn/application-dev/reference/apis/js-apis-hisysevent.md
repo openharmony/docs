@@ -19,7 +19,7 @@ import hiSysEvent from '@ohos.hiSysEvent';
 
 **系统能力：** SystemCapability.HiviewDFX.HiSysEvent
 
-| 名称 | 默认值 | 说明 |
+| 名称 | 值 | 说明 |
 | -------- | -------- | -------- |
 | FAULT | 1 | 错误事件类型。 |
 | STATISTIC | 2 | 统计事件类型。 |
@@ -32,7 +32,7 @@ import hiSysEvent from '@ohos.hiSysEvent';
 
 **系统能力：** SystemCapability.HiviewDFX.HiSysEvent
 
-| 参数名 | 类型 | 必填 | 说明 |
+| 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | domain | string | 是 | 事件领域。 |
 | name | string | 是 | 事件名称。 |
@@ -168,7 +168,7 @@ try {
 
 **系统能力：** SystemCapability.HiviewDFX.HiSysEvent
 
-| 名称 | 默认值 | 说明 |
+| 名称 | 值 | 说明 |
 | -------- | -------- | -------- |
 | WHOLE_WORD | 1 | 全词匹配类型。 |
 | PREFIX | 2 | 前缀匹配类型。 |
@@ -180,7 +180,7 @@ try {
 
 **系统能力：** SystemCapability.HiviewDFX.HiSysEvent
 
-| 参数名 | 类型 | 必填 | 说明 |
+| 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | domain | string | 是 | 事件领域。 |
 | name | string | 是 | 事件名称。 |
@@ -193,7 +193,7 @@ try {
 
 **系统能力：** SystemCapability.HiviewDFX.HiSysEvent
 
-| 参数名 | 类型 | 必填 | 说明 |
+| 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | rules | [WatchRule](#watchrule)[] | 是 | 订阅对象数组，每个订阅者对象包含多个订阅规则。 |
 | onEvent | function | 是 | 订阅事件的回调方法(info: [SysEventInfo](#syseventinfo)) => void。 |
@@ -307,7 +307,7 @@ try {
 
 **系统能力：** SystemCapability.HiviewDFX.HiSysEvent
 
-| 参数名 | 类型 | 必填 | 说明 |
+| 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | beginTime | number | 是 | 查询的系统事件起始时间（13位时间戳）。 |
 | endTime | number | 是 | 查询的系统事件结束时间（13位时间戳）。 |
@@ -319,7 +319,7 @@ try {
 
 **系统能力：** SystemCapability.HiviewDFX.HiSysEvent
 
-| 参数名 | 类型 | 必填 | 说明 |
+| 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | domain | string | 是 | 查询包含的事件领域。 |
 | names | string[] | 是 | 查询所包含的多个事件名称，每个查询规则对象包含多个系统事件名称。 |
@@ -330,7 +330,7 @@ try {
 
 **系统能力：** SystemCapability.HiviewDFX.HiSysEvent
 
-| 参数名 | 类型 | 必填 | 说明 |
+| 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | onQuery | function | 是 | 返回查询到的系统事件的回调方法(infos: [SysEventInfo](#syseventinfo)[]) => void。 |
 | onComplete | function | 是 | 查询结果统计的回调方法(reason: number, total: number) => void。 |

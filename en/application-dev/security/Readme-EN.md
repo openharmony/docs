@@ -11,6 +11,12 @@
 - Key Management
   - [HUKS Overview](huks-overview.md)
   - [HUKS Development](huks-guidelines.md)
+- Crypto Framework
+  - [Crypto Framework Overview](cryptoFramework-overview.md)
+  - [Crypto Framework Development](cryptoFramework-guidelines.md)
+- Certificate
+  - [Certificate Overview](cert-overview.md)
+  - [Certificate Development](cert-guidelines.md)
 - hapsigner  
   - [hapsigner Overview](hapsigntool-overview.md)
   - [hapsigner Guide](hapsigntool-guidelines.md)

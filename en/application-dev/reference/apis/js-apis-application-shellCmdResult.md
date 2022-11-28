@@ -8,17 +8,17 @@ The **ShellCmdResult** module provides the shell command execution result.
 
 ## Usage
 
-The result is obtained by calling **executeShellCommand** in **abilityDelegator**.
+The result is obtained by calling [executeShellCommand](js-apis-application-abilityDelegator.md#executeshellcommand) in **abilityDelegator**.
 
 ```js
-import AbilityDelegatorRegistry from '@ohos.application.abilityDelegatorRegistry'
-var abilityDelegator;
-var cmd = "cmd";
-var timeout = 100;
+import AbilityDelegatorRegistry from "@ohos.application.abilityDelegatorRegistry";
+let abilityDelegator;
+let cmd = "cmd";
 
 abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
-abilityDelegator.executeShellCommand(cmd, timeout).then((data : any) => {
-    console.info("executeShellCommand promise");
+abilityDelegator.executeShellCommand(cmd, (err: any, data: any) => {
+    console.info("executeShellCommand callback, failed: ", err);
+    console.info("executeShellCommand callback, success: ", data);
 });
 ```
 

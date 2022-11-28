@@ -2,7 +2,7 @@
 
 在这一小节中，我们将开始食物详情页的开发，学习如何通过容器组件Stack、Flex和基础组件Image、Text，构建用户自定义组件，完成图文并茂的食物介绍。
 
-在创建页面前，请先创建eTS工程，FA模型请参考[创建FA模型的eTS工程](../quick-start/start-with-ets-stage.md#创建ets工程)，Stage模型请参考[创建Stage模型的eTS工程](..//quick-start/start-with-ets-fa.md#创建ets工程)。
+在创建页面前，请先创建ArkTS工程，FA模型请参考[创建FA模型的ArkTS工程](../quick-start/start-with-ets-stage.md#创建arkts工程)，Stage模型请参考[创建Stage模型的ArkTS工程](../quick-start/start-with-ets-fa.md#创建arkts工程)。
 
 
 ## 构建Stack布局

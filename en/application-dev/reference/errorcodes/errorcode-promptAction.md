@@ -14,6 +14,6 @@ This error code is reported when an internal error that cannot be rectified by d
 
 The operation for obtaining the rendering engine or parsing parameters fails.
 
-**Procedure**
+**Solution**
 
 NA

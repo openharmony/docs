@@ -202,27 +202,19 @@ plural.json文件的内容如下：
 
 - 创建资源目录及资源文件
 
-  在resources目录右键菜单选择“New > Resource File”，此时可同时创建目录和文件。
-
-  文件默认创建在base目录的对应资源组下。如果选择了限定词，则会按照命名规范自动生成限定词+资源组目录，并将文件创建在目录中。
-
-  目录名自动生成，格式固定为“限定词.资源组”，例如创建一个限定词为横竖屏类别下的竖屏，资源组为绘制资源的目录，自动生成的目录名称为“vertical.graphic”。
+  在resources目录右键菜单选择“New > Resource File”，此时可同时创建目录和文件。文件默认创建在base目录的对应资源组下。如果选择了限定词，则会按照命名规范自动生成限定词+资源组目录，并将文件创建在目录中。图中Avaliable qualifiers为供选择的限定词目录，通过右边的小箭头可添加或者删除。File name为需要创建的文件名，Resource type为资源组类型，默认是element。Root Element为资源类型。创建的目录名自动生成，格式固定为“限定词.资源组”，例如：创建一个限定词为dark的element目录，自动生成的目录名称为“dark.element”。
 
   ![create-resource-file-1](figures/create-resource-file-1.png)
 
 - 创建资源目录
 
-  在resources目录右键菜单选择“New > Resource Directory”，此时可创建资源目录。
-
-  选择资源组类型，设置限定词，创建后自动生成目录名称。目录名称格式固定为“限定词.资源组”，例如创建一个限定词为横竖屏类别下的竖屏，资源组为绘制资源的目录，自动生成的目录名称为“vertical.graphic”。
+  在resources目录右键菜单选择“New > Resource Directory”，此时可创建资源目录。资源目录创建的是base目录，也可根据需求创建其它限定词目录。确定限定词后，选择资源组类型，当前资源组类型支持Element、Media、Profile三种，创建后自动生成目录名称。
 
   ![create-resource-file-2](figures/create-resource-file-2.png)
 
 - 创建资源文件
 
-  在资源目录的右键菜单选择“New > XXX Resource File”，即可创建对应资源组目录的资源文件。
-
-  例如，在element目录下可新建Element Resource File。
+  在资源目录的右键菜单选择“New > XXX Resource File”，即可创建对应资源组目录的资源文件。例如，在element目录下可新建Element Resource File。
 
   ![create-resource-file-3](figures/create-resource-file-3.png)
 

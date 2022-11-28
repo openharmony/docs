@@ -66,12 +66,12 @@ HarmonyAppProvision文件示例：
 | development-certificate  | 表示[调试证书](hapsigntool-guidelines.md)的信息。 | 数值    | 当type属性为debug时，该属性必选；否则，该属性可选。   | 不可缺省   |
 | distribution-certificate  | 表示[发布证书](hapsigntool-guidelines.md)的信息。 | 数值    | 当type属性为release时，该标签必选；否则，该标签可选。 | 不可缺省   |
 | bundle-name  | 表示应用程序的包名。 | 字符串    | 必选 | 不可缺省   |
-| apl  | 表示应用程序的[apl级别](accesstoken-overview.md)，系统预定义的apl包括：normal、system_basic和system_core。 | 字符串    | 必选 | 不可缺省   |
-| app-feature  | 表示应用程序的类型，系统预定义的app-feature包括hos_system_app （系统应用）和hos_normal_app（普通应用）。 | 字符串    | 必选 | 不可缺省   |
+| apl  | 表示应用程序的[APL级别](accesstoken-overview.md)，系统预定义的apl包括：normal、system_basic和system_core。 | 字符串    | 必选 | 不可缺省   |
+| app-feature  | 表示应用程序的类型，系统预定义的app-feature包括hos_system_app （系统应用）和hos_normal_app（普通应用）。只有系统应用才允许调用系统API，普通应用调用系统API可能会调用失败或运行异常。 | 字符串    | 必选 | 不可缺省   |
 
 
 ### acls对象内部结构
-acls对象包含已授权的[acl权限](accesstoken-overview.md)。需要指出的是，开发者仍然需要在应用包配置文件（[config.json](../quick-start/package-structure.md)）将acls权限信息填写到reqPermissions属性中。
+acls对象包含已授权的[ACL权限](accesstoken-overview.md)。需要指出的是，开发者仍然需要在应用包配置文件（[config.json](../quick-start/package-structure.md)）将acls权限信息填写到reqPermissions属性中。
 
 表4 acls对象的内部结构
 | 属性名称                  | 含义                            | 数据类型 | 是否必选 | 是否可缺省 |
@@ -79,7 +79,7 @@ acls对象包含已授权的[acl权限](accesstoken-overview.md)。需要指出�
 | allowed-acls | 表示已授权的[acl权限](accesstoken-overview.md)列表。 | 字符串数组    | 可选 | 不可缺省   |
 
 ### permissions对象内部结构
-permissions对象包含允许使用的受限敏感权限。不同于acls对象，permissions对象中的权限仅代表应用允许使用该敏感权限，权限最终由用户运行时授权。需要指出的是，开发者仍然需要在应用包配置文件（[config.json](package-structure.md)）将permissions权限信息填写到reqPermissions属性中。
+permissions对象包含允许使用的受限敏感权限。不同于acls对象，permissions对象中的权限仅代表应用允许使用该敏感权限，权限最终由用户运行时授权。需要指出的是，开发者仍然需要在应用包配置文件（[config.json](../quick-start/package-structure.md)）将permissions权限信息填写到reqPermissions属性中。
 
 表5 permissions对象的内部结构
 | 属性名称                  | 含义                            | 数据类型 | 是否必选 | 是否可缺省 |
@@ -94,3 +94,18 @@ debug-info对象包含应用调试场景下的信息，主要是设备管控的�
 | ------------------------ | ------------------------------- | ------- | ------- | --------- |
 | device-id-type | 表示设备ID的类型，当前系统仅提供udid的设备ID类型。 | 字符串    | 可选 | 不可缺省   |
 | device-ids | 表示应用调试场景下允许调试的设备ID列表。 | 字符串数组    | 可选 | 不可缺省   |
+
+## 修改HarmonyAppProvision配置文件
+
+当开发者新建一个工程时，应用的类型默认为hos_normal_app（普通应用），APL级别默认为normal。
+
+当需要使用系统API时，开发者需要手动修改app-feature字段为hos_system_app（系统应用）；当需要申请高级别权限时，开发者可能需要修改apl、acl等字段，请根据实际需要，参考[访问控制开发概述](accesstoken-overview.md)进行修改。
+
+
+开发者可以参考以下步骤，修改HarmonyAppProvision配置文件。
+
+1. 打开OpenHarmony SDK所在目录（可通过DevEco Studio菜单栏中单击File > Settings > OpenHarmony SDK界面查看 ）。
+2. 在SDK目录下，进入Toolchains > {Version} > lib文件夹，打开“UnsgnedReleasedProfileTemplate.json”文件。
+3. 根据实际需求，修改对应的字段。
+
+完成配置文件修改后，开发者可以参考[Hap包签名工具使用指导](hapsigntool-overview.md)进行应用签名。

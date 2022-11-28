@@ -1,12 +1,16 @@
 # Page Ability Development
 
 ## Overview
+
 ### Concepts
-The Page ability implements the ArkUI and provides the capability of interacting with developers. When you create an ability in DevEco Studio, DevEco Studio automatically creates template code. The capabilities related to the Page ability are implemented through the **featureAbility**, and the lifecycle callbacks are implemented through the callbacks in **app.js** or **app.ets**.
+
+The Page ability implements the ArkUI and provides the capability of interacting with developers. When you create an ability in DevEco Studio, DevEco Studio automatically creates template code.
+
+The capabilities related to the Page ability are implemented through the **featureAbility**, and the lifecycle callbacks are implemented through the callbacks in **app.js** or **app.ets**.
 
 ### Page Ability Lifecycle
 
-**Ability lifecycle**
+Introduction to the Page ability lifecycle:
 
 The Page ability lifecycle defines all states of a Page ability, such as **INACTIVE**, **ACTIVE**, and **BACKGROUND**.
 
@@ -27,27 +31,30 @@ Description of ability lifecycle states:
 
   - **BACKGROUND**: The Page ability runs in the background. After being re-activated, the Page ability enters the **ACTIVE** state. After being destroyed, the Page ability enters the **INITIAL** state.
 
-**The following figure shows the relationship between lifecycle callbacks and lifecycle states of the Page ability.**
+The following figure shows the relationship between lifecycle callbacks and lifecycle states of the Page ability.
 
 ![fa-pageAbility-lifecycle](figures/fa-pageAbility-lifecycle.png)
 
 You can override the lifecycle callbacks provided by the Page ability in the **app.js** or **app.ets** file. Currently, the **app.js** file provides only the **onCreate** and **onDestroy** callbacks, and the **app.ets** file provides the full lifecycle callbacks.
 
 ### Launch Type
+
 The ability supports two launch types: singleton and multi-instance.
+
 You can specify the launch type by setting **launchType** in the **config.json** file.
 
-**Table 1** Introduction to startup mode
+**Table 1** Startup modes
 
 | Launch Type    | Description    |Description            |
 | ----------- | -------  |---------------- |
 | standard    | Multi-instance  | A new instance is started each time an ability starts.|
-| singleton   | Singleton  | Only one instance exists in the system. If an instance already exists when an ability is started, that instance is reused.|
+| singleton   | Singleton  | The ability has only one instance in the system. If an instance already exists when an ability is started, that instance is reused.|
 
 By default, **singleton** is used.
 
 
 ## Development Guidelines
+
 ### Available APIs
 
 **Table 2** APIs provided by featureAbility
@@ -73,23 +80,21 @@ By default, **singleton** is used.
 ```javascript
   import featureAbility from '@ohos.ability.featureAbility'
   featureAbility.startAbility({
-  want:
-  {
-    action: "",
-    entities: [""],
-    type: "",
-    deviceId: "",
-    bundleName: "com.example.myapplication",
-    /* In the FA model, abilityName consists of package and ability name. */
-    abilityName: "com.example.entry.secondAbility",
-    uri: ""
-  },
-  },
-  );
+      want: {
+          action: "",
+          entities: [""],
+          type: "",
+          deviceId: "",
+          bundleName: "com.example.myapplication",
+          /* In the FA model, abilityName consists of package and ability name. */
+          abilityName: "com.example.entry.secondAbility",
+          uri: ""
+      }
+  });
 ```
 
 ### Starting a Remote Page Ability
->Note
+>NOTE
 >
 >This feature applies only to system applications, since the **getTrustedDeviceListSync** API of the **DeviceManager** class is open only to system applications.
 

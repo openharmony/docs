@@ -15,7 +15,6 @@
         - [应用包结构说明(FA模型)](quick-start/package-structure.md)
         - [应用包结构说明(Stage模型)](quick-start/stage-structure.md)
         - [SysCap说明](quick-start/syscap.md)
-        - [HarmonyAppProvision配置文件](quick-start/app-provision-structure.md)
         - [资源分类与访问](quick-start/resource-categories-and-access.md)
         - 学习ArkTS语言
           - [初识ArkTS语言](quick-start/arkts-get-started.md)

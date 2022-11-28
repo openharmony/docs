@@ -47,7 +47,7 @@ Stack容器中兄弟组件显示层级关系可以通过[zIndex](../reference/ar
     ```ts
     Stack({ alignContent: Alignment.BottomStart }) {
         Column() {
-          Text('Stack子元素1').textAlign(TextAlign.End).fontSize(20)
+          Text('Stack子元素1').fontSize(20)
         }.width(100).height(100).backgroundColor(0xffd306).zIndex(2)
         Column() {
           Text('Stack子元素2').fontSize(20)

@@ -18,7 +18,7 @@ import inputMethodEngine from '@ohos.inputMethodSubtype';
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
-| 名称 | 参数类型 | 可读 | 可写 | 必选 | 说明 |
+| 名称 | 类型 | 可读 | 可写 | 必选 | 说明 |
 | -------- | -------- | -------- | -------- | -------- | -------- |
 | label | string | 是 | 否 | 否 | 输入法子类型的标签。 |
 | name | string | 是 | 否 | 是 | 输入法子类型的名字。 |

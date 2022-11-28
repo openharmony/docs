@@ -315,6 +315,42 @@ onMemoryLevel(level: AbilityConstant.MemoryLevel): void;
   ```
 
 
+## Ability.onSaveState
+
+onSaveState(reason: AbilityConstant.StateType, wantParam : {[key: string]: any}): AbilityConstant.OnSaveResult;
+
+该API配合[appRecovery](js-apis-app-ability-appRecovery.md)使用。在应用故障时，如果使能了自动保存状态，框架将回调onSaveState保存Ability状态。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
+
+**参数：**
+
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | reason | [AbilityConstant.StateType](js-apis-application-abilityConstant.md#abilityconstantstatetype) | 是 | 回调保存状态的原因。 |
+  | wantParam | {[key:&nbsp;string]:&nbsp;any} | 是 | want相关参数。 |
+
+**返回值：**
+
+  | 类型 | 说明 |
+  | -------- | -------- |
+  | AbilityConstant.OnSaveResult | 是否同意保存当前Ability的状态。 |
+
+**示例：**
+
+  ```js
+import AbilityConstant from '@ohos.application.AbilityConstant'
+
+class myAbility extends Ability {
+    onSaveState(reason, wantParam) {
+        console.log('onSaveState');
+        wantParam["myData"] = "my1234567";
+        return AbilityConstant.OnSaveResult.RECOVERY_AGREE;
+    }
+}
+  ```
+
+
 
 ## Caller
 

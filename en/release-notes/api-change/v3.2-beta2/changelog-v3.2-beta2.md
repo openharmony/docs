@@ -1,4 +1,4 @@
-# Updates Between OpenHarmony 3.2 Beta2 and OpenHarmony 3.2 Beta1
+# Updates (OpenHarmony 3.2 Beta1 -> OpenHarmony 3.2 Beta2)
 
 ## Introduced Application Sandbox
 

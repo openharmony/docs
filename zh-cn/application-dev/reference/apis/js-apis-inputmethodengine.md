@@ -18,7 +18,7 @@ import inputMethodEngine from '@ohos.inputmethodengine';
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
-| 名称 | 参数类型 | 值 | 说明 |
+| 名称 | 类型 | 值 | 说明 |
 | -------- | -------- | -------- | -------- |
 | ENTER_KEY_TYPE_UNSPECIFIED | number | 0 | 无功能键。 |
 | ENTER_KEY_TYPE_GO | number | 2 | “前往”功能键。 |
@@ -204,7 +204,7 @@ on(type: 'keyboardShow'|'keyboardHide', callback: () => void): void
 | 参数名   | 类型   | 必填 | 说明                                                         |
 | -------- | ------ | ---- | ------------------------------------------------------------ |
 | type     | string | 是   | 设置监听类型。<br/>-&nbsp;type为'keyboardShow'，表示订阅输入法显示。<br/>-&nbsp;type为'keyboardHide'，表示订阅输入法隐藏。 |
-| callback | void   | 否   | 回调函数。                                                   |
+| callback | void   | 是   | 回调函数。                                                   |
 
 **示例：**
 
@@ -463,7 +463,7 @@ inputMethodEngine.getInputMethodAbility().on('setSubtype', (inputMethodSubtype) 
 
 ### off('setSubtype')<sup>9+</sup>
 
-off(ype: 'setSubtype', callback?: (inputMethodSubtype: InputMethodSubtype) => void): void
+off(type: 'setSubtype', callback?: (inputMethodSubtype: InputMethodSubtype) => void): void
 
 取消订阅输入法子类型事件。使用callback异步回调。
 
@@ -474,7 +474,7 @@ off(ype: 'setSubtype', callback?: (inputMethodSubtype: InputMethodSubtype) => vo
 | 参数名   | 类型   | 必填 | 说明                                                         |
 | -------- | ------ | ---- | ------------------------------------------------------------ |
 | type     | string | 是   | 设置监听类型。<br/>-&nbsp;type为'setSubtype'，表示取消订阅输入法子类型设置。<br/>-&nbsp;type为'keyboardHide'，表示订阅输入法隐藏。 |
-| callback | InputMethodSubtype   | 是   | 回调函数，返回调用方的输入法子类型。                                                   |
+| callback | InputMethodSubtype   | 否   | 回调函数，返回调用方的输入法子类型。                                                   |
 
 **示例：**
 
@@ -708,13 +708,13 @@ hide(callback: AsyncCallback&lt;void&gt;): void
 
 | 参数名   | 类型                   | 必填 | 说明     |
 | -------- | ---------------------- | ---- | -------- |
-| callback | AsyncCallback&lt;void> | 否   | 回调函数。当输入法隐藏成功，err为undefined，否则为错误对象。 |
+| callback | AsyncCallback&lt;void> | 是   | 回调函数。当输入法隐藏成功，err为undefined，否则为错误对象。 |
 
 **错误码：**
 
-以下错误码的详细介绍请参见[输入法框架错误码](../errorcodes/errcode-inputmethod-framework.md)。
+以下错误码的详细介绍请参见[输入法框架错误码](../errorcodes/errorcode-inputmethod-framework.md)。
 
-| 错误码ID | 错误码信息                 |
+| 错误码ID | 错误信息                 |
 | -------- | -------------------------- |
 | 12800003 | Input method client error. |
 
@@ -746,9 +746,9 @@ hide(): Promise&lt;void&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[输入法框架错误码](../errorcodes/errcode-inputmethod-framework.md)。
+以下错误码的详细介绍请参见[输入法框架错误码](../errorcodes/errorcode-inputmethod-framework.md)。
 
-| 错误码ID | 错误码信息                 |
+| 错误码ID | 错误信息                 |
 | -------- | -------------------------- |
 | 12800003 | Input method client error. |
 
@@ -778,7 +778,7 @@ hideKeyboard(callback: AsyncCallback&lt;void&gt;): void
 
 | 参数名   | 类型                   | 必填 | 说明     |
 | -------- | ---------------------- | ---- | -------- |
-| callback | AsyncCallback&lt;void> | 否   | 回调函数。当输入法隐藏成功，err为undefined，否则为错误对象。 |
+| callback | AsyncCallback&lt;void> | 是   | 回调函数。当输入法隐藏成功，err为undefined，否则为错误对象。 |
 
 **示例：**
 
@@ -841,9 +841,9 @@ sendKeyFunction(action:number, callback: AsyncCallback&lt;boolean&gt;): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[输入法框架错误码](../errorcodes/errcode-inputmethod-framework.md)。
+以下错误码的详细介绍请参见[输入法框架错误码](../errorcodes/errorcode-inputmethod-framework.md)。
 
-| 错误码ID | 错误码信息                 |
+| 错误码ID | 错误信息                 |
 | -------- | -------------------------- |
 | 12800003 | Input method client error. |
 
@@ -889,9 +889,9 @@ sendKeyFunction(action:number): Promise&lt;boolean&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[输入法框架错误码](../errorcodes/errcode-inputmethod-framework.md)。
+以下错误码的详细介绍请参见[输入法框架错误码](../errorcodes/errorcode-inputmethod-framework.md)。
 
-| 错误码ID | 错误码信息                 |
+| 错误码ID | 错误信息                 |
 | -------- | -------------------------- |
 | 12800003 | Input method client error. |
 
@@ -930,9 +930,9 @@ getForward(length:number, callback: AsyncCallback&lt;string&gt;): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[输入法框架错误码](../errorcodes/errcode-inputmethod-framework.md)。
+以下错误码的详细介绍请参见[输入法框架错误码](../errorcodes/errorcode-inputmethod-framework.md)。
 
-| 错误码ID | 错误码信息                     |
+| 错误码ID | 错误信息                     |
 | -------- | ------------------------------ |
 | 12800003 | Input method client error.     |
 | 12800006 | Input method controller error. |
@@ -976,9 +976,9 @@ getForward(length:number): Promise&lt;string&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[输入法框架错误码](../errorcodes/errcode-inputmethod-framework.md)。
+以下错误码的详细介绍请参见[输入法框架错误码](../errorcodes/errorcode-inputmethod-framework.md)。
 
-| 错误码ID | 错误码信息                     |
+| 错误码ID | 错误信息                     |
 | -------- | ------------------------------ |
 | 12800003 | Input method client error.     |
 | 12800006 | Input method controller error. |
@@ -1015,9 +1015,9 @@ getBackward(length:number, callback: AsyncCallback&lt;string&gt;): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[输入法框架错误码](../errorcodes/errcode-inputmethod-framework.md)。
+以下错误码的详细介绍请参见[输入法框架错误码](../errorcodes/errorcode-inputmethod-framework.md)。
 
-| 错误码ID | 错误码信息                     |
+| 错误码ID | 错误信息                     |
 | -------- | ------------------------------ |
 | 12800003 | Input method client error.     |
 | 12800006 | Input method controller error. |
@@ -1061,9 +1061,9 @@ getBackward(length:number): Promise&lt;string&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[输入法框架错误码](../errorcodes/errcode-inputmethod-framework.md)。
+以下错误码的详细介绍请参见[输入法框架错误码](../errorcodes/errorcode-inputmethod-framework.md)。
 
-| 错误码ID | 错误码信息                     |
+| 错误码ID | 错误信息                     |
 | -------- | ------------------------------ |
 | 12800003 | Input method client error.     |
 | 12800006 | Input method controller error. |
@@ -1100,9 +1100,9 @@ deleteForward(length:number, callback: AsyncCallback&lt;boolean&gt;): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[输入法框架错误码](../errorcodes/errcode-inputmethod-framework.md)。
+以下错误码的详细介绍请参见[输入法框架错误码](../errorcodes/errorcode-inputmethod-framework.md)。
 
-| 错误码ID | 错误码信息                 |
+| 错误码ID | 错误信息                 |
 | -------- | -------------------------- |
 | 12800002 | Input method engine error. |
 | 12800003 | Input method client error. |
@@ -1150,9 +1150,9 @@ deleteForward(length:number): Promise&lt;boolean&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[输入法框架错误码](../errorcodes/errcode-inputmethod-framework.md)。
+以下错误码的详细介绍请参见[输入法框架错误码](../errorcodes/errorcode-inputmethod-framework.md)。
 
-| 错误码ID | 错误码信息                 |
+| 错误码ID | 错误信息                 |
 | -------- | -------------------------- |
 | 12800002 | Input method engine error. |
 | 12800003 | Input method client error. |
@@ -1193,9 +1193,9 @@ deleteBackward(length:number, callback: AsyncCallback&lt;boolean&gt;): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[输入法框架错误码](../errorcodes/errcode-inputmethod-framework.md)。
+以下错误码的详细介绍请参见[输入法框架错误码](../errorcodes/errorcode-inputmethod-framework.md)。
 
-| 错误码ID | 错误码信息                 |
+| 错误码ID | 错误信息                 |
 | -------- | -------------------------- |
 | 12800002 | Input method engine error. |
 | 12800003 | Input method client error. |
@@ -1243,9 +1243,9 @@ deleteBackward(length:number): Promise&lt;boolean&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[输入法框架错误码](../errorcodes/errcode-inputmethod-framework.md)。
+以下错误码的详细介绍请参见[输入法框架错误码](../errorcodes/errorcode-inputmethod-framework.md)。
 
-| 错误码ID | 错误码信息                 |
+| 错误码ID | 错误信息                 |
 | -------- | -------------------------- |
 | 12800002 | Input method engine error. |
 | 12800003 | Input method client error. |
@@ -1282,9 +1282,9 @@ insertText(text:string, callback: AsyncCallback&lt;boolean&gt;): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[输入法框架错误码](../errorcodes/errcode-inputmethod-framework.md)。
+以下错误码的详细介绍请参见[输入法框架错误码](../errorcodes/errorcode-inputmethod-framework.md)。
 
-| 错误码ID | 错误码信息                 |
+| 错误码ID | 错误信息                 |
 | -------- | -------------------------- |
 | 12800002 | Input method engine error. |
 | 12800003 | Input method client error. |
@@ -1327,9 +1327,9 @@ insertText(text:string): Promise&lt;boolean&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[输入法框架错误码](../errorcodes/errcode-inputmethod-framework.md)。
+以下错误码的详细介绍请参见[输入法框架错误码](../errorcodes/errorcode-inputmethod-framework.md)。
 
-| 错误码ID | 错误码信息                 |
+| 错误码ID | 错误信息                 |
 | -------- | -------------------------- |
 | 12800002 | Input method engine error. |
 | 12800003 | Input method client error. |
@@ -1368,9 +1368,9 @@ getEditorAttribute(callback: AsyncCallback&lt;EditorAttribute&gt;): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[输入法框架错误码](../errorcodes/errcode-inputmethod-framework.md)。
+以下错误码的详细介绍请参见[输入法框架错误码](../errorcodes/errorcode-inputmethod-framework.md)。
 
-| 错误码ID | 错误码信息                 |
+| 错误码ID | 错误信息                 |
 | -------- | -------------------------- |
 | 12800003 | Input method client error. |
 
@@ -1403,9 +1403,9 @@ getEditorAttribute(): Promise&lt;EditorAttribute&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[输入法框架错误码](../errorcodes/errcode-inputmethod-framework.md)。
+以下错误码的详细介绍请参见[输入法框架错误码](../errorcodes/errorcode-inputmethod-framework.md)。
 
-| 错误码ID | 错误码信息                 |
+| 错误码ID | 错误信息                 |
 | -------- | -------------------------- |
 | 12800003 | Input method client error. |
 
@@ -1437,9 +1437,9 @@ moveCursor(direction: number, callback: AsyncCallback&lt;void&gt;): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[输入法框架错误码](../errorcodes/errcode-inputmethod-framework.md)。
+以下错误码的详细介绍请参见[输入法框架错误码](../errorcodes/errorcode-inputmethod-framework.md)。
 
-| 错误码ID | 错误码信息                 |
+| 错误码ID | 错误信息                 |
 | -------- | -------------------------- |
 | 12800003 | Input method client error. |
 
@@ -1481,9 +1481,9 @@ moveCursor(direction: number): Promise&lt;void&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[输入法框架错误码](../errorcodes/errcode-inputmethod-framework.md)。
+以下错误码的详细介绍请参见[输入法框架错误码](../errorcodes/errorcode-inputmethod-framework.md)。
 
-| 错误码ID | 错误码信息                 |
+| 错误码ID | 错误信息                 |
 | -------- | -------------------------- |
 | 12800003 | Input method client error. |
 
@@ -1507,7 +1507,7 @@ try {
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
-| 名称         | 参数类型 | 可读 | 可写 | 说明               |
+| 名称         | 类型 | 可读 | 可写 | 说明               |
 | ------------ | -------- | ---- | ---- | ------------------ |
 | enterKeyType | number   | 是   | 否   | 编辑框的功能属性。 |
 | inputPattern | number   | 是   | 否   | 编辑框的文本属性。 |
@@ -1518,7 +1518,7 @@ try {
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
-| 名称      | 参数类型 | 可读 | 可写 | 说明         |
+| 名称      | 类型 | 可读 | 可写 | 说明         |
 | --------- | -------- | ---- | ---- | ------------ |
 | keyCode   | number   | 是   | 否   | 按键的键值。 |
 | keyAction | number   | 是   | 否   | 按键的状态。 |

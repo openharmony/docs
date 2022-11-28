@@ -13,7 +13,7 @@
 ## 导入模块
 
 ```ts
-import EnterpriseAdminExtensionAbility from '@ohos.EnterpriseAdminExtensionAbility'
+import EnterpriseAdminExtensionAbility from '@ohos.enterprise.EnterpriseAdminExtensionAbility'
 ```
 
 ## EnterpriseAdminExtensionAbility.onAdminEnabled

@@ -1080,7 +1080,7 @@ seek(timeMs: number, mode?:SeekMode): Promise\<number>
 
 | 类型           | 说明                                        |
 | -------------- | ------------------------------------------- |
-| Promise\<void> | 跳转到指定播放位置的Promise返回值，单位ms。 |
+| Promise\<number> | 跳转到指定播放位置的Promise返回值，单位ms。 |
 
 **示例：**
 

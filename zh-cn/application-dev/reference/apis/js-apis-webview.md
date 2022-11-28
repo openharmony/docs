@@ -68,11 +68,11 @@ postMessageEvent(message: string): void
 
 **参数：**
 
-| 参数名  | 类型   | 必填 | 默认值 | 说明           |
-| ------- | ------ | ---- | ------ | :------------- |
-| message | string | 是   | -      | 要发送的消息。 |
+| 参数名  | 类型   | 必填 | 说明           |
+| ------- | ------ | ---- | :------------- |
+| message | string | 是   | 要发送的消息。 |
 
-**错误码**：
+**错误码：**
 
 以下错误码的详细介绍请参见 [webview错误码](../errorcodes/errorcode-webview.md)
 
@@ -120,11 +120,11 @@ onMessageEvent(callback: (result: string) => void): void
 
 **参数：**
 
-| 参数名   | 类型     | 必填 | 默认值 | 说明                 |
-| -------- | -------- | ---- | ------ | :------------------- |
-| callback | function | 是   | -      | 接收消息的回调函数。 |
+| 参数名   | 类型     | 必填 | 说明                 |
+| -------- | -------- | ---- | :------------------- |
+| result | string | 是   | 接收到的消息。 |
 
-**错误码**：
+**错误码：**
 
 以下错误码的详细介绍请参见 [webview错误码](../errorcodes/errorcode-webview.md)
 
@@ -170,7 +170,20 @@ struct WebComponent {
 ### 创建对象
 
 ```ts
-controller: web_webview.WebviewController = new web_webview.WebviewController();
+// xxx.ets
+import web_webview from '@ohos.web.webview'
+
+@Entry
+@Component
+struct WebComponent {
+  controller: web_webview.WebviewController = new web_webview.WebviewController();
+
+  build() {
+    Column() {
+      Web({ src: 'www.example.com', controller: this.controller })
+    }
+  }
+}
 ```
 
 ### loadUrl
@@ -183,12 +196,12 @@ loadUrl(url: string | Resource, headers?: Array\<HeaderV9>): void
 
 **参数：**
 
-| 参数名  | 类型             | 必填 | 默认值 | 说明                  |
-| ------- | ---------------- | ---- | ------ | :-------------------- |
-| url     | string           | 是   | -      | 需要加载的 URL。      |
-| headers | Array\<[HeaderV9](#headerv9)> | 是   | -      | URL的附加HTTP请求头。 |
+| 参数名  | 类型             | 必填 | 说明                  |
+| ------- | ---------------- | ---- | :-------------------- |
+| url     | string \| Resource | 是   | 需要加载的 URL。      |
+| headers | Array\<[HeaderV9](#headerv9)> | 否   | URL的附加HTTP请求头。 |
 
-**错误码**：
+**错误码：**
 
 以下错误码的详细介绍请参见 [webview错误码](../errorcodes/errorcode-webview.md)
 
@@ -235,21 +248,22 @@ loadData(data: string, mimeType: string, encoding: string, baseUrl?: string, his
 
 **参数：** 
 
-| 参数名     | 类型   | 必填 | 默认值 | 说明                                                         |
-| ---------- | ------ | ---- | ------ | ------------------------------------------------------------ |
-| data       | string | 是   | -      | 按照”Base64“或者”URL"编码后的一段字符串。                    |
-| mimeType   | string | 是   | -      | 媒体类型（MIME）。                                           |
-| encoding   | string | 是   | -      | 编码类型，具体为“Base64"或者”URL编码。                       |
-| baseUrl    | string | 否   | -      | 指定的一个URL路径（“http”/“https”/"data"协议），并由Web组件赋值给window.origin。 |
-| historyUrl | string | 否   | -      | 历史记录URL。非空时，可被历史记录管理，实现前进后退功能。当baseUrl为空时，此属性无效。 |
+| 参数名     | 类型   | 必填 | 说明                                                         |
+| ---------- | ------ | ---- | ------------------------------------------------------------ |
+| data       | string | 是   | 按照”Base64“或者”URL"编码后的一段字符串。                    |
+| mimeType   | string | 是   | 媒体类型（MIME）。                                           |
+| encoding   | string | 是   | 编码类型，具体为“Base64"或者”URL编码。                       |
+| baseUrl    | string | 否   | 指定的一个URL路径（“http”/“https”/"data"协议），并由Web组件赋值给window.origin。 |
+| historyUrl | string | 否   | 用作历史记录所使用的URL。非空时，历史记录以此URL进行管理。当baseUrl为空时，此属性无效。 |
 
-**错误码**：
+**错误码：**
 
 以下错误码的详细介绍请参见 [webview错误码](../errorcodes/errorcode-webview.md)
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
 | 17100001 | Init error. The WebviewController must be associated with a Web component. |
+| 17100002 | Invalid url.                                                 |
 
 **示例：** 
 
@@ -296,7 +310,7 @@ accessForward(): boolean
 | ------- | --------------------------------- |
 | boolean | 可以前进返回true，否则返回false。 |
 
-**错误码**：
+**错误码：**
 
 以下错误码的详细介绍请参见 [webview错误码](../errorcodes/errorcode-webview.md)
 
@@ -340,7 +354,7 @@ forward(): void
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
-**错误码**：
+**错误码：**
 
 以下错误码的详细介绍请参见 [webview错误码](../errorcodes/errorcode-webview.md)
 
@@ -433,7 +447,7 @@ backward(): void
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
-**错误码**：
+**错误码：**
 
 以下错误码的详细介绍请参见 [webview错误码](../errorcodes/errorcode-webview.md)
 
@@ -606,9 +620,9 @@ accessStep(step: number): boolean
 
 **参数：**
 
-| 参数名 | 参数类型 | 必填 | 默认值 | 参数描述                                   |
-| ------ | -------- | ---- | ------ | ------------------------------------------ |
-| step   | number   | 是   | -      | 要跳转的步数，正数代表前进，负数代表后退。 |
+| 参数名 | 类型 | 必填 | 说明                                   |
+| ------ | -------- | ---- | ------------------------------------------ |
+| step   | number   | 是   | 要跳转的步数，正数代表前进，负数代表后退。 |
 
 **返回值：**
 
@@ -756,11 +770,11 @@ registerJavaScriptProxy(object: object, name: string, methodList: Array\<string>
 
 **参数：**
 
-| 参数名     | 参数类型       | 必填 | 默认值 | 参数描述                                                     |
-| ---------- | -------------- | ---- | ------ | ------------------------------------------------------------ |
-| object     | object         | 是   | -      | 参与注册的应用侧JavaScript对象。只能声明方法，不能声明属性 。其中方法的参数和返回类型只能为string，number，boolean |
-| name       | string         | 是   | -      | 注册对象的名称，与window中调用的对象名一致。注册后window对象可以通过此名字访问应用侧JavaScript对象。 |
-| methodList | Array\<string> | 是   | -      | 参与注册的应用侧JavaScript对象的方法。                       |
+| 参数名     | 类型       | 必填 | 说明                                        |
+| ---------- | -------------- | ---- | ------------------------------------------------------------ |
+| object     | object         | 是   | 参与注册的应用侧JavaScript对象。只能声明方法，不能声明属性 。其中方法的参数和返回类型只能为string，number，boolean |
+| name       | string         | 是   | 注册对象的名称，与window中调用的对象名一致。注册后window对象可以通过此名字访问应用侧JavaScript对象。 |
+| methodList | Array\<string> | 是   | 参与注册的应用侧JavaScript对象的方法。                       |
 
 **错误码：**
 
@@ -791,6 +805,14 @@ struct Index {
 
   build() {
     Column() {
+      Button('refresh')
+        .onClick(() => {
+          try {
+            this.controller.refresh();
+          } catch (error) {
+            console.error(`Errorcode: ${error.code}, Message: ${error.message}`);
+          }
+        })
       Button('Register JavaScript To Window')
         .onClick(() => {
           try {
@@ -816,10 +838,10 @@ runJavaScript(script: string, callback : AsyncCallback\<string>): void
 
 **参数：**
 
-| 参数名   | 参数类型                 | 必填 | 默认值 | 参数描述                                                     |
-| -------- | ------------------------ | ---- | ------ | ------------------------------------------------------------ |
-| script   | string                   | 是   | -      | JavaScript脚本。                                             |
-| callback | AsyncCallback\<string> | 否   | -      | 回调执行JavaScript脚本结果。JavaScript脚本若执行失败或无返回值时，返回null。 |
+| 参数名   | 类型                 | 必填 | 说明                         |
+| -------- | -------------------- | ---- | ---------------------------- |
+| script   | string                   | 是   | JavaScript脚本。                                             |
+| callback | AsyncCallback\<string> | 是   | 回调执行JavaScript脚本结果。JavaScript脚本若执行失败或无返回值时，返回null。 |
 
 **错误码：**
 
@@ -879,9 +901,9 @@ runJavaScript(script: string): Promise\<string>
 
 **参数：**
 
-| 参数名 | 参数类型 | 必填 | 默认值 | 参数描述         |
-| ------ | -------- | ---- | ------ | ---------------- |
-| script | string   | 是   | -      | JavaScript脚本。 |
+| 参数名 | 类型 | 必填 | 说明         |
+| ------ | -------- | ---- | ---------------- |
+| script | string   | 是   | JavaScript脚本。 |
 
 **返回值：** 
 
@@ -943,9 +965,9 @@ deleteJavaScriptRegister(name: string): void
 
 **参数：**
 
-| 参数名 | 参数类型 | 必填 | 默认值 | 参数描述                                                     |
-| ------ | -------- | ---- | ------ | ------------------------------------------------------------ |
-| name   | string   | 是   | -      | 注册对象的名称，可在网页侧JavaScript中通过此名称调用应用侧JavaScript对象。 |
+| 参数名 | 类型 | 必填 | 说明  |
+| ------ | -------- | ---- | ---- |
+| name   | string   | 是   | 注册对象的名称，可在网页侧JavaScript中通过此名称调用应用侧JavaScript对象。 |
 
 **错误码：**
 
@@ -994,7 +1016,7 @@ zoom(factor: number): void
 
 **参数：**
 
-| 参数名 | 参数类型 | 必填 | 参数描述                                                     |
+| 参数名 | 类型 | 必填 | 说明 |
 | ------ | -------- | ---- | ------------------------------------------------------------ |
 | factor | number   | 是   | 基于当前网页所需调整的相对缩放比例，正值为放大，负值为缩小。 |
 
@@ -1045,9 +1067,9 @@ searchAllAsync(searchString: string): void
 
 **参数：**
 
-| 参数名       | 参数类型 | 必填 | 默认值 | 参数描述       |
-| ------------ | -------- | ---- | ------ | -------------- |
-| searchString | string   | 是   | -      | 查找的关键字。 |
+| 参数名       | 类型 | 必填 | 说明       |
+| ------------ | -------- | ---- | -------------- |
+| searchString | string   | 是   | 查找的关键字。 |
 
 **错误码：**
 
@@ -1142,9 +1164,9 @@ searchNext(forward: boolean): void
 
 **参数：**
 
-| 参数名  | 参数类型 | 必填 | 默认值 | 参数描述               |
-| ------- | -------- | ---- | ------ | ---------------------- |
-| forward | boolean  | 是   | -      | 从前向后或者逆向查找。 |
+| 参数名  | 类型 | 必填 | 说明               |
+| ------- | -------- | ---- | ---------------------- |
+| forward | boolean  | 是   | 从前向后或者逆向查找。 |
 
 **错误码：**
 
@@ -1281,7 +1303,7 @@ struct WebComponent {
 | ---------------------- | ----------------- |
 | Array\<WebMessagePort> | web消息端口列表。 |
 
-**错误码**：
+**错误码：**
 
 以下错误码的详细介绍请参见 [webview错误码](../errorcodes/errorcode-webview.md)
 
@@ -1328,13 +1350,13 @@ postMessage(name: string, ports: Array\<WebMessagePort>, uri: string): void
 
 **参数：**
 
-| 参数名 | 类型                   | 必填 | 默认值 | 说明                             |
-| ------ | ---------------------- | ---- | ------ | :------------------------------- |
-| name   | string                 | 是   | -      | 要发送的消息，包含数据和消息端口。 |
-| ports  | Array\<WebMessagePort> | 是   | -      | 接收该消息的URI。                |
-| uri    | string                 | 是   | -      | 接收该消息的URI。                |
+| 参数名 | 类型                   | 必填 | 说明                             |
+| ------ | ---------------------- | ---- | :------------------------------- |
+| name   | string                 | 是   | 要发送的消息，包含数据和消息端口。 |
+| ports  | Array\<WebMessagePort> | 是   | 接收该消息的URI。                |
+| uri    | string                 | 是   | 接收该消息的URI。                |
 
-**错误码**：
+**错误码：**
 
 以下错误码的详细介绍请参见 [webview错误码](../errorcodes/errorcode-webview.md)
 
@@ -1458,7 +1480,7 @@ requestFocus(): void
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
-**错误码**：
+**错误码：**
 
 以下错误码的详细介绍请参见 [webview错误码](../errorcodes/errorcode-webview.md)
 
@@ -1501,7 +1523,7 @@ zoomIn(): void
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
-**错误码**：
+**错误码：**
 
 以下错误码的详细介绍请参见 [webview错误码](../errorcodes/errorcode-webview.md)
 
@@ -1545,7 +1567,7 @@ zoomOut(): void
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
-**错误码**：
+**错误码：**
 
 以下错误码的详细介绍请参见 [webview错误码](../errorcodes/errorcode-webview.md)
 
@@ -1595,7 +1617,7 @@ getHitTestValue(): HitTestValue
 | ------------ | -------------------- |
 | [HitTestValue](#hittestvalue) | 点击区域的元素信息。 |
 
-**错误码**：
+**错误码：**
 
 以下错误码的详细介绍请参见 [webview错误码](../errorcodes/errorcode-webview.md)
 
@@ -1646,7 +1668,7 @@ getWebId(): number
 | ------ | --------------------- |
 | number | 当前Web组件的索引值。 |
 
-**错误码**：
+**错误码：**
 
 以下错误码的详细介绍请参见 [webview错误码](../errorcodes/errorcode-webview.md)
 
@@ -1696,7 +1718,7 @@ getUserAgent(): string
 | ------ | -------------- |
 | string | 默认用户代理。 |
 
-**错误码**：
+**错误码：**
 
 以下错误码的详细介绍请参见 [webview错误码](../errorcodes/errorcode-webview.md)
 
@@ -1746,7 +1768,7 @@ getTitle(): string
 | ------ | -------------------- |
 | string | 返回文件选择器标题。 |
 
-**错误码**：
+**错误码：**
 
 以下错误码的详细介绍请参见 [webview错误码](../errorcodes/errorcode-webview.md)
 
@@ -1796,7 +1818,7 @@ getPageHeight(): number
 | ------ | -------------------- |
 | number | 当前网页的页面高度。 |
 
-**错误码**：
+**错误码：**
 
 以下错误码的详细介绍请参见 [webview错误码](../errorcodes/errorcode-webview.md)
 
@@ -1842,13 +1864,13 @@ storeWebArchive(baseName: string, autoName: boolean, callback: AsyncCallback\<st
 
 **参数：**
 
-| 参数名   | 参数类型              | 必填 | 说明                                                         |
+| 参数名   | 类型              | 必填 | 说明                                                         |
 | -------- | --------------------- | ---- | ------------------------------------------------------------ |
 | baseName | string                | 是   | 文件存储路径，该值不能为空。                                 |
 | autoName | boolean               | 是   | 决定是否自动生成文件名。 如果为false，则将baseName作为文件存储路径。 如果为true，则假定baseName是一个目录，将根据当前页的Url自动生成文件名。 |
 | callback | AsyncCallback\<string> | 是   | 返回文件存储路径，保持网页失败会返回null。                   |
 
-**错误码**：
+**错误码：**
 
 以下错误码的详细介绍请参见 [webview错误码](../errorcodes/errorcode-webview.md)
 
@@ -1902,7 +1924,7 @@ storeWebArchive(baseName: string, autoName: boolean): Promise\<string>
 
 **参数：**
 
-| 参数名   | 参数类型 | 必填 | 说明                                                         |
+| 参数名   | 类型 | 必填 | 说明                                                         |
 | -------- | -------- | ---- | ------------------------------------------------------------ |
 | baseName | string   | 是   | 文件存储路径，该值不能为空。                                 |
 | autoName | boolean  | 是   | 决定是否自动生成文件名。 如果为false，则将baseName作为文件存储路径。 如果为true，则假定baseName是一个目录，将根据当前页的Url自动生成文件名。 |
@@ -1913,7 +1935,7 @@ storeWebArchive(baseName: string, autoName: boolean): Promise\<string>
 | --------------- | ----------------------------------------------------- |
 | Promise\<string> | Promise实例，保存成功返回文件路径，保存失败返回null。 |
 
-**错误码**：
+**错误码：**
 
 以下错误码的详细介绍请参见 [webview错误码](../errorcodes/errorcode-webview.md)
 
@@ -1971,7 +1993,7 @@ getUrl(): string
 | ------ | ------------------- |
 | string | 当前页面的url地址。 |
 
-**错误码**：
+**错误码：**
 
 以下错误码的详细介绍请参见 [webview错误码](../errorcodes/errorcode-webview.md)
 
@@ -2015,7 +2037,7 @@ stop(): void
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
-**错误码**：
+**错误码：**
 
 以下错误码的详细介绍请参见 [webview错误码](../errorcodes/errorcode-webview.md)
 
@@ -2060,11 +2082,11 @@ backOrForward(step: number): void
 
 **参数：**
 
-| 参数名 | 参数类型 | 必填 | 默认值 | 参数描述               |
-| ------ | -------- | ---- | ------ | ---------------------- |
-| step   | number   | 是   | -      | 需要前进或后退的步长。 |
+| 参数名 | 类型 | 必填 | 说明               |
+| ------ | -------- | ---- | ---------------------- |
+| step   | number   | 是   | 需要前进或后退的步长。 |
 
-**错误码**：
+**错误码：**
 
 以下错误码的详细介绍请参见 [webview错误码](../errorcodes/errorcode-webview.md)
 
@@ -2114,9 +2136,9 @@ static getCookie(url: string): string
 
 **参数：**
 
-| 参数名 | 类型   | 必填 | 默认值 | 说明                      |
-| ------ | ------ | ---- | ------ | :------------------------ |
-| url    | string | 是   | -      | 要获取的cookie所属的url。 |
+| 参数名 | 类型   | 必填 | 说明                      |
+| ------ | ------ | ---- | :------------------------ |
+| url    | string | 是   | 要获取的cookie所属的url。 |
 
 **返回值：** 
 
@@ -2124,9 +2146,10 @@ static getCookie(url: string): string
 | ------ | ------------------------- |
 | string | 指定url对应的cookie的值。 |
 
-**错误码**：
+**错误码：**
 
 以下错误码的详细介绍请参见 [webview错误码](../errorcodes/errorcode-webview.md)
+
 | 错误码ID | 错误信息                                               |
 | -------- | ------------------------------------------------------ |
 | 17100002 | Invalid url.                                           |
@@ -2169,19 +2192,19 @@ static setCookie(url: string, value: string): void
 
 **参数：**
 
-| 参数名 | 类型   | 必填 | 默认值 | 说明                      |
-| ------ | ------ | ---- | ------ | :------------------------ |
-| url    | string | 是   | -      | 要设置的cookie所属的url。 |
-| value  | string | 是   | -      | 要设置的cookie的值。      |
+| 参数名 | 类型   | 必填 | 说明                      |
+| ------ | ------ | ---- | :------------------------ |
+| url    | string | 是   | 要设置的cookie所属的url。 |
+| value  | string | 是   | 要设置的cookie的值。      |
 
-**错误码**：
+**错误码：**
 
 以下错误码的详细介绍请参见 [webview错误码](../errorcodes/errorcode-webview.md)
 
 | 错误码ID | 错误信息                                               |
 | -------- | ------------------------------------------------------ |
 | 17100002 | Invalid url.                                           |
-| 17100005 | Invaild cookie value.                                  |
+| 17100005 | Invalid cookie value.                                  |
 
 **示例：**
 
@@ -2220,9 +2243,9 @@ static saveCookieAsync(callback: AsyncCallback\<void>): void
 
 **参数：**
 
-| 参数名   | 类型                   | 必填 | 默认值 | 说明                                               |
-| -------- | ---------------------- | ---- | ------ | :------------------------------------------------- |
-| callback | AsyncCallback\<void> | 是   | -      | 返回cookie是否成功保存的布尔值作为回调函数的入参。 |
+| 参数名   | 类型                   | 必填 | 说明                                               |
+| -------- | ---------------------- | ---- | :------------------------------------------------- |
+| callback | AsyncCallback\<void> | 是   | 返回cookie是否成功保存的布尔值作为回调函数的入参。 |
 
 
 **示例：**
@@ -2313,9 +2336,9 @@ static putAcceptCookieEnabled(accept: boolean): void
 
 **参数：**
 
-| 参数名 | 类型    | 必填 | 默认值 | 说明                                 |
-| ------ | ------- | ---- | ------ | :----------------------------------- |
-| accept | boolean | 是   | -      | 设置是否拥有发送和接收cookie的权限。 |
+| 参数名 | 类型    | 必填 | 说明                                 |
+| ------ | ------- | ---- | :----------------------------------- |
+| accept | boolean | 是   | 设置是否拥有发送和接收cookie的权限。 |
 
 **示例：**
 
@@ -2392,9 +2415,9 @@ static putAcceptThirdPartyCookieEnabled(accept: boolean): void
 
 **参数：**
 
-| 参数名 | 类型    | 必填 | 默认值 | 说明                                       |
-| ------ | ------- | ---- | ------ | :----------------------------------------- |
-| accept | boolean | 是   | -      | 设置是否拥有发送和接收第三方cookie的权限。 |
+| 参数名 | 类型    | 必填 | 说明                                       |
+| ------ | ------- | ---- | :----------------------------------------- |
+| accept | boolean | 是   | 设置是否拥有发送和接收第三方cookie的权限。 |
 
 **示例：**
 
@@ -2575,9 +2598,9 @@ static deleteOrigin(origin : string): void
 
 **参数：**
 
-| 参数名 | 类型   | 必填 | 默认值 | 说明                     |
-| ------ | ------ | ---- | ------ | ------------------------ |
-| origin | string | 是   | -      | 指定源的字符串索引. |
+| 参数名 | 类型   | 必填 | 说明                     |
+| ------ | ------ | ---- | ------------------------ |
+| origin | string | 是   | 指定源的字符串索引. |
 
 **错误码：**
 
@@ -2627,9 +2650,9 @@ static getOrigins(callback: AsyncCallback\<Array\<WebStorageOrigin>>) : void
 
 **参数：**
 
-| 参数名   | 类型                                   | 必填 | 默认值 | 说明                                                   |
-| -------- | -------------------------------------- | ---- | ------ | ------------------------------------------------------ |
-| callback | AsyncCallback\<Array\<[WebStorageOrigin](#webstorageorigin)>> | 是   | -      | 以数组方式返回源的信息，信息内容参考[WebStorageOrigin](#webstorageorigin)。 |
+| 参数名   | 类型                                   | 必填 | 说明                                                   |
+| -------- | -------------------------------------- | ---- | ------------------------------------------------------ |
+| callback | AsyncCallback\<Array\<[WebStorageOrigin](#webstorageorigin)>> | 是   | 以数组方式返回源的信息，信息内容参考[WebStorageOrigin](#webstorageorigin)。 |
 
 **错误码：**
 
@@ -2749,10 +2772,10 @@ static getOriginQuota(origin : string, callback : AsyncCallback\<number>) : void
 
 **参数：**
 
-| 参数名   | 类型                  | 必填 | 默认值 | 说明               |
-| -------- | --------------------- | ---- | ------ | ------------------ |
-| origin   | string                | 是   | -      | 指定源的字符串索引 |
-| callback | AsyncCallback\<number> | 是   | -      | 指定源的存储配额   |
+| 参数名   | 类型                  | 必填 | 说明               |
+| -------- | --------------------- | ---- | ------------------ |
+| origin   | string                | 是   | 指定源的字符串索引 |
+| callback | AsyncCallback\<number> | 是   | 指定源的存储配额   |
 
 **错误码：**
 
@@ -2808,9 +2831,9 @@ static getOriginQuota(origin : string) : Promise\<number>
 
 **参数：**
 
-| 参数名 | 类型   | 必填 | 默认值 | 说明               |
-| ------ | ------ | ---- | ------ | ------------------ |
-| origin | string | 是   | -      | 指定源的字符串索引 |
+| 参数名 | 类型   | 必填 | 说明               |
+| ------ | ------ | ---- | ------------------ |
+| origin | string | 是   | 指定源的字符串索引 |
 
 **返回值：**
 
@@ -2872,10 +2895,10 @@ static getOriginUsage(origin : string, callback : AsyncCallback\<number>) : void
 
 **参数：**
 
-| 参数名   | 类型                  | 必填 | 默认值 | 说明               |
-| -------- | --------------------- | ---- | ------ | ------------------ |
-| origin   | string                | 是   | -      | 指定源的字符串索引 |
-| callback | AsyncCallback\<number> | 是   | -      | 指定源的存储量。   |
+| 参数名   | 类型                  | 必填 | 说明               |
+| -------- | --------------------- | ---- | ------------------ |
+| origin   | string                | 是   | 指定源的字符串索引 |
+| callback | AsyncCallback\<number> | 是   | 指定源的存储量。   |
 
 **错误码：**
 
@@ -2931,9 +2954,9 @@ static getOriginUsage(origin : string) : Promise\<number>
 
 **参数：**
 
-| 参数名 | 类型   | 必填 | 默认值 | 说明               |
-| ------ | ------ | ---- | ------ | ------------------ |
-| origin | string | 是   | -      | 指定源的字符串索引 |
+| 参数名 | 类型   | 必填 | 说明               |
+| ------ | ------ | ---- | ------------------ |
+| origin | string | 是   | 指定源的字符串索引 |
 
 **返回值：**
 
@@ -3035,10 +3058,10 @@ static getHttpAuthCredentials(host: string, realm: string): Array\<string>
 
 **参数：**
 
-| 参数名 | 类型   | 必填 | 默认值 | 说明                         |
-| ------ | ------ | ---- | ------ | ---------------------------- |
-| host   | string | 是   | -      | HTTP身份验证凭据应用的主机。 |
-| realm  | string | 是   | -      | HTTP身份验证凭据应用的域。   |
+| 参数名 | 类型   | 必填 | 说明                         |
+| ------ | ------ | ---- | ---------------------------- |
+| host   | string | 是   | HTTP身份验证凭据应用的主机。 |
+| realm  | string | 是   | HTTP身份验证凭据应用的域。   |
 
 **返回值：**
 
@@ -3090,12 +3113,12 @@ static saveHttpAuthCredentials(host: string, realm: string, username: string, pa
 
 **参数：**
 
-| 参数名   | 类型   | 必填 | 默认值 | 说明                         |
-| -------- | ------ | ---- | ------ | ---------------------------- |
-| host     | string | 是   | -      | HTTP身份验证凭据应用的主机。 |
-| realm    | string | 是   | -      | HTTP身份验证凭据应用的域。   |
-| username | string | 是   | -      | 用户名。                     |
-| password | string | 是   | -      | 密码。                       |
+| 参数名   | 类型   | 必填 | 说明                         |
+| -------- | ------ | ---- | ---------------------------- |
+| host     | string | 是   | HTTP身份验证凭据应用的主机。 |
+| realm    | string | 是   | HTTP身份验证凭据应用的域。   |
+| username | string | 是   | 用户名。                     |
+| password | string | 是   | 密码。                       |
 
 **示例：**
 
@@ -3202,6 +3225,133 @@ struct WebComponent {
 }
 ```
 
+## WebAsyncController
+
+通过WebAsyncController可以控制Web组件具有异步回调通知的行为，一个WebAsyncController对象控制一个Web组件。
+
+### 创建对象
+
+  ```ts
+  // xxx.ets
+  import web_webview from '@ohos.web.webview'
+
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: WebController = new WebController();
+    webAsyncController: WebAsyncController = new web_webview.WebAsyncController(this.controller)
+    build() {
+      Column() {
+        Web({ src: 'www.example.com', controller: this.controller })
+      }
+    }
+  }
+  ```
+
+### constructor<sup>9+</sup>
+
+constructor(controller: WebController)
+
+WebAsyncController的创建需要与一个[WebController](../arkui-ts/ts-basic-components-web.md#webcontroller)进行绑定。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**参数：**
+
+| 参数名| 类型 | 必填 | 说明 |
+| ----- | ---- | ---- | --- |
+| controller | [WebController](../arkui-ts/ts-basic-components-web.md#webcontroller) | 是 | 所绑定的WebviewController。|
+
+### storeWebArchive<sup>9+</sup>
+
+storeWebArchive(baseName: string, autoName: boolean, callback: AsyncCallback\<string>): void
+
+以回调方式异步保存当前页面。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**参数：**
+
+| 参数名      | 类型                                     | 必填   | 说明                                  |
+| -------- | ---------------------------------------- | ---- | ----------------------------------- |
+| baseName | string | 是 | 文件存储路径，该值不能为空。
+| autoName | boolean | 是 | 决定是否自动生成文件名。<br/>如果为false，则将baseName作为文件存储路径。<br/>如果为true，则假定baseName是一个目录，将根据当前页的Url自动生成文件名。
+| callback | AsyncCallback\<string> | 是    | 返回文件存储路径，保持网页失败会返回null。 |
+
+**示例：**
+
+  ```ts
+  // xxx.ets
+  import web_webview from '@ohos.web.webview'
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: WebController = new WebController()
+    build() {
+      Column() {
+        Button('saveWebArchive')
+          .onClick(() => {
+            let webAsyncController = new web_webview.WebAsyncController(this.controller)
+            webAsyncController.storeWebArchive("/data/storage/el2/base/", true, (filename) => {
+              if (filename != null) {
+                console.info(`save web archive success: ${filename}`)
+              }
+            })
+          })
+        Web({ src: 'www.example.com', controller: this.controller })
+      }
+    }
+  }
+  ```
+
+### storeWebArchive<sup>9+</sup>
+
+storeWebArchive(baseName: string, autoName: boolean): Promise\<string>
+
+以Promise方式异步保存当前页面。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**参数：**
+
+| 参数名      | 类型                                     | 必填   | 说明                                  |
+| -------- | ---------------------------------------- | ---- | ----------------------------------- |
+| baseName | string | 是 | 文件存储路径，该值不能为空。
+| autoName | boolean | 是 | 决定是否自动生成文件名。<br/>如果为false，则将baseName作为文件存储路径。<br/>如果为true，则假定baseName是一个目录，将根据当前页的Url自动生成文件名。
+
+**返回值：**
+
+| 类型                                       | 说明                                       |
+| ---------------------------------------- | ---------------------------------------- |
+| Promise<string> | Promise实例，保存成功返回文件路径，保存失败返回null。 |
+
+**示例：**
+
+  ```ts
+  // xxx.ets
+  import web_webview from '@ohos.web.webview'
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: WebController = new WebController();
+    build() {
+      Column() {
+        Button('saveWebArchive')
+          .onClick(() => {
+            let webAsyncController = new web_webview.WebAsyncController(this.controller);
+            webAsyncController.storeWebArchive("/data/storage/el2/base/", true)
+              .then(filename => {
+                if (filename != null) {
+                  console.info(`save web archive success: ${filename}`)
+                }
+              })
+          })
+        Web({ src: 'www.example.com', controller: this.controller })
+      }
+    }
+  }
+  ```
+
 ## GeolocationPermissions
 
 web组件地理位置权限管理对象。
@@ -3216,13 +3366,14 @@ static allowGeolocation(origin: string): void
 
 **参数：**
 
-| 参数名 | 类型   | 必填 | 默认值 | 说明               |
-| ------ | ------ | ---- | ------ | ------------------ |
-| origin | string | 是   | -      | 指定源的字符串索引 |
+| 参数名 | 类型   | 必填 | 说明               |
+| ------ | ------ | ---- | ------------------ |
+| origin | string | 是   |指定源的字符串索引 |
 
 **错误码：**
 
 以下错误码的详细介绍请参见 [webview错误码](../errorcodes/errorcode-webview.md)
+
 | 错误码ID | 错误信息                                               |
 | -------- | ------------------------------------------------------ |
 | 17100011 | Invalid origin.                             |
@@ -3265,9 +3416,9 @@ static deleteGeolocation(origin: string): void
 
 **参数：**
 
-| 参数名 | 类型   | 必填 | 默认值 | 说明               |
-| ------ | ------ | ---- | ------ | ------------------ |
-| origin | string | 是   | -      | 指定源的字符串索引 |
+| 参数名 | 类型   | 必填 | 说明               |
+| ------ | ------ | ---- | ------------------ |
+| origin | string | 是   | 指定源的字符串索引 |
 
 **错误码：**
 
@@ -3315,10 +3466,10 @@ static getAccessibleGeolocation(origin: string, callback: AsyncCallback\<boolean
 
 **参数：**
 
-| 参数名   | 类型                   | 必填 | 默认值 | 说明                                                         |
-| -------- | ---------------------- | ---- | ------ | ------------------------------------------------------------ |
-| origin   | string                 | 是   | -      | 指定源的字符串索引                                           |
-| callback | AsyncCallback\<boolean> | 是   | -      | 返回指定源的地理位置权限状态。获取成功，true表示已授权，false表示拒绝访问。获取失败，表示不存在指定源的权限状态。 |
+| 参数名   | 类型                   | 必填 | 说明                                                         |
+| -------- | ---------------------- | ---- | ------------------------------------------------------------ |
+| origin   | string                 | 是   | 指定源的字符串索引                                           |
+| callback | AsyncCallback\<boolean> | 是   | 返回指定源的地理位置权限状态。获取成功，true表示已授权，false表示拒绝访问。获取失败，表示不存在指定源的权限状态。 |
 
 **错误码：**
 
@@ -3372,9 +3523,9 @@ static getAccessibleGeolocation(origin: string): Promise\<boolean>
 
 **参数：**
 
-| 参数名 | 参数类型 | 必填 | 默认值 | 参数描述             |
-| ------ | -------- | ---- | ------ | -------------------- |
-| origin | string   | 是   | -      | 指定源的字符串索引。 |
+| 参数名 | 类型 | 必填 | 说明             |
+| ------ | -------- | ---- | -------------------- |
+| origin | string   | 是   | 指定源的字符串索引。 |
 
 **返回值：**
 
@@ -3433,9 +3584,9 @@ static getStoredGeolocation(callback: AsyncCallback\<Array\<string>>): void
 
 **参数：**
 
-| 参数名   | 类型                         | 必填 | 默认值 | 说明                                     |
-| -------- | ---------------------------- | ---- | ------ | ---------------------------------------- |
-| callback | AsyncCallback\<Array\<string>> | 是   | -      | 返回已存储地理位置权限状态的所有源信息。 |
+| 参数名   | 类型                         | 必填 | 说明                                     |
+| -------- | ---------------------------- | ---- | ---------------------------------------- |
+| callback | AsyncCallback\<Array\<string>> | 是   | 返回已存储地理位置权限状态的所有源信息。 |
 
 **示例：**
 
@@ -3557,25 +3708,25 @@ Web组件返回的请求/响应头对象。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
-| 名称        | 类型   | 说明                 |
-| ----------- | ------ | :------------------- |
-| headerKey   | string | 请求/响应头的key。   |
-| headerValue | string | 请求/响应头的value。 |
+| 名称        | 类型   | 可读 | 可写 |说明                 |
+| ----------- | ------ | -----|------|------------------- |
+| headerKey   | string | 是 | 是 | 请求/响应头的key。   |
+| headerValue | string | 是 | 是 | 请求/响应头的value。 |
 
 ## HitTestTypeV9
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
-| 名称          | 描述                                      |
-| ------------- | ----------------------------------------- |
-| EditText      | 可编辑的区域。                            |
-| Email         | 电子邮件地址。                            |
-| HttpAnchor    | 超链接，其src为http。                     |
-| HttpAnchorImg | 带有超链接的图片，其中超链接的src为http。 |
-| Img           | HTML::img标签。                           |
-| Map           | 地理地址。                                |
-| Phone           | 电话号码。                                |
-| Unknown       | 未知内容。                                |
+| 名称          | 值 | 说明                                      |
+| ------------- | -- |----------------------------------------- |
+| EditText      | 0 |可编辑的区域。                            |
+| Email         | 1 |电子邮件地址。                            |
+| HttpAnchor    | 2 |超链接，其src为http。                     |
+| HttpAnchorImg | 3 |带有超链接的图片，其中超链接的src为http。 |
+| Img           | 4 |HTML::img标签。                           |
+| Map           | 5 |地理地址。                                |
+| Phone         | 6 |电话号码。                                |
+| Unknown       | 7 |未知内容。                                |
 
 ##  HitTestValue
 
@@ -3583,10 +3734,10 @@ Web组件返回的请求/响应头对象。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
-| 名称  | 类型          | 说明                                                         |
-| ----- | ------------- | :----------------------------------------------------------- |
-| type  | [HitTestTypeV9](#hittesttypev9) | 当前被点击区域的元素类型。                                   |
-| extra | string        | 点击区域的附加参数信息。若被点击区域为图片或链接，则附加参数信息为其url地址。 |
+| 名称 | 类型 | 可读 | 可写 | 说明|
+| ---- | ---- | ---- | ---- |---- |
+| type | [HitTestTypeV9](#hittesttypev9) | 是 | 否 | 当前被点击区域的元素类型。|
+| extra | string        | 是 | 否 |点击区域的附加参数信息。若被点击区域为图片或链接，则附加参数信息为其url地址。 |
 
 ## WebStorageOrigin
 
@@ -3594,8 +3745,8 @@ Web组件返回的请求/响应头对象。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
-| 名称   | 类型   | 必填 | 说明                 |
-| ------ | ------ | :--- | -------------------- |
-| origin | string | 是   | 指定源的字符串索引。 |
-| usage  | number | 是   | 指定源的存储量。     |
-| quota  | number | 是   | 指定源的存储配额。   |
+| 名称   | 类型   | 可读 | 可写 | 说明 |
+| ------ | ------ | ---- | ---- | ---- |
+| origin | string | 是  | 否 | 指定源的字符串索引。 |
+| usage  | number | 是  | 否 | 指定源的存储量。     |
+| quota  | number | 是  | 否 | 指定源的存储配额。   |

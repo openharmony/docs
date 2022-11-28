@@ -10,6 +10,8 @@
   - [OpenSL ES播放开发指导](opensles-playback.md)
   - [OpenSL ES录音开发指导](opensles-capture.md)
   - [音频焦点模式开发指导](audio-interruptmode.md)
+  - [音量管理开发指导](audio-volume-manager.md)
+  - [路由、设备管理开发指导](audio-routing-manager.md)
 
 - 视频
   - [视频播放开发指导](video-playback.md)

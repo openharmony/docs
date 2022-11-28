@@ -163,12 +163,11 @@ bundle.getBundleInstaller().then(installer=>{
 
  **系统API：**  此接口为系统接口，三方应用不支持调用
 
-| 名称                           | 类型                           |可读|可写| 说明               |
-| ------------------------------ | ------------------------------ | ---- |----|--------------- |
-| userId                         | number                         | 是|是 |指示用户id。           |
-| installFlag                    | number                         | 是|是 |指示安装标志 <br> 0表示正常安装，1表示替代原有应用。       |
-| isKeepData                     | boolean                        | 是|是 |指示应用删除后是否保留数据。 |
-
+| 名称        | 类型    | 可读 | 可写 | 说明               |
+| ----------- | ------- | ---- | ---- | ------------------ |
+| userId      | number  | 是   | 否   | 指示用户id         |
+| installFlag | number  | 是   | 否   | 指示安装标志       |
+| isKeepData  | boolean | 是   | 否   | 指示参数是否有数据 |
 
 ## InstallStatus<sup>(deprecated)<sup>
 
