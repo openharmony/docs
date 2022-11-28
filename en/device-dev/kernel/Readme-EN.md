@@ -1,11 +1,10 @@
 #  Kernel
 
 - Kernel
-    - Mini-System Kernel
     - [Kernel Overview](kernel-overview.md)
     - Mini-System Kernel (LiteOS-M)
         - [LiteOS-M Overview](kernel-mini-overview.md)
-        - Basic Kernel
+        - Base Kernel
             - [Interrupt Management](kernel-mini-basic-interrupt.md)
             - [Task Management](kernel-mini-basic-task.md)
             - [Memory Management](kernel-mini-basic-memory.md)
@@ -16,6 +15,7 @@
                 - [Semaphore](kernel-mini-basic-ipc-sem.md)
             - [Time Management](kernel-basic-mini-time.md)
             - [Software Timer](kernel-mini-basic-soft.md)
+            - [Doubly Linked List](kernel-mini-basic-list.md)
         - Extended Components
             - [C++ Support](kernel-mini-extend-support.md)
             - [CPUP](kernel-mini-extend-cpup.md)
@@ -28,7 +28,6 @@
             - [LMS](kernel-mini-memory-lms.md)
         - Appendix
             - [Kernel Coding Specification](kernel-mini-appx-code.md)
-            - [Doubly Linked List](kernel-mini-appx-data-list.md)
             - [Standard Libraries](kernel-mini-appx-lib.md)
     - Small-System Kernel (LiteOS-A)
         - [Kernel Overview](kernel-small-overview.md)
@@ -158,6 +157,7 @@
         - [Compiling and Building the Linux Kernel](kernel-standard-build.md)
         - Enhanced Kernel Features
           - [Enhanced Swap](kernel-standard-mm-eswap.md)
+          - [NewIP Kernel Protocol Stack](kernel-standard-newip.md)
           - Task Scheduling
             - [Related Thread Group](kernel-standard-sched-rtg.md)
             - [Lightweight CPU Isolation](kernel-standard-sched-cpuisolation.md)  
