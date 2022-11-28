@@ -28,7 +28,7 @@ New IP载荷传输效率，相比IPv4提高最少1%，相比IPv6提高最少2.33
 
 ## 可变长报头格式
 
-New IP WiFi灵活极简报文头如下图所示，通过LLC Header中的EtherType = 0xEADD标识New IP报文。Bitmap是一组由0和1组成的二进制序列，每个二进制位的数值用于表示特定目标字段的存在性。
+New IP WiFi灵活极简报文头如下图所示，通过LLC Header中的EtherType = 0xEADD标识New IP报文。Bitmap是一组由0和1组成的二进制序列，每个二进制位的数值用于表示New IP报头中是否携带某个字段，即New IP报文头可以由用户根据业务场景自行定制报头中携带哪些字段。
 
 ![zh-cn_image-20220915140627223](figures/zh-cn_image-20220915140627223.png)
 
@@ -89,23 +89,31 @@ New IP支持可变长地址（IPv4/IPv6地址长度固定），支持自解析�
 
 ## New IP配置指导
 
-启用New IP，需要通过编译内核时打开相应的配置项及依赖，New IP相关CONFIG如下：
+### New IP使能
 
-```c
+目前只有rk3568开发板Linux 5.10内核上支持New IP内核协议栈，在rk3568开发板内核模块配置文件中搜索NEWIP，将其修改成“CONFIG_XXX=y”即可，New IP相关CONFIG如下。
+
+```
+# kernel/linux/config/linux-5.10/arch/arm64/configs/rk3568_standard_defconfig
 CONFIG_NEWIP=y          // 使能New IP内核协议栈
 CONFIG_NEWIP_HOOKS=y    // 使能New IP内核侵入式修改插桩函数注册，使能New IP的同时必须使用New IP HOOKS功能
+VENDOR_HOOKS=y          // 使能内核插桩基础框架(New IP依赖此配置项，rk3568开发板已默认开启)
 ```
 
-另有部分CONFIG被依赖：
+代码编译完成后，通过下面命令可以确认New IP协议栈代码是否使能成功。
 
-```c
-VENDOR_HOOKS=y          // 使能内核插桩基础框架
+```
+find out/ -name *nip*.o
+...
+out/kernel/OBJ/linux-5.10/net/newip/nip_addrconf_core.o
+out/kernel/OBJ/linux-5.10/net/newip/nip_hdr_decap.o
+out/kernel/OBJ/linux-5.10/net/newip/nip_addr.o
+out/kernel/OBJ/linux-5.10/net/newip/nip_checksum.o
+out/kernel/OBJ/linux-5.10/net/newip/tcp_nip_output.o
+...
 ```
 
-备注：
-
-1. 只在Linux 5.10内核上支持New IP内核协议栈。
-2. OpenHarmony linux内核要求所有原生内核代码侵入式修改，都要修改成插桩方式。
+备注：OpenHarmony linux内核要求所有原生内核代码侵入式修改，都要修改成插桩方式。例如下面IPv4，IPv6协议栈公共流程中增加New IP处理时，不能直接调用New IP函数，需要在公共流程中增加插桩点，New IP使能后在模块初始化时将xx功能函数注册到对应的函数指针上，下面公共流程就可以通过函数指针的形式调用到New IP的函数。
 
 ```c
 /* 将New IP ehash函数注册到内核 */
@@ -142,24 +150,12 @@ static u32 sk_ehashfn(const struct sock *sk)
 }
 ```
 
+### New IP禁用
 
+在rk3568开发板内核模块配置文件中搜索NEWIP，将其“CONFIG_NEWIP=y”和“CONFIG_NEWIP_HOOKS=y”删除或使用#注释掉即可。
 
-代码编译完成后，通过下面命令可以确认New IP协议栈代码是否使能成功。
-
-```c
-find out/ -name *nip*.o
-out/rk3568/obj/third_party/glib/glib/glib_source/guniprop.o
-out/kernel/OBJ/linux-5.10/net/newip/nip_addrconf_core.o
-out/kernel/OBJ/linux-5.10/net/newip/nip_hdr_decap.o
-out/kernel/OBJ/linux-5.10/net/newip/nip_addr.o
-out/kernel/OBJ/linux-5.10/net/newip/nip_checksum.o
-out/kernel/OBJ/linux-5.10/net/newip/tcp_nip_output.o
-...
 ```
-
-禁用New IP内核协议栈，删除CONFIG_NEWIP使能开关，删除out/kernel目录后重新编译。
-
-```c
+# kernel/linux/config/linux-5.10/arch/arm64/configs/rk3568_standard_defconfig
 # CONFIG_NEWIP is not set
 # CONFIG_NEWIP_HOOKS is not set
 ```
