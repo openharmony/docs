@@ -231,6 +231,7 @@
   - [@ohos.batteryStatistics (耗电统计)](js-apis-batteryStatistics.md)
   - [@ohos.brightness (屏幕亮度)](js-apis-brightness.md)
   - [@ohos.deviceInfo (设备信息)](js-apis-device-info.md)
+  - [@ohos.devicestatus (设备状态感知框架)](js-apis-stationary.md)
   - [@ohos.distributedHardware.deviceManager (设备管理)](js-apis-device-manager.md)
   - [@ohos.geoLocationManager (位置服务)](js-apis-geoLocationManager.md)
   - [@ohos.multimodalInput.inputConsumer (组合按键)](js-apis-inputconsumer.md)
