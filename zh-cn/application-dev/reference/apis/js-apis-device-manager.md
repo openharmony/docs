@@ -189,7 +189,7 @@ createDeviceManager(bundleName: string, callback: AsyncCallback&lt;DeviceManager
 | 名称        | 类型                   | 必填   | 说明         |
 | --------- | -------------------- | ---- | ---------- |
 | authType  | number               | 是    | 认证类型。      |
-| extraInfo | {&nbsp;[key:string] : any&nbsp;} | 否    | 认证参数可扩展字段。 |
+| extraInfo | {[key:string]&nbsp;:&nbsp;any} | 否    | 认证参数可扩展字段。 |
 
 ## AuthInfo
 
@@ -201,7 +201,7 @@ createDeviceManager(bundleName: string, callback: AsyncCallback&lt;DeviceManager
 | --------- | -------------------- | ---- | ---------- |
 | authType  | number               | 是    | 认证类型。      |
 | token     | number               | 是    | 认证Token。   |
-| extraInfo | {&nbsp;[key:string] : any&nbsp;} | 否    | 认证信息可扩展字段。 |
+| extraInfo | {[key:string]&nbsp;:&nbsp;any} | 否    | 认证信息可扩展字段。 |
 
 ## PublishInfo<sup>9+</sup>
 
@@ -657,7 +657,7 @@ unPublishDeviceDiscovery(publishId: number): void
 
 ### authenticateDevice
 
-authenticateDevice(deviceInfo: DeviceInfo, authParam: AuthParam, callback: AsyncCallback&lt;{&nbsp;deviceId: string, pinToken ?: number&nbsp;}&gt;): void
+authenticateDevice(deviceInfo: DeviceInfo, authParam: AuthParam, callback: AsyncCallback&lt;{deviceId: string, pinToken ?: number}&gt;): void
 
 认证设备。
 
@@ -669,7 +669,7 @@ authenticateDevice(deviceInfo: DeviceInfo, authParam: AuthParam, callback: Async
   | ---------- | ---------------------------------------- | ---- | ------- |
   | deviceInfo | [DeviceInfo](#deviceinfo)                | 是    | 设备信息。   |
   | authParam  | [AuthParam](#authparam)                  | 是    | 认证参数。   |
-  | callback   | AsyncCallback&lt;{&nbsp;deviceId: string, pinToken ?: number&nbsp;}&gt; | 是    | 认证结果回调。 |
+  | callback   | AsyncCallback&lt;{deviceId:&nbsp;string,&nbsp;pinToken&nbsp;?:&nbsp;number}&gt; | 是    | 认证结果回调。 |
 
 **错误码：**
 
@@ -741,7 +741,7 @@ unAuthenticateDevice(deviceInfo: DeviceInfo): void
 
 ### verifyAuthInfo
 
-verifyAuthInfo(authInfo: AuthInfo, callback: AsyncCallback&lt;{&nbsp;deviceId: string, level: number&nbsp;}&gt;): void
+verifyAuthInfo(authInfo: AuthInfo, callback: AsyncCallback&lt;{deviceId: string, level: number}&gt;): void
 
 验证认证信息。
 
@@ -752,7 +752,7 @@ verifyAuthInfo(authInfo: AuthInfo, callback: AsyncCallback&lt;{&nbsp;deviceId: s
   | 参数名       | 类型                                     | 必填   | 说明      |
   | -------- | ---------------------------------------- | ---- | ------- |
   | authInfo | [AuthInfo](#authinfo)                    | 是    | 认证信息。   |
-  | callback | AsyncCallback&lt;{&nbsp;deviceId: string, level: number&nbsp;}&gt; | 是    | 验证结果回调。 |
+  | callback | AsyncCallback&lt;{deviceId:&nbsp;string,&nbsp;level:&nbsp;number}&gt; | 是    | 验证结果回调。 |
 
 **错误码：**
 
@@ -819,7 +819,7 @@ setUserOperation(operateAction: number, params: string): void;
 
 ### on('uiStateChange')<sup>9+</sup>
 
-on(type: 'uiStateChange', callback: Callback&lt;{&nbsp; param: string&nbsp;}&gt;): void;
+on(type: 'uiStateChange', callback: Callback&lt;{ param: string}&gt;): void;
 
 ui状态变更回调。
 
@@ -830,7 +830,7 @@ ui状态变更回调。
   | 参数名      | 类型                             | 必填 | 说明                            |
   | -------- | ------------------------------------ | ---- | ------------------------------ |
   | type     | string                                | 是  | 注册的设备管理器 ui 状态回调，以便在状态改变时通知应用。 |
-  | callback | Callback&lt;{&nbsp; param: string&nbsp;}&gt; | 是  | 指示要注册的设备管理器 ui 状态回调，返回ui状态。        |
+  | callback | Callback&lt;{&nbsp;param:&nbsp;string}&gt; | 是  | 指示要注册的设备管理器 ui 状态回调，返回ui状态。        |
 
 **示例：**
 
@@ -852,7 +852,7 @@ ui状态变更回调。
 
 ### off('uiStateChange')<sup>9+</sup>
 
-off(type: 'uiStateChange', callback?: Callback&lt;{&nbsp; param: string&nbsp;}&gt;): void;
+off(type: 'uiStateChange', callback?: Callback&lt;{ param: string}&gt;): void;
 
 取消ui状态变更回调
 
@@ -863,7 +863,7 @@ off(type: 'uiStateChange', callback?: Callback&lt;{&nbsp; param: string&nbsp;}&g
   | 参数名      | 类型                              | 必填 | 说明                            |
   | -------- | ------------------------------------- | ---- | ------------------------------ |
   | type     | string                                | 是   | 取消注册的设备管理器 ui 状态回调。 |
-  | callback | Callback&lt;{&nbsp; param: string&nbsp;}&gt; | 否   | 指示要取消注册的设备管理器 ui 状态，返回UI状态。 |
+  | callback | Callback&lt;{&nbsp;param:&nbsp;string}&gt; | 否   | 指示要取消注册的设备管理器 ui 状态，返回UI状态。 |
 
 **示例：**
 
@@ -877,7 +877,7 @@ off(type: 'uiStateChange', callback?: Callback&lt;{&nbsp; param: string&nbsp;}&g
 
 ### on('deviceStateChange')
 
-on(type: 'deviceStateChange',  callback: Callback&lt;{&nbsp; action: DeviceStateChangeAction, device: DeviceInfo &nbsp;}&gt;): void
+on(type: 'deviceStateChange',  callback: Callback&lt;{ action: DeviceStateChangeAction, device: DeviceInfo }&gt;): void
 
 注册设备状态回调。
 
@@ -888,7 +888,7 @@ on(type: 'deviceStateChange',  callback: Callback&lt;{&nbsp; action: DeviceState
   | 参数名       | 类型                                     | 必填   | 说明                             |
   | -------- | ---------------------------------------- | ---- | ------------------------------ |
   | type     | string                                   | 是    | 注册设备状态回调，固定为deviceStateChange。 |
-  | callback | Callback&lt;{&nbsp; action:&nbsp;[DeviceStateChangeAction](#devicestatechangeaction),&nbsp;device:&nbsp;[DeviceInfo](#deviceinfo) &nbsp;}&gt; | 是    | 指示要注册的设备状态回调，返回设备状态和设备信息。      |
+  | callback | Callback&lt;{&nbsp;action:&nbsp;[DeviceStateChangeAction](#devicestatechangeaction),&nbsp;device:&nbsp;[DeviceInfo](#deviceinfo)&nbsp;}&gt; | 是    | 指示要注册的设备状态回调，返回设备状态和设备信息。      |
 
 **示例：**
 
@@ -904,7 +904,7 @@ on(type: 'deviceStateChange',  callback: Callback&lt;{&nbsp; action: DeviceState
 
 ### off('deviceStateChange')
 
-off(type: 'deviceStateChange', callback?: Callback&lt;{&nbsp; action: DeviceStateChangeAction, device: DeviceInfo &nbsp;}&gt;): void
+off(type: 'deviceStateChange', callback?: Callback&lt;{ action: DeviceStateChangeAction, device: DeviceInfo }&gt;): void
 
 取消注册设备状态回调。
 
@@ -915,7 +915,7 @@ off(type: 'deviceStateChange', callback?: Callback&lt;{&nbsp; action: DeviceStat
   | 参数名       | 类型                                     | 必填   | 说明                          |
   | -------- | ---------------------------------------- | ---- | --------------------------- |
   | type     | string                                   | 是    | 根据应用程序的包名取消注册设备状态回调。        |
-  | callback | Callback&lt;{&nbsp; action: [DeviceStateChangeAction](#devicestatechangeaction), device: [DeviceInfo](#deviceinfo) &nbsp;}&gt; | 否    | 指示要取消注册的设备状态回调，返回设备状态和设备信息。 |
+  | callback | Callback&lt;{&nbsp;action:&nbsp;[DeviceStateChangeAction](#devicestatechangeaction),&nbsp;device:&nbsp;[DeviceInfo](#deviceinfo)&nbsp;}&gt; | 否    | 指示要取消注册的设备状态回调，返回设备状态和设备信息。 |
 
 **示例：**
 
@@ -931,7 +931,7 @@ off(type: 'deviceStateChange', callback?: Callback&lt;{&nbsp; action: DeviceStat
 
 ### on('deviceFound')
 
-on(type: 'deviceFound', callback: Callback&lt;{&nbsp; subscribeId: number, device: DeviceInfo &nbsp;}&gt;): void
+on(type: 'deviceFound', callback: Callback&lt;{ subscribeId: number, device: DeviceInfo }&gt;): void
 
 注册发现设备回调监听。
 
@@ -942,7 +942,7 @@ on(type: 'deviceFound', callback: Callback&lt;{&nbsp; subscribeId: number, devic
   | 参数名       | 类型                                     | 必填   | 说明                         |
   | -------- | ---------------------------------------- | ---- | -------------------------- |
   | type     | string                                   | 是    | 注册设备发现回调，以便在发现周边设备时通知应用程序。 |
-  | callback | Callback&lt;{&nbsp; subscribeId: number, device: [DeviceInfo](#deviceinfo) &nbsp;}&gt; | 是    | 注册设备发现的回调方法。               |
+  | callback | Callback&lt;{&nbsp;subscribeId:&nbsp;number,&nbsp;device:&nbsp;[DeviceInfo](#deviceinfo)&nbsp;}&gt; | 是    | 注册设备发现的回调方法。               |
 
 **示例：**
 
@@ -958,7 +958,7 @@ on(type: 'deviceFound', callback: Callback&lt;{&nbsp; subscribeId: number, devic
 
 ### off('deviceFound')
 
-off(type: 'deviceFound', callback?: Callback&lt;{&nbsp; subscribeId: number, device: DeviceInfo &nbsp;}&gt;): void
+off(type: 'deviceFound', callback?: Callback&lt;{ subscribeId: number, device: DeviceInfo }&gt;): void
 
 取消注册设备发现回调。
 
@@ -969,7 +969,7 @@ off(type: 'deviceFound', callback?: Callback&lt;{&nbsp; subscribeId: number, dev
   | 参数名       | 类型                                     | 必填   | 说明                          |
   | -------- | ---------------------------------------- | ---- | --------------------------- |
   | type     | string                                   | 是    | 取消注册设备发现回调。                 |
-  | callback | Callback&lt;{&nbsp; subscribeId: number, device: [DeviceInfo](#deviceinfo) &nbsp;}&gt; | 否    | 指示要取消注册的设备发现回调，返回设备状态和设备信息。 |
+  | callback | Callback&lt;{&nbsp;subscribeId:&nbsp;number,&nbsp;device:&nbsp;[DeviceInfo](#deviceinfo)&nbsp;}&gt; | 否    | 指示要取消注册的设备发现回调，返回设备状态和设备信息。 |
 
 **示例：**
 
@@ -985,7 +985,7 @@ off(type: 'deviceFound', callback?: Callback&lt;{&nbsp; subscribeId: number, dev
 
 ### on('discoverFail')
 
-on(type: 'discoverFail', callback: Callback&lt;{&nbsp; subscribeId: number, reason: number &nbsp;}&gt;): void
+on(type: 'discoverFail', callback: Callback&lt;{ subscribeId: number, reason: number }&gt;): void
 
 注册设备发现失败回调监听。
 
@@ -996,7 +996,7 @@ on(type: 'discoverFail', callback: Callback&lt;{&nbsp; subscribeId: number, reas
   | 参数名       | 类型                                     | 必填   | 说明                             |
   | -------- | ---------------------------------------- | ---- | ------------------------------ |
   | type     | string                                   | 是    | 注册设备发现失败回调，以便在发现周边设备失败时通知应用程序。 |
-  | callback | Callback&lt;{&nbsp; subscribeId: number, reason: number &nbsp;}&gt; | 是    | 注册设备发现失败的回调方法。                 |
+  | callback | Callback&lt;{&nbsp;subscribeId:&nbsp;number,&nbsp;reason:&nbsp;number&nbsp;}&gt; | 是    | 注册设备发现失败的回调方法。                 |
 
 **示例：**
 
@@ -1012,7 +1012,7 @@ on(type: 'discoverFail', callback: Callback&lt;{&nbsp; subscribeId: number, reas
 
 ### off('discoverFail')
 
-off(type: 'discoverFail', callback?: Callback&lt;{&nbsp; subscribeId: number, reason: number &nbsp;}&gt;): void
+off(type: 'discoverFail', callback?: Callback&lt;{ subscribeId: number, reason: number }&gt;): void
 
 取消注册设备发现失败回调。
 
@@ -1023,7 +1023,7 @@ off(type: 'discoverFail', callback?: Callback&lt;{&nbsp; subscribeId: number, re
   | 参数名       | 类型                                     | 必填   | 说明                |
   | -------- | ---------------------------------------- | ---- | ----------------- |
   | type     | string                                   | 是    | 取消注册设备发现失败回调。     |
-  | callback | Callback&lt;{&nbsp; subscribeId: number, reason: number &nbsp;}&gt; | 否    | 指示要取消注册的设备发现失败回调。 |
+  | callback | Callback&lt;{&nbsp;subscribeId:&nbsp;number,&nbsp;reason:&nbsp;number&nbsp;}&gt; | 否    | 指示要取消注册的设备发现失败回调。 |
 
 **示例：**
 
@@ -1039,7 +1039,7 @@ off(type: 'discoverFail', callback?: Callback&lt;{&nbsp; subscribeId: number, re
 
 ### on('publishSuccess')<sup>9+</sup>
 
-on(type: 'publishSuccess', callback: Callback&lt;{&nbsp; publishId: number &nbsp;}&gt;): void
+on(type: 'publishSuccess', callback: Callback&lt;{ publishId: number }&gt;): void
 
 注册发布设备发现回调监听。
 
@@ -1050,7 +1050,7 @@ on(type: 'publishSuccess', callback: Callback&lt;{&nbsp; publishId: number &nbsp
   | 参数名     | 类型                                 | 必填 | 说明                       |
   | -------- | ---------------------------------------- | ---- | -------------------------- |
   | type     | string                                   | 是   | 注册发布设备成功回调，以便将发布成功时通知应用程序。 |
-  | callback | Callback&lt;{&nbsp; publishId: number &nbsp;}&gt;    | 是   | 注册设备发布成功的回调方法。               |
+  | callback | Callback&lt;{&nbsp;publishId:&nbsp;number&nbsp;}&gt;    | 是   | 注册设备发布成功的回调方法。               |
 
 
 **示例：**
@@ -1067,7 +1067,7 @@ on(type: 'publishSuccess', callback: Callback&lt;{&nbsp; publishId: number &nbsp
 
 ### off('publishSuccess')<sup>9+</sup>
 
-off(type: 'publishSuccess', callback?: Callback&lt;{&nbsp; publishId: number &nbsp;}&gt;): void
+off(type: 'publishSuccess', callback?: Callback&lt;{ publishId: number }&gt;): void
 
 取消注册设备发布成功回调。
 
@@ -1078,7 +1078,7 @@ off(type: 'publishSuccess', callback?: Callback&lt;{&nbsp; publishId: number &nb
   | 参数名     | 类型                                 | 必填 | 说明                          |
   | -------- | ---------------------------------------- | ---- | --------------------------- |
   | type     | string                                   | 是   | 取消注册设备发布成功回调。                 |
-  | callback | Callback&lt;{&nbsp; publishId: number &nbsp;}&gt;    | 否   | 指示要取消注册的设备发布成功回调。 |
+  | callback | Callback&lt;{&nbsp;publishId:&nbsp;number&nbsp;}&gt;    | 否   | 指示要取消注册的设备发布成功回调。 |
 
 **示例：**
 
@@ -1094,7 +1094,7 @@ off(type: 'publishSuccess', callback?: Callback&lt;{&nbsp; publishId: number &nb
 
 ### on('publishFail')<sup>9+</sup>
 
-on(type: 'publishFail', callback: Callback&lt;{&nbsp; publishId: number, reason: number &nbsp;}&gt;): void
+on(type: 'publishFail', callback: Callback&lt;{ publishId: number, reason: number }&gt;): void
 
 注册设备发布失败回调监听。
 
@@ -1105,7 +1105,7 @@ on(type: 'publishFail', callback: Callback&lt;{&nbsp; publishId: number, reason:
   | 参数名     | 类型                                              | 必填 | 说明                             |
   | -------- | ----------------------------------------------------- | ---- | ------------------------------ |
   | type     | string                                                | 是   | 注册设备发布失败回调，以便在发布设备失败时通知应用程序。 |
-  | callback | Callback&lt;{&nbsp; publishId: number, reason: number &nbsp;}&gt; | 是   | 注册设备发布失败的回调方法。                 |
+  | callback | Callback&lt;{&nbsp;publishId:&nbsp;number,&nbsp;reason:&nbsp;number&nbsp;}&gt; | 是   | 注册设备发布失败的回调方法。                 |
 
 **示例：**
 
@@ -1121,7 +1121,7 @@ on(type: 'publishFail', callback: Callback&lt;{&nbsp; publishId: number, reason:
 
 ### off('publishFail')<sup>9+</sup>
 
-off(type: 'publishFail', callback?: Callback&lt;{&nbsp; publishId: number, reason: number &nbsp;}&gt;): void
+off(type: 'publishFail', callback?: Callback&lt;{ publishId: number, reason: number }&gt;): void
 
 取消注册设备发布失败回调。
 
@@ -1132,7 +1132,7 @@ off(type: 'publishFail', callback?: Callback&lt;{&nbsp; publishId: number, reaso
   | 参数名     | 类型                                              | 必填 | 说明                |
   | -------- | ----------------------------------------------------- | ---- | ----------------- |
   | type     | string                                                | 是   | 取消注册设备发布失败回调。     |
-  | callback | Callback&lt;{&nbsp; publishId: number, reason: number &nbsp;}&gt; | 否   | 指示要取消注册设备发布失败回调。 |
+  | callback | Callback&lt;{&nbsp;publishId:&nbsp;number,&nbsp;reason:&nbsp;number&nbsp;}&gt; | 否   | 指示要取消注册设备发布失败回调。 |
 
 **示例：**
 
