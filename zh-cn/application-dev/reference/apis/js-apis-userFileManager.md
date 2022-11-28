@@ -1309,7 +1309,7 @@ getThumbnail(size: image.Size, callback: AsyncCallback&lt;image.PixelMap&gt;): v
 
 | 参数名      | 类型                                  | 必填   | 说明               |
 | -------- | ----------------------------------- | ---- | ---------------- |
-| size     | Size                      | 是    | 缩略图尺寸            |
+| size     | [image.Size](js-apis-image.md#size) | 是    | 缩略图尺寸            |
 | callback | AsyncCallback&lt;[image.PixelMap](js-apis-image.md#pixelmap7)&gt; | 是    | 回调返回缩略图的PixelMap |
 
 **示例：**
@@ -1352,7 +1352,7 @@ getThumbnail(size?: image.Size): Promise&lt;image.PixelMap&gt;
 
 | 参数名  | 类型             | 必填   | 说明    |
 | ---- | -------------- | ---- | ----- |
-| size | Size | 否    | 缩略图尺寸 |
+| size | [image.Size](js-apis-image.md#size) | 否    | 缩略图尺寸 |
 
 **返回值：**
 

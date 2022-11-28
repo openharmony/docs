@@ -192,7 +192,7 @@ media.getFileAssets(imagesFetchOp).then(function(fetchFileResult) {
 
 ### on<sup>8+</sup>
 
-on(type: 'deviceChange'|'albumChange'|'imageChange'|'audioChange'|'videoChange'|'fileChange'|'remoteFileChange', callback: Callback&lt;void&gt;): void
+on(type: 'deviceChange'&#124;'albumChange'&#124;'imageChange'&#124;'audioChange'&#124;'videoChange'&#124;'fileChange'&#124;'remoteFileChange', callback: Callback&lt;void&gt;): void
 
 打开媒体库变更通知，使用callback方式返回异步结果。
 
@@ -214,7 +214,7 @@ media.on('imageChange', () => {
 ```
 ### off<sup>8+</sup>
 
-off(type: 'deviceChange'|'albumChange'|'imageChange'|'audioChange'|'videoChange'|'fileChange'|'remoteFileChange', callback?: Callback&lt;void&gt;): void
+off(type: 'deviceChange'&#124;'albumChange'&#124;'imageChange'&#124;'audioChange'&#124;'videoChange'&#124;'fileChange'&#124;'remoteFileChange', callback?: Callback&lt;void&gt;): void
 
 关闭媒体库变更通知，使用callback方式返回异步结果。
 
@@ -2471,25 +2471,25 @@ async function example() {
 
 | 名称          | 值              | 说明                                                       |
 | ------------- | ------------------- | ---------------------------------------------------------- |
-| ID            | file_id             | 文件编号                                                   |
-| RELATIVE_PATH | relative_path       | 相对公共目录路径                                           |
-| DISPLAY_NAME  | display_name        | 显示名字                                                   |
-| PARENT        | parent              | 父目录id                                                   |
-| MIME_TYPE     | mime_type           | 文件扩展属性                                               |
-| MEDIA_TYPE    | media_type          | 媒体类型                                                   |
-| SIZE          | size                | 文件大小（单位：字节）                                     |
-| DATE_ADDED    | date_added          | 添加日期（添加文件时间到1970年1月1日的秒数值）             |
-| DATE_MODIFIED | date_modified       | 修改日期（修改文件时间到1970年1月1日的秒数值）             |
-| DATE_TAKEN    | date_taken          | 拍摄日期（文件拍照时间到1970年1月1日的秒数值）             |
-| TITLE         | title               | 文件标题                                                   |
-| ARTIST        | artist              | 作者                                                       |
-| AUDIOALBUM    | audio_album         | 专辑                                                       |
-| DURATION      | duration            | 持续时间（单位：毫秒）                                       |
-| WIDTH         | width               | 图片宽度（单位：像素）                                     |
-| HEIGHT        | height              | 图片高度（单位：像素）                                     |
-| ORIENTATION   | orientation         | 图片显示方向，即顺时针旋转角度，如0，90，180。（单位：度） |
-| ALBUM_ID      | bucket_id           | 文件所归属的相册编号                                       |
-| ALBUM_NAME    | bucket_display_name | 文件所归属相册名称                                         |
+| ID            | "file_id"             | 文件编号                                                   |
+| RELATIVE_PATH | "relative_path"       | 相对公共目录路径                                           |
+| DISPLAY_NAME  | "display_name"        | 显示名字                                                   |
+| PARENT        | "parent"              | 父目录id                                                   |
+| MIME_TYPE     | "mime_type"           | 文件扩展属性                                               |
+| MEDIA_TYPE    | "media_type"          | 媒体类型                                                   |
+| SIZE          | "size"                | 文件大小（单位：字节）                                     |
+| DATE_ADDED    | "date_added"          | 添加日期（添加文件时间到1970年1月1日的秒数值）             |
+| DATE_MODIFIED | "date_modified"       | 修改日期（修改文件时间到1970年1月1日的秒数值）             |
+| DATE_TAKEN    | "date_taken"          | 拍摄日期（文件拍照时间到1970年1月1日的秒数值）             |
+| TITLE         | "title"               | 文件标题                                                   |
+| ARTIST        | "artist"              | 作者                                                       |
+| AUDIOALBUM    | "audio_album"         | 专辑                                                       |
+| DURATION      | "duration"            | 持续时间（单位：毫秒）                                       |
+| WIDTH         | "width"               | 图片宽度（单位：像素）                                     |
+| HEIGHT        | "height"              | 图片高度（单位：像素）                                     |
+| ORIENTATION   | "orientation"         | 图片显示方向，即顺时针旋转角度，如0，90，180。（单位：度） |
+| ALBUM_ID      | "bucket_id"           | 文件所归属的相册编号                                       |
+| ALBUM_NAME    | "bucket_display_name" | 文件所归属相册名称                                         |
 
 ## DirectoryType<sup>8+</sup>
 
@@ -2575,7 +2575,7 @@ async function example() {
 
 | 名称    | 类型     | 可读 | 可写 | 说明                   |
 | ----- | ------ | ---- | ---- | -------------------- |
-| type  | string | 是    | 是  | 媒体类型，包括：image, video, media，当前仅支持media类型 |
+| type  | 'image' &#124; 'video' &#124; 'media' | 是    | 是  | 媒体类型，包括：image, video, media，当前仅支持media类型 |
 | count | number | 是    | 是  | 媒体选择，count = 1表示单选，count大于1表示多选。            |
 
 
