@@ -456,6 +456,7 @@ applyEfficiencyResources(request: [EfficiencyResourcesRequest](#efficiencyresour
 | request | [EfficiencyResourcesRequest](#efficiencyresourcesrequest9) | 是    | 请求的必要信息。包括资源类型，超时时间等信息。详见[EfficiencyResourcesRequest](#efficiencyresourcesrequest9)。 |
 
 **返回值**：
+
 | 类型             | 说明               |
 | -------------- | ---------------- |
 | boolean | true代表申请成功，false代表申请失败。 |
