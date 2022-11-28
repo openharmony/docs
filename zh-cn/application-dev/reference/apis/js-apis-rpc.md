@@ -14,6 +14,29 @@ import rpc from '@ohos.rpc';
 ```
 
 
+## ErrorCode<sup>9+</sup>
+
+从API version 9起，IPC支持异常返回功能。错误码对应数值及含义如下。
+
+**系统能力**：SystemCapability.Communication.IPC.Core
+
+  | 名称                                  | 值      | 说明                                          |
+  | ------------------------------------- | ------- | --------------------------------------------- |
+  | OS_MMAP_ERROR                         | 1900001 | 执行系统调用mmap失败。                        |
+  | OS_IOCTL_ERROR                        | 1900002 | 在共享内存文件描述符上执行系统调用ioctl失败。 |
+  | WRITE_TO_ASHMEM_ERROR                 | 1900003 | 向共享内存写数据失败。                        |
+  | READ_FROM_ASHMEM_ERROR                | 1900004 | 从共享内存读数据失败。                        |
+  | ONLY_PROXY_OBJECT_PERMITTED_ERROR     | 1900005 | 只有proxy对象允许该操作。                     |
+  | ONLY_REMOTE_OBJECT_PERMITTED_ERROR    | 1900006 | 只有remote对象允许该操作。                    |
+  | COMMUNICATION_ERROR                   | 1900007 | 和远端对象进行进程间通信失败。                |
+  | PROXY_OR_REMOTE_OBJECT_INVALID_ERROR  | 1900008 | 非法的代理对象或者远端对象。                  |
+  | WRITE_DATA_TO_MESSAGE_SEQUENCE_ERROR  | 1900009 | 向MessageSequence写数据失败。                 |
+  | READ_DATA_FROM_MESSAGE_SEQUENCE_ERROR | 1900010 | 读取MessageSequence数据失败。                 |
+  | PARCEL_MEMORY_ALLOC_ERROR             | 1900011 | 序列化过程中内存分配失败。                    |
+  | CALL_JS_METHOD_ERROR                  | 1900012 | 执行JS回调方法失败。                          |
+  | OS_DUP_ERROR                          | 1900013 | 执行系统调用dup失败。                         |
+
+
 ## MessageSequence<sup>9+</sup>
 
   在RPC过程中，发送方可以使用MessageSequence提供的写方法，将待发送的数据以特定格式写入该对象。接收方可以使用MessageSequence提供的读方法从该对象中读取特定格式的数据。数据格式包括：基础类型及数组、IPC对象、接口描述符和自定义序列化对象。
@@ -796,7 +819,7 @@ writeFloat(val: number): void
 
   | 错误码ID | 错误信息 |
   | ------- | ------- |
-  | 1900010 | write data to message sequence failed |
+  | 1900009 | write data to message sequence failed |
 
 **示例：**
 
@@ -2543,6 +2566,7 @@ writeRemoteObjectArray(objectArray: IRemoteObject[]): void
 **系统能力**：SystemCapability.Communication.IPC.Core
 
 **参数：**
+
   | 参数名      | 类型            | 必填 | 说明                                           |
   | ----------- | --------------- | ---- | ---------------------------------------------- |
   | objectArray | IRemoteObject[] | 是   | 要写入MessageSequence的IRemoteObject对象数组。 |
@@ -2681,7 +2705,7 @@ readRemoteObjectArray(): IRemoteObject[]
   ```
 
 
-### closeFileDescriptor<sup>8+</sup>
+### closeFileDescriptor<sup>9+</sup>
 
 static closeFileDescriptor(fd: number): void
 
@@ -2891,7 +2915,7 @@ writeAshmem(ashmem: Ashmem): void
 
   | 错误码ID | 错误信息 |
   | ------- | ------- |
-  | 1900009 | write data to message sequence failed |
+  | 1900003 | write data to message sequence failed |
 
 **示例：**
 
@@ -2933,7 +2957,7 @@ readAshmem(): Ashmem
 
   | 错误码ID | 错误信息 |
   | ------- | -------- |
-  | 1900010 | read data from message sequence failed |
+  | 1900004 | read data from message sequence failed |
 
 **示例：**
 
@@ -5738,12 +5762,12 @@ onRemoteDied(): void
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Communication.IPC.Core。
 
-  | 参数名  | 类型            | 必填 | 说明                                   |
-  | ------- | --------------- | ---- | ------------------------------------- |
-  | errCode | number          | 是   | 错误码。                              |
-  | code    | number          | 是   | 消息代码。                            |
-  | data    | MessageSequence | 是   | 发送给对端进程的MessageSequence对象。 |
-  | reply   | MessageSequence | 是   | 对端进程返回的MessageSequence对象。   |
+  | 名称    | 类型            | 可读 | 可写 | 说明                                  |
+  | ------- | --------------- | ---- | ---- |-------------------------------------- |
+  | errCode | number          | 是   | 否   | 错误码。                              |
+  | code    | number          | 是   | 否   | 消息代码。                            |
+  | data    | MessageSequence | 是   | 否   | 发送给对端进程的MessageSequence对象。 |
+  | reply   | MessageSequence | 是   | 否   | 对端进程返回的MessageSequence对象。   |
 
 ## SendRequestResult<sup>8+(deprecated)</sup>
 
@@ -5753,12 +5777,12 @@ onRemoteDied(): void
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Communication.IPC.Core。
 
-  | 参数名  | 类型          | 必填 | 说明                                 |
-  | ------- | ------------- | ---- | ----------------------------------- |
-  | errCode | number        | 是   | 错误码。                            |
-  | code    | number        | 是   | 消息代码。                          |
-  | data    | MessageParcel | 是   | 发送给对端进程的MessageParcel对象。 |
-  | reply   | MessageParcel | 是   | 对端进程返回的MessageParcel对象。   |
+  | 名称    | 类型          | 可读 | 可写 | 说明                                |
+  | ------- | ------------- | ---- | ---- | ----------------------------------- |
+  | errCode | number        | 是   | 否   | 错误码。                            |
+  | code    | number        | 是   | 否   | 消息代码。                          |
+  | data    | MessageParcel | 是   | 否   | 发送给对端进程的MessageParcel对象。 |
+  | reply   | MessageParcel | 是   | 否   | 对端进程返回的MessageParcel对象。   |
 
 ## IRemoteObject
 
@@ -5973,7 +5997,7 @@ addDeathRecipient(recipient: DeathRecipient, flags: number): boolean
 
 ### unregisterDeathRecipient<sup>9+</sup>
 
-removeDeathRecipient(recipient: DeathRecipient, flags: number): void
+unregisterDeathRecipient(recipient: DeathRecipient, flags: number): void
 
 注销用于接收远程对象死亡通知的回调。
 
