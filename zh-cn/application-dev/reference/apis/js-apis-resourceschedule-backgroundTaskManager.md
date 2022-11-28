@@ -580,7 +580,7 @@ try {
 
 **系统能力:** SystemCapability.ResourceSchedule.BackgroundTaskManager.ContinuousTask
 
-| 名称                     | 参数值  | 描述                    |
+| 名称                     | 值  | 描述                    |
 | ----------------------- | ---- | --------------------- |
 | DATA_TRANSFER           | 1    | 数据传输。                  |
 | AUDIO_PLAYBACK          | 2    | 音频播放。                  |
@@ -617,7 +617,7 @@ try {
 
 **系统API**: 此接口为系统接口。
 
-| 名称                     | 参数值  | 描述                    |
+| 名称                     | 值  | 描述                    |
 | ----------------------- | ---- | --------------------- |
 | CPU                     | 1    | CPU资源，申请后不被挂起。             |
 | COMMON_EVENT            | 2    | 公共事件，申请后挂起状态下不被代理掉。  |
