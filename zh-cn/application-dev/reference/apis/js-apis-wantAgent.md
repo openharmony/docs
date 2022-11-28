@@ -1,6 +1,6 @@
 # WantAgent模块
 
-WantAgent模块提供了触发、取消、比较WantAgent实例和获取bundle名称的能力，包括创建WantAgent实例、获取实例的用户ID、获取want信息等。
+WantAgent模块提供了触发、取消、比较WantAgent实例和获取bundle参数名的能力，包括创建WantAgent实例、获取实例的用户ID、获取want信息等。
 
 > **说明：**
 > 
@@ -22,7 +22,7 @@ getWantAgent(info: WantAgentInfo, callback: AsyncCallback\<WantAgent\>): void
 
 **参数：**
 
-| 名称     | 可读 | 可写  | 类型                       | 必填 | 描述                    |
+| 参数名     | 可读 | 可写  | 类型                       | 必填 | 说明                    |
 | -------- | --- | ---- | -------------------------- | ---- | ----------------------- |
 | info     | 是   | 否   | WantAgentInfo              | 是   | WantAgent信息。           |
 | callback | 是   | 否   | AsyncCallback\<WantAgent\> | 是   | 创建WantAgent的回调方法。 |
@@ -79,7 +79,7 @@ getWantAgent(info: WantAgentInfo): Promise\<WantAgent\>
 
 **参数：**
 
-| 名称 | 可读 | 可写  | 类型          | 必填 | 描述          |
+| 参数名 | 可读 | 可写  | 类型          | 必填 | 说明          |
 | ---- | --- | ---- | ------------- | ---- | ------------- |
 | info | 是   | 否   | WantAgentInfo | 是   | WantAgent信息。 |
 
@@ -140,7 +140,7 @@ getBundleName(agent: WantAgent, callback: AsyncCallback\<string\>): void
 
 **参数：**
 
-| 名称     | 可读 | 可写  | 类型                    | 必填 | 描述                              |
+| 参数名     | 可读 | 可写  | 类型                    | 必填 | 说明                              |
 | -------- | --- | ---- | ----------------------- | ---- | --------------------------------- |
 | agent    | 是   | 否   | WantAgent               | 是   | WantAgent对象。                     |
 | callback | 是   | 否   | AsyncCallback\<string\> | 是   | 获取WantAgent实例的包名的回调方法。 |
@@ -212,7 +212,7 @@ getBundleName(agent: WantAgent): Promise\<string\>
 
 **参数：**
 
-| 名称  | 可读 | 可写 | 类型      | 必填 | 描述          |
+| 参数名  | 可读 | 可写 | 类型      | 必填 | 说明          |
 | ----- | --- | ---- | --------- | ---- | ------------- |
 | agent | 是   | 否  | WantAgent | 是   | WantAgent对象。 |
 
@@ -281,7 +281,7 @@ getUid(agent: WantAgent, callback: AsyncCallback\<number\>): void
 
 **参数：**
 
-| 名称     | 可读 | 可写 | 类型                    | 必填 | 描述                                |
+| 参数名     | 可读 | 可写 | 类型                    | 必填 | 说明                                |
 | -------- | --- | ---- | ----------------------- | ---- | ----------------------------------- |
 | agent    | 是   | 否  | WantAgent               | 是   | WantAgent对象。                       |
 | callback | 是   | 否  | AsyncCallback\<number\> | 是   | 获取WantAgent实例的用户ID的回调方法。 |
@@ -353,7 +353,7 @@ getUid(agent: WantAgent): Promise\<number\>
 
 **参数：**
 
-| 名称  | 可读 | 可写 | 类型      | 必填 | 描述          |
+| 参数名  | 可读 | 可写 | 类型      | 必填 | 说明          |
 | ----- | --- | ---- | --------- | ---- | ------------- |
 | agent | 是   | 否  | WantAgent | 是   | WantAgent对象。 |
 
@@ -424,7 +424,7 @@ getWant(agent: WantAgent, callback: AsyncCallback\<Want\>): void
 
 **参数：**
 
-| 名称     | 可读 | 可写 | 类型                  | 必填 | 描述                            |
+| 参数名     | 可读 | 可写 | 类型                  | 必填 | 说明                            |
 | -------- | --- | ---- | --------------------- | ---- | ------------------------------- |
 | agent    | 是   | 否  | WantAgent             | 是   | WantAgent对象。                   |
 | callback | 是   | 否  | AsyncCallback\<Want\> | 是   | 获取WantAgent对象want的回调方法。 |
@@ -498,7 +498,7 @@ getWant(agent: WantAgent): Promise\<Want\>
 
 **参数：**
 
-| 名称  | 可读 | 可写 | 类型      | 必填 | 描述          |
+| 参数名  | 可读 | 可写 | 类型      | 必填 | 说明          |
 | ----- | --- | ---- | --------- | ---- | ------------- |
 | agent | 是   | 否  | WantAgent | 是   | WantAgent对象。 |
 
@@ -567,7 +567,7 @@ cancel(agent: WantAgent, callback: AsyncCallback\<void\>): void
 
 **参数：**
 
-| 名称     | 可读 | 可写 | 类型                  | 必填 | 描述                        |
+| 参数名     | 可读 | 可写 | 类型                  | 必填 | 说明                        |
 | -------- | --- | ---- | --------------------- | ---- | --------------------------- |
 | agent    | 是   | 否  | WantAgent             | 是   | WantAgent对象。               |
 | callback | 是   | 否  | AsyncCallback\<void\> | 是   | 取消WantAgent实例的回调方法。 |
@@ -639,7 +639,7 @@ cancel(agent: WantAgent): Promise\<void\>
 
 **参数：**
 
-| 名称  | 可读 | 可写 | 类型      | 必填 | 描述          |
+| 参数名  | 可读 | 可写 | 类型      | 必填 | 说明          |
 | ----- | --- | ---- | --------- | ---- | ------------- |
 | agent | 是   | 否  | WantAgent | 是   | WantAgent对象。 |
 
@@ -708,7 +708,7 @@ trigger(agent: WantAgent, triggerInfo: TriggerInfo, callback?: Callback\<Complet
 
 **参数：**
 
-| 名称        | 可读 | 可写 | 类型                          | 必填 | 描述                            |
+| 参数名        | 可读 | 可写 | 类型                          | 必填 | 说明                            |
 | ----------- | --- | ---- | ----------------------------- | ---- | ------------------------------- |
 | agent       | 是   | 否  | WantAgent                     | 是   | WantAgent对象。                   |
 | triggerInfo | 是   | 否  | TriggerInfo                   | 是   | TriggerInfo对象。                 |
@@ -785,7 +785,7 @@ equal(agent: WantAgent, otherAgent: WantAgent, callback: AsyncCallback\<boolean\
 
 **参数：**
 
-| 名称       | 可读 | 可写 | 类型                     | 必填 | 描述                                    |
+| 参数名       | 可读 | 可写 | 类型                     | 必填 | 说明                                    |
 | ---------- | --- | ---- | ------------------------ | ---- | --------------------------------------- |
 | agent      | 是   | 否  | WantAgent                | 是   | WantAgent对象。                           |
 | otherAgent | 是   | 否  | WantAgent                | 是   | WantAgent对象。                           |
@@ -860,7 +860,7 @@ equal(agent: WantAgent, otherAgent: WantAgent): Promise\<boolean\>
 
 **参数：**
 
-| 名称       | 可读 | 可写 | 类型      | 必填 | 描述          |
+| 参数名       | 可读 | 可写 | 类型      | 必填 | 说明          |
 | ---------- | --- | ---- | --------- | ---- | ------------- |
 | agent      | 是   | 否  | WantAgent | 是   | WantAgent对象。 |
 | otherAgent | 是   | 否  | WantAgent | 是   | WantAgent对象。 |
@@ -930,7 +930,7 @@ getOperationType(agent: WantAgent, callback: AsyncCallback\<number>): void;
 
 **参数：**
 
-| 名称       | 可读 | 可写 | 类型                     | 必填 | 描述                                    |
+| 参数名       | 可读 | 可写 | 类型                     | 必填 | 说明                                    |
 | ---------- | --- | ---- | ------------------------ | ---- | --------------------------------------- |
 | agent      | 是   | 否  | WantAgent                | 是   | WantAgent对象。                           |
 | callback   | 是   | 否  | AsyncCallback\<number> | 是   | 获取一个WantAgent的OperationType信息的回调方法。 |
@@ -991,7 +991,7 @@ getOperationType(agent: WantAgent): Promise\<number>;
 
 **参数：**
 
-| 名称       | 可读 | 可写 | 类型      | 必填 | 描述          |
+| 参数名       | 可读 | 可写 | 类型      | 必填 | 说明          |
 | ---------- | --- | ---- | --------- | ---- | ------------- |
 | agent      | 是   | 否  | WantAgent | 是   | WantAgent对象。 |
 
@@ -1049,13 +1049,11 @@ WantAgent.getOperationType(wantAgent).then((OperationType) => {
 })
 ```
 
-
-
 ## WantAgentInfo
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
 
-| 名称           | 可读 | 可写 | 类型                            | 必填 | 描述                   |
+| 名称           | 可读 | 可写 | 类型                            | 必填 | 说明                   |
 | -------------- | --- | ---- | ------------------------------- | ---- | ---------------------- |
 | wants          | 是  | 是  | Array\<Want\>                   | 是   | 将被执行的动作列表。     |
 | operationType  | 是  | 是  | wantAgent.OperationType         | 是   | 动作类型。               |
@@ -1063,26 +1061,22 @@ WantAgent.getOperationType(wantAgent).then((OperationType) => {
 | wantAgentFlags | 是  | 是  | Array<wantAgent.WantAgentFlags> | 否   | 动作执行属性。           |
 | extraInfo      | 是  | 是  | {[key: string]: any}            | 否   | 额外数据。               |
 
-
-
 ## WantAgentFlags
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
 
 | 名称                | 值             | 说明                                                         |
 | ------------------- | -------------- | ------------------------------------------------------------ |
-| ONE_TIME_FLAG       | WantAgentFlags | WantAgent仅能使用一次。                                      |
-| NO_BUILD_FLAG       | WantAgentFlags | 如果描述WantAgent对象不存在，则不创建它，直接返回null。      |
-| CANCEL_PRESENT_FLAG | WantAgentFlags | 在生成一个新的WantAgent对象前取消已存在的一个WantAgent对象。 |
-| UPDATE_PRESENT_FLAG | WantAgentFlags | 使用新的WantAgent的额外数据替换已存在的WantAgent中的额外数据。 |
-| CONSTANT_FLAG       | WantAgentFlags | WantAgent是不可变的。                                        |
-| REPLACE_ELEMENT     | WantAgentFlags | 当前Want中的element属性可被WantAgent.trigger()中Want的element属性取代 |
-| REPLACE_ACTION      | WantAgentFlags | 当前Want中的action属性可被WantAgent.trigger()中Want的action属性取代 |
-| REPLACE_URI         | WantAgentFlags | 当前Want中的uri属性可被WantAgent.trigger()中Want的uri属性取代 |
-| REPLACE_ENTITIES    | WantAgentFlags | 当前Want中的entities属性可被WantAgent.trigger()中Want的entities属性取代 |
-| REPLACE_BUNDLE      | WantAgentFlags | 当前Want中的bundleName属性可被WantAgent.trigger()中Want的bundleName属性取代 |
-
-
+| ONE_TIME_FLAG       | 0 | WantAgent仅能使用一次。                                      |
+| NO_BUILD_FLAG       | 1 | 如果说明WantAgent对象不存在，则不创建它，直接返回null。      |
+| CANCEL_PRESENT_FLAG | 2 | 在生成一个新的WantAgent对象前取消已存在的一个WantAgent对象。 |
+| UPDATE_PRESENT_FLAG | 3 | 使用新的WantAgent的额外数据替换已存在的WantAgent中的额外数据。 |
+| CONSTANT_FLAG       | 4 | WantAgent是不可变的。                                        |
+| REPLACE_ELEMENT     | 5 | 当前Want中的element属性可被WantAgent.trigger()中Want的element属性取代 |
+| REPLACE_ACTION      | 6 | 当前Want中的action属性可被WantAgent.trigger()中Want的action属性取代 |
+| REPLACE_URI         | 7 | 当前Want中的uri属性可被WantAgent.trigger()中Want的uri属性取代 |
+| REPLACE_ENTITIES    | 8 | 当前Want中的entities属性可被WantAgent.trigger()中Want的entities属性取代 |
+| REPLACE_BUNDLE      | 9 | 当前Want中的bundleName属性可被WantAgent.trigger()中Want的bundleName属性取代 |
 
 ## OperationType
 
@@ -1090,19 +1084,17 @@ WantAgent.getOperationType(wantAgent).then((OperationType) => {
 
 | 名称              | 值            | 说明                      |
 | ----------------- | ------------- | ------------------------- |
-| UNKNOWN_TYPE      | OperationType | 不识别的类型。            |
-| START_ABILITY     | OperationType | 开启一个有页面的Ability。 |
-| START_ABILITIES   | OperationType | 开启多个有页面的Ability。 |
-| START_SERVICE     | OperationType | 开启一个无页面的ability。 |
-| SEND_COMMON_EVENT | OperationType | 发送一个公共事件。        |
-
-
+| UNKNOWN_TYPE      | 0 | 不识别的类型。            |
+| START_ABILITY     | 1 | 开启一个有页面的Ability。 |
+| START_ABILITIES   | 2 | 开启多个有页面的Ability。 |
+| START_SERVICE     | 3 | 开启一个无页面的ability。 |
+| SEND_COMMON_EVENT | 4 | 发送一个公共事件。        |
 
 ## CompleteData 
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
 
-| 名称           | 可读 | 可写 | 类型                           | 必填 | 描述                    |
+| 名称           | 可读 | 可写 | 类型                           | 必填 | 说明                    |
 | -------------- | --- | ---- | ------------------------------ | ---- | ---------------------- |
 | info           | 是  | 是  | WantAgent                       | 是   | 触发的wantAgent。       |
 | want           | 是  | 是  | Want                            | 是   | 存在的被触发的want。     |
@@ -1110,13 +1102,11 @@ WantAgent.getOperationType(wantAgent).then((OperationType) => {
 | finalData      | 是  | 是  | string                          | 否   | 公共事件收集的最终数据。  |
 | extraInfo      | 是  | 是  | {[key: string]: any}            | 否   | 额外数据。               |
 
-
-
 ## TriggerInfo
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
 
-| 名称       | 可读 | 可写 | 类型                 | 必填 | 描述        |
+| 名称       | 可读 | 可写 | 类型                 | 必填 | 说明        |
 | ---------- | --- | ---- | -------------------- | ---- | ----------- |
 | code       | 是  | 是  | number               | 是   | result code。 |
 | want       | 是  | 是  | Want                 | 否   | Want。        |
