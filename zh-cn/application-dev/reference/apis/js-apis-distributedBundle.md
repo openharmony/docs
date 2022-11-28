@@ -53,7 +53,7 @@ getRemoteAbilityInfo(elementName: ElementName, callback: AsyncCallback\<RemoteAb
 |----------|--------------------------------------|
 | 17700001 | The specified bundle name is not found. |
 | 17700003 | The specified ability name is not found. |
-| 17700007 | The specified device id is not found. |
+| 17700007 | The specified device ID is not found. |
 | 17700027 | The distributed service is not running. |
 
 **示例：**
@@ -109,7 +109,7 @@ getRemoteAbilityInfo(elementName: ElementName): Promise\<RemoteAbilityInfo>;
 |----------|-------------------------|
 | 17700001 | The specified bundle name is not found. |
 | 17700003 | The specified ability name is not found. |
-| 17700007 | The specified device id is not found. |
+| 17700007 | The specified device ID is not found. |
 | 17700027 | The distributed service is not running. |
 
 **示例：**
@@ -158,7 +158,7 @@ getRemoteAbilityInfo(elementNames: Array\<ElementName>, callback: AsyncCallback\
 |----------|-------------------------|
 | 17700001 | The specified bundle name is not found. |
 | 17700003 | The specified ability name is not found. |
-| 17700007 | The specified device id is not found. |
+| 17700007 | The specified device ID is not found. |
 | 17700027 | The distributed service is not running. |
 
 **示例：**
@@ -221,7 +221,7 @@ getRemoteAbilityInfo(elementNames: Array\<ElementName>): Promise\<Array\<RemoteA
 |----------|-------------------------|
 | 17700001 | The specified bundle name is not found. |
 | 17700003 | The specified ability name is not found. |
-| 17700007 | The specified device id is not found. |
+| 17700007 | The specified device ID is not found. |
 | 17700027 | The distributed service is not running. |
 
 **示例：**
@@ -278,7 +278,7 @@ getRemoteAbilityInfo(elementName: ElementName, locale: string, callback: AsyncCa
 |----------|-------------------------|
 | 17700001 | The specified bundle name is not found. |
 | 17700003 | The specified ability name is not found. |
-| 17700007 | The specified device id is not found. |
+| 17700007 | The specified device ID is not found. |
 | 17700027 | The distributed service is not running. |
 
 **示例：**
@@ -335,7 +335,7 @@ getRemoteAbilityInfo(elementName: ElementName, locale: string): Promise\<RemoteA
 |----------|-------------------------|
 | 17700001 | The specified bundle name is not found. |
 | 17700003 | The specified ability name is not found. |
-| 17700007 | The specified device id is not found. |
+| 17700007 | The specified device ID is not found. |
 | 17700027 | The distributed service is not running. |
 
 **示例：**
@@ -385,7 +385,7 @@ getRemoteAbilityInfo(elementNames: Array\<ElementName>, locale: string, callback
 |---------------|-------------------------|
 | 17700001 | The specified bundle name is not found. |
 | 17700003 | The specified ability name is not found. |
-| 17700007 | The specified device id is not found. |
+| 17700007 | The specified device ID is not found. |
 | 17700027 | The distributed service is not running. |
 
 **示例：**
@@ -449,7 +449,7 @@ getRemoteAbilityInfo(elementNames: Array\<ElementName>, locale: string): Promise
 |----------|-------------------------|
 | 17700001 | The specified bundle name is not found. |
 | 17700003 | The specified ability name is not found. |
-| 17700007 | The specified device id is not found. |
+| 17700007 | The specified device ID is not found. |
 | 17700027 | The distributed service is not running. |
 
 **示例：**

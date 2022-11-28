@@ -1172,8 +1172,8 @@ queryExtensionAbilityInfo(want: Want, extensionAbilityType: [ExtensionAbilityTyp
 
 以下错误码的详细介绍请参见[ohos.bundle错误码](../errorcodes/errorcode-bundle.md)。
 
-| 错误码ID | 错误信息                                    |
-| -------- | ------------------------------------------- |
+| 错误码ID | 错误信息                                     |
+| -------- | -------------------------------------------- |
 | 17700001 | The specified bundleName is not found.       |
 | 17700003 | The specified extensionAbility is not found. |
 | 17700004 | The specified userId is invalid.       |
@@ -2287,9 +2287,9 @@ getProfileByExtensionAbility(moduleName: string, extensionAbilityName: string, m
 
 | 参数名                 | 类型                          | 必填 | 说明                                                         |
 | -------------------- | ----------------------------- | ---- | ------------------------------------------------------------ |
-| moduleName           | string                        | 是   | 表示应用程序的moduleName。                                     |
-| extensionAbilityName | string                        | 是   | 表示应用程序的extensionAbilityName。                           |
-| metadataName         | string                        | 是   | 表示应用程序的metadataName。                                   |
+| moduleName           | string                        | 是   | 表示应用程序的moduleName。                                   |
+| extensionAbilityName | string                        | 是   | 表示应用程序的extensionAbilityName。                         |
+| metadataName         | string                        | 是   | 表示应用程序的metadataName。                                 |
 | callback             | AsyncCallback<Array\<string>> | 是   | 回调函数，当获取成功时，err为null，data为获取到的Array\<string>；否则为错误对象。 |
 
 **错误码：**
@@ -2402,7 +2402,7 @@ getPermissionDef(permissionName: string, callback: AsyncCallback\<[PermissionDef
 
 | 参数名           | 类型                                                         | 必填 | 说明                                                         |
 | -------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| permissionName | string                                                       | 是   | 表示权限名称。                                                 |
+| permissionName | string                                                       | 是   | 表示权限名称。                                               |
 | callback       | AsyncCallback\<[PermissionDef](js-apis-bundleManager-permissionDef.md)> | 是   | 回调函数，当获取成功时，err为null，data为获取到的Array\<PermissionDef>；否则为错误对象。 |
 
 **错误码：**
