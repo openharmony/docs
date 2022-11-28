@@ -150,7 +150,7 @@ getFirst(): T
 
 **系统能力：** SystemCapability.Utils.Lang
 
-**参数：**
+**返回值：**
 
 | 类型 | 说明 |
 | -------- | -------- |
