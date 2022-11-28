@@ -5,7 +5,6 @@
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
 > 本模块首批接口从API version 6开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
-
 ## 导入模块
 
 ```
@@ -18,7 +17,7 @@ import cardEmulation from '@ohos.nfc.cardEmulation';
 
 **系统能力**：SystemCapability.Communication.NFC.Core
 
-| 名称 | 默认值 | 说明 |
+| 名称 | 值 | 说明 |
 | -------- | -------- | -------- |
 | HCE | 0 | HCE 卡模拟。 |
 | UICC | 1 | SIM 卡模拟。 |
@@ -40,9 +39,9 @@ isSupported(feature: number): boolean
 
 **返回值：**
 
-  | **类型** | **说明** |
-  | -------- | -------- |
-  | boolean | true: 支持该类型卡模拟，&nbsp;false: 不支持该类型卡模拟。 |
+| **类型** | **说明** |
+| -------- | -------- |
+| boolean | true: 支持该类型卡模拟，&nbsp;false: 不支持该类型卡模拟。|
 
 ## HceService<sup>8+</sup>
 
