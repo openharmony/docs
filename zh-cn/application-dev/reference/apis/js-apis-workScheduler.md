@@ -318,7 +318,7 @@ isLastWorkTimeOut(workId: number): Promise\<boolean>
 
 **系统能力**：SystemCapability.ResourceSchedule.WorkScheduler
 
-| 名称                     | 默认值  | 说明                      |
+| 名称                     | 值  | 说明                      |
 | ---------------------- | ---- | ----------------------- |
 | NETWORK_TYPE_ANY       | 0    | 表示这个触发条件是任何类型的网络连接。     |
 | NETWORK_TYPE_MOBILE    | 1    | 表示这个触发条件是Mobile网络连接。    |
@@ -332,7 +332,7 @@ isLastWorkTimeOut(workId: number): Promise\<boolean>
 
 **系统能力**：SystemCapability.ResourceSchedule.WorkScheduler
 
-| 名称                        | 默认值  | 说明                   |
+| 名称                        | 值  | 说明                   |
 | ------------------------- | ---- | -------------------- |
 | CHARGING_PLUGGED_ANY      | 0    | 表示这个触发条件是任何类型的充电器连接。 |
 | CHARGING_PLUGGED_AC       | 1    | 表示这个触发条件是直流充电器连接。    |
@@ -344,7 +344,7 @@ isLastWorkTimeOut(workId: number): Promise\<boolean>
 
 **系统能力**：SystemCapability.ResourceSchedule.WorkScheduler
 
-| 名称                         | 默认值  | 说明                         |
+| 名称                         | 值  | 说明                         |
 | -------------------------- | ---- | -------------------------- |
 | BATTERY_STATUS_LOW         | 0    | 表示这个触发条件是低电告警。             |
 | BATTERY_STATUS_OKAY        | 1    | 表示这个触发条件是从低电恢复到正常电量。       |
@@ -355,7 +355,7 @@ isLastWorkTimeOut(workId: number): Promise\<boolean>
 
 **系统能力**：SystemCapability.ResourceSchedule.WorkScheduler
 
-| 名称                        | 默认值  | 说明                             |
+| 名称                        | 值  | 说明                             |
 | ------------------------- | ---- | ------------------------------ |
 | STORAGE_LEVEL_LOW         | 0    | 表示这个触发条件是存储空间不足。               |
 | STORAGE_LEVEL_OKAY        | 1    | 表示这个触发条件是从存储空间不足恢复到正常。         |
