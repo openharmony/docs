@@ -13,7 +13,7 @@
 1. 随机生成算法库密钥对象。该对象可用于后续的加解密等操作。
 2. 根据指定数据生成算法库密钥对象（也就是将外部或存储的二进制数据转换为算法库的密钥对象）。该对象可用于后续的加解密等操作。
 3. 获取算法库密钥对象的二进制数据，用于存储或传输。
-> **说明**：密钥对象Key包括对称密钥SymKey和非对称密钥（公钥PubKey和私钥PriKey），其中公钥和私钥组成密钥对KeyPair。密钥之间的具体关系可参考[接口声明](../reference/apis/js-apis-cryptoFramework.md)。
+> **说明**：密钥对象Key包括对称密钥SymKey和非对称密钥（公钥PubKey和私钥PriKey），其中公钥和私钥组成密钥对KeyPair。密钥之间的具体关系可参考[API参考](../reference/apis/js-apis-cryptoFramework.md)。
 
 
 **接口及参数说明**
@@ -107,7 +107,7 @@ function testGenerateAesKey() {
 import cryptoFramework from '@ohos.security.cryptoFramework';
 
 function convertAsyKey() {
-  let rsaGenerator = cfm.createAsyKeyGenerator("RSA1024");
+  let rsaGenerator = cryptoFramework.createAsyKeyGenerator("RSA1024");
   let pkval = new Uint8Array([48,129,159,48,13,6,9,42,134,72,134,247,13,1,1,1,5,0,3,129,141,0,48,129,137,2,129,129,0,174,203,113,83,113,3,143,213,194,79,91,9,51,142,87,45,97,65,136,24,166,35,5,179,42,47,212,79,111,74,134,120,73,67,21,19,235,80,46,152,209,133,232,87,192,140,18,206,27,106,106,169,106,46,135,111,118,32,129,27,89,255,183,116,247,38,12,7,238,77,151,167,6,102,153,126,66,28,253,253,216,64,20,138,117,72,15,216,178,37,208,179,63,204,39,94,244,170,48,190,21,11,73,169,156,104,193,3,17,100,28,60,50,92,235,218,57,73,119,19,101,164,192,161,197,106,105,73,2,3,1,0,1]);
   let pkBlob = {data : pkval};
   rsaGenerator.convertKey(pkBlob, null, function(err, keyPair) {
