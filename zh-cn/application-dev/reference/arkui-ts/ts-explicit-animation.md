@@ -69,7 +69,7 @@ struct AnimateToExample {
         })
       Button('change rotate angle')
         .margin(50)
-        .rotate({ angle: this.rotateAngle })
+        .rotate({ x: 0, y: 0, z: 1, angle: this.rotateAngle })
         .onClick(() => {
           animateTo({
             duration: 1200,

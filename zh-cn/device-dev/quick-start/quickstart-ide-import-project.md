@@ -15,7 +15,10 @@ OpenHarmony Stable Version源码为OpenHarmony稳定版本源码，通过镜像�
 
 ## 前提条件
 
-只有在Windows环境通过Remote SSH远程连接上Ubuntu环境的情况下，才可以创建OpenHarmony新工程，具体请参考[搭建开发环境](quickstart-ide-env--win.md)。否则，在DevEco Device Tool的Home界面没有“**New Project**”按钮。
+只有在Windows环境通过Remote SSH远程连接上Ubuntu环境的情况下，才可以创建OpenHarmony新工程，具体请参考[搭建开发环境](quickstart-ide-env--win.md)。
+
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> 若Windows环境未远程连接Ubuntu环境，New Project功能仅针对海思企业用户，不支持创建OpenHarmony工程。
 
 
 ## 操作步骤

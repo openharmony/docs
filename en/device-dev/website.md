@@ -197,10 +197,28 @@
 
         - [Overall Description of Compilation Form Factors](quick-start/quickstart-build.md)
   - [Obtaining Source Code](get-code/sourcecode-acquire.md)
+- Privacy and Security
   - [Privacy Protection](security/security-privacy-protection.md)
   - [Security Guidelines](security/security-guidelines-overall.md)
 
 - Porting
+  - Mini System SoC Porting Guide
+    - Porting Preparations
+      - [Before You Start](porting/porting-chip-prepare-knows.md)
+      - [Building Adaptation Process](porting/porting-chip-prepare-process.md)
+    - Kernel Porting
+      - [Overview](porting/porting-chip-kernel-overview.md)
+      - [Basic Kernel Adaptation](porting/porting-chip-kernel-adjustment.md)
+      - [Kernel Porting Verification](porting/porting-chip-kernel-verify.md)
+    - Board-Level OS Porting
+      - [Overview](porting/porting-chip-board-overview.md)
+      - [Board-Level Driver Adaptation](porting/porting-chip-board-driver.md)
+      - [Implementation of APIs at the HAL](porting/porting-chip-board-hal.md)
+      - [System Modules](porting/porting-chip-board-component.md)
+      - [lwIP Module Adaptation](porting/porting-chip-board-lwip.md)
+      - [Third-party Module Adaptation](porting/porting-chip-board-bundle.md)
+      - [XTS](porting/porting-chip-board-xts.md)
+    - [FAQs](porting/porting-chip-faqs.md)
   - Small System SoC Porting Guide
 
     - Porting Preparations
@@ -469,18 +487,18 @@
     - [Build System Coding Specifications and Best Practices](subsystems/subsys-build-gn-coding-style-and-best-practice.md)
     - [Building the Kconfig Visual Configuration](subsystems/subsys-build-gn-kconfig-visual-config-guide.md)
     - References
-       - [Subsystem Configuration Rules](subsystems/subsys-build-subsystem.md#configuration-rules)
-       - [Product Configuration Rules](subsystems/subsys-build-product.md#configuration-rules)
-       - [Subsystem Configuration Rules](subsystems/subsys-build-subsystem.md#configuration-rules)
-       - [Component Configuration Rules](subsystems/subsys-build-component.md#configuration-rules)
-       - [Module Configuration Rules](subsystems/subsys-build-module.md#configuration-rules)
-       - [Chipset Solution Configuration Rules](subsystems/subsys-build-chip_solution.md#configuration-rules)
-       - [Feature Configuration Rules](subsystems/subsys-build-feature.md#configuration-rules)
-       - [System Capabilities Configuration Rules](subsystems/subsys-build-syscap.md#configuring-system-capabilities-for-a-component)
-       - [deps and external_deps](subsystems/subsys-build-reference.md#deps-and-external_deps)
-       - [Information Collected by the Open Source Software Notice](subsystems/subsys-build-reference.md#information-collected-by-the-open-source-software-notice)
-       - [Parameters for Accelerating Local Build](subsystems/subsys-build-reference.md#parameters-for-accelerating-local-build)
-       - [Viewing Ninja Build Information](subsystems/subsys-build-reference.md#viewing-ninja-build-information)
+       - [Subsystem Configuration Rules](subsystems/subsys-build-subsystem.md
+       - [Product Configuration Rules](subsystems/subsys-build-product.md)
+       - [Subsystem Configuration Rules](subsystems/subsys-build-subsystem.md)
+       - [Component Configuration Rules](subsystems/subsys-build-component.md)
+       - [Module Configuration Rules](subsystems/subsys-build-module.md)
+       - [Chipset Solution Configuration Rules](subsystems/subsys-build-chip_solution.md)
+       - [Feature Configuration Rules](subsystems/subsys-build-feature.md)
+       - [System Capabilities Configuration Rules](subsystems/subsys-build-syscap.md)
+       - [deps and external_deps](subsystems/subsys-build-reference.md)
+       - [Information Collected by the Open Source Software Notice](subsystems/subsys-build-reference.md)
+       - [Parameters for Accelerating Local Build](subsystems/subsys-build-reference.md)
+       - [Viewing Ninja Build Information](subsystems/subsys-build-reference.md)
        - [HAP Build Guide](subsystems/subsys-build-gn-hap-compilation-guide.md)
        - [FAQs](subsystems/subsys-build-FAQ.md)
   - [Distributed Remote Startup](subsystems/subsys-remote-start.md)

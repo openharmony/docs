@@ -8,14 +8,13 @@
 import faultLogger from '@ohos.faultLogger'
 ```
 
-
 ## FaultType
 
 故障类型枚举。
 
-**系统能力：** 以下各项对应的系统能力均为SystemCapability.HiviewDFX.Hiview.FaultLogger。
+**系统能力：** SystemCapability.HiviewDFX.Hiview.FaultLogger
 
-| 名称 | 默认值 | 说明 |
+| 名称 | 值 | 说明 |
 | -------- | -------- | -------- |
 | NO_SPECIFIC | 0 | 不区分故障类型 |
 | CPP_CRASH | 2 | C++程序故障类型 |
@@ -26,9 +25,9 @@ import faultLogger from '@ohos.faultLogger'
 
 故障信息数据结构，获取到的故障信息的数据结构。
 
-**系统能力：** 以下各项对应的系统能力均为SystemCapability.HiviewDFX.Hiview.FaultLogger。
+**系统能力：** SystemCapability.HiviewDFX.Hiview.FaultLogger
 
-| 名称 | 参数类型 | 说明 |
+| 名称 | 类型 | 说明 |
 | -------- | -------- | -------- |
 | pid | number | 故障进程的进程id |
 | uid | number | 故障进程的用户id |
@@ -54,7 +53,7 @@ querySelfFaultLog(faultType: FaultType, callback: AsyncCallback&lt;Array&lt;Faul
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | faultType | [FaultType](#faulttype) | 是 | 输入要查询的故障类型。 |
-| callback | AsyncCallbackArray&lt;Array&lt;[FaultLogInfo](#faultloginfo)&gt;&gt; | 是 | 回调函数，在回调函数中获取故障信息数组。<br/>-&nbsp;value拿到故障信息数组；value为undefined表示获取过程中出现异常，error返回错误提示字符串
+| callback | AsyncCallback&lt;Array&lt;[FaultLogInfo](#faultloginfo)&gt;&gt; | 是 | 回调函数，在回调函数中获取故障信息数组。<br/>-&nbsp;value拿到故障信息数组；value为undefined表示获取过程中出现异常，error返回错误提示字符串
 
 **示例：**
 
@@ -139,13 +138,13 @@ query(faultType: FaultType, callback: AsyncCallback&lt;Array&lt;FaultLogInfo&gt;
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | faultType | [FaultType](#faulttype) | 是 | 输入要查询的故障类型。 |
-| callback | AsyncCallbackArray&lt;Array&lt;[FaultLogInfo](#faultloginfo)&gt;&gt; | 是 | 回调函数，在回调函数中获取故障信息数组。<br/>-&nbsp;value拿到故障信息数组；value为undefined表示获取过程中出现异常，error返回错误提示字符串
+| callback | AsyncCallback&lt;Array&lt;[FaultLogInfo](#faultloginfo)&gt;&gt; | 是 | 回调函数，在回调函数中获取故障信息数组。<br/>-&nbsp;value拿到故障信息数组；value为undefined表示获取过程中出现异常，error返回错误提示字符串
 
 **错误码：**
 
 以下错误码的详细介绍参见[ohos.faultLogger错误码](../errorcodes/errorcode-faultlogger.md)。
 
-| 错误码ID | 错误信息（此处仅提供错误抛出的关键信息） |
+| 错误码ID | 错误信息 |
 | --- | --- |
 | 10600001 | The service is not running or broken |
 
@@ -202,7 +201,7 @@ query(faultType: FaultType) : Promise&lt;Array&lt;FaultLogInfo&gt;&gt;
 
 以下错误码的详细介绍参见[ohos.faultLogger错误码](../errorcodes/errorcode-faultlogger.md)。
 
-| 错误码ID | 错误信息（此处仅提供错误抛出的关键信息） |
+| 错误码ID | 错误信息 |
 | --- | --- |
 | 10600001 | The service is not running or broken |
 

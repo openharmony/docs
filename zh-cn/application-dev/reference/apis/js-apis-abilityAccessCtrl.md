@@ -48,7 +48,7 @@ checkAccessToken(tokenID: number, permissionName: Permissions): Promise&lt;Grant
 
 | 参数名   | 类型                 | 必填 | 说明                                       |
 | -------- | -------------------  | ---- | ------------------------------------------ |
-| tokenID   |  number   | 是   | 要校验的目标应用的身份标识。可通过应用的[ApplicationInfo](js-apis-bundle-ApplicationInfo.md)获得              |
+| tokenID   |  number   | 是   | 要校验的目标应用的身份标识。可通过应用的[ApplicationInfo](js-apis-bundle-ApplicationInfo.md)获得。             |
 | permissionName | Permissions | 是   | 需要校验的权限名称。 |
 
 **返回值：**
@@ -60,9 +60,10 @@ checkAccessToken(tokenID: number, permissionName: Permissions): Promise&lt;Grant
 **错误码：**
 
 以下错误码的详细介绍请参见[程序访问控制错误码](../errorcodes/errorcode-access-token.md)。
+
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 12100001 | Parameter invalid. |
+| 12100001 | The parameter is invalid. The tokenID is 0 |
 
 **示例：**
 
@@ -106,9 +107,10 @@ verifyAccessTokenSync(tokenID: number, permissionName: Permissions): GrantStatus
 **错误码：**
 
 以下错误码的详细介绍请参见[程序访问控制错误码](../errorcodes/errorcode-access-token.md)。
+
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 12100001 | Parameter invalid. |
+| 12100001 | The parameter is invalid. The tokenID is 0 |
 
 **示例：**
 
@@ -135,7 +137,7 @@ grantUserGrantedPermission(tokenID: number, permissionName: Permissions, permiss
 
 | 参数名    | 类型                | 必填 | 说明                                                         |
 | --------- | ------------------- | ---- | ------------------------------------------------------------ |
-| tokenID      | number              | 是   | 目标应用的身份标识。可通过应用的[ApplicationInfo](js-apis-bundle-ApplicationInfo.md)获得            |
+| tokenID      | number              | 是   | 目标应用的身份标识。可通过应用的[ApplicationInfo](js-apis-bundle-ApplicationInfo.md)获得。            |
 | permissionName | Permissions              | 是   | 被授予的权限名称。 |
 | permissionFlag  | number | 是   | 授权选项，1表示下次仍需弹窗，2表示允许、禁止后不再提醒，3表示系统授权不允许更改。  |
 
@@ -148,12 +150,14 @@ grantUserGrantedPermission(tokenID: number, permissionName: Permissions, permiss
 **错误码：**
 
 以下错误码的详细介绍请参见[程序访问控制错误码](../errorcodes/errorcode-access-token.md)。
+
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 12100001 | Parameter invalid. |
-| 12100002 | TokenId does not exist. |
-| 12100003 | Permission does not exist. |
-| 12100006 | The specified application does not support the permissions granted or ungranted as specified. |
+| 12100001 | The parameter is invalid. The tokenID is 0 |
+| 12100002 | The specified tokenID does not exist. |
+| 12100003 | The specified permission does not exist. |
+| 12100006 | The application specified by the tokenID is not allowed to be granted with the specified permission. Either the application is a sandbox or the tokenID is from a remote device. |
+| 12100007 | Service is abnormal. |
 
 **示例：**
 
@@ -190,7 +194,7 @@ grantUserGrantedPermission(tokenID: number, permissionName: Permissions, permiss
 
 | 参数名    | 类型                | 必填 | 说明                          |
 | --------- | ------------------- | ---- | ------------------------------------------------------------ |
-| tokenID      | number              | 是   | 目标应用的身份标识。可通过应用的[ApplicationInfo](js-apis-bundle-ApplicationInfo.md)获得           |
+| tokenID      | number              | 是   | 目标应用的身份标识。可通过应用的[ApplicationInfo](js-apis-bundle-ApplicationInfo.md)获得。|
 | permissionName | Permissions              | 是   | 被授予的权限名称。 |
 | permissionFlag  | number | 是   | 授权选项，1表示下次仍需弹窗，2表示允许、禁止后不再提醒，3表示系统授权不允许更改。  |
 | callback | AsyncCallback&lt;void&gt; | 是 | 授予应用user grant权限。当授予权限成功时，err为undefine；否则为错误对象。 |
@@ -198,9 +202,10 @@ grantUserGrantedPermission(tokenID: number, permissionName: Permissions, permiss
 **错误码：**
 
 以下错误码的详细介绍请参见[程序访问控制错误码](../errorcodes/errorcode-access-token.md)。
+
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 12100001 | Parameter invalid. |
+| 12100001 | The parameter is invalid. The tokenID is 0 |
 | 12100002 | TokenId does not exist. |
 | 12100003 | Permission does not exist. |
 | 12100006 | The specified application does not support the permissions granted or ungranted as specified. |
@@ -242,7 +247,7 @@ revokeUserGrantedPermission(tokenID: number, permissionName: Permissions, permis
 
 | 参数名    | 类型                | 必填 | 说明                                                         |
 | --------- | ------------------- | ---- | ------------------------------------------------------------ |
-| tokenID      | number              | 是   | 目标应用的身份标识。可通过应用的[ApplicationInfo](js-apis-bundle-ApplicationInfo.md)获得            |
+| tokenID      | number              | 是   | 目标应用的身份标识。可通过应用的[ApplicationInfo](js-apis-bundle-ApplicationInfo.md)获得。           |
 | permissionName | Permissions              | 是   | 被撤销的权限名称。 |
 | permissionFlag  | number | 是   | 授权选项，1表示下次仍需弹窗，2表示允许、禁止后不再提醒，3表示系统授权不允许更改。  |
 
@@ -255,12 +260,14 @@ revokeUserGrantedPermission(tokenID: number, permissionName: Permissions, permis
 **错误码：**
 
 以下错误码的详细介绍请参见[程序访问控制错误码](../errorcodes/errorcode-access-token.md)。
+
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 12100001 | Parameter invalid. |
-| 12100002 | TokenId does not exist. |
-| 12100003 | Permission does not exist. |
-| 12100006 | The specified application does not support the permissions granted or ungranted as specified. |
+| 12100001 | The parameter is invalid. The tokenID is 0 |
+| 12100002 | The specified tokenID does not exist. |
+| 12100003 | The specified permission does not exist. |
+| 12100006 | The application specified by the tokenID is not allowed to be revoked with the specified permission. Either the application is a sandbox or the tokenID is from a remote device. |
+| 12100007 | Service is abnormal. |
 
 **示例：**
 
@@ -297,7 +304,7 @@ revokeUserGrantedPermission(tokenID: number, permissionName: Permissions, permis
 
 | 参数名    | 类型                | 必填 | 说明                          |
 | --------- | ------------------- | ---- | ------------------------------------------------------------ |
-| tokenID      | number              | 是   | 目标应用的身份标识。可通过应用的[ApplicationInfo](js-apis-bundle-ApplicationInfo.md)获得            |
+| tokenID      | number              | 是   | 目标应用的身份标识。可通过应用的[ApplicationInfo](js-apis-bundle-ApplicationInfo.md)获得。           |
 | permissionName | Permissions              | 是   | 被撤销的权限名称。 |
 | permissionFlag  | number | 是   | 授权选项，1表示下次仍需弹窗，2表示允许、禁止后不再提醒，3表示系统授权不允许更改。  |
 | callback | AsyncCallback&lt;void&gt; | 是 | 撤销应用user grant权限。当撤销权限成功时，err为undefine；否则为错误对象。 |
@@ -305,9 +312,10 @@ revokeUserGrantedPermission(tokenID: number, permissionName: Permissions, permis
 **错误码：**
 
 以下错误码的详细介绍请参见[程序访问控制错误码](../errorcodes/errorcode-access-token.md)。
+
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 12100001 | Parameter invalid. |
+| 12100001 | The parameter is invalid. The tokenID is 0 |
 | 12100002 | TokenId does not exist. |
 | 12100003 | Permission does not exist. |
 | 12100006 | The specified application does not support the permissions granted or ungranted as specified. |
@@ -349,7 +357,7 @@ getPermissionFlags(tokenID: number, permissionName: Permissions): Promise&lt;num
 
 | 参数名    | 类型                | 必填 | 说明                          |
 | --------- | ------------------- | ---- | ------------------------------------------------------------ |
-| tokenID      | number              | 是   | 目标应用的身份标识。可通过应用的[ApplicationInfo](js-apis-bundle-ApplicationInfo.md)获得            |
+| tokenID      | number              | 是   | 目标应用的身份标识。可通过应用的[ApplicationInfo](js-apis-bundle-ApplicationInfo.md)获得。            |
 | permissionName | Permissions              | 是   | 查询的权限名称。 |
 
 **返回值：**
@@ -361,12 +369,14 @@ getPermissionFlags(tokenID: number, permissionName: Permissions): Promise&lt;num
 **错误码：**
 
 以下错误码的详细介绍请参见[程序访问控制错误码](../errorcodes/errorcode-access-token.md)。
+
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 12100001 | Parameter invalid. |
-| 12100002 | TokenId does not exist. |
-| 12100003 | Permission does not exist. |
-| 12100006 | The specified application does not support the permissions granted or ungranted as specified. |
+| 12100001 | The parameter is invalid. The tokenID is 0 |
+| 12100002 | The specified tokenID does not exist. |
+| 12100003 | The specified permission does not exist. |
+| 12100006 | The operation is not allowd. Either the application is a sandbox or the tokenID is from a remote device. |
+| 12100007 | Service is abnormal. |
 
 **示例：**
 
@@ -379,7 +389,7 @@ let permissionFlag = 1;
 try {
     atManager.getPermissionFlags(tokenID, "ohos.permission.GRANT_SENSITIVE_PERMISSIONS").then((data) => {
         console.log(`getPermissionFlags success, data->${JSON.stringify(data)}`);
-    }).catch((err) = > {
+    }).catch((err) => {
         console.log(`getPermissionFlags fail, err->${JSON.stringify(err)}`);
     });
 } catch(err) {
@@ -430,18 +440,21 @@ on(type: 'permissionStateChange', tokenIDList: Array&lt;number&gt;, permissionNa
 | 参数名             | 类型                   | 必填 | 说明                                                          |
 | ------------------ | --------------------- | ---- | ------------------------------------------------------------ |
 | type               | string                | 是   | 订阅事件类型，固定为'permissionStateChange'，权限状态变更事件。  |
-| tokenIDList        | Array&lt;number&gt;   | 否   | 订阅的tokenId列表，为空时表示订阅所有的应用的权限状态变化。        |
-| permissionNameList | Array&lt;Permissions&gt;   | 否   | 订阅的权限名列表，为空时表示订阅所有的权限状态变化。               |
+| tokenIDList        | Array&lt;number&gt;   | 是   | 订阅的tokenId列表，为空时表示订阅所有的应用的权限状态变化。        |
+| permissionNameList | Array&lt;Permissions&gt;   | 是   | 订阅的权限名列表，为空时表示订阅所有的权限状态变化。               |
 | callback | Callback&lt;[PermissionStateChangeInfo](#permissionstatechangeinfo9)&gt; | 是 | 订阅指定tokenId与指定权限名状态变更事件的回调。|
 
 **错误码：**
 
 以下错误码的详细介绍请参见[程序访问控制错误码](../errorcodes/errorcode-access-token.md)。
+
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 12100001 | Parameter invalid. |
-| 12100004 | The listener interface is not used together. |
-| 12100005 | The number of listeners exceeds the limit. |
+| 12100001 | The parameter is invalid. The tokenID is 0 |
+| 12100004 | The interface is called repeatedly with the same input. |
+| 12100005 | The registration time has exceeded the limitation. |
+| 12100007 | Service is abnormal. |
+| 12100008 | Out of memory. |
 
 **示例：**
 
@@ -450,7 +463,7 @@ import abilityAccessCtrl from '@ohos.abilityAccessCtrl';
 
 let atManager = abilityAccessCtrl.createAtManager();
 let tokenIDList: Array<number> = [];
-let permissionNameList: Array<Permissions> = [];
+let permissionNameList = [];
 try {
     atManager.on('permissionStateChange', tokenIDList, permissionNameList, (data) => {
         console.debug("receive permission state change, data:" + JSON.stringify(data));
@@ -477,17 +490,20 @@ off(type: 'permissionStateChange', tokenIDList: Array&lt;number&gt;, permissionN
 | 参数名             | 类型                   | 必填 | 说明                                                          |
 | ------------------ | --------------------- | ---- | ------------------------------------------------------------ |
 | type               | string                | 是   | 订阅事件类型，固定为'permissionStateChange'，权限状态变更事件。  |
-| tokenIDList        | Array&lt;number&gt;   | 否   | 订阅的tokenId列表，为空时表示订阅所有的应用的权限状态变化，必须与on的输入一致。 |
-| permissionNameList | Array&lt;Permissions&gt;   | 否   | 订阅的权限名列表，为空时表示订阅所有的权限状态变化，必须与on的输入一致。 |
+| tokenIDList        | Array&lt;number&gt;   | 是   | 订阅的tokenId列表，为空时表示订阅所有的应用的权限状态变化，必须与on的输入一致。 |
+| permissionNameList | Array&lt;Permissions&gt;   | 是   | 订阅的权限名列表，为空时表示订阅所有的权限状态变化，必须与on的输入一致。 |
 | callback | Callback&lt;[PermissionStateChangeInfo](#permissionstatechangeinfo9)&gt; | 否 | 取消订阅指定tokenId与指定权限名状态变更事件的回调。|
 
 **错误码：**
 
 以下错误码的详细介绍请参见[程序访问控制错误码](../errorcodes/errorcode-access-token.md)。
+
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 12100001 | Parameter invalid. |
-| 12100004 | The listener interface is not used together. |
+| 12100001 | The parameter is invalid. The tokenID in list is all invalid |
+| 12100004 | The interface is not used with |
+| 12100007 | Service is abnormal. |
+| 12100008 | Out of memory. |
 
 **示例：**
 
@@ -496,7 +512,7 @@ import abilityAccessCtrl from '@ohos.abilityAccessCtrl';
 
 let atManager = abilityAccessCtrl.createAtManager();
 let tokenIDList: Array<number> = [];
-let permissionNameList: Array<Permissions> = [];
+let permissionNameList = [];
 try {
     atManager.off('permissionStateChange', tokenIDList, permissionNameList);
 } catch(err) {
@@ -582,7 +598,7 @@ promise.then(data => {
 
 **系统能力：** SystemCapability.Security.AccessToken
 
-| 名称               | 默认值 | 描述        |
+| 名称               |    值 | 说明        |
 | ------------------ | ----- | ----------- |
 | PERMISSION_DENIED  | -1    | 表示未授权。 |
 | PERMISSION_GRANTED | 0     | 表示已授权。 |
@@ -595,7 +611,7 @@ promise.then(data => {
 
 **系统能力：** SystemCapability.Security.AccessToken
 
-| 名称                     | 默认值 | 描述              |
+| 名称                     |    值 | 说明              |
 | ----------------------- | ------ | ----------------- |
 | PERMISSION_REVOKED_OPER | 0      | 表示权限取消操作。 |
 | PERMISSION_GRANTED_OPER | 1      | 表示权限授予操作。 |
@@ -610,6 +626,6 @@ promise.then(data => {
 
 | 名称           | 类型                       | 可读 | 可写 | 说明                |
 | -------------- | ------------------------- | ---- | ---- | ------------------ |
-| change         | [PermissionStateChangeType](#permissionstatechangetype9) | 是   | 否   | 权限授权状态变化类型        |
-| tokenID        | number                    | 是   | 否   | 被订阅的应用身份标识 |
-| permissionName | Permissions                    | 是   | 否   | 当前授权状态发生变化的权限名 |
+| change         | [PermissionStateChangeType](#permissionstatechangetype9) | 是   | 否   | 权限授权状态变化类型。        |
+| tokenID        | number                    | 是   | 否   | 被订阅的应用身份标识。 |
+| permissionName | Permissions                    | 是   | 否   | 当前授权状态发生变化的权限名。 |

@@ -113,7 +113,7 @@
 
 如上述示例所示，权限"ohos.permission.PERMISSION2"的权限等级为system_basic，高于此时应用的APL等级，开发者的最佳做法是使用ACL方式。
 
-在配置文件声明的基础上，应用还需要在Profile文件中声明不满足申请条件部分的权限。Profile文件的字段说明可参考[HarmonyAppProvision配置文件的说明](../quick-start/app-provision-structure.md)。
+在配置文件声明的基础上，应用还需要在Profile文件中声明不满足申请条件部分的权限。Profile文件的字段说明可参考[HarmonyAppProvision配置文件的说明](app-provision-structure.md)。
 
 该场景中，开发者应该在字段"acls"中做声明如下：
 

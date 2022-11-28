@@ -11,3 +11,4 @@
   - [分布式跟踪开发指导](hitracechain-guidelines.md)
 - 错误管理
   - [错误管理开发指导](errormanager-guidelines.md)
+  - [应用恢复开发指导](apprecovery-guidelines.md)

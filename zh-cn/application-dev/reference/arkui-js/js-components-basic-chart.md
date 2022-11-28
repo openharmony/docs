@@ -160,7 +160,7 @@
 
 | 方法     | 参数                                       | 描述                                       |
 | ------ | ---------------------------------------- | ---------------------------------------- |
-| append | {<br/>serial:&nbsp;number,&nbsp;//&nbsp;设置要更新的线形图数据下标<br/>data:&nbsp;Array&lt;number&gt;,&nbsp;//&nbsp;设置新增的数据<br/>} | 向已有的数据序列中动态添加数据，根据serial指定目标序列，serial为datasets数组的下标，从0开始。不会更新datasets[index].data。仅线形图支持，按横坐标加1递增（与xAxis&nbsp;min/max设置相关）。 |
+| append | {<br/>serial:&nbsp;number,&nbsp;<br/>data:&nbsp;Array&lt;number&gt;,&nbsp;<br/>} | 向已有的数据序列中动态添加数据，根据serial指定目标序列，serial为datasets数组的下标，从0开始。假设serial的值为index，使用data数据更新datasets[index].data。仅线形图支持，按横坐标加1递增（与xAxis&nbsp;min/max设置相关）。 |
 
 ## 示例
 
@@ -211,24 +211,24 @@
            strokeColor: '#0081ff',
            fillColor: '#cce5ff',
            data: [763, 550, 551, 554, 731, 654, 525, 696, 595, 628, 791, 505, 613, 575, 475, 553, 491, 680, 657, 716],
-           gradient: true,
+           gradient: true
          }
        ],
        lineOps: {
          xAxis: {
            min: 0,
            max: 20,
-           display: false,
+           display: false
          },
          yAxis: {
            min: 0,
            max: 1000,
-           display: false,
+           display: false
          },
          series: {
            lineStyle: {
              width: "5px",
-             smooth: true,
+             smooth: true
            },
            headPoint: {
              shape: "circle",
@@ -236,14 +236,14 @@
              strokeWidth: 5,
              fillColor: '#ffffff',
              strokeColor: '#007aff',
-             display: true,
+             display: true
            },
            loop: {
              margin: 2,
-             gradient: true,
+             gradient: true
            }
          }
-       },
+       }
      },
      addData() {
        this.$refs.linechart.append({
@@ -294,15 +294,15 @@
        barData: [
          {
            fillColor: '#f07826',
-           data: [763, 550, 551, 554, 731, 654, 525, 696, 595, 628],
+           data: [763, 550, 551, 554, 731, 654, 525, 696, 595, 628]
          },
          {
            fillColor: '#cce5ff',
-           data: [535, 776, 615, 444, 694, 785, 677, 609, 562, 410],
+           data: [535, 776, 615, 444, 694, 785, 677, 609, 562, 410]
          },
          {
            fillColor: '#ff88bb',
-           data: [673, 500, 574, 483, 702, 583, 437, 506, 693, 657],
+           data: [673, 500, 574, 483, 702, 583, 437, 506, 693, 657]
          },
        ],
        barOps: {
@@ -310,14 +310,14 @@
            min: 0,
            max: 20,
            display: false,
-           axisTick: 10,
+           axisTick: 10
          },
          yAxis: {
            min: 0,
            max: 1000,
-           display: false,
-         },
-       },
+           display: false
+         }
+       }
      }
    }
    ```
@@ -352,3 +352,76 @@
    ```
 
    ![zh-cn_image_0000001127125264](figures/zh-cn_image_0000001127125264.png)
+
+4. 进度类、加载类、占比类圆形图表
+   ```html
+   <!-- xxx.hml -->
+   <div class="container">
+       <text class="text">progress Example</text>
+       <stack class="chart-region">
+           <chart class="" type="progress" segments="{{ progressdata }}"></chart>
+       </stack>
+       <text class="text">loading Example</text>
+       <stack class="chart-region">
+           <chart class="" type="loading" segments="{{ loadingdata }}"></chart>
+       </stack>
+       <text class="text">rainbow Example</text>
+       <stack class="chart-region">
+           <chart class="" type="rainbow" segments="{{ rainbowdata }}" effects="true" animationduration="5000"></chart>
+       </stack>
+   </div>
+   ```
+   ```css
+   /* xxx.css */
+   .container {
+       flex-direction: column;
+       justify-content: center;
+       align-items: center;
+   }
+   .chart-region {
+       height: 400px;
+       width: 700px;
+       margin-top: 10px;
+   }
+   .text {
+       margin-top: 30px;
+   }
+   ```
+   ```js
+   // xxx.js
+   export default {
+      data: {
+         progressdata: {
+            value: 50,
+            name: 'progress'
+         },
+         loadingdata: {
+            startColor: "#ffc0cb",
+            endColor: "#00bfff",
+         },
+         rainbowdata: [
+            {
+               value: 50,
+               name: 'item1'
+            },
+            {
+               value: 10,
+               name: 'item2'
+            },
+            {
+               value: 20,
+               name: 'item3'
+            },
+            {
+               value: 10,
+               name: 'item4'
+            },
+            {
+               value: 10,
+               name: 'item5'
+            }
+         ]
+      }
+   }
+   ```
+   ![rainbow](figures/rainbow.gif)

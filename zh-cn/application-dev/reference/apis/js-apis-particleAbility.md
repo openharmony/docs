@@ -27,8 +27,7 @@ startAbility(parameter: StartAbilityParameter, callback: AsyncCallback\<void>): 
 
 **参数：**
 
-
-| 名称      | 类型                                            | 必填 | 描述              |
+| 参数名      | 类型                                            | 必填 | 说明              |
 | --------- | ----------------------------------------------- | ---- | ----------------- |
 | parameter | [StartAbilityParameter](js-apis-featureAbility.md#startabilityparameter) | 是   | 指示启动的ability |
 | callback  | AsyncCallback\<void>                            | 是   | 被指定的回调方法  |
@@ -38,8 +37,9 @@ startAbility(parameter: StartAbilityParameter, callback: AsyncCallback\<void>): 
 ```js
 import particleAbility from '@ohos.ability.particleAbility'
 import wantConstant from '@ohos.ability.wantConstant'
+
 particleAbility.startAbility(
-	{
+    {
         want:
         {
             action: "action.system.home",
@@ -49,16 +49,14 @@ particleAbility.startAbility(
             deviceId: "",
             bundleName: "com.example.Data",
             abilityName: "com.example.Data.MainAbility",
-            uri:""
+            uri: ""
         },
     },
     (error, result) => {
-		console.log('particleAbility startAbility errCode:' + error + 'result:' + result)
+        console.log('particleAbility startAbility errCode:' + error + 'result:' + result)
     },
 )
 ```
-
-
 
 ## particleAbility.startAbility
 
@@ -70,8 +68,7 @@ startAbility(parameter: StartAbilityParameter): Promise\<void>;
 
 **参数：**
 
-
-| 名称      | 类型                                            | 必填 | 描述              |
+| 参数名      | 类型                                            | 必填 | 说明              |
 | --------- | ----------------------------------------------- | ---- | ----------------- |
 | parameter | [StartAbilityParameter](js-apis-featureAbility.md#startabilityparameter) | 是   | 指示启动的ability |
 
@@ -86,8 +83,9 @@ startAbility(parameter: StartAbilityParameter): Promise\<void>;
 ```js
 import particleAbility from '@ohos.ability.particleAbility'
 import wantConstant from '@ohos.ability.wantConstant'
+
 particleAbility.startAbility(
-	{
+    {
         want:
         {
             action: "action.system.home",
@@ -97,15 +95,13 @@ particleAbility.startAbility(
             deviceId: "",
             bundleName: "com.example.Data",
             abilityName: "com.example. Data.MainAbility",
-            uri:""
+            uri: ""
         },
     },
 ).then((data) => {
     console.info("particleAbility startAbility");
 });
 ```
-
-
 
 ## particleAbility.terminateSelf
 
@@ -117,7 +113,7 @@ terminateSelf(callback: AsyncCallback\<void>): void
 
 **参数：**
 
-| 名称     | 类型                 | 必填 | 描述                 |
+| 参数名     | 类型                 | 必填 | 说明                 |
 | -------- | -------------------- | ---- | -------------------- |
 | callback | AsyncCallback\<void> | 是   | 表示被指定的回调方法 |
 
@@ -125,14 +121,13 @@ terminateSelf(callback: AsyncCallback\<void>): void
 
 ```js
 import particleAbility from '@ohos.ability.particleAbility'
+
 particleAbility.terminateSelf(
     (error, result) => {
-		console.log('particleAbility terminateSelf errCode:' + error + 'result:' + result)
+        console.log('particleAbility terminateSelf errCode:' + error + 'result:' + result)
     }
 )
 ```
-
-
 
 ## particleAbility.terminateSelf
 
@@ -152,6 +147,7 @@ terminateSelf(): Promise\<void>
 
 ```js
 import particleAbility from '@ohos.ability.particleAbility'
+
 particleAbility.terminateSelf().then((data) => {
 	console.info("particleAbility terminateSelf");
 });
@@ -169,7 +165,7 @@ acquireDataAbilityHelper(uri: string): DataAbilityHelper
 
 **参数：**
 
-| 名称 | 类型   | 必填 | 描述                     |
+| 参数名 | 类型   | 必填 | 说明                     |
 | :--- | ------ | ---- | ------------------------ |
 | uri  | string | 是   | 指示要打开的文件的路径。 |
 
@@ -182,7 +178,8 @@ acquireDataAbilityHelper(uri: string): DataAbilityHelper
 **示例：**
 
 ```js
-import particleAbility from '@ohos.ability.particleAbility'     
+import particleAbility from '@ohos.ability.particleAbility'
+
 var uri = "";
 particleAbility.acquireDataAbilityHelper(uri)
 ```
@@ -375,7 +372,6 @@ particleAbility.cancelBackgroundRunning().then(() => {
 
 ```
 
-
 ## particleAbility.connectAbility
 
 connectAbility(request: Want, options:ConnectOptions): number
@@ -386,7 +382,7 @@ connectAbility(request: Want, options:ConnectOptions): number
 
 **参数：**
 
-| 名称    | 类型           | 必填 | 描述                         |
+| 参数名    | 类型           | 必填 | 说明                         |
 | ------- | -------------- | ---- | ---------------------------- |
 | request | [Want](js-apis-application-Want.md)           | 是   | 表示被连接的ServiceAbility。 |
 | options | ConnectOptions | 是   | 被指定的回调方法。           |
@@ -396,7 +392,7 @@ connectAbility(request: Want, options:ConnectOptions): number
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
 
-| 名称           | 读写属性 | 类型       | 必填   | 描述                        |
+| 参数名           | 读写属性 | 类型       | 必填   | 说明                        |
 | ------------ | ---- | -------- | ---- | ------------------------- |
 | onConnect    | 只读   | function | 是    | 连接成功时的回调函数。               |
 | onDisconnect | 只读   | function | 是    | 连接失败时的回调函数。               |
@@ -405,37 +401,39 @@ connectAbility(request: Want, options:ConnectOptions): number
 **示例**：
 
 ```js
-        import rpc from '@ohos.rpc'
-        function onConnectCallback(element, remote){
-            console.log('ConnectAbility onConnect remote is proxy:' + (remote instanceof rpc.RemoteProxy));
-        }
-        function onDisconnectCallback(element){
-            console.log('ConnectAbility onDisconnect element.deviceId : ' + element.deviceId)
-        }
-        function onFailedCallback(code){
-            console.log('particleAbilityTest ConnectAbility onFailed errCode : ' + code)
-        }
-        var connId = particleAbility.connectAbility(
-            {
-                bundleName: "com.ix.ServiceAbility",
-                abilityName: "ServiceAbilityA",
-            },
-            {
-                onConnect: onConnectCallback,
-                onDisconnect: onDisconnectCallback,
-                onFailed: onFailedCallback,
-            },
-        );
+import rpc from '@ohos.rpc'
 
-        particleAbility.disconnectAbility(connId).then((data)=>{
-            console.log( " data: " + data);
-        }).catch((error)=>{
-            console.log('particleAbilityTest result errCode : ' + error.code )
-        });
+function onConnectCallback(element, remote) {
+    console.log('ConnectAbility onConnect remote is proxy:' + (remote instanceof rpc.RemoteProxy));
+}
+
+function onDisconnectCallback(element) {
+    console.log('ConnectAbility onDisconnect element.deviceId : ' + element.deviceId)
+}
+
+function onFailedCallback(code) {
+    console.log('particleAbilityTest ConnectAbility onFailed errCode : ' + code)
+}
+
+var connId = particleAbility.connectAbility(
+    {
+        bundleName: "com.ix.ServiceAbility",
+        abilityName: "ServiceAbilityA",
+    },
+    {
+        onConnect: onConnectCallback,
+        onDisconnect: onDisconnectCallback,
+        onFailed: onFailedCallback,
+    },
+);
+
+particleAbility.disconnectAbility(connId).then((data) => {
+    console.log(" data: " + data);
+}).catch((error) => {
+    console.log('particleAbilityTest result errCode : ' + error.code)
+});
     
-
 ```
-
 
 ## particleAbility.disconnectAbility
 
@@ -455,32 +453,35 @@ disconnectAbility(connection: number, callback:AsyncCallback\<void>): void;
 
 ```js
 import rpc from '@ohos.rpc'
- function onConnectCallback(element, remote){
-            console.log('ConnectAbility onConnect remote is proxy:' + (remote instanceof rpc.RemoteProxy));
-        }
-        function onDisconnectCallback(element){
-            console.log('ConnectAbility onDisconnect element.deviceId : ' + element.deviceId)
-        }
-        function onFailedCallback(code){
-            console.log('particleAbilityTest ConnectAbility onFailed errCode : ' + code)
-        }
-        var connId = particleAbility.connectAbility(
-            {
-                bundleName: "com.ix.ServiceAbility",
-                abilityName: "ServiceAbilityA",
-            },
-            {
-                onConnect: onConnectCallback,
-                onDisconnect: onDisconnectCallback,
-                onFailed: onFailedCallback,
-            },
-        );
-        var result =  particleAbility.disconnectAbility(connId).then((data)=>{
-            console.log( " data: " + data);
-        }).catch((error)=>{
-            console.log('particleAbilityTest result errCode : ' + error.code )
-        });
 
+function onConnectCallback(element, remote) {
+    console.log('ConnectAbility onConnect remote is proxy:' + (remote instanceof rpc.RemoteProxy));
+}
+
+function onDisconnectCallback(element) {
+    console.log('ConnectAbility onDisconnect element.deviceId : ' + element.deviceId)
+}
+
+function onFailedCallback(code) {
+    console.log('particleAbilityTest ConnectAbility onFailed errCode : ' + code)
+}
+
+var connId = particleAbility.connectAbility(
+    {
+        bundleName: "com.ix.ServiceAbility",
+        abilityName: "ServiceAbilityA",
+    },
+    {
+        onConnect: onConnectCallback,
+        onDisconnect: onDisconnectCallback,
+        onFailed: onFailedCallback,
+    },
+);
+var result = particleAbility.disconnectAbility(connId).then((data) => {
+    console.log(" data: " + data);
+}).catch((error) => {
+    console.log('particleAbilityTest result errCode : ' + error.code)
+});
 ```
 
 
@@ -502,32 +503,36 @@ disconnectAbility(connection: number): Promise\<void>;
 
 ```js
 import rpc from '@ohos.rpc'
-function onConnectCallback(element, remote){
-            console.log('ConnectAbility onConnect remote is proxy:' + (remote instanceof rpc.RemoteProxy));
-        }
-        function onDisconnectCallback(element){
-            console.log('ConnectAbility onDisconnect element.deviceId : ' + element.deviceId)
-        }
-        function onFailedCallback(code){
-            console.log('particleAbilityTest ConnectAbility onFailed errCode : ' + code)
-        }
-        var connId = particleAbility.connectAbility(
-            {
-                bundleName: "com.ix.ServiceAbility",
-                abilityName: "ServiceAbilityA",
-            },
-            {
-                onConnect: onConnectCallback,
-                onDisconnect: onDisconnectCallback,
-                onFailed: onFailedCallback,
-            },
-        );
 
-         particleAbility.disconnectAbility(connId).then((data)=>{
-            console.log( " data: " + data);
-        }).catch((error)=>{
-            console.log('particleAbilityTest result errCode : ' + error.code )
-        });
+function onConnectCallback(element, remote) {
+    console.log('ConnectAbility onConnect remote is proxy:' + (remote instanceof rpc.RemoteProxy));
+}
+
+function onDisconnectCallback(element) {
+    console.log('ConnectAbility onDisconnect element.deviceId : ' + element.deviceId)
+}
+
+function onFailedCallback(code) {
+    console.log('particleAbilityTest ConnectAbility onFailed errCode : ' + code)
+}
+
+var connId = particleAbility.connectAbility(
+    {
+        bundleName: "com.ix.ServiceAbility",
+        abilityName: "ServiceAbilityA",
+    },
+    {
+        onConnect: onConnectCallback,
+        onDisconnect: onDisconnectCallback,
+        onFailed: onFailedCallback,
+    },
+);
+
+particleAbility.disconnectAbility(connId).then((data) => {
+    console.log(" data: " + data);
+}).catch((error) => {
+    console.log('particleAbilityTest result errCode : ' + error.code)
+});
 
 ```
 
@@ -537,7 +542,7 @@ function onConnectCallback(element, remote){
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
 
-| 变量                          | 值   | 说明                                                         |
+| 名称                          | 值   | 说明                                                         |
 | ----------------------------- | ---- | ------------------------------------------------------------ |
 | INVALID_PARAMETER         | -1    | 无效的参数。 |
 

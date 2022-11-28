@@ -194,7 +194,7 @@ getSupportedOutputCapability(camera:CameraDevice, callback: AsyncCallback<Camera
 **示例：**
 
 ```js
-cameraManager.getSupportedOutputCapability(cameradevice, (err, cameras) => {
+cameraManager.getSupportedOutputCapability(cameradevice, (err, CameraOutputCapability) => {
     if (err) {
         console.error(`Failed to get the cameras. ${err.message}`);
         return;
@@ -250,7 +250,7 @@ isCameraMuted(): boolean
 **示例：**
 
 ```js
-let ismuted = await cameraManager.isCameraMuted();
+let ismuted = cameraManager.isCameraMuted();
 ```
 
 ### isCameraMuteSupported
@@ -270,7 +270,7 @@ isCameraMuteSupported(): boolean
 **示例：**
 
 ```js
-let ismutesuppotred = await cameraManager.isCameraMuteSupported();
+let ismutesuppotred = cameraManager.isCameraMuteSupported();
 ```
 
 ### muteCamera
@@ -440,7 +440,7 @@ createPreviewOutput(profile: Profile, surfaceId: string, callback: AsyncCallback
 **示例：**
 
 ```js
-cameraManager.createPreviewOutput(profile, surfaceId, (err, previewoutput) => {
+cameraManager.createPreviewOutput(profile, surfaceId, (err, previewOutput) => {
     if (err) {
         console.error(`Failed to gcreate previewOutput. ${err.message}`);
         return;
@@ -473,7 +473,7 @@ createPreviewOutput(profile: Profile, surfaceId: string): Promise<PreviewOutput\
 **示例：**
 
 ```js
-cameraManager.createPreviewOutput(profile, surfaceId).then((previewoutput) => {
+cameraManager.createPreviewOutput(profile, surfaceId).then((previewOutput) => {
     console.log('Promise returned with previewOutput created.');
 })
 ```
@@ -497,7 +497,7 @@ createPhotoOutput(profile: Profile, surfaceId: string, callback: AsyncCallback<P
 **示例：**
 
 ```js
-cameraManager.createPhotoOutput(profile, surfaceId, (err, photooutput) => {
+cameraManager.createPhotoOutput(profile, surfaceId, (err, photoOutput) => {
     if (err) {
         console.error(`Failed to create photoOutput. ${err.message}`);
         return;
@@ -530,7 +530,7 @@ createPhotoOutput(profile: Profile, surfaceId: string): Promise<PhotoOutput\>
 **示例：**
 
 ```js
-cameraManager.createPhotoOutput(profile, surfaceId).then((photooutput) => {
+cameraManager.createPhotoOutput(profile, surfaceId).then((photoOutput) => {
     console.log('Promise returned with photoOutput created.');
 })
 ```
@@ -554,7 +554,7 @@ createVideoOutput(profile: VideoProfile, surfaceId: string, callback: AsyncCallb
 **示例：**
 
 ```js
-cameraManager.createVideoOutput(profile, surfaceId, (err, videooutput) => {
+cameraManager.createVideoOutput(profile, surfaceId, (err, videoOutput) => {
     if (err) {
         console.error(`Failed to create videoOutput. ${err.message}`);
         return;
@@ -587,7 +587,7 @@ createVideoOutput(profile: VideoProfile, surfaceId: string): Promise<VideoOutput
 **示例：**
 
 ```js
-cameraManager.createVideoOutput(profile, surfaceId).then((videooutput) => {
+cameraManager.createVideoOutput(profile, surfaceId).then((videoOutput) => {
     console.log('Promise returned with videoOutput created.');
 })
 ```
@@ -610,7 +610,7 @@ createMetadataOutput(metadataObjectTypes:Array<MetadataObjectType\>, callback: A
 **示例：**
 
 ```js
-cameraManager.createMetadataOutput(metadataObjectTypes, (err, metadataoutput) => {
+cameraManager.createMetadataOutput(metadataObjectTypes, (err, metadataOutput) => {
     if (err) {
         console.error(`Failed to create metadataOutput. ${err.message}`);
         return;
@@ -642,7 +642,7 @@ createMetadataOutput(metadataObjectTypes:Array<MetadataObjectType\>): Promise<Me
 **示例：**
 
 ```js
-cameraManager.createMetadataOutput().then((metadataoutput) => {
+cameraManager.createMetadataOutput().then((metadataOutput) => {
     console.log('Promise returned with metadataOutput created.');
 })
 ```
@@ -664,7 +664,7 @@ createCaptureSession(callback: AsyncCallback<CaptureSession\>): void
 **示例：**
 
 ```js
-cameraManager.createCaptureSession((err, capturesession) => {
+cameraManager.createCaptureSession((err, captureSession) => {
     if (err) {
         console.error(`Failed to create captureSession. ${err.message}`);
         return;
@@ -690,7 +690,7 @@ createCaptureSession(): Promise<CaptureSession\>
 **示例：**
 
 ```js
-cameraManager.createCaptureSession().then((capturesession) => {
+cameraManager.createCaptureSession().then((captureSession) => {
     console.log('Promise returned with captureSession created.');
 })
 ```
@@ -1092,7 +1092,7 @@ cameraInput.on('error', camera, (cameraInputError) => {
 | -------------------------- | ---- | ------------ |
 | FOCUS_MODE_MANUAL          | 0    | 手动对焦。     |
 | FOCUS_MODE_CONTINUOUS_AUTO | 1    | 连续自动对焦。 |
-| FOCUS_MODE_AUTO            | 2    | 自动变焦。     |
+| FOCUS_MODE_AUTO            | 2    | 自动对焦。     |
 | FOCUS_MODE_LOCKED          | 3    | 对焦锁定。     |
 
 ## FocusState
@@ -2106,8 +2106,8 @@ getExposureBiasRange(): Promise<Array<number\>\>
 **示例：**
 
 ```js
-captureSession.isExposureModeSupported(camera.ExposureMode.EXPOSURE_MODE_LOCKED).then((isSupported) => {
-    console.log(`Promise returned with exposure mode supported : ${isSupported}`);
+captureSession.getExposureBiasRange().then((biasRangeArray) => {
+    console.log('Promise returned with the array of compenstation range: ' + JSON.stringify(biasRangeArray));
 })
 ```
 
@@ -3758,12 +3758,12 @@ getTimestamp(callback: AsyncCallback<number\>): void
 **示例：**
 
 ```js
-metadataObject.getTimestamp((err) => {
+metadataObject.getTimestamp((err,timestamp) => {
     if (err) {
         console.error(`Failed to get timestamp. ${err.message}`);
         return;
     }
-    console.log('Callback returned with timestamp getted.');
+    console.log('Callback returned with timestamp getted timestamp : ${timestamp}');
 })
 ```
 
@@ -3784,8 +3784,8 @@ getTimestamp(): Promise<number\>
 **示例：**
 
 ```js
-metadataObject.getTimestamp().then(() => {
-    console.log('Callback returned with timestamp getted.');
+metadataObject.getTimestamp().then((timestamp) => {
+    console.log('Callback returned with timestamp getted timestamp : ${timestamp}');
 })
 ```
 

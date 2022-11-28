@@ -27,7 +27,7 @@ format(format: string,  ...args: Object[]): string
 | 参数名  | 类型     | 必填 | 说明           |
 | ------- | -------- | ---- | -------------- |
 | format  | string   | 是   | 式样化字符串。 |
-| ...args | Object[] | 否   | 待式样化数据。 |
+| ...args | Object[] | 否   | 替换式样化字符串通配符的数据。  |
 
 **返回值：**
 

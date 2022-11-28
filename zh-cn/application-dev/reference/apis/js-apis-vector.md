@@ -25,7 +25,7 @@ import Vector from '@ohos.util.Vector';
 
 **系统能力：** SystemCapability.Utils.Lang
 
-| 名称 | 参数类型 | 可读 | 可写 | 说明 |
+| 名称 | 类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
 | length | number | 是 | 否 | Vector的元素个数。 |
 
@@ -285,7 +285,6 @@ vector.add(4);
 vector.add(5);
 vector.add(4);
 vector.removeByRange(2,4);
-vector.removeByRange(2,6);
 ```
 
 ### replaceAllElements

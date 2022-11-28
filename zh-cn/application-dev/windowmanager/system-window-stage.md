@@ -65,46 +65,46 @@ export default class ServiceExtensionAbility1 extends ExtensionContext {
             console.info('Succeeded in creating the volume window.')
             windowClass = data;
             // 2.创建音量条窗口成功之后，可以改变其大小、位置或设置背景色、亮度等属性。
-            windowClass.moveTo(300, 300, (err, data) => {
+            windowClass.moveTo(300, 300, (err) => {
                 if (err.code) {
                     console.error('Failed to move the window. Cause:' + JSON.stringify(err));
                     return;
                 }
-                console.info('Succeeded in moving the window. Data: ' + JSON.stringify(data));
+                console.info('Succeeded in moving the window.');
             });
-            windowClass.resetSize(500, 1000, (err, data) => {
+            windowClass.resetSize(500, 1000, (err) => {
                 if (err.code) {
                     console.error('Failed to change the window size. Cause:' + JSON.stringify(err));
                     return;
                 }
-                console.info('Succeeded in changing the window size. Data: ' + JSON.stringify(data));
+                console.info('Succeeded in changing the window size.');
             });
             // 3.为音量条窗口加载对应的目标页面。
-            windowClass.loadContent("pages/page_volume", (err, data) => {
+            windowClass.loadContent("pages/page_volume", (err) => {
                 if (err.code) {
                     console.error('Failed to load the content. Cause:' + JSON.stringify(err));
                     return;
                 }
-                console.info('Succeeded in loading the content. Data: ' + JSON.stringify(data));
+                console.info('Succeeded in loading the content.');
                 // 3.显示音量条窗口。
-                windowClass.show((err, data) => {
+                windowClass.show((err) => {
                     if (err.code) {
                         console.error('Failed to show the window. Cause:' + JSON.stringify(err));
                         return;
                     }
-                    console.info('Succeeded in showing the window. Data: ' + JSON.stringify(data));
+                    console.info('Succeeded in showing the window.');
                 });
             });
             // 4.隐藏/销毁音量条窗口。当不再需要音量条时，可根据具体实现逻辑，对其进行隐藏或销毁。
             // 此处以监听音量条区域外的点击事件为例实现音量条窗口的隐藏。
             windowClass.on('touchOutside', () => {
                 console.info('touch outside');
-                windowClass.hide((err, data) => {
+                windowClass.hide((err) => {
                     if (err.code) {
                         console.error('Failed to hide the window. Cause: ' + JSON.stringify(err));
                         return;
                     }
-                    console.info('Succeeded in hidinging the window. Data: ' + JSON.stringify(data));
+                    console.info('Succeeded in hidinging the window.');
                 });
             });
         });

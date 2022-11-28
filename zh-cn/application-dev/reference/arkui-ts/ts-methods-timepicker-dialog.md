@@ -12,15 +12,16 @@ show(options?: TimePickerDialogOptions)
 
 定义时间滑动选择器弹窗并弹出。
 
-- TimePickerDialogOptions参数
+**TimePickerDialogOptions参数：**
 
-  | 参数名 | 参数类型 | 必填 | 参数描述 |
-  | -------- | -------- | -------- | -------- |
-  | selected | Date | 否 | 设置当前选中的时间。<br/>默认值：当前系统时间 |
-  | useMilitaryTime | boolean | 否 | 展示时间是否为24小时制，默认为12小时制。<br/>默认值：false |
-  | onAccept | (value: [TimePickerResult](ts-basic-components-timepicker.md#TimePickerResult对象说明)) => void | 否 | 点击弹窗中的“确定”按钮时触发该回调。 |
-  | onCancel | () => void | 否 | 点击弹窗中的“取消”按钮时触发该回调。 |
-  | onChange | (value: [TimePickerResult](ts-basic-components-timepicker.md#TimePickerResult对象说明)) => void | 否 | 滑动弹窗中的选择器使当前选中时间改变时触发该回调。 |
+
+| 参数名 | 参数类型 | 必填 | 参数描述 |
+| -------- | -------- | -------- | -------- |
+| selected | Date | 否 | 设置当前选中的时间。<br/>默认值：当前系统时间 |
+| useMilitaryTime | boolean | 否 | 展示时间是否为24小时制，默认为12小时制。<br/>默认值：false |
+| onAccept | (value: [TimePickerResult](ts-basic-components-timepicker.md#TimePickerResult对象说明)) => void | 否 | 点击弹窗中的“确定”按钮时触发该回调。 |
+| onCancel | () => void | 否 | 点击弹窗中的“取消”按钮时触发该回调。 |
+| onChange | (value: [TimePickerResult](ts-basic-components-timepicker.md#TimePickerResult对象说明)) => void | 否 | 滑动弹窗中的选择器使当前选中时间改变时触发该回调。 |
 
 ## 示例
 

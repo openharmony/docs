@@ -13,11 +13,13 @@ AbilityContext模块提供允许访问特定Ability的资源的能力，包括�
 
 在使用AbilityContext的功能前，需要通过Ability子类实例获取。
 
-```js
-import Ability from '@ohos.application.Ability';
+```ts
+import Ability from '@ohos.app.ability.UIAbility';
+
+ let context = undefined;
 class MainAbility extends Ability {
     onWindowStageCreate(windowStage) {
-        let context = this.context;
+        context = this.context;
     }
 }
 ```
@@ -47,17 +49,54 @@ startAbility(want: Want, callback: AsyncCallback&lt;void&gt;): void;
 | want | [Want](js-apis-application-Want.md) | 是 | 启动Ability的want信息。 |
 | callback | AsyncCallback&lt;void&gt; | 是 | callback形式返回启动结果 |
 
+**错误码：**
+
+| 错误码ID | 错误信息 |
+| ------- | -------------------------------- |
+| 201 | The application does not have permission to call the interface. |
+| 401 | Invalid input parameter. |
+| 16000001 | Input error. The specified ability name does not exist. |
+| 16000004 | Visibility verification failed. |
+| 16000005 | Static permission denied. The specified process does not have the permission. |
+| 16000007 | Service busyness. There are concurrent tasks, waiting for retry. |
+| 16000008 | Crowdtest App Expiration. |
+| 16000009 | Can not start ability in wukong mode. |
+| 16000010 | Can not operation with continue flag.        |
+| 16000011 | Context does not exist.        |
+| 16000051 | Network error. The network is abnormal. |
+| 16000052 | Free install not support. The application does not support freeinstall |
+| 16000053 | Not top ability. The application is not top ability. |
+| 16000054 | Free install busyness. There are concurrent tasks, waiting for retry. |
+| 16000055 | Free install timeout. |
+| 16000056 | Can not free install other ability. |
+| 16000057 | Not support cross device free install. |
+| 16200001 | Caller released. The caller has been released. |
+| 16000050 | Internal Error. |
+
 **示例：**
 
-  ```js
+  ```ts
   var want = {
-  	"deviceId": "",
-  	"bundleName": "com.extreme.test",
-  	"abilityName": "MainAbility"
+    bundleName: "com.example.myapp",
+    abilityName: "MyAbility"
   };
-  this.context.startAbility(want, (error) => {
-      console.log("error.code = " + error.code)
-  })
+
+  try {
+    this.context.startAbility(want, (error) => {
+      if (error.code) {
+        // 处理业务逻辑错误
+        console.log('startAbility failed, error.code: ' + JSON.stringify(error.code) +
+          ' error.message: ' + JSON.stringify(error.message));
+        return;
+      }
+      // 执行正常业务
+      console.log('startAbility succeed');
+    });
+  } catch (paramError) {
+    // 处理入参错误异常
+    console.log('error.code: ' + JSON.stringify(paramError.code) +
+      ' error.message: ' + JSON.stringify(paramError.message));
+  }
   ```
 
 
@@ -77,22 +116,59 @@ startAbility(want: Want, options: StartOptions, callback: AsyncCallback&lt;void&
 | options | [StartOptions](js-apis-application-StartOptions.md) | 是 | 启动Ability所携带的参数。 |
 | callback | AsyncCallback&lt;void&gt; | 是 | callback形式返回启动结果。 |
 
+**错误码：**
+
+| 错误码ID | 错误信息
+| ------- | -------------------------------- |
+| 201 | The application does not have permission to call the interface. |
+| 401 | Invalid input parameter. |
+| 16000001 | Input error. The specified ability name does not exist. |
+| 16000004 | Visibility verification failed. |
+| 16000005 | Static permission denied. The specified process does not have the permission. |
+| 16000007 | Service busyness. There are concurrent tasks, waiting for retry. |
+| 16000008 | Crowdtest App Expiration. |
+| 16000009 | Can not start ability in wukong mode. |
+| 16000010 | Can not operation with continue flag.        |
+| 16000011 | Context does not exist.        |
+| 16000051 | Network error. The network is abnormal. |
+| 16000052 | Free install not support. The application does not support freeinstall |
+| 16000053 | Not top ability. The application is not top ability. |
+| 16000054 | Free install busyness. There are concurrent tasks, waiting for retry. |
+| 16000055 | Free install timeout. |
+| 16000056 | Can not free install other ability. |
+| 16000057 | Not support cross device free install. |
+| 16200001 | Caller released. The caller has been released. |
+| 16000050 | Internal Error. |
+
 **示例：**
 
-  ```js
+  ```ts
   var want = {
-  	"deviceId": "",
-  	"bundleName": "com.extreme.test",
-  	"abilityName": "MainAbility"
+    deviceId: "",
+    bundleName: "com.extreme.test",
+    abilityName: "MainAbility"
   };
   var options = {
-  	windowMode: 0,
+    windowMode: 0
   };
-  this.context.startAbility(want, options, (error) => {
-      console.log("error.code = " + error.code)
-  })
-  ```
 
+  try {
+    this.context.startAbility(want, options, (error) => {
+      if (error.code) {
+        // 处理业务逻辑错误
+        console.log('startAbility failed, error.code: ' + JSON.stringify(error.code) +
+          ' error.message: ' + JSON.stringify(error.message));
+        return;
+      }
+      // 执行正常业务
+      console.log('startAbility succeed');
+    });
+  } catch (paramError) {
+    // 处理入参错误异常
+    console.log('error.code: ' + JSON.stringify(paramError.code) +
+      ' error.message: ' + JSON.stringify(paramError.message));
+  }
+  ```
 
 ## AbilityContext.startAbility
 
@@ -115,23 +191,57 @@ startAbility(want: Want, options?: StartOptions): Promise&lt;void&gt;;
 | -------- | -------- |
 | Promise&lt;void&gt; | Promise形式返回启动结果。 |
 
+**错误码：**
+
+| 错误码ID | 错误信息 |
+| ------- | -------------------------------- |
+| 201 | The application does not have permission to call the interface. |
+| 401 | Invalid input parameter. |
+| 16000001 | Input error. The specified ability name does not exist. |
+| 16000004 | Visibility verification failed. |
+| 16000005 | Static permission denied. The specified process does not have the permission. |
+| 16000007 | Service busyness. There are concurrent tasks, waiting for retry. |
+| 16000008 | Crowdtest App Expiration. |
+| 16000009 | Can not start ability in wukong mode. |
+| 16000010 | Can not operation with continue flag.        |
+| 16000011 | Context does not exist.        |
+| 16000051 | Network error. The network is abnormal. |
+| 16000052 | Free install not support. The application does not support freeinstall |
+| 16000053 | Not top ability. The application is not top ability. |
+| 16000054 | Free install busyness. There are concurrent tasks, waiting for retry. |
+| 16000055 | Free install timeout. |
+| 16000056 | Can not free install other ability. |
+| 16000057 | Not support cross device free install. |
+| 16200001 | Caller released. The caller has been released. |
+| 16000050 | Internal Error. |
+
 **示例：**
 
-  ```js
+  ```ts
   var want = {
-  	"deviceId": "",
-  	"bundleName": "com.extreme.test",
-  	"abilityName": "MainAbility"
+    bundleName: "com.example.myapp",
+    abilityName: "MyAbility"
   };
   var options = {
   	windowMode: 0,
   };
-  this.context.startAbility(want, options)
-  .then(() => {
-      console.log('Operation successful.')
-  }).catch((error) => {
-      console.log('Operation failed.');
-  })
+
+  try {
+    this.context.startAbility(want, options)
+      .then((data) => {
+        // 执行正常业务
+        console.log('startAbility succeed');
+      })
+      .catch((error) => {
+        // 处理业务逻辑错误
+        console.log('startAbility failed, error.code: ' + JSON.stringify(error.code) +
+          ' error.message: ' + JSON.stringify(error.message));
+      });
+  } catch (paramError) {
+    // 处理入参错误异常
+    console.log('error.code: ' + JSON.stringify(paramError.code) +
+      ' error.message: ' + JSON.stringify(paramError.message));
+  }
   ```
 
 
@@ -139,7 +249,7 @@ startAbility(want: Want, options?: StartOptions): Promise&lt;void&gt;;
 
 startAbilityForResult(want: Want, callback: AsyncCallback&lt;AbilityResult&gt;): void;
 
-启动Ability并在结束的时候返回执行结果（callback形式）。
+启动Ability并在该Ability退出的时候返回执行结果（callback形式）。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -150,24 +260,63 @@ startAbilityForResult(want: Want, callback: AsyncCallback&lt;AbilityResult&gt;):
 | want |[Want](js-apis-application-Want.md) | 是 | 启动Ability的want信息。 |
 | callback | AsyncCallback&lt;[AbilityResult](js-apis-featureAbility.md#abilityresult)&gt; | 是 | 执行结果回调函数。 |
 
+**错误码：**
+
+| 错误码ID | 错误信息 |
+| ------- | -------------------------------- |
+| 201 | The application does not have permission to call the interface. |
+| 401 | Invalid input parameter. |
+| 16000001 | Input error. The specified ability name does not exist. |
+| 16000004 | Visibility verification failed. |
+| 16000005 | Static permission denied. The specified process does not have the permission. |
+| 16000007 | Service busyness. There are concurrent tasks, waiting for retry. |
+| 16000008 | Crowdtest App Expiration. |
+| 16000009 | Can not start ability in wukong mode. |
+| 16000010 | Can not operation with continue flag.        |
+| 16000011 | Context does not exist.        |
+| 16000051 | Network error. The network is abnormal. |
+| 16000052 | Free install not support. The application does not support freeinstall |
+| 16000053 | Not top ability. The application is not top ability. |
+| 16000054 | Free install busyness. There are concurrent tasks, waiting for retry. |
+| 16000055 | Free install timeout. |
+| 16000056 | Can not free install other ability. |
+| 16000057 | Not support cross device free install. |
+| 16200001 | Caller released. The caller has been released. |
+| 16000050 | Internal Error. |
 
 **示例：**
 
-  ```js
-  this.context.startAbilityForResult(
-      {deviceId: "", bundleName: "com.extreme.myapplication", abilityName: "MainAbilityDemo2"},
-      (error, result) => {
-          console.log("startAbilityForResult AsyncCallback is called, error.code = " + error.code)
-          console.log("startAbilityForResult AsyncCallback is called, result.resultCode = " + result.resultCode)
-       }
-  );
+  ```ts
+  var want = {
+    deviceId: "",
+    bundleName: "com.extreme.test",
+    abilityName: "MainAbility"
+  };
+
+  try {
+    this.context.startAbilityForResult(want, (error, result) => {
+      if (error.code) {
+        // 处理业务逻辑错误
+        console.log('startAbilityForResult failed, error.code: ' + JSON.stringify(error.code) +
+          ' error.message: ' + JSON.stringify(error.message));
+        return;
+      }
+      // 执行正常业务
+      console.log("startAbilityForResult succeed, result.resultCode = " +
+        result.resultCode)
+    });
+  } catch (paramError) {
+    // 处理入参错误异常
+    console.log('error.code: ' + JSON.stringify(paramError.code) +
+      ' error.message: ' + JSON.stringify(paramError.message));
+  }
   ```
 
 ## AbilityContext.startAbilityForResult
 
 startAbilityForResult(want: Want, options: StartOptions, callback: AsyncCallback&lt;AbilityResult&gt;): void;
 
-启动Ability并在结束的时候返回执行结果（callback形式）。
+启动Ability并在该Ability退出的时候返回执行结果（callback形式）。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -179,20 +328,59 @@ startAbilityForResult(want: Want, options: StartOptions, callback: AsyncCallback
 | options | [StartOptions](js-apis-application-StartOptions.md) | 是 | 启动Ability所携带的参数。 |
 | callback | AsyncCallback&lt;[AbilityResult](js-apis-featureAbility.md#abilityresult)&gt; | 是 | 执行结果回调函数。 |
 
+**错误码：**
+
+| 错误码ID | 错误信息 |
+| ------- | -------------------------------- |
+| 201 | The application does not have permission to call the interface. |
+| 401 | Invalid input parameter. |
+| 16000001 | Input error. The specified ability name does not exist. |
+| 16000004 | Visibility verification failed. |
+| 16000005 | Static permission denied. The specified process does not have the permission. |
+| 16000007 | Service busyness. There are concurrent tasks, waiting for retry. |
+| 16000008 | Crowdtest App Expiration. |
+| 16000009 | Can not start ability in wukong mode. |
+| 16000010 | Can not operation with continue flag.        |
+| 16000011 | Context does not exist.        |
+| 16000051 | Network error. The network is abnormal. |
+| 16000052 | Free install not support. The application does not support freeinstall |
+| 16000053 | Not top ability. The application is not top ability. |
+| 16000054 | Free install busyness. There are concurrent tasks, waiting for retry. |
+| 16000055 | Free install timeout. |
+| 16000056 | Can not free install other ability. |
+| 16000057 | Not support cross device free install. |
+| 16200001 | Caller released. The caller has been released. |
+| 16000050 | Internal Error. |
 
 **示例：**
 
-  ```js
+  ```ts
+  var want = {
+    deviceId: "",
+    bundleName: "com.extreme.test",
+    abilityName: "MainAbility"
+  };
   var options = {
     windowMode: 0,
   };
-  this.context.startAbilityForResult(
-      {deviceId: "", bundleName: "com.extreme.myapplication", abilityName: "MainAbilityDemo2"}, options,
-      (error, result) => {
-          console.log("startAbilityForResult AsyncCallback is called, error.code = " + error.code)
-          console.log("startAbilityForResult AsyncCallback is called, result.resultCode = " + result.resultCode)
-       }
-  );
+
+  try {
+    this.context.startAbilityForResult(want, options, (error, result) => {
+      if (error.code) {
+        // 处理业务逻辑错误
+        console.log('startAbilityForResult failed, error.code: ' + JSON.stringify(error.code) +
+          ' error.message: ' + JSON.stringify(error.message));
+        return;
+      }
+      // 执行正常业务
+      console.log("startAbilityForResult succeed, result.resultCode = " +
+        result.resultCode)
+    });
+  } catch (paramError) {
+    // 处理入参错误异常
+    console.log('error.code: ' + JSON.stringify(paramError.code) +
+      ' error.message: ' + JSON.stringify(paramError.message));
+  }
   ```
 
 
@@ -200,7 +388,7 @@ startAbilityForResult(want: Want, options: StartOptions, callback: AsyncCallback
 
 startAbilityForResult(want: Want, options?: StartOptions): Promise&lt;AbilityResult&gt;;
 
-启动Ability并在结束的时候返回执行结果（promise形式）。
+启动Ability并在该Ability退出的时候返回执行结果（promise形式）。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -218,17 +406,57 @@ startAbilityForResult(want: Want, options?: StartOptions): Promise&lt;AbilityRes
 | -------- | -------- |
 | Promise&lt;[AbilityResult](js-apis-featureAbility.md#abilityresult)&gt; | Promise形式返回执行结果。 |
 
+**错误码：**
+
+| 错误码ID | 错误信息 |
+| ------- | -------------------------------- |
+| 201 | The application does not have permission to call the interface. |
+| 401 | Invalid input parameter. |
+| 16000001 | Input error. The specified ability name does not exist. |
+| 16000004 | Visibility verification failed. |
+| 16000005 | Static permission denied. The specified process does not have the permission. |
+| 16000007 | Service busyness. There are concurrent tasks, waiting for retry. |
+| 16000008 | Crowdtest App Expiration. |
+| 16000009 | Can not start ability in wukong mode. |
+| 16000010 | Can not operation with continue flag.        |
+| 16000011 | Context does not exist.        |
+| 16000051 | Network error. The network is abnormal. |
+| 16000052 | Free install not support. The application does not support freeinstall |
+| 16000053 | Not top ability. The application is not top ability. |
+| 16000054 | Free install busyness. There are concurrent tasks, waiting for retry. |
+| 16000055 | Free install timeout. |
+| 16000056 | Can not free install other ability. |
+| 16000057 | Not support cross device free install. |
+| 16200001 | Caller released. The caller has been released. |
+| 16000050 | Internal Error. |
+
 **示例：**
 
-  ```js
-  var options = {
-    windowMode: 0,
+  ```ts
+  var want = {
+    bundleName: "com.example.myapp",
+    abilityName: "MyAbility"
   };
-  this.context.startAbilityForResult({deviceId: "", bundleName: "com.extreme.myapplication", abilityName: "MainAbilityDemo2"}, options).then((result) => {
-      console.log("startAbilityForResult Promise.resolve is called, result.resultCode = " + result.resultCode)
-  }, (error) => {
-      console.log("startAbilityForResult Promise.Reject is called, error.code = " + error.code)
-  })
+  var options = {
+  	windowMode: 0,
+  };
+
+  try {
+    this.context.startAbilityForResult(want, options)
+      .then((result) => {
+        // 执行正常业务
+        console.log("startAbilityForResult succeed, result.resultCode = " + result.resultCode);
+      })
+      .catch((error) => {
+        // 处理业务逻辑错误
+        console.log('startAbilityForResult failed, error.code: ' + JSON.stringify(error.code) +
+          ' error.message: ' + JSON.stringify(error.message));
+      });
+  } catch (paramError) {
+    // 处理入参错误异常
+    console.log('error.code: ' + JSON.stringify(paramError.code) +
+      ' error.message: ' + JSON.stringify(paramError.message));
+  }
   ```
 
 ## AbilityContext.startAbilityForResultWithAccount
@@ -251,19 +479,58 @@ startAbilityForResultWithAccount(want: Want, accountId: number, callback: AsyncC
 | accountId | number | 是 | 系统帐号的帐号ID，详情参考[getCreatedOsAccountsCount](js-apis-osAccount.md#getosaccountlocalidfromprocess)。 |
 | callback | AsyncCallback\<AbilityResult\> | 是 | 启动Ability的回调函数，返回Ability结果。 |
 
+**错误码：**
+
+| 错误码ID | 错误信息 |
+| ------- | -------------------------------- |
+| 201 | The application does not have permission to call the interface. |
+| 401 | Invalid input parameter. |
+| 16000001 | Input error. The specified ability name does not exist. |
+| 16000004 | Visibility verification failed. |
+| 16000005 | Static permission denied. The specified process does not have the permission. |
+| 16000006 | Can not cross user operations. |
+| 16000007 | Service busyness. There are concurrent tasks, waiting for retry. |
+| 16000008 | Crowdtest App Expiration. |
+| 16000009 | Can not start ability in wukong mode. |
+| 16000010 | Can not operation with continue flag.        |
+| 16000011 | Context does not exist.        |
+| 16000051 | Network error. The network is abnormal. |
+| 16000052 | Free install not support. The application does not support freeinstall |
+| 16000053 | Not top ability. The application is not top ability. |
+| 16000054 | Free install busyness. There are concurrent tasks, waiting for retry. |
+| 16000055 | Free install timeout. |
+| 16000056 | Can not free install other ability. |
+| 16000057 | Not support cross device free install. |
+| 16200001 | Caller released. The caller has been released. |
+| 16000050 | Internal Error. |
+
 **示例：**
 
-  ```js
+  ```ts
   var want = {
-    "deviceId": "",
-    "bundleName": "com.extreme.test",
-    "abilityName": "MainAbility"
+    deviceId: "",
+    bundleName: "com.extreme.test",
+    abilityName: "MainAbility"
   };
   var accountId = 100;
-  this.context.startAbilityWithAccount(want, accountId, (err, data) => {
-    console.log('---------- startAbilityWithAccount fail, err:  -----------', err);
-    console.log('---------- startAbilityWithAccount success, data:  -----------', data);
-  });
+
+  try {
+    this.context.startAbilityForResultWithAccount(want, accountId, (error, result) => {
+      if (error.code) {
+        // 处理业务逻辑错误
+        console.log('startAbilityForResultWithAccount failed, error.code: ' + JSON.stringify(error.code) +
+          ' error.message: ' + JSON.stringify(error.message));
+        return;
+      }
+      // 执行正常业务
+      console.log("startAbilityForResultWithAccount succeed, result.resultCode = " +
+        result.resultCode)
+    });
+  } catch (paramError) {
+    // 处理入参错误异常
+    console.log('error.code: ' + JSON.stringify(paramError.code) +
+      ' error.message: ' + JSON.stringify(paramError.message));
+  }
   ```
 
 
@@ -288,21 +555,61 @@ startAbilityForResultWithAccount(want: Want, accountId: number, options: StartOp
 | options | [StartOptions](js-apis-application-StartOptions.md) | 是 | 启动Ability所携带的参数。 |
 | callback | AsyncCallback\<void\> | 是 | 启动Ability的回调函数。 |
 
+**错误码：**
+
+| 错误码ID | 错误信息 |
+| ------- | -------------------------------- |
+| 201 | The application does not have permission to call the interface. |
+| 401 | Invalid input parameter. |
+| 16000001 | Input error. The specified ability name does not exist. |
+| 16000004 | Visibility verification failed. |
+| 16000005 | Static permission denied. The specified process does not have the permission. |
+| 16000006 | Can not cross user operations. |
+| 16000007 | Service busyness. There are concurrent tasks, waiting for retry. |
+| 16000008 | Crowdtest App Expiration. |
+| 16000009 | Can not start ability in wukong mode. |
+| 16000010 | Can not operation with continue flag.        |
+| 16000011 | Context does not exist.        |
+| 16000051 | Network error. The network is abnormal. |
+| 16000052 | Free install not support. The application does not support freeinstall |
+| 16000053 | Not top ability. The application is not top ability. |
+| 16000054 | Free install busyness. There are concurrent tasks, waiting for retry. |
+| 16000055 | Free install timeout. |
+| 16000056 | Can not free install other ability. |
+| 16000057 | Not support cross device free install. |
+| 16200001 | Caller released. The caller has been released. |
+| 16000050 | Internal Error. |
+
 **示例：**
 
-  ```js
+  ```ts
   var want = {
-    "deviceId": "",
-    "bundleName": "com.extreme.test",
-    "abilityName": "MainAbility"
+    deviceId: "",
+    bundleName: "com.extreme.test",
+    abilityName: "MainAbility"
   };
   var accountId = 100;
   var options = {
-    windowMode: 0,
+    windowMode: 0
   };
-  this.context.startAbilityForResultWithAccount(want, accountId, options, (err) => {
-    console.log('---------- startAbilityForResultWithAccount fail, err:  -----------', err);
-  });
+
+  try {
+    this.context.startAbilityForResultWithAccount(want, accountId, options, (error, result) => {
+      if (error.code) {
+        // 处理业务逻辑错误
+        console.log('startAbilityForResultWithAccount failed, error.code: ' + JSON.stringify(error.code) +
+          ' error.message: ' + JSON.stringify(error.message));
+        return;
+      }
+      // 执行正常业务
+      console.log("startAbilityForResultWithAccount succeed, result.resultCode = " +
+        result.resultCode)
+    });
+  } catch (paramError) {
+    // 处理入参错误异常
+    console.log('error.code: ' + JSON.stringify(paramError.code) +
+      ' error.message: ' + JSON.stringify(paramError.message));
+  }
   ```
 
 
@@ -332,25 +639,61 @@ startAbilityForResultWithAccount(want: Want, accountId: number, options?: StartO
 | -------- | -------- |
 | Promise&lt;AbilityResult&gt; | 返回一个Promise，包含Ability结果。 |
 
+**错误码：**
+
+| 错误码ID | 错误信息 |
+| ------- | -------------------------------- |
+| 201 | The application does not have permission to call the interface. |
+| 401 | Invalid input parameter. |
+| 16000001 | Input error. The specified ability name does not exist. |
+| 16000004 | Visibility verification failed. |
+| 16000005 | Static permission denied. The specified process does not have the permission. |
+| 16000006 | Can not cross user operations. |
+| 16000007 | Service busyness. There are concurrent tasks, waiting for retry. |
+| 16000008 | Crowdtest App Expiration. |
+| 16000009 | Can not start ability in wukong mode. |
+| 16000010 | Can not operation with continue flag.        |
+| 16000011 | Context does not exist.        |
+| 16000051 | Network error. The network is abnormal. |
+| 16000052 | Free install not support. The application does not support freeinstall |
+| 16000053 | Not top ability. The application is not top ability. |
+| 16000054 | Free install busyness. There are concurrent tasks, waiting for retry. |
+| 16000055 | Free install timeout. |
+| 16000056 | Can not free install other ability. |
+| 16000057 | Not support cross device free install. |
+| 16200001 | Caller released. The caller has been released. |
+| 16000050 | Internal Error. |
+
 **示例：**
 
-  ```js
+  ```ts
   var want = {
-    "deviceId": "",
-    "bundleName": "com.extreme.test",
-    "abilityName": "MainAbility"
+    deviceId: "",
+    bundleName: "com.extreme.test",
+    abilityName: "MainAbility"
   };
   var accountId = 100;
   var options = {
-    windowMode: 0,
+    windowMode: 0
   };
-  this.context.startAbilityForResultWithAccount(want, accountId, options)
-    .then((data) => {
-        console.log('---------- startAbilityForResultWithAccount success, data:  -----------', data);
-    })
-    .catch((err) => {
-        console.log('---------- startAbilityForResultWithAccount fail, err:  -----------', err);
-    })
+
+  try {
+    this.context.startAbilityForResultWithAccount(want, accountId, options)
+      .then((result) => {
+        // 执行正常业务
+        console.log("startAbilityForResultWithAccount succeed, result.resultCode = " +
+          result.resultCode)
+      })
+      .catch((error) => {
+        // 处理业务逻辑错误
+        console.log('startAbilityForResultWithAccount failed, error.code: ' + JSON.stringify(error.code) +
+          ' error.message: ' + JSON.stringify(error.message));
+      });
+  } catch (paramError) {
+    // 处理入参错误异常
+    console.log('error.code: ' + JSON.stringify(paramError.code) +
+      ' error.message: ' + JSON.stringify(paramError.message));
+  }
   ```
 ## AbilityContext.startServiceExtensionAbility
 
@@ -369,17 +712,48 @@ startServiceExtensionAbility(want: Want, callback: AsyncCallback\<void>): void;
 | want | [Want](js-apis-application-Want.md) | 是 | 启动Ability的want信息。 |
 | callback | AsyncCallback\<void\> | 是 | 启动Ability的回调函数。 |
 
+**错误码：**
+
+| 错误码ID | 错误信息 |
+| ------- | -------------------------------- |
+| 201 | The application does not have permission to call the interface. |
+| 401 | Invalid input parameter. |
+| 16000001 | Input error. The specified ability name does not exist. |
+| 16000002 | Ability type error. The specified ability type is wrong. |
+| 16000004 | Visibility verification failed. |
+| 16000005 | Static permission denied. The specified process does not have the permission. |
+| 16000007 | Service busyness. There are concurrent tasks, waiting for retry. |
+| 16000008 | Crowdtest App Expiration. |
+| 16000009 | Can not start ability in wukong mode. |
+| 16000011 | Context does not exist.        |
+| 16200001 | Caller released. The caller has been released. |
+| 16000050 | Internal Error. |
+
 **示例：**
 
-  ```js
+  ```ts
   var want = {
-    "deviceId": "",
-    "bundleName": "com.extreme.test",
-    "abilityName": "MainAbility"
+    deviceId: "",
+    bundleName: "com.extreme.test",
+    abilityName: "MainAbility"
   };
-  this.context.startServiceExtensionAbility(want, (err) => {
-    console.log('---------- startServiceExtensionAbility fail, err:  -----------', err);
-  });
+
+  try {
+    this.context.startServiceExtensionAbility(want, (error) => {
+      if (error.code) {
+        // 处理业务逻辑错误
+        console.log('startServiceExtensionAbility failed, error.code: ' + JSON.stringify(error.code) +
+          ' error.message: ' + JSON.stringify(error.message));
+        return;
+      }
+      // 执行正常业务
+      console.log('startServiceExtensionAbility succeed');
+    });
+  } catch (paramError) {
+    // 处理入参错误异常
+    console.log('error.code: ' + JSON.stringify(paramError.code) +
+      ' error.message: ' + JSON.stringify(paramError.message));
+  }
   ```
 
 ## AbilityContext.startServiceExtensionAbility
@@ -398,22 +772,50 @@ startServiceExtensionAbility(want: Want): Promise\<void>;
 | -------- | -------- | -------- | -------- |
 | want | [Want](js-apis-application-Want.md) | 是 | 启动Ability的want信息。 |
 
+**错误码：**
+
+| 错误码ID | 错误信息 |
+| ------- | -------------------------------- |
+| 201 | The application does not have permission to call the interface. |
+| 401 | Invalid input parameter. |
+| 16000001 | Input error. The specified ability name does not exist. |
+| 16000002 | Ability type error. The specified ability type is wrong. |
+| 16000004 | Visibility verification failed. |
+| 16000005 | Static permission denied. The specified process does not have the permission. |
+| 16000007 | Service busyness. There are concurrent tasks, waiting for retry. |
+| 16000008 | Crowdtest App Expiration. |
+| 16000009 | Can not start ability in wukong mode. |
+| 16000011 | Context does not exist.        |
+| 16200001 | Caller released. The caller has been released. |
+| 16000050 | Internal Error. |
+
 **示例：**
 
-  ```js
+  ```ts
   var want = {
-    "deviceId": "",
-    "bundleName": "com.extreme.test",
-    "abilityName": "MainAbility"
+    deviceId: "",
+    bundleName: "com.extreme.test",
+    abilityName: "MainAbility"
   };
-  this.context.startServiceExtensionAbility(want)
-    .then(() => {
-        console.log('---------- startServiceExtensionAbility success -----------');
-    })
-    .catch((err) => {
-        console.log('---------- startServiceExtensionAbility fail, err:  -----------', err);
-    })
+
+  try {
+    this.context.startServiceExtensionAbility(want)
+      .then((data) => {
+        // 执行正常业务
+        console.log('startServiceExtensionAbility succeed');
+      })
+      .catch((error) => {
+        // 处理业务逻辑错误
+        console.log('startServiceExtensionAbility failed, error.code: ' + JSON.stringify(error.code) +
+          ' error.message: ' + JSON.stringify(error.message));
+      });
+  } catch (paramError) {
+    // 处理入参错误异常
+    console.log('error.code: ' + JSON.stringify(paramError.code) +
+      ' error.message: ' + JSON.stringify(paramError.message));
+  }
   ```
+
 ## AbilityContext.startServiceExtensionAbilityWithAccount
 
 startServiceExtensionAbilityWithAccount(want: Want, accountId: number, callback: AsyncCallback\<void>): void;
@@ -434,18 +836,46 @@ startServiceExtensionAbilityWithAccount(want: Want, accountId: number, callback:
 | accountId | number | 是 | 系统帐号的帐号ID，详情参考[getCreatedOsAccountsCount](js-apis-osAccount.md#getosaccountlocalidfromprocess)。 |
 | callback | AsyncCallback\<void\> | 是 | 启动Ability的回调函数。 |
 
+**错误码：**
+
+| 错误码ID | 错误信息 |
+| ------- | -------------------------------- |
+| 201 | The application does not have permission to call the interface. |
+| 401 | Invalid input parameter. |
+| 16000001 | Input error. The specified ability name does not exist. |
+| 16000002 | Ability type error. The specified ability type is wrong. |
+| 16000004 | Visibility verification failed. |
+| 16000007 | Service busyness. There are concurrent tasks, waiting for retry. |
+| 16000011 | Context does not exist.        |
+| 16200001 | Caller released. The caller has been released. |
+| 16000050 | Internal Error. |
+
 **示例：**
 
-  ```js
+  ```ts
   var want = {
-    "deviceId": "",
-    "bundleName": "com.extreme.test",
-    "abilityName": "MainAbility"
+    deviceId: "",
+    bundleName: "com.extreme.test",
+    abilityName: "MainAbility"
   };
   var accountId = 100;
-  this.context.startServiceExtensionAbilityWithAccount(want,accountId, (err) => {
-    console.log('---------- startServiceExtensionAbilityWithAccount fail, err:  -----------', err);
-  });
+
+  try {
+    this.context.startServiceExtensionAbilityWithAccount(want, accountId, (error) => {
+      if (error.code) {
+        // 处理业务逻辑错误
+        console.log('startServiceExtensionAbilityWithAccount failed, error.code: ' + JSON.stringify(error.code) +
+          ' error.message: ' + JSON.stringify(error.message));
+        return;
+      }
+      // 执行正常业务
+      console.log('startServiceExtensionAbilityWithAccount succeed');
+    });
+  } catch (paramError) {
+    // 处理入参错误异常
+    console.log('error.code: ' + JSON.stringify(paramError.code) +
+      ' error.message: ' + JSON.stringify(paramError.message));
+  }
   ```
 
 ## AbilityContext.startServiceExtensionAbilityWithAccount
@@ -467,22 +897,50 @@ startServiceExtensionAbilityWithAccount(want: Want, accountId: number): Promise\
 | want | [Want](js-apis-application-Want.md) | 是 | 启动Ability的want信息。 |
 | accountId | number | 是 | 系统帐号的帐号ID，详情参考[getCreatedOsAccountsCount](js-apis-osAccount.md#getosaccountlocalidfromprocess)。 |
 
+**错误码：**
+
+| 错误码ID | 错误信息 |
+| ------- | -------------------------------- |
+| 201 | The application does not have permission to call the interface. |
+| 401 | Invalid input parameter. |
+| 16000001 | Input error. The specified ability name does not exist. |
+| 16000002 | Ability type error. The specified ability type is wrong. |
+| 16000004 | Visibility verification failed. |
+| 16000005 | Static permission denied. The specified process does not have the permission. |
+| 16000006 | Can not cross user operations. |
+| 16000007 | Service busyness. There are concurrent tasks, waiting for retry. |
+| 16000008 | Crowdtest App Expiration. |
+| 16000009 | Can not start ability in wukong mode. |
+| 16000011 | Context does not exist.        |
+| 16200001 | Caller released. The caller has been released. |
+| 16000050 | Internal Error. |
+
 **示例：**
 
-  ```js
+  ```ts
   var want = {
-    "deviceId": "",
-    "bundleName": "com.extreme.test",
-    "abilityName": "MainAbility"
+    deviceId: "",
+    bundleName: "com.extreme.test",
+    abilityName: "MainAbility"
   };
   var accountId = 100;
-  this.context.startServiceExtensionAbilityWithAccount(want,accountId)
-    .then(() => {
-        console.log('---------- startServiceExtensionAbilityWithAccount success -----------');
-    })
-    .catch((err) => {
-        console.log('---------- startServiceExtensionAbilityWithAccount fail, err:  -----------', err);
-    })
+
+  try {
+    this.context.startServiceExtensionAbilityWithAccount(want, accountId)
+      .then((data) => {
+        // 执行正常业务
+        console.log('startServiceExtensionAbilityWithAccount succeed');
+      })
+      .catch((error) => {
+        // 处理业务逻辑错误
+        console.log('startServiceExtensionAbilityWithAccount failed, error.code: ' + JSON.stringify(error.code) +
+          ' error.message: ' + JSON.stringify(error.message));
+      });
+  } catch (paramError) {
+    // 处理入参错误异常
+    console.log('error.code: ' + JSON.stringify(paramError.code) +
+      ' error.message: ' + JSON.stringify(paramError.message));
+  }
   ```
 ## AbilityContext.stopServiceExtensionAbility
 
@@ -501,17 +959,45 @@ stopServiceExtensionAbility(want: Want, callback: AsyncCallback\<void>): void;
 | want | [Want](js-apis-application-Want.md) | 是 | 启动Ability的want信息。 |
 | callback | AsyncCallback\<void\> | 是 | 启动Ability的回调函数。 |
 
+**错误码：**
+
+| 错误码ID | 错误信息 |
+| ------- | -------------------------------- |
+| 201 | The application does not have permission to call the interface. |
+| 401 | Invalid input parameter. |
+| 16000001 | Input error. The specified ability name does not exist. |
+| 16000002 | Ability type error. The specified ability type is wrong. |
+| 16000004 | Visibility verification failed. |
+| 16000007 | Service busyness. There are concurrent tasks, waiting for retry. |
+| 16000011 | Context does not exist.        |
+| 16200001 | Caller released. The caller has been released. |
+| 16000050 | Internal Error. |
+
 **示例：**
 
-  ```js
+  ```ts
   var want = {
-    "deviceId": "",
-    "bundleName": "com.extreme.test",
-    "abilityName": "MainAbility"
+    deviceId: "",
+    bundleName: "com.extreme.test",
+    abilityName: "MainAbility"
   };
-  this.context.stopServiceExtensionAbility(want, (err) => {
-    console.log('---------- stopServiceExtensionAbility fail, err:  -----------', err);
-  });
+
+  try {
+    this.context.stopServiceExtensionAbility(want, (error) => {
+      if (error.code) {
+        // 处理业务逻辑错误
+        console.log('stopServiceExtensionAbility failed, error.code: ' + JSON.stringify(error.code) +
+          ' error.message: ' + JSON.stringify(error.message));
+        return;
+      }
+      // 执行正常业务
+      console.log('stopServiceExtensionAbility succeed');
+    });
+  } catch (paramError) {
+    // 处理入参错误异常
+    console.log('error.code: ' + JSON.stringify(paramError.code) +
+      ' error.message: ' + JSON.stringify(paramError.message));
+  }
   ```
 
 ## AbilityContext.stopServiceExtensionAbility
@@ -530,21 +1016,45 @@ stopServiceExtensionAbility(want: Want): Promise\<void>;
 | -------- | -------- | -------- | -------- |
 | want | [Want](js-apis-application-Want.md) | 是 | 启动Ability的want信息。 |
 
+**错误码：**
+
+| 错误码ID | 错误信息 |
+| ------- | -------------------------------- |
+| 201 | The application does not have permission to call the interface. |
+| 401 | Invalid input parameter. |
+| 16000001 | Input error. The specified ability name does not exist. |
+| 16000002 | Ability type error. The specified ability type is wrong. |
+| 16000004 | Visibility verification failed. |
+| 16000007 | Service busyness. There are concurrent tasks, waiting for retry. |
+| 16000011 | Context does not exist.        |
+| 16200001 | Caller released. The caller has been released. |
+| 16000050 | Internal Error. |
+
 **示例：**
 
-  ```js
+  ```ts
   var want = {
-    "deviceId": "",
-    "bundleName": "com.extreme.test",
-    "abilityName": "MainAbility"
+    deviceId: "",
+    bundleName: "com.extreme.test",
+    abilityName: "MainAbility"
   };
-  this.context.stopServiceExtensionAbility(want)
-    .then(() => {
-        console.log('---------- stopServiceExtensionAbility success -----------');
-    })
-    .catch((err) => {
-        console.log('---------- stopServiceExtensionAbility fail, err:  -----------', err);
-    })
+
+  try {
+    this.context.stopServiceExtensionAbility(want)
+      .then((data) => {
+        // 执行正常业务
+        console.log('stopServiceExtensionAbility succeed');
+      })
+      .catch((error) => {
+        // 处理业务逻辑错误
+        console.log('stopServiceExtensionAbility failed, error.code: ' + JSON.stringify(error.code) +
+          ' error.message: ' + JSON.stringify(error.message));
+      });
+  } catch (paramError) {
+    // 处理入参错误异常
+    console.log('error.code: ' + JSON.stringify(paramError.code) +
+      ' error.message: ' + JSON.stringify(paramError.message));
+  }
   ```
 
 ## AbilityContext.stopServiceExtensionAbilityWithAccount
@@ -567,18 +1077,47 @@ stopServiceExtensionAbilityWithAccount(want: Want, accountId: number, callback: 
 | accountId | number | 是 | 系统帐号的帐号ID，详情参考[getCreatedOsAccountsCount](js-apis-osAccount.md#getosaccountlocalidfromprocess)。 |
 | callback | AsyncCallback\<void\> | 是 | 启动Ability的回调函数。 |
 
+**错误码：**
+
+| 错误码ID | 错误信息 |
+| ------- | -------------------------------- |
+| 201 | The application does not have permission to call the interface. |
+| 401 | Invalid input parameter. |
+| 16000001 | Input error. The specified ability name does not exist. |
+| 16000002 | Ability type error. The specified ability type is wrong. |
+| 16000004 | Visibility verification failed. |
+| 16000006 | Can not cross user operations. |
+| 16000007 | Service busyness. There are concurrent tasks, waiting for retry. |
+| 16000011 | Context does not exist.        |
+| 16200001 | Caller released. The caller has been released. |
+| 16000050 | Internal Error. |
+
 **示例：**
 
-  ```js
+  ```ts
   var want = {
-    "deviceId": "",
-    "bundleName": "com.extreme.test",
-    "abilityName": "MainAbility"
+    deviceId: "",
+    bundleName: "com.extreme.test",
+    abilityName: "MainAbility"
   };
   var accountId = 100;
-  this.context.stopServiceExtensionAbilityWithAccount(want,accountId, (err) => {
-    console.log('---------- stopServiceExtensionAbilityWithAccount fail, err:  -----------', err);
-  });
+
+  try {
+    this.context.stopServiceExtensionAbilityWithAccount(want, accountId, (error) => {
+      if (error.code) {
+        // 处理业务逻辑错误
+        console.log('stopServiceExtensionAbilityWithAccount failed, error.code: ' + JSON.stringify(error.code) +
+          ' error.message: ' + JSON.stringify(error.message));
+        return;
+      }
+      // 执行正常业务
+      console.log('stopServiceExtensionAbilityWithAccount succeed');
+    });
+  } catch (paramError) {
+    // 处理入参错误异常
+    console.log('error.code: ' + JSON.stringify(paramError.code) +
+      ' error.message: ' + JSON.stringify(paramError.message));
+  }
   ```
 
 ## AbilityContext.stopServiceExtensionAbilityWithAccount
@@ -600,22 +1139,47 @@ stopServiceExtensionAbilityWithAccount(want: Want, accountId: number): Promise\<
 | want | [Want](js-apis-application-Want.md) | 是 | 启动Ability的want信息。 |
 | accountId | number | 是 | 系统帐号的帐号ID，详情参考[getCreatedOsAccountsCount](js-apis-osAccount.md#getosaccountlocalidfromprocess)。 |
 
+**错误码：**
+
+| 错误码ID | 错误信息 |
+| ------- | -------------------------------- |
+| 201 | The application does not have permission to call the interface. |
+| 401 | Invalid input parameter. |
+| 16000001 | Input error. The specified ability name does not exist. |
+| 16000002 | Ability type error. The specified ability type is wrong. |
+| 16000004 | Visibility verification failed. |
+| 16000006 | Can not cross user operations. |
+| 16000007 | Service busyness. There are concurrent tasks, waiting for retry. |
+| 16000011 | Context does not exist.        |
+| 16200001 | Caller released. The caller has been released. |
+| 16000050 | Internal Error. |
+
 **示例：**
 
-  ```js
+  ```ts
   var want = {
-    "deviceId": "",
-    "bundleName": "com.extreme.test",
-    "abilityName": "MainAbility"
+    deviceId: "",
+    bundleName: "com.extreme.test",
+    abilityName: "MainAbility"
   };
   var accountId = 100;
-  this.context.stopServiceExtensionAbilityWithAccount(want,accountId)
-    .then(() => {
-        console.log('---------- stopServiceExtensionAbilityWithAccount success -----------');
-    })
-    .catch((err) => {
-        console.log('---------- stopServiceExtensionAbilityWithAccount fail, err:  -----------', err);
-    })
+
+  try {
+    this.context.stopServiceExtensionAbilityWithAccount(want, accountId)
+      .then((data) => {
+        // 执行正常业务
+        console.log('stopServiceExtensionAbilityWithAccount succeed');
+      })
+      .catch((error) => {
+        // 处理业务逻辑错误
+        console.log('stopServiceExtensionAbilityWithAccount failed, error.code: ' + JSON.stringify(error.code) +
+          ' error.message: ' + JSON.stringify(error.message));
+      });
+  } catch (paramError) {
+    // 处理入参错误异常
+    console.log('error.code: ' + JSON.stringify(paramError.code) +
+      ' error.message: ' + JSON.stringify(paramError.message));
+  }
   ```
 
 ## AbilityContext.terminateSelf
@@ -632,11 +1196,29 @@ terminateSelf(callback: AsyncCallback&lt;void&gt;): void;
 | -------- | -------- | -------- | -------- |
 | callback | AsyncCallback&lt;void&gt; | 是 | 回调函数，返回接口调用是否成功的结果。 |
 
+**错误码：**
+
+| 错误码ID | 错误信息 |
+| ------- | -------------------------------- |
+| 201 | The application does not have permission to call the interface. |
+| 401 | Invalid input parameter. |
+| 16000001 | Input error. The specified ability name does not exist. |
+| 16000007 | Service busyness. There are concurrent tasks, waiting for retry. |
+| 16000011 | Context does not exist.        |
+| 16000050 | Internal Error. |
+
 **示例：**
 
-  ```js
-  this.context.terminateSelf((err) => {
-      console.log('terminateSelf result:' + JSON.stringify(err));
+  ```ts
+  this.context.terminateSelf((error) => {
+    if (error.code) {
+      // 处理业务逻辑错误
+      console.log('terminateSelf failed, error.code: ' + JSON.stringify(error.code) +
+        ' error.message: ' + JSON.stringify(error.message));
+      return;
+    }
+    // 执行正常业务
+    console.log('terminateSelf succeed');
   });
   ```
 
@@ -655,13 +1237,27 @@ terminateSelf(): Promise&lt;void&gt;;
 | -------- | -------- |
 | Promise&lt;void&gt; | 返回一个Promise，包含接口的结果。 |
 
+**错误码：**
+
+| 错误码ID | 错误信息 |
+| ------- | -------------------------------- |
+| 201 | The application does not have permission to call the interface. |
+| 401 | Invalid input parameter. |
+| 16000001 | Input error. The specified ability name does not exist. |
+| 16000007 | Service busyness. There are concurrent tasks, waiting for retry. |
+| 16000011 | Context does not exist.        |
+| 16000050 | Internal Error. |
+
 **示例：**
 
-  ```js
-  this.context.terminateSelf().then(() => {
-      console.log('success');
+  ```ts
+  this.context.terminateSelf().then((data) => {
+    // 执行正常业务
+    console.log('terminateSelf succeed');
   }).catch((error) => {
-      console.log('failed:' + JSON.stringify(error));
+    // 处理业务逻辑错误
+    console.log('terminateSelf failed, error.code: ' + JSON.stringify(error.code) +
+      ' error.message: ' + JSON.stringify(error.message));
   });
   ```
 
@@ -681,12 +1277,23 @@ terminateSelfWithResult(parameter: AbilityResult, callback: AsyncCallback&lt;voi
 | parameter | [AbilityResult](js-apis-featureAbility.md#abilityresult) | 是 | 返回给调用startAbilityForResult&nbsp;接口调用方的相关信息。 |
 | callback | AsyncCallback&lt;void&gt; | 是 | callback形式返回停止结果。 |
 
+**错误码：**
+
+| 错误码ID | 错误信息 |
+| ------- | -------------------------------- |
+| 201 | The application does not have permission to call the interface. |
+| 401 | Invalid input parameter. |
+| 16000001 | Input error. The specified ability name does not exist. |
+| 16000007 | Service busyness. There are concurrent tasks, waiting for retry. |
+| 16000011 | Context does not exist.        |
+| 16000050 | Internal Error. |
+
 **示例：**
 
-  ```js
+  ```ts
   var want = {
-    "bundleName": "com.extreme.myapplication",
-    "abilityName": "SecondAbility"
+    bundleName: "com.extreme.myapplication",
+    abilityName: "SecondAbility"
   }
   var resultCode = 100;
   // 返回给接口调用方AbilityResult信息
@@ -694,10 +1301,23 @@ terminateSelfWithResult(parameter: AbilityResult, callback: AsyncCallback&lt;voi
     want,
     resultCode
   }
-  this.context.terminateSelfWithResult(abilityResult, (error) => {
-          console.log("terminateSelfWithResult is called = " + error.code)
+
+  try {
+    this.context.terminateSelfWithResult(abilityResult, (error) => {
+      if (error.code) {
+        // 处理业务逻辑错误
+        console.log('terminateSelfWithResult failed, error.code: ' + JSON.stringify(error.code) +
+          ' error.message: ' + JSON.stringify(error.message));
+        return;
       }
-  );
+      // 执行正常业务
+      console.log('terminateSelfWithResult succeed');
+    });
+  } catch (paramError) {
+      // 处理入参错误异常
+      console.log('error.code: ' + JSON.stringify(paramError.code) +
+        ' error.message: ' + JSON.stringify(paramError.message));
+  }
   ```
 
 
@@ -721,12 +1341,24 @@ terminateSelfWithResult(parameter: AbilityResult): Promise&lt;void&gt;;
 | -------- | -------- |
 | Promise&lt;void&gt; | promise形式返回停止结果。 |
 
+**错误码：**
+
+| 错误码ID | 错误信息 |
+| ------- | -------------------------------- |
+| 201 | The application does not have permission to call the interface. |
+| 401 | Invalid input parameter. |
+| 16000001 | Input error. The specified ability name does not exist. |
+| 16000007 | Service busyness. There are concurrent tasks, waiting for retry. |
+| 16000011 | Context does not exist.        |
+| 16000050 | Internal Error. |
+
+
 **示例：**
 
-  ```js
+  ```ts
   var want = {
-    "bundleName": "com.extreme.myapplication",
-    "abilityName": "SecondAbility"
+    bundleName: "com.extreme.myapplication",
+    abilityName: "SecondAbility"
   }
   var resultCode = 100;
   // 返回给接口调用方AbilityResult信息
@@ -734,15 +1366,28 @@ terminateSelfWithResult(parameter: AbilityResult): Promise&lt;void&gt;;
     want,
     resultCode
   }
-  this.context.terminateSelfWithResult(abilityResult).then((result) => {
-      console.log("terminateSelfWithResult")
+
+  try {
+    this.context.terminateSelfWithResult(abilityResult)
+      .then((data) => {
+        // 执行正常业务
+        console.log('terminateSelfWithResult succeed');
+      })
+      .catch((error) => {
+        // 处理业务逻辑错误
+        console.log('terminateSelfWithResult failed, error.code: ' + JSON.stringify(error.code) +
+          ' error.message: ' + JSON.stringify(error.message));
+      });
+  } catch (paramError) {
+    // 处理入参错误异常
+    console.log('error.code: ' + JSON.stringify(paramError.code) +
+      ' error.message: ' + JSON.stringify(paramError.message));
   }
-  )
   ```
 
-## AbilityContext.connectAbility
+## AbilityContext.connectServiceExtensionAbility
 
-connectAbility(want: Want, options: ConnectOptions): number;
+connectServiceExtensionAbility(want: Want, options: ConnectOptions): number;
 
 使用AbilityInfo.AbilityType.SERVICE模板将当前Ability连接到一个Ability。
 
@@ -763,27 +1408,46 @@ connectAbility(want: Want, options: ConnectOptions): number;
 | -------- | -------- |
 | number | 返回Ability连接的结果code。 |
 
+**错误码：**
+
+| 错误码ID | 错误信息 |
+| ------- | -------------------------------- |
+| 201 | The application does not have permission to call the interface. |
+| 401 | Invalid input parameter. |
+| 16000001 | Input error. The specified ability name does not exist. |
+| 16000002 | Ability type error. The specified ability type is wrong. |
+| 16000004 | Visibility verification failed. |
+| 16000011 | Context does not exist.        |
+| 16000050 | Internal Error. |
+
 **示例：**
 
-  ```js
+  ```ts
   var want = {
-    "deviceId": "",
-    "bundleName": "com.extreme.test",
-    "abilityName": "MainAbility"
+    deviceId: "",
+    bundleName: "com.extreme.test",
+    abilityName: "MainAbility"
   };
   var options = {
     onConnect(elementName, remote) { console.log('----------- onConnect -----------') },
     onDisconnect(elementName) { console.log('----------- onDisconnect -----------') },
     onFailed(code) { console.log('----------- onFailed -----------') }
   }
-  const result = this.context.connectAbility(want, options);
-  console.log('----------- connectAbilityResult: ------------', result);
+
+  var connection = null;
+  try {
+    connection = this.context.connectServiceExtensionAbility(want, options);
+  } catch (paramError) {
+    // 处理入参错误异常
+    console.log('error.code: ' + JSON.stringify(paramError.code) +
+      ' error.message: ' + JSON.stringify(paramError.message));
+  }
   ```
 
 
-## AbilityContext.connectAbilityWithAccount
+## AbilityContext.connectServiceExtensionAbilityWithAccount
 
-connectAbilityWithAccount(want: Want, accountId: number, options: ConnectOptions): number;
+connectServiceExtensionAbilityWithAccount(want: Want, accountId: number, options: ConnectOptions): number;
 
 使用AbilityInfo.AbilityType.SERVICE模板和account将当前Ability连接到一个Ability。
 
@@ -807,13 +1471,26 @@ connectAbilityWithAccount(want: Want, accountId: number, options: ConnectOptions
 | -------- | -------- |
 | number | 返回Ability连接的结果code。 |
 
+**错误码：**
+
+| 错误码ID | 错误信息 |
+| ------- | -------------------------------- |
+| 201 | The application does not have permission to call the interface. |
+| 401 | Invalid input parameter. |
+| 16000001 | Input error. The specified ability name does not exist. |
+| 16000002 | Ability type error. The specified ability type is wrong. |
+| 16000004 | Visibility verification failed. |
+| 16000006 | Can not cross user operations. |
+| 16000011 | Context does not exist.        |
+| 16000050 | Internal Error. |
+
 **示例：**
 
-  ```js
+  ```ts
   var want = {
-    "deviceId": "",
-    "bundleName": "com.extreme.test",
-    "abilityName": "MainAbility"
+    deviceId: "",
+    bundleName: "com.extreme.test",
+    abilityName: "MainAbility"
   };
   var accountId = 100;
   var options = {
@@ -821,13 +1498,20 @@ connectAbilityWithAccount(want: Want, accountId: number, options: ConnectOptions
     onDisconnect(elementName) { console.log('----------- onDisconnect -----------') },
     onFailed(code) { console.log('----------- onFailed -----------') }
   }
-  const result = this.context.connectAbilityWithAccount(want, accountId, options);
-  console.log('----------- connectAbilityResult: ------------', result);
+
+  var connection = null;
+  try {
+    connection = this.context.connectServiceExtensionAbilityWithAccount(want, accountId, options);
+  } catch (paramError) {
+    // 处理入参错误异常
+    console.log('error.code: ' + JSON.stringify(paramError.code) +
+      ' error.message: ' + JSON.stringify(paramError.message));
+  }
   ```
 
-## AbilityContext.disconnectAbility
+## AbilityContext.disconnectServiceExtensionAbility
 
-disconnectAbility(connection: number): Promise\<void>;
+disconnectServiceExtensionAbility(connection: number): Promise\<void>;
 
 断开连接（promise形式）。
 
@@ -847,20 +1531,44 @@ disconnectAbility(connection: number): Promise\<void>;
 | -------- | -------- |
 | Promise\<void> | 返回执行结果。 |
 
+**错误码：**
+
+| 错误码ID | 错误信息 |
+| ------- | -------------------------------- |
+| 201 | The application does not have permission to call the interface. |
+| 401 | Invalid input parameter. |
+| 16000001 | Input error. The specified ability name does not exist. |
+| 16000003 | Input error. The specified id does not exist. |
+| 16000011 | Context does not exist.        |
+| 16000050 | Internal Error. |
+
 **示例：**
 
-  ```js
-  var connectionNumber = 0;
-  this.context.disconnectAbility(connectionNumber).then(() => {
-       console.log('disconnectAbility success');
-  }).catch((err) => {
-       console.log('disconnectAbility fail, err: ', err);
-  });
+  ```ts
+  // connection为connectAbility中的返回值
+  var connection = 1;
+
+  try {
+    this.context.disconnectServiceExtensionAbility(connection)
+      .then((data) => {
+        // 执行正常业务
+        console.log('disconnectServiceExtensionAbility succeed');
+      })
+      .catch((error) => {
+        // 处理业务逻辑错误
+        console.log('disconnectServiceExtensionAbility failed, error.code: ' + JSON.stringify(error.code) +
+          ' error.message: ' + JSON.stringify(error.message));
+      });
+  } catch (paramError) {
+    // 处理入参错误异常
+    console.log('error.code: ' + JSON.stringify(paramError.code) +
+      ' error.message: ' + JSON.stringify(paramError.message));
+  }
   ```
 
-## AbilityContext.disconnectAbility
+## AbilityContext.disconnectServiceExtensionAbility
 
-disconnectAbility(connection: number, callback:AsyncCallback\<void>): void;
+disconnectServiceExtensionAbility(connection: number, callback:AsyncCallback\<void>): void;
 
 断开连接（callback形式）。
 
@@ -875,13 +1583,39 @@ disconnectAbility(connection: number, callback:AsyncCallback\<void>): void;
 | connection | number | 是 | 连接的Ability的数字代码。 |
 | callback | AsyncCallback\<void> | 是 | 表示指定的回调方法。 |
 
+**错误码：**
+
+| 错误码ID | 错误信息 |
+| ------- | -------------------------------- |
+| 201 | The application does not have permission to call the interface. |
+| 401 | Invalid input parameter. |
+| 16000001 | Input error. The specified ability name does not exist. |
+| 16000003 | Input error. The specified id does not exist. |
+| 16000011 | Context does not exist.        |
+| 16000050 | Internal Error. |
+
 **示例：**
 
-  ```js
-    var connectionNumber = 0;
-    this.context.disconnectAbility(connectionNumber, (err) => {
-       console.log('---------- disconnectAbility fail, err: -----------', err);
+  ```ts
+  // connection为connectServiceExtensionAbility中的返回值
+  var connection = 1;
+
+  try {
+    this.context.disconnectServiceExtensionAbility(connection, (error) => {
+      if (error.code) {
+        // 处理业务逻辑错误
+        console.log('disconnectServiceExtensionAbility failed, error.code: ' + JSON.stringify(error.code) +
+          ' error.message: ' + JSON.stringify(error.message));
+        return;
+      }
+      // 执行正常业务
+      console.log('disconnectServiceExtensionAbility succeed');
     });
+  } catch (paramError) {
+    // 处理入参错误异常
+    console.log('error.code: ' + JSON.stringify(paramError.code) +
+      ' error.message: ' + JSON.stringify(paramError.message));
+  }
   ```
 
 ## AbilityContext.startAbilityByCall
@@ -906,8 +1640,10 @@ startAbilityByCall(want: Want): Promise&lt;Caller&gt;;
 
 **示例：**
 
-  ```js
-  let caller = undefined;
+  后台启动：
+
+  ```ts
+  var caller = undefined;
 
   // 后台启动Ability，不配置parameters
   var wantBackground = {
@@ -916,13 +1652,29 @@ startAbilityByCall(want: Want): Promise&lt;Caller&gt;;
       abilityName: "MainAbility",
       deviceId: ""
   };
-  this.context.startAbilityByCall(wantBackground)
-    .then((obj) => {
+
+  try {
+    this.context.startAbilityByCall(wantBackground)
+      .then((obj) => {
+        // 执行正常业务
         caller = obj;
-        console.log('GetCaller success');
-    }).catch((error) => {
-        console.log(`GetCaller failed with ${error}`);
-    });
+        console.log('startAbilityByCall succeed');
+      }).catch((error) => {
+        // 处理业务逻辑错误
+        console.log('startAbilityByCall failed, error.code: ' + JSON.stringify(error.code) +
+          ' error.message: ' + JSON.stringify(error.message));
+      });
+  } catch (paramError) {
+    // 处理入参错误异常
+    console.log('error.code: ' + JSON.stringify(paramError.code) +
+      ' error.message: ' + JSON.stringify(paramError.message));
+  }
+  ```
+
+  前台启动：
+
+  ```ts
+  var caller = undefined;
 
   // 前台启动Ability，将parameters中的"ohos.aafwk.param.callAbilityToForeground"配置为true
   var wantForeground = {
@@ -934,13 +1686,23 @@ startAbilityByCall(want: Want): Promise&lt;Caller&gt;;
         "ohos.aafwk.param.callAbilityToForeground": true
       }
   };
-  this.context.startAbilityByCall(wantForeground)
-    .then((obj) => {
+
+  try {
+    this.context.startAbilityByCall(wantForeground)
+      .then((obj) => {
+        // 执行正常业务
         caller = obj;
-        console.log('GetCaller success');
-    }).catch((error) => {
-        console.log(`GetCaller failed with ${error}`);
-    });
+        console.log('startAbilityByCall succeed');
+      }).catch((error) => {
+        // 处理业务逻辑错误
+        console.log('startAbilityByCall failed, error.code: ' + JSON.stringify(error.code) +
+          ' error.message: ' + JSON.stringify(error.message));
+      });
+  } catch (paramError) {
+    // 处理入参错误异常
+    console.log('error.code: ' + JSON.stringify(paramError.code) +
+      ' error.message: ' + JSON.stringify(paramError.message));
+  }
   ```
 
 ## AbilityContext.startAbilityWithAccount
@@ -963,18 +1725,57 @@ startAbilityWithAccount(want: Want, accountId: number, callback: AsyncCallback\<
 | accountId | number | 是 | 系统帐号的帐号ID，详情参考[getCreatedOsAccountsCount](js-apis-osAccount.md#getosaccountlocalidfromprocess)。 |
 | callback | AsyncCallback\<void\> | 是 | 启动Ability的回调函数。 |
 
+**错误码：**
+
+| 错误码ID | 错误信息 |
+| ------- | -------------------------------- |
+| 201 | The application does not have permission to call the interface. |
+| 401 | Invalid input parameter. |
+| 16000001 | Input error. The specified ability name does not exist. |
+| 16000004 | Visibility verification failed. |
+| 16000005 | Static permission denied. The specified process does not have the permission. |
+| 16000006 | Can not cross user operations. |
+| 16000007 | Service busyness. There are concurrent tasks, waiting for retry. |
+| 16000008 | Crowdtest App Expiration. |
+| 16000009 | Can not start ability in wukong mode. |
+| 16000010 | Can not operation with continue flag.        |
+| 16000011 | Context does not exist.        |
+| 16000051 | Network error. The network is abnormal. |
+| 16000052 | Free install not support. The application does not support freeinstall |
+| 16000053 | Not top ability. The application is not top ability. |
+| 16000054 | Free install busyness. There are concurrent tasks, waiting for retry. |
+| 16000055 | Free install timeout. |
+| 16000056 | Can not free install other ability. |
+| 16000057 | Not support cross device free install. |
+| 16200001 | Caller released. The caller has been released. |
+| 16000050 | Internal Error. |
+
 **示例：**
 
-  ```js
+  ```ts
   var want = {
-    "deviceId": "",
-    "bundleName": "com.extreme.test",
-    "abilityName": "MainAbility"
+    deviceId: "",
+    bundleName: "com.extreme.test",
+    abilityName: "MainAbility"
   };
   var accountId = 100;
-  this.context.startAbilityWithAccount(want, accountId, (err) => {
-    console.log('---------- startAbilityWithAccount fail, err:  -----------', err);
-  });
+
+  try {
+    this.context.startAbilityWithAccount(want, accountId, (error) => {
+      if (error.code) {
+        // 处理业务逻辑错误
+        console.log('startAbilityWithAccount failed, error.code: ' + JSON.stringify(error.code) +
+          ' error.message: ' + JSON.stringify(error.message));
+        return;
+      }
+      // 执行正常业务
+      console.log('startAbilityWithAccount succeed');
+    });
+  } catch (paramError) {
+    // 处理入参错误异常
+    console.log('error.code: ' + JSON.stringify(paramError.code) +
+      ' error.message: ' + JSON.stringify(paramError.message));
+  }
   ```
 
 
@@ -999,21 +1800,60 @@ startAbilityWithAccount(want: Want, accountId: number, options: StartOptions, ca
 | options | [StartOptions](js-apis-application-StartOptions.md) | 否 | 启动Ability所携带的参数。 |
 | callback | AsyncCallback\<void\> | 是 | 启动Ability的回调函数。 |
 
+**错误码：**
+
+| 错误码ID | 错误信息 |
+| ------- | -------------------------------- |
+| 201 | The application does not have permission to call the interface. |
+| 401 | Invalid input parameter. |
+| 16000001 | Input error. The specified ability name does not exist. |
+| 16000004 | Visibility verification failed. |
+| 16000005 | Static permission denied. The specified process does not have the permission. |
+| 16000006 | Can not cross user operations. |
+| 16000007 | Service busyness. There are concurrent tasks, waiting for retry. |
+| 16000008 | Crowdtest App Expiration. |
+| 16000009 | Can not start ability in wukong mode. |
+| 16000010 | Can not operation with continue flag.        |
+| 16000011 | Context does not exist.        |
+| 16000051 | Network error. The network is abnormal. |
+| 16000052 | Free install not support. The application does not support freeinstall |
+| 16000053 | Not top ability. The application is not top ability. |
+| 16000054 | Free install busyness. There are concurrent tasks, waiting for retry. |
+| 16000055 | Free install timeout. |
+| 16000056 | Can not free install other ability. |
+| 16000057 | Not support cross device free install. |
+| 16200001 | Caller released. The caller has been released. |
+| 16000050 | Internal Error. |
+
 **示例：**
 
-  ```js
+  ```ts
   var want = {
-    "deviceId": "",
-    "bundleName": "com.extreme.test",
-    "abilityName": "MainAbility"
+    deviceId: "",
+    bundleName: "com.extreme.test",
+    abilityName: "MainAbility"
   };
   var accountId = 100;
   var options = {
-    windowMode: 0,
+    windowMode: 0
   };
-  this.context.startAbilityWithAccount(want, accountId, options, (err) => {
-    console.log('---------- startAbilityWithAccount fail, err:  -----------', err);
-  });
+
+  try {
+    this.context.startAbilityWithAccount(want, accountId, options, (error) => {
+      if (error.code) {
+        // 处理业务逻辑错误
+        console.log('startAbilityWithAccount failed, error.code: ' + JSON.stringify(error.code) +
+          ' error.message: ' + JSON.stringify(error.message));
+        return;
+      }
+      // 执行正常业务
+      console.log('startAbilityWithAccount succeed');
+    });
+  } catch (paramError) {
+    // 处理入参错误异常
+    console.log('error.code: ' + JSON.stringify(paramError.code) +
+      ' error.message: ' + JSON.stringify(paramError.message));
+  }
   ```
 
 
@@ -1037,25 +1877,60 @@ startAbilityWithAccount(want: Want, accountId: number, options?: StartOptions): 
 | accountId | number | 是 | 系统帐号的帐号ID，详情参考[getCreatedOsAccountsCount](js-apis-osAccount.md#getosaccountlocalidfromprocess)。 |
 | options | [StartOptions](js-apis-application-StartOptions.md) | 否 | 启动Ability所携带的参数。 |
 
+**错误码：**
+
+| 错误码ID | 错误信息 |
+| ------- | -------------------------------- |
+| 201 | The application does not have permission to call the interface. |
+| 401 | Invalid input parameter. |
+| 16000001 | Input error. The specified ability name does not exist. |
+| 16000004 | Visibility verification failed. |
+| 16000005 | Static permission denied. The specified process does not have the permission. |
+| 16000006 | Can not cross user operations. |
+| 16000007 | Service busyness. There are concurrent tasks, waiting for retry. |
+| 16000008 | Crowdtest App Expiration. |
+| 16000009 | Can not start ability in wukong mode. |
+| 16000010 | Can not operation with continue flag.        |
+| 16000011 | Context does not exist.        |
+| 16000051 | Network error. The network is abnormal. |
+| 16000052 | Free install not support. The application does not support freeinstall |
+| 16000053 | Not top ability. The application is not top ability. |
+| 16000054 | Free install busyness. There are concurrent tasks, waiting for retry. |
+| 16000055 | Free install timeout. |
+| 16000056 | Can not free install other ability. |
+| 16000057 | Not support cross device free install. |
+| 16200001 | Caller released. The caller has been released. |
+| 16000050 | Internal Error. |
+
 **示例：**
 
-  ```js
+  ```ts
   var want = {
-    "deviceId": "",
-    "bundleName": "com.extreme.test",
-    "abilityName": "MainAbility"
+    deviceId: "",
+    bundleName: "com.extreme.test",
+    abilityName: "MainAbility"
   };
   var accountId = 100;
   var options = {
-    windowMode: 0,
+    windowMode: 0
   };
-  this.context.startAbilityWithAccount(want, accountId, options)
-    .then(() => {
-        console.log('---------- startAbilityWithAccount success -----------');
-    })
-    .catch((err) => {
-        console.log('---------- startAbilityWithAccount fail, err:  -----------', err);
-    })
+
+  try {
+    this.context.startAbilityWithAccount(want, accountId, options)
+      .then((data) => {
+        // 执行正常业务
+        console.log('startAbilityWithAccount succeed');
+      })
+      .catch((error) => {
+        // 处理业务逻辑错误
+        console.log('startAbilityWithAccount failed, error.code: ' + JSON.stringify(error.code) +
+          ' error.message: ' + JSON.stringify(error.message));
+      });
+  } catch (paramError) {
+    // 处理入参错误异常
+    console.log('error.code: ' + JSON.stringify(paramError.code) +
+      ' error.message: ' + JSON.stringify(paramError.message));
+  }
   ```
 
 ## AbilityContext.requestPermissionsFromUser
@@ -1075,7 +1950,7 @@ requestPermissionsFromUser(permissions: Array&lt;string&gt;, requestCallback: As
 
 **示例：**
 
-  ```js
+  ```ts
        var permissions=['com.example.permission']
        this.context.requestPermissionsFromUser(permissions,(result) => {
        console.log('requestPermissionsFromUserresult:' + JSON.stringify(result));
@@ -1106,7 +1981,7 @@ requestPermissionsFromUser(permissions: Array&lt;string&gt;) : Promise&lt;Permis
 
 **示例：**
 
-  ```js
+  ```ts
    var permissions=['com.example.permission']
        this.context.requestPermissionsFromUser(permissions).then((data) => {
       console.log('success:' + JSON.stringify(data));
@@ -1134,7 +2009,7 @@ setMissionLabel(label: string, callback:AsyncCallback&lt;void&gt;): void;
 
 **示例：**
 
-  ```js
+  ```ts
   this.context.setMissionLabel("test",(result) => {
       console.log('requestPermissionsFromUserresult:' + JSON.stringify(result));
   });
@@ -1163,7 +2038,7 @@ setMissionLabel(label: string): Promise&lt;void&gt;;
 
 **示例：**
 
-  ```js
+  ```ts
   this.context.setMissionLabel("test").then(() => {
       console.log('success');
   }).catch((error) => {
@@ -1189,7 +2064,7 @@ setMissionIcon(icon: image.PixelMap, callback:AsyncCallback\<void>): void;
 
 **示例：**
 
-  ```js
+  ```ts
     import image from '@ohos.multimedia.image';
     var imagePixelMap;
     var color = new ArrayBuffer(0);
@@ -1236,7 +2111,7 @@ setMissionIcon(icon: image.PixelMap): Promise\<void>;
 
 **示例：**
 
-  ```js
+  ```ts
     import image from '@ohos.multimedia.image';
     var imagePixelMap;
     var color = new ArrayBuffer(0);
@@ -1277,7 +2152,7 @@ restoreWindowStage(localStorage: LocalStorage) : void;
 
 **示例：**
 
-  ```js
+  ```ts
     var storage = new LocalStorage();
     this.context.restoreWindowStage(storage);
   ```
@@ -1298,7 +2173,7 @@ isTerminating(): boolean;
 
 **示例：**
 
-  ```js
+  ```ts
   var isTerminating = this.context.isTerminating();
   console.log('ability state :' + isTerminating);
   ```

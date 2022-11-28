@@ -16,7 +16,7 @@ import connection from '@ohos.net.connection'
 
 getDefaultNet(callback: AsyncCallback\<NetHandle>): void
 
-Obtains the default active data network. This API uses an asynchronous callback to return the result.
+Obtains the default active data network. This API uses an asynchronous callback to return the result. You can use [getNetCapabilities](#connectiongetnetcapabilities) to obtain information such as the network type and capabilities.
 
 **Required permission**: ohos.permission.GET_NETWORK_INFO
 
@@ -41,7 +41,7 @@ connection.getDefaultNet(function (error, netHandle) {
 
 getDefaultNet(): Promise\<NetHandle>
 
-Obtains the default active data network. This API uses a promise to return the result.
+Obtains the default active data network. This API uses a promise to return the result. You can use [getNetCapabilities](#connectiongetnetcapabilities) to obtain information such as the network type and capabilities.
 
 **Required permission**: ohos.permission.GET_NETWORK_INFO
 
@@ -65,7 +65,7 @@ connection.getDefaultNet().then(function (netHandle) {
 
 getDefaultNetSync(): NetHandle;
 
-Obtains the default active data network in synchronous mode.
+Obtains the default active data network in synchronous mode. You can use [getNetCapabilities](#connectiongetnetcapabilities) to obtain information such as the network type and capabilities.
 
 **Required permission**: ohos.permission.GET_NETWORK_INFO
 
@@ -88,8 +88,7 @@ let netHandle = connection.getDefaultNetSync();
 
 hasDefaultNet(callback: AsyncCallback\<boolean>): void
 
-Checks whether the default data network is activated. This API uses an asynchronous callback to return the result.
-The default network priority is as follows: Ethernet > Wi-Fi > cellular. When only one network is connected, it is treated as the default data network.
+Checks whether the default data network is activated. This API uses an asynchronous callback to return the result. You can use [getDefaultNet](#connectiongetdefaultnet) to obtain the default data network, if any.
 
 **Required permission**: ohos.permission.GET_NETWORK_INFO
 
@@ -114,8 +113,7 @@ connection.hasDefaultNet(function (error, has) {
 
 hasDefaultNet(): Promise\<boolean>
 
-Checks whether the default data network is activated. This API uses a promise to return the result.
-The default network priority is as follows: Ethernet > Wi-Fi > cellular. When only one network is connected, it is treated as the default data network.
+Checks whether the default data network is activated. This API uses a promise to return the result. You can use [getDefaultNet](#connectiongetdefaultnet) to obtain the default data network, if any.
 
 **Required permission**: ohos.permission.GET_NETWORK_INFO
 
@@ -311,6 +309,8 @@ reportNetConnected(netHandle: NetHandle, callback: AsyncCallback&lt;void&gt;): v
 
 Reports connection of the data network. This API uses an asynchronous callback to return the result.
 
+If this API is called, the application considers that the network connection state (**ohos.net.connection.NetCap.NET_CAPABILITY_VAILDATED**) is inconsistent with that in the network management module.
+
 **Permission required**: ohos.permission.GET_NETWORK_INFO and ohos.permission.INTERNET
 
 **System capability**: SystemCapability.Communication.NetManager.Core
@@ -339,6 +339,8 @@ reportNetConnected(netHandle: NetHandle): Promise&lt;void&gt;
 
 Reports connection of the data network. This API uses a promise to return the result.
 
+If this API is called, the application considers that the network connection state (**ohos.net.connection.NetCap.NET_CAPABILITY_VAILDATED**) is inconsistent with that in the network management module.
+
 **Permission required**: ohos.permission.GET_NETWORK_INFO and ohos.permission.INTERNET
 
 **System capability**: SystemCapability.Communication.NetManager.Core
@@ -353,7 +355,7 @@ Reports connection of the data network. This API uses a promise to return the re
 
 | Type| Description|
 | -------- | -------- |
-| Promise&lt;void&gt; | Promise used to return the result.|
+| Promise&lt;void&gt; | Promise that returns no value.|
 
 **Example**
 
@@ -371,6 +373,8 @@ connection.getDefaultNet().then(function (netHandle) {
 reportNetDisconnected(netHandle: NetHandle, callback: AsyncCallback&lt;void&gt;): void
 
 Reports disconnection of the data network. This API uses an asynchronous callback to return the result.
+
+If this API is called, the application considers that the network connection state (**ohos.net.connection.NetCap.NET_CAPABILITY_VAILDATED**) is inconsistent with that in the network management module.
 
 **Permission required**: ohos.permission.GET_NETWORK_INFO and ohos.permission.INTERNET
 
@@ -400,6 +404,8 @@ reportNetDisconnected(netHandle: NetHandle): Promise&lt;void&gt;
 
 Reports disconnection of the data network. This API uses a promise to return the result.
 
+If this API is called, the application considers that the network connection state (**ohos.net.connection.NetCap.NET_CAPABILITY_VAILDATED**) is inconsistent with that in the network management module.
+
 **Permission required**: ohos.permission.GET_NETWORK_INFO and ohos.permission.INTERNET
 
 **System capability**: SystemCapability.Communication.NetManager.Core
@@ -414,7 +420,7 @@ Reports disconnection of the data network. This API uses a promise to return the
 
 | Type| Description|
 | -------- | -------- |
-| Promise&lt;void&gt; | Promise used to return the result.|
+| Promise&lt;void&gt; | Promise that returns no value.|
 
 **Example**
 
@@ -523,7 +529,7 @@ This is a system API.
 
 | Type                                       | Description                         |
 | ------------------------------------------- | ----------------------------- |
-| Promise\<void> | Promise used to return the result.|
+| Promise\<void> | Promise that returns no value.|
 
 **Example**
 
@@ -572,7 +578,7 @@ This is a system API.
 
 | Type                                       | Description                         |
 | ------------------------------------------- | ----------------------------- |
-| Promise\<void> | Promise used to return the result.|
+| Promise\<void> | Promise that returns no value.|
 
 **Example**
 
@@ -890,7 +896,7 @@ Binds a **TCPSocket** or **UDPSocket** object to the data network. This API uses
 
 | Type          | Description                  |
 | -------------- | ---------------------- |
-| Promise\<void> | Promise used to return the result.|
+| Promise\<void> | Promise that returns no value.|
 
 **Example**
 

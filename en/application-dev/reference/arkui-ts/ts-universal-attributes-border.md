@@ -13,11 +13,11 @@ The border attributes are used to set border styles for components.
 
 | Name        | Type                                                    | Description                                                        |
 | ------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| border       | {<br>width?: [Length](ts-types.md#length) \| EdgeWidths<sup>9+</sup>,<br>color?:  [ResourceColor](ts-types.md#resourcecolor) \| EdgeColors<sup>9+</sup>,<br>radius?:  [Length](ts-types.md#length) \| BorderRadiuses<sup>9+</sup>,<br>style?: [BorderStyle](ts-appendix-enums.md#borderstyle) \| EdgeStyles<sup>9+</sup><br>} | Unified border style.<br>- **width**: border width.<br>- **color**: border color.<br>- **radius**: radius of the rounded corner of the border.<br>- **style**: border style.|
-| borderStyle  | [BorderStyle](ts-appendix-enums.md#borderstyle) \| EdgeStyles<sup>9+</sup> | Border style of an element.<br>Default value: **BorderStyle.Solid**          |
-| borderWidth  | [Length](ts-types.md#length) \| EdgeWidths<sup>9+</sup>     | Border width. The percentage format is not supported.                                        |
-| borderColor  | [ResourceColor](ts-types.md#resourcecolor) \| EdgeColors<sup>9+</sup> | Border color of an element.                                        |
-| borderRadius | [Length](ts-types.md#length) \| BorderRadiuses<sup>9+</sup> | Border radius. The percentage format is not supported.                                    |
+| border       | {<br>width?: [Length](ts-types.md#length) \| [EdgeWidths](#edgewidths9)<sup>9+</sup>,<br>color?:  [ResourceColor](ts-types.md#resourcecolor) \| [EdgeColors](#edgecolors9)<sup>9+</sup>,<br>radius?:  [Length](ts-types.md#length) \| [BorderRadiuses](#borderradiuses9)<sup>9+</sup>,<br>style?: [BorderStyle](ts-appendix-enums.md#borderstyle) \| [EdgeStyles](#edgestyles9)<sup>9+</sup><br>} | Unified border style.<br>- **width**: border width.<br>- **color**: border color.<br>- **radius**: radius of the rounded corner of the border.<br>- **style**: border style.|
+| borderStyle  | [BorderStyle](ts-appendix-enums.md#borderstyle) \| [EdgeStyles](#edgestyles9)<sup>9+</sup> | Border style.<br>Default value: **BorderStyle.Solid**          |
+| borderWidth  | [Length](ts-types.md#length) \| [EdgeWidths](#edgewidths9)<sup>9+</sup> | Border width. The percentage format is not supported.                          |
+| borderColor  | [ResourceColor](ts-types.md#resourcecolor) \| [EdgeColors](#edgecolors9)<sup>9+</sup> | Border color.<br>Default value: **Color.Black**                                       |
+| borderRadius | [Length](ts-types.md#length) \| [BorderRadiuses](#borderradiuses9)<sup>9+</sup> | Border radius. The percentage format is not supported.                      |
 
 ## EdgeWidths<sup>9+</sup>
 
@@ -70,19 +70,19 @@ To reference this object, at least one parameter must be passed.
 @Entry
 @Component
 struct BorderExample {
-  
   build() {
     Column() {
       Flex({ justifyContent: FlexAlign.SpaceAround, alignItems: ItemAlign.Center }) {
         // Dashed border
         Text('dashed')
-        .borderStyle(BorderStyle.Dashed).borderWidth(5).borderColor(0xAFEEEE).borderRadius(10)
+          .borderStyle(BorderStyle.Dashed).borderWidth(5).borderColor(0xAFEEEE).borderRadius(10)
           .width(120).height(120).textAlign(TextAlign.Center).fontSize(16)
         // Dotted border
         Text('dotted')
           .border({ width: 5, color: 0x317AF7, radius: 10, style: BorderStyle.Dotted })
           .width(120).height(120).textAlign(TextAlign.Center).fontSize(16)
       }.width('100%').height(150)
+
       Text('.border')
         .fontSize(50)
         .width(300)
@@ -92,12 +92,12 @@ struct BorderExample {
           color: { left: '#e3bbbb', right: Color.Blue, top: Color.Red, bottom: Color.Green },
           radius: { topLeft: 10, topRight: 20, bottomLeft: 40, bottomRight: 80 },
           style: {
-              left: BorderStyle.Dotted,
-              right: BorderStyle.Dotted,
-              top: BorderStyle.Solid,
-              bottom: BorderStyle.Dashed
+            left: BorderStyle.Dotted,
+            right: BorderStyle.Dotted,
+            top: BorderStyle.Solid,
+            bottom: BorderStyle.Dashed
           }
-      }).textAlign(TextAlign.Center)
+        }).textAlign(TextAlign.Center)
     }
   }
 }

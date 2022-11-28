@@ -9,7 +9,6 @@
 
 使用前根据具体情况引入如下模块
 ```
-import featureAbility from '@ohos.ability.featureAbility'
 import ohos_data_ability from '@ohos.data.dataAbility'
 import ohos_data_rdb from '@ohos.data.rdb'
 ```
@@ -24,11 +23,11 @@ openFile(uri: string, mode: string, callback: AsyncCallback\<number>): void
 
 **参数：**
 
-| 名称     | 类型                   | 必填 | 描述                               |
+| 参数名     | 类型                   | 必填 | 说明                               |
 | -------- | ---------------------- | ---- | ---------------------------------- |
 | uri      | string                 | 是   | 指示要打开的文件的路径。           |
 | mode     | string                 | 是   | 指示文件打开模式‘rwt’。            |
-| callback | AsyncCallback\<number> | 是   | 被指定的回调方法，返回文件描述符。 |
+| callback | AsyncCallback\<number> | 是   | 被指定的回调方法，返回文件说明符。 |
 
 **示例：**
 
@@ -56,7 +55,7 @@ openFile(uri: string, mode: string): Promise\<number>
 
 **参数：**
 
-| 名称 | 类型   | 必填 | 描述                     |
+| 参数名 | 类型   | 必填 | 说明                     |
 | ---- | ------ | ---- | ------------------------ |
 | uri  | string | 是   | 指示要打开的文件的路径。 |
 | mode | string | 是   | 指示文件打开模式‘rwt’。  |
@@ -65,7 +64,7 @@ openFile(uri: string, mode: string): Promise\<number>
 
 | 类型             | 说明             |
 | ---------------- | ---------------- |
-| Promise\<number> | 返回文件描述符。 |
+| Promise\<number> | 返回文件说明符。 |
 
 **示例：**
 
@@ -92,7 +91,7 @@ on(type: 'dataChange', uri: string, callback: AsyncCallback\<void>): void
 
 **参数：**
 
-| 名称     | 类型                 | 必填 | 描述                     |
+| 参数名     | 类型                 | 必填 | 说明                     |
 | -------- | -------------------- | ---- | ------------------------ |
 | type     | string               | 是   | 数据更改。               |
 | uri      | string               | 是   | 指示要操作的数据的路径。 |
@@ -125,7 +124,7 @@ off(type: 'dataChange', uri: string, callback?: AsyncCallback\<void>): void
 
 **参数：**
 
-| 名称     | 类型                 | 必填 | 描述                     |
+| 参数名     | 类型                 | 必填 | 说明                     |
 | -------- | -------------------- | ---- | ------------------------ |
 | type     | string               | 是   | 数据更改。               |
 | uri      | string               | 是   | 指示要操作的数据的路径。 |
@@ -162,7 +161,7 @@ getType(uri: string, callback: AsyncCallback\<string>): void
 
 **参数：**
 
-| 名称     | 类型                   | 必填 | 描述                                          |
+| 参数名     | 类型                   | 必填 | 说明                                          |
 | -------- | ---------------------- | ---- | --------------------------------------------- |
 | uri      | string                 | 是   | 指示要操作的数据的路径。                      |
 | callback | AsyncCallback\<string> | 是   | 回调方法，返回与uri指定的数据匹配的MIME类型。 |
@@ -191,7 +190,7 @@ getType(uri: string): Promise\<string>
 
 **参数：**
 
-| 名称 | 类型   | 必填 | 描述                     |
+| 参数名 | 类型   | 必填 | 说明                     |
 | ---- | ------ | ---- | ------------------------ |
 | uri  | string | 是   | 指示要操作的数据的路径。 |
 
@@ -225,7 +224,7 @@ getFileTypes(uri: string, mimeTypeFilter: string, callback: AsyncCallback<Array\
 
 **参数：**
 
-| 名称           | 类型                           | 必填 | 描述                               |
+| 参数名           | 类型                           | 必填 | 说明                               |
 | -------------- | ------------------------------ | ---- | ---------------------------------- |
 | uri            | string                         | 是   | 指示要获取的文件的路径。           |
 | mimeTypeFilter | string                         | 是   | 指示要获取的文件的MIME类型。       |
@@ -258,7 +257,7 @@ getFileTypes(uri: string, mimeTypeFilter: string): Promise\<Array\<string>>
 
 **参数：**
 
-| 名称           | 类型   | 必填 | 描述                         |
+| 参数名           | 类型   | 必填 | 说明                         |
 | -------------- | ------ | ---- | ---------------------------- |
 | uri            | string | 是   | 指示要获取的文件的路径。     |
 | mimeTypeFilter | string | 是   | 指示要获取的文件的MIME类型。 |
@@ -294,7 +293,7 @@ normalizeUri(uri: string, callback: AsyncCallback\<string>): void
 
 **参数：**
 
-| 名称     | 类型                   | 必填 | 描述                                                         |
+| 参数名     | 类型                   | 必填 | 说明                                                         |
 | -------- | ---------------------- | ---- | ------------------------------------------------------------ |
 | uri      | string                 | 是   | 指示要规范化的uri对象。                                      |
 | callback | AsyncCallback\<string> | 是   | 回调方法。如果数据功能支持uri规范化，则返回规范化uri对象；否则返回null。 |
@@ -323,7 +322,7 @@ normalizeUri(uri: string): Promise\<string>
 
 **参数：**
 
-| 名称 | 类型   | 必填 | 描述                    |
+| 参数名 | 类型   | 必填 | 说明                    |
 | ---- | ------ | ---- | ----------------------- |
 | uri  | string | 是   | 指示要规范化的uri对象。 |
 
@@ -357,7 +356,7 @@ denormalizeUri(uri: string, callback: AsyncCallback\<string>): void
 
 **参数：**
 
-| 名称     | 类型                   | 必填 | 描述                                                |
+| 参数名     | 类型                   | 必填 | 说明                                                |
 | -------- | ---------------------- | ---- | --------------------------------------------------- |
 | uri      | string                 | 是   | 指示要规范化的uri对象。                             |
 | callback | AsyncCallback\<string> | 是   | 回调方法。如果反规范化成功，则返回反规范化uri对象。 |
@@ -388,7 +387,7 @@ denormalizeUri(uri: string): Promise\<string>
 
 **参数：**
 
-| 名称 | 类型   | 必填 | 描述                    |
+| 参数名 | 类型   | 必填 | 说明                    |
 | ---- | ------ | ---- | ----------------------- |
 | uri  | string | 是   | 指示要规范化的uri对象。 |
 
@@ -422,7 +421,7 @@ notifyChange(uri: string, callback: AsyncCallback\<void>): void
 
 **参数：**
 
-| 名称     | 类型                 | 必填 | 描述                     |
+| 参数名     | 类型                 | 必填 | 说明                     |
 | -------- | -------------------- | ---- | ------------------------ |
 | uri      | string               | 是   | 指示要操作的数据的路径。 |
 | callback | AsyncCallback\<void> | 是   | 回调方法。               |
@@ -451,7 +450,7 @@ notifyChange(uri: string): Promise\<void>
 
 **参数：**
 
-| 名称 | 类型   | 必填 | 描述                     |
+| 参数名 | 类型   | 必填 | 说明                     |
 | ---- | ------ | ---- | ------------------------ |
 | uri  | string | 是   | 指示要操作的数据的路径。 |
 
@@ -485,7 +484,7 @@ insert(uri: string, valuesBucket: rdb.ValuesBucket, callback: AsyncCallback\<num
 
 **参数：**
 
-| 名称         | 类型                   | 必填 | 描述                                                   |
+| 参数名         | 类型                   | 必填 | 说明                                                   |
 | ------------ | ---------------------- | ---- | ------------------------------------------------------ |
 | uri          | string                 | 是   | 指示要插入的数据的路径。                               |
 | valuesBucket | rdb.ValuesBucket       | 是   | 指示要插入的数据记录。如果此参数为空，将插入一个空行。 |
@@ -522,7 +521,7 @@ insert(uri: string, valuesBucket: rdb.ValuesBucket): Promise\<number>
 
 **参数：**
 
-| 名称         | 类型             | 必填 | 描述                                                   |
+| 参数名         | 类型             | 必填 | 说明                                                   |
 | ------------ | ---------------- | ---- | ------------------------------------------------------ |
 | uri          | string           | 是   | 指示要插入的数据的路径。                               |
 | valuesBucket | rdb.ValuesBucket | 是   | 指示要插入的数据记录。如果此参数为空，将插入一个空行。 |
@@ -564,7 +563,7 @@ batchInsert(uri: string, valuesBuckets: Array<rdb.ValuesBucket>, callback: Async
 
 **参数：**
 
-| 名称         | 类型                    | 必填 | 描述                             |
+| 参数名         | 类型                    | 必填 | 说明                             |
 | ------------ | ----------------------- | ---- | -------------------------------- |
 | uri          | string                  | 是   | 指示要插入的数据的路径。         |
 | valuesBucket | Array<rdb.ValuesBucket> | 是   | 指示要插入的数据记录。           |
@@ -598,7 +597,7 @@ batchInsert(uri: string, valuesBuckets: Array<rdb.ValuesBucket>): Promise\<numbe
 
 **参数：**
 
-| 名称         | 类型                    | 必填 | 描述                     |
+| 参数名         | 类型                    | 必填 | 说明                     |
 | ------------ | ----------------------- | ---- | ------------------------ |
 | uri          | string                  | 是   | 指示要插入的数据的路径。 |
 | valuesBucket | Array<rdb.ValuesBucket> | 是   | 指示要插入的数据记录。   |
@@ -637,7 +636,7 @@ delete(uri: string, predicates: dataAbility.DataAbilityPredicates, callback: Asy
 
 **参数：**
 
-| 名称         | 类型                              | 必填 | 描述                                             |
+| 参数名         | 类型                              | 必填 | 说明                                             |
 | ------------ | --------------------------------- | ---- | ------------------------------------------------ |
 | uri          | string                            | 是   | 指示要删除的数据的路径。                         |
 | valuesBucket | dataAbility.DataAbilityPredicates | 是   | 指示筛选条件。当此参数为null时，应定义处理逻辑。 |
@@ -670,7 +669,7 @@ delete(uri: string, predicates?: dataAbility.DataAbilityPredicates): Promise\<nu
 
 **参数：**
 
-| 名称         | 类型                              | 必填 | 描述                                             |
+| 参数名         | 类型                              | 必填 | 说明                                             |
 | ------------ | --------------------------------- | ---- | ------------------------------------------------ |
 | uri          | string                            | 是   | 指示要删除的数据的路径。                         |
 | valuesBucket | dataAbility.DataAbilityPredicates | 是   | 指示筛选条件。当此参数为null时，应定义处理逻辑。 |
@@ -708,7 +707,7 @@ update(uri: string, valuesBucket: rdb.ValuesBucket, predicates: dataAbility.Data
 
 **参数：**
 
-| 名称         | 类型                              | 必填 | 描述                                             |
+| 参数名         | 类型                              | 必填 | 说明                                             |
 | ------------ | --------------------------------- | ---- | ------------------------------------------------ |
 | uri          | string                            | 是   | 指示要更新的数据的路径。                         |
 | valuesBucket | rdb.ValuesBucket                  | 是   | 指示要更新的数据。                               |
@@ -749,7 +748,7 @@ update(uri: string, valuesBucket: rdb.ValuesBucket, predicates?: dataAbility.Dat
 
 **参数：**
 
-| 名称         | 类型                              | 必填 | 描述                                             |
+| 参数名         | 类型                              | 必填 | 说明                                             |
 | ------------ | --------------------------------- | ---- | ------------------------------------------------ |
 | uri          | string                            | 是   | 指示要更新的数据的路径。                         |
 | valuesBucket | rdb.ValuesBucket                  | 是   | 指示要更新的数据。                               |
@@ -795,7 +794,7 @@ query(uri: string, columns: Array\<string>, predicates: dataAbility.DataAbilityP
 
 **参数：**
 
-| 名称       | 类型                              | 必填 | 描述                                             |
+| 参数名       | 类型                              | 必填 | 说明                                             |
 | ---------- | --------------------------------- | ---- | ------------------------------------------------ |
 | uri        | string                            | 是   | 指示要查询的数据的路径。                         |
 | columns    | rdb.ValuesBucket                  | 是   | 指示要查询的列。如果此参数为空，则查询所有列。   |
@@ -833,7 +832,7 @@ query(uri: string, columns?: Array\<string>, predicates?: dataAbility.DataAbilit
 
 **参数：**
 
-| 名称       | 类型                              | 必填 | 描述                                             |
+| 参数名       | 类型                              | 必填 | 说明                                             |
 | ---------- | --------------------------------- | ---- | ------------------------------------------------ |
 | uri        | string                            | 是   | 指示要查询的数据的路径。                         |
 | columns    | rdb.ValuesBucket                  | 是   | 指示要查询的列。如果此参数为空，则查询所有列。   |
@@ -874,7 +873,7 @@ call(uri: string, method: string, arg: string, extras: PacMap): Promise\<PacMap>
 
 **参数：**
 
-| 名称       | 类型                              | 必填 | 描述                                             |
+| 参数名       | 类型                              | 必填 | 说明                                             |
 | ---------- | --------------------------------- | ---- | ------------------------------------------------ |
 | uri        | string                 | 是   | 指定待处理的DataAbility。例："dataability:///com.example.xxx.xxxx"           |
 | method    | string                  | 是   | 被调用的方法名。   |
@@ -910,7 +909,7 @@ call(uri: string, method: string, arg: string, extras: PacMap, callback: AsyncCa
 
 **参数：**
 
-| 名称       | 类型                              | 必填 | 描述                                             |
+| 参数名       | 类型                              | 必填 | 说明                                             |
 | ---------- | --------------------------------- | ---- | ------------------------------------------------ |
 | uri        | string                 | 是   | 指定待处理的DataAbility。例："dataability:///com.example.xxx.xxxx"           |
 | method    | string                  | 是   | 被调用的方法名。   |
@@ -943,7 +942,7 @@ executeBatch(uri: string, operations: Array\<DataAbilityOperation>, callback: As
 
 **参数：**
 
-| 名称            | 类型                                         | 必填 | 描述                                             |
+| 参数名            | 类型                                         | 必填 | 说明                                             |
 | ----------    | ---------------------------------             | ---- | ------------------------------------------------ |
 | uri           | string                                        | 是   | 指定待处理的DataAbility。例："dataability:///com.example.xxx.xxxx"。|
 | operations    |  Array\<[DataAbilityOperation](#dataabilityoperation)>               | 是   | 指示数据操作列表，其中可以包含对数据库的多个操作。   |
@@ -976,7 +975,7 @@ executeBatch(uri: string, operations: Array\<DataAbilityOperation>): Promise\<Ar
 
 **参数：**
 
-| 名称          | 类型                            | 必填 | 描述                                             |
+| 参数名          | 类型                            | 必填 | 说明                                             |
 | ----------    | -------------------------------| ---- | ------------------------------------------------ |
 | uri           | string                         | 是   | 指定待处理的DataAbility。例："dataability:///com.example.xxx.xxxx"。|
 | operations    |  Array\<[DataAbilityOperation](#dataabilityoperation)>  | 是   | 指示数据操作列表，其中可以包含对数据库的多个操作。   |
@@ -1009,7 +1008,7 @@ dataAbilityHelper.executeBatch("dataability:///com.example.jsapidemo.UserDataAbi
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
 
-| 名称 | 参数类型 | 必填 | 说明 |
+| 参数名 | 参数类型 | 必填 | 说明 |
 | ------ | ------ | ------ | ------ |
 | [key: string] | number \| string \| boolean \| Array\<string \| number \| boolean\> \| null | Yes| 数据存储在键值对中。|
 
@@ -1017,7 +1016,7 @@ dataAbilityHelper.executeBatch("dataability:///com.example.jsapidemo.UserDataAbi
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.FAModel
 
-| 名称       | 参数类型     | 可读    |   可写    |     必填|       说明      |
+| 名称       | 类型     | 可读    |   可写    |     必填|       说明      |
 | --------  | --------    | -------- | -------- | --------| --------        |
 | uri   | string | 是      |     否    |      是    | 指定待处理的DataAbility。例："dataability:///com.example.xxx.xxxx"。  | 
 | type   | featureAbility.DataAbilityOperationType | 是      |     否    |      是    | 指示操作类型。  | 
@@ -1032,7 +1031,7 @@ dataAbilityHelper.executeBatch("dataability:///com.example.jsapidemo.UserDataAbi
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.FAModel
 
-| 名称       | 参数类型  | 可读      |   可写     |     必填    |       说明   |
+| 名称       | 类型  | 可读      |   可写     |     必填    |       说明   |
 | --------  | --------  | --------  | --------  | --------    | --------    |
 | uri?      | string    | 是        |     否     |      否    | 指定待处理的DataAbility。例："dataability:///com.example.xxx.xxxx"。  | 
 | count?     | number    | 是        |     否     |      否    | 指示受操作影响的行数。  | 

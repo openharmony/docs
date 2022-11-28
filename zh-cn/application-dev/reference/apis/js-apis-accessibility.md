@@ -46,9 +46,9 @@ import accessibility from '@ohos.accessibility';
 
 ### 属性
 
-| 名称 | 参数类型 | 可读 | 可写 | 说明 |
+| 名称 | 类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| id | number | 是 | 否 | ability&nbsp;id。 |
+| id | string | 是 | 否 | ability&nbsp;id。 |
 | name | string | 是 | 否 | ability 名。 |
 | bundleName | string | 是 | 否 | 包名。 |
 | targetBundleNames<sup>9+</sup> | Array&lt;string&gt; | 是 | 否 | 关注的目标包名。 |
@@ -133,7 +133,7 @@ import accessibility from '@ohos.accessibility';
 
 **系统能力**：以下各项对应的系统能力均为 SystemCapability.BarrierFree.Accessibility.Hearing
 
-| 名称 | 参数类型 | 可读 | 可写 | 说明 |
+| 名称 | 类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
 | fontFamily | [CaptionsFontFamily](#captionsfontfamily8) | 是 | 否 | 描述字幕字体。 |
 | fontScale | number | 是 | 否 | 描述字幕字体缩放系数。 |
@@ -150,7 +150,7 @@ import accessibility from '@ohos.accessibility';
 
 ### 属性
 
-| 名称 | 参数类型 | 可读 | 可写 | 说明 |
+| 名称 | 类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
 | enabled | boolean | 是 | 否 | 表示是否启用字幕配置。 |
 | style | [CaptionsStyle](#captionsstyle8) | 是 | 否 | 表示字幕风格。 |
@@ -163,7 +163,7 @@ on(type: 'enableChange', callback: Callback&lt;boolean&gt;): void;
 
 **参数：**
 
-| 参数名 | 参数类型 | 必填 | 说明 |
+| 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | type | string | 是 | 监听的事件名，固定为‘enableChange’，即字幕配置启用状态变化事件。 |
 | callback | Callback&lt;boolean&gt; | 是 | 回调函数，在启用状态变化时将状态通过此函数进行通知。 |
@@ -171,16 +171,10 @@ on(type: 'enableChange', callback: Callback&lt;boolean&gt;): void;
 **示例：**
 
 ```ts
-let result = false;
 let captionsManager = accessibility.getCaptionsManager();
 try {
-    captionsManager.on('enableChange', (err, data) => {
-        if (err) {
-            console.error('failed to subscribe caption manager enable state change, because ' + JSON.stringify(err));
-            return;
-        }
-        result = data;
-        console.info('subscribe caption manager enable state change success');
+    captionsManager.on('enableChange', (data) => {
+        console.info('subscribe caption manager enable state change, result: ' + JSON.stringify(data));
     });
 } catch (exception) {
     console.error('failed to subscribe caption manager enable state change, because ' + JSON.stringify(exception));
@@ -195,7 +189,7 @@ on(type: 'styleChange', callback: Callback&lt;CaptionsStyle&gt;): void;
 
 **参数：**
 
-| 参数名 | 参数类型 | 必填 | 说明 |
+| 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | type | string | 是 | 监听的事件名，固定为‘styleChange’，即字幕风格变化事件。 |
 | callback | Callback&lt;[CaptionsStyle](#captionsstyle8)&gt; | 是 | 回调函数，在字幕风格变化时通过此函数进行通知。 |
@@ -206,13 +200,9 @@ on(type: 'styleChange', callback: Callback&lt;CaptionsStyle&gt;): void;
 let captionStyle;
 let captionsManager = accessibility.getCaptionsManager();
 try {
-    captionsManager.on('styleChange', (err, data) => {
-        if (err) {
-            console.error('failed to subscribe caption manager style state change, because ' + JSON.stringify(err));
-            return;
-        }
+    captionsManager.on('styleChange', (data) => {
         captionStyle = data;
-        console.info('subscribe caption manager style state change success');
+        console.info('subscribe caption manager style state change, result: ' + JSON.stringify(data));
     });
 } catch (exception) {
     console.error('failed to subscribe caption manager style state change, because ' + JSON.stringify(exception));
@@ -227,7 +217,7 @@ off(type: 'enableChange', callback?: Callback&lt;boolean&gt;): void;
 
 **参数：**
 
-| 参数名 | 参数类型 | 必填 | 说明 |
+| 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | type | string | 是 | 取消监听的事件名，固定为‘enableChange’，即字幕配置启用状态变化事件。 |
 | callback | Callback&lt;boolean&gt; | 否 | 回调函数，在字幕配置启用状态变化时将状态通过此函数进行通知。 |
@@ -235,19 +225,13 @@ off(type: 'enableChange', callback?: Callback&lt;boolean&gt;): void;
 **示例：**
 
 ```ts
-let result = false;
 let captionsManager = accessibility.getCaptionsManager();
 try {
-    captionsManager.off('enableChange', (err, data) => {
-        if (err) {
-            console.error('failed to unSubscribe caption manager enable state change, because ' + JSON.stringify(err));
-            return;
-        }
-        result = data;
-        console.info('unSubscribe caption manager enable state change success');
+    captionsManager.off('enableChange', (data) => {
+        console.info('Unsubscribe caption manager enable state change, result: ' + JSON.stringify(data));
     });
 } catch (exception) {
-    console.error('failed to unSubscribe caption manager enable state change, because ' + JSON.stringify(exception));
+    console.error('failed to Unsubscribe caption manager enable state change, because ' + JSON.stringify(exception));
 }
 ```
 
@@ -259,7 +243,7 @@ off(type: 'styleChange', callback?: Callback&lt;CaptionsStyle&gt;): void;
 
 **参数：**
 
-| 参数名 | 参数类型 | 必填 | 说明 |
+| 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | type | string | 是 | 取消监听的事件名，固定为‘styleChange’，即字幕风格变化事件。 |
 | callback | Callback&lt;[CaptionsStyle](#captionsstyle8)&gt; | 否 | 回调函数，在字幕风格变化时通过此函数进行通知。 |
@@ -270,16 +254,12 @@ off(type: 'styleChange', callback?: Callback&lt;CaptionsStyle&gt;): void;
 let captionStyle;
 let captionsManager = accessibility.getCaptionsManager();
 try {
-    captionsManager.off('styleChange', (err, data) => {
-        if (err) {
-            console.error('failed to unSubscribe caption manager style state change, because ' + JSON.stringify(err));
-            return;
-        }
+    captionsManager.off('styleChange', (data) => {
         captionStyle = data;
-        console.info('unSubscribe caption manager style state change success');
+        console.info('Unsubscribe caption manager style state change, result: ' + JSON.stringify(data));
     });
 } catch (exception) {
-    console.error('failed to unSubscribe caption manager style state change, because ' + JSON.stringify(exception));
+    console.error('failed to Unsubscribe caption manager style state change, because ' + JSON.stringify(exception));
 }
 ```
 
@@ -291,7 +271,7 @@ try {
 
 ### 属性
 
-| 名称 | 参数类型 | 可读 | 可写 | 说明 |
+| 名称 | 类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
 | type | [EventType](#eventtype) | 是 | 是 | 无障碍事件类型。 |
 | windowUpdateType | [WindowUpdateType](#windowupdatetype) | 是 | 是 | 窗口变化类型。 |
@@ -318,7 +298,7 @@ constructor(jsonObject)
 
 **参数：**
 
-| 参数名 | 参数类型 | 必填 | 说明 |
+| 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | jsonObject | string | 是 | 创建对象所需要的 JSON 格式字符串。 |
 
@@ -395,7 +375,7 @@ getAbilityLists(abilityType: AbilityType, stateType: AbilityState): Promise&lt;A
 
 **参数：**
 
-| 参数名 | 参数类型 | 必填 | 说明 |
+| 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | abilityType | [AbilityType](#abilitytype) | 是 | 辅助应用的类型。 |
 | stateType | [AbilityState](#abilitystate) | 是 | 辅助应用的状态。 |
@@ -445,7 +425,7 @@ getAbilityLists(abilityType: AbilityType, stateType: AbilityState,callback: Asyn
 
 **参数：**
 
-| 参数名 | 参数类型 | 必填 | 说明 |
+| 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | abilityType | [AbilityType](#abilitytype) | 是 | 辅助应用的类型。 |
 | stateType | [AbilityState](#abilitystate) | 是 | 辅助应用的状态。 |
@@ -489,7 +469,7 @@ getAccessibilityExtensionList(abilityType: AbilityType, stateType: AbilityState)
 
 **参数：**
 
-| 参数名 | 参数类型 | 必填 | 说明 |
+| 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | abilityType | [AbilityType](#abilitytype) | 是 | 辅助应用的类型。 |
 | stateType | [AbilityState](#abilitystate) | 是 | 辅助应用的状态。 |
@@ -503,9 +483,9 @@ getAccessibilityExtensionList(abilityType: AbilityType, stateType: AbilityState)
 **示例：**
 
 ```ts
-let abilityType = 'spoken';
-let abilityState = 'enable';
-let extensionList: accessibility.AccessibilityInfo[];
+let abilityType : accessibility.AbilityType = 'spoken';
+let abilityState : accessibility.AbilityState = 'enable';
+let extensionList: accessibility.AccessibilityAbilityInfo[] = [];
 try {
     accessibility.getAccessibilityExtensionList(abilityType, abilityState).then((data) => {
         for (let item of data) {
@@ -526,7 +506,7 @@ try {
 
 ## accessibility.getAccessibilityExtensionList<sup>9+</sup>
 
-getAccessibilityExtensionList(abilityType: AbilityType, stateType: AbilityState,callback: AsyncCallback&lt;Array&lt;AccessibilityAbilityInfo&gt;&gt;): void
+getAccessibilityExtensionList(abilityType: AbilityType, stateType: AbilityState, callback: AsyncCallback&lt;Array&lt;AccessibilityAbilityInfo&gt;&gt;): void
 
 查询辅助应用列表，使用callback异步回调。
 
@@ -534,7 +514,7 @@ getAccessibilityExtensionList(abilityType: AbilityType, stateType: AbilityState,
 
 **参数：**
 
-| 参数名 | 参数类型 | 必填 | 说明 |
+| 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | abilityType | [AbilityType](#abilitytype) | 是 | 辅助应用的类型。 |
 | stateType | [AbilityState](#abilitystate) | 是 | 辅助应用的状态。 |
@@ -543,9 +523,9 @@ getAccessibilityExtensionList(abilityType: AbilityType, stateType: AbilityState,
 **示例：**
 
 ```ts
-let abilityType = 'spoken';
-let abilityState = 'enable';
-let extensionList: accessibility.AccessibilityInfo[];
+let abilityType : accessibility.AbilityType = 'spoken';
+let abilityState : accessibility.AbilityState = 'enable';
+let extensionList: accessibility.AccessibilityAbilityInfo[] = [];
 try {
     accessibility.getAccessibilityExtensionList(abilityType, abilityState, (err, data) => {
         if (err) {
@@ -560,8 +540,6 @@ try {
             extensionList.push(item);
         }
         console.info('get accessibility extension list success');
-    }).catch((err) => {
-        console.error('failed to get accessibility extension list because ' + JSON.stringify(err));
     });
 } catch (exception) {
     console.error('failed to get accessibility extension list because ' + JSON.stringify(exception));
@@ -598,7 +576,7 @@ on(type: 'accessibilityStateChange', callback: Callback&lt;boolean&gt;): void
 
 **参数：**
 
-| 参数名 | 参数类型 | 必填 | 说明 |
+| 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | type | string | 是 | 监听的事件名，固定为‘accessibilityStateChange’，即辅助应用启用状态变化事件。 |
 | callback | Callback&lt;boolean&gt; | 是 | 回调函数，在辅助应用启用状态变化时将状态通过此函数进行通知。 |
@@ -607,12 +585,8 @@ on(type: 'accessibilityStateChange', callback: Callback&lt;boolean&gt;): void
 
 ```ts
 try {
-    accessibility.on('accessibilityStateChange', (err, data) => {
-        if (err) {
-            console.error('failed to subscribe accessibility state change, because ' + JSON.stringify(err));
-            return;
-        }
-        console.info('subscribe accessibility state change success');
+    accessibility.on('accessibilityStateChange', (data) => {
+        console.info('subscribe accessibility state change, result: ' + JSON.stringify(data));
     });
 } catch (exception) {
     console.error('failed to subscribe accessibility state change, because ' + JSON.stringify(exception));
@@ -629,7 +603,7 @@ on(type: 'touchGuideStateChange', callback: Callback&lt;boolean&gt;): void
 
 **参数：**
 
-| 参数名 | 参数类型 | 必填 | 说明 |
+| 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | type | string | 是 | 监听的事件名，固定为‘touchGuideStateChange’，即触摸浏览启用状态变化事件。 |
 | callback | Callback&lt;boolean&gt; | 是 | 回调函数，在触摸浏览启用状态变化时将状态通过此函数进行通知。 |
@@ -638,12 +612,8 @@ on(type: 'touchGuideStateChange', callback: Callback&lt;boolean&gt;): void
 
 ```ts
 try {
-    accessibility.on('touchGuideStateChange', (err, data) => {
-        if (err) {
-            console.error('failed to subscribe touch guide state change, because ' + JSON.stringify(err));
-            return;
-        }
-        console.info('subscribe touch guide state change success');
+    accessibility.on('touchGuideStateChange', (data) => {
+        console.info('subscribe touch guide state change, result: ' + JSON.stringify(data));
     });
 } catch (exception) {
     console.error('failed to subscribe touch guide state change, because ' + JSON.stringify(exception));
@@ -660,7 +630,7 @@ off(type: 'accessibilityStateChange', callback?: Callback&lt;boolean&gt;): void
 
 **参数：**
 
-| 参数名 | 参数类型 | 必填 | 说明 |
+| 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | type |  string | 否 | 取消监听的事件名，固定为‘accessibilityStateChange’，即辅助应用启用状态变化事件。 |
 | callback | Callback&lt;boolean&gt; | 否 | 回调函数，在辅助应用启用状态变化时将状态通过此函数进行通知。 |
@@ -669,15 +639,11 @@ off(type: 'accessibilityStateChange', callback?: Callback&lt;boolean&gt;): void
 
 ```ts
 try {
-    accessibility.on('accessibilityStateChange', (err, data) => {
-        if (err) {
-            console.error('failed to unSubscribe accessibility state change, because ' + JSON.stringify(err));
-            return;
-        }
-        console.info('unSubscribe accessibility state change success');
+    accessibility.off('accessibilityStateChange', (data) => {
+        console.info('Unsubscribe accessibility state change, result: ' + JSON.stringify(data));
     });
 } catch (exception) {
-    console.error('failed to unSubscribe accessibility state change, because ' + JSON.stringify(exception));
+    console.error('failed to Unsubscribe accessibility state change, because ' + JSON.stringify(exception));
 }
 ```
 
@@ -691,7 +657,7 @@ off(type: 'touchGuideStateChange', callback?: Callback&lt;boolean&gt;): void
 
 **参数：**
 
-| 参数名 | 参数类型 | 必填 | 说明 |
+| 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | type |  string | 否 | 取消监听的事件名，固定为‘touchGuideStateChange’，即触摸浏览启用状态变化事件。 |
 | callback | Callback&lt;boolean&gt; | 否 | 回调函数，在触摸浏览启用状态变化时将状态通过此函数进行通知。 |
@@ -700,15 +666,11 @@ off(type: 'touchGuideStateChange', callback?: Callback&lt;boolean&gt;): void
 
 ```ts
 try {
-    accessibility.on('touchGuideStateChange', (err, data) => {
-        if (err) {
-            console.error('failed to unSubscribe touch guide state change, because ' + JSON.stringify(err));
-            return;
-        }
-        console.info('unSubscribe touch guide state change success');
+    accessibility.off('touchGuideStateChange', (data) => {
+        console.info('Unsubscribe touch guide state change, result: ' + JSON.stringify(data));
     });
 } catch (exception) {
-    console.error('failed to unSubscribe touch guide state change, because ' + JSON.stringify(exception));
+    console.error('failed to Unsubscribe touch guide state change, because ' + JSON.stringify(exception));
 }
 ```
 
@@ -746,7 +708,7 @@ isOpenAccessibility(callback: AsyncCallback&lt;boolean&gt;): void
 
 **参数：**
 
-| 参数名 | 参数类型 | 必填 | 说明 |
+| 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | callback | AsyncCallback&lt;boolean&gt; | 是 | 回调函数，如果辅助功能已启用，则返回 true；否则返回 false。 |
 
@@ -796,7 +758,7 @@ isOpenTouchGuide(callback: AsyncCallback&lt;boolean&gt;): void
 
 **参数：**
 
-| 参数名 | 参数类型 | 必填 | 说明 |
+| 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | callback | AsyncCallback&lt;boolean&gt; | 是 | 回调函数，如果触摸浏览模式已开启，则返回 true；否则返回 false。 |
 
@@ -827,7 +789,7 @@ sendEvent(event: EventInfo): Promise&lt;void&gt;
 
 **参数：**
 
-| 参数名 | 参数类型 | 必填 | 说明 |
+| 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | event | [EventInfo](#eventinfo) | 是 | 无障碍事件对象。 |
 
@@ -867,7 +829,7 @@ sendEvent(event: EventInfo, callback: AsyncCallback&lt;void&gt;): void
 
 **参数：**
 
-| 参数名 | 参数类型 | 必填 | 说明 |
+| 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | event | [EventInfo](#eventinfo) | 是 | 辅助事件对象。 |
 | callback | AsyncCallback&lt;void&gt; | 是 | 回调函数，如果发送无障碍事件失败，则 AsyncCallback中err有数据返回。 |
@@ -899,7 +861,7 @@ sendAccessibilityEvent(event: EventInfo): Promise&lt;void&gt;
 
 **参数：**
 
-| 参数名 | 参数类型 | 必填 | 说明 |
+| 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | event | [EventInfo](#eventinfo) | 是 | 无障碍事件对象。 |
 
@@ -938,7 +900,7 @@ sendAccessibilityEvent(event: EventInfo, callback: AsyncCallback&lt;void&gt;): v
 
 **参数：**
 
-| 参数名 | 参数类型 | 必填 | 说明 |
+| 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | event | [EventInfo](#eventinfo) | 是 | 辅助事件对象。 |
 | callback | AsyncCallback&lt;void&gt; | 是 | 回调函数，如果发送无障碍事件失败，则 AsyncCallback中err有数据返回。 |

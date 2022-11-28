@@ -125,8 +125,8 @@ interface DataChangeListener {
 | 参数名        | 参数类型              | 必填 | 参数描述                                                     |
 | ------------- | --------------------- | ---- | ------------------------------------------------------------ |
 | dataSource    | IDataSource           | 是   | 实现IDataSource接口的对象，需要开发者实现相关接口。          |
-| itemGenerator | (item: any) => void   | 是   | 生成子组件的lambda函数，为数组中的每一个数据项创建一个或多个子组件，单个子组件或子组件列表必须包括在大括号“{...}”中。 |
-| keyGenerator  | (item: any) => string | 否   | 匿名函数，用于给数组中的每一个数据项生成唯一且固定的键值。当数据项在数组中的位置更改时，其键值不得更改，当数组中的数据项被新项替换时，被替换项的键值和新项的键值必须不同。键值生成器的功能是可选的，但是，为了使开发框架能够更好地识别数组更改，提高性能，建议提供。如将数组反向时，如果没有提供键值生成器，则LazyForEach中的所有节点都将重建。 |
+| itemGenerator | (item: any, index?: number) => void   | 是   | 生成子组件的lambda函数，为数组中的每一个数据项创建一个或多个子组件，单个子组件或子组件列表必须包括在大括号“{...}”中。 |
+| keyGenerator  | (item: any, index?: number) => string | 否   | 匿名函数，用于给数组中的每一个数据项生成唯一且固定的键值。当数据项在数组中的位置更改时，其键值不得更改，当数组中的数据项被新项替换时，被替换项的键值和新项的键值必须不同。键值生成器的功能是可选的，但是，为了使开发框架能够更好地识别数组更改，提高性能，建议提供。如将数组反向时，如果没有提供键值生成器，则LazyForEach中的所有节点都将重建。 |
 
 ### IDataSource类型说明
 
@@ -142,14 +142,14 @@ interface DataChangeListener {
 | 名称                                                     | 描述                                   |
 | -------------------------------------------------------- | -------------------------------------- |
 | onDataReloaded(): void                                   | 重新加载所有数据。                     |
-| onDataAdded(index: number): void (deprecated)            | 通知组件index的位置有数据添加。        |
-| onDataMoved(from: number, to: number): void (deprecated) | 通知组件数据从from的位置移到to的位置。 |
-| onDataDeleted(index: number): void (deprecated)          | 通知组件index的位置有数据删除。        |
-| onDataChanged(index: number): void (deprecated)          | 通知组件index的位置有数据变化。        |
-| onDataAdd(index: number): void 8+                        | 通知组件index的位置有数据添加。        |
-| onDataMove(from: number, to: number): void 8+            | 通知组件数据从from的位置移到to的位置。 |
-| onDataDelete(index: number): void 8+                     | 通知组件index的位置有数据删除。        |
-| onDataChange(index: number): void 8+                     | 通知组件index的位置有数据变化。        |
+| onDataAdded(index: number): void<sup>deprecated</sup>           | 通知组件index的位置有数据添加。从API Version 8开始废弃，建议使用onDataAdd。       |
+| onDataMoved(from: number, to: number): void<sup>deprecated</sup> | 通知组件数据从from的位置移到to的位置。从API Version 8开始废弃，建议使用onDataMove。 |
+| onDataDeleted(index: number): void<sup>deprecated</sup>         | 通知组件index的位置有数据删除。从API Version 8开始废弃，建议使用onDataDelete。        |
+| onDataChanged(index: number): void<sup>deprecated</sup>          | 通知组件index的位置有数据变化。 从API Version 8开始废弃，建议使用onDataChange。       |
+| onDataAdd(index: number): void<sup>8+</sup>                     | 通知组件index的位置有数据添加。        |
+| onDataMove(from: number, to: number): void<sup>8+</sup>           | 通知组件数据从from的位置移到to的位置。 |
+| onDataDelete(index: number): void<sup>8+</sup>                     | 通知组件index的位置有数据删除。        |
+| onDataChange(index: number): void<sup>8+</sup>                     | 通知组件index的位置有数据变化。        |
 
 ## 示例
 

@@ -39,10 +39,23 @@ A constructor used to create a **Queue** instance.
 
 **System capability**: SystemCapability.Utils.Lang
 
+**Error codes**
+
+For details about the error codes, see [containers Error Codes](../errorcodes/errorcode-containers.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 10200012 | The Queue's constructor cannot be directly invoked. |
+
 **Example**
 
 ```ts
 let queue = new Queue();
+try {
+  let queue2 = Queue();
+} catch(err) {
+  console.log(`${err.code} - ${err.name} - ${err.message}`);
+}
 ```
 
 
@@ -66,17 +79,29 @@ Adds an element at the end of this container.
 | -------- | -------- |
 | boolean | Returns **true** if the element is added successfully; returns **false** otherwise.|
 
+**Error codes**
+
+For details about the error codes, see [containers Error Codes](../errorcodes/errorcode-containers.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 10200011 | The add method cannot be bound. |
+
 **Example**
 
 ```ts
 let queue = new Queue();
 let result = queue.add("a");
 let result1 = queue.add(1);
-queue.add(1);
 let b = [1, 2, 3];
-queue.add(b);
+let result2 = queue.add(b);
 let c = {name : "Dylon", age : "13"};
 let result3 = queue.add(c);
+try {
+  queue.add.bind({}, "b")(); // bind() creates a new bound function that, when called, has its this keyword set to the provided value. It is used to test exception capture.
+} catch(err) {
+  console.log(`${err.code} - ${err.name} - ${err.message}`);
+}
 ```
 
 ### pop
@@ -93,6 +118,14 @@ Removes the first element from this container.
 | -------- | -------- |
 | T | Element removed.|
 
+**Error codes**
+
+For details about the error codes, see [containers Error Codes](../errorcodes/errorcode-containers.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 10200011 | The pop method cannot be bound. |
+
 **Example**
 
 ```ts
@@ -103,6 +136,11 @@ queue.add(5);
 queue.add(2);
 queue.add(4);
 let result = queue.pop();
+try {
+  queue.pop.bind({})(); // bind() creates a new bound function that, when called, has its this keyword set to the provided value. It is used to test exception capture.
+} catch(err) {
+  console.log(`${err.code} - ${err.name} - ${err.message}`);
+}
 ```
 
 ### getFirst
@@ -119,6 +157,14 @@ Obtains the first element of this container.
 | -------- | -------- |
 | T | The first element obtained.|
 
+**Error codes**
+
+For details about the error codes, see [containers Error Codes](../errorcodes/errorcode-containers.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 10200011 | The getFirst method cannot be bound. |
+
 **Example**
 
 ```ts
@@ -128,6 +174,11 @@ queue.add(4);
 queue.add(5);
 queue.add(2);
 let result = queue.getFirst();
+try {
+  queue.getFirst.bind({})(); // bind() creates a new bound function that, when called, has its this keyword set to the provided value. It is used to test exception capture.
+} catch(err) {
+  console.log(`${err.code} - ${err.name} - ${err.message}`);
+}
 ```
 
 ### forEach
@@ -154,6 +205,14 @@ callbackfn
 | index | number | No| Position index of the element that is currently traversed.|
 | Queue | Queue&lt;T&gt; | No| Instance that invokes the **forEach** method.|
 
+**Error codes**
+
+For details about the error codes, see [containers Error Codes](../errorcodes/errorcode-containers.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 10200011 | The forEach method cannot be bound. |
+
 **Example**
 
 ```ts
@@ -165,7 +224,13 @@ queue.add(4);
 queue.forEach((value, index) => {
   console.log("value:" + value, index);
 });
-
+try {
+  queue.forEach.bind({}, (value, index) => {
+    console.log("value:" + value, index);
+  })(); // bind() creates a new bound function that, when called, has its this keyword set to the provided value. It is used to test exception capture.
+} catch(err) {
+  console.log(`${err.code} - ${err.name} - ${err.message}`);
+}
 ```
 
 ### [Symbol.iterator]
@@ -182,8 +247,15 @@ Obtains an iterator, each item of which is a JavaScript object.
 | -------- | -------- |
 | IterableIterator&lt;T&gt; | Iterator obtained.|
 
-**Example**
+**Error codes**
 
+For details about the error codes, see [containers Error Codes](../errorcodes/errorcode-containers.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 10200011 | The Symbol.iterator method cannot be bound. |
+
+**Example**
 ```ts
 let queue = new Queue();
 queue.add(2);
@@ -202,5 +274,10 @@ let temp = iter.next().value;
 while(temp != undefined) {
   console.log("value:" + temp);
   temp = iter.next().value;
+}
+try {
+  queue[Symbol.iterator].bind({})(); // bind() creates a new bound function that, when called, has its this keyword set to the provided value. It is used to test exception capture.
+} catch(err) {
+  console.log(`${err.code} - ${err.name} - ${err.message}`);
 }
 ```

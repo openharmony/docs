@@ -30,7 +30,7 @@ import LightWeightSet from '@ohos.util.LightWeightSet';
 
 **系统能力：** SystemCapability.Utils.Lang
 
-| 名称 | 参数类型 | 可读 | 可写 | 说明 |
+| 名称 | 类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
 | length | number | 是 | 否 | LightWeightSet的元素个数。 |
 
@@ -47,7 +47,7 @@ LightWeightSet的构造函数。
 
 以下错误码的详细介绍请参见[containers错误码](../errorcodes/errorcode-containers.md)。
 
-| 错误码ID | 错误码信息 |
+| 错误码ID | 错误信息 |
 | -------- | -------- |
 | 10200012 | The LightWeightSet's constructor cannot be directly invoked. |
 
@@ -81,7 +81,7 @@ isEmpty(): boolean
 
 以下错误码的详细介绍请参见[containers错误码](../errorcodes/errorcode-containers.md)。
 
-| 错误码ID | 错误码信息 |
+| 错误码ID | 错误信息 |
 | -------- | -------- |
 | 10200011 | The isEmpty method cannot be bound. |
 
@@ -121,7 +121,7 @@ add(obj: T): boolean
 
 以下错误码的详细介绍请参见[containers错误码](../errorcodes/errorcode-containers.md)。
 
-| 错误码ID | 错误码信息 |
+| 错误码ID | 错误信息 |
 | -------- | -------- |
 | 10200011 | The add method cannot be bound. |
 
@@ -156,7 +156,7 @@ addAll(set: LightWeightSet&lt;T&gt;): boolean
 
 以下错误码的详细介绍请参见[containers错误码](../errorcodes/errorcode-containers.md)。
 
-| 错误码ID | 错误码信息 |
+| 错误码ID | 错误信息 |
 | -------- | -------- |
 | 10200011 | The addAll method cannot be bound. |
 
@@ -201,7 +201,7 @@ hasAll(set: LightWeightSet&lt;T&gt;): boolean
 
 以下错误码的详细介绍请参见[containers错误码](../errorcodes/errorcode-containers.md)。
 
-| 错误码ID | 错误码信息 |
+| 错误码ID | 错误信息 |
 | -------- | -------- |
 | 10200011 | The hasAll method cannot be bound. |
 
@@ -246,7 +246,7 @@ has(key: T): boolean
 
 以下错误码的详细介绍请参见[containers错误码](../errorcodes/errorcode-containers.md)。
 
-| 错误码ID | 错误码信息 |
+| 错误码ID | 错误信息 |
 | -------- | -------- |
 | 10200011 | The has method cannot be bound. |
 
@@ -289,7 +289,7 @@ equal(obj: Object): boolean
 
 以下错误码的详细介绍请参见[containers错误码](../errorcodes/errorcode-containers.md)。
 
-| 错误码ID | 错误码信息 |
+| 错误码ID | 错误信息 |
 | -------- | -------- |
 | 10200011 | The equal method cannot be bound. |
 
@@ -327,10 +327,10 @@ increaseCapacityTo(minimumCapacity: number): void
 
 以下错误码的详细介绍请参见[containers错误码](../errorcodes/errorcode-containers.md)。
 
-| 错误码ID | 错误码信息 |
+| 错误码ID | 错误信息 |
 | -------- | -------- |
 | 10200011 | The increaseCapacityTo method cannot be bound. |
-| 10200001 | The value of parameters are out of range. |
+| 10200001 | The parameter value is out of range. |
 
 **示例：**
 
@@ -374,7 +374,7 @@ getIndexOf(key: T): number
 
 以下错误码的详细介绍请参见[containers错误码](../errorcodes/errorcode-containers.md)。
 
-| 错误码ID | 错误码信息 |
+| 错误码ID | 错误信息 |
 | -------- | -------- |
 | 10200011 | The getIndexOf method cannot be bound. |
 
@@ -417,7 +417,7 @@ remove(key: T): T
 
 以下错误码的详细介绍请参见[containers错误码](../errorcodes/errorcode-containers.md)。
 
-| 错误码ID | 错误码信息 |
+| 错误码ID | 错误信息 |
 | -------- | -------- |
 | 10200011 | The remove method cannot be bound. |
 
@@ -460,7 +460,7 @@ removeAt(index: number): boolean
 
 以下错误码的详细介绍请参见[containers错误码](../errorcodes/errorcode-containers.md)。
 
-| 错误码ID | 错误码信息 |
+| 错误码ID | 错误信息 |
 | -------- | -------- |
 | 10200011 | The removeAt method cannot be bound. |
 
@@ -503,7 +503,7 @@ getValueAt(index: number): T
 
 以下错误码的详细介绍请参见[containers错误码](../errorcodes/errorcode-containers.md)。
 
-| 错误码ID | 错误码信息 |
+| 错误码ID | 错误信息 |
 | -------- | -------- |
 | 10200011 | The getValueAt method cannot be bound. |
 
@@ -534,7 +534,7 @@ clear(): void
 
 以下错误码的详细介绍请参见[containers错误码](../errorcodes/errorcode-containers.md)。
 
-| 错误码ID | 错误码信息 |
+| 错误码ID | 错误信息 |
 | -------- | -------- |
 | 10200011 | The clear method cannot be bound. |
 
@@ -571,7 +571,7 @@ toString(): String
 
 以下错误码的详细介绍请参见[containers错误码](../errorcodes/errorcode-containers.md)。
 
-| 错误码ID | 错误码信息 |
+| 错误码ID | 错误信息 |
 | -------- | -------- |
 | 10200011 | The toString method cannot be bound. |
 
@@ -608,7 +608,7 @@ toArray(): Array&lt;T&gt;
 
 以下错误码的详细介绍请参见[containers错误码](../errorcodes/errorcode-containers.md)。
 
-| 错误码ID | 错误码信息 |
+| 错误码ID | 错误信息 |
 | -------- | -------- |
 | 10200011 | The toArray method cannot be bound. |
 
@@ -645,7 +645,7 @@ values(): IterableIterator&lt;T&gt;
 
 以下错误码的详细介绍请参见[containers错误码](../errorcodes/errorcode-containers.md)。
 
-| 错误码ID | 错误码信息 |
+| 错误码ID | 错误信息 |
 | -------- | -------- |
 | 10200011 | The values method cannot be bound. |
 
@@ -695,7 +695,7 @@ callbackfn的参数说明：
 
 以下错误码的详细介绍请参见[containers错误码](../errorcodes/errorcode-containers.md)。
 
-| 错误码ID | 错误码信息 |
+| 错误码ID | 错误信息 |
 | -------- | -------- |
 | 10200011 | The forEach method cannot be bound. |
 
@@ -736,7 +736,7 @@ entries(): IterableIterator<[T, T]>
 
 以下错误码的详细介绍请参见[containers错误码](../errorcodes/errorcode-containers.md)。
 
-| 错误码ID | 错误码信息 |
+| 错误码ID | 错误信息 |
 | -------- | -------- |
 | 10200011 | The entries method cannot be bound. |
 
@@ -778,7 +778,7 @@ try {
 
 以下错误码的详细介绍请参见[containers错误码](../errorcodes/errorcode-containers.md)。
 
-| 错误码ID | 错误码信息 |
+| 错误码ID | 错误信息 |
 | -------- | -------- |
 | 10200011 | The Symbol.iterator method cannot be bound. |
 

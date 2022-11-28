@@ -28,7 +28,7 @@ createDataShareHelper(context: Context, uri: string, callback: AsyncCallback&lt;
 
 **参数：**
 
-| 参数名   | 参数类型                                                 | 必填 | 说明                                                         |
+| 参数名   | 类型                                                 | 必填 | 说明                                                         |
 | -------- | -------------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | context  | [Context](js-apis-application-context.md#context)        | 是   | 应用的上下文环境。                                           |
 | uri      | string                                                   | 是   | 指示要连接的服务端应用的路径。                               |
@@ -73,7 +73,7 @@ createDataShareHelper(context: Context, uri: string): Promise&lt;DataShareHelper
 
 **参数：**
 
-| 参数名  | 参数类型                                          | 必填 | 说明                           |
+| 参数名  | 类型                                          | 必填 | 说明                           |
 | ------- | ------------------------------------------------- | ---- | ------------------------------ |
 | context | [Context](js-apis-application-context.md#context) | 是   | 应用的上下文环境。             |
 | uri     | string                                            | 是   | 指示要连接的服务端应用的路径。 |
@@ -125,7 +125,7 @@ on(type: 'dataChange', uri: string, callback: AsyncCallback&lt;void&gt;): void
 
 **参数：**
 
-| 名称     | 类型                 | 必填 | 描述                     |
+| 参数名     | 类型                 | 必填 | 说明                    |
 | -------- | -------------------- | ---- | ------------------------ |
 | type     | string               | 是   | 订阅的事件/回调类型，支持的事件为'dataChange'，当数据更改时，触发该事件。 |
 | uri      | string               | 是   | 表示指定的数据路径。 |
@@ -152,7 +152,7 @@ off(type: 'dataChange', uri: string, callback?: AsyncCallback&lt;void&gt;): void
 
 **参数：**
 
-| 名称     | 类型                 | 必填 | 描述                     |
+| 参数名     | 类型                 | 必填 | 说明                    |
 | -------- | -------------------- | ---- | ------------------------ |
 | type     | string               | 是   | 取消订阅的事件/回调类型，支持的事件为'dataChange'。 |
 | uri      | string               | 是   | 表示指定的数据路径。 |
@@ -179,7 +179,7 @@ insert(uri: string, value: ValuesBucket, callback: AsyncCallback&lt;number&gt;):
 
 **参数：**
 
-| 名称     | 类型                                                      | 必填 | 描述                                                         |
+| 参数名     | 类型                                                      | 必填 | 说明                                                        |
 | -------- | --------------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | uri      | string                                                    | 是   | 指示要插入的数据的路径。                                     |
 | value    | [ValuesBucket](js-apis-data-ValuesBucket.md#valuesbucket) | 是   | 指示要插入的数据。如果此参数为空，将插入一个空行。           |
@@ -218,7 +218,7 @@ insert(uri: string, value: ValuesBucket): Promise&lt;number&gt;
 
 **参数：**
 
-| 名称  | 类型                                                      | 必填 | 描述                                               |
+| 参数名  | 类型                                                      | 必填 | 说明                                               |
 | ----- | --------------------------------------------------------- | ---- | -------------------------------------------------- |
 | uri   | string                                                    | 是   | 指示要插入的数据的路径。                           |
 | value | [ValuesBucket](js-apis-data-ValuesBucket.md#valuesbucket) | 是   | 指示要插入的数据。如果此参数为空，将插入一个空行。 |
@@ -260,7 +260,7 @@ delete(uri: string, predicates: dataSharePredicates.DataSharePredicates, callbac
 
 **参数：**
 
-| 名称       | 类型                                                         | 必填 | 描述                                                         |
+| 参数名       | 类型                                                         | 必填 | 说明                                                         |
 | ---------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | uri        | string                                                       | 是   | 指示要删除的数据的路径。                                     |
 | predicates | [DataSharePredicates](js-apis-data-dataSharePredicates.md#datasharepredicates) | 是   | 指示筛选条件。<br />delete接口所支持的谓词方法取决于服务端所选用的数据库，如KVDB的删除目前仅支持inKeys谓词。 |
@@ -298,7 +298,7 @@ delete(uri: string, predicates: dataSharePredicates.DataSharePredicates): Promis
 
 **参数：**
 
-| 名称       | 类型                                                         | 必填 | 描述                                                         |
+| 参数名       | 类型                                                         | 必填 | 说明                                                         |
 | ---------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | uri        | string                                                       | 是   | 指示要删除的数据的路径。                                     |
 | predicates | [DataSharePredicates](js-apis-data-dataSharePredicates.md#datasharepredicates) | 是   | 指示筛选条件。<br />delete接口所支持的谓词方法取决于服务端所选用的数据库，如KVDB的删除目前仅支持inKeys谓词。 |
@@ -339,7 +339,7 @@ query(uri: string, predicates: dataSharePredicates.DataSharePredicates, columns:
 
 **参数：**
 
-| 名称       | 类型                                                         | 必填 | 描述                                                         |
+| 参数名       | 类型                                                         | 必填 | 说明                                                         |
 | ---------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | uri        | string                                                       | 是   | 指示要查询的数据的路径。                                     |
 | predicates | [DataSharePredicates](js-apis-data-dataSharePredicates.md#datasharepredicates) | 是   | 指示筛选条件。<br />query接口所支持的谓词方法取决于服务端所选用的数据库，如KVDB目前仅支持inKeys和prefixKey。 |
@@ -379,7 +379,7 @@ query(uri: string, predicates: dataSharePredicates.DataSharePredicates, columns:
 
 **参数：**
 
-| 名称       | 类型                                                         | 必填 | 描述                                                         |
+| 参数名       | 类型                                                         | 必填 | 说明                                                         |
 | ---------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | uri        | string                                                       | 是   | 指示要查询的数据的路径。                                     |
 | predicates | [DataSharePredicates](js-apis-data-dataSharePredicates.md#datasharepredicates) | 是   | 指示筛选条件。<br />query接口所支持的谓词方法取决于服务端所选用的数据库，如KVDB目前仅支持inKeys和prefixKey。 |
@@ -422,7 +422,7 @@ update(uri: string, predicates: dataSharePredicates.DataSharePredicates, value: 
 
 **参数：**
 
-| 名称       | 类型                                                         | 必填 | 描述                                                         |
+| 参数名       | 类型                                                         | 必填 | 说明                                                         |
 | ---------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | uri        | string                                                       | 是   | 指示要更新的数据的路径。                                     |
 | predicates | [DataSharePredicates](js-apis-data-dataSharePredicates.md#datasharepredicates) | 是   | 指示筛选条件。<br />update接口是否支持谓词筛选条件取决于服务端所选用的数据库，如KVDB目前并不支持谓词筛选条件，仅RDB支持。 |
@@ -467,7 +467,7 @@ update(uri: string, predicates: dataSharePredicates.DataSharePredicates, value: 
 
 **参数：**
 
-| 名称       | 类型                                                         | 必填 | 描述                                                         |
+| 参数名       | 类型                                                         | 必填 | 说明                                                         |
 | ---------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | uri        | string                                                       | 是   | 指示要更新的数据的路径。                                     |
 | predicates | [DataSharePredicates](js-apis-data-dataSharePredicates.md#datasharepredicates) | 是   | 指示筛选条件。<br />update接口是否支持谓词筛选条件取决于服务端所选用的数据库，如KVDB目前并不支持谓词筛选条件，仅RDB支持。 |
@@ -515,7 +515,7 @@ batchInsert(uri: string, values: Array&lt;ValuesBucket&gt;, callback: AsyncCallb
 
 **参数：**
 
-| 名称     | 类型                                                         | 必填 | 描述                                                         |
+| 参数名     | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | uri      | string                                                       | 是   | 指示要插入的数据的路径。                                     |
 | values   | Array&lt;[ValuesBucket](js-apis-data-ValuesBucket.md#valuesbucket)&gt; | 是   | 指示要插入的数据。                                           |
@@ -552,7 +552,7 @@ batchInsert(uri: string, values: Array&lt;ValuesBucket&gt;): Promise&lt;number&g
 
 **参数：**
 
-| 名称   | 类型                                                         | 必填 | 描述                     |
+| 参数名   | 类型                                                         | 必填 | 说明                     |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------ |
 | uri    | string                                                       | 是   | 指示要插入的数据的路径。 |
 | values | Array&lt;[ValuesBucket](js-apis-data-ValuesBucket.md#valuesbucket)&gt; | 是   | 指示要插入的数据。       |
@@ -592,7 +592,7 @@ normalizeUri(uri: string, callback: AsyncCallback&lt;string&gt;): void
 
 **参数：**
 
-| 名称     | 类型                   | 必填 | 描述                                                     |
+| 参数名     | 类型                   | 必填 | 说明                                                     |
 | -------- | ---------------------- | ---- | -------------------------------------------------------- |
 | uri      | string                 | 是   | 指示要规范化的[URI](js-apis-uri.md#uri)。      |
 | callback | AsyncCallback&lt;string&gt; | 是   | 回调函数。当将给定的DataShare URI转换为规范化URI成功，err为undefined，data为获取到的规范化URI（如果支持URI规范化，则返回规范化URI，否则返回空）；否则为错误对象。 |
@@ -621,7 +621,7 @@ normalizeUri(uri: string): Promise&lt;string&gt;
 
 **参数：**
 
-| 名称 | 类型   | 必填 | 描述                                      |
+| 参数名 | 类型   | 必填 | 说明                                      |
 | ---- | ------ | ---- | ----------------------------------------- |
 | uri  | string | 是   | 指示要规范化的[URI](js-apis-uri.md#uri)。 |
 
@@ -653,7 +653,7 @@ denormalizeUri(uri: string, callback: AsyncCallback&lt;string&gt;): void
 
 **参数：**
 
-| 名称     | 类型                   | 必填 | 描述                                                |
+| 参数名     | 类型                   | 必填 | 说明                                                |
 | -------- | ---------------------- | ---- | --------------------------------------------------- |
 | uri      | string                 | 是   | 指示要反规范化的[URI](js-apis-uri.md#uri)。 |
 | callback | AsyncCallback&lt;string&gt; | 是   | 回调函数。当将指定的URI转换为非规范化URI，err为undefined，data为获取到的反规范化URI（如果反规范化成功，则返回反规范化的URI；如果无需进行反规范化，则返回原始URI；若不支持则返回空）；否则为错误对象。 |
@@ -682,7 +682,7 @@ denormalizeUri(uri: string): Promise&lt;string&gt;
 
 **参数：**
 
-| 名称 | 类型   | 必填 | 描述                                        |
+| 参数名 | 类型   | 必填 | 说明                                        |
 | ---- | ------ | ---- | ------------------------------------------- |
 | uri  | string | 是   | 指示要反规范化的[URI](js-apis-uri.md#uri)。 |
 
@@ -714,7 +714,7 @@ notifyChange(uri: string, callback: AsyncCallback&lt;void&gt;): void
 
 **参数：**
 
-| 名称     | 类型                 | 必填 | 描述                     |
+| 参数名    | 类型                 | 必填 | 说明                     |
 | -------- | -------------------- | ---- | ------------------------ |
 | uri      | string               | 是   | 表示指定的数据路径。 |
 | callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。当通知已注册的观察者指定URI对应的数据资源已发生变更成功，err为undefined；否则为错误对象。 |
@@ -739,7 +739,7 @@ notifyChange(uri: string): Promise&lt;void&gt;
 
 **参数：**
 
-| 名称 | 类型   | 必填 | 描述                 |
+| 参数名 | 类型   | 必填 | 说明                 |
 | ---- | ------ | ---- | -------------------- |
 | uri  | string | 是   | 表示指定的数据路径。 |
 

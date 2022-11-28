@@ -60,8 +60,6 @@
     - [Hi3516标准系统入门（命令行方式）](quick-start/quickstart-appendix-hi3516-pkg.md)
   
   - [获取源码](get-code/sourcecode-acquire.md)
-    - [隐私保护](security/security-privacy-protection.md)
-    - [安全指南](security/security-guidelines-overall.md)
 - 隐私和安全
   - [隐私保护](security/security-privacy-protection.md)
   - [安全指南](security/security-guidelines-overall.md)
@@ -155,6 +153,7 @@
 - 子系统开发
 
   -  内核
+     - [内核概述](kernel/kernel-overview.md)
      - 轻量系统内核（LiteOS-M）
        - [轻量系统内核概述](kernel/kernel-mini-overview.md)
        - 基础内核
@@ -380,18 +379,18 @@
      - [构建系统编码规范与最佳实践](subsystems/subsys-build-gn-coding-style-and-best-practice.md)
      - [编译构建Kconfig可视化配置指导](subsystems/subsys-build-gn-kconfig-visual-config-guide.md)
      - 编译构建参考
-       - [子系统配置规则](subsystems/subsys-build-subsystem.md#子系统配置规则)
-       - [产品配置规则](subsystems/subsys-build-product.md#产品配置规则)
-       - [子系统配置规则](subsystems/subsys-build-subsystem.md#子系统配置规则)
-       - [部件配置规则](subsystems/subsys-build-component.md#部件配置规则)
-       - [模块配置规则](subsystems/subsys-build-module.md#模块配置规则)
-       - [芯片解决方案配置规则](subsystems/subsys-build-chip_solution.md#芯片解决方案配置规则)
-       - [特性配置规则](subsystems/subsys-build-feature.md#特性配置规则)
-       - [系统能力配置规则](subsystems/subsys-build-syscap.md#如何按需配置部件的系统能力)
-       - [关于deps、external_deps的使用](subsystems/subsys-build-reference.md#关于deps、external_deps的使用)
-       - [开源软件Notice收集策略说明](subsystems/subsys-build-reference.md#开源软件notice收集策略说明)
-       - [加快本地编译的一些参数](subsystems/subsys-build-reference.md#加快本地编译的一些参数)
-       - [查看NinjaTrace](subsystems/subsys-build-reference.md#查看ninjatrace)
+       - [子系统配置规则](subsystems/subsys-build-subsystem.md)
+       - [产品配置规则](subsystems/subsys-build-product.md)
+       - [子系统配置规则](subsystems/subsys-build-subsystem.md)
+       - [部件配置规则](subsystems/subsys-build-component.md)
+       - [模块配置规则](subsystems/subsys-build-module.md)
+       - [芯片解决方案配置规则](subsystems/subsys-build-chip_solution.md)
+       - [特性配置规则](subsystems/subsys-build-feature.md)
+       - [系统能力配置规则](subsystems/subsys-build-syscap.md)
+       - [关于deps、external_deps的使用](subsystems/subsys-build-reference.md)
+       - [开源软件Notice收集策略说明](subsystems/subsys-build-reference.md)
+       - [加快本地编译的一些参数](subsystems/subsys-build-reference.md)
+       - [查看NinjaTrace](subsystems/subsys-build-reference.md)
        - [HAP编译构建指导](subsystems/subsys-build-gn-hap-compilation-guide.md)
        - [常见问题](subsystems/subsys-build-FAQ.md)
   -  [分布式远程启动](subsystems/subsys-remote-start.md)
@@ -469,6 +468,7 @@
      - [HiTraceChain开发指导](subsystems/subsys-dfx-hitracechain.md)
      - [HiCollie开发指导](subsystems/subsys-dfx-hicollie.md)
      - HiSysEvent开发指导
+       - [HiSysEvent概述](subsystems/subsys-dfx-hisysevent-overview.md)
        - [HiSysEvent打点配置指导](subsystems/subsys-dfx-hisysevent-logging-config.md)
        - [HiSysEvent打点指导](subsystems/subsys-dfx-hisysevent-logging.md)
        - [HiSysEvent订阅指导](subsystems/subsys-dfx-hisysevent-listening.md)
@@ -517,13 +517,15 @@
 
 
 - 调测
-  - [测试用例开发](subsystems/subsys-testguide-test.md)
+  - [developer_test开发者自测试执行框架使用指导](device-test/developer_test.md)
+  - [xdevice测试调度框架使用指导](device-test/xdevice.md)
   - 调测工具
     - [bytrace使用指导](subsystems/subsys-toolchain-bytrace-guide.md)
     - [hdc\_std 使用指导](subsystems/subsys-toolchain-hdc-guide.md)
     - [hiperf 使用指南](subsystems/subsys-toolchain-hiperf.md)
-- [XTS认证](subsystems/subsys-xts-guide.md)
+- [XTS认证](device-test/xts.md)
 - 工具
+  - [工具概述](get-code/gettools-overview.md)
   - [Docker编译环境](get-code/gettools-acquire.md)
   - [IDE集成开发环境](get-code/gettools-ide.md)
 - 示例教程

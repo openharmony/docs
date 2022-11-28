@@ -1,10 +1,8 @@
 # 系统能力
 
-系统能力（SystemCapability）是部件向开发者提供的接口的集合，各个部件通过定义系统能力来描述该部件所能提供的能力。其基本操作原语为querySystemCapabilities，可以查询系统能力的集合。
-详细的系统能力原理及配置可参考
-[系统能力](../../../device-dev/subsystems/subsys-build-syscap.md)。
+系统能力（SystemCapability，简称SysCap），指操作系统中每一个相对独立的特性。不同的设备对应不同的系统能力集，每个系统能力对应多个接口。开发者可根据系统能力来判断是否可以使用某接口。本模块提供接口可查询系统能力的集合。
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> **说明：**
 > - 本模块首批接口从API version 9开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 > - 本模块接口为系统接口。
 
@@ -76,7 +74,7 @@ try {
 ```
 
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
-> 以上接口所返回的system capability集合形式均为编码后的数字字符串形式。
+> **说明：**
+> - 以上接口所返回的system capability集合形式均为编码后的数字字符串形式。
 
 

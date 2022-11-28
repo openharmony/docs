@@ -8,12 +8,14 @@ The **ProcessRunningInfo** module provides process running information.
 
 ## Usage
 
-The process running information is obtained through an **appManager** instance.
+The process running information is obtained by using [getProcessRunningInfos](js-apis-appmanager.md#appmanagergetprocessrunninginfosdeprecated) in **appManager**.
 
 ```js
 import appManager from '@ohos.application.appManager';
-appManager.getProcessRunningInfos((error,data) => { 
-    console.log("getProcessRunningInfos error: "  + error.code + " data: " + JSON.stringify(data));
+app.getProcessRunningInfos().then((data) => {
+    console.log('success:' + JSON.stringify(data));
+}).catch((error) => {
+    console.log('failed:' + JSON.stringify(error));
 });
 ```
 

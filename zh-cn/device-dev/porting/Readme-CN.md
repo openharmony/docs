@@ -67,3 +67,4 @@ repo init -u https://gitee.com/openharmony-sig/manifest.git -b master -m devboar
 - 标准系统芯片移植案例
     - [标准系统方案之瑞芯微RK3568移植案例](porting-dayu200-on_standard-demo.md)
     - [标准系统方案之瑞芯微RK3566移植案例](https://gitee.com/openharmony/vendor_kaihong/blob/master/khdvk_3566b/porting-khdvk_3566b-on_standard-demo.md)
+    - [标准系统方案之扬帆移植案例](porting-yangfan-on_standard-demo.md)
