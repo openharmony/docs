@@ -18,7 +18,7 @@ import userIAM_userAuth from '@ohos.userIAM.userAuth';
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.UserIAM.UserAuth.Core。
 
-| 参数名称         | 参数类型   | 必填 | 说明                 |
+| 名称         | 类型   | 必填 | 说明                 |
 | ------------ | ---------- | ---- | -------------------- |
 | result        | number | 是   | 认证结果。       |
 | token        | Uint8Array | 否   | 用户身份认证通过的凭证。 |
@@ -31,7 +31,7 @@ import userIAM_userAuth from '@ohos.userIAM.userAuth';
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.UserIAM.UserAuth.Core。
 
-| 参数名称         | 参数类型   | 必填 | 说明                 |
+| 名称         | 类型   | 必填 | 说明                 |
 | ------------ | ---------- | ---- | -------------------- |
 | module        | number | 是   | 发送提示信息的模块标识。       |
 | tip        | number | 是   | 认证过程提示信息。       |
@@ -62,7 +62,7 @@ import userIAM_userAuth from '@ohos.userIAM.userAuth';
 
 ### callback<sup>9+</sup>
 
-callback: (result : EventInfo) => void
+callback(result : EventInfo) : void
 
 通过该回调获取认证结果信息或认证过程中的提示信息。
 
@@ -70,7 +70,7 @@ callback: (result : EventInfo) => void
 
 **参数：**
 
-| 参数名称    | 类型                       | 必填 | 说明                           |
+| 参数名    | 类型                       | 必填 | 说明                           |
 | --------- | -------------------------- | ---- | ------------------------------ |
 | result    | [EventInfo](#eventinfo9)     | 是   | 返回的认证结果信息或提示信息。  |
 
@@ -128,7 +128,7 @@ try {
 
 ### on<sup>9+</sup>
 
-on(name : AuthEventKey, callback : AuthEvent) : void
+on : (name : AuthEventKey, callback : AuthEvent) => void
 
 订阅指定类型的用户认证事件。
 
@@ -139,10 +139,10 @@ on(name : AuthEventKey, callback : AuthEvent) : void
 
 **参数：**
 
-| 参数名称    | 类型                        | 必填 | 说明                       |
+| 参数名    | 类型                        | 必填 | 说明                       |
 | --------- | -------------------------- | ---- | ------------------------- |
 | name  | [AuthEventKey](#autheventkey9) | 是   | 表示认证事件类型，取值为"result"时，回调函数返回认证结果；取值为"tip"时，回调函数返回认证过程中的提示信息。 |
-| callback  | [AuthEvent](#authevent9)   | 是   | 认证接口的回调函数，用于返回认证结果或认证过程中的提示信息。          |
+| callback  | [AuthEvent](#authevent9)   | 是   | 认证接口的回调函数，用于返回认证结果或认证过程中的提示信息。 |
 
 以下错误码的详细介绍请参见[用户认证错误码](../errorcodes/errcode-useriam.md)
 
@@ -195,7 +195,7 @@ try {
 
 ### off<sup>9+</sup>
 
-off(name : AuthEventKey) : void
+off : (name : AuthEventKey) => void
 
 取消订阅特定类型的认证事件。
 
@@ -204,7 +204,7 @@ off(name : AuthEventKey) : void
 
 **系统能力**：SystemCapability.UserIAM.UserAuth.Core
 
-| 参数名称    | 类型                        | 必填 | 说明                       |
+| 名称    | 类型                        | 必填 | 说明                       |
 | --------- | -------------------------- | ---- | ------------------------- |
 | name    | [AuthEventKey](#autheventkey9)      | 是   | 表示认证事件类型，取值为"result"时，取消订阅认证结果；取值为"tip"时，取消订阅认证过程中的提示信息。 |
 
@@ -258,7 +258,7 @@ try {
 
 ### start<sup>9+</sup>
 
-start() : void
+start : () => void
 
 开始认证。
 
@@ -302,7 +302,7 @@ try {
 
 ### cancel<sup>9+</sup>
 
-cancel(): void
+cancel : () => void
 
 取消认证。
 
@@ -354,7 +354,7 @@ getAuthInstance(challenge : Uint8Array, authType : UserAuthType, authTrustLevel 
 
 **参数：**
 
-| 参数名称         | 类型                                     | 必填 | 说明                     |
+| 参数名         | 类型                                     | 必填 | 说明                     |
 | -------------- | ---------------------------------------- | ---- | ------------------------ |
 | challenge      | Uint8Array                               | 是   | 挑战值，最大长度为32字节，可以填null。     |
 | authType       | [UserAuthType](#userauthtype8)           | 是   | 认证类型，当前支持FACE。 |
@@ -444,7 +444,7 @@ getAvailableStatus(authType : UserAuthType, authTrustLevel : AuthTrustLevel): vo
 
 **参数：**
 
-| 参数名称         | 类型                               | 必填 | 说明                       |
+| 参数名         | 类型                               | 必填 | 说明                       |
 | -------------- | ---------------------------------- | ---- | -------------------------- |
 | authType       | [UserAuthType](#userauthtype8)     | 是   | 认证类型，当前只支持FACE。 |
 | authTrustLevel | [AuthTrustLevel](#authtrustlevel8) | 是   | 认证信任等级。       |
@@ -475,13 +475,13 @@ try {
 }
 ```
 
-  ## ResultCodeV9<sup>9+</sup>
+## ResultCodeV9<sup>9+</sup>
 
 表示返回码的枚举。
 
 **系统能力**：SystemCapability.UserIAM.UserAuth.Core
 
-| 名称                    | 默认值 | 描述                 |
+| 名称                    |   值   | 说明                 |
 | ----------------------- | ------ | -------------------- |
 | SUCCESS                 | 12500000      | 执行成功。           |
 | FAIL                    | 12500001      | 执行失败。           |
@@ -570,7 +570,7 @@ getAvailableStatus(authType : UserAuthType, authTrustLevel : AuthTrustLevel) : n
 
 **参数：**
 
-| 参数名称         | 类型                               | 必填 | 说明                       |
+| 参数名         | 类型                               | 必填 | 说明                       |
 | -------------- | ---------------------------------- | ---- | -------------------------- |
 | authType       | [UserAuthType](#userauthtype8)     | 是   | 认证类型，当前只支持FACE。 |
 | authTrustLevel | [AuthTrustLevel](#authtrustlevel8) | 是   | 认证信任等级。       |
@@ -611,7 +611,7 @@ auth(challenge: Uint8Array, authType: UserAuthType, authTrustLevel: AuthTrustLev
 
 **参数：**
 
-| 参数名称         | 类型                                     | 必填 | 说明                     |
+| 参数名         | 类型                                     | 必填 | 说明                     |
 | -------------- | ---------------------------------------- | ---- | ------------------------ |
 | challenge      | Uint8Array                               | 是   | 挑战值，可以填null。     |
 | authType       | [UserAuthType](#userauthtype8)           | 是   | 认证类型，当前支持FACE。 |
@@ -663,7 +663,7 @@ cancelAuth(contextID : Uint8Array) : number
 
 **参数：**
 
-| 参数名称    | 类型       | 必填 | 说明                                       |
+| 参数名    | 类型       | 必填 | 说明                                       |
 | --------- | ---------- | ---- | ------------------------------------------ |
 | contextID | Uint8Array | 是   | 上下文的标识，通过[auth](#authdeprecated)接口获取。 |
 
@@ -711,11 +711,10 @@ onResult: (result : number, extraInfo : AuthResult) => void
 
 **参数：**
 
-| 参数名称    | 类型                       | 必填 | 说明        |
+| 参数名    | 类型                       | 必填 | 说明        |
 | --------- | -------------------------- | ---- | ------------------------------------------------ |
 | result    | number           | 是   | 认证结果，参见[ResultCode](#resultcodedeprecated)。 |
 | extraInfo | [AuthResult](#authresultdeprecated) | 是   | 扩展信息，不同情况下的具体信息，<br/>如果身份验证通过，则在extraInfo中返回用户认证令牌，<br/>如果身份验证失败，则在extraInfo中返回剩余的用户认证次数，<br/>如果身份验证执行器被锁定，则在extraInfo中返回冻结时间。 |
-
 
 **示例：**
 
@@ -754,7 +753,7 @@ onAcquireInfo ?: (module : number, acquire : number, extraInfo : any) => void
 
 **参数：**
 
-| 参数名称    | 类型   | 必填 | 说明                           |
+| 参数名    | 类型   | 必填 | 说明                           |
 | --------- | ------ | ---- | ------------------------------ |
 | module    | number | 是   | 发送提示信息的模块标识。             |
 | acquire   | number | 是   | 认证执过程中的提示信息。 |
@@ -789,9 +788,9 @@ auth.auth(null, userIAM_userAuth.UserAuthType.FACE, userIAM_userAuth.AuthTrustLe
 
 **系统能力**：SystemCapability.UserIAM.UserAuth.Core
 
-| 名称         | 参数类型   | 必填 | 说明                 |
-| ------------ | ---------- | ---- | -------------------- |
-| token        | Uint8Array | 否   | 认证通过的令牌信息。       |
+| 名称         | 类型   | 必填 | 说明                 |
+| ------------ | ---------- | ---- | -------------------|
+| token        | Uint8Array | 否   | 认证通过的令牌信息。 |
 | remainTimes  | number     | 否   | 剩余的认证操作次数。 |
 | freezingTime | number     | 否   | 认证操作的冻结时间。 |
 
@@ -804,7 +803,7 @@ auth.auth(null, userIAM_userAuth.UserAuthType.FACE, userIAM_userAuth.AuthTrustLe
 
 **系统能力**：SystemCapability.UserIAM.UserAuth.Core
 
-| 名称                    | 默认值 | 描述                 |
+| 名称                    | 值 | 说明                 |
 | ----------------------- | ------ | -------------------- |
 | SUCCESS                 | 0      | 执行成功。           |
 | FAIL                    | 1      | 执行失败。           |
@@ -823,7 +822,7 @@ auth.auth(null, userIAM_userAuth.UserAuthType.FACE, userIAM_userAuth.AuthTrustLe
 
 **系统能力**：SystemCapability.UserIAM.UserAuth.Core
 
-| 名称                          | 默认值 | 描述                                 |
+| 名称                          |   值   |    说明                             |
 | ----------------------------- | ------ | ------------------------------------ |
 | FACE_AUTH_TIP_TOO_BRIGHT      | 1      | 光线太强，获取的图像太亮。           |
 | FACE_AUTH_TIP_TOO_DARK        | 2      | 光线太暗，获取的图像太暗。           |
@@ -844,7 +843,7 @@ auth.auth(null, userIAM_userAuth.UserAuthType.FACE, userIAM_userAuth.AuthTrustLe
 
 **系统能力**：SystemCapability.UserIAM.UserAuth.Core
 
-| 名称                              | 默认值 | 描述                                               |
+| 名称                              |   值   | 说明                                               |
 | --------------------------------- | ------ | -------------------------------------------------- |
 | FINGERPRINT_AUTH_TIP_GOOD         | 0      | 获取的指纹图像良好。                               |
 | FINGERPRINT_AUTH_TIP_DIRTY        | 1      | 由于传感器上可疑或检测到的污垢，指纹图像噪音过大。 |
@@ -860,7 +859,7 @@ auth.auth(null, userIAM_userAuth.UserAuthType.FACE, userIAM_userAuth.AuthTrustLe
 
 **系统能力**：SystemCapability.UserIAM.UserAuth.Core
 
-| 名称        | 默认值 | 描述       |
+| 名称        |   值   | 说明       |
 | ----------- | ------ | ---------- |
 | FACE        | 2      | 人脸认证。 |
 | FINGERPRINT | 4      | 指纹认证。 |
@@ -871,7 +870,7 @@ auth.auth(null, userIAM_userAuth.UserAuthType.FACE, userIAM_userAuth.AuthTrustLe
 
 **系统能力**：SystemCapability.UserIAM.UserAuth.Core
 
-| 名称 | 默认值 | 描述                      |
+| 名称 |   值   | 说明                      |
 | ---- | ------ | ------------------------- |
 | ATL1 | 10000  | 认证结果的信任等级级别1。 |
 | ATL2 | 20000  | 认证结果的信任等级级别2。 |
@@ -922,11 +921,11 @@ execute(type: AuthType, level: SecureLevel, callback: AsyncCallback&lt;number&gt
 
 **参数：**
 
-| 参数名称   | 类型                        | 必填 | 说明                      |
+| 参数名   | 类型                        | 必填 | 说明                      |
 | -------- | --------------------------- | ---- | -------------------------- |
 | type     | AuthType                      | 是   | 认证类型，当前只支持"FACE_ONLY"。<br/>ALL为预留参数，当前版本暂不支持ALL类型的认证。 |
 | level    | SecureLevel  | 是   | 安全级别，对应认证的安全级别，有效值为"S1"（最低）、"S2"、"S3"、"S4"（最高）。<br/>具备3D人脸识别能力的设备支持"S3"及以下安全级别的认证。<br/>具备2D人脸识别能力的设备支持"S2"及以下安全级别的认证。 |
-| callback | AsyncCallback&lt;number&gt; | 否   | 回调函数。    |
+| callback | AsyncCallback&lt;number&gt; | 是   | 回调函数。    |
 
 callback返回值：
 
@@ -963,7 +962,7 @@ execute(type : AuthType, level : SecureLevel): Promise&lt;number&gt;
 
 **参数：**
 
-| 参数名称 | 类型   | 必填 | 说明                                                         |
+| 参数名 | 类型   | 必填 | 说明                                                         |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
 | type   | AuthType | 是   | 认证类型，当前只支持"FACE_ONLY"。<br/>ALL为预留参数，当前版本暂不支持ALL类型的认证。 |
 | level  | SecureLevel | 是   | 安全级别，对应认证的安全级别，有效值为"S1"（最低）、"S2"、"S3"、"S4"（最高）。<br/>具备3D人脸识别能力的设备支持"S3"及以下安全级别的认证。<br/>具备2D人脸识别能力的设备支持"S2"及以下安全级别的认证。 |
@@ -994,7 +993,7 @@ authenticator.execute("FACE_ONLY", "S2").then((code)=>{
 
 **系统能力**：SystemCapability.UserIAM.UserAuth.Core
 
-| 名称               | 默认值 | 描述                       |
+| 名称               |   值   | 说明                       |
 | ------------------ | ------ | -------------------------- |
 | NO_SUPPORT         | -1     | 设备不支持当前的认证方式。 |
 | SUCCESS            | 0      | 认证成功。                 |

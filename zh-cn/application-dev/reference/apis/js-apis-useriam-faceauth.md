@@ -30,7 +30,7 @@ constructor()
 
 | 类型                   | 说明                 |
 | ---------------------- | -------------------- |
-| [FaceAuthManager](#faceauthmanager) | 人脸认证管理器对象 |
+| [FaceAuthManager](#faceauthmanager) | 人脸认证管理器对象。 |
 
 **示例：**
 
@@ -44,7 +44,7 @@ let faceAuthManager = new userIAM_faceAuth.FaceAuthManager();
 
 setSurfaceId(surfaceId: string): void;
 
-设置录入流程中人脸预览界面 [XComponent](../arkui-ts/ts-basic-components-xcomponent.md#getxcomponentsurfaceid) 持有 Surface 的 ID。
+该接口仅用于在录入人脸时，设置人脸预览界面 [XComponent](../arkui-ts/ts-basic-components-xcomponent.md#getxcomponentsurfaceid) 持有 Surface 的 ID，需要配合[人脸录入接口](./js-apis-osAccount.md#addcredential8)来使用。
 
 **系统能力：** SystemCapability.UserIAM.UserAuth.FaceAuth
 
@@ -71,6 +71,7 @@ setSurfaceId(surfaceId: string): void;
 ```js
 import userIAM_faceAuth from '@ohos.userIAM.faceAuth';
 
+// 该surfaceId应该从XComponent控件获取，此处仅用作示例。
 let surfaceId = "123456";
 let manager = new userIAM_faceAuth.FaceAuthManager();
 try {

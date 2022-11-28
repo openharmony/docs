@@ -21,7 +21,7 @@
 
 - 执行器安全等级
 
-  执行器提供能力时运行环境所达到的安全级别。
+  执行器提供能力时所在运行环境达到的安全级别。
 
 - 执行器角色
 
@@ -52,6 +52,18 @@
 
   用户认证框架统一管理用户身份和凭据ID的映射关系，执行器对接到用户认证框架时，会读取用户身份认证框架内保存的该执行器的模板ID列表，执行器需要与自己维护的模板ID列表进行比对，并删除冗余信息。
 
+- IDL接口
+
+  接口定义语言（Interface Definition Language）通过IDL编译器编译后，能够生成与编程语言相关的文件：客户端桩文件，服务器框架文件。本文主要是通过IDL接口生成的客户端和服务端来实现Pin_auth服务和驱动的通信，详细使用方法可参考[IDL简介](https://gitee.com/openharmony/ability_idl_tool/blob/master/README.md)。
+
+- IPC通信
+
+  IPC（Inter Process Communication），进程间通信是指两个进程的数据之间产生交互，详细原理可参考[IPC通信简介](https://gitee.com/openharmony/communication_ipc/blob/master/README_zh.md)。
+
+- HDI
+
+  HDI（Hardware Device Interface），硬件设备接口，位于基础系统服务层和设备驱动层之间，是提供给硬件系统服务开发者使用的、统一的硬件设备功能抽象接口，其目的是为系统服务屏蔽底层硬件设备差异，具体可参考[HDI规范](../../design/hdi-design-specifications.md)。
+
 ### 运作机制
 
 Pin_auth驱动的主要工作是为上层用户认证框架和Pin_auth服务提供稳定的口令认证的基础能力，保证口令认证的功能可以正常运行。开发者可基于HDF框架对不同芯片进行各自驱动的开发以及HDI层接口的调用。
@@ -69,24 +81,27 @@ Pin_auth驱动的主要工作是为上层用户认证框架和Pin_auth服务提�
 
 ### 接口说明
 
+注：以下接口列举的为IDL接口描述生成的对应C++语言函数接口，接口声明见idl文件（/drivers/interface/pin_auth/v1_0/）。
+在本文中，口令凭据的录入、认证和删除相关的HDI接口如表1所示，表2中的回调函数分别用于口令执行器返回操作结果给框架和获取用户输入的口令信息。
+
 **表1** 接口功能介绍
 
-| 接口名                                                       | 功能介绍                                                     |
-| ------------------------------------------------------------ | ------------------------------------------------------------ |
-| GetExecutorList(std::vector<sptr<IExecutor>>& executorList)  | 获取执行器列表。                                             |
-| GetExecutorInfo(ExecutorInfo& info)                          | 获取执行器信息。                                             |
-| GetTemplateInfo(uint64_t templateId, TemplateInfo& info)     | 获取指定templateId的模板信息。                               |
+|    接口名称    |   功能介绍   |
+| ------------------------------- | ------------------------------------------- |
+| GetExecutorList(std::vector<sptr<IExecutor>>& executorList)  | 获取执行器列表。 |
+| GetExecutorInfo(ExecutorInfo& info)      | 获取执行器信息。                         |
+| GetTemplateInfo(uint64_t templateId, TemplateInfo& info)  | 获取指定templateId的模板信息。   |
 | OnRegisterFinish(const std::vector<uint64_t>& templateIdList,<br/>const std::vector<uint8_t>& frameworkPublicKey,<br/>const std::vector<uint8_t>&  extraInfo) | 执行器注册成功后，获取用户认证框架的公钥信息；获取用户认证框架的template 列表用于对账。 |
-| OnSetData(uint64_t scheduleId, uint64_t authSubType, <br/>const std::vector<uint8_t> &data) | 用于回调传pin码认证的子类型和脱敏数据。                      |
-| Enroll(uint64_t scheduleId, const std::vector<uint8_t>& extraInfo,<br/>const sptr<IExecutorCallback>& callbackObj) | 录入pin码。                                              |
-| Authenticate(uint64_t scheduleId, uint64_t templateId, const std::vector<uint8_t>& extraInfo, const sptr<IExecutorCallback>& callbackObj) | pin码认证。                                              |
-| Delete(uint64_t templateId)                                  | 删除pin码模板。                                              |
-| Cancel(uint64_t scheduleId)                                  | 通过scheduleId取消指定操作。                                 |
-| SendCommand(int32_t commandId, const std::vector<uint8_t>& extraInfo,<br/>const sptr<IExecutorCallback>& callbackObj) | 预留接口。                                              |
+| OnSetData(uint64_t scheduleId, uint64_t authSubType, <br/>const std::vector<uint8_t> &data) | 回调函数，返回用户录入的口令子类型和录入的口令脱敏数据。       |
+| Enroll(uint64_t scheduleId, const std::vector<uint8_t>& extraInfo,<br/>const sptr<IExecutorCallback>& callbackObj) | 录入pin码。      |
+| Authenticate(uint64_t scheduleId, uint64_t templateId, const std::vector<uint8_t>& extraInfo, const sptr<IExecutorCallback>& callbackObj) | pin码认证。      |
+| Delete(uint64_t templateId)       | 删除pin码模板。       |
+| Cancel(uint64_t scheduleId)     | 通过scheduleId取消指定操作。  |
+| SendCommand(int32_t commandId, const std::vector<uint8_t>& extraInfo,<br/>const sptr<IExecutorCallback>& callbackObj) | 预留接口。  |
 
 **表2** 回调函数介绍
 
-| 接口名                                                       | 功能介绍             |
+| 接口名称                                                       | 功能介绍             |
 | ------------------------------------------------------------ | -------------------- |
 | IExecutorCallback::OnResult(int32_t code, const std::vector<uint8_t>& extraInfo) | 返回操作的最终结果。 |
 | IExecutorCallback::OnGetData(uint64_t scheduleId, const std::vector<uint8_t>& salt,<br/> uint64_t authSubType)| 返回获取pin码数据信息。  |
@@ -97,21 +112,21 @@ Pin_auth驱动的主要工作是为上层用户认证框架和Pin_auth服务提�
 
 ```text
 // drivers/peripheral/pin_auth
-├── BUILD.gn # 编译脚本
-├── bundle.json # 组件描述文件
-├── test # 测试用例
-└── hdi_service # Pin_auth驱动实现
-    ├── BUILD.gn # 编译脚本
-    ├── adaptor # 相关算法实现
-    ├── common # 公共接口实现
-    ├── database # 数据库实现
-    ├── main # 口令相关功能实现入口
-    └── service # Pin_auth驱动实现入口
-        ├── inc # 头文件
-        └── src
-            ├── executor_impl.cpp # 认证、录入等功能接口实现
-            ├── pin_auth_interface_driver.cpp # Pin_auth驱动入口
-            └── pin_auth_interface_service.cpp # 获取执行器列表接口实现
+├── BUILD.gn     # 编译脚本
+├── bundle.json  # 组件描述文件
+├── test         # 测试用例
+└── hdi_service  # Pin_auth驱动实现
+    ├── BUILD.gn   # 编译脚本
+    ├── adaptor    # 相关算法实现
+    ├── common     # 公共接口实现
+    ├── database   # 数据库实现
+    ├── main       # 口令相关功能实现入口
+    └── service    # Pin_auth驱动实现入口
+        ├── inc      # 头文件
+        └── src      # 源文件
+            ├── executor_impl.cpp               # 认证、录入等功能接口实现
+            ├── pin_auth_interface_driver.cpp   # Pin_auth驱动入口
+            └── pin_auth_interface_service.cpp  # 获取执行器列表接口实现
 ```
 
 下面结合DEMO实例介绍驱动开发的具体步骤。
