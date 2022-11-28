@@ -290,7 +290,7 @@ isLastWorkTimeOut(workId: number): Promise\<boolean>
 ```
 
 ## WorkInfo
-提供工作的具体信息。WorkInfo设置参数约束见[延迟任务调度概述](../../task-management/work-scheduler-overview.md)
+提供工作的具体信息。WorkInfo设置参数约束见[延迟任务调度概述](../../task-management/background-task-overview.md#延迟任务调度约束)
 
 **系统能力**：SystemCapability.ResourceSchedule.WorkScheduler
 
