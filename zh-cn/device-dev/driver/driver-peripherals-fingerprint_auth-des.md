@@ -21,7 +21,7 @@
 
 - 执行器安全等级
 
-  执行器提供能力时运行环境所达到的安全级别。
+  执行器提供能力时所在运行环境达到的安全级别。
 
 - 执行器角色
 
@@ -53,15 +53,19 @@
 
 - HAPs
 
-  HAPs（OpenHarmony Ability Packages），本章节中仅代表Fingerprint_auth驱动的上层应用。
+  HAPs（OpenHarmony Ability Packages），广义上指可以安装在OpenHarmony上的应用包，本章节中仅代表Fingerprint_auth驱动的上层应用。
 
 - IDL接口
 
-  接口定义语言（Interface Definition Language）通过IDL编译器编译后，能够生成与编程语言相关的文件：客户端桩文件，服务器框架文件。本文主要是通过IDL接口实现Fingerprint_auth服务和驱动的通信。
+  接口定义语言（Interface Definition Language）通过IDL编译器编译后，能够生成与编程语言相关的文件：客户端桩文件，服务器框架文件。本文主要是通过IDL接口生成的客户端和服务端来实现Fingerprint_auth服务和驱动的通信，详细使用方法可参考[IDL简介](https://gitee.com/openharmony/ability_idl_tool/blob/master/README.md)。
 
 - IPC通信
 
-  IPC（Inter Process Communication），进程间通信是指两个进程的数据之间产生交互。
+  IPC（Inter Process Communication），进程间通信是指两个进程的数据之间产生交互，详细原理可参考[IPC通信简介](https://gitee.com/openharmony/communication_ipc/blob/master/README_zh.md)。
+
+- HDI
+
+  HDI（Hardware Device Interface），硬件设备接口，位于基础系统服务层和设备驱动层之间，是提供给硬件系统服务开发者使用的、统一的硬件设备功能抽象接口，其目的是为系统服务屏蔽底层硬件设备差异，具体可参考[HDI规范](../../design/hdi-design-specifications.md)。
 
 ### 运作机制
 
@@ -84,24 +88,27 @@ Fingerprint_auth驱动的主要工作是为上层用户认证框架和Fingerprin
 
 ### 接口说明
 
+注：以下接口列举的为IDL接口描述生成的对应C++语言函数接口，接口声明见idl文件（/drivers/interface/fingerprint_auth/v1_0/）。
+在本文中，指纹凭据的录入、认证、识别和删除相关的HDI接口如表1所示，表2中的回调函数分别用于指纹执行器返回操作结果给框架和返回操作过程中的提示信息给上层应用。
+
 **表1** 接口功能介绍
 
-| 接口名                                                       | 功能介绍                                                     |
-| ------------------------------------------------------------ | ------------------------------------------------------------ |
-| GetExecutorList(std::vector<sptr<IExecutor>>& executorList)  | 获取执行器列表。                                             |
+| 接口名称        | 功能介绍         |
+| -------------------------------- | ----------------------------------- |
+| GetExecutorList(std::vector<sptr<IExecutor>>& executorList)  | 获取执行器列表。     |
 | GetExecutorInfo(ExecutorInfo& info)                          | 获取执行器信息，包括执行器类型、执行器角色、认证类型、安全等级、执行器公钥等信息，用于向用户认证框架注册执行器。 |
-| GetTemplateInfo(uint64_t templateId, TemplateInfo& info)     | 获取指定模板ID的模板信息。                                   |
+| GetTemplateInfo(uint64_t templateId, TemplateInfo& info)     | 获取指定模板ID的模板信息。        |
 | OnRegisterFinish(const std::vector<uint64_t>& templateIdList,<br/>        const std::vector<uint8_t>& frameworkPublicKey, const std::vector<uint8_t>& extraInfo) | 执行器注册成功后，获取用户认证框架的公钥信息；获取用户认证框架的模板列表用于对账。 |
 | Enroll(uint64_t scheduleId, const std::vector<uint8_t>& extraInfo,<br/>        const sptr<IExecutorCallback>& callbackObj) | 录入指纹模板。                                               |
-| Authenticate(uint64_t scheduleId, const std::vector<uint64_t>& templateIdList,<br/>        const std::vector<uint8_t>& extraInfo, const sptr<IExecutorCallback>& callbackObj) | 认证指纹模板。                                               |
-| Identify(uint64_t scheduleId, const std::vector<uint8_t>& extraInfo,<br/>        const sptr<IExecutorCallback>& callbackObj) | 识别指纹模板。                                               |
-| Delete(const std::vector<uint64_t>& templateIdList)          | 删除指纹模板。                                               |
-| Cancel(uint64_t scheduleId)                                  | 通过scheduleId取消指定录入、认证、识别操作。                 |
+| Authenticate(uint64_t scheduleId, const std::vector<uint64_t>& templateIdList,<br/>        const std::vector<uint8_t>& extraInfo, const sptr<IExecutorCallback>& callbackObj) | 认证指纹模板。         |
+| Identify(uint64_t scheduleId, const std::vector<uint8_t>& extraInfo,<br/>        const sptr<IExecutorCallback>& callbackObj) | 识别指纹模板。           |
+| Delete(const std::vector<uint64_t>& templateIdList)          | 删除指纹模板。        |
+| Cancel(uint64_t scheduleId)     | 通过scheduleId取消指定录入、认证、识别操作。     |
 | SendCommand(int32_t commandId, const std::vector<uint8_t>& extraInfo,<br/>        const sptr<IExecutorCallback>& callbackObj) | 指纹认证服务向Fingerprint_auth驱动传递参数的通用接口。       |
 
 **表2** 回调函数介绍
 
-| 接口名                                                       | 功能介绍                 |
+| 接口名称                                                       | 功能介绍                 |
 | ------------------------------------------------------------ | ------------------------ |
 | IExecutorCallback::OnResult(int32_t code, const std::vector<uint8_t>& extraInfo) | 返回操作的最终结果。     |
 | IExecutorCallback::OnTip(int32_t code, const std::vector<uint8_t>& extraInfo) | 返回操作的过程交互信息。 |
@@ -112,15 +119,15 @@ Fingerprint_auth驱动的主要工作是为上层用户认证框架和Fingerprin
 
 ```undefined
 // drivers/peripheral/fingerprint_auth
-├── BUILD.gn # 编译脚本
-├── bundle.json # 组件描述文件
-└── hdi_service # Fingerprint_auth驱动实现
-    ├── BUILD.gn # 编译脚本
-    ├── include # 头文件
-    └── src
-        ├── executor_impl.cpp # 认证、录入等功能接口实现
-        ├── fingerprint_auth_interface_driver.cpp # Fingerprint_auth驱动入口
-        └── fingerprint_auth_interface_service.cpp # 获取执行器列表接口实现
+├── BUILD.gn     # 编译脚本
+├── bundle.json  # 组件描述文件
+└── hdi_service  # Fingerprint_auth驱动实现
+    ├── BUILD.gn    # 编译脚本
+    ├── include     # 头文件
+    └── src         # 源文件
+        ├── executor_impl.cpp                       # 认证、录入等功能接口实现
+        ├── fingerprint_auth_interface_driver.cpp   # Fingerprint_auth驱动入口
+        └── fingerprint_auth_interface_service.cpp  # 获取执行器列表接口实现
 ```
 
 下面结合DEMO实例介绍驱动开发的具体步骤。
@@ -433,47 +440,59 @@ Fingerprint_auth驱动的主要工作是为上层用户认证框架和Fingerprin
 
 驱动开发完成后，开发者可以通过[用户认证API接口](../../application-dev/reference/apis/js-apis-useriam-userauth.md)开发JS应用，JS应用通过Fingerprint_auth服务调用Fingerprint_auth驱动，从而验证驱动开发是否符合预期。基于Hi3516DV300平台验证，认证功能验证的JS测试代码如下：
 
-```js
-// API version 8
-import userIAM_userAuth from '@ohos.userIAM.userAuth';
-let auth = new userIAM_userAuth.UserAuth();
+    ```js
+    // API version 9
+    import userIAM_userAuth from '@ohos.userIAM.userAuth';
 
-export default {
-    getVersion() {
-        console.info("start get version");
-        let version = this.auth.getVersion();
-        console.info("auth version = " + version);
-    },
+    let challenge = new Uint8Array([1, 2, 3, 4, 5, 6, 7, 8]);
+    let authType = userIAM_userAuth.UserAuthType.FINGERPRINT;
+    let authTrustLevel = userIAM_userAuth.AuthTrustLevel.ATL1;
 
-    startAuth() {
-        console.info("start auth");
-        // auth是开发者可以调用的API接口，开发者可以指定认证类型为FINGERPRINT，从而验证驱动是否向框架注册成功以及认证接口实现是否符合预期，result即为认证结果。
-        this.auth.auth(null, userIAM_userAuth.UserAuthType.FINGERPRINT, userIAM_userAuth.AuthTrustLevel.ATL1, {
-            onResult: (result, extraInfo) => {
-                try {
-                    console.info("auth onResult result = " + result);
-                    console.info("auth onResult extraInfo = " + JSON.stringify(extraInfo));
-                    if (result == userIAM_userAuth.ResultCode.SUCCESS) {
-                        // 此处添加认证成功逻辑
-                    }  else {
-                        // 此处添加认证失败逻辑
-                    }
-                } catch (e) {
-                    console.info("auth onResult error = " + e);
-                }
-            },
+    // 获取认证对象
+    let auth;
+    try {
+        auth = userIAM_userAuth.getAuthInstance(challenge, authType, authTrustLevel);
+        console.log("get auth instance success");
+    } catch (error) {
+        console.log("get auth instance failed" + error);
+    }
 
-            onAcquireInfo: (module, acquire, extraInfo) => {
-                try {
-                    console.info("auth onAcquireInfo module = " + module);
-                    console.info("auth onAcquireInfo acquire = " + acquire);
-                    console.info("auth onAcquireInfo extraInfo = " + JSON.stringify(extraInfo));
-                } catch (e) {
-                    console.info("auth onAcquireInfo error = " + e);
-                }
+    // 订阅认证结果
+    try {
+        auth.on("result", {
+            callback: (result: userIAM_userAuth.AuthResultInfo) => {
+                console.log("authV9 result " + result.result);
+                console.log("authV9 token " + result.token);
+                console.log("authV9 remainAttempts " + result.remainAttempts);
+                console.log("authV9 lockoutDuration " + result.lockoutDuration);
             }
         });
+        console.log("subscribe authentication event success");
+    } catch (error) {
+        console.log("subscribe authentication event failed " + error);
     }
-}
-```
 
+    // 开始认证
+    try {
+        auth.start();
+        console.info("authV9 start auth success");
+    } catch (error) {
+        console.info("authV9 start auth failed, error = " + error);
+    }
+
+    // 取消认证
+    try {
+        auth.cancel();
+        console.info("cancel auth success");
+    } catch (error) {
+        console.info("cancel auth failed, error = " + error);
+    }
+
+    // 取消订阅认证结果
+    try {
+        auth.off("result");
+        console.info("cancel subscribe authentication event success");
+    } catch (error) {
+        console.info("cancel subscribe authentication event failed, error = " + error);
+    }
+    ```

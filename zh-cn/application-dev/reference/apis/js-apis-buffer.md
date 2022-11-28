@@ -13,6 +13,26 @@ Buffer对象用于表示固定长度的字节序列,是专门存放二进制数�
 import buffer from '@ohos.buffer';
 ```
 
+## BufferEncoding
+
+表示支持的编码格式字符串。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+| 编码格式    | 说明                 |
+| ------- | -------------------- |
+| ascii  | 表示ascii格式。   |
+| utf8  | 表示utf8格式。   |
+| utf-8 | 表示utf8格式。 |
+| utf16le | 表示utf16小端序格式。 |
+| ucs2 | 表示utf16小端序格式。 |
+| ucs-2 | 表示utf16小端序格式。 |
+| base64 | 表示base64格式。 |
+| base64url | 表示base64格式。 |
+| latin1 | 表示ascii格式。 |
+| binary | 表示二进制格式。 |
+| hex | 表示十六进制格式。 |
+
 ## Buffer
 
 ### 属性
@@ -73,7 +93,7 @@ alloc(size: number, fill?: string | Buffer | number, encoding?: BufferEncoding):
 | -------- | -------- | -------- | -------- |
 | size | number | 是 | 指定的Buffer实例长度，单位：字节。 |
 | fill | string&nbsp;\|&nbsp;Buffer&nbsp;\|&nbsp;number | 否 | 预填充的值，默认值: 0 |
-| encoding | BufferEncoding | 否 | 编码方式（当`fill`为string时，才有意义）。 默认值: 'utf-8' |
+| encoding | [BufferEncoding](#bufferencoding) | 否 | 编码方式（当`fill`为string时，才有意义）。 默认值: 'utf-8' |
 
 **返回值：**
 
@@ -181,7 +201,7 @@ byteLength(string: string | Buffer | TypedArray | DataView | ArrayBuffer | Share
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | string | string&nbsp;\|&nbsp;Buffer&nbsp;\|&nbsp;TypedArray&nbsp;\|&nbsp;DataView&nbsp;\|&nbsp;ArrayBuffer&nbsp;\|&nbsp;SharedArrayBuffer | 是 | 指定字符串。 |
-| encoding | BufferEncoding | 否 | 编码方式。 默认值: 'utf-8' |
+| encoding | [BufferEncoding](#bufferencoding) | 否 | 编码方式。 默认值: 'utf-8' |
 
 **返回值：**
 
@@ -469,7 +489,7 @@ from(string: String, encoding?: BufferEncoding): Buffer
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | string | String | 是 | 字符串 |
-| encoding | BufferEncoding | 否 | 编码格式。 默认值: 'utf-8'。 |
+| encoding | [BufferEncoding](#bufferencoding) | 否 | 编码格式。 默认值: 'utf-8'。 |
 
 **返回值：**
 
@@ -739,7 +759,7 @@ fill(value: string | Buffer | Uint8Array | number, offset?: number, end?: number
 | value | string&nbsp;\|&nbsp;Buffer&nbsp;\|&nbsp;Uint8Array&nbsp;\|&nbsp;number | 是 | 用于填充的值。 |
 | offset | number | 否 | 起始偏移量。 默认值: 0。 |
 | end | number | 否 | 结束偏移量（不包括在内）。 默认值: buf.length。 |
-| encoding | BufferEncoding | 否 | 字符编码格式（`value`为string才有意义）。 默认值: 'utf-8'。 |
+| encoding | [BufferEncoding](#bufferencoding) | 否 | 字符编码格式（`value`为string才有意义）。 默认值: 'utf-8'。 |
 
 **返回值：**
 
@@ -785,7 +805,7 @@ includes(value: string | number | Buffer | Uint8Array, byteOffset?: number, enco
 | -------- | -------- | -------- | -------- |
 | value | string&nbsp;\|&nbsp;number&nbsp;\|&nbsp;Buffer&nbsp;\|&nbsp;Uint8Array | 是 | 要搜索的内容。 |
 | byteOffset | number | 否 | 字节偏移量。 如果为负数，则从末尾开始计算偏移量。 默认值: 0。 |
-| encoding | BufferEncoding | 否 | 字符编码格式。 默认值: 'utf-8'。 |
+| encoding | [BufferEncoding](#bufferencoding) | 否 | 字符编码格式。 默认值: 'utf-8'。 |
 
 **返回值：**
 
@@ -824,7 +844,7 @@ indexOf(value: string | number | Buffer | Uint8Array, byteOffset?: number, encod
 | -------- | -------- | -------- | -------- |
 | value | string&nbsp;\|&nbsp;number&nbsp;\|&nbsp;Buffer&nbsp;\|&nbsp;Uint8Array | 是 | 要搜索的内容。 |
 | byteOffset | number | 否 | 字节偏移量。 如果为负数，则从末尾开始计算偏移量。 默认值: 0。 |
-| encoding | BufferEncoding | 否 | 字符编码格式。 默认值: 'utf-8'。 |
+| encoding | [BufferEncoding](#bufferencoding) | 否 | 字符编码格式。 默认值: 'utf-8'。 |
 
 **返回值：**
 
@@ -894,7 +914,7 @@ lastIndexOf(value: string | number | Buffer | Uint8Array, byteOffset?: number, e
 | -------- | -------- | -------- | -------- |
 | value | string&nbsp;\|&nbsp;number&nbsp;\|&nbsp;Buffer&nbsp;\|&nbsp;Uint8Array | 是 | 要搜索的内容。 |
 | byteOffset | number | 否 | 字节偏移量。 如果为负数，则从末尾开始计算偏移量。 默认值: 0。 |
-| encoding | BufferEncoding | 否 | 字符编码格式。 默认值: 'utf-8'。 |
+| encoding | [BufferEncoding](#bufferencoding) | 否 | 字符编码格式。 默认值: 'utf-8'。 |
 
 **返回值：**
 
@@ -2196,7 +2216,7 @@ for (let value of buf1.values()) {
 
 ### write
 
-write(str: string, offset?: number, length?: number, encoding?: BufferEncoding): number
+write(str: string, offset?: number, length?: number, encoding?: string): number
 
 从buf的offset偏移写入指定编码的字符串str,写入的字节长度为length
 
@@ -2209,7 +2229,7 @@ write(str: string, offset?: number, length?: number, encoding?: BufferEncoding):
 | str | string | 是 | 要写入Buffer的字符串。 |
 | offset | number | 否 | 偏移量。 默认值: 0。 |
 | length | number | 否 | 最大字节长度。 默认值: (buf.length - offset)。|
-| encoding | BufferEncoding | 否 | 字符编码。 默认值: 'utf-8'。 |
+| encoding | string | 否 | 字符编码。 默认值: 'utf-8'。 |
 
 
 **返回值：**

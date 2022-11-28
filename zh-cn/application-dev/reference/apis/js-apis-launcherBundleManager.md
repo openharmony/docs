@@ -27,7 +27,7 @@ getLauncherAbilityInfo(bundleName: string, userId: number, callback: AsyncCallba
 
 **参数：**
 
-| 参数名     | 类型   | 必填 | 描述           |
+| 参数名     | 类型   | 必填 | 说明         |
 | ---------- | ------ | ---- | -------------- |
 | bundleName | string | 是   | 应用程序包名称。 |
 | userId     | number | 是   | 被查询的用户id。|
@@ -78,7 +78,7 @@ getLauncherAbilityInfo(bundleName: string, userId: number) : Promise<Array\<[Lau
 
 **参数：**
 
-| 参数名     | 类型   | 必填 | 描述           |
+| 参数名     | 类型   | 必填 | 说明         |
 | ---------- | ------ | ---- | -------------- |
 | bundleName | string | 是   | 应用程序包名称。|
 | userId     | number | 是   | 被查询的用户id。 |
@@ -128,7 +128,7 @@ getAllLauncherAbilityInfo(userId: number, callback: AsyncCallback<Array\<[Launch
 
 **参数：**
 
-| 参数名 | 类型   | 必填 | 描述           |
+| 参数名 | 类型   | 必填 | 说明         |
 | ------ | ------ | ---- | -------------- |
 | userId | number | 是   | 被查询的用户id。 |
 
@@ -176,7 +176,7 @@ getAllLauncherAbilityInfo(userId: number) : Promise<Array\<[LauncherAbilityInfo]
 
 **参数：**
 
-| 参数名 | 类型   | 必填 | 描述           |
+| 参数名 | 类型   | 必填 | 说明         |
 | ------ | ------ | ---- | -------------- |
 | userId | number | 是   | 被查询的用户id。 |
 
@@ -222,7 +222,7 @@ getShortcutInfo(bundleName :string, callback: AsyncCallback<Array\<[ShortcutInfo
 
 **系统能力：** SystemCapability.BundleManager.BundleFramework.Launcher
 
-| 参数名     | 类型   | 必填 | 描述           |
+| 参数名     | 类型   | 必填 | 说明         |
 | ---------- | ------ | ---- | -------------- |
 | bundleName | string | 是   | 应用程序包名称。 |
 
@@ -269,7 +269,7 @@ getShortcutInfo(bundleName : string) : Promise<Array\<[ShortcutInfo](js-apis-bun
 
 **系统能力：** SystemCapability.BundleManager.BundleFramework.Launcher
 
-| 参数名     | 类型   | 必填 | 描述           |
+| 参数名     | 类型   | 必填 | 说明         |
 | ---------- | ------ | ---- | -------------- |
 | bundleName | string | 是   | 应用程序包名称。 |
 
