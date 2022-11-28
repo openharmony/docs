@@ -172,23 +172,23 @@ export default function abilityTest() {
 
 ## 常见问题
 
-### **单元测试用例常见问题**
+### 单元测试用例常见问题
 
-#### **用例中增加的打印日志在用例结果之后才打印**
+**1、用例中增加的打印日志在用例结果之后才打印**
 
- **问题描述**
+**问题描述**
 
 用例中增加的日志打印信息，没有在用例执行过程中出现，而是在用例执行结束之后才出现。
 
-**可能原因**
+ **可能原因**
 
 此类情况只会存在于用例中有调用异步接口的情况，原则上用例中所有的日志信息均在用例执行结束之前打印。
 
-**解决方法**
+ **解决方法**
 
 当被调用的异步接口多于一个时，建议将接口调用封装成Promise方式调用。
 
-#### 执行用例时报error：fail to start ability
+**2、执行用例时报error：fail to start ability**
 
 **问题描述**
 
@@ -202,7 +202,7 @@ export default function abilityTest() {
 
 检查测试包中是否包含OpenHarmonyTestRunner.abc文件，如没有则重新编译打包后再次执行测试。
 
-#### 执行用例时报用例超时错误
+**3、执行用例时报用例超时错误**
 
 **问题描述**
 
@@ -220,13 +220,13 @@ export default function abilityTest() {
 
 2.可在IDE中Run/Debug Configurations中修改用例执行超时配置参数，避免用例执行超时。  
 
-### **UI测试用例常见问题**
+### UI测试用例常见问题
 
-#### 失败日志有“Get windows failed/GetRootByWindow failed”错误信息
+**1、失败日志有“Get windows failed/GetRootByWindow failed”错误信息**
 
 **问题描述**
 
-执行UI测试用例，用例执行失败，查看hilog日志发现日志中有“Get windows failed/GetRootByWindow failed”错误信息。
+UI测试用例执行失败，查看hilog日志发现日志中有“Get windows failed/GetRootByWindow failed”错误信息。
 
 **可能原因**
 
@@ -240,11 +240,11 @@ export default function abilityTest() {
 hdc shell param set persist.ace.testmode.enabled 1
 ```
 
-#### 失败日志有“uitest-api dose not allow calling concurrently”错误信息
+**2、失败日志有“uitest-api dose not allow calling concurrently”错误信息**
 
 **问题描述**
 
-执行UI测试用例，用例执行失败，查看hilog日志发现日志中有“uitest-api dose not allow calling concurrently”错误信息。
+UI测试用例执行失败，查看hilog日志发现日志中有“uitest-api dose not allow calling concurrently”错误信息。
 
 **可能原因**
 
@@ -258,11 +258,11 @@ hdc shell param set persist.ace.testmode.enabled 1
 
 2.避免多进程执行UI测试用例。
 
-#### 失败日志有“dose not exist on current UI! Check if the UI has changed after you got the widget object”错误信息
+**3、失败日志有“dose not exist on current UI! Check if the UI has changed after you got the widget object”错误信息**
 
 **问题描述**
 
-执行UI测试用例，用例执行失败，查看hilog日志发现日志中有“dose not exist on current UI! Check if the UI has changed after you got the widget object”错误信息。
+UI测试用例执行失败，查看hilog日志发现日志中有“dose not exist on current UI! Check if the UI has changed after you got the widget object”错误信息。
 
 **可能原因**
 
@@ -270,4 +270,4 @@ hdc shell param set persist.ace.testmode.enabled 1
 
 **解决方法**
 
-检查设备环境，重新执行，并检查用例逻辑，确保页面不会因用例中代码逻辑发生变化。
+重新执行UI测试用例。
