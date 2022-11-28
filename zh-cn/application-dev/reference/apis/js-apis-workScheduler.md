@@ -9,7 +9,7 @@
 >  - 从API Version 9 开始，该接口不再维护，推荐使用新接口[@ohos.resourceschedule.workScheduler (延迟任务调度)](js-apis-resourceschedule-workScheduler.md)。
 >  - 本模块首批接口从API version 9开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 >  - 本模块接口仅可在Stage模型下使用。
->  - 延迟任务调度约束见[延迟任务调度概述](../../task-management/work-scheduler-overview.md)。
+>  - 延迟任务调度约束见[延迟任务调度约束](../../task-management/background-task-overview.md#延迟任务调度约束)。
 
 
 ## 导入模块
