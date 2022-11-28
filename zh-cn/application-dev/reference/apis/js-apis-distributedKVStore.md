@@ -2269,7 +2269,7 @@ putBatch(entries: Entry[], callback: AsyncCallback&lt;void&gt;): void
 | 参数名   | 类型                 | 必填 | 说明                     |
 | -------- | ------------------------ | ---- | ------------------------ |
 | entries  | [Entry](#entry)[]        | 是   | 表示要批量插入的键值对。 |
-| callback | Asyncallback&lt;void&gt; | 是   | 回调函数。               |
+| callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。               |
 
 **错误码：**
 
@@ -2396,7 +2396,7 @@ putBatch(value: Array&lt;ValuesBucket&gt;, callback: AsyncCallback&lt;void&gt;):
 | 参数名   | 类型                                                     | 必填 | 说明               |
 | -------- | ------------------------------------------------------------ | ---- | ------------------ |
 | value    | Array&lt;[ValuesBucket](js-apis-data-ValuesBucket.md#valuesbucket)&gt; | 是   | 表示要插入的数据。 |
-| callback | Asyncallback&lt;void&gt;                                     | 是   | 回调函数。         |
+| callback | AsyncCallback&lt;void&gt;                                     | 是   | 回调函数。         |
 
 **错误码：**
 
@@ -2605,7 +2605,7 @@ delete(predicates: dataSharePredicates.DataSharePredicates, callback: AsyncCallb
 
 | 参数名     | 类型                                                     | 必填 | 说明                                            |
 | ---------- | ------------------------------------------------------------ | ---- | ----------------------------------------------- |
-| predicates | [DataSharePredicates](js-apis-data-dataSharePredicates.md#datasharepredicates) | 是   | 指示筛选条件,当此参数为null时，应定义处理逻辑。 |
+| predicates | [dataSharePredicates.DataSharePredicates](js-apis-data-dataSharePredicates.md#datasharepredicates) | 是   | 指示筛选条件,当此参数为null时，应定义处理逻辑。 |
 | callback   | AsyncCallback&lt;void&gt;                                    | 是   | 回调函数。                                      |
 
 **错误码：**
@@ -2651,7 +2651,7 @@ delete(predicates: dataSharePredicates.DataSharePredicates): Promise&lt;void&gt;
 
 | 参数名     | 类型                                                     | 必填 | 说明                                            |
 | ---------- | ------------------------------------------------------------ | ---- | ----------------------------------------------- |
-| predicates | [DataSharePredicates](js-apis-data-dataSharePredicates.md#datasharepredicates) | 是   | 指示筛选条件,当此参数为null时，应定义处理逻辑。 |
+| predicates | [dataSharePredicates.DataSharePredicates](js-apis-data-dataSharePredicates.md#datasharepredicates) | 是   | 指示筛选条件,当此参数为null时，应定义处理逻辑。 |
 
 **返回值：**
 
@@ -3566,7 +3566,7 @@ getResultSet(predicates: dataSharePredicates.DataSharePredicates, callback: Asyn
 
 | 参数名     | 类型                                                     | 必填 | 说明                                                         |
 | ---------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| predicates | [DataSharePredicates](js-apis-data-dataSharePredicates.md#datasharepredicates) | 是   | 指示筛选条件,当此参数为null时，应定义处理逻辑。              |
+| predicates | [dataSharePredicates.DataSharePredicates](js-apis-data-dataSharePredicates.md#datasharepredicates) | 是   | 指示筛选条件,当此参数为null时，应定义处理逻辑。              |
 | callback   | AsyncCallback&lt;[KVStoreResultSet](#kvstoreresultset)&gt;   | 是   | 回调函数，获取与指定Predicates对象匹配的KVStoreResultSet对象。 |
 
 **错误码：**
@@ -3622,7 +3622,7 @@ getResultSet(predicates: dataSharePredicates.DataSharePredicates): Promise&lt;KV
 
 | 参数名     | 类型                                                     | 必填 | 说明                                            |
 | ---------- | ------------------------------------------------------------ | ---- | ----------------------------------------------- |
-| predicates | [DataSharePredicates](js-apis-data-dataSharePredicates.md#datasharepredicates) | 是   | 指示筛选条件,当此参数为null时，应定义处理逻辑。 |
+| predicates | [dataSharePredicates.DataSharePredicates](js-apis-data-dataSharePredicates.md#datasharepredicates) | 是   | 指示筛选条件,当此参数为null时，应定义处理逻辑。 |
 
 **返回值：**
 
@@ -5311,7 +5311,7 @@ getResultSet(deviceId: string, keyPrefix: string, callback: AsyncCallback&lt;KVS
 | --------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | deviceId  | string                                                       | 是   | 标识要查询其数据的设备。                                     |
 | keyPrefix | string                                                       | 是   | 表示要匹配的键前缀。                                         |
-| callback  | AsyncCallback&lt;[KVStoreResultSet](#kvstoreresultset)[]&gt; | 是   | 回调函数。返回与指定设备ID和key前缀匹配的KVStoreResultSet对象。 |
+| callback  | AsyncCallback&lt;[KVStoreResultSet](#kvstoreresultset)&gt; | 是   | 回调函数。返回与指定设备ID和key前缀匹配的KVStoreResultSet对象。 |
 
 **错误码：**
 
@@ -5367,7 +5367,7 @@ getResultSet(deviceId: string, keyPrefix: string): Promise&lt;KVStoreResultSet&g
 
 | 类型                                                   | 说明                                                         |
 | ------------------------------------------------------ | ------------------------------------------------------------ |
-| Promise&lt;[KVStoreResultSet](#kvstoreresultset)[]&gt; | Promise对象。返回与指定设备ID和key前缀匹配的KVStoreResultSet对象。 |
+| Promise&lt;[KVStoreResultSet](#kvstoreresultset)&gt; | Promise对象。返回与指定设备ID和key前缀匹配的KVStoreResultSet对象。 |
 
 **错误码：**
 
@@ -5414,7 +5414,7 @@ getResultSet(deviceId: string, query: Query, callback: AsyncCallback&lt;KVStoreR
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | deviceId | string                                                       | 是   | KVStoreResultSet对象所属的设备ID。                           |
 | query    | [Query](query)                                               | 是   | 表示查询对象。                                               |
-| callback | AsyncCallback&lt;[KVStoreResultSet](#kvstoreresultset)[]&gt; | 是   | 回调函数。返回与指定设备ID和Query对象匹配的KVStoreResultSet对象。 |
+| callback | AsyncCallback&lt;[KVStoreResultSet](#kvstoreresultset)&gt; | 是   | 回调函数。返回与指定设备ID和Query对象匹配的KVStoreResultSet对象。 |
 
 **错误码：**
 
@@ -5491,7 +5491,7 @@ getResultSet(deviceId: string, query: Query): Promise&lt;KVStoreResultSet&gt;
 
 | 类型                                                   | 说明                                                         |
 | ------------------------------------------------------ | ------------------------------------------------------------ |
-| Promise&lt;[KVStoreResultSet](#kvstoreresultset)[]&gt; | Promise对象。返回与指定设备ID和Query对象匹配的KVStoreResultSet对象。 |
+| Promise&lt;[KVStoreResultSet](#kvstoreresultset)&gt; | Promise对象。返回与指定设备ID和Query对象匹配的KVStoreResultSet对象。 |
 
 **错误码：**
 
@@ -5561,7 +5561,7 @@ getResultSet(deviceId: string, predicates: dataSharePredicates.DataSharePredicat
 | 参数名     | 类型                                                     | 必填 | 说明                                                         |
 | ---------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | deviceId  | string                                                       | 是   | 标识要查询其数据的设备。                                     |
-| predicates | [DataSharePredicates](js-apis-data-dataSharePredicates.md#datasharepredicates) | 是   | 指示筛选条件,当此参数为null时，应定义处理逻辑。              |
+| predicates | [dataSharePredicates.DataSharePredicates](js-apis-data-dataSharePredicates.md#datasharepredicates) | 是   | 指示筛选条件,当此参数为null时，应定义处理逻辑。              |
 | callback   | AsyncCallback&lt;[KVStoreResultSet](#kvstoreresultset)&gt;   | 是   | 回调函数，获取与指定Predicates对象匹配的KVStoreResultSet对象。 |
 
 **错误码：**
@@ -5618,7 +5618,7 @@ getResultSet(deviceId: string, predicates: dataSharePredicates.DataSharePredicat
 | 参数名     | 类型                                                     | 必填 | 说明                                            |
 | ---------- | ------------------------------------------------------------ | ---- | ----------------------------------------------- |
 | deviceId  | string                                                       | 是   | 标识要查询其数据的设备。                                     |
-| predicates | [DataSharePredicates](js-apis-data-dataSharePredicates.md#datasharepredicates) | 是   | 指示筛选条件,当此参数为null时，应定义处理逻辑。 |
+| predicates | [dataSharePredicates.DataSharePredicates](js-apis-data-dataSharePredicates.md#datasharepredicates) | 是   | 指示筛选条件,当此参数为null时，应定义处理逻辑。 |
 
 **返回值：**
 

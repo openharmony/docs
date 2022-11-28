@@ -4,7 +4,36 @@
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
 > 本模块首批接口从API version 7开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
-> 从API Version 9开始，该接口不再维护，推荐使用新接口[geoLocationManager](js-apis-geoLocationManager.md)。
+
+
+## 申请权限
+
+应用在使用系统能力前，需要检查是否已经获取用户授权访问设备位置信息。如未获得授权，可以向用户申请需要的位置权限，申请方式请参考下文。
+
+系统提供的定位权限有：
+- ohos.permission.LOCATION
+
+- ohos.permission.APPROXIMATELY_LOCATION
+
+- ohos.permission.LOCATION_IN_BACKGROUND
+
+访问设备的位置信息，必须申请权限，并且获得用户授权。
+
+API9之前的版本，申请ohos.permission.LOCATION即可。
+
+API9及之后的版本，需要申请ohos.permission.APPROXIMATELY_LOCATION或者同时申请ohos.permission.APPROXIMATELY_LOCATION和ohos.permission.LOCATION；无法单独申请ohos.permission.LOCATION。
+
+| 使用的API版本 | 申请位置权限 | 申请结果 | 位置的精确度 |
+| -------- | -------- | -------- | -------- |
+| 小于9 | ohos.permission.LOCATION | 成功 | 获取到精准位置，精准度在米级别。 |
+| 大于等于9 | ohos.permission.LOCATION | 失败 | 无法获取位置。 |
+| 大于等于9 | ohos.permission.APPROXIMATELY_LOCATION | 成功 | 获取到模糊位置，精确度为5公里。 |
+| 大于等于9 | ohos.permission.APPROXIMATELY_LOCATION和ohos.permission.LOCATION | 成功 | 获取到精准位置，精准度在米级别。 |
+
+如果应用在后台运行时也需要访问设备位置，除需要将应用声明为允许后台运行外，还必须申请ohos.permission.LOCATION_IN_BACKGROUND权限，这样应用在切入后台之后，系统可以继续上报位置信息。
+
+开发者可以在应用配置文件中声明所需要的权限，具体可参考[授权申请指导](../../security/accesstoken-guidelines.md)。
+
 
 ## 导入模块
 
@@ -12,14 +41,11 @@
 import geolocation from '@ohos.geolocation';
 ```
 
-## geolocation.on('locationChange')<sup>(deprecated) </sup>
+## geolocation.on('locationChange')
 
 on(type: 'locationChange', request: LocationRequest, callback: Callback&lt;Location&gt;): void
 
 开启位置变化订阅，并发起定位请求。定位结果按照[LocationRequest](#locationrequest)的属性进行上报，
-
-> **说明：**<br/>
-> 从API version 9开始废弃，建议使用[geoLocationManager.on('locationChange')](js-apis-geoLocationManager.md#geolocationmanageronlocationchange)替代。
 
 **需要权限**：ohos.permission.LOCATION
 
@@ -47,14 +73,11 @@ on(type: 'locationChange', request: LocationRequest, callback: Callback&lt;Locat
   ```
 
 
-## geolocation.off('locationChange')<sup>(deprecated) </sup>
+## geolocation.off('locationChange')
 
 off(type: 'locationChange', callback?: Callback&lt;Location&gt;): void
 
 关闭位置变化订阅，并删除对应的定位请求。
-
-> **说明：**<br/>
-> 从API version 9开始废弃，建议使用[geoLocationManager.off('locationChange')](js-apis-geoLocationManager.md#geolocationmanagerofflocationchange)替代。
 
 **需要权限**：ohos.permission.LOCATION
 
@@ -81,14 +104,11 @@ off(type: 'locationChange', callback?: Callback&lt;Location&gt;): void
   ```
 
 
-## geolocation.on('locationServiceState')<sup>(deprecated) </sup>
+## geolocation.on('locationServiceState')
 
 on(type: 'locationServiceState', callback: Callback&lt;boolean&gt;): void
 
 订阅位置服务状态变化。
-
-> **说明：**<br/>
-> 从API version 9开始废弃，建议使用[geoLocationManager.on('locationEnabledChange')](js-apis-geoLocationManager.md#geolocationmanageronlocationenabledchange)替代。
 
 **需要权限**：ohos.permission.LOCATION
 
@@ -113,14 +133,11 @@ on(type: 'locationServiceState', callback: Callback&lt;boolean&gt;): void
   ```
 
 
-## geolocation.off('locationServiceState')<sup>(deprecated) </sup>
+## geolocation.off('locationServiceState')
 
 off(type: 'locationServiceState', callback?: Callback&lt;boolean&gt;): void;
 
 取消订阅位置服务状态变化。
-
-> **说明：**<br/>
-> 从API version 9开始废弃，建议使用[geoLocationManager.off('locationEnabledChange')](js-apis-geoLocationManager.md#geolocationmanagerofflocationenabledchange)替代。
 
 **需要权限**：ohos.permission.LOCATION
 
@@ -146,15 +163,11 @@ off(type: 'locationServiceState', callback?: Callback&lt;boolean&gt;): void;
   ```
 
 
-## geolocation.on('cachedGnssLocationsReporting')<sup>(deprecated) </sup>
+## geolocation.on('cachedGnssLocationsReporting')<sup>8+</sup>
 
 on(type: 'cachedGnssLocationsReporting', request: CachedGnssLocationsRequest, callback: Callback&lt;Array&lt;Location&gt;&gt;): void;
 
 订阅缓存GNSS定位结果上报事件。
-
-> **说明：**<br/>
-> 从API version 8开始支持。
-> 从API version 9开始废弃，建议使用[geoLocationManager.on('cachedGnssLocationsChange')](js-apis-geoLocationManager.md#geolocationmanageroncachedgnsslocationschange)替代。
 
 **需要权限**：ohos.permission.LOCATION
 
@@ -181,15 +194,11 @@ on(type: 'cachedGnssLocationsReporting', request: CachedGnssLocationsRequest, ca
   ```
 
 
-## geolocation.off('cachedGnssLocationsReporting')<sup>(deprecated) </sup>
+## geolocation.off('cachedGnssLocationsReporting')<sup>8+</sup>
 
 off(type: 'cachedGnssLocationsReporting', callback?: Callback&lt;Array&lt;Location&gt;&gt;): void;
 
 取消订阅缓存GNSS定位结果上报事件。
-
-> **说明：**<br/>
-> 从API version 8开始支持。
-> 从API version 9开始废弃，建议使用[geoLocationManager.off('cachedGnssLocationsChange')](js-apis-geoLocationManager.md#geolocationmanageroffcachedgnsslocationschange)替代。
 
 **需要权限**：ohos.permission.LOCATION
 
@@ -216,15 +225,11 @@ off(type: 'cachedGnssLocationsReporting', callback?: Callback&lt;Array&lt;Locati
   ```
 
 
-## geolocation.on('gnssStatusChange')<sup>(deprecated) </sup>
+## geolocation.on('gnssStatusChange')<sup>8+</sup>
 
 on(type: 'gnssStatusChange', callback: Callback&lt;SatelliteStatusInfo&gt;): void;
 
 订阅GNSS卫星状态信息上报事件。
-
-> **说明：**<br/>
-> 从API version 8开始支持。
-> 从API version 9开始废弃，建议使用[geoLocationManager.on('satelliteStatusChange')](js-apis-geoLocationManager.md#geolocationmanageronsatellitestatuschange)替代。
 
 **需要权限**：ohos.permission.LOCATION
 
@@ -249,15 +254,11 @@ on(type: 'gnssStatusChange', callback: Callback&lt;SatelliteStatusInfo&gt;): voi
   ```
 
 
-## geolocation.off('gnssStatusChange')<sup>(deprecated) </sup>
+## geolocation.off('gnssStatusChange')<sup>8+</sup>
 
 off(type: 'gnssStatusChange', callback?: Callback&lt;SatelliteStatusInfo&gt;): void;
 
 取消订阅GNSS卫星状态信息上报事件。
-
-> **说明：**<br/>
-> 从API version 8开始支持。
-> 从API version 9开始废弃，建议使用[geoLocationManager.off('satelliteStatusChange')](js-apis-geoLocationManager.md#geolocationmanageroffsatellitestatuschange)替代。
 
 **需要权限**：ohos.permission.LOCATION
 
@@ -282,15 +283,11 @@ off(type: 'gnssStatusChange', callback?: Callback&lt;SatelliteStatusInfo&gt;): v
   ```
 
 
-## geolocation.on('nmeaMessageChange')<sup>(deprecated) </sup>
+## geolocation.on('nmeaMessageChange')<sup>8+</sup>
 
 on(type: 'nmeaMessageChange', callback: Callback&lt;string&gt;): void;
 
 订阅GNSS NMEA信息上报事件。
-
-> **说明：**<br/>
-> 从API version 8开始支持。
-> 从API version 9开始废弃，建议使用[geoLocationManager.on('nmeaMessage')](js-apis-geoLocationManager.md#geolocationmanageronnmeamessage)替代。
 
 **需要权限**：ohos.permission.LOCATION
 
@@ -315,15 +312,11 @@ on(type: 'nmeaMessageChange', callback: Callback&lt;string&gt;): void;
   ```
 
 
-## geolocation.off('nmeaMessageChange')<sup>(deprecated) </sup>
+## geolocation.off('nmeaMessageChange')<sup>8+</sup>
 
 off(type: 'nmeaMessageChange', callback?: Callback&lt;string&gt;): void;
 
 取消订阅GNSS NMEA信息上报事件。
-
-> **说明：**<br/>
-> 从API version 8开始支持。
-> 从API version 9开始废弃，建议使用[geoLocationManager.off('nmeaMessage')](js-apis-geoLocationManager.md#geolocationmanageroffnmeamessage)替代。
 
 **需要权限**：ohos.permission.LOCATION
 
@@ -349,15 +342,11 @@ off(type: 'nmeaMessageChange', callback?: Callback&lt;string&gt;): void;
   ```
 
 
-## geolocation.on('fenceStatusChange')<sup>(deprecated) </sup>
+## geolocation.on('fenceStatusChange')<sup>8+</sup>
 
 on(type: 'fenceStatusChange', request: GeofenceRequest, want: WantAgent): void;
 
 添加一个围栏，并订阅地理围栏事件。
-
-> **说明：**<br/>
-> 从API version 8开始支持。
-> 从API version 9开始废弃，建议使用[geoLocationManager.on('gnssFenceStatusChange')](js-apis-geoLocationManager.md#geolocationmanagerongnssfencestatuschange)替代。
 
 **需要权限**：ohos.permission.LOCATION
 
@@ -398,15 +387,11 @@ on(type: 'fenceStatusChange', request: GeofenceRequest, want: WantAgent): void;
   ```
 
 
-## geolocation.off('fenceStatusChange')<sup>(deprecated) </sup>
+## geolocation.off('fenceStatusChange')<sup>8+</sup>
 
 off(type: 'fenceStatusChange', request: GeofenceRequest, want: WantAgent): void;
 
 删除一个围栏，并取消订阅该围栏事件。
-
-> **说明：**<br/>
-> 从API version 8开始支持。
-> 从API version 9开始废弃，建议使用[geoLocationManager.off('gnssFenceStatusChange')](js-apis-geoLocationManager.md#geolocationmanageroffgnssfencestatuschange)替代。
 
 **需要权限**：ohos.permission.LOCATION
 
@@ -447,14 +432,12 @@ off(type: 'fenceStatusChange', request: GeofenceRequest, want: WantAgent): void;
   ```
 
 
-## geolocation.getCurrentLocation<sup>(deprecated) </sup>
+## geolocation.getCurrentLocation
 
 getCurrentLocation(request: CurrentLocationRequest, callback: AsyncCallback&lt;Location&gt;): void
 
-获取当前位置，使用callback回调异步返回结果。
 
-> **说明：**<br/>
-> 从API version 9开始废弃，建议使用[geoLocationManager.getCurrentLocation](js-apis-geoLocationManager.md#geolocationmanagergetcurrentlocation)替代。
+获取当前位置，使用callback回调异步返回结果。
 
 **需要权限**：ohos.permission.LOCATION
 
@@ -485,14 +468,12 @@ getCurrentLocation(request: CurrentLocationRequest, callback: AsyncCallback&lt;L
   ```
 
 
-## geolocation.getCurrentLocation<sup>(deprecated) </sup>
+## geolocation.getCurrentLocation
 
 getCurrentLocation(request?: CurrentLocationRequest): Promise&lt;Location&gt;
 
-获取当前位置，使用Promise方式异步返回结果。
 
-> **说明：**<br/>
-> 从API version 9开始废弃，建议使用[geoLocationManager.getCurrentLocation](js-apis-geoLocationManager.md#geolocationmanagergetcurrentlocation-2)替代。
+获取当前位置，使用Promise方式异步返回结果。
 
 **需要权限**：ohos.permission.LOCATION
 
@@ -506,9 +487,9 @@ getCurrentLocation(request?: CurrentLocationRequest): Promise&lt;Location&gt;
 
 **返回值**：
 
-  | 参数名 | 说明 |
-  | -------- | -------- |
-  | Promise&lt;[Location](#location)&gt; | 返回位置信息。 |
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | Promise&lt;[Location](#location)&gt; |[Location](#location)|NA| 返回位置信息。 |
 
 
 **示例**
@@ -522,14 +503,11 @@ getCurrentLocation(request?: CurrentLocationRequest): Promise&lt;Location&gt;
   ```
 
 
-## geolocation.getLastLocation<sup>(deprecated) </sup>
+## geolocation.getLastLocation
 
 getLastLocation(callback: AsyncCallback&lt;Location&gt;): void
 
 获取上一次位置，使用callback回调异步返回结果。
-
-> **说明：**<br/>
-> 从API version 9开始废弃，建议使用[geoLocationManager.getLastLocation](js-apis-geoLocationManager.md#geolocationmanagergetlastlocation)替代。
 
 **需要权限**：ohos.permission.LOCATION
 
@@ -557,14 +535,11 @@ getLastLocation(callback: AsyncCallback&lt;Location&gt;): void
   ```
 
 
-## geolocation.getLastLocation<sup>(deprecated) </sup>
+## geolocation.getLastLocation
 
 getLastLocation(): Promise&lt;Location&gt;
 
 获取上一次位置，使用Promise方式异步返回结果。
-
-> **说明：**<br/>
-> 从API version 9开始废弃，建议使用[geoLocationManager.getLastLocation](js-apis-geoLocationManager.md#geolocationmanagergetlastlocation)替代。
 
 **需要权限**：ohos.permission.LOCATION
 
@@ -572,9 +547,9 @@ getLastLocation(): Promise&lt;Location&gt;
 
 **返回值**：
 
-  | 参数名 | 说明 |
-  | -------- | -------- |
-  | Promise&lt;[Location](#location)&gt; | 返回上次位置信息。 |
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | Promise&lt;[Location](#location)&gt; | [Location](#location)|NA|返回上次位置信息。 |
 
 
 **示例**
@@ -587,14 +562,12 @@ getLastLocation(): Promise&lt;Location&gt;
   ```
 
 
-## geolocation.isLocationEnabled<sup>(deprecated) </sup>
+## geolocation.isLocationEnabled
 
 isLocationEnabled(callback: AsyncCallback&lt;boolean&gt;): void
 
-判断位置服务是否已经打开，使用callback回调异步返回结果。
 
-> **说明：**<br/>
-> 从API version 9开始废弃，建议使用[geoLocationManager.isLocationEnabled](js-apis-geoLocationManager.md#geolocationmanagerislocationenabled)替代。
+判断位置服务是否已经打开，使用callback回调异步返回结果。
 
 **需要权限**：ohos.permission.LOCATION
 
@@ -621,14 +594,11 @@ isLocationEnabled(callback: AsyncCallback&lt;boolean&gt;): void
   ```
 
 
-## geolocation.isLocationEnabled<sup>(deprecated) </sup>
+## geolocation.isLocationEnabled
 
 isLocationEnabled(): Promise&lt;boolean&gt;
 
 判断位置服务是否已经开启，使用Promise方式异步返回结果。
-
-> **说明：**<br/>
-> 从API version 9开始废弃，建议使用[geoLocationManager.isLocationEnabled](js-apis-geoLocationManager.md#geolocationmanagerislocationenabled)替代。
 
 **需要权限**：ohos.permission.LOCATION
 
@@ -636,9 +606,9 @@ isLocationEnabled(): Promise&lt;boolean&gt;
 
 **返回值**：
 
-  | 参数名 | 说明 |
-  | -------- | -------- |
-  | Promise&lt;boolean&gt; | 返回位置服务是否可用的状态。 |
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | Promise&lt;boolean&gt; | boolean|NA|返回位置服务是否可用的状态。 |
 
 **示例**
   
@@ -650,14 +620,12 @@ isLocationEnabled(): Promise&lt;boolean&gt;
   ```
 
 
-## geolocation.requestEnableLocation<sup>(deprecated) </sup>
+## geolocation.requestEnableLocation
 
 requestEnableLocation(callback: AsyncCallback&lt;boolean&gt;): void
 
-请求打开位置服务，使用callback回调异步返回结果。
 
-> **说明：**<br/>
-> 从API version 9开始废弃，建议使用[geoLocationManager.requestEnableLocation](js-apis-geoLocationManager.md#geolocationmanagerrequestenablelocation)替代。
+请求打开位置服务，使用callback回调异步返回结果。
 
 **需要权限**：ohos.permission.LOCATION
 
@@ -684,14 +652,11 @@ requestEnableLocation(callback: AsyncCallback&lt;boolean&gt;): void
   ```
 
 
-## geolocation.requestEnableLocation<sup>(deprecated) </sup>
+## geolocation.requestEnableLocation
 
 requestEnableLocation(): Promise&lt;boolean&gt;
 
 请求打开位置服务，使用Promise方式异步返回结果。
-
-> **说明：**<br/>
-> 从API version 9开始废弃，建议使用[geoLocationManager.requestEnableLocation](js-apis-geoLocationManager.md#geolocationmanagerrequestenablelocation-1)替代。
 
 **需要权限**：ohos.permission.LOCATION
 
@@ -699,9 +664,9 @@ requestEnableLocation(): Promise&lt;boolean&gt;
 
 **返回值**：
 
-  | 参数名 | 说明 |
-  | -------- | -------- |
-  | Promise&lt;boolean&gt; | 返回位置服务是否可用。 |
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | Promise&lt;boolean&gt; | boolean|NA|返回位置服务是否可用。 |
 
 **示例**
   
@@ -713,14 +678,131 @@ requestEnableLocation(): Promise&lt;boolean&gt;
   ```
 
 
-## geolocation.isGeoServiceAvailable<sup>(deprecated) </sup>
+## geolocation.enableLocation
+
+enableLocation(callback: AsyncCallback&lt;boolean&gt;): void;
+
+打开位置服务，使用callback回调异步返回结果。
+
+**系统API**：此接口为系统接口，三方应用不支持调用。
+
+**需要权限**：ohos.permission.MANAGE_SECURE_SETTINGS
+
+**系统能力**：SystemCapability.Location.Location.Core
+
+**参数**：
+
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | callback | AsyncCallback&lt;boolean&gt; | 是 | 用来接收位置服务状态的回调。 |
+
+**示例**
+  
+  ```ts
+  import geolocation from '@ohos.geolocation';
+  geolocation.enableLocation((err, data) => {
+      if (err) {
+          console.log('enableLocation: err=' + JSON.stringify(err));
+      }
+      if (data) {
+          console.log('enableLocation: data=' + JSON.stringify(data));
+      }
+  });
+  ```
+
+
+## geolocation.enableLocation
+
+enableLocation(): Promise&lt;boolean&gt;
+
+打开位置服务，使用Promise方式异步返回结果。
+
+**系统API**：此接口为系统接口，三方应用不支持调用。
+
+**需要权限**：ohos.permission.MANAGE_SECURE_SETTINGS
+
+**系统能力**：SystemCapability.Location.Location.Core
+
+**返回值**：
+
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | Promise&lt;boolean&gt; | boolean|NA|返回位置服务是否可用。 |
+
+**示例**
+  
+  ```ts
+  import geolocation from '@ohos.geolocation';
+  geolocation.enableLocation().then((result) => {
+      console.log('promise, enableLocation: ' + JSON.stringify(result));
+  });
+  ```
+
+## geolocation.disableLocation
+
+disableLocation(callback: AsyncCallback&lt;boolean&gt;): void;
+
+关闭位置服务，使用callback回调异步返回结果。
+
+**系统API**：此接口为系统接口，三方应用不支持调用。
+
+**需要权限**：ohos.permission.MANAGE_SECURE_SETTINGS
+
+**系统能力**：SystemCapability.Location.Location.Core
+
+**参数**：
+
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | callback | AsyncCallback&lt;boolean&gt; | 是 | 用来接收位置服务状态的回调。 |
+
+**示例**
+  
+  ```ts
+  import geolocation from '@ohos.geolocation';
+  geolocation.disableLocation((err, data) => {
+      if (err) {
+          console.log('disableLocation: err=' + JSON.stringify(err));
+      }
+      if (data) {
+          console.log('disableLocation: data=' + JSON.stringify(data));
+      }
+  });
+  ```
+
+
+## geolocation.disableLocation
+
+disableLocation(): Promise&lt;boolean&gt;
+
+关闭位置服务，使用Promise方式异步返回结果。
+
+**系统API**：此接口为系统接口，三方应用不支持调用。
+
+**需要权限**：ohos.permission.MANAGE_SECURE_SETTINGS
+
+**系统能力**：SystemCapability.Location.Location.Core
+
+**返回值**：
+
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | Promise&lt;boolean&gt; | boolean|NA|返回位置服务是否可用。 |
+
+**示例**
+  
+  ```ts
+  import geolocation from '@ohos.geolocation';
+  geolocation.disableLocation().then((result) => {
+      console.log('promise, disableLocation: ' + JSON.stringify(result));
+  });
+  ```
+
+## geolocation.isGeoServiceAvailable
 
 isGeoServiceAvailable(callback: AsyncCallback&lt;boolean&gt;): void
 
 判断（逆）地理编码服务状态，使用callback回调异步返回结果。
-
-> **说明：**<br/>
-> 从API version 9开始废弃，建议使用[geoLocationManager.isGeocoderAvailable](js-apis-geoLocationManager.md#geolocationmanagerisgeocoderavailable)替代。
 
 **需要权限**：ohos.permission.LOCATION
 
@@ -747,14 +829,11 @@ isGeoServiceAvailable(callback: AsyncCallback&lt;boolean&gt;): void
   ```
 
 
-## geolocation.isGeoServiceAvailable<sup>(deprecated) </sup>
+## geolocation.isGeoServiceAvailable
 
 isGeoServiceAvailable(): Promise&lt;boolean&gt;
 
 判断（逆）地理编码服务状态，使用Promise方式异步返回结果。
-
-> **说明：**<br/>
-> 从API version 9开始废弃，建议使用[geoLocationManager.isGeocoderAvailable](js-apis-geoLocationManager.md#geolocationmanagerisgeocoderavailable)替代。
 
 **需要权限**：ohos.permission.LOCATION
 
@@ -762,9 +841,9 @@ isGeoServiceAvailable(): Promise&lt;boolean&gt;
 
 **返回值**：
 
-  | 参数名 | 说明 |
-  | -------- | -------- |
-  | Promise&lt;boolean&gt; | 返回地理编码服务是否可用的状态。 |
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | Promise&lt;boolean&gt; |boolean|NA| 返回地理编码服务是否可用的状态。 |
 
 **示例**
   
@@ -776,14 +855,11 @@ isGeoServiceAvailable(): Promise&lt;boolean&gt;
   ```
 
 
-## geolocation.getAddressesFromLocation<sup>(deprecated) </sup>
+## geolocation.getAddressesFromLocation
 
 getAddressesFromLocation(request: ReverseGeoCodeRequest, callback: AsyncCallback&lt;Array&lt;GeoAddress&gt;&gt;): void
 
 调用逆地理编码服务，将坐标转换为地理描述，使用callback回调异步返回结果。
-
-> **说明：**<br/>
-> 从API version 9开始废弃，建议使用[geoLocationManager.getAddressesFromLocation](js-apis-geoLocationManager.md#geolocationmanagergetaddressesfromlocation)替代。
 
 **需要权限**：ohos.permission.LOCATION
 
@@ -812,14 +888,11 @@ getAddressesFromLocation(request: ReverseGeoCodeRequest, callback: AsyncCallback
   ```
 
 
-## geolocation.getAddressesFromLocation<sup>(deprecated) </sup>
+## geolocation.getAddressesFromLocation
 
 getAddressesFromLocation(request: ReverseGeoCodeRequest): Promise&lt;Array&lt;GeoAddress&gt;&gt;;
 
 调用逆地理编码服务，将坐标转换为地理描述，使用Promise方式异步返回结果。
-
-> **说明：**<br/>
-> 从API version 9开始废弃，建议使用[geoLocationManager.getAddressesFromLocation](js-apis-geoLocationManager.md#geolocationmanagergetaddressesfromlocation-1)替代。
 
 **需要权限**：ohos.permission.LOCATION
 
@@ -833,9 +906,9 @@ getAddressesFromLocation(request: ReverseGeoCodeRequest): Promise&lt;Array&lt;Ge
 
 **返回值**：
 
-  | 参数名 | 说明 |
-  | -------- | -------- |
-  | Promise&lt;Array&lt;[GeoAddress](#geoaddress)&gt;&gt; | 返回地理描述信息。 |
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | Promise&lt;Array&lt;[GeoAddress](#geoaddress)&gt;&gt; | Array&lt;[GeoAddress](#geoaddress)&gt;|NA|返回地理描述信息。 |
 
 **示例**
   
@@ -848,14 +921,11 @@ getAddressesFromLocation(request: ReverseGeoCodeRequest): Promise&lt;Array&lt;Ge
   ```
 
 
-## geolocation.getAddressesFromLocationName<sup>(deprecated) </sup>
+## geolocation.getAddressesFromLocationName
 
 getAddressesFromLocationName(request: GeoCodeRequest, callback: AsyncCallback&lt;Array&lt;GeoAddress&gt;&gt;): void
 
 调用地理编码服务，将地理描述转换为具体坐标，使用callback回调异步返回结果。
-
-> **说明：**<br/>
-> 从API version 9开始废弃，建议使用[geoLocationManager.getAddressesFromLocationName](js-apis-geoLocationManager.md#geolocationmanagergetaddressesfromlocationname)替代。
 
 **需要权限**：ohos.permission.LOCATION
 
@@ -884,14 +954,11 @@ getAddressesFromLocationName(request: GeoCodeRequest, callback: AsyncCallback&lt
   ```
 
 
-## geolocation.getAddressesFromLocationName<sup>(deprecated) </sup>
+## geolocation.getAddressesFromLocationName
 
 getAddressesFromLocationName(request: GeoCodeRequest): Promise&lt;Array&lt;GeoAddress&gt;&gt;
 
 调用地理编码服务，将地理描述转换为具体坐标，使用Promise方式异步返回结果。
-
-> **说明：**<br/>
-> 从API version 9开始废弃，建议使用[geoLocationManager.getAddressesFromLocationName](js-apis-geoLocationManager.md#geolocationmanagergetaddressesfromlocationname-1)替代。
 
 **需要权限**：ohos.permission.LOCATION
 
@@ -905,9 +972,9 @@ getAddressesFromLocationName(request: GeoCodeRequest): Promise&lt;Array&lt;GeoAd
 
 **返回值**：
 
-  | 参数名 | 说明 |
-  | -------- | -------- |
-  | Promise&lt;Array&lt;[GeoAddress](#geoaddress)&gt;&gt; | 设置接收地理编码请求的回调参数。 |
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | Promise&lt;Array&lt;[GeoAddress](#geoaddress)&gt;&gt; | Array&lt;[GeoAddress](#geoaddress)&gt;|NA|设置接收地理编码请求的回调参数。 |
 
 **示例**
   
@@ -920,15 +987,11 @@ getAddressesFromLocationName(request: GeoCodeRequest): Promise&lt;Array&lt;GeoAd
   ```
 
 
-## geolocation.getCachedGnssLocationsSize<sup>(deprecated) </sup>
+## geolocation.getCachedGnssLocationsSize<sup>8+</sup>
 
 getCachedGnssLocationsSize(callback: AsyncCallback&lt;number&gt;): void;
 
 获取GNSS芯片缓存位置的个数。
-
-> **说明：**<br/>
-> 从API version 8开始支持。
-> 从API version 9开始废弃，建议使用[geoLocationManager.getCachedGnssLocationsSize](js-apis-geoLocationManager.md#geolocationmanagergetcachedgnsslocationssize)替代。
 
 **需要权限**：ohos.permission.LOCATION
 
@@ -955,15 +1018,11 @@ getCachedGnssLocationsSize(callback: AsyncCallback&lt;number&gt;): void;
   ```
 
 
-## geolocation.getCachedGnssLocationsSize<sup>(deprecated) </sup>
+## geolocation.getCachedGnssLocationsSize<sup>8+</sup>
 
 getCachedGnssLocationsSize(): Promise&lt;number&gt;;
 
 获取GNSS芯片缓存位置的个数。
-
-> **说明：**<br/>
-> 从API version 8开始支持。
-> 从API version 9开始废弃，建议使用[geoLocationManager.getCachedGnssLocationsSize](js-apis-geoLocationManager.md#geolocationmanagergetcachedgnsslocationssize-1)替代。
 
 **需要权限**：ohos.permission.LOCATION
 
@@ -971,9 +1030,9 @@ getCachedGnssLocationsSize(): Promise&lt;number&gt;;
 
 **返回值**：
 
-  | 参数名 | 说明 |
-  | -------- | -------- |
-  | Promise&lt;number&gt; | 返回GNSS缓存位置的个数。 |
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | Promise&lt;number&gt; | number|NA|返回GNSS缓存位置的个数。 |
 
 **示例**
   
@@ -985,15 +1044,11 @@ getCachedGnssLocationsSize(): Promise&lt;number&gt;;
   ```
 
 
-## geolocation.flushCachedGnssLocations<sup>(deprecated) </sup>
+## geolocation.flushCachedGnssLocations<sup>8+</sup>
 
 flushCachedGnssLocations(callback: AsyncCallback&lt;boolean&gt;): void;
 
 读取并清空GNSS芯片所有缓存位置。
-
-> **说明：**<br/>
-> 从API version 8开始支持。
-> 从API version 9开始废弃，建议使用[geoLocationManager.flushCachedGnssLocations](js-apis-geoLocationManager.md#geolocationmanagerflushcachedgnsslocations)替代。
 
 **需要权限**：ohos.permission.LOCATION
 
@@ -1020,15 +1075,11 @@ flushCachedGnssLocations(callback: AsyncCallback&lt;boolean&gt;): void;
   ```
 
 
-## geolocation.flushCachedGnssLocations<sup>(deprecated) </sup>
+## geolocation.flushCachedGnssLocations<sup>8+</sup>
 
 flushCachedGnssLocations(): Promise&lt;boolean&gt;;
 
 读取并清空GNSS芯片所有缓存位置。
-
-> **说明：**<br/>
-> 从API version 8开始支持。
-> 从API version 9开始废弃，建议使用[geoLocationManager.flushCachedGnssLocations](js-apis-geoLocationManager.md#geolocationmanagerflushcachedgnsslocations-1)替代。
 
 **需要权限**：ohos.permission.LOCATION
 
@@ -1036,9 +1087,9 @@ flushCachedGnssLocations(): Promise&lt;boolean&gt;;
 
 **返回值**：
 
-  | 参数名 | 说明 |
-  | -------- | -------- |
-  | Promise&lt;boolean&gt; | 清空所有GNSS缓存位置是否成功。 |
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | Promise&lt;boolean&gt; |boolean|NA| 清空所有GNSS缓存位置是否成功。 |
 
 **示例**
   
@@ -1050,15 +1101,11 @@ flushCachedGnssLocations(): Promise&lt;boolean&gt;;
   ```
 
 
-## geolocation.sendCommand<sup>(deprecated) </sup>
+## geolocation.sendCommand<sup>8+</sup>
 
 sendCommand(command: LocationCommand, callback: AsyncCallback&lt;boolean&gt;): void;
 
 给位置服务子系统的各个部件发送扩展命令。
-
-> **说明：**<br/>
-> 从API version 8开始支持。
-> 从API version 9开始废弃，建议使用[geoLocationManager.sendCommand](js-apis-geoLocationManager.md#geolocationmanagersendcommand)替代。
 
 **需要权限**：ohos.permission.LOCATION
 
@@ -1087,15 +1134,11 @@ sendCommand(command: LocationCommand, callback: AsyncCallback&lt;boolean&gt;): v
   ```
 
 
-## geolocation.sendCommand<sup>(deprecated) </sup>
+## geolocation.sendCommand<sup>8+</sup>
 
 sendCommand(command: LocationCommand): Promise&lt;boolean&gt;;
 
 给位置服务子系统的各个部件发送扩展命令。
-
-> **说明：**<br/>
-> 从API version 8开始支持。
-> 从API version 9开始废弃，建议使用[geoLocationManager.sendCommand](js-apis-geoLocationManager.md#geolocationmanagersendcommand)替代。
 
 **需要权限**：ohos.permission.LOCATION
 
@@ -1109,9 +1152,9 @@ sendCommand(command: LocationCommand): Promise&lt;boolean&gt;;
 
 **返回值**：
 
-  | 参数名 | 说明 |
-  | -------- | -------- |
-  | Promise&lt;boolean&gt; | 表示命令发送成功或失败。 |
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | Promise&lt;boolean&gt; |boolean|NA| 表示命令发送成功或失败。 |
 
 **示例**
   
@@ -1124,12 +1167,10 @@ sendCommand(command: LocationCommand): Promise&lt;boolean&gt;;
   ```
 
 
-## LocationRequestPriority<sup>(deprecated) </sup>
+
+## LocationRequestPriority
 
 位置请求中位置信息优先级设置。
-
-> **说明：**<br/>
-> 从API version 9开始废弃，建议使用[geoLocationManager.LocationRequestPriority](js-apis-geoLocationManager.md#locationrequestpriority)替代。
 
 **需要权限**：ohos.permission.LOCATION
 
@@ -1143,12 +1184,9 @@ sendCommand(command: LocationCommand): Promise&lt;boolean&gt;;
 | FIRST_FIX | 0x203 | 表示快速获取位置优先，如果应用希望快速拿到1个位置，可以将优先级设置为该字段。 |
 
 
-## LocationRequestScenario<sup>(deprecated) </sup>
+## LocationRequestScenario
 
   位置请求中定位场景设置。
-
-> **说明：**<br/>
-> 从API version 9开始废弃，建议使用[geoLocationManager.LocationRequestScenario](js-apis-geoLocationManager.md#locationrequestscenario)替代。
 
 **需要权限**：ohos.permission.LOCATION
 
@@ -1164,12 +1202,9 @@ sendCommand(command: LocationCommand): Promise&lt;boolean&gt;;
 | NO_POWER | 0x305 | 表示无功耗功场景，这种场景下不会主动触发定位，会在其他应用定位时，才给当前应用返回位置。 |
 
 
-## GeoLocationErrorCode<sup>(deprecated) </sup>
+## GeoLocationErrorCode
 
 位置服务中的错误码信息。
-
-> **说明：**<br/>
-> 从API version 9开始废弃。
 
 **需要权限**：ohos.permission.LOCATION
 
@@ -1186,12 +1221,9 @@ sendCommand(command: LocationCommand): Promise&lt;boolean&gt;;
 | LOCATION_REQUEST_TIMEOUT_ERROR<sup>7+</sup> | 107 | 表示单次定位，没有在指定时间内返回位置。 |
 
 
-## ReverseGeoCodeRequest<sup>(deprecated) </sup>
+## ReverseGeoCodeRequest
 
 逆地理编码请求接口。
-
-> **说明：**<br/>
-> 从API version 9开始废弃，建议使用[geoLocationManager.ReverseGeoCodeRequest](js-apis-geoLocationManager.md#reversegeocoderequest)替代。
 
 **需要权限**：ohos.permission.LOCATION
 
@@ -1205,12 +1237,9 @@ sendCommand(command: LocationCommand): Promise&lt;boolean&gt;;
 | maxItems | number | 是 | 是 | 指定返回位置信息的最大个数。 |
 
 
-## GeoCodeRequest<sup>(deprecated) </sup>
+## GeoCodeRequest
 
 地理编码请求接口。
-
-> **说明：**<br/>
-> 从API version 9开始废弃，建议使用[geoLocationManager.GeoCodeRequest](js-apis-geoLocationManager.md#geocoderequest)替代。
 
 **需要权限**：ohos.permission.LOCATION
 
@@ -1227,12 +1256,9 @@ sendCommand(command: LocationCommand): Promise&lt;boolean&gt;;
 | maxLongitude | number | 是 | 是 | 表示最大经度信息。 |
 
 
-## GeoAddress<sup>(deprecated) </sup>
+## GeoAddress
 
 地理编码类型。
-
-> **说明：**<br/>
-> 从API version 9开始废弃，建议使用[geoLocationManager.GeoAddress](js-apis-geoLocationManager.md#geoaddress)替代。
 
 **需要权限**：ohos.permission.LOCATION
 
@@ -1260,12 +1286,9 @@ sendCommand(command: LocationCommand): Promise&lt;boolean&gt;;
 | descriptionsSize<sup>7+</sup> | number | 是 | 否 | 表示附加的描述信息数量。 |
 
 
-## LocationRequest<sup>(deprecated) </sup>
+## LocationRequest
 
 位置信息请求类型。
-
-> **说明：**<br/>
-> 从API version 9开始废弃，建议使用[geoLocationManager.LocationRequest](js-apis-geoLocationManager.md#locationrequest)替代。
 
 **需要权限**：ohos.permission.LOCATION
 
@@ -1280,12 +1303,9 @@ sendCommand(command: LocationCommand): Promise&lt;boolean&gt;;
 | maxAccuracy | number | 是 | 是 | 表示精度信息。仅在精确位置功能场景下有效，模糊位置功能生效场景下该字段无意义。 |
 
 
-## CurrentLocationRequest<sup>(deprecated) </sup>
+## CurrentLocationRequest
 
 当前位置信息请求类型。
-
-> **说明：**<br/>
-> 从API version 9开始废弃，建议使用[geoLocationManager.CurrentLocationRequest](js-apis-geoLocationManager.md#currentlocationrequest)替代。
 
 **需要权限**：ohos.permission.LOCATION
 
@@ -1299,13 +1319,9 @@ sendCommand(command: LocationCommand): Promise&lt;boolean&gt;;
 | timeoutMs | number | 是 | 是 | 表示超时时间，单位是毫秒，最小为1000毫秒。 |
 
 
-## SatelliteStatusInfo<sup>(deprecated) </sup>
+## SatelliteStatusInfo<sup>8+</sup>
 
 卫星状态信息。
-
-> **说明：**<br/>
-> 从API version 8开始支持。
-> 从API version 9开始废弃，建议使用[geoLocationManager.SatelliteStatusInfo](js-apis-geoLocationManager.md#satellitestatusinfo)替代。
 
 **需要权限**：ohos.permission.LOCATION
 
@@ -1321,13 +1337,9 @@ sendCommand(command: LocationCommand): Promise&lt;boolean&gt;;
 | carrierFrequencies | Array&lt;number&gt; | 是 | 否 | 表示载波频率。 |
 
 
-## CachedGnssLocationsRequest<sup>(deprecated) </sup>
+## CachedGnssLocationsRequest<sup>8+</sup>
 
 请求订阅GNSS缓存位置上报功能接口的配置参数。
-
-> **说明：**<br/>
-> 从API version 8开始支持。
-> 从API version 9开始废弃，建议使用[geoLocationManager.CachedGnssLocationsRequest](js-apis-geoLocationManager.md#cachedgnsslocationsrequest)替代。
 
 **需要权限**：ohos.permission.LOCATION
 
@@ -1339,13 +1351,9 @@ sendCommand(command: LocationCommand): Promise&lt;boolean&gt;;
 | wakeUpCacheQueueFull | boolean | 是 | 是  | true表示GNSS芯片底层缓存队列满之后会主动唤醒AP芯片，并把缓存位置上报给应用。<br/>false表示GNSS芯片底层缓存队列满之后不会主动唤醒AP芯片，会把缓存位置直接丢弃。 |
 
 
-## Geofence<sup>(deprecated) </sup>
+## Geofence<sup>8+</sup>
 
 GNSS围栏的配置参数。目前只支持圆形围栏。
-
-> **说明：**<br/>
-> 从API version 8开始支持。
-> 从API version 9开始废弃，建议使用[geoLocationManager.Geofence](js-apis-geoLocationManager.md#geofence)替代。
 
 **需要权限**：ohos.permission.LOCATION
 
@@ -1359,13 +1367,9 @@ GNSS围栏的配置参数。目前只支持圆形围栏。
 | expiration | number | 是 | 是  | 围栏存活的时间，单位是毫秒。 |
 
 
-## GeofenceRequest<sup>(deprecated) </sup>
+## GeofenceRequest<sup>8+</sup>
 
 请求添加GNSS围栏消息中携带的参数，包括定位优先级、定位场景和围栏信息。
-
-> **说明：**<br/>
-> 从API version 8开始支持。
-> 从API version 9开始废弃，建议使用[geoLocationManager.GeofenceRequest](js-apis-geoLocationManager.md#geofencerequest)替代。
 
 **需要权限**：ohos.permission.LOCATION
 
@@ -1378,13 +1382,9 @@ GNSS围栏的配置参数。目前只支持圆形围栏。
 | geofence | [Geofence](#geofence)| 是 | 是  | 表示围栏信息。 |
 
 
-## LocationPrivacyType<sup>(deprecated) </sup>
+## LocationPrivacyType<sup>8+</sup>
 
 定位服务隐私协议类型。
-
-> **说明：**<br/>
-> 从API version 8开始支持。
-> 从API version 9开始废弃，建议使用[geoLocationManager.LocationPrivacyType](js-apis-geoLocationManager.md#locationprivacytype)替代。
 
 **需要权限**：ohos.permission.LOCATION
 
@@ -1397,13 +1397,9 @@ GNSS围栏的配置参数。目前只支持圆形围栏。
 | CORE_LOCATION | 2 | 开启网络定位时弹出的隐私协议。 |
 
 
-## LocationCommand<sup>(deprecated) </sup>
+## LocationCommand<sup>8+</sup>
 
 扩展命令结构体。
-
-> **说明：**<br/>
-> 从API version 8开始支持。
-> 从API version 9开始废弃，建议使用[geoLocationManager.LocationCommand](js-apis-geoLocationManager.md#locationcommand)替代。
 
 **需要权限**：ohos.permission.LOCATION
 
@@ -1415,12 +1411,9 @@ GNSS围栏的配置参数。目前只支持圆形围栏。
 | command | string | 是 | 是  | 扩展命令字符串。 |
 
 
-## Location<sup>(deprecated) </sup>
+## Location
 
 位置信息类型。
-
-> **说明：**<br/>
-> 从API version 9开始废弃，建议使用[geoLocationManager.Location](js-apis-geoLocationManager.md#location)替代。
 
 **需要权限**：ohos.permission.LOCATION
 

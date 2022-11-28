@@ -30,7 +30,7 @@ showToast(options: ShowToastOptions): void
 
 以下错误码的详细介绍请参见[ohos.promptAction(弹窗)](../errorcodes/errorcode-promptAction.md)错误码。
 
-| 错误码ID   | 错误码信息 |
+| 错误码ID   | 错误信息 |
 | --------- | ------- |
 | 100001    | Internal error. |
 
@@ -86,7 +86,7 @@ showDialog(options: ShowDialogOptions): Promise&lt;ShowDialogSuccessResponse&gt;
 
 以下错误码的详细介绍请参见[ohos.promptAction(弹窗)](../errorcodes/errorcode-promptAction.md)错误码。
 
-| 错误码ID   | 错误码信息 |
+| 错误码ID   | 错误信息 |
 | --------- | ------- |
 | 100001    | Internal error. |
 
@@ -140,7 +140,7 @@ showDialog(options: ShowDialogOptions, callback: AsyncCallback&lt;ShowDialogSucc
 
 以下错误码的详细介绍请参见[ohos.promptAction(弹窗)](../errorcodes/errorcode-promptAction.md)错误码。
 
-| 错误码ID   | 错误码信息 |
+| 错误码ID   | 错误信息 |
 | --------- | ------- |
 | 100001    | Internal error. |
 
@@ -216,7 +216,7 @@ showActionMenu(options: ActionMenuOptions, callback: AsyncCallback&lt;ActionMenu
 
 以下错误码的详细介绍请参见[ohos.promptAction(弹窗)](../errorcodes/errorcode-promptAction.md)错误码。
 
-| 错误码ID   | 错误码信息 |
+| 错误码ID   | 错误信息 |
 | --------- | ------- |
 | 100001    | Internal error. |
 
@@ -274,7 +274,7 @@ showActionMenu(options: ActionMenuOptions): Promise&lt;ActionMenuSuccessResponse
 
 以下错误码的详细介绍请参见[ohos.promptAction(弹窗)](../errorcodes/errorcode-promptAction.md)错误码。
 
-| 错误码ID   | 错误码信息 |
+| 错误码ID   | 错误信息 |
 | --------- | ------- |
 | 100001    | Internal error. |
 

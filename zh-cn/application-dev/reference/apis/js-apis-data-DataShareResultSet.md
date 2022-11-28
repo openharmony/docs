@@ -53,7 +53,7 @@ dataShareHelper.query(uri, da, columns).then((data) => {
 
 **系统能力：**  SystemCapability.DistributedDataManager.DataShare.Core
 
-| 名称        | 参数类型      | 必填 | 说明                     |
+| 名称        | 类型      | 必填 | 说明                     |
 | ----------- | ------------- | ---- | ------------------------ |
 | columnNames | Array&lt;string&gt; | 是   | 结果集中所有列的名称。   |
 | columnCount | number        | 是   | 结果集中的列数。         |
