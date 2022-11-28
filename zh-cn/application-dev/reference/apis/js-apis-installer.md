@@ -115,17 +115,17 @@ install(hapFilePaths: Array&lt;string&gt;, installParam: InstallParam, callback:
 
 以下错误码的详细介绍请参见[ohos.bundle错误码](../errorcodes/errorcode-bundle.md)。
 
-| 错误码ID | 错误信息                                               |
-| -------- | ------------------------------------------------------ |
-| 17700004 | The specified userId is not existed.                    |
-| 17700010 | To parse file of config.json or module.json failed.     |
-| 17700011 | To verify signature failed.                             |
-| 17700012 | Invalid hap file path or too large file size.           |
-| 17700015 | Multiple haps have inconsistent configured information. |
-| 17700016 | No disk space left for installation.                    |
-| 17700017 | Downgrade installation is prohibited.                   |
-| 17700101 | The system service is excepted.                         |
-| 17700103 | I/O operation is failed.                                |
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 17700004 | The specified user ID is not found.                          |
+| 17700010 | Failed to install the HAP because the HAP fails to be parsed. |
+| 17700011 | Failed to install the HAP because the HAP signature fails to be verified. |
+| 17700012 | Failed to install the HAP because the HAP path is invalid or the HAP is too large. |
+| 17700015 | Failed to install the HAPs because they have different configuration information. |
+| 17700016 | Failed to install the HAP because of insufficient system disk space. |
+| 17700017 | Failed to install the HAP since the version of the HAP to install is too early. |
+| 17700101 | The system service is excepted.                              |
+| 17700103 | I/O operation is failed.                                     |
 
 **示例：**
 
@@ -181,9 +181,9 @@ uninstall(bundleName: string, installParam: InstallParam, callback: AsyncCallbac
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 17700004 | The specified userId is not existed.                          |
+| 17700004 | The specified user ID is not found.                          |
 | 17700020 | The specified bundle is pre-installed bundle which cannot be uninstalled. |
-| 17700101 | The system service is excepted.                               |
+| 17700101 | The system service is excepted.                              |
 
 **示例：**
 
@@ -239,7 +239,7 @@ recover(bundleName: string, installParam: InstallParam, callback: AsyncCallback&
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
-| 17700004 | The specified userId is not existed. |
+| 17700004 | The specified user ID is not found. |
 
 **示例：**
 

@@ -138,7 +138,7 @@ getDefaultApplication(type: string, userId?: number): Promise\<BundleInfo>
 
 | 错误码ID | 错误信息                                  |
 | -------- | ----------------------------------------- |
-| 17700004 | The specified user id is not found.       |
+| 17700004 | The specified user ID is not found.       |
 | 17700023 | The specified default app does not exist. |
 | 17700025 | The specified type is invalid.            |
 
@@ -189,7 +189,7 @@ getDefaultApplication(type: string, userId: number, callback: AsyncCallback\<Bun
 
 | 错误码ID | 错误信息                                  |
 | -------- | ----------------------------------------- |
-| 17700004 | The specified user id is not found.       |
+| 17700004 | The specified user ID is not found.       |
 | 17700023 | The specified default app does not exist. |
 | 17700025 | The specified type is invalid.            |
 
@@ -240,7 +240,7 @@ getDefaultApplication(type: string, callback: AsyncCallback\<BundleInfo>) : void
 
 | 错误码ID | 错误信息                                  |
 | -------- | ----------------------------------------- |
-| 17700004 | The specified user id is not found.       |
+| 17700004 | The specified user ID is not found.       |
 | 17700023 | The specified default app does not exist. |
 | 17700025 | The specified type is invalid.            |
 
@@ -302,9 +302,9 @@ setDefaultApplication(type: string, elementName: ElementName, userId?: number): 
 
 | 错误码ID | 错误信息                                       |
 | -------- | ---------------------------------------------- |
-| 17700004 | The specified user id is not found.            |
+| 17700004 | The specified user ID is not found.            |
 | 17700025 | The specified type is invalid.                 |
-| 17700028 | The specified ability and type does not match. |
+| 17700028 | The specified ability does not match the type. |
 
 **示例：**
 
@@ -369,9 +369,9 @@ setDefaultApplication(type: string, elementName: ElementName, userId: number, ca
 
 | 错误码ID | 错误信息                                       |
 | -------- | ---------------------------------------------- |
-| 17700004 | The specified user id is not found.            |
+| 17700004 | The specified user ID is not found.            |
 | 17700025 | The specified type is invalid.                 |
-| 17700028 | The specified ability and type does not match. |
+| 17700028 | The specified ability does not match the type. |
 
 **示例：**
 
@@ -429,9 +429,9 @@ setDefaultApplication(type: string, elementName: ElementName, callback: AsyncCal
 
 | 错误码ID | 错误信息                                       |
 | -------- | ---------------------------------------------- |
-| 17700004 | The specified user id is not found.            |
+| 17700004 | The specified user ID is not found.            |
 | 17700025 | The specified type is invalid.                 |
-| 17700028 | The specified ability and type does not match. |
+| 17700028 | The specified ability does not match the type. |
 
 **示例：**
 
@@ -487,7 +487,7 @@ resetDefaultApplication(type: string, userId?: number): Promise\<void>
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
-| 17700004 | The specified user id is not found. |
+| 17700004 | The specified user ID is not found. |
 | 17700025 | The specified type is invalid.      |
 
 **示例：**
@@ -538,7 +538,7 @@ resetDefaultApplication(type: string, userId: number, callback: AsyncCallback\<v
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
-| 17700004 | The specified user id is not found. |
+| 17700004 | The specified user ID is not found. |
 | 17700025 | The specified type is invalid.      |
 
 **示例：**
@@ -588,7 +588,7 @@ resetDefaultApplication(type: string, callback: AsyncCallback\<void>) : void;
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
-| 17700004 | The specified user id is not found. |
+| 17700004 | The specified user ID is not found. |
 | 17700025 | The specified type is invalid.      |
 
 **示例：**
