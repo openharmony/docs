@@ -5854,10 +5854,10 @@ WindowStage生命周期。
 
 | 名称       | 值 | 说明       |
 | ---------- | ------ | ---------- |
-| SHOWN      | 1      | 切到前台。 |
+| FOREGROUND | 1      | 切到前台。 |
 | ACTIVE     | 2      | 获焦状态。 |
 | INACTIVE   | 3      | 失焦状态。 |
-| HIDDEN     | 4      | 切到后台。 |
+| BACKGROUND | 4      | 切到后台。 |
 
 ## WindowStage<sup>9+</sup>
 
