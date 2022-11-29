@@ -4,12 +4,12 @@ WantAgent模块提供了触发、取消、比较WantAgent实例和获取bundle�
 
 > **说明：**
 > 
-> 本模块首批接口从API version 7开始支持，从API version 9废弃，替换模块为[@ohos.app.ability.wantAgent](js-apis-app-ability-wantAgent.md)。后续版本的新增接口，采用上角标单独标记接口的起始版本。  
+> 本模块首批接口从API version 9开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。  
 
 ## 导入模块
 
 ```js
-import WantAgent from '@ohos.wantAgent';
+import WantAgent from '@ohos.app.ability.wantAgent';
 ```
 
 ## WantAgent.getWantAgent
@@ -30,7 +30,7 @@ getWantAgent(info: WantAgentInfo, callback: AsyncCallback\<WantAgent\>): void
 **示例：**
 
 ```js
-import WantAgent from '@ohos.wantAgent';
+import WantAgent from '@ohos.app.ability.wantAgent';
 
 //getWantAgent回调
 function getWantAgentCallback(err, data) {
@@ -64,7 +64,11 @@ var wantAgentInfo = {
     wantAgentFlags:[WantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
 }
 
-WantAgent.getWantAgent(wantAgentInfo, getWantAgentCallback)
+try {
+    WantAgent.getWantAgent(wantAgentInfo, getWantAgentCallback)
+} catch (paramError) {
+    console.log("error: " + paramError.code + ", " + paramError.message);
+}
 ```
 
 
@@ -92,7 +96,7 @@ getWantAgent(info: WantAgentInfo): Promise\<WantAgent\>
 **示例：**
 
 ```js
-import WantAgent from '@ohos.wantAgent';
+import WantAgent from '@ohos.app.ability.wantAgent';
 
 
 //WantAgentInfo对象
@@ -123,9 +127,13 @@ var wantAgentInfo = {
     wantAgentFlags:[WantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
 }
 
-WantAgent.getWantAgent(wantAgentInfo).then((data) => {
-	console.info("==========================>getWantAgentCallback=======================>");
-});
+try {
+    WantAgent.getWantAgent(wantAgentInfo).then((data) => {
+	    console.info("==========================>getWantAgentCallback=======================>");
+    });
+} catch (paramError) {
+    console.log("error: " + paramError.code + ", " + paramError.message);
+}
 ```
 
 
@@ -148,7 +156,7 @@ getBundleName(agent: WantAgent, callback: AsyncCallback\<string\>): void
 **示例：**
 
 ```js
-import WantAgent from '@ohos.wantAgent';
+import WantAgent from '@ohos.app.ability.wantAgent';
 
 
 //wantAgent对象
@@ -191,13 +199,17 @@ var wantAgentInfo = {
     wantAgentFlags:[WantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
 }
 
-WantAgent.getWantAgent(wantAgentInfo, getWantAgentCallback)
+try {
+    WantAgent.getWantAgent(wantAgentInfo, getWantAgentCallback)
 
-//getBundleName回调
-function getBundleNameCallback(err, data) {
-	console.info("==========================>getBundleNameCallback=======================>");
+    //getBundleName回调
+    function getBundleNameCallback(err, data) {
+	    console.info("==========================>getBundleNameCallback=======================>");
+    }
+    WantAgent.getBundleName(wantAgent, getBundleNameCallback)
+} catch (paramError) {
+    console.log("error: " + paramError.code + ", " + paramError.message);
 }
-WantAgent.getBundleName(wantAgent, getBundleNameCallback)
 ```
 
 
@@ -225,7 +237,7 @@ getBundleName(agent: WantAgent): Promise\<string\>
 **示例：**
 
 ```js
-import WantAgent from '@ohos.wantAgent';
+import WantAgent from '@ohos.app.ability.wantAgent';
 
 
 //wantAgent对象
@@ -259,14 +271,18 @@ var wantAgentInfo = {
     wantAgentFlags:[WantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
 }
 
-WantAgent.getWantAgent(wantAgentInfo).then((data) => {
-	console.info("==========================>getWantAgentCallback=======================>");
-    wantAgent = data;
-});
+try {
+    WantAgent.getWantAgent(wantAgentInfo).then((data) => {
+	    console.info("==========================>getWantAgentCallback=======================>");
+        wantAgent = data;
+    });
 
-WantAgent.getBundleName(wantAgent).then((data) => {
-	console.info("==========================>getBundleNameCallback=======================>");
-});
+    WantAgent.getBundleName(wantAgent).then((data) => {
+	    console.info("==========================>getBundleNameCallback=======================>");
+    });
+} catch (paramError) {
+    console.log("error: " + paramError.code + ", " + paramError.message);
+}
 ```
 
 
@@ -289,7 +305,7 @@ getUid(agent: WantAgent, callback: AsyncCallback\<number\>): void
 **示例：**
 
 ```js
-import WantAgent from '@ohos.wantAgent';
+import WantAgent from '@ohos.app.ability.wantAgent';
 
 
 //wantAgent对象
@@ -332,13 +348,17 @@ var wantAgentInfo = {
     wantAgentFlags:[WantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
 }
 
-WantAgent.getWantAgent(wantAgentInfo, getWantAgentCallback)
+try {
+    WantAgent.getWantAgent(wantAgentInfo, getWantAgentCallback)
 
-//getUid回调
-function getUidCallback(err, data) {
-	console.info("==========================>getUidCallback=======================>");
+    //getUid回调
+    function getUidCallback(err, data) {
+	    console.info("==========================>getUidCallback=======================>");
+    }
+    WantAgent.getUid(wantAgent, getUidCallback)
+} catch (paramError) {
+    console.log("error: " + paramError.code + ", " + paramError.message);
 }
-WantAgent.getUid(wantAgent, getUidCallback)
 ```
 
 
@@ -366,7 +386,7 @@ getUid(agent: WantAgent): Promise\<number\>
 **示例：**
 
 ```js
-import WantAgent from '@ohos.wantAgent';
+import WantAgent from '@ohos.app.ability.wantAgent';
 
 
 //wantAgent对象
@@ -400,14 +420,18 @@ var wantAgentInfo = {
     wantAgentFlags:[WantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
 }
 
-WantAgent.getWantAgent(wantAgentInfo).then((data) => {
-	console.info("==========================>getWantAgentCallback=======================>");
-    wantAgent = data;
-});
+try {
+    WantAgent.getWantAgent(wantAgentInfo).then((data) => {
+	    console.info("==========================>getWantAgentCallback=======================>");
+        wantAgent = data;
+    });
 
-WantAgent.getUid(wantAgent).then((data) => {
-	console.info("==========================>getUidCallback=======================>");
-});
+    WantAgent.getUid(wantAgent).then((data) => {
+	    console.info("==========================>getUidCallback=======================>");
+    });
+} catch (paramError) {
+    console.log("error: " + paramError.code + ", " + paramError.message);
+}
 ```
 
 
@@ -432,7 +456,7 @@ getWant(agent: WantAgent, callback: AsyncCallback\<Want\>): void
 **示例：**
 
 ```js
-import WantAgent from '@ohos.wantAgent';
+import WantAgent from '@ohos.app.ability.wantAgent';
 
 
 //wantAgent对象
@@ -475,13 +499,17 @@ var wantAgentInfo = {
     wantAgentFlags:[WantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
 }
 
-WantAgent.getWantAgent(wantAgentInfo, getWantAgentCallback)
+try {
+    WantAgent.getWantAgent(wantAgentInfo, getWantAgentCallback)
 
-//getWant回调
-function getWantCallback(err, data) {
-	console.info("==========================>getWantCallback=======================>");
+    //getWant回调
+    function getWantCallback(err, data) {
+	    console.info("==========================>getWantCallback=======================>");
+    }
+    WantAgent.getWant(wantAgent, getWantCallback)
+} catch (paramError) {
+    console.log("error: " + paramError.code + ", " + paramError.message);
 }
-WantAgent.getWant(wantAgent, getWantCallback)
 ```
 
 
@@ -511,7 +539,7 @@ getWant(agent: WantAgent): Promise\<Want\>
 **示例：**
 
 ```js
-import WantAgent from '@ohos.wantAgent';
+import WantAgent from '@ohos.app.ability.wantAgent';
 
 
 //wantAgent对象
@@ -545,14 +573,18 @@ var wantAgentInfo = {
     wantAgentFlags:[WantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
 }
 
-WantAgent.getWantAgent(wantAgentInfo).then((data) => {
-	console.info("==========================>getWantAgentCallback=======================>");
-    wantAgent = data;
-});
+try {
+    WantAgent.getWantAgent(wantAgentInfo).then((data) => {
+	    console.info("==========================>getWantAgentCallback=======================>");
+        wantAgent = data;
+    });
 
-WantAgent.getWant(wantAgent).then((data) => {
-	console.info("==========================>getWantCallback=======================>");
-});
+    WantAgent.getWant(wantAgent).then((data) => {
+	    console.info("==========================>getWantCallback=======================>");
+    });
+} catch (paramError) {
+    console.log("error: " + paramError.code + ", " + paramError.message);
+}
 ```
 
 
@@ -575,7 +607,7 @@ cancel(agent: WantAgent, callback: AsyncCallback\<void\>): void
 **示例：**
 
 ```js
-import WantAgent from '@ohos.wantAgent';
+import WantAgent from '@ohos.app.ability.wantAgent';
 
 
 //wantAgent对象
@@ -618,13 +650,17 @@ var wantAgentInfo = {
     wantAgentFlags:[WantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
 }
 
-WantAgent.getWantAgent(wantAgentInfo, getWantAgentCallback)
+try {
+    WantAgent.getWantAgent(wantAgentInfo, getWantAgentCallback)
 
-//cancel回调
-function cancelCallback(err, data) {
-	console.info("==========================>cancelCallback=======================>");
+    //cancel回调
+    function cancelCallback(err, data) {
+	    console.info("==========================>cancelCallback=======================>");
+    }
+    WantAgent.cancel(wantAgent, cancelCallback)
+} catch (paramError) {
+    console.log("error: " + paramError.code + ", " + paramError.message);
 }
-WantAgent.cancel(wantAgent, cancelCallback)
 ```
 
 
@@ -652,7 +688,7 @@ cancel(agent: WantAgent): Promise\<void\>
 **示例：**
 
 ```js
-import WantAgent from '@ohos.wantAgent';
+import WantAgent from '@ohos.app.ability.wantAgent';
 
 
 //wantAgent对象
@@ -686,14 +722,18 @@ var wantAgentInfo = {
     wantAgentFlags:[WantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
 }
 
-WantAgent.getWantAgent(wantAgentInfo).then((data) => {
-	console.info("==========================>getWantAgentCallback=======================>");
-    wantAgent = data;
-});
+try {
+    WantAgent.getWantAgent(wantAgentInfo).then((data) => {
+	    console.info("==========================>getWantAgentCallback=======================>");
+        wantAgent = data;
+    });
 
-WantAgent.cancel(wantAgent).then((data) => {
-	console.info("==========================>cancelCallback=======================>");
-});
+    WantAgent.cancel(wantAgent).then((data) => {
+	    console.info("==========================>cancelCallback=======================>");
+    });
+} catch (paramError) {
+    console.log("error: " + paramError.code + ", " + paramError.message);
+}
 ```
 
 
@@ -717,7 +757,7 @@ trigger(agent: WantAgent, triggerInfo: TriggerInfo, callback?: Callback\<Complet
 **示例：**
 
 ```js
-import WantAgent from '@ohos.wantAgent';
+import WantAgent from '@ohos.app.ability.wantAgent';
 
 
 //wantAgent对象
@@ -760,17 +800,22 @@ var wantAgentInfo = {
     wantAgentFlags:[WantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
 }
 
-WantAgent.getWantAgent(wantAgentInfo, getWantAgentCallback)
+try {
+    WantAgent.getWantAgent(wantAgentInfo, getWantAgentCallback)
 
-//trigger回调
-function triggerCallback(data) {
-	console.info("==========================>triggerCallback=======================>");
-}
+    //trigger回调
+    function triggerCallback(data) {
+	    console.info("==========================>triggerCallback=======================>");
+    }
 
-var triggerInfo = {
-    code:0
+
+    var triggerInfo = {
+        code:0
+    }
+    WantAgent.trigger(wantAgent, triggerInfo, triggerCallback)
+} catch (paramError) {
+    console.log("error: " + paramError.code + ", " + paramError.message);
 }
-WantAgent.trigger(wantAgent, triggerInfo, triggerCallback)
 ```
 
 
@@ -794,7 +839,7 @@ equal(agent: WantAgent, otherAgent: WantAgent, callback: AsyncCallback\<boolean\
 **示例：**
 
 ```js
-import WantAgent from '@ohos.wantAgent';
+import WantAgent from '@ohos.app.ability.wantAgent';
 
 
 //wantAgent对象
@@ -839,13 +884,17 @@ var wantAgentInfo = {
     wantAgentFlags:[WantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
 }
 
-WantAgent.getWantAgent(wantAgentInfo, getWantAgentCallback)
+try {
+    WantAgent.getWantAgent(wantAgentInfo, getWantAgentCallback)
 
-//equal回调
-function equalCallback(err, data) {
-	console.info("==========================>equalCallback=======================>");
+    //equal回调
+    function equalCallback(err, data) {
+	    console.info("==========================>equalCallback=======================>");
+    }
+    WantAgent.equal(wantAgent1, wantAgent2, equalCallback)
+} catch (paramError) {
+    console.log("error: " + paramError.code + ", " + paramError.message);
 }
-WantAgent.equal(wantAgent1, wantAgent2, equalCallback)
 ```
 
 
@@ -874,7 +923,7 @@ equal(agent: WantAgent, otherAgent: WantAgent): Promise\<boolean\>
 **示例：**
 
 ```js
-import WantAgent from '@ohos.wantAgent';
+import WantAgent from '@ohos.app.ability.wantAgent';
 
 
 //wantAgent对象
@@ -909,18 +958,22 @@ var wantAgentInfo = {
     wantAgentFlags:[WantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
 }
 
-WantAgent.getWantAgent(wantAgentInfo).then((data) => {
-	console.info("==========================>getWantAgentCallback=======================>");
-    wantAgent1 = data;
-    wantAgent2 = data;
-});
+try {
+    WantAgent.getWantAgent(wantAgentInfo).then((data) => {
+	    console.info("==========================>getWantAgentCallback=======================>");
+        wantAgent1 = data;
+        wantAgent2 = data;
+    });
 
-WantAgent.equal(wantAgent1, wantAgent2).then((data) => {
-	console.info("==========================>equalCallback=======================>");
-});
+    WantAgent.equal(wantAgent1, wantAgent2).then((data) => {
+	    console.info("==========================>equalCallback=======================>");
+    });
+} catch (paramError) {
+    console.log("error: " + paramError.code + ", " + paramError.message);
+}
 ```
 
-## WantAgent.getOperationType<sup>9+</sup>
+## WantAgent.getOperationType
 
 getOperationType(agent: WantAgent, callback: AsyncCallback\<number>): void;
 
@@ -938,7 +991,7 @@ getOperationType(agent: WantAgent, callback: AsyncCallback\<number>): void;
 **示例：**
 
 ```js
-import WantAgent from '@ohos.wantAgent';
+import WantAgent from '@ohos.app.ability.wantAgent';
 
 //wantAgent对象
 var wantAgent;
@@ -971,17 +1024,21 @@ var wantAgentInfo = {
     wantAgentFlags:[WantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
 }
 
-WantAgent.getWantAgent(wantAgentInfo).then((data) => {
-	console.info("==========================>getWantAgentCallback=======================>");
-    wantAgent = data;
-});
+try {
+    WantAgent.getWantAgent(wantAgentInfo).then((data) => {
+	    console.info("==========================>getWantAgentCallback=======================>");
+        wantAgent = data;
+    });
 
-WantAgent.getOperationType(wantAgent, (OperationType) => {
-    console.log('----------- getOperationType ----------, OperationType: ' + OperationType);
-})
+    WantAgent.getOperationType(wantAgent, (OperationType) => {
+        console.log('----------- getOperationType ----------, OperationType: ' + OperationType);
+    })
+} catch (paramError) {
+    console.log("error: " + paramError.code + ", " + paramError.message);
+}
 ```
 
-## WantAgent.getOperationType<sup>9+</sup>
+## WantAgent.getOperationType
 
 getOperationType(agent: WantAgent): Promise\<number>;
 
@@ -1004,7 +1061,7 @@ getOperationType(agent: WantAgent): Promise\<number>;
 **示例：**
 
 ```js
-import WantAgent from '@ohos.wantAgent';
+import WantAgent from '@ohos.app.ability.wantAgent';
 
 //wantAgent对象
 var wantAgent;
@@ -1037,16 +1094,20 @@ var wantAgentInfo = {
     wantAgentFlags:[WantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
 }
 
-WantAgent.getWantAgent(wantAgentInfo).then((data) => {
-	console.info("==========================>getWantAgentCallback=======================>");
-    wantAgent = data;
-});
+try {
+    WantAgent.getWantAgent(wantAgentInfo).then((data) => {
+	    console.info("==========================>getWantAgentCallback=======================>");
+        wantAgent = data;
+    });
 
-WantAgent.getOperationType(wantAgent).then((OperationType) => {
-    console.log('getOperationType success, OperationType: ' + OperationType);
-}).catch((err) => {
-    console.log('getOperationType fail, err: ' + err);
-})
+    WantAgent.getOperationType(wantAgent).then((OperationType) => {
+        console.log('getOperationType success, OperationType: ' + OperationType);
+    }).catch((err) => {
+        console.log('getOperationType fail, err: ' + err);
+    })
+} catch (paramError) {
+    console.log("error: " + paramError.code + ", " + paramError.message);
+}
 ```
 
 

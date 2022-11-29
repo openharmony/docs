@@ -9,7 +9,7 @@ quickFixManager模块提供快速修复的能力，快速修复是OpenHarmony提
 ## 导入模块
 
 ```
-import quickFixManager from '@ohos.application.quickFixManager';
+import quickFixManager from '@ohos.app.ability.quickFixManager';
 ```
 
 ## HapModuleQuickFixInfo
@@ -65,16 +65,20 @@ applyQuickFix(hapModuleQuickFixFiles: Array\<string>, callback: AsyncCallback\<v
 **示例：**
     
 ```js
-  import quickFixManager from '@ohos.application.quickFixManager'
+  import quickFixManager from '@ohos.app.ability.quickFixManager'
 
-  let hapModuleQuickFixFiles = ["/data/storage/el2/base/entry.hqf"]
-  quickFixManager.applyQuickFix(hapModuleQuickFixFiles, (error) => {
+  try {
+    let hapModuleQuickFixFiles = ["/data/storage/el2/base/entry.hqf"]
+    quickFixManager.applyQuickFix(hapModuleQuickFixFiles, (error) => {
       if (error) {
           console.info( `applyQuickFix failed with error + ${error}`)
       } else {
           console.info( 'applyQuickFix success')
       }
-  })
+    })
+  } catch (paramError) {
+    console.log("error: " + paramError.code + ", " + paramError.message);
+  }
 ```
 
 ## quickFixManager.applyQuickFix
@@ -104,14 +108,18 @@ applyQuickFix(hapModuleQuickFixFiles: Array\<string>): Promise\<void>;
 **示例：**
     
 ```js
-  import quickFixManager from '@ohos.application.quickFixManager'
+  import quickFixManager from '@ohos.app.ability.quickFixManager'
 
   let hapModuleQuickFixFiles = ["/data/storage/el2/base/entry.hqf"]
-  quickFixManager.applyQuickFix(hapModuleQuickFixFiles).then(() => {
-    console.info('applyQuickFix success')
-  }).catch((error) => {
-    console.info(`applyQuickFix err: + ${error}`)
-  })
+  try {
+    quickFixManager.applyQuickFix(hapModuleQuickFixFiles).then(() => {
+      console.info('applyQuickFix success')
+    }).catch((error) => {
+      console.info(`applyQuickFix err: + ${error}`)
+    })
+  } catch (paramError) {
+    console.log("error: " + paramError.code + ", " + paramError.message);
+  }
 ```
 
 ## quickFixManager.getApplicationQuickFixInfo
@@ -136,16 +144,20 @@ getApplicationQuickFixInfo(bundleName: string, callback: AsyncCallback\<Applicat
 **示例：**
     
 ```js
-  import quickFixManager from '@ohos.application.quickFixManager'
+  import quickFixManager from '@ohos.app.ability.quickFixManager'
 
-  let bundleName = "bundleName"
-  quickFixManager.getApplicationQuickFixInfo(bundleName, (error, data) => {
-    if (error) {
-      console.info(`getApplicationQuickFixInfo error: + ${error}`)
-    } else {
-      console.info(`getApplicationQuickFixInfo success: + ${data}`)
-    }
-  })  
+  try {
+    let bundleName = "bundleName"
+    quickFixManager.getApplicationQuickFixInfo(bundleName, (error, data) => {
+      if (error) {
+        console.info(`getApplicationQuickFixInfo error: + ${error}`)
+      } else {
+        console.info(`getApplicationQuickFixInfo success: + ${data}`)
+      }
+    })
+  } catch (paramError) {
+    console.log("error: " + paramError.code + ", " + paramError.message);
+  }  
 ```
 
 ## quickFixManager.getApplicationQuickFixInfo
@@ -175,12 +187,16 @@ getApplicationQuickFixInfo(bundleName: string): Promise\<ApplicationQuickFixInfo
 **示例：**
     
   ```js 
-  import quickFixManager from '@ohos.application.quickFixManager'
+  import quickFixManager from '@ohos.app.ability.quickFixManager'
 
-  let bundleName = "bundleName"
-  quickFixManager.getApplicationQuickFixInfo(bundleName).then((data) => {
-    console.info(`getApplicationQuickFixInfo success: + ${data}`)
-  }).catch((error) => {
-    console.info(`getApplicationQuickFixInfo err: + ${error}`)
-  })
+  try {
+    let bundleName = "bundleName"
+    quickFixManager.getApplicationQuickFixInfo(bundleName).then((data) => {
+      console.info(`getApplicationQuickFixInfo success: + ${data}`)
+    }).catch((error) => {
+      console.info(`getApplicationQuickFixInfo err: + ${error}`)
+    })
+  } catch (paramError) {
+    console.log("error: " + paramError.code + ", " + paramError.message);
+  }
 ```

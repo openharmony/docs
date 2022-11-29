@@ -4,14 +4,14 @@ AbilityLifecycleCallback模块提供应用上下文ApplicationContext的生命�
 
 > **说明：**
 > 
-> 本模块首批接口从API version 9 开始支持，从API version 9废弃，替换模块为[@ohos.app.ability.AbilityLifecycleCallback](js-apis-app-ability-abilityLifecycleCallback.md)。后续版本的新增接口，采用上角标单独标记接口的起始版本。  
+> 本模块首批接口从API version 9 开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。  
 > 本模块接口仅可在Stage模型下使用。
 
 
 ## 导入模块
 
 ```js
-import AbilityLifecycleCallback from "@ohos.application.AbilityLifecycleCallback";
+import AbilityLifecycleCallback from "@ohos.app.ability.AbilityLifecycleCallback";
 ```
 
 
@@ -198,12 +198,12 @@ onAbilityContinue(ability: Ability): void;
           // 1.通过context属性获取applicationContext
           let applicationContext = this.context.getApplicationContext();
           // 2.通过applicationContext注册监听应用内生命周期
-          let lifecycleid = applicationContext.registerAbilityLifecycleCallback(AbilityLifecycleCallback);
+          let lifecycleid = applicationContext.on("abilityLifecycle", AbilityLifecycleCallback);
           console.log("registerAbilityLifecycleCallback number: " + JSON.stringify(lifecycleid));       
       },
       onDestroy() {
           let applicationContext = this.context.getApplicationContext();
-          applicationContext.unregisterAbilityLifecycleCallback(lifecycleid, (error, data) => {
+          applicationContext.off("abilityLifecycle", lifecycleid, (error, data) => {
               console.log("unregisterAbilityLifecycleCallback success, err: " + JSON.stringify(error));
           });
       }

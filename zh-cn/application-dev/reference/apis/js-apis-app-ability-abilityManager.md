@@ -4,13 +4,13 @@ AbilityManager模块提供对Ability相关信息和状态信息进行获取、�
 
 > **说明：**
 >
-> 本模块首批接口从API version 8开始支持, 从API version 9废弃，替换模块为[@ohos.app.ability.abilityManager](js-apis-app-ability-abilityManager.md)。后续版本的新增接口，采用上角标单独标记接口的起始版本。  
+> 本模块首批接口从API version 9开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。  
 > 本模块接口均为系统接口，三方应用不支持调用。
 
 ## 导入模块
 
 ```js
-import AbilityManager from '@ohos.application.abilityManager'
+import AbilityManager from '@ohos.app.ability.abilityManager'
 ```
 
 ## AbilityState
@@ -43,21 +43,26 @@ updateConfiguration(config: Configuration, callback: AsyncCallback\<void>): void
 
 | 名称        | 类型                                       | 必填   | 描述             |
 | --------- | ---------------------------------------- | ---- | -------------- |
-| config    | [Configuration](js-apis-configuration.md)   | 是    | 新的配置项。 |
+| config    | [Configuration](js-apis-app-ability-configuration.md)   | 是    | 新的配置项。 |
 | callback  | AsyncCallback\<void>                   | 是    | 被指定的回调方法。      |
 
 **示例**：
 
 ```js
-import abilitymanager from '@ohos.application.abilityManager';
+import abilitymanager from '@ohos.app.ability.abilityManager';
 
 var config = {
   language: 'chinese' 
 }
 
-abilitymanager.updateConfiguration(config, () => {
+try {
+  abilitymanager.updateConfiguration(config, () => {
     console.log('------------ updateConfiguration -----------');
-})
+  })
+} catch (paramError) {
+  console.log('error.code: ' + JSON.stringify(paramError.code) +
+    ' error.message: ' + JSON.stringify(paramError.message));
+}
 ```
 
 ## updateConfiguration
@@ -74,7 +79,7 @@ updateConfiguration(config: Configuration): Promise\<void>
 
 | 名称        | 类型                                       | 必填   | 描述             |
 | --------- | ---------------------------------------- | ---- | -------------- |
-| config    | [Configuration](js-apis-configuration.md)   | 是    | 新的配置项。 |
+| config    | [Configuration](js-apis-app-ability-configuration.md)   | 是    | 新的配置项。 |
 
 **返回值：**
 
@@ -85,17 +90,22 @@ updateConfiguration(config: Configuration): Promise\<void>
 **示例**：
 
 ```js
-import abilitymanager from '@ohos.application.abilityManager';
+import abilitymanager from '@ohos.app.ability.abilityManager';
 
 var config = {
   language: 'chinese' 
 }
 
-abilitymanager.updateConfiguration(config).then(() => {
-  console.log('updateConfiguration success');
-}).catch((err) => {
-  console.log('updateConfiguration fail');
-})
+try {
+  abilitymanager.updateConfiguration(config).then(() => {
+    console.log('updateConfiguration success');
+  }).catch((err) => {
+    console.log('updateConfiguration fail');
+  })
+} catch (paramError) {
+  console.log('error.code: ' + JSON.stringify(paramError.code) +
+    ' error.message: ' + JSON.stringify(paramError.message));
+}
 ```
 
 ## getAbilityRunningInfos
@@ -117,11 +127,16 @@ getAbilityRunningInfos(callback: AsyncCallback\<Array\<AbilityRunningInfo>>): vo
 **示例**：
 
 ```js
-import abilitymanager from '@ohos.application.abilityManager';
+import abilitymanager from '@ohos.app.ability.abilityManager';
 
-abilitymanager.getAbilityRunningInfos((err,data) => { 
+try {
+  abilitymanager.getAbilityRunningInfos((err,data) => { 
     console.log("getAbilityRunningInfos err: "  + err + " data: " + JSON.stringify(data));
-});
+  });
+} catch (paramError) {
+  console.log('error.code: ' + JSON.stringify(paramError.code) +
+    ' error.message: ' + JSON.stringify(paramError.message));
+}
 ```
 
 ## getAbilityRunningInfos
@@ -143,16 +158,21 @@ getAbilityRunningInfos(): Promise\<Array\<AbilityRunningInfo>>
 **示例**：
 
 ```js
-import abilitymanager from '@ohos.application.abilityManager';
+import abilitymanager from '@ohos.app.ability.abilityManager';
  
-abilitymanager.getAbilityRunningInfos().then((data) => {
+try {
+  abilitymanager.getAbilityRunningInfos().then((data) => {
     console.log("getAbilityRunningInfos  data: " + JSON.stringify(data))
-}).catch((err) => {
-  console.log("getAbilityRunningInfos err: "  + err)
-});
+  }).catch((err) => {
+    console.log("getAbilityRunningInfos err: "  + err)
+  });
+} catch (paramError) {
+  console.log('error.code: ' + JSON.stringify(paramError.code) +
+    ' error.message: ' + JSON.stringify(paramError.message));
+}
 ```
 
-## getExtensionRunningInfos<sup>9+</sup>
+## getExtensionRunningInfos
 
 getExtensionRunningInfos(upperLimit: number, callback: AsyncCallback\<Array\<ExtensionRunningInfo>>): void
 
@@ -172,16 +192,21 @@ getExtensionRunningInfos(upperLimit: number, callback: AsyncCallback\<Array\<Ext
 **示例**：
 
 ```js
-import abilitymanager from '@ohos.application.abilityManager';
+import abilitymanager from '@ohos.app.ability.abilityManager';
 
 var upperLimit = 0;
 
-abilitymanager.getExtensionRunningInfos(upperLimit, (err,data) => { 
+try {
+  abilitymanager.getExtensionRunningInfos(upperLimit, (err,data) => { 
     console.log("getExtensionRunningInfos err: "  + err + " data: " + JSON.stringify(data));
-});
+  });
+} catch (paramError) {
+  console.log('error.code: ' + JSON.stringify(paramError.code) +
+    ' error.message: ' + JSON.stringify(paramError.message));
+}
 ```
 
-## getExtensionRunningInfos<sup>9+</sup>
+## getExtensionRunningInfos
 
 getExtensionRunningInfos(upperLimit: number): Promise\<Array\<ExtensionRunningInfo>>
 
@@ -206,15 +231,20 @@ getExtensionRunningInfos(upperLimit: number): Promise\<Array\<ExtensionRunningIn
 **示例**：
 
 ```js
-import abilitymanager from '@ohos.application.abilityManager';
+import abilitymanager from '@ohos.app.ability.abilityManager';
 
 var upperLimit = 0;
 
-abilitymanager.getExtensionRunningInfos(upperLimit).then((data) => {
-  console.log("getAbilityRunningInfos data: " + JSON.stringify(data));
-}).catch((err) => {
-  console.log("getAbilityRunningInfos err: "  + err);
-})
+try {
+  abilitymanager.getExtensionRunningInfos(upperLimit).then((data) => {
+    console.log("getAbilityRunningInfos data: " + JSON.stringify(data));
+  }).catch((err) => {
+    console.log("getAbilityRunningInfos err: "  + err);
+  })
+} catch (paramError) {
+  console.log('error.code: ' + JSON.stringify(paramError.code) +
+    ' error.message: ' + JSON.stringify(paramError.message));
+}
 ```
 
 ## getTopAbility<sup>9+</sup>
@@ -234,14 +264,19 @@ getTopAbility(callback: AsyncCallback\<ElementName>): void;
 **示例**：
 
 ```js
-import abilitymanager from '@ohos.application.abilityManager';
+import abilitymanager from '@ohos.app.ability.abilityManager';
 
-abilitymanager.getTopAbility((err,data) => { 
+try {
+  abilitymanager.getTopAbility((err,data) => { 
     console.log("getTopAbility err: "  + err + " data: " + JSON.stringify(data));
-});
+  });
+} catch (paramError) {
+  console.log('error.code: ' + JSON.stringify(paramError.code) +
+    ' error.message: ' + JSON.stringify(paramError.message));
+}
 ```
 
-## getTopAbility<sup>9+</sup>
+## getTopAbility
 
 getTopAbility(): Promise\<ElementName>;
 
@@ -258,11 +293,16 @@ getTopAbility(): Promise\<ElementName>;
 **示例**：
 
 ```js
-import abilitymanager from '@ohos.application.abilityManager';
+import abilitymanager from '@ohos.app.ability.abilityManager';
 
-abilitymanager.getTopAbility().then((data) => {
-  console.log("getTopAbility data: " + JSON.stringify(data));
-}).catch((err) => {
-  console.log("getTopAbility err: "  + err);
-})
+try {
+  abilitymanager.getTopAbility().then((data) => {
+    console.log("getTopAbility data: " + JSON.stringify(data));
+  }).catch((err) => {
+    console.log("getTopAbility err: "  + err);
+  })
+} catch (paramError) {
+  console.log('error.code: ' + JSON.stringify(paramError.code) +
+    ' error.message: ' + JSON.stringify(paramError.message));
+}
 ```

@@ -4,13 +4,13 @@ FormExtension模块提供了FormExtension卡片扩展相关接口。
 
 > **说明：**
 > 
-> 本模块首批接口从API version 9开始支持，从API version 9废弃，替换模块为[@ohos.app.ability.FormExtension](js-apis-app-ability-formextension.md)。后续版本的新增接口，采用上角标单独标记接口的起始版本。  
+> 本模块首批接口从API version 9开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。  
 > 本模块接口仅可在Stage模型下使用。
 
 ## 导入模块
 
 ```
-import FormExtension from '@ohos.application.FormExtension';
+import FormExtension from '@ohos.app.ability.FormExtension';
 ```
 
 ## 权限
@@ -37,18 +37,18 @@ onCreate(want: Want): formBindingData.FormBindingData
 
   | 参数名 | 类型                                   | 必填 | 说明                                                         |
   | ------ | -------------------------------------- | ---- | ------------------------------------------------------------ |
-  | want   | [Want](js-apis-application-Want.md) | 是   | 当前Extension相关的Want类型信息，包括卡片ID、卡片名称、卡片样式等。这些卡片信息必须作为持久数据进行管理，以便后续更新和删除卡片。 |
+  | want   | [Want](js-apis-app-ability-application-Want.md) | 是   | 当前Extension相关的Want类型信息，包括卡片ID、卡片名称、卡片样式等。这些卡片信息必须作为持久数据进行管理，以便后续更新和删除卡片。 |
 
 **返回值：**
 
   | 类型                                                         | 说明                                                        |
   | ------------------------------------------------------------ | ----------------------------------------------------------- |
-  | [formBindingData.FormBindingData](js-apis-formbindingdata.md#formbindingdata) | 一个formBindingData.FormBindingData对象，卡片要显示的数据。 |
+  | [formBindingData.FormBindingData](js-apis-app-ability-formbindingdata.md#formbindingdata) | 一个formBindingData.FormBindingData对象，卡片要显示的数据。 |
 
 **示例：**
 
   ```js
-  import formBindingData from '@ohos.application.formBindingData'
+  import formBindingData from '@ohos.app.ability.formBindingData'
   export default class MyFormExtension extends FormExtension {
       onCreate(want) {
           console.log('FormExtension onCreate, want:' + want.abilityName);
@@ -90,7 +90,7 @@ onCastToNormal(formId: string): void
 
 onUpdate(formId: string): void
 
-卡片提供方接收更新卡片的通知接口。获取最新数据后调用[FormExtensionContext](js-apis-formextensioncontext.md)的updateForm接口刷新卡片数据。
+卡片提供方接收更新卡片的通知接口。获取最新数据后调用[FormExtensionContext](js-apis-app-ability-formextensioncontext.md)的updateForm接口刷新卡片数据。
 
 **系统能力**：SystemCapability.Ability.Form
 
@@ -103,7 +103,7 @@ onUpdate(formId: string): void
 **示例：**
 
   ```js
-  import formBindingData from '@ohos.application.formBindingData'
+  import formBindingData from '@ohos.app.ability.formBindingData'
   export default class MyFormExtension extends FormExtension {
       onUpdate(formId) {
           console.log('FormExtension onUpdate, formId:' + formId);
@@ -134,7 +134,7 @@ onVisibilityChange(newStatus: { [key: string]: number }): void
 **示例：**
 
   ```js
-  import formBindingData from '@ohos.application.formBindingData'
+  import formBindingData from '@ohos.app.ability.formBindingData'
   export default class MyFormExtension extends FormExtension {
       onVisibilityChange(newStatus) {
           console.log('FormExtension onVisibilityChange, newStatus:' + newStatus);
@@ -213,7 +213,7 @@ onConfigurationUpdated(config: Configuration): void;
 
   | 参数名 | 类型 | 必填 | 说明 | 
   | -------- | -------- | -------- | -------- |
-  | config | [Configuration](js-apis-configuration.md) | 是 | 表示需要更新的配置信息。 | 
+  | config | [Configuration](js-apis-app-ability-configuration.md) | 是 | 表示需要更新的配置信息。 | 
 
 **示例：**
     
@@ -242,7 +242,7 @@ onAcquireFormState?(want: Want): formInfo.FormState;
 **示例：**
     
   ```js
-  import formInfo from '@ohos.application.formInfo'
+  import formInfo from '@ohos.app.ability.formInfo'
   class MyFormExtension extends FormExtension {
       onAcquireFormState(want) {
           console.log('FormExtension onAcquireFormState, want:' + want);

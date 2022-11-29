@@ -4,12 +4,12 @@ appManager模块提供App管理的能力，包括查询当前是否处于稳定�
 
 > **说明：**
 > 
-> 本模块首批接口从API version 7 开始支持, 从API version 9废弃，替换模块为[@ohos.app.ability.appManager](js-apis-app-ability-appmanager.md)。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+> 本模块首批接口从API version 9 开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
 ## 导入模块
 
 ```js
-import app from '@ohos.application.appManager';
+import app from '@ohos.app.ability.appManager';
 ```
 
 ## appManager.isRunningInStabilityTest
@@ -29,9 +29,9 @@ static isRunningInStabilityTest(callback: AsyncCallback&lt;boolean&gt;): void
 **示例：**
     
   ```js
-  import app from '@ohos.application.appManager';
+  import app from '@ohos.app.ability.appManager';
   app.isRunningInStabilityTest((err, flag) => {
-      console.log('startAbility result:' + err.code + ', ' + err.message);
+      console.log('startAbility result:' + JSON.stringify(err));
   })  
   ```
 
@@ -57,7 +57,7 @@ static isRunningInStabilityTest(): Promise&lt;boolean&gt;
   app.isRunningInStabilityTest().then((flag) => {
       console.log('success:' + JSON.stringify(flag));
   }).catch((error) => {
-      console.log('failed:' + JSON.stringify(error));
+      console.log('failed:' + JSON.stringify(err));
   });
   ```
 
@@ -82,7 +82,7 @@ isRamConstrainedDevice(): Promise\<boolean>;
         app.isRamConstrainedDevice().then((data) => {
             console.log('success:' + JSON.stringify(data));
         }).catch((error) => {
-            console.log('failed:' + JSON.stringify(error));
+            console.log('failed:' + JSON.stringify(err));
         });
   ```
 
@@ -129,7 +129,7 @@ getAppMemorySize(): Promise\<number>;
         app.getAppMemorySize().then((data) => {
             console.log('success:' + JSON.stringify(data));
         }).catch((error) => {
-            console.log('failed:' + JSON.stringify(error));
+            console.log('failed:' + error.code + ', ' + error.message);
         });
   ```
 
@@ -155,62 +155,8 @@ getAppMemorySize(callback: AsyncCallback\<number>): void;
             console.log('startAbility result success:' + JSON.stringify(data));
         })
   ```
-## appManager.getProcessRunningInfos<sup>(deprecated)</sup>
 
-getProcessRunningInfos(): Promise\<Array\<ProcessRunningInfo>>;
-
-获取有关运行进程的信息。
-
-> 从 API Version 9 开始废弃，建议使用[appManager.getProcessRunningInformation<sup>9+</sup>](#appmanagergetprocessrunninginformation9)替代。
-
-**需要权限**：ohos.permission.GET_RUNNING_INFO
-
-**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
-
-**返回值：**
-
-| 类型 | 说明 |
-| -------- | -------- |
-| Promise\<Array\<ProcessRunningInfo>> | 获取有关运行进程的信息。 |
-
-**示例：**
-    
-  ```js
-        app.getProcessRunningInfos().then((data) => {
-            console.log('success:' + JSON.stringify(data));
-        }).catch((error) => {
-            console.log('failed:' + JSON.stringify(error));
-        });
-  ```
-
-## appManager.getProcessRunningInfos<sup>(deprecated)</sup>
-
-getProcessRunningInfos(callback: AsyncCallback\<Array\<ProcessRunningInfo>>): void;
-
-获取有关运行进程的信息。
-
-> 从 API Version 9 开始废弃，建议使用[appManager.getProcessRunningInformation<sup>9+</sup>](#appmanagergetprocessrunninginformation9-1)替代。
-
-**需要权限**：ohos.permission.GET_RUNNING_INFO
-
-**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
-
-**参数：**
-
-| 参数名 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| callback | AsyncCallback\<Array\<ProcessRunningInfo>> | 否 | 获取有关运行进程的信息。 |
-
-**示例：**
-    
-  ```js
-        app.getProcessRunningInfos((err, data) => {
-            console.log('startAbility result failed :' + JSON.stringify(err));
-            console.log('startAbility result success:' + JSON.stringify(data));
-        })
-  ```
-
-## appManager.getProcessRunningInformation<sup>9+</sup>
+## appManager.getProcessRunningInformation
 
 getProcessRunningInformation(): Promise\<Array\<ProcessRunningInformation>>;
 
@@ -236,7 +182,7 @@ getProcessRunningInformation(): Promise\<Array\<ProcessRunningInformation>>;
         });
   ```
 
-## appManager.getProcessRunningInformation<sup>9+</sup>
+## appManager.getProcessRunningInformation
 
 getProcessRunningInformation(callback: AsyncCallback\<Array\<ProcessRunningInformation>>): void;
 
@@ -256,14 +202,14 @@ getProcessRunningInformation(callback: AsyncCallback\<Array\<ProcessRunningInfor
     
   ```js
         app.getProcessRunningInformation((err, data) => {
-            console.log('startAbility result failed :' + JSON.stringify(err));
+            console.log('startAbility result failed :' + JSON.stringify(error));
             console.log('startAbility result success:' + JSON.stringify(data));
         })
   ```
 
-## appManager.registerApplicationStateObserver<sup>8+</sup>
+## appManager.on
 
-registerApplicationStateObserver(observer: ApplicationStateObserver): number;
+on(type: "applicationState", observer: ApplicationStateObserver): number;
 
 注册全部应用程序状态观测器。
 
@@ -277,6 +223,7 @@ registerApplicationStateObserver(observer: ApplicationStateObserver): number;
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
+| type | string | 是 | 调用接口类型 |
 | observer | [ApplicationStateObserver](#applicationstateobserver) | 否 | 返回观察者的数字代码。 |
 
 **示例：**
@@ -299,14 +246,18 @@ registerApplicationStateObserver(observer: ApplicationStateObserver): number;
         console.log('------------ onProcessStateChanged -----------', processData);
     }
   }
-  const observerCode = app.registerApplicationStateObserver(applicationStateObserver);
-  console.log('-------- observerCode: ---------', observerCode);
+  try {
+    const observerCode = app.on(applicationStateObserver);
+    console.log('-------- observerCode: ---------', observerCode);
+  } catch (paramError) {
+    console.log('error: ' + paramError.code + ', ' + paramError.message);
+  }
 
   ```
 
-## appManager.registerApplicationStateObserver<sup>9+</sup>
+## appManager.on
 
-registerApplicationStateObserver(observer: ApplicationStateObserver, bundleNameList: Array\<string>): number;
+on(type: "applicationState", observer: ApplicationStateObserver, bundleNameList: Array\<string>): number;
 
 注册指定应用程序状态观测器。
 
@@ -320,6 +271,7 @@ registerApplicationStateObserver(observer: ApplicationStateObserver, bundleNameL
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
+| type | string | 是 | 调用接口类型 |
 | observer | [ApplicationStateObserver](#applicationstateobserver) | 否 | 返回观察者的数字代码。 |
 | bundleNameList | Array<string> | 否 | 表示需要注册监听的bundleName数组。最大值128。 |
 
@@ -344,13 +296,17 @@ registerApplicationStateObserver(observer: ApplicationStateObserver, bundleNameL
     }
   }
   var bundleNameList = ['bundleName1', 'bundleName2'];
-  const observerCode = app.registerApplicationStateObserver(applicationStateObserver, bundleNameList);
-  console.log('-------- observerCode: ---------', observerCode);
+  try {
+    const observerCode = app.on("applicationState", applicationStateObserver, bundleNameList);
+    console.log('-------- observerCode: ---------', observerCode);
+  } catch (paramError) {
+    console.log('error: ' + paramError.code + ', ' + paramError.message);
+  }
 
   ```
-## appManager.unregisterApplicationStateObserver<sup>8+</sup>
+## appManager.off
 
-unregisterApplicationStateObserver(observerId: number,  callback: AsyncCallback\<void>): void;
+off(type: "applicationState", observerId: number,  callback: AsyncCallback\<void>): void;
 
 取消注册应用程序状态观测器。
 
@@ -364,6 +320,7 @@ unregisterApplicationStateObserver(observerId: number,  callback: AsyncCallback\
  
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
+| type | string | 是 | 调用接口类型 |
 | observerId | number | 否 | 表示观察者的编号代码。 |
 | callback | AsyncCallback\<void> | 否 | 表示指定的回调方法。 |
 
@@ -377,12 +334,16 @@ unregisterApplicationStateObserver(observerId: number,  callback: AsyncCallback\
           console.log('------------ unregisterApplicationStateObserverCallback ------------', err);
       }
     }
-    app.unregisterApplicationStateObserver(observerId, unregisterApplicationStateObserverCallback);
+    try {
+      app.off(observerId, unregisterApplicationStateObserverCallback);
+    } catch (paramError) {
+      console.log('error: ' + paramError.code + ', ' + paramError.message);
+    }
   ```
 
-## appManager.unregisterApplicationStateObserver<sup>8+</sup>
+## appManager.off
 
-unregisterApplicationStateObserver(observerId: number): Promise\<void>;
+off(type: "applicationState", observerId: number): Promise\<void>;
 
 取消注册应用程序状态观测器。
 
@@ -396,6 +357,7 @@ unregisterApplicationStateObserver(observerId: number): Promise\<void>;
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
+| type | string | 是 | 调用接口类型 |
 | observerId | number | 否 | 表示观察者的编号代码。 |
 
 **返回值：**
@@ -408,17 +370,21 @@ unregisterApplicationStateObserver(observerId: number): Promise\<void>;
     
   ```js
     var observerId = 100;
-
-    app.unregisterApplicationStateObserver(observerId)
-   .then((data) => {
-       console.log('----------- unregisterApplicationStateObserver success ----------', data);
-   })
-   .catch((err) => {
-       console.log('----------- unregisterApplicationStateObserver fail ----------', err);
-   })
+    
+    try {
+      app.off(observerId)
+        .then((data) => {
+          console.log('----------- unregisterApplicationStateObserver success ----------', data);
+        })
+        .catch((err) => {
+          console.log('----------- unregisterApplicationStateObserver fail ----------', err);
+        })
+    } catch (paramError) {
+      console.log('error: ' + paramError.code + ', ' + paramError.message);
+    }
   ```
 
-## appManager.getForegroundApplications<sup>8+</sup>
+## appManager.getForegroundApplications
 
 getForegroundApplications(callback: AsyncCallback\<Array\<AppStateData>>): void;
 
@@ -441,7 +407,7 @@ getForegroundApplications(callback: AsyncCallback\<Array\<AppStateData>>): void;
   ```js
     function getForegroundApplicationsCallback(err, data) {
       if (err) {
-          console.log('--------- getForegroundApplicationsCallback fail ---------', err);
+          console.log('--------- getForegroundApplicationsCallback fail ---------', err.code + ': ' + err.message);
       } else {
           console.log('--------- getForegroundApplicationsCallback success ---------', data)
       }
@@ -449,7 +415,7 @@ getForegroundApplications(callback: AsyncCallback\<Array\<AppStateData>>): void;
     app.getForegroundApplications(getForegroundApplicationsCallback);
   ```
 
-## appManager.getForegroundApplications<sup>8+</sup>
+## appManager.getForegroundApplications
 
 getForegroundApplications(): Promise\<Array\<AppStateData>>;
 
@@ -475,11 +441,11 @@ getForegroundApplications(): Promise\<Array\<AppStateData>>;
         console.log('--------- getForegroundApplications success -------', data);
     })
     .catch((err) => {
-        console.log('--------- getForegroundApplications fail -------', err);
+        console.log('--------- getForegroundApplications fail -------', err.code + ': ' + err.message);
     })
   ```
 
-## appManager.killProcessWithAccount<sup>8+</sup>
+## appManager.killProcessWithAccount
 
 killProcessWithAccount(bundleName: string, accountId: number): Promise\<void\>
 
@@ -503,17 +469,21 @@ killProcessWithAccount(bundleName: string, accountId: number): Promise\<void\>
 ```js
 var bundleName = 'bundleName';
 var accountId = 0;
-app.killProcessWithAccount(bundleName, accountId)
-   .then((data) => {
+try {
+  app.killProcessWithAccount(bundleName, accountId)
+    .then((data) => {
        console.log('------------ killProcessWithAccount success ------------', data);
-   })
-   .catch((err) => {
+    })
+    .catch((err) => {
        console.log('------------ killProcessWithAccount fail ------------', err);
-   })
+    })
+} catch (paramError) {
+  console.log('error: ' + paramError.code + ', ' + paramError.message);
+}
 ```
 
 
-## appManager.killProcessWithAccount<sup>8+</sup>
+## appManager.killProcessWithAccount
 
 killProcessWithAccount(bundleName: string, accountId: number, callback: AsyncCallback\<void\>): void
 
@@ -545,10 +515,14 @@ function killProcessWithAccountCallback(err, data) {
        console.log('------------- killProcessWithAccountCallback success, data: --------------', data);
    }
 }
-app.killProcessWithAccount(bundleName, accountId, killProcessWithAccountCallback);
+try {
+  app.killProcessWithAccount(bundleName, accountId, killProcessWithAccountCallback);
+} catch (paramError) {
+  console.log('error: ' + paramError.code + ', ' + paramError.message);
+}
 ```
 
-## appManager.killProcessesByBundleName<sup>8+</sup>
+## appManager.killProcessesByBundleName
 
 killProcessesByBundleName(bundleName: string, callback: AsyncCallback\<void>);
 
@@ -578,10 +552,14 @@ killProcessesByBundleName(bundleName: string, callback: AsyncCallback\<void>);
           console.log('------------- killProcessesByBundleNameCallback success, data: --------------', data);
       }
     }
-    app.killProcessesByBundleName(bundleName, killProcessesByBundleNameCallback);
+    try {
+      app.killProcessesByBundleName(bundleName, killProcessesByBundleNameCallback);
+    } catch (paramError) {
+      console.log('error: ' + paramError.code + ', ' + paramError.message);
+    }
   ```
 
-## appManager.killProcessesByBundleName<sup>8+</sup>
+## appManager.killProcessesByBundleName
 
 killProcessesByBundleName(bundleName: string): Promise\<void>;
 
@@ -609,17 +587,21 @@ killProcessesByBundleName(bundleName: string): Promise\<void>;
     
   ```js
 var bundleName = 'bundleName';
-app.killProcessesByBundleName(bundleName)
+try {
+  app.killProcessesByBundleName(bundleName)
    .then((data) => {
        console.log('------------ killProcessesByBundleName success ------------', data);
    })
    .catch((err) => {
        console.log('------------ killProcessesByBundleName fail ------------', err);
    })
+} catch (paramError) {
+  console.log('error: ' + paramError.code + ', ' + paramError.message);
+}
 
   ```
 
-## appManager.clearUpApplicationData<sup>8+</sup>
+## appManager.clearUpApplicationData
 
 clearUpApplicationData(bundleName: string, callback: AsyncCallback\<void>);
 
@@ -649,11 +631,15 @@ clearUpApplicationData(bundleName: string, callback: AsyncCallback\<void>);
           console.log('------------- clearUpApplicationDataCallback success, data: --------------', data);
       }
     }
-    app.clearUpApplicationData(bundleName, clearUpApplicationDataCallback);
+    try {
+      app.clearUpApplicationData(bundleName, clearUpApplicationDataCallback);
+    } catch (paramError) {
+      console.log('error: ' + paramError.code + ', ' + paramError.message);
+    }
 
   ```
 
-## appManager.clearUpApplicationData<sup>8+</sup>
+## appManager.clearUpApplicationData
 
 clearUpApplicationData(bundleName: string): Promise\<void>;
 
@@ -681,17 +667,21 @@ clearUpApplicationData(bundleName: string): Promise\<void>;
     
   ```js
   var bundleName = 'bundleName';
-  app.clearUpApplicationData(bundleName)
-    .then((data) => {
+  try {
+    app.clearUpApplicationData(bundleName)
+      .then((data) => {
         console.log('------------ clearUpApplicationData success ------------', data);
-    })
-    .catch((err) => {
+      })
+      .catch((err) => {
         console.log('------------ clearUpApplicationData fail ------------', err);
-    })
+      })
+  } catch (paramError) {
+    console.log('error: ' + paramError.code + ', ' + paramError.message);
+  }
 
   ```
 
-## ApplicationStateObserver.onForegroundApplicationChanged<sup>8+</sup>
+## ApplicationStateObserver.onForegroundApplicationChanged
 
 onForegroundApplicationChanged(appStateData: AppStateData): void;
 
@@ -727,12 +717,16 @@ onForegroundApplicationChanged(appStateData: AppStateData): void;
         console.log('------------ onProcessStateChanged -----------', processData);
     }
   }
-  const observerCode = app.registerApplicationStateObserver(applicationStateObserver);
-  console.log('-------- observerCode: ---------', observerCode);
+  try {
+    const observerCode = app.on("applicationState", applicationStateObserver);
+    console.log('-------- observerCode: ---------', observerCode);
+  } catch (paramError) {
+    console.log('error: ' + paramError.code + ', ' + paramError.message);
+  }
 
 ```
 
-## ApplicationStateObserver.onAbilityStateChanged<sup>8+</sup>
+## ApplicationStateObserver.onAbilityStateChanged
 
 onAbilityStateChanged(abilityStateData: AbilityStateData): void;
 
@@ -768,11 +762,15 @@ onAbilityStateChanged(abilityStateData: AbilityStateData): void;
         console.log('------------ onProcessStateChanged -----------', processData);
     }
   }
-  const observerCode = app.registerApplicationStateObserver(applicationStateObserver);
-  console.log('-------- observerCode: ---------', observerCode);
+  try {
+    const observerCode = app.on("applicationState", applicationStateObserver);
+    console.log('-------- observerCode: ---------', observerCode);
+  } catch (paramError) {
+    console.log('error: ' + paramError.code + ', ' + paramError.message);
+  }
 ```
 
-## ApplicationStateObserver.onProcessCreated<sup>8+</sup>
+## ApplicationStateObserver.onProcessCreated
 
 onProcessCreated(processData: ProcessData): void;
 
@@ -808,11 +806,15 @@ onProcessCreated(processData: ProcessData): void;
         console.log('------------ onProcessStateChanged -----------', processData);
     }
   }
-  const observerCode = app.registerApplicationStateObserver(applicationStateObserver);
-  console.log('-------- observerCode: ---------', observerCode);
+  try {
+    const observerCode = app.on("applicationState", applicationStateObserver);
+    console.log('-------- observerCode: ---------', observerCode);
+  } catch (paramError) {
+    console.log('error: ' + paramError.code + ', ' + paramError.message);
+  }
 ```
 
-## ApplicationStateObserver.onProcessDied<sup>8+</sup>
+## ApplicationStateObserver.onProcessDied
 
 onProcessDied(processData: ProcessData): void;
 
@@ -848,11 +850,15 @@ onProcessDied(processData: ProcessData): void;
         console.log('------------ onProcessStateChanged -----------', processData);
     }
   }
-  const observerCode = app.registerApplicationStateObserver(applicationStateObserver);
-  console.log('-------- observerCode: ---------', observerCode);
+  try {
+    const observerCode = app.on("applicationState", applicationStateObserver);
+    console.log('-------- observerCode: ---------', observerCode);
+  } catch (paramError) {
+    console.log('error: ' + paramError.code + ', ' + paramError.message);
+  }
 ```
 
-## ApplicationStateObserver.onProcessStateChanged<sup>9+</sup>
+## ApplicationStateObserver.onProcessStateChanged
 
  onProcessStateChanged(processData: ProcessData): void;
 
@@ -888,8 +894,12 @@ onProcessDied(processData: ProcessData): void;
         console.log('------------ onProcessStateChanged -----------', processData);
     }
   }
-  const observerCode = app.registerApplicationStateObserver(applicationStateObserver);
-  console.log('-------- observerCode: ---------', observerCode);
+  try {
+    const observerCode = app.on("applicationState", applicationStateObserver);
+    console.log('-------- observerCode: ---------', observerCode);
+  } catch (paramError) {
+    console.log('error: ' + paramError.code + ', ' + paramError.message);
+  }
 ```
 
 ## AppStateData
@@ -900,9 +910,9 @@ onProcessDied(processData: ProcessData): void;
 
 | 名称        | 读写属性 | 类型                 | 必填 | 描述                                                         |
 | ----------- | -------- | -------------------- | ---- | ------------------------------------------------------------ |
-| bundleName<sup>8+</sup>     | 只读     | string               | 否   | 包名。                                |
-| uid<sup>8+</sup>   | 只读     | number               | 否   | 用户ID。 |
-| state<sup>8+</sup>  | 只读     | number               | 否   | 应用状态。 |
+| bundleName     | 只读     | string               | 否   | 包名。                                |
+| uid   | 只读     | number               | 否   | 用户ID。 |
+| state  | 只读     | number               | 否   | 应用状态。 |
 
 ## AbilityStateData
 
@@ -912,13 +922,13 @@ onProcessDied(processData: ProcessData): void;
 
 | 名称                     | 类型     | 可读 | 可写 | 说明                       |
 | ----------------------- | ---------| ---- | ---- | ------------------------- |
-| pid<sup>8+</sup>                     | number   | 是   | 否   | 进程ID。                    |
-| bundleName<sup>8+</sup>              | string   | 是   | 否  | 应用包名。                  |
-| abilityName<sup>8+</sup>             | string   | 是   | 否   | Ability名称。               |
-| uid<sup>8+</sup>                     | number   | 是   | 否   | 用户ID。                  |
-| state<sup>8+</sup>                   | number   | 是   | 否   | Ability状态。                |
-| moduleName<sup>9+</sup> | string   | 是   | 否   | Ability所属的HAP包的名称。    |
-| abilityType<sup>8+</sup> | string   | 是   | 否   | 能力类型、页面或服务等。    |
+| pid                     | number   | 是   | 否   | 进程ID。                    |
+| bundleName              | string   | 是   | 否  | 应用包名。                  |
+| abilityName             | string   | 是   | 否   | Ability名称。               |
+| uid                     | number   | 是   | 否   | 用户ID。                  |
+| state                   | number   | 是   | 否   | Ability状态。                |
+| moduleName | string   | 是   | 否   | Ability所属的HAP包的名称。    |
+| abilityType | string   | 是   | 否   | 能力类型、页面或服务等。    |
 
 ## ProcessData
 
@@ -928,11 +938,11 @@ onProcessDied(processData: ProcessData): void;
 
 | 名称                     | 类型     | 可读 | 可写 | 说明                       |
 | ----------------------- | ---------| ---- | ---- | ------------------------- |
-| pid<sup>8+</sup>         | number   | 是   | 否   | 进程ID。                    |
-| bundleName<sup>8+</sup>  | string   | 是   | 否  | 应用包名。                  |
-| uid<sup>8+</sup>         | number   | 是   | 否   | 用户ID。                  |
-| isContinuousTask<sup>9+</sup>         | boolean   | 是   | 否   | 判断过程是否为连续任务。                  |
-| isKeepAlive<sup>9+</sup>         | boolean   | 是   | 否   | 判断该过程是否保持活跃。                  |
+| pid         | number   | 是   | 否   | 进程ID。                    |
+| bundleName  | string   | 是   | 否  | 应用包名。                  |
+| uid         | number   | 是   | 否   | 用户ID。                  |
+| isContinuousTas         | boolean   | 是   | 否   | 判断过程是否为连续任务。                  |
+| isKeepAlive        | boolean   | 是   | 否   | 判断该过程是否保持活跃。                  |
 
 ## ProcessRunningInfo
 
@@ -940,10 +950,10 @@ onProcessDied(processData: ProcessData): void;
 
 | 名称        | 读写属性 | 类型                 | 必填 | 描述                                                         |
 | ----------- | -------- | -------------------- | ---- | ------------------------------------------------------------ |
-| pid<sup>8+</sup>     | 只读     | number               | 否   | 进程ID。                                |
-| uid<sup>8+</sup>   | 只读     | number               | 否   | 用户ID。 |
-| processName<sup>8+</sup>  | 只读     | string               | 否   | 进程的名称。 |
-| bundleNames<sup>8+</sup>          | 只读     | Array\<string>              | 否   | 进程中运行的bundleName数组。 |
+| pid     | 只读     | number               | 否   | 进程ID。                                |
+| uid   | 只读     | number               | 否   | 用户ID。 |
+| processName  | 只读     | string               | 否   | 进程的名称。 |
+| bundleNames          | 只读     | Array\<string>              | 否   | 进程中运行的bundleName数组。 |
 
 ## ApplicationStateObserver
 
@@ -953,10 +963,10 @@ onProcessDied(processData: ProcessData): void;
 
 | 名称                     | 类型     | 可读 | 可写 | 说明                       |
 | ----------------------- | ---------| ---- | ---- | ------------------------- |
-| [onForegroundApplicationChanged<sup>8+</sup>](#applicationstateobserveronforegroundapplicationchanged8)         | AsyncCallback\<void>   | 是   | 否   | 应用前后台状态发生变化时执行的回调函数。                    |
-| [onAbilityStateChanged<sup>8+</sup>](#applicationstateobserveronabilitystatechanged8)  | AsyncCallback\<void>   | 是   | 否  | ability状态发生变化时执行的回调函数。                  |
-| [onProcessCreated<sup>8+</sup>](#applicationstateobserveronprocesscreated8)         | AsyncCallback\<void>   | 是   | 否   | 进程创建时执行的回调函数。                  |
-| [onProcessDied<sup>8+</sup>](#applicationstateobserveronprocessdied8)         | AsyncCallback\<void>   | 是   | 否   | 进程销毁时执行的回调函数。                  |
+| [onForegroundApplicationChanged](#applicationstateobserveronforegroundapplicationchanged8)         | AsyncCallback\<void>   | 是   | 否   | 应用前后台状态发生变化时执行的回调函数。                    |
+| [onAbilityStateChanged](#applicationstateobserveronabilitystatechanged8)  | AsyncCallback\<void>   | 是   | 否  | ability状态发生变化时执行的回调函数。                  |
+| [onProcessCreated](#applicationstateobserveronprocesscreated8)         | AsyncCallback\<void>   | 是   | 否   | 进程创建时执行的回调函数。                  |
+| [onProcessDied](#applicationstateobserveronprocessdied8)         | AsyncCallback\<void>   | 是   | 否   | 进程销毁时执行的回调函数。                  |
 
 ## ProcessRunningInformation
    
@@ -966,12 +976,12 @@ onProcessDied(processData: ProcessData): void;
 
 | 名称        | 读写属性 | 类型                 | 必填 | 描述                                                         |
 | ----------- | -------- | -------------------- | ---- | ------------------------------------------------------------ |
-| pid<sup>9+</sup>     | 只读     | number               | 否   | 进程ID。                                |
-| uid<sup>9+</sup>   | 只读     | number               | 否   | 用户ID。 |
-| processName<sup>9+</sup>  | 只读     | string               | 否   | 进程的名称。 |
-| bundleNames<sup>9+</sup>          | 只读     | Array\<string>              | 否   | 进程中运行的bundleName数组。 | 
+| pid     | 只读     | number               | 否   | 进程ID。                                |
+| uid   | 只读     | number               | 否   | 用户ID。 |
+| processName  | 只读     | string               | 否   | 进程的名称。 |
+| bundleNames          | 只读     | Array\<string>              | 否   | 进程中运行的bundleName数组。 | 
 
-## ApplicationState<sup>9+</sup>
+## ApplicationState
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -985,7 +995,7 @@ onProcessDied(processData: ProcessData): void;
 | STATE_BACKGROUND        | 4   |       当应用处于后台不可见时处于的状态。           |
 | STATE_DESTROY        | 5   |           当应用在销毁的时候处于的状态。       |
 
-## ProcessState<sup>9+</sup>
+## ProcessState
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 

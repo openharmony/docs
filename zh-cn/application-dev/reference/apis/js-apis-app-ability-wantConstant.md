@@ -4,12 +4,12 @@ wantConstant模块提供want中操作want常数和解释Flags说明的能力。
 
 > **说明：**
 > 
-> 本模块首批接口从API version 6开始支持，从API version 9废弃，替换模块为[@ohos.app.ability.wantConstant](js-apis-app-ability-wantConstant.md)。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+> 本模块首批接口从API version 6开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
 ## 导入模块
 
 ```js
-import wantConstant from '@ohos.ability.wantConstant';
+import wantConstant from '@ohos.app.ability.wantConstant';
 ```
 
 ## wantConstant.Action

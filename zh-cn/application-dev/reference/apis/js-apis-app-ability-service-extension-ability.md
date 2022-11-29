@@ -4,13 +4,13 @@ ServiceExtensionAbility模块提供ServiceExtension服务扩展相关接口的�
 
 > **说明：**
 > 
-> 本模块首批接口从API version 9开始支持，从API version 9废弃，替换模块为[@ohos.app.ability.ServiceExtensionAbility](js-apis-app-ability-service-extension-ability.md)。后续版本的新增接口，采用上角标单独标记接口的起始版本。  
+> 本模块首批接口从API version 9开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。  
 > 本模块接口仅可在Stage模型下使用。
 
 ## 导入模块
 
 ```
-import ServiceExtension from '@ohos.application.ServiceExtensionAbility';
+import ServiceExtension from '@ohos.app.ability.ServiceExtensionAbility';
 ```
 
 ## 权限
@@ -224,9 +224,9 @@ onConfigurationUpdated(config: Configuration): void;
   }
   ```
 
-## ServiceExtensionAbility.dump
+## ServiceExtensionAbility.onDump
 
-dump(params: Array\<string>): Array\<string>;
+onDump(params: Array\<string>): Array\<string>;
 
 转储客户端信息时调用。
 
@@ -244,7 +244,7 @@ dump(params: Array\<string>): Array\<string>;
     
   ```js
   class ServiceExt extends ServiceExtension {
-      dump(params) {
+      onDump(params) {
           console.log('dump, params:' + JSON.stringify(params));
           return ["params"]
       }

@@ -4,14 +4,14 @@ EnvironmentCallback模块提供应用上下文ApplicationContext对系统环境�
 
 > **说明：**
 > 
-> 本模块首批接口从API version 9 开始支持，从API version 9废弃，替换模块为[@ohos.app.ability.EnvironmentCallback](js-apis-app-ability-EnvironmentCallback.md)。后续版本的新增接口，采用上角标单独标记接口的起始版本。  
+> 本模块首批接口从API version 9 开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。  
 > 本模块接口仅可在Stage模型下使用。
 
 
 ## 导入模块
 
 ```js
-import EnvironmentCallback from "@ohos.application.EnvironmentCallback";
+import EnvironmentCallback from "@ohos.app.ability.EnvironmentCallback";
 ```
 
 
@@ -33,7 +33,7 @@ onConfigurationUpdated(config: Configuration): void;
     
 
   ```js
-import Ability from "@ohos.application.Ability";
+import Ability from "@ohos.app.ability.Ability";
 
 var callbackId;
 
@@ -49,14 +49,18 @@ export default class MyAbility extends Ability {
         // 1.获取applicationContext
         let applicationContext = globalThis.applicationContext;
         // 2.通过applicationContext注册监听应用内生命周期
-        callbackId = applicationContext.registerEnvironmentCallback(EnvironmentCallback);
+        callbackId = applicationContext.on("environment", EnvironmentCallback);
         console.log("registerEnvironmentCallback number: " + JSON.stringify(callbackId));
     }
     onDestroy() {
         let applicationContext = globalThis.applicationContext;
-        applicationContext.unregisterEnvironmentCallback(callbackId, (error, data) => {
-            console.log("unregisterEnvironmentCallback success, err: " + JSON.stringify(error));
-        });
+        try {
+            applicationContext.off("environment", callbackId,   (error, data) => {
+                console.log("unregisterEnvironmentCallback success, err: " + JSON.stringify(error));
+            });
+        } catch (paramError) {
+            console.log("error: " + paramError.code + ", " + paramError.message);
+        }
     }
 }
   ```

@@ -6,13 +6,13 @@ AbilityConstant提供启动参数的接口的能力，包括设置初次开始�
 
 > **说明：**
 > 
-> 本模块首批接口从API version 9开始支持，从API version 9废弃，替换模块为[@ohos.app.ability.AbilityConstant](js-apis-app-ability-abilityConstant.md)。后续版本的新增接口，采用上角标单独标记接口的起始版本。  
+> 本模块首批接口从API version 9开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。  
 > 本模块接口仅可在Stage模型下使用。
 
 ## 导入模块
 
 ```js
-import AbilityConstant from '@ohos.application.AbilityConstant';
+import AbilityConstant from '@ohos.app.ability.AbilityConstant';
 ```
 
 ## 属性

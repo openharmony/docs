@@ -2,6 +2,9 @@
 
 定义环境变化信息。
 
+**说明：**
+> 本模块从API version 9废弃，替换模块为[@ohos.application.Configuration (Configuration)](js-apis-app-ability-configuration.md)
+
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityBase
 
   | 名称 | 参数类型 | 可读 | 可写 | 说明 |

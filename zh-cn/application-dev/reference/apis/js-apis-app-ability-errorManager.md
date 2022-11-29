@@ -4,16 +4,16 @@ ErrorManager模块提供对错误观察器的注册和注销的能力。
 
 > **说明：**
 > 
-> 本模块首批接口从API version 9开始支持，从API version 9废弃，替换接口为[@ohos.app.ability.errorManager](js-apis-app-ability-errorManager.md)。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+> 本模块首批接口从API version 9开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
 ## 导入模块
 ```
-import errorManager from '@ohos.application.errorManager'
+import errorManager from '@ohos.app.ability.errorManager'
 ```
 
-## ErrorManager.registerErrorObserver
+## ErrorManager.on
 
-registerErrorObserver(observer: ErrorObserver): number;
+on(type: "error", observer: ErrorObserver): number;
 
 注册错误观测器。
 
@@ -23,6 +23,7 @@ registerErrorObserver(observer: ErrorObserver): number;
  
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
+| type | string | 是 | 调用接口类型 |
 | observer | [ErrorObserver](#errorobserver) | 否 | 返回观察者的数字代码。 |
 
 **示例：**
@@ -33,12 +34,16 @@ var observer = {
         console.log('onUnhandledException, errorMsg: ', errorMsg)
     }
 }
-errorManager.registerErrorObserver(observer)
+try {
+    errorManager.on("error", observer);
+} catch (paramError) {
+    console.log("error: " + paramError.code + ", " + paramError.message);
+}
 ```
 
-## ErrorManager.unregisterErrorObserver
+## ErrorManager.off
 
-unregisterErrorObserver(observerId: number,  callback: AsyncCallback\<void>): void;
+off(type: "error", observerId: number,  callback: AsyncCallback\<void>): void;
 
 注销错误观测器。
 
@@ -48,6 +53,7 @@ unregisterErrorObserver(observerId: number,  callback: AsyncCallback\<void>): vo
  
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
+| type | string | 是 | 调用接口类型 |
 | observerId | number | 否 | 返回观察者的数字代码。 |
 | callback | AsyncCallback\<void> | 否 | 表示指定的回调方法。 |
 
@@ -61,13 +67,16 @@ function unregisterErrorObserverCallback(err) {
         console.log('------------ unregisterErrorObserverCallback ------------', err);
     }
 }
-errorManager.unregisterErrorObserver(observerId, unregisterErrorObserverCallback);
-
+try {
+    errorManager.off("error", observerId, unregisterErrorObserverCallback);
+} catch (paramError) {
+    console.log("error: " + paramError.code + ", " + paramError.message);
+}
 ```
 
-## ErrorManager.unregisterErrorObserver
+## ErrorManager.off
 
-unregisterErrorObserver(observerId: number): Promise\<void>;
+off(type: "error", observerId: number): Promise\<void>;
 
 注销错误观测器。
 
@@ -77,6 +86,7 @@ unregisterErrorObserver(observerId: number): Promise\<void>;
  
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
+| type | string | 是 | 调用接口类型 |
 | observerId | number | 否 | 返回观察者的数字代码。 |
 
 **返回值：**
@@ -89,13 +99,17 @@ unregisterErrorObserver(observerId: number): Promise\<void>;
     
 ```js
 var observerId = 100;
-errorManager.unregisterErrorObserver(observerId)
-.then((data) => {
-    console.log('----------- unregisterErrorObserver success ----------', data);
-})
-.catch((err) => {
-    console.log('----------- unregisterErrorObserver fail ----------', err);
-})
+try {
+    errorManager.off("error", observerId)
+        .then((data) => {
+            console.log('----------- unregisterErrorObserver success ----------', data);
+        })
+        .catch((err) => {
+            console.log('----------- unregisterErrorObserver fail ----------', err);
+    })
+} catch (paramError) {
+    console.log("error: " + paramError.code + ", " + paramError.message);
+}
 
 ```
 
@@ -121,5 +135,5 @@ var observer = {
         console.log('onUnhandledException, errorMsg: ', errorMsg)
     }
 }
-errorManager.registerErrorObserver(observer)
+errorManager.on(observer)
 ```

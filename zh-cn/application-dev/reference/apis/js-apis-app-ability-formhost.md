@@ -4,7 +4,7 @@ FormHost模块提供了卡片使用方相关接口的能力，包括删除、释
 
 > **说明：**
 > 
-> 本模块首批接口从API version 8开始支持，从API version 9废弃, 替换模块为[@ohos.app.ability.formHost](js-apis-app-ability-formhost-new.md)。后续版本的新增接口，采用上角标单独标记接口的起始版本。  
+> 本模块首批接口从API version 9开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。  
 > 本模块接口均为系统接口，三方应用不支持调用。
 
 ## 导入模块
@@ -1123,7 +1123,7 @@ shareForm(formId: string, deviceId: string): Promise&lt;void&gt;;
   });
   ```
 
-## notifyFormsPrivacyProtected<sup>9+</sup>
+## notifyFormsPrivacyProtected
 
 notifyFormsPrivacyProtected(formIds: Array&lt;string&gt;, isProtected: boolean, callback: AsyncCallback&lt;void&gt;): void;
 
@@ -1152,7 +1152,7 @@ notifyFormsPrivacyProtected(formIds: Array&lt;string&gt;, isProtected: boolean, 
   });
   ```
 
-## notifyFormsPrivacyProtected<sup>9+</sup>
+## notifyFormsPrivacyProtected
 
 notifyFormsPrivacyProtected(formIds: Array&lt;string&gt;, isProtected: boolean): Promise&lt;void&gt;;
 
