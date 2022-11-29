@@ -71,7 +71,7 @@ import {Action,ToolType,SourceType,Touch,TouchEvent} from '@ohos.multimodalInput
 | toolHeight  | number | 是    | 否    | 工具区域高度                              |
 | rawX        | number | 是    | 否    | 输入设备上的x坐标                           |
 | rawY        | number | 是    | 否    | 输入设备上的y坐标                           |
-| toolType    | number | 是    | 否    | 工具类型                                |
+| toolType    | ToolType | 是    | 否    | 工具类型                                |
 
 ## TouchEvent
 
