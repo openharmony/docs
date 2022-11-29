@@ -36,6 +36,7 @@
     - [@ohos.ability.dataUriUtils (DataUriUtils模块)](js-apis-DataUriUtils.md)
     - [@ohos.ability.errorCode (ErrorCode)](js-apis-ability-errorCode.md)
     - [@ohos.ability.wantConstant (wantConstant)](js-apis-ability-wantConstant.md)
+    - [@ohos.app.ability.appRecovery (appRecovery)](js-apis-app-ability-appRecovery.md)
     - [@ohos.application.abilityDelegatorRegistry (AbilityDelegatorRegistry)](js-apis-abilityDelegatorRegistry.md)
     - [@ohos.application.abilityManager (AbilityManager)](js-apis-application-abilityManager.md)
     - [@ohos.application.appManager (appManager)](js-apis-appmanager.md)

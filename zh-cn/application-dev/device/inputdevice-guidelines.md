@@ -16,10 +16,10 @@ import inputDevice from '@ohos.multimodalInput.inputDevice';
 
 | 实例名 | 接口名  | 说明 |
 | ----------- | ------------------------------------------------------------ | -------------------------- |
-| inputDevice | **function** getDeviceList(callback: AsyncCallback<Array<**number**>>): **void**; | 获取输入设备列表。 |
-| inputDevice | **function** getKeyboardType(deviceId: **number**, callback: AsyncCallback<KeyboardType>): **void**; | 获取输入设备的键盘类型。 |
-| inputDevice | **function** on(**type**: "change", listener: Callback<DeviceListener>): **void**; | 监听输入设备的热插拔事件。 |
-| inputDevice | **function** off(**type**: "change", listener?: Callback<DeviceListener>): **void**; | 取消监听输入设备的热插拔事件。 |
+| inputDevice | function getDeviceList(callback: AsyncCallback\<Array\<number>>): void; | 获取输入设备列表。 |
+| inputDevice | function getKeyboardType(deviceId: number, callback: AsyncCallback\<KeyboardType>): void; | 获取输入设备的键盘类型。 |
+| inputDevice | function on(type: "change", listener: Callback\<DeviceListener>): void; | 监听输入设备的热插拔事件。 |
+| inputDevice | function off(type: "change", listener?: Callback\<DeviceListener>): void; | 取消监听输入设备的热插拔事件。 |
 
 ## 虚拟键盘弹出检测
 

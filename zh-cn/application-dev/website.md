@@ -692,6 +692,7 @@
         - [@ohos.ability.dataUriUtils (DataUriUtils模块)](reference/apis/js-apis-DataUriUtils.md)
         - [@ohos.ability.errorCode (ErrorCode)](reference/apis/js-apis-ability-errorCode.md)
         - [@ohos.ability.wantConstant (wantConstant)](reference/apis/js-apis-ability-wantConstant.md)
+        - [@ohos.app.ability.appRecovery (appRecovery)](reference/apis/js-apis-app-ability-appRecovery.md)
         - [@ohos.application.abilityDelegatorRegistry (AbilityDelegatorRegistry)](reference/apis/js-apis-abilityDelegatorRegistry.md)
         - [@ohos.application.abilityManager (AbilityManager)](reference/apis/js-apis-application-abilityManager.md)
         - [@ohos.application.appManager (appManager)](reference/apis/js-apis-appmanager.md)
@@ -1013,6 +1014,7 @@
     - 安全
       - [AccessToken错误码](reference/errorcodes/errorcode-access-token.md)
       - [HUKS错误码](reference/errorcodes/errorcode-huks.md)
+      - [用户认证错误码](reference/errorcodes/errorcode-useriam.md)
     - 数据管理
       - [关系型数据库错误码](reference/errorcodes/errorcode-data-rdb.md)
       - [数据共享错误码](reference/errorcodes/errorcode-datashare.md)

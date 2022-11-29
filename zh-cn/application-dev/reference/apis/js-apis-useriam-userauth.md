@@ -144,7 +144,7 @@ on : (name : AuthEventKey, callback : AuthEvent) => void
 | name  | [AuthEventKey](#autheventkey9) | 是   | 表示认证事件类型，取值为"result"时，回调函数返回认证结果；取值为"tip"时，回调函数返回认证过程中的提示信息。 |
 | callback  | [AuthEvent](#authevent9)   | 是   | 认证接口的回调函数，用于返回认证结果或认证过程中的提示信息。 |
 
-以下错误码的详细介绍请参见[用户认证错误码](../errorcodes/errcode-useriam.md)
+以下错误码的详细介绍请参见[用户认证错误码](../errorcodes/errorcode-useriam.md)
 
 **错误码：**
 
@@ -208,7 +208,7 @@ off : (name : AuthEventKey) => void
 | --------- | -------------------------- | ---- | ------------------------- |
 | name    | [AuthEventKey](#autheventkey9)      | 是   | 表示认证事件类型，取值为"result"时，取消订阅认证结果；取值为"tip"时，取消订阅认证过程中的提示信息。 |
 
-以下错误码的详细介绍请参见[用户认证错误码](../errorcodes/errcode-useriam.md)
+以下错误码的详细介绍请参见[用户认证错误码](../errorcodes/errorcode-useriam.md)
 
 **错误码：**
 
@@ -269,7 +269,7 @@ start : () => void
 
 **系统能力**：SystemCapability.UserIAM.UserAuth.Core
 
-以下错误码的详细介绍请参见[用户认证错误码](../errorcodes/errcode-useriam.md)
+以下错误码的详细介绍请参见[用户认证错误码](../errorcodes/errorcode-useriam.md)
 
 **错误码：**
 
@@ -313,7 +313,7 @@ cancel : () => void
 
 **系统能力**：SystemCapability.UserIAM.UserAuth.Core
 
-以下错误码的详细介绍请参见[用户认证错误码](../errorcodes/errcode-useriam.md)
+以下错误码的详细介绍请参见[用户认证错误码](../errorcodes/errorcode-useriam.md)
 
 **错误码：**
 
@@ -366,7 +366,7 @@ getAuthInstance(challenge : Uint8Array, authType : UserAuthType, authTrustLevel 
 | ----------------------------------------- | ------------ |
 | [AuthInstance](#authinstance9) | 认证器对象。 |
 
-以下错误码的详细介绍请参见[用户认证错误码](../errorcodes/errcode-useriam.md)
+以下错误码的详细介绍请参见[用户认证错误码](../errorcodes/errorcode-useriam.md)
 
 **错误码：**
 
@@ -410,7 +410,7 @@ getVersion(): number
 | ------ | ---------------------- |
 | number | 认证器版本信息。 |
 
-以下错误码的详细介绍请参见[用户认证错误码](../errorcodes/errcode-useriam.md)
+以下错误码的详细介绍请参见[用户认证错误码](../errorcodes/errorcode-useriam.md)
 
 **错误码：**
 
@@ -449,7 +449,7 @@ getAvailableStatus(authType : UserAuthType, authTrustLevel : AuthTrustLevel): vo
 | authType       | [UserAuthType](#userauthtype8)     | 是   | 认证类型，当前只支持FACE。 |
 | authTrustLevel | [AuthTrustLevel](#authtrustlevel8) | 是   | 认证信任等级。       |
 
-以下错误码的详细介绍请参见[用户认证错误码](../errorcodes/errcode-useriam.md)
+以下错误码的详细介绍请参见[用户认证错误码](../errorcodes/errorcode-useriam.md)
 
 **错误码：**
 
