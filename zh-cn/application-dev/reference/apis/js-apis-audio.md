@@ -2256,7 +2256,7 @@ console.info('######### CapturerChange Off is called #########');
 
 isActive(volumeType: AudioVolumeType, callback: AsyncCallback&lt;boolean&gt;): void
 
-获取指定音量流是否为活跃状态，使用callback方式异步返回结果。
+获取指定音频流是否为活跃状态，使用callback方式异步返回结果。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Renderer
 
@@ -2264,7 +2264,7 @@ isActive(volumeType: AudioVolumeType, callback: AsyncCallback&lt;boolean&gt;): v
 
 | 参数名     | 类型                                | 必填 | 说明                                              |
 | ---------- | ----------------------------------- | ---- | ------------------------------------------------- |
-| volumeType | [AudioVolumeType](#audiovolumetype) | 是   | 音量流类型。                                      |
+| volumeType | [AudioVolumeType](#audiovolumetype) | 是   | 音频流类型。                                      |
 | callback   | AsyncCallback&lt;boolean&gt;        | 是   | 回调返回流的活跃状态，true为活跃，false为不活跃。 |
 
 **示例：**
@@ -2283,7 +2283,7 @@ audioStreamManager.isActive(audio.AudioVolumeType.MEDIA, (err, value) => {
 
 isActive(volumeType: AudioVolumeType): Promise&lt;boolean&gt;
 
-获取指定音量流是否为活跃状态，使用Promise方式异步返回结果。
+获取指定音频流是否为活跃状态，使用Promise方式异步返回结果。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Renderer
 
@@ -2291,7 +2291,7 @@ isActive(volumeType: AudioVolumeType): Promise&lt;boolean&gt;
 
 | 参数名     | 类型                                | 必填 | 说明         |
 | ---------- | ----------------------------------- | ---- | ------------ |
-| volumeType | [AudioVolumeType](#audiovolumetype) | 是   | 音量流类型。 |
+| volumeType | [AudioVolumeType](#audiovolumetype) | 是   | 音频流类型。 |
 
 **返回值：**
 
