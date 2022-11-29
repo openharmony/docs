@@ -170,7 +170,7 @@ _[Changelog](api-change/v3.1-beta/changelog-v3.1-beta.md)_
 | [JS页面弹窗](https://gitee.com/openharmony/app_samples/tree/master/UI/JsDialog) | JS中支持用户自定义弹窗，&lt;dialog/&gt;组件作为容器组件，用户可以自定义弹窗的样式和布局。本示例完成了添加和删除联系人功能，在添加和删除时使用自定义弹窗来实现。 | JS |
 | [JSList商品列表](https://gitee.com/openharmony/app_samples/tree/master/UI/JsList) | 本示例展示了list控件在商品分类列表中的应用，在listGroup里采用两个list-item分别展示了Group收缩和Group展开的两种列表形态，点击后会弹出相应的list列表。 | JS |
 | [JSPanel](https://gitee.com/openharmony/app_samples/tree/master/UI/JsPanel) | JS提供一种轻量级的内容展示面板，此面板可滑动，可自定义触发方式、弹出高度等属性。本示例通过可滑动面板展示了商品详细信息与平台保障。 | JS |
-| [JsSvg](https://gitee.com/openharmony/app_samples/tree/master/UI/JsSvg) | 本示例展示了JS中<svg/>组件及其子组件的使用，包括<svg\>、<rect\>、<circle\>、<ellipse\>、<path\>、<line\>、<polygon\>、<polyline\>、<text\>、<animate\>、<animateTransform\> 。 | JS |
+| [JsSvg](https://gitee.com/openharmony/app_samples/tree/master/UI/JsSvg) | 本示例展示了JS中<svg\>组件及其子组件的使用，包括<svg\>、<rect\>、<circle\>、<ellipse\>、<path\>、<line\>、<polygon\>、<polyline\>、<text\>、<animate\>、<animateTransform\> 。 | JS |
 | [JS自定义组件](https://gitee.com/openharmony/app_samples/tree/master/UI/JSUICustomComponent) | 自定义组件是用户根据业务需求，将已有的组件组合，封装成的新组件，可以在工程中多次调用，提高代码的可读性。本示例展示了JS中自定义组件的使用，包括基本用法、自定义事件、Props和事件参数。 | JS |
 
 
@@ -202,7 +202,7 @@ _[Changelog](api-change/v3.1-beta/changelog-v3.1-beta.md)_
 | [I48IM7](https://gitee.com/openharmony/hiviewdfx_hilog/issues/I48IM7) | 运行hilog压力测试，hilogd异常重启，且hilog命令一直无法使用。 |
 | I48YPH | 【软总线-组网】测试发现和组网性能(循环离网-发现-组网)110次组网失败3次。 |
 | [I4BVVW](https://gitee.com/openharmony/communication_dsoftbus/issues/I4BVVW) | 【软总线-组网】标准系统与手机开关网络自组网成功率97%失败3次需分析失败原因。 |
-| [I4BXY1](https://gitee.com/openharmony/multimedia_camera_standard/issues/I4BXY1) | 视频录制后前几秒没声音，播放声画不同步，在板子播放会卡顿，音源较远时，有杂音。 |
+| I4BXY1 | 视频录制后前几秒没声音，播放声画不同步，在板子播放会卡顿，音源较远时，有杂音。 |
 | [3ZJ1D](https://gitee.com/openharmony/kernel_liteos_a/issues/I3ZJ1D) | XTS权限用例压测用户态概率失败。 |
 
 

@@ -118,7 +118,7 @@ repo forall -c 'git lfs pull'
 | [I4C5RW](https://gitee.com/openharmony/kernel_liteos_m/issues/I4C5RW) | 开启MPU保护任务栈时，遇到OS_TASK_STACK_PROTECT_SIZE宏未定义的错误 |
 | [I4G4VK](https://gitee.com/openharmony/kernel_liteos_m/issues/I4G4VK) | 修改inet_addr等宏为函数，外层调用可不包含lwip头文件 |
 | [I4FVGV](https://gitee.com/openharmony/kernel_liteos_m/issues/I4FVGV) | liteos_m核优化lwip默认配置 |
-| [I4CE7D](https://gitee.com/openharmony/miscservices_inputmethod/issues/I4CE7D) | 删除延迟3秒拉起输入法 |
+| I4CE7D) | 删除延迟3秒拉起输入法 |
 | [I4CFOO](https://gitee.com/openharmony/multimedia_media_lite/issues/I4CFOO) | linux多次录像后，不退出应用，重启最后一个录像文件大小为0 |
 | [I4CLGW](https://gitee.com/openharmony/kernel_liteos_a/issues/I4CLGW) | pagecache优化 |
 | [I4HKQ2](https://gitee.com/openharmony/vendor_hisilicon/issues/I4HKQ2) | 测试轻量系统liteOs&nbsp;获取udid |

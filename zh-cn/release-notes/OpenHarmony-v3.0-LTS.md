@@ -180,5 +180,5 @@ API变更请参考：[JS API 差异报告](api-change/v3.0-LTS/js-apidiff-v3.0-l
 | I48YPH | 【软总线-组网】测试发现和组网性能(循环离网-发现-组网)110次组网失败3次 | 低概率3/110，失败后重新发起组网即可。 | 10月30日 | 
 | [I4BVVW](https://gitee.com/openharmony/communication_dsoftbus/issues/I4BVVW) | 【软总线-组网】标准系统与手机开关网络自组网成功率97%失败3次需分析失败原因 | 低概率出现组网失败。 | 10月30日 | 
 | I4BXWY | Hi3516音频录制后播放有杂音 | 仅在使用此开发板时，影响录制音频的播放体验效果。 | 10月30日 | 
-| [I4BXY1](https://gitee.com/openharmony/multimedia_camera_standard/issues/I4BXY1) | 视频录制后前几秒没声音，播放声画不同步，在板子播放会卡顿，音源较远时，有杂音 | 仅在使用此开发板时，影响录制视频的播放体验效果。 | 10月30日 | 
+| I4BXY1 | 视频录制后前几秒没声音，播放声画不同步，在板子播放会卡顿，音源较远时，有杂音 | 仅在使用此开发板时，影响录制视频的播放体验效果。 | 10月30日 | 
 | [3ZJ1D](https://gitee.com/openharmony/kernel_liteos_a/issues/I3ZJ1D) | XTS权限用例压测用户态概率失败 | 仅在重复创建子进程的XTS压力测试场景，设置子进程uid失败，低概率问题。 | 10月30日 | 
