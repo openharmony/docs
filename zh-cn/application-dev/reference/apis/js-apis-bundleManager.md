@@ -1555,7 +1555,7 @@ cleanBundleCacheFiles(bundleName: string): Promise\<void>;
 | 错误码ID | 错误信息                                                   |
 | -------- | ---------------------------------------------------------- |
 | 17700001 | The specified bundleName is not found.                      |
-| 17700030 | The specified bundle does not support cleaning cache files. |
+| 17700030 | The specified bundle does not support clearing of cache files. |
 
 **示例：**
 
@@ -2033,7 +2033,7 @@ getLaunchWantForBundle(bundleName: string, userId: number, callback: AsyncCallba
 | 错误码ID | 错误信息                             |
 | -------- | --------------------------------------|
 | 17700001 | The specified bundleName is not found. |
-| 17700004 | The specified user ID is not found     |
+| 17700004 | The specified user ID is not found.     |
 | 17700026 | The specified bundle is disabled.      |
 
 **示例：**
@@ -2082,7 +2082,7 @@ getLaunchWantForBundle(bundleName: string, callback: AsyncCallback\<Want>): void
 | 错误码ID | 错误信息                             |
 | -------- | --------------------------------------|
 | 17700001 | The specified bundleName is not found. |
-| 17700004 | The specified user ID is not found     |
+| 17700004 | The specified user ID is not found.     |
 | 17700026 | The specified bundle is disabled.      |
 
 **示例：**
@@ -2299,7 +2299,7 @@ getProfileByExtensionAbility(moduleName: string, extensionAbilityName: string, m
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
 | 17700002 | The specified moduleName is not existed.                      |
-| 17700003 | The specified extensionAbilityName is not existed.            |
+| 17700003 | The specified extensionAbilityName not existed.            |
 | 17700024 | Failed to get the profile because there is no profile in the HAP. |
 | 17700026 | The specified bundle is disabled.                             |
 
@@ -2353,7 +2353,7 @@ getProfileByExtensionAbility(moduleName: string, extensionAbilityName: string, m
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
 | 17700002 | The specified moduleName is not existed.                      |
-| 17700003 | The specified extensionAbilityName is not existed.            |
+| 17700003 | The specified extensionAbilityName not existed.            |
 | 17700024 | Failed to get the profile because there is no profile in the HAP. |
 | 17700026 | The specified bundle is disabled.                             |
 
@@ -2734,7 +2734,7 @@ getApplicationInfoSync(bundleName: string, applicationFlags: number, userId: num
 | 错误码ID | 错误信息                             |
 | -------- | -------------------------------------- |
 | 17700001 | The specified bundleName is not found. |
-| 17700004 | The specified userId is not found.     |
+| 17700004 | The specified user ID is not found.     |
 | 17700026 | The specified bundle is disabled.      |
 
 **示例：**

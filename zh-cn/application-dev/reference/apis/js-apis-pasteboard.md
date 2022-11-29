@@ -1337,9 +1337,9 @@ setData(data: PasteData): Promise&lt;void&gt;
 
 **参数：**
 
-| 参数名 | 类型 | 说明 |
-| -------- | -------- | -------- |
-| data | [PasteData](#pastedata) | PasteData对象。 |
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| data | [PasteData](#pastedata) | 是 | PasteData对象。 |
 
 **返回值：**
 
@@ -1702,9 +1702,9 @@ setPasteData(data: PasteData): Promise&lt;void&gt;
 
 **参数：**
 
-| 参数名 | 类型 | 说明 |
-| -------- | -------- | -------- |
-| data | [PasteData](#pastedata) | PasteData对象。 |
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| data | [PasteData](#pastedata) | 是 | PasteData对象。 |
 
 **返回值：**
 

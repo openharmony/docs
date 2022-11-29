@@ -35,10 +35,6 @@ getBundleInstaller(callback: AsyncCallback\<BundleInstaller>): void;
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | callback | AsyncCallback\<[BundleInstaller](js-apis-installer.md#BundleInstaller)> | 是   | 回调函数，获取BundleInstaller对象，err为undefined，data为获取到的BundleInstaller对象；否则为错误对象。 |
 
-**错误码：**
-
-错误码的详细介绍请参见[ohos.bundle错误码](../errorcodes/errorcode-bundle.md)。
-
 **示例：**
 
 ```ts
@@ -71,10 +67,6 @@ getBundleInstaller(): Promise\<BundleInstaller>;
 | 类型                                                         | 说明                                 |
 | ------------------------------------------------------------ | ------------------------------------ |
 | Promise\<[BundleInstaller](js-apis-installer.md#BundleInstaller)> | Promise对象，返回BundleInstaller对象。 |
-
-**错误码：**
-
-错误码的详细介绍请参见[ohos.bundle错误码](../errorcodes/errorcode-bundle.md)。
 
 **示例：**
 
@@ -277,10 +269,10 @@ try {
 
  **系统接口：** 此接口为系统接口，三方应用不支持调用
 
-| 参数名     | 类型   | 说明             |
-| ---------- | ------ | ---------------- |
-| moduleName | string | 应用程序模块名称。 |
-| hashValue  | string | 哈希值。           |
+| 名称     | 类型   | 必填 | 说明             |
+| ---------- | ------ | ---------------- | ---------------- |
+| moduleName | string | 是 | 应用程序模块名称。 |
+| hashValue  | string | 是 | 哈希值。           |
 
 ## InstallParam
 
@@ -290,10 +282,10 @@ try {
 
  **系统接口：** 此接口为系统接口，三方应用不支持调用
 
-| 参数名                          | 类型                           | 说明               |
-| ------------------------------ | ------------------------------ | ------------------ |
-| userId                         | number                         | 指示用户id，可使用[queryOsAccountLocalIdFromProcess](js-apis-osAccount.md#queryosaccountlocalidfromprocess9)获取当前进程所在用户。 |
-| installFlag                    | number                         | 指示安装标志，枚举值：0：应用初次安装，1：应用覆盖安装。 |
-| isKeepData                     | boolean                        | 卸载时是否保留数据目录。 |
-| hashParams        | Array<[HashParam](#hashparam)> | 哈希值参数。         |
-| crowdtestDeadline| number                         |[众测](https://developer.huawei.com/consumer/cn/agconnect/crowd-test/)截止日期。 |
+| 名称                        | 类型                           | 必填                         | 说明               |
+| ------------------------------ | ------------------------------ | ------------------ | ------------------ |
+| userId                         | number                         | 是                        | 指示用户id，可使用[queryOsAccountLocalIdFromProcess](js-apis-osAccount.md#queryosaccountlocalidfromprocess9)获取当前进程所在用户。 |
+| installFlag                    | number                         | 是                        | 指示安装标志，枚举值：0：应用初次安装，1：应用覆盖安装。 |
+| isKeepData                     | boolean                        | 是                       | 卸载时是否保留数据目录。 |
+| hashParams        | Array<[HashParam](#hashparam)> | 是 | 哈希值参数。         |
+| crowdtestDeadline| number                         | 是                        |[众测](https://developer.huawei.com/consumer/cn/agconnect/crowd-test/)截止日期。 |

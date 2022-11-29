@@ -22,10 +22,10 @@ import data_storage from '@ohos.data.storage';
 
 **System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
-| Name             | Type   | Readable | Writable | Description                                                 |
-| ---------------- | ------ | -------- | -------- | ----------------------------------------------------------- |
-| MAX_KEY_LENGTH   | string | Yes      | No       | Maximum length of a key. It must be less than 80 bytes.     |
-| MAX_VALUE_LENGTH | string | Yes      | No       | Maximum length of a value. It must be less than 8192 bytes. |
+| Name            | Type| Readable| Writable| Description                                 |
+| ---------------- | -------- | ---- | ---- | ------------------------------------- |
+| MAX_KEY_LENGTH   | number   | Yes  | No  | Maximum length of a key. It must be less than 80 bytes.    |
+| MAX_VALUE_LENGTH | number   | Yes  | No  | Maximum length of a value. It must be less than 8192 bytes.|
 
 
 ## data_storage.getStorageSync
@@ -53,8 +53,8 @@ Reads the specified file and loads its data to the **Storage** instance for data
 ```js
 import featureAbility from '@ohos.ability.featureAbility';
 
-var path;
-var context = featureAbility.getContext();
+let path;
+let context = featureAbility.getContext();
 context.getFilesDir().then((filePath) => {
   path = filePath;
   console.info("======================>getFilesDirPromise====================>");
@@ -86,8 +86,8 @@ Reads the specified file and loads its data to the **Storage** instance for data
 ```js
 import featureAbility from '@ohos.ability.featureAbility';
 
-var path;
-var context = featureAbility.getContext();
+let path;
+let context = featureAbility.getContext();
 context.getFilesDir().then((filePath) => {
   path = filePath;
   console.info("======================>getFilesDirPromise====================>");
@@ -129,8 +129,8 @@ Reads the specified file and loads its data to the **Storage** instance for data
 ```js
 import featureAbility from '@ohos.ability.featureAbility';
 
-var path;
-var context = featureAbility.getContext();
+let path;
+let context = featureAbility.getContext();
 context.getFilesDir().then((filePath) => {
   path = filePath;
   console.info("======================>getFilesDirPromise====================>");
@@ -165,8 +165,8 @@ Deletes the singleton **Storage** instance of a file from the memory, and delete
 ```js
 import featureAbility from '@ohos.ability.featureAbility';
 
-var path;
-var context = featureAbility.getContext();
+let path;
+let context = featureAbility.getContext();
 context.getFilesDir().then((filePath) => {
     path = filePath;
     console.info("======================>getFilesDirPromise====================>");
@@ -195,8 +195,8 @@ Deletes the singleton **Storage** instance of a file from the memory, and delete
 ```js
 import featureAbility from '@ohos.ability.featureAbility';
 
-var path;
-var context = featureAbility.getContext();
+let path;
+let context = featureAbility.getContext();
 context.getFilesDir().then((filePath) => {
   path = filePath;
   console.info("======================>getFilesDirPromise====================>");
@@ -237,8 +237,8 @@ Deletes the singleton **Storage** instance of a file from the memory, and delete
 ```js
 import featureAbility from '@ohos.ability.featureAbility';
 
-var path;
-var context = featureAbility.getContext();
+let path;
+let context = featureAbility.getContext();
 context.getFilesDir().then((filePath) => {
   path = filePath;
   console.info("======================>getFilesDirPromise====================>");
@@ -271,8 +271,8 @@ Removes the singleton **Storage** instance of a file from the cache. The removed
 ```js
 import featureAbility from '@ohos.ability.featureAbility';
 
-var path;
-var context = featureAbility.getContext();
+let path;
+let context = featureAbility.getContext();
 context.getFilesDir().then((filePath) => {
     path = filePath;
     console.info("======================>getFilesDirPromise====================>");
@@ -302,8 +302,8 @@ Removes the singleton **Storage** instance of a file from the cache. The removed
 ```js
 import featureAbility from '@ohos.ability.featureAbility';
 
-var path;
-var context = featureAbility.getContext();
+let path;
+let context = featureAbility.getContext();
 context.getFilesDir().then((filePath) => {
   path = filePath;
   console.info("======================>getFilesDirPromise====================>");
@@ -344,8 +344,8 @@ Removes the singleton **Storage** instance of a file from the cache. The removed
 ```js
 import featureAbility from '@ohos.ability.featureAbility';
 
-var path;
-var context = featureAbility.getContext();
+let path;
+let context = featureAbility.getContext();
 context.getFilesDir().then((filePath) => {
   path = filePath;
   console.info("======================>getFilesDirPromise====================>");
@@ -864,15 +864,15 @@ Subscribes to data changes. The **StorageObserver** needs to be implemented. Whe
 
 **Parameters**
 
-| Name  | Type                                               | Description                                    |
-| -------- | --------------------------------------------------- | ---------------------------------------- |
-| type     | string                                              | Event type. The value **change** indicates data change events.|
-| callback | Callback&lt;[StorageObserver](#storageobserver)&gt; | Callback used to return data changes.                          |
+| Name  | Type                                               |  Mandatory| Description                                    |
+| -------- | --------------------------------------------------- | ------ |---------------------------------------- |
+| type     | string                                              |Yes| Event type. The value **change** indicates data change events.|
+| callback | Callback&lt;[StorageObserver](#storageobserver)&gt; | Yes|Callback used to return data changes.                          |
 
 **Example**
 
 ```js
-var observer = function (key) {
+let observer = function (key) {
     console.info("The key of " + key + " changed.");
 }
 storage.on('change', observer);
@@ -891,15 +891,15 @@ Unsubscribes from data changes.
 
 **Parameters**
 
-| Name  | Type                                               | Description                                    |
-| -------- | --------------------------------------------------- | ---------------------------------------- |
-| type     | string                                              | Event type. The value **change** indicates data change events.|
-| callback | Callback&lt;[StorageObserver](#storageobserver)&gt; | Callback used to return data changes.                |
+| Name  | Type                                               | Mandatory|  Description                                |
+| -------- | --------------------------------------------------- | ------ |---------------------------------------- |
+| type     | string                                              |Yes| Event type. The value **change** indicates data change events.|
+| callback | Callback&lt;[StorageObserver](#storageobserver)&gt; | Yes|Callback used to return data changes.                |
 
 **Example**
 
 ```js
-var observer = function (key) {
+let observer = function (key) {
     console.info("The key of " + key + " changed.");
 }
 storage.off('change', observer);

@@ -320,7 +320,7 @@ try {
 
 | 名称     | 类型             | 可读 | 可写 | 说明                                                       |
 | -------- | ---------------- | ---- | ---- | ---------------------------------------------------------- |
-| level    | CompressLeve     | 是   | 否   | 参考[zip.CompressLevel枚举定义](#zipcompresslevel)。       |
+| level    | CompressLevel     | 是   | 否   | 参考[zip.CompressLevel枚举定义](#zipcompresslevel)。       |
 | memLevel | MemLevel         | 是   | 否   | 参考[zip.MemLevel枚举定义](#zipmemlevel)。                 |
 | strategy | CompressStrategy | 是   | 否   | 参考[zip.CompressStrategy枚举定义](#zipcompressstrategy)。 |
 

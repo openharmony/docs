@@ -338,7 +338,7 @@ audioPlayer.stop();
 
 reset(): void
 
-切换播放音频资源。
+重置播放音频资源。
 
 **系统能力：** SystemCapability.Multimedia.Media.AudioPlayer
 
@@ -957,7 +957,7 @@ videoPlayer.stop().then(() => {
 
 reset(callback: AsyncCallback\<void>): void
 
-通过回调方式切换播放视频。
+通过回调方式重置播放视频。
 
 **系统能力：** SystemCapability.Multimedia.Media.VideoPlayer
 
@@ -983,7 +983,7 @@ videoPlayer.reset((err) => {
 
 reset(): Promise\<void>
 
-通过Promise方式切换播放视频。
+通过Promise方式重置播放视频。
 
 **系统能力：** SystemCapability.Multimedia.Media.VideoPlayer
 
