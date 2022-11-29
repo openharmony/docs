@@ -18,7 +18,7 @@ import cryptoFramework from "@ohos.security.cryptoFramework"
 
  **系统能力：** SystemCapability.Security.CryptoFramework
 
-| 名称                                  | 默认值   | 描述                         |
+| 名称                                  |    值   |   说明                         |
 | ------------------------------------- | -------- | ---------------------------- |
 | INVALID_PARAMS                        | 401      | 非法入参。                   |
 | NOT_SUPPORT                           | 801      | 操作不支持。                 |
@@ -37,7 +37,7 @@ import cryptoFramework from "@ohos.security.cryptoFramework"
 buffer数组。
  **系统能力：** SystemCapability.Security.CryptoFramework
 
-| 名称 | 类型       | 可读 | 可写 | 描述   |
+| 名称 | 类型       | 可读 | 可写 | 说明   |
 | ---- | ---------- | ---- | ---- | ------ |
 | data | Uint8Array | 是   | 是   | 数据。 |
 
@@ -46,9 +46,9 @@ buffer数组。
 buffer数组的列表。
  **系统能力：** SystemCapability.Security.CryptoFramework
 
-| 名称 | 类型       | 可读 | 可写 | 描述       |
+| 名称 | 类型       | 可读 | 可写 |  说明       |
 | ---- | ---------- | ---- | ---- | ---------- |
-| data | Uint8Array | 是   | 是   | 数据列表。 |
+| data | Array<Uint8Array> | 是   | 是   | 数据列表。 |
 
 ## EncodingFormat
 
@@ -56,7 +56,7 @@ buffer数组的列表。
 
  **系统能力：** SystemCapability.Security.CryptoFramework
 
-| 名称       | 默认值 | 描述      |
+| 名称       | 值 |  说明      |
 | ---------- | ------ | --------- |
 | FORMAT_DER | 0      | DER格式。 |
 | FORMAT_PEM | 1      | PEM格式。 |
@@ -70,9 +70,9 @@ buffer数组的列表。
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
-| 名称           | 类型                              | 可读 | 可写 | 描述                           |
+| 名称           | 类型                              | 可读 | 可写 | 说明                           |
 | -------------- | --------------------------------- | ---- | ---- | ------------------------------ |
-| data           | Uint8Array                        | 是   | 是   | 传入的数据中，包含的证书数量。 |
+| data           | Uint8Array                        | 是   | 是   | 传入的证书数据。 |
 | encodingFormat | [EncodingFormat](#encodingformat) | 是   | 是   | 指明证书编码格式。             |
 
 
@@ -84,7 +84,7 @@ buffer数组的列表。
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
-| 名称           | 类型                              | 可读 | 可写 | 描述                                                         |
+| 名称           | 类型                              | 可读 | 可写 | 说明                                                         |
 | -------------- | --------------------------------- | ---- | ---- | ------------------------------------------------------------ |
 | data           | Uint8Array                        | 是   | 是   | 证书数据，按照长度(2字节)-数据的形式传入，如：08ABCDEFGH07ABCDEFG,第一本证书，前2个字节表示证书的长度为8字节，后面附加8字节的证书数据；第2本证书前2个字节表示证书的长度为7字节，后面附加7字节的证书数据。 |
 | count          | number                            | 是   | 是   | 传入的数据中，包含的证书数量。                               |
@@ -1017,7 +1017,7 @@ promiseGenerateRand.then(randData => {
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
-| 名称     | 类型   | 可读 | 可写 | 描述                    |
+| 名称     | 类型   | 可读 | 可写 | 说明                    |
 | -------- | ------ | ---- | ---- | ----------------------- |
 | algoName | string | 是   | 是   | 指明对称加解密参数的算法模式。可选值如下:<br/>- "IvParamsSpec": 适用于CBC\|CTR\|OFB\|CFB模式<br/>- "GcmParamsSpec": 适用于GCM模式<br/>- "CcmParamsSpec": 适用于CCM模式 |
 
@@ -1030,7 +1030,7 @@ promiseGenerateRand.then(randData => {
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
-| 名称 | 类型                  | 可读 | 可写 | 描述                                                         |
+| 名称 | 类型                  | 可读 | 可写 | 说明                                                         |
 | ---- | --------------------- | ---- | ---- | ------------------------------------------------------------ |
 | iv   | [DataBlob](#datablob) | 是   | 是   | 指明加解密参数iv。常见取值如下：<br/>- AES的CBC\|CTR\|OFB\|CFB模式：iv长度为16字节<br/>- 3DES的CBC\|OFB\|CFB模式：iv长度为8字节 |
 
@@ -1043,7 +1043,7 @@ promiseGenerateRand.then(randData => {
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
-| 名称    | 类型                  | 可读 | 可写 | 描述                                                         |
+| 名称    | 类型                  | 可读 | 可写 | 说明                                                         |
 | ------- | --------------------- | ---- | ---- | ------------------------------------------------------------ |
 | iv      | [DataBlob](#datablob) | 是   | 是   | 指明加解密参数iv，长度为12字节                               |
 | aad     | [DataBlob](#datablob) | 是   | 是   | 指明加解密参数aad，长度为8字节                               |
@@ -1058,7 +1058,7 @@ promiseGenerateRand.then(randData => {
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
-| 名称    | 类型                  | 可读 | 可写 | 描述                                                         |
+| 名称    | 类型                  | 可读 | 可写 | 说明                                                         |
 | ------- | --------------------- | ---- | ---- | ------------------------------------------------------------ |
 | iv      | [DataBlob](#datablob) | 是   | 是   | 指明加解密参数iv，长度为7字节                                |
 | aad     | [DataBlob](#datablob) | 是   | 是   | 指明加解密参数aad，长度为8字节                               |
@@ -1073,7 +1073,7 @@ promiseGenerateRand.then(randData => {
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
-| 名称         | 值   | 描述             |
+| 名称         | 值   | 说明             |
 | ------------ | ---- | ---------------- |
 | ENCRYPT_MODE | 0    | 表示进行加密操作 |
 | DECRYPT_MODE | 1    | 表示进行解密操作 |
@@ -1086,7 +1086,7 @@ promiseGenerateRand.then(randData => {
 
 **系统能力：** SystemCapability.Security.CryptoFramework 
 
-| 名称    | 类型   | 可读 | 可写 | 描述                         |
+| 名称    | 类型   | 可读 | 可写 | 说明                         |
 | ------- | ------ | ---- | ---- | ---------------------------- |
 | format  | string | 是   | 否   | 密钥的格式。                 |
 | algName | string | 是   | 否   | 密钥对应的算法名（含长度）。 |
@@ -1101,7 +1101,7 @@ getEncoded() : DataBlob
 
 **返回值：**
 
-| 类型                  | 描述                     |
+| 类型                  | 说明                     |
 | --------------------- | ------------------------ |
 | [DataBlob](#datablob) | 用于查看密钥的具体内容。 |
 
@@ -1158,7 +1158,7 @@ console.info("key hex:" + uint8ArrayToShowStr(encodedKey.data));    // 输出全
 
 **系统能力：** SystemCapability.Security.CryptoFramework 
 
-| 名称    | 类型   | 可读 | 可写 | 描述                         |
+| 名称    | 类型   | 可读 | 可写 | 说明                         |
 | ------- | ------ | ---- | ---- | ---------------------------- |
 | format  | string | 是   | 否   | 密钥的格式。                 |
 | algName | string | 是   | 否   | 密钥对应的算法名（含长度）。 |
@@ -1174,7 +1174,7 @@ getEncoded() : DataBlob
 
 **返回值：**
 
-| 类型                  | 描述                     |
+| 类型                  | 说明                     |
 | --------------------- | ------------------------ |
 | [DataBlob](#datablob) | 用于查看密钥的具体内容。 |
 
@@ -1202,7 +1202,7 @@ console.info("key encoded:" + uint8ArrayToShowStr(encodedKey.data));
 
 **系统能力：** SystemCapability.Security.CryptoFramework 
 
-| 名称    | 类型   | 可读 | 可写 | 描述                         |
+| 名称    | 类型   | 可读 | 可写 | 说明                         |
 | ------- | ------ | ---- | ---- | ---------------------------- |
 | format  | string | 是   | 否   | 密钥的格式。                 |
 | algName | string | 是   | 否   | 密钥对应的算法名（含长度）。 |
@@ -1217,7 +1217,7 @@ getEncoded() : DataBlob
 
 **返回值：**
 
-| 类型                  | 描述                     |
+| 类型                  | 说明                     |
 | --------------------- | ------------------------ |
 | [DataBlob](#datablob) | 用于查看密钥的具体内容。 |
 
@@ -1251,6 +1251,20 @@ clearMem() : void
 let key; // key为使用非对称密钥生成器生成的非对称密钥的私钥对象，此处省略生成过程
 key.clearMem();
 ```
+
+## KeyPair
+
+非对称密钥对，包含：公钥与私钥，。<br/>可以通过非对称密钥生成器AsyKeyGenerator来生成。
+
+### 属性
+
+**系统能力：** SystemCapability.Security.CryptoFramework
+
+| 名称    | 类型   | 可读 | 可写 | 说明           |
+| ------- | ------ | ---- | ---- | ------------ |
+| priKey  | [PriKey](#prikey) | 是   | 否   | 私钥。      |
+| pubKey | [PubKey](#pubkey) | 是   | 否   | 公钥。       |
+
 
 ## cryptoFramework.createSymKeyGenerator
 
@@ -1287,7 +1301,7 @@ let symKeyGenerator = cryptoFramework.createSymKeyGenerator('3DES192');
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
-| 名称    | 类型   | 可读 | 可写 | 描述                           |
+| 名称    | 类型   | 可读 | 可写 | 说明                           |
 | ------- | ------ | ---- | ---- | ------------------------------ |
 | algName | string | 是   | 否   | 对称密钥生成器指定的算法名称。 |
 
@@ -1301,7 +1315,7 @@ generateSymKey(callback : AsyncCallback\<SymKey>) : void
 
 **参数：**
 
-| 名称     | 类型                              | 必填 | 说明                                                         |
+| 参数名     | 类型                              | 必填 | 说明                                                         |
 | -------- | --------------------------------- | ---- | ------------------------------------------------------------ |
 | callback | AsyncCallback\<[SymKey](#symkey)> | 是   | 回调函数。当生成对称密钥成功，err为undefined，data为获取到的SymKey；否则为错误对象。 |
 
@@ -1370,7 +1384,7 @@ convertKey(key : DataBlob, callback : AsyncCallback\<SymKey>) : void
 
 **参数：**
 
-| 名称     | 类型                              | 必填 | 说明                                                         |
+| 参数名     | 类型                              | 必填 | 说明                                                         |
 | -------- | --------------------------------- | ---- | ------------------------------------------------------------ |
 | key      | [DataBlob](#datablob)             | 是   | 指定的对称密钥材料。                                         |
 | callback | AsyncCallback\<[SymKey](#symkey)> | 是   | 回调函数。当生成对称密钥成功，err为undefined，data为获取到的SymKey；否则为错误对象。 |
@@ -1417,7 +1431,7 @@ convertKey(key : DataBlob) : Promise\<SymKey>
 
 **参数：**
 
-| 名称 | 类型                  | 必填 | 说明                 |
+| 参数名 | 类型                  | 必填 | 说明                 |
 | ---- | --------------------- | ---- | -------------------- |
 | key  | [DataBlob](#datablob) | 是   | 指定的密钥材料数据。 |
 
@@ -1461,6 +1475,7 @@ symKeyGenerator.convertKey(keyMaterialBlob)
 ## cryptoFramework.createAsyKeyGenerator
 
 createAsyKeyGenerator(algName : string) : AsyKeyGenerator
+
 通过指定算法名称的字符串，获取相应的非对称密钥生成器实例。
 
 **系统能力：** SystemCapability.Security.CryptoFramework
@@ -1493,7 +1508,7 @@ let asyKeyGenerator = cryptoFramework.createAsyKeyGenerator("ECC256");
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
-| 名称    | 类型   | 可读 | 可写 | 描述                             |
+| 名称    | 类型   | 可读 | 可写 | 说明                             |
 | ------- | ------ | ---- | ---- | -------------------------------- |
 | algName | string | 是   | 否   | 非对称密钥生成器指定的算法名称。 |
 
@@ -1507,7 +1522,7 @@ generateKeyPair(callback : AsyncCallback\<KeyPair>) : void;
 
 **参数：**
 
-| 名称     | 类型                    | 必填 | 说明                           |
+| 参数名     | 类型                    | 必填 | 说明                           |
 | -------- | ----------------------- | ---- | ------------------------------ |
 | callback | AsyncCallback\<KeyPair> | 是   | 回调函数，用于获取非对称密钥。 |
 
@@ -1565,10 +1580,10 @@ convertKey(pubKey : DataBlob, priKey : DataBlob, callback : AsyncCallback\<KeyPa
 
 **参数：**
 
-| 名称     | 类型                    | 必填 | 说明                           |
-| -------- | ----------------------- | ---- | ------------------------------ |
-| pubKey   | DataBlob                | 否   | 指定的公钥材料。               |
-| priKey   | DataBlob                | 否   | 指定的私钥材料。               |
+| 参数名     | 类型       | 必填 | 说明                           |
+| -------- | ----------- | ---- | ------------------------------ |
+| pubKey   | DataBlob    | 是   | 指定的公钥材料。如果公钥不需要转换，可直接传入null        |
+| priKey   | DataBlob    | 是   | 指定的私钥材料。如果私钥不需要转换，可直接传入null        |
 | callback | AsyncCallback\<KeyPair> | 是   | 回调函数，用于获取非对称密钥。 |
 
 **示例：**
@@ -1597,10 +1612,10 @@ convertKey(pubKey : DataBlob, priKey : DataBlob) : Promise\<KeyPair>
 
 **参数：**
 
-| 名称   | 类型     | 必填 | 说明             |
+| 参数名   | 类型    | 必填 | 说明             |
 | ------ | -------- | ---- | ---------------- |
-| pubKey | DataBlob | 否   | 指定的公钥材料。 |
-| priKey | DataBlob | 否   | 指定的私钥材料。 |
+| pubKey | DataBlob | 是   | 指定的公钥材料。如果公钥不需要转换，可直接传入null |
+| priKey | DataBlob | 是   | 指定的私钥材料。如果私钥不需要转换，可直接传入null |
 
 **返回值：**
 
@@ -1683,7 +1698,7 @@ try {
 **系统能力：** SystemCapability.Security.CryptoFramework
 
 
-| 名称    | 类型   | 可读 | 可写 | 描述                         |
+| 名称    | 类型   | 可读 | 可写 | 说明                         |
 | ------- | ------ | ---- | ---- | ---------------------------- |
 | algName | string | 是   | 否   | 加解密生成器指定的算法名称。 |
 
@@ -1697,7 +1712,7 @@ init(opMode : CryptoMode, key : Key, params : ParamsSpec, callback : AsyncCallba
 
 **参数：**
 
-| 名称     | 类型                      | 必填 | 说明                                                         |
+| 参数名     | 类型                      | 必填 | 说明                                                         |
 | -------- | ------------------------- | ---- | ------------------------------------------------------------ |
 | opMode   | [CryptoMode](#cryptomode) | 是   | 加密或者解密模式。                                           |
 | key      | [Key](#key)               | 是   | 指定加密或解密的密钥。                                       |
@@ -1739,7 +1754,7 @@ init(opMode : CryptoMode, key : Key, params : ParamsSpec) : Promise\<void>
 
 **参数：**
 
-| 名称   | 类型                      | 必填 | 说明                                                         |
+| 参数名   | 类型                      | 必填 | 说明                                                         |
 | ------ | ------------------------- | ---- | ------------------------------------------------------------ |
 | opMode | [CryptoMode](#cryptomode) | 是   | 加密或者解密模式。                                           |
 | key    | [Key](#key)               | 是   | 指定加密或解密的密钥。                                       |
@@ -1789,7 +1804,7 @@ update(data : DataBlob, callback : AsyncCallback\<DataBlob>) : void
 
 **参数：**
 
-| 名称     | 类型                                  | 必填 | 说明                                                         |
+| 参数名     | 类型                                  | 必填 | 说明                                                         |
 | -------- | ------------------------------------- | ---- | ------------------------------------------------------------ |
 | data     | [DataBlob](#datablob)                 | 是   | 加密或者解密的数据。data不能为null，也不允许传入{data : Uint8Array(空) }            |
 | callback | AsyncCallback\<[DataBlob](#datablob)> | 是   | 回调函数。当更新加/解密数据成功，err为undefined，data为此次更新的加/解密结果DataBlob；否则为错误对象。 |
@@ -1846,7 +1861,7 @@ update(data : DataBlob) : Promise\<DataBlob>
 
 **参数：**
 
-| 名称 | 类型                  | 必填 | 说明                 |
+| 参数名 | 类型                  | 必填 | 说明                 |
 | ---- | --------------------- | ---- | -------------------- |
 | data | [DataBlob](#datablob) | 是   | 加密或者解密的数据。data不能为null，也不允许传入{data : Uint8Array(空) } |
 
@@ -1911,7 +1926,7 @@ doFinal(data : DataBlob, callback : AsyncCallback\<DataBlob>) : void
 
 **参数：**
 
-| 名称     | 类型                                  | 必填 | 说明                                                         |
+| 参数名     | 类型                                  | 必填 | 说明                                                         |
 | -------- | ------------------------------------- | ---- | ------------------------------------------------------------ |
 | data     | [DataBlob](#datablob)                 | 是   | 加密或者解密的数据。在对称加解密中允许为null，但不允许传入{data : Uint8Array(空) }。       |
 | callback | AsyncCallback\<[DataBlob](#datablob)> | 是   | 回调函数。当最终加/解密数据成功，err为undefined，data为剩余数据的加/解密结果DataBlob；否则为错误对象。 |
@@ -1963,7 +1978,7 @@ doFinal(data : DataBlob) : Promise\<DataBlob>
 
 **参数：**
 
-| 名称 | 类型                  | 必填 | 说明                 |
+| 参数名 | 类型                  | 必填 | 说明                 |
 | ---- | --------------------- | ---- | -------------------- |
 | data | [DataBlob](#datablob) | 是   | 加密或者解密的数据。data参数允许为null，但不允许传入{data : Uint8Array(空) } |
 
@@ -2104,7 +2119,7 @@ init(priKey : PriKey, callback : AsyncCallback\<void>) : void
 
 | 参数名   | 类型                 | 必填 | 说明             |
 | -------- | -------------------- | ---- | ---------------- |
-| priKey   | Key                  | 是   | 用于Sign的初始化 |
+| priKey   | PriKey                  | 是   | 用于Sign的初始化 |
 | callback | AsyncCallback\<void> | 是   | 回调函数的       |
 
 ### init
@@ -2119,7 +2134,7 @@ init(opMode : CryptoMode, key : Key, params : ParamsSpec) : Promise\<void>
 
 | 参数名 | 类型 | 必填 | 说明             |
 | ------ | ---- | ---- | ---------------- |
-| priKey | Key  | 是   | 用于Sign的初始化 |
+| priKey | PriKey  | 是   | 用于Sign的初始化 |
 
 **返回值：**
 
@@ -2175,7 +2190,7 @@ sign(data : DataBlob, callback : AsyncCallback\<DataBlob>) : void
 | 参数名   | 类型                 | 必填 | 说明       |
 | -------- | -------------------- | ---- | ---------- |
 | data     | DataBlob             | 是   | 传入的消息 |
-| callback | AsyncCallback\<void> | 是   | 回调函数   |
+| callback | AsyncCallback\<DataBlob> | 是   | 回调函数   |
 
 ### sign
 
@@ -2323,7 +2338,7 @@ init(pubKey : PubKey, callback : AsyncCallback\<void>) : void
 
 | 参数名   | 类型                 | 必填 | 说明                         |
 | -------- | -------------------- | ---- | ---------------------------- |
-| pubKey   | Key                  | 是   | 公钥对象，用于Verify的初始化 |
+| pubKey   | PubKey                  | 是   | 公钥对象，用于Verify的初始化 |
 | callback | AsyncCallback\<void> | 是   | 回调函数                     |
 
 ### init
@@ -2338,7 +2353,7 @@ init(pubKey : PubKey) : Promise\<void>
 
 | 参数名 | 类型 | 必填 | 说明                         |
 | ------ | ---- | ---- | ---------------------------- |
-| pubKey | Key  | 是   | 公钥对象，用于Verify的初始化 |
+| pubKey | PubKey  | 是   | 公钥对象，用于Verify的初始化 |
 
 **返回值：**
 
@@ -2395,7 +2410,7 @@ verify(data : DataBlob, signatureData : DataBlob, callback : AsyncCallback\<bool
 | ------------- | -------------------- | ---- | ---------- |
 | data          | DataBlob             | 是   | 传入的消息 |
 | signatureData | DataBlob             | 是   | 签名数据   |
-| callback      | AsyncCallback\<void> | 是   | 回调函数   |
+| callback      | AsyncCallback\<boolean> | 是   | 回调函数   |
 
 ### verify
 
@@ -2571,7 +2586,7 @@ createX509Cert(inStream : EncodingBlob, callback : AsyncCallback\<X509Cert>) : v
 | 参数名   | 类型                          | 必填 | 说明                       |
 | -------- | ----------------------------- | ---- | -------------------------- |
 | inStream | [EncodingBlob](#encodingblob) | 是   | X509证书序列化数据         |
-| callback | AsyncCallback\<X509Cert>      | 否   | 回调函数。表示X509证书对象 |
+| callback | AsyncCallback\<X509Cert>      | 是   | 回调函数。表示X509证书对象 |
 
 
 **示例**：
@@ -2612,8 +2627,8 @@ createX509Cert(inStream : EncodingBlob) : Promise\<X509Cert>
 **返回值**：
 
 | 类型     | 说明             |
-| :------- | ---------------- |
-| X509Cert | 表示X509证书对象 |
+| ------- | ---------------- |
+| Promise\<X509Cert> | 表示X509证书对象 |
 
 **示例**：
 
@@ -2651,7 +2666,7 @@ verify(key : PubKey, callback : AsyncCallback\<void>) : void
 | 参数名   | 类型                  | 必填 | 说明                                                         |
 | -------- | --------------------- | ---- | ------------------------------------------------------------ |
 | key      | [PubKey](#pubkey)     | 是   | 用于验签的公钥对象                                           |
-| callback | AsyncCallback\<void>) | 否   | 回调函数。使用AsyncCallback的第一个error参数判断是否验签成功，error为null表示成功，不为null表示失败 |
+| callback | AsyncCallback\<void> | 是   | 回调函数。使用AsyncCallback的第一个error参数判断是否验签成功，error为null表示成功，不为null表示失败 |
 
 
 **示例**：
@@ -2742,7 +2757,7 @@ getEncoded(callback : AsyncCallback\<EncodingBlob>) : void
 
 | 参数名   | 类型                                          | 必填 | 说明                             |
 | -------- | --------------------------------------------- | ---- | -------------------------------- |
-| callback | AsyncCallback\<[EncodingBlob](#encodingblob)> | 否   | 回调函数。表示X509证书序列化数据 |
+| callback | AsyncCallback\<[EncodingBlob](#encodingblob)> | 是   | 回调函数。表示X509证书序列化数据 |
 
 
 **示例**：
@@ -2823,7 +2838,7 @@ getPublicKey(callback : AsyncCallback\<PubKey>) : void
 
 | 参数名   | 类型          | 必填 | 说明                       |
 | -------- | ------------- | ---- | -------------------------- |
-| callback | AsyncCallback | 否   | 回调函数，X509证书公钥对象 |
+| callback | AsyncCallback\<PubKey> | 是   | 回调函数，X509证书公钥对象 |
 
 
 **示例**：
@@ -2905,7 +2920,7 @@ checkValidityWithDate(date: string, callback : AsyncCallback\<void>) : void
 | 参数名   | 类型                 | 必填 | 说明                                                         |
 | -------- | -------------------- | ---- | ------------------------------------------------------------ |
 | date     | string               | 是   | 日期                                                         |
-| callback | AsyncCallback\<void> | 否   | 回调函数。使用AsyncCallback的第一个error参数判断是否检查成功，error为null表示成功，不为null表示失败 |
+| callback | AsyncCallback\<void> | 是   | 回调函数。使用AsyncCallback的第一个error参数判断是否检查成功，error为null表示成功，不为null表示失败 |
 
 
 **示例**：
@@ -3535,7 +3550,7 @@ createX509Crl(inStream : EncodingBlob, callback : AsyncCallback\<X509Crl>) : voi
 | 参数名   | 类型                          | 必填 | 说明                           |
 | -------- | ----------------------------- | ---- | ------------------------------ |
 | inStream | [EncodingBlob](#encodingblob) | 是   | 表示证书吊销列表序列化数据     |
-| callback | AsyncCallback\<X509Crl>       | 否   | 回调函数。表示证书吊销列表对象 |
+| callback | AsyncCallback\<X509Crl>       | 是   | 回调函数。表示证书吊销列表对象 |
 
 
 **示例**：
@@ -3615,7 +3630,7 @@ isRevoked(cert : X509Cert, callback : AsyncCallback\<boolean>) : void
 | 参数名   | 类型                    | 必填 | 说明                                                        |
 | -------- | ----------------------- | ---- | ----------------------------------------------------------- |
 | cert     | [X509Cert](#x509cert)   | 是   | 表示被检查的证书对象                                        |
-| callback | AsyncCallback\<boolean> | 否   | 回调函数。表示证书吊销状态，true表示已吊销，false表示未吊销 |
+| callback | AsyncCallback\<boolean> | 是   | 回调函数。表示证书吊销状态，true表示已吊销，false表示未吊销 |
 
 
 **示例**：
@@ -3742,7 +3757,7 @@ getEncoded(callback : AsyncCallback\<EncodingBlob>) : void
 
 | 参数名   | 类型                         | 必填 | 说明                                       |
 | -------- | ---------------------------- | ---- | ------------------------------------------ |
-| callback | AsyncCallback\<EncodingBlob> | 否   | 回调函数，表示X509证书吊销列表的序列化数据 |
+| callback | AsyncCallback\<EncodingBlob> | 是   | 回调函数，表示X509证书吊销列表的序列化数据 |
 
 
 **示例**：
@@ -3824,7 +3839,7 @@ verify(key : PubKey, callback : AsyncCallback\<void>) : void
 | 参数名   | 类型                 | 必填 | 说明                                                         |
 | -------- | -------------------- | ---- | ------------------------------------------------------------ |
 | key      | PubKey               | 是   | 表示用于验签的公钥对象                                       |
-| callback | AsyncCallback\<void> | 否   | 回调函数,使用AsyncCallback的第一个error参数判断是否验签成功，error为null表示成功，error不为null表示失败。 |
+| callback | AsyncCallback\<void> | 是   | 回调函数,使用AsyncCallback的第一个error参数判断是否验签成功，error为null表示成功，error不为null表示失败。 |
 
 
 **示例**：
@@ -4060,7 +4075,7 @@ getRevokedCert(serialNumber : number, callback : AsyncCallback\<X509CrlEntry>) :
 | 参数名       | 类型                         | 必填 | 说明                             |
 | ------------ | ---------------------------- | ---- | -------------------------------- |
 | serialNumber | number                       | 是   | 表示证书序列号                   |
-| callback     | AsyncCallback\<X509CrlEntry> | 否   | 回调函数。表示被吊销X509证书对象 |
+| callback     | AsyncCallback\<X509CrlEntry> | 是   | 回调函数。表示被吊销X509证书对象 |
 
 
 **示例**：
@@ -4152,7 +4167,7 @@ getRevokedCertWithCert(cert : X509Cert, callback : AsyncCallback\<X509CrlEntry>)
 | 参数名   | 类型                         | 必填 | 说明                            |
 | -------- | ---------------------------- | ---- | ------------------------------- |
 | cert     | X509Cert                     | 是   | 表示证书对象                    |
-| callback | AsyncCallback\<X509CrlEntry> | 否   | 回调函数,表示被吊销X509证书对象 |
+| callback | AsyncCallback\<X509CrlEntry> | 是   | 回调函数,表示被吊销X509证书对象 |
 
 
 **示例**：
@@ -4243,7 +4258,7 @@ getRevokedCerts(callback : AsyncCallback<Array\<X509CrlEntry>>) : void
 
 | 参数名   | 类型                                | 必填 | 说明                             |
 | -------- | ----------------------------------- | ---- | -------------------------------- |
-| callback | AsyncCallback<Array\<X509CrlEntry>> | 否   | 回调函数。表示被吊销X509证书列表 |
+| callback | AsyncCallback<Array\<X509CrlEntry>> | 是   | 回调函数。表示被吊销X509证书列表 |
 
 
 **示例**：
@@ -4324,7 +4339,7 @@ getTbsInfo(callback : AsyncCallback\<DataBlob>) : void
 
 | 参数名   | 类型                                  | 必填 | 说明                                        |
 | -------- | ------------------------------------- | ---- | ------------------------------------------- |
-| callback | AsyncCallback\<[DataBlob](#datablob)> | 否   | 回调函数。表示证书吊销列表的tbsCertList信息 |
+| callback | AsyncCallback\<[DataBlob](#datablob)> | 是   | 回调函数。表示证书吊销列表的tbsCertList信息 |
 
 
 **示例**：
@@ -4569,6 +4584,16 @@ let validator = cryptoFramework.createCertChainValidator("PKIX");
 
 证书链校验器对象。
 
+
+### 属性
+
+**系统能力：** SystemCapability.Security.CryptoFramework
+
+| 名称    | 类型   | 可读 | 可写 | 说明                         |
+| ------- | ------ | ---- | ---- | -------------------------- |
+| algorithm  | string | 是   | 否   | X509证书链校验器算法名称。 |
+
+
 ### validate
 
 validate(certChain : CertChainData, callback : AsyncCallback\<void>) : void
@@ -4583,7 +4608,7 @@ validate(certChain : CertChainData, callback : AsyncCallback\<void>) : void
 | 参数名    | 类型                            | 必填 | 说明                                                         |
 | --------- | ------------------------------- | ---- | ------------------------------------------------------------ |
 | certChain | [CertChainData](#certchaindata) | 是   | 表示X509证书链序列化数据                                     |
-| callback  | AsyncCallback\<void>            | 否   | 回调函数。使用AsyncCallback的第一个error参数判断是否校验成功，error为null表示成功，error不为null表示失败 |
+| callback  | AsyncCallback\<void>            | 是   | 回调函数。使用AsyncCallback的第一个error参数判断是否校验成功，error为null表示成功，error不为null表示失败 |
 
 
 **示例**：
@@ -4655,19 +4680,6 @@ validator.validate(certChainData).then(result => {
 });
 ```
 
-### algorithm
-
-algorithm : string
-
-表示X509证书链校验器算法名称。
-
-**系统能力**：SystemCapability.Security.CryptoFramework
-
-**返回值**：
-
-| 类型   | 说明                     |
-| ------ | ------------------------ |
-| string | 表示证书链校验器算法名称 |
 
 **示例**：
 
@@ -4694,7 +4706,7 @@ getEncoded(callback : AsyncCallback\<EncodingBlob>) : void
 
 | 参数名   | 类型                                          | 必填 | 说明                                 |
 | -------- | --------------------------------------------- | ---- | ------------------------------------ |
-| callback | AsyncCallback\<[EncodingBlob](#encodingblob)> | 否   | 回调函数。表示被吊销证书的序列化数据 |
+| callback | AsyncCallback\<[EncodingBlob](#encodingblob)> | 是   | 回调函数。表示被吊销证书的序列化数据 |
 
 
 **示例**：
@@ -4777,7 +4789,7 @@ getCertIssuer(callback : AsyncCallback\<DataBlob>) : void
 
 | 参数名   | 类型                                  | 必填 | 说明                                 |
 | -------- | ------------------------------------- | ---- | ------------------------------------ |
-| callback | AsyncCallback\<[DataBlob](#datablob)> | 否   | 回调函数。表示被吊销证书的颁发者信息 |
+| callback | AsyncCallback\<[DataBlob](#datablob)> | 是   | 回调函数。表示被吊销证书的颁发者信息 |
 
 
 **示例**：
@@ -4836,7 +4848,7 @@ getRevocationDate(callback : AsyncCallback\<string>) : void
 
 | 参数名   | 类型                   | 必填 | 说明                           |
 | -------- | ---------------------- | ---- | ------------------------------ |
-| callback | AsyncCallback\<string> | 否   | 回调函数。表示证书被吊销的日期 |
+| callback | AsyncCallback\<string> | 是   | 回调函数。表示证书被吊销的日期 |
 
 
 **示例**：

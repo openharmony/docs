@@ -4,7 +4,7 @@ ConfigurationConstant模块提供配置信息枚举值定义的能力。
 
 > **说明：**
 > 
-> 本模块首批接口从API version 8开始支持，从API version 9废弃，替换模块为[@ohos.application.ConfigurationConstant (ConfigurationConstant)](js-apis-app-ability-configurationConstant.md)。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+> 本模块首批接口从API version 8开始支持，从API version 9废弃，替换模块为[@ohos.application.ConfigurationConstant (ConfigurationConstant)](js-apis-app-ability-configurationconstant.md)。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
 ## 导入模块
 

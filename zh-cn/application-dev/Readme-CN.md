@@ -44,6 +44,7 @@
     - [设备使用信息统计](device-usage-statistics/Readme-CN.md)
     - [DFX](dfx/Readme-CN.md)
     - [国际化](internationalization/Readme-CN.md)
+    - [应用测试](application-test/Readme-CN.md)
     - [一次开发，多端部署](key-features/multi-device-app-dev/Readme-CN.md)
     - [IDL工具规格及使用说明书](IDL/idl-guidelines.md)
     - [Native API的相关指导](napi/Readme-CN.md)
@@ -65,4 +66,3 @@
 - [常见问题](faqs/Readme-CN.md)
 - 贡献
     - [参与贡献](../contribute/贡献文档.md)
-

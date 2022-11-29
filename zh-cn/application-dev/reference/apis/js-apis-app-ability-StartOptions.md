@@ -19,5 +19,5 @@ import StartOptions from '@ohos.app.ability.StartOptions';
 
 | 名称 | 可读 | 可写 | 参数类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- | -------- | -------- |
-| [windowMode](js-apis-application-abilityConstant.md#AbilityConstant.WindowMode) | 是 | 否 | number | 否 | 窗口模式。 |
+| [windowMode](js-apis-app-ability-abilityConstant.md#abilityconstantwindowmode) | 是 | 否 | number | 否 | 窗口模式。 |
 | displayId | 是 | 否 | number | 否 | 显示ID。 |

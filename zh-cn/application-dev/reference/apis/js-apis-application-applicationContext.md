@@ -15,7 +15,6 @@ ApplicationContext模块提供开发者应用级别的的上下文的能力，�
 let applicationContext = this.context.getApplicationContext();
 ```
 
-
 ## ApplicationContext.registerAbilityLifecycleCallback
 
 registerAbilityLifecycleCallback(callback: AbilityLifecycleCallback): **number**;
@@ -38,7 +37,7 @@ registerAbilityLifecycleCallback(callback: AbilityLifecycleCallback): **number**
 
 **示例：**
 
-  ```js
+```js
 import Ability from "@ohos.application.Ability";
 
 var lifecycleId;
@@ -46,36 +45,36 @@ var lifecycleId;
 export default class MyAbility extends Ability {
     onCreate() {
         console.log("MyAbility onCreate")
-        let AbilityLifecycleCallback  =  {
-            onAbilityCreate(ability){
-                console.log("AbilityLifecycleCallback onAbilityCreate ability:" + JSON.stringify(ability));        
+        let AbilityLifecycleCallback = {
+            onAbilityCreate(ability) {
+                console.log("AbilityLifecycleCallback onAbilityCreate ability:" + JSON.stringify(ability));
             },
-            onWindowStageCreate(ability, windowStage){
-                console.log("AbilityLifecycleCallback onWindowStageCreate ability:" + JSON.stringify(ability)); 
-                console.log("AbilityLifecycleCallback onWindowStageCreate windowStage:" + JSON.stringify(windowStage));           
+            onWindowStageCreate(ability, windowStage) {
+                console.log("AbilityLifecycleCallback onWindowStageCreate ability:" + JSON.stringify(ability));
+                console.log("AbilityLifecycleCallback onWindowStageCreate windowStage:" + JSON.stringify(windowStage));
             },
-            onWindowStageActive(ability, windowStage){
-                console.log("AbilityLifecycleCallback onWindowStageActive ability:" + JSON.stringify(ability)); 
-                console.log("AbilityLifecycleCallback onWindowStageActive windowStage:" + JSON.stringify(windowStage));           
+            onWindowStageActive(ability, windowStage) {
+                console.log("AbilityLifecycleCallback onWindowStageActive ability:" + JSON.stringify(ability));
+                console.log("AbilityLifecycleCallback onWindowStageActive windowStage:" + JSON.stringify(windowStage));
             },
-            onWindowStageInactive(ability, windowStage){
+            onWindowStageInactive(ability, windowStage) {
                 console.log("AbilityLifecycleCallback onWindowStageInactive ability:" + JSON.stringify(ability));
-                console.log("AbilityLifecycleCallback onWindowStageInactive windowStage:" + JSON.stringify(windowStage));  
+                console.log("AbilityLifecycleCallback onWindowStageInactive windowStage:" + JSON.stringify(windowStage));
             },
-            onWindowStageDestroy(ability, windowStage){
+            onWindowStageDestroy(ability, windowStage) {
                 console.log("AbilityLifecycleCallback onWindowStageDestroy ability:" + JSON.stringify(ability));
-                console.log("AbilityLifecycleCallback onWindowStageDestroy windowStage:" + JSON.stringify(windowStage));  
+                console.log("AbilityLifecycleCallback onWindowStageDestroy windowStage:" + JSON.stringify(windowStage));
             },
-            onAbilityDestroy(ability){
-                console.log("AbilityLifecycleCallback onAbilityDestroy ability:" + JSON.stringify(ability));             
+            onAbilityDestroy(ability) {
+                console.log("AbilityLifecycleCallback onAbilityDestroy ability:" + JSON.stringify(ability));
             },
-            onAbilityForeground(ability){
-                console.log("AbilityLifecycleCallback onAbilityForeground ability:" + JSON.stringify(ability));             
+            onAbilityForeground(ability) {
+                console.log("AbilityLifecycleCallback onAbilityForeground ability:" + JSON.stringify(ability));
             },
-            onAbilityBackground(ability){
-                console.log("AbilityLifecycleCallback onAbilityBackground ability:" + JSON.stringify(ability));              
+            onAbilityBackground(ability) {
+                console.log("AbilityLifecycleCallback onAbilityBackground ability:" + JSON.stringify(ability));
             },
-            onAbilityContinue(ability){
+            onAbilityContinue(ability) {
                 console.log("AbilityLifecycleCallback onAbilityContinue ability:" + JSON.stringify(ability));
             }
         }
@@ -84,16 +83,9 @@ export default class MyAbility extends Ability {
         // 2.通过applicationContext注册监听应用内生命周期
         lifecycleId = applicationContext.registerAbilityLifecycleCallback(AbilityLifecycleCallback);
         console.log("registerAbilityLifecycleCallback number: " + JSON.stringify(lifecycleId));
-    },
-    onDestroy() {
-        let applicationContext = this.context.getApplicationContext();
-        applicationContext.unregisterAbilityLifecycleCallback(lifecycleId, (error, data) => {
-            console.log("unregisterAbilityLifecycleCallback success, err: " + JSON.stringify(error));
-        });
     }
 }
-  ```
-
+```
 
 ## ApplicationContext.unregisterAbilityLifecycleCallback
 
@@ -112,14 +104,21 @@ unregisterAbilityLifecycleCallback(callbackId: **number**,  callback: AsyncCallb
 
 **示例：**
 
-  ```js
-  let applicationContext = this.context.getApplicationContext();
-  let lifecycleId = 1;
-  console.log("stage applicationContext: " + JSON.stringify(applicationContext));
-  applicationContext.unregisterAbilityLifecycleCallback(lifecycleId, (error, data) => {
-      console.log("unregisterAbilityLifecycleCallback success, err: " + JSON.stringify(error));
-  });
-  ```
+```js
+import Ability from "@ohos.application.Ability";
+
+var lifecycleId;
+
+export default class MyAbility extends Ability {
+    onDestroy() {
+        let applicationContext = this.context.getApplicationContext();
+        console.log("stage applicationContext: " + JSON.stringify(applicationContext));
+        applicationContext.unregisterAbilityLifecycleCallback(lifecycleId, (error, data) => {
+            console.log("unregisterAbilityLifecycleCallback success, err: " + JSON.stringify(error));
+        });
+    }
+}
+```
 
 ## ApplicationContext.registerEnvironmentCallback
 
@@ -143,7 +142,7 @@ registerEnvironmentCallback(callback: EnvironmentCallback): **number**;
 
 **示例：**
 
-  ```js
+```js
 import Ability from "@ohos.application.Ability";
 
 var callbackId;
@@ -163,14 +162,8 @@ export default class MyAbility extends Ability {
         callbackId = applicationContext.registerEnvironmentCallback(EnvironmentCallback);
         console.log("registerEnvironmentCallback number: " + JSON.stringify(callbackId));
     }
-    onDestroy() {
-        let applicationContext = globalThis.applicationContext;
-        applicationContext.unregisterEnvironmentCallback(callbackId, (error, data) => {
-            console.log("unregisterEnvironmentCallback success, err: " + JSON.stringify(error));
-        });
-    }
 }
-  ```
+```
 
 ## ApplicationContext.unregisterEnvironmentCallback
 

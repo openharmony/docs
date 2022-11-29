@@ -339,13 +339,15 @@ onSaveState(reason: AbilityConstant.StateType, wantParam : {[key: string]: any})
 **示例：**
 
   ```js
-  class myAbility extends Ability {
-      onSaveState(reason, wantParam) {
-          console.log('onSaveState');
-          wantParams["myData"] = "my1234567";
-          return AbilityConstant.OnSaveResult.RECOVERY_AGREE;
-      }
-  }
+import AbilityConstant from '@ohos.application.AbilityConstant'
+
+class myAbility extends Ability {
+    onSaveState(reason, wantParam) {
+        console.log('onSaveState');
+        wantParam["myData"] = "my1234567";
+        return AbilityConstant.OnSaveResult.RECOVERY_AGREE;
+    }
+}
   ```
 
 

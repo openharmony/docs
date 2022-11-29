@@ -50,11 +50,6 @@ Queue的构造函数。
 
 ```ts
 let queue = new Queue();
-try {
-  let queue2 = Queue();
-} catch(err) {
-  console.log(`${err.code} - ${err.name} - ${err.message}`);
-}
 ```
 
 
@@ -96,11 +91,6 @@ let b = [1, 2, 3];
 let result2 = queue.add(b);
 let c = {name : "Dylon", age : "13"};
 let result3 = queue.add(c);
-try {
-  queue.add.bind({}, "b")(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
-} catch(err) {
-  console.log(`${err.code} - ${err.name} - ${err.message}`);
-}
 ```
 
 ### pop
@@ -135,11 +125,6 @@ queue.add(5);
 queue.add(2);
 queue.add(4);
 let result = queue.pop();
-try {
-  queue.pop.bind({})(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
-} catch(err) {
-  console.log(`${err.code} - ${err.name} - ${err.message}`);
-}
 ```
 
 ### getFirst
@@ -150,7 +135,7 @@ getFirst(): T
 
 **系统能力：** SystemCapability.Utils.Lang
 
-**参数：**
+**返回值：**
 
 | 类型 | 说明 |
 | -------- | -------- |
@@ -173,11 +158,6 @@ queue.add(4);
 queue.add(5);
 queue.add(2);
 let result = queue.getFirst();
-try {
-  queue.getFirst.bind({})(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
-} catch(err) {
-  console.log(`${err.code} - ${err.name} - ${err.message}`);
-}
 ```
 
 ### forEach
@@ -223,13 +203,6 @@ queue.add(4);
 queue.forEach((value, index) => {
   console.log("value:" + value, index);
 });
-try {
-  queue.forEach.bind({}, (value, index) => {
-    console.log("value:" + value, index);
-  })(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
-} catch(err) {
-  console.log(`${err.code} - ${err.name} - ${err.message}`);
-}
 ```
 
 ### [Symbol.iterator]
@@ -273,10 +246,5 @@ let temp = iter.next().value;
 while(temp != undefined) {
   console.log("value:" + temp);
   temp = iter.next().value;
-}
-try {
-  queue[Symbol.iterator].bind({})(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
-} catch(err) {
-  console.log(`${err.code} - ${err.name} - ${err.message}`);
 }
 ```

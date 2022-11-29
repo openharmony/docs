@@ -963,10 +963,10 @@ onProcessDied(processData: ProcessData): void;
 
 | 名称                     | 类型     | 可读 | 可写 | 说明                       |
 | ----------------------- | ---------| ---- | ---- | ------------------------- |
-| [onForegroundApplicationChanged](#applicationstateobserveronforegroundapplicationchanged8)         | AsyncCallback\<void>   | 是   | 否   | 应用前后台状态发生变化时执行的回调函数。                    |
-| [onAbilityStateChanged](#applicationstateobserveronabilitystatechanged8)  | AsyncCallback\<void>   | 是   | 否  | ability状态发生变化时执行的回调函数。                  |
-| [onProcessCreated](#applicationstateobserveronprocesscreated8)         | AsyncCallback\<void>   | 是   | 否   | 进程创建时执行的回调函数。                  |
-| [onProcessDied](#applicationstateobserveronprocessdied8)         | AsyncCallback\<void>   | 是   | 否   | 进程销毁时执行的回调函数。                  |
+| [onForegroundApplicationChanged](#applicationstateobserveronforegroundapplicationchanged)         | AsyncCallback\<void>   | 是   | 否   | 应用前后台状态发生变化时执行的回调函数。                    |
+| [onAbilityStateChanged](#applicationstateobserveronabilitystatechanged)  | AsyncCallback\<void>   | 是   | 否  | ability状态发生变化时执行的回调函数。                  |
+| [onProcessCreated](#applicationstateobserveronprocesscreated)         | AsyncCallback\<void>   | 是   | 否   | 进程创建时执行的回调函数。                  |
+| [onProcessDied](#applicationstateobserveronprocessdied)         | AsyncCallback\<void>   | 是   | 否   | 进程销毁时执行的回调函数。                  |
 
 ## ProcessRunningInformation
    

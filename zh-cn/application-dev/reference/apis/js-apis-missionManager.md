@@ -49,7 +49,8 @@ registerMissionListener(listener: MissionListener): number;
       onMissionSnapshotChanged: function (mission) {console.log("--------onMissionSnapshotChanged-------")},
       onMissionMovedToFront: function (mission) {console.log("--------onMissionMovedToFront-------")},
       onMissionIconUpdated: function (mission, icon) {console.log("--------onMissionIconUpdated-------")},
-      onMissionClosed: function (mission) {console.log("--------onMissionClosed-------")}
+      onMissionClosed: function (mission) {console.log("--------onMissionClosed-------")},
+      onMissionLabelUpdated: function (mission) {console.log("--------onMissionLabelUpdated-------")}
   };
   console.log("registerMissionListener")
   var listenerid = missionManager.registerMissionListener(listener);
@@ -84,7 +85,8 @@ unregisterMissionListener(listenerId: number, callback: AsyncCallback&lt;void&gt
       onMissionSnapshotChanged: function (mission) {console.log("--------onMissionSnapshotChanged-------")},
       onMissionMovedToFront: function (mission) {console.log("--------onMissionMovedToFront-------")},
       onMissionIconUpdated: function (mission, icon) {console.log("--------onMissionIconUpdated-------")},
-      onMissionClosed: function (mission) {console.log("--------onMissionClosed-------")}
+      onMissionClosed: function (mission) {console.log("--------onMissionClosed-------")},
+      onMissionLabelUpdated: function (mission) {console.log("--------onMissionLabelUpdated-------")}
   };
   console.log("registerMissionListener")
   var listenerid = missionManager.registerMissionListener(listener);
@@ -128,7 +130,8 @@ unregisterMissionListener(listenerId: number): Promise&lt;void&gt;;
       onMissionSnapshotChanged: function (mission) {console.log("--------onMissionSnapshotChanged-------")},
       onMissionMovedToFront: function (mission) {console.log("--------onMissionMovedToFront-------")},
       onMissionIconUpdated: function (mission, icon) {console.log("--------onMissionIconUpdated-------")},
-      onMissionClosed: function (mission) {console.log("--------onMissionClosed-------")}
+      onMissionClosed: function (mission) {console.log("--------onMissionClosed-------")},
+      onMissionLabelUpdated: function (mission) {console.log("--------onMissionLabelUpdated-------")}
   };
   console.log("registerMissionListener")
   var listenerid = missionManager.registerMissionListener(listener);
