@@ -147,8 +147,8 @@ import distributedKVStore from '@ohos.data.distributedKVStore';
 用于提供创建数据库的配置信息。
 
 | 名称          | 类型                        | 必填 | 说明                                                         |
-| --------------- | ------------------------------- | ---- | ------------------------------------------------------------ |
-| createIfMissing | boolean                         | 否  | 当数据库文件不存在时是否创建数据库，默认创建。 <br>**系统能力：**SystemCapability.DistributedDataManager.KVStore.Core |
+| --------------- | -------------- | ---- | -------------------------|
+| createIfMissing | boolean                         | 否  | 当数据库文件不存在时是否创建数据库，默认创建。<br>**系统能力：** SystemCapability.DistributedDataManager.KVStore.Core |
 | encrypt         | boolean                         | 否   | 设置数据库文件是否加密，默认不加密。<br>**系统能力：** SystemCapability.DistributedDataManager.KVStore.Core |
 | backup          | boolean                         | 否   | 设置数据库文件是否备份，默认备份。 <br>**系统能力：** SystemCapability.DistributedDataManager.KVStore.Core |
 | autoSync        | boolean                         | 否   | 设置数据库文件是否自动同步，默认不自动同步。<br>**系统能力：** SystemCapability.DistributedDataManager.KVStore.Core<br>**需要权限**： ohos.permission.DISTRIBUTED_DATASYNC |
