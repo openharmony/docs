@@ -18,9 +18,8 @@ On Ubuntu:
    > The preceding command is applicable to Ubuntu 18.04. For other Ubuntu versions, modify the preceding installation command based on the installation package name. The details are as follows:
    >
    > - Python 3.8 or a later version is required. This section uses Python 3.8 as an example.
+   > - Java 8 or later is required. This section uses Java 8 as an example.
    >
-> - Java 8 or later is required. This section uses Java 8 as an example.
-   
 2. Set Python 3.8 as the default Python version.
    
    Check the location of Python 3.8.
