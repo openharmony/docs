@@ -2927,12 +2927,12 @@ try {
 
 **系统能力：** SystemCapability.DistributedDataManager.KVStore.Core
 
-| 名称  | 类型   |可读   |可写   | 说明                    |
-| ----- | -------   | -----| ------|------------------------ |
-| insertEntries | [Entry](#entry)[]   | 是  |  是 |数据添加记录。   |
-| updateEntries | [Entry](#entry)[]   | 是  |  是 |数据更新记录。   |
-| deleteEntries | [Entry](#entry)[]   | 是  |  是 |数据删除记录。   |
-| deviceId | string   | 是  |  是 |设备ID，此处为设备UUID。  |
+| 名称  | 类型   |必填   | 说明                    |
+| ----- | -------   | ------|------------------------ |
+| insertEntries | [Entry](#entry)[]   | 是 |数据添加记录。   |
+| updateEntries | [Entry](#entry)[]   | 是 |数据更新记录。   |
+| deleteEntries | [Entry](#entry)[]   | 是 |数据删除记录。   |
+| deviceId | string   | 是 |设备ID，此处为设备UUID。  |
 
 ## Entry
 
@@ -2940,10 +2940,10 @@ try {
 
 **系统能力：** SystemCapability.DistributedDataManager.KVStore.Core
 
-| 名称  | 类型   |可读   |可写   | 说明                    |
-| ----- | -------   | -----| ------|------------------------ |
-| key | string   | 是  |  是 |键值。   |
-| value | [Value](#value) | 是  |  是 |值对象。   |
+| 名称  | 类型   |必填   | 说明                    |
+| ----- | -------   | ------|------------------------ |
+| key | string   | 是 |键值。   |
+| value | [Value](#value) | 是 |值对象。   |
 
 
 ## Value
@@ -2952,10 +2952,10 @@ try {
 
 **系统能力：** SystemCapability.DistributedDataManager.KVStore.Core
 
-| 名称  | 类型   |可读   |可写   | 说明                    |
-| ----- | -------   | -----| ------|------------------------ |
-| type | [ValueType](#value)   | 是  |  是 |值类型。   |
-| value | Uint8Array \| string \| number \| boolean| 是  |  是 |值。   |
+| 名称  | 类型   |必填   | 说明                    |
+| ----- | -------   | ------|------------------------ |
+| type | [ValueType](#value)   | 是 |值类型。   |
+| value | Uint8Array \| string \| number \| boolean| 是 |值。   |
 
 ## ValueType
 
