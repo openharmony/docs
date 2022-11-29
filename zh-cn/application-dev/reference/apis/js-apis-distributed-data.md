@@ -116,10 +116,10 @@ try {
 
 **系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core
 
-| 名称 | 类型 | 可读 | 可写 | 说明 |
-| ----- | ------ | ------ | ------ | ------ |
-| userInfo | [UserInfo](#userinfo) | 是  | 是  | 调用方的用户信息。 |
-| bundleName | string | 是  | 是  | 调用方的包名。 |
+| 名称 | 类型 | 必填 | 说明 |
+| ----- | ------ | ------ | ------ |
+| userInfo | [UserInfo](#userinfo) | 是  | 调用方的用户信息。 |
+| bundleName | string | 是  | 调用方的包名。 |
 
 ## UserInfo
 
@@ -127,10 +127,10 @@ try {
 
 **系统能力：** SystemCapability.DistributedDataManager.KVStore.Core
 
-| 名称 | 类型 | 可读 | 可写 | 说明 |
-| ----- | ------ | ------ | ------ | ------ |
-| userId | string | 是  | 是  | 指示要设置的用户ID。 |
-| userType | [UserType](#usertype) | 是  | 是  | 指示要设置的用户类型。 |
+| 名称 | 类型 | 必填 | 说明 |
+| ----- | ------ |------ | ------ |
+| userId | string | 否  | 指示要设置的用户ID。 |
+| userType | [UserType](#usertype) | 否  | 指示要设置的用户类型。 |
 
 
 ## UserType
@@ -573,15 +573,15 @@ try {
 用于提供创建数据库的配置信息。
 
 
-| 名称  | 类型 | 可读   | 可写   | 说明                    |
-| -----  | ------  | ------  | ------  | -------------------|
-| createIfMissing  | boolean | 是 | 是 | 当数据库文件不存在时是否创建数据库，默认创建。 <br>**系统能力：** SystemCapability.DistributedDataManager.KVStore.Core    |
-| encrypt  | boolean | 是 | 是 |设置数据库文件是否加密，默认不加密。<br>**系统能力：** SystemCapability.DistributedDataManager.KVStore.Core     |
-| backup  | boolean | 是 | 是 |设置数据库文件是否备份，默认备份。 <br>**系统能力：** SystemCapability.DistributedDataManager.KVStore.Core    |
-| autoSync  | boolean | 是 | 是 |设置数据库文件是否自动同步，默认不自动同步。<br>**系统能力：** SystemCapability.DistributedDataManager.KVStore.Core<br>**需要权限**： ohos.permission.DISTRIBUTED_DATASYNC     |
-| kvStoreType | [KVStoreType](#kvstoretype) | 是 | 是 |设置要创建的数据库类型，默认为多设备协同数据库。<br>**系统能力：** SystemCapability.DistributedDataManager.KVStore.Core |
-| securityLevel | [SecurityLevel](#securitylevel) | 是 | 是 |设置数据库安全级别，默认不设置安全级别。<br>**系统能力：** SystemCapability.DistributedDataManager.KVStore.Core  |
-| schema<sup>8+</sup> | [Schema](#schema8) | 是 | 是 | 设置定义存储在数据库中的值。<br>**系统能力：** SystemCapability.DistributedDataManager.KVStore.DistributedKVStore |
+| 名称  | 类型 | 必填   | 说明                    |
+| -----  | ------  | ------  | -------------------|
+| createIfMissing  | boolean | 否 | 当数据库文件不存在时是否创建数据库，默认创建。 <br>**系统能力：** SystemCapability.DistributedDataManager.KVStore.Core    |
+| encrypt  | boolean | 否 |设置数据库文件是否加密，默认不加密。<br>**系统能力：** SystemCapability.DistributedDataManager.KVStore.Core     |
+| backup  | boolean | 否 |设置数据库文件是否备份，默认备份。 <br>**系统能力：** SystemCapability.DistributedDataManager.KVStore.Core    |
+| autoSync  | boolean | 否 |设置数据库文件是否自动同步，默认不自动同步。<br>**系统能力：** SystemCapability.DistributedDataManager.KVStore.Core<br>**需要权限**： ohos.permission.DISTRIBUTED_DATASYNC     |
+| kvStoreType | [KVStoreType](#kvstoretype) | 否 |设置要创建的数据库类型，默认为多设备协同数据库。<br>**系统能力：** SystemCapability.DistributedDataManager.KVStore.Core |
+| securityLevel | [SecurityLevel](#securitylevel) | 否 |设置数据库安全级别，默认不设置安全级别。<br>**系统能力：** SystemCapability.DistributedDataManager.KVStore.Core  |
+| schema<sup>8+</sup> | [Schema](#schema8) | 否 | 设置定义存储在数据库中的值。<br>**系统能力：** SystemCapability.DistributedDataManager.KVStore.DistributedKVStore |
 
 
 ## KVStoreType
