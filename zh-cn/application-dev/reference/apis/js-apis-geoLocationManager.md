@@ -1063,7 +1063,7 @@ setReverseGeocodingMockInfo(mockInfos: Array&lt;ReverseGeocodingMockInfo&gt;): P
 **系统能力**：SystemCapability.Location.Location.Geocoder
 
 | 名称 | 类型 | 可读 | 可写 | 说明 |
-| -------- | -------- | -------- | -------- |
+| -------- | -------- | -------- | -------- | -------- |
 | locale | string | 是 | 是 | 指定位置描述信息的语言，“zh”代表中文，“en”代表英文。 |
 | latitude | number | 是 | 是 | 表示纬度信息，正值表示北纬，负值表示南纬。 |
 | longitude | number | 是 | 是 | 表示经度信息，正值表示东经，负值表示西经。 |
@@ -1077,9 +1077,9 @@ setReverseGeocodingMockInfo(mockInfos: Array&lt;ReverseGeocodingMockInfo&gt;): P
 **系统能力**：SystemCapability.Location.Location.Geocoder
 
 | 名称 | 类型 | 可读|可写 | 说明 |
-| -------- | -------- | -------- | -------- |
+| -------- | -------- | -------- | -------- | -------- |
 | locale | string | 是 | 是 | 表示位置描述信息的语言，“zh”代表中文，“en”代表英文。 |
-| description | number | 是 | 是 | 表示位置信息描述，如“上海市浦东新区xx路xx号”。 |
+| description | string | 是 | 是 | 表示位置信息描述，如“上海市浦东新区xx路xx号”。 |
 | maxItems | number | 是 | 是 | 表示返回位置信息的最大个数。 |
 | minLatitude | number | 是 | 是 | 表示最小纬度信息，与下面三个参数一起，表示一个经纬度范围。 |
 | minLongitude | number | 是 | 是 | 表示最小经度信息。 |
@@ -1094,7 +1094,7 @@ setReverseGeocodingMockInfo(mockInfos: Array&lt;ReverseGeocodingMockInfo&gt;): P
 **系统能力**：SystemCapability.Location.Location.Geocoder
 
 | 名称 | 类型 | 可读|可写 | 说明 |
-| -------- | -------- | -------- | -------- |
+| -------- | -------- | -------- | -------- | -------- |
 | latitude | number | 是 | 否  | 表示纬度信息，正值表示北纬，负值表示南纬。 |
 | longitude | number | 是 | 否  | 表示经度信息，正值表示东经，负值表是西经。 |
 | locale | string | 是 | 否  | 表示位置描述信息的语言，“zh”代表中文，“en”代表英文。 |
@@ -1123,7 +1123,7 @@ setReverseGeocodingMockInfo(mockInfos: Array&lt;ReverseGeocodingMockInfo&gt;): P
 **系统能力**：SystemCapability.Location.Location.Core
 
 | 名称 | 类型 | 可读|可写 | 说明 |
-| -------- | -------- | -------- | -------- |
+| -------- | -------- | -------- | -------- | -------- |
 | priority | [LocationRequestPriority](#locationrequestpriority) | 是 | 是 | 表示优先级信息。 |
 | scenario | [LocationRequestScenario](#locationrequestscenario) | 是 | 是 | 表示场景信息。 |
 | timeInterval | number | 是 | 是 | 表示上报位置信息的时间间隔。 |
@@ -1138,7 +1138,7 @@ setReverseGeocodingMockInfo(mockInfos: Array&lt;ReverseGeocodingMockInfo&gt;): P
 **系统能力**：SystemCapability.Location.Location.Core
 
 | 名称 | 类型 | 可读|可写 | 说明 |
-| -------- | -------- | -------- | -------- |
+| -------- | -------- | -------- | -------- | -------- |
 | priority | [LocationRequestPriority](#locationrequestpriority) | 是 | 是 | 表示优先级信息。 |
 | scenario | [LocationRequestScenario](#locationrequestscenario) | 是 | 是 | 表示场景信息。 |
 | maxAccuracy | number | 是 | 是| 表示精度信息，单位是米。仅在精确位置功能场景下有效，模糊位置功能生效场景下该字段无意义。 |
@@ -1152,7 +1152,7 @@ setReverseGeocodingMockInfo(mockInfos: Array&lt;ReverseGeocodingMockInfo&gt;): P
 **系统能力**：SystemCapability.Location.Location.Gnss
 
 | 名称 | 类型 | 可读|可写 | 说明 |
-| -------- | -------- | -------- | -------- |
+| -------- | -------- | -------- | -------- | -------- |
 | satellitesNumber | number | 是 | 否 | 表示卫星个数。 |
 | satelliteIds | Array&lt;number&gt; | 是 | 否 | 表示每个卫星的ID，数组类型。 |
 | carrierToNoiseDensitys | Array&lt;number&gt; | 是 | 否 | 表示载波噪声功率谱密度比，即cn0。 |
@@ -1168,7 +1168,7 @@ setReverseGeocodingMockInfo(mockInfos: Array&lt;ReverseGeocodingMockInfo&gt;): P
 **系统能力**：SystemCapability.Location.Location.Gnss
 
 | 名称 | 类型 | 可读|可写 | 说明 |
-| -------- | -------- | -------- | -------- |
+| -------- | -------- | -------- | -------- | -------- |
 | reportingPeriodSec | number | 是 | 是 | 表示GNSS缓存位置上报的周期，单位是毫秒。 |
 | wakeUpCacheQueueFull | boolean | 是 | 是  | true表示GNSS芯片底层缓存队列满之后会主动唤醒AP芯片，并把缓存位置上报给应用。<br/>false表示GNSS芯片底层缓存队列满之后不会主动唤醒AP芯片，会把缓存位置直接丢弃。 |
 
@@ -1179,12 +1179,12 @@ GNSS围栏的配置参数。目前只支持圆形围栏。
 
 **系统能力**：SystemCapability.Location.Location.Geofence
 
-| 名称 | 参数类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| latitude | number | 是 | 表示纬度。 |
-| longitude | number | 是 | 表示经度。 |
-| radius | number | 是 | 表示圆形围栏的半径。 |
-| expiration | number | 是 | 围栏存活的时间，单位是毫秒。 |
+| 名称 | 类型 | 可读|可写 | 说明 |
+| -------- | -------- | -------- | -------- | -------- |
+| latitude | number | 是 | 是 |表示纬度。 |
+| longitude | number | 是 |是 | 表示经度。 |
+| radius | number | 是 |是 | 表示圆形围栏的半径。 |
+| expiration | number | 是 |是 | 围栏存活的时间，单位是毫秒。 |
 
 
 ## GeofenceRequest
@@ -1194,7 +1194,7 @@ GNSS围栏的配置参数。目前只支持圆形围栏。
 **系统能力**：SystemCapability.Location.Location.Geofence
 
 | 名称 | 类型 | 可读|可写 | 说明 |
-| -------- | -------- | -------- | -------- |
+| -------- | -------- | -------- | -------- | -------- |
 | priority | [LocationRequestPriority](#locationrequestpriority) | 是 | 是  | 表示位置信息优先级。 |
 | scenario | [LocationRequestScenario](#locationrequestscenario) | 是 | 是  | 表示定位场景。 |
 | geofence |  [Geofence](#geofence) | 是 | 是  | 表示围栏信息。 |
@@ -1220,7 +1220,7 @@ GNSS围栏的配置参数。目前只支持圆形围栏。
 **系统能力**：SystemCapability.Location.Location.Core
 
 | 名称 | 类型 | 可读|可写 | 说明 |
-| -------- | -------- | -------- | -------- |
+| -------- | -------- | -------- | -------- | -------- |
 | scenario | [LocationRequestScenario](#locationrequestscenario)  | 是 | 是  | 表示定位场景。 |
 | command | string | 是 | 是  | 扩展命令字符串。 |
 
@@ -1232,7 +1232,7 @@ GNSS围栏的配置参数。目前只支持圆形围栏。
 **系统能力**：SystemCapability.Location.Location.Core
 
 | 名称 | 类型 | 可读|可写 | 说明 |
-| -------- | -------- | -------- | -------- |
+| -------- | -------- | -------- | -------- | -------- |
 | latitude | number| 是 | 否 | 表示纬度信息，正值表示北纬，负值表示南纬。 |
 | longitude | number| 是 | 否 | 表示经度信息，正值表示东经，负值表是西经。 |
 | altitude | number | 是 | 否 | 表示高度信息，单位米。 |
@@ -1255,7 +1255,7 @@ GNSS围栏的配置参数。目前只支持圆形围栏。
 **系统API**：此接口为系统接口，三方应用不支持调用。
 
 | 名称 | 类型 | 可读|可写 | 说明 |
-| -------- | -------- | -------- | -------- |
+| -------- | -------- | -------- | -------- | -------- |
 | location |  [ReverseGeoCodeRequest](#reversegeocoderequest) | 是 | 是 | 表示经纬度信息。 |
 | geoAddress |  [GeoAddress](#geoaddress) | 是 | 是 |表示地名信息。 |
 
@@ -1269,7 +1269,7 @@ GNSS围栏的配置参数。目前只支持圆形围栏。
 **系统API**：此接口为系统接口，三方应用不支持调用。
 
 | 名称 | 类型 | 可读|可写 | 说明 |
-| -------- | -------- | -------- | -------- |
+| -------- | -------- | -------- | -------- | -------- |
 | timeInterval | number | 是 | 是 | 表示模拟位置上报的时间间隔，单位是秒。 |
 | locations | Array&lt;Location&gt; | 是 | 是 | 表示模拟位置数组。 |
 
@@ -1281,7 +1281,7 @@ GNSS围栏的配置参数。目前只支持圆形围栏。
 **系统能力**：SystemCapability.Location.Location.Core
 
 | 名称 | 类型 | 可读|可写 | 说明 |
-| -------- | -------- | -------- | -------- |
+| -------- | -------- | -------- | -------- | -------- |
 | country | string | 是 | 否 | 表示国家码字符串。 |
 | type |  [CountryCodeType](#countrycodetype) | 是 | 否 | 表示国家码信息来源。 |
 
