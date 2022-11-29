@@ -236,7 +236,7 @@ on(type: 'add'|'remove'|'change', callback: Callback&lt;number&gt;): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| type | string | 是 | 监听事件。<br/>- type为"add"，表示增加显示设备事件。例如：PC上插入显示器。<br/>- type为"remove"，表示移除显示设备事件。例如：PC上移除显示器。<br/>- type为"change"，表示改变显示设备事件。例如：显示器方向改变。 |
+| type | string | 是 | 监听事件。<br/>- type为"add"，表示增加显示设备事件。例如：插入显示器。<br/>- type为"remove"，表示移除显示设备事件。例如：移除显示器。<br/>- type为"change"，表示改变显示设备事件。例如：显示器方向改变。 |
 | callback | Callback&lt;number&gt; | 是 | 回调函数。返回监听到的显示设备的id。 |
 
 **示例：**

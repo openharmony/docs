@@ -1,6 +1,6 @@
 # AbilityRunningInfo
 
-AbilityRunningInfo模块提供对Ability运行的相关信息和状态进行设置和查询的能力。
+AbilityRunningInfo模块提供对Ability运行的相关信息和状态的定义。
 
 > **说明：**
 > 

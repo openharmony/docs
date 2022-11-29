@@ -41,549 +41,6 @@ import geoLocationManager from '@ohos.geoLocationManager';
 ```
 
 
-## geoLocationManager.on('locationChange')
-
-on(type: 'locationChange', request: LocationRequest, callback: Callback&lt;Location&gt;): void
-
-开启位置变化订阅，并发起定位请求。定位结果按照[LocationRequest](#locationrequest)的属性进行上报，
-
-**需要权限**：ohos.permission.APPROXIMATELY_LOCATION
-
-**系统能力**：SystemCapability.Location.Location.Core
-
-**参数：**
-
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | type | string | 是 | 设置事件类型。type为“locationChange”，表示位置变化。 |
-  | request |  [LocationRequest](#locationrequest) | 是 | 设置位置请求参数。 |
-  | callback | Callback&lt;[Location](#location)&gt; | 是 | 接收位置变化状态变化监听。 |
-
-**错误码**：
-
-以下错误码的详细介绍请参见[位置服务子系统错误码](../errorcodes/errorcode-geoLocationManager.md)。
-
-| 错误码ID | 错误信息 |
-| -------- | ---------------------------------------- |
-|3301000 | Location service is unavailable.                                            |
-|3301100 | The location switch is off.                                                 |
-|3301200 | Failed to obtain the geographical location.                                       |
-
-**示例**
-  
-  ```ts
-  import geoLocationManager from '@ohos.geoLocationManager';
-  var requestInfo = {'priority': 0x203, 'scenario': 0x300, 'timeInterval': 0, 'distanceInterval': 0, 'maxAccuracy': 0};
-  var locationChange = (location) => {
-      console.log('locationChanger: data: ' + JSON.stringify(location));
-  };
-  try {
-      geoLocationManager.on('locationChange', requestInfo, locationChange);
-  } catch (err) {
-      console.error("errCode:" + err.code + ",errMessage:" + err.message);
-  }
-  
-  ```
-
-
-## geoLocationManager.off('locationChange')
-
-off(type: 'locationChange', callback?: Callback&lt;Location&gt;): void
-
-关闭位置变化订阅，并删除对应的定位请求。
-
-**需要权限**：ohos.permission.APPROXIMATELY_LOCATION
-
-**系统能力**：SystemCapability.Location.Location.Core
-
-**参数：**
-
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | type | string | 是 | 设置事件类型。type为“locationChange”，表示位置变化。 |
-  | callback | Callback&lt;[Location](#location)&gt; | 否 | 需要取消订阅的回调函数。若无此参数，则取消当前类型的所有订阅。 |
-
-**错误码**：
-
-以下错误码的详细介绍请参见[位置服务子系统错误码](../errorcodes/errorcode-geoLocationManager.md)。
-
-| 错误码ID | 错误信息 |
-| -------- | ---------------------------------------- |
-|3301000 | Location service is unavailable.                                            |
-|3301100 | The location switch is off.                                                 |
-|3301200 | Failed to obtain the geographical location.                                       |
-
-**示例**
-  
-  ```ts
-  import geoLocationManager from '@ohos.geoLocationManager';
-  var requestInfo = {'priority': 0x203, 'scenario': 0x300, 'timeInterval': 0, 'distanceInterval': 0, 'maxAccuracy': 0};
-  var locationChange = (location) => {
-      console.log('locationChanger: data: ' + JSON.stringify(location));
-  };
-  try {
-      geoLocationManager.on('locationChange', requestInfo, locationChange);
-      geoLocationManager.off('locationChange', locationChange);
-  } catch (err) {
-      console.error("errCode:" + err.code + ",errMessage:" + err.message);
-  }
-  ```
-
-
-## geoLocationManager.on('locationEnabledChange')
-
-on(type: 'locationEnabledChange', callback: Callback&lt;boolean&gt;): void
-
-订阅位置服务状态变化。
-
-**系统能力**：SystemCapability.Location.Location.Core
-
-**参数：**
-
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | type | string | 是 | 设置事件类型。type为“locationEnabledChange”，表示位置服务状态。 |
-  | callback | Callback&lt;boolean&gt; | 是 | 接收位置服务状态变化监听。 |
-
-**错误码**：
-
-以下错误码的详细介绍请参见[位置服务子系统错误码](../errorcodes/errorcode-geoLocationManager.md)。
-
-| 错误码ID | 错误信息 |
-| -------- | ---------------------------------------- |
-|3301000 | Location service is unavailable.                                            |
-
-**示例**
-  
-  ```ts
-  import geoLocationManager from '@ohos.geoLocationManager';
-  var locationEnabledChange = (state) => {
-      console.log('locationEnabledChange: ' + JSON.stringify(state));
-  }
-  try {
-      geoLocationManager.on('locationEnabledChange', locationEnabledChange);
-  } catch (err) {
-      console.error("errCode:" + err.code + ",errMessage:" + err.message);
-  }
-  ```
-
-
-## geoLocationManager.off('locationEnabledChange')
-
-off(type: 'locationEnabledChange', callback?: Callback&lt;boolean&gt;): void;
-
-取消订阅位置服务状态变化。
-
-**系统能力**：SystemCapability.Location.Location.Core
-
-**参数**：
-
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | type | string | 是 | 设置事件类型。type为“locationEnabledChange”，表示位置服务状态。 |
-  | callback | Callback&lt;boolean&gt; | 否 | 需要取消订阅的回调函数。若无此参数，则取消当前类型的所有订阅。 |
-
-**错误码**：
-
-以下错误码的详细介绍请参见[位置服务子系统错误码](../errorcodes/errorcode-geoLocationManager.md)。
-
-| 错误码ID | 错误信息 |
-| -------- | ---------------------------------------- |
-|3301000 | Location service is unavailable.                                            |
-
-**示例**
-  
-  ```ts
-  import geoLocationManager from '@ohos.geoLocationManager';
-  var locationEnabledChange = (state) => {
-      console.log('locationEnabledChange: state: ' + JSON.stringify(state));
-  }
-  try {
-      geoLocationManager.on('locationEnabledChange', locationEnabledChange);
-      geoLocationManager.off('locationEnabledChange', locationEnabledChange);
-  } catch (err) {
-      console.error("errCode:" + err.code + ",errMessage:" + err.message);
-  }
-  ```
-
-
-## geoLocationManager.on('cachedGnssLocationsChange')
-
-on(type: 'cachedGnssLocationsChange', request: CachedGnssLocationsRequest, callback: Callback&lt;Array&lt;Location&gt;&gt;): void;
-
-订阅缓存GNSS定位结果上报事件。
-
-**需要权限**：ohos.permission.APPROXIMATELY_LOCATION
-
-**系统能力**：SystemCapability.Location.Location.Gnss
-
-**参数**：
-
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | type | string | 是 | 设置事件类型。type为“cachedGnssLocationsChange”，表示GNSS缓存定位结果上报。 |
-  | request |  [CachedGnssLocationsRequest](#cachedgnsslocationsrequest) | 是 | GNSS缓存功能配置参数 |
-  | callback | Callback&lt;boolean&gt; | 是 | 接收GNSS缓存位置上报。 |
-
-**错误码**：
-
-以下错误码的详细介绍请参见[位置服务子系统错误码](../errorcodes/errorcode-geoLocationManager.md)。
-
-| 错误码ID | 错误信息 |
-| -------- | ---------------------------------------- |
-|3301000 | Location service is unavailable.                                            |
-|3301100 | The location switch is off.                                                 |
-|3301200 | Failed to obtain the geographical location.                                       |
-
-**示例**
-  
-  ```ts
-  import geoLocationManager from '@ohos.geoLocationManager';
-  var cachedLocationsCb = (locations) => {
-      console.log('cachedGnssLocationsChange: locations: ' + JSON.stringify(locations));
-  }
-  var requestInfo = {'reportingPeriodSec': 10, 'wakeUpCacheQueueFull': true};
-  try {
-      geoLocationManager.on('cachedGnssLocationsChange', requestInfo, cachedLocationsCb);
-  } catch (err) {
-      console.error("errCode:" + err.code + ",errMessage:" + err.message);
-  }
-  ```
-
-
-## geoLocationManager.off('cachedGnssLocationsChange')
-
-off(type: 'cachedGnssLocationsChange', callback?: Callback&lt;Array&lt;Location&gt;&gt;): void;
-
-取消订阅缓存GNSS定位结果上报事件。
-
-**需要权限**：ohos.permission.APPROXIMATELY_LOCATION
-
-**系统能力**：SystemCapability.Location.Location.Gnss
-
-**参数**：
-
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | type | string | 是 | 设置事件类型。type为“cachedGnssLocationsChange”，表示GNSS缓存定位结果上报。 |
-  | callback | Callback&lt;boolean&gt; | 否 | 需要取消订阅的回调函数。若无此参数，则取消当前类型的所有订阅。 |
-
-**错误码**：
-
-以下错误码的详细介绍请参见[位置服务子系统错误码](../errorcodes/errorcode-geoLocationManager.md)。
-
-| 错误码ID | 错误信息 |
-| -------- | ---------------------------------------- |
-|3301000 | Location service is unavailable.                                            |
-|3301100 | The location switch is off.                                                 |
-|3301200 | Failed to obtain the geographical location.                                       |
-
-**示例**
-  
-  ```ts
-  import geoLocationManager from '@ohos.geoLocationManager';
-  var cachedLocationsCb = (locations) => {
-      console.log('cachedGnssLocationsChange: locations: ' + JSON.stringify(locations));
-  }
-  var requestInfo = {'reportingPeriodSec': 10, 'wakeUpCacheQueueFull': true};
-  try {
-      geoLocationManager.on('cachedGnssLocationsChange', requestInfo, cachedLocationsCb);
-      geoLocationManager.off('cachedGnssLocationsChange');
-  } catch (err) {
-      console.error("errCode:" + err.code + ",errMessage:" + err.message);
-  }
-  ```
-
-
-## geoLocationManager.on('satelliteStatusChange')
-
-on(type: 'satelliteStatusChange', callback: Callback&lt;SatelliteStatusInfo&gt;): void;
-
-订阅GNSS卫星状态信息上报事件。
-
-**需要权限**：ohos.permission.APPROXIMATELY_LOCATION
-
-**系统能力**：SystemCapability.Location.Location.Gnss
-
-**参数**：
-
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | type | string | 是 | 设置事件类型。type为“satelliteStatusChange”，表示订阅GNSS卫星状态信息上报。 |
-  | callback | Callback&lt;[SatelliteStatusInfo](#satellitestatusinfo)&gt; | 是 | 接收GNSS卫星状态信息上报。 |
-
-**错误码**：
-
-以下错误码的详细介绍请参见[位置服务子系统错误码](../errorcodes/errorcode-geoLocationManager.md)。
-
-| 错误码ID | 错误信息 |
-| -------- | ---------------------------------------- |
-|3301000 | Location service is unavailable.                                            |
-|3301100 | The location switch is off.                                                 |
-
-**示例**
-  
-  ```ts
-  import geoLocationManager from '@ohos.geoLocationManager';
-  var gnssStatusCb = (satelliteStatusInfo) => {
-      console.log('satelliteStatusChange: ' + JSON.stringify(satelliteStatusInfo));
-  }
-
-  try {
-      geoLocationManager.on('satelliteStatusChange', gnssStatusCb);
-  } catch (err) {
-      console.error("errCode:" + err.code + ",errMessage:" + err.message);
-  }
-  ```
-
-
-## geoLocationManager.off('satelliteStatusChange')
-
-off(type: 'satelliteStatusChange', callback?: Callback&lt;SatelliteStatusInfo&gt;): void;
-
-取消订阅GNSS卫星状态信息上报事件。
-
-**需要权限**：ohos.permission.APPROXIMATELY_LOCATION
-
-**系统能力**：SystemCapability.Location.Location.Gnss
-
-**参数**：
-
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | type | string | 是 | 设置事件类型。type为“satelliteStatusChange”，表示订阅GNSS卫星状态信息上报。 |
-  | callback | Callback&lt;[SatelliteStatusInfo](#satellitestatusinfo)&gt; | 否 | 需要取消订阅的回调函数。若无此参数，则取消当前类型的所有订阅。 |
-
-**错误码**：
-
-以下错误码的详细介绍请参见[位置服务子系统错误码](../errorcodes/errorcode-geoLocationManager.md)。
-
-| 错误码ID | 错误信息 |
-| -------- | ---------------------------------------- |
-|3301000 | Location service is unavailable.                                            |
-|3301100 | The location switch is off.                                                 |
-
-
-**示例**
-  
-  ```ts
-  import geoLocationManager from '@ohos.geoLocationManager';
-  var gnssStatusCb = (satelliteStatusInfo) => {
-      console.log('satelliteStatusChange: ' + JSON.stringify(satelliteStatusInfo));
-  }
-  try {
-      geoLocationManager.on('satelliteStatusChange', gnssStatusCb);
-      geoLocationManager.off('satelliteStatusChange', gnssStatusCb);
-  } catch (err) {
-      console.error("errCode:" + err.code + ",errMessage:" + err.message);
-  }
-  ```
-
-
-## geoLocationManager.on('nmeaMessage')
-
-on(type: 'nmeaMessage', callback: Callback&lt;string&gt;): void;
-
-订阅GNSS NMEA信息上报事件。
-
-**需要权限**：ohos.permission.LOCATION and ohos.permission.APPROXIMATELY_LOCATION
-
-**系统能力**：SystemCapability.Location.Location.Gnss
-
-**参数**：
-
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | type | string | 是 | 设置事件类型。type为“nmeaMessage”，表示订阅GNSS&nbsp;NMEA信息上报。 |
-  | callback | Callback&lt;string&gt; | 是 | 接收GNSS&nbsp;NMEA信息上报。 |
-
-**错误码**：
-
-以下错误码的详细介绍请参见[位置服务子系统错误码](../errorcodes/errorcode-geoLocationManager.md)。
-
-| 错误码ID | 错误信息 |
-| -------- | ---------------------------------------- |
-|3301000 | Location service is unavailable.                                            |
-|3301100 | The location switch is off.                                                 |
-
-
-**示例**
-  
-  ```ts
-  import geoLocationManager from '@ohos.geoLocationManager';
-  var nmeaCb = (str) => {
-      console.log('nmeaMessage: ' + JSON.stringify(str));
-  }
-
-  try {
-      geoLocationManager.on('nmeaMessage', nmeaCb );
-  } catch (err) {
-      console.error("errCode:" + err.code + ",errMessage:" + err.message);
-  }
-  ```
-
-
-## geoLocationManager.off('nmeaMessage')
-
-off(type: 'nmeaMessage', callback?: Callback&lt;string&gt;): void;
-
-取消订阅GNSS NMEA信息上报事件。
-
-**需要权限**：ohos.permission.LOCATION and ohos.permission.APPROXIMATELY_LOCATION
-
-**系统能力**：SystemCapability.Location.Location.Gnss
-
-**参数**：
-
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | type | string | 是 | 设置事件类型。type为“nmeaMessage”，表示订阅GNSS&nbsp;NMEA信息上报。 |
-  | callback | Callback&lt;string&gt; | 否 | 需要取消订阅的回调函数。若无此参数，则取消当前类型的所有订阅。 |
-
-**错误码**：
-
-以下错误码的详细介绍请参见[位置服务子系统错误码](../errorcodes/errorcode-geoLocationManager.md)。
-
-| 错误码ID | 错误信息 |
-| -------- | ---------------------------------------- |
-|3301000 | Location service is unavailable.                                            |
-|3301100 | The location switch is off.                                                 |
-
-
-**示例**
-  
-  ```ts
-  import geoLocationManager from '@ohos.geoLocationManager';
-  var nmeaCb = (str) => {
-      console.log('nmeaMessage: ' + JSON.stringify(str));
-  }
-
-  try {
-      geoLocationManager.on('nmeaMessage', nmeaCb);
-      geoLocationManager.off('nmeaMessage', nmeaCb);
-  } catch (err) {
-      console.error("errCode:" + err.code + ",errMessage:" + err.message);
-  }
-  ```
-
-
-## geoLocationManager.on('gnssFenceStatusChange')
-
-on(type: 'gnssFenceStatusChange', request: GeofenceRequest, want: WantAgent): void;
-
-添加一个围栏，并订阅地理围栏事件。
-
-**需要权限**：ohos.permission.APPROXIMATELY_LOCATION
-
-**系统能力**：SystemCapability.Location.Location.Geofence
-
-**参数**：
-
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | type | string | 是 | 设置事件类型。type为“gnssFenceStatusChange”，表示订阅围栏事件上报。 |
-  | request |  [GeofenceRequest](#geofencerequest) | 是 | 围栏的配置参数。 |
-  | want | WantAgent | 是 | 用于接收地理围栏事件上报（进出围栏）。 |
-
-**错误码**：
-
-以下错误码的详细介绍请参见[位置服务子系统错误码](../errorcodes/errorcode-geoLocationManager.md)。
-
-| 错误码ID | 错误信息 |
-| -------- | ---------------------------------------- |
-|3301000 | Location service is unavailable.                                            |
-|3301100 | The location switch is off.                                                 |
-|3301600 | Failed to operate the geofence.                                     |
-
-**示例**
-  
-  ```ts
-  import geoLocationManager from '@ohos.geoLocationManager';
-  import wantAgent from '@ohos.wantAgent';
-  
-  let wantAgentInfo = {
-      wants: [
-          {
-              bundleName: "com.example.myapplication",
-              abilityName: "com.example.myapplication.MainAbility",
-              action: "action1",
-          }
-      ],
-      operationType: wantAgent.OperationType.START_ABILITY,
-      requestCode: 0,
-      wantAgentFlags: [wantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG],
-  };
-  
-  wantAgent.getWantAgent(wantAgentInfo).then((wantAgentObj) => {
-    var requestInfo = {'priority': 0x201, 'scenario': 0x301, "geofence": {"latitude": 121, "longitude": 26, "radius": 100, "expiration": 10000}};
-    try {
-        geoLocationManager.on('gnssFenceStatusChange', requestInfo, wantAgentObj);
-    } catch (err) {
-        console.error("errCode:" + err.code + ",errMessage:" + err.message);
-    }
-  });
-  ```
-
-
-## geoLocationManager.off('gnssFenceStatusChange')
-
-off(type: 'gnssFenceStatusChange', request: GeofenceRequest, want: WantAgent): void;
-
-删除一个围栏，并取消订阅该围栏事件。
-
-**需要权限**：ohos.permission.APPROXIMATELY_LOCATION
-
-**系统能力**：SystemCapability.Location.Location.Geofence
-
-**参数**：
-
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | type | string | 是 | 设置事件类型。type为“gnssFenceStatusChange”，表示订阅围栏事件上报。 |
-  | request | [GeofenceRequest](#geofencerequest) | 是 | 围栏的配置参数。 |
-  | want | WantAgent | 是 | 用于接收地理围栏事件上报（进出围栏）。 |
-
-**错误码**：
-
-以下错误码的详细介绍请参见[位置服务子系统错误码](../errorcodes/errorcode-geoLocationManager.md)。
-
-| 错误码ID | 错误信息 |
-| -------- | ---------------------------------------- |
-|3301000 | Location service is unavailable.                                            |
-|3301100 | The location switch is off.                                                 |
-|3301600 | Failed to operate the geofence.                                     |
-
-**示例**
-  
-  ```ts
-  import geoLocationManager from '@ohos.geoLocationManager';
-  import wantAgent from '@ohos.wantAgent';
-  
-  let wantAgentInfo = {
-      wants: [
-          {
-              bundleName: "com.example.myapplication",
-              abilityName: "com.example.myapplication.MainAbility",
-              action: "action1",
-          }
-      ],
-      operationType: wantAgent.OperationType.START_ABILITY,
-      requestCode: 0,
-      wantAgentFlags: [wantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
-  };
-  
-  wantAgent.getWantAgent(wantAgentInfo).then((wantAgentObj) => {
-    var requestInfo = {'priority': 0x201, 'scenario': 0x301, "geofence": {"latitude": 121, "longitude": 26, "radius": 100, "expiration": 10000}};
-    try {
-        geoLocationManager.on('gnssFenceStatusChange', requestInfo, wantAgentObj);
-        geoLocationManager.off('gnssFenceStatusChange', requestInfo, wantAgentObj);
-    } catch (err) {
-        console.error("errCode:" + err.code + ",errMessage:" + err.message);
-    }
-  });
-  ```
-
-
 ## geoLocationManager.on('countryCodeChange')
 
 on(type: 'countryCodeChange', callback: Callback&lt;CountryCode&gt;): void;
@@ -658,304 +115,12 @@ off(type: 'countryCodeChange', callback?: Callback&lt;CountryCode&gt;): void;
   var callback = (code) => {
       console.log('countryCodeChange: ' + JSON.stringify(code));
   }
-
   try {
       geoLocationManager.on('countryCodeChange', callback);
       geoLocationManager.off('countryCodeChange', callback);
   } catch (err) {
       console.error("errCode:" + err.code + ",errMessage:" + err.message);
   }
-  ```
-
-
-
-## geoLocationManager.getCurrentLocation
-
-getCurrentLocation(request: CurrentLocationRequest, callback: AsyncCallback&lt;Location&gt;): void
-
-获取当前位置，使用callback回调异步返回结果。
-
-**需要权限**：ohos.permission.APPROXIMATELY_LOCATION
-
-**系统能力**：SystemCapability.Location.Location.Core
-
-**参数**：
-
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | request | [CurrentLocationRequest](#currentlocationrequest) | 是 | 设置位置请求参数。 |
-  | callback | AsyncCallback&lt;[Location](#location)&gt; | 是 | 用来接收位置信息的回调。 |
-
-**错误码**：
-
-以下错误码的详细介绍请参见[位置服务子系统错误码](../errorcodes/errorcode-geoLocationManager.md)。
-
-| 错误码ID | 错误信息 |
-| -------- | ---------------------------------------- |
-|3301000 | Location service is unavailable.                                            |
-|3301100 | The location switch is off.                                                 |
-|3301200 | Failed to obtain the geographical location.  |
-
-**示例**
-  
-  ```ts
-  import geoLocationManager from '@ohos.geoLocationManager';
-  var requestInfo = {'priority': 0x203, 'scenario': 0x300,'maxAccuracy': 0};
-  var locationChange = (err, location) => {
-      if (err) {
-          console.log('locationChanger: err=' + JSON.stringify(err));
-      }
-      if (location) {
-          console.log('locationChanger: location=' + JSON.stringify(location));
-      }
-  };
-
-  try {
-      geoLocationManager.getCurrentLocation(requestInfo, locationChange);
-  } catch (err) {
-      console.error("errCode:" + err.code + ",errMessage:" + err.message);
-  }
-  ```
-
-## geoLocationManager.getCurrentLocation
-
-getCurrentLocation(callback: AsyncCallback&lt;Location&gt;): void;
-
-获取当前位置，通过callback方式异步返回结果。
-
-**需要权限**：ohos.permission.APPROXIMATELY_LOCATION
-
-**系统能力**：SystemCapability.Location.Location.Core
-
-**参数**：
-
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | callback | AsyncCallback&lt;[Location](#location)&gt; | 是 | 用来接收位置信息的回调。 |
-
-**错误码**：
-
-以下错误码的详细介绍请参见[位置服务子系统错误码](../errorcodes/errorcode-geoLocationManager.md)。
-
-| 错误码ID | 错误信息 |
-| -------- | ---------------------------------------- |
-|3301000 | Location service is unavailable.                                            |
-|3301100 | The location switch is off.                                                 |
-|3301200 | Failed to obtain the geographical location.  |
-
-**示例**
-  
-  ```ts
-  import geoLocationManager from '@ohos.geoLocationManager';
-  var locationChange = (err, location) => {
-      if (err) {
-          console.log('locationChanger: err=' + JSON.stringify(err));
-      }
-      if (location) {
-          console.log('locationChanger: location=' + JSON.stringify(location));
-      }
-  };
-
-  try {
-      geoLocationManager.getCurrentLocation(locationChange);
-  } catch (err) {
-      console.error("errCode:" + err.code + ",errMessage:" + err.message);
-  }
-  ```
-
-## geoLocationManager.getCurrentLocation
-
-getCurrentLocation(request?: CurrentLocationRequest): Promise&lt;Location&gt;
-
-获取当前位置，使用Promise方式异步返回结果。
-
-**需要权限**：ohos.permission.APPROXIMATELY_LOCATION
-
-**系统能力**：SystemCapability.Location.Location.Core
-
-**参数**：
-
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | request | [CurrentLocationRequest](#currentlocationrequest) | 否 | 设置位置请求参数。 |
-
-**返回值**：
-
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | Promise&lt;[Location](#location)&gt;  | [Location](#location) | NA | 返回位置信息。 |
-
-**错误码**：
-
-以下错误码的详细介绍请参见[位置服务子系统错误码](../errorcodes/errorcode-geoLocationManager.md)。
-
-| 错误码ID | 错误信息 |
-| -------- | ---------------------------------------- |
-|3301000 | Location service is unavailable.                                            |
-|3301100 | The location switch is off.                                                 |
-|3301200 | Failed to obtain the geographical location.  |
-
-**示例**
-  
-  ```ts
-  import geoLocationManager from '@ohos.geoLocationManager';
-  var requestInfo = {'priority': 0x203, 'scenario': 0x300,'maxAccuracy': 0};
-  geoLocationManager.getCurrentLocation(requestInfo).then((result) => {
-      console.log('current location: ' + JSON.stringify(result));
-  })  
-  .catch((error) => {
-      console.log('promise, getCurrentLocation: error=' + JSON.stringify(error));
-  });
-  ```
-
-
-## geoLocationManager.getLastLocation
-
-getLastLocation(): Location
-
-获取上一次位置。
-
-**需要权限**：ohos.permission.APPROXIMATELY_LOCATION
-
-**系统能力**：SystemCapability.Location.Location.Core
-
-**返回值**：
-
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | Location  | [Location](#location) | NA | 位置信息。 |
-
-**错误码**：
-
-以下错误码的详细介绍请参见[位置服务子系统错误码](../errorcodes/errorcode-geoLocationManager.md)。
-
-| 错误码ID | 错误信息 |
-| -------- | ---------------------------------------- |
-|3301000 | Location service is unavailable.  |
-|3301100 | The location switch is off.  |
-|3301200 |Failed to obtain the geographical location.  |
-
-**示例**
-  
-  ```ts
-  import geoLocationManager from '@ohos.geoLocationManager';
-  try {
-      var location = geoLocationManager.getLastLocation();
-  } catch (err) {
-      console.error("errCode:" + err.code + ",errMessage:" + err.message);
-  }
-  ```
-
-
-## geoLocationManager.isLocationEnabled
-
-isLocationEnabled(): boolean
-
-判断位置服务是否已经使能。
-
-**系统能力**：SystemCapability.Location.Location.Core
-
-**返回值**：
-
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | boolean  | boolean | NA | 位置服务是否已经使能。 |
-
-**错误码**：
-
-以下错误码的详细介绍请参见[位置服务子系统错误码](../errorcodes/errorcode-geoLocationManager.md)。
-
-| 错误码ID | 错误信息 |
-| -------- | ---------------------------------------- |
-|3301000 | Location service is unavailable.  |
-
-**示例**
-  
-  ```ts
-  import geoLocationManager from '@ohos.geoLocationManager';
-  try {
-      var locationEnabled = geoLocationManager.isLocationEnabled();
-  } catch (err) {
-      console.error("errCode:" + err.code + ",errMessage:" + err.message);
-  }
-  ```
-
-
-## geoLocationManager.requestEnableLocation
-
-requestEnableLocation(callback: AsyncCallback&lt;boolean&gt;): void
-
-请求使能位置服务，使用callback回调异步返回结果。
-
-**需要权限**：ohos.permission.APPROXIMATELY_LOCATION
-
-**系统能力**：SystemCapability.Location.Location.Core
-
-**参数**：
-
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | callback | AsyncCallback&lt;boolean&gt; | 是 | callback返回true表示用户同意使能位置服务，false表示用户不同意使能位置服务。 |
-
-**错误码**：
-
-以下错误码的详细介绍请参见[位置服务子系统错误码](../errorcodes/errorcode-geoLocationManager.md)。
-
-| 错误码ID | 错误信息 |
-| -------- | ---------------------------------------- |
-|3301000 | Location service is unavailable.  |
-|3301700 | No response to the request.  |
-
-**示例**
-  
-  ```ts
-  import geoLocationManager from '@ohos.geoLocationManager';
-  geoLocationManager.requestEnableLocation((err, data) => {
-      if (err) {
-          console.log('requestEnableLocation: err=' + JSON.stringify(err));
-      }
-      if (data) {
-          console.log('requestEnableLocation: data=' + JSON.stringify(data));
-      }
-  });
-  ```
-
-
-## geoLocationManager.requestEnableLocation
-
-requestEnableLocation(): Promise&lt;boolean&gt;
-
-请求使能位置服务，使用Promise方式异步返回结果。
-
-**需要权限**：ohos.permission.APPROXIMATELY_LOCATION
-
-**系统能力**：SystemCapability.Location.Location.Core
-
-**返回值**：
-
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | Promise&lt;boolean&gt;  | boolean | NA | 返回true表示用户同意使能位置服务，false表示用户不同意使能位置服务。 |
-
-**错误码**：
-
-以下错误码的详细介绍请参见[位置服务子系统错误码](../errorcodes/errorcode-geoLocationManager.md)。
-
-| 错误码ID | 错误信息 |
-| -------- | ---------------------------------------- |
-|3301000 | Location service is unavailable.  |
-|3301700 | No response to the request.  |
-
-**示例**
-  
-  ```ts
-  import geoLocationManager from '@ohos.geoLocationManager';
-  geoLocationManager.requestEnableLocation().then((result) => {
-      console.log('promise, requestEnableLocation: ' + JSON.stringify(result));
-  })  
-  .catch((error) => {
-      console.log('promise, requestEnableLocation: error=' + JSON.stringify(error));
-  });
   ```
 
 
@@ -1037,9 +202,9 @@ enableLocation(): Promise&lt;void&gt;
 
 ## geoLocationManager.disableLocation
 
-disableLocation(): void;
+disableLocation(callback: AsyncCallback&lt;void&gt;): void;
 
-关闭位置服务。
+关闭位置服务，使用callback回调异步返回结果。
 
 **系统API**：此接口为系统接口，三方应用不支持调用。
 
@@ -1047,6 +212,12 @@ disableLocation(): void;
 
 **系统能力**：SystemCapability.Location.Location.Core
 
+**参数**：
+
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | callback | AsyncCallback&lt;void&gt; | 是 | 用来接收错误码的回调。 |
+
 **错误码**：
 
 以下错误码的详细介绍请参见[位置服务子系统错误码](../errorcodes/errorcode-geoLocationManager.md)。
@@ -1060,423 +231,34 @@ disableLocation(): void;
   ```ts
   import geoLocationManager from '@ohos.geoLocationManager';
   try {
-      geoLocationManager.disableLocation();
+      geoLocationManager.disableLocation((err, data) => {
+          if (err) {
+              console.log('disableLocation: err=' + JSON.stringify(err));
+          }
+      });
   } catch (err) {
       console.error("errCode:" + err.code + ",errMessage:" + err.message);
   }
   ```
 
 
+## geoLocationManager.disableLocation
 
-## geoLocationManager.getAddressesFromLocation
+disableLocation(): Promise&lt;void&gt;
 
-getAddressesFromLocation(request: ReverseGeoCodeRequest, callback: AsyncCallback&lt;Array&lt;GeoAddress&gt;&gt;): void
+关闭位置服务，使用Promise方式异步返回结果。
 
-调用逆地理编码服务，将坐标转换为地理描述，使用callback回调异步返回结果。
+**系统API**：此接口为系统接口，三方应用不支持调用。
 
-**系统能力**：SystemCapability.Location.Location.Geocoder
-
-**参数**：
-
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | request | [ReverseGeoCodeRequest](#reversegeocoderequest) | 是 | 设置逆地理编码请求的相关参数。 |
-  | callback | AsyncCallback&lt;Array&lt;[GeoAddress](#geoaddress)&gt;&gt; | 是 | 接收逆地理编码结果的回调函数。 |
-
-**错误码**：
-
-以下错误码的详细介绍请参见[位置服务子系统错误码](../errorcodes/errorcode-geoLocationManager.md)。
-
-| 错误码ID | 错误信息 |
-| -------- | ---------------------------------------- |
-|3301000 | Location service is unavailable.   |
-|3301300 | Reverse geocoding query failed.   |
-
-**示例**
-  
-  ```ts
-  import geoLocationManager from '@ohos.geoLocationManager';
-  var reverseGeocodeRequest = {"latitude": 31.12, "longitude": 121.11, "maxItems": 1};
-  geoLocationManager.getAddressesFromLocation(reverseGeocodeRequest, (err, data) => {
-      if (err) {
-          console.log('getAddressesFromLocation: err=' + JSON.stringify(err));
-      }
-      if (data) {
-          console.log('getAddressesFromLocation: data=' + JSON.stringify(data));
-      }
-  });
-  ```
-
-
-## geoLocationManager.getAddressesFromLocation
-
-getAddressesFromLocation(request: ReverseGeoCodeRequest): Promise&lt;Array&lt;GeoAddress&gt;&gt;;
-
-调用逆地理编码服务，将坐标转换为地理描述，使用Promise方式异步返回结果。
-
-**系统能力**：SystemCapability.Location.Location.Geocoder
-
-**参数**：
-
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | request | [ReverseGeoCodeRequest](#reversegeocoderequest) | 是 | 设置逆地理编码请求的相关参数。 |
-
-**返回值**：
-
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | Promise&lt;Array&lt;[GeoAddress](#geoaddress)&gt;&gt;  | Array&lt;[GeoAddress](#geoaddress)&gt; | NA | 返回地理描述信息。 |
-
-**错误码**：
-
-以下错误码的详细介绍请参见[位置服务子系统错误码](../errorcodes/errorcode-geoLocationManager.md)。
-
-| 错误码ID | 错误信息 |
-| -------- | ---------------------------------------- |
-|3301000 | Location service is unavailable.   |
-|3301300 | Reverse geocoding query failed.   |
-
-**示例**
-  
-  ```ts
-  import geoLocationManager from '@ohos.geoLocationManager';
-  var reverseGeocodeRequest = {"latitude": 31.12, "longitude": 121.11, "maxItems": 1};
-  geoLocationManager.getAddressesFromLocation(reverseGeocodeRequest).then((data) => {
-      console.log('getAddressesFromLocation: ' + JSON.stringify(data));
-  })
-  .catch((error) => {
-      console.log('promise, getAddressesFromLocation: error=' + JSON.stringify(error));
-});
-  ```
-
-
-## geoLocationManager.getAddressesFromLocationName
-
-getAddressesFromLocationName(request: GeoCodeRequest, callback: AsyncCallback&lt;Array&lt;GeoAddress&gt;&gt;): void
-
-调用地理编码服务，将地理描述转换为具体坐标，使用callback回调异步返回结果。
-
-**系统能力**：SystemCapability.Location.Location.Geocoder
-
-**参数**：
-
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | request | [GeoCodeRequest](#geocoderequest) | 是 | 设置地理编码请求的相关参数。 |
-  | callback | AsyncCallback&lt;Array&lt;[GeoAddress](#geoaddress)&gt;&gt; | 是 | 接收地理编码结果的回调函数。 |
-
-**错误码**：
-
-以下错误码的详细介绍请参见[位置服务子系统错误码](../errorcodes/errorcode-geoLocationManager.md)。
-
-| 错误码ID | 错误信息 |
-| -------- | ---------------------------------------- |
-|3301000 | Location service is unavailable.   |
-|3301400 | Geocoding query failed.   |
-
-**示例**
-  
-  ```ts
-  import geoLocationManager from '@ohos.geoLocationManager';
-  var geocodeRequest = {"description": "上海市浦东新区xx路xx号", "maxItems": 1};
-  geoLocationManager.getAddressesFromLocationName(geocodeRequest, (err, data) => {
-      if (err) {
-          console.log('getAddressesFromLocationName: err=' + JSON.stringify(err));
-      }
-      if (data) {
-          console.log('getAddressesFromLocationName: data=' + JSON.stringify(data));
-      }
-  });
-  ```
-
-
-## geoLocationManager.getAddressesFromLocationName
-
-getAddressesFromLocationName(request: GeoCodeRequest): Promise&lt;Array&lt;GeoAddress&gt;&gt;
-
-调用地理编码服务，将地理描述转换为具体坐标，使用Promise方式异步返回结果。
-
-**系统能力**：SystemCapability.Location.Location.Geocoder
-
-**参数**：
-
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | request | [GeoCodeRequest](#geocoderequest) | 是 | 设置地理编码请求的相关参数。 |
-
-**返回值**：
-
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | Promise&lt;Array&lt;[GeoAddress](#geoaddress)&gt;&gt;  | Array&lt;[GeoAddress](#geoaddress)&gt; | NA | 返回地理编码查询结果。 |
-
-**错误码**：
-
-以下错误码的详细介绍请参见[位置服务子系统错误码](../errorcodes/errorcode-geoLocationManager.md)。
-
-| 错误码ID | 错误信息 |
-| -------- | ---------------------------------------- |
-|3301000 | Location service is unavailable.   |
-|3301400 | Geocoding query failed.   |
-
-**示例**
-  
-  ```ts
-  import geoLocationManager from '@ohos.geoLocationManager';
-  var geocodeRequest = {"description": "上海市浦东新区xx路xx号", "maxItems": 1};
-  geoLocationManager.getAddressesFromLocationName(geocodeRequest).then((result) => {
-      console.log('getAddressesFromLocationName: ' + JSON.stringify(result));
-  })
-  .catch((error) => {
-      console.log('promise, getAddressesFromLocationName: error=' + JSON.stringify(error));
-  });
-  ```
-
-## geoLocationManager.isGeocoderAvailable
-
-isGeocoderAvailable(): boolean;
-
-判断（逆）地理编码服务状态。
-
-**系统能力**：SystemCapability.Location.Location.Geocoder
-
-**返回值**：
-
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | boolean  | boolean | NA | 返回（逆）地理编码服务是否可用。 |
-
-**错误码**：
-
-以下错误码的详细介绍请参见[位置服务子系统错误码](../errorcodes/errorcode-geoLocationManager.md)。
-
-| 错误码ID | 错误信息 |
-| -------- | ---------------------------------------- |
-|3301000 | Location service is unavailable.   |
-
-**示例**
-  
-  ```ts
-  import geoLocationManager from '@ohos.geoLocationManager';
-  try {
-      var isAvailable = geoLocationManager.isGeocoderAvailable();
-  } catch (err) {
-      console.error("errCode:" + err.code + ",errMessage:" + err.message);
-  }
-  ```
-
-
-## geoLocationManager.getCachedGnssLocationsSize
-
-getCachedGnssLocationsSize(callback: AsyncCallback&lt;number&gt;): void;
-
-获取GNSS芯片缓存位置的个数。
-
-**需要权限**：ohos.permission.APPROXIMATELY_LOCATION
-
-**系统能力**：SystemCapability.Location.Location.Gnss
-
-**参数**：
-
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | callback | AsyncCallback&lt;number&gt; | 是 | 用来接收GNSS芯片缓存位置个数的回调。 |
-
-**错误码**：
-
-以下错误码的详细介绍请参见[位置服务子系统错误码](../errorcodes/errorcode-geoLocationManager.md)。
-
-| 错误码ID | 错误信息 |
-| -------- | ---------------------------------------- |
-|3301000 | Location service is unavailable.   |
-|3301100 | The location switch is off.   |
-
-**示例**
-  
-  ```ts
-  import geoLocationManager from '@ohos.geoLocationManager';
-  geoLocationManager.getCachedGnssLocationsSize((err, size) => {
-      if (err) {
-          console.log('getCachedGnssLocationsSize: err=' + JSON.stringify(err));
-      }
-      if (size) {
-          console.log('getCachedGnssLocationsSize: size=' + JSON.stringify(size));
-      }
-  });
-  ```
-
-
-## geoLocationManager.getCachedGnssLocationsSize
-
-getCachedGnssLocationsSize(): Promise&lt;number&gt;;
-
-获取GNSS芯片缓存位置的个数。
-
-**需要权限**：ohos.permission.APPROXIMATELY_LOCATION
-
-**系统能力**：SystemCapability.Location.Location.Gnss
-
-**返回值**：
-
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | Promise&lt;number&gt;  | number | NA | 返回GNSS缓存位置的个数。 |
-
-**错误码**：
-
-以下错误码的详细介绍请参见[位置服务子系统错误码](../errorcodes/errorcode-geoLocationManager.md)。
-
-| 错误码ID | 错误信息 |
-| -------- | ---------------------------------------- |
-|3301000 | Location service is unavailable.   |
-|3301100 | The location switch is off.   |
-
-**示例**
-  
-  ```ts
-  import geoLocationManager from '@ohos.geoLocationManager';
-  geoLocationManager.getCachedGnssLocationsSize().then((result) => {
-      console.log('promise, getCachedGnssLocationsSize: ' + JSON.stringify(result));
-  }) 
-  .catch((error) => {
-      console.log('promise, getCachedGnssLocationsSize: error=' + JSON.stringify(error));
-  });
-  ```
-
-
-## geoLocationManager.flushCachedGnssLocations
-
-flushCachedGnssLocations(callback: AsyncCallback&lt;void&gt;): void;
-
-读取并清空GNSS芯片所有缓存位置。
-
-**需要权限**：ohos.permission.APPROXIMATELY_LOCATION
-
-**系统能力**：SystemCapability.Location.Location.Gnss
-
-**参数**：
-
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | callback | AsyncCallback&lt;void&gt; | 是 | 用来接收错误码信息。 |
-
-**错误码**：
-
-以下错误码的详细介绍请参见[位置服务子系统错误码](../errorcodes/errorcode-geoLocationManager.md)。
-
-| 错误码ID | 错误信息 |
-| -------- | ---------------------------------------- |
-|3301000 | Location service is unavailable.   |
-|3301100 | The location switch is off.   |
-|3301200 | Failed to obtain the geographical location.   |
-
-**示例**
-  
-  ```ts
-  import geoLocationManager from '@ohos.geoLocationManager';
-  geoLocationManager.flushCachedGnssLocations((err, result) => {
-      if (err) {
-          console.log('flushCachedGnssLocations: err=' + JSON.stringify(err));
-      }
-  });
-  ```
-
-
-## geoLocationManager.flushCachedGnssLocations
-
-flushCachedGnssLocations(): Promise&lt;void&gt;;
-
-读取并清空GNSS芯片所有缓存位置。
-
-**需要权限**：ohos.permission.APPROXIMATELY_LOCATION
-
-**系统能力**：SystemCapability.Location.Location.Gnss
-
-**返回值**：
-
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | Promise&lt;void&gt;  | void | NA | 接收错误码。 |
-
-**错误码**：
-
-以下错误码的详细介绍请参见[位置服务子系统错误码](../errorcodes/errorcode-geoLocationManager.md)。
-
-| 错误码ID | 错误信息 |
-| -------- | ---------------------------------------- |
-|3301000 | Location service is unavailable.   |
-|3301100 | The location switch is off.   |
-|3301200 | Failed to obtain the geographical location.   |
-
-**示例**
-  
-  ```ts
-  import geoLocationManager from '@ohos.geoLocationManager';
-  geoLocationManager.flushCachedGnssLocations().then((result) => {
-      console.log('promise, flushCachedGnssLocations success');
-  })
-  .catch((error) => {
-      console.log('promise, flushCachedGnssLocations: error=' + JSON.stringify(error));
-  });
-  ```
-
-
-## geoLocationManager.sendCommand
-
-sendCommand(command: LocationCommand, callback: AsyncCallback&lt;void&gt;): void;
-
-给位置服务子系统的各个部件发送扩展命令。
+**需要权限**：ohos.permission.MANAGE_SECURE_SETTINGS
 
 **系统能力**：SystemCapability.Location.Location.Core
 
-**参数**：
-
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | command |  [LocationCommand](#locationcommand) | 是 | 指定目标场景，和将要发送的命令（字符串）。 |
-  | callback | AsyncCallback&lt;void&gt; | 是 | 用来接收错误码。 |
-
-**错误码**：
-
-以下错误码的详细介绍请参见[位置服务子系统错误码](../errorcodes/errorcode-geoLocationManager.md)。
-
-| 错误码ID | 错误信息 |
-| -------- | ---------------------------------------- |
-|3301000 | Location service is unavailable.   |
-
-**示例**
-  
-  ```ts
-  import geoLocationManager from '@ohos.geoLocationManager';
-  var requestInfo = {'scenario': 0x301, 'command': "command_1"};
-  geoLocationManager.sendCommand(requestInfo, (err, result) => {
-      if (err) {
-          console.log('sendCommand: err=' + JSON.stringify(err));
-      }
-  });
-  ```
-
-
-## geoLocationManager.sendCommand
-
-sendCommand(command: LocationCommand): Promise&lt;void&gt;;
-
-给位置服务子系统的各个部件发送扩展命令。
-
-**系统能力**：SystemCapability.Location.Location.Core
-
-**参数**：
-
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | command | [LocationCommand](#locationcommand) | 是 | 指定目标场景，和将要发送的命令（字符串）。 |
-
 **返回值**：
 
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | Promise&lt;void&gt;  | void | NA | 接收错误码。 |
+  | Promise&lt;void&gt; | void | NA |返回错误码。 |
 
 **错误码**：
 
@@ -1490,12 +272,177 @@ sendCommand(command: LocationCommand): Promise&lt;void&gt;;
   
   ```ts
   import geoLocationManager from '@ohos.geoLocationManager';
-  var requestInfo = {'scenario': 0x301, 'command': "command_1"};
-  geoLocationManager.sendCommand(requestInfo).then((result) => {
-      console.log('promise, sendCommand success');
-  })  
+  geoLocationManager.disableLocation().then((result) => {
+      console.log('promise, disableLocation succeed');
+  })
   .catch((error) => {
-      console.log('promise, sendCommand: error=' + JSON.stringify(error));
+      console.log('promise, disableLocation: error=' + JSON.stringify(error));
+  });
+  ```
+
+
+## geoLocationManager.isLocationPrivacyConfirmed
+
+isLocationPrivacyConfirmed(type : LocationPrivacyType, callback: AsyncCallback&lt;boolean&gt;): void;
+
+查询用户是否同意定位服务隐私申明，是否同意启用定位服务。只有系统应用才能调用。
+
+**系统API**：此接口为系统接口，三方应用不支持调用。
+
+**系统能力**：SystemCapability.Location.Location.Core
+
+**参数**：
+
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | type |  [LocationPrivacyType](#locationprivacytype)| 是 | 指定隐私申明场景，例如开机向导中的隐私申明、开启网络定位功能时弹出的隐私申明等。 |
+  | callback | AsyncCallback&lt;boolean&gt; | 是 | 表示用户是否同意定位服务隐私申明。 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[位置服务子系统错误码](../errorcodes/errorcode-geoLocationManager.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+|3301000 | Location service is unavailable.                                            |
+
+**示例**
+  
+  ```ts
+  import geoLocationManager from '@ohos.geoLocationManager';
+  geoLocationManager.isLocationPrivacyConfirmed(1, (err, result) => {
+      if (err) {
+          console.log('isLocationPrivacyConfirmed: err=' + JSON.stringify(err));
+      }
+      if (result) {
+          console.log('isLocationPrivacyConfirmed: result=' + JSON.stringify(result));
+      }
+  });
+  ```
+
+
+## geoLocationManager.isLocationPrivacyConfirmed
+
+isLocationPrivacyConfirmed(type : LocationPrivacyType,): Promise&lt;boolean&gt;;
+
+查询用户是否同意定位服务隐私申明，是否同意启用定位服务。只有系统应用才能调用。
+
+**系统API**：此接口为系统接口，三方应用不支持调用。
+
+**系统能力**：SystemCapability.Location.Location.Core
+
+**参数**：
+
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | type | [LocationPrivacyType](#locationprivacytype) | 是 | 指定隐私申明场景，例如开机向导中的隐私申明、开启网络定位功能时弹出的隐私申明等。 |
+
+**返回值**：
+
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | Promise&lt;boolean&gt; |boolean| NA | 表示用户是否同意定位服务隐私申明。 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[位置服务子系统错误码](../errorcodes/errorcode-geoLocationManager.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+|3301000 | Location service is unavailable.                                            |
+
+**示例**
+  
+  ```ts
+  import geoLocationManager from '@ohos.geoLocationManager';
+  geoLocationManager.isLocationPrivacyConfirmed(1).then((result) => {
+      console.log('promise, isLocationPrivacyConfirmed: ' + JSON.stringify(result));
+  });
+  ```
+
+
+## geoLocationManager.setLocationPrivacyConfirmStatus
+
+setLocationPrivacyConfirmStatus(type : LocationPrivacyType, isConfirmed: boolean, callback: AsyncCallback&lt;void&gt;): void;
+
+设置用户勾选定位服务隐私申明的状态，记录用户是否同意启用定位服务。只有系统应用才能调用。
+
+**系统API**：此接口为系统接口，三方应用不支持调用。
+
+**需要权限**：ohos.permission.MANAGE_SECURE_SETTINGS
+
+**系统能力**：SystemCapability.Location.Location.Core
+
+**参数**：
+
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | type | [LocationPrivacyType](#locationprivacytype) | 是 | 指定隐私申明场景，例如开机向导中的隐私申明、开启网络定位功能时弹出的隐私申明等。 |
+  | isConfirmed | boolean | 是 | 表示用户是否同意定位服务隐私申明。 |
+  | callback | AsyncCallback&lt;void&gt; | 是 | 接收错误码信息。 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[位置服务子系统错误码](../errorcodes/errorcode-geoLocationManager.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+|3301000 | Location service is unavailable.                                            |
+
+**示例**
+  
+  ```ts
+  import geoLocationManager from '@ohos.geoLocationManager';
+  geoLocationManager.setLocationPrivacyConfirmStatus(1, true, (err, result) => {
+      if (err) {
+          console.log('setLocationPrivacyConfirmStatus: err=' + JSON.stringify(err));
+      }
+  });
+  ```
+
+
+## geoLocationManager.setLocationPrivacyConfirmStatus
+
+setLocationPrivacyConfirmStatus(type : LocationPrivacyType, isConfirmed : boolean): Promise&lt;void&gt;;
+
+设置用户勾选定位服务隐私申明的状态，记录用户是否同意启用定位服务。只有系统应用才能调用。
+
+**系统API**：此接口为系统接口，三方应用不支持调用。
+
+**需要权限**：ohos.permission.MANAGE_SECURE_SETTINGS
+
+**系统能力**：SystemCapability.Location.Location.Core
+
+**参数**：
+
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | type | [LocationPrivacyType](#locationprivacytype) | 是 | 指定隐私申明场景，例如开机向导中的隐私申明、开启网络定位功能时弹出的隐私申明等。 |
+  | isConfirmed | boolean | 是 | 表示用户是否同意定位服务隐私申明。 |
+
+**返回值**：
+
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | Promise&lt;void&gt; |void|NA| 接收错误码。 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[位置服务子系统错误码](../errorcodes/errorcode-geoLocationManager.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+|3301000 | Location service is unavailable.                                            |
+
+**示例**
+  
+  ```ts
+  import geoLocationManager from '@ohos.geoLocationManager';
+  geoLocationManager.setLocationPrivacyConfirmStatus(1, true).then((result) => {
+      console.log('promise, setLocationPrivacyConfirmStatus succeed');
+  })
+  .catch((error) => {
+      console.log('promise, disableLocation: error=' + JSON.stringify(error));
   });
   ```
 
@@ -1577,7 +524,7 @@ getCountryCode(): Promise&lt;CountryCode&gt;;
 
 ## geoLocationManager.enableLocationMock
 
-enableLocationMock(): void;
+enableLocationMock(callback: AsyncCallback&lt;void&gt;): void;
 
 使能位置模拟功能。
 
@@ -1585,6 +532,12 @@ enableLocationMock(): void;
 
 **系统API**：此接口为系统接口，三方应用不支持调用。
 
+**参数**：
+
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | callback | AsyncCallback&lt;void&gt; | 是 | 用来接收执行结果，如果执行成功就返回nullptr，否则就返回错误信息。 |
+
 **错误码**：
 
 以下错误码的详细介绍请参见[位置服务子系统错误码](../errorcodes/errorcode-geoLocationManager.md)。
@@ -1598,17 +551,57 @@ enableLocationMock(): void;
   
   ```ts
   import geoLocationManager from '@ohos.geoLocationManager';
-  try {
-      geoLocationManager.enableLocationMock();
-  } catch (err) {
-      console.error("errCode:" + err.code + ",errMessage:" + err.message);
-  }
+  geoLocationManager.enableLocationMock((err, result) => {
+      if (err) {
+          console.log('enableLocationMock: err=' + JSON.stringify(err));
+      }
+  });
+  ```
+
+## geoLocationManager.enableLocationMock
+
+enableLocationMock(): Promise&lt;void&gt;;
+
+使能位置模拟功能。
+
+**系统能力**：SystemCapability.Location.Location.Core
+
+**系统API**：此接口为系统接口，三方应用不支持调用。
+
+**返回值**：
+
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | Promise&lt;void&gt; | void|NA|用来接收执行结果，如果执行成功就返回nullptr，否则就返回错误信息。  |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[位置服务子系统错误码](../errorcodes/errorcode-geoLocationManager.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+|3301000 | Location service is unavailable.                                            |
+|3301100 | The location switch is off.|
+
+**示例**
+  
+  ```ts
+  import geoLocationManager from '@ohos.geoLocationManager';
+  geoLocationManager.enableLocationMock()
+  .then((result) => {
+      console.log('promise, enableLocationMock: succeed');
+  })
+  .catch((error) => {
+      if (error) {
+        console.log('promise, enableLocationMock: error=' + JSON.stringify(error));
+      }
+  });
   ```
 
 
 ## geoLocationManager.disableLocationMock
 
-disableLocationMock(): void;
+disableLocationMock(callback: AsyncCallback&lt;void&gt;): void;
 
 去使能位置模拟功能。
 
@@ -1616,6 +609,12 @@ disableLocationMock(): void;
 
 **系统API**：此接口为系统接口，三方应用不支持调用。
 
+**参数**：
+
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | callback | AsyncCallback&lt;void&gt; | 是 | 用来接收执行结果，如果执行成功就返回nullptr，否则就返回错误信息。 |
+
 **错误码**：
 
 以下错误码的详细介绍请参见[位置服务子系统错误码](../errorcodes/errorcode-geoLocationManager.md)。
@@ -1629,17 +628,58 @@ disableLocationMock(): void;
   
   ```ts
   import geoLocationManager from '@ohos.geoLocationManager';
-  try {
-      geoLocationManager.disableLocationMock();
-  } catch (err) {
-      console.error("errCode:" + err.code + ",errMessage:" + err.message);
-  }
+  geoLocationManager.disableLocationMock((err, result) => {
+      if (err) {
+          console.log('disableLocationMock: err=' + JSON.stringify(err));
+      }
+  });
+  ```
+
+
+## geoLocationManager.disableLocationMock
+
+disableLocationMock(): Promise&lt;void&gt;;
+
+去使能位置模拟功能。
+
+**系统能力**：SystemCapability.Location.Location.Core
+
+**系统API**：此接口为系统接口，三方应用不支持调用。
+
+**返回值**：
+
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | Promise&lt;void&gt; |void|NA| 用来接收执行结果，如果执行成功就返回nullptr，否则就返回错误信息。  |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[位置服务子系统错误码](../errorcodes/errorcode-geoLocationManager.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+|3301000 | Location service is unavailable.                                            |
+|3301100 | The location switch is off.|
+
+**示例**
+  
+  ```ts
+  import geoLocationManager from '@ohos.geoLocationManager';
+  geoLocationManager.disableLocationMock()
+  .then((result) => {
+        console.log('promise, disableLocationMock succeed');
+  })
+  .catch((error) => {
+      if (error) {
+        console.log('promise, disableLocationMock: error=' + JSON.stringify(error));
+      }
+  });
   ```
 
 
 ## geoLocationManager.setMockedLocations
 
-setMockedLocations(config: LocationMockConfig): void;
+setMockedLocations(config: LocationMockConfig, callback: AsyncCallback&lt;void&gt;): void;
 
 设置模拟的位置信息，后面会以该接口中携带的时间间隔上报模拟位置。
 
@@ -1652,6 +692,7 @@ setMockedLocations(config: LocationMockConfig): void;
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | config |  [LocationMockConfig](#locationmockconfig) | 是 | 指示位置模拟的配置参数，包含模拟位置上报的时间间隔和模拟位置数组。 |
+  | callback | AsyncCallback&lt;void&gt; | 是 | 用来接收执行结果，如果执行成功就返回nullptr，否则就返回错误信息。 |
 
 **错误码**：
 
@@ -1674,17 +715,71 @@ setMockedLocations(config: LocationMockConfig): void;
       {"latitude": 34.16, "longitude": 124.11, "altitude": 123, "accuracy": 5, "speed": 5.2, "timeStamp": 16594326109, "direction": 123.11, "timeSinceBoot": 5000000000, "additionSize": 0, "isFromMock": true}
   ];
   var config = {"timeInterval": 5, "locations": locations};
-  try {
-      geoLocationManager.setMockedLocations(config);
-  } catch (err) {
-      console.error("errCode:" + err.code + ",errMessage:" + err.message);
-  }
+  geoLocationManager.setMockedLocations(config, (err, data) => {
+      if (err) {
+          console.log('setMockedLocations: err=' + JSON.stringify(err));
+      }
+  });
+  ```
+
+## geoLocationManager.setMockedLocations
+
+setMockedLocations(config: LocationMockConfig): Promise&lt;void&gt;;
+
+设置模拟的位置信息，后面会以该接口中携带的时间间隔上报模拟位置。
+
+**系统能力**：SystemCapability.Location.Location.Core
+
+**系统API**：此接口为系统接口，三方应用不支持调用。
+
+**参数**：
+
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | config | [LocationMockConfig](#locationmockconfig) | 是 | 指示位置模拟的配置参数，包含模拟位置上报的时间间隔和模拟位置数组。 |
+
+**返回值**：
+
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | Promise&lt;void&gt; |void|NA| 用来接收执行结果，如果执行成功就返回nullptr，否则就返回错误信息。  |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[位置服务子系统错误码](../errorcodes/errorcode-geoLocationManager.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+|3301000 | Location service is unavailable.                                            |
+|3301100 | The location switch is off.|
+
+**示例**
+  
+  ```ts
+  import geoLocationManager from '@ohos.geoLocationManager';
+  var locations = [
+      {"latitude": 30.12, "longitude": 120.11, "altitude": 123, "accuracy": 1, "speed": 5.2, "timeStamp": 16594326109, "direction": 123.11, "timeSinceBoot": 1000000000, "additionSize": 0, "isFromMock": true},
+      {"latitude": 31.13, "longitude": 121.11, "altitude": 123, "accuracy": 2, "speed": 5.2, "timeStamp": 16594326109, "direction": 123.11, "timeSinceBoot": 2000000000, "additionSize": 0, "isFromMock": true},
+      {"latitude": 32.14, "longitude": 122.11, "altitude": 123, "accuracy": 3, "speed": 5.2, "timeStamp": 16594326109, "direction": 123.11, "timeSinceBoot": 3000000000, "additionSize": 0, "isFromMock": true},
+      {"latitude": 33.15, "longitude": 123.11, "altitude": 123, "accuracy": 4, "speed": 5.2, "timeStamp": 16594326109, "direction": 123.11, "timeSinceBoot": 4000000000, "additionSize": 0, "isFromMock": true},
+      {"latitude": 34.16, "longitude": 124.11, "altitude": 123, "accuracy": 5, "speed": 5.2, "timeStamp": 16594326109, "direction": 123.11, "timeSinceBoot": 5000000000, "additionSize": 0, "isFromMock": true}
+  ];
+  var config = {"timeInterval": 5, "locations":locations};
+  geoLocationManager.setMockedLocations(config)
+  .then((result) => {
+      console.log('promise, setMockedLocations succeed');
+  })
+  .catch((error) => {
+      if (error) {
+        console.log('promise, setMockedLocations: error=' + JSON.stringify(error));
+      }
+  });
   ```
 
 
 ## geoLocationManager.enableReverseGeocodingMock
 
-enableReverseGeocodingMock(): void;
+enableReverseGeocodingMock(callback: AsyncCallback&lt;void&gt;): void;
 
 使能逆地理编码模拟功能。
 
@@ -1692,6 +787,12 @@ enableReverseGeocodingMock(): void;
 
 **系统API**：此接口为系统接口，三方应用不支持调用。
 
+**参数**：
+
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | callback | AsyncCallback&lt;void&gt; | 是 | 用来接收执行结果，如果执行成功就返回nullptr，否则就返回错误信息。 |
+
 **错误码**：
 
 以下错误码的详细介绍请参见[位置服务子系统错误码](../errorcodes/errorcode-geoLocationManager.md)。
@@ -1704,17 +805,57 @@ enableReverseGeocodingMock(): void;
   
   ```ts
   import geoLocationManager from '@ohos.geoLocationManager';
-  try {
-      geoLocationManager.enableReverseGeocodingMock();
-  } catch (err) {
-      console.error("errCode:" + err.code + ",errMessage:" + err.message);
-  }
+  geoLocationManager.enableReverseGeocodingMock((err, data) => {
+      if (err) {
+          console.log('enableReverseGeocodingMock: err=' + JSON.stringify(err));
+      }
+  });
+  ```
+
+
+## geoLocationManager.enableReverseGeocodingMock
+
+enableReverseGeocodingMock(): Promise&lt;void&gt;;
+
+使能逆地理编码模拟功能。
+
+**系统能力**：SystemCapability.Location.Location.Core
+
+**系统API**：此接口为系统接口，三方应用不支持调用。
+
+**返回值**：
+
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | Promise&lt;void&gt; | void|NA|用来接收执行结果，如果执行成功就返回nullptr，否则就返回错误信息。  |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[位置服务子系统错误码](../errorcodes/errorcode-geoLocationManager.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+|3301000 | Location service is unavailable.                                            |
+
+**示例**
+  
+  ```ts
+  import geoLocationManager from '@ohos.geoLocationManager';
+  geoLocationManager.enableReverseGeocodingMock()
+  .then((result) => {
+      console.log('promise, enableReverseGeocodingMock succeed');
+  })
+  .catch((error) => {
+      if (error) {
+        console.log('promise, enableReverseGeocodingMock: error=' + JSON.stringify(error));
+      }
+  });
   ```
 
 
 ## geoLocationManager.disableReverseGeocodingMock
 
-disableReverseGeocodingMock(): void;
+disableReverseGeocodingMock(callback: AsyncCallback&lt;void&gt;): void;
 
 去使能逆地理编码模拟功能。
 
@@ -1722,6 +863,12 @@ disableReverseGeocodingMock(): void;
 
 **系统API**：此接口为系统接口，三方应用不支持调用。
 
+**参数**：
+
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | callback | AsyncCallback&lt;void&gt; | 是 | 用来接收执行结果，如果执行成功就返回nullptr，否则就返回错误信息。 |
+
 **错误码**：
 
 以下错误码的详细介绍请参见[位置服务子系统错误码](../errorcodes/errorcode-geoLocationManager.md)。
@@ -1734,17 +881,57 @@ disableReverseGeocodingMock(): void;
   
   ```ts
   import geoLocationManager from '@ohos.geoLocationManager';
-  try {
-      geoLocationManager.disableReverseGeocodingMock();
-  } catch (err) {
-      console.error("errCode:" + err.code + ",errMessage:" + err.message);
-  }
+  geoLocationManager.disableReverseGeocodingMock((err, result) => {
+      if (err) {
+          console.log('disableReverseGeocodingMock: err=' + JSON.stringify(err));
+      }
+  });
+  ```
+
+
+## geoLocationManager.disableReverseGeocodingMock
+
+disableReverseGeocodingMock(): Promise&lt;void&gt;;
+
+去使能逆地理编码模拟功能。
+
+**系统能力**：SystemCapability.Location.Location.Core
+
+**系统API**：此接口为系统接口，三方应用不支持调用。
+
+**返回值**：
+
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | Promise&lt;void&gt; |void|NA| 用来接收执行结果，如果执行成功就返回nullptr，否则就返回错误信息。  |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[位置服务子系统错误码](../errorcodes/errorcode-geoLocationManager.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+|3301000 | Location service is unavailable.                                            |
+
+**示例**
+  
+  ```ts
+  import geoLocationManager from '@ohos.geoLocationManager';
+  geoLocationManager.disableReverseGeocodingMock()
+  .then((result) => {
+      console.log('promise, disableReverseGeocodingMock succeed');
+  })
+  .catch((error) => {
+      if (error) {
+        console.log('promise, disableReverseGeocodingMock: error=' + JSON.stringify(error));
+      }
+  });
   ```
 
 
 ## geoLocationManager.setReverseGeocodingMockInfo
 
-setReverseGeocodingMockInfo(mockInfos: Array&lt;ReverseGeocodingMockInfo&gt;): void;
+setReverseGeocodingMockInfo(mockInfos: Array&lt;ReverseGeocodingMockInfo&gt;, callback: AsyncCallback&lt;void&gt;): void;
 
 设置逆地理编码模拟功能的配置信息，包含了位置和地名的对应关系，后续进行逆地理编码查询时如果位置信息位于配置信息中，就返回对应的地名。
 
@@ -1757,6 +944,7 @@ setReverseGeocodingMockInfo(mockInfos: Array&lt;ReverseGeocodingMockInfo&gt;): v
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | mockInfos | Array&lt;[ReverseGeocodingMockInfo](#reversegeocodingmockinfo)&gt; | 是 | 指示逆地理编码模拟功能的配置参数数组。逆地理编码模拟功能的配置参数包含了一个位置和一个地名。 |
+  | callback | AsyncCallback&lt;void&gt; | 是 | 用来接收执行结果，如果执行成功就返回nullptr，否则就返回错误信息。 |
 
 **错误码**：
 
@@ -1777,35 +965,35 @@ setReverseGeocodingMockInfo(mockInfos: Array&lt;ReverseGeocodingMockInfo&gt;): v
       {"location": {"locale": "zh", "latitude": 33.12, "longitude": 123.11, "maxItems": 1}, "geoAddress": {"locale": "zh", "latitude": 33.12, "longitude": 123.11, "maxItems": 1, "isFromMock": true}},
       {"location": {"locale": "zh", "latitude": 34.12, "longitude": 124.11, "maxItems": 1}, "geoAddress": {"locale": "zh", "latitude": 34.12, "longitude": 124.11, "maxItems": 1, "isFromMock": true}},
   ];
-  try {
-      geoLocationManager.setReverseGeocodingMockInfo(mockInfos);
-  } catch (err) {
-      console.error("errCode:" + err.code + ",errMessage:" + err.message);
-  }
+  geoLocationManager.setReverseGeocodingMockInfo(mockInfos, (err, data) => {
+      if (err) {
+          console.log('promise, setReverseGeocodingMockInfo, err:' + JSON.stringify(err));
+      }
+  });
   ```
 
 
-## geoLocationManager.isLocationPrivacyConfirmed
+## geoLocationManager.setReverseGeocodingMockInfo
 
-isLocationPrivacyConfirmed(type: LocationPrivacyType): boolean;
+setReverseGeocodingMockInfo(mockInfos: Array&lt;ReverseGeocodingMockInfo&gt;): Promise&lt;void&gt;;
 
-查询用户是否同意定位服务隐私申明，是否同意启用定位服务。只有系统应用才能调用。
-
-**系统API**：此接口为系统接口，三方应用不支持调用。
+设置逆地理编码模拟功能的配置信息，包含了位置和地名的对应关系，后续进行逆地理编码查询时如果位置信息位于配置信息中，就返回对应的地名。
 
 **系统能力**：SystemCapability.Location.Location.Core
+
+**系统API**：此接口为系统接口，三方应用不支持调用。
 
 **参数**：
 
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | type |  [LocationPrivacyType](#locationprivacytype)| 是 | 指定隐私申明场景，例如开机向导中的隐私申明、开启网络定位功能时弹出的隐私申明等。 |
+  | mockInfos | Array&lt;[ReverseGeocodingMockInfo](#reversegeocodingmockinfo)&gt; | 是 | 指示逆地理编码模拟功能的配置信息数组。逆地理编码模拟功能的配置信息包含了一个位置和一个地名。 |
 
 **返回值**：
 
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | boolean  | boolean | NA | 表示用户是否同意定位服务隐私申明。 |
+  | Promise&lt;void&gt; | void | NA | 用来接收执行结果，如果执行成功就返回nullptr，否则就返回错误信息。  |
 
 **错误码**：
 
@@ -1819,50 +1007,22 @@ isLocationPrivacyConfirmed(type: LocationPrivacyType): boolean;
   
   ```ts
   import geoLocationManager from '@ohos.geoLocationManager';
-  try {
-      var isConfirmed = geoLocationManager.isLocationPrivacyConfirmed(1);
-  } catch (err) {
-      console.error("errCode:" + err.code + ",errMessage:" + err.message);
-  }
-  ```
-
-
-## geoLocationManager.setLocationPrivacyConfirmStatus
-
-setLocationPrivacyConfirmStatus(type: LocationPrivacyType, isConfirmed: boolean): void;
-
-设置用户勾选定位服务隐私申明的状态，记录用户是否同意启用定位服务。只有系统应用才能调用。
-
-**系统API**：此接口为系统接口，三方应用不支持调用。
-
-**需要权限**：ohos.permission.MANAGE_SECURE_SETTINGS
-
-**系统能力**：SystemCapability.Location.Location.Core
-
-**参数**：
-
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | type | [LocationPrivacyType](#locationprivacytype) | 是 | 指定隐私申明场景，例如开机向导中的隐私申明、开启网络定位功能时弹出的隐私申明等。 |
-  | isConfirmed | boolean | 是 | 表示用户是否同意定位服务隐私申明。 |
-
-**错误码**：
-
-以下错误码的详细介绍请参见[位置服务子系统错误码](../errorcodes/errorcode-geoLocationManager.md)。
-
-| 错误码ID | 错误信息 |
-| -------- | ---------------------------------------- |
-|3301000 | Location service is unavailable.                                            |
-
-**示例**
-  
-  ```ts
-  import geoLocationManager from '@ohos.geoLocationManager';
-  try {
-      geoLocationManager.setLocationPrivacyConfirmStatus(1, true);
-  } catch (err) {
-      console.error("errCode:" + err.code + ",errMessage:" + err.message);
-  }
+  var mockInfos = [
+      {"location": {"locale": "zh", "latitude": 30.12, "longitude": 120.11, "maxItems": 1}, "geoAddress": {"locale": "zh", "latitude": 30.12, "longitude": 120.11, "maxItems": 1, "isFromMock": true}},
+      {"location": {"locale": "zh", "latitude": 31.12, "longitude": 121.11, "maxItems": 1}, "geoAddress": {"locale": "zh", "latitude": 31.12, "longitude": 121.11, "maxItems": 1, "isFromMock": true}},
+      {"location": {"locale": "zh", "latitude": 32.12, "longitude": 122.11, "maxItems": 1}, "geoAddress": {"locale": "zh", "latitude": 32.12, "longitude": 122.11, "maxItems": 1, "isFromMock": true}},
+      {"location": {"locale": "zh", "latitude": 33.12, "longitude": 123.11, "maxItems": 1}, "geoAddress": {"locale": "zh", "latitude": 33.12, "longitude": 123.11, "maxItems": 1, "isFromMock": true}},
+      {"location": {"locale": "zh", "latitude": 34.12, "longitude": 124.11, "maxItems": 1}, "geoAddress": {"locale": "zh", "latitude": 34.12, "longitude": 124.11, "maxItems": 1, "isFromMock": true}},
+  ];
+  geoLocationManager.setReverseGeocodingMockInfo(mockInfos)
+  .then((result) => {
+      console.log('promise, setReverseGeocodingMockInfo succeed');
+  })
+  .catch((error) => {
+      if (error) {
+        console.log('promise, setReverseGeocodingMockInfo: error=' + JSON.stringify(error));
+      }
+  });
   ```
 
 
@@ -2035,8 +1195,9 @@ GNSS围栏的配置参数。目前只支持圆形围栏。
 
 | 名称 | 类型 | 可读|可写 | 说明 |
 | -------- | -------- | -------- | -------- |
-| scenario | [LocationRequestScenario](#locationrequestscenario) | 是 | 是  |  表示定位场景。 |
-| geofence |  [Geofence](#geofence)| 是 | 是  |  表示围栏信息。 |
+| priority | [LocationRequestPriority](#locationrequestpriority) | 是 | 是  | 表示位置信息优先级。 |
+| scenario | [LocationRequestScenario](#locationrequestscenario) | 是 | 是  | 表示定位场景。 |
+| geofence |  [Geofence](#geofence) | 是 | 是  | 表示围栏信息。 |
 
 
 ## LocationPrivacyType

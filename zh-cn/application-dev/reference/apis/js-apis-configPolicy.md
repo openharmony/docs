@@ -24,6 +24,7 @@ getOneCfgFile(relPath: string, callback: AsyncCallback&lt;string&gt;)
 **系统能力**：SystemCapability.Customization.ConfigPolicy
 
 **参数：** 
+
 | 参数名      | 类型                          | 必填   | 说明                    |
 | -------- | --------------------------- | ---- | --------------------- |
 | relPath  | string                      | 是    | 配置文件名                 |
@@ -50,11 +51,13 @@ getOneCfgFile(relPath: string): Promise&lt;string&gt;
 **系统能力**：SystemCapability.Customization.ConfigPolicy
 
 **参数：** 
+
 | 参数名     | 类型     | 必填   | 说明    |
 | ------- | ------ | ---- | ----- |
 | relPath | string | 是    | 配置文件名 |
 
 **返回值：** 
+
 | 类型                    | 说明           |
 | --------------------- | ------------ |
 | Promise&lt;string&gt; | 最高优先级配置文件的路径 |
@@ -79,6 +82,7 @@ getCfgFiles(relPath: string, callback: AsyncCallback&lt;Array&lt;string&gt;&gt;)
 **系统能力**：SystemCapability.Customization.ConfigPolicy
 
 **参数：** 
+
 | 参数名      | 类型                                       | 必填   | 说明            |
 | -------- | ---------------------------------------- | ---- | ------------- |
 | relPath  | string                                   | 是    | 配置文件名         |
@@ -105,11 +109,13 @@ getCfgFiles(relPath: string): Promise&lt;Array&lt;string&gt;&gt;
 **系统能力**：SystemCapability.Customization.ConfigPolicy
 
 **参数：** 
+
 | 参数名     | 类型     | 必填   | 说明    |
 | ------- | ------ | ---- | ----- |
 | relPath | string | 是    | 配置文件名 |
 
 **返回值：** 
+
 | 类型                                 | 说明   |
 | ---------------------------------- | ---- |
 | Promise&lt;Array&lt;string&gt;&gt; | 文件列表 |
@@ -133,6 +139,7 @@ getCfgDirList(callback: AsyncCallback&lt;Array&lt;string&gt;&gt;)
 **系统能力**：SystemCapability.Customization.ConfigPolicy
 
 **参数：** 
+
 | 参数名      | 类型                                       | 必填   | 说明                |
 | -------- | ---------------------------------------- | ---- | ----------------- |
 | callback | AsyncCallback&lt;Array&lt;string&gt;&gt; | 是    | 异步回调，用于返回配置层级目录列表 |
@@ -158,6 +165,7 @@ getCfgDirList(): Promise&lt;Array&lt;string&gt;&gt;
 **系统能力**：SystemCapability.Customization.ConfigPolicy
 
 **返回值：** 
+
 | 类型                                 | 说明       |
 | ---------------------------------- | -------- |
 | Promise&lt;Array&lt;string&gt;&gt; | 配置层级目录列表 |

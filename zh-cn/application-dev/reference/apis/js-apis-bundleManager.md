@@ -206,10 +206,6 @@ getBundleInfoForSelf(bundleFlags: [number](#bundleflag)): Promise\<[BundleInfo](
 | ----------------------------------------------------------- | ------------------------------------- |
 | Promise\<[BundleInfo](js-apis-bundleManager-bundleInfo.md)> | Promise对象，返回当前应用的BundleInfo。|
 
-**错误码：**
-
-错误码的详细介绍请参见[ohos.bundle错误码](../errorcodes/errorcode-bundle.md)。
-
 **示例：**
 
 ```ts
@@ -240,10 +236,6 @@ getBundleInfoForSelf(bundleFlags: [number](#bundleflag), callback: AsyncCallback
 | ----------- | ------ | ---- | --------------------- |
 | bundleFlags | [number](#bundleflag) | 是   | 指定返回的BundleInfo所包含的信息。 |
 | callback | AsyncCallback\<[BundleInfo](js-apis-bundleManager-bundleInfo.md)> | 是 | 回调函数，当获取成功时，err为null，data为获取到的当前应用的BundleInfo；否则为错误对象。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[ohos.bundle错误码](../errorcodes/errorcode-bundle.md)。
 
 **示例：**
 
@@ -292,7 +284,7 @@ getBundleInfo(bundleName: string, bundleFlags: number, userId: number, callback:
 | 错误码ID | 错误信息                              |
 | -------- | ------------------------------------- |
 | 17700001 | The specified bundleName is not found. |
-| 17700004 | The specified userId is not found.     |
+| 17700004 | The specified user ID is not found.     |
 | 17700026 | The specified bundle is disabled.      |
 
 **示例：**
@@ -364,6 +356,7 @@ getBundleInfo(bundleName: string, bundleFlags: number, callback: AsyncCallback\<
 | 错误码ID | 错误信息                              |
 | -------- | ------------------------------------- |
 | 17700001 | The specified bundleName is not found. |
+| 17700004 | The specified user ID is not found.    |
 | 17700026 | The specified bundle is disabled.      |
 
 **示例：**
@@ -419,7 +412,7 @@ getBundleInfo(bundleName: string, bundleFlags: [number](#bundleflag), userId?: n
 | 错误码ID | 错误信息                            |
 | -------- | --------------------------------------|
 | 17700001 | The specified bundleName is not found. |
-| 17700004 | The specified userId is not found.     |
+| 17700004 | The specified user ID is not found.     |
 | 17700026 | The specified bundle is disabled.      |
 
 **示例：**
@@ -487,10 +480,10 @@ getApplicationInfo(bundleName: string, appFlags: [number](#applicationflag), use
 | 错误码ID | 错误信息                             |
 | -------- | --------------------------------------|
 | 17700001 | The specified bundleName is not found. |
-| 17700004 | The specified userId is not found.     |
+| 17700004 | The specified user ID is not found.     |
 | 17700026 | The specified bundle is disabled.      |
 
-**示例：**
+**示例：** 
 
 ```ts
 import bundleManager from '@ohos.bundle.bundleManager'
@@ -538,6 +531,7 @@ getApplicationInfo(bundleName: string, appFlags: [number](#applicationflag), cal
 | 错误码ID | 错误信息                             |
 | -------- | --------------------------------------|
 | 17700001 | The specified bundleName is not found. |
+| 17700004 | The specified user ID is not found.     |
 | 17700026 | The specified bundle is disabled.      |
 
 **示例：**
@@ -593,7 +587,7 @@ getApplicationInfo(bundleName: string, appFlags: [number](#applicationflag), use
 | 错误码ID | 错误信息                             |
 | -------- | ------------------------------------- |
 | 17700001 | The specified bundleName is not found. |
-| 17700004 | The specified userId is not found.     |
+| 17700004 | The specified user ID is not found.     |
 | 17700026 | The specified bundle is disabled.      |
 
 **示例：**
@@ -641,7 +635,7 @@ getAllBundleInfo(bundleFlags: [number](#bundleflag), userId: number, callback: A
 
 | 错误码ID | 错误信息                         |
 | -------- | --------------------------------- |
-| 17700004 | The specified userId is not found. |
+| 17700004 | The specified user ID is not found. |
 
 **示例：**
 
@@ -685,6 +679,10 @@ getAllBundleInfo(bundleFlags: [number](#bundleflag), callback: AsyncCallback<Arr
 **错误码：**
 
 错误码的详细介绍请参见[ohos.bundle错误码](../errorcodes/errorcode-bundle.md)。
+
+| 错误码ID | 错误信息                         |
+| -------- | ---------------------------------- |
+| 17700004 | The specified user ID is not found. |
 
 **示例：**
 
@@ -736,7 +734,7 @@ getAllBundleInfo(bundleFlags: [number](#bundleflag), userId?: number): Promise<A
 
 | 错误码ID | 错误信息                         |
 | -------- | ---------------------------------- |
-| 17700004 | The specified userId is not found. |
+| 17700004 | The specified user ID is not found. |
 
 **示例：**
 
@@ -781,7 +779,7 @@ getAllApplicationInfo(appFlags: [number](#applicationflag), userId: number, call
 
 | 错误码ID | 错误信息                         |
 | -------- | ---------------------------------- |
-| 17700004 | The specified userId is not found. |
+| 17700004 | The specified user ID is not found. |
 
 **示例：**
 
@@ -825,6 +823,10 @@ getAllApplicationInfo(appFlags: [number](#applicationflag), callback: AsyncCallb
 **错误码：**
 
 错误码的详细介绍请参见[ohos.bundle错误码](../errorcodes/errorcode-bundle.md)。
+
+| 错误码ID | 错误信息                         |
+| -------- | ---------------------------------- |
+| 17700004 | The specified user ID is not found. |
 
 **示例：**
 
@@ -876,7 +878,7 @@ getAllApplicationInfo(appFlags: [number](#applicationflag), userId?: number): Pr
 
 | 错误码ID | 错误信息                         |
 | -------- | ---------------------------------- |
-| 17700004 | The specified userId is not found. |
+| 17700004 | The specified user ID is not found. |
 
 **示例：**
 
@@ -981,6 +983,7 @@ queryAbilityInfo(want: Want, abilityFlags: [number](#abilityflag), callback: Asy
 | -------- | -------------------------------------- |
 | 17700001 | The specified bundleName is not found. |
 | 17700003 | The specified ability is not found.    |
+| 17700004 | The specified userId is invalid.       |
 | 17700026 | The specified bundle is disabled.      |
 | 17700029 | The specified ability is disabled.     |
 
@@ -1040,7 +1043,7 @@ queryAbilityInfo(want: Want, abilityFlags: [number](#abilityflag), userId?: numb
 | 错误码ID | 错误信息                             |
 | -------- | ------------------------------------- |
 | 17700001 | The specified bundleName is not found. |
-| 17700003 | The specified ability is not found.    |
+| 17700003 | The specified extensionAbility is not found.    |
 | 17700004 | The specified userId is invalid.       |
 | 17700026 | The specified bundle is disabled.      |
 | 17700029 | The specified ability is disabled.     |
@@ -1169,10 +1172,11 @@ queryExtensionAbilityInfo(want: Want, extensionAbilityType: [ExtensionAbilityTyp
 
 以下错误码的详细介绍请参见[ohos.bundle错误码](../errorcodes/errorcode-bundle.md)。
 
-| 错误码ID | 错误信息                                    |
-| -------- | ------------------------------------------- |
+| 错误码ID | 错误信息                                     |
+| -------- | -------------------------------------------- |
 | 17700001 | The specified bundleName is not found.       |
 | 17700003 | The specified extensionAbility is not found. |
+| 17700004 | The specified userId is invalid.       |
 | 17700026 | The specified bundle is disabled.            |
 
 **示例：**
@@ -1499,7 +1503,7 @@ cleanBundleCacheFiles(bundleName: string, callback: AsyncCallback\<void>): void;
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
 | 17700001 | The specified bundleName is not found.                        |
-| 17700030 | The specified bundleName does not support cleaning cache files. |
+| 17700030 | The specified bundle does not support clearing of cache files. |
 
 **示例：**
 
@@ -1551,7 +1555,7 @@ cleanBundleCacheFiles(bundleName: string): Promise\<void>;
 | 错误码ID | 错误信息                                                   |
 | -------- | ---------------------------------------------------------- |
 | 17700001 | The specified bundleName is not found.                      |
-| 17700030 | The specified bundle does not support cleaning cache files. |
+| 17700030 | The specified bundle does not support clearing of cache files. |
 
 **示例：**
 
@@ -2029,7 +2033,7 @@ getLaunchWantForBundle(bundleName: string, userId: number, callback: AsyncCallba
 | 错误码ID | 错误信息                             |
 | -------- | --------------------------------------|
 | 17700001 | The specified bundleName is not found. |
-| 17700004 | The specified userId is not found.     |
+| 17700004 | The specified user ID is not found.     |
 | 17700026 | The specified bundle is disabled.      |
 
 **示例：**
@@ -2078,6 +2082,7 @@ getLaunchWantForBundle(bundleName: string, callback: AsyncCallback\<Want>): void
 | 错误码ID | 错误信息                             |
 | -------- | --------------------------------------|
 | 17700001 | The specified bundleName is not found. |
+| 17700004 | The specified user ID is not found.     |
 | 17700026 | The specified bundle is disabled.      |
 
 **示例：**
@@ -2131,7 +2136,7 @@ getLaunchWantForBundle(bundleName: string, userId?: number): Promise\<Want>;
 | 错误码ID | 错误信息                             |
 | -------- | --------------------------------------|
 | 17700001 | The specified bundleName is not found. |
-| 17700004 | The specified userId is not found.     |
+| 17700004 | The specified user ID is not found.     |
 | 17700026 | The specified bundle is disabled.      |
 
 **示例：**
@@ -2177,7 +2182,7 @@ getProfileByAbility(moduleName: string, abilityName: string, metadataName: strin
 | -------- | ------------------------------------------------------------ |
 | 17700002 | The specified moduleName is not existed.                      |
 | 17700003 | The specified abilityName is not existed.                     |
-| 17700024 | The specified metadataName is not existed or the profile is not json-format. |
+| 17700024 | Failed to get the profile because there is no profile in the HAP. |
 | 17700026 | The specified bundle is disabled.                             |
 | 17700029 | The specified ability is disabled.                            |
 
@@ -2232,7 +2237,7 @@ getProfileByAbility(moduleName: string, abilityName: string, metadataName?: stri
 | -------- | ------------------------------------------------------------ |
 | 17700002 | The specified moduleName is not existed.                      |
 | 17700003 | The specified abilityName is not existed.                     |
-| 17700024 | The specified metadataName is not existed or the profile is not json-format. |
+| 17700024 | Failed to get the profile because there is no profile in the HAP. |
 | 17700026 | The specified bundle is disabled.                             |
 | 17700029 | The specified ability is disabled.                            |
 
@@ -2280,11 +2285,11 @@ getProfileByExtensionAbility(moduleName: string, extensionAbilityName: string, m
 
 **参数：**
 
-| 名称                 | 类型                          | 必填 | 说明                                                         |
+| 参数名                 | 类型                          | 必填 | 说明                                                         |
 | -------------------- | ----------------------------- | ---- | ------------------------------------------------------------ |
-| moduleName           | string                        | 是   | 表示应用程序的moduleName。                                     |
-| extensionAbilityName | string                        | 是   | 表示应用程序的extensionAbilityName。                           |
-| metadataName         | string                        | 是   | 表示应用程序的metadataName。                                   |
+| moduleName           | string                        | 是   | 表示应用程序的moduleName。                                   |
+| extensionAbilityName | string                        | 是   | 表示应用程序的extensionAbilityName。                         |
+| metadataName         | string                        | 是   | 表示应用程序的metadataName。                                 |
 | callback             | AsyncCallback<Array\<string>> | 是   | 回调函数，当获取成功时，err为null，data为获取到的Array\<string>；否则为错误对象。 |
 
 **错误码：**
@@ -2294,8 +2299,8 @@ getProfileByExtensionAbility(moduleName: string, extensionAbilityName: string, m
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
 | 17700002 | The specified moduleName is not existed.                      |
-| 17700003 | The specified extensionAbilityName is not existed.            |
-| 17700024 | The specified metadataName is not existed or the profile is not json-format. |
+| 17700003 | The specified extensionAbilityName not existed.            |
+| 17700024 | Failed to get the profile because there is no profile in the HAP. |
 | 17700026 | The specified bundle is disabled.                             |
 
 **示例：**
@@ -2329,7 +2334,7 @@ getProfileByExtensionAbility(moduleName: string, extensionAbilityName: string, m
 
 **参数：**
 
-| 名称                 | 类型   | 必填 | 说明                               |
+| 参数名                 | 类型   | 必填 | 说明                               |
 | -------------------- | ------ | ---- | ---------------------------------- |
 | moduleName           | string | 是   | 表示应用程序的moduleName。           |
 | extensionAbilityName | string | 是   | 表示应用程序的extensionAbilityName。 |
@@ -2348,8 +2353,8 @@ getProfileByExtensionAbility(moduleName: string, extensionAbilityName: string, m
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
 | 17700002 | The specified moduleName is not existed.                      |
-| 17700003 | The specified extensionAbilityName is not existed.            |
-| 17700024 | The specified metadataName is not existed or the profile is not json-format. |
+| 17700003 | The specified extensionAbilityName not existed.            |
+| 17700024 | Failed to get the profile because there is no profile in the HAP. |
 | 17700026 | The specified bundle is disabled.                             |
 
 **示例：**
@@ -2395,9 +2400,9 @@ getPermissionDef(permissionName: string, callback: AsyncCallback\<[PermissionDef
 
 **参数：**
 
-| 名称           | 类型                                                         | 必填 | 说明                                                         |
+| 参数名           | 类型                                                         | 必填 | 说明                                                         |
 | -------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| permissionName | string                                                       | 是   | 表示权限名称。                                                 |
+| permissionName | string                                                       | 是   | 表示权限名称。                                               |
 | callback       | AsyncCallback\<[PermissionDef](js-apis-bundleManager-permissionDef.md)> | 是   | 回调函数，当获取成功时，err为null，data为获取到的Array\<PermissionDef>；否则为错误对象。 |
 
 **错误码：**
@@ -2440,7 +2445,7 @@ getPermissionDef(permissionName: string): Promise\<[PermissionDef](js-apis-bundl
 
 **参数：**
 
-| 名称           | 类型   | 必填 | 说明           |
+| 参数名           | 类型   | 必填 | 说明           |
 | -------------- | ------ | ---- | -------------- |
 | permissionName | string | 是   | 表示权限参数名。 |
 
@@ -2729,7 +2734,7 @@ getApplicationInfoSync(bundleName: string, applicationFlags: number, userId: num
 | 错误码ID | 错误信息                             |
 | -------- | -------------------------------------- |
 | 17700001 | The specified bundleName is not found. |
-| 17700004 | The specified userId is not found.     |
+| 17700004 | The specified user ID is not found.     |
 | 17700026 | The specified bundle is disabled.      |
 
 **示例：**
@@ -2830,7 +2835,7 @@ getBundleInfoSync(bundleName: string, bundleFlags: [number](#bundleflag), userId
 | 错误码ID | 错误信息                             |
 | -------- | ------------------------------------- |
 | 17700001 | The specified bundleName is not found. |
-| 17700004 | The specified userId is not found.     |
+| 17700004 | The specified user ID is not found.     |
 | 17700026 | The specified bundle is disabled.      |
 
 **示例：**
@@ -2881,6 +2886,7 @@ getBundleInfoSync(bundleName: string, bundleFlags: [number](#bundleflag)): [Bund
 | 错误码ID | 错误信息                             |
 | -------- | ------------------------------------- |
 | 17700001 | The specified bundleName is not found. |
+| 17700004 | The specified user ID is not found.     |
 | 17700026 | The specified bundle is disabled.      |
 
 **示例：**

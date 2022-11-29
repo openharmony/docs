@@ -16,10 +16,10 @@ import inputDevice from '@ohos.multimodalInput.pointer';
 
 | 实例名  | 接口名                                                       | 说明                                                         |
 | ------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| pointer | **function** isPointerVisible(callback: AsyncCallback<boolean>): **void**; | 获取鼠标指针显示或隐藏状态。                                 |
-| pointer | **function** setPointerVisible(visible: boolean, callback: AsyncCallback<**void**>): **void**; | 设置鼠标指针显示或隐藏状态，改接口会影响全局鼠标光标的显示状态。 |
-| pointer | **function** setPointerStyle(windowId: **number**, pointerStyle: PointerStyle, callback: AsyncCallback<**void**>): **void**; | 设置鼠标光标样式，改接口会影响指定窗口鼠标光标样式。         |
-| pointer | **function** getPointerStyle(windowId: **number**, callback: AsyncCallback<PointerStyle>): **void**; | 查询鼠标光标样式。                                           |
+| pointer | function isPointerVisible(callback: AsyncCallback\<boolean>): void; | 获取鼠标指针显示或隐藏状态。                                 |
+| pointer | function setPointerVisible(visible: boolean, callback: AsyncCallback\<void>): void; | 设置鼠标指针显示或隐藏状态，改接口会影响全局鼠标光标的显示状态。 |
+| pointer | function setPointerStyle(windowId: number, pointerStyle: PointerStyle, callback: AsyncCallback\<void>): void; | 设置鼠标光标样式，改接口会影响指定窗口鼠标光标样式。         |
+| pointer | function getPointerStyle(windowId: number, callback: AsyncCallback\<PointerStyle>): void; | 查询鼠标光标样式。                                           |
 
 ## 设置鼠标光标隐藏
 

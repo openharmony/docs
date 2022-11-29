@@ -27,7 +27,7 @@ import defaultAppMgr from '@ohos.bundle.defaultAppManager';
 
 **系统能力：** SystemCapability.BundleManager.BundleFramework.DefaultApp
 
-| 参数名     | 类型     | 值    | 说明                                   |
+| 名称   | 类型     | 必填  | 说明                                   |
 | -------- | -------- | -------------------------------------- | -------------------------------------- |
 | BROWSER  | string   | Web Browser | 默认浏览器。                            |
 | IMAGE    | string   | Image Gallery | 默认图片查看器。                         |
@@ -58,10 +58,6 @@ isDefaultApplication(type: string): Promise\<boolean>
 | ------------------------- | ------------------ |
 | Promise\<boolean> | Promise形式返回当前应用是否是默认应用，true表示是默认应用，false表示不是默认应用。 |
 
-**错误码：**
-
-错误码的详细介绍请参见[ohos.bundle错误码](../errorcodes/errorcode-bundle.md)。
-
 
 **示例：**
 
@@ -89,10 +85,6 @@ isDefaultApplication(type: string, callback: AsyncCallback\<boolean>): void
 | ----------- | ------------------------------- | ---- | --------------------------------------- |
 | type  | string                          | 是    | 要查询的应用类型，取[ApplicationType](#defaultappmgrapplicationtype)中的值。                            |
 | callback    | AsyncCallback\<boolean> | 是    | 程序启动作为入参的回调函数，返回当前应用是否是默认应用，true表示是默认应用，false表示不是默认应用。 |
-
-**错误码：**
-
-错误码的详细介绍请参见[ohos.bundle错误码](../errorcodes/errorcode-bundle.md)。
 
 **示例：**
 
@@ -138,7 +130,7 @@ getDefaultApplication(type: string, userId?: number): Promise\<BundleInfo>
 
 | 错误码ID | 错误信息                                  |
 | -------- | ----------------------------------------- |
-| 17700004 | The specified user id is not found.       |
+| 17700004 | The specified user ID is not found.       |
 | 17700023 | The specified default app does not exist. |
 | 17700025 | The specified type is invalid.            |
 
@@ -189,7 +181,7 @@ getDefaultApplication(type: string, userId: number, callback: AsyncCallback\<Bun
 
 | 错误码ID | 错误信息                                  |
 | -------- | ----------------------------------------- |
-| 17700004 | The specified user id is not found.       |
+| 17700004 | The specified user ID is not found.       |
 | 17700023 | The specified default app does not exist. |
 | 17700025 | The specified type is invalid.            |
 
@@ -240,7 +232,7 @@ getDefaultApplication(type: string, callback: AsyncCallback\<BundleInfo>) : void
 
 | 错误码ID | 错误信息                                  |
 | -------- | ----------------------------------------- |
-| 17700004 | The specified user id is not found.       |
+| 17700004 | The specified user ID is not found.       |
 | 17700023 | The specified default app does not exist. |
 | 17700025 | The specified type is invalid.            |
 
@@ -266,11 +258,11 @@ defaultAppMgr.getDefaultApplication("image/png", (err, data) => {
 
 ## defaultAppMgr.setDefaultApplication
 
-setDefaultApplication(type: string, elementName: ElementName, userId?: number): Promise\<**返回值：**
+setDefaultApplication(type: string, elementName: ElementName, userId?: number): Promise\<void>
 
 | 类型                                                        | 说明                        |
 | ----------------------------------------------------------- | --------------------------- |
-| Promise\<[BundleInfo](js-apis-bundleManager-bundleInfo.md)> | Promise对象，返回BundleInfo |
+| Promise\<void> | Promise对象，返回BundleInfo |
 
 >
 
@@ -302,9 +294,9 @@ setDefaultApplication(type: string, elementName: ElementName, userId?: number): 
 
 | 错误码ID | 错误信息                                       |
 | -------- | ---------------------------------------------- |
-| 17700004 | The specified user id is not found.            |
+| 17700004 | The specified user ID is not found.            |
 | 17700025 | The specified type is invalid.                 |
-| 17700028 | The specified ability and type does not match. |
+| 17700028 | The specified ability does not match the type. |
 
 **示例：**
 
@@ -369,9 +361,9 @@ setDefaultApplication(type: string, elementName: ElementName, userId: number, ca
 
 | 错误码ID | 错误信息                                       |
 | -------- | ---------------------------------------------- |
-| 17700004 | The specified user id is not found.            |
+| 17700004 | The specified user ID is not found.            |
 | 17700025 | The specified type is invalid.                 |
-| 17700028 | The specified ability and type does not match. |
+| 17700028 | The specified ability does not match the type. |
 
 **示例：**
 
@@ -429,9 +421,9 @@ setDefaultApplication(type: string, elementName: ElementName, callback: AsyncCal
 
 | 错误码ID | 错误信息                                       |
 | -------- | ---------------------------------------------- |
-| 17700004 | The specified user id is not found.            |
+| 17700004 | The specified user ID is not found.            |
 | 17700025 | The specified type is invalid.                 |
-| 17700028 | The specified ability and type does not match. |
+| 17700028 | The specified ability does not match the type. |
 
 **示例：**
 
@@ -487,7 +479,7 @@ resetDefaultApplication(type: string, userId?: number): Promise\<void>
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
-| 17700004 | The specified user id is not found. |
+| 17700004 | The specified user ID is not found. |
 | 17700025 | The specified type is invalid.      |
 
 **示例：**
@@ -538,7 +530,7 @@ resetDefaultApplication(type: string, userId: number, callback: AsyncCallback\<v
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
-| 17700004 | The specified user id is not found. |
+| 17700004 | The specified user ID is not found. |
 | 17700025 | The specified type is invalid.      |
 
 **示例：**
@@ -588,7 +580,7 @@ resetDefaultApplication(type: string, callback: AsyncCallback\<void>) : void;
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
-| 17700004 | The specified user id is not found. |
+| 17700004 | The specified user ID is not found. |
 | 17700025 | The specified type is invalid.      |
 
 **示例：**

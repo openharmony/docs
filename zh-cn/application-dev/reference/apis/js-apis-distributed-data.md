@@ -162,7 +162,7 @@ getKVStore&lt;T extends KVStore&gt;(storeId: string, options: Options, callback:
 | ----- | ------ | ------ | ------ |
 | storeId | string | 是  | 数据库唯一标识符，长度不大于[MAX_STORE_ID_LENGTH](#constants)。 |
 | options | [Options](#options) | 是  | 创建KVStore实例的配置信息。 |
-| callback | AsyncCallback&lt;T&gt;，&lt;T extends [KVStore](#kvstore)&gt; | 是  | 回调函数。返回创建的KVStore数据库实例。 |
+| callback | AsyncCallback&lt;T&gt; | 是  | 回调函数。返回创建的KVStore数据库实例。 |
 
 **示例：**
 
@@ -2328,7 +2328,7 @@ putBatch(entries: Entry[], callback: AsyncCallback&lt;void&gt;): void
 | 参数名  | 类型 | 必填  | 说明                    |
 | -----  | ------  | ----  | ----------------------- |
 | entries  |[Entry](#entry)[] | 是    |表示要批量插入的键值对。  |
-| callback |Asyncallback&lt;void&gt; |是     |回调函数。 |
+| callback |AsyncCallback&lt;void&gt; |是     |回调函数。 |
 
 **示例：**
 
@@ -2955,7 +2955,7 @@ get(key: string, callback: AsyncCallback&lt;Uint8Array | string | boolean | numb
 | 参数名  | 类型 | 必填  | 说明                    |
 | -----  | ------  | ----  | ----------------------- |
 | key    |string   | 是    |要查询数据的key，不能为空且长度不大于[MAX_KEY_LENGTH](#constants)。  |
-| callback  |AsyncCallback&lt;Uint8Array \| string \| boolean \| number&gt;) | 是    |回调函数。返回获取查询的值。  |
+| callback  |AsyncCallback&lt;Uint8Array \| string \| boolean \| number&gt; | 是    |回调函数。返回获取查询的值。  |
 
 **示例：**
 
@@ -4369,7 +4369,7 @@ getResultSet(deviceId: string, keyPrefix: string, callback: AsyncCallback&lt;KvS
 | -----  | ------   | ----  | ----------------------- |
 | deviceId  |string  | 是    |标识要查询其数据的设备。    |
 | keyPrefix |string  | 是    |表示要匹配的键前缀。    |
-| callback  |AsyncCallback&lt;[KvStoreResultSet](#kvstoreresultset8)[]&gt;  | 是  |回调函数。返回与指定设备ID和key前缀匹配的KvStoreResultSet对象。    |
+| callback  |AsyncCallback&lt;[KvStoreResultSet](#kvstoreresultset8)&gt;  | 是  |回调函数。返回与指定设备ID和key前缀匹配的KvStoreResultSet对象。    |
 
 **示例：**
 
@@ -4409,7 +4409,7 @@ getResultSet(deviceId: string, keyPrefix: string): Promise&lt;KvStoreResultSet&g
 
 | 类型    | 说明       |
 | ------  | -------   |
-|Promise&lt;[KvStoreResultSet](#kvstoreresultset8)[]&gt; |Promise对象。返回与指定设备ID和key前缀匹配的KvStoreResultSet对象。|
+|Promise&lt;[KvStoreResultSet](#kvstoreresultset8)&gt; |Promise对象。返回与指定设备ID和key前缀匹配的KvStoreResultSet对象。|
 
 **示例：**
 
@@ -4447,7 +4447,7 @@ getResultSet(query: Query, callback: AsyncCallback&lt;KvStoreResultSet&gt;): voi
 | 参数名  | 类型 | 必填  | 说明                    |
 | -----  | ------   | ----  | ----------------------- |
 | query  |[Query](#query8)  | 是    |表示查询对象。    |
-| callback  |AsyncCallback&lt;[KvStoreResultSet](#kvstoreresultset8)[]&gt;  | 是  |回调函数，返回与指定Query对象匹配的KvStoreResultSet对象。    |
+| callback  |AsyncCallback&lt;[KvStoreResultSet](#kvstoreresultset8)&gt;  | 是  |回调函数，返回与指定Query对象匹配的KvStoreResultSet对象。    |
 
 **示例：**
 
@@ -4504,7 +4504,7 @@ getResultSet(query: Query): Promise&lt;KvStoreResultSet&gt;
 
 | 类型    | 说明       |
 | ------  | -------   |
-|Promise&lt;[KvStoreResultSet](#kvstoreresultset8)[]&gt; |Promise对象。返回与指定Query对象匹配的KvStoreResultSet对象。|
+|Promise&lt;[KvStoreResultSet](#kvstoreresultset8)&gt; |Promise对象。返回与指定Query对象匹配的KvStoreResultSet对象。|
 
 **示例：**
 
@@ -4564,7 +4564,7 @@ getResultSet(deviceId: string, query: Query, callback: AsyncCallback&lt;KvStoreR
 | -----  | ------   | ----  | ----------------------- |
 | deviceId  |string  | 是    |KvStoreResultSet对象所属的设备ID。    |
 | query  |[Query](#query8)  | 是    |表示查询对象。    |
-| callback  |AsyncCallback&lt;[KvStoreResultSet](#kvstoreresultset8)[]&gt;  | 是  |回调函数。返回与指定设备ID和Query对象匹配的KvStoreResultSet对象。    |
+| callback  |AsyncCallback&lt;[KvStoreResultSet](#kvstoreresultset8)&gt;  | 是  |回调函数。返回与指定设备ID和Query对象匹配的KvStoreResultSet对象。    |
 
 **示例：**
 
@@ -4621,7 +4621,7 @@ getResultSet(deviceId: string, query: Query): Promise&lt;KvStoreResultSet&gt;
 
 | 类型    | 说明       |
 | ------  | -------   |
-|Promise&lt;[KvStoreResultSet](#kvstoreresultset8)[]&gt; |Promise对象。返回与指定设备ID和Query对象匹配的KvStoreResultSet对象。|
+|Promise&lt;[KvStoreResultSet](#kvstoreresultset8)&gt; |Promise对象。返回与指定设备ID和Query对象匹配的KvStoreResultSet对象。|
 
 **示例：**
 

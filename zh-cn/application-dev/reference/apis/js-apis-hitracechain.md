@@ -18,7 +18,7 @@ import hiTraceChain from '@ohos.hiTraceChain';
 
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.HiviewDFX.HiTrace。
 
-| 名称 | 默认值 | 说明 |
+| 名称 | 值 | 说明 |
 | -------- | -------- | -------- |
 | DEFAULT           | 0      | 缺省标志。       |
 | INCLUDE_ASYNC     | 1      | 异步调用标志。启动跟踪时，缺省只跟踪同步调用。设置该标志，同时跟踪同步、异步调用。   |
@@ -35,7 +35,7 @@ import hiTraceChain from '@ohos.hiTraceChain';
 
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.HiviewDFX.HiTrace。
 
-| 名称 | 默认值 | 说明 |
+| 名称 | 值 | 说明 |
 | -------- | -------- | -------- |
 | CS       | 0 | 客户端发送类型，标识client侧的发送埋点。        |
 | CR       | 1 | 客户端接收类型，标识client侧的接收埋点。        |
@@ -49,7 +49,7 @@ import hiTraceChain from '@ohos.hiTraceChain';
 
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.HiviewDFX.HiTrace。
 
-| 名称 | 默认值 | 说明 |
+| 名称 | 值 | 说明 |
 | -------- | -------- | -------- |
 | DEFAULT  | 0 | 缺省通信类型    |
 | THREAD   | 1 | 线程间通信类型  |
@@ -62,7 +62,7 @@ import hiTraceChain from '@ohos.hiTraceChain';
 
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.HiviewDFX.HiTrace。
 
-| 参数名 | 类型 | 必填 | 说明 |
+| 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | chainId      | bigint | 是 | 跟踪链标识。   |
 | spanId      | number | 否 | 分支标识。     |

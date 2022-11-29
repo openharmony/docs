@@ -37,6 +37,7 @@
 - [设备使用信息统计](device-usage-statistics/device-usage-statistics-overview.md)
 - [DFX](dfx/hiappevent-overview.md)
 - [国际化](internationalization/international-overview.md)
+- [应用测试](application-test/Readme-CN.md)
 - [IDL工具规格及使用说明书](IDL/idl-guidelines.md)
 - [Native API的相关指导](napi/napi-guidelines.md)
 
