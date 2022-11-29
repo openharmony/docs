@@ -48,7 +48,7 @@ buffer数组的列表。
 
 | 名称 | 类型       | 可读 | 可写 |  说明       |
 | ---- | ---------- | ---- | ---- | ---------- |
-| data | Uint8Array | 是   | 是   | 数据列表。 |
+| data | Array\<Uint8Array> | 是   | 是   | 数据列表。 |
 
 ## EncodingFormat
 
