@@ -8,7 +8,7 @@
 ## 导入模块
 
 ```js
-import deviceStatus from '@ohos.devicestatus'
+import stationary from '@ohos.stationary'
 ```
 
 ## ActivityResponse
@@ -57,7 +57,7 @@ import deviceStatus from '@ohos.devicestatus'
 | ENTER         | 1    | 进入。   |
 | EXIT | 2   | 退出。 |
 
-## deviceStatus.on('still' | 'relativeStill')
+## stationary.on('still' | 'relativeStill')
 
 on(activity: ActivityType, event: ActivityEvent, reportLatencyNs: number, callback: Callback&lt;ActivityResponse&gt;): void
 
@@ -78,12 +78,12 @@ on(activity: ActivityType, event: ActivityEvent, reportLatencyNs: number, callba
 
 ```js
 var reportLatencyNs = 100;
-deviceStatus.on('still', deviceStatus.ActivityEvent.ENTER, reportLatencyNs, (data) => {
+stationary.on('still', stationary.ActivityEvent.ENTER, reportLatencyNs, (data) => {
     console.log('data='+ JSON.stringify(data));
 })
 ```
 
-## deviceStatus.once('still' | 'relativeStill')
+## stationary.once('still' | 'relativeStill')
 
 once(activity: ActivityType, callback: Callback&lt;ActivityResponse&gt;): void
 
@@ -101,12 +101,12 @@ once(activity: ActivityType, callback: Callback&lt;ActivityResponse&gt;): void
 **示例：**
 
 ```js
-deviceStatus.once('still', (data) => {
+stationary.once('still', (data) => {
     console.log("data="+ JSON.stringify(data));
 })
 ```
 
-## deviceStatus.off('still' | 'relativeStill')
+## stationary.off('still' | 'relativeStill')
 
 off(activity: ActivityType, event: ActivityEvent, callback?: Callback&lt;ActivityResponse&gt;): void
 
@@ -125,5 +125,5 @@ off(activity: ActivityType, event: ActivityEvent, callback?: Callback&lt;Activit
 **示例：**
 
 ```js
-deviceStatus.off('still', deviceStatus.ActivityEvent.ENTER);
+stationary.off('still', stationary.ActivityEvent.ENTER);
 ```
