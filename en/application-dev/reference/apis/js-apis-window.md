@@ -10,6 +10,7 @@ This module provides the following common window-related functions:
 >
 > The initial APIs of this module are supported since API version 6. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
+
 ## Modules to Import
 
 ```js
@@ -34,10 +35,10 @@ Enumerates the types of the area where the window cannot be displayed.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
-| Name                              | Value | Description             |
-|----------------------------------|-----| ----------------- |
-| TYPE_SYSTEM                      | 0   | Default area of the system.|
-| TYPE_CUTOUT                      | 1   | Notch. |
+| Name       | Value  | Description              |
+| ----------- | ---- | ------------------ |
+| TYPE_SYSTEM | 0    | Default area of the system.|
+| TYPE_CUTOUT | 1    | Notch.  |
 
 ## WindowMode<sup>7+</sup>
 
@@ -80,9 +81,9 @@ Describes the callback for a single system bar.
 
 | Name           | Type                 | Readable| Writable| Description                                                        |
 | --------------- | ------------------------- | ---- | ---- | ------------------------------------------------------------ |
-| type            | [WindowType](#windowtype) | Yes  | No  | Type of the system bar whose properties are changed. Only the status bar and navigation bar are supported.|
+| type            | [WindowType](#windowtype7) | Yes  | No  | Type of the system bar whose properties are changed. Only the status bar and navigation bar are supported.|
 | isEnable        | boolean                   | Yes  | No  | Whether the system bar is displayed.                                        |
-| region          | [Rect](#rect)             | Yes  | No  | Current position and size of the system bar.                                    |
+| region          | [Rect](#rect7)             | Yes  | No  | Current position and size of the system bar.                                    |
 | backgroundColor | string                    | Yes  | No  | Background color of the system bar. The value is a hexadecimal RGB or aRGB color value and is case insensitive, for example, `#00FF00` or `#FF00FF00`.|
 | contentColor    | string                    | Yes  | No  | Color of the text on the system bar.                                            |
 
@@ -120,11 +121,10 @@ Describes the area where the window cannot be displayed.
 
 | Name      | Type     | Readable| Writable| Description              |
 | ---------- | ------------- | ---- | ---- | ------------------ |
-| leftRect   | [Rect](#rect) | Yes  | Yes  | Rectangle on the left of the screen.|
-| topRect    | [Rect](#rect) | Yes  | Yes  | Rectangle at the top of the screen.|
-| rightRect  | [Rect](#rect) | Yes  | Yes  | Rectangle on the right of the screen.|
-| bottomRect | [Rect](#rect) | Yes  | Yes  | Rectangle at the bottom of the screen.|
-
+| leftRect   | [Rect](#rect7) | Yes  | Yes  | Rectangle on the left of the screen.|
+| topRect    | [Rect](#rect7) | Yes  | Yes  | Rectangle at the top of the screen.|
+| rightRect  | [Rect](#rect7) | Yes  | Yes  | Rectangle on the right of the screen.|
+| bottomRect | [Rect](#rect7) | Yes  | Yes  | Rectangle at the bottom of the screen.|
 
 ## Size<sup>7+</sup>
 
@@ -143,20 +143,20 @@ Describes the window properties.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
-| Name                                 | Type                 | Readable| Writable| Description                                                        |
-| ------------------------------------- | ------------------------- | ---- | ---- | ------------------------------------------------------------ |
-| windowRect<sup>7+</sup>               | [Rect](#rect)             | Yes  | Yes  | Window size.                                                  |
-| type<sup>7+</sup>                     | [WindowType](#windowtype) | Yes  | Yes  | Window type.                                                  |
-| isFullScreen                          | boolean                   | Yes  | Yes  | Whether the window is displayed in full screen mode. The default value is `false`.                                     |
-| isLayoutFullScreen<sup>7+</sup>       | boolean                   | Yes  | Yes  | Whether the window layout is in full-screen mode (whether the window is immersive). The default value is `false`.                             |
-| focusable<sup>7+</sup>                | boolean                   | Yes  | No  | Whether the window can gain focus. The default value is `true`.                                |
-| touchable<sup>7+</sup>                | boolean                   | Yes  | No  | Whether the window is touchable. The default value is `true`.                                |
-| brightness                            | number                    | Yes  | Yes  | Screen brightness. The value ranges from 0 to 1. The value `1` indicates the maximum brightness.                 |
-| dimBehindValue<sup>7+</sup> | number                    | Yes  | Yes  | Dimness of the window that is not on top. The value ranges from 0 to 1. The value `1` indicates the maximum dimness. |
-| isKeepScreenOn                        | boolean                   | Yes  | Yes  | Whether the screen is always on. The default value is `false`.                                 |
-| isPrivacyMode<sup>7+</sup>            | boolean                   | Yes  | Yes  | Whether the window is in privacy mode. The default value is `false`.                                     |
-| isRoundCorner<sup>7+</sup>  | boolean                   | Yes  | Yes  | Whether the window has rounded corners. The default value is `false`. |
-| isTransparent<sup>7+</sup>            | boolean                   | Yes  | Yes  | Whether the window is transparent. The default value is `false`.                                 |
+| Name                           | Type                 | Readable| Writable| Description                                        |
+| ------------------------------- | ------------------------- | ---- | ---- | -------------------------------------------- |
+| windowRect<sup>7+</sup>         | [Rect](#rect7)             | Yes  | Yes  | Window size.                                  |
+| type<sup>7+</sup>               | [WindowType](#windowtype7) | Yes  | Yes  | Window type.                                  |
+| isFullScreen                    | boolean                   | Yes  | Yes  | Whether the window is displayed in full screen mode. The default value is `false`.                     |
+| isLayoutFullScreen<sup>7+</sup> | boolean                   | Yes  | Yes  | Whether the window layout is in full-screen mode (whether the window is immersive). The default value is `false`.             |
+| focusable<sup>7+</sup>          | boolean                   | Yes  | No  | Whether the window can gain focus. The default value is `true`.                |
+| touchable<sup>7+</sup>          | boolean                   | Yes  | No  | Whether the window is touchable. The default value is `true`.                |
+| brightness                      | number                    | Yes  | Yes  | Screen brightness. The value ranges from 0 to 1. The value `1` indicates the maximum brightness. |
+| dimBehindValue<sup>7+</sup>     | number                    | Yes  | Yes  | Dimness of the window that is not on top. The value ranges from 0 to 1. The value `1` indicates the maximum dimness.|
+| isKeepScreenOn                  | boolean                   | Yes  | Yes  | Whether the screen is always on. The default value is `false`.                 |
+| isPrivacyMode<sup>7+</sup>      | boolean                   | Yes  | Yes  | Whether the window is in privacy mode. The default value is `false`.                     |
+| isRoundCorner<sup>7+</sup>      | boolean                   | Yes  | Yes  | Whether the window has rounded corners. The default value is `false`.               |
+| isTransparent<sup>7+</sup>      | boolean                   | Yes  | Yes  | Whether the window is transparent. The default value is `false`.                 |
 
 ## ColorSpace<sup>8+</sup>
 
@@ -182,7 +182,7 @@ Creates a subwindow. This API uses an asynchronous callback to return the result
 | Name  | Type                                  | Mandatory| Description                                |
 | -------- | -------------------------------------- | ---- | ------------------------------------ |
 | id       | string                                 | Yes  | Window ID.                            |
-| type     | [WindowType](#windowtype)              | Yes  | Window type.                          |
+| type     | [WindowType](#windowtype7)              | Yes  | Window type.                          |
 | callback | AsyncCallback&lt;[Window](#window)&gt; | Yes  | Callback used to return the subwindow created.|
 
 **Example**
@@ -212,7 +212,7 @@ Creates a subwindow. This API uses a promise to return the result.
 | Name| Type                     | Mandatory| Description      |
 | ------ | ------------------------- | ---- | ---------- |
 | id     | string                    | Yes  | Window ID.  |
-| type   | [WindowType](#windowtype) | Yes  | Window type.|
+| type   | [WindowType](#windowtype7) | Yes  | Window type.|
 
 **Return value**
 
@@ -245,9 +245,9 @@ Creates a subwindow. This API uses an asynchronous callback to return the result
 
 | Name  | Type                                  | Mandatory| Description                                                        |
 | -------- | -------------------------------------- | ---- | ------------------------------------------------------------ |
-| ctx      | [Context](js-apis-Context.md)          | Yes  | Current application context.|
+| ctx      | [Context](js-apis-Context.md)                                | Yes  | Current application context.|
 | id       | string                                 | Yes  | Window ID.                                                    |
-| type     | [WindowType](#windowtype)              | Yes  | Window type.                                                  |
+| type     | [WindowType](#windowtype7)              | Yes  | Window type.                                                  |
 | callback | AsyncCallback&lt;[Window](#window)&gt; | Yes  | Callback used to return the subwindow created.                        |
 
 **Example**
@@ -280,7 +280,7 @@ Creates a subwindow. This API uses a promise to return the result.
 | ------ | ------------------------- | ---- | ------------------------------------------------------------ |
 | ctx    | [Context](js-apis-Context.md)                   | Yes  | Current application context.|
 | id     | string                    | Yes  | Window ID.                                                    |
-| type   | [WindowType](#windowtype) | Yes  | Window type.                                                  |
+| type   | [WindowType](#windowtype7) | Yes  | Window type.                                                  |
 
 **Return value**
 
@@ -430,7 +430,7 @@ Obtains the top window of the current application. This API uses an asynchronous
 
 | Name  | Type                                  | Mandatory| Description                                                        |
 | -------- | -------------------------------------- | ---- | ------------------------------------------------------------ |
-| ctx      | [Context](js-apis-Context.md)                                | Yes  | Current application context.|
+| ctx      | [Context](js-apis-Context.md)                                | Yes  | Current application context.                |
 | callback | AsyncCallback&lt;[Window](#window)&gt; | Yes  | Callback used to return the top window obtained.                |
 
 **Example**
@@ -495,7 +495,7 @@ Enables listening for properties changes of the status bar and navigation bar.
 | Name  | Type                                                     | Mandatory| Description                                                        |
 | -------- | --------------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | type     | string                                                    | Yes  | Event type. The value is fixed at `systemBarTintChange`, indicating the property change event of the status bar and navigation bar.|
-| callback | Callback&lt;[SystemBarTintState](#systembartintstate)&gt; | Yes  | Callback used to return the properties of the status bar and navigation bar.                |
+| callback | Callback&lt;[SystemBarTintState](#systembartintstate8)&gt; | Yes  | Callback used to return the properties of the status bar and navigation bar.                |
 
 **Example**
 
@@ -520,7 +520,7 @@ Disables listening for properties changes of the status bar and navigation bar.
 | Name  | Type                                                     | Mandatory| Description                                                        |
 | -------- | --------------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | type     | string                                                    | Yes  | Event type. The value is fixed at `systemBarTintChange`, indicating the property change event of the status bar and navigation bar.|
-| callback | Callback&lt;[SystemBarTintState](#systembartintstate)&gt; | No  | Callback used to return the properties of the status bar and navigation bar.                |
+| callback | Callback&lt;[SystemBarTintState](#systembartintstate8)&gt; | No  | Callback used to return the properties of the status bar and navigation bar.                |
 
 **Example**
 
@@ -758,6 +758,10 @@ resetSize(width: number, height: number, callback: AsyncCallback&lt;void&gt;): v
 
 Changes the size of this window. This API uses an asynchronous callback to return the result.
 
+The main window and subwindow have the following size limits: [320, 2560] in width and [240, 2560] in height, both in units of vp.
+
+The system window has the following size limits: [0, 2560] in width and [0, 2560] in height, both in units of vp.
+
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
 **Parameters**
@@ -785,6 +789,10 @@ windowClass.resetSize(500, 1000, (err, data) => {
 resetSize(width: number, height: number): Promise&lt;void&gt;
 
 Changes the size of this window. This API uses a promise to return the result.
+
+The main window and subwindow have the following size limits: [320, 2560] in width and [240, 2560] in height, both in units of vp.
+
+The system window has the following size limits: [0, 2560] in width and [0, 2560] in height, both in units of vp.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
@@ -826,7 +834,7 @@ Sets the type of this window. This API uses an asynchronous callback to return t
 
 | Name  | Type                     | Mandatory| Description      |
 | -------- | ------------------------- | ---- | ---------- |
-| type     | [WindowType](#windowtype) | Yes  | Window type.|
+| type     | [WindowType](#windowtype7) | Yes  | Window type.|
 | callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result.|
 
 **Example**
@@ -856,7 +864,7 @@ Sets the type of this window. This API uses a promise to return the result.
 
 | Name| Type                     | Mandatory| Description      |
 | ------ | ------------------------- | ---- | ---------- |
-| type   | [WindowType](#windowtype) | Yes  | Window type.|
+| type   | [WindowType](#windowtype7) | Yes  | Window type.|
 
 **Return value**
 
@@ -937,8 +945,8 @@ Obtains the area where this window cannot be displayed, for example, the system 
 
 **Parameters**
 
-| Name  | Type                                           | Mandatory| Description                                                        |
-| -------- |-----------------------------------------------| ---- | ------------------------------------------------------------ |
+| Name  | Type                                        | Mandatory| Description                                                        |
+| -------- | -------------------------------------------- | ---- | ------------------------------------------------------------ |
 | type     | [AvoidAreaType](#avoidareatype)              | Yes  | Type of the area. `TYPE_SYSTEM` indicates the default area of the system. `TYPE_CUTOUT` indicates the notch.|
 | callback | AsyncCallback&lt;[AvoidArea](#avoidarea)&gt; | Yes  | Callback used to return the area.                            |
 
@@ -965,14 +973,14 @@ Obtains the area where this window cannot be displayed, for example, the system 
 
 **Parameters**
 
-| Name| Type                              | Mandatory| Description                                                        |
-| ------ |----------------------------------| ---- | ------------------------------------------------------------ |
+| Name| Type                           | Mandatory| Description                                                        |
+| ------ | ------------------------------- | ---- | ------------------------------------------------------------ |
 | type   | [AvoidAreaType](#avoidareatype) | Yes  | Type of the area. `TYPE_SYSTEM` indicates the default area of the system. `TYPE_CUTOUT` indicates the notch.|
 
 **Return value**
 
-| Type                                     | Description                               |
-|-----------------------------------------| ----------------------------------- |
+| Type                                  | Description                               |
+| -------------------------------------- | ----------------------------------- |
 | Promise&lt;[AvoidArea](#avoidarea)&gt; | Promise used to return the area.|
 
 **Example**
@@ -1190,9 +1198,6 @@ Sets the properties of the status bar and navigation bar in this window. This AP
 var SystemBarProperties={
     statusBarColor: '#ff00ff',
     navigationBarColor: '#00ff00',
-    // The following properties are supported since API version 7.
-    isStatusBarLightIcon: true,
-    isNavigationBarLightIcon:false,
     // The following properties are supported since API version 8.
     statusBarContentColor:'#ffffff',
     navigationBarContentColor:'#00ffff'
@@ -1232,9 +1237,6 @@ Sets the properties of the status bar and navigation bar in this window. This AP
 var SystemBarProperties={
     statusBarColor: '#ff00ff',
     navigationBarColor: '#00ff00',
-    // The following properties are supported since API version 7.
-    isStatusBarLightIcon: true,
-    isNavigationBarLightIcon:false,
     // The following properties are supported since API version 8.
     statusBarContentColor:'#ffffff',
     navigationBarContentColor:'#00ffff'
@@ -1409,9 +1411,9 @@ Enables listening for changes to the area where the window cannot be displayed.
 
 **Parameters**
 
-| Name  | Type                                      | Mandatory| Description                                                   |
-| -------- |------------------------------------------| ---- | ------------------------------------------------------- |
-| type     | string                                   | Yes  | Event type. The value is fixed at `systemAvoidAreaChange`, indicating the event of changes to the area where the window cannot be displayed.|
+| Name  | Type                                   | Mandatory| Description                                                        |
+| -------- | --------------------------------------- | ---- | ------------------------------------------------------------ |
+| type     | string                                  | Yes  | Event type. The value is fixed at `systemAvoidAreaChange`, indicating the event of changes to the area where the window cannot be displayed.|
 | callback | Callback&lt;[AvoidArea](#avoidarea)&gt; | Yes  | Callback used to return the area.                            |
 
 **Example**
@@ -1432,10 +1434,10 @@ Disables listening for changes to the area where the window cannot be displayed.
 
 **Parameters**
 
-| Name  | Type                                      | Mandatory| Description                                                   |
-| -------- |------------------------------------------| ---- | ------------------------------------------------------- |
-| type     | string                                   | Yes  | Event type. The value is fixed at `systemAvoidAreaChange`, indicating the event of changes to the area where the window cannot be displayed.|
-| callback | Callback&lt;[AvoidArea](#avoidarea)&gt; | No  | Callback used to return the area.                           |
+| Name  | Type                                   | Mandatory| Description                                                        |
+| -------- | --------------------------------------- | ---- | ------------------------------------------------------------ |
+| type     | string                                  | Yes  | Event type. The value is fixed at `systemAvoidAreaChange`, indicating the event of changes to the area where the window cannot be displayed.|
+| callback | Callback&lt;[AvoidArea](#avoidarea)&gt; | No  | Callback used to return the area.                            |
 
 **Example**
 
