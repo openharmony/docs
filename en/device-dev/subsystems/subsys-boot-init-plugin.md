@@ -2,17 +2,27 @@
 
 ## Overview
 ### Basic Concepts
+
  - Introduction to begetctl
-   For details, see [Description of begetctl Commands](#table14737791480).
+
+   begetctl is a CLI-based management tool. For details about this functions, see [Description of begetctl Commands](#table14737791480).
+
  - bootchart plug-in
+
    The bootchart plug-in is an open source tool used to evaluate system performance during Linux startup. It automatically collects information such as the CPU usage, disk throughput, and process status, and displays the evaluation result in graphics to facilitate system startup optimization.  
+
+ - bootevent plug-in
+
+   bootevent is a plug-in that records key startup events of the init process and each service. The recorded information includes the event name, startup time of the service associated with the event, and event occurrence time. By using the exported file for trace parsing, you can then optimize the system startup process.
 
 ### Constraints
 
-bootchart is available only for the standard system, and begetctl is available for both the small system and the standard system.
+bootchart and bootevent are available only for the standard system, and begetctl is available for both the small system and the standard system.
 
-## Development Guidelines
+## How to Develop
+
 ### Parameters
+
  **Table 1** Description of begetctl commands<a name="table14737791480"></a>
 | Command| Format and Example| Description|
 | :----------  |  :----------  |:--------|
@@ -22,7 +32,7 @@ bootchart is available only for the standard system, and begetctl is available f
 | param set name value| Sets system parameters.<br>Example:<br>begetctl param set ohos.servicectrl.display 1 or param set ohos.servicectrl.display 1| N/A|
 | param wait name [value] [timeout] | Waits for system parameters.<br>Example:<br>begetctl param wait persist.sys.usb.config hdc or param wait persist.sys.usb.config hdc| The default value of **timeout** is **30**.|
 | param dump [verbose] | Dumps system parameter information.<br>Example:<br>begetctl param dump or param dump| N/A|
-| param shell <i>[name]</i> | Enters the parameter shell.<br>Example:<br>begetctl param shell or param shell| N/A|
+| param shell [name] | Enters the parameter shell.<br>Example:<br>begetctl param shell or param shell| N/A|
 | timer_stop servicename | Stops the service timer.<br>Example:<br>begetctl timer_stop appspawn | The value of **servicename** can contain a maximum of 96 characters.|
 | timer_start servicename timeout | Starts the service timer.<br>Example:<br>begetctl timer_start appspawn | The value of **servicename** can contain a maximum of 96 characters. The default value of **timeout** is **10**. |
 | start_service servicename | Starts a service.<br>Example:<br>begetctl start_service appspawn or start_service appspawn| N/A|
@@ -54,21 +64,19 @@ bootchart is available only for the standard system, and begetctl is available f
 | modulectl uninstall moduleName | Uninstalls a dynamic plug-in.<br>Example:<br>modulectl uninstall bootchart | N/A|
 | modulectl install moduleName | Installs a dynamic plug-in.<br>Example:<br>modulectl install bootchart | N/A|
 | modulectl list | Views the list of dynamic plug-ins.<br>Example:<br>begetctl modulectl list | N/A|
+| setloglevel level | Sets the log level to **info**.<br>Example:<br>begetctl setloglevel 1 | The log level ranges from **0** to **4**.|
+| getloglevel | Obtains the log level of the init process.<br>Example:<br>begetctl getloglevel | N/A|
+| bootevent disable | Disables the bootevent plug-in.<br>Example:<br>begetctl bootevent disable| N/A|
+| bootevent enable | Enables the bootevent plug-in.<br>Example:<br>begetctl bootevent enable| N/A|
+| dump_service parameter_service trigger | Displays information about all triggers.<br>Example:<br>begetctl dump_service parameter_service trigger | N/A|
+| dump_service all | Displays information about all services.<br>Example:<br>begetctl dump_service all | N/A|
+| dump_service serviceName | Displays information about a single service.<br>Example:<br>begetctl dump_service param_watcher | N/A|
+| dump api | Displays information about APIs of the init process.<br>Example:<br>begetctl dump api | N/A|
 
-## How to Develop
-
-### Available APIs
-
-  **Table 1** Description of plug-in management APIs<a name="table14737791479"></a>
-| API| Description|
-| ----------  |  ---------- |
-| void PluginExecCmdByName(const char *name, const char *cmdContent) | Starts a plug-in by name.|
-| void PluginExecCmdByCmdIndex(int index, const char *cmdContent) | Starts a plug-in by index.|
-| int PluginExecCmd(const char *name, int argc, const char **argv) | Starts a plug-in by command.|
-| int AddCmdExecutor(const char *cmdName, CmdExecutor execCmd) | Adds the plug-in installation command.|
 
 ### How to Develop
   Add a plug-in. The following uses bootchart as an example:
+
 1. Install the **.so** file and define an independent file to implement the following functions:
       ```c
       static int bootchartEarlyHook(int stage, int prio, void *cookie)
@@ -87,11 +95,11 @@ bootchart is available only for the standard system, and begetctl is available f
       
       MODULE_CONSTRUCTOR(void)
       {
-          // Depending on parameter service
+          // Depends on parameter service
           InitAddPostPersistParamLoadHook(0, bootchartEarlyHook);
       }
       ```     
-2. Compile the static library **libbootchart_static** and add it to the **static_modules** group.
+2. Compile the static library **libbootchart\_static** and add it to the **static\_modules** group.
       ```
       group("static_modules") {
         if (!defined(ohos_lite)) {
@@ -138,19 +146,23 @@ bootchart is available only for the standard system, and begetctl is available f
 
 ### Development Example
 
+#### Bootchart
+
   Prerequisites
+
   1. Prepare the bootchart test environment. Specifically, install Python and pycairo by running **pip install pycairo** on Linux.
   2. Decompress **bootchart-master.tar**.
 
      tar -zxvf  bootchart-master.tar
 
   Procedure
+
   1. Start the system.
   2. Run the **begetctl bootchart enable** command.
   3. Restart the system.
   4. Run the **begetctl bootchart stop** command.
   5. Run the **begetctl bootchart disable** command.
-  6. Export the following files from the **/data/bootchart** directory and save them to the **bootchart** folder:
+  6. Export the following files from the **/data/bootchart** directory and save them to the **bootchart** folder:<br>
         header<br>
         proc_diskstats.log<br>
         proc_ps.log<br>
@@ -161,5 +173,36 @@ bootchart is available only for the standard system, and begetctl is available f
       python3 pybootchartgui.py -f pdf bootchart.tgz
       ```
 
-  Expected Result
-        A **bootchart.pdf** file is generated in the **bootchart-master** directory.
+  Expected result:
+
+      A **bootchart.pdf** file is generated in the **bootchart-master** directory.
+
+#### bootevent
+
+1. Configure one or more boot events in the **.cfg** file.
+
+    Configure a single boot event.
+    ```json
+    bootevents : "bootevent.xxxbootevent",
+    ```
+    Configure multiple boot events.
+    ```json
+    bootevents : ["bootevent.xxxbootevent1", "bootevent.xxxbootevent2.xxx"],
+    ```
+> **Note:** The configured event must start with **bootevent**.
+
+2. Send the boot events.
+
+    Call the **SetParameter** API provided by init process to send the boot events. For example, to send the XXXbootevent1 event configured in the previous step, use the following code:
+    ```c
+    SetParameter("bootevent.XXXbootevent1", "true");
+    ```
+3. Enable the bootevent function by running the **begetctl bootevent enable** command.
+
+   To disable the bootevent function, run the **begetctl bootevent disable** command and restart the system.
+
+4. Use the exported bootevent file for trace analysis.
+
+    - The exported bootevent file is stored in the **/data/service/el0/startup/init/** directory.
+    - It is named in the format of *timestamp***.bootevent**.
+    - You can import the file to the trace analysis tool for visual analysis.

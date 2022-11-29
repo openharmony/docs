@@ -7,7 +7,7 @@ The following figure shows the context structure of the Startup subsystem.
 
   **Figure 1** Context structure of the Startup subsystem
 
-  ![context-structure-of-the-startup-subsystem](figure/context-structure-of-the-Startup-subsystem.png)
+  ![context-structure-of-the-startup-subsystem](figure/context-structure-of-the-startup-subsystem.png)
 
 When the system is powered on, the kernel loads and starts services and applications as follows:
 
@@ -22,27 +22,32 @@ When the system is powered on, the kernel loads and starts services and applicat
 
 The Startup subsystem consists of the following modules:
 
-- init module<br>
+- init module
+
   This module corresponds to the init process, which is the first user-mode process started after the kernel is initialized. After the init process starts, it reads and parses the **init.cfg** file. Based on the parsing result, the init module executes the commands listed in Table 2 in [Job Management](../subsystems/subsys-boot-init-jobs.md) and starts the key system service processes in sequence with corresponding permissions granted.
 
-- ueventd module<br>
+- ueventd module
+
   This module listens for **netlink** events about hot swap of kernel device drivers and dynamically manages the **dev** node of the corresponding device based on the event type.
 
-- appspawn module<br>
+- appspawn module
+
   This module spawns application processes upon receiving commands from the foundation, configures permissions for new processes, and calls the entry function of the application framework.
 
-- bootstrap module<br>
+- bootstrap module
+
   This module provides entry identifiers for starting services and features. When SAMGR is started, the entry function identified by bootstrap is called and system services are started.
 
-- syspara module<br>
+- syspara module
+
   This module provides APIs for obtaining device information, such as the product name, brand name, and manufacturer name, based on the OpenHarmony Product Compatibility Specifications (PCS). It also provides APIs for setting and obtaining system attributes.
 
 
 ## Constraints
 
-  The source code directory of the Startup subsystem varies according to the platform.
+ The source code directory of the Startup subsystem varies according to the platform.
 
-  **Table 1** Directories and applicable platforms of the Startup subsystem
+ **Table 1** Directories and applicable platforms of the Startup subsystem
 
 | Source Code Directory| Applicable Platform|
 | -------- | -------- |
@@ -335,6 +340,134 @@ After mounting required partitions, the init process scans each script file in t
 
 Certain development boards do not use the ramdisk boot mode. For these boards, the boot process is implemented by directly loading the **system.img** file through the kernel. In such case, you need to modify the product configuration file in **productdefine**. Specifically, you need to turn off the **enable_ramdisk** switch to disable ramdisk generation so that the init process does not boot from ramdisk to system.
 
-The boot loading process in this scenario is similar to that in the preceding section. The only difference is as follows: If ramdisk is used, the init process mounts **system.img** to the **/usr** directory, and then switches to the **/usr** directory using **chroot** and executes the **/etc/init.cfg** script. If ramdisk is not used, there is no chroot process, and the boot script is **init.without_two_stages.cfg**.
+Boot loading in this scenario is similar to that in the preceding section. The only difference is as follows: If ramdisk is used, the init process mounts **system.img** to the **/usr** directory and then switches to the **/usr** directory using **chroot**. If ramdisk is not used, the init process directly runs the **init.cfg** file.
 
-For the boot loading process without ramdisk, that is, system as root, the block device where the root file system is located is passed to the kernel through **bootargs**, for example, **root=/dev/mmcblk0p5 and rootfstype=ext4**. During initialization of the root file system, the kernel parses the **root** field in **bootargs** to complete mounting of the root file system.
+For boot loading without ramdisk (that is, system as root), the block device where the root file system is located is passed to the kernel through **bootargs**, for example, **root=/dev/mmcblk0p5 and rootfstype=ext4**. During initialization of the root file system, the kernel parses the **root** field in **bootargs** to complete mounting of the root file system.
+
+
+### Partition A/B Booting
+
+Currently, OpenHarmony supports booting from partitions A and B (active and standby system partitions), both of which are configured in the same device storage. During the booting process, the system partition to load is determined based on the slot of the active partition. Partition A/B booting is supported only for the system partition and chipset partition.
+
+- bootslots
+
+  Number of the supported boot partitions. If **bootslots** is set to **2**, the system can boot from both system partitions A and B. If **bootslots** is set to **1**, partition A/B booting is not supported and the system can boot only from the default system partition.
+
+  In the initial phase of init process startup, the system reads the **bootslots** value to determine whether partition A/B booting is supported. If yes, the system continues to determine the system partition to mount. If not, the system mounts the system partition based on the default fstab. The API for the init process to obtain the **bootslots** value is as follows:
+  ```
+  int GetBootSlots(void)
+  {
+      int bootSlots = GetSlotInfoFromParameter("bootslots");
+      BEGET_CHECK_RETURN_VALUE(bootSlots <= 0, bootSlots);
+      BEGET_LOGI("No valid slot value found from parameter, try to get it from cmdline");
+      return GetSlotInfoFromCmdLine("bootslots");
+  }
+  ```
+  After normal system startup, you can obtain the **bootslots** value from the system parameter **ohos.boot.bootslots** to check whether the current system supports partition A/B booting. The command for obtaining **ohos.boot.bootslots** is as follows:
+  ```
+  param get ohos.boot.bootslots
+  ```
+
+- currentslot
+
+  Current system partition, for example, partition A or partition B. The value of **currentslot** is a number. For example, **1** indicates partition A, and **2** indicates partition B.
+
+  In the initial phase of startup, the init process determines whether the system supports partition A/B booting based on **bootslots**. If the system does not support partition A/B booting, the init process directly boots from the default system partition instead of obtaining the **currentslot** value. If the system supports partition A/B booting, the init process obtains the **currentslot** value and determines whether partition A or partition B is the current system partition. The API for the init process to obtain the **currentslot** value is as follows:
+  ```
+  int GetCurrentSlot(void)
+  {
+      // get current slot from parameter
+      int currentSlot = GetSlotInfoFromParameter("currentslot");
+      BEGET_CHECK_RETURN_VALUE(currentSlot <= 0, currentSlot);
+      BEGET_LOGI("No valid slot value found from parameter, try to get it from cmdline");
+
+      // get current slot from cmdline
+      currentSlot = GetSlotInfoFromCmdLine("currentslot");
+      BEGET_CHECK_RETURN_VALUE(currentSlot <= 0, currentSlot);
+      BEGET_LOGI("No valid slot value found from cmdline, try to get it from misc");
+
+      // get current slot from misc
+      return GetSlotInfoFromMisc(MISC_PARTITION_ACTIVE_SLOT_OFFSET, MISC_PARTITION_ACTIVE_SLOT_SIZE);
+  }
+  ```
+
+- Partition A/B booting process
+
+  1. Obtain the **currentslot** value to determine whether partition A or partition B is the current system partition.
+  2. Construct new partition mounting configuration based on the original fstab file, and add the suffix **a** or **b** to the partitions that support partition A/B booting, that is, system and chipset partitions.
+  3. Mount the partition added with the corresponding suffix and enter the second phase of startup. This phase occurs in partition A or B and concludes the partition A/B booting process.
+
+  The API for constructing new partition mounting configuration is as follows:
+  ```
+  static void AdjustPartitionNameByPartitionSlot(FstabItem *item)
+  {
+      BEGET_CHECK_ONLY_RETURN(strstr(item->deviceName, "/system") != NULL ||
+          strstr(item->deviceName, "/chipset") != NULL);
+      char buffer[MAX_BUFFER_LEN] = {0};
+      int slot = GetCurrentSlot();
+      BEGET_ERROR_CHECK(slot > 0 && slot <= MAX_SLOT, slot = 1, "slot value %d is invalid, set default value", slot);
+      BEGET_INFO_CHECK(slot > 1, return, "default partition doesn't need to add suffix");
+      BEGET_ERROR_CHECK(sprintf_s(buffer, sizeof(buffer), "%s_%c", item->deviceName, 'a' + slot - 1) > 0,
+          return, "Failed to format partition name suffix, use default partition name");
+      free(item->deviceName);
+      item->deviceName = strdup(buffer);
+      BEGET_LOGI("partition name with slot suffix: %s", item->deviceName);
+  }
+  ```
+
+- Development Example
+
+  The following uses the rk3568 platform as an example to illustrate how to change from default partition booting to partition A/B booting.
+
+  1. Burn the original image, and view the device information of each partition.
+
+      ![Original partition](figure/ABStartup_1.png)
+
+      Use the original image to construct images of the partitions used for partition A/B booting, and test the partition A/B booting function.
+      - Copy the **system** and **vendor** images, and add the suffix **\_b** to them.
+      - Add partitions **system_b** and **vendor_b** to the partition table in **parameter.txt**.
+
+  2. Burn the images of the partitions used for partition A/B booting.
+
+     - Import the partition configuration to the rk3568 burning tool, and select the **parameter.txt** file containing the **system_b** and **vendor_b** partitions.
+     - Select images (including **system_b** and **vendor_b** images) based on the new partition table configuration, and then burn the images.
+
+  3. After the configuration is complete, perform the following:
+
+      1. Run the **cat /proc/cmdline** command. If the command output contains **bootslot=2**, the system supports partition A/B booting.
+
+          ![cmdline](figure/ABStartup_2.png)
+      2. Run the **param get ohos.boot.bootslot** command. If the command output contains **2**, the **bootslot** information is successfully written to the **parameter.txt**.
+
+      3. Run the **ls -l /dev/block/by-name** command. If the command output contains **system_b** and **vendor_b**, device nodes are successfully created in partition B.
+
+          ![Device information](figure/ABStartup_3.png)
+
+      4. Run the **df -h** command to check the partitions mounted to the system.
+
+          ![Partition information](figure/ABStartup_4.png)
+
+          As shown in the figure, partition **mmcblk0p6** is mounted to the root file system (represented by a slash), and partition **mmcblk0p7** is mounted to **/vendor**. Based on the command output in step 3, **mmcblk0p6** is the **system** partition, and **mmcblk0p7** is the **vendor** partition. That is, the mounted partitions are the default partitions, that is, **system** and **vendor** partitions without suffixes. In other words, partition A is the default partition.
+
+          Next, let's try booting from partition B.
+
+          1) Run the **partitionslot setactive 2** command to set the slot of the active partition to **2**, that is, the slot of partition B.
+
+          ![Partition slot configuration](figure/ABStartup_5.png)
+
+          2) Run the **partitionslot getslot** command to check the configured slot.
+
+          ![View Slot](figures/ABStartup_6.png)
+
+          If **current slot** is **2**, the slot of the active partition is successfully set to **2**.
+
+          3) Upon restarting, run the **df -h** command to check the partitions mounted to the system.
+          According to the command output, partition **mmcblk0p11** is mounted to the root file system, and partition **mmcblk0p12** is mounted to **/vendor**.
+
+          ![Mounting information](figure/ABStartup_7.png)
+
+          4) Run the **ls -l /dev/block/by-name** command again.
+
+          ![New device information](figure/ABStartup_8.png)
+
+          **mmcblk0p11** corresponds to **system_b**, and **mmcblk0p12** corresponds to **vendor_b**. That is, the system is successfully booted from partition B.
