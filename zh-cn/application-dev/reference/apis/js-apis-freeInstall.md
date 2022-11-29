@@ -363,10 +363,6 @@ getDispatchInfo(callback: AsyncCallback\<DispatchInfo>): void;
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | callback | AsyncCallback<[DispatchInfo](js-apis-bundleManager-dispatchInfo.md)> | 是   | 回调函数。当函数调用成功，err为null，data为获取到的[DispatchInfo](js-apis-bundleManager-dispatchInfo.md)信息。否则为错误对象。 |
 
-**错误码：**
-
-错误码的详细介绍请参见[ohos.bundle错误码](../errorcodes/errorcode-bundle.md)。
-
 **示例：**
 
 ```js
@@ -401,10 +397,6 @@ getDispatchInfo(): Promise\<DispatchInfo>;
 | 类型                                             | 说明                                                         |
 | ------------------------------------------------ | ------------------------------------------------------------ |
 | Promise<[DispatchInfo](js-apis-bundleManager-dispatchInfo.md)> | Promise对象，返回[DispatchInfo](js-apis-bundleManager-dispatchInfo.md)信息。 |
-
-**错误码：**
-
-错误码的详细介绍请参见[ohos.bundle错误码](../errorcodes/errorcode-bundle.md)。
 
 **示例：**
 
