@@ -200,7 +200,7 @@ _[Changelog](api-change/v3.1-beta/changelog-v3.1-beta.md)_
 | ISSUE单号 | 问题描述 |
 | -------- | -------- |
 | [I48IM7](https://gitee.com/openharmony/hiviewdfx_hilog/issues/I48IM7) | 运行hilog压力测试，hilogd异常重启，且hilog命令一直无法使用。 |
-| [I48YPH](https://gitee.com/openharmony/security_deviceauth/issues/I48YPH) | 【软总线-组网】测试发现和组网性能(循环离网-发现-组网)110次组网失败3次。 |
+| I48YPH | 【软总线-组网】测试发现和组网性能(循环离网-发现-组网)110次组网失败3次。 |
 | [I4BVVW](https://gitee.com/openharmony/communication_dsoftbus/issues/I4BVVW) | 【软总线-组网】标准系统与手机开关网络自组网成功率97%失败3次需分析失败原因。 |
 | [I4BXY1](https://gitee.com/openharmony/multimedia_camera_standard/issues/I4BXY1) | 视频录制后前几秒没声音，播放声画不同步，在板子播放会卡顿，音源较远时，有杂音。 |
 | [3ZJ1D](https://gitee.com/openharmony/kernel_liteos_a/issues/I3ZJ1D) | XTS权限用例压测用户态概率失败。 |
@@ -214,7 +214,7 @@ _[Changelog](api-change/v3.1-beta/changelog-v3.1-beta.md)_
 | -------- | -------- | -------- | -------- |
 | [I4NRS5](https://gitee.com/openharmony/kernel_linux_5.10/issues/I4NRS5) | 【内核子系统】存在cve漏洞 | Linux内核还未发布补丁，暂时挂起，待社区发布补丁后升级同步。 | 待社区发布补丁 |
 | [I4MGJM](https://gitee.com/openharmony/drivers_peripheral/issues/I4MGJM) | 【hdf/camera】RK3568单板跑camera&nbsp;HDI用例失败 | 拍照和预览正常，可以正常录像，点击结束按钮，不能结束。 | 2021/12/31 |
-| [I4OECR](https://gitee.com/openharmony/ark_js_runtime/issues/I4OECR) | XTS运行报ark异常栈（低概率问题） | XTS压力测试低概率偶现(48小时出现1次)，仅Log中上报异常栈，对功能无影响。 | 2022/1/5 |
+| I4OECR | XTS运行报ark异常栈（低概率问题） | XTS压力测试低概率偶现(48小时出现1次)，仅Log中上报异常栈，对功能无影响。 | 2022/1/5 |
 | [I4OBTW](https://gitee.com/openharmony/ability_ability_runtime/issues/I4OBTW) | 全量执行XTS用例，安装应用后出现批量aa&nbsp;start&nbsp;失败，影响社区流水线稳定性测试 | XTS压力测试，短时间内批量安装100个应用包，低概率(2个/100个)出现应用无法启动。用户使用无影响。 | 2022/1/5 |
-| [I4OLHF](https://gitee.com/openharmony/ark_js_runtime/issues/I4OLHF?from=project-issue) | 【Ark子系统】&nbsp;由进程com.amsst.amsMissionSnapshotTest导致测试进程异常 | 低概率、偶现，高压力测试偶现问题。 | 2022/1/5 |
-| [I4OLUK](https://gitee.com/openharmony/ark_js_runtime/issues/I4OLUK) | 【Ark子系统】&nbsp;由进程com.ohos.systemui导致进程栈异常 | 低概率、偶现，高压力测试偶现问题。 | 2022/1/5 |
+| I4OLHF | 【Ark子系统】&nbsp;由进程com.amsst.amsMissionSnapshotTest导致测试进程异常 | 低概率、偶现，高压力测试偶现问题。 | 2022/1/5 |
+| I4OLUK | 【Ark子系统】&nbsp;由进程com.ohos.systemui导致进程栈异常 | 低概率、偶现，高压力测试偶现问题。 | 2022/1/5 |

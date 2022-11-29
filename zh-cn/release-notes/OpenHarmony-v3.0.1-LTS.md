@@ -83,27 +83,27 @@ repo forall -c 'git lfs pull'
 | [I4BJFU](https://gitee.com/openharmony/kernel_liteos_a/issues/I4BJFU) | dyload_posix模块在removefile的时候出现错误 |
 | [I42N33](https://gitee.com/openharmony/third_party_mksh/issues/I42N33) | 集成测试直接执行cat后无法退出，需要重启设备恢复 |
 | [I4C8BO](https://gitee.com/openharmony/docs/issues/I4C8BO?from=project-issue) | 3516DV300/3518EV300&nbsp;使用官网烧写配置媒体子系统(轻量小型)基本功能异常 |
-| [I4BWKC](https://gitee.com/openharmony/drivers_framework/issues/I4BWKC) | 3516DV300单板camera驱动压测问题 |
-| [I4BW0G](https://gitee.com/openharmony/drivers_framework/issues/I4BW0G) | 3516DV300单板ResetDriver接口失败 |
+| I4BWKC | 3516DV300单板camera驱动压测问题 |
+| I4BW0G | 3516DV300单板ResetDriver接口失败 |
 | [I4C7ZK](https://gitee.com/openharmony/multimedia_camera_lite/issues/I4C7ZK) | HI3516DV300&nbsp;小型系统常驻内存超基线 |
 | [I434P1](https://gitee.com/openharmony/multimedia_camera_lite/issues/I434P1) | HI3518EV300常驻内存超基线 |
 | [I48IM7](https://gitee.com/openharmony/hiviewdfx_hilog/issues/I48IM7) | 运行hilog的压测，hilogd异常重启，且hilog命令一直无法使用 |
-| [I4EGMD](https://gitee.com/openharmony/aafwk_aafwk_lite/issues/I4EGMD) | 修改want的序列化和反序列化方法 |
+| I4EGMD | 修改want的序列化和反序列化方法 |
 | [I4CED3](https://gitee.com/openharmony/account_os_account/issues/I4CED3) | 修复JS&nbsp;API接口返回只有一个内容的问题 |
-| [I4BXZ1](https://gitee.com/openharmony/app_samples/issues/I4BXZ1) | 修复[&nbsp;Picker]&nbsp;组件点击无响应问题 |
-| [I4CMMH](https://gitee.com/openharmony/ace_ace_engine/issues/I4CMMH) | 解决toggle显示异常问题 |
-| [I4CE7D](https://gitee.com/openharmony/miscservices_inputmethod/issues/I4CE7D) | 优化编辑框响应时间 |
+| I4BXZ1 | 修复[&nbsp;Picker]&nbsp;组件点击无响应问题 |
+| I4CMMH | 解决toggle显示异常问题 |
+| I4CE7D | 优化编辑框响应时间 |
 | [I4HI4C](https://gitee.com/openharmony/ai_engine/issues/I4HI4C) | 解决小型系统TDD&nbsp;用例失败问题，调整用例比较时间范围 |
 | [I4EUOW](https://gitee.com/openharmony/ai_engine/issues/I4EUOW) | 更改用例执行线程数 |
-| [I4HTFS](https://gitee.com/openharmony/appexecfwk_appexecfwk_lite/issues/I4HTFS) | 轻量系统bms适配 |
+| I4HTFS | 轻量系统bms适配 |
 | [I4C3BE](https://gitee.com/openharmony/communication_dsoftbus/issues/I4C3BE) | 修复了BLE被动发现频繁更新蓝牙广播，导致蓝牙资源消耗完自动关闭的问题 |
 | [I4I7QL](https://gitee.com/openharmony/developtools_packing_tool/issues/I4I7QL) | 修复一个ability有2张卡片的时候打包报错问题 |
-| [I4BW0G](https://gitee.com/openharmony/drivers_framework/issues/I4BW0G) | 解决WiFi&nbsp;ResetDriver概率性失败问题 |
+| I4BW0G | 解决WiFi&nbsp;ResetDriver概率性失败问题 |
 | [I4GBB6](https://gitee.com/openharmony/device_qemu/issues/I4GBB6) | 修复risc-v&nbsp;qemu模拟器运行系统异常问题 |
 | [I4CE7E](https://gitee.com/openharmony/kernel_liteos_a/issues/I4CE7E) | liteos-a内核drivers/mtd/multi_partition/用到了device/hisilicon下的驱动函数实现 |
-| [I4JBEH](https://gitee.com/openharmony/drivers_framework/issues/I4JBEH) | 修复了反复使用HDF的DMA传输接口，发生内存泄漏的问题 |
-| [I4IGQ0](https://gitee.com/openharmony/drivers_framework/issues/I4IGQ0) | 解决器件探测失败后导致资源释放问题 |
-| [I4JPCG](https://gitee.com/openharmony/drivers_framework/issues/I4JPCG) | 解决pwm背光无法设置0的问题 |
+| I4JBEH | 修复了反复使用HDF的DMA传输接口，发生内存泄漏的问题 |
+| I4IGQ0 | 解决器件探测失败后导致资源释放问题 |
+| I4JPCG | 解决pwm背光无法设置0的问题 |
 | [I4ERM4](https://gitee.com/openharmony/drivers_peripheral/issues/I4ERM4) | 解决显示用例失败的问题 |
 | [I4CMUY](https://gitee.com/openharmony/drivers_adapter_khdf_linux/issues/I4CMUY) | hdf_peripheral_wlan_test_performance.bin测试套执行失败 |
 | [I4FIP2](https://gitee.com/openharmony/kernel_liteos_a/issues/I4FIP2) | a核ioctl支持SIOCGIFBRDADDR选项 |
@@ -132,24 +132,24 @@ repo forall -c 'git lfs pull'
 | [I4BX4J](https://gitee.com/openharmony/hiviewdfx_hicollie/issues/I4BX4J?from=project-issue) | 3516DV300单板调用hicollie接口失败 |
 | [I4BX1X](https://gitee.com/openharmony/hiviewdfx_hitrace/issues/I4BX1X?from=project-issue) | 3516DV300单板调用hitrace接口失败 |
 | [I4BVUL](https://gitee.com/openharmony/communication_wifi/issues/I4BVUL?from=project-issue) | 标准系统与手机切换AP场景发现组网成功率低(91%)，不达98% |
-| [I4BW6E](https://gitee.com/openharmony/security_deviceauth/issues/I4BW6E) | 标准系统与手机_手机侧循环开关网络_30次左右开始组网失败不再成功 |
+| I4BW6E| 标准系统与手机_手机侧循环开关网络_30次左右开始组网失败不再成功 |
 | [I4BVVW](https://gitee.com/openharmony/communication_dsoftbus/issues/I4BVVW) | 标准系统与手机_L2开关网络自组网成功率97%_失败3次_需分析失败原因 |
-| [I48YPH](https://gitee.com/openharmony/security_deviceauth/issues/I48YPH?from=project-issue) | 测试发现和组网性能(循环离网-发现-组网)_110次组网失败3次 |
+| I48YPH | 测试发现和组网性能(循环离网-发现-组网)_110次组网失败3次 |
 | [I4492M](https://gitee.com/openharmony/communication_dsoftbus/issues/I4492M) | 组网10分钟自动下线规格，实际测试不准确，耗时多了30s左右 |
-| [I44W7U](https://gitee.com/openharmony/graphic_standard/issues/I44W7U?from=project-issue) | SubWindow窗口大小不支持缩放，导致播放Video过程中会盖住进度条 |
+| I44W7U | SubWindow窗口大小不支持缩放，导致播放Video过程中会盖住进度条 |
 | [I480Z1](https://gitee.com/openharmony/communication_dsoftbus/issues/I480Z1?from=project-issue) | Softbus_server在执行socketfuzz时，出现crash |
-| [I4BGLS](https://gitee.com/openharmony/security_deviceauth/issues/I4BGLS?from=project-issue) | import_signed_auth_info_hilink导入的key用于HiChain连接时的身份标志，导入后加密存储在文件中，属于敏感数据，在返回后没有从堆中清除 |
+| I4BGLS | import_signed_auth_info_hilink导入的key用于HiChain连接时的身份标志，导入后加密存储在文件中，属于敏感数据，在返回后没有从堆中清除 |
 | [I4A10Q](https://gitee.com/openharmony/startup_appspawn/issues/I4A10Q?from=project-issue) | 性能测试3516&nbsp;3.0.0.6静态KPI劣化严重 |
-| [I4BXYT](https://gitee.com/openharmony/developtools_hdc_standard/issues/I4BXYT) | hdc_std在设备重启之后，需要hdc_std&nbsp;kill才能重新发现设备 |
-| [I4KUTY](https://gitee.com/openharmony/ace_engine_lite/issues/I4KUTY) | 删除无效的结果返回 |
-| [I4DMFV](https://gitee.com/openharmony/ark_js_runtime/issues/I4DMFV) | 修复utf16到utf8的转换 |
+| I4BXYT | hdc_std在设备重启之后，需要hdc_std&nbsp;kill才能重新发现设备 |
+| I4KUTY | 删除无效的结果返回 |
+| I4DMFV | 修复utf16到utf8的转换 |
 | [I4HGVM](https://gitee.com/openharmony/communication_dsoftbus/issues/I4HGVM) | 增加标准系统对mbedtls的依赖 |
-| [I4DLV2](https://gitee.com/openharmony/drivers_framework/issues/I4DLV2) | 修复HidInfo\*类型导致非法内存访问错误的问题 |
+| I4DLV2 | 修复HidInfo\*类型导致非法内存访问错误的问题 |
 | [I4CIJJ](https://gitee.com/openharmony/third_party_flutter/issues/I4CIJJ) | ArkUI支持GPU渲染 |
 | [I4G31Z](https://gitee.com/openharmony/third_party_freetype/issues/I4G31Z) | 字体引擎版本从2.10.1升级到2.10.4 |
 | [I4H06M](https://gitee.com/openharmony/third_party_harfbuzz/issues/I4H06M) | OpenType&nbsp;文本整形引擎版本从2.6.1升级到2.8.1 |
 | [I4FS7V](https://gitee.com/openharmony/third_party_lwip/issues/I4FS7V) | 使用LWIP_NETCONN_FULLDUPLEX宏来管控conn-&gt;mbox_threads_waiting的初始化 |
-| [I43KL7](https://gitee.com/openharmony/graphic_standard/issues/I43KL7) | 修改了合成器支持GPU合成 |
+| I43KL7 | 修改了合成器支持GPU合成 |
 
 
 ## 遗留缺陷列表
@@ -164,4 +164,4 @@ repo forall -c 'git lfs pull'
 | [I4OWWM](https://gitee.com/openharmony/xts_acts/issues/I4OWWM) | WeekPluralNumbertest模块对应json文件配置的有问题，执行用例时报"required&nbsp;device&nbsp;does&nbsp;not&nbsp;exist"导致UN | json文件配置问题，不影响功能 | 2022/1/15 |
 | [I4MSVV](https://gitee.com/openharmony/xts_acts/issues/I4MSVV?from=project-issue) | 标准系统XTS测试执行测试ActsHiCollieCppTest模块HiCollieCppTest用例3条失败项 | 测试套名称变更导致存在文本校验功能的测试用例不通过，对功能无影响 | 2022/1/15 |
 | [I4MSWM](https://gitee.com/openharmony/xts_acts/issues/I4MSWM?from=project-issue) | 标准系统XTS测试执行测试ActsFaultLoggerTest模块faultloggertest用例1条失败项 | 测试套名称变更导致存在文本校验功能的测试用例不通过，对功能无影响 | 2022/1/15 |
-| [I4NODO](https://gitee.com/openharmony/device_manager/issues/I4NODO) | 标准系统3516分布式业务流转端到端测试失败，无法完成流转 | DM组件_重复创建群组失败，影响使用流转功能（按照issue中提到的操作步骤）的业务，对其他应用无影响 | 2022/1/30 |
+| I4NODO| 标准系统3516分布式业务流转端到端测试失败，无法完成流转 | DM组件_重复创建群组失败，影响使用流转功能（按照issue中提到的操作步骤）的业务，对其他应用无影响 | 2022/1/30 |
