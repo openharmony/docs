@@ -62,7 +62,9 @@ The Startup subsystem consists of the following modules:
 
 - When porting a new chip platform, you need to add the **/vendor/etc/init/init.{hardware}.cfg** file that contains the platform-level initialization configuration. This file is used to implement platform-level initialization, for example, installing the ko driver and configuring information on the related **/proc** nodes.
 
-  > **NOTE**: The configuration file **init.cfg** must be in JSON format.
+  > **NOTE**
+  > 
+  > The configuration file **init.cfg** must be in JSON format.
 
 - bootstrap module: The zInit code must be configured in the link script.
 
@@ -191,7 +193,9 @@ On each development board, you need to partition the memory to store the precedi
 
       This example assumes the **system** partition as the required partition on the Hi3516D V300 platform to illustrate the boot process. During this process, the init process reads the required fstab information, creates a block device node, and mounts it to the required partition. The following provides the key code snippets and log information as reference for debugging.
 
-      > **NOTE**: The code snippets below are exhibited in the logical sequence. They are not neighboring to each other in the source code.
+      > **NOTE**
+      > 
+      > The code snippets below are exhibited in the logical sequence. They are not neighboring to each other in the source code.
 
       1. Obtain required device information.
           ```
@@ -334,7 +338,7 @@ On each development board, you need to partition the memory to store the precedi
 
 - Mounting of vendor partitions
 
-After mounting required partitions, the init process scans each script file in the **vendor** partition. The initialization scripts related to the chip or development board are named in the format of **/vendor/etc/init.{ohos.boot.hardware}.cfg**. Wherein, **/vendor/etc/fstab.{ohos.boot.hardware}** represents the extended mount partition file; **hardware** is sourced from **bootargs**, which is passed from the bootloader to the kernel.
+  After mounting required partitions, the init process scans each script file in the **vendor** partition. The initialization scripts related to the chip or development board are named in the format of **/vendor/etc/init.{ohos.boot.hardware}.cfg**. Wherein, **/vendor/etc/fstab.{ohos.boot.hardware}** represents the extended mount partition file; **hardware** is sourced from **bootargs**, which is passed from the bootloader to the kernel.
 
 
 ### Boot Loading Without ramdisk
