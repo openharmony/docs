@@ -708,7 +708,7 @@ SystemCapability.BundleManager.BundleFramework
 | 参数名      | 类型   | 必填 | 说明                                                         |
 | ----------- | ------ | ---- | ------------------------------------------------------------ |
 | bundleFlags | number | 是   | 用于指定返回的应用信息对象中包含信息的标记。默认值：0，取值范围：参考[BundleFlag说明](#bundleflag)中应用信息相关flag |
-| userId      | number | 是   | 用户ID。默认值：调用方所在用户，取值范围：大于等于0。        |
+| userId      | number | 否   | 用户ID。默认值：调用方所在用户，取值范围：大于等于0。        |
 
 **返回值：**
 

@@ -37,11 +37,11 @@ on(type: BundleChangedEvent, callback: Callback\<BundleChangedInfo>): void;
 
 注册监听应用的安装，卸载，更新。
 
-**需要权限：**ohos.permission.LISTEN_BUNDLE_CHANGE
+**需要权限：** ohos.permission.LISTEN_BUNDLE_CHANGE
 
 **系统API：**  此接口为系统接口，三方应用不支持调用
 
-**系统能力：**SystemCapability.BundleManager.BundleFramework.Core
+**系统能力：** SystemCapability.BundleManager.BundleFramework.Core
 
 **参数：**
 
@@ -49,10 +49,6 @@ on(type: BundleChangedEvent, callback: Callback\<BundleChangedInfo>): void;
 | ---------------------------- | -------- | ---- | ------------------ |
 | BundleChangedEvent           | string   | 是   | 注册监听的事件类型。 |
 | Callback\<BundleChangedInfo> | callback | 是   | 注册监听的回调函数。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[ohos.bundle错误码](../errorcodes/errorcode-bundle.md)。
 
 **示例：**
 
@@ -74,11 +70,11 @@ off(type: BundleChangedEvent, callback?: Callback\<BundleChangedInfo>): void;
 
 注销监听应用的安装，卸载，更新。
 
-**需要权限：**ohos.permission.LISTEN_BUNDLE_CHANGE
+**需要权限：** ohos.permission.LISTEN_BUNDLE_CHANGE
 
 **系统API：**  此接口为系统接口，三方应用不支持调用
 
-**系统能力：**SystemCapability.BundleManager.BundleFramework.Core
+**系统能力：** SystemCapability.BundleManager.BundleFramework.Core
 
 **参数：**
 
@@ -86,10 +82,6 @@ off(type: BundleChangedEvent, callback?: Callback\<BundleChangedInfo>): void;
 | ---------------------------- | -------- | ---- | ---------------------------------------------------------- |
 | BundleChangedEvent           | string   | 是   | 注销监听的事件类型。                                         |
 | Callback\<BundleChangedInfo> | callback | 是   | 注销监听的回调函数，当为空时表示注销当前事件的所有callback。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[ohos.bundle错误码](../errorcodes/errorcode-bundle.md)。
 
 **示例：**
 
