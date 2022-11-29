@@ -509,7 +509,7 @@ try {
 
 on(event: 'distributedDataServiceDie', deathCallback: Callback&lt;void&gt;): void
 
-订阅服务状态变更通知，此方法为同步方法。
+订阅服务状态变更通知。
 
 **系统能力：**  SystemCapability.DistributedDataManager.KVStore.DistributedKVStore
 
@@ -540,7 +540,7 @@ try {
 
 off(event: 'distributedDataServiceDie', deathCallback?: Callback&lt;void&gt;): void
 
-取消订阅服务状态变更通知，此方法为同步方法。
+取消订阅服务状态变更通知。
 
 **系统能力：**  SystemCapability.DistributedDataManager.KVStore.DistributedKVStore
 
@@ -2234,17 +2234,17 @@ try {
 
 on(event: 'dataChange', type: SubscribeType, listener: Callback&lt;ChangeNotification&gt;): void
 
-订阅指定类型的数据变更通知，此方法为同步方法。
+订阅指定类型的数据变更通知。
 
-**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core
+**系统能力：** SystemCapability.DistributedDataManager.KVStore.Core
 
 **参数：**
 
-| 参数名  | 类型 | 必填  | 说明                    |
-| -----  | ------  | ----  | ----------------------- |
-| event  |string  | 是    |订阅的事件名，固定为'dataChange'，表示数据变更事件。       |
-| type  |[SubscribeType](#subscribetype) | 是    |表示订阅的类型。     |
-| listener |Callback&lt;[ChangeNotification](#changenotification)&gt; | 是    |回调函数。 |
+| 参数名   | 类型                                                      | 必填 | 说明                                                 |
+| -------- | --------------------------------------------------------- | ---- | ---------------------------------------------------- |
+| event    | string                                                    | 是   | 订阅的事件名，固定为'dataChange'，表示数据变更事件。 |
+| type     | [SubscribeType](#subscribetype)                           | 是   | 表示订阅的类型。                                     |
+| listener | Callback&lt;[ChangeNotification](#changenotification)&gt; | 是   | 回调函数。                                           |
 
 **示例：**
 
@@ -2259,16 +2259,16 @@ kvStore.on('dataChange', distributedData.SubscribeType.SUBSCRIBE_TYPE_LOCAL, fun
 
 on(event: 'syncComplete', syncCallback: Callback&lt;Array&lt;[string, number]&gt;&gt;): void
 
-订阅同步完成事件回调通知，此方法为同步方法。
+订阅同步完成事件回调通知。
 
-**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core
+**系统能力：** SystemCapability.DistributedDataManager.KVStore.Core
 
 **参数：**
 
-| 参数名  | 类型 | 必填  | 说明                    |
-| -----  | ------  | ----  | ----------------------- |
-| event  |string | 是    |订阅的事件名，固定为'syncComplete'，表示同步完成事件。       |
-| syncCallback  |Callback&lt;Array&lt;[string, number]&gt;&gt; | 是    |回调函数。     |
+| 参数名       | 类型                                          | 必填 | 说明                                                   |
+| ------------ | --------------------------------------------- | ---- | ------------------------------------------------------ |
+| event        | string                                        | 是   | 订阅的事件名，固定为'syncComplete'，表示同步完成事件。 |
+| syncCallback | Callback&lt;Array&lt;[string, number]&gt;&gt; | 是   | 回调函数。用于向调用方发送同步结果的回调。             |
 
 **示例：**
 
@@ -2283,16 +2283,18 @@ kvStore.on('syncComplete', function (data) {
 
 off(event:'dataChange', listener?: Callback&lt;ChangeNotification&gt;): void
 
-取消订阅数据变更通知，此方法为同步方法。
+取消订阅数据变更通知。
 
-**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core
+**系统能力：** SystemCapability.DistributedDataManager.KVStore.Core
 
 **参数：**
 
-| 参数名  | 类型 | 必填  | 说明                    |
-| -----  | ------  | ----  | ----------------------- |
-| event  |string  | 是    |取消订阅的事件名，固定为'dataChange'，表示数据变更事件。       |
-| listener |Callback&lt;[ChangeNotification](#changenotification)&gt; |否    |回调函数。 |
+| 参数名   | 类型                                                      | 必填 | 说明                                                     |
+| -------- | --------------------------------------------------------- | ---- | -------------------------------------------------------- |
+| event    | string                                                    | 是   | 取消订阅的事件名，固定为'dataChange'，表示数据变更事件。 |
+| listener | Callback&lt;[ChangeNotification](#changenotification)&gt; | 否   | 回调函数。                                               |
+
+
 
 **示例：**
 
@@ -2310,6 +2312,42 @@ class KvstoreModel {
     unsubscribeDataChange() {
         if (kvStore != null) {
             kvStore.off('dataChange', this.call);
+        }
+    }
+}
+```
+
+### off('syncComplete')<sup>8+</sup>
+
+off(event: 'syncComplete', syncCallback?: Callback&lt;Array&lt;[string, number]&gt;&gt;): void
+
+取消订阅同步完成事件回调通知。
+
+**系统能力：** SystemCapability.DistributedDataManager.KVStore.Core
+
+**参数：**
+
+| 参数名       | 类型                                          | 必填 | 说明                                                       |
+| ------------ | --------------------------------------------- | ---- | ---------------------------------------------------------- |
+| event        | string                                        | 是   | 取消订阅的事件名，固定为'syncComplete'，表示同步完成事件。 |
+| syncCallback | Callback&lt;Array&lt;[string, number]&gt;&gt; | 否   | 回调函数。用于向调用方发送同步结果的回调。                 |
+
+**示例：**
+
+```js
+let kvStore;
+class KvstoreModel {
+    call(data) {
+        console.log("syncComplete: " + data);
+    }
+    subscribeSyncComplete() {
+        if (kvStore != null) {
+            kvStore.on('syncComplete', this.call);
+        }
+    }
+    unsubscribeSyncComplete() {
+        if (kvStore != null) {
+            kvStore.off('syncComplete', this.call);
         }
     }
 }
@@ -3711,21 +3749,71 @@ try {
 }
 ```
 
+### sync
 
-### on('syncComplete')<sup>8+</sup>
 
-on(event: 'syncComplete', syncCallback: Callback&lt;Array&lt;[string, number]&gt;&gt;): void
+sync(deviceIds: string[], mode: SyncMode, delayMs?: number): void
 
-订阅同步完成事件回调通知，此方法为同步方法。
+在手动同步方式下，触发数据库同步。关于分布式数据服务的同步方式说明，请见[分布式数据服务概述](../../database/database-mdds-overview.md)。
+
+**需要权限**： ohos.permission.DISTRIBUTED_DATASYNC。
 
 **系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core
 
 **参数：**
 
-| 参数名  | 类型 | 必填  | 说明                    |
-| -----  | ------   | ----  | ----------------------- |
-| event  |string   | 是    |订阅的事件名，固定为'syncComplete'，表示同步完成事件。    |
-| syncCallback  |Callback&lt;Array&lt;[string, number]&gt;&gt;   | 是    |回调函数。用于向调用方发送同步结果的回调。    |
+| 参数名    | 类型                  | 必填 | 说明                                           |
+| --------- | --------------------- | ---- | ---------------------------------------------- |
+| deviceIds | string[]              | 是   | 同一组网环境下，需要同步的设备的deviceId列表。 |
+| mode      | [SyncMode](#syncmode) | 是   | 同步模式。                                     |
+| delayMs   | number                | 否   | 可选参数，允许延时时间，单位：ms（毫秒）。     |
+
+**示例：**
+
+```js
+let kvStore;
+kvStore.sync(['deviceIds'], distributedData.SyncMode.PULL_ONLY, 1000);
+```
+
+### on('dataChange')<sup>8+</sup>
+
+on(event: 'dataChange', type: SubscribeType, listener: Callback&lt;ChangeNotification&gt;): void
+
+订阅指定类型的数据变更通知。
+
+**系统能力：** SystemCapability.DistributedDataManager.KVStore.Core
+
+**参数：**
+
+| 参数名   | 类型                                                      | 必填 | 说明                                                 |
+| -------- | --------------------------------------------------------- | ---- | ---------------------------------------------------- |
+| event    | string                                                    | 是   | 订阅的事件名，固定为'dataChange'，表示数据变更事件。 |
+| type     | [SubscribeType](#subscribetype)                           | 是   | 表示订阅的类型。                                     |
+| listener | Callback&lt;[ChangeNotification](#changenotification)&gt; | 是   | 回调函数。                                           |
+
+**示例：**
+
+```js
+let kvStore;
+kvStore.on('dataChange', distributedData.SubscribeType.SUBSCRIBE_TYPE_LOCAL, function (data) {
+    console.log("dataChange callback call data: " + JSON.stringify(data));
+});
+```
+
+### on('syncComplete')<sup>8+</sup>
+
+on(event: 'syncComplete', syncCallback: Callback&lt;Array&lt;[string, number]&gt;&gt;): void
+
+订阅同步完成事件回调通知。
+
+**系统能力：** SystemCapability.DistributedDataManager.KVStore.Core
+
+**参数：**
+
+| 参数名       | 类型                                          | 必填 | 说明                                                   |
+| ------------ | --------------------------------------------- | ---- | ------------------------------------------------------ |
+| event        | string                                        | 是   | 订阅的事件名，固定为'syncComplete'，表示同步完成事件。 |
+| syncCallback | Callback&lt;Array&lt;[string, number]&gt;&gt; | 是   | 回调函数。用于向调用方发送同步结果的回调。             |
 
 **示例：**
 
@@ -3747,21 +3835,56 @@ try {
 }
 ```
 
+### off('dataChange')<sup>8+</sup>
+
+off(event:'dataChange', listener?: Callback&lt;ChangeNotification&gt;): void
+
+取消订阅数据变更通知。
+
+**系统能力：** SystemCapability.DistributedDataManager.KVStore.Core
+
+**参数：**
+
+| 参数名   | 类型                                                      | 必填 | 说明                                                     |
+| -------- | --------------------------------------------------------- | ---- | -------------------------------------------------------- |
+| event    | string                                                    | 是   | 取消订阅的事件名，固定为'dataChange'，表示数据变更事件。 |
+| listener | Callback&lt;[ChangeNotification](#changenotification)&gt; | 否   | 回调函数。                                               |
+
+**示例：**
+
+```js
+let kvStore;
+class KvstoreModel {
+    call(data) {
+        console.log("dataChange: " + data);
+    }
+    subscribeDataChange() {
+        if (kvStore != null) {
+            kvStore.on('dataChange', distributedData.SubscribeType.SUBSCRIBE_TYPE_REMOTE, this.call);
+        }
+    }
+    unsubscribeDataChange() {
+        if (kvStore != null) {
+            kvStore.off('dataChange', this.call);
+        }
+    }
+}
+```
 
 ### off('syncComplete')<sup>8+</sup>
 
 off(event: 'syncComplete', syncCallback?: Callback&lt;Array&lt;[string, number]&gt;&gt;): void
 
-取消订阅同步完成事件回调通知，此方法为同步方法。
+取消订阅同步完成事件回调通知。
 
-**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core
+**系统能力：** SystemCapability.DistributedDataManager.KVStore.Core
 
 **参数：**
 
-| 参数名  | 类型 | 必填  | 说明                    |
-| -----  | ------   | ----  | ----------------------- |
-| event  |string   | 是    |取消订阅的事件名，固定为'syncComplete'，表示同步完成事件。    |
-| syncCallback  |Callback&lt;Array&lt;[string, number]&gt;&gt;   | 否    |回调函数。用于向调用方发送同步结果的回调。    |
+| 参数名       | 类型                                          | 必填 | 说明                                                       |
+| ------------ | --------------------------------------------- | ---- | ---------------------------------------------------------- |
+| event        | string                                        | 是   | 取消订阅的事件名，固定为'syncComplete'，表示同步完成事件。 |
+| syncCallback | Callback&lt;Array&lt;[string, number]&gt;&gt; | 否   | 回调函数。用于向调用方发送同步结果的回调。                 |
 
 **示例：**
 
@@ -3782,32 +3905,6 @@ class KvstoreModel {
         }
     }
 }
-```
-
-### sync<sup>7+</sup>
-
-
-sync(deviceIds: string[], mode: SyncMode, delayMs?: number): void
-
-在手动同步方式下，触发数据库同步。关于分布式数据服务的同步方式说明，请见[分布式数据服务概述](../../database/database-mdds-overview.md)。
-
-**需要权限**： ohos.permission.DISTRIBUTED_DATASYNC。
-
-**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core
-
-**参数：**
-
-| 参数名  | 类型 | 必填  | 说明                    |
-| -----  | ------   | ----  | ----------------------- |
-| deviceIds  |string[]  | 是    |同一组网环境下，需要同步的设备的deviceId列表。    |
-| mode  |[SyncMode](#syncmode)   | 是   |同步模式。    |
-| delayMs  |number   | 否   |可选参数，允许延时时间，单位：ms（毫秒）。   |
-
-**示例：**
-
-```js
-let kvStore;
-kvStore.sync('deviceIds', distributedData.SyncMode.PULL_ONLY, 1000);
 ```
 
 ### setSyncParam<sup>8+</sup>
@@ -5077,20 +5174,45 @@ try {
 }
 ```
 
+### on('dataChange')<sup>8+</sup>
+
+on(event: 'dataChange', type: SubscribeType, listener: Callback&lt;ChangeNotification&gt;): void
+
+订阅指定类型的数据变更通知。
+
+**系统能力：** SystemCapability.DistributedDataManager.KVStore.Core
+
+**参数：**
+
+| 参数名   | 类型                                                      | 必填 | 说明                                                 |
+| -------- | --------------------------------------------------------- | ---- | ---------------------------------------------------- |
+| event    | string                                                    | 是   | 订阅的事件名，固定为'dataChange'，表示数据变更事件。 |
+| type     | [SubscribeType](#subscribetype)                           | 是   | 表示订阅的类型。                                     |
+| listener | Callback&lt;[ChangeNotification](#changenotification)&gt; | 是   | 回调函数。                                           |
+
+**示例：**
+
+```js
+let kvStore;
+kvStore.on('dataChange', distributedData.SubscribeType.SUBSCRIBE_TYPE_LOCAL, function (data) {
+    console.log("dataChange callback call data: " + JSON.stringify(data));
+});
+```
+
 ### on('syncComplete')<sup>8+</sup>
 
 on(event: 'syncComplete', syncCallback: Callback&lt;Array&lt;[string, number]&gt;&gt;): void
 
-订阅同步完成事件回调通知，此方法为同步方法。
+订阅同步完成事件回调通知。
 
-**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core
+**系统能力：** SystemCapability.DistributedDataManager.KVStore.Core
 
 **参数：**
 
-| 参数名  | 类型 | 必填  | 说明                    |
-| -----  | ------   | ----  | ----------------------- |
-| event    |string      | 是    |订阅的事件名，固定为'syncComplete'，表示同步完成事件。 |
-| syncCallback            |Callback<Array&lt;[string, number]&gt;> | 是    |回调函数。用于向调用方发送同步结果的回调。  |
+| 参数名       | 类型                                          | 必填 | 说明                                                   |
+| ------------ | --------------------------------------------- | ---- | ------------------------------------------------------ |
+| event        | string                                        | 是   | 订阅的事件名，固定为'syncComplete'，表示同步完成事件。 |
+| syncCallback | Callback&lt;Array&lt;[string, number]&gt;&gt; | 是   | 回调函数。用于向调用方发送同步结果的回调。             |
 
 **示例：**
 
@@ -5112,21 +5234,56 @@ try {
 }
 ```
 
+### off('dataChange')<sup>8+</sup>
+
+off(event:'dataChange', listener?: Callback&lt;ChangeNotification&gt;): void
+
+取消订阅数据变更通知。
+
+**系统能力：** SystemCapability.DistributedDataManager.KVStore.Core
+
+**参数：**
+
+| 参数名   | 类型                                                      | 必填 | 说明                                                     |
+| -------- | --------------------------------------------------------- | ---- | -------------------------------------------------------- |
+| event    | string                                                    | 是   | 取消订阅的事件名，固定为'dataChange'，表示数据变更事件。 |
+| listener | Callback&lt;[ChangeNotification](#changenotification)&gt; | 否   | 回调函数。                                               |
+
+**示例：**
+
+```js
+let kvStore;
+class KvstoreModel {
+    call(data) {
+        console.log("dataChange: " + data);
+    }
+    subscribeDataChange() {
+        if (kvStore != null) {
+            kvStore.on('dataChange', distributedData.SubscribeType.SUBSCRIBE_TYPE_REMOTE, this.call);
+        }
+    }
+    unsubscribeDataChange() {
+        if (kvStore != null) {
+            kvStore.off('dataChange', this.call);
+        }
+    }
+}
+```
 
 ### off('syncComplete')<sup>8+</sup>
 
 off(event: 'syncComplete', syncCallback?: Callback&lt;Array&lt;[string, number]&gt;&gt;): void
 
-取消订阅同步完成事件回调通知，此方法为同步方法。
+取消订阅同步完成事件回调通知。
 
-**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core
+**系统能力：** SystemCapability.DistributedDataManager.KVStore.Core
 
 **参数：**
 
-| 参数名  | 类型 | 必填  | 说明                    |
-| -----  | ------   | ----  | ----------------------- |
-| event         |string                           | 是    |取消订阅的事件名，固定为'syncComplete'，表示同步完成事件。 |
-| syncCallback  |Callback<Array&lt;[string, number]&gt;&gt; | 否    |回调函数。用于向调用方发送同步结果的回调。  |
+| 参数名       | 类型                                          | 必填 | 说明                                                       |
+| ------------ | --------------------------------------------- | ---- | ---------------------------------------------------------- |
+| event        | string                                        | 是   | 取消订阅的事件名，固定为'syncComplete'，表示同步完成事件。 |
+| syncCallback | Callback&lt;Array&lt;[string, number]&gt;&gt; | 否   | 回调函数。用于向调用方发送同步结果的回调。                 |
 
 **示例：**
 
