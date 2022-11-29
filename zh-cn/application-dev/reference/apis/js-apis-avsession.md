@@ -56,8 +56,8 @@ let session;
 let tag = "createNewSession";
 let context = featureAbility.getContext();
 
-await avSession.createAVSession(context, tag, "audio").then((avSession) => {
-    session = avSession;
+await avSession.createAVSession(context, tag, "audio").then((data) => {
+    session = data;
     console.info(`CreateAVSession : SUCCESS : sessionId = ${session.sessionId}`);
 }).catch((err) => {
     console.info(`CreateAVSession BusinessError: code: ${err.code}, message: ${err.message}`);
@@ -97,11 +97,11 @@ let session;
 let tag = "createNewSession";
 let context = featureAbility.getContext();
 
-avSession.createAVSession(context, tag, "audio", function (err, avSession) {
+avSession.createAVSession(context, tag, "audio", function (err, data) {
     if (err) {
         console.info(`CreateAVSession BusinessError: code: ${err.code}, message: ${err.message}`);
     } else {
-        session = avSession;
+        session = data;
         console.info(`CreateAVSession : SUCCESS : sessionId = ${session.sessionId}`);
     }
 });
