@@ -13,6 +13,26 @@ Buffer对象用于表示固定长度的字节序列,是专门存放二进制数�
 import buffer from '@ohos.buffer';
 ```
 
+## BufferEncoding
+
+表示支持的编码格式字符串。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+| 编码格式    | 说明                 |
+| ------- | -------------------- |
+| ascii  | 表示ascii格式。   |
+| utf8  | 表示utf8格式。   |
+| utf-8 | 表示utf8格式。 |
+| utf16le | 表示utf16小端序格式。 |
+| ucs2 | 表示utf16小端序格式。 |
+| ucs-2 | 表示utf16小端序格式。 |
+| base64 | 表示base64格式。 |
+| base64url | 表示base64格式。 |
+| latin1 | 表示ascii格式。 |
+| binary | 表示二进制格式。 |
+| hex | 表示十六进制格式。 |
+
 ## Buffer
 
 ### 属性
@@ -39,24 +59,9 @@ import buffer from '@ohos.buffer';
 import buffer from '@ohos.buffer';
 
 let buf = buffer.from("1236");
-try {
-  buf.length = 10;
-} catch (err) {
-  console.log("set length exception: " + JSON.stringify(err));
-}
-
-let buf1 = buffer.from("123");
-try {
-  buf.buffer = buf1;
-} catch (err) {
-  console.log("set buffer exception: " + JSON.stringify(err));
-}
-
-try {
-  buf.byteOffset = 3;
-} catch (err) {
-  console.log("set byteOffset exception: " + JSON.stringify(err));
-}
+console.log(buf.length);
+console.log(buf.buffer);
+console.log(buf.byteOffset);
 ```
 
 ### alloc
@@ -73,7 +78,7 @@ alloc(size: number, fill?: string | Buffer | number, encoding?: BufferEncoding):
 | -------- | -------- | -------- | -------- |
 | size | number | 是 | 指定的Buffer实例长度，单位：字节。 |
 | fill | string&nbsp;\|&nbsp;Buffer&nbsp;\|&nbsp;number | 否 | 预填充的值，默认值: 0 |
-| encoding | BufferEncoding | 否 | 编码方式（当`fill`为string时，才有意义）。 默认值: 'utf-8' |
+| encoding | [BufferEncoding](#bufferencoding) | 否 | 编码方式（当`fill`为string时，才有意义）。 默认值: 'utf-8' |
 
 **返回值：**
 
@@ -89,12 +94,6 @@ import buffer from '@ohos.buffer';
 let buf1 = buffer.alloc(5);
 let buf2 = buffer.alloc(5, 'a');
 let buf3 = buffer.alloc(11, 'aGVsbG8gd29ybGQ=', 'base64');
-
-try {
-  let buf = buffer.alloc(-5);
-} catch (err) {
-  console.log("alloc exception: " + JSON.stringify(err));
-}
 ```
 
 ### allocUninitializedFromPool
@@ -125,12 +124,6 @@ import buffer from '@ohos.buffer';
 
 let buf = buffer.allocUninitializedFromPool(10);
 buf.fill(0);
-
-try {
-  let buf = buffer.allocUninitializedFromPool(-5);
-} catch (err) {
-  console.log("allocUninitializedFromPool exception: " + JSON.stringify(err));
-}
 ```
 
 ### allocUninitialized
@@ -160,12 +153,6 @@ import buffer from '@ohos.buffer';
 
 let buf = buffer.allocUninitialized(10);
 buf.fill(0);
-
-try {
-  let buf = buffer.allocUninitialized(-5);
-} catch (err) {
-  console.log("allocUninitialized exception: " + JSON.stringify(err));
-}
 ```
 
 ### byteLength
@@ -181,7 +168,7 @@ byteLength(string: string | Buffer | TypedArray | DataView | ArrayBuffer | Share
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | string | string&nbsp;\|&nbsp;Buffer&nbsp;\|&nbsp;TypedArray&nbsp;\|&nbsp;DataView&nbsp;\|&nbsp;ArrayBuffer&nbsp;\|&nbsp;SharedArrayBuffer | 是 | 指定字符串。 |
-| encoding | BufferEncoding | 否 | 编码方式。 默认值: 'utf-8' |
+| encoding | [BufferEncoding](#bufferencoding) | 否 | 编码方式。 默认值: 'utf-8' |
 
 **返回值：**
 
@@ -197,12 +184,6 @@ import buffer from '@ohos.buffer';
 let str = '\u00bd + \u00bc = \u00be';
 console.log(`${str}: ${str.length} characters, ${buffer.byteLength(str, 'utf-8')} bytes`);
 // 打印: ½ + ¼ = ¾: 9 characters, 12 bytes
-
-try {
-  let byteLen = buffer.byteLength(10);
-} catch (err) {
-  console.log("byteLength exception: " + JSON.stringify(err));
-}
 ```
 
 ### compare
@@ -236,14 +217,7 @@ let buf1 = buffer.from('1234');
 let buf2 = buffer.from('0123');
 let res = buf1.compare(buf2);
 
-console.log(Number(res).toString());
-// 打印 1
-
-try {
-  let res = buffer.compare(10, buf2);
-} catch (err) {
-  console.log("compare exception: " + JSON.stringify(err));
-}
+console.log(Number(res).toString()); // 打印 1
 ```
 
 ### concat
@@ -284,18 +258,6 @@ let buf1 = buffer.from("1234");
 let buf2 = buffer.from("abcd");
 let buf = buffer.concat([buf1, buf2]);
 console.log(buf.toString('hex')); // 3132333461626364
-
-try {
-  buf = buffer.concat("test string");
-} catch (err) {
-  console.log("concat exception: " + JSON.stringify(err));
-}
-
-try {
-  buf = buffer.concat([buf1, buf2], -1);
-} catch (err) {
-  console.log("concat exception: " + JSON.stringify(err));
-}
 ```
 
 ### from
@@ -325,12 +287,6 @@ import buffer from '@ohos.buffer';
 
 let buf = buffer.from([0x62, 0x75, 0x66, 0x66, 0x65, 0x72]);
 console.log(buf.toString('hex')); // 627566666572
-
-try {
-  const buf = buffer.from(10);
-} catch (err) {
-  console.log("from exception: " + JSON.stringify(err));
-}
 ```
 
 ### from
@@ -378,11 +334,6 @@ array[1] = '2';
 array[2] = '3';
 array[3] = '4';
 array[4] = '5';
-try {
-  const buf = buffer.from(arrayBuffer, 6, 1);
-} catch (err) {
-  console.log("from exception: " + JSON.stringify(err));
-}
 ```
 
 ### from
@@ -412,12 +363,6 @@ import buffer from '@ohos.buffer';
 
 let buf1 = buffer.from('buffer');
 let buf2 = buffer.from(buf1);
-
-try {
-  const buf = buffer.from(10);
-} catch (err) {
-  console.log("from exception: " + JSON.stringify(err));
-}
 ```
 
 ### from
@@ -448,12 +393,6 @@ from(object: Object, offsetOrEncoding: number | string, length: number): Buffer
 import buffer from '@ohos.buffer';
 
 let buf = buffer.from(new String('this is a test'));
-
-try {
-  const buf = buffer.from(10, 0, 1);
-} catch (err) {
-  console.log("from exception: " + JSON.stringify(err));
-}
 ```
 
 ### from
@@ -469,7 +408,7 @@ from(string: String, encoding?: BufferEncoding): Buffer
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | string | String | 是 | 字符串 |
-| encoding | BufferEncoding | 否 | 编码格式。 默认值: 'utf-8'。 |
+| encoding | [BufferEncoding](#bufferencoding) | 否 | 编码格式。 默认值: 'utf-8'。 |
 
 **返回值：**
 
@@ -487,12 +426,6 @@ let buf2 = buffer.from('7468697320697320612074c3a97374', 'hex');
 
 console.log(buf1.toString());	// 打印: this is a test
 console.log(buf2.toString());
-
-try {
-  const buf = buffer.from("test string", "utf9");
-} catch (err) {
-  console.log("from exception: " + JSON.stringify(err));
-}
 ```
 
 
@@ -594,13 +527,6 @@ let buf2 = buffer.from([5, 6, 7, 8, 9, 1, 2, 3, 4]);
 console.log(buf1.compare(buf2, 5, 9, 0, 4).toString());	// 打印: 0
 console.log(buf1.compare(buf2, 0, 6, 4).toString());	// 打印: -1
 console.log(buf1.compare(buf2, 5, 6, 5).toString());	// 打印: 1
-
-let buf = buffer.from("1236");
-try {
-  let res = buf.compare(10);
-} catch (err) {
-  console.log("compare exception: " + JSON.stringify(err));
-}
 ```
 
 ### copy
@@ -649,21 +575,6 @@ for (let i = 0; i < 26; i++) {
 buf1.copy(buf2, 8, 16, 20);
 console.log(buf2.toString('ascii', 0, 25));
 // 打印: !!!!!!!!qrst!!!!!!!!!!!!!
-
-let buf3 = buffer.from("123656");
-try {
-  let num = buf3.copy(10);
-} catch (err) {
-  console.log("copy exception: " + JSON.stringify(err));
-}
-
-let buf4 = buffer.from("123656");
-let buf5 = buffer.from("1235");
-try {
-  let num = buf4.copy(buf5, -1);
-} catch (err) {
-  console.log("copy exception: " + JSON.stringify(err));
-}
 ```
 
 ### entries
@@ -716,12 +627,6 @@ let buf3 = buffer.from('ABCD');
 
 console.log(buf1.equals(buf2).toString());	// 打印: true
 console.log(buf1.equals(buf3).toString());	// 打印: false
-
-try {
-  let res = buf1.equals("1236");
-} catch (err) {
-  console.log("equals exception: " + JSON.stringify(err));
-}
 ```
 
 ### fill
@@ -739,7 +644,7 @@ fill(value: string | Buffer | Uint8Array | number, offset?: number, end?: number
 | value | string&nbsp;\|&nbsp;Buffer&nbsp;\|&nbsp;Uint8Array&nbsp;\|&nbsp;number | 是 | 用于填充的值。 |
 | offset | number | 否 | 起始偏移量。 默认值: 0。 |
 | end | number | 否 | 结束偏移量（不包括在内）。 默认值: buf.length。 |
-| encoding | BufferEncoding | 否 | 字符编码格式（`value`为string才有意义）。 默认值: 'utf-8'。 |
+| encoding | [BufferEncoding](#bufferencoding) | 否 | 字符编码格式（`value`为string才有意义）。 默认值: 'utf-8'。 |
 
 **返回值：**
 
@@ -762,12 +667,6 @@ import buffer from '@ohos.buffer';
 
 let b = buffer.allocUninitializedFromPool(50).fill('h');
 console.log(b.toString());
-
-try {
-  let buf = buffer.alloc(3).fill("$*$", -1);
-} catch (err) {
-  console.log("fill exception: " + JSON.stringify(err));
-}
 ```
 
 
@@ -785,7 +684,7 @@ includes(value: string | number | Buffer | Uint8Array, byteOffset?: number, enco
 | -------- | -------- | -------- | -------- |
 | value | string&nbsp;\|&nbsp;number&nbsp;\|&nbsp;Buffer&nbsp;\|&nbsp;Uint8Array | 是 | 要搜索的内容。 |
 | byteOffset | number | 否 | 字节偏移量。 如果为负数，则从末尾开始计算偏移量。 默认值: 0。 |
-| encoding | BufferEncoding | 否 | 字符编码格式。 默认值: 'utf-8'。 |
+| encoding | [BufferEncoding](#bufferencoding) | 否 | 字符编码格式。 默认值: 'utf-8'。 |
 
 **返回值：**
 
@@ -801,13 +700,6 @@ import buffer from '@ohos.buffer';
 let buf = buffer.from('this is a buffer');
 console.log(buf.includes('this').toString());	// 打印: true
 console.log(buf.includes('be').toString());	// 打印: false
-
-let buf1 = buffer.from("13236");
-try {
-  let flag = buf1.includes(true);
-} catch (err) {
-  console.log("includes exception: " + JSON.stringify(err));
-}
 ```
 
 ### indexOf
@@ -824,7 +716,7 @@ indexOf(value: string | number | Buffer | Uint8Array, byteOffset?: number, encod
 | -------- | -------- | -------- | -------- |
 | value | string&nbsp;\|&nbsp;number&nbsp;\|&nbsp;Buffer&nbsp;\|&nbsp;Uint8Array | 是 | 要搜索的内容。 |
 | byteOffset | number | 否 | 字节偏移量。 如果为负数，则从末尾开始计算偏移量。 默认值: 0。 |
-| encoding | BufferEncoding | 否 | 字符编码格式。 默认值: 'utf-8'。 |
+| encoding | [BufferEncoding](#bufferencoding) | 否 | 字符编码格式。 默认值: 'utf-8'。 |
 
 **返回值：**
 
@@ -840,19 +732,6 @@ import buffer from '@ohos.buffer';
 let buf = buffer.from('this is a buffer');
 console.log(buf.indexOf('this').toString());	// 打印: 0
 console.log(buf.indexOf('is').toString());		// 打印: 2
-
-let buf1 = buffer.from("13236");
-try {
-  let index = buf1.indexOf(true);
-} catch (err) {
-  console.log("indexOf exception: " + JSON.stringify(err));
-}
-
-try {
-  let index1 = buf1.indexOf("a", "utf9");
-} catch (err) {
-  console.log("indexOf exception: " + JSON.stringify(err));
-}
 ```
 
 ### keys
@@ -894,7 +773,7 @@ lastIndexOf(value: string | number | Buffer | Uint8Array, byteOffset?: number, e
 | -------- | -------- | -------- | -------- |
 | value | string&nbsp;\|&nbsp;number&nbsp;\|&nbsp;Buffer&nbsp;\|&nbsp;Uint8Array | 是 | 要搜索的内容。 |
 | byteOffset | number | 否 | 字节偏移量。 如果为负数，则从末尾开始计算偏移量。 默认值: 0。 |
-| encoding | BufferEncoding | 否 | 字符编码格式。 默认值: 'utf-8'。 |
+| encoding | [BufferEncoding](#bufferencoding) | 否 | 字符编码格式。 默认值: 'utf-8'。 |
 
 **返回值：**
 
@@ -910,20 +789,6 @@ import buffer from '@ohos.buffer';
 let buf = buffer.from('this buffer is a buffer');
 console.log(buf.lastIndexOf('this').toString());	// 打印: 0
 console.log(buf.lastIndexOf('buffer').toString());	// 打印: 17
-
-let buf1 = buffer.from("13236");
-try {
-  let index = buf1.lastIndexOf(true);
-} catch (err) {
-  console.log("lastIndexOf exception: " + JSON.stringify(err));
-}
-
-try {
-  let index1 = buf1.lastIndexOf("a", "utf9");
-} catch (err) {
-  console.log("lastIndexOf exception: " + JSON.stringify(err));
-}
-
 ```
 
 
@@ -966,11 +831,6 @@ console.log(buf.readBigInt64BE(0).toString());
 
 let buf1 = buffer.allocUninitializedFromPool(8);
 buf1.writeBigInt64BE(0x0102030405060708n, 0);
-try {
-  let ref = buf1.readBigInt64BE(1).toString(16);
-} catch (err) {
-  console.log("readBigInt64BE exception: " + JSON.stringify(err));
-}
 ```
 
 ### readBigInt64LE
@@ -1012,11 +872,6 @@ console.log(buf.readBigInt64LE(0).toString());
 
 let buf1 = buffer.allocUninitializedFromPool(8);
 buf1.writeBigInt64BE(0x0102030405060708n, 0);
-try {
-  let ref = buf1.readBigInt64LE(1).toString(16);
-} catch (err) {
-  console.log("readBigInt64LE exception: " + JSON.stringify(err));
-}
 ```
 
 ### readBigUInt64BE
@@ -1058,11 +913,6 @@ console.log(buf.readBigUInt64BE(0).toString());
 
 let buf1 = buffer.allocUninitializedFromPool(8);
 buf1.writeBigUInt64BE(0xdecafafecacefaden, 0);
-try {
-  let ref = buf1.readBigUInt64BE(1).toString(16);
-} catch (err) {
-  console.log("readBigUInt64BE exception: " + JSON.stringify(err));
-}
 ```
 
 ### readBigUInt64LE
@@ -1104,11 +954,6 @@ console.log(buf.readBigUInt64LE(0).toString());
 
 let buf1 = buffer.allocUninitializedFromPool(8);
 buf1.writeBigUInt64BE(0xdecafafecacefaden, 0);
-try {
-  let ref = buf1.readBigUInt64LE(1).toString(16);
-} catch (err) {
-  console.log("readBigUInt64LE exception: " + JSON.stringify(err));
-}
 ```
 
 ### readDoubleBE
@@ -1149,11 +994,6 @@ console.log(buf.readDoubleBE(0).toString());
 
 let buf1 = buffer.allocUninitializedFromPool(8);
 buf1.writeDoubleBE(123.456, 0);
-try {
-  let ref = buf1.readDoubleBE(1);
-} catch (err) {
-  console.log("readDoubleBE exception: " + JSON.stringify(err));
-}
 ```
 
 ### readDoubleLE
@@ -1194,11 +1034,6 @@ console.log(buf.readDoubleLE(0).toString());
 
 let buf1 = buffer.allocUninitializedFromPool(8);
 buf1.writeDoubleLE(123.456, 0);
-try {
-  let ref = buf1.readDoubleLE(1);
-} catch (err) {
-  console.log("readDoubleLE exception: " + JSON.stringify(err));
-}
 ```
 
 ### readFloatBE
@@ -1239,11 +1074,6 @@ console.log(buf.readFloatBE(0).toString());
 
 let buf1 = buffer.allocUninitializedFromPool(4);
 buf1.writeFloatBE(0xcabcbcbc, 0);
-try {
-  let ref = buf1.readFloatBE(1).toString(16);
-} catch (err) {
-  console.log("readFloatBE exception: " + JSON.stringify(err));
-}
 ```
 
 ### readFloatLE
@@ -1284,11 +1114,6 @@ console.log(buf.readFloatLE(0).toString());
 
 let buf1 = buffer.allocUninitializedFromPool(4);
 buf1.writeFloatLE(0xcabcbcbc, 0);
-try {
-  let ref = buf1.readFloatLE(1).toString(16);
-} catch (err) {
-  console.log("readFloatLE exception: " + JSON.stringify(err));
-}
 ```
 
 ### readInt8
@@ -1330,11 +1155,6 @@ console.log(buf.readInt8(1).toString());	// 打印: 5
 
 let buf1 = buffer.allocUninitializedFromPool(2);
 buf1.writeInt8(0x12);
-try {
-  let ref = buf1.readInt8(2).toString(16);
-} catch (err) {
-  console.log("readInt8 exception: " + JSON.stringify(err));
-}
 ```
 
 ### readInt16BE
@@ -1375,11 +1195,6 @@ console.log(buf.readInt16BE(0).toString());	// 打印: 5
 
 let buf1 = buffer.alloc(2);
 buf1.writeInt16BE(0x1234, 0);
-try {
-  let ref = buf1.readInt16BE(1).toString(16);
-} catch (err) {
-  console.log("readInt16BE exception: " + JSON.stringify(err));
-}
 ```
 
 ### readInt16LE
@@ -1420,11 +1235,6 @@ console.log(buf.readInt16LE(0).toString());	// 打印: 1280
 
 let buf1 = buffer.alloc(2);
 buf1.writeInt16BE(0x1234, 0);
-try {
-  let ref = buf1.readInt16LE(1);
-} catch (err) { 
-  console.log("readInt16LE exception: " + JSON.stringify(err));
-}
 ```
 
 ### readInt32BE
@@ -1465,11 +1275,6 @@ console.log(buf.readInt32BE(0).toString());	// 打印: 5
 
 let buf1 = buffer.alloc(4);
 buf1.writeInt32BE(0x12345678, 0);
-try {
-  let ref = buf1.readInt32BE(1);
-} catch (err) {
-  console.log("readInt32BE exception: " + JSON.stringify(err));
-}
 ```
 
 ### readInt32LE
@@ -1510,11 +1315,6 @@ console.log(buf.readInt32LE(0).toString());	// 打印: 83886080
 
 let buf1 = buffer.alloc(4);
 buf1.writeInt32BE(0x12345678, 0);
-try {
-  let ref = buf1.readInt32LE(1);
-} catch (err) {
-  console.log("readInt32LE exception: " + JSON.stringify(err));
-}
 ```
 
 ### readIntBE
@@ -1558,11 +1358,6 @@ console.log(num.toString()); // 97
 
 let buf1 = buffer.allocUninitializedFromPool(6);
 buf1.writeIntBE(0x123456789011, 0, 6);
-try {
-  let ref = buf1.readIntBE(2, 5).toString(16);
-} catch (err) {
-  console.log("readIntBE exception: " + JSON.stringify(err));
-}
 ```
 
 
@@ -1606,11 +1401,6 @@ console.log(buf.readIntLE(0, 6).toString(16));
 
 let buf1 = buffer.allocUninitializedFromPool(6);
 buf1.writeIntLE(0x123456789011, 0, 6);
-try {
-  let ref = buf1.readIntLE(2, 5).toString(16);
-} catch (err) {
-  console.log("readIntBE exception: " + JSON.stringify(err));
-}
 ```
 
 ### readUInt8
@@ -1653,11 +1443,6 @@ console.log(buf.readUInt8(1).toString());
 
 let buf1 = buffer.allocUninitializedFromPool(4);
 buf1.writeUInt8(0x42);
-try {
-  let ref = buf1.readUInt8(4).toString(16);
-} catch (err) {
-  console.log("readUInt8 exception: " + JSON.stringify(err));
-}
 ```
 
 ### readUInt16BE
@@ -1700,11 +1485,6 @@ console.log(buf.readUInt16BE(1).toString(16));
 
 let buf1 = buffer.allocUninitializedFromPool(4);
 buf1.writeUInt16BE(0x1234, 0);
-try {
-  let ref = buf1.readUInt16BE(3).toString(16);
-} catch (err) {
-  console.log("readUInt16BE exception: " + JSON.stringify(err));
-}
 ```
 
 ### readUInt16LE
@@ -1747,11 +1527,6 @@ console.log(buf.readUInt16LE(1).toString(16));
 
 let buf1 = buffer.allocUninitializedFromPool(4);
 buf1.writeUInt16LE(0x1234, 0);
-try {
-  let ref = buf1.readUInt16LE(3).toString(16);
-} catch (err) {
-  console.log("readUInt16LE exception: " + JSON.stringify(err));
-}
 ```
 
 ### readUInt32BE
@@ -1793,11 +1568,6 @@ console.log(buf.readUInt32BE(0).toString(16));
 
 let buf1 = buffer.allocUninitializedFromPool(4);
 buf1.writeUInt32BE(0x12345678, 0);
-try {
-  let ref = buf1.readUInt32BE(1).toString(16);
-} catch (err) {
-  console.log("readUInt32BE exception: " + JSON.stringify(err));
-}
 ```
 
 ### readUInt32LE
@@ -1839,11 +1609,6 @@ console.log(buf.readUInt32LE(0).toString(16));
 
 let buf1 = buffer.allocUninitializedFromPool(4);
 buf1.writeUInt32LE(0x12345678, 0);
-try {
-  let ref = buf1.readUInt32LE(1).toString(16);
-} catch (err) {
-  console.log("readUInt32LE exception: " + JSON.stringify(err));
-}
 ```
 
 ### readUIntBE
@@ -1886,11 +1651,6 @@ console.log(buf.readUIntBE(0, 6).toString(16));
 
 let buf1 = buffer.allocUninitializedFromPool(4);
 buf1.writeUIntBE(0x13141516, 0, 4);
-try {
-  let ref = buf1.readUIntBE(2, 3).toString(16);
-} catch (err) {
-  console.log("readUIntBE exception: " + JSON.stringify(err));
-}
 ```
 
 ### readUIntLE
@@ -1933,11 +1693,6 @@ console.log(buf.readUIntLE(0, 6).toString(16));
 
 let buf1 = buffer.allocUninitializedFromPool(4);
 buf1.writeUIntLE(0x13141516, 0, 4);
-try {
-  let ref = buf1.readUIntLE(2, 3).toString(16);
-} catch (err) {
-  console.log("readUIntLE exception: " + JSON.stringify(err));
-}
 ```
 
 ### subarray
@@ -2009,13 +1764,6 @@ console.log(buf1.toString('hex'));	// 打印: 0102030405060708
 
 buf1.swap16();
 console.log(buf1.toString('hex'));	// 打印: 0201040306050807
-
-let buf2 = buffer.from("132");
-try {
-  buf2.swap16();
-} catch (err) {
-  console.log("swap16 exception: " + JSON.stringify(err));
-}
 ```
 
 ### swap32
@@ -2051,13 +1799,6 @@ console.log(buf1.toString('hex'));	// 打印: 0102030405060708
 
 buf1.swap32();
 console.log(buf1.toString('hex'));	// 打印: 0403020108070605
-
-let buf2 = buffer.from("132");
-try {
-  buf2.swap32();
-} catch (err) {
-  console.log("swap32 exception: " + JSON.stringify(err));
-}
 ```
 
 ### swap64
@@ -2092,13 +1833,6 @@ let buf1 = buffer.from([0x1, 0x2, 0x3, 0x4, 0x5, 0x6, 0x7, 0x8]);
 console.log(buf1.toString('hex'));	// 打印: 0102030405060708
 buf1.swap64();
 console.log(buf1.toString('hex'));	// 打印: 0807060504030201
-
-let buf2 = buffer.from("1234567");
-try {
-  buf2.swap64();
-} catch (err) {
-  console.log("swap64 exception: " + JSON.stringify(err));
-}
 ```
 
 ### toJSON
@@ -2160,13 +1894,6 @@ for (let i = 0; i < 26; i++) {
 }
 console.log(buf1.toString('utf-8'));
 // 打印: abcdefghijklmnopqrstuvwxyz
-
-let buf2 = buffer.from("abc");
-try {
-  let str = buf2.toString("utf9");
-} catch (err) {
-  console.log("toString exception: " + JSON.stringify(err));
-}
 ```
 
 ### values
@@ -2196,7 +1923,7 @@ for (let value of buf1.values()) {
 
 ### write
 
-write(str: string, offset?: number, length?: number, encoding?: BufferEncoding): number
+write(str: string, offset?: number, length?: number, encoding?: string): number
 
 从buf的offset偏移写入指定编码的字符串str,写入的字节长度为length
 
@@ -2209,7 +1936,7 @@ write(str: string, offset?: number, length?: number, encoding?: BufferEncoding):
 | str | string | 是 | 要写入Buffer的字符串。 |
 | offset | number | 否 | 偏移量。 默认值: 0。 |
 | length | number | 否 | 最大字节长度。 默认值: (buf.length - offset)。|
-| encoding | BufferEncoding | 否 | 字符编码。 默认值: 'utf-8'。 |
+| encoding | string | 否 | 字符编码。 默认值: 'utf-8'。 |
 
 
 **返回值：**
@@ -2238,27 +1965,6 @@ console.log(`${len} bytes: ${buf.toString('utf-8', 0, len)}`);
 
 let buffer1 = buffer.alloc(10);
 let length = buffer1.write('abcd', 8);
-
-let buf1 = buffer.alloc(8);
-try {
-  let offset1 = buf1.write("abcde", "utf9");
-} catch (err) {
-  console.log("write exception: " + JSON.stringify(err));
-}
-
-let buf2 = buffer.alloc(8);
-try {
-  let offset2 = buf2.write(10);
-} catch (err) {
-  console.log("write exception: " + JSON.stringify(err));
-}
-
-let buf3 = buffer.alloc(8);
-try {
-  let offset3 = buf3.write("abcde", -1);
-} catch (err) {
-  console.log("write exception: " + JSON.stringify(err));
-}
 ```
 
 ### writeBigInt64BE
@@ -2298,13 +2004,6 @@ import buffer from '@ohos.buffer';
 
 let buf = buffer.allocUninitializedFromPool(8);
 buf.writeBigInt64BE(0x0102030405060708n, 0);
-
-let buf1 = buffer.allocUninitializedFromPool(8);
-try {
-  let ref = buf1.writeBigInt64BE(0x0102030405060708n, 1);
-} catch (err) {
-  console.log("writeBigInt64BE exception: " + JSON.stringify(err));
-}
 ```
 
 ### writeBigInt64LE
@@ -2344,13 +2043,6 @@ import buffer from '@ohos.buffer';
 
 let buf = buffer.allocUninitializedFromPool(8);
 buf.writeBigInt64LE(0x0102030405060708n, 0);
-
-let buf1 = buffer.allocUninitializedFromPool(8);
-try {
-  let ref = buf1.writeBigInt64LE(0x0102030405060708n, 1);
-} catch (err) {
-  console.log("writeBigInt64LE exception: " + JSON.stringify(err));
-}
 ```
 
 ### writeBigUInt64BE
@@ -2390,13 +2082,6 @@ import buffer from '@ohos.buffer';
 
 let buf = buffer.allocUninitializedFromPool(8);
 buf.writeBigUInt64BE(0xdecafafecacefaden, 0);
-
-let buf1 = buffer.allocUninitializedFromPool(8);
-try {
-  let ref = buf1.writeBigUInt64BE(0xdecafafecacefaden, 1);
-} catch (err) {
-  console.log("writeBigUInt64BE exception: " + JSON.stringify(err));
-}
 ```
 
 ### writeBigUInt64LE
@@ -2436,13 +2121,6 @@ import buffer from '@ohos.buffer';
 
 let buf = buffer.allocUninitializedFromPool(8);
 buf.writeBigUInt64LE(0xdecafafecacefaden, 0);
-
-let buf1 = buffer.allocUninitializedFromPool(8);
-try {
-  let ref = buf1.writeBigUInt64LE(0xdecafafecacefaden, 1);
-} catch (err) {
-  console.log("writeBigUInt64LE exception: " + JSON.stringify(err));
-}
 ```
 
 ### writeDoubleBE
@@ -2482,13 +2160,6 @@ import buffer from '@ohos.buffer';
 
 let buf = buffer.allocUninitializedFromPool(8);
 buf.writeDoubleBE(123.456, 0);
-
-let buf1 = buffer.allocUninitializedFromPool(8);
-try {
-  let ref = buf1.writeDoubleBE(123.456, 1);
-} catch (err) {
-  console.log("writeDoubleBE exception: " + JSON.stringify(err));
-}
 ```
 
 ### writeDoubleLE
@@ -2528,13 +2199,6 @@ import buffer from '@ohos.buffer';
 
 let buf = buffer.allocUninitializedFromPool(8);
 buf.writeDoubleLE(123.456, 0);
-
-let buf1 = buffer.allocUninitializedFromPool(8);
-try {
-  let ref = buf1.writeDoubleLE(123.456, 1);
-} catch (err) {
-  console.log("writeDoubleLE exception: " + JSON.stringify(err));
-}
 ```
 
 ### writeFloatBE
@@ -2574,13 +2238,6 @@ import buffer from '@ohos.buffer';
 
 let buf = buffer.allocUninitializedFromPool(8);
 buf.writeFloatBE(0xcafebabe, 0);
-
-let buf1 = buffer.allocUninitializedFromPool(4);
-try {
-  let ref = buf1.writeFloatBE(0xcabcbcbc, 5);
-} catch (err) {
-  console.log("writeFloatBE exception: " + JSON.stringify(err));
-}
 ```
 
 
@@ -2621,13 +2278,6 @@ import buffer from '@ohos.buffer';
 
 let buf = buffer.allocUninitializedFromPool(8);
 buf.writeFloatLE(0xcafebabe, 0);
-
-let buf1 = buffer.allocUninitializedFromPool(4);
-try {
-  let ref = buf1.writeFloatLE(0xcabcbcbc, 5);
-} catch (err) {
-  console.log("writeFloatLE exception: " + JSON.stringify(err));
-}
 ```
 
 ### writeInt8
@@ -2668,13 +2318,6 @@ import buffer from '@ohos.buffer';
 let buf = buffer.allocUninitializedFromPool(2);
 buf.writeInt8(2, 0);
 buf.writeInt8(-2, 1);
-
-let buf1 = buffer.allocUninitializedFromPool(2);
-try {
-  let ref = buf1.writeInt8(2, -1);
-} catch (err) {
-  console.log("writeInt8 exception: " + JSON.stringify(err));
-}
 ```
 
 
@@ -2715,13 +2358,6 @@ import buffer from '@ohos.buffer';
 
 let buf = buffer.allocUninitializedFromPool(2);
 buf.writeInt16BE(0x0102, 0);
-
-let buf1 = buffer.alloc(2);
-try {
-  let ref = buf1.writeInt16BE(0x7bca, -1);
-} catch (err) {
-  console.log("writeInt16BE exception: " + JSON.stringify(err));
-}
 ```
 
 
@@ -2762,13 +2398,6 @@ import buffer from '@ohos.buffer';
 
 let buf = buffer.allocUninitializedFromPool(2);
 buf.writeInt16LE(0x0304, 0);
-
-let buf1 = buffer.alloc(2);
-try {
-  let ref = buf1.writeInt16LE(0x7bca, -1);
-} catch (err) {
-  console.log("writeInt16LE exception: " + JSON.stringify(err));
-}
 ```
 
 ### writeInt32BE
@@ -2808,13 +2437,6 @@ import buffer from '@ohos.buffer';
 
 let buf = buffer.allocUninitializedFromPool(4);
 buf.writeInt32BE(0x01020304, 0);
-
-let buf1 = buffer.alloc(4);
-try {
-  let ref = buf1.writeInt32BE(0x12345678, -1);
-} catch (err) {
-  console.log("writeInt32BE exception: " + JSON.stringify(err));
-}
 ```
 
 
@@ -2855,13 +2477,6 @@ import buffer from '@ohos.buffer';
 
 let buf = buffer.allocUninitializedFromPool(4);
 buf.writeInt32LE(0x05060708, 0);
-
-let buf1 = buffer.alloc(4);
-try {
-  let ref = buf1.writeInt32LE(0x12345678, -1);
-} catch (err) {
-  console.log("writeInt32LE exception: " + JSON.stringify(err));
-}
 ```
 
 ### writeIntBE
@@ -2902,13 +2517,6 @@ import buffer from '@ohos.buffer';
 
 let buf = buffer.allocUninitializedFromPool(6);
 buf.writeIntBE(0x1234567890ab, 0, 6);
-
-let buf1 = buffer.allocUninitializedFromPool(6);
-try {
-  let ref = buf1.writeIntBE(0x1234567890ab, 1, 6);
-} catch (err) {
-  console.log("writeIntBE exception: " + JSON.stringify(err));
-}
 ```
 
 
@@ -2950,13 +2558,6 @@ import buffer from '@ohos.buffer';
 
 let buf = buffer.allocUninitializedFromPool(6);
 buf.writeIntLE(0x1234567890ab, 0, 6);
-
-let buf1 = buffer.allocUninitializedFromPool(6);
-try {
-  let ref = buf1.writeIntLE(0x1234567890ab, 1, 6);
-} catch (err) {
-  console.log("writeIntLE exception: " + JSON.stringify(err));
-}
 ```
 
 ### writeUInt8
@@ -2999,13 +2600,6 @@ buf.writeUInt8(0x3, 0);
 buf.writeUInt8(0x4, 1);
 buf.writeUInt8(0x23, 2);
 buf.writeUInt8(0x42, 3);
-
-let buf1 = buffer.allocUninitializedFromPool(4);
-try {
-  let ref = buf1.writeUInt8(0x42, -1);
-} catch (err) {
-  console.log("writeUInt8 exception: " + JSON.stringify(err));
-}
 ```
 
 ### writeUInt16BE
@@ -3046,13 +2640,6 @@ import buffer from '@ohos.buffer';
 let buf = buffer.allocUninitializedFromPool(4);
 buf.writeUInt16BE(0xdead, 0);
 buf.writeUInt16BE(0xbeef, 2);
-
-let buf1 = buffer.allocUninitializedFromPool(4);
-try {
-  let ref = buf1.writeUInt16BE(0xdeadfc, 0);
-} catch (err) {
-  console.log("writeUInt16BE exception: " + JSON.stringify(err));
-}
 ```
 
 ### writeUInt16LE
@@ -3093,13 +2680,6 @@ import buffer from '@ohos.buffer';
 let buf = buffer.allocUninitializedFromPool(4);
 buf.writeUInt16LE(0xdead, 0);
 buf.writeUInt16LE(0xbeef, 2);
-
-let buf1 = buffer.allocUninitializedFromPool(4);
-try {
-  let ref = buf1.writeUInt16LE(0xdeadfc, 0);
-} catch (err) {
-  console.log("writeUInt16LE exception: " + JSON.stringify(err));
-}
 ```
 
 ### writeUInt32BE
@@ -3139,13 +2719,6 @@ import buffer from '@ohos.buffer';
 
 let buf = buffer.allocUninitializedFromPool(4);
 buf.writeUInt32BE(0xfeedface, 0);
-
-let buf1 = buffer.allocUninitializedFromPool(4);
-try {
-  let ref = buf1.writeUInt32BE(0xfeedface, -1);
-} catch (err) {
-  console.log("writeUInt32BE exception: " + JSON.stringify(err));
-}
 ```
 
 ### writeUInt32LE
@@ -3185,13 +2758,6 @@ import buffer from '@ohos.buffer';
 
 let buf = buffer.allocUninitializedFromPool(4);
 buf.writeUInt32LE(0xfeedface, 0);
-
-let buf1 = buffer.allocUninitializedFromPool(4);
-try {
-  let ref = buf1.writeUInt32LE(0xfeedface, -1);
-} catch (err) {
-  console.log("writeUInt32LE exception: " + JSON.stringify(err));
-}
 ```
 
 ### writeUIntBE
@@ -3232,13 +2798,6 @@ import buffer from '@ohos.buffer';
 
 let buf = buffer.allocUninitializedFromPool(6);
 buf.writeUIntBE(0x1234567890ab, 0, 6);
-
-let buf1 = buffer.allocUninitializedFromPool(4);
-try {
-  let ref = buf1.writeUIntBE(0x13141516, 0, 1);
-} catch (err) {
-  console.log("writeUIntBE exception: " + JSON.stringify(err));
-}
 ```
 
 ### writeUIntLE
@@ -3279,13 +2838,6 @@ import buffer from '@ohos.buffer';
 
 let buf = buffer.allocUninitializedFromPool(6);
 buf.writeUIntLE(0x1234567890ab, 0, 6);
-
-let buf1 = buffer.allocUninitializedFromPool(4);
-try {
-  let ref = buf1.writeUIntLE(0x13141516, 0, 1);
-} catch (err) {
-  console.log("writeUIntLE exception: " + JSON.stringify(err));
-}
 ```
 
 ### transcode
@@ -3318,25 +2870,6 @@ import buffer from '@ohos.buffer';
 let buf = buffer.alloc(50);
 let newBuf = buffer.transcode(buffer.from('€'), 'utf-8', 'ascii');
 console.log(newBuf.toString('ascii'));
-
-try {
-  let buf1 = buffer.transcode(10, "utf8", "ucs2");
-} catch (err) {
-  console.log("transcode exception: " + JSON.stringify(err));
-}
-
-let buf2 = buffer.from("测试");
-try {
-  let buf3 = buffer.transcode(buf2, 0, "ucs2");
-} catch (err) {
-  console.log("transcode exception: " + JSON.stringify(err));
-}
-
-try {
-  let buf3 = buffer.transcode(buf2, "utf8", 0);
-} catch (err) {
-  console.log("transcode exception: " + JSON.stringify(err));
-}
 ```
 
 ## Blob
@@ -3367,24 +2900,12 @@ Blob的构造函数。
 
 
 **示例：**
-  ```ts
-  import buffer from '@ohos.buffer';
+```ts
+import buffer from '@ohos.buffer';
 
-  let blob = new buffer.Blob(['a', 'b', 'c']);
-  let blob1 = new buffer.Blob(['a', 'b', 'c'], {endings:'native', type: 'MIME'});
-
-  try {
-    let blob1 = new buffer.Blob(["a", "b", "c"], 10);
-  } catch (err) {
-    console.log("Blob constructor exception: " + JSON.stringify(err));
-  }
-
-  try {
-    let blob2 = new buffer.Blob("abc", { type: "new type", endings: "transparent" });
-  } catch (err) {
-    console.log("Blob constructor exception: " + JSON.stringify(err));
-  }
-  ```
+let blob = new buffer.Blob(['a', 'b', 'c']);
+let blob1 = new buffer.Blob(['a', 'b', 'c'], {endings:'native', type: 'MIME'});
+```
 
 ### encode
 
@@ -3400,14 +2921,14 @@ arrayBuffer(): Promise&lt;ArrayBuffer&gt;
 | Promise&lt;ArrayBuffer&gt; | 返回包含Blob数据的ArrayBuffer的Promise。 |
 
 **示例：**
-  ```ts
-  let blob = new buffer.Blob(['a', 'b', 'c']);
-  let pro = blob.arrayBuffer();
-  pro.then(val => {
-    let uintarr = new Uint8Array(val);
-    console.log(uintarr.toString());
-  });
-  ```
+```ts
+let blob = new buffer.Blob(['a', 'b', 'c']);
+let pro = blob.arrayBuffer();
+pro.then(val => {
+  let uintarr = new Uint8Array(val);
+  console.log(uintarr.toString());
+});
+```
 ### slice
 
 slice(start?: number, end?: number, type?: string): Blob
@@ -3430,11 +2951,11 @@ slice(start?: number, end?: number, type?: string): Blob
 | Blob | 新的Blob实例对象。 |
 
 **示例：**
-  ```ts
-  let blob = new buffer.Blob(['a', 'b', 'c']);
-  let blob2 = blob.slice(0, 2);
-  let blob3 = blob.slice(0, 2, "MIME");
-  ```
+```ts
+let blob = new buffer.Blob(['a', 'b', 'c']);
+let blob2 = blob.slice(0, 2);
+let blob3 = blob.slice(0, 2, "MIME");
+```
 
 ### text
 
@@ -3450,10 +2971,10 @@ text(): Promise&lt;string&gt;
 | Promise&lt;string&gt; | 包含以UTF8编码的文本的Promise。 |
 
 **示例：**
-  ```ts
-  let blob = new buffer.Blob(['a', 'b', 'c']);
-  let pro = blob.text();
-  pro.then(val => {
-      console.log(val)
-  });
-  ```
+```ts
+let blob = new buffer.Blob(['a', 'b', 'c']);
+let pro = blob.text();
+pro.then(val => {
+    console.log(val)
+});
+```

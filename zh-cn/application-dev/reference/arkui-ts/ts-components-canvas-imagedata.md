@@ -14,7 +14,7 @@ ImageData对象可以存储canvas渲染的像素数据。
 | -------- | -------- | -------- |
 | width | number | 矩形区域实际像素宽度。 |
 | height | number | 矩形区域实际像素高度。 |
-| data | Uint8ClampedArray | 一维数组，保存了相应的颜色数据，数据值范围为0到255。 |
+| data | Uint8ClampedArray | 一维数组，保存了相应的颜色数据，数据值范围为0到255。</br> **说明：** 需要注意的是，width和height是vp单位表示的，而data是以px为单位的二维数组转换得到的一维数组，因此需要使用vp2px接口得到原二维data数组的实际width和height。 |
 
 **示例：**
 

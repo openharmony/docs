@@ -32,6 +32,7 @@
 - 安全
   - [AccessToken错误码](errorcode-access-token.md)
   - [HUKS错误码](errorcode-huks.md)
+  - [用户认证错误码](errorcode-useriam.md)
 - 数据管理
   - [关系型数据库错误码](errorcode-data-rdb.md)
   - [数据共享错误码](errorcode-datashare.md)
