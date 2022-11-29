@@ -7,7 +7,7 @@ The following figure shows the context structure of the Startup subsystem.
 
   **Figure 1** Context structure of the Startup subsystem
 
-  ![context-structure-of-the-startup-subsystem](figure/context-structure-of-the-startup-subsystem.png)
+  ![context-structure-of-the-Startup-subsystem](figure/context-structure-of-the-Startup-subsystem.png)
 
 When the system is powered on, the kernel loads and starts services and applications as follows:
 
@@ -281,10 +281,11 @@ On each development board, you need to partition the memory to store the precedi
          ```
          The key variables in the code are as follows:
 
-             **bus**: a string that saves the path of the bus connected to the current device.
-             **parent**: a string that stores the device path obtained from **syspath** in the uevent message.
-             **links**: a pointer to the memory that stores the soft link path.
-             **bootDevice**: a string that stores the value of **default_boot_device** in **bootargs**
+         - **bus**: a string that saves the path of the bus connected to the current device.
+         - **parent**: a string that stores the device path obtained from **syspath** in the uevent message.
+         - **links**: a pointer to the memory that stores the soft link path.
+         - **bootDevice**: a string that stores the value of **default_boot_device** in **bootargs**
+
          According to the code, the corresponding soft link is created for the device only when the type of the connected bus is **platform**. The path of the soft link is as follows:
          ```
          /dev/block/platform/soc/10100000.himci.eMMC/by-name
@@ -415,7 +416,7 @@ Currently, OpenHarmony supports booting from partitions A and B (active and stan
   }
   ```
 
-- Development Example
+- Development example
 
   The following uses the rk3568 platform as an example to illustrate how to change from default partition booting to partition A/B booting.
 
@@ -457,7 +458,7 @@ Currently, OpenHarmony supports booting from partitions A and B (active and stan
 
           2) Run the **partitionslot getslot** command to check the configured slot.
 
-          ![View Slot](figures/ABStartup_6.png)
+          ![View Slot](figure/ABStartup_6.png)
 
           If **current slot** is **2**, the slot of the active partition is successfully set to **2**.
 

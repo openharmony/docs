@@ -132,7 +132,7 @@ The trace data of **StartAsyncTrace** and **FinishAsyncTrace** is matched based 
 
 | API                                               | Function |Parameter Description |
 | ------------------------------------------------------------ | --------- |--------- |
-| void CountTrace(uint64_t label, const std::string& name, int64_t); | Count trace.|**label**: trace category.<br>**name**: trace name displayed in the IDE.|
+| void CountTrace(uint64_t label, const std::string& name, int64_t); | Performs a count trace.|**label**: trace category.<br>**name**: trace name displayed in the IDE.|
 
 
 ## How to Develop

@@ -175,7 +175,7 @@ bootchart and bootevent are available only for the standard system, and begetctl
 
   Expected result:
 
-      A **bootchart.pdf** file is generated in the **bootchart-master** directory.
+  A **bootchart.pdf** file is generated in the **bootchart-master** directory.
 
 #### bootevent
 
@@ -189,7 +189,9 @@ bootchart and bootevent are available only for the standard system, and begetctl
     ```json
     bootevents : ["bootevent.xxxbootevent1", "bootevent.xxxbootevent2.xxx"],
     ```
-> **Note:** The configured event must start with **bootevent**.
+> **NOTE**
+> 
+> The configured event must start with **bootevent**.
 
 2. Send the boot events.
 
