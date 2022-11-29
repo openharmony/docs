@@ -8,7 +8,7 @@
 - [KVStoreResultSet](#kvstoreresultset)：提供获取数据库结果集的相关方法，包括查询和移动数据读取位置等。
 - [Query](#query)：使用谓词表示数据库查询，提供创建Query实例、查询数据库中的数据和添加谓词的方法。
 - [SingleKVStore](#singlekvstore)：单版本分布式键值数据库，不对数据所属设备进行区分，提供查询数据和同步数据的方法。
-- [DeviceKVStore](#devicekvstore)：设备协同数据库，继承自[SingleKVStore](#kvstore)，以设备维度对数据进行区分，提供查询数据和同步数据的方法。
+- [DeviceKVStore](#devicekvstore)：设备协同数据库，继承自[SingleKVStore](#singlekvstore)，以设备维度对数据进行区分，提供查询数据和同步数据的方法。
 
 > **说明：** 
 >
@@ -26,10 +26,10 @@ import distributedKVStore from '@ohos.data.distributedKVStore';
 
 **系统能力：** SystemCapability.DistributedDataManager.KVStore.Core
 
-| 名称     | 类型              | 可读 | 可写 | 说明                                                         |
-| ---------- | --------------------- | ---- | ---- | ------------------------------------------------------------ |
-| context    | Context               | 是   | 是   |应用的上下文。 <br>FA模型的应用Context定义见[Context](js-apis-Context.md)。<br>Stage模型的应用Context定义见[Context](js-apis-ability-context.md)。 |
-| bundleName | string                | 是   | 是   | 调用方的包名。                                               |
+| 名称     | 类型              | 必填 | 说明                                                         |
+| ---------- | --------------------- | ---- | ------------------------------------------------------------ |
+| context    | Context               | 是   |应用的上下文。 <br>FA模型的应用Context定义见[Context](js-apis-Context.md)。<br>Stage模型的应用Context定义见[Context](js-apis-ability-context.md)。 |
+| bundleName | string                | 是   | 调用方的包名。                                               |
 
 ## Constants
 
@@ -67,10 +67,10 @@ import distributedKVStore from '@ohos.data.distributedKVStore';
 
 **系统能力：** SystemCapability.DistributedDataManager.KVStore.Core
 
-| 名称  | 类型   |可读   |可写   | 说明                    |
-| ----- | -------   | -----| ------|------------------------ |
-| type | [ValueType](#valuetype) | 是  |  是 |值类型。   |
-| value | Uint8Array \| string \| number \| boolean| 是  |  是 |值。   |
+| 名称  | 类型   |必填  | 说明                    |
+| ----- | -------   |-----|------------------------ |
+| type | [ValueType](#valuetype) | 是|值类型。   |
+| value | Uint8Array \| string \| number \| boolean| 是|值。   |
 
 ## Entry
 
@@ -78,10 +78,10 @@ import distributedKVStore from '@ohos.data.distributedKVStore';
 
 **系统能力：** SystemCapability.DistributedDataManager.KVStore.Core
 
-| 名称  | 类型        | 可读 | 可写 | 说明     |
-| ----- | --------------- | ---- | ---- | -------- |
-| key   | string          | 是   | 是   | 键值。   |
-| value | [Value](#value) | 是   | 是   | 值对象。 |
+| 名称  | 类型        | 必填 | 说明     |
+| ----- | --------------- | ---- | -------- |
+| key   | string          | 是   | 键值。   |
+| value | [Value](#value) | 是   | 值对象。 |
 
 ## ChangeNotification
 
@@ -89,12 +89,12 @@ import distributedKVStore from '@ohos.data.distributedKVStore';
 
 **系统能力：** SystemCapability.DistributedDataManager.KVStore.Core
 
-| 名称          | 类型          | 可读 | 可写 | 说明                     |
-| ------------- | ----------------- | ---- | ---- | ------------------------ |
-| insertEntries | [Entry](#entry)[] | 是   | 是   | 数据添加记录。           |
-| updateEntries | [Entry](#entry)[] | 是   | 是   | 数据更新记录。           |
-| deleteEntries | [Entry](#entry)[] | 是   | 是   | 数据删除记录。           |
-| deviceId      | string            | 是   | 是   | 设备ID，此处为设备UUID。 |
+| 名称          | 类型          | 必填       | 说明                     |
+| ------------- | ----------------- | ---- | ------------------------ |
+| insertEntries | [Entry](#entry)[] | 是   | 数据添加记录。           |
+| updateEntries | [Entry](#entry)[] | 是   | 数据更新记录。           |
+| deleteEntries | [Entry](#entry)[] | 是    | 数据删除记录。           |
+| deviceId      | string            | 是    | 设备ID，此处为设备UUID。 |
 
 ## SyncMode
 
@@ -146,15 +146,15 @@ import distributedKVStore from '@ohos.data.distributedKVStore';
 
 用于提供创建数据库的配置信息。
 
-| 名称          | 类型                        | 可读 | 可写 | 说明                                                         |
-| --------------- | ------------------------------- | ---- | ---- | ------------------------------------------------------------ |
-| createIfMissing | boolean                         | 是   | 是   | 当数据库文件不存在时是否创建数据库，默认创建。 <br>**系统能力：** SystemCapability.DistributedDataManager.KVStore.Core |
-| encrypt         | boolean                         | 是   | 是   | 设置数据库文件是否加密，默认不加密。<br>**系统能力：** SystemCapability.DistributedDataManager.KVStore.Core |
-| backup          | boolean                         | 是   | 是   | 设置数据库文件是否备份，默认备份。 <br>**系统能力：** SystemCapability.DistributedDataManager.KVStore.Core |
-| autoSync        | boolean                         | 是   | 是   | 设置数据库文件是否自动同步，默认不自动同步。<br>**系统能力：** SystemCapability.DistributedDataManager.KVStore.Core<br>**需要权限**： ohos.permission.DISTRIBUTED_DATASYNC |
-| kvStoreType     | [KVStoreType](#kvstoretype)     | 是   | 是   | 设置要创建的数据库类型，默认为多设备协同数据库。<br>**系统能力：** SystemCapability.DistributedDataManager.KVStore.Core |
-| securityLevel   | [SecurityLevel](#securitylevel) | 是   | 是   |设置数据库安全级别。<br>**系统能力：** SystemCapability.DistributedDataManager.KVStore.Core |
-| schema          | [Schema](#schema)               | 是   | 是   | 设置定义存储在数据库中的值，默认不使用Schema。<br>**系统能力：** SystemCapability.DistributedDataManager.KVStore.DistributedKVStore |
+| 名称          | 类型                        | 必填 | 说明                                                         |
+| --------------- | ------------------------------- | ---- | ------------------------------------------------------------ |
+| createIfMissing | boolean                         | 否  | 当数据库文件不存在时是否创建数据库，默认创建。 <br>**系统能力：**SystemCapability.DistributedDataManager.KVStore.Core |
+| encrypt         | boolean                         | 否   | 设置数据库文件是否加密，默认不加密。<br>**系统能力：** SystemCapability.DistributedDataManager.KVStore.Core |
+| backup          | boolean                         | 否   | 设置数据库文件是否备份，默认备份。 <br>**系统能力：** SystemCapability.DistributedDataManager.KVStore.Core |
+| autoSync        | boolean                         | 否   | 设置数据库文件是否自动同步，默认不自动同步。<br>**系统能力：** SystemCapability.DistributedDataManager.KVStore.Core<br>**需要权限**： ohos.permission.DISTRIBUTED_DATASYNC |
+| kvStoreType     | [KVStoreType](#kvstoretype)     | 否   | 设置要创建的数据库类型，默认为多设备协同数据库。<br>**系统能力：** SystemCapability.DistributedDataManager.KVStore.Core |
+| securityLevel   | [SecurityLevel](#securitylevel) | 是   |设置数据库安全级别。<br>**系统能力：** SystemCapability.DistributedDataManager.KVStore.Core |
+| schema          | [Schema](#schema)               | 否   | 设置定义存储在数据库中的值，默认不使用Schema。<br>**系统能力：** SystemCapability.DistributedDataManager.KVStore.DistributedKVStore |
 
 ## Schema
 
@@ -850,7 +850,7 @@ try {
 
 提供获取数据库结果集的相关方法，包括查询和移动数据读取位置等。
 
-在调用KVStoreResultSet的方法前，需要先通过[getKVStore](#getkvstore)构建一个KvStore(SingleKVStore或者DeviceKVStore)实例。
+在调用KVStoreResultSet的方法前，需要先通过[getKVStore](#getkvstore)构建一个SingleKVStore或者DeviceKVStore实例。
 
 ### getCount
 
@@ -5651,132 +5651,6 @@ try {
     console.log('Succeeded in getting entries');
 } catch (e) {
     console.error(`Fail to get entries.code is ${e.code},message is ${e.message}`);
-}
-```
-
-### getEntries
-
-getEntries(keyPrefix: string, callback: AsyncCallback&lt;Entry[]&gt;): void
-
-获取匹配本设备指定键前缀的所有键值对，使用callback异步回调。
-
-**系统能力：** SystemCapability.DistributedDataManager.KVStore.Core
-
-**参数：**
-
-| 参数名    | 类型                                   | 必填 | 说明                                     |
-| --------- | -------------------------------------- | ---- | ---------------------------------------- |
-| keyPrefix | string                                 | 是   | 表示要匹配的键前缀。                     |
-| callback  | AsyncCallback&lt;[Entry](#entry)[]&gt; | 是   | 回调函数。返回匹配指定前缀的键值对列表。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[分布式键值数据库错误码](../errorcodes/errorcode-distributedKVStore.md)。
-
-| **错误码ID** | **错误信息**                           |
-| ------------ | -------------------------------------- |
-| 15100003     | Database corrupted.                    |
-| 15100005     | Database or result set already closed. |
-
-**示例：**
-
-```js
-let kvStore;
-try {
-    let entries = [];
-    for (var i = 0; i < 10; i++) {
-        var key = 'batch_test_string_key';
-        var entry = {
-            key: key + i,
-            value: {
-                type: distributedKVStore.ValueType.STRING,
-                value: 'batch_test_string_value'
-            }
-        }
-        entries.push(entry);
-    }
-    console.log(`entries: ${entries}`);
-    kvStore.putBatch(entries, async function (err, data) {
-        if (err != undefined) {
-            console.error(`Fail to put Batch.code is ${err.code},message is ${err.message}`);
-            return;
-        }
-        console.log('Succeeded in putting Batch');
-        kvStore.getEntries('batch_test_string_key', function (err, entries) {
-            if (err != undefined) {
-                console.error(`Fail to get Entries.code is ${err.code},message is ${err.message}`);
-                return;
-            }
-            console.log('Succeeded in getting Entries');
-            console.log(`entries.length: ${entries.length}`);
-            console.log(`entries[0]: ${entries[0]}`);
-        });
-    });
-} catch (e) {
-    console.error(`An unexpected error occurred.code is ${e.code},message is ${e.message} `);
-}
-```
-
-### getEntries
-
-getEntries(keyPrefix: string): Promise&lt;Entry[]&gt;
-
-获取匹配本设备指定键前缀的所有键值对，使用Promise异步回调。
-
-**系统能力：** SystemCapability.DistributedDataManager.KVStore.Core
-
-**参数：**
-
-| 参数名    | 类型   | 必填 | 说明                 |
-| --------- | ------ | ---- | -------------------- |
-| keyPrefix | string | 是   | 表示要匹配的键前缀。 |
-
-**返回值：**
-
-| 类型                             | 说明                                        |
-| -------------------------------- | ------------------------------------------- |
-| Promise&lt;[Entry](#entry)[]&gt; | Promise对象。返回匹配指定前缀的键值对列表。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[分布式键值数据库错误码](../errorcodes/errorcode-distributedKVStore.md)。
-
-| **错误码ID** | **错误信息**                           |
-| ------------ | -------------------------------------- |
-| 15100003     | Database corrupted.                    |
-| 15100005     | Database or result set already closed. |
-
-**示例：**
-
-```js
-let kvStore;
-try {
-    let entries = [];
-    for (var i = 0; i < 10; i++) {
-        var key = 'batch_test_string_key';
-        var entry = {
-            key: key + i,
-            value: {
-                type: distributedKVStore.ValueType.STRING,
-                value: 'batch_test_string_value'
-            }
-        }
-        entries.push(entry);
-    }
-    console.log(`entries: ${entries}`);
-    kvStore.putBatch(entries).then(async (entries) => {
-        console.log('Succeeded in putting Batch');
-        kvStore.getEntries('batch_test_string_key').then((entries) => {
-            console.log('Succeeded in getting Entries');
-            console.log(`PutBatch ${entries}`);
-        }).catch((err) => {
-            console.error(`Fail to get Entries.code is ${err.code},message is ${err.message}`);
-        });
-    }).catch((err) => {
-        console.error(`Fail to put Batch.code is ${err.code},message is ${err.message}`);
-    });
-} catch (e) {
-    console.error(`An unexpected error occurred.code is ${e.code},message is ${e.message} `);
 }
 ```
 
