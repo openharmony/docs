@@ -13,4 +13,4 @@ HUAWEI DevEco Studio For OpenHarmony (DevEco Studio for short) is a one-stop int
 - **One-stop information acquisition**: A one-stop information acquisition platform that takes into account the developer journey of learning, development, and help seeking, in order to facilitate developer activities.
 - **Efficient code debugging**: Various debugging capabilities such as TS, JS, and C/C++ code breakpoint setting, single-step execution, and variable viewing, improving the efficiency of analyzing application/service issues.
 
-For more information, see [DevEco Studio (OpenHarmony) User Guide](https://developer.harmonyos.com/en/docs/documentation/doc-guides/ohos-deveco-studio-overview-0000001263280421).
+For more information, see [DevEco Studio User Guide (OpenHarmony)](https://developer.harmonyos.com/en/docs/documentation/doc-guides/ohos-deveco-studio-overview-0000001263280421).
