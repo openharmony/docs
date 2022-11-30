@@ -440,7 +440,7 @@ config.highContrastText.off((data) => {
 
 **系统能力**：以下各项对应的系统能力均为 SystemCapability.BarrierFree.Accessibility.Core
 
-| 名称 | 描述 |
+| 名称 | 说明 |
 | -------- | -------- |
 | Normal | 表示正常类型。 |
 | Protanomaly | 表示红色弱视类型。 |

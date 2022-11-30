@@ -4,7 +4,7 @@ wantConstant模块提供want中操作want常数和解释Flags说明的能力。
 
 > **说明：**
 > 
-> 本模块首批接口从API version 6开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+> 本模块首批接口从API version 9开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
 ## 导入模块
 
@@ -18,7 +18,7 @@ want操作的常数。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityBase
 
-| 名称      | 值          | 描述     |
+| 名称      | 值          | 说明     |
 | ------------ | ------------------ | ---------------------- |
 | ACTION_HOME                                 | ohos.want.action.home                    | 指示返回原点的操作。                                        |
 | ACTION_DIAL                                 | ohos.want.action.dial                    | 指示启动显示小键盘的页面功能的操作                           |
@@ -61,7 +61,7 @@ want实体的常数。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityBase
 
-| 名称      | 值          | 描述     |
+| 名称      | 值          | 说明     |
 | ------------ | ------------------ | ---------------------- |
 | ENTITY_DEFAULT                             | entity.system.default                    | 指示默认实体，如果未指定该实体，则使用该实体。        |
 | ENTITY_HOME                                | entity.system.home                       | 指示主屏幕实体。                                    |
@@ -76,7 +76,7 @@ Flags说明。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityBase
 
-| 名称                                 | 值       | 描述                                                         |
+| 名称                                 | 值       | 说明                                                         |
 | ------------------------------------ | ---------- | ------------------------------------------------------------ |
 | FLAG_AUTH_READ_URI_PERMISSION        | 0x00000001 | 指示对URI执行读取操作的授权。                                  |
 | FLAG_AUTH_WRITE_URI_PERMISSION       | 0x00000002 | 指示对URI执行写入操作的授权。                                  |

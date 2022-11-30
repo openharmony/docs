@@ -13,7 +13,7 @@ ExtensionContext模块提供访问特定Extension的资源的能力，对于拓�
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
-| 名称 | 参数类型 | 可读 | 可写 | 说明 | 
+| 名称 | 类型 | 可读 | 可写 | 说明 | 
 | -------- | -------- | -------- | -------- | -------- |
 | currentHapModuleInfo | HapModuleInfo | 是 | 否 | 所属Hap包的信息。<br>(详见SDK目录下的 `api\bundle\hapModuleInfo.d.ts`)  |
 | config   | Configuration | 是 | 否 | 所属Module的配置信息。<br>(详见SDK目录下的 `api\@ohos.application.Configuration.d.ts`) |

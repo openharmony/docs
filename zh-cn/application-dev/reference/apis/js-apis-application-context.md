@@ -26,7 +26,7 @@ class MainAbility extends Ability {
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
 
-| 名称 | 参数类型 | 可读 | 可写 | 说明 |
+| 名称 | 类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
 | resourceManager | resmgr.ResourceManager; | 是 | 否 | ResourceManager对象。 |
 | applicationInfo | ApplicationInfo | 是 | 否 | 当前应用信息。 |
@@ -155,7 +155,7 @@ let applicationContext = this.context.getApplicationContext();
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
 
-| 变量            | 值    | 描述            |
+| 名称            | 值    | 说明            |
 | --------------- | ---- | --------------- |
 | EL1             | 0    | 设备级加密区。   |
 | EL2             | 1    | 用户凭据加密区。默认为EL2。 |
