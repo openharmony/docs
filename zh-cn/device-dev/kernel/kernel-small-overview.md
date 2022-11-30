@@ -171,7 +171,7 @@ OpenHarmony LiteOS-A内核支持[Hi3516DV300](https://gitee.com/openharmony/docs
 
 ### 准备<a name="section1579912573329"></a>
 
-开发者需要在Linux上[搭建编译环境](https://gitee.com/openharmony/docs/blob/master/zh-cn/device-dev/quick-start/quickstart-lite-env-setup.md)。
+开发者需要在Linux上[搭建编译环境](https://gitee.com/openharmony/docs/blob/master/zh-cn/device-dev/quick-start/quickstart-pkg-prepare.md)。
 
 
 ### 获取源码<a name="section11443189655"></a>
