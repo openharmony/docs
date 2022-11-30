@@ -202,7 +202,7 @@ struct TimerComponent {
            3. Use the parameters provided by the **TimerComponent** constructor to update the values of member variables.
            4. Execute the **aboutToAppear** function of **TimerComponent**.
            5. Execute the **build** function of **TimerComponent** to create the corresponding UI description structure.
-   3. Create a preset **<Button>** component and set the corresponding content.
+   3. Create a preset **\<Button>** component and set the corresponding content.
 
 **Status update:**
 

@@ -92,7 +92,7 @@ In the food component table on the **FoodDetail** page, each food group is label
 
 In addition to drawing basic geometric shapes, you can also use the **\<Path>** component to draw a custom path. The following describes how to draw an application logo.
 
-1. Create an eTS page **Logo.ets** in the **pages** folder.
+1. Create a page **Logo.ets** in the **pages** folder.
 
    ![drawing-feature1](figures/drawing-feature1.png)
 
