@@ -122,7 +122,7 @@ You must install the software packages required for build. The command is as fol
   # export PATH=~/.local/bin:$PATH
   ```
 
-  ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br>The hb tool will be installed during the installation of ohos-build. If the hb installation fails, see [Installing hb](../../device-dev/quick-start/quickstart-pkg-install-tool.md#installing-hb).
+  ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br>The hb tool will be installed during the installation of ohos-build. If the hb installation fails, see [Installing hb](../../device-dev/quick-start/quickstart-pkg-install-tool.md).
 
 
 ## Configuration Rules
