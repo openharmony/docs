@@ -43,7 +43,7 @@ updateConfiguration(config: Configuration, callback: AsyncCallback\<void>): void
 
 | 名称        | 类型                                       | 必填   | 描述             |
 | --------- | ---------------------------------------- | ---- | -------------- |
-| config    | Configuration                            | 是    | 新的配置项。 |
+| config    | [Configuration](js-apis-configuration.md)   | 是    | 新的配置项。 |
 | callback  | AsyncCallback\<void>                   | 是    | 被指定的回调方法。      |
 
 **示例**：
@@ -74,7 +74,7 @@ updateConfiguration(config: Configuration): Promise\<void>
 
 | 名称        | 类型                                       | 必填   | 描述             |
 | --------- | ---------------------------------------- | ---- | -------------- |
-| config    | Configuration                            | 是    | 新的配置项。 |
+| config    | [Configuration](js-apis-configuration.md)   | 是    | 新的配置项。 |
 
 **返回值：**
 

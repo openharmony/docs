@@ -88,7 +88,7 @@ verifyPermission(permission: string, options: PermissionOptions, callback: Async
 | 名称         | 类型                                      | 必填   | 描述                   |
 | ---------- | --------------------------------------- | ---- | -------------------- |
 | permission | string                                  | 是    | 指定权限的名称。             |
-| options    | [PermissionOptions](#permissionoptions) | 是    | 权限选项。                |
+| options    | [PermissionOptions](#permissionoptions7) | 是    | 权限选项。                |
 | callback   | AsyncCallback\<number>                  | 是    | 返回权限验证结果，0有权限，-1无权限。 |
 
 **示例：**
@@ -451,7 +451,7 @@ setDisplayOrientation(orientation: bundle.DisplayOrientation, callback: AsyncCal
 | 名称          | 类型                                       | 必填   | 描述           |
 | ----------- | ---------------------------------------- | ---- | ------------ |
 | orientation | [bundle.DisplayOrientation](js-apis-Bundle.md#displayorientation) | 是    | 指示当前能力的新方向。。 |
-| callback    | AsyncCallback\<[bundle.DisplayOrientation](js-apis-Bundle.md#displayorientation)> | 是    | 表示屏幕显示方向。    |
+| callback    | AsyncCallback\<void> | 是    | 表示屏幕显示方向。    |
 
 **示例：**
 
@@ -460,7 +460,7 @@ import featureAbility from '@ohos.ability.featureAbility';
 import bundle from '@ohos.bundle';
 var context = featureAbility.getContext();
 var orientation=bundle.DisplayOrientation.UNSPECIFIED
-context.setDisplayOrientation(orientation, (err, data) => {
+context.setDisplayOrientation(orientation, (err) => {
     console.info("setDisplayOrientation err: " + JSON.stringify(err));
 });
 ```
@@ -478,7 +478,7 @@ setDisplayOrientation(orientation: bundle.DisplayOrientation): Promise\<void>;
 | 类型                                       | 说明                                       |
 | ---------------------------------------- | ---------------------------------------- |
 | orientation                              | [bundle.DisplayOrientation](js-apis-Bundle.md#displayorientation) |
-| Promise\<[bundle.DisplayOrientation](js-apis-Bundle.md#displayorientation)> | 表示屏幕显示方向。                                |
+| Promise\<void> | 表示屏幕显示方向。                                |
 
 **示例：**
 
@@ -513,7 +513,7 @@ setShowOnLockScreen(show: boolean, callback: AsyncCallback\<void>): void
 import featureAbility from '@ohos.ability.featureAbility';
 var context = featureAbility.getContext();
 var show=true
-context.setShowOnLockScreen(show, (err, data) => {
+context.setShowOnLockScreen(show, (err) => {
     console.info("setShowOnLockScreen err: " + JSON.stringify(err));
 });
 ```
@@ -570,7 +570,7 @@ setWakeUpScreen(wakeUp: boolean, callback: AsyncCallback\<void>): void
 import featureAbility from '@ohos.ability.featureAbility';
 var context = featureAbility.getContext();
 var wakeUp=true
-context.setWakeUpScreen(wakeUp, (err, data) => {
+context.setWakeUpScreen(wakeUp, (err) => {
     console.info("setWakeUpScreen err: " + JSON.stringify(err));
 });
 ```
@@ -1245,7 +1245,7 @@ printDrawnCompleted(callback: AsyncCallback\<void>): void;
 ```js
 import featureAbility from '@ohos.ability.featureAbility';
 var context = featureAbility.getContext();
-context.printDrawnCompleted((err, data) => {
+context.printDrawnCompleted((err) => {
     console.error('printDrawnCompleted err: ' + JSON.stringify(err));
 });
 ```

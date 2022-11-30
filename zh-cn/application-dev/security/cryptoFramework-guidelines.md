@@ -13,7 +13,7 @@
 1. 随机生成算法库密钥对象。该对象可用于后续的加解密等操作。
 2. 根据指定数据生成算法库密钥对象（也就是将外部或存储的二进制数据转换为算法库的密钥对象）。该对象可用于后续的加解密等操作。
 3. 获取算法库密钥对象的二进制数据，用于存储或传输。
-> **说明**：密钥对象Key包括对称密钥SymKey和非对称密钥（公钥PubKey和私钥PriKey），其中公钥和私钥组成密钥对KeyPair。密钥之间的具体关系可参考[接口声明](../reference/apis/js-apis-cryptoFramework.md)。
+> **说明**：密钥对象Key包括对称密钥SymKey和非对称密钥（公钥PubKey和私钥PriKey），其中公钥和私钥组成密钥对KeyPair。密钥之间的具体关系可参考[API参考](../reference/apis/js-apis-cryptoFramework.md)。
 
 
 **接口及参数说明**
@@ -107,7 +107,7 @@ function testGenerateAesKey() {
 import cryptoFramework from '@ohos.security.cryptoFramework';
 
 function convertAsyKey() {
-  let rsaGenerator = cfm.createAsyKeyGenerator("RSA1024");
+  let rsaGenerator = cryptoFramework.createAsyKeyGenerator("RSA1024");
   let pkval = new Uint8Array([48,129,159,48,13,6,9,42,134,72,134,247,13,1,1,1,5,0,3,129,141,0,48,129,137,2,129,129,0,174,203,113,83,113,3,143,213,194,79,91,9,51,142,87,45,97,65,136,24,166,35,5,179,42,47,212,79,111,74,134,120,73,67,21,19,235,80,46,152,209,133,232,87,192,140,18,206,27,106,106,169,106,46,135,111,118,32,129,27,89,255,183,116,247,38,12,7,238,77,151,167,6,102,153,126,66,28,253,253,216,64,20,138,117,72,15,216,178,37,208,179,63,204,39,94,244,170,48,190,21,11,73,169,156,104,193,3,17,100,28,60,50,92,235,218,57,73,119,19,101,164,192,161,197,106,105,73,2,3,1,0,1]);
   let pkBlob = {data : pkval};
   rsaGenerator.convertKey(pkBlob, null, function(err, keyPair) {
@@ -262,14 +262,14 @@ function stringToUint8Array(str) {
   return new Uint8Array(arr);
 }
 
-// 字节流转成可理解的字符串
+// 字节流以16进制输出
 function uint8ArrayToShowStr(uint8Array) {
   return Array.prototype.map
     .call(uint8Array, (x) => ('00' + x.toString(16)).slice(-2))
     .join('');
 }
 
-// 字节流以16进制输出
+// 字节流转成可理解的字符串
 function uint8ArrayToString(array) {
   let arrayString = '';
   for (let i = 0; i < array.length; i++) {
@@ -381,14 +381,14 @@ function stringToUint8Array(str) {
   return new Uint8Array(arr);
 }
 
-// 字节流转成可理解的字符串
+// 字节流以16进制输出
 function uint8ArrayToShowStr(uint8Array) {
   return Array.prototype.map
     .call(uint8Array, (x) => ('00' + x.toString(16)).slice(-2))
     .join('');
 }
 
-// 字节流以16进制输出
+// 字节流转成可理解的字符串
 function uint8ArrayToString(array) {
   let arrayString = '';
   for (let i = 0; i < array.length; i++) {
@@ -563,15 +563,15 @@ function encryptMessageCallback() {
 |Sign|init(priKey : PriKey) : Promise\<void>|使用Promise方式设置密钥并初始化Sign对象|
 |Sign|update(data : DataBlob, callback : AsyncCallback\<void>) : void|使用callback方式添加签名数据|
 |Sign|update(data : DataBlob) : Promise\<void>|用Promise方式添加签名数据|
-|Sign|sign(data : DataBlob, callback : AsyncCallback<DataBlob>) : void|使用callback方式签名所有数据|
-|Sign|sign(data : DataBlob) : Promise<DataBlob>|使用Promise方式签名所有数据|
+|Sign|sign(data : DataBlob, callback : AsyncCallback\<DataBlob>) : void|使用callback方式签名所有数据|
+|Sign|sign(data : DataBlob) : Promise\<DataBlob>|使用Promise方式签名所有数据|
 |cryptoFramework|function createVerify(algName : string) : Verify|根据String设置的参数创建Verify对象|
 |Verify|init(priKey : PriKey, callback : AsyncCallback\<void>) : void|使用callback方式设置密钥并初始化Verify对象|
 |Verify|init(priKey : PriKey) : Promise\<void>|使用Promise方式设置密钥并初始化Verify对象|
 |Verify|update(data : DataBlob, callback : AsyncCallback\<void>) : void|使用callback方式添加验签数据|
 |Verify|update(data : DataBlob) : Promise\<void>|用Promise方式添加验签数据|
-|Verify|verify(data : DataBlob, signatureData : DataBlob, callback : AsyncCallback<boolean>) : void|使用callback方式验签所有数据|
-|Verify|verify(data : DataBlob, signatureData : DataBlob) : Promise<boolean>|使用Promise方式验签所有数据|
+|Verify|verify(data : DataBlob, signatureData : DataBlob, callback : AsyncCallback\<boolean>) : void|使用callback方式验签所有数据|
+|Verify|verify(data : DataBlob, signatureData : DataBlob) : Promise\<boolean>|使用Promise方式验签所有数据|
 
 **开发步骤**
 
@@ -761,10 +761,10 @@ function verifyMessageCallback() {
 | 实例名          | 接口名                                                       | 描述                                               |
 | --------------- | ------------------------------------------------------------ | -------------------------------------------------- |
 | cryptoFramework | function createMd(algName : string) : Md;                    | 指定摘要算法，生成摘要操作实例Md                   |
-| Md              | update(input : DataBlob, callback : AsyncCallback\<void\>) : void; | 接受用户输入数据，通过Callback的方式，异步更新摘要 |
-| Md              | update(input : DataBlob) : Promise\<void\>;                  | 接受用户输入数据，通过Promise的方式，异步更新摘要  |
-| Md              | digest(callback : AsyncCallback\<DataBlob\>) : void;         | 通过Callback的方式，返回结果                       |
-| Md              | digest() : Promise\<DataBlob\>;                              | 通过Promise的方式，返回结果                        |
+| Md              | update(input : DataBlob, callback : AsyncCallback\<void>) : void; | 接受用户输入数据，通过Callback的方式，异步更新摘要 |
+| Md              | update(input : DataBlob) : Promise\<void>;                  | 接受用户输入数据，通过Promise的方式，异步更新摘要  |
+| Md              | digest(callback : AsyncCallback\<DataBlob>) : void;         | 通过Callback的方式，返回结果                       |
+| Md              | digest() : Promise\<DataBlob>;                              | 通过Promise的方式，返回结果                        |
 | Md              | getMdLength() : number;                                      | 获取摘要的长度（由指定的摘要算法决定）             |
 | Md              | readonly algName : string;                                   | 获取当前设置的摘要算法名                           |
 
@@ -922,13 +922,13 @@ Mac(message authentication code)可以对消息进行完整性校验，通过使
 
 | 实例名          | 接口名                                                       | 描述                                                |
 | --------------- | ------------------------------------------------------------ | --------------------------------------------------- |
-| cryptoFramework | function createMd(algName : string) : Md;                    | 指定摘要算法，生成消息认证码实例Mac                 |
-| Mac             | init(key : SymKey, callback : AsyncCallback\<void\>) : void; | 接收输入对称密钥，通过Callback的方式，异步初始化MAC |
-| Mac             | init(key : SymKey) : Promise\<void\>;                        | 接收输入对称密钥，通过Promise的方式，异步初始化MAC  |
-| Mac             | update(input : DataBlob, callback : AsyncCallback\<void\>) : void; | 接受输入数据，通过Callback的方式，异步更新MAC       |
-| Mac             | update(input : DataBlob) : Promise\<void\>;                  | 接受输入数据，通过Promise的方式，异步更新MAC        |
-| Mac             | doFinal(callback : AsyncCallback\<DataBlob\>) : void;        | 通过Callback的方式，返回MAC计算结果                 |
-| Mac             | doFinal() : Promise\<DataBlob\>;                             | 通过Promise的方式，返回MAC计算结果                  |
+| cryptoFramework | function createMac(algName : string) : Mac;                  | 指定摘要算法，生成消息认证码实例Mac                 |
+| Mac             | init(key : SymKey, callback : AsyncCallback\<void>) : void; | 接收输入对称密钥，通过Callback的方式，异步初始化MAC |
+| Mac             | init(key : SymKey) : Promise\<void>;                        | 接收输入对称密钥，通过Promise的方式，异步初始化MAC  |
+| Mac             | update(input : DataBlob, callback : AsyncCallback\<void>) : void; | 接受输入数据，通过Callback的方式，异步更新MAC       |
+| Mac             | update(input : DataBlob) : Promise\<void>;                  | 接受输入数据，通过Promise的方式，异步更新MAC        |
+| Mac             | doFinal(callback : AsyncCallback\<DataBlob>) : void;        | 通过Callback的方式，返回MAC计算结果                 |
+| Mac             | doFinal() : Promise\<DataBlob>;                             | 通过Promise的方式，返回MAC计算结果                  |
 | Mac             | getMacLength() : number;                                     | 获取MAC的长度（由指定的摘要算法决定）               |
 | Mac             | readonly algName : string;                                   | 获取当前设置的摘要算法名                            |
 
@@ -1055,10 +1055,10 @@ function doHmacByCallback(algName) {
 | 实例名          | 接口名                                                       | 描述                                           |
 | --------------- | ------------------------------------------------------------ | ---------------------------------------------- |
 | cryptoFramework | function createRandom() : Random;                            | 生成随机数Random实例                           |
-| Random          | generateRandom(len : number, callback: AsyncCallback\<DataBlob\>) : void; | 接受输入长度，通过Callback，异步生成随机数     |
-| Random          | generateRandom(len : number) : Promise\<DataBlob\>;          | 接受输入长度，通过Promise，异步生成随机数      |
-| Random          | setSeed(seed : DataBlob, callback : AsyncCallback\<void\>) : void; | 接受输入Blob，通过Callback的方式，异步设置种子 |
-| Random          | setSeed(seed : DataBlob) : Promise\<void\>;                  | 接受输入Blob，通过Promise的方式，异步设置种子  |
+| Random          | generateRandom(len : number, callback: AsyncCallback\<DataBlob>) : void; | 接受输入长度，通过Callback，异步生成随机数     |
+| Random          | generateRandom(len : number) : Promise\<DataBlob>;          | 接受输入长度，通过Promise，异步生成随机数      |
+| Random          | setSeed(seed : DataBlob, callback : AsyncCallback\<void>) : void; | 接受输入Blob，通过Callback的方式，异步设置种子 |
+| Random          | setSeed(seed : DataBlob) : Promise\<void>;                  | 接受输入Blob，通过Promise的方式，异步设置种子  |
 
 **开发步骤**
 
@@ -1135,16 +1135,16 @@ function doRandByCallback(len) {
 
 | 实例名          | 接口名                                                       | 描述                                         |
 | --------------- | ------------------------------------------------------------ | -------------------------------------------- |
-| cryptoFramework | createX509Cert(inStream : EncodingBlob, callback : AsyncCallback<X509Cert>) : void | 使用callback方式解析X509证书数据生成证书对象 |
-| cryptoFramework | createX509Cert(inStream : EncodingBlob) : Promise<X509Cert>  | 使用promise方式解析X509证书数据生成证书对象  |
-| X509Cert        | verify(key : PubKey, callback : AsyncCallback<void>) : void  | 使用callback方式进行证书验签                 |
-| X509Cert        | verify(key : PubKey) : Promise<void>                         | 使用promise方式进行证书验签                  |
-| X509Cert        | getEncoded(callback : AsyncCallback<EncodingBlob>) : void    | 使用callback方式获取证书序列化数据           |
-| X509Cert        | getEncoded() : Promise<EncodingBlob>                         | 使用promise方式获取证书序列化数据            |
-| X509Cert        | getPublicKey(callback : AsyncCallback<PubKey>) : void        | 使用callback方式获取证书公钥                 |
-| X509Cert        | getPublicKey() : Promise<PubKey>                             | 使用Promise方式获取证书公钥                  |
-| X509Cert        | checkValidityWithDate(date: string, callback : AsyncCallback<void>) : void | 使用callback方式校验证书有效期               |
-| X509Cert        | checkValidityWithDate(date: string) : Promise<void>          | 使用Promise方式校验证书有效期                |
+| cryptoFramework | createX509Cert(inStream : EncodingBlob, callback : AsyncCallback\<X509Cert>) : void | 使用callback方式解析X509证书数据生成证书对象 |
+| cryptoFramework | createX509Cert(inStream : EncodingBlob) : Promise\<X509Cert>  | 使用promise方式解析X509证书数据生成证书对象  |
+| X509Cert        | verify(key : PubKey, callback : AsyncCallback\<void>) : void  | 使用callback方式进行证书验签                 |
+| X509Cert        | verify(key : PubKey) : Promise\<void>                         | 使用promise方式进行证书验签                  |
+| X509Cert        | getEncoded(callback : AsyncCallback\<EncodingBlob>) : void    | 使用callback方式获取证书序列化数据           |
+| X509Cert        | getEncoded() : Promise\<EncodingBlob>                         | 使用promise方式获取证书序列化数据            |
+| X509Cert        | getPublicKey(callback : AsyncCallback\<PubKey>) : void        | 使用callback方式获取证书公钥                 |
+| X509Cert        | getPublicKey() : Promise\<PubKey>                             | 使用Promise方式获取证书公钥                  |
+| X509Cert        | checkValidityWithDate(date: string, callback : AsyncCallback\<void>) : void | 使用callback方式校验证书有效期               |
+| X509Cert        | checkValidityWithDate(date: string) : Promise\<void>          | 使用Promise方式校验证书有效期                |
 | X509Cert        | getVersion() : number                                        | 获取证书版本                                 |
 | X509Cert        | getSerialNumber() : number                                   | 获取证书序列号                               |
 | X509Cert        | getIssuerName() : DataBlob                                   | 获取证书颁发者名称                           |
@@ -1287,27 +1287,27 @@ function certSample() {
 
 | 实例名          | 接口名                                                       | 描述                                                         |
 | --------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| cryptoFramework | createX509Crl(inStream : EncodingBlob, callback : AsyncCallback<X509Crl>) : void | 使用callback方式解析X509证书吊销列表数据生成证书吊销列表对象 |
-| cryptoFramework | createX509Crl(inStream : EncodingBlob) : Promise<X509Crl>    | 使用promise方式解析X509证书吊销列表数据生成证书吊销列表对象  |
-| X509Crl         | isRevoked(cert : X509Cert, callback : AsyncCallback<boolean>) : void | 使用callback方式检查证书是否被吊销                           |
-| X509Crl         | isRevoked(cert : X509Cert) : Promise<boolean>                | 使用promise方式检查证书是否被吊销                            |
+| cryptoFramework | createX509Crl(inStream : EncodingBlob, callback : AsyncCallback\<X509Crl>) : void | 使用callback方式解析X509证书吊销列表数据生成证书吊销列表对象 |
+| cryptoFramework | createX509Crl(inStream : EncodingBlob) : Promise\<X509Crl>    | 使用promise方式解析X509证书吊销列表数据生成证书吊销列表对象  |
+| X509Crl         | isRevoked(cert : X509Cert, callback : AsyncCallback\<boolean>) : void | 使用callback方式检查证书是否被吊销                           |
+| X509Crl         | isRevoked(cert : X509Cert) : Promise\<boolean>                | 使用promise方式检查证书是否被吊销                            |
 | X509Crl         | getType() : string                                           | 获取证书吊销列表类型                                         |
-| X509Crl         | getEncoded(callback : AsyncCallback<EncodingBlob>) : void    | 使用callback方式获取证书吊销列表序列化数据                   |
-| X509Crl         | getEncoded() : Promise<EncodingBlob>                         | 使用promise方式获取证书吊销列表序列化数据                    |
-| X509Crl         | verify(key : PubKey, callback : AsyncCallback<void>) : void  | 使用callback方式进行证书吊销列表验签                         |
-| X509Crl         | verify(key : PubKey) : Promise<void>                         | 使用Promise方式进行证书吊销列表验签                          |
+| X509Crl         | getEncoded(callback : AsyncCallback\<EncodingBlob>) : void    | 使用callback方式获取证书吊销列表序列化数据                   |
+| X509Crl         | getEncoded() : Promise\<EncodingBlob>                         | 使用promise方式获取证书吊销列表序列化数据                    |
+| X509Crl         | verify(key : PubKey, callback : AsyncCallback\<void>) : void  | 使用callback方式进行证书吊销列表验签                         |
+| X509Crl         | verify(key : PubKey) : Promise\<void>                         | 使用Promise方式进行证书吊销列表验签                          |
 | X509Crl         | getVersion() : number                                        | 获取证书吊销列表版本                                         |
 | X509Crl         | getIssuerName() : DataBlob                                   | 获取证书吊销列表颁发者名称                                   |
 | X509Crl         | getLastUpdate() : string                                     | 获取证书吊销列表lastUpdate日期                               |
 | X509Crl         | getNextUpdate() : string                                     | 获取证书吊销列表nextUpdate日期                               |
-| X509Crl         | getRevokedCert(serialNumber : number, callback : AsyncCallback<X509CrlEntry>) : void | 使用callback方式通过序列号获取证书吊销列表中的被吊销证书     |
-| X509Crl         | getRevokedCert(serialNumber : number) : Promise<X509CrlEntry> | 使用Promise方式通过序列号获取证书吊销列表中的被吊销证书      |
-| X509Crl         | getRevokedCertWithCert(cert : X509Cert, callback : AsyncCallback<X509CrlEntry>) : void | 使用callback方式通过X509证书获取证书吊销列表中的被吊销证书   |
-| X509Crl         | getRevokedCertWithCert(cert : X509Cert) : Promise<X509CrlEntry> | 使用Promise方式通过X509证书获取证书吊销列表中的被吊销证书    |
-| X509Crl         | getRevokedCerts(callback : AsyncCallback<Array<X509CrlEntry>>) : void | 使用callback方式获取证书吊销列表的所有被吊销证书             |
-| X509Crl         | getRevokedCerts() : Promise<Array<X509CrlEntry>>             | 使用Promise方式获取证书吊销列表的所有被吊销证书              |
-| X509Crl         | getTbsInfo(callback : AsyncCallback<DataBlob>) : void        | 使用callback方式获取证书吊销列表的tbsCertList                |
-| X509Crl         | getTbsInfo() : Promise<DataBlob>                             | 使用Promise方式获取证书吊销列表的tbsCertList                 |
+| X509Crl         | getRevokedCert(serialNumber : number, callback : AsyncCallback\<X509CrlEntry>) : void | 使用callback方式通过序列号获取证书吊销列表中的被吊销证书     |
+| X509Crl         | getRevokedCert(serialNumber : number) : Promise\<X509CrlEntry> | 使用Promise方式通过序列号获取证书吊销列表中的被吊销证书      |
+| X509Crl         | getRevokedCertWithCert(cert : X509Cert, callback : AsyncCallback\<X509CrlEntry>) : void | 使用callback方式通过X509证书获取证书吊销列表中的被吊销证书   |
+| X509Crl         | getRevokedCertWithCert(cert : X509Cert) : Promise\<X509CrlEntry> | 使用Promise方式通过X509证书获取证书吊销列表中的被吊销证书    |
+| X509Crl         | getRevokedCerts(callback : AsyncCallback\<Array\<X509CrlEntry>>) : void | 使用callback方式获取证书吊销列表的所有被吊销证书             |
+| X509Crl         | getRevokedCerts() : Promise\<Array\<X509CrlEntry>>             | 使用Promise方式获取证书吊销列表的所有被吊销证书              |
+| X509Crl         | getTbsInfo(callback : AsyncCallback\<DataBlob>) : void        | 使用callback方式获取证书吊销列表的tbsCertList                |
+| X509Crl         | getTbsInfo() : Promise\<DataBlob>                             | 使用Promise方式获取证书吊销列表的tbsCertList                 |
 | X509Crl         | getSignature() : DataBlob                                    | 获取证书吊销列表的签名                                       |
 | X509Crl         | getSignatureAlgName() : string                               | 获取证书吊销列表的签名算法名称                               |
 | X509Crl         | getSignatureAlgOid() : string                                | 获取证书吊销列表的签名算法OID                                |
@@ -1437,8 +1437,8 @@ function crlSample() {
 | 实例名             | 接口名                                                       | 描述                             |
 | ------------------ | ------------------------------------------------------------ | -------------------------------- |
 | cryptoFramework    | createCertChainValidator(algorithm :string) : CertChainValidator | 使用指定算法生成证书链校验器对象 |
-| CertChainValidator | validate(certChain : CertChainData, callback : AsyncCallback<void>) : void | 使用callback方式校验证书链       |
-| CertChainValidator | validate(certChain : CertChainData) : Promise<void>          | 使用promise方式校验证书链        |
+| CertChainValidator | validate(certChain : CertChainData, callback : AsyncCallback\<void>) : void | 使用callback方式校验证书链       |
+| CertChainValidator | validate(certChain : CertChainData) : Promise\<void>          | 使用promise方式校验证书链        |
 | CertChainValidator | algorithm : string                                           | 证书链校验器算法名称             |
 
 **开发步骤**
@@ -1548,13 +1548,13 @@ function certChainValidatorSample() {
 
 | 实例名       | 接口名                                                      | 描述                                       |
 | ------------ | ----------------------------------------------------------- | ------------------------------------------ |
-| X509CrlEntry | getEncoded(callback : AsyncCallback<EncodingBlob>) : void;  | 使用callback方式获取被吊销证书的序列化数据 |
-| X509CrlEntry | getEncoded() : Promise<EncodingBlob>;                       | 使用promise方式获取被吊销证书的序列化数据  |
+| X509CrlEntry | getEncoded(callback : AsyncCallback\<EncodingBlob>) : void;  | 使用callback方式获取被吊销证书的序列化数据 |
+| X509CrlEntry | getEncoded() : Promise\<EncodingBlob>;                       | 使用promise方式获取被吊销证书的序列化数据  |
 | X509CrlEntry | getSerialNumber() : number;                                 | 获取被吊销证书的序列号                     |
-| X509CrlEntry | getCertIssuer(callback : AsyncCallback<DataBlob>) : void;   | 使用callback方式获取被吊销证书颁发者       |
-| X509CrlEntry | getCertIssuer() : Promise<DataBlob>;                        | 使用promise方式获取被吊销证书颁发者        |
-| X509CrlEntry | getRevocationDate(callback : AsyncCallback<string>) : void; | 使用callback方式获取被吊销证书的吊销日期   |
-| X509CrlEntry | getRevocationDate() : Promise<string>;                      | 使用promise方式获取被吊销证书的吊销日期    |
+| X509CrlEntry | getCertIssuer(callback : AsyncCallback\<DataBlob>) : void;   | 使用callback方式获取被吊销证书颁发者       |
+| X509CrlEntry | getCertIssuer() : Promise\<DataBlob>;                        | 使用promise方式获取被吊销证书颁发者        |
+| X509CrlEntry | getRevocationDate(callback : AsyncCallback\<string>) : void; | 使用callback方式获取被吊销证书的吊销日期   |
+| X509CrlEntry | getRevocationDate() : Promise\<string>;                      | 使用promise方式获取被吊销证书的吊销日期    |
 
 **开发步骤**
 
@@ -1606,4 +1606,3 @@ function crlEntrySample() {
     });
 }
 ```
-

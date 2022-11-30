@@ -129,10 +129,10 @@ upload(config: UploadConfig, callback: AsyncCallback&lt;UploadTask&gt;): void
 
 **参数：**
 
-  | 参数名 | 参数类型 | 必填 | 说明 |
+  | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | config | [UploadConfig](#uploadconfig) | 是 | 上传的配置信息。 |
-  | callback | AsyncCallback&lt;[UploadTask](#uploadtask)&gt; | 否 | 回调函数，异步返回UploadTask对象。 |
+  | callback | AsyncCallback&lt;[UploadTask](#uploadtask)&gt; | 是 | 回调函数，异步返回UploadTask对象。 |
 
 **示例：**
   
@@ -212,11 +212,11 @@ upload(context: BaseContext, config: UploadConfig, callback: AsyncCallback&lt;Up
 
 **参数：**
 
-  | 参数名 | 参数类型 | 必填 | 说明 |
+  | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | context | BaseContext | 是 | 基于应用程序的上下文。 |
   | config | [UploadConfig](#uploadconfig) | 是 | 上传的配置信息。 |
-  | callback | AsyncCallback&lt;[UploadTask](#uploadtask)&gt; | 否 | 回调函数，异步返回UploadTask对象。 |
+  | callback | AsyncCallback&lt;[UploadTask](#uploadtask)&gt; | 是 | 回调函数，异步返回UploadTask对象。 |
 
 **示例：**
   
@@ -266,7 +266,7 @@ uploadFile(context: BaseContext, config: UploadConfig): Promise&lt;UploadTask&gt
 **错误码：**
 以下错误码的详细介绍请参见[上传下载错误码](../errorcodes/errorcode-request.md)。
 
-| 错误码ID | 错误码信息 |
+| 错误码ID | 错误信息 |
 | -------- | -------- |
 | 13400002 | Bad file path. |
 
@@ -301,16 +301,16 @@ uploadFile(context: BaseContext, config: UploadConfig, callback: AsyncCallback&l
 
 **参数：**
 
-| 参数名 | 参数类型 | 必填 | 说明 |
+| 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
 | context | BaseContext | 是 | 基于应用程序的上下文。 |
 | config | [UploadConfig](#uploadconfig) | 是 | 上传的配置信息。 |
-| callback | AsyncCallback&lt;[UploadTask](#uploadtask)&gt; | 否 | 回调函数，异步返回UploadTask对象。 |
+| callback | AsyncCallback&lt;[UploadTask](#uploadtask)&gt; | 是 | 回调函数，异步返回UploadTask对象。 |
 
 **错误码：**
 以下错误码的详细介绍请参见[上传下载错误码](../errorcodes/errorcode-request.md)。
 
-| 错误码ID | 错误码信息 |
+| 错误码ID | 错误信息 |
 | -------- | -------- |
 | 13400002 | Bad file path. |
 
@@ -367,6 +367,7 @@ on(type: 'progress', callback:(uploadedSize: number, totalSize: number) =&gt; vo
 **示例：**
   
   ```js
+  let uploadTask;
   uploadTask.on('progress', function callback(uploadedSize, totalSize) {
       console.info("upload totalSize:" + totalSize + "  uploadedSize:" + uploadedSize);
   }
@@ -400,6 +401,7 @@ on(type: 'headerReceive', callback:  (header: object) =&gt; void): void
 **示例：**
   
   ```js
+  let uploadTask;
   uploadTask.on('headerReceive', function callback(headers){   
       console.info("upOnHeader headers:" + JSON.stringify(headers));
   }
@@ -422,7 +424,7 @@ on(type: 'headerReceive', callback:  (header: object) =&gt; void): void
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | type | string | 是 | 订阅的事件类型，取值为'complete'，表示上传任务完成；取值为'fail'，表示上传任务失败。|
-  | callback | function | 是 | 上传任务完成或失败的回调函数。 |
+  | callback | Callback&lt;Array&lt;TaskState&gt;&gt; | 是 | 上传任务完成或失败的回调函数。 |
 
   回调函数的参数
 
@@ -433,6 +435,7 @@ on(type: 'headerReceive', callback:  (header: object) =&gt; void): void
 **示例：**
   
   ```js
+  let uploadTask;
   uploadTask.on('complete', function callback(taskStates) {
     for (let i = 0; i < taskStates.length; i++ ) {
       console.info("upOnComplete taskState:" + JSON.stringify(taskStates[i]));
@@ -461,7 +464,7 @@ off(type:  'progress',  callback?: (uploadedSize: number, totalSize: number) =&g
 
 **参数：**
 
-  | 参数名 | 参数类型 | 必填 | 说明 |
+  | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | type | string | 是 | 取消订阅的事件类型，取值为'progress'（上传的进度信息）。 |
   | callback | function | 否 | 上传任务的回调函数。 |
@@ -476,6 +479,7 @@ off(type:  'progress',  callback?: (uploadedSize: number, totalSize: number) =&g
 **示例：**
   
   ```js
+  let uploadTask;
   uploadTask.off('progress', function callback(uploadedSize, totalSize) {
       console.info('uploadedSize: ' + uploadedSize, 'totalSize: ' + totalSize);
   }
@@ -495,7 +499,7 @@ off(type: 'headerReceive', callback?: (header: object) =&gt; void): void
 
 **参数：**
 
-  | 参数名 | 参数类型 | 必填 | 说明 |
+  | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | type | string | 是 | 取消订阅的事件类型，取值为'headerReceive'（接收响应头）。 |
   | callback | function | 否 | HTTP&nbsp;Response&nbsp;Header事件的回调函数。 |
@@ -509,6 +513,7 @@ off(type: 'headerReceive', callback?: (header: object) =&gt; void): void
 **示例：**
   
   ```js
+  let uploadTask;
   uploadTask.off('headerReceive', function callback(headers) {
       console.info("upOnHeader headers:" + JSON.stringify(headers));
   }
@@ -530,7 +535,7 @@ off(type: 'headerReceive', callback?: (header: object) =&gt; void): void
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | type | string | 是 | 订阅的事件类型，取值为'complete'，表示上传任务完成；取值为'fail'，表示上传任务失败。|
-  | callback | function | 否 | 上传任务完成或失败的回调函数。 |
+  | callback | Callback&lt;Array&lt;TaskState&gt;&gt; | 否 | 上传任务完成或失败的回调函数。 |
 
   回调函数的参数
 
@@ -541,6 +546,7 @@ off(type: 'headerReceive', callback?: (header: object) =&gt; void): void
 **示例：**
   
   ```js
+  let uploadTask;
   uploadTask.off('complete', function callback(taskStates) {
     for (let i = 0; i < taskStates.length; i++ ) {
       console.info("upOnComplete taskState:" + JSON.stringify(taskStates[i]));
@@ -578,6 +584,7 @@ remove(): Promise&lt;boolean&gt;
 **示例：**
   
   ```js
+  let uploadTask;
   uploadTask.remove().then((result) => {
       if (result) {
           console.info('Upload task removed successfully. ');
@@ -604,13 +611,14 @@ remove(callback: AsyncCallback&lt;boolean&gt;): void
 
 **参数：**
 
-  | 参数名 | 参数类型 | 必填 | 说明 |
+  | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | callback | AsyncCallback&lt;boolean&gt; | 是 | 移除任务的回调函数。 |
 
 **示例：**
   
   ```js
+  let uploadTask;
   uploadTask.remove((err, result) => {
       if (err) {
           console.error('Failed to remove the upload task. Cause: ' + JSON.stringify(err));
@@ -644,6 +652,7 @@ delete(): Promise&lt;boolean&gt;
 **示例：**
 
   ```js
+  let uploadTask;
   uploadTask.delete().then((result) => {
       if (result) {
           console.info('Upload task removed successfully. ');
@@ -668,13 +677,14 @@ delete(callback: AsyncCallback&lt;boolean&gt;): void
 
 **参数：**
 
-| 参数名 | 参数类型 | 必填 | 说明 |
+| 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
 | callback | AsyncCallback&lt;boolean&gt; | 是 | 移除任务的回调函数。 |
 
 **示例：**
 
   ```js
+  let uploadTask;
   uploadTask.delete((err, result) => {
       if (err) {
           console.error('Failed to remove the upload task. Cause: ' + JSON.stringify(err));
@@ -698,7 +708,7 @@ delete(callback: AsyncCallback&lt;boolean&gt;): void
 | 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | url | string | 是 | 资源地址。 |
-| header | object | 是 | 添加要包含在上载请求中的HTTP或HTTPS标志头。 |
+| header | Object | 是 | 添加要包含在上载请求中的HTTP或HTTPS标志头。 |
 | method | string | 是 | 请求方法：POST、PUT。缺省为POST。 |
 | files | Array&lt;[File](#file)&gt; | 是 | 要上传的文件列表。请使用&nbsp;multipart/form-data提交。 |
 | data | Array&lt;[RequestData](#requestdata)&gt; | 是 | 请求的表单数据。 |
@@ -795,10 +805,10 @@ download(config: DownloadConfig, callback: AsyncCallback&lt;DownloadTask&gt;): v
 
 **参数：**
 
-  | 参数名 | 参数类型 | 必填 | 说明 |
+  | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | config | [DownloadConfig](#downloadconfig) | 是 | 下载的配置信息。 |
-  | callback | AsyncCallback&lt;[DownloadTask](#downloadtask)&gt; | 否 | 下载接口的回调函数。 |
+  | callback | AsyncCallback&lt;[DownloadTask](#downloadtask)&gt; | 是 | 下载接口的回调函数。 |
 
 **示例：**
   
@@ -865,11 +875,11 @@ download(context: BaseContext, config: DownloadConfig, callback: AsyncCallback&l
 
 **参数：**
 
-  | 参数名 | 参数类型 | 必填 | 说明 |
+  | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | context | BaseContext | 是 | 基于应用程序的上下文。 |
   | config | [DownloadConfig](#downloadconfig) | 是 | 下载的配置信息。 |
-  | callback | AsyncCallback&lt;[DownloadTask](#downloadtask)&gt; | 否 | 下载接口的回调函数。 |
+  | callback | AsyncCallback&lt;[DownloadTask](#downloadtask)&gt; | 是 | 下载接口的回调函数。 |
 
 **示例：**
   
@@ -912,7 +922,7 @@ downloadFile(context: BaseContext, config: DownloadConfig): Promise&lt;DownloadT
 **错误码：**
 以下错误码的详细介绍请参见[上传下载错误码](../errorcodes/errorcode-request.md)。
 
-| 错误码ID | 错误码信息 |
+| 错误码ID | 错误信息 |
 | -------- | -------- |
 | 13400001 | File operation error. |
 | 13400002 | Bad file path. |
@@ -942,16 +952,16 @@ downloadFile(context: BaseContext, config: DownloadConfig, callback: AsyncCallba
 
 **参数：**
 
-| 参数名 | 参数类型 | 必填 | 说明 |
+| 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
 | context | BaseContext | 是 | 基于应用程序的上下文。 |
 | config | [DownloadConfig](#downloadconfig) | 是 | 下载的配置信息。 |
-| callback | AsyncCallback&lt;[DownloadTask](#downloadtask)&gt; | 否 | 下载接口的回调函数。 |
+| callback | AsyncCallback&lt;[DownloadTask](#downloadtask)&gt; | 是 | 下载接口的回调函数。 |
 
 **错误码：**
 以下错误码的详细介绍请参见[上传下载错误码](../errorcodes/errorcode-request.md)。
 
-| 错误码ID | 错误码信息 |
+| 错误码ID | 错误信息 |
 | -------- | -------- |
 | 13400001 | File operation error. |
 | 13400002 | Bad file path. |
@@ -1004,6 +1014,7 @@ on(type: 'progress', callback:(receivedSize: number, totalSize: number) =&gt; vo
 **示例：**
   
   ```js
+  let downloadTask;
   downloadTask.on('progress', function download_callback(receivedSize, totalSize) {
       console.info("download receivedSize:" + receivedSize + " totalSize:" + totalSize);
   }
@@ -1023,7 +1034,7 @@ off(type: 'progress', callback?: (receivedSize: number, totalSize: number) =&gt;
 
 **参数：**
 
-  | 参数名 | 参数类型 | 必填 | 说明 |
+  | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | type | string | 是 | 取消订阅的事件类型，取值为'progress'（下载的进度信息）。 |
   | callback | function | 否 | 下载任务的回调函数。 |
@@ -1065,6 +1076,7 @@ on(type: 'complete'|'pause'|'remove', callback:() =&gt; void): void
 **示例：**
   
   ```js
+  let downloadTask;
   downloadTask.on('complete', function callback() {
       console.info('Download task completed.');
   }
@@ -1092,6 +1104,7 @@ off(type: 'complete'|'pause'|'remove', callback?:() =&gt; void): void
 **示例：**
   
   ```js
+  let downloadTask;
   downloadTask.off('complete', function callback() {
       console.info('Download task completed.');
   }
@@ -1125,6 +1138,7 @@ on(type: 'fail', callback: (err: number) =&gt; void): void
 **示例：**
   
   ```js 
+  let downloadTask;
   downloadTask.on('fail', function callBack(err) {
       console.info('Download task failed. Cause:' + err);
   }
@@ -1158,6 +1172,7 @@ off(type: 'fail', callback?: (err: number) =&gt; void): void
 **示例：**
   
   ```js
+  let downloadTask;
   downloadTask.off('fail', function callBack(err) {
       console.info('Download task failed. Cause:' + err);
   } 
@@ -1186,6 +1201,7 @@ remove(): Promise&lt;boolean&gt;
 **示例：**
   
   ```js
+  let downloadTask;
   downloadTask.remove().then((result) => {
       if (result) {
           console.info('Download task removed.');
@@ -1212,13 +1228,14 @@ remove(callback: AsyncCallback&lt;boolean&gt;): void
 
 **参数：**
 
-  | 参数名 | 参数类型 | 必填 | 说明 |
+  | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | callback | AsyncCallback&lt;boolean&gt; | 是 | 移除任务是否成功。 |
 
 **示例：**
   
   ```js
+  let downloadTask;
   downloadTask.remove((err, result)=>{
       if(err) {
           console.error('Failed to remove the download task.');
@@ -1245,14 +1262,16 @@ query(): Promise&lt;DownloadInfo&gt;
 
 **系统能力**: SystemCapability.MiscServices.Download
 
-**参数：**
-    | 类型 | 说明 |
+**返回值：**
+
+  | 类型 | 说明 |
   | -------- | -------- |
   | Promise&lt;[DownloadInfo](#downloadinfo7)&gt; | 查询下载任务信息。 |
 
 **示例：**
   
   ```js
+  let downloadTask;
   downloadTask.query().then((downloadInfo) => {    
       console.info('Download task queried. Data:' + JSON.stringify(downloadInfo))
   }) .catch((err) => {
@@ -1275,13 +1294,14 @@ query(callback: AsyncCallback&lt;DownloadInfo&gt;): void
 
 **参数：**
 
-  | 参数名 | 参数类型 | 必填 | 说明 |
+  | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | callback | AsyncCallback&lt;[DownloadInfo](#downloadinfo7)&gt; | 是 | 查询下载任务的回调函数。 |
 
 **示例：**
   
   ```js
+  let downloadTask;
   downloadTask.query((err, downloadInfo)=>{
       if(err) {
           console.error('Failed to query the download mimeType. Cause:' + JSON.stringify(err));
@@ -1313,6 +1333,7 @@ queryMimeType(): Promise&lt;string&gt;
 **示例：**
   
   ```js
+  let downloadTask;
   downloadTask.queryMimeType().then((data) => {    
       console.info('Download task queried. Data:' + JSON.stringify(data));
   }).catch((err) => {
@@ -1335,13 +1356,14 @@ queryMimeType(callback: AsyncCallback&lt;string&gt;): void;
 
 **参数：**
 
-  | 参数名 | 参数类型 | 必填 | 说明 |
+  | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | callback | AsyncCallback&lt;string&gt; | 是 | 查询下载任务的MimeType的回调函数。 |
 
 **示例：**
   
   ```js
+  let downloadTask;
   downloadTask.queryMimeType((err, data)=>{
       if(err) {
           console.error('Failed to query the download mimeType. Cause:' + JSON.stringify(err));
@@ -1373,6 +1395,7 @@ pause(): Promise&lt;void&gt;
 **示例：**
   
   ```js
+  let downloadTask;
   downloadTask.pause().then((result) => {    
       if (result) {
            console.info('Download task paused. ');
@@ -1399,13 +1422,14 @@ pause(callback: AsyncCallback&lt;void&gt;): void
 
 **参数：**
 
-  | 参数名 | 参数类型 | 必填 | 说明 |
+  | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | callback | AsyncCallback&lt;void&gt; | 是 | 暂停下载任务的回调函数。 |
 
 **示例：**
   
   ```js
+  let downloadTask;
   downloadTask.pause((err, result)=>{
       if(err) {
           console.error('Failed to pause the download task. Cause:' + JSON.stringify(err));
@@ -1432,7 +1456,7 @@ resume(): Promise&lt;void&gt;
 
 **系统能力**: SystemCapability.MiscServices.Download
 
-**参数：**
+**返回值：**
 
   | 类型 | 说明 |
   | -------- | -------- |
@@ -1441,6 +1465,7 @@ resume(): Promise&lt;void&gt;
 **示例：**
   
   ```js
+  let downloadTask;
   downloadTask.resume().then((result) => {
       if (result) {
           console.info('Download task resumed.')
@@ -1468,13 +1493,14 @@ resume(callback: AsyncCallback&lt;void&gt;): void
 
 **参数：**
 
-  | 参数名 | 参数类型 | 必填 | 说明 |
+  | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | callback | AsyncCallback&lt;void&gt; | 是 | 重新启动暂停的下载任务的回调函数。 |
 
 **示例：**
   
   ```js
+  let downloadTask;
   downloadTask.resume((err, result)=>{
       if (err) {
           console.error('Failed to resume the download task. Cause:' + err);
@@ -1508,6 +1534,7 @@ delete(): Promise&lt;boolean&gt;
 **示例：**
 
   ```js
+  let downloadTask;
   downloadTask.delete().then((result) => {
       if (result) {
           console.info('Download task removed.');
@@ -1532,13 +1559,14 @@ delete(callback: AsyncCallback&lt;boolean&gt;): void
 
 **参数：**
 
-| 参数名 | 参数类型 | 必填 | 说明 |
+| 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
 | callback | AsyncCallback&lt;boolean&gt; | 是 | 移除任务是否成功。 |
 
 **示例：**
 
   ```js
+  let downloadTask;
   downloadTask.delete((err, result)=>{
       if(err) {
           console.error('Failed to remove the download task.');
@@ -1563,7 +1591,8 @@ getTaskInfo(): Promise&lt;DownloadInfo&gt;
 
 **系统能力**: SystemCapability.MiscServices.Download
 
-**参数：**
+**返回值：**
+
 | 类型 | 说明 |
 | -------- | -------- |
 | Promise&lt;[DownloadInfo](#downloadinfo7)&gt; | 查询下载任务信息。 |
@@ -1571,6 +1600,7 @@ getTaskInfo(): Promise&lt;DownloadInfo&gt;
 **示例：**
 
   ```js
+  let downloadTask;
   downloadTask.getTaskInfo().then((downloadInfo) => {    
       console.info('Download task queried. Data:' + JSON.stringify(downloadInfo))
   }) .catch((err) => {
@@ -1591,13 +1621,14 @@ query(callback: AsyncCallback&lt;DownloadInfo&gt;): void
 
 **参数：**
 
-| 参数名 | 参数类型 | 必填 | 说明 |
+| 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
 | callback | AsyncCallback&lt;[DownloadInfo](#downloadinfo7)&gt; | 是 | 查询下载任务的回调函数。 |
 
 **示例：**
 
   ```js
+  let downloadTask;
   downloadTask.getTaskInfo((err, downloadInfo)=>{
       if(err) {
           console.error('Failed to query the download mimeType. Cause:' + JSON.stringify(err));
@@ -1627,6 +1658,7 @@ getTaskMimeType(): Promise&lt;string&gt;
 **示例：**
 
   ```js
+  let downloadTask;
   downloadTask.getTaskMimeType().then((data) => {    
       console.info('Download task queried. Data:' + JSON.stringify(data));
   }).catch((err) => {
@@ -1647,13 +1679,14 @@ getTaskMimeType(callback: AsyncCallback&lt;string&gt;): void;
 
 **参数：**
 
-| 参数名 | 参数类型 | 必填 | 说明 |
+| 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
 | callback | AsyncCallback&lt;string&gt; | 是 | 查询下载任务的MimeType的回调函数。 |
 
 **示例：**
 
   ```js
+  let downloadTask;
   downloadTask.getTaskMimeType((err, data)=>{
       if(err) {
           console.error('Failed to query the download mimeType. Cause:' + JSON.stringify(err));
@@ -1666,7 +1699,7 @@ getTaskMimeType(callback: AsyncCallback&lt;string&gt;): void;
 
 ### suspend<sup>9+</sup>
 
-suspend(): Promise&lt;void&gt;
+suspend(): Promise&lt;boolean&gt;
 
 暂停下载任务，异步方法，使用promise形式返回结果。
 
@@ -1678,11 +1711,12 @@ suspend(): Promise&lt;void&gt;
 
 | 类型 | 说明 |
   | -------- | -------- |
-| Promise&lt;void&gt; | 暂停下载任务是否成功。 |
+| Promise&lt;boolean&gt; | 暂停下载任务是否成功。 |
 
 **示例：**
 
   ```js
+  let downloadTask;
   downloadTask.suspend().then((result) => {    
       if (result) {
            console.info('Download task paused. ');
@@ -1697,7 +1731,7 @@ suspend(): Promise&lt;void&gt;
 
 ### suspend<sup>9+</sup>
 
-suspend(callback: AsyncCallback&lt;void&gt;): void
+suspend(callback: AsyncCallback&lt;boolean&gt;): void
 
 暂停下载任务，异步方法，使用callback形式返回结果。
 
@@ -1707,13 +1741,14 @@ suspend(callback: AsyncCallback&lt;void&gt;): void
 
 **参数：**
 
-| 参数名 | 参数类型 | 必填 | 说明 |
+| 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-| callback | AsyncCallback&lt;void&gt; | 是 | 暂停下载任务的回调函数。 |
+| callback | AsyncCallback&lt;boolean&gt; | 是 | 暂停下载任务的回调函数。 |
 
 **示例：**
 
   ```js
+  let downloadTask;
   downloadTask.suspend((err, result)=>{
       if(err) {
           console.error('Failed to pause the download task. Cause:' + JSON.stringify(err));
@@ -1730,7 +1765,7 @@ suspend(callback: AsyncCallback&lt;void&gt;): void
 
 ### restore<sup>9+</sup>
 
-restore(): Promise&lt;void&gt;
+restore(): Promise&lt;boolean&gt;
 
 重新启动暂停的下载任务，异步方法，使用promise形式返回结果。
 
@@ -1738,15 +1773,16 @@ restore(): Promise&lt;void&gt;
 
 **系统能力**: SystemCapability.MiscServices.Download
 
-**参数：**
+**返回值：**
 
 | 类型 | 说明 |
   | -------- | -------- |
-| Promise&lt;void&gt; | 重新启动暂停的下载任务是否成功。 |
+| Promise&lt;boolean&gt; | 重新启动暂停的下载任务是否成功。 |
 
 **示例：**
 
   ```js
+  let downloadTask;
   downloadTask.restore().then((result) => {
       if (result) {
           console.info('Download task resumed.')
@@ -1762,7 +1798,7 @@ restore(): Promise&lt;void&gt;
 
 ### restore<sup>9+</sup>
 
-restore(callback: AsyncCallback&lt;void&gt;): void
+restore(callback: AsyncCallback&lt;boolean&gt;): void
 
 重新启动暂停的下载任务，异步方法，使用callback形式返回结果。
 
@@ -1772,13 +1808,14 @@ restore(callback: AsyncCallback&lt;void&gt;): void
 
 **参数：**
 
-| 参数名 | 参数类型 | 必填 | 说明 |
+| 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-| callback | AsyncCallback&lt;void&gt; | 是 | 重新启动暂停的下载任务的回调函数。 |
+| callback | AsyncCallback&lt;boolean&gt; | 是 | 重新启动暂停的下载任务的回调函数。 |
 
 **示例：**
 
   ```js
+  let downloadTask;
   downloadTask.restore((err, result)=>{
       if (err) {
           console.error('Failed to resume the download task. Cause:' + err);
@@ -1802,7 +1839,7 @@ restore(callback: AsyncCallback&lt;void&gt;): void
 | 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | url | string | 是 | 资源地址。 |
-| header | object | 否 | 添加要包含在下载请求中的HTTPS标志头。<br/>开发者可以通过header的X-TLS-Version参数指定需要使用的TLS版本(如果不指定，则默认使用CURL_SSLVERSION_TLSv1_2版本，指定则使用指定版本。)<br/>CURL_SSLVERSION_TLSv1_0<br/>CURL_SSLVERSION_TLSv1_1<br/>CURL_SSLVERSION_TLSv1_2<br/>CURL_SSLVERSION_TLSv1_3<br/>通过header的X-Cipher-List参数指定需要使用的密码套件(如果不指定，则默认使用安全密码套件，指定则使用指定密码套件。)<br/>-1.2允许使用的密码套件白名单：<br/>TLS_DHE_RSA_WITH_AES_128_GCM_SHA256,TLS_DHE_RSA_WITH_AES_256_GCM_SHA384,<br/>TLS_DHE_DSS_WITH_AES_128_GCM_SHA256,TLS_DSS_RSA_WITH_AES_256_GCM_SHA384,<br/>TLS_PSK_WITH_AES_256_GCM_SHA384,TLS_DHE_PSK_WITH_AES_128_GCM_SHA256,<br/>TLS_DHE_PSK_WITH_AES_256_GCM_SHA384,TLS_DHE_PSK_WITH_CHACHA20_POLY1305_SHA256,<br/>TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256,TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384,<br/>TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256,TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384,<br/>TLS_ECDHE_RSA_WITH_CHACHA20_POLY1305_SHA256,TLS_ECDHE_PSK_WITH_CHACHA20_POLY1305_SHA256,<br/>TLS_ECDHE_PSK_WITH_AES_128_GCM_SHA256,TLS_ECDHE_PSK_WITH_AES_256_GCM_SHA384,<br/>TLS_ECDHE_PSK_WITH_AES_128_GCM_SHA256,TLS_DHE_RSA_WITH_AES_128_CCM,<br/>TLS_DHE_RSA_WITH_AES_256_CCM,TLS_DHE_RSA_WITH_CHACHA20_POLY1305_SHA256,<br/>TLS_PSK_WITH_AES_256_CCM,TLS_DHE_PSK_WITH_AES_128_CCM,<br/>TLS_DHE_PSK_WITH_AES_256_CCM,TLS_ECDHE_ECDSA_WITH_AES_128_CCM,<br/>TLS_ECDHE_ECDSA_WITH_AES_256_CCM,TLS_ECDHE_ECDSA_WITH_CHACHA20_POLY1305_SHA256<br/>-1.3允许使用的密码套件白名单：<br/>TLS_AES_128_GCM_SHA256,TLS_AES_256_GCM_SHA384,TLS_CHACHA20_POLY1305_SHA256,TLS_AES_128_CCM_SHA256<br/>-1.3新增国密算法套：<br/>TLS_SM4_GCM_SM3,TLS_SM4_CCM_SM3 |
+| header | Object | 否 | 添加要包含在下载请求中的HTTPS标志头。<br/>开发者可以通过header的X-TLS-Version参数指定需要使用的TLS版本(如果不指定，则默认使用CURL_SSLVERSION_TLSv1_2版本，指定则使用指定版本。)<br/>CURL_SSLVERSION_TLSv1_0<br/>CURL_SSLVERSION_TLSv1_1<br/>CURL_SSLVERSION_TLSv1_2<br/>CURL_SSLVERSION_TLSv1_3<br/>通过header的X-Cipher-List参数指定需要使用的密码套件(如果不指定，则默认使用安全密码套件，指定则使用指定密码套件。)<br/>-1.2允许使用的密码套件白名单：<br/>TLS_DHE_RSA_WITH_AES_128_GCM_SHA256,TLS_DHE_RSA_WITH_AES_256_GCM_SHA384,<br/>TLS_DHE_DSS_WITH_AES_128_GCM_SHA256,TLS_DSS_RSA_WITH_AES_256_GCM_SHA384,<br/>TLS_PSK_WITH_AES_256_GCM_SHA384,TLS_DHE_PSK_WITH_AES_128_GCM_SHA256,<br/>TLS_DHE_PSK_WITH_AES_256_GCM_SHA384,TLS_DHE_PSK_WITH_CHACHA20_POLY1305_SHA256,<br/>TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256,TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384,<br/>TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256,TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384,<br/>TLS_ECDHE_RSA_WITH_CHACHA20_POLY1305_SHA256,TLS_ECDHE_PSK_WITH_CHACHA20_POLY1305_SHA256,<br/>TLS_ECDHE_PSK_WITH_AES_128_GCM_SHA256,TLS_ECDHE_PSK_WITH_AES_256_GCM_SHA384,<br/>TLS_ECDHE_PSK_WITH_AES_128_GCM_SHA256,TLS_DHE_RSA_WITH_AES_128_CCM,<br/>TLS_DHE_RSA_WITH_AES_256_CCM,TLS_DHE_RSA_WITH_CHACHA20_POLY1305_SHA256,<br/>TLS_PSK_WITH_AES_256_CCM,TLS_DHE_PSK_WITH_AES_128_CCM,<br/>TLS_DHE_PSK_WITH_AES_256_CCM,TLS_ECDHE_ECDSA_WITH_AES_128_CCM,<br/>TLS_ECDHE_ECDSA_WITH_AES_256_CCM,TLS_ECDHE_ECDSA_WITH_CHACHA20_POLY1305_SHA256<br/>-1.3允许使用的密码套件白名单：<br/>TLS_AES_128_GCM_SHA256,TLS_AES_256_GCM_SHA384,TLS_CHACHA20_POLY1305_SHA256,TLS_AES_128_CCM_SHA256<br/>-1.3新增国密算法套：<br/>TLS_SM4_GCM_SM3,TLS_SM4_CCM_SM3 |
 | enableMetered | boolean | 否 | 设置是否允许在按流量计费的连接下下载。<br/>-&nbsp;true：是<br/>-&nbsp;false：否 |
 | enableRoaming | boolean | 否 | 设置是否允许在漫游网络中下载。 <br/>-&nbsp;true：是<br/>-&nbsp;false：否|
 | description | string | 否 | 设置下载会话的描述。 |

@@ -32,12 +32,15 @@
 - 安全
   - [AccessToken错误码](errorcode-access-token.md)
   - [HUKS错误码](errorcode-huks.md)
+  - [用户认证错误码](errorcode-useriam.md)
 - 数据管理
   - [关系型数据库错误码](errorcode-data-rdb.md)
   - [数据共享错误码](errorcode-datashare.md)
   - [分布式数据对象错误码](errorcode-distributed-dataObject.md)
   - [分布式键值数据库错误码](errorcode-distributedKVStore.md)
   - [首选项错误码](errorcode-preferences.md)
+- 文件管理
+  - [文件管理子系统错误码](errorcode-filemanagement.md)
 - 网络管理
   - [上传下载错误码](errorcode-request.md)
 - 通信与连接

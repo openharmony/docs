@@ -39,7 +39,7 @@ CheckboxGroup(options?: { group?: string })
 
 | 名称 | 功能描述 |
 | -------- | -------- |
-| onChange (callback: (event: [CheckboxGroupResult](#checkboxgroupresult对象说明)) => void ) |CheckboxGroup的选中状态或群组内的Checkbox的选中状态发生变化时，触发回调。|
+| onChange (callback: (event: [CheckboxGroupResult](#checkboxgroupresult对象说明)) => void ) |CheckboxGroup的选中状态或群组内的Checkbox的选中状态发生变化时，触发回调。（只有手动触发且Checkbox或CheckboxGroup状态改变时才会触发onChange回调）|
 
 ## CheckboxGroupResult对象说明
 | 名称     | 类型   | 描述      |
@@ -69,51 +69,45 @@ struct CheckboxExample {
         // 全选按钮
         Flex({ justifyContent: FlexAlign.Start, alignItems: ItemAlign.Center }) {
           CheckboxGroup({ group: 'checkboxGroup' })
-            .selectedColor(0xed6f21)
+            .selectedColor('#007DFF')
             .onChange((itemName: CheckboxGroupResult) => {
               console.info("checkbox group content" + JSON.stringify(itemName))
             })
-          Text('Select All').fontSize(20)
+          Text('Select All').fontSize(14).lineHeight(20).fontColor('#182431').fontWeight(500)
         }
 
         // 选项1
         Flex({ justifyContent: FlexAlign.Start, alignItems: ItemAlign.Center }) {
           Checkbox({ name: 'checkbox1', group: 'checkboxGroup' })
-            .selectedColor(0x39a2db)
+            .selectedColor('#007DFF')
             .onChange((value: boolean) => {
               console.info('Checkbox1 change is' + value)
             })
-          Text('Checkbox1').fontSize(20)
-        }
+          Text('Checkbox1').fontSize(14).lineHeight(20).fontColor('#182431').fontWeight(500)
+        }.margin({ left: 36 })
 
         // 选项2
         Flex({ justifyContent: FlexAlign.Start, alignItems: ItemAlign.Center }) {
           Checkbox({ name: 'checkbox2', group: 'checkboxGroup' })
-            .selectedColor(0x39a2db)
+            .selectedColor('#007DFF')
             .onChange((value: boolean) => {
               console.info('Checkbox2 change is' + value)
             })
-          Text('Checkbox2').fontSize(20)
-        }
+          Text('Checkbox2').fontSize(14).lineHeight(20).fontColor('#182431').fontWeight(500)
+        }.margin({ left: 36 })
 
         // 选项3
         Flex({ justifyContent: FlexAlign.Start, alignItems: ItemAlign.Center }) {
           Checkbox({ name: 'checkbox3', group: 'checkboxGroup' })
-            .selectedColor(0x39a2db)
+            .selectedColor('#007DFF')
             .onChange((value: boolean) => {
               console.info('Checkbox3 change is' + value)
             })
-          Text('Checkbox3').fontSize(20)
-        }
+          Text('Checkbox3').fontSize(14).lineHeight(20).fontColor('#182431').fontWeight(500)
+        }.margin({ left: 36 })
       }
     }
   }
 }
 ```
-多选框组三种状态图示：
-
-![](figures/checkboxgroup1.png)
-
-![](figures/checkboxgroup2.png)
-
-![](figures/checkboxgroup3.png)
+![checkboxGroup](figures/checkboxGroup.gif)

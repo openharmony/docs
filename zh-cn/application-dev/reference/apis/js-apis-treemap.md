@@ -58,11 +58,6 @@ TreeMap的构造函数。
 
 ```ts
 let treeMap = new TreeMap();
-try {
-  let treeMap2 = TreeMap();
-} catch(err) {
-  console.log(`${err.code} - ${err.name} - ${err.message}`);
-}
 ```
 
 
@@ -93,11 +88,6 @@ isEmpty(): boolean
 ```ts
 const treeMap = new TreeMap();
 let result = treeMap.isEmpty();
-try {
-  treeMap.isEmpty.bind({})(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
-} catch(err) {
-  console.log(`${err.code} - ${err.name} - ${err.message}`);
-}
 ```
 
 
@@ -136,11 +126,6 @@ let treeMap = new TreeMap();
 let result = treeMap.hasKey("squirrel");
 treeMap.set("squirrel", 123);
 let result1 = treeMap.hasKey("squirrel");
-try {
-  treeMap.hasKey.bind({}, "squirrel")(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
-} catch(err) {
-  console.log(`${err.code} - ${err.name} - ${err.message}`);
-}
 ```
 
 
@@ -179,11 +164,6 @@ let treeMap = new TreeMap();
 let result = treeMap.hasValue(123);
 treeMap.set("squirrel", 123);
 let result1 = treeMap.hasValue(123);
-try {
-  treeMap.hasValue.bind({}, 123)(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
-} catch(err) {
-  console.log(`${err.code} - ${err.name} - ${err.message}`);
-}
 ```
 
 
@@ -222,11 +202,6 @@ let treeMap = new TreeMap();
 treeMap.set("squirrel", 123);
 treeMap.set("sparrow", 356);
 let result = treeMap.get("sparrow");
-try {
-  treeMap.get.bind({}, "sparrow")(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
-} catch(err) {
-  console.log(`${err.code} - ${err.name} - ${err.message}`);
-}
 ```
 
 
@@ -259,11 +234,6 @@ let treeMap = new TreeMap();
 treeMap.set("squirrel", 123);
 treeMap.set("sparrow", 356);
 let result = treeMap.getFirstKey();
-try {
-  treeMap.getFirstKey.bind({})(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
-} catch(err) {
-  console.log(`${err.code} - ${err.name} - ${err.message}`);
-}
 ```
 
 
@@ -296,11 +266,6 @@ let treeMap = new TreeMap();
 treeMap.set("squirrel", 123);
 treeMap.set("sparrow", 356);
 let result = treeMap.getLastKey();
-try {
-  treeMap.getLastKey.bind({})(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
-} catch(err) {
-  console.log(`${err.code} - ${err.name} - ${err.message}`);
-}
 ```
 
 
@@ -334,11 +299,6 @@ treeMap.set("squirrel", 123);
 treeMap.set("sparrow", 356);
 let map = new TreeMap();
 treeMap.setAll(map);
-try {
-  treeMap.setAll.bind({}, map)(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
-} catch(err) {
-  console.log(`${err.code} - ${err.name} - ${err.message}`);
-}
 ```
 
 
@@ -376,11 +336,6 @@ set(key: K, value: V): Object
 ```ts
 let treeMap = new TreeMap();
 treeMap.set("squirrel", 123);
-try {
-  treeMap.set.bind({}, "squirrel", 123)(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
-} catch(err) {
-  console.log(`${err.code} - ${err.name} - ${err.message}`);
-}
 ```
 
 
@@ -419,11 +374,6 @@ let treeMap = new TreeMap();
 treeMap.set("squirrel", 123);
 treeMap.set("sparrow", 356);
 treeMap.remove("sparrow");
-try {
-  treeMap.remove.bind({}, "sparrow")(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
-} catch(err) {
-  console.log(`${err.code} - ${err.name} - ${err.message}`);
-}
 ```
 
 
@@ -463,11 +413,6 @@ treeMap.set("squirrel", 123);
 treeMap.set("sparrow", 356);
 treeMap.set("gander", 356);
 let result = treeMap.getLowerKey("sparrow");
-try {
-  treeMap.getLowerKey.bind({}, "sparrow")(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
-} catch(err) {
-  console.log(`${err.code} - ${err.name} - ${err.message}`);
-}
 ```
 
 
@@ -507,11 +452,6 @@ treeMap.set("squirrel", 123);
 treeMap.set("sparrow", 356);
 treeMap.set("gander", 356);
 let result = treeMap.getHigherKey("sparrow");
-try {
-  treeMap.getHigherKey.bind({}, "sparrow")(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
-} catch(err) {
-  console.log(`${err.code} - ${err.name} - ${err.message}`);
-}
 ```
 
 ### replace
@@ -549,11 +489,6 @@ replace(key: K, newValue: V): boolean
 let treeMap = new TreeMap();
 treeMap.set("sparrow", 123);
 let result = treeMap.replace("sparrow", 357);
-try {
-  treeMap.replace.bind({}, "sparrow", 357)(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
-} catch(err) {
-  console.log(`${err.code} - ${err.name} - ${err.message}`);
-}
 ```
 
 
@@ -580,11 +515,6 @@ let treeMap = new TreeMap();
 treeMap.set("squirrel", 123);
 treeMap.set("sparrow", 356);
 treeMap.clear();
-try {
-  treeMap.clear.bind({})(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
-} catch(err) {
-  console.log(`${err.code} - ${err.name} - ${err.message}`);
-}
 ```
 
 
@@ -622,11 +552,6 @@ while(temp != undefined) {
   console.log("value:" + temp);
   temp = iter.next().value;
 }
-try {
-  treeMap.keys.bind({})(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
-} catch(err) {
-  console.log(`${err.code} - ${err.name} - ${err.message}`);
-}
 ```
 
 
@@ -663,11 +588,6 @@ let temp = iter.next().value;
 while(temp != undefined) {
   console.log("value:" + temp);
   temp = iter.next().value;
-}
-try {
-  treeMap.values.bind({})(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
-} catch(err) {
-  console.log(`${err.code} - ${err.name} - ${err.message}`);
 }
 ```
 
@@ -711,13 +631,6 @@ treeMap.set("gull", 357);
 treeMap.forEach((value, key) => {
   console.log("value:" + value, key);
 });
-try {
-  treeMap.forEach.bind({}, (value, key) => {
-    console.log("value:" + value, key);
-  })(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
-} catch(err) {
-  console.log(`${err.code} - ${err.name} - ${err.message}`);
-}
 ```
 
 
@@ -755,11 +668,6 @@ while(temp != undefined) {
   console.log("key:" + temp[0]);
   console.log("value:" + temp[1]);
   temp = iter.next().value;
-}
-try {
-  treeMap.entries.bind({})(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
-} catch(err) {
-  console.log(`${err.code} - ${err.name} - ${err.message}`);
 }
 ```
 
@@ -805,10 +713,5 @@ while(temp != undefined) {
   console.log("key:" + temp[0]);
   console.log("value:" + temp[1]);
   temp = iter.next().value;
-}
-try {
-  treeMap[Symbol.iterator].bind({})(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
-} catch(err) {
-  console.log(`${err.code} - ${err.name} - ${err.message}`);
 }
 ```

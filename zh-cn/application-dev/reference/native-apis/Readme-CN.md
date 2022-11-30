@@ -11,6 +11,7 @@
   - [Image](image.md)
   - [Rawfile](rawfile.md)
   - [MindSpore](_mind_spore.md)
+  - [NeuralNeworkRuntime](_neural_nework_runtime.md)
 - 头文件
   - [drawing_bitmap.h](drawing__bitmap_8h.md)
   - [drawing_brush.h](drawing__brush_8h.md)
@@ -39,6 +40,8 @@
   - [status.h](status_8h.md)
   - [tensor.h](tensor_8h.md)
   - [types.h](types_8h.md)
+  - [neural_network_runtime_type.h](neural__network__runtime__type_8h.md)
+  - [neural_network_runtime.h](neural__network__runtime_8h.md)
 - 结构体
   - [OH_Drawing_BitmapFormat](_o_h___drawing___bitmap_format.md)
   - [OH_NativeBuffer_Config](_o_h___native_buffer___config.md)
@@ -56,3 +59,7 @@
   - [OH_AI_CallBackParam](_o_h___a_i___call_back_param.md)
   - [OH_AI_ShapeInfo](_o_h___a_i___shape_info.md)
   - [OH_AI_TensorHandleArray](_o_h___a_i___tensor_handle_array.md)
+  - [OH_NN_Memory](_o_h___n_n___memory.md)
+  - [OH_NN_QuantParam](_o_h___n_n___quant_param.md)
+  - [OH_NN_Tensor](_o_h___n_n___tensor.md)
+  - [OH_NN_UInt32Array](_o_h___n_n___u_int32_array.md)

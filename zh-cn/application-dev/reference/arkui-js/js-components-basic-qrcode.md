@@ -94,7 +94,6 @@ select{
 /* index.js */
 export default {
   data: {
-    qr_value:'',
     qr_type: 'rect',
     qr_size: '300px',
     qr_col: '#87ceeb',
@@ -109,9 +108,6 @@ export default {
       this.qr_type = 'circle'
     }
   },
-  setvalue(e) {
-    this.qr_value = e.newValue
-  },
   setcol(e) {
     this.qr_col = e.newValue
   },
@@ -122,5 +118,4 @@ export default {
 ```
 
 ![zh-cn_image_0000001222948301](figures/zh-cn_image_0000001222948301.gif)
-
 

@@ -2,7 +2,7 @@
 
 本模块提供HTTP数据请求能力。应用可以通过HTTP发起一个数据请求，支持常见的GET、POST、OPTIONS、HEAD、PUT、DELETE、TRACE、CONNECT方法。
 
->**说明：** 
+>**说明：**
 >
 >本模块首批接口从API version 6开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 >
@@ -38,8 +38,12 @@ httpRequest.request(
         extraData: {
             "data": "data to send",
         },
+        expectDataType: http.HttpDataType.STRING, // 可选，指定返回数据的类型
+        usingCache: true, // 可选，默认为true
+        priority: 1, // 可选，默认为1
         connectTimeout: 60000, // 可选，默认为60000ms
         readTimeout: 60000, // 可选，默认为60000ms
+        usingProtocol: http.HttpProtocol.HTTP1_1, // 可选，协议类型默认值由系统自动指定
     }, (err, data) => {
         if (!err) {
             // data.result为HTTP响应内容，可根据业务需要进行解析
@@ -77,7 +81,6 @@ createHttp\(\): HttpRequest
 import http from '@ohos.net.http';
 let httpRequest = http.createHttp();
 ```
-
 
 ## HttpRequest
 
@@ -158,7 +161,6 @@ httpRequest.request("EXAMPLE_URL",
 });
 ```
 
-
 ### request
 
 request\(url: string, options? : HttpRequestOptions\): Promise<HttpResponse\>
@@ -226,7 +228,7 @@ on\(type: 'headerReceive', callback: AsyncCallback<Object\>\): void
 
 订阅HTTP Response Header 事件。
 
->![](public_sys-resources/icon-note.gif) **说明：** 
+>![](public_sys-resources/icon-note.gif) **说明：**
 >此接口已废弃，建议使用[on\('headersReceive'\)<sup>8+</sup>](#onheadersreceive8)替代。
 
 **系统能力**：SystemCapability.Communication.NetStack
@@ -250,14 +252,13 @@ httpRequest.on('headerReceive', (err, data) => {
 });
 ```
 
-
 ### off\('headerReceive'\)
 
 off\(type: 'headerReceive', callback?: AsyncCallback<Object\>\): void
 
 取消订阅HTTP Response Header 事件。
 
->![](public_sys-resources/icon-note.gif) **说明：** 
+>![](public_sys-resources/icon-note.gif) **说明：**
 >
 >1. 此接口已废弃，建议使用[off\('headersReceive'\)<sup>8+</sup>](#offheadersreceive8)替代。
 >
@@ -301,14 +302,13 @@ httpRequest.on('headersReceive', (header) => {
 });
 ```
 
-
 ### off\('headersReceive'\)<sup>8+</sup>
 
 off\(type: 'headersReceive', callback?: Callback<Object\>\): void
 
 取消订阅HTTP Response Header 事件。
 
->![](public_sys-resources/icon-note.gif) **说明：** 
+>![](public_sys-resources/icon-note.gif) **说明：**
 >可以指定传入on中的callback取消一个订阅，也可以不指定callback清空所有订阅。
 
 **系统能力**：SystemCapability.Communication.NetStack
@@ -359,9 +359,13 @@ httpRequest.once('headersReceive', (header) => {
 | -------------- | --------------------------------------------- | ---- | ------------------------------------------------------------ |
 | method         | [RequestMethod](#requestmethod)               | 否   | 请求方式。                                                   |
 | extraData      | string \| Object  \| ArrayBuffer<sup>6+</sup> | 否   | 发送请求的额外数据。<br />- 当HTTP请求为POST、PUT等方法时，此字段为HTTP请求的content。<br />- 当HTTP请求为GET、OPTIONS、DELETE、TRACE、CONNECT等方法时，此字段为HTTP请求的参数补充，参数内容会拼接到URL中进行发送。<sup>6+</sup><br />- 开发者传入string对象，开发者需要自行编码，将编码后的string传入。<sup>6+</sup> |
+| expectDataType<sup>9+</sup>  | [HttpDataType](#httpdatatype9)   | 否   | 指定返回数据的类型。如果设置了此参数，系统将优先返回指定的类型。 |
+| usingCache<sup>9+</sup>      | boolean                         | 否   | 是否使用缓存，默认为true。   |
+| priority<sup>9+</sup>        | number                          | 否   | 优先级，范围\[1,1000]，默认是1。                           |
 | header         | Object                                        | 否   | HTTP请求头字段。默认{'Content-Type': 'application/json'}。   |
 | readTimeout    | number                                        | 否   | 读取超时时间。单位为毫秒（ms），默认为60000ms。              |
 | connectTimeout | number                                        | 否   | 连接超时时间。单位为毫秒（ms），默认为60000ms。              |
+| usingProtocol<sup>9+</sup>   | [HttpProtocol](#httpprotocol9)   | 否   | 使用协议。默认值由系统自动指定。              |
 
 ## RequestMethod
 
@@ -433,9 +437,148 @@ request方法回调函数的返回值类型。
 | 参数名               | 类型                                         | 必填 | 说明                                                         |
 | -------------------- | -------------------------------------------- | ---- | ------------------------------------------------------------ |
 | result               | string \| Object \| ArrayBuffer<sup>6+</sup> | 是   | HTTP请求根据响应头中Content-type类型返回对应的响应格式内容：<br />- application/json：返回JSON格式的字符串，如需HTTP响应具体内容，需开发者自行解析<br />- application/octet-stream：ArrayBuffer<br />- 其他：string |
+| resultType<sup>9+</sup> | [HttpDataType](#httpdatatype9)             | 是   | 返回值类型。                           |
 | responseCode         | [ResponseCode](#responsecode) \| number      | 是   | 回调函数执行成功时，此字段为[ResponseCode](#responsecode)。若执行失败，错误码将会从AsyncCallback中的err字段返回。错误码参考[Response错误码](#response常用错误码)。 |
 | header               | Object                                       | 是   | 发起HTTP请求返回来的响应头。当前返回的是JSON格式字符串，如需具体字段内容，需开发者自行解析。常见字段及解析方式如下：<br/>- Content-Type：header['Content-Type']；<br />- Status-Line：header['Status-Line']；<br />- Date：header.Date/header['Date']；<br />- Server：header.Server/header['Server']； |
 | cookies<sup>8+</sup> | Array\<string\>                              | 是   | 服务器返回的 cookies。                                       |
+
+## http.createHttpResponseCache<sup>9+</sup>
+
+createHttpResponseCache(cacheSize?: number): HttpResponseCache
+
+创建一个默认的对象来存储HTTP访问请求的响应。
+
+**系统能力**：SystemCapability.Communication.NetStack
+
+**参数：**
+
+| 参数名   | 类型                                    | 必填 | 说明       |
+| -------- | --------------------------------------- | ---- | ---------- |
+| cacheSize | number | 否 | 缓存大小最大为10\*1024\*1024（10MB），默认最大。 |
+
+**返回值：**
+
+| 类型        | 说明                                                         |
+| :---------- | :----------------------------------------------------------- |
+| [HttpResponseCache](#httpresponsecache9) | 返回一个存储HTTP访问请求响应的对象。 |
+
+**示例：**
+
+```js
+import http from '@ohos.net.http';
+let httpResponseCache = http.createHttpResponseCache();
+```
+
+## HttpResponseCache<sup>9+</sup>
+
+存储HTTP访问请求响应的对象。
+
+### flush<sup>9+</sup>
+
+flush(callback: AsyncCallback\<void>): void
+
+将缓存中的数据写入文件系统，以便在下一个HTTP请求中访问所有缓存数据，使用callback方式作为异步方法。
+
+**系统能力**：SystemCapability.Communication.NetStack
+
+**参数：**
+
+| 参数名   | 类型                                    | 必填 | 说明       |
+| -------- | --------------------------------------- | ---- | ---------- |
+| callback | AsyncCallback\<void> | 是   | 回调函数返回写入结果。 |
+
+**示例：**
+
+```js
+import http from '@ohos.net.http';
+let httpResponseCache = http.createHttpResponseCache();
+httpResponseCache.flush(err => {
+  if (err) {
+    console.log('flush fail');
+    return;
+  }
+  console.log('flush success');
+});
+```
+
+### flush<sup>9+</sup>
+
+flush(): Promise\<void>
+
+将缓存中的数据写入文件系统，以便在下一个HTTP请求中访问所有缓存数据，使用Promise方式作为异步方法。
+
+**系统能力**：SystemCapability.Communication.NetStack
+
+**参数：**
+
+| 类型                              | 说明                                  |
+| --------------------------------- | ------------------------------------- |
+| Promise\<void>> | 以Promise形式返回写入结果。 |
+
+**示例：**
+
+```js
+import http from '@ohos.net.http';
+let httpResponseCache = http.createHttpResponseCache();
+http.flush().then(() => {
+  console.log('flush success');
+}).catch(err => {
+  console.log('flush fail');
+});
+```
+
+### delete<sup>9+</sup>
+
+delete(callback: AsyncCallback\<void>): void
+
+禁用缓存并删除其中的数据，使用callback方式作为异步方法。
+
+**系统能力**：SystemCapability.Communication.NetStack
+
+**参数：**
+
+| 参数名   | 类型                                    | 必填 | 说明       |
+| -------- | --------------------------------------- | ---- | ---------- |
+| callback | AsyncCallback\<void> | 是   | 回调函数返回删除结果。|
+
+**示例：**
+
+```js
+import http from '@ohos.net.http';
+let httpResponseCache = http.createHttpResponseCache();
+httpResponseCache.delete(err => {
+  if (err) {
+    console.log('delete fail');
+    return;
+  }
+  console.log('delete success');
+});
+```
+### delete<sup>9+</sup>
+
+delete(): Promise\<void>
+
+禁用缓存并删除其中的数据，使用Promise方式作为异步方法。
+
+**系统能力**：SystemCapability.Communication.NetStack
+
+**参数：**
+
+| 类型                              | 说明                                  |
+| --------------------------------- | ------------------------------------- |
+| Promise\<void> | 以Promise形式返回删除结果。 |
+
+**示例：**
+
+```js
+import http from '@ohos.net.http';
+let httpResponseCache = http.createHttpResponseCache();
+httpResponseCache.delete().then() => {
+  console.log('delete success');
+}).catch(err => {
+  console.log('delete fail');
+});
+```
 
 ## Response常用错误码
 
@@ -448,3 +591,21 @@ request方法回调函数的返回值类型。
 | 6      | 无法解析主机。                                               |
 | 7      | 无法连接代理或主机。                                         |
 
+## HttpDataType<sup>9+</sup>
+
+http的数据类型。
+
+| **HttpDataType 的合法值** | 说明     |
+| :------------------ | :----------- |
+| STRING              |  字符串类型。 |
+| OBJECT              |  对象类型。    |
+| ARRAY_BUFFER        |  二进制数组类型。|
+
+## HttpProtocol<sup>9+</sup>
+
+http协议版本。
+
+| **HttpProtocol 的合法值** | 说明     |
+| :----------------- | :----------- |
+| HTTP1_1            |  协议http1.1 |
+| HTTP2              |  协议http2    |

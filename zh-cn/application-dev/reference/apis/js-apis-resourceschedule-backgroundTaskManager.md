@@ -32,7 +32,7 @@ requestSuspendDelay(reason: string, callback: Callback&lt;void&gt;): DelaySuspen
 
 **参数**：
 
-| 参数名      | 类型                   | 必填   | 说明                             |
+| 名称      | 类型                   | 必填   | 说明                             |
 | -------- | -------------------- | ---- | ------------------------------ |
 | reason   | string               | 是    | 延迟挂起申请的原因。                     |
 | callback | Callback&lt;void&gt; | 是    | 延迟即将超时的回调函数，一般在超时前6秒通过此回调通知应用。 |
@@ -51,10 +51,10 @@ requestSuspendDelay(reason: string, callback: Callback&lt;void&gt;): DelaySuspen
 | ---- | --------------------- |
 | 9800001 | Memory operation failed. |
 | 9800002 | Parcel operation failed. |
-| 9800003 | Inner transact failed. | |
+| 9800003 | IPC failed. | |
 | 9800004 | System service operation failed. |
-| 9900001 | Caller information verification failed. |
-| 9900002 | Background task verification failed. |
+| 9900001 | Caller information verification failed for a transient task. |
+| 9900002 | Transient task verification failed. |
 
 **示例**：
 
@@ -86,7 +86,7 @@ getRemainingDelayTime(requestId: number, callback: AsyncCallback&lt;number&gt;):
 
 **参数**：
 
-| 参数名       | 类型                          | 必填   | 说明                                       |
+| 名称       | 类型                          | 必填   | 说明                                       |
 | --------- | --------------------------- | ---- | ---------------------------------------- |
 | requestId | number                      | 是    | 延迟挂起的请求ID。                               |
 | callback  | AsyncCallback&lt;number&gt; | 是    | 指定的callback回调方法。用于返回应用程序进入挂起状态之前的剩余时间，以毫秒为单位。 |
@@ -99,10 +99,10 @@ getRemainingDelayTime(requestId: number, callback: AsyncCallback&lt;number&gt;):
 | ---- | --------------------- |
 | 9800001 | Memory operation failed. |
 | 9800002 | Parcel operation failed. |
-| 9800003 | Inner transact failed. | |
+| 9800003 | IPC failed. | |
 | 9800004 | System service operation failed. |
-| 9900001 | Caller information verification failed. |
-| 9900002 | Background task verification failed. |
+| 9900001 | Caller information verification failed for a transient task. |
+| 9900002 | Transient task verification failed. |
 
 
 **示例**：
@@ -137,7 +137,7 @@ getRemainingDelayTime(requestId: number): Promise&lt;number&gt;
 
 **参数**：
 
-| 参数名       | 类型     | 必填   | 说明         |
+| 名称       | 类型     | 必填   | 说明         |
 | --------- | ------ | ---- | ---------- |
 | requestId | number | 是    | 延迟挂起的请求ID。 |
 
@@ -155,10 +155,10 @@ getRemainingDelayTime(requestId: number): Promise&lt;number&gt;
 | ---- | --------------------- |
 | 9800001 | Memory operation failed. |
 | 9800002 | Parcel operation failed. |
-| 9800003 | Inner transact failed. | |
+| 9800003 | IPC failed. | |
 | 9800004 | System service operation failed. |
-| 9900001 | Caller information verification failed. |
-| 9900002 | Background task verification failed. |
+| 9900001 | Caller information verification failed for a transient task. |
+| 9900002 | Transient task verification failed. |
 
 **示例**：
 
@@ -188,7 +188,7 @@ cancelSuspendDelay(requestId: number): void
 
 **参数**：
 
-| 参数名       | 类型     | 必填   | 说明         |
+| 名称       | 类型     | 必填   | 说明         |
 | --------- | ------ | ---- | ---------- |
 | requestId | number | 是    | 延迟挂起的请求ID。 |
 
@@ -200,10 +200,10 @@ cancelSuspendDelay(requestId: number): void
 | ---- | --------------------- |
 | 9800001 | Memory operation failed. |
 | 9800002 | Parcel operation failed. |
-| 9800003 | Inner transact failed. | |
+| 9800003 | IPC failed. | |
 | 9800004 | System service operation failed. |
-| 9900001 | Caller information verification failed. |
-| 9900002 | Background task verification failed. |
+| 9900001 | Caller information verification failed for a transient task. |
+| 9900002 | Transient task verification failed. |
 
 **示例**：
 
@@ -231,7 +231,7 @@ startBackgroundRunning(context: Context, bgMode: BackgroundMode, wantAgent: Want
 
 **参数**：
 
-| 参数名       | 类型                                 | 必填   | 说明                                       |
+| 名称       | 类型                                 | 必填   | 说明                                       |
 | --------- | ---------------------------------- | ---- | ---------------------------------------- |
 | context   | Context                            | 是    | 应用运行的上下文。<br>FA模型的应用Context定义见[Context](js-apis-Context.md)。<br>Stage模型的应用Context定义见[Context](js-apis-ability-context.md)。 |
 | bgMode    | [BackgroundMode](#backgroundmode) | 是    | 向系统申请的后台模式。                              |
@@ -246,9 +246,9 @@ startBackgroundRunning(context: Context, bgMode: BackgroundMode, wantAgent: Want
 | ---- | --------------------- |
 | 9800001 | Memory operation failed. |
 | 9800002 | Parcel operation failed. |
-| 9800003 | Inner transact failed. | |
+| 9800003 | IPC failed. | |
 | 9800004 | System service operation failed. |
-| 9800005 | Background task verification failed. |
+| 9800005 | Continuous task verification failed. |
 | 9800006 | Notification verification failed. |
 | 9800007 | Task storage failed. |
 
@@ -305,7 +305,7 @@ startBackgroundRunning(context: Context, bgMode: BackgroundMode, wantAgent: Want
 
 **参数**：
 
-| 参数名       | 类型                                 | 必填   | 说明                                       |
+| 名称       | 类型                                 | 必填   | 说明                                       |
 | --------- | ---------------------------------- | ---- | ---------------------------------------- |
 | context   | Context                            | 是    | 应用运行的上下文。<br>FA模型的应用Context定义见[Context](js-apis-Context.md)。<br>Stage模型的应用Context定义见[Context](js-apis-ability-context.md)。 |
 | bgMode    | [BackgroundMode](#backgroundmode) | 是    | 向系统申请的后台模式。                              |
@@ -325,9 +325,9 @@ startBackgroundRunning(context: Context, bgMode: BackgroundMode, wantAgent: Want
 | ---- | --------------------- |
 | 9800001 | Memory operation failed. |
 | 9800002 | Parcel operation failed. |
-| 9800003 | Inner transact failed. | |
+| 9800003 | IPC failed. | |
 | 9800004 | System service operation failed. |
-| 9800005 | Background task verification failed. |
+| 9800005 | Continuous task verification failed. |
 | 9800006 | Notification verification failed. |
 | 9800007 | Task storage failed. |
 
@@ -378,7 +378,7 @@ stopBackgroundRunning(context: Context, callback: AsyncCallback&lt;void&gt;): vo
 
 **参数**：
 
-| 参数名      | 类型                        | 必填   | 说明                                       |
+| 名称      | 类型                        | 必填   | 说明                                       |
 | -------- | ------------------------- | ---- | ---------------------------------------- |
 | context  | Context                   | 是    | 应用运行的上下文。<br>FA模型的应用Context定义见[Context](js-apis-Context.md)。<br>Stage模型的应用Context定义见[Context](js-apis-ability-context.md)。 |
 | callback | AsyncCallback&lt;void&gt; | 是    | callback形式返回启动长时任务的结果。                   |
@@ -391,9 +391,9 @@ stopBackgroundRunning(context: Context, callback: AsyncCallback&lt;void&gt;): vo
 | ---- | --------------------- |
 | 9800001 | Memory operation failed. |
 | 9800002 | Parcel operation failed. |
-| 9800003 | Inner transact failed. | |
+| 9800003 | IPC failed. | |
 | 9800004 | System service operation failed. |
-| 9800005 | Background task verification failed. |
+| 9800005 | Continuous task verification failed. |
 | 9800006 | Notification verification failed. |
 | 9800007 | Task storage failed. |
 
@@ -434,7 +434,7 @@ stopBackgroundRunning(context: Context): Promise&lt;void&gt;
 
 **参数**：
 
-| 参数名     | 类型      | 必填   | 说明                                       |
+| 名称     | 类型      | 必填   | 说明                                       |
 | ------- | ------- | ---- | ---------------------------------------- |
 | context | Context | 是    | 应用运行的上下文。<br>FA模型的应用Context定义见[Context](js-apis-Context.md)。<br>Stage模型的应用Context定义见[Context](js-apis-ability-context.md)。 |
 
@@ -452,9 +452,9 @@ stopBackgroundRunning(context: Context): Promise&lt;void&gt;
 | ---- | --------------------- |
 | 9800001 | Memory operation failed. |
 | 9800002 | Parcel operation failed. |
-| 9800003 | Inner transact failed. | |
+| 9800003 | IPC failed. | |
 | 9800004 | System service operation failed. |
-| 9800005 | Background task verification failed. |
+| 9800005 | Continuous task verification failed. |
 | 9800006 | Notification verification failed. |
 | 9800007 | Task storage failed. |
 
@@ -469,7 +469,7 @@ export default class MainAbility extends Ability {
         try {
             backgroundTaskManager.stopBackgroundRunning(this.context).then(() => {
                 console.info("Operation stopBackgroundRunning succeeded");
-            }).catch((err) => {
+            }).catch((error) => {
                 console.error(`Operation stopBackgroundRunning failed. code is ${error.code} message is ${error.message}`);
             });
         } catch (error) {
@@ -492,7 +492,7 @@ applyEfficiencyResources(request: [EfficiencyResourcesRequest](#efficiencyresour
 
 **参数**：
 
-| 参数名     | 类型      | 必填   | 说明                                       |
+| 名称     | 类型      | 必填   | 说明                                       |
 | ------- | ------- | ---- | ---------------------------------------- |
 | request | [EfficiencyResourcesRequest](#efficiencyresourcesrequest) | 是    | 请求的必要信息。包括资源类型，超时时间等信息。详见[EfficiencyResourcesRequest](#efficiencyresourcesrequest)。 |
 
@@ -505,9 +505,9 @@ applyEfficiencyResources(request: [EfficiencyResourcesRequest](#efficiencyresour
 | ---- | --------------------- |
 | 9800001 | Memory operation failed. |
 | 9800002 | Parcel operation failed. |
-| 9800003 | Inner transact failed. | |
+| 9800003 | IPC failed. | |
 | 9800004 | System service operation failed. |
-| 18700001 | Caller information verification failed. |
+| 18700001 | Caller information verification failed when applying for efficiency resources. |
 
 **示例**：
 
@@ -548,9 +548,9 @@ resetAllEfficiencyResources(): void
 | ---- | --------------------- |
 | 9800001 | Memory operation failed. |
 | 9800002 | Parcel operation failed. |
-| 9800003 | Inner transact failed. | |
+| 9800003 | IPC failed. | |
 | 9800004 | System service operation failed. |
-| 18700001 | Caller information verification failed. |
+| 18700001 | Caller information verification failed when applying for efficiency resources. |
 
 **示例**：
 
@@ -570,7 +570,7 @@ try {
 
 **系统能力:** SystemCapability.ResourceSchedule.BackgroundTaskManager.TransientTask
 
-| 参数名             | 类型     | 必填   | 说明                                       |
+| 名称             | 类型     | 必填   | 说明                                       |
 | --------------- | ------ | ---- | ---------------------------------------- |
 | requestId       | number | 是    | 延迟挂起的请求ID。                               |
 | actualDelayTime | number | 是    | 应用的实际挂起延迟时间，以毫秒为单位。<br/>一般情况下默认值为180000，低电量（依据系统低电量广播）时默认值为60000。 |
@@ -580,7 +580,7 @@ try {
 
 **系统能力:** SystemCapability.ResourceSchedule.BackgroundTaskManager.ContinuousTask
 
-| 参数名                     | 参数值  | 描述                    |
+| 名称                     | 值  | 描述                    |
 | ----------------------- | ---- | --------------------- |
 | DATA_TRANSFER           | 1    | 数据传输。                  |
 | AUDIO_PLAYBACK          | 2    | 音频播放。                  |
@@ -600,7 +600,7 @@ try {
 
 **系统API**: 此接口为系统接口。
 
-| 参数名             | 类型     | 必填   | 说明                                       |
+| 名称             | 类型     | 必填   | 说明                                       |
 | --------------- | ------ | ---- | ---------------------------------------- |
 | resourceTypes   | number  | 是    | 申请的资源类型。                               |
 | isApply         | boolean | 是    | 申请资源或者是释放资源。          |
@@ -617,13 +617,13 @@ try {
 
 **系统API**: 此接口为系统接口。
 
-| 参数名                     | 描述                    |
-| ----------------------- | --------------------- |
-| CPU                     | CPU资源，申请后不被挂起。             |
-| COMMON_EVENT            | 公共事件，申请后挂起状态下不被代理掉。  |
-| TIMER                   | 计时器，申请后挂起状态下不被代理掉。    |
-| WORK_SCHEDULER          | 延迟任务，申请后有更长的执行时间。      |
-| BLUETOOTH               | 蓝牙相关，申请后挂起状态下不被代理掉。  |
-| GPS                     | GPS相关，申请后挂起状态下不被代理掉。  |
-| AUDIO                   | 音频资源，申请后挂起状态下不被代理掉。 |
+| 名称                     | 值  | 描述                    |
+| ----------------------- | ---- | --------------------- |
+| CPU                     | 1    | CPU资源，申请后不被挂起。             |
+| COMMON_EVENT            | 2    | 公共事件，申请后挂起状态下不被代理掉。  |
+| TIMER                   | 4    | 计时器，申请后挂起状态下不被代理掉。    |
+| WORK_SCHEDULER          | 8    | 延迟任务，申请后有更长的执行时间。      |
+| BLUETOOTH               | 16   | 蓝牙相关，申请后挂起状态下不被代理掉。  |
+| GPS                     | 32   | GPS相关，申请后挂起状态下不被代理掉。  |
+| AUDIO                   | 64   | 音频资源，申请后挂起状态下不被代理掉。 |
 

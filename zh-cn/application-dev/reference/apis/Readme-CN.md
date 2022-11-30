@@ -36,6 +36,7 @@
     - [@ohos.ability.dataUriUtils (DataUriUtils模块)](js-apis-DataUriUtils.md)
     - [@ohos.ability.errorCode (ErrorCode)](js-apis-ability-errorCode.md)
     - [@ohos.ability.wantConstant (wantConstant)](js-apis-ability-wantConstant.md)
+    - [@ohos.app.ability.appRecovery (appRecovery)](js-apis-app-ability-appRecovery.md)
     - [@ohos.application.abilityDelegatorRegistry (AbilityDelegatorRegistry)](js-apis-abilityDelegatorRegistry.md)
     - [@ohos.application.abilityManager (AbilityManager)](js-apis-application-abilityManager.md)
     - [@ohos.application.appManager (appManager)](js-apis-appmanager.md)
@@ -180,11 +181,8 @@
   - [@ohos.net.connection (网络连接管理)](js-apis-net-connection.md)
   - [@ohos.net.ethernet (以太网连接管理)](js-apis-net-ethernet.md)
   - [@ohos.net.http (数据请求)](js-apis-http.md)
-  - [@ohos.net.policy (网络策略管理)](js-apis-net-policy.md)
   - [@ohos.net.sharing (网络共享管理)](js-apis-net-sharing.md)
   - [@ohos.net.socket (Socket连接)](js-apis-socket.md)
-  - [@ohos.net.statistics (网络流量管理)](js-apis-net-statistics.md)
-  - [@ohos.net.tlsSocket (TLSSocket连接)](js-apis-tlsSocket.md)
   - [@ohos.net.webSocket (WebSocket连接)](js-apis-webSocket.md)
   - [@ohos.request (上传下载)](js-apis-request.md)
 
@@ -251,6 +249,8 @@
   - [@ohos.runningLock (Runninglock锁)](js-apis-runninglock.md)
   - [@ohos.sensor (传感器)](js-apis-sensor.md)
   - [@ohos.settings (设置数据项名称)](js-apis-settings.md)
+  - [@ohos.stationary (设备状态感知框架)](js-apis-stationary.md)
+  - [@ohos.systemCapability (系统能力)](js-apis-system-capability.md)
   - [@ohos.systemParameterV9 (系统属性)](js-apis-system-parameterV9.md)
   - [@ohos.thermal (热管理)](js-apis-thermal.md)
   - [@ohos.update (升级)](js-apis-update.md)
@@ -263,10 +263,10 @@
   - [@ohos.account.osAccount (系统帐号管理)](js-apis-osAccount.md)
 
 - 定制管理
-  - [@ohos.configPolicy (配置策略)](js-apis-config-policy.md)
-  - [@ohos.EnterpriseAdminExtensionAbility (EnterpriseAdminExtensionAbility)](js-apis-EnterpriseAdminExtensionAbility.md)
-  - [@ohos.enterpriseDeviceManager (企业设备管理)](js-apis-enterprise-device-manager.md)
-  - enterpriseDeviceManager/[DeviceSettingsManager(设备设置管理)](js-apis-enterpriseDeviceManager-DeviceSettingsManager.md)
+  - [@ohos.configPolicy (配置策略)](js-apis-configPolicy.md)
+  - [@ohos.enterprise.EnterpriseAdminExtensionAbility (EnterpriseAdminExtensionAbility)](js-apis-EnterpriseAdminExtensionAbility.md)
+  - [@ohos.enterprise.adminManager (企业设备管理)](js-apis-enterprise-adminManager.md)
+  - [@ohos.enterprise.dateTimeManager（系统时间管理）](js-apis-enterprise-dateTimeManager.md)
 
 - 语言基础类库
   - [@ohos.buffer (Buffer)](js-apis-buffer.md)
@@ -313,6 +313,7 @@
   - [@ohos.reminderAgent (后台代理提醒)](js-apis-reminderAgent.md)
   - [@ohos.systemParameter (系统属性)](js-apis-system-parameter.md)
   - [@ohos.usb (USB管理)](js-apis-usb-deprecated.md)
+  - [@ohos.workScheduler (延迟任务调度)](js-apis-workScheduler.md)
   - [@system.app (应用上下文)](js-apis-system-app.md)
   - [@system.battery (电量信息)](js-apis-system-battery.md)
   - [@system.bluetooth (蓝牙)](js-apis-system-bluetooth.md)

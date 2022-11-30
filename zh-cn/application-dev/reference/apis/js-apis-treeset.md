@@ -55,11 +55,6 @@ TreeSet的构造函数。
 
 ```ts
 let treeSet = new TreeSet();
-try {
-  let treeSet2 = TreeSet();
-} catch(err) {
-  console.log(`${err.code} - ${err.name} - ${err.message}`);
-}
 ```
 
 
@@ -90,11 +85,6 @@ isEmpty(): boolean
 ```ts
 const treeSet = new TreeSet();
 let result = treeSet.isEmpty();
-try {
-  treeSet.isEmpty.bind({})(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
-} catch(err) {
-  console.log(`${err.code} - ${err.name} - ${err.message}`);
-}
 ```
 
 
@@ -133,11 +123,6 @@ let treeSet = new TreeSet();
 treeSet.has(123);
 treeSet.add(123);
 let result1 = treeSet.has(123);
-try {
-  treeSet.has.bind({}, 123)(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
-} catch(err) {
-  console.log(`${err.code} - ${err.name} - ${err.message}`);
-}
 ```
 
 
@@ -170,11 +155,6 @@ let treeSet = new TreeSet();
 treeSet.add("squirrel");
 treeSet.add("sparrow");
 let result = treeSet.getFirstValue();
-try {
-  treeSet.getFirstValue.bind({})(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
-} catch(err) {
-  console.log(`${err.code} - ${err.name} - ${err.message}`);
-}
 ```
 
 
@@ -207,11 +187,6 @@ let treeSet = new TreeSet();
 treeSet.add("squirrel");
 treeSet.add("sparrow");
 let result = treeSet.getLastValue();
-try {
-  treeSet.getLastValue.bind({})(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
-} catch(err) {
-  console.log(`${err.code} - ${err.name} - ${err.message}`);
-}
 ```
 
 
@@ -248,11 +223,6 @@ add(value: T): boolean
 ```ts
 let treeSet = new TreeSet();
 let result = treeSet.add("squirrel");
-try {
-  treeSet.add.bind({}, "squirrel")(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
-} catch(err) {
-  console.log(`${err.code} - ${err.name} - ${err.message}`);
-}
 ```
 
 
@@ -291,11 +261,6 @@ let treeSet = new TreeSet();
 treeSet.add("squirrel");
 treeSet.add("sparrow");
 let result = treeSet.remove("sparrow");
-try {
-  treeSet.remove.bind({}, "sparrow")(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
-} catch(err) {
-  console.log(`${err.code} - ${err.name} - ${err.message}`);
-}
 ```
 
 
@@ -335,11 +300,6 @@ treeSet.add("squirrel");
 treeSet.add("sparrow");
 treeSet.add("gander");
 let result = treeSet.getLowerValue("sparrow");
-try {
-  treeSet.getLowerValue.bind({}, "sparrow")(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
-} catch(err) {
-  console.log(`${err.code} - ${err.name} - ${err.message}`);
-}
 ```
 
 
@@ -379,11 +339,6 @@ treeSet.add("squirrel");
 treeSet.add("sparrow");
 treeSet.add("gander");
 let result = treeSet.getHigherValue("sparrow");
-try {
-  treeSet.getHigherValue.bind({}, "sparrow")(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
-} catch(err) {
-  console.log(`${err.code} - ${err.name} - ${err.message}`);
-}
 ```
 
 
@@ -416,11 +371,6 @@ let treeSet = new TreeSet();
 treeSet.add("squirrel");
 treeSet.add("sparrow");
 let result = treeSet.popFirst();
-try {
-  treeSet.popFirst.bind({})(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
-} catch(err) {
-  console.log(`${err.code} - ${err.name} - ${err.message}`);
-}
 ```
 
 
@@ -453,11 +403,6 @@ let treeSet = new TreeSet();
 treeSet.add("squirrel");
 treeSet.add("sparrow");
 let result = treeSet.popLast();
-try {
-  treeSet.popLast.bind({})(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
-} catch(err) {
-  console.log(`${err.code} - ${err.name} - ${err.message}`);
-}
 ```
 
 
@@ -484,11 +429,6 @@ let treeSet = new TreeSet();
 treeSet.add("squirrel");
 treeSet.add("sparrow");
 treeSet.clear();
-try {
-  treeSet.clear.bind({})(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
-} catch(err) {
-  console.log(`${err.code} - ${err.name} - ${err.message}`);
-}
 ```
 
 
@@ -525,11 +465,6 @@ let temp = iter.next().value;
 while(temp != undefined) {
   console.log("value:" + temp);
   temp = iter.next().value;
-}
-try {
-  treeSet.values.bind({})(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
-} catch(err) {
-  console.log(`${err.code} - ${err.name} - ${err.message}`);
 }
 ```
 
@@ -573,13 +508,6 @@ treeSet.add("gull");
 treeSet.forEach((value, key) => {
   console.log("value:" + value, key)
 });
-try {
-  treeSet.forEach.bind({}, (value, key) => {
-    console.log("value:" + value, key)
-  })(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
-} catch(err) {
-  console.log(`${err.code} - ${err.name} - ${err.message}`);
-}
 ```
 
 
@@ -617,11 +545,6 @@ while(temp != undefined) {
   console.log("key:" + temp[0]);
   console.log("value:" + temp[1]);
   temp = iter.next().value;
-}
-try {
-  treeSet.entries.bind({})(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
-} catch(err) {
-  console.log(`${err.code} - ${err.name} - ${err.message}`);
 }
 ```
 
@@ -666,10 +589,5 @@ let temp = iter.next().value;
 while(temp != undefined) {
   console.log("value:" + temp);
   temp = iter.next().value;
-}
-try {
-  treeSet[Symbol.iterator].bind({})(); // bind为JS标准内置对象Function的方法，用于改变this的指向，测试异常捕获
-} catch(err) {
-  console.log(`${err.code} - ${err.name} - ${err.message}`);
 }
 ```

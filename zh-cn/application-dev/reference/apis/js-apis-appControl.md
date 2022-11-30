@@ -39,13 +39,13 @@ setDisposedStatus(appId: string, disposedWant: Want): Promise\<void>
 | ------------------------- | ------------------ |
 | Promise\<void> | Promise对象。无返回结果的Promise对象。 |
 
-**错误码**
+**错误码：**
 
 以下错误码的详细介绍请参见[ohos.bundle错误码](../errorcodes/errorcode-bundle.md)。
 
 | 错误码ID | 错误信息                                |
 | ------ | -------------------------------------- |
-| 17700005 |  The specified appId was not found.  |
+| 17700005 |  The specified app ID is not found.  |
 
 **示例：**
 
@@ -85,13 +85,13 @@ setDisposedStatus(appId: string, disposedWant: Want, callback: AsyncCallback\<vo
 | disposedWant | Want  | 是 | 对应用的处置意图。 |
 | callback    | AsyncCallback\<void> | 是    | 回调函数，当设置处置状态成功，err为undefined，否则为错误对象。 |
 
-**错误码**
+**错误码：**
 
 以下错误码的详细介绍请参见[ohos.bundle错误码](../errorcodes/errorcode-bundle.md)。
 
 | 错误码ID | 错误信息                                |
 | ------ | -------------------------------------- |
-| 17700005 |  The specified appId was not found.  |
+| 17700005 |  The specified app ID is not found.  |
 
 **示例：**
 
@@ -100,8 +100,8 @@ var appId = "com.example.myapplication_xxxxx";
 var want = {bundleName: 'com.example.myapplication'};
 
 try {
-    appControl.setDisposedStatus(appId, want, (err, data) => {
-        if (err) {
+    appControl.setDisposedStatus(appId, want, (error, data) => {
+        if (error) {
             console.error('setDisposedStatus failed ' + error.message);
             return;
         }
@@ -136,13 +136,13 @@ getDisposedStatus(appId: string): Promise\<Want>;
 | ------------------------- | ------------------ |
 | Promise\<Want> | Promise对象，返回应用的处置状态。 |
 
-**错误码**
+**错误码：**
 
 以下错误码的详细介绍请参见[ohos.bundle错误码](../errorcodes/errorcode-bundle.md)。
 
 | 错误码ID | 错误信息                                |
 | ------ | -------------------------------------- |
-| 17700005 |  The specified appId was not found.  |
+| 17700005 |  The specified app ID is not found.  |
 
 **示例：**
 
@@ -180,13 +180,13 @@ getDisposedStatus(appId: string, callback: AsyncCallback\<Want>): void;
 | appId  | string | 是    | 要查询的应用的appId<br> appId是应用的唯一标识，由应用的包名和签名信息决定，获取方法参见[获取应用的appId](#获取应用的appid)。       |
 | callback    | AsyncCallback\<Want> | 是    | 回调函数。当获取应用的处置状态成功时，err为undefined，data为获取到的处置状态；否则为错误对象。                    |
 
-**错误码**
+**错误码：**
 
 以下错误码的详细介绍请参见[ohos.bundle错误码](../errorcodes/errorcode-bundle.md)。
 
 | 错误码ID | 错误信息                                |
 | ------ | -------------------------------------- |
-| 17700005 |  The specified appId was not found.  |
+| 17700005 |  The specified app ID is not found.  |
 
 **示例：**
 
@@ -194,8 +194,8 @@ getDisposedStatus(appId: string, callback: AsyncCallback\<Want>): void;
 var appId = "com.example.myapplication_xxxxx";
 
 try {
-    appControl.getDisposedStatus(appId, (err, data) => {
-        if (err) {
+    appControl.getDisposedStatus(appId, (error, data) => {
+        if (error) {
             console.error('getDisposedStatus failed ' + error.message);
             return;
         }
@@ -230,13 +230,13 @@ deleteDisposedStatus(appId: string): Promise\<void>
 | ------------------------- | ------------------ |
 | Promise\<void> | Promise对象，无返回结果的Promise对象 |
 
-**错误码**
+**错误码：**
 
 以下错误码的详细介绍请参见[ohos.bundle错误码](../errorcodes/errorcode-bundle.md)。
 
 | 错误码ID | 错误信息                                |
 | ------ | -------------------------------------- |
-| 17700005 |  The specified appId was not found.  |
+| 17700005 |  The specified app ID is not found.  |
 
 **示例：**
 
@@ -274,21 +274,21 @@ deleteDisposedStatus(appId: string, callback: AsyncCallback\<void>) : void
 | appId  | string | 是    | 要查询的应用的appId。<br> appId是应用的唯一标识，由应用的包名和签名信息决定，获取方法参见[获取应用的appId](#获取应用的appid)。       |
 | callback    | AsyncCallback\<void> | 是    | 回调函数，当设置处置状态成功时，err返回undefined。否则回调函数返回具体错误对象。                   |
 
-**错误码**
+**错误码：**
 
 以下错误码的详细介绍请参见[ohos.bundle错误码](../errorcodes/errorcode-bundle.md)。
 
 | 错误码ID | 错误信息                                |
 | ------ | -------------------------------------- |
-| 17700005 |  The specified appId was not found.  |
+| 17700005 |  The specified app ID is not found.  |
 
 **示例：**
 
 ```ts
 var appId = "com.example.myapplication_xxxxx";
 try {
-    appControl.deleteDisposedStatus(appId, (err, data) => {
-        if (err) {
+    appControl.deleteDisposedStatus(appId, (error, data) => {
+        if (error) {
             console.error('deleteDisposedStatus failed ' + error.message);
             return;
         }

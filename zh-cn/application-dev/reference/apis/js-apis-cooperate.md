@@ -20,7 +20,7 @@ enable(enable: boolean, callback: AsyncCallback&lt;void&gt;): void
 
 开启、关闭键鼠穿越，使用AsyncCallback异步方式返回结果。
 
-**系统能力**: SystemCapability.MultimodalInput.Input.Cooperate
+**系统能力**: SystemCapability.MultimodalInput.Input.Cooperator
 
 **参数**：
 
@@ -54,7 +54,7 @@ enable(enable: boolean): Promise&lt;void&gt;
 开启、关闭键鼠穿越，使用Promise异步方式返回结果。
 
 
-**系统能力**： SystemCapability.MultimodalInput.Input.Cooperate
+**系统能力**： SystemCapability.MultimodalInput.Input.Cooperator
 
 **参数**：
 
@@ -92,7 +92,7 @@ start(sinkDeviceDescriptor: string, srcInputDeviceId: number, callback: AsyncCal
 
 启动键鼠穿越，使用AsyncCallback异步方式返回结果。
 
-**系统能力**：SystemCapability.MultimodalInput.Input.Cooperate
+**系统能力**：SystemCapability.MultimodalInput.Input.Cooperator
 
 **参数**：
 
@@ -135,7 +135,7 @@ start(sinkDeviceDescriptor: string, srcInputDeviceId: number): Promise\<void>
 
 启动键鼠穿越，使用Promise异步方式返回结果。
 
-**系统能力**: SystemCapability.MultimodalInput.Input.Cooperate
+**系统能力**: SystemCapability.MultimodalInput.Input.Cooperator
 
 **参数**：
 
@@ -183,7 +183,7 @@ stop(callback: AsyncCallback\<void>): void
 
 停止键鼠穿越，使用AsyncCallback异步方式返回结果。
 
-**系统能力**：SystemCapability.MultimodalInput.Input.Cooperate
+**系统能力**：SystemCapability.MultimodalInput.Input.Cooperator
 
 **参数**：
 
@@ -215,7 +215,7 @@ stop(): Promise\<void>
 
 停止键鼠穿越，使用Promise异步方式返回结果。
 
-**系统能力**：SystemCapability.MultimodalInput.Input.Cooperate
+**系统能力**：SystemCapability.MultimodalInput.Input.Cooperator
 
 **返回值**：
 
@@ -243,7 +243,7 @@ getState(deviceDescriptor: string, callback: AsyncCallback<{ state: boolean }>):
 
 获取键鼠穿越开关的状态，使用AsyncCallback异步方式返回结果。
 
-**系统能力**：SystemCapability.MultimodalInput.Input.Cooperate
+**系统能力**：SystemCapability.MultimodalInput.Input.Cooperator
 
 **参数**：
 
@@ -275,7 +275,7 @@ getState(deviceDescriptor: string): Promise<{ state: boolean }>
 
 获取键鼠穿越开关的状态，使用Promise异步方式返回结果。
 
-**系统能力**：SystemCapability.MultimodalInput.Input.Cooperate
+**系统能力**：SystemCapability.MultimodalInput.Input.Cooperator
 
 **参数**：
 
@@ -314,7 +314,7 @@ on(type: 'cooperation', callback: AsyncCallback<{ deviceDescriptor: string, even
 
 注册监听键鼠穿越状态。
 
-**系统能力**：SystemCapability.MultimodalInput.Input.Cooperate
+**系统能力**：SystemCapability.MultimodalInput.Input.Cooperator
 
 **参数**：
 
@@ -343,7 +343,7 @@ off(type: 'cooperation', callback?: AsyncCallback\<void>): void
 
 关闭监听键鼠穿越状态。
 
-**系统能力**：SystemCapability.MultimodalInput.Input.Cooperate
+**系统能力**：SystemCapability.MultimodalInput.Input.Cooperator
 
 **参数**：
 
@@ -387,7 +387,7 @@ try {
 
 键鼠穿越事件。
 
-**系统能力**：SystemCapability.MultimodalInput.Input.Cooperate
+**系统能力**：SystemCapability.MultimodalInput.Input.Cooperator
 
 | 名称                       | 值        | 说明                              |
 | --------                     | --------- |  -----------------               |

@@ -13,7 +13,7 @@ import tag from '@ohos.nfc.tag';
 
 ## NfcATag
 
-NfcATag 提供 NFC-A(ISO 14443-3A)技术的属性和I/O操作的访问，继承自TagSession。
+NfcATag 提供 NFC-A(ISO 14443-3A)技术的属性和I/O操作的访问，继承自[TagSession](js-apis-tagSession.md)。
 
 TagSession是所有NFC Tag技术类型的基类， 提供建立连接和发送数据等共同接口。具体请参见[TagSession](js-apis-tagSession.md)。
 
@@ -268,11 +268,13 @@ getHistoricalBytes(): number[]
 **系统能力**：SystemCapability.Communication.NFC.Core
 
 **返回值：**
+
 | **类型** | **说明**                             |
 | ------------------ | --------------------------|
 | number[] | IsoDepTag 标签的历史字节，每个number十六进制表示，范围是0x00~0xFF。如果该IsoDep类型Tag是基于NfcB技术的，则该返回值为空。|
 
 **示例：**
+
 ```js
 import tag from '@ohos.nfc.tag';
 
@@ -290,11 +292,13 @@ getHiLayerResponse(): number[]
 **系统能力**：SystemCapability.Communication.NFC.Core
 
 **返回值：**
+
 | **类型** | **说明**                             |
 | ------------------ | --------------------------|
 | number[] | IsoDepTag 标签的更高层响应字节，每个number十六进制表示，范围是0x00~0xFF。如果该IsoDep类型Tag是基于NfcA技术的，则该返回值为空。|
 
 **示例：**
+
 ```js
 import tag from '@ohos.nfc.tag';
 
@@ -314,17 +318,21 @@ isExtendedApduSupported(): Promise&lt;boolean&gt;
 **系统能力**：SystemCapability.Communication.NFC.Core
 
 **返回值：**
+
 | **类型** | **说明**                             |
 | ------------------ | --------------------------|
 | Promise&lt;boolean&gt; | 检查结果，true: 支持， false: 不支持。|
 
 **错误码：**
+
 以下错误码的详细介绍请参见[NFC错误码](../errorcodes/errorcode-nfc.md)。
+
 | 错误码ID | 错误信息|
 | ------- | -------|
 | 3100201 | Tag running state is abnormal in service. |
 
 **示例：**
+
 ```js
 import tag from '@ohos.nfc.tag';
 
@@ -361,15 +369,20 @@ isExtendedApduSupported(callback: AsyncCallback\<boolean>): void
 **系统能力**：SystemCapability.Communication.NFC.Core
 
 **参数：**
+
 | 参数名   | 类型                    | 必填 | 说明                                   |
 | -------- | ----------------------- | ---- | -------------------------------------- |
 | callback | AsyncCallback\<boolean> | 是   | 回调函数，true: 支持， false: 不支持。 |
 
 **错误码：**
+
 以下错误码的详细介绍请参见[NFC错误码](../errorcodes/errorcode-nfc.md)。
+
 | 错误码ID | 错误信息|
 | ------- | -------|
 | 3100201 | Tag running state is abnormal in service. |
+
+**示例：**
 
 ```js
 import tag from '@ohos.nfc.tag';
@@ -401,18 +414,20 @@ try {
 
 ### NdefMessage.getNdefRecords<sup>9+</sup>
 
-getNdefRecords(): [NdefRecord](js-apis-nfcTag.md#ndefrecord9)[]
+getNdefRecords(): [tag.NdefRecord](js-apis-nfcTag.md#ndefrecord9)[]
 
 获取NDEF消息中的所有记录。
 
 **系统能力**：SystemCapability.Communication.NFC.Core
 
 **返回值：**
+
 | **类型** | **说明**                             |
 | ------------------ | --------------------------|
-| [NdefRecord](js-apis-nfcTag.md#ndefrecord9)[] | NDEF标签的Record列表，详见NDEF技术规范《NFCForum-TS-NDEF_1.0》。 |
+| [tag.NdefRecord](js-apis-nfcTag.md#ndefrecord9)[] | NDEF标签的Record列表，详见NDEF技术规范《NFCForum-TS-NDEF_1.0》。 |
 
 **示例：**
+
 ```js
 import tag from '@ohos.nfc.tag';
 
@@ -434,18 +449,20 @@ TagSession是所有NFC Tag技术类型的基类， 提供建立连接和发送�
 
 ### NdefTag.getNdefTagType<sup>9+</sup>
 
-getNdefTagType(): NfcForumType
+getNdefTagType(): [tag.NfcForumType](js-apis-nfcTag.md#nfcforumtype9)
 
 获取NDEF标签的类型。
 
 **系统能力**：SystemCapability.Communication.NFC.Core
 
 **返回值：**
+
 | **类型** | **说明**                             |
 | ------------------ | --------------------------|
-| [NfcForumType](js-apis-nfcTag.md#nfcforumtype9) | NDEF标签类型，包括NFC FORUM TYPE 1/2/3/4等。|
+| [tag.NfcForumType](js-apis-nfcTag.md#nfcforumtype9) | NDEF标签类型，包括NFC FORUM TYPE 1/2/3/4等。|
 
 **示例：**
+
 ```js
 import tag from '@ohos.nfc.tag';
 
@@ -456,13 +473,14 @@ console.log("ndef ndefTagType: " + ndefTagType);
 
 ### NdefTag.getNdefMessage<sup>9+</sup>
 
-getNdefMessage(): NdefMessage
+getNdefMessage(): [NdefMessage](#ndefmessage9)
 
 获取发现NDEF标签时，从标签读取的Message。
 
 **系统能力**：SystemCapability.Communication.NFC.Core
 
 **返回值：**
+
 | **类型** | **说明**                             |
 | ------------------ | --------------------------|
 | [NdefMessage](#ndefmessage9)  | NDEF标签的Message，详见NDEF技术规范《NFCForum-TS-NDEF_1.0》。|
@@ -485,11 +503,13 @@ isNdefWritable(): boolean;
 **系统能力**：SystemCapability.Communication.NFC.Core
 
 **返回值：**
+
 | **类型** | **说明**                             |
 | ------------------ | --------------------------|
 | boolean | 检查结果，true: 可写， false: 不可写。|
 
 **示例：**
+
 ```js
 import tag from '@ohos.nfc.tag';
 
@@ -500,7 +520,7 @@ console.log("ndef isNdefWritable: " + isWritable);
 
 ### NdefTag.readNdef<sup>9+</sup>
 
-readNdef(): Promise\<NdefMessage>
+readNdef(): Promise\<[NdefMessage](#ndefmessage9)>
 
 读取标签上的NDEF消息，使用Promise方式作为异步方法。
 
@@ -509,17 +529,21 @@ readNdef(): Promise\<NdefMessage>
 **系统能力**：SystemCapability.Communication.NFC.Core
 
 **返回值：**
+
 | **类型** | **说明**                             |
 | ------------------ | --------------------------|
 | Promise\<[NdefMessage](#ndefmessage9)> | 以Promise形式返回从NDEF标签中读取到的Message数据对象。|
 
 **错误码：**
+
 以下错误码的详细介绍请参见[NFC错误码](../errorcodes/errorcode-nfc.md)。
+
 | 错误码ID | 错误信息|
 | ------- | -------|
 | 3100201 | Tag running state is abnormal in service. |
 
 **示例：**
+
 ```js
 import tag from '@ohos.nfc.tag';
 
@@ -555,17 +579,21 @@ readNdef(callback: AsyncCallback\<[NdefMessage](#ndefmessage9)>): void
 **系统能力**：SystemCapability.Communication.NFC.Core
 
 **参数：**
+
 | 参数名   | 类型                    | 必填 | 说明                                   |
 | -------- | ----------------------- | ---- | -------------------------------------- |
 | callback | AsyncCallback\<[NdefMessage](#ndefmessage9)> | 是   | 回调函数，返回从NDEF标签中读取到的Message信息。|
 
 **错误码：**
+
 以下错误码的详细介绍请参见[NFC错误码](../errorcodes/errorcode-nfc.md)。
+
 | 错误码ID | 错误信息|
 | ------- | -------|
 | 3100201 | Tag running state is abnormal in service. |
 
 **示例：**
+
 ```js
 import tag from '@ohos.nfc.tag';
 
@@ -603,17 +631,21 @@ writeNdef(msg: NdefMessage): Promise\<void>;
 **系统能力**：SystemCapability.Communication.NFC.Core
 
 **参数：**
+
 | 参数名   | 类型                    | 必填 | 说明                                   |
 | -------- | ----------------------- | ---- | -------------------------------------- |
 | msg | NdefMessage | 是   | NDEF Message数据对象。|
 
 **错误码：**
+
 以下错误码的详细介绍请参见[NFC错误码](../errorcodes/errorcode-nfc.md)。
+
 | 错误码ID | 错误信息|
 | ------- | -------|
 | 3100201 | Tag running state is abnormal in service. |
 
 **示例：**
+
 ```js
 import tag from '@ohos.nfc.tag';
 
@@ -643,7 +675,7 @@ try {
 
 ### NdefTag.writeNdef<sup>9+</sup>
 
-writeNdef(msg: NdefMessage, callback: AsyncCallback\<void>): void
+writeNdef(msg: [NdefMessage](#ndefmessage9), callback: AsyncCallback\<void>): void
 
 将NDEF Message数据对象写入此标签，使用AsyncCallback方式作为异步方法。
 
@@ -652,18 +684,22 @@ writeNdef(msg: NdefMessage, callback: AsyncCallback\<void>): void
 **系统能力**：SystemCapability.Communication.NFC.Core
 
 **参数：**
+
 | 参数名   | 类型                    | 必填 | 说明                                   |
 | -------- | ----------------------- | ---- | -------------------------------------- |
-| msg | NdefMessage | 是   | NDEF Message数据对象。 |
+| msg | [NdefMessage](#ndefmessage9) | 是   | NDEF Message数据对象。 |
 | callback | AsyncCallback\<void> | 是   | 回调函数。 |
 
 **错误码：**
+
 以下错误码的详细介绍请参见[NFC错误码](../errorcodes/errorcode-nfc.md)。
+
 | 错误码ID | 错误信息|
 | ------- | -------|
 | 3100201 | Tag running state is abnormal in service. |
 
 **示例：**
+
 ```js
 import tag from '@ohos.nfc.tag';
 
@@ -704,17 +740,21 @@ canSetReadOnly(): boolean
 **系统能力**：SystemCapability.Communication.NFC.Core
 
 **返回值：**
+
 | **类型** | **说明**                             |
 | ------------------ | --------------------------|
 | boolean| true: NDEF标签可设置为只读， false: NDEF标签不可设置为只读。 |
 
 **错误码：**
+
 以下错误码的详细介绍请参见[NFC错误码](../errorcodes/errorcode-nfc.md)。
+
 | 错误码ID | 错误信息|
 | ------- | -------|
 | 3100201 | Tag running state is abnormal in service. |
 
 **示例：**
+
 ```js
 import tag from '@ohos.nfc.tag';
 
@@ -734,12 +774,15 @@ setReadOnly(): Promise\<void>
 **系统能力**：SystemCapability.Communication.NFC.Core
 
 **错误码：**
+
 以下错误码的详细介绍请参见[NFC错误码](../errorcodes/errorcode-nfc.md)。
+
 | 错误码ID | 错误信息|
 | ------- | -------|
 | 3100201 | Tag running state is abnormal in service. |
 
 **示例：**
+
 ```js
 import tag from '@ohos.nfc.tag';
 
@@ -775,17 +818,21 @@ setReadOnly(callback: AsyncCallback\<void>): void
 **系统能力**：SystemCapability.Communication.NFC.Core
 
 **参数：**
+
 | 参数名   | 类型                    | 必填 | 说明                                   |
 | -------- | ----------------------- | ---- | -------------------------------------- |
 | callback | AsyncCallback\<void> | 是   | 回调函数。 |
 
 **错误码：**
+
 以下错误码的详细介绍请参见[NFC错误码](../errorcodes/errorcode-nfc.md)。
+
 | 错误码ID | 错误信息|
 | ------- | -------|
 | 3100201 | Tag running state is abnormal in service. |
 
 **示例：**
+
 ```js
 import tag from '@ohos.nfc.tag';
 
@@ -814,23 +861,26 @@ try {
 
 ### NdefTag.getNdefTagTypeString<sup>9+</sup>
 
-getNdefTagTypeString(type: [NfcForumType](js-apis-nfcTag.md#nfcforumtype9)): string
+getNdefTagTypeString(type: [tag.NfcForumType](js-apis-nfcTag.md#nfcforumtype9)): string
 
 将NFC论坛类型，转换为NFC论坛中定义的字符串描述。
 
 **系统能力**：SystemCapability.Communication.NFC.Core
 
 **参数：**
+
 | 参数名   | 类型                    | 必填 | 说明                                   |
 | -------- | ----------------------- | ---- | -------------------------------------- |
-| type | [NfcForumType](js-apis-nfcTag.md#nfcforumtype9) | 是   | NDEF标签类型，包括NFC FORUM TYPE 1/2/3/4等。 |
+| type | [tag.NfcForumType](js-apis-nfcTag.md#nfcforumtype9) | 是   | NDEF标签类型，包括NFC FORUM TYPE 1/2/3/4等。 |
 
 **返回值：**
+
 | **类型** | **说明**                             |
 | ------------------ | --------------------------|
 | string | NFC论坛类型的字符串描述。|
 
 **示例：**
+
 ```js
 import tag from '@ohos.nfc.tag';
 
@@ -846,7 +896,7 @@ try {
 
 ## MifareClassicTag<sup>9+</sup>
 
-MifareClassicTag提供对MIFARE Classic属性和I/O操作的访问，继承自TagSession。
+MifareClassicTag提供对MIFARE Classic属性和I/O操作的访问，继承自[TagSession](js-apis-tagSession.md)。
 
 TagSession是所有NFC Tag技术类型的基类， 提供建立连接和发送数据等共同接口。具体请参见[TagSession](js-apis-tagSession.md)。
 
@@ -863,6 +913,7 @@ authenticateSector(sectorIndex: number, key: number[], isKeyA: boolean): Promise
 **系统能力**：SystemCapability.Communication.NFC.Core
 
 **参数：**
+
 | 参数名   | 类型                    | 必填 | 说明                                   |
 | -------- | ----------------------- | ---- | -------------------------------------- |
 | sectorIndex | number | 是   | 待验证的扇区索引，从0开始。 |
@@ -870,12 +921,15 @@ authenticateSector(sectorIndex: number, key: number[], isKeyA: boolean): Promise
 | isKeyA | boolean | 是   | isKeyA标志。true 表示KeyA，false 表示KeyB。|
 
 **错误码：**
+
 以下错误码的详细介绍请参见[NFC错误码](../errorcodes/errorcode-nfc.md)。
+
 | 错误码ID | 错误信息|
 | ------- | -------|
 | 3100201 | Tag running state is abnormal in service. |
 
 **示例：**
+
 ```js
 import tag from '@ohos.nfc.tag';
 
@@ -913,6 +967,7 @@ authenticateSector(sectorIndex: number, key: number[], isKeyA: boolean, callback
 **系统能力**：SystemCapability.Communication.NFC.Core
 
 **参数：**
+
 | 参数名   | 类型                    | 必填 | 说明                                   |
 | -------- | ----------------------- | ---- | -------------------------------------- |
 | sectorIndex | number | 是   | 待验证的扇区索引，从0开始。 |
@@ -921,7 +976,9 @@ authenticateSector(sectorIndex: number, key: number[], isKeyA: boolean, callback
 | callback | AsyncCallback\<void> | 是   | 回调函数。|
 
 **错误码：**
+
 以下错误码的详细介绍请参见[NFC错误码](../errorcodes/errorcode-nfc.md)。
+
 | 错误码ID | 错误信息|
 | ------- | -------|
 | 3100201 | Tag running state is abnormal in service. |
@@ -966,22 +1023,27 @@ readSingleBlock(blockIndex: number): Promise\<number[]>
 **系统能力**：SystemCapability.Communication.NFC.Core
 
 **参数：**
+
 | 参数名   | 类型                    | 必填 | 说明                                   |
 | -------- | ----------------------- | ---- | -------------------------------------- |
 | blockIndex | number | 是   | 要读取的块索引，从0开始。 |
 
 **返回值：**
+
 | **类型** | **说明**                             |
 | ------------------ | --------------------------|
 | Promise\<number[]> | 读取的块数据。 |
 
 **错误码：**
+
 以下错误码的详细介绍请参见[NFC错误码](../errorcodes/errorcode-nfc.md)。
+
 | 错误码ID | 错误信息|
 | ------- | -------|
 | 3100201 | Tag running state is abnormal in service. |
 
 **示例：**
+
 ```js
 import tag from '@ohos.nfc.tag';
 
@@ -1018,18 +1080,22 @@ readSingleBlock(blockIndex: number, callback: AsyncCallback\<number[]>): void
 **系统能力**：SystemCapability.Communication.NFC.Core
 
 **参数：**
+
 | 参数名   | 类型                    | 必填 | 说明                                   |
 | -------- | ----------------------- | ---- | -------------------------------------- |
 | blockIndex | number | 是   | 要读取的块索引，从0开始。 |
 | callback | AsyncCallback\<number[]> | 是   | 回调函数，返回读取到的数据。 |
 
 **错误码：**
+
 以下错误码的详细介绍请参见[NFC错误码](../errorcodes/errorcode-nfc.md)。
+
 | 错误码ID | 错误信息|
 | ------- | -------|
 | 3100201 | Tag running state is abnormal in service. |
 
 **示例：**
+
 ```js
 import tag from '@ohos.nfc.tag';
 
@@ -1068,18 +1134,22 @@ writeSingleBlock(blockIndex: number, data: number[]): Promise\<void>
 **系统能力**：SystemCapability.Communication.NFC.Core
 
 **参数：**
+
 | 参数名   | 类型                    | 必填 | 说明                                   |
 | -------- | ----------------------- | ---- | -------------------------------------- |
 | blockIndex | number | 是   | 要写入的块索引，从0开始。 |
 | data | number[] | 是   | 要写入的数据，大小必须是16个字节。 |
 
 **错误码：**
+
 以下错误码的详细介绍请参见[NFC错误码](../errorcodes/errorcode-nfc.md)。
+
 | 错误码ID | 错误信息|
 | ------- | -------|
 | 3100201 | Tag running state is abnormal in service. |
 
 **示例：**
+
 ```js
 import tag from '@ohos.nfc.tag';
 
@@ -1095,7 +1165,8 @@ if (!mifareClassic.isTagConnected()) {
 
 try {
     let blockIndex = 1; // change it to be correct index.
-    let rawData = [0x01, 0x02, ..., 0x0F, 0x10]; // MUST be 16 bytes, change it to be correct data.
+    let rawData = [0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08, 0x09, 0x0A,
+        0x0B, 0x0C, 0x0D, 0x0E, 0x0F, 0x10]; // MUST be 16 bytes, change it to be correct data.
     mifareClassic.writeSingleBlock(blockIndex, rawData).then(() => {
         console.log("mifareClassic writeSingleBlock Promise success.");
     }).catch((err)=> {
@@ -1117,6 +1188,7 @@ writeSingleBlock(blockIndex: number, data: number[], callback: AsyncCallback\<vo
 **系统能力**：SystemCapability.Communication.NFC.Core
 
 **参数：**
+
 | 参数名   | 类型                    | 必填 | 说明                                   |
 | -------- | ----------------------- | ---- | -------------------------------------- |
 | blockIndex | number | 是   | 要写入的块索引，从0开始。 |
@@ -1124,12 +1196,15 @@ writeSingleBlock(blockIndex: number, data: number[], callback: AsyncCallback\<vo
 | callback | AsyncCallback\<void> | 是   | 回调函数。 |
 
 **错误码：**
+
 以下错误码的详细介绍请参见[NFC错误码](../errorcodes/errorcode-nfc.md)。
+
 | 错误码ID | 错误信息|
 | ------- | -------|
 | 3100201 | Tag running state is abnormal in service. |
 
 **示例：**
+
 ```js
 import tag from '@ohos.nfc.tag';
 
@@ -1145,7 +1220,8 @@ if (!mifareClassic.isTagConnected()) {
 
 try {
     let blockIndex = 1; // change it to be correct index.
-    let rawData = [0x01, 0x02, ..., 0x15, 0x16]; // MUST be 16 bytes, change it to be correct data.
+    let rawData = [0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08, 0x09, 0x0A,
+        0x0B, 0x0C, 0x0D, 0x0E, 0x0F, 0x10]; // MUST be 16 bytes, change it to be correct data.
     mifareClassic.writeSingleBlock(blockIndex, rawData, (err)=> {
         if (err) {
             console.log("mifareClassic writeSingleBlock AsyncCallback err: " + err);
@@ -1169,18 +1245,22 @@ incrementBlock(blockIndex: number, value: number): Promise\<void>
 **系统能力**：SystemCapability.Communication.NFC.Core
 
 **参数：**
+
 | 参数名   | 类型                    | 必填 | 说明                                   |
 | -------- | ----------------------- | ---- | -------------------------------------- |
 | blockIndex | number | 是   | 要指定增加的块索引，从0开始。 |
 | value | number | 是   | 要指定增加的数据，非负数。 |
 
 **错误码：**
+
 以下错误码的详细介绍请参见[NFC错误码](../errorcodes/errorcode-nfc.md)。
+
 | 错误码ID | 错误信息|
 | ------- | -------|
 | 3100201 | Tag running state is abnormal in service. |
 
 **示例：**
+
 ```js
 import tag from '@ohos.nfc.tag';
 
@@ -1218,6 +1298,7 @@ incrementBlock(blockIndex: number, value: number, callback: AsyncCallback\<void>
 **系统能力**：SystemCapability.Communication.NFC.Core
 
 **参数：**
+
 | 参数名   | 类型                    | 必填 | 说明                                   |
 | -------- | ----------------------- | ---- | -------------------------------------- |
 | blockIndex | number | 是   | 要被运算的块索引，从0开始。 |
@@ -1225,12 +1306,15 @@ incrementBlock(blockIndex: number, value: number, callback: AsyncCallback\<void>
 | callback | AsyncCallback\<void> | 是   | 回调函数。 |
 
 **错误码：**
+
 以下错误码的详细介绍请参见[NFC错误码](../errorcodes/errorcode-nfc.md)。
+
 | 错误码ID | 错误信息|
 | ------- | -------|
 | 3100201 | Tag running state is abnormal in service. |
 
 **示例：**
+
 ```js
 import tag from '@ohos.nfc.tag';
 
@@ -1270,18 +1354,22 @@ decrementBlock(blockIndex: number, value: number): Promise\<void>
 **系统能力**：SystemCapability.Communication.NFC.Core
 
 **参数：**
+
 | 参数名   | 类型                    | 必填 | 说明                                   |
 | -------- | ----------------------- | ---- | -------------------------------------- |
 | blockIndex | number | 是   | 要被运算的块索引，从0开始。 |
 | value | number | 是   | 要减少的数值，非负数。 |
 
 **错误码：**
+
 以下错误码的详细介绍请参见[NFC错误码](../errorcodes/errorcode-nfc.md)。
+
 | 错误码ID | 错误信息|
 | ------- | -------|
 | 3100201 | Tag running state is abnormal in service. |
 
 **示例：**
+
 ```js
 import tag from '@ohos.nfc.tag';
 
@@ -1319,6 +1407,7 @@ decrementBlock(blockIndex: number, value: number, callback: AsyncCallback\<void>
 **系统能力**：SystemCapability.Communication.NFC.Core
 
 **参数：**
+
 | 参数名   | 类型                    | 必填 | 说明                                   |
 | -------- | ----------------------- | ---- | -------------------------------------- |
 | blockIndex | number | 是   | 要被运算的块索引，从0开始。 |
@@ -1326,12 +1415,15 @@ decrementBlock(blockIndex: number, value: number, callback: AsyncCallback\<void>
 | callback | AsyncCallback\<void> | 是   | 回调函数。 |
 
 **错误码：**
+
 以下错误码的详细介绍请参见[NFC错误码](../errorcodes/errorcode-nfc.md)。
+
 | 错误码ID | 错误信息|
 | ------- | -------|
 | 3100201 | Tag running state is abnormal in service. |
 
 **示例：**
+
 ```js
 import tag from '@ohos.nfc.tag';
 
@@ -1371,17 +1463,21 @@ transferToBlock(blockIndex: number): Promise\<void>
 **系统能力**：SystemCapability.Communication.NFC.Core
 
 **参数：**
+
 | 参数名   | 类型                    | 必填 | 说明                                   |
 | -------- | ----------------------- | ---- | -------------------------------------- |
 | blockIndex | number | 是  | 被操作的块的索引，从0开始。 |
 
 **错误码：**
+
 以下错误码的详细介绍请参见[NFC错误码](../errorcodes/errorcode-nfc.md)。
+
 | 错误码ID | 错误信息|
 | ------- | -------|
 | 3100201 | Tag running state is abnormal in service. |
 
 **示例：**
+
 ```js
 import tag from '@ohos.nfc.tag';
 
@@ -1418,18 +1514,22 @@ transferToBlock(blockIndex: number, callback: AsyncCallback\<void>): void
 **系统能力**：SystemCapability.Communication.NFC.Core
 
 **参数：**
+
 | 参数名   | 类型                    | 必填 | 说明                                   |
 | -------- | ----------------------- | ---- | -------------------------------------- |
 | blockIndex | number | 是   | 被操作的块的索引，从0开始。 |
 | callback | AsyncCallback\<void> | 是   | 回调函数。 |
 
 **错误码：**
+
 以下错误码的详细介绍请参见[NFC错误码](../errorcodes/errorcode-nfc.md)。
+
 | 错误码ID | 错误信息|
 | ------- | -------|
 | 3100201 | Tag running state is abnormal in service. |
 
 **示例：**
+
 ```js
 import tag from '@ohos.nfc.tag';
 
@@ -1468,17 +1568,21 @@ restoreFromBlock(blockIndex: number): Promise\<void>
 **系统能力**：SystemCapability.Communication.NFC.Core
 
 **参数：**
+
 | 参数名   | 类型                    | 必填 | 说明                                   |
 | -------- | ----------------------- | ---- | -------------------------------------- |
 | blockIndex | number | 是   | 被操作的块的索引，从0开始。|
 
 **错误码：**
+
 以下错误码的详细介绍请参见[NFC错误码](../errorcodes/errorcode-nfc.md)。
+
 | 错误码ID | 错误信息|
 | ------- | -------|
 | 3100201 | Tag running state is abnormal in service. |
 
 **示例：**
+
 ```js
 import tag from '@ohos.nfc.tag';
 
@@ -1515,18 +1619,22 @@ restoreFromBlock(blockIndex: number, callback: AsyncCallback\<void>): void
 **系统能力**：SystemCapability.Communication.NFC.Core
 
 **参数：**
+
 | 参数名   | 类型                    | 必填 | 说明                                   |
 | -------- | ----------------------- | ---- | -------------------------------------- |
 | blockIndex | number | 是   | 被操作的块的索引，从0开始。 |
 | callback | AsyncCallback\<void> | 是   | 回调函数。|
 
 **错误码：**
+
 以下错误码的详细介绍请参见[NFC错误码](../errorcodes/errorcode-nfc.md)。
+
 | 错误码ID | 错误信息|
 | ------- | -------|
 | 3100201 | Tag running state is abnormal in service. |
 
 **示例：**
+
 ```js
 import tag from '@ohos.nfc.tag';
 
@@ -1563,11 +1671,13 @@ getSectorCount(): number
 **系统能力**：SystemCapability.Communication.NFC.Core
 
 **返回值：**
+
 | **类型** | **说明**                             |
 | ------------------ | --------------------------|
 | number | 标签中的扇区数量。|
 
 **示例：**
+
 ```js
 import tag from '@ohos.nfc.tag';
 
@@ -1585,16 +1695,19 @@ getBlockCountInSector(sectorIndex: number): number
 **系统能力**：SystemCapability.Communication.NFC.Core
 
 **参数：**
+
 | 参数名   | 类型                    | 必填 | 说明                                   |
 | -------- | ----------------------- | ---- | -------------------------------------- |
 | sectorIndex | number | 是   | 扇区序号，从0开始。|
 
 **返回值：**
+
 | **类型** | **说明**                             |
 | ------------------ | --------------------------|
 | number | 该扇区内的块数量。|
 
 **示例：**
+
 ```js
 import tag from '@ohos.nfc.tag';
 
@@ -1611,18 +1724,20 @@ try {
 
 ### MifareClassicTag.getType<sup>9+</sup>
 
-getType(): [MifareClassicType](js-apis-nfcTag.md#mifareclassictype9)
+getType(): [tag.MifareClassicType](js-apis-nfcTag.md#mifareclassictype9)
 
 获取MIFARE Classic标签的类型。
 
 **系统能力**：SystemCapability.Communication.NFC.Core
 
 **返回值：**
+
 | **类型** | **说明**                             |
 | ------------------ | --------------------------|
-| [MifareClassicType](js-apis-nfcTag.md#mifareclassictype9) | MifareClassic标签的类型。|
+| [tag.MifareClassicType](js-apis-nfcTag.md#mifareclassictype9) | MifareClassic标签的类型。|
 
 **示例：**
+
 ```js
 import tag from '@ohos.nfc.tag';
 
@@ -1640,11 +1755,13 @@ getTagSize(): number
 **系统能力**：SystemCapability.Communication.NFC.Core
 
 **返回值：**
+
 | **类型** | **说明**                             |
 | ------------------ | --------------------------|
 | number | 标签的大小，单位为字节，请参见[MifareClassicSize](js-apis-nfcTag.md#mifareclassicsize9)。|
 
 **示例：**
+
 ```js
 import tag from '@ohos.nfc.tag';
 
@@ -1662,11 +1779,13 @@ isEmulatedTag(): boolean
 **系统能力**：SystemCapability.Communication.NFC.Core
 
 **返回值：**
+
 | **类型** | **说明**                             |
 | ------------------ | --------------------------|
 | boolean |检查结果，true: 是；false：否。 |
 
 **示例：**
+
 ```js
 import tag from '@ohos.nfc.tag';
 
@@ -1684,16 +1803,19 @@ getBlockIndex(sectorIndex: number): number
 **系统能力**：SystemCapability.Communication.NFC.Core
 
 **参数：**
+
 | 参数名   | 类型                    | 必填 | 说明                                   |
 | -------- | ----------------------- | ---- | -------------------------------------- |
 | sectorIndex | number | 是   | 扇区序号，从0开始。 |
 
 **返回值：**
+
 | **类型** | **说明**                             |
 | ------------------ | --------------------------|
 | number | 该扇区内的第一个块的序号，从0开始。 |
 
 **示例：**
+
 ```js
 import tag from '@ohos.nfc.tag';
 
@@ -1714,21 +1836,22 @@ getSectorIndex(blockIndex: number): number
 
 获取包含指定块号的扇区序号。
 
-**需要权限**：ohos.permission.NFC_TAG
-
 **系统能力**：SystemCapability.Communication.NFC.Core
 
 **参数：**
+
 | 参数名   | 类型                    | 必填 | 说明                                   |
 | -------- | ----------------------- | ---- | -------------------------------------- |
 | blockIndex | number | 是 | 块序号，从0开始。 |
 
 **返回值：**
+
 | **类型** | **说明**                             |
 | ------------------ | --------------------------|
 | number | 扇区序号，从0开始。 |
 
 **示例：**
+
 ```js
 import tag from '@ohos.nfc.tag';
 
@@ -1768,17 +1891,21 @@ readMultiplePages(pageIndex: number): Promise\<number[]>
 | pageIndex | number | 是   | 要读取页面的索引，从0开始。 |
 
 **返回值：**
+
 | **类型** | **说明**                             |
 | ------------------ | --------------------------|
 | Promise\<number[]> | 读取的4页的数据，共16字节。 |
 
 **错误码：**
+
 以下错误码的详细介绍请参见[NFC错误码](../errorcodes/errorcode-nfc.md)。
+
 | 错误码ID | 错误信息|
 | ------- | -------|
 | 3100201 | Tag running state is abnormal in service. |
 
 **示例：**
+
 ```js
 
 import tag from '@ohos.nfc.tag';
@@ -1816,18 +1943,22 @@ readMultiplePages(pageIndex: number, callback: AsyncCallback\<number[]>): void
 **系统能力**：SystemCapability.Communication.NFC.Core
 
 **参数：**
+
 | 参数名   | 类型                    | 必填 | 说明                                   |
 | -------- | ----------------------- | ---- | -------------------------------------- |
 | pageIndex | number | 是   | 要读取页面的索引，从0开始。 |
 | callback | AsyncCallback\<number[]> | 是   | 回调函数，返回读取到的数据，共16字节。 |
 
 **错误码：**
+
 以下错误码的详细介绍请参见[NFC错误码](../errorcodes/errorcode-nfc.md)。
+
 | 错误码ID | 错误信息|
 | ------- | -------|
 | 3100201 | Tag running state is abnormal in service. |
 
 **示例：**
+
 ```js
 import tag from '@ohos.nfc.tag';
 
@@ -1866,18 +1997,22 @@ writeSinglePage(pageIndex: number, data: number[]): Promise\<void>
 **系统能力**：SystemCapability.Communication.NFC.Core
 
 **参数：**
+
 | 参数名   | 类型                    | 必填 | 说明                                   |
 | -------- | ----------------------- | ---- | -------------------------------------- |
 | pageIndex | number | 是   | 要写入页面的索引，从0开始。 |
 | data | number[] | 是   | 要写入页面的数据内容，必须是4个字节大小。 |
 
 **错误码：**
+
 以下错误码的详细介绍请参见[NFC错误码](../errorcodes/errorcode-nfc.md)。
+
 | 错误码ID | 错误信息|
 | ------- | -------|
 | 3100201 | Tag running state is abnormal in service. |
 
 **示例：**
+
 ```js
 import tag from '@ohos.nfc.tag';
 
@@ -1915,6 +2050,7 @@ writeSinglePage(pageIndex: number, data: number[], callback: AsyncCallback\<void
 **系统能力**：SystemCapability.Communication.NFC.Core
 
 **参数：**
+
 | 参数名   | 类型                    | 必填 | 说明                     |
 | -------- | ----------------------- | ---- | ------------------------ |
 | pageIndex | number | 是   | 要写入页面的索引，从0开始。 |
@@ -1922,12 +2058,15 @@ writeSinglePage(pageIndex: number, data: number[], callback: AsyncCallback\<void
 | callback|AsyncCallback\<void> |是| 回调函数。 |
 
 **错误码：**
+
 以下错误码的详细介绍请参见[NFC错误码](../errorcodes/errorcode-nfc.md)。
+
 | 错误码ID | 错误信息|
 | ------- | -------|
 | 3100201 | Tag running state is abnormal in service. |
 
 **示例：**
+
 ```js
 import tag from '@ohos.nfc.tag';
 
@@ -1958,18 +2097,20 @@ try {
 
 ### MifareUltralightTag.getType<sup>9+</sup>
 
-getType(): MifareUltralightType
+getType(): [tag.MifareUltralightType](js-apis-nfcTag.md#mifareultralighttype9)
 
-获取MIFARE Ultralight标签的类型，具体请参见 [MifareUltralightType](js-apis-nfcTag.md#mifareultralighttype9)。
+获取MIFARE Ultralight标签的类型。
 
 **系统能力**：SystemCapability.Communication.NFC.Core
 
 **返回值：**
+
 | **类型** | **说明**                             |
 | ------------------ | --------------------------|
-| MifareUltralightType | MIFARE Ultralight标签的类型，具体请参见 [MifareUltralightType](js-apis-nfcTag.md#mifareultralighttype9)。|
+| [tag.MifareUltralightType](js-apis-nfcTag.md#mifareultralighttype9) | MIFARE Ultralight标签的类型。|
 
 **示例：**
+
 ```js
 import tag from '@ohos.nfc.tag';
 
@@ -1997,12 +2138,15 @@ format(message: [NdefMessage](#ndefmessage9)): Promise\<void>
 **系统能力**：SystemCapability.Communication.NFC.Core
 
 **参数：**
+
 | 参数名   | 类型                    | 必填 | 说明                                   |
 | -------- | ----------------------- | ---- | -------------------------------------- |
 | message | [NdefMessage](#ndefmessage9) | 是   | 格式化成功时要写入的NDEF消息。可以为null，为null时仅格式化标签，不写入内容。 |
 
 **错误码：**
+
 以下错误码的详细介绍请参见[NFC错误码](../errorcodes/errorcode-nfc.md)。
+
 | 错误码ID | 错误信息|
 | ------- | -------|
 | 3100201 | Tag running state is abnormal in service. |
@@ -2048,17 +2192,20 @@ format(message: [NdefMessage](#ndefmessage9), callback: AsyncCallback\<void>): v
 **系统能力**：SystemCapability.Communication.NFC.Core
 
 **参数：**
+
 | 参数名   | 类型                    | 必填 | 说明                                   |
 | -------- | ----------------------- | ---- | -------------------------------------- |
 | message | [NdefMessage](#ndefmessage9) | 是   | 格式化成功时要写入的Ndef消息。可以为null，为null时仅格式化标签，不写入内容。 |
 
 **返回值：**
+
 | **类型** | **说明**                             |
 | ------------------ | --------------------------|
 | callback: AsyncCallback\<void> | 回调函数。 |
 
 
 **示例：**
+
 ```js
 import tag from '@ohos.nfc.tag';
 
@@ -2100,17 +2247,21 @@ formatReadOnly(message: [NdefMessage](#ndefmessage9)): Promise\<void>
 **系统能力**：SystemCapability.Communication.NFC.Core
 
 **参数：**
+
 | 参数名   | 类型                    | 必填 | 说明                                   |
 | -------- | ----------------------- | ---- | -------------------------------------- |
 | message | [NdefMessage](#ndefmessage9) | 是   | 格式化成功时要写入的NDEF消息。可以为null，为null时仅格式化标签，不写入内容。 |
 
 **错误码：**
+
 以下错误码的详细介绍请参见[NFC错误码](../errorcodes/errorcode-nfc.md)。
+
 | 错误码ID | 错误信息|
 | ------- | -------|
 | 3100201 | Tag running state is abnormal in service. |
 
 **示例：**
+
 ```js
 import tag from '@ohos.nfc.tag';
 
@@ -2150,17 +2301,20 @@ formatReadOnly(message: [NdefMessage](#ndefmessage9), callback: AsyncCallback\<v
 **系统能力**：SystemCapability.Communication.NFC.Core
 
 **参数：**
+
 | 参数名   | 类型                    | 必填 | 说明                                   |
 | -------- | ----------------------- | ---- | -------------------------------------- |
 | message | [NdefMessage](#ndefmessage9) | 是   | 格式化成功时要写入的NDEF消息。可以为null，为null时仅格式化标签，不写入内容。|
 
 **返回值：**
+
 | **类型** | **说明**                             |
 | ------------------ | --------------------------|
 | callback: AsyncCallback\<void> | 回调函数。 |
 
 
 **示例：**
+
 ```js
 import tag from '@ohos.nfc.tag';
 

@@ -34,7 +34,7 @@ Parcel operation failed.
 
 **错误信息**
 
-Inner transact failed.
+IPC failed.
 
 **可能原因**
 
@@ -63,7 +63,7 @@ System service operation failed.
 
 **错误信息**
 
-Background task verification failed.
+Continuous task verification failed.
 
 **可能原因**
 
@@ -117,7 +117,7 @@ Task storage failed.
 
 **错误信息**
 
-Caller information verification failed.
+Caller information verification failed for a transient task.
 
 **可能原因**
 
@@ -135,7 +135,7 @@ Caller information verification failed.
 
 **错误信息**
 
-Background task verification failed.
+Transient task verification failed.
 
 **可能原因**
 
@@ -154,7 +154,7 @@ Background task verification failed.
 
 **错误信息**
 
-Caller information verification failed.
+Caller information verification failed when applying for efficiency resources.
 
 **可能原因**
 

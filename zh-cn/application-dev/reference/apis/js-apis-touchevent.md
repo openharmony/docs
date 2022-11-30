@@ -16,37 +16,37 @@ import {Action,ToolType,SourceType,Touch,TouchEvent} from '@ohos.multimodalInput
 
 **系统能力**：SystemCapability.MultimodalInput.Input.Core
 
-| 名称     | 类型   | 可读   | 可写   | 说明   |
-| ------ | ------ | ---- | ---- | ---- |
-| CANCEL | number | 是    | 否    | 触摸取消 |
-| DOWN   | number | 是    | 否    | 触摸按下 |
-| MOVE   | number | 是    | 否    | 触摸移动 |
-| UP     | number | 是    | 否    | 触摸抬起 |
+| 名称     | 值   | 说明   |
+| ------ | ------ | ---- |
+| CANCEL | 0 | 触摸取消 |
+| DOWN   | 1 | 触摸按下 |
+| MOVE   | 2 | 触摸移动 |
+| UP     | 3 | 触摸抬起 |
 
 ## ToolType
 
 **系统能力**：SystemCapability.MultimodalInput.Input.Core
 
-| 名称       | 类型   | 可读   | 可写   | 说明   |
-| -------- | ------ | ---- | ---- | ---- |
-| FINGER   | number | 是    | 否    | 手指   |
-| PEN      | number | 是    | 否    | 笔    |
-| RUBBER   | number | 是    | 否    | 橡皮擦  |
-| BRUSH    | number | 是    | 否    | 笔刷   |
-| PENCIL   | number | 是    | 否    | 铅笔   |
-| AIRBRUSH | number | 是    | 否    | 气笔   |
-| MOUSE    | number | 是    | 否    | 鼠标   |
-| LENS     | number | 是    | 否    | 透镜   |
+| 名称       | 值   | 说明   |
+| -------- | ------ | ---- |
+| FINGER   | 0 | 手指   |
+| PEN      | 1 | 笔    |
+| RUBBER   | 2 | 橡皮擦  |
+| BRUSH    | 3 | 笔刷   |
+| PENCIL   | 4 | 铅笔   |
+| AIRBRUSH | 5 | 气笔   |
+| MOUSE    | 6 | 鼠标   |
+| LENS     | 7 | 透镜   |
 
 ## SourceType 
 
 **系统能力**：SystemCapability.MultimodalInput.Input.Core
 
-| 名称           | 类型   | 可读   | 可写   | 说明   |
-| ------------ | ------ | ---- | ---- | ---- |
-| TOUCH_SCREEN | number | 是    | 否    | 触摸屏  |
-| PEN          | number | 是    | 否    | 手写笔  |
-| TOUCH_PAD    | number | 是    | 否    | 触摸板  |
+| 名称           | 值  | 说明   |
+| ------------ | ------ | ---- |
+| TOUCH_SCREEN | 0 | 触摸屏  |
+| PEN          | 1 | 手写笔  |
+| TOUCH_PAD    | 2 | 触摸板  |
 
 ## Touch
 
@@ -71,7 +71,7 @@ import {Action,ToolType,SourceType,Touch,TouchEvent} from '@ohos.multimodalInput
 | toolHeight  | number | 是    | 否    | 工具区域高度                              |
 | rawX        | number | 是    | 否    | 输入设备上的x坐标                           |
 | rawY        | number | 是    | 否    | 输入设备上的y坐标                           |
-| toolType    | number | 是    | 否    | 工具类型                                |
+| toolType    | ToolType | 是    | 否    | 工具类型                                |
 
 ## TouchEvent
 

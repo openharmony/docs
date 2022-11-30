@@ -108,14 +108,14 @@ import window from '@ohos.window';
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
-| 名称                                   | 类型 | 可读 | 可写 | 必填 | 说明                                                         |
-| -------------------------------------- | -------- | ---- | ---- | ---- | ------------------------------------------------------------ |
-| statusBarColor                         | string   | 否   | 是   | 否   | 状态栏背景颜色，为十六进制RGB或ARGB颜色，不区分大小写，例如`#00FF00`或`#FF00FF00`。默认值：`#0x66000000`。 |
-| isStatusBarLightIcon<sup>7+</sup>      | boolean  | 否   | 是   | 否   | 状态栏图标是否为高亮状态。true表示高亮；false表示不高亮。默认值：false。 |
-| statusBarContentColor<sup>8+</sup>     | string   | 否   | 是   | 否   | 状态栏文字颜色。当设置此属性后， `isStatusBarLightIcon`属性设置无效。默认值：`0xE5FFFFFF。` |
-| navigationBarColor                     | string   | 否   | 是   | 否   | 导航栏背景颜色，为十六进制RGB或ARGB颜色，不区分大小写，例如`#00FF00`或`#FF00FF00`。默认值：`#0x66000000。` |
-| isNavigationBarLightIcon<sup>7+</sup>  | boolean  | 否   | 是   | 否   | 导航栏图标是否为高亮状态。true表示高亮；false表示不高亮。默认值：false。 |
-| navigationBarContentColor<sup>8+</sup> | string   | 否   | 是   | 否   | 导航栏文字颜色。当设置此属性后， `isNavigationBarLightIcon`属性设置无效。默认值：`#0xE5FFFFFF。` |
+| 名称                                   | 类型 |  必填 | 说明                                                         |
+| -------------------------------------- | -------- | ---- | ------------------------------------------------------------ |
+| statusBarColor                         | string   |  否   | 状态栏背景颜色，为十六进制RGB或ARGB颜色，不区分大小写，例如`#00FF00`或`#FF00FF00`。默认值：`#0x66000000`。 |
+| isStatusBarLightIcon<sup>7+</sup>      | boolean  |  否   | 状态栏图标是否为高亮状态。true表示高亮；false表示不高亮。默认值：false。 |
+| statusBarContentColor<sup>8+</sup>     | string   |  否   | 状态栏文字颜色。当设置此属性后， `isStatusBarLightIcon`属性设置无效。默认值：`0xE5FFFFFF。` |
+| navigationBarColor                     | string   |  否   | 导航栏背景颜色，为十六进制RGB或ARGB颜色，不区分大小写，例如`#00FF00`或`#FF00FF00`。默认值：`#0x66000000。` |
+| isNavigationBarLightIcon<sup>7+</sup>  | boolean  |  否   | 导航栏图标是否为高亮状态。true表示高亮；false表示不高亮。默认值：false。 |
+| navigationBarContentColor<sup>8+</sup> | string   |  否   | 导航栏文字颜色。当设置此属性后， `isNavigationBarLightIcon`属性设置无效。默认值：`#0xE5FFFFFF。` |
 
 ## Orientation<sup>9+</sup>
 
@@ -248,7 +248,7 @@ import window from '@ohos.window';
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
-| 名称       | 默认值 | 说明           |
+| 名称       | 值 | 说明           |
 | ---------- | ------ | -------------- |
 | DEFAULT    | 0      | 默认色域模式。 |
 | WIDE_GAMUT | 1      | 广色域模式。   |
@@ -1986,8 +1986,8 @@ setWindowSystemBarEnable(names: Array<'status' | 'navigation'>, callback: AsyncC
 **参数：**
 
 | 参数名 | 类型 | 必填 | 说明 |
-| -------- | ------------------------- | -- | --------- |
-| names    | Array                     | 是 | 设置状态栏和导航栏是否显示。<br>例如，需全部显示，该参数设置为['status',&nbsp;'navigation']；不设置，则默认不显示。 |
+| -------- | ---------------------------- | -- | --------- |
+| names    | Array<'status'\|'navigation'> | 是 | 设置状态栏和导航栏是否显示。<br>例如，需全部显示，该参数设置为['status',&nbsp;'navigation']；不设置，则默认不显示。 |
 | callback | AsyncCallback&lt;void&gt; | 是 | 回调函数。 |
 
 **错误码：**
@@ -2028,8 +2028,8 @@ setWindowSystemBarEnable(names: Array<'status' | 'navigation'>): Promise&lt;void
 **参数：**
 
 | 参数名 | 类型  | 必填 | 说明 |
-| ----- | ----- | -- | ------------------------------------------------------------------------------------------------------------ |
-| names | Array | 是 | 设置状态栏和导航栏是否显示。<br>例如，需全部显示，该参数设置为['status',&nbsp;'navigation']；不设置，则默认不显示。 |
+| ----- | ---------------------------- | -- | --------------------------------- |
+| names | Array<'status'\|'navigation'> | 是 | 设置状态栏和导航栏是否显示。<br>例如，需全部显示，该参数设置为['status',&nbsp;'navigation']；不设置，则默认不显示。 |
 
 **返回值：**
 
@@ -4808,8 +4808,8 @@ setSystemBarEnable(names: Array<'status' | 'navigation'>, callback: AsyncCallbac
 **参数：**
 
 | 参数名   | 类型                      | 必填 | 说明                                                         |
-| -------- | ------------------------- | ---- | ------------------------------------------------------------ |
-| names    | Array                     | 是   | 设置状态栏和导航栏是否显示。<br>例如，需全部显示，该参数设置为['status',&nbsp;'navigation']；不设置，则默认不显示。 |
+| -------- | ---------------------------- | ---- | ------------------------------------------------------------ |
+| names    | Array<'status'\|'navigation'> | 是   | 设置状态栏和导航栏是否显示。<br>例如，需全部显示，该参数设置为['status',&nbsp;'navigation']；不设置，则默认不显示。 |
 | callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。                                                   |
 
 **示例：**
@@ -4841,8 +4841,8 @@ setSystemBarEnable(names: Array<'status' | 'navigation'>): Promise&lt;void&gt;
 **参数：**
 
 | 参数名 | 类型  | 必填 | 说明                                                         |
-| ------ | ----- | ---- | ------------------------------------------------------------ |
-| names  | Array | 是   | 设置状态栏和导航栏是否显示。<br>例如，需全部显示，该参数设置为['status',&nbsp;'navigation']；不设置，则默认不显示。 |
+| ------ | ---------------------------- | ---- | ------------------------ |
+| names  | Array<'status'\|'navigation'> | 是   | 设置状态栏和导航栏是否显示。<br>例如，需全部显示，该参数设置为['status',&nbsp;'navigation']；不设置，则默认不显示。 |
 
 **返回值：**
 
@@ -5852,12 +5852,12 @@ WindowStage生命周期。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
-| 名称       | 默认值 | 说明       |
+| 名称       | 值 | 说明       |
 | ---------- | ------ | ---------- |
-| SHOWN      | 1      | 切到前台。 |
+| FOREGROUND | 1      | 切到前台。 |
 | ACTIVE     | 2      | 获焦状态。 |
 | INACTIVE   | 3      | 失焦状态。 |
-| HIDDEN     | 4      | 切到后台。 |
+| BACKGROUND | 4      | 切到后台。 |
 
 ## WindowStage<sup>9+</sup>
 

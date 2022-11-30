@@ -1375,15 +1375,16 @@ getRawFd(path: string, callback: AsyncCallback&lt;RawFileDescriptor&gt;): void
   try {
     this.context.resourceManager.getRawFd("test.xml", (error, value) => {
         if (error != null) {
-            console.log("error is " + error);
+            console.log(`callback getRawFd failed error code: ${error.code}, message: ${error.message}.`);
         } else {
             let fd = value.fd;
             let offset = value.offset;
             let length = value.length;
         }
-  }).catch(error => {
-      console.log("getRawFd callback error is " + error);
-  });
+    });
+  } catch (error) {
+      console.error(`callback getRawFd failed, error code: ${error.code}, message: ${error.message}.`)
+  };
   ```
 
 ### getRawFd<sup>9+</sup>
@@ -1421,10 +1422,10 @@ getRawFd(path: string): Promise&lt;RawFileDescriptor&gt;
         let offset = value.offset;
         let length = value.length;
     }).catch(error => {
-        console.log("getRawFd promise error is " + error);
+        console.log(`promise getRawFd error error code: ${error.code}, message: ${error.message}.`);
     });
   } catch (error) {
-    console.log("getRawFd promise error is " + error);
+    console.error(`promise getRawFd failed, error code: ${error.code}, message: ${error.message}.`);
   };
   ```
 

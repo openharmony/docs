@@ -470,7 +470,7 @@ checkAppAccess(name: string, bundleName: string, callback: AsyncCallback&lt;bool
 | ---------- | ------------------------- | ---- | --------------------------------- |
 | name       | string                    | 是    | 应用帐号的名称。                           |
 | bundleName | string                    | 是    | 第三方应用的包名。                         |
-| callback   | AsyncCallback&lt;void&gt; | 是    | 回调函数。返回true表示指定应用可访问特定帐号的数据；返回false表示不可访问。 |
+| callback   | AsyncCallback&lt;boolean&gt; | 是    | 回调函数。返回true表示指定应用可访问特定帐号的数据；返回false表示不可访问。 |
 
 **错误码：**
 
@@ -2487,7 +2487,7 @@ selectAccountsByOptions(options: SelectAccountsOptions, callback: AsyncCallback&
 | 参数名         | 类型                                 | 必填  | 说明             |
 | -------------- | ----------------------------------- | ----- | --------------- |
 | options        | SelectAccountsOptions               | 是    | 选择帐号的选项。  |
-| callback       | AsyncCallback&lt;[AppAccountInfo](#appaccountinfo)&gt; | 是    | 回调函数。当根据选项选择请求方可访问的帐号列表时，err为null，data为可访问的帐号信息对象；否则为错误对象。  |
+| callback       | AsyncCallback&lt;Array&lt;[AppAccountInfo](#appaccountinfo)&gt;&gt; | 是    | 回调函数。当根据选项选择请求方可访问的帐号列表时，err为null，data为可访问的帐号信息对象；否则为错误对象。  |
 
 **错误码：**
 
@@ -4229,7 +4229,7 @@ getAllOAuthTokens(name: string, owner: string, callback: AsyncCallback&lt;Array&
 | -------- | ---------------------------------------- | ---- | ----------- |
 | name     | string                                   | 是    | 应用帐号的名称。    |
 | owner    | string                                   | 是    | 应用帐号所有者的包名。 |
-| callback | AsyncCallback&lt;Array&lt; [OAuthTokenInfo](#oauthtokeninfodeprecated)&gt;&gt; | 是    | 回调函数。当获取成功时，err为null，data为授权令牌数组；否则为错误对象。    |
+| callback | AsyncCallback&lt;Array&lt;[OAuthTokenInfo](#oauthtokeninfodeprecated)&gt;&gt; | 是    | 回调函数。当获取成功时，err为null，data为授权令牌数组；否则为错误对象。    |
 
 **示例：** 
 
@@ -4499,7 +4499,7 @@ getAuthenticatorInfo(owner: string): Promise&lt;AuthenticatorInfo&gt;
 
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.Account.AppAccount。
 
-| 参数名   | 类型     | 必填   | 说明          |
+| 名称   | 类型     | 必填   | 说明          |
 | ----- | ------ | ---- | ----------- |
 | owner | string | 是    | 应用帐号所有者的包名。 |
 | name  | string | 是    | 应用帐号的名称。    |
@@ -4510,7 +4510,7 @@ getAuthenticatorInfo(owner: string): Promise&lt;AuthenticatorInfo&gt;
 
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.Account.AppAccount。
 
-| 参数名               | 类型            | 必填  | 说明              |
+| 名称               | 类型            | 必填  | 说明              |
 | -------------------- | -------------- | ----- | ---------------- |
 | authType<sup>9+</sup>             | string         | 是    | 令牌的鉴权类型。   |
 | token<sup>9+</sup>                | string         | 是    | 令牌的取值。       |
@@ -4526,7 +4526,7 @@ getAuthenticatorInfo(owner: string): Promise&lt;AuthenticatorInfo&gt;
 
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.Account.AppAccount。
 
-| 参数名               | 类型            | 必填  | 说明              |
+| 名称               | 类型            | 必填  | 说明              |
 | -------------------- | -------------- | ----- | ---------------- |
 | authType             | string         | 是    | 令牌的鉴权类型。   |
 | token                | string         | 是    | 令牌的取值。       |
@@ -4538,7 +4538,7 @@ getAuthenticatorInfo(owner: string): Promise&lt;AuthenticatorInfo&gt;
 
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.Account.AppAccount。
 
-| 参数名     | 类型     | 必填   | 说明         |
+| 名称     | 类型     | 必填   | 说明         |
 | ------- | ------ | ---- | ---------- |
 | owner   | string | 是    | 认证器的所有者包名。 |
 | iconId  | number | 是    | 认证器的图标标识。  |
@@ -4550,7 +4550,7 @@ getAuthenticatorInfo(owner: string): Promise&lt;AuthenticatorInfo&gt;
 
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.Account.AppAccount。
 
-| 参数名     | 类型     | 必填   | 说明         |
+| 名称     | 类型     | 必填   | 说明         |
 | ------- | ------ | ---- | ---------- |
 | account   | [AppAccountInfo](#appaccountinfo) | 否    | 令牌所属的帐号信息。 |
 | tokenInfo  | [AuthTokenInfo](#authtokeninfo9) | 否    | 令牌信息。  |
@@ -4561,9 +4561,9 @@ getAuthenticatorInfo(owner: string): Promise&lt;AuthenticatorInfo&gt;
 
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.Account.AppAccount。
 
-| 参数名     | 类型     | 必填   | 说明         |
+| 名称     | 类型     | 必填   | 说明         |
 | ------- | ------ | ---- | ---------- |
-| customData   | {[key:string]: Object} | 否    | 自定义数据。 |
+| customData   | {[key: string]: string} | 否    | 自定义数据。 |
 
 ## CreateAccountImplicitlyOptions<sup>9+</sup>
 
@@ -4571,18 +4571,18 @@ getAuthenticatorInfo(owner: string): Promise&lt;AuthenticatorInfo&gt;
 
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.Account.AppAccount。
 
-| 参数名     | 类型     | 必填   | 说明         |
+| 名称     | 类型     | 必填   | 说明         |
 | ------- | ------ | ---- | ---------- |
-| requiredLabels   | {[key:string]: Object} | 否    | 必须的标签。 |
+| requiredLabels   | Array&lt;string&gt; | 否    | 必须的标签。 |
 | authType   | string | 否    | 鉴权类型。 |
-| parameters   | {[key:string]: Object} | 否    | 自定义参数对象。 |
+| parameters   | {[key: string]: Object} | 否    | 自定义参数对象。 |
 ## SelectAccountsOptions<sup>9+</sup>
 
 表示用于选择帐号的选项。
 
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.Account.AppAccount。
 
-| 参数名          | 类型                         | 必填  | 说明                |
+| 名称          | 类型                         | 必填  | 说明                |
 | --------------- | --------------------------- | ----- | ------------------- |
 | allowedAccounts | Array&lt;[AppAccountInfo](#appaccountinfo)&gt; | 否    | 允许的帐号数组。      |
 | allowedOwners   | Array&lt;string&gt;         | 否    | 允许的帐号所有者数组。 |
@@ -4594,11 +4594,11 @@ getAuthenticatorInfo(owner: string): Promise&lt;AuthenticatorInfo&gt;
 
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.Account.AppAccount。
 
-| 参数名          | 类型                   | 必填  | 说明           |
+| 名称          | 类型                   | 必填  | 说明           |
 | -------------- | ---------------------- | ----- | -------------- |
 | credentialType | string                 | 否    | 凭据类型。      |
 | credential     | string                 | 否    | 凭据取值。      |
-| parameters     | {[key:string]: Object} | 否    | 自定义参数对象。 |
+| parameters     | {[key: string]: Object} | 否    | 自定义参数对象。 |
 
 
 ## SetPropertiesOptions<sup>9+</sup>
@@ -4607,10 +4607,10 @@ getAuthenticatorInfo(owner: string): Promise&lt;AuthenticatorInfo&gt;
 
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.Account.AppAccount。
 
-| 参数名     | 类型                    | 必填  | 说明           |
+| 名称     | 类型                    | 必填  | 说明           |
 | ---------- | ---------------------- | ----- | -------------- |
-| properties | {[key:string]: Object} | 否    | 属性对象。      |
-| parameters | {[key:string]: Object} | 否    | 自定义参数对象。 |
+| properties | {[key: string]: Object} | 否    | 属性对象。      |
+| parameters | {[key: string]: Object} | 否    | 自定义参数对象。 |
 
 ## Constants<sup>8+</sup>
 
@@ -4618,7 +4618,7 @@ getAuthenticatorInfo(owner: string): Promise&lt;AuthenticatorInfo&gt;
 
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.Account.AppAccount。
 
-| 名称                            | 默认值                    | 说明                   |
+| 名称                            | 值                    | 说明                   |
 | -------------------------------- | ---------------------- | ----------------------- |
 | ACTION_ADD_ACCOUNT_IMPLICITLY<sup>(deprecated)</sup>    | "addAccountImplicitly" | 表示操作，隐式添加帐号。  |
 | ACTION_AUTHENTICATE<sup>(deprecated)</sup>              | "authenticate"         | 表示操作，鉴权。         |
@@ -4644,7 +4644,7 @@ getAuthenticatorInfo(owner: string): Promise&lt;AuthenticatorInfo&gt;
 
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.Account.AppAccount。
 
-| 名称                                  | 默认值   | 说明           |
+| 名称                                  | 值   | 说明           |
 | ----------------------------------- | ----- | ------------ |
 | SUCCESS                             | 0     | 表示操作成功。      |
 | ERROR_ACCOUNT_NOT_EXIST             | 10001 | 表示应用帐号不存在。   |
@@ -4877,7 +4877,7 @@ createAccountImplicitly(options: CreateAccountImplicitlyOptions, callback: AuthC
 
 | 参数名              | 类型                    | 必填   | 说明              |
 | ---------------- | --------------------- | ---- | --------------- |
-| options          | {[key: string]: any}  | 是    | 隐式创建账号的选项。      |
+| options          | [CreateAccountImplicitlyOptions](#createaccountimplicitlyoptions9)  | 是    | 隐式创建账号的选项。      |
 | callback         | [AuthCallback](#authcallback9) | 是    | 认证器回调对象，用于返回创建结果。 |
 
 ### addAccountImplicitly<sup>deprecated</sup>
@@ -4911,12 +4911,12 @@ auth(name: string, authType: string, options: {[key:string]: Object}, callback: 
 
 **参数：**
 
-| 接口名              | 类型                    | 必填   | 说明              |
+| 参数名              | 类型                    | 必填   | 说明              |
 | ---------------- | --------------------- | ---- | --------------- |
 | name             | string                | 是    | 应用帐号的名称。        |
 | authType         | string                | 是    | 应用帐号的鉴权类型。      |
 | callerBundleName | string                | 是    | 鉴权类型。       |
-| options          | {[key: string]: any}  | 是    | 鉴权所需要的可选项。      |
+| options          | {[key: string]: Object}  | 是    | 鉴权所需要的可选项。      |
 | callback         | [AuthCallback](#authcallback9) | 是    | 回调对象，用于返回鉴权结果。 |
 
 ### authenticate<sup>deprecated</sup>
@@ -4933,7 +4933,7 @@ authenticate(name: string, authType: string, callerBundleName: string, options: 
 
 **参数：**
 
-| 接口名              | 类型                    | 必填   | 说明              |
+| 参数名              | 类型                    | 必填   | 说明              |
 | ---------------- | --------------------- | ---- | --------------- |
 | name             | string                | 是    | 应用帐号的名称。        |
 | authType         | string                | 是    | 应用帐号的鉴权类型。      |
@@ -4951,7 +4951,7 @@ verifyCredential(name: string, options: VerifyCredentialOptions, callback: AuthC
 
 **参数：**
 
-| 接口名              | 类型                    | 必填   | 说明              |
+| 参数名              | 类型                    | 必填   | 说明              |
 | ---------------- | --------------------- | ---- | --------------- |
 | name      | string                   | 是    | 应用帐号的名称。              |
 | options   | [VerifyCredentialOptions](#verifycredentialoptions9)  | 是    | 验证凭据的可选项。            |
@@ -4967,7 +4967,7 @@ setProperties(options: SetPropertiesOptions, callback: AuthCallback): void;
 
 **参数：**
 
-| 接口名              | 类型                    | 必填   | 说明              |
+| 参数名              | 类型                    | 必填   | 说明              |
 | ---------------- | --------------------- | ---- | --------------- |
 | options   | [SetPropertiesOptions](#setpropertiesoptions9)  | 是    | 设置属性的可选项。            |
 | callback  | [AuthCallback](#authcallback9) | 是    | 认证器回调，用于返回设置结果。 |
@@ -4982,7 +4982,7 @@ checkAccountLabels(name: string, labels: Array&lt;string&gt;, callback: AuthCall
 
 **参数：**
 
-| 接口名              | 类型                    | 必填   | 说明              |
+| 参数名              | 类型                    | 必填   | 说明              |
 | ---------------- | --------------------- | ---- | --------------- |
 | name      | string                | 是    | 应用帐号的名称。              |
 | labels    | Array&lt;string&gt;          | 是    | 标签数组。                   |
@@ -4998,7 +4998,7 @@ isAccountRemovable(name: string, callback: AuthCallback): void;
 
 **参数：**
 
-| 接口名              | 类型                    | 必填   | 说明              |
+| 参数名              | 类型                    | 必填   | 说明              |
 | ---------------- | --------------------- | ---- | --------------- |
 | name      | string                | 是    | 应用帐号的名称。              |
 | callback  | [AuthCallback](#authcallback9) | 是    | 认证器回调，用于返回判断结果。 |

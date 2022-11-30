@@ -1,107 +1,99 @@
-# NativeWindow Development
+# Native Window Development
 
 ## When to Use
 
-`NativeWindow` is a local platform window of OpenHarmony. It provides APIs for you to create a native window from `Surface`, create a native window buffer from `SurfaceBuffer`, and request and flush a buffer.
+**NativeWindow** is a local platform-based window of OpenHarmony that represents the producer of a graphics queue. It provides APIs for you to create a native window from **Surface**, create a native window buffer from **SurfaceBuffer**, and request and flush a buffer.
 The following scenarios are common for native window development:
 
-* Drawing content using native C++ code and displaying the content on the screen
-* Requesting and flushing a buffer when adapting to EGL `eglswapbuffer`
+* Request a graphics buffer by using the NAPI provided by **NativeWindow**, write the produced graphics content to the buffer, and flush the buffer to the graphics queue.
+* Request and flush a buffer when adapting to the **eglswapbuffer** interface at the EGL.
 
 ## Available APIs
 
 | API| Description|
 | -------- | -------- |
-| OH_NativeWindow_CreateNativeWindowFromSurface (void \*pSurface) | Creates a `NativeWindow` instance. A new `NativeWindow` instance is created each time this function is called.|
-| OH_NativeWindow_DestroyNativeWindow (struct NativeWindow \*window) | Decreases the reference count of a `NativeWindow` instance by 1 and, when the reference count reaches 0, destroys the instance.|
-| OH_NativeWindow_CreateNativeWindowBufferFromSurfaceBuffer (void \*pSurfaceBuffer) | Creates a `NativeWindowBuffer` instance. A new `NativeWindowBuffer` instance is created each time this function is called.|
-| OH_NativeWindow_DestroyNativeWindowBuffer (struct NativeWindowBuffer \*buffer) | Decreases the reference count of a `NativeWindowBuffer` instance by 1 and, when the reference count reaches 0, destroys the instance.|
-| OH_NativeWindow_NativeWindowRequestBuffer (struct NativeWindow \*window struct NativeWindowBuffer \*\*buffer, int \*fenceFd) | Requests a `NativeWindowBuffer` through a `NativeWindow` instance for content production.|
-| OH_NativeWindow_NativeWindowFlushBuffer (struct NativeWindow \*window, struct NativeWindowBuffer \*buffer, int fenceFd, Region region) | Flushes the `NativeWindowBuffer` filled with the content to the buffer queue through a `NativeWindow` instance for content consumption.|
-| OH_NativeWindow_NativeWindowCancelBuffer (struct NativeWindow \*window, struct NativeWindowBuffer \*buffer) | Returns the `NativeWindowBuffer` to the buffer queue through a `NativeWindow` instance, without filling in any content. The `NativeWindowBuffer` can be used for another request.|
-| OH_NativeWindow_NativeWindowHandleOpt (struct NativeWindow \*window, int code,...) | Sets or obtains the attributes of a native window, including the width, height, and content format.|
-| OH_NativeWindow_GetBufferHandleFromNative (struct NativeWindowBuffer \*buffer) | Obtains the pointer to a `BufferHandle` of a `NativeWindowBuffer` instance.|
+| OH_NativeWindow_CreateNativeWindowFromSurface (void \*pSurface) | Creates a **NativeWindow** instance. A new **NativeWindow** instance is created each time this function is called.|
+| OH_NativeWindow_DestroyNativeWindow (OHNativeWindow \*window) | Decreases the reference count of a **NativeWindow** instance by 1 and, when the reference count reaches 0, destroys the instance.|
+| OH_NativeWindow_CreateNativeWindowBufferFromSurfaceBuffer (void \*pSurfaceBuffer) | Creates a **NativeWindowBuffer** instance. A new **NativeWindowBuffer** instance is created each time this function is called.|
+| OH_NativeWindow_DestroyNativeWindowBuffer (OHNativeWindowBuffer \*buffer) | Decreases the reference count of a **NativeWindowBuffer** instance by 1 and, when the reference count reaches 0, destroys the instance.|
+| OH_NativeWindow_NativeWindowRequestBuffer (OHNativeWindow \*window, OHNativeWindowBuffer \*\*buffer, int \*fenceFd) | Requests a **NativeWindowBuffer** through a **NativeWindow** instance for content production.|
+| OH_NativeWindow_NativeWindowFlushBuffer (OHNativeWindow \*window, OHNativeWindowBuffer \*buffer, int fenceFd, Region region) | Flushes the **NativeWindowBuffer** filled with the content to the buffer queue through a **NativeWindow** instance for content consumption.|
+| OH_NativeWindow_NativeWindowAbortBuffer (OHNativeWindow \*window, OHNativeWindowBuffer \*buffer) | Returns the **NativeWindowBuffer** to the buffer queue through a **NativeWindow** instance, without filling in any content. The **NativeWindowBuffer** can be used for another request.|
+| OH_NativeWindow_NativeWindowHandleOpt (OHNativeWindow \*window, int code,...) | Sets or obtains the attributes of a native window, including the width, height, and content format.|
+| OH_NativeWindow_GetBufferHandleFromNative (OHNativeWindowBuffer \*buffer) | Obtains the pointer to a **BufferHandle** of a **NativeWindowBuffer** instance.|
 | OH_NativeWindow_NativeObjectReference (void \*obj) | Adds the reference count of a native object.|
 | OH_NativeWindow_NativeObjectUnreference (void \*obj) | Decreases the reference count of a native object and, when the reference count reaches 0, destroys this object.|
 | OH_NativeWindow_GetNativeObjectMagic (void \*obj) | Obtains the magic ID of a native object.|
-
+| OH_NativeWindow_NativeWindowSetScalingMode (OHNativeWindow \*window, uint32_t sequence, OHScalingMode scalingMode) | Sets the scaling mode of the native window.|
+| OH_NativeWindow_NativeWindowSetMetaData(OHNativeWindow \*window, uint32_t sequence, int32_t size, const OHHDRMetaData \*metaData) | Sets the HDR static metadata of the native window.|
+| OH_NativeWindow_NativeWindowSetMetaDataSet(OHNativeWindow \*window, uint32_t sequence, OHHDRMetadataKey key, int32_t size, const uint8_t \*metaData) | Sets the HDR static metadata set of the native window.|
+| OH_NativeWindow_NativeWindowSetTunnelHandle(OHNativeWindow \*window, const OHExtDataHandle \*handle) | Sets the tunnel handle to the native window.|
 
 
 ## How to Develop
 
-The following steps describe how to use `OH_NativeXComponent` in OpenHarmony to draw content using native C++ code and display the content on the screen.
+The following describes how to use the NAPI provided by **NativeWindow** to request a graphics buffer, write the produced graphics content to the buffer, and flush the buffer to the graphics queue.
 
-1. Define an `XComponent` of the `texture` type in `index.ets` for content display.
-   ```js
-    XComponent({ id: 'xcomponentId', type: 'texture', libraryname: 'nativerender'})
-        .borderColor(Color.Red)
-        .borderWidth(5)
-        .onLoad(() => {})
-        .onDestroy(() => {})
-   ```
-
-2. Obtain an `OH_NativeXComponent` instance (named `nativeXComponent` in this example) by calling `napi_get_named_property`, and obtain a `NativeWindow` instance by registering the callback of the `OH_NativeXComponent` instance.
-
+1. Obtain a **NativeWindow** instance. For example, use **Surface** to create a **NativeWindow** instance.
     ```c++
-    // Define a NAPI instance.
-    napi_value exportInstance = nullptr;
-    // Define an OH_NativeXComponent instance.
-    OH_NativeXComponent *nativeXComponent = nullptr;
-    // Use the OH_NATIVE_XCOMPONENT_OBJ export instance.
-    napi_getname_property(env, exports, OH_NATIVE_XCOMPONENT_OBJ, &exportInstance);
-    // Convert the NAPI instance to the OH_NativeXComponent instance.
-    napi_unwarp(env, exportInstance, reinterpret_cast<void**>(&nativeXComponent));
+    sptr<OHOS::Surface> cSurface = Surface::CreateSurfaceAsConsumer();
+    sptr<IBufferConsumerListener> listener = new BufferConsumerListenerTest();
+    cSurface->RegisterConsumerListener(listener);
+    sptr<OHOS::IBufferProducer> producer = cSurface->GetProducer();
+    sptr<OHOS::Surface> pSurface = Surface::CreateSurfaceAsProducer(producer);
+    OHNativeWindow* nativeWindow = OH_NativeWindow_CreateNativeWindow(&pSurface);
     ```
 
-3. Define the callback `OnSurfaceCreated`. During the creation of a `Surface`, the callback is used to initialize the rendering environment, for example, the `Skia` rendering environment, and write the content to be displayed to `NativeWindow`.
-
+2. Set the attributes of a native window buffer by using **OH_NativeWindow_NativeWindowHandleOpt**.
     ```c++
-    void OnSurfaceCreatedCB(NativeXComponent* component, void* window) {
-        // Obtain the width and height of the native window.
-        uint64_t width_ = 0, height_ = 0;
-        OH_NativeXComponent_GetXComponentSize(nativeXComponent, window, &width_, &height_);
-        // Convert void* into a NativeWindow instance. NativeWindow is defined in native_window/external_window.h.
-        NativeWindow* nativeWindow_ = (NativeWindow*)(window);
+    // Set the read and write scenarios of the native window buffer.
+    int code = SET_USAGE;
+    int32_t usage = BUFFER_USAGE_CPU_READ | BUFFER_USAGE_CPU_WRITE | BUFFER_USAGE_MEM_DMA;
+    int32_t ret = OH_NativeWindow_NativeWindowHandleOpt(nativeWindow, code, usage);
+    // Set the width and height of the native window buffer.
+    code = SET_BUFFER_GEOMETRY;
+    int32_t width = 0x100;
+    int32_t height = 0x100;
+    ret = OH_NativeWindow_NativeWindowHandleOpt(nativeWindow, code, width, height);
+    // Set the step of the native window buffer.
+    code = SET_STRIDE;
+    int32_t stride = 0x8;
+    ret = OH_NativeWindow_NativeWindowHandleOpt(nativeWindow, code, stride);
+    // Set the format of the native window buffer.
+    code = SET_FORMAT;
+    int32_t format = PIXEL_FMT_RGBA_8888;
+    ret = OH_NativeWindow_NativeWindowHandleOpt(nativeWindow, code, format);
+    ```
 
-        // Set or obtain the NativeWindow attributes by calling OH_NativeWindow_NativeWindowHandleOpt.
-        // 1. Use SET_USAGE to set the usage attribute of the native window, for example, to HBM_USE_CPU_READ.
-        OH_NativeWindow_NativeWindowHandleOpt(nativeWindow_, SET_USAGE, HBM_USE_CPU_READ | HBM_USE_CPU_WRITE |HBM_USE_MEM_DMA);
-        // 2. Use SET_BUFFER_GEOMETRY to set the width and height attributes of the native window.
-        OH_NativeWindow_NativeWindowHandleOpt(nativeWindow_, SET_BUFFER_GEOMETRY, width_, height_);
-        // 3. Use SET_FORMAT to set the format attribute of the native window, for example, to PIXEL_FMT_RGBA_8888.
-        OH_NativeWindow_NativeWindowHandleOpt(nativeWindow_, SET_FORMAT, PIXEL_FMT_RGBA_8888);
-        // 4. Use SET_STRIDE to set the stride attribute of the native window.
-        OH_NativeWindow_NativeWindowHandleOpt(nativeWindow_, SET_STRIDE, 0x8);
+3. Request a native window buffer from the graphics queue.
+    ```c++
+    struct NativeWindowBuffer* buffer = nullptr;
+    int fenceFd;
+    // Obtain the NativeWindowBuffer instance by calling OH_NativeWindow_NativeWindowRequestBuffer.
+    OH_NativeWindow_NativeWindowRequestBuffer(nativeWindow_, &buffer, &fenceFd);
+    // Obtain the buffer handle by calling OH_NativeWindow_GetNativeBufferHandleFromNative.
+    BufferHandle* bufferHandle = OH_NativeWindow_GetNativeBufferHandleFromNative(buffer);
+    ```
 
-        // Obtain the NativeWindowBuffer instance by calling OH_NativeWindow_NativeWindowRequestBuffer.
-        struct NativeWindowBuffer* buffer = nullptr;
-        int fenceFd;
-        OH_NativeWindow_NativeWindowRequestBuffer(nativeWindow_, &buffer, &fenceFd);
+4. Write the produced content to the native window buffer.
+    ```c++
+    auto image = static_cast<uint8_t *>(buffer->sfbuffer->GetVirAddr());
+    static uint32_t value = 0x00;
+    value++;
 
-        // Obtain the buffer handle by calling OH_NativeWindow_GetNativeBufferHandleFromNative.
-        BufferHandle* bufferHandle = OH_NativeWindow_GetNativeBufferHandleFromNative(buffer);
-
-        // Create a Skia bitmap using BufferHandle.
-        SkBitmap bitmap;
-        SkImageInfo imageInfo = ...
-        bitmap.setInfo(imageInfo, bufferHandle->stride);
-        bitmap.setPixels(bufferHandle->virAddr);
-        // Create Skia Canvas and write the content to the native window.
-        ...
-
-        // After the write operation is complete, flush the buffer by using OH_NativeWindow_NativeWindowFlushBuffer so that the data is displayed on the screen.
-        Region region{nullptr, 0};
-        OH_NativeWindow_NativeWindowFlushBuffer(nativeWindow_, buffer, fenceFd, region)
+    uint32_t *pixel = static_cast<uint32_t *>(image);
+    for (uint32_t x = 0; x < width; x++) {
+        for (uint32_t y = 0;  y < height; y++) {
+            *pixel++ = value;
+        }
     }
     ```
 
-4. Register the callback `OnSurfaceCreated` by using `OH_NativeXComponent_RegisterCallback`.
+5. Flush the native window buffer to the graphics queue.
 
     ```c++
-    OH_NativeXComponent_Callback &callback_;
-    callback_->OnSurfaceCreated = OnSurfaceCreatedCB;
-    callback_->OnSurfaceChanged = OnSurfaceChangedCB;
-    callback_->OnSurfaceDestoryed = OnSurfaceDestoryedCB;
-    callback_->DispatchTouchEvent = DispatchTouchEventCB;
-    OH_NativeXComponent_RegisterCallback(nativeXComponent, callback_)
+    // Set the refresh region. If Rect in Region is a null pointer or rectNumber is 0, all contents in the native window buffer are changed.
+    Region region{nullptr, 0};
+    // Flush the buffer to the consumer through OH_NativeWindow_NativeWindowFlushBuffer, for example, by displaying it on the screen.
+    OH_NativeWindow_NativeWindowFlushBuffer(nativeWindow_, buffer, fenceFd, region);
     ```

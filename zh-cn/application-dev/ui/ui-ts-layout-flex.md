@@ -5,10 +5,12 @@
 
 - 容器: [Flex组件](../reference/arkui-ts/ts-container-flex.md)作为Flex布局的容器，用于设置布局相关属性。
 - 子组件: Flex组件内的子组件自动成为布局的子组件。
-- 主轴: 水平方向的轴线，子组件默认沿着主轴排列。主轴开始的位置称为主轴起始端，结束位置称为主轴终点端。
-- 交叉轴: 垂直方向的轴线。交叉始的位置称为主轴首部，结束位置称为交叉轴尾部。
+- 主轴: Flex组件布局方向的轴线，子组件默认沿着主轴排列。主轴开始的位置称为主轴起始端，结束位置称为主轴终点端。
+- 交叉轴: 垂直于主轴方向的轴线。交叉轴起始的位置称为主轴首部，结束位置称为交叉轴尾部。
 
-    ![](figures/flex.png)
+以FlexDirection.Row的Flex为例：
+
+![](figures/flex.png)
 
 ## 容器组件属性
 
@@ -312,8 +314,8 @@
     .padding(10)
     .backgroundColor(0xAFEEEE)
     ```
-    
-    ![zh-cn_image_0000001218739570](figures/zh-cn_image_0000001218739570.png)
+  
+    ![zh-cn_image_0000001218739570](figures/itemalignstretch.png)
 
 - ItemAlign. Baseline：交叉轴方向文本基线对齐。
 

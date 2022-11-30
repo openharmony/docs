@@ -3,6 +3,7 @@
 本模块提供转换xml文本为JavaScript对象的选项。
 
 > **说明：**
+>
 > 本模块首批接口从API version 8开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
 
@@ -59,8 +60,9 @@ console.log(result);
 
 ### convert<sup>(deprecated)</sup>
 
-> **说明：**<br/>
-> 从API Version 9开始废弃，建议使用[convertToJSObject9+](#converttojsobject9)替代。
+> **说明：**
+>
+> 从API Version 8开始支持，从API Version 9开始废弃，建议使用[convertToJSObject9+](#converttojsobject9)替代。
 
 convert(xml: string, options?: ConvertOptions) : Object
 
@@ -109,7 +111,7 @@ console.log(result);
 
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.Utils.Lang
 
-| 名称              | 参数类型 | 必填 | 说明                                                        |
+| 名称              | 类型 | 必填 | 说明                                                        |
 | ----------------- | -------- | ---- | ----------------------------------------------------------- |
 | trim              | boolean  | 是   | 是否修剪位于文本前后的空白字符，默认false。                 |
 | ignoreDeclaration | boolean  | 否   | 是否忽略xml写入声明指示，默认false。                        |

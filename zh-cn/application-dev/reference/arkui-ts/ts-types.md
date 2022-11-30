@@ -156,7 +156,6 @@
 | position       | [Position](#position8) | 目标元素左上角相对父元素左上角的位置。            |
 | globalPosition | [Position](#position8) | 目标元素左上角相对页面左上角的位置。             |
 
-
 ## Position<sup>8+</sup>
 
 位置类型，用于表示一个坐标点。

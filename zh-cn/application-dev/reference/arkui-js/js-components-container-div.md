@@ -247,21 +247,23 @@
    ```html
    <!-- xxx.hml -->
    <div class="container">
-     <div class="content" ondragstart="dragstart" ondrag="drag" ondragend="dragend" style="position: absolute;left: {{left}};top:{{top}};">
+     <div class="content" ondragstart="dragstart" ondrag="drag" ondragend="dragend" style="position: absolute;left: {{left}};top: {{top}};">
      </div>
    </div>
    ```
 
    ```css
-   /* xxx.css */
-   .container {
-     flex-direction: column;
-   }
-   .content{
-     width: 200px;
-     height: 200px;
-     background-color: red;
-   }
+  /* xxx.css */
+  .container {
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+  }
+  .content {
+    width: 200px;
+    height: 200px;
+    background-color: red;
+  }
    ```
 
    ```js
@@ -285,7 +287,7 @@
        prompt.showToast({
          message: 'End Drag'
        })
-      },
+     }
    }
    ```
 
@@ -358,8 +360,8 @@
    ```html
    <!-- xxx.hml -->
    <div class="container">
-     <div class="content "onpinchstart="pinchstart" onpinchend="pinchend" onpinchupdate="pinchupdate"
-       onpinchcancel=" pinchcancel"> 
+     <div class="content" onpinchstart="pinchstart" onpinchend="pinchend" onpinchupdate="pinchupdate"
+       onpinchcancel="pinchcancel"> 
      </div>
    </div>
    ```
@@ -371,12 +373,13 @@
      justify-content: center;
      align-items: center;
      width: 454px;
-     height: 454px;}
-   .content{
+     height: 454px;
+   }
+   .content {
      width: 400px;
      height: 400px;
      background-color: aqua;
-     margin:30px
+     margin: 30px;
    }
    ```
 

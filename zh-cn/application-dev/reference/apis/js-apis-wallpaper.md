@@ -16,14 +16,14 @@ import wallpaper from '@ohos.wallpaper';
 
 ## WallpaperType
 
-定义壁纸类型。
+定义壁纸的枚举类型。
 
-**系统能力**: 以下各项对应的系统能力均为SystemCapability.MiscServices.Wallpaper。
+**系统能力**: SystemCapability.MiscServices.Wallpaper
 
-| 名称 | 说明 |
-| -------- | -------- |
-| WALLPAPER_LOCKSCREEN | 锁屏壁纸标识。 |
-| WALLPAPER_SYSTEM | 主屏幕壁纸标识。 |
+| 名称 | 值 |说明 |
+| -------- | -------- |-------- |
+| WALLPAPER_SYSTEM | 0 |主屏幕壁纸标识。 |
+| WALLPAPER_LOCKSCREEN | 1 |锁屏壁纸标识。 |
 
 
 ## wallpaper.getColors
@@ -33,9 +33,8 @@ getColors(wallpaperType: WallpaperType, callback: AsyncCallback&lt;Array&lt;Rgba
 获取指定类型壁纸的主要颜色信息。
 
 > **说明：**
-> 从API version 9开始废弃。建议使用[wallpaper.getColorsSync<sup>9+</sup>](#wallpapergetcolorssync9)代替。
->
-> 从 API version 7开始支持。
+> 
+> 从 API version 7开始支持，从API version 9开始废弃。建议使用[wallpaper.getColorsSync<sup>9+</sup>](#wallpapergetcolorssync9)代替。
 
 **系统能力**: SystemCapability.MiscServices.Wallpaper
 
@@ -66,9 +65,8 @@ getColors(wallpaperType: WallpaperType): Promise&lt;Array&lt;RgbaColor&gt;&gt;
 获取指定类型壁纸的主要颜色信息。
 
 > **说明：**
-> 从API version 9开始废弃。建议使用[wallpaper.getColorsSync<sup>9+</sup>](#wallpapergetcolorssync9)代替。
->
-> 从 API version 7开始支持。
+> 
+> 从 API version 7开始支持，从API version 9开始废弃。建议使用[wallpaper.getColorsSync<sup>9+</sup>](#wallpapergetcolorssync9)代替。
 
 **系统能力**: SystemCapability.MiscServices.Wallpaper
 
@@ -97,7 +95,7 @@ getColors(wallpaperType: WallpaperType): Promise&lt;Array&lt;RgbaColor&gt;&gt;
 
 ## wallpaper.getColorsSync<sup>9+</sup>
 
-getColorsSync(wallpaperType: WallpaperType): Arrayy&lt;RgbaColory&gt;;
+getColorsSync(wallpaperType: WallpaperType): Array&lt;RgbaColor&gt;
 
 获取指定类型壁纸的主要颜色信息。
 
@@ -129,9 +127,8 @@ getId(wallpaperType: WallpaperType, callback: AsyncCallback&lt;number&gt;): void
 获取指定类型壁纸的ID。
 
 > **说明：**
-> 从API version 9开始废弃。建议使用[wallpaper.getIdSync<sup>9+</sup>](#wallpapergetidsync9)代替。
->
-> 从 API version 7开始支持。
+> 
+> 从 API version 7开始支持，从API version 9开始废弃。建议使用[wallpaper.getIdSync<sup>9+</sup>](#wallpapergetidsync9)代替。
 
 **系统能力**: SystemCapability.MiscServices.Wallpaper
 
@@ -162,9 +159,8 @@ getId(wallpaperType: WallpaperType): Promise&lt;number&gt;
 获取指定类型壁纸的ID。
 
 > **说明：**
-> 从API version 9开始废弃。建议使用[wallpaper.getIdSync<sup>9+</sup>](#wallpapergetidsync9)代替。
->
-> 从 API version 7开始支持。
+> 
+> 从 API version 7开始支持，从API version 9开始废弃。建议使用[wallpaper.getIdSync<sup>9+</sup>](#wallpapergetidsync9)代替。
 
 **系统能力**: SystemCapability.MiscServices.Wallpaper
 
@@ -193,7 +189,7 @@ getId(wallpaperType: WallpaperType): Promise&lt;number&gt;
 
 ## wallpaper.getIdSync<sup>9+</sup>
 
-getIdSync(wallpaperType: WallpaperType): number;
+getIdSync(wallpaperType: WallpaperType): number
 
 获取指定类型壁纸的ID。
 
@@ -225,9 +221,8 @@ getMinHeight(callback: AsyncCallback&lt;number&gt;): void
 获取壁纸的最小高度值。
 
 > **说明：**
-> 从API version 9开始废弃。建议使用[wallpaper.getMinHeightSync<sup>9+</sup>](#wallpapergetminheightsync9)代替。
->
-> 从 API version 7开始支持。
+> 
+> 从 API version 7开始支持，从API version 9开始废弃。建议使用[wallpaper.getMinHeightSync<sup>9+</sup>](#wallpapergetminheightsync9)代替。
 
 **系统能力**: SystemCapability.MiscServices.Wallpaper
 
@@ -257,9 +252,8 @@ getMinHeight(): Promise&lt;number&gt;
 获取壁纸的最小高度值。
 
 > **说明：**
-> 从API version 9开始废弃。建议使用[wallpaper.getMinHeightSync<sup>9+</sup>](#wallpapergetminheightsync9)代替。
->
-> 从 API version 7开始支持。
+> 
+> 从 API version 7开始支持，从API version 9开始废弃。建议使用[wallpaper.getMinHeightSync<sup>9+</sup>](#wallpapergetminheightsync9)代替。
 
 **系统能力**: SystemCapability.MiscServices.Wallpaper
 
@@ -308,9 +302,8 @@ getMinWidth(callback: AsyncCallback&lt;number&gt;): void
 获取壁纸的最小宽度值。
 
 > **说明：**
-> 从API version 9开始废弃。建议使用[wallpaper.getMinWidthSync<sup>9+</sup>](#wallpapergetminwidthsync9)代替。
->
-> 从 API version 7开始支持。
+> 
+> 从 API version 7开始支持，从API version 9开始废弃。建议使用[wallpaper.getMinWidthSync<sup>9+</sup>](#wallpapergetminwidthsync9)代替。
 
 **系统能力**: SystemCapability.MiscServices.Wallpaper
 
@@ -340,9 +333,8 @@ getMinWidth(): Promise&lt;number&gt;
 获取壁纸的最小宽度值。
 
 > **说明：**
-> 从API version 9开始废弃。建议使用[wallpaper.getMinWidthSync<sup>9+</sup>](#wallpapergetminwidthsync9)代替。
->
-> 从 API version 7开始支持。
+> 
+> 从 API version 7开始支持，从API version 9开始废弃。建议使用[wallpaper.getMinWidthSync<sup>9+</sup>](#wallpapergetminwidthsync9)代替。
 
 **系统能力**: SystemCapability.MiscServices.Wallpaper
 
@@ -391,9 +383,8 @@ isChangePermitted(callback: AsyncCallback&lt;boolean&gt;): void
 是否允许应用改变当前用户的壁纸。
 
 > **说明：**
-> 从API version 9开始废弃。建议使用[wallpaper.isChangeAllowed<sup>9+</sup>](#wallpaperischangeallowed9)代替。
->
-> 从 API version 7开始支持。
+> 
+> 从 API version 7开始支持，从API version 9开始废弃。建议使用[wallpaper.isChangeAllowed<sup>9+</sup>](#wallpaperischangeallowed9)代替。
 
 **系统能力**: SystemCapability.MiscServices.Wallpaper
 
@@ -423,9 +414,8 @@ isChangePermitted(): Promise&lt;boolean&gt;
 是否允许应用改变当前用户的壁纸。
 
 > **说明：**
-> 从API version 9开始废弃。建议使用[wallpaper.isChangeAllowed<sup>9+</sup>](#wallpaperischangeallowed9)代替。
->
-> 从 API version 7开始支持。
+> 
+> 从 API version 7开始支持，从API version 9开始废弃。建议使用[wallpaper.isChangeAllowed<sup>9+</sup>](#wallpaperischangeallowed9)代替。
 
 **系统能力**: SystemCapability.MiscServices.Wallpaper
 
@@ -474,9 +464,8 @@ isOperationAllowed(callback: AsyncCallback&lt;boolean&gt;): void
 是否允许用户设置壁纸。
 
 > **说明：**
-> 从API version 9开始废弃。建议使用[wallpaper.isUserChangeAllowed<sup>9+</sup>](#wallpaperisuserchangeallowed9)代替。
->
-> 从 API version 7开始支持。
+> 
+> 从 API version 7开始支持，从API version 9开始废弃。建议使用[wallpaper.isUserChangeAllowed<sup>9+</sup>](#wallpaperisuserchangeallowed9)代替。
 
 **系统能力**: SystemCapability.MiscServices.Wallpaper
 
@@ -506,9 +495,8 @@ isOperationAllowed(): Promise&lt;boolean&gt;
 是否允许用户设置壁纸。
 
 > **说明：**
-> 从API version 9开始废弃。建议使用[wallpaper.isUserChangeAllowed<sup>9+</sup>](#wallpaperisuserchangeallowed9)代替。
->
-> 从 API version 7开始支持。
+> 
+> 从 API version 7开始支持，从API version 9开始废弃。建议使用[wallpaper.isUserChangeAllowed<sup>9+</sup>](#wallpaperisuserchangeallowed9)代替。
 
 **系统能力**: SystemCapability.MiscServices.Wallpaper
 
@@ -557,9 +545,8 @@ reset(wallpaperType: WallpaperType, callback: AsyncCallback&lt;void&gt;): void
 移除指定类型的壁纸，恢复为默认显示的壁纸。
 
 > **说明：**
-> 从API version 9开始废弃。建议使用[wallpaper.restore<sup>9+</sup>](#wallpaperrestore9)代替。
->
-> 从 API version 7开始支持。
+> 
+> 从 API version 7开始支持，从API version 9开始废弃。建议使用[wallpaper.restore<sup>9+</sup>](#wallpaperrestore9)代替。
 
 **需要权限**：ohos.permission.SET_WALLPAPER
 
@@ -592,9 +579,8 @@ reset(wallpaperType: WallpaperType): Promise&lt;void&gt;
 移除指定类型的壁纸，恢复为默认显示的壁纸。
 
 > **说明：**
-> 从API version 9开始废弃。建议使用[wallpaper.restore<sup>9+</sup>](#wallpaperrestore9)代替。
 >
-> 从 API version 7开始支持。
+> 从 API version 7开始支持，从API version 9开始废弃。建议使用[wallpaper.restore<sup>9+</sup>](#wallpaperrestore9)代替。
 
 **需要权限**：ohos.permission.SET_WALLPAPER
 
@@ -693,9 +679,8 @@ setWallpaper(source: string | image.PixelMap, wallpaperType: WallpaperType, call
 将指定资源设置为指定类型的壁纸。
 
 > **说明：**
-> 从API version 9开始废弃。建议使用[wallpaper.setImage<sup>9+</sup>](#wallpapersetimage9)代替。
->
-> 从 API version 7开始支持。
+> 
+> 从 API version 7开始支持，从API version 9开始废弃。建议使用[wallpaper.setImage<sup>9+</sup>](#wallpapersetimage9)代替。
 
 **需要权限**：ohos.permission.SET_WALLPAPER
 
@@ -705,7 +690,7 @@ setWallpaper(source: string | image.PixelMap, wallpaperType: WallpaperType, call
 
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | source | string&nbsp;\|[PixelMap](js-apis-image.md#pixelmap7) |  | JPEG或PNG文件的Uri路径，或者PNG格式文件的位图。 |
+  | source | string&nbsp;\|[image.PixelMap](js-apis-image.md#pixelmap7) | 是 | JPEG或PNG文件的Uri路径，或者PNG格式文件的位图。 |
   | wallpaperType | [WallpaperType](#wallpapertype) | 是 | 壁纸类型。 |
   | callback | AsyncCallback&lt;void&gt; | 是 | 回调函数，调用成功则返回是返回设置的结果，调用失败则返回error信息。 |
 
@@ -752,9 +737,8 @@ setWallpaper(source: string | image.PixelMap, wallpaperType: WallpaperType): Pro
 将指定资源设置为指定类型的壁纸。
 
 > **说明：**
-> 从API version 9开始废弃。建议使用[wallpaper.setImage<sup>9+</sup>](#wallpapersetimage9)代替。
->
-> 从 API version 7开始支持。
+> 
+> 从 API version 7开始支持，从API version 9开始废弃。建议使用[wallpaper.setImage<sup>9+</sup>](#wallpapersetimage9)代替。
 
 **需要权限**：ohos.permission.SET_WALLPAPER
 
@@ -764,7 +748,7 @@ setWallpaper(source: string | image.PixelMap, wallpaperType: WallpaperType): Pro
 
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | source | string&nbsp;\|[PixelMap](js-apis-image.md#pixelmap7) | 是 | JPEG或PNG文件的Uri路径，或者PNG格式文件的位图。 |
+  | source | string&nbsp;\|[image.PixelMap](js-apis-image.md#pixelmap7) | 是 | JPEG或PNG文件的Uri路径，或者PNG格式文件的位图。 |
   | wallpaperType | [WallpaperType](#wallpapertype) | 是 | 壁纸类型。 |
 
 **返回值：**
@@ -819,7 +803,7 @@ setImage(source: string | image.PixelMap, wallpaperType: WallpaperType, callback
 
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | source | string&nbsp;\|[PixelMap](js-apis-image.md#pixelmap7) |  | JPEG或PNG文件的Uri路径，或者PNG格式文件的位图。 |
+  | source | string&nbsp;\|[image.PixelMap](js-apis-image.md#pixelmap7) | 是 | JPEG或PNG文件的Uri路径，或者PNG格式文件的位图。 |
   | wallpaperType | [WallpaperType](#wallpapertype) | 是 | 壁纸类型。 |
   | callback | AsyncCallback&lt;void&gt; | 是 | 回调函数，调用成功则返回是返回设置的结果，调用失败则返回error信息。 |
 
@@ -873,7 +857,7 @@ setImage(source: string | image.PixelMap, wallpaperType: WallpaperType): Promise
 
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | source | string&nbsp;\|[PixelMap](js-apis-image.md#pixelmap7) | 是 | JPEG或PNG文件的Uri路径，或者PNG格式文件的位图。 |
+  | source | string&nbsp;\|[image.PixelMap](js-apis-image.md#pixelmap7) | 是 | JPEG或PNG文件的Uri路径，或者PNG格式文件的位图。 |
   | wallpaperType | [WallpaperType](#wallpapertype) | 是 | 壁纸类型。 |
 
 **返回值：**
@@ -921,9 +905,8 @@ getFile(wallpaperType: WallpaperType, callback: AsyncCallback&lt;number&gt;): vo
 获取指定类型的壁纸文件。
 
 > **说明：**
-> 从API version 9开始废弃。建议使用[wallpaper.getFileSync<sup>9+</sup>](#wallpapergetfilesync9)代替。
->
-> 从 API version 8开始支持。
+> 
+> 从 API version 8开始支持，从API version 9开始废弃。建议使用[wallpaper.getFileSync<sup>9+</sup>](#wallpapergetfilesync9)代替。
 
 **需要权限**：ohos.permission.GET_WALLPAPER
 
@@ -955,9 +938,8 @@ getFile(wallpaperType: WallpaperType): Promise&lt;number&gt;
 获取指定类型的壁纸文件。
 
 > **说明：**
-> 从API version 9开始废弃。建议使用[wallpaper.getFileSync<sup>9+</sup>](#wallpapergetfilesync9)代替。
 >
-> 从 API version 8开始支持。
+> 从 API version 8开始支持，从API version 9开始废弃。建议使用[wallpaper.getFileSync<sup>9+</sup>](#wallpapergetfilesync9)代替。
 
 **需要权限**：ohos.permission.GET_WALLPAPER
 
@@ -1022,9 +1004,8 @@ getPixelMap(wallpaperType: WallpaperType, callback: AsyncCallback&lt;image.Pixel
 获取壁纸图片的像素图。
 
 > **说明：**
-> 从API version 9开始废弃。建议使用[wallpaper.getImage<sup>9+</sup>](#wallpapergetimage9)代替。
 >
-> 从 API version 7开始支持。
+> 从 API version 7开始支持，从API version 9开始废弃。建议使用[wallpaper.getImage<sup>9+</sup>](#wallpapergetimage9)代替。
 
 **需要权限**：ohos.permission.GET_WALLPAPER
 
@@ -1037,7 +1018,7 @@ getPixelMap(wallpaperType: WallpaperType, callback: AsyncCallback&lt;image.Pixel
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | wallpaperType | [WallpaperType](#wallpapertype) | 是 | 壁纸类型。 |
-  | callback | AsyncCallback&lt;void&gt; | 是 | 回调函数，调用成功则返回壁纸图片的像素图大小，调用失败则返回error信息。 |
+  | callback | AsyncCallback&lt;image.PixelMap&gt; | 是 | 回调函数，调用成功则返回壁纸图片的像素图大小，调用失败则返回error信息。 |
 
 **示例：**
   
@@ -1056,9 +1037,8 @@ getPixelMap(wallpaperType: WallpaperType): Promise&lt;image.PixelMap&gt;
 获取壁纸图片的像素图。
 
 > **说明：**
-> 从API version 9开始废弃。建议使用[wallpaper.getImage<sup>9+</sup>](#wallpapergetimage9)代替。
 >
-> 从 API version 7开始支持。
+> 从 API version 7开始支持，从API version 9开始废弃。建议使用[wallpaper.getImage<sup>9+</sup>](#wallpapergetimage9)代替。
 
 **需要权限**：ohos.permission.GET_WALLPAPER
 
@@ -1076,7 +1056,7 @@ getPixelMap(wallpaperType: WallpaperType): Promise&lt;image.PixelMap&gt;
 
   | 类型 | 说明 |
   | -------- | -------- |
-  | Promise&lt;void&gt; | 调用成功则返回壁纸图片的像素图大小，调用失败则返回error信息。 |
+  | Promise&lt;image.PixelMap&gt; | 调用成功则返回壁纸图片的像素图大小，调用失败则返回error信息。 |
 
 **示例：**
   
@@ -1108,7 +1088,7 @@ getImage(wallpaperType: WallpaperType, callback: AsyncCallback&lt;image.PixelMap
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | wallpaperType | [WallpaperType](#wallpapertype) | 是 | 壁纸类型。 |
-  | callback | AsyncCallback&lt;void&gt; | 是 | 回调函数，调用成功则返回壁纸图片的像素图大小，调用失败则返回error信息。 |
+  | callback | AsyncCallback&lt;[image.PixelMap](js-apis-image.md#pixelmap7)&gt; | 是 | 回调函数，调用成功则返回壁纸图片的像素图大小，调用失败则返回error信息。 |
 
 **示例：**
   
@@ -1142,7 +1122,7 @@ getImage(wallpaperType: WallpaperType): Promise&lt;image.PixelMap&gt;
 
   | 类型 | 说明 |
   | -------- | -------- |
-  | Promise&lt;void&gt; | 调用成功则返回壁纸图片的像素图大小，调用失败则返回error信息。 |
+  | Promise&lt;[image.PixelMap](js-apis-image.md#pixelmap7)&gt; | 调用成功则返回壁纸图片的像素图大小，调用失败则返回error信息。 |
 
 **示例：**
   
@@ -1213,9 +1193,9 @@ off(type: 'colorChange', callback?: (colors: Array&lt;RgbaColor&gt;, wallpaperTy
 
 ## RgbaColor
 
-**系统能力**: 以下各项对应的系统能力均为SystemCapability.MiscServices.Wallpaper。
+**系统能力**: SystemCapability.MiscServices.Wallpaper
 
-| 名称 | 参数类型 | 可读 | 可写 | 说明 |
+| 名称 | 类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
 | red | number | 是 | 是 | 表示红色值，范围为&nbsp;0&nbsp;到&nbsp;255。 |
 | green | number | 是 | 是 | 表示绿色值，范围为&nbsp;0&nbsp;到&nbsp;255。 |

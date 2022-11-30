@@ -44,10 +44,23 @@ A constructor used to create a **LightWeightSet** instance.
 
 **System capability**: SystemCapability.Utils.Lang
 
+**Error codes**
+
+For details about the error codes, see [containers Error Codes](../errorcodes/errorcode-containers.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 10200012 | The LightWeightSet's constructor cannot be directly invoked. |
+
 **Example**
 
 ```ts
 let lightWeightSet = new LightWeightSet();
+try {
+  let lightWeightSet2 = LightWeightSet();
+} catch(err) {
+  console.log(`${err.code} - ${err.name} - ${err.message}`);
+}
 ```
 
 
@@ -65,11 +78,24 @@ Checks whether this container is empty (contains no element).
 | -------- | -------- |
 | boolean | Returns **true** if the container is empty; returns **false** otherwise.|
 
+**Error codes**
+
+For details about the error codes, see [containers Error Codes](../errorcodes/errorcode-containers.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 10200011 | The isEmpty method cannot be bound. |
+
 **Example**
 
 ```ts
 const lightWeightSet = new LightWeightSet();
 let result = lightWeightSet.isEmpty();
+try {
+  lightWeightSet.isEmpty.bind({})(); // bind() creates a new bound function that, when called, has its this keyword set to the provided value. It is used to test exception capture.
+} catch(err) {
+  console.log(`${err.code} - ${err.name} - ${err.message}`);
+}
 ```
 
 ### add
@@ -92,11 +118,24 @@ Adds an element to this container.
 | -------- | -------- |
 | boolean | Returns **true** if the element is added successfully; returns **false** otherwise.|
 
+**Error codes**
+
+For details about the error codes, see [containers Error Codes](../errorcodes/errorcode-containers.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 10200011 | The add method cannot be bound. |
+
 **Example**
 
 ```ts
 let lightWeightSet = new LightWeightSet();
 let result = lightWeightSet.add("squirrel");
+try {
+  lightWeightSet.add.bind({}, "squirrel")(); // bind() creates a new bound function that, when called, has its this keyword set to the provided value. It is used to test exception capture.
+} catch(err) {
+  console.log(`${err.code} - ${err.name} - ${err.message}`);
+}
 ```
 
 
@@ -114,6 +153,14 @@ Adds all elements in a **LightWeightSet** instance to this container.
 | -------- | -------- | -------- | -------- |
 | set | LightWeightSet&lt;T&gt; | Yes| **LightWeightSet** instance whose elements are to be added to the current container.|
 
+**Error codes**
+
+For details about the error codes, see [containers Error Codes](../errorcodes/errorcode-containers.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 10200011 | The addAll method cannot be bound. |
+
 **Example**
 
 ```ts
@@ -123,6 +170,11 @@ lightWeightSet.add("sparrow");
 let set = new LightWeightSet();
 set.add("gull");
 let result = lightWeightSet.addAll(set);
+try {
+  lightWeightSet.addAll.bind({}, set)(); // bind() creates a new bound function that, when called, has its this keyword set to the provided value. It is used to test exception capture.
+} catch(err) {
+  console.log(`${err.code} - ${err.name} - ${err.message}`);
+}
 ```
 
 
@@ -146,6 +198,14 @@ Checks whether this container contains all elements of the specified **LightWeig
 | -------- | -------- |
 | boolean | Returns **true** if all the elements in the specified **LightWeightSet** instance are contained; returns **false** otherwise.|
 
+**Error codes**
+
+For details about the error codes, see [containers Error Codes](../errorcodes/errorcode-containers.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 10200011 | The hasAll method cannot be bound. |
+
 **Example**
 
 ```ts
@@ -155,6 +215,11 @@ lightWeightSet.add("sparrow");
 let set = new LightWeightSet();
 set.add("sparrow");
 let result = lightWeightSet.hasAll(set);
+try {
+  lightWeightSet.hasAll.bind({}, set)(); // bind() creates a new bound function that, when called, has its this keyword set to the provided value. It is used to test exception capture.
+} catch(err) {
+  console.log(`${err.code} - ${err.name} - ${err.message}`);
+}
 ```
 
 
@@ -178,6 +243,14 @@ Checks whether this container has the specified key.
 | -------- | -------- |
 | boolean | Returns **true** if the specified key is contained; returns **false** otherwise.|
 
+**Error codes**
+
+For details about the error codes, see [containers Error Codes](../errorcodes/errorcode-containers.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 10200011 | The has method cannot be bound. |
+
 **Example**
 
 ```ts
@@ -185,6 +258,11 @@ let lightWeightSet = new LightWeightSet();
 let result = lightWeightSet.has(123);
 lightWeightSet.add(123);
 result = lightWeightSet.has(123);
+try {
+  lightWeightSet.has.bind({}, 123)(); // bind() creates a new bound function that, when called, has its this keyword set to the provided value. It is used to test exception capture.
+} catch(err) {
+  console.log(`${err.code} - ${err.name} - ${err.message}`);
+}
 ```
 
 
@@ -208,6 +286,14 @@ Checks whether this container contains objects of the same type as the specified
 | -------- | -------- |
 | boolean | Returns **true** if the container contains objects of the same type as the specified **obj**; returns **false** otherwise.|
 
+**Error codes**
+
+For details about the error codes, see [containers Error Codes](../errorcodes/errorcode-containers.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 10200011 | The equal method cannot be bound. |
+
 **Example**
 
 ```ts
@@ -216,6 +302,11 @@ lightWeightSet.add("squirrel");
 lightWeightSet.add("sparrow");
 let obj = ["squirrel", "sparrow"];
 let result = lightWeightSet.equal(obj);
+try {
+  lightWeightSet.equal.bind({}, obj)(); // bind() creates a new bound function that, when called, has its this keyword set to the provided value. It is used to test exception capture.
+} catch(err) {
+  console.log(`${err.code} - ${err.name} - ${err.message}`);
+}
 ```
 
 
@@ -233,11 +324,30 @@ Increases the capacity of this container.
 | -------- | -------- | -------- | -------- |
 | minimumCapacity | number | Yes| Minimum number of elements to accommodate in the container.|
 
+**Error codes**
+
+For details about the error codes, see [containers Error Codes](../errorcodes/errorcode-containers.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 10200011 | The increaseCapacityTo method cannot be bound. |
+| 10200001 | The value of parameters are out of range. |
+
 **Example**
 
 ```ts
 let lightWeightSet = new LightWeightSet();
 lightWeightSet.increaseCapacityTo(10);
+try {
+  lightWeightSet.increaseCapacityTo.bind({}, 10)(); // bind() creates a new bound function that, when called, has its this keyword set to the provided value. It is used to test exception capture.
+} catch(err) {
+  console.log(`${err.code} - ${err.name} - ${err.message}`);
+}
+try {
+  lightWeightSet.increaseCapacityTo(2);
+} catch(err) {
+  console.log(`${err.code} - ${err.name} - ${err.message}`);
+}
 ```
 
 
@@ -261,6 +371,14 @@ Obtains the position index of the element with the specified key in this contain
 | -------- | -------- |
 | number | Position index of the element.|
 
+**Error codes**
+
+For details about the error codes, see [containers Error Codes](../errorcodes/errorcode-containers.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 10200011 | The getIndexOf method cannot be bound. |
+
 **Example**
 
 ```ts
@@ -268,6 +386,11 @@ let lightWeightSet = new LightWeightSet();
 lightWeightSet.add("squirrel");
 lightWeightSet.add("sparrow");
 let result = lightWeightSet.getIndexOf("sparrow");
+try {
+  lightWeightSet.getIndexOf.bind({}, "sparrow")(); // bind() creates a new bound function that, when called, has its this keyword set to the provided value. It is used to test exception capture.
+} catch(err) {
+  console.log(`${err.code} - ${err.name} - ${err.message}`);
+}
 ```
 
 
@@ -291,6 +414,14 @@ Removes an element of the specified key from this container.
 | -------- | -------- |
 | T | Value of the element removed.|
 
+**Error codes**
+
+For details about the error codes, see [containers Error Codes](../errorcodes/errorcode-containers.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 10200011 | The remove method cannot be bound. |
+
 **Example**
 
 ```ts
@@ -298,6 +429,11 @@ let lightWeightSet = new LightWeightSet();
 lightWeightSet.add("squirrel");
 lightWeightSet.add("sparrow");
 let result = lightWeightSet.remove("sparrow");
+try {
+  lightWeightSet.remove.bind({}, "sparrow")(); // bind() creates a new bound function that, when called, has its this keyword set to the provided value. It is used to test exception capture.
+} catch(err) {
+  console.log(`${err.code} - ${err.name} - ${err.message}`);
+}
 ```
 
 
@@ -321,6 +457,14 @@ Removes the element at the specified position from this container.
 | -------- | -------- |
 | boolean | Returns **true** if the element is removed successfully; returns **false** otherwise.|
 
+**Error codes**
+
+For details about the error codes, see [containers Error Codes](../errorcodes/errorcode-containers.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 10200011 | The removeAt method cannot be bound. |
+
 **Example**
 
 ```ts
@@ -328,6 +472,11 @@ let lightWeightSet = new LightWeightSet();
 lightWeightSet.add("squirrel");
 lightWeightSet.add("sparrow");
 let result = lightWeightSet.removeAt(1);
+try {
+  lightWeightSet.removeAt.bind({}, 1)(); // bind() creates a new bound function that, when called, has its this keyword set to the provided value. It is used to test exception capture.
+} catch(err) {
+  console.log(`${err.code} - ${err.name} - ${err.message}`);
+}
 ```
 
 
@@ -351,6 +500,14 @@ Obtains the value of the element at the specified position in this container.
 | -------- | -------- |
 | T | Value obtained.|
 
+**Error codes**
+
+For details about the error codes, see [containers Error Codes](../errorcodes/errorcode-containers.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 10200011 | The getValueAt method cannot be bound. |
+
 **Parameters**
 
 ```ts
@@ -358,6 +515,11 @@ let lightWeightSet = new LightWeightSet();
 lightWeightSet.add("squirrel");
 lightWeightSet.add("sparrow");
 let result = lightWeightSet.getValueAt(1);
+try {
+  lightWeightSet.getValueAt.bind({}, 1)(); // bind() creates a new bound function that, when called, has its this keyword set to the provided value. It is used to test exception capture.
+} catch(err) {
+  console.log(`${err.code} - ${err.name} - ${err.message}`);
+}
 ```
 
 
@@ -369,6 +531,14 @@ Clears this container and sets its length to **0**.
 
 **System capability**: SystemCapability.Utils.Lang
 
+**Error codes**
+
+For details about the error codes, see [containers Error Codes](../errorcodes/errorcode-containers.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 10200011 | The clear method cannot be bound. |
+
 **Example**
 
 ```ts
@@ -376,6 +546,11 @@ let lightWeightSet = new LightWeightSet();
 lightWeightSet.add("squirrel");
 lightWeightSet.add("sparrow");
 lightWeightSet.clear();
+try {
+  lightWeightSet.clear.bind({})(); // bind() creates a new bound function that, when called, has its this keyword set to the provided value. It is used to test exception capture.
+} catch(err) {
+  console.log(`${err.code} - ${err.name} - ${err.message}`);
+}
 ```
 
 
@@ -393,6 +568,14 @@ Obtains a string that contains all elements in this container.
 | -------- | -------- |
 | String | String obtained.|
 
+**Error codes**
+
+For details about the error codes, see [containers Error Codes](../errorcodes/errorcode-containers.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 10200011 | The toString method cannot be bound. |
+
 **Example**
 
 ```ts
@@ -400,6 +583,11 @@ let lightWeightSet = new LightWeightSet();
 lightWeightSet.add("squirrel");
 lightWeightSet.add("sparrow");
 let result = lightWeightSet.toString();
+try {
+  lightWeightSet.toString.bind({})(); // bind() creates a new bound function that, when called, has its this keyword set to the provided value. It is used to test exception capture.
+} catch(err) {
+  console.log(`${err.code} - ${err.name} - ${err.message}`);
+}
 ```
 
 
@@ -417,6 +605,14 @@ Obtains an array that contains all objects in this container.
 | -------- | -------- |
 | Array&lt;T&gt; | Array obtained.|
 
+**Error codes**
+
+For details about the error codes, see [containers Error Codes](../errorcodes/errorcode-containers.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 10200011 | The toArray method cannot be bound. |
+
 **Example**
 
 ```ts
@@ -424,6 +620,11 @@ let lightWeightSet = new LightWeightSet();
 lightWeightSet.add("squirrel");
 lightWeightSet.add("sparrow");
 let result = lightWeightSet.toArray();
+try {
+  lightWeightSet.toArray.bind({})(); // bind() creates a new bound function that, when called, has its this keyword set to the provided value. It is used to test exception capture.
+} catch(err) {
+  console.log(`${err.code} - ${err.name} - ${err.message}`);
+}
 ```
 
 
@@ -441,6 +642,14 @@ Obtains an iterator that contains all the values in this container.
 | -------- | -------- |
 | IterableIterator&lt;T&gt; | Iterator obtained.|
 
+**Error codes**
+
+For details about the error codes, see [containers Error Codes](../errorcodes/errorcode-containers.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 10200011 | The values method cannot be bound. |
+
 **Example**
 
 ```ts
@@ -452,6 +661,11 @@ let index = 0;
 while(index < lightWeightSet.length) {
   console.log(JSON.stringify(iter.next().value));
   index++;
+}
+try {
+  lightWeightSet.values.bind({})(); // bind() creates a new bound function that, when called, has its this keyword set to the provided value. It is used to test exception capture.
+} catch(err) {
+  console.log(`${err.code} - ${err.name} - ${err.message}`);
 }
 ```
 
@@ -478,6 +692,14 @@ callbackfn
 | key| T | No| Key of the element that is currently traversed (same as **value**).|
 | set | LightWeightSet&lt;T&gt; | No| Instance that invokes the **forEach** method.|
 
+**Error codes**
+
+For details about the error codes, see [containers Error Codes](../errorcodes/errorcode-containers.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 10200011 | The forEach method cannot be bound. |
+
 **Example**
 
 ```ts
@@ -487,6 +709,13 @@ lightWeightSet.add("gull");
 lightWeightSet.forEach((value, key) => {
   console.log("value:" + value, key);
 });
+try {
+  lightWeightSet.forEach.bind({}, (value, key) => {
+    console.log("value:" + value, key);
+  })(); // bind() creates a new bound function that, when called, has its this keyword set to the provided value. It is used to test exception capture.
+} catch(err) {
+  console.log(`${err.code} - ${err.name} - ${err.message}`);
+}
 ```
 
 
@@ -504,6 +733,14 @@ Obtains an iterator that contains all the elements in this container.
 | -------- | -------- |
 | IterableIterator<[T, T]> | Iterator obtained.|
 
+**Error codes**
+
+For details about the error codes, see [containers Error Codes](../errorcodes/errorcode-containers.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 10200011 | The entries method cannot be bound. |
+
 **Example**
 
 ```ts
@@ -515,6 +752,11 @@ let index = 0;
 while(index < lightWeightSet.length) {
   console.log(JSON.stringify(iter.next().value));
   index++;
+}
+try {
+  lightWeightSet.entries.bind({})(); // bind() creates a new bound function that, when called, has its this keyword set to the provided value. It is used to test exception capture.
+} catch(err) {
+  console.log(`${err.code} - ${err.name} - ${err.message}`);
 }
 ```
 
@@ -532,6 +774,14 @@ Obtains an iterator, each item of which is a JavaScript object.
 | Type| Description|
 | -------- | -------- |
 | IterableIterator&lt;T&gt; | Iterator obtained.|
+
+**Error codes**
+
+For details about the error codes, see [containers Error Codes](../errorcodes/errorcode-containers.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 10200011 | The Symbol.iterator method cannot be bound. |
 
 **Example**
 
@@ -551,5 +801,10 @@ let temp = iter.next().value;
 while(temp != undefined) {
   console.log("value:" + temp);
   temp = iter.next().value;
+}
+try {
+  lightWeightSet[Symbol.iterator].bind({})(); // bind() creates a new bound function that, when called, has its this keyword set to the provided value. It is used to test exception capture.
+} catch(err) {
+  console.log(`${err.code} - ${err.name} - ${err.message}`);
 }
 ```

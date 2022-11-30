@@ -100,7 +100,7 @@ getInputMethodEngine(): InputMethodEngine
 
 > **说明：**
 >
->从API version 8开始支持，API version 9开始废弃, 建议使用[getInputMethodAbility()](#inputmethodenginegetinputmethodability9)替代。
+> 从API version 8开始支持，API version 9开始废弃, 建议使用[getInputMethodAbility()](#inputmethodenginegetinputmethodability9)替代。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -157,7 +157,7 @@ on(type: 'inputStart', callback: (kbController: KeyboardController, textInputCli
 | 参数名   | 类型                            | 必填 | 说明                                                         |
 | -------- | ------------------------------- | ---- | ------------------------------------------------------------ |
 | type     | string                        | 是   | 设置监听类型。<br/>-type为‘inputStart’时表示订阅输入法绑定。 |
-| callback | [KeyboardController](#keyboardcontroller), [TextInputClient](#textinputclient) | 是 | 回调函数，返回订阅输入法的KeyboardController和TextInputClient实例。 |
+| callback | (kbController: [KeyboardController](#keyboardcontroller), textInputClient: [TextInputClient](#textinputclient)) => void | 是 | 回调函数，返回订阅输入法的KeyboardController和TextInputClient实例。 |
 
 **示例：**
 
@@ -181,7 +181,7 @@ off(type: 'inputStart', callback?: (kbController: KeyboardController, textInputC
 | 参数名   | 类型                 | 必填 | 说明                     |
 | -------- | -------------------- | ---- | ------------------------ |
 | type | string                                                       | 是   | 设置监听类型。<br/>-type为‘inputStart’时表示订阅输入法绑定。 |
-| callback | [KeyboardController](#keyboardcontroller), [TextInputClient](#textinputclient) | 否 | 回调函数，返回取消订阅的KeyboardController和TextInputClient实例。 |
+| callback | (kbController: [KeyboardController](#keyboardcontroller), textInputClient: [TextInputClient](#textinputclient)) => void | 否 | 回调函数，返回取消订阅的KeyboardController和TextInputClient实例。 |
 
 **示例：**
 
@@ -204,7 +204,7 @@ on(type: 'keyboardShow'|'keyboardHide', callback: () => void): void
 | 参数名   | 类型   | 必填 | 说明                                                         |
 | -------- | ------ | ---- | ------------------------------------------------------------ |
 | type     | string | 是   | 设置监听类型。<br/>-&nbsp;type为'keyboardShow'，表示订阅输入法显示。<br/>-&nbsp;type为'keyboardHide'，表示订阅输入法隐藏。 |
-| callback | void   | 是   | 回调函数。                                                   |
+| callback | () => void   | 是   | 回调函数。                                                   |
 
 **示例：**
 
@@ -230,7 +230,7 @@ off(type: 'keyboardShow'|'keyboardHide', callback?: () => void): void
 | 参数名   | 类型   | 必填 | 说明                                                         |
 | -------- | ------ | ---- | ------------------------------------------------------------ |
 | type     | string | 是   | 设置监听类型。<br/>-&nbsp;type为'keyboardShow'，表示订阅输入法显示。<br/>-&nbsp;type为'keyboardHide'，表示订阅输入法隐藏。 |
-| callback | void   | 否   | 回调函数。                                                   |
+| callback | () => void   | 否   | 回调函数。                                                   |
 
 **示例：**
 
@@ -260,7 +260,7 @@ on(type: 'inputStart', callback: (kbController: KeyboardController, inputClient:
 | 参数名   | 类型                            | 必填 | 说明                                                         |
 | -------- | ------------------------------- | ---- | ------------------------------------------------------------ |
 | type     | string                        | 是   | 设置监听类型。<br/>-type为‘inputStart’时表示订阅输入法绑定。 |
-| callback | [KeyboardController](#keyboardcontroller), [InputClient](#inputclient9) | 是 | 回调函数，返回输入法操作相关实例。 |
+| callback | (kbController: [KeyboardController](#keyboardcontroller), textInputClient: [InputClient](#inputclient9)) => void | 是 | 回调函数，返回输入法操作相关实例。 |
 
 **示例：**
 
@@ -284,7 +284,7 @@ off(type: 'inputStart', callback?: (kbController: KeyboardController, inputClien
 | 参数名   | 类型                 | 必填 | 说明                     |
 | -------- | -------------------- | ---- | ------------------------ |
 | type | string                                                       | 是   | 设置监听类型。<br/>-type为‘inputStart’时表示订阅输入法绑定。 |
-| callback | [KeyboardController](#keyboardcontroller), [InputClient](#inputclient9) | 否 | 回调函数，返回输入法操作相关实例。 |
+| callback | (kbController: [KeyboardController](#keyboardcontroller), textInputClient: [InputClient](#inputclient9)) => void | 否 | 回调函数，返回输入法操作相关实例。 |
 
 **示例：**
 
@@ -307,7 +307,7 @@ on(type: 'inputStop', callback: () => void): void
 | 参数名   | 类型   | 必填 | 说明                                                         |
 | -------- | ------ | ---- | ------------------------------------------------------------ |
 | type     | string | 是   | 设置监听类型。<br/>-type为‘inputStop’时表示订阅停止输入法应用事件。 |
-| callback | void   | 是   | 回调函数。                                                   |
+| callback | () => void   | 是   | 回调函数。                                                   |
 
 **示例：**
 
@@ -330,7 +330,7 @@ off(type: 'inputStop', callback: () => void): void
 | 参数名   | 类型   | 必填 | 说明                                                         |
 | -------- | ------ | ---- | ------------------------------------------------------------ |
 | type     | string | 是   | 设置监听类型。<br/>-type为‘inputStop’时表示订阅停止输入法应用事件。 |
-| callback | void   | 是   | 回调函数。                                                   |
+| callback | () => void   | 是   | 回调函数。                                                   |
 
 **示例：**
 
@@ -353,7 +353,7 @@ on(type: 'setCallingWindow', callback: (wid:number) => void): void
 | 参数名   | 类型   | 必填 | 说明                                                         |
 | -------- | ------ | ---- | ------------------------------------------------------------ |
 | type     | string | 是   | 设置监听类型。<br/>-type为‘setCallingWindow’时表示订阅设置调用窗口事件。 |
-| callback | number | 是   | 回调函数，返回调用方window id。                                            |
+| callback | (wid:number) => void | 是   | 回调函数，返回调用方window id。                                            |
 
 **示例：**
 
@@ -376,7 +376,7 @@ off(type: 'setCallingWindow', callback: (wid:number) => void): void
 | 参数名   | 类型   | 必填 | 说明                                                         |
 | -------- | ------ | ---- | ------------------------------------------------------------ |
 | type     | string | 是   | 设置监听类型。<br/>-type为‘setCallingWindow’时表示订阅设置调用窗口事件。 |
-| callback | number | 是   | 回调函数，返回调用方window id。                                 |
+| callback | (wid:number) => void | 是   | 回调函数，返回调用方window id。                                 |
 
 **示例：**
 
@@ -399,7 +399,7 @@ on(type: 'keyboardShow'|'keyboardHide', callback: () => void): void
 | 参数名   | 类型   | 必填 | 说明                                                         |
 | -------- | ------ | ---- | ------------------------------------------------------------ |
 | type     | string | 是   | 设置监听类型。<br/>-&nbsp;type为'keyboardShow'，表示订阅输入法显示。<br/>-&nbsp;type为'keyboardHide'，表示订阅输入法隐藏。 |
-| callback | void   | 是   | 回调函数。                                                   |
+| callback | () => void   | 是   | 回调函数。                                                   |
 
 **示例：**
 
@@ -425,7 +425,7 @@ off(type: 'keyboardShow'|'keyboardHide', callback?: () => void): void
 | 参数名   | 类型   | 必填 | 说明                                                         |
 | -------- | ------ | ---- | ------------------------------------------------------------ |
 | type     | string | 是   | 设置监听类型。<br/>-&nbsp;type为'keyboardShow'，表示订阅输入法显示。<br/>-&nbsp;type为'keyboardHide'，表示订阅输入法隐藏。 |
-| callback | void   | 否   | 回调函数。                                                   |
+| callback | () => void   | 否   | 回调函数。                                                   |
 
 **示例：**
 
@@ -451,7 +451,7 @@ on(type: 'setSubtype', callback: (inputMethodSubtype: InputMethodSubtype) => voi
 | 参数名   | 类型   | 必填 | 说明                                                         |
 | -------- | ------ | ---- | ------------------------------------------------------------ |
 | type     | string | 是   | 设置监听类型。<br/>-&nbsp;type为'setSubtype'，表示订阅输入法子类型设置。<br/>-&nbsp;type为'keyboardHide'，表示订阅输入法隐藏。 |
-| callback | InputMethodSubtype   | 是   | 回调函数，返回调用方的输入法子类型。                                                   |
+| callback | (inputMethodSubtype: [InputMethodSubtype](js-apis-inputmethod-subtype.md)) => void   | 是   | 回调函数，返回调用方的输入法子类型。                                                   |
 
 **示例：**
 
@@ -474,7 +474,7 @@ off(type: 'setSubtype', callback?: (inputMethodSubtype: InputMethodSubtype) => v
 | 参数名   | 类型   | 必填 | 说明                                                         |
 | -------- | ------ | ---- | ------------------------------------------------------------ |
 | type     | string | 是   | 设置监听类型。<br/>-&nbsp;type为'setSubtype'，表示取消订阅输入法子类型设置。<br/>-&nbsp;type为'keyboardHide'，表示订阅输入法隐藏。 |
-| callback | InputMethodSubtype   | 否   | 回调函数，返回调用方的输入法子类型。                                                   |
+| callback | (inputMethodSubtype: [InputMethodSubtype](js-apis-inputmethod-subtype.md)) => void  | 否   | 回调函数，返回调用方的输入法子类型。                                                   |
 
 **示例：**
 
@@ -501,7 +501,7 @@ on(type: 'keyDown'|'keyUp', callback: (event: KeyEvent) => boolean): void
 | 参数名   | 类型                            | 必填 | 说明                                                         |
 | -------- | ------------------------------- | ---- | ------------------------------------------------------------ |
 | type   | string         | 是   | 设置监听类型。<br/>-&nbsp;type为'keyDown'，表示订阅硬键盘按下。<br/>-&nbsp;type为'keyUp'，表示订阅硬键盘抬起。 |
-| callback | [KeyEvent](#keyevent) | 是 | 回调函数，返回按键信息。 |
+| callback | (event: [KeyEvent](#keyevent)) => boolean | 是 | 回调函数，返回按键信息。 |
 
 **示例：**
 
@@ -531,7 +531,7 @@ off(type: 'keyDown'|'keyUp', callback?: (event: KeyEvent) => boolean): void
 | 参数名   | 类型                  | 必填 | 说明                                                         |
 | -------- | --------------------- | ---- | ------------------------------------------------------------ |
 | type     | string                | 是   | 设置监听类型。<br/>-&nbsp;type为'keyDown'，表示订阅硬键盘按下。<br/>-&nbsp;type为'keyUp'，表示订阅硬键盘抬起。 |
-| callback | [KeyEvent](#keyevent) | 否   | 回调函数，返回按键信息。                                           |
+| callback | (event: [KeyEvent](#keyevent)) => boolean | 否   | 回调函数，返回按键信息。                                           |
 
 **示例：**
 
@@ -559,11 +559,11 @@ on(type: 'cursorContextChange', callback: (x: number, y:number, height:number) =
 | 参数名   | 类型   | 必填 | 说明                                                         |
 | -------- | ------ | ---- | ------------------------------------------------------------ |
 | type     | string | 是   | 光标变化事件。<br/>-type为’cursorContextChange‘时，表示光标变化。 |
-| callback | number | 是   | 回调函数，返回光标信息。                                           |
+| callback | (x: number, y:number, height:number) => void | 是   | 回调函数，返回光标信息。                                           |
 
 
 
-  **示例：**
+**示例：**
 
 ```js
 inputMethodEngine.getKeyboardDelegate().on('cursorContextChange', (x, y, height) => {
@@ -586,7 +586,7 @@ off(type: 'cursorContextChange', callback?: (x: number, y:number, height:number)
 | 参数名   | 类型   | 必填 | 说明                                                         |
 | -------- | ------ | ---- | ------------------------------------------------------------ |
 | type     | string | 是   | 光标变化事件。<br/>-type为’cursorContextChange‘时，表示光标变化。 |
-| callback | number | 否   | 回调函数，返回光标信息。                                           |
+| callback | (x: number, y:number, height:number) => void | 否   | 回调函数，返回光标信息。                                           |
 
 
   **示例：**
@@ -609,7 +609,7 @@ on(type: 'selectionChange', callback: (oldBegin: number, oldEnd: number, newBegi
 | 参数名   | 类型   | 必填 | 说明                                                         |
 | -------- | ------ | ---- | ------------------------------------------------------------ |
 | type     | string | 是   | 文本选择变化事件。<br/>-type为’selectionChange‘时，表示选择文本变化。 |
-| callback | number | 是   | 回调函数，返回文本选择信息。                                       |
+| callback | (oldBegin: number, oldEnd: number, newBegin: number, newEnd: number) => void | 是   | 回调函数，返回文本选择信息。                                       |
 
   **示例：**
 
@@ -635,7 +635,7 @@ off(type: 'selectionChange', callback?: (oldBegin: number, oldEnd: number, newBe
 | 参数名   | 类型   | 必填 | 说明                                                         |
 | -------- | ------ | ---- | ------------------------------------------------------------ |
 | type     | string | 是   | 文本选择变化事件。<br/>-type为’selectionChange‘时，表示选择文本变化。 |
-| callback | number | 否   | 回调函数，返回文本选择信息。                                       |
+| callback | (oldBegin: number, oldEnd: number, newBegin: number, newEnd: number) => void | 否   | 回调函数，返回文本选择信息。                                       |
 
   **示例：**
 
@@ -659,7 +659,7 @@ on(type: 'textChange', callback: (text: string) => void): void
 | 参数名   | 类型   | 必填 | 说明                                                         |
 | -------- | ------ | ---- | ------------------------------------------------------------ |
 | type     | string | 是   | 文本变化事件。<br/>-type为’textChange‘时，表示当前文本变化。 |
-| callback | string | 是   | 回调函数，返回当前文本内容。                                       |
+| callback | (text: string) => void | 是   | 回调函数，返回当前文本内容。                                       |
 
   **示例：**
 
@@ -682,7 +682,7 @@ off(type: 'textChange', callback?: (text: string) => void): void
 | 参数名   | 类型   | 必填 | 说明                                                         |
 | -------- | ------ | ---- | ------------------------------------------------------------ |
 | type     | string | 是   | 文本变化事件。<br/>-type为’textChange‘时，表示当前文本变化。 |
-| callback | string | 否   | 回调函数，返回当前文本内容。                                       |
+| callback | (text: string) => void | 否   | 回调函数，返回当前文本内容。                                       |
 
   **示例：**
 

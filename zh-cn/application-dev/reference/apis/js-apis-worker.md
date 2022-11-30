@@ -16,7 +16,7 @@ import worker from '@ohos.worker';
 
 **系统能力：** SystemCapability.Utils.Lang
 
-| 名称                              | 参数类型                                                  | 可读 | 可写 | 说明                                                         |
+| 名称                              | 类型                                                  | 可读 | 可写 | 说明                                                         |
 | --------------------------------- | --------------------------------------------------------- | ---- | ---- | ------------------------------------------------------------ |
 | workerPort<sup>9+</sup>           | [ThreadWorkerGlobalScope](#threadworkerglobalscope9)      | 是   | 是   | worker线程用于与宿主线程通信的对象。                         |
 | parentPort<sup>(deprecated)</sup> | [DedicatedWorkerGlobalScope](#dedicatedworkerglobalscope) | 是   | 是   | worker线程用于与宿主线程通信的对象。<br/>此属性从api9开始被废弃，建议使用workerPort<sup>9+</sup>。 |
@@ -28,9 +28,11 @@ Worker构造函数的选项信息，用于为Worker添加其他信息。
 
 **系统能力：** SystemCapability.Utils.Lang
 
-| 名称 | 参数类型 | 可读 | 可写 | 说明           |
+| 名称 | 类型 | 可读 | 可写 | 说明           |
 | ---- | -------- | ---- | ---- | -------------- |
+| type | classic \| module | 是   | 是   | Worker执行脚本的模式类型，默认为classic类型，暂不支持module类型。 |
 | name | string   | 是   | 是   | Worker的名称。 |
+| shared | boolean | 是   | 是   | 暂不支持共享Worker功能。 |
 
 
 ## ThreadWorker<sup>9+</sup>
@@ -422,7 +424,7 @@ dispatchEvent(event: Event): boolean
 
 ```js
 const workerInstance = new worker.ThreadWorker("workers/worker.js");
-workerInstance.dispatchEvent({type:"alert"});
+workerInstance.dispatchEvent({type: "alert"});
 ```
 
 
@@ -444,7 +446,7 @@ workerInstance.removeAllListener();
 
 ## ThreadWorkerGlobalScope<sup>9+</sup>
 
-Worker线程用于与宿主线程通信的类，通过postMessage接口发送消息给宿主线程、close接口销毁Worker线程。DedicatedWorkerGlobalScope类继承[GlobalScope<sup>9+</sup>](#globalscope9)。
+Worker线程用于与宿主线程通信的类，通过postMessage接口发送消息给宿主线程、close接口销毁Worker线程。ThreadWorkerGlobalScope类继承[GlobalScope<sup>9+</sup>](#globalscope9)。
 
 
 ### postMessage<sup>9+</sup>
@@ -609,13 +611,13 @@ workerInstance.addEventListener("alert", (e)=>{
 
 ## GlobalScope<sup>9+</sup>
 
-Worker线程自身的运行环境，WorkerGlobalScope类继承[WorkerEventTarget](#workereventtarget9)。
+Worker线程自身的运行环境，GlobalScope类继承[WorkerEventTarget](#workereventtarget9)。
 
 ### 属性
 
 **系统能力：** SystemCapability.Utils.Lang
 
-| 名称 | 参数类型                                                     | 可读 | 可写 | 说明                                  |
+| 名称 | 类型                                                     | 可读 | 可写 | 说明                                  |
 | ---- | ------------------------------------------------------------ | ---- | ---- | ------------------------------------- |
 | name | string                                                       | 是   | 否   | Worker的名字，new&nbsp;Worker时指定。 |
 | self | [GlobalScope](#globalscope9)&nbsp;&amp;&nbsp;typeof&nbsp;globalThis | 是   | 否   | GlobalScope本身。                     |
@@ -1251,7 +1253,7 @@ parentPort.onmessageerror= function(e) {
 
 **系统能力：** SystemCapability.Utils.Lang
 
-| 名称     | 参数类型 | 可读 | 可写 | 说明                              |
+| 名称     | 类型 | 可读 | 可写 | 说明                              |
 | -------- | -------- | ---- | ---- | --------------------------------- |
 | transfer | Object[] | 是   | 是   | ArrayBuffer数组，用于传递所有权。 |
 
@@ -1262,7 +1264,7 @@ parentPort.onmessageerror= function(e) {
 
 **系统能力：** SystemCapability.Utils.Lang
 
-| 名称      | 参数类型 | 可读 | 可写 | 说明                               |
+| 名称      | 类型 | 可读 | 可写 | 说明                               |
 | --------- | -------- | ---- | ---- | ---------------------------------- |
 | type      | string   | 是   | 否   | 指定事件的类型。                   |
 | timeStamp | number   | 是   | 否   | 事件创建时的时间戳（精度为毫秒）。 |
@@ -1307,7 +1309,7 @@ workerInstance.addEventListener("alert", (e)=>{
 
 **系统能力：** SystemCapability.Utils.Lang
 
-| 名称     | 参数类型 | 可读 | 可写 | 说明                 |
+| 名称     | 类型 | 可读 | 可写 | 说明                 |
 | -------- | -------- | ---- | ---- | -------------------- |
 | message  | string   | 是   | 否   | 异常发生的错误信息。 |
 | filename | string   | 是   | 否   | 出现异常所在的文件。 |
@@ -1322,7 +1324,7 @@ workerInstance.addEventListener("alert", (e)=>{
 
 **系统能力：** SystemCapability.Utils.Lang
 
-| 名称 | 参数类型 | 可读 | 可写 | 说明               |
+| 名称 | 类型 | 可读 | 可写 | 说明               |
 | ---- | -------- | ---- | ---- | ------------------ |
 | data | T        | 是   | 否   | 线程间传递的数据。 |
 
@@ -1338,7 +1340,7 @@ Worker线程自身的运行环境，WorkerGlobalScope类继承[EventTarget](#eve
 
 **系统能力：** SystemCapability.Utils.Lang
 
-| 名称 | 参数类型                                                     | 可读 | 可写 | 说明                                  |
+| 名称 | 类型                                                     | 可读 | 可写 | 说明                                  |
 | ---- | ------------------------------------------------------------ | ---- | ---- | ------------------------------------- |
 | name | string                                                       | 是   | 否   | Worker的名字，new&nbsp;Worker时指定。 |
 | self | [WorkerGlobalScope](#workerglobalscope)&nbsp;&amp;&nbsp;typeof&nbsp;globalThis | 是   | 否   | WorkerGlobalScope本身。               |
@@ -1401,7 +1403,7 @@ parentPort.onerror = function(e){
 ```js
 // main.js
 import worker from '@ohos.worker';
-const workerInstance = new worker.Thread("workers/worker.js");
+const workerInstance = new worker.ThreadWorker("workers/worker.js");
 workerInstance.postMessage("message from main to worker");
 workerInstance.onmessage = function(d) {
   // 当worker线程传递obj2时，data即为obj2。data没有Init、SetName的方法
@@ -1413,12 +1415,9 @@ workerInstance.onmessage = function(d) {
 import worker from '@ohos.worker';
 const parentPort = worker.workerPort;
 class MyModel {
+    name:"undefined"
     Init() {
-        this.name = "wzy"
-        this.age = 18
-    }
-    SetName() {
-        this.name = "WZY"
+        this.name = "MyModel"
     }
 }
 parentPort.onmessage = function(d) {

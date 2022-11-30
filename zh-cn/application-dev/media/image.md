@@ -21,23 +21,27 @@ let opts = { alphaType: 0, editable: true, pixelFormat: 4, scaleMode: 1, size: {
 // 创建pixelmap对象
 const color = new ArrayBuffer(96);
 let opts = { alphaType: 0, editable: true, pixelFormat: 4, scaleMode: 1, size: { height: 2, width: 3 } }
-image.createPixelMap(color, opts, pixelmap => {
+image.createPixelMap(color, opts, (err, pixelmap) => {
     console.log('Succeeded in creating pixelmap.');
 })
 
 // 用于读像素
-pixelmap.readPixels(area,(data) => {
-    if(data !== null) {
-        var bufferArr = new Uint8Array(area.pixels);
-        var res = true;
-        for (var i = 0; i < bufferArr.length; i++) {
-            console.info(' buffer ' + bufferArr[i]);
-            if(res) {
-                if(bufferArr[i] == 0) {
-                    res = false;
-                    console.log('readPixels end.');
-                    break;
-                }
+const area = {
+    pixels: new ArrayBuffer(8),
+    offset: 0,
+    stride: 8,
+    region: { size: { height: 1, width: 2 }, x: 0, y: 0 }
+}
+pixelmap.readPixels(area,() => {
+    var bufferArr = new Uint8Array(area.pixels);
+    var res = true;
+    for (var i = 0; i < bufferArr.length; i++) {
+        console.info(' buffer ' + bufferArr[i]);
+        if(res) {
+            if(bufferArr[i] == 0) {
+                res = false;
+                console.log('readPixels end.');
+                break;
             }
         }
     }
@@ -128,7 +132,7 @@ imageSourceApi.release(() => {
 const imagePackerApi = image.createImagePacker();
 const imageSourceApi = image.createImageSource(0);
 let packOpts = { format:"image/jpeg", quality:98 };
-imagePackerApi.packing(imageSourceApi, packOpts, data => {
+imagePackerApi.packing(imageSourceApi, packOpts, (err, data) => {
     console.log('Succeeded in packing');
 })
  
@@ -156,7 +160,7 @@ let decodingOptions = {
     };
     
 // 用于回调方式创建pixelmap
-imageSourceApi.createPixelMap(decodingOptions, pixelmap => {
+imageSourceApi.createPixelMap(decodingOptions, (err, pixelmap) => {
     console.log('Succeeded in creating pixelmap.');
 })
 

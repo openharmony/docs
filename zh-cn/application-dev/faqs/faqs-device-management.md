@@ -21,7 +21,7 @@ display.getDefaultDisplay((err, data) => {
 });
 ```
 
-## 如何获取当前运行设备类型（穿戴、平板等）
+## 如何获取当前运行设备类型
 
 适用于：OpenHarmony SDK 3.2.2.5版本，API9 Stage模型
 

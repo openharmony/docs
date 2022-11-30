@@ -1,17 +1,10 @@
 # Line
 
+直线绘制组件。
+
 >  **说明：**
 >
 > 该组件从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
-
-
-直线绘制组件。
-
-
-## 权限列表
-
-无
-
 
 ## 子组件
 
@@ -46,7 +39,7 @@ Line(value?: {width?: string | number, height?: string | number})
 | strokeLineCap | [LineCapStyle](ts-appendix-enums.md#linecapstyle) | LineCapStyle.Butt | 设置线条端点绘制样式。 |
 | strokeLineJoin | [LineJoinStyle](ts-appendix-enums.md#linejoinstyle) | LineJoinStyle.Miter | 设置线条拐角绘制样式。 |
 | strokeMiterLimit | number&nbsp;\|&nbsp;string | 4 | 设置锐角绘制成斜角的极限值。<br/>**说明：**<br/>Line组件无法设置锐角图形，该属性设置无效。 |
-| strokeOpacity | number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[Resource](ts-types.md#resource类型) | 1 | 设置线条透明度。 |
+| strokeOpacity | number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[Resource](ts-types.md#resource类型) | 1 | 设置线条透明度。<br/>**说明：**<br/>该属性的取值范围是[0.0, 1.0]，若给定值小于0.0，则取值为0.0；若给定值大于1.0，则取值为1.0。 |
 | strokeWidth | Length | 1 | 设置线条宽度。 |
 | antiAlias | boolean | true | 是否开启抗锯齿效果。 |
 
