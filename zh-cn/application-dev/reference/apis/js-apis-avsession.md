@@ -54,10 +54,9 @@ import featureAbility from '@ohos.ability.featureAbility';
 
 let session;
 let tag = "createNewSession";
-let type = "audio";
 let context = featureAbility.getContext();
 
-await avSession.createAVSession(context, tag, type).then((data) => {
+await avSession.createAVSession(context, tag, "audio").then((data) => {
     session = data;
     console.info(`CreateAVSession : SUCCESS : sessionId = ${session.sessionId}`);
 }).catch((err) => {
@@ -96,10 +95,9 @@ import featureAbility from '@ohos.ability.featureAbility';
 
 let session;
 let tag = "createNewSession";
-let type = "audio";
 let context = featureAbility.getContext();
 
-avSession.createAVSession(context, tag, type, function (err, data) {
+avSession.createAVSession(context, tag, "audio", function (err, data) {
     if (err) {
         console.info(`CreateAVSession BusinessError: code: ${err.code}, message: ${err.message}`);
     } else {
@@ -230,10 +228,9 @@ import featureAbility from '@ohos.ability.featureAbility';
 
 let session;
 let tag = "createNewSession";
-let type = "audio";
 let context = featureAbility.getContext();
 
-await avSession.createAVSession(context, tag, type).then((data) => {
+await avSession.createAVSession(context, tag, "audio").then((data) => {
     session = data;
     console.info(`CreateAVSession : SUCCESS : sessionId = ${session.sessionId}`);
 }).catch((err) => {
@@ -283,10 +280,9 @@ import featureAbility from '@ohos.ability.featureAbility';
 
 let session;
 let tag = "createNewSession";
-let type = "audio";
 let context = featureAbility.getContext();
 
-await avSession.createAVSession(context, tag, type).then((data) => {
+await avSession.createAVSession(context, tag, "audio").then((data) => {
     session = data;
     console.info(`CreateAVSession : SUCCESS : sessionId = ${session.sessionId}`);
 }).catch((err) => {
