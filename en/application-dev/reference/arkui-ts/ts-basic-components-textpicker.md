@@ -1,6 +1,6 @@
 # TextPicker
 
-The **TextPicker** component allows users to scroll to select text.
+The **\<TextPicker>** component allows users to scroll to select text.
 
 >  **NOTE**
 >
@@ -23,14 +23,14 @@ Creates a text picker based on the selection range specified by **range**.
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | range | string[] \| [Resource](ts-types.md#resource)| Yes| Data selection range of the picker.|
-| selected | number | No| Index of the selected item in the range.<br>Default value: **0**|
-| value | string | No| Value of the selected item. The priority of this parameter is lower than that of **selected**.<br>Default value: value of the first item|
+| selected | number | No| Index of the default item in the range.<br>Default value: **0**|
+| value | string | No| Value of the default item in the range. The priority of this parameter is lower than that of **selected**.<br>Default value: value of the first item|
 
 ## Attributes
 
 | Name| Type| Description|
 | -------- | -------- | -------- |
-| defaultPickerItemHeight | number \| string | Default height of an item in the picker.|
+| defaultPickerItemHeight | number \| string | Height of each item in the picker.|
 
 ## Events
 
@@ -53,7 +53,7 @@ struct TextPickerExample {
 
   build() {
     Column() {
-      TextPicker({range: this.fruits, selected: this.select})
+      TextPicker({ range: this.fruits, selected: this.select })
         .onChange((value: string, index: number) => {
           console.info('Picker item changed, value: ' + value + ', index: ' + index)
         })
