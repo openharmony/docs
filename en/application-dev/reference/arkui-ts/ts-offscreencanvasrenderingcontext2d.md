@@ -23,25 +23,25 @@ OffscreenCanvasRenderingContext2D(width: number, height: number, setting: Render
 
 ## Attributes
 
-| Name                                      | Type                                      | Description                                      |
-| ---------------------------------------- | ---------------------------------------- | ---------------------------------------- |
-| [fillStyle](#fillstyle)                  | string \| [CanvasGradient](ts-components-canvas-canvasgradient.md) \| [CanvasPattern](#canvaspattern) | Style to fill an area.<br>- When the type is **string**, this attribute indicates the color of the filling area.<br>- When the type is **CanvasGradient**, this attribute indicates a gradient object, which is created using the **[createLinearGradient](#createlineargradient)** API.<br>- When the type is **CanvasPattern**, this attribute indicates a pattern, which is created using the **[createPattern](#createpattern)** API.|
-| [lineWidth](#linewidth)                  | number                                   | Line width.                              |
-| [strokeStyle](#strokestyle)              | string \| [CanvasGradient](ts-components-canvas-canvasgradient.md) \| [CanvasPattern](#canvaspattern) | Stroke style.<br>- When the type is **\<color>**, this parameter indicates the stroke color.<br>- When the type is **CanvasGradient**, this attribute indicates a gradient object, which is created using the **[createLinearGradient](#createlineargradient)** API.<br>- When the type is **CanvasPattern**, this attribute indicates a pattern, which is created using the **[createPattern](#createpattern)** API.|
-| [lineCap](#linecap)                      | CanvasLineCap                            | Style of the line endpoints. The options are as follows:<br>- **butt**: The endpoints of the line are squared off.<br>- **round**: The endpoints of the line are rounded.<br>- **square**: The endpoints of the line are squared off, and each endpoint has added a rectangle whose length is the same as the line thickness and whose width is half of the line thickness.<br>- Default value: **'butt'**|
-| [lineJoin](#linejoin)                    | CanvasLineJoin                           | Style of the shape used to join line segments. The options are as follows:<br>- **round**: The intersection is a sector, whose radius at the rounded corner is equal to the line width.<br>- **bevel**: The intersection is a triangle. The rectangular corner of each line is independent.<br>- **miter**: The intersection has a miter corner by extending the outside edges of the lines until they meet. You can view the effect of this attribute in **miterLimit**.<br>- Default value: **'miter'**|
-| [miterLimit](#miterlimit)                | number                                   | Maximum miter length. The miter length is the distance between the inner corner and the outer corner where two lines meet.<br>- Default value: **10**|
-| [font](#font)                            | string                                   | Font style.<br>Syntax: ctx.font='font-size font-family'<br>- (Optional) **font-size**: font size and row height. The unit can only be pixels.<br>(Optional) **font-family**: font family.<br>Syntax: ctx.font='font-style font-weight font-size font-family'<br>- (Optional) **font-style**: font style. Available values are **normal** and **italic**.<br>- (Optional) **font-weight**: font weight. Available values are as follows: **normal**, **bold**, **bolder**, **lighter**, **100**, **200**, **300**, **400**, **500**, **600**, **700**, **800**, **900**.<br>- (Optional) **font-size**: font size and row height. The unit can only be pixels.<br>- (Optional) **font-family**: font family. Available values are **sans-serif**, **serif**, and **monospace**.<br>Default value: **'normal normal 14px sans-serif'**|
-| [textAlign](#textalign)                  | CanvasTextAlign                          | Text alignment mode. Available values are as follows:<br>- **left**: The text is left-aligned.<br>- **right**: The text is right-aligned.<br>- **center**: The text is center-aligned.<br>- **start**: The text is aligned with the start bound.<br>- **end**: The text is aligned with the end bound.<br>> **NOTE**<br>> In the **ltr** layout mode, the value **'start'** equals **'left'**. In the **rtl** layout mode, the value **'start'** equals **'right'**.<br>- Default value: **'left'**|
-| [textBaseline](#textbaseline)            | CanvasTextBaseline                       | Horizontal alignment mode of text. Available values are as follows:<br>- **alphabetic**: The text baseline is the normal alphabetic baseline.<br>- **top**: The text baseline is on the top of the text bounding box.<br>- **hanging**: The text baseline is a hanging baseline over the text.<br>- **middle**: The text baseline is in the middle of the text bounding box.<br>**'ideographic'**: The text baseline is the ideographic baseline. If a character exceeds the alphabetic baseline, the ideographic baseline is located at the bottom of the excess character.<br>- **bottom**: The text baseline is at the bottom of the text bounding box. Its difference from the ideographic baseline is that the ideographic baseline does not consider letters in the next line.<br>- Default value: **'alphabetic'**|
-| [globalAlpha](#globalalpha)              | number                                   | Opacity.<br>**0.0**: completely transparent.<br>**1.0**: completely opaque.               |
-| [lineDashOffset](#linedashoffset)        | number                                   | Offset of the dashed line. The precision is float.<br>- Default value: **0.0**|
-| [globalCompositeOperation](#globalcompositeoperation) | string                                   | Composition operation type. Available values are as follows: **'source-over'**, **'source-atop'**, **'source-in'**, **'source-out'**, **'destination-over'**, **'destination-atop'**, **'destination-in'**, **'destination-out'**, **'lighter'**, **'copy'**, and **'xor'**.<br>- Default value: **'source-over'**|
-| [shadowBlur](#shadowblur)                | number                                   | Blur level during shadow drawing. A larger value indicates a more blurred effect. The precision is float.<br>- Default value: **0.0**|
-| [shadowColor](#shadowcolor)              | string                                   | Shadow color.                           |
-| [shadowOffsetX](#shadowoffsetx)          | number                                   | X-axis shadow offset relative to the original object.                     |
-| [shadowOffsetY](#shadowoffsety)          | number                                   | Y-axis shadow offset relative to the original object.                     |
-| [imageSmoothingEnabled](#imagesmoothingenabled) | boolean                                  | Whether to adjust the image smoothness during image drawing. The value **true** means to enable this feature, and **false** means the opposite.<br>- Default value: **true**|
+| Name                                                  | Type                                                         | Description                                                  |
+| ----------------------------------------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| [fillStyle](#fillstyle)                               | string \| [CanvasGradient](ts-components-canvas-canvasgradient.md) \| [CanvasPattern](#canvaspattern) | Style to fill an area.<br>- When the type is **string**, this attribute indicates the color of the filling area.<br>- When the type is **CanvasGradient**, this attribute indicates a gradient object, which is created using the **[createLinearGradient](#createlineargradient)** API.<br>- When the type is **CanvasPattern**, this attribute indicates a pattern, which is created using the **[createPattern](#createpattern)** API. |
+| [lineWidth](#linewidth)                               | number                                                       | Line width.                                                  |
+| [strokeStyle](#strokestyle)                           | string \| [CanvasGradient](ts-components-canvas-canvasgradient.md) \| [CanvasPattern](#canvaspattern) | Stroke style.<br>- When the type is **\<color>**, this parameter indicates the stroke color.<br>- When the type is **CanvasGradient**, this attribute indicates a gradient object, which is created using the **[createLinearGradient](#createlineargradient)** API.<br>- When the type is **CanvasPattern**, this attribute indicates a pattern, which is created using the **[createPattern](#createpattern)** API. |
+| [lineCap](#linecap)                                   | CanvasLineCap                                                | Style of the line endpoints. The options are as follows:<br>- **butt**: The endpoints of the line are squared off.<br>- **round**: The endpoints of the line are rounded.<br>- **square**: The endpoints of the line are squared off, and each endpoint has added a rectangle whose length is the same as the line thickness and whose width is half of the line thickness.<br>- Default value: **'butt'** |
+| [lineJoin](#linejoin)                                 | CanvasLineJoin                                               | Style of the shape used to join line segments. The options are as follows:<br>- **round**: The intersection is a sector, whose radius at the rounded corner is equal to the line width.<br>- **bevel**: The intersection is a triangle. The rectangular corner of each line is independent.<br>- **miter**: The intersection has a miter corner by extending the outside edges of the lines until they meet. You can view the effect of this attribute in **miterLimit**.<br>- Default value: **'miter'** |
+| [miterLimit](#miterlimit)                             | number                                                       | Maximum miter length. The miter length is the distance between the inner corner and the outer corner where two lines meet.<br>- Default value: **10** |
+| [font](#font)                                         | string                                                       | Font style.<br>Syntax: ctx.font='font-size font-family'<br>- (Optional) **font-size**: font size and row height. The unit can only be pixels.<br>(Optional) **font-family**: font family.<br>Syntax: ctx.font='font-style font-weight font-size font-family'<br>- (Optional) **font-style**: font style. Available values are **normal** and **italic**.<br>- (Optional) **font-weight**: font weight. Available values are as follows: **normal**, **bold**, **bolder**, **lighter**, **100**, **200**, **300**, **400**, **500**, **600**, **700**, **800**, **900**.<br>- (Optional) **font-size**: font size and row height. The unit can only be pixels.<br>- (Optional) **font-family**: font family. Available values are **sans-serif**, **serif**, and **monospace**.<br>Default value: **'normal normal 14px sans-serif'** |
+| [textAlign](#textalign)                               | CanvasTextAlign                                              | Text alignment mode. Available values are as follows:<br>- **left**: The text is left-aligned.<br>- **right**: The text is right-aligned.<br>- **center**: The text is center-aligned.<br>- **start**: The text is aligned with the start bound.<br>- **end**: The text is aligned with the end bound.<br>**NOTE**<br>In the **ltr** layout mode, the value **'start'** equals **'left'**. In the **rtl** layout mode, the value **'start'** equals **'right'**.<br>- Default value: **'left'** |
+| [textBaseline](#textbaseline)                         | CanvasTextBaseline                                           | Horizontal alignment mode of text. Available values are as follows:<br>- **alphabetic**: The text baseline is the normal alphabetic baseline.<br>- **top**: The text baseline is on the top of the text bounding box.<br>- **hanging**: The text baseline is a hanging baseline over the text.<br>- **middle**: The text baseline is in the middle of the text bounding box.<br>**'ideographic'**: The text baseline is the ideographic baseline. If a character exceeds the alphabetic baseline, the ideographic baseline is located at the bottom of the excess character.<br>- **bottom**: The text baseline is at the bottom of the text bounding box. Its difference from the ideographic baseline is that the ideographic baseline does not consider letters in the next line.<br>- Default value: **'alphabetic'** |
+| [globalAlpha](#globalalpha)                           | number                                                       | Opacity.<br>**0.0**: completely transparent.<br>**1.0**: completely opaque. |
+| [lineDashOffset](#linedashoffset)                     | number                                                       | Offset of the dashed line. The precision is float.<br>- Default value: **0.0** |
+| [globalCompositeOperation](#globalcompositeoperation) | string                                                       | Composition operation type. Available values are as follows: **'source-over'**, **'source-atop'**, **'source-in'**, **'source-out'**, **'destination-over'**, **'destination-atop'**, **'destination-in'**, **'destination-out'**, **'lighter'**, **'copy'**, and **'xor'**.<br>- Default value: **'source-over'** |
+| [shadowBlur](#shadowblur)                             | number                                                       | Blur level during shadow drawing. A larger value indicates a more blurred effect. The precision is float.<br>- Default value: **0.0** |
+| [shadowColor](#shadowcolor)                           | string                                                       | Shadow color.                                                |
+| [shadowOffsetX](#shadowoffsetx)                       | number                                                       | X-axis shadow offset relative to the original object.        |
+| [shadowOffsetY](#shadowoffsety)                       | number                                                       | Y-axis shadow offset relative to the original object.        |
+| [imageSmoothingEnabled](#imagesmoothingenabled)       | boolean                                                      | Whether to adjust the image smoothness during image drawing. The value **true** means to enable this feature, and **false** means the opposite.<br>- Default value: **true** |
 
 > **NOTE**
 >
@@ -68,8 +68,8 @@ struct FillStyleExample {
         .onReady(() =>{
           this.offContext.fillStyle = '#0000ff'
           this.offContext.fillRect(20, 160, 150, 100)
-          var image = this.offContext.transferToImageBitmap();
-          this.context.transferFromImageBitmap(image);
+          var image = this.offContext.transferToImageBitmap()
+          this.context.transferFromImageBitmap(image)
         })
     }
     .width('100%')
@@ -446,8 +446,8 @@ struct LineDashOffset {
         .onReady(() =>{
           this.offContext.arc(100, 75, 50, 0, 6.28)
           this.offContext.setLineDash([10,20])
-          this.offContext.lineDashOffset = 10.0;
-          this.offContext.stroke();
+          this.offContext.lineDashOffset = 10.0
+          this.offContext.stroke()
           var image = this.offContext.transferToImageBitmap()
           this.context.transferFromImageBitmap(image)
       })
@@ -1017,7 +1017,7 @@ Strokes a path.
 | path | [Path2D](ts-components-canvas-path2d.md) | No   | null | A **Path2D** path to draw.|
 
  **Example**
- 
+
   ```ts
   // xxx.ets
   @Entry
@@ -1374,10 +1374,10 @@ Draws a quadratic curve on the canvas.
           .height('100%')
           .backgroundColor('#ffff00')
           .onReady(() =>{
-            this.offContext.beginPath();
-            this.offContext.moveTo(20, 20);
-            this.offContext.quadraticCurveTo(100, 100, 200, 20);
-            this.offContext.stroke();
+            this.offContext.beginPath()
+            this.offContext.moveTo(20, 20)
+            this.offContext.quadraticCurveTo(100, 100, 200, 20)
+            this.offContext.stroke()
             var image = this.offContext.transferToImageBitmap()
             this.context.transferFromImageBitmap(image)
         })
@@ -1476,9 +1476,9 @@ Draws an arc based on the radius and points on the arc.
           .height('100%')
           .backgroundColor('#ffff00')
           .onReady(() =>{
-            this.offContext.moveTo(100, 20);
-            this.offContext.arcTo(150, 20, 150, 70, 50);
-            this.offContext.stroke();
+            this.offContext.moveTo(100, 20)
+            this.offContext.arcTo(150, 20, 150, 70, 50)
+            this.offContext.stroke()
             var image = this.offContext.transferToImageBitmap()
             this.context.transferFromImageBitmap(image)
           })
@@ -1509,7 +1509,7 @@ Draws an ellipse in the specified rectangular region on the canvas.
 | rotation         | number  | Yes   | 0     | Rotation angle of the ellipse. The unit is radian.   |
 | startAngle       | number  | Yes   | 0     | Angle of the start point for drawing the ellipse. The unit is radian.|
 | endAngle         | number  | Yes   | 0     | Angle of the end point for drawing the ellipse. The unit is radian.|
-| counterclockwise | boolean | No   | false | Whether to draw the ellipse in the counterclockwise direction.    |
+| counterclockwise | boolean | No   | false | Whether to draw the ellipse counterclockwise.<br>**true**: Draw the ellipse counterclockwise.<br>**false**: Draw the ellipse clockwise.    |
 
  **Example**
 
@@ -1665,17 +1665,17 @@ struct Fill {
         .height('100%')
         .backgroundColor('#ffff00')
         .onReady(() =>{
-          let region = new Path2D();
-          region.moveTo(30, 90);
-          region.lineTo(110, 20);
-          region.lineTo(240, 130);
-          region.lineTo(60, 130);
-          region.lineTo(190, 20);
-          region.lineTo(270, 90);
-          region.closePath();
+          let region = new Path2D()
+          region.moveTo(30, 90)
+          region.lineTo(110, 20)
+          region.lineTo(240, 130)
+          region.lineTo(60, 130)
+          region.lineTo(190, 20)
+          region.lineTo(270, 90)
+          region.closePath()
           // Fill path
-          this.offContext.fillStyle = 'green';
-          this.offContext.fill(region, "evenodd");
+          this.offContext.fillStyle = 'green'
+          this.offContext.fill(region, "evenodd")
           var image = this.offContext.transferToImageBitmap()
           this.context.transferFromImageBitmap(image)
         })
@@ -1767,9 +1767,9 @@ struct Clip {
         .height('100%')
         .backgroundColor('#ffff00')
         .onReady(() =>{
-          let region = new Path2D();
-          region.rect(80,10,20,130);
-          region.rect(40,50,100,50);
+          let region = new Path2D()
+          region.rect(80,10,20,130)
+          region.rect(40,50,100,50)
           this.offContext.clip(region,"evenodd")
           this.offContext.fillStyle = "rgb(255,0,0)"
           this.offContext.fillRect(0, 0, 600, 600)
@@ -2033,8 +2033,6 @@ Resets the existing transformation matrix and creates a new transformation matri
 
 ### translate
 
-### translate
-
 translate(x: number, y: number): void
 
 Moves the origin of the coordinate system.
@@ -2218,8 +2216,8 @@ Obtains the **[ImageData](ts-components-canvas-imagedata.md)** object created wi
 @Entry
 @Component
 struct GetImageData {
-  private settings: RenderingContextSettings = new RenderingContextSettings(true);
-  private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings);
+  private settings: RenderingContextSettings = new RenderingContextSettings(true)
+  private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
   private offContext: OffscreenCanvasRenderingContext2D = new OffscreenCanvasRenderingContext2D(600, 600, this.settings)
   private img:ImageBitmap = new ImageBitmap("/common/images/1234.png")
 
@@ -2230,9 +2228,9 @@ struct GetImageData {
         .height('100%')
         .backgroundColor('#ffff00')
         .onReady(() =>{
-          this.offContext.drawImage(this.img,0,0,130,130);
-          var imagedata = this.offContext.getImageData(50,50,130,130);
-          this.offContext.putImageData(imagedata,150,150);
+          this.offContext.drawImage(this.img,0,0,130,130)
+          var imagedata = this.offContext.getImageData(50,50,130,130)
+          this.offContext.putImageData(imagedata,150,150)
           var image = this.offContext.transferToImageBitmap()
           this.context.transferFromImageBitmap(image)
         })
@@ -2334,7 +2332,7 @@ struct SetLineDash {
         .onReady(() =>{
           this.offContext.arc(100, 75, 50, 0, 6.28)
           this.offContext.setLineDash([10,20])
-          this.offContext.stroke();
+          this.offContext.stroke()
           var image = this.offContext.transferToImageBitmap()
           this.context.transferFromImageBitmap(image)
       })
@@ -2388,7 +2386,7 @@ struct OffscreenCanvasGetLineDash {
           .onReady(() => {
             this.offContext.arc(100, 75, 50, 0, 6.28)
             this.offContext.setLineDash([10,20])
-            this.offContext.stroke();
+            this.offContext.stroke()
             let res = this.offContext.getLineDash()
             var image = this.offContext.transferToImageBitmap()
             this.context.transferFromImageBitmap(image)
@@ -2441,7 +2439,7 @@ struct ToDataURL {
         .height('100%')
         .backgroundColor('#ffff00')
         .onReady(() =>{
-          var dataURL = this.offContext.toDataURL();
+          var dataURL = this.offContext.toDataURL()
         })
     }
     .width('100%')
@@ -2538,11 +2536,11 @@ struct CanvasExample {
         .height('100%')
         .backgroundColor('#ffff00')
         .onReady(() =>{
-          this.offContext.save(); // save the default state
-          this.offContext.fillStyle = "green";
-          this.offContext.fillRect(20, 20, 100, 100);
-          this.offContext.restore(); // restore to the default state
-          this.offContext.fillRect(150, 75, 100, 100);
+          this.offContext.save() // save the default state
+          this.offContext.fillStyle = "green"
+          this.offContext.fillRect(20, 20, 100, 100)
+          this.offContext.restore() // restore to the default state
+          this.offContext.fillRect(150, 75, 100, 100)
           var image = this.offContext.transferToImageBitmap()
           this.context.transferFromImageBitmap(image)
         })
@@ -2579,11 +2577,11 @@ struct CanvasExample {
         .height('100%')
         .backgroundColor('#ffff00')
         .onReady(() =>{
-          this.offContext.save(); // save the default state
-          this.offContext.fillStyle = "green";
-          this.offContext.fillRect(20, 20, 100, 100);
-          this.offContext.restore(); // restore to the default state
-          this.offContext.fillRect(150, 75, 100, 100);
+          this.offContext.save() // save the default state
+          this.offContext.fillStyle = "green"
+          this.offContext.fillRect(20, 20, 100, 100)
+          this.offContext.restore() // restore to the default state
+          this.offContext.fillRect(150, 75, 100, 100)
           var image = this.offContext.transferToImageBitmap()
           this.context.transferFromImageBitmap(image)
         })

@@ -12,7 +12,7 @@
 
 
 ```
-import pkg from '@system.package';
+import package from '@system.package';
 ```
 
 
@@ -31,12 +31,9 @@ hasInstalled(Object): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| bundleName | string | 是 | 应用包名。 |
-| success | Function | 否 | 接口调用成功的回调函数。 |
-| fail | Function | 否 | 接口调用失败的回调函数。 |
-| complete | Function | 否 | 接口调用结束的回调函数。 |
+|options | [CheckPackageHasInstalledOptions](#checkpackagehasinstalledoptions) | 是 | 选项参数。 |
 
-success返回值：
+**返回值：**
 
 | 参数名 | 类型 | 说明 |
 | -------- | -------- | -------- |
@@ -44,18 +41,43 @@ success返回值：
 
 **示例：**
 
-```
-export default {    
-  hasInstalled() {        
-    pkg.hasInstalled({            
-      bundleName: 'com.example.bundlename',            
-      success: function(data) {                
-        console.log('package has installed: ' + data);            
-      },            
-      fail: function(data, code) {               
-        console.log('query package fail, code: ' + code + ', data: ' + data);            
-      },        
-    });    
+``` ts
+export default {
+  hasInstalled() {
+    package.hasInstalled({
+      bundleName: 'com.example.bundlename',
+      success: function(data) {
+        console.log('package has installed: ' + data);
+      },
+      fail: function(data, code) {
+        console.log('query package fail, code: ' + code + ', data: ' + data);
+      },
+    });
   },
 }
 ```
+
+## CheckPackageHasInstalledResponse
+
+> 从API version 9开始不再维护。
+
+指示应用包是否已安装。
+
+**系统能力:** SystemCapability.BundleManager.BundleFramework。
+
+| 名称 | 类型 | 说明 |
+| --- | --- | ---- |
+| result | boolean | 指示应用是否已安装。 |
+
+## CheckPackageHasInstalledOptions
+
+> 从API version 9开始不再维护。
+
+查询包是否已安装时的选项。
+
+| 名称 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| bundleName | string | 是 | 应用包名。 |
+| success | Function | 否 | 接口调用成功的回调函数。 |
+| fail | Function | 否 | 接口调用失败的回调函数。 |
+| complete | Function | 否 | 接口调用结束的回调函数。 |

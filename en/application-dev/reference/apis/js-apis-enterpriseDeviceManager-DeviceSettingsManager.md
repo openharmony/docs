@@ -28,9 +28,11 @@ setDateTime(admin: Want, time: number, callback: AsyncCallback\<void>): void
 
 Sets the system time. This API uses an asynchronous callback to return the result.
 
-**Required permissions**: ohos.permission.EDM_MANAGE_DATETIME
+**Required permissions**: ohos.permission.ENTERPRISE_SET_DATETIME
 
 **System capability**: SystemCapability.Customization.EnterpriseDeviceManager
+
+**System API**: This is a system API.
 
 **Parameters**
 
@@ -39,6 +41,13 @@ Sets the system time. This API uses an asynchronous callback to return the resul
 | admin | [Want](js-apis-application-Want.md) | Yes   | Device administrator application.|
 | time  | number | Yes| Timestamp (ms).|
 | callback | AsyncCallback\<void> | Yes| Callback used to the result. If the system time is set successfully, **err** is **null**; otherwise, **err** is an error object.|
+
+**Error codes**
+
+| Type     | Description                                                                        |
+| ------- | ---------------------------------------------------------------------------- |
+| 9200001 | The application is not a administrator of the device.                        |
+| 9200002 | The administrator application does not have permission to manage the device. |
 
 **Example**
 
@@ -68,9 +77,11 @@ setDateTime(admin: Want, time: number): Promise\<void>
 
 Sets the system time. This API uses a promise to return the result.
 
-**Required permissions**: ohos.permission.EDM_MANAGE_DATETIME
+**Required permissions**: ohos.permission.ENTERPRISE_SET_DATETIME
 
 **System capability**: SystemCapability.Customization.EnterpriseDeviceManager
+
+**System API**: This is a system API.
 
 **Parameters**
 
@@ -84,6 +95,13 @@ Sets the system time. This API uses a promise to return the result.
 | Type  | Description                                 |
 | ----- | ----------------------------------- |
 | Promise\<void> | Promise that returns no value.|
+
+**Error codes**
+
+| Type     | Description                                                                        |
+| ------- | ---------------------------------------------------------------------------- |
+| 9200001 | The application is not a administrator of the device.                        |
+| 9200002 | The administrator application does not have permission to manage the device. |
 
 **Example**
 

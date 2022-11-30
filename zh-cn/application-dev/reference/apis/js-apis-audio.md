@@ -2452,10 +2452,18 @@ selectInputDevice(inputAudioDevices: AudioDeviceDescriptors, callback: AsyncCall
 **示例：**
 ```js
 let inputAudioDeviceDescriptor = [{
-  deviceRole : audio.DeviceRole.INPUT_DEVICE,
-  networkId : audio.LOCAL_NETWORK_ID,
-  interruptGroupId : 1,
-  volumeGroupId : 1 }];
+    deviceRole : audio.DeviceRole.INPUT_DEVICE,
+    deviceType : audio.DeviceType.EARPIECE,
+    id : 1,
+    name : "",
+    address : "",
+    sampleRates : [44100],
+    channelCounts : [2],
+    channelMasks : [0],
+    networkId : audio.LOCAL_NETWORK_ID,
+    interruptGroupId : 1,
+    volumeGroupId : 1,
+}];
 
 async function selectInputDevice(){
   audioRoutingManager.selectInputDevice(inputAudioDeviceDescriptor, (err) => {
@@ -2492,11 +2500,19 @@ selectInputDevice(inputAudioDevices: AudioDeviceDescriptors): Promise&lt;void&gt
 **示例：**
 
 ```js
-let inputAudioDeviceDescriptor =[{
-  deviceRole : audio.DeviceRole.INPUT_DEVICE,
-  networkId : audio.LOCAL_NETWORK_ID,
-  interruptGroupId : 1,
-  volumeGroupId : 1 }];
+let inputAudioDeviceDescriptor = [{
+    deviceRole : audio.DeviceRole.INPUT_DEVICE,
+    deviceType : audio.DeviceType.EARPIECE,
+    id : 1,
+    name : "",
+    address : "",
+    sampleRates : [44100],
+    channelCounts : [2],
+    channelMasks : [0],
+    networkId : audio.LOCAL_NETWORK_ID,
+    interruptGroupId : 1,
+    volumeGroupId : 1,
+}];
 
 async function getRoutingManager(){
     audioRoutingManager.selectInputDevice(inputAudioDeviceDescriptor).then(() => {
@@ -2639,10 +2655,19 @@ selectOutputDevice(outputAudioDevices: AudioDeviceDescriptors, callback: AsyncCa
 **示例：**
 ```js
 let outputAudioDeviceDescriptor = [{
-  deviceRole : audio.DeviceRole.OUTPUT_DEVICE,
-  networkId : audio.LOCAL_NETWORK_ID,
-  interruptGroupId : 1,
-  volumeGroupId : 1 }];
+    deviceRole : audio.DeviceRole.OUTPUT_DEVICE,
+    deviceType : audio.DeviceType.SPEAKER,
+    id : 1,
+    name : "",
+    address : "",
+    sampleRates : [44100],
+    channelCounts : [2],
+    channelMasks : [0],
+    networkId : audio.LOCAL_NETWORK_ID,
+    interruptGroupId : 1,
+    volumeGroupId : 1,
+}];
+
 async function selectOutputDevice(){
   audioRoutingManager.selectOutputDevice(outputAudioDeviceDescriptor, (err) => {
     if (err) {
@@ -2678,11 +2703,19 @@ selectOutputDevice(outputAudioDevices: AudioDeviceDescriptors): Promise&lt;void&
 **示例：**
 
 ```js
-let outputAudioDeviceDescriptor =[{
-  deviceRole : audio.DeviceRole.OUTPUT_DEVICE,
-  networkId : audio.LOCAL_NETWORK_ID,
-  interruptGroupId : 1,
-  volumeGroupId : 1 }];
+let outputAudioDeviceDescriptor = [{
+    deviceRole : audio.DeviceRole.OUTPUT_DEVICE,
+    deviceType : audio.DeviceType.SPEAKER,
+    id : 1,
+    name : "",
+    address : "",
+    sampleRates : [44100],
+    channelCounts : [2],
+    channelMasks : [0],
+    networkId : audio.LOCAL_NETWORK_ID,
+    interruptGroupId : 1,
+    volumeGroupId : 1,
+}];
 
 async function selectOutputDevice(){
   audioRoutingManager.selectOutputDevice(outputAudioDeviceDescriptor).then(() => {
@@ -2720,11 +2753,20 @@ let outputAudioRendererFilter = {
     streamUsage : audio.StreamUsage.STREAM_USAGE_MEDIA,
     rendererFlags : 0 },
   rendererId : 0 };
+  
 let outputAudioDeviceDescriptor = [{
-  deviceRole : audio.DeviceRole.OUTPUT_DEVICE,
-  networkId : audio.LOCAL_NETWORK_ID,
-  interruptGroupId : 1,
-  volumeGroupId : 1 }];
+    deviceRole : audio.DeviceRole.OUTPUT_DEVICE,
+    deviceType : audio.DeviceType.SPEAKER,
+    id : 1,
+    name : "",
+    address : "",
+    sampleRates : [44100],
+    channelCounts : [2],
+    channelMasks : [0],
+    networkId : audio.LOCAL_NETWORK_ID,
+    interruptGroupId : 1,
+    volumeGroupId : 1,
+}];
 
 async function selectOutputDeviceByFilter(){
   audioRoutingManager.selectOutputDeviceByFilter(outputAudioRendererFilter, outputAudioDeviceDescriptor, (err) => {
@@ -2769,11 +2811,20 @@ let outputAudioRendererFilter = {
     streamUsage : audio.StreamUsage.STREAM_USAGE_MEDIA,
     rendererFlags : 0 },
   rendererId : 0 };
+
 let outputAudioDeviceDescriptor = [{
-  deviceRole : audio.DeviceRole.OUTPUT_DEVICE,
-  networkId : audio.LOCAL_NETWORK_ID,
-  interruptGroupId : 1,
-  volumeGroupId : 1 }];
+    deviceRole : audio.DeviceRole.OUTPUT_DEVICE,
+    deviceType : audio.DeviceType.SPEAKER,
+    id : 1,
+    name : "",
+    address : "",
+    sampleRates : [44100],
+    channelCounts : [2],
+    channelMasks : [0],
+    networkId : audio.LOCAL_NETWORK_ID,
+    interruptGroupId : 1,
+    volumeGroupId : 1,
+}];
 
 async function selectOutputDeviceByFilter(){
   audioRoutingManager.selectOutputDeviceByFilter(outputAudioRendererFilter, outputAudioDeviceDescriptor).then(() => {
@@ -2806,17 +2857,12 @@ async function selectOutputDeviceByFilter(){
 **示例：**
 
 ```js
-let audioStreamManager;
-let resultFlag = false;
 
-audioManager.getStreamManager((err, data) => {
-  if (err) {
-    console.error(`Get AudioStream Manager : ERROR : ${err}`);
-  } else {
-    audioStreamManager = data;
-    console.info('Get AudioStream Manager : Success');
-  }
-});
+import audio from '@ohos.multimedia.audio';
+
+const audioManager = audio.getAudioManager();
+let audioStreamManager = audioManager.getStreamManager();
+let resultFlag = false;
 
 audioStreamManager.on('audioRendererChange',  (AudioRendererChangeInfoArray) => {
   for (let i = 0; i < AudioRendererChangeInfoArray.length; i++) {
@@ -2872,15 +2918,7 @@ audioStreamManager.on('audioRendererChange',  (AudioRendererChangeInfoArray) => 
 import audio from '@ohos.multimedia.audio';
 
 const audioManager = audio.getAudioManager();
-let audioStreamManager;
-audioManager.getStreamManager((err, data) => {
-  if (err) {
-    console.error(`getStreamManager : Error: ${err}`);
-  } else {
-    console.info('getStreamManager : Success : SUCCESS');
-    audioStreamManager = data;
-  }
-});
+let audioStreamManager = audioManager.getStreamManager();
 
 let resultFlag = false;
 audioStreamManager.on('audioCapturerChange', (AudioCapturerChangeInfoArray) =>  {

@@ -3,7 +3,7 @@
 - [Quick Start Overview](quickstart-overview.md)
 - Getting Started in IDE Mode
     - Setting Up the Development Environment
-        - [Setting Up the Windows Environment](quickstart-ide-env--win.md)
+        - [Setting Up the Windows Environment](quickstart-ide-env-win.md)
         - [Setting Up the Ubuntu Environment](quickstart-ide-env-ubuntu.md)
         - [Configuring the Environment for Remote Access](quickstart-ide-env-remote.md)
     - [Creating a Project and Obtaining Source Code](quickstart-ide-import-project.md)
@@ -25,9 +25,9 @@
 - Getting Started in CLI Mode
     - Setting Up the Development Environment
         - [Setting Up the Development Environment](quickstart-pkg-prepare.md)
-        - [Installing Libraries and Tools](quickstart-pkg-install_package.md)
+        - [Installing Libraries and Tools](quickstart-pkg-install-package.md)
         - [Obtaining Source Code](quickstart-pkg-sourcecode.md)
-        - [Installing the Compilation Tools](quickstart-pkg-install_tool.md)
+        - [Installing the Compilation Tools](quickstart-pkg-install-tool.md)
     - Mini System (Based on the Hi3861 Development Board)
         - [Installing Tools Specially Required by the Hi3861 Development Board](quickstart-pkg-3861-tool.md)
         - [Writing a Hello World Program](quickstart-pkg-3861-helloworld.md)
@@ -48,7 +48,7 @@
         - [Configuring the Proxy](quickstart-pkg-common-proxy.md)
         - [Building Source Code Using the build.sh Script](quickstart-pkg-common-build.md)
         - [Fixing hb Installation Errors](quickstart-pkg-common-hberr.md)
-        - [Fixing Compilation and Building Error](quickstart-pkg-common-builderr.md)
+        - [Fixing Compilation and Building Errors](quickstart-pkg-common-builderr.md)
         - [Fixing Image Burning Errors](quickstart-pkg-common-burnerr.md)
 - Appendix
     - [Hi3516 Development Board](quickstart-appendix-hi3516.md)

@@ -125,8 +125,8 @@ interface DataChangeListener {
 | Name       | Type             | Mandatory| Description                                                    |
 | ------------- | --------------------- | ---- | ------------------------------------------------------------ |
 | dataSource    | IDataSource           | Yes  | Object used to implement the **IDataSource** API. You need to implement related APIs.         |
-| itemGenerator | (item: any) => void   | Yes  | A lambda function used to generate one or more child components for each data item in an array. A single child component or a list of child components must be included in parentheses.|
-| keyGenerator  | (item: any) => string | No  | An anonymous function used to generate a unique and fixed key value for each data item in an array. This key value must remain unchanged for the data item even when the item is relocated in the array. When the item is replaced by a new item, the key value of the new item must be different from that of the existing item. This key-value generator is optional. However, for performance reasons, it is strongly recommended that the key-value generator be provided, so that the development framework can better identify array changes. For example, if no key-value generator is provided, a reverse of an array will result in rebuilding of all nodes in **LazyForEach**.|
+| itemGenerator | (item: any, index?: number) => void   | Yes  | A lambda function used to generate one or more child components for each data item in an array. A single child component or a list of child components must be included in parentheses.|
+| keyGenerator  | (item: any, index?: number) => string | No  | An anonymous function used to generate a unique and fixed key value for each data item in an array. This key value must remain unchanged for the data item even when the item is relocated in the array. When the item is replaced by a new item, the key value of the new item must be different from that of the existing item. This key-value generator is optional. However, for performance reasons, it is strongly recommended that the key-value generator be provided, so that the development framework can better identify array changes. For example, if no key-value generator is provided, a reverse of an array will result in rebuilding of all nodes in **LazyForEach**.|
 
 ### Description of IDataSource
 
@@ -142,14 +142,14 @@ interface DataChangeListener {
 | Name                                                    | Description                                  |
 | -------------------------------------------------------- | -------------------------------------- |
 | onDataReloaded(): void                                   | Invoked when all data is reloaded.                    |
-| onDataAdded(index: number): void (deprecated)            | Invoked when data is added to the position indicated by the specified index.       |
-| onDataMoved(from: number, to: number): void (deprecated) | Invoked when data is moved from the **from** position to the **to** position.|
-| onDataDeleted(index: number): void (deprecated)          | Invoked when data is deleted from the position indicated by the specified index.       |
-| onDataChanged(index: number): void (deprecated)          | Invoked when data in the position indicated by the specified index is changed.       |
-| onDataAdd(index: number): void 8+                        | Invoked when data is added to the position indicated by the specified index.       |
-| onDataMove(from: number, to: number): void 8+            | Invoked when data is moved from the **from** position to the **to** position.|
-| onDataDelete(index: number): void 8+                     | Invoked when data is deleted from the position indicated by the specified index.       |
-| onDataChange(index: number): void 8+                     | Invoked when data in the position indicated by the specified index is changed.       |
+| onDataAdded(index: number): void<sup>deprecated</sup>           | Invoked when data is added to the position indicated by the specified index. This API is deprecated since API version 8. You are advised to use **onDataAdd**.      |
+| onDataMoved(from: number, to: number): void<sup>deprecated</sup> | Invoked when data is moved from the **from** position to the **to** position. This API is deprecated since API version 8. You are advised to use **onDataMove**.|
+| onDataDeleted(index: number): void<sup>deprecated</sup>         | Invoked when data is deleted from the position indicated by the specified index. This API is deprecated since API version 8. You are advised to use **onDataDelete**.       |
+| onDataChanged(index: number): void<sup>deprecated</sup>          | Invoked when data in the position indicated by the specified index is changed. This API is deprecated since API version 8. You are advised to use **onDataChange**.      |
+| onDataAdd(index: number): void<sup>8+</sup>                     | Invoked when data is added to the position indicated by the specified index.       |
+| onDataMove(from: number, to: number): void<sup>8+</sup>           | Invoked when data is moved from the **from** position to the **to** position.|
+| onDataDelete(index: number): void<sup>8+</sup>                     | Invoked when data is deleted from the position indicated by the specified index.       |
+| onDataChange(index: number): void<sup>8+</sup>                     | Invoked when data in the position indicated by the specified index is changed.       |
 
 ## Example
 

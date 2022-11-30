@@ -24,7 +24,7 @@ For details about the input driver model, see  [Touchscreen Overview](../driver/
 
 ## Setting Up the Environment<a name="section661075474418"></a>
 
-Follow the instructions in  [Environment Setup for Standard System](../quick-start/quickstart-standard-overview.md).
+Follow the instructions in [Quick Start Overview](../quick-start/quickstart-overview.md).
 
 >![](../public_sys-resources/icon-notice.gif) **NOTICE:** 
 >This development example applies to standard, small, and mini OpenHarmony systems. The following sections use the standard system as an example. You can refer to the specific guide for your system to set up the environment.
@@ -315,7 +315,7 @@ The input driver model consists of three parts of drivers. To develop a brand-ne
 
     **touch\_gt911.o**  is the content added in this example.
 
-2.  Build source code and burn images. For details, see the related sections in [Standard System Overview](../quick-start/quickstart-standard-overview.md).
+2.  Build source code and burn images. For details, see the related sections in [Quick Start Overview](../quick-start/quickstart-overview.md).
 
 ## Debugging and Verification<a name="section62577313482"></a>
 

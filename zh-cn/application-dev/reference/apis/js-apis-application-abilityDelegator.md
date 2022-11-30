@@ -224,7 +224,7 @@ waitAbilityMonitor(monitor: AbilityMonitor, timeout: number, callback: AsyncCall
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | monitor  | [AbilityMonitor](js-apis-application-abilityMonitor.md#AbilityMonitor) | 是   | [AbilityMonitor](js-apis-application-abilityMonitor.md#AbilityMonitor)实例 |
-| timeout  | number                                                       | 是   | 最大等待时间，单位毫秒（ms）                                 |
+| timeout  | number                                                       | 否   | 最大等待时间，单位毫秒（ms）                                 |
 | callback | AsyncCallback\<[UIAbility](js-apis-application-ability.md#Ability)> | 是   | 表示指定的回调方法                                           |
 
 **示例：**
@@ -755,7 +755,7 @@ executeShellCommand(cmd: string, timeoutSecs: number, callback: AsyncCallback\<S
 | 参数名      | 类型                                                         | 必填 | 说明                          |
 | ----------- | ------------------------------------------------------------ | ---- | ----------------------------- |
 | cmd         | string                                                       | 是   | shell命令字符串               |
-| timeoutSecs | number                                                       | 是   | 设定命令超时时间，单位秒（s） |
+| timeoutSecs | number                                                       | 否   | 设定命令超时时间，单位秒（s） |
 | callback    | AsyncCallback\<[ShellCmdResult](js-apis-application-shellCmdResult.md#ShellCmdResult)> | 是   | 表示指定的回调方法            |
 
 **示例：**
@@ -1058,7 +1058,7 @@ waitAbilityStageMonitor(monitor: AbilityStageMonitor, timeout?: number): Promise
 | 参数名  | 类型                                                         | 必填 | 说明                                                         |
 | ------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | monitor | [AbilityStageMonitor](#abilitystagemonitor) | 是   | [AbilityStageMonitor](#abilitystagemonitor) 实例 |
-| timeout | number | 是   | 超时最大等待时间，以毫秒为单位。 |
+| timeout | number | 否   | 超时最大等待时间，以毫秒为单位。 |
 
 **返回值：**
 

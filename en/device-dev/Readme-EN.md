@@ -6,14 +6,13 @@
   - [Glossary](../glossary.md) 
   - [Release Notes](../release-notes/Readme.md) 
 - Quick Start
-  - [Mini and Small Systems](quick-start/quickstart-ide-lite-overview.md)	
-  - [Standard System](quick-start/quickstart-ide-standard-overview.md)
+  - [Getting Started](quick-start/Readme-EN.md)
 - Compatibility and Security
   - [Privacy and Security](security/Readme-EN.md)
 - Porting
   - Porting Guide
       - [Third-Party Library Porting Guide for Mini and Small Systems](porting/porting-thirdparty-overview.md)
-      - [Mini System SoC Porting Guide](porting/porting-minichip.md)
+      - [Mini System SoC Porting Guide](porting/porting-minichip-overview.md)
       - [Small System SoC Porting Guide](porting/porting-smallchip-prepare-needs.md)
       - [Standard System SoC Porting Guide](porting/standard-system-porting-guide.md)
   - Porting Cases
