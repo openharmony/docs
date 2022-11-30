@@ -13,27 +13,27 @@ SwipeGesture(value?: { fingers?: number; direction?: SwipeDirection; speed?: num
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| fingers | number | No| Minimum number of fingers to trigger a swipe gesture. The value ranges from 1 to 10.<br>Default value: **1**|
-| direction | SwipeDirection | No| Swipe direction.<br>Default value: **SwipeDirection.All**|
-| speed | number | No| Minimum speed of the swipe gesture, in vp/s.<br>Default value: **100**|
+| Name      | Type           | Mandatory | Description                              |
+| --------- | -------------- | --------- | ---------------------------------------- |
+| fingers   | number         | No        | Minimum number of fingers to trigger a swipe gesture. The value ranges from 1 to 10.<br>Default value: **1** |
+| direction | SwipeDirection | No        | Swipe direction.<br>Default value: **SwipeDirection.All** |
+| speed     | number         | No        | Minimum speed of the swipe gesture, in vp/s.<br>Default value: **100** |
 
 ## SwipeDirection
 
-| Name| Description|
-| -------- | -------- |
-| All | All directions.|
+| Name       | Description           |
+| ---------- | --------------------- |
+| All        | All directions.       |
 | Horizontal | Horizontal direction. |
-| Vertical | Vertical direction. |
-| None | Swiping disabled.|
+| Vertical   | Vertical direction.   |
+| None       | Swiping disabled.     |
 
 
 ## Events
 
-| Name| Description|
-| -------- | -------- |
-| onAction(event:(event?: [GestureEvent](ts-gesture-settings.md)) =&gt; void) | Triggered when a swipe gesture is recognized.|
+| Name                                     | Description                              |
+| ---------------------------------------- | ---------------------------------------- |
+| onAction(event:(event?: [GestureEvent](ts-gesture-settings.md)) =&gt; void) | Triggered when a swipe gesture is recognized. |
 
 ## Example
 

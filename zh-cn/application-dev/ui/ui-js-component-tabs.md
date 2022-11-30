@@ -7,7 +7,7 @@ Tabs是一种常见的界面导航结构。通过页签容器，用户可以快�
 
 在pages/index目录下的hml文件中创建一个Tabs组件。
 
-```
+```html
 <!-- xxx.hml -->
 <div class="container">
     <tabs>
@@ -15,7 +15,7 @@ Tabs是一种常见的界面导航结构。通过页签容器，用户可以快�
             <text>item1</text>
             <text>item2</text>
         </tab-bar>
-        <tab-content>
+        <tab-content class="tabContent">
             <div class="text">
                 <text>content1</text>
             </div>
@@ -27,13 +27,17 @@ Tabs是一种常见的界面导航结构。通过页签容器，用户可以快�
 </div>
 ```
 
-```
+```css
 /* xxx.css */
 .container {
   flex-direction: column;
   justify-content: center;
   align-items: center;
   background-color: #F1F3F5;
+}
+.tabContent{
+  width: 100%;
+  height: 100%;
 }
 .text{
   width: 100%;
@@ -50,7 +54,7 @@ Tabs是一种常见的界面导航结构。通过页签容器，用户可以快�
 
 Tabs默认展示索引为index的标签及内容。通过设置vertical属性使组件纵向展示。
 
-```
+```html
 <!-- index.hml -->
 <div class="container" style="background-color:#F1F3F5;">
   <tabs index="1"  vertical="true">
@@ -74,7 +78,7 @@ Tabs默认展示索引为index的标签及内容。通过设置vertical属性使
 
 设置mode属性使tab-bar的子组件均分，设置scrollable属性使tab-content不可进行左右滑动切换内容。
 
-```
+```html
 <!-- index.hml -->
 <div class="container" style="background-color:#F1F3F5;">
   <tabs style="margin-top: 30px;">
@@ -100,7 +104,7 @@ Tabs默认展示索引为index的标签及内容。通过设置vertical属性使
 ## 设置样式
 
 设置Tabs背景色及边框和tab-content布局。
-```
+```html
 <!-- index.hml -->
 <div class="container">
   <tabs class="tabs">
@@ -120,7 +124,7 @@ Tabs默认展示索引为index的标签及内容。通过设置vertical属性使
 </div>
 ```
 
-```
+```css
 /* xxx.css */
 .container {
   flex-direction: column;
@@ -155,7 +159,7 @@ Tabs默认展示索引为index的标签及内容。通过设置vertical属性使
 
 开发者可以为Tabs添加change事件，实现页签切换后显示当前页签索引的功能。
 
-```
+```html
 <!-- index.hml -->
 <div class="container" style="background-color:#F1F3F5;">
   <tabs class="tabs" onchange="tabChange">
@@ -175,7 +179,7 @@ Tabs默认展示索引为index的标签及内容。通过设置vertical属性使
 </div>
 ```
 
-```
+```js
 /* index.js */
 import prompt from '@system.prompt';
 export default {
@@ -201,7 +205,7 @@ export default {
 
 用tabs、tab-bar和tab-content实现点击切换功能，再定义数组，设置属性。使用change事件改变数组内的属性值实现变色及下划线的显示。
 
-```
+```html
 <!-- index.hml -->
 <div class="container">
   <tabs onchange="changeTabactive">
@@ -229,7 +233,7 @@ export default {
 </div>
 ```
 
-```
+```css
 /* xxx.css */
 .container{
 width: 100%;
@@ -265,7 +269,7 @@ background-color:#F1F3F5;
 }
 ```
 
-```
+```js
 /* index.js */
 import prompt from '@system.prompt';
 export default {

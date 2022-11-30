@@ -5,7 +5,7 @@
     - [了解OpenHarmony开源项目](../OpenHarmony-Overview_zh.md)
     - [术语](../glossary.md)
     - [版本说明](../release-notes/Readme.md)
-- 快速开始
+- 入门
     - 快速入门
         - [开发准备](quick-start/start-overview.md)
         - [使用eTS语言开发(传统代码方式)](quick-start/start-with-ets.md)
@@ -15,7 +15,6 @@
     - 开发基础知识
         - [应用包结构说明(FA模型)](quick-start/package-structure.md)
         - [应用包结构说明(Stage模型)](quick-start/stage-structure.md)
-        - [资源文件的分类](quick-start/basic-resource-file-categories.md)
         - [SysCap说明](quick-start/syscap.md)
 - 开发
     - [Ability开发](ability/Readme-CN.md)

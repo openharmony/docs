@@ -92,34 +92,36 @@
 ## 示例
 
 1. type为text
-   ```
+   ```html
    <!-- xxx.hml -->
    <div class="content">
      <input id="input" class="input" type="text" value="" maxlength="20" enterkeytype="send"
        headericon="/common/search.svg" placeholder="Please input text" onchange="change"
        onenterkeyclick="enterkeyClick">
      </input>
-     <input class="button" type="button" value="Submit" onclick="buttonClick"></input>
+     <input class="button" type="button" value="Submit" onclick="buttonClick" style="color: blue"></input>
    </div>
    ```
 
-   ```
+   ```css
    /* xxx.css */
    .content {
-     width: 60%;
+     width: 100%;
      flex-direction: column;
      align-items: center;
    }
    .input {
+     width: 60%;
      placeholder-color: gray;
    }
    .button {
+     width: 60%;
      background-color: gray;
      margin-top: 20px;
-   }
+    }
    ```
-
-   ```
+   
+   ```js
    // xxx.js
    import prompt from '@system.prompt'
    export default {
@@ -140,20 +142,21 @@
          error: 'error text'
        });
      },
-   }
+    }
    ```
+
 
    ![zh-cn_image_0000001252835901](figures/zh-cn_image_0000001252835901.png)
 
 2. type为button
-   ```
+   ```html
    <!-- xxx.hml -->
    <div class="div-button">
      <input class="button" type="button" value="Input-Button"></input>
    </div>
    ```
 
-   ```
+   ```css
    /* xxx.css */
    .div-button {
      flex-direction: column;
@@ -168,14 +171,14 @@
    ![zh-cn_image_0000001207995958](figures/zh-cn_image_0000001207995958.png)
 
 3. type为checkbox
-   ```
+   ```html
    <!-- xxx.hml -->
    <div class="content">
      <input onchange="checkboxOnChange" checked="true" type="checkbox"></input>
    </div>
    ```
 
-   ```
+   ```css
    /* xxx.css */
    .content{
      width: 100%;
@@ -185,7 +188,7 @@
    }
    ```
 
-   ```
+   ```js
    // xxx.js
    import prompt from '@system.prompt'
    export default {
@@ -201,7 +204,7 @@
    ![zh-cn_image_0000001208155956](figures/zh-cn_image_0000001208155956.png)
 
 4. type为radio
-   ```
+   ```html
    <!-- xxx.hml -->
    <div class="content">
      <input type="radio" checked='true' name="radioSample" value="radio1" onchange="onRadioChange('radio1')"></input>
@@ -210,7 +213,7 @@
    </div>
    ```
 
-   ```
+   ```css
    /* xxx.css */
    .content{
      width: 100%;
@@ -220,7 +223,7 @@
    }
    ```
 
-   ```
+   ```js
    // xxx.js
    import prompt from '@system.prompt'
    export default {

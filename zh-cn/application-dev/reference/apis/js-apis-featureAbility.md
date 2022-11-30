@@ -36,7 +36,7 @@ startAbility(parameter: StartAbilityParameter, callback: AsyncCallback\<number>)
 import featureAbility from '@ohos.ability.featureAbility'
 import wantConstant from '@ohos.ability.wantConstant'
 featureAbility.startAbility(
-        {
+    {
         want:
         {
             action: "",
@@ -49,6 +49,9 @@ featureAbility.startAbility(
             uri: ""
         },
     },
+    (err, data) => {
+        console.info("err: " + JSON.stringify(err) + "data: " + JSON.stringify(data))
+    }
 );
 ```
 
@@ -262,6 +265,9 @@ featureAbility.terminateSelfWithResult(
             }
         },
     },
+    (err) => {
+        console.info("err: " + JSON.stringify(err))
+    }
 );
 ```
 
@@ -340,7 +346,11 @@ hasWindowFocus(callback: AsyncCallback\<boolean>): void
 
 ```javascript
 import featureAbility from '@ohos.ability.featureAbility';
-featureAbility.hasWindowFocus()
+featureAbility.hasWindowFocus(
+    (err, data) => {
+        console.info("err: " + JSON.stringify(err) + "data: " + JSON.stringify(data))
+    }
+)
 ```
 
 
@@ -388,7 +398,11 @@ getWant(callback: AsyncCallback\<Want>): void
 
 ```javascript
 import featureAbility from '@ohos.ability.featureAbility';
-featureAbility.getWant()
+featureAbility.getWant(
+    (err, data) => {
+        console.info("err: " + JSON.stringify(err) + "data: " + JSON.stringify(data))
+    }
+)
 ```
 
 
@@ -458,7 +472,11 @@ terminateSelf(callback: AsyncCallback\<void>): void
 
 ```javascript
 import featureAbility from '@ohos.ability.featureAbility';
-featureAbility.terminateSelf()
+featureAbility.terminateSelf(
+    (err) => {
+        console.info("err: " + JSON.stringify(err))
+    }
+)
 ```
 
 
@@ -595,8 +613,8 @@ var connId = featureAbility.connectAbility(
     },
 );
 var result = featureAbility.disconnectAbility(connId,
-    (error,data) => {
-    console.log('featureAbilityTest DisConnectJsSameBundleName result errCode : ' + error.code + " data: " + data)
+    (error) => {
+        console.log('featureAbilityTest DisConnectJsSameBundleName result errCode : ' + error.code)
     },
 );
 ```
@@ -670,7 +688,11 @@ getWindow(callback: AsyncCallback\<window.Window>): void
 **示例：**
 
 ```javascript
-featureAbility.getWindow()
+featureAbility.getWindow(
+    (err, data) => {
+        console.info("err: " + JSON.stringify(err) + "data: " + JSON.stringify(data))
+    }
+)
 ```
 
 ## featureAbility.getWindow<sup>7+</sup>

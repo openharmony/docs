@@ -15,7 +15,7 @@
 
 ## 子组件
 
-支持[svg](js-components-svg.md)、[rect](js-components-svg-rect.md)、[circle](js-components-svg-circle.md)、[ellipse](../arkui-js/js-components-svg-ellipse.md)、[path](js-components-svg-path.md)、[line](../arkui-js/js-components-svg-line.md)、[polygon](../arkui-js/js-components-svg-polygon.md)、[polyline](js-components-svg-polyline.md)、[text](js-components-svg-text.md)、[animate](js-components-svg-animate.md)、[animateTransform](js-components-svg-animateTransform.md)。
+支持[svg](js-components-svg.md)、[rect](js-components-svg-rect.md)、[circle](js-components-svg-circle.md)、[ellipse](../arkui-js/js-components-svg-ellipse.md)、[path](js-components-svg-path.md)、[line](../arkui-js/js-components-svg-line.md)、[polygon](../arkui-js/js-components-svg-polygon.md)、[polyline](js-components-svg-polyline.md)、[text](js-components-svg-text.md)、[animate](js-components-svg-animate.md)、[animateTransform](js-components-svg-animatetransform.md)。
 
 
 ## 属性

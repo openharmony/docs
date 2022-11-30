@@ -9,7 +9,7 @@ Canvas组件提供画布，用于自定义绘制图形。具体用法请参考[C
 在pages/index目录下的hml文件中创建一个Canvas组件。
 
 
-```
+```html
 <!-- xxx.hml -->
 <div class="container">
   <canvas></canvas>
@@ -17,9 +17,11 @@ Canvas组件提供画布，用于自定义绘制图形。具体用法请参考[C
 ```
 
 
-```
+```css
 /* xxx.css */
 .container{
+  width: 100%;
+  height: 100%;
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -43,7 +45,7 @@ canvas{
 Canvas组件设置宽（width）、高（height）、背景色（background-color）及边框样式（border）。
 
 
-```
+```html
 <!-- xxx.hml -->
 <div class="container">
   <canvas></canvas>
@@ -51,9 +53,11 @@ Canvas组件设置宽（width）、高（height）、背景色（background-colo
 ```
 
 
-```
+```css
 /* xxx.css */
 .container{
+  width: 100%;
+  height: 100%;
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -75,7 +79,7 @@ canvas{
 Canvas添加长按事件，长按后可获取Canvas组件的dataUrl值（toDataURL方法返回的图片信息），打印在下方文本区域内。
 
 
-```
+```html
 <!-- xxx.hml -->
 <div class="container">
   <canvas ref="canvas1" onlongpress="getUrl"></canvas>
@@ -85,7 +89,7 @@ Canvas添加长按事件，长按后可获取Canvas组件的dataUrl值（toDataU
 ```
 
 
-```
+```css
 /* xxx.css */
 .container{
   width:100%;
@@ -112,7 +116,7 @@ Canvas添加长按事件，长按后可获取Canvas组件的dataUrl值（toDataU
 ```
 
 
-```
+```js
 // xxx.js
 import prompt from '@system.prompt';
 export default {

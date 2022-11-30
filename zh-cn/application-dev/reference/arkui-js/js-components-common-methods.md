@@ -92,20 +92,19 @@ animate( keyframes: Keyframes, options: Options)：void
   | repeat | 动画重播事件。 |
 
 - 示例
-  ```
-  <!-- xxx.hml -->
-  <div class="container">
-    <div id="idName" class="box"></div>
-    <div class="buttonBox">
-      <button @click="start">
-        start
-      </button>
-      <button @click="cancel">
-        cancels
-      </button>
-    </div>
+```html
+<!-- xxx.hml -->
+<div class="container">
+  <div id="idName" class="box"></div>
+  <div class="buttonBox">
+    <button @click="start">
+      start
+    </button>
+    <button @click="cancel">
+      cancel
+    </button>
   </div>
-  ```
+```
 
   ```
   /* xxx.css */

@@ -1,14 +1,16 @@
 # Image
 
-The **\<image>** component is used to render and display images.
+The **\<Image>** component is used to render and display images.
 
->  **NOTE**
+> **NOTE**
 >
->  This component is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
+> This component is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
+
 
 ## Required Permissions
 
 To use online images, the application must have the **ohos.permission.INTERNET** permission. For details about how to apply for a permission, see [Declaring Permissions](../../security/accesstoken-guidelines.md).
+
 
 ## Child Components
 
@@ -18,6 +20,8 @@ Not supported
 ## APIs
 
 Image(src: string | PixelMap | Resource)
+
+Obtains an image from the specified source for subsequent rendering and display.
 
 **Parameters**
 
@@ -47,10 +51,10 @@ Image(src: string | PixelMap | Resource)
 
 ## ImageInterpolation
 
-| Name    | Description                      |
-| ------ | ------------------------ |
-| None   | Interpolation image data is not used.              |
-| High   | The interpolation image data is used at the high level. The use of the interpolation image data may affect the image rendering speed.|
+| Name    | Description                       |
+| ------ | ------------------------- |
+| None   | Interpolation image data is not used.               |
+| High   | The interpolation image data is used at the high level, which may affect the image rendering speed.|
 | Medium | The interpolation image data is used at the medium level.             |
 | Low    | The interpolation image data is used at the low level.             |
 
@@ -63,10 +67,11 @@ Image(src: string | PixelMap | Resource)
 
 ## Events
 
+
 | Name                                      | Description                                    |
 | ---------------------------------------- | ---------------------------------------- |
-| onComplete(callback: (event?: { width: number, height: number, componentWidth: number,<br> componentHeight: number, loadingStatus: number }) =&gt; void) | Triggered when an image is successfully loaded. The loaded image is returned.               |
-| onError(callback: (event?: { componentWidth: number, componentHeight: number }) =&gt; void) | Triggered when an exception occurs during image loading.                         |
+| onComplete(callback: (event?: { width: number, height: number, componentWidth: number,<br> componentHeight: number, loadingStatus: number }) =&gt; void) | Triggered when an image is successfully loaded. The size of the loaded image is returned.<br>- **width**: width of the image, in pixels.<br>- **height**: height of the image, in pixels.<br>- **componentWidth**: width of the container component, in pixels.<br>- **componentHeight**: height of the container component, in pixels.<br>- **loadingStatus**: image loading status.<br>|
+| onError(callback: (event?: { componentWidth: number, componentHeight: number }) =&gt; void) | Triggered when an exception occurs during image loading.<br>- **componentWidth**: width of the container component, in pixels.<br>- **componentHeight**: height of the container component, in pixels.<br>|
 | onFinish(event: () =&gt; void) | Triggered when the animation playback in the loaded SVG image is complete. If the animation is an infinite loop, this callback is not triggered.|
 
 

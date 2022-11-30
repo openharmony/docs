@@ -53,7 +53,7 @@
 
 ## 示例
 
-```
+```html
 <!-- xxx.hml -->
 <div class="container">
   <qrcode value="{{qr_value}}" type="{{qr_type}}"
@@ -71,7 +71,7 @@
 </div>
 ```
 
-```
+```css
 /* xxx.css */
 .container {
   width: 100%;
@@ -90,7 +90,7 @@ select{
 }
 ```
 
-```
+```js
 /* index.js */
 export default {
   data: {
@@ -108,9 +108,6 @@ export default {
       this.qr_type = 'circle'
     }
   },
-  setvalue(e) {
-    this.qr_value = e.newValue
-  },
   setcol(e) {
     this.qr_col = e.newValue
   },
@@ -121,5 +118,4 @@ export default {
 ```
 
 ![zh-cn_image_0000001222948301](figures/zh-cn_image_0000001222948301.gif)
-
 

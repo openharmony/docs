@@ -8,7 +8,7 @@
 | px | 屏幕物理像素单位。 |
 | vp | 屏幕密度相关像素，根据屏幕像素密度转换为屏幕物理像素。 |
 | fp | 字体像素，与vp类似适用屏幕密度变化，随系统字体大小设置变化。 |
-| lpx | 视窗逻辑像素单位，lpx单位为实际屏幕宽度与逻辑宽度（通过[designWidth](../ui/ts-framework-js-tag.md)配置）的比值。如配置designWidth为720时，在实际宽度为1440物理像素的屏幕上，1lpx为2px大小。 |
+| lpx | 视窗逻辑像素单位，lpx单位为实际屏幕宽度与逻辑宽度（通过[designWidth](../quick-start/package-structure.md)配置）的比值。如配置designWidth为720时，在实际宽度为1440物理像素的屏幕上，1lpx为2px大小。 |
 
 
 ## 像素单位转换

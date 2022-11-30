@@ -52,7 +52,7 @@ struct SwipeGestureExample {
       .width(300)
       .height(200)
       .margin(100)
-      .rotate({ angle: this.rotateAngle })
+      .rotate({ z: 1, angle: this.rotateAngle })
       // 单指竖直方向滑动时触发该事件
       .gesture(
       SwipeGesture({ direction: SwipeDirection.Vertical })
