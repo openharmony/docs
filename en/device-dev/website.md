@@ -4,7 +4,7 @@
   - [Quick Start Overview](quick-start/quickstart-overview.md)
   - Getting Started in IDE Mode
     - Setting Up the Development Environment
-      - [Setting Up the Windows Environment](quick-start/quickstart-ide-env--win.md)
+      - [Setting Up the Windows Environment](quick-start/quickstart-ide-env-win.md)
       - [Setting Up the Ubuntu Environment](quick-start/quickstart-ide-env-ubuntu.md)
       - [Configuring the Environment for Remote Access](quick-start/quickstart-ide-env-remote.md)
     - [Creating a Project and Obtaining Source Code](quick-start/quickstart-ide-import-project.md)
@@ -26,9 +26,9 @@
   - Getting Started in CLI Mode
     - Setting Up the Development Environment
       - [Setting Up the Development Environment](quick-start/quickstart-pkg-prepare.md)
-      - [Installing Libraries and Tools](quick-start/quickstart-pkg-install_package.md)
+      - [Installing Libraries and Tools](quick-start/quickstart-pkg-install-package.md)
       - [Obtaining Source Code](quick-start/quickstart-pkg-sourcecode.md)
-      - [Installing the Compilation Tools](quick-start/quickstart-pkg-install_tool.md)
+      - [Installing the Compilation Tools](quick-start/quickstart-pkg-install-tool.md)
     - Mini System (Based on the Hi3861 Development Board)
       - [Installing Tools Specially Required by the Hi3861 Development Board](quick-start/quickstart-pkg-3861-tool.md)
       - [Writing a Hello World Program](quick-start/quickstart-pkg-3861-helloworld.md)
