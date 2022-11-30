@@ -2857,6 +2857,10 @@ async function selectOutputDeviceByFilter(){
 **示例：**
 
 ```js
+
+import audio from '@ohos.multimedia.audio';
+
+const audioManager = audio.getAudioManager();
 let audioStreamManager;
 let resultFlag = false;
 
