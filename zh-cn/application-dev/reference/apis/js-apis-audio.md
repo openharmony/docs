@@ -2861,17 +2861,8 @@ async function selectOutputDeviceByFilter(){
 import audio from '@ohos.multimedia.audio';
 
 const audioManager = audio.getAudioManager();
-let audioStreamManager;
+let audioStreamManager = audioManager.getStreamManager();
 let resultFlag = false;
-
-audioManager.getStreamManager((err, data) => {
-  if (err) {
-    console.error(`Get AudioStream Manager : ERROR : ${err}`);
-  } else {
-    audioStreamManager = data;
-    console.info('Get AudioStream Manager : Success');
-  }
-});
 
 audioStreamManager.on('audioRendererChange',  (AudioRendererChangeInfoArray) => {
   for (let i = 0; i < AudioRendererChangeInfoArray.length; i++) {
@@ -2927,15 +2918,7 @@ audioStreamManager.on('audioRendererChange',  (AudioRendererChangeInfoArray) => 
 import audio from '@ohos.multimedia.audio';
 
 const audioManager = audio.getAudioManager();
-let audioStreamManager;
-audioManager.getStreamManager((err, data) => {
-  if (err) {
-    console.error(`getStreamManager : Error: ${err}`);
-  } else {
-    console.info('getStreamManager : Success : SUCCESS');
-    audioStreamManager = data;
-  }
-});
+let audioStreamManager = audioManager.getStreamManager();
 
 let resultFlag = false;
 audioStreamManager.on('audioCapturerChange', (AudioCapturerChangeInfoArray) =>  {
