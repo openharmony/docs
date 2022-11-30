@@ -555,7 +555,7 @@ DAHelper.insert(
 
 ## DataAbilityHelper.batchInsert
 
-batchInsert(uri: string, valuesBuckets: Array<rdb.ValuesBucket>, callback: AsyncCallback\<number>): void
+batchInsert(uri: string, valuesBuckets: Array\<rdb.ValuesBucket>, callback: AsyncCallback\<number>): void
 
 插入数据库（callback形式）。
 
@@ -566,7 +566,7 @@ batchInsert(uri: string, valuesBuckets: Array<rdb.ValuesBucket>, callback: Async
 | 参数名         | 类型                    | 必填 | 说明                             |
 | ------------ | ----------------------- | ---- | -------------------------------- |
 | uri          | string                  | 是   | 指示要插入的数据的路径。         |
-| valuesBucket | Array<rdb.ValuesBucket> | 是   | 指示要插入的数据记录。           |
+| valuesBucket | Array\<rdb.ValuesBucket> | 是   | 指示要插入的数据记录。           |
 | callback     | AsyncCallback\<number>  | 是   | 回调方法。返回插入的数据记录数。 |
 
 **示例：**
@@ -639,7 +639,7 @@ delete(uri: string, predicates: dataAbility.DataAbilityPredicates, callback: Asy
 | 参数名         | 类型                              | 必填 | 说明                                             |
 | ------------ | --------------------------------- | ---- | ------------------------------------------------ |
 | uri          | string                            | 是   | 指示要删除的数据的路径。                         |
-| valuesBucket | dataAbility.DataAbilityPredicates | 是   | 指示筛选条件。当此参数为null时，应定义处理逻辑。 |
+| predicates | dataAbility.DataAbilityPredicates | 是   | 指示筛选条件。当此参数为null时，应定义处理逻辑。 |
 | callback     | AsyncCallback\<number>            | 是   | 回调方法。返回已删除的数据记录数。               |
 
 **示例：**
@@ -672,7 +672,7 @@ delete(uri: string, predicates?: dataAbility.DataAbilityPredicates): Promise\<nu
 | 参数名         | 类型                              | 必填 | 说明                                             |
 | ------------ | --------------------------------- | ---- | ------------------------------------------------ |
 | uri          | string                            | 是   | 指示要删除的数据的路径。                         |
-| valuesBucket | dataAbility.DataAbilityPredicates | 是   | 指示筛选条件。当此参数为null时，应定义处理逻辑。 |
+| predicates | dataAbility.DataAbilityPredicates | 否   | 指示筛选条件。当此参数为null时，应定义处理逻辑。 |
 
 **返回值：**
 
@@ -752,7 +752,7 @@ update(uri: string, valuesBucket: rdb.ValuesBucket, predicates?: dataAbility.Dat
 | ------------ | --------------------------------- | ---- | ------------------------------------------------ |
 | uri          | string                            | 是   | 指示要更新的数据的路径。                         |
 | valuesBucket | rdb.ValuesBucket                  | 是   | 指示要更新的数据。                               |
-| predicates   | dataAbility.DataAbilityPredicates | 是   | 指示筛选条件。当此参数为null时，应定义处理逻辑。 |
+| predicates   | dataAbility.DataAbilityPredicates | 否   | 指示筛选条件。当此参数为null时，应定义处理逻辑。 |
 
 **返回值：**
 
@@ -797,7 +797,7 @@ query(uri: string, columns: Array\<string>, predicates: dataAbility.DataAbilityP
 | 参数名       | 类型                              | 必填 | 说明                                             |
 | ---------- | --------------------------------- | ---- | ------------------------------------------------ |
 | uri        | string                            | 是   | 指示要查询的数据的路径。                         |
-| columns    | rdb.ValuesBucket                  | 是   | 指示要查询的列。如果此参数为空，则查询所有列。   |
+| columns    | Array\<string>                | 是   | 指示要查询的列。如果此参数为空，则查询所有列。   |
 | predicates | dataAbility.DataAbilityPredicates | 是   | 指示筛选条件。当此参数为null时，应定义处理逻辑。 |
 | callback   | AsyncCallback\<ResultSet>         | 是   | 回调方法，返回查询结果。                         |
 
@@ -835,8 +835,8 @@ query(uri: string, columns?: Array\<string>, predicates?: dataAbility.DataAbilit
 | 参数名       | 类型                              | 必填 | 说明                                             |
 | ---------- | --------------------------------- | ---- | ------------------------------------------------ |
 | uri        | string                            | 是   | 指示要查询的数据的路径。                         |
-| columns    | rdb.ValuesBucket                  | 是   | 指示要查询的列。如果此参数为空，则查询所有列。   |
-| predicates | dataAbility.DataAbilityPredicates | 是   | 指示筛选条件。当此参数为null时，应定义处理逻辑。 |
+| columns    | Array\<string>               | 否   | 指示要查询的列。如果此参数为空，则查询所有列。   |
+| predicates | dataAbility.DataAbilityPredicates | 否   | 指示筛选条件。当此参数为null时，应定义处理逻辑。 |
 
 **返回值：**
 
