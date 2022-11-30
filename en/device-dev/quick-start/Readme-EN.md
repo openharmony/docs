@@ -48,7 +48,7 @@
         - [Configuring the Proxy](quickstart-pkg-common-proxy.md)
         - [Building Source Code Using the build.sh Script](quickstart-pkg-common-build.md)
         - [Fixing hb Installation Errors](quickstart-pkg-common-hberr.md)
-        - [Fixing Compilation and Building Error](quickstart-pkg-common-builderr.md)
+        - [Fixing Compilation and Building Errors](quickstart-pkg-common-builderr.md)
         - [Fixing Image Burning Errors](quickstart-pkg-common-burnerr.md)
 - Appendix
     - [Hi3516 Development Board](quickstart-appendix-hi3516.md)
