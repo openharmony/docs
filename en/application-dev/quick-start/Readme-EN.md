@@ -1,13 +1,22 @@
 # Quick Start
-
 - Getting Started
-  - [Preparations](start-overview.md)
+  - [Before You Start](start-overview.md)
   - [Getting Started with ArkTS in Stage Model](start-with-ets-stage.md)
   - [Getting Started with ArkTS in FA Model](start-with-ets-fa.md)
-  - [Getting Started with JavaScript in FA Model](start-with-js-fa.md)
+  - [Getting Started with JavaScript in FA Model](start-with-js-fa.md)  
 - Development Fundamentals
   - [Application Package Structure Configuration File (FA Model)](package-structure.md)
   - [Application Package Structure Configuration File (Stage Model)](stage-structure.md)
   - [SysCap](syscap.md)
-  - [HarmonyAppProvision Configuration File](app-provision-structure.md)
-
+  - [Resource Categories and Access](resource-categories-and-access.md)
+  - Learning ArkTS
+    - [Getting Started with ArkTS](arkts-get-started.md)
+    - ArkTS Syntax (Declarative UI)
+      - [Basic UI Description](arkts-basic-ui-description.md)
+      - State Management
+        - [Basic Concepts](arkts-state-mgmt-concepts.md)
+        - [State Management with Page-level Variables](arkts-state-mgmt-page-level.md)
+        - [State Management with Application-level Variables](arkts-state-mgmt-application-level.md)
+      - [Dynamic UI Element Building](arkts-dynamic-ui-elememt-building.md)
+      - [Rendering Control](arkts-rendering-control.md)
+      - [Restrictions and Extensions](arkts-restrictions-and-extensions.md)

@@ -1,4 +1,4 @@
-# Web
+# Web Component Development
 
 The **\<Web>** component can be used to display web pages. For details, see [Web](../reference/arkui-ts/ts-basic-components-web.md).
 

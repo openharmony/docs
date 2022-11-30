@@ -119,7 +119,7 @@ The diet application allows food on the home page to display in list or grid mod
 
    When you click the switch icon, the FoodList component is displayed. When you click the switch icon again, the FoodList component is hidden.
 
-   ![en-us_image_0000001222807800](figures/en-us_image_0000001222807800.gif)
+   ![en-us_image_0000001170411978](figures/en-us_image_0000001170411978.gif)
 
 6. Create a tab to display all food categories (All). Create the **\<Tabs>** component and its child component **TabContent** in the **FoodCategory** component, and set **tabBar** to **All**. Set the width of the **TabBars** to **280** and the layout mode to **Scrollable**. This means that the TabBars can be scrolled when the total length exceeds 280. The **\<Tabs>** component is a container component that allows users to switch between content views through tabs. Each tab page corresponds to a TabContent.
    
