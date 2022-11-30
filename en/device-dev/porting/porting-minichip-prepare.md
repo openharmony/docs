@@ -6,7 +6,7 @@ The OpenHarmony project must be built in the Linux environment. This topic descr
 
 ## Setting Up the Build Environment
 
-Before porting, set up the build environment as instructed in [Setting Up the Windows Environment](../quick-start/quickstart-ide-env--win.md).
+Before porting, set up the build environment as instructed in [Setting Up the Windows Environment](../quick-start/quickstart-ide-env-win.md).
 
 
 ## Obtaining Source Code
