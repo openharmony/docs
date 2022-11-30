@@ -26,6 +26,8 @@ RowSplit()
 >  **NOTE**
 >
 >  Similar to **\<RowSplit>**, the divider of **\<RowSplit>** can be dragged to a position that just fully holds a component.
+>
+>  Dragging is not supported in the Previewer. Check the drag effect on a real device.
 
 
 ## Example
