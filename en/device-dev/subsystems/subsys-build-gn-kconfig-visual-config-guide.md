@@ -30,7 +30,7 @@ Kconfig visual configuration has the following advantages:
 
 2. Set up the environment.
 
-   The Kconfiglib required for environment configuration has been embedded in the OpenHarmony hb tool. For details about how to install the hb tool, see [hb Installation](../quick-start/quickstart-pkg-install_tool.md#hb-installation).
+   The Kconfiglib required for environment configuration has been embedded in the OpenHarmony hb tool. For details about how to install the hb tool, see [hb Installation](../quick-start/quickstart-pkg-install-tool.md#hb-installation).
 
 3. Open the Kconfig configuration interface.
 
