@@ -102,8 +102,6 @@ Applicable to: OpenHarmony SDK 3.2.3.5, stage model of API version 9
 
 Objects imported to abilities and pages are packaged into two different closures, that is, two global objects. In this case, a static variable referenced by the abilities is not the same object as that referenced by the pages. Therefore, global variables cannot be defined by defining static variables in the class. You are advised to use AppStorage to manage global variables.
 
-Reference: [AppStorage](../ui/ts-application-states-appstorage.md/)
-
 ## How do I obtain resources in the stage model?
 
 Applicable to: OpenHarmony SDK 3.2.3.5, stage model of API version 9
@@ -210,7 +208,7 @@ Applicable to: OpenHarmony SDK 3.2.5.3, stage model of API version 9
 
 By default, child components in a **\<GridContainer>** are horizontally aligned to the left. To center them, perform the following steps:
 
-Nest a **\<Row>** component and set it to **justifyContent(FlexAlign.Center)**. For details, see [Grid Layout](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/ui/ui-ts-layout-grid-container.md).
+Nest a **\<Row>** component and set it to **justifyContent(FlexAlign.Center)**. For details, see [Grid Layout](../reference/arkui-ts/ts-container-gridcontainer.md).
 
   Example:
 
