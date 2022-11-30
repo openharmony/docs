@@ -15,11 +15,43 @@ This module provides common utility functions, such as **TextEncoder** and **Tex
 import util from '@ohos.util';
 ```
 
-## util.printf
+## util.format<sup>9+</sup>
+
+format(format: string,  ...args: Object[]): string
+
+Formats the specified values and inserts them into the string by replacing the wildcard in the string.
+
+**System capability**: SystemCapability.Utils.Lang
+
+**Parameters**
+
+| Name | Type    | Mandatory| Description          |
+| ------- | -------- | ---- | -------------- |
+| format  | string   | Yes  | String.|
+| ...args | Object[] | No  | Values to format. The formatted values will be replaced the wildcard in the string. |
+
+**Return value**
+
+| Type  | Description                        |
+| ------ | ---------------------------- |
+| string | String containing the formatted values.|
+
+**Example**
+
+  ```js
+let res = util.format("%s", "hello world!");
+console.log(res);
+  ```
+
+## util.printf<sup>(deprecated)</sup>
+
+> **NOTE**
+>
+> This API is deprecated since API version 9. You are advised to use [util.format9+](#utilformat9) instead.
 
 printf(format: string,  ...args: Object[]): string
 
-Prints the input content in a formatted string.
+Formats the specified values and inserts them into the string by replacing the wildcard in the string.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -27,14 +59,14 @@ Prints the input content in a formatted string.
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| format | string | Yes| Format of the string to print.|
-| ...args | Object[] | No| Data to format.|
+| format | string | Yes| String.|
+| ...args | Object[] | No| Values to format. The formatted values will be replaced the wildcard in the string. |
 
 **Return value**
 
 | Type| Description|
 | -------- | -------- |
-| string | String in the specified format.|
+| string | String containing the formatted values.|
 
 **Example**
   ```js
@@ -42,8 +74,39 @@ Prints the input content in a formatted string.
   console.log(res);
   ```
 
+## util.errnoToString<sup>9+</sup>
 
-## util.getErrorString
+errnoToString(errno: number): string
+
+Obtains detailed information about a system error code.
+
+**System capability**: SystemCapability.Utils.Lang
+
+**Parameters**
+
+| Name| Type  | Mandatory| Description                      |
+| ------ | ------ | ---- | -------------------------- |
+| errno  | number | Yes  | Error code generated.|
+
+**Return value**
+
+| Type  | Description                  |
+| ------ | ---------------------- |
+| string | Detailed information about the error code.|
+
+**Example**
+
+  ```js
+let errnum = 10; // 10 is a system error code.
+let result = util.errnoToString(errnum);
+console.log("result = " + result);
+  ```
+
+## util.getErrorString<sup>(deprecated)</sup>
+
+> **NOTE**
+>
+> This API is deprecated since API version 9. You are advised to use [util.errnoToString9+](#utilerrnotostring9) instead.
 
 getErrorString(errno: number): string
 
@@ -70,12 +133,11 @@ Obtains detailed information about a system error code.
   console.log("result = " + result);
   ```
 
-
 ## util.callbackWrapper
 
 callbackWrapper(original: Function): (err: Object, value: Object )=&gt;void
 
-Wraps an asynchronous function (or a function that returns a promise) into an error-first callback, which means that **(err, value) => ...** is used as the last parameter of the callback. In the callback, the first parameter indicates the cause of the rejection (the value is **null** if the promise has been resolved), and the second parameter indicates the resolved value.
+Calls back an asynchronous function. In the callback, the first parameter indicates the cause of the rejection (the value is **null** if the promise has been resolved), and the second parameter indicates the resolved value.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -103,31 +165,6 @@ Wraps an asynchronous function (or a function that returns a promise) into an er
       console.log(ret);
   }, err)
   ```
-
-
-## util.promiseWrapper<sup>(deprecated)</sup>
-
-promiseWrapper(original: (err: Object, value: Object) =&gt; void): Object
-
-> **NOTE**
->
-> This API is deprecated since API version 9. You are advised to use **[util.promisify9+](#utilpromisify9)** instead.
-
-Wraps a function that follows the error-first callback paradigm into a promise.
-
-**System capability**: SystemCapability.Utils.Lang
-
-**Parameters**
-
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| original | Function | Yes| Asynchronous function.|
-
-**Return value**
-
-| Type| Description|
-| -------- | -------- |
-| Function | Function in the error-first style (that is, **(err, value) =>...** is called as the last parameter) and the promise.|
 
 ## util.promisify<sup>9+</sup>
 
@@ -163,6 +200,30 @@ Processes an asynchronous function and returns a promise.
     console.log(res);
   })
   ```
+
+## util.promiseWrapper<sup>(deprecated)</sup>
+
+promiseWrapper(original: (err: Object, value: Object) =&gt; void): Object
+
+> **NOTE**
+>
+> This API is deprecated since API version 9. You are advised to use **[util.promisify9+](#utilpromisify9)** instead.
+
+Processes an asynchronous function and returns a promise.
+
+**System capability**: SystemCapability.Utils.Lang
+
+**Parameters**
+
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| original | Function | Yes| Asynchronous function.|
+
+**Return value**
+
+| Type| Description|
+| -------- | -------- |
+| Function | Function in the error-first style (that is, **(err, value) =>...** is called as the last parameter) and the promise.|
 
 ## util.randomUUID<sup>9+</sup>
 
@@ -260,8 +321,46 @@ Parses a UUID from a string, as described in RFC 4122 version 4.
 | fatal | boolean | Yes| No| Whether to display fatal errors.|
 | ignoreBOM | boolean | Yes| No| Whether to ignore the byte order marker (BOM). The default value is **false**, which indicates that the result contains the BOM.|
 
+### constructor<sup>9+</sup>
 
-### constructor
+constructor()
+
+A constructor used to create a **TextDecoder** object.
+
+**System capability**: SystemCapability.Utils.Lang
+
+### create<sup>9+</sup>
+
+create(encoding?: string,options?: { fatal?: boolean; ignoreBOM?: boolean },): TextDecoder;
+
+Creates a **TextDecoder** object. It provides the same function as the deprecated argument constructor.
+
+**Parameters**
+
+| Name  | Type  | Mandatory| Description                                            |
+| -------- | ------ | ---- | ------------------------------------------------ |
+| encoding | string | No  | Encoding format.                                      |
+| options  | Object | No  | Encoding-related options, which include **fatal** and **ignoreBOM**.|
+
+  **Table 1.1** options
+
+| Name     | Type| Mandatory| Description              |
+| --------- | -------- | ---- | ------------------ |
+| fatal     | boolean  | No  | Whether to display fatal errors.|
+| ignoreBOM | boolean  | No  | Whether to ignore the BOM. |
+
+**Example**
+
+  ```js
+let textDecoder = new util.TextDecoder()
+textDecoder.create('utf-8', { ignoreBOM : true });
+  ```
+
+### constructor<sup>(deprecated)</sup>
+
+> **NOTE**
+>
+> This API is deprecated since API version 9. You are advised to use [constructor9+](#constructor9) instead.
 
 constructor(encoding?: string, options?: { fatal?: boolean; ignoreBOM?: boolean },)
 
@@ -287,7 +386,6 @@ A constructor used to create a **TextDecoder** object.
   ```js
   let textDecoder = new util.TextDecoder("utf-8",{ignoreBOM: true});
   ```
-
 
 ### decode
 
@@ -399,8 +497,40 @@ A constructor used to create a **TextEncoder** object.
   let textEncoder = new util.TextEncoder();
   ```
 
+### encodeInto<sup>9+</sup>
 
-### encode
+encodeInto(input?: string): Uint8Array
+
+Encodes the input content.
+
+**System capability**: SystemCapability.Utils.Lang
+
+**Parameters**
+
+| Name| Type  | Mandatory| Description              |
+| ------ | ------ | ---- | ------------------ |
+| input  | string | Yes  | String to encode.|
+
+**Return value**
+
+| Type      | Description              |
+| ---------- | ------------------ |
+| Uint8Array | Encoded text.|
+
+**Example**
+
+  ```js
+let textEncoder = new util.TextEncoder();
+let buffer = new ArrayBuffer(20);
+let result = new Uint8Array(buffer);
+result = textEncoder.encodeInto("\uD800¥¥");
+  ```
+
+### encode<sup>(deprecated)</sup>
+
+> **NOTE**
+>
+> This API is deprecated since API version 9. You are advised to use [encodeInto9+](#encodeinto9) instead.
 
 encode(input?: string): Uint8Array
 
@@ -428,8 +558,42 @@ Encodes the input content.
   result = textEncoder.encode("\uD800¥¥");
   ```
 
+### encodeIntoUint8Array<sup>9+</sup>
 
-### encodeInto
+encodeIntoUint8Array(input: string, dest: Uint8Array, ): { read: number; written: number }
+
+Stores the UTF-8 encoded text.
+
+**System capability**: SystemCapability.Utils.Lang
+
+**Parameters**
+
+| Name| Type      | Mandatory| Description                                                   |
+| ------ | ---------- | ---- | ------------------------------------------------------- |
+| input  | string     | Yes  | String to encode.                                     |
+| dest   | Uint8Array | Yes  | **Uint8Array** instance used to store the UTF-8 encoded text.|
+
+**Return value**
+
+| Type      | Description              |
+| ---------- | ------------------ |
+| Uint8Array | Encoded text.|
+
+**Example**
+
+  ```js
+let that = new util.TextEncoder()
+let buffer = new ArrayBuffer(4)
+let dest = new Uint8Array(buffer)
+let result = new Object()
+result = that.encodeInto('abcd', dest)
+  ```
+
+### encodeInto<sup>(deprecated)</sup>
+
+> **NOTE**
+>
+> This API is deprecated since API version 9. You are advised to use [encodeIntoUint8Array9+](#encodeintouint8array9) instead.
 
 encodeInto(input: string, dest: Uint8Array, ): { read: number; written: number }
 
@@ -461,8 +625,47 @@ Stores the UTF-8 encoded text.
 
 ## RationalNumber<sup>8+</sup>
 
+### constructor<sup>9+</sup>
 
-### constructor<sup>8+</sup>
+constructor()
+
+A constructor used to create a **RationalNumber** object.
+
+**System capability**: SystemCapability.Utils.Lang
+
+**Example**
+
+  ```js
+let rationalNumber = new util.RationalNumber();
+  ```
+
+### parseRationalNumber<sup>9+</sup>
+
+parseRationalNumber(numerator: number,denominator: number)
+
+Parses a rational number. Previously, this processing is an internal action of the deprecated constructor.
+
+**System capability**: SystemCapability.Utils.Lang
+
+**Parameters**
+
+| Name     | Type  | Mandatory| Description            |
+| ----------- | ------ | ---- | ---------------- |
+| numerator   | number | Yes  | Numerator, which is an integer.|
+| denominator | number | Yes  | Denominator, which is an integer.|
+
+**Example**
+
+  ```js
+let rationalNumber = new util.RationalNumber();
+rationalNumber.parseRationalNumber(1,2)
+  ```
+
+### constructor<sup>8+(deprecated)</sup>
+
+> **NOTE**
+>
+> This API is deprecated since API version 9. You are advised to use [constructor9+](#constructor9) instead.
 
 constructor(numerator: number,denominator: number)
 
@@ -478,10 +681,10 @@ A constructor used to create a **RationalNumber** object.
 | denominator | number | Yes| Denominator, which is an integer.|
 
 **Example**
+
   ```js
   let rationalNumber = new util.RationalNumber(1,2);
   ```
-
 
 ### createRationalFromString<sup>8+</sup>
 
@@ -509,8 +712,39 @@ Creates a **RationalNumber** object based on the given string.
   let rational = util.RationalNumber.createRationalFromString("3/4");
   ```
 
+### compare<sup>9+</sup>
 
-### compareTo<sup>8+</sup>
+compare​(another: RationalNumber): number​
+
+Compares this **RationalNumber** object with a given object.
+
+**System capability**: SystemCapability.Utils.Lang
+
+**Parameters**
+
+| Name | Type          | Mandatory| Description              |
+| ------- | -------------- | ---- | ------------------ |
+| another | RationalNumber | Yes  | Object used to compare with this **RationalNumber** object.|
+
+**Return value**
+
+| Type  | Description                                                        |
+| ------ | ------------------------------------------------------------ |
+| number | Returns **0** if the two objects are equal; returns **1** if the given object is less than this object; return **-1** if the given object is greater than this object.|
+
+**Example**
+
+  ```js
+let rationalNumber = new util.RationalNumber(1,2);
+let rational = util.RationalNumber.createRationalFromString("3/4");
+let result = rationalNumber.compare(rational);
+  ```
+
+### compareTo<sup>8+</sup><sup>(deprecated)</sup>
+
+> **NOTE**
+>
+> This API is deprecated since API version 9. You are advised to use [compare9+](#compare9) instead.
 
 compareTo​(another: RationalNumber): number​
 
@@ -537,7 +771,6 @@ Compares this **RationalNumber** object with a given object.
   let result = rationalNumber.compareTo(rational);
   ```
 
-
 ### valueOf<sup>8+</sup>
 
 valueOf(): number
@@ -557,7 +790,6 @@ Obtains the value of this **RationalNumber** object as an integer or a floating-
   let rationalNumber = new util.RationalNumber(1,2);
   let result = rationalNumber.valueOf();
   ```
-
 
 ### equals<sup>8+</sup>
 
@@ -586,8 +818,38 @@ Checks whether this **RationalNumber** object equals the given object.
   let result = rationalNumber.equals(rational);
   ```
 
+### getCommonFactor<sup>9+</sup>
 
-### getCommonDivisor<sup>8+</sup>
+getCommonFactor(number1: number,number2: number): number
+
+Obtains the greatest common divisor of two specified integers.
+
+**System capability**: SystemCapability.Utils.Lang
+
+**Parameters**
+
+| Name | Type  | Mandatory| Description      |
+| ------- | ------ | ---- | ---------- |
+| number1 | number | Yes  | The first integer used to get the greatest common divisor.|
+| number2 | number | Yes  | The second integer used to get the greatest common divisor.|
+
+**Return value**
+
+| Type  | Description                          |
+| ------ | ------------------------------ |
+| number | Greatest common divisor obtained.|
+
+**Example**
+
+  ```js
+let rationalNumber = new util.RationalNumber(1,2);
+let result = util.RationalNumber.getCommonFactor(4,6);
+  ```
+
+### getCommonDivisor<sup>8+(deprecated)</sup>
+> **NOTE**
+>
+> This API is deprecated since API version 9. You are advised to use [getCommonFactor9+](#getcommonfactor9) instead.
 
 static getCommonDivisor​(number1: number,number2: number): number
 
@@ -614,7 +876,6 @@ Obtains the greatest common divisor of two specified integers.
   let result = util.RationalNumber.getCommonDivisor(4,6);
   ```
 
-
 ### getNumerator<sup>8+</sup>
 
 getNumerator​(): number
@@ -634,7 +895,6 @@ Obtains the numerator of this **RationalNumber** object.
   let rationalNumber = new util.RationalNumber(1,2);
   let result = rationalNumber.getNumerator();
   ```
-
 
 ### getDenominator<sup>8+</sup>
 
@@ -656,7 +916,6 @@ Obtains the denominator of this **RationalNumber** object.
   let result = rationalNumber.getDenominator();
   ```
 
-
 ### isZero<sup>8+</sup>
 
 isZero​():boolean
@@ -676,7 +935,6 @@ Checks whether this **RationalNumber** object is **0**.
   let rationalNumber = new util.RationalNumber(1,2);
   let result = rationalNumber.isZero();
   ```
-
 
 ### isNaN<sup>8+</sup>
 
@@ -698,7 +956,6 @@ Checks whether this **RationalNumber** object is a Not a Number (NaN).
   let result = rationalNumber.isNaN();
   ```
 
-
 ### isFinite<sup>8+</sup>
 
 isFinite​():boolean
@@ -718,7 +975,6 @@ Checks whether this **RationalNumber** object represents a finite value.
   let rationalNumber = new util.RationalNumber(1,2);
   let result = rationalNumber.isFinite();
   ```
-
 
 ### toString<sup>8+</sup>
 
@@ -740,7 +996,556 @@ Obtains the string representation of this **RationalNumber** object.
   let result = rationalNumber.toString();
   ```
 
-## LruBuffer<sup>8+</sup>
+
+## LRUCache<sup>9+</sup>
+
+### Attributes
+
+**System capability**: SystemCapability.Utils.Lang
+
+| Name  | Type  | Readable| Writable| Description                  |
+| ------ | ------ | ---- | ---- | ---------------------- |
+| length | number | Yes  | No  | Total number of values in this buffer. |
+
+**Example**
+
+  ```js
+let pro = new util.LRUCache();
+pro.put(2,10);
+pro.put(1,8);
+let result = pro.length;
+  ```
+
+### constructor<sup>9+</sup>
+
+constructor(capacity?: number)
+
+A constructor used to create a **LruBuffer** instance. The default capacity of the buffer is 64.
+
+**System capability**: SystemCapability.Utils.Lang
+
+**Parameters**
+
+| Name  | Type  | Mandatory| Description                        |
+| -------- | ------ | ---- | ---------------------------- |
+| capacity | number | No  | Capacity of the **LruBuffer** to create.|
+
+**Example**
+
+  ```js
+let lrubuffer= new util.LRUCache();
+  ```
+
+
+### updateCapacity<sup>9+</sup>
+
+updateCapacity(newCapacity: number): void
+
+Changes the **LruBuffer** capacity. If the new capacity is less than or equal to **0**, an exception will be thrown.
+
+**System capability**: SystemCapability.Utils.Lang
+
+**Parameters**
+
+| Name     | Type  | Mandatory| Description                        |
+| ----------- | ------ | ---- | ---------------------------- |
+| newCapacity | number | Yes  | New capacity of the **LruBuffer**.|
+
+**Example**
+
+  ```js
+let pro = new util.LRUCache();
+let result = pro.updateCapacity(100);
+  ```
+
+
+### toString<sup>9+</sup>
+
+toString(): string
+
+Obtains the string representation of this **LruBuffer** object.
+
+**System capability**: SystemCapability.Utils.Lang
+
+**Return value**
+
+| Type  | Description                      |
+| ------ | -------------------------- |
+| string | String representation of this **LruBuffer** object.|
+
+**Example**
+
+  ```js
+let pro = new util.LRUCache();
+pro.put(2,10);
+pro.get(2);
+pro.remove(20);
+let result = pro.toString();
+  ```
+
+
+### getCapacity<sup>9+</sup>
+
+getCapacity(): number
+
+Obtains the capacity of this buffer.
+
+**System capability**: SystemCapability.Utils.Lang
+
+**Return value**
+
+| Type  | Description                  |
+| ------ | ---------------------- |
+| number | Capacity of this buffer.|
+
+**Example**
+
+  ```js
+let pro = new util.LRUCache();
+let result = pro.getCapacity();
+  ```
+
+
+### clear<sup>9+</sup>
+
+clear(): void
+
+Clears key-value pairs from this buffer. The **afterRemoval()** method will be called to perform subsequent operations.
+
+**System capability**: SystemCapability.Utils.Lang
+
+**Example**
+
+  ```js
+let pro = new util.LRUCache();
+pro.put(2,10);
+let result = pro.length;
+pro.clear();
+  ```
+
+
+### getCreateCount<sup>9+</sup>
+
+getCreateCount(): number
+
+Obtains the number of return values for **createDefault()**.
+
+**System capability**: SystemCapability.Utils.Lang
+
+**Return value**
+
+| Type  | Description                             |
+| ------ | --------------------------------- |
+| number | Number of return values for **createDefault()**.|
+
+**Example**
+
+  ```js
+let pro = new util.LRUCache();
+pro.put(1,8);
+let result = pro.getCreateCount();
+  ```
+
+
+### getMissCount<sup>9+</sup>
+
+getMissCount(): number
+
+Obtains the number of times that the queried values are mismatched.
+
+**System capability**: SystemCapability.Utils.Lang
+
+**Return value**
+
+| Type  | Description                    |
+| ------ | ------------------------ |
+| number | Number of times that the queried values are mismatched.|
+
+**Example**
+
+  ```js
+let pro = new util.LRUCache();
+pro.put(2,10);
+pro.get(2);
+let result = pro.getMissCount();
+  ```
+
+
+### getRemovalCount<sup>9+</sup>
+
+getRemovalCount(): number
+
+Obtains the number of removals from this buffer.
+
+**System capability**: SystemCapability.Utils.Lang
+
+**Return value**
+
+| Type  | Description                      |
+| ------ | -------------------------- |
+| number | Number of removals from the buffer.|
+
+**Example**
+
+  ```js
+let pro = new util.LRUCache();
+pro.put(2,10);
+pro.updateCapacity(2);
+pro.put(50,22);
+let result = pro.getRemovalCount();
+  ```
+
+
+### getMatchCount<sup>9+</sup>
+
+getMatchCount(): number
+
+Obtains the number of times that the queried values are matched.
+
+**System capability**: SystemCapability.Utils.Lang
+
+**Return value**
+
+| Type  | Description                      |
+| ------ | -------------------------- |
+| number | Number of times that the queried values are matched.|
+
+**Example**
+
+  ```js
+let pro = new util.LRUCache();
+pro.put(2,10);
+pro.get(2);
+let result = pro.getMatchCount();
+  ```
+
+
+### getPutCount<sup>9+</sup>
+
+getPutCount(): number
+
+Obtains the number of additions to this buffer.
+
+**System capability**: SystemCapability.Utils.Lang
+
+**Return value**
+
+| Type  | Description                        |
+| ------ | ---------------------------- |
+| number | Number of additions to the buffer.|
+
+**Example**
+
+  ```js
+let pro = new util.LRUCache();
+pro.put(2,10);
+let result = pro.getPutCount();
+  ```
+
+
+### isEmpty<sup>9+</sup>
+
+isEmpty(): boolean
+
+Checks whether this buffer is empty.
+
+**System capability**: SystemCapability.Utils.Lang
+
+**Return value**
+
+| Type   | Description                                    |
+| ------- | ---------------------------------------- |
+| boolean | Returns **true** if the buffer does not contain any value.|
+
+**Example**
+
+  ```js
+let pro = new util.LRUCache();
+pro.put(2,10);
+let result = pro.isEmpty();
+  ```
+
+
+### get<sup>9+</sup>
+
+get(key: K): V | undefined
+
+Obtains the value of the specified key.
+
+**System capability**: SystemCapability.Utils.Lang
+
+**Parameters**
+
+| Name| Type| Mandatory| Description        |
+| ------ | ---- | ---- | ------------ |
+| key    | K    | Yes  | Key based on which the value is queried.|
+
+**Return value**
+
+| Type                    | Description                                                        |
+| ------------------------ | ------------------------------------------------------------ |
+| V&nbsp;\|&nbsp;undefined | Returns the value of the key if a match is found in the buffer; returns **undefined** otherwise.|
+
+**Example**
+
+  ```js
+let pro = new util.LRUCache();
+pro.put(2,10);
+let result  = pro.get(2);
+  ```
+
+
+### put<sup>9+</sup>
+
+put(key: K,value: V): V
+
+Adds a key-value pair to this buffer.
+
+**System capability**: SystemCapability.Utils.Lang
+
+**Parameters**
+
+| Name| Type| Mandatory| Description                      |
+| ------ | ---- | ---- | -------------------------- |
+| key    | K    | Yes  | Key of the key-value pair to add.            |
+| value  | V    | Yes  | Value of the key-value pair to add.|
+
+**Return value**
+
+| Type| Description                                                        |
+| ---- | ------------------------------------------------------------ |
+| V    | Returns the existing value if the key already exists; returns the value added otherwise. If the key or value is null, an exception will be thrown. |
+
+**Example**
+
+  ```js
+let pro = new util.LRUCache();
+let result = pro.put(2,10);
+  ```
+
+### values<sup>9+</sup>
+
+values(): V[]
+
+Obtains all values in this buffer, listed from the most to the least recently accessed.
+
+**System capability**: SystemCapability.Utils.Lang
+
+**Return value**
+
+| Type     | Description                                                        |
+| --------- | ------------------------------------------------------------ |
+| V&nbsp;[] | All values in the buffer, listed from the most to the least recently accessed.|
+
+**Example**
+
+  ```js
+let pro = new util.LRUCache();
+pro.put(2,10);
+pro.put(2,"anhu");
+pro.put("afaf","grfb");
+let result = pro.values();
+  ```
+
+
+### keys<sup>9+</sup>
+
+keys(): K[]
+
+Obtains all keys in this buffer, listed from the most to the least recently accessed.
+
+**System capability**: SystemCapability.Utils.Lang
+
+**Return value**
+
+| Type     | Description                                                        |
+| --------- | ------------------------------------------------------------ |
+| K&nbsp;[] | All keys in the buffer, listed from the most to the least recently accessed.|
+
+**Example**
+
+  ```js
+let pro = new util.LRUCache();
+pro.put(2,10);
+let result = pro.keys();
+  ```
+
+
+### remove<sup>9+</sup>
+
+remove(key: K): V | undefined
+
+Removes the specified key and its value from this buffer.
+
+**System capability**: SystemCapability.Utils.Lang
+
+**Parameters**
+
+| Name| Type| Mandatory| Description          |
+| ------ | ---- | ---- | -------------- |
+| key    | K    | Yes  | Key to remove.|
+
+**Return value**
+
+| Type                    | Description                                                        |
+| ------------------------ | ------------------------------------------------------------ |
+| V&nbsp;\|&nbsp;undefined | Returns an **Optional** object containing the removed key-value pair if the key exists in the buffer; returns an empty **Optional** object otherwise. If the key is null, an exception will be thrown.|
+
+**Example**
+
+  ```js
+let pro = new util.LRUCache();
+pro.put(2,10);
+let result = pro.remove(20);
+  ```
+
+
+### afterRemoval<sup>9+</sup>
+
+afterRemoval(isEvict: boolean,key: K,value: V,newValue: V): void
+
+Performs subsequent operations after a value is removed.
+
+**System capability**: SystemCapability.Utils.Lang
+
+**Parameters**
+
+| Name  | Type   | Mandatory| Description                                                        |
+| -------- | ------- | ---- | ------------------------------------------------------------ |
+| isEvict  | boolean | No  | Whether the buffer capacity is insufficient. If the value is **true**, this method is called due to insufficient capacity.   |
+| key      | K       | Yes  | Key removed.                                              |
+| value    | V       | Yes  | Value removed.                                              |
+| newValue | V       | No  | New value for the key if the **put()** method is called and the key to be added already exists. In other cases, this parameter is left blank.|
+
+**Example**
+
+  ```js
+let arr = [];
+class ChildLruBuffer<K, V> extends util.LRUCache<K, V>
+{
+	constructor()
+	{
+		super();
+	}
+	afterRemoval(isEvict, key, value, newValue)
+	{
+		if (isEvict === false)
+		{
+			arr = [key, value, newValue];
+		}
+	}
+}
+let lru = new ChildLruBuffer();
+lru.afterRemoval(false,10,30,null);
+  ```
+
+
+### contains<sup>9+</sup>
+
+contains(key: K): boolean
+
+Checks whether this buffer contains the specified key.
+
+**System capability**: SystemCapability.Utils.Lang
+
+**Parameters**
+
+| Name| Type| Mandatory| Description            |
+| ------ | ---- | ---- | ---------------- |
+| key    | K    | Yes  | Key to check.|
+
+**Return value**
+
+| Type   | Description                                      |
+| ------- | ------------------------------------------ |
+| boolean | Returns **true** if the buffer contains the specified key; returns **false** otherwise.|
+
+**Example**
+
+  ```js
+let pro = new util.LRUCache();
+pro.put(2,10);
+let result = pro.contains(20);
+  ```
+
+
+### createDefault<sup>9+</sup>
+
+createDefault(key: K): V
+
+Creates a value if the value of the specified key is not available.
+
+**System capability**: SystemCapability.Utils.Lang
+
+**Parameters**
+
+| Name| Type| Mandatory| Description          |
+| ------ | ---- | ---- | -------------- |
+| key    | K    | Yes  | Key of which the value is missing.|
+
+**Return value**
+
+| Type| Description              |
+| ---- | ------------------ |
+| V    | Value of the key.|
+
+**Example**
+
+  ```js
+let pro = new util.LRUCache();
+let result = pro.createDefault(50);
+  ```
+
+
+### entries<sup>9+</sup>
+
+entries(): IterableIterator&lt;[K,V]&gt;
+
+Obtains a new iterator object that contains all key-value pairs in this object.
+
+**System capability**: SystemCapability.Utils.Lang
+
+**Return value**
+
+| Type       | Description                |
+| ----------- | -------------------- |
+| [K,&nbsp;V] | Iterable array.|
+
+**Example**
+
+  ```js
+let pro = new util.LRUCache();
+pro.put(2,10);
+let result = pro.entries();
+  ```
+
+### [Symbol.iterator]<sup>9+</sup>
+
+[Symbol.iterator]\(): IterableIterator&lt;[K, V]&gt;
+
+Obtains a two-dimensional array in key-value pairs.
+
+**System capability**: SystemCapability.Utils.Lang
+
+**Return value**
+
+| Type       | Description                          |
+| ----------- | ------------------------------ |
+| [K,&nbsp;V] | Two-dimensional array in key-value pairs.|
+
+**Example**
+
+  ```js
+let pro = new util.LRUCache();
+pro.put(2,10);
+let result = pro[Symbol.iterator]();
+  ```
+
+## LruBuffer<sup>8+(deprecated)</sup>
+
+> **NOTE**
+>
+> This API is deprecated since API version 9. You are advised to use [LRUCache9+](#lrucache9) instead.
 
 ### Attributes
 
@@ -758,12 +1563,15 @@ Obtains the string representation of this **RationalNumber** object.
   let result = pro.length;
   ```
 
+### constructor<sup>8+(deprecated)</sup>
 
-### constructor<sup>8+</sup>
+> **NOTE**
+>
+> This API is deprecated since API version 9. You are advised to use [constructor9+](#constructor9) instead.
 
 constructor(capacity?: number)
 
-A constructor used to create an **LruBuffer** instance. The default capacity of the buffer is 64.
+A constructor used to create a **LruBuffer** instance. The default capacity of the buffer is 64.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -778,8 +1586,11 @@ A constructor used to create an **LruBuffer** instance. The default capacity of 
   let lrubuffer= new util.LruBuffer();
   ```
 
+### updateCapacity<sup>8+(deprecated)</sup>
 
-### updateCapacity<sup>8+</sup>
+> **NOTE**
+>
+> This API is deprecated since API version 9. You are advised to use [updateCapacity9+](#updatecapacity9) instead.
 
 updateCapacity(newCapacity: number): void
 
@@ -799,8 +1610,11 @@ Changes the **LruBuffer** capacity. If the new capacity is less than or equal to
   let result = pro.updateCapacity(100);
   ```
 
+### toString<sup>8+(deprecated)</sup>
 
-### toString<sup>8+</sup>
+> **NOTE**
+>
+> This API is deprecated since API version 9. You are advised to use [toString9+](#tostring9) instead.
 
 toString(): string
 
@@ -823,8 +1637,11 @@ Obtains the string representation of this **LruBuffer** object.
   let result = pro.toString();
   ```
 
+### getCapacity<sup>8+(deprecated)</sup>
 
-### getCapacity<sup>8+</sup>
+> **NOTE**
+>
+> This API is deprecated since API version 9. You are advised to use [getCapacity9+](#getcapacity9) instead.
 
 getCapacity(): number
 
@@ -844,8 +1661,11 @@ Obtains the capacity of this buffer.
   let result = pro.getCapacity();
   ```
 
+### clear<sup>8+(deprecated)</sup>
 
-### clear<sup>8+</sup>
+> **NOTE**
+>
+> This API is deprecated since API version 9. You are advised to use [clear9+](#clear9) instead.
 
 clear(): void
 
@@ -861,8 +1681,11 @@ Clears key-value pairs from this buffer. The **afterRemoval()** method will be c
   pro.clear();
   ```
 
+### getCreateCount<sup>8+(deprecated)</sup>
 
-### getCreateCount<sup>8+</sup>
+> **NOTE**
+>
+> This API is deprecated since API version 9. You are advised to use [getCreateCount9+](#getcreatecount9) instead.
 
 getCreateCount(): number
 
@@ -883,8 +1706,11 @@ Obtains the number of return values for **createDefault()**.
   let result = pro.getCreateCount();
   ```
 
+### getMissCount<sup>8+(deprecated)</sup>
 
-### getMissCount<sup>8+</sup>
+> **NOTE**
+>
+> This API is deprecated since API version 9. You are advised to use [getMissCount9+](#getmisscount9) instead.
 
 getMissCount(): number
 
@@ -906,8 +1732,11 @@ Obtains the number of times that the queried values are mismatched.
   let result = pro.getMissCount();
   ```
 
+### getRemovalCount<sup>8+(deprecated)</sup>
 
-### getRemovalCount<sup>8+</sup>
+> **NOTE**
+>
+> This API is deprecated since API version 9. You are advised to use [getRemovalCount9+](#getremovalcount9) instead.
 
 getRemovalCount(): number
 
@@ -930,8 +1759,11 @@ Obtains the number of removals from this buffer.
   let result = pro.getRemovalCount();
   ```
 
+### getMatchCount<sup>8+(deprecated)</sup>
 
-### getMatchCount<sup>8+</sup>
+> **NOTE**
+>
+> This API is deprecated since API version 9. You are advised to use [getMatchCount9+](#getmatchcount9) instead.
 
 getMatchCount(): number
 
@@ -953,8 +1785,11 @@ Obtains the number of times that the queried values are matched.
   let result = pro.getMatchCount();
   ```
 
+### getPutCount<sup>8+(deprecated)</sup>
 
-### getPutCount<sup>8+</sup>
+> **NOTE**
+>
+> This API is deprecated since API version 9. You are advised to use [getPutCount9+](#getputcount9) instead.
 
 getPutCount(): number
 
@@ -975,8 +1810,11 @@ Obtains the number of additions to this buffer.
   let result = pro.getPutCount();
   ```
 
+### isEmpty<sup>8+(deprecated)</sup>
 
-### isEmpty<sup>8+</sup>
+> **NOTE**
+>
+> This API is deprecated since API version 9. You are advised to use [isEmpty9+](#isempty9) instead.
 
 isEmpty(): boolean
 
@@ -997,8 +1835,11 @@ Checks whether this buffer is empty.
   let result = pro.isEmpty();
   ```
 
+### get<sup>8+(deprecated)</sup>
 
-### get<sup>8+</sup>
+> **NOTE**
+>
+> This API is deprecated since API version 9. You are advised to use [get9+](#get9) instead.
 
 get(key: K): V | undefined
 
@@ -1016,7 +1857,7 @@ Obtains the value of the specified key.
 
 | Type| Description|
 | -------- | -------- |
-| V \| undefined | Returns the value of the key if a match is found in the buffer; returns **undefined** otherwise.|
+| V&nbsp;\|&nbsp;undefined | Returns the value of the key if a match is found in the buffer; returns **undefined** otherwise.|
 
 **Example**
   ```js
@@ -1025,8 +1866,11 @@ Obtains the value of the specified key.
   let result  = pro.get(2);
   ```
 
+### put<sup>8+(deprecated)</sup>
 
-### put<sup>8+</sup>
+> **NOTE**
+>
+> This API is deprecated since API version 9. You are advised to use [put9+](#put9) instead.
 
 put(key: K,value: V): V
 
@@ -1053,7 +1897,11 @@ Adds a key-value pair to this buffer.
   let result = pro.put(2,10);
   ```
 
-### values<sup>8+</sup>
+### values<sup>8+(deprecated)</sup>
+
+> **NOTE**
+>
+> This API is deprecated since API version 9. You are advised to use [values9+](#values9) instead.
 
 values(): V[]
 
@@ -1065,7 +1913,7 @@ Obtains all values in this buffer, listed from the most to the least recently ac
 
 | Type| Description|
 | -------- | -------- |
-| V [] | All values in the buffer, listed from the most to the least recently accessed.|
+| V&nbsp;[] | All values in the buffer, listed from the most to the least recently accessed.|
 
 **Example**
   ```js
@@ -1076,8 +1924,11 @@ Obtains all values in this buffer, listed from the most to the least recently ac
   let result = pro.values();
   ```
 
+### keys<sup>8+(deprecated)</sup>
 
-### keys<sup>8+</sup>
+> **NOTE**
+>
+> This API is deprecated since API version 9. You are advised to use [keys9+](#keys9) instead.
 
 keys(): K[]
 
@@ -1089,7 +1940,7 @@ Obtains all keys in this buffer, listed from the most to the least recently acce
 
 | Type| Description|
 | -------- | -------- |
-| K [] | All keys in the buffer, listed from the most to the least recently accessed.|
+| K&nbsp;[] | All keys in the buffer, listed from the most to the least recently accessed.|
 
 **Example**
   ```js
@@ -1098,8 +1949,11 @@ Obtains all keys in this buffer, listed from the most to the least recently acce
   let result = pro.keys();
   ```
 
+### remove<sup>8+(deprecated)</sup>
 
-### remove<sup>8+</sup>
+> **NOTE**
+>
+> This API is deprecated since API version 9. You are advised to use [remove9+](#remove9) instead.
 
 remove(key: K): V | undefined
 
@@ -1117,7 +1971,7 @@ Removes the specified key and its value from this buffer.
 
 | Type| Description|
 | -------- | -------- |
-| V \| undefined | Returns an **Optional** object containing the removed key-value pair if the key exists in the buffer; returns an empty **Optional** object otherwise. If the key is null, an exception will be thrown.|
+| V&nbsp;\|&nbsp;undefined | Returns an **Optional** object containing the removed key-value pair if the key exists in the buffer; returns an empty **Optional** object otherwise. If the key is null, an exception will be thrown.|
 
 **Example**
   ```js
@@ -1126,8 +1980,11 @@ Removes the specified key and its value from this buffer.
   let result = pro.remove(20);
   ```
 
+### afterRemoval<sup>8+(deprecated)</sup>
 
-### afterRemoval<sup>8+</sup>
+> **NOTE**
+>
+> This API is deprecated since API version 9. You are advised to use [afterRemoval9+](#afterremoval9) instead.
 
 afterRemoval(isEvict: boolean,key: K,value: V,newValue: V): void
 
@@ -1165,8 +2022,11 @@ Performs subsequent operations after a value is removed.
   lru.afterRemoval(false,10,30,null);
   ```
 
+### contains<sup>8+(deprecated)</sup>
 
-### contains<sup>8+</sup>
+> **NOTE**
+>
+> This API is deprecated since API version 9. You are advised to use [contains9+](#contains9) instead.
 
 contains(key: K): boolean
 
@@ -1193,8 +2053,11 @@ Checks whether this buffer contains the specified key.
   let result = pro.contains(20);
   ```
 
+### createDefault<sup>8+(deprecated)</sup>
 
-### createDefault<sup>8+</sup>
+> **NOTE**
+>
+> This API is deprecated since API version 9. You are advised to use [createDefault9+](#createdefault9) instead.
 
 createDefault(key: K): V
 
@@ -1220,8 +2083,11 @@ Creates a value if the value of the specified key is not available.
   let result = pro.createDefault(50);
   ```
 
+### entries<sup>8+(deprecated)</sup>
 
-### entries<sup>8+</sup>
+> **NOTE**
+>
+> This API is deprecated since API version 9. You are advised to use [entries9+](#entries9) instead.
 
 entries(): IterableIterator&lt;[K,V]&gt;
 
@@ -1233,7 +2099,7 @@ Obtains a new iterator object that contains all key-value pairs in this object.
 
 | Type| Description|
 | -------- | -------- |
-| [K, V] | Iterable array.|
+| [K,&nbsp;V] | Iterable array.|
 
 **Example**
   ```js
@@ -1242,8 +2108,11 @@ Obtains a new iterator object that contains all key-value pairs in this object.
   let result = pro.entries();
   ```
 
+### [Symbol.iterator]<sup>8+(deprecated)</sup>
 
-### [Symbol.iterator]<sup>8+</sup>
+> **NOTE**
+>
+> This API is deprecated since API version 9. You are advised to use [Symbol.iterator9+](#symboliterator9) instead.
 
 [Symbol.iterator]\(): IterableIterator&lt;[K, V]&gt;
 
@@ -1255,7 +2124,7 @@ Obtains a two-dimensional array in key-value pairs.
 
 | Type| Description|
 | -------- | -------- |
-| [K, V] | Two-dimensional array in key-value pairs.|
+| [K,&nbsp;V] | Two-dimensional array in key-value pairs.|
 
 **Example**
   ```js
@@ -1263,10 +2132,6 @@ Obtains a two-dimensional array in key-value pairs.
   pro.put(2,10);
   let result = pro[Symbol.iterator]();
   ```
-
-
-## Scope<sup>8+</sup>
-
 
 ### ScopeType<sup>8+</sup>
 
@@ -1304,8 +2169,372 @@ class Temperature{
 }
 ```
 
+## ScopeHelper<sup>9+</sup>
 
-### constructor<sup>8+</sup>
+### constructor<sup>9+</sup>
+
+constructor(lowerObj: ScopeType, upperObj: ScopeType)
+
+A constructor used to create a **ScopeHelper** object with the specified upper and lower limits.
+
+**System capability**: SystemCapability.Utils.Lang
+
+**Parameters**
+
+| Name  | Type                    | Mandatory| Description                  |
+| -------- | ------------------------ | ---- | ---------------------- |
+| lowerObj | [ScopeType](#scopetype8) | Yes  | Lower limit of the **Scope** object.|
+| upperObj | [ScopeType](#scopetype8) | Yes  | Upper limit of the **Scope** object.|
+
+**Example**
+
+  ```js
+let tempLower = new Temperature(30);
+let tempUpper = new Temperature(40);
+let range = new util.ScopeHelper(tempLower, tempUpper);
+  ```
+
+
+### toString<sup>9+</sup>
+
+toString(): string
+
+Obtains a string representation that contains this **Scope**.
+
+**System capability**: SystemCapability.Utils.Lang
+
+**Return value**
+
+| Type  | Description                                  |
+| ------ | -------------------------------------- |
+| string | String representation containing the **Scope**.|
+
+**Example**
+
+  ```js
+let tempLower = new Temperature(30);
+let tempUpper = new Temperature(40);
+let range = new util.ScopeHelper(tempLower, tempUpper);
+let result = range.toString();
+  ```
+
+
+### intersect<sup>9+</sup>
+
+intersect(range: ScopeHelper): ScopeHelper
+
+Obtains the intersection of this **Scope** and the given **Scope**.
+
+**System capability**: SystemCapability.Utils.Lang
+
+**Parameters**
+
+| Name| Type                          | Mandatory| Description              |
+| ------ | ------------------------------ | ---- | ------------------ |
+| range  | [ScopeHelper9+](#scopehelper9) | Yes  | **Scope** specified.|
+
+**Return value**
+
+| Type                          | Description                          |
+| ------------------------------ | ------------------------------ |
+| [ScopeHelper9+](#scopehelper9) | Intersection of this **Scope** and the given **Scope**.|
+
+**Example**
+
+  ```js
+let tempLower = new Temperature(30);
+let tempUpper = new Temperature(40);
+let range = new util.ScopeHelper(tempLower, tempUpper);
+let tempMiDF = new Temperature(35);
+let tempMidS = new Temperature(39);
+let rangeFir = new util.ScopeHelper(tempMiDF, tempMidS);
+range.intersect(rangeFir );
+  ```
+
+
+### intersect<sup>9+</sup>
+
+intersect(lowerObj:ScopeType,upperObj:ScopeType):ScopeHelper
+
+Obtains the intersection of this **Scope** and the given lower and upper limits.
+
+**System capability**: SystemCapability.Utils.Lang
+
+**Parameters**
+
+| Name  | Type                    | Mandatory| Description            |
+| -------- | ------------------------ | ---- | ---------------- |
+| lowerObj | [ScopeType](#scopetype8) | Yes  | Lower limit.|
+| upperObj | [ScopeType](#scopetype8) | Yes  | Upper limit.|
+
+**Return value**
+
+| Type                          | Description                                    |
+| ------------------------------ | ---------------------------------------- |
+| [ScopeHelper9+](#scopehelper9) | Intersection of this **Scope** and the given lower and upper limits.|
+
+**Example**
+
+  ```js
+let tempLower = new Temperature(30);
+let tempUpper = new Temperature(40);
+let tempMiDF = new Temperature(35);
+let tempMidS = new Temperature(39);
+let range = new util.ScopeHelper(tempLower, tempUpper);
+let result = range.intersect(tempMiDF, tempMidS);
+  ```
+
+
+### getUpper<sup>9+</sup>
+
+getUpper(): ScopeType
+
+Obtains the upper limit of this **Scope**.
+
+**System capability**: SystemCapability.Utils.Lang
+
+**Return value**
+
+| Type                    | Description                  |
+| ------------------------ | ---------------------- |
+| [ScopeType](#scopetype8) | Upper limit of this **Scope**.|
+
+**Example**
+
+  ```js
+let tempLower = new Temperature(30);
+let tempUpper = new Temperature(40);
+let range = new util.ScopeHelper(tempLower, tempUpper);
+let result = range.getUpper();
+  ```
+
+
+### getLower<sup>9+</sup>
+
+getLower(): ScopeType
+
+Obtains the lower limit of this **Scope**.
+
+**System capability**: SystemCapability.Utils.Lang
+
+**Return value**
+
+| Type                    | Description                  |
+| ------------------------ | ---------------------- |
+| [ScopeType](#scopetype8) | Lower limit of this **Scope**.|
+
+**Example**
+
+  ```js
+let tempLower = new Temperature(30);
+let tempUpper = new Temperature(40);
+let range = new util.ScopeHelper(tempLower, tempUpper);
+let result = range.getLower();
+  ```
+
+
+### expand<sup>9+</sup>
+
+expand(lowerObj: ScopeType,upperObj: ScopeType): ScopeHelper
+
+Obtains the union set of this **Scope** and the given lower and upper limits.
+
+**System capability**: SystemCapability.Utils.Lang
+
+**Parameters**
+
+| Name  | Type                    | Mandatory| Description            |
+| -------- | ------------------------ | ---- | ---------------- |
+| lowerObj | [ScopeType](#scopetype8) | Yes  | Lower limit.|
+| upperObj | [ScopeType](#scopetype8) | Yes  | Upper limit.|
+
+**Return value**
+
+| Type                          | Description                                |
+| ------------------------------ | ------------------------------------ |
+| [ScopeHelper9+](#scopehelper9) | Union set of this **Scope** and the given lower and upper limits.|
+
+**Example**
+
+  ```js
+let tempLower = new Temperature(30);
+let tempUpper = new Temperature(40);
+let tempMiDF = new Temperature(35);
+let tempMidS = new Temperature(39);
+let range = new util.ScopeHelper(tempLower, tempUpper);
+let result = range.expand(tempMiDF, tempMidS);
+  ```
+
+
+### expand<sup>9+</sup>
+
+expand(range: ScopeHelper): ScopeHelper
+
+Obtains the union set of this **Scope** and the given **Scope**.
+
+**System capability**: SystemCapability.Utils.Lang
+
+**Parameters**
+
+| Name| Type                          | Mandatory| Description              |
+| ------ | ------------------------------ | ---- | ------------------ |
+| range  | [ScopeHelper9+](#scopehelper9) | Yes  | **Scope** specified.|
+
+**Return value**
+
+| Type                          | Description                              |
+| ------------------------------ | ---------------------------------- |
+| [ScopeHelper9+](#scopehelper9) | Union set of this **Scope** and the given **Scope**.|
+
+**Example**
+
+  ```js
+let tempLower = new Temperature(30);
+let tempUpper = new Temperature(40);
+let tempMiDF = new Temperature(35);
+let tempMidS = new Temperature(39);
+let range = new util.ScopeHelper(tempLower, tempUpper);
+let rangeFir = new util.ScopeHelper(tempMiDF, tempMidS);
+let result = range.expand(rangeFir);
+  ```
+
+
+### expand<sup>9+</sup>
+
+expand(value: ScopeType): ScopeHelper
+
+Obtains the union set of this **Scope** and the given value.
+
+**System capability**: SystemCapability.Utils.Lang
+
+**Parameters**
+
+| Name| Type                    | Mandatory| Description            |
+| ------ | ------------------------ | ---- | ---------------- |
+| value  | [ScopeType](#scopetype8) | Yes  | Value specified.|
+
+**Return value**
+
+| Type                          | Description                            |
+| ------------------------------ | -------------------------------- |
+| [ScopeHelper9+](#scopehelper9) | Union set of this **Scope** and the given value.|
+
+**Example**
+
+  ```js
+let tempLower = new Temperature(30);
+let tempUpper = new Temperature(40);
+let tempMiDF = new Temperature(35);
+let range = new util.ScopeHelper(tempLower, tempUpper);
+let result = range.expand(tempMiDF);
+  ```
+
+
+### contains<sup>9+</sup>
+
+contains(value: ScopeType): boolean
+
+Checks whether a value is within this **Scope**.
+
+**System capability**: SystemCapability.Utils.Lang
+
+**Parameters**
+
+| Name| Type                    | Mandatory| Description            |
+| ------ | ------------------------ | ---- | ---------------- |
+| value  | [ScopeType](#scopetype8) | Yes  | Value specified.|
+
+**Return value**
+
+| Type   | Description                                               |
+| ------- | --------------------------------------------------- |
+| boolean | Returns **true** if the value is within this **Scope**; returns **false** otherwise.|
+
+**Example**
+
+  ```js
+let tempLower = new Temperature(30);
+let tempUpper = new Temperature(40);
+let tempMiDF = new Temperature(35);
+let range = new util.ScopeHelper(tempLower, tempUpper);
+range.contains(tempMiDF);
+  ```
+
+
+### contains<sup>9+</sup>
+
+contains(range: ScopeHelper): boolean
+
+Checks whether a range is within this **Scope**.
+
+**System capability**: SystemCapability.Utils.Lang
+
+**Parameters**
+
+| Name| Type                          | Mandatory| Description              |
+| ------ | ------------------------------ | ---- | ------------------ |
+| range  | [ScopeHelper9+](#scopehelper9) | Yes  | **Scope** specified.|
+
+**Return value**
+
+| Type   | Description                                                 |
+| ------- | ----------------------------------------------------- |
+| boolean | Returns **true** if the range is within this **Scope**; returns **false** otherwise.|
+
+**Example**
+
+  ```js
+let tempLower = new Temperature(30);
+let tempUpper = new Temperature(40);
+let range = new util.ScopeHelper(tempLower, tempUpper);
+let tempLess = new Temperature(20);
+let tempMore = new Temperature(45);
+let rangeSec = new util.ScopeHelper(tempLess, tempMore);
+let result = range.contains(rangeSec);
+  ```
+
+
+### clamp<sup>9+</sup>
+
+clamp(value: ScopeType): ScopeType
+
+Limits a value to this **Scope**.
+
+**System capability**: SystemCapability.Utils.Lang
+
+**Parameters**
+
+| Name| Type                    | Mandatory| Description          |
+| ------ | ------------------------ | ---- | -------------- |
+| value  | [ScopeType](#scopetype8) | Yes  | Value specified.|
+
+**Return value**
+
+| Type                    | Description                                                        |
+| ------------------------ | ------------------------------------------------------------ |
+| [ScopeType](#scopetype8) | Returns **lowerObj** if the specified value is less than the lower limit; returns **upperObj** if the specified value is greater than the upper limit; returns the specified value if it is within this **Scope**.|
+
+**Example**
+
+  ```js
+let tempLower = new Temperature(30);
+let tempUpper = new Temperature(40);
+let tempMiDF = new Temperature(35);
+let range = new util.ScopeHelper(tempLower, tempUpper);
+let result = range.clamp(tempMiDF);
+  ```
+
+## Scope<sup>8+(deprecated)</sup>
+
+> **NOTE**
+>
+> This class is deprecated since API version 9. You are advised to use [ScopeHelper9+](#scopehelper9) instead.
+
+### constructor<sup>8+(deprecated)</sup>
+
+> **NOTE**
+>
+> This API is deprecated since API version 9. You are advised to use [constructor9+](#constructor9) instead.
 
 constructor(lowerObj: ScopeType, upperObj: ScopeType)
 
@@ -1327,8 +2556,11 @@ A constructor used to create a **Scope** object with the specified upper and low
   let range = new util.Scope(tempLower, tempUpper);
   ```
 
+### toString<sup>8+(deprecated)</sup>
 
-### toString<sup>8+</sup>
+> **NOTE**
+>
+> This API is deprecated since API version 9. You are advised to use [toString9+](#tostring9) instead.
 
 toString(): string
 
@@ -1350,8 +2582,11 @@ Obtains a string representation that contains this **Scope**.
   let result = range.toString();
   ```
 
+### intersect<sup>8+(deprecated)</sup>
 
-### intersect<sup>8+</sup>
+> **NOTE**
+>
+> This API is deprecated since API version 9. You are advised to use [intersect9+](#intersect9) instead.
 
 intersect(range: Scope): Scope
 
@@ -1372,6 +2607,7 @@ Obtains the intersection of this **Scope** and the given **Scope**.
 | [Scope](#scope8) | Intersection of this **Scope** and the given **Scope**.|
 
 **Example**
+
   ```js
   let tempLower = new Temperature(30);
   let tempUpper = new Temperature(40);
@@ -1382,8 +2618,11 @@ Obtains the intersection of this **Scope** and the given **Scope**.
   range.intersect(rangeFir );
   ```
 
+### intersect<sup>8+(deprecated)</sup>
 
-### intersect<sup>8+</sup>
+> **NOTE**
+>
+> This API is deprecated since API version 9. You are advised to use [intersect9+](#intersect9) instead.
 
 intersect(lowerObj:ScopeType,upperObj:ScopeType):Scope
 
@@ -1414,8 +2653,11 @@ Obtains the intersection of this **Scope** and the given lower and upper limits.
   let result = range.intersect(tempMiDF, tempMidS);
   ```
 
+### getUpper<sup>8+(deprecated)</sup>
 
-### getUpper<sup>8+</sup>
+> **NOTE**
+>
+> This API is deprecated since API version 9. You are advised to use [getUpper9+](#getupper9) instead.
 
 getUpper(): ScopeType
 
@@ -1437,8 +2679,11 @@ Obtains the upper limit of this **Scope**.
   let result = range.getUpper();
   ```
 
+### getLower<sup>8+(deprecated)</sup>
 
-### getLower<sup>8+</sup>
+> **NOTE**
+>
+> This API is deprecated since API version 9. You are advised to use [getLower9+](#getlower9) instead.
 
 getLower(): ScopeType
 
@@ -1460,8 +2705,11 @@ Obtains the lower limit of this **Scope**.
   let result = range.getLower();
   ```
 
+### expand<sup>8+(deprecated)</sup>
 
-### expand<sup>8+</sup>
+> **NOTE**
+>
+> This API is deprecated since API version 9. You are advised to use [expand9+](#expand9) instead.
 
 expand(lowerObj: ScopeType,upperObj: ScopeType): Scope
 
@@ -1493,8 +2741,11 @@ Obtains the union set of this **Scope** and the given lower and upper limits.
   let result = range.expand(tempMiDF, tempMidS);
   ```
 
+### expand<sup>8+(deprecated)</sup>
 
-### expand<sup>8+</sup>
+> **NOTE**
+>
+> This API is deprecated since API version 9. You are advised to use [expand9+](#expand9) instead.
 
 expand(range: Scope): Scope
 
@@ -1525,8 +2776,11 @@ Obtains the union set of this **Scope** and the given **Scope**.
   let result = range.expand(rangeFir);
   ```
 
+### expand<sup>8+(deprecated)</sup>
 
-### expand<sup>8+</sup>
+> **NOTE**
+>
+> This API is deprecated since API version 9. You are advised to use [expand9+](#expand9) instead.
 
 expand(value: ScopeType): Scope
 
@@ -1555,8 +2809,11 @@ Obtains the union set of this **Scope** and the given value.
   let result = range.expand(tempMiDF);
   ```
 
+### contains<sup>8+(deprecated)</sup>
 
-### contains<sup>8+</sup>
+> **NOTE**
+>
+> This API is deprecated since API version 9. You are advised to use [contains9+](#contains9) instead.
 
 contains(value: ScopeType): boolean
 
@@ -1585,8 +2842,11 @@ Checks whether a value is within this **Scope**.
   range.contains(tempMiDF);
   ```
 
+### contains<sup>8+(deprecated)</sup>
 
-### contains<sup>8+</sup>
+> **NOTE**
+>
+> This API is deprecated since API version 9. You are advised to use [contains9+](#contains9) instead.
 
 contains(range: Scope): boolean
 
@@ -1607,6 +2867,7 @@ Checks whether a range is within this **Scope**.
 | boolean | Returns **true** if the range is within this **Scope**; returns **false** otherwise.|
 
 **Example**
+
   ```js
   let tempLower = new Temperature(30);
   let tempUpper = new Temperature(40);
@@ -1617,8 +2878,11 @@ Checks whether a range is within this **Scope**.
   let result = range.contains(rangeSec);
   ```
 
+### clamp<sup>8+(deprecated)</sup>
 
-### clamp<sup>8+</sup>
+> **NOTE**
+>
+> This API is deprecated since API version 9. You are advised to use [clamp9+](#clamp9) instead.
 
 clamp(value: ScopeType): ScopeType
 
@@ -1647,11 +2911,219 @@ Limits a value to this **Scope**.
   let result = range.clamp(tempMiDF);
   ```
 
+## Base64Helper<sup>9+</sup>
 
-## Base64<sup>8+</sup>
+### constructor<sup>9+</sup>
+
+constructor()
+
+A constructor used to create a **Base64Helper** instance.
+
+**System capability**: SystemCapability.Utils.Lang
+
+**Example**
+
+  ```js
+let base64 = new  util.Base64Helper();
+  ```
+
+### encodeSync<sup>9+</sup>
+
+encodeSync(src: Uint8Array): Uint8Array
+
+Encodes the input content.
+
+**System capability**: SystemCapability.Utils.Lang
+
+**Parameters**
+
+| Name| Type      | Mandatory| Description               |
+| ------ | ---------- | ---- | ------------------- |
+| src    | Uint8Array | Yes  | Uint8Array to encode.|
+
+**Return value**
+
+| Type      | Description                         |
+| ---------- | ----------------------------- |
+| Uint8Array | Uint8Array encoded.|
+
+**Example**
+
+  ```js
+let that = new util.Base64Helper();
+let array = new Uint8Array([115,49,51]);
+let result = that.encodeSync(array);
+  ```
 
 
-### constructor<sup>8+</sup>
+### encodeToStringSync<sup>9+</sup>
+
+encodeToStringSync(src: Uint8Array): string
+
+Encodes the input content.
+
+**System capability**: SystemCapability.Utils.Lang
+
+**Parameters**
+
+| Name| Type      | Mandatory| Description               |
+| ------ | ---------- | ---- | ------------------- |
+| src    | Uint8Array | Yes  | Uint8Array to encode.|
+
+**Return value**
+
+| Type  | Description                |
+| ------ | -------------------- |
+| string | String encoded from the Uint8Array.|
+
+**Example**
+
+  ```js
+let that = new util.Base64Helper();
+let array = new Uint8Array([115,49,51]);
+let result = that.encodeToStringSync(array);
+  ```
+
+
+### decodeSync<sup>9+</sup>
+
+decodeSync(src: Uint8Array | string): Uint8Array
+
+Decodes the input content.
+
+**System capability**: SystemCapability.Utils.Lang
+
+**Parameters**
+
+| Name| Type                          | Mandatory| Description                         |
+| ------ | ------------------------------ | ---- | ----------------------------- |
+| src    | Uint8Array&nbsp;\|&nbsp;string | Yes  | Uint8Array or string to decode.|
+
+**Return value**
+
+| Type      | Description                         |
+| ---------- | ----------------------------- |
+| Uint8Array | Uint8Array decoded.|
+
+**Example**
+
+  ```js
+let that = new util.Base64Helper();
+let buff = 'czEz';
+let result = that.decodeSync(buff);
+  ```
+
+
+### encode<sup>9+</sup>
+
+encode(src: Uint8Array): Promise&lt;Uint8Array&gt;
+
+Encodes the input content asynchronously.
+
+**System capability**: SystemCapability.Utils.Lang
+
+**Parameters**
+
+| Name| Type      | Mandatory| Description                   |
+| ------ | ---------- | ---- | ----------------------- |
+| src    | Uint8Array | Yes  | Uint8Array to encode asynchronously.|
+
+**Return value**
+
+| Type                     | Description                             |
+| ------------------------- | --------------------------------- |
+| Promise&lt;Uint8Array&gt; | Uint8Array obtained after asynchronous encoding.|
+
+**Example**
+
+  ```js
+let that = new util.Base64Helper();
+let array = new Uint8Array([115,49,51]);
+let rarray = new Uint8Array([99,122,69,122]);
+that.encode(array).then(val=>{    
+    for (var i = 0; i < rarray.length; i++) {        
+        console.log(val[i].toString())
+    }
+})
+  ```
+
+
+### encodeToString<sup>9+</sup>
+
+encodeToString(src: Uint8Array): Promise&lt;string&gt;
+
+Encodes the input content asynchronously.
+
+**System capability**: SystemCapability.Utils.Lang
+
+**Parameters**
+
+| Name| Type      | Mandatory| Description                   |
+| ------ | ---------- | ---- | ----------------------- |
+| src    | Uint8Array | Yes  | Uint8Array to encode asynchronously.|
+
+**Return value**
+
+| Type                 | Description                    |
+| --------------------- | ------------------------ |
+| Promise&lt;string&gt; | String obtained after asynchronous encoding.|
+
+**Example**
+
+  ```js
+let that = new util.Base64Helper();
+let array = new Uint8Array([115,49,51]);
+that.encodeToString(array).then(val=>{    
+    console.log(val)
+})
+  ```
+
+
+### decode<sup>9+</sup>
+
+decode(src: Uint8Array | string): Promise&lt;Uint8Array&gt;
+
+Decodes the input content asynchronously.
+
+**System capability**: SystemCapability.Utils.Lang
+
+**Parameters**
+
+| Name| Type                          | Mandatory| Description                             |
+| ------ | ------------------------------ | ---- | --------------------------------- |
+| src    | Uint8Array&nbsp;\|&nbsp;string | Yes  | Uint8Array or string to decode asynchronously.|
+
+**Return value**
+
+| Type                     | Description                             |
+| ------------------------- | --------------------------------- |
+| Promise&lt;Uint8Array&gt; | Uint8Array obtained after asynchronous decoding.|
+
+**Example**
+
+  ```js
+let that = new util.Base64Helper();
+let array = new Uint8Array([99,122,69,122]);
+let rarray = new Uint8Array([115,49,51]);
+that.decode(array).then(val=>{    
+    for (var i = 0; i < rarray.length; i++) {        
+        console.log(val[i].toString())
+    }
+})
+  ```
+
+
+## Base64<sup>8+(deprecated)</sup>
+
+> **NOTE**
+>
+> This class is deprecated since API version 9. You are advised to use [Base64Helper9+](#base64helper9) instead.
+
+### constructor<sup>8+(deprecated)</sup>
+
+> **NOTE**
+>
+> This API is deprecated since API version 9. You are advised to use [constructor9+](#constructor9) instead.
 
 constructor()
 
@@ -1664,8 +3136,11 @@ A constructor used to create a **Base64** object.
   let base64 = new  util.Base64();
   ```
 
+### encodeSync<sup>8+(deprecated)</sup>
 
-### encodeSync<sup>8+</sup>
+> **NOTE**
+>
+> This API is deprecated since API version 9. You are advised to use [encodeSync9+](#encodesync9) instead.
 
 encodeSync(src: Uint8Array): Uint8Array
 
@@ -1686,14 +3161,18 @@ Encodes the input content.
 | Uint8Array | Uint8Array encoded.|
 
 **Example**
+
   ```js
   let that = new util.Base64();
   let array = new Uint8Array([115,49,51]);
   let result = that.encodeSync(array);
   ```
 
+### encodeToStringSync<sup>8+(deprecated)</sup>
 
-### encodeToStringSync<sup>8+</sup>
+> **NOTE**
+>
+> This API is deprecated since API version 9. You are advised to use [encodeToStringSync9+](#encodetostringsync9) instead.
 
 encodeToStringSync(src: Uint8Array): string
 
@@ -1720,8 +3199,11 @@ Encodes the input content.
   let result = that.encodeToStringSync(array);
   ```
 
+### decodeSync<sup>8+(deprecated)</sup>
 
-### decodeSync<sup>8+</sup>
+> **NOTE**
+>
+> This API is deprecated since API version 9. You are advised to use [decodeSync9+](#decodesync9) instead.
 
 decodeSync(src: Uint8Array | string): Uint8Array
 
@@ -1733,7 +3215,7 @@ Decodes the input content.
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| src | Uint8Array \| string | Yes| Uint8Array or string to decode.|
+| src | Uint8Array&nbsp;\|&nbsp;string | Yes| Uint8Array or string to decode.|
 
 **Return value**
 
@@ -1748,8 +3230,11 @@ Decodes the input content.
   let result = that.decodeSync(buff);
   ```
 
+### encode<sup>8+(deprecated)</sup>
 
-### encode<sup>8+</sup>
+> **NOTE**
+>
+> This API is deprecated since API version 9. You are advised to use [encode9+](#encode9) instead.
 
 encode(src: Uint8Array): Promise&lt;Uint8Array&gt;
 
@@ -1781,8 +3266,11 @@ Encodes the input content asynchronously.
   })
   ```
 
+### encodeToString<sup>8+(deprecated)</sup>
 
-### encodeToString<sup>8+</sup>
+> **NOTE**
+>
+> This API is deprecated since API version 9. You are advised to use [encodeToString9+](#encodetostring9) instead.
 
 encodeToString(src: Uint8Array): Promise&lt;string&gt;
 
@@ -1811,8 +3299,11 @@ Encodes the input content asynchronously.
   })
   ```
 
+### decode<sup>8+(deprecated)</sup>
 
-### decode<sup>8+</sup>
+> **NOTE**
+>
+> This API is deprecated since API version 9. You are advised to use [decode9+](#decode9) instead.
 
 decode(src: Uint8Array | string): Promise&lt;Uint8Array&gt;
 
@@ -1824,7 +3315,7 @@ Decodes the input content asynchronously.
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| src | Uint8Array \| string | Yes| Uint8Array or string to decode asynchronously.|
+| src | Uint8Array&nbsp;\|&nbsp;string | Yes| Uint8Array or string to decode asynchronously.|
 
 **Return value**
 
@@ -1843,7 +3334,6 @@ Decodes the input content asynchronously.
       }
   })
   ```
-
 
 ## types<sup>8+</sup>
 
@@ -2929,3 +4419,4 @@ Checks whether the input value is of the **SharedArrayBuffer** type.
   let that = new util.types();
   let result = that.isSharedArrayBuffer(new SharedArrayBuffer(0));
   ```
+  <!--no_check-->
