@@ -195,7 +195,7 @@ set(key: string, value: string, callback: AsyncCallback&lt;void&gt;): void
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
 > - 此接口只能用于系统应用的参数设置。
-> - 所授权的系统应用需要配置对应selinux和dac规则，具体配置方法请参照系统参数指导文档:[系统参数](https://gitee.com/openharmony/docs/blob/master/zh-cn/device-dev/subsystems/subsys-boot-init-sysparam.md)。
+> - 所授权的系统应用需要配置对应selinux和dac规则，具体配置方法请参照系统参数指导文档:[系统参数](../../../device-dev/subsystems/subsys-boot-init-sysparam.md)。
 
 **示例：**
 
@@ -235,7 +235,7 @@ set(key: string, value: string): Promise&lt;void&gt;
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
 > - 此接口只能用于系统应用的参数设置。
-> - 所授权的系统应用需要配置对应selinux和dac规则，具体配置方法请参照系统参数指导文档:[系统参数](https://gitee.com/openharmony/docs/blob/master/zh-cn/device-dev/subsystems/subsys-boot-init-sysparam.md)
+> - 所授权的系统应用需要配置对应selinux和dac规则，具体配置方法请参照系统参数指导文档:[系统参数](../../../device-dev/subsystems/subsys-boot-init-sysparam.md)
 
 **示例：**
 
