@@ -46,7 +46,7 @@ struct PositionExample1 {
           .fontSize(16)
           .backgroundColor(0xFFE4C4)
 
-        // 父容器设置direction为Direction.Auto|Ltr|不设置，子元素从左到右排列
+        // 父容器设置direction为Direction.Ltr，子元素从左到右排列
         Text('direction').fontSize(9).fontColor(0xCCCCCC).width('90%')
         Row() {
           Text('1').height(50).width('25%').fontSize(16).backgroundColor(0xF5DEB3)
@@ -55,7 +55,7 @@ struct PositionExample1 {
           Text('4').height(50).width('25%').fontSize(16).backgroundColor(0xD2B48C)
         }
         .width('90%')
-        .direction(Direction.Auto)
+        .direction(Direction.Ltr)
         // 父容器设置direction为Direction.Rtl，子元素从右到左排列
         Row() {
           Text('1').height(50).width('25%').fontSize(16).backgroundColor(0xF5DEB3)
