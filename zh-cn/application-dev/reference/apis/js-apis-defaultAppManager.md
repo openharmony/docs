@@ -23,7 +23,7 @@ import defaultAppMgr from '@ohos.bundle.defaultAppManager';
 
 ## defaultAppMgr.ApplicationType
 
-应用类型
+默认应用的应用类型。
 
 **系统能力：** SystemCapability.BundleManager.BundleFramework.DefaultApp
 
@@ -88,7 +88,7 @@ isDefaultApplication(type: string, callback: AsyncCallback\<boolean>): void
 
 **示例：**
 
-```js
+```ts
 import defaultAppMgr from '@ohos.bundle.defaultAppManager';
 defaultAppMgr.isDefaultApplication(defaultAppMgr.ApplicationType.BROWSER, (err, data) => {
     if (err) {
@@ -136,7 +136,7 @@ getDefaultApplication(type: string, userId?: number): Promise\<BundleInfo>
 
 **示例：**
 
-```js
+```ts
 import defaultAppMgr from '@ohos.bundle.defaultAppManager';
 defaultAppMgr.getDefaultApplication(defaultAppMgr.ApplicationType.BROWSER)
 .then((data) => {
@@ -187,7 +187,7 @@ getDefaultApplication(type: string, userId: number, callback: AsyncCallback\<Bun
 
 **示例：**
 
-```js
+```ts
 import defaultAppMgr from '@ohos.bundle.defaultAppManager';
 let userId = 100;
 defaultAppMgr.getDefaultApplication(defaultAppMgr.ApplicationType.BROWSER, userId, (err, data) => {
@@ -238,7 +238,7 @@ getDefaultApplication(type: string, callback: AsyncCallback\<BundleInfo>) : void
 
 **示例：**
 
-```js
+```ts
 import defaultAppMgr from '@ohos.bundle.defaultAppManager';
 defaultAppMgr.getDefaultApplication(defaultAppMgr.ApplicationType.BROWSER, (err, data) => {
     if (err) {
@@ -260,12 +260,6 @@ defaultAppMgr.getDefaultApplication("image/png", (err, data) => {
 
 setDefaultApplication(type: string, elementName: ElementName, userId?: number): Promise\<void>
 
-| 类型                                                        | 说明                        |
-| ----------------------------------------------------------- | --------------------------- |
-| Promise\<void> | Promise对象，返回BundleInfo |
-
->
-
 以异步方法根据系统已定义的应用类型或者符合媒体类型格式（type/subtype）的文件类型设置默认应用，使用Promise形式返回结果。
 
 **需要权限：** ohos.permission.SET_DEFAULT_APPLICATION
@@ -286,7 +280,7 @@ setDefaultApplication(type: string, elementName: ElementName, userId?: number): 
 
 | 类型           | 说明                               |
 | -------------- | ---------------------------------- |
-| Promise\<void> | Promise对象，无返回结果的Promise。 |
+| Promise\<void> | Promise对象，无返回结果的Promise对象。 |
 
 **错误码：**
 
@@ -300,7 +294,7 @@ setDefaultApplication(type: string, elementName: ElementName, userId?: number): 
 
 **示例：**
 
-```js
+```ts
 import defaultAppMgr from '@ohos.bundle.defaultAppManager';
 defaultAppMgr.setDefaultApplication(defaultAppMgr.ApplicationType.BROWSER, {
     bundleName: "com.test.app",
@@ -367,7 +361,7 @@ setDefaultApplication(type: string, elementName: ElementName, userId: number, ca
 
 **示例：**
 
-```js
+```ts
 import defaultAppMgr from '@ohos.bundle.defaultAppManager';
 let userId = 100;
 defaultAppMgr.setDefaultApplication(defaultAppMgr.ApplicationType.BROWSER, {
@@ -484,7 +478,7 @@ resetDefaultApplication(type: string, userId?: number): Promise\<void>
 
 **示例：**
 
-```js
+```ts
 import defaultAppMgr from '@ohos.bundle.defaultAppManager';
 let userId = 100;
 defaultAppMgr.resetDefaultApplication(defaultAppMgr.ApplicationType.BROWSER, userId)
@@ -535,7 +529,7 @@ resetDefaultApplication(type: string, userId: number, callback: AsyncCallback\<v
 
 **示例：**
 
-```js
+```ts
 import defaultAppMgr from '@ohos.bundle.defaultAppManager';
 let userId = 100;
 defaultAppMgr.resetDefaultApplication(defaultAppMgr.ApplicationType.BROWSER, userId, (err, data) => {
