@@ -15,7 +15,7 @@ import resourceManager from '@ohos.resourceManager';
 
 ## 使用说明
 
-从API Version9开始，Stage模型支持了通过context获取resourceManager对象的方式，再调用其内部获取资源的接口，无需再导入包，此方式FA模型不适用。
+从API Version9开始，Stage模型通过context获取resourceManager对象的方式后，可直接调用其内部获取资源的接口，无需再导入包。此方式FA模型不适用，FA模型还需要先导入包，再调用[getResourceManager](#resourcemanagergetresourcemanager)接口获取资源对象。
 Stage模型下Context的引用方法请参考[Stage模型的Context详细介绍](../../ability/context-userguide.md)
 
 ```ts
@@ -305,7 +305,7 @@ getStringValue(resId: number, callback: AsyncCallback&lt;string&gt;): void
 **示例Stage：** 
   ```ts
     try {
-        this.context.getStringValue($r('app.string.test').id, (error, value) => {
+        this.context.resourceManager.getStringValue($r('app.string.test').id, (error, value) => {
           if (error != null) {
               console.log("error is " + error);
           } else {
@@ -2495,7 +2495,7 @@ getMedia(resId: number, callback: AsyncCallback&lt;Uint8Array&gt;): void
 
 用户获取指定资源ID对应的媒体文件内容，使用callback形式返回字节数组。
 
-从API version 9开始不再维护，建议使用[getMediaContent](#getmediacontent)代替。
+从API version 9开始不再维护，建议使用[getMediaContent](#getmediacontent9)代替。
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
@@ -2526,7 +2526,7 @@ getMedia(resId: number): Promise&lt;Uint8Array&gt;
 
 用户获取指定资源ID对应的媒体文件内容，使用Promise形式返回字节数组。
 
-从API version 9开始不再维护，建议使用[getMediaContent](#getmediacontent-1)代替。
+从API version 9开始不再维护，建议使用[getMediaContent](#getmediacontent9-1)代替。
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
@@ -2559,7 +2559,7 @@ getMediaBase64(resId: number, callback: AsyncCallback&lt;string&gt;): void
 
 用户获取指定资源ID对应的图片资源Base64编码，使用callback形式返回字符串。
 
-从API version 9开始不再维护，建议使用[getMediaContentBase64](#getmediacontentbase64)代替。
+从API version 9开始不再维护，建议使用[getMediaContentBase64](#getmediacontentbase649)代替。
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
@@ -2590,7 +2590,7 @@ getMediaBase64(resId: number): Promise&lt;string&gt;
 
 用户获取指定资源ID对应的图片资源Base64编码，使用Promise形式返回字符串。
 
-从API version 9开始不再维护，建议使用[getMediaContentBase64](#getmediacontentbase64-1)代替。
+从API version 9开始不再维护，建议使用[getMediaContentBase64](#getmediacontentbase649-1)代替。
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
@@ -2623,7 +2623,7 @@ getPluralString(resId: number, num: number): Promise&lt;string&gt;
 
 根据指定数量获取对指定ID字符串表示的单复数字符串，使用Promise形式返回字符串。
 
-从API version 9开始不再维护，建议使用[getPluralStringValue](#getpluralstringvalue)代替。
+从API version 9开始不再维护，建议使用[getPluralStringValue](#getpluralstringvalue9)代替。
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
@@ -2657,7 +2657,7 @@ getPluralString(resId: number, num: number, callback: AsyncCallback&lt;string&gt
 
 根据指定数量获取指定ID字符串表示的单复数字符串，使用callback形式返回字符串。
 
-从API version 9开始不再维护，建议使用[getPluralStringValue](#getpluralstringvalue-1)代替。
+从API version 9开始不再维护，建议使用[getPluralStringValue](#getpluralstringvalue9-1)代替。
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
