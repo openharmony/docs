@@ -1,4 +1,4 @@
-# ArkUI (eTS) Development
+# ArkUI (ArkTS) Development
 
 
 
@@ -72,7 +72,7 @@ Applicable to: OpenHarmony SDK 3.2.2.5, stage model of API version 9
 
 2. Convert data in Uint8Array format to the string type by calling the **String.fromCharCode** API.
 
-Reference: [Resource Management](https://gitee.com/openharmony/docs/blob/master/en/application-dev/reference/apis/js-apis-resource-manager.md)
+Reference: [Resource Management](../reference/apis/js-apis-resource-manager.md)
 
 Example:
 
@@ -94,7 +94,7 @@ Applicable to: OpenHarmony SDK 3.2.3.5, stage model of API version 9
 
 Use the **resourceManager.getString()** API of the **\@ohos.resourceManager** module.
 
-Reference: [Resource Management](https://gitee.com/openharmony/docs/blob/master/en/application-dev/reference/apis/js-apis-resource-manager.md#getstring)
+Reference: [Resource Management](../reference/apis/js-apis-resource-manager.md#getstring)
 
 ## What should I do if the global static variables of a class do not work?
 
@@ -102,7 +102,7 @@ Applicable to: OpenHarmony SDK 3.2.3.5, stage model of API version 9
 
 Objects imported to abilities and pages are packaged into two different closures, that is, two global objects. In this case, a static variable referenced by the abilities is not the same object as that referenced by the pages. Therefore, global variables cannot be defined by defining static variables in the class. You are advised to use AppStorage to manage global variables.
 
-Reference: [AppStorage](https://docs.openharmony.cn/pages/v3.2Beta/en/application-dev/ui/ts-application-states-appstorage.md/)
+Reference: [AppStorage](../ui/ts-application-states-appstorage.md/)
 
 ## How do I obtain resources in the stage model?
 
@@ -154,9 +154,9 @@ build() {
 
 Applicable to: OpenHarmony SDK 3.2.2.5, stage model of API version 9
 
-No. Currently, **CustomDialog** can be used only on eTS pages.
+No. Currently, **CustomDialog** can be used only on ArkTS pages.
 
-Reference: [Custom Dialog Box](https://gitee.com/openharmony/docs/blob/master/en/application-dev/reference/arkui-ts/ts-methods-custom-dialog-box.md)
+Reference: [Custom Dialog Box](../reference/arkui-ts/ts-methods-custom-dialog-box.md)
 
 ## How do I transfer variables in CustomDialog to variables on pages?
 
@@ -267,13 +267,13 @@ export default class MainAbility extends Ability {
 }
 ```
 
-## How do I execute JavaScript functions in the \<Web> component in eTS code?
+## How do I execute JavaScript functions in the \<Web> component in ArkTS code?
 
 Applicable to: OpenHarmony SDK 3.2.3.5, stage model of API version 9
 
 Call the **runJavaScript** API in the **WebController** to asynchronously execute JavaScript scripts. This API uses a callback to return the execution result. Note: **runJavaScript** can only be called after **loadUrl** has been completed. For example, it can be called in **onPageEnd**.
 
-Reference: [Web](https://gitee.com/openharmony/docs/blob/master/en/application-dev/reference/arkui-ts/ts-basic-components-web.md)
+Reference: [Web](../reference/arkui-ts/ts-basic-components-web.md)
 
 ## How do I fix misidentification of the pan gesture where container nesting is involved?
 
