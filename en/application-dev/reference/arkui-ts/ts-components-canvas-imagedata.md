@@ -10,11 +10,11 @@ An **ImageData** object stores pixel data rendered on a canvas.
 
 ## Attributes
 
-| Name| Type| Description| 
+| Name| Type| Description|
 | -------- | -------- | -------- |
-| width | number | Actual width of the rectangle on the canvas, in pixels.| 
-| height | number | Actual height of the rectangle on the canvas, in pixels.| 
-| data | Uint8ClampedArray | A one-dimensional array of color values. The values range from 0 to 255.| 
+| width | number | Actual width of the rectangle on the canvas, in pixels.|
+| height | number | Actual height of the rectangle on the canvas, in pixels.|
+| data | Uint8ClampedArray | A one-dimensional array of color values. The values range from 0 to 255.|
 
 **Example**
 
@@ -23,8 +23,8 @@ An **ImageData** object stores pixel data rendered on a canvas.
 @Entry
 @Component
 struct Translate {
-  private settings: RenderingContextSettings = new RenderingContextSettings(true);
-  private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings);
+  private settings: RenderingContextSettings = new RenderingContextSettings(true)
+  private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
   private img:ImageBitmap = new ImageBitmap("/common/images/1234.png")
 
   build() {
@@ -34,9 +34,9 @@ struct Translate {
         .height('100%')
         .backgroundColor('#ffff00')
         .onReady(() =>{
-          this.context.drawImage(this.img,0,0,130,130);
-          var imagedata = this.context.getImageData(50,50,130,130);
-          this.context.putImageData(imagedata,150,150);
+          this.context.drawImage(this.img,0,0,130,130)
+          var imagedata = this.context.getImageData(50,50,130,130)
+          this.context.putImageData(imagedata,150,150)
         })
     }
     .width('100%')

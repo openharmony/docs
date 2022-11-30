@@ -1,10 +1,10 @@
 # ListItemGroup
 
-The **\<ListItemGroup>** component is used to display list item groups. It must be used with the **[\<List>](ts-container-list.md)** and, if not otherwise specified, takes up the entire width of the **\<List>** component.
+The **\<ListItemGroup>** component is used to display list item groups. It must be used with the **[\<List>](ts-container-list.md)** component and, if not otherwise specified, takes up the entire width of the **\<List>**.
 
 > **NOTE**
 >
-> This component is supported since API version 9. Updates will be marked with a superscript to indicate their earliest API version.
+> - This component is supported since API version 9. Updates will be marked with a superscript to indicate their earliest API version.
 ## Usage Guidelines
 If the **listDirection** attribute of the parent **\<List>** component is set to **Axis.Vertical**, the **height** attribute of the **\<ListItemGroup>** component cannot be set. The height of a **\<ListItemGroup>** component is the sum of its header height, footer height, and total height of the list items. If the **listDirection** attribute of the parent **\<List>** component is set to **Axis.Horizontal**, the **width** attribute of the **\<ListItemGroup>** component cannot be set. The width of a **\<ListItemGroup>** component is the sum of its header width, footer width, and total width of the list items.
 
@@ -31,7 +31,7 @@ ListItemGroup(options?: {header?: CustomBuilder, footer?: CustomBuilder, space?:
 
 | Name| Type|  Description|
 | -------- | -------- | -------- |
-| divider | {<br>strokeWidth: [Length](ts-types.md#length),<br>color?: [ResourceColor](ts-types.md#resourcecolor),<br>startMargin?: [Length](ts-types.md#length),<br>endMargin?: [Length](ts-types.md#length)<br>} \| null | Style of the divider for the list items. By default, there is no divider.<br>- **strokeWidth**: stroke width of the divider.<br>- **color**: color of the divider.<br>**startMargin**: distance between the divider and the start of the list.<br>**endMargin**: distance between the divider and the end of the list.|
+| divider | {<br>strokeWidth: [Length](ts-types.md#length),<br>color?: [ResourceColor](ts-types.md#resourcecolor),<br>startMargin?: [Length](ts-types.md#length),<br>endMargin?: [Length](ts-types.md#length)<br>} \| null | Style of the divider for the list items. By default, there is no divider.<br>- **strokeWidth**: stroke width of the divider.<br>- **color**: color of the divider.<br>- **startMargin**: distance between the divider and the start of the list.<br>- **endMargin**: distance between the divider and the end of the list.|
 
 
 ## Example
@@ -51,7 +51,7 @@ function itemHeadBuilder(text: string) {
 
 function itemFootBuilder(num: number) {
   @Builder function itemFoot() {
-    Text('' + num + " lessons in total ")
+    Text(''Total lessons:'+ num")
       .fontSize(16)
       .backgroundColor(0xAABBCC)
       .width("100%")
@@ -96,7 +96,7 @@ struct ListItemGroupExample {
             }, item => item)
           }
           .borderRadius(20)
-          .divider({ strokeWidth: 1, color: 0xDCDCDC }) // Divider between lines
+          .divider ({ strokeWidth: 1,color:Color.Blue }) // Divider between lines
         })
       }
       .width('90%')
@@ -106,4 +106,4 @@ struct ListItemGroupExample {
 }
 ```
 
-
+![en-us_image_0000001219864159](figures/en-us_image_listitemgroup.gif)
