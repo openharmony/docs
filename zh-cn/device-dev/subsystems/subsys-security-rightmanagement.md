@@ -55,54 +55,89 @@
 本部分以包管理器的应用权限开发为例进行讲解。开发过程中，首先需要明确涉及的敏感权限，并在config.json中声明该权限，在安装应用程序时，包管理器会调用应用权限管理组件的接口检查该权限是否被授予，若授予，安装流程正常进行，否则安装失败。
 
 1. 在开发过程中，包管理器明确需要安装应用的权限（ohos.permission.INSTALL_BUNDLE），并在config.json中声明该权限；
-     
-   ```
-   {
-     ...
-     "module": {
-         "package": "com.example.kitframework",
-         "deviceType": [
-             "phone", "tv","tablet", "pc","car","smartWatch","sportsWatch","smartCamera", "smartVision"
-         ],
-         "reqPermissions": [{
-           // 声明需要的权限：安装应用程序的权限名
-           "name": "ohos.permission.INSTALL_BUNDLE",   
-           "reason": "install bundle",
-           "usedScene": {
-             "ability": [
-               "KitFramework"
-               ],
-             "when": "always"
-           }
-         },
-         {
-           "name": "ohos.permission.LISTEN_BUNDLE_CHANGE",
-           "reason": "install bundle",
-           "usedScene": {
-             "ability": [
-               "KitFramework"
-               ],
-             "when": "always"
-           }
-         },
-         {
-           "name": "ohos.permission.GET_BUNDLE_INFO",
-           "reason": "install bundle",
-           "usedScene": {
-             "ability": [
-               "KitFramework"
-               ],
-             "when": "always"
-           }
-         }
-         ],
-       ...
-   }
-   ```
+    FA模型：需要在config.json中声明权限，示例：
+    ```json
+    {
+      "module": {
+          "package": "ohos.demo.kitframework",
+          "deviceType": [
+              "phone", "tv","tablet", "car","smartWatch","sportsWatch","smartCamera", "smartVision"
+          ],
+          "reqPermissions": [{
+            "name": "ohos.permission.INSTALL_BUNDLE",
+            "reason": "install bundle",
+            "usedScene": {
+              "ability": [
+                "KitFramework"
+                ],
+              "when": "always"
+            }
+          },
+          {
+            "name": "ohos.permission.LISTEN_BUNDLE_CHANGE",
+            "reason": "install bundle",
+            "usedScene": {
+              "ability": [
+                "KitFramework"
+                ],
+              "when": "always"
+            }
+          },
+          {
+            "name": "ohos.permission.GET_BUNDLE_INFO",
+            "reason": "install bundle",
+            "usedScene": {
+              "ability": [
+                "KitFramework"
+                ],
+              "when": "always"
+            }
+          }
+        ]
+      }
+    }
+    ```
+    Stage模型：需要在module.json5中声明权限，示例：
+    ```json
+    {
+      "module": {
+        "requestPermissions": [{
+          "name": "ohos.permission.INSTALL_BUNDLE",
+          "reason": "install bundle",
+          "usedScene": {
+            "ability": [
+              "KitFramework"
+            ],
+            "when": "always"
+          }
+        },
+        {
+          "name": "ohos.permission.LISTEN_BUNDLE_CHANGE",
+          "reason": "install bundle",
+          "usedScene": {
+            "ability": [
+              "KitFramework"
+            ],
+            "when": "always"
+          }
+        },
+        {
+          "name": "ohos.permission.GET_BUNDLE_INFO",
+          "reason": "install bundle",
+          "usedScene": {
+            "ability": [
+              "KitFramework"
+            ],
+            "when": "always"
+          }
+        }]
+      }
+    }
+    ```
 
 2. 当包管理器开发应用安装功能接口时，会调用权限管理相关接口检查自身是否具有安装应用程序的权限，例如：以安装应用的权限名"ohos.permission.INSTALL_BUNDLE"作为入参，调用CheckPermission接口检查包管理器是否具有安装应用的权限，如果有权限，安装流程继续执行，否则返回安装失败；
      
-   ```
+   ```c++
    constexpr static char PERMISSION_INSTALL_BUNDLE[] = "ohos.permission.INSTALL_BUNDLE";
    
    bool Install(const char *hapPath, const InstallParam *installParam, InstallerCallback installerCallback)
