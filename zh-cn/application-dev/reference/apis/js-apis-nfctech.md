@@ -326,6 +326,7 @@ isExtendedApduSupported(): Promise&lt;boolean&gt;
 **错误码：**
 
 以下错误码的详细介绍请参见[NFC错误码](../errorcodes/errorcode-nfc.md)。
+
 | 错误码ID | 错误信息|
 | ------- | -------|
 | 3100201 | Tag running state is abnormal in service. |
@@ -376,6 +377,7 @@ isExtendedApduSupported(callback: AsyncCallback\<boolean>): void
 **错误码：**
 
 以下错误码的详细介绍请参见[NFC错误码](../errorcodes/errorcode-nfc.md)。
+
 | 错误码ID | 错误信息|
 | ------- | -------|
 | 3100201 | Tag running state is abnormal in service. |
@@ -535,6 +537,7 @@ readNdef(): Promise\<[NdefMessage](#ndefmessage9)>
 **错误码：**
 
 以下错误码的详细介绍请参见[NFC错误码](../errorcodes/errorcode-nfc.md)。
+
 | 错误码ID | 错误信息|
 | ------- | -------|
 | 3100201 | Tag running state is abnormal in service. |
@@ -584,6 +587,7 @@ readNdef(callback: AsyncCallback\<[NdefMessage](#ndefmessage9)>): void
 **错误码：**
 
 以下错误码的详细介绍请参见[NFC错误码](../errorcodes/errorcode-nfc.md)。
+
 | 错误码ID | 错误信息|
 | ------- | -------|
 | 3100201 | Tag running state is abnormal in service. |
@@ -635,6 +639,7 @@ writeNdef(msg: NdefMessage): Promise\<void>;
 **错误码：**
 
 以下错误码的详细介绍请参见[NFC错误码](../errorcodes/errorcode-nfc.md)。
+
 | 错误码ID | 错误信息|
 | ------- | -------|
 | 3100201 | Tag running state is abnormal in service. |
@@ -688,6 +693,7 @@ writeNdef(msg: [NdefMessage](#ndefmessage9), callback: AsyncCallback\<void>): vo
 **错误码：**
 
 以下错误码的详细介绍请参见[NFC错误码](../errorcodes/errorcode-nfc.md)。
+
 | 错误码ID | 错误信息|
 | ------- | -------|
 | 3100201 | Tag running state is abnormal in service. |
@@ -742,6 +748,7 @@ canSetReadOnly(): boolean
 **错误码：**
 
 以下错误码的详细介绍请参见[NFC错误码](../errorcodes/errorcode-nfc.md)。
+
 | 错误码ID | 错误信息|
 | ------- | -------|
 | 3100201 | Tag running state is abnormal in service. |
@@ -769,6 +776,7 @@ setReadOnly(): Promise\<void>
 **错误码：**
 
 以下错误码的详细介绍请参见[NFC错误码](../errorcodes/errorcode-nfc.md)。
+
 | 错误码ID | 错误信息|
 | ------- | -------|
 | 3100201 | Tag running state is abnormal in service. |
@@ -818,6 +826,7 @@ setReadOnly(callback: AsyncCallback\<void>): void
 **错误码：**
 
 以下错误码的详细介绍请参见[NFC错误码](../errorcodes/errorcode-nfc.md)。
+
 | 错误码ID | 错误信息|
 | ------- | -------|
 | 3100201 | Tag running state is abnormal in service. |
@@ -914,6 +923,7 @@ authenticateSector(sectorIndex: number, key: number[], isKeyA: boolean): Promise
 **错误码：**
 
 以下错误码的详细介绍请参见[NFC错误码](../errorcodes/errorcode-nfc.md)。
+
 | 错误码ID | 错误信息|
 | ------- | -------|
 | 3100201 | Tag running state is abnormal in service. |
@@ -968,6 +978,7 @@ authenticateSector(sectorIndex: number, key: number[], isKeyA: boolean, callback
 **错误码：**
 
 以下错误码的详细介绍请参见[NFC错误码](../errorcodes/errorcode-nfc.md)。
+
 | 错误码ID | 错误信息|
 | ------- | -------|
 | 3100201 | Tag running state is abnormal in service. |
@@ -1026,6 +1037,7 @@ readSingleBlock(blockIndex: number): Promise\<number[]>
 **错误码：**
 
 以下错误码的详细介绍请参见[NFC错误码](../errorcodes/errorcode-nfc.md)。
+
 | 错误码ID | 错误信息|
 | ------- | -------|
 | 3100201 | Tag running state is abnormal in service. |
@@ -1077,6 +1089,7 @@ readSingleBlock(blockIndex: number, callback: AsyncCallback\<number[]>): void
 **错误码：**
 
 以下错误码的详细介绍请参见[NFC错误码](../errorcodes/errorcode-nfc.md)。
+
 | 错误码ID | 错误信息|
 | ------- | -------|
 | 3100201 | Tag running state is abnormal in service. |
@@ -1130,6 +1143,7 @@ writeSingleBlock(blockIndex: number, data: number[]): Promise\<void>
 **错误码：**
 
 以下错误码的详细介绍请参见[NFC错误码](../errorcodes/errorcode-nfc.md)。
+
 | 错误码ID | 错误信息|
 | ------- | -------|
 | 3100201 | Tag running state is abnormal in service. |
@@ -1184,6 +1198,7 @@ writeSingleBlock(blockIndex: number, data: number[], callback: AsyncCallback\<vo
 **错误码：**
 
 以下错误码的详细介绍请参见[NFC错误码](../errorcodes/errorcode-nfc.md)。
+
 | 错误码ID | 错误信息|
 | ------- | -------|
 | 3100201 | Tag running state is abnormal in service. |
@@ -1239,6 +1254,7 @@ incrementBlock(blockIndex: number, value: number): Promise\<void>
 **错误码：**
 
 以下错误码的详细介绍请参见[NFC错误码](../errorcodes/errorcode-nfc.md)。
+
 | 错误码ID | 错误信息|
 | ------- | -------|
 | 3100201 | Tag running state is abnormal in service. |
@@ -1292,6 +1308,7 @@ incrementBlock(blockIndex: number, value: number, callback: AsyncCallback\<void>
 **错误码：**
 
 以下错误码的详细介绍请参见[NFC错误码](../errorcodes/errorcode-nfc.md)。
+
 | 错误码ID | 错误信息|
 | ------- | -------|
 | 3100201 | Tag running state is abnormal in service. |
@@ -1346,6 +1363,7 @@ decrementBlock(blockIndex: number, value: number): Promise\<void>
 **错误码：**
 
 以下错误码的详细介绍请参见[NFC错误码](../errorcodes/errorcode-nfc.md)。
+
 | 错误码ID | 错误信息|
 | ------- | -------|
 | 3100201 | Tag running state is abnormal in service. |
@@ -1399,6 +1417,7 @@ decrementBlock(blockIndex: number, value: number, callback: AsyncCallback\<void>
 **错误码：**
 
 以下错误码的详细介绍请参见[NFC错误码](../errorcodes/errorcode-nfc.md)。
+
 | 错误码ID | 错误信息|
 | ------- | -------|
 | 3100201 | Tag running state is abnormal in service. |
@@ -1452,6 +1471,7 @@ transferToBlock(blockIndex: number): Promise\<void>
 **错误码：**
 
 以下错误码的详细介绍请参见[NFC错误码](../errorcodes/errorcode-nfc.md)。
+
 | 错误码ID | 错误信息|
 | ------- | -------|
 | 3100201 | Tag running state is abnormal in service. |
@@ -1503,6 +1523,7 @@ transferToBlock(blockIndex: number, callback: AsyncCallback\<void>): void
 **错误码：**
 
 以下错误码的详细介绍请参见[NFC错误码](../errorcodes/errorcode-nfc.md)。
+
 | 错误码ID | 错误信息|
 | ------- | -------|
 | 3100201 | Tag running state is abnormal in service. |
@@ -1555,6 +1576,7 @@ restoreFromBlock(blockIndex: number): Promise\<void>
 **错误码：**
 
 以下错误码的详细介绍请参见[NFC错误码](../errorcodes/errorcode-nfc.md)。
+
 | 错误码ID | 错误信息|
 | ------- | -------|
 | 3100201 | Tag running state is abnormal in service. |
@@ -1606,6 +1628,7 @@ restoreFromBlock(blockIndex: number, callback: AsyncCallback\<void>): void
 **错误码：**
 
 以下错误码的详细介绍请参见[NFC错误码](../errorcodes/errorcode-nfc.md)。
+
 | 错误码ID | 错误信息|
 | ------- | -------|
 | 3100201 | Tag running state is abnormal in service. |
@@ -1876,6 +1899,7 @@ readMultiplePages(pageIndex: number): Promise\<number[]>
 **错误码：**
 
 以下错误码的详细介绍请参见[NFC错误码](../errorcodes/errorcode-nfc.md)。
+
 | 错误码ID | 错误信息|
 | ------- | -------|
 | 3100201 | Tag running state is abnormal in service. |
@@ -1928,6 +1952,7 @@ readMultiplePages(pageIndex: number, callback: AsyncCallback\<number[]>): void
 **错误码：**
 
 以下错误码的详细介绍请参见[NFC错误码](../errorcodes/errorcode-nfc.md)。
+
 | 错误码ID | 错误信息|
 | ------- | -------|
 | 3100201 | Tag running state is abnormal in service. |
@@ -1981,6 +2006,7 @@ writeSinglePage(pageIndex: number, data: number[]): Promise\<void>
 **错误码：**
 
 以下错误码的详细介绍请参见[NFC错误码](../errorcodes/errorcode-nfc.md)。
+
 | 错误码ID | 错误信息|
 | ------- | -------|
 | 3100201 | Tag running state is abnormal in service. |
@@ -2034,6 +2060,7 @@ writeSinglePage(pageIndex: number, data: number[], callback: AsyncCallback\<void
 **错误码：**
 
 以下错误码的详细介绍请参见[NFC错误码](../errorcodes/errorcode-nfc.md)。
+
 | 错误码ID | 错误信息|
 | ------- | -------|
 | 3100201 | Tag running state is abnormal in service. |
@@ -2119,6 +2146,7 @@ format(message: [NdefMessage](#ndefmessage9)): Promise\<void>
 **错误码：**
 
 以下错误码的详细介绍请参见[NFC错误码](../errorcodes/errorcode-nfc.md)。
+
 | 错误码ID | 错误信息|
 | ------- | -------|
 | 3100201 | Tag running state is abnormal in service. |
@@ -2227,6 +2255,7 @@ formatReadOnly(message: [NdefMessage](#ndefmessage9)): Promise\<void>
 **错误码：**
 
 以下错误码的详细介绍请参见[NFC错误码](../errorcodes/errorcode-nfc.md)。
+
 | 错误码ID | 错误信息|
 | ------- | -------|
 | 3100201 | Tag running state is abnormal in service. |
