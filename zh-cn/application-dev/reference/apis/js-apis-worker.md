@@ -1,9 +1,8 @@
 # 启动一个Worker
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**<br/>
-> 本模块首批接口从API version 7开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
-
 Worker是与主线程并行的独立线程。创建Worker的线程称之为宿主线程，Worker自身的线程称之为Worker线程。创建Worker传入的url文件在Worker线程中执行，可以处理耗时操作但不可以直接操作UI。
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**<br/>
+> 本模块首批接口从API version 7 开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
 ## 导入模块
 
@@ -16,10 +15,10 @@ import worker from '@ohos.worker';
 
 **系统能力：** SystemCapability.Utils.Lang
 
-| 名称                              | 类型                                                  | 可读 | 可写 | 说明                                                         |
+| 名称                              | 类型                                                      | 可读 | 可写 | 说明                                                         |
 | --------------------------------- | --------------------------------------------------------- | ---- | ---- | ------------------------------------------------------------ |
 | workerPort<sup>9+</sup>           | [ThreadWorkerGlobalScope](#threadworkerglobalscope9)      | 是   | 是   | worker线程用于与宿主线程通信的对象。                         |
-| parentPort<sup>(deprecated)</sup> | [DedicatedWorkerGlobalScope](#dedicatedworkerglobalscope) | 是   | 是   | worker线程用于与宿主线程通信的对象。<br/>此属性从api9开始被废弃，建议使用workerPort<sup>9+</sup>。 |
+| parentPort<sup>(deprecated)</sup> | [DedicatedWorkerGlobalScope](#dedicatedworkerglobalscope) | 是   | 是   | worker线程用于与宿主线程通信的对象。<br/>此属性从API version 7开始支持,从API version 9 开始被废弃。<br/>建议使用workerPort<sup>9+</sup>替代。 |
 
 
 ## WorkerOptions
@@ -30,7 +29,7 @@ Worker构造函数的选项信息，用于为Worker添加其他信息。
 
 | 名称 | 类型 | 可读 | 可写 | 说明           |
 | ---- | -------- | ---- | ---- | -------------- |
-| type | classic \| module | 是   | 是   | Worker执行脚本的模式类型，默认为classic类型，暂不支持module类型。 |
+| type | "classic" \| "module" | 是   | 是   | Worker执行脚本的模式类型，默认为classic类型，暂不支持module类型。 |
 | name | string   | 是   | 是   | Worker的名称。 |
 | shared | boolean | 是   | 是   | 暂不支持共享Worker功能。 |
 
@@ -264,7 +263,7 @@ Worker对象的onexit属性表示Worker销毁时被调用的事件处理程序�
 
 | 参数名 | 类型   | 必填 | 说明               |
 | ------ | ------ | ---- | ------------------ |
-| code   | number | 否   | Worker退出的code。 |
+| code   | number | 是   | Worker退出的code。 |
 
 **示例：**
 
@@ -288,7 +287,7 @@ Worker对象的onerror属性表示Worker在执行过程中发生异常被调用�
 
 | 参数名 | 类型                      | 必填 | 说明       |
 | ------ | ------------------------- | ---- | ---------- |
-| err    | [ErrorEvent](#errorevent) | 否   | 异常数据。 |
+| err    | [ErrorEvent](#errorevent) | 是   | 异常数据。 |
 
 **示例：**
 
@@ -302,7 +301,7 @@ workerInstance.onerror = function(e) {
 
 ### onmessage<sup>9+</sup>
 
-onmessage?: (event: MessageEvent\<T>) =&gt; void
+onmessage?: (event: MessageEvents) =&gt; void
 
 Worker对象的onmessage属性表示宿主线程接收到来自其创建的Worker通过parentPort.postMessage接口发送的消息时被调用的事件处理程序，处理程序在宿主线程中执行。
 
@@ -310,9 +309,9 @@ Worker对象的onmessage属性表示宿主线程接收到来自其创建的Worke
 
 **参数：**
 
-| 参数名 | 类型                          | 必填 | 说明                   |
-| ------ | ----------------------------- | ---- | ---------------------- |
-| event  | [MessageEvent](#messageevent) | 否   | 收到的Worker消息数据。 |
+| 参数名 | 类型                             | 必填 | 说明                   |
+| ------ | -------------------------------- | ---- | ---------------------- |
+| event  | [MessageEvents](#messageevents9) | 是   | 收到的Worker消息数据。 |
 
 **示例：**
 
@@ -328,7 +327,7 @@ workerInstance.onmessage = function(e) {
 
 ### onmessageerror<sup>9+</sup>
 
-onmessageerror?: (event: MessageEvent\<T>) =&gt; void
+onmessageerror?: (event: MessageEvents) =&gt; void
 
 Worker对象的onmessageerror属性表示当Worker对象接收到一条无法被序列化的消息时被调用的事件处理程序，处理程序在宿主线程中执行。
 
@@ -336,9 +335,9 @@ Worker对象的onmessageerror属性表示当Worker对象接收到一条无法被
 
 **参数：**
 
-| 参数名 | 类型                          | 必填 | 说明       |
-| ------ | ----------------------------- | ---- | ---------- |
-| event  | [MessageEvent](#messageevent) | 否   | 异常数据。 |
+| 参数名 | 类型                             | 必填 | 说明       |
+| ------ | -------------------------------- | ---- | ---------- |
+| event  | [MessageEvents](#messageevents9) | 是   | 异常数据。 |
 
 **示例：**
 
@@ -516,7 +515,7 @@ parentPort.onmessage = function(e) {
 
 ### onmessage<sup>9+</sup>
 
-onmessage?: (event: MessageEvent\<T>) =&gt; void
+onmessage?: (event: MessageEvents) =&gt; void
 
 DedicatedWorkerGlobalScope的onmessage属性表示Worker线程收到来自其宿主线程通过postMessage接口发送的消息时被调用的事件处理程序，处理程序在Worker线程中执行。
 
@@ -524,9 +523,9 @@ DedicatedWorkerGlobalScope的onmessage属性表示Worker线程收到来自其宿
 
 **参数：**
 
-| 参数名 | 类型                          | 必填 | 说明                     |
-| ------ | ----------------------------- | ---- | ------------------------ |
-| event  | [MessageEvent](#messageevent) | 否   | 收到宿主线程发送的数据。 |
+| 参数名 | 类型                             | 必填 | 说明                     |
+| ------ | -------------------------------- | ---- | ------------------------ |
+| event  | [MessageEvents](#messageevents9) | 是   | 收到宿主线程发送的数据。 |
 
 **示例：**
 
@@ -549,7 +548,7 @@ parentPort.onmessage = function(e) {
 
 ### onmessageerror<sup>9+</sup>
 
-onmessageerror?: (event: MessageEvent\<T>) =&gt; void
+onmessageerror?: (event: MessageEvents) =&gt; void
 
 DedicatedWorkerGlobalScope的onmessageerror属性表示当Worker对象接收到一条无法被反序列化的消息时被调用的事件处理程序，处理程序在Worker线程中执行。
 
@@ -557,9 +556,9 @@ DedicatedWorkerGlobalScope的onmessageerror属性表示当Worker对象接收到�
 
 **参数：**
 
-| 参数名 | 类型                          | 必填 | 说明       |
-| ------ | ----------------------------- | ---- | ---------- |
-| event  | [MessageEvent](#messageevent) | 否   | 异常数据。 |
+| 参数名 | 类型                             | 必填 | 说明       |
+| ------ | -------------------------------- | ---- | ---------- |
+| event  | [MessageEvents](#messageevents9) | 是   | 异常数据。 |
 
 **示例：**
 
@@ -617,7 +616,7 @@ Worker线程自身的运行环境，GlobalScope类继承[WorkerEventTarget](#wor
 
 **系统能力：** SystemCapability.Utils.Lang
 
-| 名称 | 类型                                                     | 可读 | 可写 | 说明                                  |
+| 名称 | 类型                                                         | 可读 | 可写 | 说明                                  |
 | ---- | ------------------------------------------------------------ | ---- | ---- | ------------------------------------- |
 | name | string                                                       | 是   | 否   | Worker的名字，new&nbsp;Worker时指定。 |
 | self | [GlobalScope](#globalscope9)&nbsp;&amp;&nbsp;typeof&nbsp;globalThis | 是   | 否   | GlobalScope本身。                     |
@@ -635,7 +634,7 @@ GlobalScope的onerror属性表示Worker在执行过程中发生异常被调用�
 
 | 参数名 | 类型                      | 必填 | 说明       |
 | ------ | ------------------------- | ---- | ---------- |
-| ev     | [ErrorEvent](#errorevent) | 否   | 异常数据。 |
+| ev     | [ErrorEvent](#errorevent) | 是   | 异常数据。 |
 
 **示例：**
 
@@ -654,21 +653,32 @@ parentPort.onerror = function(e){
 }
 ```
 
+## MessageEvents<sup>9+</sup>
+
+消息类，持有Worker线程间传递的数据。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+| 名称 | 类型 | 可读 | 可写 | 说明               |
+| ---- | ---- | ---- | ---- | ------------------ |
+| data | any  | 是   | 否   | 线程间传递的数据。 |
 
 ## Worker<sup>(deprecated)</sup>
 
-> **说明：**<br/>
-> 从API version 9开始废弃，建议使用[ThreadWorker<sup>9+</sup>](#threadworker9)替代。
 
 使用以下方法前，均需先构造Worker实例，Worker类继承[EventTarget](#eventtarget)。
 
-### constructor<sup>(deprecated)</sup>
 > **说明：**<br/>
-> 从API version 9开始废弃，建议使用[ThreadWorker.constructor<sup>9+</sup>](#constructor9)替代。
+> 从API version 7 开始支持，从API version 9 开始废弃，建议使用[ThreadWorker<sup>9+</sup>](#threadworker9)替代。
+
+### constructor<sup>(deprecated)</sup>
 
 constructor(scriptURL: string, options?: WorkerOptions)
 
 Worker构造函数。
+
+> **说明：**<br/>
+> 从API version 7 开始支持，从API version 9 开始废弃，建议使用[ThreadWorker.constructor<sup>9+</sup>](#constructor9)替代。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -754,12 +764,12 @@ Stage模型:
 ```
 ### postMessage<sup>(deprecated)</sup>
 
-> **说明：**<br/>
-> 从API version 9开始废弃，建议使用[ThreadWorker.postMessage<sup>9+</sup>](#postmessage9)替代。
-
 postMessage(message: Object, options?: PostMessageOptions): void
 
 向Worker线程发送数据，数据类型必须是序列化所支持的类型。序列化支持类型见其他说明。
+
+> **说明：**<br/>
+> 从API version 7 开始支持，从API version 9 开始废弃，建议使用[ThreadWorker.postMessage<sup>9+</sup>](#postmessage9)替代。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -784,12 +794,12 @@ workerInstance.postMessage(buffer, [buffer]);
 
 ### on<sup>(deprecated)</sup>
 
-> **说明：**<br/>
-> 从API version 9开始废弃，建议使用[ThreadWorker.on<sup>9+</sup>](#on9)替代。
-
 on(type: string, listener: EventListener): void
 
 向Worker添加一个事件监听。
+
+> **说明：**<br/>
+> 从API version 7 开始支持，从API version 9 开始废弃，建议使用[ThreadWorker.on<sup>9+</sup>](#on9)替代。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -812,12 +822,12 @@ workerInstance.on("alert", (e)=>{
 
 ### once<sup>(deprecated)</sup>
 
-> **说明：**<br/>
-> 从API version 9开始废弃，建议使用[ThreadWorker.once<sup>9+</sup>](#once9)替代。
-
 once(type: string, listener: EventListener): void
 
 向Worker添加一个事件监听，事件监听只执行一次便自动删除。
+
+> **说明：**<br/>
+> 从API version 7 开始支持，从API version 9 开始废弃，建议使用[ThreadWorker.once<sup>9+</sup>](#once9)替代。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -840,12 +850,12 @@ workerInstance.once("alert", (e)=>{
 
 ### off<sup>(deprecated)</sup>
 
-> **说明：**<br/>
-> 从API version 9开始废弃，建议使用[ThreadWorker.off<sup>9+</sup>](#off9)替代。
-
 off(type: string, listener?: EventListener): void
 
 删除类型为type的事件监听。
+
+> **说明：**<br/>
+> 从API version 7 开始支持，从API version 9 开始废弃，建议使用[ThreadWorker.off<sup>9+</sup>](#off9)替代。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -866,12 +876,12 @@ workerInstance.off("alert");
 
 ### terminate<sup>(deprecated)</sup>
 
-> **说明：**<br/>
-> 从API version 9开始废弃，建议使用[ThreadWorker.terminate<sup>9+</sup>](#terminate9)替代。
-
 terminate(): void
 
 销毁Worker线程，终止Worker接收消息。
+
+> **说明：**<br/>
+> 从API version 7 开始支持，从API version 9 开始废弃，建议使用[ThreadWorker.terminate<sup>9+</sup>](#terminate9)替代。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -885,12 +895,12 @@ workerInstance.terminate();
 
 ### onexit<sup>(deprecated)</sup>
 
-> **说明：**<br/>
-> 从API version 9开始废弃，建议使用[ThreadWorker.onexit<sup>9+</sup>](#onexit9)替代。
-
 onexit?: (code: number) =&gt; void
 
 Worker对象的onexit属性表示Worker销毁时被调用的事件处理程序，处理程序在宿主线程中执行。
+
+> **说明：**<br/>
+> 从API version 7 开始支持，从API version 9 开始废弃，建议使用[ThreadWorker.onexit<sup>9+</sup>](#onexit9)替代。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -898,7 +908,7 @@ Worker对象的onexit属性表示Worker销毁时被调用的事件处理程序�
 
 | 参数名 | 类型   | 必填 | 说明               |
 | ------ | ------ | ---- | ------------------ |
-| code   | number | 否   | Worker退出的code。 |
+| code   | number | 是   | Worker退出的code。 |
 
 **示例：**
 
@@ -912,12 +922,12 @@ workerInstance.onexit = function(e) {
 
 ### onerror<sup>(deprecated)</sup>
 
-> **说明：**<br/>
-> 从API version 9开始废弃，建议使用[ThreadWorker.onerror<sup>9+</sup>](#onerror9)替代。
-
 onerror?: (err: ErrorEvent) =&gt; void
 
 Worker对象的onerror属性表示Worker在执行过程中发生异常被调用的事件处理程序，处理程序在宿主线程中执行。
+
+> **说明：**<br/>
+> 从API version 7 开始支持，从API version 9 开始废弃，建议使用[ThreadWorker.onerror<sup>9+</sup>](#onerror9)替代。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -925,7 +935,7 @@ Worker对象的onerror属性表示Worker在执行过程中发生异常被调用�
 
 | 参数名 | 类型                      | 必填 | 说明       |
 | ------ | ------------------------- | ---- | ---------- |
-| err    | [ErrorEvent](#errorevent) | 否   | 异常数据。 |
+| err    | [ErrorEvent](#errorevent) | 是   | 异常数据。 |
 
 **示例：**
 
@@ -939,20 +949,20 @@ workerInstance.onerror = function(e) {
 
 ### onmessage<sup>(deprecated)</sup>
 
-> **说明：**<br/>
-> 从API version 9开始废弃，建议使用[ThreadWorker.onmessage<sup>9+</sup>](#onmessage9)替代。
-
 onmessage?: (event: MessageEvent\<T>) =&gt; void
 
 Worker对象的onmessage属性表示宿主线程接收到来自其创建的Worker通过parentPort.postMessage接口发送的消息时被调用的事件处理程序，处理程序在宿主线程中执行。
+
+> **说明：**<br/>
+> 从API version 7 开始支持，从API version 9 开始废弃，建议使用[ThreadWorker.onmessage<sup>9+</sup>](#onmessage9)替代。
 
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
 
-| 参数名 | 类型                          | 必填 | 说明                   |
-| ------ | ----------------------------- | ---- | ---------------------- |
-| event  | [MessageEvent](#messageevent) | 否   | 收到的Worker消息数据。 |
+| 参数名 | 类型                                    | 必填 | 说明                   |
+| ------ | --------------------------------------- | ---- | ---------------------- |
+| event  | [MessageEvent&lt;T&gt;](#messageeventt) | 是   | 收到的Worker消息数据。 |
 
 **示例：**
 
@@ -968,20 +978,20 @@ workerInstance.onmessage = function(e) {
 
 ### onmessageerror<sup>(deprecated)</sup>
 
-> **说明：**<br/>
-> 从API version 9开始废弃，建议使用[ThreadWorker.onmessageerror<sup>9+</sup>](#onmessageerror9)替代。
-
 onmessageerror?: (event: MessageEvent\<T>) =&gt; void
 
 Worker对象的onmessageerror属性表示当Worker对象接收到一条无法被序列化的消息时被调用的事件处理程序，处理程序在宿主线程中执行。
+
+> **说明：**<br/>
+> 从API version 7 开始支持，从API version 9 开始废弃，建议使用[ThreadWorker.onmessageerror<sup>9+</sup>](#onmessageerror9)替代。
 
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
 
-| 参数名 | 类型                          | 必填 | 说明       |
-| ------ | ----------------------------- | ---- | ---------- |
-| event  | [MessageEvent](#messageevent) | 否   | 异常数据。 |
+| 参数名 | 类型                                    | 必填 | 说明       |
+| ------ | --------------------------------------- | ---- | ---------- |
+| event  | [MessageEvent&lt;T&gt;](#messageeventt) | 是   | 异常数据。 |
 
 **示例：**
 
@@ -995,16 +1005,16 @@ workerInstance.onmessageerror= function(e) {
 
 ## EventTarget<sup>(deprecated)</sup>
 > **说明：**<br/>
-> 从API version 9开始废弃，建议使用[WorkerEventTarget<sup>9+</sup>](#workereventtarget9)替代。
+> 从API version 7 开始支持，从API version 9 开始废弃，建议使用[WorkerEventTarget<sup>9+</sup>](#workereventtarget9)替代。
 
 ### addEventListener<sup>(deprecated)</sup>
-
-> **说明：**<br/>
-> 从API version 9开始废弃，建议使用[addEventListener<sup>9+</sup>](#addeventlistener9)替代。
 
 addEventListener(type: string, listener: EventListener): void
 
 向Worker添加一个事件监听。
+
+> **说明：**<br/>
+> 从API version 7 开始支持，从API version 9 开始废弃，建议使用[addEventListener<sup>9+</sup>](#addeventlistener9)替代。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -1027,12 +1037,12 @@ workerInstance.addEventListener("alert", (e)=>{
 
 ### removeEventListener<sup>(deprecated)</sup>
 
-> **说明：**<br/>
-> 从API version 9开始废弃，建议使用[removeEventListener<sup>9+</sup>](#removeeventlistener9)替代。
-
 removeEventListener(type: string, callback?: EventListener): void
 
 删除Worker的事件监听。
+
+> **说明：**<br/>
+> 从API version 7 开始支持，从API version 9 开始废弃，建议使用[removeEventListener<sup>9+</sup>](#removeeventlistener9)替代。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -1053,12 +1063,12 @@ workerInstance.removeEventListener("alert");
 
 ### dispatchEvent<sup>(deprecated)</sup>
 
-> **说明：**<br/>
-> 从API version 9开始废弃，建议使用[dispatchEvent<sup>9+</sup>](#dispatchevent9)替代。
-
 dispatchEvent(event: Event): boolean
 
 分发定义在Worker的事件。
+
+> **说明：**<br/>
+> 从API version 7 开始支持，从API version 9 开始废弃，建议使用[dispatchEvent<sup>9+</sup>](#dispatchevent9)替代。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -1084,12 +1094,12 @@ workerInstance.dispatchEvent({type:"alert"});
 
 ### removeAllListener<sup>(deprecated)</sup>
 
-> **说明：**<br/>
-> 从API version 9开始废弃，建议使用[removeAllListener<sup>9+</sup>](#removealllistener9)替代。
-
 removeAllListener(): void
 
 删除Worker所有的事件监听。
+
+> **说明：**<br/>
+> 从API version 7 开始支持，从API version 9 开始废弃，建议使用[removeAllListener<sup>9+</sup>](#removealllistener9)替代。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -1103,20 +1113,19 @@ workerInstance.removeAllListener();
 
 ## DedicatedWorkerGlobalScope<sup>(deprecated)</sup>
 
-> **说明：**<br/>
-> 从API version 9开始废弃，建议使用[ThreadWorkerGlobalScope<sup>9+</sup>](#threadworkerglobalscope9)替代。
-
 Worker线程用于与宿主线程通信的类，通过postMessage接口发送消息给宿主线程、close接口销毁Worker线程。DedicatedWorkerGlobalScope类继承[WorkerGlobalScope](#workerglobalscope)。
 
+> **说明：**<br/>
+> 从API version 7 开始支持，从API version 9 开始废弃，建议使用[ThreadWorkerGlobalScope<sup>9+</sup>](#threadworkerglobalscope9)替代。
 
 ### postMessage<sup>(deprecated)</sup>
-
-> **说明：**<br/>
-> 从API version 9开始废弃，建议使用[ThreadWorkerGlobalScope<sup>9+</sup>](#threadworkerglobalscope9).postMessage<sup>9+</sup>替代。
 
 postMessage(messageObject: Object, options?: PostMessageOptions): void
 
 Worker线程向宿主线程发送消息。
+
+> **说明：**<br/>
+> 从API version 7 开始支持，从API version 9 开始废弃，建议使用[ThreadWorkerGlobalScope<sup>9+</sup>](#threadworkerglobalscope9).postMessage<sup>9+</sup>替代。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -1152,12 +1161,12 @@ parentPort.onmessage = function(e){
 
 ### close<sup>(deprecated)</sup>
 
-> **说明：**<br/>
-> 从API version 9开始废弃，建议使用[ThreadWorkerGlobalScope<sup>9+</sup>](#threadworkerglobalscope9).close<sup>9+</sup>替代。
-
 close(): void
 
 销毁Worker线程，终止Worker接收消息。
+
+> **说明：**<br/>
+> 从API version 7 开始支持，从API version 9 开始废弃，建议使用[ThreadWorkerGlobalScope<sup>9+</sup>](#threadworkerglobalscope9).close<sup>9+</sup>替代。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -1180,20 +1189,20 @@ parentPort.onmessage = function(e) {
 
 ### onmessage<sup>(deprecated)</sup>
 
-> **说明：**<br/>
-> 从API version 9开始废弃，建议使用[ThreadWorkerGlobalScope<sup>9+</sup>](#threadworkerglobalscope9).onmessage<sup>9+</sup>替代。
-
 onmessage?: (event: MessageEvent\<T>) =&gt; void
 
 DedicatedWorkerGlobalScope的onmessage属性表示Worker线程收到来自其宿主线程通过postMessage接口发送的消息时被调用的事件处理程序，处理程序在Worker线程中执行。
+
+> **说明：**<br/>
+> 从API version 7 开始支持，从API version 9 开始废弃，建议使用[ThreadWorkerGlobalScope<sup>9+</sup>](#threadworkerglobalscope9).onmessage<sup>9+</sup>替代。
 
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
 
-| 参数名 | 类型                          | 必填 | 说明                     |
-| ------ | ----------------------------- | ---- | ------------------------ |
-| event  | [MessageEvent](#messageevent) | 否   | 收到宿主线程发送的数据。 |
+| 参数名 | 类型                                    | 必填 | 说明                     |
+| ------ | --------------------------------------- | ---- | ------------------------ |
+| event  | [MessageEvent&lt;T&gt;](#messageeventt) | 是   | 收到宿主线程发送的数据。 |
 
 **示例：**
 
@@ -1215,20 +1224,20 @@ parentPort.onmessage = function(e) {
 
 ### onmessageerror<sup>(deprecated)</sup>
 
-> **说明：**<br/>
-> 从API version 9开始废弃，建议使用[ThreadWorkerGlobalScope<sup>9+</sup>](#threadworkerglobalscope9).onmessageerror<sup>9+</sup>替代。
-
 onmessageerror?: (event: MessageEvent\<T>) =&gt; void
 
 DedicatedWorkerGlobalScope的onmessageerror属性表示当Worker对象接收到一条无法被反序列化的消息时被调用的事件处理程序，处理程序在Worker线程中执行。
+
+> **说明：**<br/>
+> 从API version 7 开始支持，从API version 9 开始废弃，建议使用[ThreadWorkerGlobalScope<sup>9+</sup>](#threadworkerglobalscope9).onmessageerror<sup>9+</sup>替代。
 
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
 
-| 参数名 | 类型                          | 必填 | 说明       |
-| ------ | ----------------------------- | ---- | ---------- |
-| event  | [MessageEvent](#messageevent) | 否   | 异常数据。 |
+| 参数名 | 类型                              | 必填 | 说明       |
+| ------ | --------------------------------- | ---- | ---------- |
+| event  | [MessageEvent&lt;T&gt;](#messageeventt) | 是   | 异常数据。 |
 
 **示例：**
 
@@ -1253,7 +1262,7 @@ parentPort.onmessageerror= function(e) {
 
 **系统能力：** SystemCapability.Utils.Lang
 
-| 名称     | 类型 | 可读 | 可写 | 说明                              |
+| 名称     | 类型     | 可读 | 可写 | 说明                              |
 | -------- | -------- | ---- | ---- | --------------------------------- |
 | transfer | Object[] | 是   | 是   | ArrayBuffer数组，用于传递所有权。 |
 
@@ -1264,20 +1273,20 @@ parentPort.onmessageerror= function(e) {
 
 **系统能力：** SystemCapability.Utils.Lang
 
-| 名称      | 类型 | 可读 | 可写 | 说明                               |
-| --------- | -------- | ---- | ---- | ---------------------------------- |
-| type      | string   | 是   | 否   | 指定事件的类型。                   |
-| timeStamp | number   | 是   | 否   | 事件创建时的时间戳（精度为毫秒）。 |
+| 名称      | 类型   | 可读 | 可写 | 说明                               |
+| --------- | ------ | ---- | ---- | ---------------------------------- |
+| type      | string | 是   | 否   | 指定事件的类型。                   |
+| timeStamp | number | 是   | 否   | 事件创建时的时间戳（精度为毫秒）。 |
 
 
 ## EventListener<sup>(deprecated)</sup>
 
-> **说明：**<br/>
-> 从API version 9开始废弃，建议使用[WorkerEventListener<sup>9+</sup>](#workereventlistener9)替代。
-
 (evt: Event): void | Promise&lt;void&gt;
 
 事件监听类。
+
+> **说明：**<br/>
+> 从API version 7 开始支持，从API version 9 开始废弃，建议使用[WorkerEventListener<sup>9+</sup>](#workereventlistener9)替代。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -1309,38 +1318,38 @@ workerInstance.addEventListener("alert", (e)=>{
 
 **系统能力：** SystemCapability.Utils.Lang
 
-| 名称     | 类型 | 可读 | 可写 | 说明                 |
-| -------- | -------- | ---- | ---- | -------------------- |
-| message  | string   | 是   | 否   | 异常发生的错误信息。 |
-| filename | string   | 是   | 否   | 出现异常所在的文件。 |
-| lineno   | number   | 是   | 否   | 异常所在的行数。     |
-| colno    | number   | 是   | 否   | 异常所在的列数。     |
-| error    | Object   | 是   | 否   | 异常类型。           |
+| 名称     | 类型   | 可读 | 可写 | 说明                 |
+| -------- | ------ | ---- | ---- | -------------------- |
+| message  | string | 是   | 否   | 异常发生的错误信息。 |
+| filename | string | 是   | 否   | 出现异常所在的文件。 |
+| lineno   | number | 是   | 否   | 异常所在的行数。     |
+| colno    | number | 是   | 否   | 异常所在的列数。     |
+| error    | Object | 是   | 否   | 异常类型。           |
 
 
-## MessageEvent
+## MessageEvent\<T\>
 
 消息类，持有Worker线程间传递的数据。
 
 **系统能力：** SystemCapability.Utils.Lang
 
 | 名称 | 类型 | 可读 | 可写 | 说明               |
-| ---- | -------- | ---- | ---- | ------------------ |
-| data | T        | 是   | 否   | 线程间传递的数据。 |
+| ---- | ---- | ---- | ---- | ------------------ |
+| data | T    | 是   | 否   | 线程间传递的数据。 |
 
 
 ## WorkerGlobalScope<sup>(deprecated)</sup>
 
-> **说明：**<br/>
-> 从API version 9开始废弃，建议使用[GlobalScope<sup>9+</sup>](#globalscope9)替代。
-
 Worker线程自身的运行环境，WorkerGlobalScope类继承[EventTarget](#eventtarget)。
+
+> **说明：**<br/>
+> 从API version 7 开始支持，从API version 9 开始废弃，建议使用[GlobalScope<sup>9+</sup>](#globalscope9)替代。
 
 ### 属性
 
 **系统能力：** SystemCapability.Utils.Lang
 
-| 名称 | 类型                                                     | 可读 | 可写 | 说明                                  |
+| 名称 | 类型                                                         | 可读 | 可写 | 说明                                  |
 | ---- | ------------------------------------------------------------ | ---- | ---- | ------------------------------------- |
 | name | string                                                       | 是   | 否   | Worker的名字，new&nbsp;Worker时指定。 |
 | self | [WorkerGlobalScope](#workerglobalscope)&nbsp;&amp;&nbsp;typeof&nbsp;globalThis | 是   | 否   | WorkerGlobalScope本身。               |
@@ -1348,12 +1357,12 @@ Worker线程自身的运行环境，WorkerGlobalScope类继承[EventTarget](#eve
 
 ### onerror<sup>(deprecated)</sup>
 
-> **说明：**<br/>
-> 从API version 9开始废弃，建议使用[GlobalScope<sup>9+</sup>](#globalscope9).onerror替代。
-
 onerror?: (ev: ErrorEvent) =&gt; void
 
 WorkerGlobalScope的onerror属性表示Worker在执行过程中发生异常被调用的事件处理程序，处理程序在Worker线程中执行。
+
+> **说明：**<br/>
+> 从API version 7 开始支持，从API version 9 开始废弃，建议使用[GlobalScope<sup>9+</sup>](#globalscope9).onerror替代。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -1361,7 +1370,7 @@ WorkerGlobalScope的onerror属性表示Worker在执行过程中发生异常被�
 
 | 参数名 | 类型                      | 必填 | 说明       |
 | ------ | ------------------------- | ---- | ---------- |
-| ev     | [ErrorEvent](#errorevent) | 否   | 异常数据。 |
+| ev     | [ErrorEvent](#errorevent) | 是   | 异常数据。 |
 
 **示例：**
 
