@@ -42,7 +42,7 @@ group("wifi") {
 
 | 文件 | 接口 | 作用 | 
 | -------- | -------- | -------- |
-| wifi_hotspot_config.h | SetBand | 设置该热点的频段。 | 
+| SetBand | 设置该热点的频段。 | 
 | GetBand | 获取该热点的频段。 | 
 
   **表3** wifi_hotspot.h
