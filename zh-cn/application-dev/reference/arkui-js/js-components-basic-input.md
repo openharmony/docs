@@ -118,7 +118,7 @@
      width: 60%;
      background-color: gray;
      margin-top: 20px;
-}
+    }
    ```
    
    ```js
@@ -142,11 +142,12 @@
          error: 'error text'
        });
      },
-}
+    }
    ```
 
+
    ![zh-cn_image_0000001252835901](figures/zh-cn_image_0000001252835901.png)
-   
+
 2. type为button
    ```html
    <!-- xxx.hml -->
