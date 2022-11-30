@@ -898,7 +898,7 @@ bundle.getAllApplicationInfo(bundleFlags, userId, (err, data) => {
 
 getAllApplicationInfo(bundleFlags: number, callback: AsyncCallback<Array\<ApplicationInfo>>) : void;
 
-获取所有已安装的应用信息，使用callback异步回调。
+获取调用方所在用户下已安装的应用信息，使用callback异步回调。
 
 **需要权限：**
 
