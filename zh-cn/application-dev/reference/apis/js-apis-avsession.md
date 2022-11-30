@@ -1,4 +1,4 @@
-# 媒体会话管理
+ # 媒体会话管理
 
 媒体会话管理提供媒体播控相关功能的接口，目的是让应用接入播控中心。
 
@@ -54,9 +54,10 @@ import featureAbility from '@ohos.ability.featureAbility';
 
 let session;
 let tag = "createNewSession";
+let type = "audio";
 let context = featureAbility.getContext();
 
-await avSession.createAVSession(context, tag, "audio").then((data) => {
+await avSession.createAVSession(context, tag, type).then((data) => {
     session = data;
     console.info(`CreateAVSession : SUCCESS : sessionId = ${session.sessionId}`);
 }).catch((err) => {
@@ -95,9 +96,10 @@ import featureAbility from '@ohos.ability.featureAbility';
 
 let session;
 let tag = "createNewSession";
+let type = "audio";
 let context = featureAbility.getContext();
 
-avSession.createAVSession(context, tag, "audio", function (err, data) {
+avSession.createAVSession(context, tag, type, function (err, data) {
     if (err) {
         console.info(`CreateAVSession BusinessError: code: ${err.code}, message: ${err.message}`);
     } else {
@@ -224,6 +226,20 @@ createController(sessionId: string): Promise\<AVSessionController>
 **示例：**
 
 ```js
+import featureAbility from '@ohos.ability.featureAbility';
+
+let session;
+let tag = "createNewSession";
+let type = "audio";
+let context = featureAbility.getContext();
+
+await avSession.createAVSession(context, tag, type).then((data) => {
+    session = data;
+    console.info(`CreateAVSession : SUCCESS : sessionId = ${session.sessionId}`);
+}).catch((err) => {
+    console.info(`CreateAVSession BusinessError: code: ${err.code}, message: ${err.message}`);
+});
+
 let controller;
 await avSession.createController(session.sessionId).then((avcontroller) => {
     controller = avcontroller;
@@ -263,6 +279,20 @@ createController(sessionId: string, callback: AsyncCallback\<AVSessionController
 **示例：**
 
 ```js
+import featureAbility from '@ohos.ability.featureAbility';
+
+let session;
+let tag = "createNewSession";
+let type = "audio";
+let context = featureAbility.getContext();
+
+await avSession.createAVSession(context, tag, type).then((data) => {
+    session = data;
+    console.info(`CreateAVSession : SUCCESS : sessionId = ${session.sessionId}`);
+}).catch((err) => {
+    console.info(`CreateAVSession BusinessError: code: ${err.code}, message: ${err.message}`);
+});
+
 let controller;
 avSession.createController(session.sessionId, function (err, avcontroller) {
     if (err) {
@@ -562,7 +592,7 @@ sendSystemAVKeyEvent(event: KeyEvent): Promise\<void>
 ```js
 
 let keyItem = {code:0x49, pressedTime:2, deviceId:0};
-let event = {action:2, key:keyItem, keys:[keyItem]};
+let event = {id:1, deviceId:0, actionTime:1, screenId:1, windowId:1, action:2, key:keyItem, unicodeChar:0, keys:[keyItem],                    ctrlKey:false, altKey:false, shiftKey:false, logoKey:false, fnKey:false, capsLock:false, numLock:false,                          scrollLock:false};
 
 avSession.sendSystemAVKeyEvent(event).then(() => {
     console.info('SendSystemAVKeyEvent Successfully');
@@ -603,7 +633,7 @@ sendSystemAVKeyEvent(event: KeyEvent, callback: AsyncCallback\<void>): void
 
 ```js
 let keyItem = {code:0x49, pressedTime:2, deviceId:0};
-let event = {action:2, key:keyItem, keys:[keyItem]};
+let event = {id:1, deviceId:0, actionTime:1, screenId:1, windowId:1, action:2, key:keyItem, unicodeChar:0, keys:[keyItem],                    ctrlKey:false, altKey:false, shiftKey:false, logoKey:false, fnKey:false, capsLock:false, numLock:false,                          scrollLock:false};
 
 avSession.sendSystemAVKeyEvent(event, function (err) {
     if (err) {
@@ -650,17 +680,22 @@ sendSystemControlCommand(command: AVControlCommand): Promise\<void>
 **示例：**
 
 ```js
-let avcommand = {command:'play'};
-// let avcommand = {command:'pause'};
-// let avcommand = {command:'stop'};
-// let avcommand = {command:'playNext'};
-// let avcommand = {command:'playPrevious'};
-// let avcommand = {command:'fastForward'};
-// let avcommand = {command:'rewind'};
-// let avcommand = {command:'seek', parameter:10};
-// let avcommand = {command:'setSpeed', parameter:2.6};
-// let avcommand = {command:'setLoopMode', parameter:avSession.LoopMode.LOOP_MODE_SINGLE};
-// let avcommand = {command:'toggleFavorite', parameter:"false"};
+let cmd : avSession.AVControlCommandType = 'play';
+// let cmd : avSession.AVControlCommandType = 'pause';
+// let cmd : avSession.AVControlCommandType = 'stop';
+// let cmd : avSession.AVControlCommandType = 'playNext';
+// let cmd : avSession.AVControlCommandType = 'playPrevious';
+// let cmd : avSession.AVControlCommandType = 'fastForward';
+// let cmd : avSession.AVControlCommandType = 'rewind';
+let avcommand = {command:cmd};
+// let cmd : avSession.AVControlCommandType = 'seek';
+// let avcommand = {command:cmd, parameter:10};
+// let cmd : avSession.AVControlCommandType = 'setSpeed';
+// let avcommand = {command:cmd, parameter:2.6};
+// let cmd : avSession.AVControlCommandType = 'setLoopMode';
+// let avcommand = {command:cmd, parameter:avSession.LoopMode.LOOP_MODE_SINGLE};
+// let cmd : avSession.AVControlCommandType = 'toggleFavorite';
+// let avcommand = {command:cmd, parameter:"false"};
 avSession.sendSystemControlCommand(avcommand).then(() => {
     console.info('SendSystemControlCommand successfully');
 }).catch((err) => {
@@ -699,17 +734,22 @@ sendSystemControlCommand(command: AVControlCommand, callback: AsyncCallback\<voi
 **示例：**
 
 ```js
-let avcommand = {command:'play'};
-// let avcommand = {command:'pause'};
-// let avcommand = {command:'stop'};
-// let avcommand = {command:'playNext'};
-// let avcommand = {command:'playPrevious'};
-// let avcommand = {command:'fastForward'};
-// let avcommand = {command:'rewind'};
-// let avcommand = {command:'seek', parameter:10};
-// let avcommand = {command:'setSpeed', parameter:2.6};
-// let avcommand = {command:'setLoopMode', parameter:avSession.LoopMode.LOOP_MODE_SINGLE};
-// let avcommand = {command:'toggleFavorite', parameter:"false"};
+let cmd : avSession.AVControlCommandType = 'play';
+// let cmd : avSession.AVControlCommandType = 'pause';
+// let cmd : avSession.AVControlCommandType = 'stop';
+// let cmd : avSession.AVControlCommandType = 'playNext';
+// let cmd : avSession.AVControlCommandType = 'playPrevious';
+// let cmd : avSession.AVControlCommandType = 'fastForward';
+// let cmd : avSession.AVControlCommandType = 'rewind';
+let avcommand = {command:cmd};
+// let cmd : avSession.AVControlCommandType = 'seek';
+// let avcommand = {command:cmd, parameter:10};
+// let cmd : avSession.AVControlCommandType = 'setSpeed';
+// let avcommand = {command:cmd, parameter:2.6};
+// let cmd : avSession.AVControlCommandType = 'setLoopMode';
+// let avcommand = {command:cmd, parameter:avSession.LoopMode.LOOP_MODE_SINGLE};
+// let cmd : avSession.AVControlCommandType = 'toggleFavorite';
+// let avcommand = {command:cmd, parameter:"false"};
 avSession.sendSystemControlCommand(avcommand, function (err) {
     if (err) {
         console.info(`SendSystemControlCommand BusinessError: code: ${err.code}, message: ${err.message}`);
@@ -874,7 +914,7 @@ setAVPlaybackState(state: AVPlaybackState): Promise\<void>
 **示例：**
 
 ```js
-let PlaybackState = {
+let playbackState = {
     state:avSession.PlaybackState.PLAYBACK_STATE_PLAY,
     speed: 1.0,
     position:{elapsedTime:10, updateTime:(new Date()).getTime()},
@@ -882,7 +922,7 @@ let PlaybackState = {
     loopMode:avSession.LoopMode.LOOP_MODE_SINGLE,
     isFavorite:true,
 };
-session.setAVPlaybackState(PlaybackState).then(() => {
+session.setAVPlaybackState(playbackState).then(() => {
     console.info('SetAVPlaybackState successfully');
 }).catch((err) => {
     console.info(`SetAVPlaybackState BusinessError: code: ${err.code}, message: ${err.message}`);
