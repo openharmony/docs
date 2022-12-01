@@ -5,7 +5,7 @@
     - [了解OpenHarmony开源项目](../OpenHarmony-Overview_zh.md)
     - [术语](../glossary.md)
     - [版本说明](../release-notes/Readme.md)
-- 快速开始
+- 入门
     - 快速入门
         - [开发准备](quick-start/start-overview.md)
         - [使用ArkTS语言开发（Stage模型）](quick-start/start-with-ets-stage.md)

@@ -518,11 +518,11 @@ ConnectOptions类型说明
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
 
-| 参数名           | 读写属性 | 类型       | 必填   | 说明                        |
-| ------------ | ---- | -------- | ---- | ------------------------- |
-| onConnect<sup>7+</sup>    | 只读   | function | 是    | 连接成功时的回调函数。               |
-| onDisconnect<sup>7+</sup> | 只读   | function | 是    | 连接失败时的回调函数。               |
-| onFailed<sup>7+</sup>     | 只读   | function | 是    | ConnectAbility调用失败时的回调函数。 |
+| 参数名           | 可读|可写 | 类型       | 必填   | 说明                        |
+| ------------ | -- | -- | -------- | ---- | ------------------------- |
+| onConnect<sup>7+</sup>    | 是|否   | function | 是    | 连接成功时的回调函数。               |
+| onDisconnect<sup>7+</sup> | 是|否   | function | 是    | 连接失败时的回调函数。               |
+| onFailed<sup>7+</sup>     | 是|否   | function | 是    | ConnectAbility调用失败时的回调函数。 |
 
 **返回值：**
 
@@ -917,7 +917,7 @@ featureAbility.AbilityStartSetting.BOUNDS_KEY
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.FAModel
 
-| 参数名               |   类型   | 可读| 可写            | 必填   | 说明                                    |
+| 名称               |   类型   | 可读| 可写            | 必填   | 说明                                    |
 | ------------------- | -------- | -------------------- | ---- | -------------------------------------- |
 | want                | [Want](js-apis-application-Want.md)|   是   |   否      | 是    | 表示需要包含有关目标启动能力的信息。                     |
 | abilityStartSetting | {[key: string]: any} |  是  |否  | 否    | 表示能力的特殊属性，当开发者启动能力时，该属性可以作为调用中的输入参数传递。 |

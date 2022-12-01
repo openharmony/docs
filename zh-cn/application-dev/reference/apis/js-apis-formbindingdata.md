@@ -3,20 +3,27 @@
 卡片数据绑定模块提供卡片数据绑定的能力。包括FormBindingData对象的创建、相关信息的描述。
 
 > **说明：**
-> 
-> 本模块首批接口从API version 8开始支持，从API version 9废弃，替换模块为[@ohos.app.ability.formBindingData](js-apis-app-ability-formbindingdata.md)。后续版本的新增接口，采用上角标单独标记接口的起始版本。
-
+>
+> 本模块首批接口从API version 8开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+> 从API version 9 开始不再维护，建议使用[FormBindingData](js-apis-app-form-formbindingdata.md)替代。
 ## 导入模块
 
 ```
 import formBindingData from '@ohos.application.formBindingData';
 ```
 
-## 权限
+## FormBindingData
 
-无
+FormBindingData相关描述。
 
-## formBindingData.createFormBindingData
+**系统能力**：SystemCapability.Ability.Form
+
+| 名称 | 可读 | 可写 | 参数类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- | -------- | -------- |
+| data | 是 | 否 | Object | 是 | js卡片要展示的数据。可以是包含若干键值对的Object或者 json 格式的字符串。|
+
+
+## createFormBindingData
 
 createFormBindingData(obj?: Object | string): FormBindingData
 
@@ -40,30 +47,17 @@ createFormBindingData(obj?: Object | string): FormBindingData
 
 **示例：**
 
-  ```js
-  import featureAbility from '@ohos.ability.featureAbility';
-  import fileio from '@ohos.fileio';
-  let context=featureAbility.getContext();
-  context.getOrCreateLocalDir((err,data)=>{
-      let path=data+"/xxx.jpg";
-      let fd = fileio.openSync(path);
-      let obj = {
-          "temperature": "21°",
-          "formImages": {"image": fd}
-      };
-      let formBindingDataObj = formBindingData.createFormBindingData(obj);
-  })
-
-  
-  ```
-
-## 属性
-
-FormBindingData相关描述。
-
-**系统能力**：SystemCapability.Ability.Form
-
-| 名称 | 可读 | 可写 | 参数类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- | -------- | -------- |
-| data | 是 | 否 | Object | 是 | js卡片要展示的数据。可以是包含若干键值对的Object或者 json 格式的字符串。|
-
+```js
+import featureAbility from '@ohos.ability.featureAbility';
+import fileio from '@ohos.fileio';
+let context=featureAbility.getContext();
+context.getOrCreateLocalDir((err,data)=>{
+  let path=data+"/xxx.jpg";
+  let fd = fileio.openSync(path);
+  let obj = {
+    "temperature": "21°",
+    "formImages": {"image": fd}
+  };
+  let formBindingDataObj = formBindingData.createFormBindingData(obj);
+})
+```

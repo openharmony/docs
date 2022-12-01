@@ -15,7 +15,7 @@
 在进行开发之前，请完成如下准备工作：
 
 
-- [搭建开发环境](quickstart-ide-env--win.md)
+- [搭建开发环境](quickstart-ide-env-win.md)
 
 - [创建工程并获取源码](quickstart-ide-import-project.md)
 

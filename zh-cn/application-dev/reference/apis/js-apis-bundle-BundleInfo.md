@@ -35,7 +35,7 @@
 | isSilentInstallation              | string                                                       | 是   | 否   | 是否通过静默安装。                                           |
 | minCompatibleVersionCode          | number                                                       | 是   | 否   | 分布式场景下的应用包兼容的最低版本。                         |
 | entryInstallationFree             | boolean                                                      | 是   | 否   | Entry是否支持免安装。                                        |
-| reqPermissionStates<sup>8+</sup>  | Array\<number>                                               | 是   | 否   | 申请权限的授予状态。                                         |
+| reqPermissionStates<sup>8+</sup>  | Array\<number>                                               | 是   | 否   | 申请权限的授予状态。0表示申请成功，-1表示申请失败。                                         |
 
 
 

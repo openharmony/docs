@@ -95,7 +95,7 @@ The OpenHarmony LiteOS-M kernel build system is a modular build system based on 
 
 ### Setting Up the Environment
 
-Before setting up the environment for a development board, you must set up the basic system environment for OpenHarmony first. The basic system environment includes the OpenHarmony build environment and development environment. For details, see [Setting Up Development Environment](../quick-start/quickstart-lite-env-setup.md).
+Before setting up the environment for a development board, you must set up the basic system environment for OpenHarmony first. The basic system environment includes the OpenHarmony build environment and development environment. For details, see [Quick Start Overview](../quick-start/quickstart-overview.md).
 
 ### Obtaining the OpenHarmony Source Code
 
@@ -133,9 +133,9 @@ The LiteOS-M kernel porting projects for specific development boards are provide
 
 How to contribute a chip based on Liteos-M kernel:
 
-[ Board-Level Directory Specifications](../porting/porting-chip-board-overview.md)
+[Mini System SoC Porting Guide](../porting/porting-minichip-overview.md)
 
-[Mini System SoC Porting Guide](../porting/porting-minichip.md)
+[Mini System SoC Porting Cases](../porting/porting-bes2600w-on-minisystem-display-demo.md)
 
 ## Repositories Involved<a name="section1371113476307"></a>
 

@@ -1,6 +1,6 @@
 # distributedBundle模块(JS端SDK接口)
 
-本模块提供分布式包的管理
+本模块提供分布式包的管理。
 
 > **说明：**
 >
@@ -109,8 +109,8 @@ SystemCapability.BundleManager.DistributedBundleFramework
 
 | 参数名       | 类型                                                         | 必填 | 说明                                               |
 | ------------ | ------------------------------------------------------------ | ---- | -------------------------------------------------- |
-| elementNames | Array<[ElementName](js-apis-bundle-ElementName.md)>          | 是   | ElementName信息,最大数组长度为10                   |
-| callback     | AsyncCallback<Array<[RemoteAbilityInfo](js-apis-bundle-remoteAbilityInfo.md)>> | 是   | 程序启动作为入参的回调函数，返回远程基本能力信息。 |
+| elementNames | Array<[ElementName](js-apis-bundle-ElementName.md)>          | 是   | ElementName信息，最大数组长度为10。                   |
+| callback     | AsyncCallback< Array<[RemoteAbilityInfo](js-apis-bundle-remoteAbilityInfo.md)>> | 是   | 程序启动作为入参的回调函数，返回远程基本能力信息。 |
 
 
 
@@ -138,7 +138,7 @@ SystemCapability.BundleManager.DistributedBundleFramework
 
 | 参数名      | 类型                                                | 必填 | 说明                  |
 | ------------ | --------------------------------------------------- | ---- | ----------------------- |
-| elementNames | Array<[ElementName](js-apis-bundle-ElementName.md)> | 是   | ElementName信息,最大数组长度为10。 |
+| elementNames | Array<[ElementName](js-apis-bundle-ElementName.md)> | 是   | ElementName信息，最大数组长度为10。 |
 
 **返回值：**
 

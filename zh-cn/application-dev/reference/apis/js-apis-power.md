@@ -178,8 +178,6 @@ getPowerMode(): DevicePowerMode
 
 获取当前设备的电源模式。
 
-**需要权限：** ohos.permission.POWER_OPTIMIZATION
-
 **系统能力：** SystemCapability.PowerManager.PowerManager.Core
 
 **返回值：**

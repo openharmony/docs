@@ -94,7 +94,7 @@ OpenHarmony编译子系统是以GN和Ninja构建为基座，对构建和配置�
   # export PATH=~/.local/bin:$PATH
   ```
 
-  ![icon-note.gif](../public_sys-resources/icon-note.gif)**注意**：上述安装ohos-build的过程中会安装编译工具hb，但有时会出现hb安装不成功的情况，若安装不成功，则按照[hb安装](../../device-dev/quick-start/quickstart-pkg-install_tool.md#安装hb)重新安装。
+  ![icon-note.gif](../public_sys-resources/icon-note.gif)**注意**：上述安装ohos-build的过程中会安装编译工具hb，但有时会出现hb安装不成功的情况，若安装不成功，则按照[hb安装](../../device-dev/quick-start/quickstart-pkg-install-tool.md#安装hb)重新安装。
 
 
 ## 配置规则

@@ -2,7 +2,7 @@
 
 **Path2D** allows you to describe a path through an existing path. This path can be drawn through the **stroke** API of **Canvas**.
 
->  **NOTE**
+> **NOTE**
 > 
 > The APIs of this module are supported since API version 8. Updates will be marked with a superscript to indicate their earliest API version.
 
@@ -383,7 +383,7 @@ Draws an arc based on the radius and points on the arc.
 
 ## ellipse
 
-ellipse(x: number, y: number, radiusX: number, radiusY: number, rotation: number, startAngle: number, endAngle: number, counterclockwise?: number): void
+ellipse(x: number, y: number, radiusX: number, radiusY: number, rotation: number, startAngle: number, endAngle: number, counterclockwise?: boolean): void
 
 Draws an ellipse in the specified rectangular region on the canvas.
 
@@ -398,7 +398,7 @@ Draws an ellipse in the specified rectangular region on the canvas.
   | rotation | number | Yes| 0 | Rotation angle of the ellipse. The unit is radian.| 
   | startAngle | number | Yes| 0 | Angle of the start point for drawing the ellipse. The unit is radian.| 
   | endAngle | number | Yes| 0 | Angle of the end point for drawing the ellipse. The unit is radian.| 
-  | counterclockwise | number | No| 0 | Whether to draw the ellipse counterclockwise. The value **0** means to draw the ellipse clockwise, and **1** means to draw the ellipse counterclockwise. This parameter is optional. The default value is **0**.| 
+  | counterclockwise | boolean | No| false | Whether to draw the ellipse counterclockwise.<br>**true**: Draw the ellipse counterclockwise.<br>**false**: Draw the ellipse clockwise.| 
 
 **Example**
 

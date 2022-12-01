@@ -9,9 +9,9 @@ For details about the functions of the OpenHarmony compilation and building modu
 
 ## Prerequisites
 
-- The [required libraries and tools](quickstart-pkg-install_package.md) have been installed.
+- The [required libraries and tools](quickstart-pkg-install-package.md) have been installed.
 
-- The [compilation tools](quickstart-pkg-install_tool.md) have been installed.
+- The [compilation tools](quickstart-pkg-install-tool.md) have been installed.
 
 - The [tools specially required by Hi3861](quickstart-pkg-3861-tool.md) have been installed.
 

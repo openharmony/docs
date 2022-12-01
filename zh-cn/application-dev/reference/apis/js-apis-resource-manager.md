@@ -15,7 +15,7 @@ import resourceManager from '@ohos.resourceManager';
 
 ## 使用说明
 
-从API Version9开始，Stage模型支持了通过context获取resourceManager对象的方式，再调用其内部获取资源的接口，无需再导入包，此方式FA模型不适用。
+从API Version9开始，Stage模型通过context获取resourceManager对象的方式后，可直接调用其内部获取资源的接口，无需再导入包。此方式FA模型不适用，FA模型还需要先导入包，再调用[getResourceManager](#resourcemanagergetresourcemanager)接口获取资源对象。
 Stage模型下Context的引用方法请参考[Stage模型的Context详细介绍](../../ability/context-userguide.md)
 
 ```ts
@@ -96,7 +96,8 @@ getResourceManager(): Promise&lt;ResourceManager&gt;
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
-**返回值：** 
+**返回值：**
+
 | 类型                                       | 说明                |
 | ---------------------------------------- | ----------------- |
 | Promise&lt;[ResourceManager](#resourcemanager)&gt; | Promise方式返回资源管理对象 |
@@ -133,7 +134,8 @@ getResourceManager(bundleName: string): Promise&lt;ResourceManager&gt;
 | ---------- | ------ | ---- | ------------- |
 | bundleName | string | 是    | 指定应用的Bundle名称 |
 
-**返回值：** 
+**返回值：**
+
 | 类型                                       | 说明                 |
 | ---------------------------------------- | ------------------ |
 | Promise&lt;[ResourceManager](#resourcemanager)&gt; | Promise方式返回的资源管理对象 |
@@ -305,7 +307,7 @@ getStringValue(resId: number, callback: AsyncCallback&lt;string&gt;): void
 **示例Stage：** 
   ```ts
     try {
-        this.context.getStringValue($r('app.string.test').id, (error, value) => {
+        this.context.resourceManager.getStringValue($r('app.string.test').id, (error, value) => {
           if (error != null) {
               console.log("error is " + error);
           } else {
@@ -332,7 +334,8 @@ getStringValue(resId: number): Promise&lt;string&gt;
 | ----- | ------ | ---- | ----- |
 | resId | number | 是    | 资源ID值 |
 
-**返回值：** 
+**返回值：**
+
 | 类型                    | 说明          |
 | --------------------- | ----------- |
 | Promise&lt;string&gt; | 资源ID值对应的字符串 |
@@ -423,6 +426,7 @@ getStringValue(resource: Resource): Promise&lt;string&gt;
 | resource | [Resource](#resource9) | 是    | 资源信息 |
 
 **返回值：**
+
 | 类型                    | 说明               |
 | --------------------- | ---------------- |
 | Promise&lt;string&gt; | resource对象对应的字符串 |
@@ -511,7 +515,8 @@ getStringArrayValue(resId: number): Promise&lt;Array&lt;string&gt;&gt;
 | ----- | ------ | ---- | ----- |
 | resId | number | 是    | 资源ID值 |
 
-**返回值：** 
+**返回值：**
+
 | 类型                                 | 说明            |
 | ---------------------------------- | ------------- |
 | Promise&lt;Array&lt;string&gt;&gt; | 资源ID值对应的字符串数组 |
@@ -598,7 +603,8 @@ getStringArrayValue(resource: Resource): Promise&lt;Array&lt;string&gt;&gt;
 | -------- | ---------------------- | ---- | ---- |
 | resource | [Resource](#resource9) | 是    | 资源信息 |
 
-**返回值：** 
+**返回值：**
+
 | 类型                                 | 说明                 |
 | ---------------------------------- | ------------------ |
 | Promise&lt;Array&lt;string&gt;&gt; | resource对象对应的字符串数组 |
@@ -686,7 +692,8 @@ getMediaContent(resId: number): Promise&lt;Uint8Array&gt;
 | ----- | ------ | ---- | ----- |
 | resId | number | 是    | 资源ID值 |
 
-**返回值：** 
+**返回值：**
+
 | 类型                        | 说明             |
 | ------------------------- | -------------- |
 | Promise&lt;Uint8Array&gt; | 资源ID值对应的媒体文件内容 |
@@ -771,7 +778,8 @@ getMediaContent(resource: Resource): Promise&lt;Uint8Array&gt;
 | -------- | ---------------------- | ---- | ---- |
 | resource | [Resource](#resource9) | 是    | 资源信息 |
 
-**返回值：** 
+**返回值：**
+
 | 类型                        | 说明                  |
 | ------------------------- | ------------------- |
 | Promise&lt;Uint8Array&gt; | resource对象对应的媒体文件内容 |
@@ -858,7 +866,8 @@ getMediaContentBase64(resId: number): Promise&lt;string&gt;
 | ----- | ------ | ---- | ----- |
 | resId | number | 是    | 资源ID值 |
 
-**返回值：** 
+**返回值：**
+
 | 类型                    | 说明                   |
 | --------------------- | -------------------- |
 | Promise&lt;string&gt; | 资源ID值对应的图片资源Base64编码 |
@@ -943,7 +952,8 @@ getMediaContentBase64(resource: Resource): Promise&lt;string&gt;
 | -------- | ---------------------- | ---- | ---- |
 | resource | [Resource](#resource9) | 是    | 资源信息 |
 
-**返回值：** 
+**返回值：**
+
 | 类型                    | 说明                        |
 | --------------------- | ------------------------- |
 | Promise&lt;string&gt; | resource对象对应的图片资源Base64编码 |
@@ -1013,7 +1023,8 @@ getConfiguration(): Promise&lt;Configuration&gt;
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
-**返回值：** 
+**返回值：**
+
 | 类型                                       | 说明               |
 | ---------------------------------------- | ---------------- |
 | Promise&lt;[Configuration](#configuration)&gt; | 设备的Configuration |
@@ -1068,7 +1079,8 @@ getDeviceCapability(): Promise&lt;DeviceCapability&gt;
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
-**返回值：** 
+**返回值：**
+
 | 类型                                       | 说明                  |
 | ---------------------------------------- | ------------------- |
 | Promise&lt;[DeviceCapability](#devicecapability)&gt; | 设备的DeviceCapability |
@@ -1143,7 +1155,8 @@ getPluralStringValue(resId: number, num: number): Promise&lt;string&gt;
 | resId | number | 是    | 资源ID值 |
 | num   | number | 是    | 数量值   |
 
-**返回值：** 
+**返回值：**
+
 | 类型                    | 说明                        |
 | --------------------- | ------------------------- |
 | Promise&lt;string&gt; | 根据提供的数量获取对应ID字符串表示的单复数字符串 |
@@ -1233,7 +1246,8 @@ getPluralString(resource: Resource, num: number): Promise&lt;string&gt;
 | resource | [Resource](#resource9) | 是    | 资源信息 |
 | num      | number                 | 是    | 数量值  |
 
-**返回值：** 
+**返回值：**
+
 | 类型                    | 说明                             |
 | --------------------- | ------------------------------ |
 | Promise&lt;string&gt; | 根据提供的数量获取对应resource对象表示的单复数字符串 |
@@ -1320,7 +1334,8 @@ getRawFileContent(path: string): Promise&lt;Uint8Array&gt;
 | ---- | ------ | ---- | ----------- |
 | path | string | 是    | rawfile文件路径 |
 
-**返回值：** 
+**返回值：**
+
 | 类型                        | 说明          |
 | ------------------------- | ----------- |
 | Promise&lt;Uint8Array&gt; | rawfile文件内容 |
@@ -1401,7 +1416,8 @@ getRawFd(path: string): Promise&lt;RawFileDescriptor&gt;
 | ---- | ------ | ---- | ----------- |
 | path | string | 是    | rawfile文件路径 |
 
-**返回值：** 
+**返回值：**
+
 | 类型                                       | 说明                  |
 | ---------------------------------------- | ------------------- |
 | Promise&lt;[RawFileDescriptor](#rawfiledescriptor8)&gt; | rawfile文件descriptor |
@@ -1469,7 +1485,8 @@ closeRawFileDescriptor(path: string): Promise&lt;void&gt;
 | ---- | ------ | ---- | ----------- |
 | path | string | 是    | rawfile文件路径 |
 
-**返回值：** 
+**返回值：**
+
 | 类型                  | 说明   |
 | ------------------- | ---- |
 | Promise&lt;void&gt; | 无返回值 |
@@ -1537,7 +1554,8 @@ closeRawFd(path: string): Promise&lt;void&gt;
 | ---- | ------ | ---- | ----------- |
 | path | string | 是    | rawfile文件路径 |
 
-**返回值：** 
+**返回值：**
+
 | 类型                  | 说明   |
 | ------------------- | ---- |
 | Promise&lt;void&gt; | 无返回值 |
@@ -1634,6 +1652,7 @@ getStringByName(resName: string): Promise&lt;string&gt;
 | resName | string | 是    | 资源名称 |
 
 **返回值：**
+
 | 类型                    | 说明         |
 | --------------------- | ---------- |
 | Promise&lt;string&gt; | 资源名称对应的字符串 |
@@ -1715,7 +1734,8 @@ getStringArrayByName(resName: string): Promise&lt;Array&lt;string&gt;&gt;
 | ------- | ------ | ---- | ---- |
 | resName | string | 是    | 资源名称 |
 
-**返回值：** 
+**返回值：**
+
 | 类型                                 | 说明           |
 | ---------------------------------- | ------------ |
 | Promise&lt;Array&lt;string&gt;&gt; | 资源名称对应的字符串数组 |
@@ -1797,7 +1817,8 @@ getMediaByName(resName: string): Promise&lt;Uint8Array&gt;
 | ------- | ------ | ---- | ---- |
 | resName | string | 是    | 资源名称 |
 
-**返回值：** 
+**返回值：**
+
 | 类型                        | 说明            |
 | ------------------------- | ------------- |
 | Promise&lt;Uint8Array&gt; | 资源名称对应的媒体文件内容 |
@@ -1879,7 +1900,8 @@ getMediaBase64ByName(resName: string): Promise&lt;string&gt;
 | ------- | ------ | ---- | ---- |
 | resName | string | 是    | 资源名称 |
 
-**返回值：** 
+**返回值：**
+
 | 类型                    | 说明                  |
 | --------------------- | ------------------- |
 | Promise&lt;string&gt; | 资源名称对应的图片资源Base64编码 |
@@ -1964,7 +1986,8 @@ getPluralStringByName(resName: string, num: number): Promise&lt;string&gt;
 | resName | string | 是    | 资源名称 |
 | num     | number | 是    | 数量值  |
 
-**返回值：** 
+**返回值：**
+
 | 类型                    | 说明                     |
 | --------------------- | ---------------------- |
 | Promise&lt;string&gt; | 根据传入的数量值获取资源名称对应的字符串资源 |
@@ -2006,7 +2029,8 @@ getStringSync(resId: number): string
 | ----- | ------ | ---- | ----- |
 | resId | number | 是    | 资源ID值 |
 
-**返回值：** 
+**返回值：**
+
 | 类型     | 说明          |
 | ------ | ----------- |
 | string | 资源ID值对应的字符串 |
@@ -2044,7 +2068,8 @@ getStringSync(resource: Resource): string
 | -------- | ---------------------- | ---- | ---- |
 | resource | [Resource](#resource9) | 是    | 资源信息 |
 
-**返回值：** 
+**返回值：**
+
 | 类型     | 说明               |
 | ------ | ---------------- |
 | string | resource对象对应的字符串 |
@@ -2087,7 +2112,8 @@ getStringByNameSync(resName: string): string
 | ------- | ------ | ---- | ---- |
 | resName | string | 是    | 资源名称 |
 
-**返回值：** 
+**返回值：**
+
 | 类型     | 说明         |
 | ------ | ---------- |
 | string | 资源名称对应的字符串 |
@@ -2125,7 +2151,8 @@ getBoolean(resId: number): boolean
 | ----- | ------ | ---- | ----- |
 | resId | number | 是    | 资源ID值 |
 
-**返回值：** 
+**返回值：**
+
 | 类型      | 说明           |
 | ------- | ------------ |
 | boolean | 资源ID值对应的布尔结果 |
@@ -2162,7 +2189,8 @@ getBoolean(resource: Resource): boolean
 | -------- | ---------------------- | ---- | ---- |
 | resource | [Resource](#resource9) | 是    | 资源信息 |
 
-**返回值：** 
+**返回值：**
+
 | 类型      | 说明                |
 | ------- | ----------------- |
 | boolean | resource对象对应的布尔结果 |
@@ -2205,7 +2233,8 @@ getBooleanByName(resName: string): boolean
 | ------- | ------ | ---- | ---- |
 | resName | string | 是    | 资源名称 |
 
-**返回值：** 
+**返回值：**
+
 | 类型      | 说明          |
 | ------- | ----------- |
 | boolean | 资源名称对应的布尔结果 |
@@ -2243,7 +2272,8 @@ getNumber(resId: number): number
 | ----- | ------ | ---- | ----- |
 | resId | number | 是    | 资源ID值 |
 
-**返回值：** 
+**返回值：**
+
 | 类型     | 说明         |
 | ------ | ---------- |
 | number | 资源ID值对应的数值 |
@@ -2287,7 +2317,8 @@ getNumber(resource: Resource): number
 | -------- | ---------------------- | ---- | ---- |
 | resource | [Resource](#resource9) | 是    | 资源信息 |
 
-**返回值：** 
+**返回值：**
+
 | 类型     | 说明              |
 | ------ | --------------- |
 | number | resource对象对应的数值 |
@@ -2330,7 +2361,8 @@ getNumberByName(resName: string): number
 | ------- | ------ | ---- | ---- |
 | resName | string | 是    | 资源名称 |
 
-**返回值：** 
+**返回值：**
+
 | 类型     | 说明        |
 | ------ | --------- |
 | number | 资源名称对应的数值 |
@@ -2408,7 +2440,8 @@ getString(resId: number): Promise&lt;string&gt;
 | ----- | ------ | ---- | ----- |
 | resId | number | 是    | 资源ID值 |
 
-**返回值：** 
+**返回值：**
+
 | 类型                    | 说明          |
 | --------------------- | ----------- |
 | Promise&lt;string&gt; | 资源ID值对应的字符串 |
@@ -2472,7 +2505,8 @@ getStringArray(resId: number): Promise&lt;Array&lt;string&gt;&gt;
 | ----- | ------ | ---- | ----- |
 | resId | number | 是    | 资源ID值 |
 
-**返回值：** 
+**返回值：**
+
 | 类型                                 | 说明            |
 | ---------------------------------- | ------------- |
 | Promise&lt;Array&lt;string&gt;&gt; | 资源ID值对应的字符串数组 |
@@ -2495,7 +2529,7 @@ getMedia(resId: number, callback: AsyncCallback&lt;Uint8Array&gt;): void
 
 用户获取指定资源ID对应的媒体文件内容，使用callback形式返回字节数组。
 
-从API version 9开始不再维护，建议使用[getMediaContent](#getmediacontent)代替。
+从API version 9开始不再维护，建议使用[getMediaContent](#getmediacontent9)代替。
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
@@ -2526,7 +2560,7 @@ getMedia(resId: number): Promise&lt;Uint8Array&gt;
 
 用户获取指定资源ID对应的媒体文件内容，使用Promise形式返回字节数组。
 
-从API version 9开始不再维护，建议使用[getMediaContent](#getmediacontent-1)代替。
+从API version 9开始不再维护，建议使用[getMediaContent](#getmediacontent9-1)代替。
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
@@ -2536,7 +2570,8 @@ getMedia(resId: number): Promise&lt;Uint8Array&gt;
 | ----- | ------ | ---- | ----- |
 | resId | number | 是    | 资源ID值 |
 
-**返回值：** 
+**返回值：**
+
 | 类型                        | 说明             |
 | ------------------------- | -------------- |
 | Promise&lt;Uint8Array&gt; | 资源ID值对应的媒体文件内容 |
@@ -2559,7 +2594,7 @@ getMediaBase64(resId: number, callback: AsyncCallback&lt;string&gt;): void
 
 用户获取指定资源ID对应的图片资源Base64编码，使用callback形式返回字符串。
 
-从API version 9开始不再维护，建议使用[getMediaContentBase64](#getmediacontentbase64)代替。
+从API version 9开始不再维护，建议使用[getMediaContentBase64](#getmediacontentbase649)代替。
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
@@ -2590,7 +2625,7 @@ getMediaBase64(resId: number): Promise&lt;string&gt;
 
 用户获取指定资源ID对应的图片资源Base64编码，使用Promise形式返回字符串。
 
-从API version 9开始不再维护，建议使用[getMediaContentBase64](#getmediacontentbase64-1)代替。
+从API version 9开始不再维护，建议使用[getMediaContentBase64](#getmediacontentbase649-1)代替。
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
@@ -2600,7 +2635,8 @@ getMediaBase64(resId: number): Promise&lt;string&gt;
 | ----- | ------ | ---- | ----- |
 | resId | number | 是    | 资源ID值 |
 
-**返回值：** 
+**返回值：**
+
 | 类型                    | 说明                   |
 | --------------------- | -------------------- |
 | Promise&lt;string&gt; | 资源ID值对应的图片资源Base64编码 |
@@ -2623,7 +2659,7 @@ getPluralString(resId: number, num: number): Promise&lt;string&gt;
 
 根据指定数量获取对指定ID字符串表示的单复数字符串，使用Promise形式返回字符串。
 
-从API version 9开始不再维护，建议使用[getPluralStringValue](#getpluralstringvalue)代替。
+从API version 9开始不再维护，建议使用[getPluralStringValue](#getpluralstringvalue9)代替。
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
@@ -2634,7 +2670,8 @@ getPluralString(resId: number, num: number): Promise&lt;string&gt;
 | resId | number | 是    | 资源ID值 |
 | num   | number | 是    | 数量值   |
 
-**返回值：** 
+**返回值：**
+
 | 类型                    | 说明                        |
 | --------------------- | ------------------------- |
 | Promise&lt;string&gt; | 根据提供的数量获取对应ID字符串表示的单复数字符串 |
@@ -2657,7 +2694,7 @@ getPluralString(resId: number, num: number, callback: AsyncCallback&lt;string&gt
 
 根据指定数量获取指定ID字符串表示的单复数字符串，使用callback形式返回字符串。
 
-从API version 9开始不再维护，建议使用[getPluralStringValue](#getpluralstringvalue-1)代替。
+从API version 9开始不再维护，建议使用[getPluralStringValue](#getpluralstringvalue9-1)代替。
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
@@ -2730,7 +2767,8 @@ getRawFile(path: string): Promise&lt;Uint8Array&gt;
 | ---- | ------ | ---- | ----------- |
 | path | string | 是    | rawfile文件路径 |
 
-**返回值：** 
+**返回值：**
+
 | 类型                        | 说明          |
 | ------------------------- | ----------- |
 | Promise&lt;Uint8Array&gt; | rawfile文件内容 |
@@ -2795,7 +2833,8 @@ getRawFileDescriptor(path: string): Promise&lt;RawFileDescriptor&gt;
 | ---- | ------ | ---- | ----------- |
 | path | string | 是    | rawfile文件路径 |
 
-**返回值：** 
+**返回值：**
+
 | 类型                                       | 说明                  |
 | ---------------------------------------- | ------------------- |
 | Promise&lt;[RawFileDescriptor](#rawfiledescriptor8)&gt; | rawfile文件descriptor |

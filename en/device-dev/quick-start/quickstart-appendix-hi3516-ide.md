@@ -15,7 +15,7 @@ The following exemplifies how to run the first program on the development board.
 Before development, complete the following preparations:
 
 
-- [Setting Up the Development Environment](quickstart-ide-env--win.md)
+- [Setting Up the Development Environment](quickstart-ide-env-win.md)
 
 - [Creating a Project and Obtaining Source Code](quickstart-ide-import-project.md)
 
