@@ -2,13 +2,13 @@
 
 ## Resource
 
-The **Resource** type is used to reference resources for setting component attribute values.
+The **Resource** type is used to reference resources for setting component attributes.
 
-If a **Resource** object is created using `$r` or `$rawfile`, modifying attribute values of the object is prohibited.
+You can use `$r` or `$rawfile` to create a **Resource** object, but its attribute values cannot be changed.
 
 - `$r('belonging.type.name')`
 
-  **belonging**: system or application resource. The value can be **'sys'** or **'app'**.
+  **belonging**: group to which the resource belongs, which can be **'sys'** or **'app'**.
 
   **type**: resource type, which can be **'color'**, **'float'**, **'string'**, or **'media'**.
 
@@ -16,7 +16,7 @@ If a **Resource** object is created using `$r` or `$rawfile`, modifying attribut
 
 - `$rawfile('filename')`
 
-  **filename**: name of the file in **resources/rawfile** of the project.
+  **filename**: name of the file in the **resources/rawfile** directory of the project.
 
 ## Length
 
@@ -24,7 +24,7 @@ The **Length** type is used to represent a size unit.
 
 | Type      | Description                                    |
 | -------- | -------------------------------------- |
-| string   | String type. Explicitly specify the length unit, for example, **'10px'**, or the length in percentage, for example, **'100%'**.|
+| string   | String type. Specify the length unit explicitly, for example, **'10px'**, or provide the length in percentage, for example, **'100%'**.|
 | number   | Number type. The default unit is vp.                               |
 | [Resource](#resource) | Size referenced from system or application resources.           |
 
@@ -39,25 +39,25 @@ The **ResourceStr** type is used to represent the types that can be used by inpu
 
 ## Padding
 
-The **Padding** type is used to describe the padding areas in different directions of a component.
+The **Padding** type is used to describe the paddings in different directions of a component.
 
 | Name    | Type    | Mandatory  | Description             |
 | ------ | ------ | ---- | --------------- |
-| top    | [Length](#length) | No   | Height of the padding area on the top of the component. |
-| right  | [Length](#length) | No   | Width of the padding area on the right of the component.|
-| bottom | [Length](#length) | No   | Height of the padding area at the bottom of the component. |
-| left   | [Length](#length) | No   | Width of the padding area on the left of the component.|
+| top    | [Length](#length)  | No   | Height of the padding on the top of the component. |
+| right  | [Length](#length)  | No   | Width of the padding on the right of the component.|
+| bottom | [Length](#length)  | No   | Height of the padding at the bottom of the component. |
+| left   | [Length](#length)  | No   | Width of the padding on the left of the component.|
 
 ## Margin
 
-The **Margin** type is used to describe the margin areas in different directions of a component.
+The **Margin** type is used to describe the margins in different directions of a component.
 
 | Name    | Type    | Mandatory  | Description             |
 | ------ | ------ | ---- | --------------- |
-| top    | [Length](#length) | No   | Height of the margin area above the component. |
-| right  | [Length](#length) | No   | Width of the margin area on the right of the component.|
-| bottom | [Length](#length) | No   | Height of the margin area below the component. |
-| left   | [Length](#length) | No   | Width of the margin area on the left of the component.|
+| top    | [Length](#length)  | No   | Height of the margin above the component. |
+| right  | [Length](#length)  | No   | Width of the margin on the right of the component.|
+| bottom | [Length](#length)  | No   | Height of the margin below the component. |
+| left   | [Length](#length)  | No   | Width of the margin on the left of the component.|
 
 ## EdgeWidths<sup>9+</sup>
 
@@ -110,8 +110,8 @@ The **Offset** type is used to describe the offset coordinates of a component in
 
 | Name  | Type    | Mandatory  | Description      |
 | ---- | ------ | ---- | -------- |
-| dx   | [Length](#length) | Yes   | Horizontal offset.|
-| dy   | [Length](#length) | Yes   | Vertical offset.|
+| dx   | [Length](#length) | Yes   | X coordinate of the offset.|
+| dy   | [Length](#length) | Yes   | Y coordinate of the offset.|
 
 ## ResourceColor
 
@@ -119,14 +119,14 @@ The **ResourceColor** type is used to describe the color types of resources.
 
 | Type                                     | Description                                            |
 | ---------------------------------------- | ------------------------------------------------- |
-| [Color](ts-appendix-enums.md#color)      | Color enum.                                      |
-| number                                   | Color in the hexadecimal notation.                                     |
-| string                                   | Color in the RGB or RGBA notion.                             |
+| [Color](ts-appendix-enums.md#color)      | Color enums.                                      |
+| number                                   | Color in hexadecimal notation.                                     |
+| string                                   | Color in RGB or RGBA notation.                             |
 | [Resource](#resource)                    | Color referenced from system or application resources.|
 
 ## LengthConstrain
 
-The **LengthConstrain** type is used to limit the maximum and minimum lengths of a component.
+The **LengthConstrain** type is used to describe the maximum and minimum lengths of a component.
 
 | Name       | Type    | Mandatory  | Description     |
 | --------- | ------ | ---- | ------- |
@@ -147,15 +147,14 @@ The **Font** type is used to set the text style.
 
 ## Area<sup>8+</sup>
 
-The **Area** type is used to describe the area information of the target element.
+The **Area** type is used to describe the area information of a component.
 
 | Name            | Type                    | Description                            |
 | -------------- | ---------------------- | ------------------------------ |
-| width          | [Length](#length)      | Width of the target element. The value is of the number type when being used as the return value and the unit is vp.|
-| height         | [Length](#length)      | Height of the target element. The value is of the number type when being used as the return value and the unit is vp.|
-| position       | [Position](#position8) | Position of the upper left corner of the target element relative to that of the parent element.           |
-| globalPosition | [Position](#position8) | Position of the upper left corner of the target element relative to that of the page.            |
-
+| width          | [Length](#length)      | Width of the component. The value is of the number type in vp when used as the return value.|
+| height         | [Length](#length)      | Height of the component. The value is of the number type in vp when used as the return value.|
+| position       | [Position](#position8) | Position of the upper left corner of the component relative to that of its parent container.           |
+| globalPosition | [Position](#position8) | Position of the upper left corner of the component relative to that of the page where the component resides.            |
 
 ## Position<sup>8+</sup>
 
@@ -163,19 +162,19 @@ The **Position** type is used to represent coordinates of a point.
 
 | Name  | Type    | Mandatory  | Description                         |
 | ---- | ------ | ---- | --------------------------- |
-| x    | [Length](#length) | No   | X coordinate. The value is of the number type when being used as the return value and the unit is vp.|
-| y    | [Length](#length) | No   | Y coordinate. The value is of the number type when being used as the return value and the unit is vp.|
+| x    | [Length](#length) | No   | X coordinate. The value is of the number type in vp when used as the return value.|
+| y    | [Length](#length) | No   | Y coordinate. The value is of the number type in vp when used as the return value.|
 
 ## ConstraintSizeOptions
 
-The **ConstraintSizeOptions** type is used to set the constraint size of a component, thereby limiting the size range during component layout.
+The **ConstraintSizeOptions** type is used to set the size constraints of a component during component layout.
 
 | Name       | Type    | Mandatory  | Description     |
 | --------- | ------ | ---- | ------- |
-| minWidth  | [Length](#length) | No   | Minimum width of the element.|
-| maxWidth  | [Length](#length) | No   | Maximum width of the element.|
-| minHeight | [Length](#length) | No   | Minimum height of the element.|
-| maxHeight | [Length](#length) | No   | Maximum height of the element.|
+| minWidth  | [Length](#length) | No   | Minimum width of the component.|
+| maxWidth  | [Length](#length) | No   | Maximum width of the component.|
+| minHeight | [Length](#length) | No   | Minimum height of the component.|
+| maxHeight | [Length](#length) | No   | Maximum height of the component.|
 
 ## SizeOptions
 
@@ -183,8 +182,8 @@ The **SizeOptions** type is used to set the width and height.
 
 | Name    | Type    | Mandatory  | Description   |
 | ------ | ------ | ---- | ----- |
-| width  | [Length](#length) | No   | Width of the element.|
-| height | [Length](#length) | No   | Height of the element.|
+| width  | [Length](#length) | No   | Width of the component.|
+| height | [Length](#length) | No   | Height of the component.|
 
 
 ## BorderOptions
@@ -200,11 +199,11 @@ The **BorderOptions** type is used to provide border information.
 
 ## ColorFilter<sup>9+</sup>
 
-The **ColorFilter** type is used to create a color filter with a 4*5 matrix.
+The **ColorFilter** type is used to create a color filter with a 4 x 5 matrix.
 
 | Name         | Type      | Mandatory  | Description                                      |
 | ----------- | -------- | ---- | ---------------------------------------- |
-| constructor | number[] | Yes   | Constructor for creating a color filter with a 4\*5 matrix. The input parameter is [m\*n], which is the matrix value in row m and column n. The matrix is row-first.|
+| constructor | number[] | Yes   | Constructor for creating a color filter with a 4 x 5 matrix. The input parameter is [m*n], which is the matrix value in row m and column n. The matrix is row-first.|
 
 
 ## CustomBuilder<sup>8+</sup>
@@ -213,4 +212,4 @@ The **CustomBuilder** type is used to define custom UI descriptions in component
 
 | Name           | Type                  | Description                                      |
 | ------------- | ---------------------- | ---------------------------------------- |
-| CustomBuilder | ()&nbsp;=&gt;&nbsp;any | Must be decorated by **@Builder**. For details, see [@Builder](../../ui/ts-component-based-builder.md).|
+| CustomBuilder | ()&nbsp;=&gt;&nbsp;any | Must be decorated by **@Builder**. For details, see [@Builder](../../quick-start/arkts-dynamic-ui-elememt-building.md#builder).|
