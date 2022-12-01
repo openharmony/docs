@@ -180,7 +180,7 @@ ArkTS API新增支持错误码的上报，帮助开发者快速捕捉异常，�
 | web子系统 | - webview新增支持页面图文混排内容的选中和复制。<br/>- web组件支持窗口事件、全屏事件、以及url的获取。<br/>主要涉及需求：<br/>I5QA3D 【新增特性】webview支持页面图文混排内容的选中和复制<br/>I5X53B 【增强特性】web组件支持url获取<br/>I5R6E0 【新增规格】web组件全屏事件支持<br/>I5X53C 【新增规格】web组件窗口事件支持 | NA |
 | Misc软件服务子系统 | - 输入法框架新增支持输入法和输入法子类型切换及变更的监听<br/>- 上传下载能力新增支持PUT方式上传文件。<br/>主要涉及需求：<br/>I5X5LA 【input_method_fwk部件】输入法框架支持输入法和输入法子类型切换及变更监听<br/>I5X5LR 【request部件】支持PUT方式上传文件 | NA |
 | USB服务子系统 | USB请求权限弹窗适配新的系统弹窗方案。<br/>主要涉及需求：<br/>I5UYX4【新增特性】USB请求权限弹窗适配系统弹窗新方案 | NA |
-| 文件管理子系统 | 文件打开读写等高频API跨平台兼容。<br/>主要涉及需求：<br/>I5X5E5 【fileAPI部件】【iOS】【能力桥接】目标平台fileIO能力桥接<br/>I5X5E6 【fileAPI部件】【Android】【能力桥接】目标平台fileIO能力桥接<br/>I5X4P2 【filePicker】适配文件访问框架接口修改 | NA |
+| 文件管理子系统 | 文件打开读写等高频API跨平台兼容。<br/>主要涉及需求：<br/>I5X5E5 【fileAPI部件】【能力桥接】目标平台fileIO能力桥接<br/>I5X5E6 【fileAPI部件】【能力桥接】目标平台fileIO能力桥接<br/>I5X4P2 【filePicker】适配文件访问框架接口修改 | NA |
 | DFX | - 对HiTrace的打点接口、调用链接口从底层概念进行统一。<br/>- 新增支持功耗数据、系统事件数据的采集。<br/>- 新增支持JS HAP在启动过程中及时采集perf数据。<br/>主要涉及需求：<br/>I5X4TY 【新增特性】支持HiTrace统一概念的HiTraceMeter打点接口<br/>I5X4U1 【新增特性】支持HiTrace统一概念的HiTraceChain调用链接口<br/>I5X4TD 【新增特性】功耗数据采集<br/>I5X4TE 【新增特性】系统事件数据采集<br/>I5X4TL 【新增特性】支持JS HAP启动过程及时采集perf数据 | NA |
 
 
@@ -190,19 +190,21 @@ ArkTS API新增支持错误码的上报，帮助开发者快速捕捉异常，�
 
 ### Samples
 
+本版本在ArkTS语言下新增如下Samples：
+
   **表4** 新增Samples
 
-| 子系统<div style="width:100px"></div> | 名称 | 简介 | 开发语言 |
-| -------- | -------- | -------- | -------- |
-| 事件通知 | [CustomEmitter: 事件通知](https://gitee.com/openharmony/applications_app_samples/tree/master/Notification/CustomEmitter) | 本示例主要展示进程内事件通知，用户通过选择对应商品并提交订单后在订单列表显示所选商品。 | ArkTS |
-| 数据管理 | [CrossAppDataShare: 跨应用数据共享](https://gitee.com/openharmony/applications_app_samples/tree/master/data/CrossAppDataShare) | 本示例实现了一个跨应用数据共享实例，分为联系人（数据提供方）和联系人助手（数据使用方）两部分：联系人支持联系人数据的增、删、改、查等功能；联系人助手支持同步联系人数据，当联系人与联系人助手数据不一致时，支持合并重复数据。 | ArkTS |
-| 媒体 | [PlayMusicBackground: 后台播放音乐](https://gitee.com/openharmony/applications_app_samples/tree/master/ResourcesSchedule/PlayMusicBackground) | 本示例基于API9 stage应用开发模型，用于验证OpenHarmony提供的后台播放音乐时申请长时任务功能。 | ArkTS |
-| 资源调度 | [ReminderAgentManager: 后台代理提醒](https://gitee.com/openharmony/applications_app_samples/tree/master/ResourcesSchedule/ReminderAgentManager) | 本示例通过使用后台代理提醒的能力，创建闹钟、日历、计时器三种类型的定时提醒，保证应用被冻结或退出时，计时和弹出提醒的功能可以被后台系统服务代理。 | ArkTS |
-| 文件管理 | [StorageStatistic: 存储空间统计](https://gitee.com/openharmony/applications_app_samples/tree/master/Graphics/Screenshot) | 本示例通过应用程序包管理、应用空间统计与卷管理模块，实现了查看当前设备存储空间信息、所有安装的应用的存储信息、所有可用卷的存储信息的功能。 | ArkTS |
-| 窗口 | [Screenshot: 截屏](https://gitee.com/openharmony/applications_app_samples/tree/master/Graphics/Screenshot) | 本示例通过screenshot模块实现屏幕截图 ，通过window模块实现隐私窗口切换，通过display模块查询当前隐私窗口。 | ArkTS |
-| 包管理 | [MultiHap: 多HAP](https://gitee.com/openharmony/applications_app_samples/tree/master/bundle/MultiHap) | 本示例展示多HAP开发，简单介绍了多HAP的使用场景，应用包含了一个entry HAP和两个feature HAP，两个feature HAP分别提供了音频和视频播放组件，entry中使用了音频和视频播放组件。 | ArkTS |
-| 元能力 | [AbilityStartMode: Ability的启动模式](https://gitee.com/openharmony/applications_app_samples/tree/master/ability/AbilityStartMode) | 本示例展示了在一个Stage模型中，实现standard、singleton、specified多种模式场景。 | ArkTS |
-| 资源管理 | [ApplicationThemeSwitch: 应用主题切换](https://gitee.com/openharmony/applications_app_samples/tree/master/ETSUI/ApplicationThemeSwitch) | 本示例通过创建base同级资源文件夹dark和light完成深色浅色主题相关资源配置，实现深色浅色主题切换，在ThemeConst文件中配置自定义主题文件，通过控制变量实现多主题切换。 | ArkTS |
+| 子系统<div style="width:100px"></div> | 名称 | 简介 |
+| -------- | -------- | -------- |
+| 事件通知 | [CustomEmitter: 事件通知](https://gitee.com/openharmony/applications_app_samples/tree/master/Notification/CustomEmitter) | 本示例主要展示进程内事件通知，用户通过选择对应商品并提交订单后在订单列表显示所选商品。 |
+| 数据管理 | [CrossAppDataShare: 跨应用数据共享](https://gitee.com/openharmony/applications_app_samples/tree/master/data/CrossAppDataShare) | 本示例实现了一个跨应用数据共享实例，分为联系人（数据提供方）和联系人助手（数据使用方）两部分：联系人支持联系人数据的增、删、改、查等功能；联系人助手支持同步联系人数据，当联系人与联系人助手数据不一致时，支持合并重复数据。 |
+| 媒体 | [PlayMusicBackground: 后台播放音乐](https://gitee.com/openharmony/applications_app_samples/tree/master/ResourcesSchedule/PlayMusicBackground) | 本示例基于API9 stage应用开发模型，用于验证OpenHarmony提供的后台播放音乐时申请长时任务功能。 |
+| 资源调度 | [ReminderAgentManager: 后台代理提醒](https://gitee.com/openharmony/applications_app_samples/tree/master/ResourcesSchedule/ReminderAgentManager) | 本示例通过使用后台代理提醒的能力，创建闹钟、日历、计时器三种类型的定时提醒，保证应用被冻结或退出时，计时和弹出提醒的功能可以被后台系统服务代理。 |
+| 文件管理 | [StorageStatistic: 存储空间统计](https://gitee.com/openharmony/applications_app_samples/tree/master/Graphics/Screenshot) | 本示例通过应用程序包管理、应用空间统计与卷管理模块，实现了查看当前设备存储空间信息、所有安装的应用的存储信息、所有可用卷的存储信息的功能。 |
+| 窗口 | [Screenshot: 截屏](https://gitee.com/openharmony/applications_app_samples/tree/master/Graphics/Screenshot) | 本示例通过screenshot模块实现屏幕截图 ，通过window模块实现隐私窗口切换，通过display模块查询当前隐私窗口。 |
+| 包管理 | [MultiHap: 多HAP](https://gitee.com/openharmony/applications_app_samples/tree/master/bundle/MultiHap) | 本示例展示多HAP开发，简单介绍了多HAP的使用场景，应用包含了一个entry HAP和两个feature HAP，两个feature HAP分别提供了音频和视频播放组件，entry中使用了音频和视频播放组件。 |
+| 元能力 | [AbilityStartMode: Ability的启动模式](https://gitee.com/openharmony/applications_app_samples/tree/master/ability/AbilityStartMode) | 本示例展示了在一个Stage模型中，实现standard、singleton、specified多种模式场景。 |
+| 资源管理 | [ApplicationThemeSwitch: 应用主题切换](https://gitee.com/openharmony/applications_app_samples/tree/master/ETSUI/ApplicationThemeSwitch) | 本示例通过创建base同级资源文件夹dark和light完成深色浅色主题相关资源配置，实现深色浅色主题切换，在ThemeConst文件中配置自定义主题文件，通过控制变量实现多主题切换。 |
 
 请访问[Samples](https://gitee.com/openharmony/app_samples)仓了解更多信息。
 
