@@ -648,6 +648,8 @@ inputMethodController.showSoftKeyboard((err) => {
 
 ### showSoftKeyboard<sup>9+</sup>
 
+showSoftKeyboard(): Promise&lt;void&gt;
+
 显示软键盘。需要与输入框绑定使用。当点击输入框后，才可通过该接口的调用显示出当前输入法的软键盘。使用Promise异步回调。
 
 **需要权限：** ohos.permission.CONNECT_IME_ABILITY
