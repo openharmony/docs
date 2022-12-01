@@ -12,14 +12,8 @@
 
 | 模块          | 接口名                                                       | 描述                                                         |
 | ------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| ohos.vibrator | vibrate(duration:&nbsp;number):&nbsp;Promise&lt;void&gt;     | 触发马达按照时长振动，使用Promise异步回调。                  |
-| ohos.vibrator | vibrate(duration:&nbsp;number,&nbsp;callback?:&nbsp;AsyncCallback&lt;void&gt;):&nbsp;void | 触发马达按照时长振动，使用Callback异步回调。                 |
-| ohos.vibrator | vibrate(effectId:&nbsp;EffectId):&nbsp;Promise&lt;void&gt;   | 触发马达按照开发者传递效果振动，使用Promise异步回调。        |
-| ohos.vibrator | vibrate(effectId:&nbsp;EffectId,&nbsp;callback?:&nbsp;AsyncCallback&lt;void&gt;):&nbsp;void | 触发马达按照开发者传递效果振动，使用Callback异步回调。       |
 | ohos.vibrator | startVibration(effect: VibrateEffect, attribute: VibrateAttribute): Promise&lt;void&gt; | 根据指定振动效果和振动属性触发马达振动，使用Promise异步回调。 |
 | ohos.vibrator | startVibration(effect: VibrateEffect, attribute: VibrateAttribute, callback: AsyncCallback&lt;void&gt;): void | 根据指定振动效果和振动属性触发马达振动，使用Callback异步回调。 |
-| ohos.vibrator | stop(stopMode:&nbsp;VibratorStopMode):&nbsp;Promise&lt;void&gt; | 停止振动。                                                   |
-| ohos.vibrator | stop(stopMode:&nbsp;VibratorStopMode,&nbsp;callback?:&nbsp;AsyncCallback&lt;void&gt;):&nbsp;void | 停止振动。                                                   |
 | ohos.vibrator | stopVibration(stopMode: VibratorStopMode): Promise&lt;void&gt; | 按照指定模式停止马达的振动。                                 |
 | ohos.vibrator | stopVibration(stopMode: VibratorStopMode, callback: AsyncCallback&lt;void&gt;): void | 按照指定模式停止马达的振动。                                 |
 

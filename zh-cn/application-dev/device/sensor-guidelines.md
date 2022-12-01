@@ -54,7 +54,7 @@
    
    以SensorId为ACCELEROMETER为例展示运行结果，持续监听传感器接口的结果如下图所示：
    
-   ![171e6f30-a8d9-414c-bafa-b430340305f](D:\docs\docs\zh-cn\figures\171e6f30-a8d9-414c-bafa-b430340305fb.png)
+   ![171e6f30-a8d9-414c-bafa-b430340305f](figures/171e6f30-a8d9-414c-bafa-b430340305fb.png)
 
 3. 注销传感器数据监听。
   
@@ -65,7 +65,7 @@
    
    以SensorId为ACCELEROMETER为例展示运行结果，注销传感器成功结果如下图所示：
    
-   ![65d69983-29f6-4381-80a3-f9ef2ec19e53](D:\docs\docs\zh-cn\figures\65d69983-29f6-4381-80a3-f9ef2ec19e53.png)
+   ![65d69983-29f6-4381-80a3-f9ef2ec19e53](figures/65d69983-29f6-4381-80a3-f9ef2ec19e53.png)
 
 4. 获取一次传感器数据变化。
   
@@ -78,7 +78,7 @@
    
    以SensorId为ACCELEROMETER为例展示运行结果，获取数据成功日志如下图所示：
    
-   ![db5d017d-6c1c-4a71-a2dd-f74b7f23239e](D:\docs\docs\zh-cn\figures\db5d017d-6c1c-4a71-a2dd-f74b7f23239e.png)
+   ![db5d017d-6c1c-4a71-a2dd-f74b7f23239e](figures/db5d017d-6c1c-4a71-a2dd-f74b7f23239e.png)
 
    若接口调用不成功，建议使用try/catch语句捕获代码中可能出现的错误信息。例如：
 
