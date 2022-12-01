@@ -6,7 +6,11 @@ The **BundleInfo** module provides bundle information. Unless otherwise specifie
 >
 > The initial APIs of this module are supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
-## BundleInfo
+
+
+## BundleInfo<sup>(deprecated)<sup>
+
+> This API is deprecated since API version 9. You are advised to use [BundleInfo](js-apis-bundleManager-bundleInfo.md) instead.
 
  **System capability**: SystemCapability.BundleManager.BundleFramework
 
@@ -35,11 +39,12 @@ The **BundleInfo** module provides bundle information. Unless otherwise specifie
 | minCompatibleVersionCode          | number                                                       | Yes  | No  | Earliest version compatible with the bundle in the distributed scenario.                        |
 | entryInstallationFree             | boolean                                                      | Yes  | No  | Whether installation-free is supported for the entry module.                                       |
 | reqPermissionStates<sup>8+</sup>  | Array\<number>                                               | Yes  | No  | Permission grant state.                                        |
-| extensionAbilityInfo<sup>9+</sup> | Array\<[ExtensionAbilityInfo](js-apis-bundle-ExtensionAbilityInfo.md)> | Yes  | No  | Extension ability information.<br>The value is obtained by passing **GET_BUNDLE_WITH_EXTENSION_ABILITY**.|
 
 
 
-## ReqPermissionDetail
+## ReqPermissionDetail<sup>(deprecated)<sup>
+
+> This API is deprecated since API version 9. You are advised to use [ReqPermissionDetail](js-apis-bundleManager-bundleInfo.md) instead.
 
 Provides the detailed information of the permissions to request from the system.
 
@@ -49,12 +54,13 @@ Provides the detailed information of the permissions to request from the system.
 | --------------------- | ----------------------- | ---- | ---- | ---------------------- |
 | name                  | string                  | Yes  | Yes  | Name of the permission to request.  |
 | reason                | string                  | Yes  | Yes  | Reason for requesting the permission.  |
-| reasonId<sup>9+</sup> | number                  | Yes  | Yes  | ID of the reason for requesting the permission.|
 | usedScene             | [UsedScene](#usedscene) | Yes  | Yes  | Application scenario and timing for using the permission.|
 
 
 
-## UsedScene
+## UsedScene<sup>(deprecated)<sup>
+
+> This API is deprecated since API version 9. You are advised to use [UsedScene](js-apis-bundleManager-bundleInfo.md) instead.
 
 Describes the application scenario and timing for using the permission.
 

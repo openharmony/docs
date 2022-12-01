@@ -1,6 +1,6 @@
 # ElementName
 
-The **ElementName** module provides the element name information, which can be obtained through [Context.getElementName](js-apis-Context.md).
+The **ElementName** module provides information about an element name. The information can be obtained through [Context.getElementName](js-apis-Context.md).
 
 
 > **NOTE**
@@ -19,4 +19,3 @@ The **ElementName** module provides the element name information, which can be o
 | uri                     | string   | Yes  | Yes  | Resource ID.                |
 | shortName               | string   | Yes  | Yes  | Short name of the ability.              |
 | moduleName              | string   | Yes  | Yes  | Module name of the HAP file to which the ability belongs.  |
-
