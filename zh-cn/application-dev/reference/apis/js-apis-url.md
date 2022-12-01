@@ -165,7 +165,7 @@ forEach(callbackFn: (value: string, key: string, searchParams: this) => void, th
 
 ```js
 const myURLObject = new Url.URL('https://developer.exampleUrl/?fod=1&bard=2'); 
-myURLObject.URLParams.forEach((value, name, searchParams) => {  
+myURLObject.searchParams.forEach((value, name, searchParams) => {  
     console.log(name, value, myURLObject.searchParams === searchParams);
 });
 ```
