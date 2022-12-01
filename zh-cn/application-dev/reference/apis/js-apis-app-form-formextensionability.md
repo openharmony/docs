@@ -1,17 +1,16 @@
-# FormExtension
+# FormExtensionAbility
 
-FormExtension模块提供了FormExtension卡片扩展相关接口。
+FormExtensionAbility模块提供了卡片扩展相关接口。
 
 > **说明：**
 >
 > 本模块首批接口从API version 9开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
-> 从API version 9 开始不再维护，建议使用[FormExtensionAbility](js-apis-app-form-formextensionability.md)替代。
 > 本模块接口仅可在Stage模型下使用。
 
 ## 导入模块
 
 ```
-import FormExtension from '@ohos.application.FormExtension';
+import FormExtensionAbility from '@ohos.app.form.FormExtensionAbility';
 ```
 
 ## 属性
@@ -20,11 +19,11 @@ import FormExtension from '@ohos.application.FormExtension';
 
 | 名称    | 参数类型                                                | 可读 | 可写 | 说明                                                |
 | ------- | ------------------------------------------------------- | ---- | ---- | --------------------------------------------------- |
-| context | [FormExtensionContext](js-apis-formextensioncontext.md) | 是   | 否   | FormExtension的上下文环境，继承自ExtensionContext。 |
+| context | [FormExtensionContext](js-apis-formextensioncontext.md) | 是   | 否   | FormExtensionAbility的上下文环境，继承自ExtensionContext。 |
 
-## onCreate
+## onAddForm
 
-onCreate(want: Want): formBindingData.FormBindingData
+onAddForm(want: Want): formBindingData.FormBindingData
 
 卡片提供方接收创建卡片的通知接口。
 
@@ -34,21 +33,21 @@ onCreate(want: Want): formBindingData.FormBindingData
 
 | 参数名 | 类型                                   | 必填 | 说明                                                         |
 | ------ | -------------------------------------- | ---- | ------------------------------------------------------------ |
-| want   | [Want](js-apis-application-Want.md) | 是   | 当前Extension相关的Want类型信息，包括卡片ID、卡片名称、卡片样式等。这些卡片信息必须作为持久数据进行管理，以便后续更新和删除卡片。 |
+| want   | [Want](js-apis-application-Want.md) | 是   | 当前ExtensionAbility相关的Want类型信息，包括卡片ID、卡片名称、卡片样式等。这些卡片信息必须作为持久数据进行管理，以便后续更新和删除卡片。 |
 
 **返回值：**
 
 | 类型                                                         | 说明                                                        |
 | ------------------------------------------------------------ | ----------------------------------------------------------- |
-| [formBindingData.FormBindingData](js-apis-formbindingdata.md#formbindingdata) | formBindingData.FormBindingData对象，卡片要显示的数据。 |
+| [formBindingData.FormBindingData](js-apis-app-form-formbindingdata.md#formbindingdata) | formBindingData.FormBindingData对象，卡片要显示的数据。 |
 
 **示例：**
 
 ```js
-import formBindingData from '@ohos.application.formBindingData'
-export default class MyFormExtension extends FormExtension {
-  onCreate(want) {
-    console.log('FormExtension onCreate, want:' + want.abilityName);
+import FormExtensionAbility from '@ohos.app.form.FormExtensionAbility';
+export default class MyFormExtensionAbility extends FormExtensionAbility {
+  onAddForm(want) {
+    console.log('FormExtensionAbility onAddForm, want:' + want.abilityName);
     let dataObj1 = {
       temperature:"11c",
       "time":"11:00"
@@ -59,9 +58,9 @@ export default class MyFormExtension extends FormExtension {
 }
 ```
 
-## FormExtension.onCastToNormal
+## onCastToNormalForm
 
-onCastToNormal(formId: string): void
+onCastToNormalForm(formId: string): void
 
 卡片提供方接收临时卡片转常态卡片的通知接口。
 
@@ -76,16 +75,16 @@ onCastToNormal(formId: string): void
 **示例：**
 
 ```js
-export default class MyFormExtension extends FormExtension {
-  onCastToNormal(formId) {
-    console.log('FormExtension onCastToNormal, formId:' + formId);
+export default class MyFormExtensionAbility extends FormExtensionAbility {
+  onCastToNormalForm(formId) {
+    console.log('FormExtensionAbility onCastToNormalForm, formId:' + formId);
   }
 }
 ```
 
-## FormExtension.onUpdate
+## onUpdateForm
 
-onUpdate(formId: string): void
+onUpdateForm(formId: string): void
 
 卡片提供方接收更新卡片的通知接口。获取最新数据后调用[FormExtensionContext](js-apis-formextensioncontext.md)的updateForm接口刷新卡片数据。
 
@@ -100,22 +99,22 @@ onUpdate(formId: string): void
 **示例：**
 
 ```js
-import formBindingData from '@ohos.application.formBindingData'
-export default class MyFormExtension extends FormExtension {
-  onUpdate(formId) {
-    console.log('FormExtension onUpdate, formId:' + formId);
+import formBindingData from '@ohos.app.form.formBindingData'
+export default class MyFormExtensionAbility extends FormExtensionAbility {
+  onUpdateForm(formId) {
+    console.log('FormExtensionAbility onUpdateForm, formId:' + formId);
     let obj2 = formBindingData.createFormBindingData({temperature:"22c", time:"22:00"});
     this.context.updateForm(formId, obj2).then((data)=>{
-      console.log('FormExtension context updateForm, data:' + data);
+      console.log('FormExtensionAbility context updateForm, data:' + data);
     }).catch((error) => {
       console.error('Operation updateForm failed. Cause: ' + error);});
     }
 }
 ```
 
-## FormExtension.onVisibilityChange
+## onChangeFormVisibility
 
-onVisibilityChange(newStatus: { [key: string]: number }): void
+onChangeFormVisibility(newStatus: { [key: string]: number }): void
 
 卡片提供方接收修改可见性的通知接口。
 
@@ -125,21 +124,21 @@ onVisibilityChange(newStatus: { [key: string]: number }): void
 
 | 参数名    | 类型                      | 必填 | 说明                         |
 | --------- | ------------------------- | ---- | ---------------------------- |
-| newStatus | { [key: string]: number } | 是   | 请求修改的卡片ID和可见状态。 |
+| newStatus | { [key: string]: number } | 是   | 请求修改的卡片标识和可见状态。 |
 
 **示例：**
 
 ```js
-import formBindingData from '@ohos.application.formBindingData'
-export default class MyFormExtension extends FormExtension {
-  onVisibilityChange(newStatus) {
-  console.log('FormExtension onVisibilityChange, newStatus:' + newStatus);
+import formBindingData from '@ohos.app.form.formBindingData'
+export default class MyFormExtensionAbility extends FormExtensionAbility {
+  onChangeFormVisibility(newStatus) {
+  console.log('FormExtensionAbility onChangeFormVisibility, newStatus:' + newStatus);
   let obj2 = formBindingData.createFormBindingData({temperature:"22c", time:"22:00"});
 
   for (let key in newStatus) {
-    console.log('FormExtension onVisibilityChange, key:' + key + ", value=" + newStatus[key]);
+    console.log('FormExtensionAbility onChangeFormVisibility, key:' + key + ", value=" + newStatus[key]);
     this.context.updateForm(key, obj2).then((data)=>{
-        console.log('FormExtension context updateForm, data:' + data);
+        console.log('FormExtensionAbility context updateForm, data:' + data);
     }).catch((error) => {
         console.error('Operation updateForm failed. Cause: ' + error);});
     }
@@ -147,9 +146,9 @@ export default class MyFormExtension extends FormExtension {
 }
 ```
 
-## FormExtension.onEvent
+## onFormEvent
 
-onEvent(formId: string, message: string): void
+onFormEvent(formId: string, message: string): void
 
 卡片提供方接收处理卡片事件的通知接口。
 
@@ -165,16 +164,16 @@ onEvent(formId: string, message: string): void
 **示例：**
 
 ```js
-export default class MyFormExtension extends FormExtension {
-  onEvent(formId, message) {
-    console.log('FormExtension onEvent, formId:' + formId + ", message:" + message);
+export default class MyFormExtension extends FormExtensionAbility {
+  onFormEvent(formId, message) {
+    console.log('FormExtensionAbility onFormEvent, formId:' + formId + ", message:" + message);
   }
 }
 ```
 
-## FormExtension.onDestroy
+## onRemoveForm
 
-onDestroy(formId: string): void
+onRemoveForm(formId: string): void
 
 卡片提供方接收销毁卡片的通知接口。
 
@@ -189,16 +188,16 @@ onDestroy(formId: string): void
 **示例：**
 
 ```js
-export default class MyFormExtension extends FormExtension {
-  onDestroy(formId) {
-    console.log('FormExtension onDestroy, formId:' + formId);
+export default class MyFormExtensionAbility extends FormExtensionAbility {
+  onRemoveForm(formId) {
+    console.log('FormExtensionAbility onRemoveForm, formId:' + formId);
   }
 }
 ```
 
-## FormExtension.onConfigurationUpdated
+## onConfigurationUpdate
 
-onConfigurationUpdated(config: Configuration): void;
+onConfigurationUpdate(config: Configuration): void;
 
 当系统配置更新时调用。
 
@@ -213,14 +212,14 @@ onConfigurationUpdated(config: Configuration): void;
 **示例：**
 
 ```js
-class MyFormExtension extends FormExtension {
-  onConfigurationUpdated(config) {
-    console.log('onConfigurationUpdated, config:' + JSON.stringify(config));
+class MyFormExtensionAbility extends FormExtensionAbility {
+  onConfigurationUpdate(config) {
+    console.log('onConfigurationUpdate, config:' + JSON.stringify(config));
   }
 }
 ```
 
-## FormExtension.onAcquireFormState
+## onAcquireFormState
 
 onAcquireFormState?(want: Want): formInfo.FormState;
 
@@ -237,18 +236,18 @@ onAcquireFormState?(want: Want): formInfo.FormState;
 **示例：**
 
 ```js
-import formInfo from '@ohos.application.formInfo'
-class MyFormExtension extends FormExtension {
+import formInfo from '@ohos.app.form.formInfo';
+class MyFormExtensionAbility extends FormExtensionAbility {
   onAcquireFormState(want) {
-    console.log('FormExtension onAcquireFormState, want:' + want);
+    console.log('FormExtensionAbility onAcquireFormState, want:' + want);
     return formInfo.FormState.UNKNOWN;
   }
 }
 ```
 
-## FormExtension.onShare
+## onShareForm
 
-onShare?(formId: string): {[key: string]: any};
+onShareForm?(formId: string): { [key: string]: any }
 
 卡片提供方接收卡片分享的通知接口。
 
@@ -271,9 +270,9 @@ onShare?(formId: string): {[key: string]: any};
 **示例：**
 
 ```js
-class MyFormExtension extends FormExtension {
-  onShare(formId) {
-    console.log('FormExtension onShare, formId:' + formId);
+class MyFormExtensionAbility extends FormExtensionAbility {
+  onShareForm(formId) {
+    console.log('FormExtensionAbility onShareForm, formId:' + formId);
     let wantParams = {
       "temperature":"20",
       "time":"2022-8-8 09:59",

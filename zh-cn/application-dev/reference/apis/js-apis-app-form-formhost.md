@@ -1,17 +1,16 @@
 # FormHost
 
-FormHost模块提供了卡片使用方相关接口的能力，包括对使用方同一用户下安装的卡片进行删除、释放、请求更新，获取信息、状态等操作。
+FormHost模块提供了卡片使用方相关接口的能力，包括对使用方同一用户下安装的卡片进行删除、释放、请求更新、获取卡片信息、状态等操作。
 
 > **说明：**
 >
-> 本模块首批接口从API version 8开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
-> 从API version 9 开始不再维护，建议使用[FormHost](js-apis-app-form-formhost.md)替代。
+> 本模块首批接口从API version 9开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 > 本模块接口均为系统接口。
 
 ## 导入模块
 
 ```
-import formHost from '@ohos.application.formHost';
+import formHost from '@ohos.app.form.formHost';
 ```
 
 ## deleteForm
@@ -31,15 +30,30 @@ deleteForm(formId: string, callback: AsyncCallback&lt;void&gt;): void
 | formId | string | 是   | 卡片标识。 |
 | callback | AsyncCallback&lt;void&gt; | 是 | 回调函数。当删除指定的卡片成功，error为undefined，否则为错误对象 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[卡片错误码](../errorcodes/errcode-form.md)。
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 16501001 | The ID of the form to be operated does not exist. |
+| 16501003 | The form can not be operated by the current application. |
+
 **示例：**
 
 ```js
-var formId = "12400633174999288";
-formHost.deleteForm(formId, (error, data) => {
-  if (error.code) {
+try {
+  var formId = "12400633174999288";
+  formHost.deleteForm(formId, (error, data) => {
+  if (error) {
     console.log('formHost deleteForm, error:' + JSON.stringify(error));
+  } else {
+    console.log('formHost deleteForm success');
   }
-});
+  });
+} catch (error) {
+  console.log(`catch err->${JSON.stringify(error)}`);
+}
+
 ```
 
 ## deleteForm
@@ -64,15 +78,28 @@ deleteForm(formId: string): Promise&lt;void&gt;
 | -------- | -------- |
 | Promise&lt;void&gt; | 无返回结果的Promise对象。 |
 
+
+**错误码：**
+
+以下错误码的详细介绍请参见[卡片错误码](../errorcodes/errcode-form.md)。
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 16501001 | The ID of the form to be operated does not exist. |
+| 16501003 | The form can not be operated by the current application. |
+
 **参数：**
 
 ```js
-var formId = "12400633174999288";
-formHost.deleteForm(formId).then(() => {
-  console.log('formHost deleteForm success');
-}).catch((error) => {
-  console.log('formHost deleteForm, error:' + JSON.stringify(error));
-});
+try {
+  var formId = "12400633174999288";
+  formHost.deleteForm(formId).then(() => {
+    console.log('formHost deleteForm success');
+  }).catch((error) => {
+    console.log('formHost deleteForm, error:' + JSON.stringify(error));
+  });
+} catch(error) {
+  console.log(`catch err->${JSON.stringify(error)}`);
+}
 ```
 
 ## releaseForm
@@ -92,15 +119,27 @@ releaseForm(formId: string, callback: AsyncCallback&lt;void&gt;): void
 | formId | string | 是   | 卡片标识。 |
 | callback | AsyncCallback&lt;void&gt; | 是 | 回调函数。当释放指定的卡片成功，error为undefined；否则为错误对象。|
 
+**错误码：**
+
+以下错误码的详细介绍请参见[卡片错误码](../errorcodes/errcode-form.md)。
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 16501001 | The ID of the form to be operated does not exist. |
+| 16501003 | The form can not be operated by the current application. |
+
 **示例：**
 
 ```js
-var formId = "12400633174999288";
-formHost.releaseForm(formId, (error, data) => {
-  if (error.code) {
-    console.log('formHost releaseForm, error:' + JSON.stringify(error));
-  }
-});
+try {
+  var formId = "12400633174999288";
+  formHost.releaseForm(formId, (error, data) => {
+    if (error) {
+      console.log('formHost releaseForm, error:' + JSON.stringify(error));
+    }
+  });
+} catch(error) {
+    console.log(`catch err->${JSON.stringify(error)}`);
+}
 ```
 
 ## releaseForm
@@ -121,15 +160,27 @@ releaseForm(formId: string, isReleaseCache: boolean, callback: AsyncCallback&lt;
 | isReleaseCache | boolean | 是   | 是否释放缓存。 |
 | callback | AsyncCallback&lt;void&gt; | 是 | 回调函数。当释放指定的卡片成功，error为undefined；否则为错误对象。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[卡片错误码](../errorcodes/errcode-form.md)。
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 16501001 | The ID of the form to be operated does not exist. |
+| 16501003 | The form can not be operated by the current application. |
+
 **示例：**
 
 ```js
-var formId = "12400633174999288";
-formHost.releaseForm(formId, true, (error, data) => {
-  if (error.code) {
-    console.log('formHost releaseForm, error:' + JSON.stringify(error));
-  }
-});
+try {
+  var formId = "12400633174999288";
+  formHost.releaseForm(formId, true, (error, data) => {
+    if (error) {
+      console.log('formHost releaseForm, error:' + JSON.stringify(error));
+    }
+  });
+} catch(error) {
+    console.log(`catch err->${JSON.stringify(error)}`);
+}
 ```
 
 ## releaseForm
@@ -155,15 +206,27 @@ releaseForm(formId: string, isReleaseCache?: boolean): Promise&lt;void&gt;
 | -------- | -------- |
 | Promise&lt;void&gt; | 无返回结果的Promise对象。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[卡片错误码](../errorcodes/errcode-form.md)。
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 16501001 | The ID of the form to be operated does not exist. |
+| 16501003 | The form can not be operated by the current application. |
+
 **示例：**
 
 ```js
-var formId = "12400633174999288";
-formHost.releaseForm(formId, true).then(() => {
-  console.log('formHost releaseForm success');
-}).catch((error) => {
-  console.log('formHost releaseForm, error:' + JSON.stringify(error));
-});
+try {
+  var formId = "12400633174999288";
+  formHost.releaseForm(formId, true).then(() => {
+    console.log('formHost releaseForm success');
+  }).catch((error) => {
+    console.log('formHost releaseForm, error:' + JSON.stringify(error));
+  });
+} catch(error) {
+    console.log(`catch err->${JSON.stringify(error)}`);
+}
 ```
 
 ## requestForm
@@ -183,15 +246,27 @@ requestForm(formId: string, callback: AsyncCallback&lt;void&gt;): void
 | formId | string | 是   | 卡片标识。 |
 | callback | AsyncCallback&lt;void&gt; | 是 | 回调函数。当请求卡片更新成功，error为undefined；否则为错误对象。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[卡片错误码](../errorcodes/errcode-form.md)。
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 16501001 | The ID of the form to be operated does not exist. |
+| 16501003 | The form can not be operated by the current application. |
+
 **示例：**
 
 ```js
-var formId = "12400633174999288";
-formHost.requestForm(formId, (error, data) => {
-  if (error.code) {
-    console.log('formHost requestForm, error:' + JSON.stringify(error));
-  }
-});
+try {
+  var formId = "12400633174999288";
+  formHost.requestForm(formId, (error, data) => {
+    if (error) {
+      console.log('formHost requestForm, error:' + JSON.stringify(error));
+    }
+  });
+} catch(error) {
+    console.log(`catch err->${JSON.stringify(error)}`);
+}
 ```
 
 ## requestForm
@@ -216,15 +291,28 @@ requestForm(formId: string): Promise&lt;void&gt;
 | -------- | -------- |
 | Promise&lt;void&gt; | 无返回结果的Promise对象。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[卡片错误码](../errorcodes/errcode-form.md)。
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 16501001 | The ID of the form to be operated does not exist. |
+| 16501003 | The form can not be operated by the current application. |
+
 **示例：**
 
 ```js
-var formId = "12400633174999288";
-formHost.requestForm(formId).then(() => {
-  console.log('formHost requestForm success');
-}).catch((error) => {
-  console.log('formHost requestForm, error:' + JSON.stringify(error));
-});
+try {
+  var formId = "12400633174999288";
+  formHost.requestForm(formId).then(() => {
+    console.log('formHost requestForm success');
+  }).catch((error) => {
+    console.log('formHost requestForm, error:' + JSON.stringify(error));
+  });
+} catch(error) {
+    console.log(`catch err->${JSON.stringify(error)}`);
+}
+
 ```
 
 ## castTempForm
@@ -244,15 +332,27 @@ castTempForm(formId: string, callback: AsyncCallback&lt;void&gt;): void
 | formId | string | 是   | 卡片标识。 |
 | callback | AsyncCallback&lt;void&gt; | 是 | 回调函数。当将指定的临时卡片转换为普通卡片成功，err为undefined，否则为错误对象。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[卡片错误码](../errorcodes/errcode-form.md)。
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 16501001 | The ID of the form to be operated does not exist. |
+| 16501003 | The form can not be operated by the current application. |
+
 **示例：**
 
 ```js
-var formId = "12400633174999288";
-formHost.castTempForm(formId, (error, data) => {
-  if (error.code) {
-    console.log('formHost castTempForm, error:' + JSON.stringify(error));
-  }
-});
+try {
+  var formId = "12400633174999288";
+  formHost.castTempForm(formId, (error, data) => {
+    if (error) {
+      console.log('formHost castTempForm, error:' + JSON.stringify(error));
+    }
+  });
+} catch(error) {
+    console.log(`catch err->${JSON.stringify(error)}`);
+}
 ```
 
 ## castTempForm
@@ -277,15 +377,27 @@ castTempForm(formId: string): Promise&lt;void&gt;
 | -------- | -------- |
 | Promise&lt;void&gt; | 无返回结果的Promise对象。|
 
+**错误码：**
+
+以下错误码的详细介绍请参见[卡片错误码](../errorcodes/errcode-form.md)。
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 16501001 | The ID of the form to be operated does not exist. |
+| 16501003 | The form can not be operated by the current application. |
+
 **示例：**
 
 ```js
-var formId = "12400633174999288";
-formHost.castTempForm(formId).then(() => {
-  console.log('formHost castTempForm success');
-}).catch((error) => {
-  console.log('formHost castTempForm, error:' + JSON.stringify(error));
-});
+try {
+  var formId = "12400633174999288";
+  formHost.castTempForm(formId).then(() => {
+    console.log('formHost castTempForm success');
+  }).catch((error) => {
+    console.log('formHost castTempForm, error:' + JSON.stringify(error));
+  });
+} catch(error) {
+    console.log(`catch err->${JSON.stringify(error)}`);
+}
 ```
 
 ## notifyVisibleForms
@@ -305,15 +417,26 @@ notifyVisibleForms(formIds: Array&lt;string&gt;, callback: AsyncCallback&lt;void
 | formIds  | Array&lt;string&gt;       | 是   | 卡片标识列表。         |
 | callback | AsyncCallback&lt;void&gt; | 是 | 回调函数。当向卡片框架发送通知以使指定的卡片可见成功，err为undefined，否则为错误对象。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[卡片错误码](../errorcodes/errcode-form.md)。
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 16501000 | A functional error occurred. |
+
 **示例：**
 
 ```js
-var formId = ["12400633174999288"];
-formHost.notifyVisibleForms(formId, (error, data) => {
-  if (error.code) {
-    console.log('formHost notifyVisibleForms, error:' + JSON.stringify(error));
-  }
-});
+try {
+  var formId = ["12400633174999288"];
+  formHost.notifyVisibleForms(formId, (error, data) => {
+    if (error) {
+      console.log('formHost notifyVisibleForms, error:' + JSON.stringify(error));
+    }
+  });
+} catch(error) {
+    console.log(`catch err->${JSON.stringify(error)}`);
+}
 ```
 
 ## notifyVisibleForms
@@ -338,15 +461,26 @@ notifyVisibleForms(formIds: Array&lt;string&gt;): Promise&lt;void&gt;
 | -------- | -------- |
 | Promise&lt;void&gt; | 无返回结果的Promise对象。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[卡片错误码](../errorcodes/errcode-form.md)。
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 16501000 | A functional error occurred. |
+
 **示例：**
 
 ```js
-var formId = ["12400633174999288"];
-formHost.notifyVisibleForms(formId).then(() => {
-  console.log('formHost notifyVisibleForms success');
-}).catch((error) => {
-  console.log('formHost notifyVisibleForms, error:' + JSON.stringify(error));
-});
+try {
+  var formId = ["12400633174999288"];
+  formHost.notifyVisibleForms(formId).then(() => {
+    console.log('formHost notifyVisibleForms success');
+  }).catch((error) => {
+    console.log('formHost notifyVisibleForms, error:' + JSON.stringify(error));
+  });
+} catch(error) {
+    console.log(`catch err->${JSON.stringify(error)}`);
+}
 ```
 
 ## notifyInvisibleForms
@@ -366,15 +500,26 @@ notifyInvisibleForms(formIds: Array&lt;string&gt;, callback: AsyncCallback&lt;vo
 | formIds  | Array&lt;string&gt;       | 是   | 卡片标识列表。|
 | callback | AsyncCallback&lt;void&gt; | 是 | 回调函数。当向卡片框架发送通知以使指定的卡片不可见成功，err为undefined，否则为错误对象。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[卡片错误码](../errorcodes/errcode-form.md)。
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 16501000 | A functional error occurred. |
+
 **示例：**
 
 ```js
-var formId = ["12400633174999288"];
-formHost.notifyInvisibleForms(formId, (error, data) => {
-  if (error.code) {
-    console.log('formHost notifyInvisibleForms, error:' + JSON.stringify(error));
-  }
-});
+try {
+  var formId = ["12400633174999288"];
+  formHost.notifyInvisibleForms(formId, (error, data) => {
+    if (error) {
+      console.log('formHost notifyInvisibleForms, error:' + JSON.stringify(error));
+    }
+  });
+} catch(error) {
+    console.log(`catch err->${JSON.stringify(error)}`);
+}
 ```
 
 ## notifyInvisibleForms
@@ -399,15 +544,26 @@ notifyInvisibleForms(formIds: Array&lt;string&gt;): Promise&lt;void&gt;
 | -------- | -------- |
 | Promise&lt;void&gt; | 无返回结果的Promise对象。|
 
+**错误码：**
+
+以下错误码的详细介绍请参见[卡片错误码](../errorcodes/errcode-form.md)。
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 16501000 | A functional error occurred. |
+
 **示例：**
 
 ```js
-var formId = ["12400633174999288"];
-formHost.notifyInvisibleForms(formId).then(() => {
-  console.log('formHost notifyInvisibleForms success');
-}).catch((error) => {
-  console.log('formHost notifyInvisibleForms, error:' + JSON.stringify(error));
-});
+try {
+  var formId = ["12400633174999288"];
+  formHost.notifyInvisibleForms(formId).then(() => {
+    console.log('formHost notifyInvisibleForms success');
+  }).catch((error) => {
+    console.log('formHost notifyInvisibleForms, error:' + JSON.stringify(error));
+  });
+} catch(error) {
+    console.log(`catch err->${JSON.stringify(error)}`);
+}
 ```
 
 ## enableFormsUpdate
@@ -427,15 +583,27 @@ enableFormsUpdate(formIds: Array&lt;string&gt;, callback: AsyncCallback&lt;void&
 | formIds  | Array&lt;string&gt;       | 是   | 卡片标识列表。         |
 | callback | AsyncCallback&lt;void&gt; | 是 | 回调函数。当向卡片框架发送通知以使指定的卡片可以更新成功，err为undefined，否则为错误对象。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[卡片错误码](../errorcodes/errcode-form.md)。
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 16501000 | A functional error occurred. |
+| 16501003 | The form can not be operated by the current application. |
+
 **示例：**
 
 ```js
-var formId = ["12400633174999288"];
-formHost.enableFormsUpdate(formId, (error, data) => {
-  if (error.code) {
-    console.log('formHost enableFormsUpdate, error:' + JSON.stringify(error));
-  }
-});
+try {
+  var formId = ["12400633174999288"];
+  formHost.enableFormsUpdate(formId, (error, data) => {
+    if (error) {
+      console.log('formHost enableFormsUpdate, error:' + JSON.stringify(error));
+    }
+  });
+} catch(error) {
+    console.log(`catch err->${JSON.stringify(error)}`);
+}
 ```
 
 ## enableFormsUpdate
@@ -460,15 +628,27 @@ enableFormsUpdate(formIds: Array&lt;string&gt;): Promise&lt;void&gt;
 | -------- | -------- |
 | Promise&lt;void&gt; | 无返回结果的Promise对象。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[卡片错误码](../errorcodes/errcode-form.md)。
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 16501000 | A functional error occurred. |
+| 16501003 | The form can not be operated by the current application. |
+
 **示例：**
 
 ```js
-var formId = ["12400633174999288"];
-formHost.enableFormsUpdate(formId).then(() => {
-  console.log('formHost enableFormsUpdate success');
-}).catch((error) => {
-  console.log('formHost enableFormsUpdate, error:' + JSON.stringify(error));
-});
+try {
+  var formId = ["12400633174999288"];
+  formHost.enableFormsUpdate(formId).then(() => {
+    console.log('formHost enableFormsUpdate success');
+  }).catch((error) => {
+    console.log('formHost enableFormsUpdate, error:' + JSON.stringify(error));
+  });
+} catch(error) {
+    console.log(`catch err->${JSON.stringify(error)}`);
+}
 ```
 
 ## disableFormsUpdate
@@ -488,15 +668,27 @@ disableFormsUpdate(formIds: Array&lt;string&gt;, callback: AsyncCallback&lt;void
 | formIds  | Array&lt;string&gt;       | 是   | 卡片标识列表。         |
 | callback | AsyncCallback&lt;void&gt; | 是 | 回调函数。当向卡片框架发送通知以使指定的卡片不可以更新成功，err为undefined，否则为错误对象。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[卡片错误码](../errorcodes/errcode-form.md)。
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 16501000 | A functional error occurred. |
+| 16501003 | The form can not be operated by the current application. |
+
 **示例：**
 
 ```js
-var formId = ["12400633174999288"];
-formHost.disableFormsUpdate(formId, (error, data) => {
-  if (error.code) {
-    console.log('formHost disableFormsUpdate, error:' + JSON.stringify(error));
-  }
-});
+try {
+  var formId = ["12400633174999288"];
+  formHost.disableFormsUpdate(formId, (error, data) => {
+    if (error) {
+      console.log('formHost disableFormsUpdate, error:' + JSON.stringify(error));
+    }
+  });
+} catch(error) {
+    console.log(`catch err->${JSON.stringify(error)}`);
+}
 ```
 
 ## disableFormsUpdate
@@ -521,15 +713,27 @@ disableFormsUpdate(formIds: Array&lt;string&gt;): Promise&lt;void&gt;
 | -------- | -------- |
 | Promise&lt;void&gt; | 无返回结果的Promise对象。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[卡片错误码](../errorcodes/errcode-form.md)。
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 16501000 | A functional error occurred. |
+| 16501003 | The form can not be operated by the current application. |
+
 **示例：**
 
 ```js
-var formId = ["12400633174999288"];
-formHost.disableFormsUpdate(formId).then(() => {
-  console.log('formHost disableFormsUpdate success');
-}).catch((error) => {
-  console.log('formHost disableFormsUpdate, error:' + JSON.stringify(error));
-});
+try {
+  var formId = ["12400633174999288"];
+  formHost.disableFormsUpdate(formId).then(() => {
+    console.log('formHost disableFormsUpdate success');
+  }).catch((error) => {
+    console.log('formHost disableFormsUpdate, error:' + JSON.stringify(error));
+  });
+} catch(error) {
+    console.log(`catch err->${JSON.stringify(error)}`);
+}
 ```
 
 ## isSystemReady
@@ -549,12 +753,16 @@ isSystemReady(callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
 ```js
-var formId = "12400633174999288";
-formHost.isSystemReady((error, data) => {
-  if (error.code) {
-    console.log('formHost isSystemReady, error:' + JSON.stringify(error));
-  }
-});
+try {
+  var formId = "12400633174999288";
+  formHost.isSystemReady((error, data) => {
+    if (error) {
+      console.log('formHost isSystemReady, error:' + JSON.stringify(error));
+    }
+  });
+} catch(error) {
+    console.log(`catch err->${JSON.stringify(error)}`);
+}
 ```
 
 ## isSystemReady
@@ -574,12 +782,16 @@ isSystemReady(): Promise&lt;void&gt;
 **示例：**
 
 ```js
-var formId = "12400633174999288";
-formHost.isSystemReady().then(() => {
-  console.log('formHost isSystemReady success');
-}).catch((error) => {
-  console.log('formHost isSystemReady, error:' + JSON.stringify(error));
-});
+try {
+  var formId = "12400633174999288";
+  formHost.isSystemReady().then(() => {
+    console.log('formHost isSystemReady success');
+  }).catch((error) => {
+    console.log('formHost isSystemReady, error:' + JSON.stringify(error));
+  });
+} catch(error) {
+    console.log(`catch err->${JSON.stringify(error)}`);
+}
 ```
 
 ## getAllFormsInfo
@@ -601,13 +813,17 @@ getAllFormsInfo(callback: AsyncCallback&lt;Array&lt;formInfo.FormInfo&gt;&gt;): 
 **示例：**
 
 ```js
-formHost.getAllFormsInfo((error, data) => {
-  if (error.code) {
-    console.log('formHost getAllFormsInfo, error:' + JSON.stringify(error));
-  } else {
-    console.log('formHost getAllFormsInfo, data:' + JSON.stringify(data));
-  }
-});
+try {
+  formHost.getAllFormsInfo((error, data) => {
+    if (error) {
+      console.log('formHost getAllFormsInfo, error:' + JSON.stringify(error));
+    } else {
+      console.log('formHost getAllFormsInfo, data:' + JSON.stringify(data));
+    }
+  });
+} catch(error) {
+    console.log(`catch err->${JSON.stringify(error)}`);
+}
 ```
 
 ## getAllFormsInfo
@@ -628,13 +844,17 @@ getAllFormsInfo(): Promise&lt;Array&lt;formInfo.FormInfo&gt;&gt;
 
 **示例：**
 
-  ```js
+```js
+try {
   formHost.getAllFormsInfo().then((data) => {
       console.log('formHost getAllFormsInfo data:' + JSON.stringify(data));
   }).catch((error) => {
       console.log('formHost getAllFormsInfo, error:' + JSON.stringify(error));
   });
-  ```
+} catch(error) {
+    console.log(`catch err->${JSON.stringify(error)}`);
+}
+```
 
 ## getFormsInfo
 
@@ -653,16 +873,27 @@ getFormsInfo(bundleName: string, callback: AsyncCallback&lt;Array&lt;formInfo.Fo
 | bundleName | string | 是 |  要查询的应用程序包名称。 |
 | callback | AsyncCallback&lt;Array&lt;[FormInfo](./js-apis-formInfo.md#forminfo-1)&gt;&gt; | 是 | 回调函数。当获取设备上指定应用程序提供的卡片信息成功，err为undefined，data为查询到的卡片信息；否则为错误对象。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[卡片错误码](../errorcodes/errcode-form.md)。
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 16500100 | Failed to obtain configuration information. |
+
 **示例：**
 
 ```js
-formHost.getFormsInfo("com.example.ohos.formjsdemo", (error, data) => {
-  if (error.code) {
-    console.log('formHost getFormsInfo, error:' + JSON.stringify(error));
-  } else {
-    console.log('formHost getFormsInfo, data:' + JSON.stringify(data));
-  }
-});
+try {
+  formHost.getFormsInfo("com.example.ohos.formjsdemo", (error, data) => {
+    if (error) {
+      console.log('formHost getFormsInfo, error:' + JSON.stringify(error));
+    } else {
+      console.log('formHost getFormsInfo, data:' + JSON.stringify(data));
+    }
+  });
+} catch(error) {
+    console.log(`catch err->${JSON.stringify(error)}`);
+}
 ```
 
 ## getFormsInfo
@@ -683,16 +914,27 @@ getFormsInfo(bundleName: string, moduleName: string, callback: AsyncCallback&lt;
 | moduleName | string | 是 |  要查询的模块名称。 |
 | callback | AsyncCallback&lt;Array&lt;[FormInfo](./js-apis-formInfo.md#forminfo-1)&gt;&gt; | 是 | 回调函数。当获取设备上指定应用程序提供的卡片信息成功，err为undefined，data为查询到的卡片信息；否则为错误对象。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[卡片错误码](../errorcodes/errcode-form.md)。
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 16500100 | Failed to obtain configuration information. |
+
 **示例：**
 
 ```js
-formHost.getFormsInfo("com.example.ohos.formjsdemo", "entry", (error, data) => {
-  if (error.code) {
-      console.log('formHost getFormsInfo, error:' + JSON.stringify(error));
-  } else {
-      console.log('formHost getFormsInfo, data:' + JSON.stringify(data));
-  }
-});
+try {
+  formHost.getFormsInfo("com.example.ohos.formjsdemo", "entry", (error, data) => {
+    if (error) {
+        console.log('formHost getFormsInfo, error:' + JSON.stringify(error));
+    } else {
+        console.log('formHost getFormsInfo, data:' + JSON.stringify(data));
+    }
+  });
+} catch(error) {
+    console.log(`catch err->${JSON.stringify(error)}`);
+}
 ```
 
 ## getFormsInfo
@@ -718,15 +960,26 @@ getFormsInfo(bundleName: string, moduleName?: string): Promise&lt;Array&lt;formI
 | :------------ | :---------------------------------- |
 | Promise&lt;Array&lt;[FormInfo](./js-apis-formInfo.md#forminfo-1)&gt;&gt; | Promise对象，返回查询到的卡片信息。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[卡片错误码](../errorcodes/errcode-form.md)。
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 16500100 | Failed to obtain configuration information. |
+
 **示例：**
 
-  ```js
+```js
+try {
   formHost.getFormsInfo("com.example.ohos.formjsdemo", "entry").then((data) => {
     console.log('formHost getFormsInfo, data:' + JSON.stringify(data));
   }).catch((error) => {
     console.log('formHost getFormsInfo, error:' + JSON.stringify(error));
   });
-  ```
+} catch(error) {
+    console.log(`catch err->${JSON.stringify(error)}`);
+}
+```
 
 ## deleteInvalidForms
 
@@ -748,14 +1001,18 @@ deleteInvalidForms(formIds: Array&lt;string&gt;, callback: AsyncCallback&lt;numb
 **示例：**
 
 ```js
-var formIds = new Array("12400633174999288", "12400633174999289");
-formHost.deleteInvalidForms(formIds, (error, data) => {
-  if (error.code) {
-    console.log('formHost deleteInvalidForms, error:' + JSON.stringify(error));
-  } else {
-    console.log('formHost deleteInvalidForms, data:' + JSON.stringify(data));
-  }
-});
+try {
+  var formIds = new Array("12400633174999288", "12400633174999289");
+  formHost.deleteInvalidForms(formIds, (error, data) => {
+    if (error) {
+      console.log('formHost deleteInvalidForms, error:' + JSON.stringify(error));
+    } else {
+      console.log('formHost deleteInvalidForms, data:' + JSON.stringify(data));
+    }
+  });
+} catch(error) {
+    console.log(`catch err->${JSON.stringify(error)}`);
+}
 ```
 
 ## deleteInvalidForms
@@ -783,12 +1040,16 @@ deleteInvalidForms(formIds: Array&lt;string&gt;): Promise&lt;number&gt;
 **示例：**
 
 ```js
-var formIds = new Array("12400633174999288", "12400633174999289");
-formHost.deleteInvalidForms(formIds).then((data) => {
-  console.log('formHost deleteInvalidForms, data:' + JSON.stringify(data));
-}).catch((error) => {
-  console.log('formHost deleteInvalidForms, error:' + JSON.stringify(error));
-});
+try {
+  var formIds = new Array("12400633174999288", "12400633174999289");
+  formHost.deleteInvalidForms(formIds).then((data) => {
+    console.log('formHost deleteInvalidForms, data:' + JSON.stringify(data));
+  }).catch((error) => {
+    console.log('formHost deleteInvalidForms, error:' + JSON.stringify(error));
+  });
+} catch(error) {
+    console.log(`catch err->${JSON.stringify(error)}`);
+}
 ```
 
 ## acquireFormState
@@ -808,6 +1069,13 @@ acquireFormState(want: Want, callback: AsyncCallback&lt;formInfo.FormStateInfo&g
 | want | [Want](js-apis-application-Want.md) | 是   | 查询卡片状态时携带的want信息。 |
 | callback | AsyncCallback&lt;[FormStateInfo](js-apis-formInfo.md#formstateinfo)&gt; | 是 | 回调函数。当获取卡片状态成功，err为undefined，data为获取到的卡片状态；否则为错误对象。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[卡片错误码](../errorcodes/errcode-form.md)。
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 16501000 | A functional error occurred. |
+
 **示例：**
 
 ```js
@@ -821,13 +1089,17 @@ var want = {
     "ohos.extra.param.key.form_dimension": 2
   }
 };
-formHost.acquireFormState(want, (error, data) => {
-  if (error.code) {
-    console.log('formHost acquireFormState, error:' + JSON.stringify(error));
-  } else {
-    console.log('formHost acquireFormState, data:' + JSON.stringify(data));
-  }
-});
+try {
+  formHost.acquireFormState(want, (error, data) => {
+    if (error) {
+      console.log('formHost acquireFormState, error:' + JSON.stringify(error));
+    } else {
+      console.log('formHost acquireFormState, data:' + JSON.stringify(data));
+    }
+  });
+} catch(error) {
+    console.log(`catch err->${JSON.stringify(error)}`);
+}
 ```
 
 ## acquireFormState
@@ -852,6 +1124,13 @@ acquireFormState(want: Want): Promise&lt;formInfo.FormStateInfo&gt;
 | :------------ | :---------------------------------- |
 | Promise&lt;[FormStateInfo](js-apis-formInfo.md#formstateinfo)&gt; | Promise对象，返回卡片状态。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[卡片错误码](../errorcodes/errcode-form.md)。
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 16501000 | A functional error occurred. |
+
 **示例：**
 
 ```js
@@ -865,11 +1144,15 @@ var want = {
     "ohos.extra.param.key.form_dimension": 2
   }
 };
-formHost.acquireFormState(want).then((data) => {
-  console.log('formHost acquireFormState, data:' + JSON.stringify(data));
-}).catch((error) => {
-  console.log('formHost acquireFormState, error:' + JSON.stringify(error));
-});
+try {
+  formHost.acquireFormState(want).then((data) => {
+    console.log('formHost acquireFormState, data:' + JSON.stringify(data));
+  }).catch((error) => {
+    console.log('formHost acquireFormState, error:' + JSON.stringify(error));
+  });
+} catch(error) {
+    console.log(`catch err->${JSON.stringify(error)}`);
+}
 ```
 
 ## on("formUninstall")
@@ -938,15 +1221,26 @@ notifyFormsVisible(formIds: Array&lt;string&gt;, isVisible: boolean, callback: A
 | isVisible | boolean | 是   | 是否可见。 |
 | callback | AsyncCallback&lt;void&gt; | 是 | 回调函数。当通知卡片是否可见成功，err为undefined，否则为错误对象。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[卡片错误码](../errorcodes/errcode-form.md)。
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 16501003 | The form can not be operated by the current application. |
+
 **示例：**
 
 ```js
 var formIds = new Array("12400633174999288", "12400633174999289");
-formHost.notifyFormsVisible(formIds, true, (error, data) => {
-  if (error.code) {
-    console.log('formHost notifyFormsVisible, error:' + JSON.stringify(error));
-  }
-});
+try {
+  formHost.notifyFormsVisible(formIds, true, (error, data) => {
+    if (error) {
+      console.log('formHost notifyFormsVisible, error:' + JSON.stringify(error));
+    }
+  });
+} catch(error) {
+    console.log(`catch err->${JSON.stringify(error)}`);
+}
 ```
 
 ## notifyFormsVisible
@@ -972,15 +1266,26 @@ notifyFormsVisible(formIds: Array&lt;string&gt;, isVisible: boolean): Promise&lt
 | -------- | -------- |
 | Promise&lt;void&gt; | 无返回结果的Promise对象。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[卡片错误码](../errorcodes/errcode-form.md)。
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 16501003 | The form can not be operated by the current application. |
+
 **示例：**
 
 ```js
 var formIds = new Array("12400633174999288", "12400633174999289");
-formHost.notifyFormsVisible(formIds, true).then(() => {
-  console.log('formHost notifyFormsVisible success');
-}).catch((error) => {
-  console.log('formHost notifyFormsVisible, error:' + JSON.stringify(error));
-});
+try {
+  formHost.notifyFormsVisible(formIds, true).then(() => {
+    console.log('formHost notifyFormsVisible success');
+  }).catch((error) => {
+    console.log('formHost notifyFormsVisible, error:' + JSON.stringify(error));
+  });
+} catch(error) {
+    console.log(`catch err->${JSON.stringify(error)}`);
+}
 ```
 
 ## notifyFormsEnableUpdate
@@ -1001,15 +1306,26 @@ notifyFormsEnableUpdate(formIds: Array&lt;string&gt;, isEnableUpdate: boolean, c
 | isEnableUpdate | boolean | 是   | 是否使能更新。 |
 | callback | AsyncCallback&lt;void&gt; | 是 | 回调函数。当通知卡片是否启用更新状态成功，err为undefined，否则为错误对象。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[卡片错误码](../errorcodes/errcode-form.md)。
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 16501003 | The form can not be operated by the current application. |
+
 **示例：**
 
 ```js
 var formIds = new Array("12400633174999288", "12400633174999289");
-formHost.notifyFormsEnableUpdate(formIds, true, (error, data) => {
-  if (error.code) {
-    console.log('formHost notifyFormsEnableUpdate, error:' + JSON.stringify(error));
-  }
-});
+try {
+  formHost.notifyFormsEnableUpdate(formIds, true, (error, data) => {
+    if (error) {
+      console.log('formHost notifyFormsEnableUpdate, error:' + JSON.stringify(error));
+    }
+  });
+} catch(error) {
+    console.log(`catch err->${JSON.stringify(error)}`);
+}
 ```
 
 ## notifyFormsEnableUpdate
@@ -1024,28 +1340,39 @@ notifyFormsEnableUpdate(formIds: Array&lt;string&gt;, isEnableUpdate: boolean): 
 
 **参数：**
 
-  | 参数名 | 类型    | 必填 | 说明    |
-  | ------ | ------ | ---- | ------- |
-  | formIds | Array&lt;string&gt; | 是   | 卡片标识列表。 |
-  | isEnableUpdate | boolean | 是   | 是否使能更新。 |
+| 参数名 | 类型    | 必填 | 说明    |
+| ------ | ------ | ---- | ------- |
+| formIds | Array&lt;string&gt; | 是   | 卡片标识列表。 |
+| isEnableUpdate | boolean | 是   | 是否使能更新。 |
 
 **返回值：**
 
-  | 类型 | 说明 |
-  | -------- | -------- |
-  | Promise&lt;void&gt; | 无返回结果的Promise对象。 |
+| 类型 | 说明 |
+| -------- | -------- |
+| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[卡片错误码](../errorcodes/errcode-form.md)。
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 16501003 | The form can not be operated by the current application. |
 
 **示例：**
 
 ```js
 var formIds = new Array("12400633174999288", "12400633174999289");
-formHost.notifyFormsEnableUpdate(formIds, true).then(() => {
-  console.log('formHost notifyFormsEnableUpdate success');
-}).catch((error) => {
-  console.log('formHost notifyFormsEnableUpdate, error:' + JSON.stringify(error));
-});
+try {
+  formHost.notifyFormsEnableUpdate(formIds, true).then(() => {
+    console.log('formHost notifyFormsEnableUpdate success');
+  }).catch((error) => {
+    console.log('formHost notifyFormsEnableUpdate, error:' + JSON.stringify(error));
+  });
+} catch(error) {
+    console.log(`catch err->${JSON.stringify(error)}`);
+}
 ```
-## shareForm<sup>9+</sup>
+## shareForm
 
 shareForm(formId: string, deviceId: string, callback: AsyncCallback&lt;void&gt;): void
 
@@ -1063,19 +1390,32 @@ shareForm(formId: string, deviceId: string, callback: AsyncCallback&lt;void&gt;)
 | deviceId | string | 是   | 远程设备标识。 |
 | callback | AsyncCallback&lt;void&gt; | 是 | 回调函数。当指定formId和远程设备Id进行卡片分享成功，err为undefined，否则为错误对象。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[卡片错误码](../errorcodes/errcode-form.md)。
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 16500100 | Failed to obtain configuration information. |
+| 16501000 | A functional error occurred. |
+
+
 **示例：**
 
 ```js
 var formId = "12400633174999288";
 var deviceId = "EFC11C0C53628D8CC2F8CB5052477E130D075917034613B9884C55CD22B3DEF2";
-formHost.shareForm(formId, deviceId, (error, data) => {
-  if (error.code) {
-    console.log('formHost shareForm, error:' + JSON.stringify(error));
-  }
-});
+try {
+  formHost.shareForm(formId, deviceId, (error, data) => {
+    if (error) {
+      console.log('formHost shareForm, error:' + JSON.stringify(error));
+    }
+  });
+} catch(error) {
+    console.log(`catch err->${JSON.stringify(error)}`);
+}
 ```
 
-## shareForm<sup>9+</sup>
+## shareForm
 
 shareForm(formId: string, deviceId: string): Promise&lt;void&gt;
 
@@ -1098,19 +1438,31 @@ shareForm(formId: string, deviceId: string): Promise&lt;void&gt;
 | -------- | -------- |
 | Promise&lt;void&gt; | 无返回结果的Promise对象。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[卡片错误码](../errorcodes/errcode-form.md)。
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 16500100 | Failed to obtain configuration information. |
+| 16501000 | A functional error occurred. |
+
 **参数：**
 
 ```js
 var formId = "12400633174999288";
 var deviceId = "EFC11C0C53628D8CC2F8CB5052477E130D075917034613B9884C55CD22B3DEF2";
-formHost.shareForm(formId, deviceId).then(() => {
-  console.log('formHost shareForm success');
-}).catch((error) => {
-  console.log('formHost shareForm, error:' + JSON.stringify(error));
-});
+try {
+  formHost.shareForm(formId, deviceId).then(() => {
+    console.log('formHost shareForm success');
+  }).catch((error) => {
+    console.log('formHost shareForm, error:' + JSON.stringify(error));
+  });
+} catch(error) {
+    console.log(`catch err->${JSON.stringify(error)}`);
+}
 ```
 
-## notifyFormsPrivacyProtected<sup>9+</sup>
+## notifyFormsPrivacyProtected
 
 notifyFormsPrivacyProtected(formIds: Array<string>, isProtected: boolean, callback: AsyncCallback<void>): void
 
@@ -1127,9 +1479,13 @@ notifyFormsPrivacyProtected(formIds: Array<string>, isProtected: boolean, callba
 
 ```js
 var formIds = new Array("12400633174999288", "12400633174999289");
-formHost.notifyFormsPrivacyProtected(formIds, true).then(() => {
-  console.log('formHost shareForm success');
-}).catch((error) => {
-  console.log('formHost shareForm, error:' + JSON.stringify(error));
-});
+try {
+  formHost.notifyFormsPrivacyProtected(formIds, true).then(() => {
+    console.log('formHost shareForm success');
+  }).catch((error) => {
+    console.log('formHost shareForm, error:' + JSON.stringify(error));
+  });
+} catch(error) {
+    console.log(`catch err->${JSON.stringify(error)}`);
+}
 ```
