@@ -48,7 +48,7 @@ buffer数组的列表。
 
 | 名称 | 类型       | 可读 | 可写 |  说明       |
 | ---- | ---------- | ---- | ---- | ---------- |
-| data | Uint8Array | 是   | 是   | 数据列表。 |
+| data | Array<Uint8Array> | 是   | 是   | 数据列表。 |
 
 ## EncodingFormat
 
@@ -1580,10 +1580,10 @@ convertKey(pubKey : DataBlob, priKey : DataBlob, callback : AsyncCallback\<KeyPa
 
 **参数：**
 
-| 参数名     | 类型                    | 必填 | 说明                           |
-| -------- | ----------------------- | ---- | ------------------------------ |
-| pubKey   | DataBlob                | 否   | 指定的公钥材料。               |
-| priKey   | DataBlob                | 否   | 指定的私钥材料。               |
+| 参数名     | 类型       | 必填 | 说明                           |
+| -------- | ----------- | ---- | ------------------------------ |
+| pubKey   | DataBlob    | 是   | 指定的公钥材料。如果公钥不需要转换，可直接传入null        |
+| priKey   | DataBlob    | 是   | 指定的私钥材料。如果私钥不需要转换，可直接传入null        |
 | callback | AsyncCallback\<KeyPair> | 是   | 回调函数，用于获取非对称密钥。 |
 
 **示例：**
@@ -1612,10 +1612,10 @@ convertKey(pubKey : DataBlob, priKey : DataBlob) : Promise\<KeyPair>
 
 **参数：**
 
-| 参数名   | 类型     | 必填 | 说明             |
+| 参数名   | 类型    | 必填 | 说明             |
 | ------ | -------- | ---- | ---------------- |
-| pubKey | DataBlob | 否   | 指定的公钥材料。 |
-| priKey | DataBlob | 否   | 指定的私钥材料。 |
+| pubKey | DataBlob | 是   | 指定的公钥材料。如果公钥不需要转换，可直接传入null |
+| priKey | DataBlob | 是   | 指定的私钥材料。如果私钥不需要转换，可直接传入null |
 
 **返回值：**
 
@@ -2586,7 +2586,7 @@ createX509Cert(inStream : EncodingBlob, callback : AsyncCallback\<X509Cert>) : v
 | 参数名   | 类型                          | 必填 | 说明                       |
 | -------- | ----------------------------- | ---- | -------------------------- |
 | inStream | [EncodingBlob](#encodingblob) | 是   | X509证书序列化数据         |
-| callback | AsyncCallback\<X509Cert>      | 否   | 回调函数。表示X509证书对象 |
+| callback | AsyncCallback\<X509Cert>      | 是   | 回调函数。表示X509证书对象 |
 
 
 **示例**：
@@ -2666,7 +2666,7 @@ verify(key : PubKey, callback : AsyncCallback\<void>) : void
 | 参数名   | 类型                  | 必填 | 说明                                                         |
 | -------- | --------------------- | ---- | ------------------------------------------------------------ |
 | key      | [PubKey](#pubkey)     | 是   | 用于验签的公钥对象                                           |
-| callback | AsyncCallback\<void>) | 否   | 回调函数。使用AsyncCallback的第一个error参数判断是否验签成功，error为null表示成功，不为null表示失败 |
+| callback | AsyncCallback\<void> | 是   | 回调函数。使用AsyncCallback的第一个error参数判断是否验签成功，error为null表示成功，不为null表示失败 |
 
 
 **示例**：
@@ -2757,7 +2757,7 @@ getEncoded(callback : AsyncCallback\<EncodingBlob>) : void
 
 | 参数名   | 类型                                          | 必填 | 说明                             |
 | -------- | --------------------------------------------- | ---- | -------------------------------- |
-| callback | AsyncCallback\<[EncodingBlob](#encodingblob)> | 否   | 回调函数。表示X509证书序列化数据 |
+| callback | AsyncCallback\<[EncodingBlob](#encodingblob)> | 是   | 回调函数。表示X509证书序列化数据 |
 
 
 **示例**：
@@ -2838,7 +2838,7 @@ getPublicKey(callback : AsyncCallback\<PubKey>) : void
 
 | 参数名   | 类型          | 必填 | 说明                       |
 | -------- | ------------- | ---- | -------------------------- |
-| callback | AsyncCallback | 否   | 回调函数，X509证书公钥对象 |
+| callback | AsyncCallback\<PubKey> | 是   | 回调函数，X509证书公钥对象 |
 
 
 **示例**：
@@ -2920,7 +2920,7 @@ checkValidityWithDate(date: string, callback : AsyncCallback\<void>) : void
 | 参数名   | 类型                 | 必填 | 说明                                                         |
 | -------- | -------------------- | ---- | ------------------------------------------------------------ |
 | date     | string               | 是   | 日期                                                         |
-| callback | AsyncCallback\<void> | 否   | 回调函数。使用AsyncCallback的第一个error参数判断是否检查成功，error为null表示成功，不为null表示失败 |
+| callback | AsyncCallback\<void> | 是   | 回调函数。使用AsyncCallback的第一个error参数判断是否检查成功，error为null表示成功，不为null表示失败 |
 
 
 **示例**：
@@ -3550,7 +3550,7 @@ createX509Crl(inStream : EncodingBlob, callback : AsyncCallback\<X509Crl>) : voi
 | 参数名   | 类型                          | 必填 | 说明                           |
 | -------- | ----------------------------- | ---- | ------------------------------ |
 | inStream | [EncodingBlob](#encodingblob) | 是   | 表示证书吊销列表序列化数据     |
-| callback | AsyncCallback\<X509Crl>       | 否   | 回调函数。表示证书吊销列表对象 |
+| callback | AsyncCallback\<X509Crl>       | 是   | 回调函数。表示证书吊销列表对象 |
 
 
 **示例**：
@@ -3630,7 +3630,7 @@ isRevoked(cert : X509Cert, callback : AsyncCallback\<boolean>) : void
 | 参数名   | 类型                    | 必填 | 说明                                                        |
 | -------- | ----------------------- | ---- | ----------------------------------------------------------- |
 | cert     | [X509Cert](#x509cert)   | 是   | 表示被检查的证书对象                                        |
-| callback | AsyncCallback\<boolean> | 否   | 回调函数。表示证书吊销状态，true表示已吊销，false表示未吊销 |
+| callback | AsyncCallback\<boolean> | 是   | 回调函数。表示证书吊销状态，true表示已吊销，false表示未吊销 |
 
 
 **示例**：
@@ -3757,7 +3757,7 @@ getEncoded(callback : AsyncCallback\<EncodingBlob>) : void
 
 | 参数名   | 类型                         | 必填 | 说明                                       |
 | -------- | ---------------------------- | ---- | ------------------------------------------ |
-| callback | AsyncCallback\<EncodingBlob> | 否   | 回调函数，表示X509证书吊销列表的序列化数据 |
+| callback | AsyncCallback\<EncodingBlob> | 是   | 回调函数，表示X509证书吊销列表的序列化数据 |
 
 
 **示例**：
@@ -3839,7 +3839,7 @@ verify(key : PubKey, callback : AsyncCallback\<void>) : void
 | 参数名   | 类型                 | 必填 | 说明                                                         |
 | -------- | -------------------- | ---- | ------------------------------------------------------------ |
 | key      | PubKey               | 是   | 表示用于验签的公钥对象                                       |
-| callback | AsyncCallback\<void> | 否   | 回调函数,使用AsyncCallback的第一个error参数判断是否验签成功，error为null表示成功，error不为null表示失败。 |
+| callback | AsyncCallback\<void> | 是   | 回调函数,使用AsyncCallback的第一个error参数判断是否验签成功，error为null表示成功，error不为null表示失败。 |
 
 
 **示例**：
@@ -4075,7 +4075,7 @@ getRevokedCert(serialNumber : number, callback : AsyncCallback\<X509CrlEntry>) :
 | 参数名       | 类型                         | 必填 | 说明                             |
 | ------------ | ---------------------------- | ---- | -------------------------------- |
 | serialNumber | number                       | 是   | 表示证书序列号                   |
-| callback     | AsyncCallback\<X509CrlEntry> | 否   | 回调函数。表示被吊销X509证书对象 |
+| callback     | AsyncCallback\<X509CrlEntry> | 是   | 回调函数。表示被吊销X509证书对象 |
 
 
 **示例**：
@@ -4167,7 +4167,7 @@ getRevokedCertWithCert(cert : X509Cert, callback : AsyncCallback\<X509CrlEntry>)
 | 参数名   | 类型                         | 必填 | 说明                            |
 | -------- | ---------------------------- | ---- | ------------------------------- |
 | cert     | X509Cert                     | 是   | 表示证书对象                    |
-| callback | AsyncCallback\<X509CrlEntry> | 否   | 回调函数,表示被吊销X509证书对象 |
+| callback | AsyncCallback\<X509CrlEntry> | 是   | 回调函数,表示被吊销X509证书对象 |
 
 
 **示例**：
@@ -4258,7 +4258,7 @@ getRevokedCerts(callback : AsyncCallback<Array\<X509CrlEntry>>) : void
 
 | 参数名   | 类型                                | 必填 | 说明                             |
 | -------- | ----------------------------------- | ---- | -------------------------------- |
-| callback | AsyncCallback<Array\<X509CrlEntry>> | 否   | 回调函数。表示被吊销X509证书列表 |
+| callback | AsyncCallback<Array\<X509CrlEntry>> | 是   | 回调函数。表示被吊销X509证书列表 |
 
 
 **示例**：
@@ -4339,7 +4339,7 @@ getTbsInfo(callback : AsyncCallback\<DataBlob>) : void
 
 | 参数名   | 类型                                  | 必填 | 说明                                        |
 | -------- | ------------------------------------- | ---- | ------------------------------------------- |
-| callback | AsyncCallback\<[DataBlob](#datablob)> | 否   | 回调函数。表示证书吊销列表的tbsCertList信息 |
+| callback | AsyncCallback\<[DataBlob](#datablob)> | 是   | 回调函数。表示证书吊销列表的tbsCertList信息 |
 
 
 **示例**：
@@ -4608,7 +4608,7 @@ validate(certChain : CertChainData, callback : AsyncCallback\<void>) : void
 | 参数名    | 类型                            | 必填 | 说明                                                         |
 | --------- | ------------------------------- | ---- | ------------------------------------------------------------ |
 | certChain | [CertChainData](#certchaindata) | 是   | 表示X509证书链序列化数据                                     |
-| callback  | AsyncCallback\<void>            | 否   | 回调函数。使用AsyncCallback的第一个error参数判断是否校验成功，error为null表示成功，error不为null表示失败 |
+| callback  | AsyncCallback\<void>            | 是   | 回调函数。使用AsyncCallback的第一个error参数判断是否校验成功，error为null表示成功，error不为null表示失败 |
 
 
 **示例**：
@@ -4706,7 +4706,7 @@ getEncoded(callback : AsyncCallback\<EncodingBlob>) : void
 
 | 参数名   | 类型                                          | 必填 | 说明                                 |
 | -------- | --------------------------------------------- | ---- | ------------------------------------ |
-| callback | AsyncCallback\<[EncodingBlob](#encodingblob)> | 否   | 回调函数。表示被吊销证书的序列化数据 |
+| callback | AsyncCallback\<[EncodingBlob](#encodingblob)> | 是   | 回调函数。表示被吊销证书的序列化数据 |
 
 
 **示例**：
@@ -4789,7 +4789,7 @@ getCertIssuer(callback : AsyncCallback\<DataBlob>) : void
 
 | 参数名   | 类型                                  | 必填 | 说明                                 |
 | -------- | ------------------------------------- | ---- | ------------------------------------ |
-| callback | AsyncCallback\<[DataBlob](#datablob)> | 否   | 回调函数。表示被吊销证书的颁发者信息 |
+| callback | AsyncCallback\<[DataBlob](#datablob)> | 是   | 回调函数。表示被吊销证书的颁发者信息 |
 
 
 **示例**：
@@ -4848,7 +4848,7 @@ getRevocationDate(callback : AsyncCallback\<string>) : void
 
 | 参数名   | 类型                   | 必填 | 说明                           |
 | -------- | ---------------------- | ---- | ------------------------------ |
-| callback | AsyncCallback\<string> | 否   | 回调函数。表示证书被吊销的日期 |
+| callback | AsyncCallback\<string> | 是   | 回调函数。表示证书被吊销的日期 |
 
 
 **示例**：

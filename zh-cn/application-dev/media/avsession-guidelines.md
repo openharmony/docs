@@ -14,14 +14,14 @@
 
 | 接口名                                                                              | 描述          |
 |----------------------------------------------------------------------------------|-------------|
-| createAVSession(context: Context, tag: string, type: AVSessionType, callback: AsyncCallback<AVSession\>): void | 创建会话 |
-| setAVMetadata(data: AVMetadata, callback: AsyncCallback<void\>): void            | 设置会话元数据     |
-| setAVPlaybackState(state: AVPlaybackState, callback: AsyncCallback<void\>): void | 设置会话播放状态信息  |
-| setLaunchAbility(ability: WantAgent, callback: AsyncCallback<void\>): void       | 设置启动ability |
-| getController(callback: AsyncCallback<AVSessionController\>): void                | 获取当前会话自身控制器 |
-| getOutputDevice(callback: AsyncCallback<OutputDeviceInfo\>): void                 | 获取音频输出设备信息  |
-| activate(callback: AsyncCallback<void\>): void                                    | 激活会话        |
-| destroy(callback: AsyncCallback<void\>): void                                     | 销毁会话        |
+| createAVSession(context: Context, tag: string, type: AVSessionType, callback: AsyncCallback\<AVSession>): void | 创建会话 |
+| setAVMetadata(data: AVMetadata, callback: AsyncCallback\<void>): void            | 设置会话元数据     |
+| setAVPlaybackState(state: AVPlaybackState, callback: AsyncCallback\<void>): void | 设置会话播放状态信息  |
+| setLaunchAbility(ability: WantAgent, callback: AsyncCallback\<void>): void       | 设置启动ability |
+| getController(callback: AsyncCallback\<AVSessionController>): void                | 获取当前会话自身控制器 |
+| getOutputDevice(callback: AsyncCallback\<OutputDeviceInfo>): void                 | 获取音频输出设备信息  |
+| activate(callback: AsyncCallback\<void>): void                                    | 激活会话        |
+| destroy(callback: AsyncCallback\<void>): void                                     | 销毁会话        |
 
 ### 开发步骤
 1.导入模块接口
@@ -354,14 +354,14 @@ currentSession.deactivate().then(() => {
 
 | 接口名                                                                                            | 描述               |
 | ------------------------------------------------------------------------------------------------ | ----------------- |
-| getAllSessionDescriptors(callback: AsyncCallback<Array<Readonly<AVSessionDescriptor>>>): void    | 获取所有会话的描述符  |
-| createController(sessionId: string, callback: AsyncCallback<AVSessionController>): void          | 创建控制器          |
-| sendAVKeyEvent(event: KeyEvent, callback: AsyncCallback<void\>): void                            | 发送按键命令        |
-| getLaunchAbility(callback: AsyncCallback<WantAgent\>): void                                      | 拉起应用           |
-| sendControlCommand(command: AVControlCommand, callback: AsyncCallback<void\>): void              | 发送控制命令        |
-| sendSystemAVKeyEvent(event: KeyEvent, callback: AsyncCallback<void>): void                       | 发送系统按键命令     |
-| sendSystemControlCommand(command: AVControlCommand, callback: AsyncCallback<void>): void         | 发送系统控制命令     |
-| castAudio(session: SessionToken | 'all', audioDevices: Array<audio.AudioDeviceDescriptor>, callback: AsyncCallback<void>): void | 远端投播 |
+| getAllSessionDescriptors(callback: AsyncCallback\<Array\<Readonly\<AVSessionDescriptor>>>): void    | 获取所有会话的描述符  |
+| createController(sessionId: string, callback: AsyncCallback\<AVSessionController>): void          | 创建控制器          |
+| sendAVKeyEvent(event: KeyEvent, callback: AsyncCallback\<void>): void                            | 发送按键命令        |
+| getLaunchAbility(callback: AsyncCallback\<WantAgent>): void                                      | 拉起应用           |
+| sendControlCommand(command: AVControlCommand, callback: AsyncCallback\<void>): void              | 发送控制命令        |
+| sendSystemAVKeyEvent(event: KeyEvent, callback: AsyncCallback\<void>): void                       | 发送系统按键命令     |
+| sendSystemControlCommand(command: AVControlCommand, callback: AsyncCallback\<void>): void         | 发送系统控制命令     |
+| castAudio(session: SessionToken | 'all', audioDevices: Array\<audio.AudioDeviceDescriptor>, callback: AsyncCallback\<void>): void | 远端投播 |
 
 ### 开发步骤
 1.导入模块接口
