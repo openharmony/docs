@@ -158,9 +158,9 @@ OpenHarmony IDL容器数据类型与Ts数据类型、C++数据类型的对应关
 
 > **注意**：请保证使用最新版的SDK，版本老旧可能导致部分语句报错。
 
-若不存在，可对应版本前往[docs仓版本目录](https://gitee.com/openharmony/docs/tree/master/zh-cn/release-notes)下载SDK包，以[3.2Beta3版本](https://gitee.com/openharmony/docs/blob/master/zh-cn/release-notes/OpenHarmony-v3.2-beta3.md#%E4%BB%8E%E9%95%9C%E5%83%8F%E7%AB%99%E7%82%B9%E8%8E%B7%E5%8F%96)为例，可通过镜像站点获取。
+若不存在，可对应版本前往[docs仓版本目录](https://gitee.com/openharmony/docs/tree/master/zh-cn/release-notes)下载SDK包，以[3.2Beta3版本](../../release-notes/OpenHarmony-v3.2-beta3.md#%E4%BB%8E%E9%95%9C%E5%83%8F%E7%AB%99%E7%82%B9%E8%8E%B7%E5%8F%96)为例，可通过镜像站点获取。
 
-关于如何替换DevEco Studio的SDK包具体操作，参考[full-SDK替换指南](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/quick-start/full-sdk-switch-guide.md#full-sdk%E6%9B%BF%E6%8D%A2%E6%8C%87%E5%8D%97)中的替换方法。
+关于如何替换DevEco Studio的SDK包具体操作，参考[full-SDK替换指南](../quick-start/full-sdk-switch-guide.md#full-sdk%E6%9B%BF%E6%8D%A2%E6%8C%87%E5%8D%97)中的替换方法。
 
 得到idl工具的可执行文件后，根据具体场景进行后续开发步骤。
 

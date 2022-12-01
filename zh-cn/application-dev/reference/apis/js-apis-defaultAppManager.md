@@ -18,7 +18,7 @@ import defaultAppMgr from '@ohos.bundle.defaultAppManager';
 | --------------------------------------- | ----------- | ---------------- |
 | ohos.permission.GET_DEFAULT_APPLICATION | system_core | 默认应用相关权限。 |
 
-权限等级参考[权限等级说明](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/accesstoken-overview.md#%E6%9D%83%E9%99%90%E7%AD%89%E7%BA%A7%E8%AF%B4%E6%98%8E)
+权限等级参考[权限等级说明](../../security/accesstoken-overview.md#%E6%9D%83%E9%99%90%E7%AD%89%E7%BA%A7%E8%AF%B4%E6%98%8E)
 
 
 ## defaultAppMgr.ApplicationType
