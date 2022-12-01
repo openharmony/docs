@@ -668,8 +668,7 @@ parseRationalNumber(numerator: number,denominator: number): RationalNumber
 **示例：**
 
 ```js
-let rationalNumber = new util.RationalNumber();
-rationalNumber.parseRationalNumber(1,2)
+let rationalNumber = util.RationalNumber.parseRationalNumber(1,2)
 ```
 
 ### constructor<sup>(deprecated)</sup>
@@ -1488,7 +1487,8 @@ contains(key: object): boolean
   ```js
 let pro = new util.LRUCache();
 pro.put(2,10);
-let result = pro.contains(20);
+let obj = {1:"key"};
+let result = pro.contains(obj);
   ```
 
 

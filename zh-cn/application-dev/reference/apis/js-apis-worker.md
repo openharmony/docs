@@ -423,7 +423,7 @@ dispatchEvent(event: Event): boolean
 
 ```js
 const workerInstance = new worker.ThreadWorker("workers/worker.js");
-workerInstance.dispatchEvent({type: "alert"});
+workerInstance.dispatchEvent({type: "alert", timeStamp:0});
 ```
 
 
@@ -1424,7 +1424,7 @@ workerInstance.onmessage = function(d) {
 import worker from '@ohos.worker';
 const parentPort = worker.workerPort;
 class MyModel {
-    name:"undefined"
+    name = "undefined"
     Init() {
         this.name = "MyModel"
     }
