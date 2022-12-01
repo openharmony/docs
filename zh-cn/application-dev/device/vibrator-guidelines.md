@@ -22,35 +22,10 @@
 
 1. 控制设备上的振动器，需要申请权限ohos.permission.VIBRATE。具体配置方式请参考[权限申请声明](../security/accesstoken-guidelines.md)。
 
-2. 触发设备振动。
+2. 根据指定振动效果和振动属性触发马达振动 。
 
    ```js
-   import vibrator from "@ohos.vibrator"
-   vibrator.vibrate(1000).then((error) => {
-       if (error) { //调用失败，打印error.code和error.message
-          console.log("Promise return failed.error.code " + error.code + "error.message " + error.message);  
-       } else { //调用成功,设备开始振动
-          console.log("Promise returned to indicate a successful vibration.")  
-       }
-   })
-   ```
-
-3. 停止设备振动。
-
-   ```js
-   import vibrator from "@ohos.vibrator"
-   vibrator.stop(vibrator.VibratorStopMode.VIBRATOR_STOP_MODE_PRESET).then((error) => {
-      if (error) { //调用失败，打印error.code和error.message
-          console.log("Promise return failed.error.code " + error.code + "error.message " + error.message);
-      } else { //调用成功，设备停止振动
-          console.log("Promise returned to indicate successful.");
-      }
-   })
-   ```
-
-4. 根据指定振动效果和振动属性触发马达振动 。
-
-   ```js
+   import vibrator from '@ohos.vibrator';
    try {
        vibrator.startVibration({
            type: 'time',
@@ -73,6 +48,7 @@
 5.  按照指定模式停止马达的振动。 
 
    ```js
+   import vibrator from '@ohos.vibrator';
    try {
      // 按照VIBRATOR_STOP_MODE_TIME模式停止振动
      vibrator.stopVibration(vibrator.VibratorStopMode.VIBRATOR_STOP_MODE_TIME, function (error) {
@@ -85,8 +61,8 @@
    } catch (err) {
      console.info('errCode: ' + err.code + ' ,msg: ' + err.message);
    }
-   ```
-
+```
+   
    
 
 ## 相关实例
