@@ -38,28 +38,6 @@ ListItemGroup(options?: {header?: CustomBuilder, footer?: CustomBuilder, space?:
 
 ```ts
 // xxx.ets
-function itemHeadBuilder(text: string) {
-  @Builder function itemHead() {
-    Text(text)
-      .fontSize(20)
-      .backgroundColor(0xAABBCC)
-      .width("100%")
-      .padding(10)
-  }
-  return itemHead
-}
-
-function itemFootBuilder(num: number) {
-  @Builder function itemFoot() {
-    Text('共' + num + "节课")
-      .fontSize(16)
-      .backgroundColor(0xAABBCC)
-      .width("100%")
-      .padding(5)
-  }
-  return itemFoot
-}
-
 @Entry
 @Component
 struct ListItemGroupExample {
@@ -82,11 +60,27 @@ struct ListItemGroupExample {
     }
   ]
 
+  @Builder itemHead(text:string) {
+    Text(text)
+      .fontSize(20)
+      .backgroundColor(0xAABBCC)
+      .width("100%")
+      .padding(10)
+  }
+
+  @Builder itemFoot(num:number) {
+    Text('共' + num + "节课")
+      .fontSize(16)
+      .backgroundColor(0xAABBCC)
+      .width("100%")
+      .padding(5)
+  }
+
   build() {
     Column() {
       List({ space: 20 }) {
         ForEach(this.timetable, (item) => {
-          ListItemGroup({ header:itemHeadBuilder(item.title), footer:itemFootBuilder(item.projects.length) }) {
+          ListItemGroup({ header:this.itemHead(item.title), footer:this.itemFoot(item.projects.length) }) {
             ForEach(item.projects, (project) => {
               ListItem() {
                 Text(project)
