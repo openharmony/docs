@@ -336,7 +336,7 @@ struct MultiLaneList {
 | sm | md | lg |
 | -------- | -------- | -------- |
 | 默认隐藏侧边栏，同时提供侧边栏控制按钮，用户可以通过按钮控制侧边栏显示或隐藏。 | 始终显示侧边栏，不提供控制按钮，用户无法隐藏侧边栏。 | 始终显示侧边栏，不提供控制按钮，用户无法隐藏侧边栏。 |
-| ![侧边栏sm](typical-layout-scenario.assets/侧边栏sm.png) | ![侧边栏md](figures/侧边栏md.png) | ![侧边栏lg](figures/侧边栏lg.png) |
+| ![侧边栏sm](figures/侧边栏sm.png) | ![侧边栏md](figures/侧边栏md.png) | ![侧边栏lg](figures/侧边栏lg.png) |
 
 **实现方案**
 
