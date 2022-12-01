@@ -1,60 +1,60 @@
 #  Bundle Error Codes
 
-## 17700001 Nonexistent Bundle Name
+## 17700001 Bundle Name Does Not Exist
 
 **Error Message**
 The specified bundle name is not found.
 
 **Description**
-This error code is reported when the bundle name passed in the API does not exist.
+When a query API is called, the bundle name passed in does not exist.
 
 **Possible Causes**
 1. The bundle name is misspelled.
-2. The corresponding application is not installed.
+2. The corresponding bundle is not installed.
 
 **Solution**
 1. Check whether the spelling of the bundle name is correct.
-2. Check whether the corresponding application is installed.
+2. Check whether the corresponding bundle is installed.
 
-## 17700002 Nonexistent Module Name
+## 17700002 Module Name Does Not Exist
 
 **Error Message**
 The specified module name is not found.
 
 **Description**
-This error code is reported when the module name passed in the API does not exist.
+When a query API or an installation-free API is called, the module name passed in does not exist.
 
 **Possible Causes**
 1. The module name is misspelled.
-2. The module is not installed for the application.
+2. The module is not installed.
 
 **Solution**
 1. Check whether the spelling of the module name is correct.
-2. Check whether the module is installed for the application.
+2. Check whether the module is installed.
 
-## 17700003 Nonexistent Ability Name
+## 17700003 Ability Name Does Not Exist
 
 **Error Message**
 The specified ability name is not found.
 
 **Description**
-This error code is reported when the ability name passed in the API does not exist.
+When a query API is called, the ability name passed in does not exist.
 
 **Possible Causes**
 1. The ability name is misspelled.
-2. The corresponding application is not installed.
+2. The corresponding bundle is not installed.
 
 **Solution**
 1. Check whether the spelling of the ability name is correct.
-2. Check whether the ability is installed for the application.
+2. Check whether the ability is installed.
 
-## 17700004 Nonexistent User ID
+## 17700004 User ID Does Not Exist
 
 **Error Message**
-The specified user id is not found.
+The specified user ID is not found.
 
 **Description**
-This error code is reported when the user ID passed in the API does not exist.
+When a user-related API is called, the user ID passed in does not exist.
 
 **Possible Causes**
 The user ID is incorrect. The user does not exist.
@@ -63,13 +63,13 @@ The user ID is incorrect. The user does not exist.
 1. Check whether the user ID is correct.
 2. Check whether the user exists.
 
-## 17700005 Nonexistent Application ID
+## 17700005 Application ID Does Not Exist
 
 **Error Message**
-The specified appId is not found.
+The specified app ID is not found.
 
 **Description**
-This error code is reported when the value of **appId** passed in the API is an empty string.
+When an API of the **appControl** module is called, the application ID passed in does not exist.
 
 **Possible Causes**
 **appId** is an empty string.
@@ -77,13 +77,13 @@ This error code is reported when the value of **appId** passed in the API is an 
 **Solution**
 Check whether **appId** is an empty string.
 
-## 17700006 Nonexistent Permission
+## 17700006 Permission Does Not Exist
 
 **Error Message**
 The specified permission is not found.
 
 **Description**
-This error code is reported when the permission passed in the API does not exist.
+When the **getPermissionDef** API of the **bundleManager** module is called, the permission passed in does not exist.
 
 **Possible Causes**
 1. The permission name is misspelled.
@@ -96,10 +96,10 @@ This error code is reported when the permission passed in the API does not exist
 ## 17700007 Incorrect Device ID
 
 **Error Message**
-The specified deviceId is not found.
+The specified device ID is not found.
 
 **Description**
-This error code is reported when the device ID passed in the API is incorrect.
+When an API of the **distributedBundle** module is called, the device ID passed in does not exist.
 
 **Possible Causes**
 1. The device ID is incorrect.
@@ -109,13 +109,13 @@ This error code is reported when the device ID passed in the API is incorrect.
 1. Check whether the device ID is correct.
 2. Check whether the device ID exists.
 
-## 17700010 Application Installation Failure Due to File Parsing Failure
+## 17700010 Bundle Installation Failure Due to File Parsing Failure
 
 **Error Message**
-Failed to install the hap since the hap fails to be parsed.
+Failed to install the HAP because the HAP fails to be parsed.
 
 **Description**
-This error code is reported when the application fails to be installed because the HAP fails to be parsed.
+When the **install** API of the **installer** module is called, the HAP passed in fails to be parsed.
 
 **Possible Causes**
 1. The HAP is not in ZIP format.
@@ -127,13 +127,13 @@ This error code is reported when the application fails to be installed because t
 2. Check whether the configuration file is in [JSON format](../../quick-start/stage-structure.md).
 3. Check whether an error message is displayed when DevEco Studio compiles the HAP. If necessary fields are missing, an error message will be displayed.
 
-## 17700011 Application Installation Failure Due to Signature Verification Failure
+## 17700011 Bundle Installation Failure Due to Signature Verification Failure
 
 **Error Message**
-Failed to install the hap since the hap signature fails to be verified.
+Failed to install the HAP because the HAP signature fails to be verified.
 
 **Description**
-This error code is reported when the application fails to be installed due to signature verification failure.
+Calling the **install** API of the **installer** module to install the bundle fails due to signature verification failure.
 
 **Possible Causes**
 
@@ -147,13 +147,13 @@ This error code is reported when the application fails to be installed due to si
 2. Check whether the same certificate is used for signing multiple HAPs.
 3. Check whether the certificate used for signing the upgrade HAP is the same as the certificate used for signing the installed HAP.
 
-## 17700012 Application Installation Failure Due to Invalid File Path or Too Large File
+## 17700012 Bundle Installation Failure Due to Invalid File Path or Too Large File
 
 **Error Message**
-Failed to install the hap since the path of the hap is invalid or too large size.
+Failed to install the HAP because the HAP path is invalid or the HAP is too large.
 
 **Description**
-This error code is reported when the application fails to be installed because the HAP path is invalid or the HAP is too large.
+Calling the **install** API of the **installer** module to install the bundle fails because the HAP path is invalid or the HAP is too large.
 
 **Possible Causes**
 1. The path of the HAP does not exist.
@@ -165,13 +165,13 @@ This error code is reported when the application fails to be installed because t
 2. Check whether the HAP is read only or executable.
 3. Check whether the size of the HAP exceeds 4 GB.
 
-## 17700015 Application Installation Failure Due to Different Configuration Information of Multiple HAP Packages
+## 17700015 Bundle Installation Failure Due to Different Configuration Information of Multiple HAP Packages
 
 **Error Message**
-Failed to install haps since the configuration information of multi haps is inconsistent.
+Failed to install the HAPs because they have different configuration information.
 
 **Description**
-This error code is reported when the application fails to be installed because the HAPs have different configuration information.
+Calling the **install** API of the **installer** module to install the bundle fails because the HAPs have different configuration information.
 
 **Possible Causes**
 The fields under **app** in the configuration files of these HAPs are inconsistent.
@@ -179,13 +179,13 @@ The fields under **app** in the configuration files of these HAPs are inconsiste
 **Solution**
 Check whether the fields under **app** are the same.
 
-## 17700016 Application Installation Failure Due to Insufficient System Disk Space
+## 17700016 Bundle Installation Failure Due to Insufficient System Disk Space
 
 **Error Message**
-Failed to install the hap since the system disk space is insufficient.
+Failed to install the HAP because of insufficient system disk space.
 
 **Description**
-This error code is reported when the application fails to be installed due to insufficient system disk space.
+Calling the **install** API of the **installer** module to install the bundle fails due to insufficient system disk space.
 
 **Possible Causes**
 The system disk space is insufficient.
@@ -193,19 +193,19 @@ The system disk space is insufficient.
 **Solution**
 Check whether the system has sufficient disk space.
 
-## 17700017 Application Installation Failure Because the Version to Install is Too Earlier
+## 17700017 Bundle Installation Failure Because the Version to Install is Too Earlier
 
 **Error Message**
-Failed to install the hap since the version of the newly installed hap is too early.
+Failed to install the HAP since the version of the HAP to install is too early.
 
 **Description**
-This error code is reported when the version number of the application to install is earlier than the version in use.
+Calling the **install** API of the **installer** module to install the bundle fails because the version to install is earlier than the version in use.
 
 **Possible Causes**
 The version number is earlier than the version in use.
 
 **Solution**
-Ensure that the version of the application to install is later than the version in use.
+Ensure that the version of the bundle to install is later than the version in use.
 
 ## 17700020 Failure to Uninstall Preinstalled Applications
 
@@ -213,7 +213,7 @@ Ensure that the version of the application to install is later than the version 
 The preinstalled app cannot be uninstalled.
 
 **Description**
-This error code is reported when you attempt to uninstall a preinstalled application.
+Calling the **uninstall** API of the **installer** module to uninstall a preinstalled application fails.
 
 **Possible Causes**
 1. You might want to uninstall a non-preinstalled application but passed the bundle name of a preinstalled app.
@@ -229,7 +229,7 @@ This error code is reported when you attempt to uninstall a preinstalled applica
 The specified uid is invalid.
 
 **Description**
-This error code is reported when the UID passed in the API is invalid.
+When the **getBundleNameByUid** API of the **bundleManager** module is called, the UID passed in is invalid.
 
 **Possible Causes**
 1. The UID is misspelled.
@@ -245,7 +245,7 @@ This error code is reported when the UID passed in the API is invalid.
 The input source file is invalid.
 
 **Description**
-This error code is reported when the source file to be parsed is invalid.
+When the **getBundleArchiveInfo** API of the **bundleManager** module is called, the HAP path passed in is invalid.
 
 **Possible Causes**
 1. The source file to be parsed does not exist.
@@ -255,13 +255,13 @@ This error code is reported when the source file to be parsed is invalid.
 1. Check whether the source file to be parsed exists.
 2. Check whether the source file to be parsed is in ZIP format.
 
-## 17700023 Nonexistent Default Application
+## 17700023 Default Application Does Not Exist
 
 **Error Message**
 The specified default app does not exist.
 
 **Description**
-This error code is reported when the specified default application does not exist.
+When the **getDefaultApplication** API of the **defaultAppManager** module is called, the specified default application does not exist.
 
 **Possible Causes**
 No default application is set for the device.
@@ -269,13 +269,13 @@ No default application is set for the device.
 **Solution**
 Check whether the default application is set on the device.
 
-## 17700024 Nonexistent Configuration File
+## 17700024 Configuration File Does Not Exist
 
 **Error Message**
-Failed to get profile since no profile in the hap.
+Failed to get the profile because there is no profile in the HAP.
 
 **Description**
-This error code is reported when you attempt to obtain the configuration file that does not exist.
+When an API for querying the profile is called, the configuration file does not exist 
 
 **Possible Causes**
 1. The metadata name passed in the API does not exist in the configuration file.
@@ -291,7 +291,7 @@ This error code is reported when you attempt to obtain the configuration file th
 The specified type is invalid.
 
 **Description**
-The type is invalid.
+When an API of the **defaultAppManager** module is called, the type passed in is invalid.
 
 **Possible Causes**
 1. The type passed in the API is misspelled.
@@ -300,27 +300,27 @@ The type is invalid.
 **Solution**
 Check whether the spelling of type is correct.
 
-## 17700026 Application Disabled
+## 17700026 Bundle Disabled
 
 **Error Message**
 The specified bundle is disabled.
 
 **Description**
-This error code is reported when the specified application is disabled.
+When an API for querying bundle information is called, the specified bundle is disabled.
 
 **Possible Causes**
-The application on the device has been disabled and cannot be queried.
+The bundle on the device has been disabled and cannot be queried.
 
 **Solution**
-Check whether the application on the device is disabled.
+Check whether the bundle on the device is disabled.
 
-## 17700027 Distributed Service Not Started
+## 17700027 Distributed Service Is Not Started
 
 **Error Message**
 The distributed service is not running.
 
 **Description**
-This error code is reported when the distributed service is not started.
+When an API of the **distributedBundle** module is called, the distributed service is not started.
 
 **Possible Causes**
 The device is not networked.
@@ -333,7 +333,7 @@ Check whether the device is networked.
 The ability does not match the type.
 
 **Description**
-This error code is reported when the ability and type passed in the API do not match.
+When the **setDefaultApplication** API of the **defaultAppManager** module is called, the **ability** and **type** passed in do not match.
 
 **Possible Causes**
 The ability and type are misspelled.
@@ -347,21 +347,21 @@ Check whether the spellings of ability and type are correct.
 The specified ability is disabled.
 
 **Description**
-This error code is reported when the specified ability is disabled.
+When an API for querying ability information is called, the specified ability is disabled.
 
 **Possible Causes**
 The specified ability is disabled.
 
 **Solution**
-Check whether the ability is disabled. You can run the [bm commands](../../../readme/bundle-management.md#bm-commands) to query the application information.
+Check whether the ability is disabled. You can run the [bm commands](../../../readme/bundle-management.md#bm-commands) to query the information.
 
 ## 17700030 Failure in Clearing Cache Files
 
 **Error Message**
-The specified bundle does not support clearing cache files.
+The specified bundle does not support clearing of cache files.
 
 **Description**
-This error code is reported when the application does not support cache file clearing.
+When the **cleanBundleCacheFiles** API of the **bundleManager** module is called, the specified bundle does not support cache file clearing.
 
 **Possible Causes**
 The application is a system application and the **AllowAppDataNotCleared** field is configured in the signing certificate.
