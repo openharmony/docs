@@ -6,7 +6,7 @@
 
 ### 功能简介
 
-组件若有HiSysEvent事件的打点需求，则需要先定义yaml文件并在bundle.js文件中[配置yaml文件的路径](subsys-dfx-hisysevent-logging-config.md#配置yaml文件路径)。OpenHarmony编译框架在编译过程中则会通过python编译脚本解析校验bundle.js文件指定的所有yaml文件。在解析校验之后，编译框架会将这些yaml文件中配置的信息汇总转换成名为hisysevent.def的json文件。最后，将此json文件打包到系统指定路径下，用作HiSysEvent事件落盘的判断依据。
+组件若有HiSysEvent事件的打点需求，则需要先定义yaml文件并在bundle.json文件中[配置yaml文件的路径](subsys-dfx-hisysevent-logging-config.md#配置yaml文件路径)。OpenHarmony编译框架在编译过程中则会通过python编译脚本解析校验bundle.json文件指定的所有yaml文件。在解析校验之后，编译框架会将这些yaml文件中配置的信息汇总转换成名为hisysevent.def的json文件。最后，将此json文件打包到系统指定路径下，用作HiSysEvent事件落盘的判断依据。
 
 
 ### 基本概念
@@ -100,7 +100,7 @@
 
 ### 配置yaml文件路径
 
-在bundle.js文件中通过hisysevent_config属性完成yaml文件的路径指定：
+在bundle.json文件中通过hisysevent_config属性完成yaml文件的路径指定：
 
   
 ```
@@ -146,7 +146,7 @@
 
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
-> yaml文件可根据实际需求置于组件工程的任意目录下，只要在bundle.js文件指定即可。
+> yaml文件可根据实际需求置于组件工程的任意目录下，只要在bundle.json文件指定即可。
 
 
 ### 编译yaml文件
