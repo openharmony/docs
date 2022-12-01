@@ -1,22 +1,19 @@
-# &lt;image&gt; Development
+# \<image> Development
+
+The **\<image>** component is used to render and display images. For details, see [image](../reference/arkui-js/js-components-basic-image.md).
 
 
-The **&lt;image&gt;** component is used to render and display images. For details, see [image](../reference/arkui-js/js-components-basic-image.md).
+## Creating an \<image> Component
 
-
-## Creating an &lt;image&gt; Component
-
-  Create an **&lt;image&gt;** component in the .hml file under **pages/index**.
-
-```
+Create an **\<image>** component in the .hml file under **pages/index**.
+```html
 <!-- index.hml -->
 <div class="container">
   <image style="height: 30%;" src="common/images/bg-tv.jpg"> </image>
 </div>
 ```
 
-
-```
+```css
 /* xxx.css */
 .container {
   width: 100%;
@@ -33,11 +30,10 @@ The **&lt;image&gt;** component is used to render and display images. For detail
 
 ## Setting the Image Style
 
-Set the **width**, **height**, and **object-fit** attributes to define the width, height, and scale type of an image.
+Set the **width**, **height**, and **object-fit** attributes to define the width, height, and scale type of the image.
 
 
-
-```
+```html
 <!-- index.hml -->
 <div class="container">
   <image src="common/images/bg-tv.jpg"> </image>
@@ -45,8 +41,7 @@ Set the **width**, **height**, and **object-fit** attributes to define the width
 ```
 
 
-
-```
+```css
 /* xxx.css */
 .container {
   width: 100%;
@@ -63,21 +58,18 @@ image{
   border-radius: 20px;
   object-fit: contain;
   match-text-direction:true;
-
 }
 ```
-
 
 
 ![en-us_image_0000001222807796](figures/en-us_image_0000001222807796.png)
 
 
-## Loading Images
+## Loading the Image
 
-When an image is successfully loaded, the **complete** event is triggered, and the loaded image is returned. If an exception occurs during image loading, the **error** event is triggered, and the image loading failure is printed.
+When the image is successfully loaded, the **complete** event is triggered, and the loaded image is returned. If an exception occurs during image loading, the **error** event is triggered, and the image loading failure log is printed.
 
-
-```
+```html
 <!-- index.hml -->
 <div class="container" >
   <div>
@@ -89,8 +81,7 @@ When an image is successfully loaded, the **complete** event is triggered, and t
 </div>
 ```
 
-
-```
+```css
 /* xxx.css */
 .container{
   width: 100%;
@@ -108,14 +99,13 @@ When an image is successfully loaded, the **complete** event is triggered, and t
 }
 ```
 
-
-```
-/* index.js */
+```js
+// index.js
 import prompt from '@system.prompt';
 export default {
   imageComplete(i,e){
     prompt.showToast({
-      message: "Image "+i+"'s width"+ e.width+"----Image "+i+"'s height"+e.height,
+      message: "image "+i+"'s width"+ e.width+"----image "+i+"'s height"+e.height,
       duration: 3000,
     })
   },
@@ -130,19 +120,19 @@ export default {
 }
 ```
 
-![en-us_image_images.gif ](figures/en-us_image_images.gif )
+![en-us_image_images](figures/en-us_image_images.gif)
+
 
 
 ## Example Scenario
 
 In this example you touch and hold an image to gradually hide it. After the image is completely hidden, it will show in its original setting. Set a **setInterval** timer to change the image opacity at a specified interval so that it is hidden gradually. When the opacity changes to **0**, the timer is cleared and the opacity is set to **1**.
-
-```
+```html
 <!-- index.hml -->
 <div class="page-container">
   <div class="content">
     <div class="image-container">
-      <image class="testimage" src="{{testuri}}" style="display:{{displaytype}};opacity:{{imageopacity}};" onclick="changedisplaytype" onlongpress="changeopacity"> </image>
+      <image class="testimage" src="{{testuri}}" style="opacity:{{imageopacity}};" onlongpress="changeopacity"> </image>
     </div>
     <div class="text-container">
       <text style="font-size: 37px;font-weight:bold;color:orange;text-align: center;width: 100%;">Touch and hold the image</text>
@@ -151,8 +141,7 @@ In this example you touch and hold an image to gradually hide it. After the imag
 </div>
 ```
 
-
-```
+```css
 /* xxx.css */
 .page-container {
   width: 100%;
@@ -186,9 +175,8 @@ In this example you touch and hold an image to gradually hide it. After the imag
 }
 ```
 
-
-```
-/* index.js */
+```js
+// index.js
 import prompt from '@system.prompt';
 export default {
   data: {
