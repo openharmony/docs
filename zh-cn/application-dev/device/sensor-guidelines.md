@@ -54,7 +54,7 @@
    
    以SensorId为ACCELEROMETER为例展示运行结果，持续监听传感器接口的结果如下图所示：
    
-   ![171e6f30-a8d9-414c-bafa-b430340305f](figures/171e6f30-a8d9-414c-bafa-b430340305fb.png)
+   ![171e6f30-a8d9-414c-bafa-b430340305fb](figures/171e6f30-a8d9-414c-bafa-b430340305fb.png)
 
 3. 注销传感器数据监听。
   
