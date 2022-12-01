@@ -7,11 +7,11 @@
 
 
 
-Hap模块信息，未做特殊说明的属性，均通过GET_BUNDLE_DEFAULT获取。
+Hap模块信息，未做特殊说明的属性，均通过[GET_BUNDLE_DEFAULT](js-apis-Bundle.md)获取。
 
 ## HapModuleInfo<sup>(deprecated)<sup>
 
-> 从API version 9开始不再维护，建议使用[HapModuleInfo](js-apis-bundleManager-hapModuleInfo.md)替代。
+> 从API version 9开始不再维护，建议使用[bundleManager-HapModuleInfo](js-apis-bundleManager-hapModuleInfo.md)替代。
 
 **系统能力**: 以下各项对应的系统能力均为SystemCapability.BundleManager.BundleFramework
 

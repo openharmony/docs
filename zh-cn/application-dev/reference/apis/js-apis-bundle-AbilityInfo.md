@@ -5,11 +5,11 @@
 
 
 
-Ability信息，未做特殊说明的属性，均通过GET_BUNDLE_DEFAULT获取。
+Ability信息，未做特殊说明的属性，均通过[GET_BUNDLE_DEFAULT](js-apis-Bundle.md)获取。
 
 ## AbilityInfo<sup>(deprecated)<sup>
 
-> 从API version 9开始不再维护，建议使用[AbilityInfo](js-apis-bundleManager-abilityInfo.md)替代。
+> 从API version 9开始不再维护，建议使用[bundleManager-AbilityInfo](js-apis-bundleManager-abilityInfo.md)替代。
 
  **系统能力:** 以下各项对应的系统能力均为SystemCapability.BundleManager.BundleFramework
 

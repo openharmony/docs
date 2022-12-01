@@ -11,7 +11,7 @@ remoteAbility信息。
 
 ## RemoteAbilityInfo<sup>(deprecated)<sup>
 
-> 从API version 9开始不再维护，建议使用[RemoteAbilityInfo](js-apis-bundleManager-remoteAbilityInfo.md)替代。
+> 从API version 9开始不再维护，建议使用[bundleManager-RemoteAbilityInfo](js-apis-bundleManager-remoteAbilityInfo.md)替代。
 
 
  **系统能力:** 以下各项对应的系统能力均为SystemCapability.BundleManager.DistributedBundleFramework
