@@ -31,7 +31,7 @@
 
 ### 框架故障管理理流程示意
 
-故障管理是应用提升用户体验的重要手段。鸿蒙应用框架为开发者提供了故障监听，故障恢复以及故障查询三种方式来管理应用的故障。
+故障管理是应用提升用户体验的重要手段。应用程序框架为开发者提供了故障监听、故障恢复、以及故障查询三种方式来管理应用的故障。
 
 - 故障监听指的是通过[errorManager](../reference/apis/js-apis-errorManager.md)注册[ErrorObserver](../reference/apis/js-apis-errorManager.md#errorobserver)，监听故障的发生，并通知到监听方。
 
