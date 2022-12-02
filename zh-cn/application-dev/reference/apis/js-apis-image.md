@@ -2128,16 +2128,16 @@ queueImage(interface: Image, callback: AsyncCallback\<void>): void
 
 ```js
 creator.dequeueImage().then(img => {
-    const JPEG = 4;
-    var component = await img.getComponent(JPEG);
     //绘制图片
-    var bufferArr = new Uint8Array(component.byteBuffer);
-    for (var i = 0; i < bufferArr.length; i += 4) {
-        bufferArr[i] = 0; //B
-        bufferArr[i + 1] = 0; //G
-        bufferArr[i + 2] = 255; //R
-        bufferArr[i + 3] = 255; //A
-    }
+    img.getComponent(4).then(component => {
+        var bufferArr = new Uint8Array(component.byteBuffer);
+        for (var i = 0; i < bufferArr.length; i += 4) {
+            bufferArr[i] = 0; //B
+            bufferArr[i + 1] = 0; //G
+            bufferArr[i + 2] = 255; //R
+            bufferArr[i + 3] = 255; //A
+        }
+    })
     creator.queueImage(img, (err) => {
         if (err) {
             console.info('queueImage failed: ' + err);
@@ -2172,16 +2172,16 @@ queueImage(interface: Image): Promise\<void>
 
 ```js
 creator.dequeueImage().then(img => {
-    const JPEG = 4;
-    var component = await img.getComponent(JPEG);
     //绘制图片
-    var bufferArr = new Uint8Array(component.byteBuffer);
-    for (var i = 0; i < bufferArr.length; i += 4) {
-        bufferArr[i] = 0; //B
-        bufferArr[i + 1] = 0; //G
-        bufferArr[i + 2] = 255; //R
-        bufferArr[i + 3] = 255; //A
-    }
+    img.getComponent(4).then(component => {
+        var bufferArr = new Uint8Array(component.byteBuffer);
+        for (var i = 0; i < bufferArr.length; i += 4) {
+            bufferArr[i] = 0; //B
+            bufferArr[i + 1] = 0; //G
+            bufferArr[i + 2] = 255; //R
+            bufferArr[i + 3] = 255; //A
+        }
+    })
     creator.queueImage(img).then(() => {
         console.info('queueImage succeeded.');
     }).catch(error => {
