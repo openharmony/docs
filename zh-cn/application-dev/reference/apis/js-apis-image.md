@@ -2079,9 +2079,9 @@ dequeueImage(callback: AsyncCallback\<Image>): void
 ```js
 creator.dequeueImage((err, img) => {
     if (err) {
-        console.info('dequeueImage succeeded.');
+        console.info('dequeueImage failded.');
     }
-    console.info('dequeueImage failed.');
+    console.info('dequeueImage succeeded.');
 });
 ```
 
@@ -2127,12 +2127,25 @@ queueImage(interface: Image, callback: AsyncCallback\<void>): void
 **示例：**
 
 ```js
-creator.queueImage(img, (err) => {
-    if (err) {
-        console.info('dequeueImage failed: ' + err);
-    }
-    console.info('dequeueImage succeeded');
+creator.dequeueImage().then(img => {
+    //绘制图片
+    img.getComponent(4).then(component => {
+        var bufferArr = new Uint8Array(component.byteBuffer);
+        for (var i = 0; i < bufferArr.length; i += 4) {
+            bufferArr[i] = 0; //B
+            bufferArr[i + 1] = 0; //G
+            bufferArr[i + 2] = 255; //R
+            bufferArr[i + 3] = 255; //A
+        }
+    })
+    creator.queueImage(img, (err) => {
+        if (err) {
+            console.info('queueImage failed: ' + err);
+        }
+        console.info('queueImage succeeded');
+    })
 })
+
 ```
 
 ### queueImage<sup>9+</sup>
@@ -2158,11 +2171,24 @@ queueImage(interface: Image): Promise\<void>
 **示例：**
 
 ```js
-creator.queueImage(img).then(() => {
-    console.info('dequeueImage succeeded.');
-}).catch(error => {
-    console.info('dequeueImage failed: ' + error);
+creator.dequeueImage().then(img => {
+    //绘制图片
+    img.getComponent(4).then(component => {
+        var bufferArr = new Uint8Array(component.byteBuffer);
+        for (var i = 0; i < bufferArr.length; i += 4) {
+            bufferArr[i] = 0; //B
+            bufferArr[i + 1] = 0; //G
+            bufferArr[i + 2] = 255; //R
+            bufferArr[i + 3] = 255; //A
+        }
+    })
+    creator.queueImage(img).then(() => {
+        console.info('queueImage succeeded.');
+    }).catch(error => {
+        console.info('queueImage failed: ' + error);
+    })
 })
+
 ```
 
 ### on<sup>9+</sup>
