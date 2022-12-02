@@ -6,15 +6,18 @@
 
   下面介绍了任务管理如何实现以下三种启动模式UIAbility组件的管理：
 - singleton：单实例模式，应用在运行时只存在一个该UIAbility实例。
-    **图1** 任务与singleton模式  
-  ![mission-and-singleton](figures/mission-and-singleton.png)
-
+  
+  **图1** 任务与singleton模式
+![mission-and-singleton](figures/mission-and-singleton.png)
+  
 - standard：多实例模式，每次调用startAbility()方法，都会在应用进程中创建一个该Ability的实例。
-    **图2** 任务与standard模式  
-  ![mission-and-standard](figures/mission-and-standard.png)
-
+  
+  **图2** 任务与standard模式
+![mission-and-standard](figures/mission-and-standard.png)
+  
 - specified：指定实例模式，由[AbilityStage](abilitystage.md)的（[onAcceptWant](../reference/apis/js-apis-application-abilitystage.md#abilitystageonacceptwant)）决定是否创建新的实例。
-    **图3** 任务与specified模式  
+  
+  **图3** 任务与specified模式
   ![mission-and-specified](figures/mission-and-specified.png)
 
 
