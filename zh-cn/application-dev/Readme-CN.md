@@ -49,7 +49,7 @@
 - 开发
   - [应用模型](application-models/Readme-CN.md)
   - [UI开发](ui/Readme-CN.md)
-  - [公共事件与通知](notification/Readme-CN.md)
+  - [通知](notification/Readme-CN.md)
   - [窗口管理](windowmanager/Readme-CN.md)
   - [WebGL](webgl/Readme-CN.md)
   - [媒体](media/Readme-CN.md)
