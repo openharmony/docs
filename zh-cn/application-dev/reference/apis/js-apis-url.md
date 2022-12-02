@@ -818,8 +818,8 @@ new Url.URL('/path/path1', a); // Output 'http://username:password@host:8080/pat
 new Url.URL('/path/path1', "https://www.exampleUrl/fr-FR/toto"); // Output https://www.exampleUrl/path/path1
 new Url.URL('/path/path1', ''); // Raises a TypeError exception as '' is not a valid URL
 new Url.URL('/path/path1'); // Raises a TypeError exception as '/path/path1' is not a valid URL
-new Url.URL('http://www.shanxi.com', ); // Output http://www.shanxi.com/
-new Url.URL('http://www.shanxi.com', b); // Output http://www.shanxi.com/
+new Url.URL('https://www.example.com', ); // Output https://www.example.com/
+new Url.URL('https://www.example.com', b); // Output https://www.example.com/
 ```
 
 ### parseURL<sup>9+</sup>
