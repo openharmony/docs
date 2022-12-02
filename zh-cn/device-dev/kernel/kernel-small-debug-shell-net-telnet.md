@@ -13,7 +13,7 @@ telnet [_on | off_]
 
 ## 参数说明
 
-  **表1** 参数说明
+**表1** 参数说明
 
 | 参数 | 参数说明 | 取值范围 | 
 | -------- | -------- | -------- |
@@ -37,9 +37,9 @@ telnet [_on | off_]
 
 ## 输出说明
 
-**示例：**输入 telnet on
+**示例** 输入 telnet on
 
-  
+
 ```
 OHOS # telnet on
 OHOS # start telnet server successfully, waiting for connection.
