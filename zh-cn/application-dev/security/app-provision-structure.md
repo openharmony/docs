@@ -17,7 +17,7 @@ HarmonyAppProvision文件包含version-code对象、version-name对象、uuid对
 | acls        | 表示授权的acl权限信息。参考[acls对象内部结构](#acls对象内部结构)。                           | 对象     | 可选 | 可缺省    |
 | permissions | 表示允许使用的受限敏感权限信息。参考[permissions对象内部结构](#permissions对象内部结构)。      | 对象     | 可选 | 可缺省    |
 | debug-info  | 表示应用调试场景下的额外信息。参考[debug-info对象内部结构](#debug-info对象内部结构)。          | 对象     | 可选 | 可缺省         |
-| app-privilege-capabilitie | 表示应用包所需要的特权信息。可以参考[应用特权配置指南](../../device-dev/subsystems/subsys-app-privilege-config-guide.md)    | 字符串数组 | 可选 | 可缺省         |
+| app-privilege-capabilities | 表示应用包所需要的特权信息。可以参考[应用特权配置指南](../../device-dev/subsystems/subsys-app-privilege-config-guide.md)    | 字符串数组 | 可选 | 可缺省         |
 
 HarmonyAppProvision文件示例：
 ```json
@@ -48,7 +48,7 @@ HarmonyAppProvision文件示例：
 	    "device-id-type": "udid",
 	    "device-ids": ["string"]
     },
-	"app-privilege-capabilities":["AllowAppUsePrivilegeExtension"],
+    "app-privilege-capabilities":["AllowAppUsePrivilegeExtension"],
     "issuer": "OpenHarmony"
 }
 
