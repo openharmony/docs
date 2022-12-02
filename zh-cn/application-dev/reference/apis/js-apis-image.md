@@ -2127,18 +2127,25 @@ queueImage(interface: Image, callback: AsyncCallback\<void>): void
 **示例：**
 
 ```js
-creator.dequeueImage((err, img) => {
+var creator = image.createImageCreator(WIDTH, HEIGHT, FORMAT, CAPACITY);
+var img = await creator.dequeueImage();
+const JPEG = 4;
+var component = await img.getComponent(JPEG);
+//绘制图片
+var bufferArr = new Uint8Array(component.byteBuffer);
+for (var i = 0; i < bufferArr.length; i += 4) {
+    bufferArr[i] = 0; //B
+    bufferArr[i + 1] = 0; //G
+    bufferArr[i + 2] = 255; //R
+    bufferArr[i + 3] = 255; //A
+}
+creator.queueImage(img, (err) => {
     if (err) {
-        console.info('dequeueImage failded.');
+        console.info('queueImage failed: ' + err);
     }
-    console.info('dequeueImage succeeded.');
-    creator.queueImage(img, (err) => {
-        if (err) {
-            console.info('dequeueImage failed: ' + err);
-        }
-        console.info('dequeueImage succeeded');
-    })
-});
+    console.info('queueImage succeeded');
+})
+
 
 ```
 
@@ -2165,18 +2172,23 @@ queueImage(interface: Image): Promise\<void>
 **示例：**
 
 ```js
-creator.dequeueImage().then(img => {
-    console.info('dequeueImage succeeded.');
-    creator.queueImage(img).then(() => {
-        console.info('dequeueImage succeeded.');
-    }).catch(error => {
-        console.info('dequeueImage failed: ' + error);
-    })
+var creator = image.createImageCreator(8192, 8, 4, 8);
+var img = await creator.dequeueImage();
+const JPEG = 4;
+var component = await img.getComponent(JPEG);
+//绘制图片
+var bufferArr = new Uint8Array(component.byteBuffer);
+for (var i = 0; i < bufferArr.length; i += 4) {
+    bufferArr[i] = 0; //B
+    bufferArr[i + 1] = 0; //G
+    bufferArr[i + 2] = 255; //R
+    bufferArr[i + 3] = 255; //A
+}
+creator.queueImage(img).then(() => {
+    console.info('queueImage succeeded.');
 }).catch(error => {
-    console.log('dequeueImage failed: ' + error);
+    console.info('queueImage failed: ' + error);
 })
-
-
 
 ```
 
