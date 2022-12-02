@@ -40,9 +40,9 @@ pushUrl(options: RouterOptions): Promise&lt;void&gt;
 
 | 错误码ID   | 错误信息 |
 | --------- | ------- |
-| 100001    | Internal error. |
-| 100002    | Uri error. The uri of router is not exist. |
-| 100003    | Page stack error. The pages are pushed too much. |
+| 100001    | If UI execution context not found. |
+| 100002    | If the uri is not exist. |
+| 100003    | If the pages are pushed too much. |
 
 **示例：**
 
@@ -89,9 +89,9 @@ pushUrl(options: RouterOptions, callback: AsyncCallback&lt;void&gt;): void
 
 | 错误码ID   | 错误信息 |
 | --------- | ------- |
-| 100001    | Internal error. |
-| 100002    | Uri error. The uri of router is not exist. |
-| 100003    | Page stack error. The pages are pushed too much. |
+| 100001    | If UI execution context not found. |
+| 100002    | If the uri is not exist. |
+| 100003    | If the pages are pushed too much. |
 
 **示例：**
 
@@ -143,9 +143,9 @@ pushUrl(options: RouterOptions, mode: RouterMode): Promise&lt;void&gt;
 
 | 错误码ID   | 错误信息 |
 | --------- | ------- |
-| 100001    | Internal error. |
-| 100002    | Uri error. The uri of router is not exist. |
-| 100003    | Page stack error. The pages are pushed too much. |
+| 100001    | If UI execution context not found. |
+| 100002    | If the uri is not exist. |
+| 100003    | If the pages are pushed too much. |
 
 **示例：**
 
@@ -193,9 +193,9 @@ pushUrl(options: RouterOptions, mode: RouterMode, callback: AsyncCallback&lt;voi
 
 | 错误码ID   | 错误信息 |
 | --------- | ------- |
-| 100001    | Internal error. |
-| 100002    | Uri error. The uri of router is not exist. |
-| 100003    | Page stack error. The pages are pushed too much. |
+| 100001    | If UI execution context not found. |
+| 100002    | If the uri is not exist. |
+| 100003    | If the pages are pushed too much. |
 
 **示例：**
 
@@ -247,8 +247,8 @@ replaceUrl(options: RouterOptions): Promise&lt;void&gt;
 
 | 错误码ID   | 错误信息 |
 | --------- | ------- |
-| 100001    | Internal error. |
-| 200002    | Uri error. The uri of router is not exist. |
+| 100001    | If UI execution context not found, only throw in standard system. |
+| 200002    | If the uri is not exist. |
 
 **示例：**
 
@@ -292,8 +292,8 @@ replaceUrl(options: RouterOptions, callback: AsyncCallback&lt;void&gt;): void
 
 | 错误码ID   | 错误信息 |
 | --------- | ------- |
-| 100001    | Internal error. |
-| 200002    | Uri error. The uri of router is not exist. |
+| 100001    | If UI execution context not found, only throw in standard system. |
+| 200002    | If the uri is not exist. |
 
 **示例：**
 
@@ -344,8 +344,8 @@ replaceUrl(options: RouterOptions, mode: RouterMode): Promise&lt;void&gt;
 
 | 错误码ID   | 错误信息 |
 | --------- | ------- |
-| 100001    | Internal error. |
-| 200002    | Uri error. The uri of router is not exist. |
+| 100001    | If UI execution context not found, only throw in standard system. |
+| 200002    | If the uri is not exist. |
 
 **示例：**
 
@@ -390,8 +390,8 @@ replaceUrl(options: RouterOptions, mode: RouterMode, callback: AsyncCallback&lt;
 
 | 错误码ID   | 错误信息 |
 | --------- | ------- |
-| 100001    | Internal error. |
-| 200002    | Uri error. The uri of router is not exist. |
+| 100001    | If UI execution context not found, only throw in standard system. |
+| 200002    | If the uri is not exist. |
 
 **示例：**
 
@@ -498,11 +498,11 @@ console.log('current path = ' + page.path);
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full。
 
-| 名称    | 类型     | 说明                                 |
-| ----- | ------ | ---------------------------------- |
-| index | number | 表示当前页面在页面栈中的索引。从栈底到栈顶，index从1开始递增。 |
-| name  | string | 表示当前页面的名称，即对应文件名。                  |
-| path  | string | 表示当前页面的路径。                         |
+| 名称  | 类型   | 必填 | 说明                                                         |
+| ----- | ------ | ---- | ------------------------------------------------------------ |
+| index | number | 是   | 表示当前页面在页面栈中的索引。从栈底到栈顶，index从1开始递增。 |
+| name  | string | 否   | 表示当前页面的名称，即对应文件名。                           |
+| path  | string | 是   | 表示当前页面的路径。                                         |
 
 ## router.enableBackPageAlert<sup>9+</sup>
 
@@ -524,7 +524,7 @@ enableBackPageAlert(options: EnableAlertOptions): void
 
 | 错误码ID   | 错误信息 |
 | --------- | ------- |
-| 100001    | Internal error. |
+| 100001    | If UI execution context not found. |
 
 **示例：**
 
@@ -602,9 +602,9 @@ router.getParams();
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full。
 
-| 名称       | 描述                                       |
-| -------- | ---------------------------------------- |
-| Standard | 标准模式。 <br/>目标页面会被添加到页面路由栈顶，无论栈中是否存在相同url的页面。                            |
+| 名称     | 说明                                                         |
+| -------- | ------------------------------------------------------------ |
+| Standard | 标准模式。 <br/>目标页面会被添加到页面路由栈顶，无论栈中是否存在相同url的页面。 |
 | Single   | 单实例模式。<br/>如果目标页面的url在页面栈中已经存在同url页面，离栈顶最近的页面会被移动到栈顶，移动后的页面为新建页。<br/>如目标页面的url在页面栈中不存在同url页面，按标准模式跳转。 |
 
 ## 完整示例
@@ -812,7 +812,7 @@ replace(options: RouterOptions, mode: RouterMode): void
 
 从API version9开始不再维护，建议使用[replaceUrl<sup>9+</sup>](#routerreplaceurl9)
 
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+**系统能力：** SystemCapability.ArkUI.ArkUI.Lite
 
 **参数：**
 
