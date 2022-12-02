@@ -5,7 +5,7 @@
 应用程序的模块信息。
 
 ## ModuleInfo<sup>(deprecated)<sup>
-> 从API version 9开始不再维护，建议使用[HapModuleInfo](js-apis-bundleManager-hapModuleInfo.md)替代。
+> 从API version 9开始不再维护，建议使用[bundleManager-HapModuleInfo](js-apis-bundleManager-hapModuleInfo.md)替代。
 
 **系统能力**: 以下各项对应的系统能力均为SystemCapability.BundleManager.BundleFramework
 | 名称            | 类型   | 可读 | 可写 | 说明     |

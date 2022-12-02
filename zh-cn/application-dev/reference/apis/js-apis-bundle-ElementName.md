@@ -11,6 +11,8 @@ ElementName信息，通过接口[Context.getElementName](js-apis-Context.md)获�
 
 > 从API version 9开始不再维护，建议使用[ElementName](js-apis-bundleManager-elementName.md)替代。
 
+ElementName信息，标识Ability的基本信息，通过接口[Context.getElementName](js-apis-Context.md)获取。
+
  **系统能力:** 以下各项对应的系统能力均为SystemCapability.BundleManager.BundleFramework。
 
 

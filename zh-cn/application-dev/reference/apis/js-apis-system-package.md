@@ -3,7 +3,7 @@
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
 >
-> - 从API version 9开始不再维护，推荐使用该模块[`@ohos.bundle.bundleManager`](js-apis-bundleManager.md)。
+> - 从API version 9开始不再维护，推荐使用该模块[@ohos.bundle.bundleManager](js-apis-bundleManager.md)。
 >
 > - 本模块首批接口从API version 3开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
