@@ -2079,9 +2079,9 @@ dequeueImage(callback: AsyncCallback\<Image>): void
 ```js
 creator.dequeueImage((err, img) => {
     if (err) {
-        console.info('dequeueImage succeeded.');
+        console.info('dequeueImage failded.');
     }
-    console.info('dequeueImage failed.');
+    console.info('dequeueImage succeeded.');
 });
 ```
 
@@ -2127,12 +2127,19 @@ queueImage(interface: Image, callback: AsyncCallback\<void>): void
 **示例：**
 
 ```js
-creator.queueImage(img, (err) => {
+creator.dequeueImage((err, img) => {
     if (err) {
-        console.info('dequeueImage failed: ' + err);
+        console.info('dequeueImage failded.');
     }
-    console.info('dequeueImage succeeded');
-})
+    console.info('dequeueImage succeeded.');
+    creator.queueImage(img, (err) => {
+        if (err) {
+            console.info('dequeueImage failed: ' + err);
+        }
+        console.info('dequeueImage succeeded');
+    })
+});
+
 ```
 
 ### queueImage<sup>9+</sup>
@@ -2158,11 +2165,19 @@ queueImage(interface: Image): Promise\<void>
 **示例：**
 
 ```js
-creator.queueImage(img).then(() => {
+creator.dequeueImage().then(img => {
     console.info('dequeueImage succeeded.');
+    creator.queueImage(img).then(() => {
+        console.info('dequeueImage succeeded.');
+    }).catch(error => {
+        console.info('dequeueImage failed: ' + error);
+    })
 }).catch(error => {
-    console.info('dequeueImage failed: ' + error);
+    console.log('dequeueImage failed: ' + error);
 })
+
+
+
 ```
 
 ### on<sup>9+</sup>
