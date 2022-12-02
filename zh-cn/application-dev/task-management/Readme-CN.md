@@ -8,5 +8,5 @@
   - [申请能效资源开发指导](efficiency-resources-apply-dev-guide.md)
 
 - 后台代理提醒
-  - [后台代理提醒开发概述](background-agent-scheduled-reminder-overview.md)
-  - [后台代理提醒开发指导](background-agent-scheduled-reminder-guide.md)
+  - [后台代理提醒概述](reminder-agent-overview.md)
+  - [后台代理提醒开发指导](reminder-agent-development.md)
