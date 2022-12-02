@@ -2,7 +2,7 @@
 在应用的开发过程中，应用的权限、签名信息等需要在HarmonyAppProvision配置文件（该文件在部分文档中也称为profile文件）中声明。
 
 ## 配置文件的内部结构
-HarmonyAppProvision文件包含version-code对象、version-name对象、uuid对象、type对象、issuer对象、validity对象、bundle-info对象、acls对象、permissions对象、debug-info对象等部分组成。
+HarmonyAppProvision文件包含version-code对象、version-name对象、uuid对象、type对象、issuer对象、validity对象、bundle-info对象、acls对象、permissions对象、debug-info对象、app-privilege-capabilities对象等部分组成。
 
 **表1** 配置文件内部结构说明
 | 属性名称     | 含义                                                                                     | 数据类型 | 是否必选 | 是否可缺省 |
@@ -14,9 +14,10 @@ HarmonyAppProvision文件包含version-code对象、version-name对象、uuid对
 | issuer | 表示HarmonyAppProvision签发者。        | 字符串     | 必选 | 不可缺省 |
 | validity    | 表示HarmonyAppProvision文件有效期的信息。参考[validity对象内部结构](#validity对象内部结构)。  | 对象     | 必选 | 不可缺省  |
 | bundle-info | 表示应用包以及开发者的信息。参考[bundle-info对象内部结构](#bundle-info对象内部结构)。         | 对象     | 必选 | 不可缺省  |
-| acls        | 表示授权的acl权限信息。参考[acls对象内部结构](#acls对象内部结构)。                           | 对象     | 可选 | 不可缺省    |
-| permissions | 表示允许使用的受限敏感权限信息。参考[permissions对象内部结构](#permissions对象内部结构)。      | 对象     | 可选 | 不可缺省    |
-| debug-info  | 表示应用调试场景下的额外信息。参考[debug-info对象内部结构](#debug-info对象内部结构)。          | 对象     | 可选 | 不可缺省         |
+| acls        | 表示授权的acl权限信息。参考[acls对象内部结构](#acls对象内部结构)。                           | 对象     | 可选 | 可缺省    |
+| permissions | 表示允许使用的受限敏感权限信息。参考[permissions对象内部结构](#permissions对象内部结构)。      | 对象     | 可选 | 可缺省    |
+| debug-info  | 表示应用调试场景下的额外信息。参考[debug-info对象内部结构](#debug-info对象内部结构)。          | 对象     | 可选 | 可缺省         |
+| app-privilege-capabilitie | 表示应用包所需要的特权信息。可以参考[应用特权配置指南](../../device-dev/subsystems/subsys-app-privilege-config-guide.md)    | 字符串数组 | 可选 | 可缺省         |
 
 HarmonyAppProvision文件示例：
 ```json
@@ -47,6 +48,7 @@ HarmonyAppProvision文件示例：
 	    "device-id-type": "udid",
 	    "device-ids": ["string"]
     },
+	"app-privilege-capabilities":["AllowAppUsePrivilegeExtension"],
     "issuer": "OpenHarmony"
 }
 
