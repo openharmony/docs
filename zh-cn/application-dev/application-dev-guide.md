@@ -6,7 +6,7 @@
 
 ### 入门
 
-[入门](quick-start/start-overview.md)可以帮助开发者了解应用开发的基本方法。
+[入门](quick-start/Readme-CN.md)可以帮助开发者了解应用开发的基本方法。
 
 这一部分包含了快速构建首个应用的快速入门，以及开发OpenHarmony应用所必备的基础知识。
 
@@ -18,29 +18,28 @@
 
 首先，提供了支撑OpenHarmony应用的两个重要框架：
 
-- 应用程序的框架：[Ability开发](application-models/application-model-composition.md)
-- UI的框架：[UI开发](ui/arkui-overview.md)
+- 应用程序的框架：[应用模型](application-models/Readme-CN.md)
+- UI的框架：[UI开发](ui/Readme-CN.md)
 
 所有应用都应该在这两个框架的基础之上进行功能的开发。
 
 在此基础上，还提供了如下功能的开发指导：
-- [通知](notification/notification-overview.md)
-- [窗口管理](windowmanager/window-overview.md)
-- [WebGL](webgl/webgl-overview.md)
-- [媒体](media/audio-overview.md)
-- [安全](security/userauth-overview.md)
-- [网络与连接](connectivity/ipc-rpc-overview.md)
-- [电话服务](telephony/telephony-overview.md)
-- [数据管理](database/database-mdds-overview.md)
-- [任务管理](task-management/background-task-overview.md)
-- [设备管理](device/usb-overview.md)
-- [设备使用信息统计](device-usage-statistics/device-usage-statistics-overview.md)
-- [DFX](dfx/hiappevent-overview.md)
-- [国际化](internationalization/international-overview.md)
-- [应用测试](application-test/arkxtest-guidelines.md)
+- [通知](notification/Readme-CN.md)
+- [窗口管理](windowmanager/Readme-CN.md)
+- [WebGL](webgl/Readme-CN.md)
+- [媒体](media/Readme-CN.md)
+- [安全](security/Readme-CN.md)
+- [网络与连接](connectivity/Readme-CN.md)
+- [电话服务](telephony/Readme-CN.md)
+- [数据管理](database/Readme-CN.md)
+- [任务管理](task-management/Readme-CN.md)
+- [设备管理](device/Readme-CN.md)
+- [设备使用信息统计](device-usage-statistics/Readme-CN.md)
+- [DFX](dfx/Readme-CN.md)
+- [国际化](internationalization/Readme-CN.md)
+- [应用测试](application-test/Readme-CN.md)
 - [IDL工具规格及使用说明书](IDL/idl-guidelines.md)
-- [Native API的相关指导](napi/napi-guidelines.md)
-
+- [Native API的相关指导](napi/Readme-CN.md)
 
 ### 工具
 
@@ -58,14 +57,17 @@ API参考提供了OpenHarmony全量组件和接口的参考文档，可以帮助
 内容包括：
 
 - [组件参考（基于TS扩展的声明式开发范式）](reference/arkui-ts/Readme-CN.md)
-
 - [组件参考（基于JS扩展的类Web开发范式）](reference/arkui-js/Readme-CN.md)
+- [JS服务卡片UI组件参考](reference/js-service-widget-ui/Readme-CN.md) 
+- 接口参考
+    - [JS及TS API参考](reference/apis/Readme-CN.md)
+    - Native API
+        -   [Native API参考](reference/native-apis/Readme-CN.md)
+        -   [标准库](reference/native-lib/third_party_libc/musl.md)
+        -   [Node_API](reference/native-lib/third_party_napi/napi.md)
 
-- [JS服务卡片UI组件参考](reference/js-service-widget-ui/Readme-CN.md)
 
-- [接口参考（JS及TS API）](reference/apis/js-apis-DataUriUtils.md)
+### Readme
 
-- 接口参考（Native API）
-    - [OpenHarmony Native API](reference/native-apis/_o_h___native_x_component.md)
-    - [Native API标准库](reference/native-lib/third_party_libc/musl.md)
-    - [Node_API](reference/native-lib/third_party_napi/napi.md)
+如果需要了解各子系统的原理和基本信息，可以参考“[docs/zh-cn/readme](../readme)”目录中各子系统readme的介绍。
+
