@@ -11,7 +11,7 @@ You only need to perform operations in [Resource Files](#resource-files) and [Re
 
 Resource files store application content in multiple languages. This framework uses JSON files to store resource definitions. Place the resource file of each locale in the i18n directory described in [File Organization](js-framework-file.md). 
 
-Resource files should be named in _language-script-region_.json format. For example, the resource file for Hong Kong Chinese in the traditional script is named zh-Hant-HK. You can omit the region, for example, zh-CN for simplified Chinese, or omit both the script and region, for example, zh for Chinese.
+Resource files should be named in _language-script-region_.json format. For example, the resource file for Hong Kong(China) in the traditional script is named zh-Hant-HK. You can omit the region, for example, zh-CN for simplified Chinese, or omit both the script and region, for example, zh for Chinese.
 
 
 ```
