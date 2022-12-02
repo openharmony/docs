@@ -672,8 +672,3 @@ After correct configuration, compilation, and burning, the device uses the wifi_
 
 
 The adaptation process of other components is similar to that of other vendors.
-
-## To-do
-
-- Adding BLE support
-- Diversifying Wi-Fi test commands
