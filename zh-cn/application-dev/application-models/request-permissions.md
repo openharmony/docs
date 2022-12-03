@@ -14,17 +14,17 @@
 
 
   对应config.json文件的示例代码如下所示：
-  
-```ts
+
+```json
 {
-   "module": {
-     // ...
-     "reqPermissions": [
-       {
-         "name": "ohos.permission.READ_CALENDAR"
-         // ...
-       }
-     ]
+  "module": {
+    // ...
+    "reqPermissions": [
+      {
+        "name": "ohos.permission.READ_CALENDAR"
+        // ...
+      }
+    ]
   }
 }
 ```
@@ -32,8 +32,6 @@
 
 通过动态弹窗向用户申请授权：
 
-
-  
 ```ts
 import featureAbility from '@ohos.ability.featureAbility';
 

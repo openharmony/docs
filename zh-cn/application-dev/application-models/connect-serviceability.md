@@ -63,7 +63,7 @@ let connId = featureAbility.connectAbility(request, option)
 同时，Service侧也需要在onConnect()时返回IRemoteObject，从而定义与Service进行通信的接口。onConnect()需要返回一个IRemoteObject对象。OpenHarmony提供了IRemoteObject的默认实现，开发者可以通过继承rpc.RemoteObject来创建自定义的实现类。
 
 
-Service侧把自身的实例返回给调用侧的代码示例如下：
+Service侧把自身的实例返回给调用侧的示例代码如下：
 
 ```ts
 import rpc from "@ohos.rpc"
