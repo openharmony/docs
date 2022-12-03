@@ -43,29 +43,40 @@ GridItem()
 @Entry
 @Component
 struct GridItemExample {
-  @State numbers: string[] = Array.apply(null, Array(16)).map(function (item, i) { return i.toString() })
+  @State numbers: string[] = Array.apply(null, { length: 16 }).map(function (item, i) {
+    return i.toString()
+  })
 
   build() {
     Column() {
       Grid() {
         GridItem() {
           Text('4')
-            .fontSize(16).backgroundColor(0xFAEEE0)
-            .width('100%').height('100%').textAlign(TextAlign.Center)
+            .fontSize(16)
+            .backgroundColor(0xFAEEE0)
+            .width('100%')
+            .height('100%')
+            .textAlign(TextAlign.Center)
         }.rowStart(1).rowEnd(4)
 
         ForEach(this.numbers, (item) => {
           GridItem() {
             Text(item)
-              .fontSize(16).backgroundColor(0xF9CF93)
-              .width('100%').height('100%').textAlign(TextAlign.Center)
+              .fontSize(16)
+              .backgroundColor(0xF9CF93)
+              .width('100%')
+              .height('100%')
+              .textAlign(TextAlign.Center)
           }.forceRebuild(false)
         }, item => item)
 
         GridItem() {
           Text('5')
-            .fontSize(16).backgroundColor(0xDBD0C0)
-            .width('100%').height('100%').textAlign(TextAlign.Center)
+            .fontSize(16)
+            .backgroundColor(0xDBD0C0)
+            .width('100%')
+            .height('100%')
+            .textAlign(TextAlign.Center)
         }.columnStart(1).columnEnd(5)
       }
       .columnsTemplate('1fr 1fr 1fr 1fr 1fr')
