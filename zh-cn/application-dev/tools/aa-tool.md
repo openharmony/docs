@@ -7,11 +7,11 @@ Ability assistant（Ability助手，简称为aa），是实现应用及测试用
 - help
   用于显示aa相关的帮助信息。
 
-  返回值：
+  **返回值**：
 
   返回对应的帮助信息。
 
-  使用方法：
+  **使用方法**：
 
   
   ```bash
@@ -30,11 +30,11 @@ Ability assistant（Ability助手，简称为aa），是实现应用及测试用
   | -b | 必选参数，bundleName。 |
   | -D | 可选参数，调试模式。 |
 
-  返回值：
+  **返回值**：
 
   当启动成功时，返回"start ability successfully."；当启动失败时，返回"error: failed to start ability."，同时会包含相应的失败信息。
 
-  使用方法：
+  **使用方法**：
 
   
   ```bash
@@ -51,11 +51,11 @@ Ability assistant（Ability助手，简称为aa），是实现应用及测试用
   | -a | 必选参数，abilityName。 |
   | -b | 必选参数，bundleName。 |
 
-  返回值：
+  **返回值**：
 
   当成功停止ServiceAbility时，返回"stop service ability successfully."；当停止失败时，返回"error: failed to stop service ability."。
 
-  使用方法：
+  **使用方法**：
 
   
   ```bash
@@ -75,7 +75,7 @@ Ability assistant（Ability助手，简称为aa），是实现应用及测试用
   | -i/--ability | AbilityRecord&nbsp;ID | 打印指定应用组件详细信息。 |
   | -c/--client | - | 打印应用组件详细信息，需要和其他参数组合使用，例如aa&nbsp;dump&nbsp;-a&nbsp;-c、aa&nbsp;dump&nbsp;-i&nbsp;21&nbsp;-c。 |
 
-  使用方法：
+  **使用方法**：
 
   
   ```bash
@@ -101,11 +101,11 @@ Ability assistant（Ability助手，简称为aa），是实现应用及测试用
 - force-stop
   通过bundleName强制停止一个进程。
 
-  返回值：
+  **返回值**：
 
   当成功强制停止该进程时，返回"force stop process successfully."；当强制停止失败时，返回"error: failed to force stop process."。
 
-  使用方法：
+  **使用方法**：
 
   
   ```bash

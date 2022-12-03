@@ -39,22 +39,20 @@ Common Event Manager（公共事件管理工具， 简称cem）是实现公共�
   | -d/--data    | 可选参数，公共事件携带数据                 |
   | -h/--help    | 帮助信息                                   |
 
-* 示例
+* 示例：
 
-  ```
-cem publish --event "testevent"
-  ```
-
-  发布名称为testevent的公共事件
-
-   ![cem-publish-event](figures/cem-publish-event.png)
-
-  ```
+  ```bash
+# 发布名称为testevent的公共事件
+  cem publish --event "testevent"
+```
+  
+ ![cem-publish-event](figures/cem-publish-event.png)
+  
+```bash
+  # 发布名称为testevent的粘性有序公共事件，该事件的结果码为100，携带数据内容为“this is data”
 cem publish -e "testevent" -s -o -c 100 -d "this is data"
   ```
 
-  发布名称为testevent的粘性有序公共事件，该事件的结果码为100，携带数据内容为“this is data”
-  
    ![cem-publish-all](figures/cem-publish-all.png)
 
 ### dump
@@ -79,12 +77,9 @@ cem publish -e "testevent" -s -o -c 100 -d "this is data"
 
 * 示例
 
-  ```
+  ```bash
+  # 打印公共事件名称为testevent的具体信息
   cem dump -e "testevent"
   ```
 
-​        打印公共事件名称为testevent的具体信息。
-
 ​        ![cem-dump-e](figures/cem-dump-e.png)
-
-
