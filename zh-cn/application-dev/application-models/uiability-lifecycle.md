@@ -8,7 +8,7 @@
 UIAbility的生命周期包括Create、Foreground、Background、Destroy四个状态，如下图所示。
 
   **图1** UIAbility生命周期状态  
-![Ability-Life-Cycle](figures/Ability-Life-Cycle.png)
+<img src="figures/Ability-Life-Cycle.png" alt="Ability-Life-Cycle" style="zoom:50%;" />
 
 
 ## 生命周期状态说明
@@ -36,8 +36,8 @@ export default class EntryAbility extends UIAbility {
 
 UIAbility实例创建完成之后，在进入Foreground之前，系统会创建一个WindowStage。WindowStage创建完成后会进入onWindowStageCreate()回调，可以在该回调中设置UI界面加载、设置WindowStage的事件订阅。
 
-  **图2** WindowStageCreate和WindowStageDestory状态  
-![Ability-Life-Cycle-WindowStage](figures/Ability-Life-Cycle-WindowStage.png)
+  **图2** WindowStageCreate和WindowStageDestory状态  
+<img src="figures/Ability-Life-Cycle-WindowStage.png" alt="Ability-Life-Cycle-WindowStage" style="zoom:50%;" />
 
   在onWindowStageCreate()回调中通过loadContent()方法设置应用要加载的页面并根据需要订阅WindowStage的[事件](../reference/apis/js-apis-window.md#windowstageeventtype9)（获焦/失焦、可见/不可见）。
 
