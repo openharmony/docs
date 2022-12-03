@@ -5,8 +5,8 @@
 
 [Want](../reference/apis/js-apis-application-Want.md)是对象间信息传递的载体，可以用于应用组件间的信息传递。其使用场景之一是作为startAbility()的参数，包含了指定的启动目标以及启动时需携带的相关数据，如bundleName和abilityName字段分别指明目标Ability所在应用的包名以及对应包内的Ability名称。当UIAbilityA启动UIAbilityB并需要传入一些数据给UIAbilityB时，Want可以作为一个载体将数据传给UIAbilityB。
 
-  **图1** Want用法示意  
-![usage-of-want](figures/usage-of-want.png)
+  **图1** Want用法示意  
+<img src="figures/usage-of-want.png" alt="usage-of-want" style="zoom:80%;" />
 
 
 ## Want的类型

@@ -59,9 +59,7 @@
 
 - 调用方传入的want参数的action不为空，待匹配Ability的skills配置中的actions不为空且不包含调用方传入的want参数的action，则action匹配失败。
 
-  **图1** want参数的action匹配规则  
-
-![want-action](figures/want-action.png)
+  **图1** want参数的action匹配规则  <img src="figures/want-action.png" alt="want-action" style="zoom:80%;" />
 
 
 ### want参数的entities匹配规则
@@ -78,16 +76,16 @@
 
 - 调用方传入的want参数的entities不为空，待匹配Ability的skills配置中的entities不为空且不完全包含调用方传入的want参数的entities，则entities匹配失败。
 
-  **图2** want参数的entities匹配规则  
-![want-entities](figures/want-entities.png)
+  **图2** want参数的entities匹配规则  
+<img src="figures/want-entities.png" alt="want-entities" style="zoom:80%;" />
 
 
 ### want参数的uri和type匹配规则
 
 调用方传入的want参数中设置uri和type参数发起组件启动请求，系统会遍历当前系统已安装的组件列表，并逐个匹配待匹配Ability的skills配置中的uris数组，如果待匹配Ability的skills配置中的uris数组中只要有一个可以匹配调用方传入的want参数中设置的uri和type即为匹配成功。
 
-  **图3** want参数中uri和type皆不为空时的匹配规则  
-![want-uri-type1](figures/want-uri-type1.png)
+  **图3** want参数中uri和type皆不为空时的匹配规则  
+<img src="figures/want-uri-type1.png" alt="want-uri-type1" style="zoom: 80%;" />
 
 实际应用中，uri和type共存在四种情况，下面将讲解四种情况的具体匹配规则：
 
@@ -112,8 +110,8 @@
 下图为了简化描述，称want中传入的uri为w_uri，称want中传入的type为w_type, 待匹配Ability的skills配置中uris为s_uris，其中每个元素为s_uri；按自上而下顺序匹配。
 
 
-  **图4** want参数中uri和type的具体匹配规则  
-![want-uri-type2](figures/want-uri-type2.png)
+  **图4** want参数中uri和type的具体匹配规则  
+<img src="figures/want-uri-type2.png" alt="want-uri-type2" style="zoom:80%;" />
 
 
 ### uri匹配规则

@@ -18,7 +18,7 @@ singleton启动模式为单实例模式，也是默认情况下的启动模式�
 每次调用startAbility()方法时，如果应用进程中该类型的UIAbility实例已经存在，则复用系统中的UIAbility实例。系统中只存在唯一一个该UIAbility实例，即在最近任务列表中只存在一个该类型的UIAbility实例。
 
   **图1** 单实例模式演示效果  
-![uiability-launch-type1](figures/uiability-launch-type1.png)
+<img src="figures/uiability-launch-type1.png" alt="uiability-launch-type1" style="zoom:50%;" />
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
 > 应用的UIAbility实例已创建，该UIAbility配置为单实例模式，再次调用startAbility()方法启动该UIAbility实例，此时只会进入该UIAbility的[onNewWant()](../reference/apis/js-apis-application-ability.md#abilityonnewwant)回调，不会进入其onCreate()和onWindowStageCreate()生命周期回调。
@@ -46,7 +46,7 @@ singleton启动模式为单实例模式，也是默认情况下的启动模式�
 standard启动模式为标准实例模式，每次调用startAbility()方法时，都会在应用进程中创建一个新的该类型UIAbility实例。即在最近任务列表中可以看到有多个该类型的UIAbility实例。这种情况下可以将UIAbility配置为standard（标准实例模式）。
 
   **图2** 标准实例模式演示效果  
-![standard-mode](figures/standard-mode.png)
+<img src="figures/standard-mode.png" alt="standard-mode" style="zoom:50%;" />
 
 standard启动模式的开发使用，在[module.json5配置文件](../quick-start/module-configuration-file.md)中的"launchType"字段配置为"standard"即可。
 
@@ -73,7 +73,7 @@ specified启动模式为指定实例模式，针对一些特殊场景使用（�
 在UIAbility实例创建之前，允许开发者为该实例创建一个唯一的字符串Key，创建的UIAbility实例绑定Key之后，后续每次调用startAbility()方法时，都会询问应用使用哪个Key对应的UIAbility实例来响应startAbility()请求。运行时由UIAbility内部业务决定是否创建多实例，如果匹配有该UIAbility实例的Key，则直接拉起与之绑定的UIAbility实例，否则创建一个新的UIAbility实例。
 
   **图3** 指定实例模式演示效果  
-![uiability-launch-type2](figures/uiability-launch-type2.png)
+<img src="figures/uiability-launch-type2.png" alt="uiability-launch-type2" style="zoom:50%;" />
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
 > 应用的UIAbility实例已创建，该UIAbility配置为指定实例模式，再次调用startAbility()方法启动该UIAbility实例，且[AbilityStage](abilitystage.md)的[onAcceptWant()](../reference/apis/js-apis-application-abilitystage.md#abilitystageonacceptwant)回调匹配到一个已创建的UIAbility实例。此时，再次启动该UIAbility时，只会进入该UIAbility的[onNewWant()](../reference/apis/js-apis-application-ability.md#abilityonnewwant)回调，不会进入其onCreate()和onWindowStageCreate()生命周期回调。

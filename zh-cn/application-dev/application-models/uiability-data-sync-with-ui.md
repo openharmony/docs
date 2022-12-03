@@ -91,9 +91,8 @@ EventHub提供了UIAbility组件/ExtensionAbility组件级别的事件机制，�
 
 globalThis是ArkTS引擎实例内部的一个全局对象，引擎内部的UIAbility/ExtensionAbility/Page都可以使用，因此可以使用globalThis全局对象进行数据同步。
 
-
   **图1** 使用globalThis进行数据同步
-![globalThis1](figures/globalThis1.png)
+<img src="figures/globalThis1.png" alt="globalThis1" style="zoom:67%;" />
 
 
 如上图所示，下面从如下三个场景和一个注意点来介绍globalThis的使用：

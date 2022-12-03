@@ -35,8 +35,8 @@ OpenHarmony流转提供了一组API库，可让用户应用程序更轻松、快
 
 流转架构如下图所示。
 
-  **图1** 流转架构图  
-![hop-structure](figures/hop-structure.png)
+  **图1** 流转架构图  
+<img src="figures/hop-structure.png" alt="hop-structure" style="zoom:80%;" />
 
 - 跨端迁移任务管理：在迁移发起端，接受用户迁移的意图，提供迁移流转入口，迁移结果显示等能力。（该能力尚未构建。）
 

@@ -195,8 +195,9 @@ UIAbility是系统调度的最小单元。在设备内的功能模块之间跳�
    })
    ```
 
-   效果示意如下图所示，点击“打开PDF文档”时，会弹出选择框供用户选择。![uiability-intra-device-interaction](figures/uiability-intra-device-interaction.png)
-
+   效果示意如下图所示，点击“打开PDF文档”时，会弹出选择框供用户选择。
+   <img src="figures/uiability-intra-device-interaction.png" alt="uiability-intra-device-interaction" style="zoom:50%;" />
+   
 3. 在文档应用使用完成之后，如需要停止当前UIAbility实例，通过调用terminateSelf()方法实现。
    
    ```ts
@@ -441,7 +442,7 @@ Call调用的使用场景主要包括：
 Call调用示意图如下所示。
 
   **图1** Call调用示意图  
-![call](figures/call.png)
+<img src="figures/call.png" alt="call" style="zoom:67%;" />
 
 - CallerAbility调用startAbilityByCall接口获取Caller，并使用Caller对象的call方法向CalleeAbility发送数据。
 

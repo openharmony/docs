@@ -6,10 +6,10 @@
 [Context](../reference/apis/js-apis-application-context.md)是应用中对象的上下文，其提供了应用的一些基础信息，例如resourceManager（资源管理）、applicationInfo（当前应用信息）、dir（应用开发路径）、area（文件分区）等，以及应用的一些基本方法，例如createBundleContext()、getApplicationContext()等。UIAbility组件和各种ExtensionAbility派生类组件都有各自不同的Context类。分别有基类Context、ApplicationContext、AbilityStageContext、UIAbilityContext、ExtensionContext、ServiceExtensionContext等Context。
 
 - 各类Context的继承关系
-  ![context-inheritance](figures/context-inheritance.png)
+  <img src="figures/context-inheritance.png" alt="context-inheritance" style="zoom: 50%;" />
 
 - 各类Context的持有关系
-  ![context-holding](figures/context-holding.png)
+  <img src="figures/context-holding.png" alt="context-holding" style="zoom:50%;" />
 
 - 各类Context的获取方式
   - 获取[UIAbilityContext](../reference/apis/js-apis-ability-context.md)。每个UIAbility中都包含了一个Context属性，提供操作Ability、获取Ability的配置信息、应用向用户申请授权等能力。
@@ -93,8 +93,8 @@
 
 获取路径的能力是基类Context中提供的能力，因此在ApplicationContext、AbilityStageContext、UIAbilityContext和ExtensionContext中均可以获取，在各类Context中获取到的路径会有一些差别，具体差别如下图所示。
 
-  **图1** Context中获取的应用开发路径  
-![context-dir](figures/context-dir.png)
+  **图1** Context中获取的应用开发路径  
+<img src="figures/context-dir.png" alt="context-dir" style="zoom: 50%;" />
 
 - 通过ApplicationContext获取的应用级别路径。应用全局信息建议存放的路径，存放在此路径的文件内容仅在应用卸载时会被删除。
     | 属性 | 路径 |
@@ -306,5 +306,4 @@ export default class EntryAbility extends UIAbility {
 应用需要获取用户的隐私信息或使用系统能力时，例如获取位置信息、访问日历、使用相机拍摄照片或录制视频等，需要向用户申请授权，示意效果如下图所示。具体使用请参见[访问控制授权申请指导](../security/accesstoken-guidelines.md)。
 
   **图2** 向用户申请日历访问授权
-
-![application-context-stage](figures/application-context-stage.png)
+<img src="figures/application-context-stage.png" alt="application-context-stage" style="zoom:50%;" />

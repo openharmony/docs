@@ -64,10 +64,11 @@
       - "ability.picker.fileSizes"：应用选择器根据该字段展示文件大小。以字节为单位。
       - "ability.picker.fileNames"与"ability.picker.fileSizes"为数组，其有一一对应关系。
 
-      例如：当"ability.picker.type"为“application/pdf”，"ability.picker.fileNames"为“["接口文档.pdf"]”，"ability.picker.fileSizes"为“[350 \* 1024]”时，应用选择器将以下形式展示。![stage-want2](figures/stage-want2.png)
-
+      例如：当"ability.picker.type"为“application/pdf”，"ability.picker.fileNames"为“["接口文档.pdf"]”，"ability.picker.fileSizes"为“[350 \* 1024]”时，应用选择器将以下形式展示。
+      <img src="figures/stage-want2.png" alt="stage-want2" style="zoom:50%;" />
+      
       示例代码中“ability.want.params.INTENT”字段是一个嵌套Want，内部所含action、type等字段将由应用选择器进行隐式匹配，具体隐式匹配规则可参考[隐式Want匹配原理详解](explicit-implicit-want-mappings.md#隐式want匹配原理详解)。当用户选择具体应用后，“ability.want.params.INTENT”字段的嵌套Want将传递至所选应用。
-
+  
 - 被分享方：
   1. 上文中提到，应用选择器通过“ability.want.params.INTENT”字段进行隐式匹配。因此被分享方Ability配置文件内（stage模型下的module.json5）skills字段需配置如下。
      
