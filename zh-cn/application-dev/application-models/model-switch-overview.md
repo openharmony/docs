@@ -11,8 +11,9 @@
   ![model-switch-overview2](figures/model-switch-overview2.png)
 
 - [组件切换](pageability-switch.md)：PageAbility/ServiceAbility/DataAbility切换为UIAbility和ExtensionAbility（图片仅展示了FA模型的PageAbility切换成Stage模型的UIAbility：下图左侧为FA模型，app.ets为FA模型的PageAbility组件；下图右侧为Stage模型，EntryAbility.ts为Stage模型的UIAbility组件）。
-  ![model-switch-overview3](figures/model-switch-overview3.png)
-
+  
+![model-switch-overview3](figures/model-switch-overview3.png)
+  
 - [卡片切换](widget-switch.md)：将FA模型的FormAbility切换为Stage模型的FormExtensionAbility（下图中的**Service Widget**在FA中为FormAbility，在Stage中为FormExtensionAbility）。
   ![model-switch-overview4](figures/model-switch-overview4.png)
 

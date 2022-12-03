@@ -107,7 +107,7 @@
     - [module的切换](module-switch.md)
   - 组件切换
     - [PageAbility切换](pageability-switch.md)
-    - [ServiceAbility切换](aerviceability-switch.md)
+    - [ServiceAbility切换](serviceability-switch.md)
     - [DataAbility切换](dataability-switch.md)
   - [卡片切换](widget-switch.md)
   - API切换

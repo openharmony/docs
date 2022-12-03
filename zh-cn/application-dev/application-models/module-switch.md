@@ -1,10 +1,9 @@
 # module的切换
 
 
-从FA模型切换到Stage模型时，开发者需要将config.json文件module标签下的配置迁移到module.json5配置文件module标签下，具体差异见下表。
+从FA模型切换到Stage模型时，开发者需要将config.json文件module标签下的配置迁移到module.json5配置文件module标签下，具体差异见下列表格。
 
-
-  **表1** FA模型module标签与Stage模型module标签差异对比
+###   **表1** FA模型module标签与Stage模型module标签差异对比
 
 | FA标签 | 标签说明 | 对应的Stage标签 | 差异说明 |
 | -------- | -------- | -------- | -------- |
