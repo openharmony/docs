@@ -15,7 +15,7 @@ The following describes how to download source code of the **OpenHarmony Stable 
 
 ## Prerequisites
 
-A remote connection from the Windows environment to the Ubuntu environment has been set up through Remote SSH. For details, see [Setting Up the Development Environment](quickstart-ide-env--win.md).
+A remote connection from the Windows environment to the Ubuntu environment has been set up through Remote SSH. For details, see [Setting Up the Development Environment](quickstart-ide-env-win.md).
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
 >

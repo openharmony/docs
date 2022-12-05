@@ -15,4 +15,5 @@ The following table describes the macros for configuring the kernel heap memory.
 
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
+>
 > Ensure that the specified heap memory range is not used by other modules. Otherwise, functions of the heap memory will be damaged due to the heap memory corruption.

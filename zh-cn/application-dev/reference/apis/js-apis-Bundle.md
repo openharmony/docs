@@ -30,10 +30,11 @@ getApplicationInfo(bundleName: string, bundleFlags: number, userId?: number): Pr
 
 以异步方法根据给定的包名获取ApplicationInfo。使用Promise异步回调。
 
+获取调用方自己的信息时不需要权限。
+
 **需要权限：**
 
 ohos.permission.GET_BUNDLE_INFO_PRIVILEGED 或 ohos.permission.GET_BUNDLE_INFO
-<br>获取调用方自己的信息时不需要权限。
 
 **系统能力：**
 
@@ -75,10 +76,11 @@ getApplicationInfo(bundleName: string, bundleFlags: number, userId: number, call
 
 以异步方法根据给定的包名获取指定用户下的ApplicationInfo，使用callback形式返回结果。
 
+获取调用方自己的信息时不需要权限。
+
 **需要权限：**
 
 ohos.permission.GET_BUNDLE_INFO_PRIVILEGED 或 ohos.permission.GET_BUNDLE_INFO
-<br>获取调用方自己的信息时不需要权限。
 
 **系统能力：**
 
@@ -117,10 +119,11 @@ getApplicationInfo(bundleName: string, bundleFlags: number, callback: AsyncCallb
 
 以异步方法根据给定的包名获取ApplicationInfo，使用callback形式返回结果。
 
+获取调用方自己的信息时不需要权限。
+
 **需要权限：**
 
 ohos.permission.GET_BUNDLE_INFO_PRIVILEGED 或 ohos.permission.GET_BUNDLE_INFO
-获取调用方自己的信息时不需要权限。
 
 **系统能力：**
 
@@ -277,10 +280,11 @@ getBundleInfo(bundleName: string, bundleFlags: number, options?: BundleOptions):
 
 以异步方法根据给定的包名获取BundleInfo，使用Promise异步回调。
 
+获取调用方自己的信息时不需要权限。
+
 **需要权限：**
 
 ohos.permission.GET_BUNDLE_INFO_PRIVILEGED 或 ohos.permission.GET_BUNDLE_INFO
-获取调用方自己的信息时不需要权限。
 
 **系统能力：**
 
@@ -324,10 +328,11 @@ getBundleInfo(bundleName: string, bundleFlags: number, callback: AsyncCallback\<
 
 以异步方法根据给定的包名获取BundleInfo，使用callback异步回调。
 
+获取调用方自己的信息时不需要权限。
+
 **需要权限：**
 
 ohos.permission.GET_BUNDLE_INFO_PRIVILEGED 或 ohos.permission.GET_BUNDLE_INFO
-获取调用方自己的信息时不需要权限。
 
 **系统能力：**
 
@@ -364,10 +369,11 @@ getBundleInfo(bundleName: string, bundleFlags: number, options: BundleOptions, c
 
 以异步方法根据给定的包名获取BundleInfo，使用callback异步回调。
 
+获取调用方自己的信息时不需要权限。
+
 **需要权限：**
 
 ohos.permission.GET_BUNDLE_INFO_PRIVILEGED 或 ohos.permission.GET_BUNDLE_INFO
-获取调用方自己的信息时不需要权限。
 
 **系统能力：**
 
@@ -875,7 +881,7 @@ SystemCapability.BundleManager.BundleFramework
 | 参数名      | 类型                                                         | 必填 | 说明                                                         |
 | ----------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | bundleFlags | number                                                       | 是   | 用于指定返回的应用信息对象中包含信息的标记。取值范围：参考[BundleFlag说明](#bundleflag)中应用信息相关flag。 |
-| userId      | number                                                       | 否   | 用户ID。默认值：调用方所在用户，取值范围：大于等于0。        |
+| userId      | number                                                       | 是   | 用户ID。默认值：调用方所在用户，取值范围：大于等于0。        |
 | callback    | AsyncCallback<Array\<[ApplicationInfo](js-apis-bundle-ApplicationInfo.md)>> | 是   | 程序启动作为入参的回调函数，返回应用信息列表。               |
 
 **示例：**
@@ -899,7 +905,7 @@ bundle.getAllApplicationInfo(bundleFlags, userId, (err, data) => {
 
 getAllApplicationInfo(bundleFlags: number, callback: AsyncCallback<Array\<ApplicationInfo>>) : void;
 
-获取所有已安装的应用信息，使用callback异步回调。
+获取调用方所在用户下已安装的应用信息，使用callback异步回调。
 
 **需要权限：**
 
@@ -1009,10 +1015,11 @@ getAbilityInfo(bundleName: string, abilityName: string): Promise\<AbilityInfo>
 
 通过包名称和组件名获取Ability组件信息，使用Promise形式异步回调。
 
+获取调用方自己的信息时不需要权限。
+
 **需要权限：**
 
 ohos.permission.GET_BUNDLE_INFO_PRIVILEGED 或 ohos.permission.GET_BUNDLE_INFO
-<br>获取调用方自己的信息时不需要权限。
 
 **系统能力：**
 
@@ -1052,10 +1059,11 @@ getAbilityInfo(bundleName: string, abilityName: string, callback: AsyncCallback\
 
 通过包名称和组件名获取Ability组件信息，使用callback形式返回结果。
 
+获取调用方自己的信息时不需要权限。
+
 **需要权限：**
 
 ohos.permission.GET_BUNDLE_INFO_PRIVILEGED 或 ohos.permission.GET_BUNDLE_INFO
-<br>获取调用方自己的信息时不需要权限。
 
 **系统能力：**
 
@@ -1091,10 +1099,11 @@ getAbilityLabel(bundleName: string, abilityName: string): Promise\<string>
 
 通过包名称和ability名称获取应用名称，使用Promise形式返回结果。
 
+获取调用方自己的信息时不需要权限。
+
 **需要权限：**
 
 ohos.permission.GET_BUNDLE_INFO_PRIVILEGED 或 ohos.permission.GET_BUNDLE_INFO
-<br>获取调用方自己的信息时不需要权限。
 
 **系统能力：**
 
@@ -1134,10 +1143,11 @@ getAbilityLabel(bundleName: string, abilityName: string, callback : AsyncCallbac
 
 通过包名称和Ability组件名获取应用名称，使用callback形式返回结果。
 
+获取调用方自己的信息时不需要权限。
+
 **需要权限：**
 
 ohos.permission.GET_BUNDLE_INFO_PRIVILEGED 或 ohos.permission.GET_BUNDLE_INFO
-<br>获取调用方自己的信息时不需要权限。
 
 **系统能力：**
 
@@ -1314,10 +1324,11 @@ queryAbilityByWant(want: Want, bundleFlags: number, userId?: number): Promise<Ar
 
 以异步方法根据给定的意图获取Ability组件信息，使用Promise形式返回结果。
 
+获取调用方自己的信息时不需要权限。
+
 **需要权限：**
 
 ohos.permission.GET_BUNDLE_INFO_PRIVILEGED 或 ohos.permission.GET_BUNDLE_INFO
-<br>获取调用方自己的信息时不需要权限。
 
 **系统能力：**
 
@@ -1364,10 +1375,11 @@ queryAbilityByWant(want: Want, bundleFlags: number, userId: number, callback: As
 
 以异步方法根据给定的意图获取指定用户下Ability信息，使用callback形式返回结果。
 
+获取调用方自己的信息时不需要权限。
+
 **需要权限：**
 
 ohos.permission.GET_BUNDLE_INFO_PRIVILEGED 或 ohos.permission.GET_BUNDLE_INFO
-<br>获取调用方自己的信息时不需要权限。
 
 **系统能力：**
 
@@ -1408,10 +1420,11 @@ queryAbilityByWant(want: Want, bundleFlags: number, callback: AsyncCallback<Arra
 
 以异步方法根据给定的意图获取Ability信息，使用callback形式返回结果。
 
+获取调用方自己的信息时不需要权限。
+
 **需要权限：**
 
 ohos.permission.GET_BUNDLE_INFO_PRIVILEGED 或 ohos.permission.GET_BUNDLE_INFO
-<br>获取调用方自己的信息时不需要权限。
 
 **系统能力：**
 
@@ -1596,10 +1609,11 @@ getAbilityIcon(bundleName: string, abilityName: string): Promise\<image.PixelMap
 
 以异步方法通过bundleName和abilityName获取对应Icon的[PixelMap](js-apis-image.md)，使用Promise形式返回结果。
 
+获取调用方自己的信息时不需要权限。
+
 **需要权限：**
 
 ohos.permission.GET_BUNDLE_INFO_PRIVILEGED 或 ohos.permission.GET_BUNDLE_INFO
-<br>获取调用方自己的信息时不需要权限。
 
 **系统能力：**
 
@@ -1638,10 +1652,11 @@ getAbilityIcon(bundleName: string, abilityName: string, callback: AsyncCallback\
 
 以异步方法通过bundleName和abilityName获取对应Icon的[PixelMap](js-apis-image.md)，使用callback形式返回结果。
 
+获取调用方自己的信息时不需要权限。
+
 **需要权限：**
 
 ohos.permission.GET_BUNDLE_INFO_PRIVILEGED 或 ohos.permission.GET_BUNDLE_INFO
-<br>获取调用方自己的信息时不需要权限。
 
 
 **系统能力：**

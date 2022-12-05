@@ -29,7 +29,7 @@
 | sm | md | lg |
 | -------- | -------- | -------- |
 | 页签在底部<br/>页签的图标和文字垂直布局<br/>页签宽度均分<br/>页签高度固定72vp | 页签在底部<br/>页签的图标和文字水平布局<br/>页签宽度均分<br/>页签高度固定56vp | 页签在左边<br/>页签的图标和文字垂直布局<br/>页签宽度固定96vp<br/>页签高度总占比‘60%’后均分 |
-| ![页签布局手机](figures/页签布局手机.png) | ![页签布局折叠屏](figures/页签布局折叠屏.png) | ![页签布局matePadPro](figures/页签布局matePadPro.png) |
+| ![页签布局](figures/页签布局sm.png) | ![页签布局](figures/页签布局md.png) | ![页签布局](figures/页签布局lg.png) |
 
 
 **实现方案**
@@ -134,13 +134,12 @@ struct Home {
 
 ## 运营横幅（Banner）
 
-
 **布局效果**
-  | sm | md | lg | 
-| -------- | -------- | -------- |
-| 展示一个内容项 | 展示两个内容项 | 展示三个内容项 | 
-| ![banner1](figures/banner1.PNG)  | ![banner2](figures/banner2.PNG) | ![banner3](figures/banner3.PNG) | 
 
+| sm | md | lg |
+| -------- | -------- | -------- |
+| 展示一个内容项 | 展示两个内容项 | 展示三个内容项 |
+| ![banner_sm](figures/banner_sm.png) | ![banner_md](figures/banner_md.png) | ![banner_lg](figures/banner_lg.png) |
 
 **实现方案**
 
@@ -194,10 +193,10 @@ export default struct Banner {
 
 **布局效果**
 
-  | sm | md | lg | 
+| sm | md | lg |
 | -------- | -------- | -------- |
-| 展示两列 | 展示四列 | 展示六列 | 
-| ![多列列表手机](figures/多列列表手机.png) | ![多列列表折叠屏](figures/多列列表折叠屏.png) | ![多列列表matePadPro](figures/多列列表matePadPro.png) | 
+| 展示两列 | 展示四列 | 展示六列 |
+| ![多列列表sm](figures/多列列表sm.png) | ![多列列表md](figures/多列列表md.png) | ![多列列表lg](figures/多列列表lg.png) |
 
 
 **实现方案**
@@ -334,10 +333,10 @@ struct MultiLaneList {
 
 **布局效果**
 
-  | sm | md | lg | 
+| sm | md | lg |
 | -------- | -------- | -------- |
-| 默认隐藏侧边栏，同时提供侧边栏控制按钮，用户可以通过按钮控制侧边栏显示或隐藏。 | 始终显示侧边栏，不提供控制按钮，用户无法隐藏侧边栏。 | 始终显示侧边栏，不提供控制按钮，用户无法隐藏侧边栏。 | 
-| ![sm](figures/sm.png)  | ![md](figures/md.png) | ![lg](figures/lg.png) | 
+| 默认隐藏侧边栏，同时提供侧边栏控制按钮，用户可以通过按钮控制侧边栏显示或隐藏。 | 始终显示侧边栏，不提供控制按钮，用户无法隐藏侧边栏。 | 始终显示侧边栏，不提供控制按钮，用户无法隐藏侧边栏。 |
+| ![侧边栏sm](figures/侧边栏sm.png) | ![侧边栏md](figures/侧边栏md.png) | ![侧边栏lg](figures/侧边栏lg.png) |
 
 **实现方案**
 
@@ -425,11 +424,10 @@ struct SideBarSample {
 **布局效果**
 
 
-  | sm | md | lg | 
+| sm | md | lg |
 | -------- | -------- | -------- |
-| 图片长宽比不变，最长边充满全屏 | 图片长宽比不变，最长边充满全屏 | 图片长宽比不变，最长边充满全屏 | 
-| ![大图浏览手机](figures/大图浏览手机.png) | ![大图浏览折叠屏](figures/大图浏览折叠屏.png) | ![大图浏览matePadPRo](figures/大图浏览matePadPRo.png) | 
-
+| 图片长宽比不变，最长边充满全屏 | 图片长宽比不变，最长边充满全屏 | 图片长宽比不变，最长边充满全屏 |
+| ![大图浏览sm](figures/大图浏览sm.png) | ![大图浏览md](figures/大图浏览md.png) | ![大图浏览lg](figures/大图浏览lg.png) |
 
 **实现方案**
 
@@ -457,10 +455,10 @@ struct BigImage {
 
 **布局效果**
 
-  | sm | md | lg | 
+| sm | md | lg |
 | -------- | -------- | -------- |
-| 列表项尺寸固定，超出内容可滚动查看 | 列表项尺寸固定，剩余空间均分 | 列表项尺寸固定，剩余空间均分 | 
-| ![操作入口手机](figures/操作入口手机.png) | ![操作入口折叠屏](figures/操作入口折叠屏.png) | ![操作入口matePadPro](figures/操作入口matePadPro.png) | 
+| 列表项尺寸固定，超出内容可滚动查看 | 列表项尺寸固定，剩余空间均分 | 列表项尺寸固定，剩余空间均分 |
+| ![操作入口sm](figures/操作入口sm.png) | ![操作入口md](figures/操作入口md.png) | ![操作入口lg](figures/操作入口lg.png) |
 
 
 **实现方案**
@@ -522,11 +520,10 @@ export default struct OperationEntries {
 **布局效果**
 
 
-  | sm | md | lg | 
+| sm | md | lg |
 | -------- | -------- | -------- |
-| 标题和搜索框两行显示 | 标题和搜索框一行显示 | 标题和搜索框一行显示 | 
-| ![顶部布局手机](figures/顶部布局手机.png) | ![顶部布局折叠屏](figures/顶部布局折叠屏.png) | ![顶部布局matePadPro](figures/顶部布局matePadPro.png) | 
-
+| 标题和搜索框两行显示 | 标题和搜索框一行显示 | 标题和搜索框一行显示 |
+| ![顶部布局sm](figures/顶部布局sm.png) | ![顶部布局md](figures/顶部布局md.png) | ![顶部布局lg](figures/顶部布局lg.png) |
 
 **实现方案**
 

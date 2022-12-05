@@ -1,7 +1,7 @@
 # OpenHarmony应用开发文档
 
 - [应用开发导读](application-dev-guide.md)
-- 快速开始
+- 入门
   - 快速入门
     - [开发准备](quick-start/start-overview.md)
     - [使用ArkTS语言开发（Stage模型）](quick-start/start-with-ets-stage.md)

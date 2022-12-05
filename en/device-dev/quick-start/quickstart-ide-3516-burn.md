@@ -7,7 +7,7 @@ Burning is the process of downloading compiled program files to a development bo
 The images of Hi3516DV300 are burnt in the Windows environment. After burning is initiated, DevEco Device Tool copies the target program files generated in the Ubuntu environment to the specified Windows directory in remote mode, and then burns the program files to Hi3516DV300 using the Windows burning tool.
 
 
-Hi3516D V300 supports burning for the small system through the USB port, network port, and serial port. This document describes how to burn source code through the USB port.
+Hi3516DV300 supports burning for the small system through the USB port, network port, and serial port. This topic describes how to burn source code through the USB port.
 
 
 ## Prerequisites
@@ -40,15 +40,16 @@ Hi3516D V300 supports burning for the small system through the USB port, network
 5. On the **hi3516dv300** tab page, set the burning options. The settings are automatically saved.
    - **upload_partitions**: Select the file to be burnt. By default, the **fastboot**, **kernel**, **rootfs**, and **userfs** files are burnt at the same time. Check the preset information of the files to be burnt and modify them when necessary. To modify the burning settings for a specific file, click ![en-us_image_0000001275592884](figures/en-us_image_0000001275592884.png) next to the file.
       > ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
+      >
       > Set the start address and length of the partition based on the size of the files to be burnt. Make sure the size of the partition is greater than that of the files to be burnt and the partition addresses of the files to be burnt do not overlap.
 
       ![3516-small-partitions](figures/3516-small-partitions.png)
-      
+
    - **upload_protocol**: Select the burning protocol **hiburn-usb**.
    - **upload_port**: Select the serial port number obtained.
-
-      ![3516-small-usb](figures/3516-small-usb.png)
-
+  
+   ![3516-small-usb](figures/3516-small-usb.png)
+   
 6. Choose **hi3516dv300** > **Upload** to transfer the files to be burnt from Ubuntu to Windows.
 
    ![en-us_image_0000001326234609](figures/en-us_image_0000001326234609.png)

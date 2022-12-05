@@ -46,13 +46,13 @@ let xml =
     '    <todo>Work</todo>' +
     '    <todo>Play</todo>' +
     '</note>';
-let conv = new convertxml.convertToJSObject();
+let conv = new convertxml.ConvertXML()
 let options = {trim : false, declarationKey:"_declaration",
     instructionKey : "_instruction", attributesKey : "_attributes",
     textKey : "_text", cdataKey:"_cdata", doctypeKey : "_doctype",
     commentKey : "_comment", parentKey : "_parent", typeKey : "_type",
     nameKey : "_name", elementsKey : "_elements"}
-let result = JSON.stringify(conv.convert(xml, options));
+let result = JSON.stringify(conv.convertToJSObject(xml, options));
 console.log(result);
 // 输出(宽泛型)
 // {"_declaration":{"_attributes":{"version":"1.0","encoding":"utf-8"}},"_elements":[{"_type":"element","_name":"note","_attributes":{"importance":"high","logged":"true"},"_elements":[{"_type":"element","_name":"title","_elements":[{"_type":"text","_text":"Happy"}]},{"_type":"element","_name":"todo","_elements":[{"_type":"text","_text":"Work"}]},{"_type":"element","_name":"todo","_elements":[{"_type":"text","_text":"Play"}]}]}]}

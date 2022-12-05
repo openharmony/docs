@@ -39,4 +39,4 @@ struct StackExample {
 }
 ```
 
-![zh-cn_image_0000001219982699](figures/zh-cn_image_0000001219982699.jpg)
+![zh-cn_image_0000001219982699](figures/zh-cn_image_0000001219982699.PNG)

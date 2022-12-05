@@ -64,8 +64,10 @@ readNdefTag(): Promise&lt;string&gt;
 ```js
 import connectedTag from '@ohos.connectedTag';
 
-connectedTag.readNdefTag().then(result => {
-    console.log("promise recv ndef response: " + result);
+connectedTag.readNdefTag().then((data) => {
+    console.log("connectedTag readNdefTag Promise data = " + data);
+}).catch((err)=> {
+    console.log("connectedTag readNdefTag Promise err: " + err);
 });
 ```
 
@@ -73,7 +75,7 @@ connectedTag.readNdefTag().then(result => {
 
 readNdefTag(callback: AsyncCallback&lt;string&gt;): void
 
-读取有源标签内容，使用callback方式作为异步方法。
+读取有源标签内容，使用AsyncCallback方式作为异步方法。
 
 **需要权限**：ohos.permission.NFC_TAG
 
@@ -90,8 +92,12 @@ readNdefTag(callback: AsyncCallback&lt;string&gt;): void
 ```js
 import connectedTag from '@ohos.connectedTag';
 
-connectedTag.readNdefTag(result => {
-    console.log("callback recv ndef response: " + result);
+connectedTag.readNdefTag((err, data)=> {
+    if (err) {
+        console.log("connectedTag readNdefTag AsyncCallback err: " + err);
+    } else {
+        console.log("connectedTag readNdefTag AsyncCallback data: " + data);
+    }
 });
 ```
 
@@ -122,21 +128,19 @@ writeNdefTag(data: string): Promise&lt;void&gt;
 ```js
 import connectedTag from '@ohos.connectedTag';
 
-connectedTag.write("010203")
-    .then((value) => {
-        // 事件写入正常
-        console.log(`success to write event: ${value}`);
-    }).catch((err) => {
-        // 事件写入异常
-        console.error(`failed to write event because ${err.code}`);
-    });
+var rawData = "010203"; // change it tobe correct.
+connectedTag.writeNdefTag(rawData).then(() => {
+    console.log("connectedTag writeNdefTag Promise success.");
+}).catch((err)=> {
+    console.log("connectedTag writeNdefTag Promise err: " + err);
+});
 ```
 
 ## connectedTag.writeNdefTag
 
 writeNdefTag(data: string, callback: AsyncCallback&lt;void&gt;): void
 
-写入内容到有源标签，使用callback方式作为异步方法。
+写入内容到有源标签，使用AsyncCallback方式作为异步方法。
 
 **需要权限**：ohos.permission.NFC_TAG
 
@@ -147,22 +151,20 @@ writeNdefTag(data: string, callback: AsyncCallback&lt;void&gt;): void
 | **参数名** | **类型** | **必填** | **说明** |
 | -------- | -------- | -------- | -------- |
 | data | string | 是 | 有源标签内容, 长度最大是1024个字节。 |
-| callback | AsyncCallback&lt;string&gt; | 是 | 读取有源标签内容回调函数。 |
+| callback | AsyncCallback&lt;void&gt; | 是 | 读取有源标签内容回调函数。 |
 
 **示例：**
 
 ```js
 import connectedTag from '@ohos.connectedTag';
 
-connectedTag.writeNdefTag("010203", (err, value) => {
+var rawData = "010203"; // change it tobe correct.
+connectedTag.writeNdefTag(rawData, (err)=> {
     if (err) {
-        // 事件写入异常
-        console.error(`failed to write event because ${err.code}`);
-        return;
+        console.log("connectedTag writeNdefTag AsyncCallback err: " + err);
+    } else {
+        console.log("connectedTag writeNdefTag AsyncCallback success.");
     }
-
-    // 事件写入正常
-    console.log(`success to write event: ${value}`);
 });
 ```
 
@@ -205,15 +207,33 @@ off(type: "notify", callback?: Callback&lt;number&gt;): void
 ```js
 import connectedTag from '@ohos.connectedTag';
 
-var recvNfcRfNotifyFunc = result => {
-    console.info("nfc rf receive state: " + result);
-}
-  
 // Register event
-connectedTag.on("notify", recvNfcRfNotifyFunc);
+connectedTag.on("notify", (err, rfState)=> {
+    if (err) {
+        console.log("connectedTag on Callback err: " + err);
+    } else {
+        console.log("connectedTag on Callback rfState: " + rfState);
+    }
+});
+
+var initStatus = connectedTag.init();
+console.log("connectedTag init status: " + initStatus);
+
+// Add nfc connecected tag business oprations here...
+// connectedTag.writeNdefTag(rawData)
+// connectedTag.readNdefTag()
+
+var uninitStatus = connectedTag.uninit();
+console.log("connectedTag uninit status: " + uninitStatus);
 
 // Unregister event
-connectedTag.off("notify", recvNfcRfNotifyFunc);
+connectedTag.off("notify", (err, rfState)=> {
+    if (err) {
+        console.log("connectedTag off Callback err: " + err);
+    } else {
+        console.log("connectedTag off Callback rfState: " + rfState);
+    }
+});
 ```
 
 ## NfcRfType

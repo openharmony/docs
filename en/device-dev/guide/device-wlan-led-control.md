@@ -6,7 +6,7 @@ Based on the Hi3861 platform, the OpenHarmony WLAN module provides abundant peri
 
 ## Development<a name="section13857170163412"></a>
 
-1.  Complete the operations described in [Getting Started with Hi3861](../quick-start/quickstart-lite-overview.md).
+1.  Complete the operations related to the mini system described in [Quick Start Overview](../quick-start/quickstart-overview.md).
 
     LED control examples are stored in the file **applications/sample/wifi-iot/app/iothardware/led\_example.c**.
 
@@ -97,7 +97,7 @@ Based on the Hi3861 platform, the OpenHarmony WLAN module provides abundant peri
 
 ## Verification<a name="section1949121910344"></a>
 
-For details about the compilation and burning processes, see [Building](../quick-start/quickstart-lite-steps-hi3861-building.md) and [Burning](../quick-start/quickstart-lite-steps-hi3861-burn.md).
+For details about the compilation and burning processes, see [Building Source Code](../quick-start/quickstart-ide-3861-build.md) and [Burning an Image](../quick-start/quickstart-ide-3861-burn.md).
 
 After the preceding two steps are complete, press the **RST** button to reset the module. If the LED blinks periodically as expected, the verification is passed.
 

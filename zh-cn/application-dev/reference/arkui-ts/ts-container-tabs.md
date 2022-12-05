@@ -62,7 +62,7 @@ Tabs(value?: {barPosition?: BarPosition, index?: number, controller?: [TabsContr
 
 ## TabsController
 
-Tabs组件的控制器，用于控制Tabs组件进行页签切换。
+Tabs组件的控制器，用于控制Tabs组件进行页签切换。不支持一个TabsController控制多个Tabs组件。
 
 ### 导入对象
 

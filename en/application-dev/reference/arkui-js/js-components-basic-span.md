@@ -11,7 +11,7 @@ As a child component of **[\<text>](../arkui-js/js-components-basic-text.md)**, 
 None
 
 
-## Child Component
+## Child Components
 
 Not supported
 

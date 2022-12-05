@@ -16,7 +16,7 @@ Manually download the system-specific full SDK package from the mirror. For deta
 
 ## Checking the Local SDK Location
 
-In this example, an eTS project is used. For a JS project, replace **ets** with **js**.
+In this example, an ArkTS project is used. For a JS project, replace **ets** with **js**.
 
 In DevEco Studio, choose **Tools** > **OpenHarmony SDK Manager** to check the location of the local SDK.
 

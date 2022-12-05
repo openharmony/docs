@@ -5,7 +5,7 @@ The following shows how to port the double-conversion library.
 
 ## Source Code Acquisition
 
-Acquire the source code of double-conversion from [https://github.com/google/double-conversion](https://github.com/google/double-conversion). The following table lists the directory structure.
+Acquire the source code of double-conversion from [double-conversion](https://github.com/google/double-conversion). The following table lists the directory structure.
 
 **Table 1** Directory structure of the source code
 
@@ -106,7 +106,7 @@ The following steps show how to configure and modify the toolchains for cross-co
 
 1. Set up the OpenHarmony environment.
 
-   Using Hi3516D V300 as an example, compile the OpenHarmony image and burn it to the development board. For details, see [Developing the First Example Program Running on Hi3518](../quick-start/quickstart-lite-steps-hi3516-running.md).
+   Using Hi3516D V300 as an example, compile the OpenHarmony image and burn it to the development board. For details, see the content related to the small system in [Quick Start Overview](../quick-start/quickstart-overview.md).
 
    The following screen is displayed after a successful login to the OS.
 

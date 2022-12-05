@@ -76,7 +76,7 @@ The ES6 syntax is supported.
   ```
 
 - Page objects
-  | Attribute | Type | Description |
+  | Name | Type | Description |
   | -------- | -------- | -------- |
   | data | Object/Function | Data model of the page. If the attribute is of the function type, the return value must be of the object type. The attribute name cannot start with a dollar sign ($) or underscore (_). Do not use reserved words (for, if, show, and tid).<br/>Do not use this attribute and private or public at the same time. |
   | $refs | Object | DOM elements or child component instances that have registered the ref attribute. For example code, see [Obtaining a DOM element](#obtaining-a-dom-element). |
@@ -171,8 +171,8 @@ The ES6 syntax is supported.
        images: [
          { src: '/common/frame1.png' },
          { src: '/common/frame2.png' },
-         { src: '/common/frame3.png' },
-       ],
+         { src: '/common/frame3.png' }
+       ]
      },
      handleClick() {
        const animator = this.$refs.animator; // Obtain the DOM element whose $refs attribute is animator.
@@ -204,8 +204,8 @@ The ES6 syntax is supported.
        images: [
          { src: '/common/frame1.png' },
          { src: '/common/frame2.png' },
-         { src: '/common/frame3.png' },
-       ],
+         { src: '/common/frame3.png' }
+       ]
      },
      handleClick() {
        const animator = this.$element('animator'); // Obtain the DOM element whose ID is animator.
@@ -255,8 +255,8 @@ Customize the parent component.
 <!-- parent.hml -->
 <element name='childComp' src='../child/child.hml'></element>
 <div class="item" onclick="textClicked">
-  <text class="text-style" onclick="parentClicked">Click this parent component</text>
-  <text class="text-style" if="{{show}}">Hello parent component!</text>
+  <text class="text-style" onclick="parentClicked">parent component click</text>
+  <text class="text-style" if="{{showValue}}">hello parent component!</text>
   <childComp id = "selfDefineChild"></childComp>
 </div>
 ```
@@ -265,11 +265,11 @@ Customize the parent component.
 // parent.js
 export default {
   data: {
-    show: false,
-    text: 'I am the parent component!',
+    showValue: false,
+    text: 'I am parent component!',
   },
   parentClicked () {
-    this.show = !this.show;
+    this.showValue = !this.showValue;
     console.info('parent component get parent text');
     console.info(`${this.$parent().text}`);
     console.info("The parent component gets the child function.");

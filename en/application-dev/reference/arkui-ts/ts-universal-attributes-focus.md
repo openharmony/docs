@@ -2,7 +2,7 @@
 
 Focus control attributes set whether a component is focusable, how it participates in sequential keyboard navigation, 
 
->  **NOTE**<br>
+>  **NOTE**
 >
 >  The APIs of this module are supported since API version 8. Updates will be marked with a superscript to indicate their earliest API version.
 
@@ -11,11 +11,11 @@ Focus control attributes set whether a component is focusable, how it participat
 
 | Name              | Type| Description                                  |
 | -------------------- | -------- | ---------------------------------------- |
-| focusable            | boolean  | Whether the current component is focusable.<br>**NOTE**<br>Components that have default interaction logic, such as **\<Button>** and **\<TextInput>**, are focusable by default. Other components, such as **\<Text>** and **\<Image>**, are not focusable by default.            |
-| tabIndex<sup>9+<sup> | number   | How the current component participates in sequential keyboard navigation.<br>- **tabIndex** >= 0: The component is focusable in sequential keyboard navigation, with its order defined by the value. A component with a larger value is focused after one with a smaller value. If multiple components share the same **tabIndex** value, their focus order follows their position in the component tree.<br>- **tabIndex** < 0 (usually **tabIndex** = -1): The component is focusable, but cannot be reached through sequential keyboard navigation.<br>Default value: **0**|
-| defaultFocus<sup>9+<sup> | boolean  | Whether to set the current component as the default focus of the page. This attribute takes effect only when the page is new and accessed for the first time.<br>Default value: **false**|
-| groupDefaultFocus<sup>9+<sup> | boolean  | Whether to set the current component as the default focus of the parent container. This attribute takes effect only when the container is new and has focus for the first time.<br>Default value: **false**<br>**NOTE**<br>This attribute must be used together with **tabIndex**. When **tabIndex** is set for a container and **groupDefaultFocus** is set for a component in the container, the focus is automatically shifted to that component when the container obtains the focus for the first time.<br>|
-| focusOnTouch<sup>9+<sup> | boolean | Whether the current component is focusable on touch.<br>Default value: **false**<br>**NOTE**<br>The component can obtain focus only when it is touchable or clickable.|
+| focusable            | boolean  | Whether the current component is focusable.<br>**NOTE**<br><br>Components that have default interaction logic, such as **\<Button>** and **\<TextInput>**, are focusable by default. Other components, such as **\<Text>** and **\<Image>**, are not focusable by default.            |
+| tabIndex<sup>9+</sup> | number   | How the current component participates in sequential keyboard navigation.<br>- **tabIndex** >= 0: The component is focusable in sequential keyboard navigation, with its order defined by the value. A component with a larger value gains focus later than one with a smaller value. If multiple components share the same **tabIndex** value, their focus order follows their position in the component tree.<br>- **tabIndex** < 0 (usually **tabIndex** = -1): The component is focusable, but cannot be reached through sequential keyboard navigation.<br>Default value: **0**|
+| defaultFocus<sup>9+</sup> | boolean  | Whether to set the current component as the default focus of the page. This attribute takes effect only when the page is new and accessed for the first time.<br>Default value: **false**|
+| groupDefaultFocus<sup>9+</sup> | boolean  | Whether to set the current component as the default focus of the parent container. This attribute takes effect only when the container is new and has focus for the first time.<br>Default value: **false**<br>**NOTE**<br>This attribute must be used together with **tabIndex**. When **tabIndex** is set for a container and **groupDefaultFocus** is set for a component in the container, the focus is automatically shifted to that component when the container obtains the focus for the first time.<br>|
+| focusOnTouch<sup>9+</sup> | boolean | Whether the current component is focusable on touch.<br>Default value: **false**<br>**NOTE**<br>The component can obtain focus only when it is touchable or clickable.|
 
 ## focusControl<sup>9+</sup>
 
@@ -37,7 +37,8 @@ Requests the focus to move to the specified component. This API can be used in g
 | ------- | ---- |
 | boolean | Returns whether the focus is successfully moved to the target component. Returns **true** if the specified component exists and the focus is successfully moved to the target component; returns **false** otherwise.|
 
->  **NOTE**<br>
+>  **NOTE**
+>
 >  The following components support focus control: **\<Button>**, **\<Text>**, **\<Image>**, **\<List>**, and **\<Grid>**. Currently, the running effect of the focus event can be displayed only on a real device.
 
 ## Example
@@ -86,7 +87,7 @@ struct FocusableExample {
                 .fontColor(Color.White)
             }
           }.borderWidth(2).borderColor(Color.Red).borderStyle(BorderStyle.Dashed)
-          .tabIndex(1)                      // This column is the initial component to have focus in sequential keyboard navigation.
+          .tabIndex(1)                      // The column is the initial component to have focus in sequential keyboard navigation.
           Column({ space: 5 }) {
             Button('Group2')
               .width(165)
@@ -101,7 +102,7 @@ struct FocusableExample {
                 .width(80)
                 .height(40)
                 .fontColor(Color.White)
-                .groupDefaultFocus(true) // The button obtains focus when its upper-level column is in focus.
+                .groupDefaultFocus(true)      // The button obtains focus when its upper-level column is in focus.
             }
             Row({ space: 5 }) {
               Button()
@@ -114,14 +115,14 @@ struct FocusableExample {
                 .fontColor(Color.White)
             }
           }.borderWidth(2).borderColor(Color.Green).borderStyle(BorderStyle.Dashed)
-          .tabIndex(2)                      // This column is the second component to have focus in sequential keyboard navigation.
+          .tabIndex(2)                      // The column is the second component to have focus in sequential keyboard navigation.
         }
         Column({ space: 5 }) {
           TextInput({placeholder: 'input', text: this.inputValue})
             .onChange((value: string) => {
               this.inputValue = value
             })
-            .defaultFocus(true)             // This <TextInput> component is the initial default focus of the page.
+            .defaultFocus(true)             // The <TextInput> component is the initial default focus of the page.
           Button('Group3')
             .width(165)
             .height(40)
@@ -165,7 +166,7 @@ struct FocusableExample {
               .fontColor(Color.White)
           }
         }.borderWidth(2).borderColor(Color.Orange).borderStyle(BorderStyle.Dashed)
-        .tabIndex(3)                      // This column is the third component to have focus in sequential keyboard navigation.
+        .tabIndex(3)                      // The column is the third component to have focus in sequential keyboard navigation.
       }.alignItems(VerticalAlign.Top)
     }
   }
@@ -200,7 +201,7 @@ Sample code for **focusControl.requestFocus**:
 Use the **focusContrl.requestFocus** API to enable a specified component to obtain the focus.
 ```ts
 // requestFocus.ets
-import prompt from '@system.prompt';
+import prompt from '@ohos.prompt'
 
 @Entry
 @Component
@@ -266,14 +267,15 @@ struct RequestFocusExample {
 Diagrams:
 
 Press the Tab button to activate the focus state.
-Request focus for a component that does not exist.
+
+Below show how the UI behaves when you request focus for a component that does not exist.
 
 ![requestFocus1](figures/requestFocus1.png)
 
-Request focus for a component that is not focusable.
+Below show how the UI behaves when you request focus for a component that is not focusable.
 
 ![requestFocus2](figures/requestFocus2.png)
 
-Request focus for a focusable component.
+Below show how the UI behaves when you request focus for a focusable component.
 
 ![requestFocus3](figures/requestFocus3.png)

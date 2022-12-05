@@ -230,28 +230,27 @@ plural.json文件的内容如下：
 >
 > `$r`返回值为Resource对象，可通过[getStringValue](../reference/apis/js-apis-resource-manager.md#getstringvalue9) 方法获取对应的字符串。
 
-在xxx.ets文件中，可以使用在resources目录中定义的资源。
+在xxx.ets文件中，可以使用在resources目录中定义的资源。结合[资源组目录](#资源组目录)中的“资源文件示例”，资源使用示例如下：
 
 ```ts
 Text($r('app.string.string_hello'))
-    .fontColor($r('app.color.color_hello'))
-    .fontSize($r('app.float.font_hello'))
-}
+  .fontColor($r('app.color.color_hello'))
+  .fontSize($r('app.float.font_hello'))
 
 Text($r('app.string.string_world'))
-    .fontColor($r('app.color.color_world'))
-    .fontSize($r('app.float.font_world'))
-}
+  .fontColor($r('app.color.color_world'))
+  .fontSize($r('app.float.font_world'))
 
-Text($r('app.string.message_arrive', "five of the clock")) // 引用string资源，$r的第二个参数用于替换%s
-    .fontColor($r('app.color.color_hello'))
-    .fontSize($r('app.float.font_hello'))
-}
+// 引用string.json资源，$r的第二个参数用于替换%s，value为"We will arrive at five of the clock"。
+Text($r('app.string.message_arrive', "five of the clock"))
+  .fontColor($r('app.color.color_hello'))
+  .fontSize($r('app.float.font_hello'))
 
-Text($r('app.plural.eat_apple', 5, 5))       // plural$r引用，第一个指定plural资源，第二个参数指定单复数的数量，此处第三个数字为对%d的替换
-    .fontColor($r('app.color.color_world'))
-    .fontSize($r('app.float.font_world'))
-}
+// 引用plural$资源，第一个指定plural资源，第二个参数指定单复数的数量quantity，此处第三个数字为对%d的替换
+// 单数下value为"5 apple"，复数下value为"5 apples"。
+Text($r('app.plural.eat_apple', 5, 5))
+  .fontColor($r('app.color.color_world'))
+  .fontSize($r('app.float.font_world'))
 
 Image($r('app.media.my_background_image'))  // media资源的$r引用
 
@@ -277,15 +276,22 @@ Image($rawfile('newDir/newTest.png'))       // rawfile$r引用rawfile目录下�
 
 ```ts
 Text('Hello')
-    .fontColor($r('sys.color.ohos_id_color_emphasize'))
-    .fontSize($r('sys.float.ohos_id_text_size_headline1'))
-    .fontFamily($r('sys.string.ohos_id_text_font_family_medium'))
-    .backgroundColor($r('sys.color.ohos_id_color_palette_aux1'))
+  .fontColor($r('sys.color.ohos_id_color_emphasize'))
+  .fontSize($r('sys.float.ohos_id_text_size_headline1'))
+  .fontFamily($r('sys.string.ohos_id_text_font_family_medium'))
+  .backgroundColor($r('sys.color.ohos_id_color_palette_aux1'))
+
 Image($r('sys.media.ohos_app_icon'))
-    .border({color: $r('sys.color.ohos_id_color_palette_aux1'), radius: $r('sys.float.ohos_id_corner_radius_button'), width: 2})
-    .margin({top: $r('sys.float.ohos_id_elements_margin_horizontal_m'), bottom: $r('sys.float.ohos_id_elements_margin_horizontal_l')})
-    .height(200)
-    .width(300)
+  .border({
+    color: $r('sys.color.ohos_id_color_palette_aux1'),
+    radius: $r('sys.float.ohos_id_corner_radius_button'), width: 2
+  })
+  .margin({
+    top: $r('sys.float.ohos_id_elements_margin_horizontal_m'),
+    bottom: $r('sys.float.ohos_id_elements_margin_horizontal_l')
+  })
+  .height(200)
+  .width(300)
 ```
 
 ## 相关实例

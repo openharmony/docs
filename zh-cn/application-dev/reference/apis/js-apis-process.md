@@ -1,6 +1,7 @@
 # 获取进程相关的信息
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> **说明：**
+>
 > 本模块首批接口从API version 7开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
 
@@ -17,13 +18,13 @@ import process from '@ohos.process';
 
 | 名称 | 类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| egid | number | 是 | 否 | 进程的有效组标识。该接口为系统接口，三方应用不支持调用。 |
-| euid | number | 是 | 否 | 进程的有效用户身份。该接口为系统接口，三方应用不支持调用。 |
-| gid | number | 是 | 否 | 进程的组标识。该接口为系统接口，三方应用不支持调用。 |
+| egid | number | 是 | 否 | 进程的有效组标识。<br>**系统接口：** 此接口为系统接口。 <br>此接口仅用于对应用的测试。|
+| euid | number | 是 | 否 | 进程的有效用户身份。<br>**系统接口：** 此接口为系统接口。<br>此接口仅用于对应用的测试。 |
+| gid | number | 是 | 否 | 进程的组标识。<br>**系统接口：** 此接口为系统接口。<br>此接口仅用于对应用的测试。|
 | uid | number | 是 | 否 | 进程的用户标识。 |
-| groups | number[] | 是 | 否 | 带有补充组id的数组。该接口为系统接口，三方应用不支持调用。 |
+| groups | number[] | 是 | 否 | 带有补充组id的数组。<br>**系统接口：** 此接口为系统接口。<br>此接口仅用于对应用的测试。 |
 | pid | number | 是 | 否 | 当前进程的pid。 |
-| ppid | number | 是 | 否 | 当前进程的父进程的pid。该接口为系统接口，三方应用不支持调用。 |
+| ppid | number | 是 | 否 | 当前进程的父进程的pid。<br>**系统接口：** 此接口为系统接口。<br>此接口仅用于对应用的测试。 |
 | tid<sup>8+</sup> | number | 是 | 否 | 当前进程的tid。 |
 
 
@@ -31,7 +32,7 @@ import process from '@ohos.process';
 
 提供用于新增进程的抛异常接口。
 
-### process.isAppUid<sup>9+</sup>
+### isAppUid<sup>9+</sup>
 
 isAppUid(v: number): boolean
 
@@ -59,7 +60,7 @@ let result = pro.isAppUid(688);
 ```
 
 
-### process.getUidForName<sup>9+</sup>
+### getUidForName<sup>9+</sup>
 
 getUidForName(v: string): number
 
@@ -87,7 +88,7 @@ let pres = pro .getUidForName("tool");
 ```
 
 
-### process.getThreadPriority<sup>9+</sup>
+### getThreadPriority<sup>9+</sup>
 
 getThreadPriority(v: number): number
 
@@ -116,7 +117,7 @@ let pres = pro.getThreadPriority(tid);
 ```
 
 
-### process.getSystemConfig<sup>9+</sup>
+### getSystemConfig<sup>9+</sup>
 
 getSystemConfig(name: number): number
 
@@ -145,7 +146,7 @@ let pres = pro.getSystemConfig(_SC_ARG_MAX);
 ```
 
 
-### process.getEnvironmentVar<sup>9+</sup>
+### getEnvironmentVar<sup>9+</sup>
 
 getEnvironmentVar(name: string): string
 
@@ -173,7 +174,7 @@ let pres = pro.getEnvironmentVar("PATH");
 ```
 
 
-### process.exit<sup>9+</sup>
+### exit<sup>9+</sup>
 
 exit(code: number): void
 
@@ -197,7 +198,7 @@ pro.exit(0);
 ```
 
 
-### process.kill<sup>9+</sup>
+### kill<sup>9+</sup>
 
 kill(signal: number, pid: number): boolean
 
@@ -237,10 +238,10 @@ let result = pro.kill(28, pres);
 
 | 名称 | 类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| pid | number | 是 | 否 | 子进程的pid。该接口为系统接口，三方应用不支持调用。 |
-| ppid | number | 是 | 否 | 子进程的父进程的pid。该接口为系统接口，三方应用不支持调用。 |
-| exitCode | number | 是 | 否 | 子进程的退出码。该接口为系统接口，三方应用不支持调用。 |
-| killed | boolean | 是 | 否 | 父进程给子进程发信号是否成功。该接口为系统接口，三方应用不支持调用。 |
+| pid | number | 是 | 否 | 子进程的pid。<br>**系统接口：** 此接口为系统接口。<br>此接口仅用于对应用的测试。 |
+| ppid | number | 是 | 否 | 子进程的父进程的pid。<br>**系统接口：** 此接口为系统接口。<br>此接口仅用于对应用的测试。 |
+| exitCode | number | 是 | 否 | 子进程的退出码。<br>**系统接口：** 此接口为系统接口。 <br>此接口仅用于对应用的测试。|
+| killed | boolean | 是 | 否 | 父进程给子进程发信号是否成功。<br>**系统接口：** 此接口为系统接口。<br>此接口仅用于对应用的测试。 |
 
 
 ### wait
@@ -249,7 +250,9 @@ wait(): Promise&lt;number&gt;
 
 等待子进程运行结束，返回promise对象，其值为子进程的退出码。
 
-该接口为系统接口，三方应用不支持调用。
+**系统接口：** 此接口为系统接口。
+
+此接口仅用于对应用的测试。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -276,7 +279,9 @@ getOutput(): Promise&lt;Uint8Array&gt;
 
 获取子进程的标准输出。
 
-该接口为系统接口，三方应用不支持调用。
+**系统接口：** 此接口为系统接口。
+
+此接口仅用于对应用的测试。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -303,7 +308,9 @@ getErrorOutput(): Promise&lt;Uint8Array&gt;
 
 获取子进程的标准错误输出。
 
-该接口为系统接口，三方应用不支持调用。
+**系统接口：** 此接口为系统接口。
+
+此接口仅用于对应用的测试。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -330,7 +337,9 @@ close(): void
 
 关闭正在运行的子进程。
 
-该接口为系统接口，三方应用不支持调用。
+**系统接口：** 此接口为系统接口。
+
+此接口仅用于对应用的测试。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -348,7 +357,9 @@ kill(signal: number | string): void
 
 用于发送信号给子进程，结束指定进程。
 
-该接口为系统接口，三方应用不支持调用。
+**系统接口：** 此接口为系统接口。
+
+此接口仅用于对应用的测试。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -592,7 +603,9 @@ runCmd(command: string, options?: { timeout?: number, killSignal?: number | stri
 
 通过runcmd可以fork一个新的进程来运行一段shell，并返回ChildProcess对象。
 
-该接口为系统接口，三方应用不支持调用。
+**系统接口：** 此接口为系统接口。
+
+此接口仅用于对应用的测试。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -649,7 +662,9 @@ on(type: string, listener: EventListener): void
 
 存储用户所触发的事件。
 
-该接口为系统接口，三方应用不支持调用。
+**系统接口：** 此接口为系统接口。
+
+此接口仅用于对应用的测试。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -681,7 +696,9 @@ off(type: string): boolean
 
 删除用户存储的事件。
 
-该接口为系统接口，三方应用不支持调用。
+**系统接口：** 此接口为系统接口。
+
+此接口仅用于对应用的测试。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -736,7 +753,9 @@ cwd(): string
 
 用该方法获取进程的工作目录。
 
-该接口为系统接口，三方应用不支持调用。
+**系统接口：** 此接口为系统接口。
+
+此接口仅用于对应用的测试。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -753,7 +772,9 @@ chdir(dir: string): void
 
 更改进程的当前工作目录。
 
-该接口为系统接口，三方应用不支持调用。
+**系统接口：** 此接口为系统接口。
+
+此接口仅用于对应用的测试。
 
 **系统能力：** SystemCapability.Utils.Lang
 
