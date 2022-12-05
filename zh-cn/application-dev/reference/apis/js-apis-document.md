@@ -46,7 +46,7 @@ choose(callback:AsyncCallback&lt;string&gt;): void
 
 **参数：**
 
-  | 参数名   | 类型                        | 必填 | 说明                         |
+  | 参数   | 类型                        | 必填 | 说明                         |
   | -------- | --------------------------- | ---- | ---------------------------- |
   | callback | AsyncCallback&lt;string&gt; | 是   | 异步获取对应文件URI（注：当前返回错误码） |
 
