@@ -302,7 +302,7 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
 | 9001002  | If the resource not found by resId.      |
 | 9001006  | If the resource re-ref too much.         |
 
-**Example stage**
+**Example (stage)**
   ```ts
     try {
         this.context.getStringValue($r('app.string.test').id, (error, value) => {
