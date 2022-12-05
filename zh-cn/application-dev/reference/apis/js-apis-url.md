@@ -782,7 +782,7 @@ console.log(params.toString());
 | port | string | 是 | 是 | 获取和设置URL的端口部分。 |
 | protocol | string | 是 | 是 | 获取和设置URL的协议部分。 |
 | search | string | 是 | 是 | 获取和设置URL的序列化查询部分。 |
-| searchParams | URLsearchParams | 是 | 否 | 获取URLSearchParams表示URL查询参数的对象。 |
+| searchParams | URLSearchParams | 是 | 否 | 获取URLSearchParams表示URL查询参数的对象。 |
 | URLParams | URLParams | 是 | 否 | 获取URLParams表示URL查询参数的对象。 |
 | username | string | 是 | 是 | 获取和设置URL的用户名部分。 |
 
