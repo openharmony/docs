@@ -36,7 +36,7 @@ setDateTime(admin: Want, time: number, callback: AsyncCallback\<void>): void
 
 以下的错误码的详细介绍请参见[企业设备管理错误码](../errorcodes/errorcode-enterpriseDeviceManager.md)
 
-| 类型      | 说明                                                                         |
+| 错误码ID | 错误信息                                                                      |
 | ------- | ---------------------------------------------------------------------------- |
 | 9200001 | The application is not a administrator of the device.                        |
 | 9200002 | The administrator application does not have permission to manage the device. |
@@ -84,7 +84,7 @@ setDateTime(admin: Want, time: number): Promise\<void>
 
 以下的错误码的详细介绍请参见[企业设备管理错误码](../errorcodes/errorcode-enterpriseDeviceManager.md)
 
-| 类型      | 说明                                                                         |
+| 错误码ID | 错误信息                                                                      |
 | ------- | ---------------------------------------------------------------------------- |
 | 9200001 | The application is not a administrator of the device.                        |
 | 9200002 | The administrator application does not have permission to manage the device. |
