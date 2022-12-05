@@ -361,7 +361,7 @@ currentSession.deactivate().then(() => {
 | sendControlCommand(command: AVControlCommand, callback: AsyncCallback\<void>): void              | 发送控制命令        |
 | sendSystemAVKeyEvent(event: KeyEvent, callback: AsyncCallback\<void>): void                       | 发送系统按键命令     |
 | sendSystemControlCommand(command: AVControlCommand, callback: AsyncCallback\<void>): void         | 发送系统控制命令     |
-| castAudio(session: SessionToken | 'all', audioDevices: Array\<audio.AudioDeviceDescriptor>, callback: AsyncCallback\<void>): void | 远端投播 |
+| castAudio(session: SessionToken \| 'all', audioDevices: Array\<audio.AudioDeviceDescriptor>, callback: AsyncCallback\<void>): void | 远端投播 |
 
 ### 开发步骤
 1.导入模块接口
