@@ -1611,7 +1611,7 @@ getTaskInfo(): Promise&lt;DownloadInfo&gt;
 
 ### getTaskInfo<sup>9+</sup>
 
-query(callback: AsyncCallback&lt;DownloadInfo&gt;): void
+getTaskInfo(callback: AsyncCallback&lt;DownloadInfo&gt;): void
 
 查询下载的任务，异步方法，使用callback形式返回结果。
 
