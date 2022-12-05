@@ -6,7 +6,7 @@ Your applications can use the APIs provided by the **mediaLibrary** module to pe
 >
 > Before developing features, read [MediaLibrary Overview](medialibrary-overview.md) to learn how to obtain a **MediaLibrary** instance and request the permissions to call the APIs of **MediaLibrary**.
 
-To ensure the application running efficiency, most **MediaLibrary** API calls are asynchronous, and both callback and promise modes are provided for these APIs. The following code samples use the promise mode. For details about the APIs, see [MediaLibrary API Reference](../reference/apis/js-apis-medialibrary.md).
+To maximize the application running efficiency, most **MediaLibrary** API calls are asynchronous in callback or promise mode. The following code samples use the promise mode. For details about the APIs, see [MediaLibrary API Reference](../reference/apis/js-apis-medialibrary.md).
 
 ## Querying Media Assets
 
@@ -215,7 +215,7 @@ async function getCameraImagePromise() {
 
 ## Obtaining the Thumbnail of an Image or a Video
 
-You can call [FileAsset.getThumbnail](../reference/apis/js-apis-medialibrary.md#getthumbnail8-2) with the thumbnail size passed in to obtain the thumbnail of an image or a video. Thumbnails are usually displayed on the UI.
+You can call [FileAsset.getThumbnail](../reference/apis/js-apis-medialibrary.md#getthumbnail8-2) with the thumbnail size passed in to obtain the thumbnail of an image or a video. Your application can use thumbnails to offer a quick preview on images and videos.
 
 **Prerequisites**
 
@@ -223,8 +223,6 @@ You can call [FileAsset.getThumbnail](../reference/apis/js-apis-medialibrary.md#
 - You have granted the permission **ohos.permission.READ_MEDIA**.
 
 ### Obtaining the Thumbnail of an Image
-
-Your application may need to obtain the thumbnail of an image for preview purposes.
 
 The following describes how to obtain the thumbnail (size: 720 x 720) of the first image in the album.
 
@@ -273,7 +271,7 @@ You can call [MediaLibrary.createAsset](../reference/apis/js-apis-medialibrary.m
 
 - You have obtained a **MediaLibrary** instance.
 - You have granted the permission **ohos.permission.WRITE_MEDIA**.
-- [Obtain the public directory](medialibrary-filepath-guidelines.md).
+- [You have obtained a public directory](medialibrary-filepath-guidelines.md).
 
 The following describes how to create a file of the **MediaType.FILE** type.
 
@@ -296,7 +294,7 @@ async function example() {
 
 You can use [FileAsset.trash](../reference/apis/js-apis-medialibrary.md#trash8) to move a media asset to the recycle bin.
 
-By default, files in the recycle bin will be stored for 30 days. During this period, you can set **isTrash** in **trash** to **false** to recover the files from the recycle bin. Application users can also recover the files through the system applications **Files** or **Gallery**.
+By default, files in the recycle bin will be stored for 30 days before being permanently removed. During this period, you can set **isTrash** in **trash** to **false** to recover the files. Application users can also recover the files through the system applications **Files** or **Gallery**.
 
 **Prerequisites**
 
@@ -339,11 +337,9 @@ async function example() {
 
 ## Renaming a Media Asset
 
-Renaming modifies the **FileAsset.displayName** attribute of a file, that is, the displayed file name, including the file name extension.
+To rename a media asset, modify the **FileAsset.displayName** attribute (which specifies the displayed file name, including the file name extension) and commit the modification through [FileAsset.commitModify](../reference/apis/js-apis-medialibrary.md#commitmodify8-1).
 
-After the modification, call [FileAsset.commitModify](../reference/apis/js-apis-medialibrary.md#commitmodify8-1) to commit the modification to the database.
-
-Before renaming a file, you must call [FetchFileResult](../reference/apis/js-apis-medialibrary.md#fetchfileresult7) to obtain the file.
+Before renaming a file, you must obtain the file, for example, by calling [FetchFileResult](../reference/apis/js-apis-medialibrary.md#fetchfileresult7).
 
 **Prerequisites**
 
@@ -358,7 +354,7 @@ The following describes how to rename the first file in the result set as **newt
 2. Call **getFileAssets** to obtain the images in the target album.
 3. Call **getFirstObject** to obtain the first image among all the images obtained.
 4. Rename the image as **newImage.jpg**.
-5. Call **FileAsset.commitModify** to commit the modification of the attributes to the database.
+5. Call **FileAsset.commitModify** to commit the modification to the database.
 
 ```ts
 async function example() {
