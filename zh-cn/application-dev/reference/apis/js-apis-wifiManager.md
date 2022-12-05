@@ -11,9 +11,9 @@
 import wifiManager from '@ohos.wifiManager';
 ```
 
-## wifi.enableWifi
+## wifi.enableWifi<sup>9+</sup>
 
-enableWifi(): boolean
+enableWifi(): void
 
 使能WLAN。
 
@@ -30,9 +30,9 @@ enableWifi(): boolean
   | boolean | true:操作成功，&nbsp;false:操作失败。|
 
 
-## wifi.disableWifi
+## wifi.disableWifi<sup>9+</sup>
 
-disableWifi(): boolean
+disableWifi(): void
 
 去使能WLAN。
 
@@ -49,7 +49,7 @@ disableWifi(): boolean
   | boolean | true:操作成功，&nbsp;false:操作失败。|
 
 
-## wifi.isWifiActive
+## wifi.isWifiActive<sup>9+</sup>
 
 isWifiActive(): boolean
 
@@ -66,9 +66,9 @@ isWifiActive(): boolean
   | boolean | true:已使能，&nbsp;false:未使能。 |
 
 
-## wifi.scan
+## wifi.scan<sup>9+</sup>
 
-scan(): boolean
+scan(): void
 
 启动WLAN扫描。
 
@@ -83,9 +83,9 @@ scan(): boolean
   | boolean | true:扫描操作执行成功，&nbsp;false:扫描操作执行失败。 |
 
 
-## wifi.getScanInfos
+## wifi.getScanResults<sup>9+</sup>
 
-getScanInfos(): Promise&lt;Array&lt;WifiScanInfo&gt;&gt;
+getScanResults(): Promise&lt;Array&lt;WifiScanInfo&gt;&gt;
 
 获取扫描结果，使用Promise异步回调。
 
@@ -100,9 +100,9 @@ getScanInfos(): Promise&lt;Array&lt;WifiScanInfo&gt;&gt;
   | Promise&lt;&nbsp;Array&lt;[WifiScanInfo](#wifiscaninfo)&gt;&nbsp;&gt; | Promise对象。返回扫描到的热点列表。 |
 
 
-## wifi.getScanInfos
+## wifi.getScanResults<sup>9+</sup>
 
-getScanInfos(callback: AsyncCallback&lt;Array&lt;WifiScanInfo&gt;&gt;): void
+getScanResults(callback: AsyncCallback&lt;Array&lt;WifiScanInfo&gt;&gt;): void
 
 获取扫描结果，使用callback异步回调。
 
@@ -159,14 +159,14 @@ getScanInfos(callback: AsyncCallback&lt;Array&lt;WifiScanInfo&gt;&gt;): void
   ```
 
 
-## WifiScanInfo
+## WifiScanInfo<sup>9+</sup>
 
 WLAN热点信息。
 
 **系统能力：** SystemCapability.Communication.WiFi.STA
 
 
-| **参数名** | **类型** | **可读** | **可写** | **说明** |
+| **名称** | **类型** | **可读** | **可写** | **说明** |
 | -------- | -------- | -------- | -------- | -------- |
 | ssid | string | 是 | 否 | 热点的SSID，编码格式为UTF-8。 |
 | bssid | string | 是 | 否 | 热点的BSSID。 |
@@ -176,13 +176,13 @@ WLAN热点信息。
 | band | number | 是 | 否 | WLAN接入点的频段。 |
 | frequency | number | 是 | 否 | WLAN接入点的频率。 |
 | channelWidth | number | 是 | 否 | WLAN接入点的带宽。 |
-| centerFrequency0<sup>9+</sup> | number | 是 | 否 | 热点的中心频率。 |
-| centerFrequency1<sup>9+</sup> | number | 是 | 否 | 热点的中心频率。如果热点使用两个不重叠的WLAN信道，则返回两个中心频率，分别用centerFrequency0和centerFrequency1表示。 |
-| infoElems<sup>9+</sup> | Array&lt;[WifiInfoElem](#wifiinfoelem9)&gt; | 是 | 否 | 信息元素。 |
+| centerFrequency0 | number | 是 | 否 | 热点的中心频率。 |
+| centerFrequency1 | number | 是 | 否 | 热点的中心频率。如果热点使用两个不重叠的WLAN信道，则返回两个中心频率，分别用centerFrequency0和centerFrequency1表示。 |
+| infoElems | Array&lt;[WifiInfoElem](#wifiinfoelem9)&gt; | 是 | 否 | 信息元素。 |
 | timestamp | number | 是 | 否 | 时间戳。 |
 
 
-## WifiSecurityType
+## WifiSecurityType<sup>9+</sup>
 
 表示加密类型的枚举。
 
@@ -214,8 +214,8 @@ WLAN热点信息。
 
 | **参数名** | **类型** | **读写属性** | **说明** |
 | -------- | -------- | -------- | -------- |
-| eid | number | 只读 | 元素ID。 |
-| content | Uint8Array | 只读 | 元素内容。 |
+| eid | number | 只读 | 元素ID。 <br /> **系统接口：** 此接口为系统接口。 |
+| content | Uint8Array | 只读 | 元素内容。 <br /> **系统接口：** 此接口为系统接口。 |
 
 
 ## WifiChannelWidth<sup>9+</sup>
@@ -235,9 +235,9 @@ WLAN热点信息。
 | WIDTH_INVALID | 5 | 无效值 |
 
 
-## wifi.getScanInfosSync<sup>9+</sup>
+## wifi.getScanResultsSync<sup>9+</sup>
 
-getScanInfosSync(): &nbsp;Array&lt;[WifiScanInfo](#wifiscaninfo)&gt;
+getScanResultsSync(): &nbsp;Array&lt;[WifiScanInfo](#wifiscaninfo)&gt;
 
 获取扫描结果，使用同步方式返回结果。
 
@@ -252,7 +252,7 @@ getScanInfosSync(): &nbsp;Array&lt;[WifiScanInfo](#wifiscaninfo)&gt;
   | &nbsp;Array&lt;[WifiScanInfo](#wifiscaninfo)&gt; | 扫描结果数组。 |
 
 
-## wifi.addDeviceConfig
+## wifi.addDeviceConfig<sup>9+</sup>
 
 addDeviceConfig(config: WifiDeviceConfig): Promise&lt;number&gt;
 
@@ -276,14 +276,14 @@ addDeviceConfig(config: WifiDeviceConfig): Promise&lt;number&gt;
   | -------- | -------- |
   | Promise&lt;number&gt; | Promise对象。返回添加的网络配置ID，如果值为-1表示添加失败。 |
 
-## WifiDeviceConfig
+## WifiDeviceConfig<sup>9+</sup>
 
 WLAN配置信息。
 
 **系统能力：** SystemCapability.Communication.WiFi.STA
 
 
-| **参数名** | **类型** | **可读** | **可写** | **说明** |
+| **名称** | **类型** | **可读** | **可写** | **说明** |
 | -------- | -------- | -------- | -------- | -------- |
 | ssid | string | 是 | 否 | 热点的SSID，编码格式为UTF-8。 |
 | bssid | string | 是 | 否 | 热点的BSSID。 |
@@ -300,7 +300,7 @@ WLAN配置信息。
 | eapConfig<sup>9+</sup> | [WifiEapConfig](#wifieapconfig9) | 是 | 否 | 可扩展身份验证协议配置。 <br /> **系统接口：** 此接口为系统接口。 |
 
 
-## IpType<sup>7+</sup>
+## IpType<sup>9+</sup>
 
 表示IP类型的枚举。
 
@@ -316,7 +316,7 @@ WLAN配置信息。
 | UNKNOWN | 2 | 未指定。 |
 
 
-## IpConfig<sup>7+</sup>
+## IpConfig<sup>9+</sup>
 
 IP配置信息。
 
@@ -324,10 +324,11 @@ IP配置信息。
 
 **系统能力：** SystemCapability.Communication.WiFi.STA
 
-| **参数名** | **类型** | **可读** | **可写** | **说明** |
+| **名称** | **类型** | **可读** | **可写** | **说明** |
 | -------- | -------- | -------- | -------- | -------- |
 | ipAddress | number | 是 | 否 | IP地址。 |
 | gateway | number | 是 | 否 | 网关。 |
+| prefixLength | number | 是 | 否 | 掩码。 |
 | dnsServers | number[] | 是 | 否 | DNS服务器。 |
 | domains | Array&lt;string&gt; | 是 | 否 | 域信息。 |
 
@@ -398,7 +399,7 @@ IP配置信息。
 | PHASE2_AKA_PRIME | 7 | AKA Prime类型。 |
 
 
-## wifi.addDeviceConfig
+## wifi.addDeviceConfig<sup>9+</sup>
 
 addDeviceConfig(config: WifiDeviceConfig, callback: AsyncCallback&lt;number&gt;): void
 
@@ -416,88 +417,6 @@ addDeviceConfig(config: WifiDeviceConfig, callback: AsyncCallback&lt;number&gt;)
   | -------- | -------- | -------- | -------- |
   | config | [WifiDeviceConfig](#wifideviceconfig) | 是 | WLAN配置信息。 |
   | callback | AsyncCallback&lt;number&gt; | 是 | 回调函数。当操作成功时，err为0，data为添加的网络配置ID，如果data值为-1，表示添加失败。当error为非0，表示处理出现错误。 |
-
-
-## wifi.addUntrustedConfig<sup>7+</sup>
-
-addUntrustedConfig(config: WifiDeviceConfig): Promise&lt;boolean&gt;
-
-添加不可信网络配置，使用Promise异步回调。
-
-**需要权限：** ohos.permission.SET_WIFI_INFO
-
-**系统能力：** SystemCapability.Communication.WiFi.STA
-
-**参数：**
-
-  | **参数名** | **类型** | **必填** | **说明** |
-  | -------- | -------- | -------- | -------- |
-  | config | [WifiDeviceConfig](#wifideviceconfig) | 是 | WLAN配置信息。 |
-
-**返回值：**
-
-  | **类型** | **说明** |
-  | -------- | -------- |
-  | Promise&lt;boolean&gt; | Promise对象。表示操作结果，true: 成功， false: 失败。 |
-
-
-## wifi.addUntrustedConfig<sup>7+</sup>
-
-addUntrustedConfig(config: WifiDeviceConfig, callback: AsyncCallback&lt;boolean&gt;): void
-
-添加不可信网络配置，使用callback异步回调。
-
-**需要权限：** ohos.permission.SET_WIFI_INFO
-
-**系统能力：** SystemCapability.Communication.WiFi.STA
-
-**参数：**
-
-  | **参数名** | **类型** | **必填** | **说明** |
-  | -------- | -------- | -------- | -------- |
-  | config | [WifiDeviceConfig](#wifideviceconfig) | 是 | WLAN配置信息。 |
-  | callback | AsyncCallback&lt;boolean&gt; | 是 | 回调函数。当操作成功时，err为0，data表示操作结果，true: 成功， false: 失败。如果error为非0，表示处理出现错误。 |
-
-
-## wifi.removeUntrustedConfig<sup>7+</sup>
-
-removeUntrustedConfig(config: WifiDeviceConfig): Promise&lt;boolean&gt;
-
-移除不可信网络配置，使用Promise异步回调。
-
-**需要权限：** ohos.permission.SET_WIFI_INFO
-
-**系统能力：** SystemCapability.Communication.WiFi.STA
-
-**参数：**
-
-  | **参数名** | **类型** | **必填** | **说明** |
-  | -------- | -------- | -------- | -------- |
-  | config | [WifiDeviceConfig](#wifideviceconfig) | 是 | WLAN配置信息。 |
-
-**返回值：**
-
-  | **类型** | **说明** |
-  | -------- | -------- |
-  | Promise&lt;boolean&gt; | Promise对象。表示操作结果，true: 成功， false: 失败。 |
-
-
-## wifi.removeUntrustedConfig<sup>7+</sup>
-
-removeUntrustedConfig(config: WifiDeviceConfig, callback: AsyncCallback&lt;boolean&gt;): void
-
-移除不可信网络配置，使用callback异步回调。
-
-**需要权限：** ohos.permission.SET_WIFI_INFO
-
-**系统能力：** SystemCapability.Communication.WiFi.STA
-
-**参数：**
-
-  | **参数名** | **类型** | **必填** | **说明** |
-  | -------- | -------- | -------- | -------- |
-  | config | [WifiDeviceConfig](#wifideviceconfig) | 是 | WLAN配置信息。 |
-  | callback | AsyncCallback&lt;boolean&gt; | 是 | 回调函数。当操作成功时，err为0，data表示操作结果，true: 成功， false: 失败。如果error为非0，表示处理出现错误。 |
 
 
 ## wifi.addCandidateConfig<sup>9+</sup>
@@ -616,9 +535,9 @@ connectToCandidateConfig(networkId: number): void
   | networkId | number | 是 | 候选网络配置的ID。 |
 
 
-## wifi.connectToNetwork
+## wifi.connectToNetwork<sup>9+</sup>
 
-connectToNetwork(networkId: number): boolean
+connectToNetwork(networkId: number): void
 
 连接到指定网络。
 
@@ -641,7 +560,7 @@ connectToNetwork(networkId: number): boolean
   | boolean | true:操作成功，&nbsp;false:操作失败。 |
 
 
-## wifi.connectToDevice
+## wifi.connectToDevice<sup>9+</sup>
 
 connectToDevice(config: WifiDeviceConfig): boolean
 
@@ -667,9 +586,9 @@ connectToDevice(config: WifiDeviceConfig): boolean
   | boolean | true:操作成功，&nbsp;false:操作失败。 |
 
 
-## wifi.disconnect
+## wifi.disconnect<sup>9+</sup>
 
-disconnect(): boolean
+disconnect(): void
 
 断开连接的网络。
 
@@ -687,7 +606,7 @@ disconnect(): boolean
   | boolean | true:操作成功，&nbsp;false:操作失败。 |
 
 
-## wifi.getSignalLevel
+## wifi.getSignalLevel<sup>9+</sup>
 
 getSignalLevel(rssi: number, band: number): number
 
@@ -711,7 +630,7 @@ getSignalLevel(rssi: number, band: number): number
   | number | 信号强度，取值范围为[0,&nbsp;4]。 |
 
 
-## wifi.getLinkedInfo
+## wifi.getLinkedInfo<sup>9+</sup>
 
 getLinkedInfo(): Promise&lt;WifiLinkedInfo&gt;
 
@@ -728,7 +647,7 @@ getLinkedInfo(): Promise&lt;WifiLinkedInfo&gt;
   | Promise&lt;[WifiLinkedInfo](#wifilinkedinfo)&gt; | Promise对象。表示WLAN连接信息。 |
 
 
-## wifi.getLinkedInfo
+## wifi.getLinkedInfo<sup>9+</sup>
 
 getLinkedInfo(callback: AsyncCallback&lt;WifiLinkedInfo&gt;): void
 
@@ -764,13 +683,13 @@ getLinkedInfo(callback: AsyncCallback&lt;WifiLinkedInfo&gt;): void
   ```
 
 
-## WifiLinkedInfo
+## WifiLinkedInfo<sup>9+</sup>
 
 提供WLAN连接的相关信息。
 
 **系统能力：** SystemCapability.Communication.WiFi.STA
 
-| 参数名 | 类型 | 可读 | 可写 | 说明 |
+| 名称 | 类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
 | ssid | string | 是 | 否 | 热点的SSID，编码格式为UTF-8。 |
 | bssid | string | 是 | 否 | 热点的BSSID。 |
@@ -790,7 +709,7 @@ getLinkedInfo(callback: AsyncCallback&lt;WifiLinkedInfo&gt;): void
 | connState | [ConnState](#connstate) | 是 | 否 | WLAN连接状态。 |
 
 
-## ConnState
+## ConnState<sup>9+</sup>
 
 表示WLAN连接状态的枚举。
 
@@ -808,7 +727,7 @@ getLinkedInfo(callback: AsyncCallback&lt;WifiLinkedInfo&gt;): void
 | UNKNOWN | 7 | WLAN连接建立失败。 |
 
 
-## SuppState
+## SuppState<sup>9+</sup>
 
 表示请求状态的枚举。
 
@@ -832,7 +751,7 @@ getLinkedInfo(callback: AsyncCallback&lt;WifiLinkedInfo&gt;): void
 | INVALID | 11 | 无效值。 |
 
 
-## wifi.isConnected<sup>7+</sup>
+## wifi.isConnected<sup>9+</sup>
 
 isConnected(): boolean
 
@@ -849,7 +768,7 @@ isConnected(): boolean
   | boolean | true:已连接，&nbsp;false:未连接。 |
 
 
-## wifi.getSupportedFeatures<sup>7+</sup>
+## wifi.getSupportedFeatures<sup>9+</sup>
 
 getSupportedFeatures(): number
 
@@ -883,7 +802,7 @@ getSupportedFeatures(): number
 | 0x20000000 | 增强开放特性。 |
 
 
-## wifi.isFeatureSupported<sup>7+</sup>
+## wifi.isFeatureSupported<sup>9+</sup>
 
 isFeatureSupported(featureId: number): boolean
 
@@ -907,7 +826,7 @@ isFeatureSupported(featureId: number): boolean
   | boolean | true:支持，&nbsp;false:不支持。 |
 
 
-## wifi.getDeviceMacAddress<sup>7+</sup>
+## wifi.getDeviceMacAddress<sup>9+</sup>
 
 getDeviceMacAddress(): string[]
 
@@ -926,7 +845,7 @@ getDeviceMacAddress(): string[]
   | string[] | MAC地址。 |
 
 
-## wifi.getIpInfo<sup>7+</sup>
+## wifi.getIpInfo<sup>9+</sup>
 
 getIpInfo(): IpInfo
 
@@ -943,13 +862,13 @@ getIpInfo(): IpInfo
   | [IpInfo](#ipinfo7) | IP信息。 |
 
 
-## IpInfo<sup>7+</sup>
+## IpInfo<sup>9+</sup>
 
 IP信息。
 
 **系统能力：** SystemCapability.Communication.WiFi.STA
 
-| **参数名** | **类型** | **可读** | **可写** | **说明** |
+| **名称** | **类型** | **可读** | **可写** | **说明** |
 | -------- | -------- | -------- | -------- | -------- |
 | ipAddress | number | 是 | 否 | IP地址。 |
 | gateway | number | 是 | 否 | 网关。 |
@@ -960,7 +879,7 @@ IP信息。
 | leaseDuration | number | 是 | 否 | IP地址租用时长。 |
 
 
-## wifi.getCountryCode<sup>7+</sup>
+## wifi.getCountryCode<sup>9+</sup>
 
 getCountryCode(): string
 
@@ -977,9 +896,9 @@ getCountryCode(): string
   | string | 国家码。 |
 
 
-## wifi.reassociate<sup>7+</sup>
+## wifi.reassociate<sup>9+</sup>
 
-reassociate(): boolean
+reassociate(): void
 
 重新关联网络。
 
@@ -996,9 +915,9 @@ reassociate(): boolean
   | boolean | true:操作成功，&nbsp;false:操作失败。 |
 
 
-## wifi.reconnect<sup>7+</sup>
+## wifi.reconnect<sup>9+</sup>
 
-reconnect(): boolean
+reconnect(): void
 
 重新连接网络。
 
@@ -1015,7 +934,7 @@ reconnect(): boolean
   | boolean | true:操作成功，&nbsp;false:操作失败。 |
 
 
-## wifi.getDeviceConfigs<sup>7+</sup>
+## wifi.getDeviceConfigs<sup>9+</sup>
 
 getDeviceConfigs(): &nbsp;Array&lt;[WifiDeviceConfig](#wifideviceconfig)&gt;
 
@@ -1034,7 +953,7 @@ getDeviceConfigs(): &nbsp;Array&lt;[WifiDeviceConfig](#wifideviceconfig)&gt;
   | &nbsp;Array&lt;[WifiDeviceConfig](#wifideviceconfig)&gt; | 网络配置信息的数组。 |
 
 
-## wifi.updateNetwork<sup>7+</sup>
+## wifi.updateNetwork<sup>9+</sup>
 
 updateNetwork(config: WifiDeviceConfig): number
 
@@ -1059,9 +978,9 @@ updateNetwork(config: WifiDeviceConfig): number
   | number | 返回更新的网络配置ID，如果值为-1表示更新失败。 |
 
 
-## wifi.disableNetwork<sup>7+</sup>
+## wifi.disableNetwork<sup>9+</sup>
 
-disableNetwork(netId: number): boolean
+disableNetwork(netId: number): void
 
 去使能网络配置。
 
@@ -1084,9 +1003,9 @@ disableNetwork(netId: number): boolean
   | boolean | true:操作成功，&nbsp;false:操作失败。 |
 
 
-## wifi.removeAllNetwork<sup>7+</sup>
+## wifi.removeAllNetwork<sup>9+</sup>
 
-removeAllNetwork(): boolean
+removeAllNetwork(): void
 
 移除所有网络配置。
 
@@ -1103,9 +1022,9 @@ removeAllNetwork(): boolean
   | boolean | true:操作成功，&nbsp;false:操作失败。 |
 
 
-## wifi.removeDevice<sup>7+</sup>
+## wifi.removeDevice<sup>9+</sup>
 
-removeDevice(id: number): boolean
+removeDevice(id: number): void
 
 移除指定的网络配置。
 
@@ -1128,9 +1047,9 @@ removeDevice(id: number): boolean
   | boolean | true:操作成功，&nbsp;false:操作失败。 |
 
 
-## wifi.enableHotspot<sup>7+</sup>
+## wifi.enableHotspot<sup>9+</sup>
 
-enableHotspot(): boolean
+enableHotspot(): void
 
 使能热点。
 
@@ -1147,9 +1066,9 @@ enableHotspot(): boolean
   | boolean | true:操作成功，&nbsp;false:操作失败。|
 
 
-## wifi.disableHotspot<sup>7+</sup>
+## wifi.disableHotspot<sup>9+</sup>
 
-disableHotspot(): boolean
+disableHotspot(): void
 
 去使能热点。
 
@@ -1166,7 +1085,7 @@ disableHotspot(): boolean
   | boolean | true:操作成功，&nbsp;false:操作失败。|
 
 
-## wifi.isHotspotDualBandSupported<sup>7+</sup>
+## wifi.isHotspotDualBandSupported<sup>9+</sup>
 
 isHotspotDualBandSupported(): boolean
 
@@ -1185,7 +1104,7 @@ isHotspotDualBandSupported(): boolean
   | boolean | true:支持，&nbsp;false:不支持。|
 
 
-## wifi.isHotspotActive<sup>7+</sup>
+## wifi.isHotspotActive<sup>9+</sup>
 
 isHotspotActive(): boolean
 
@@ -1204,9 +1123,9 @@ isHotspotActive(): boolean
   | boolean | true:已使能，&nbsp;false:未使能。|
 
 
-## wifi.setHotspotConfig<sup>7+</sup>
+## wifi.setHotspotConfig<sup>9+</sup>
 
-setHotspotConfig(config: HotspotConfig): boolean
+setHotspotConfig(config: HotspotConfig): void
 
 设置热点配置信息。
 
@@ -1229,7 +1148,7 @@ setHotspotConfig(config: HotspotConfig): boolean
   | boolean | true:操作成功，&nbsp;false:操作失败。 |
 
 
-## HotspotConfig<sup>7+</sup>
+## HotspotConfig<sup>9+</sup>
 
 热点配置信息。
 
@@ -1237,7 +1156,7 @@ setHotspotConfig(config: HotspotConfig): boolean
 
 **系统能力：** SystemCapability.Communication.WiFi.AP.Core
 
-| **参数名** | **类型** | **可读** | **可写** | **说明** |
+| **名称** | **类型** | **可读** | **可写** | **说明** |
 | -------- | -------- | -------- | -------- | -------- |
 | ssid | string | 是 | 否 | 热点的SSID，编码格式为UTF-8。 |
 | securityType | [WifiSecurityType](#wifisecuritytype) | 是 | 否 | 加密类型。 |
@@ -1246,7 +1165,7 @@ setHotspotConfig(config: HotspotConfig): boolean
 | maxConn | number | 是 | 否 | 最大设备连接数。 |
 
 
-## wifi.getHotspotConfig<sup>7+</sup>
+## wifi.getHotspotConfig<sup>9+</sup>
 
 getHotspotConfig(): HotspotConfig
 
@@ -1265,7 +1184,7 @@ getHotspotConfig(): HotspotConfig
   | [HotspotConfig](#hotspotconfig7) | 热点的配置信息。 |
 
 
-## wifi.getStations<sup>7+</sup>
+## wifi.getStations<sup>9+</sup>
 
 getStations(): &nbsp;Array&lt;[StationInfo](#stationinfo7)&gt;
 
@@ -1284,7 +1203,7 @@ getStations(): &nbsp;Array&lt;[StationInfo](#stationinfo7)&gt;
   | &nbsp;Array&lt;[StationInfo](#stationinfo7)&gt; | 连接的设备数组。 |
 
 
-## StationInfo<sup>7+</sup>
+## StationInfo<sup>9+</sup>
 
 接入的设备信息。
 
@@ -1292,14 +1211,14 @@ getStations(): &nbsp;Array&lt;[StationInfo](#stationinfo7)&gt;
 
 **系统能力：** SystemCapability.Communication.WiFi.AP.Core
 
-| **参数名** | **类型** | **可读** | **可写** | **说明** |
+| **名称** | **类型** | **可读** | **可写** | **说明** |
 | -------- | -------- | -------- | -------- | -------- |
 | name | string | 是 | 否 | 设备名称。 |
 | macAddress | string | 是 | 否 | MAC地址。 |
 | ipAddress | string | 是 | 否 | IP地址。 |
 
 
-## wifi.getP2pLinkedInfo<sup>8+</sup>
+## wifi.getP2pLinkedInfo<sup>9+</sup>
 
 getP2pLinkedInfo(): Promise&lt;WifiP2pLinkedInfo&gt;
 
@@ -1317,7 +1236,7 @@ getP2pLinkedInfo(): Promise&lt;WifiP2pLinkedInfo&gt;
 
 
 
-## WifiP2pLinkedInfo<sup>8+</sup>
+## WifiP2pLinkedInfo<sup>9+</sup>
 
 提供WLAN连接的相关信息。
 
@@ -1330,7 +1249,7 @@ getP2pLinkedInfo(): Promise&lt;WifiP2pLinkedInfo&gt;
 | groupOwnerAddr | string | 是 | 否 | 群组MAC地址。 
 
 
-## P2pConnectState<sup>8+</sup>
+## P2pConnectState<sup>9+</sup>
 
 表示P2P连接状态的枚举。
 
@@ -1342,7 +1261,7 @@ getP2pLinkedInfo(): Promise&lt;WifiP2pLinkedInfo&gt;
 | CONNECTED | 1 | 连接状态。 |
 
 
-## wifi.getP2pLinkedInfo<sup>8+</sup>
+## wifi.getP2pLinkedInfo<sup>9+</sup>
 
 getP2pLinkedInfo(callback: AsyncCallback&lt;WifiP2pLinkedInfo&gt;): void
 
@@ -1359,7 +1278,7 @@ getP2pLinkedInfo(callback: AsyncCallback&lt;WifiP2pLinkedInfo&gt;): void
   | callback | AsyncCallback&lt;[WifiP2pLinkedInfo](#wifip2plinkedinfo8)&gt; | 是 | 回调函数。当操作成功时，err为0，data表示P2P连接信息。如果error为非0，表示处理出现错误。 |
 
 
-## wifi.getCurrentGroup<sup>8+</sup>
+## wifi.getCurrentGroup<sup>9+</sup>
 
 getCurrentGroup(): Promise&lt;WifiP2pGroupInfo&gt;
 
@@ -1376,7 +1295,7 @@ getCurrentGroup(): Promise&lt;WifiP2pGroupInfo&gt;
   | Promise&lt;[WifiP2pGroupInfo](#wifip2pgroupinfo8)&gt; | Promise对象。表示当前组信息。 |
 
 
-## wifi.getCurrentGroup<sup>8+</sup>
+## wifi.getCurrentGroup<sup>9+</sup>
 
 getCurrentGroup(callback: AsyncCallback&lt;WifiP2pGroupInfo&gt;): void
 
@@ -1393,7 +1312,7 @@ getCurrentGroup(callback: AsyncCallback&lt;WifiP2pGroupInfo&gt;): void
   | callback | AsyncCallback&lt;[WifiP2pGroupInfo](#wifip2pgroupinfo8)&gt; | 是 | 回调函数。当操作成功时，err为0，data表示当前组信息。如果error为非0，表示处理出现错误。 |
 
 
-## wifi.getP2pPeerDevices<sup>8+</sup>
+## wifi.getP2pPeerDevices<sup>9+</sup>
 
 getP2pPeerDevices(): Promise&lt;WifiP2pDevice[]&gt;
 
@@ -1410,7 +1329,7 @@ getP2pPeerDevices(): Promise&lt;WifiP2pDevice[]&gt;
   | Promise&lt;[WifiP2pDevice[]](#wifip2pdevice8)&gt; | Promise对象。表示对端设备列表信息。 |
 
 
-## wifi.getP2pPeerDevices<sup>8+</sup>
+## wifi.getP2pPeerDevices<sup>9+</sup>
 
 getP2pPeerDevices(callback: AsyncCallback&lt;WifiP2pDevice[]&gt;): void
 
@@ -1427,22 +1346,22 @@ getP2pPeerDevices(callback: AsyncCallback&lt;WifiP2pDevice[]&gt;): void
   | callback | AsyncCallback&lt;[WifiP2pDevice[]](#wifip2pdevice8)&gt; | 是 | 回调函数。当操作成功时，err为0，data表示对端设备列表信息。如果error为非0，表示处理出现错误。 |
 
 
-## WifiP2pDevice<sup>8+</sup>
+## WifiP2pDevice<sup>9+</sup>
 
 表示P2P设备信息。
 
 **系统能力：** SystemCapability.Communication.WiFi.P2P
 
-| 参数名 | 类型 | 可读 | 可写 | 说明 |
+| 名称 | 类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
 | deviceName | string | 是 | 否 | 设备名称。 |
 | deviceAddress | string | 是 | 否 | 设备MAC地址。 |
 | primaryDeviceType | string | 是 | 否 | 主设备类型。 |
 | deviceStatus | [P2pDeviceStatus](#p2pdevicestatus8) | 是 | 否 | 设备状态。 |
-| groupCapabilitys | number | 是 | 否 | 群组能力。 |
+| groupCapabilities | number | 是 | 否 | 群组能力。 |
 
 
-## P2pDeviceStatus<sup>8+</sup>
+## P2pDeviceStatus<sup>9+</sup>
 
 表示设备状态的枚举。
 
@@ -1491,9 +1410,9 @@ getP2pLocalDevice(callback: AsyncCallback&lt;WifiP2pDevice&gt;): void
   | callback | AsyncCallback&lt;[WifiP2pDevice](#wifip2pdevice8)&gt; | 是 | 回调函数。当操作成功时，err为0，data表示本端设备信息。如果error为非0，表示处理出现错误。 |
 
 
-## wifi.createGroup<sup>8+</sup>
+## wifi.createGroup<sup>9+</sup>
 
-createGroup(config: WifiP2PConfig): boolean
+createGroup(config: WifiP2PConfig): void
 
 创建群组。
 
@@ -1514,13 +1433,13 @@ createGroup(config: WifiP2PConfig): boolean
   | boolean | true:创建群组操作执行成功，&nbsp;false:创建群组操作执行失败。 |
 
 
-## WifiP2PConfig<sup>8+</sup>
+## WifiP2PConfig<sup>9+</sup>
 
 表示P2P配置信息。
 
 **系统能力：** SystemCapability.Communication.WiFi.P2P
 
-| 参数名 | 类型 | 可读 | 可写 | 说明 |
+| 名称 | 类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
 | deviceAddress | string | 是 | 否 | 设备地址。 |
 | netId | number | 是 | 否 | 网络ID。创建群组时-1表示创建临时组，-2表示创建永久组。 |
@@ -1529,7 +1448,7 @@ createGroup(config: WifiP2PConfig): boolean
 | goBand | [GroupOwnerBand](#groupownerband8) | 是 | 否 | 群组带宽。 |
 
 
-## GroupOwnerBand<sup>8+</sup>
+## GroupOwnerBand<sup>9+</sup>
 
 表示群组带宽的枚举。
 
@@ -1542,9 +1461,9 @@ createGroup(config: WifiP2PConfig): boolean
 | GO_BAND_5GHZ | 2 | 5GHZ。 |
 
 
-## wifi.removeGroup<sup>8+</sup>
+## wifi.removeGroup<sup>9+</sup>
 
-removeGroup(): boolean
+removeGroup(): void
 
 移除群组。
 
@@ -1559,9 +1478,9 @@ removeGroup(): boolean
   | boolean | true:操作执行成功，&nbsp;false:操作执行失败。 |
 
 
-## wifi.p2pConnect<sup>8+</sup>
+## wifi.p2pConnect<sup>9+</sup>
 
-p2pConnect(config: WifiP2PConfig): boolean
+p2pConnect(config: WifiP2PConfig): void
 
 执行P2P连接。
 
@@ -1650,9 +1569,9 @@ p2pConnect(config: WifiP2PConfig): boolean
   console.info("start discover devices -> " + wifi.startDiscoverDevices());
   ```
 
-## wifi.p2pCancelConnect<sup>8+</sup>
+## wifi.p2pCancelConnect<sup>9+</sup>
 
-p2pCancelConnect(): boolean
+p2pCancelConnect(): void
 
 取消P2P连接。
 
@@ -1667,9 +1586,9 @@ p2pCancelConnect(): boolean
   | boolean | true:操作执行成功，&nbsp;false:操作执行失败。 |
 
 
-## wifi.startDiscoverDevices<sup>8+</sup>
+## wifi.startDiscoverDevices<sup>9+</sup>
 
-startDiscoverDevices(): boolean
+startDiscoverDevices(): void
 
 开始发现设备。
 
@@ -1684,9 +1603,9 @@ startDiscoverDevices(): boolean
   | boolean | true:操作执行成功，&nbsp;false:操作执行失败。 |
 
 
-## wifi.stopDiscoverDevices<sup>8+</sup>
+## wifi.stopDiscoverDevices<sup>9+</sup>
 
-stopDiscoverDevices(): boolean
+stopDiscoverDevices(): void
 
 停止发现设备。
 
@@ -1701,9 +1620,9 @@ stopDiscoverDevices(): boolean
   | boolean | true:操作执行成功，操作执行失败。 |
 
 
-## wifi.deletePersistentGroup<sup>8+</sup>
+## wifi.deletePersistentGroup<sup>9+</sup>
 
-deletePersistentGroup(netId: number): boolean
+deletePersistentGroup(netId: number): void
 
 删除永久组。
 
@@ -1746,13 +1665,13 @@ getP2pGroups(): Promise&lt;Array&lt;WifiP2pGroupInfo&gt;&gt;
   | Promise&lt;&nbsp;Array&lt;[WifiP2pGroupInfo](#wifip2pgroupinfo8)&gt;&nbsp;&gt; | Promise对象。表示所有群组信息。 |
 
 
-## WifiP2pGroupInfo<sup>8+</sup>
+## WifiP2pGroupInfo<sup>9+</sup>
 
 表示P2P群组相关信息。
 
 **系统能力：** SystemCapability.Communication.WiFi.P2P
 
-| 参数名 | 类型 | 可读 | 可写 | 说明 |
+| 名称 | 类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
 | isP2pGo | boolean | 是 | 否 | 是否是群主。 |
 | ownerInfo | [WifiP2pDevice](#wifip2pdevice8) | 是 | 否 | 群组的设备信息。 |
@@ -1784,9 +1703,9 @@ getP2pGroups(callback: AsyncCallback&lt;Array&lt;WifiP2pGroupInfo&gt;&gt;): void
   | callback | AsyncCallback&lt;&nbsp;Array&lt;[WifiP2pGroupInfo](#wifip2pgroupinfo8)&gt;&gt; | 是 | 回调函数。当操作成功时，err为0，data表示所有群组信息。如果error为非0，表示处理出现错误。 |
 
 
-## wifi.setDeviceName<sup>8+</sup>
+## wifi.setDeviceName<sup>9+</sup>
 
-setDeviceName(devName: string): boolean
+setDeviceName(devName: string): void
 
 设置设备名称。
 
@@ -1809,7 +1728,7 @@ setDeviceName(devName: string): boolean
   | boolean | true:操作成功，&nbsp;false:操作失败。 |
 
 
-## wifi.on('wifiStateChange')<sup>7+</sup>
+## wifi.on('wifiStateChange')<sup>9+</sup>
 
 on(type: "wifiStateChange", callback: Callback&lt;number&gt;): void
 
@@ -1836,7 +1755,7 @@ on(type: "wifiStateChange", callback: Callback&lt;number&gt;): void
 | 3 | 去激活中。 |
 
 
-## wifi.off('wifiStateChange')<sup>7+</sup>
+## wifi.off('wifiStateChange')<sup>9+</sup>
 
 off(type: "wifiStateChange", callback?: Callback&lt;number&gt;): void
 
@@ -1869,7 +1788,7 @@ off(type: "wifiStateChange", callback?: Callback&lt;number&gt;): void
   ```
 
 
-## wifi.on('wifiConnectionChange')<sup>7+</sup>
+## wifi.on('wifiConnectionChange')<sup>9+</sup>
 
 on(type: "wifiConnectionChange", callback: Callback&lt;number&gt;): void
 
@@ -1894,7 +1813,7 @@ on(type: "wifiConnectionChange", callback: Callback&lt;number&gt;): void
 | 1 | 已连接。 |
 
 
-## wifi.off('wifiConnectionChange')<sup>7+</sup>
+## wifi.off('wifiConnectionChange')<sup>9+</sup>
 
 off(type: "wifiConnectionChange", callback?: Callback&lt;number&gt;): void
 
@@ -1912,7 +1831,7 @@ off(type: "wifiConnectionChange", callback?: Callback&lt;number&gt;): void
   | callback | Callback&lt;number&gt; | 否 | 连接状态改变回调函数。如果callback不填，将去注册该事件关联的所有回调函数。 |
 
 
-## wifi.on('wifiScanStateChange')<sup>7+</sup>
+## wifi.on('wifiScanStateChange')<sup>9+</sup>
 
 on(type: "wifiScanStateChange", callback: Callback&lt;number&gt;): void
 
@@ -1937,7 +1856,7 @@ on(type: "wifiScanStateChange", callback: Callback&lt;number&gt;): void
 | 1 | 扫描成功。 |
 
 
-## wifi.off('wifiScanStateChange')<sup>7+</sup>
+## wifi.off('wifiScanStateChange')<sup>9+</sup>
 
 off(type: "wifiScanStateChange", callback?: Callback&lt;number&gt;): void
 
@@ -1955,7 +1874,7 @@ off(type: "wifiScanStateChange", callback?: Callback&lt;number&gt;): void
 | callback | Callback&lt;number&gt; | 否 | 状态改变回调函数。如果callback不填，将去注册该事件关联的所有回调函数。 |
 
 
-## wifi.on('wifiRssiChange')<sup>7+</sup>
+## wifi.on('wifiRssiChange')<sup>9+</sup>
 
 on(type: "wifiRssiChange", callback: Callback&lt;number&gt;): void
 
@@ -1973,7 +1892,7 @@ on(type: "wifiRssiChange", callback: Callback&lt;number&gt;): void
   | callback | Callback&lt;number&gt; | 是 | 状态改变回调函数，返回以dBm为单位的RSSI值。 |
 
 
-## wifi.off('wifiRssiChange')<sup>7+</sup>
+## wifi.off('wifiRssiChange')<sup>9+</sup>
 
 off(type: "wifiRssiChange", callback?: Callback&lt;number&gt;): void
 
@@ -1991,7 +1910,7 @@ off(type: "wifiRssiChange", callback?: Callback&lt;number&gt;): void
   | callback | Callback&lt;number&gt; | 否 | 状态改变回调函数。如果callback不填，将去注册该事件关联的所有回调函数。 |
 
 
-## wifi.on('hotspotStateChange')<sup>7+</sup>
+## wifi.on('hotspotStateChange')<sup>9+</sup>
 
 on(type: "hotspotStateChange", callback: Callback&lt;number&gt;): void
 
@@ -2018,7 +1937,7 @@ on(type: "hotspotStateChange", callback: Callback&lt;number&gt;): void
 | 3 | 去激活中。 |
 
 
-## wifi.off('hotspotStateChange')<sup>7+</sup>
+## wifi.off('hotspotStateChange')<sup>9+</sup>
 
 off(type: "hotspotStateChange", callback?: Callback&lt;number&gt;): void
 
@@ -2036,7 +1955,7 @@ off(type: "hotspotStateChange", callback?: Callback&lt;number&gt;): void
   | callback | Callback&lt;number&gt; | 否 | 状态改变回调函数。如果callback不填，将去注册该事件关联的所有回调函数。 |
 
 
-## wifi.on('p2pStateChange')<sup>8+</sup>
+## wifi.on('p2pStateChange')<sup>9+</sup>
 
 on(type: "p2pStateChange", callback: Callback&lt;number&gt;): void
 
@@ -2063,7 +1982,7 @@ on(type: "p2pStateChange", callback: Callback&lt;number&gt;): void
 | 4 | 关闭中。 |
 | 5 | 已关闭。 |
 
-## wifi.off('p2pStateChange')<sup>8+</sup>
+## wifi.off('p2pStateChange')<sup>9+</sup>
 
 off(type: "p2pStateChange", callback?: Callback&lt;number&gt;): void
 
@@ -2081,7 +2000,7 @@ off(type: "p2pStateChange", callback?: Callback&lt;number&gt;): void
   | callback | Callback&lt;number&gt; | 否 | 状态改变回调函数。如果callback不填，将去注册该事件关联的所有回调函数。 |
 
 
-  ## wifi.on('p2pConnectionChange')<sup>8+</sup>
+  ## wifi.on('p2pConnectionChange')<sup>9+</sup>
 
 on(type: "p2pConnectionChange", callback: Callback&lt;WifiP2pLinkedInfo&gt;): void
 
@@ -2099,7 +2018,7 @@ on(type: "p2pConnectionChange", callback: Callback&lt;WifiP2pLinkedInfo&gt;): vo
   | callback | Callback&lt;[WifiP2pLinkedInfo](#wifip2plinkedinfo8)&gt; | 是 | 状态改变回调函数。 |
 
 
-## wifi.off('p2pConnectionChange')<sup>8+</sup>
+## wifi.off('p2pConnectionChange')<sup>9+</sup>
 
 off(type: "p2pConnectionChange", callback?: Callback&lt;WifiP2pLinkedInfo&gt;): void
 
@@ -2117,7 +2036,7 @@ off(type: "p2pConnectionChange", callback?: Callback&lt;WifiP2pLinkedInfo&gt;): 
   | callback | Callback&lt;[WifiP2pLinkedInfo](#wifip2plinkedinfo8)&gt; | 否 | 状态改变回调函数。如果callback不填，将去注册该事件关联的所有回调函数。 |
 
 
-## wifi.on('p2pDeviceChange')<sup>8+</sup>
+## wifi.on('p2pDeviceChange')<sup>9+</sup>
 
 on(type: "p2pDeviceChange", callback: Callback&lt;WifiP2pDevice&gt;): void
 
@@ -2135,7 +2054,7 @@ on(type: "p2pDeviceChange", callback: Callback&lt;WifiP2pDevice&gt;): void
   | callback | Callback&lt;[WifiP2pDevice](#wifip2pdevice8)&gt; | 是 | 状态改变回调函数。 |
 
 
-## wifi.off('p2pDeviceChange')<sup>8+</sup>
+## wifi.off('p2pDeviceChange')<sup>9+</sup>
 
 off(type: "p2pDeviceChange", callback?: Callback&lt;WifiP2pDevice&gt;): void
 
@@ -2153,7 +2072,7 @@ off(type: "p2pDeviceChange", callback?: Callback&lt;WifiP2pDevice&gt;): void
   | callback | Callback&lt;[WifiP2pDevice](#wifip2pdevice8)&gt; | 否 | 状态改变回调函数。如果callback不填，将去注册该事件关联的所有回调函数。 |
 
 
-## wifi.on('p2pPeerDeviceChange')<sup>8+</sup>
+## wifi.on('p2pPeerDeviceChange')<sup>9+</sup>
 
 on(type: "p2pPeerDeviceChange", callback: Callback&lt;WifiP2pDevice[]&gt;): void
 
@@ -2171,7 +2090,7 @@ on(type: "p2pPeerDeviceChange", callback: Callback&lt;WifiP2pDevice[]&gt;): void
   | callback | Callback&lt;[WifiP2pDevice[]](#wifip2pdevice8)&gt; | 是 | 状态改变回调函数。 |
 
 
-## wifi.off('p2pPeerDeviceChange')<sup>8+</sup>
+## wifi.off('p2pPeerDeviceChange')<sup>9+</sup>
 
 off(type: "p2pPeerDeviceChange", callback?: Callback&lt;WifiP2pDevice[]&gt;): void
 
@@ -2189,7 +2108,7 @@ off(type: "p2pPeerDeviceChange", callback?: Callback&lt;WifiP2pDevice[]&gt;): vo
   | callback | Callback&lt;[WifiP2pDevice[]](#wifip2pdevice8)&gt; | 否 | 状态改变回调函数。如果callback不填，将去注册该事件关联的所有回调函数。 |
 
 
-## wifi.on('p2pPersistentGroupChange')<sup>8+</sup>
+## wifi.on('p2pPersistentGroupChange')<sup>9+</sup>
 
 on(type: "p2pPersistentGroupChange", callback: Callback&lt;void&gt;): void
 
@@ -2207,7 +2126,7 @@ on(type: "p2pPersistentGroupChange", callback: Callback&lt;void&gt;): void
   | callback | Callback&lt;void&gt; | 是 | 状态改变回调函数。 |
 
 
-## wifi.off('p2pPersistentGroupChange')<sup>8+</sup>
+## wifi.off('p2pPersistentGroupChange')<sup>9+</sup>
 
 off(type: "p2pPersistentGroupChange", callback?: Callback&lt;void&gt;): void
 
@@ -2225,7 +2144,7 @@ off(type: "p2pPersistentGroupChange", callback?: Callback&lt;void&gt;): void
   | callback | Callback&lt;void&gt; | 否 | 状态改变回调函数。如果callback不填，将去注册该事件关联的所有回调函数。 |
 
 
-## wifi.on('p2pDiscoveryChange')<sup>8+</sup>
+## wifi.on('p2pDiscoveryChange')<sup>9+</sup>
 
 on(type: "p2pDiscoveryChange", callback: Callback&lt;number&gt;): void
 
@@ -2250,7 +2169,7 @@ on(type: "p2pDiscoveryChange", callback: Callback&lt;number&gt;): void
 | 1 | 发现成功。 |
 
 
-## wifi.off('p2pDiscoveryChange')<sup>8+</sup>
+## wifi.off('p2pDiscoveryChange')<sup>9+</sup>
 
 off(type: "p2pDiscoveryChange", callback?: Callback&lt;number&gt;): void
 
