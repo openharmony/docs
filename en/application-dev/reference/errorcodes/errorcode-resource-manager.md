@@ -26,7 +26,7 @@ The resource not found by resId.
 
 **Description**
 
-This error code is reported if the specified resource ID meets the type requirement but the no resource is found based on the resource ID.
+This error code is reported if the specified resource ID meets the type requirement but no resource is found based on the resource ID.
 
 **Possible Causes**
 
@@ -64,7 +64,7 @@ The resource not found by resName.
 
 **Description**
 
-This error code is reported if the specified resource ID meets the type requirement but the no resource is found based on the resource ID.
+This error code is reported if the specified resource ID meets the type requirement but no resource is found based on the resource ID.
 
 **Possible Causes**
 
