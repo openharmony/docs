@@ -1295,7 +1295,7 @@ queryDeviceEventStats(begin: number, end: number): Promise&lt;Array&lt;DeviceEve
 | 10000002   | Parcel operation failed.              | 
 | 10000003   | System service operation failed.      | 
 | 10000004   | IPC Communication failed.             | 
-| 10000006   | Get application info failed           |
+| 10000006   | Get application info failed.          |
 | 10000007   | Get system or actual time failed.     |
 
 **示例**：
@@ -1446,7 +1446,7 @@ queryNotificationEventStats(begin: number, end: number, callback: AsyncCallback&
 | 10000002   | Parcel operation failed.              | 
 | 10000003   | System service operation failed.      | 
 | 10000004   | IPC Communication failed.             | 
-| 10000006   | Get application info failed           |
+| 10000006   | Get application info failed.          |
 | 10000007   | Get system or actual time failed.     |
 
 **示例**：
