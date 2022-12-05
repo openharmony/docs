@@ -34,7 +34,7 @@ requestSuspendDelay(reason: string, callback: Callback&lt;void&gt;): DelaySuspen
 
 **参数**：
 
-| 名称      | 类型                   | 必填   | 说明                             |
+| 参数名      | 类型                   | 必填   | 说明                             |
 | -------- | -------------------- | ---- | ------------------------------ |
 | reason   | string               | 是    | 延迟挂起申请的原因。                     |
 | callback | Callback&lt;void&gt; | 是    | 延迟即将超时的回调函数，一般在超时前6秒通过此回调通知应用。 |
@@ -72,7 +72,7 @@ getRemainingDelayTime(requestId: number, callback: AsyncCallback&lt;number&gt;):
 
 **参数**：
 
-| 名称       | 类型                          | 必填   | 说明                                       |
+| 参数名       | 类型                          | 必填   | 说明                                       |
 | --------- | --------------------------- | ---- | ---------------------------------------- |
 | requestId | number                      | 是    | 延迟挂起的请求ID。这个值通过调用[requestSuspendDelay](#backgroundtaskmanagerrequestsuspenddelay)方法获取。 |
 | callback  | AsyncCallback&lt;number&gt; | 是    | 指定的callback回调方法。用于返回应用程序进入挂起状态之前的剩余时间，以毫秒为单位。 |
@@ -103,7 +103,7 @@ getRemainingDelayTime(requestId: number): Promise&lt;number&gt;
 
 **参数**：
 
-| 名称       | 类型     | 必填   | 说明         |
+| 参数名       | 类型     | 必填   | 说明         |
 | --------- | ------ | ---- | ---------- |
 | requestId | number | 是    | 延迟挂起的请求ID。这个值通过调用[requestSuspendDelay](#backgroundtaskmanagerrequestsuspenddelay)方法获取。 |
 
@@ -135,7 +135,7 @@ cancelSuspendDelay(requestId: number): void
 
 **参数**：
 
-| 名称       | 类型     | 必填   | 说明         |
+| 参数名       | 类型     | 必填   | 说明         |
 | --------- | ------ | ---- | ---------- |
 | requestId | number | 是    | 延迟挂起的请求ID。这个值通过调用[requestSuspendDelay](#backgroundtaskmanagerrequestsuspenddelay)方法获取。 |
 
@@ -159,7 +159,7 @@ startBackgroundRunning(context: Context, bgMode: BackgroundMode, wantAgent: Want
 
 **参数**：
 
-| 名称       | 类型                                 | 必填   | 说明                                       |
+| 参数名       | 类型                                 | 必填   | 说明                                       |
 | --------- | ---------------------------------- | ---- | ---------------------------------------- |
 | context   | Context                            | 是    | 应用运行的上下文。<br>FA模型的应用Context定义见[Context](js-apis-Context.md)。<br>Stage模型的应用Context定义见[Context](js-apis-ability-context.md)。 |
 | bgMode    | [BackgroundMode](#backgroundmode8) | 是    | 向系统申请的后台模式。                              |
@@ -251,7 +251,7 @@ startBackgroundRunning(context: Context, bgMode: BackgroundMode, wantAgent: Want
 
 **参数**：
 
-| 名称       | 类型                                 | 必填   | 说明                                       |
+| 参数名       | 类型                                 | 必填   | 说明                                       |
 | --------- | ---------------------------------- | ---- | ---------------------------------------- |
 | context   | Context                            | 是    | 应用运行的上下文。<br>FA模型的应用Context定义见[Context](js-apis-Context.md)。<br>Stage模型的应用Context定义见[Context](js-apis-ability-context.md)。 |
 | bgMode    | [BackgroundMode](#backgroundmode8) | 是    | 向系统申请的后台模式。                              |
@@ -337,7 +337,7 @@ stopBackgroundRunning(context: Context, callback: AsyncCallback&lt;void&gt;): vo
 
 **参数**：
 
-| 名称      | 类型                        | 必填   | 说明                                       |
+| 参数名      | 类型                        | 必填   | 说明                                       |
 | -------- | ------------------------- | ---- | ---------------------------------------- |
 | context  | Context                   | 是    | 应用运行的上下文。<br>FA模型的应用Context定义见[Context](js-apis-Context.md)。<br>Stage模型的应用Context定义见[Context](js-apis-ability-context.md)。 |
 | callback | AsyncCallback&lt;void&gt; | 是    | callback形式返回启动长时任务的结果。                   |
@@ -393,7 +393,7 @@ stopBackgroundRunning(context: Context): Promise&lt;void&gt;
 
 **参数**：
 
-| 名称     | 类型      | 必填   | 说明                                       |
+| 参数名     | 类型      | 必填   | 说明                                       |
 | ------- | ------- | ---- | ---------------------------------------- |
 | context | Context | 是    | 应用运行的上下文。<br>FA模型的应用Context定义见[Context](js-apis-Context.md)。<br>Stage模型的应用Context定义见[Context](js-apis-ability-context.md)。 |
 
@@ -451,7 +451,7 @@ applyEfficiencyResources(request: [EfficiencyResourcesRequest](#efficiencyresour
 
 **参数**：
 
-| 名称     | 类型      | 必填   | 说明                                       |
+| 参数名     | 类型      | 必填   | 说明                                       |
 | ------- | ------- | ---- | ---------------------------------------- |
 | request | [EfficiencyResourcesRequest](#efficiencyresourcesrequest9) | 是    | 请求的必要信息。包括资源类型，超时时间等信息。详见[EfficiencyResourcesRequest](#efficiencyresourcesrequest9)。 |
 
@@ -515,7 +515,7 @@ backgroundTaskManager.resetAllEfficiencyResources();
 
 **系统能力:** SystemCapability.ResourceSchedule.BackgroundTaskManager.ContinuousTask
 
-| 名称                     | 值  | 描述                    |
+| 名称                     | 值  | 说明                    |
 | ----------------------- | ---- | --------------------- |
 | DATA_TRANSFER           | 1    | 数据传输。                  |
 | AUDIO_PLAYBACK          | 2    | 音频播放。                  |
@@ -552,7 +552,7 @@ backgroundTaskManager.resetAllEfficiencyResources();
 
 **系统API**: 此接口为系统接口。
 
-| 名称                     | 值  | 描述                    |
+| 名称                     | 值  | 说明                    |
 | ----------------------- | ---- | --------------------- |
 | CPU                     | 1    | CPU资源，申请后不被挂起。             |
 | COMMON_EVENT            | 2    | 公共事件，申请后挂起状态下不被代理掉。  |

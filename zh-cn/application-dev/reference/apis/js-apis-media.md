@@ -142,9 +142,9 @@ createVideoRecorder(callback: AsyncCallback\<[VideoRecorder](#videorecorder9)>):
 
 以下错误码的详细介绍请参见[媒体错误码](../errorcodes/errorcode-media.md)
 
-| 错误码ID | 错误信息  |
-| -------- | --------- |
-| 5400101  | No memory |
+| 错误码ID | 错误信息                       |
+| -------- | ------------------------------ |
+| 5400101  | No memory. Return by callback. |
 
 **示例：**
 
@@ -182,9 +182,9 @@ createVideoRecorder(): Promise<[VideoRecorder](#videorecorder9)>
 
 以下错误码的详细介绍请参见[媒体错误码](../errorcodes/errorcode-media.md)
 
-| 错误码ID | 错误信息  |
-| -------- | --------- |
-| 5400101  | No memory |
+| 错误码ID | 错误信息                      |
+| -------- | ----------------------------- |
+| 5400101  | No memory. Return by promise. |
 
 **示例：**
 
@@ -1916,12 +1916,12 @@ prepare(config: VideoRecorderConfig, callback: AsyncCallback\<void>): void;
 
 以下错误码的详细介绍请参见[媒体错误码](../errorcodes/errorcode-media.md)
 
-| 错误码ID | 错误信息           |
-| -------- | ------------------ |
-| 201      | Permission denied  |
-| 401      | Parameter error    |
-| 5400102  | Operate not permit |
-| 5400105  | Service died       |
+| 错误码ID | 错误信息                                |
+| -------- | --------------------------------------- |
+| 201      | Permission denied. Return by callback.  |
+| 401      | Parameter error. Return by callback.    |
+| 5400102  | Operate not permit. Return by callback. |
+| 5400105  | Service died. Return by callback.       |
 
 **示例：**
 
@@ -1986,12 +1986,12 @@ prepare(config: VideoRecorderConfig): Promise\<void>;
 
 以下错误码的详细介绍请参见[媒体错误码](../errorcodes/errorcode-media.md)
 
-| 错误码ID | 错误信息           |
-| -------- | ------------------ |
-| 201      | Permission denied  |
-| 401      | Parameter error    |
-| 5400102  | Operate not permit |
-| 5400105  | Service died       |
+| 错误码ID | 错误信息                               |
+| -------- | -------------------------------------- |
+| 201      | Permission denied. Return by promise.  |
+| 401      | Parameter error. Return by promise.    |
+| 5400102  | Operate not permit. Return by promise. |
+| 5400105  | Service died. Return by promise.       |
 
 **示例：**
 
@@ -2050,11 +2050,11 @@ getInputSurface(callback: AsyncCallback\<string>): void;
 
 以下错误码的详细介绍请参见[媒体错误码](../errorcodes/errorcode-media.md)
 
-| 错误码ID | 错误信息           |
-| -------- | ------------------ |
-| 5400102  | Operate not permit |
-| 5400103  | IO error           |
-| 5400105  | Service died       |
+| 错误码ID | 错误信息                                |
+| -------- | --------------------------------------- |
+| 5400102  | Operate not permit. Return by callback. |
+| 5400103  | IO error. Return by callback.           |
+| 5400105  | Service died. Return by callback.       |
 
 **示例：**
 
@@ -2095,11 +2095,11 @@ getInputSurface(): Promise\<string>;
 
 以下错误码的详细介绍请参见[媒体错误码](../errorcodes/errorcode-media.md)
 
-| 错误码ID | 错误信息           |
-| -------- | ------------------ |
-| 5400102  | Operate not permit |
-| 5400103  | IO error           |
-| 5400105  | Service died       |
+| 错误码ID | 错误信息                               |
+| -------- | -------------------------------------- |
+| 5400102  | Operate not permit. Return by promise. |
+| 5400103  | IO error. Return by promise.           |
+| 5400105  | Service died. Return by promise.       |
 
 **示例：**
 
@@ -2136,11 +2136,11 @@ start(callback: AsyncCallback\<void>): void;
 
 以下错误码的详细介绍请参见[媒体错误码](../errorcodes/errorcode-media.md)
 
-| 错误码ID | 错误信息           |
-| -------- | ------------------ |
-| 5400102  | Operate not permit |
-| 5400103  | IO error           |
-| 5400105  | Service died       |
+| 错误码ID | 错误信息                                |
+| -------- | --------------------------------------- |
+| 5400102  | Operate not permit. Return by callback. |
+| 5400103  | IO error. Return by callback.           |
+| 5400105  | Service died. Return by callback.       |
 
 **示例：**
 
@@ -2177,11 +2177,11 @@ start(): Promise\<void>;
 
 以下错误码的详细介绍请参见[媒体错误码](../errorcodes/errorcode-media.md)
 
-| 错误码ID | 错误信息           |
-| -------- | ------------------ |
-| 5400102  | Operate not permit |
-| 5400103  | IO error           |
-| 5400105  | Service died       |
+| 错误码ID | 错误信息                               |
+| -------- | -------------------------------------- |
+| 5400102  | Operate not permit. Return by promise. |
+| 5400103  | IO error. Return by promise.           |
+| 5400105  | Service died. Return by promise.       |
 
 **示例：**
 
@@ -2216,11 +2216,11 @@ pause(callback: AsyncCallback\<void>): void;
 
 以下错误码的详细介绍请参见[媒体错误码](../errorcodes/errorcode-media.md)
 
-| 错误码ID | 错误信息           |
-| -------- | ------------------ |
-| 5400102  | Operate not permit |
-| 5400103  | IO error           |
-| 5400105  | Service died       |
+| 错误码ID | 错误信息                                |
+| -------- | --------------------------------------- |
+| 5400102  | Operate not permit. Return by callback. |
+| 5400103  | IO error. Return by callback.           |
+| 5400105  | Service died. Return by callback.       |
 
 **示例：**
 
@@ -2257,11 +2257,11 @@ pause(): Promise\<void>;
 
 以下错误码的详细介绍请参见[媒体错误码](../errorcodes/errorcode-media.md)
 
-| 错误码ID | 错误信息           |
-| -------- | ------------------ |
-| 5400102  | Operate not permit |
-| 5400103  | IO error           |
-| 5400105  | Service died       |
+| 错误码ID | 错误信息                               |
+| -------- | -------------------------------------- |
+| 5400102  | Operate not permit. Return by promise. |
+| 5400103  | IO error. Return by promise.           |
+| 5400105  | Service died. Return by promise.       |
 
 **示例：**
 
@@ -2294,11 +2294,11 @@ resume(callback: AsyncCallback\<void>): void;
 
 以下错误码的详细介绍请参见[媒体错误码](../errorcodes/errorcode-media.md)
 
-| 错误码ID | 错误信息           |
-| -------- | ------------------ |
-| 5400102  | Operate not permit |
-| 5400103  | IO error           |
-| 5400105  | Service died       |
+| 错误码ID | 错误信息                                |
+| -------- | --------------------------------------- |
+| 5400102  | Operate not permit. Return by callback. |
+| 5400103  | IO error. Return by callback.           |
+| 5400105  | Service died. Return by callback.       |
 
 **示例：**
 
@@ -2333,11 +2333,11 @@ resume(): Promise\<void>;
 
 以下错误码的详细介绍请参见[媒体错误码](../errorcodes/errorcode-media.md)
 
-| 错误码ID | 错误信息           |
-| -------- | ------------------ |
-| 5400102  | Operate not permit |
-| 5400103  | IO error           |
-| 5400105  | Service died       |
+| 错误码ID | 错误信息                               |
+| -------- | -------------------------------------- |
+| 5400102  | Operate not permit. Return by promise. |
+| 5400103  | IO error. Return by promise.           |
+| 5400105  | Service died. Return by promise.       |
 
 **示例：**
 
@@ -2372,11 +2372,11 @@ stop(callback: AsyncCallback\<void>): void;
 
 以下错误码的详细介绍请参见[媒体错误码](../errorcodes/errorcode-media.md)
 
-| 错误码ID | 错误信息           |
-| -------- | ------------------ |
-| 5400102  | Operate not permit |
-| 5400103  | IO error           |
-| 5400105  | Service died       |
+| 错误码ID | 错误信息                                |
+| -------- | --------------------------------------- |
+| 5400102  | Operate not permit. Return by callback. |
+| 5400103  | IO error. Return by callback.           |
+| 5400105  | Service died. Return by callback.       |
 
 **示例：**
 
@@ -2413,11 +2413,11 @@ stop(): Promise\<void>;
 
 以下错误码的详细介绍请参见[媒体错误码](../errorcodes/errorcode-media.md)
 
-| 错误码ID | 错误信息           |
-| -------- | ------------------ |
-| 5400102  | Operate not permit |
-| 5400103  | IO error           |
-| 5400105  | Service died       |
+| 错误码ID | 错误信息                               |
+| -------- | -------------------------------------- |
+| 5400102  | Operate not permit. Return by promise. |
+| 5400103  | IO error. Return by promise.           |
+| 5400105  | Service died. Return by promise.       |
 
 **示例：**
 
@@ -2450,9 +2450,9 @@ release(callback: AsyncCallback\<void>): void;
 
 以下错误码的详细介绍请参见[媒体错误码](../errorcodes/errorcode-media.md)
 
-| 错误码ID | 错误信息     |
-| -------- | ------------ |
-| 5400105  | Service died |
+| 错误码ID | 错误信息                          |
+| -------- | --------------------------------- |
+| 5400105  | Service died. Return by callback. |
 
 **示例：**
 
@@ -2487,9 +2487,9 @@ release(): Promise\<void>;
 
 以下错误码的详细介绍请参见[媒体错误码](../errorcodes/errorcode-media.md)
 
-| 错误码ID | 错误信息     |
-| -------- | ------------ |
-| 5400105  | Service died |
+| 错误码ID | 错误信息                          |
+| -------- | --------------------------------- |
+| 5400105  | Service died. Return by callback. |
 
 **示例：**
 
@@ -2524,10 +2524,10 @@ reset(callback: AsyncCallback\<void>): void;
 
 以下错误码的详细介绍请参见[媒体错误码](../errorcodes/errorcode-media.md)
 
-| 错误码ID | 错误信息     |
-| -------- | ------------ |
-| 5400103  | IO error     |
-| 5400105  | Service died |
+| 错误码ID | 错误信息                          |
+| -------- | --------------------------------- |
+| 5400103  | IO error. Return by callback.     |
+| 5400105  | Service died. Return by callback. |
 
 **示例：**
 
@@ -2564,10 +2564,10 @@ reset(): Promise\<void>;
 
 以下错误码的详细介绍请参见[媒体错误码](../errorcodes/errorcode-media.md)
 
-| 错误码ID | 错误信息     |
-| -------- | ------------ |
-| 5400103  | IO error     |
-| 5400105  | Service died |
+| 错误码ID | 错误信息                         |
+| -------- | -------------------------------- |
+| 5400103  | IO error. Return by promise.     |
+| 5400105  | Service died. Return by promise. |
 
 **示例：**
 
@@ -2599,10 +2599,10 @@ on(type: 'error', callback: ErrorCallback): void
 
 以下错误码的详细介绍请参见[媒体错误码](../errorcodes/errorcode-media.md)
 
-| 错误码ID | 错误信息     |
-| -------- | ------------ |
-| 5400103  | IO error     |
-| 5400105  | Service died |
+| 错误码ID | 错误信息                          |
+| -------- | --------------------------------- |
+| 5400103  | IO error. Return by callback.     |
+| 5400105  | Service died. Return by callback. |
 
 **示例：**
 
@@ -2618,6 +2618,8 @@ videoRecorder.on('error', (error) => {                                  // 设�
 视频录制的状态机。可通过state属性获取当前状态。
 
 **系统能力：** SystemCapability.Multimedia.Media.VideoRecorder
+
+**系统接口：** 该接口为系统接口
 
 | 名称     | 类型   | 说明                   |
 | -------- | ------ | ---------------------- |

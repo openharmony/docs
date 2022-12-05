@@ -3,16 +3,20 @@
 ## 场景介绍
 基于Service模板的Ability（以下简称“Service”）主要用于后台运行任务（如执行音乐播放、文件下载等），但不提供用户交互界面。Service可由其他应用或Ability启动。即使用户切换到其他应用，Service仍将在后台继续运行。
 
-## 接口说明
+## 生命周期
 
 **表1** Service中相关生命周期API功能介绍
 |接口名|描述|
 |:------|:------|
-|onStart?(): void|该方法在创建Service的时候调用，用于Service的初始化。在Service的整个生命周期只会调用一次，调用时传入的Want应为空。|
+|onStart?(): void|该方法在创建Service的时候调用，用于Service的初始化，在Service的整个生命周期只会调用一次。|
 |onCommand?(want: Want, startId: number): void|在Service创建完成之后调用，该方法在客户端每次启动该Service时都会调用，开发者可以在该方法中做一些调用统计、初始化类的操作。|
 |onConnect?(want: Want): rpc.RemoteObject|在Ability和Service连接时调用。|
 |onDisconnect?(want: Want): void|在Ability与绑定的Service断开连接时调用。|
 |onStop?(): void|在Service销毁时调用。开发者应通过实现此方法来清理资源，如关闭线程、注册的侦听器等。|
+
+onCommand()与onConnect()的区别在于：
+ - onCommand()只能被startAbility或startAbilityForResult触发，客户端每次启动Service均会触发该回调
+ - onConnect()只能被connectAbility触发，客户端每次与Servcie建立新的连接时会触发该回调
 
 ## 开发步骤
 
@@ -22,45 +26,46 @@
    
    创建Service的代码示例如下：
    
-   ```javascript
-   export default {
-       onStart() {
-           console.log('ServiceAbility onStart');
-       },
-       onCommand(want, startId) {
-           console.log('ServiceAbility onCommand');
-       },
-       onConnect(want) {
-           console.log('ServiceAbility OnConnect');
-           return new FirstServiceAbilityStub('test');
-       },
-       onDisconnect(want) {
-           console.log('ServiceAbility OnDisConnect');
-       },
-       onStop() {
-           console.log('ServiceAbility onStop');
-       },
-   }
+   ```ts
+    export default {
+        onStart() {
+            console.log('ServiceAbility onStart');
+        },
+        onCommand(want, startId) {
+            console.log('ServiceAbility onCommand');
+        },
+        onConnect(want) {
+            console.log('ServiceAbility OnConnect');
+            // ServiceAbilityStub的实现在下文给出
+            return new ServiceAbilityStub('test');
+        },
+        onDisconnect(want) {
+            console.log('ServiceAbility OnDisConnect');
+        },
+        onStop() {
+            console.log('ServiceAbility onStop');
+        }
+    }
    ```
 
 2. 注册Service。
 
    Service需要在应用配置文件config.json中进行注册，注册类型type需要设置为service。
    
-   ```javascript
+   ```json
     {
-        "module": {
-            "abilities": [         
-                {    
-                    "name": ".ServiceAbility",
-                    "type": "service",
-                    "visible": true
-                    ...
-                }
-            ]
+      "module": {
+        "abilities": [
+          {
+            "name": ".ServiceAbility",
+            "type": "service",
+            "visible": true
             ...
-        }
+          }
+        ]
         ...
+      }
+      ...
     }
    ```
 
@@ -72,50 +77,61 @@ Ability为开发者提供了startAbility()方法来启动另外一个Ability。�
 
 开发者可以通过构造包含bundleName与abilityName的Want对象来设置目标Service信息。参数的含义如下：
 
-- bundleName：表示包名称。
+- bundleName：表示对端应用的包名称。
 - abilityName：表示待启动的Ability名称。
 
 启动本地设备Service的代码示例如下：
 
-```javascript
-import featureAbility from '@ohos.ability.featureAbility';
-let promise = featureAbility.startAbility(
+```ts
+import featureAbility from '@ohos.ability.featureAbility'
+
+featureAbility.startAbility(
     {
         want:
         {
             bundleName: "com.jstest.service",
-            abilityName: "com.jstest.service.ServiceAbility",
-        },
+            abilityName: "com.jstest.service.ServiceAbility"
+        }
     }
-); 
+).then((err) => {
+    console.log("startService success");
+}).catch (err => {
+    console.log("startService FAILED");
+});
 ```
 
 执行上述代码后，Ability将通过startAbility() 方法来启动Service。
-- 如果Service尚未运行，则系统会先调用onStart()来初始化Service，再回调Service的onCommand()方法来启动Service。
-- 如果Service正在运行，则系统会直接回调Service的onCommand()方法来启动Service。
+- 如果Service尚未运行，则系统会先初始化Service，然后回调onStart()来启动Service，再回调onCommand()方法。
+- 如果Service正在运行，则系统会直接回调Service的onCommand()方法。
 
-启动远端设备Service的代码示例如下，getRemoteDeviceId()方法详见[连接远程Service](#连接远程service当前仅对系统应用开放)：
+启动远端设备Service的代码示例如下，详见[连接远程Service](fa-serviceability.md#连接远程service当前仅对系统应用开放)：
 
-```javascript
-import featureAbility from '@ohos.ability.featureAbility';
-let promise = featureAbility.startAbility(
+```ts
+import featureAbility from '@ohos.ability.featureAbility'
+
+featureAbility.startAbility(
     {
         want:
         {
-            deviceId: getRemoteDeviceId(),    //远端设备Id
+            deviceId: remoteDeviceId,    // 远端设备Id
             bundleName: "com.jstest.service",
-            abilityName: "com.jstest.service.ServiceAbility",
-        },
+            abilityName: "com.jstest.service.ServiceAbility"
+        }
     }
-); 
+).then((err) => {
+    console.log("startService success");
+}).catch (err => {
+    console.log("startService FAILED");
+});
 ```
 
 
 ### 停止Service
 
-  Service一旦创建就会一直保持在后台运行，除非必须回收内存资源，否则系统不会停止或销毁Service。
-
-  
+  常规情况下，Service可以将自己停止，或者被系统停止，具体场景如下：
+   - Service调用particleAbility.terminateSelf()方法将自己停止。
+   - Service所在的应用进程退出，Service将随着进程被回收。
+   - 若Service仅仅是通过connectAbility()方法被访问的（从未执行过onCommand()回调）,那么当最后一个连接被断开后，系统会将Service停止。
 
 ### 连接本地Service
 
@@ -128,280 +144,198 @@ let promise = featureAbility.startAbility(
 
     使用OpenHarmony IDL（OpenHarmony Interface Definition Language）来自动生成对应客户端服务端及IRemoteObject代码，具体示例代码和说明请参考：
 
-   - [`OpenHarmony IDL`：TS开发步骤](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/IDL/idl-guidelines.md#ts%E5%BC%80%E5%8F%91%E6%AD%A5%E9%AA%A4)
+   - [`OpenHarmony IDL`：TS开发步骤](../IDL/idl-guidelines.md#ts)
 
 2. 在对应文件编写代码
 
-    在使用connectAbility()处理回调时，需要传入目标Service的Want与IAbilityConnection的实例。IAbilityConnection提供了以下方法供开发者实现：onConnect()是用来处理连接Service成功的回调，onDisconnect()是用来处理Service异常死亡的回调，onFailed()是用来处理连接Service失败的回调。
+    在使用connectAbility()时，需要传入目标Service的Want与ConnectOptions的实例，其中ConnectOptions封装了三个回调，分别对应不同情况，开发者需自行实现：
+     - onConnect()：用来处理连接Service成功的回调。
+     - onDisconnect()：用来处理Service断连或异常死亡的回调。
+     - onFailed()：用来处理连接Service失败的回调。
 
     创建连接本地Service回调实例的代码示例如下：
 
-    ```javascript
+    ```ts
     import prompt from '@system.prompt'
 
     var option = {
         onConnect: function onConnectCallback(element, proxy) {
-            console.log(`onConnectLocalService onConnectDone`)
+            console.log(`onConnectLocalService onConnectDone`);
             if (proxy === null) {
                 prompt.showToast({
                     message: "Connect service failed"
-                })
-                return
+                });
+                return;
             }
-            let data = rpc.MessageParcel.create()
-            let reply = rpc.MessageParcel.create()
-            let option = new rpc.MessageOption()
-            data.writeInterfaceToken("connect.test.token")
-            proxy.sendRequest(0, data, reply, option)
+            // 得到Service的proxy对象后便可以与其进行通信
+            let data = rpc.MessageParcel.create();
+            let reply = rpc.MessageParcel.create();
+            let option = new rpc.MessageOption();
+            data.writeString("InuptString");
+            proxy.sendRequest(0, data, reply, option);
             prompt.showToast({
                 message: "Connect service success"
-            })
+            });
         },
         onDisconnect: function onDisconnectCallback(element) {
-            console.log(`onConnectLocalService onDisconnectDone element:${element}`)
+            console.log(`onConnectLocalService onDisconnectDone element:${element}`);
             prompt.showToast({
                 message: "Disconnect service success"
-            })
+            });
         },
         onFailed: function onFailedCallback(code) {
-            console.log(`onConnectLocalService onFailed errCode:${code}`)
+            console.log(`onConnectLocalService onFailed errCode:${code}`);
             prompt.showToast({
                 message: "Connect local service onFailed"
-            })
+            });
         }
-    }
+    };
     ```
 
     连接本地Service的代码示例如下：
 
-    ```javascript
-    import featureAbility from '@ohos.ability.featureAbility';
-    let connectId = featureAbility.connectAbility(
-        {
-            bundleName: "com.jstest.service",
-            abilityName: "com.jstest.service.ServiceAbility",
-        },
-        {
-            onConnect: onConnectCallback,
-            onDisconnect: onDisconnectCallback,
-            onFailed: onFailedCallback,
-        },
-    );
+    ```ts
+    import featureAbility from '@ohos.ability.featureAbility'
+
+    let want = {
+        bundleName: "com.jstest.service",
+        abilityName: "com.jstest.service.ServiceAbility"
+    };
+    let connectId = featureAbility.connectAbility(want, option);
     ```
 
-    同时，Service侧也需要在onConnect()时返回IRemoteObject，从而定义与Service进行通信的接口。onConnect()需要返回一个IRemoteObject对象。OpenHarmony提供了IRemoteObject的默认实现，开发者可以通过继承rpc.RemoteObject来创建自定义的实现类。
+    同时，Service侧也需要在onConnect()时返回IRemoteObject，从而定义与Service进行通信的接口。onConnect()需要返回一个IRemoteObject对象。OpenHarmony提供了IRemoteObject的默认实现，开发者可以通过继承rpc.RemoteObject来创建自定义的实现类，从而实现与Service的通信。具体使用方法可参考[ohos.rpc API文档](..\reference\apis\js-apis-rpc.md)。
 
     Service侧把自身的实例返回给调用侧的代码示例如下：
 
-    ```javascript
-    import rpc from "@ohos.rpc";
+    ```ts
+    import rpc from "@ohos.rpc"
 
-    class FirstServiceAbilityStub extends rpc.RemoteObject {
-    constructor(des: any) {
-        if (typeof des === 'string') {
-            super(des)
-        } else {
-            return
+    class ServiceAbilityStub extends rpc.RemoteObject {
+        constructor(des: any) {
+            if (typeof des === 'string') {
+                super(des);
+            } else {
+                console.log("Error, the input param is not string");
+                return;
+            }
+        }
+
+        onRemoteRequest(code: number, data: any, reply: any, option: any) {
+            console.log("onRemoteRequest called");
+            // 可根据code执行不同的业务逻辑
+            if (code === 1) {
+                // 将传入的字符串进行排序
+                let string = data.readString();
+                console.log(`Input string = ${string}`);
+                let result = Array.from(string).sort().join('');
+                console.log(`Output result = ${result}`);
+                reply.writeString(result);
+            } else {
+                console.log(`Unknown request code`);
+            }
+            return true;
         }
     }
 
-    onRemoteRequest(code: number, data: any, reply: any, option: any) {
-        console.log(printLog + ` onRemoteRequest called`)
-        if (code === 1) {
-            let string = data.readString()
-            console.log(printLog + ` string=${string}`)
-            let result = Array.from(string).sort().join('')
-            console.log(printLog + ` result=${result}`)
-            reply.writeString(result)
-        } else {
-            console.log(printLog + ` unknown request code`)
+    export default {
+        onStart() {
+            console.log('ServiceAbility onStart');
+        },
+        onCommand(want, startId) {
+            console.log('ServiceAbility onCommand');
+        },
+        onConnect(want) {
+            console.log('ServiceAbility OnConnect');
+            return new ServiceAbilityStub('ServiceAbilityRemoteObject');
+        },
+        onDisconnect(want) {
+            console.log('ServiceAbility OnDisConnect');
+        },
+        onStop() {
+            console.log('ServiceAbility onStop');
         }
-        return true;
     }
     ```
 
 ### 连接远程Service（当前仅对系统应用开放）
 
->说明：由于DeviceManager的getTrustedDeviceListSync接口仅对系统应用开放，当前连接远程Service仅支持系统应用。
+连接远程Service，构造ConnectOptions的方法与连接本地Serivce相同，区别在于：
+ - 应用需要向用户申请数据同步权限
+ - 目标Service的Want需要包含对端设备的deviceId
 
-如果Service需要与Page Ability或其他应用的Service Ability进行跨设备交互，则须创建用于连接的Connection。Service支持其他Ability通过connectAbility()方法与其进行跨设备连接。
+> 说明：
+> (1) 由于DeviceManager的getTrustedDeviceList等接口仅对系统应用开放，当前仅系统应用支持连接远程Service。
+> (2) API定义可见：[deviceManager模块](..\reference\apis\js-apis-device-manager.md)
+> (3) 参考Demo可见：[分布式Demo](https://gitee.com/openharmony/applications_app_samples/tree/master/ability/DMS)
 
-在使用connectAbility()处理回调时，需要传入目标Service的Want与IAbilityConnection的实例。IAbilityConnection提供了以下方法供开发者实现：onConnect()是用来处理连接Service成功的回调，onDisconnect()是用来处理Service异常死亡的回调，onFailed()是用来处理连接Service失败的回调。
+在跨设备场景下，需要向用户申请数据同步的权限，首先在config.json里配置权限：
 
-创建连接远程Service回调实例的代码示例如下：
-
-```ts
-import prompt from '@system.prompt'
-
-var option = {
-    onConnect: function onConnectCallback(element, proxy) {
-        console.log(`onConnectRemoteService onConnectDone`)
-        if (proxy === null) {
-            prompt.showToast({
-                message: "Connect service failed"
-            })
-            return
-        }
-        let data = rpc.MessageParcel.create()
-        let reply = rpc.MessageParcel.create()
-        let option = new rpc.MessageOption()
-        data.writeInterfaceToken("connect.test.token")
-        proxy.sendRequest(0, data, reply, option)
-        prompt.showToast({
-            message: "Connect service success"
-        })
-    },
-    onDisconnect: function onDisconnectCallback(element) {
-        console.log(`onConnectRemoteService onDisconnectDone element:${element}`)
-        prompt.showToast({
-            message: "Disconnect service success"
-        })
-    },
-    onFailed: function onFailedCallback(code) {
-        console.log(`onConnectRemoteService onFailed errCode:${code}`)
-        prompt.showToast({
-            message: "Connect local service onFailed"
-        })
-    }
+```json
+{
+  ...
+  "module": {
+    ...
+    "reqPermissions": [{
+      "name": "ohos.permission.DISTRIBUTED_DATASYNC"
+    }]
+  }
 }
 ```
 
-目标Service的Want需要包含远程deviceId，该远程deviceId可通过deviceManager获取,具体示例代码如下：
+DISTRIBUTED_DATASYNC权限需要用户授予，在应用启动时需要向用户弹框请求授予权限，示例代码如下：
 
 ```ts
-import deviceManager from '@ohos.distributedHardware.deviceManager';
+import abilityAccessCtrl from "@ohos.abilityAccessCtrl"
+import bundle from '@ohos.bundle'
 
-//dmClass具体实现请参考：相关实例 分布式Demo 章节中的实现
-let dmClass;
-
-function getRemoteDeviceId() {
-    if (typeof dmClass === 'object' && dmClass != null) {
-        let list = dmClass.getTrustedDeviceListSync();
-        if (typeof (list) == 'undefined' || typeof (list.length) == 'undefined') {
-            console.log("MainAbility onButtonClick getRemoteDeviceId err: list is null");
-            return;
-        }
-        console.log("MainAbility onButtonClick getRemoteDeviceId success:" + list[0].deviceId);
-        return list[0].deviceId;
-    } else {
-        console.log("MainAbility onButtonClick getRemoteDeviceId err: dmClass is null");
-    }
-}
-```
-
-连接远程Service的代码示例如下：
-
-```ts
-import featureAbility from '@ohos.ability.featureAbility';
-let connectId = featureAbility.connectAbility(
-    {
-        deviceId: getRemoteDeviceId(),
-        bundleName: "ohos.samples.etsDemo",
-        abilityName: "ohos.samples.etsDemo.ServiceAbility",
-    },
-    {
-        onConnect: onConnectCallback,
-        onDisconnect: onDisconnectCallback,
-        onFailed: onFailedCallback,
-    },
-);
-```
-在跨设备场景下，需要向用户申请数据同步的权限。具体示例代码如下：
-
-```ts
-import abilityAccessCtrl from "@ohos.abilityAccessCtrl";
-import bundle from '@ohos.bundle';
 async function RequestPermission() {
-  console.info('RequestPermission begin');
-  let array: Array<string> = ["ohos.permission.DISTRIBUTED_DATASYNC"];
-  let bundleFlag = 0;
-  let tokenID = undefined;
-  let userID = 100;
-  let appInfo = await bundle.getApplicationInfo('ohos.samples.etsDemo', bundleFlag, userID);
-  tokenID = appInfo.accessTokenId;
-  let atManager = abilityAccessCtrl.createAtManager();
-  let requestPermissions: Array<string> = [];
-  for (let i = 0;i < array.length; i++) {
-    let result = await atManager.verifyAccessToken(tokenID, array[i]);
-    console.info("verifyAccessToken result:" + JSON.stringify(result));
-    if (result == abilityAccessCtrl.GrantStatus.PERMISSION_GRANTED) {
-    } else {
-      requestPermissions.push(array[i]);
+    console.info('RequestPermission begin');
+    let array: Array<string> = ["ohos.permission.DISTRIBUTED_DATASYNC"];
+    let bundleFlag = 0;
+    let tokenID = undefined;
+    let userID = 100;
+    let appInfo = await bundle.getApplicationInfo('ohos.samples.etsDemo', bundleFlag, userID);
+    tokenID = appInfo.accessTokenId;
+    let atManager = abilityAccessCtrl.createAtManager();
+    let requestPermissions: Array<string> = [];
+    for (let i = 0;i < array.length; i++) {
+        let result = await atManager.verifyAccessToken(tokenID, array[i]);
+        console.info("verifyAccessToken result:" + JSON.stringify(result));
+        if (result != abilityAccessCtrl.GrantStatus.PERMISSION_GRANTED) {
+            requestPermissions.push(array[i]);
+        }
     }
-  }
-  console.info("requestPermissions:" + JSON.stringify(requestPermissions));
-  if (requestPermissions.length == 0 || requestPermissions == []) {
-    return;
-  }
-  let context = featureAbility.getContext();
-  context.requestPermissionsFromUser(requestPermissions, 1, (data)=>{
-    console.info("data:" + JSON.stringify(data));
-  });
-  console.info('RequestPermission end');
+    console.info("requestPermissions:" + JSON.stringify(requestPermissions));
+    if (requestPermissions.length == 0 || requestPermissions == []) {
+        return;
+    }
+    let context = featureAbility.getContext();
+    context.requestPermissionsFromUser(requestPermissions, 1, (data)=>{
+        console.info("data:" + JSON.stringify(data));
+    });
+    console.info('RequestPermission end');
 }
 ```
 
-同时，Service侧也需要在onConnect()时返回IRemoteObject，从而定义与Service进行通信的接口。onConnect()需要返回一个IRemoteObject对象。OpenHarmony提供了IRemoteObject的默认实现，开发者可以通过继承rpc.RemoteObject来创建自定义的实现类。
+获取deviceId需要导入`@ohos.distributedHardware.deviceManager`模块，其中提供了getTrustedDeviceList等接口用于获取远端设备的deviceId。
+ - 接口使用可参考[deviceManager模块](..\reference\apis\js-apis-device-manager.md)
+ - 具体实现可参考[分布式Demo](https://gitee.com/openharmony/applications_app_samples/tree/master/ability/DMS)
 
-Service侧把自身的实例返回给调用侧的代码示例如下：
+连接远程Service，只需要在want内定义deviceId即可，示例代码如下：
 
 ```ts
-import rpc from "@ohos.rpc";
+import featureAbility from '@ohos.ability.featureAbility'
 
-class FirstServiceAbilityStub extends rpc.RemoteObject {
-    constructor(des: any) {
-        if (typeof des === 'string') {
-            super(des)
-        } else {
-            return
-        }
-    }
-
-    onRemoteRequest(code: number, data: any, reply: any, option: any) {
-        console.log(printLog + ` onRemoteRequest called`)
-        if (code === 1) {
-            let string = data.readString()
-            console.log(printLog + ` string=${string}`)
-            let result = Array.from(string).sort().join('')
-            console.log(printLog + ` result=${result}`)
-            reply.writeString(result)
-        } else {
-            console.log(printLog + ` unknown request code`)
-        }
-        return true;
-    }
-}
-
-export default {
-    onStart() {
-        console.info('ServiceAbility onStart');
-    },
-    onStop() {
-        console.info('ServiceAbility onStop');
-    },
-    onConnect(want) {
-        console.log("ServiceAbility onConnect");
-        try {
-            let value = JSON.stringify(want);
-            console.log("ServiceAbility want:" + value);
-        } catch(error) {
-            console.log("ServiceAbility error:" + error);
-        }
-        return new FirstServiceAbilityStub("first ts service stub");
-    },
-    onDisconnect(want) {
-        console.log("ServiceAbility onDisconnect");
-        let value = JSON.stringify(want);
-        console.log("ServiceAbility want:" + value);
-    },
-    onCommand(want, startId) {
-        console.info('ServiceAbility onCommand');
-        let value = JSON.stringify(want);
-        console.log("ServiceAbility want:" + value);
-        console.log("ServiceAbility startId:" + startId);
-    }
+let want = {
+    deviceId: remoteDeviceId,
+    bundleName: "com.jstest.service",
+    abilityName: "com.jstest.service.ServiceAbility"
 };
+let connectId = featureAbility.connectAbility(want, option);
 ```
+
+其余实现均与本地连接Service相同，参考[连接本地Service](fa-serviceability.md#连接本地service)的示例代码即可。
 
 ## 相关实例
 

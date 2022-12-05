@@ -9,7 +9,7 @@
 ## 导入模块
 
 ```js
-import wifiext from '@ohos.wifiext';
+import wifiManagerExt from '@ohos.wifiManagerExt';
 ```
 
 ## wifiext.enableHotspot

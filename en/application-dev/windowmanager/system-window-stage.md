@@ -65,46 +65,46 @@ export default class ServiceExtensionAbility1 extends ExtensionContext {
             console.info('Succeeded in creating the volume window.')
             windowClass = data;
             // 2. Change the size and position of the volume bar window, or set its properties such as the background color and brightness.
-            windowClass.moveTo(300, 300, (err, data) => {
+            windowClass.moveTo(300, 300, (err) => {
                 if (err.code) {
                     console.error('Failed to move the window. Cause:' + JSON.stringify(err));
                     return;
                 }
-                console.info('Succeeded in moving the window. Data: ' + JSON.stringify(data));
+                console.info('Succeeded in moving the window.');
             });
-            windowClass.resetSize(500, 1000, (err, data) => {
+            windowClass.resetSize(500, 1000, (err) => {
                 if (err.code) {
                     console.error('Failed to change the window size. Cause:' + JSON.stringify(err));
                     return;
                 }
-                console.info('Succeeded in changing the window size. Data: ' + JSON.stringify(data));
+                console.info('Succeeded in changing the window size.');
             });
             // 3. Load the page content to the volume bar window.
-            windowClass.loadContent("pages/page_volume", (err, data) => {
+            windowClass.loadContent("pages/page_volume", (err) => {
                 if (err.code) {
                     console.error('Failed to load the content. Cause:' + JSON.stringify(err));
                     return;
                 }
-                console.info('Succeeded in loading the content. Data: ' + JSON.stringify(data));
+                console.info('Succeeded in loading the content.');
                 // 3. Show the volume bar window.
-                windowClass.show((err, data) => {
+                windowClass.show((err) => {
                     if (err.code) {
                         console.error('Failed to show the window. Cause:' + JSON.stringify(err));
                         return;
                     }
-                    console.info('Succeeded in showing the window. Data: ' + JSON.stringify(data));
+                    console.info('Succeeded in showing the window.');
                 });
             });
             // 4. Hide or destroy the volume bar window.
             // Hide the volume bar window when a click event outside the window is detected.
             windowClass.on('touchOutside', () => {
                 console.info('touch outside');
-                windowClass.hide((err, data) => {
+                windowClass.hide((err) => {
                     if (err.code) {
                         console.error('Failed to hide the window. Cause: ' + JSON.stringify(err));
                         return;
                     }
-                    console.info('Succeeded in hidinging the window. Data: ' + JSON.stringify(data));
+                    console.info('Succeeded in hidinging the window.');
                 });
             });
         });
