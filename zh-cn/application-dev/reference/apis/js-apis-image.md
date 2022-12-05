@@ -1100,7 +1100,7 @@ CreateIncrementalSource(buf: ArrayBuffer): ImageSource
 
 ```js
 const buf = new ArrayBuffer(96);  //96为需要创建的像素buffer大小，取值为：height * width *4
-const imageSourceIncrementalSApi = image.createIncrementalSource(buf);
+const imageSourceIncrementalSApi = image.CreateIncrementalSource(buf);
 ```
 
 ## image.CreateIncrementalSource<sup>9+</sup>
@@ -1128,7 +1128,7 @@ CreateIncrementalSource(buf: ArrayBuffer, options?: SourceOptions): ImageSource
 
 ```js
 const buf = new ArrayBuffer(96);  //96为需要创建的像素buffer大小，取值为：height * width *4
-const imageSourceIncrementalSApi = image.createIncrementalSource(buf);
+const imageSourceIncrementalSApi = image.CreateIncrementalSource(buf);
 ```
 
 ## ImageSource
