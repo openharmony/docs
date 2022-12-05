@@ -116,6 +116,7 @@ bundle.getApplicationInfo(bundleName, bundleFlags, userId, (err, data) => {
 getApplicationInfo(bundleName: string, bundleFlags: number, callback: AsyncCallback\<ApplicationInfo>): void
 
 以异步方法根据给定的包名获取ApplicationInfo，使用callback形式返回结果。
+
 **需要权限：**
 
 ohos.permission.GET_BUNDLE_INFO_PRIVILEGED 或 ohos.permission.GET_BUNDLE_INFO
