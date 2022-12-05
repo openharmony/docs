@@ -2680,7 +2680,7 @@ struct WebComponent {
           try {
             web_webview.WebStorage.getOrigins((error, origins) => {
               if (error) {
-                console.log('error: ' + error);
+                console.log('error: ' + JSON.stringify(error));
                 return;
               }
               for (let i = 0; i < origins.length; i++) {
@@ -2748,7 +2748,7 @@ struct WebComponent {
                 }
               })
               .catch(e => {
-                console.log('error: ' + e);
+                console.log('error: ' + JSON.stringify(e));
               })
           } catch (error) {
             console.error(`ErrorCode: ${error.code}, Message: ${error.message}`);
@@ -2804,7 +2804,7 @@ struct WebComponent {
           try {
             web_webview.WebStorage.getOriginQuota(this.origin, (error, quota) => {
               if (error) {
-                console.log('error: ' + error);
+                console.log('error: ' + JSON.stringify(error));
                 return;
               }
               console.log('quota: ' + quota);
@@ -2871,7 +2871,7 @@ struct WebComponent {
                 console.log('quota: ' + quota);
               })
               .catch(e => {
-                console.log('error: ' + e);
+                console.log('error: ' + JSON.stringify(e));
               })
           } catch (error) {
             console.error(`ErrorCode: ${error.code}, Message: ${error.message}`);
@@ -2927,7 +2927,7 @@ struct WebComponent {
           try {
             web_webview.WebStorage.getOriginUsage(this.origin, (error, usage) => {
               if (error) {
-                console.log('error: ' + error);
+                console.log('error: ' + JSON.stringify(error));
                 return;
               }
               console.log('usage: ' + usage);
@@ -2994,7 +2994,7 @@ struct WebComponent {
                 console.log('usage: ' + usage);
               })
               .catch(e => {
-                console.log('error: ' + e);
+                console.log('error: ' + JSON.stringify(e));
               })
           } catch (error) {
             console.error(`ErrorCode: ${error.code}, Message: ${error.message}`);
