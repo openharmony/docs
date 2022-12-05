@@ -248,79 +248,9 @@ try {
 
 ## distributedKVStore.createKVManager
 
-createKVManager(config: KVManagerConfig, callback: AsyncCallback&lt;KVManager&gt;): void
+createKVManager(config: KVManagerConfig): KVManager
 
-创建一个KVManager对象实例，用于管理数据库对象，使用callback异步回调。
-
-**系统能力：** SystemCapability.DistributedDataManager.KVStore.Core
-
-**参数：**
-
-| 参数名   | 类型                                     | 必填 | 说明                                                        |
-| -------- | -------------------------------------------- | ---- | ----------------------------------------------------------- |
-| config   | [KVManagerConfig](#kvmanagerconfig)          | 是   | 提供KVManager实例的配置信息，包括调用方的包名和应用上下文。 |
-| callback | AsyncCallback&lt;[KVManager](#kvmanager)&gt; | 是   | 回调函数。返回创建的KVManager对象实例。                     |
-
-**示例：**
-
-Stage模型下的示例：
-
-```js
-import AbilityStage from '@ohos.application.Ability'
-let kvManager;
-export default class MyAbilityStage extends AbilityStage {
-    onCreate() {
-        console.log("MyAbilityStage onCreate")
-        let context = this.context
-        const kvManagerConfig = {
-            context: context,
-            bundleName: 'com.example.datamanagertest',
-        }
-        try {
-            distributedKVStore.createKVManager(kvManagerConfig, function (err, manager) {
-                if (err) {
-                    console.error(`Failed to create KVManager.code is ${err.code},message is ${err.message}`);
-                    return;
-                }
-                console.log("Succeeded in creating KVManager");
-                kvManager = manager;
-            });
-        } catch (e) {
-            console.error(`Failed to create KVManager.code is ${e.code},message is ${e.message}`);
-        }
-    }
-}
-```
-
-FA模型下的示例：
-
-```js
-import featureAbility from '@ohos.ability.featureAbility'
-let kvManager;
-let context = featureAbility.getContext()
-const kvManagerConfig = {
-    context: context,
-    bundleName: 'com.example.datamanagertest',
-}
-try {
-    distributedKVStore.createKVManager(kvManagerConfig, function (err, manager) {
-        if (err) {
-            console.error(`Failed to create KVManager.code is ${err.code},message is ${err.message}`);
-            return;
-        }
-        console.log("Succeeded in creating KVManager");
-        kvManager = manager;
-    });
-} catch (e) {
-    console.error(`Failed to create KVManager.code is ${e.code},message is ${e.message}`);
-}
-```
-
-## distributedKVStore.createKVManager
-
-createKVManager(config: KVManagerConfig): Promise&lt;KVManager&gt;
-
-创建一个KVManager对象实例，用于管理数据库对象，使用Promise异步回调。
+创建一个KVManager对象实例，用于管理数据库对象。
 
 **系统能力：** SystemCapability.DistributedDataManager.KVStore.Core
 
@@ -334,7 +264,7 @@ createKVManager(config: KVManagerConfig): Promise&lt;KVManager&gt;
 
 | 类型                                   | 说明                                       |
 | -------------------------------------- | ------------------------------------------ |
-| Promise&lt;[KVManager](#kvmanager)&gt; | Promise对象。返回创建的KVManager对象实例。 |
+| [KVManager](#kvmanager) | 返回创建的KVManager对象实例。 |
 
 **示例：**
 
@@ -352,12 +282,8 @@ export default class MyAbilityStage extends AbilityStage {
             bundleName: 'com.example.datamanagertest',
         }
         try {
-            distributedKVStore.createKVManager(kvManagerConfig).then((manager) => {
-                console.log("Succeeded in creating KVManager");
-                kvManager = manager;
-            }).catch((err) => {
-                console.error(`Failed to create KVManager.code is ${err.code},message is ${err.message}`);
-            });
+            kvManager = distributedKVStore.createKVManager(kvManagerConfig);
+            console.log("Succeeded in creating KVManager");
         } catch (e) {
             console.error(`Failed to create KVManager.code is ${e.code},message is ${e.message}`);
         }
@@ -376,12 +302,8 @@ const kvManagerConfig = {
     bundleName: 'com.example.datamanagertest',
 }
 try {
-    distributedKVStore.createKVManager(kvManagerConfig).then((manager) => {
-        console.log("Succeeded in creating KVManager");
-        kvManager = manager;
-    }).catch((err) => {
-        console.error(`Failed to create KVManager.code is ${err.code},message is ${err.message}`);
-    });
+    kvManager = distributedKVStore.createKVManager(kvManagerConfig);
+    console.log("Succeeded in creating KVManager");
 } catch (e) {
     console.error(`Failed to create KVManager.code is ${e.code},message is ${e.message}`);
 }
