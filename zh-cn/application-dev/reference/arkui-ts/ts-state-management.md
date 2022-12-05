@@ -136,7 +136,7 @@ Get\<T>(propName: string): T | undefined
 
 | 类型                | 描述            |
 | ----------------- | ------------- |
-| boolean或undefined | 返回属性的属性值是否存在。 |
+| T或undefined | 属性存在返回属性值，属性不存在返回undefined。 |
 
 ```ts
 let simple = AppStorage.Get('simpleProp')
