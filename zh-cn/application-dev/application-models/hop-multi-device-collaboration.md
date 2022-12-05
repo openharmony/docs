@@ -47,7 +47,7 @@
 
 ### 开发步骤
 
-1. 申请`ohos.permission.DISTRIBUTED_DATASYNC`权限，配置方式请参阅[访问控制授权申请指导](../security/accesstoken-guidelines.md#stage%E6%A8%A1%E5%9E%8B)。
+1. 申请`ohos.permission.DISTRIBUTED_DATASYNC`权限，配置方式请参阅[访问控制授权申请指导](../security/accesstoken-guidelines.md#stage模型)。
 
 2. 申请数据同步权限，弹框示例代码。
    
@@ -129,7 +129,7 @@
 
 ### 开发步骤
 
-1. 申请`ohos.permission.DISTRIBUTED_DATASYNC`权限，配置方式请参阅[访问控制授权申请指导](../security/accesstoken-guidelines.md#stage%E6%A8%A1%E5%9E%8B)。
+1. 申请`ohos.permission.DISTRIBUTED_DATASYNC`权限，配置方式请参阅[访问控制授权申请指导](../security/accesstoken-guidelines.md#stage模型)。
 
 2. 申请数据同步权限，弹框示例代码。
    

@@ -176,7 +176,7 @@ export default class EntryAbility extends UIAbility {
   > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
   > 当获取的是其他应用的Context时：
   > 
-  > - 申请`ohos.permission.GET_BUNDLE_INFO_PRIVILEGED`权限，配置方式请参阅[访问控制授权申请指导](../security/accesstoken-guidelines.md#stage%E6%A8%A1%E5%9E%8B)。
+  > - 申请`ohos.permission.GET_BUNDLE_INFO_PRIVILEGED`权限，配置方式请参阅[访问控制授权申请指导](../security/accesstoken-guidelines.md#stage模型)。
   > 
   > - 接口为系统接口，三方应用不支持调用。
 
@@ -199,7 +199,7 @@ export default class EntryAbility extends UIAbility {
   > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
   > 当获取的是其他应用的指定Module的Context时：
   > 
-  > - 申请`ohos.permission.GET_BUNDLE_INFO_PRIVILEGED`权限，配置方式请参阅[访问控制授权申请指导](../security/accesstoken-guidelines.md#stage%E6%A8%A1%E5%9E%8B)。
+  > - 申请`ohos.permission.GET_BUNDLE_INFO_PRIVILEGED`权限，配置方式请参阅[访问控制授权申请指导](../security/accesstoken-guidelines.md#stage模型)。
   > 
   > - 接口为系统接口，三方应用不支持调用。
 

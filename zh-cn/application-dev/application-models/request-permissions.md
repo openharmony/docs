@@ -10,7 +10,7 @@
 在config.json声明需要的权限，在module下添加"reqPermissions"，并写入对应权限。
 
 
-如申请访问日历权限，需要申请`ohos.permission.READ_CALENDAR`权限，配置方式请参阅[访问控制授权申请指导](../security/accesstoken-guidelines.md#stage%E6%A8%A1%E5%9E%8B)。
+如申请访问日历权限，需要申请`ohos.permission.READ_CALENDAR`权限，配置方式请参阅[访问控制授权申请指导](../security/accesstoken-guidelines.md#stage模型)。
 
 
   对应config.json文件的示例代码如下所示：
