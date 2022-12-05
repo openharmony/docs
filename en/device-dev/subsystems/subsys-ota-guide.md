@@ -313,10 +313,10 @@ Upload the update package to the vendor's OTA server.
 
 1. For mini and small systems
 
-   - Call the dynamic library **libhota.so**. The corresponding header files **hota\_partition.h** and **hota\_updater.h** are located in **base\update\ota_lite\interfaces\kits**.
-   - The **libhota.so** source code is located in **base\update\ota_lite\frameworks\source**.
+   - Call the dynamic library **libhota.so**. The corresponding header files **hota\_partition.h** and **hota\_updater.h** are located in **base\update\sys_installer_lite\interfaces\kits**.
+   - The **libhota.so** source code is located in **base\update\sys_installer_lite\frameworks\source**.
    - For details about how to use APIs, see *API Application Scenarios* and update APIs in *API Reference*.
-   - If the development board needs to be adapted, see the **base\update\ota_lite\hals\hal\_hota\_board.h** file.
+   - If the development board needs to be adapted, see the **base\update\sys_installer_lite\hals\hal\_hota\_board.h** file.
 
 2. For the standard system, see the [JS API Reference](../../application-dev/reference/apis/js-apis-update.md) for details.
 
