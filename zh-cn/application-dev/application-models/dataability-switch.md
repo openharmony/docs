@@ -38,5 +38,5 @@ Stage模型三方应用不能对其他三方提供数据，应用需要根据具
 
 | DataAbility业务类型 | 切换DataShareExtension策略 |
 | -------- | -------- |
-| 对三方提供数据 | 需根据业务场景匹配到系统对应的场景化[ExtensionAbility](../reference/apis/js-apis-Bundle.md#extensionabilitytype9)。 |
+| 对三方提供数据 | 需根据业务场景匹配到系统对应的场景化[ExtensionAbility](../reference/apis/js-apis-bundleManager.md#extensionabilitytype)。 |
 | 应用内使用的数据 | 对应用内其他组件提供数据，建议提取公共模块。 |
