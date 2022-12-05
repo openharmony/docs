@@ -167,7 +167,7 @@ WLAN热点信息。
 
 
 | **参数名** | **类型** | **可读** | **可写** | **说明** |
-| -------- | -------- | -------- | -------- |
+| -------- | -------- | -------- | -------- | -------- |
 | ssid | string | 是 | 否 | 热点的SSID，编码格式为UTF-8。 |
 | bssid | string | 是 | 否 | 热点的BSSID。 |
 | capabilities | string | 是 | 否 | 热点能力。 |
@@ -284,7 +284,7 @@ WLAN配置信息。
 
 
 | **参数名** | **类型** | **可读** | **可写** | **说明** |
-| -------- | -------- | -------- | -------- |
+| -------- | -------- | -------- | -------- | -------- |
 | ssid | string | 是 | 否 | 热点的SSID，编码格式为UTF-8。 |
 | bssid | string | 是 | 否 | 热点的BSSID。 |
 | preSharedKey | string | 是 | 否 | 热点的密钥。 |
@@ -325,7 +325,7 @@ IP配置信息。
 **系统能力：** SystemCapability.Communication.WiFi.STA
 
 | **参数名** | **类型** | **可读** | **可写** | **说明** |
-| -------- | -------- | -------- | -------- |
+| -------- | -------- | -------- | -------- | -------- |
 | ipAddress | number | 是 | 否 | IP地址。 |
 | gateway | number | 是 | 否 | 网关。 |
 | dnsServers | number[] | 是 | 否 | DNS服务器。 |
@@ -771,7 +771,7 @@ getLinkedInfo(callback: AsyncCallback&lt;WifiLinkedInfo&gt;): void
 **系统能力：** SystemCapability.Communication.WiFi.STA
 
 | 参数名 | 类型 | 可读 | 可写 | 说明 |
-| -------- | -------- | -------- | -------- |
+| -------- | -------- | -------- | -------- | -------- |
 | ssid | string | 是 | 否 | 热点的SSID，编码格式为UTF-8。 |
 | bssid | string | 是 | 否 | 热点的BSSID。 |
 | networkId | number | 是 | 否 | 网络配置ID。 <br /> **系统接口：** 此接口为系统接口。 |
@@ -950,7 +950,7 @@ IP信息。
 **系统能力：** SystemCapability.Communication.WiFi.STA
 
 | **参数名** | **类型** | **可读** | **可写** | **说明** |
-| -------- | -------- | -------- | -------- |
+| -------- | -------- | -------- | -------- | -------- |
 | ipAddress | number | 是 | 否 | IP地址。 |
 | gateway | number | 是 | 否 | 网关。 |
 | netmask | number | 是 | 否 | 掩码。 |
@@ -1238,7 +1238,7 @@ setHotspotConfig(config: HotspotConfig): boolean
 **系统能力：** SystemCapability.Communication.WiFi.AP.Core
 
 | **参数名** | **类型** | **可读** | **可写** | **说明** |
-| -------- | -------- | -------- | -------- |
+| -------- | -------- | -------- | -------- | -------- |
 | ssid | string | 是 | 否 | 热点的SSID，编码格式为UTF-8。 |
 | securityType | [WifiSecurityType](#wifisecuritytype) | 是 | 否 | 加密类型。 |
 | band | number | 是 | 否 | 热点的带宽。1: 2.4G, 2: 5G, 3: 双模频段 |
@@ -1293,7 +1293,7 @@ getStations(): &nbsp;Array&lt;[StationInfo](#stationinfo7)&gt;
 **系统能力：** SystemCapability.Communication.WiFi.AP.Core
 
 | **参数名** | **类型** | **可读** | **可写** | **说明** |
-| -------- | -------- | -------- | -------- |
+| -------- | -------- | -------- | -------- | -------- |
 | name | string | 是 | 否 | 设备名称。 |
 | macAddress | string | 是 | 否 | MAC地址。 |
 | ipAddress | string | 是 | 否 | IP地址。 |
@@ -1324,7 +1324,7 @@ getP2pLinkedInfo(): Promise&lt;WifiP2pLinkedInfo&gt;
 **系统能力：** SystemCapability.Communication.WiFi.P2P
 
 | 参数名 | 类型 | 可读 | 可写 | 说明 |
-| -------- | -------- | -------- | -------- |
+| -------- | -------- | -------- | -------- | -------- |
 | connectState | [P2pConnectState](#p2pconnectstate8) | 是 | 否 | P2P连接状态。 |
 | isGroupOwner | boolean | 是 | 否 | 是否是群主。 |
 | groupOwnerAddr | string | 是 | 否 | 群组MAC地址。 
@@ -1434,7 +1434,7 @@ getP2pPeerDevices(callback: AsyncCallback&lt;WifiP2pDevice[]&gt;): void
 **系统能力：** SystemCapability.Communication.WiFi.P2P
 
 | 参数名 | 类型 | 可读 | 可写 | 说明 |
-| -------- | -------- | -------- | -------- |
+| -------- | -------- | -------- | -------- | -------- |
 | deviceName | string | 是 | 否 | 设备名称。 |
 | deviceAddress | string | 是 | 否 | 设备MAC地址。 |
 | primaryDeviceType | string | 是 | 否 | 主设备类型。 |
@@ -1521,7 +1521,7 @@ createGroup(config: WifiP2PConfig): boolean
 **系统能力：** SystemCapability.Communication.WiFi.P2P
 
 | 参数名 | 类型 | 可读 | 可写 | 说明 |
-| -------- | -------- | -------- | -------- |
+| -------- | -------- | -------- | -------- | -------- |
 | deviceAddress | string | 是 | 否 | 设备地址。 |
 | netId | number | 是 | 否 | 网络ID。创建群组时-1表示创建临时组，-2表示创建永久组。 |
 | passphrase | string | 是 | 否 | 群组密钥。 |
@@ -1753,7 +1753,7 @@ getP2pGroups(): Promise&lt;Array&lt;WifiP2pGroupInfo&gt;&gt;
 **系统能力：** SystemCapability.Communication.WiFi.P2P
 
 | 参数名 | 类型 | 可读 | 可写 | 说明 |
-| -------- | -------- | -------- | -------- |
+| -------- | -------- | -------- | -------- | -------- |
 | isP2pGo | boolean | 是 | 否 | 是否是群主。 |
 | ownerInfo | [WifiP2pDevice](#wifip2pdevice8) | 是 | 否 | 群组的设备信息。 |
 | passphrase | string | 是 | 否 | 群组密钥。 |
