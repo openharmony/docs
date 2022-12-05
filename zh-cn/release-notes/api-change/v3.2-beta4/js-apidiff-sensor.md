@@ -1,77 +1,214 @@
-| 操作 | 新版本 | 旧版本 | d.ts文件 | 所属子系统 |
-| ---- | ------ | ------ | -------- | ---------- |
-|新增||模块名: ohos.sensor<br>类名: SensorId|@ohos.sensor.d.ts|泛sensor服务|
-|新增||模块名: ohos.sensor<br>类名: SensorId<br>方法名 or 属性名：ACCELEROMETER|@ohos.sensor.d.ts|泛sensor服务|
-|新增||模块名: ohos.sensor<br>类名: SensorId<br>方法名 or 属性名：GYROSCOPE|@ohos.sensor.d.ts|泛sensor服务|
-|新增||模块名: ohos.sensor<br>类名: SensorId<br>方法名 or 属性名：AMBIENT_LIGHT|@ohos.sensor.d.ts|泛sensor服务|
-|新增||模块名: ohos.sensor<br>类名: SensorId<br>方法名 or 属性名：MAGNETIC_FIELD|@ohos.sensor.d.ts|泛sensor服务|
-|新增||模块名: ohos.sensor<br>类名: SensorId<br>方法名 or 属性名：BAROMETER|@ohos.sensor.d.ts|泛sensor服务|
-|新增||模块名: ohos.sensor<br>类名: SensorId<br>方法名 or 属性名：HALL|@ohos.sensor.d.ts|泛sensor服务|
-|新增||模块名: ohos.sensor<br>类名: SensorId<br>方法名 or 属性名：PROXIMITY|@ohos.sensor.d.ts|泛sensor服务|
-|新增||模块名: ohos.sensor<br>类名: SensorId<br>方法名 or 属性名：HUMIDITY|@ohos.sensor.d.ts|泛sensor服务|
-|新增||模块名: ohos.sensor<br>类名: SensorId<br>方法名 or 属性名：ORIENTATION|@ohos.sensor.d.ts|泛sensor服务|
-|新增||模块名: ohos.sensor<br>类名: SensorId<br>方法名 or 属性名：GRAVITY|@ohos.sensor.d.ts|泛sensor服务|
-|新增||模块名: ohos.sensor<br>类名: SensorId<br>方法名 or 属性名：LINEAR_ACCELEROMETER|@ohos.sensor.d.ts|泛sensor服务|
-|新增||模块名: ohos.sensor<br>类名: SensorId<br>方法名 or 属性名：ROTATION_VECTOR|@ohos.sensor.d.ts|泛sensor服务|
-|新增||模块名: ohos.sensor<br>类名: SensorId<br>方法名 or 属性名：AMBIENT_TEMPERATURE|@ohos.sensor.d.ts|泛sensor服务|
-|新增||模块名: ohos.sensor<br>类名: SensorId<br>方法名 or 属性名：MAGNETIC_FIELD_UNCALIBRATED|@ohos.sensor.d.ts|泛sensor服务|
-|新增||模块名: ohos.sensor<br>类名: SensorId<br>方法名 or 属性名：GYROSCOPE_UNCALIBRATED|@ohos.sensor.d.ts|泛sensor服务|
-|新增||模块名: ohos.sensor<br>类名: SensorId<br>方法名 or 属性名：SIGNIFICANT_MOTION|@ohos.sensor.d.ts|泛sensor服务|
-|新增||模块名: ohos.sensor<br>类名: SensorId<br>方法名 or 属性名：PEDOMETER_DETECTION|@ohos.sensor.d.ts|泛sensor服务|
-|新增||模块名: ohos.sensor<br>类名: SensorId<br>方法名 or 属性名：PEDOMETER|@ohos.sensor.d.ts|泛sensor服务|
-|新增||模块名: ohos.sensor<br>类名: SensorId<br>方法名 or 属性名：HEART_RATE|@ohos.sensor.d.ts|泛sensor服务|
-|新增||模块名: ohos.sensor<br>类名: SensorId<br>方法名 or 属性名：WEAR_DETECTION|@ohos.sensor.d.ts|泛sensor服务|
-|新增||模块名: ohos.sensor<br>类名: SensorId<br>方法名 or 属性名：ACCELEROMETER_UNCALIBRATED|@ohos.sensor.d.ts|泛sensor服务|
-|新增||方法名 or 属性名：on<br>函数：function on(type: SensorId.ACCELEROMETER, callback: Callback<AccelerometerResponse>,<br><br>        options?: Options): void;<br>function on(type: SensorId.ACCELEROMETER_UNCALIBRATED, callback: Callback<AccelerometerUncalibratedResponse>,        options?: Options): void;<br>function on(type: SensorId.AMBIENT_LIGHT, callback: Callback<LightResponse>, options?: Options): void;<br>function on(type: SensorId.AMBIENT_TEMPERATURE, callback: Callback<AmbientTemperatureResponse>,        options?: Options): void;<br>function on(type: SensorId.BAROMETER, callback: Callback<BarometerResponse>, options?: Options): void;<br>function on(type: SensorId.GRAVITY, callback: Callback<GravityResponse>,        options?: Options): void;<br>function on(type: SensorId.GYROSCOPE, callback: Callback<GyroscopeResponse>,        options?: Options): void;<br>function on(type: SensorId.GYROSCOPE_UNCALIBRATED, callback: Callback<GyroscopeUncalibratedResponse>,        options?: Options): void;<br>function on(type: SensorId.HALL, callback: Callback<HallResponse>, options?: Options): void;<br>function on(type: SensorId.HEART_RATE, callback: Callback<HeartRateResponse>,        options?: Options): void;<br>function on(type: SensorId.HUMIDITY, callback: Callback<HumidityResponse>,        options?: Options): void;<br>function on(type: SensorId.LINEAR_ACCELEROMETER, callback: Callback<LinearAccelerometerResponse>,        options?: Options): void;<br>function on(type: SensorId.MAGNETIC_FIELD, callback: Callback<MagneticFieldResponse>,        options?: Options): void;<br>function on(type: SensorId.MAGNETIC_FIELD_UNCALIBRATED, callback: Callback<MagneticFieldUncalibratedResponse>,        options?: Options): void;<br>function on(type: SensorId.ORIENTATION, callback: Callback<OrientationResponse>,        options?: Options): void;<br>function on(type: SensorId.PEDOMETER, callback: Callback<PedometerResponse>, options?: Options): void;<br>function on(type: SensorId.PEDOMETER_DETECTION, callback: Callback<PedometerDetectionResponse>,        options?: Options): void;<br>function on(type: SensorId.PROXIMITY, callback: Callback<ProximityResponse>, options?: Options): void;<br>function on(type: SensorId.ROTATION_VECTOR, callback: Callback<RotationVectorResponse>,        options?: Options): void;<br>function on(type: SensorId.SIGNIFICANT_MOTION, callback: Callback<SignificantMotionResponse>,        options?: Options): void;<br>function on(type: SensorId.WEAR_DETECTION, callback: Callback<WearDetectionResponse>,        options?: Options): void;<br>function on(type: SensorType.SENSOR_TYPE_ID_ACCELEROMETER, callback: Callback<AccelerometerResponse>,        options?: Options): void;<br>function on(type: SensorType.SENSOR_TYPE_ID_ACCELEROMETER_UNCALIBRATED, callback: Callback<AccelerometerUncalibratedResponse>,        options?: Options): void;<br>function on(type: SensorType.SENSOR_TYPE_ID_AMBIENT_LIGHT, callback: Callback<LightResponse>,        options?: Options): void;<br>function on(type: SensorType.SENSOR_TYPE_ID_AMBIENT_TEMPERATURE, callback: Callback<AmbientTemperatureResponse>,        options?: Options): void;<br>function on(type: SensorType.SENSOR_TYPE_ID_BAROMETER, callback: Callback<BarometerResponse>,        options?: Options): void;<br>function on(type: SensorType.SENSOR_TYPE_ID_GRAVITY, callback: Callback<GravityResponse>,        options?: Options): void;<br>function on(type: SensorType.SENSOR_TYPE_ID_GYROSCOPE, callback: Callback<GyroscopeResponse>,        options?: Options): void;<br>function on(type: SensorType.SENSOR_TYPE_ID_GYROSCOPE_UNCALIBRATED, callback: Callback<GyroscopeUncalibratedResponse>,        options?: Options): void;<br>function on(type: SensorType.SENSOR_TYPE_ID_HALL, callback: Callback<HallResponse>,        options?: Options): void;<br>function on(type: SensorType.SENSOR_TYPE_ID_HEART_RATE, callback: Callback<HeartRateResponse>,        options?: Options): void;<br>function on(type: SensorType.SENSOR_TYPE_ID_HUMIDITY, callback: Callback<HumidityResponse>,        options?: Options): void;<br>function on(type: SensorType.SENSOR_TYPE_ID_LINEAR_ACCELERATION, callback: Callback<LinearAccelerometerResponse>,        options?: Options): void;<br>function on(type: SensorType.SENSOR_TYPE_ID_MAGNETIC_FIELD, callback: Callback<MagneticFieldResponse>,        options?: Options): void;<br>function on(type: SensorType.SENSOR_TYPE_ID_MAGNETIC_FIELD_UNCALIBRATED, callback: Callback<MagneticFieldUncalibratedResponse>,        options?: Options): void;<br>function on(type: SensorType.SENSOR_TYPE_ID_ORIENTATION, callback: Callback<OrientationResponse>,        options?: Options): void;<br>function on(type: SensorType.SENSOR_TYPE_ID_PEDOMETER, callback: Callback<PedometerResponse>,        options?: Options): void;<br>function on(type: SensorType.SENSOR_TYPE_ID_PEDOMETER_DETECTION, callback: Callback<PedometerDetectionResponse>,        options?: Options): void;<br>function on(type: SensorType.SENSOR_TYPE_ID_PROXIMITY, callback: Callback<ProximityResponse>,        options?: Options): void;<br>function on(type: SensorType.SENSOR_TYPE_ID_ROTATION_VECTOR, callback: Callback<RotationVectorResponse>,        options?: Options): void;<br>function on(type: SensorType.SENSOR_TYPE_ID_SIGNIFICANT_MOTION, callback: Callback<SignificantMotionResponse>,        options?: Options): void;<br>function on(type: SensorType.SENSOR_TYPE_ID_WEAR_DETECTION, callback: Callback<WearDetectionResponse>,        options?: Options): void;<br>function on(type: SensorId.ACCELEROMETER_UNCALIBRATED, callback: Callback<AccelerometerUncalibratedResponse>,        options?: Options): void;<br>function on(type: SensorId.AMBIENT_TEMPERATURE, callback: Callback<AmbientTemperatureResponse>,        options?: Options): void;<br>function on(type: SensorId.GRAVITY, callback: Callback<GravityResponse>,        options?: Options): void;<br>function on(type: SensorId.GYROSCOPE, callback: Callback<GyroscopeResponse>,        options?: Options): void;<br>function on(type: SensorId.GYROSCOPE_UNCALIBRATED, callback: Callback<GyroscopeUncalibratedResponse>,        options?: Options): void;<br>function on(type: SensorId.HEART_RATE, callback: Callback<HeartRateResponse>,        options?: Options): void;<br>function on(type: SensorId.HUMIDITY, callback: Callback<HumidityResponse>,        options?: Options): void;<br>function on(type: SensorId.LINEAR_ACCELEROMETER, callback: Callback<LinearAccelerometerResponse>,        options?: Options): void;<br>function on(type: SensorId.MAGNETIC_FIELD, callback: Callback<MagneticFieldResponse>,        options?: Options): void;<br>function on(type: SensorId.MAGNETIC_FIELD_UNCALIBRATED, callback: Callback<MagneticFieldUncalibratedResponse>,        options?: Options): void;<br>function on(type: SensorId.ORIENTATION, callback: Callback<OrientationResponse>,        options?: Options): void;<br>function on(type: SensorId.PEDOMETER_DETECTION, callback: Callback<PedometerDetectionResponse>,        options?: Options): void;<br>function on(type: SensorId.ROTATION_VECTOR, callback: Callback<RotationVectorResponse>,        options?: Options): void;<br>function on(type: SensorId.SIGNIFICANT_MOTION, callback: Callback<SignificantMotionResponse>,        options?: Options): void;<br>function on(type: SensorId.WEAR_DETECTION, callback: Callback<WearDetectionResponse>,        options?: Options): void;<br>function on(type: SensorType.SENSOR_TYPE_ID_ACCELEROMETER, callback: Callback<AccelerometerResponse>,        options?: Options): void;<br>function on(type: SensorType.SENSOR_TYPE_ID_ACCELEROMETER_UNCALIBRATED, callback: Callback<AccelerometerUncalibratedResponse>,        options?: Options): void;<br>function on(type: SensorType.SENSOR_TYPE_ID_AMBIENT_LIGHT, callback: Callback<LightResponse>,        options?: Options): void;<br>function on(type: SensorType.SENSOR_TYPE_ID_AMBIENT_TEMPERATURE, callback: Callback<AmbientTemperatureResponse>,        options?: Options): void;<br>function on(type: SensorType.SENSOR_TYPE_ID_BAROMETER, callback: Callback<BarometerResponse>,        options?: Options): void;<br>function on(type: SensorType.SENSOR_TYPE_ID_GRAVITY, callback: Callback<GravityResponse>,        options?: Options): void;<br>function on(type: SensorType.SENSOR_TYPE_ID_GYROSCOPE, callback: Callback<GyroscopeResponse>,        options?: Options): void;<br>function on(type: SensorType.SENSOR_TYPE_ID_GYROSCOPE_UNCALIBRATED, callback: Callback<GyroscopeUncalibratedResponse>,        options?: Options): void;<br>function on(type: SensorType.SENSOR_TYPE_ID_HALL, callback: Callback<HallResponse>,        options?: Options): void;<br>function on(type: SensorType.SENSOR_TYPE_ID_HEART_RATE, callback: Callback<HeartRateResponse>,        options?: Options): void;<br>function on(type: SensorType.SENSOR_TYPE_ID_HUMIDITY, callback: Callback<HumidityResponse>,        options?: Options): void;<br>function on(type: SensorType.SENSOR_TYPE_ID_LINEAR_ACCELERATION, callback: Callback<LinearAccelerometerResponse>,        options?: Options): void;<br>function on(type: SensorType.SENSOR_TYPE_ID_MAGNETIC_FIELD, callback: Callback<MagneticFieldResponse>,        options?: Options): void;<br>function on(type: SensorType.SENSOR_TYPE_ID_MAGNETIC_FIELD_UNCALIBRATED, callback: Callback<MagneticFieldUncalibratedResponse>,        options?: Options): void;<br>function on(type: SensorType.SENSOR_TYPE_ID_ORIENTATION, callback: Callback<OrientationResponse>,        options?: Options): void;<br>function on(type: SensorType.SENSOR_TYPE_ID_PEDOMETER, callback: Callback<PedometerResponse>,        options?: Options): void;<br>function on(type: SensorType.SENSOR_TYPE_ID_PEDOMETER_DETECTION, callback: Callback<PedometerDetectionResponse>,        options?: Options): void;<br>function on(type: SensorType.SENSOR_TYPE_ID_PROXIMITY, callback: Callback<ProximityResponse>,        options?: Options): void;<br>function on(type: SensorType.SENSOR_TYPE_ID_ROTATION_VECTOR, callback: Callback<RotationVectorResponse>,        options?: Options): void;<br>function on(type: SensorType.SENSOR_TYPE_ID_SIGNIFICANT_MOTION, callback: Callback<SignificantMotionResponse>,        options?: Options): void;<br>function on(type: SensorType.SENSOR_TYPE_ID_WEAR_DETECTION, callback: Callback<WearDetectionResponse>,        options?: Options): void;|@ohos.sensor.d.ts|泛sensor服务|
-|新增||方法名 or 属性名：once<br>函数：function once(type: SensorId.ACCELEROMETER, callback: Callback<AccelerometerResponse>): void;<br>function once(type: SensorId.ACCELEROMETER_UNCALIBRATED, callback: Callback<AccelerometerUncalibratedResponse>): void;<br>function once(type: SensorId.AMBIENT_LIGHT, callback: Callback<LightResponse>): void;<br>function once(type: SensorId.AMBIENT_TEMPERATURE, callback: Callback<AmbientTemperatureResponse>): void;<br>function once(type: SensorId.BAROMETER, callback: Callback<BarometerResponse>): void;<br>function once(type: SensorId.GRAVITY, callback: Callback<GravityResponse>): void;<br>function once(type: SensorId.GYROSCOPE, callback: Callback<GyroscopeResponse>): void;<br>function once(type: SensorId.GYROSCOPE_UNCALIBRATED, callback: Callback<GyroscopeUncalibratedResponse>): void;<br>function once(type: SensorId.HALL, callback: Callback<HallResponse>): void;<br>function once(type: SensorId.HEART_RATE, callback: Callback<HeartRateResponse>): void;<br>function once(type: SensorId.HUMIDITY, callback: Callback<HumidityResponse>): void;<br>function once(type: SensorId.LINEAR_ACCELEROMETER, callback: Callback<LinearAccelerometerResponse>): void;<br>function once(type: SensorId.MAGNETIC_FIELD, callback: Callback<MagneticFieldResponse>): void;<br>function once(type: SensorId.MAGNETIC_FIELD_UNCALIBRATED, callback: Callback<MagneticFieldUncalibratedResponse>): void;<br>function once(type: SensorId.ORIENTATION, callback: Callback<OrientationResponse>): void;<br>function once(type: SensorId.PEDOMETER, callback: Callback<PedometerResponse>): void;<br>function once(type: SensorId.PEDOMETER_DETECTION, callback: Callback<PedometerDetectionResponse>): void;<br>function once(type: SensorId.PROXIMITY, callback: Callback<ProximityResponse>): void;<br>function once(type: SensorId.ROTATION_VECTOR, callback: Callback<RotationVectorResponse>): void;<br>function once(type: SensorId.SIGNIFICANT_MOTION, callback: Callback<SignificantMotionResponse>): void;<br>function once(type: SensorId.WEAR_DETECTION, callback: Callback<WearDetectionResponse>): void;<br>function once(type: SensorType.SENSOR_TYPE_ID_ACCELEROMETER, callback: Callback<AccelerometerResponse>): void;<br>function once(type: SensorType.SENSOR_TYPE_ID_ACCELEROMETER_UNCALIBRATED, callback: Callback<AccelerometerUncalibratedResponse>): void;<br>function once(type: SensorType.SENSOR_TYPE_ID_AMBIENT_LIGHT, callback: Callback<LightResponse>): void;<br>function once(type: SensorType.SENSOR_TYPE_ID_AMBIENT_TEMPERATURE, callback: Callback<AmbientTemperatureResponse>): void;<br>function once(type: SensorType.SENSOR_TYPE_ID_BAROMETER, callback: Callback<BarometerResponse>): void;<br>function once(type: SensorType.SENSOR_TYPE_ID_GRAVITY, callback: Callback<GravityResponse>): void;<br>function once(type: SensorType.SENSOR_TYPE_ID_GYROSCOPE, callback: Callback<GyroscopeResponse>): void;<br>function once(type: SensorType.SENSOR_TYPE_ID_GYROSCOPE_UNCALIBRATED, callback: Callback<GyroscopeUncalibratedResponse>): void;<br>function once(type: SensorType.SENSOR_TYPE_ID_HALL, callback: Callback<HallResponse>): void;<br>function once(type: SensorType.SENSOR_TYPE_ID_HEART_RATE, callback: Callback<HeartRateResponse>): void;<br>function once(type: SensorType.SENSOR_TYPE_ID_HUMIDITY, callback: Callback<HumidityResponse>): void;<br>function once(type: SensorType.SENSOR_TYPE_ID_LINEAR_ACCELERATION, callback: Callback<LinearAccelerometerResponse>): void;<br>function once(type: SensorType.SENSOR_TYPE_ID_MAGNETIC_FIELD, callback: Callback<MagneticFieldResponse>): void;<br>function once(type: SensorType.SENSOR_TYPE_ID_MAGNETIC_FIELD_UNCALIBRATED, callback: Callback<MagneticFieldUncalibratedResponse>): void;<br>function once(type: SensorType.SENSOR_TYPE_ID_ORIENTATION, callback: Callback<OrientationResponse>): void;<br>function once(type: SensorType.SENSOR_TYPE_ID_PEDOMETER, callback: Callback<PedometerResponse>): void;<br>function once(type: SensorType.SENSOR_TYPE_ID_PEDOMETER_DETECTION, callback: Callback<PedometerDetectionResponse>): void;<br>function once(type: SensorType.SENSOR_TYPE_ID_PROXIMITY, callback: Callback<ProximityResponse>): void;<br>function once(type: SensorType.SENSOR_TYPE_ID_ROTATION_VECTOR, callback: Callback<RotationVectorResponse>): void;<br>function once(type: SensorType.SENSOR_TYPE_ID_SIGNIFICANT_MOTION, callback: Callback<SignificantMotionResponse>): void;<br>function once(type: SensorType.SENSOR_TYPE_ID_WEAR_DETECTION, callback: Callback<WearDetectionResponse>): void;|@ohos.sensor.d.ts|泛sensor服务|
-|新增||方法名 or 属性名：off<br>函数：function off(type: SensorId.ACCELEROMETER, callback?: Callback<AccelerometerResponse>): void;<br>function off(type: SensorId.ACCELEROMETER_UNCALIBRATED, callback?: Callback<AccelerometerUncalibratedResponse>): void;<br>function off(type: SensorId.AMBIENT_LIGHT, callback?: Callback<LightResponse>): void;<br>function off(type: SensorId.AMBIENT_TEMPERATURE, callback?: Callback<AmbientTemperatureResponse>): void;<br>function off(type: SensorId.BAROMETER, callback?: Callback<BarometerResponse>): void;<br>function off(type: SensorId.GRAVITY, callback?: Callback<GravityResponse>): void;<br>function off(type: SensorId.GYROSCOPE, callback?: Callback<GyroscopeResponse>): void;<br>function off(type: SensorId.GYROSCOPE_UNCALIBRATED, callback?: Callback<GyroscopeUncalibratedResponse>): void;<br>function off(type: SensorId.HALL, callback?: Callback<HallResponse>): void;<br>function off(type: SensorId.HEART_RATE, callback?: Callback<HeartRateResponse>): void;<br>function off(type: SensorId.HUMIDITY, callback?: Callback<HumidityResponse>): void;<br>function off(type: SensorId.LINEAR_ACCELEROMETER, callback?: Callback<LinearAccelerometerResponse>): void;<br>function off(type: SensorId.MAGNETIC_FIELD, callback?: Callback<MagneticFieldResponse>): void;<br>function off(type: SensorId.MAGNETIC_FIELD_UNCALIBRATED, callback?: Callback<MagneticFieldUncalibratedResponse>): void;<br>function off(type: SensorId.ORIENTATION, callback?: Callback<OrientationResponse>): void;<br>function off(type: SensorId.PEDOMETER, callback?: Callback<PedometerResponse>): void;<br>function off(type: SensorId.PEDOMETER_DETECTION, callback?: Callback<PedometerDetectionResponse>): void;<br>function off(type: SensorId.PROXIMITY, callback?: Callback<ProximityResponse>): void;<br>function off(type: SensorId.ROTATION_VECTOR, callback?: Callback<RotationVectorResponse>): void;<br>function off(type: SensorId.SIGNIFICANT_MOTION, callback?: Callback<SignificantMotionResponse>): void;<br>function off(type: SensorId.WEAR_DETECTION, callback?: Callback<WearDetectionResponse>): void;<br>function off(type: SensorType.SENSOR_TYPE_ID_ACCELEROMETER, callback?: Callback<AccelerometerResponse>): void;<br>function off(type: SensorType.SENSOR_TYPE_ID_ACCELEROMETER_UNCALIBRATED,        callback?: Callback<AccelerometerUncalibratedResponse>): void;<br>function off(type: SensorType.SENSOR_TYPE_ID_AMBIENT_LIGHT, callback?: Callback<LightResponse>): void;<br>function off(type: SensorType.SENSOR_TYPE_ID_AMBIENT_TEMPERATURE, callback?: Callback<AmbientTemperatureResponse>): void;<br>function off(type: SensorType.SENSOR_TYPE_ID_BAROMETER, callback?: Callback<BarometerResponse>): void;<br>function off(type: SensorType.SENSOR_TYPE_ID_GRAVITY, callback?: Callback<GravityResponse>): void;<br>function off(type: SensorType.SENSOR_TYPE_ID_GYROSCOPE, callback?: Callback<GyroscopeResponse>): void;<br>function off(type: SensorType.SENSOR_TYPE_ID_GYROSCOPE_UNCALIBRATED, callback?: Callback<GyroscopeUncalibratedResponse>): void;<br>function off(type: SensorType.SENSOR_TYPE_ID_HALL, callback?: Callback<HallResponse>): void;<br>function off(type: SensorType.SENSOR_TYPE_ID_HEART_RATE, callback?: Callback<HeartRateResponse>): void;<br>function off(type: SensorType.SENSOR_TYPE_ID_HUMIDITY, callback?: Callback<HumidityResponse>): void;<br>function off(type: SensorType.SENSOR_TYPE_ID_LINEAR_ACCELERATION, callback?: Callback<LinearAccelerometerResponse>): void;<br>function off(type: SensorType.SENSOR_TYPE_ID_MAGNETIC_FIELD, callback?: Callback<MagneticFieldResponse>): void;<br>function off(type: SensorType.SENSOR_TYPE_ID_MAGNETIC_FIELD_UNCALIBRATED, callback?: Callback<MagneticFieldUncalibratedResponse>): void;<br>function off(type: SensorType.SENSOR_TYPE_ID_ORIENTATION, callback?: Callback<OrientationResponse>): void;<br>function off(type: SensorType.SENSOR_TYPE_ID_PEDOMETER, callback?: Callback<PedometerResponse>): void;<br>function off(type: SensorType.SENSOR_TYPE_ID_PEDOMETER_DETECTION, callback?: Callback<PedometerDetectionResponse>): void;<br>function off(type: SensorType.SENSOR_TYPE_ID_PROXIMITY, callback?: Callback<ProximityResponse>): void;<br>function off(type: SensorType.SENSOR_TYPE_ID_ROTATION_VECTOR, callback?: Callback<RotationVectorResponse>): void;<br>function off(type: SensorType.SENSOR_TYPE_ID_SIGNIFICANT_MOTION, callback?: Callback<SignificantMotionResponse>): void;<br>function off(type: SensorType.SENSOR_TYPE_ID_WEAR_DETECTION, callback?: Callback<WearDetectionResponse>): void;<br>function off(type: SensorType.SENSOR_TYPE_ID_ACCELEROMETER_UNCALIBRATED,        callback?: Callback<AccelerometerUncalibratedResponse>): void;|@ohos.sensor.d.ts|泛sensor服务|
-|新增||模块名：ohos.sensor<br>类名:Sensor<br>方法名 or 属性名:sensorId|@ohos.sensor.d.ts|泛sensor服务|
-|新增||模块名：ohos.sensor<br>类名:Sensor<br>方法名 or 属性名:minSamplePeriod|@ohos.sensor.d.ts|泛sensor服务|
-|新增||模块名：ohos.sensor<br>类名:Sensor<br>方法名 or 属性名:maxSamplePeriod|@ohos.sensor.d.ts|泛sensor服务|
-|新增||方法名 or 属性名：getSingleSensor<br>函数：function getSingleSensor(type: SensorId, callback: AsyncCallback<Sensor>): void;<br>function getSingleSensor(type: SensorId): Promise<Sensor>;|@ohos.sensor.d.ts|泛sensor服务|
-|新增||模块名：ohos.sensor<br>类名:sensor<br>方法名 or 属性名:getSensorList|@ohos.sensor.d.ts|泛sensor服务|
-|新增||模块名：ohos.sensor<br>类名:sensor<br>方法名 or 属性名:getGeomagneticField|@ohos.sensor.d.ts|泛sensor服务|
-|新增||模块名：ohos.sensor<br>类名:sensor<br>方法名 or 属性名:getGeomagneticInfo|@ohos.sensor.d.ts|泛sensor服务|
-|新增||模块名：ohos.sensor<br>类名:sensor<br>方法名 or 属性名:getAltitude|@ohos.sensor.d.ts|泛sensor服务|
-|新增||模块名：ohos.sensor<br>类名:sensor<br>方法名 or 属性名:getDeviceAltitude|@ohos.sensor.d.ts|泛sensor服务|
-|新增||模块名：ohos.sensor<br>类名:sensor<br>方法名 or 属性名:getGeomagneticDip|@ohos.sensor.d.ts|泛sensor服务|
-|新增||模块名：ohos.sensor<br>类名:sensor<br>方法名 or 属性名:getInclination|@ohos.sensor.d.ts|泛sensor服务|
-|新增||模块名：ohos.sensor<br>类名:sensor<br>方法名 or 属性名:getAngleModify|@ohos.sensor.d.ts|泛sensor服务|
-|新增||模块名：ohos.sensor<br>类名:sensor<br>方法名 or 属性名:getAngleVariation|@ohos.sensor.d.ts|泛sensor服务|
-|新增||模块名：ohos.sensor<br>类名:sensor<br>方法名 or 属性名:createRotationMatrix|@ohos.sensor.d.ts|泛sensor服务|
-|新增||模块名：ohos.sensor<br>类名:sensor<br>方法名 or 属性名:getRotationMatrix|@ohos.sensor.d.ts|泛sensor服务|
-|新增||模块名：ohos.sensor<br>类名:sensor<br>方法名 or 属性名:transformCoordinateSystem|@ohos.sensor.d.ts|泛sensor服务|
-|新增||模块名：ohos.sensor<br>类名:sensor<br>方法名 or 属性名:transformRotationMatrix|@ohos.sensor.d.ts|泛sensor服务|
-|新增||模块名：ohos.sensor<br>类名:sensor<br>方法名 or 属性名:createQuaternion|@ohos.sensor.d.ts|泛sensor服务|
-|新增||模块名：ohos.sensor<br>类名:sensor<br>方法名 or 属性名:getQuaternion|@ohos.sensor.d.ts|泛sensor服务|
-|新增||模块名：ohos.sensor<br>类名:sensor<br>方法名 or 属性名:getDirection|@ohos.sensor.d.ts|泛sensor服务|
-|新增||模块名：ohos.sensor<br>类名:sensor<br>方法名 or 属性名:getOrientation|@ohos.sensor.d.ts|泛sensor服务|
-|新增||模块名：ohos.sensor<br>类名:SensorType|@ohos.sensor.d.ts|泛sensor服务|
-|新增||模块名：ohos.sensor<br>类名:SensorType<br>方法名 or 属性名:SENSOR_TYPE_ID_ACCELEROMETER|@ohos.sensor.d.ts|泛sensor服务|
-|新增||模块名：ohos.sensor<br>类名:SensorType<br>方法名 or 属性名:SENSOR_TYPE_ID_GYROSCOPE|@ohos.sensor.d.ts|泛sensor服务|
-|新增||模块名：ohos.sensor<br>类名:SensorType<br>方法名 or 属性名:SENSOR_TYPE_ID_AMBIENT_LIGHT|@ohos.sensor.d.ts|泛sensor服务|
-|新增||模块名：ohos.sensor<br>类名:SensorType<br>方法名 or 属性名:SENSOR_TYPE_ID_MAGNETIC_FIELD|@ohos.sensor.d.ts|泛sensor服务|
-|新增||模块名：ohos.sensor<br>类名:SensorType<br>方法名 or 属性名:SENSOR_TYPE_ID_BAROMETER|@ohos.sensor.d.ts|泛sensor服务|
-|新增||模块名：ohos.sensor<br>类名:SensorType<br>方法名 or 属性名:SENSOR_TYPE_ID_HALL|@ohos.sensor.d.ts|泛sensor服务|
-|新增||模块名：ohos.sensor<br>类名:SensorType<br>方法名 or 属性名:SENSOR_TYPE_ID_PROXIMITY|@ohos.sensor.d.ts|泛sensor服务|
-|新增||模块名：ohos.sensor<br>类名:SensorType<br>方法名 or 属性名:SENSOR_TYPE_ID_HUMIDITY|@ohos.sensor.d.ts|泛sensor服务|
-|新增||模块名：ohos.sensor<br>类名:SensorType<br>方法名 or 属性名:SENSOR_TYPE_ID_ORIENTATION|@ohos.sensor.d.ts|泛sensor服务|
-|新增||模块名：ohos.sensor<br>类名:SensorType<br>方法名 or 属性名:SENSOR_TYPE_ID_GRAVITY|@ohos.sensor.d.ts|泛sensor服务|
-|新增||模块名：ohos.sensor<br>类名:SensorType<br>方法名 or 属性名:SENSOR_TYPE_ID_ROTATION_VECTOR|@ohos.sensor.d.ts|泛sensor服务|
-|新增||模块名：ohos.sensor<br>类名:SensorType<br>方法名 or 属性名:SENSOR_TYPE_ID_AMBIENT_TEMPERATURE|@ohos.sensor.d.ts|泛sensor服务|
-|新增||模块名：ohos.sensor<br>类名:SensorType<br>方法名 or 属性名:SENSOR_TYPE_ID_MAGNETIC_FIELD_UNCALIBRATED|@ohos.sensor.d.ts|泛sensor服务|
-|新增||模块名：ohos.sensor<br>类名:SensorType<br>方法名 or 属性名:SENSOR_TYPE_ID_GYROSCOPE_UNCALIBRATED|@ohos.sensor.d.ts|泛sensor服务|
-|新增||模块名：ohos.sensor<br>类名:SensorType<br>方法名 or 属性名:SENSOR_TYPE_ID_SIGNIFICANT_MOTION|@ohos.sensor.d.ts|泛sensor服务|
-|新增||模块名：ohos.sensor<br>类名:SensorType<br>方法名 or 属性名:SENSOR_TYPE_ID_PEDOMETER_DETECTION|@ohos.sensor.d.ts|泛sensor服务|
-|新增||模块名：ohos.sensor<br>类名:SensorType<br>方法名 or 属性名:SENSOR_TYPE_ID_PEDOMETER|@ohos.sensor.d.ts|泛sensor服务|
-|新增||模块名：ohos.sensor<br>类名:SensorType<br>方法名 or 属性名:SENSOR_TYPE_ID_WEAR_DETECTION|@ohos.sensor.d.ts|泛sensor服务|
-|新增||模块名：ohos.sensor<br>类名:SensorType<br>方法名 or 属性名:SENSOR_TYPE_ID_ACCELEROMETER_UNCALIBRATED|@ohos.sensor.d.ts|泛sensor服务|
-|新增||方法名 or 属性名：vibrate<br>函数：function vibrate(duration: number, callback?: AsyncCallback<void>): void;<br>function vibrate(duration: number): Promise<void>;<br>function vibrate(effectId: EffectId): Promise<void>;<br>function vibrate(effectId: EffectId, callback?: AsyncCallback<void>): void;|@ohos.vibrator.d.ts|泛sensor服务|
-|新增||模块名：ohos.vibrator<br>类名:vibrator<br>方法名 or 属性名:startVibration|@ohos.vibrator.d.ts|泛sensor服务|
-|新增||模块名：ohos.vibrator<br>类名:vibrator<br>方法名 or 属性名:stopVibration|@ohos.vibrator.d.ts|泛sensor服务|
-|新增||模块名：ohos.vibrator<br>类名:vibrator<br>方法名 or 属性名:stop|@ohos.vibrator.d.ts|泛sensor服务|
-|删除|模块名：ohos.sensor<br>类名:Sensor<br>方法名 or 属性名:sensorTypeId||@ohos.sensor.d.ts|泛sensor服务|
-|删除|模块名：ohos.sensor<br>类名:sensor<br>方法名 or 属性名:getSensorLists||@ohos.sensor.d.ts|泛sensor服务|
-|删除|模块名：ohos.sensor<br>类名:SensorType<br>方法名 or 属性名:SENSOR_TYPE_ID_LINEAR_ACCELEROMETER||@ohos.sensor.d.ts|泛sensor服务|
-|删除|模块名：ohos.sensor<br>类名:SensorType<br>方法名 or 属性名:SENSOR_TYPE_ID_HEART_BEAT_RATE||@ohos.sensor.d.ts|泛sensor服务|
-|废弃版本有变化|方法名 or 属性名：vibrate<br>废弃版本：|方法名 or 属性名：vibrate<br><br>废弃版本：9<br>代替接口vibrator|@ohos.vibrator.d.ts|泛sensor服务|
+| 操作 | 新版本 | 旧版本 | d.ts文件 |
+| ---- | ------ | ------ | -------- |
+|新增||模块名: ohos.sensor<br>类名: SensorId|@ohos.sensor.d.ts|
+|新增||模块名: ohos.sensor<br>类名: SensorId<br>方法名 or 属性名：ACCELEROMETER|@ohos.sensor.d.ts|
+|新增||模块名: ohos.sensor<br>类名: SensorId<br>方法名 or 属性名：GYROSCOPE|@ohos.sensor.d.ts|
+|新增||模块名: ohos.sensor<br>类名: SensorId<br>方法名 or 属性名：AMBIENT_LIGHT|@ohos.sensor.d.ts|
+|新增||模块名: ohos.sensor<br>类名: SensorId<br>方法名 or 属性名：MAGNETIC_FIELD|@ohos.sensor.d.ts|
+|新增||模块名: ohos.sensor<br>类名: SensorId<br>方法名 or 属性名：BAROMETER|@ohos.sensor.d.ts|
+|新增||模块名: ohos.sensor<br>类名: SensorId<br>方法名 or 属性名：HALL|@ohos.sensor.d.ts|
+|新增||模块名: ohos.sensor<br>类名: SensorId<br>方法名 or 属性名：PROXIMITY|@ohos.sensor.d.ts|
+|新增||模块名: ohos.sensor<br>类名: SensorId<br>方法名 or 属性名：HUMIDITY|@ohos.sensor.d.ts|
+|新增||模块名: ohos.sensor<br>类名: SensorId<br>方法名 or 属性名：ORIENTATION|@ohos.sensor.d.ts|
+|新增||模块名: ohos.sensor<br>类名: SensorId<br>方法名 or 属性名：GRAVITY|@ohos.sensor.d.ts|
+|新增||模块名: ohos.sensor<br>类名: SensorId<br>方法名 or 属性名：LINEAR_ACCELEROMETER|@ohos.sensor.d.ts|
+|新增||模块名: ohos.sensor<br>类名: SensorId<br>方法名 or 属性名：ROTATION_VECTOR|@ohos.sensor.d.ts|
+|新增||模块名: ohos.sensor<br>类名: SensorId<br>方法名 or 属性名：AMBIENT_TEMPERATURE|@ohos.sensor.d.ts|
+|新增||模块名: ohos.sensor<br>类名: SensorId<br>方法名 or 属性名：MAGNETIC_FIELD_UNCALIBRATED|@ohos.sensor.d.ts|
+|新增||模块名: ohos.sensor<br>类名: SensorId<br>方法名 or 属性名：GYROSCOPE_UNCALIBRATED|@ohos.sensor.d.ts|
+|新增||模块名: ohos.sensor<br>类名: SensorId<br>方法名 or 属性名：SIGNIFICANT_MOTION|@ohos.sensor.d.ts|
+|新增||模块名: ohos.sensor<br>类名: SensorId<br>方法名 or 属性名：PEDOMETER_DETECTION|@ohos.sensor.d.ts|
+|新增||模块名: ohos.sensor<br>类名: SensorId<br>方法名 or 属性名：PEDOMETER|@ohos.sensor.d.ts|
+|新增||模块名: ohos.sensor<br>类名: SensorId<br>方法名 or 属性名：HEART_RATE|@ohos.sensor.d.ts|
+|新增||模块名: ohos.sensor<br>类名: SensorId<br>方法名 or 属性名：WEAR_DETECTION|@ohos.sensor.d.ts|
+|新增||模块名: ohos.sensor<br>类名: SensorId<br>方法名 or 属性名：ACCELEROMETER_UNCALIBRATED|@ohos.sensor.d.ts|
+|新增||模块名：ohos.sensor<br>类名:sensor<br>方法名 or 属性名:on_SensorId_ACCELEROMETER|@ohos.sensor.d.ts|
+|新增||模块名：ohos.sensor<br>类名:sensor<br>方法名 or 属性名:on_SensorId_ACCELEROMETER_UNCALIBRATED|@ohos.sensor.d.ts|
+|新增||模块名：ohos.sensor<br>类名:sensor<br>方法名 or 属性名:on_SensorId_AMBIENT_LIGHT|@ohos.sensor.d.ts|
+|新增||模块名：ohos.sensor<br>类名:sensor<br>方法名 or 属性名:on_SensorId_AMBIENT_TEMPERATURE|@ohos.sensor.d.ts|
+|新增||模块名：ohos.sensor<br>类名:sensor<br>方法名 or 属性名:on_SensorId_BAROMETER|@ohos.sensor.d.ts|
+|新增||模块名：ohos.sensor<br>类名:sensor<br>方法名 or 属性名:on_SensorId_GRAVITY|@ohos.sensor.d.ts|
+|新增||模块名：ohos.sensor<br>类名:sensor<br>方法名 or 属性名:on_SensorId_GYROSCOPE|@ohos.sensor.d.ts|
+|新增||模块名：ohos.sensor<br>类名:sensor<br>方法名 or 属性名:on_SensorId_GYROSCOPE_UNCALIBRATED|@ohos.sensor.d.ts|
+|新增||模块名：ohos.sensor<br>类名:sensor<br>方法名 or 属性名:on_SensorId_HALL|@ohos.sensor.d.ts|
+|新增||模块名：ohos.sensor<br>类名:sensor<br>方法名 or 属性名:on_SensorId_HEART_RATE|@ohos.sensor.d.ts|
+|新增||模块名：ohos.sensor<br>类名:sensor<br>方法名 or 属性名:on_SensorId_HUMIDITY|@ohos.sensor.d.ts|
+|新增||模块名：ohos.sensor<br>类名:sensor<br>方法名 or 属性名:on_SensorId_LINEAR_ACCELEROMETER|@ohos.sensor.d.ts|
+|新增||模块名：ohos.sensor<br>类名:sensor<br>方法名 or 属性名:on_SensorId_MAGNETIC_FIELD|@ohos.sensor.d.ts|
+|新增||模块名：ohos.sensor<br>类名:sensor<br>方法名 or 属性名:on_SensorId_MAGNETIC_FIELD_UNCALIBRATED|@ohos.sensor.d.ts|
+|新增||模块名：ohos.sensor<br>类名:sensor<br>方法名 or 属性名:on_SensorId_ORIENTATION|@ohos.sensor.d.ts|
+|新增||模块名：ohos.sensor<br>类名:sensor<br>方法名 or 属性名:on_SensorId_PEDOMETER|@ohos.sensor.d.ts|
+|新增||模块名：ohos.sensor<br>类名:sensor<br>方法名 or 属性名:on_SensorId_PEDOMETER_DETECTION|@ohos.sensor.d.ts|
+|新增||模块名：ohos.sensor<br>类名:sensor<br>方法名 or 属性名:on_SensorId_PROXIMITY|@ohos.sensor.d.ts|
+|新增||模块名：ohos.sensor<br>类名:sensor<br>方法名 or 属性名:on_SensorId_ROTATION_VECTOR|@ohos.sensor.d.ts|
+|新增||模块名：ohos.sensor<br>类名:sensor<br>方法名 or 属性名:on_SensorId_SIGNIFICANT_MOTION|@ohos.sensor.d.ts|
+|新增||模块名：ohos.sensor<br>类名:sensor<br>方法名 or 属性名:on_SensorId_WEAR_DETECTION|@ohos.sensor.d.ts|
+|新增||方法名 or 属性名：once<br>函数：function once(type: SensorId.ACCELEROMETER, callback: Callback<AccelerometerResponse>): void;|@ohos.sensor.d.ts|
+|新增||方法名 or 属性名：once<br>函数：function once(type: SensorId.ACCELEROMETER_UNCALIBRATED, callback: Callback<AccelerometerUncalibratedResponse>): void;|@ohos.sensor.d.ts|
+|新增||方法名 or 属性名：once<br>函数：function once(type: SensorId.AMBIENT_LIGHT, callback: Callback<LightResponse>): void;|@ohos.sensor.d.ts|
+|新增||方法名 or 属性名：once<br>函数：function once(type: SensorId.AMBIENT_TEMPERATURE, callback: Callback<AmbientTemperatureResponse>): void;|@ohos.sensor.d.ts|
+|新增||方法名 or 属性名：once<br>函数：function once(type: SensorId.BAROMETER, callback: Callback<BarometerResponse>): void;|@ohos.sensor.d.ts|
+|新增||方法名 or 属性名：once<br>函数：function once(type: SensorId.GRAVITY, callback: Callback<GravityResponse>): void;|@ohos.sensor.d.ts|
+|新增||方法名 or 属性名：once<br>函数：function once(type: SensorId.GYROSCOPE, callback: Callback<GyroscopeResponse>): void;|@ohos.sensor.d.ts|
+|新增||方法名 or 属性名：once<br>函数：function once(type: SensorId.GYROSCOPE_UNCALIBRATED, callback: Callback<GyroscopeUncalibratedResponse>): void;|@ohos.sensor.d.ts|
+|新增||方法名 or 属性名：once<br>函数：function once(type: SensorId.HALL, callback: Callback<HallResponse>): void;|@ohos.sensor.d.ts|
+|新增||方法名 or 属性名：once<br>函数：function once(type: SensorId.HEART_RATE, callback: Callback<HeartRateResponse>): void;|@ohos.sensor.d.ts|
+|新增||方法名 or 属性名：once<br>函数：function once(type: SensorId.HUMIDITY, callback: Callback<HumidityResponse>): void;|@ohos.sensor.d.ts|
+|新增||方法名 or 属性名：once<br>函数：function once(type: SensorId.LINEAR_ACCELEROMETER, callback: Callback<LinearAccelerometerResponse>): void;|@ohos.sensor.d.ts|
+|新增||方法名 or 属性名：once<br>函数：function once(type: SensorId.MAGNETIC_FIELD, callback: Callback<MagneticFieldResponse>): void;|@ohos.sensor.d.ts|
+|新增||方法名 or 属性名：once<br>函数：function once(type: SensorId.MAGNETIC_FIELD_UNCALIBRATED, callback: Callback<MagneticFieldUncalibratedResponse>): void;|@ohos.sensor.d.ts|
+|新增||方法名 or 属性名：once<br>函数：function once(type: SensorId.ORIENTATION, callback: Callback<OrientationResponse>): void;|@ohos.sensor.d.ts|
+|新增||方法名 or 属性名：once<br>函数：function once(type: SensorId.PEDOMETER, callback: Callback<PedometerResponse>): void;|@ohos.sensor.d.ts|
+|新增||方法名 or 属性名：once<br>函数：function once(type: SensorId.PEDOMETER_DETECTION, callback: Callback<PedometerDetectionResponse>): void;|@ohos.sensor.d.ts|
+|新增||方法名 or 属性名：once<br>函数：function once(type: SensorId.PROXIMITY, callback: Callback<ProximityResponse>): void;|@ohos.sensor.d.ts|
+|新增||方法名 or 属性名：once<br>函数：function once(type: SensorId.ROTATION_VECTOR, callback: Callback<RotationVectorResponse>): void;|@ohos.sensor.d.ts|
+|新增||方法名 or 属性名：once<br>函数：function once(type: SensorId.SIGNIFICANT_MOTION, callback: Callback<SignificantMotionResponse>): void;|@ohos.sensor.d.ts|
+|新增||方法名 or 属性名：once<br>函数：function once(type: SensorId.WEAR_DETECTION, callback: Callback<WearDetectionResponse>): void;|@ohos.sensor.d.ts|
+|新增||模块名：ohos.sensor<br>类名:sensor<br>方法名 or 属性名:off_SensorId_ACCELEROMETER|@ohos.sensor.d.ts|
+|新增||模块名：ohos.sensor<br>类名:sensor<br>方法名 or 属性名:off_SensorId_ACCELEROMETER_UNCALIBRATED|@ohos.sensor.d.ts|
+|新增||模块名：ohos.sensor<br>类名:sensor<br>方法名 or 属性名:off_SensorId_AMBIENT_LIGHT|@ohos.sensor.d.ts|
+|新增||模块名：ohos.sensor<br>类名:sensor<br>方法名 or 属性名:off_SensorId_AMBIENT_TEMPERATURE|@ohos.sensor.d.ts|
+|新增||模块名：ohos.sensor<br>类名:sensor<br>方法名 or 属性名:off_SensorId_BAROMETER|@ohos.sensor.d.ts|
+|新增||模块名：ohos.sensor<br>类名:sensor<br>方法名 or 属性名:off_SensorId_GRAVITY|@ohos.sensor.d.ts|
+|新增||模块名：ohos.sensor<br>类名:sensor<br>方法名 or 属性名:off_SensorId_GYROSCOPE|@ohos.sensor.d.ts|
+|新增||模块名：ohos.sensor<br>类名:sensor<br>方法名 or 属性名:off_SensorId_GYROSCOPE_UNCALIBRATED|@ohos.sensor.d.ts|
+|新增||模块名：ohos.sensor<br>类名:sensor<br>方法名 or 属性名:off_SensorId_HALL|@ohos.sensor.d.ts|
+|新增||模块名：ohos.sensor<br>类名:sensor<br>方法名 or 属性名:off_SensorId_HEART_RATE|@ohos.sensor.d.ts|
+|新增||模块名：ohos.sensor<br>类名:sensor<br>方法名 or 属性名:off_SensorId_HUMIDITY|@ohos.sensor.d.ts|
+|新增||模块名：ohos.sensor<br>类名:sensor<br>方法名 or 属性名:off_SensorId_LINEAR_ACCELEROMETER|@ohos.sensor.d.ts|
+|新增||模块名：ohos.sensor<br>类名:sensor<br>方法名 or 属性名:off_SensorId_MAGNETIC_FIELD|@ohos.sensor.d.ts|
+|新增||模块名：ohos.sensor<br>类名:sensor<br>方法名 or 属性名:off_SensorId_MAGNETIC_FIELD_UNCALIBRATED|@ohos.sensor.d.ts|
+|新增||模块名：ohos.sensor<br>类名:sensor<br>方法名 or 属性名:off_SensorId_ORIENTATION|@ohos.sensor.d.ts|
+|新增||模块名：ohos.sensor<br>类名:sensor<br>方法名 or 属性名:off_SensorId_PEDOMETER|@ohos.sensor.d.ts|
+|新增||模块名：ohos.sensor<br>类名:sensor<br>方法名 or 属性名:off_SensorId_PEDOMETER_DETECTION|@ohos.sensor.d.ts|
+|新增||模块名：ohos.sensor<br>类名:sensor<br>方法名 or 属性名:off_SensorId_PROXIMITY|@ohos.sensor.d.ts|
+|新增||模块名：ohos.sensor<br>类名:sensor<br>方法名 or 属性名:off_SensorId_ROTATION_VECTOR|@ohos.sensor.d.ts|
+|新增||模块名：ohos.sensor<br>类名:sensor<br>方法名 or 属性名:off_SensorId_SIGNIFICANT_MOTION|@ohos.sensor.d.ts|
+|新增||模块名：ohos.sensor<br>类名:sensor<br>方法名 or 属性名:off_SensorId_WEAR_DETECTION|@ohos.sensor.d.ts|
+|新增||模块名：ohos.sensor<br>类名:Sensor<br>方法名 or 属性名:sensorId|@ohos.sensor.d.ts|
+|新增||模块名：ohos.sensor<br>类名:Sensor<br>方法名 or 属性名:minSamplePeriod|@ohos.sensor.d.ts|
+|新增||模块名：ohos.sensor<br>类名:Sensor<br>方法名 or 属性名:maxSamplePeriod|@ohos.sensor.d.ts|
+|新增||方法名 or 属性名：getSingleSensor<br>函数：function getSingleSensor(type: SensorId, callback: AsyncCallback<Sensor>): void;|@ohos.sensor.d.ts|
+|新增||方法名 or 属性名：getSingleSensor<br>函数：function getSingleSensor(type: SensorId): Promise<Sensor>;|@ohos.sensor.d.ts|
+|新增||模块名：ohos.sensor<br>类名:sensor<br>方法名 or 属性名:getSensorList|@ohos.sensor.d.ts|
+|新增||模块名：ohos.sensor<br>类名:sensor<br>方法名 or 属性名:getSensorList|@ohos.sensor.d.ts|
+|新增||模块名：ohos.sensor<br>类名:sensor<br>方法名 or 属性名:getGeomagneticInfo|@ohos.sensor.d.ts|
+|新增||模块名：ohos.sensor<br>类名:sensor<br>方法名 or 属性名:getGeomagneticInfo|@ohos.sensor.d.ts|
+|新增||模块名：ohos.sensor<br>类名:sensor<br>方法名 or 属性名:getDeviceAltitude|@ohos.sensor.d.ts|
+|新增||模块名：ohos.sensor<br>类名:sensor<br>方法名 or 属性名:getDeviceAltitude|@ohos.sensor.d.ts|
+|新增||模块名：ohos.sensor<br>类名:sensor<br>方法名 or 属性名:getInclination|@ohos.sensor.d.ts|
+|新增||模块名：ohos.sensor<br>类名:sensor<br>方法名 or 属性名:getInclination|@ohos.sensor.d.ts|
+|新增||模块名：ohos.sensor<br>类名:sensor<br>方法名 or 属性名:getAngleVariation|@ohos.sensor.d.ts|
+|新增||模块名：ohos.sensor<br>类名:sensor<br>方法名 or 属性名:getAngleVariation|@ohos.sensor.d.ts|
+|新增||模块名：ohos.sensor<br>类名:sensor<br>方法名 or 属性名:getRotationMatrix|@ohos.sensor.d.ts|
+|新增||模块名：ohos.sensor<br>类名:sensor<br>方法名 or 属性名:getRotationMatrix|@ohos.sensor.d.ts|
+|新增||模块名：ohos.sensor<br>类名:sensor<br>方法名 or 属性名:transformRotationMatrix|@ohos.sensor.d.ts|
+|新增||模块名：ohos.sensor<br>类名:sensor<br>方法名 or 属性名:transformRotationMatrix|@ohos.sensor.d.ts|
+|新增||模块名：ohos.sensor<br>类名:sensor<br>方法名 or 属性名:getQuaternion|@ohos.sensor.d.ts|
+|新增||模块名：ohos.sensor<br>类名:sensor<br>方法名 or 属性名:getQuaternion|@ohos.sensor.d.ts|
+|新增||模块名：ohos.sensor<br>类名:sensor<br>方法名 or 属性名:getOrientation|@ohos.sensor.d.ts|
+|新增||模块名：ohos.sensor<br>类名:sensor<br>方法名 or 属性名:getOrientation|@ohos.sensor.d.ts|
+|新增||模块名：ohos.sensor<br>类名:sensor<br>方法名 or 属性名:getRotationMatrix|@ohos.sensor.d.ts|
+|新增||模块名：ohos.sensor<br>类名:sensor<br>方法名 or 属性名:getRotationMatrix|@ohos.sensor.d.ts|
+|新增||模块名：ohos.vibrator<br>类名:vibrator<br>方法名 or 属性名:startVibration|@ohos.vibrator.d.ts|
+|新增||模块名：ohos.vibrator<br>类名:vibrator<br>方法名 or 属性名:startVibration|@ohos.vibrator.d.ts|
+|新增||模块名：ohos.vibrator<br>类名:vibrator<br>方法名 or 属性名:stopVibration|@ohos.vibrator.d.ts|
+|新增||模块名：ohos.vibrator<br>类名:vibrator<br>方法名 or 属性名:stopVibration|@ohos.vibrator.d.ts|
+|删除|模块名：ohos.sensor<br>类名:sensor<br>方法名 or 属性名:on_SensorType_SENSOR_TYPE_ID_HEART_BEAT_RATE||@ohos.sensor.d.ts|
+|删除|模块名：ohos.sensor<br>类名:sensor<br>方法名 or 属性名:on_SensorType_SENSOR_TYPE_ID_LINEAR_ACCELEROMETER||@ohos.sensor.d.ts|
+|删除|模块名：ohos.sensor<br>类名:sensor<br>方法名 or 属性名:off_SensorType_SENSOR_TYPE_ID_HEART_BEAT_RATE||@ohos.sensor.d.ts|
+|删除|模块名：ohos.sensor<br>类名:sensor<br>方法名 or 属性名:off_SensorType_SENSOR_TYPE_ID_LINEAR_ACCELEROMETER||@ohos.sensor.d.ts|
+|删除|模块名：ohos.sensor<br>类名:Sensor<br>方法名 or 属性名:sensorTypeId||@ohos.sensor.d.ts|
+|删除|模块名：ohos.sensor<br>类名:sensor<br>方法名 or 属性名:getSensorLists||@ohos.sensor.d.ts|
+|删除|模块名：ohos.sensor<br>类名:sensor<br>方法名 or 属性名:getSensorLists||@ohos.sensor.d.ts|
+|删除|模块名：ohos.sensor<br>类名:SensorType<br>方法名 or 属性名:SENSOR_TYPE_ID_LINEAR_ACCELEROMETER||@ohos.sensor.d.ts|
+|删除|模块名：ohos.sensor<br>类名:SensorType<br>方法名 or 属性名:SENSOR_TYPE_ID_HEART_BEAT_RATE||@ohos.sensor.d.ts|
+|废弃版本有变化|方法名 or 属性名：on_SensorType_SENSOR_TYPE_ID_ACCELEROMETER<br>废弃版本：|方法名 or 属性名：on_SensorType_SENSOR_TYPE_ID_ACCELEROMETER<br>废弃版本：9<br>代替接口：sensor|@ohos.sensor.d.ts|
+|废弃版本有变化|方法名 or 属性名：on_SensorType_SENSOR_TYPE_ID_ACCELEROMETER_UNCALIBRATED<br>废弃版本：|方法名 or 属性名：on_SensorType_SENSOR_TYPE_ID_ACCELEROMETER_UNCALIBRATED<br>废弃版本：9<br>代替接口：sensor|@ohos.sensor.d.ts|
+|废弃版本有变化|方法名 or 属性名：on_SensorType_SENSOR_TYPE_ID_AMBIENT_LIGHT<br>废弃版本：|方法名 or 属性名：on_SensorType_SENSOR_TYPE_ID_AMBIENT_LIGHT<br>废弃版本：9<br>代替接口：sensor|@ohos.sensor.d.ts|
+|废弃版本有变化|方法名 or 属性名：on_SensorType_SENSOR_TYPE_ID_AMBIENT_TEMPERATURE<br>废弃版本：|方法名 or 属性名：on_SensorType_SENSOR_TYPE_ID_AMBIENT_TEMPERATURE<br>废弃版本：9<br>代替接口：sensor|@ohos.sensor.d.ts|
+|废弃版本有变化|方法名 or 属性名：on_SensorType_SENSOR_TYPE_ID_BAROMETER<br>废弃版本：|方法名 or 属性名：on_SensorType_SENSOR_TYPE_ID_BAROMETER<br>废弃版本：9<br>代替接口：sensor|@ohos.sensor.d.ts|
+|废弃版本有变化|方法名 or 属性名：on_SensorType_SENSOR_TYPE_ID_GRAVITY<br>废弃版本：|方法名 or 属性名：on_SensorType_SENSOR_TYPE_ID_GRAVITY<br>废弃版本：9<br>代替接口：sensor|@ohos.sensor.d.ts|
+|废弃版本有变化|方法名 or 属性名：on_SensorType_SENSOR_TYPE_ID_GYROSCOPE<br>废弃版本：|方法名 or 属性名：on_SensorType_SENSOR_TYPE_ID_GYROSCOPE<br>废弃版本：9<br>代替接口：sensor|@ohos.sensor.d.ts|
+|废弃版本有变化|方法名 or 属性名：on_SensorType_SENSOR_TYPE_ID_GYROSCOPE_UNCALIBRATED<br>废弃版本：|方法名 or 属性名：on_SensorType_SENSOR_TYPE_ID_GYROSCOPE_UNCALIBRATED<br>废弃版本：9<br>代替接口：sensor|@ohos.sensor.d.ts|
+|废弃版本有变化|方法名 or 属性名：on_SensorType_SENSOR_TYPE_ID_HALL<br>废弃版本：|方法名 or 属性名：on_SensorType_SENSOR_TYPE_ID_HALL<br>废弃版本：9<br>代替接口：sensor|@ohos.sensor.d.ts|
+|废弃版本有变化|方法名 or 属性名：on_SensorType_SENSOR_TYPE_ID_HUMIDITY<br>废弃版本：|方法名 or 属性名：on_SensorType_SENSOR_TYPE_ID_HUMIDITY<br>废弃版本：9<br>代替接口：sensor|@ohos.sensor.d.ts|
+|废弃版本有变化|方法名 or 属性名：on_SensorType_SENSOR_TYPE_ID_MAGNETIC_FIELD<br>废弃版本：|方法名 or 属性名：on_SensorType_SENSOR_TYPE_ID_MAGNETIC_FIELD<br>废弃版本：9<br>代替接口：sensor|@ohos.sensor.d.ts|
+|废弃版本有变化|方法名 or 属性名：on_SensorType_SENSOR_TYPE_ID_MAGNETIC_FIELD_UNCALIBRATED<br>废弃版本：|方法名 or 属性名：on_SensorType_SENSOR_TYPE_ID_MAGNETIC_FIELD_UNCALIBRATED<br>废弃版本：9<br>代替接口：sensor|@ohos.sensor.d.ts|
+|废弃版本有变化|方法名 or 属性名：on_SensorType_SENSOR_TYPE_ID_ORIENTATION<br>废弃版本：|方法名 or 属性名：on_SensorType_SENSOR_TYPE_ID_ORIENTATION<br>废弃版本：9<br>代替接口：sensor|@ohos.sensor.d.ts|
+|废弃版本有变化|方法名 or 属性名：on_SensorType_SENSOR_TYPE_ID_PEDOMETER<br>废弃版本：|方法名 or 属性名：on_SensorType_SENSOR_TYPE_ID_PEDOMETER<br>废弃版本：9<br>代替接口：sensor|@ohos.sensor.d.ts|
+|废弃版本有变化|方法名 or 属性名：on_SensorType_SENSOR_TYPE_ID_PEDOMETER_DETECTION<br>废弃版本：|方法名 or 属性名：on_SensorType_SENSOR_TYPE_ID_PEDOMETER_DETECTION<br>废弃版本：9<br>代替接口：sensor|@ohos.sensor.d.ts|
+|废弃版本有变化|方法名 or 属性名：on_SensorType_SENSOR_TYPE_ID_PROXIMITY<br>废弃版本：|方法名 or 属性名：on_SensorType_SENSOR_TYPE_ID_PROXIMITY<br>废弃版本：9<br>代替接口：sensor|@ohos.sensor.d.ts|
+|废弃版本有变化|方法名 or 属性名：on_SensorType_SENSOR_TYPE_ID_ROTATION_VECTOR<br>废弃版本：|方法名 or 属性名：on_SensorType_SENSOR_TYPE_ID_ROTATION_VECTOR<br>废弃版本：9<br>代替接口：sensor|@ohos.sensor.d.ts|
+|废弃版本有变化|方法名 or 属性名：on_SensorType_SENSOR_TYPE_ID_SIGNIFICANT_MOTION<br>废弃版本：|方法名 or 属性名：on_SensorType_SENSOR_TYPE_ID_SIGNIFICANT_MOTION<br>废弃版本：9<br>代替接口：sensor|@ohos.sensor.d.ts|
+|废弃版本有变化|方法名 or 属性名：on_SensorType_SENSOR_TYPE_ID_WEAR_DETECTION<br>废弃版本：|方法名 or 属性名：on_SensorType_SENSOR_TYPE_ID_WEAR_DETECTION<br>废弃版本：9<br>代替接口：sensor|@ohos.sensor.d.ts|
+|废弃版本有变化|方法名 or 属性名：once<br>废弃版本：|方法名 or 属性名：once<br>废弃版本：9<br>代替接口：sensor|@ohos.sensor.d.ts|
+|废弃版本有变化|方法名 or 属性名：once<br>废弃版本：|方法名 or 属性名：once<br>废弃版本：9<br>代替接口：sensor|@ohos.sensor.d.ts|
+|废弃版本有变化|方法名 or 属性名：once<br>废弃版本：|方法名 or 属性名：once<br>废弃版本：9<br>代替接口：sensor|@ohos.sensor.d.ts|
+|废弃版本有变化|方法名 or 属性名：once<br>废弃版本：|方法名 or 属性名：once<br>废弃版本：9<br>代替接口：sensor|@ohos.sensor.d.ts|
+|废弃版本有变化|方法名 or 属性名：once<br>废弃版本：|方法名 or 属性名：once<br>废弃版本：9<br>代替接口：sensor|@ohos.sensor.d.ts|
+|废弃版本有变化|方法名 or 属性名：once<br>废弃版本：|方法名 or 属性名：once<br>废弃版本：9<br>代替接口：sensor|@ohos.sensor.d.ts|
+|废弃版本有变化|方法名 or 属性名：once<br>废弃版本：|方法名 or 属性名：once<br>废弃版本：9<br>代替接口：sensor|@ohos.sensor.d.ts|
+|废弃版本有变化|方法名 or 属性名：once<br>废弃版本：|方法名 or 属性名：once<br>废弃版本：9<br>代替接口：sensor|@ohos.sensor.d.ts|
+|废弃版本有变化|方法名 or 属性名：once<br>废弃版本：|方法名 or 属性名：once<br>废弃版本：9<br>代替接口：sensor|@ohos.sensor.d.ts|
+|废弃版本有变化|方法名 or 属性名：once<br>废弃版本：|方法名 or 属性名：once<br>废弃版本：9<br>代替接口：sensor|@ohos.sensor.d.ts|
+|废弃版本有变化|方法名 or 属性名：once<br>废弃版本：|方法名 or 属性名：once<br>废弃版本：9<br>代替接口：sensor|@ohos.sensor.d.ts|
+|废弃版本有变化|方法名 or 属性名：once<br>废弃版本：|方法名 or 属性名：once<br>废弃版本：9<br>代替接口：sensor|@ohos.sensor.d.ts|
+|废弃版本有变化|方法名 or 属性名：once<br>废弃版本：|方法名 or 属性名：once<br>废弃版本：9<br>代替接口：sensor|@ohos.sensor.d.ts|
+|废弃版本有变化|方法名 or 属性名：once<br>废弃版本：|方法名 or 属性名：once<br>废弃版本：9<br>代替接口：sensor|@ohos.sensor.d.ts|
+|废弃版本有变化|方法名 or 属性名：once<br>废弃版本：|方法名 or 属性名：once<br>废弃版本：9<br>代替接口：sensor|@ohos.sensor.d.ts|
+|废弃版本有变化|方法名 or 属性名：once<br>废弃版本：|方法名 or 属性名：once<br>废弃版本：9<br>代替接口：sensor|@ohos.sensor.d.ts|
+|废弃版本有变化|方法名 or 属性名：once<br>废弃版本：|方法名 or 属性名：once<br>废弃版本：9<br>代替接口：sensor|@ohos.sensor.d.ts|
+|废弃版本有变化|方法名 or 属性名：once<br>废弃版本：|方法名 or 属性名：once<br>废弃版本：9<br>代替接口：sensor|@ohos.sensor.d.ts|
+|废弃版本有变化|方法名 or 属性名：once<br>废弃版本：|方法名 or 属性名：once<br>废弃版本：9<br>代替接口：sensor|@ohos.sensor.d.ts|
+|废弃版本有变化|方法名 or 属性名：off_SensorType_SENSOR_TYPE_ID_ACCELEROMETER<br>废弃版本：|方法名 or 属性名：off_SensorType_SENSOR_TYPE_ID_ACCELEROMETER<br>废弃版本：9<br>代替接口：sensor|@ohos.sensor.d.ts|
+|废弃版本有变化|方法名 or 属性名：off_SensorType_SENSOR_TYPE_ID_ACCELEROMETER_UNCALIBRATED<br>废弃版本：|方法名 or 属性名：off_SensorType_SENSOR_TYPE_ID_ACCELEROMETER_UNCALIBRATED<br>废弃版本：9<br>代替接口：sensor|@ohos.sensor.d.ts|
+|废弃版本有变化|方法名 or 属性名：off_SensorType_SENSOR_TYPE_ID_AMBIENT_LIGHT<br>废弃版本：|方法名 or 属性名：off_SensorType_SENSOR_TYPE_ID_AMBIENT_LIGHT<br>废弃版本：9<br>代替接口：sensor|@ohos.sensor.d.ts|
+|废弃版本有变化|方法名 or 属性名：off_SensorType_SENSOR_TYPE_ID_AMBIENT_TEMPERATURE<br>废弃版本：|方法名 or 属性名：off_SensorType_SENSOR_TYPE_ID_AMBIENT_TEMPERATURE<br>废弃版本：9<br>代替接口：sensor|@ohos.sensor.d.ts|
+|废弃版本有变化|方法名 or 属性名：off_SensorType_SENSOR_TYPE_ID_BAROMETER<br>废弃版本：|方法名 or 属性名：off_SensorType_SENSOR_TYPE_ID_BAROMETER<br>废弃版本：9<br>代替接口：sensor|@ohos.sensor.d.ts|
+|废弃版本有变化|方法名 or 属性名：off_SensorType_SENSOR_TYPE_ID_GRAVITY<br>废弃版本：|方法名 or 属性名：off_SensorType_SENSOR_TYPE_ID_GRAVITY<br>废弃版本：9<br>代替接口：sensor|@ohos.sensor.d.ts|
+|废弃版本有变化|方法名 or 属性名：off_SensorType_SENSOR_TYPE_ID_GYROSCOPE<br>废弃版本：|方法名 or 属性名：off_SensorType_SENSOR_TYPE_ID_GYROSCOPE<br>废弃版本：9<br>代替接口：sensor|@ohos.sensor.d.ts|
+|废弃版本有变化|方法名 or 属性名：off_SensorType_SENSOR_TYPE_ID_GYROSCOPE_UNCALIBRATED<br>废弃版本：|方法名 or 属性名：off_SensorType_SENSOR_TYPE_ID_GYROSCOPE_UNCALIBRATED<br>废弃版本：9<br>代替接口：sensor|@ohos.sensor.d.ts|
+|废弃版本有变化|方法名 or 属性名：off_SensorType_SENSOR_TYPE_ID_HALL<br>废弃版本：|方法名 or 属性名：off_SensorType_SENSOR_TYPE_ID_HALL<br>废弃版本：9<br>代替接口：sensor|@ohos.sensor.d.ts|
+|废弃版本有变化|方法名 or 属性名：off_SensorType_SENSOR_TYPE_ID_HUMIDITY<br>废弃版本：|方法名 or 属性名：off_SensorType_SENSOR_TYPE_ID_HUMIDITY<br>废弃版本：9<br>代替接口：sensor|@ohos.sensor.d.ts|
+|废弃版本有变化|方法名 or 属性名：off_SensorType_SENSOR_TYPE_ID_MAGNETIC_FIELD<br>废弃版本：|方法名 or 属性名：off_SensorType_SENSOR_TYPE_ID_MAGNETIC_FIELD<br>废弃版本：9<br>代替接口：sensor|@ohos.sensor.d.ts|
+|废弃版本有变化|方法名 or 属性名：off_SensorType_SENSOR_TYPE_ID_MAGNETIC_FIELD_UNCALIBRATED<br>废弃版本：|方法名 or 属性名：off_SensorType_SENSOR_TYPE_ID_MAGNETIC_FIELD_UNCALIBRATED<br>废弃版本：9<br>代替接口：sensor|@ohos.sensor.d.ts|
+|废弃版本有变化|方法名 or 属性名：off_SensorType_SENSOR_TYPE_ID_ORIENTATION<br>废弃版本：|方法名 or 属性名：off_SensorType_SENSOR_TYPE_ID_ORIENTATION<br>废弃版本：9<br>代替接口：sensor|@ohos.sensor.d.ts|
+|废弃版本有变化|方法名 or 属性名：off_SensorType_SENSOR_TYPE_ID_PEDOMETER<br>废弃版本：|方法名 or 属性名：off_SensorType_SENSOR_TYPE_ID_PEDOMETER<br>废弃版本：9<br>代替接口：sensor|@ohos.sensor.d.ts|
+|废弃版本有变化|方法名 or 属性名：off_SensorType_SENSOR_TYPE_ID_PEDOMETER_DETECTION<br>废弃版本：|方法名 or 属性名：off_SensorType_SENSOR_TYPE_ID_PEDOMETER_DETECTION<br>废弃版本：9<br>代替接口：sensor|@ohos.sensor.d.ts|
+|废弃版本有变化|方法名 or 属性名：off_SensorType_SENSOR_TYPE_ID_PROXIMITY<br>废弃版本：|方法名 or 属性名：off_SensorType_SENSOR_TYPE_ID_PROXIMITY<br>废弃版本：9<br>代替接口：sensor|@ohos.sensor.d.ts|
+|废弃版本有变化|方法名 or 属性名：off_SensorType_SENSOR_TYPE_ID_ROTATION_VECTOR<br>废弃版本：|方法名 or 属性名：off_SensorType_SENSOR_TYPE_ID_ROTATION_VECTOR<br>废弃版本：9<br>代替接口：sensor|@ohos.sensor.d.ts|
+|废弃版本有变化|方法名 or 属性名：off_SensorType_SENSOR_TYPE_ID_SIGNIFICANT_MOTION<br>废弃版本：|方法名 or 属性名：off_SensorType_SENSOR_TYPE_ID_SIGNIFICANT_MOTION<br>废弃版本：9<br>代替接口：sensor|@ohos.sensor.d.ts|
+|废弃版本有变化|方法名 or 属性名：off_SensorType_SENSOR_TYPE_ID_WEAR_DETECTION<br>废弃版本：|方法名 or 属性名：off_SensorType_SENSOR_TYPE_ID_WEAR_DETECTION<br>废弃版本：9<br>代替接口：sensor|@ohos.sensor.d.ts|
+|废弃版本有变化|方法名 or 属性名：getGeomagneticField<br>废弃版本：|方法名 or 属性名：getGeomagneticField<br>废弃版本：9<br>代替接口：sensor|@ohos.sensor.d.ts|
+|废弃版本有变化|方法名 or 属性名：getAltitude<br>废弃版本：|方法名 or 属性名：getAltitude<br>废弃版本：9<br>代替接口：sensor|@ohos.sensor.d.ts|
+|废弃版本有变化|方法名 or 属性名：getGeomagneticDip<br>废弃版本：|方法名 or 属性名：getGeomagneticDip<br>废弃版本：9<br>代替接口：sensor|@ohos.sensor.d.ts|
+|废弃版本有变化|方法名 or 属性名：getAngleModify<br>废弃版本：|方法名 or 属性名：getAngleModify<br>废弃版本：9<br>代替接口：sensor|@ohos.sensor.d.ts|
+|废弃版本有变化|方法名 or 属性名：createRotationMatrix<br>废弃版本：|方法名 or 属性名：createRotationMatrix<br>废弃版本：9<br>代替接口：sensor|@ohos.sensor.d.ts|
+|废弃版本有变化|方法名 or 属性名：transformCoordinateSystem<br>废弃版本：|方法名 or 属性名：transformCoordinateSystem<br>废弃版本：9<br>代替接口：sensor|@ohos.sensor.d.ts|
+|废弃版本有变化|方法名 or 属性名：createQuaternion<br>废弃版本：|方法名 or 属性名：createQuaternion<br>废弃版本：9<br>代替接口：sensor|@ohos.sensor.d.ts|
+|废弃版本有变化|方法名 or 属性名：getDirection<br>废弃版本：|方法名 or 属性名：getDirection<br>废弃版本：9<br>代替接口：sensor|@ohos.sensor.d.ts|
+|废弃版本有变化|方法名 or 属性名：createRotationMatrix<br>废弃版本：|方法名 or 属性名：createRotationMatrix<br>废弃版本：9<br>代替接口：sensor|@ohos.sensor.d.ts|
+|废弃版本有变化|类名：SensorType<br>废弃版本：|类名：SensorType<br>废弃版本：9<br>代替接口：sensor.SensorId     |@ohos.sensor.d.ts|
+|废弃版本有变化|方法名 or 属性名：SENSOR_TYPE_ID_ACCELEROMETER<br>废弃版本：|方法名 or 属性名：SENSOR_TYPE_ID_ACCELEROMETER<br>废弃版本：9<br>代替接口：sensor.SensorId     |@ohos.sensor.d.ts|
+|废弃版本有变化|方法名 or 属性名：SENSOR_TYPE_ID_GYROSCOPE<br>废弃版本：|方法名 or 属性名：SENSOR_TYPE_ID_GYROSCOPE<br>废弃版本：9<br>代替接口：sensor.SensorId     |@ohos.sensor.d.ts|
+|废弃版本有变化|方法名 or 属性名：SENSOR_TYPE_ID_AMBIENT_LIGHT<br>废弃版本：|方法名 or 属性名：SENSOR_TYPE_ID_AMBIENT_LIGHT<br>废弃版本：9<br>代替接口：sensor.SensorId     |@ohos.sensor.d.ts|
+|废弃版本有变化|方法名 or 属性名：SENSOR_TYPE_ID_MAGNETIC_FIELD<br>废弃版本：|方法名 or 属性名：SENSOR_TYPE_ID_MAGNETIC_FIELD<br>废弃版本：9<br>代替接口：sensor.SensorId     |@ohos.sensor.d.ts|
+|废弃版本有变化|方法名 or 属性名：SENSOR_TYPE_ID_BAROMETER<br>废弃版本：|方法名 or 属性名：SENSOR_TYPE_ID_BAROMETER<br>废弃版本：9<br>代替接口：sensor.SensorId     |@ohos.sensor.d.ts|
+|废弃版本有变化|方法名 or 属性名：SENSOR_TYPE_ID_HALL<br>废弃版本：|方法名 or 属性名：SENSOR_TYPE_ID_HALL<br>废弃版本：9<br>代替接口：sensor.SensorId     |@ohos.sensor.d.ts|
+|废弃版本有变化|方法名 or 属性名：SENSOR_TYPE_ID_PROXIMITY<br>废弃版本：|方法名 or 属性名：SENSOR_TYPE_ID_PROXIMITY<br>废弃版本：9<br>代替接口：sensor.SensorId     |@ohos.sensor.d.ts|
+|废弃版本有变化|方法名 or 属性名：SENSOR_TYPE_ID_HUMIDITY<br>废弃版本：|方法名 or 属性名：SENSOR_TYPE_ID_HUMIDITY<br>废弃版本：9<br>代替接口：sensor.SensorId     |@ohos.sensor.d.ts|
+|废弃版本有变化|方法名 or 属性名：SENSOR_TYPE_ID_ORIENTATION<br>废弃版本：|方法名 or 属性名：SENSOR_TYPE_ID_ORIENTATION<br>废弃版本：9<br>代替接口：sensor.SensorId     |@ohos.sensor.d.ts|
+|废弃版本有变化|方法名 or 属性名：SENSOR_TYPE_ID_GRAVITY<br>废弃版本：|方法名 or 属性名：SENSOR_TYPE_ID_GRAVITY<br>废弃版本：9<br>代替接口：sensor.SensorId     |@ohos.sensor.d.ts|
+|废弃版本有变化|方法名 or 属性名：SENSOR_TYPE_ID_ROTATION_VECTOR<br>废弃版本：|方法名 or 属性名：SENSOR_TYPE_ID_ROTATION_VECTOR<br>废弃版本：9<br>代替接口：sensor.SensorId     |@ohos.sensor.d.ts|
+|废弃版本有变化|方法名 or 属性名：SENSOR_TYPE_ID_AMBIENT_TEMPERATURE<br>废弃版本：|方法名 or 属性名：SENSOR_TYPE_ID_AMBIENT_TEMPERATURE<br>废弃版本：9<br>代替接口：sensor.SensorId     |@ohos.sensor.d.ts|
+|废弃版本有变化|方法名 or 属性名：SENSOR_TYPE_ID_MAGNETIC_FIELD_UNCALIBRATED<br>废弃版本：|方法名 or 属性名：SENSOR_TYPE_ID_MAGNETIC_FIELD_UNCALIBRATED<br>废弃版本：9<br>代替接口：sensor.SensorId     |@ohos.sensor.d.ts|
+|废弃版本有变化|方法名 or 属性名：SENSOR_TYPE_ID_GYROSCOPE_UNCALIBRATED<br>废弃版本：|方法名 or 属性名：SENSOR_TYPE_ID_GYROSCOPE_UNCALIBRATED<br>废弃版本：9<br>代替接口：sensor.SensorId     |@ohos.sensor.d.ts|
+|废弃版本有变化|方法名 or 属性名：SENSOR_TYPE_ID_SIGNIFICANT_MOTION<br>废弃版本：|方法名 or 属性名：SENSOR_TYPE_ID_SIGNIFICANT_MOTION<br>废弃版本：9<br>代替接口：sensor.SensorId     |@ohos.sensor.d.ts|
+|废弃版本有变化|方法名 or 属性名：SENSOR_TYPE_ID_PEDOMETER_DETECTION<br>废弃版本：|方法名 or 属性名：SENSOR_TYPE_ID_PEDOMETER_DETECTION<br>废弃版本：9<br>代替接口：sensor.SensorId     |@ohos.sensor.d.ts|
+|废弃版本有变化|方法名 or 属性名：SENSOR_TYPE_ID_PEDOMETER<br>废弃版本：|方法名 or 属性名：SENSOR_TYPE_ID_PEDOMETER<br>废弃版本：9<br>代替接口：sensor.SensorId     |@ohos.sensor.d.ts|
+|废弃版本有变化|方法名 or 属性名：SENSOR_TYPE_ID_WEAR_DETECTION<br>废弃版本：|方法名 or 属性名：SENSOR_TYPE_ID_WEAR_DETECTION<br>废弃版本：9<br>代替接口：sensor.SensorId     |@ohos.sensor.d.ts|
+|废弃版本有变化|方法名 or 属性名：SENSOR_TYPE_ID_ACCELEROMETER_UNCALIBRATED<br>废弃版本：|方法名 or 属性名：SENSOR_TYPE_ID_ACCELEROMETER_UNCALIBRATED<br>废弃版本：9<br>代替接口：sensor.SensorId     |@ohos.sensor.d.ts|
+|废弃版本有变化|方法名 or 属性名：vibrate<br>废弃版本：|方法名 or 属性名：vibrate<br>废弃版本：9<br>代替接口：vibrator|@ohos.vibrator.d.ts|
+|废弃版本有变化|方法名 or 属性名：vibrate<br>废弃版本：|方法名 or 属性名：vibrate<br>废弃版本：9<br>代替接口：vibrator|@ohos.vibrator.d.ts|
+|废弃版本有变化|方法名 or 属性名：stop<br>废弃版本：|方法名 or 属性名：stop<br>废弃版本：9<br>代替接口：vibrator|@ohos.vibrator.d.ts|

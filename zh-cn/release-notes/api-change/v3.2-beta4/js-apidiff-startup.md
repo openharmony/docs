@@ -1,7 +1,0 @@
-| 操作 | 新版本 | 旧版本 | d.ts文件 | 所属子系统 |
-| ---- | ------ | ------ | -------- | ---------- |
-|新增||模块名: ohos.systemParameterV9<br>类名: systemParameterV9|@ohos.systemParameterV9.d.ts|启动服务|
-|新增||模块名: ohos.systemParameterV9<br>类名: systemParameterV9<br>方法名 or 属性名： getSync|@ohos.systemParameterV9.d.ts|启动服务|
-|新增||模块名: ohos.systemParameterV9<br>类名: systemParameterV9<br>方法名 or 属性名： get|@ohos.systemParameterV9.d.ts|启动服务|
-|新增||模块名: ohos.systemParameterV9<br>类名: systemParameterV9<br>方法名 or 属性名： setSync|@ohos.systemParameterV9.d.ts|启动服务|
-|新增||模块名: ohos.systemParameterV9<br>类名: systemParameterV9<br>方法名 or 属性名： set|@ohos.systemParameterV9.d.ts|启动服务|
