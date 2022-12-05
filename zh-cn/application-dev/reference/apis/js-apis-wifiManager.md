@@ -8,7 +8,7 @@
 ## 导入模块
 
 ```js
-import wifi from '@ohos.wifi';
+import wifiManager from '@ohos.wifiManager';
 ```
 
 ## wifi.enableWifi
