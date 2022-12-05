@@ -68,7 +68,7 @@
 
 - [获取和修改加密分区](#获取和修改加密分区)
 
-- [创建其他应用/其他Module的Context](#创建其他应用其他module的context)
+- [创建其他应用或其他Module的Context](#创建其他应用或其他module的context)
 
 - [订阅进程内Ability生命周期变化](#订阅进程内ability生命周期变化)
 
@@ -168,9 +168,9 @@ export default class EntryAbility extends UIAbility {
 ```
 
 
-### 创建其他应用/其他Module的Context
+### 创建其他应用或其他Module的Context
 
-基类Context提供创建其他应用/其他Module的Context的方法有[createBundleContext(bundleName:string)](../reference/apis/js-apis-application-context.md#contextcreatebundlecontext)、[createModuleContext(moduleName:string)](../reference/apis/js-apis-application-context.md#contextcreatemodulecontext)和[createModuleContext(bundleName:string, moduleName:string)](../reference/apis/js-apis-application-context.md#contextcreatemodulecontext-1)接口，创建其他应用或者其他Module的Context，从而通过该Context获取相应的资源信息（例如获取其他Module的[获取应用开发路径](#获取应用开发路径)信息）。
+基类Context提供创建其他应用或其他Module的Context的方法有[createBundleContext(bundleName:string)](../reference/apis/js-apis-application-context.md#contextcreatebundlecontext)、[createModuleContext(moduleName:string)](../reference/apis/js-apis-application-context.md#contextcreatemodulecontext)和[createModuleContext(bundleName:string, moduleName:string)](../reference/apis/js-apis-application-context.md#contextcreatemodulecontext-1)接口，创建其他应用或者其他Module的Context，从而通过该Context获取相应的资源信息（例如获取其他Module的[获取应用开发路径](#获取应用开发路径)信息）。
 
 - 调用createBundleContext(bundleName:string)方法，创建其他应用的Context信息。
   > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
