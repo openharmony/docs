@@ -212,10 +212,10 @@ WLAN热点信息。
 **系统能力：** SystemCapability.Communication.WiFi.STA
 
 
-| **参数名** | **类型** | **读写属性** | **说明** |
-| -------- | -------- | -------- | -------- |
-| eid | number | 只读 | 元素ID。 <br /> **系统接口：** 此接口为系统接口。 |
-| content | Uint8Array | 只读 | 元素内容。 <br /> **系统接口：** 此接口为系统接口。 |
+| **名称** | **类型** | **可读** | **可写** | **说明** |
+| -------- | -------- | -------- | -------- | -------- |
+| eid | number | 是 | 否 | 元素ID。 <br /> **系统接口：** 此接口为系统接口。 |
+| content | Uint8Array | 是 | 否 | 元素内容。 <br /> **系统接口：** 此接口为系统接口。 |
 
 
 ## WifiChannelWidth<sup>9+</sup>
@@ -225,7 +225,7 @@ WLAN热点信息。
 **系统能力：** SystemCapability.Communication.WiFi.STA
 
 
-| **名称** | **默认值** | **说明** |
+| **名称** | **值** | **说明** |
 | -------- | -------- | -------- |
 | WIDTH_20MHZ | 0 | 20MHZ。 |
 | WIDTH_40MHZ | 1 | 40MHZ。 |
@@ -341,21 +341,21 @@ IP配置信息。
 
 **系统能力：** SystemCapability.Communication.WiFi.STA
 
-| **参数名** | **类型** | **读写属性** | **说明** |
+| **名称** | **类型** | **可读** | **可写** | **说明** |
 | -------- | -------- | -------- | -------- |
-| eapMethod | [EapMethod](#eapmethod9) | 只读 | EAP认证方式。 |
-| phase2Method | [Phase2Method](#phase2method9) | 只读 | 第二阶段认证方式。 |
-| identity | string | 只读 | 身份信息。 |
-| anonymousIdentity | string | 只读 | 匿名身份。 |
-| password | string | 只读 | 密码。 |
-| caCertAliases | string | 只读 | CA 证书别名。 |
-| caPath | string | 只读 | CA 证书路径。 |
-| clientCertAliases | string | 只读 | 客户端证书别名。 |
-| altSubjectMatch | string | 只读 | 替代主题匹配。 |
-| domainSuffixMatch | string | 只读 | 域后缀匹配。 |
-| realm | string | 只读 | 通行证凭证的领域。 |
-| plmn | string | 只读 | 公共陆地移动网的直通凭证提供商。 |
-| eapSubId | number | 只读 | SIM卡的子ID。 |
+| eapMethod | [EapMethod](#eapmethod9) | 是 | 否 | EAP认证方式。 |
+| phase2Method | [Phase2Method](#phase2method9) | 是 | 否 | 第二阶段认证方式。 |
+| identity | string | 是 | 否 | 身份信息。 |
+| anonymousIdentity | string | 是 | 否 | 匿名身份。 |
+| password | string | 是 | 否 | 密码。 |
+| caCertAliases | string | 是 | 否 | CA 证书别名。 |
+| caPath | string | 是 | 否 | CA 证书路径。 |
+| clientCertAliases | string | 是 | 否 | 客户端证书别名。 |
+| altSubjectMatch | string | 是 | 否 | 替代主题匹配。 |
+| domainSuffixMatch | string | 是 | 否 | 域后缀匹配。 |
+| realm | string | 是 | 否 | 通行证凭证的领域。 |
+| plmn | string | 是 | 否 | 公共陆地移动网的直通凭证提供商。 |
+| eapSubId | number | 是 | 否 | SIM卡的子ID。 |
 
 
 ## EapMethod<sup>9+</sup>
@@ -366,7 +366,7 @@ IP配置信息。
 
 **系统能力：** SystemCapability.Communication.WiFi.STA
 
-| 名称 | 默认值 | 说明 |
+| 名称 | 值 | 说明 |
 | -------- | -------- | -------- |
 | EAP_NONE | 0 | 不指定。 |
 | EAP_PEAP | 1 | PEAP类型。 |
@@ -387,7 +387,7 @@ IP配置信息。
 
 **系统能力：** SystemCapability.Communication.WiFi.STA
 
-| 名称 | 默认值 | 说明 |
+| 名称 | 值 | 说明 |
 | -------- | -------- | -------- |
 | PHASE2_NONE | 0 | 不指定。 |
 | PHASE2_PAP | 1 | PAP类型。 |
