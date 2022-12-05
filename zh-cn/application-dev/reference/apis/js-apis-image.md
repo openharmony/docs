@@ -1076,9 +1076,9 @@ const data = new ArrayBuffer(112);
 const imageSourceApi = image.createImageSource(data);
 ```
 
-## image.createIncrementalSource<sup>9+</sup>
+## image.CreateIncrementalSource<sup>9+</sup>
 
-createIncrementalSource(buf: ArrayBuffer): ImageSource
+CreateIncrementalSource(buf: ArrayBuffer): ImageSource
 
 通过缓冲区以增量的方式创建图片源实例。
 
@@ -1103,9 +1103,9 @@ const buf = new ArrayBuffer(96);  //96为需要创建的像素buffer大小，取
 const imageSourceIncrementalSApi = image.createIncrementalSource(buf);
 ```
 
-## image.createIncrementalSource<sup>9+</sup>
+## image.CreateIncrementalSource<sup>9+</sup>
 
-createIncrementalSource(buf: ArrayBuffer, options?: SourceOptions): ImageSource
+CreateIncrementalSource(buf: ArrayBuffer, options?: SourceOptions): ImageSource
 
 通过缓冲区以增量的方式创建图片源实例。
 
