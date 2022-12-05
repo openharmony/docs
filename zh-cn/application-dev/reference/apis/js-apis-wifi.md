@@ -112,7 +112,7 @@ getScanInfos(callback: AsyncCallback&lt;Array&lt;WifiScanInfo&gt;&gt;): void
 
 **参数：**
 
-  | **名称** | **类型** | **必填** | **说明** |
+  | **参数名** | **类型** | **必填** | **说明** |
   | -------- | -------- | -------- | -------- |
   | callback | AsyncCallback&lt;&nbsp;Array&lt;[WifiScanInfo](#wifiscaninfo)&gt;&gt; | 是 | 回调函数。当成功时，err为0，data为扫描到的热点；否则err为非0值，data为空。 |
 
