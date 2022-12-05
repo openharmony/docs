@@ -772,7 +772,7 @@ async function createTonePlayerBefore(){
 
 音频采集器选项信息。
 
-**系统能力：** SystemCapability.Multimedia.Audio.Capturer
+**系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.Audio.Capturer
 
 | 名称         | 类型                                    | 必填 | 说明             |
 | ------------ | --------------------------------------- | ---- | ---------------- |
