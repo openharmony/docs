@@ -3,7 +3,7 @@
 
 ## 场景介绍
 
-当需要订阅某个公共事件，获取该公共事件传递的参数时，需要创建一个订阅者对象，用于作为订阅公共事件的载体，订阅公共事件并获取公共事件传递而来的参数。订阅部分系统公共事件需要先[申请权限](../security/accesstoken-guidelines.md)，订阅这些事件所需要的权限请见[公共事件权限列表](../reference/apis/js-apis-commonEvent.md#Support)。
+当需要订阅某个公共事件，获取该公共事件传递的参数时，需要创建一个订阅者对象，用于作为订阅公共事件的载体，订阅公共事件并获取公共事件传递而来的参数。订阅部分系统公共事件需要先[申请权限](../security/accesstoken-guidelines.md)，订阅这些事件所需要的权限请见[公共事件权限列表](../reference/apis/js-apis-commonEvent.md#support)。
 
 
 ## 接口说明
