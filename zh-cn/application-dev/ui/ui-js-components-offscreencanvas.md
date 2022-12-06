@@ -49,7 +49,7 @@ select{
 
 ```js
 // xxx.js
-import prompt from '@system.prompt';
+import promptAction from '@ohos.promptAction';
 export default {
   data:{
     el: null,
@@ -70,7 +70,7 @@ export default {
       _this.offCanvas.drawImage(_this.img, 100, 100, 400, 300);
     };
     this.img.onerror = function() {
-      prompt.showToast({message:"error",duration:2000})
+      promptAction.showToast({message:"error",duration:2000})
     };
     var bitmap = this.offscreen.transferToImageBitmap();    this.ctx.transferFromImageBitmap(bitmap);
   },

@@ -132,34 +132,34 @@ text{
 
 ```js
 // index.js
-import prompt from '@system.prompt'
+import promptAction from '@ohos.promptAction'
 export default {
   search(e){
-    prompt.showToast({
+    promptAction.showToast({
       message:  e.value,
       duration: 3000,
     });
   },
   translate(e){
-    prompt.showToast({
+    promptAction.showToast({
       message:  e.value,
       duration: 3000,
     });
   },
   share(e){
-    prompt.showToast({
+    promptAction.showToast({
       message:  e.value,
       duration: 3000,
     });
   },
   change(e){
-    prompt.showToast({
+    promptAction.showToast({
       message:  e.value,
       duration: 3000,
     });
   },
   submit(e){
-    prompt.showToast({
+    promptAction.showToast({
       message: 'submit',
       duration: 3000,
     });
@@ -218,7 +218,7 @@ export default {
 
 ```js
 // index.js
-import prompt from '@system.prompt';
+import promptAction from '@ohos.promptAction';
 export default {
   data: {
     showsearch: true,
@@ -243,13 +243,13 @@ export default {
     }
   },
   submit(e) {
-    prompt.showToast({
+    promptAction.showToast({
       message: '搜索！',
       duration: 2000
     })
   },
   change(e) {
-    prompt.showToast({
+    promptAction.showToast({
       message: '内容:' + e.text,
       duration: 2000
     })

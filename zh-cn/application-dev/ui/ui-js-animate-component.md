@@ -388,7 +388,7 @@ button{
 
 ```js
 // xxx.js
-import prompt from '@system.prompt';
+import promptAction from '@ohos.promptAction';
 export default {
   data: {
     animation: '',

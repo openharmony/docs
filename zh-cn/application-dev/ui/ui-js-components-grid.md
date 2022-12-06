@@ -77,7 +77,7 @@ grid-container点击组件调用getColumns、getColumnWidth、getGutterWidth方�
 
 ```js
 // index.js
-import prompt from '@system.prompt';
+import promptAction from '@ohos.promptAction';
 export default {
   data:{
     gutterWidth:'',
@@ -95,13 +95,13 @@ export default {
       this.columns= result;
     }) 
     setTimeout(()=>{              
-      prompt.showToast({duration:5000,message:'columnWidth:'+this.columnWidth+',gutterWidth:'+
+      promptAction.showToast({duration:5000,message:'columnWidth:'+this.columnWidth+',gutterWidth:'+
       this.gutterWidth+',getColumns:'+this.columns})
     })
   },
   getSizeType(){
       this.$element('mygrid').getSizeType((result)=>{
-      prompt.showToast({duration:2000,message:'get size type:'+result})
+      promptAction.showToast({duration:2000,message:'get size type:'+result})
     })
   },
 }
