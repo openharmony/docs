@@ -29,14 +29,14 @@ import faultLogger from '@ohos.faultLogger'
 
 | 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| pid | number | 必填 | 故障进程的进程id |
-| uid | number | 必填 | 故障进程的用户id |
-| type | [FaultType](#faulttype) | 必填 | 故障类型 |
-| timestamp | number | 必填 | 日志生成时的秒级时间戳 |
-| reason | string | 必填 | 发生故障的原因 |
-| module | string | 必填 | 发生故障的模块 |
-| summary | string | 必填 | 故障的概要 |
-| fullLog | string | 必填 | 故障日志全文 |
+| pid | number | 是 | 故障进程的进程id |
+| uid | number | 是 | 故障进程的用户id |
+| type | [FaultType](#faulttype) | 是 | 故障类型 |
+| timestamp | number | 是 | 日志生成时的秒级时间戳 |
+| reason | string | 是 | 发生故障的原因 |
+| module | string | 是 | 发生故障的模块 |
+| summary | string | 是 | 故障的概要 |
+| fullLog | string | 是 | 故障日志全文 |
 
 ## faultLogger.querySelfFaultLog<sup>(deprecated)</sup>
 
@@ -146,7 +146,7 @@ query(faultType: FaultType, callback: AsyncCallback&lt;Array&lt;FaultLogInfo&gt;
 
 | 错误码ID | 错误信息 |
 | --- | --- |
-| 10600001 | The service is not running or broken |
+| 10600001 | the service is not running or broken |
 
 **示例：**
 
@@ -203,7 +203,7 @@ query(faultType: FaultType) : Promise&lt;Array&lt;FaultLogInfo&gt;&gt;
 
 | 错误码ID | 错误信息 |
 | --- | --- |
-| 10600001 | The service is not running or broken |
+| 10600001 | the service is not running or broken |
 
 **示例：**
 
