@@ -18,7 +18,6 @@
 - Windows和Ubuntu系统上安装的DevEco Device Tool为3.0 Release版本。
 
 
-
 ## 搭建Ubuntu环境
 
 1. 将Ubuntu Shell环境修改为bash。
