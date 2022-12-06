@@ -715,7 +715,7 @@ for (var value of searchParams.values()) {
 ### [Symbol.iterator]<sup>(deprecated)</sup>
 > **NOTE**
 >
-> This API is deprecated since API version 9. You are advised to use [URLParams<sup>9+</sup>.[Symbol.iterator]<sup>9+</sup>](#symbol.iterator9) instead.
+> This API is deprecated since API version 9. You are advised to use [URLParams<sup>9+</sup>.[Symbol.iterator]<sup>9+</sup>](#symboliterator9) instead.
 
 [Symbol.iterator]\(): IterableIterator&lt;[string, string]&gt;
 
