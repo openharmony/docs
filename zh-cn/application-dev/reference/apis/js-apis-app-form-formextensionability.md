@@ -9,7 +9,7 @@ FormExtensionAbility模块提供了卡片扩展相关接口。
 
 ## 导入模块
 
-```
+```ts
 import FormExtensionAbility from '@ohos.app.form.FormExtensionAbility';
 ```
 
@@ -19,7 +19,7 @@ import FormExtensionAbility from '@ohos.app.form.FormExtensionAbility';
 
 | 名称    | 参数类型                                                | 可读 | 可写 | 说明                                                |
 | ------- | ------------------------------------------------------- | ---- | ---- | --------------------------------------------------- |
-| context | [FormExtensionContext](js-apis-formextensioncontext.md) | 是   | 否   | FormExtensionAbility的上下文环境，继承自ExtensionContext。 |
+| context | [FormExtensionContext](js-apis-inner-application-formExtensionContext.md) | 是   | 否   | FormExtensionAbility的上下文环境，继承自ExtensionContext。 |
 
 ## onAddForm
 
@@ -33,7 +33,7 @@ onAddForm(want: Want): formBindingData.FormBindingData
 
 | 参数名 | 类型                                   | 必填 | 说明                                                         |
 | ------ | -------------------------------------- | ---- | ------------------------------------------------------------ |
-| want   | [Want](js-apis-application-Want.md) | 是   | 当前ExtensionAbility相关的Want类型信息，包括卡片ID、卡片名称、卡片样式等。这些卡片信息必须作为持久数据进行管理，以便后续更新和删除卡片。 |
+| want   | [Want](js-apis-application-want.md) | 是   | 当前ExtensionAbility相关的Want类型信息，包括卡片ID、卡片名称、卡片样式等。这些卡片信息必须作为持久数据进行管理，以便后续更新和删除卡片。 |
 
 **返回值：**
 
@@ -43,7 +43,7 @@ onAddForm(want: Want): formBindingData.FormBindingData
 
 **示例：**
 
-```js
+```ts
 import FormExtensionAbility from '@ohos.app.form.FormExtensionAbility';
 export default class MyFormExtensionAbility extends FormExtensionAbility {
   onAddForm(want) {
@@ -74,7 +74,7 @@ onCastToNormalForm(formId: string): void
 
 **示例：**
 
-```js
+```ts
 export default class MyFormExtensionAbility extends FormExtensionAbility {
   onCastToNormalForm(formId) {
     console.log('FormExtensionAbility onCastToNormalForm, formId:' + formId);
@@ -86,7 +86,7 @@ export default class MyFormExtensionAbility extends FormExtensionAbility {
 
 onUpdateForm(formId: string): void
 
-卡片提供方接收更新卡片的通知接口。获取最新数据后调用[FormExtensionContext](js-apis-formextensioncontext.md)的updateForm接口刷新卡片数据。
+卡片提供方接收更新卡片的通知接口。获取最新数据后调用[FormExtensionContext](js-apis-inner-application-formExtensionContext.md)的updateForm接口刷新卡片数据。
 
 **系统能力**：SystemCapability.Ability.Form
 
@@ -98,7 +98,7 @@ onUpdateForm(formId: string): void
 
 **示例：**
 
-```js
+```ts
 import formBindingData from '@ohos.app.form.formBindingData'
 export default class MyFormExtensionAbility extends FormExtensionAbility {
   onUpdateForm(formId) {
@@ -128,7 +128,7 @@ onChangeFormVisibility(newStatus: { [key: string]: number }): void
 
 **示例：**
 
-```js
+```ts
 import formBindingData from '@ohos.app.form.formBindingData'
 export default class MyFormExtensionAbility extends FormExtensionAbility {
   onChangeFormVisibility(newStatus) {
@@ -163,7 +163,7 @@ onFormEvent(formId: string, message: string): void
 
 **示例：**
 
-```js
+```ts
 export default class MyFormExtension extends FormExtensionAbility {
   onFormEvent(formId, message) {
     console.log('FormExtensionAbility onFormEvent, formId:' + formId + ", message:" + message);
@@ -187,7 +187,7 @@ onRemoveForm(formId: string): void
 
 **示例：**
 
-```js
+```ts
 export default class MyFormExtensionAbility extends FormExtensionAbility {
   onRemoveForm(formId) {
     console.log('FormExtensionAbility onRemoveForm, formId:' + formId);
@@ -211,7 +211,7 @@ onConfigurationUpdate(config: Configuration): void;
 
 **示例：**
 
-```js
+```ts
 class MyFormExtensionAbility extends FormExtensionAbility {
   onConfigurationUpdate(config) {
     console.log('onConfigurationUpdate, config:' + JSON.stringify(config));
@@ -231,11 +231,11 @@ onAcquireFormState?(want: Want): formInfo.FormState;
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-application-Want.md) | 否 | want表示获取卡片状态的描述。描述包括包名称、能力名称、模块名称、卡片名和卡片维度。 |
+| want | [Want](js-apis-application-want.md) | 否 | want表示获取卡片状态的描述。描述包括包名称、能力名称、模块名称、卡片名和卡片维度。 |
 
 **示例：**
 
-```js
+```ts
 import formInfo from '@ohos.app.form.formInfo';
 class MyFormExtensionAbility extends FormExtensionAbility {
   onAcquireFormState(want) {
@@ -269,7 +269,7 @@ onShareForm?(formId: string): { [key: string]: any }
 
 **示例：**
 
-```js
+```ts
 class MyFormExtensionAbility extends FormExtensionAbility {
   onShareForm(formId) {
     console.log('FormExtensionAbility onShareForm, formId:' + formId);

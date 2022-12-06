@@ -10,7 +10,7 @@ AbilityMonitor模块提供匹配满足指定条件的受监视能力对象的方
 
 通过abilityDelegator中的addAbilityMonitor来设置。
 
-```js
+```ts
 import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry'
 var abilityDelegator;
 

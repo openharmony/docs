@@ -8,7 +8,7 @@
 
 ## 导入模块
 
-```
+```ts
 import formBindingData from '@ohos.app.form.formBindingData';
 ```
 
@@ -47,7 +47,7 @@ createFormBindingData(obj?: Object | string): FormBindingData
 
 **示例：**
 
-```js
+```ts
 import featureAbility from '@ohos.ability.featureAbility';
 import fileio from '@ohos.fileio';
 let context=featureAbility.getContext();

@@ -10,7 +10,7 @@ AbilityLifecycleCallback模块提供应用上下文ApplicationContext的生命�
 
 ## 导入模块
 
-```js
+```ts
 import AbilityLifecycleCallback from "@ohos.application.AbilityLifecycleCallback";
 ```
 
@@ -156,7 +156,7 @@ onAbilityContinue(ability: Ability): void;
 **示例：**
     
 
-```js
+```ts
 import AbilityStage from "@ohos.application.AbilityStage";
 
 var lifecycleid;

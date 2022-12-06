@@ -14,7 +14,7 @@ Ability模块提供对Ability生命周期、上下文环境等调用管理的能
 
 ## 导入模块
 
-```
+```ts
 import Ability from '@ohos.application.Ability';
 ```
 
@@ -22,11 +22,11 @@ import Ability from '@ohos.application.Ability';
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.AbilityCore
 
-| 名称 | 类型 | 可读 | 可写 | 说明 | 
+| 名称 | 参数类型 | 可读 | 可写 | 说明 | 
 | -------- | -------- | -------- | -------- | -------- |
-| context | [AbilityContext](js-apis-ability-context.md) | 是 | 否 | 上下文。 | 
-| launchWant | [Want](js-apis-application-Want.md) | 是 | 否 | Ability启动时的参数。 | 
-| lastRequestWant | [Want](js-apis-application-Want.md) | 是 | 否 | Ability最后请求时的参数。| 
+| context | [UIAbilityContext](js-apis-inner-application-uiAbilityContext.md) | 是 | 否 | 上下文。 | 
+| launchWant | [Want](js-apis-app-ability-want.md) | 是 | 否 | Ability启动时的参数。 | 
+| lastRequestWant | [Want](js-apis-app-ability-want.md) | 是 | 否 | Ability最后请求时的参数。| 
 | callee | [Callee](#callee) | 是 | 否 | 调用Stub（桩）服务对象。| 
 
 ## Ability.onCreate
@@ -41,7 +41,7 @@ Ability创建时回调，执行初始化业务逻辑操作。
 
   | 参数名 | 类型 | 必填 | 说明 | 
   | -------- | -------- | -------- | -------- |
-  | want | [Want](js-apis-application-Want.md) | 是 | 当前Ability的Want类型信息，包括ability名称、bundle名称等。 | 
+  | want | [Want](js-apis-app-ability-want.md) | 是 | 当前Ability的Want类型信息，包括ability名称、bundle名称等。 | 
   | param | AbilityConstant.LaunchParam | 是 | 创建&nbsp;ability、上次异常退出的原因信息。 | 
 
 **示例：**
@@ -227,7 +227,7 @@ onNewWant(want: Want, launchParams: AbilityConstant.LaunchParam): void;
 
   | 参数名 | 类型 | 必填 | 说明 | 
   | -------- | -------- | -------- | -------- |
-  | want | [Want](js-apis-application-Want.md) | 是 | Want类型参数，如ability名称，包名等。 | 
+  | want | [Want](js-apis-application-want.md) | 是 | Want类型参数，如ability名称，包名等。 | 
   | launchParams | AbilityConstant.LaunchParam | 是 | Ability启动的原因、上次异常退出的原因信息。 |
 
 **示例：**
@@ -236,31 +236,6 @@ onNewWant(want: Want, launchParams: AbilityConstant.LaunchParam): void;
   class myAbility extends Ability {
       onNewWant(want) {
           console.log('onNewWant, want:' + want.abilityName);
-      }
-  }
-  ```
-
-
-## Ability.onConfigurationUpdated
-
-onConfigurationUpdated(config: Configuration): void;
-
-当系统配置更新时调用。
-
-**系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
-
-**参数：**
-
-  | 参数名 | 类型 | 必填 | 说明 | 
-  | -------- | -------- | -------- | -------- |
-  | config | [Configuration](js-apis-configuration.md) | 是 | 表示需要更新的配置信息。 | 
-
-**示例：**
-    
-  ```ts
-  class myAbility extends Ability {
-      onConfigurationUpdated(config) {
-          console.log('onConfigurationUpdated, config:' + JSON.stringify(config));
       }
   }
   ```
@@ -290,30 +265,6 @@ dump(params: Array\<string>): Array\<string>;
   }
   ```
 
-## Ability.onMemoryLevel
-
-onMemoryLevel(level: AbilityConstant.MemoryLevel): void;
-
-当系统已决定调整内存时调用。例如，当该功能在后台运行时，没有足够的内存来运行尽可能多的后台进程时可以使用。
-
-**系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
-
-**参数：**
-
-  | 参数名 | 类型 | 必填 | 说明 | 
-  | -------- | -------- | -------- | -------- |
-  | level | [AbilityConstant.MemoryLevel](js-apis-application-abilityConstant.md#abilityconstantmemorylevel) | 是 | 回调返回内存微调级别，显示当前内存使用状态。| 
-
-**示例：**
-    
-  ```ts
-  class myAbility extends Ability {
-    onMemoryLevel(level) {
-        console.log('onMemoryLevel, level:' + JSON.stringify(level));
-    } 
-  }
-  ```
-
 
 ## Ability.onSaveState
 
@@ -338,7 +289,7 @@ onSaveState(reason: AbilityConstant.StateType, wantParam : {[key: string]: any})
 
 **示例：**
 
-  ```js
+  ```ts
 import AbilityConstant from '@ohos.application.AbilityConstant'
 
 class myAbility extends Ability {
@@ -679,9 +630,9 @@ on(method: string, callback: CalleeCallBack): void;
   var method = 'call_Function';
   function funcCallBack(pdata) {
       console.log('Callee funcCallBack is called ' + pdata);
-      let msg = new MyMessageAble(0, "");
+      let msg = new MyMessageAble("test", "");
       pdata.readSequenceable(msg);
-      return new MyMessageAble(10, "Callee test");
+      return new MyMessageAble("test1", "Callee test");
   }
   export default class MainAbility extends Ability {
     onCreate(want, launchParam) {
@@ -743,7 +694,7 @@ off(method: string): void;
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
 
-| 名称 | 类型 | 可读 | 可写 | 说明 | 
+| 名称 | 参数类型 | 可读 | 可写 | 说明 | 
 | -------- | -------- | -------- | -------- | -------- |
 | (msg: string) | function | 是 | 否 | 调用者注册的侦听器函数接口的原型。 | 
 
@@ -753,6 +704,6 @@ off(method: string): void;
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
 
-| 名称 | 类型 | 可读 | 可写 | 说明 | 
+| 名称 | 参数类型 | 可读 | 可写 | 说明 | 
 | -------- | -------- | -------- | -------- | -------- |
 | (indata: rpc.MessageParcel) | rpc.Sequenceable | 是 | 否 | 被调用方注册的消息侦听器函数接口的原型。 | 

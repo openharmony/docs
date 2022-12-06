@@ -7,7 +7,7 @@ FormProvider模块提供了卡片提供方相关接口的能力，开发者在�
 
 ## 导入模块
 
-```
+```ts
 import formProvider from '@ohos.app.form.formProvider';
 ```
 
@@ -37,7 +37,7 @@ setFormNextRefreshTime(formId: string, minute: number, callback: AsyncCallback&l
 
 **示例：**
 
-```js
+```ts
 var formId = "12400633174999288";
 try {
   formProvider.setFormNextRefreshTime(formId, 5, (error, data) => {
@@ -85,7 +85,7 @@ setFormNextRefreshTime(formId: string, minute: number): Promise&lt;void&gt;
 
 **示例：**
 
-```js
+```ts
 var formId = "12400633174999288";
 try {
   formProvider.setFormNextRefreshTime(formId, 5).then(() => {
@@ -111,7 +111,7 @@ updateForm(formId: string, formBindingData: formBindingData.FormBindingData,call
 | 参数名 | 类型                                                                    | 必填 | 说明             |
 | ------ | ---------------------------------------------------------------------- | ---- | ---------------- |
 | formId | string                                                                 | 是   | 请求更新的卡片标识。 |
-| formBindingData | [FormBindingData](js-apis-formbindingdata.md#formbindingdata) | 是   | 用于更新的数据。    |
+| formBindingData | [FormBindingData](js-apis-app-form-formbindingdata.md#formbindingdata) | 是   | 用于更新的数据。    |
 | callback | AsyncCallback&lt;void&gt; | 是 | 回调函数。 |
 
 **错误码：**
@@ -123,7 +123,7 @@ updateForm(formId: string, formBindingData: formBindingData.FormBindingData,call
 
 **示例：**
 
-```js
+```ts
 import formBindingData from '@ohos.application.formBindingData';
 var formId = "12400633174999288";
 try {
@@ -153,7 +153,7 @@ updateForm(formId: string, formBindingData: formBindingData.FormBindingData): Pr
 | 参数名 | 类型                                                                    | 必填 | 说明             |
 | ------ | ---------------------------------------------------------------------- | ---- | ---------------- |
 | formId | string                                                                 | 是   | 请求更新的卡片标识。 |
-| formBindingData | [FormBindingData](js-apis-formbindingdata.md#formbindingdata) | 是   | 用于更新的数据。    |
+| formBindingData | [FormBindingData](js-apis-app-form-formbindingdata.md#formbindingdata) | 是   | 用于更新的数据。    |
 
 **返回值：**
 
@@ -170,7 +170,7 @@ updateForm(formId: string, formBindingData: formBindingData.FormBindingData): Pr
 
 **示例：**
 
-```js
+```ts
 import formBindingData from '@ohos.application.formBindingData';
 var formId = "12400633174999288";
 let obj = formBindingData.createFormBindingData({temperature:"22c", time:"22:00"});
@@ -197,7 +197,7 @@ getFormsInfo(callback: AsyncCallback&lt;Array&lt;formInfo.FormInfo&gt;&gt;): voi
 
 | 参数名 | 类型    | 必填 | 说明    |
 | ------ | ------ | ---- | ------- |
-| callback | AsyncCallback&lt;Array&lt;[FormInfo](./js-apis-formInfo.md#forminfo-1)&gt;&gt; | 是 | 回调函数。返回查询到的卡片信息。 |
+| callback | AsyncCallback&lt;Array&lt;[FormInfo](js-apis-app-form-forminfo.md)&gt;&gt; | 是 | 回调函数。返回查询到的卡片信息。 |
 
 **错误码：**
 
@@ -209,7 +209,7 @@ getFormsInfo(callback: AsyncCallback&lt;Array&lt;formInfo.FormInfo&gt;&gt;): voi
 
 **示例：**
 
-```js
+```ts
 try {
   formProvider.getFormsInfo((error, data) => {
     if (error) {
@@ -234,8 +234,8 @@ getFormsInfo(filter: formInfo.FormInfoFilter, callback: AsyncCallback&lt;Array&l
 
 | 参数名 | 类型    | 必填 | 说明    |
 | ------ | ------ | ---- | ------- |
-| filter | [formInfo.FormInfoFilter](./js-apis-formInfo.md#forminfofilter) | 是 | 卡片信息过滤器。 |
-| callback | AsyncCallback&lt;Array&lt;[FormInfo](./js-apis-formInfo.md#forminfo-1)&gt;&gt; | 是 | 回调函数。返回查询到符合条件的卡片信息。 |
+| filter | [formInfo.FormInfoFilter](js-apis-app-form-forminfo.md#forminfofilter) | 是 | 卡片信息过滤器。 |
+| callback | AsyncCallback&lt;Array&lt;[FormInfo](js-apis-app-form-forminfo.md)&gt;&gt; | 是 | 回调函数。返回查询到符合条件的卡片信息。 |
 
 **错误码：**
 
@@ -246,7 +246,7 @@ getFormsInfo(filter: formInfo.FormInfoFilter, callback: AsyncCallback&lt;Array&l
 
 **示例：**
 
-```js
+```ts
 import formInfo from '@ohos.application.formInfo';
 const filter : formInfo.FormInfoFilter = {
     // get info of forms belong to module entry.
@@ -277,13 +277,13 @@ getFormsInfo(filter?: formInfo.FormInfoFilter): Promise&lt;Array&lt;formInfo.For
 
 | 参数名 | 类型    | 必填 | 说明    |
 | ------ | ------ | ---- | ------- |
-| filter | [formInfo.FormInfoFilter](./js-apis-formInfo.md) | 否 | 卡片信息过滤器。 |
+| filter | [formInfo.FormInfoFilter](js-apis-app-form-forminfo.md#forminfofilter) | 否 | 卡片信息过滤器。 |
 
 **返回值：**
 
 | 类型          | 说明                                |
 | :------------ | :---------------------------------- |
-| Promise&lt;Array&lt;[FormInfo](./js-apis-formInfo.md#forminfo-1)&gt;&gt; | Promise对象。返回查询到符合条件的卡片信息。 |
+| Promise&lt;Array&lt;[FormInfo](js-apis-app-form-forminfo.md)&gt;&gt; | Promise对象。返回查询到符合条件的卡片信息。 |
 
 **错误码：**
 
@@ -294,7 +294,7 @@ getFormsInfo(filter?: formInfo.FormInfoFilter): Promise&lt;Array&lt;formInfo.For
 
 **示例：**
 
-```js
+```ts
 import formInfo from '@ohos.application.formInfo';
 const filter : formInfo.FormInfoFilter = {
     // get info of forms belong to module entry.
@@ -325,8 +325,8 @@ requestPublishForm(want: Want, formBindingData: formBindingData.FormBindingData,
 
 | 参数名 | 类型                                                                    | 必填 | 说明             |
 | ------ | ---------------------------------------------------------------------- | ---- | ---------------- |
-| want | [Want](js-apis-application-Want.md)                           | 是   | 发布请求。需包含以下字段。<br>abilityName: 目标卡片ability<br>parameters:<br>"ohos.extra.param.key.form_dimension"<br>"ohos.extra.param.key.form_name"<br>"ohos.extra.param.key.module_name" |
-| formBindingData | [FormBindingData](js-apis-formbindingdata.md#formbindingdata) | 是   | 创建卡片的数据。 |
+| want | [Want](js-apis-application-want.md)                           | 是   | 发布请求。需包含以下字段。<br>abilityName: 目标卡片ability<br>parameters:<br>"ohos.extra.param.key.form_dimension"<br>"ohos.extra.param.key.form_name"<br>"ohos.extra.param.key.module_name" |
+| formBindingData | [FormBindingData](js-apis-app-form-formbindingdata.md#formbindingdata) | 是   | 创建卡片的数据。 |
 | callback | AsyncCallback&lt;string&gt; | 是 | 回调函数。返回卡片标识。 |
 
 以下错误码的详细介绍请参见[卡片错误码](../errorcodes/errcode-form.md)。
@@ -336,7 +336,7 @@ requestPublishForm(want: Want, formBindingData: formBindingData.FormBindingData,
 
 **示例：**
 
-```js
+```ts
 import formBindingData from '@ohos.application.formBindingData';
 var want = {
   abilityName: "FormAbility",
@@ -374,7 +374,7 @@ requestPublishForm(want: Want, callback: AsyncCallback&lt;string&gt;): void
 
 | 参数名   | 类型                                | 必填 | 说明                                                         |
 | -------- | ----------------------------------- | ---- | ------------------------------------------------------------ |
-| want     | [Want](js-apis-application-Want.md) | 是   | 发布请求。需包含以下字段。<br>abilityName: 目标卡片ability<br>parameters:<br>"ohos.extra.param.key.form_dimension"<br>"ohos.extra.param.key.form_name"<br>"ohos.extra.param.key.module_name" |
+| want     | [Want](js-apis-application-want.md) | 是   | 发布请求。需包含以下字段。<br>abilityName: 目标卡片ability<br>parameters:<br>"ohos.extra.param.key.form_dimension"<br>"ohos.extra.param.key.form_name"<br>"ohos.extra.param.key.module_name" |
 | callback | AsyncCallback&lt;string&gt;         | 是   |  回调函数。返回卡片标识。 |
 
 以下错误码的详细介绍请参见[卡片错误码](../errorcodes/errcode-form.md)。
@@ -384,7 +384,7 @@ requestPublishForm(want: Want, callback: AsyncCallback&lt;string&gt;): void
 
 **示例：**
 
-```js
+```ts
 var want = {
   abilityName: "FormAbility",
   parameters: {
@@ -421,8 +421,8 @@ requestPublishForm(want: Want, formBindingData?: formBindingData.FormBindingData
 
 | 参数名          | 类型                                                         | 必填 | 说明                                                         |
 | --------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| want            | [Want](js-apis-application-Want.md)                          | 是   | 发布请求。需包含以下字段。<br>abilityName: 目标卡片ability<br>parameters:<br>"ohos.extra.param.key.form_dimension"<br>"ohos.extra.param.key.form_name"<br>"ohos.extra.param.key.module_name" |
-| formBindingData | [FormBindingData](js-apis-formbindingdata.md#formbindingdata) | 否   | 创建卡片的数据。                                           |
+| want            | [Want](js-apis-application-want.md)                          | 是   | 发布请求。需包含以下字段。<br>abilityName: 目标卡片ability<br>parameters:<br>"ohos.extra.param.key.form_dimension"<br>"ohos.extra.param.key.form_name"<br>"ohos.extra.param.key.module_name" |
+| formBindingData | [FormBindingData](js-apis-app-form-formbindingdata.md#formbindingdata) | 否   | 创建卡片的数据。                                           |
 
 **返回值：**
 
@@ -437,7 +437,7 @@ requestPublishForm(want: Want, formBindingData?: formBindingData.FormBindingData
 
 **示例：**
 
-```js
+```ts
 var want = {
   abilityName: "FormAbility",
   parameters: {
@@ -475,7 +475,7 @@ isRequestPublishFormSupported(callback: AsyncCallback&lt;boolean&gt;): void
 
 **示例：**
 
-```js
+```ts
 try {
   formProvider.isRequestPublishFormSupported((error, isSupported) => {
   if (error) {
@@ -528,7 +528,7 @@ isRequestPublishFormSupported(): Promise&lt;boolean&gt;
 
 **示例：**
 
-```js
+```ts
 try {
   formProvider.isRequestPublishFormSupported().then((isSupported) => {
     if (isSupported) {

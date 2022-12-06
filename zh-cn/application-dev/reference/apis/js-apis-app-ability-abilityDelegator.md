@@ -9,7 +9,7 @@ AbilityDelegator提供添加用于监视指定ability的生命周期状态更改
 ## 使用说明
 
 通过AbilityDelegatorRegistry中getAbilityDelegator方法获取。
-```js
+```ts
 import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry'
 
 var abilityDelegator;
@@ -37,7 +37,7 @@ addAbilityMonitor(monitor: AbilityMonitor, callback: AsyncCallback\<void>): void
 
 **示例：**
 
-```js
+```ts
 var abilityDelegator;
 
 function onAbilityCreateCallback(data) {
@@ -79,7 +79,7 @@ addAbilityMonitor(monitor: AbilityMonitor): Promise\<void>
 
 **示例：**
 
-```js
+```ts
 var abilityDelegator;
 
 function onAbilityCreateCallback(data) {
@@ -116,7 +116,7 @@ removeAbilityMonitor(monitor: AbilityMonitor, callback: AsyncCallback\<void>): v
 
 **示例：**
 
-```js
+```ts
 var abilityDelegator;
 
 function onAbilityCreateCallback(data) {
@@ -158,7 +158,7 @@ removeAbilityMonitor(monitor: AbilityMonitor): Promise\<void>
 
 - 示例
 
-```js
+```ts
 var abilityDelegator;
 
 function onAbilityCreateCallback(data) {
@@ -195,7 +195,7 @@ waitAbilityMonitor(monitor: AbilityMonitor, callback: AsyncCallback\<Ability>): 
 
 **示例：**
 
-```js
+```ts
 var abilityDelegator;
 
 function onAbilityCreateCallback(data) {
@@ -233,7 +233,7 @@ waitAbilityMonitor(monitor: AbilityMonitor, timeout: number, callback: AsyncCall
 
 **示例：**
 
-```js
+```ts
 var abilityDelegator;
 var timeout = 100;
 
@@ -277,7 +277,7 @@ waitAbilityMonitor(monitor: AbilityMonitor, timeout?: number): Promise\<Ability>
 
 **示例：**
 
-```js
+```ts
 var abilityDelegator;
 
 function onAbilityCreateCallback(data) {
@@ -309,11 +309,11 @@ getAppContext(): Context
 
 | 类型                                  | 说明                                        |
 | ------------------------------------- | ------------------------------------------- |
-| [Context](js-apis-Context.md#Context) | 应用[Context](js-apis-Context.md#Context)。 |
+| [Context](js-apis-inner-application-context.md) | 应用[Context](js-apis-inner-application-context.md)。 |
 
 **示例：**
 
-```js
+```ts
 var abilityDelegator;
 
 abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
@@ -340,11 +340,11 @@ getAbilityState(ability: Ability): number
 
 | 类型   | 说明                                                         |
 | ------ | ------------------------------------------------------------ |
-| number | 指定ability的生命周期状态。状态枚举值使用[AbilityLifecycleState](js-apis-abilityDelegatorRegistry.md#AbilityLifecycleState)。 |
+| number | 指定ability的生命周期状态。状态枚举值使用[AbilityLifecycleState](js-apis-application-abilityDelegatorRegistry.md#AbilityLifecycleState)。 |
 
 **示例：**
 
-```js
+```ts
 var abilityDelegator;
 var ability;
 
@@ -375,7 +375,7 @@ getCurrentTopAbility(callback: AsyncCallback\<Ability>): void
 
 **示例：**
 
-```js
+```ts
 var abilityDelegator;
 var ability;
 
@@ -404,7 +404,7 @@ getCurrentTopAbility(): Promise\<Ability>
 
 **示例：**
 
-```js
+```ts
 var abilityDelegator;
 var ability;
 
@@ -429,12 +429,12 @@ startAbility(want: Want, callback: AsyncCallback\<void>): void
 
 | 参数名   | 类型                                   | 必填 | 说明               |
 | -------- | -------------------------------------- | ---- | ------------------ |
-| want     | [Want](js-apis-app-ability-Want.md) | 是   | 启动Ability参数    |
+| want     | [Want](js-apis-app-ability-want.md) | 是   | 启动Ability参数    |
 | callback | AsyncCallback\<void>                   | 是   | 表示指定的回调方法 |
 
 **示例：**
 
-```js
+```ts
 var abilityDelegator;
 var want = {
     bundleName: "bundleName",
@@ -461,7 +461,7 @@ startAbility(want: Want): Promise\<void>
 
 | 参数名 | 类型                                   | 必填 | 说明            |
 | ------ | -------------------------------------- | ---- | --------------- |
-| want   | [Want](js-apis-app-ability-Want.md) | 是   | 启动Ability参数 |
+| want   | [Want](js-apis-app-ability-want.md) | 是   | 启动Ability参数 |
 
 **返回值：**
 
@@ -471,7 +471,7 @@ startAbility(want: Want): Promise\<void>
 
 **示例：**
 
-```js
+```ts
 var abilityDelegator;
 var want = {
     bundleName: "bundleName",
@@ -503,7 +503,7 @@ doAbilityForeground(ability: Ability, callback: AsyncCallback\<boolean>): void
 
 **示例：**
 
-```js
+```ts
 var abilityDelegator;
 var ability;
 
@@ -541,7 +541,7 @@ doAbilityForeground(ability: Ability): Promise\<boolean>
 
 **示例：**
 
-```js
+```ts
 var abilityDelegator;
 var ability;
 
@@ -574,7 +574,7 @@ doAbilityBackground(ability: Ability, callback: AsyncCallback\<boolean>): void
 
 **示例：**
 
-```js
+```ts
 var abilityDelegator;
 var ability;
 
@@ -612,7 +612,7 @@ doAbilityBackground(ability: Ability): Promise\<boolean>
 
 **示例：**
 
-```js
+```ts
 var abilityDelegator;
 var ability;
 
@@ -644,7 +644,7 @@ printSync(msg: string): void
 
 **示例：**
 
-```js
+```ts
 var abilityDelegator;
 var msg = "msg";
 
@@ -671,7 +671,7 @@ print(msg: string, callback: AsyncCallback\<void>): void
 
 **示例：**
 
-```js
+```ts
 var abilityDelegator;
 var msg = "msg";
 
@@ -705,7 +705,7 @@ print(msg: string): Promise\<void>
 
 **示例：**
 
-```js
+```ts
 var abilityDelegator;
 var msg = "msg";
 
@@ -730,11 +730,11 @@ executeShellCommand(cmd: string, callback: AsyncCallback\<ShellCmdResult>): void
 | 参数名   | 类型                                                         | 必填 | 说明               |
 | -------- | ------------------------------------------------------------ | ---- | ------------------ |
 | cmd      | string                                                       | 是   | shell命令字符串    |
-| callback | AsyncCallback\<[ShellCmdResult](js-apis-application-shellCmdResult.md#ShellCmdResult)> | 是   | 表示指定的回调方法 |
+| callback | AsyncCallback\<[ShellCmdResult](js-apis-inner-application-shellCmdResult.md)> | 是   | 表示指定的回调方法 |
 
 **示例：**
 
-```js
+```ts
 var abilityDelegator;
 var cmd = "cmd";
 
@@ -760,11 +760,11 @@ executeShellCommand(cmd: string, timeoutSecs: number, callback: AsyncCallback\<S
 | ----------- | ------------------------------------------------------------ | ---- | ----------------------------- |
 | cmd         | string                                                       | 是   | shell命令字符串               |
 | timeoutSecs | number                                                       | 是   | 设定命令超时时间，单位秒（s） |
-| callback    | AsyncCallback\<[ShellCmdResult](js-apis-application-shellCmdResult.md#ShellCmdResult)> | 是   | 表示指定的回调方法            |
+| callback    | AsyncCallback\<[ShellCmdResult](js-apis-inner-application-shellCmdResult.md)> | 是   | 表示指定的回调方法            |
 
 **示例：**
 
-```js
+```ts
 var abilityDelegator;
 var cmd = "cmd";
 var timeout = 100;
@@ -796,11 +796,11 @@ executeShellCommand(cmd: string, timeoutSecs?: number): Promise\<ShellCmdResult>
 
 | 类型                                                         | 说明                                                         |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| Promise\<[ShellCmdResult](js-apis-application-shellCmdResult.md#ShellCmdResult)> | 以Promise形式返回Shell命令执行结果[ShellCmdResult](js-apis-application-shellCmdResult.md#ShellCmdResult)对象。 |
+| Promise\<[ShellCmdResult](js-apis-inner-application-shellCmdResult.md)> | 以Promise形式返回Shell命令执行结果[ShellCmdResult](js-apis-inner-application-shellCmdResult.md)对象。 |
 
 **示例：**
 
-```js
+```ts
 var abilityDelegator;
 var cmd = "cmd";
 var timeout = 100;
@@ -831,7 +831,7 @@ finishTest(msg: string, code: number, callback: AsyncCallback\<void>): void
 
 **示例：**
 
-```js
+```ts
 var abilityDelegator;
 var msg = "msg";
 
@@ -866,7 +866,7 @@ finishTest(msg: string, code: number): Promise\<void>
 
 **示例：**
 
-```js
+```ts
 var abilityDelegator;
 var msg = "msg";
 
@@ -893,7 +893,7 @@ addAbilityStageMonitor(monitor: AbilityStageMonitor, callback: AsyncCallback\<vo
 
 **示例：**
 
-```js
+```ts
 var abilityDelegator;
 
 var monitor = {
@@ -931,7 +931,7 @@ addAbilityStageMonitor(monitor: AbilityStageMonitor): Promise\<void>;
 
 **示例：**
 
-```js
+```ts
 var abilityDelegator;
 
 var monitor = {
@@ -962,7 +962,7 @@ removeAbilityStageMonitor(monitor: AbilityStageMonitor, callback: AsyncCallback\
 
 **示例：**
 
-```js
+```ts
 var abilityDelegator;
 
 var monitor = {
@@ -1000,7 +1000,7 @@ removeAbilityStageMonitor(monitor: AbilityStageMonitor): Promise\<void>;
 
 **示例：**
 
-```js
+```ts
 var abilityDelegator;
 
 var monitor = {
@@ -1031,7 +1031,7 @@ waitAbilityStageMonitor(monitor: AbilityStageMonitor, callback: AsyncCallback\<A
 
 **示例：**
 
-```js
+```ts
 var abilityDelegator;
 
 function onAbilityCreateCallback(data) {
@@ -1072,7 +1072,7 @@ waitAbilityStageMonitor(monitor: AbilityStageMonitor, timeout?: number): Promise
 
 **示例：**
 
-```js
+```ts
 var abilityDelegator;
 
 function onAbilityCreateCallback(data) {
@@ -1108,7 +1108,7 @@ waitAbilityStageMonitor(monitor: AbilityStageMonitor, timeout: number, callback:
 
 **示例：**
 
-```js
+```ts
 var abilityDelegator;
 var timeout = 100;
 
