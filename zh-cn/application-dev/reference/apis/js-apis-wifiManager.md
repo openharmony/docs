@@ -214,8 +214,8 @@ WLAN热点信息。
 
 | **名称** | **类型** | **可读** | **可写** | **说明** |
 | -------- | -------- | -------- | -------- | -------- |
-| eid | number | 是 | 否 | 元素ID。 <br /> **系统接口：** 此接口为系统接口。 |
-| content | Uint8Array | 是 | 否 | 元素内容。 <br /> **系统接口：** 此接口为系统接口。 |
+| eid | number | 是 | 否 | 元素ID。 |
+| content | Uint8Array | 是 | 否 | 元素内容。 |
 
 
 ## WifiChannelWidth<sup>9+</sup>
@@ -1242,7 +1242,7 @@ getP2pLinkedInfo(): Promise&lt;WifiP2pLinkedInfo&gt;
 
 **系统能力：** SystemCapability.Communication.WiFi.P2P
 
-| 参数名 | 类型 | 可读 | 可写 | 说明 |
+| 名称 | 类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
 | connectState | [P2pConnectState](#p2pconnectstate8) | 是 | 否 | P2P连接状态。 |
 | isGroupOwner | boolean | 是 | 否 | 是否是群主。 |
