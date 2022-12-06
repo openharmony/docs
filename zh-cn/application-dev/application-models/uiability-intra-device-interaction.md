@@ -367,7 +367,7 @@ export default class FuncAbility extends UIAbility {
 
 经常还会遇到一类场景，当应用A已经启动且处于主页面时，回到桌面，打开应用B，并从应用B再次启动应用A，且需要跳转到应用A的指定页面。例如联系人应用和短信应用配合使用的场景。打开短信应用主页，回到桌面，此时短信应用处于已打开状态且当前处于短信应用的主页。再打开联系人应用主页，进入联系人用户A查看详情，点击短信图标，准备给用户A发送短信，此时会再次拉起短信应用且当前处于短信应用的发送页面。
 
- ![uiability_not_first_started](figures/uiability_not_first_started.png)
+![uiability_not_first_started](figures/uiability_not_first_started.png)
 
 针对以上场景，即当应用A的UIAbility实例已创建，并且处于该UIAbility实例对应的主页面中，此时，从应用B中需要再次启动应用A的该UIAbility，并且需要跳转到不同的页面，这种情况下要如何实现呢？
 
@@ -432,12 +432,12 @@ Call调用的使用场景主要包括：
 
   **表1** Call调用相关名词解释
 
-| 名词 | 描述 | 
+| 名词 | 描述 |
 | -------- | -------- |
-| CallerAbility | 进行Call调用的UIAbility（调用方）。 | 
-| CalleeAbility | 被Call调用的UIAbility（被调用方）。 | 
-| Caller | 实际对象，由startAbilityByCall接口返回，CallerAbility可使用Caller与CalleeAbility进行通信。 | 
-| Callee | 实际对象，被CalleeAbility持有，可与Caller进行通信。 | 
+| CallerAbility | 进行Call调用的UIAbility（调用方）。 |
+| CalleeAbility | 被Call调用的UIAbility（被调用方）。 |
+| Caller | 实际对象，由startAbilityByCall接口返回，CallerAbility可使用Caller与CalleeAbility进行通信。 |
+| Callee | 实际对象，被CalleeAbility持有，可与Caller进行通信。 |
 
 Call调用示意图如下所示。
 
@@ -462,15 +462,15 @@ Call功能主要接口如下表所示。具体的API详见[接口文档](../refe
 
   **表2** Call功能主要接口
 
-| 接口名 | 描述 | 
+| 接口名 | 描述 |
 | -------- | -------- |
-| startAbilityByCall(want:&nbsp;Want):&nbsp;Promise&lt;Caller&gt; | 启动指定UIAbility并获取其Caller通信接口，默认为后台启动，通过配置want可实现前台启动，详见[接口文档](../reference/apis/js-apis-ability-context.md#abilitycontextstartabilitybycall)。AbilityContext与ServiceExtensionContext均支持该接口。 | 
-| on(method:&nbsp;string,&nbsp;callback:&nbsp;CalleeCallBack):&nbsp;void | 通用组件Callee注册method对应的callback方法。 | 
-| off(method:&nbsp;string):&nbsp;void | 通用组件Callee解注册method的callback方法。 | 
-| call(method:&nbsp;string,&nbsp;data:&nbsp;rpc.Sequenceable):&nbsp;Promise&lt;void&gt; | 向通用组件Callee发送约定序列化数据。 | 
-| callWithResult(method:&nbsp;string,&nbsp;data:&nbsp;rpc.Sequenceable):&nbsp;Promise&lt;rpc.MessageParcel&gt; | 向通用组件Callee发送约定序列化数据,&nbsp;并将Callee返回的约定序列化数据带回。 | 
-| release():&nbsp;void | 释放通用组件的Caller通信接口。 | 
-| on(type:&nbsp;"release",&nbsp;callback:&nbsp;OnReleaseCallback):&nbsp;void | 注册通用组件通信断开监听通知。 | 
+| startAbilityByCall(want:&nbsp;Want):&nbsp;Promise&lt;Caller&gt; | 启动指定UIAbility并获取其Caller通信接口，默认为后台启动，通过配置want可实现前台启动，详见[接口文档](../reference/apis/js-apis-ability-context.md#abilitycontextstartabilitybycall)。AbilityContext与ServiceExtensionContext均支持该接口。 |
+| on(method:&nbsp;string,&nbsp;callback:&nbsp;CalleeCallBack):&nbsp;void | 通用组件Callee注册method对应的callback方法。 |
+| off(method:&nbsp;string):&nbsp;void | 通用组件Callee解注册method的callback方法。 |
+| call(method:&nbsp;string,&nbsp;data:&nbsp;rpc.Sequenceable):&nbsp;Promise&lt;void&gt; | 向通用组件Callee发送约定序列化数据。 |
+| callWithResult(method:&nbsp;string,&nbsp;data:&nbsp;rpc.Sequenceable):&nbsp;Promise&lt;rpc.MessageParcel&gt; | 向通用组件Callee发送约定序列化数据,&nbsp;并将Callee返回的约定序列化数据带回。 |
+| release():&nbsp;void | 释放通用组件的Caller通信接口。 |
+| on(type:&nbsp;"release",&nbsp;callback:&nbsp;OnReleaseCallback):&nbsp;void | 注册通用组件通信断开监听通知。 |
 
 设备内通过Call调用实现UIAbility交互，涉及如下两部分开发：
 
@@ -486,9 +486,9 @@ Call功能主要接口如下表所示。具体的API详见[接口文档](../refe
 1. 配置Ability的启动模式。
    配置module.json5，将CalleeAbility配置为单实例"singleton"。
 
-     | Json字段 | 字段说明 | 
+   | Json字段 | 字段说明 |
    | -------- | -------- |
-   | "launchType" | Ability的启动模式，设置为"singleton"类型。 | 
+   | "launchType" | Ability的启动模式，设置为"singleton"类型。 |
 
    Ability配置标签示例如下：
 
