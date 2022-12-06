@@ -17,6 +17,10 @@
 
 - Windows和Ubuntu系统上安装的DevEco Device Tool为3.0 Release版本。
 
+  > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+  > 
+  > 当前[DevEco Device Tool](https://device.harmonyos.com/cn/ide#download)下载页面仅提供最新版本的安装包，新老版本在页面和使用方法上略有差异。若您使用的是最新版本的DevEco Device Tool，可参考[搭建开发环境](https://gitee.com/openharmony/docs/blob/master/zh-cn/device-dev/quick-start/quickstart-ide-env-win.md)。
+
 
 ## 搭建Ubuntu环境
 
