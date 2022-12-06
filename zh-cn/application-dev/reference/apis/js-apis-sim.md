@@ -2848,10 +2848,10 @@ SIM卡状态。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CoreService。
 
-| 名称            | 类型   | 说明               |
-| --------------- | ------ | ------------------ |
-| result          | number | 当前操作的结果。     |
-| remain?: number | number | 剩余次数（可以为空）。 |
+| 名称            | 类型   | 必填 | 说明                  |
+| --------------- | ------ | ---- | --------------------- |
+| result          | number |  是  | 当前操作的结果。      |
+| remain?: number | number |  否  | 剩余次数（可以为空）。|
 
 ## LockInfo<sup>8+</sup>
 
@@ -2861,11 +2861,11 @@ SIM卡状态。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CoreService。
 
-| 名称     | 类型                     | 说明   |
-| -------- | ------------------------ | ------ |
-| lockType | [LockType](#locktype8)   | 锁类型。 |
-| password | string                   | 密码。   |
-| state    | [LockState](#lockstate8) | 锁状态。 |
+| 名称     |           类型           | 必填 |   说明   |
+| -------- | ------------------------ | ---- | -------- |
+| lockType | [LockType](#locktype8)   |  是  | 锁类型。 |
+| password | string                   |  是  | 密码。   |
+| state    | [LockState](#lockstate8) |  是  | 锁状态。 |
 
 ## PersoLockInfo<sup>8+</sup>
 
@@ -2875,10 +2875,10 @@ SIM卡状态。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CoreService。
 
-| 名称     | 类型                             | 说明         |
-| -------- | -------------------------------- | ------------ |
-| lockType | [PersoLockType](#persolocktype8) | 定制锁的类型。 |
-| password | string                           | 密码。         |
+| 名称     |               类型               | 必填 |      说明     |
+| -------- | -------------------------------- | ---- | ------------- |
+| lockType | [PersoLockType](#persolocktype8) |  是  | 定制锁的类型。|
+| password | string                           |  是  | 密码。        |
 
 ## IccAccountInfo<sup>7+</sup>
 
@@ -2888,15 +2888,15 @@ Icc账户信息。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CoreService。
 
-| 名称       | 类型    | 说明             |
-| ---------- | ------- | ---------------- |
-| simId      | number  | SIM卡ID。          |
-| slotIndex  | number  | 卡槽ID。           |
-| isEsim     | boolean | 标记卡是否是eSim。 |
-| isActive   | boolean | 卡是否被激活。     |
-| iccId      | string  | ICCID号码。        |
-| showName   | string  | SIM卡显示名称。    |
-| showNumber | string  | SIM卡显示号码。    |
+| 名称       | 类型    | 必填 | 说明             |
+| ---------- | ------- | ---- | ---------------- |
+| simId      | number  |  是  | SIM卡ID。          |
+| slotIndex  | number  |  是  | 卡槽ID。           |
+| isEsim     | boolean |  是  | 标记卡是否是eSim。 |
+| isActive   | boolean |  是  | 卡是否被激活。     |
+| iccId      | string  |  是  | ICCID号码。        |
+| showName   | string  |  是  | SIM卡显示名称。    |
+| showNumber | string  |  是  | SIM卡显示号码。    |
 
 ## OperatorConfig<sup>8+</sup>
 
@@ -2906,10 +2906,10 @@ Icc账户信息。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CoreService。
 
-| 名称  | 类型   | 说明 |
-| ----- | ------ | ---- |
-| field | string | 字段 |
-| value | string | 值   |
+| 名称  | 类型   | 必填 | 说明 |
+| ----- | ------ | ---- | ---- |
+| field | string |  是  | 字段 |
+| value | string |  是  | 值   |
 
 ## DiallingNumbersInfo<sup>8+</sup>
 
@@ -2919,12 +2919,12 @@ Icc账户信息。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CoreService。
 
-| 名称         | 类型   | 说明     |
-| ------------ | ------ | -------- |
-| alphaTag     | string | 标签。     |
-| number       | string | 号码。     |
-| recordNumber | number | 记录编号。 |
-| pin2         | string | pin2密码。 |
+| 名称         | 类型   | 必填 |    说明    |
+| ------------ | ------ | ---- | ---------- |
+| alphaTag     | string |  是  | 标签。     |
+| number       | string |  是  | 号码。     |
+| recordNumber | number |  是  | 记录编号。 |
+| pin2         | string |  是  | pin2密码。 |
 
 ## ContactType<sup>8+</sup>
 
