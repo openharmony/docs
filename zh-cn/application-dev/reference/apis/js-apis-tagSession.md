@@ -25,9 +25,9 @@ getTagInfo(): tag.TagInfo
 
 获取该Tag被分发时，NFC服务所提供的Tag数据对象。
 
-**需要权限**：ohos.permission.NFC_TAG
+**需要权限：** ohos.permission.NFC_TAG
 
-**系统能力**：SystemCapability.Communication.NFC.Core
+**系统能力：** SystemCapability.Communication.NFC.Core
 
 **返回值：**
 
@@ -53,9 +53,9 @@ connectTag(): boolean;
 
 和标签建立连接。在从标签读取数据或将数据写入标签之前，必须调用此方法。
 
-**需要权限**：ohos.permission.NFC_TAG
+**需要权限：** ohos.permission.NFC_TAG
 
-**系统能力**：SystemCapability.Communication.NFC.Core
+**系统能力：** SystemCapability.Communication.NFC.Core
 
 **返回值：**
 
@@ -81,9 +81,9 @@ reset(): void
 
 重置与标签的连接。
 
-**需要权限**：ohos.permission.NFC_TAG
+**需要权限：** ohos.permission.NFC_TAG
 
-**系统能力**：SystemCapability.Communication.NFC.Core
+**系统能力：** SystemCapability.Communication.NFC.Core
 
 **示例：**
 
@@ -102,9 +102,9 @@ isTagConnected(): boolean
 
 检查是否已与标签建立连接。
 
-**需要权限**：ohos.permission.NFC_TAG
+**需要权限：** ohos.permission.NFC_TAG
 
-**系统能力**：SystemCapability.Communication.NFC.Core
+**系统能力：** SystemCapability.Communication.NFC.Core
 
 **返回值：**
 
@@ -130,9 +130,9 @@ getMaxSendLength(): number
 
 查询可以发送到标签的最大数据长度。
 
-**需要权限**：ohos.permission.NFC_TAG
+**需要权限：** ohos.permission.NFC_TAG
 
-**系统能力**：SystemCapability.Communication.NFC.Core
+**系统能力：** SystemCapability.Communication.NFC.Core
 
 **返回值：**
 
@@ -157,9 +157,9 @@ getSendDataTimeout(): number
 
 查询发送数据到Tag的等待超时时间，单位是毫秒。
 
-**需要权限**：ohos.permission.NFC_TAG
+**需要权限：** ohos.permission.NFC_TAG
 
-**系统能力**：SystemCapability.Communication.NFC.Core
+**系统能力：** SystemCapability.Communication.NFC.Core
 
 **返回值：**
 
@@ -185,9 +185,9 @@ setSendDataTimeout(timeout: number): boolean
 
 查询发送数据到Tag的等待超时时间，单位是毫秒。
 
-**需要权限**：ohos.permission.NFC_TAG
+**需要权限：** ohos.permission.NFC_TAG
 
-**系统能力**：SystemCapability.Communication.NFC.Core
+**系统能力：** SystemCapability.Communication.NFC.Core
 
 **参数：**
 
@@ -220,9 +220,9 @@ sendData(data: number[]): Promise<number[]>
 
 发送指令到Tag上，使用Promise方式作为异步方法。
 
-**需要权限**：ohos.permission.NFC_TAG
+**需要权限：** ohos.permission.NFC_TAG
 
-**系统能力**：SystemCapability.Communication.NFC.Core
+**系统能力：** SystemCapability.Communication.NFC.Core
 
 **参数：**
 
@@ -266,9 +266,9 @@ sendData(data: number[], callback: AsyncCallback<number[]>): void
 
 发送指令到Tag上，使用AsyncCallback方式作为异步方法。
 
-**需要权限**：ohos.permission.NFC_TAG
+**需要权限：** ohos.permission.NFC_TAG
 
-**系统能力**：SystemCapability.Communication.NFC.Core
+**系统能力：** SystemCapability.Communication.NFC.Core
 
 **参数：**
 
