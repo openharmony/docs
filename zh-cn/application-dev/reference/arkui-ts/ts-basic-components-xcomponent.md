@@ -10,8 +10,8 @@
 
 
 ## 子组件
-
-  不支持。
+  构造参数type为"surface"时不支持。\
+  从API version 9开始，构造参数type为"component"时可以包含子组件。
 
 ## 接口
 
@@ -22,11 +22,31 @@
 | 参数名       | 参数类型     | 必填   | 描述    |
 | --------- | ------ | ---- | ----- |
 | id  | string | 是    | 组件的唯一标识，支持最大的字符串长度128。 |
-| type      | string | 是    |  用于指定XComponent组件类型，可选值为：<br/>-surface：组件内容单独送显，直接合成到屏幕。<br/>-component：组件内容与其他组件合成后统一送显。 |
-| libraryname | string | 否    | 应用Native层编译输出动态库名称。 |
-| controller   | [XComponentcontroller](#xcomponentcontroller) | 否    | 给组件绑定一个控制器，通过控制器调用组件方法。 |
+| type      | string | 是    | 用于指定XComponent组件类型，可选值为：<br/>-"surface"：用于EGL/OpenGLES和媒体数据写入，组件内容单独送显，直接合成到屏幕。<br/>-"component"<sup>9+</sup> ：XComponent将变成一个容器组件，并可在其中执行非UI逻辑以动态加载显示内容。 |
+| libraryname | string | 否    | 应用Native层编译输出动态库名称，仅XComponent类型为"surface"时有效。 |
+| controller   | [XComponentcontroller](#xcomponentcontroller) | 否    | 给组件绑定一个控制器，通过控制器调用组件方法，仅XComponent类型为"surface"时有效。 |
+
+> **说明：**
+>
+> type为"component"时，XComponent作为容器，子组件沿垂直方向布局：
+>
+> - 垂直方向上对齐格式：[FlexAlign](ts-appendix-enums.md#flexalign).Start
+> - 水平方向上对齐格式：[FlexAlign](ts-appendix-enums.md#flexalign).Center
+>
+> 所有的事件响应均不支持。
+>
+> 布局方式更改和事件响应均可通过挂载子组件来设置。
+>
+> 内部所写的非UI逻辑需要封装在一个或多个函数内。
+
+## 属性
+- XComponent显示的内容，可由开发者自定义绘制，通用属性不支持[背景设置](./ts-universal-attributes-background.md)、[透明度设置](./ts-universal-attributes-opacity.md)和[图像效果](./ts-universal-attributes-image-effect.md)。
+- type为"surface"时建议使用EGL/OpenGLES提供的接口设置相关内容。
+- type为"component"时建议使用挂载子组件的方式进行设置相关内容。
 
 ## 事件
+
+仅type为"surface"时以下事件有效。不支持[通用事件和手势](./Readme-CN.md)。
 
 ### onLoad
 
@@ -60,7 +80,7 @@ xcomponentController: XComponentController = new XComponentController()
 
 getXComponentSurfaceId(): string
 
-获取XComponent对应Surface的ID，供@ohos接口使用，比如camera相关接口。
+获取XComponent对应Surface的ID，供@ohos接口使用，使用方式可参考[相机管理](../apis/js-apis-camera.md)，仅XComponent类型为"surface"时有效。
 
 
 **返回值:**
@@ -74,7 +94,7 @@ getXComponentSurfaceId(): string
 
 setXComponentSurfaceSize(value: {surfaceWidth: number, surfaceHeight: number}): void
 
-设置XComponent持有Surface的宽度和高度。
+设置XComponent持有Surface的宽度和高度，仅XComponent类型为"surface"时有效。
 
 
 **参数:**
@@ -89,7 +109,7 @@ setXComponentSurfaceSize(value: {surfaceWidth: number, surfaceHeight: number}): 
 
 getXComponentContext(): Object
 
-获取XComponent实例对象的context。
+获取XComponent实例对象的context，仅XComponent类型为"surface"时有效。
 
 **返回值:**
 
