@@ -133,7 +133,7 @@ getAppPowerPercent(uid: number): number
 
 获取应用的耗电百分比。
 
-**系统能力：** 此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **系统能力：** SystemCapability.PowerManager.BatteryStatistics
 
