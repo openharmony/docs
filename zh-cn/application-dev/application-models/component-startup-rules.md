@@ -1,12 +1,12 @@
-# 组件启动规则---Stage模型
+# 组件启动规则（Stage模型）
 
 
 启动组件是指一切启动或连接应用组件的行为：
 
 
-- 启动UIAbility或ExtensionAbility，如使用startAbility()、startServiceExtensionAbility()、startAbilityByCall()等相关接口。
+- 启动UIAbility、ServiceExtensionAbility、DataShareExtensionAbility，如使用startAbility()、startServiceExtensionAbility()、startAbilityByCall()等相关接口。
 
-- 连接ExtensionAbility，如使用connectServiceExtensionAbility()、createDataShareHelper()等相关接口。
+- 连接ServiceExtensionAbility、DataShareExtensionAbility，如使用connectServiceExtensionAbility()、createDataShareHelper()等相关接口。
 
 
 在OpenHarmony中，为了保证用户具有更好的使用体验，对以下几种易影响用户体验与系统安全的行为做了限制：
@@ -22,11 +22,16 @@
 鉴于此，OpenHarmony制订了一套组件启动规则，主要包括：
 
 
-- 应用位于后台时，启动组件需鉴权。
+- **跨应用启动组件，需校验目标组件Visible**
+  - 若目标组件visible字段配置为false，则需校验`ohos.permission.START_INVISIBLE_ABILITY`权限
+  - [组件visible配置参考](../quick-start/module-configuration-file.md#abilities标签)
 
-- 跨应用启动visible为false的组件，需鉴权。
+- **位于后台的应用，启动组件需校验BACKGROUND权限**
+  - 应用前后台判断标准：若应用进程获焦或所属的UIAbility位于前台则判定为前台应用，否则为后台应用
+  - 需校验`ohos.permission.START_ABILITIES_FROM_BACKGROUND`权限
 
-- 使用startAbilityByCall接口，需鉴权（使用方式参考：[Call调用开发指南](hop-multi-device-collaboration.md#通过跨设备call调用实现多端协同)）
+- **使用startAbilityByCall接口，需校验CALL权限**（使用方式参考：[Call调用开发指南（同设备）](uiability-intra-device-interaction.md#通过call调用实现uiability交互仅对系统应用开放)，[Call调用开发指南（跨设备）](hop-multi-device-collaboration.md#通过跨设备call调用实现多端协同)）
+  - 需校验`ohos.permission.ABILITY_BACKGROUND_COMMUNICATION`权限
 
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
@@ -34,77 +39,26 @@
 > 
 > 2. 与原本的启动规则不同，新的组件启动规则较为严格，开发者需熟知启动规则，避免业务功能异常。
 
-
-## 相关概念说明
-
-为方便开发者理解管控规则，此处对所涉及的相关概念进行解释。
-
-- **应用APL(Ability Privilege Level)**，表示应用的权限申请优先级的定义，不同APL等级的应用所能申请的权限不同，APL分为3个等级：
-  - 操作系统核心能力APL="system_core" (APL = 3)
-  - 系统基础服务APL="system_basic" (APL = 2)
-  - 三方应用程序APL="normal" (APL = 1)
-  - **注：三方应用默认都是APL="normal"**
-
-- **BACKGROUND校验**
-  - 对发起端应用进程的状态进行判断，若应用进程获焦或所属的UIAbility位于前台则判定为前台应用，否则为后台应用
-  - 若发起端为后台应用，则需校验START_ABILITIES_FROM_BACKGROUND权限
-
-- **VISIBLE校验**
-  - 只针对跨应用启动的场景
-  - 若目标组件visible配置为false，则需校验START_INVISIBLE_ABILITY权限
-
-- **CALL校验**
-  - 只针对startAbilityByCall接口
-  - 需校验ABILITY_BACKGROUND_COMMUNICATION权限
-
-- **相关权限**
-  
-  ```json
-  {
-    "name": "ohos.permission.START_ABILITIES_FROM_BACKGROUND",
-    "grantMode": "system_grant",
-    "availableLevel": "system_basic", // APL等级至少为system_basic才可申请
-    "since": 9,
-    "deprecated": "",
-    "provisionEnable": true, // 支持ACL方式申请权限
-    "distributedSceneEnable": false
-  },
-  {
-    "name": "ohos.permission.START_INVISIBLE_ABILITY",
-    "grantMode": "system_grant",
-    "availableLevel": "system_core", // APL等级至少为system_core才可申请
-    "since": 9,
-    "deprecated": "",
-    "provisionEnable": true, // 支持ACL方式申请权限
-    "distributedSceneEnable": false
-  },
-  {
-    "name": "ohos.permission.ABILITY_BACKGROUND_COMMUNICATION",
-    "grantMode": "system_grant",
-    "availableLevel": "system_basic", // APL等级至少为system_basic才可申请
-    "since": 9,
-    "deprecated": "",
-    "provisionEnable": true, // 支持ACL方式申请权限
-    "distributedSceneEnable": false
-  }
-  ```
+启动组件的具体校验流程见下文。
 
 
-## 同设备组件启动管控
+## 同设备组件启动规则
 
-  不同场景下的管控规则不同，可分为如下两种场景：
+  设备内启动组件，不同场景下的规则不同，可分为如下两种场景：
+
 - 启动或连接组件：UIAbility、ServiceExtensionAbility、DataShareExtensionAbility。
 
 - 通过startAbilityByCall接口启动UIAbility。
 
-![startup-rule](figures/component-startup-rules.png)
+![startup-rule](figures/component-startup-inner-stage.png)
 
 
-## 分布式跨设备组件启动管控
+## 分布式跨设备组件启动规则
 
-  不同场景下的管控规则不同，可分为如下两种场景：
+  跨设备启动组件，不同场景下的规则不同，可分为如下两种场景：
+
 - 启动或连接组件：UIAbility、ServiceExtensionAbility、DataShareExtensionAbility。
 
 - 通过startAbilityByCall接口启动UIAbility。
 
-![component-startup-rules](figures/component-startup-rules-across-device.png)
+![component-startup-rules](figures/component-startup-inter-stage.png)
