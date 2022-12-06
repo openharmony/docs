@@ -176,7 +176,7 @@ request\(url: string, options? : HttpRequestOptions\): Promise<HttpResponse\>
 | 参数名  | 类型               | 必填 | 说明                                            |
 | ------- | ------------------ | ---- | ----------------------------------------------- |
 | url     | string             | 是   | 发起网络请求的URL地址。                         |
-| options | HttpRequestOptions | 是   | 参考[HttpRequestOptions](#httprequestoptions)。 |
+| options | HttpRequestOptions | 否   | 参考[HttpRequestOptions](#httprequestoptions)。 |
 
 **返回值：**
 
@@ -355,7 +355,7 @@ httpRequest.once('headersReceive', (header) => {
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Communication.NetStack。
 
-| 参数名         | 类型                                          | 必填 | 说明                                                         |
+| 名称         | 类型                                          | 必填 | 说明                                                         |
 | -------------- | --------------------------------------------- | ---- | ------------------------------------------------------------ |
 | method         | [RequestMethod](#requestmethod)               | 否   | 请求方式。                                                   |
 | extraData      | string \| Object  \| ArrayBuffer<sup>6+</sup> | 否   | 发送请求的额外数据。<br />- 当HTTP请求为POST、PUT等方法时，此字段为HTTP请求的content。<br />- 当HTTP请求为GET、OPTIONS、DELETE、TRACE、CONNECT等方法时，此字段为HTTP请求的参数补充，参数内容会拼接到URL中进行发送。<sup>6+</sup><br />- 开发者传入string对象，开发者需要自行编码，将编码后的string传入。<sup>6+</sup> |
@@ -375,14 +375,14 @@ HTTP 请求方法。
 
 | 名称    | 值      | 说明                |
 | :------ | ------- | :------------------ |
-| OPTIONS | OPTIONS | HTTP 请求 OPTIONS。 |
-| GET     | GET     | HTTP 请求 GET。     |
-| HEAD    | HEAD    | HTTP 请求 HEAD。    |
-| POST    | POST    | HTTP 请求 POST。    |
-| PUT     | PUT     | HTTP 请求 PUT。     |
-| DELETE  | DELETE  | HTTP 请求 DELETE。  |
-| TRACE   | TRACE   | HTTP 请求 TRACE。   |
-| CONNECT | CONNECT | HTTP 请求 CONNECT。 |
+| OPTIONS | "OPTIONS" | HTTP 请求 OPTIONS。 |
+| GET     | "GET"     | HTTP 请求 GET。     |
+| HEAD    | "HEAD"    | HTTP 请求 HEAD。    |
+| POST    | "POST"    | HTTP 请求 POST。    |
+| PUT     | "PUT"     | HTTP 请求 PUT。     |
+| DELETE  | "DELETE"  | HTTP 请求 DELETE。  |
+| TRACE   | "TRACE"   | HTTP 请求 TRACE。   |
+| CONNECT | "CONNECT" | HTTP 请求 CONNECT。 |
 
 ## ResponseCode
 
@@ -434,7 +434,7 @@ request方法回调函数的返回值类型。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Communication.NetStack。
 
-| 参数名               | 类型                                         | 必填 | 说明                                                         |
+| 名称               | 类型                                         | 必填 | 说明                                                         |
 | -------------------- | -------------------------------------------- | ---- | ------------------------------------------------------------ |
 | result               | string \| Object \| ArrayBuffer<sup>6+</sup> | 是   | HTTP请求根据响应头中Content-type类型返回对应的响应格式内容：<br />- application/json：返回JSON格式的字符串，如需HTTP响应具体内容，需开发者自行解析<br />- application/octet-stream：ArrayBuffer<br />- 其他：string |
 | resultType<sup>9+</sup> | [HttpDataType](#httpdatatype9)             | 是   | 返回值类型。                           |
@@ -509,7 +509,7 @@ flush(): Promise\<void>
 
 **系统能力**：SystemCapability.Communication.NetStack
 
-**参数：**
+**返回值：**
 
 | 类型                              | 说明                                  |
 | --------------------------------- | ------------------------------------- |
@@ -562,7 +562,7 @@ delete(): Promise\<void>
 
 **系统能力**：SystemCapability.Communication.NetStack
 
-**参数：**
+**返回值：**
 
 | 类型                              | 说明                                  |
 | --------------------------------- | ------------------------------------- |
@@ -595,17 +595,17 @@ httpResponseCache.delete().then() => {
 
 http的数据类型。
 
-| **HttpDataType 的合法值** | 说明     |
-| :------------------ | :----------- |
-| STRING              |  字符串类型。 |
-| OBJECT              |  对象类型。    |
-| ARRAY_BUFFER        |  二进制数组类型。|
+| 名称 | 值 | 说明     |
+| ------------------ | -- | ----------- |
+| STRING              | 0 | 字符串类型。 |
+| OBJECT              | 1 | 对象类型。    |
+| ARRAY_BUFFER        | 2 | 二进制数组类型。|
 
 ## HttpProtocol<sup>9+</sup>
 
 http协议版本。
 
-| **HttpProtocol 的合法值** | 说明     |
-| :----------------- | :----------- |
-| HTTP1_1            |  协议http1.1 |
-| HTTP2              |  协议http2    |
+| 名称  | 说明     |
+| :-------- | :----------- |
+| HTTP1_1   |  协议http1.1  |
+| HTTP2     |  协议http2    |

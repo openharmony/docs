@@ -18,9 +18,11 @@ setIfaceConfig(iface: string, ic: InterfaceConfiguration, callback: AsyncCallbac
 
 设置网络接口配置信息，使用callback方式作为异步方法。
 
+**系统接口**：此接口为系统接口。
+
 **需要权限**：ohos.permission.CONNECTIVITY_INTERNAL
 
-**系统能力**：SystemCapability.Communication.NetManager.Core
+**系统能力**：SystemCapability.Communication.NetManager.Ethernet
 
 **参数：**
 
@@ -50,9 +52,11 @@ setIfaceConfig(iface: string, ic: InterfaceConfiguration): Promise\<void>;
 
 设置网络接口配置信息，使用Promise方式作为异步方法。
 
+**系统接口**：此接口为系统接口。
+
 **需要权限**：ohos.permission.CONNECTIVITY_INTERNAL
 
-**系统能力**：SystemCapability.Communication.NetManager.Core
+**系统能力**：SystemCapability.Communication.NetManager.Ethernet
 
 **参数：**
 
@@ -84,9 +88,11 @@ getIfaceConfig(iface: string, callback: AsyncCallback\<InterfaceConfiguration>):
 
 获取指定网络接口信息，使用callback方式作为异步方法。
 
+**系统接口**：此接口为系统接口。
+
 **需要权限**：ohos.permission.GET_NETWORK_INFO
 
-**系统能力**：SystemCapability.Communication.NetManager.Core
+**系统能力**：SystemCapability.Communication.NetManager.Ethernet
 
 **参数：**
 
@@ -119,9 +125,11 @@ getIfaceConfig(iface: string): Promise\<InterfaceConfiguration>;
 
 获取指定网络接口信息，使用Promise方式作为异步方法。
 
+**系统接口**：此接口为系统接口。
+
 **需要权限**：ohos.permission.GET_NETWORK_INFO
 
-**系统能力**：SystemCapability.Communication.NetManager.Core
+**系统能力**：SystemCapability.Communication.NetManager.Ethernet
 
 **参数：**
 
@@ -157,9 +165,11 @@ isIfaceActive(iface?: string, callback: AsyncCallback\<number>): void;
 
 判断接口是否已激活，使用callback方式作为异步方法。
 
+**系统接口**：此接口为系统接口。
+
 **需要权限**：ohos.permission.GET_NETWORK_INFO
 
-**系统能力**：SystemCapability.Communication.NetManager.Core
+**系统能力**：SystemCapability.Communication.NetManager.Ethernet
 
 **参数：**
 
@@ -186,9 +196,11 @@ isIfaceActive(iface?: string): Promise\<number>;
 
 判断接口是否已激活，使用Promise方式作为异步方法。
 
+**系统接口**：此接口为系统接口。
+
 **需要权限**：ohos.permission.GET_NETWORK_INFO
 
-**系统能力**：SystemCapability.Communication.NetManager.Core
+**系统能力**：SystemCapability.Communication.NetManager.Ethernet
 
 **参数：**
 
@@ -218,9 +230,11 @@ getAllActiveIfaces(callback: AsyncCallback\<Array\<string>>): void;
 
 获取活动的网络接口，使用callback方式作为异步方法。
 
+**系统接口**：此接口为系统接口。
+
 **需要权限**：ohos.permission.GET_NETWORK_INFO
 
-**系统能力**：SystemCapability.Communication.NetManager.Core
+**系统能力**：SystemCapability.Communication.NetManager.Ethernet
 
 **参数：**
 
@@ -249,9 +263,11 @@ getAllActiveIfaces(): Promise\<Array\<string>>;
 
 获取活动的网络接口，使用Promise方式作为异步方法。
 
+**系统接口**：此接口为系统接口。
+
 **需要权限**：ohos.permission.GET_NETWORK_INFO
 
-**系统能力**：SystemCapability.Communication.NetManager.Core
+**系统能力**：SystemCapability.Communication.NetManager.Ethernet
 
 **参数：**
 
@@ -278,7 +294,9 @@ ethernet.getAllActiveIfaces().then((data) => {
 
 以太网连接配置网络信息。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Communication.NetManager.Core。
+**系统接口**：此接口为系统接口。
+
+**系统能力**：以下各项对应的系统能力均为SystemCapability.Communication.NetManager.Ethernet。
 
 | 参数名                  | 类型                                | 说明                                                         |
 | ----------------------- | ----------------------------------- | ------------------------------------------------------------ |
@@ -293,9 +311,11 @@ ethernet.getAllActiveIfaces().then((data) => {
 
 以太网连接模式。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Communication.NetManager.Core。
+**系统接口**：此接口为系统接口。
 
-| 参数名                  | 值   | 说明                   |
+**系统能力**：以下各项对应的系统能力均为SystemCapability.Communication.NetManager.Ethernet。
+
+| 名称                  | 值   | 说明                   |
 | ------------------------ | ---- | ---------------------- |
 | STATIC | 0 | 以太网连接静态配置网络信息。 |
 | DHCP   | 1 | 以太网连接动态配置网络信息。 |
