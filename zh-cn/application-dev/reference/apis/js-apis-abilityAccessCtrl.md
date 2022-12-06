@@ -375,7 +375,7 @@ getPermissionFlags(tokenID: number, permissionName: Permissions): Promise&lt;num
 | 12100001 | The parameter is invalid. The tokenID is 0 |
 | 12100002 | The specified tokenID does not exist. |
 | 12100003 | The specified permission does not exist. |
-| 12100006 | The operation is not allowd. Either the application is a sandbox or the tokenID is from a remote device. |
+| 12100006 | The operation is not allowed. Either the application is a sandbox or the tokenID is from a remote device. |
 | 12100007 | Service is abnormal. |
 
 **示例：**
