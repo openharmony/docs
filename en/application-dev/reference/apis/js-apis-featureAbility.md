@@ -1,8 +1,9 @@
 # FeatureAbility
 
 > **NOTE**
->
-> The initial APIs of this module are supported since API version 6. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+> 
+> The initial APIs of this module are supported since API version 6. Newly added APIs will be marked with a superscript to indicate their earliest API version. 
+> API version 9 is a canary version for trial use. The APIs of this version may be unstable.
 
 ## Constraints
 
@@ -18,7 +19,7 @@ import featureAbility from '@ohos.ability.featureAbility'
 
 startAbility(parameter: StartAbilityParameter, callback: AsyncCallback\<number>): void
 
-Starts an ability. This API uses a callback to return the result.
+Starts an ability. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.FAModel
 
@@ -35,7 +36,7 @@ Starts an ability. This API uses a callback to return the result.
 import featureAbility from '@ohos.ability.featureAbility'
 import wantConstant from '@ohos.ability.wantConstant'
 featureAbility.startAbility(
-        {
+    {
         want:
         {
             action: "",
@@ -48,6 +49,9 @@ featureAbility.startAbility(
             uri: ""
         },
     },
+    (err, data) => {
+        console.info("err: " + JSON.stringify(err) + "data: " + JSON.stringify(data))
+    }
 );
 ```
 
@@ -124,7 +128,7 @@ featureAbility.acquireDataAbilityHelper(
 
 startAbilityForResult(parameter: StartAbilityParameter, callback: AsyncCallback\<AbilityResult>): void
 
-Starts an ability. This API uses a callback to return the execution result when the ability is destroyed.
+Starts an ability. This API uses an asynchronous callback to return the execution result when the ability is destroyed.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.FAModel
 
@@ -220,7 +224,7 @@ featureAbility.startAbilityForResult(
 
 terminateSelfWithResult(parameter: AbilityResult, callback: AsyncCallback\<void>): void
 
-Destroys this Page ability, with the result code and data sent to the caller. This API uses a callback to return the result.
+Destroys this Page ability, with the result code and data sent to the caller. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.FAModel
 
@@ -228,7 +232,7 @@ Destroys this Page ability, with the result code and data sent to the caller. Th
 
 | Name       | Type                             | Mandatory  | Description            |
 | --------- | ------------------------------- | ---- | -------------- |
-| parameter | [AbilityResult](#abilityresult) | Yes   | Ability to start.|
+| parameter | [AbilityResult](#abilityresult) | Yes   | Ability to destroy.|
 | callback  | AsyncCallback\<void>            | Yes   | Callback used to return the result.     |
 
 **Example**
@@ -261,6 +265,9 @@ featureAbility.terminateSelfWithResult(
             }
         },
     },
+    (err) => {
+        console.info("err: " + JSON.stringify(err))
+    }
 );
 ```
 
@@ -276,7 +283,7 @@ Destroys this Page ability, with the result code and data sent to the caller. Th
 
 | Name       | Type                             | Mandatory  | Description           |
 | --------- | ------------------------------- | ---- | ------------- |
-| parameter | [AbilityResult](#abilityresult) | Yes   | Ability to start.|
+| parameter | [AbilityResult](#abilityresult) | Yes   | Ability to destroy.|
 
 **Return value**
 
@@ -325,7 +332,7 @@ featureAbility.terminateSelfWithResult(
 
 hasWindowFocus(callback: AsyncCallback\<boolean>): void
 
-Checks whether the main window of this ability has the focus. This API uses a callback to return the result.
+Checks whether the main window of this ability has the focus. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.FAModel
 
@@ -339,7 +346,11 @@ Checks whether the main window of this ability has the focus. This API uses a ca
 
 ```javascript
 import featureAbility from '@ohos.ability.featureAbility';
-featureAbility.hasWindowFocus()
+featureAbility.hasWindowFocus(
+    (err, data) => {
+        console.info("err: " + JSON.stringify(err) + "data: " + JSON.stringify(data))
+    }
+)
 ```
 
 
@@ -373,7 +384,7 @@ featureAbility.hasWindowFocus().then((data) => {
 
 getWant(callback: AsyncCallback\<Want>): void
 
-Obtains the **Want** object sent from this ability. This API uses a callback to return the result.
+Obtains the **Want** object sent from this ability. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.FAModel
 
@@ -387,7 +398,11 @@ Obtains the **Want** object sent from this ability. This API uses a callback to 
 
 ```javascript
 import featureAbility from '@ohos.ability.featureAbility';
-featureAbility.getWant()
+featureAbility.getWant(
+    (err, data) => {
+        console.info("err: " + JSON.stringify(err) + "data: " + JSON.stringify(data))
+    }
+)
 ```
 
 
@@ -427,7 +442,7 @@ Obtains the application context.
 
 | Type     | Description        |
 | ------- | ---------- |
-| Context | Application context returned.|
+| Context | Application context.|
 
 **Example**
 
@@ -443,7 +458,7 @@ context.getBundleName()
 
 terminateSelf(callback: AsyncCallback\<void>): void
 
-Destroys this Page ability, with the result code and data sent to the caller. This API uses a callback to return the result.
+Destroys this Page ability, with the result code and data sent to the caller. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.FAModel
 
@@ -457,7 +472,11 @@ Destroys this Page ability, with the result code and data sent to the caller. Th
 
 ```javascript
 import featureAbility from '@ohos.ability.featureAbility';
-featureAbility.terminateSelf()
+featureAbility.terminateSelf(
+    (err) => {
+        console.info("err: " + JSON.stringify(err))
+    }
+)
 ```
 
 
@@ -488,7 +507,7 @@ featureAbility.terminateSelf().then((data) => {		    console.info("=============
 
 connectAbility(request: Want, options:ConnectOptions): number
 
-Connects this ability to a specific Service ability. This API uses a callback to return the result.
+Connects this ability to a specific Service ability. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.FAModel
 
@@ -503,27 +522,27 @@ Want
 
 **System capability**: SystemCapability.Ability.AbilityBase
 
-| Name         | Readable/Writable| Type    | Mandatory  | Description                                      |
-| ----------- | ---- | ------ | ---- | ---------------------------------------- |
-| deviceId    | Read-only  | string | No   | Device ID of the Service ability to connect. The default value is the local device ID.|
-| bundleName  | Read-only  | string | Yes   | Bundle name of the Service ability to connect.                |
-| abilityName | Read-only  | string | Yes   | Class name of the Service ability to connect.                |
+| Name        | Readable/Writable | Type   | Mandatory | Description                                                  |
+| ----------- | ----------------- | ------ | --------- | ------------------------------------------------------------ |
+| deviceId    | Read-only         | string | No        | Device ID of the Service ability to connect. The default value is the local device ID. |
+| bundleName  | Read-only         | string | Yes       | Bundle name of the Service ability to connect.               |
+| abilityName | Read-only         | string | Yes       | Class name of the Service ability to connect.                |
 
 ConnectOptions
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
-| Name          | Readable/Writable| Type      | Mandatory  | Description                       |
-| ------------ | ---- | -------- | ---- | ------------------------- |
-| onConnect    | Read-only  | function | Yes   | Callback invoked when the connection is successful.              |
-| onDisconnect | Read-only  | function | Yes   | Callback invoked when the connection fails.              |
-| onFailed     | Read-only  | function | Yes   | Callback invoked when **connectAbility** fails to be called.|
+| Name          | Readable/Writable | Type      | Mandatory  | Description                       |
+| ------------ | -- | -------- | ---- | ------------------------- |
+| onConnect    | Read-only | function | Yes   | Callback invoked when the connection is successful.              |
+| onDisconnect | Read-only | function | Yes   | Callback invoked when the connection fails.              |
+| onFailed     | Read-only | function | Yes   | Callback invoked when **connectAbility** fails to be called.|
 
 **Return value**
 
 | Type    | Description                  |
 | ------ | -------------------- |
-| number | Returns the ID of the Service ability connected.|
+| number | ID of the Service ability connected.|
 
 **Example**
 
@@ -557,7 +576,7 @@ var connId = featureAbility.connectAbility(
 
 disconnectAbility(connection: number, callback:AsyncCallback\<void>): void
 
-Disconnects this ability from a specific Service ability. This API uses a callback to return the result.
+Disconnects this ability from a specific Service ability. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.FAModel
 
@@ -594,8 +613,8 @@ var connId = featureAbility.connectAbility(
     },
 );
 var result = featureAbility.disconnectAbility(connId,
-    (error,data) => {
-    console.log('featureAbilityTest DisConnectJsSameBundleName result errCode : ' + error.code + " data: " + data)
+    (error) => {
+        console.log('featureAbilityTest DisConnectJsSameBundleName result errCode : ' + error.code)
     },
 );
 ```
@@ -656,7 +675,7 @@ featureAbility.disconnectAbility(connId).then((error,data)=>{
 
 getWindow(callback: AsyncCallback\<window.Window>): void
 
-Obtains the window corresponding to this ability. This API uses a callback to return the result.
+Obtains the window corresponding to this ability. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.FAModel
 
@@ -669,7 +688,11 @@ Obtains the window corresponding to this ability. This API uses a callback to re
 **Example**
 
 ```javascript
-featureAbility.getWindow()
+featureAbility.getWindow(
+    (err, data) => {
+        console.info("err: " + JSON.stringify(err) + "data: " + JSON.stringify(data))
+    }
+)
 ```
 
 ## featureAbility.getWindow<sup>7+</sup>
@@ -837,7 +860,7 @@ featureAbility.AbilityWindowConfiguration.WINDOW_MODE_UNDEFINED
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.FAModel
 
-| Name                                      | Name  | Description                                      |
+| Name                                    | Value  | Description                                      |
 | ---------------------------------------- | ---- | ---------------------------------------- |
 | WINDOW_MODE_UNDEFINED<sup>7+</sup>       | 0    | The Page ability is in an undefined window display mode.|
 | WINDOW_MODE_FULLSCREEN<sup>7+</sup>      | 1    | The Page ability is in full screen mode.   |
@@ -860,7 +883,7 @@ featureAbility.AbilityStartSetting.BOUNDS_KEY
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.FAModel
 
-| Name                          | Name             | Description                                      |
+| Name                          | Value             | Description                                      |
 | ---------------------------- | --------------- | ---------------------------------------- |
 | BOUNDS_KEY<sup>7+</sup>      | "abilityBounds" | Ability window size.|
 | WINDOW_MODE_KEY<sup>7+</sup> | "windowMode"    | Ability window display mode.|
@@ -872,7 +895,7 @@ Enumerates error codes.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.FAModel
 
-| Variable                            | Value   | Description                                      |
+| Name                            | Value   | Description                                      |
 | ------------------------------ | ---- | ---------------------------------------- |
 | NO_ERROR<sup>7+</sup>          | 0    | No error occurs.|
 | INVALID_PARAMETER<sup>7+</sup> | -1   | Invalid parameter.|
@@ -886,7 +909,7 @@ Enumerates operation types of the Data ability.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.FAModel
 
-| Variable                      | Value   | Description                                      |
+| Name                      | Value   | Description                                      |
 | ------------------------ | ---- | ---------------------------------------- |
 | TYPE_INSERT<sup>7+</sup> | 1    | Insert operation.|
 | TYPE_UPDATE<sup>7+</sup> | 2    | Update operation.|
@@ -899,44 +922,44 @@ Enumerates operation types of the Data ability.
 
 **System capability**: SystemCapability.Ability.AbilityBase
 
-| Name                     | Readable/Writable| Type           | Mandatory  | Description                                   |
-| ----------------------- | ---- | ------------- | ---- | ------------------------------------- |
-| resultCode<sup>7+</sup> | Read-only  | number        | Yes   | Result code returned after the ability is destroyed. The feature for defining error-specific result codes is coming soon.|
-| want<sup>7+</sup>       | Read-only  | [Want](#want) | No   | Data returned after the ability is destroyed. You can define the data to be returned. This parameter can be **null**. |
+| Name                  | Readable/Writable |   Type  | Mandatory  | Description                                   |
+| ---------------        |-------- | ------ | ------------------------------------- | ------------------------------------- |
+| resultCode<sup>7+</sup>| Read-only | number| Yes   | Result code returned after the ability is destroyed. The feature for defining error-specific result codes is coming soon.|
+| want<sup>7+</sup>      | Read-only | [Want](#want)| No   | Data returned after the ability is destroyed. You can define the data to be returned. This parameter can be **null**. |
 
 ## StartAbilityParameter
 
-**System capability**: SystemCapability.AbilityRuntime.FAModel
+**System capability**: SystemCapability.Ability.AbilityRuntime.FAModel
 
-| Name                 | Readable/Writable| Type                  | Mandatory  | Description                                    |
-| ------------------- | ---- | -------------------- | ---- | -------------------------------------- |
-| want                | Read-only  | [Want](#want)        | Yes   | Information about the ability to start.                    |
-| abilityStartSetting | Read-only  | {[key: string]: any} | No   | Special attribute of the ability to start. This attribute can be passed in the method call.|
+| Name              | Readable/Writable |   Type  | Mandatory  | Description                                   |
+| ------------------- | -------- | -------------------- | -------------------- | -------------------- |
+| want                | Read-only       | [Want](#want)| Yes   | Information about the ability to start.                    |
+| abilityStartSetting | Read-only | {[key: string]: any} | No   | Special attribute of the ability to start. This attribute can be passed in the method call.|
 
 
 ## Want
 
 **System capability**: SystemCapability.Ability.AbilityBase
 
-| Name                            | Readable/Writable| Type                | Mandatory| Description                                                        |
-| -------------------------------- | -------- | -------------------- | ---- | ------------------------------------------------------------ |
-| deviceId                         | Read-only    | string               | No  | ID of the device that runs the ability.                               |
-| bundleName                       | Read-only    | string               | No  | Bundle name of the ability to start.|
-| abilityName                      | Read-only    | string               | No  | Name of the ability to start. If both **package** and **AbilityName** are specified in this field in a **Want** object, the **Want** object can directly match the specified ability.|
-| uri                              | Read-only    | string               | No  | URI information to match. If **uri** is specified in a **Want** object, the **Want** object will match the specified URI information, including **scheme**, **schemeSpecificPart**, **authority**, and **path**.|
-| type                             | Read-only    | string               | No  | MIME type, for example, text/plain or image/*.  |
-| flags                            | Read-only    | number               | No  | How the **Want** object will be handled. By default, a number is passed. For details, see [flags](#flags).|
-| action                           | Read-only    | string               | No  | Action option.                                        |
-| parameters                       | Read-only    | {[key: string]: any} | No  | List of parameters in the **Want** object.                                        |
-| entities                         | Read-only    | Array\<string>       | No  | List of entities.                                      |
-| extensionAbilityType<sup>9+</sup> |  Read-only   | bundle.ExtensionAbilityType | No  | Type of the Extension ability.                |
-| extensionAbilityName<sup>9+<sup> | Read-only     | string               | No   | Description of the Extension ability name in the **Want** object.                                   |
+| Name                              | Readable/Writable | Type                        | Mandatory | Description                                                  |
+| --------------------------------- | ----------------- | --------------------------- | --------- | ------------------------------------------------------------ |
+| deviceId                          | Read-only         | string                      | No        | ID of the device that runs the ability.                      |
+| bundleName                        | Read-only         | string                      | No        | Bundle name of the ability to start.                         |
+| abilityName                       | Read-only         | string                      | No        | Name of the ability to start. If both **package** and **AbilityName** are specified in this field in a **Want** object, the **Want** object can directly match the specified ability. |
+| uri                               | Read-only         | string                      | No        | URI information to match. If **uri** is specified in a **Want** object, the **Want** object will match the specified URI information, including **scheme**, **schemeSpecificPart**, **authority**, and **path**. |
+| type                              | Read-only         | string                      | No        | MIME type, for example, text/plain or image/*.               |
+| flags                             | Read-only         | number                      | No        | How the **Want** object will be handled. By default, a number is passed. For details, see [flags](#flags). |
+| action                            | Read-only         | string                      | No        | Action option.                                               |
+| parameters                        | Read-only         | {[key: string]: any}        | No        | List of parameters in the **Want** object.                   |
+| entities                          | Read-only         | Array\<string>              | No        | List of entities.                                            |
+| extensionAbilityType<sup>9+</sup> | Read-only         | bundle.ExtensionAbilityType | No        | Type of the Extension ability.                               |
+| extensionAbilityName<sup>9+<sup>  | Read-only         | string                      | No        | Description of the Extension ability name in the **Want** object. |
 
 ## flags
 
 **System capability**: SystemCapability.Ability.AbilityBase
 
-| Name                                  | Name        | Description                                      |
+| Name                                  | Value        | Description                                      |
 | ------------------------------------ | ---------- | ---------------------------------------- |
 | FLAG_AUTH_READ_URI_PERMISSION        | 0x00000001 | Indicates the permission to read the URI.                        |
 | FLAG_AUTH_WRITE_URI_PERMISSION       | 0x00000002 | Indicates the permission to write the URI.                        |
