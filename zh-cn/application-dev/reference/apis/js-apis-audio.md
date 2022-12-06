@@ -1360,10 +1360,6 @@ mute(volumeType: AudioVolumeType, mute: boolean, callback: AsyncCallback&lt;void
 > **说明：**
 > 从 API version 7 开始支持，从 API version 9 开始废弃，建议使用AudioVolumeGroupManager中的[mute](#mute9)替代。
 
-**需要权限：** ohos.permission.ACCESS_NOTIFICATION_POLICY
-
-仅设置铃声（即volumeType为AudioVolumeType.RINGTONE）在静音和非静音状态切换时需要该权限。
-
 **系统能力：** SystemCapability.Multimedia.Audio.Volume
 
 **参数：**
@@ -1394,10 +1390,6 @@ mute(volumeType: AudioVolumeType, mute: boolean): Promise&lt;void&gt;
 
 > **说明：**
 > 从 API version 7 开始支持，从 API version 9 开始废弃，建议使用AudioVolumeGroupManager中的[mute](#mute9)替代。
-
-**需要权限：** ohos.permission.ACCESS_NOTIFICATION_POLICY
-
-仅设置铃声（即volumeType为AudioVolumeType.RINGTONE）在静音和非静音状态切换时需要该权限。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Volume
 
