@@ -21,8 +21,8 @@
 
 | 名称                      | 类型   | 可读 | 可写 | 说明                 |
 | ------------------------- | ------ | ---- | ---- | -------------------- |
-| targetBundle              | string | 是   | 否   | 快捷方式的目标捆绑包 |
-| targetClass               | string | 是   | 否   | 快捷方式所需的目标类 |
+| targetBundle              | string | 是   | 否   | 快捷方式的目标捆绑包。 |
+| targetClass               | string | 是   | 否   | 快捷方式所需的目标类。 |
 
 ## ShortcutInfo<sup>(deprecated)<sup>
 

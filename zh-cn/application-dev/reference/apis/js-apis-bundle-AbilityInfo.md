@@ -15,7 +15,7 @@ Ability信息，未做特殊说明的属性，均通过[GET_BUNDLE_DEFAULT](js-a
 
 | 名称                  | 类型                                                     | 可读 | 可写 | 说明                                      |
 | --------------------- | -------------------------------------------------------- | ---- | ---- | ----------------------------------------- |
-| bundleName            | string                                                   | 是   | 否   | 应用包名                                  |
+| bundleName            | string                                                   | 是   | 否   | 应用包名。                                  |
 | name                  | string                                                   | 是   | 否   | Ability名称。                               |
 | label                 | string                                                   | 是   | 否   | Ability对用户显示的名称。                   |
 | description           | string                                                   | 是   | 否   | Ability的描述。                             |
@@ -36,7 +36,7 @@ Ability信息，未做特殊说明的属性，均通过[GET_BUNDLE_DEFAULT](js-a
 | deviceCapabilities    | Array\<string>                                           | 是   | 否   | Ability需要的设备能力。                     |
 | readPermission        | string                                                   | 是   | 否   | 读取Ability数据所需的权限。<br />此属性仅可在FA模型下使用。|
 | writePermission       | string                                                   | 是   | 否   | 向Ability写数据所需的权限。<br />此属性仅可在FA模型下使用。 |
-| applicationInfo       | [ApplicationInfo](js-apis-bundle-ApplicationInfo.md)     | 是   | 否   | 应用程序的配置信息。<br />通过传入GET_ABILITY_INFO_WITH_APPLICATION获取。 |
+| applicationInfo       | [ApplicationInfo](js-apis-bundle-ApplicationInfo.md)     | 是   | 否   | 应用程序的配置信息。<br />通过传入[GET_ABILITY_INFO_WITH_APPLICATION](js-apis-Bundle.md)获取。 |
 | uri                   | string                                                   | 是   | 否   | 获取Ability的统一资源标识符（URI）。<br />此属性仅可在FA模型下使用。 |
 | labelId               | number                                                   | 是   | 否   | Ability的标签id。                           |
 | subType               | AbilitySubType                                           | 是   | 否   | Ability中枚举使用的模板的子类型。<br />此属性仅可在FA模型下使用。 |
