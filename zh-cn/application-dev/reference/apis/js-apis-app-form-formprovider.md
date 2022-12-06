@@ -27,13 +27,13 @@ setFormNextRefreshTime(formId: string, minute: number, callback: AsyncCallback&l
 | minute | number | 是   | 指定多久之后更新，单位分钟，大于等于5。     |
 | callback | AsyncCallback&lt;void&gt; | 是 | 回调函数。 |
 
-以下错误码的详细介绍请参见[卡片错误码](../errorcodes/errcode-form.md)。
 | 错误码ID | 错误信息 |
 | -------- | -------- |
 | 16500100 | Failed to obtain configuration information. |
 | 16501001 | The ID of the form to be operated does not exist. |
 | 16501002 | The number of forms exceeds the upper bound. |
 | 16501003 | The form can not be operated by the current application. |
+以上错误码的详细介绍请参见[卡片错误码](../errorcodes/errcode-form.md)。
 
 **示例：**
 
@@ -75,13 +75,13 @@ setFormNextRefreshTime(formId: string, minute: number): Promise&lt;void&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[卡片错误码](../errorcodes/errcode-form.md)。
 | 错误码ID | 错误信息 |
 | -------- | -------- |
 | 16500100 | Failed to obtain configuration information. |
 | 16501001 | The ID of the form to be operated does not exist. |
 | 16501002 | The number of forms exceeds the upper bound. |
 | 16501003 | The form can not be operated by the current application. |
+以上错误码的详细介绍请参见[卡片错误码](../errorcodes/errcode-form.md)。
 
 **示例：**
 
@@ -111,15 +111,15 @@ updateForm(formId: string, formBindingData: formBindingData.FormBindingData,call
 | 参数名 | 类型                                                                    | 必填 | 说明             |
 | ------ | ---------------------------------------------------------------------- | ---- | ---------------- |
 | formId | string                                                                 | 是   | 请求更新的卡片标识。 |
-| formBindingData | [FormBindingData](js-apis-formbindingdata.md#formbindingdata) | 是   | 用于更新的数据。    |
+| formBindingData.FormBindingData | [FormBindingData](js-apis-formbindingdata.md#formbindingdata) | 是   | 用于更新的数据。    |
 | callback | AsyncCallback&lt;void&gt; | 是 | 回调函数。 |
 
 **错误码：**
 
-以下错误码的详细介绍请参见[卡片错误码](../errorcodes/errcode-form.md)。
 | 错误码ID | 错误信息 |
 | -------- | -------- |
 | 16501001 | The ID of the form to be operated does not exist. |
+以上错误码的详细介绍请参见[卡片错误码](../errorcodes/errcode-form.md)。
 
 **示例：**
 
@@ -153,7 +153,7 @@ updateForm(formId: string, formBindingData: formBindingData.FormBindingData): Pr
 | 参数名 | 类型                                                                    | 必填 | 说明             |
 | ------ | ---------------------------------------------------------------------- | ---- | ---------------- |
 | formId | string                                                                 | 是   | 请求更新的卡片标识。 |
-| formBindingData | [FormBindingData](js-apis-formbindingdata.md#formbindingdata) | 是   | 用于更新的数据。    |
+| formBindingData.FormBindingData | [FormBindingData](js-apis-formbindingdata.md#formbindingdata) | 是   | 用于更新的数据。    |
 
 **返回值：**
 
@@ -163,10 +163,10 @@ updateForm(formId: string, formBindingData: formBindingData.FormBindingData): Pr
 
 **错误码：**
 
-以下错误码的详细介绍请参见[卡片错误码](../errorcodes/errcode-form.md)。
 | 错误码ID | 错误信息 |
 | -------- | -------- |
 | 16501001 | The ID of the form to be operated does not exist. |
+以上错误码的详细介绍请参见[卡片错误码](../errorcodes/errcode-form.md)。
 
 **示例：**
 
@@ -201,10 +201,10 @@ getFormsInfo(callback: AsyncCallback&lt;Array&lt;formInfo.FormInfo&gt;&gt;): voi
 
 **错误码：**
 
-以下错误码的详细介绍请参见[卡片错误码](../errorcodes/errcode-form.md)。
 | 错误码ID | 错误信息 |
 | -------- | -------- |
 | 16500100 | Failed to obtain configuration information. |
+以上错误码的详细介绍请参见[卡片错误码](../errorcodes/errcode-form.md)。
 
 
 **示例：**
@@ -239,10 +239,10 @@ getFormsInfo(filter: formInfo.FormInfoFilter, callback: AsyncCallback&lt;Array&l
 
 **错误码：**
 
-以下错误码的详细介绍请参见[卡片错误码](../errorcodes/errcode-form.md)。
 | 错误码ID | 错误信息 |
 | -------- | -------- |
 | 16500100 | Failed to obtain configuration information. |
+以上错误码的详细介绍请参见[卡片错误码](../errorcodes/errcode-form.md)。
 
 **示例：**
 
@@ -287,10 +287,10 @@ getFormsInfo(filter?: formInfo.FormInfoFilter): Promise&lt;Array&lt;formInfo.For
 
 **错误码：**
 
-以下错误码的详细介绍请参见[卡片错误码](../errorcodes/errcode-form.md)。
 | 错误码ID | 错误信息 |
 | -------- | -------- |
 | 16500100 | Failed to obtain configuration information. |
+以上错误码的详细介绍请参见[卡片错误码](../errorcodes/errcode-form.md)。
 
 **示例：**
 
@@ -326,7 +326,7 @@ requestPublishForm(want: Want, formBindingData: formBindingData.FormBindingData,
 | 参数名 | 类型                                                                    | 必填 | 说明             |
 | ------ | ---------------------------------------------------------------------- | ---- | ---------------- |
 | want | [Want](js-apis-application-Want.md)                           | 是   | 发布请求。需包含以下字段。<br>abilityName: 目标卡片ability<br>parameters:<br>"ohos.extra.param.key.form_dimension"<br>"ohos.extra.param.key.form_name"<br>"ohos.extra.param.key.module_name" |
-| formBindingData | [FormBindingData](js-apis-formbindingdata.md#formbindingdata) | 是   | 创建卡片的数据。 |
+| formBindingData.FormBindingData | [FormBindingData](js-apis-formbindingdata.md#formbindingdata) | 是   | 创建卡片的数据。 |
 | callback | AsyncCallback&lt;string&gt; | 是 | 回调函数。返回卡片标识。 |
 
 以下错误码的详细介绍请参见[卡片错误码](../errorcodes/errcode-form.md)。
@@ -377,10 +377,10 @@ requestPublishForm(want: Want, callback: AsyncCallback&lt;string&gt;): void
 | want     | [Want](js-apis-application-Want.md) | 是   | 发布请求。需包含以下字段。<br>abilityName: 目标卡片ability<br>parameters:<br>"ohos.extra.param.key.form_dimension"<br>"ohos.extra.param.key.form_name"<br>"ohos.extra.param.key.module_name" |
 | callback | AsyncCallback&lt;string&gt;         | 是   |  回调函数。返回卡片标识。 |
 
-以下错误码的详细介绍请参见[卡片错误码](../errorcodes/errcode-form.md)。
 | 错误码ID | 错误信息 |
 | -------- | -------- |
 | 16501000 | A functional error occurred. |
+以上错误码的详细介绍请参见[卡片错误码](../errorcodes/errcode-form.md)。
 
 **示例：**
 
@@ -422,7 +422,7 @@ requestPublishForm(want: Want, formBindingData?: formBindingData.FormBindingData
 | 参数名          | 类型                                                         | 必填 | 说明                                                         |
 | --------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | want            | [Want](js-apis-application-Want.md)                          | 是   | 发布请求。需包含以下字段。<br>abilityName: 目标卡片ability<br>parameters:<br>"ohos.extra.param.key.form_dimension"<br>"ohos.extra.param.key.form_name"<br>"ohos.extra.param.key.module_name" |
-| formBindingData | [FormBindingData](js-apis-formbindingdata.md#formbindingdata) | 否   | 创建卡片的数据。                                           |
+| formBindingData.FormBindingData | [FormBindingData](js-apis-formbindingdata.md#formbindingdata) | 否   | 创建卡片的数据。                                           |
 
 **返回值：**
 
@@ -430,10 +430,10 @@ requestPublishForm(want: Want, formBindingData?: formBindingData.FormBindingData
 | :------------ | :---------------------------------- |
 | Promise&lt;string&gt; | Promise对象。返回卡片标识。 |
 
-以下错误码的详细介绍请参见[卡片错误码](../errorcodes/errcode-form.md)。
 | 错误码ID | 错误信息 |
 | -------- | -------- |
 | 16501000 | A functional error occurred. |
+以上错误码的详细介绍请参见[卡片错误码](../errorcodes/errcode-form.md)。
 
 **示例：**
 

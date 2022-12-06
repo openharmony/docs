@@ -15,7 +15,7 @@ import ExtensionAbility from '@ohos.application.ExtensionAbility';
 
 ## AbilityStage.onConfigurationUpdated
 
-onConfigurationUpdated(config: Configuration): void;
+onConfigurationUpdated(newconfig: Configuration): void;
 
 环境变化通知接口，发生全局配置变更时回调。
 
@@ -25,7 +25,7 @@ onConfigurationUpdated(config: Configuration): void;
 
   | 参数名 | 类型 | 必填 | 说明 | 
   | -------- | -------- | -------- | -------- |
-  | config | [Configuration](js-apis-configuration.md) | 是 | 发生全局配置变更时触发回调，当前全局配置包括系统语言、深浅色模式。 | 
+  | newconfig | [Configuration](js-apis-configuration.md) | 是 | 发生全局配置变更时触发回调，当前全局配置包括系统语言、深浅色模式。 | 
 
 **示例：**
     

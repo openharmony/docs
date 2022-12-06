@@ -198,9 +198,9 @@ onReconnect(want: Want): void;
   }
   ```
 
-## ServiceExtensionAbility.onConfigurationUpdated
+## ServiceExtensionAbility.onConfigurationUpdate
 
-onConfigurationUpdated(config: Configuration): void;
+onConfigurationUpdate(config: Configuration): void;
 
 当Extension更新配置信息时调用。
 
@@ -218,8 +218,8 @@ onConfigurationUpdated(config: Configuration): void;
     
   ```js
   class ServiceExt extends ServiceExtension {
-      onConfigurationUpdated(config) {
-          console.log('onConfigurationUpdated, config:' + JSON.stringify(config));
+      onConfigurationUpdate(config) {
+          console.log('onConfigurationUpdate, config:' + JSON.stringify(config));
       }
   }
   ```
@@ -230,7 +230,7 @@ onDump(params: Array\<string>): Array\<string>;
 
 转储客户端信息时调用。
 
-**系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 **系统API**: 此接口为系统接口，三方应用不支持调用。
 

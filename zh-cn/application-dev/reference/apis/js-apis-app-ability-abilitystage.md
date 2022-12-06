@@ -66,9 +66,9 @@ onAcceptWant(want: Want): string;
   ```
 
 
-## AbilityStage.onConfigurationUpdated
+## AbilityStage.onConfigurationUpdate
 
-onConfigurationUpdated(config: Configuration): void;
+onConfigurationUpdate(config: Configuration): void;
 
 环境变化通知接口，发生全局配置变更时回调。
 
@@ -84,8 +84,8 @@ onConfigurationUpdated(config: Configuration): void;
     
   ```js
   class MyAbilityStage extends AbilityStage {
-      onConfigurationUpdated(config) {
-          console.log('onConfigurationUpdated, language:' + config.language);
+      onConfigurationUpdate(config) {
+          console.log('onConfigurationUpdate, language:' + config.language);
       }
   }
   ```
@@ -96,7 +96,7 @@ onMemoryLevel(level: AbilityConstant.MemoryLevel): void;
 
 当系统已决定调整内存时调用。例如，当该功能在后台运行时，没有足够的内存来运行尽可能多的后台进程时可以使用。
 
-**系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 **参数：**
 

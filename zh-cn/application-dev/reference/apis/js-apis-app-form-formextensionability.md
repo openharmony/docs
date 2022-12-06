@@ -197,7 +197,7 @@ export default class MyFormExtensionAbility extends FormExtensionAbility {
 
 ## onConfigurationUpdate
 
-onConfigurationUpdate(config: Configuration): void;
+onConfigurationUpdate(newconfig: Configuration): void;
 
 当系统配置更新时调用。
 
@@ -207,7 +207,7 @@ onConfigurationUpdate(config: Configuration): void;
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| config | [Configuration](js-apis-configuration.md) | 是 | 表示需要更新的配置信息。 |
+| newconfig | [Configuration](js-apis-configuration.md) | 是 | 表示需要更新的配置信息。 |
 
 **示例：**
 
@@ -231,7 +231,7 @@ onAcquireFormState?(want: Want): formInfo.FormState;
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-application-Want.md) | 否 | want表示获取卡片状态的描述。描述包括包名称、能力名称、模块名称、卡片名和卡片维度。 |
+| want | [Want](js-apis-application-Want.md) | 是 | want表示获取卡片状态的描述。描述包括包名称、能力名称、模块名称、卡片名和卡片维度。 |
 
 **示例：**
 

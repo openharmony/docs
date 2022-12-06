@@ -59,8 +59,8 @@ applyQuickFix(hapModuleQuickFixFiles: Array\<string>, callback: AsyncCallback\<v
 
   | 参数名 | 类型 | 必填 | 说明 | 
   | -------- | -------- | -------- | -------- |
-  | hapModuleQuickFixFiles | Array\<string> | 否 | 快速修复补丁文件（补丁文件需包含有效的文件路径）。 | 
-  | callback | AsyncCallback\<void> | 否 | 表示指定的回调方法。 | 
+  | hapModuleQuickFixFiles | Array\<string> | 是 | 快速修复补丁文件（补丁文件需包含有效的文件路径）。 | 
+  | callback | AsyncCallback\<void> | 是 | 表示指定的回调方法。 | 
 
 **示例：**
     
@@ -97,7 +97,7 @@ applyQuickFix(hapModuleQuickFixFiles: Array\<string>): Promise\<void>;
 
   | 参数名 | 类型 | 必填 | 说明 | 
   | -------- | -------- | -------- | -------- |
-  | hapModuleQuickFixFiles | Array\<string> | 否 | 快速修复补丁文件（补丁文件需包含有效的文件路径）。 | 
+  | hapModuleQuickFixFiles | Array\<string> | 是 | 快速修复补丁文件（补丁文件需包含有效的文件路径）。 | 
 
 **返回值：**
 
@@ -138,8 +138,8 @@ getApplicationQuickFixInfo(bundleName: string, callback: AsyncCallback\<Applicat
 
   | 参数名 | 类型 | 必填 | 说明 | 
   | -------- | -------- | -------- | -------- |
-  | bundleName | string | 否 |应用的包名。  | 
-  | callback | AsyncCallback\<[ApplicationQuickFixInfo](#applicationquickfixinfo)> | 否 | 应用的快速修复信息。 | 
+  | bundleName | string | 是 |应用的包名。  | 
+  | callback | AsyncCallback\<[ApplicationQuickFixInfo](#applicationquickfixinfo)> | 是 | 应用的快速修复信息。 | 
 
 **示例：**
     
@@ -176,7 +176,7 @@ getApplicationQuickFixInfo(bundleName: string): Promise\<ApplicationQuickFixInfo
 
   | 参数名 | 类型 | 必填 | 说明 | 
   | -------- | -------- | -------- | -------- |
-  | bundleName | string | 否 | 应用的包名。  | 
+  | bundleName | string | 是 | 应用的包名。  | 
 
 **返回值：**
 

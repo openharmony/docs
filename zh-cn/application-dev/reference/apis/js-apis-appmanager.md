@@ -12,7 +12,7 @@ appManager模块提供App管理的能力，包括查询当前是否处于稳定�
 import app from '@ohos.application.appManager';
 ```
 
-## appManager.isRunningInStabilityTest
+## appManager.isRunningInStabilityTest<sup>8</sup>
 
 static isRunningInStabilityTest(callback: AsyncCallback&lt;boolean&gt;): void
 
