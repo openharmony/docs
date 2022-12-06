@@ -32,7 +32,7 @@ deleteForm(formId: string, callback: AsyncCallback&lt;void&gt;): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[卡片错误码](../errorcodes/errcode-form.md)。
+以下错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。
 | 错误码ID | 错误信息 |
 | -------- | -------- |
 | 16501001 | The ID of the form to be operated does not exist. |
@@ -81,7 +81,7 @@ deleteForm(formId: string): Promise&lt;void&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[卡片错误码](../errorcodes/errcode-form.md)。
+以下错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。
 | 错误码ID | 错误信息 |
 | -------- | -------- |
 | 16501001 | The ID of the form to be operated does not exist. |
@@ -121,7 +121,7 @@ releaseForm(formId: string, callback: AsyncCallback&lt;void&gt;): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[卡片错误码](../errorcodes/errcode-form.md)。
+以下错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。
 | 错误码ID | 错误信息 |
 | -------- | -------- |
 | 16501001 | The ID of the form to be operated does not exist. |
@@ -162,7 +162,7 @@ releaseForm(formId: string, isReleaseCache: boolean, callback: AsyncCallback&lt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[卡片错误码](../errorcodes/errcode-form.md)。
+以下错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。
 | 错误码ID | 错误信息 |
 | -------- | -------- |
 | 16501001 | The ID of the form to be operated does not exist. |
@@ -208,7 +208,7 @@ releaseForm(formId: string, isReleaseCache?: boolean): Promise&lt;void&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[卡片错误码](../errorcodes/errcode-form.md)。
+以下错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。
 | 错误码ID | 错误信息 |
 | -------- | -------- |
 | 16501001 | The ID of the form to be operated does not exist. |
@@ -248,7 +248,7 @@ requestForm(formId: string, callback: AsyncCallback&lt;void&gt;): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[卡片错误码](../errorcodes/errcode-form.md)。
+以下错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。
 | 错误码ID | 错误信息 |
 | -------- | -------- |
 | 16501001 | The ID of the form to be operated does not exist. |
@@ -293,7 +293,7 @@ requestForm(formId: string): Promise&lt;void&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[卡片错误码](../errorcodes/errcode-form.md)。
+以下错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。
 | 错误码ID | 错误信息 |
 | -------- | -------- |
 | 16501001 | The ID of the form to be operated does not exist. |
@@ -334,7 +334,7 @@ castTempForm(formId: string, callback: AsyncCallback&lt;void&gt;): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[卡片错误码](../errorcodes/errcode-form.md)。
+以下错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。
 | 错误码ID | 错误信息 |
 | -------- | -------- |
 | 16501001 | The ID of the form to be operated does not exist. |
@@ -379,7 +379,7 @@ castTempForm(formId: string): Promise&lt;void&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[卡片错误码](../errorcodes/errcode-form.md)。
+以下错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。
 | 错误码ID | 错误信息 |
 | -------- | -------- |
 | 16501001 | The ID of the form to be operated does not exist. |
@@ -419,7 +419,7 @@ notifyVisibleForms(formIds: Array&lt;string&gt;, callback: AsyncCallback&lt;void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[卡片错误码](../errorcodes/errcode-form.md)。
+以下错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。
 | 错误码ID | 错误信息 |
 | -------- | -------- |
 | 16501000 | A functional error occurred. |
@@ -463,7 +463,7 @@ notifyVisibleForms(formIds: Array&lt;string&gt;): Promise&lt;void&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[卡片错误码](../errorcodes/errcode-form.md)。
+以下错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。
 | 错误码ID | 错误信息 |
 | -------- | -------- |
 | 16501000 | A functional error occurred. |
@@ -502,7 +502,7 @@ notifyInvisibleForms(formIds: Array&lt;string&gt;, callback: AsyncCallback&lt;vo
 
 **错误码：**
 
-以下错误码的详细介绍请参见[卡片错误码](../errorcodes/errcode-form.md)。
+以下错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。
 | 错误码ID | 错误信息 |
 | -------- | -------- |
 | 16501000 | A functional error occurred. |
@@ -546,7 +546,7 @@ notifyInvisibleForms(formIds: Array&lt;string&gt;): Promise&lt;void&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[卡片错误码](../errorcodes/errcode-form.md)。
+以下错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。
 | 错误码ID | 错误信息 |
 | -------- | -------- |
 | 16501000 | A functional error occurred. |
@@ -585,7 +585,7 @@ enableFormsUpdate(formIds: Array&lt;string&gt;, callback: AsyncCallback&lt;void&
 
 **错误码：**
 
-以下错误码的详细介绍请参见[卡片错误码](../errorcodes/errcode-form.md)。
+以下错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。
 | 错误码ID | 错误信息 |
 | -------- | -------- |
 | 16501000 | A functional error occurred. |
@@ -630,7 +630,7 @@ enableFormsUpdate(formIds: Array&lt;string&gt;): Promise&lt;void&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[卡片错误码](../errorcodes/errcode-form.md)。
+以下错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。
 | 错误码ID | 错误信息 |
 | -------- | -------- |
 | 16501000 | A functional error occurred. |
@@ -670,7 +670,7 @@ disableFormsUpdate(formIds: Array&lt;string&gt;, callback: AsyncCallback&lt;void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[卡片错误码](../errorcodes/errcode-form.md)。
+以下错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。
 | 错误码ID | 错误信息 |
 | -------- | -------- |
 | 16501000 | A functional error occurred. |
@@ -715,7 +715,7 @@ disableFormsUpdate(formIds: Array&lt;string&gt;): Promise&lt;void&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[卡片错误码](../errorcodes/errcode-form.md)。
+以下错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。
 | 错误码ID | 错误信息 |
 | -------- | -------- |
 | 16501000 | A functional error occurred. |
@@ -875,7 +875,7 @@ getFormsInfo(bundleName: string, callback: AsyncCallback&lt;Array&lt;formInfo.Fo
 
 **错误码：**
 
-以下错误码的详细介绍请参见[卡片错误码](../errorcodes/errcode-form.md)。
+以下错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。
 | 错误码ID | 错误信息 |
 | -------- | -------- |
 | 16500100 | Failed to obtain configuration information. |
@@ -916,7 +916,7 @@ getFormsInfo(bundleName: string, moduleName: string, callback: AsyncCallback&lt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[卡片错误码](../errorcodes/errcode-form.md)。
+以下错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。
 | 错误码ID | 错误信息 |
 | -------- | -------- |
 | 16500100 | Failed to obtain configuration information. |
@@ -962,7 +962,7 @@ getFormsInfo(bundleName: string, moduleName?: string): Promise&lt;Array&lt;formI
 
 **错误码：**
 
-以下错误码的详细介绍请参见[卡片错误码](../errorcodes/errcode-form.md)。
+以下错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。
 | 错误码ID | 错误信息 |
 | -------- | -------- |
 | 16500100 | Failed to obtain configuration information. |
@@ -1071,7 +1071,7 @@ acquireFormState(want: Want, callback: AsyncCallback&lt;formInfo.FormStateInfo&g
 
 **错误码：**
 
-以下错误码的详细介绍请参见[卡片错误码](../errorcodes/errcode-form.md)。
+以下错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。
 | 错误码ID | 错误信息 |
 | -------- | -------- |
 | 16501000 | A functional error occurred. |
@@ -1126,7 +1126,7 @@ acquireFormState(want: Want): Promise&lt;formInfo.FormStateInfo&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[卡片错误码](../errorcodes/errcode-form.md)。
+以下错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。
 | 错误码ID | 错误信息 |
 | -------- | -------- |
 | 16501000 | A functional error occurred. |
@@ -1223,7 +1223,7 @@ notifyFormsVisible(formIds: Array&lt;string&gt;, isVisible: boolean, callback: A
 
 **错误码：**
 
-以下错误码的详细介绍请参见[卡片错误码](../errorcodes/errcode-form.md)。
+以下错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。
 | 错误码ID | 错误信息 |
 | -------- | -------- |
 | 16501003 | The form can not be operated by the current application. |
@@ -1268,7 +1268,7 @@ notifyFormsVisible(formIds: Array&lt;string&gt;, isVisible: boolean): Promise&lt
 
 **错误码：**
 
-以下错误码的详细介绍请参见[卡片错误码](../errorcodes/errcode-form.md)。
+以下错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。
 | 错误码ID | 错误信息 |
 | -------- | -------- |
 | 16501003 | The form can not be operated by the current application. |
@@ -1308,7 +1308,7 @@ notifyFormsEnableUpdate(formIds: Array&lt;string&gt;, isEnableUpdate: boolean, c
 
 **错误码：**
 
-以下错误码的详细介绍请参见[卡片错误码](../errorcodes/errcode-form.md)。
+以下错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。
 | 错误码ID | 错误信息 |
 | -------- | -------- |
 | 16501003 | The form can not be operated by the current application. |
@@ -1353,7 +1353,7 @@ notifyFormsEnableUpdate(formIds: Array&lt;string&gt;, isEnableUpdate: boolean): 
 
 **错误码：**
 
-以下错误码的详细介绍请参见[卡片错误码](../errorcodes/errcode-form.md)。
+以下错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。
 | 错误码ID | 错误信息 |
 | -------- | -------- |
 | 16501003 | The form can not be operated by the current application. |
@@ -1392,7 +1392,7 @@ shareForm(formId: string, deviceId: string, callback: AsyncCallback&lt;void&gt;)
 
 **错误码：**
 
-以下错误码的详细介绍请参见[卡片错误码](../errorcodes/errcode-form.md)。
+以下错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。
 | 错误码ID | 错误信息 |
 | -------- | -------- |
 | 16500100 | Failed to obtain configuration information. |
@@ -1440,7 +1440,7 @@ shareForm(formId: string, deviceId: string): Promise&lt;void&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[卡片错误码](../errorcodes/errcode-form.md)。
+以下错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。
 | 错误码ID | 错误信息 |
 | -------- | -------- |
 | 16500100 | Failed to obtain configuration information. |

@@ -29,7 +29,7 @@ userIAM_userAuth模块提供了用户认证的相关方法，包括查询认证�
 
 ### 开发步骤
 
-1. 申请权限。调用[getVersion](../reference/apis/js-apis-useriam-userauth.md#useriam_userauthgetversion9)接口，需要在module.json5文件的requestPermissions对象中配置ohos.permission.ACCESS_BIOMETRIC权限。更多配置信息[Stage模型应用程序包结构](../quick-start/application-package-structure-stage.md)。
+1. 申请权限。调用[getVersion](../reference/apis/js-apis-useriam-userauth.md#useriam_userauthgetversion9)接口，需要在module.json5文件的requestPermissions对象中配置ohos.permission.ACCESS_BIOMETRIC权限。更多配置信息请参考[Stage模型应用程序包结构](../quick-start/module-configuration-file.md)。
 
 2. 调用[getVersion](../reference/apis/js-apis-useriam-userauth.md#useriam_userauthgetversion9)接口获取版本信息。
 
@@ -49,7 +49,7 @@ userIAM_userAuth模块提供了用户认证的相关方法，包括查询认证�
 
 ### 开发步骤
 
-1. 申请权限。调用[getAvailableStatus](../reference/apis/js-apis-useriam-userauth.md#useriam_userauthgetavailablestatus9)接口，需要在module.json5文件的requestPermissions对象中配置ohos.permission.ACCESS_BIOMETRIC权限。更多配置信息[Stage模型应用程序包结构](../quick-start/application-package-structure-stage.md)。
+1. 申请权限。调用[getAvailableStatus](../reference/apis/js-apis-useriam-userauth.md#useriam_userauthgetavailablestatus9)接口，需要在module.json5文件的requestPermissions对象中配置ohos.permission.ACCESS_BIOMETRIC权限。更多配置信息请参考[Stage模型应用程序包结构](../quick-start/module-configuration-file.md)。
 
 2. 指定[认证类型](../reference/apis/js-apis-useriam-userauth.md#userauthtype8)和[认证等级](../reference/apis/js-apis-useriam-userauth.md#authtrustlevel8)，调用[getAvailableStatus](../reference/apis/js-apis-useriam-userauth.md#useriam_userauthgetavailablestatus9)接口查询当前的设备是否支持相应的认证能力。
 
@@ -69,7 +69,7 @@ userIAM_userAuth模块提供了用户认证的相关方法，包括查询认证�
 
 ### 开发步骤
 
-1. 申请权限。调用[start](../reference/apis/js-apis-useriam-userauth.md#start9)接口，需要在module.json5文件的requestPermissions对象中配置ohos.permission.ACCESS_BIOMETRIC权限。更多配置信息[Stage模型应用程序包结构](../quick-start/application-package-structure-stage.md)。
+1. 申请权限。调用[start](../reference/apis/js-apis-useriam-userauth.md#start9)接口，需要在module.json5文件的requestPermissions对象中配置ohos.permission.ACCESS_BIOMETRIC权限。更多配置信息请参考[Stage模型应用程序包结构](../quick-start/module-configuration-file.md)。
 
 2. 指定challenge、[认证类型](../reference/apis/js-apis-useriam-userauth.md#userauthtype8)和[认证等级](../reference/apis/js-apis-useriam-userauth.md#authtrustlevel8)，获取认证对象。
 
@@ -131,7 +131,7 @@ userIAM_userAuth模块提供了用户认证的相关方法，包括查询认证�
 
 ### 开发步骤
 
-1. 申请权限。调用[start](../reference/apis/js-apis-useriam-userauth.md#start9)接口，需要在module.json5文件的requestPermissions对象中配置ohos.permission.ACCESS_BIOMETRIC权限。更多配置信息[Stage模型应用程序包结构](../quick-start/application-package-structure-stage.md)。
+1. 申请权限。调用[start](../reference/apis/js-apis-useriam-userauth.md#start9)接口，需要在module.json5文件的requestPermissions对象中配置ohos.permission.ACCESS_BIOMETRIC权限。更多配置信息请参考[Stage模型应用程序包结构](../quick-start/module-configuration-file.md)。
 
 2. 指定challenge、[认证类型](../reference/apis/js-apis-useriam-userauth.md#userauthtype8)和[认证等级](../reference/apis/js-apis-useriam-userauth.md#authtrustlevel8)，获取认证对象。
 
@@ -197,7 +197,7 @@ userIAM_userAuth模块提供了用户认证的相关方法，包括查询认证�
 
 ### 开发步骤
 
-1. 申请权限。调用[cancel](../reference/apis/js-apis-useriam-userauth.md#cancel9)接口，需要在module.json5文件的requestPermissions对象中配置ohos.permission.ACCESS_BIOMETRIC权限。更多配置信息[Stage模型应用程序包结构](../quick-start/application-package-structure-stage.md)。
+1. 申请权限。调用[cancel](../reference/apis/js-apis-useriam-userauth.md#cancel9)接口，需要在module.json5文件的requestPermissions对象中配置ohos.permission.ACCESS_BIOMETRIC权限。更多配置信息请参考[Stage模型应用程序包结构](../quick-start/module-configuration-file.md)。
 
 2. 指定challenge、[认证类型](../reference/apis/js-apis-useriam-userauth.md#userauthtype8)和[认证等级](../reference/apis/js-apis-useriam-userauth.md#authtrustlevel8)，获取认证对象。
 
