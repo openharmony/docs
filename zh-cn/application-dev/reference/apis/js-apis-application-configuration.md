@@ -21,17 +21,43 @@
 **示例：**
     
   ```ts
-  let envCallback = {
-     onConfigurationUpdated(config) {
-       console.info(`envCallback onConfigurationUpdated success: ${JSON.stringify(config)}`)
-       let language = config.language;
-       let colorMode = config.colorMode;
-       let direction = config.direction;
-       let screenDensity = config.screenDensity;
-       let displayId = config.displayId;
-       let hasPointerDevice = config.hasPointerDevice;
+import hilog from '@ohos.hilog';
+import Ability from '@ohos.application.Ability'
+import Window from '@ohos.window'
+
+export default class MainAbility extends Ability {
+    onCreate(want, launchParam) {
     }
-  };
-  var callbackId = applicationContext.registerEnvironmentCallback(envCallback);
+
+    onDestroy() {
+    }
+
+    onWindowStageCreate(windowStage: Window.WindowStage) {
+        let envCallback = {
+            onConfigurationUpdated(config) {
+                console.info(`envCallback onConfigurationUpdated success: ${JSON.stringify(config)}`)
+                let language = config.language;
+                let colorMode = config.colorMode;
+                let direction = config.direction;
+                let screenDensity = config.screenDensity;
+                let displayId = config.displayId;
+                let hasPointerDevice = config.hasPointerDevice;
+            }
+        };
+
+        let applicationContext = this.context.getApplicationContext();
+        applicationContext.registerEnvironmentCallback(envCallback);
+
+        windowStage.loadContent('pages/index', (err, data) => {
+            if (err.code) {
+                hilog.isLoggable(0x0000, 'testTag', hilog.LogLevel.ERROR);
+                hilog.error(0x0000, 'testTag', 'Failed to load the content. Cause: %{public}s', JSON.stringify(err) ?? '');
+                return;
+            }
+            hilog.isLoggable(0x0000, 'testTag', hilog.LogLevel.INFO);
+            hilog.info(0x0000, 'testTag', 'Succeeded in loading the content. Data: %{public}s', JSON.stringify(data) ?? '');
+        });
+    }
+}
   ```
 
