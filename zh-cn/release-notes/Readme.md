@@ -11,6 +11,7 @@
 - [OpenHarmony v3.1.1 Release (2022-05-31)](OpenHarmony-v3.1.1-release.md)
 - [OpenHarmony v3.1 Beta (2021-12-31)](OpenHarmony-v3.1-beta.md)
 - [OpenHarmony v3.0 LTS (2021-09-30)](OpenHarmony-v3.0-LTS.md)
+- [OpenHarmony v3.0.7 LTS (2022-12-05)](OpenHarmony-v3.0.7-LTS.md)
 - [OpenHarmony v3.0.6 LTS (2022-09-15)](OpenHarmony-v3.0.6-LTS.md)
 - [OpenHarmony v3.0.5 LTS (2022-07-01)](OpenHarmony-v3.0.5-LTS.md)
 - [OpenHarmony v3.0.3 LTS (2022-04-08)](OpenHarmony-v3.0.3-LTS.md)
