@@ -790,7 +790,7 @@ console.log(params.toString());
 
 > **说明：**
 >
-> 从API version 7开始支持，从API version 9开始废弃，建议使用[parseURL<sup>9+</sup>](#parseURL9)替代。
+> 从API version 7开始支持，从API version 9开始废弃，建议使用[parseURL<sup>9+</sup>](#parseurl9)替代。
 
 constructor(url: string, base?: string | URL)
 
