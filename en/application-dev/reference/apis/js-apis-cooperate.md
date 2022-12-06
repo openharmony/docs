@@ -102,7 +102,7 @@ Starts screen hopping. This API uses an asynchronous callback to return the resu
 
 **Error codes**
 
-For details about the error codes, see [Screen Hopping Error Codes](../errorcodes/errorcodes-multimodalinput.md).
+For details about the error codes, see [Screen Hopping Error Codes](../errorcodes/errorcode-multimodalinput.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
@@ -150,7 +150,7 @@ Starts screen hopping. This API uses a promise to return the result.
 
 **Error codes**
 
-For details about the error codes, see [Screen Hopping Error Codes](../errorcodes/errorcodes-multimodalinput.md).
+For details about the error codes, see [Screen Hopping Error Codes](../errorcodes/errorcode-multimodalinput.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |

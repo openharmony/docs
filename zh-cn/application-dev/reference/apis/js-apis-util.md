@@ -2644,13 +2644,13 @@ intersect(range: Scope): Scope
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| range | [Scope](#scope8) | 是 | 传入一个给定范围。 |
+| range | [Scope](#scopedeprecated) | 是 | 传入一个给定范围。 |
 
 **返回值：**
 
 | 类型 | 说明 |
 | -------- | -------- |
-| [Scope](#scope8) | 返回给定范围和当前范围的交集。 |
+| [Scope](#scopedeprecated) | 返回给定范围和当前范围的交集。 |
 
 **示例：**
 
@@ -2687,7 +2687,7 @@ intersect(lowerObj:ScopeType,upperObj:ScopeType):Scope
 
 | 类型 | 说明 |
 | -------- | -------- |
-| [Scope](#scope8) | 返回当前范围与给定下限和上限范围的交集。 |
+| [Scope](#scopedeprecated) | 返回当前范围与给定下限和上限范围的交集。 |
 
 **示例：**
 
@@ -2777,7 +2777,7 @@ expand(lowerObj: ScopeType,upperObj: ScopeType): Scope
 
 | 类型 | 说明 |
 | -------- | -------- |
-| [Scope](#scope8) | 返回当前范围和给定下限和上限的并集。 |
+| [Scope](#scopedeprecated) | 返回当前范围和给定下限和上限的并集。 |
 
 **示例：**
 
@@ -2806,13 +2806,13 @@ expand(range: Scope): Scope
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| range | [Scope](#scope8) | 是 | 传入一个给定范围。 |
+| range | [Scope](#scopedeprecated) | 是 | 传入一个给定范围。 |
 
 **返回值：**
 
 | 类型 | 说明 |
 | -------- | -------- |
-| [Scope](#scope8) | 返回包括当前范围和给定范围的并集。 |
+| [Scope](#scopedeprecated) | 返回包括当前范围和给定范围的并集。 |
 
 **示例：**
 
@@ -2848,7 +2848,7 @@ expand(value: ScopeType): Scope
 
 | 类型 | 说明 |
 | -------- | -------- |
-| [Scope](#scope8) | 返回包括当前范围和给定值的并集。 |
+| [Scope](#scopedeprecated) | 返回包括当前范围和给定值的并集。 |
 
 **示例：**
 
@@ -2910,7 +2910,7 @@ contains(range: Scope): boolean
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| range | [Scope](#scope8) | 是 | 传入一个给定范围。 |
+| range | [Scope](#scopedeprecated) | 是 | 传入一个给定范围。 |
 
 **返回值：**
 

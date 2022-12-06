@@ -32,7 +32,7 @@ Registers the continuation management service and obtains a token. This API does
 
 **Error codes**
 
-For details about the error codes, see [Distributed Scheduler Error Codes](../errorcodes/errcode-DistributedSchedule.md).
+For details about the error codes, see [Distributed Scheduler Error Codes](../errorcodes/errorcode-DistributedSchedule.md).
 
 | ID| Error Message|
 | ------- | -------------------------------------------- |
@@ -73,7 +73,7 @@ Registers the continuation management service and obtains a token. This API uses
 
 **Error codes**
 
-For details about the error codes, see [Distributed Scheduler Error Codes](../errorcodes/errcode-DistributedSchedule.md).
+For details about the error codes, see [Distributed Scheduler Error Codes](../errorcodes/errorcode-DistributedSchedule.md).
 
 | ID| Error Message|
 | ------- | -------------------------------------------- |
@@ -123,7 +123,7 @@ Registers the continuation management service and obtains a token. This API uses
 
 **Error codes**
 
-For details about the error codes, see [Distributed Scheduler Error Codes](../errorcodes/errcode-DistributedSchedule.md).
+For details about the error codes, see [Distributed Scheduler Error Codes](../errorcodes/errorcode-DistributedSchedule.md).
 
 | ID| Error Message|
 | ------- | -------------------------------------------- |
@@ -167,7 +167,7 @@ Registers the continuation management service and obtains a token. This API does
 
 **Error codes**
 
-For details about the error codes, see [Distributed Scheduler Error Codes](../errorcodes/errcode-DistributedSchedule.md).
+For details about the error codes, see [Distributed Scheduler Error Codes](../errorcodes/errorcode-DistributedSchedule.md).
 
 | ID| Error Message|
 | ------- | -------------------------------------------- |
@@ -212,7 +212,7 @@ Registers the continuation management service and obtains a token. This API uses
 
 **Error codes**
 
-For details about the error codes, see [Distributed Scheduler Error Codes](../errorcodes/errcode-DistributedSchedule.md).
+For details about the error codes, see [Distributed Scheduler Error Codes](../errorcodes/errorcode-DistributedSchedule.md).
 
 | ID| Error Message|
 | ------- | -------------------------------------------- |
@@ -265,7 +265,7 @@ Registers the continuation management service and obtains a token. This API uses
 
 **Error codes**
 
-For details about the error codes, see [Distributed Scheduler Error Codes](../errorcodes/errcode-DistributedSchedule.md).
+For details about the error codes, see [Distributed Scheduler Error Codes](../errorcodes/errorcode-DistributedSchedule.md).
 
 | ID| Error Message|
 | ------- | -------------------------------------------- |
@@ -314,7 +314,7 @@ Subscribes to device connection events. This API uses an asynchronous callback t
 
 **Error codes**
 
-For details about the error codes, see [Distributed Scheduler Error Codes](../errorcodes/errcode-DistributedSchedule.md).
+For details about the error codes, see [Distributed Scheduler Error Codes](../errorcodes/errorcode-DistributedSchedule.md).
 
 | ID| Error Message|
 | ------- | -------------------------------------------- |
@@ -353,7 +353,7 @@ Subscribes to device disconnection events. This API uses an asynchronous callbac
 
 **Error codes**
 
-For details about the error codes, see [Distributed Scheduler Error Codes](../errorcodes/errcode-DistributedSchedule.md).
+For details about the error codes, see [Distributed Scheduler Error Codes](../errorcodes/errorcode-DistributedSchedule.md).
 
 | ID| Error Message|
 | ------- | -------------------------------------------- |
@@ -390,7 +390,7 @@ Unsubscribes from device connection events. This API uses an asynchronous callba
 
 **Error codes**
 
-For details about the error codes, see [Distributed Scheduler Error Codes](../errorcodes/errcode-DistributedSchedule.md).
+For details about the error codes, see [Distributed Scheduler Error Codes](../errorcodes/errorcode-DistributedSchedule.md).
 
 | ID| Error Message|
 | ------- | -------------------------------------------- |
@@ -429,7 +429,7 @@ Unsubscribes from device disconnection events. This API uses an asynchronous cal
 
 **Error codes**
 
-For details about the error codes, see [Distributed Scheduler Error Codes](../errorcodes/errcode-DistributedSchedule.md).
+For details about the error codes, see [Distributed Scheduler Error Codes](../errorcodes/errorcode-DistributedSchedule.md).
 
 | ID| Error Message|
 | ------- | -------------------------------------------- |
@@ -467,7 +467,7 @@ Subscribes to device connection events. This API uses an asynchronous callback t
 
 **Error codes**
 
-For details about the error codes, see [Distributed Scheduler Error Codes](../errorcodes/errcode-DistributedSchedule.md).
+For details about the error codes, see [Distributed Scheduler Error Codes](../errorcodes/errorcode-DistributedSchedule.md).
 
 | ID| Error Message|
 | ------- | -------------------------------------------- |
@@ -514,7 +514,7 @@ Subscribes to device disconnection events. This API uses an asynchronous callbac
 
 **Error codes**
 
-For details about the error codes, see [Distributed Scheduler Error Codes](../errorcodes/errcode-DistributedSchedule.md).
+For details about the error codes, see [Distributed Scheduler Error Codes](../errorcodes/errorcode-DistributedSchedule.md).
 
 | ID| Error Message|
 | ------- | -------------------------------------------- |
@@ -561,7 +561,7 @@ Unsubscribes from device connection events.
 
 **Error codes**
 
-For details about the error codes, see [Distributed Scheduler Error Codes](../errorcodes/errcode-DistributedSchedule.md).
+For details about the error codes, see [Distributed Scheduler Error Codes](../errorcodes/errorcode-DistributedSchedule.md).
 
 | ID| Error Message|
 | ------- | -------------------------------------------- |
@@ -600,7 +600,7 @@ Unsubscribes from device disconnection events.
 
 **Error codes**
 
-For details about the error codes, see [Distributed Scheduler Error Codes](../errorcodes/errcode-DistributedSchedule.md).
+For details about the error codes, see [Distributed Scheduler Error Codes](../errorcodes/errorcode-DistributedSchedule.md).
 
 | ID| Error Message|
 | ------- | -------------------------------------------- |
@@ -639,7 +639,7 @@ Starts the device selection module to show the list of available devices on the 
 
 **Error codes**
 
-For details about the error codes, see [Distributed Scheduler Error Codes](../errorcodes/errcode-DistributedSchedule.md).
+For details about the error codes, see [Distributed Scheduler Error Codes](../errorcodes/errorcode-DistributedSchedule.md).
 
 | ID| Error Message|
 | ------- | -------------------------------------------- |
@@ -683,7 +683,7 @@ Starts the device selection module to show the list of available devices on the 
 
 **Error codes**
 
-For details about the error codes, see [Distributed Scheduler Error Codes](../errorcodes/errcode-DistributedSchedule.md).
+For details about the error codes, see [Distributed Scheduler Error Codes](../errorcodes/errorcode-DistributedSchedule.md).
 
 | ID| Error Message|
 | ------- | -------------------------------------------- |
@@ -735,7 +735,7 @@ Starts the device selection module to show the list of available devices on the 
 
 **Error codes**
 
-For details about the error codes, see [Distributed Scheduler Error Codes](../errorcodes/errcode-DistributedSchedule.md).
+For details about the error codes, see [Distributed Scheduler Error Codes](../errorcodes/errorcode-DistributedSchedule.md).
 
 | ID| Error Message|
 | ------- | -------------------------------------------- |
@@ -781,7 +781,7 @@ Starts the device selection module to show the list of available devices on the 
 
 **Error codes**
 
-For details about the error codes, see [Distributed Scheduler Error Codes](../errorcodes/errcode-DistributedSchedule.md).
+For details about the error codes, see [Distributed Scheduler Error Codes](../errorcodes/errorcode-DistributedSchedule.md).
 
 | ID| Error Message|
 | ------- | -------------------------------------------- |
@@ -826,7 +826,7 @@ Starts the device selection module to show the list of available devices on the 
 
 **Error codes**
 
-For details about the error codes, see [Distributed Scheduler Error Codes](../errorcodes/errcode-DistributedSchedule.md).
+For details about the error codes, see [Distributed Scheduler Error Codes](../errorcodes/errorcode-DistributedSchedule.md).
 
 | ID| Error Message|
 | ------- | -------------------------------------------- |
@@ -879,7 +879,7 @@ Starts the device selection module to show the list of available devices on the 
 
 **Error codes**
 
-For details about the error codes, see [Distributed Scheduler Error Codes](../errorcodes/errcode-DistributedSchedule.md).
+For details about the error codes, see [Distributed Scheduler Error Codes](../errorcodes/errorcode-DistributedSchedule.md).
 
 | ID| Error Message|
 | ------- | -------------------------------------------- |
@@ -928,7 +928,7 @@ Instructs the device selection module to update the device connection state. Thi
 
 **Error codes**
 
-For details about the error codes, see [Distributed Scheduler Error Codes](../errorcodes/errcode-DistributedSchedule.md).
+For details about the error codes, see [Distributed Scheduler Error Codes](../errorcodes/errorcode-DistributedSchedule.md).
 
 | ID| Error Message|
 | ------- | -------------------------------------------- |
@@ -979,7 +979,7 @@ Instructs the device selection module to update the device connection state. Thi
 
 **Error codes**
 
-For details about the error codes, see [Distributed Scheduler Error Codes](../errorcodes/errcode-DistributedSchedule.md).
+For details about the error codes, see [Distributed Scheduler Error Codes](../errorcodes/errorcode-DistributedSchedule.md).
 
 | ID| Error Message|
 | ------- | -------------------------------------------- |
@@ -1025,7 +1025,7 @@ Instructs the device selection module to update the device connection state. Thi
 
 **Error codes**
 
-For details about the error codes, see [Distributed Scheduler Error Codes](../errorcodes/errcode-DistributedSchedule.md).
+For details about the error codes, see [Distributed Scheduler Error Codes](../errorcodes/errorcode-DistributedSchedule.md).
 
 | ID| Error Message|
 | ------- | -------------------------------------------- |
@@ -1077,7 +1077,7 @@ Instructs the device selection module to update the device connection state. Thi
 
 **Error codes**
 
-For details about the error codes, see [Distributed Scheduler Error Codes](../errorcodes/errcode-DistributedSchedule.md).
+For details about the error codes, see [Distributed Scheduler Error Codes](../errorcodes/errorcode-DistributedSchedule.md).
 
 | ID| Error Message|
 | ------- | -------------------------------------------- |
@@ -1123,7 +1123,7 @@ Deregisters the continuation management service. This API uses an asynchronous c
 
 **Error codes**
 
-For details about the error codes, see [Distributed Scheduler Error Codes](../errorcodes/errcode-DistributedSchedule.md).
+For details about the error codes, see [Distributed Scheduler Error Codes](../errorcodes/errorcode-DistributedSchedule.md).
 
 | ID| Error Message|
 | ------- | -------------------------------------------- |
@@ -1168,7 +1168,7 @@ Deregisters the continuation management service. This API uses a promise to retu
 
 **Error codes**
 
-For details about the error codes, see [Distributed Scheduler Error Codes](../errorcodes/errcode-DistributedSchedule.md).
+For details about the error codes, see [Distributed Scheduler Error Codes](../errorcodes/errorcode-DistributedSchedule.md).
 
 | ID| Error Message|
 | ------- | -------------------------------------------- |
@@ -1208,7 +1208,7 @@ Deregisters the continuation management service. This API uses an asynchronous c
 
 **Error codes**
 
-For details about the error codes, see [Distributed Scheduler Error Codes](../errorcodes/errcode-DistributedSchedule.md).
+For details about the error codes, see [Distributed Scheduler Error Codes](../errorcodes/errorcode-DistributedSchedule.md).
 
 | ID| Error Message|
 | ------- | -------------------------------------------- |
@@ -1257,7 +1257,7 @@ Deregisters the continuation management service. This API uses a promise to retu
 
 **Error codes**
 
-For details about the error codes, see [Distributed Scheduler Error Codes](../errorcodes/errcode-DistributedSchedule.md).
+For details about the error codes, see [Distributed Scheduler Error Codes](../errorcodes/errorcode-DistributedSchedule.md).
 
 | ID| Error Message|
 | ------- | -------------------------------------------- |

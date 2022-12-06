@@ -15,8 +15,8 @@
 | distro对象中的moduleType | 标识当前HAP的类型，包括两种类型：entry和feature。另外，如果表示HAR包类型，请设置为har | type | 标签变更。 |
 | distro对象中的installationFree | 标识当前HAP是否支持免安装特性 | installationFree | 标签变更。 |
 | distro对象中的deliveryWithInstall | 标识当前HAP是否支持随应用安装 | deliveryWithInstall | 标签变更。 |
-| metaData | 标识HAP的元信息 | metadata | 具体差异如[表2](#表2 FA模型metaData和Stage中metadata对比)。 |
-| abilities | 标识当前模块内的所有Ability | abilities | 具体差异如[表5](#表5 FA模型和Stage中abilities差异对比)。 |
+| metaData | 标识HAP的元信息 | metadata | 具体差异如[表2](#表2-fa模型metadata和stage中metadata对比)。 |
+| abilities | 标识当前模块内的所有Ability | abilities | 具体差异如[表5](#表5-fa模型和stage中abilities差异对比)。 |
 | js | 标识基于ArkUI框架开发的JS模块集合，其中的每个元素代表一个JS模块的信息 | pages | Stage模型在module标签下保留该对象中的pages，window配置与pages的下一级。 |
 | shortcuts | 标识应用的快捷方式信息 | shortcut_config.json文件 | 在开发视图的resources/base/profile下面定义配置文件shortcut_config.json。 |
 | reqPermissions | 标识应用运行时向系统申请的权限 | requestPermissions | 标签名称变更。 |
@@ -33,7 +33,7 @@
 | -------- | -------- | -------- | -------- |
 | parameters | 标识调用Ability时所有调用参数的元信息 | / | Stage模型不支持。 |
 | results | 标识Ability返回值的元信息 | / | Stage模型不支持。 |
-| customizeData | 该标签标识父级组件的自定义元信息，Parameters和results在application不可配 | metadata | 具体差异见[表3](#表3 FA模型metaData的customizeData和Stage中metadata对比)。 |
+| customizeData | 该标签标识父级组件的自定义元信息，Parameters和results在application不可配 | metadata | 具体差异见[表3](#表3-fa模型metadata的customizedata和stage中metadata对比)。 |
 
 ### 表3 FA模型metaData的customizeData和Stage中metadata对比
 
@@ -41,7 +41,7 @@
 | -------- | -------- | -------- | -------- |
 | name | 标识数据项的键名称。字符串最大长度为255字节 | name | 无。 |
 | value | 标识数据项的值。字符串最大长度为255字节。 | value | 无。 |
-| extra | 标识当前custom数据的格式，取值为表示extra的资源值。 | resource | 标签变更。具体实例见[表4](#表4 FA模型metaData和Stage中metadata示例)。 |
+| extra | 标识当前custom数据的格式，取值为表示extra的资源值。 | resource | 标签变更。具体实例见[表4](#表4-fa模型metadata和stage中metadata示例)。 |
 
 
 ### 表4 FA模型metaData和Stage中metadata示例
@@ -58,7 +58,7 @@
 | process | 运行应用程序或Ability的进程名称 | / | Stage模型不支持abilities中配置，在module标签下配置process |
 | uri | 标识Ability的统一资源标识符 | / | Stage模型不支持 |
 | deviceCapability | 标识Ability运行时要求设备具有的能力，采用字符串数组的格式表示 | / | Stage模型不支持 |
-| metaData | 该标签标识ability的元信息。 | metadata | 具体差异如[表2](#表2 FA模型metaData和Stage中metadata对比) |
+| metaData | 该标签标识ability的元信息。 | metadata | 具体差异如[表2](#表2-fa模型metadata和stage中metadata对比) |
 | type | 标识Ability的类型 | / | Stage模型不支持 |
 | grantPermission | 指定是否可以向Ability内任何数据授予权限 | / | abilities内不支持； |
 | readPermission | 标识读取Ability的数据所需的权限。该标签仅适用于data类型的Ability | / | abilities内不支持；在extensionAbilities标签中支持 |
