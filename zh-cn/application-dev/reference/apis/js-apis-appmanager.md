@@ -24,7 +24,7 @@ static isRunningInStabilityTest(callback: AsyncCallback&lt;boolean&gt;): void
 
   | 参数名 | 类型 | 必填 | 说明 | 
   | -------- | -------- | -------- | -------- |
-  | callback | AsyncCallback&lt;boolean&gt; | 否 | 返回当前是否处于稳定性测试场景。 | 
+  | callback | AsyncCallback&lt;boolean&gt; | 是 | 返回当前是否处于稳定性测试场景。 | 
 
 **示例：**
     
@@ -98,7 +98,7 @@ isRamConstrainedDevice(callback: AsyncCallback\<boolean>): void;
 
   | 参数名 | 类型 | 必填 | 说明 | 
   | -------- | -------- | -------- | -------- |
-  | callback | AsyncCallback&lt;boolean&gt; | 否 | 返回当前是否是ram受限设备。 | 
+  | callback | AsyncCallback&lt;boolean&gt; | 是 | 返回当前是否是ram受限设备。 | 
 
 **示例：**
     
@@ -145,7 +145,7 @@ getAppMemorySize(callback: AsyncCallback\<number>): void;
 
   | 参数名 | 类型 | 必填 | 说明 | 
   | -------- | -------- | -------- | -------- |
-  | callback | AsyncCallback&lt;number&gt; | 否 | 应用程序内存大小。 | 
+  | callback | AsyncCallback&lt;number&gt; | 是 | 应用程序内存大小。 | 
 
 **示例：**
     
@@ -199,7 +199,7 @@ getProcessRunningInfos(callback: AsyncCallback\<Array\<ProcessRunningInfo>>): vo
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| callback | AsyncCallback\<Array\<ProcessRunningInfo>> | 否 | 获取有关运行进程的信息。 |
+| callback | AsyncCallback\<Array\<ProcessRunningInfo>> | 是 | 获取有关运行进程的信息。 |
 
 **示例：**
     
@@ -250,7 +250,7 @@ getProcessRunningInformation(callback: AsyncCallback\<Array\<ProcessRunningInfor
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| callback | AsyncCallback\<Array\<[ProcessRunningInformation](#processrunninginformation)>> | 否 | 获取有关运行进程的信息。 |
+| callback | AsyncCallback\<Array\<[ProcessRunningInformation](#processrunninginformation)>> | 是 | 获取有关运行进程的信息。 |
 
 **示例：**
     
@@ -277,7 +277,7 @@ registerApplicationStateObserver(observer: ApplicationStateObserver): number;
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| observer | [ApplicationStateObserver](#applicationstateobserver) | 否 | 返回观察者的数字代码。 |
+| observer | [ApplicationStateObserver](#applicationstateobserver) | 是 | 返回观察者的数字代码。 |
 
 **示例：**
     
@@ -320,8 +320,8 @@ registerApplicationStateObserver(observer: ApplicationStateObserver, bundleNameL
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| observer | [ApplicationStateObserver](#applicationstateobserver) | 否 | 返回观察者的数字代码。 |
-| bundleNameList | Array<string> | 否 | 表示需要注册监听的bundleName数组。最大值128。 |
+| observer | [ApplicationStateObserver](#applicationstateobserver) | 是 | 返回观察者的数字代码。 |
+| bundleNameList | Array\<string> | 是 | 表示需要注册监听的bundleName数组。最大值128。 |
 
 **示例：**
     
@@ -364,8 +364,8 @@ unregisterApplicationStateObserver(observerId: number,  callback: AsyncCallback\
  
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| observerId | number | 否 | 表示观察者的编号代码。 |
-| callback | AsyncCallback\<void> | 否 | 表示指定的回调方法。 |
+| observerId | number | 是 | 表示观察者的编号代码。 |
+| callback | AsyncCallback\<void> | 是 | 表示指定的回调方法。 |
 
 **示例：**
     
@@ -396,7 +396,7 @@ unregisterApplicationStateObserver(observerId: number): Promise\<void>;
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| observerId | number | 否 | 表示观察者的编号代码。 |
+| observerId | number | 是 | 表示观察者的编号代码。 |
 
 **返回值：**
 
@@ -434,7 +434,7 @@ getForegroundApplications(callback: AsyncCallback\<Array\<AppStateData>>): void;
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| callback | AsyncCallback\<Array\<AppStateData>> | 否 | 表示应用的状态数据。 |
+| callback | AsyncCallback\<Array\<AppStateData>> | 是 | 表示应用的状态数据。 |
 
 **示例：**
     
@@ -564,8 +564,8 @@ killProcessesByBundleName(bundleName: string, callback: AsyncCallback\<void>);
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| bundleName | string | 否 | 表示包名。 |
-| callback | AsyncCallback\<void> | 否 | 表示指定的回调方法。 |
+| bundleName | string | 是 | 表示包名。 |
+| callback | AsyncCallback\<void> | 是 | 表示指定的回调方法。 |
 
 **示例：**
     
@@ -597,7 +597,7 @@ killProcessesByBundleName(bundleName: string): Promise\<void>;
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| bundleName | string | 否 | 表示包名。 |
+| bundleName | string | 是 | 表示包名。 |
 
 **返回值：**
 
@@ -635,8 +635,8 @@ clearUpApplicationData(bundleName: string, callback: AsyncCallback\<void>);
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| bundleName | string | 否 | 表示包名。 |
-| callback | AsyncCallback\<void> | 否 | 表示指定的回调方法。 |
+| bundleName | string | 是 | 表示包名。 |
+| callback | AsyncCallback\<void> | 是 | 表示指定的回调方法。 |
 
 **示例：**
     
@@ -669,7 +669,7 @@ clearUpApplicationData(bundleName: string): Promise\<void>;
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| bundleName | string | 否 | 表示包名。 |
+| bundleName | string | 是 | 表示包名。 |
 
 **返回值：**
 
@@ -705,7 +705,7 @@ onForegroundApplicationChanged(appStateData: AppStateData): void;
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| appStateData | [AppStateData](#appstatedata) | 否 | 状态更改的应用程序信息。 |
+| appStateData | [AppStateData](#appstatedata) | 是 | 状态更改的应用程序信息。 |
 
 **示例：**
     
@@ -746,7 +746,7 @@ onAbilityStateChanged(abilityStateData: AbilityStateData): void;
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| abilityStateData | [AbilityStateData](#abilitystatedata) | 否 | 状态更改的能力信息。 |
+| abilityStateData | [AbilityStateData](#abilitystatedata) | 是 | 状态更改的能力信息。 |
 
 **示例：**
     
@@ -786,7 +786,7 @@ onProcessCreated(processData: ProcessData): void;
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| processData | [ProcessData](#processdata) | 否 | 进程信息。 |
+| processData | [ProcessData](#processdata) | 是 | 进程信息。 |
 
 **示例：**
     
@@ -826,7 +826,7 @@ onProcessDied(processData: ProcessData): void;
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| processData | [ProcessData](#processdata) | 否 | 进程信息。 |
+| processData | [ProcessData](#processdata) | 是 | 进程信息。 |
 
 **示例：**
     
@@ -866,7 +866,7 @@ onProcessDied(processData: ProcessData): void;
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| processData | [ProcessData](#processdata) | 否 | 进程信息。 |
+| processData | [ProcessData](#processdata) | 是 | 进程信息。 |
 
 **示例：**
     
@@ -898,11 +898,11 @@ onProcessDied(processData: ProcessData): void;
 
 **系统API**：该接口为系统接口，三方应用不支持调用。
 
-| 名称        | 读写属性 | 类型                 | 必填 | 描述                                                         |
-| ----------- | -------- | -------------------- | ---- | ------------------------------------------------------------ |
-| bundleName<sup>8+</sup>     | 只读     | string               | 否   | 包名。                                |
-| uid<sup>8+</sup>   | 只读     | number               | 否   | 用户ID。 |
-| state<sup>8+</sup>  | 只读     | number               | 否   | 应用状态。 |
+| 名称                     | 类型     | 可读 | 可写 | 说明                                  |
+| ----------- | -------- | -------------------- | ---- | -------------------------------- |
+| bundleName<sup>8+</sup>| string  | 是 | 否       | 包名。                                |
+| uid<sup>8+</sup>   | number        | 是 | 否    | 用户ID。 |
+| state<sup>8+</sup>  | number    | 是   | 否     | 应用状态。 |
 
 ## AbilityStateData
 
@@ -918,7 +918,7 @@ onProcessDied(processData: ProcessData): void;
 | uid<sup>8+</sup>                     | number   | 是   | 否   | 用户ID。                  |
 | state<sup>8+</sup>                   | number   | 是   | 否   | Ability状态。                |
 | moduleName<sup>9+</sup> | string   | 是   | 否   | Ability所属的HAP包的名称。    |
-| abilityType<sup>8+</sup> | string   | 是   | 否   | 能力类型、页面或服务等。    |
+| abilityType<sup>8+</sup> | number   | 是   | 否   | 能力类型、页面或服务等。    |
 
 ## ProcessData
 
@@ -938,12 +938,12 @@ onProcessDied(processData: ProcessData): void;
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Mission
 
-| 名称        | 读写属性 | 类型                 | 必填 | 描述                                                         |
+| 名称                     | 类型     | 可读 | 可写 | 说明                       |
 | ----------- | -------- | -------------------- | ---- | ------------------------------------------------------------ |
-| pid<sup>8+</sup>     | 只读     | number               | 否   | 进程ID。                                |
-| uid<sup>8+</sup>   | 只读     | number               | 否   | 用户ID。 |
-| processName<sup>8+</sup>  | 只读     | string               | 否   | 进程的名称。 |
-| bundleNames<sup>8+</sup>          | 只读     | Array\<string>              | 否   | 进程中运行的bundleName数组。 |
+| pid<sup>8+</sup>     |number               | 是   | 否   | 进程ID。                                |
+| uid<sup>8+</sup>   |  number               | 是   | 否   | 用户ID。 |
+| processName<sup>8+</sup>  |  string               | 是   | 否   | 进程的名称。 |
+| bundleNames<sup>8+</sup>    | Array\<string>      | 是   | 否   | 进程中运行的bundleName数组。 |
 
 ## ApplicationStateObserver
 
@@ -953,10 +953,10 @@ onProcessDied(processData: ProcessData): void;
 
 | 名称                     | 类型     | 可读 | 可写 | 说明                       |
 | ----------------------- | ---------| ---- | ---- | ------------------------- |
-| [onForegroundApplicationChanged<sup>8+</sup>](#applicationstateobserveronforegroundapplicationchanged8)         | AsyncCallback\<void>   | 是   | 否   | 应用前后台状态发生变化时执行的回调函数。                    |
-| [onAbilityStateChanged<sup>8+</sup>](#applicationstateobserveronabilitystatechanged8)  | AsyncCallback\<void>   | 是   | 否  | ability状态发生变化时执行的回调函数。                  |
-| [onProcessCreated<sup>8+</sup>](#applicationstateobserveronprocesscreated8)         | AsyncCallback\<void>   | 是   | 否   | 进程创建时执行的回调函数。                  |
-| [onProcessDied<sup>8+</sup>](#applicationstateobserveronprocessdied8)         | AsyncCallback\<void>   | 是   | 否   | 进程销毁时执行的回调函数。                  |
+| [onForegroundApplicationChanged<sup>8+</sup>](#applicationstateobserveronforegroundapplicationchanged8)         | AppStateData   | 是   | 否   | 应用前后台状态发生变化时执行的回调函数。                    |
+| [onAbilityStateChanged<sup>8+</sup>](#applicationstateobserveronabilitystatechanged8)  | AbilityStateData   | 是   | 否  | ability状态发生变化时执行的回调函数。                  |
+| [onProcessCreated<sup>8+</sup>](#applicationstateobserveronprocesscreated8)         | ProcessData  | 是   | 否   | 进程创建时执行的回调函数。                  |
+| [onProcessDied<sup>8+</sup>](#applicationstateobserveronprocessdied8)         |ProcessData   | 是   | 否   | 进程销毁时执行的回调函数。                  |
 
 ## ProcessRunningInformation
    
@@ -964,12 +964,12 @@ onProcessDied(processData: ProcessData): void;
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
 
-| 名称        | 读写属性 | 类型                 | 必填 | 描述                                                         |
+| 名称        |  类型                 | 可读 | 可写 | 说明                                                         |
 | ----------- | -------- | -------------------- | ---- | ------------------------------------------------------------ |
-| pid<sup>9+</sup>     | 只读     | number               | 否   | 进程ID。                                |
-| uid<sup>9+</sup>   | 只读     | number               | 否   | 用户ID。 |
-| processName<sup>9+</sup>  | 只读     | string               | 否   | 进程的名称。 |
-| bundleNames<sup>9+</sup>          | 只读     | Array\<string>              | 否   | 进程中运行的bundleName数组。 | 
+| pid<sup>9+</sup>     | number               | 是   | 否   | 进程ID。                                |
+| uid<sup>9+</sup>   |  number               | 是   | 否   | 用户ID。 |
+| processName<sup>9+</sup>  |  string               | 是   | 否   | 进程的名称。 |
+| bundleNames<sup>9+</sup>          |  Array\<string>              | 是   | 否   | 进程中运行的bundleName数组。 | 
 
 ## ApplicationState<sup>9+</sup>
 
@@ -977,7 +977,7 @@ onProcessDied(processData: ProcessData): void;
 
 **系统API**: 此接口为系统接口，三方应用不支持调用。
 
-| 名称                 | 值  | 描述                               |
+| 名称                 | 值  | 说明                               |
 | -------------------- | --- | --------------------------------- |
 | STATE_CREATE    | 1   |   当应用在创建中的时候处于的状态。         |
 | STATE_FOREGROUND          | 2   |      当应用切换到前台的时候处于的状态。            |
@@ -991,7 +991,7 @@ onProcessDied(processData: ProcessData): void;
 
 **系统API**: 此接口为系统接口，三方应用不支持调用。
 
-| 名称                 | 值  | 描述                               |
+| 名称                 | 值  | 说明                               |
 | -------------------- | --- | --------------------------------- |
 | STATE_CREATE    | 1   |      当进程在创建中的时候处于的状态。       |
 | STATE_FOREGROUND          | 2   |            当进程切换到前台的时候处于的状态。      |
