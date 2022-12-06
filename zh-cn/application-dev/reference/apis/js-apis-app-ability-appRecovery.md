@@ -18,7 +18,7 @@ import appRecovery from '@ohos.app.ability.appRecovery'
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
 
-| 变量                          | 值   | 说明                                                         |
+| 名称                          | 值   | 说明                                                         |
 | ----------------------------- | ---- | ------------------------------------------------------------ |
 | ALWAYS_RESTART           | 0    | 总是重启应用。 |
 | CPP_CRASH_NO_RESTART           | 1    | 发生CPP_CRASH时不重启应用。 |
@@ -32,7 +32,7 @@ import appRecovery from '@ohos.app.ability.appRecovery'
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
 
-| 变量                          | 值   | 说明                                                         |
+| 名称                          | 值   | 说明                                                         |
 | ----------------------------- | ---- | ------------------------------------------------------------ |
 | SAVE_WHEN_ERROR            | 1    | 当发生应用故障时保存。 |
 | SAVE_WHEN_BACKGROUND            | 2    | 当应用切入后台时保存。 |
@@ -43,7 +43,7 @@ import appRecovery from '@ohos.app.ability.appRecovery'
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
 
-| 变量                          | 值   | 说明                                                         |
+| 名称                          | 值   | 说明                                                         |
 | ----------------------------- | ---- | ------------------------------------------------------------ |
 | SAVE_WITH_FILE             | 1    | 每次状态保存都会写入到本地文件缓存。 |
 | SAVE_WITH_SHARED_MEMORY             | 2    | 状态先保存在内存中，应用故障退出时写入到本地文件缓存。 |

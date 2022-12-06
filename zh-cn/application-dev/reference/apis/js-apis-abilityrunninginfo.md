@@ -23,7 +23,7 @@ abilitymanager.getAbilityRunningInfos((err,data) => {
 
 **系统API**：该接口为系统接口，三方应用不支持调用。
 
-| 名称 | 参数类型 | 可读 | 可写 | 说明 |
+| 名称 | 类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
 | ability | ElementName | 是 | 否 | Ability匹配信息  |
 | pid | number | 是 | 否 | 进程ID。 |

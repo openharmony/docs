@@ -43,7 +43,7 @@ onWindowStageCreate(ability: Ability, windowStage: window.WindowStage): void;
   | 参数名 | 类型 | 必填 | 说明 | 
   | -------- | -------- | -------- | -------- |
   | ability | [Ability](js-apis-application-ability.md#Ability) | 是 | 当前Ability对象 |  
-  | windowStage | [WindowStage](js-apis-window.md#windowstage9) | 是 | 当前WindowStage对象 |    
+  | windowStage | [window.WindowStage](js-apis-window.md#windowstage9) | 是 | 当前WindowStage对象 |    
 
 
 ## AbilityLifecycleCallback.onWindowStageActive
@@ -59,7 +59,7 @@ onWindowStageActive(ability: Ability, windowStage: window.WindowStage): void;
   | 参数名 | 类型 | 必填 | 说明 | 
   | -------- | -------- | -------- | -------- |
   | ability | [Ability](js-apis-application-ability.md#Ability) | 是 | 当前Ability对象 |  
-  | windowStage | [WindowStage](js-apis-window.md#windowstage9) | 是 | 当前WindowStage对象 |    
+  | windowStage | [window.WindowStage](js-apis-window.md#windowstage9) | 是 | 当前WindowStage对象 |    
 
 
 ## AbilityLifecycleCallback.onWindowStageInactive
@@ -75,7 +75,7 @@ onWindowStageInactive(ability: Ability, windowStage: window.WindowStage): void;
   | 参数名 | 类型 | 必填 | 说明 | 
   | -------- | -------- | -------- | -------- |
   | ability | [Ability](js-apis-application-ability.md#Ability) | 是 | 当前Ability对象 |  
-  | windowStage | [WindowStage](js-apis-window.md#windowstage9) | 是 | 当前WindowStage对象 |  
+  | windowStage | [window.WindowStage](js-apis-window.md#windowstage9) | 是 | 当前WindowStage对象 |  
 
 
 ## AbilityLifecycleCallback.onWindowStageDestroy
@@ -91,7 +91,7 @@ onWindowStageDestroy(ability: Ability, windowStage: window.WindowStage): void;
   | 参数名 | 类型 | 必填 | 说明 | 
   | -------- | -------- | -------- | -------- |
   | ability | [Ability](js-apis-application-ability.md#Ability) | 是 | 当前Ability对象 |  
-  | windowStage | [WindowStage](js-apis-window.md#windowstage9) | 是 | 当前WindowStage对象 |  
+  | windowStage | [window.WindowStage](js-apis-window.md#windowstage9) | 是 | 当前WindowStage对象 |  
 
 
 ## AbilityLifecycleCallback.onAbilityDestroy

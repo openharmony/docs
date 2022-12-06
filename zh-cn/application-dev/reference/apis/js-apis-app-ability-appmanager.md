@@ -908,11 +908,11 @@ onProcessDied(processData: ProcessData): void;
 
 **系统API**：该接口为系统接口，三方应用不支持调用。
 
-| 名称        | 读写属性 | 类型                 | 必填 | 描述                                                         |
-| ----------- | -------- | -------------------- | ---- | ------------------------------------------------------------ |
-| bundleName     | 只读     | string               | 否   | 包名。                                |
-| uid   | 只读     | number               | 否   | 用户ID。 |
-| state  | 只读     | number               | 否   | 应用状态。 |
+| 名称        | 可读    | 可写     | 类型                 | 必填 | 描述                                                         |
+| ----------- | -------- |-------- | -------------------- | ---- | ------------------------------------------------------------ |
+| bundleName     | 是    | 否      | string               | 否   | 包名。                                |
+| uid   | 是    | 否      | number               | 否   | 用户ID。 |
+| state  | 是    | 否      | number               | 否   | 应用状态。 |
 
 ## AbilityStateData
 
@@ -948,12 +948,12 @@ onProcessDied(processData: ProcessData): void;
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Mission
 
-| 名称        | 读写属性 | 类型                 | 必填 | 描述                                                         |
+| 名称        | 可读    | 可写     | 类型                 | 必填 | 描述                                                         |
 | ----------- | -------- | -------------------- | ---- | ------------------------------------------------------------ |
-| pid     | 只读     | number               | 否   | 进程ID。                                |
-| uid   | 只读     | number               | 否   | 用户ID。 |
-| processName  | 只读     | string               | 否   | 进程的名称。 |
-| bundleNames          | 只读     | Array\<string>              | 否   | 进程中运行的bundleName数组。 |
+| pid     | 是    | 否      | number               | 否   | 进程ID。                                |
+| uid   | 是    | 否      | number               | 否   | 用户ID。 |
+| processName  | 是    | 否      | string               | 否   | 进程的名称。 |
+| bundleNames          | 是    | 否      | Array\<string>              | 否   | 进程中运行的bundleName数组。 |
 
 ## ApplicationStateObserver
 
@@ -974,12 +974,12 @@ onProcessDied(processData: ProcessData): void;
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
 
-| 名称        | 读写属性 | 类型                 | 必填 | 描述                                                         |
+| 名称        | 可读    | 可写     | 类型                 | 必填 | 描述                                                         |
 | ----------- | -------- | -------------------- | ---- | ------------------------------------------------------------ |
-| pid     | 只读     | number               | 否   | 进程ID。                                |
-| uid   | 只读     | number               | 否   | 用户ID。 |
-| processName  | 只读     | string               | 否   | 进程的名称。 |
-| bundleNames          | 只读     | Array\<string>              | 否   | 进程中运行的bundleName数组。 | 
+| pid     | 是    | 否      | number               | 否   | 进程ID。                                |
+| uid   | 是    | 否      | number               | 否   | 用户ID。 |
+| processName  | 是    | 否      | string               | 否   | 进程的名称。 |
+| bundleNames          | 是    | 否      | Array\<string>              | 否   | 进程中运行的bundleName数组。 | 
 
 ## ApplicationState
 

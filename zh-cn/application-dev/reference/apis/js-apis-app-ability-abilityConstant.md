@@ -19,7 +19,7 @@ import AbilityConstant from '@ohos.app.ability.AbilityConstant';
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
 
-| 名称 | 参数类型 | 可读 | 可写 | 说明 | 
+| 名称 | 类型 | 可读 | 可写 | 说明 | 
 | -------- | -------- | -------- | -------- | -------- |
 | launchReason | LaunchReason| 是 | 是 | 指示启动原因。 | 
 | lastExitReason | LastExitReason | 是 | 是 | 表示最后退出原因。 | 
@@ -30,7 +30,7 @@ import AbilityConstant from '@ohos.app.ability.AbilityConstant';
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
 
-| 变量                          | 值   | 说明                                                         |
+| 名称                          | 值   | 说明                                                         |
 | ----------------------------- | ---- | ------------------------------------------------------------ |
 | UNKNOWN          | 0    | 未知的状态。 |
 | START_ABILITY          | 1    | 启动能力。 |
@@ -45,7 +45,7 @@ import AbilityConstant from '@ohos.app.ability.AbilityConstant';
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
 
-| 变量                          | 值   | 说明                                                         |
+| 名称                          | 值   | 说明                                                         |
 | ----------------------------- | ---- | ------------------------------------------------------------ |
 | UNKNOWN          | 0    | 未知的状态。 |
 | ABILITY_NOT_RESPONDING          | 1    | 能力没有反应 |
@@ -58,7 +58,7 @@ import AbilityConstant from '@ohos.app.ability.AbilityConstant';
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
 
-| 变量                          | 值   | 说明                                                         |
+| 名称                          | 值   | 说明                                                         |
 | ----------------------------- | ---- | ------------------------------------------------------------ |
 | AGREE           | 0    | 同意。 |
 | REJECT           | 1    | 拒绝。 |
@@ -70,7 +70,7 @@ import AbilityConstant from '@ohos.app.ability.AbilityConstant';
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
 
-| 变量                        | 取值 | 说明                 |
+| 名称                        | 取值 | 说明                 |
 | ---                         | --- | ---                  |
 | WINDOW_MODE_UNDEFINED       | 0   | 未定义窗口模式。       |
 | WINDOW_MODE_FULLSCREEN      | 1   | 全屏模式。            |
@@ -84,7 +84,7 @@ import AbilityConstant from '@ohos.app.ability.AbilityConstant';
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
 
-| 变量                         | 取值 | 说明                |
+| 名称                         | 取值 | 说明                |
 | ---                         | --- | ---                  |
 | MEMORY_LEVEL_MODERATE       | 0   | 内存占用适中。       |
 | MEMORY_LEVEL_LOW            | 1   | 内存占用低。            |
@@ -96,7 +96,7 @@ import AbilityConstant from '@ohos.app.ability.AbilityConstant';
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
 
-| 变量                          | 值   | 说明                                                         |
+| 名称                          | 值   | 说明                                                         |
 | ----------------------------- | ---- | ------------------------------------------------------------ |
 | ALL_AGREE           | 0    | 同意保存状态。 |
 | CONTINUATION_REJECT           | 1    | 拒绝迁移保存状态。 |
@@ -111,7 +111,7 @@ import AbilityConstant from '@ohos.app.ability.AbilityConstant';
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
 
-| 变量                          | 值   | 说明                                                         |
+| 名称                          | 值   | 说明                                                         |
 | ----------------------------- | ---- | ------------------------------------------------------------ |
 | CONTINUATION           | 0    | 迁移保存状态。 |
 | APP_RECOVERY           | 1    | 应用恢复保存状态。 |

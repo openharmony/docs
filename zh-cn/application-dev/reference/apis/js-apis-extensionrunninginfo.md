@@ -23,7 +23,7 @@ abilityManager.getExtensionRunningInfos(upperLimit, (err,data) => {
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
 
-| 名称 | 参数类型 | 可读 | 可写 | 说明 |
+| 名称 | 类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
 | extension | ElementName | 是 | 否 | Extension匹配信息。 |
 | pid | number | 是 | 否 | 进程ID。 |
@@ -31,4 +31,4 @@ abilityManager.getExtensionRunningInfos(upperLimit, (err,data) => {
 | processName | string | 是 | 否 | 进程名称。 |
 | startTime | number | 是 | 否 | Extension启动时间。 |
 | clientPackage | Array&lt;String&gt; | 是 | 否 | 表示当期进程下的所有包名。 |
-| type | [bundle.ExtensionAbilityType](js-apis-Bundle.md#extensionabilitytype9) | 是 | 否 | Extension类型。 |
+| type | [bundle.ExtensionAbilityType](js-apis-bundleManager.md#extensionabilitytype) | 是 | 否 | Extension类型。 |

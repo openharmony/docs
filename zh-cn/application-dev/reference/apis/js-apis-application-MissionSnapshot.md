@@ -34,7 +34,7 @@ missionManager.getMissionInfos("", 10, (error, missions) => {
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Mission
 
-| 名称 | 参数类型 | 可读 | 可写 | 说明 |
+| 名称 | 类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
 | ability | ElementName | 是 | 是 | 表示Ability任务元素名称。 |
 | snapshot | [image.PixelMap](js-apis-image.md) | 是 | 是 | 表示任务快照。 |

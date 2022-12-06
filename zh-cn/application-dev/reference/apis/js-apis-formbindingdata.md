@@ -47,17 +47,30 @@ createFormBindingData(obj?: Object | string): FormBindingData
 
 **示例：**
 
-```js
-import featureAbility from '@ohos.ability.featureAbility';
-import fileio from '@ohos.fileio';
-let context=featureAbility.getContext();
-context.getOrCreateLocalDir((err,data)=>{
-  let path=data+"/xxx.jpg";
-  let fd = fileio.openSync(path);
-  let obj = {
-    "temperature": "21°",
-    "formImages": {"image": fd}
-  };
-  let formBindingDataObj = formBindingData.createFormBindingData(obj);
-})
-```
+  ```js
+  import featureAbility from '@ohos.ability.featureAbility';
+  import fileio from '@ohos.fileio';
+  let context=featureAbility.getContext();
+  context.getOrCreateLocalDir((err,data)=>{
+      let path=data+"/xxx.jpg";
+      let fd = fileio.openSync(path);
+      let obj = {
+          "temperature": "21°",
+          "formImages": {"image": fd}
+      };
+      let formBindingDataObj = formBindingData.createFormBindingData(obj);
+  })
+
+  
+  ```
+
+## 属性
+
+FormBindingData相关描述。
+
+**系统能力**：SystemCapability.Ability.Form
+
+| 名称 | 可读 | 可写 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- | -------- | -------- |
+| data | 是 | 否 | Object | 是 | js卡片要展示的数据。可以是包含若干键值对的Object或者 json 格式的字符串。|
+

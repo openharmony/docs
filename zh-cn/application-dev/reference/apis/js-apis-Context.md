@@ -31,7 +31,7 @@ getOrCreateLocalDir(callback: AsyncCallback\<string>): void
 
 **参数：**
 
-| 名称       | 类型                     | 必填   | 描述            |
+| 参数名       | 类型                     | 必填   | 描述            |
 | -------- | ---------------------- | ---- | ------------- |
 | callback | AsyncCallback\<string> | 是    | 返回应用程序的本地根目录。 |
 
@@ -85,7 +85,7 @@ verifyPermission(permission: string, options: PermissionOptions, callback: Async
 
 **参数：**
 
-| 名称         | 类型                                      | 必填   | 描述                   |
+| 参数名         | 类型                                      | 必填   | 描述                   |
 | ---------- | --------------------------------------- | ---- | -------------------- |
 | permission | string                                  | 是    | 指定权限的名称。             |
 | options    | [PermissionOptions](#permissionoptions7) | 是    | 权限选项。                |
@@ -116,7 +116,7 @@ verifyPermission(permission: string, callback: AsyncCallback\<number>): void
 
 **参数：**
 
-| 名称         | 类型                     | 必填   | 描述                   |
+| 参数名         | 类型                     | 必填   | 描述                   |
 | ---------- | ---------------------- | ---- | -------------------- |
 | permission | string                 | 是    | 指定权限的名称。             |
 | callback   | AsyncCallback\<number> | 是    | 返回权限验证结果，0有权限，-1无权限。 |
@@ -141,7 +141,7 @@ verifyPermission(permission: string, options?: PermissionOptions): Promise\<numb
 
 **参数：**
 
-| 名称         | 类型                                      | 必填   | 描述       |
+| 参数名         | 类型                                      | 必填   | 描述       |
 | ---------- | --------------------------------------- | ---- | -------- |
 | permission | string                                  | 是    | 指定权限的名称。 |
 | options    | [PermissionOptions](#permissionoptions) | 否    | 权限选项。    |
@@ -175,7 +175,7 @@ requestPermissionsFromUser(permissions: Array\<string>, requestCode: number, res
 
 **参数：**
 
-| 名称             | 类型                                       | 必填   | 描述                                  |
+| 参数名             | 类型                                       | 必填   | 描述                                  |
 | -------------- | ---------------------------------------- | ---- | ----------------------------------- |
 | permissions    | Array\<string>                           | 是    | 指示要请求的权限列表。此参数不能为null。              |
 | requestCode    | number                                   | 是    | 指示要传递给PermissionRequestResult的请求代码。 |
@@ -210,7 +210,7 @@ requestPermissionsFromUser(permissions: Array\<string>, requestCode: number): Pr
 
 **参数：**
 
-| 名称           | 类型                 | 必填  | 描述                                          |
+| 参数名           | 类型                 | 必填  | 描述                                          |
 | -------------- | ------------------- | ----- | -------------------------------------------- |
 | permissions    | Array\<string>      | 是    | 指示要请求的权限列表。此参数不能为null。         |
 | requestCode    | number              | 是    | 指示要传递给PermissionRequestResult的请求代码。 |
@@ -250,7 +250,7 @@ getApplicationInfo(callback: AsyncCallback\<ApplicationInfo>): void
 
 **参数：**
 
-| 名称       | 类型                              | 必填   | 描述           |
+| 参数名       | 类型                              | 必填   | 描述           |
 | -------- | ------------------------------- | ---- | ------------ |
 | callback | AsyncCallback\<ApplicationInfo> | 是    | 返回当前应用程序的信息。 |
 
@@ -302,7 +302,7 @@ getBundleName(callback: AsyncCallback\<string>): void
 
 **参数：**
 
-| 名称       | 类型                     | 必填   | 描述                 |
+| 参数名       | 类型                     | 必填   | 描述                 |
 | -------- | ---------------------- | ---- | ------------------ |
 | callback | AsyncCallback\<string> | 是    | 返回当前ability的捆绑包名称。 |
 
@@ -352,7 +352,7 @@ getDisplayOrientation(callback: AsyncCallback\<bundle.DisplayOrientation>): void
 
 **参数：**
 
-| 名称     | 类型                                                         | 必填 | 描述               |
+| 参数名     | 类型                                                         | 必填 | 描述               |
 | -------- | ------------------------------------------------------------ | ---- | ------------------ |
 | callback | AsyncCallback\<[bundle.DisplayOrientation](js-apis-Bundle.md#displayorientation)> | 是   | 表示屏幕显示方向。 |
 
@@ -400,7 +400,7 @@ getExternalCacheDir(callback: AsyncCallback\<string>): void
 
 **参数：**
 
-| 名称       | 类型                     | 必填   | 描述                 |
+| 参数名       | 类型                     | 必填   | 描述                 |
 | -------- | ---------------------- | ---- | ------------------ |
 | callback | AsyncCallback\<string> | 是    | 返回应用程序的缓存目录的绝对路径。 |
 
@@ -448,7 +448,7 @@ setDisplayOrientation(orientation: bundle.DisplayOrientation, callback: AsyncCal
 
 **参数：**
 
-| 名称          | 类型                                       | 必填   | 描述           |
+| 参数名          | 类型                                       | 必填   | 描述           |
 | ----------- | ---------------------------------------- | ---- | ------------ |
 | orientation | [bundle.DisplayOrientation](js-apis-Bundle.md#displayorientation) | 是    | 指示当前能力的新方向。。 |
 | callback    | AsyncCallback\<void> | 是    | 表示屏幕显示方向。    |
@@ -502,7 +502,7 @@ setShowOnLockScreen(show: boolean, callback: AsyncCallback\<void>): void
 
 **参数：**
 
-| 名称       | 类型                   | 必填   | 描述                                       |
+| 参数名       | 类型                   | 必填   | 描述                                       |
 | -------- | -------------------- | ---- | ---------------------------------------- |
 | show     | boolean              | 是    | 指定是否在锁屏顶部显示此功能。值true表示在锁屏上显示，值false表示不显示。 |
 | callback | AsyncCallback\<void> | 是    | 返回回调结果。                                  |
@@ -528,7 +528,7 @@ setShowOnLockScreen(show: boolean): Promise\<void>;
 
 **参数：**
 
-| 名称   | 类型      | 必填   | 描述                                       |
+| 参数名   | 类型      | 必填   | 描述                                       |
 | ---- | ------- | ---- | ---------------------------------------- |
 | show | boolean | 是    | 指定是否在锁屏顶部显示此功能。值true表示在锁屏上显示，值false表示不显示。 |
 
@@ -559,7 +559,7 @@ setWakeUpScreen(wakeUp: boolean, callback: AsyncCallback\<void>): void
 
 **参数：**
 
-| 名称       | 类型                   | 必填   | 描述                                |
+| 参数名       | 类型                   | 必填   | 描述                                |
 | -------- | -------------------- | ---- | --------------------------------- |
 | wakeUp   | boolean              | 是    | 指定是否唤醒屏幕。值true表示唤醒它，值false表示不唤醒它。 |
 | callback | AsyncCallback\<void> | 是    | 返回回调结果。                           |
@@ -585,7 +585,7 @@ setWakeUpScreen(wakeUp: boolean): Promise\<void>;
 
 **参数：**
 
-| 名称     | 类型      | 必填   | 描述                                |
+| 参数名     | 类型      | 必填   | 描述                                |
 | ------ | ------- | ---- | --------------------------------- |
 | wakeUp | boolean | 是    | 指定是否唤醒屏幕。值true表示唤醒它，值false表示不唤醒它。 |
 
@@ -619,7 +619,7 @@ getProcessInfo(callback: AsyncCallback\<ProcessInfo>): void
 
 **参数：**
 
-| 名称       | 类型                          | 必填   | 描述         |
+| 参数名       | 类型                          | 必填   | 描述         |
 | -------- | --------------------------- | ---- | ---------- |
 | callback | AsyncCallback\<ProcessInfo> | 是    | 返回当前进程的信息。 |
 
@@ -673,7 +673,7 @@ getElementName(callback: AsyncCallback\<ElementName>): void
 
 **参数：**
 
-| 名称       | 类型                          | 必填   | 描述                                     |
+| 参数名       | 类型                          | 必填   | 描述                                     |
 | -------- | --------------------------- | ---- | -------------------------------------- |
 | callback | AsyncCallback\<ElementName> | 是    | 返回当前ability的ohos.bundle.ElementName对象。 |
 
@@ -725,7 +725,7 @@ getProcessName(callback: AsyncCallback\<string>): void
 
 **参数：**
 
-| 名称       | 类型                     | 必填   | 描述         |
+| 参数名       | 类型                     | 必填   | 描述         |
 | -------- | ---------------------- | ---- | ---------- |
 | callback | AsyncCallback\<string> | 是    | 返回当前进程的名称。 |
 
@@ -777,7 +777,7 @@ getCallingBundle(callback: AsyncCallback\<string>): void
 
 **参数：**
 
-| 名称       | 类型                     | 必填   | 描述               |
+| 参数名       | 类型                     | 必填   | 描述               |
 | -------- | ---------------------- | ---- | ---------------- |
 | callback | AsyncCallback\<string> | 是    | 返回调用ability的包名称。 |
 
@@ -827,7 +827,7 @@ getCacheDir(callback: AsyncCallback\<string>): void
 
 **参数：**
 
-| 名称       | 类型                     | 必填   | 描述              |
+| 参数名       | 类型                     | 必填   | 描述              |
 | -------- | ---------------------- | ---- | --------------- |
 | callback | AsyncCallback\<string> | 是    | 返回该应用程序的内部存储目录。 |
 
@@ -875,7 +875,7 @@ getFilesDir(callback: AsyncCallback\<string>): void
 
 **参数：**
 
-| 名称       | 类型                     | 必填   | 描述                  |
+| 参数名       | 类型                     | 必填   | 描述                  |
 | -------- | ---------------------- | ---- | ------------------- |
 | callback | AsyncCallback\<string> | 是    | 返回内部存储器上此应用程序的文件目录。 |
 
@@ -925,7 +925,7 @@ getOrCreateDistributedDir(callback: AsyncCallback\<string>): void
 
 **参数：**
 
-| 名称       | 类型                     | 必填   | 描述                                       |
+| 参数名       | 类型                     | 必填   | 描述                                       |
 | -------- | ---------------------- | ---- | ---------------------------------------- |
 | callback | AsyncCallback\<string> | 是    | 回调函数，可以在回调函数中处理接口返回值，返回Ability或应用的分布式文件路径。如果分布式文件路径不存在，系统将创建一个路径并返回创建的路径。 |
 
@@ -975,7 +975,7 @@ getAppType(callback: AsyncCallback\<string>): void
 
 **参数：**
 
-| 名称       | 类型                     | 必填   | 描述                               |
+| 参数名       | 类型                     | 必填   | 描述                               |
 | -------- | ---------------------- | ---- | -------------------------------- |
 | callback | AsyncCallback\<string> | 是    | 回调函数，可以在回调函数中处理接口返回值，返回此应用程序的类型。 |
 
@@ -1023,7 +1023,7 @@ getHapModuleInfo(callback: AsyncCallback\<HapModuleInfo>): void
 
 **参数：**
 
-| 名称       | 类型                                       | 必填   | 描述                                      |
+| 参数名       | 类型                                       | 必填   | 描述                                      |
 | -------- | ---------------------------------------- | ---- | --------------------------------------- |
 | callback | AsyncCallback\<[HapModuleInfo](js-apis-bundle-HapModuleInfo.md)> | 是    | 回调函数，可以在回调函数中处理接口返回值，返回应用的ModuleInfo对象。 |
 
@@ -1071,7 +1071,7 @@ getAppVersionInfo(callback: AsyncCallback\<AppVersionInfo>): void
 
 **参数：**
 
-| 名称       | 类型                                       | 必填   | 描述                             |
+| 参数名       | 类型                                       | 必填   | 描述                             |
 | -------- | ---------------------------------------- | ---- | ------------------------------ |
 | callback | AsyncCallback\<[AppVersionInfo](#appversioninfo)> | 是    | 回调函数，可以在回调函数中处理接口返回值，返回应用版本信息。 |
 
@@ -1119,7 +1119,7 @@ getAbilityInfo(callback: AsyncCallback\<AbilityInfo>): void
 
 **参数：**
 
-| 名称       | 类型                                       | 必填   | 描述                                      |
+| 参数名       | 类型                                       | 必填   | 描述                                      |
 | -------- | ---------------------------------------- | ---- | --------------------------------------- |
 | callback | AsyncCallback\<[AbilityInfo](js-apis-bundle-AbilityInfo.md)> | 是    | 回调函数，可以在回调函数中处理接口返回值，返回当前归属Ability详细信息。 |
 
@@ -1188,7 +1188,7 @@ isUpdatingConfigurations(callback: AsyncCallback\<boolean>): void;
 
 **参数：**
 
-| 名称       | 类型                      | 必填   | 描述                            |
+| 参数名       | 类型                      | 必填   | 描述                            |
 | -------- | ----------------------- | ---- | ----------------------------- |
 | callback | AsyncCallback\<boolean> | 是    | 如果该能力的配置正在更改，则为true，否则为false。 |
 
@@ -1236,7 +1236,7 @@ printDrawnCompleted(callback: AsyncCallback\<void>): void;
 
 **参数：**
 
-| 名称       | 类型                   | 必填   | 描述          |
+| 参数名       | 类型                   | 必填   | 描述          |
 | -------- | -------------------- | ---- | ----------- |
 | callback | AsyncCallback\<void> | 是    | 表示被指定的回调方法。 |
 
@@ -1279,20 +1279,20 @@ context.printDrawnCompleted().then((data) => {
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
 
-| 名称   | 读写属性 | 类型     | 必填   | 描述    |
-| ---- | ---- | ------ | ---- | ----- |
-| pid  | 只读   | number | 否    | 进程id。 |
-| uid  | 只读   | number | 否    | 用户id。 |
+| 名称   | 可读    | 可写     | 类型     | 必填   | 描述    |
+| ---- | ---- |-------- | ------ | ---- | ----- |
+| pid  | 是    | 否    | number | 否    | 进程id。 |
+| uid  | 是    | 否    | number | 否    | 用户id。 |
 
 ## PermissionRequestResult<sup>7+</sup>
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
 
-| 名称          | 读写属性 | 类型             | 必填   | 描述         |
-| ----------- | ---- | -------------- | ---- | ---------- |
-| requestCode | 只读   | number         | 是    | 用户传入的请求代码。 |
-| permissions | 只读   | Array\<string> | 是    | 用户传入的权限。   |
-| authResults | 只读   | Array\<number> | 是    | 请求权限的结果。   |
+| 名称          | 可读    | 可写     | 类型             | 必填   | 描述         |
+| ----------- | ---- |-------- | -------------- | ---- | ---------- |
+| requestCode | 是    | 否    | number         | 是    | 用户传入的请求代码。 |
+| permissions | 是    | 否    | Array\<string> | 是    | 用户传入的权限。   |
+| authResults | 是    | 否    | Array\<number> | 是    | 请求权限的结果。   |
 
 ## AppVersionInfo<sup>7+</sup>
 

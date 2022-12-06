@@ -20,7 +20,7 @@ import errorCode from '@ohos.ability.errorCode'
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
 
-| 变量                             | 值    | 说明                                       |
+| 名称                             | 值    | 说明                                       |
 | ------------------------------ | ---- | ---------------------------------------- |
 | NO_ERROR         | 0    | 没有错误。   |
 | INVALID_PARAMETER | -1   | 无效的参数。 |

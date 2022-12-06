@@ -18,7 +18,7 @@ import FormExtension from '@ohos.application.FormExtension';
 
 **系统能力**：SystemCapability.Ability.Form
 
-| 名称    | 参数类型                                                | 可读 | 可写 | 说明                                                |
+| 名称    | 类型                                                | 可读 | 可写 | 说明                                                |
 | ------- | ------------------------------------------------------- | ---- | ---- | --------------------------------------------------- |
 | context | [FormExtensionContext](js-apis-formextensioncontext.md) | 是   | 否   | FormExtension的上下文环境，继承自ExtensionContext。 |
 

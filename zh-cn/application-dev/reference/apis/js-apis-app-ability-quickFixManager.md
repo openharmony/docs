@@ -20,11 +20,11 @@ hap级别的快速修复信息。
 
 **系统API**: 此接口为系统接口，三方应用不支持调用。
 
-| 名称        | 读写属性 | 类型                 | 必填 | 描述                                                         |
-| ----------- | -------- | -------------------- | ---- | ------------------------------------------------------------ |
-| moduleName    | 只读     | string               | 是   | hap包的名称。                               |
-| originHapHash    | 只读     | string               | 是   | 指示hap的哈希值。                               |
-| quickFixFilePath    | 只读     | string               | 是   | 指示快速修复文件的安装路径。                               |
+| 名称        | 可读    | 可写     | 类型                 | 必填 | 说明                                                         |
+| ----------- | -------- |-------- | -------------------- | ---- | ------------------------------------------------------------ |
+| moduleName    | 是    | 否      | string               | 是   | hap包的名称。                               |
+| originHapHash    | 是    | 否      | string               | 是   | 指示hap的哈希值。                               |
+| quickFixFilePath    | 是    | 否      | string               | 是   | 指示快速修复文件的安装路径。                               |
 
 ## ApplicationQuickFixInfo
 
@@ -34,14 +34,14 @@ hap级别的快速修复信息。
 
 **系统API**: 此接口为系统接口，三方应用不支持调用。
 
-| 名称        | 读写属性 | 类型                 | 必填 | 描述                                                         |
-| ----------- | -------- | -------------------- | ---- | ------------------------------------------------------------ |
-| bundleName    | 只读     | string               | 是   | 应用的包名。                               |
-| bundleVersionCode    | 只读     | number               | 是   | 应用的版本号。                               |
-| bundleVersionName    | 只读     | string               | 是   | 应用版本号的文字描述。                               |
-| quickFixVersionCode    | 只读     | number               | 是   | 快速修复补丁包的版本号。                               |
-| quickFixVersionName    | 只读     | string               | 是   | 快速修复补丁包版本号的文字描述。                               |
-| hapModuleQuickFixInfo    | 只读     | Array\<[HapModuleQuickFixInfo](#hapmodulequickfixinfo)>      | 是   | hap级别的快速修复信息。     |
+| 名称        | 可读    | 可写     | 类型                 | 必填 | 说明                                                         |
+| ----------- | -------- |-------- | -------------------- | ---- | ------------------------------------------------------------ |
+| bundleName    | 是    | 否      | string               | 是   | 应用的包名。                               |
+| bundleVersionCode    | 是    | 否      | number               | 是   | 应用的版本号。                               |
+| bundleVersionName    | 是    | 否      | string               | 是   | 应用版本号的文字描述。                               |
+| quickFixVersionCode    | 是    | 否      | number               | 是   | 快速修复补丁包的版本号。                               |
+| quickFixVersionName    | 是    | 否      | string               | 是   | 快速修复补丁包版本号的文字描述。                               |
+| hapModuleQuickFixInfo    | 是    | 否      | Array\<[HapModuleQuickFixInfo](#hapmodulequickfixinfo)>      | 是   | hap级别的快速修复信息。     |
 
 ## quickFixManager.applyQuickFix
 

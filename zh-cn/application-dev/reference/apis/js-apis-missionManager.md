@@ -869,7 +869,7 @@ moveMissionToFront(missionId: number, options?: StartOptions): Promise&lt;void&g
 
 **系统API**: 此接口为系统接口，三方应用不支持调用。
 
-| 名称 | 参数类型 | 可读 | 可写 | 说明 | 
+| 名称 | 类型 | 可读 | 可写 | 说明 | 
 | -------- | -------- | -------- | -------- | -------- |
 | missionId | number | 是 | 是 | 表示任务ID。| 
 | runningState | number | 是 | 是 | 表示运行状态。 | 
