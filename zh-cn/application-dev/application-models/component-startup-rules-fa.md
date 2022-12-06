@@ -1,12 +1,12 @@
-# 组件启动规则---Stage模型
+# 组件启动规则---FA模型
 
 
 启动组件是指一切启动或连接应用组件的行为：
 
 
-- 启动UIAbility或ExtensionAbility，如使用startAbility()、startServiceExtensionAbility()、startAbilityByCall()等相关接口。
+- 启动PageAbility或ServiceAbility，如使用startAbility()等相关接口。
 
-- 连接ExtensionAbility，如使用connectServiceExtensionAbility()、createDataShareHelper()等相关接口。
+- 连接ServiceAbility或DataAbility，如使用connectAbility()、acquireDataAbilityHelper()等相关接口。
 
 
 在OpenHarmony中，为了保证用户具有更好的使用体验，对以下几种易影响用户体验与系统安全的行为做了限制：
@@ -26,7 +26,7 @@
 
 - 跨应用启动visible为false的组件，需鉴权。
 
-- 使用startAbilityByCall接口，需鉴权（使用方式参考：[Call调用开发指南](hop-multi-device-collaboration.md#通过跨设备call调用实现多端协同)）
+- 跨应用启动FA模型的ServiceAbility组件或DataAbility组件，对端应用需配置关联启动。
 
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
@@ -46,16 +46,18 @@
   - **注：三方应用默认都是APL="normal"**
 
 - **BACKGROUND校验**
-  - 对发起端应用进程的状态进行判断，若应用进程获焦或所属的UIAbility位于前台则判定为前台应用，否则为后台应用
+  - 对发起端应用进程的状态进行判断，若应用进程获焦或所属的PageAbility位于前台则判定为前台应用，否则为后台应用
   - 若发起端为后台应用，则需校验START_ABILITIES_FROM_BACKGROUND权限
 
 - **VISIBLE校验**
   - 只针对跨应用启动的场景
   - 若目标组件visible配置为false，则需校验START_INVISIBLE_ABILITY权限
 
-- **CALL校验**
-  - 只针对startAbilityByCall接口
-  - 需校验ABILITY_BACKGROUND_COMMUNICATION权限
+- **关联启动(AssociateWakeUp)**
+  - 只有系统预置应用才允许配置AssociateWakeUp字段，其余应用AssociateWakeUp默认为**false**
+  - 只针对跨应用场景
+  - 只针对目标组件为**FA**模型的**ServiceAbility**与**DataAbility**生效
+  - 目标应用的AssociateWakeUp为**ture**，其提供的ServiceAbility与DataAbility才允许被其他应用访问
 
 - **相关权限**
   
@@ -77,34 +79,16 @@
     "deprecated": "",
     "provisionEnable": true, // 支持ACL方式申请权限
     "distributedSceneEnable": false
-  },
-  {
-    "name": "ohos.permission.ABILITY_BACKGROUND_COMMUNICATION",
-    "grantMode": "system_grant",
-    "availableLevel": "system_basic", // APL等级至少为system_basic才可申请
-    "since": 9,
-    "deprecated": "",
-    "provisionEnable": true, // 支持ACL方式申请权限
-    "distributedSceneEnable": false
   }
   ```
 
 
-## 同设备组件启动管控
+## 组件启动管控
 
-  不同场景下的管控规则不同，可分为如下两种场景：
-- 启动或连接组件：UIAbility、ServiceExtensionAbility、DataShareExtensionAbility。
+  FA模型的同设备与跨设备管控规则一致，可分为如下两种场景：
 
-- 通过startAbilityByCall接口启动UIAbility。
+- 启动PageAbility。
 
-![startup-rule](figures/component-startup-rules.png)
+- 启动ServiceAbility或DataAbility。
 
-
-## 分布式跨设备组件启动管控
-
-  不同场景下的管控规则不同，可分为如下两种场景：
-- 启动或连接组件：UIAbility、ServiceExtensionAbility、DataShareExtensionAbility。
-
-- 通过startAbilityByCall接口启动UIAbility。
-
-![component-startup-rules](figures/component-startup-rules-across-device.png)
+![startup-rule](figures/component-startup-rules-fa.png)

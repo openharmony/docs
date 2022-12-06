@@ -28,7 +28,7 @@
       - [使用显式Want启动Ability](ability-startup-with-explicit-want.md)
       - [使用隐式Want打开网址](ability-startup-with-implicit-want.md)
       - [应用间使用Want分享数据](data-share-via-want.md)
-    - [组件启动规则](component-startup-rules.md)
+    - [组件启动规则---Stage模型](component-startup-rules.md)
     - 应用组件跨设备交互（流转）
       - [流转概述](inter-device-interaction-hop-overview.md)
       - [跨端迁移（仅对系统应用开放）](hop-cross-device-migration.md)
@@ -84,6 +84,7 @@
     - [服务卡片开发指导](widget-development-fa.md)
     - [FA模型的Context](application-context-fa.md)
     - [信息传递载体Want](want-fa.md)
+    - [组件启动规则---FA模型](component-startup-rules-fa.md)
   - 进程间通信
     - [进程模型](process-model-fa.md)
     - [公共事件](common-event-fa.md)
