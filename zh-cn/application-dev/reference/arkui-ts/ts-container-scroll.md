@@ -236,20 +236,21 @@ struct ScrollExample {
 struct NestedScroll {
   @State listPosition: number = 0; // 0代表滚动到List顶部，1代表中间值，2代表滚动到List底部。
   private arr: number[] = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
-  private scroller: Scroller = new Scroller()
+  private scrollerForScroll: Scroller = new Scroller()
+  private scrollerForList: Scroller = new Scroller()
 
   build() {
     Flex() {
-      Scroll(this.scroller) {
+      Scroll(this.scrollerForScroll) {
         Column() {
           Text("Scroll Area")
             .width("100%").height("40%").backgroundColor(0X330000FF)
             .fontSize(16).textAlign(TextAlign.Center)
             .onClick(() => {
-              this.scroller.scrollToIndex(5)
+              this.scrollerForList.scrollToIndex(5)
             })
 
-          List({ space: 20, scroller: this.scroller }) {
+          List({ space: 20, scroller: this.scrollerForList }) {
             ForEach(this.arr, (item) => {
               ListItem() {
                 Text("ListItem" + item)
@@ -269,7 +270,7 @@ struct NestedScroll {
           })
           .onScrollBegin((dx: number, dy: number) => {
             if ((this.listPosition == 0 && dy >= 0) || (this.listPosition == 2 && dy <= 0)) {
-              this.scroller.scrollBy(0, -dy)
+              this.scrollerForScroll.scrollBy(0, -dy)
               return { dxRemain: dx, dyRemain: 0 }
             }
             this.listPosition = 1

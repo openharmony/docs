@@ -31,4 +31,4 @@ abilityManager.getExtensionRunningInfos(upperLimit, (err,data) => {
 | processName | string | 是 | 否 | 进程名称。 |
 | startTime | number | 是 | 否 | Extension启动时间。 |
 | clientPackage | Array&lt;String&gt; | 是 | 否 | 表示当期进程下的所有包名。 |
-| type | [bundle.ExtensionAbilityType](js-apis-Bundle.md#extensionabilitytype9) | 是 | 否 | Extension类型。 |
+| type | [bundle.ExtensionAbilityType](js-apis-bundleManager.md#extensionabilitytype) | 是 | 否 | Extension类型。 |

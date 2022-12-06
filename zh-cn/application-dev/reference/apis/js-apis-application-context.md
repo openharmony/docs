@@ -67,8 +67,14 @@ createBundleContext(bundleName: string): Context;
 **示例：**
 
 ```js
-let test = "com.example.test";
-let context = this.context.createBundleContext(test);
+import Ability from '@ohos.application.Ability'
+
+class MainAbility extends Ability {
+    onWindowStageCreate(windowStage) {
+        let test = "com.example.test";
+        let context = this.context.createBundleContext(test);
+    }
+}
 ```
 
 ## Context.createModuleContext
@@ -94,8 +100,14 @@ createModuleContext(moduleName: string): Context;
 **示例：**
 
 ```js
-let moduleName = "module";
-let context = this.context.createModuleContext(moduleName);
+import Ability from '@ohos.application.Ability'
+
+class MainAbility extends Ability {
+    onWindowStageCreate(windowStage) {
+        let moduleName = "module";
+        let context = this.context.createModuleContext(moduleName);
+    }
+}
 ```
 
 ## Context.createModuleContext
@@ -124,9 +136,15 @@ createModuleContext(bundleName: string, moduleName: string): Context;
 **示例：**
 
 ```js
-let bundleName = "com.example.bundle";
-let moduleName = "module";
-let context = this.context.createModuleContext(bundleName, moduleName);
+import Ability from '@ohos.application.Ability'
+
+class MainAbility extends Ability {
+    onWindowStageCreate(windowStage) {
+        let bundleName = "com.example.bundle";
+        let moduleName = "module";
+        let context = this.context.createModuleContext(bundleName, moduleName);
+    }
+}
 ```
 
 ## Context.getApplicationContext
@@ -146,7 +164,13 @@ getApplicationContext(): ApplicationContext;
 **示例：**
 
 ```js
-let applicationContext = this.context.getApplicationContext();
+import Ability from '@ohos.application.Ability'
+
+class MainAbility extends Ability {
+    onWindowStageCreate(windowStage) {
+        let applicationContext = this.context.getApplicationContext();
+    }
+}
 ```
 
 ## AreaMode

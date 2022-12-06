@@ -1,6 +1,7 @@
 # URL字符串解析
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> **说明：**
+>
 > 本模块首批接口从API version 7开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
 ## 导入模块
@@ -13,7 +14,7 @@ import Url from '@ohos.url'
 
 ### constructor<sup>9+</sup>
 
-constructor(init?: string[][] | Record&lt;string, string&gt; | string | URLParams)
+constructor(init?: string[][] | Record&lt;string, string&gt; | string | URLSearchParams)
 
 URLParams的构造函数。
 
@@ -23,7 +24,7 @@ URLParams的构造函数。
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| init | string[][] \| Record&lt;string, string&gt; \| string \| URLParams | 否 | 入参对象。<br/>- string[][]：字符串二维数组<br/>- Record&lt;string, string&gt;：对象列表<br/>- string：字符串<br/>- URLParams：对象 |
+| init | string[][] \| Record&lt;string, string&gt; \| string \| URLSearchParams | 否 | 入参对象。<br/>- string[][]：字符串二维数组<br/>- Record&lt;string, string&gt;：对象列表<br/>- string：字符串<br/>- URLSearchParams：对象 |
 
 **示例：**
 
@@ -139,7 +140,7 @@ for (var pair of searchParamsObject .entries()) { // Show keyName/valueName pair
 
 ### forEach<sup>9+</sup>
 
-forEach(callbackfn: (value: string, key: string, searchParams: this) => void, thisArg?: Object): void
+forEach(callbackFn: (value: string, key: string, searchParams: this) => void, thisArg?: Object): void
 
 通过回调函数来遍历URLSearchParams实例对象上的键值对。
 
@@ -149,10 +150,10 @@ forEach(callbackfn: (value: string, key: string, searchParams: this) => void, th
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| callbackfn | function | 是 | 回调函数。 |
-| thisArg | Object | 否 | callbackfn被调用时用作this值 |
+| callbackFn | function | 是 | 回调函数。 |
+| thisArg | Object | 否 | callbackFn被调用时用作this值 |
 
-**表1** callbackfn的参数说明
+**表1** callbackFn的参数说明
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
@@ -164,7 +165,7 @@ forEach(callbackfn: (value: string, key: string, searchParams: this) => void, th
 
 ```js
 const myURLObject = new Url.URL('https://developer.exampleUrl/?fod=1&bard=2'); 
-myURLObject.URLParams.forEach((value, name, searchParams) => {  
+myURLObject.searchParams.forEach((value, name, searchParams) => {  
     console.log(name, value, myURLObject.searchParams === searchParams);
 });
 ```
@@ -369,8 +370,9 @@ console.log(params.toString());
 
 ### constructor<sup>(deprecated)</sup>
 
-> **说明：**<br/>
-> 从API version 9开始废弃，建议使用[URLParams<sup>9+</sup>](#constructor9+)替代。
+> **说明：**
+>
+> 从API version 7开始支持，从API version 9开始废弃，建议使用[URLParams<sup>9+</sup>](#constructor9+)替代。
 
 constructor(init?: string[][] | Record&lt;string, string&gt; | string | URLSearchParams)
 
@@ -396,8 +398,9 @@ let params = new Url.URLSearchParams(urlObject.search);
 
 ### append<sup>(deprecated)</sup>
 
-> **说明：**<br/>
-> 从API version 9开始废弃，建议使用[URLParams<sup>9+</sup>.append<sup>9+</sup>](#append9)替代。
+> **说明：**
+>
+> 从API version 7开始支持，从API version 9开始废弃，建议使用[URLParams<sup>9+</sup>.append<sup>9+</sup>](#append9)替代。
 
 append(name: string, value: string): void
 
@@ -422,8 +425,9 @@ paramsObject.append('fod', '3');
 
 ### delete<sup>(deprecated)</sup>
 
-> **说明：**<br/>
-> 从API version 9开始废弃，建议使用[URLParams<sup>9+</sup>.delete<sup>9+</sup>](#delete9)替代。
+> **说明：**
+>
+> 从API version 7开始支持，从API version 9开始废弃，建议使用[URLParams<sup>9+</sup>.delete<sup>9+</sup>](#delete9)替代。
 
 delete(name: string): void
 
@@ -447,8 +451,9 @@ paramsobject.delete('fod');
 
 ### getAll<sup>(deprecated)</sup>
 
-> **说明：**<br/>
-> 从API version 9开始废弃，建议使用[URLParams<sup>9+</sup>.getAll<sup>9+</sup>](#getall9)替代。
+> **说明：**
+>
+> 从API version 7开始支持，从API version 9开始废弃，建议使用[URLParams<sup>9+</sup>.getAll<sup>9+</sup>](#getall9)替代。
 
 getAll(name: string): string[]
 
@@ -479,8 +484,9 @@ console.log(params.getAll('fod').toString()) // Output ["1","3"].
 
 ### entries<sup>(deprecated)</sup>
 
-> **说明：**<br/>
-> 从API version 9开始废弃，建议使用[URLParams<sup>9+</sup>.entries<sup>9+</sup>](#entries9)替代。
+> **说明：**
+>
+> 从API version 7开始支持，从API version 9开始废弃，建议使用[URLParams<sup>9+</sup>.entries<sup>9+</sup>](#entries9)替代。
 
 entries(): IterableIterator<[string, string]>
 
@@ -505,10 +511,11 @@ for (var pair of searchParamsObject .entries()) { // Show keyName/valueName pair
 
 
 ### forEach<sup>(deprecated)</sup>
-> **说明：**<br/>
-> 从API version 9开始废弃，建议使用[URLParams<sup>9+</sup>.forEach<sup>9+</sup>](#foreach9)替代。
+> **说明：**
+>
+> 从API version 7开始支持，从API version 9开始废弃，建议使用[URLParams<sup>9+</sup>.forEach<sup>9+</sup>](#foreach9)替代。
 
-forEach(callbackfn: (value: string, key: string, searchParams: this) => void, thisArg?: Object): void
+forEach(callbackFn: (value: string, key: string, searchParams: this) => void, thisArg?: Object): void
 
 通过回调函数来遍历URLSearchParams实例对象上的键值对。
 
@@ -518,10 +525,10 @@ forEach(callbackfn: (value: string, key: string, searchParams: this) => void, th
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| callbackfn | function | 是 | 回调函数。 |
-| thisArg | Object | 否 | callbackfn被调用时用作this值 |
+| callbackFn | function | 是 | 回调函数。 |
+| thisArg | Object | 否 | callbackFn被调用时用作this值 |
 
-**表1** callbackfn的参数说明
+**表1** callbackFn的参数说明
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
@@ -540,8 +547,9 @@ myURLObject.searchParams.forEach((value, name, searchParams) => {
 
 
 ### get<sup>(deprecated)</sup>
-> **说明：**<br/>
-> 从API version 9开始废弃，建议使用[URLParams<sup>9+</sup>.get<sup>9+</sup>](#get9)替代。
+> **说明：**
+>
+> 从API version 7开始支持，从API version 9开始废弃，建议使用[URLParams<sup>9+</sup>.get<sup>9+</sup>](#get9)替代。
 
 get(name: string): string | null
 
@@ -572,8 +580,9 @@ let age = parseInt(paramsObject.get("age"), 10); // is the number 18
 
 
 ### has<sup>(deprecated)</sup>
-> **说明：**<br/>
-> 从API version 9开始废弃，建议使用[URLParams<sup>9+</sup>.has<sup>9+</sup>](#has9)替代。
+> **说明：**
+>
+> 从API version 7开始支持，从API version 9开始废弃，建议使用[URLParams<sup>9+</sup>.has<sup>9+</sup>](#has9)替代。
 
 has(name: string): boolean
 
@@ -603,8 +612,9 @@ paramsObject.has('bard') === true;
 
 
 ### set<sup>(deprecated)</sup>
-> **说明：**<br/>
-> 从API version 9开始废弃，建议使用[URLParams<sup>9+</sup>.set<sup>9+</sup>](#set9)替代。
+> **说明：**
+>
+> 从API version 7开始支持，从API version 9开始废弃，建议使用[URLParams<sup>9+</sup>.set<sup>9+</sup>](#set9)替代。
 
 set(name: string, value: string): void
 
@@ -629,8 +639,9 @@ paramsObject.set('baz', '3'); // Add a third parameter.
 
 
 ### sort<sup>(deprecated)</sup>
-> **说明：**<br/>
-> 从API version 9开始废弃，建议使用[URLParams<sup>9+</sup>.sort<sup>9+</sup>](#sort9)替代。
+> **说明：**
+>
+> 从API version 7开始支持，从API version 9开始废弃，建议使用[URLParams<sup>9+</sup>.sort<sup>9+</sup>](#sort9)替代。
 
 sort(): void
 
@@ -648,8 +659,9 @@ console.log(searchParamsObject.toString()); // Display the sorted query string /
 
 
 ### keys<sup>(deprecated)</sup>
-> **说明：**<br/>
-> 从API version 9开始废弃，建议使用[URLParams<sup>9+</sup>.keys<sup>9+</sup>](#keys9)替代。
+> **说明：**
+>
+> 从API version 7开始支持，从API version 9开始废弃，建议使用[URLParams<sup>9+</sup>.keys<sup>9+</sup>](#keys9)替代。
 
 keys(): IterableIterator&lt;string&gt;
 
@@ -674,8 +686,9 @@ for (var key of searchParamsObject .keys()) { // Output key-value pairs
 
 
 ### values<sup>(deprecated)</sup>
-> **说明：**<br/>
-> 从API version 9开始废弃，建议使用[URLParams<sup>9+</sup>.values<sup>9+</sup>](#values9)替代。
+> **说明：**
+>
+> 从API version 7开始支持，从API version 9开始废弃，建议使用[URLParams<sup>9+</sup>.values<sup>9+</sup>](#values9)替代。
 
 values(): IterableIterator&lt;string&gt;
 
@@ -700,8 +713,9 @@ for (var value of searchParams.values()) {
 
 
 ### [Symbol.iterator]<sup>(deprecated)</sup>
-> **说明：**<br/>
-> 从API version 9开始废弃，建议使用[URLParams<sup>9+</sup>.[Symbol.iterator]<sup>9+</sup>](#symbol.iterator9)替代。
+> **说明：**
+>
+> 从API version 7开始支持，从API version 9开始废弃，建议使用[URLParams<sup>9+</sup>.[Symbol.iterator]<sup>9+</sup>](#symbol.iterator9)替代。
 
 [Symbol.iterator]\(): IterableIterator&lt;[string, string]&gt;
 
@@ -725,8 +739,9 @@ for (const [name, value] of paramsObject) {
 ```
 
 ### tostring<sup>(deprecated)</sup>
-> **说明：**<br/>
-> 从API version 9开始废弃，建议使用[URLParams<sup>9+</sup>.tostring<sup>9+</sup>](#tostring9)替代。
+> **说明：**
+>
+> 从API version 7开始支持，从API version 9开始废弃，建议使用[URLParams<sup>9+</sup>.tostring<sup>9+</sup>](#tostring9)替代。
 
 toString(): string
 
@@ -755,7 +770,7 @@ console.log(params.toString());
 
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.Utils.Lang
 
-| 名称 | 参数类型 | 可读 | 可写 | 说明 |
+| 名称 | 类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
 | hash | string | 是 | 是 | 获取和设置URL的片段部分。 |
 | host | string | 是 | 是 | 获取和设置URL的主机部分。 |
@@ -767,14 +782,17 @@ console.log(params.toString());
 | port | string | 是 | 是 | 获取和设置URL的端口部分。 |
 | protocol | string | 是 | 是 | 获取和设置URL的协议部分。 |
 | search | string | 是 | 是 | 获取和设置URL的序列化查询部分。 |
-| searchParams | URLsearchParams | 是 | 否 | 获取URLSearchParams表示URL查询参数的对象。 |
+| searchParams | URLSearchParams | 是 | 否 | 获取URLSearchParams表示URL查询参数的对象。 |
 | URLParams | URLParams | 是 | 否 | 获取URLParams表示URL查询参数的对象。 |
 | username | string | 是 | 是 | 获取和设置URL的用户名部分。 |
 
+### constructor<sup>(deprecated)</sup>
 
-### constructor
+> **说明：**
+>
+> 从API version 7开始支持，从API version 9开始废弃，建议使用[parseURL<sup>9+</sup>](#parseURL9)替代。
 
-constructor(url?: string, base?: string | URL)
+constructor(url: string, base?: string | URL)
 
 URL的构造函数。
 
@@ -800,13 +818,13 @@ new Url.URL('/path/path1', a); // Output 'http://username:password@host:8080/pat
 new Url.URL('/path/path1', "https://www.exampleUrl/fr-FR/toto"); // Output https://www.exampleUrl/path/path1
 new Url.URL('/path/path1', ''); // Raises a TypeError exception as '' is not a valid URL
 new Url.URL('/path/path1'); // Raises a TypeError exception as '/path/path1' is not a valid URL
-new Url.URL('http://www.shanxi.com', ); // Output http://www.shanxi.com/
-new Url.URL('http://www.shanxi.com', b); // Output http://www.shanxi.com/
+new Url.URL('https://www.example.com', ); // Output https://www.example.com/
+new Url.URL('https://www.example.com', b); // Output https://www.example.com/
 ```
 
 ### parseURL<sup>9+</sup>
 
-static parseURL(inputUrl : string, inputBase ?: string | URL)
+static parseURL(url : string, base?: string | URL): URL
 
 URL静态成员函数。
 
@@ -816,8 +834,8 @@ URL静态成员函数。
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| inputUrl | string | 是 | 入参对象。 |
-| inputBase | string \| URL | 否 | 入参字符串或者对象。<br/>- string：字符串<br/>- URL：字符串或对象 |
+| url | string | 是 | 入参对象。 |
+| base | string \| URL | 否 | 入参字符串或者对象。<br/>- string：字符串<br/>- URL：字符串或对象 |
 
 **示例：**
 

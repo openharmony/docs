@@ -13,7 +13,7 @@
 
 ## ShortcutWant<sup>(deprecated)<sup>
 
-> 从API version 9开始不再维护，建议使用[ShortcutWant](js-apis-bundleManager-shortcutInfo.md)替代
+> 从API version 9开始不再维护，建议使用[bundleManager-ShortcutWant](js-apis-bundleManager-shortcutInfo.md)替代
 
  **系统能力:** 以下各项对应的系统能力均为SystemCapability.BundleManager.BundleFramework
 
@@ -26,22 +26,22 @@
 
 ## ShortcutInfo<sup>(deprecated)<sup>
 
-> 从API version 9开始不再维护，建议使用[ShortcutInfo](js-apis-bundleManager-shortcutInfo.md)替代。
+> 从API version 9开始不再维护，建议使用[bundleManager-ShortcutInfo](js-apis-bundleManager-shortcutInfo.md)替代。
 
 
  **系统能力:** 以下各项对应的系统能力均为SystemCapability.BundleManager.BundleFramework
 
 | 名称                    | 类型                                       | 可读 | 可写 | 说明                         |
 | ----------------------- | ------------------------------------------ | ---- | ---- | ---------------------------- |
-| id                      | string                                     | 是   | 否   | 快捷方式所属应用程序的Id     |
-| bundleName              | string                                     | 是   | 否   | 包含快捷方式的包名称         |
-| hostAbility             | string                                     | 是   | 否   | 快捷方式的本地Ability信息    |
-| icon                    | string                                     | 是   | 否   | 快捷方式的图标               |
-| iconId<sup>8+</sup>     | number                                     | 是   | 否   | 快捷方式的图标Id             |
-| label                   | string                                     | 是   | 否   | 快捷方式的标签               |
-| labelId<sup>8+</sup>    | number                                     | 是   | 否   | 快捷方式的标签Id             |
-| disableMessage          | string                                     | 是   | 否   | 快捷方式的禁用消息           |
-| wants                   | Array&lt;[ShortcutWant](#shortcutwant)&gt; | 是   | 否   | 快捷方式所需要的信息         |
-| isStatic                | boolean                                    | 是   | 否   | 快捷方式是否为静态           |
-| isHomeShortcut          | boolean                                    | 是   | 否   | 快捷方式是否为主页面快捷方式 |
-| isEnabled               | boolean                                    | 是   | 否   | 是否启用快捷方式             |
+| id                      | string                                     | 是   | 否   | 快捷方式所属应用程序的Id。     |
+| bundleName              | string                                     | 是   | 否   | 包含该快捷方式的包名称。         |
+| hostAbility             | string                                     | 是   | 否   | 快捷方式的本地Ability信息。    |
+| icon                    | string                                     | 是   | 否   | 快捷方式的图标。               |
+| iconId<sup>8+</sup>     | number                                     | 是   | 否   | 快捷方式的图标Id。             |
+| label                   | string                                     | 是   | 否   | 快捷方式的名称。               |
+| labelId<sup>8+</sup>    | number                                     | 是   | 否   | 快捷方式的名称Id。             |
+| disableMessage          | string                                     | 是   | 否   | 快捷方式的禁用消息。           |
+| wants                   | Array&lt;[ShortcutWant](#shortcutwant)&gt; | 是   | 否   | 快捷方式意图列表。         |
+| isStatic                | boolean                                    | 是   | 否   | 快捷方式是否为静态。           |
+| isHomeShortcut          | boolean                                    | 是   | 否   | 快捷方式是否为主页面快捷方式。 |
+| isEnabled               | boolean                                    | 是   | 否   | 是否启用快捷方式。             |

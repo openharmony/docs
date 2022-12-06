@@ -4,17 +4,14 @@ FormInfo模块提供对卡片的相关卡片信息和状态进行设置和查询
 
 > **说明：**
 >
-> 本模块首批接口从API version 8开始支持，从API version 9废弃, 替换模块为[@ohos.app.ability.formInfo](js-apis-app-ability-formInfo.md)。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+> 本模块首批接口从API version 8开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+> 从API version 9 开始不再维护，建议使用[FormInfo](js-apis-app-form-forminfo.md)替代。
 
 ## 导入模块
 
 ```
 import formInfo from '@ohos.application.formInfo';
 ```
-
-## 权限
-
-无
 
 ## FormInfo
 
@@ -45,26 +42,26 @@ import formInfo from '@ohos.application.formInfo';
 
 ## FormType
 
-枚举，支持的卡片类型。
+支持的卡片类型枚举。
 
 **系统能力**：SystemCapability.Ability.Form
 
 | 名称        | 值   | 说明         |
 | ----------- | ---- | ------------ |
 | JS      | 1    | 卡片类型为JS。   |
-| eTS     | 2    | 卡片类型为eTS。  |
+| eTS     | 2    | 卡片类型为eTS。 |
 
 ## ColorMode
 
-枚举，卡片支持的颜色模式。
+卡片支持的颜色模式枚举。
 
 **系统能力**：SystemCapability.Ability.Form
 
 | 名称        | 值   | 说明         |
 | ----------- | ---- | ------------ |
-| MODE_AUTO   | -1    | 自动模式。   |
-| MODE_DARK    | 0   | 暗色。   |
-| MODE_LIGHT     | 1   | 亮色。   |
+| MODE_AUTO   | -1    | 表示自动模式。   |
+| MODE_DARK    | 0   | 表示暗色。   |
+| MODE_LIGHT     | 1   | 表示亮色。   |
 
 ## FormStateInfo
 
@@ -79,25 +76,25 @@ import formInfo from '@ohos.application.formInfo';
 
 ##  FormState
 
-枚举，卡片状态。
+卡片状态枚举。
 
 **系统能力**：SystemCapability.Ability.Form
 
 | 名称        | 值   | 说明         |
 | ----------- | ---- | ------------ |
-| UNKNOWN    | -1    | 未知状态。   |
-| DEFAULT     | 0   | 默认状态。   |
-| READY      | 1   | 就绪状态。   |
+| UNKNOWN    | -1    | 表示未知状态。   |
+| DEFAULT     | 0   | 表示默认状态。   |
+| READY      | 1   | 表示就绪状态。   |
 
 ##  FormParam
 
-枚举，卡片参数。
+卡片参数枚举。
 
 **系统能力**：SystemCapability.Ability.Form
 
 | 名称        | 值   | 说明         |
 | ----------- | ---- | ------------ |
-| IDENTITY_KEY<sup>9+</sup>     | "ohos.extra.param.key.form_identity"    | 卡片标识。<br>**系统API**: 此接口为系统接口，三方应用不支持调用。   |
+| IDENTITY_KEY<sup>9+</sup>     | "ohos.extra.param.key.form_identity"    | 卡片标识。<br>**系统接口**: 此接口为系统接口。   |
 | DIMENSION_KEY      | "ohos.extra.param.key.form_dimension"  | 卡片规格样式。   |
 | NAME_KEY       | "ohos.extra.param.key.form_name"   | 卡片名称。   |
 | MODULE_NAME_KEY        | "ohos.extra.param.key.module_name"   | 卡片所属模块名称。   |
@@ -105,7 +102,7 @@ import formInfo from '@ohos.application.formInfo';
 | HEIGHT_KEY         | "ohos.extra.param.key.form_height"   | 卡片高度。   |
 | TEMPORARY_KEY          | "ohos.extra.param.key.form_temporary"   | 临时卡片。   |
 | ABILITY_NAME_KEY<sup>9+</sup>   | "ohos.extra.param.key.ability_name"   | ability名称   |
-| DEVICE_ID_KEY<sup>9+</sup>      | "ohos.extra.param.key.device_id"   | 设备标识。<br/>此接口为系统接口。   |
+| DEVICE_ID_KEY<sup>9+</sup>      | "ohos.extra.param.key.device_id"   | 设备标识。<br/>**系统接口**: 此接口为系统接口。   |
 | BUNDLE_NAME_KEY<sup>9+</sup>      | "ohos.extra.param.key.bundle_name"   | 指示指定要获取的捆绑包名称的键。|
 
 ##  FormDimension
@@ -133,7 +130,7 @@ import formInfo from '@ohos.application.formInfo';
 | FORM_VISIBLE         | 1   | 卡片状态为可见。  |
 | FORM_INVISIBLE       | 2   | 卡片状态为不可见。 |      
 
-## FormInfoFilter
+## FormInfoFilter<sup>9+</sup>
 
 卡片信息过滤器，仅将符合过滤器内要求的卡片信息返回。
 
@@ -141,4 +138,15 @@ import formInfo from '@ohos.application.formInfo';
 
 | 名称        |  必选   | 说明         |
 | ----------- | ---- | ------------ |
-| moduleName<sup>9+</sup>   | 否   | 可选字段，表示仅保留moduleName与提供值相符的卡片信息。 |
+| moduleName<sup>9+</sup>   | 否   | 仅保留moduleName与提供值相符的卡片信息。 |
+
+## VisibilityType<sup>9+</sup>
+
+卡片当前可见类型枚举。
+
+**系统能力**：SystemCapability.Ability.Form
+
+| 名称        |  值   | 说明         |
+| ----------- | ---- | ------------ |
+| FORM_VISIBLE<sup>9+<sup>   | 否   | 表示卡片为可见。 |
+| FORM_INVISIBLE<sup>9+<sup>   | 否   | 表示卡片为不可见。 |

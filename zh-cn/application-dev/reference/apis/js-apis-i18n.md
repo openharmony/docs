@@ -44,9 +44,9 @@ static getDisplayCountry(country: string, locale: string, sentenceCase?: boolean
 
 以下错误码的详细介绍请参见[ohos.i18n错误码](../errorcodes/errorcode-i18n.md)。
 
-| 错误码ID | 错误信息 |
-| -------- | ---------------------------------------- |
-| 890001  | Unspported para value.                |
+| 错误码ID  | 错误信息                   |
+| ------ | ---------------------- |
+| 890001 | Unspported para value. |
 
 **示例：** 
   ```js
@@ -83,9 +83,9 @@ static getDisplayLanguage(language: string, locale: string, sentenceCase?: boole
 
 以下错误码的详细介绍请参见[ohos.i18n错误码](../errorcodes/errorcode-i18n.md)。
 
-| 错误码ID | 错误信息 |
-| -------- | ---------------------------------------- |
-| 890001  | Unspported para value.                |
+| 错误码ID  | 错误信息                   |
+| ------ | ---------------------- |
+| 890001 | Unspported para value. |
 
 **示例：** 
   ```js
@@ -114,9 +114,9 @@ static getSystemLanguages(): Array&lt;string&gt;
 
 以下错误码的详细介绍请参见[ohos.i18n错误码](../errorcodes/errorcode-i18n.md)。
 
-| 错误码ID | 错误信息 |
-| -------- | ---------------------------------------- |
-| 890001  | Unspported para value.                |
+| 错误码ID  | 错误信息                   |
+| ------ | ---------------------- |
+| 890001 | Unspported para value. |
 
 **示例：** 
   ```js
@@ -137,9 +137,9 @@ static getSystemCountries(language: string): Array&lt;string&gt;
 
 **参数：** 
 
-| 参数名      | 类型     | 说明    |
-| -------- | ------ | ----- |
-| language | string | 语言ID。 |
+| 参数名      | 类型     | 必填   | 说明    |
+| -------- | ------ | ---- | ----- |
+| language | string | 是    | 语言ID。 |
 
 **返回值：** 
 
@@ -151,9 +151,9 @@ static getSystemCountries(language: string): Array&lt;string&gt;
 
 以下错误码的详细介绍请参见[ohos.i18n错误码](../errorcodes/errorcode-i18n.md)。
 
-| 错误码ID | 错误信息 |
-| -------- | ---------------------------------------- |
-| 890001  | Unspported para value.                |
+| 错误码ID  | 错误信息                   |
+| ------ | ---------------------- |
+| 890001 | Unspported para value. |
 
 **示例：** 
   ```js
@@ -189,9 +189,9 @@ static isSuggested(language: string, region?: string): boolean
 
 以下错误码的详细介绍请参见[ohos.i18n错误码](../errorcodes/errorcode-i18n.md)。
 
-| 错误码ID | 错误信息 |
-| -------- | ---------------------------------------- |
-| 890001  | Unspported para value.                |
+| 错误码ID  | 错误信息                   |
+| ------ | ---------------------- |
+| 890001 | Unspported para value. |
 
 **示例：** 
   ```js
@@ -220,9 +220,9 @@ static getSystemLanguage(): string
 
 以下错误码的详细介绍请参见[ohos.i18n错误码](../errorcodes/errorcode-i18n.md)。
 
-| 错误码ID | 错误信息 |
-| -------- | ---------------------------------------- |
-| 890001  | Unspported para value.                |
+| 错误码ID  | 错误信息                   |
+| ------ | ---------------------- |
+| 890001 | Unspported para value. |
 
 **示例：** 
   ```js
@@ -247,17 +247,17 @@ static setSystemLanguage(language: string): void
 
 **参数：** 
 
-| 参数名      | 类型     | 说明    |
-| -------- | ------ | ----- |
-| language | string | 语言ID。 |
+| 参数名      | 类型     | 必填   | 说明    |
+| -------- | ------ | ---- | ----- |
+| language | string | 是    | 语言ID。 |
 
 **错误码：**
 
 以下错误码的详细介绍请参见[ohos.i18n错误码](../errorcodes/errorcode-i18n.md)。
 
-| 错误码ID | 错误信息 |
-| -------- | ---------------------------------------- |
-| 890001  | Unspported para value.                |
+| 错误码ID  | 错误信息                   |
+| ------ | ---------------------- |
+| 890001 | Unspported para value. |
 
 **示例：** 
   ```js
@@ -286,9 +286,9 @@ static getSystemRegion(): string
 
 以下错误码的详细介绍请参见[ohos.i18n错误码](../errorcodes/errorcode-i18n.md)。
 
-| 错误码ID | 错误信息 |
-| -------- | ---------------------------------------- |
-| 890001  | Unspported para value.                |
+| 错误码ID  | 错误信息                   |
+| ------ | ---------------------- |
+| 890001 | Unspported para value. |
 
 **示例：** 
   ```js
@@ -313,17 +313,17 @@ static setSystemRegion(region: string): void
 
 **参数：** 
 
-| 参数名    | 类型     | 说明    |
-| ------ | ------ | ----- |
-| region | string | 地区ID。 |
+| 参数名    | 类型     | 必填   | 说明    |
+| ------ | ------ | ---- | ----- |
+| region | string | 是    | 地区ID。 |
 
 **错误码：**
 
 以下错误码的详细介绍请参见[ohos.i18n错误码](../errorcodes/errorcode-i18n.md)。
 
-| 错误码ID | 错误信息 |
-| -------- | ---------------------------------------- |
-| 890001  | Unspported para value.                |
+| 错误码ID  | 错误信息                   |
+| ------ | ---------------------- |
+| 890001 | Unspported para value. |
 
 **示例：** 
   ```js
@@ -352,9 +352,9 @@ static getSystemLocale(): string
 
 以下错误码的详细介绍请参见[ohos.i18n错误码](../errorcodes/errorcode-i18n.md)。
 
-| 错误码ID | 错误信息 |
-| -------- | ---------------------------------------- |
-| 890001  | Unspported para value.                |
+| 错误码ID  | 错误信息                   |
+| ------ | ---------------------- |
+| 890001 | Unspported para value. |
 
 **示例：** 
   ```js
@@ -379,17 +379,17 @@ static setSystemLocale(locale: string): void
 
 **参数：** 
 
-| 参数名    | 类型     | 说明              |
-| ------ | ------ | --------------- |
-| locale | string | 指定区域ID，例如zh-CN。 |
+| 参数名    | 类型     | 必填   | 说明              |
+| ------ | ------ | ---- | --------------- |
+| locale | string | 是    | 指定区域ID，例如zh-CN。 |
 
 **错误码：**
 
 以下错误码的详细介绍请参见[ohos.i18n错误码](../errorcodes/errorcode-i18n.md)。
 
-| 错误码ID | 错误信息 |
-| -------- | ---------------------------------------- |
-| 890001  | Unspported para value.                |
+| 错误码ID  | 错误信息                   |
+| ------ | ---------------------- |
+| 890001 | Unspported para value. |
 
 **示例：** 
   ```js
@@ -418,9 +418,9 @@ static is24HourClock(): boolean
 
 以下错误码的详细介绍请参见[ohos.i18n错误码](../errorcodes/errorcode-i18n.md)。
 
-| 错误码ID | 错误信息 |
-| -------- | ---------------------------------------- |
-| 890001  | Unspported para value.                |
+| 错误码ID  | 错误信息                   |
+| ------ | ---------------------- |
+| 890001 | Unspported para value. |
 
 **示例：** 
   ```js
@@ -453,9 +453,9 @@ static set24HourClock(option: boolean): void
 
 以下错误码的详细介绍请参见[ohos.i18n错误码](../errorcodes/errorcode-i18n.md)。
 
-| 错误码ID | 错误信息 |
-| -------- | ---------------------------------------- |
-| 890001  | Unspported para value.                |
+| 错误码ID  | 错误信息                   |
+| ------ | ---------------------- |
+| 890001 | Unspported para value. |
 
 **示例：** 
   ```js
@@ -490,9 +490,9 @@ static addPreferredLanguage(language: string, index?: number): void
 
 以下错误码的详细介绍请参见[ohos.i18n错误码](../errorcodes/errorcode-i18n.md)。
 
-| 错误码ID | 错误信息 |
-| -------- | ---------------------------------------- |
-| 890001  | Unspported para value.                |
+| 错误码ID  | 错误信息                   |
+| ------ | ---------------------- |
+| 890001 | Unspported para value. |
 
 **示例：** 
   ```js
@@ -528,9 +528,9 @@ static removePreferredLanguage(index: number): void
 
 以下错误码的详细介绍请参见[ohos.i18n错误码](../errorcodes/errorcode-i18n.md)。
 
-| 错误码ID | 错误信息 |
-| -------- | ---------------------------------------- |
-| 890001  | Unspported para value.                |
+| 错误码ID  | 错误信息                   |
+| ------ | ---------------------- |
+| 890001 | Unspported para value. |
 
 **示例：** 
   ```js
@@ -561,9 +561,9 @@ static getPreferredLanguageList(): Array&lt;string&gt;
 
 以下错误码的详细介绍请参见[ohos.i18n错误码](../errorcodes/errorcode-i18n.md)。
 
-| 错误码ID | 错误信息 |
-| -------- | ---------------------------------------- |
-| 890001  | Unspported para value.                |
+| 错误码ID  | 错误信息                   |
+| ------ | ---------------------- |
+| 890001 | Unspported para value. |
 
 **示例：** 
   ```js
@@ -592,9 +592,9 @@ static getFirstPreferredLanguage(): string
 
 以下错误码的详细介绍请参见[ohos.i18n错误码](../errorcodes/errorcode-i18n.md)。
 
-| 错误码ID | 错误信息 |
-| -------- | ---------------------------------------- |
-| 890001  | Unspported para value.                |
+| 错误码ID  | 错误信息                   |
+| ------ | ---------------------- |
+| 890001 | Unspported para value. |
 
 **示例：** 
   ```js
@@ -623,9 +623,9 @@ static getAppPreferredLanguage(): string
 
 以下错误码的详细介绍请参见[ohos.i18n错误码](../errorcodes/errorcode-i18n.md)。
 
-| 错误码ID | 错误信息 |
-| -------- | ---------------------------------------- |
-| 890001  | Unspported para value.                |
+| 错误码ID  | 错误信息                   |
+| ------ | ---------------------- |
+| 890001 | Unspported para value. |
 
 **示例：** 
   ```js
@@ -658,9 +658,9 @@ static setUsingLocalDigit(flag: boolean): void
 
 以下错误码的详细介绍请参见[ohos.i18n错误码](../errorcodes/errorcode-i18n.md)。
 
-| 错误码ID | 错误信息 |
-| -------- | ---------------------------------------- |
-| 890001  | Unspported para value.                |
+| 错误码ID  | 错误信息                   |
+| ------ | ---------------------- |
+| 890001 | Unspported para value. |
 
 **示例：** 
   ```ts
@@ -689,9 +689,9 @@ static getUsingLocalDigit(): boolean
 
 以下错误码的详细介绍请参见[ohos.i18n错误码](../errorcodes/errorcode-i18n.md)。
 
-| 错误码ID | 错误信息 |
-| -------- | ---------------------------------------- |
-| 890001  | Unspported para value.                |
+| 错误码ID  | 错误信息                   |
+| ------ | ---------------------- |
+| 890001 | Unspported para value. |
 
 **示例：** 
   ```ts
@@ -713,9 +713,9 @@ isRTL(locale: string): boolean
 
 **参数：** 
 
-| 参数名    | 类型     | 说明      |
-| ------ | ------ | ------- |
-| locale | string | 指定区域ID。 |
+| 参数名    | 类型     | 必填   | 说明      |
+| ------ | ------ | ---- | ------- |
+| locale | string | 是    | 指定区域ID。 |
 
 **返回值：** 
 
@@ -905,7 +905,7 @@ setFirstDayOfWeek(value: number): void
 
 | 参数名   | 类型     | 必填   | 说明                    |
 | ----- | ------ | ---- | --------------------- |
-| value | number | 否    | 设置一周的起始日，1代表周日，7代表周六。 |
+| value | number | 是    | 设置一周的起始日，1代表周日，7代表周六。 |
 
 **示例：** 
   ```js
@@ -947,7 +947,7 @@ setMinimalDaysInFirstWeek(value: number): void
 
 | 参数名   | 类型     | 必填   | 说明           |
 | ----- | ------ | ---- | ------------ |
-| value | number | 否    | 一年中第一周的最小天数。 |
+| value | number | 是    | 一年中第一周的最小天数。 |
 
 **示例：** 
   ```js
@@ -1153,7 +1153,7 @@ getLocationName(number: string, locale: string): string
 
 **系统能力**：SystemCapability.Global.I18n
 
-| 名称   | 参数类型   | 可读   | 可写   | 说明                                       |
+| 名称   | 类型     | 可读   | 可写   | 说明                                       |
 | ---- | ------ | ---- | ---- | ---------------------------------------- |
 | type | string | 是    | 是    | 表示对电话号码格式化的类型，取值范围："E164",&nbsp;"INTERNATIONAL",&nbsp;"NATIONAL",&nbsp;"RFC3966"。 |
 
@@ -1164,7 +1164,7 @@ getLocationName(number: string, locale: string): string
 
 **系统能力**：SystemCapability.Global.I18n
 
-| 名称            | 参数类型   | 可读   | 可写   | 说明                                       |
+| 名称            | 类型     | 可读   | 可写   | 说明                                       |
 | ------------- | ------ | ---- | ---- | ---------------------------------------- |
 | unit          | string | 是    | 是    | 单位的名称，如："meter",&nbsp;"inch",&nbsp;"cup"等。 |
 | measureSystem | string | 是    | 是    | 单位的度量体系，取值包括："SI",&nbsp;"US",&nbsp;"UK"。 |

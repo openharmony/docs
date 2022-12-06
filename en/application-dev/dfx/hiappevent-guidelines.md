@@ -64,7 +64,7 @@ For details about the result codes, see [Event Verification Result Codes](#event
 
 The following uses a one-time event watcher as an example to illustrate the development procedure.
 
-1. Create an eTS application project. In the displayed **Project** window, choose **entry** > **src** > **main** > **ets** > **pages** > **index.ets**, and double-click **index.ets**. Then, add three buttons to simulate the process of watching for application events. Wherein, button 1 is used to invoke application event logging, button 2 to add an event watcher that automatically triggers a callback, and button 3 to remove the watcher. The complete sample code is as follows:
+1. Create an ArkTS application project. In the displayed **Project** window, choose **entry** > **src** > **main** > **ets** > **pages** > **index.ets**, and double-click **index.ets**. Then, add three buttons to simulate the process of watching for application events. Wherein, button 1 is used to invoke application event logging, button 2 to add an event watcher that automatically triggers a callback, and button 3 to remove the watcher. The complete sample code is as follows:
 
    ```ts
    import hiAppEvent from '@ohos.hiAppEvent';

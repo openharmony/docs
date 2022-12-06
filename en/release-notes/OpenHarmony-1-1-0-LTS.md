@@ -167,7 +167,7 @@ The following table describes the optimization of repositories.
 | communication_hals_wifi_lite                                 | N/A                                           | Read-only archiving                   |
 | communication_services_softbus_lite                          | communication_softbus_lite                    | Repository renamed |
 | N/A                                                          | communication_wifi_aware                      | New module                            |
-| N/A                                                          | update_ota_lite                               | New module                            |
+| N/A                                                          | update_sys_installer_lite                     | New module                            |
 | vendor_hisi_hi35xx_hi35xx_init                               | device_hisilicon_build                        | Repository renamed |
 | vendor_hisi_hi35xx_platform                                  | device_hisilicon_drivers                      | Repository renamed |
 | vendor_hisi_hi35xx_hardware                                  | device_hisilicon_hardware                     | Repository renamed |

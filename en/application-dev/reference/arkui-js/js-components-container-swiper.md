@@ -32,7 +32,7 @@ In addition to the [universal attributes](../arkui-js/js-components-common-attri
 | duration                       | number  | -      | No   | Duration of the autoplay for child component switching.                             |
 | vertical                       | boolean | false  | No   | Whether the swipe gesture is performed vertically. A vertical swipe uses the vertical indicator.                  |
 | cachedsize<sup>7+</sup>        | number  | -1     | No   | Minimum number of cached items during delayed loading of the **\<swiper>** component. The value **-1** indicates that all content is cached.         |
-| scrolleffect<sup>7+</sup>      | string  | spring | No   | Scroll effect. The options are as follows:<br>- **spring**: Similar to the physical dynamic effect of a spring. After scrolling to the edge, you can continue to scroll for a distance based on the initial speed or by touching the knob of the scrollbar. After you release your hand, the knob is rebounded.<br>- **fade**: Similar to the physical dynamic effect of fade. When you scroll to the edge, a wave shape fades. The fade changes according to the speed and scrolling distance.<br>- **none**: No effect after the scroll bar is moved to the edge.<br>This attribute is valid only when **loop** is set to **false**.|
+| scrolleffect<sup>7+</sup>      | string  | spring | No   | Scroll effect. The options are as follows:<br>- **spring**: Similar to the physical dynamic effect of a spring. When the scrollbar reaches the edge, it can continue to scroll for a distance based on the initial speed or a touch event. It rebounds after being released.<br>- **fade**: Similar to the physical dynamic effect of fade. When the scrollbar reaches the edge, a wave shape fades. The fade changes according to the speed and scrolling distance.<br>- **none**: No effect when the scrollbar reaches the edge.<br>This attribute is valid only when **loop** is set to **false**.|
 
 
 ## Styles
@@ -65,7 +65,7 @@ In addition to the [universal methods](../arkui-js/js-components-common-methods.
 
 | Name          | Parameter                                    | Description             |
 | ------------ | -------------------------------------- | --------------- |
-| swipeTo      | { index: number(specified position) }| Scrolls the child component to the position at the specified index.|
+| swipeTo      | { index: number(specificLocation) } | Scrolls the child component to the position at the specified index.|
 | showNext     | -                                     | Shows the next child component.      |
 | showPrevious | -                                     | Shows the previous child component.      |
 

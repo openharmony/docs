@@ -1,7 +1,7 @@
 # 安装Hi3861开发板特有环境
 
 
-除上述[安装库和工具集](quickstart-pkg-install_package.md)和[安装编译工具](quickstart-pkg-install_tool.md)外，针对Hi3861开发板还需要安装特定的编译工具。
+除上述[安装库和工具集](quickstart-pkg-install-package.md)和[安装编译工具](quickstart-pkg-install-tool.md)外，针对Hi3861开发板还需要安装特定的编译工具。
 
 
 ## 工具要求

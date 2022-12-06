@@ -21,7 +21,7 @@ createPixelMap(colors: ArrayBuffer, options: InitializationOptions): Promise\<Pi
 
 **参数：**
 
-| 名称    | 类型                                             | 必填 | 说明                                                             |
+| 参数名  | 类型                                             | 必填 | 说明                                                             |
 | ------- | ------------------------------------------------ | ---- | ---------------------------------------------------------------- |
 | colors  | ArrayBuffer                                      | 是   | BGRA_8888格式的颜色数组。                                        |
 | options | [InitializationOptions](#initializationoptions8) | 是   | 创建像素的属性，包括透明度，尺寸，缩略值，像素格式和是否可编辑。 |
@@ -56,7 +56,7 @@ createPixelMap(colors: ArrayBuffer, options: InitializationOptions, callback: As
 
 **参数：**
 
-| 名称     | 类型                                             | 必填 | 说明                       |
+| 参数名   | 类型                                             | 必填 | 说明                       |
 | -------- | ------------------------------------------------ | ---- | -------------------------- |
 | colors   | ArrayBuffer                                      | 是   | BGRA_8888格式的颜色数组。  |
 | options  | [InitializationOptions](#initializationoptions8) | 是   | 属性。                     |
@@ -906,7 +906,7 @@ release(callback: AsyncCallback\<void>): void
 
 **参数：**
 
-| 名称     | 类型                 | 必填 | 说明               |
+| 参数名   | 类型                 | 必填 | 说明               |
 | -------- | -------------------- | ---- | ------------------ |
 | callback | AsyncCallback\<void> | 是   | 异步返回释放结果。 |
 
@@ -1180,7 +1180,7 @@ getImageInfo(callback: AsyncCallback\<ImageInfo>): void
 
 **参数：**
 
-| 名称     | 类型                                   | 必填 | 说明                                     |
+| 参数名   | 类型                                   | 必填 | 说明                                     |
 | -------- | -------------------------------------- | ---- | ---------------------------------------- |
 | callback | AsyncCallback<[ImageInfo](#imageinfo)> | 是   | 获取图片信息回调，异步返回图片信息对象。 |
 
@@ -1202,7 +1202,7 @@ getImageInfo(index?: number): Promise\<ImageInfo>
 
 **参数：**
 
-| 名称  | 类型   | 必填 | 说明                                  |
+| 参数名| 类型   | 必填 | 说明                                  |
 | ----- | ------ | ---- | ------------------------------------- |
 | index | number | 否   | 创建图片源时的序号，不选择时默认为0。 |
 
@@ -1233,7 +1233,7 @@ getImageProperty(key:string, options?: GetImagePropertyOptions): Promise\<string
 
  **参数：**
 
-| 名称    | 类型                                                 | 必填 | 说明                                 |
+| 参数名  | 类型                                                 | 必填 | 说明                                 |
 | ------- | ---------------------------------------------------- | ---- | ------------------------------------ |
 | key     | string                                               | 是   | 图片属性名。                         |
 | options | [GetImagePropertyOptions](#getimagepropertyoptions7) | 否   | 图片属性，包括图片序号与默认属性值。 |
@@ -1371,7 +1371,7 @@ updateData(buf: ArrayBuffer, isFinished: boolean, value: number, length: number)
 
 **参数：**
 
-| 名称       | 类型        | 必填 | 说明         |
+| 参数名     | 类型        | 必填 | 说明         |
 | ---------- | ----------- | ---- | ------------ |
 | buf        | ArrayBuffer | 是   | 增量数据。   |
 | isFinished | boolean     | 是   | 是否更新完。 |
@@ -1404,7 +1404,7 @@ updateData(buf: ArrayBuffer, isFinished: boolean, value: number, length: number,
 
 **参数：**
 
-| 名称       | 类型                | 必填 | 说明                 |
+| 参数名     | 类型                | 必填 | 说明                 |
 | ---------- | ------------------- | ---- | -------------------- |
 | buf        | ArrayBuffer         | 是   | 增量数据。           |
 | isFinished | boolean             | 是   | 是否更新完。         |
@@ -1433,7 +1433,7 @@ createPixelMap(options?: DecodingOptions): Promise\<PixelMap>
 
 **参数：**
 
-| 名称    | 类型                                 | 必填 | 说明       |
+| 参数名  | 类型                                 | 必填 | 说明       |
 | ------- | ------------------------------------ | ---- | ---------- |
 | options | [DecodingOptions](#decodingoptions7) | 否   | 解码参数。 |
 
@@ -1485,7 +1485,7 @@ createPixelMap(options: DecodingOptions, callback: AsyncCallback\<PixelMap>): vo
 
 **参数：**
 
-| 名称     | 类型                                  | 必填 | 说明                       |
+| 参数名   | 类型                                  | 必填 | 说明                       |
 | -------- | ------------------------------------- | ---- | -------------------------- |
 | options  | [DecodingOptions](#decodingoptions7)  | 是   | 解码参数。                 |
 | callback | AsyncCallback<[PixelMap](#pixelmap7)> | 是   | 通过回调返回PixelMap对象。 |
@@ -1517,7 +1517,7 @@ release(callback: AsyncCallback\<void>): void
 
 **参数：**
 
-| 名称     | 类型                 | 必填 | 说明                               |
+| 参数名   | 类型                 | 必填 | 说明                               |
 | -------- | -------------------- | ---- | ---------------------------------- |
 | callback | AsyncCallback\<void> | 是   | 资源释放回调，失败时返回错误信息。 |
 
@@ -1767,7 +1767,7 @@ createImageReceiver(width: number, height: number, format: number, capacity: num
 
 **参数：**
 
-| 名称     | 类型   | 必填 | 说明                   |
+| 参数名   | 类型   | 必填 | 说明                   |
 | -------- | ------ | ---- | ---------------------- |
 | width    | number | 是   | 图像的默认宽度。       |
 | height   | number | 是   | 图像的默认高度。       |
@@ -1812,7 +1812,7 @@ getReceivingSurfaceId(callback: AsyncCallback\<string>): void
 
 **参数：**
 
-| 名称     | 类型                   | 必填 | 说明                       |
+| 参数名   | 类型                   | 必填 | 说明                       |
 | -------- | ---------------------- | ---- | -------------------------- |
 | callback | AsyncCallback\<string> | 是   | 回调函数，返回surface id。 |
 
@@ -1862,7 +1862,7 @@ readLatestImage(callback: AsyncCallback\<Image>): void
 
 **参数：**
 
-| 名称     | 类型                            | 必填 | 说明                     |
+| 参数名     | 类型                            | 必填 | 说明                     |
 | -------- | ------------------------------- | ---- | ------------------------ |
 | callback | AsyncCallback<[Image](#image9)> | 是   | 回调函数，返回最新图像。 |
 
@@ -1912,7 +1912,7 @@ readNextImage(callback: AsyncCallback\<Image>): void
 
 **参数：**
 
-| 名称     | 类型                            | 必填 | 说明                       |
+| 参数名   | 类型                            | 必填 | 说明                       |
 | -------- | ------------------------------- | ---- | -------------------------- |
 | callback | AsyncCallback<[Image](#image9)> | 是   | 回调函数，返回下一张图片。 |
 
@@ -1962,7 +1962,7 @@ on(type: 'imageArrival', callback: AsyncCallback\<void>): void
 
 **参数：**
 
-| 名称     | 类型                 | 必填 | 说明                                                   |
+| 参数名   | 类型                 | 必填 | 说明                                                   |
 | -------- | -------------------- | ---- | ------------------------------------------------------ |
 | type     | string               | 是   | 注册事件的类型，固定为'imageArrival'，接收图片时触发。 |
 | callback | AsyncCallback\<void> | 是   | 注册的事件回调。                                       |
@@ -1983,7 +1983,7 @@ release(callback: AsyncCallback\<void>): void
 
 **参数：**
 
-| 名称     | 类型                 | 必填 | 说明                     |
+| 参数名   | 类型                 | 必填 | 说明                     |
 | -------- | -------------------- | ---- | ------------------------ |
 | callback | AsyncCallback\<void> | 是   | 回调函数，返回操作结果。 |
 
@@ -2027,7 +2027,7 @@ createImageCreator(width: number, height: number, format: number, capacity: numb
 
 **参数：**
 
-| 名称     | 类型   | 必填 | 说明                   |
+| 参数名   | 类型   | 必填 | 说明                   |
 | -------- | ------ | ---- | ---------------------- |
 | width    | number | 是   | 图像的默认宽度。       |
 | height   | number | 是   | 图像的默认高度。       |
@@ -2070,7 +2070,7 @@ dequeueImage(callback: AsyncCallback\<Image>): void
 
 **参数：**
 
-| 名称          | 类型                                    | 必填 | 说明                 |
+| 参数名        | 类型                                    | 必填 | 说明                 |
 | ------------- | ---------------------------------------| ---- | -------------------- |
 | callback      | AsyncCallback\<Image>                   | 是   | 回调函数，返回最新图片。 |
 
@@ -2079,9 +2079,9 @@ dequeueImage(callback: AsyncCallback\<Image>): void
 ```js
 creator.dequeueImage((err, img) => {
     if (err) {
-        console.info('dequeueImage succeeded.');
+        console.info('dequeueImage failded.');
     }
-    console.info('dequeueImage failed.');
+    console.info('dequeueImage succeeded.');
 });
 ```
 
@@ -2119,7 +2119,7 @@ queueImage(interface: Image, callback: AsyncCallback\<void>): void
 
 **参数：**
 
-| 名称          | 类型                     | 必填 | 说明                 |
+| 参数名        | 类型                     | 必填 | 说明                 |
 | ------------- | -------------------------| ---- | -------------------- |
 | interface     | Image                    | 是   | 绘制好的buffer图像。 |
 | callback      | AsyncCallback\<void>     | 是   | 获取回调，失败时返回错误信息。 |
@@ -2127,12 +2127,25 @@ queueImage(interface: Image, callback: AsyncCallback\<void>): void
 **示例：**
 
 ```js
-creator.queueImage(img, (err) => {
-    if (err) {
-        console.info('dequeueImage failed: ' + err);
-    }
-    console.info('dequeueImage succeeded');
+creator.dequeueImage().then(img => {
+    //绘制图片
+    img.getComponent(4).then(component => {
+        var bufferArr = new Uint8Array(component.byteBuffer);
+        for (var i = 0; i < bufferArr.length; i += 4) {
+            bufferArr[i] = 0; //B
+            bufferArr[i + 1] = 0; //G
+            bufferArr[i + 2] = 255; //R
+            bufferArr[i + 3] = 255; //A
+        }
+    })
+    creator.queueImage(img, (err) => {
+        if (err) {
+            console.info('queueImage failed: ' + err);
+        }
+        console.info('queueImage succeeded');
+    })
 })
+
 ```
 
 ### queueImage<sup>9+</sup>
@@ -2145,7 +2158,7 @@ queueImage(interface: Image): Promise\<void>
 
 **参数：**
 
-| 名称          | 类型     | 必填 | 说明                |
+| 参数名          | 类型     | 必填 | 说明                |
 | ------------- | --------| ---- | ------------------- |
 | interface     | Image   | 是   | 绘制好的buffer图像。 |
 
@@ -2158,11 +2171,24 @@ queueImage(interface: Image): Promise\<void>
 **示例：**
 
 ```js
-creator.queueImage(img).then(() => {
-    console.info('dequeueImage succeeded.');
-}).catch(error => {
-    console.info('dequeueImage failed: ' + error);
+creator.dequeueImage().then(img => {
+    //绘制图片
+    img.getComponent(4).then(component => {
+        var bufferArr = new Uint8Array(component.byteBuffer);
+        for (var i = 0; i < bufferArr.length; i += 4) {
+            bufferArr[i] = 0; //B
+            bufferArr[i + 1] = 0; //G
+            bufferArr[i + 2] = 255; //R
+            bufferArr[i + 3] = 255; //A
+        }
+    })
+    creator.queueImage(img).then(() => {
+        console.info('queueImage succeeded.');
+    }).catch(error => {
+        console.info('queueImage failed: ' + error);
+    })
 })
+
 ```
 
 ### on<sup>9+</sup>
@@ -2175,7 +2201,7 @@ on(type: 'imageRelease', callback: AsyncCallback\<void>): void
 
 **参数：**
 
-| 名称          | 类型                     | 必填 | 说明                 |
+| 参数名        | 类型                     | 必填 | 说明                 |
 | ------------- | -------------------------| ---- | -------------------- |
 | type          | string                   | 是   | 监听事件类型，如'imageRelease'。 |
 | callback      | AsyncCallback\<void>     | 是   | 获取回调，失败时返回错误信息。 |
@@ -2201,7 +2227,7 @@ release(callback: AsyncCallback\<void>): void
 
 **参数：**
 
-| 名称           | 类型                     | 必填 | 说明                 |
+| 参数名           | 类型                     | 必填 | 说明                 |
 | ------------- | -------------------------| ---- | -------------------- |
 | callback      | AsyncCallback\<void>     | 是   | 获取回调，失败时返回错误信息。 |
 
@@ -2263,7 +2289,7 @@ getComponent(componentType: ComponentType, callback: AsyncCallback\<Component>):
 
 **参数：**
 
-| 名称          | 类型                                    | 必填 | 说明                 |
+| 参数名        | 类型                                    | 必填 | 说明                 |
 | ------------- | --------------------------------------- | ---- | -------------------- |
 | componentType | [ComponentType](#componenttype9)        | 是   | 图像的组件类型。     |
 | callback      | AsyncCallback<[Component](#component9)> | 是   | 用于返回组件缓冲区。 |
@@ -2290,7 +2316,7 @@ getComponent(componentType: ComponentType): Promise\<Component>
 
 **参数：**
 
-| 名称          | 类型                             | 必填 | 说明             |
+| 参数名        | 类型                             | 必填 | 说明             |
 | ------------- | -------------------------------- | ---- | ---------------- |
 | componentType | [ComponentType](#componenttype9) | 是   | 图像的组件类型。 |
 
@@ -2318,7 +2344,7 @@ release(callback: AsyncCallback\<void>): void
 
 **参数：**
 
-| 名称     | 类型                 | 必填 | 说明           |
+| 参数名   | 类型                 | 必填 | 说明           |
 | -------- | -------------------- | ---- | -------------- |
 | callback | AsyncCallback\<void> | 是   | 返回操作结果。 |
 
@@ -2397,7 +2423,7 @@ img.release().then(() =>{
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
-| 名称                   | 默认值 | 描述              |
+| 名称                   |   值   | 说明              |
 | ---------------------- | ------ | ----------------- |
 | UNKNOWN                | 0      | 未知格式。        |
 | RGB_565                | 2      | 格式为RGB_565     |
@@ -2415,7 +2441,7 @@ img.release().then(() =>{
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
-| 名称     | 默认值 | 描述                    |
+| 名称     |   值   | 说明                    |
 | -------- | ------ | ----------------------- |
 | UNKNOWN  | 0      | 未知透明度。            |
 | OPAQUE   | 1      | 没有alpha或图片全透明。 |
@@ -2428,7 +2454,7 @@ img.release().then(() =>{
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
-| 名称            | 默认值 | 描述                                               |
+| 名称            |   值   | 说明                                               |
 | --------------- | ------ | -------------------------------------------------- |
 | CENTER_CROP     | 1      | 缩放图像以填充目标图像区域并居中裁剪区域外的效果。 |
 | FIT_TARGET_SIZE | 0      | 图像适合目标尺寸的效果。                           |
@@ -2518,7 +2544,7 @@ PixelMap的初始化选项。
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
-| 名称              | 默认值                  | 说明                     |
+| 名称              |   值                    | 说明                     |
 | ----------------- | ----------------------- | ------------------------ |
 | BITS_PER_SAMPLE   | "BitsPerSample"         | 每个像素比特数。         |
 | ORIENTATION       | "Orientation"           | 图片方向。               |
@@ -2541,7 +2567,7 @@ PixelMap的初始化选项。
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
-| 名称         | 默认值 | 描述                 |
+| 名称         |   值   | 说明                 |
 | ------------ | ------ | -------------------- |
 | YCBCR_422_SP | 1000   | YCBCR422半平面格式。 |
 | JPEG         | 2000   | JPEG编码格式。       |
@@ -2552,7 +2578,7 @@ PixelMap的初始化选项。
 
 **系统能力：** SystemCapability.Multimedia.Image.ImageReceiver
 
-| 名称  | 默认值 | 描述        |
+| 名称  |   值   | 说明        |
 | ----- | ------ | ----------- |
 | YUV_Y | 1      | 亮度信息。  |
 | YUV_U | 2      | 色度信息。  |

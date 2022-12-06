@@ -10,10 +10,10 @@ An **ImageBitmap** object stores pixel data rendered on a canvas.
 
 ## Attributes
 
-| Name| Type| Description| 
+| Name| Type| Description|
 | -------- | -------- | -------- |
-| width | number | Pixel width of the **ImageBitmap** object.| 
-| height | number | Pixel height of the **ImageBitmap** object.| 
+| width | number | Pixel width of the **ImageBitmap** object.|
+| height | number | Pixel height of the **ImageBitmap** object.|
 
 **Example**
 
@@ -22,9 +22,9 @@ An **ImageBitmap** object stores pixel data rendered on a canvas.
   @Entry
   @Component
   struct ImageExample {
-    private settings: RenderingContextSettings = new RenderingContextSettings(true);
-    private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings);
-    private img:ImageBitmap = new ImageBitmap("common/images/example.jpg");
+    private settings: RenderingContextSettings = new RenderingContextSettings(true)
+    private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
+    private img:ImageBitmap = new ImageBitmap("common/images/example.jpg")
 
     build() {
       Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
@@ -33,7 +33,7 @@ An **ImageBitmap** object stores pixel data rendered on a canvas.
           .height('100%')
           .backgroundColor('#ffff00')
           .onReady(() =>{
-            this.context.drawImage( this.img,0,0,500,500,0,0,400,200);
+            this.context.drawImage( this.img,0,0,500,500,0,0,400,200)
         })
       }
       .width('100%')

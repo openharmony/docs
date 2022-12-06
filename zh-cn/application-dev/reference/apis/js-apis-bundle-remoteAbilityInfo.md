@@ -7,11 +7,11 @@
 
 
 
-包含基本远程能力信息
+remoteAbility信息。
 
 ## RemoteAbilityInfo<sup>(deprecated)<sup>
 
-> 从API version 9开始不再维护，建议使用[RemoteAbilityInfo](js-apis-bundleManager-remoteAbilityInfo.md)替代。
+> 从API version 9开始不再维护，建议使用[bundleManager-RemoteAbilityInfo](js-apis-bundleManager-remoteAbilityInfo.md)替代。
 
 
  **系统能力:** 以下各项对应的系统能力均为SystemCapability.BundleManager.DistributedBundleFramework
@@ -20,6 +20,6 @@
 
 | 名称        | 类型                                         | 可读 | 可写 | 说明                    |
 | ----------- | -------------------------------------------- | ---- | ---- | ----------------------- |
-| elementName | [ElementName](js-apis-bundle-ElementName.md) | 是   | 否   | 指明的ability信息       |
-| label       | string                                       | 是   | 否   | 指明ability的标签信息   |
-| icon        | string                                       | 是   | 否   | 指明的ability的图标信息 |
+| elementName | [ElementName](js-apis-bundle-ElementName.md) | 是   | 否   | ability元素资源信息。       |
+| label       | string                                       | 是   | 否   | 指明ability的名称。   |
+| icon        | string                                       | 是   | 否   | 指明的ability的图标信息。 |

@@ -34,7 +34,7 @@ Column() {
 
 通过循环渲染（ForEach）从数组中获取数据，并为每个数据项创建相应的组件，可减少代码复杂度。
 
-```
+```ts
 ForEach(
   arr: any[], 
   itemGenerator: (item: any, index?: number) => void,

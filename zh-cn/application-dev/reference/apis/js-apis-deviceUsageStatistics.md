@@ -441,7 +441,7 @@ queryCurrentBundleActiveStates(begin: number, end: number): Promise&lt;Array&lt;
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.ResourceSchedule.UsageStatistics.App
 
-| 参数名                      | 类型     | 必填   | 说明                                       |
+| 名称                      | 类型     | 必填   | 说明                                       |
 | ------------------------ | ------ | ---- | ---------------------------------------- |
 | bundleName               | string | 是    | 应用包名。                                    |
 | abilityPrevAccessTime    | number | 是    | 应用最后一次使用的时间。                             |
@@ -462,7 +462,7 @@ queryCurrentBundleActiveStates(begin: number, end: number): Promise&lt;Array&lt;
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.ResourceSchedule.UsageStatistics.App
 
-| 参数名                   | 类型     | 必填   | 说明                                       |
+| 名称                   | 类型     | 必填   | 说明                                       |
 | --------------------- | ------ | ---- | ---------------------------------------- |
 | bundleName            | string | 是    | 应用包名。                                    |
 | stateType             | number | 是    | 应用事件类型。                                  |
@@ -487,7 +487,7 @@ queryCurrentBundleActiveStates(begin: number, end: number): Promise&lt;Array&lt;
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.ResourceSchedule.UsageStatistics.App
 
-| 名称           | 默认值  | 说明                                       |
+| 名称           | 值  | 说明                                       |
 | ------------ | ---- | ---------------------------------------- |
 | BY_OPTIMIZED | 0    | 表示系统自行判断最合适的查询类型（天、周、月、年）去查询指定时间段间隔的应用使用时长信息。 |
 | BY_DAILY     | 1    | 表示系统按照天去查询指定时间段间隔的应用使用时长信息。              |

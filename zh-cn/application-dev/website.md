@@ -1,16 +1,35 @@
 # OpenHarmony应用开发文档
 
 - [应用开发导读](application-dev-guide.md)
-- 快速开始
+- 入门
   - 快速入门
     - [开发准备](quick-start/start-overview.md)
     - [使用ArkTS语言开发（Stage模型）](quick-start/start-with-ets-stage.md)
     - [使用ArkTS语言开发（FA模型）](quick-start/start-with-ets-fa.md)
     - [使用JS语言开发（FA模型）](quick-start/start-with-js-fa.md)
   - 开发基础知识
-    - [应用包结构配置文件的说明(FA模型)](quick-start/package-structure.md)
-    - [应用包结构配置文件的说明(Stage模型)](quick-start/stage-structure.md)
-    - [SysCap说明](quick-start/syscap.md)
+    - 应用程序包基础知识
+      - [应用程序包概述](quick-start/application-package-overview.md)
+      - 应用程序包结构
+        - [Stage模型应用程序包结构](quick-start/application-package-structure-stage.md)
+        - [FA模型应用程序包结构](quick-start/application-package-structure-fa.md)
+        - [HAR包结构](quick-start/har-structure.md)
+      - 应用程序包多HAP机制
+        - [多HAP机制设计目标](quick-start/multi-hap-objective.md)
+        - [多HAP构建视图](quick-start/multi-hap-build-view.md)
+        - [多HAP发布部署流程](quick-start/multi-hap-release-deployment.md)
+        - [多HAP使用规则](quick-start/multi-hap-rules.md)
+        - [多HAP运行机制及数据通信方式](quick-start/multi-hap-principles.md)
+      - [应用程序包安装和卸载流程](quick-start/application-package-install-uninstall.md)
+    - 应用配置文件（Stage模型）
+      - [应用配置文件概述（Stage模型）](quick-start/application-configuration-file-overview-stage.md)
+      - [app.json5配置文件](quick-start/app-configuration-file.md)
+      - [module.json5配置文件](quick-start/module-configuration-file.md)
+    - 应用配置文件（FA模型）
+      - [应用配置文件概述（FA模型）](quick-start/application-configuration-file-overview-fa.md)
+      - [app对象内部结构](quick-start/app-structure.md)
+      - [deviceConfig内部结构](quick-start/deviceconfig-structure.md)
+      - [module对象内部结构](quick-start/module-structure.md)
     - [资源分类与访问](quick-start/resource-categories-and-access.md)
     - 学习ArkTS语言
       - [初识ArkTS语言](quick-start/arkts-get-started.md)
@@ -24,27 +43,132 @@
         - [渲染控制](quick-start/arkts-rendering-control.md)
         - [使用限制与扩展](quick-start/arkts-restrictions-and-extensions.md)
 - 开发
-  - Ability开发
-    - [Ability框架概述](ability/ability-brief.md)
-    - [应用上下文Context概述](ability/context-userguide.md)
-    - FA模型
-      - [FA模型综述](ability/fa-brief.md)
-      - [PageAbility开发指导](ability/fa-pageability.md)
-      - [ServiceAbility开发指导](ability/fa-serviceability.md)
-      - [DataAbility开发指导](ability/fa-dataability.md)
-      - [FA卡片开发指导](ability/fa-formability.md)
-    - Stage模型
-      - [Stage模型综述](ability/stage-brief.md)
-      - [Ability开发指导](ability/stage-ability.md)
-      - [ServiceExtensionAbility开发指导](ability/stage-serviceextension.md)
-      - [跨端迁移开发指导](ability/stage-ability-continuation.md)
-      - [Call调用开发指导](ability/stage-call.md)
-      - [Stage卡片开发指导](ability/stage-formextension.md)
-    - 其他
-      - [WantAgent开发指导](ability/wantagent.md)
-      - [Ability助手使用指导](ability/ability-assistant-guidelines.md)
-      - [ContinuationManager使用指导](ability/continuationmanager.md)
-      - [测试框架使用指导](ability/ability-delegator.md)
+  - 应用模型
+    - 应用模型概述
+      - [OpenHarmony应用模型的构成要素](application-models/application-model-composition.md)
+      - [OpenHarmony应用模型解读](application-models/application-model-description.md)
+    - Stage模型开发指导
+      - [Stage模型开发概述](application-models/stage-model-development-overview.md)
+      - Stage模型应用组件
+        - [应用/组件级配置](application-models/application-component-configuration-stage.md)
+        - UIAbility组件
+          - [UIAbility组件概述](application-models/uiability-overview.md)
+          - [UIAbility组件生命周期](application-models/uiability-lifecycle.md)
+          - [UIAbility组件启动模式](application-models/uiability-launch-type.md)
+          - [UIAbility组件基本用法](application-models/uiability-usage.md)
+          - [UIAbility组件与UI的数据同步](application-models/uiability-data-sync-with-ui.md)
+          - [UIAbility组件间交互（设备内）](application-models/uiability-intra-device-interaction.md)
+        - ExtensionAbility组件
+          - [ExtensionAbility组件概述](application-models/extensionability-overview.md)
+          - [ServiceExtensionAbility](application-models/serviceextensionability.md)
+          - [DataShareExtensionAbility（仅对系统应用开放）](application-models/datashareextensionability.md)
+          - [FormExtensionAbility（服务卡片）](application-models/widget-development-stage.md)
+        - [AbilityStage组件容器](application-models/abilitystage.md)
+        - [应用上下文Context](application-models/application-context-stage.md)
+        - 信息传递载体Want
+          - [Want概述](application-models/want-overview.md)
+          - [显式Want与隐式Want匹配规则](application-models/explicit-implicit-want-mappings.md)
+          - [常见action与entities](application-models/actions-entities.md)
+          - [使用显式Want启动Ability](application-models/ability-startup-with-explicit-want.md)
+          - [使用隐式Want打开网址](application-models/ability-startup-with-implicit-want.md)
+          - [应用间使用Want分享数据](application-models/data-share-via-want.md)
+        - [组件启动规则](application-models/component-startup-rules.md)
+        - 应用组件跨设备交互（流转）
+          - [流转概述](application-models/inter-device-interaction-hop-overview.md)
+          - [跨端迁移（仅对系统应用开放）](application-models/hop-cross-device-migration.md)
+          - [多端协同（仅对系统应用开放）](application-models/hop-multi-device-collaboration.md)
+      - 进程间通信
+        - [进程模型](application-models/process-model-stage.md)
+        - 公共事件
+          - [公共事件简介](application-models/common-event-overview.md)
+          - [公共事件订阅](application-models/common-event-subscription.md)
+          - [公共事件发布](application-models/common-event-publish.md)
+          - [公共事件取消订阅](application-models/common-event-unsubscription.md)
+        - [后台服务](application-models/background-services.md)
+      - 线程间通信
+        - [线程模型](application-models/thread-model-stage.md)
+        - [使用Emitter进行线程间通信](application-models/itc-with-emitter.md)
+        - [使用Worker进行线程间通信](application-models/itc-with-worker.md)
+      - 任务管理
+        - [任务管理场景介绍](application-models/mission-management-overview.md)
+        - [任务管理与启动模式](application-models/mission-management-launch-type.md)
+        - [页面栈及任务链](application-models/page-mission-stack.md)
+    - FA模型开发指导
+      - [FA模型开发概述](application-models/fa-model-development-overview.md)
+      - FA模型应用组件
+        - [应用/组件级配置](application-models/application-component-configuration-fa.md)
+        - PageAbility组件开发指导
+          - [PageAbility组件概述](application-models/pageability-overview.md)
+          - [PageAbility组件配置](application-models/pageability-configuration.md)
+          - [PageAbility的生命周期](application-models/pageability-lifecycle.md)
+          - [PageAbility的启动模式](application-models/pageability-launch-type.md)
+          - [创建PageAbility](application-models/create-pageability.md)
+          - [启动本地PageAbility](application-models/start-local-pageability.md)
+          - [停止PageAbility](application-models/stop-pageability.md)
+          - [启动远程PageAbility（仅对系统应用开放）](application-models/start-remote-pageability.md)
+          - [启动指定页面](application-models/start-page.md)
+          - [窗口属性](application-models/window-properties.md)
+          - [申请授权](application-models/request-permissions.md)
+          - [跳转规则](application-models/redirection-rules.md)
+        - ServiceAbility组件开发指导
+          - [ServiceAbility组件概述](application-models/serviceability-overview.md)
+          - [ServiceAbility组件配置](application-models/serviceability-configuration.md)
+          - [ServiceAbility的生命周期](application-models/serviceability-lifecycle.md)
+          - [创建ServiceAbility](application-models/create-serviceability.md)
+          - [启动ServiceAbility](application-models/start-serviceability.md)
+          - [连接ServiceAbility](application-models/connect-serviceability.md)
+        - DataAbility组件开发指导
+          - [DataAbility组件概述](application-models/dataability-overview.md)
+          - [DataAbility组件配置](application-models/dataability-configuration.md)
+          - [DataAbility的生命周期](application-models/dataability-lifecycle.md)
+          - [创建DataAbility](application-models/create-dataability.md)
+          - [启动DataAbility](application-models/start-dataability.md)
+          - [访问DataAbility](application-models/access-dataability.md)
+          - [DataAbility权限控制](application-models/dataability-permission-control.md)
+        - [服务卡片开发指导](application-models/widget-development-fa.md)
+        - [FA模型的Context](application-models/application-context-fa.md)
+        - [信息传递载体Want](application-models/want-fa.md)
+      - 进程间通信
+        - [进程模型](application-models/process-model-fa.md)
+        - [公共事件](application-models/common-event-fa.md)
+        - [后台服务](application-models/rpc.md)
+      - 线程间通信
+        - [线程模型](application-models/thread-model-fa.md)
+        - [线程间通信](application-models/itc-fa-overview.md)
+      - [任务管理](application-models/mission-management-fa.md)
+    - FA模型与Stage模型应用组件互通指导
+      - [FA模型与Stage模型应用组件互通综述](application-models/fa-stage-interaction-overview.md)
+      - [FA模型启动Stage模型UIAbility](application-models/start-uiability-from-fa.md)
+      - [FA模型绑定Stage模型ServiceExtensionAbility](application-models/bind-serviceextensionability-from-fa.md)
+      - [FA模型访问Stage模型DataShareExtensionAbility](application-models/access-datashareextensionability-from-fa.md)
+      - [Stage模型启动FA模型PageAbility](application-models/start-pageability-from-stage.md)
+      - [Stage模型绑定FA模型ServiceAbility](application-models/bind-serviceability-from-stage.md)
+    - FA模型切换Stage模型指导
+      - [模型切换概述](application-models/model-switch-overview.md)
+      - 配置文件切换
+        - [配置文件的差异](application-models/configuration-file-diff.md)
+        - [app和deviceConfig的切换](application-models/app-deviceconfig-switch.md)
+        - [module的切换](application-models/module-switch.md)
+      - 组件切换
+        - [PageAbility切换](application-models/pageability-switch.md)
+        - [ServiceAbility切换](application-models/aerviceability-switch.md)
+        - [DataAbility切换](application-models/dataability-switch.md)
+      - [卡片切换](application-models/widget-switch.md)
+      - API切换
+        - [API切换概述](application-models/api-switch-overview.md)
+        - [Context接口切换](application-models/context-switch.md)
+        - [featureAbility接口切换](application-models/featureability-switch.md)
+        - [particleAbility接口切换](application-models/particleability-switch.md)
+        - [LifecycleForm接口切换](application-models/lifecycleform-switch.md)
+        - [LifecycleApp接口切换](application-models/lifecycleapp-switch.md)
+        - [LifecycleService接口切换](application-models/lifecycleservice-switch.md)
+        - [LifecycleData接口切换](application-models/lifecycledata-switch.md)
+        - [DataAbilityHelper接口切换](application-models/dataabilityhelper-switch.md)
+        - [mediaLibrary接口切换](application-models/medialibrary-switch.md)
+        - [request接口切换](application-models/request-switch.md)
+        - [resourceManager接口切换](application-models/resourcemanager-switch.md)
+        - [window接口切换](application-models/window-switch.md)
+        - [Storage接口切换](application-models/storage-switch.md)
   - UI开发
     - [方舟开发框架（ArkUI）概述](ui/arkui-overview.md)
     - 基于ArkTS的声明式开发范式
@@ -145,11 +269,14 @@
             - [动画动效](ui/ui-js-animate-dynamic-effects.md)
             - [动画帧](ui/ui-js-animate-frame.md)
       - [自定义组件](ui/ui-js-custom-components.md)
-  - 公共事件与通知
-    - [公共事件与通知概述](notification/notification-brief.md)
-    - [公共事件开发指导](notification/common-event.md)
-    - [通知开发指导](notification/notification-guidelines.md)
-    - [调试助手使用指导](notification/assistant-guidelines.md)
+  - 通知
+    - [通知概述](notification/notification-overview.md)
+    - [订阅通知（仅对系统应用开放）](notification/notification-subscription.md)
+    - [使能通知开关](notification/notification-enable.md)
+    - 发布通知
+      - [发布基础类型通知](notification/text-notification.md)
+      - [发布进度条类型通知](notification/progress-bar-notification.md)
+      - [为通知添加行为意图](notification/notification-with-wantagent.md)
   - 窗口管理
     - [窗口开发概述](windowmanager/window-overview.md)
     - [管理应用窗口（Stage模型）](windowmanager/application-window-stage.md)
@@ -347,10 +474,19 @@
     - [Neural Network Runtime对接AI推理框架开发指导](napi/neural-network-runtime-guidelines.md)
 - 工具
   - [DevEco Studio（OpenHarmony）使用指南](quick-start/deveco-studio-user-guide-for-openharmony.md)
+  - [aa工具](tools/aa-tool.md)
+  - [bm工具](tools/bm-tool.md)
+  - 打包拆包工具
+    - [打包工具](tools/packing-tool.md)
+    - [拆包工具](tools/unpacking-tool.md)
+  - [anm工具](tools/anm-tool.md)
+  - [cem工具](tools/cem-tool.md)
 - 示例教程
   - [示例代码](https://gitee.com/openharmony/applications_app_samples/blob/master/README_zh.md)
   - [Codelabs](https://gitee.com/openharmony/codelabs/blob/master/README.md)
 - API参考
+  - [系统能力SystemCapability使用指南](reference/syscap.md)
+  - [系统能力SystemCapability列表](reference/syscap-list.md)
   - [Syscap列表](reference/syscap-list.md)
   - 组件参考（基于ArkTS的声明式开发范式）
     - [组件导读](reference/arkui-ts/ts-components-summary.md)

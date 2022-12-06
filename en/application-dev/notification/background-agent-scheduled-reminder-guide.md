@@ -37,7 +37,7 @@ For details about the APIs, see [reminderAgent](../reference/apis/js-apis-remind
    import reminderAgent from '@ohos.reminderAgent';
    import notification from '@ohos.notification';
    export default {
-       // eTS project:
+       // ArkTS project:
        let timer : reminderAgent.ReminderRequestTimer = {
            reminderType: reminderAgent.ReminderType.REMINDER_TYPE_TIMER,
            triggerTimeInSeconds: 10,
@@ -67,7 +67,7 @@ For details about the APIs, see [reminderAgent](../reference/apis/js-apis-remind
    Sample code for defining a reminder agent for a calendar event:
 
     ```js
-    // eTS project:
+    // ArkTS project:
     let calendar : reminderAgent.ReminderRequestCalendar = {
         reminderType: reminderAgent.ReminderType.REMINDER_TYPE_CALENDAR,
         dateTime: {
@@ -113,7 +113,7 @@ For details about the APIs, see [reminderAgent](../reference/apis/js-apis-remind
     Sample code for defining a reminder agent for an alarm:
 
     ```js
-    // eTS project:
+    // ArkTS project:
     let alarm : reminderAgent.ReminderRequestAlarm = {
         reminderType: reminderAgent.ReminderType.REMINDER_TYPE_ALARM,
         hour: 11,

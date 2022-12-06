@@ -57,8 +57,9 @@ In the stage model, the main window of an application is created and maintained 
 
 1. Obtain the main window.
    
-Call **getMainWindow** to obtain the main window of the application.
-   
+
+   Call **getMainWindow** to obtain the main window of the application.
+
 2. Set the properties of the main window.
 
    You can set multiple properties of the main window, such as the background color, brightness, and whether the main window is touchable. The code snippet below uses the **touchable** property as an example.
@@ -83,21 +84,21 @@ class MainAbility extends Ability {
             console.info('Succeeded in obtaining the main window. Data: ' + JSON.stringify(data));
             // 2. Set the touchable property of the main window.
             let isTouchable = true;
-            windowClass.setTouchable(isTouchable, (err, data) => {
+            windowClass.setTouchable(isTouchable, (err) => {
                 if (err.code) {
                     console.error('Failed to set the window to be touchable. Cause:' + JSON.stringify(err));
                     return;
                 }
-                console.info('Succeeded in setting the window to be touchable. Data:' + JSON.stringify(data));
+                console.info('Succeeded in setting the window to be touchable.');
             })
         })
         // 3. Load the page content to the main window.
-        windowStage.loadContent("pages/page2", (err, data) => {
+        windowStage.loadContent("pages/page2", (err) => {
             if (err.code) {
                 console.error('Failed to load the content. Cause:' + JSON.stringify(err));
                 return;
             }
-            console.info('Succeeded in loading the content. Data: ' + JSON.stringify(data));
+            console.info('Succeeded in loading the content.');
         });
     }
 };
@@ -111,12 +112,11 @@ You can create an application subwindow, such as a dialog box, and set its prope
 
 ### How to Develop
 
-1. Create or obtain a subwindow.
+1. Create a subwindow.
    
-Call **createSubWindow** to create a subwindow.
-   
-Call **getSubWindow** to obtain a subwindow.
-   
+
+   Call **createSubWindow** to create a subwindow.
+
 2. Set the properties of the subwindow.
 
    After the subwindow is created, you can set its properties, such as the size, position, background color, and brightness.
@@ -144,44 +144,35 @@ Call **getSubWindow** to obtain a subwindow.
                }
                sub_windowClass = data;
                console.info('Succeeded in creating the subwindow. Data: ' + JSON.stringify(data));
-               // 1. Obtain an available subwindow.
-               windowStage_.getSubWindow((err, data) => {
-                   if (err.code) {
-                       console.error('Failed to obtain the subWindow. Cause:' + JSON.stringify(err));
-                       return;
-                   }
-                   console.info('Succeeded in obtaining the subWindow. Data: ' + JSON.stringify(data));
-                   sub_windowClass = data;
-               });
                // 2. Set the position, size, and other properties of the subwindow.
-               sub_windowClass.moveTo(300, 300, (err, data) => {
+               sub_windowClass.moveTo(300, 300, (err) => {
                    if (err.code) {
                        console.error('Failed to move the window. Cause:' + JSON.stringify(err));
                        return;
                    }
-                   console.info('Succeeded in moving the window. Data: ' + JSON.stringify(data));
+                   console.info('Succeeded in moving the window.');
                });
-               sub_windowClass.resetSize(500, 1000, (err, data) => {
+               sub_windowClass.resetSize(500, 1000, (err) => {
                    if (err.code) {
                        console.error('Failed to change the window size. Cause:' + JSON.stringify(err));
                        return;
                    }
-                   console.info('Succeeded in changing the window size. Data: ' + JSON.stringify(data));
+                   console.info('Succeeded in changing the window size.');
                });
                // 3. Load the page content to the subwindow.
-               sub_windowClass.loadContent("pages/page3", (err, data) => {
+               sub_windowClass.loadContent("pages/page3", (err) => {
                    if (err.code) {
                        console.error('Failed to load the content. Cause:' + JSON.stringify(err));
                        return;
                    }
-                   console.info('Succeeded in loading the content. Data: ' + JSON.stringify(data));
+                   console.info('Succeeded in loading the content.');
                    // 3. Show the subwindow.
-                   sub_windowClass.show((err, data) => {
+                   sub_windowClass.show((err) => {
                        if (err.code) {
-                           console.error('Failed to show the window. Cause:' + JSON.stringify(err));
+                           console.error('Failed to show the window. Cause: ' + JSON.stringify(err));
                            return;
                        }
-                       console.info('Succeeded in showing the window. Data: ' + JSON.stringify(data));
+                       console.info('Succeeded in showing the window.');
                    });
                });
            })
@@ -189,18 +180,18 @@ Call **getSubWindow** to obtain a subwindow.
    
        destroySubWindow() {
            // 4. Destroy the subwindow when it is no longer needed (depending on the service logic).
-           sub_windowClass.destroy((err, data) => {
+           sub_windowClass.destroy((err) => {
                if (err.code) {
                    console.error('Failed to destroy the window. Cause: ' + JSON.stringify(err));
                    return;
                }
-               console.info('Succeeded in destroying the window. Data: ' + JSON.stringify(data));
+               console.info('Succeeded in destroying the window.');
            });
        }
    
        onWindowStageCreate(windowStage) {
            windowStage_ = windowStage;
-           // Create the subwindow when it is needed, for example, when a click event occurs in the main window. Calling onWindowStageCreate is not always necessary. The code here is for reference only.
+           // Create a subwindow when it is needed, for example, when a click event occurs in the main window. Calling onWindowStageCreate is not always necessary. The code here is for reference only.
            this.showSubWindow();
        }
    
@@ -221,8 +212,9 @@ To create a better video watching and gaming experience, you can use the immersi
 
 1. Obtain the main window.
    
-Call **getMainWindow** to obtain the main window of the application.
-   
+
+   Call **getMainWindow** to obtain the main window of the application.
+
 2. Implement the immersive effect. You can use any of the following methods:
    - Method 1: Call **setFullScreen** to set the main window to be displayed in full screen. In this case, the navigation bar and status bar are hidden.
    - Method 2: Call **setSystemBarEnable** to hide the navigation bar and status bar.
@@ -249,30 +241,30 @@ Call **getMainWindow** to obtain the main window of the application.
    
                // 2. Use method 1 to implement the immersive effect.
                let isFullScreen = true;
-               windowClass.setFullScreen(isFullScreen, (err, data) => {
+               windowClass.setFullScreen(isFullScreen, (err) => {
                    if (err.code) {
                        console.error('Failed to enable the full-screen mode. Cause:' + JSON.stringify(err));
                        return;
                    }
-                   console.info('Succeeded in enabling the full-screen mode. Data: ' + JSON.stringify(data));
+                   console.info('Succeeded in enabling the full-screen mode.');
                });
                // 2. Use method 2 to implement the immersive effect.
                let names = [];
-               windowClass.setSystemBarEnable(names, (err, data) => {
+               windowClass.setSystemBarEnable(names, (err) => {
                    if (err.code) {
                        console.error('Failed to set the system bar to be visible. Cause:' + JSON.stringify(err));
                        return;
                    }
-                   console.info('Succeeded in setting the system bar to be visible. Data: ' + JSON.stringify(data));
+                   console.info('Succeeded in setting the system bar to be visible.');
                });
                // 2. Use method 3 to implement the immersive effect.
                let isLayoutFullScreen = true;
-               windowClass.setLayoutFullScreen(isLayoutFullScreen, (err, data) => {
+               windowClass.setLayoutFullScreen(isLayoutFullScreen, (err) => {
                    if (err.code) {
                        console.error('Failed to set the window layout to full-screen mode. Cause:' + JSON.stringify(err));
                        return;
                    }
-                   console.info('Succeeded in setting the window layout to full-screen mode. Data: ' + JSON.stringify(data));
+                   console.info('Succeeded in setting the window layout to full-screen mode.');
                });
                let sysBarProps = {
                    statusBarColor: '#ff00ff',
@@ -281,21 +273,21 @@ Call **getMainWindow** to obtain the main window of the application.
                    statusBarContentColor: '#ffffff',
                    navigationBarContentColor: '#ffffff'
                };
-               windowClass.setSystemBarProperties(sysBarProps, (err, data) => {
+               windowClass.setSystemBarProperties(sysBarProps, (err) => {
                    if (err.code) {
                        console.error('Failed to set the system bar properties. Cause: ' + JSON.stringify(err));
                        return;
                    }
-                   console.info('Succeeded in setting the system bar properties. Data: ' + JSON.stringify(data));
+                   console.info('Succeeded in setting the system bar properties.');
                });
            })
            // 3. Load the page content to the immersive window.
-           windowStage.loadContent("pages/page2", (err, data) => {
+           windowStage.loadContent("pages/page2", (err) => {
                if (err.code) {
                    console.error('Failed to load the content. Cause:' + JSON.stringify(err));
                    return;
                }
-               console.info('Succeeded in loading the content. Data: ' + JSON.stringify(data));
+               console.info('Succeeded in loading the content.');
            });
        }
    };
@@ -310,13 +302,13 @@ A floating window is created based on an existing task. It is always displayed i
 ### How to Develop
 
 1. Apply for permissions.
-   
-To create a floating window (of the **WindowType.TYPE_FLOAT** type), you must configure the **ohos.permission.SYSTEM_FLOAT_WINDOW** permission in the **requestPermissions** field of the **module.json5** file. For details about the file, see [Application Package Structure Configuration File](../quick-start/stage-structure.md).
-   
+
+   To create a floating window (of the **WindowType.TYPE_FLOAT** type), you must configure the **ohos.permission.SYSTEM_FLOAT_WINDOW** permission in the **requestPermissions** field of the **module.json5** file. For details about the file, see [Application Package Structure Configuration File](../quick-start/stage-structure.md).
+
    > **NOTE**
    >
    > If the task for creating the floating window is reclaimed by the system, the floating window will no longer be displayed. If you want the floating window to be displayed in such a case, apply for a [continuous task](../task-management/background-task-overview.md).
-   
+
    ```json
    {
      "module": {
@@ -334,7 +326,7 @@ To create a floating window (of the **WindowType.TYPE_FLOAT** type), you must co
      }
 }
    ```
-   
+
 2. Create a floating window.
 
    Call **window.create** to create a floating window.
@@ -368,43 +360,43 @@ To create a floating window (of the **WindowType.TYPE_FLOAT** type), you must co
                console.info('Succeeded in creating the floatWindow. Data: ' + JSON.stringify(data));
                windowClass = data;
                // 3. Set the position, size, and properties of the floating window.
-               windowClass.moveTo(300, 300, (err, data) => {
+               windowClass.moveTo(300, 300, (err) => {
                    if (err.code) {
                        console.error('Failed to move the window. Cause:' + JSON.stringify(err));
                        return;
                    }
-                   console.info('Succeeded in moving the window. Data: ' + JSON.stringify(data));
+                   console.info('Succeeded in moving the window.');
                });
-               windowClass.resetSize(500, 1000, (err, data) => {
+               windowClass.resetSize(500, 1000, (err) => {
                    if (err.code) {
                        console.error('Failed to change the window size. Cause:' + JSON.stringify(err));
                        return;
                    }
-                   console.info('Succeeded in changing the window size. Data: ' + JSON.stringify(data));
+                   console.info('Succeeded in changing the window size.');
                });
                // 4. Load the page content to the floating window.
-               windowClass.loadContent("pages/page4", (err, data) => {
+               windowClass.loadContent("pages/page4", (err) => {
                    if (err.code) {
                        console.error('Failed to load the content. Cause:' + JSON.stringify(err));
                        return;
                    }
-                   console.info('Succeeded in loading the content. Data: ' + JSON.stringify(data));
+                   console.info('Succeeded in loading the content.');
                    // 4. Show the floating window.
-                   windowClass.show((err, data) => {
+                   windowClass.show((err) => {
                        if (err.code) {
                            console.error('Failed to show the window. Cause: ' + JSON.stringify(err));
                            return;
                        }
-                       console.info('Succeeded in showing the window. Data: ' + JSON.stringify(data));
+                       console.info('Succeeded in showing the window.');
                    });
                });
                // 5. Destroy the floating window when it is no longer needed (depending on the service logic).
-               windowClass.destroy((err, data) => {
+               windowClass.destroy((err) => {
                    if (err.code) {
                        console.error('Failed to destroy the window. Cause: ' + JSON.stringify(err));
                        return;
                    }
-                   console.info('Succeeded in destroying the window. Data: ' + JSON.stringify(data));
+                   console.info('Succeeded in destroying the window.');
                });
            });
        }

@@ -14,6 +14,86 @@ HUKS（OpenHarmony Universal KeyStore，OpenHarmony通用密钥库系统）向�
 import huks from '@ohos.security.huks'
 ```
 
+### 密钥生成
+
+通过指定别名和密钥参数的方式，使用HUKS生成应用需要的密钥。生成密钥时支持动态参数指定，分为必选参数和可选参数。其中，必选参数表示在生成密钥时必须传入；可选参数表示在生成密钥时可以传入，也可以不传入。
+
+> 说明:
+>
+> 1、生成密钥时传入的参数是对密钥使用的一种约束，规范了密钥使用的范围。如果在使用时传入的参数和生成密钥时传入的参数相悖，则该参数会校验失败。
+>
+> 2、如果可选参数没有在生成密钥阶段时传入，但算法又需要该参数，在使用阶段必须传入。
+
+**支持生成的密钥类型：**
+
+这里罗列了密钥生成过程中支持的必选参数，包括密钥算法、密钥长度、密钥用途。详见下文算法的使用过程。
+
+| HUKS_ALG_ALGORITHM | HUKS_ALG_KEY_SIZE                                            | HUKS_ALG_PURPOSE                                             |
+| ------------------ | :----------------------------------------------------------- | ------------------------------------------------------------ |
+| HUKS_ALG_RSA       | HUKS_RSA_KEY_SIZE_512 HUKS_RSA_KEY_SIZE_768  HUKS_RSA_KEY_SIZE_1024  HUKS_RSA_KEY_SIZE_2048  HUKS_RSA_KEY_SIZE_3072 HUKS_RSA_KEY_SIZE_4096 | HUKS_KEY_PURPOSE_ENCRYPT  HUKS_KEY_PURPOSE_DECRYPT HUKS_KEY_PURPOSE_SIGN  HUKS_KEY_PURPOSE_VERIFY |
+| HUKS_ALG_AES       | HUKS_AES_KEY_SIZE_128 HUKS_AES_KEY_SIZE_192 HUKS_AES_KEY_SIZE_256 | HUKS_KEY_PURPOSE_ENCRYPT  HUKS_KEY_PURPOSE_DECRYPT HUKS_KEY_PURPOSE_DERIVE |
+| HUKS_ALG_ECC       | HUKS_ECC_KEY_SIZE_224  HUKS_ECC_KEY_SIZE_256  HUKS_ECC_KEY_SIZE_384  HUKS_ECC_KEY_SIZE_521 | HUKS_KEY_PURPOSE_SIGN  HUKS_KEY_PURPOSE_VERIFY               |
+| HUKS_ALG_X25519    | HUKS_CURVE25519_KEY_SIZE_256                                 | HUKS_KEY_PURPOSE_AGREE                                       |
+| HUKS_ALG_ED25519   | HUKS_CURVE25519_KEY_SIZE_256                                 | HUKS_KEY_PURPOSE_SIGN   HUKS_KEY_PURPOSE_VERIFY              |
+| HUKS_ALG_DSA       | HUKS_RSA_KEY_SIZE_1024                                       | HUKS_KEY_PURPOSE_SIGN  HUKS_KEY_PURPOSE_VERIFY               |
+| HUKS_ALG_DH        | HUKS_DH_KEY_SIZE_2048 HUKS_DH_KEY_SIZE_3072 HUKS_DH_KEY_SIZE_4096 | HUKS_KEY_PURPOSE_AGREE                                       |
+| HUKS_ALG_ECDH      | HUKS_ECC_KEY_SIZE_224  HUKS_ECC_KEY_SIZE_256  HUKS_ECC_KEY_SIZE_384  HUKS_ECC_KEY_SIZE_521 | HUKS_KEY_PURPOSE_AGREE                                       |
+| HUKS_ALG_SM2       | HUKS_SM2_KEY_SIZE_256                                        | HUKS_KEY_PURPOSE_SIGN  HUKS_KEY_PURPOSE_VERIFY               |
+| HUKS_ALG_SM4       | HUKS_SM4_KEY_SIZE_128                                        | HUKS_KEY_PURPOSE_ENCRYPT  HUKS_KEY_PURPOSE_DECRYPT           |
+
+在使用示例前，需要先了解几个预先定义的变量：
+
+| 参数名           | 类型        | 必填 | 说明                                                         |
+| ---------------- | ----------- | ---- | ------------------------------------------------------------ |
+| genKeyAlias      | string      | 是   | 生成密钥的别名。                                             |
+| genKeyProperties | HuksOptions | 是   | 用于存放生成key所需TAG。其中密钥使用的算法、密钥用途、密钥长度为必选参数。 |
+
+关于接口的具体信息，可在[API参考文档](../reference/apis/js-apis-huks.md)中查看。
+
+```ts
+/* 以生成ECC256密钥为例 */
+let keyAlias = 'keyAlias';
+let properties = new Array();
+//必选参数
+properties[0] = {
+    tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
+    value: huks.HuksKeyAlg.HUKS_ALG_ECC
+};
+//必选参数
+properties[1] = {
+    tag: huks.HuksTag.HUKS_TAG_KEY_SIZE,
+    value: huks.HuksKeySize.HUKS_ECC_KEY_SIZE_256
+};
+//必选参数
+properties[2] = {
+    tag: huks.HuksTag.HUKS_TAG_PURPOSE,
+    value:
+    huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_SIGN |
+    huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_VERIFY
+};
+//可选参数
+properties[3] = {
+    tag: huks.HuksTag.HUKS_TAG_DIGEST,
+    value: huks.HuksKeyDigest.HUKS_DIGEST_SHA256
+};
+let options = {
+    properties: properties
+};
+try {
+    huks.generateKeyItem(keyAlias, options, function (error, data) {
+        if (error) {
+            console.error(`callback: generateKeyItem failed, code: ${error.code}, msg: ${error.message}`);
+        } else {
+            console.info(`callback: generateKeyItem key success`);
+        }
+    });
+} catch (error) {
+    console.error(`callback: generateKeyItem input arg invalid, code: ${error.code}, msg: ${error.message}`);
+}
+```
+
+
+
 ### 密钥导入导出
 
 HUKS支持非对称密钥的公钥导出能力，开发者可以通过密钥别名导出应用自己密钥对的公钥，只允许导出属于应用自己的密钥对的公钥。
@@ -2513,7 +2593,7 @@ HksInit对paramSet中参数的要求
 
 | HUKS_TAG_ALGORITHM                                           | HUKS_TAG_PURPOSE        | HUKS_TAG_DIGEST                                            | HUKS_TAG_DERIVE_KEY_SIZE |
 | ------------------------------------------------------------ | ----------------------- | ---------------------------------------------------------- | ------------------------ |
-| HUKS_ALG_HKDF  （支持长度：  HUKS_AES_KEY_SIZE_128 HUKS_AES_KEY_SIZE_192 HUKS_AES_KEY_SIZE_256） | HUKS_KEY_PURPOSE_DERIVE | HUKS_DIGEST_SHA256  HUKS_DIGEST_SHA384  HUKS_DIGEST_SHA512 | 【必选】                 |
+| HUKS_ALG_HKDF  （支持长度：  HUKS_AES_KEY_SIZE_128 HUKS_AES_KEY_SIZE_192 HUKS_AES_KEY_SIZE_256） | HUKS_KEY_PURPOSE_DERIVE | HUKS_DIGEST_SHA256 HUKS_DIGEST_SHA384  HUKS_DIGEST_SHA512  | 【必选】                 |
 | HUKS_ALG_PBKDF2  （支持长度：  HUKS_AES_KEY_SIZE_128 HUKS_AES_KEY_SIZE_192 HUKS_AES_KEY_SIZE_256） | HUKS_KEY_PURPOSE_DERIVE | HUKS_DIGEST_SHA256  HUKS_DIGEST_SHA384  HUKS_DIGEST_SHA512 | 【必选】                 |
 
 HksFinish对paramSet中参数的要求：
@@ -3587,5 +3667,4 @@ struct Index {
     }
 }
 ```
-
 

@@ -2,9 +2,7 @@
 
 This document is intended for novices at developing OpenHarmony applications. It will introduce you to the OpenHarmony project directory structure and application development process, by walking you through a stripped-down, real-world example – building two pages and implementing redirection between them. The following figure shows how the pages look on the DevEco Studio Previewer.
 
-
 ![en-us_image_0000001364254729](figures/en-us_image_0000001364254729.png)
-
 
 Before you begin, there are two basic concepts that will help you better understand OpenHarmony: UI framework and ability.
 

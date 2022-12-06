@@ -206,6 +206,7 @@ getIsoDep(tagInfo: [TagInfo](#taginfo)): [IsoDepTag](js-apis-nfctech.md#isoDepTa
 **错误码：**
 
 以下错误码的详细介绍请参见[NFC错误码](../errorcodes/errorcode-nfc.md)。
+
 | 错误码ID | 错误信息|
 | ------- | -------|
 | 3100201 | Tag running state of service is abnormal. |
@@ -233,6 +234,7 @@ getNdef(tagInfo: [TagInfo](#taginfo)): [NdefTag](js-apis-nfctech.md#ndeftag9)
 **错误码：**
 
 以下错误码的详细介绍请参见[NFC错误码](../errorcodes/errorcode-nfc.md)。
+
 | 错误码ID | 错误信息|
 | ------- | -------|
 | 3100201 | Tag running state of service is abnormal. |
@@ -258,7 +260,9 @@ getMifareClassic(tagInfo: [TagInfo](#taginfo)): [MifareClassicTag](js-apis-nfcte
 | [MifareClassicTag](js-apis-nfctech.md#mifareclassictag-9)  | MIFARE Classic类型Tag对象，通过该对象访问MIFARE Classic类型的相关接口。 |
 
 **错误码：**
+
 以下错误码的详细介绍请参见[NFC错误码](../errorcodes/errorcode-nfc.md)。
+
 | 错误码ID | 错误信息|
 | ------- | -------|
 | 3100201 | Tag running state of service is abnormal. |
@@ -285,6 +289,7 @@ getMifareUltralight(tagInfo: [TagInfo](#taginfo)): [MifareUltralightTag](js-apis
 **错误码：**
 
 以下错误码的详细介绍请参见[NFC错误码](../errorcodes/errorcode-nfc.md)。
+
 | 错误码ID | 错误信息|
 | ------- | -------|
 | 3100201 | Tag running state of service is abnormal. |
@@ -306,6 +311,7 @@ getNdefFormatable(tagInfo: [TagInfo](#taginfo)): [NdefFormatableTag](js-apis-nfc
 **错误码：**
 
 以下错误码的详细介绍请参见[NFC错误码](../errorcodes/errorcode-nfc.md)。
+
 | 错误码ID | 错误信息|
 | ------- | -------|
 | 3100201 | Tag running state of service is abnormal. |
@@ -617,10 +623,12 @@ NFC服务在读取到标签时给出的对象，通过改对象属性，应用�
 
 | **名称** | **类型** | **可读** | **可写** | **说明** |
 | -------- | -------- | -------- | -------- | -------- |
-| uid<sup>9+</sup> | number[] | 是 | 否 | 标签的uid，每个number值是十六进制表示，范围是0x00~0xFF。 |
+| uid<sup>9+</sup> | number[] | 是 | 否 | 标签的uid，每个number值是十六进制表示，范围是0x00~0xFF。|
 | technology<sup>9+</sup> | number[] | 是 | 否 | 支持的技术类型，每个number值表示所支持技术类型的常量值。 |
-| supportedProfiles | number[] | 是 | 否 |  支持的技术类型，从API9开始不支持，使用technology替代。 |
-
+| supportedProfiles | number[] | 是 | 否 |  支持的技术类型，从API9开始不支持，使用[tag.TagInfo#technology](#taginfo)替代。|
+| extrasData | [PacMap](js-apis-dataAbilityHelper.md#pacmap)[] | 是 | 否 |  此属性为系统属性，仅限内部使用。标签所支持技术的扩展属性值。|
+| tagRfDiscId | number | 是 | 否 |  此属性为系统属性，仅限内部使用。标签发现时分配的ID值。|
+| remoteTagService | [rpc.RemoteObject](js-apis-rpc.md#remoteobject) | 是 | 否 | 此属性为系统属性，仅限内部使用。NFC服务进程的远端对象，用于客户端和服务之间的接口通信。|
 ## NdefRecord<sup>9+</sup>
 NDEF标签Record属性的定义，参考NDEF标签技术规范《NFCForum-TS-NDEF_1.0》的定义细节。
 
@@ -658,12 +666,12 @@ NDEF Record的TNF(Type Name Field)类型值，参考NDEF标签技术规范《NFC
 | **名称** | **值** |  **说明** |
 | -------- | -------- | -------- |
 | TNF_EMPTY | 0x0 | Empty。|
-| TNF_WELL_KNOWN  | 0x01 | NFC Forum well-known type [NFC RTD]。|
-| TNF_MEDIA | 0x02 | Media-type as defined in RFC 2046 [RFC 2046]。|
-| TNF_ABSOLUTE_URI  | 0x03 | Absolute URI as defined in RFC 3986 [RFC 3986]。|
-| TNF_EXT_APP | 0x04 | NFC Forum external type [NFC RTD]。|
-| TNF_UNKNOWN  | 0x05 | Unknown。|
-| TNF_UNCHANGED | 0x06 | Unchanged (see section 2.3.3)。|
+| TNF_WELL_KNOWN  | 0x1 | NFC Forum well-known type [NFC RTD]。|
+| TNF_MEDIA | 0x2 | Media-type as defined in RFC 2046 [RFC 2046]。|
+| TNF_ABSOLUTE_URI  | 0x3 | Absolute URI as defined in RFC 3986 [RFC 3986]。|
+| TNF_EXT_APP | 0x4 | NFC Forum external type [NFC RTD]。|
+| TNF_UNKNOWN  | 0x5 | Unknown。|
+| TNF_UNCHANGED | 0x6 | Unchanged (see section 2.3.3)。|
 
 ## NDEF Record RTD类型定义
 NDEF Record的RTD(Record Type Definition)类型值，参考NDEF标签技术规范《NFCForum-TS-NDEF_1.0》的定义细节。

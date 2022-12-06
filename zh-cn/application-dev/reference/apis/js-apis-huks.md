@@ -74,7 +74,7 @@ generateKeyItem(keyAlias: string, options: HuksOptions, callback: AsyncCallback\
 | 参数名   | 类型                        | 必填 | 说明                                          |
 | -------- | --------------------------- | ---- | --------------------------------------------- |
 | keyAlias | string                      | 是   | 别名。                                        |
-| options  | [HuksOptions](#huksoptions) | 是   | 用于存放生成key所需TAG。                      |
+| options  | [HuksOptions](#huksoptions) | 是   | 用于存放生成key所需TAG。其中密钥使用的算法、密钥用途、密钥长度为必选参数。 |
 | callback | AsyncCallback\<void>        | 是   | 回调函数。不返回err值时表示接口使用成功，其他时为错误。 |
 
 **示例：**
@@ -130,7 +130,7 @@ generateKeyItem(keyAlias: string, options: HuksOptions) : Promise\<void>
 | 参数名   | 类型                        | 必填 | 说明                     |
 | -------- | --------------------------- | ---- | ------------------------ |
 | keyAlias | string                      | 是   | 密钥别名。               |
-| options  | [HuksOptions](#huksoptions) | 是   | 用于存放生成key所需TAG。 |
+| options  | [HuksOptions](#huksoptions) | 是   | 用于存放生成key所需TAG。其中密钥使用的算法、密钥用途、密钥长度为必选参数。 |
 
 **示例：**
 
@@ -288,7 +288,7 @@ importKeyItem(keyAlias: string, options: HuksOptions, callback: AsyncCallback\<v
 | 参数名   | 类型                        | 必填 | 说明                                          |
 | -------- | --------------------------- | ---- | --------------------------------------------- |
 | keyAlias | string                      | 是   | 密钥别名。                                    |
-| options  | [HuksOptions](#huksoptions) | 是   | 用于导入时所需TAG和需要导入的密钥。           |
+| options  | [HuksOptions](#huksoptions) | 是   | 用于导入时所需TAG和需要导入的密钥。其中密钥使用的算法、密钥用途、密钥长度为必选参数。 |
 | callback | AsyncCallback\<void>        | 是   | 回调函数。不返回err值时表示接口使用成功，其他时为错误。 |
 
 **示例：**
@@ -356,7 +356,7 @@ importKeyItem(keyAlias: string, options: HuksOptions) : Promise\<void>
 | 参数名   | 类型                        | 必填 | 说明                                |
 | -------- | --------------------------- | ---- | ----------------------------------- |
 | keyAlias | string                      | 是   | 密钥别名。                          |
-| options  | [HuksOptions](#huksoptions) | 是   | 用于导入时所需TAG和需要导入的密钥。 |
+| options  | [HuksOptions](#huksoptions) | 是   | 用于导入时所需TAG和需要导入的密钥。其中密钥使用的算法、密钥用途、密钥长度为必选参数。 |
 
 **示例：**
 
@@ -675,7 +675,7 @@ importWrappedKeyItem(keyAlias: string, wrappingKeyAlias: string, options: HuksOp
 | ---------------- | --------------------------- | ---- | --------------------------------------------- |
 | keyAlias         | string                      | 是   | 密钥别名，存放待导入密钥的别名。              |
 | wrappingKeyAlias | string                      | 是   | 密钥别名，对应密钥用于解密加密的密钥数据。    |
-| options          | [HuksOptions](#huksoptions) | 是   | 用于导入时所需TAG和需要导入的加密的密钥数据。 |
+| options          | [HuksOptions](#huksoptions) | 是   | 用于导入时所需TAG和需要导入的加密的密钥数据。其中密钥使用的算法、密钥用途、密钥长度为必选参数。 |
 | callback         | AsyncCallback\<void>        | 是   | 回调函数。不返回err值时表示接口使用成功，其他时为错误。 |
 
 **示例：**
@@ -891,7 +891,7 @@ importWrappedKeyItem(keyAlias: string, wrappingKeyAlias: string, options: HuksOp
 | ---------------- | --------------------------- | ---- | --------------------------------------------- |
 | keyAlias         | string                      | 是   | 密钥别名，存放待导入密钥的别名。              |
 | wrappingKeyAlias | string                      | 是   | 密钥别名，对应密钥用于解密加密的密钥数据。    |
-| options          | [HuksOptions](#huksoptions) | 是   | 用于导入时所需TAG和需要导入的加密的密钥数据。 |
+| options          | [HuksOptions](#huksoptions) | 是   | 用于导入时所需TAG和需要导入的加密的密钥数据。其中密钥使用的算法、密钥用途、密钥长度为必选参数。 |
 
 **示例：**
 
@@ -2508,28 +2508,9 @@ init操作密钥接口，使用Promise方式异步返回结果。huks.init, huks
 | ----------------------------------- | -------------------------------------------------- |
 | Promise\<[HuksHandle](#hukshandle)> | Promise对象。将Init操作返回的handle添加到密钥管理系统的回调。 |
 
-
 ## huks.update<sup>(deprecated)</sup>
 
-update(handle: number, options: HuksOptions, callback: AsyncCallback\<HuksResult>) : void
-
-update操作密钥接口，使用Callback回调异步返回结果。huks.init, huks.update, huks.finish为三段式接口，需要一起使用。
-
->  **说明：** 从API Version 9开始废弃，建议使用[huks.updateSession<sup>9+</sup>](#huksupdatesession9)替代。
-
-**系统能力**：SystemCapability.Security.Huks
-
-**参数：**
-
-| 参数名   | 类型                                      | 必填 | 说明                                         |
-| -------- | ----------------------------------------- | ---- | -------------------------------------------- |
-| handle   | number                                    | 是   | Update操作的handle。                         |
-| options  | [HuksOptions](#huksoptions)               | 是   | Update的参数集合。                           |
-| callback | AsyncCallback\<[HuksResult](#huksresult)> | 是   | 回调函数。将Update操作的结果添加到密钥管理系统的回调。 |
-
-## huks.update<sup>(deprecated)</sup>
-
-update(handle: number, options: HuksOptions,  token: Uint8Array,  callback: AsyncCallback\<HuksResult>) : void
+update(handle: number, token?: Uint8Array, options: HuksOptions, callback: AsyncCallback<HuksResult>) : void
 
 update操作密钥接口，使用Callback回调异步返回结果。huks.init, huks.update, huks.finish为三段式接口，需要一起使用。
 
@@ -2548,7 +2529,7 @@ update操作密钥接口，使用Callback回调异步返回结果。huks.init, h
 
 ## huks.update<sup>(deprecated)</sup>
 
-update(handle: number, options: HuksOptions, token?: Uint8Array) : Promise\<HuksResult>
+update(handle: number, token?: Uint8Array, options: HuksOptions) : Promise<HuksResult>;
 
 update操作密钥接口，使用Promise方式异步返回结果。huks.init, huks.update, huks.finish为三段式接口，需要一起使用。
 

@@ -77,7 +77,10 @@ result.toString()
 ```
 
 
-### equals
+### equals<sup>(deprecated)</sup>
+> **NOTE**
+>
+> This API is deprecated since API version 9. You are advised to use [equalsTo<sup>9+</sup>](#equalsto9) instead.
 
 equals(other: URI): boolean
 
@@ -103,6 +106,33 @@ Checks whether this URI is the same as another URI object.
 const uriInstance = new uri.URI('http://username:password@host:8080/directory/file?query=pppppp#qwer=da');
 const uriInstance1 = new uri.URI('http://username:password@host:8080/directory/file?query=pppppp#qwer=da#fragment');
 uriInstance.equals(uriInstance1);
+```
+### equalsTo<sup>9+</sup>
+
+equalsTo(other: URI): boolean
+
+Checks whether this URI is the same as another URI object.
+
+**System capability**: SystemCapability.Utils.Lang
+
+**Parameters**
+
+| Name| Type.| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| other | [URI](#uri) | Yes| URI object to compare.|
+
+**Return value**
+
+| Type.| Description|
+| -------- | -------- |
+| boolean | Returns **true** if the two URIs are the same; returns **false** otherwise.|
+
+**Example**
+
+```js
+const uriInstance = new uri.URI('http://username:password@host:8080/directory/file?query=pppppp#qwer=da');
+const uriInstance1 = new uri.URI('http://username:password@host:8080/directory/file?query=pppppp#qwer=da#fragment');
+uriInstance.equalsTo(uriInstance1);
 ```
 
 ### checkIsAbsolute

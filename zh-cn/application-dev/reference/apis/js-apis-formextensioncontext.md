@@ -13,10 +13,10 @@ FormExtensionContext模块提供FormExtension具有的接口和能力。
 
 在使用FormExtensionContext的功能前，需要通过FormExtension获取。
 ```js
-import FormExtension from '@ohos.application.FormExtension';
-import formBindingData from '@ohos.application.formBindingData'
-export default class MyFormExtension extends FormExtension {
-    onCreate() {
+import FormExtensionAbility from '@ohos.app.form.FormExtensionAbility';
+import formBindingData from '@ohos.app.form.formBindingData';
+export default class MyFormExtensionAbility extends FormExtensionAbility {
+    onAddForm() {
         let dataObj1 = {
             temperature:"11c",
             "time":"11:00"
@@ -28,22 +28,22 @@ export default class MyFormExtension extends FormExtension {
 
 ```
 
-## FormExtensionContext.startAbility
+## startAbility
 
 startAbility(want: Want, callback: AsyncCallback&lt;void&gt;): void
 
-拉起一个卡片所属应用的Ability。
+拉起一个卡片所属应用的Ability。使用callback异步回调。
+
+**系统接口**：此接口为系统接口。
 
 **系统能力**：SystemCapability.Ability.Form
-
-**系统API**: 此接口为系统接口，三方应用不支持调用。
 
 **参数：**
 
 | 参数名 |                类型               | 必填 |              说明               |
 | ------| --------------------------------- | ---- | -------------------------------------- |
 | want| [Want](js-apis-application-Want.md) | 是  | 包含bundleName，abilityName以及用户自定参数用于拉起Ability。 |
-| callback| AsyncCallback&lt;void&gt;       | 是  | 回调函数，返回接口调用是否成功的结果。 |
+| callback| AsyncCallback&lt;void&gt;       | 是  | 回调函数。当拉起一个卡片所属应用的Ability成功，err为undefined，否则为错误对象。 |
 
 **示例：**
 
@@ -58,20 +58,24 @@ var want = {
     uri: "key={true,true,false}",
     parameters: {}
 }
-this.context.startAbility(want, function(err) {
-    console.info(err.code);
+this.context.startAbility(want, (error, data) => {
+    if (error) {
+      console.log('FormExtensionContext startAbility, error:' + JSON.stringify(error));
+    } else {
+      console.log(`FormExtensionContext startAbility success`);
+    }
 })
 ```
 
-## FormExtensionContext.startAbility
+## startAbility
 
 startAbility(want: Want): Promise&lt;void&gt;
 
-拉起一个卡片所属应用的Ability。
+拉起一个卡片所属应用的Ability。使用Promise异步回调。
+
+**系统接口**：此接口为系统接口。
 
 **系统能力**：SystemCapability.Ability.Form
-
-**系统API**: 此接口为系统接口，三方应用不支持调用。
 
 **参数：**
 
@@ -83,7 +87,7 @@ startAbility(want: Want): Promise&lt;void&gt;
 
 | 类型          | 说明                                |
 | ------------ | ---------------------------------- |
-| Promise&lt;void&lt; | Promise实例，返回接口调用是否成功的结果。 |
+| Promise&lt;void&lt; | 无返回结果的Promise对象。 |
 
 **示例：**
 

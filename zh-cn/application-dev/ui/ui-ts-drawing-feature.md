@@ -92,7 +92,7 @@ FoodDetail页面的食物成分表里，给每一项成分名称前都加上一�
 
 除绘制基础几何图形，开发者还可以使用Path组件来绘制自定义的路线，下面进行绘制应用的Logo图案。
 
-1. 在pages文件夹下创建新的eTS页面Logo.ets。
+1. 在pages文件夹下创建新的页面Logo.ets。
 
    ![drawing-feature1](figures/drawing-feature1.png)
 

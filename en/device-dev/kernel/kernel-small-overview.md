@@ -142,14 +142,12 @@ Extended components provide optional but important mechanism for extending kerne
 
 ## Usage<a name="section741617511812"></a>
 
-OpenHarmony LiteOS Cortex-A supports the  [Hi3516D V300](https://gitee.com/openharmony/docs/blob/master/en/device-dev/quick-start/quickstart-lite-introduction-hi3516.md). You can develop and run your applications based on this development board.
+OpenHarmony LiteOS Cortex-A supports the  [Hi3516D V300](https://gitee.com/openharmony/docs/blob/master/en/device-dev/quick-start/quickstart-appendix-hi3516.md). You can develop and run your applications based on this development board.
 
 ### Preparations<a name="section1579912573329"></a>
 
-You need to set up the compilation environment on Linux.
+You need to [set up the compilation environment](https://gitee.com/openharmony/docs/blob/master/zh-cn/device-dev/quick-start/quickstart-pkg-prepare.md) on Linux.
 
--   [Setting Up Ubuntu Development Environment](https://gitee.com/openharmony/docs/blob/master/en/device-dev/quick-start/quickstart-lite-env-setup.md)
--   For Hi3516D V300, see  [Setting Up the Hi3516 Development Environment](https://gitee.com/openharmony/docs/blob/master/en/device-dev/quick-start/quickstart-lite-steps-hi3516-setting.md).
 
 ### Source Code Acquisition<a name="section11443189655"></a>
 
@@ -159,7 +157,7 @@ Download and decompress a set of source code on a Linux server to acquire the  [
 
 For details about how to develop the first application, see:
 
--   [Developing the First Example Program Running on Hi3516](https://gitee.com/openharmony/docs/blob/master/en/device-dev/quick-start/quickstart-lite-steps-hi3516-running.md)
+-   [Developing the First Example Program Running on Hi3516](https://gitee.com/openharmony/docs/blob/master/en/device-dev/quick-start/quickstart-pkg-3516-running.md)
 
 ## Repositories Involved<a name="section1371113476307"></a>
 

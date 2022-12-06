@@ -4,9 +4,9 @@
 
 在应用开发的文档中，您可以获取到如下几方面的内容：
 
-### 快速开始
+### 入门
 
-[快速开始](quick-start/Readme-CN.md)可以帮助开发者了解应用开发的基本方法。
+[入门](quick-start/Readme-CN.md)可以帮助开发者了解应用开发的基本方法。
 
 这一部分包含了快速构建首个应用的快速入门，以及开发OpenHarmony应用所必备的基础知识。
 
@@ -18,13 +18,13 @@
 
 首先，提供了支撑OpenHarmony应用的两个重要框架：
 
-- 应用程序的框架：[Ability开发](ability/Readme-CN.md)
+- 应用程序的框架：[应用模型](application-models/Readme-CN.md)
 - UI的框架：[UI开发](ui/Readme-CN.md)
 
 所有应用都应该在这两个框架的基础之上进行功能的开发。
 
 在此基础上，还提供了如下功能的开发指导：
-- [公共事件与通知](notification/Readme-CN.md)
+- [通知](notification/Readme-CN.md)
 - [窗口管理](windowmanager/Readme-CN.md)
 - [WebGL](webgl/Readme-CN.md)
 - [媒体](media/Readme-CN.md)
