@@ -39,9 +39,9 @@ enableAdmin(admin: Want, enterpriseInfo: EnterpriseInfo, type: AdminType, callba
 
 | 错误码ID | 错误信息                                                         |
 | ------- | --------------------------------------------------------------- |
-| 9200003 | The administrator ability component is invalid.                 |
-| 9200004 | Failed to activate the administrator application of the device. |
-| 9200007 | The system ability work abnormally.                             |
+| 9200003 | the administrator ability component is invalid.                 |
+| 9200004 | failed to enable the administrator application of the device.   |
+| 9200007 | the system ability work abnormally.                             |
 
 **示例**：
 
@@ -91,9 +91,9 @@ enableAdmin(admin: Want, enterpriseInfo: EnterpriseInfo, type: AdminType, userId
 
 | 错误码ID | 错误信息                                                         |
 | ------- | --------------------------------------------------------------- |
-| 9200003 | The administrator ability component is invalid.                 |
-| 9200004 | Failed to activate the administrator application of the device. |
-| 9200007 | The system ability work abnormally.                             |
+| 9200003 | the administrator ability component is invalid.                 |
+| 9200004 | failed to enable the administrator application of the device.   |
+| 9200007 | the system ability work abnormally.                             |
 
 **示例**：
 
@@ -148,9 +148,9 @@ enableAdmin(admin: Want, enterpriseInfo: EnterpriseInfo, type: AdminType, userId
 
 | 错误码ID | 错误信息                                                         |
 | ------- | --------------------------------------------------------------- |
-| 9200003 | The administrator ability component is invalid.                 |
-| 9200004 | Failed to activate the administrator application of the device. |
-| 9200007 | The system ability work abnormally.                             |
+| 9200003 | the administrator ability component is invalid.                 |
+| 9200004 | failed to enable the administrator application of the device.   |
+| 9200007 | the system ability work abnormally.                             |
 
 **示例**：
 
@@ -194,7 +194,7 @@ disableAdmin(admin: Want, callback: AsyncCallback\<void>): void
 
 | 错误码ID | 错误信息                                                           |
 | ------- | ----------------------------------------------------------------- |
-| 9200005 | Failed to deactivate the administrator application of the device. |
+| 9200005 | failed to disable the administrator application of the device.    |
 
 **示例**：
 
@@ -238,7 +238,7 @@ disableAdmin(admin: Want, userId: number, callback: AsyncCallback\<void>): void
 
 | 错误码ID | 错误信息                                                           |
 | ------- | ----------------------------------------------------------------- |
-| 9200005 | Failed to deactivate the administrator application of the device. |
+| 9200005 | failed to disable the administrator application of the device.    |
 
 **示例**：
 
@@ -287,7 +287,7 @@ disableAdmin(admin: Want, userId?: number): Promise\<void>
 
 | 错误码ID | 错误信息                                                           |
 | ------- | ----------------------------------------------------------------- |
-| 9200005 | Failed to deactivate the administrator application of the device. |
+| 9200005 | failed to disable the administrator application of the device.    |
 
 **示例**：
 
@@ -326,7 +326,7 @@ disableSuperAdmin(bundleName: String, callback: AsyncCallback\<void>): void
 
 | 错误码ID | 错误信息                                                           |   
 | ------- | ----------------------------------------------------------------- |
-| 9200005 | Failed to deactivate the administrator application of the device. |
+| 9200005 | failed to disable the administrator application of the device.    |
 
 **示例**：
 
@@ -371,7 +371,7 @@ disableSuperAdmin(bundleName: String): Promise\<void>
 
 | 错误码ID | 错误信息                                                           |
 | ------- | ----------------------------------------------------------------- |
-| 9200005 | Failed to deactivate the administrator application of the device. |
+| 9200005 | failed to disable the administrator application of the device.    |
 
 **示例**：
 
@@ -398,14 +398,6 @@ isAdminEnabled(admin: Want, callback: AsyncCallback\<boolean>): void
 | -------- | ----------------------------------- | ---- | -------------------- |
 | admin    | [Want](js-apis-application-Want.md) | 是    | 设备管理员应用              |
 | callback | AsyncCallback\<boolean>             | 是    | callback方式返回是否处于激活状态 |
-
-**错误码**:
-
-以下的错误码的详细介绍请参见[企业设备管理错误码](../errorcodes/errorcode-enterpriseDeviceManager.md)
-
-| 错误码ID | 错误信息                                                              |          
-| ------- | ----------------------------------------------------------------- |
-| 9200005 | Failed to deactivate the administrator application of the device. |
 
 **示例**：
 
@@ -583,7 +575,7 @@ setEnterpriseInfo(admin: Want, enterpriseInfo: EnterpriseInfo, callback: AsyncCa
 
 | 错误码ID | 错误信息                                               |
 | ------- | ----------------------------------------------------- |
-| 9200001 | The application is not a administrator of the device. |
+| 9200001 | the application is not an administrator of the device. |
 
 **示例：**
 
@@ -636,7 +628,7 @@ setEnterpriseInfo(admin: Want, enterpriseInfo: EnterpriseInfo): Promise\<void>;
 
 | 错误码ID | 错误信息                                               |
 | ------- | ----------------------------------------------------- |
-| 9200001 | The application is not a administrator of the device. |
+| 9200001 | the application is not an administrator of the device. |
 
 **示例：**
 
@@ -677,7 +669,7 @@ getEnterpriseInfo(admin: Want, callback: AsyncCallback&lt;EnterpriseInfo&gt;): v
 
 | 错误码ID | 错误信息                                               |
 | ------- | ----------------------------------------------------- |
-| 9200001 | The application is not a administrator of the device. |
+| 9200001 | the application is not an administrator of the device. |
 
 **示例：**
 
@@ -724,7 +716,7 @@ getEnterpriseInfo(admin: Want): Promise&lt;EnterpriseInfo&gt;
 
 | 错误码ID | 错误信息                                               |
 | ------- | ----------------------------------------------------- |
-| 9200001 | The application is not a administrator of the device. |
+| 9200001 | the application is not an administrator of the device. |
 
 **示例：**
 
@@ -764,9 +756,10 @@ subscribeManagedEvent(admin: Want, managedEvents: Array\<ManagedEvent>, callback
 **错误码**：
 
 以下的错误码的详细介绍请参见[企业设备管理错误码](../errorcodes/errorcode-enterpriseDeviceManager.md)
+
 |错误码ID | 错误信息                                                |
 | ------- | ----------------------------------------------------- |
-| 9200001 | The application is not a administrator of the device. |
+| 9200001 | the application is not an administrator of the device. |
 | 9200008 | the specified system events enum is invalid.          |
 
 **示例：**
@@ -812,9 +805,10 @@ subscribeManagedEvent(admin: Want, managedEvents: Array\<ManagedEvent>): Promise
 **错误码**：
 
 以下的错误码的详细介绍请参见[企业设备管理错误码](../errorcodes/errorcode-enterpriseDeviceManager.md)
+
 | 错误码ID | 错误信息                                               |
 | ------- | ----------------------------------------------------- |
-| 9200001 | The application is not a administrator of the device. |
+| 9200001 | the application is not an administrator of the device. |
 | 9200008 | the specified system events enum is invalid.          |
 
 **示例：**
@@ -854,9 +848,10 @@ unsubscribeManagedEvent(admin: Want, managedEvents: Array\<ManagedEvent>, callba
 **错误码**：
 
 以下的错误码的详细介绍请参见[企业设备管理错误码](../errorcodes/errorcode-enterpriseDeviceManager.md)
+
 | 错误码ID | 错误信息                                               |
 | ------- | ----------------------------------------------------- |
-| 9200001 | The application is not a administrator of the device. |
+| 9200001 | the application is not an administrator of the device. |
 | 9200008 | the specified system events enum is invalid.          |
 
 **示例：**
@@ -902,9 +897,10 @@ unsubscribeManagedEvent(admin: Want, managedEvents: Array\<ManagedEvent>): Promi
 **错误码**：
 
 以下的错误码的详细介绍请参见[企业设备管理错误码](../errorcodes/errorcode-enterpriseDeviceManager.md)
+
 | 错误码ID | 错误信息                                               |
 | ------- | ----------------------------------------------------- |
-| 9200001 | The application is not a administrator of the device. |
+| 9200001 | the application is not an administrator of the device. |
 | 9200008 | the specified system events enum is invalid.          |
 
 **示例：**
@@ -930,7 +926,7 @@ adminManager.unsubscribeManagedEvent(wantTemp, events).then(() => {
 **系统API**: 此接口为系统接口。
 
 | 名称         | 类型     | 可读 | 可写   | 说明                            |
-| ----------- | ---- ----| ---- | ----- | ------------------------------- |
+| ----------- | --------| ---- | ----- | ------------------------------- |
 | name        | string   | 是   | 否    | 表示设备管理员应用所属企业的名称。 |
 | description | string   | 是   | 否    | 表示设备管理员应用所属企业的描述。 |
 

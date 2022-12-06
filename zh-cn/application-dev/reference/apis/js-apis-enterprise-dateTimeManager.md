@@ -38,8 +38,8 @@ setDateTime(admin: Want, time: number, callback: AsyncCallback\<void>): void
 
 | 错误码ID | 错误信息                                                                      |
 | ------- | ---------------------------------------------------------------------------- |
-| 9200001 | The application is not a administrator of the device.                        |
-| 9200002 | The administrator application does not have permission to manage the device. |
+| 9200001 | the application is not an administrator of the device.                       |
+| 9200002 | the administrator application does not have permission to manage the device. |
 
 **示例：**
 
@@ -86,8 +86,8 @@ setDateTime(admin: Want, time: number): Promise\<void>
 
 | 错误码ID | 错误信息                                                                      |
 | ------- | ---------------------------------------------------------------------------- |
-| 9200001 | The application is not a administrator of the device.                        |
-| 9200002 | The administrator application does not have permission to manage the device. |
+| 9200001 | the application is not an administrator of the device.                        |
+| 9200002 | the administrator application does not have permission to manage the device. |
 
 **示例：**
 
