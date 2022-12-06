@@ -17,9 +17,6 @@
 
 - Windows和Ubuntu系统上安装的DevEco Device Tool为3.0 Release版本。
 
-  > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
-  > 
-  > 当前[DevEco Device Tool](https://device.harmonyos.com/cn/ide#download)下载页面仅提供最新版本的安装包，新老版本在页面和使用方法上略有差异。若您使用的是最新版本的DevEco Device Tool，可参考[搭建开发环境](https://gitee.com/openharmony/docs/blob/master/zh-cn/device-dev/quick-start/quickstart-ide-env-win.md)。
 
 
 ## 搭建Ubuntu环境
@@ -42,7 +39,11 @@
 
        ![zh-cn_image_0000001243641075](figures/zh-cn_image_0000001243641075.png)
 
-2. 下载[DevEco Device Tool 3.0 Release](https://device.harmonyos.com/cn/ide#download)Linux版本。
+2. 下载[DevEco Device Tool 3.0 Release](https://device.harmonyos.com/cn/ide#download) Linux版本。
+
+   > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+   > 
+   > 当前文档中匹配的是DevEco Device Tool 3.0 Release版本。不同版本的界面和使用方法略有差异，若您使用的是最新版本的DevEco Device Tool，可参考[搭建开发环境](https://gitee.com/openharmony/docs/blob/master/zh-cn/device-dev/quick-start/quickstart-ide-env-ubuntu.md)。
 
 3. 解压DevEco Device Tool软件包并对解压后的文件夹进行赋权。
 
@@ -77,7 +78,11 @@
 
 通过Windows系统远程访问Ubuntu环境，需要先在Windows系统中安装DevEco Device Tool，以便使用Windows平台的DevEco Device Tool可视化界面进行相关操作。
 
-1. 下载[DevEco Device Tool 3.0 Release](https://device.harmonyos.com/cn/ide#download)Windows版。
+1. 下载[DevEco Device Tool 3.0 Release](https://device.harmonyos.com/cn/ide#download) Windows版。
+
+   > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+   > 
+   > 当前文档中匹配的是DevEco Device Tool 3.0 Release版本。不同版本的界面和使用方法略有差异，若您使用的是最新版本的DevEco Device Tool，可参考[搭建开发环境](https://gitee.com/openharmony/docs/blob/master/zh-cn/device-dev/quick-start/quickstart-ide-env-win.md)。
 
 2. 解压DevEco Device Tool压缩包，双击安装包程序，点击Next进行安装。
 
