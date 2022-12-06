@@ -60,7 +60,7 @@ build() {
 
 Ability配置中缺少startWindowIcon属性配置，需要在module.json5中abilities中配置startWindowIcon。
 
-参考文档：[Stage模型配置文件](../quick-start/stage-structure.md)
+参考文档：[Stage模型应用程序包结构](../quick-start/application-package-structure-stage.md)
 
 示例：
 
