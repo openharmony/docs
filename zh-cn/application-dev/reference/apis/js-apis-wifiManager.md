@@ -560,7 +560,7 @@ connectToNetwork(networkId: number): void
 
 ## wifi.connectToDevice<sup>9+</sup>
 
-connectToDevice(config: WifiDeviceConfig): boolean
+connectToDevice(config: WifiDeviceConfig): void
 
 连接到指定网络。
 
