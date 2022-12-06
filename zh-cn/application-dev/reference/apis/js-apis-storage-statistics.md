@@ -453,7 +453,7 @@ getSystemSize(callback: AsyncCallback&lt;number&gt;): void
 
 ## storageStatistics.getUserStorageStats<sup>9+</sup>
 
-getUserStorageStats(userId? : number): Promise&lt;StorageStats&gt;
+getUserStorageStats(userId?: number): Promise&lt;StorageStats&gt;
 
 异步获取用户各类别数据大小，以promise方式返回。
 
@@ -490,7 +490,7 @@ getUserStorageStats(userId? : number): Promise&lt;StorageStats&gt;
 
 ## storageStatistics.getUserStorageStats<sup>9+</sup>
 
-getUserStorageStats(userId: number, callback: AsyncCallback&lt;StorageStats&gt;): void
+getUserStorageStats(userId?: number, callback: AsyncCallback&lt;StorageStats&gt;): void
 
 异步获取用户各类别数据大小，以callback方式返回。
 
