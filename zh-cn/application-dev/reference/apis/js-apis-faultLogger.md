@@ -146,7 +146,7 @@ query(faultType: FaultType, callback: AsyncCallback&lt;Array&lt;FaultLogInfo&gt;
 
 | 错误码ID | 错误信息 |
 | --- | --- |
-| 10600001 | the service is not running or broken |
+| 10600001 | The service is not running or broken |
 
 **示例：**
 
@@ -203,7 +203,7 @@ query(faultType: FaultType) : Promise&lt;Array&lt;FaultLogInfo&gt;&gt;
 
 | 错误码ID | 错误信息 |
 | --- | --- |
-| 10600001 | the service is not running or broken |
+| 10600001 | The service is not running or broken |
 
 **示例：**
 
