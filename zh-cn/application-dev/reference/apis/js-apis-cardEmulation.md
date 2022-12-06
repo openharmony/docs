@@ -15,7 +15,7 @@ import cardEmulation from '@ohos.nfc.cardEmulation';
 
 定义不同的NFC卡模拟类型。
 
-**系统能力**：SystemCapability.Communication.NFC.Core
+**系统能力：** SystemCapability.Communication.NFC.Core
 
 | 名称 | 值 | 说明 |
 | -------- | -------- | -------- |
@@ -29,7 +29,7 @@ isSupported(feature: number): boolean
 
 是否支持某种类型的卡模拟。
 
-**系统能力**：SystemCapability.Communication.NFC.Core
+**系统能力：** SystemCapability.Communication.NFC.Core
 
 **参数：**
 
@@ -53,9 +53,9 @@ startHCE(aidList: string[]): boolean
 
 启动HCE业务功能。包括设置当前应用为前台优先，动态注册AID列表。
 
-**需要权限**：ohos.permission.NFC_CARD_EMULATION
+**需要权限：** ohos.permission.NFC_CARD_EMULATION
 
-**系统能力**：SystemCapability.Communication.NFC.Core
+**系统能力：** SystemCapability.Communication.NFC.Core
 
 **参数：**
 
@@ -69,7 +69,7 @@ stopHCE(): boolean
 
 停止HCE业务功能。包括退出当前应用前台优先，释放动态注册的AID列表。
 
-**需要权限**：ohos.permission.NFC_CARD_EMULATION
+**需要权限：** ohos.permission.NFC_CARD_EMULATION
 
 **系统能力：** SystemCapability.Communication.NFC.Core
 
@@ -79,9 +79,9 @@ on(type: "hceCmd", callback: AsyncCallback<number[]>): void;
 
 订阅回调，用于接收对端读卡设备发送的APDU数据。
 
-**需要权限**：ohos.permission.NFC_CARD_EMULATION
+**需要权限：** ohos.permission.NFC_CARD_EMULATION
 
-**系统能力**：SystemCapability.Communication.NFC.Core
+**系统能力：** SystemCapability.Communication.NFC.Core
 
 **参数：**
 
@@ -96,9 +96,9 @@ sendResponse(responseApdu: number[]): void;
 
 发送APDU数据到对端读卡设备。
 
-**需要权限**：ohos.permission.NFC_CARD_EMULATION
+**需要权限：** ohos.permission.NFC_CARD_EMULATION
 
-**系统能力**：SystemCapability.Communication.NFC.Core
+**系统能力：** SystemCapability.Communication.NFC.Core
 
 **参数：**
 
