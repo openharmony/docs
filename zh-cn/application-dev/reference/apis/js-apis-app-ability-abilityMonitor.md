@@ -4,14 +4,14 @@ AbilityMonitor模块提供匹配满足指定条件的受监视能力对象的方
 
 > **说明：**
 > 
-> 本模块首批接口从API version 9 开始支持，从API version 9废弃，替换模块为[abilityMonitor (AbilityMonitor)](js-apis-app-ability-abilityMonitor.md)。后续版本的新增接口，采用上角标单独标记接口的起始版本。  
+> 本模块首批接口从API version 9 开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。  
 
 ## 使用说明
 
 通过abilityDelegator中的addAbilityMonitor来设置。
 
 ```js
-import AbilityDelegatorRegistry from '@ohos.application.abilityDelegatorRegistry'
+import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry'
 var abilityDelegator;
 
 function onAbilityCreateCallback(data) {
@@ -24,9 +24,14 @@ var monitor = {
 }
 
 abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
-abilityDelegator.addAbilityMonitor(monitor, (err : any) => {
-    console.info("addAbilityMonitor callback");
-});
+try {
+    abilityDelegator.addAbilityMonitor(monitor, (err : any) => {
+        console.info("addAbilityMonitor callback");
+    });
+} catch (paramError) {
+  console.log('error.code: ' + JSON.stringify(paramError.code) +
+    ' error.message: ' + JSON.stringify(paramError.message));
+}
 ```
 
 ## AbilityMonitor

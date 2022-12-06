@@ -4,7 +4,7 @@ Want是对象间信息传递的载体, 可以用于应用组件间的信息传�
 
 > **说明：**
 > 
-> 本模块首批接口从API version 6开始支持，从API version 9废弃，替换模块为[Want (Want)](js-apis-app-ability-Want.md)。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+> 本模块首批接口从API version 9开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityBase
 

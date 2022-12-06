@@ -4,13 +4,13 @@ AbilityDelegator提供添加用于监视指定ability的生命周期状态更改
 
 > **说明：**
 > 
-> 本模块首批接口从API version 8开始支持，从API version 9废弃，替换木块为[@ohos.app.ability.abilityDelegatorRegistry (AbilityDelegatorRegistry)](js-apis-app-ability-abilityDelegator.md)。后续版本的新增接口，采用上角标单独标记接口的起始版本。 
+> 本模块首批接口从API version 9开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。 
 
 ## 使用说明
 
 通过AbilityDelegatorRegistry中getAbilityDelegator方法获取。
 ```js
-import AbilityDelegatorRegistry from '@ohos.application.abilityDelegatorRegistry'
+import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry'
 
 var abilityDelegator;
 
@@ -20,9 +20,9 @@ abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
 
 ## AbilityDelegator
 
-### addAbilityMonitor<sup>9+</sup>
+### addAbilityMonitor
 
-addAbilityMonitor(monitor: AbilityMonitor, callback: AsyncCallback\<void>): void;
+addAbilityMonitor(monitor: AbilityMonitor, callback: AsyncCallback\<void>): void
 
 添加AbilityMonitor实例（callback形式）
 
@@ -30,9 +30,9 @@ addAbilityMonitor(monitor: AbilityMonitor, callback: AsyncCallback\<void>): void
 
 **参数：**
 
-| 参数名   | 类型                                                         | 必填 | 说明                                                         |
+| 参数名   | 类型                                                         | 必填说明 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | -------- | ------------------------------------------------------------ |
-| monitor  | [AbilityMonitor](js-apis-application-abilityMonitor.md#AbilityMonitor) | 是       | [AbilityMonitor](js-apis-application-abilityMonitor.md#AbilityMonitor)实例 |
+| monitor  | [AbilityMonitor](js-apis-app-ability-abilityMonitor.md#AbilityMonitor) | 是       | [AbilityMonitor](js-apis-app-ability-abilityMonitor.md#AbilityMonitor)实例 |
 | callback | AsyncCallback\<void>                                         | 是       | 表示指定的回调方法                                           |
 
 **示例：**
@@ -55,9 +55,11 @@ abilityDelegator.addAbilityMonitor(monitor, (err : any) => {
 });
 ```
 
-### addAbilityMonitor<sup>9+</sup>
 
-addAbilityMonitor(monitor: AbilityMonitor): Promise\<void>;
+
+### addAbilityMonitor
+
+addAbilityMonitor(monitor: AbilityMonitor): Promise\<void>
 
 添加AbilityMonitor实例（promise形式）
 
@@ -67,7 +69,7 @@ addAbilityMonitor(monitor: AbilityMonitor): Promise\<void>;
 
 | 参数名  | 类型                                                         | 必填 | 说明                                                         |
 | ------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| monitor | [AbilityMonitor](js-apis-application-abilityMonitor.md#AbilityMonitor) | 是   | [AbilityMonitor](js-apis-application-abilityMonitor.md#AbilityMonitor)实例 |
+| monitor | [AbilityMonitor](js-apis-app-ability-abilityMonitor.md#AbilityMonitor) | 是   | [AbilityMonitor](js-apis-app-ability-abilityMonitor.md#AbilityMonitor)实例 |
 
 **返回值：**
 
@@ -97,9 +99,9 @@ abilityDelegator.addAbilityMonitor(monitor).then(() => {
 
 
 
-### removeAbilityMonitor<sup>9+</sup>
+### removeAbilityMonitor
 
-removeAbilityMonitor(monitor: AbilityMonitor, callback: AsyncCallback\<void>): void;
+removeAbilityMonitor(monitor: AbilityMonitor, callback: AsyncCallback\<void>): void
 
 删除已经添加的AbilityMonitor实例（callback形式）
 
@@ -109,7 +111,7 @@ removeAbilityMonitor(monitor: AbilityMonitor, callback: AsyncCallback\<void>): v
 
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| monitor  | [AbilityMonitor](js-apis-application-abilityMonitor.md#AbilityMonitor) | 是   | [AbilityMonitor](js-apis-application-abilityMonitor.md#AbilityMonitor)实例 |
+| monitor  | [AbilityMonitor](js-apis-app-ability-abilityMonitor.md#AbilityMonitor) | 是   | [AbilityMonitor](js-apis-app-ability-abilityMonitor.md#AbilityMonitor)实例 |
 | callback | AsyncCallback\<void>                                         | 是   | 表示指定的回调方法                                           |
 
 **示例：**
@@ -134,9 +136,9 @@ abilityDelegator.removeAbilityMonitor(monitor, (err : any) => {
 
 
 
-### removeAbilityMonitor<sup>9+</sup>
+### removeAbilityMonitor
 
-removeAbilityMonitor(monitor: AbilityMonitor): Promise\<void>;
+removeAbilityMonitor(monitor: AbilityMonitor): Promise\<void>
 
 删除已经添加的AbilityMonitor实例（promise形式）
 
@@ -144,9 +146,9 @@ removeAbilityMonitor(monitor: AbilityMonitor): Promise\<void>;
 
 **参数：**
 
-| 参数名    | 类型                                                         | 必填 | 说明                                                         |
+| 名称    | 类型                                                         | 必填 | 说明                                                         |
 | ------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| monitor | [AbilityMonitor](js-apis-application-abilityMonitor.md#AbilityMonitor) | 是   | [AbilityMonitor](js-apis-application-abilityMonitor.md#AbilityMonitor)实例 |
+| monitor | [AbilityMonitor](js-apis-app-ability-abilityMonitor.md#AbilityMonitor) | 是   | [AbilityMonitor](js-apis-app-ability-abilityMonitor.md#AbilityMonitor)实例 |
 
 **返回值：**
 
@@ -176,9 +178,9 @@ abilityDelegator.removeAbilityMonitor(monitor).then(() => {
 
 
 
-### waitAbilityMonitor<sup>9+</sup>
+### waitAbilityMonitor
 
-waitAbilityMonitor(monitor: AbilityMonitor, callback: AsyncCallback\<UIAbility>): void;
+waitAbilityMonitor(monitor: AbilityMonitor, callback: AsyncCallback\<Ability>): void
 
 等待与AbilityMonitor实例匹配的ability到达OnCreate生命周期，并返回ability实例（callback形式）
 
@@ -188,8 +190,8 @@ waitAbilityMonitor(monitor: AbilityMonitor, callback: AsyncCallback\<UIAbility>)
 
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| monitor  | [AbilityMonitor](js-apis-application-abilityMonitor.md#AbilityMonitor) | 是   | [AbilityMonitor](js-apis-application-abilityMonitor.md#AbilityMonitor)实例 |
-| callback | AsyncCallback\<[UIAbility](js-apis-application-ability.md#Ability)> | 是   | 表示指定的回调方法                                           |
+| monitor  | [AbilityMonitor](js-apis-app-ability-abilityMonitor.md#AbilityMonitor) | 是   | [AbilityMonitor](js-apis-app-ability-abilityMonitor.md#AbilityMonitor)实例 |
+| callback | AsyncCallback\<[Ability](js-apis-application-ability.md#Ability)> | 是   | 表示指定的回调方法                                           |
 
 **示例：**
 
@@ -211,9 +213,11 @@ abilityDelegator.waitAbilityMonitor(monitor, (err : any, data : any) => {
 });
 ```
 
-### waitAbilityMonitor<sup>9+</sup>
 
-waitAbilityMonitor(monitor: AbilityMonitor, timeout: number, callback: AsyncCallback\<UIAbility>): void;
+
+### waitAbilityMonitor
+
+waitAbilityMonitor(monitor: AbilityMonitor, timeout: number, callback: AsyncCallback\<Ability>): void
 
 设置等待时间，等待与AbilityMonitor实例匹配的ability到达OnCreate生命周期，并返回ability实例（callback形式）
 
@@ -223,9 +227,9 @@ waitAbilityMonitor(monitor: AbilityMonitor, timeout: number, callback: AsyncCall
 
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| monitor  | [AbilityMonitor](js-apis-application-abilityMonitor.md#AbilityMonitor) | 是   | [AbilityMonitor](js-apis-application-abilityMonitor.md#AbilityMonitor)实例 |
-| timeout  | number                                                       | 否   | 最大等待时间，单位毫秒（ms）                                 |
-| callback | AsyncCallback\<[UIAbility](js-apis-application-ability.md#Ability)> | 是   | 表示指定的回调方法                                           |
+| monitor  | [AbilityMonitor](js-apis-app-ability-abilityMonitor.md#AbilityMonitor) | 是   | [AbilityMonitor](js-apis-app-ability-abilityMonitor.md#AbilityMonitor)实例 |
+| timeout  | number                                                       | 是   | 最大等待时间，单位毫秒（ms）                                 |
+| callback | AsyncCallback\<[Ability](js-apis-application-ability.md#Ability)> | 是   | 表示指定的回调方法                                           |
 
 **示例：**
 
@@ -250,9 +254,9 @@ abilityDelegator.waitAbilityMonitor(monitor, timeout, (err : any, data : any) =>
 
 
 
-### waitAbilityMonitor<sup>9+</sup>
+### waitAbilityMonitor
 
-waitAbilityMonitor(monitor: AbilityMonitor, timeout?: number): Promise\<UIAbility>;
+waitAbilityMonitor(monitor: AbilityMonitor, timeout?: number): Promise\<Ability>
 
 设置等待时间，等待与AbilityMonitor实例匹配的ability到达OnCreate生命周期，并返回ability实例（promise形式）
 
@@ -262,14 +266,14 @@ waitAbilityMonitor(monitor: AbilityMonitor, timeout?: number): Promise\<UIAbilit
 
 | 参数名  | 类型                                                         | 必填 | 说明                                                         |
 | ------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| monitor | [AbilityMonitor](js-apis-application-abilityMonitor.md#AbilityMonitor) | 是   | [AbilityMonitor](js-apis-application-abilityMonitor.md#AbilityMonitor)实例 |
+| monitor | [AbilityMonitor](js-apis-app-ability-abilityMonitor.md#AbilityMonitor) | 是   | [AbilityMonitor](js-apis-app-ability-abilityMonitor.md#AbilityMonitor)实例 |
 | timeout | number                                                       | 否   | 最大等待时间，单位毫秒（ms）                                 |
 
 **返回值：**
 
 | 类型                                                        | 说明                       |
 | ----------------------------------------------------------- | -------------------------- |
-| Promise\<[UIAbility](js-apis-application-ability.md#Ability)> | 以Promise形式返回Ability。 |
+| Promise\<[Ability](js-apis-application-ability.md#Ability)> | 以Promise形式返回Ability。 |
 
 **示例：**
 
@@ -293,9 +297,9 @@ abilityDelegator.waitAbilityMonitor(monitor).then((data : any) => {
 
 
 
-### getAppContext<sup>9+</sup>
+### getAppContext
 
-getAppContext(): Context;
+getAppContext(): Context
 
 获取应用Context
 
@@ -320,7 +324,7 @@ var context = abilityDelegator.getAppContext();
 
 ### getAbilityState<sup>9+</sup>
 
-getAbilityState(ability: UIAbility): number;
+getAbilityState(ability: Ability): number
 
 获取指定ability的生命周期状态
 
@@ -330,7 +334,7 @@ getAbilityState(ability: UIAbility): number;
 
 | 参数名  | 类型                                              | 必填 | 说明            |
 | ------- | ------------------------------------------------- | ---- | --------------- |
-| ability | [UIAbility](js-apis-application-ability.md#Ability) | 是   | 指定Ability对象 |
+| ability | [Ability](js-apis-application-ability.md#Ability) | 是   | 指定Ability对象 |
 
 **返回值：**
 
@@ -355,9 +359,9 @@ abilityDelegator.getCurrentTopAbility((err : any, data : any) => {
 
 
 
-### getCurrentTopAbility<sup>9+</sup>
+### getCurrentTopAbility
 
-getCurrentTopAbility(callback: AsyncCallback\<UIAbility>): void;
+getCurrentTopAbility(callback: AsyncCallback\<Ability>): void
 
 获取当前应用顶部ability（callback形式）
 
@@ -367,7 +371,7 @@ getCurrentTopAbility(callback: AsyncCallback\<UIAbility>): void;
 
 | 参数名   | 类型                                                         | 必填 | 说明               |
 | -------- | ------------------------------------------------------------ | ---- | ------------------ |
-| callback | AsyncCallback\<[UIAbility](js-apis-application-ability.md#Ability)> | 是   | 表示指定的回调方法 |
+| callback | AsyncCallback\<[Ability](js-apis-application-ability.md#Ability)> | 是   | 表示指定的回调方法 |
 
 **示例：**
 
@@ -384,9 +388,9 @@ abilityDelegator.getCurrentTopAbility((err : any, data : any) => {
 
 
 
-### getCurrentTopAbility<sup>9+</sup>
+### getCurrentTopAbility
 
-getCurrentTopAbility(): Promise\<UIAbility>;
+getCurrentTopAbility(): Promise\<Ability>
 
 获取当前应用顶部ability（promise形式）
 
@@ -396,7 +400,7 @@ getCurrentTopAbility(): Promise\<UIAbility>;
 
 | 类型                                                        | 说明                                   |
 | ----------------------------------------------------------- | -------------------------------------- |
-| Promise\<[UIAbility](js-apis-application-ability.md#Ability)> | 以Promise形式返回当前应用顶部ability。 |
+| Promise\<[Ability](js-apis-application-ability.md#Ability)> | 以Promise形式返回当前应用顶部ability。 |
 
 **示例：**
 
@@ -413,9 +417,9 @@ abilityDelegator.getCurrentTopAbility().then((data : any) => {
 
 
 
-### startAbility<sup>9+</sup>
+### startAbility
 
-startAbility(want: Want, callback: AsyncCallback\<void>): void;
+startAbility(want: Want, callback: AsyncCallback\<void>): void
 
 启动指定ability（callback形式）
 
@@ -425,7 +429,7 @@ startAbility(want: Want, callback: AsyncCallback\<void>): void;
 
 | 参数名   | 类型                                   | 必填 | 说明               |
 | -------- | -------------------------------------- | ---- | ------------------ |
-| want     | [Want](js-apis-application-Want.md) | 是   | 启动Ability参数    |
+| want     | [Want](js-apis-app-ability-Want.md) | 是   | 启动Ability参数    |
 | callback | AsyncCallback\<void>                   | 是   | 表示指定的回调方法 |
 
 **示例：**
@@ -445,9 +449,9 @@ abilityDelegator.startAbility(want, (err : any, data : any) => {
 
 
 
-### startAbility<sup>9+</sup>
+### startAbility
 
-startAbility(want: Want): Promise\<void>;
+startAbility(want: Want): Promise\<void>
 
 启动指定ability（promise形式）
 
@@ -457,7 +461,7 @@ startAbility(want: Want): Promise\<void>;
 
 | 参数名 | 类型                                   | 必填 | 说明            |
 | ------ | -------------------------------------- | ---- | --------------- |
-| want   | [Want](js-apis-application-Want.md) | 是   | 启动Ability参数 |
+| want   | [Want](js-apis-app-ability-Want.md) | 是   | 启动Ability参数 |
 
 **返回值：**
 
@@ -482,9 +486,9 @@ abilityDelegator.startAbility(want).then((data: any) => {
 
 
 
-### doAbilityForeground<sup>9+</sup>
+### doAbilityForeground
 
-doAbilityForeground(ability: UIAbility, callback: AsyncCallback\<void>): void;
+doAbilityForeground(ability: Ability, callback: AsyncCallback\<boolean>): void
 
 调度指定ability生命周期状态到Foreground状态（callback形式）
 
@@ -494,8 +498,8 @@ doAbilityForeground(ability: UIAbility, callback: AsyncCallback\<void>): void;
 
 | 参数名   | 类型                    | 必填 | 说明                                                    |
 | -------- | ----------------------- | ---- | ------------------------------------------------------- |
-| ability  | UIAbility               | 是   | 指定Ability对象                                         |
-| callback | AsyncCallback\<void>    | 是   | 表示指定的回调方法<br/>\- true：成功<br/>\- false：失败 |
+| ability  | Ability                 | 是   | 指定Ability对象                                         |
+| callback | AsyncCallback\<boolean> | 是   | 表示指定的回调方法<br/>\- true：成功<br/>\- false：失败 |
 
 **示例：**
 
@@ -515,9 +519,9 @@ abilityDelegator.getCurrentTopAbility((err : any, data : any) => {
 
 
 
-### doAbilityForeground<sup>9+</sup>
+### doAbilityForeground
 
-doAbilityForeground(ability: UIAbility): Promise\<void>;
+doAbilityForeground(ability: Ability): Promise\<boolean>
 
 调度指定ability生命周期状态到Foreground状态（promise形式）
 
@@ -527,7 +531,7 @@ doAbilityForeground(ability: UIAbility): Promise\<void>;
 
 | 参数名  | 类型    | 必填 | 说明            |
 | ------- | ------- | ---- | --------------- |
-| ability | UIAbility | 是   | 指定Ability对象 |
+| ability | Ability | 是   | 指定Ability对象 |
 
 **返回值：**
 
@@ -553,9 +557,9 @@ abilityDelegator.getCurrentTopAbility((err : any, data : any) => {
 
 
 
-### doAbilityBackground<sup>9+</sup>
+### doAbilityBackground
 
-doAbilityBackground(ability: UIAbility, callback: AsyncCallback\<void>): void;
+doAbilityBackground(ability: Ability, callback: AsyncCallback\<boolean>): void
 
 调度指定ability生命周期状态到Background状态（callback形式）
 
@@ -565,8 +569,8 @@ doAbilityBackground(ability: UIAbility, callback: AsyncCallback\<void>): void;
 
 | 参数名   | 类型                    | 必填 | 说明                                                    |
 | -------- | ----------------------- | ---- | ------------------------------------------------------- |
-| ability  | UIAbility                 | 是   | 指定Ability对象                                         |
-| callback | AsyncCallback\<void> | 是   | 表示指定的回调方法<br/>\- true：成功<br/>\- false：失败 |
+| ability  | Ability                 | 是   | 指定Ability对象                                         |
+| callback | AsyncCallback\<boolean> | 是   | 表示指定的回调方法<br/>\- true：成功<br/>\- false：失败 |
 
 **示例：**
 
@@ -586,9 +590,9 @@ abilityDelegator.getCurrentTopAbility((err : any, data : any) => {
 
 
 
-### doAbilityBackground<sup>9+</sup>
+### doAbilityBackground
 
-doAbilityBackground(ability: UIAbility): Promise\<void>;
+doAbilityBackground(ability: Ability): Promise\<boolean>
 
 调度指定ability生命周期状态到Background状态（promise形式）
 
@@ -598,7 +602,7 @@ doAbilityBackground(ability: UIAbility): Promise\<void>;
 
 | 参数名  | 类型    | 必填 | 说明            |
 | ------- | ------- | ---- | --------------- |
-| ability | UIAbility | 是   | 指定Ability对象 |
+| ability | Ability | 是   | 指定Ability对象 |
 
 **返回值：**
 
@@ -624,9 +628,9 @@ abilityDelegator.getCurrentTopAbility((err : any, data : any) => {
 
 
 
-### printSync<sup>9+</sup>
+### printSync
 
-printSync(msg: string): void;
+printSync(msg: string): void
 
 打印日志信息到单元测试终端控制台
 
@@ -652,7 +656,7 @@ abilityDelegator.printSync(msg);
 
 ### print
 
-print(msg: string, callback: AsyncCallback\<void>): void;
+print(msg: string, callback: AsyncCallback\<void>): void
 
 打印日志信息到单元测试终端控制台（callback形式）
 
@@ -681,7 +685,7 @@ abilityDelegator.print(msg, (err : any) => {
 
 ### print
 
-print(msg: string): Promise\<void>;
+print(msg: string): Promise\<void>
 
 打印日志信息到单元测试终端控制台（promise形式）
 
@@ -715,7 +719,7 @@ abilityDelegator.print(msg).then(() => {
 
 ### executeShellCommand
 
-executeShellCommand(cmd: string, callback: AsyncCallback\<ShellCmdResult>): void;
+executeShellCommand(cmd: string, callback: AsyncCallback\<ShellCmdResult>): void
 
 执行指定的shell命令（callback形式）
 
@@ -744,7 +748,7 @@ abilityDelegator.executeShellCommand(cmd, (err : any, data : any) => {
 
 ### executeShellCommand
 
-executeShellCommand(cmd: string, timeoutSecs: number, callback: AsyncCallback\<ShellCmdResult>): void;
+executeShellCommand(cmd: string, timeoutSecs: number, callback: AsyncCallback\<ShellCmdResult>): void
 
 指定超时时间，并执行指定的shell命令（callback形式）
 
@@ -755,7 +759,7 @@ executeShellCommand(cmd: string, timeoutSecs: number, callback: AsyncCallback\<S
 | 参数名      | 类型                                                         | 必填 | 说明                          |
 | ----------- | ------------------------------------------------------------ | ---- | ----------------------------- |
 | cmd         | string                                                       | 是   | shell命令字符串               |
-| timeoutSecs | number                                                       | 否   | 设定命令超时时间，单位秒（s） |
+| timeoutSecs | number                                                       | 是   | 设定命令超时时间，单位秒（s） |
 | callback    | AsyncCallback\<[ShellCmdResult](js-apis-application-shellCmdResult.md#ShellCmdResult)> | 是   | 表示指定的回调方法            |
 
 **示例：**
@@ -775,7 +779,7 @@ abilityDelegator.executeShellCommand(cmd, timeout, (err : any, data : any) => {
 
 ### executeShellCommand
 
-executeShellCommand(cmd: string, timeoutSecs?: number): Promise\<ShellCmdResult>;
+executeShellCommand(cmd: string, timeoutSecs?: number): Promise\<ShellCmdResult>
 
 指定超时时间，并执行指定的shell命令（promise形式）
 
@@ -809,9 +813,9 @@ abilityDelegator.executeShellCommand(cmd, timeout).then((data : any) => {
 
 
 
-### finishTest<sup>9+</sup>
+### finishTest
 
-finishTest(msg: string, code: number, callback: AsyncCallback\<void>): void;
+finishTest(msg: string, code: number, callback: AsyncCallback\<void>): void
 
 结束测试并打印日志信息到单元测试终端控制台（callback形式）
 
@@ -839,9 +843,9 @@ abilityDelegator.finishTest(msg, 0, (err : any) => {
 
 
 
-### finishTest<sup>9+</sup>
+### finishTest
 
-finishTest(msg: string, code: number): Promise\<void>;
+finishTest(msg: string, code: number): Promise\<void>
 
 结束测试并打印日志信息到单元测试终端控制台（promise形式）
 
@@ -872,7 +876,7 @@ abilityDelegator.finishTest(msg, 0).then(() => {
 });
 ```
 
-### addAbilityStageMonitor<sup>9+</sup>
+### addAbilityStageMonitor
 
 addAbilityStageMonitor(monitor: AbilityStageMonitor, callback: AsyncCallback\<void>): void;
 
@@ -882,7 +886,7 @@ addAbilityStageMonitor(monitor: AbilityStageMonitor, callback: AsyncCallback\<vo
 
 **参数：**
 
-| 参数名   | 类型                                                         | 必填 | 说明                                                         |
+| 参数名   | 类型                                                         | 必填说明 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | -------- | ------------------------------------------------------------ |
 | monitor  | [AbilityStageMonitor](#abilitystagemonitor) | 是       | [AbilityStageMonitor](#abilitystagemonitor) 实例 |
 | callback | AsyncCallback\<void>                                         | 是       | 表示指定的回调方法                                           |
@@ -905,7 +909,7 @@ abilityDelegator.addAbilityStageMonitor(monitor, (err : any) => {
 
 
 
-### addAbilityStageMonitor<sup>9+</sup>
+### addAbilityStageMonitor
 
 addAbilityStageMonitor(monitor: AbilityStageMonitor): Promise\<void>;
 
@@ -941,7 +945,7 @@ abilityDelegator.addAbilityStageMonitor(monitor).then(() => {
 });
 ```
 
-### removeAbilityStageMonitor<sup>9+</sup>
+### removeAbilityStageMonitor
 
 removeAbilityStageMonitor(monitor: AbilityStageMonitor, callback: AsyncCallback\<void>): void;
 
@@ -951,7 +955,7 @@ removeAbilityStageMonitor(monitor: AbilityStageMonitor, callback: AsyncCallback\
 
 **参数：**
 
-| 参数名   | 类型                                                         | 必填 | 说明                                                         |
+| 参数名   | 类型                                                         | 必填说明 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | -------- | ------------------------------------------------------------ |
 | monitor  | [AbilityStageMonitor](#abilitystagemonitor) | 是       | [AbilityStageMonitor](#abilitystagemonitor) 实例 |
 | callback | AsyncCallback\<void>                                         | 是       | 表示指定的回调方法                                           |
@@ -974,7 +978,7 @@ abilityDelegator.removeAbilityStageMonitor(monitor, (err : any) => {
 
 
 
-### removeAbilityStageMonitor<sup>9+</sup>
+### removeAbilityStageMonitor
 
 removeAbilityStageMonitor(monitor: AbilityStageMonitor): Promise\<void>;
 
@@ -1010,7 +1014,7 @@ abilityDelegator.removeAbilityStageMonitor(monitor).then(() => {
 });
 ```
 
-### waitAbilityStageMonitor<sup>9+</sup>
+### waitAbilityStageMonitor
 
 waitAbilityStageMonitor(monitor: AbilityStageMonitor, callback: AsyncCallback\<AbilityStage>): void;
 
@@ -1020,7 +1024,7 @@ waitAbilityStageMonitor(monitor: AbilityStageMonitor, callback: AsyncCallback\<A
 
 **参数：**
 
-| 参数名   | 类型                                                         | 必填 | 说明                                                         |
+| 参数名   | 类型                                                         | 必填说明 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | -------- | ------------------------------------------------------------ |
 | monitor  | [AbilityStageMonitor](#abilitystagemonitor) | 是       | [AbilityStageMonitor](#abilitystagemonitor) 实例 |
 | callback | AsyncCallback\<AbilityStage>                                         | 是       | 成功返回AbilityStage对象，失败返回空。             |
@@ -1045,7 +1049,7 @@ abilityDelegator.waitAbilityStageMonitor(monitor, (err : any, data : any) => {
 });
 ```
   
-### waitAbilityStageMonitor<sup>9+</sup>
+### waitAbilityStageMonitor
 
 waitAbilityStageMonitor(monitor: AbilityStageMonitor, timeout?: number): Promise\<AbilityStage>;
 
@@ -1086,7 +1090,7 @@ abilityDelegator.waitAbilityStageMonitor(monitor).then((data : any) => {
 });
 ```
 
-### waitAbilityStageMonitor<sup>9+</sup>
+### waitAbilityStageMonitor
 
 waitAbilityStageMonitor(monitor: AbilityStageMonitor, timeout: number, callback: AsyncCallback\<AbilityStage>): void;
 
@@ -1131,6 +1135,6 @@ abilityDelegator.waitAbilityStageMonitor(monitor, timeout, (err : any, data : an
 
 | 名称                                                         | 类型     | 可读 | 可写 | 说明                                                         |
 | ------------------------------------------------------------ | -------- | ---- | ---- | ------------------------------------------------------------ |
-| moduleName<sup>9+</sup>                                                 | string   | 是   | 是   | 要监视的abilityStage的模块名。 |
-| srcEntrance<sup>9+</sup> | string | 是   | 是   | 要监视的abilityStage的源路径。 |
+| moduleName                                                 | string   | 是   | 是   | 要监视的abilityStage的模块名。 |
+| srcEntrance | string | 是   | 是   | 要监视的abilityStage的源路径。 |
 

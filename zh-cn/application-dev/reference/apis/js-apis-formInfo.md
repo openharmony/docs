@@ -119,6 +119,16 @@ import formInfo from '@ohos.application.formInfo';
 | Dimension_4_4<sup>9+</sup>      | 4   | 4 x 4 form。   |
 | Dimension_2_1<sup>9+</sup>      | 5   | 2 x 1 form。   |
 
+## VisibilityType
+
+卡片可见性。
+
+**系统能力**：SystemCapability.Ability.Form
+
+| 名称        | 值   | 说明         |
+| ----------- | ---- | ------------ |
+| FORM_VISIBLE         | 1   | 卡片状态为可见。  |
+| FORM_INVISIBLE       | 2   | 卡片状态为不可见。 |      
 
 ## FormInfoFilter<sup>9+</sup>
 

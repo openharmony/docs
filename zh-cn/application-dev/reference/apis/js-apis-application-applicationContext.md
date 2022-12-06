@@ -182,17 +182,310 @@ unregisterEnvironmentCallback(callbackId: **number**,  callback: AsyncCallback<*
 
 **示例：**
 
-```js
+  ```js
+  let applicationContext = this.context.getApplicationContext();
+  let callbackId = 1;
+  applicationContext.unregisterEnvironmentCallback(callbackId, (error, data) => {
+      console.log("unregisterEnvironmentCallback success, err: " + JSON.stringify(error));
+  });
+  ```
+
+## ApplicationContext.on
+
+on(type: "abilityLifecycle", callback: AbilityLifecycleCallback): **number**;
+
+注册监听应用内生命周期
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**参数：**
+
+| 参数名                   | 类型     | 必填 | 说明                           |
+| ------------------------ | -------- | ---- | ------------------------------ |
+| type | string | 是 | 调用接口类型 |
+| callback | [AbilityLifecycleCallback](js-apis-application-abilityLifecycleCallback.md) | 是   | 回调方法，返回注册监听事件的ID。 |
+
+**返回值：**
+
+| 类型   | 说明                           |
+| ------ | ------------------------------ |
+| number | 返回的此次注册监听生命周期的ID（每次注册该ID会自增+1，当超过监听上限数量2^63-1时，返回-1）。|
+
+**示例：**
+
+  ```js
+import Ability from "@ohos.application.Ability";
+
+var lifecycleId;
+
+export default class MyAbility extends Ability {
+    onCreate() {
+        console.log("MyAbility onCreate")
+        let AbilityLifecycleCallback  =  {
+            onAbilityCreate(ability){
+                console.log("AbilityLifecycleCallback onAbilityCreate ability:" + JSON.stringify(ability));        
+            },
+            onWindowStageCreate(ability, windowStage){
+                console.log("AbilityLifecycleCallback onWindowStageCreate ability:" + JSON.stringify(ability)); 
+                console.log("AbilityLifecycleCallback onWindowStageCreate windowStage:" + JSON.stringify(windowStage));           
+            },
+            onWindowStageActive(ability, windowStage){
+                console.log("AbilityLifecycleCallback onWindowStageActive ability:" + JSON.stringify(ability)); 
+                console.log("AbilityLifecycleCallback onWindowStageActive windowStage:" + JSON.stringify(windowStage));           
+            },
+            onWindowStageInactive(ability, windowStage){
+                console.log("AbilityLifecycleCallback onWindowStageInactive ability:" + JSON.stringify(ability));
+                console.log("AbilityLifecycleCallback onWindowStageInactive windowStage:" + JSON.stringify(windowStage));  
+            },
+            onWindowStageDestroy(ability, windowStage){
+                console.log("AbilityLifecycleCallback onWindowStageDestroy ability:" + JSON.stringify(ability));
+                console.log("AbilityLifecycleCallback onWindowStageDestroy windowStage:" + JSON.stringify(windowStage));  
+            },
+            onAbilityDestroy(ability){
+                console.log("AbilityLifecycleCallback onAbilityDestroy ability:" + JSON.stringify(ability));             
+            },
+            onAbilityForeground(ability){
+                console.log("AbilityLifecycleCallback onAbilityForeground ability:" + JSON.stringify(ability));             
+            },
+            onAbilityBackground(ability){
+                console.log("AbilityLifecycleCallback onAbilityBackground ability:" + JSON.stringify(ability));              
+            },
+            onAbilityContinue(ability){
+                console.log("AbilityLifecycleCallback onAbilityContinue ability:" + JSON.stringify(ability));
+            }
+        }
+        // 1.通过context属性获取applicationContext
+        let applicationContext = this.context.getApplicationContext();
+        // 2.通过applicationContext注册监听应用内生命周期
+        try {
+            lifecycleId = applicationContext.on("abilityLifecycle", AbilityLifecycleCallback);
+            console.log("registerAbilityLifecycleCallback number: " + JSON.stringify(lifecycleId));
+        } catch (paramError) {
+            console.log('error.code: ' + JSON.stringify(paramError.code) +
+            ' error.message: ' + JSON.stringify(paramError.message));
+        }
+    },
+    onDestroy() {
+        let applicationContext = this.context.getApplicationContext();
+        try {
+            applicationContext.off("abilityLifecycle", lifecycleId, (error, data) => {
+                console.log("unregisterAbilityLifecycleCallback success, err: " + JSON.stringify(error));
+            });
+        } catch (paramError) {
+            console.log('error.code: ' + JSON.stringify(paramError.code) +
+            ' error.message: ' + JSON.stringify(paramError.message));
+        }
+    }
+}
+  ```
+
+## ApplicationContext.off
+
+off(type: "abilityLifecycle", callbackId: **number**,  callback: AsyncCallback<**void**>): **void**;
+
+取消监听应用内生命周期
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**参数：**
+
+| 参数名        | 类型     | 必填 | 说明                       |
+| ------------- | -------- | ---- | -------------------------- |
+| type | string | 是 | 调用接口类型 |
+| callbackId    | number   | 是   | 注册监听应用内生命周期的ID。 |
+| callback | AsyncCallback\<void> | 是   | 回调方法。                   |
+
+**示例：**
+
+  ```js
+  let applicationContext = this.context.getApplicationContext();
+  let lifecycleId = 1;
+  console.log("stage applicationContext: " + JSON.stringify(applicationContext));
+  try {
+    applicationContext.off("abilityLifecycle", lifecycleId, (error, data) => {
+          console.log("unregisterAbilityLifecycleCallback success, err: " + JSON.stringify(error));
+    });
+  } catch (paramError) {
+    console.log('error.code: ' + JSON.stringify(paramError.code) +
+            ' error.message: ' + JSON.stringify(paramError.message));
+  }
+  ```
+
+## ApplicationContext.off
+
+off(type: "abilityLifecycle", callbackId: **number**,  callback: AsyncCallback<**void**>): Promise&lt;void&gt;;
+
+取消监听应用内生命周期
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**参数：**
+
+| 参数名        | 类型     | 必填 | 说明                       |
+| ------------- | -------- | ---- | -------------------------- |
+| type | string | 是 | 调用接口类型 |
+| callbackId    | number   | 是   | 注册监听应用内生命周期的ID。 |
+| callback | AsyncCallback\<void> | 是   | 回调方法。                   |
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| Promise&lt;void&gt; | Promise形式返回执行结果。 |
+
+**示例：**
+
+  ```js
+  let applicationContext = this.context.getApplicationContext();
+  let lifecycleId = 1;
+  console.log("stage applicationContext: " + JSON.stringify(applicationContext));
+  try {
+    applicationContext.off("abilityLifecycle", lifecycleId)
+        .then((data) => {
+            console.log("unregisterAbilityLifecycleCallback success");
+        })
+        .catch((error) => {
+            console.log("unregisterAbilityLifecycleCallback failed, err.code: " + JSON.stringify(err.code) +
+                "err.message: " + JSON.stringify(err.message));
+        });
+    } catch (paramError) {
+        console.log('error.code: ' + JSON.stringify(paramError.code) +
+            ' error.message: ' + JSON.stringify(paramError.message));
+  }
+  ```
+
+## ApplicationContext.on
+
+on(type: "environment", callback: EnvironmentCallback): **number**;
+
+注册对系统环境变化的监听。使用callback异步回调。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**参数：**
+
+| 参数名                   | 类型     | 必填 | 说明                           |
+| ------------------------ | -------- | ---- | ------------------------------ |
+| callback | [EnvironmentCallback](js-apis-application-EnvironmentCallback.md) | 是   | 回调方法，返回注册监听事件的ID。 |
+
+**返回值：**
+
+| 类型   | 说明                           |
+| ------ | ------------------------------ |
+| number | 返回的此次注册监听系统环境变化的ID（每次注册该ID会自增+1，当超过监听上限数量2^63-1时，返回-1）。|
+
+**示例：**
+
+  ```js
 import Ability from "@ohos.application.Ability";
 
 var callbackId;
 
 export default class MyAbility extends Ability {
+    onCreate() {
+        console.log("MyAbility onCreate")
+        globalThis.applicationContext = this.context.getApplicationContext();
+        let EnvironmentCallback = {
+            onConfigurationUpdated(config){
+                console.log("onConfigurationUpdated config:" + JSON.stringify(config));
+            },
+        }
+        // 1.获取applicationContext
+        let applicationContext = globalThis.applicationContext;
+        try {
+            // 2.通过applicationContext注册监听应用内生命周期
+            callbackId = applicationContext.on("environment", EnvironmentCallback);
+            console.log("registerEnvironmentCallback number: " + JSON.stringify(callbackId));
+        } catch (paramError) {
+            console.log('error.code: ' + JSON.stringify(paramError.code) +
+                ' error.message: ' + JSON.stringify(paramError.message));
+        }
+    }
     onDestroy() {
-        let applicationContext = this.context.getApplicationContext();
-        applicationContext.unregisterEnvironmentCallback(callbackId, (error, data) => {
-            console.log("unregisterEnvironmentCallback success, err: " + JSON.stringify(error));
-        });
+        let applicationContext = globalThis.applicationContext;
+        try {
+            applicationContext.off("environment", callbackId, (error, data) => {
+                console.log("unregisterEnvironmentCallback success, err: " + JSON.stringify(error));
+            });
+        } catch (paramError) {
+            console.log('error.code: ' + JSON.stringify(paramError.code) +
+            ' error.message: ' + JSON.stringify(paramError.message));
+        }
     }
 }
+  ```
+
+## ApplicationContext.off
+
+off("environment", callbackId: **number**,  callback: AsyncCallback<**void**>): **void**;
+
+取消对系统环境变化的监听。使用callback异步回调。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**参数：**
+
+| 参数名         | 类型     | 必填 | 说明                       |
+| ------------- | -------- | ---- | -------------------------- |
+| callbackId    | number   | 是   | 注册监听系统环境变化的ID。   |
+| callback | AsyncCallback\<void> | 是   | 回调方法。                  |
+
+**示例：**
+
+  ```js
+  let applicationContext = this.context.getApplicationContext();
+  let callbackId = 1;
+  try {
+    applicationContext.off("environment", callbackId, (error, data) => {
+      console.log("unregisterEnvironmentCallback success, err: " + JSON.stringify(error));
+    });
+  } catch (paramError) {
+    console.log("error: " + paramError.code + ", " + paramError.message);
+  }
+  ```
+
+## getProcessRunningInfomation
+
+getProcessRunningInformation(callback: AsyncCallback&lt;Array&lt;ProcessRunningInformation&gt;&gt;): void;
+
+获取正在运行的进程信息
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**参数：**
+
+| 参数名                   | 类型     | 必填 | 说明                           |
+| ------------------------ | -------- | ---- | ------------------------------ |
+| callback | AsyncCallback&lt;Array&lt;[ProcessRunningInformation](js-apis-processrunninginformation.md)&gt;&gt; | 是   | 回调方法，返回正在运行的进程信息。 |
+
+**示例：**
+```js
+let applicationContext = this.context.getApplicationContext();
+applicationContext.getProcessRunningInfomation((err, datas) => {
+    for (let data of datas) {
+        console.log("ProcessRunningInformation: " + JSON.stringify(data));
+    }
+})
+```
+
+## killProcessesBySelf
+
+killProcessesBySelf(callback: AsyncCallback&lt;void&gt;): void;
+
+杀死自身运行的进程
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**参数：**
+
+| 参数名                   | 类型     | 必填 | 说明                           |
+| ------------------------ | -------- | ---- | ------------------------------ |
+| callback | AsyncCallback&lt;void&gt; | 是   | 回调方法，返回处理信息。 |
+
+**示例：**
+```js
+let applicationContext = this.context.getApplicationContext();
+applicationContext.killProcessesBySelf((err, datas) => {
+    console.log("killProcessesBySelf success, err: " + JSON.stringify(err));
+})
 ```
