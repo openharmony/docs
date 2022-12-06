@@ -171,8 +171,8 @@ getSupportedCameras(): Promise<Array<CameraDevice\>\>
 **示例：**
 
 ```js
-cameraManager.getSupportedCameras().then((cameraArray) => {
-    console.log(`Promise returned with an array of supported cameras: ${cameraArray.length}`);
+cameraManager.getSupportedCameras().then((cameras) => {
+    console.log(`Promise returned with an array of supported cameras: ${cameras.length}`);
 })
 ```
 
@@ -196,7 +196,7 @@ getSupportedOutputCapability(camera:CameraDevice, callback: AsyncCallback<Camera
 ```js
 cameraManager.getSupportedOutputCapability(cameradevice, (err, CameraOutputCapability) => {
     if (err) {
-        console.error(`Failed to get the cameras. ${err.message}`);
+        console.error(`Failed to get the outputCapability. ${err.message}`);
         return;
     }
     console.log('Callback returned with an array of supported outputCapability');
@@ -433,8 +433,8 @@ createPreviewOutput(profile: Profile, surfaceId: string, callback: AsyncCallback
 
 | 名称     | 类型                                             | 必填 | 说明                              |
 | -------- | ----------------------------------------------- | ---- | ------------------------------- |
-| profile  | [Profile](#profile)                             | 是   | 支持的预览配置信息。                |
-| surfaceId| string | 是   | 从[XComponent](../arkui-ts/ts-basic-components-xcomponent.md)或者[ImageReceiver](js-apis-image.md#imagereceiver9)组件获取的SurfaceID。|
+| profile  | [Profile](#profile)                             | 是   | 支持的预览配置信息,通过getSupportedOutputCapability接口获取。|
+| surfaceId| string | 是   | 从[XComponent](../arkui-ts/ts-basic-components-xcomponent.md)或者[ImageReceiver](js-apis-image.md#imagereceiver9)组件获取的surfaceId。|
 | callback | AsyncCallback<[PreviewOutput](#previewoutput)\>  | 是   | 回调函数，用于获取PreviewOutput实例。|
 
 **示例：**
@@ -461,8 +461,8 @@ createPreviewOutput(profile: Profile, surfaceId: string): Promise<PreviewOutput\
 
 | 名称     | 类型                              | 必填 | 说明                |
 | -------- | ---------------------------------| ---- | ----------------- |
-| profile  | [Profile](#profile)              | 是   | 支持的预览配置信息。  |
-| surfaceId| string | 是   | 从[XComponent](../arkui-ts/ts-basic-components-xcomponent.md)或者[ImageReceiver](js-apis-image.md#imagereceiver9)组件获取的SurfaceID。 |
+| profile  | [Profile](#profile)              | 是   | 支持的预览配置信息，通过getSupportedOutputCapability接口获取。|
+| surfaceId| string | 是   | 从[XComponent](../arkui-ts/ts-basic-components-xcomponent.md)或者[ImageReceiver](js-apis-image.md#imagereceiver9)组件获取的surfaceId。 |
 
 **返回值：**
 
@@ -490,8 +490,8 @@ createPhotoOutput(profile: Profile, surfaceId: string, callback: AsyncCallback<P
 
 | 名称     | 类型                                         | 必填 | 说明                                  |
 | -------- | ------------------------------------------- | ---- | ----------------------------------- |
-| profile  | [Profile](#profile)                         | 是   | 支持的拍照配置信息。                    |
-| surfaceId| string            | 是   | 从[ImageReceiver](js-apis-image.md#imagereceiver9)获取的SurfaceID。|
+| profile  | [Profile](#profile)                         | 是   | 支持的拍照配置信息，通过getSupportedOutputCapability接口获取。|
+| surfaceId| string            | 是   | 从[ImageReceiver](js-apis-image.md#imagereceiver9)获取的surfaceId。|
 | callback | AsyncCallback<[PhotoOutput](#photooutput)\>  | 是   | 回调函数，用于获取PhotoOutput实例。    |
 
 **示例：**
@@ -518,8 +518,8 @@ createPhotoOutput(profile: Profile, surfaceId: string): Promise<PhotoOutput\>
 
 | 名称     | 类型                               | 必填 | 说明         |
 | -------- | ---------------------------------| ---- | ----------- |
-| profile  | [Profile](#profile)              | 是   | 支持的拍照配置信息。  |
-| surfaceId| string       | 是   | 从[ImageReceiver](js-apis-image.md#imagereceiver9)获取的SurfaceID。|
+| profile  | [Profile](#profile)              | 是   | 支持的拍照配置信息，通过getSupportedOutputCapability接口获取。 |
+| surfaceId| string       | 是   | 从[ImageReceiver](js-apis-image.md#imagereceiver9)获取的surfaceId。|
 
 **返回值：**
 
@@ -547,8 +547,8 @@ createVideoOutput(profile: VideoProfile, surfaceId: string, callback: AsyncCallb
 
 | 名称     | 类型                                        | 必填 | 说明                              |
 | -------- | ------------------------------------------- | ---- | ------------------------------ |
-| profile  | [VideoProfile](#videoprofile)               | 是   | 支持的录像配置信息。               |
-| surfaceId| string          | 是   | 从[VideoRecorder](js-apis-media.md#videorecorder9)获取的SurfaceID。|
+| profile  | [VideoProfile](#videoprofile)               | 是   | 支持的录像配置信息，通过getSupportedOutputCapability接口获取。 |
+| surfaceId| string          | 是   | 从[VideoRecorder](js-apis-media.md#videorecorder9)获取的surfaceId。|
 | callback | AsyncCallback<[VideoOutput](#videooutput)\>  | 是   | 回调函数，用于获取VideoOutput实例。 |
 
 **示例：**
@@ -575,8 +575,8 @@ createVideoOutput(profile: VideoProfile, surfaceId: string): Promise<VideoOutput
 
 | 名称     | 类型                              | 必填 | 说明         |
 | -------- | ---------------------------------| ---- | ---------- |
-| profile  | [VideoProfile](#videoprofile)    | 是   | 支持的录像配置信息。   |
-| surfaceId| string        | 是   | 从[VideoRecorder](js-apis-media.md#videorecorder9)获取的SurfaceID。|
+| profile  | [VideoProfile](#videoprofile)    | 是   | 支持的录像配置信息，通过getSupportedOutputCapability接口获取。 |
+| surfaceId| string        | 是   | 从[VideoRecorder](js-apis-media.md#videorecorder9)获取的surfaceId。|
 
 **返回值：**
 
@@ -642,7 +642,7 @@ createMetadataOutput(metadataObjectTypes:Array<MetadataObjectType\>): Promise<Me
 **示例：**
 
 ```js
-cameraManager.createMetadataOutput().then((metadataOutput) => {
+cameraManager.createMetadataOutput(metadataObjectTypes).then((metadataOutput) => {
     console.log('Promise returned with metadataOutput created.');
 })
 ```
@@ -736,12 +736,12 @@ on(type: 'cameraMute', callback: AsyncCallback<boolean\>): void
 | 名称     | 类型             | 必填 | 说明       |
 | -------- | --------------- | ---- | --------- |
 | type     | string          | 是   | 监听事件，固定为'cameraMute'，即禁用状态变化事件。 |
-| callback | boolean         | 是   | 回调函数，用于获取禁用状态变化信息。               |
+| callback | AsyncCallback<boolean> | 是   | 回调函数，用于获取禁用状态变化信息。               |
 
 **示例：**
 
 ```js
-cameraManager.on('cameraMute', (err, cameraStatusInfo) => {
+cameraManager.on('cameraMute', (err, curMuetd) => {
     if (err) {
         console.error(`Failed to get cameraMute callback. ${err.message}`);
         return;
@@ -2125,13 +2125,13 @@ setExposureBias(exposureBias: number, callback: AsyncCallback<void\>): void
 
 | 名称     | 类型                            | 必填 | 说明                 |
 | -------- | -------------------------------| ---- | ------------------- |
-| exposureBias   | number                   | 是   | 曝光补偿。            |
+| exposureBias   | number                   | 是   | 曝光补偿,getExposureBiasRange查询支持的范围 |
 | callback | AsyncCallback<void\>           | 是   | 回调函数，用于获取结果。 |
 
 **示例：**
 
 ```js
-captureSession.setExposureBias(-4,(err) => {
+captureSession.setExposureBias(exposureBias,(err) => {
     if (err) {
         console.log(`Failed to set the exposure bias ${err.message}`);
         return ;
@@ -2154,7 +2154,7 @@ setExposureBias(exposureBias: number): Promise<void\>
 
 | 名称            | 类型      | 必填 | 说明        |
 | -------------- | --------- | ---- | --------- |
-| exposureBias   | number    | 是   | 曝光补偿。  |
+| exposureBias   | number    | 是   | 曝光补偿,getExposureBiasRange查询支持的范围  |
 
 **返回值：**
 
@@ -2165,7 +2165,7 @@ setExposureBias(exposureBias: number): Promise<void\>
 **示例：**
 
 ```js
-captureSession.setExposureBias(-4).then(() => {
+captureSession.setExposureBias(exposureBias).then(() => {
     console.log('Promise returned with the successful execution of setExposureBias.');
 })
 ```
@@ -2595,13 +2595,13 @@ setZoomRatio(zoomRatio: number, callback: AsyncCallback<void\>): void
 
 | 名称       | 类型                  | 必填 | 说明                 |
 | --------- | -------------------- | ---- | ------------------- |
-| zoomRatio | number               | 是   | 可变焦距比。           |
+| zoomRatio | number               | 是   | 可变焦距比,通过getZoomRatioRange获取支持的变焦范围 |
 | callback  | AsyncCallback<void\> | 是   | 回调函数，用于获取结果。 |
 
 **示例：**
 
 ```js
-captureSession.setZoomRatio(1, (err) => {
+captureSession.setZoomRatio(zoomRatio, (err) => {
     if (err) {
         console.error(`Failed to set the zoom ratio value ${err.message}`);
         return;
@@ -2622,7 +2622,7 @@ setZoomRatio(zoomRatio: number): Promise<void\>
 
 | 名称       | 类型    | 必填 | 说明       |
 | --------- | ------ | ---- | --------- |
-| zoomRatio | number | 是   | 可变焦距比。 |
+| zoomRatio | number | 是   | 可变焦距比，通过getZoomRatioRange获取支持的变焦范围|
 
 **返回值：**
 
@@ -2633,7 +2633,7 @@ setZoomRatio(zoomRatio: number): Promise<void\>
 **示例：**
 
 ```js
-captureSession.setZoomRatio(1).then(() => {
+captureSession.setZoomRatio(zoomRatio).then(() => {
     console.log('Promise returned with the successful execution of setZoomRatio.');
 })
 ```
@@ -3200,7 +3200,7 @@ previewOutput.on('error', (previewOutputError) => {
 
 ## PhotoOutput
 
-拍照会话中使用的输出信息。
+拍照会话中使用的输出信息，继承[CameraOutput](#cameraoutput)
 
 ### capture
 
@@ -3477,7 +3477,7 @@ photoOutput.on('error', (err, photoOutputError) => {
 
 ## VideoOutput
 
-录像会话中使用的输出信息。
+录像会话中使用的输出信息，继承[CameraOutput](#cameraoutput)
 
 ### start
 
