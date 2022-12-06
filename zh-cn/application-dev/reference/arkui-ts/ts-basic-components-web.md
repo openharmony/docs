@@ -1,11 +1,11 @@
 # Web
 
+提供具有网页显示能力的Web组件。
+
 > **说明：** 
 >
 > - 该组件从API Version 8开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 > - 示例效果请以真机运行为准，当前IDE预览器不支持。
-
-提供具有网页显示能力的Web组件。
 
 ## 需要权限
 访问在线网页时需添加网络权限：ohos.permission.INTERNET，具体申请方式请参考[权限申请声明](../../security/accesstoken-guidelines.md)。
@@ -27,7 +27,7 @@ Web(options: { src: ResourceStr, controller: WebController | WebviewController})
 | 参数名        | 参数类型                                     | 必填   | 参数描述    |
 | ---------- | ---------------------------------------- | ---- | ------- |
 | src        | [ResourceStr](ts-types.md)               | 是    | 网页资源地址。 |
-| controller | [WebController](#webcontroller) 或 [WebviewController](../apis/js-apis-webview.md#webviewcontroller) | 是    | 控制器。    |
+| controller | [WebController](#webcontroller) \| [WebviewController<sup>9+</sup>](../apis/js-apis-webview.md#webviewcontroller) | 是    | 控制器。    |
 
 **示例：**
 
@@ -88,7 +88,7 @@ Web(options: { src: ResourceStr, controller: WebController | WebviewController})
 
 ## 属性
 
-web组件的网络属性。
+通用属性仅支持[width](ts-universal-attributes-size.md#属性)、[height](ts-universal-attributes-size.md#属性)、[padding](ts-universal-attributes-size.md#属性)、[margin](ts-universal-attributes-size.md#属性)、[border](ts-universal-attributes-border.md#属性)。
 
 ### domStorageAccess
 
@@ -671,10 +671,6 @@ webDebuggingAccess(webDebuggingAccess: boolean)
     }
   }
   ```
-
->  **说明：**
->
->  通用属性仅支持[width](ts-universal-attributes-size.md#属性)、[height](ts-universal-attributes-size.md#属性)、[padding](ts-universal-attributes-size.md#属性)、[margin](ts-universal-attributes-size.md#属性)、[border](ts-universal-attributes-border.md#属性)。
 
 ## 事件
 

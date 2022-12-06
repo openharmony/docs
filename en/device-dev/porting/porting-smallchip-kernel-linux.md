@@ -56,7 +56,7 @@ You can use the Bootloader provided by the chipset vendor or open-source U-Boot 
 
 ## Verification
 
-Debug the **init** process, start shell, and run a simple program in the user space to check whether the kernel porting is successful. Below is the OS image structure of the OpenHarmony [small system](../quick-start/quickstart-lite-overview.md) and the Linux user-space program startup process.
+Debug the **init** process, start shell, and run a simple program in the user space to check whether the kernel porting is successful. Below is the OS image structure of the OpenHarmony small system and the Linux user-space program startup process.
 
 **Figure 1** OS image structure and user-space program startup process based on the Linux kernel
 

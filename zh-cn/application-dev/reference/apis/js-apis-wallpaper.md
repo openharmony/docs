@@ -1088,7 +1088,7 @@ getImage(wallpaperType: WallpaperType, callback: AsyncCallback&lt;image.PixelMap
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | wallpaperType | [WallpaperType](#wallpapertype) | 是 | 壁纸类型。 |
-  | callback | AsyncCallback&lt;void&gt; | 是 | 回调函数，调用成功则返回壁纸图片的像素图大小，调用失败则返回error信息。 |
+  | callback | AsyncCallback&lt;[image.PixelMap](js-apis-image.md#pixelmap7)&gt; | 是 | 回调函数，调用成功则返回壁纸图片的像素图大小，调用失败则返回error信息。 |
 
 **示例：**
   
@@ -1122,7 +1122,7 @@ getImage(wallpaperType: WallpaperType): Promise&lt;image.PixelMap&gt;
 
   | 类型 | 说明 |
   | -------- | -------- |
-  | Promise&lt;void&gt; | 调用成功则返回壁纸图片的像素图大小，调用失败则返回error信息。 |
+  | Promise&lt;[image.PixelMap](js-apis-image.md#pixelmap7)&gt; | 调用成功则返回壁纸图片的像素图大小，调用失败则返回error信息。 |
 
 **示例：**
   

@@ -41,23 +41,6 @@ During system startup,  **OsUserInitProcess**  is called to start the  **init** 
 
 ## Running Programs in User Mode<a name="section194576310611"></a>
 
-Common compilation modes of user-mode programs include:
-
-1.  [Compilation based on the framework](../quick-start/quickstart-lite-steps-hi3516-running.md)
-2.  Manual compilation
-
-    Example:
-
-    ```
-    clang --target=arm-liteos --sysroot=sysroot -o helloworld helloworld.c
-    ```
-
-    Before running the  **clang**  command, install the LLVM compiler. For details, see  [Installing LLVM](../quick-start/quickstart-lite-steps-hi3861-setting.md).
-
-    **--target=arm-liteos**: specifies the compilation platform, which is arm-liteos.
-
-    **--sysroot=$\{YOUR\_ROOT\_OUT\_PATH\}/sysroot**: specifies the directory in which you can search for the header file and the dependent standard libraries.
-
 
 A user-mode program can be started in either of the following ways:
 

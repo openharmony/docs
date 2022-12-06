@@ -16,7 +16,7 @@ In this example, an I2C driver is used.  [Figure 1](#fig9596628607)  shows the s
 
 ## Preparations<a name="section6926133918422"></a>
 
-Follow the instructions in  [Environment Setup for Standard System](../quick-start/quickstart-standard-overview.md).
+Follow the instructions in [Getting Started with the Standard System with Hi3516 (IDE Mode)](../quick-start/quickstart-appendix-hi3516-ide.md).
 
 >![](../public_sys-resources/icon-notice.gif) **NOTICE:** 
 >This development example applies to standard, small, and mini OpenHarmony systems. The following sections use the standard system as an example. You can refer to the specific guide for your system to set up the environment.
@@ -430,8 +430,8 @@ Initialize the controller hardware, call core-layer APIs to add or delete device
 
 2.  Build source code and burn images to the development board.
 
-    - For details about the operations using the installation package, see [Building](../quick-start/quickstart-ide-standard-running-hi3516-build.md) and [Burning](../quick-start/quickstart-ide-standard-running-hi3516-burning.md).
+    - For details about the operations using the installation package, see [Building Source Code](../quick-start/quickstart-appendix-hi3516-pkg.md#building-source-code) and [Burning an Image](../quick-start/quickstart-appendix-hi3516-pkg.md#burning-an-image).
     
-    - For details about the operations in IDE mode, see [Building](../quick-start/quickstart-standard-running-hi3516-build.md) and [Burning](../quick-start/quickstart-standard-running-hi3516-burning.md).
+    - For details about the operations in IDE mode, see [Building Source Code](../quick-start/quickstart-appendix-hi3516-ide.md#building-source-code) and [Burning an Image](../quick-start/quickstart-appendix-hi3516-ide.md#burning-an-image).
 
 

@@ -35,9 +35,9 @@ startVibration(effect: VibrateEffect, attribute: VibrateAttribute, callback: Asy
 
 以下错误码的详细介绍请参见 [ohos.vibrator错误码](../errorcodes/errorcode-vibrator.md)
 
-| 错误码ID | 错误信息                  |
-| -------- | ------------------------- |
-| 14600101 | Device operation failed。 |
+| 错误码ID | 错误信息                 |
+| -------- | ------------------------ |
+| 14600101 | Device operation failed. |
 
 示例：
 
@@ -88,9 +88,9 @@ startVibration(effect: VibrateEffect, attribute: VibrateAttribute): Promise&lt;v
 
 以下错误码的详细介绍请参见 [ohos.vibrator错误码](../errorcodes/errorcode-vibrator.md)
 
-| 错误码ID | 错误信息                  |
-| -------- | ------------------------- |
-| 14600101 | Device operation failed。 |
+| 错误码ID | 错误信息                 |
+| -------- | ------------------------ |
+| 14600101 | Device operation failed. |
 
 **示例：** 
 

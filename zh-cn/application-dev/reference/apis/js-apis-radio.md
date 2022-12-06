@@ -927,7 +927,7 @@ sendUpdateCellLocationRequest\(callback: AsyncCallback<void\>\): void
 
 此接口为系统接口。
 
-**需要权限**：ohos.permission.LOCATION
+**需要权限**：ohos.permission.LOCATION 和 ohos.permission.APPROXIMATELY_LOCATION
 
 **系统能力**：SystemCapability.Telephony.CoreService
 
@@ -953,7 +953,7 @@ sendUpdateCellLocationRequest\(slotId: number, callback: AsyncCallback<void\>\):
 
 此接口为系统接口。
 
-**需要权限**：ohos.permission.LOCATION
+**需要权限**：ohos.permission.LOCATION 和 ohos.permission.APPROXIMATELY_LOCATION
 
 **系统能力**：SystemCapability.Telephony.CoreService
 
@@ -981,7 +981,7 @@ sendUpdateCellLocationRequest\(slotId?: number): Promise<void\>
 
 此接口为系统接口。
 
-**需要权限**：ohos.permission.LOCATION
+**需要权限**：ohos.permission.LOCATION 和 ohos.permission.APPROXIMATELY_LOCATION
 
 **系统能力**：SystemCapability.Telephony.CoreService
 
@@ -1017,7 +1017,7 @@ getCellInformation(callback: AsyncCallback<Array<CellInformation\>>): void
 
 此接口为系统接口。
 
-**需要权限**：ohos.permission.LOCATION
+**需要权限**：ohos.permission.LOCATION 和 ohos.permission.APPROXIMATELY_LOCATION
 
 **系统能力**：SystemCapability.Telephony.CoreService
 
@@ -1044,7 +1044,7 @@ getCellInformation(slotId: number, callback: AsyncCallback<Array<CellInformation
 
 此接口为系统接口。
 
-**需要权限**：ohos.permission.LOCATION
+**需要权限**：ohos.permission.LOCATION 和 ohos.permission.APPROXIMATELY_LOCATION
 
 **系统能力**：SystemCapability.Telephony.CoreService
 
@@ -1073,7 +1073,7 @@ getCellInformation(slotId?: number): Promise<Array<CellInformation\>\>
 
 此接口为系统接口。
 
-**需要权限**：ohos.permission.LOCATION
+**需要权限**：ohos.permission.LOCATION 和 ohos.permission.APPROXIMATELY_LOCATION
 
 **系统能力**：SystemCapability.Telephony.CoreService
 

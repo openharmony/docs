@@ -59,9 +59,10 @@ import buffer from '@ohos.buffer';
 import buffer from '@ohos.buffer';
 
 let buf = buffer.from("1236");
-console.log(buf.length);
-console.log(buf.buffer);
-console.log(buf.byteOffset);
+console.log(JSON.stringify(buf.length));
+let arrayBuffer = buf.buffer;
+console.log(JSON.stringify(new Uint8Array(arrayBuffer)));
+console.log(JSON.stringify(buf.byteOffset));
 ```
 
 ### alloc
@@ -326,14 +327,6 @@ import buffer from '@ohos.buffer';
 
 let ab = new ArrayBuffer(10);
 let buf = buffer.from(ab, 0, 2);
-
-let arrayBuffer = new ArrayBuffer(5);
-let array = new Int8Array(arrayBuffer);
-array[0] = '1';
-array[1] = '2';
-array[2] = '3';
-array[3] = '4';
-array[4] = '5';
 ```
 
 ### from
@@ -2907,7 +2900,7 @@ let blob = new buffer.Blob(['a', 'b', 'c']);
 let blob1 = new buffer.Blob(['a', 'b', 'c'], {endings:'native', type: 'MIME'});
 ```
 
-### encode
+### arrayBuffer
 
 arrayBuffer(): Promise&lt;ArrayBuffer&gt;
 

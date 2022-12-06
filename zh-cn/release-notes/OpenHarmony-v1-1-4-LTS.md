@@ -77,7 +77,7 @@ repo forall -c 'git lfs pull'
 | -------- | -------- |
 | [I4AJEN](https://gitee.com/openharmony/third_party_freetype/issues/I4AJEN) | 修复third_party_freetype组件的CVE-2020-15999安全漏洞 |
 | [I4AJ6T](https://gitee.com/openharmony/third_party_mbedtls/issues/I4AJ6T) | 修复third_party_mbedtls组件的CVE-2020-36475和CVE-2020-36478安全漏洞 |
-| [I4AIYJ](https://gitee.com/openharmony/device_hisilicon_third_party_uboot/issues/I4AIYJ?from=project-issue) | 修复third_party_uboot组件的CVE-2021-27138和CVE-2021-27097安全漏洞 |
+| I4AIYJ | 修复third_party_uboot组件的CVE-2021-27138和CVE-2021-27097安全漏洞 |
 | [I4HUM6](https://gitee.com/openharmony/third_party_lwip/issues/I4HUM6?from=project-issue) | 修复third_party_lwip组件的CVE-2020-22284安全漏洞 |
 | I4QTVZ | 修复third_party_mbedtls组件的CVE-2021-44732和CVE-2021-45450安全漏洞 |
 | [I46RRM](https://gitee.com/openharmony/third_party_wpa_supplicant/issues/I46RRM?from=project-issue) | 修复P2P客户端的辅助设备类型的复制存在的一个安全漏洞 |

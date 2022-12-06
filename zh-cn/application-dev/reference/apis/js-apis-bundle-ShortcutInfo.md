@@ -7,7 +7,7 @@
 
 
 
-应用配置文件中定义的快捷方式信息，FA模型配置在[config.json](../../quick-start/package-structure.md)文件中进行配置，Stage模型配置参考[ shortcuts对象内部结构](../../quick-start/stage-structure.md#shortcuts对象内部结构)
+应用配置文件中定义的快捷方式信息，FA模型配置在[config.json](../../quick-start/application-configuration-file-overview-fa.md)文件中进行配置，Stage模型在开发视图的resources/base/profile下面定义配置文件即可。
 
 
 
@@ -21,8 +21,8 @@
 
 | 名称                      | 类型   | 可读 | 可写 | 说明                 |
 | ------------------------- | ------ | ---- | ---- | -------------------- |
-| targetBundle              | string | 是   | 否   | 快捷方式的目标捆绑包。 |
-| targetClass               | string | 是   | 否   | 快捷方式所需的目标类。 |
+| targetBundle              | string | 是   | 否   | 快捷方式的目标捆绑包 |
+| targetClass               | string | 是   | 否   | 快捷方式所需的目标类 |
 
 ## ShortcutInfo<sup>(deprecated)<sup>
 

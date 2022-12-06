@@ -23,7 +23,7 @@ List(value?:{space?: number | string, initialIndex?: number, scroller?: Scroller
 | -------- | -------- | -------- | -------- |
 | space | number \| string | No| Spacing between list items.<br>Default value: **0**|
 | initialIndex | number | No| Item displayed at the beginning of the viewport when the current list is loaded for the first time, that is, the first item to be displayed. If the value set is greater than the sequence number of the last item, the setting does not take effect.<br>Default value: **0**|
-| scroller | [Scroller](ts-container-scroll.md#scroller) | No| Controller bound to the list to control the scrolling.|
+| scroller | [Scroller](ts-container-scroll.md#scroller) | No| Scroller, which can be bound to scrollable components.|
 
 ## Attributes
 
@@ -32,16 +32,16 @@ In addition to the [universal attributes](ts-universal-attributes-size.md), the 
 | Name| Type| Description|
 | -------- | -------- | -------- |
 | listDirection | [Axis](ts-appendix-enums.md#axis) | Direction in which the list items are arranged.<br>Default value: **Axis.Vertical**|
-| divider                      | {<br>strokeWidth: [Length](ts-types.md#length),<br>color?:[ResourceColor](ts-types.md#resourcecolor),<br>startMargin?: Length,<br>endMargin?: Length<br>} \| null | Style of the divider for the list items. By default, there is no divider.<br>- **strokeWidth**: stroke width of the divider.<br>- **color**: color of the divider.<br>- **startMargin**: distance between the divider and the start edge of the list.<br>- **endMargin**: distance between the divider and the end edge of the list.|
+| divider                      | {<br>strokeWidth: [Length](ts-types.md#length),<br>color?:[ResourceColor](ts-types.md),<br>startMargin?: Length,<br>endMargin?: Length<br>} \| null | Style of the divider for the list items. By default, there is no divider.<br>- **strokeWidth**: stroke width of the divider.<br>- **color**: color of the divider.<br>- **startMargin**: distance between the divider and the start edge of the list.<br>- **endMargin**: distance between the divider and the end edge of the list.|
 | scrollBar      | [BarState](ts-appendix-enums.md#barstate) | Scrollbar status.<br>Default value: **BarState.Off**|
-| cachedCount | number                                   | Number of list items to be preloaded. For details, see [Minimizing White Blocks During Swiping](../../ui/ts-performance-improvement-recommendation.md#minimizing-white-blocks-during-swiping).<br>Default value: **1**|
+| cachedCount | number                                   | Number of list items to be preloaded. For details, see [Minimizing White Blocks During Swiping](../../ui/ui-ts-performance-improvement-recommendation.md#minimizing-white-blocks-during-swiping).<br>Default value: **1**|
 | editMode | boolean | Whether to enter editing mode.<br>Default value: **false**|
 | edgeEffect | [EdgeEffect](ts-appendix-enums.md#edgeeffect) | Scroll effect.<br>Default value: **EdgeEffect.Spring**|
 | chainAnimation | boolean | Whether to display chained animations on this list when it slides or its top or bottom is dragged. The list items are separated with even space, and one item animation starts after the previous animation during basic sliding interactions. The chained animation effect is similar with spring physics.<br>Default value: **false**<br>- **false**: No chained animations are displayed.<br>- **true**: Chained animations are displayed.|
 | multiSelectable<sup>8+</sup> | boolean | Whether to enable mouse frame selection.<br>Default value: **false**<br>- **false**: The mouse frame selection is disabled.<br>- **true**: The mouse frame selection is enabled.|
 | lanes<sup>9+</sup> | number \| [LengthConstrain](ts-types.md#lengthconstrain) | In the following description, **listDirection** is set to **Axis.Vertical**:<br>Number of columns in which the list items are arranged along the cross axis.<br>Default value: **1**<br>The rules are as follows:<br>- If the value is set to a number, the column width is determined based on the specified number and the cross-axis width of the **\<List>** component.<br>- If the value is set to {minLength, maxLength}, the number of columns is adjusted adaptively based on the width of the **\<List>** component, ensuring that the width respects the {minLength, maxLength} constraints during adaptation. The **minLength** constraint is prioritized. For example, if **lanes** is set to **{minLength: 40vp, maxLength: 60vp}** and the width of the **\<List>** component is 70 vp, the list items are arranged in one column with their alignment compliant with the **alignListItem** settings. If the width of the **\<List>** component is changed to 80 vp, which is twice the value of **minLength**, the list items are arranged in two columns.|
 | alignListItem<sup>9+</sup> | ListItemAlign | Alignment mode of list items along the cross axis when: Cross-axis width of the **\<List>** component > Cross-axis width of list items x Value of **lanes**.<br>Default value: **ListItemAlign.Start**|
-| sticky<sup>9+</sup> | StickyStyle | Whether to pin the header to the top or the footer to the bottom in the **\<ListItemGroup>** component. This attribute is used together with the **\<ListItemGroup>** component.<br>Default value: **StickyStyle.None**<br>**NOTE**<br>The **sticky** attribute can be set to **StickyStyle.Header** or **StickyStyle.Footer** to support both the pin-to-top and pin-to-bottom features. |
+| sticky<sup>9+</sup> | StickyStyle | Whether to pin the header to the top or the footer to the bottom in the **\<ListItemGroup>** component. This attribute is used together with the **\<ListItemGroup>** component.<br>Default value: **StickyStyle.None**<br>**NOTE**<br>The **sticky** attribute can be set to **StickyStyle.Header** or \| **StickyStyle.Footer** to support both the pin-to-top and pin-to-bottom features.|
 
 ## ListItemAlign<sup>9+</sup>
 
@@ -66,7 +66,7 @@ In addition to the [universal attributes](ts-universal-attributes-size.md), the 
 | Name| Description|
 | -------- | -------- |
 | onItemDelete(event: (index: number) => boolean) | Triggered when a list item is deleted.<br>- **index**: index of the deleted list item.|
-| onScroll(event: (scrollOffset: number, scrollState: ScrollState) => void) | Triggered when the list scrolls.<br>- **scrollOffset**: scroll offset.<br>- **[scrollState](#scrollstate)**: current scroll state. |
+| onScroll(event: (scrollOffset: number, scrollState: ScrollState) => void) | Triggered when the list scrolls.<br>- **scrollOffset**: scroll offset.<br>- **[scrollState](#scrollstate)**: current scroll state.|
 | onScrollIndex(event: (start: number, end: number) => void) | Triggered when scrolling starts.<br>When calculating the index value, the **\<ListItemGroup>** accounts for one index value as a whole, and the index values of the list items within are not calculated.<br>- **start**: index of the scroll start position.<br>- **end**: index of the scroll end position.|
 | onReachStart(event: () => void) | Triggered when the list reaches the start position.|
 | onReachEnd(event: () => void) | Triggered when the list reaches the end position.|
@@ -153,7 +153,7 @@ struct ListExample {
 }
 ```
 
-![en-us_image_0000001256978357](figures/en-us_image_0000001256978357.gif)
+![en-us_image_0000001174264378](figures/en-us_image_0000001174264378.gif)
 
 ```ts
 // xxx.ets
@@ -183,7 +183,7 @@ struct ListLanesExample {
       .width("90%")
       .editMode(true)
       .border({ width: 3, color: Color.Red })
-      .lanes({ minLength: 40, maxLength: 60 })
+      .lanes({ minLength: 40, maxLength: 40 })
       .alignListItem(this.alignListItem)
 
       Button("Change alignListItem: "+ this.alignListItem).onClick(() => {
@@ -199,3 +199,5 @@ struct ListLanesExample {
   }
 }
 ```
+
+![list](figures/list1.gif)

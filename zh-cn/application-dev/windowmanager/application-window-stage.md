@@ -110,10 +110,8 @@ class MainAbility extends Ability {
 
 ### 开发步骤
 
-1. 创建/获取应用子窗口。
+1. 创建应用子窗口。
    通过`createSubWindow`接口创建应用子窗口。
-
-   通过`getSubWindow`接口获取已创建的应用子窗口。
 
 2. 设置子窗口属性。
    子窗口创建成功后，可以改变其大小、位置等，还可以根据应用需要设置窗口背景色、亮度等属性。
@@ -139,15 +137,6 @@ class MainAbility extends Ability {
                }
                sub_windowClass = data;
                console.info('Succeeded in creating the subwindow. Data: ' + JSON.stringify(data));
-               // 1.获取已创建的应用子窗口。
-               windowStage_.getSubWindow((err, data) => {
-                   if (err.code) {
-                       console.error('Failed to obtain the subWindow. Cause:' + JSON.stringify(err));
-                       return;
-                   }
-                   console.info('Succeeded in obtaining the subWindow. Data: ' + JSON.stringify(data));
-                   sub_windowClass = data;
-               });
                // 2.子窗口创建成功后，设置子窗口的位置、大小及相关属性等。
                sub_windowClass.moveTo(300, 300, (err) => {
                    if (err.code) {

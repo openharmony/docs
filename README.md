@@ -18,15 +18,15 @@ This repository stores device and application development documents provided by 
 
  - master: the latest version.
 
- - OpenHarmony 3.2 Beta1. [Learn more](en/release-notes/OpenHarmony-v3.2-beta1.md)
+ - OpenHarmony 3.2 Beta3. [Learn more](en/release-notes/OpenHarmony-v3.2-beta3.md)
 
  - OpenHarmony 3.1 Release. [Learn more](en/release-notes/OpenHarmony-v3.1-release.md)
 
-   This version is upgraded to OpenHarmony 3.1.1 LTS. [Learn more](en/release-notes/OpenHarmony-v3.1.1-release.md)
+   This version is upgraded to OpenHarmony 3.1.3 Release. [Learn more](en/release-notes/OpenHarmony-v3.1.3-release.md)
 
  - OpenHarmony 3.0 LTS. [Learn more](en/release-notes/OpenHarmony-v3.0-LTS.md)
 
-   This version is upgraded to OpenHarmony 3.0.5 LTS. [Learn more](en/release-notes/OpenHarmony-v3.0.5-LTS.md)
+   This version is upgraded to OpenHarmony 3.0.6 LTS. [Learn more](en/release-notes/OpenHarmony-v3.0.6-LTS.md)
 
  - OpenHarmony 2.2 Beta2. [Learn more](en/release-notes/OpenHarmony-v2.2-beta2.md)
 
@@ -34,14 +34,14 @@ This repository stores device and application development documents provided by 
 
 ### Historical Stable Versions
 
-OpenHarmony_v1.x_release: OpenHarmony v1.1.4 LTS. [Learn more](en/release-notes/OpenHarmony-v1-1-4-LTS.md)
+OpenHarmony_v1.x_release: OpenHarmony v1.1.5 LTS. [Learn more](en/release-notes/OpenHarmony-v1.1.5-LTS.md)
 
 [More versions](en/release-notes/)
 
 
 ## Third-Party Open-Source Software and License Notice
 
-Third-party license: [Third-Party Open-Source Software and License Notice](en/contribute/third-party-open-source-software-and-license-notice.md)
+Third-party license: [Third-Party Open-Source Software and License Notice](en/contribute/open-source-software-and-license-notice.md)
 
 ## Contribution
 

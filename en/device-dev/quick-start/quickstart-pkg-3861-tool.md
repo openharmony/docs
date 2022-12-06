@@ -1,7 +1,7 @@
 # Installing Tools Specially Required by the Hi3861 Development Board
 
 
-In addition to the general [libraries and tools](quickstart-pkg-install_package.md) and [compilation tools](quickstart-pkg-install_tool.md), the Hi3861 development board requires the tools listed in this topic for source code building.
+In addition to the general [libraries and tools](quickstart-pkg-install-package.md) and [compilation tools](quickstart-pkg-install-tool.md), the Hi3861 development board requires the tools listed in this topic for source code building.
 
 
 ## Required Tools

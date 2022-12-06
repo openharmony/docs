@@ -70,7 +70,7 @@
 
   | 默认设备 | 平板 | 
 | -------- | -------- |
-| ![overview_phone](figures/overview_phone.png) | ![overview_tablet](figures/overview_tablet.png) | 
+| ![overview_default](figures/overview_default.png) | ![overview_tablet](figures/overview_tablet.png) | 
 
 会话详情页面在默认设备和平板上的样式如上图所示，会话详情页面可以划分为三个部分：
 
@@ -107,7 +107,7 @@
 
   | 默认设备 | 平板 | 
 | -------- | -------- |
-| ![contact_details_phone](figures/contact_details_phone.png) | ![contact_details_tablet](figures/contact_details_tablet.png) | 
+| ![contact_details_default](figures/contact_details_default.png) | ![contact_details_tablet](figures/contact_details_tablet.png) | 
 
 
 ```
@@ -127,7 +127,7 @@
 
   | 默认设备 | 平板 | 
 | -------- | -------- |
-| ![top_title_blank_phone](figures/top_title_blank_phone.png) | ![top_title_blank_tablet](figures/top_title_blank_tablet.png) | 
+| ![top_title_blank_default](figures/top_title_blank_default.png) | ![top_title_blank_tablet](figures/top_title_blank_tablet.png) | 
 
 
 ```
@@ -165,7 +165,7 @@
 
   | 默认设备 | 平板 | 
 | -------- | -------- |
-| ![top_title_done_phone](figures/top_title_done_phone.png) | ![top_title_done_tablet](figures/top_title_done_tablet.png) | 
+| ![top_title_done_default](figures/top_title_done_default.png) | ![top_title_done_tablet](figures/top_title_done_tablet.png) | 
 
 
 ```
@@ -213,7 +213,7 @@
 
   | 默认设备 | 平板 | 
 | -------- | -------- |
-| ![bottom_input_phone](figures/bottom_input_phone.png) | ![bottom_input_tablet](figures/bottom_input_tablet.png) | 
+| ![bottom_input_default](figures/bottom_input_default.png) | ![bottom_input_tablet](figures/bottom_input_tablet.png) | 
 
 
 ```
@@ -262,7 +262,7 @@
 
   | 默认设备 | 平板 | 
 | -------- | -------- |
-| ![message_bubble_basic_phone](figures/message_bubble_basic_phone.png) | ![message_bubble_basic_tablet](figures/message_bubble_basic_tablet.png) | 
+| ![message_bubble_basic_default](figures/message_bubble_basic_default.png) | ![message_bubble_basic_tablet](figures/message_bubble_basic_tablet.png) | 
 
 
 ```
@@ -294,7 +294,7 @@ struct MessageBubble {
 
   | 默认设备 | 平板 | 
 | -------- | -------- |
-| ![message_bubble_radius_phone](figures/message_bubble_radius_phone.png) | ![message_bubble_radius_tablet](figures/message_bubble_radius_tablet.png) | 
+| ![message_bubble_radius_default](figures/message_bubble_radius_default.png) | ![message_bubble_radius_tablet](figures/message_bubble_radius_tablet.png) | 
 
 
 ```
@@ -332,7 +332,7 @@ struct MessageBubble {
 
   | 默认设备 | 平板 | 
 | -------- | -------- |
-| ![message_bubble_recv_phone](figures/message_bubble_recv_phone.png) | ![message_bubble_recv_tablet](figures/message_bubble_recv_tablet.png) | 
+| ![message_bubble_recv_default](figures/message_bubble_recv_default.png) | ![message_bubble_recv_tablet](figures/message_bubble_recv_tablet.png) | 
 
 
 ```
@@ -380,7 +380,7 @@ struct MessageBubble {
 
   | 默认设备 | 平板 | 
 | -------- | -------- |
-| ![message_bubble_send_phone](figures/message_bubble_send_phone.png) | ![message_bubble_send_tablet](figures/message_bubble_send_tablet.png) | 
+| ![message_bubble_send_default](figures/message_bubble_send_default.png) | ![message_bubble_send_tablet](figures/message_bubble_send_tablet.png) | 
 
 
 ```
@@ -473,7 +473,7 @@ const globalMessageList:any[] = [
 
   | 默认设备 | 平板 | 
 | -------- | -------- |
-| ![message_list_phone](figures/message_list_phone.png) | ![message_list_tablet](figures/message_list_tablet.png) | 
+| ![message_list_default](figures/message_list_default.png) | ![message_list_tablet](figures/message_list_tablet.png) | 
 
 
 ```
@@ -530,7 +530,7 @@ struct Conversation {
 
   | 默认设备 | 平板 | 
   | -------- | -------- |
-  | ![overview_phone](figures/overview_phone.png) | ![overview_tablet](figures/overview_tablet.png) | 
+  | ![overview_default](figures/overview_default.png) | ![overview_tablet](figures/overview_tablet.png) | 
 
   
 ```

@@ -5,8 +5,8 @@ The **distributedBundle** module provides APIs for managing distributed bundles.
 > **NOTE**
 >
 > The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
-
-The APIs provided by this module are system APIs.
+>
+> The APIs provided by this module are system APIs.
 
 ## Modules to Import
 
@@ -22,9 +22,9 @@ SystemCapability.BundleManager.DistributedBundleFramework
 
 | Permission                                      | Permission Level    | Description              |
 | ------------------------------------------ | ------------ | ------------------ |
-| ohos.permission.GET_BUNDLE_INFO_PRIVILEGED | system_basic | Permission to query information about all applications.|
+| ohos.permission.GET_BUNDLE_INFO_PRIVILEGED | system_basic | Permission to query information about all bundles.|
 
-For details, see "Permission Levels" in [Access Control Overview](../../security/accesstoken-overview.md).
+For details, see [Permission Levels](../../security/accesstoken-overview.md#permission-levels).
 
 ## distributedBundle.getRemoteAbilityInfo
 
@@ -40,28 +40,25 @@ Obtains information about the remote ability that matches the given element name
 
 **Parameters**
 
-| Name       | Type                                                        | Mandatory| Description                                              |
-| ----------- | ------------------------------------------------------------ | ---- | -------------------------------------------------- |
-| elementName | [ElementName](js-apis-bundleManager-elementName.md)                 | Yes  | Target element name.                           |
+| Name     | Type                                                        | Mandatory| Description                                                        |
+| ----------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| elementName | [ElementName](js-apis-bundleManager-elementName.md)          | Yes  | Target element name.                                           |
 | callback    | AsyncCallback<[RemoteAbilityInfo](js-apis-bundleManager-remoteAbilityInfo.md)> | Yes  | Callback used to return the result. If the operation is successful, **err** is **null** and **data** is the **RemoteAbilityInfo** object obtained. Otherwise, **err** is an error object.|
 
 **Error codes**
 
-For details about the error codes, see [Bundle Error Codes](../errorcodes/errcode-bundle.md).
+For details about the error codes, see [Bundle Error Codes](../errorcodes/errorcode-bundle.md).
 
-| ID       |    Error Message                  |
-|---------------|-------------------------|
-|  201         | Permission denied.|
-|  401       | The parameter check failed. |
-|  801       | Capability not supported. |
-| 17700001 | The specified bundle name is not found |
+| ID|    Error Message                  |
+|----------|--------------------------------------|
+| 17700001 | The specified bundle name is not found. |
 | 17700003 | The specified ability name is not found. |
-|  17700007 | The specified device id is not found. |
+| 17700007 | The specified device ID is not found. |
 | 17700027 | The distributed service is not running. |
 
 **Example**
 
-```js
+```ts
 try {
     distributedBundle.getRemoteAbilityInfo(
         {
@@ -94,7 +91,7 @@ Obtains information about the remote ability that matches the given element name
 
 **Parameters**
 
-| Name       | Type                                        | Mandatory| Description                   |
+| Name      | Type                                        | Mandatory| Description                   |
 | ----------- | -------------------------------------------- | ---- | ----------------------- |
 | elementName | [ElementName](js-apis-bundleManager-elementName.md) | Yes  | Target element name.|
 
@@ -106,21 +103,18 @@ Obtains information about the remote ability that matches the given element name
 
 **Error codes**
 
-For details about the error codes, see [Bundle Error Codes](../errorcodes/errcode-bundle.md).
+For details about the error codes, see [Bundle Error Codes](../errorcodes/errorcode-bundle.md).
 
-| ID       |    Error Message                  |
-|---------------|-------------------------|
-|  201         | Permission denied.|
-|  401       | The parameter check failed. |
-|  801       | Capability not supported. |
-| 17700001 | The specified bundle name is not found |
+| ID|    Error Message                  |
+|----------|-------------------------|
+| 17700001 | The specified bundle name is not found. |
 | 17700003 | The specified ability name is not found. |
-|  17700007 | The specified device id is not found. |
+| 17700007 | The specified device ID is not found. |
 | 17700027 | The distributed service is not running. |
 
 **Example**
 
-```js
+```ts
 try {
     distributedBundle.getRemoteAbilityInfo(
         {
@@ -151,28 +145,25 @@ Obtains information about remote abilities that match the given element names. T
 
 **Parameters**
 
-| Name        | Type                                                        | Mandatory| Description                                              |
-| ------------ | ------------------------------------------------------------ | ---- | -------------------------------------------------- |
-| elementNames | Array<[ElementName](js-apis-bundleManager-elementName.md)>          | Yes  | **ElementName** array, whose maximum length is 10.                  |
+| Name      | Type                                                        | Mandatory| Description                                                        |
+| ------------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| elementNames | Array<[ElementName](js-apis-bundleManager-elementName.md)>   | Yes  | **ElementName** array, whose maximum length is 10.                            |
 | callback     | AsyncCallback\<Array\<[RemoteAbilityInfo](js-apis-bundleManager-remoteAbilityInfo.md)>> | Yes  | Callback used to return the result. If the operation is successful, **err** is **null** and **data** is the array of **RemoteAbilityInfo** objects obtained. Otherwise, **err** is an error object.|
 
 **Error codes**
 
-For details about the error codes, see [Bundle Error Codes](../errorcodes/errcode-bundle.md).
+For details about the error codes, see [Bundle Error Codes](../errorcodes/errorcode-bundle.md).
 
-| ID       |    Error Message                  |
-|---------------|-------------------------|
-|  201         | Permission denied.|
-|  401       | The parameter check failed. |
-|  801       | Capability not supported. |
-| 17700001 | The specified bundle name is not found |
+| ID|    Error Message                  |
+|----------|-------------------------|
+| 17700001 | The specified bundle name is not found. |
 | 17700003 | The specified ability name is not found. |
-|  17700007 | The specified device id is not found. |
+| 17700007 | The specified device ID is not found. |
 | 17700027 | The distributed service is not running. |
 
 **Example**
 
-```js
+```ts
 try {
     distributedBundle.getRemoteAbilityInfo(
         [
@@ -202,7 +193,7 @@ try {
 
 getRemoteAbilityInfo(elementNames: Array\<ElementName>): Promise\<Array\<RemoteAbilityInfo>>;
 
-Obtains information about remote abilities that match the given element names. This API uses a promise to return the result.
+Obtains information about remote abilities that match the given element names and locales. This API uses a promise to return the result.
 
 **System API**: This is a system API.
 
@@ -212,7 +203,7 @@ Obtains information about remote abilities that match the given element names. T
 
 **Parameters**
 
-| Name        | Type                                               | Mandatory| Description                   |
+| Name       | Type                                               | Mandatory| Description                   |
 | ------------ | --------------------------------------------------- | ---- | ----------------------- |
 | elementNames | Array<[ElementName](js-apis-bundleManager-elementName.md)> | Yes  | **ElementName** array, whose maximum length is 10.|
 
@@ -224,21 +215,18 @@ Obtains information about remote abilities that match the given element names. T
 
 **Error codes**
 
-For details about the error codes, see [Bundle Error Codes](../errorcodes/errcode-bundle.md).
+For details about the error codes, see [Bundle Error Codes](../errorcodes/errorcode-bundle.md).
 
-| ID       |    Error Message                  |
-|---------------|-------------------------|
-|  201         | Permission denied.|
-|  401       | The parameter check failed. |
-|  801       | Capability not supported. |
-| 17700001 | The specified bundle name is not found |
+| ID|    Error Message                  |
+|----------|-------------------------|
+| 17700001 | The specified bundle name is not found. |
 | 17700003 | The specified ability name is not found. |
-|  17700007 | The specified device id is not found. |
+| 17700007 | The specified device ID is not found. |
 | 17700027 | The distributed service is not running. |
 
 **Example**
 
-```js
+```ts
 try {
     distributedBundle.getRemoteAbilityInfo(
         [
@@ -276,7 +264,7 @@ Obtains information about the remote ability that matches the given element name
 
 **Parameters**
 
-| Name       | Type                                                        | Mandatory| Description                                              |
+| Name      | Type                                                        | Mandatory| Description                                              |
 | ----------- | ------------------------------------------------------------ | ---- | -------------------------------------------------- |
 | elementName | [ElementName](js-apis-bundleManager-elementName.md)                 | Yes  | Target element name.                           |
 | locale  | string |Yes| Target locale.|
@@ -284,21 +272,18 @@ Obtains information about the remote ability that matches the given element name
 
 **Error codes**
 
-For details about the error codes, see [Bundle Error Codes](../errorcodes/errcode-bundle.md).
+For details about the error codes, see [Bundle Error Codes](../errorcodes/errorcode-bundle.md).
 
-| ID       |    Error Message                  |
-|---------------|-------------------------|
-|  201         | Permission denied.|
-|  401       | The parameter check failed. |
-|  801       | Capability not supported. |
-| 17700001 | The specified bundle name is not found |
+| ID|    Error Message                  |
+|----------|-------------------------|
+| 17700001 | The specified bundle name is not found. |
 | 17700003 | The specified ability name is not found. |
-|  17700007 | The specified device id is not found. |
+| 17700007 | The specified device ID is not found. |
 | 17700027 | The distributed service is not running. |
 
 **Example**
 
-```js
+```ts
 try {
     distributedBundle.getRemoteAbilityInfo(
         {
@@ -331,7 +316,7 @@ Obtains information about the remote ability that matches the given element name
 
 **Parameters**
 
-| Name       | Type                                        | Mandatory| Description                   |
+| Name      | Type                                        | Mandatory| Description                   |
 | ----------- | -------------------------------------------- | ---- | ----------------------- |
 | elementName | [ElementName](js-apis-bundleManager-elementName.md) | Yes  | Target element name.|
 | locale  | string |Yes| Target locale.|
@@ -344,21 +329,18 @@ Obtains information about the remote ability that matches the given element name
 
 **Error codes**
 
-For details about the error codes, see [Bundle Error Codes](../errorcodes/errcode-bundle.md).
+For details about the error codes, see [Bundle Error Codes](../errorcodes/errorcode-bundle.md).
 
-| ID       |    Error Message                  |
-|---------------|-------------------------|
-|  201         | Permission denied.|
-|  401       | The parameter check failed. |
-|  801       | Capability not supported. |
-| 17700001 | The specified bundle name is not found |
+| ID|    Error Message                  |
+|----------|-------------------------|
+| 17700001 | The specified bundle name is not found. |
 | 17700003 | The specified ability name is not found. |
-|  17700007 | The specified device id is not found. |
+| 17700007 | The specified device ID is not found. |
 | 17700027 | The distributed service is not running. |
 
 **Example**
 
-```js
+```ts
 try {
     distributedBundle.getRemoteAbilityInfo(
         {
@@ -389,7 +371,7 @@ Obtains information about remote abilities that match the given element names an
 
 **Parameters**
 
-| Name        | Type                                                        | Mandatory| Description                                              |
+| Name       | Type                                                        | Mandatory| Description                                              |
 | ------------ | ------------------------------------------------------------ | ---- | -------------------------------------------------- |
 | elementNames | Array<[ElementName](js-apis-bundleManager-elementName.md)>          | Yes  | **ElementName** array, whose maximum length is 10.                  |
 | locale  | string |Yes| Target locale.|
@@ -397,21 +379,18 @@ Obtains information about remote abilities that match the given element names an
 
 **Error codes**
 
-For details about the error codes, see [Bundle Error Codes](../errorcodes/errcode-bundle.md).
+For details about the error codes, see [Bundle Error Codes](../errorcodes/errorcode-bundle.md).
 
 | ID       |    Error Message                  |
 |---------------|-------------------------|
-|  201         | Permission denied.|
-|  401       | The parameter check failed. |
-|  801       | Capability not supported. |
-| 17700001 | The specified bundle name is not found |
+| 17700001 | The specified bundle name is not found. |
 | 17700003 | The specified ability name is not found. |
-|  17700007 | The specified device id is not found. |
+| 17700007 | The specified device ID is not found. |
 | 17700027 | The distributed service is not running. |
 
 **Example**
 
-```js
+```ts
 try {
     distributedBundle.getRemoteAbilityInfo(
         [
@@ -451,7 +430,7 @@ Obtains information about remote abilities that match the given element names an
 
 **Parameters**
 
-| Name        | Type                                               | Mandatory| Description                   |
+| Name       | Type                                               | Mandatory| Description                   |
 | ------------ | --------------------------------------------------- | ---- | ----------------------- |
 | elementNames | Array<[ElementName](js-apis-bundleManager-elementName.md)> | Yes  | **ElementName** array, whose maximum length is 10.|
 | locale  | string |Yes| Target locale.|
@@ -464,21 +443,18 @@ Obtains information about remote abilities that match the given element names an
 
 **Error codes**
 
-For details about the error codes, see [Bundle Error Codes](../errorcodes/errcode-bundle.md).
+For details about the error codes, see [Bundle Error Codes](../errorcodes/errorcode-bundle.md).
 
-| ID       |    Error Message                  |
-|---------------|-------------------------|
-|  201         | Permission denied.|
-|  401       | The parameter check failed. |
-|  801       | Capability not supported. |
-| 17700001 | The specified bundle name is not found |
+| ID|    Error Message                  |
+|----------|-------------------------|
+| 17700001 | The specified bundle name is not found. |
 | 17700003 | The specified ability name is not found. |
-|  17700007 | The specified device id is not found. |
+| 17700007 | The specified device ID is not found. |
 | 17700027 | The distributed service is not running. |
 
 **Example**
 
-```js
+```ts
 try {
     distributedBundle.getRemoteAbilityInfo(
         [

@@ -447,7 +447,7 @@ let result = hashMap.replace("sparrow", 357);
 
 ### forEach
 
-forEach(callbackfn: (value?: V, key?: K, map?: HashMap<K, V>) => void, thisArg?: Object): void
+forEach(callbackFn: (value?: V, key?: K, map?: HashMap<K, V>) => void, thisArg?: Object): void
 
 通过回调函数来遍历HashMap实例对象上的元素以及元素对应的下标。
 
@@ -457,7 +457,7 @@ forEach(callbackfn: (value?: V, key?: K, map?: HashMap<K, V>) => void, thisArg?:
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| callbackfn | function | 是 | 回调函数。 |
+| callbackFn | function | 是 | 回调函数。 |
 | thisArg | Object | 否 | callbackfn被调用时用作this值。 |
 
 callbackfn的参数说明：

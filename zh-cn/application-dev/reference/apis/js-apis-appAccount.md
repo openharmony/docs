@@ -4563,7 +4563,7 @@ getAuthenticatorInfo(owner: string): Promise&lt;AuthenticatorInfo&gt;
 
 | 名称     | 类型     | 必填   | 说明         |
 | ------- | ------ | ---- | ---------- |
-| customData   | {[key:string]: Object} | 否    | 自定义数据。 |
+| customData   | {[key: string]: string} | 否    | 自定义数据。 |
 
 ## CreateAccountImplicitlyOptions<sup>9+</sup>
 
@@ -4573,9 +4573,9 @@ getAuthenticatorInfo(owner: string): Promise&lt;AuthenticatorInfo&gt;
 
 | 名称     | 类型     | 必填   | 说明         |
 | ------- | ------ | ---- | ---------- |
-| requiredLabels   | {[key:string]: Object} | 否    | 必须的标签。 |
+| requiredLabels   | Array&lt;string&gt; | 否    | 必须的标签。 |
 | authType   | string | 否    | 鉴权类型。 |
-| parameters   | {[key:string]: Object} | 否    | 自定义参数对象。 |
+| parameters   | {[key: string]: Object} | 否    | 自定义参数对象。 |
 ## SelectAccountsOptions<sup>9+</sup>
 
 表示用于选择帐号的选项。
@@ -4598,7 +4598,7 @@ getAuthenticatorInfo(owner: string): Promise&lt;AuthenticatorInfo&gt;
 | -------------- | ---------------------- | ----- | -------------- |
 | credentialType | string                 | 否    | 凭据类型。      |
 | credential     | string                 | 否    | 凭据取值。      |
-| parameters     | {[key:string]: Object} | 否    | 自定义参数对象。 |
+| parameters     | {[key: string]: Object} | 否    | 自定义参数对象。 |
 
 
 ## SetPropertiesOptions<sup>9+</sup>
@@ -4609,8 +4609,8 @@ getAuthenticatorInfo(owner: string): Promise&lt;AuthenticatorInfo&gt;
 
 | 名称     | 类型                    | 必填  | 说明           |
 | ---------- | ---------------------- | ----- | -------------- |
-| properties | {[key:string]: Object} | 否    | 属性对象。      |
-| parameters | {[key:string]: Object} | 否    | 自定义参数对象。 |
+| properties | {[key: string]: Object} | 否    | 属性对象。      |
+| parameters | {[key: string]: Object} | 否    | 自定义参数对象。 |
 
 ## Constants<sup>8+</sup>
 
@@ -4916,7 +4916,7 @@ auth(name: string, authType: string, options: {[key:string]: Object}, callback: 
 | name             | string                | 是    | 应用帐号的名称。        |
 | authType         | string                | 是    | 应用帐号的鉴权类型。      |
 | callerBundleName | string                | 是    | 鉴权类型。       |
-| options          | {[key: string]: any}  | 是    | 鉴权所需要的可选项。      |
+| options          | {[key: string]: Object}  | 是    | 鉴权所需要的可选项。      |
 | callback         | [AuthCallback](#authcallback9) | 是    | 回调对象，用于返回鉴权结果。 |
 
 ### authenticate<sup>deprecated</sup>

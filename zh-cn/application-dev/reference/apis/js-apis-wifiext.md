@@ -69,7 +69,7 @@ getSupportedPowerModel(): Promise&lt;Array&lt;PowerModel&gt;&gt;
 
 **系统能力：** SystemCapability.Communication.WiFi.AP.Extension
 
-| 名称 | 默认值 | 说明 |
+| 名称 | 值 | 说明 |
 | -------- | -------- | -------- |
 | SLEEPING | 0 | 睡眠模式。 |
 | GENERAL | 1 | 常规模式。 |
@@ -90,7 +90,7 @@ getSupportedPowerModel(callback: AsyncCallback&lt;Array&lt;PowerModel&gt;&gt;): 
 
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | callback | AsyncCallback&lt;[PowerModel](#powermodel)&gt; | 是 | 回调函数。当操作成功时，err为0，data表示支持的功率模式。如果error为非0，表示处理出现错误。 |
+  | callback | AsyncCallback&lt;Array&lt;[PowerModel](#powermodel)&gt;&gt; | 是 | 回调函数。当操作成功时，err为0，data表示支持的功率模式。如果error为非0，表示处理出现错误。 |
 
 
 ## wifiext.getPowerModel
@@ -141,7 +141,7 @@ setPowerModel(model: PowerModel) : boolean;
 
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | model | AsyncCallback&lt;[PowerModel](#powermodel)&gt; | 是 | 功率模式。 |
+  | model | [PowerModel](#powermodel) | 是 | 功率模式。 |
 
 **返回值：**
 

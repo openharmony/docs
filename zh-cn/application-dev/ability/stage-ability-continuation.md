@@ -6,7 +6,7 @@
 
 ## 接口说明
 
-迁移提供的能力如下，具体的API详见[接口文档](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-application-ability.md)。
+迁移提供的能力如下，具体的API详见[接口文档](../reference/apis/js-apis-application-ability.md)。
 
 **表1** 应用迁移API接口功能介绍
 

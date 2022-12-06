@@ -289,7 +289,7 @@ vector.removeByRange(2,4);
 
 ### replaceAllElements
 
-replaceAllElements(callbackfn: (value: T, index?: number, vector?: Vector&lt;T&gt;) => T,
+replaceAllElements(callbackFn: (value: T, index?: number, vector?: Vector&lt;T&gt;) => T,
 thisArg?: Object): void
 
 用户操作Vector中的元素，用操作后的元素替换原元素并返回操作后的元素。
@@ -300,7 +300,7 @@ thisArg?: Object): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| callbackfn | function | 是 | 回调函数。 |
+| callbackFn | function | 是 | 回调函数。 |
 | thisArg | Object | 否 | callbackfn被调用时用作this值。 |
 
 callbackfn的参数说明：
@@ -329,7 +329,7 @@ vector.replaceAllElements((value: number, index: number) => {
 
 ### forEach
 
-forEach(callbackfn: (value: T, index?: number, vector?: Vector&lt;T&gt;) => void,
+forEach(callbackFn: (value: T, index?: number, vector?: Vector&lt;T&gt;) => void,
 thisArg?: Object): void
 
 通过回调函数来遍历Vector实例对象上的元素以及元素对应的下标。
@@ -340,7 +340,7 @@ thisArg?: Object): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| callbackfn | function | 是 | 回调函数。 |
+| callbackFn | function | 是 | 回调函数。 |
 | thisArg | Object | 否 | callbackfn被调用时用作this值。 |
 
 callbackfn的参数说明：

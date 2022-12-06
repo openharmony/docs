@@ -25,7 +25,7 @@
 ## The message indicating Python cannot be found is displayed during the build process
 
 - **Symptom**
- 
+
   The following information is displayed during the build process:
 
   
@@ -76,7 +76,7 @@
   ![faq-python3-not-found](figures/faq-python3-not-found.png)
 
 - **Possible Causes**
- 
+
   Python 3 is not installed.
 
 - **Solution**

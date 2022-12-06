@@ -928,6 +928,7 @@ Sends a cell location update request. This API uses an asynchronous callback to 
 
 **System API**: This is a system API.
 
+**Required permissions**: ohos.permission.LOCATION and ohos.permission.APPROXIMATELY_LOCATION
 **System capability**: SystemCapability.Telephony.CoreService
 
 **Parameters**
@@ -952,6 +953,7 @@ Sends a cell location update request for the SIM card in the specified slot. Thi
 
 **System API**: This is a system API.
 
+**Required permissions**: ohos.permission.LOCATION and ohos.permission.APPROXIMATELY_LOCATION
 **System capability**: SystemCapability.Telephony.CoreService
 
 **Parameters**
@@ -978,6 +980,7 @@ Sends a cell location update request for the SIM card in the specified slot.This
 
 **System API**: This is a system API.
 
+**Required permissions**: ohos.permission.LOCATION and ohos.permission.APPROXIMATELY_LOCATION
 **System capability**: SystemCapability.Telephony.CoreService
 
 **Parameters**
@@ -1012,7 +1015,7 @@ Obtains cell information. This API uses an asynchronous callback to return the r
 
 **System API**: This is a system API.
 
-**Required permissions**: ohos.permission.LOCATION
+**Required permissions**: ohos.permission.LOCATION and ohos.permission.APPROXIMATELY_LOCATION
 
 **System capability**: SystemCapability.Telephony.CoreService
 
@@ -1039,7 +1042,7 @@ Obtains cell information for the SIM card in the specified slot. This API uses a
 
 **System API**: This is a system API.
 
-**Required permissions**: ohos.permission.LOCATION
+**Required permissions**: ohos.permission.LOCATION and ohos.permission.APPROXIMATELY_LOCATION
 
 **System capability**: SystemCapability.Telephony.CoreService
 
@@ -1068,7 +1071,7 @@ Obtains cell information for the SIM card in the specified slot. This API uses a
 
 **System API**: This is a system API.
 
-**Required permissions**: ohos.permission.LOCATION
+**Required permissions**: ohos.permission.LOCATION and ohos.permission.APPROXIMATELY_LOCATION
 
 **System capability**: SystemCapability.Telephony.CoreService
 
