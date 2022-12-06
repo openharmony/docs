@@ -1,12 +1,12 @@
-# 组件启动规则（Stage模型）
+# 组件启动规则（FA模型）
 
 
 启动组件是指一切启动或连接应用组件的行为：
 
 
-- 启动UIAbility、ServiceExtensionAbility、DataShareExtensionAbility，如使用startAbility()、startServiceExtensionAbility()、startAbilityByCall()等相关接口。
+- 启动PageAbility、ServiceAbility，如使用startAbility()等相关接口。
 
-- 连接ServiceExtensionAbility、DataShareExtensionAbility，如使用connectServiceExtensionAbility()、createDataShareHelper()等相关接口。
+- 连接ServiceAbility、DataAbility，如使用connectAbility()、acquireDataAbilityHelper()等相关接口。
 
 
 在OpenHarmony中，为了保证用户具有更好的使用体验，对以下几种易影响用户体验与系统安全的行为做了限制：
@@ -23,6 +23,7 @@
 
 
 - **跨应用启动组件，需校验目标组件Visible**
+  - 只针对跨应用场景
   - 若目标组件visible字段配置为false，则需校验`ohos.permission.START_INVISIBLE_ABILITY`权限
   - [组件visible配置参考](../quick-start/module-configuration-file.md#abilities标签)
 
@@ -30,8 +31,11 @@
   - 应用前后台判断标准：若应用进程获焦或所属的UIAbility位于前台则判定为前台应用，否则为后台应用
   - 需校验`ohos.permission.START_ABILITIES_FROM_BACKGROUND`权限
 
-- **使用startAbilityByCall接口，需校验CALL权限**（使用方式参考：[Call调用开发指南（同设备）](uiability-intra-device-interaction.md#通过call调用实现uiability交互仅对系统应用开放)，[Call调用开发指南（跨设备）](hop-multi-device-collaboration.md#通过跨设备call调用实现多端协同)）
-  - 需校验`ohos.permission.ABILITY_BACKGROUND_COMMUNICATION`权限
+- **跨应用启动FA模型的ServiceAbility组件或DataAbility组件，对端应用需配置关联启动**
+  - 只针对跨应用场景
+  - 只针对目标组件为ServiceAbility与DataAbility生效
+  - 目标应用的AssociateWakeUp为**ture**，其提供的ServiceAbility与DataAbility才允许被其他应用访问
+  - 只有系统预置应用才允许配置AssociateWakeUp字段，其余应用AssociateWakeUp默认为**false**
 
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
@@ -46,19 +50,19 @@
 
   设备内启动组件，不同场景下的规则不同，可分为如下两种场景：
 
-- 启动或连接组件：UIAbility、ServiceExtensionAbility、DataShareExtensionAbility。
+- 启动PageAbility。
 
-- 通过startAbilityByCall接口启动UIAbility。
+- 启动ServiceAbility或DataAbility。
 
-![startup-rule](figures/component-startup-inner-stage.png)
+![startup-rule](figures/component-startup-inner-fa.png)
 
 
 ## 分布式跨设备组件启动规则
 
   跨设备启动组件，不同场景下的规则不同，可分为如下两种场景：
 
-- 启动或连接组件：UIAbility、ServiceExtensionAbility、DataShareExtensionAbility。
+- 启动PageAbility。
 
-- 通过startAbilityByCall接口启动UIAbility。
+- 启动ServiceAbility。
 
-![component-startup-rules](figures/component-startup-inter-stage.png)
+![component-startup-rules](figures/component-startup-inter-fa.png)
