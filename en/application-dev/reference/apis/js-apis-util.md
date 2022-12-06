@@ -2112,7 +2112,7 @@ Obtains a new iterator object that contains all key-value pairs in this object.
 
 > **NOTE**
 >
-> This API is deprecated since API version 9. You are advised to use [Symbol.iterator9+](#symboliterator9) instead.
+> This API is deprecated since API version 9. You are advised to use [Symbol.iterator<sup>9+</sup>](#symboliterator9) instead.
 
 [Symbol.iterator]\(): IterableIterator&lt;[K, V]&gt;
 
@@ -2598,13 +2598,13 @@ Obtains the intersection of this **Scope** and the given **Scope**.
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| range | [Scope](#scope8) | Yes| **Scope** specified.|
+| range | [Scope](#scopedeprecated) | Yes| **Scope** specified.|
 
 **Return value**
 
 | Type| Description|
 | -------- | -------- |
-| [Scope](#scope8) | Intersection of this **Scope** and the given **Scope**.|
+| [Scope](#scopedeprecated) | Intersection of this **Scope** and the given **Scope**.|
 
 **Example**
 
@@ -2641,7 +2641,7 @@ Obtains the intersection of this **Scope** and the given lower and upper limits.
 
 | Type| Description|
 | -------- | -------- |
-| [Scope](#scope8) | Intersection of this **Scope** and the given lower and upper limits.|
+| [Scope](#scopedeprecated) | Intersection of this **Scope** and the given lower and upper limits.|
 
 **Example**
   ```js
@@ -2728,7 +2728,7 @@ Obtains the union set of this **Scope** and the given lower and upper limits.
 
 | Type| Description|
 | -------- | -------- |
-| [Scope](#scope8) | Union set of this **Scope** and the given lower and upper limits.|
+| [Scope](#scopedeprecated) | Union set of this **Scope** and the given lower and upper limits.|
 
 **Example**
 
@@ -2757,13 +2757,13 @@ Obtains the union set of this **Scope** and the given **Scope**.
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| range | [Scope](#scope8) | Yes| **Scope** specified.|
+| range | [Scope](#scopedeprecated) | Yes| **Scope** specified.|
 
 **Return value**
 
 | Type| Description|
 | -------- | -------- |
-| [Scope](#scope8) | Union set of this **Scope** and the given **Scope**.|
+| [Scope](#scopedeprecated) | Union set of this **Scope** and the given **Scope**.|
 
 **Example**
   ```js
@@ -2798,7 +2798,7 @@ Obtains the union set of this **Scope** and the given value.
 
 | Type| Description|
 | -------- | -------- |
-| [Scope](#scope8) | Union set of this **Scope** and the given value.|
+| [Scope](#scopedeprecated) | Union set of this **Scope** and the given value.|
 
 **Example**
   ```js
@@ -2858,7 +2858,7 @@ Checks whether a range is within this **Scope**.
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| range | [Scope](#scope8) | Yes| **Scope** specified.|
+| range | [Scope](#scopedeprecated) | Yes| **Scope** specified.|
 
 **Return value**
 
