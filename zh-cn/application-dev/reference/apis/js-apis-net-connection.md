@@ -61,7 +61,7 @@ connection.getDefaultNet().then(function (netHandle) {
 })
 ```
 
-## connection.getDefaultNetSync
+## connection.getDefaultNetSync<sup>9+</sup>
 
 getDefaultNetSync(): NetHandle;
 
@@ -302,6 +302,55 @@ connection.getDefaultNet().then(function (netHandle) {
 })
 ```
 
+## connection.isDefaultNetMetered<sup>9+</sup>
+
+isDefaultNetMetered(callback: AsyncCallback\<boolean>): void
+
+检查当前网络上的数据流量使用是否被计量，使用callback方式作为异步方法。
+
+**需要权限**：ohos.permission.GET_NETWORK_INFO
+
+**系统能力**：SystemCapability.Communication.NetManager.Core
+
+**参数：**
+
+| 参数名   | 类型                    | 必填 | 说明                                   |
+| -------- | ----------------------- | ---- | -------------------------------------- |
+| callback | AsyncCallback\<boolean> | 是   | 回调函数，当前网络上的数据流量使用被计量返回true。 |
+
+**示例：**
+
+```js
+connection.isDefaultNetMetered(function (error, has) {
+    console.log(JSON.stringify(error))
+    console.log('has: ' + has)
+})
+```
+
+## connection.isDefaultNetMetered<sup>9+</sup>
+
+isDefaultNetMetered(): Promise\<boolean>
+
+检查当前网络上的数据流量使用是否被计量，使用Promise方式作为异步方法。
+
+**需要权限**：ohos.permission.GET_NETWORK_INFO
+
+**系统能力**：SystemCapability.Communication.NetManager.Core
+
+**返回值：**
+
+| 类型              | 说明                                            |
+| ----------------- | ----------------------------------------------- |
+| Promise\<boolean> | 以Promise形式返回，当前网络上的数据流量使用被计量true。 |
+
+**示例：**
+
+```js
+connection.isDefaultNetMetered().then(function (has) {
+    console.log('has: ' + has)
+})
+```
+
 ## connection.reportNetConnected
 
 reportNetConnected(netHandle: NetHandle, callback: AsyncCallback&lt;void&gt;): void
@@ -490,7 +539,7 @@ enableAirplaneMode(callback: AsyncCallback\<void>): void
 
 开启飞行模式，使用callback方式作为异步方法。
 
-该接口为系统接口。
+**系统接口**：此接口为系统接口。
 
 **系统能力**：SystemCapability.Communication.NetManager.Core
 
@@ -514,7 +563,7 @@ enableAirplaneMode(): Promise\<void>
 
 开启飞行模式，使用Promise方式作为异步方法。
 
-该接口为系统接口。
+**系统接口**：此接口为系统接口。
 
 **系统能力**：SystemCapability.Communication.NetManager.Core
 
@@ -539,7 +588,7 @@ disableAirplaneMode(callback: AsyncCallback\<void>): void
 
 关闭飞行模式，使用callback方式作为异步方法。
 
-该接口为系统接口。
+**系统接口**：此接口为系统接口。
 
 **系统能力**：SystemCapability.Communication.NetManager.Core
 
@@ -563,7 +612,7 @@ disableAirplaneMode(): Promise\<void>
 
 关闭飞行模式，使用Promise方式作为异步方法。
 
-该接口为系统接口。
+**系统接口**：此接口为系统接口。
 
 **系统能力**：SystemCapability.Communication.NetManager.Core
 
@@ -816,18 +865,15 @@ netConnection.unregister(function (error) {
 
 ### 属性
 
-| 参数名 | 类型   | 说明                      |
-| ------ | ------ | ------------------------- |
-| netId  | number | 网络ID，取值为0代表没有默认网络，其余取值必须大于等于100。 |
+| 名称    | 类型   | 必填 | 说明                      |
+| ------ | ------ | --- |------------------------- |
+| netId  | number | 是  |  网络ID，取值为0代表没有默认网络，其余取值必须大于等于100。 |
 
-
-### bindSocket
+### bindSocket<sup>9+</sup>
 
 bindSocket(socketParam: TCPSocket \| UDPSocket, callback: AsyncCallback\<void>): void;
 
 将TCPSocket或UDPSocket绑定到当前网络，使用callback方式作为异步方法。
-
-**需要权限**：ohos.permission.GET_NETWORK_INFO
 
 **系统能力**：SystemCapability.Communication.NetManager.Core
 
@@ -870,13 +916,11 @@ connection.getDefaultNet().then(function (netHandle) {
 }
 ```
 
-### bindSocket
+### bindSocket<sup>9+</sup>
 
 bindSocket(socketParam: TCPSocket \| UDPSocket): Promise\<void>;
 
 将TCPSocket或UDPSockett绑定到当前网络，使用Promise方式作为异步方法。
-
-**需要权限**：ohos.permission.GET_NETWORK_INFO
 
 **系统能力**：SystemCapability.Communication.NetManager.Core
 
@@ -1052,10 +1096,10 @@ connection.getDefaultNet().then(function (netHandle) {
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Communication.NetManager.Core。
 
-| 参数名                  | 类型                                | 说明                                                         |
-| ----------------------- | ----------------------------------- | ------------------------------------------------------------ |
-| netCapabilities         | [NetCapabilities](#netcapabilities) | 存储数据网络的传输能力和承载类型。                           |
-| bearerPrivateIdentifier | string                              | 网络标识符，Wi-Fi网络的标识符是"wifi"，蜂窝网络的标识符是"slot0"（对应SIM卡1）。 |
+| 名称                     | 类型                                | 必填  | 说明                                                         |
+| ----------------------- | ----------------------------------- | ---- | ------------------------------------------------------------ |
+| netCapabilities         | [NetCapabilities](#netcapabilities) |  是  | 存储数据网络的传输能力和承载类型。                                |
+| bearerPrivateIdentifier | string                              |  否  |  网络标识符，Wi-Fi网络的标识符是"wifi"，蜂窝网络的标识符是"slot0"（对应SIM卡1）。 |
 
 ## NetCapabilities
 
@@ -1063,12 +1107,12 @@ connection.getDefaultNet().then(function (netHandle) {
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Communication.NetManager.Core。
 
-| 参数名                | 类型                               | 说明                     |
-| --------------------- | ---------------------------------- | ------------------------ |
-| linkUpBandwidthKbps   | number                             | 上行（设备到网络）带宽。 |
-| linkDownBandwidthKbps | number                             | 下行（网络到设备）带宽。 |
-| networkCap            | Array<[NetCap](#netcap)>           | 网络具体能力。           |
-| bearerTypes           | Array<[NetBearType](#netbeartype)> | 网络类型。               |
+| 名称                  | 类型                                | 必填 | 说明                     |
+| --------------------- | ---------------------------------- | --- | ------------------------ |
+| linkUpBandwidthKbps   | number                             |  否 |  上行（设备到网络）带宽。  |
+| linkDownBandwidthKbps | number                             |  否 |  下行（网络到设备）带宽。   |
+| networkCap            | Array\<[NetCap](#netcap)>           |  否 |  网络具体能力。           |
+| bearerTypes           | Array\<[NetBearType](#netbeartype)> |  是 |  网络类型。               |
 
 ## NetCap
 
@@ -1076,7 +1120,7 @@ connection.getDefaultNet().then(function (netHandle) {
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Communication.NetManager.Core。
 
-| 参数名                  | 值   | 说明                   |
+| 名称                  | 值   | 说明                   |
 | ------------------------ | ---- | ---------------------- |
 | NET_CAPABILITY_MMS | 0 | 表示网络可以访问运营商的MMSC（Multimedia&nbsp;Message&nbsp;Service，多媒体短信服务）发送和接收彩信。 |
 | NET_CAPABILITY_NOT_METERED | 11 | 表示网络流量未被计费。 |
@@ -1102,14 +1146,14 @@ connection.getDefaultNet().then(function (netHandle) {
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Communication.NetManager.Core。
 
-| 参数名       | 类型                               | 说明             |
-| ------------- | ---------------------------------- | ---------------- |
-| interfaceName | string                             | 网卡名称。       |
-| domains       | string                             | 所属域，默认""。 |
-| linkAddresses | Array<[LinkAddress](#linkaddress)> | 链路信息。       |
-| routes        | Array<[RouteInfo](#routeinfo)>     | 路由信息。       |
-| dnses | Array&lt;[NetAddress](#netaddress)&gt; | 网络地址，参考[NetAddress](#netaddress)。 |
-| mtu           | number                             | 最大传输单元。   |
+| 名称           | 类型                               | 必填 |  说明             |
+| ------------- | ---------------------------------- | ----|---------------- |
+| interfaceName | string                             | 是 |网卡名称。       |
+| domains       | string                             | 是 |所属域，默认""。 |
+| linkAddresses | Array\<[LinkAddress](#linkaddress)> | 是 |链路信息。       |
+| routes        | Array\<[RouteInfo](#routeinfo)>     | 是 |路由信息。       |
+| dnses     | Array\<[NetAddress](#netaddress)>; | 是 |网络地址，参考[NetAddress](#netaddress)。 |
+| mtu           | number                             | 是 |最大传输单元。   |
 
 ## LinkAddress
 
@@ -1117,10 +1161,10 @@ connection.getDefaultNet().then(function (netHandle) {
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Communication.NetManager.Core。
 
-| 参数名       | 类型                      | 说明                 |
-| ------------ | ------------------------- | -------------------- |
-| address      | [NetAddress](#netaddress) | 链路地址。           |
-| prefixLength | number                    | 链路地址前缀的长度。 |
+| 名称        | 类型                      | 必填 |说明                 |
+| ------------ | ----------------------- |---- |-------------------- |
+| address      | [NetAddress](#netaddress) | 是 | 链路地址。           |
+| prefixLength | number                    | 是 |链路地址前缀的长度。 |
 
 ## RouteInfo
 
@@ -1128,13 +1172,13 @@ connection.getDefaultNet().then(function (netHandle) {
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Communication.NetManager.Core。
 
-| 参数名         | 类型                        | 说明             |
-| -------------- | --------------------------- | ---------------- |
-| interface      | string                      | 网卡名称。       |
-| destination    | [LinkAddress](#linkaddress) | 目的地址。       |
-| gateway        | [NetAddress](#netaddress)   | 网关地址。       |
-| hasGateway     | boolean                     | 是否有网关。     |
-| isDefaultRoute | boolean                     | 是否为默认路由。 |
+| 名称           | 类型                        | 必填 |说明             |
+| -------------- | --------------------------- | --- |---------------- |
+| interface      | string                      | 是 |网卡名称。       |
+| destination    | [LinkAddress](#linkaddress) | 是 |目的地址。       |
+| gateway        | [NetAddress](#netaddress)   | 是 |网关地址。       |
+| hasGateway     | boolean                     | 是 |是否有网关。     |
+| isDefaultRoute | boolean                     | 是 |是否为默认路由。 |
 
 ## NetAddress
 
@@ -1142,8 +1186,8 @@ connection.getDefaultNet().then(function (netHandle) {
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Communication.NetManager.Core。
 
-| 参数名  | 类型   | 说明                           |
-| ------- | ------ | ------------------------------ |
-| address | string | 地址。                         |
-| family  | number | IPv4 = 1，IPv6 = 2，默认IPv4。 |
-| port    | number | 端口，取值范围\[0, 65535]。    |
+| 名称    | 类型   | 必填 | 说明                           |
+| ------- | ------ | -- |------------------------------ |
+| address | string | 是 |地址。                         |
+| family  | number | 否 |IPv4 = 1，IPv6 = 2，默认IPv4。 |
+| port    | number | 否 |端口，取值范围\[0, 65535]。    |
