@@ -713,9 +713,10 @@ for (var value of searchParams.values()) {
 
 
 ### [Symbol.iterator]<sup>(deprecated)</sup>
+
 > **说明：**
 >
-> 从API version 7开始支持，从API version 9开始废弃，建议使用[URLParams<sup>9+</sup>.[Symbol.iterator]<sup>9+</sup>](#symboliterator9)替代。
+> 从API version 7开始支持，从API version 9开始废弃，建议使用[[Symbol.iterator]<sup>9+</sup>](#symboliterator9)替代。
 
 [Symbol.iterator]\(): IterableIterator&lt;[string, string]&gt;
 
@@ -741,7 +742,7 @@ for (const [name, value] of paramsObject) {
 ### tostring<sup>(deprecated)</sup>
 > **说明：**
 >
-> 从API version 7开始支持，从API version 9开始废弃，建议使用[URLParams<sup>9+</sup>.tostring<sup>9+</sup>](#tostring9)替代。
+> 从API version 7开始支持，从API version 9开始废弃，建议使用[tostring<sup>9+</sup>](#tostring9)替代。
 
 toString(): string
 
