@@ -203,7 +203,7 @@ listener.on('change', onPortrait)
 
 适用：OpenHarmony SDK 3.2.5.5版本
 
-使用featureAbility.getWant()和featureAbility.getContext()在json文件中router跳转发送数据，在js文件中用featureAblity方法接收
+使用featureAbility.getWant()和featureAbility.getContext()在json文件中router跳转发送数据，在js文件中用featureAbility方法接收
 
 ## router.disableAlertBeforeBackPage和router.enableAlertBeforeBackPage怎么触发
 
