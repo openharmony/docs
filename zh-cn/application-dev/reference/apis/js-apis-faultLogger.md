@@ -28,7 +28,7 @@ import faultLogger from '@ohos.faultLogger'
 **系统能力：** SystemCapability.HiviewDFX.Hiview.FaultLogger
 
 | 名称 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- |
+| -------- | -------- | -------- | -------- |
 | pid | number | 必填 | 故障进程的进程id |
 | uid | number | 必填 | 故障进程的用户id |
 | type | [FaultType](#faulttype) | 必填 | 故障类型 |
