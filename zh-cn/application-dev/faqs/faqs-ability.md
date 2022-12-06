@@ -109,7 +109,7 @@ Ability配置中缺少startWindowIcon属性配置，需要在module.json5中abil
 
 适用于：OpenHarmony SDK 3.2.5.5版本, API8 FA模型
 
-服务卡片在添加卡片后就触发了oncreat()生命周期，在不启用app的情况下也可以显示相关的用户信息-静默登录，但服务卡片目前要在app安装之后手动添加。
+服务卡片在添加卡片后就触发了oncreate()生命周期，在不启用app的情况下也可以显示相关的用户信息-静默登录，但服务卡片目前要在app安装之后手动添加。
 
 ## 如何获取context
 
