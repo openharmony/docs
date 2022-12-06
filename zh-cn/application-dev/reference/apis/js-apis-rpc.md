@@ -22,6 +22,7 @@ import rpc from '@ohos.rpc';
 
   | 名称                                  | 值      | 说明                                          |
   | ------------------------------------- | ------- | --------------------------------------------- |
+  | CHECK_PARAM_ERROR                     | 401     | 检查参数失败。                                |
   | OS_MMAP_ERROR                         | 1900001 | 执行系统调用mmap失败。                        |
   | OS_IOCTL_ERROR                        | 1900002 | 在共享内存文件描述符上执行系统调用ioctl失败。 |
   | WRITE_TO_ASHMEM_ERROR                 | 1900003 | 向共享内存写数据失败。                        |
@@ -1229,7 +1230,7 @@ writeParcelable(val: Parcelable): void
 
 ### readParcelable
 
-readParcelable(dataIn: Parcelable) : void
+readParcelable(dataIn: Parcelable): void
 
 从MessageSequence实例中读取成员变量到指定的对象（dataIn）。
 
@@ -1320,7 +1321,7 @@ writeByteArray(byteArray: number[]): void
 
 ### readByteArray
 
-readByteArray(dataIn: number[]) : void
+readByteArray(dataIn: number[]): void
 
 从MessageSequence实例读取字节数组。
 
@@ -1438,7 +1439,7 @@ writeShortArray(shortArray: number[]): void
 
 ### readShortArray
 
-readShortArray(dataIn: number[]) : void
+readShortArray(dataIn: number[]): void
 
 从MessageSequence实例中读取短整数数组。
 
@@ -1554,7 +1555,7 @@ writeIntArray(intArray: number[]): void
 
 ### readIntArray
 
-readIntArray(dataIn: number[]) : void
+readIntArray(dataIn: number[]): void
 
 从MessageSequence实例中读取整数数组。
 
@@ -1670,7 +1671,7 @@ writeLongArray(longArray: number[]): void
 
 ### readLongArray
 
-readLongArray(dataIn: number[]) : void
+readLongArray(dataIn: number[]): void
 
 从MessageSequence实例读取长整数数组。
 
@@ -1786,7 +1787,7 @@ writeFloatArray(floatArray: number[]): void
 
 ### readFloatArray
 
-readFloatArray(dataIn: number[]) : void
+readFloatArray(dataIn: number[]): void
 
 从MessageSequence实例中读取浮点数组。
 
@@ -1902,7 +1903,7 @@ writeDoubleArray(doubleArray: number[]): void
 
 ### readDoubleArray
 
-readDoubleArray(dataIn: number[]) : void
+readDoubleArray(dataIn: number[]): void
 
 从MessageSequence实例中读取双精度浮点数组。
 
@@ -2018,7 +2019,7 @@ writeBooleanArray(booleanArray: boolean[]): void
 
 ### readBooleanArray
 
-readBooleanArray(dataIn: boolean[]) : void
+readBooleanArray(dataIn: boolean[]): void
 
 从MessageSequence实例中读取布尔数组。
 
@@ -2134,7 +2135,7 @@ writeCharArray(charArray: number[]): void
 
 ### readCharArray
 
-readCharArray(dataIn: number[]) : void
+readCharArray(dataIn: number[]): void
 
 从MessageSequence实例中读取单个字符数组。
 
@@ -2251,7 +2252,7 @@ writeStringArray(stringArray: string[]): void
 
 ### readStringArray
 
-readStringArray(dataIn: string[]) : void
+readStringArray(dataIn: string[]): void
 
 从MessageSequence实例读取字符串数组。
 
@@ -2915,7 +2916,7 @@ writeAshmem(ashmem: Ashmem): void
 
   | 错误码ID | 错误信息 |
   | ------- | ------- |
-  | 1900003 | write data to message sequence failed |
+  | 1900003 | write to ashmem failed |
 
 **示例：**
 
@@ -2957,7 +2958,7 @@ readAshmem(): Ashmem
 
   | 错误码ID | 错误信息 |
   | ------- | -------- |
-  | 1900004 | read data from message sequence failed |
+  | 1900004 | read from ashmem failed |
 
 **示例：**
 
@@ -4087,7 +4088,7 @@ writeSequenceable(val: Sequenceable): boolean
 
 ### readSequenceable
 
-readSequenceable(dataIn: Sequenceable) : boolean
+readSequenceable(dataIn: Sequenceable): boolean
 
 从MessageParcel实例中读取成员变量到指定的对象（dataIn）。
 
@@ -4168,7 +4169,7 @@ writeByteArray(byteArray: number[]): boolean
 
 ### readByteArray
 
-readByteArray(dataIn: number[]) : void
+readByteArray(dataIn: number[]): void
 
 从MessageParcel实例读取字节数组。
 
@@ -4249,7 +4250,7 @@ writeShortArray(shortArray: number[]): boolean
 
 ### readShortArray
 
-readShortArray(dataIn: number[]) : void
+readShortArray(dataIn: number[]): void
 
 从MessageParcel实例中读取短整数数组。
 
@@ -4328,7 +4329,7 @@ writeIntArray(intArray: number[]): boolean
 
 ### readIntArray
 
-readIntArray(dataIn: number[]) : void
+readIntArray(dataIn: number[]): void
 
 从MessageParcel实例中读取整数数组。
 
@@ -4407,7 +4408,7 @@ writeLongArray(longArray: number[]): boolean
 
 ### readLongArray
 
-readLongArray(dataIn: number[]) : void
+readLongArray(dataIn: number[]): void
 
 从MessageParcel实例读取长整数数组。
 
@@ -4486,7 +4487,7 @@ writeFloatArray(floatArray: number[]): boolean
 
 ### readFloatArray
 
-readFloatArray(dataIn: number[]) : void
+readFloatArray(dataIn: number[]): void
 
 从MessageParcel实例中读取浮点数组。
 
@@ -4565,7 +4566,7 @@ writeDoubleArray(doubleArray: number[]): boolean
 
 ### readDoubleArray
 
-readDoubleArray(dataIn: number[]) : void
+readDoubleArray(dataIn: number[]): void
 
 从MessageParcel实例中读取双精度浮点数组。
 
@@ -4644,7 +4645,7 @@ writeBooleanArray(booleanArray: boolean[]): boolean
 
 ### readBooleanArray
 
-readBooleanArray(dataIn: boolean[]) : void
+readBooleanArray(dataIn: boolean[]): void
 
 从MessageParcel实例中读取布尔数组。
 
@@ -4723,7 +4724,7 @@ writeCharArray(charArray: number[]): boolean
 
 ### readCharArray
 
-readCharArray(dataIn: number[]) : void
+readCharArray(dataIn: number[]): void
 
 从MessageParcel实例中读取单个字符数组。
 
@@ -4802,7 +4803,7 @@ writeStringArray(stringArray: string[]): boolean
 
 ### readStringArray
 
-readStringArray(dataIn: string[]) : void
+readStringArray(dataIn: string[]): void
 
 从MessageParcel实例读取字符串数组。
 
@@ -5535,7 +5536,7 @@ marshalling(dataOut: MessageSequence): boolean
 
 ### unmarshalling
 
-unmarshalling(dataIn: MessageSequence) : boolean
+unmarshalling(dataIn: MessageSequence): boolean
 
 从MessageSequence中解封此可序列对象。
 
@@ -5643,7 +5644,7 @@ marshalling(dataOut: MessageParcel): boolean
 
 ### unmarshalling
 
-unmarshalling(dataIn: MessageParcel) : boolean
+unmarshalling(dataIn: MessageParcel): boolean
 
 从MessageParcel中解封此可序列对象。
 
@@ -5835,7 +5836,7 @@ queryLocalInterface(descriptor: string): IRemoteBroker
 
 >从API version 9 开始不再维护，建议使用[sendMessageRequest](#sendmessagerequest9)类替代。
 
-sendRequest(code : number, data : MessageParcel, reply : MessageParcel, options : MessageOption): boolean
+sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: MessageOption): boolean
 
 以同步或异步方式向对端进程发送MessageParcel消息。如果为选项设置了异步模式，则期约立即兑现，reply报文里没有内容。如果为选项设置了同步模式，则期约将在sendRequest返回时兑现，回复内容在reply报文里。
 
@@ -5861,7 +5862,7 @@ sendRequest(code : number, data : MessageParcel, reply : MessageParcel, options 
 
 >从API version 9 开始不再维护，建议使用[sendMessageRequest](#sendmessagerequest9)类替代。
 
-sendRequest(code : number, data : MessageParcel, reply : MessageParcel, options : MessageOption): Promise&lt;SendRequestResult&gt;
+sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: MessageOption): Promise&lt;SendRequestResult&gt;
 
 以同步或异步方式向对端进程发送MessageParcel消息。如果为选项设置了异步模式，则期约立即兑现，reply报文里没有内容。如果为选项设置了同步模式，则期约将在sendRequest返回时兑现，回复内容在reply报文里。
 
@@ -5885,7 +5886,7 @@ sendRequest(code : number, data : MessageParcel, reply : MessageParcel, options 
 
 ### sendMessageRequest<sup>9+</sup>
 
-sendMessageRequest(code : number, data : MessageSequence, reply : MessageSequence, options : MessageOption): Promise&lt;RequestResult&gt;
+sendMessageRequest(code: number, data: MessageSequence, reply: MessageSequence, options: MessageOption): Promise&lt;RequestResult&gt;
 
 以同步或异步方式向对端进程发送MessageSequence消息。如果为选项设置了异步模式，则期约立即兑现，reply报文里没有内容。如果为选项设置了同步模式，则期约将在sendMessageRequest返回时兑现，回复内容在reply报文里。
 
@@ -6117,7 +6118,7 @@ isObjectDead(): boolean
 
 >从API version 9 开始不再维护，建议使用[sendMessageRequest](#sendmessagerequest9)类替代。
 
-sendRequest(code : number, data : MessageParcel, reply : MessageParcel, options : MessageOption): boolean
+sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: MessageOption): boolean
 
 以同步或异步方式向对端进程发送MessageParcel消息。如果为选项设置了异步模式，则期约立即兑现，reply报文里没有内容。如果为选项设置了同步模式，则期约将在sendRequest返回时兑现，回复内容在reply报文里。
 
@@ -6181,7 +6182,8 @@ sendRequest(code : number, data : MessageParcel, reply : MessageParcel, options 
 
 ### sendMessageRequest<sup>9+</sup>
 
-sendMessageRequest(code : number, data : MessageSequence, reply : MessageSequence, options : MessageOption): Promise&lt;RequestResult&gt;
+sendMessageRequest(code: number, data: MessageSequence, reply: MessageSequence, options: MessageOption): Promise&lt;RequestResult&gt;
+
 以同步或异步方式向对端进程发送MessageSequence消息。如果为选项设置了异步模式，则期约立即兑现，reply报文里没有内容。如果为选项设置了同步模式，则期约将在sendMessageRequest返回时兑现，回复内容在reply报文里。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
@@ -6252,7 +6254,7 @@ sendMessageRequest(code : number, data : MessageSequence, reply : MessageSequenc
 
 >从API version 9 开始不再维护，建议使用[sendMessageRequest](#sendmessagerequest9)类替代。
 
-sendRequest(code : number, data : MessageParcel, reply : MessageParcel, options : MessageOption): Promise&lt;SendRequestResult&gt;
+sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: MessageOption): Promise&lt;SendRequestResult&gt;
 
 以同步或异步方式向对端进程发送MessageParcel消息。如果为选项设置了异步模式，则期约立即兑现，reply报文里没有内容。如果为选项设置了同步模式，则期约将在sendRequest返回时兑现，回复内容在reply报文里。
 
@@ -6392,6 +6394,7 @@ sendMessageRequest(code: number, data: MessageSequence, reply: MessageSequence, 
 >从API version 9 开始不再维护，建议使用[sendMessageRequest](#sendmessagerequest9)类替代。
 
 sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: MessageOption, callback: AsyncCallback&lt;SendRequestResult&gt;): void
+
 以同步或异步方式向对端进程发送MessageParcel消息。如果为选项设置了异步模式，则立即收到回调，reply报文里没有内容。如果为选项设置了同步模式，则将在sendRequest返回时收到回调，回复内容在reply报文里。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
@@ -6470,6 +6473,13 @@ getLocalInterface(interface: string): IRemoteBroker
   | ------------- | ------------------------------------------ |
   | IRemoteBroker | 默认返回Null，标识该接口是一个代理侧接口。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.rpc错误码](../errorcodes/errorcode-rpc.md)
+
+  | 错误码ID | 错误信息 |
+  | ------- | --------  |
+  | 1900006 | only remote object permitted |
 
 **示例：**
 
@@ -6616,7 +6626,7 @@ registerDeathRecipient(recipient: DeathRecipient, flags: number): void
 
 >从API version 9 开始不再维护，建议使用[registerDeathRecipient](#registerdeathrecipient9)类替代。
 
-addDeathRecipient(recipient : DeathRecipient, flags : number): boolean
+addDeathRecipient(recipient: DeathRecipient, flags: number): boolean
 
 注册用于接收远程对象死亡通知的回调，增加proxy对象上的死亡通知。
 
@@ -6668,7 +6678,7 @@ addDeathRecipient(recipient : DeathRecipient, flags : number): boolean
 
 ### unregisterDeathRecipient<sup>9+</sup>
 
-unregisterDeathRecipient(recipient: DeathRecipient, flags: number): void
+unregisterDeathRecipient(recipient: DeathRecipient, flags: number): boolean
 
 注销用于接收远程对象死亡通知的回调。
 
@@ -6731,7 +6741,7 @@ unregisterDeathRecipient(recipient: DeathRecipient, flags: number): void
 
 >从API version 9 开始不再维护，建议使用[unregisterDeathRecipient](#unregisterdeathrecipient9)类替代。
 
-removeDeathRecipient(recipient : DeathRecipient, flags : number): boolean
+removeDeathRecipient(recipient: DeathRecipient, flags: number): boolean
 
 注销用于接收远程对象死亡通知的回调。
 
@@ -6785,7 +6795,7 @@ removeDeathRecipient(recipient : DeathRecipient, flags : number): boolean
 
 ### getDescriptor<sup>9+</sup>
 
-getInterfaceDescriptor(): string
+getDescriptor(): string
 
 获取对象的接口描述符。接口描述符为字符串。
 
@@ -6953,7 +6963,7 @@ MessageOption构造函数。
 
 ### constructor
 
-constructor(syncFlags?: number, waitTime = TF_WAIT_TIME)
+constructor(syncFlags?: number, waitTime?: number)
 
 MessageOption构造函数。
 
@@ -7140,13 +7150,13 @@ static getCallingTokenId(): number;
 **系统能力**：SystemCapability.Communication.IPC.Core
 
 
-* 返回值
-* 
-    | 类型   | 说明                  |
-    | ------ | --------------------- |
-    | number | 返回调用者的TokenId。 |
+**返回值：**
+ 
+   | 类型   | 说明                  |
+   | ------ | --------------------- |
+   | number | 返回调用者的TokenId。 |
   
-* 示例
+**示例：**
 
   ```
   class Stub extends rpc.RemoteObject {
@@ -7242,7 +7252,7 @@ static isLocalCalling(): boolean
 
 ### flushCmdBuffer<sup>9+</sup>
 
-static flushCmdBuffer(object : IRemoteObject): void
+static flushCmdBuffer(object: IRemoteObject): void
 
 将所有挂起的命令从指定的RemoteProxy刷新到相应的RemoteObject。建议在执行任何时间敏感操作之前调用此方法。
 
@@ -7277,7 +7287,7 @@ static flushCmdBuffer(object : IRemoteObject): void
 
 >从API version 9 开始不再维护，建议使用[flushCmdBuffer](#flushcmdbuffer9)类替代。
 
-static flushCommands(object : IRemoteObject): number
+static flushCommands(object: IRemoteObject): number
 
 将所有挂起的命令从指定的RemoteProxy刷新到相应的RemoteObject。建议在执行任何时间敏感操作之前调用此方法。
 
@@ -7351,7 +7361,7 @@ static resetCallingIdentity(): string
 
 ### restoreCallingIdentity<sup>9+</sup>
 
-static restoreCallingIdentity(identity : string): void
+static restoreCallingIdentity(identity: string): void
 
 将远程用户的UID和PID替换为本地用户的UID和PID。它可以用于身份验证等场景。
 
@@ -7385,7 +7395,7 @@ static restoreCallingIdentity(identity : string): void
 
 >从API version 9 开始不再维护，建议使用[restoreCallingIdentity](#restorecallingidentity9)类替代。
 
-static setCallingIdentity(identity : string): boolean
+static setCallingIdentity(identity: string): boolean
 
 将UID和PID恢复为远程用户的UID和PID。它通常在使用resetCallingIdentity后调用，需要resetCallingIdentity返回的远程用户的UID和PID。
 
@@ -7445,7 +7455,7 @@ RemoteObject构造函数。
 
 >从API version 9 开始不再维护，建议使用[sendMessageRequest](#sendmessagerequest9)类替代。
 
-sendRequest(code : number, data : MessageParcel, reply : MessageParcel, options : MessageOption): boolean
+sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: MessageOption): boolean
 
 以同步或异步方式向对端进程发送MessageParcel消息。如果为选项设置了异步模式，则期约立即兑现，reply报文里没有内容。如果为选项设置了同步模式，则期约将在sendRequest返回时兑现，回复内容在reply报文里。
 
@@ -7512,7 +7522,7 @@ sendRequest(code : number, data : MessageParcel, reply : MessageParcel, options 
 
 >从API version 9 开始不再维护，建议使用[sendMessageRequest](#sendmessagerequest9)类替代。
 
-sendRequest(code : number, data : MessageParcel, reply : MessageParcel, options : MessageOption): Promise&lt;SendRequestResult&gt;
+sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: MessageOption): Promise&lt;SendRequestResult&gt;
 
 以同步或异步方式向对端进程发送MessageParcel消息。如果为选项设置了异步模式，则期约立即兑现，reply报文里没有内容。如果为选项设置了同步模式，则期约将在sendRequest返回时兑现，回复内容在reply报文里。
 
@@ -7582,7 +7592,7 @@ sendRequest(code : number, data : MessageParcel, reply : MessageParcel, options 
 
 ### sendMessageRequest<sup>9+</sup>
 
-sendMessageRequest(code : number, data : MessageSequence, reply : MessageSequence, options : MessageOption): Promise&lt;RequestResult&gt;
+sendMessageRequest(code: number, data: MessageSequence, reply: MessageSequence, options: MessageOption): Promise&lt;RequestResult&gt;
 
 以同步或异步方式向对端进程发送MessageSequence消息。如果为选项设置了异步模式，则期约立即兑现，reply报文里没有内容。如果为选项设置了同步模式，则期约将在sendMessageRequest返回时兑现，回复内容在reply报文里。
 
@@ -7755,7 +7765,7 @@ sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: Me
 
 >从API version 9 开始不再维护，建议使用[onRemoteMessageRequest](#onremotemessagerequest9)类替代。
 
-onRemoteRequest(code : number, data : MessageParcel, reply: MessageParcel, options : MessageOption): boolean
+onRemoteRequest(code: number, data: MessageParcel, reply: MessageParcel, options: MessageOption): boolean
 
 sendMessageRequest请求的响应处理函数，服务端在该函数里处理请求，回复结果。
 
@@ -7811,7 +7821,7 @@ sendMessageRequest请求的响应处理函数，服务端在该函数里处理�
 
 ### onRemoteMessageRequest<sup>9+</sup>
 
-onRemoteMessageRequest(code : number, data : MessageSequence, reply: MessageSequence, options : MessageOption): boolean | Promise\<boolean>
+onRemoteMessageRequest(code: number, data: MessageSequence, reply: MessageSequence, options: MessageOption): boolean | Promise\<boolean>
 
 > **说明：**
 >
@@ -8097,7 +8107,7 @@ queryLocalInterface(descriptor: string): IRemoteBroker
 
 ### getDescriptor<sup>9+</sup>
 
-getInterfaceDescriptor(): string
+getDescriptor(): string
 
 获取对象的接口描述符。接口描述符为字符串。
 
@@ -8560,7 +8570,7 @@ mapAshmem(mapType: number): boolean
 
 ### mapReadWriteAshmem<sup>9+</sup>
 
-mapReadAndWriteAshmem(): void
+mapReadWriteAshmem(): void
 
 在此进程虚拟地址空间上创建可读写的共享文件映射。
 
