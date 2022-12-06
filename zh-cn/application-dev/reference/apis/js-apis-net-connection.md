@@ -818,7 +818,7 @@ netConnection.unregister(function (error) {
 
 | 参数名 | 类型   | 说明                      |
 | ------ | ------ | ------------------------- |
-| netId  | number | 网络ID，必须大于等于100。 |
+| netId  | number | 网络ID，取值为0代表没有默认网络，其余取值必须大于等于100。 |
 
 
 ### bindSocket

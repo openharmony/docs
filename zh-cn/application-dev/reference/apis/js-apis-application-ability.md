@@ -570,7 +570,6 @@ release(): void;
   }
   ```
 
-
 ## Caller.on
 
  on(type: "release", callback: OnReleaseCallback): void;
@@ -584,7 +583,7 @@ release(): void;
   | 参数名 | 类型 | 必填 | 说明 | 
   | -------- | -------- | -------- | -------- |
   | type | string | 是 | 监听releaseCall事件，固定为'release'。 | 
-  | callback | OnReleaseCallBack | 是 | 返回onRelease回调结果。 | 
+  | callback | OnReleaseCallback | 是 | 返回onRelease回调结果。 | 
 
 **错误码：**
 
@@ -736,3 +735,23 @@ off(method: string): void;
     }
   }
   ```
+  
+## OnReleaseCallback
+
+(msg: string): void;
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
+
+| 名称 | 类型 | 可读 | 可写 | 说明 | 
+| -------- | -------- | -------- | -------- | -------- |
+| (msg: string) | function | 是 | 否 | 调用者注册的侦听器函数接口的原型。 | 
+
+## CalleeCallback
+
+(indata: rpc.MessageParcel): rpc.Sequenceable;
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
+
+| 名称 | 类型 | 可读 | 可写 | 说明 | 
+| -------- | -------- | -------- | -------- | -------- |
+| (indata: rpc.MessageParcel) | rpc.Sequenceable | 是 | 否 | 被调用方注册的消息侦听器函数接口的原型。 | 

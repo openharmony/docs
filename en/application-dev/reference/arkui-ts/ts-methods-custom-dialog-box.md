@@ -16,30 +16,15 @@ CustomDialogController(value:{builder: CustomDialog, cancel?: () =&gt; void, aut
 
 **Parameters**
 
-| Name                   | Type                                     | Mandatory | Description                              |
-| ---------------------- | ---------------------------------------- | --------- | ---------------------------------------- |
-| builder                | CustomDialog                             | Yes       | Constructor of the custom dialog box content. |
-| cancel                 | () =&gt; void                            | No        | Callback invoked when the dialog box is closed after the overlay exits. |
-| autoCancel             | boolean                                  | No        | Whether to allow users to click the overlay to exit.<br>Default value: **true** |
-| alignment              | [DialogAlignment](#dialogalignment)      | No        | Alignment mode of the dialog box in the vertical direction.<br>Default value: **DialogAlignment.Default** |
-| offset                 | {<br>dx: Length \| [Resource](ts-types.md#resource),<br>dy: Length  \| [Resource](ts-types.md#resource)<br>} | No        | Offset of the dialog box relative to the alignment position. |
-| customStyle            | boolean                                  | No        | Whether to use a custom style for the dialog box.<br>Default value: **false** |
-| gridCount<sup>8+</sup> | number                                   | No        | Number of grid columns occupied by the dialog box. |
-
-## DialogAlignment
-
-| Name                     | Description                |
-| ------------------------ | -------------------------- |
-| Top                      | Vertical top alignment.    |
-| Center                   | Vertical center alignment. |
-| Bottom                   | Vertical bottom alignment. |
-| Default                  | Default alignment.         |
-| TopStart<sup>8+</sup>    | Top left alignment.        |
-| TopEnd<sup>8+</sup>      | Top right alignment.       |
-| CenterStart<sup>8+</sup> | Center left alignment.     |
-| CenterEnd<sup>8+</sup>   | Center right alignment.    |
-| BottomStart<sup>8+</sup> | Bottom left alignment.     |
-| BottomEnd<sup>8+</sup>   | Bottom right alignment.    |
+| Name                   | Type                                    | Mandatory                 | Description                  |
+| ---------------------- | ---------------------------------------- | ------------------------- | ---------------------- |
+| builder                | [CustomDialog](../../quick-start/arkts-dynamic-ui-elememt-building.md#customdialog) | Yes    | Constructor of the custom dialog box content.           |
+| cancel                 | () =&gt; void                            | No             | Callback invoked when the dialog box is closed after the overlay exits.          |
+| autoCancel             | boolean                                            | No             | Whether to allow users to click the overlay to exit.<br>Default value: **true**          |
+| alignment              | [DialogAlignment](ts-methods-alert-dialog-box.md#dialogalignment)           | No             | Alignment mode of the dialog box in the vertical direction.<br>Default value: **DialogAlignment.Default**       |
+| offset                 | [Offset](ts-types.md#offset) | No   | Offset of the dialog box relative to the alignment position.|
+| customStyle            | boolean                                  | No                   | Whether to use a custom style for the dialog box.<br>Default value: **false**          |
+| gridCount<sup>8+</sup> | number                                   | No                   | Number of [grid columns](../../ui/ui-ts-layout-grid-container-new.md) occupied by the dialog box.<br>The default value is 4, and the maximum value is the maximum number of columns supported by the system. If this parameter is set to an invalid value, the default value is used.|
 
 
 ## CustomDialogController
@@ -107,17 +92,28 @@ struct CustomDialogUser {
   @State textValue: string = ''
   @State inputValue: string = 'click me'
   dialogController: CustomDialogController = new CustomDialogController({
-    builder: CustomDialogExample({ cancel: this.onCancel, confirm: this.onAccept, textValue: $textValue, inputValue: $inputValue }),
+    builder: CustomDialogExample({
+      cancel: this.onCancel,
+      confirm: this.onAccept,
+      textValue: $textValue,
+      inputValue: $inputValue
+    }),
     cancel: this.existApp,
-    autoCancel: true
+    autoCancel: true,
+    alignment: DialogAlignment.Default,
+    offset: { dx: 0, dy: -20 },
+    gridCount: 4,
+    customStyle: false
   })
 
   onCancel() {
     console.info('Callback when the first button is clicked')
   }
+
   onAccept() {
     console.info('Callback when the second button is clicked')
   }
+
   existApp() {
     console.info('Click the callback in the blank area')
   }

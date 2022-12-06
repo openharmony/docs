@@ -3819,8 +3819,8 @@ selectOutputDeviceByFilter(filter: AudioRendererFilter, outputAudioDevices: Audi
 let outputAudioRendererFilter = {
   uid : 20010041,
   rendererInfo : {
-    contentType : audio.ContentType.CONTENT_TYPE_MUSIC,
-    streamUsage : audio.StreamUsage.STREAM_USAGE_MEDIA,
+    content : audio.ContentType.CONTENT_TYPE_MUSIC,
+    usage : audio.StreamUsage.STREAM_USAGE_MEDIA,
     rendererFlags : 0 },
   rendererId : 0 };
   
@@ -3877,8 +3877,8 @@ selectOutputDeviceByFilter(filter: AudioRendererFilter, outputAudioDevices: Audi
 let outputAudioRendererFilter = {
   uid : 20010041,
   rendererInfo : {
-    contentType : audio.ContentType.CONTENT_TYPE_MUSIC,
-    streamUsage : audio.StreamUsage.STREAM_USAGE_MEDIA,
+    content : audio.ContentType.CONTENT_TYPE_MUSIC,
+    usage : audio.StreamUsage.STREAM_USAGE_MEDIA,
     rendererFlags : 0 },
   rendererId : 0 };
 

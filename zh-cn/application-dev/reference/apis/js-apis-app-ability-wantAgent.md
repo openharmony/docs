@@ -740,7 +740,7 @@ try {
 
 ## WantAgent.trigger
 
-trigger(agent: WantAgent, triggerInfo: TriggerInfo, callback?: Callback\<CompleteData\>): void
+trigger(agent: WantAgent, triggerInfo: TriggerInfo, callback?: AsyncCallback\<CompleteData\>): void
 
 主动激发WantAgent实例（callback形式）。
 
@@ -752,7 +752,7 @@ trigger(agent: WantAgent, triggerInfo: TriggerInfo, callback?: Callback\<Complet
 | ----------- | ----------------------------- | ---- | ------------------------------- |
 | agent       | WantAgent                     | 是   | WantAgent对象。                   |
 | triggerInfo | TriggerInfo                   | 是   | TriggerInfo对象。                 |
-| callback    | AsyncCallback\<CompleteData\> | 是   | 主动激发WantAgent实例的回调方法。 |
+| callback    | AsyncCallback\<CompleteData\> | 否   | 主动激发WantAgent实例的回调方法。 |
 
 **示例：**
 
@@ -1116,13 +1116,13 @@ try {
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
 
-| 名称           | 可读 | 可写 | 类型                            | 必填 | 描述                   |
-| -------------- | --- | ---- | ------------------------------- | ---- | ---------------------- |
-| wants          | 是  | 是  | Array\<Want\>                   | 是   | 将被执行的动作列表。     |
-| operationType  | 是  | 是  | wantAgent.OperationType         | 是   | 动作类型。               |
-| requestCode    | 是  | 是  | number                          | 是   | 使用者定义的一个私有值。 |
-| wantAgentFlags | 是  | 是  | Array<wantAgent.WantAgentFlags> | 否   | 动作执行属性。           |
-| extraInfo      | 是  | 是  | {[key: string]: any}            | 否   | 额外数据。               |
+| 名称           | 类型                            | 必填 | 说明                   |
+| -------------- | ------------------------------- | ---- | ---------------------- |
+| wants          | Array\<Want\>                   | 是   | 将被执行的动作列表。     |
+| operationType  | wantAgent.OperationType         | 是   | 动作类型。               |
+| requestCode    | number                          | 是   | 使用者定义的一个私有值。 |
+| wantAgentFlags | Array<wantAgent.WantAgentFlags> | 否   | 动作执行属性。           |
+| extraInfo      | {[key: string]: any}            | 否   | 额外数据。               |
 
 
 
@@ -1163,13 +1163,13 @@ try {
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
 
-| 名称           | 可读 | 可写 | 类型                           | 必填 | 描述                    |
-| -------------- | --- | ---- | ------------------------------ | ---- | ---------------------- |
-| info           | 是  | 是  | WantAgent                       | 是   | 触发的wantAgent。       |
-| want           | 是  | 是  | Want                            | 是   | 存在的被触发的want。     |
-| finalCode      | 是  | 是  | number                          | 是   | 触发wantAgent的请求代码。|
-| finalData      | 是  | 是  | string                          | 否   | 公共事件收集的最终数据。  |
-| extraInfo      | 是  | 是  | {[key: string]: any}            | 否   | 额外数据。               |
+| 名称           | 类型                           | 必填 | 说明                    |
+| -------------- | ------------------------------ | ---- | ---------------------- |
+| info           | WantAgent                       | 是   | 触发的wantAgent。       |
+| want           | Want                            | 是   | 存在的被触发的want。     |
+| finalCode      | number                          | 是   | 触发wantAgent的请求代码。|
+| finalData      | string                          | 否   | 公共事件收集的最终数据。  |
+| extraInfo      | {[key: string]: any}            | 否   | 额外数据。               |
 
 
 
@@ -1177,9 +1177,9 @@ try {
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
 
-| 名称       | 可读 | 可写 | 类型                 | 必填 | 描述        |
-| ---------- | --- | ---- | -------------------- | ---- | ----------- |
-| code       | 是  | 是  | number               | 是   | result code。 |
-| want       | 是  | 是  | Want                 | 否   | Want。        |
-| permission | 是  | 是  | string               | 否   | 权限定义。    |
-| extraInfo  | 是  | 是  | {[key: string]: any} | 否   | 额外数据。    |
+| 名称       | 类型                 | 必填 | 说明        |
+| ---------- | -------------------- | ---- | ----------- |
+| code       | number               | 是   | result code。 |
+| want       | Want                 | 否   | Want。        |
+| permission | string               | 否   | 权限定义。    |
+| extraInfo  | {[key: string]: any} | 否   | 额外数据。    |

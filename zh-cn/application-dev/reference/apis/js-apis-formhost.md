@@ -1112,7 +1112,7 @@ formHost.shareForm(formId, deviceId).then(() => {
 
 ## notifyFormsPrivacyProtected<sup>9+</sup>
 
-notifyFormsPrivacyProtected(formIds: Array<string>, isProtected: boolean, callback: AsyncCallback<void>): void
+notifyFormsPrivacyProtected(formIds: Array\<string>, isProtected: boolean, callback: AsyncCallback\<void>): void
 
 **需要权限**：ohos.permission.REQUIRE_FORM
 

@@ -18,26 +18,26 @@ import formInfo from '@ohos.app.form.formInfo';
 
 **系统能力**：SystemCapability.Ability.Form
 
-| 名称        | 可读    | 可写    | 类型                 | 说明                                                         |
+| 名称        | 类型                 | 可读    | 可写    | 说明                                                         |
 | ----------- | -------- | -------- | -------------------- | ------------------------------------------------------------ |
-| bundleName  | 是    | 否     | string               | 卡片所属包的包名。                           |
-| moduleName  | 是    | 否     | string               | 卡片所属模块的模块名。                       |
-| abilityName | 是    | 否     | string               | 卡片所属的Ability名称。                       |
-| name        | 是    | 否     | string               | 卡片名称。                                 |
-| description | 是    | 否     | string               | 卡片描述。   |
-| type        | 是    | 否     | [FormType](#formtype)             | 卡片类型。当前支持JS卡片。 |
-| jsComponentName      | 是    | 否     | string               | js卡片的组件名。               |
-| colorMode  | 是    | 否     | [ColorMode](#colormode) | 卡片颜色模式。                                       |
-| isDefault    | 是    | 否     | boolean      | 卡片是否是默认卡片。                              |
-| updateEnabled  | 是    | 否     | boolean               | 卡片是否使能更新。                    |
-| formVisibleNotify  | 是    | 否     | string               | 卡片是否使能可见通知。            |
-| relatedBundleName | 是    | 否     | string               | 卡片所属的相关联包名。                   |
-| scheduledUpdateTime        | 是    | 否     | string               | 卡片更新时间。     |
-| formConfigAbility | 是    | 否     | string               | 卡片配置ability。指定长按卡片弹出的选择框内，编辑选项所对应的ability。   |
-| updateDuration        | 是    | 否     | string             | 卡片更新周期。 |
-| defaultDimension  | 是    | 否     | number | 表示卡片规格                                       |
-| supportDimensions    | 是    | 否     | Array&lt;number&gt;      | 卡片支持的规格。具体可选规格参考[FormDimension](#formdimension)   |
-| customizeData    | 是    | 否     | {[key: string]: [value: string]}      | 卡片用户数据。         |
+| bundleName  | string               | 是    | 否     | 卡片所属包的包名。                           |
+| moduleName  | string               | 是    | 否     | 卡片所属模块的模块名。                       |
+| abilityName | string               | 是    | 否     | 卡片所属的Ability名称。                       |
+| name        | string               | 是    | 否     | 卡片名称。                                 |
+| description | string               | 是    | 否     | 卡片描述。   |
+| type        | [FormType](#formtype)             | 是    | 否     | 卡片类型。当前支持JS卡片。 |
+| jsComponentName      | string               | 是    | 否     | js卡片的组件名。               |
+| colorMode  | [ColorMode](#colormode) | 是    | 否     | 卡片颜色模式。                                       |
+| isDefault    | boolean      | 是    | 否     | 卡片是否是默认卡片。                              |
+| updateEnabled  | boolean               | 是    | 否     | 卡片是否使能更新。                    |
+| formVisibleNotify  | string               | 是    | 否     | 卡片是否使能可见通知。            |
+| relatedBundleName | string               | 是    | 否     | 卡片所属的相关联包名。                   |
+| scheduledUpdateTime        | string               | 是    | 否     | 卡片更新时间。     |
+| formConfigAbility | string               | 是    | 否     | 卡片配置ability。指定长按卡片弹出的选择框内，编辑选项所对应的ability。   |
+| updateDuration        | string             | 是    | 否     | 卡片更新周期。 |
+| defaultDimension  | number | 是    | 否     | 表示卡片规格                                       |
+| supportDimensions    | Array&lt;number&gt;      | 是    | 否     | 卡片支持的规格。具体可选规格参考[FormDimension](#formdimension)   |
+| customizeData    | {[key: string]: [value: string]}      | 是    | 否     | 卡片用户数据。         |
 
 ## FormType
 
@@ -68,10 +68,10 @@ import formInfo from '@ohos.app.form.formInfo';
 
 **系统能力**：SystemCapability.Ability.Form
 
-| 名称        | 可读    | 可写    | 类型                 | 说明                                                         |
+| 名称        | 类型                 | 可读    | 可写    | 说明                                                         |
 | ----------- | -------- | -------- | -------------------- | ------------------------------------------------------------ |
-| formState  | 是    | 否     | [FormState](#formstate)               | 卡片状态。                          |
-| want  | 是    | 否     | Want               | Want文本内容。    |
+| formState  | [FormState](#formstate)               | 是    | 否     | 卡片状态。                          |
+| want  | Want               | 是    | 否     | Want文本内容。    |
 
 ##  FormState
 
@@ -125,9 +125,9 @@ import formInfo from '@ohos.app.form.formInfo';
 
 **系统能力**：SystemCapability.Ability.Form
 
-| 名称        |  必选   | 说明         |
-| ----------- | ---- | ------------ |
-| moduleName   | 否   | 仅保留moduleName与提供值相符的卡片信息。 |
+| 名称        | 说明         |
+| ----------- | ------------ |
+| moduleName   | 仅保留moduleName与提供值相符的卡片信息。 |
 
 ## VisibilityType
 
@@ -137,5 +137,5 @@ import formInfo from '@ohos.app.form.formInfo';
 
 | 名称        |  值   | 说明         |
 | ----------- | ---- | ------------ |
-| FORM_VISIBLE | 否   | 表示卡片为可见。 |
-| FORM_INVISIBLE   | 否   | 表示卡片为不可见。 |
+| FORM_VISIBLE | 1   | 表示卡片为可见。 |
+| FORM_INVISIBLE   | 2   | 表示卡片为不可见。 |

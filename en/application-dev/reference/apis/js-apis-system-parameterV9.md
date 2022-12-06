@@ -7,7 +7,7 @@ For details about the system parameter design principles and definitions, see
 > **NOTE**
 > - The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 > - The APIs provided by this module are system APIs.
-> - Third-party applications cannot use the APIs provided by this module, because system parameters each require specific discretionary access control (DAC) and MAC permissions.
+> - Third-party applications cannot use the APIs provided by this module, because system parameters each require specific discretionary access control (DAC) and mandatory access control (MAC) permissions.
 
 ## Modules to Import
 

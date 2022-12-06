@@ -126,8 +126,8 @@ import distributedKVStore from '@ohos.data.distributedKVStore';
 
 | 名称                 | 说明                                                         |
 | -------------------- | ------------------------------------------------------------ |
-| DEVICE_COLLABORATION | 表示多设备协同数据库。<br>**系统能力：** SystemCapability.DistributedDataManager.KVStore.DistributedKVStore |
-| SINGLE_VERSION       | 表示单版本数据库。 <br>**系统能力：** SystemCapability.DistributedDataManager.KVStore.Core |
+| DEVICE_COLLABORATION | 表示多设备协同数据库。<br> **数据库特点：** 数据以设备的维度管理，不存在冲突；支持按照设备的维度查询数据。<br>**系统能力：** SystemCapability.DistributedDataManager.KVStore.DistributedKVStore |
+| SINGLE_VERSION       | 表示单版本数据库。<br> **数据库特点：** 数据不分设备，设备之间修改相同的key会覆盖。 <br>**系统能力：** SystemCapability.DistributedDataManager.KVStore.Core |
 
 ## SecurityLevel
 

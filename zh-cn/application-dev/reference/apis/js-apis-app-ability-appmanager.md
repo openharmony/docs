@@ -200,7 +200,7 @@ getProcessRunningInformation(callback: AsyncCallback\<Array\<ProcessRunningInfor
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| callback | AsyncCallback\<Array\<[ProcessRunningInformation](#processrunninginformation)>> | 否 | 获取有关运行进程的信息。 |
+| callback | AsyncCallback\<Array\<[ProcessRunningInformation](#processrunninginformation)>> | 是 | 获取有关运行进程的信息。 |
 
 **示例：**
     
@@ -404,7 +404,7 @@ getForegroundApplications(callback: AsyncCallback\<Array\<AppStateData>>): void;
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| callback | AsyncCallback\<Array\<AppStateData>> | 否是 | 表示应用的状态数据。 |
+| callback | AsyncCallback\<Array\<AppStateData>> | 是 | 表示应用的状态数据。 |
 
 **示例：**
     
@@ -685,13 +685,234 @@ clearUpApplicationData(bundleName: string): Promise\<void>;
 
   ```
 
+## ApplicationStateObserver.onForegroundApplicationChanged
+
+onForegroundApplicationChanged(appStateData: AppStateData): void;
+
+将在前台或后台应用程序更改时调用。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**系统API**：该接口为系统接口，三方应用不支持调用。
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| appStateData | [AppStateData](#appstatedata) | 否 | 状态更改的应用程序信息。 |
+
+**示例：**
+    
+```js
+  var applicationStateObserver = {
+    onForegroundApplicationChanged(appStateData) {
+        console.log('------------ onForegroundApplicationChanged -----------', appStateData);
+    },
+    onAbilityStateChanged(abilityStateData) {
+        console.log('------------ onAbilityStateChanged -----------', abilityStateData);
+    },
+    onProcessCreated(processData) {
+        console.log('------------ onProcessCreated -----------', processData);
+    },
+    onProcessDied(processData) {
+        console.log('------------ onProcessDied -----------', processData);
+    },
+    onProcessStateChanged(processData) {
+        console.log('------------ onProcessStateChanged -----------', processData);
+    }
+  }
+  try {
+    const observerCode = app.on("applicationState", applicationStateObserver);
+    console.log('-------- observerCode: ---------', observerCode);
+  } catch (paramError) {
+    console.log('error: ' + paramError.code + ', ' + paramError.message);
+  }
+
+```
+
+## ApplicationStateObserver.onAbilityStateChanged
+
+onAbilityStateChanged(abilityStateData: AbilityStateData): void;
+
+将在能力状态更改时调用。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**系统API**：该接口为系统接口，三方应用不支持调用。
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| abilityStateData | [AbilityStateData](#abilitystatedata) | 否 | 状态更改的能力信息。 |
+
+**示例：**
+    
+```js
+  var applicationStateObserver = {
+    onForegroundApplicationChanged(appStateData) {
+        console.log('------------ onForegroundApplicationChanged -----------', appStateData);
+    },
+    onAbilityStateChanged(abilityStateData) {
+        console.log('------------ onAbilityStateChanged -----------', abilityStateData);
+    },
+    onProcessCreated(processData) {
+        console.log('------------ onProcessCreated -----------', processData);
+    },
+    onProcessDied(processData) {
+        console.log('------------ onProcessDied -----------', processData);
+    },
+    onProcessStateChanged(processData) {
+        console.log('------------ onProcessStateChanged -----------', processData);
+    }
+  }
+  try {
+    const observerCode = app.on("applicationState", applicationStateObserver);
+    console.log('-------- observerCode: ---------', observerCode);
+  } catch (paramError) {
+    console.log('error: ' + paramError.code + ', ' + paramError.message);
+  }
+```
+
+## ApplicationStateObserver.onProcessCreated
+
+onProcessCreated(processData: ProcessData): void;
+
+将在创建进程时调用。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**系统API**：该接口为系统接口，三方应用不支持调用。
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| processData | [ProcessData](#processdata) | 否 | 进程信息。 |
+
+**示例：**
+    
+```js
+  var applicationStateObserver = {
+    onForegroundApplicationChanged(appStateData) {
+        console.log('------------ onForegroundApplicationChanged -----------', appStateData);
+    },
+    onAbilityStateChanged(abilityStateData) {
+        console.log('------------ onAbilityStateChanged -----------', abilityStateData);
+    },
+    onProcessCreated(processData) {
+        console.log('------------ onProcessCreated -----------', processData);
+    },
+    onProcessDied(processData) {
+        console.log('------------ onProcessDied -----------', processData);
+    },
+    onProcessStateChanged(processData) {
+        console.log('------------ onProcessStateChanged -----------', processData);
+    }
+  }
+  try {
+    const observerCode = app.on("applicationState", applicationStateObserver);
+    console.log('-------- observerCode: ---------', observerCode);
+  } catch (paramError) {
+    console.log('error: ' + paramError.code + ', ' + paramError.message);
+  }
+```
+
+## ApplicationStateObserver.onProcessDied
+
+onProcessDied(processData: ProcessData): void;
+
+将在进程终止时调用。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**系统API**：该接口为系统接口，三方应用不支持调用。
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| processData | [ProcessData](#processdata) | 否 | 进程信息。 |
+
+**示例：**
+    
+```js
+  var applicationStateObserver = {
+    onForegroundApplicationChanged(appStateData) {
+        console.log('------------ onForegroundApplicationChanged -----------', appStateData);
+    },
+    onAbilityStateChanged(abilityStateData) {
+        console.log('------------ onAbilityStateChanged -----------', abilityStateData);
+    },
+    onProcessCreated(processData) {
+        console.log('------------ onProcessCreated -----------', processData);
+    },
+    onProcessDied(processData) {
+        console.log('------------ onProcessDied -----------', processData);
+    },
+    onProcessStateChanged(processData) {
+        console.log('------------ onProcessStateChanged -----------', processData);
+    }
+  }
+  try {
+    const observerCode = app.on("applicationState", applicationStateObserver);
+    console.log('-------- observerCode: ---------', observerCode);
+  } catch (paramError) {
+    console.log('error: ' + paramError.code + ', ' + paramError.message);
+  }
+```
+
+## ApplicationStateObserver.onProcessStateChanged
+
+ onProcessStateChanged(processData: ProcessData): void;
+
+当进程状态更改时调用。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**系统API**：该接口为系统接口，三方应用不支持调用。
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| processData | [ProcessData](#processdata) | 否 | 进程信息。 |
+
+**示例：**
+    
+```js
+  var applicationStateObserver = {
+    onForegroundApplicationChanged(appStateData) {
+        console.log('------------ onForegroundApplicationChanged -----------', appStateData);
+    },
+    onAbilityStateChanged(abilityStateData) {
+        console.log('------------ onAbilityStateChanged -----------', abilityStateData);
+    },
+    onProcessCreated(processData) {
+        console.log('------------ onProcessCreated -----------', processData);
+    },
+    onProcessDied(processData) {
+        console.log('------------ onProcessDied -----------', processData);
+    },
+    onProcessStateChanged(processData) {
+        console.log('------------ onProcessStateChanged -----------', processData);
+    }
+  }
+  try {
+    const observerCode = app.on("applicationState", applicationStateObserver);
+    console.log('-------- observerCode: ---------', observerCode);
+  } catch (paramError) {
+    console.log('error: ' + paramError.code + ', ' + paramError.message);
+  }
+```
+
 ## AppStateData
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
 
 **系统API**：该接口为系统接口，三方应用不支持调用。
 
-| 名称        | 可读    | 可写     | 类型                 | 必填 | 描述                                                         |
+| 名称        | 可读    | 可写     | 类型                 | 必填 | 说明                                                         |
 | ----------- | -------- |-------- | -------------------- | ---- | ------------------------------------------------------------ |
 | bundleName     | 是    | 否      | string               | 否   | 包名。                                |
 | uid   | 是    | 否      | number               | 否   | 用户ID。 |
@@ -731,7 +952,7 @@ clearUpApplicationData(bundleName: string): Promise\<void>;
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Mission
 
-| 名称        | 可读    | 可写     | 类型                 | 必填 | 描述                                                         |
+| 名称        | 可读    | 可写     | 类型                 | 必填 | 说明                                                         |
 | ----------- | -------- | -------------------- | ---- | ------------------------------------------------------------ |
 | pid     | 是    | 否      | number               | 否   | 进程ID。                                |
 | uid   | 是    | 否      | number               | 否   | 用户ID。 |
@@ -757,7 +978,7 @@ clearUpApplicationData(bundleName: string): Promise\<void>;
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
 
-| 名称        | 可读    | 可写     | 类型                 | 必填 | 描述                                                         |
+| 名称        | 可读    | 可写     | 类型                 | 必填 | 说明                                                         |
 | ----------- | -------- | -------------------- | ---- | ------------------------------------------------------------ |
 | pid     | 是    | 否      | number               | 否   | 进程ID。                                |
 | uid   | 是    | 否      | number               | 否   | 用户ID。 |
@@ -770,7 +991,7 @@ clearUpApplicationData(bundleName: string): Promise\<void>;
 
 **系统API**: 此接口为系统接口，三方应用不支持调用。
 
-| 名称                 | 值  | 描述                               |
+| 名称                 | 值  | 说明                               |
 | -------------------- | --- | --------------------------------- |
 | STATE_CREATE    | 1   |   当应用在创建中的时候处于的状态。         |
 | STATE_FOREGROUND          | 2   |      当应用切换到前台的时候处于的状态。            |
@@ -784,7 +1005,7 @@ clearUpApplicationData(bundleName: string): Promise\<void>;
 
 **系统API**: 此接口为系统接口，三方应用不支持调用。
 
-| 名称                 | 值  | 描述                               |
+| 名称                 | 值  | 说明                               |
 | -------------------- | --- | --------------------------------- |
 | STATE_CREATE    | 1   |      当进程在创建中的时候处于的状态。       |
 | STATE_FOREGROUND          | 2   |            当进程切换到前台的时候处于的状态。      |

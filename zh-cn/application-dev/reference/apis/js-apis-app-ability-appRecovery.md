@@ -21,10 +21,10 @@ import appRecovery from '@ohos.app.ability.appRecovery'
 | 名称                          | 值   | 说明                                                         |
 | ----------------------------- | ---- | ------------------------------------------------------------ |
 | ALWAYS_RESTART           | 0    | 总是重启应用。 |
-| CPP_CRASH_NO_RESTART           | 1    | 发生CPP_CRASH时不重启应用。 |
-| JS_CRASH_NO_RESTART           | 2    | 发生JS_CRASH时不重启应用。 |
-| APP_FREEZE_NO_RESTART           | 4    | 发生APP_FREEZE时不重启应用。 |
-| NO_RESTART           | 65535  | 总是不重启应用。 |
+| CPP_CRASH_NO_RESTART           | 0x0001    | 发生CPP_CRASH时不重启应用。 |
+| JS_CRASH_NO_RESTART           | 0x0002    | 发生JS_CRASH时不重启应用。 |
+| APP_FREEZE_NO_RESTART           | 0x0004    | 发生APP_FREEZE时不重启应用。 |
+| NO_RESTART           | 0xFFFF  | 总是不重启应用。 |
 
 ## appRecovery.SaveOccasionFlag
 
@@ -34,8 +34,8 @@ import appRecovery from '@ohos.app.ability.appRecovery'
 
 | 名称                          | 值   | 说明                                                         |
 | ----------------------------- | ---- | ------------------------------------------------------------ |
-| SAVE_WHEN_ERROR            | 1    | 当发生应用故障时保存。 |
-| SAVE_WHEN_BACKGROUND            | 2    | 当应用切入后台时保存。 |
+| SAVE_WHEN_ERROR            | 0x0001    | 当发生应用故障时保存。 |
+| SAVE_WHEN_BACKGROUND            | 0x0002    | 当应用切入后台时保存。 |
 
 ## appRecovery.SaveModeFlag  
 
@@ -45,8 +45,8 @@ import appRecovery from '@ohos.app.ability.appRecovery'
 
 | 名称                          | 值   | 说明                                                         |
 | ----------------------------- | ---- | ------------------------------------------------------------ |
-| SAVE_WITH_FILE             | 1    | 每次状态保存都会写入到本地文件缓存。 |
-| SAVE_WITH_SHARED_MEMORY             | 2    | 状态先保存在内存中，应用故障退出时写入到本地文件缓存。 |
+| SAVE_WITH_FILE             | 0x0001    | 每次状态保存都会写入到本地文件缓存。 |
+| SAVE_WITH_SHARED_MEMORY             | 0x0002    | 状态先保存在内存中，应用故障退出时写入到本地文件缓存。 |
 
 ## appRecovery.enableAppRecovery
 

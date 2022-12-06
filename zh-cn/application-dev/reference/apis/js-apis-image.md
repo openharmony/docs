@@ -1076,9 +1076,9 @@ const data = new ArrayBuffer(112);
 const imageSourceApi = image.createImageSource(data);
 ```
 
-## image.createIncrementalSource<sup>9+</sup>
+## image.CreateIncrementalSource<sup>9+</sup>
 
-createIncrementalSource(buf: ArrayBuffer): ImageSource
+CreateIncrementalSource(buf: ArrayBuffer): ImageSource
 
 通过缓冲区以增量的方式创建图片源实例。
 
@@ -1100,12 +1100,12 @@ createIncrementalSource(buf: ArrayBuffer): ImageSource
 
 ```js
 const buf = new ArrayBuffer(96);  //96为需要创建的像素buffer大小，取值为：height * width *4
-const imageSourceIncrementalSApi = image.createIncrementalSource(buf);
+const imageSourceIncrementalSApi = image.CreateIncrementalSource(buf);
 ```
 
-## image.createIncrementalSource<sup>9+</sup>
+## image.CreateIncrementalSource<sup>9+</sup>
 
-createIncrementalSource(buf: ArrayBuffer, options?: SourceOptions): ImageSource
+CreateIncrementalSource(buf: ArrayBuffer, options?: SourceOptions): ImageSource
 
 通过缓冲区以增量的方式创建图片源实例。
 
@@ -1128,7 +1128,7 @@ createIncrementalSource(buf: ArrayBuffer, options?: SourceOptions): ImageSource
 
 ```js
 const buf = new ArrayBuffer(96);  //96为需要创建的像素buffer大小，取值为：height * width *4
-const imageSourceIncrementalSApi = image.createIncrementalSource(buf);
+const imageSourceIncrementalSApi = image.CreateIncrementalSource(buf);
 ```
 
 ## ImageSource
@@ -1375,8 +1375,8 @@ updateData(buf: ArrayBuffer, isFinished: boolean, value: number, length: number)
 | ---------- | ----------- | ---- | ------------ |
 | buf        | ArrayBuffer | 是   | 增量数据。   |
 | isFinished | boolean     | 是   | 是否更新完。 |
-| value      | number      | 否   | 偏移量。     |
-| length     | number      | 否   | 数组长。     |
+| value      | number      | 是   | 偏移量。     |
+| length     | number      | 是   | 数组长。     |
 
 **返回值：**
 
@@ -1408,8 +1408,8 @@ updateData(buf: ArrayBuffer, isFinished: boolean, value: number, length: number,
 | ---------- | ------------------- | ---- | -------------------- |
 | buf        | ArrayBuffer         | 是   | 增量数据。           |
 | isFinished | boolean             | 是   | 是否更新完。         |
-| value      | number              | 否   | 偏移量。             |
-| length     | number              | 否   | 数组长。             |
+| value      | number              | 是   | 偏移量。             |
+| length     | number              | 是   | 数组长。             |
 | callback   | AsyncCallback\<void> | 是   | 回调表示成功或失败。 |
 
 **示例：**
@@ -1463,7 +1463,7 @@ createPixelMap(callback: AsyncCallback\<PixelMap>): void
 
 **参数：**
 
-| 名称     | 类型                                  | 必填 | 说明                       |
+| 参数名     | 类型                                  | 必填 | 说明                       |
 | -------- | ------------------------------------- | ---- | -------------------------- |
 | callback | AsyncCallback<[PixelMap](#pixelmap7)> | 是   | 通过回调返回PixelMap对象。 |
 

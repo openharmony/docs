@@ -60,7 +60,7 @@ build() {
 
 Ability配置中缺少startWindowIcon属性配置，需要在module.json5中abilities中配置startWindowIcon。
 
-参考文档：[Stage模型配置文件](../quick-start/stage-structure.md)
+参考文档：[Stage模型应用程序包结构](../quick-start/application-package-structure-stage.md)
 
 示例：
 
@@ -109,7 +109,7 @@ Ability配置中缺少startWindowIcon属性配置，需要在module.json5中abil
 
 适用于：OpenHarmony SDK 3.2.5.5版本, API8 FA模型
 
-服务卡片在添加卡片后就触发了oncreat()生命周期，在不启用app的情况下也可以显示相关的用户信息-静默登录，但服务卡片目前要在app安装之后手动添加。
+服务卡片在添加卡片后就触发了oncreate()生命周期，在不启用app的情况下也可以显示相关的用户信息-静默登录，但服务卡片目前要在app安装之后手动添加。
 
 ## 如何获取context
 
@@ -203,7 +203,7 @@ listener.on('change', onPortrait)
 
 适用：OpenHarmony SDK 3.2.5.5版本
 
-使用featureAbility.getWant()和featureAbility.getContext()在json文件中router跳转发送数据，在js文件中用featureAblity方法接收
+使用featureAbility.getWant()和featureAbility.getContext()在json文件中router跳转发送数据，在js文件中用featureAbility方法接收
 
 ## router.disableAlertBeforeBackPage和router.enableAlertBeforeBackPage怎么触发
 

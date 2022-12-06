@@ -49,10 +49,10 @@ let listener = mediaquery.matchMediaSync('(orientation: landscape)'); //监听�
 
 ### 属性
 
-| 名称      | 参数类型    | 可读   | 可写   | 说明         |
-| ------- | ------- | ---- | ---- | ---------- |
-| matches | boolean | 是    | 否    | 是否符合匹配条件。  |
-| media   | string  | 是    | 否    | 媒体事件的匹配条件。 |
+| 名称    | 类型    | 可读 | 可写 | 说明                 |
+| ------- | ------- | ---- | ---- | -------------------- |
+| matches | boolean | 是   | 否   | 是否符合匹配条件。   |
+| media   | string  | 是   | 否   | 媒体事件的匹配条件。 |
 
 
 ### on
@@ -85,10 +85,10 @@ off(type: 'change', callback?: Callback&lt;MediaQueryResult&gt;): void
 
 **参数：** 
 
-| 参数名      | 类型                               | 必填   | 说明                            |
-| -------- | -------------------------------- | ---- | ----------------------------- |
-| type     | boolean                          | 是    | 必须填写字符串'change'。              |
-| callback | Callback&lt;MediaQueryResult&gt; | 否    | 需要去注册的回调，如果参数缺省则去注册该句柄下所有的回调。 |
+| 参数名   | 类型                             | 必填 | 说明                                                       |
+| -------- | -------------------------------- | ---- | ---------------------------------------------------------- |
+| type     | string                           | 是   | 必须填写字符串'change'。                                   |
+| callback | Callback&lt;MediaQueryResult&gt; | 否   | 需要去注册的回调，如果参数缺省则去注册该句柄下所有的回调。 |
 
 **示例：** 
 
@@ -107,16 +107,19 @@ off(type: 'change', callback?: Callback&lt;MediaQueryResult&gt;): void
     listener.off('change', onPortrait) // 去注册回调
   ```
 
-
 ## MediaQueryResult
+
+用于执行媒体查询操作。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 
 ### 属性
 
-| 名称      | 参数类型    | 可读   | 可写   | 说明         |
-| ------- | ------- | ---- | ---- | ---------- |
-| matches | boolean | 是    | 否    | 是否符合匹配条件。  |
-| media   | string  | 是    | 否    | 媒体事件的匹配条件。 |
+| 名称    | 类型    | 可读 | 可写 | 说明                 |
+| ------- | ------- | ---- | ---- | -------------------- |
+| matches | boolean | 是   | 否   | 是否符合匹配条件。   |
+| media   | string  | 是   | 否   | 媒体事件的匹配条件。 |
 
 
 ### 示例
@@ -143,7 +146,7 @@ struct MediaQueryExample {
   }
 
   aboutToAppear() {
-    let portraitFunc = this.onPortrait.bind(this) //bind current js instance
+    let portraitFunc = this.onPortrait.bind(this) // bind current js instance
     this.listener.on('change', portraitFunc)
   }
 
