@@ -9,7 +9,7 @@ FormHost模块提供了卡片使用方相关接口的能力，包括对使用方
 
 ## 导入模块
 
-```
+```ts
 import formHost from '@ohos.app.form.formHost';
 ```
 
@@ -40,7 +40,7 @@ deleteForm(formId: string, callback: AsyncCallback&lt;void&gt;): void
 
 **示例：**
 
-```js
+```ts
 try {
   var formId = "12400633174999288";
   formHost.deleteForm(formId, (error, data) => {
@@ -89,7 +89,7 @@ deleteForm(formId: string): Promise&lt;void&gt;
 
 **参数：**
 
-```js
+```ts
 try {
   var formId = "12400633174999288";
   formHost.deleteForm(formId).then(() => {
@@ -129,7 +129,7 @@ releaseForm(formId: string, callback: AsyncCallback&lt;void&gt;): void
 
 **示例：**
 
-```js
+```ts
 try {
   var formId = "12400633174999288";
   formHost.releaseForm(formId, (error, data) => {
@@ -170,7 +170,7 @@ releaseForm(formId: string, isReleaseCache: boolean, callback: AsyncCallback&lt;
 
 **示例：**
 
-```js
+```ts
 try {
   var formId = "12400633174999288";
   formHost.releaseForm(formId, true, (error, data) => {
@@ -216,7 +216,7 @@ releaseForm(formId: string, isReleaseCache?: boolean): Promise&lt;void&gt;
 
 **示例：**
 
-```js
+```ts
 try {
   var formId = "12400633174999288";
   formHost.releaseForm(formId, true).then(() => {
@@ -256,7 +256,7 @@ requestForm(formId: string, callback: AsyncCallback&lt;void&gt;): void
 
 **示例：**
 
-```js
+```ts
 try {
   var formId = "12400633174999288";
   formHost.requestForm(formId, (error, data) => {
@@ -301,7 +301,7 @@ requestForm(formId: string): Promise&lt;void&gt;
 
 **示例：**
 
-```js
+```ts
 try {
   var formId = "12400633174999288";
   formHost.requestForm(formId).then(() => {
@@ -342,7 +342,7 @@ castTempForm(formId: string, callback: AsyncCallback&lt;void&gt;): void
 
 **示例：**
 
-```js
+```ts
 try {
   var formId = "12400633174999288";
   formHost.castTempForm(formId, (error, data) => {
@@ -387,7 +387,7 @@ castTempForm(formId: string): Promise&lt;void&gt;
 
 **示例：**
 
-```js
+```ts
 try {
   var formId = "12400633174999288";
   formHost.castTempForm(formId).then(() => {
@@ -426,7 +426,7 @@ notifyVisibleForms(formIds: Array&lt;string&gt;, callback: AsyncCallback&lt;void
 
 **示例：**
 
-```js
+```ts
 try {
   var formId = ["12400633174999288"];
   formHost.notifyVisibleForms(formId, (error, data) => {
@@ -470,7 +470,7 @@ notifyVisibleForms(formIds: Array&lt;string&gt;): Promise&lt;void&gt;
 
 **示例：**
 
-```js
+```ts
 try {
   var formId = ["12400633174999288"];
   formHost.notifyVisibleForms(formId).then(() => {
@@ -509,7 +509,7 @@ notifyInvisibleForms(formIds: Array&lt;string&gt;, callback: AsyncCallback&lt;vo
 
 **示例：**
 
-```js
+```ts
 try {
   var formId = ["12400633174999288"];
   formHost.notifyInvisibleForms(formId, (error, data) => {
@@ -553,7 +553,7 @@ notifyInvisibleForms(formIds: Array&lt;string&gt;): Promise&lt;void&gt;
 
 **示例：**
 
-```js
+```ts
 try {
   var formId = ["12400633174999288"];
   formHost.notifyInvisibleForms(formId).then(() => {
@@ -593,7 +593,7 @@ enableFormsUpdate(formIds: Array&lt;string&gt;, callback: AsyncCallback&lt;void&
 
 **示例：**
 
-```js
+```ts
 try {
   var formId = ["12400633174999288"];
   formHost.enableFormsUpdate(formId, (error, data) => {
@@ -638,7 +638,7 @@ enableFormsUpdate(formIds: Array&lt;string&gt;): Promise&lt;void&gt;
 
 **示例：**
 
-```js
+```ts
 try {
   var formId = ["12400633174999288"];
   formHost.enableFormsUpdate(formId).then(() => {
@@ -678,7 +678,7 @@ disableFormsUpdate(formIds: Array&lt;string&gt;, callback: AsyncCallback&lt;void
 
 **示例：**
 
-```js
+```ts
 try {
   var formId = ["12400633174999288"];
   formHost.disableFormsUpdate(formId, (error, data) => {
@@ -723,7 +723,7 @@ disableFormsUpdate(formIds: Array&lt;string&gt;): Promise&lt;void&gt;
 
 **示例：**
 
-```js
+```ts
 try {
   var formId = ["12400633174999288"];
   formHost.disableFormsUpdate(formId).then(() => {
@@ -752,7 +752,7 @@ isSystemReady(callback: AsyncCallback&lt;void&gt;): void
 
 **示例：**
 
-```js
+```ts
 try {
   var formId = "12400633174999288";
   formHost.isSystemReady((error, data) => {
@@ -781,7 +781,7 @@ isSystemReady(): Promise&lt;void&gt;
 
 **示例：**
 
-```js
+```ts
 try {
   var formId = "12400633174999288";
   formHost.isSystemReady().then(() => {
@@ -808,11 +808,11 @@ getAllFormsInfo(callback: AsyncCallback&lt;Array&lt;formInfo.FormInfo&gt;&gt;): 
 
 | 参数名 | 类型    | 必填 | 说明    |
 | ------ | ------ | ---- | ------- |
-| callback | AsyncCallback&lt;Array&lt;[FormInfo](./js-apis-formInfo.md#forminfo-1)&gt;&gt; | 是 | 回调函数。当获取设备上所有应用提供的卡片信息成功，err为undefined，data为查询到的卡片信息；否则为错误对象。 |
+| callback | AsyncCallback&lt;Array&lt;[FormInfo](js-apis-app-form-forminfo.md)&gt;&gt; | 是 | 回调函数。当获取设备上所有应用提供的卡片信息成功，err为undefined，data为查询到的卡片信息；否则为错误对象。 |
 
 **示例：**
 
-```js
+```ts
 try {
   formHost.getAllFormsInfo((error, data) => {
     if (error) {
@@ -840,11 +840,11 @@ getAllFormsInfo(): Promise&lt;Array&lt;formInfo.FormInfo&gt;&gt;
 
 | 类型          | 说明                                |
 | :------------ | :---------------------------------- |
-| Promise&lt;Array&lt;[FormInfo](./js-apis-formInfo.md#forminfo-1)&gt;&gt; | Promise对象，返回查询到的卡片信息。 |
+| Promise&lt;Array&lt;[FormInfo](js-apis-app-form-forminfo.md)&gt;&gt; | Promise对象，返回查询到的卡片信息。 |
 
 **示例：**
 
-```js
+```ts
 try {
   formHost.getAllFormsInfo().then((data) => {
       console.log('formHost getAllFormsInfo data:' + JSON.stringify(data));
@@ -871,7 +871,7 @@ getFormsInfo(bundleName: string, callback: AsyncCallback&lt;Array&lt;formInfo.Fo
 | 参数名 | 类型    | 必填 | 说明    |
 | ------ | ------ | ---- | ------- |
 | bundleName | string | 是 |  要查询的应用程序包名称。 |
-| callback | AsyncCallback&lt;Array&lt;[FormInfo](./js-apis-formInfo.md#forminfo-1)&gt;&gt; | 是 | 回调函数。当获取设备上指定应用程序提供的卡片信息成功，err为undefined，data为查询到的卡片信息；否则为错误对象。 |
+| callback | AsyncCallback&lt;Array&lt;[FormInfo](js-apis-app-form-forminfo.md)&gt;&gt; | 是 | 回调函数。当获取设备上指定应用程序提供的卡片信息成功，err为undefined，data为查询到的卡片信息；否则为错误对象。 |
 
 **错误码：**
 
@@ -882,7 +882,7 @@ getFormsInfo(bundleName: string, callback: AsyncCallback&lt;Array&lt;formInfo.Fo
 
 **示例：**
 
-```js
+```ts
 try {
   formHost.getFormsInfo("com.example.ohos.formjsdemo", (error, data) => {
     if (error) {
@@ -912,7 +912,7 @@ getFormsInfo(bundleName: string, moduleName: string, callback: AsyncCallback&lt;
 | ------ | ------ | ---- | ------- |
 | bundleName | string | 是 |  要查询的应用程序包名称。 |
 | moduleName | string | 是 |  要查询的模块名称。 |
-| callback | AsyncCallback&lt;Array&lt;[FormInfo](./js-apis-formInfo.md#forminfo-1)&gt;&gt; | 是 | 回调函数。当获取设备上指定应用程序提供的卡片信息成功，err为undefined，data为查询到的卡片信息；否则为错误对象。 |
+| callback | AsyncCallback&lt;Array&lt;[FormInfo](js-apis-app-form-forminfo.md)&gt;&gt; | 是 | 回调函数。当获取设备上指定应用程序提供的卡片信息成功，err为undefined，data为查询到的卡片信息；否则为错误对象。 |
 
 **错误码：**
 
@@ -923,7 +923,7 @@ getFormsInfo(bundleName: string, moduleName: string, callback: AsyncCallback&lt;
 
 **示例：**
 
-```js
+```ts
 try {
   formHost.getFormsInfo("com.example.ohos.formjsdemo", "entry", (error, data) => {
     if (error) {
@@ -958,7 +958,7 @@ getFormsInfo(bundleName: string, moduleName?: string): Promise&lt;Array&lt;formI
 
 | 类型          | 说明                                |
 | :------------ | :---------------------------------- |
-| Promise&lt;Array&lt;[FormInfo](./js-apis-formInfo.md#forminfo-1)&gt;&gt; | Promise对象，返回查询到的卡片信息。 |
+| Promise&lt;Array&lt;[FormInfo](js-apis-app-form-forminfo.md)&gt;&gt; | Promise对象，返回查询到的卡片信息。 |
 
 **错误码：**
 
@@ -969,7 +969,7 @@ getFormsInfo(bundleName: string, moduleName?: string): Promise&lt;Array&lt;formI
 
 **示例：**
 
-```js
+```ts
 try {
   formHost.getFormsInfo("com.example.ohos.formjsdemo", "entry").then((data) => {
     console.log('formHost getFormsInfo, data:' + JSON.stringify(data));
@@ -1000,7 +1000,7 @@ deleteInvalidForms(formIds: Array&lt;string&gt;, callback: AsyncCallback&lt;numb
 
 **示例：**
 
-```js
+```ts
 try {
   var formIds = new Array("12400633174999288", "12400633174999289");
   formHost.deleteInvalidForms(formIds, (error, data) => {
@@ -1039,7 +1039,7 @@ deleteInvalidForms(formIds: Array&lt;string&gt;): Promise&lt;number&gt;
 
 **示例：**
 
-```js
+```ts
 try {
   var formIds = new Array("12400633174999288", "12400633174999289");
   formHost.deleteInvalidForms(formIds).then((data) => {
@@ -1066,8 +1066,8 @@ acquireFormState(want: Want, callback: AsyncCallback&lt;formInfo.FormStateInfo&g
 
 | 参数名 | 类型    | 必填 | 说明    |
 | ------ | ------ | ---- | ------- |
-| want | [Want](js-apis-application-Want.md) | 是   | 查询卡片状态时携带的want信息。 |
-| callback | AsyncCallback&lt;[FormStateInfo](js-apis-formInfo.md#formstateinfo)&gt; | 是 | 回调函数。当获取卡片状态成功，err为undefined，data为获取到的卡片状态；否则为错误对象。 |
+| want | [Want](js-apis-application-want.md) | 是   | 查询卡片状态时携带的want信息。 |
+| callback | AsyncCallback&lt;[FormStateInfo](js-apis-app-form-forminfo.md#formstateinfo)&gt; | 是 | 回调函数。当获取卡片状态成功，err为undefined，data为获取到的卡片状态；否则为错误对象。 |
 
 **错误码：**
 
@@ -1078,7 +1078,7 @@ acquireFormState(want: Want, callback: AsyncCallback&lt;formInfo.FormStateInfo&g
 
 **示例：**
 
-```js
+```ts
 var want = {
   "deviceId": "",
   "bundleName": "ohos.samples.FormApplication",
@@ -1116,13 +1116,13 @@ acquireFormState(want: Want): Promise&lt;formInfo.FormStateInfo&gt;
 
 | 参数名 | 类型    | 必填 | 说明    |
 | ------ | ------ | ---- | ------- |
-| want   | [Want](js-apis-application-Want.md) | 是   | 查询卡片状态时携带的want信息。 |
+| want   | [Want](js-apis-application-want.md) | 是   | 查询卡片状态时携带的want信息。 |
 
 **返回值：**
 
 | 类型          | 说明                                |
 | :------------ | :---------------------------------- |
-| Promise&lt;[FormStateInfo](js-apis-formInfo.md#formstateinfo)&gt; | Promise对象，返回卡片状态。 |
+| Promise&lt;[FormStateInfo](js-apis-app-form-forminfo.md#formstateinfo)&gt; | Promise对象，返回卡片状态。 |
 
 **错误码：**
 
@@ -1133,7 +1133,7 @@ acquireFormState(want: Want): Promise&lt;formInfo.FormStateInfo&gt;
 
 **示例：**
 
-```js
+```ts
 var want = {
   "deviceId": "",
   "bundleName": "ohos.samples.FormApplication",
@@ -1172,7 +1172,7 @@ on(type: "formUninstall", callback: Callback&lt;string&gt;): void
 
 **示例：**
 
-```js
+```ts
 let callback = function(formId) {
   console.log('formHost on formUninstall, formId:' + formId);
 }
@@ -1196,7 +1196,7 @@ off(type: "formUninstall", callback?: Callback&lt;string&gt;): void
 
 **示例：**
 
-```js
+```ts
 let callback = function(formId) {
   console.log('formHost on formUninstall, formId:' + formId);
 }
@@ -1230,7 +1230,7 @@ notifyFormsVisible(formIds: Array&lt;string&gt;, isVisible: boolean, callback: A
 
 **示例：**
 
-```js
+```ts
 var formIds = new Array("12400633174999288", "12400633174999289");
 try {
   formHost.notifyFormsVisible(formIds, true, (error, data) => {
@@ -1275,7 +1275,7 @@ notifyFormsVisible(formIds: Array&lt;string&gt;, isVisible: boolean): Promise&lt
 
 **示例：**
 
-```js
+```ts
 var formIds = new Array("12400633174999288", "12400633174999289");
 try {
   formHost.notifyFormsVisible(formIds, true).then(() => {
@@ -1315,7 +1315,7 @@ notifyFormsEnableUpdate(formIds: Array&lt;string&gt;, isEnableUpdate: boolean, c
 
 **示例：**
 
-```js
+```ts
 var formIds = new Array("12400633174999288", "12400633174999289");
 try {
   formHost.notifyFormsEnableUpdate(formIds, true, (error, data) => {
@@ -1360,7 +1360,7 @@ notifyFormsEnableUpdate(formIds: Array&lt;string&gt;, isEnableUpdate: boolean): 
 
 **示例：**
 
-```js
+```ts
 var formIds = new Array("12400633174999288", "12400633174999289");
 try {
   formHost.notifyFormsEnableUpdate(formIds, true).then(() => {
@@ -1401,7 +1401,7 @@ shareForm(formId: string, deviceId: string, callback: AsyncCallback&lt;void&gt;)
 
 **示例：**
 
-```js
+```ts
 var formId = "12400633174999288";
 var deviceId = "EFC11C0C53628D8CC2F8CB5052477E130D075917034613B9884C55CD22B3DEF2";
 try {
@@ -1448,7 +1448,7 @@ shareForm(formId: string, deviceId: string): Promise&lt;void&gt;
 
 **参数：**
 
-```js
+```ts
 var formId = "12400633174999288";
 var deviceId = "EFC11C0C53628D8CC2F8CB5052477E130D075917034613B9884C55CD22B3DEF2";
 try {
@@ -1477,7 +1477,7 @@ notifyFormsPrivacyProtected(formIds: Array<string>, isProtected: boolean, callba
 | formId | string | 是   | 卡片标识。 |
 | deviceId | string | 是   | 远程设备标识。 |
 
-```js
+```ts
 var formIds = new Array("12400633174999288", "12400633174999289");
 try {
   formHost.notifyFormsPrivacyProtected(formIds, true).then(() => {

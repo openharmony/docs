@@ -11,7 +11,7 @@ AbilityConstant提供启动参数的接口的能力，包括设置初次开始�
 
 ## 导入模块
 
-```js
+```ts
 import AbilityConstant from '@ohos.application.AbilityConstant';
 ```
 

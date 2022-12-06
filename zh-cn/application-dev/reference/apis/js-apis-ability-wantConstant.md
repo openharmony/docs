@@ -8,7 +8,7 @@ wantConstant模块提供want中操作want常数和解释Flags说明的能力。
 
 ## 导入模块
 
-```js
+```ts
 import wantConstant from '@ohos.ability.wantConstant';
 ```
 

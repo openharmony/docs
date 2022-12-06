@@ -8,7 +8,7 @@ missionManager模块提供系统任务管理能力，包括对系统任务执行
 
 ## 导入模块
 
-```
+```ts
 import missionManager from '@ohos.app.ability.missionManager'
 ```
 
@@ -42,7 +42,7 @@ on(type:"mission", listener: MissionListener): number;
 
 **示例：**
 
-```js
+```ts
   var listener = {
       onMissionCreated: function (mission) {console.log("--------onMissionCreated-------")},
       onMissionDestroyed: function (mission) {console.log("--------onMissionDestroyed-------")},
@@ -81,7 +81,7 @@ off(type: "mission", listenerId: number, callback: AsyncCallback&lt;void&gt;): v
 
 **示例：**
 
-```js
+```ts
   var listener = {
       onMissionCreated: function (mission) {console.log("--------onMissionCreated-------")},
       onMissionDestroyed: function (mission) {console.log("--------onMissionDestroyed-------")},
@@ -129,7 +129,7 @@ off(type: "mission", listenerId: number): Promise&lt;void&gt;;
 
 **示例：**
 
-```js
+```ts
   var listener = {
       onMissionCreated: function (mission) {console.log("--------onMissionCreated-------")},
       onMissionDestroyed: function (mission) {console.log("--------onMissionDestroyed-------")},
@@ -173,7 +173,7 @@ getMissionInfo(deviceId: string, missionId: number, callback: AsyncCallback&lt;M
 
 **示例：**
 
-  ```js
+  ```ts
   import missionManager from '@ohos.app.ability.missionManager'
 
   try {
@@ -220,7 +220,7 @@ getMissionInfo(deviceId: string, missionId: number): Promise&lt;MissionInfo&gt;;
 
 **示例：**
 
-  ```js
+  ```ts
   import missionManager from '@ohos.app.ability.missionManager'
 
   try {
@@ -255,7 +255,7 @@ getMissionInfos(deviceId: string, numMax: number, callback: AsyncCallback&lt;Arr
 
 **示例：**
 
-  ```js
+  ```ts
   import missionManager from '@ohos.app.ability.missionManager'
 
   try {
@@ -297,7 +297,7 @@ getMissionInfos(deviceId: string, numMax: number): Promise&lt;Array&lt;MissionIn
 
 **示例：**
 
-  ```js
+  ```ts
   import missionManager from '@ohos.app.ability.missionManager'
 
   try {
@@ -328,11 +328,11 @@ getMissionSnapShot(deviceId: string, missionId: number, callback: AsyncCallback&
   | -------- | -------- | -------- | -------- |
   | deviceId | string | 是 | 设备ID，本机默认为空字符串。 |
   | missionId | number | 是 | 任务ID。 |
-  | callback | AsyncCallback&lt;[MissionSnapshot](js-apis-application-MissionSnapshot.md)&gt; | 是 | 执行结果回调函数，返回任务快照信息。 |
+  | callback | AsyncCallback&lt;[MissionSnapshot](js-apis-inner-application-missionSnapshot.md)&gt; | 是 | 执行结果回调函数，返回任务快照信息。 |
 
 **示例：**
 
-  ```js
+  ```ts
   import missionManager from '@ohos.app.ability.missionManager'
 
   try {
@@ -376,11 +376,11 @@ getMissionSnapShot(deviceId: string, missionId: number): Promise&lt;MissionSnaps
 
   | 类型 | 说明 |
   | -------- | -------- |
-  | Promise&lt;[MissionSnapshot](js-apis-application-MissionSnapshot.md)&gt; | 任务快照信息。 |
+  | Promise&lt;[MissionSnapshot](js-apis-inner-application-missionSnapshot.md)&gt; | 任务快照信息。 |
 
 **示例：**
 
-  ```js
+  ```ts
   import missionManager from '@ohos.app.ability.missionManager'
 
   try {
@@ -418,11 +418,11 @@ getLowResolutionMissionSnapShot(deviceId: string, missionId: number, callback: A
   | -------- | -------- | -------- | -------- |
   | deviceId | string | 是 | 设备ID，本机默认为空字符串。 |
   | missionId | number | 是 | 任务ID。 |
-  | callback | AsyncCallback&lt;[MissionSnapshot](js-apis-application-MissionSnapshot.md)&gt; | 是 | 执行结果回调函数，返回任务快照信息。 |
+  | callback | AsyncCallback&lt;[MissionSnapshot](js-apis-inner-application-missionSnapshot.md)&gt; | 是 | 执行结果回调函数，返回任务快照信息。 |
 
 **示例：**
 
-  ```js
+  ```ts
   import missionManager from '@ohos.app.ability.missionManager'
 
   try {
@@ -466,11 +466,11 @@ getLowResolutionMissionSnapShot(deviceId: string, missionId: number): Promise\<M
 
   | 类型 | 说明 |
   | -------- | -------- |
-  | Promise&lt;[MissionSnapshot](js-apis-application-MissionSnapshot.md)&gt; | 任务快照信息。 |
+  | Promise&lt;[MissionSnapshot](js-apis-inner-application-missionSnapshot.md)&gt; | 任务快照信息。 |
 
 **示例：**
 
-  ```js
+  ```ts
   import missionManager from '@ohos.app.ability.missionManager'
 
   try {
@@ -512,7 +512,7 @@ lockMission(missionId: number, callback: AsyncCallback&lt;void&gt;): void;
 
 **示例：**
 
-  ```js
+  ```ts
   import missionManager from '@ohos.app.ability.missionManager'
 
   try {
@@ -558,7 +558,7 @@ lockMission(missionId: number): Promise&lt;void&gt;;
 
 **示例：**
 
-  ```js
+  ```ts
   import missionManager from '@ohos.app.ability.missionManager'
   
   try {
@@ -600,7 +600,7 @@ unlockMission(missionId: number, callback: AsyncCallback&lt;void&gt;): void;
 
 **示例：**
 
-  ```js
+  ```ts
   import missionManager from '@ohos.app.ability.missionManager'
 
   try {
@@ -646,7 +646,7 @@ unlockMission(missionId: number): Promise&lt;void&gt;;
 
 **示例：**
 
-  ```js
+  ```ts
   import missionManager from '@ohos.app.ability.missionManager'
 
   try {
@@ -691,7 +691,7 @@ clearMission(missionId: number, callback: AsyncCallback&lt;void&gt;): void;
 
 **示例：**
 
-  ```js
+  ```ts
   import missionManager from '@ohos.app.ability.missionManager'
 
   try {
@@ -737,7 +737,7 @@ clearMission(missionId: number): Promise&lt;void&gt;;
 
 **示例：**
 
-  ```js
+  ```ts
   import missionManager from '@ohos.app.ability.missionManager'
 
   try {
@@ -772,7 +772,7 @@ clearAllMissions(callback: AsyncCallback&lt;void&gt;): void;
 
 **示例：**
 
-  ```js
+  ```ts
   import missionManager from '@ohos.app.ability.missionManager'
 
   missionManager.clearAllMissions().then(() => {
@@ -801,7 +801,7 @@ clearAllMissions(): Promise&lt;void&gt;;
 
 **示例：**
 
-  ```js
+  ```ts
   import missionManager from '@ohos.app.ability.missionManager'
   missionManager.clearAllMissions().catch(function (err){
     console.log(err);
@@ -830,7 +830,7 @@ moveMissionToFront(missionId: number, callback: AsyncCallback&lt;void&gt;): void
 
 **示例：**
 
-  ```js
+  ```ts
   import missionManager from '@ohos.app.ability.missionManager'
 
   try {
@@ -867,12 +867,12 @@ moveMissionToFront(missionId: number, options: StartOptions, callback: AsyncCall
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | missionId | number | 是 | 任务ID。 |
-  | options | [StartOptions](js-apis-application-StartOptions.md) | 是 | 启动参数选项，用于指定任务切到前台时的窗口模式，设备ID等。 |
+  | options | [StartOptions](js-apis-app-ability-startOptions.md) | 是 | 启动参数选项，用于指定任务切到前台时的窗口模式，设备ID等。 |
   | callback | AsyncCallback&lt;void&gt; | 是 | 执行结果回调函数。 |
 
 **示例：**
 
-  ```js
+  ```ts
   import missionManager from '@ohos.app.ability.missionManager'
 
   try {
@@ -909,7 +909,7 @@ moveMissionToFront(missionId: number, options?: StartOptions): Promise&lt;void&g
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | missionId | number | 是 | 任务ID。 |
-  | options | [StartOptions](js-apis-application-StartOptions.md) | 否 | 启动参数选项，用于指定任务切到前台时的窗口模式，设备ID等。 |
+  | options | [StartOptions](js-apis-app-ability-startOptions.md) | 否 | 启动参数选项，用于指定任务切到前台时的窗口模式，设备ID等。 |
 
 **返回值：**
 
@@ -919,7 +919,7 @@ moveMissionToFront(missionId: number, options?: StartOptions): Promise&lt;void&g
 
 **示例：**
 
-  ```js
+  ```ts
   import missionManager from '@ohos.app.ability.missionManager'
 
   try {
@@ -953,7 +953,7 @@ moveMissionToFront(missionId: number, options?: StartOptions): Promise&lt;void&g
 | runningState | number | 是 | 是 | 表示运行状态。 | 
 | lockedState | boolean | 是 | 是 | 表示锁定状态。 | 
 | timestamp | string | 是 | 是 | 表示任务的最近创建或更新时间。 | 
-| want | [Want](js-apis-application-Want.md) | 是 | 是 | 表示任务的Want信息。 | 
+| want | [Want](js-apis-application-want.md) | 是 | 是 | 表示任务的Want信息。 | 
 | label | string | 是 | 是 | 表示任务的标签。 | 
 | iconPath | string | 是 | 是 | 表示任务的图标路径。 | 
 | continuable | boolean | 是 | 是 | 表示任务是否可以迁移。 | 
