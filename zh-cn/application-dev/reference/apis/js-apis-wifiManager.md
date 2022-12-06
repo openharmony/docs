@@ -342,7 +342,7 @@ IP配置信息。
 **系统能力：** SystemCapability.Communication.WiFi.STA
 
 | **名称** | **类型** | **可读** | **可写** | **说明** |
-| -------- | -------- | -------- | -------- |
+| -------- | -------- | -------- | -------- | -------- |
 | eapMethod | [EapMethod](#eapmethod9) | 是 | 否 | EAP认证方式。 |
 | phase2Method | [Phase2Method](#phase2method9) | 是 | 否 | 第二阶段认证方式。 |
 | identity | string | 是 | 否 | 身份信息。 |
