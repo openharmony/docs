@@ -515,6 +515,48 @@ release(): void;
   }
   ```
 
+## Caller.onRelease
+
+ onRelease(callback: OnReleaseCallBack): void;
+
+注册通用组件服务端Stub（桩）断开监听通知。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
+
+**参数：**
+
+  | 参数名 | 类型 | 必填 | 说明 | 
+  | -------- | -------- | -------- | -------- |
+  | callback | OnReleaseCallBack | 是 | 返回onRelease回调结果。 | 
+
+**示例：**
+    
+  ```ts
+  import Ability from '@ohos.application.Ability';
+  var caller;
+  export default class MainAbility extends Ability {
+    onWindowStageCreate(windowStage) {
+      this.context.startAbilityByCall({
+        bundleName: "com.example.myservice",
+        abilityName: "MainAbility",
+        deviceId: ""
+      }).then((obj) => {
+          caller = obj;
+          try {
+            caller.onRelease((str) => {
+                console.log(' Caller OnRelease CallBack is called ' + str);
+            });
+          } catch (error) {
+            console.log('Caller.on catch error, error.code: ' + JSON.stringify(error.code) +
+              ' error.message: ' + JSON.stringify(error.message));
+          }
+      }).catch((err) => {
+        console.log('Caller GetCaller error, error.code: ' + JSON.stringify(err.code) +
+          ' error.message: ' + JSON.stringify(err.message));
+      });
+    }
+  }
+  ```
 
 ## Caller.on
 
@@ -529,7 +571,7 @@ release(): void;
   | 参数名 | 类型 | 必填 | 说明 | 
   | -------- | -------- | -------- | -------- |
   | type | string | 是 | 监听releaseCall事件，固定为'release'。 | 
-  | callback | OnReleaseCallBack | 是 | 返回onRelease回调结果。 | 
+  | callback | OnReleaseCallback | 是 | 返回onRelease回调结果。 | 
 
 **错误码：**
 

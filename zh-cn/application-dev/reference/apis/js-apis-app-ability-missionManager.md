@@ -169,7 +169,7 @@ getMissionInfo(deviceId: string, missionId: number, callback: AsyncCallback&lt;M
   | -------- | -------- | -------- | -------- |
   | deviceId | string | 是 | 设备ID，本机默认为空字符串。 |
   | missionId | number | 是 | 任务ID。 |
-  | callback | AsyncCallback&lt;[MissionInfo](#missioninfo)&gt; | 是 | 执行结果回调函数，返回任务信息。 |
+  | callback | AsyncCallback&lt;[MissionInfo](./js-apis-inner-application-missionInfo.md))&gt; | 是 | 执行结果回调函数，返回任务信息。 |
 
 **示例：**
 
@@ -216,7 +216,7 @@ getMissionInfo(deviceId: string, missionId: number): Promise&lt;MissionInfo&gt;;
 
   | 类型 | 说明 |
   | -------- | -------- |
-  | Promise&lt;[MissionInfo](#missioninfo)&gt; | 任务信息。 |
+  | Promise&lt;[MissionInfo](./js-apis-inner-application-missionInfo.md)&gt; | 任务信息。 |
 
 **示例：**
 
@@ -251,7 +251,7 @@ getMissionInfos(deviceId: string, numMax: number, callback: AsyncCallback&lt;Arr
   | -------- | -------- | -------- | -------- |
   | deviceId | string | 是 | 设备ID，本机默认为空字符串。 |
   | numMax | number | 是 | 任务信息数量上限。 |
-  | callback | AsyncCallback&lt;Array&lt;[MissionInfo](#missioninfo)&gt;&gt; | 是 | 执行结果回调函数，返回任务信息数组。 |
+  | callback | AsyncCallback&lt;Array&lt;[MissionInfo](./js-apis-inner-application-missionInfo.md)&gt;&gt; | 是 | 执行结果回调函数，返回任务信息数组。 |
 
 **示例：**
 
@@ -293,7 +293,7 @@ getMissionInfos(deviceId: string, numMax: number): Promise&lt;Array&lt;MissionIn
 
   | 类型 | 说明 |
   | -------- | -------- |
-  | Promise&lt;Array&lt;[MissionInfo](#missioninfo)&gt;&gt; | 任务信息数组。 |
+  | Promise&lt;Array&lt;[MissionInfo](./js-apis-inner-application-missionInfo.md)&gt;&gt; | 任务信息数组。 |
 
 **示例：**
 
@@ -938,22 +938,3 @@ moveMissionToFront(missionId: number, options?: StartOptions): Promise&lt;void&g
     console.log("error: " + paramError.code + ", " + paramError.message);
   }
   ```
-
-## MissionInfo
-
-表示Ability对应任务信息的枚举。
-
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Mission
-
-**系统API**: 此接口为系统接口，三方应用不支持调用。
-
-| 名称 | 类型 | 可读 | 可写 | 说明 | 
-| -------- | -------- | -------- | -------- | -------- |
-| missionId | number | 是 | 是 | 表示任务ID。| 
-| runningState | number | 是 | 是 | 表示运行状态。 | 
-| lockedState | boolean | 是 | 是 | 表示锁定状态。 | 
-| timestamp | string | 是 | 是 | 表示任务的最近创建或更新时间。 | 
-| want | [Want](js-apis-application-want.md) | 是 | 是 | 表示任务的Want信息。 | 
-| label | string | 是 | 是 | 表示任务的标签。 | 
-| iconPath | string | 是 | 是 | 表示任务的图标路径。 | 
-| continuable | boolean | 是 | 是 | 表示任务是否可以迁移。 | 

@@ -240,6 +240,30 @@ onNewWant(want: Want, launchParams: AbilityConstant.LaunchParam): void;
   }
   ```
 
+## Ability.onConfigurationUpdated
+
+onConfigurationUpdated(config: Configuration): void;
+
+环境变化通知接口，发生全局配置变更时回调。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**参数：**
+
+  | 参数名 | 类型 | 必填 | 说明 | 
+  | -------- | -------- | -------- | -------- |
+  | config | [Configuration](js-apis-application-configuration.md) | 是 | 发生全局配置变更时触发回调，当前全局配置包括系统语言、深浅色模式。 | 
+
+**示例：**
+    
+  ```ts
+  class myAbility extends Ability {
+      onConfigurationUpdated(config) {
+          console.log('onConfigurationUpdated, language:' + config.language);
+      }
+  }
+  ```
+
 ## Ability.dump
 
 dump(params: Array\<string>): Array\<string>;
@@ -265,6 +289,29 @@ dump(params: Array\<string>): Array\<string>;
   }
   ```
 
+## Ability.onMemoryLevel
+
+onMemoryLevel(level: AbilityConstant.MemoryLevel): void;
+
+当系统已决定调整内存时调用。例如，当该功能在后台运行时，没有足够的内存来运行尽可能多的后台进程时可以使用。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
+
+**参数：**
+
+  | 参数名 | 类型 | 必填 | 说明 | 
+  | -------- | -------- | -------- | -------- |
+  | level | [AbilityConstant.MemoryLevel](js-apis-application-abilityConstant.md#abilityconstantmemorylevel) | 是 | 回调返回内存微调级别，显示当前内存使用状态。| 
+
+**示例：**
+    
+  ```ts
+  class myAbility extends Ability {
+    onMemoryLevel(level) {
+        console.log('onMemoryLevel, level:' + JSON.stringify(level));
+    } 
+  }
+  ```
 
 ## Ability.onSaveState
 

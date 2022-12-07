@@ -200,7 +200,7 @@ onReconnect(want: Want): void;
 
 ## ServiceExtensionAbility.onConfigurationUpdate
 
-onConfigurationUpdate(config: Configuration): void;
+onConfigurationUpdate(newConfig: Configuration): void;
 
 当Extension更新配置信息时调用。
 
@@ -212,7 +212,7 @@ onConfigurationUpdate(config: Configuration): void;
 
   | 参数名 | 类型 | 必填 | 说明 | 
   | -------- | -------- | -------- | -------- |
-  | config | [Configuration](js-apis-app-ability-configuration.md) | 是 | 表示需要更新的配置信息。 | 
+  | newConfig | [Configuration](js-apis-app-ability-configuration.md) | 是 | 表示需要更新的配置信息。 | 
 
 **示例：**
     
@@ -230,7 +230,7 @@ onDump(params: Array\<string>): Array\<string>;
 
 转储客户端信息时调用。
 
-**系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 **系统API**: 此接口为系统接口，三方应用不支持调用。
 
