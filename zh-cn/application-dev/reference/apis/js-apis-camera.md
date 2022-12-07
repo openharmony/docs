@@ -836,20 +836,6 @@ cameraManager.on('cameraMute', (err, curMuetd) => {
 | cameraType     | [CameraType](#cameratype)         | 是   | 相机类型。    |
 | connectionType | [ConnectionType](#connectiontype) | 是   | 相机连接类型。 |
 
-**示例：**
-
-```js
-async function getCameraInfo("cameraId") {
-    let cameraManager = await camera.getCameraManager(context);
-    let cameras = await cameraManager.getSupportedCameras();
-    let cameraObj = cameras[0];
-    let cameraId = cameraObj.cameraId;
-    let cameraPosition = cameraObj.cameraPosition;
-    let cameraType = cameraObj.cameraType;
-    let connectionType = cameraObj.connectionType;
-}
-```
-
 ## Size
 
 枚举，输出能力查询。
