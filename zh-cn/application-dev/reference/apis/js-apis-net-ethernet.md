@@ -14,7 +14,7 @@ import ethernet from '@ohos.net.ethernet'
 
 ## ethernet.setIfaceConfig
 
-setIfaceConfig(iface: string, ic: InterfaceConfiguration, callback: AsyncCallback\<void>): void;
+setIfaceConfig(iface: string, ic: InterfaceConfiguration, callback: AsyncCallback\<void>): void
 
 设置网络接口配置信息，使用callback方式作为异步方法。
 
@@ -48,7 +48,7 @@ ethernet.setIfaceConfig("eth0", {mode:ethernet.STATIC,ipAddr:"192.168.1.123", ro
 
 ## ethernet.setIfaceConfig
 
-setIfaceConfig(iface: string, ic: InterfaceConfiguration): Promise\<void>;
+setIfaceConfig(iface: string, ic: InterfaceConfiguration): Promise\<void>
 
 设置网络接口配置信息，使用Promise方式作为异步方法。
 
@@ -84,7 +84,7 @@ ethernet.setIfaceConfig("eth0", {mode:ethernet.STATIC,ipAddr:"192.168.1.123", ro
 
 ## ethernet.getIfaceConfig
 
-getIfaceConfig(iface: string, callback: AsyncCallback\<InterfaceConfiguration>): void;
+getIfaceConfig(iface: string, callback: AsyncCallback\<InterfaceConfiguration>): void
 
 获取指定网络接口信息，使用callback方式作为异步方法。
 
@@ -121,7 +121,7 @@ ethernet.getIfaceConfig("eth0", (error, value) => {
 
 ## ethernet.getIfaceConfig
 
-getIfaceConfig(iface: string): Promise\<InterfaceConfiguration>;
+getIfaceConfig(iface: string): Promise\<InterfaceConfiguration>
 
 获取指定网络接口信息，使用Promise方式作为异步方法。
 
@@ -161,7 +161,7 @@ ethernet.getIfaceConfig("eth0").then((data) => {
 
 ## ethernet.isIfaceActive
 
-isIfaceActive(iface?: string, callback: AsyncCallback\<number>): void;
+isIfaceActive(iface: string, callback: AsyncCallback\<number>): void
 
 判断接口是否已激活，使用callback方式作为异步方法。
 
@@ -175,7 +175,7 @@ isIfaceActive(iface?: string, callback: AsyncCallback\<number>): void;
 
 | 参数名   | 类型                        | 必填 | 说明                                               |
 | -------- | --------------------------- | ---- | -------------------------------------------------- |
-| iface    | string                      | 否   | 接口名。为空时代表查询是否存在激活接口             |
+| iface    | string                      | 是   | 接口名。为空时代表查询是否存在激活接口             |
 | callback | AsyncCallback\<number>       | 是   | 回调函数，已激活:1,未激活:0,其他为获取失败错误码。 |
 
 **示例：**
@@ -192,7 +192,7 @@ ethernet.isIfaceActive("eth0", (error, value) => {
 
 ## ethernet.isIfaceActive
 
-isIfaceActive(iface?: string): Promise\<number>;
+isIfaceActive(iface: string): Promise\<number>
 
 判断接口是否已激活，使用Promise方式作为异步方法。
 
@@ -206,7 +206,7 @@ isIfaceActive(iface?: string): Promise\<number>;
 
 | 参数名 | 类型   | 必填 | 说明                                   |
 | ------ | ------ | ---- | -------------------------------------- |
-| iface  | string | 否   | 接口名。为空时代表查询是否存在激活接口 |
+| iface  | string | 是   | 接口名。为空时代表查询是否存在激活接口 |
 
 **返回值：**
 
@@ -226,7 +226,7 @@ ethernet.isIfaceActive("eth0").then((data) => {
 
 ## ethernet.getAllActiveIfaces
 
-getAllActiveIfaces(callback: AsyncCallback\<Array\<string>>): void;
+getAllActiveIfaces(callback: AsyncCallback\<Array\<string>>): void
 
 获取活动的网络接口，使用callback方式作为异步方法。
 
@@ -259,7 +259,7 @@ ethernet.getAllActiveIfaces((error, value) => {
 
 ## ethernet.getAllActiveIfaces
 
-getAllActiveIfaces(): Promise\<Array\<string>>;
+getAllActiveIfaces(): Promise\<Array\<string>>
 
 获取活动的网络接口，使用Promise方式作为异步方法。
 
@@ -268,8 +268,6 @@ getAllActiveIfaces(): Promise\<Array\<string>>;
 **需要权限**：ohos.permission.GET_NETWORK_INFO
 
 **系统能力**：SystemCapability.Communication.NetManager.Ethernet
-
-**参数：**
 
 **返回值：**
 
@@ -298,14 +296,14 @@ ethernet.getAllActiveIfaces().then((data) => {
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Communication.NetManager.Ethernet。
 
-| 参数名                  | 类型                                | 说明                                                         |
-| ----------------------- | ----------------------------------- | ------------------------------------------------------------ |
-| mode         | [IPSetMode](#ipsetmode) | 以太网连接配置模式。 |
-| ipAddr       | string                  | 以太网连接静态配置ip信息，地址值范围0-255.0-255.0-255.0-255（DHCP模式无需配置）。 |
-| route        | string                  | 以太网连接静态配置路由信息，地址值范围0-255.0-255.0-255.0-255（DHCP模式无需配置）。 |
-| gateway      | string                  | 以太网连接配置网关信息，地址值范围0-255.0-255.0-255.0-255（DHCP模式无需配置）。 |
-| netMask      | string                  | 以太网连接配置子网掩码，地址值范围0-255.0-255.0-255.0-255（DHCP模式无需配置）。 |
-| dnsServers   | string                  | 以太网连接配置dns服务地址，地址值范围0-255.0-255.0-255.0-255（DHCP模式无需配置）多地址间用“,”隔开。 |
+| 名称          | 类型                    | 必填 | 说明                                                         |
+| ------------ | ----------------------- | ---|------------------------------------------------------------ |
+| mode         | [IPSetMode](#ipsetmode) | 是 | 以太网连接配置模式。 |
+| ipAddr       | string                  | 是 | 以太网连接静态配置ip信息，地址值范围0-255.0-255.0-255.0-255（DHCP模式无需配置）。 |
+| route        | string                  | 是 | 以太网连接静态配置路由信息，地址值范围0-255.0-255.0-255.0-255（DHCP模式无需配置）。 |
+| gateway      | string                  | 是 | 以太网连接配置网关信息，地址值范围0-255.0-255.0-255.0-255（DHCP模式无需配置）。 |
+| netMask      | string                  | 是 | 以太网连接配置子网掩码，地址值范围0-255.0-255.0-255.0-255（DHCP模式无需配置）。 |
+| dnsServers   | string                  | 是 | 以太网连接配置dns服务地址，地址值范围0-255.0-255.0-255.0-255（DHCP模式无需配置）多地址间用“,”隔开。 |
 
 ## IPSetMode
 
