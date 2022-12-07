@@ -27,16 +27,16 @@ import faultLogger from '@ohos.faultLogger'
 
 **系统能力：** SystemCapability.HiviewDFX.Hiview.FaultLogger
 
-| 名称 | 类型 | 说明 |
-| -------- | -------- | -------- |
-| pid | number | 故障进程的进程id |
-| uid | number | 故障进程的用户id |
-| type | [FaultType](#faulttype) | 故障类型 |
-| timestamp | number | 日志生成时的秒级时间戳 |
-| reason | string | 发生故障的原因 |
-| module | string | 发生故障的模块 |
-| summary | string | 故障的概要 |
-| fullLog | string | 故障日志全文 |
+| 名称 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| pid | number | 是 | 故障进程的进程id |
+| uid | number | 是 | 故障进程的用户id |
+| type | [FaultType](#faulttype) | 是 | 故障类型 |
+| timestamp | number | 是 | 日志生成时的秒级时间戳 |
+| reason | string | 是 | 发生故障的原因 |
+| module | string | 是 | 发生故障的模块 |
+| summary | string | 是 | 故障的概要 |
+| fullLog | string | 是 | 故障日志全文 |
 
 ## faultLogger.querySelfFaultLog<sup>(deprecated)</sup>
 
