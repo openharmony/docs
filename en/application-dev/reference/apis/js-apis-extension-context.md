@@ -17,7 +17,7 @@ This module provides APIs for accessing resources of a specific Extension abilit
 | -------- | -------- | -------- | -------- | -------- |
 | currentHapModuleInfo | HapModuleInfo | Yes| No| Information about the HAP file<br>(See **api\bundle\hapModuleInfo.d.ts** in the **SDK** directory.) |
 | config   | Configuration | Yes| No| Module configuration information.<br>(See **api\@ohos.application.Configuration.d.ts** in the **SDK** directory.)|
-| extensionAbilityInfo | [ExtensionAbilityInfo](js-apis-bundle-ExtensionAbilityInfo.md) | Yes| No| Extension ability information.<br>(See **api\bundle\extensionAbilityInfo.d.ts** in the **SDK** directory.)|
+| extensionAbilityInfo | [ExtensionAbilityInfo](js-apis-bundleManager-extensionAbilityInfo.md) | Yes| No| Extension ability information.<br>(See **api\bundle\extensionAbilityInfo.d.ts** in the **SDK** directory.)|
 
 ## When to Use
 **ExtensionContext** provides information about an Extension ability, module, and HAP file. You can use the information based on service requirements. The following uses **ServiceExtension** as an example to describe a use case of **ExtensionContext**.
@@ -31,7 +31,7 @@ To adapt to devices with different performance, an application provides three mo
 
 Define a **ServiceExtension** with the same name for the three modules.
 ``` js
-import ServiceExtension from '@ohos.application.ServiceExtensionAbility'
+import ServiceExtension from '@ohos.app.ability.ServiceExtensionAbility'
 import Want from '@ohos.application.Want'
 export default class TheServiceExtension extends ServiceExtension {
     onCreate(want:Want) {
@@ -61,7 +61,7 @@ export default class TheServiceExtension extends ServiceExtension {
 
 Start **ServiceExtension** within the **onCreate** callback of the main ability of the entry.
 ``` js
-import Ability from '@ohos.application.Ability'
+import Ability from '@ohos.app.ability.Ability'
 export default class MainAbility extends Ability {
     onCreate(want, launchParam) {
         console.log("[Demo] MainAbility onCreate");
