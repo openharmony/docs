@@ -1346,7 +1346,7 @@ captureSession.removeInput(cameraInput).then(() => {
 
 ### addOutput
 
-addOutput\(cameraOutput: CameraOutput, callback: AsyncCallback<void\>\): void
+addOutput\(previewOutput: CameraOutput, callback: AsyncCallback<void\>\): void
 
 把[CameraOutput](#cameraoutput)加入到会话，通过注册回调函数获取结果。
 
@@ -1356,13 +1356,13 @@ addOutput\(cameraOutput: CameraOutput, callback: AsyncCallback<void\>\): void
 
 | 参数名           | 类型                             | 必填 | 说明                      |
 | ------------- | ------------------------------- | ---- | ------------------------ |
-| cameraOutput  | [CameraOutput](#cameraoutput)   | 是   | 需要添加的CameraOutput实例。 |
+| previewOutput  | [PreviewOutput](#previewoutput)   | 是   | 需要添加的previewoutput实例。 |
 | callback      | AsyncCallback<void\>            | 是   | 回调函数，用于获取结果。      |
 
 **示例：**
 
 ```js
-captureSession.addOutput(cameraOutput, (err) => {
+captureSession.addOutput(previewOutput, (err) => {
     if (err) {
         console.error(`Failed to add output. ${err.message}`);
         return;
@@ -1373,7 +1373,7 @@ captureSession.addOutput(cameraOutput, (err) => {
 
 ### addOutput
 
-addOutput\(cameraOutput: CameraOutput\): Promise<void\>
+addOutput\(previewOutput: CameraOutput\): Promise<void\>
 
 把[CameraOutput](#cameraoutput)加入到会话，通过Promise获取结果。
 
@@ -1383,7 +1383,7 @@ addOutput\(cameraOutput: CameraOutput\): Promise<void\>
 
 | 参数名           | 类型                             | 必填 | 说明                       |
 | ------------- | ------------------------------- | ---- | ------------------------- |
-| cameraOutput  | [CameraOutput](#cameraoutput)   | 是   | 需要添加的CameraOutput实例。 |
+| previewOutput  | [PreviewOutput](#previewoutput)   | 是   | 需要添加的previewOutput实例。 |
 
 **返回值：**
 
@@ -1394,14 +1394,14 @@ addOutput\(cameraOutput: CameraOutput\): Promise<void\>
 **示例：**
 
 ```js
-captureSession.addOutput(cameraOutput).then(() => {
+captureSession.addOutput(previewOutput).then(() => {
     console.log('Promise returned with cameraOutput added.');
 })
 ```
 
 ### removeOutput
 
-removeOutput\(cameraOutput: CameraOutput, callback: AsyncCallback<void\>\): void
+removeOutput\(previewOutput: CameraOutput, callback: AsyncCallback<void\>\): void
 
 从会话中移除[CameraOutput](#cameraoutput)，通过注册回调函数获取结果。
 
@@ -1411,13 +1411,13 @@ removeOutput\(cameraOutput: CameraOutput, callback: AsyncCallback<void\>\): void
 
 | 参数名           | 类型                             | 必填 | 说明                      |
 | ------------- | ------------------------------- | ---- | ------------------------ |
-| cameraOutput  | [CameraOutput](#cameraoutput)   | 是   | 需要移除的CameraOutput实例。 |
+| previewOutput  | [PreviewOutput](#previewoutput)   | 是   | 需要移除的previewoutput实例。 |
 | callback      | AsyncCallback<void\>            | 是   | 回调函数，用于获取结果。      |
 
 **示例：**
 
 ```js
-captureSession.removeOutput(cameraOutput, (err) => {
+captureSession.removeOutput(previewOutput, (err) => {
     if (err) {
         console.error(`Failed to remove the CameraOutput instance. ${err.message}`);
         return;
@@ -1428,7 +1428,7 @@ captureSession.removeOutput(cameraOutput, (err) => {
 
 ### removeOutput
 
-removeOutput(cameraOutput: CameraOutput): Promise<void\>
+removeOutput(previewOutput: CameraOutput): Promise<void\>
 
 从会话中移除[CameraOutput](#cameraoutput)，通过Promise获取结果。
 
@@ -1438,7 +1438,7 @@ removeOutput(cameraOutput: CameraOutput): Promise<void\>
 
 | 参数名           | 类型                             | 必填 | 说明                      |
 | ------------- | ------------------------------- | ---- | ------------------------- |
-| cameraOutput  | [CameraOutput](#cameraoutput)   | 是   | 需要移除的CameraOutput实例。 |
+| previewOutput  | [PreviewOutput](#previewoutput)   | 是   | 需要移除的previewoutput实例。 |
 
 
 **返回值：**
@@ -1451,7 +1451,7 @@ removeOutput(cameraOutput: CameraOutput): Promise<void\>
 **示例：**
 
 ```js
-captureSession.removeOutput(cameraOutput).then(() => {
+captureSession.removeOutput(previewOutput).then(() => {
     console.log('Promise returned to indicate that the CameraOutput instance is removed.');
 })
 ```
@@ -2926,54 +2926,6 @@ captureSession.on('error', (captureSessionError) => {
 
 会话中[CaptureSession](#capturesession)使用的输出信息，output的基类。
 
-### release
-
-release(callback: AsyncCallback<void\>): void
-
-释放输出资源，通过注册回调函数获取结果。
-
-**系统能力：** SystemCapability.Multimedia.Camera.Core
-
-**参数：**
-
-| 参数名      | 类型                  | 必填 | 说明                 |
-| -------- | -------------------- | ---- | ------------------- |
-| callback | AsyncCallback<void\> | 是   | 回调函数，用于获取结果。 |
-
-**示例：**
-
-```js
-cameraOutput.release((err) => {
-    if (err) {
-        console.error(`Failed to release the PreviewOutput instance ${err.message}`);
-        return;
-    }
-    console.log('Callback invoked to indicate that the PreviewOutput instance is released successfully.');
-});
-```
-
-### release
-
-release(): Promise<void\>
-
-释放输出资源，通过Promise获取结果。
-
-**系统能力：** SystemCapability.Multimedia.Camera.Core
-
-**返回值：**
-
-| 类型            | 说明                     |
-| -------------- | ----------------------- |
-| Promise<void\> | 使用Promise的方式获取结果。 |
-
-**示例：**
-
-```js
-cameraOutput.release().then(() => {
-    console.log('Promise returned to indicate that the PreviewOutput instance is released successfully.');
-})
-```
-
 ## PreviewOutput
 
 预览输出类。继承[CameraOutput](#cameraoutput)
@@ -3071,6 +3023,54 @@ stop(): Promise<void\>
 ```js
 previewOutput.stop().then(() => {
     console.log('Callback returned with previewOutput stopped.');
+})
+```
+
+### release
+
+release(callback: AsyncCallback<void\>): void
+
+释放输出资源，通过注册回调函数获取结果。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+**参数：**
+
+| 参数名      | 类型                  | 必填 | 说明                 |
+| -------- | -------------------- | ---- | ------------------- |
+| callback | AsyncCallback<void\> | 是   | 回调函数，用于获取结果。 |
+
+**示例：**
+
+```js
+previewOutput.release((err) => {
+    if (err) {
+        console.error(`Failed to release the PreviewOutput instance ${err.message}`);
+        return;
+    }
+    console.log('Callback invoked to indicate that the PreviewOutput instance is released successfully.');
+});
+```
+
+### release
+
+release(): Promise<void\>
+
+释放输出资源，通过Promise获取结果。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+**返回值：**
+
+| 类型            | 说明                     |
+| -------------- | ----------------------- |
+| Promise<void\> | 使用Promise的方式获取结果。 |
+
+**示例：**
+
+```js
+previewOutput.release().then(() => {
+    console.log('Promise returned to indicate that the PreviewOutput instance is released successfully.');
 })
 ```
 
@@ -3327,6 +3327,54 @@ photoOutput.isMirrorSupported((err, isSupported) => {
         return;
     }
     console.log('Callback returned with the successful execution of isMirrorSupported.');
+})
+```
+
+### release
+
+release(callback: AsyncCallback<void\>): void
+
+释放输出资源，通过注册回调函数获取结果。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+**参数：**
+
+| 参数名      | 类型                  | 必填 | 说明                 |
+| -------- | -------------------- | ---- | ------------------- |
+| callback | AsyncCallback<void\> | 是   | 回调函数，用于获取结果。 |
+
+**示例：**
+
+```js
+photoOutput.release((err) => {
+    if (err) {
+        console.error(`Failed to release the PreviewOutput instance ${err.message}`);
+        return;
+    }
+    console.log('Callback invoked to indicate that the PreviewOutput instance is released successfully.');
+});
+```
+
+### release
+
+release(): Promise<void\>
+
+释放输出资源，通过Promise获取结果。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+**返回值：**
+
+| 类型            | 说明                     |
+| -------------- | ----------------------- |
+| Promise<void\> | 使用Promise的方式获取结果。 |
+
+**示例：**
+
+```js
+photoOutput.release().then(() => {
+    console.log('Promise returned to indicate that the PreviewOutput instance is released successfully.');
 })
 ```
 
@@ -3592,6 +3640,54 @@ videoOutput.stop().then(() => {
 })
 ``` 
 
+### release
+
+release(callback: AsyncCallback<void\>): void
+
+释放输出资源，通过注册回调函数获取结果。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+**参数：**
+
+| 参数名      | 类型                  | 必填 | 说明                 |
+| -------- | -------------------- | ---- | ------------------- |
+| callback | AsyncCallback<void\> | 是   | 回调函数，用于获取结果。 |
+
+**示例：**
+
+```js
+videoOutput.release((err) => {
+    if (err) {
+        console.error(`Failed to release the PreviewOutput instance ${err.message}`);
+        return;
+    }
+    console.log('Callback invoked to indicate that the PreviewOutput instance is released successfully.');
+});
+```
+
+### release
+
+release(): Promise<void\>
+
+释放输出资源，通过Promise获取结果。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+**返回值：**
+
+| 类型            | 说明                     |
+| -------------- | ----------------------- |
+| Promise<void\> | 使用Promise的方式获取结果。 |
+
+**示例：**
+
+```js
+videoOutput.release().then(() => {
+    console.log('Promise returned to indicate that the PreviewOutput instance is released successfully.');
+})
+```
+
 ### on('frameStart')
 
 on(type: 'frameStart', callback: AsyncCallback<void\>): void
@@ -3681,6 +3777,173 @@ videoOutput.on('error', (VideoOutputError) => {
 | 名称 | 类型                                  |       必填       |           说明                    |
 | ---- | ------------------------------------- | ----------------- | ----------------------- |
 | code | [PhotoOutputErrorCode](#photooutputerrorcode) |            是           |  VideoOutput中的错误码。 |
+
+## MetadataOutput
+
+metadata流。继承[CameraOutput](#cameraoutput)
+
+### start
+
+start(callback: AsyncCallback<void\>): void
+
+开始输出metadata，通过注册回调函数获取结果。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+**参数：**
+
+| 参数名     | 类型                                                         | 必填 | 说明                 |
+| -------- | ----------------------------------------------------------- | ---- | ------------------- |
+| callback | AsyncCallback<void\>                                       | 是   | 回调函数，用于获取结果。 |
+
+**示例：**
+
+```js
+metadataOutput.start((err) => {
+    if (err) {
+        console.error(`Failed to start metadataOutput. ${err.message}`);
+        return;
+    }
+    console.log('Callback returned with metadataOutput started.');
+})
+```
+
+### start
+
+start(): Promise<void\>
+
+开始输出metadata，通过Promise获取结果。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+**返回值：**
+
+| 类型                     | 说明                     |
+| ----------------------  | ------------------------ |
+| Promise<void\>          | 使用Promise的方式获取结果。 |
+
+**示例：**
+
+```js
+metadataOutput.start().then(() => {
+    console.log('Callback returned with metadataOutput started.');
+})
+```
+
+### stop
+
+stop(callback: AsyncCallback<void\>): void
+
+停止输出metadata，通过注册回调函数获取结果。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+**参数：**
+
+| 参数名     | 类型                         | 必填 | 说明                  |
+| -------- | -------------------------- | ---- | ------------------- |
+| callback | AsyncCallback<void\>       | 是   | 回调函数，用于获取结果。 |
+
+**示例：**
+
+```js
+metadataOutput.stop((err) => {
+    if (err) {
+        console.error(`Failed to stop the metadataOutput. ${err.message}`);
+        return;
+    }
+    console.log('Callback returned with metadataOutput stopped.');
+})
+```
+
+### stop
+
+stop(): Promise<void\>
+
+停止输出metadata，通过Promise获取结果。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+**返回值：**
+
+| 类型                    | 说明                        |
+| ----------------------  | --------------------------- |
+| Promise<void\>         | 使用Promise的方式获取结果。 |
+
+**示例：**
+
+```js
+metadataOutput.stop().then(() => {
+    console.log('Callback returned with metadataOutput stopped.');
+})
+```
+
+### on('metadataObjectsAvailable')
+
+on(type: 'metadataObjectsAvailable', callback: AsyncCallback<Array<MetadataObject\>\>): void
+
+监听检测到的metadata对象，通过注册回调函数获取结果。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+**参数：**
+
+| 参数名      | 类型                                                  | 必填 | 说明                                  |
+| -------- | ------------------------------------------------ | ---- | ------------------------------------ |
+| type     | string                            | 是   | 监听事件，固定为'metadataObjectsAvailable'，即metadata对象。 |
+| callback | Callback<Array<[MetadataObject](#metadataobject)\>\> | 是   | 回调函数，用于获取错误信息。               |
+
+**示例：**
+
+```js
+metadataOutput.on('metadataObjectsAvailable', (metadataObject) => {
+    console.log(`metadata output error code: ${metadataObject.code}`);
+})
+```
+
+### on('error')
+
+on(type: 'error', callback: ErrorCallback<MetadataOutputError\>): void
+
+监听metadata流的错误，通过注册回调函数获取结果。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+**参数：**
+
+| 参数名     | 类型                                               | 必填 | 说明                                     |
+| -------- | ------------------------------------------------ | ---- | --------------------------------------- |
+| type     | string                                           | 是   | 监听事件，固定为'error'，即metadata流的错误。 |
+| callback | Callback<[MetadataOutputError](#metadataoutputerror)\> | 是   | 回调函数，用于获取错误信息。            |
+
+**示例：**
+
+```js
+metadataOutput.on('error', (metadataOutputError) => {
+    console.log(`Metadata output error code: ${metadataOutputError.code}`);
+})
+```
+
+## MetadataOutputErrorCode
+
+枚举，metadata输出错误类型。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+| 名称                             | 值   | 说明      |
+| ------------------------------- | ---- | -------- |
+| ERROR_UNKNOWN                   | -1   | 未知错误。 |
+| ERROR_INSUFFICIENT_RESOURCES    | 0    | 资源不足。 |
+
+## MetadataOutputError
+
+metadata输出错误码。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+| 名称 | 类型                                  |      必填      |               说明                    |
+| ---- | ------------------------------------- | ----------------- | ----------------------- |
+| code | [MetadataOutputErrorCode](#metadataoutputerrorcode) |        是          | MetadataOutput中的错误码。 |
 
 ## MetadataObjectType
 
@@ -3856,170 +4119,3 @@ metadataObject.getBoundingBox().then((rect) => {
 ## MetadataFaceObject
 
 metadata的人脸对象。继承[MetadataObject](#metadataobject)
-
-## MetadataOutput
-
-metadata流。继承[CameraOutput](#cameraoutput)
-
-### start
-
-start(callback: AsyncCallback<void\>): void
-
-开始输出metadata，通过注册回调函数获取结果。
-
-**系统能力：** SystemCapability.Multimedia.Camera.Core
-
-**参数：**
-
-| 参数名     | 类型                                                         | 必填 | 说明                 |
-| -------- | ----------------------------------------------------------- | ---- | ------------------- |
-| callback | AsyncCallback<void\>                                       | 是   | 回调函数，用于获取结果。 |
-
-**示例：**
-
-```js
-metadataOutput.start((err) => {
-    if (err) {
-        console.error(`Failed to start metadataOutput. ${err.message}`);
-        return;
-    }
-    console.log('Callback returned with metadataOutput started.');
-})
-```
-
-### start
-
-start(): Promise<void\>
-
-开始输出metadata，通过Promise获取结果。
-
-**系统能力：** SystemCapability.Multimedia.Camera.Core
-
-**返回值：**
-
-| 类型                     | 说明                     |
-| ----------------------  | ------------------------ |
-| Promise<void\>          | 使用Promise的方式获取结果。 |
-
-**示例：**
-
-```js
-metadataOutput.start().then(() => {
-    console.log('Callback returned with metadataOutput started.');
-})
-```
-
-### stop
-
-stop(callback: AsyncCallback<void\>): void
-
-停止输出metadata，通过注册回调函数获取结果。
-
-**系统能力：** SystemCapability.Multimedia.Camera.Core
-
-**参数：**
-
-| 参数名     | 类型                         | 必填 | 说明                  |
-| -------- | -------------------------- | ---- | ------------------- |
-| callback | AsyncCallback<void\>       | 是   | 回调函数，用于获取结果。 |
-
-**示例：**
-
-```js
-metadataOutput.stop((err) => {
-    if (err) {
-        console.error(`Failed to stop the metadataOutput. ${err.message}`);
-        return;
-    }
-    console.log('Callback returned with metadataOutput stopped.');
-})
-```
-
-### stop
-
-stop(): Promise<void\>
-
-停止输出metadata，通过Promise获取结果。
-
-**系统能力：** SystemCapability.Multimedia.Camera.Core
-
-**返回值：**
-
-| 类型                    | 说明                        |
-| ----------------------  | --------------------------- |
-| Promise<void\>         | 使用Promise的方式获取结果。 |
-
-**示例：**
-
-```js
-metadataOutput.stop().then(() => {
-    console.log('Callback returned with metadataOutput stopped.');
-})
-```
-
-### on('metadataObjectsAvailable')
-
-on(type: 'metadataObjectsAvailable', callback: AsyncCallback<Array<MetadataObject\>\>): void
-
-监听检测到的metadata对象，通过注册回调函数获取结果。
-
-**系统能力：** SystemCapability.Multimedia.Camera.Core
-
-**参数：**
-
-| 参数名      | 类型                                                  | 必填 | 说明                                  |
-| -------- | ------------------------------------------------ | ---- | ------------------------------------ |
-| type     | string                            | 是   | 监听事件，固定为'metadataObjectsAvailable'，即metadata对象。 |
-| callback | Callback<Array<[MetadataObject](#metadataobject)\>\> | 是   | 回调函数，用于获取错误信息。               |
-
-**示例：**
-
-```js
-metadataOutput.on('metadataObjectsAvailable', (metadataObject) => {
-    console.log(`metadata output error code: ${metadataObject.code}`);
-})
-```
-
-### on('error')
-
-on(type: 'error', callback: ErrorCallback<MetadataOutputError\>): void
-
-监听metadata流的错误，通过注册回调函数获取结果。
-
-**系统能力：** SystemCapability.Multimedia.Camera.Core
-
-**参数：**
-
-| 参数名     | 类型                                               | 必填 | 说明                                     |
-| -------- | ------------------------------------------------ | ---- | --------------------------------------- |
-| type     | string                                           | 是   | 监听事件，固定为'error'，即metadata流的错误。 |
-| callback | Callback<[MetadataOutputError](#metadataoutputerror)\> | 是   | 回调函数，用于获取错误信息。            |
-
-**示例：**
-
-```js
-metadataOutput.on('error', (metadataOutputError) => {
-    console.log(`Metadata output error code: ${metadataOutputError.code}`);
-})
-```
-
-## MetadataOutputErrorCode
-
-枚举，metadata输出错误类型。
-
-**系统能力：** SystemCapability.Multimedia.Camera.Core
-
-| 名称                             | 值   | 说明      |
-| ------------------------------- | ---- | -------- |
-| ERROR_UNKNOWN                   | -1   | 未知错误。 |
-| ERROR_INSUFFICIENT_RESOURCES    | 0    | 资源不足。 |
-
-## MetadataOutputError
-
-metadata输出错误码。
-
-**系统能力：** SystemCapability.Multimedia.Camera.Core
-
-| 名称 | 类型                                  |      必填      |               说明                    |
-| ---- | ------------------------------------- | ----------------- | ----------------------- |
-| code | [MetadataOutputErrorCode](#metadataoutputerrorcode) |        是          | MetadataOutput中的错误码。 |
