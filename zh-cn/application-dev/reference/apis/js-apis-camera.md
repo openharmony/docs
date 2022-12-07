@@ -188,13 +188,14 @@ getSupportedOutputCapability(camera:CameraDevice, callback: AsyncCallback<Camera
 
 | 参数名         | 类型                                                            | 必填 | 说明                      |
 | ------------ |--------------------------------------------------------------- | -- | -------------------------- |
-| CameraDevice | [CameraDevice](#cameradevice)                              | 是 | 相机设备。                       |
+| cameraDevice | [CameraDevice](#cameradevice)                              | 是 | 相机设备。                       |
 | callback     | AsyncCallback<[CameraOutputCapability](#cameraoutputcapability)\> | 是 | 使用callback方式获取相机输出能力。 |
 
 **示例：**
 
 ```js
-cameraManager.getSupportedOutputCapability(cameradevice, (err, CameraOutputCapability) => {
+let cameraDevice = cameras[0];
+cameraManager.getSupportedOutputCapability(cameraDevice, (err, CameraOutputCapability) => {
     if (err) {
         console.error(`Failed to get the outputCapability. ${err.message}`);
         return;
@@ -215,7 +216,7 @@ getSupportedOutputCapability(camera:CameraDevice): Promise<CameraOutputCapabilit
 
 | 参数名      | 类型                              | 必填  | 说明        |
 | -------- | --------------------------------- | ---- | ---------- |
-| camera   | [CameraDevice](#cameradevice)     |  是  | 相机设备。   |
+| cameradevice   | [CameraDevice](#cameradevice)     |  是  | 相机设备。   |
 
 **返回值：**
 
@@ -226,6 +227,7 @@ getSupportedOutputCapability(camera:CameraDevice): Promise<CameraOutputCapabilit
 **示例：**
 
 ```js
+let cameraDevice = cameras[0];
 cameraManager.getSupportedOutputCapability(cameradevice).then((cameraoutputcapability) => {
     console.log('Promise returned with an array of supported outputCapability');
 })
@@ -294,6 +296,7 @@ muteCamera(mute: boolean): void
 **示例：**
 
 ```js
+let mute = true;
 cameraManager.muteCamera(mute);
 ```
 
@@ -313,13 +316,14 @@ createCameraInput(camera: CameraDevice, callback: AsyncCallback<CameraInput\>): 
 
 | 参数名     | 类型                                         | 必填 | 说明                                |
 | -------- | ------------------------------------------- | ---- | --------------------------------- |
-| camera   | [CameraDevice](#cameradevice)               | 是   | CameraDevice对象。                        |
+| cameraDevice   | [CameraDevice](#cameradevice)               | 是   | CameraDevice对象。                        |
 | callback | AsyncCallback<[CameraInput](#camerainput)\> | 是   | 回调函数，用于获取CameraInput实例。    |
 
 **示例：**
 
 ```js
-cameraManager.createCameraInput(camera, (err, cameraInput) => {
+let cameraDevice = cameras[0];
+cameraManager.createCameraInput(cameraDevice, (err, cameraInput) => {
     if (err) {
         console.error(`Failed to create the CameraInput instance. ${err.message}`);
         return;
@@ -330,7 +334,7 @@ cameraManager.createCameraInput(camera, (err, cameraInput) => {
 
 ### createCameraInput
 
-createCameraInput(camera: CameraDevice): Promise<CameraInput\>
+createCameraInput(cameraDevice: CameraDevice): Promise<CameraInput\>
 
 使用CameraDevice对象异步创建CameraInput实例，通过Promise获取结果。
 
@@ -344,7 +348,7 @@ createCameraInput(camera: CameraDevice): Promise<CameraInput\>
 
 | 参数名     | 类型                           | 必填 | 说明         |
 | -------- | ----------------------------- | ---- | ---------- |
-| camera   | [CameraDevice](#cameradevice) | 是   | CameraDevice对象。 |
+| cameraDevice   | [CameraDevice](#cameradevice) | 是   | CameraDevice对象。 |
 
 **返回值：**
 
@@ -355,7 +359,8 @@ createCameraInput(camera: CameraDevice): Promise<CameraInput\>
 **示例：**
 
 ```js
-cameraManager.createCameraInput(camera).then((cameraInput) => {
+let cameraDevice = cameras[0];
+cameraManager.createCameraInput(cameraDevice).then((cameraInput) => {
     console.log('Promise returned with the CameraInput instance');
 })
 ```
@@ -383,7 +388,10 @@ createCameraInput(position: CameraPosition, type: CameraType, callback: AsyncCal
 **示例：**
 
 ```js
-cameraManager.createCameraInput(camera.CameraPosition.CAMERA_POSITION_BACK, camera.CameraType.CAMERA_TYPE_UNSPECIFIED, (err, cameraInput) => {
+let cameraDevice = cameras[0];
+let position = cameraDevice.cameraPosition;
+let type = cameraDevice.cameraType;
+cameraManager.createCameraInput(position, type, (err, cameraInput) => {
     if (err) {
         console.error(`Failed to create the CameraInput instance. ${err.message}`);
         return;
@@ -420,7 +428,10 @@ createCameraInput(position: CameraPosition, type:CameraType ): Promise<CameraInp
 **示例：**
 
 ```js
-cameraManager.createCameraInput(camera.CameraPosition.CAMERA_POSITION_BACK, camera.CameraType.CAMERA_TYPE_UNSPECIFIED).then((cameraInput) => {
+let cameraDevice = cameras[0];
+let position = cameraDevice.cameraPosition;
+let type = cameraDevice.cameraType;
+cameraManager.createCameraInput(position, type).then((cameraInput) => {
     console.log('Promise returned with the CameraInput instance');
 })
 ```
@@ -444,6 +455,7 @@ createPreviewOutput(profile: Profile, surfaceId: string, callback: AsyncCallback
 **示例：**
 
 ```js
+let profile = cameraoutputcapability.previewProfiles[0];
 cameraManager.createPreviewOutput(profile, surfaceId, (err, previewOutput) => {
     if (err) {
         console.error(`Failed to gcreate previewOutput. ${err.message}`);
@@ -477,6 +489,7 @@ createPreviewOutput(profile: Profile, surfaceId: string): Promise<PreviewOutput\
 **示例：**
 
 ```js
+let profile = cameraoutputcapability.previewProfiles[0];
 cameraManager.createPreviewOutput(profile, surfaceId).then((previewOutput) => {
     console.log('Promise returned with previewOutput created.');
 })
@@ -501,6 +514,7 @@ createPhotoOutput(profile: Profile, surfaceId: string, callback: AsyncCallback<P
 **示例：**
 
 ```js
+let profile = cameraoutputcapability.photoProfiles[0];
 cameraManager.createPhotoOutput(profile, surfaceId, (err, photoOutput) => {
     if (err) {
         console.error(`Failed to create photoOutput. ${err.message}`);
@@ -534,6 +548,7 @@ createPhotoOutput(profile: Profile, surfaceId: string): Promise<PhotoOutput\>
 **示例：**
 
 ```js
+let profile = cameraoutputcapability.photoProfiles[0];
 cameraManager.createPhotoOutput(profile, surfaceId).then((photoOutput) => {
     console.log('Promise returned with photoOutput created.');
 })
@@ -558,6 +573,7 @@ createVideoOutput(profile: VideoProfile, surfaceId: string, callback: AsyncCallb
 **示例：**
 
 ```js
+let profile = cameraoutputcapability.videoProfiles[0];
 cameraManager.createVideoOutput(profile, surfaceId, (err, videoOutput) => {
     if (err) {
         console.error(`Failed to create videoOutput. ${err.message}`);
@@ -591,6 +607,7 @@ createVideoOutput(profile: VideoProfile, surfaceId: string): Promise<VideoOutput
 **示例：**
 
 ```js
+let profile = cameraoutputcapability.videoProfiles[0];
 cameraManager.createVideoOutput(profile, surfaceId).then((videoOutput) => {
     console.log('Promise returned with videoOutput created.');
 })
@@ -614,6 +631,7 @@ createMetadataOutput(metadataObjectTypes:Array<MetadataObjectType\>, callback: A
 **示例：**
 
 ```js
+let metadataObjectTypes = cameraoutputcapability.supportedMetadataObjectTypes;
 cameraManager.createMetadataOutput(metadataObjectTypes, (err, metadataOutput) => {
     if (err) {
         console.error(`Failed to create metadataOutput. ${err.message}`);
@@ -646,6 +664,7 @@ createMetadataOutput(metadataObjectTypes:Array<MetadataObjectType\>): Promise<Me
 **示例：**
 
 ```js
+let metadataObjectTypes = cameraoutputcapability.supportedMetadataObjectTypes;
 cameraManager.createMetadataOutput(metadataObjectTypes).then((metadataOutput) => {
     console.log('Promise returned with metadataOutput created.');
 })
@@ -1015,7 +1034,7 @@ cameraInput.release().then(() => {
 
 ### on('error')
 
-on(type: 'error', camera:CameraDevice, callback: ErrorCallback<CameraInputError\>): void
+on(type: 'error', cameraDevice:CameraDevice, callback: ErrorCallback<CameraInputError\>): void
 
 监听CameraInput的错误事件，通过注册回调函数获取结果。
 
@@ -1026,13 +1045,14 @@ on(type: 'error', camera:CameraDevice, callback: ErrorCallback<CameraInputError\
 | 参数名     | 类型                              | 必填 | 说明                                          |
 | -------- | -------------------------------- | --- | ------------------------------------------- |
 | type     | string                           | 是   | 监听事件，固定为'error'，即CameraInput错误事件。 |
-| camera   | [CameraDevice](#cameradevice)    | 是   | CameraDevice对象。 |
+| cameraDevice   | [CameraDevice](#cameradevice)    | 是   | CameraDevice对象。 |
 | callback | ErrorCallback<[CameraInputError](#camerainputerror)\> | 是   | 回调函数，用于获取结果。   |
 
 **示例：**
 
 ```js
-cameraInput.on('error', camera, (cameraInputError) => {
+let cameraDevice = cameras[0];
+cameraInput.on('error', cameraDevice, (cameraInputError) => {
     console.log(`Camera input error code: ${cameraInputError.code}`);
 })
 ```
@@ -2137,6 +2157,7 @@ setExposureBias(exposureBias: number, callback: AsyncCallback<void\>): void
 **示例：**
 
 ```js
+let exposureBias = biasRangeArray[0];
 captureSession.setExposureBias(exposureBias,(err) => {
     if (err) {
         console.log(`Failed to set the exposure bias ${err.message}`);
@@ -2171,6 +2192,7 @@ setExposureBias(exposureBias: number): Promise<void\>
 **示例：**
 
 ```js
+let exposureBias = biasRangeArray[0];
 captureSession.setExposureBias(exposureBias).then(() => {
     console.log('Promise returned with the successful execution of setExposureBias.');
 })
@@ -2607,6 +2629,7 @@ setZoomRatio(zoomRatio: number, callback: AsyncCallback<void\>): void
 **示例：**
 
 ```js
+let zoomRatio = zoomRatioRange[0];
 captureSession.setZoomRatio(zoomRatio, (err) => {
     if (err) {
         console.error(`Failed to set the zoom ratio value ${err.message}`);
@@ -2639,6 +2662,7 @@ setZoomRatio(zoomRatio: number): Promise<void\>
 **示例：**
 
 ```js
+let zoomRatio = zoomRatioRange[0];
 captureSession.setZoomRatio(zoomRatio).then(() => {
     console.log('Promise returned with the successful execution of setZoomRatio.');
 })
