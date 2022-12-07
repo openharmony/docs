@@ -204,9 +204,10 @@
 |新增||模块名：ohos.zlib<br>类名:zlib<br>方法名 or 属性名:compressFile|@ohos.zlib.d.ts|
 |新增||模块名：ohos.zlib<br>类名:zlib<br>方法名 or 属性名:decompressFile|@ohos.zlib.d.ts|
 |新增||模块名：ohos.zlib<br>类名:zlib<br>方法名 or 属性名:decompressFile|@ohos.zlib.d.ts|
-|新增||方法名 or 属性名：type<br>函数：readonly type: bundleManager.AbilityType;|abilityInfo.d.ts|
-|新增||方法名 or 属性名：orientation<br>函数：readonly orientation: bundleManager.DisplayOrientation;|abilityInfo.d.ts|
+|新增||模块名：abilityInfo<br>类名:AbilityInfo<br>方法名 or 属性名:type|abilityInfo.d.ts|
+|新增||模块名：abilityInfo<br>类名:AbilityInfo<br>方法名 or 属性名:orientation|abilityInfo.d.ts|
 |新增||模块名：abilityInfo<br>类名:AbilityInfo<br>方法名 or 属性名:launchType|abilityInfo.d.ts|
+|新增||模块名：abilityInfo<br>类名:AbilityInfo<br>方法名 or 属性名:metadata|abilityInfo.d.ts|
 |新增||模块名：abilityInfo<br>类名:AbilityInfo<br>方法名 or 属性名:supportWindowModes|abilityInfo.d.ts|
 |新增||模块名：abilityInfo<br>类名:AbilityInfo<br>方法名 or 属性名:windowSize|abilityInfo.d.ts|
 |新增||模块名: abilityInfo<br>类名: WindowSize|abilityInfo.d.ts|
@@ -216,11 +217,18 @@
 |新增||模块名: abilityInfo<br>类名: WindowSize<br>方法名 or 属性名：minWindowWidth|abilityInfo.d.ts|
 |新增||模块名: abilityInfo<br>类名: WindowSize<br>方法名 or 属性名：maxWindowHeight|abilityInfo.d.ts|
 |新增||模块名: abilityInfo<br>类名: WindowSize<br>方法名 or 属性名：minWindowHeight|abilityInfo.d.ts|
-|新增||方法名 or 属性名：labelId<br>函数：readonly labelId: number;|applicationInfo.d.ts|
-|新增||方法名 or 属性名：iconId<br>函数：readonly iconId: number;|applicationInfo.d.ts|
+|新增||模块名：applicationInfo<br>类名:ApplicationInfo<br>方法名 or 属性名:labelId|applicationInfo.d.ts|
+|新增||模块名：applicationInfo<br>类名:ApplicationInfo<br>方法名 or 属性名:iconId|applicationInfo.d.ts|
+|新增||模块名：applicationInfo<br>类名:ApplicationInfo<br>方法名 or 属性名:metadata|applicationInfo.d.ts|
+|新增||模块名：applicationInfo<br>类名:ApplicationInfo<br>方法名 or 属性名:iconResource|applicationInfo.d.ts|
+|新增||模块名：applicationInfo<br>类名:ApplicationInfo<br>方法名 or 属性名:labelResource|applicationInfo.d.ts|
+|新增||模块名：applicationInfo<br>类名:ApplicationInfo<br>方法名 or 属性名:descriptionResource|applicationInfo.d.ts|
+|新增||模块名：applicationInfo<br>类名:ApplicationInfo<br>方法名 or 属性名:appDistributionType|applicationInfo.d.ts|
+|新增||模块名：applicationInfo<br>类名:ApplicationInfo<br>方法名 or 属性名:appProvisionType|applicationInfo.d.ts|
 |新增||模块名：bundleInfo<br>类名:BundleInfo<br>方法名 or 属性名:hapModulesInfo|bundleInfo.d.ts|
 |新增||模块名：bundleInfo<br>类名:BundleInfo<br>方法名 or 属性名:permissionGrantStates|bundleInfo.d.ts|
 |新增||模块名：bundleInfo<br>类名:BundleInfo<br>方法名 or 属性名:signatureInfo|bundleInfo.d.ts|
+|新增||模块名：bundleInfo<br>类名:ReqPermissionDetail<br>方法名 or 属性名:reasonId|bundleInfo.d.ts|
 |新增||模块名: bundleInfo<br>类名: SignatureInfo|bundleInfo.d.ts|
 |新增||模块名: bundleInfo<br>类名: SignatureInfo<br>方法名 or 属性名：appId|bundleInfo.d.ts|
 |新增||模块名: bundleInfo<br>类名: SignatureInfo<br>方法名 or 属性名：fingerprint|bundleInfo.d.ts|
@@ -228,10 +236,29 @@
 |新增||模块名：dispatchInfo<br>类名:DispatchInfo<br>方法名 or 属性名:version|dispatchInfo.d.ts|
 |新增||模块名：dispatchInfo<br>类名:DispatchInfo<br>方法名 or 属性名:dispatchAPIVersion|dispatchInfo.d.ts|
 |新增||模块名：elementName<br>类名:ElementName<br>方法名 or 属性名:moduleName|elementName.d.ts|
+|新增||模块名：extensionAbilityInfo<br>类名:ExtensionAbilityInfo<br>方法名 or 属性名:bundleName|extensionAbilityInfo.d.ts|
+|新增||模块名：extensionAbilityInfo<br>类名:ExtensionAbilityInfo<br>方法名 or 属性名:moduleName|extensionAbilityInfo.d.ts|
+|新增||模块名：extensionAbilityInfo<br>类名:ExtensionAbilityInfo<br>方法名 or 属性名:name|extensionAbilityInfo.d.ts|
+|新增||模块名：extensionAbilityInfo<br>类名:ExtensionAbilityInfo<br>方法名 or 属性名:labelId|extensionAbilityInfo.d.ts|
+|新增||模块名：extensionAbilityInfo<br>类名:ExtensionAbilityInfo<br>方法名 or 属性名:descriptionId|extensionAbilityInfo.d.ts|
+|新增||模块名：extensionAbilityInfo<br>类名:ExtensionAbilityInfo<br>方法名 or 属性名:iconId|extensionAbilityInfo.d.ts|
+|新增||模块名：extensionAbilityInfo<br>类名:ExtensionAbilityInfo<br>方法名 or 属性名:isVisible|extensionAbilityInfo.d.ts|
 |新增||方法名 or 属性名：extensionAbilityType<br>函数：readonly extensionAbilityType: bundleManager.ExtensionAbilityType;|extensionAbilityInfo.d.ts|
+|新增||模块名：extensionAbilityInfo<br>类名:ExtensionAbilityInfo<br>方法名 or 属性名:permissions|extensionAbilityInfo.d.ts|
+|新增||模块名：extensionAbilityInfo<br>类名:ExtensionAbilityInfo<br>方法名 or 属性名:applicationInfo|extensionAbilityInfo.d.ts|
+|新增||模块名：extensionAbilityInfo<br>类名:ExtensionAbilityInfo<br>方法名 or 属性名:metadata|extensionAbilityInfo.d.ts|
+|新增||模块名：extensionAbilityInfo<br>类名:ExtensionAbilityInfo<br>方法名 or 属性名:enabled|extensionAbilityInfo.d.ts|
+|新增||模块名：extensionAbilityInfo<br>类名:ExtensionAbilityInfo<br>方法名 or 属性名:readPermission|extensionAbilityInfo.d.ts|
+|新增||模块名：extensionAbilityInfo<br>类名:ExtensionAbilityInfo<br>方法名 or 属性名:writePermission|extensionAbilityInfo.d.ts|
+|新增||模块名：hapModuleInfo<br>类名:HapModuleInfo<br>方法名 or 属性名:mainElementName|hapModuleInfo.d.ts|
 |新增||模块名：hapModuleInfo<br>类名:HapModuleInfo<br>方法名 or 属性名:abilitiesInfo|hapModuleInfo.d.ts|
 |新增||模块名：hapModuleInfo<br>类名:HapModuleInfo<br>方法名 or 属性名:extensionAbilitiesInfo|hapModuleInfo.d.ts|
+|新增||模块名：hapModuleInfo<br>类名:HapModuleInfo<br>方法名 or 属性名:metadata|hapModuleInfo.d.ts|
+|新增||模块名：hapModuleInfo<br>类名:HapModuleInfo<br>方法名 or 属性名:hashValue|hapModuleInfo.d.ts|
 |新增||模块名：hapModuleInfo<br>类名:HapModuleInfo<br>方法名 or 属性名:moduleSourceDir|hapModuleInfo.d.ts|
+|新增||模块名：metadata<br>类名:Metadata<br>方法名 or 属性名:name|metadata.d.ts|
+|新增||模块名：metadata<br>类名:Metadata<br>方法名 or 属性名:value|metadata.d.ts|
+|新增||模块名：metadata<br>类名:Metadata<br>方法名 or 属性名:resource|metadata.d.ts|
 |新增||模块名：packInfo<br>类名:BundlePackInfo|packInfo.d.ts|
 |新增||模块名：packInfo<br>类名:BundlePackInfo<br>方法名 or 属性名:packages|packInfo.d.ts|
 |新增||模块名：packInfo<br>类名:BundlePackInfo<br>方法名 or 属性名:summary|packInfo.d.ts|
@@ -288,6 +315,7 @@
 |新增||模块名: permissionDef<br>类名: PermissionDef<br>方法名 or 属性名： labelId|permissionDef.d.ts|
 |新增||模块名: permissionDef<br>类名: PermissionDef<br>方法名 or 属性名： descriptionId|permissionDef.d.ts|
 |新增||方法名 or 属性名：moduleName<br>函数：readonly moduleName: string;|shortcutInfo.d.ts|
+|新增||模块名：shortcutInfo<br>类名:ShortcutWant<br>方法名 or 属性名:targetModule|shortcutInfo.d.ts|
 |新增||模块名：shortcutInfo<br>类名:ShortcutWant<br>方法名 or 属性名:targetAbility|shortcutInfo.d.ts|
 |删除|模块名：ohos.bundle<br>类名:BundleFlag<br>方法名 or 属性名:GET_BUNDLE_WITH_EXTENSION_ABILITY||@ohos.bundle.d.ts|
 |删除|模块名：ohos.bundle<br>类名:BundleFlag<br>方法名 or 属性名:GET_BUNDLE_WITH_HASH_VALUE||@ohos.bundle.d.ts|
@@ -382,266 +410,106 @@
 |删除|模块名: packInfo<br>类名: BundlePackFlag<br>方法名 or 属性名：GET_PACKAGES||packInfo.d.ts|
 |删除|模块名: packInfo<br>类名: BundlePackFlag<br>方法名 or 属性名：GET_BUNDLE_SUMMARY||packInfo.d.ts|
 |删除|模块名: packInfo<br>类名: BundlePackFlag<br>方法名 or 属性名：GET_MODULE_SUMMARY||packInfo.d.ts|
-|废弃版本有变化|类名：bundle<br>废弃版本：|类名：bundle<br>废弃版本：9<br>代替接口：ohos.bundle.bundleManager |@ohos.bundle.d.ts|
-|废弃版本有变化|类名：BundleFlag<br>废弃版本：|类名：BundleFlag<br>废弃版本：9<br>代替接口：ohos.bundle.bundleManager.BundleFlag|@ohos.bundle.d.ts|
-|废弃版本有变化|方法名 or 属性名：GET_BUNDLE_DEFAULT<br>废弃版本：|方法名 or 属性名：GET_BUNDLE_DEFAULT<br>废弃版本：9<br>代替接口：ohos.bundle.bundleManager.BundleFlag|@ohos.bundle.d.ts|
-|废弃版本有变化|方法名 or 属性名：GET_BUNDLE_WITH_ABILITIES<br>废弃版本：|方法名 or 属性名：GET_BUNDLE_WITH_ABILITIES<br>废弃版本：9<br>代替接口：ohos.bundle.bundleManager.BundleFlag|@ohos.bundle.d.ts|
-|废弃版本有变化|方法名 or 属性名：GET_ABILITY_INFO_WITH_PERMISSION<br>废弃版本：|方法名 or 属性名：GET_ABILITY_INFO_WITH_PERMISSION<br>废弃版本：9<br>代替接口：ohos.bundle.bundleManager.BundleFlag|@ohos.bundle.d.ts|
-|废弃版本有变化|方法名 or 属性名：GET_ABILITY_INFO_WITH_APPLICATION<br>废弃版本：|方法名 or 属性名：GET_ABILITY_INFO_WITH_APPLICATION<br>废弃版本：9<br>代替接口：ohos.bundle.bundleManager.BundleFlag|@ohos.bundle.d.ts|
-|废弃版本有变化|方法名 or 属性名：GET_APPLICATION_INFO_WITH_PERMISSION<br>废弃版本：|方法名 or 属性名：GET_APPLICATION_INFO_WITH_PERMISSION<br>废弃版本：9<br>代替接口：ohos.bundle.bundleManager.BundleFlag|@ohos.bundle.d.ts|
-|废弃版本有变化|方法名 or 属性名：GET_BUNDLE_WITH_REQUESTED_PERMISSION<br>废弃版本：|方法名 or 属性名：GET_BUNDLE_WITH_REQUESTED_PERMISSION<br>废弃版本：9<br>代替接口：ohos.bundle.bundleManager.BundleFlag|@ohos.bundle.d.ts|
-|废弃版本有变化|方法名 or 属性名：GET_ALL_APPLICATION_INFO<br>废弃版本：|方法名 or 属性名：GET_ALL_APPLICATION_INFO<br>废弃版本：9<br>代替接口：ohos.bundle.bundleManager.BundleFlag|@ohos.bundle.d.ts|
-|废弃版本有变化|方法名 or 属性名：GET_ABILITY_INFO_WITH_METADATA<br>废弃版本：|方法名 or 属性名：GET_ABILITY_INFO_WITH_METADATA<br>废弃版本：9<br>代替接口：ohos.bundle.bundleManager.BundleFlag|@ohos.bundle.d.ts|
-|废弃版本有变化|方法名 or 属性名：GET_APPLICATION_INFO_WITH_METADATA<br>废弃版本：|方法名 or 属性名：GET_APPLICATION_INFO_WITH_METADATA<br>废弃版本：9<br>代替接口：ohos.bundle.bundleManager.BundleFlag|@ohos.bundle.d.ts|
-|废弃版本有变化|方法名 or 属性名：GET_ABILITY_INFO_SYSTEMAPP_ONLY<br>废弃版本：|方法名 or 属性名：GET_ABILITY_INFO_SYSTEMAPP_ONLY<br>废弃版本：9<br>代替接口：ohos.bundle.bundleManager.BundleFlag|@ohos.bundle.d.ts|
-|废弃版本有变化|方法名 or 属性名：GET_ABILITY_INFO_WITH_DISABLE<br>废弃版本：|方法名 or 属性名：GET_ABILITY_INFO_WITH_DISABLE<br>废弃版本：9<br>代替接口：ohos.bundle.bundleManager.BundleFlag|@ohos.bundle.d.ts|
-|废弃版本有变化|方法名 or 属性名：GET_APPLICATION_INFO_WITH_DISABLE<br>废弃版本：|方法名 or 属性名：GET_APPLICATION_INFO_WITH_DISABLE<br>废弃版本：9<br>代替接口：ohos.bundle.bundleManager.BundleFlag|@ohos.bundle.d.ts|
-|废弃版本有变化|类名：ColorMode<br>废弃版本：|类名：ColorMode<br>废弃版本：9<br>代替接口：ohos.bundle.bundleManager |@ohos.bundle.d.ts|
-|废弃版本有变化|方法名 or 属性名：AUTO_MODE<br>废弃版本：|方法名 or 属性名：AUTO_MODE<br>废弃版本：9<br>代替接口：ohos.bundle.bundleManager |@ohos.bundle.d.ts|
-|废弃版本有变化|方法名 or 属性名：DARK_MODE<br>废弃版本：|方法名 or 属性名：DARK_MODE<br>废弃版本：9<br>代替接口：ohos.bundle.bundleManager |@ohos.bundle.d.ts|
-|废弃版本有变化|方法名 or 属性名：LIGHT_MODE<br>废弃版本：|方法名 or 属性名：LIGHT_MODE<br>废弃版本：9<br>代替接口：ohos.bundle.bundleManager |@ohos.bundle.d.ts|
-|废弃版本有变化|类名：GrantStatus<br>废弃版本：|类名：GrantStatus<br>废弃版本：9<br>代替接口：ohos.bundle.bundleManager.PermissionGrantState |@ohos.bundle.d.ts|
-|废弃版本有变化|方法名 or 属性名：PERMISSION_DENIED<br>废弃版本：|方法名 or 属性名：PERMISSION_DENIED<br>废弃版本：9<br>代替接口：ohos.bundle.bundleManager.PermissionGrantState |@ohos.bundle.d.ts|
-|废弃版本有变化|方法名 or 属性名：PERMISSION_GRANTED<br>废弃版本：|方法名 or 属性名：PERMISSION_GRANTED<br>废弃版本：9<br>代替接口：ohos.bundle.bundleManager.PermissionGrantState |@ohos.bundle.d.ts|
-|废弃版本有变化|类名：AbilityType<br>废弃版本：|类名：AbilityType<br>废弃版本：9<br>代替接口：ohos.bundle.bundleManager.AbilityType   |@ohos.bundle.d.ts|
-|废弃版本有变化|方法名 or 属性名：UNKNOWN<br>废弃版本：|方法名 or 属性名：UNKNOWN<br>废弃版本：9<br>代替接口：ohos.bundle.bundleManager.AbilityType   |@ohos.bundle.d.ts|
-|废弃版本有变化|方法名 or 属性名：PAGE<br>废弃版本：|方法名 or 属性名：PAGE<br>废弃版本：9<br>代替接口：ohos.bundle.bundleManager.AbilityType   |@ohos.bundle.d.ts|
-|废弃版本有变化|方法名 or 属性名：SERVICE<br>废弃版本：|方法名 or 属性名：SERVICE<br>废弃版本：9<br>代替接口：ohos.bundle.bundleManager.AbilityType   |@ohos.bundle.d.ts|
-|废弃版本有变化|方法名 or 属性名：DATA<br>废弃版本：|方法名 or 属性名：DATA<br>废弃版本：9<br>代替接口：ohos.bundle.bundleManager.AbilityType   |@ohos.bundle.d.ts|
-|废弃版本有变化|类名：AbilitySubType<br>废弃版本：|类名：AbilitySubType<br>废弃版本：9<br>代替接口：ohos.bundle.bundleManager |@ohos.bundle.d.ts|
-|废弃版本有变化|方法名 or 属性名：UNSPECIFIED<br>废弃版本：|方法名 or 属性名：UNSPECIFIED<br>废弃版本：9<br>代替接口：ohos.bundle.bundleManager |@ohos.bundle.d.ts|
-|废弃版本有变化|方法名 or 属性名：CA<br>废弃版本：|方法名 or 属性名：CA<br>废弃版本：9<br>代替接口：ohos.bundle.bundleManager |@ohos.bundle.d.ts|
-|废弃版本有变化|类名：DisplayOrientation<br>废弃版本：|类名：DisplayOrientation<br>废弃版本：9<br>代替接口：ohos.bundle.bundleManager.DisplayOrientation   |@ohos.bundle.d.ts|
-|废弃版本有变化|方法名 or 属性名：UNSPECIFIED<br>废弃版本：|方法名 or 属性名：UNSPECIFIED<br>废弃版本：9<br>代替接口：ohos.bundle.bundleManager.DisplayOrientation   |@ohos.bundle.d.ts|
-|废弃版本有变化|方法名 or 属性名：LANDSCAPE<br>废弃版本：|方法名 or 属性名：LANDSCAPE<br>废弃版本：9<br>代替接口：ohos.bundle.bundleManager.DisplayOrientation   |@ohos.bundle.d.ts|
-|废弃版本有变化|方法名 or 属性名：PORTRAIT<br>废弃版本：|方法名 or 属性名：PORTRAIT<br>废弃版本：9<br>代替接口：ohos.bundle.bundleManager.DisplayOrientation   |@ohos.bundle.d.ts|
-|废弃版本有变化|方法名 or 属性名：FOLLOW_RECENT<br>废弃版本：|方法名 or 属性名：FOLLOW_RECENT<br>废弃版本：9<br>代替接口：ohos.bundle.bundleManager.DisplayOrientation   |@ohos.bundle.d.ts|
-|废弃版本有变化|类名：LaunchMode<br>废弃版本：|类名：LaunchMode<br>废弃版本：9<br>代替接口：ohos.bundle.bundleManager.LaunchType   |@ohos.bundle.d.ts|
-|废弃版本有变化|方法名 or 属性名：SINGLETON<br>废弃版本：|方法名 or 属性名：SINGLETON<br>废弃版本：9<br>代替接口：ohos.bundle.bundleManager.LaunchType   |@ohos.bundle.d.ts|
-|废弃版本有变化|方法名 or 属性名：STANDARD<br>废弃版本：|方法名 or 属性名：STANDARD<br>废弃版本：9<br>代替接口：ohos.bundle.bundleManager.LaunchType   |@ohos.bundle.d.ts|
-|废弃版本有变化|类名：BundleOptions<br>废弃版本：|类名：BundleOptions<br>废弃版本：9<br>代替接口：ohos.bundle.bundleManager |@ohos.bundle.d.ts|
-|废弃版本有变化|方法名 or 属性名：userId<br>废弃版本：|方法名 or 属性名：userId<br>废弃版本：9<br>代替接口：ohos.bundle.bundleManager |@ohos.bundle.d.ts|
-|废弃版本有变化|类名：InstallErrorCode<br>废弃版本：|类名：InstallErrorCode<br>废弃版本：9<br>代替接口：ohos.bundle.bundleManager |@ohos.bundle.d.ts|
-|废弃版本有变化|方法名 or 属性名：SUCCESS<br>废弃版本：|方法名 or 属性名：SUCCESS<br>废弃版本：9<br>代替接口：ohos.bundle.bundleManager |@ohos.bundle.d.ts|
-|废弃版本有变化|方法名 or 属性名：STATUS_INSTALL_FAILURE<br>废弃版本：|方法名 or 属性名：STATUS_INSTALL_FAILURE<br>废弃版本：9<br>代替接口：ohos.bundle.bundleManager |@ohos.bundle.d.ts|
-|废弃版本有变化|方法名 or 属性名：STATUS_INSTALL_FAILURE_ABORTED<br>废弃版本：|方法名 or 属性名：STATUS_INSTALL_FAILURE_ABORTED<br>废弃版本：9<br>代替接口：ohos.bundle.bundleManager |@ohos.bundle.d.ts|
-|废弃版本有变化|方法名 or 属性名：STATUS_INSTALL_FAILURE_INVALID<br>废弃版本：|方法名 or 属性名：STATUS_INSTALL_FAILURE_INVALID<br>废弃版本：9<br>代替接口：ohos.bundle.bundleManager |@ohos.bundle.d.ts|
-|废弃版本有变化|方法名 or 属性名：STATUS_INSTALL_FAILURE_CONFLICT<br>废弃版本：|方法名 or 属性名：STATUS_INSTALL_FAILURE_CONFLICT<br>废弃版本：9<br>代替接口：ohos.bundle.bundleManager |@ohos.bundle.d.ts|
-|废弃版本有变化|方法名 or 属性名：STATUS_INSTALL_FAILURE_STORAGE<br>废弃版本：|方法名 or 属性名：STATUS_INSTALL_FAILURE_STORAGE<br>废弃版本：9<br>代替接口：ohos.bundle.bundleManager |@ohos.bundle.d.ts|
-|废弃版本有变化|方法名 or 属性名：STATUS_INSTALL_FAILURE_INCOMPATIBLE<br>废弃版本：|方法名 or 属性名：STATUS_INSTALL_FAILURE_INCOMPATIBLE<br>废弃版本：9<br>代替接口：ohos.bundle.bundleManager |@ohos.bundle.d.ts|
-|废弃版本有变化|方法名 or 属性名：STATUS_UNINSTALL_FAILURE<br>废弃版本：|方法名 or 属性名：STATUS_UNINSTALL_FAILURE<br>废弃版本：9<br>代替接口：ohos.bundle.bundleManager |@ohos.bundle.d.ts|
-|废弃版本有变化|方法名 or 属性名：STATUS_UNINSTALL_FAILURE_BLOCKED<br>废弃版本：|方法名 or 属性名：STATUS_UNINSTALL_FAILURE_BLOCKED<br>废弃版本：9<br>代替接口：ohos.bundle.bundleManager |@ohos.bundle.d.ts|
-|废弃版本有变化|方法名 or 属性名：STATUS_UNINSTALL_FAILURE_ABORTED<br>废弃版本：|方法名 or 属性名：STATUS_UNINSTALL_FAILURE_ABORTED<br>废弃版本：9<br>代替接口：ohos.bundle.bundleManager |@ohos.bundle.d.ts|
-|废弃版本有变化|方法名 or 属性名：STATUS_UNINSTALL_FAILURE_CONFLICT<br>废弃版本：|方法名 or 属性名：STATUS_UNINSTALL_FAILURE_CONFLICT<br>废弃版本：9<br>代替接口：ohos.bundle.bundleManager |@ohos.bundle.d.ts|
-|废弃版本有变化|方法名 or 属性名：STATUS_INSTALL_FAILURE_DOWNLOAD_TIMEOUT<br>废弃版本：|方法名 or 属性名：STATUS_INSTALL_FAILURE_DOWNLOAD_TIMEOUT<br>废弃版本：9<br>代替接口：ohos.bundle.bundleManager |@ohos.bundle.d.ts|
-|废弃版本有变化|方法名 or 属性名：STATUS_INSTALL_FAILURE_DOWNLOAD_FAILED<br>废弃版本：|方法名 or 属性名：STATUS_INSTALL_FAILURE_DOWNLOAD_FAILED<br>废弃版本：9<br>代替接口：ohos.bundle.bundleManager |@ohos.bundle.d.ts|
-|废弃版本有变化|方法名 or 属性名：STATUS_RECOVER_FAILURE_INVALID<br>废弃版本：|方法名 or 属性名：STATUS_RECOVER_FAILURE_INVALID<br>废弃版本：9<br>代替接口：ohos.bundle.bundleManager |@ohos.bundle.d.ts|
-|废弃版本有变化|方法名 or 属性名：STATUS_ABILITY_NOT_FOUND<br>废弃版本：|方法名 or 属性名：STATUS_ABILITY_NOT_FOUND<br>废弃版本：9<br>代替接口：ohos.bundle.bundleManager |@ohos.bundle.d.ts|
-|废弃版本有变化|方法名 or 属性名：STATUS_BMS_SERVICE_ERROR<br>废弃版本：|方法名 or 属性名：STATUS_BMS_SERVICE_ERROR<br>废弃版本：9<br>代替接口：ohos.bundle.bundleManager |@ohos.bundle.d.ts|
-|废弃版本有变化|方法名 or 属性名：STATUS_FAILED_NO_SPACE_LEFT<br>废弃版本：|方法名 or 属性名：STATUS_FAILED_NO_SPACE_LEFT<br>废弃版本：9<br>代替接口：ohos.bundle.bundleManager |@ohos.bundle.d.ts|
-|废弃版本有变化|方法名 or 属性名：STATUS_GRANT_REQUEST_PERMISSIONS_FAILED<br>废弃版本：|方法名 or 属性名：STATUS_GRANT_REQUEST_PERMISSIONS_FAILED<br>废弃版本：9<br>代替接口：ohos.bundle.bundleManager |@ohos.bundle.d.ts|
-|废弃版本有变化|方法名 or 属性名：STATUS_INSTALL_PERMISSION_DENIED<br>废弃版本：|方法名 or 属性名：STATUS_INSTALL_PERMISSION_DENIED<br>废弃版本：9<br>代替接口：ohos.bundle.bundleManager |@ohos.bundle.d.ts|
-|废弃版本有变化|方法名 or 属性名：STATUS_UNINSTALL_PERMISSION_DENIED<br>废弃版本：|方法名 or 属性名：STATUS_UNINSTALL_PERMISSION_DENIED<br>废弃版本：9<br>代替接口：ohos.bundle.bundleManager |@ohos.bundle.d.ts|
-|废弃版本有变化|方法名 or 属性名：getBundleInfo<br>废弃版本：|方法名 or 属性名：getBundleInfo<br>废弃版本：9<br>代替接口：ohos.bundle.bundleManager|@ohos.bundle.d.ts|
-|废弃版本有变化|方法名 or 属性名：getBundleInstaller<br>废弃版本：|方法名 or 属性名：getBundleInstaller<br>废弃版本：9<br>代替接口：ohos.bundle.installer|@ohos.bundle.d.ts|
-|废弃版本有变化|方法名 or 属性名：getAbilityInfo<br>废弃版本：|方法名 or 属性名：getAbilityInfo<br>废弃版本：9<br>代替接口：ohos.bundle.bundleManager|@ohos.bundle.d.ts|
-|废弃版本有变化|方法名 or 属性名：getApplicationInfo<br>废弃版本：|方法名 or 属性名：getApplicationInfo<br>废弃版本：9<br>代替接口：ohos.bundle.bundleManager|@ohos.bundle.d.ts|
-|废弃版本有变化|方法名 or 属性名：queryAbilityByWant<br>废弃版本：|方法名 or 属性名：queryAbilityByWant<br>废弃版本：9<br>代替接口：ohos.bundle.bundleManager|@ohos.bundle.d.ts|
-|废弃版本有变化|方法名 or 属性名：getAllBundleInfo<br>废弃版本：|方法名 or 属性名：getAllBundleInfo<br>废弃版本：9<br>代替接口：ohos.bundle.bundleManager|@ohos.bundle.d.ts|
-|废弃版本有变化|方法名 or 属性名：getAllApplicationInfo<br>废弃版本：|方法名 or 属性名：getAllApplicationInfo<br>废弃版本：9<br>代替接口：ohos.bundle.bundleManager|@ohos.bundle.d.ts|
-|废弃版本有变化|方法名 or 属性名：getNameForUid<br>废弃版本：|方法名 or 属性名：getNameForUid<br>废弃版本：9<br>代替接口：ohos.bundle.bundleManager|@ohos.bundle.d.ts|
-|废弃版本有变化|方法名 or 属性名：getBundleArchiveInfo<br>废弃版本：|方法名 or 属性名：getBundleArchiveInfo<br>废弃版本：9<br>代替接口：ohos.bundle.bundleManager|@ohos.bundle.d.ts|
-|废弃版本有变化|方法名 or 属性名：getLaunchWantForBundle<br>废弃版本：|方法名 or 属性名：getLaunchWantForBundle<br>废弃版本：9<br>代替接口：ohos.bundle.bundleManager|@ohos.bundle.d.ts|
-|废弃版本有变化|方法名 or 属性名：cleanBundleCacheFiles<br>废弃版本：|方法名 or 属性名：cleanBundleCacheFiles<br>废弃版本：9<br>代替接口：ohos.bundle.bundleManager|@ohos.bundle.d.ts|
-|废弃版本有变化|方法名 or 属性名：setApplicationEnabled<br>废弃版本：|方法名 or 属性名：setApplicationEnabled<br>废弃版本：9<br>代替接口：ohos.bundle.bundleManager|@ohos.bundle.d.ts|
-|废弃版本有变化|方法名 or 属性名：setAbilityEnabled<br>废弃版本：|方法名 or 属性名：setAbilityEnabled<br>废弃版本：9<br>代替接口：ohos.bundle.bundleManager|@ohos.bundle.d.ts|
-|废弃版本有变化|方法名 or 属性名：getPermissionDef<br>废弃版本：|方法名 or 属性名：getPermissionDef<br>废弃版本：9<br>代替接口：ohos.bundle.bundleManager|@ohos.bundle.d.ts|
-|废弃版本有变化|方法名 or 属性名：getAbilityLabel<br>废弃版本：|方法名 or 属性名：getAbilityLabel<br>废弃版本：9<br>代替接口：ohos.bundle.bundleManager|@ohos.bundle.d.ts|
-|废弃版本有变化|方法名 or 属性名：getAbilityIcon<br>废弃版本：|方法名 or 属性名：getAbilityIcon<br>废弃版本：9<br>代替接口：ohos.bundle.bundleManager|@ohos.bundle.d.ts|
-|废弃版本有变化|方法名 or 属性名：isAbilityEnabled<br>废弃版本：|方法名 or 属性名：isAbilityEnabled<br>废弃版本：9<br>代替接口：ohos.bundle.bundleManager|@ohos.bundle.d.ts|
-|废弃版本有变化|方法名 or 属性名：isApplicationEnabled<br>废弃版本：|方法名 or 属性名：isApplicationEnabled<br>废弃版本：9<br>代替接口：ohos.bundle.bundleManager|@ohos.bundle.d.ts|
-|废弃版本有变化|方法名 or 属性名：isDefaultApplication<br>废弃版本：undefined|方法名 or 属性名：isDefaultApplication<br>废弃版本：|@ohos.bundle.defaultAppManager.d.ts|
-|废弃版本有变化|方法名 or 属性名：getDefaultApplication<br>废弃版本：undefined|方法名 or 属性名：getDefaultApplication<br>废弃版本：|@ohos.bundle.defaultAppManager.d.ts|
-|废弃版本有变化|方法名 or 属性名：setDefaultApplication<br>废弃版本：undefined|方法名 or 属性名：setDefaultApplication<br>废弃版本：|@ohos.bundle.defaultAppManager.d.ts|
-|废弃版本有变化|方法名 or 属性名：resetDefaultApplication<br>废弃版本：undefined|方法名 or 属性名：resetDefaultApplication<br>废弃版本：|@ohos.bundle.defaultAppManager.d.ts|
-|废弃版本有变化|类名：innerBundleManager<br>废弃版本：|类名：innerBundleManager<br>废弃版本：9<br>代替接口：ohos.bundle.launcherBundleManager |@ohos.bundle.innerBundleManager.d.ts|
-|废弃版本有变化|方法名 or 属性名：getLauncherAbilityInfos<br>废弃版本：|方法名 or 属性名：getLauncherAbilityInfos<br>废弃版本：9<br>代替接口：ohos.bundle.launcherBundleManager|@ohos.bundle.innerBundleManager.d.ts|
-|废弃版本有变化|方法名 or 属性名：on_BundleStatusChange<br>废弃版本：|方法名 or 属性名：on_BundleStatusChange<br>废弃版本：9<br>代替接口：ohos.bundle.bundleMonitor|@ohos.bundle.innerBundleManager.d.ts|
-|废弃版本有变化|方法名 or 属性名：off_BundleStatusChange<br>废弃版本：|方法名 or 属性名：off_BundleStatusChange<br>废弃版本：9<br>代替接口：ohos.bundle.bundleMonitor|@ohos.bundle.innerBundleManager.d.ts|
-|废弃版本有变化|方法名 or 属性名：getAllLauncherAbilityInfos<br>废弃版本：|方法名 or 属性名：getAllLauncherAbilityInfos<br>废弃版本：9<br>代替接口：ohos.bundle.launcherBundleManager|@ohos.bundle.innerBundleManager.d.ts|
-|废弃版本有变化|方法名 or 属性名：getShortcutInfos<br>废弃版本：|方法名 or 属性名：getShortcutInfos<br>废弃版本：9<br>代替接口：ohos.bundle.launcherBundleManager|@ohos.bundle.innerBundleManager.d.ts|
-|废弃版本有变化|类名：distributedBundle<br>废弃版本：|类名：distributedBundle<br>废弃版本：9<br>代替接口：ohos.bundle.distributeBundle |@ohos.distributedBundle.d.ts|
-|废弃版本有变化|方法名 or 属性名：getRemoteAbilityInfo<br>废弃版本：|方法名 or 属性名：getRemoteAbilityInfo<br>废弃版本：9<br>代替接口：ohos.bundle.distributeBundle|@ohos.distributedBundle.d.ts|
-|废弃版本有变化|方法名 or 属性名：getRemoteAbilityInfos<br>废弃版本：|方法名 or 属性名：getRemoteAbilityInfos<br>废弃版本：9<br>代替接口：ohos.bundle.distributeBundle|@ohos.distributedBundle.d.ts|
-|废弃版本有变化|类名：ErrorCode<br>废弃版本：|类名：ErrorCode<br>废弃版本：9|@ohos.zlib.d.ts|
-|废弃版本有变化|方法名 or 属性名：ERROR_CODE_OK<br>废弃版本：|方法名 or 属性名：ERROR_CODE_OK<br>废弃版本：9|@ohos.zlib.d.ts|
-|废弃版本有变化|方法名 or 属性名：ERROR_CODE_ERRNO<br>废弃版本：|方法名 or 属性名：ERROR_CODE_ERRNO<br>废弃版本：9|@ohos.zlib.d.ts|
-|废弃版本有变化|方法名 or 属性名：zipFile<br>废弃版本：|方法名 or 属性名：zipFile<br>废弃版本：9<br>代替接口：ohos.zlib|@ohos.zlib.d.ts|
-|废弃版本有变化|方法名 or 属性名：unzipFile<br>废弃版本：|方法名 or 属性名：unzipFile<br>废弃版本：9<br>代替接口：ohos.zlib|@ohos.zlib.d.ts|
-|废弃版本有变化|类名：CheckPackageHasInstalledResponse<br>废弃版本：|类名：CheckPackageHasInstalledResponse<br>废弃版本：9|@system.package.d.ts|
-|废弃版本有变化|方法名 or 属性名：result<br>废弃版本：|方法名 or 属性名：result<br>废弃版本：9|@system.package.d.ts|
-|废弃版本有变化|类名：CheckPackageHasInstalledOptions<br>废弃版本：|类名：CheckPackageHasInstalledOptions<br>废弃版本：9|@system.package.d.ts|
-|废弃版本有变化|方法名 or 属性名：bundleName<br>废弃版本：|方法名 or 属性名：bundleName<br>废弃版本：9|@system.package.d.ts|
-|废弃版本有变化|方法名 or 属性名：success<br>废弃版本：|方法名 or 属性名：success<br>废弃版本：9|@system.package.d.ts|
-|废弃版本有变化|方法名 or 属性名：fail<br>废弃版本：|方法名 or 属性名：fail<br>废弃版本：9|@system.package.d.ts|
-|废弃版本有变化|方法名 or 属性名：complete<br>废弃版本：|方法名 or 属性名：complete<br>废弃版本：9|@system.package.d.ts|
-|废弃版本有变化|类名：Package<br>废弃版本：|类名：Package<br>废弃版本：9|@system.package.d.ts|
-|废弃版本有变化|方法名 or 属性名：hasInstalled<br>废弃版本：|方法名 or 属性名：hasInstalled<br>废弃版本：9|@system.package.d.ts|
-|废弃版本有变化|类名：AbilityInfo<br>废弃版本：|类名：AbilityInfo<br>废弃版本：9<br>代替接口：ohos.bundle.bundleManager.AbilityInfo |abilityInfo.d.ts|
-|废弃版本有变化|方法名 or 属性名：bundleName<br>废弃版本：|方法名 or 属性名：bundleName<br>废弃版本：9<br>代替接口：ohos.bundle.bundleManager.AbilityInfo |abilityInfo.d.ts|
-|废弃版本有变化|方法名 or 属性名：name<br>废弃版本：|方法名 or 属性名：name<br>废弃版本：9<br>代替接口：ohos.bundle.bundleManager.AbilityInfo |abilityInfo.d.ts|
-|废弃版本有变化|方法名 or 属性名：label<br>废弃版本：|方法名 or 属性名：label<br>废弃版本：9<br>代替接口：ohos.bundle.bundleManager.AbilityInfo |abilityInfo.d.ts|
-|废弃版本有变化|方法名 or 属性名：description<br>废弃版本：|方法名 or 属性名：description<br>废弃版本：9<br>代替接口：ohos.bundle.bundleManager.AbilityInfo |abilityInfo.d.ts|
-|废弃版本有变化|方法名 or 属性名：icon<br>废弃版本：|方法名 or 属性名：icon<br>废弃版本：9<br>代替接口：ohos.bundle.bundleManager.AbilityInfo |abilityInfo.d.ts|
-|废弃版本有变化|方法名 or 属性名：labelId<br>废弃版本：|方法名 or 属性名：labelId<br>废弃版本：9<br>代替接口：ohos.bundle.bundleManager.AbilityInfo |abilityInfo.d.ts|
-|废弃版本有变化|方法名 or 属性名：descriptionId<br>废弃版本：|方法名 or 属性名：descriptionId<br>废弃版本：9<br>代替接口：ohos.bundle.bundleManager.AbilityInfo |abilityInfo.d.ts|
-|废弃版本有变化|方法名 or 属性名：iconId<br>废弃版本：|方法名 or 属性名：iconId<br>废弃版本：9<br>代替接口：ohos.bundle.bundleManager.AbilityInfo |abilityInfo.d.ts|
-|废弃版本有变化|方法名 or 属性名：moduleName<br>废弃版本：|方法名 or 属性名：moduleName<br>废弃版本：9<br>代替接口：ohos.bundle.bundleManager.AbilityInfo |abilityInfo.d.ts|
-|废弃版本有变化|方法名 or 属性名：process<br>废弃版本：|方法名 or 属性名：process<br>废弃版本：9<br>代替接口：ohos.bundle.bundleManager.AbilityInfo |abilityInfo.d.ts|
-|废弃版本有变化|方法名 or 属性名：targetAbility<br>废弃版本：|方法名 or 属性名：targetAbility<br>废弃版本：9<br>代替接口：ohos.bundle.bundleManager.AbilityInfo |abilityInfo.d.ts|
-|废弃版本有变化|方法名 or 属性名：backgroundModes<br>废弃版本：|方法名 or 属性名：backgroundModes<br>废弃版本：9<br>代替接口：ohos.bundle.bundleManager.AbilityInfo |abilityInfo.d.ts|
-|废弃版本有变化|方法名 or 属性名：isVisible<br>废弃版本：|方法名 or 属性名：isVisible<br>废弃版本：9<br>代替接口：ohos.bundle.bundleManager.AbilityInfo |abilityInfo.d.ts|
-|废弃版本有变化|方法名 or 属性名：formEnabled<br>废弃版本：|方法名 or 属性名：formEnabled<br>废弃版本：9<br>代替接口：ohos.bundle.bundleManager.AbilityInfo |abilityInfo.d.ts|
-|废弃版本有变化|方法名 or 属性名：type<br>废弃版本：|方法名 or 属性名：type<br>废弃版本：9<br>代替接口：ohos.bundle.bundleManager.AbilityInfo |abilityInfo.d.ts|
-|废弃版本有变化|方法名 or 属性名：subType<br>废弃版本：|方法名 or 属性名：subType<br>废弃版本：9<br>代替接口：ohos.bundle.bundleManager.AbilityInfo |abilityInfo.d.ts|
-|废弃版本有变化|方法名 or 属性名：orientation<br>废弃版本：|方法名 or 属性名：orientation<br>废弃版本：9<br>代替接口：ohos.bundle.bundleManager.AbilityInfo |abilityInfo.d.ts|
-|废弃版本有变化|方法名 or 属性名：launchMode<br>废弃版本：|方法名 or 属性名：launchMode<br>废弃版本：9<br>代替接口：ohos.bundle.bundleManager.AbilityInfo |abilityInfo.d.ts|
-|废弃版本有变化|方法名 or 属性名：permissions<br>废弃版本：|方法名 or 属性名：permissions<br>废弃版本：9<br>代替接口：ohos.bundle.bundleManager.AbilityInfo |abilityInfo.d.ts|
-|废弃版本有变化|方法名 or 属性名：deviceTypes<br>废弃版本：|方法名 or 属性名：deviceTypes<br>废弃版本：9<br>代替接口：ohos.bundle.bundleManager.AbilityInfo |abilityInfo.d.ts|
-|废弃版本有变化|方法名 or 属性名：deviceCapabilities<br>废弃版本：|方法名 or 属性名：deviceCapabilities<br>废弃版本：9<br>代替接口：ohos.bundle.bundleManager.AbilityInfo |abilityInfo.d.ts|
-|废弃版本有变化|方法名 or 属性名：readPermission<br>废弃版本：|方法名 or 属性名：readPermission<br>废弃版本：9<br>代替接口：ohos.bundle.bundleManager.AbilityInfo |abilityInfo.d.ts|
-|废弃版本有变化|方法名 or 属性名：writePermission<br>废弃版本：|方法名 or 属性名：writePermission<br>废弃版本：9<br>代替接口：ohos.bundle.bundleManager.AbilityInfo |abilityInfo.d.ts|
-|废弃版本有变化|方法名 or 属性名：applicationInfo<br>废弃版本：|方法名 or 属性名：applicationInfo<br>废弃版本：9<br>代替接口：ohos.bundle.bundleManager.AbilityInfo |abilityInfo.d.ts|
-|废弃版本有变化|方法名 or 属性名：uri<br>废弃版本：|方法名 or 属性名：uri<br>废弃版本：9<br>代替接口：ohos.bundle.bundleManager.AbilityInfo |abilityInfo.d.ts|
-|废弃版本有变化|方法名 or 属性名：metaData<br>废弃版本：|方法名 or 属性名：metaData<br>废弃版本：9<br>代替接口：ohos.bundle.bundleManager.AbilityInfo |abilityInfo.d.ts|
-|废弃版本有变化|方法名 or 属性名：enabled<br>废弃版本：|方法名 or 属性名：enabled<br>废弃版本：9<br>代替接口：ohos.bundle.bundleManager.AbilityInfo |abilityInfo.d.ts|
-|废弃版本有变化|类名：ApplicationInfo<br>废弃版本：|类名：ApplicationInfo<br>废弃版本：9<br>代替接口：ohos.bundle.bundleManager.ApplicationInfo |applicationInfo.d.ts|
-|废弃版本有变化|方法名 or 属性名：name<br>废弃版本：|方法名 or 属性名：name<br>废弃版本：9<br>代替接口：ohos.bundle.bundleManager.ApplicationInfo |applicationInfo.d.ts|
-|废弃版本有变化|方法名 or 属性名：description<br>废弃版本：|方法名 or 属性名：description<br>废弃版本：9<br>代替接口：ohos.bundle.bundleManager.ApplicationInfo |applicationInfo.d.ts|
-|废弃版本有变化|方法名 or 属性名：descriptionId<br>废弃版本：|方法名 or 属性名：descriptionId<br>废弃版本：9<br>代替接口：ohos.bundle.bundleManager.ApplicationInfo |applicationInfo.d.ts|
-|废弃版本有变化|方法名 or 属性名：systemApp<br>废弃版本：|方法名 or 属性名：systemApp<br>废弃版本：9<br>代替接口：ohos.bundle.bundleManager.ApplicationInfo |applicationInfo.d.ts|
-|废弃版本有变化|方法名 or 属性名：enabled<br>废弃版本：|方法名 or 属性名：enabled<br>废弃版本：9<br>代替接口：ohos.bundle.bundleManager.ApplicationInfo |applicationInfo.d.ts|
-|废弃版本有变化|方法名 or 属性名：label<br>废弃版本：|方法名 or 属性名：label<br>废弃版本：9<br>代替接口：ohos.bundle.bundleManager.ApplicationInfo |applicationInfo.d.ts|
-|废弃版本有变化|方法名 or 属性名：icon<br>废弃版本：|方法名 or 属性名：icon<br>废弃版本：9<br>代替接口：ohos.bundle.bundleManager.ApplicationInfo |applicationInfo.d.ts|
-|废弃版本有变化|方法名 or 属性名：process<br>废弃版本：|方法名 or 属性名：process<br>废弃版本：9<br>代替接口：ohos.bundle.bundleManager.ApplicationInfo |applicationInfo.d.ts|
-|废弃版本有变化|方法名 or 属性名：supportedModes<br>废弃版本：|方法名 or 属性名：supportedModes<br>废弃版本：9<br>代替接口：ohos.bundle.bundleManager.ApplicationInfo |applicationInfo.d.ts|
-|废弃版本有变化|方法名 or 属性名：moduleSourceDirs<br>废弃版本：|方法名 or 属性名：moduleSourceDirs<br>废弃版本：9<br>代替接口：ohos.bundle.bundleManager.ApplicationInfo |applicationInfo.d.ts|
-|废弃版本有变化|方法名 or 属性名：permissions<br>废弃版本：|方法名 or 属性名：permissions<br>废弃版本：9<br>代替接口：ohos.bundle.bundleManager.ApplicationInfo |applicationInfo.d.ts|
-|废弃版本有变化|方法名 or 属性名：moduleInfos<br>废弃版本：|方法名 or 属性名：moduleInfos<br>废弃版本：9<br>代替接口：ohos.bundle.bundleManager.ApplicationInfo |applicationInfo.d.ts|
-|废弃版本有变化|方法名 or 属性名：entryDir<br>废弃版本：|方法名 or 属性名：entryDir<br>废弃版本：9<br>代替接口：ohos.bundle.bundleManager.ApplicationInfo |applicationInfo.d.ts|
-|废弃版本有变化|方法名 or 属性名：codePath<br>废弃版本：|方法名 or 属性名：codePath<br>废弃版本：9<br>代替接口：ohos.bundle.bundleManager.ApplicationInfo |applicationInfo.d.ts|
-|废弃版本有变化|方法名 or 属性名：metaData<br>废弃版本：|方法名 or 属性名：metaData<br>废弃版本：9<br>代替接口：ohos.bundle.bundleManager.ApplicationInfo |applicationInfo.d.ts|
-|废弃版本有变化|方法名 or 属性名：removable<br>废弃版本：|方法名 or 属性名：removable<br>废弃版本：9<br>代替接口：ohos.bundle.bundleManager.ApplicationInfo |applicationInfo.d.ts|
-|废弃版本有变化|方法名 or 属性名：accessTokenId<br>废弃版本：|方法名 or 属性名：accessTokenId<br>废弃版本：9<br>代替接口：ohos.bundle.bundleManager.ApplicationInfo |applicationInfo.d.ts|
-|废弃版本有变化|方法名 or 属性名：uid<br>废弃版本：|方法名 or 属性名：uid<br>废弃版本：9<br>代替接口：ohos.bundle.bundleManager.ApplicationInfo |applicationInfo.d.ts|
-|废弃版本有变化|方法名 or 属性名：entityType<br>废弃版本：|方法名 or 属性名：entityType<br>废弃版本：9<br>代替接口：ohos.bundle.bundleManager.ApplicationInfo |applicationInfo.d.ts|
-|废弃版本有变化|类名：UsedScene<br>废弃版本：|类名：UsedScene<br>废弃版本：9<br>代替接口：ohos.bundle.bundleManager.UsedScene |bundleInfo.d.ts|
-|废弃版本有变化|方法名 or 属性名：abilities<br>废弃版本：|方法名 or 属性名：abilities<br>废弃版本：9<br>代替接口：ohos.bundle.bundleManager.UsedScene |bundleInfo.d.ts|
-|废弃版本有变化|方法名 or 属性名：when<br>废弃版本：|方法名 or 属性名：when<br>废弃版本：9<br>代替接口：ohos.bundle.bundleManager.UsedScene |bundleInfo.d.ts|
-|废弃版本有变化|类名：ReqPermissionDetail<br>废弃版本：|类名：ReqPermissionDetail<br>废弃版本：9<br>代替接口：ohos.bundle.bundleManager.ReqPermissionDetail |bundleInfo.d.ts|
-|废弃版本有变化|方法名 or 属性名：name<br>废弃版本：|方法名 or 属性名：name<br>废弃版本：9<br>代替接口：ohos.bundle.bundleManager.ReqPermissionDetail |bundleInfo.d.ts|
-|废弃版本有变化|方法名 or 属性名：reason<br>废弃版本：|方法名 or 属性名：reason<br>废弃版本：9<br>代替接口：ohos.bundle.bundleManager.ReqPermissionDetail |bundleInfo.d.ts|
-|废弃版本有变化|方法名 or 属性名：usedScene<br>废弃版本：|方法名 or 属性名：usedScene<br>废弃版本：9<br>代替接口：ohos.bundle.bundleManager.ReqPermissionDetail |bundleInfo.d.ts|
-|废弃版本有变化|类名：BundleInfo<br>废弃版本：|类名：BundleInfo<br>废弃版本：9<br>代替接口：ohos.bundle.bundleManager.BundleInfo |bundleInfo.d.ts|
-|废弃版本有变化|方法名 or 属性名：name<br>废弃版本：|方法名 or 属性名：name<br>废弃版本：9<br>代替接口：ohos.bundle.bundleManager.BundleInfo |bundleInfo.d.ts|
-|废弃版本有变化|方法名 or 属性名：type<br>废弃版本：|方法名 or 属性名：type<br>废弃版本：9<br>代替接口：ohos.bundle.bundleManager.BundleInfo |bundleInfo.d.ts|
-|废弃版本有变化|方法名 or 属性名：appId<br>废弃版本：|方法名 or 属性名：appId<br>废弃版本：9<br>代替接口：ohos.bundle.bundleManager.BundleInfo |bundleInfo.d.ts|
-|废弃版本有变化|方法名 or 属性名：uid<br>废弃版本：|方法名 or 属性名：uid<br>废弃版本：9<br>代替接口：ohos.bundle.bundleManager.BundleInfo |bundleInfo.d.ts|
-|废弃版本有变化|方法名 or 属性名：installTime<br>废弃版本：|方法名 or 属性名：installTime<br>废弃版本：9<br>代替接口：ohos.bundle.bundleManager.BundleInfo |bundleInfo.d.ts|
-|废弃版本有变化|方法名 or 属性名：updateTime<br>废弃版本：|方法名 or 属性名：updateTime<br>废弃版本：9<br>代替接口：ohos.bundle.bundleManager.BundleInfo |bundleInfo.d.ts|
-|废弃版本有变化|方法名 or 属性名：appInfo<br>废弃版本：|方法名 or 属性名：appInfo<br>废弃版本：9<br>代替接口：ohos.bundle.bundleManager.BundleInfo |bundleInfo.d.ts|
-|废弃版本有变化|方法名 or 属性名：abilityInfos<br>废弃版本：|方法名 or 属性名：abilityInfos<br>废弃版本：9<br>代替接口：ohos.bundle.bundleManager.BundleInfo |bundleInfo.d.ts|
-|废弃版本有变化|方法名 or 属性名：reqPermissions<br>废弃版本：|方法名 or 属性名：reqPermissions<br>废弃版本：9<br>代替接口：ohos.bundle.bundleManager.BundleInfo |bundleInfo.d.ts|
-|废弃版本有变化|方法名 or 属性名：reqPermissionDetails<br>废弃版本：|方法名 or 属性名：reqPermissionDetails<br>废弃版本：9<br>代替接口：ohos.bundle.bundleManager.BundleInfo |bundleInfo.d.ts|
-|废弃版本有变化|方法名 or 属性名：vendor<br>废弃版本：|方法名 or 属性名：vendor<br>废弃版本：9<br>代替接口：ohos.bundle.bundleManager.BundleInfo |bundleInfo.d.ts|
-|废弃版本有变化|方法名 or 属性名：versionCode<br>废弃版本：|方法名 or 属性名：versionCode<br>废弃版本：9<br>代替接口：ohos.bundle.bundleManager.BundleInfo |bundleInfo.d.ts|
-|废弃版本有变化|方法名 or 属性名：versionName<br>废弃版本：|方法名 or 属性名：versionName<br>废弃版本：9<br>代替接口：ohos.bundle.bundleManager.BundleInfo |bundleInfo.d.ts|
-|废弃版本有变化|方法名 or 属性名：compatibleVersion<br>废弃版本：|方法名 or 属性名：compatibleVersion<br>废弃版本：9<br>代替接口：ohos.bundle.bundleManager.BundleInfo |bundleInfo.d.ts|
-|废弃版本有变化|方法名 or 属性名：targetVersion<br>废弃版本：|方法名 or 属性名：targetVersion<br>废弃版本：9<br>代替接口：ohos.bundle.bundleManager.BundleInfo |bundleInfo.d.ts|
-|废弃版本有变化|方法名 or 属性名：isCompressNativeLibs<br>废弃版本：|方法名 or 属性名：isCompressNativeLibs<br>废弃版本：9<br>代替接口：ohos.bundle.bundleManager.BundleInfo |bundleInfo.d.ts|
-|废弃版本有变化|方法名 or 属性名：hapModuleInfos<br>废弃版本：|方法名 or 属性名：hapModuleInfos<br>废弃版本：9<br>代替接口：ohos.bundle.bundleManager.BundleInfo |bundleInfo.d.ts|
-|废弃版本有变化|方法名 or 属性名：entryModuleName<br>废弃版本：|方法名 or 属性名：entryModuleName<br>废弃版本：9<br>代替接口：ohos.bundle.bundleManager.BundleInfo |bundleInfo.d.ts|
-|废弃版本有变化|方法名 or 属性名：cpuAbi<br>废弃版本：|方法名 or 属性名：cpuAbi<br>废弃版本：9<br>代替接口：ohos.bundle.bundleManager.BundleInfo |bundleInfo.d.ts|
-|废弃版本有变化|方法名 or 属性名：isSilentInstallation<br>废弃版本：|方法名 or 属性名：isSilentInstallation<br>废弃版本：9<br>代替接口：ohos.bundle.bundleManager.BundleInfo |bundleInfo.d.ts|
-|废弃版本有变化|方法名 or 属性名：minCompatibleVersionCode<br>废弃版本：|方法名 or 属性名：minCompatibleVersionCode<br>废弃版本：9<br>代替接口：ohos.bundle.bundleManager.BundleInfo |bundleInfo.d.ts|
-|废弃版本有变化|方法名 or 属性名：entryInstallationFree<br>废弃版本：|方法名 or 属性名：entryInstallationFree<br>废弃版本：9<br>代替接口：ohos.bundle.bundleManager.BundleInfo |bundleInfo.d.ts|
-|废弃版本有变化|方法名 or 属性名：reqPermissionStates<br>废弃版本：|方法名 or 属性名：reqPermissionStates<br>废弃版本：9<br>代替接口：ohos.bundle.bundleManager.BundleInfo |bundleInfo.d.ts|
-|废弃版本有变化|类名：InstallParam<br>废弃版本：|类名：InstallParam<br>废弃版本：9<br>代替接口：ohos.bundle.installer|bundleInstaller.d.ts|
-|废弃版本有变化|方法名 or 属性名：userId<br>废弃版本：|方法名 or 属性名：userId<br>废弃版本：9<br>代替接口：ohos.bundle.installer.InstallParam|bundleInstaller.d.ts|
-|废弃版本有变化|方法名 or 属性名：installFlag<br>废弃版本：|方法名 or 属性名：installFlag<br>废弃版本：9<br>代替接口：ohos.bundle.installer.InstallParam|bundleInstaller.d.ts|
-|废弃版本有变化|方法名 or 属性名：isKeepData<br>废弃版本：|方法名 or 属性名：isKeepData<br>废弃版本：9<br>代替接口：ohos.bundle.installer.InstallParam|bundleInstaller.d.ts|
-|废弃版本有变化|类名：InstallStatus<br>废弃版本：|类名：InstallStatus<br>废弃版本：9|bundleInstaller.d.ts|
-|废弃版本有变化|方法名 or 属性名：status<br>废弃版本：|方法名 or 属性名：status<br>废弃版本：9|bundleInstaller.d.ts|
-|废弃版本有变化|方法名 or 属性名：statusMessage<br>废弃版本：|方法名 or 属性名：statusMessage<br>废弃版本：9|bundleInstaller.d.ts|
-|废弃版本有变化|类名：BundleInstaller<br>废弃版本：|类名：BundleInstaller<br>废弃版本：9<br>代替接口：ohos.bundle.installer|bundleInstaller.d.ts|
-|废弃版本有变化|方法名 or 属性名：install<br>废弃版本：|方法名 or 属性名：install<br>废弃版本：9<br>代替接口：ohos.bundle.installer.BundleInstaller|bundleInstaller.d.ts|
-|废弃版本有变化|方法名 or 属性名：uninstall<br>废弃版本：|方法名 or 属性名：uninstall<br>废弃版本：9<br>代替接口：ohos.bundle.installer.BundleInstaller|bundleInstaller.d.ts|
-|废弃版本有变化|方法名 or 属性名：recover<br>废弃版本：|方法名 or 属性名：recover<br>废弃版本：9<br>代替接口：ohos.bundle.installer.BundleInstaller|bundleInstaller.d.ts|
-|废弃版本有变化|类名：BundleStatusCallback<br>废弃版本：|类名：BundleStatusCallback<br>废弃版本：9|bundleStatusCallback.d.ts|
-|废弃版本有变化|方法名 or 属性名：add<br>废弃版本：|方法名 or 属性名：add<br>废弃版本：9|bundleStatusCallback.d.ts|
-|废弃版本有变化|方法名 or 属性名：update<br>废弃版本：|方法名 or 属性名：update<br>废弃版本：9|bundleStatusCallback.d.ts|
-|废弃版本有变化|方法名 or 属性名：remove<br>废弃版本：|方法名 or 属性名：remove<br>废弃版本：9|bundleStatusCallback.d.ts|
-|废弃版本有变化|类名：CustomizeData<br>废弃版本：|类名：CustomizeData<br>废弃版本：9<br>代替接口：ohos.bundle.bundleManager.Metadata |customizeData.d.ts|
-|废弃版本有变化|方法名 or 属性名：name<br>废弃版本：|方法名 or 属性名：name<br>废弃版本：9<br>代替接口：ohos.bundle.bundleManager.Metadata |customizeData.d.ts|
-|废弃版本有变化|方法名 or 属性名：value<br>废弃版本：|方法名 or 属性名：value<br>废弃版本：9<br>代替接口：ohos.bundle.bundleManager.Metadata |customizeData.d.ts|
-|废弃版本有变化|方法名 or 属性名：extra<br>废弃版本：|方法名 or 属性名：extra<br>废弃版本：9<br>代替接口：ohos.bundle.bundleManager.Metadata |customizeData.d.ts|
-|废弃版本有变化|类名：ElementName<br>废弃版本：|类名：ElementName<br>废弃版本：9<br>代替接口：ohos.bundle.bundleManager.ElementName |elementName.d.ts|
-|废弃版本有变化|方法名 or 属性名：deviceId<br>废弃版本：|方法名 or 属性名：deviceId<br>废弃版本：9<br>代替接口：ohos.bundle.bundleManager.ElementName |elementName.d.ts|
-|废弃版本有变化|方法名 or 属性名：bundleName<br>废弃版本：|方法名 or 属性名：bundleName<br>废弃版本：9<br>代替接口：ohos.bundle.bundleManager.ElementName |elementName.d.ts|
-|废弃版本有变化|方法名 or 属性名：abilityName<br>废弃版本：|方法名 or 属性名：abilityName<br>废弃版本：9<br>代替接口：ohos.bundle.bundleManager.ElementName |elementName.d.ts|
-|废弃版本有变化|方法名 or 属性名：uri<br>废弃版本：|方法名 or 属性名：uri<br>废弃版本：9<br>代替接口：ohos.bundle.bundleManager.ElementName |elementName.d.ts|
-|废弃版本有变化|方法名 or 属性名：shortName<br>废弃版本：|方法名 or 属性名：shortName<br>废弃版本：9<br>代替接口：ohos.bundle.bundleManager.ElementName |elementName.d.ts|
-|废弃版本有变化|类名：HapModuleInfo<br>废弃版本：|类名：HapModuleInfo<br>废弃版本：9<br>代替接口：ohos.bundle.bundleManager.HapModuleInfo |hapModuleInfo.d.ts|
-|废弃版本有变化|方法名 or 属性名：name<br>废弃版本：|方法名 or 属性名：name<br>废弃版本：9<br>代替接口：ohos.bundle.bundleManager.HapModuleInfo |hapModuleInfo.d.ts|
-|废弃版本有变化|方法名 or 属性名：description<br>废弃版本：|方法名 or 属性名：description<br>废弃版本：9<br>代替接口：ohos.bundle.bundleManager.HapModuleInfo |hapModuleInfo.d.ts|
-|废弃版本有变化|方法名 or 属性名：descriptionId<br>废弃版本：|方法名 or 属性名：descriptionId<br>废弃版本：9<br>代替接口：ohos.bundle.bundleManager.HapModuleInfo |hapModuleInfo.d.ts|
-|废弃版本有变化|方法名 or 属性名：icon<br>废弃版本：|方法名 or 属性名：icon<br>废弃版本：9<br>代替接口：ohos.bundle.bundleManager.HapModuleInfo |hapModuleInfo.d.ts|
-|废弃版本有变化|方法名 or 属性名：label<br>废弃版本：|方法名 or 属性名：label<br>废弃版本：9<br>代替接口：ohos.bundle.bundleManager.HapModuleInfo |hapModuleInfo.d.ts|
-|废弃版本有变化|方法名 or 属性名：labelId<br>废弃版本：|方法名 or 属性名：labelId<br>废弃版本：9<br>代替接口：ohos.bundle.bundleManager.HapModuleInfo |hapModuleInfo.d.ts|
-|废弃版本有变化|方法名 or 属性名：iconId<br>废弃版本：|方法名 or 属性名：iconId<br>废弃版本：9<br>代替接口：ohos.bundle.bundleManager.HapModuleInfo |hapModuleInfo.d.ts|
-|废弃版本有变化|方法名 or 属性名：backgroundImg<br>废弃版本：|方法名 or 属性名：backgroundImg<br>废弃版本：9<br>代替接口：ohos.bundle.bundleManager.HapModuleInfo |hapModuleInfo.d.ts|
-|废弃版本有变化|方法名 or 属性名：supportedModes<br>废弃版本：|方法名 or 属性名：supportedModes<br>废弃版本：9<br>代替接口：ohos.bundle.bundleManager.HapModuleInfo |hapModuleInfo.d.ts|
-|废弃版本有变化|方法名 or 属性名：reqCapabilities<br>废弃版本：|方法名 or 属性名：reqCapabilities<br>废弃版本：9<br>代替接口：ohos.bundle.bundleManager.HapModuleInfo |hapModuleInfo.d.ts|
-|废弃版本有变化|方法名 or 属性名：deviceTypes<br>废弃版本：|方法名 or 属性名：deviceTypes<br>废弃版本：9<br>代替接口：ohos.bundle.bundleManager.HapModuleInfo |hapModuleInfo.d.ts|
-|废弃版本有变化|方法名 or 属性名：abilityInfo<br>废弃版本：|方法名 or 属性名：abilityInfo<br>废弃版本：9<br>代替接口：ohos.bundle.bundleManager.HapModuleInfo |hapModuleInfo.d.ts|
-|废弃版本有变化|方法名 or 属性名：moduleName<br>废弃版本：|方法名 or 属性名：moduleName<br>废弃版本：9<br>代替接口：ohos.bundle.bundleManager.HapModuleInfo |hapModuleInfo.d.ts|
-|废弃版本有变化|方法名 or 属性名：mainAbilityName<br>废弃版本：|方法名 or 属性名：mainAbilityName<br>废弃版本：9<br>代替接口：ohos.bundle.bundleManager.HapModuleInfo |hapModuleInfo.d.ts|
-|废弃版本有变化|方法名 or 属性名：installationFree<br>废弃版本：|方法名 or 属性名：installationFree<br>废弃版本：9<br>代替接口：ohos.bundle.bundleManager.HapModuleInfo |hapModuleInfo.d.ts|
-|废弃版本有变化|类名：LauncherAbilityInfo<br>废弃版本：|类名：LauncherAbilityInfo<br>废弃版本：9<br>代替接口：ohos.bundle.bundleManager.LauncherAbilityInfo |launcherAbilityInfo.d.ts|
-|废弃版本有变化|方法名 or 属性名：applicationInfo<br>废弃版本：|方法名 or 属性名：applicationInfo<br>废弃版本：9<br>代替接口：ohos.bundle.bundleManager.LauncherAbilityInfo |launcherAbilityInfo.d.ts|
-|废弃版本有变化|方法名 or 属性名：elementName<br>废弃版本：|方法名 or 属性名：elementName<br>废弃版本：9<br>代替接口：ohos.bundle.bundleManager.LauncherAbilityInfo |launcherAbilityInfo.d.ts|
-|废弃版本有变化|方法名 or 属性名：labelId<br>废弃版本：|方法名 or 属性名：labelId<br>废弃版本：9<br>代替接口：ohos.bundle.bundleManager.LauncherAbilityInfo |launcherAbilityInfo.d.ts|
-|废弃版本有变化|方法名 or 属性名：iconId<br>废弃版本：|方法名 or 属性名：iconId<br>废弃版本：9<br>代替接口：ohos.bundle.bundleManager.LauncherAbilityInfo |launcherAbilityInfo.d.ts|
-|废弃版本有变化|方法名 or 属性名：userId<br>废弃版本：|方法名 or 属性名：userId<br>废弃版本：9<br>代替接口：ohos.bundle.bundleManager.LauncherAbilityInfo |launcherAbilityInfo.d.ts|
-|废弃版本有变化|方法名 or 属性名：installTime<br>废弃版本：|方法名 or 属性名：installTime<br>废弃版本：9<br>代替接口：ohos.bundle.bundleManager.LauncherAbilityInfo |launcherAbilityInfo.d.ts|
-|废弃版本有变化|类名：ModuleInfo<br>废弃版本：|类名：ModuleInfo<br>废弃版本：9<br>代替接口：ohos.bundle.bundleManager.HapModuleInfo |moduleInfo.d.ts|
-|废弃版本有变化|方法名 or 属性名：moduleName<br>废弃版本：|方法名 or 属性名：moduleName<br>废弃版本：9<br>代替接口：ohos.bundle.bundleManager.HapModuleInfo |moduleInfo.d.ts|
-|废弃版本有变化|方法名 or 属性名：moduleSourceDir<br>废弃版本：|方法名 or 属性名：moduleSourceDir<br>废弃版本：9<br>代替接口：ohos.bundle.bundleManager.HapModuleInfo |moduleInfo.d.ts|
-|废弃版本有变化|类名：PermissionDef<br>废弃版本：|类名：PermissionDef<br>废弃版本：9<br>代替接口：ohos.bundle.bundleManager.PermissionDef |PermissionDef.d.ts|
-|废弃版本有变化|方法名 or 属性名：permissionName<br>废弃版本：|方法名 or 属性名：permissionName<br>废弃版本：9<br>代替接口：ohos.bundle.bundleManager.PermissionDef |PermissionDef.d.ts|
-|废弃版本有变化|方法名 or 属性名：grantMode<br>废弃版本：|方法名 or 属性名：grantMode<br>废弃版本：9<br>代替接口：ohos.bundle.bundleManager.PermissionDef |PermissionDef.d.ts|
-|废弃版本有变化|方法名 or 属性名：labelId<br>废弃版本：|方法名 or 属性名：labelId<br>废弃版本：9<br>代替接口：ohos.bundle.bundleManager.PermissionDef |PermissionDef.d.ts|
-|废弃版本有变化|方法名 or 属性名：descriptionId<br>废弃版本：|方法名 or 属性名：descriptionId<br>废弃版本：9<br>代替接口：ohos.bundle.bundleManager.PermissionDef |PermissionDef.d.ts|
-|废弃版本有变化|类名：RemoteAbilityInfo<br>废弃版本：|类名：RemoteAbilityInfo<br>废弃版本：9<br>代替接口：ohos.bundle.distributedBundle.RemoteAbilityInfo |remoteAbilityInfo.d.ts|
-|废弃版本有变化|方法名 or 属性名：elementName<br>废弃版本：|方法名 or 属性名：elementName<br>废弃版本：9<br>代替接口：ohos.bundle.distributedBundle.RemoteAbilityInfo |remoteAbilityInfo.d.ts|
-|废弃版本有变化|方法名 or 属性名：label<br>废弃版本：|方法名 or 属性名：label<br>废弃版本：9<br>代替接口：ohos.bundle.distributedBundle.RemoteAbilityInfo |remoteAbilityInfo.d.ts|
-|废弃版本有变化|方法名 or 属性名：icon<br>废弃版本：|方法名 or 属性名：icon<br>废弃版本：9<br>代替接口：ohos.bundle.distributedBundle.RemoteAbilityInfo |remoteAbilityInfo.d.ts|
-|废弃版本有变化|类名：ShortcutWant<br>废弃版本：|类名：ShortcutWant<br>废弃版本：9<br>代替接口：ohos.bundle.launcherBundleManager.ShortcutWant  |shortcutInfo.d.ts|
-|废弃版本有变化|方法名 or 属性名：targetBundle<br>废弃版本：|方法名 or 属性名：targetBundle<br>废弃版本：9<br>代替接口：ohos.bundle.launcherBundleManager.ShortcutWant  |shortcutInfo.d.ts|
-|废弃版本有变化|方法名 or 属性名：targetClass<br>废弃版本：|方法名 or 属性名：targetClass<br>废弃版本：9<br>代替接口：ohos.bundle.launcherBundleManager.ShortcutWant  |shortcutInfo.d.ts|
-|废弃版本有变化|类名：ShortcutInfo<br>废弃版本：|类名：ShortcutInfo<br>废弃版本：9<br>代替接口：ohos.bundle.launcherBundleManager.ShortcutInfo    |shortcutInfo.d.ts|
-|废弃版本有变化|方法名 or 属性名：id<br>废弃版本：|方法名 or 属性名：id<br>废弃版本：9<br>代替接口：ohos.bundle.launcherBundleManager.ShortcutInfo    |shortcutInfo.d.ts|
-|废弃版本有变化|方法名 or 属性名：bundleName<br>废弃版本：|方法名 or 属性名：bundleName<br>废弃版本：9<br>代替接口：ohos.bundle.launcherBundleManager.ShortcutInfo    |shortcutInfo.d.ts|
-|废弃版本有变化|方法名 or 属性名：hostAbility<br>废弃版本：|方法名 or 属性名：hostAbility<br>废弃版本：9<br>代替接口：ohos.bundle.launcherBundleManager.ShortcutInfo    |shortcutInfo.d.ts|
-|废弃版本有变化|方法名 or 属性名：icon<br>废弃版本：|方法名 or 属性名：icon<br>废弃版本：9<br>代替接口：ohos.bundle.launcherBundleManager.ShortcutInfo    |shortcutInfo.d.ts|
-|废弃版本有变化|方法名 or 属性名：iconId<br>废弃版本：|方法名 or 属性名：iconId<br>废弃版本：9<br>代替接口：ohos.bundle.launcherBundleManager.ShortcutInfo    |shortcutInfo.d.ts|
-|废弃版本有变化|方法名 or 属性名：label<br>废弃版本：|方法名 or 属性名：label<br>废弃版本：9<br>代替接口：ohos.bundle.launcherBundleManager.ShortcutInfo    |shortcutInfo.d.ts|
-|废弃版本有变化|方法名 or 属性名：labelId<br>废弃版本：|方法名 or 属性名：labelId<br>废弃版本：9<br>代替接口：ohos.bundle.launcherBundleManager.ShortcutInfo    |shortcutInfo.d.ts|
-|废弃版本有变化|方法名 or 属性名：disableMessage<br>废弃版本：|方法名 or 属性名：disableMessage<br>废弃版本：9<br>代替接口：ohos.bundle.launcherBundleManager.ShortcutInfo    |shortcutInfo.d.ts|
-|废弃版本有变化|方法名 or 属性名：wants<br>废弃版本：|方法名 or 属性名：wants<br>废弃版本：9<br>代替接口：ohos.bundle.launcherBundleManager.ShortcutInfo    |shortcutInfo.d.ts|
-|废弃版本有变化|方法名 or 属性名：isStatic<br>废弃版本：|方法名 or 属性名：isStatic<br>废弃版本：9<br>代替接口：ohos.bundle.launcherBundleManager.ShortcutInfo    |shortcutInfo.d.ts|
-|废弃版本有变化|方法名 or 属性名：isHomeShortcut<br>废弃版本：|方法名 or 属性名：isHomeShortcut<br>废弃版本：9<br>代替接口：ohos.bundle.launcherBundleManager.ShortcutInfo    |shortcutInfo.d.ts|
-|废弃版本有变化|方法名 or 属性名：isEnabled<br>废弃版本：|方法名 or 属性名：isEnabled<br>废弃版本：9<br>代替接口：ohos.bundle.launcherBundleManager.ShortcutInfo    |shortcutInfo.d.ts|
+|废弃版本有变化|类名：bundle<br>废弃版本：N/A|类名：bundle<br>废弃版本：9<br>代替接口：ohos.bundle.bundleManager |@ohos.bundle.d.ts|
+|废弃版本有变化|类名：BundleFlag<br>废弃版本：N/A|类名：BundleFlag<br>废弃版本：9<br>代替接口：ohos.bundle.bundleManager.BundleFlag|@ohos.bundle.d.ts|
+|废弃版本有变化|类名：ColorMode<br>废弃版本：N/A|类名：ColorMode<br>废弃版本：9<br>代替接口：ohos.bundle.bundleManager |@ohos.bundle.d.ts|
+|废弃版本有变化|类名：GrantStatus<br>废弃版本：N/A|类名：GrantStatus<br>废弃版本：9<br>代替接口：ohos.bundle.bundleManager.PermissionGrantState |@ohos.bundle.d.ts|
+|废弃版本有变化|类名：AbilityType<br>废弃版本：N/A|类名：AbilityType<br>废弃版本：9<br>代替接口：ohos.bundle.bundleManager.AbilityType   |@ohos.bundle.d.ts|
+|废弃版本有变化|类名：AbilitySubType<br>废弃版本：N/A|类名：AbilitySubType<br>废弃版本：9<br>代替接口：ohos.bundle.bundleManager |@ohos.bundle.d.ts|
+|废弃版本有变化|类名：DisplayOrientation<br>废弃版本：N/A|类名：DisplayOrientation<br>废弃版本：9<br>代替接口：ohos.bundle.bundleManager.DisplayOrientation   |@ohos.bundle.d.ts|
+|废弃版本有变化|类名：LaunchMode<br>废弃版本：N/A|类名：LaunchMode<br>废弃版本：9<br>代替接口：ohos.bundle.bundleManager.LaunchType   |@ohos.bundle.d.ts|
+|废弃版本有变化|类名：BundleOptions<br>废弃版本：N/A|类名：BundleOptions<br>废弃版本：9<br>代替接口：ohos.bundle.bundleManager |@ohos.bundle.d.ts|
+|废弃版本有变化|类名：InstallErrorCode<br>废弃版本：N/A|类名：InstallErrorCode<br>废弃版本：9<br>代替接口：ohos.bundle.bundleManager |@ohos.bundle.d.ts|
+|废弃版本有变化|方法名 or 属性名：getBundleInfo<br>废弃版本：N/A|方法名 or 属性名：getBundleInfo<br>废弃版本：9<br>代替接口：ohos.bundle.bundleManager|@ohos.bundle.d.ts|
+|废弃版本有变化|方法名 or 属性名：getBundleInfo<br>废弃版本：N/A|方法名 or 属性名：getBundleInfo<br>废弃版本：9|@ohos.bundle.d.ts|
+|废弃版本有变化|方法名 or 属性名：getBundleInfo<br>废弃版本：N/A|方法名 or 属性名：getBundleInfo<br>废弃版本：9|@ohos.bundle.d.ts|
+|废弃版本有变化|方法名 or 属性名：getBundleInstaller<br>废弃版本：N/A|方法名 or 属性名：getBundleInstaller<br>废弃版本：9<br>代替接口：ohos.bundle.installer|@ohos.bundle.d.ts|
+|废弃版本有变化|方法名 or 属性名：getBundleInstaller<br>废弃版本：N/A|方法名 or 属性名：getBundleInstaller<br>废弃版本：9|@ohos.bundle.d.ts|
+|废弃版本有变化|方法名 or 属性名：getAbilityInfo<br>废弃版本：N/A|方法名 or 属性名：getAbilityInfo<br>废弃版本：9<br>代替接口：ohos.bundle.bundleManager|@ohos.bundle.d.ts|
+|废弃版本有变化|方法名 or 属性名：getAbilityInfo<br>废弃版本：N/A|方法名 or 属性名：getAbilityInfo<br>废弃版本：9|@ohos.bundle.d.ts|
+|废弃版本有变化|方法名 or 属性名：getApplicationInfo<br>废弃版本：N/A|方法名 or 属性名：getApplicationInfo<br>废弃版本：9<br>代替接口：ohos.bundle.bundleManager|@ohos.bundle.d.ts|
+|废弃版本有变化|方法名 or 属性名：getApplicationInfo<br>废弃版本：N/A|方法名 or 属性名：getApplicationInfo<br>废弃版本：9|@ohos.bundle.d.ts|
+|废弃版本有变化|方法名 or 属性名：getApplicationInfo<br>废弃版本：N/A|方法名 or 属性名：getApplicationInfo<br>废弃版本：9|@ohos.bundle.d.ts|
+|废弃版本有变化|方法名 or 属性名：queryAbilityByWant<br>废弃版本：N/A|方法名 or 属性名：queryAbilityByWant<br>废弃版本：9<br>代替接口：ohos.bundle.bundleManager|@ohos.bundle.d.ts|
+|废弃版本有变化|方法名 or 属性名：queryAbilityByWant<br>废弃版本：N/A|方法名 or 属性名：queryAbilityByWant<br>废弃版本：9|@ohos.bundle.d.ts|
+|废弃版本有变化|方法名 or 属性名：queryAbilityByWant<br>废弃版本：N/A|方法名 or 属性名：queryAbilityByWant<br>废弃版本：9|@ohos.bundle.d.ts|
+|废弃版本有变化|方法名 or 属性名：getAllBundleInfo<br>废弃版本：N/A|方法名 or 属性名：getAllBundleInfo<br>废弃版本：9<br>代替接口：ohos.bundle.bundleManager|@ohos.bundle.d.ts|
+|废弃版本有变化|方法名 or 属性名：getAllBundleInfo<br>废弃版本：N/A|方法名 or 属性名：getAllBundleInfo<br>废弃版本：9|@ohos.bundle.d.ts|
+|废弃版本有变化|方法名 or 属性名：getAllBundleInfo<br>废弃版本：N/A|方法名 or 属性名：getAllBundleInfo<br>废弃版本：9|@ohos.bundle.d.ts|
+|废弃版本有变化|方法名 or 属性名：getAllApplicationInfo<br>废弃版本：N/A|方法名 or 属性名：getAllApplicationInfo<br>废弃版本：9<br>代替接口：ohos.bundle.bundleManager|@ohos.bundle.d.ts|
+|废弃版本有变化|方法名 or 属性名：getAllApplicationInfo<br>废弃版本：N/A|方法名 or 属性名：getAllApplicationInfo<br>废弃版本：9|@ohos.bundle.d.ts|
+|废弃版本有变化|方法名 or 属性名：getAllApplicationInfo<br>废弃版本：N/A|方法名 or 属性名：getAllApplicationInfo<br>废弃版本：9|@ohos.bundle.d.ts|
+|废弃版本有变化|方法名 or 属性名：getNameForUid<br>废弃版本：N/A|方法名 or 属性名：getNameForUid<br>废弃版本：9<br>代替接口：ohos.bundle.bundleManager|@ohos.bundle.d.ts|
+|废弃版本有变化|方法名 or 属性名：getNameForUid<br>废弃版本：N/A|方法名 or 属性名：getNameForUid<br>废弃版本：9|@ohos.bundle.d.ts|
+|废弃版本有变化|方法名 or 属性名：getBundleArchiveInfo<br>废弃版本：N/A|方法名 or 属性名：getBundleArchiveInfo<br>废弃版本：9<br>代替接口：ohos.bundle.bundleManager|@ohos.bundle.d.ts|
+|废弃版本有变化|方法名 or 属性名：getBundleArchiveInfo<br>废弃版本：N/A|方法名 or 属性名：getBundleArchiveInfo<br>废弃版本：9|@ohos.bundle.d.ts|
+|废弃版本有变化|方法名 or 属性名：getLaunchWantForBundle<br>废弃版本：N/A|方法名 or 属性名：getLaunchWantForBundle<br>废弃版本：9<br>代替接口：ohos.bundle.bundleManager|@ohos.bundle.d.ts|
+|废弃版本有变化|方法名 or 属性名：getLaunchWantForBundle<br>废弃版本：N/A|方法名 or 属性名：getLaunchWantForBundle<br>废弃版本：9|@ohos.bundle.d.ts|
+|废弃版本有变化|方法名 or 属性名：cleanBundleCacheFiles<br>废弃版本：N/A|方法名 or 属性名：cleanBundleCacheFiles<br>废弃版本：9<br>代替接口：ohos.bundle.bundleManager|@ohos.bundle.d.ts|
+|废弃版本有变化|方法名 or 属性名：cleanBundleCacheFiles<br>废弃版本：N/A|方法名 or 属性名：cleanBundleCacheFiles<br>废弃版本：9|@ohos.bundle.d.ts|
+|废弃版本有变化|方法名 or 属性名：setApplicationEnabled<br>废弃版本：N/A|方法名 or 属性名：setApplicationEnabled<br>废弃版本：9<br>代替接口：ohos.bundle.bundleManager|@ohos.bundle.d.ts|
+|废弃版本有变化|方法名 or 属性名：setApplicationEnabled<br>废弃版本：N/A|方法名 or 属性名：setApplicationEnabled<br>废弃版本：9|@ohos.bundle.d.ts|
+|废弃版本有变化|方法名 or 属性名：setAbilityEnabled<br>废弃版本：N/A|方法名 or 属性名：setAbilityEnabled<br>废弃版本：9<br>代替接口：ohos.bundle.bundleManager|@ohos.bundle.d.ts|
+|废弃版本有变化|方法名 or 属性名：setAbilityEnabled<br>废弃版本：N/A|方法名 or 属性名：setAbilityEnabled<br>废弃版本：9|@ohos.bundle.d.ts|
+|废弃版本有变化|方法名 or 属性名：getPermissionDef<br>废弃版本：N/A|方法名 or 属性名：getPermissionDef<br>废弃版本：9<br>代替接口：ohos.bundle.bundleManager|@ohos.bundle.d.ts|
+|废弃版本有变化|方法名 or 属性名：getPermissionDef<br>废弃版本：N/A|方法名 or 属性名：getPermissionDef<br>废弃版本：9|@ohos.bundle.d.ts|
+|废弃版本有变化|方法名 or 属性名：getAbilityLabel<br>废弃版本：N/A|方法名 or 属性名：getAbilityLabel<br>废弃版本：9<br>代替接口：ohos.bundle.bundleManager|@ohos.bundle.d.ts|
+|废弃版本有变化|方法名 or 属性名：getAbilityLabel<br>废弃版本：N/A|方法名 or 属性名：getAbilityLabel<br>废弃版本：9|@ohos.bundle.d.ts|
+|废弃版本有变化|方法名 or 属性名：getAbilityIcon<br>废弃版本：N/A|方法名 or 属性名：getAbilityIcon<br>废弃版本：9<br>代替接口：ohos.bundle.bundleManager|@ohos.bundle.d.ts|
+|废弃版本有变化|方法名 or 属性名：getAbilityIcon<br>废弃版本：N/A|方法名 or 属性名：getAbilityIcon<br>废弃版本：9|@ohos.bundle.d.ts|
+|废弃版本有变化|方法名 or 属性名：isAbilityEnabled<br>废弃版本：N/A|方法名 or 属性名：isAbilityEnabled<br>废弃版本：9<br>代替接口：ohos.bundle.bundleManager|@ohos.bundle.d.ts|
+|废弃版本有变化|方法名 or 属性名：isAbilityEnabled<br>废弃版本：N/A|方法名 or 属性名：isAbilityEnabled<br>废弃版本：9|@ohos.bundle.d.ts|
+|废弃版本有变化|方法名 or 属性名：isApplicationEnabled<br>废弃版本：N/A|方法名 or 属性名：isApplicationEnabled<br>废弃版本：9<br>代替接口：ohos.bundle.bundleManager|@ohos.bundle.d.ts|
+|废弃版本有变化|方法名 or 属性名：isApplicationEnabled<br>废弃版本：N/A|方法名 or 属性名：isApplicationEnabled<br>废弃版本：9|@ohos.bundle.d.ts|
+|废弃版本有变化|类名：innerBundleManager<br>废弃版本：N/A|类名：innerBundleManager<br>废弃版本：9<br>代替接口：ohos.bundle.launcherBundleManager |@ohos.bundle.innerBundleManager.d.ts|
+|废弃版本有变化|方法名 or 属性名：getLauncherAbilityInfos<br>废弃版本：N/A|方法名 or 属性名：getLauncherAbilityInfos<br>废弃版本：9<br>代替接口：ohos.bundle.launcherBundleManager|@ohos.bundle.innerBundleManager.d.ts|
+|废弃版本有变化|方法名 or 属性名：getLauncherAbilityInfos<br>废弃版本：N/A|方法名 or 属性名：getLauncherAbilityInfos<br>废弃版本：9|@ohos.bundle.innerBundleManager.d.ts|
+|废弃版本有变化|方法名 or 属性名：on_BundleStatusChange<br>废弃版本：N/A|方法名 or 属性名：on_BundleStatusChange<br>废弃版本：9<br>代替接口：ohos.bundle.bundleMonitor|@ohos.bundle.innerBundleManager.d.ts|
+|废弃版本有变化|方法名 or 属性名：on_BundleStatusChange<br>废弃版本：N/A|方法名 or 属性名：on_BundleStatusChange<br>废弃版本：9|@ohos.bundle.innerBundleManager.d.ts|
+|废弃版本有变化|方法名 or 属性名：off_BundleStatusChange<br>废弃版本：N/A|方法名 or 属性名：off_BundleStatusChange<br>废弃版本：9<br>代替接口：ohos.bundle.bundleMonitor|@ohos.bundle.innerBundleManager.d.ts|
+|废弃版本有变化|方法名 or 属性名：off_BundleStatusChange<br>废弃版本：N/A|方法名 or 属性名：off_BundleStatusChange<br>废弃版本：9|@ohos.bundle.innerBundleManager.d.ts|
+|废弃版本有变化|方法名 or 属性名：getAllLauncherAbilityInfos<br>废弃版本：N/A|方法名 or 属性名：getAllLauncherAbilityInfos<br>废弃版本：9<br>代替接口：ohos.bundle.launcherBundleManager|@ohos.bundle.innerBundleManager.d.ts|
+|废弃版本有变化|方法名 or 属性名：getAllLauncherAbilityInfos<br>废弃版本：N/A|方法名 or 属性名：getAllLauncherAbilityInfos<br>废弃版本：9|@ohos.bundle.innerBundleManager.d.ts|
+|废弃版本有变化|方法名 or 属性名：getShortcutInfos<br>废弃版本：N/A|方法名 or 属性名：getShortcutInfos<br>废弃版本：9<br>代替接口：ohos.bundle.launcherBundleManager|@ohos.bundle.innerBundleManager.d.ts|
+|废弃版本有变化|方法名 or 属性名：getShortcutInfos<br>废弃版本：N/A|方法名 or 属性名：getShortcutInfos<br>废弃版本：9|@ohos.bundle.innerBundleManager.d.ts|
+|废弃版本有变化|类名：distributedBundle<br>废弃版本：N/A|类名：distributedBundle<br>废弃版本：9<br>代替接口：ohos.bundle.distributeBundle |@ohos.distributedBundle.d.ts|
+|废弃版本有变化|方法名 or 属性名：getRemoteAbilityInfo<br>废弃版本：N/A|方法名 or 属性名：getRemoteAbilityInfo<br>废弃版本：9<br>代替接口：ohos.bundle.distributeBundle|@ohos.distributedBundle.d.ts|
+|废弃版本有变化|方法名 or 属性名：getRemoteAbilityInfo<br>废弃版本：N/A|方法名 or 属性名：getRemoteAbilityInfo<br>废弃版本：9|@ohos.distributedBundle.d.ts|
+|废弃版本有变化|方法名 or 属性名：getRemoteAbilityInfos<br>废弃版本：N/A|方法名 or 属性名：getRemoteAbilityInfos<br>废弃版本：9<br>代替接口：ohos.bundle.distributeBundle|@ohos.distributedBundle.d.ts|
+|废弃版本有变化|方法名 or 属性名：getRemoteAbilityInfos<br>废弃版本：N/A|方法名 or 属性名：getRemoteAbilityInfos<br>废弃版本：9|@ohos.distributedBundle.d.ts|
+|废弃版本有变化|类名：ErrorCode<br>废弃版本：N/A|类名：ErrorCode<br>废弃版本：9|@ohos.zlib.d.ts|
+|废弃版本有变化|方法名 or 属性名：zipFile<br>废弃版本：N/A|方法名 or 属性名：zipFile<br>废弃版本：9<br>代替接口：ohos.zlib|@ohos.zlib.d.ts|
+|废弃版本有变化|方法名 or 属性名：unzipFile<br>废弃版本：N/A|方法名 or 属性名：unzipFile<br>废弃版本：9<br>代替接口：ohos.zlib|@ohos.zlib.d.ts|
+|废弃版本有变化|类名：CheckPackageHasInstalledResponse<br>废弃版本：N/A|类名：CheckPackageHasInstalledResponse<br>废弃版本：9|@system.package.d.ts|
+|废弃版本有变化|类名：CheckPackageHasInstalledOptions<br>废弃版本：N/A|类名：CheckPackageHasInstalledOptions<br>废弃版本：9|@system.package.d.ts|
+|废弃版本有变化|类名：Package<br>废弃版本：N/A|类名：Package<br>废弃版本：9|@system.package.d.ts|
+|废弃版本有变化|方法名 or 属性名：hasInstalled<br>废弃版本：N/A|方法名 or 属性名：hasInstalled<br>废弃版本：9|@system.package.d.ts|
+|废弃版本有变化|类名：AbilityInfo<br>废弃版本：N/A|类名：AbilityInfo<br>废弃版本：9<br>代替接口：ohos.bundle.bundleManager.AbilityInfo |abilityInfo.d.ts|
+|废弃版本有变化|类名：ApplicationInfo<br>废弃版本：N/A|类名：ApplicationInfo<br>废弃版本：9<br>代替接口：ohos.bundle.bundleManager.ApplicationInfo |applicationInfo.d.ts|
+|废弃版本有变化|类名：UsedScene<br>废弃版本：N/A|类名：UsedScene<br>废弃版本：9<br>代替接口：ohos.bundle.bundleManager.UsedScene |bundleInfo.d.ts|
+|废弃版本有变化|类名：ReqPermissionDetail<br>废弃版本：N/A|类名：ReqPermissionDetail<br>废弃版本：9<br>代替接口：ohos.bundle.bundleManager.ReqPermissionDetail |bundleInfo.d.ts|
+|废弃版本有变化|类名：BundleInfo<br>废弃版本：N/A|类名：BundleInfo<br>废弃版本：9<br>代替接口：ohos.bundle.bundleManager.BundleInfo |bundleInfo.d.ts|
+|废弃版本有变化|类名：InstallParam<br>废弃版本：N/A|类名：InstallParam<br>废弃版本：9<br>代替接口：ohos.bundle.installer|bundleInstaller.d.ts|
+|废弃版本有变化|方法名 or 属性名：userId<br>废弃版本：N/A|方法名 or 属性名：userId<br>废弃版本：9<br>代替接口：ohos.bundle.installer.InstallParam|bundleInstaller.d.ts|
+|废弃版本有变化|方法名 or 属性名：installFlag<br>废弃版本：N/A|方法名 or 属性名：installFlag<br>废弃版本：9<br>代替接口：ohos.bundle.installer.InstallParam|bundleInstaller.d.ts|
+|废弃版本有变化|方法名 or 属性名：isKeepData<br>废弃版本：N/A|方法名 or 属性名：isKeepData<br>废弃版本：9<br>代替接口：ohos.bundle.installer.InstallParam|bundleInstaller.d.ts|
+|废弃版本有变化|类名：InstallStatus<br>废弃版本：N/A|类名：InstallStatus<br>废弃版本：9|bundleInstaller.d.ts|
+|废弃版本有变化|方法名 or 属性名：status<br>废弃版本：N/A|方法名 or 属性名：status<br>废弃版本：9|bundleInstaller.d.ts|
+|废弃版本有变化|方法名 or 属性名：statusMessage<br>废弃版本：N/A|方法名 or 属性名：statusMessage<br>废弃版本：9|bundleInstaller.d.ts|
+|废弃版本有变化|类名：BundleInstaller<br>废弃版本：N/A|类名：BundleInstaller<br>废弃版本：9<br>代替接口：ohos.bundle.installer|bundleInstaller.d.ts|
+|废弃版本有变化|方法名 or 属性名：install<br>废弃版本：N/A|方法名 or 属性名：install<br>废弃版本：9<br>代替接口：ohos.bundle.installer.BundleInstaller|bundleInstaller.d.ts|
+|废弃版本有变化|方法名 or 属性名：uninstall<br>废弃版本：N/A|方法名 or 属性名：uninstall<br>废弃版本：9<br>代替接口：ohos.bundle.installer.BundleInstaller|bundleInstaller.d.ts|
+|废弃版本有变化|方法名 or 属性名：recover<br>废弃版本：N/A|方法名 or 属性名：recover<br>废弃版本：9<br>代替接口：ohos.bundle.installer.BundleInstaller|bundleInstaller.d.ts|
+|废弃版本有变化|类名：BundleStatusCallback<br>废弃版本：N/A|类名：BundleStatusCallback<br>废弃版本：9|bundleStatusCallback.d.ts|
+|废弃版本有变化|类名：CustomizeData<br>废弃版本：N/A|类名：CustomizeData<br>废弃版本：9<br>代替接口：ohos.bundle.bundleManager.Metadata |customizeData.d.ts|
+|废弃版本有变化|类名：ElementName<br>废弃版本：N/A|类名：ElementName<br>废弃版本：9<br>代替接口：ohos.bundle.bundleManager.ElementName |elementName.d.ts|
+|废弃版本有变化|类名：HapModuleInfo<br>废弃版本：N/A|类名：HapModuleInfo<br>废弃版本：9<br>代替接口：ohos.bundle.bundleManager.HapModuleInfo |hapModuleInfo.d.ts|
+|废弃版本有变化|类名：LauncherAbilityInfo<br>废弃版本：N/A|类名：LauncherAbilityInfo<br>废弃版本：9<br>代替接口：ohos.bundle.bundleManager.LauncherAbilityInfo |launcherAbilityInfo.d.ts|
+|废弃版本有变化|类名：ModuleInfo<br>废弃版本：N/A|类名：ModuleInfo<br>废弃版本：9<br>代替接口：ohos.bundle.bundleManager.HapModuleInfo |moduleInfo.d.ts|
+|废弃版本有变化|类名：PermissionDef<br>废弃版本：N/A|类名：PermissionDef<br>废弃版本：9<br>代替接口：ohos.bundle.bundleManager.PermissionDef |PermissionDef.d.ts|
+|废弃版本有变化|类名：RemoteAbilityInfo<br>废弃版本：N/A|类名：RemoteAbilityInfo<br>废弃版本：9<br>代替接口：ohos.bundle.distributedBundle.RemoteAbilityInfo |remoteAbilityInfo.d.ts|
+|废弃版本有变化|类名：ShortcutWant<br>废弃版本：N/A|类名：ShortcutWant<br>废弃版本：9<br>代替接口：ohos.bundle.launcherBundleManager.ShortcutWant  |shortcutInfo.d.ts|
+|废弃版本有变化|类名：ShortcutInfo<br>废弃版本：N/A|类名：ShortcutInfo<br>废弃版本：9<br>代替接口：ohos.bundle.launcherBundleManager.ShortcutInfo    |shortcutInfo.d.ts|
 |新增(错误码)||方法名 or 属性名：isDefaultApplication<br>错误码内容:401,801|@ohos.bundle.defaultAppManager.d.ts|
 |新增(错误码)||方法名 or 属性名：isDefaultApplication<br>错误码内容:401,801|@ohos.bundle.defaultAppManager.d.ts|
 |新增(错误码)||方法名 or 属性名：getDefaultApplication<br>错误码内容:201,401,801,17700004,17700023,17700025|@ohos.bundle.defaultAppManager.d.ts|

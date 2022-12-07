@@ -337,44 +337,35 @@
 |删除|模块名: ohos.fileManager<br>类名: FileInfo<br>方法名 or 属性名： modifiedTime||@ohos.fileManager.d.ts|
 |删除|模块名: ohos.fileManager<br>类名: DevInfo||@ohos.fileManager.d.ts|
 |删除|模块名: ohos.fileManager<br>类名: DevInfo<br>方法名 or 属性名： name||@ohos.fileManager.d.ts|
-|废弃版本有变化|方法名 or 属性名：ftruncate<br>废弃版本：|方法名 or 属性名：ftruncate<br>废弃版本：9<br>代替接口：ohos.file.fs.truncate |@ohos.fileio.d.ts|
-|废弃版本有变化|方法名 or 属性名：ftruncateSync<br>废弃版本：|方法名 or 属性名：ftruncateSync<br>废弃版本：9<br>代替接口：ohos.file.fs.truncateSync |@ohos.fileio.d.ts|
-|废弃版本有变化|方法名 or 属性名：fstat<br>废弃版本：|方法名 or 属性名：fstat<br>废弃版本：9<br>代替接口：ohos.file.fs.stat |@ohos.fileio.d.ts|
-|废弃版本有变化|方法名 or 属性名：fstatSync<br>废弃版本：|方法名 or 属性名：fstatSync<br>废弃版本：9<br>代替接口：ohos.file.fs.statSync |@ohos.fileio.d.ts|
-|废弃版本有变化|方法名 or 属性名：open<br>废弃版本：|方法名 or 属性名：open<br>废弃版本：9<br>代替接口：ohos.file.fs.open |@ohos.fileio.d.ts|
-|废弃版本有变化|方法名 or 属性名：openSync<br>废弃版本：|方法名 or 属性名：openSync<br>废弃版本：9<br>代替接口：ohos.file.fs.openSync |@ohos.fileio.d.ts|
-|废弃版本有变化|方法名 or 属性名：read<br>废弃版本：|方法名 or 属性名：read<br>废弃版本：9<br>代替接口：ohos.file.fs.read |@ohos.fileio.d.ts|
-|废弃版本有变化|方法名 or 属性名：readSync<br>废弃版本：|方法名 or 属性名：readSync<br>废弃版本：9<br>代替接口：ohos.file.fs.readSync |@ohos.fileio.d.ts|
-|废弃版本有变化|方法名 or 属性名：stat<br>废弃版本：|方法名 or 属性名：stat<br>废弃版本：9<br>代替接口：ohos.file.fs.stat |@ohos.fileio.d.ts|
-|废弃版本有变化|方法名 or 属性名：statSync<br>废弃版本：|方法名 or 属性名：statSync<br>废弃版本：9<br>代替接口：ohos.file.fs.statSync |@ohos.fileio.d.ts|
-|废弃版本有变化|方法名 or 属性名：truncate<br>废弃版本：|方法名 or 属性名：truncate<br>废弃版本：9<br>代替接口：ohos.file.fs.truncate |@ohos.fileio.d.ts|
-|废弃版本有变化|方法名 or 属性名：truncateSync<br>废弃版本：|方法名 or 属性名：truncateSync<br>废弃版本：9<br>代替接口：ohos.file.fs.truncateSync |@ohos.fileio.d.ts|
-|废弃版本有变化|方法名 or 属性名：write<br>废弃版本：|方法名 or 属性名：write<br>废弃版本：9<br>代替接口：ohos.file.fs.write |@ohos.fileio.d.ts|
-|废弃版本有变化|方法名 or 属性名：writeSync<br>废弃版本：|方法名 or 属性名：writeSync<br>废弃版本：9<br>代替接口：ohos.file.fs.writeSync |@ohos.fileio.d.ts|
-|废弃版本有变化|类名：Stat<br>废弃版本：|类名：Stat<br>废弃版本：9<br>代替接口：ohos.file.fs.Stat |@ohos.fileio.d.ts|
-|废弃版本有变化|方法名 or 属性名：dev<br>废弃版本：|方法名 or 属性名：dev<br>废弃版本：9<br>代替接口：ohos.file.fs.Stat |@ohos.fileio.d.ts|
-|废弃版本有变化|方法名 or 属性名：ino<br>废弃版本：|方法名 or 属性名：ino<br>废弃版本：9<br>代替接口：ohos.file.fs.Stat |@ohos.fileio.d.ts|
-|废弃版本有变化|方法名 or 属性名：mode<br>废弃版本：|方法名 or 属性名：mode<br>废弃版本：9<br>代替接口：ohos.file.fs.Stat |@ohos.fileio.d.ts|
-|废弃版本有变化|方法名 or 属性名：nlink<br>废弃版本：|方法名 or 属性名：nlink<br>废弃版本：9<br>代替接口：ohos.file.fs.Stat |@ohos.fileio.d.ts|
-|废弃版本有变化|方法名 or 属性名：uid<br>废弃版本：|方法名 or 属性名：uid<br>废弃版本：9<br>代替接口：ohos.file.fs.Stat |@ohos.fileio.d.ts|
-|废弃版本有变化|方法名 or 属性名：gid<br>废弃版本：|方法名 or 属性名：gid<br>废弃版本：9<br>代替接口：ohos.file.fs.Stat |@ohos.fileio.d.ts|
-|废弃版本有变化|方法名 or 属性名：rdev<br>废弃版本：|方法名 or 属性名：rdev<br>废弃版本：9<br>代替接口：ohos.file.fs.Stat |@ohos.fileio.d.ts|
-|废弃版本有变化|方法名 or 属性名：size<br>废弃版本：|方法名 or 属性名：size<br>废弃版本：9<br>代替接口：ohos.file.fs.Stat |@ohos.fileio.d.ts|
-|废弃版本有变化|方法名 or 属性名：blocks<br>废弃版本：|方法名 or 属性名：blocks<br>废弃版本：9<br>代替接口：ohos.file.fs.Stat |@ohos.fileio.d.ts|
-|废弃版本有变化|方法名 or 属性名：atime<br>废弃版本：|方法名 or 属性名：atime<br>废弃版本：9<br>代替接口：ohos.file.fs.Stat |@ohos.fileio.d.ts|
-|废弃版本有变化|方法名 or 属性名：mtime<br>废弃版本：|方法名 or 属性名：mtime<br>废弃版本：9<br>代替接口：ohos.file.fs.Stat |@ohos.fileio.d.ts|
-|废弃版本有变化|方法名 or 属性名：ctime<br>废弃版本：|方法名 or 属性名：ctime<br>废弃版本：9<br>代替接口：ohos.file.fs.Stat |@ohos.fileio.d.ts|
-|废弃版本有变化|方法名 or 属性名：isBlockDevice<br>废弃版本：|方法名 or 属性名：isBlockDevice<br>废弃版本：9<br>代替接口：ohos.file.fs.Stat |@ohos.fileio.d.ts|
-|废弃版本有变化|方法名 or 属性名：isCharacterDevice<br>废弃版本：|方法名 or 属性名：isCharacterDevice<br>废弃版本：9<br>代替接口：ohos.file.fs.Stat |@ohos.fileio.d.ts|
-|废弃版本有变化|方法名 or 属性名：isDirectory<br>废弃版本：|方法名 or 属性名：isDirectory<br>废弃版本：9<br>代替接口：ohos.file.fs.Stat |@ohos.fileio.d.ts|
-|废弃版本有变化|方法名 or 属性名：isFIFO<br>废弃版本：|方法名 or 属性名：isFIFO<br>废弃版本：9<br>代替接口：ohos.file.fs.Stat |@ohos.fileio.d.ts|
-|废弃版本有变化|方法名 or 属性名：isFile<br>废弃版本：|方法名 or 属性名：isFile<br>废弃版本：9<br>代替接口：ohos.file.fs.Stat |@ohos.fileio.d.ts|
-|废弃版本有变化|方法名 or 属性名：isSocket<br>废弃版本：|方法名 or 属性名：isSocket<br>废弃版本：9<br>代替接口：ohos.file.fs.Stat |@ohos.fileio.d.ts|
-|废弃版本有变化|方法名 or 属性名：isSymbolicLink<br>废弃版本：|方法名 or 属性名：isSymbolicLink<br>废弃版本：9<br>代替接口：ohos.file.fs.Stat |@ohos.fileio.d.ts|
-|废弃版本有变化|类名：ReadOut<br>废弃版本：|类名：ReadOut<br>废弃版本：9|@ohos.fileio.d.ts|
-|废弃版本有变化|方法名 or 属性名：bytesRead<br>废弃版本：|方法名 or 属性名：bytesRead<br>废弃版本：9|@ohos.fileio.d.ts|
-|废弃版本有变化|方法名 or 属性名：offset<br>废弃版本：|方法名 or 属性名：offset<br>废弃版本：9|@ohos.fileio.d.ts|
-|废弃版本有变化|方法名 or 属性名：buffer<br>废弃版本：|方法名 or 属性名：buffer<br>废弃版本：9|@ohos.fileio.d.ts|
+|废弃版本有变化|方法名 or 属性名：ftruncate<br>废弃版本：N/A|方法名 or 属性名：ftruncate<br>废弃版本：9<br>代替接口：ohos.file.fs.truncate |@ohos.fileio.d.ts|
+|废弃版本有变化|方法名 or 属性名：ftruncate<br>废弃版本：N/A|方法名 or 属性名：ftruncate<br>废弃版本：9|@ohos.fileio.d.ts|
+|废弃版本有变化|方法名 or 属性名：ftruncate<br>废弃版本：N/A|方法名 or 属性名：ftruncate<br>废弃版本：9|@ohos.fileio.d.ts|
+|废弃版本有变化|方法名 or 属性名：ftruncateSync<br>废弃版本：N/A|方法名 or 属性名：ftruncateSync<br>废弃版本：9<br>代替接口：ohos.file.fs.truncateSync |@ohos.fileio.d.ts|
+|废弃版本有变化|方法名 or 属性名：fstat<br>废弃版本：N/A|方法名 or 属性名：fstat<br>废弃版本：9<br>代替接口：ohos.file.fs.stat |@ohos.fileio.d.ts|
+|废弃版本有变化|方法名 or 属性名：fstat<br>废弃版本：N/A|方法名 or 属性名：fstat<br>废弃版本：9|@ohos.fileio.d.ts|
+|废弃版本有变化|方法名 or 属性名：fstatSync<br>废弃版本：N/A|方法名 or 属性名：fstatSync<br>废弃版本：9<br>代替接口：ohos.file.fs.statSync |@ohos.fileio.d.ts|
+|废弃版本有变化|方法名 or 属性名：open<br>废弃版本：N/A|方法名 or 属性名：open<br>废弃版本：9<br>代替接口：ohos.file.fs.open |@ohos.fileio.d.ts|
+|废弃版本有变化|方法名 or 属性名：open<br>废弃版本：N/A|方法名 or 属性名：open<br>废弃版本：9|@ohos.fileio.d.ts|
+|废弃版本有变化|方法名 or 属性名：open<br>废弃版本：N/A|方法名 or 属性名：open<br>废弃版本：9|@ohos.fileio.d.ts|
+|废弃版本有变化|方法名 or 属性名：open<br>废弃版本：N/A|方法名 or 属性名：open<br>废弃版本：9|@ohos.fileio.d.ts|
+|废弃版本有变化|方法名 or 属性名：openSync<br>废弃版本：N/A|方法名 or 属性名：openSync<br>废弃版本：9<br>代替接口：ohos.file.fs.openSync |@ohos.fileio.d.ts|
+|废弃版本有变化|方法名 or 属性名：read<br>废弃版本：N/A|方法名 or 属性名：read<br>废弃版本：9<br>代替接口：ohos.file.fs.read |@ohos.fileio.d.ts|
+|废弃版本有变化|方法名 or 属性名：read<br>废弃版本：N/A|方法名 or 属性名：read<br>废弃版本：9|@ohos.fileio.d.ts|
+|废弃版本有变化|方法名 or 属性名：read<br>废弃版本：N/A|方法名 or 属性名：read<br>废弃版本：9|@ohos.fileio.d.ts|
+|废弃版本有变化|方法名 or 属性名：readSync<br>废弃版本：N/A|方法名 or 属性名：readSync<br>废弃版本：9<br>代替接口：ohos.file.fs.readSync |@ohos.fileio.d.ts|
+|废弃版本有变化|方法名 or 属性名：stat<br>废弃版本：N/A|方法名 or 属性名：stat<br>废弃版本：9<br>代替接口：ohos.file.fs.stat |@ohos.fileio.d.ts|
+|废弃版本有变化|方法名 or 属性名：stat<br>废弃版本：N/A|方法名 or 属性名：stat<br>废弃版本：9|@ohos.fileio.d.ts|
+|废弃版本有变化|方法名 or 属性名：statSync<br>废弃版本：N/A|方法名 or 属性名：statSync<br>废弃版本：9<br>代替接口：ohos.file.fs.statSync |@ohos.fileio.d.ts|
+|废弃版本有变化|方法名 or 属性名：truncate<br>废弃版本：N/A|方法名 or 属性名：truncate<br>废弃版本：9<br>代替接口：ohos.file.fs.truncate |@ohos.fileio.d.ts|
+|废弃版本有变化|方法名 or 属性名：truncate<br>废弃版本：N/A|方法名 or 属性名：truncate<br>废弃版本：9|@ohos.fileio.d.ts|
+|废弃版本有变化|方法名 or 属性名：truncate<br>废弃版本：N/A|方法名 or 属性名：truncate<br>废弃版本：9|@ohos.fileio.d.ts|
+|废弃版本有变化|方法名 or 属性名：truncateSync<br>废弃版本：N/A|方法名 or 属性名：truncateSync<br>废弃版本：9<br>代替接口：ohos.file.fs.truncateSync |@ohos.fileio.d.ts|
+|废弃版本有变化|方法名 or 属性名：write<br>废弃版本：N/A|方法名 or 属性名：write<br>废弃版本：9<br>代替接口：ohos.file.fs.write |@ohos.fileio.d.ts|
+|废弃版本有变化|方法名 or 属性名：write<br>废弃版本：N/A|方法名 or 属性名：write<br>废弃版本：9|@ohos.fileio.d.ts|
+|废弃版本有变化|方法名 or 属性名：write<br>废弃版本：N/A|方法名 or 属性名：write<br>废弃版本：9|@ohos.fileio.d.ts|
+|废弃版本有变化|方法名 or 属性名：writeSync<br>废弃版本：N/A|方法名 or 属性名：writeSync<br>废弃版本：9<br>代替接口：ohos.file.fs.writeSync |@ohos.fileio.d.ts|
+|废弃版本有变化|类名：Stat<br>废弃版本：N/A|类名：Stat<br>废弃版本：9<br>代替接口：ohos.file.fs.Stat |@ohos.fileio.d.ts|
+|废弃版本有变化|类名：ReadOut<br>废弃版本：N/A|类名：ReadOut<br>废弃版本：9|@ohos.fileio.d.ts|
 |权限有变化|方法名 or 属性名：getFileAccessAbilityInfo<br>权限:ohos.permission.FILE_ACCESS_MANAGER|方法名 or 属性名：getFileAccessAbilityInfo<br>权限:ohos.permission.FILE_ACCESS_MANAGER and ohos.permission.GET_BUNDLE_INFO_PRIVILEGED|@ohos.data.fileAccess.d.ts|
 |权限有变化|方法名 or 属性名：getFileAccessAbilityInfo<br>权限:ohos.permission.FILE_ACCESS_MANAGER|方法名 or 属性名：getFileAccessAbilityInfo<br>权限:ohos.permission.FILE_ACCESS_MANAGER and ohos.permission.GET_BUNDLE_INFO_PRIVILEGED|@ohos.data.fileAccess.d.ts|
 |权限有变化|方法名 or 属性名：createFileAccessHelper<br>权限:ohos.permission.FILE_ACCESS_MANAGER|方法名 or 属性名：createFileAccessHelper<br>权限:ohos.permission.FILE_ACCESS_MANAGER and ohos.permission.GET_BUNDLE_INFO_PRIVILEGED|@ohos.data.fileAccess.d.ts|

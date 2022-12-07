@@ -1,5 +1,6 @@
 | 操作 | 新版本 | 旧版本 | d.ts文件 |
 | ---- | ------ | ------ | -------- |
+|新增||模块名：ohos.multimedia.audio<br>类名:audio|@ohos.multimedia.audio.d.ts|
 |新增||模块名: ohos.multimedia.audio<br>类名: AudioErrors|@ohos.multimedia.audio.d.ts|
 |新增||模块名: ohos.multimedia.audio<br>类名: AudioErrors<br>方法名 or 属性名：ERROR_INVALID_PARAM|@ohos.multimedia.audio.d.ts|
 |新增||模块名: ohos.multimedia.audio<br>类名: AudioErrors<br>方法名 or 属性名：ERROR_NO_MEMORY|@ohos.multimedia.audio.d.ts|
@@ -8,10 +9,10 @@
 |新增||模块名: ohos.multimedia.audio<br>类名: AudioErrors<br>方法名 or 属性名：ERROR_TIMEOUT|@ohos.multimedia.audio.d.ts|
 |新增||模块名: ohos.multimedia.audio<br>类名: AudioErrors<br>方法名 or 属性名：ERROR_STREAM_LIMIT|@ohos.multimedia.audio.d.ts|
 |新增||模块名: ohos.multimedia.audio<br>类名: AudioErrors<br>方法名 or 属性名：ERROR_SYSTEM|@ohos.multimedia.audio.d.ts|
-|新增||模块名: ohos.multimedia.audio<br>类名: audio<br>方法名 or 属性名：DEFAULT_VOLUME_GROUP_ID|@ohos.multimedia.audio.d.ts|
-|新增||模块名: ohos.multimedia.audio<br>类名: audio<br>方法名 or 属性名：DEFAULT_INTERRUPT_GROUP_ID|@ohos.multimedia.audio.d.ts|
-|新增||模块名: ohos.multimedia.audio<br>类名: audio<br>方法名 or 属性名：createTonePlayer|@ohos.multimedia.audio.d.ts|
-|新增||模块名: ohos.multimedia.audio<br>类名: audio<br>方法名 or 属性名：createTonePlayer|@ohos.multimedia.audio.d.ts|
+|新增||模块名：ohos.multimedia.audio<br>类名:audio<br>方法名 or 属性名:DEFAULT_VOLUME_GROUP_ID|@ohos.multimedia.audio.d.ts|
+|新增||模块名：ohos.multimedia.audio<br>类名:audio<br>方法名 or 属性名:DEFAULT_INTERRUPT_GROUP_ID|@ohos.multimedia.audio.d.ts|
+|新增||模块名：ohos.multimedia.audio<br>类名:audio<br>方法名 or 属性名:createTonePlayer|@ohos.multimedia.audio.d.ts|
+|新增||模块名：ohos.multimedia.audio<br>类名:audio<br>方法名 or 属性名:createTonePlayer|@ohos.multimedia.audio.d.ts|
 |新增||模块名: ohos.multimedia.audio<br>类名: CommunicationDeviceType|@ohos.multimedia.audio.d.ts|
 |新增||模块名: ohos.multimedia.audio<br>类名: CommunicationDeviceType<br>方法名 or 属性名：SPEAKER|@ohos.multimedia.audio.d.ts|
 |新增||模块名: ohos.multimedia.audio<br>类名: StreamUsage<br>方法名 or 属性名：STREAM_USAGE_VOICE_ASSISTANT|@ohos.multimedia.audio.d.ts|
@@ -469,30 +470,31 @@
 |新增||模块名: ohos.multimedia.camera<br>类名: MetadataOutputErrorCode<br>方法名 or 属性名：ERROR_INSUFFICIENT_RESOURCES|@ohos.multimedia.camera.d.ts|
 |新增||模块名: ohos.multimedia.camera<br>类名: MetadataOutputError|@ohos.multimedia.camera.d.ts|
 |新增||模块名: ohos.multimedia.camera<br>类名: MetadataOutputError<br>方法名 or 属性名：code|@ohos.multimedia.camera.d.ts|
-|新增||模块名: ohos.multimedia.image<br>类名: PixelMapFormat<br>方法名 or 属性名： RGB_888|@ohos.multimedia.image.d.ts|
-|新增||模块名: ohos.multimedia.image<br>类名: PixelMapFormat<br>方法名 or 属性名： ALPHA_8|@ohos.multimedia.image.d.ts|
-|新增||模块名: ohos.multimedia.image<br>类名: PixelMapFormat<br>方法名 or 属性名： RGBA_F16|@ohos.multimedia.image.d.ts|
-|新增||模块名: ohos.multimedia.image<br>类名: PixelMapFormat<br>方法名 or 属性名： NV21|@ohos.multimedia.image.d.ts|
-|新增||模块名: ohos.multimedia.image<br>类名: PixelMapFormat<br>方法名 or 属性名： NV12|@ohos.multimedia.image.d.ts|
-|新增||模块名: ohos.multimedia.image<br>类名: PropertyKey<br>方法名 or 属性名： DATE_TIME_ORIGINAL|@ohos.multimedia.image.d.ts|
-|新增||模块名: ohos.multimedia.image<br>类名: PropertyKey<br>方法名 or 属性名： EXPOSURE_TIME|@ohos.multimedia.image.d.ts|
-|新增||模块名: ohos.multimedia.image<br>类名: PropertyKey<br>方法名 or 属性名： SCENE_TYPE|@ohos.multimedia.image.d.ts|
-|新增||模块名: ohos.multimedia.image<br>类名: PropertyKey<br>方法名 or 属性名： ISO_SPEED_RATINGS|@ohos.multimedia.image.d.ts|
-|新增||模块名: ohos.multimedia.image<br>类名: PropertyKey<br>方法名 or 属性名： F_NUMBER|@ohos.multimedia.image.d.ts|
-|新增||模块名: ohos.multimedia.image<br>类名: ImageInfo<br>方法名 or 属性名： density|@ohos.multimedia.image.d.ts|
-|新增||模块名: ohos.multimedia.image<br>类名: PackingOption<br>方法名 or 属性名： bufferSize|@ohos.multimedia.image.d.ts|
-|新增||模块名: ohos.multimedia.image<br>类名: DecodingOptions<br>方法名 or 属性名： fitDensity|@ohos.multimedia.image.d.ts|
-|新增||模块名: ohos.multimedia.image<br>类名: image<br>方法名 or 属性名： createImageCreator|@ohos.multimedia.image.d.ts|
+|新增||模块名：ohos.multimedia.image<br>类名:image|@ohos.multimedia.image.d.ts|
+|新增||模块名: ohos.multimedia.image<br>类名: PixelMapFormat<br>方法名 or 属性名：RGB_888|@ohos.multimedia.image.d.ts|
+|新增||模块名: ohos.multimedia.image<br>类名: PixelMapFormat<br>方法名 or 属性名：ALPHA_8|@ohos.multimedia.image.d.ts|
+|新增||模块名: ohos.multimedia.image<br>类名: PixelMapFormat<br>方法名 or 属性名：RGBA_F16|@ohos.multimedia.image.d.ts|
+|新增||模块名: ohos.multimedia.image<br>类名: PixelMapFormat<br>方法名 or 属性名：NV21|@ohos.multimedia.image.d.ts|
+|新增||模块名: ohos.multimedia.image<br>类名: PixelMapFormat<br>方法名 or 属性名：NV12|@ohos.multimedia.image.d.ts|
+|新增||模块名: ohos.multimedia.image<br>类名: PropertyKey<br>方法名 or 属性名：DATE_TIME_ORIGINAL|@ohos.multimedia.image.d.ts|
+|新增||模块名: ohos.multimedia.image<br>类名: PropertyKey<br>方法名 or 属性名：EXPOSURE_TIME|@ohos.multimedia.image.d.ts|
+|新增||模块名: ohos.multimedia.image<br>类名: PropertyKey<br>方法名 or 属性名：SCENE_TYPE|@ohos.multimedia.image.d.ts|
+|新增||模块名: ohos.multimedia.image<br>类名: PropertyKey<br>方法名 or 属性名：ISO_SPEED_RATINGS|@ohos.multimedia.image.d.ts|
+|新增||模块名: ohos.multimedia.image<br>类名: PropertyKey<br>方法名 or 属性名：F_NUMBER|@ohos.multimedia.image.d.ts|
+|新增||模块名: ohos.multimedia.image<br>类名: ImageInfo<br>方法名 or 属性名：density|@ohos.multimedia.image.d.ts|
+|新增||模块名: ohos.multimedia.image<br>类名: PackingOption<br>方法名 or 属性名：bufferSize|@ohos.multimedia.image.d.ts|
+|新增||模块名: ohos.multimedia.image<br>类名: DecodingOptions<br>方法名 or 属性名：fitDensity|@ohos.multimedia.image.d.ts|
+|新增||模块名：ohos.multimedia.image<br>类名:image<br>方法名 or 属性名:createImageCreator|@ohos.multimedia.image.d.ts|
 |新增||模块名: ohos.multimedia.image<br>类名: ImageCreator|@ohos.multimedia.image.d.ts|
-|新增||模块名: ohos.multimedia.image<br>类名: ImageCreator<br>方法名 or 属性名： capacity|@ohos.multimedia.image.d.ts|
-|新增||模块名: ohos.multimedia.image<br>类名: ImageCreator<br>方法名 or 属性名： format|@ohos.multimedia.image.d.ts|
-|新增||模块名: ohos.multimedia.image<br>类名: ImageCreator<br>方法名 or 属性名： dequeueImage|@ohos.multimedia.image.d.ts|
-|新增||模块名: ohos.multimedia.image<br>类名: ImageCreator<br>方法名 or 属性名： dequeueImage|@ohos.multimedia.image.d.ts|
-|新增||模块名: ohos.multimedia.image<br>类名: ImageCreator<br>方法名 or 属性名： queueImage|@ohos.multimedia.image.d.ts|
-|新增||模块名: ohos.multimedia.image<br>类名: ImageCreator<br>方法名 or 属性名： queueImage|@ohos.multimedia.image.d.ts|
-|新增||模块名: ohos.multimedia.image<br>类名: ImageCreator<br>方法名 or 属性名： on_imageRelease|@ohos.multimedia.image.d.ts|
-|新增||模块名: ohos.multimedia.image<br>类名: ImageCreator<br>方法名 or 属性名： release|@ohos.multimedia.image.d.ts|
-|新增||模块名: ohos.multimedia.image<br>类名: ImageCreator<br>方法名 or 属性名： release|@ohos.multimedia.image.d.ts|
+|新增||模块名: ohos.multimedia.image<br>类名: ImageCreator<br>方法名 or 属性名：capacity|@ohos.multimedia.image.d.ts|
+|新增||模块名: ohos.multimedia.image<br>类名: ImageCreator<br>方法名 or 属性名：format|@ohos.multimedia.image.d.ts|
+|新增||模块名: ohos.multimedia.image<br>类名: ImageCreator<br>方法名 or 属性名：dequeueImage|@ohos.multimedia.image.d.ts|
+|新增||模块名: ohos.multimedia.image<br>类名: ImageCreator<br>方法名 or 属性名：dequeueImage|@ohos.multimedia.image.d.ts|
+|新增||模块名: ohos.multimedia.image<br>类名: ImageCreator<br>方法名 or 属性名：queueImage|@ohos.multimedia.image.d.ts|
+|新增||模块名: ohos.multimedia.image<br>类名: ImageCreator<br>方法名 or 属性名：queueImage|@ohos.multimedia.image.d.ts|
+|新增||模块名: ohos.multimedia.image<br>类名: ImageCreator<br>方法名 or 属性名：on_imageRelease|@ohos.multimedia.image.d.ts|
+|新增||模块名: ohos.multimedia.image<br>类名: ImageCreator<br>方法名 or 属性名：release|@ohos.multimedia.image.d.ts|
+|新增||模块名: ohos.multimedia.image<br>类名: ImageCreator<br>方法名 or 属性名：release|@ohos.multimedia.image.d.ts|
 |新增||方法名 or 属性名：audioSourceType<br>函数：audioSourceType?: AudioSourceType;|@ohos.multimedia.media.d.ts|
 |删除|模块名: ohos.multimedia.audio<br>类名: FocusType||@ohos.multimedia.audio.d.ts|
 |删除|模块名: ohos.multimedia.audio<br>类名: FocusType<br>方法名 or 属性名：FOCUS_TYPE_RECORDING||@ohos.multimedia.audio.d.ts|
@@ -567,210 +569,254 @@
 |删除|模块名: ohos.multimedia.media<br>类名: VideoPlayer<br>方法名 or 属性名：selectBitrate||@ohos.multimedia.media.d.ts|
 |删除|模块名: ohos.multimedia.media<br>类名: VideoPlayer<br>方法名 or 属性名：selectBitrate||@ohos.multimedia.media.d.ts|
 |删除|模块名: ohos.multimedia.media<br>类名: VideoPlayer<br>方法名 or 属性名：on_availableBitratesCollect||@ohos.multimedia.media.d.ts|
-|废弃版本有变化|类名：ActiveDeviceType<br>废弃版本：|类名：ActiveDeviceType<br>废弃版本：9<br>代替接口：ohos.multimedia.audio.CommunicationDeviceType   |@ohos.multimedia.audio.d.ts|
-|废弃版本有变化|方法名 or 属性名：SPEAKER<br>废弃版本：|方法名 or 属性名：SPEAKER<br>废弃版本：9<br>代替接口：ohos.multimedia.audio.CommunicationDeviceType.SPEAKER     |@ohos.multimedia.audio.d.ts|
-|废弃版本有变化|方法名 or 属性名：BLUETOOTH_SCO<br>废弃版本：|方法名 or 属性名：BLUETOOTH_SCO<br>废弃版本：9<br>代替接口：ohos.multimedia.audio.CommunicationDeviceType   |@ohos.multimedia.audio.d.ts|
-|废弃版本有变化|类名：InterruptActionType<br>废弃版本：|类名：InterruptActionType<br>废弃版本：9|@ohos.multimedia.audio.d.ts|
-|废弃版本有变化|方法名 or 属性名：TYPE_ACTIVATED<br>废弃版本：|方法名 or 属性名：TYPE_ACTIVATED<br>废弃版本：9|@ohos.multimedia.audio.d.ts|
-|废弃版本有变化|方法名 or 属性名：TYPE_INTERRUPT<br>废弃版本：|方法名 or 属性名：TYPE_INTERRUPT<br>废弃版本：9|@ohos.multimedia.audio.d.ts|
-|废弃版本有变化|方法名 or 属性名：setVolume<br>废弃版本：|方法名 or 属性名：setVolume<br>废弃版本：9<br>代替接口：ohos.multimedia.audio.AudioVolumeGroupManager|@ohos.multimedia.audio.d.ts|
-|废弃版本有变化|方法名 or 属性名：setVolume<br>废弃版本：|方法名 or 属性名：setVolume<br>废弃版本：9<br>代替接口：ohos.multimedia.audio.AudioVolumeGroupManager|@ohos.multimedia.audio.d.ts|
-|废弃版本有变化|方法名 or 属性名：getVolume<br>废弃版本：|方法名 or 属性名：getVolume<br>废弃版本：9<br>代替接口：ohos.multimedia.audio.AudioVolumeGroupManager|@ohos.multimedia.audio.d.ts|
-|废弃版本有变化|方法名 or 属性名：getVolume<br>废弃版本：|方法名 or 属性名：getVolume<br>废弃版本：9<br>代替接口：ohos.multimedia.audio.AudioVolumeGroupManager|@ohos.multimedia.audio.d.ts|
-|废弃版本有变化|方法名 or 属性名：getMinVolume<br>废弃版本：|方法名 or 属性名：getMinVolume<br>废弃版本：9<br>代替接口：ohos.multimedia.audio.AudioVolumeGroupManager|@ohos.multimedia.audio.d.ts|
-|废弃版本有变化|方法名 or 属性名：getMinVolume<br>废弃版本：|方法名 or 属性名：getMinVolume<br>废弃版本：9<br>代替接口：ohos.multimedia.audio.AudioVolumeGroupManager|@ohos.multimedia.audio.d.ts|
-|废弃版本有变化|方法名 or 属性名：getMaxVolume<br>废弃版本：|方法名 or 属性名：getMaxVolume<br>废弃版本：9<br>代替接口：ohos.multimedia.audio.AudioVolumeGroupManager|@ohos.multimedia.audio.d.ts|
-|废弃版本有变化|方法名 or 属性名：getMaxVolume<br>废弃版本：|方法名 or 属性名：getMaxVolume<br>废弃版本：9<br>代替接口：ohos.multimedia.audio.AudioVolumeGroupManager|@ohos.multimedia.audio.d.ts|
-|废弃版本有变化|方法名 or 属性名：getDevices<br>废弃版本：|方法名 or 属性名：getDevices<br>废弃版本：9<br>代替接口：ohos.multimedia.audio.AudioRoutingManager|@ohos.multimedia.audio.d.ts|
-|废弃版本有变化|方法名 or 属性名：getDevices<br>废弃版本：|方法名 or 属性名：getDevices<br>废弃版本：9<br>代替接口：ohos.multimedia.audio.AudioRoutingManager|@ohos.multimedia.audio.d.ts|
-|废弃版本有变化|方法名 or 属性名：mute<br>废弃版本：|方法名 or 属性名：mute<br>废弃版本：9<br>代替接口：ohos.multimedia.audio.AudioVolumeGroupManager|@ohos.multimedia.audio.d.ts|
-|废弃版本有变化|方法名 or 属性名：mute<br>废弃版本：|方法名 or 属性名：mute<br>废弃版本：9<br>代替接口：ohos.multimedia.audio.AudioVolumeGroupManager|@ohos.multimedia.audio.d.ts|
-|废弃版本有变化|方法名 or 属性名：isMute<br>废弃版本：|方法名 or 属性名：isMute<br>废弃版本：9<br>代替接口：ohos.multimedia.audio.AudioVolumeGroupManager|@ohos.multimedia.audio.d.ts|
-|废弃版本有变化|方法名 or 属性名：isMute<br>废弃版本：|方法名 or 属性名：isMute<br>废弃版本：9<br>代替接口：ohos.multimedia.audio.AudioVolumeGroupManager|@ohos.multimedia.audio.d.ts|
-|废弃版本有变化|方法名 or 属性名：isActive<br>废弃版本：|方法名 or 属性名：isActive<br>废弃版本：9<br>代替接口：ohos.multimedia.audio.AudioStreamManager|@ohos.multimedia.audio.d.ts|
-|废弃版本有变化|方法名 or 属性名：isActive<br>废弃版本：|方法名 or 属性名：isActive<br>废弃版本：9<br>代替接口：ohos.multimedia.audio.AudioStreamManager|@ohos.multimedia.audio.d.ts|
-|废弃版本有变化|方法名 or 属性名：setMicrophoneMute<br>废弃版本：|方法名 or 属性名：setMicrophoneMute<br>废弃版本：9<br>代替接口：ohos.multimedia.audio.AudioVolumeGroupManager|@ohos.multimedia.audio.d.ts|
-|废弃版本有变化|方法名 or 属性名：setMicrophoneMute<br>废弃版本：|方法名 or 属性名：setMicrophoneMute<br>废弃版本：9<br>代替接口：ohos.multimedia.audio.AudioVolumeGroupManager|@ohos.multimedia.audio.d.ts|
-|废弃版本有变化|方法名 or 属性名：isMicrophoneMute<br>废弃版本：|方法名 or 属性名：isMicrophoneMute<br>废弃版本：9<br>代替接口：ohos.multimedia.audio.AudioVolumeGroupManager|@ohos.multimedia.audio.d.ts|
-|废弃版本有变化|方法名 or 属性名：isMicrophoneMute<br>废弃版本：|方法名 or 属性名：isMicrophoneMute<br>废弃版本：9<br>代替接口：ohos.multimedia.audio.AudioVolumeGroupManager|@ohos.multimedia.audio.d.ts|
-|废弃版本有变化|方法名 or 属性名：setRingerMode<br>废弃版本：|方法名 or 属性名：setRingerMode<br>废弃版本：9<br>代替接口：ohos.multimedia.audio.AudioVolumeGroupManager|@ohos.multimedia.audio.d.ts|
-|废弃版本有变化|方法名 or 属性名：setRingerMode<br>废弃版本：|方法名 or 属性名：setRingerMode<br>废弃版本：9<br>代替接口：ohos.multimedia.audio.AudioVolumeGroupManager|@ohos.multimedia.audio.d.ts|
-|废弃版本有变化|方法名 or 属性名：getRingerMode<br>废弃版本：|方法名 or 属性名：getRingerMode<br>废弃版本：9<br>代替接口：ohos.multimedia.audio.AudioVolumeGroupManager|@ohos.multimedia.audio.d.ts|
-|废弃版本有变化|方法名 or 属性名：getRingerMode<br>废弃版本：|方法名 or 属性名：getRingerMode<br>废弃版本：9<br>代替接口：ohos.multimedia.audio.AudioVolumeGroupManager|@ohos.multimedia.audio.d.ts|
-|废弃版本有变化|方法名 or 属性名：setDeviceActive<br>废弃版本：|方法名 or 属性名：setDeviceActive<br>废弃版本：9<br>代替接口：ohos.multimedia.audio.AudioRoutingManager|@ohos.multimedia.audio.d.ts|
-|废弃版本有变化|方法名 or 属性名：setDeviceActive<br>废弃版本：|方法名 or 属性名：setDeviceActive<br>废弃版本：9<br>代替接口：ohos.multimedia.audio.AudioRoutingManager|@ohos.multimedia.audio.d.ts|
-|废弃版本有变化|方法名 or 属性名：isDeviceActive<br>废弃版本：|方法名 or 属性名：isDeviceActive<br>废弃版本：9<br>代替接口：ohos.multimedia.audio.AudioRoutingManager|@ohos.multimedia.audio.d.ts|
-|废弃版本有变化|方法名 or 属性名：isDeviceActive<br>废弃版本：|方法名 or 属性名：isDeviceActive<br>废弃版本：9<br>代替接口：ohos.multimedia.audio.AudioRoutingManager|@ohos.multimedia.audio.d.ts|
-|废弃版本有变化|方法名 or 属性名：on_volumeChange<br>废弃版本：|方法名 or 属性名：on_volumeChange<br>废弃版本：9<br>代替接口：ohos.multimedia.audio.AudioVolumeManager|@ohos.multimedia.audio.d.ts|
-|废弃版本有变化|方法名 or 属性名：on_ringerModeChange<br>废弃版本：|方法名 or 属性名：on_ringerModeChange<br>废弃版本：9<br>代替接口：ohos.multimedia.audio.AudioVolumeGroupManager|@ohos.multimedia.audio.d.ts|
-|废弃版本有变化|方法名 or 属性名：on_deviceChange<br>废弃版本：|方法名 or 属性名：on_deviceChange<br>废弃版本：9<br>代替接口：ohos.multimedia.audio.AudioRoutingManager|@ohos.multimedia.audio.d.ts|
-|废弃版本有变化|方法名 or 属性名：off_deviceChange<br>废弃版本：|方法名 or 属性名：off_deviceChange<br>废弃版本：9<br>代替接口：ohos.multimedia.audio.AudioRoutingManager|@ohos.multimedia.audio.d.ts|
-|废弃版本有变化|类名：InterruptAction<br>废弃版本：|类名：InterruptAction<br>废弃版本：9<br>代替接口：ohos.multimedia.audio.InterruptEvent   |@ohos.multimedia.audio.d.ts|
-|废弃版本有变化|方法名 or 属性名：actionType<br>废弃版本：|方法名 or 属性名：actionType<br>废弃版本：9<br>代替接口：ohos.multimedia.audio.InterruptEvent   |@ohos.multimedia.audio.d.ts|
-|废弃版本有变化|方法名 or 属性名：type<br>废弃版本：|方法名 or 属性名：type<br>废弃版本：9<br>代替接口：ohos.multimedia.audio.InterruptEvent   |@ohos.multimedia.audio.d.ts|
-|废弃版本有变化|方法名 or 属性名：hint<br>废弃版本：|方法名 or 属性名：hint<br>废弃版本：9<br>代替接口：ohos.multimedia.audio.InterruptEvent   |@ohos.multimedia.audio.d.ts|
-|废弃版本有变化|方法名 or 属性名：activated<br>废弃版本：|方法名 or 属性名：activated<br>废弃版本：9<br>代替接口：ohos.multimedia.audio.InterruptEvent   |@ohos.multimedia.audio.d.ts|
-|废弃版本有变化|类名：AudioInterrupt<br>废弃版本：|类名：AudioInterrupt<br>废弃版本：9|@ohos.multimedia.audio.d.ts|
-|废弃版本有变化|方法名 or 属性名：streamUsage<br>废弃版本：|方法名 or 属性名：streamUsage<br>废弃版本：9|@ohos.multimedia.audio.d.ts|
-|废弃版本有变化|方法名 or 属性名：contentType<br>废弃版本：|方法名 or 属性名：contentType<br>废弃版本：9|@ohos.multimedia.audio.d.ts|
-|废弃版本有变化|方法名 or 属性名：pauseWhenDucked<br>废弃版本：|方法名 or 属性名：pauseWhenDucked<br>废弃版本：9|@ohos.multimedia.audio.d.ts|
-|废弃版本有变化|类名：mediaLibrary<br>废弃版本：9|类名：mediaLibrary<br>废弃版本：|@ohos.multimedia.mediaLibrary.d.ts|
-|废弃版本有变化|方法名 or 属性名：getMediaLibrary<br>废弃版本：9|方法名 or 属性名：getMediaLibrary<br>废弃版本：|@ohos.multimedia.mediaLibrary.d.ts|
-|废弃版本有变化|方法名 or 属性名：getMediaLibrary<br>废弃版本：9|方法名 or 属性名：getMediaLibrary<br>废弃版本：|@ohos.multimedia.mediaLibrary.d.ts|
-|废弃版本有变化|类名：MediaType<br>废弃版本：9|类名：MediaType<br>废弃版本：|@ohos.multimedia.mediaLibrary.d.ts|
-|废弃版本有变化|方法名 or 属性名：FILE<br>废弃版本：9|方法名 or 属性名：FILE<br>废弃版本：|@ohos.multimedia.mediaLibrary.d.ts|
-|废弃版本有变化|方法名 or 属性名：IMAGE<br>废弃版本：9|方法名 or 属性名：IMAGE<br>废弃版本：|@ohos.multimedia.mediaLibrary.d.ts|
-|废弃版本有变化|方法名 or 属性名：VIDEO<br>废弃版本：9|方法名 or 属性名：VIDEO<br>废弃版本：|@ohos.multimedia.mediaLibrary.d.ts|
-|废弃版本有变化|方法名 or 属性名：AUDIO<br>废弃版本：9|方法名 or 属性名：AUDIO<br>废弃版本：|@ohos.multimedia.mediaLibrary.d.ts|
-|废弃版本有变化|类名：FileAsset<br>废弃版本：9|类名：FileAsset<br>废弃版本：|@ohos.multimedia.mediaLibrary.d.ts|
-|废弃版本有变化|方法名 or 属性名：id<br>废弃版本：9|方法名 or 属性名：id<br>废弃版本：|@ohos.multimedia.mediaLibrary.d.ts|
-|废弃版本有变化|方法名 or 属性名：uri<br>废弃版本：9|方法名 or 属性名：uri<br>废弃版本：|@ohos.multimedia.mediaLibrary.d.ts|
-|废弃版本有变化|方法名 or 属性名：mimeType<br>废弃版本：9|方法名 or 属性名：mimeType<br>废弃版本：|@ohos.multimedia.mediaLibrary.d.ts|
-|废弃版本有变化|方法名 or 属性名：mediaType<br>废弃版本：9|方法名 or 属性名：mediaType<br>废弃版本：|@ohos.multimedia.mediaLibrary.d.ts|
-|废弃版本有变化|方法名 or 属性名：displayName<br>废弃版本：9|方法名 or 属性名：displayName<br>废弃版本：|@ohos.multimedia.mediaLibrary.d.ts|
-|废弃版本有变化|方法名 or 属性名：title<br>废弃版本：9|方法名 or 属性名：title<br>废弃版本：|@ohos.multimedia.mediaLibrary.d.ts|
-|废弃版本有变化|方法名 or 属性名：relativePath<br>废弃版本：9|方法名 or 属性名：relativePath<br>废弃版本：|@ohos.multimedia.mediaLibrary.d.ts|
-|废弃版本有变化|方法名 or 属性名：parent<br>废弃版本：9|方法名 or 属性名：parent<br>废弃版本：|@ohos.multimedia.mediaLibrary.d.ts|
-|废弃版本有变化|方法名 or 属性名：size<br>废弃版本：9|方法名 or 属性名：size<br>废弃版本：|@ohos.multimedia.mediaLibrary.d.ts|
-|废弃版本有变化|方法名 or 属性名：dateAdded<br>废弃版本：9|方法名 or 属性名：dateAdded<br>废弃版本：|@ohos.multimedia.mediaLibrary.d.ts|
-|废弃版本有变化|方法名 or 属性名：dateModified<br>废弃版本：9|方法名 or 属性名：dateModified<br>废弃版本：|@ohos.multimedia.mediaLibrary.d.ts|
-|废弃版本有变化|方法名 or 属性名：dateTaken<br>废弃版本：9|方法名 or 属性名：dateTaken<br>废弃版本：|@ohos.multimedia.mediaLibrary.d.ts|
-|废弃版本有变化|方法名 or 属性名：artist<br>废弃版本：9|方法名 or 属性名：artist<br>废弃版本：|@ohos.multimedia.mediaLibrary.d.ts|
-|废弃版本有变化|方法名 or 属性名：audioAlbum<br>废弃版本：9|方法名 or 属性名：audioAlbum<br>废弃版本：|@ohos.multimedia.mediaLibrary.d.ts|
-|废弃版本有变化|方法名 or 属性名：width<br>废弃版本：9|方法名 or 属性名：width<br>废弃版本：|@ohos.multimedia.mediaLibrary.d.ts|
-|废弃版本有变化|方法名 or 属性名：height<br>废弃版本：9|方法名 or 属性名：height<br>废弃版本：|@ohos.multimedia.mediaLibrary.d.ts|
-|废弃版本有变化|方法名 or 属性名：orientation<br>废弃版本：9|方法名 or 属性名：orientation<br>废弃版本：|@ohos.multimedia.mediaLibrary.d.ts|
-|废弃版本有变化|方法名 or 属性名：duration<br>废弃版本：9|方法名 or 属性名：duration<br>废弃版本：|@ohos.multimedia.mediaLibrary.d.ts|
-|废弃版本有变化|方法名 or 属性名：albumId<br>废弃版本：9|方法名 or 属性名：albumId<br>废弃版本：|@ohos.multimedia.mediaLibrary.d.ts|
-|废弃版本有变化|方法名 or 属性名：albumUri<br>废弃版本：9|方法名 or 属性名：albumUri<br>废弃版本：|@ohos.multimedia.mediaLibrary.d.ts|
-|废弃版本有变化|方法名 or 属性名：albumName<br>废弃版本：9|方法名 or 属性名：albumName<br>废弃版本：|@ohos.multimedia.mediaLibrary.d.ts|
-|废弃版本有变化|方法名 or 属性名：isDirectory<br>废弃版本：9|方法名 or 属性名：isDirectory<br>废弃版本：|@ohos.multimedia.mediaLibrary.d.ts|
-|废弃版本有变化|方法名 or 属性名：isDirectory<br>废弃版本：9|方法名 or 属性名：isDirectory<br>废弃版本：|@ohos.multimedia.mediaLibrary.d.ts|
-|废弃版本有变化|方法名 or 属性名：commitModify<br>废弃版本：9|方法名 or 属性名：commitModify<br>废弃版本：|@ohos.multimedia.mediaLibrary.d.ts|
-|废弃版本有变化|方法名 or 属性名：commitModify<br>废弃版本：9|方法名 or 属性名：commitModify<br>废弃版本：|@ohos.multimedia.mediaLibrary.d.ts|
-|废弃版本有变化|方法名 or 属性名：open<br>废弃版本：9|方法名 or 属性名：open<br>废弃版本：|@ohos.multimedia.mediaLibrary.d.ts|
-|废弃版本有变化|方法名 or 属性名：open<br>废弃版本：9|方法名 or 属性名：open<br>废弃版本：|@ohos.multimedia.mediaLibrary.d.ts|
-|废弃版本有变化|方法名 or 属性名：close<br>废弃版本：9|方法名 or 属性名：close<br>废弃版本：|@ohos.multimedia.mediaLibrary.d.ts|
-|废弃版本有变化|方法名 or 属性名：close<br>废弃版本：9|方法名 or 属性名：close<br>废弃版本：|@ohos.multimedia.mediaLibrary.d.ts|
-|废弃版本有变化|方法名 or 属性名：getThumbnail<br>废弃版本：9|方法名 or 属性名：getThumbnail<br>废弃版本：|@ohos.multimedia.mediaLibrary.d.ts|
-|废弃版本有变化|方法名 or 属性名：getThumbnail<br>废弃版本：9|方法名 or 属性名：getThumbnail<br>废弃版本：|@ohos.multimedia.mediaLibrary.d.ts|
-|废弃版本有变化|方法名 or 属性名：getThumbnail<br>废弃版本：9|方法名 or 属性名：getThumbnail<br>废弃版本：|@ohos.multimedia.mediaLibrary.d.ts|
-|废弃版本有变化|方法名 or 属性名：favorite<br>废弃版本：9|方法名 or 属性名：favorite<br>废弃版本：|@ohos.multimedia.mediaLibrary.d.ts|
-|废弃版本有变化|方法名 or 属性名：favorite<br>废弃版本：9|方法名 or 属性名：favorite<br>废弃版本：|@ohos.multimedia.mediaLibrary.d.ts|
-|废弃版本有变化|方法名 or 属性名：isFavorite<br>废弃版本：9|方法名 or 属性名：isFavorite<br>废弃版本：|@ohos.multimedia.mediaLibrary.d.ts|
-|废弃版本有变化|方法名 or 属性名：isFavorite<br>废弃版本：9|方法名 or 属性名：isFavorite<br>废弃版本：|@ohos.multimedia.mediaLibrary.d.ts|
-|废弃版本有变化|方法名 or 属性名：trash<br>废弃版本：9|方法名 or 属性名：trash<br>废弃版本：|@ohos.multimedia.mediaLibrary.d.ts|
-|废弃版本有变化|方法名 or 属性名：trash<br>废弃版本：9|方法名 or 属性名：trash<br>废弃版本：|@ohos.multimedia.mediaLibrary.d.ts|
-|废弃版本有变化|方法名 or 属性名：isTrash<br>废弃版本：9|方法名 or 属性名：isTrash<br>废弃版本：|@ohos.multimedia.mediaLibrary.d.ts|
-|废弃版本有变化|方法名 or 属性名：isTrash<br>废弃版本：9|方法名 or 属性名：isTrash<br>废弃版本：|@ohos.multimedia.mediaLibrary.d.ts|
-|废弃版本有变化|类名：FileKey<br>废弃版本：9|类名：FileKey<br>废弃版本：|@ohos.multimedia.mediaLibrary.d.ts|
-|废弃版本有变化|方法名 or 属性名：ID<br>废弃版本：9|方法名 or 属性名：ID<br>废弃版本：|@ohos.multimedia.mediaLibrary.d.ts|
-|废弃版本有变化|方法名 or 属性名：RELATIVE_PATH<br>废弃版本：9|方法名 or 属性名：RELATIVE_PATH<br>废弃版本：|@ohos.multimedia.mediaLibrary.d.ts|
-|废弃版本有变化|方法名 or 属性名：DISPLAY_NAME<br>废弃版本：9|方法名 or 属性名：DISPLAY_NAME<br>废弃版本：|@ohos.multimedia.mediaLibrary.d.ts|
-|废弃版本有变化|方法名 or 属性名：PARENT<br>废弃版本：9|方法名 or 属性名：PARENT<br>废弃版本：|@ohos.multimedia.mediaLibrary.d.ts|
-|废弃版本有变化|方法名 or 属性名：MIME_TYPE<br>废弃版本：9|方法名 or 属性名：MIME_TYPE<br>废弃版本：|@ohos.multimedia.mediaLibrary.d.ts|
-|废弃版本有变化|方法名 or 属性名：MEDIA_TYPE<br>废弃版本：9|方法名 or 属性名：MEDIA_TYPE<br>废弃版本：|@ohos.multimedia.mediaLibrary.d.ts|
-|废弃版本有变化|方法名 or 属性名：SIZE<br>废弃版本：9|方法名 or 属性名：SIZE<br>废弃版本：|@ohos.multimedia.mediaLibrary.d.ts|
-|废弃版本有变化|方法名 or 属性名：DATE_ADDED<br>废弃版本：9|方法名 or 属性名：DATE_ADDED<br>废弃版本：|@ohos.multimedia.mediaLibrary.d.ts|
-|废弃版本有变化|方法名 or 属性名：DATE_MODIFIED<br>废弃版本：9|方法名 or 属性名：DATE_MODIFIED<br>废弃版本：|@ohos.multimedia.mediaLibrary.d.ts|
-|废弃版本有变化|方法名 or 属性名：DATE_TAKEN<br>废弃版本：9|方法名 or 属性名：DATE_TAKEN<br>废弃版本：|@ohos.multimedia.mediaLibrary.d.ts|
-|废弃版本有变化|方法名 or 属性名：TITLE<br>废弃版本：9|方法名 or 属性名：TITLE<br>废弃版本：|@ohos.multimedia.mediaLibrary.d.ts|
-|废弃版本有变化|方法名 or 属性名：ARTIST<br>废弃版本：9|方法名 or 属性名：ARTIST<br>废弃版本：|@ohos.multimedia.mediaLibrary.d.ts|
-|废弃版本有变化|方法名 or 属性名：AUDIOALBUM<br>废弃版本：9|方法名 or 属性名：AUDIOALBUM<br>废弃版本：|@ohos.multimedia.mediaLibrary.d.ts|
-|废弃版本有变化|方法名 or 属性名：DURATION<br>废弃版本：9|方法名 or 属性名：DURATION<br>废弃版本：|@ohos.multimedia.mediaLibrary.d.ts|
-|废弃版本有变化|方法名 or 属性名：WIDTH<br>废弃版本：9|方法名 or 属性名：WIDTH<br>废弃版本：|@ohos.multimedia.mediaLibrary.d.ts|
-|废弃版本有变化|方法名 or 属性名：HEIGHT<br>废弃版本：9|方法名 or 属性名：HEIGHT<br>废弃版本：|@ohos.multimedia.mediaLibrary.d.ts|
-|废弃版本有变化|方法名 or 属性名：ORIENTATION<br>废弃版本：9|方法名 or 属性名：ORIENTATION<br>废弃版本：|@ohos.multimedia.mediaLibrary.d.ts|
-|废弃版本有变化|方法名 or 属性名：ALBUM_ID<br>废弃版本：9|方法名 or 属性名：ALBUM_ID<br>废弃版本：|@ohos.multimedia.mediaLibrary.d.ts|
-|废弃版本有变化|方法名 or 属性名：ALBUM_NAME<br>废弃版本：9|方法名 or 属性名：ALBUM_NAME<br>废弃版本：|@ohos.multimedia.mediaLibrary.d.ts|
-|废弃版本有变化|类名：MediaFetchOptions<br>废弃版本：9|类名：MediaFetchOptions<br>废弃版本：|@ohos.multimedia.mediaLibrary.d.ts|
-|废弃版本有变化|方法名 or 属性名：selections<br>废弃版本：9|方法名 or 属性名：selections<br>废弃版本：|@ohos.multimedia.mediaLibrary.d.ts|
-|废弃版本有变化|方法名 or 属性名：selectionArgs<br>废弃版本：9|方法名 or 属性名：selectionArgs<br>废弃版本：|@ohos.multimedia.mediaLibrary.d.ts|
-|废弃版本有变化|方法名 or 属性名：order<br>废弃版本：9|方法名 or 属性名：order<br>废弃版本：|@ohos.multimedia.mediaLibrary.d.ts|
-|废弃版本有变化|方法名 or 属性名：uri<br>废弃版本：9|方法名 or 属性名：uri<br>废弃版本：|@ohos.multimedia.mediaLibrary.d.ts|
-|废弃版本有变化|方法名 or 属性名：networkId<br>废弃版本：9|方法名 or 属性名：networkId<br>废弃版本：|@ohos.multimedia.mediaLibrary.d.ts|
-|废弃版本有变化|方法名 or 属性名：extendArgs<br>废弃版本：9|方法名 or 属性名：extendArgs<br>废弃版本：|@ohos.multimedia.mediaLibrary.d.ts|
-|废弃版本有变化|类名：FetchFileResult<br>废弃版本：9|类名：FetchFileResult<br>废弃版本：|@ohos.multimedia.mediaLibrary.d.ts|
-|废弃版本有变化|方法名 or 属性名：getCount<br>废弃版本：9|方法名 or 属性名：getCount<br>废弃版本：|@ohos.multimedia.mediaLibrary.d.ts|
-|废弃版本有变化|方法名 or 属性名：isAfterLast<br>废弃版本：9|方法名 or 属性名：isAfterLast<br>废弃版本：|@ohos.multimedia.mediaLibrary.d.ts|
-|废弃版本有变化|方法名 or 属性名：close<br>废弃版本：9|方法名 or 属性名：close<br>废弃版本：|@ohos.multimedia.mediaLibrary.d.ts|
-|废弃版本有变化|方法名 or 属性名：getFirstObject<br>废弃版本：9|方法名 or 属性名：getFirstObject<br>废弃版本：|@ohos.multimedia.mediaLibrary.d.ts|
-|废弃版本有变化|方法名 or 属性名：getFirstObject<br>废弃版本：9|方法名 or 属性名：getFirstObject<br>废弃版本：|@ohos.multimedia.mediaLibrary.d.ts|
-|废弃版本有变化|方法名 or 属性名：getNextObject<br>废弃版本：9|方法名 or 属性名：getNextObject<br>废弃版本：|@ohos.multimedia.mediaLibrary.d.ts|
-|废弃版本有变化|方法名 or 属性名：getNextObject<br>废弃版本：9|方法名 or 属性名：getNextObject<br>废弃版本：|@ohos.multimedia.mediaLibrary.d.ts|
-|废弃版本有变化|方法名 or 属性名：getLastObject<br>废弃版本：9|方法名 or 属性名：getLastObject<br>废弃版本：|@ohos.multimedia.mediaLibrary.d.ts|
-|废弃版本有变化|方法名 or 属性名：getLastObject<br>废弃版本：9|方法名 or 属性名：getLastObject<br>废弃版本：|@ohos.multimedia.mediaLibrary.d.ts|
-|废弃版本有变化|方法名 or 属性名：getPositionObject<br>废弃版本：9|方法名 or 属性名：getPositionObject<br>废弃版本：|@ohos.multimedia.mediaLibrary.d.ts|
-|废弃版本有变化|方法名 or 属性名：getPositionObject<br>废弃版本：9|方法名 or 属性名：getPositionObject<br>废弃版本：|@ohos.multimedia.mediaLibrary.d.ts|
-|废弃版本有变化|方法名 or 属性名：getAllObject<br>废弃版本：9|方法名 or 属性名：getAllObject<br>废弃版本：|@ohos.multimedia.mediaLibrary.d.ts|
-|废弃版本有变化|方法名 or 属性名：getAllObject<br>废弃版本：9|方法名 or 属性名：getAllObject<br>废弃版本：|@ohos.multimedia.mediaLibrary.d.ts|
-|废弃版本有变化|类名：Album<br>废弃版本：9|类名：Album<br>废弃版本：|@ohos.multimedia.mediaLibrary.d.ts|
-|废弃版本有变化|方法名 or 属性名：albumId<br>废弃版本：9|方法名 or 属性名：albumId<br>废弃版本：|@ohos.multimedia.mediaLibrary.d.ts|
-|废弃版本有变化|方法名 or 属性名：albumName<br>废弃版本：9|方法名 or 属性名：albumName<br>废弃版本：|@ohos.multimedia.mediaLibrary.d.ts|
-|废弃版本有变化|方法名 or 属性名：albumUri<br>废弃版本：9|方法名 or 属性名：albumUri<br>废弃版本：|@ohos.multimedia.mediaLibrary.d.ts|
-|废弃版本有变化|方法名 or 属性名：dateModified<br>废弃版本：9|方法名 or 属性名：dateModified<br>废弃版本：|@ohos.multimedia.mediaLibrary.d.ts|
-|废弃版本有变化|方法名 or 属性名：count<br>废弃版本：9|方法名 or 属性名：count<br>废弃版本：|@ohos.multimedia.mediaLibrary.d.ts|
-|废弃版本有变化|方法名 or 属性名：relativePath<br>废弃版本：9|方法名 or 属性名：relativePath<br>废弃版本：|@ohos.multimedia.mediaLibrary.d.ts|
-|废弃版本有变化|方法名 or 属性名：coverUri<br>废弃版本：9|方法名 or 属性名：coverUri<br>废弃版本：|@ohos.multimedia.mediaLibrary.d.ts|
-|废弃版本有变化|方法名 or 属性名：commitModify<br>废弃版本：9|方法名 or 属性名：commitModify<br>废弃版本：|@ohos.multimedia.mediaLibrary.d.ts|
-|废弃版本有变化|方法名 or 属性名：commitModify<br>废弃版本：9|方法名 or 属性名：commitModify<br>废弃版本：|@ohos.multimedia.mediaLibrary.d.ts|
-|废弃版本有变化|方法名 or 属性名：getFileAssets<br>废弃版本：9|方法名 or 属性名：getFileAssets<br>废弃版本：|@ohos.multimedia.mediaLibrary.d.ts|
-|废弃版本有变化|方法名 or 属性名：getFileAssets<br>废弃版本：9|方法名 or 属性名：getFileAssets<br>废弃版本：|@ohos.multimedia.mediaLibrary.d.ts|
-|废弃版本有变化|方法名 or 属性名：getFileAssets<br>废弃版本：9|方法名 or 属性名：getFileAssets<br>废弃版本：|@ohos.multimedia.mediaLibrary.d.ts|
-|废弃版本有变化|类名：DirectoryType<br>废弃版本：9|类名：DirectoryType<br>废弃版本：|@ohos.multimedia.mediaLibrary.d.ts|
-|废弃版本有变化|方法名 or 属性名：DIR_CAMERA<br>废弃版本：9|方法名 or 属性名：DIR_CAMERA<br>废弃版本：|@ohos.multimedia.mediaLibrary.d.ts|
-|废弃版本有变化|方法名 or 属性名：DIR_VIDEO<br>废弃版本：9|方法名 or 属性名：DIR_VIDEO<br>废弃版本：|@ohos.multimedia.mediaLibrary.d.ts|
-|废弃版本有变化|方法名 or 属性名：DIR_IMAGE<br>废弃版本：9|方法名 or 属性名：DIR_IMAGE<br>废弃版本：|@ohos.multimedia.mediaLibrary.d.ts|
-|废弃版本有变化|方法名 or 属性名：DIR_AUDIO<br>废弃版本：9|方法名 or 属性名：DIR_AUDIO<br>废弃版本：|@ohos.multimedia.mediaLibrary.d.ts|
-|废弃版本有变化|方法名 or 属性名：DIR_DOCUMENTS<br>废弃版本：9|方法名 or 属性名：DIR_DOCUMENTS<br>废弃版本：|@ohos.multimedia.mediaLibrary.d.ts|
-|废弃版本有变化|方法名 or 属性名：DIR_DOWNLOAD<br>废弃版本：9|方法名 or 属性名：DIR_DOWNLOAD<br>废弃版本：|@ohos.multimedia.mediaLibrary.d.ts|
-|废弃版本有变化|类名：MediaLibrary<br>废弃版本：9|类名：MediaLibrary<br>废弃版本：|@ohos.multimedia.mediaLibrary.d.ts|
-|废弃版本有变化|方法名 or 属性名：getPublicDirectory<br>废弃版本：9|方法名 or 属性名：getPublicDirectory<br>废弃版本：|@ohos.multimedia.mediaLibrary.d.ts|
-|废弃版本有变化|方法名 or 属性名：getPublicDirectory<br>废弃版本：9|方法名 or 属性名：getPublicDirectory<br>废弃版本：|@ohos.multimedia.mediaLibrary.d.ts|
-|废弃版本有变化|方法名 or 属性名：getFileAssets<br>废弃版本：9|方法名 or 属性名：getFileAssets<br>废弃版本：|@ohos.multimedia.mediaLibrary.d.ts|
-|废弃版本有变化|方法名 or 属性名：getFileAssets<br>废弃版本：9|方法名 or 属性名：getFileAssets<br>废弃版本：|@ohos.multimedia.mediaLibrary.d.ts|
-|废弃版本有变化|方法名 or 属性名：on_deviceChange<br>废弃版本：9|方法名 or 属性名：on_deviceChange<br>废弃版本：|@ohos.multimedia.mediaLibrary.d.ts|
-|废弃版本有变化|方法名 or 属性名：on_albumChange<br>废弃版本：9|方法名 or 属性名：on_albumChange<br>废弃版本：|@ohos.multimedia.mediaLibrary.d.ts|
-|废弃版本有变化|方法名 or 属性名：on_imageChange<br>废弃版本：9|方法名 or 属性名：on_imageChange<br>废弃版本：|@ohos.multimedia.mediaLibrary.d.ts|
-|废弃版本有变化|方法名 or 属性名：on_audioChange<br>废弃版本：9|方法名 or 属性名：on_audioChange<br>废弃版本：|@ohos.multimedia.mediaLibrary.d.ts|
-|废弃版本有变化|方法名 or 属性名：on_videoChange<br>废弃版本：9|方法名 or 属性名：on_videoChange<br>废弃版本：|@ohos.multimedia.mediaLibrary.d.ts|
-|废弃版本有变化|方法名 or 属性名：on_fileChange<br>废弃版本：9|方法名 or 属性名：on_fileChange<br>废弃版本：|@ohos.multimedia.mediaLibrary.d.ts|
-|废弃版本有变化|方法名 or 属性名：on_remoteFileChange<br>废弃版本：9|方法名 or 属性名：on_remoteFileChange<br>废弃版本：|@ohos.multimedia.mediaLibrary.d.ts|
-|废弃版本有变化|方法名 or 属性名：off_deviceChange<br>废弃版本：9|方法名 or 属性名：off_deviceChange<br>废弃版本：|@ohos.multimedia.mediaLibrary.d.ts|
-|废弃版本有变化|方法名 or 属性名：off_albumChange<br>废弃版本：9|方法名 or 属性名：off_albumChange<br>废弃版本：|@ohos.multimedia.mediaLibrary.d.ts|
-|废弃版本有变化|方法名 or 属性名：off_imageChange<br>废弃版本：9|方法名 or 属性名：off_imageChange<br>废弃版本：|@ohos.multimedia.mediaLibrary.d.ts|
-|废弃版本有变化|方法名 or 属性名：off_audioChange<br>废弃版本：9|方法名 or 属性名：off_audioChange<br>废弃版本：|@ohos.multimedia.mediaLibrary.d.ts|
-|废弃版本有变化|方法名 or 属性名：off_videoChange<br>废弃版本：9|方法名 or 属性名：off_videoChange<br>废弃版本：|@ohos.multimedia.mediaLibrary.d.ts|
-|废弃版本有变化|方法名 or 属性名：off_fileChange<br>废弃版本：9|方法名 or 属性名：off_fileChange<br>废弃版本：|@ohos.multimedia.mediaLibrary.d.ts|
-|废弃版本有变化|方法名 or 属性名：off_remoteFileChange<br>废弃版本：9|方法名 or 属性名：off_remoteFileChange<br>废弃版本：|@ohos.multimedia.mediaLibrary.d.ts|
-|废弃版本有变化|方法名 or 属性名：createAsset<br>废弃版本：9|方法名 or 属性名：createAsset<br>废弃版本：|@ohos.multimedia.mediaLibrary.d.ts|
-|废弃版本有变化|方法名 or 属性名：createAsset<br>废弃版本：9|方法名 or 属性名：createAsset<br>废弃版本：|@ohos.multimedia.mediaLibrary.d.ts|
-|废弃版本有变化|方法名 or 属性名：deleteAsset<br>废弃版本：9|方法名 or 属性名：deleteAsset<br>废弃版本：|@ohos.multimedia.mediaLibrary.d.ts|
-|废弃版本有变化|方法名 or 属性名：deleteAsset<br>废弃版本：9|方法名 or 属性名：deleteAsset<br>废弃版本：|@ohos.multimedia.mediaLibrary.d.ts|
-|废弃版本有变化|方法名 or 属性名：getAlbums<br>废弃版本：9|方法名 or 属性名：getAlbums<br>废弃版本：|@ohos.multimedia.mediaLibrary.d.ts|
-|废弃版本有变化|方法名 or 属性名：getAlbums<br>废弃版本：9|方法名 or 属性名：getAlbums<br>废弃版本：|@ohos.multimedia.mediaLibrary.d.ts|
-|废弃版本有变化|方法名 or 属性名：getActivePeers<br>废弃版本：9|方法名 or 属性名：getActivePeers<br>废弃版本：|@ohos.multimedia.mediaLibrary.d.ts|
-|废弃版本有变化|方法名 or 属性名：getActivePeers<br>废弃版本：9|方法名 or 属性名：getActivePeers<br>废弃版本：|@ohos.multimedia.mediaLibrary.d.ts|
-|废弃版本有变化|方法名 or 属性名：getAllPeers<br>废弃版本：9|方法名 or 属性名：getAllPeers<br>废弃版本：|@ohos.multimedia.mediaLibrary.d.ts|
-|废弃版本有变化|方法名 or 属性名：getAllPeers<br>废弃版本：9|方法名 or 属性名：getAllPeers<br>废弃版本：|@ohos.multimedia.mediaLibrary.d.ts|
-|废弃版本有变化|方法名 or 属性名：release<br>废弃版本：9|方法名 or 属性名：release<br>废弃版本：|@ohos.multimedia.mediaLibrary.d.ts|
-|废弃版本有变化|方法名 or 属性名：release<br>废弃版本：9|方法名 or 属性名：release<br>废弃版本：|@ohos.multimedia.mediaLibrary.d.ts|
-|废弃版本有变化|类名：Size<br>废弃版本：9|类名：Size<br>废弃版本：|@ohos.multimedia.mediaLibrary.d.ts|
-|废弃版本有变化|方法名 or 属性名：width<br>废弃版本：9|方法名 or 属性名：width<br>废弃版本：|@ohos.multimedia.mediaLibrary.d.ts|
-|废弃版本有变化|方法名 or 属性名：height<br>废弃版本：9|方法名 or 属性名：height<br>废弃版本：|@ohos.multimedia.mediaLibrary.d.ts|
-|废弃版本有变化|类名：PeerInfo<br>废弃版本：9|类名：PeerInfo<br>废弃版本：|@ohos.multimedia.mediaLibrary.d.ts|
-|废弃版本有变化|方法名 or 属性名：deviceName<br>废弃版本：9|方法名 or 属性名：deviceName<br>废弃版本：|@ohos.multimedia.mediaLibrary.d.ts|
-|废弃版本有变化|方法名 or 属性名：networkId<br>废弃版本：9|方法名 or 属性名：networkId<br>废弃版本：|@ohos.multimedia.mediaLibrary.d.ts|
-|废弃版本有变化|方法名 or 属性名：deviceType<br>废弃版本：9|方法名 or 属性名：deviceType<br>废弃版本：|@ohos.multimedia.mediaLibrary.d.ts|
-|废弃版本有变化|方法名 or 属性名：isOnline<br>废弃版本：9|方法名 or 属性名：isOnline<br>废弃版本：|@ohos.multimedia.mediaLibrary.d.ts|
-|废弃版本有变化|类名：DeviceType<br>废弃版本：9|类名：DeviceType<br>废弃版本：|@ohos.multimedia.mediaLibrary.d.ts|
-|废弃版本有变化|方法名 or 属性名：TYPE_UNKNOWN<br>废弃版本：9|方法名 or 属性名：TYPE_UNKNOWN<br>废弃版本：|@ohos.multimedia.mediaLibrary.d.ts|
-|废弃版本有变化|方法名 or 属性名：TYPE_LAPTOP<br>废弃版本：9|方法名 or 属性名：TYPE_LAPTOP<br>废弃版本：|@ohos.multimedia.mediaLibrary.d.ts|
-|废弃版本有变化|方法名 or 属性名：TYPE_PHONE<br>废弃版本：9|方法名 or 属性名：TYPE_PHONE<br>废弃版本：|@ohos.multimedia.mediaLibrary.d.ts|
-|废弃版本有变化|方法名 or 属性名：TYPE_TABLET<br>废弃版本：9|方法名 or 属性名：TYPE_TABLET<br>废弃版本：|@ohos.multimedia.mediaLibrary.d.ts|
-|废弃版本有变化|方法名 or 属性名：TYPE_WATCH<br>废弃版本：9|方法名 or 属性名：TYPE_WATCH<br>废弃版本：|@ohos.multimedia.mediaLibrary.d.ts|
-|废弃版本有变化|方法名 or 属性名：TYPE_CAR<br>废弃版本：9|方法名 or 属性名：TYPE_CAR<br>废弃版本：|@ohos.multimedia.mediaLibrary.d.ts|
-|废弃版本有变化|方法名 or 属性名：TYPE_TV<br>废弃版本：9|方法名 or 属性名：TYPE_TV<br>废弃版本：|@ohos.multimedia.mediaLibrary.d.ts|
+|访问级别有变化|方法名 or 属性名：createVideoRecorder<br>访问级别：公开API|方法名 or 属性名：createVideoRecorder<br>访问级别：系统API|@ohos.multimedia.media.d.ts|
+|访问级别有变化|方法名 or 属性名：createVideoRecorder<br>访问级别：公开API|方法名 or 属性名：createVideoRecorder<br>访问级别：系统API|@ohos.multimedia.media.d.ts|
+|访问级别有变化|类名：VideoRecorder<br>访问级别：公开API|类名：VideoRecorder<br>访问级别：系统API|@ohos.multimedia.media.d.ts|
+|访问级别有变化|方法名 or 属性名：prepare<br>访问级别：公开API|方法名 or 属性名：prepare<br>访问级别：系统API|@ohos.multimedia.media.d.ts|
+|访问级别有变化|方法名 or 属性名：prepare<br>访问级别：公开API|方法名 or 属性名：prepare<br>访问级别：系统API|@ohos.multimedia.media.d.ts|
+|访问级别有变化|方法名 or 属性名：getInputSurface<br>访问级别：公开API|方法名 or 属性名：getInputSurface<br>访问级别：系统API|@ohos.multimedia.media.d.ts|
+|访问级别有变化|方法名 or 属性名：getInputSurface<br>访问级别：公开API|方法名 or 属性名：getInputSurface<br>访问级别：系统API|@ohos.multimedia.media.d.ts|
+|访问级别有变化|方法名 or 属性名：start<br>访问级别：公开API|方法名 or 属性名：start<br>访问级别：系统API|@ohos.multimedia.media.d.ts|
+|访问级别有变化|方法名 or 属性名：start<br>访问级别：公开API|方法名 or 属性名：start<br>访问级别：系统API|@ohos.multimedia.media.d.ts|
+|访问级别有变化|方法名 or 属性名：pause<br>访问级别：公开API|方法名 or 属性名：pause<br>访问级别：系统API|@ohos.multimedia.media.d.ts|
+|访问级别有变化|方法名 or 属性名：pause<br>访问级别：公开API|方法名 or 属性名：pause<br>访问级别：系统API|@ohos.multimedia.media.d.ts|
+|访问级别有变化|方法名 or 属性名：resume<br>访问级别：公开API|方法名 or 属性名：resume<br>访问级别：系统API|@ohos.multimedia.media.d.ts|
+|访问级别有变化|方法名 or 属性名：resume<br>访问级别：公开API|方法名 or 属性名：resume<br>访问级别：系统API|@ohos.multimedia.media.d.ts|
+|访问级别有变化|方法名 or 属性名：stop<br>访问级别：公开API|方法名 or 属性名：stop<br>访问级别：系统API|@ohos.multimedia.media.d.ts|
+|访问级别有变化|方法名 or 属性名：stop<br>访问级别：公开API|方法名 or 属性名：stop<br>访问级别：系统API|@ohos.multimedia.media.d.ts|
+|访问级别有变化|方法名 or 属性名：release<br>访问级别：公开API|方法名 or 属性名：release<br>访问级别：系统API|@ohos.multimedia.media.d.ts|
+|访问级别有变化|方法名 or 属性名：release<br>访问级别：公开API|方法名 or 属性名：release<br>访问级别：系统API|@ohos.multimedia.media.d.ts|
+|访问级别有变化|方法名 or 属性名：reset<br>访问级别：公开API|方法名 or 属性名：reset<br>访问级别：系统API|@ohos.multimedia.media.d.ts|
+|访问级别有变化|方法名 or 属性名：reset<br>访问级别：公开API|方法名 or 属性名：reset<br>访问级别：系统API|@ohos.multimedia.media.d.ts|
+|访问级别有变化|方法名 or 属性名：on_error<br>访问级别：公开API|方法名 or 属性名：on_error<br>访问级别：系统API|@ohos.multimedia.media.d.ts|
+|访问级别有变化|方法名 or 属性名：state<br>访问级别：公开API|方法名 or 属性名：state<br>访问级别：系统API|@ohos.multimedia.media.d.ts|
+|访问级别有变化|类名：VideoRecorderProfile<br>访问级别：公开API|类名：VideoRecorderProfile<br>访问级别：系统API|@ohos.multimedia.media.d.ts|
+|访问级别有变化|方法名 or 属性名：audioBitrate<br>访问级别：公开API|方法名 or 属性名：audioBitrate<br>访问级别：系统API|@ohos.multimedia.media.d.ts|
+|访问级别有变化|方法名 or 属性名：audioChannels<br>访问级别：公开API|方法名 or 属性名：audioChannels<br>访问级别：系统API|@ohos.multimedia.media.d.ts|
+|访问级别有变化|方法名 or 属性名：audioCodec<br>访问级别：公开API|方法名 or 属性名：audioCodec<br>访问级别：系统API|@ohos.multimedia.media.d.ts|
+|访问级别有变化|方法名 or 属性名：audioSampleRate<br>访问级别：公开API|方法名 or 属性名：audioSampleRate<br>访问级别：系统API|@ohos.multimedia.media.d.ts|
+|访问级别有变化|方法名 or 属性名：fileFormat<br>访问级别：公开API|方法名 or 属性名：fileFormat<br>访问级别：系统API|@ohos.multimedia.media.d.ts|
+|访问级别有变化|方法名 or 属性名：videoBitrate<br>访问级别：公开API|方法名 or 属性名：videoBitrate<br>访问级别：系统API|@ohos.multimedia.media.d.ts|
+|访问级别有变化|方法名 or 属性名：videoCodec<br>访问级别：公开API|方法名 or 属性名：videoCodec<br>访问级别：系统API|@ohos.multimedia.media.d.ts|
+|访问级别有变化|方法名 or 属性名：videoFrameWidth<br>访问级别：公开API|方法名 or 属性名：videoFrameWidth<br>访问级别：系统API|@ohos.multimedia.media.d.ts|
+|访问级别有变化|方法名 or 属性名：videoFrameHeight<br>访问级别：公开API|方法名 or 属性名：videoFrameHeight<br>访问级别：系统API|@ohos.multimedia.media.d.ts|
+|访问级别有变化|方法名 or 属性名：videoFrameRate<br>访问级别：公开API|方法名 or 属性名：videoFrameRate<br>访问级别：系统API|@ohos.multimedia.media.d.ts|
+|访问级别有变化|类名：AudioSourceType<br>访问级别：公开API|类名：AudioSourceType<br>访问级别：系统API|@ohos.multimedia.media.d.ts|
+|访问级别有变化|方法名 or 属性名：AUDIO_SOURCE_TYPE_DEFAULT<br>访问级别：公开API|方法名 or 属性名：AUDIO_SOURCE_TYPE_DEFAULT<br>访问级别：系统API|@ohos.multimedia.media.d.ts|
+|访问级别有变化|方法名 or 属性名：AUDIO_SOURCE_TYPE_MIC<br>访问级别：公开API|方法名 or 属性名：AUDIO_SOURCE_TYPE_MIC<br>访问级别：系统API|@ohos.multimedia.media.d.ts|
+|访问级别有变化|类名：VideoSourceType<br>访问级别：公开API|类名：VideoSourceType<br>访问级别：系统API|@ohos.multimedia.media.d.ts|
+|访问级别有变化|方法名 or 属性名：VIDEO_SOURCE_TYPE_SURFACE_YUV<br>访问级别：公开API|方法名 or 属性名：VIDEO_SOURCE_TYPE_SURFACE_YUV<br>访问级别：系统API|@ohos.multimedia.media.d.ts|
+|访问级别有变化|方法名 or 属性名：VIDEO_SOURCE_TYPE_SURFACE_ES<br>访问级别：公开API|方法名 or 属性名：VIDEO_SOURCE_TYPE_SURFACE_ES<br>访问级别：系统API|@ohos.multimedia.media.d.ts|
+|访问级别有变化|类名：VideoRecorderConfig<br>访问级别：公开API|类名：VideoRecorderConfig<br>访问级别：系统API|@ohos.multimedia.media.d.ts|
+|访问级别有变化|方法名 or 属性名：videoSourceType<br>访问级别：公开API|方法名 or 属性名：videoSourceType<br>访问级别：系统API|@ohos.multimedia.media.d.ts|
+|访问级别有变化|方法名 or 属性名：profile<br>访问级别：公开API|方法名 or 属性名：profile<br>访问级别：系统API|@ohos.multimedia.media.d.ts|
+|访问级别有变化|方法名 or 属性名：url<br>访问级别：公开API|方法名 or 属性名：url<br>访问级别：系统API|@ohos.multimedia.media.d.ts|
+|访问级别有变化|方法名 or 属性名：rotation<br>访问级别：公开API|方法名 or 属性名：rotation<br>访问级别：系统API|@ohos.multimedia.media.d.ts|
+|访问级别有变化|方法名 or 属性名：location<br>访问级别：公开API|方法名 or 属性名：location<br>访问级别：系统API|@ohos.multimedia.media.d.ts|
+|废弃版本有变化|类名：ActiveDeviceType<br>废弃版本：N/A|类名：ActiveDeviceType<br>废弃版本：9<br>代替接口：ohos.multimedia.audio.CommunicationDeviceType   |@ohos.multimedia.audio.d.ts|
+|废弃版本有变化|方法名 or 属性名：SPEAKER<br>废弃版本：N/A|方法名 or 属性名：SPEAKER<br>废弃版本：9<br>代替接口：ohos.multimedia.audio.CommunicationDeviceType.SPEAKER     |@ohos.multimedia.audio.d.ts|
+|废弃版本有变化|方法名 or 属性名：BLUETOOTH_SCO<br>废弃版本：N/A|方法名 or 属性名：BLUETOOTH_SCO<br>废弃版本：9<br>代替接口：ohos.multimedia.audio.CommunicationDeviceType   |@ohos.multimedia.audio.d.ts|
+|废弃版本有变化|类名：InterruptActionType<br>废弃版本：N/A|类名：InterruptActionType<br>废弃版本：9|@ohos.multimedia.audio.d.ts|
+|废弃版本有变化|方法名 or 属性名：TYPE_ACTIVATED<br>废弃版本：N/A|方法名 or 属性名：TYPE_ACTIVATED<br>废弃版本：9|@ohos.multimedia.audio.d.ts|
+|废弃版本有变化|方法名 or 属性名：TYPE_INTERRUPT<br>废弃版本：N/A|方法名 or 属性名：TYPE_INTERRUPT<br>废弃版本：9|@ohos.multimedia.audio.d.ts|
+|废弃版本有变化|方法名 or 属性名：setVolume<br>废弃版本：N/A|方法名 or 属性名：setVolume<br>废弃版本：9<br>代替接口：ohos.multimedia.audio.AudioVolumeGroupManager|@ohos.multimedia.audio.d.ts|
+|废弃版本有变化|方法名 or 属性名：setVolume<br>废弃版本：N/A|方法名 or 属性名：setVolume<br>废弃版本：9<br>代替接口：ohos.multimedia.audio.AudioVolumeGroupManager|@ohos.multimedia.audio.d.ts|
+|废弃版本有变化|方法名 or 属性名：getVolume<br>废弃版本：N/A|方法名 or 属性名：getVolume<br>废弃版本：9<br>代替接口：ohos.multimedia.audio.AudioVolumeGroupManager|@ohos.multimedia.audio.d.ts|
+|废弃版本有变化|方法名 or 属性名：getVolume<br>废弃版本：N/A|方法名 or 属性名：getVolume<br>废弃版本：9<br>代替接口：ohos.multimedia.audio.AudioVolumeGroupManager|@ohos.multimedia.audio.d.ts|
+|废弃版本有变化|方法名 or 属性名：getMinVolume<br>废弃版本：N/A|方法名 or 属性名：getMinVolume<br>废弃版本：9<br>代替接口：ohos.multimedia.audio.AudioVolumeGroupManager|@ohos.multimedia.audio.d.ts|
+|废弃版本有变化|方法名 or 属性名：getMinVolume<br>废弃版本：N/A|方法名 or 属性名：getMinVolume<br>废弃版本：9<br>代替接口：ohos.multimedia.audio.AudioVolumeGroupManager|@ohos.multimedia.audio.d.ts|
+|废弃版本有变化|方法名 or 属性名：getMaxVolume<br>废弃版本：N/A|方法名 or 属性名：getMaxVolume<br>废弃版本：9<br>代替接口：ohos.multimedia.audio.AudioVolumeGroupManager|@ohos.multimedia.audio.d.ts|
+|废弃版本有变化|方法名 or 属性名：getMaxVolume<br>废弃版本：N/A|方法名 or 属性名：getMaxVolume<br>废弃版本：9<br>代替接口：ohos.multimedia.audio.AudioVolumeGroupManager|@ohos.multimedia.audio.d.ts|
+|废弃版本有变化|方法名 or 属性名：getDevices<br>废弃版本：N/A|方法名 or 属性名：getDevices<br>废弃版本：9<br>代替接口：ohos.multimedia.audio.AudioRoutingManager|@ohos.multimedia.audio.d.ts|
+|废弃版本有变化|方法名 or 属性名：getDevices<br>废弃版本：N/A|方法名 or 属性名：getDevices<br>废弃版本：9<br>代替接口：ohos.multimedia.audio.AudioRoutingManager|@ohos.multimedia.audio.d.ts|
+|废弃版本有变化|方法名 or 属性名：mute<br>废弃版本：N/A|方法名 or 属性名：mute<br>废弃版本：9<br>代替接口：ohos.multimedia.audio.AudioVolumeGroupManager|@ohos.multimedia.audio.d.ts|
+|废弃版本有变化|方法名 or 属性名：mute<br>废弃版本：N/A|方法名 or 属性名：mute<br>废弃版本：9<br>代替接口：ohos.multimedia.audio.AudioVolumeGroupManager|@ohos.multimedia.audio.d.ts|
+|废弃版本有变化|方法名 or 属性名：isMute<br>废弃版本：N/A|方法名 or 属性名：isMute<br>废弃版本：9<br>代替接口：ohos.multimedia.audio.AudioVolumeGroupManager|@ohos.multimedia.audio.d.ts|
+|废弃版本有变化|方法名 or 属性名：isMute<br>废弃版本：N/A|方法名 or 属性名：isMute<br>废弃版本：9<br>代替接口：ohos.multimedia.audio.AudioVolumeGroupManager|@ohos.multimedia.audio.d.ts|
+|废弃版本有变化|方法名 or 属性名：isActive<br>废弃版本：N/A|方法名 or 属性名：isActive<br>废弃版本：9<br>代替接口：ohos.multimedia.audio.AudioStreamManager|@ohos.multimedia.audio.d.ts|
+|废弃版本有变化|方法名 or 属性名：isActive<br>废弃版本：N/A|方法名 or 属性名：isActive<br>废弃版本：9<br>代替接口：ohos.multimedia.audio.AudioStreamManager|@ohos.multimedia.audio.d.ts|
+|废弃版本有变化|方法名 or 属性名：setMicrophoneMute<br>废弃版本：N/A|方法名 or 属性名：setMicrophoneMute<br>废弃版本：9<br>代替接口：ohos.multimedia.audio.AudioVolumeGroupManager|@ohos.multimedia.audio.d.ts|
+|废弃版本有变化|方法名 or 属性名：setMicrophoneMute<br>废弃版本：N/A|方法名 or 属性名：setMicrophoneMute<br>废弃版本：9<br>代替接口：ohos.multimedia.audio.AudioVolumeGroupManager|@ohos.multimedia.audio.d.ts|
+|废弃版本有变化|方法名 or 属性名：isMicrophoneMute<br>废弃版本：N/A|方法名 or 属性名：isMicrophoneMute<br>废弃版本：9<br>代替接口：ohos.multimedia.audio.AudioVolumeGroupManager|@ohos.multimedia.audio.d.ts|
+|废弃版本有变化|方法名 or 属性名：isMicrophoneMute<br>废弃版本：N/A|方法名 or 属性名：isMicrophoneMute<br>废弃版本：9<br>代替接口：ohos.multimedia.audio.AudioVolumeGroupManager|@ohos.multimedia.audio.d.ts|
+|废弃版本有变化|方法名 or 属性名：setRingerMode<br>废弃版本：N/A|方法名 or 属性名：setRingerMode<br>废弃版本：9<br>代替接口：ohos.multimedia.audio.AudioVolumeGroupManager|@ohos.multimedia.audio.d.ts|
+|废弃版本有变化|方法名 or 属性名：setRingerMode<br>废弃版本：N/A|方法名 or 属性名：setRingerMode<br>废弃版本：9<br>代替接口：ohos.multimedia.audio.AudioVolumeGroupManager|@ohos.multimedia.audio.d.ts|
+|废弃版本有变化|方法名 or 属性名：getRingerMode<br>废弃版本：N/A|方法名 or 属性名：getRingerMode<br>废弃版本：9<br>代替接口：ohos.multimedia.audio.AudioVolumeGroupManager|@ohos.multimedia.audio.d.ts|
+|废弃版本有变化|方法名 or 属性名：getRingerMode<br>废弃版本：N/A|方法名 or 属性名：getRingerMode<br>废弃版本：9<br>代替接口：ohos.multimedia.audio.AudioVolumeGroupManager|@ohos.multimedia.audio.d.ts|
+|废弃版本有变化|方法名 or 属性名：setDeviceActive<br>废弃版本：N/A|方法名 or 属性名：setDeviceActive<br>废弃版本：9<br>代替接口：ohos.multimedia.audio.AudioRoutingManager|@ohos.multimedia.audio.d.ts|
+|废弃版本有变化|方法名 or 属性名：setDeviceActive<br>废弃版本：N/A|方法名 or 属性名：setDeviceActive<br>废弃版本：9<br>代替接口：ohos.multimedia.audio.AudioRoutingManager|@ohos.multimedia.audio.d.ts|
+|废弃版本有变化|方法名 or 属性名：isDeviceActive<br>废弃版本：N/A|方法名 or 属性名：isDeviceActive<br>废弃版本：9<br>代替接口：ohos.multimedia.audio.AudioRoutingManager|@ohos.multimedia.audio.d.ts|
+|废弃版本有变化|方法名 or 属性名：isDeviceActive<br>废弃版本：N/A|方法名 or 属性名：isDeviceActive<br>废弃版本：9<br>代替接口：ohos.multimedia.audio.AudioRoutingManager|@ohos.multimedia.audio.d.ts|
+|废弃版本有变化|方法名 or 属性名：on_volumeChange<br>废弃版本：N/A|方法名 or 属性名：on_volumeChange<br>废弃版本：9<br>代替接口：ohos.multimedia.audio.AudioVolumeManager|@ohos.multimedia.audio.d.ts|
+|废弃版本有变化|方法名 or 属性名：on_ringerModeChange<br>废弃版本：N/A|方法名 or 属性名：on_ringerModeChange<br>废弃版本：9<br>代替接口：ohos.multimedia.audio.AudioVolumeGroupManager|@ohos.multimedia.audio.d.ts|
+|废弃版本有变化|方法名 or 属性名：on_deviceChange<br>废弃版本：N/A|方法名 or 属性名：on_deviceChange<br>废弃版本：9<br>代替接口：ohos.multimedia.audio.AudioRoutingManager|@ohos.multimedia.audio.d.ts|
+|废弃版本有变化|方法名 or 属性名：off_deviceChange<br>废弃版本：N/A|方法名 or 属性名：off_deviceChange<br>废弃版本：9<br>代替接口：ohos.multimedia.audio.AudioRoutingManager|@ohos.multimedia.audio.d.ts|
+|废弃版本有变化|类名：InterruptAction<br>废弃版本：N/A|类名：InterruptAction<br>废弃版本：9<br>代替接口：ohos.multimedia.audio.InterruptEvent   |@ohos.multimedia.audio.d.ts|
+|废弃版本有变化|方法名 or 属性名：actionType<br>废弃版本：N/A|方法名 or 属性名：actionType<br>废弃版本：9<br>代替接口：ohos.multimedia.audio.InterruptEvent   |@ohos.multimedia.audio.d.ts|
+|废弃版本有变化|方法名 or 属性名：type<br>废弃版本：N/A|方法名 or 属性名：type<br>废弃版本：9<br>代替接口：ohos.multimedia.audio.InterruptEvent   |@ohos.multimedia.audio.d.ts|
+|废弃版本有变化|方法名 or 属性名：hint<br>废弃版本：N/A|方法名 or 属性名：hint<br>废弃版本：9<br>代替接口：ohos.multimedia.audio.InterruptEvent   |@ohos.multimedia.audio.d.ts|
+|废弃版本有变化|方法名 or 属性名：activated<br>废弃版本：N/A|方法名 or 属性名：activated<br>废弃版本：9<br>代替接口：ohos.multimedia.audio.InterruptEvent   |@ohos.multimedia.audio.d.ts|
+|废弃版本有变化|类名：AudioInterrupt<br>废弃版本：N/A|类名：AudioInterrupt<br>废弃版本：9|@ohos.multimedia.audio.d.ts|
+|废弃版本有变化|方法名 or 属性名：streamUsage<br>废弃版本：N/A|方法名 or 属性名：streamUsage<br>废弃版本：9|@ohos.multimedia.audio.d.ts|
+|废弃版本有变化|方法名 or 属性名：contentType<br>废弃版本：N/A|方法名 or 属性名：contentType<br>废弃版本：9|@ohos.multimedia.audio.d.ts|
+|废弃版本有变化|方法名 or 属性名：pauseWhenDucked<br>废弃版本：N/A|方法名 or 属性名：pauseWhenDucked<br>废弃版本：9|@ohos.multimedia.audio.d.ts|
+|废弃版本有变化|类名：mediaLibrary<br>废弃版本：9|类名：mediaLibrary<br>废弃版本：N/A|@ohos.multimedia.mediaLibrary.d.ts|
+|废弃版本有变化|方法名 or 属性名：getMediaLibrary<br>废弃版本：9|方法名 or 属性名：getMediaLibrary<br>废弃版本：N/A|@ohos.multimedia.mediaLibrary.d.ts|
+|废弃版本有变化|方法名 or 属性名：getMediaLibrary<br>废弃版本：9|方法名 or 属性名：getMediaLibrary<br>废弃版本：N/A|@ohos.multimedia.mediaLibrary.d.ts|
+|废弃版本有变化|类名：MediaType<br>废弃版本：9|类名：MediaType<br>废弃版本：N/A|@ohos.multimedia.mediaLibrary.d.ts|
+|废弃版本有变化|方法名 or 属性名：FILE<br>废弃版本：9|方法名 or 属性名：FILE<br>废弃版本：N/A|@ohos.multimedia.mediaLibrary.d.ts|
+|废弃版本有变化|方法名 or 属性名：IMAGE<br>废弃版本：9|方法名 or 属性名：IMAGE<br>废弃版本：N/A|@ohos.multimedia.mediaLibrary.d.ts|
+|废弃版本有变化|方法名 or 属性名：VIDEO<br>废弃版本：9|方法名 or 属性名：VIDEO<br>废弃版本：N/A|@ohos.multimedia.mediaLibrary.d.ts|
+|废弃版本有变化|方法名 or 属性名：AUDIO<br>废弃版本：9|方法名 or 属性名：AUDIO<br>废弃版本：N/A|@ohos.multimedia.mediaLibrary.d.ts|
+|废弃版本有变化|类名：FileAsset<br>废弃版本：9|类名：FileAsset<br>废弃版本：N/A|@ohos.multimedia.mediaLibrary.d.ts|
+|废弃版本有变化|方法名 or 属性名：id<br>废弃版本：9|方法名 or 属性名：id<br>废弃版本：N/A|@ohos.multimedia.mediaLibrary.d.ts|
+|废弃版本有变化|方法名 or 属性名：uri<br>废弃版本：9|方法名 or 属性名：uri<br>废弃版本：N/A|@ohos.multimedia.mediaLibrary.d.ts|
+|废弃版本有变化|方法名 or 属性名：mimeType<br>废弃版本：9|方法名 or 属性名：mimeType<br>废弃版本：N/A|@ohos.multimedia.mediaLibrary.d.ts|
+|废弃版本有变化|方法名 or 属性名：mediaType<br>废弃版本：9|方法名 or 属性名：mediaType<br>废弃版本：N/A|@ohos.multimedia.mediaLibrary.d.ts|
+|废弃版本有变化|方法名 or 属性名：displayName<br>废弃版本：9|方法名 or 属性名：displayName<br>废弃版本：N/A|@ohos.multimedia.mediaLibrary.d.ts|
+|废弃版本有变化|方法名 or 属性名：title<br>废弃版本：9|方法名 or 属性名：title<br>废弃版本：N/A|@ohos.multimedia.mediaLibrary.d.ts|
+|废弃版本有变化|方法名 or 属性名：relativePath<br>废弃版本：9|方法名 or 属性名：relativePath<br>废弃版本：N/A|@ohos.multimedia.mediaLibrary.d.ts|
+|废弃版本有变化|方法名 or 属性名：parent<br>废弃版本：9|方法名 or 属性名：parent<br>废弃版本：N/A|@ohos.multimedia.mediaLibrary.d.ts|
+|废弃版本有变化|方法名 or 属性名：size<br>废弃版本：9|方法名 or 属性名：size<br>废弃版本：N/A|@ohos.multimedia.mediaLibrary.d.ts|
+|废弃版本有变化|方法名 or 属性名：dateAdded<br>废弃版本：9|方法名 or 属性名：dateAdded<br>废弃版本：N/A|@ohos.multimedia.mediaLibrary.d.ts|
+|废弃版本有变化|方法名 or 属性名：dateModified<br>废弃版本：9|方法名 or 属性名：dateModified<br>废弃版本：N/A|@ohos.multimedia.mediaLibrary.d.ts|
+|废弃版本有变化|方法名 or 属性名：dateTaken<br>废弃版本：9|方法名 or 属性名：dateTaken<br>废弃版本：N/A|@ohos.multimedia.mediaLibrary.d.ts|
+|废弃版本有变化|方法名 or 属性名：artist<br>废弃版本：9|方法名 or 属性名：artist<br>废弃版本：N/A|@ohos.multimedia.mediaLibrary.d.ts|
+|废弃版本有变化|方法名 or 属性名：audioAlbum<br>废弃版本：9|方法名 or 属性名：audioAlbum<br>废弃版本：N/A|@ohos.multimedia.mediaLibrary.d.ts|
+|废弃版本有变化|方法名 or 属性名：width<br>废弃版本：9|方法名 or 属性名：width<br>废弃版本：N/A|@ohos.multimedia.mediaLibrary.d.ts|
+|废弃版本有变化|方法名 or 属性名：height<br>废弃版本：9|方法名 or 属性名：height<br>废弃版本：N/A|@ohos.multimedia.mediaLibrary.d.ts|
+|废弃版本有变化|方法名 or 属性名：orientation<br>废弃版本：9|方法名 or 属性名：orientation<br>废弃版本：N/A|@ohos.multimedia.mediaLibrary.d.ts|
+|废弃版本有变化|方法名 or 属性名：duration<br>废弃版本：9|方法名 or 属性名：duration<br>废弃版本：N/A|@ohos.multimedia.mediaLibrary.d.ts|
+|废弃版本有变化|方法名 or 属性名：albumId<br>废弃版本：9|方法名 or 属性名：albumId<br>废弃版本：N/A|@ohos.multimedia.mediaLibrary.d.ts|
+|废弃版本有变化|方法名 or 属性名：albumUri<br>废弃版本：9|方法名 or 属性名：albumUri<br>废弃版本：N/A|@ohos.multimedia.mediaLibrary.d.ts|
+|废弃版本有变化|方法名 or 属性名：albumName<br>废弃版本：9|方法名 or 属性名：albumName<br>废弃版本：N/A|@ohos.multimedia.mediaLibrary.d.ts|
+|废弃版本有变化|方法名 or 属性名：isDirectory<br>废弃版本：9|方法名 or 属性名：isDirectory<br>废弃版本：N/A|@ohos.multimedia.mediaLibrary.d.ts|
+|废弃版本有变化|方法名 or 属性名：isDirectory<br>废弃版本：9|方法名 or 属性名：isDirectory<br>废弃版本：N/A|@ohos.multimedia.mediaLibrary.d.ts|
+|废弃版本有变化|方法名 or 属性名：commitModify<br>废弃版本：9|方法名 or 属性名：commitModify<br>废弃版本：N/A|@ohos.multimedia.mediaLibrary.d.ts|
+|废弃版本有变化|方法名 or 属性名：commitModify<br>废弃版本：9|方法名 or 属性名：commitModify<br>废弃版本：N/A|@ohos.multimedia.mediaLibrary.d.ts|
+|废弃版本有变化|方法名 or 属性名：open<br>废弃版本：9|方法名 or 属性名：open<br>废弃版本：N/A|@ohos.multimedia.mediaLibrary.d.ts|
+|废弃版本有变化|方法名 or 属性名：open<br>废弃版本：9|方法名 or 属性名：open<br>废弃版本：N/A|@ohos.multimedia.mediaLibrary.d.ts|
+|废弃版本有变化|方法名 or 属性名：close<br>废弃版本：9|方法名 or 属性名：close<br>废弃版本：N/A|@ohos.multimedia.mediaLibrary.d.ts|
+|废弃版本有变化|方法名 or 属性名：close<br>废弃版本：9|方法名 or 属性名：close<br>废弃版本：N/A|@ohos.multimedia.mediaLibrary.d.ts|
+|废弃版本有变化|方法名 or 属性名：getThumbnail<br>废弃版本：9|方法名 or 属性名：getThumbnail<br>废弃版本：N/A|@ohos.multimedia.mediaLibrary.d.ts|
+|废弃版本有变化|方法名 or 属性名：getThumbnail<br>废弃版本：9|方法名 or 属性名：getThumbnail<br>废弃版本：N/A|@ohos.multimedia.mediaLibrary.d.ts|
+|废弃版本有变化|方法名 or 属性名：getThumbnail<br>废弃版本：9|方法名 or 属性名：getThumbnail<br>废弃版本：N/A|@ohos.multimedia.mediaLibrary.d.ts|
+|废弃版本有变化|方法名 or 属性名：favorite<br>废弃版本：9|方法名 or 属性名：favorite<br>废弃版本：N/A|@ohos.multimedia.mediaLibrary.d.ts|
+|废弃版本有变化|方法名 or 属性名：favorite<br>废弃版本：9|方法名 or 属性名：favorite<br>废弃版本：N/A|@ohos.multimedia.mediaLibrary.d.ts|
+|废弃版本有变化|方法名 or 属性名：isFavorite<br>废弃版本：9|方法名 or 属性名：isFavorite<br>废弃版本：N/A|@ohos.multimedia.mediaLibrary.d.ts|
+|废弃版本有变化|方法名 or 属性名：isFavorite<br>废弃版本：9|方法名 or 属性名：isFavorite<br>废弃版本：N/A|@ohos.multimedia.mediaLibrary.d.ts|
+|废弃版本有变化|方法名 or 属性名：trash<br>废弃版本：9|方法名 or 属性名：trash<br>废弃版本：N/A|@ohos.multimedia.mediaLibrary.d.ts|
+|废弃版本有变化|方法名 or 属性名：trash<br>废弃版本：9|方法名 or 属性名：trash<br>废弃版本：N/A|@ohos.multimedia.mediaLibrary.d.ts|
+|废弃版本有变化|方法名 or 属性名：isTrash<br>废弃版本：9|方法名 or 属性名：isTrash<br>废弃版本：N/A|@ohos.multimedia.mediaLibrary.d.ts|
+|废弃版本有变化|方法名 or 属性名：isTrash<br>废弃版本：9|方法名 or 属性名：isTrash<br>废弃版本：N/A|@ohos.multimedia.mediaLibrary.d.ts|
+|废弃版本有变化|类名：FileKey<br>废弃版本：9|类名：FileKey<br>废弃版本：N/A|@ohos.multimedia.mediaLibrary.d.ts|
+|废弃版本有变化|方法名 or 属性名：ID<br>废弃版本：9|方法名 or 属性名：ID<br>废弃版本：N/A|@ohos.multimedia.mediaLibrary.d.ts|
+|废弃版本有变化|方法名 or 属性名：RELATIVE_PATH<br>废弃版本：9|方法名 or 属性名：RELATIVE_PATH<br>废弃版本：N/A|@ohos.multimedia.mediaLibrary.d.ts|
+|废弃版本有变化|方法名 or 属性名：DISPLAY_NAME<br>废弃版本：9|方法名 or 属性名：DISPLAY_NAME<br>废弃版本：N/A|@ohos.multimedia.mediaLibrary.d.ts|
+|废弃版本有变化|方法名 or 属性名：PARENT<br>废弃版本：9|方法名 or 属性名：PARENT<br>废弃版本：N/A|@ohos.multimedia.mediaLibrary.d.ts|
+|废弃版本有变化|方法名 or 属性名：MIME_TYPE<br>废弃版本：9|方法名 or 属性名：MIME_TYPE<br>废弃版本：N/A|@ohos.multimedia.mediaLibrary.d.ts|
+|废弃版本有变化|方法名 or 属性名：MEDIA_TYPE<br>废弃版本：9|方法名 or 属性名：MEDIA_TYPE<br>废弃版本：N/A|@ohos.multimedia.mediaLibrary.d.ts|
+|废弃版本有变化|方法名 or 属性名：SIZE<br>废弃版本：9|方法名 or 属性名：SIZE<br>废弃版本：N/A|@ohos.multimedia.mediaLibrary.d.ts|
+|废弃版本有变化|方法名 or 属性名：DATE_ADDED<br>废弃版本：9|方法名 or 属性名：DATE_ADDED<br>废弃版本：N/A|@ohos.multimedia.mediaLibrary.d.ts|
+|废弃版本有变化|方法名 or 属性名：DATE_MODIFIED<br>废弃版本：9|方法名 or 属性名：DATE_MODIFIED<br>废弃版本：N/A|@ohos.multimedia.mediaLibrary.d.ts|
+|废弃版本有变化|方法名 or 属性名：DATE_TAKEN<br>废弃版本：9|方法名 or 属性名：DATE_TAKEN<br>废弃版本：N/A|@ohos.multimedia.mediaLibrary.d.ts|
+|废弃版本有变化|方法名 or 属性名：TITLE<br>废弃版本：9|方法名 or 属性名：TITLE<br>废弃版本：N/A|@ohos.multimedia.mediaLibrary.d.ts|
+|废弃版本有变化|方法名 or 属性名：ARTIST<br>废弃版本：9|方法名 or 属性名：ARTIST<br>废弃版本：N/A|@ohos.multimedia.mediaLibrary.d.ts|
+|废弃版本有变化|方法名 or 属性名：AUDIOALBUM<br>废弃版本：9|方法名 or 属性名：AUDIOALBUM<br>废弃版本：N/A|@ohos.multimedia.mediaLibrary.d.ts|
+|废弃版本有变化|方法名 or 属性名：DURATION<br>废弃版本：9|方法名 or 属性名：DURATION<br>废弃版本：N/A|@ohos.multimedia.mediaLibrary.d.ts|
+|废弃版本有变化|方法名 or 属性名：WIDTH<br>废弃版本：9|方法名 or 属性名：WIDTH<br>废弃版本：N/A|@ohos.multimedia.mediaLibrary.d.ts|
+|废弃版本有变化|方法名 or 属性名：HEIGHT<br>废弃版本：9|方法名 or 属性名：HEIGHT<br>废弃版本：N/A|@ohos.multimedia.mediaLibrary.d.ts|
+|废弃版本有变化|方法名 or 属性名：ORIENTATION<br>废弃版本：9|方法名 or 属性名：ORIENTATION<br>废弃版本：N/A|@ohos.multimedia.mediaLibrary.d.ts|
+|废弃版本有变化|方法名 or 属性名：ALBUM_ID<br>废弃版本：9|方法名 or 属性名：ALBUM_ID<br>废弃版本：N/A|@ohos.multimedia.mediaLibrary.d.ts|
+|废弃版本有变化|方法名 or 属性名：ALBUM_NAME<br>废弃版本：9|方法名 or 属性名：ALBUM_NAME<br>废弃版本：N/A|@ohos.multimedia.mediaLibrary.d.ts|
+|废弃版本有变化|类名：MediaFetchOptions<br>废弃版本：9|类名：MediaFetchOptions<br>废弃版本：N/A|@ohos.multimedia.mediaLibrary.d.ts|
+|废弃版本有变化|方法名 or 属性名：selections<br>废弃版本：9|方法名 or 属性名：selections<br>废弃版本：N/A|@ohos.multimedia.mediaLibrary.d.ts|
+|废弃版本有变化|方法名 or 属性名：selectionArgs<br>废弃版本：9|方法名 or 属性名：selectionArgs<br>废弃版本：N/A|@ohos.multimedia.mediaLibrary.d.ts|
+|废弃版本有变化|方法名 or 属性名：order<br>废弃版本：9|方法名 or 属性名：order<br>废弃版本：N/A|@ohos.multimedia.mediaLibrary.d.ts|
+|废弃版本有变化|方法名 or 属性名：uri<br>废弃版本：9|方法名 or 属性名：uri<br>废弃版本：N/A|@ohos.multimedia.mediaLibrary.d.ts|
+|废弃版本有变化|方法名 or 属性名：networkId<br>废弃版本：9|方法名 or 属性名：networkId<br>废弃版本：N/A|@ohos.multimedia.mediaLibrary.d.ts|
+|废弃版本有变化|方法名 or 属性名：extendArgs<br>废弃版本：9|方法名 or 属性名：extendArgs<br>废弃版本：N/A|@ohos.multimedia.mediaLibrary.d.ts|
+|废弃版本有变化|类名：FetchFileResult<br>废弃版本：9|类名：FetchFileResult<br>废弃版本：N/A|@ohos.multimedia.mediaLibrary.d.ts|
+|废弃版本有变化|方法名 or 属性名：getCount<br>废弃版本：9|方法名 or 属性名：getCount<br>废弃版本：N/A|@ohos.multimedia.mediaLibrary.d.ts|
+|废弃版本有变化|方法名 or 属性名：isAfterLast<br>废弃版本：9|方法名 or 属性名：isAfterLast<br>废弃版本：N/A|@ohos.multimedia.mediaLibrary.d.ts|
+|废弃版本有变化|方法名 or 属性名：close<br>废弃版本：9|方法名 or 属性名：close<br>废弃版本：N/A|@ohos.multimedia.mediaLibrary.d.ts|
+|废弃版本有变化|方法名 or 属性名：getFirstObject<br>废弃版本：9|方法名 or 属性名：getFirstObject<br>废弃版本：N/A|@ohos.multimedia.mediaLibrary.d.ts|
+|废弃版本有变化|方法名 or 属性名：getFirstObject<br>废弃版本：9|方法名 or 属性名：getFirstObject<br>废弃版本：N/A|@ohos.multimedia.mediaLibrary.d.ts|
+|废弃版本有变化|方法名 or 属性名：getNextObject<br>废弃版本：9|方法名 or 属性名：getNextObject<br>废弃版本：N/A|@ohos.multimedia.mediaLibrary.d.ts|
+|废弃版本有变化|方法名 or 属性名：getNextObject<br>废弃版本：9|方法名 or 属性名：getNextObject<br>废弃版本：N/A|@ohos.multimedia.mediaLibrary.d.ts|
+|废弃版本有变化|方法名 or 属性名：getLastObject<br>废弃版本：9|方法名 or 属性名：getLastObject<br>废弃版本：N/A|@ohos.multimedia.mediaLibrary.d.ts|
+|废弃版本有变化|方法名 or 属性名：getLastObject<br>废弃版本：9|方法名 or 属性名：getLastObject<br>废弃版本：N/A|@ohos.multimedia.mediaLibrary.d.ts|
+|废弃版本有变化|方法名 or 属性名：getPositionObject<br>废弃版本：9|方法名 or 属性名：getPositionObject<br>废弃版本：N/A|@ohos.multimedia.mediaLibrary.d.ts|
+|废弃版本有变化|方法名 or 属性名：getPositionObject<br>废弃版本：9|方法名 or 属性名：getPositionObject<br>废弃版本：N/A|@ohos.multimedia.mediaLibrary.d.ts|
+|废弃版本有变化|方法名 or 属性名：getAllObject<br>废弃版本：9|方法名 or 属性名：getAllObject<br>废弃版本：N/A|@ohos.multimedia.mediaLibrary.d.ts|
+|废弃版本有变化|方法名 or 属性名：getAllObject<br>废弃版本：9|方法名 or 属性名：getAllObject<br>废弃版本：N/A|@ohos.multimedia.mediaLibrary.d.ts|
+|废弃版本有变化|类名：Album<br>废弃版本：9|类名：Album<br>废弃版本：N/A|@ohos.multimedia.mediaLibrary.d.ts|
+|废弃版本有变化|方法名 or 属性名：albumId<br>废弃版本：9|方法名 or 属性名：albumId<br>废弃版本：N/A|@ohos.multimedia.mediaLibrary.d.ts|
+|废弃版本有变化|方法名 or 属性名：albumName<br>废弃版本：9|方法名 or 属性名：albumName<br>废弃版本：N/A|@ohos.multimedia.mediaLibrary.d.ts|
+|废弃版本有变化|方法名 or 属性名：albumUri<br>废弃版本：9|方法名 or 属性名：albumUri<br>废弃版本：N/A|@ohos.multimedia.mediaLibrary.d.ts|
+|废弃版本有变化|方法名 or 属性名：dateModified<br>废弃版本：9|方法名 or 属性名：dateModified<br>废弃版本：N/A|@ohos.multimedia.mediaLibrary.d.ts|
+|废弃版本有变化|方法名 or 属性名：count<br>废弃版本：9|方法名 or 属性名：count<br>废弃版本：N/A|@ohos.multimedia.mediaLibrary.d.ts|
+|废弃版本有变化|方法名 or 属性名：relativePath<br>废弃版本：9|方法名 or 属性名：relativePath<br>废弃版本：N/A|@ohos.multimedia.mediaLibrary.d.ts|
+|废弃版本有变化|方法名 or 属性名：coverUri<br>废弃版本：9|方法名 or 属性名：coverUri<br>废弃版本：N/A|@ohos.multimedia.mediaLibrary.d.ts|
+|废弃版本有变化|方法名 or 属性名：commitModify<br>废弃版本：9|方法名 or 属性名：commitModify<br>废弃版本：N/A|@ohos.multimedia.mediaLibrary.d.ts|
+|废弃版本有变化|方法名 or 属性名：commitModify<br>废弃版本：9|方法名 or 属性名：commitModify<br>废弃版本：N/A|@ohos.multimedia.mediaLibrary.d.ts|
+|废弃版本有变化|方法名 or 属性名：getFileAssets<br>废弃版本：9|方法名 or 属性名：getFileAssets<br>废弃版本：N/A|@ohos.multimedia.mediaLibrary.d.ts|
+|废弃版本有变化|方法名 or 属性名：getFileAssets<br>废弃版本：9|方法名 or 属性名：getFileAssets<br>废弃版本：N/A|@ohos.multimedia.mediaLibrary.d.ts|
+|废弃版本有变化|方法名 or 属性名：getFileAssets<br>废弃版本：9|方法名 or 属性名：getFileAssets<br>废弃版本：N/A|@ohos.multimedia.mediaLibrary.d.ts|
+|废弃版本有变化|类名：DirectoryType<br>废弃版本：9|类名：DirectoryType<br>废弃版本：N/A|@ohos.multimedia.mediaLibrary.d.ts|
+|废弃版本有变化|方法名 or 属性名：DIR_CAMERA<br>废弃版本：9|方法名 or 属性名：DIR_CAMERA<br>废弃版本：N/A|@ohos.multimedia.mediaLibrary.d.ts|
+|废弃版本有变化|方法名 or 属性名：DIR_VIDEO<br>废弃版本：9|方法名 or 属性名：DIR_VIDEO<br>废弃版本：N/A|@ohos.multimedia.mediaLibrary.d.ts|
+|废弃版本有变化|方法名 or 属性名：DIR_IMAGE<br>废弃版本：9|方法名 or 属性名：DIR_IMAGE<br>废弃版本：N/A|@ohos.multimedia.mediaLibrary.d.ts|
+|废弃版本有变化|方法名 or 属性名：DIR_AUDIO<br>废弃版本：9|方法名 or 属性名：DIR_AUDIO<br>废弃版本：N/A|@ohos.multimedia.mediaLibrary.d.ts|
+|废弃版本有变化|方法名 or 属性名：DIR_DOCUMENTS<br>废弃版本：9|方法名 or 属性名：DIR_DOCUMENTS<br>废弃版本：N/A|@ohos.multimedia.mediaLibrary.d.ts|
+|废弃版本有变化|方法名 or 属性名：DIR_DOWNLOAD<br>废弃版本：9|方法名 or 属性名：DIR_DOWNLOAD<br>废弃版本：N/A|@ohos.multimedia.mediaLibrary.d.ts|
+|废弃版本有变化|类名：MediaLibrary<br>废弃版本：9|类名：MediaLibrary<br>废弃版本：N/A|@ohos.multimedia.mediaLibrary.d.ts|
+|废弃版本有变化|方法名 or 属性名：getPublicDirectory<br>废弃版本：9|方法名 or 属性名：getPublicDirectory<br>废弃版本：N/A|@ohos.multimedia.mediaLibrary.d.ts|
+|废弃版本有变化|方法名 or 属性名：getPublicDirectory<br>废弃版本：9|方法名 or 属性名：getPublicDirectory<br>废弃版本：N/A|@ohos.multimedia.mediaLibrary.d.ts|
+|废弃版本有变化|方法名 or 属性名：getFileAssets<br>废弃版本：9|方法名 or 属性名：getFileAssets<br>废弃版本：N/A|@ohos.multimedia.mediaLibrary.d.ts|
+|废弃版本有变化|方法名 or 属性名：getFileAssets<br>废弃版本：9|方法名 or 属性名：getFileAssets<br>废弃版本：N/A|@ohos.multimedia.mediaLibrary.d.ts|
+|废弃版本有变化|方法名 or 属性名：on_deviceChange<br>废弃版本：9|方法名 or 属性名：on_deviceChange<br>废弃版本：N/A|@ohos.multimedia.mediaLibrary.d.ts|
+|废弃版本有变化|方法名 or 属性名：on_albumChange<br>废弃版本：9|方法名 or 属性名：on_albumChange<br>废弃版本：N/A|@ohos.multimedia.mediaLibrary.d.ts|
+|废弃版本有变化|方法名 or 属性名：on_imageChange<br>废弃版本：9|方法名 or 属性名：on_imageChange<br>废弃版本：N/A|@ohos.multimedia.mediaLibrary.d.ts|
+|废弃版本有变化|方法名 or 属性名：on_audioChange<br>废弃版本：9|方法名 or 属性名：on_audioChange<br>废弃版本：N/A|@ohos.multimedia.mediaLibrary.d.ts|
+|废弃版本有变化|方法名 or 属性名：on_videoChange<br>废弃版本：9|方法名 or 属性名：on_videoChange<br>废弃版本：N/A|@ohos.multimedia.mediaLibrary.d.ts|
+|废弃版本有变化|方法名 or 属性名：on_fileChange<br>废弃版本：9|方法名 or 属性名：on_fileChange<br>废弃版本：N/A|@ohos.multimedia.mediaLibrary.d.ts|
+|废弃版本有变化|方法名 or 属性名：on_remoteFileChange<br>废弃版本：9|方法名 or 属性名：on_remoteFileChange<br>废弃版本：N/A|@ohos.multimedia.mediaLibrary.d.ts|
+|废弃版本有变化|方法名 or 属性名：off_deviceChange<br>废弃版本：9|方法名 or 属性名：off_deviceChange<br>废弃版本：N/A|@ohos.multimedia.mediaLibrary.d.ts|
+|废弃版本有变化|方法名 or 属性名：off_albumChange<br>废弃版本：9|方法名 or 属性名：off_albumChange<br>废弃版本：N/A|@ohos.multimedia.mediaLibrary.d.ts|
+|废弃版本有变化|方法名 or 属性名：off_imageChange<br>废弃版本：9|方法名 or 属性名：off_imageChange<br>废弃版本：N/A|@ohos.multimedia.mediaLibrary.d.ts|
+|废弃版本有变化|方法名 or 属性名：off_audioChange<br>废弃版本：9|方法名 or 属性名：off_audioChange<br>废弃版本：N/A|@ohos.multimedia.mediaLibrary.d.ts|
+|废弃版本有变化|方法名 or 属性名：off_videoChange<br>废弃版本：9|方法名 or 属性名：off_videoChange<br>废弃版本：N/A|@ohos.multimedia.mediaLibrary.d.ts|
+|废弃版本有变化|方法名 or 属性名：off_fileChange<br>废弃版本：9|方法名 or 属性名：off_fileChange<br>废弃版本：N/A|@ohos.multimedia.mediaLibrary.d.ts|
+|废弃版本有变化|方法名 or 属性名：off_remoteFileChange<br>废弃版本：9|方法名 or 属性名：off_remoteFileChange<br>废弃版本：N/A|@ohos.multimedia.mediaLibrary.d.ts|
+|废弃版本有变化|方法名 or 属性名：createAsset<br>废弃版本：9|方法名 or 属性名：createAsset<br>废弃版本：N/A|@ohos.multimedia.mediaLibrary.d.ts|
+|废弃版本有变化|方法名 or 属性名：createAsset<br>废弃版本：9|方法名 or 属性名：createAsset<br>废弃版本：N/A|@ohos.multimedia.mediaLibrary.d.ts|
+|废弃版本有变化|方法名 or 属性名：deleteAsset<br>废弃版本：9|方法名 or 属性名：deleteAsset<br>废弃版本：N/A|@ohos.multimedia.mediaLibrary.d.ts|
+|废弃版本有变化|方法名 or 属性名：deleteAsset<br>废弃版本：9|方法名 or 属性名：deleteAsset<br>废弃版本：N/A|@ohos.multimedia.mediaLibrary.d.ts|
+|废弃版本有变化|方法名 or 属性名：getAlbums<br>废弃版本：9|方法名 or 属性名：getAlbums<br>废弃版本：N/A|@ohos.multimedia.mediaLibrary.d.ts|
+|废弃版本有变化|方法名 or 属性名：getAlbums<br>废弃版本：9|方法名 or 属性名：getAlbums<br>废弃版本：N/A|@ohos.multimedia.mediaLibrary.d.ts|
+|废弃版本有变化|方法名 or 属性名：getActivePeers<br>废弃版本：9|方法名 or 属性名：getActivePeers<br>废弃版本：N/A|@ohos.multimedia.mediaLibrary.d.ts|
+|废弃版本有变化|方法名 or 属性名：getActivePeers<br>废弃版本：9|方法名 or 属性名：getActivePeers<br>废弃版本：N/A|@ohos.multimedia.mediaLibrary.d.ts|
+|废弃版本有变化|方法名 or 属性名：getAllPeers<br>废弃版本：9|方法名 or 属性名：getAllPeers<br>废弃版本：N/A|@ohos.multimedia.mediaLibrary.d.ts|
+|废弃版本有变化|方法名 or 属性名：getAllPeers<br>废弃版本：9|方法名 or 属性名：getAllPeers<br>废弃版本：N/A|@ohos.multimedia.mediaLibrary.d.ts|
+|废弃版本有变化|方法名 or 属性名：release<br>废弃版本：9|方法名 or 属性名：release<br>废弃版本：N/A|@ohos.multimedia.mediaLibrary.d.ts|
+|废弃版本有变化|方法名 or 属性名：release<br>废弃版本：9|方法名 or 属性名：release<br>废弃版本：N/A|@ohos.multimedia.mediaLibrary.d.ts|
+|废弃版本有变化|类名：Size<br>废弃版本：9|类名：Size<br>废弃版本：N/A|@ohos.multimedia.mediaLibrary.d.ts|
+|废弃版本有变化|方法名 or 属性名：width<br>废弃版本：9|方法名 or 属性名：width<br>废弃版本：N/A|@ohos.multimedia.mediaLibrary.d.ts|
+|废弃版本有变化|方法名 or 属性名：height<br>废弃版本：9|方法名 or 属性名：height<br>废弃版本：N/A|@ohos.multimedia.mediaLibrary.d.ts|
+|废弃版本有变化|类名：PeerInfo<br>废弃版本：9|类名：PeerInfo<br>废弃版本：N/A|@ohos.multimedia.mediaLibrary.d.ts|
+|废弃版本有变化|方法名 or 属性名：deviceName<br>废弃版本：9|方法名 or 属性名：deviceName<br>废弃版本：N/A|@ohos.multimedia.mediaLibrary.d.ts|
+|废弃版本有变化|方法名 or 属性名：networkId<br>废弃版本：9|方法名 or 属性名：networkId<br>废弃版本：N/A|@ohos.multimedia.mediaLibrary.d.ts|
+|废弃版本有变化|方法名 or 属性名：deviceType<br>废弃版本：9|方法名 or 属性名：deviceType<br>废弃版本：N/A|@ohos.multimedia.mediaLibrary.d.ts|
+|废弃版本有变化|方法名 or 属性名：isOnline<br>废弃版本：9|方法名 or 属性名：isOnline<br>废弃版本：N/A|@ohos.multimedia.mediaLibrary.d.ts|
+|废弃版本有变化|类名：DeviceType<br>废弃版本：9|类名：DeviceType<br>废弃版本：N/A|@ohos.multimedia.mediaLibrary.d.ts|
+|废弃版本有变化|方法名 or 属性名：TYPE_UNKNOWN<br>废弃版本：9|方法名 or 属性名：TYPE_UNKNOWN<br>废弃版本：N/A|@ohos.multimedia.mediaLibrary.d.ts|
+|废弃版本有变化|方法名 or 属性名：TYPE_LAPTOP<br>废弃版本：9|方法名 or 属性名：TYPE_LAPTOP<br>废弃版本：N/A|@ohos.multimedia.mediaLibrary.d.ts|
+|废弃版本有变化|方法名 or 属性名：TYPE_PHONE<br>废弃版本：9|方法名 or 属性名：TYPE_PHONE<br>废弃版本：N/A|@ohos.multimedia.mediaLibrary.d.ts|
+|废弃版本有变化|方法名 or 属性名：TYPE_TABLET<br>废弃版本：9|方法名 or 属性名：TYPE_TABLET<br>废弃版本：N/A|@ohos.multimedia.mediaLibrary.d.ts|
+|废弃版本有变化|方法名 or 属性名：TYPE_WATCH<br>废弃版本：9|方法名 or 属性名：TYPE_WATCH<br>废弃版本：N/A|@ohos.multimedia.mediaLibrary.d.ts|
+|废弃版本有变化|方法名 or 属性名：TYPE_CAR<br>废弃版本：9|方法名 or 属性名：TYPE_CAR<br>废弃版本：N/A|@ohos.multimedia.mediaLibrary.d.ts|
+|废弃版本有变化|方法名 or 属性名：TYPE_TV<br>废弃版本：9|方法名 or 属性名：TYPE_TV<br>废弃版本：N/A|@ohos.multimedia.mediaLibrary.d.ts|
 |新增(错误码)||方法名 or 属性名：on_deviceChange<br>错误码内容:401,6800101|@ohos.multimedia.audio.d.ts|
 |新增(错误码)||方法名 or 属性名：off_deviceChange<br>错误码内容:401,6800101|@ohos.multimedia.audio.d.ts|
 |新增(错误码)||方法名 or 属性名：on_audioRendererChange<br>错误码内容:401,6800101|@ohos.multimedia.audio.d.ts|
@@ -794,3 +840,47 @@
 |新增(错误码)||方法名 or 属性名：reset<br>错误码内容:5400103,5400105|@ohos.multimedia.media.d.ts|
 |新增(错误码)||方法名 or 属性名：reset<br>错误码内容:5400103,5400105|@ohos.multimedia.media.d.ts|
 |新增(错误码)||方法名 or 属性名：on_error<br>错误码内容:5400103,5400105|@ohos.multimedia.media.d.ts|
+|访问级别有变化|方法名 or 属性名：createVideoRecorder<br>访问级别：公开API|方法名 or 属性名：createVideoRecorder<br>访问级别：系统API|@ohos.multimedia.media.d.ts|
+|访问级别有变化|方法名 or 属性名：createVideoRecorder<br>访问级别：公开API|方法名 or 属性名：createVideoRecorder<br>访问级别：系统API|@ohos.multimedia.media.d.ts|
+|访问级别有变化|类名：VideoRecorder<br>访问级别：公开API|类名：VideoRecorder<br>访问级别：系统API|@ohos.multimedia.media.d.ts|
+|访问级别有变化|方法名 or 属性名：prepare<br>访问级别：公开API|方法名 or 属性名：prepare<br>访问级别：系统API|@ohos.multimedia.media.d.ts|
+|访问级别有变化|方法名 or 属性名：prepare<br>访问级别：公开API|方法名 or 属性名：prepare<br>访问级别：系统API|@ohos.multimedia.media.d.ts|
+|访问级别有变化|方法名 or 属性名：getInputSurface<br>访问级别：公开API|方法名 or 属性名：getInputSurface<br>访问级别：系统API|@ohos.multimedia.media.d.ts|
+|访问级别有变化|方法名 or 属性名：getInputSurface<br>访问级别：公开API|方法名 or 属性名：getInputSurface<br>访问级别：系统API|@ohos.multimedia.media.d.ts|
+|访问级别有变化|方法名 or 属性名：start<br>访问级别：公开API|方法名 or 属性名：start<br>访问级别：系统API|@ohos.multimedia.media.d.ts|
+|访问级别有变化|方法名 or 属性名：start<br>访问级别：公开API|方法名 or 属性名：start<br>访问级别：系统API|@ohos.multimedia.media.d.ts|
+|访问级别有变化|方法名 or 属性名：pause<br>访问级别：公开API|方法名 or 属性名：pause<br>访问级别：系统API|@ohos.multimedia.media.d.ts|
+|访问级别有变化|方法名 or 属性名：pause<br>访问级别：公开API|方法名 or 属性名：pause<br>访问级别：系统API|@ohos.multimedia.media.d.ts|
+|访问级别有变化|方法名 or 属性名：resume<br>访问级别：公开API|方法名 or 属性名：resume<br>访问级别：系统API|@ohos.multimedia.media.d.ts|
+|访问级别有变化|方法名 or 属性名：resume<br>访问级别：公开API|方法名 or 属性名：resume<br>访问级别：系统API|@ohos.multimedia.media.d.ts|
+|访问级别有变化|方法名 or 属性名：stop<br>访问级别：公开API|方法名 or 属性名：stop<br>访问级别：系统API|@ohos.multimedia.media.d.ts|
+|访问级别有变化|方法名 or 属性名：stop<br>访问级别：公开API|方法名 or 属性名：stop<br>访问级别：系统API|@ohos.multimedia.media.d.ts|
+|访问级别有变化|方法名 or 属性名：release<br>访问级别：公开API|方法名 or 属性名：release<br>访问级别：系统API|@ohos.multimedia.media.d.ts|
+|访问级别有变化|方法名 or 属性名：release<br>访问级别：公开API|方法名 or 属性名：release<br>访问级别：系统API|@ohos.multimedia.media.d.ts|
+|访问级别有变化|方法名 or 属性名：reset<br>访问级别：公开API|方法名 or 属性名：reset<br>访问级别：系统API|@ohos.multimedia.media.d.ts|
+|访问级别有变化|方法名 or 属性名：reset<br>访问级别：公开API|方法名 or 属性名：reset<br>访问级别：系统API|@ohos.multimedia.media.d.ts|
+|访问级别有变化|方法名 or 属性名：on_error<br>访问级别：公开API|方法名 or 属性名：on_error<br>访问级别：系统API|@ohos.multimedia.media.d.ts|
+|访问级别有变化|方法名 or 属性名：state<br>访问级别：公开API|方法名 or 属性名：state<br>访问级别：系统API|@ohos.multimedia.media.d.ts|
+|访问级别有变化|类名：VideoRecorderProfile<br>访问级别：公开API|类名：VideoRecorderProfile<br>访问级别：系统API|@ohos.multimedia.media.d.ts|
+|访问级别有变化|方法名 or 属性名：audioBitrate<br>访问级别：公开API|方法名 or 属性名：audioBitrate<br>访问级别：系统API|@ohos.multimedia.media.d.ts|
+|访问级别有变化|方法名 or 属性名：audioChannels<br>访问级别：公开API|方法名 or 属性名：audioChannels<br>访问级别：系统API|@ohos.multimedia.media.d.ts|
+|访问级别有变化|方法名 or 属性名：audioCodec<br>访问级别：公开API|方法名 or 属性名：audioCodec<br>访问级别：系统API|@ohos.multimedia.media.d.ts|
+|访问级别有变化|方法名 or 属性名：audioSampleRate<br>访问级别：公开API|方法名 or 属性名：audioSampleRate<br>访问级别：系统API|@ohos.multimedia.media.d.ts|
+|访问级别有变化|方法名 or 属性名：fileFormat<br>访问级别：公开API|方法名 or 属性名：fileFormat<br>访问级别：系统API|@ohos.multimedia.media.d.ts|
+|访问级别有变化|方法名 or 属性名：videoBitrate<br>访问级别：公开API|方法名 or 属性名：videoBitrate<br>访问级别：系统API|@ohos.multimedia.media.d.ts|
+|访问级别有变化|方法名 or 属性名：videoCodec<br>访问级别：公开API|方法名 or 属性名：videoCodec<br>访问级别：系统API|@ohos.multimedia.media.d.ts|
+|访问级别有变化|方法名 or 属性名：videoFrameWidth<br>访问级别：公开API|方法名 or 属性名：videoFrameWidth<br>访问级别：系统API|@ohos.multimedia.media.d.ts|
+|访问级别有变化|方法名 or 属性名：videoFrameHeight<br>访问级别：公开API|方法名 or 属性名：videoFrameHeight<br>访问级别：系统API|@ohos.multimedia.media.d.ts|
+|访问级别有变化|方法名 or 属性名：videoFrameRate<br>访问级别：公开API|方法名 or 属性名：videoFrameRate<br>访问级别：系统API|@ohos.multimedia.media.d.ts|
+|访问级别有变化|类名：AudioSourceType<br>访问级别：公开API|类名：AudioSourceType<br>访问级别：系统API|@ohos.multimedia.media.d.ts|
+|访问级别有变化|方法名 or 属性名：AUDIO_SOURCE_TYPE_DEFAULT<br>访问级别：公开API|方法名 or 属性名：AUDIO_SOURCE_TYPE_DEFAULT<br>访问级别：系统API|@ohos.multimedia.media.d.ts|
+|访问级别有变化|方法名 or 属性名：AUDIO_SOURCE_TYPE_MIC<br>访问级别：公开API|方法名 or 属性名：AUDIO_SOURCE_TYPE_MIC<br>访问级别：系统API|@ohos.multimedia.media.d.ts|
+|访问级别有变化|类名：VideoSourceType<br>访问级别：公开API|类名：VideoSourceType<br>访问级别：系统API|@ohos.multimedia.media.d.ts|
+|访问级别有变化|方法名 or 属性名：VIDEO_SOURCE_TYPE_SURFACE_YUV<br>访问级别：公开API|方法名 or 属性名：VIDEO_SOURCE_TYPE_SURFACE_YUV<br>访问级别：系统API|@ohos.multimedia.media.d.ts|
+|访问级别有变化|方法名 or 属性名：VIDEO_SOURCE_TYPE_SURFACE_ES<br>访问级别：公开API|方法名 or 属性名：VIDEO_SOURCE_TYPE_SURFACE_ES<br>访问级别：系统API|@ohos.multimedia.media.d.ts|
+|访问级别有变化|类名：VideoRecorderConfig<br>访问级别：公开API|类名：VideoRecorderConfig<br>访问级别：系统API|@ohos.multimedia.media.d.ts|
+|访问级别有变化|方法名 or 属性名：videoSourceType<br>访问级别：公开API|方法名 or 属性名：videoSourceType<br>访问级别：系统API|@ohos.multimedia.media.d.ts|
+|访问级别有变化|方法名 or 属性名：profile<br>访问级别：公开API|方法名 or 属性名：profile<br>访问级别：系统API|@ohos.multimedia.media.d.ts|
+|访问级别有变化|方法名 or 属性名：url<br>访问级别：公开API|方法名 or 属性名：url<br>访问级别：系统API|@ohos.multimedia.media.d.ts|
+|访问级别有变化|方法名 or 属性名：rotation<br>访问级别：公开API|方法名 or 属性名：rotation<br>访问级别：系统API|@ohos.multimedia.media.d.ts|
+|访问级别有变化|方法名 or 属性名：location<br>访问级别：公开API|方法名 or 属性名：location<br>访问级别：系统API|@ohos.multimedia.media.d.ts|

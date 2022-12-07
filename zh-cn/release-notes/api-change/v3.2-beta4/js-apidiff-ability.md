@@ -486,7 +486,7 @@
 |新增||模块名: ohos.app.form.formProvider<br>类名: formProvider<br>方法名 or 属性名： isRequestPublishFormSupported|@ohos.app.form.formProvider.d.ts|
 |新增||模块名: ohos.app.form.formProvider<br>类名: formProvider<br>方法名 or 属性名： isRequestPublishFormSupported|@ohos.app.form.formProvider.d.ts|
 |新增||模块名：ohos.application.Ability<br>类名:Ability<br>方法名 or 属性名:onSaveState|@ohos.application.Ability.d.ts|
-|新增||模块名：ohos.application.AbilityConstant<br>类名:LaunchReason<br>方法名 or 属性名:APP_RECOVERY|@ohos.application.AbilityConstant.d.ts|
+|新增||模块名: ohos.application.AbilityConstant<br>类名: LaunchReason<br>方法名 or 属性名：APP_RECOVERY|@ohos.application.AbilityConstant.d.ts|
 |新增||模块名: ohos.application.AbilityConstant<br>类名: OnSaveResult|@ohos.application.AbilityConstant.d.ts|
 |新增||模块名: ohos.application.AbilityConstant<br>类名: OnSaveResult<br>方法名 or 属性名：ALL_AGREE|@ohos.application.AbilityConstant.d.ts|
 |新增||模块名: ohos.application.AbilityConstant<br>类名: OnSaveResult<br>方法名 or 属性名：CONTINUATION_REJECT|@ohos.application.AbilityConstant.d.ts|
@@ -502,7 +502,7 @@
 |新增||模块名: ohos.application.ExtensionAbility<br>类名: ExtensionAbility<br>方法名 or 属性名： onMemoryLevel|@ohos.application.ExtensionAbility.d.ts|
 |新增||模块名：ohos.application.formHost<br>类名:formHost<br>方法名 or 属性名:notifyFormsPrivacyProtected|@ohos.application.formHost.d.ts|
 |新增||模块名：ohos.application.formHost<br>类名:formHost<br>方法名 or 属性名:notifyFormsPrivacyProtected|@ohos.application.formHost.d.ts|
-|新增||模块名：ohos.application.formInfo<br>类名:FormType<br>方法名 or 属性名:eTS|@ohos.application.formInfo.d.ts|
+|新增||模块名: ohos.application.formInfo<br>类名: FormType<br>方法名 or 属性名：eTS|@ohos.application.formInfo.d.ts|
 |新增||模块名：ohos.application.formInfo<br>类名:VisibilityType|@ohos.application.formInfo.d.ts|
 |新增||模块名：ohos.application.formInfo<br>类名:VisibilityType<br>方法名 or 属性名:FORM_VISIBLE|@ohos.application.formInfo.d.ts|
 |新增||模块名：ohos.application.formInfo<br>类名:VisibilityType<br>方法名 or 属性名:FORM_INVISIBLE|@ohos.application.formInfo.d.ts|
@@ -522,7 +522,6 @@
 |新增||模块名：AbilityContext<br>类名:AbilityContext<br>方法名 or 属性名:connectServiceExtensionAbilityWithAccount|AbilityContext.d.ts|
 |新增||模块名：AbilityContext<br>类名:AbilityContext<br>方法名 or 属性名:disconnectServiceExtensionAbility|AbilityContext.d.ts|
 |新增||模块名：AbilityContext<br>类名:AbilityContext<br>方法名 or 属性名:disconnectServiceExtensionAbility|AbilityContext.d.ts|
-|新增||模块名：abilityDelegator<br>类名:AbilityDelegator|abilityDelegator.d.ts|
 |新增||方法名 or 属性名：waitAbilityMonitor<br>函数：waitAbilityMonitor(monitor: AbilityMonitor, callback: AsyncCallback<UIAbility>): void;|abilityDelegator.d.ts|
 |新增||方法名 or 属性名：waitAbilityMonitor<br>函数：waitAbilityMonitor(monitor: AbilityMonitor, timeout: number, callback: AsyncCallback<UIAbility>): void;|abilityDelegator.d.ts|
 |新增||方法名 or 属性名：waitAbilityMonitor<br>函数：waitAbilityMonitor(monitor: AbilityMonitor, timeout?: number): Promise<UIAbility>;|abilityDelegator.d.ts|
@@ -627,386 +626,60 @@
 |删除|模块名: ohos.application.quickFixManager<br>类名: quickFixManager<br>方法名 or 属性名： getApplicationQuickFixInfo||@ohos.application.quickFixManager.d.ts|
 |删除|模块名: ohos.application.quickFixManager<br>类名: quickFixManager<br>方法名 or 属性名： getApplicationQuickFixInfo||@ohos.application.quickFixManager.d.ts|
 |model有变化|类名：ability<br>model:@StageModelOnly|类名：ability<br>model:@FAModelOnly|@ohos.ability.ability.d.ts|
-|废弃版本有变化|类名：wantConstant<br>废弃版本：|类名：wantConstant<br>废弃版本：9<br>代替接口：ohos.app.ability.wantConstant |@ohos.ability.wantConstant.d.ts|
-|废弃版本有变化|类名：Action<br>废弃版本：|类名：Action<br>废弃版本：9<br>代替接口：ohos.app.ability.wantConstant |@ohos.ability.wantConstant.d.ts|
-|废弃版本有变化|方法名 or 属性名：ACTION_HOME<br>废弃版本：|方法名 or 属性名：ACTION_HOME<br>废弃版本：9<br>代替接口：ohos.app.ability.wantConstant |@ohos.ability.wantConstant.d.ts|
-|废弃版本有变化|方法名 or 属性名：ACTION_DIAL<br>废弃版本：|方法名 or 属性名：ACTION_DIAL<br>废弃版本：9<br>代替接口：ohos.app.ability.wantConstant |@ohos.ability.wantConstant.d.ts|
-|废弃版本有变化|方法名 or 属性名：ACTION_SEARCH<br>废弃版本：|方法名 or 属性名：ACTION_SEARCH<br>废弃版本：9<br>代替接口：ohos.app.ability.wantConstant |@ohos.ability.wantConstant.d.ts|
-|废弃版本有变化|方法名 or 属性名：ACTION_WIRELESS_SETTINGS<br>废弃版本：|方法名 or 属性名：ACTION_WIRELESS_SETTINGS<br>废弃版本：9<br>代替接口：ohos.app.ability.wantConstant |@ohos.ability.wantConstant.d.ts|
-|废弃版本有变化|方法名 or 属性名：ACTION_MANAGE_APPLICATIONS_SETTINGS<br>废弃版本：|方法名 or 属性名：ACTION_MANAGE_APPLICATIONS_SETTINGS<br>废弃版本：9<br>代替接口：ohos.app.ability.wantConstant |@ohos.ability.wantConstant.d.ts|
-|废弃版本有变化|方法名 or 属性名：ACTION_APPLICATION_DETAILS_SETTINGS<br>废弃版本：|方法名 or 属性名：ACTION_APPLICATION_DETAILS_SETTINGS<br>废弃版本：9<br>代替接口：ohos.app.ability.wantConstant |@ohos.ability.wantConstant.d.ts|
-|废弃版本有变化|方法名 or 属性名：ACTION_SET_ALARM<br>废弃版本：|方法名 or 属性名：ACTION_SET_ALARM<br>废弃版本：9<br>代替接口：ohos.app.ability.wantConstant |@ohos.ability.wantConstant.d.ts|
-|废弃版本有变化|方法名 or 属性名：ACTION_SHOW_ALARMS<br>废弃版本：|方法名 or 属性名：ACTION_SHOW_ALARMS<br>废弃版本：9<br>代替接口：ohos.app.ability.wantConstant |@ohos.ability.wantConstant.d.ts|
-|废弃版本有变化|方法名 or 属性名：ACTION_SNOOZE_ALARM<br>废弃版本：|方法名 or 属性名：ACTION_SNOOZE_ALARM<br>废弃版本：9<br>代替接口：ohos.app.ability.wantConstant |@ohos.ability.wantConstant.d.ts|
-|废弃版本有变化|方法名 or 属性名：ACTION_DISMISS_ALARM<br>废弃版本：|方法名 or 属性名：ACTION_DISMISS_ALARM<br>废弃版本：9<br>代替接口：ohos.app.ability.wantConstant |@ohos.ability.wantConstant.d.ts|
-|废弃版本有变化|方法名 or 属性名：ACTION_DISMISS_TIMER<br>废弃版本：|方法名 or 属性名：ACTION_DISMISS_TIMER<br>废弃版本：9<br>代替接口：ohos.app.ability.wantConstant |@ohos.ability.wantConstant.d.ts|
-|废弃版本有变化|方法名 or 属性名：ACTION_SEND_SMS<br>废弃版本：|方法名 or 属性名：ACTION_SEND_SMS<br>废弃版本：9<br>代替接口：ohos.app.ability.wantConstant |@ohos.ability.wantConstant.d.ts|
-|废弃版本有变化|方法名 or 属性名：ACTION_CHOOSE<br>废弃版本：|方法名 or 属性名：ACTION_CHOOSE<br>废弃版本：9<br>代替接口：ohos.app.ability.wantConstant |@ohos.ability.wantConstant.d.ts|
-|废弃版本有变化|方法名 or 属性名：ACTION_IMAGE_CAPTURE<br>废弃版本：|方法名 or 属性名：ACTION_IMAGE_CAPTURE<br>废弃版本：9<br>代替接口：ohos.app.ability.wantConstant |@ohos.ability.wantConstant.d.ts|
-|废弃版本有变化|方法名 or 属性名：ACTION_VIDEO_CAPTURE<br>废弃版本：|方法名 or 属性名：ACTION_VIDEO_CAPTURE<br>废弃版本：9<br>代替接口：ohos.app.ability.wantConstant |@ohos.ability.wantConstant.d.ts|
-|废弃版本有变化|方法名 or 属性名：ACTION_SELECT<br>废弃版本：|方法名 or 属性名：ACTION_SELECT<br>废弃版本：9<br>代替接口：ohos.app.ability.wantConstant |@ohos.ability.wantConstant.d.ts|
-|废弃版本有变化|方法名 or 属性名：ACTION_SEND_DATA<br>废弃版本：|方法名 or 属性名：ACTION_SEND_DATA<br>废弃版本：9<br>代替接口：ohos.app.ability.wantConstant |@ohos.ability.wantConstant.d.ts|
-|废弃版本有变化|方法名 or 属性名：ACTION_SEND_MULTIPLE_DATA<br>废弃版本：|方法名 or 属性名：ACTION_SEND_MULTIPLE_DATA<br>废弃版本：9<br>代替接口：ohos.app.ability.wantConstant |@ohos.ability.wantConstant.d.ts|
-|废弃版本有变化|方法名 or 属性名：ACTION_SCAN_MEDIA_FILE<br>废弃版本：|方法名 or 属性名：ACTION_SCAN_MEDIA_FILE<br>废弃版本：9<br>代替接口：ohos.app.ability.wantConstant |@ohos.ability.wantConstant.d.ts|
-|废弃版本有变化|方法名 or 属性名：ACTION_VIEW_DATA<br>废弃版本：|方法名 or 属性名：ACTION_VIEW_DATA<br>废弃版本：9<br>代替接口：ohos.app.ability.wantConstant |@ohos.ability.wantConstant.d.ts|
-|废弃版本有变化|方法名 or 属性名：ACTION_EDIT_DATA<br>废弃版本：|方法名 or 属性名：ACTION_EDIT_DATA<br>废弃版本：9<br>代替接口：ohos.app.ability.wantConstant |@ohos.ability.wantConstant.d.ts|
-|废弃版本有变化|方法名 or 属性名：INTENT_PARAMS_INTENT<br>废弃版本：|方法名 or 属性名：INTENT_PARAMS_INTENT<br>废弃版本：9<br>代替接口：ohos.app.ability.wantConstant |@ohos.ability.wantConstant.d.ts|
-|废弃版本有变化|方法名 or 属性名：INTENT_PARAMS_TITLE<br>废弃版本：|方法名 or 属性名：INTENT_PARAMS_TITLE<br>废弃版本：9<br>代替接口：ohos.app.ability.wantConstant |@ohos.ability.wantConstant.d.ts|
-|废弃版本有变化|方法名 or 属性名：ACTION_FILE_SELECT<br>废弃版本：|方法名 or 属性名：ACTION_FILE_SELECT<br>废弃版本：9<br>代替接口：ohos.app.ability.wantConstant |@ohos.ability.wantConstant.d.ts|
-|废弃版本有变化|方法名 or 属性名：PARAMS_STREAM<br>废弃版本：|方法名 or 属性名：PARAMS_STREAM<br>废弃版本：9<br>代替接口：ohos.app.ability.wantConstant |@ohos.ability.wantConstant.d.ts|
-|废弃版本有变化|方法名 or 属性名：ACTION_APP_ACCOUNT_OAUTH<br>废弃版本：|方法名 or 属性名：ACTION_APP_ACCOUNT_OAUTH<br>废弃版本：9<br>代替接口：wantConstant.Action|@ohos.ability.wantConstant.d.ts|
-|废弃版本有变化|方法名 or 属性名：ACTION_MARKET_DOWNLOAD<br>废弃版本：|方法名 or 属性名：ACTION_MARKET_DOWNLOAD<br>废弃版本：9<br>代替接口：ohos.app.ability.wantConstant |@ohos.ability.wantConstant.d.ts|
-|废弃版本有变化|方法名 or 属性名：ACTION_MARKET_CROWDTEST<br>废弃版本：|方法名 or 属性名：ACTION_MARKET_CROWDTEST<br>废弃版本：9<br>代替接口：ohos.app.ability.wantConstant |@ohos.ability.wantConstant.d.ts|
-|废弃版本有变化|方法名 or 属性名：DLP_PARAMS_SANDBOX<br>废弃版本：|方法名 or 属性名：DLP_PARAMS_SANDBOX<br>废弃版本：9<br>代替接口：ohos.app.ability.wantConstant |@ohos.ability.wantConstant.d.ts|
-|废弃版本有变化|方法名 or 属性名：DLP_PARAMS_BUNDLE_NAME<br>废弃版本：|方法名 or 属性名：DLP_PARAMS_BUNDLE_NAME<br>废弃版本：9<br>代替接口：ohos.app.ability.wantConstant |@ohos.ability.wantConstant.d.ts|
-|废弃版本有变化|方法名 or 属性名：DLP_PARAMS_MODULE_NAME<br>废弃版本：|方法名 or 属性名：DLP_PARAMS_MODULE_NAME<br>废弃版本：9<br>代替接口：ohos.app.ability.wantConstant |@ohos.ability.wantConstant.d.ts|
-|废弃版本有变化|方法名 or 属性名：DLP_PARAMS_ABILITY_NAME<br>废弃版本：|方法名 or 属性名：DLP_PARAMS_ABILITY_NAME<br>废弃版本：9<br>代替接口：ohos.app.ability.wantConstant |@ohos.ability.wantConstant.d.ts|
-|废弃版本有变化|方法名 or 属性名：DLP_PARAMS_INDEX<br>废弃版本：|方法名 or 属性名：DLP_PARAMS_INDEX<br>废弃版本：9<br>代替接口：ohos.app.ability.wantConstant |@ohos.ability.wantConstant.d.ts|
-|废弃版本有变化|类名：Entity<br>废弃版本：|类名：Entity<br>废弃版本：9<br>代替接口：ohos.app.ability.wantConstant |@ohos.ability.wantConstant.d.ts|
-|废弃版本有变化|方法名 or 属性名：ENTITY_DEFAULT<br>废弃版本：|方法名 or 属性名：ENTITY_DEFAULT<br>废弃版本：9<br>代替接口：ohos.app.ability.wantConstant |@ohos.ability.wantConstant.d.ts|
-|废弃版本有变化|方法名 or 属性名：ENTITY_HOME<br>废弃版本：|方法名 or 属性名：ENTITY_HOME<br>废弃版本：9<br>代替接口：ohos.app.ability.wantConstant |@ohos.ability.wantConstant.d.ts|
-|废弃版本有变化|方法名 or 属性名：ENTITY_VOICE<br>废弃版本：|方法名 or 属性名：ENTITY_VOICE<br>废弃版本：9<br>代替接口：ohos.app.ability.wantConstant |@ohos.ability.wantConstant.d.ts|
-|废弃版本有变化|方法名 or 属性名：ENTITY_BROWSABLE<br>废弃版本：|方法名 or 属性名：ENTITY_BROWSABLE<br>废弃版本：9<br>代替接口：ohos.app.ability.wantConstant |@ohos.ability.wantConstant.d.ts|
-|废弃版本有变化|方法名 or 属性名：ENTITY_VIDEO<br>废弃版本：|方法名 or 属性名：ENTITY_VIDEO<br>废弃版本：9<br>代替接口：ohos.app.ability.wantConstant |@ohos.ability.wantConstant.d.ts|
-|废弃版本有变化|类名：Flags<br>废弃版本：|类名：Flags<br>废弃版本：9<br>代替接口：ohos.app.ability.wantConstant |@ohos.ability.wantConstant.d.ts|
-|废弃版本有变化|方法名 or 属性名：FLAG_AUTH_READ_URI_PERMISSION<br>废弃版本：|方法名 or 属性名：FLAG_AUTH_READ_URI_PERMISSION<br>废弃版本：9<br>代替接口：ohos.app.ability.wantConstant |@ohos.ability.wantConstant.d.ts|
-|废弃版本有变化|方法名 or 属性名：FLAG_AUTH_WRITE_URI_PERMISSION<br>废弃版本：|方法名 or 属性名：FLAG_AUTH_WRITE_URI_PERMISSION<br>废弃版本：9<br>代替接口：ohos.app.ability.wantConstant |@ohos.ability.wantConstant.d.ts|
-|废弃版本有变化|方法名 or 属性名：FLAG_ABILITY_FORWARD_RESULT<br>废弃版本：|方法名 or 属性名：FLAG_ABILITY_FORWARD_RESULT<br>废弃版本：9<br>代替接口：ohos.app.ability.wantConstant |@ohos.ability.wantConstant.d.ts|
-|废弃版本有变化|方法名 or 属性名：FLAG_ABILITY_CONTINUATION<br>废弃版本：|方法名 or 属性名：FLAG_ABILITY_CONTINUATION<br>废弃版本：9<br>代替接口：ohos.app.ability.wantConstant |@ohos.ability.wantConstant.d.ts|
-|废弃版本有变化|方法名 or 属性名：FLAG_NOT_OHOS_COMPONENT<br>废弃版本：|方法名 or 属性名：FLAG_NOT_OHOS_COMPONENT<br>废弃版本：9<br>代替接口：ohos.app.ability.wantConstant |@ohos.ability.wantConstant.d.ts|
-|废弃版本有变化|方法名 or 属性名：FLAG_ABILITY_FORM_ENABLED<br>废弃版本：|方法名 or 属性名：FLAG_ABILITY_FORM_ENABLED<br>废弃版本：9<br>代替接口：ohos.app.ability.wantConstant |@ohos.ability.wantConstant.d.ts|
-|废弃版本有变化|方法名 or 属性名：FLAG_AUTH_PERSISTABLE_URI_PERMISSION<br>废弃版本：|方法名 or 属性名：FLAG_AUTH_PERSISTABLE_URI_PERMISSION<br>废弃版本：9<br>代替接口：ohos.app.ability.wantConstant |@ohos.ability.wantConstant.d.ts|
-|废弃版本有变化|方法名 or 属性名：FLAG_AUTH_PREFIX_URI_PERMISSION<br>废弃版本：|方法名 or 属性名：FLAG_AUTH_PREFIX_URI_PERMISSION<br>废弃版本：9<br>代替接口：ohos.app.ability.wantConstant |@ohos.ability.wantConstant.d.ts|
-|废弃版本有变化|方法名 or 属性名：FLAG_ABILITYSLICE_MULTI_DEVICE<br>废弃版本：|方法名 or 属性名：FLAG_ABILITYSLICE_MULTI_DEVICE<br>废弃版本：9<br>代替接口：ohos.app.ability.wantConstant |@ohos.ability.wantConstant.d.ts|
-|废弃版本有变化|方法名 or 属性名：FLAG_START_FOREGROUND_ABILITY<br>废弃版本：|方法名 or 属性名：FLAG_START_FOREGROUND_ABILITY<br>废弃版本：9<br>代替接口：ohos.app.ability.wantConstant |@ohos.ability.wantConstant.d.ts|
-|废弃版本有变化|方法名 or 属性名：FLAG_ABILITY_CONTINUATION_REVERSIBLE<br>废弃版本：|方法名 or 属性名：FLAG_ABILITY_CONTINUATION_REVERSIBLE<br>废弃版本：9<br>代替接口：ohos.app.ability.wantConstant |@ohos.ability.wantConstant.d.ts|
-|废弃版本有变化|方法名 or 属性名：FLAG_INSTALL_ON_DEMAND<br>废弃版本：|方法名 or 属性名：FLAG_INSTALL_ON_DEMAND<br>废弃版本：9<br>代替接口：ohos.app.ability.wantConstant |@ohos.ability.wantConstant.d.ts|
-|废弃版本有变化|方法名 or 属性名：FLAG_INSTALL_WITH_BACKGROUND_MODE<br>废弃版本：|方法名 or 属性名：FLAG_INSTALL_WITH_BACKGROUND_MODE<br>废弃版本：9<br>代替接口：ohos.app.ability.wantConstant |@ohos.ability.wantConstant.d.ts|
-|废弃版本有变化|方法名 or 属性名：FLAG_ABILITY_CLEAR_MISSION<br>废弃版本：|方法名 or 属性名：FLAG_ABILITY_CLEAR_MISSION<br>废弃版本：9<br>代替接口：ohos.app.ability.wantConstant |@ohos.ability.wantConstant.d.ts|
-|废弃版本有变化|方法名 or 属性名：FLAG_ABILITY_NEW_MISSION<br>废弃版本：|方法名 or 属性名：FLAG_ABILITY_NEW_MISSION<br>废弃版本：9<br>代替接口：ohos.app.ability.wantConstant |@ohos.ability.wantConstant.d.ts|
-|废弃版本有变化|方法名 or 属性名：FLAG_ABILITY_MISSION_TOP<br>废弃版本：|方法名 or 属性名：FLAG_ABILITY_MISSION_TOP<br>废弃版本：9<br>代替接口：ohos.app.ability.wantConstant |@ohos.ability.wantConstant.d.ts|
-|废弃版本有变化|类名：OnReleaseCallBack<br>废弃版本：|类名：OnReleaseCallBack<br>废弃版本：9<br>代替接口：ohos.app.ability.UIAbility |@ohos.application.Ability.d.ts|
-|废弃版本有变化|方法名 or 属性名：OnReleaseCallBack<br>废弃版本：|方法名 or 属性名：OnReleaseCallBack<br>废弃版本：9<br>代替接口：ohos.app.ability.UIAbility |@ohos.application.Ability.d.ts|
-|废弃版本有变化|类名：CalleeCallBack<br>废弃版本：|类名：CalleeCallBack<br>废弃版本：9<br>代替接口：ohos.app.ability.UIAbility |@ohos.application.Ability.d.ts|
-|废弃版本有变化|方法名 or 属性名：CalleeCallBack<br>废弃版本：|方法名 or 属性名：CalleeCallBack<br>废弃版本：9<br>代替接口：ohos.app.ability.UIAbility |@ohos.application.Ability.d.ts|
-|废弃版本有变化|类名：Caller<br>废弃版本：|类名：Caller<br>废弃版本：9<br>代替接口：ohos.app.ability.UIAbility |@ohos.application.Ability.d.ts|
-|废弃版本有变化|方法名 or 属性名：call<br>废弃版本：|方法名 or 属性名：call<br>废弃版本：9<br>代替接口：ohos.app.ability.UIAbility |@ohos.application.Ability.d.ts|
-|废弃版本有变化|方法名 or 属性名：callWithResult<br>废弃版本：|方法名 or 属性名：callWithResult<br>废弃版本：9<br>代替接口：ohos.app.ability.UIAbility |@ohos.application.Ability.d.ts|
-|废弃版本有变化|方法名 or 属性名：release<br>废弃版本：|方法名 or 属性名：release<br>废弃版本：9<br>代替接口：ohos.app.ability.UIAbility |@ohos.application.Ability.d.ts|
-|废弃版本有变化|方法名 or 属性名：onRelease<br>废弃版本：|方法名 or 属性名：onRelease<br>废弃版本：9<br>代替接口：ohos.app.ability.UIAbility |@ohos.application.Ability.d.ts|
-|废弃版本有变化|类名：Callee<br>废弃版本：|类名：Callee<br>废弃版本：9<br>代替接口：ohos.app.ability.UIAbility |@ohos.application.Ability.d.ts|
-|废弃版本有变化|方法名 or 属性名：on<br>废弃版本：|方法名 or 属性名：on<br>废弃版本：9<br>代替接口：ohos.app.ability.UIAbility |@ohos.application.Ability.d.ts|
-|废弃版本有变化|方法名 or 属性名：off<br>废弃版本：|方法名 or 属性名：off<br>废弃版本：9<br>代替接口：ohos.app.ability.UIAbility |@ohos.application.Ability.d.ts|
-|废弃版本有变化|类名：Ability<br>废弃版本：|类名：Ability<br>废弃版本：9<br>代替接口：ohos.app.ability.UIAbility |@ohos.application.Ability.d.ts|
-|废弃版本有变化|方法名 or 属性名：context<br>废弃版本：|方法名 or 属性名：context<br>废弃版本：9<br>代替接口：ohos.app.ability.UIAbility |@ohos.application.Ability.d.ts|
-|废弃版本有变化|方法名 or 属性名：launchWant<br>废弃版本：|方法名 or 属性名：launchWant<br>废弃版本：9<br>代替接口：ohos.app.ability.UIAbility |@ohos.application.Ability.d.ts|
-|废弃版本有变化|方法名 or 属性名：lastRequestWant<br>废弃版本：|方法名 or 属性名：lastRequestWant<br>废弃版本：9<br>代替接口：ohos.app.ability.UIAbility |@ohos.application.Ability.d.ts|
-|废弃版本有变化|方法名 or 属性名：callee<br>废弃版本：|方法名 or 属性名：callee<br>废弃版本：9<br>代替接口：ohos.app.ability.UIAbility |@ohos.application.Ability.d.ts|
-|废弃版本有变化|方法名 or 属性名：onCreate<br>废弃版本：|方法名 or 属性名：onCreate<br>废弃版本：9<br>代替接口：ohos.app.ability.UIAbility |@ohos.application.Ability.d.ts|
-|废弃版本有变化|方法名 or 属性名：onWindowStageCreate<br>废弃版本：|方法名 or 属性名：onWindowStageCreate<br>废弃版本：9<br>代替接口：ohos.app.ability.UIAbility |@ohos.application.Ability.d.ts|
-|废弃版本有变化|方法名 or 属性名：onWindowStageDestroy<br>废弃版本：|方法名 or 属性名：onWindowStageDestroy<br>废弃版本：9<br>代替接口：ohos.app.ability.UIAbility |@ohos.application.Ability.d.ts|
-|废弃版本有变化|方法名 or 属性名：onWindowStageRestore<br>废弃版本：|方法名 or 属性名：onWindowStageRestore<br>废弃版本：9<br>代替接口：ohos.app.ability.UIAbility |@ohos.application.Ability.d.ts|
-|废弃版本有变化|方法名 or 属性名：onDestroy<br>废弃版本：|方法名 or 属性名：onDestroy<br>废弃版本：9<br>代替接口：ohos.app.ability.UIAbility |@ohos.application.Ability.d.ts|
-|废弃版本有变化|方法名 or 属性名：onForeground<br>废弃版本：|方法名 or 属性名：onForeground<br>废弃版本：9<br>代替接口：ohos.app.ability.UIAbility |@ohos.application.Ability.d.ts|
-|废弃版本有变化|方法名 or 属性名：onBackground<br>废弃版本：|方法名 or 属性名：onBackground<br>废弃版本：9<br>代替接口：ohos.app.ability.UIAbility |@ohos.application.Ability.d.ts|
-|废弃版本有变化|方法名 or 属性名：onContinue<br>废弃版本：|方法名 or 属性名：onContinue<br>废弃版本：9<br>代替接口：ohos.app.ability.UIAbility |@ohos.application.Ability.d.ts|
-|废弃版本有变化|方法名 or 属性名：onNewWant<br>废弃版本：|方法名 or 属性名：onNewWant<br>废弃版本：9<br>代替接口：ohos.app.ability.UIAbility |@ohos.application.Ability.d.ts|
-|废弃版本有变化|方法名 or 属性名：onConfigurationUpdated<br>废弃版本：|方法名 or 属性名：onConfigurationUpdated<br>废弃版本：9<br>代替接口：ohos.app.ability.UIAbility |@ohos.application.Ability.d.ts|
-|废弃版本有变化|方法名 or 属性名：dump<br>废弃版本：|方法名 or 属性名：dump<br>废弃版本：9<br>代替接口：ohos.app.ability.UIAbility |@ohos.application.Ability.d.ts|
-|废弃版本有变化|方法名 or 属性名：onMemoryLevel<br>废弃版本：|方法名 or 属性名：onMemoryLevel<br>废弃版本：9<br>代替接口：ohos.app.ability.UIAbility |@ohos.application.Ability.d.ts|
-|废弃版本有变化|类名：AbilityConstant<br>废弃版本：|类名：AbilityConstant<br>废弃版本：9<br>代替接口：ohos.app.ability.AbilityConstant |@ohos.application.AbilityConstant.d.ts|
-|废弃版本有变化|类名：LaunchParam<br>废弃版本：|类名：LaunchParam<br>废弃版本：9<br>代替接口：ohos.app.ability.AbilityConstant |@ohos.application.AbilityConstant.d.ts|
-|废弃版本有变化|方法名 or 属性名：launchReason<br>废弃版本：|方法名 or 属性名：launchReason<br>废弃版本：9<br>代替接口：ohos.app.ability.AbilityConstant |@ohos.application.AbilityConstant.d.ts|
-|废弃版本有变化|方法名 or 属性名：lastExitReason<br>废弃版本：|方法名 or 属性名：lastExitReason<br>废弃版本：9<br>代替接口：ohos.app.ability.AbilityConstant |@ohos.application.AbilityConstant.d.ts|
-|废弃版本有变化|类名：LaunchReason<br>废弃版本：|类名：LaunchReason<br>废弃版本：9<br>代替接口：ohos.app.ability.AbilityConstant |@ohos.application.AbilityConstant.d.ts|
-|废弃版本有变化|方法名 or 属性名：UNKNOWN<br>废弃版本：|方法名 or 属性名：UNKNOWN<br>废弃版本：9<br>代替接口：ohos.app.ability.AbilityConstant |@ohos.application.AbilityConstant.d.ts|
-|废弃版本有变化|方法名 or 属性名：START_ABILITY<br>废弃版本：|方法名 or 属性名：START_ABILITY<br>废弃版本：9<br>代替接口：ohos.app.ability.AbilityConstant |@ohos.application.AbilityConstant.d.ts|
-|废弃版本有变化|方法名 or 属性名：CALL<br>废弃版本：|方法名 or 属性名：CALL<br>废弃版本：9<br>代替接口：ohos.app.ability.AbilityConstant |@ohos.application.AbilityConstant.d.ts|
-|废弃版本有变化|方法名 or 属性名：CONTINUATION<br>废弃版本：|方法名 or 属性名：CONTINUATION<br>废弃版本：9<br>代替接口：ohos.app.ability.AbilityConstant |@ohos.application.AbilityConstant.d.ts|
-|废弃版本有变化|类名：LastExitReason<br>废弃版本：|类名：LastExitReason<br>废弃版本：9<br>代替接口：ohos.app.ability.AbilityConstant |@ohos.application.AbilityConstant.d.ts|
-|废弃版本有变化|方法名 or 属性名：UNKNOWN<br>废弃版本：|方法名 or 属性名：UNKNOWN<br>废弃版本：9<br>代替接口：ohos.app.ability.AbilityConstant |@ohos.application.AbilityConstant.d.ts|
-|废弃版本有变化|方法名 or 属性名：ABILITY_NOT_RESPONDING<br>废弃版本：|方法名 or 属性名：ABILITY_NOT_RESPONDING<br>废弃版本：9<br>代替接口：ohos.app.ability.AbilityConstant |@ohos.application.AbilityConstant.d.ts|
-|废弃版本有变化|方法名 or 属性名：NORMAL<br>废弃版本：|方法名 or 属性名：NORMAL<br>废弃版本：9<br>代替接口：ohos.app.ability.AbilityConstant |@ohos.application.AbilityConstant.d.ts|
-|废弃版本有变化|类名：OnContinueResult<br>废弃版本：|类名：OnContinueResult<br>废弃版本：9<br>代替接口：ohos.app.ability.AbilityConstant |@ohos.application.AbilityConstant.d.ts|
-|废弃版本有变化|方法名 or 属性名：AGREE<br>废弃版本：|方法名 or 属性名：AGREE<br>废弃版本：9<br>代替接口：ohos.app.ability.AbilityConstant |@ohos.application.AbilityConstant.d.ts|
-|废弃版本有变化|方法名 or 属性名：REJECT<br>废弃版本：|方法名 or 属性名：REJECT<br>废弃版本：9<br>代替接口：ohos.app.ability.AbilityConstant |@ohos.application.AbilityConstant.d.ts|
-|废弃版本有变化|方法名 or 属性名：MISMATCH<br>废弃版本：|方法名 or 属性名：MISMATCH<br>废弃版本：9<br>代替接口：ohos.app.ability.AbilityConstant |@ohos.application.AbilityConstant.d.ts|
-|废弃版本有变化|类名：MemoryLevel<br>废弃版本：|类名：MemoryLevel<br>废弃版本：9<br>代替接口：ohos.app.ability.AbilityConstant |@ohos.application.AbilityConstant.d.ts|
-|废弃版本有变化|方法名 or 属性名：MEMORY_LEVEL_MODERATE<br>废弃版本：|方法名 or 属性名：MEMORY_LEVEL_MODERATE<br>废弃版本：9<br>代替接口：ohos.app.ability.AbilityConstant |@ohos.application.AbilityConstant.d.ts|
-|废弃版本有变化|方法名 or 属性名：MEMORY_LEVEL_LOW<br>废弃版本：|方法名 or 属性名：MEMORY_LEVEL_LOW<br>废弃版本：9<br>代替接口：ohos.app.ability.AbilityConstant |@ohos.application.AbilityConstant.d.ts|
-|废弃版本有变化|方法名 or 属性名：MEMORY_LEVEL_CRITICAL<br>废弃版本：|方法名 or 属性名：MEMORY_LEVEL_CRITICAL<br>废弃版本：9<br>代替接口：ohos.app.ability.AbilityConstant |@ohos.application.AbilityConstant.d.ts|
-|废弃版本有变化|类名：WindowMode<br>废弃版本：|类名：WindowMode<br>废弃版本：9<br>代替接口：ohos.app.ability.AbilityConstant |@ohos.application.AbilityConstant.d.ts|
-|废弃版本有变化|方法名 or 属性名：WINDOW_MODE_UNDEFINED<br>废弃版本：|方法名 or 属性名：WINDOW_MODE_UNDEFINED<br>废弃版本：9<br>代替接口：ohos.app.ability.AbilityConstant |@ohos.application.AbilityConstant.d.ts|
-|废弃版本有变化|方法名 or 属性名：WINDOW_MODE_FULLSCREEN<br>废弃版本：|方法名 or 属性名：WINDOW_MODE_FULLSCREEN<br>废弃版本：9<br>代替接口：ohos.app.ability.AbilityConstant |@ohos.application.AbilityConstant.d.ts|
-|废弃版本有变化|方法名 or 属性名：WINDOW_MODE_SPLIT_PRIMARY<br>废弃版本：|方法名 or 属性名：WINDOW_MODE_SPLIT_PRIMARY<br>废弃版本：9<br>代替接口：ohos.app.ability.AbilityConstant |@ohos.application.AbilityConstant.d.ts|
-|废弃版本有变化|方法名 or 属性名：WINDOW_MODE_SPLIT_SECONDARY<br>废弃版本：|方法名 or 属性名：WINDOW_MODE_SPLIT_SECONDARY<br>废弃版本：9<br>代替接口：ohos.app.ability.AbilityConstant |@ohos.application.AbilityConstant.d.ts|
-|废弃版本有变化|方法名 or 属性名：WINDOW_MODE_FLOATING<br>废弃版本：|方法名 or 属性名：WINDOW_MODE_FLOATING<br>废弃版本：9<br>代替接口：ohos.app.ability.AbilityConstant |@ohos.application.AbilityConstant.d.ts|
-|废弃版本有变化|类名：abilityDelegatorRegistry<br>废弃版本：|类名：abilityDelegatorRegistry<br>废弃版本：9<br>代替接口：ohos.app.ability.abilityDelegatorRegistry |@ohos.application.abilityDelegatorRegistry.d.ts|
-|废弃版本有变化|方法名 or 属性名：getAbilityDelegator<br>废弃版本：|方法名 or 属性名：getAbilityDelegator<br>废弃版本：9<br>代替接口：ohos.app.ability.abilityDelegatorRegistry |@ohos.application.abilityDelegatorRegistry.d.ts|
-|废弃版本有变化|方法名 or 属性名：getArguments<br>废弃版本：|方法名 or 属性名：getArguments<br>废弃版本：9<br>代替接口：ohos.app.ability.abilityDelegatorRegistry |@ohos.application.abilityDelegatorRegistry.d.ts|
-|废弃版本有变化|类名：AbilityLifecycleState<br>废弃版本：|类名：AbilityLifecycleState<br>废弃版本：9<br>代替接口：ohos.app.ability.abilityDelegatorRegistry |@ohos.application.abilityDelegatorRegistry.d.ts|
-|废弃版本有变化|方法名 or 属性名：UNINITIALIZED<br>废弃版本：|方法名 or 属性名：UNINITIALIZED<br>废弃版本：9<br>代替接口：ohos.app.ability.abilityDelegatorRegistry |@ohos.application.abilityDelegatorRegistry.d.ts|
-|废弃版本有变化|方法名 or 属性名：CREATE<br>废弃版本：|方法名 or 属性名：CREATE<br>废弃版本：9<br>代替接口：ohos.app.ability.abilityDelegatorRegistry |@ohos.application.abilityDelegatorRegistry.d.ts|
-|废弃版本有变化|方法名 or 属性名：FOREGROUND<br>废弃版本：|方法名 or 属性名：FOREGROUND<br>废弃版本：9<br>代替接口：ohos.app.ability.abilityDelegatorRegistry |@ohos.application.abilityDelegatorRegistry.d.ts|
-|废弃版本有变化|方法名 or 属性名：BACKGROUND<br>废弃版本：|方法名 or 属性名：BACKGROUND<br>废弃版本：9<br>代替接口：ohos.app.ability.abilityDelegatorRegistry |@ohos.application.abilityDelegatorRegistry.d.ts|
-|废弃版本有变化|方法名 or 属性名：DESTROY<br>废弃版本：|方法名 or 属性名：DESTROY<br>废弃版本：9<br>代替接口：ohos.app.ability.abilityDelegatorRegistry |@ohos.application.abilityDelegatorRegistry.d.ts|
-|废弃版本有变化|类名：AbilityLifecycleCallback<br>废弃版本：|类名：AbilityLifecycleCallback<br>废弃版本：9<br>代替接口：ohos.app.ability.AbilityLifecycleCallback |@ohos.application.AbilityLifecycleCallback.d.ts|
-|废弃版本有变化|方法名 or 属性名：onAbilityCreate<br>废弃版本：|方法名 or 属性名：onAbilityCreate<br>废弃版本：9<br>代替接口：ohos.app.ability.AbilityLifecycleCallback |@ohos.application.AbilityLifecycleCallback.d.ts|
-|废弃版本有变化|方法名 or 属性名：onWindowStageCreate<br>废弃版本：|方法名 or 属性名：onWindowStageCreate<br>废弃版本：9<br>代替接口：ohos.app.ability.AbilityLifecycleCallback |@ohos.application.AbilityLifecycleCallback.d.ts|
-|废弃版本有变化|方法名 or 属性名：onWindowStageActive<br>废弃版本：|方法名 or 属性名：onWindowStageActive<br>废弃版本：9<br>代替接口：ohos.app.ability.AbilityLifecycleCallback |@ohos.application.AbilityLifecycleCallback.d.ts|
-|废弃版本有变化|方法名 or 属性名：onWindowStageInactive<br>废弃版本：|方法名 or 属性名：onWindowStageInactive<br>废弃版本：9<br>代替接口：ohos.app.ability.AbilityLifecycleCallback |@ohos.application.AbilityLifecycleCallback.d.ts|
-|废弃版本有变化|方法名 or 属性名：onWindowStageDestroy<br>废弃版本：|方法名 or 属性名：onWindowStageDestroy<br>废弃版本：9<br>代替接口：ohos.app.ability.AbilityLifecycleCallback |@ohos.application.AbilityLifecycleCallback.d.ts|
-|废弃版本有变化|方法名 or 属性名：onAbilityDestroy<br>废弃版本：|方法名 or 属性名：onAbilityDestroy<br>废弃版本：9<br>代替接口：ohos.app.ability.AbilityLifecycleCallback |@ohos.application.AbilityLifecycleCallback.d.ts|
-|废弃版本有变化|方法名 or 属性名：onAbilityForeground<br>废弃版本：|方法名 or 属性名：onAbilityForeground<br>废弃版本：9<br>代替接口：ohos.app.ability.AbilityLifecycleCallback |@ohos.application.AbilityLifecycleCallback.d.ts|
-|废弃版本有变化|方法名 or 属性名：onAbilityBackground<br>废弃版本：|方法名 or 属性名：onAbilityBackground<br>废弃版本：9<br>代替接口：ohos.app.ability.AbilityLifecycleCallback |@ohos.application.AbilityLifecycleCallback.d.ts|
-|废弃版本有变化|方法名 or 属性名：onAbilityContinue<br>废弃版本：|方法名 or 属性名：onAbilityContinue<br>废弃版本：9<br>代替接口：ohos.app.ability.AbilityLifecycleCallback |@ohos.application.AbilityLifecycleCallback.d.ts|
-|废弃版本有变化|类名：abilityManager<br>废弃版本：|类名：abilityManager<br>废弃版本：9<br>代替接口：ohos.app.ability.abilityManager |@ohos.application.abilityManager.d.ts|
-|废弃版本有变化|类名：AbilityState<br>废弃版本：|类名：AbilityState<br>废弃版本：9<br>代替接口：ohos.app.ability.abilityManager |@ohos.application.abilityManager.d.ts|
-|废弃版本有变化|方法名 or 属性名：INITIAL<br>废弃版本：|方法名 or 属性名：INITIAL<br>废弃版本：9<br>代替接口：ohos.app.ability.abilityManager |@ohos.application.abilityManager.d.ts|
-|废弃版本有变化|方法名 or 属性名：FOREGROUND<br>废弃版本：|方法名 or 属性名：FOREGROUND<br>废弃版本：9<br>代替接口：ohos.app.ability.abilityManager |@ohos.application.abilityManager.d.ts|
-|废弃版本有变化|方法名 or 属性名：BACKGROUND<br>废弃版本：|方法名 or 属性名：BACKGROUND<br>废弃版本：9<br>代替接口：ohos.app.ability.abilityManager |@ohos.application.abilityManager.d.ts|
-|废弃版本有变化|方法名 or 属性名：FOREGROUNDING<br>废弃版本：|方法名 or 属性名：FOREGROUNDING<br>废弃版本：9<br>代替接口：ohos.app.ability.abilityManager |@ohos.application.abilityManager.d.ts|
-|废弃版本有变化|方法名 or 属性名：BACKGROUNDING<br>废弃版本：|方法名 or 属性名：BACKGROUNDING<br>废弃版本：9<br>代替接口：ohos.app.ability.abilityManager |@ohos.application.abilityManager.d.ts|
-|废弃版本有变化|方法名 or 属性名：updateConfiguration<br>废弃版本：|方法名 or 属性名：updateConfiguration<br>废弃版本：9<br>代替接口：ohos.app.ability.abilityManager |@ohos.application.abilityManager.d.ts|
-|废弃版本有变化|方法名 or 属性名：getAbilityRunningInfos<br>废弃版本：|方法名 or 属性名：getAbilityRunningInfos<br>废弃版本：9<br>代替接口：ohos.app.ability.abilityManager |@ohos.application.abilityManager.d.ts|
-|废弃版本有变化|方法名 or 属性名：getExtensionRunningInfos<br>废弃版本：|方法名 or 属性名：getExtensionRunningInfos<br>废弃版本：9<br>代替接口：ohos.app.ability.abilityManager |@ohos.application.abilityManager.d.ts|
-|废弃版本有变化|方法名 or 属性名：getTopAbility<br>废弃版本：|方法名 or 属性名：getTopAbility<br>废弃版本：9<br>代替接口：ohos.app.ability.abilityManager |@ohos.application.abilityManager.d.ts|
-|废弃版本有变化|类名：AbilityStage<br>废弃版本：|类名：AbilityStage<br>废弃版本：9<br>代替接口：ohos.app.ability.AbilityStage |@ohos.application.AbilityStage.d.ts|
-|废弃版本有变化|方法名 or 属性名：context<br>废弃版本：|方法名 or 属性名：context<br>废弃版本：9<br>代替接口：ohos.app.ability.AbilityStage |@ohos.application.AbilityStage.d.ts|
-|废弃版本有变化|方法名 or 属性名：onCreate<br>废弃版本：|方法名 or 属性名：onCreate<br>废弃版本：9<br>代替接口：ohos.app.ability.AbilityStage |@ohos.application.AbilityStage.d.ts|
-|废弃版本有变化|方法名 or 属性名：onAcceptWant<br>废弃版本：|方法名 or 属性名：onAcceptWant<br>废弃版本：9<br>代替接口：ohos.app.ability.AbilityStage |@ohos.application.AbilityStage.d.ts|
-|废弃版本有变化|方法名 or 属性名：onConfigurationUpdated<br>废弃版本：|方法名 or 属性名：onConfigurationUpdated<br>废弃版本：9<br>代替接口：ohos.app.ability.AbilityStage |@ohos.application.AbilityStage.d.ts|
-|废弃版本有变化|方法名 or 属性名：onMemoryLevel<br>废弃版本：|方法名 or 属性名：onMemoryLevel<br>废弃版本：9<br>代替接口：ohos.app.ability.AbilityStage |@ohos.application.AbilityStage.d.ts|
-|废弃版本有变化|类名：appManager<br>废弃版本：|类名：appManager<br>废弃版本：9<br>代替接口：ohos.app.ability.appManager |@ohos.application.appManager.d.ts|
-|废弃版本有变化|类名：ApplicationState<br>废弃版本：|类名：ApplicationState<br>废弃版本：9<br>代替接口：ohos.app.ability.appManager |@ohos.application.appManager.d.ts|
-|废弃版本有变化|方法名 or 属性名：STATE_CREATE<br>废弃版本：|方法名 or 属性名：STATE_CREATE<br>废弃版本：9<br>代替接口：ohos.app.ability.appManager |@ohos.application.appManager.d.ts|
-|废弃版本有变化|方法名 or 属性名：STATE_FOREGROUND<br>废弃版本：|方法名 or 属性名：STATE_FOREGROUND<br>废弃版本：9<br>代替接口：ohos.app.ability.appManager |@ohos.application.appManager.d.ts|
-|废弃版本有变化|方法名 or 属性名：STATE_ACTIVE<br>废弃版本：|方法名 or 属性名：STATE_ACTIVE<br>废弃版本：9<br>代替接口：ohos.app.ability.appManager |@ohos.application.appManager.d.ts|
-|废弃版本有变化|方法名 or 属性名：STATE_BACKGROUND<br>废弃版本：|方法名 or 属性名：STATE_BACKGROUND<br>废弃版本：9<br>代替接口：ohos.app.ability.appManager |@ohos.application.appManager.d.ts|
-|废弃版本有变化|方法名 or 属性名：STATE_DESTROY<br>废弃版本：|方法名 or 属性名：STATE_DESTROY<br>废弃版本：9<br>代替接口：ohos.app.ability.appManager |@ohos.application.appManager.d.ts|
-|废弃版本有变化|类名：ProcessState<br>废弃版本：|类名：ProcessState<br>废弃版本：9<br>代替接口：ohos.app.ability.appManager |@ohos.application.appManager.d.ts|
-|废弃版本有变化|方法名 or 属性名：STATE_CREATE<br>废弃版本：|方法名 or 属性名：STATE_CREATE<br>废弃版本：9<br>代替接口：ohos.app.ability.appManager |@ohos.application.appManager.d.ts|
-|废弃版本有变化|方法名 or 属性名：STATE_FOREGROUND<br>废弃版本：|方法名 or 属性名：STATE_FOREGROUND<br>废弃版本：9<br>代替接口：ohos.app.ability.appManager |@ohos.application.appManager.d.ts|
-|废弃版本有变化|方法名 or 属性名：STATE_ACTIVE<br>废弃版本：|方法名 or 属性名：STATE_ACTIVE<br>废弃版本：9<br>代替接口：ohos.app.ability.appManager |@ohos.application.appManager.d.ts|
-|废弃版本有变化|方法名 or 属性名：STATE_BACKGROUND<br>废弃版本：|方法名 or 属性名：STATE_BACKGROUND<br>废弃版本：9<br>代替接口：ohos.app.ability.appManager |@ohos.application.appManager.d.ts|
-|废弃版本有变化|方法名 or 属性名：STATE_DESTROY<br>废弃版本：|方法名 or 属性名：STATE_DESTROY<br>废弃版本：9<br>代替接口：ohos.app.ability.appManager |@ohos.application.appManager.d.ts|
-|废弃版本有变化|方法名 or 属性名：registerApplicationStateObserver<br>废弃版本：|方法名 or 属性名：registerApplicationStateObserver<br>废弃版本：9<br>代替接口：ohos.app.ability.appManager |@ohos.application.appManager.d.ts|
-|废弃版本有变化|方法名 or 属性名：registerApplicationStateObserver<br>废弃版本：|方法名 or 属性名：registerApplicationStateObserver<br>废弃版本：9<br>代替接口：ohos.app.ability.appManager |@ohos.application.appManager.d.ts|
-|废弃版本有变化|方法名 or 属性名：unregisterApplicationStateObserver<br>废弃版本：|方法名 or 属性名：unregisterApplicationStateObserver<br>废弃版本：9<br>代替接口：ohos.app.ability.appManager |@ohos.application.appManager.d.ts|
-|废弃版本有变化|方法名 or 属性名：getForegroundApplications<br>废弃版本：|方法名 or 属性名：getForegroundApplications<br>废弃版本：9<br>代替接口：ohos.app.ability.appManager |@ohos.application.appManager.d.ts|
-|废弃版本有变化|方法名 or 属性名：killProcessWithAccount<br>废弃版本：|方法名 or 属性名：killProcessWithAccount<br>废弃版本：9<br>代替接口：ohos.app.ability.appManager |@ohos.application.appManager.d.ts|
-|废弃版本有变化|方法名 or 属性名：isRunningInStabilityTest<br>废弃版本：|方法名 or 属性名：isRunningInStabilityTest<br>废弃版本：9<br>代替接口：ohos.app.ability.appManager |@ohos.application.appManager.d.ts|
-|废弃版本有变化|方法名 or 属性名：killProcessesByBundleName<br>废弃版本：|方法名 or 属性名：killProcessesByBundleName<br>废弃版本：9<br>代替接口：ohos.app.ability.appManager |@ohos.application.appManager.d.ts|
-|废弃版本有变化|方法名 or 属性名：clearUpApplicationData<br>废弃版本：|方法名 or 属性名：clearUpApplicationData<br>废弃版本：9<br>代替接口：ohos.app.ability.appManager |@ohos.application.appManager.d.ts|
-|废弃版本有变化|方法名 or 属性名：isRamConstrainedDevice<br>废弃版本：|方法名 or 属性名：isRamConstrainedDevice<br>废弃版本：9<br>代替接口：ohos.app.ability.appManager |@ohos.application.appManager.d.ts|
-|废弃版本有变化|方法名 or 属性名：getAppMemorySize<br>废弃版本：|方法名 or 属性名：getAppMemorySize<br>废弃版本：9<br>代替接口：ohos.app.ability.appManager |@ohos.application.appManager.d.ts|
-|废弃版本有变化|方法名 or 属性名：getProcessRunningInformation<br>废弃版本：|方法名 or 属性名：getProcessRunningInformation<br>废弃版本：9<br>代替接口：ohos.app.ability.appManager |@ohos.application.appManager.d.ts|
-|废弃版本有变化|类名：Configuration<br>废弃版本：|类名：Configuration<br>废弃版本：9<br>代替接口：ohos.app.ability.Configuration |@ohos.application.Configuration.d.ts|
-|废弃版本有变化|方法名 or 属性名：language<br>废弃版本：|方法名 or 属性名：language<br>废弃版本：9<br>代替接口：ohos.app.ability.Configuration |@ohos.application.Configuration.d.ts|
-|废弃版本有变化|方法名 or 属性名：colorMode<br>废弃版本：|方法名 or 属性名：colorMode<br>废弃版本：9<br>代替接口：ohos.app.ability.Configuration |@ohos.application.Configuration.d.ts|
-|废弃版本有变化|方法名 or 属性名：direction<br>废弃版本：|方法名 or 属性名：direction<br>废弃版本：9<br>代替接口：ohos.app.ability.Configuration |@ohos.application.Configuration.d.ts|
-|废弃版本有变化|方法名 or 属性名：screenDensity<br>废弃版本：|方法名 or 属性名：screenDensity<br>废弃版本：9<br>代替接口：ohos.app.ability.Configuration |@ohos.application.Configuration.d.ts|
-|废弃版本有变化|方法名 or 属性名：displayId<br>废弃版本：|方法名 or 属性名：displayId<br>废弃版本：9<br>代替接口：ohos.app.ability.Configuration |@ohos.application.Configuration.d.ts|
-|废弃版本有变化|方法名 or 属性名：hasPointerDevice<br>废弃版本：|方法名 or 属性名：hasPointerDevice<br>废弃版本：9<br>代替接口：ohos.app.ability.Configuration |@ohos.application.Configuration.d.ts|
-|废弃版本有变化|类名：ConfigurationConstant<br>废弃版本：|类名：ConfigurationConstant<br>废弃版本：9<br>代替接口：ohos.app.ability.ConfigurationConstant |@ohos.application.ConfigurationConstant.d.ts|
-|废弃版本有变化|类名：ColorMode<br>废弃版本：|类名：ColorMode<br>废弃版本：9<br>代替接口：ohos.app.ability.ConfigurationConstant |@ohos.application.ConfigurationConstant.d.ts|
-|废弃版本有变化|方法名 or 属性名：COLOR_MODE_NOT_SET<br>废弃版本：|方法名 or 属性名：COLOR_MODE_NOT_SET<br>废弃版本：9<br>代替接口：ohos.app.ability.ConfigurationConstant |@ohos.application.ConfigurationConstant.d.ts|
-|废弃版本有变化|方法名 or 属性名：COLOR_MODE_DARK<br>废弃版本：|方法名 or 属性名：COLOR_MODE_DARK<br>废弃版本：9<br>代替接口：ohos.app.ability.ConfigurationConstant |@ohos.application.ConfigurationConstant.d.ts|
-|废弃版本有变化|方法名 or 属性名：COLOR_MODE_LIGHT<br>废弃版本：|方法名 or 属性名：COLOR_MODE_LIGHT<br>废弃版本：9<br>代替接口：ohos.app.ability.ConfigurationConstant |@ohos.application.ConfigurationConstant.d.ts|
-|废弃版本有变化|类名：Direction<br>废弃版本：|类名：Direction<br>废弃版本：9<br>代替接口：ohos.app.ability.ConfigurationConstant |@ohos.application.ConfigurationConstant.d.ts|
-|废弃版本有变化|方法名 or 属性名：DIRECTION_NOT_SET<br>废弃版本：|方法名 or 属性名：DIRECTION_NOT_SET<br>废弃版本：9<br>代替接口：ohos.app.ability.ConfigurationConstant |@ohos.application.ConfigurationConstant.d.ts|
-|废弃版本有变化|方法名 or 属性名：DIRECTION_VERTICAL<br>废弃版本：|方法名 or 属性名：DIRECTION_VERTICAL<br>废弃版本：9<br>代替接口：ohos.app.ability.ConfigurationConstant |@ohos.application.ConfigurationConstant.d.ts|
-|废弃版本有变化|方法名 or 属性名：DIRECTION_HORIZONTAL<br>废弃版本：|方法名 or 属性名：DIRECTION_HORIZONTAL<br>废弃版本：9<br>代替接口：ohos.app.ability.ConfigurationConstant |@ohos.application.ConfigurationConstant.d.ts|
-|废弃版本有变化|类名：ScreenDensity<br>废弃版本：|类名：ScreenDensity<br>废弃版本：9<br>代替接口：ohos.app.ability.ConfigurationConstant |@ohos.application.ConfigurationConstant.d.ts|
-|废弃版本有变化|方法名 or 属性名：SCREEN_DENSITY_NOT_SET<br>废弃版本：|方法名 or 属性名：SCREEN_DENSITY_NOT_SET<br>废弃版本：9<br>代替接口：ohos.app.ability.ConfigurationConstant |@ohos.application.ConfigurationConstant.d.ts|
-|废弃版本有变化|方法名 or 属性名：SCREEN_DENSITY_SDPI<br>废弃版本：|方法名 or 属性名：SCREEN_DENSITY_SDPI<br>废弃版本：9<br>代替接口：ohos.app.ability.ConfigurationConstant |@ohos.application.ConfigurationConstant.d.ts|
-|废弃版本有变化|方法名 or 属性名：SCREEN_DENSITY_MDPI<br>废弃版本：|方法名 or 属性名：SCREEN_DENSITY_MDPI<br>废弃版本：9<br>代替接口：ohos.app.ability.ConfigurationConstant |@ohos.application.ConfigurationConstant.d.ts|
-|废弃版本有变化|方法名 or 属性名：SCREEN_DENSITY_LDPI<br>废弃版本：|方法名 or 属性名：SCREEN_DENSITY_LDPI<br>废弃版本：9<br>代替接口：ohos.app.ability.ConfigurationConstant |@ohos.application.ConfigurationConstant.d.ts|
-|废弃版本有变化|方法名 or 属性名：SCREEN_DENSITY_XLDPI<br>废弃版本：|方法名 or 属性名：SCREEN_DENSITY_XLDPI<br>废弃版本：9<br>代替接口：ohos.app.ability.ConfigurationConstant |@ohos.application.ConfigurationConstant.d.ts|
-|废弃版本有变化|方法名 or 属性名：SCREEN_DENSITY_XXLDPI<br>废弃版本：|方法名 or 属性名：SCREEN_DENSITY_XXLDPI<br>废弃版本：9<br>代替接口：ohos.app.ability.ConfigurationConstant |@ohos.application.ConfigurationConstant.d.ts|
-|废弃版本有变化|方法名 or 属性名：SCREEN_DENSITY_XXXLDPI<br>废弃版本：|方法名 or 属性名：SCREEN_DENSITY_XXXLDPI<br>废弃版本：9<br>代替接口：ohos.app.ability.ConfigurationConstant |@ohos.application.ConfigurationConstant.d.ts|
-|废弃版本有变化|类名：context<br>废弃版本：|类名：context<br>废弃版本：9<br>代替接口：ohos.app.ability.common |@ohos.application.context.d.ts|
-|废弃版本有变化|类名：EnvironmentCallback<br>废弃版本：|类名：EnvironmentCallback<br>废弃版本：9<br>代替接口：ohos.app.ability.EnvironmentCallback |@ohos.application.EnvironmentCallback.d.ts|
-|废弃版本有变化|方法名 or 属性名：onConfigurationUpdated<br>废弃版本：|方法名 or 属性名：onConfigurationUpdated<br>废弃版本：9<br>代替接口：ohos.app.ability.EnvironmentCallback |@ohos.application.EnvironmentCallback.d.ts|
-|废弃版本有变化|类名：errorManager<br>废弃版本：|类名：errorManager<br>废弃版本：9<br>代替接口：ohos.app.ability.errorManager |@ohos.application.errorManager.d.ts|
-|废弃版本有变化|方法名 or 属性名：registerErrorObserver<br>废弃版本：|方法名 or 属性名：registerErrorObserver<br>废弃版本：9<br>代替接口：ohos.app.ability.errorManager |@ohos.application.errorManager.d.ts|
-|废弃版本有变化|方法名 or 属性名：unregisterErrorObserver<br>废弃版本：|方法名 or 属性名：unregisterErrorObserver<br>废弃版本：9<br>代替接口：ohos.app.ability.errorManager |@ohos.application.errorManager.d.ts|
-|废弃版本有变化|类名：formBindingData<br>废弃版本：|类名：formBindingData<br>废弃版本：9<br>代替接口：ohos.app.form.formBindingData |@ohos.application.formBindingData.d.ts|
-|废弃版本有变化|方法名 or 属性名：createFormBindingData<br>废弃版本：|方法名 or 属性名：createFormBindingData<br>废弃版本：9<br>代替接口：ohos.app.form.formBindingData |@ohos.application.formBindingData.d.ts|
-|废弃版本有变化|类名：FormBindingData<br>废弃版本：|类名：FormBindingData<br>废弃版本：9<br>代替接口：ohos.app.form.formBindingData |@ohos.application.formBindingData.d.ts|
-|废弃版本有变化|方法名 or 属性名：data<br>废弃版本：|方法名 or 属性名：data<br>废弃版本：9<br>代替接口：ohos.app.form.formBindingData |@ohos.application.formBindingData.d.ts|
-|废弃版本有变化|类名：FormExtension<br>废弃版本：|类名：FormExtension<br>废弃版本：9<br>代替接口：ohos.app.form.FormExtensionAbility |@ohos.application.FormExtension.d.ts|
-|废弃版本有变化|方法名 or 属性名：context<br>废弃版本：|方法名 or 属性名：context<br>废弃版本：9<br>代替接口：ohos.app.form.FormExtensionAbility |@ohos.application.FormExtension.d.ts|
-|废弃版本有变化|方法名 or 属性名：onCreate<br>废弃版本：|方法名 or 属性名：onCreate<br>废弃版本：9<br>代替接口：ohos.app.form.FormExtensionAbility |@ohos.application.FormExtension.d.ts|
-|废弃版本有变化|方法名 or 属性名：onCastToNormal<br>废弃版本：|方法名 or 属性名：onCastToNormal<br>废弃版本：9<br>代替接口：ohos.app.form.FormExtensionAbility |@ohos.application.FormExtension.d.ts|
-|废弃版本有变化|方法名 or 属性名：onUpdate<br>废弃版本：|方法名 or 属性名：onUpdate<br>废弃版本：9<br>代替接口：ohos.app.form.FormExtensionAbility |@ohos.application.FormExtension.d.ts|
-|废弃版本有变化|方法名 or 属性名：onVisibilityChange<br>废弃版本：|方法名 or 属性名：onVisibilityChange<br>废弃版本：9<br>代替接口：ohos.app.form.FormExtensionAbility |@ohos.application.FormExtension.d.ts|
-|废弃版本有变化|方法名 or 属性名：onEvent<br>废弃版本：|方法名 or 属性名：onEvent<br>废弃版本：9<br>代替接口：ohos.app.form.FormExtensionAbility |@ohos.application.FormExtension.d.ts|
-|废弃版本有变化|方法名 or 属性名：onDestroy<br>废弃版本：|方法名 or 属性名：onDestroy<br>废弃版本：9<br>代替接口：ohos.app.form.FormExtensionAbility |@ohos.application.FormExtension.d.ts|
-|废弃版本有变化|方法名 or 属性名：onConfigurationUpdated<br>废弃版本：|方法名 or 属性名：onConfigurationUpdated<br>废弃版本：9<br>代替接口：ohos.app.form.FormExtensionAbility |@ohos.application.FormExtension.d.ts|
-|废弃版本有变化|方法名 or 属性名：onAcquireFormState<br>废弃版本：|方法名 or 属性名：onAcquireFormState<br>废弃版本：9<br>代替接口：ohos.app.form.FormExtensionAbility |@ohos.application.FormExtension.d.ts|
-|废弃版本有变化|方法名 or 属性名：onShare<br>废弃版本：|方法名 or 属性名：onShare<br>废弃版本：9<br>代替接口：ohos.app.form.FormExtensionAbility |@ohos.application.FormExtension.d.ts|
-|废弃版本有变化|类名：formHost<br>废弃版本：|类名：formHost<br>废弃版本：9<br>代替接口：ohos.app.form.formHost |@ohos.application.formHost.d.ts|
-|废弃版本有变化|方法名 or 属性名：deleteForm<br>废弃版本：|方法名 or 属性名：deleteForm<br>废弃版本：9<br>代替接口：ohos.app.form.formHost |@ohos.application.formHost.d.ts|
-|废弃版本有变化|方法名 or 属性名：releaseForm<br>废弃版本：|方法名 or 属性名：releaseForm<br>废弃版本：9<br>代替接口：ohos.app.form.formHost |@ohos.application.formHost.d.ts|
-|废弃版本有变化|方法名 or 属性名：requestForm<br>废弃版本：|方法名 or 属性名：requestForm<br>废弃版本：9<br>代替接口：ohos.app.form.formHost |@ohos.application.formHost.d.ts|
-|废弃版本有变化|方法名 or 属性名：castTempForm<br>废弃版本：|方法名 or 属性名：castTempForm<br>废弃版本：9<br>代替接口：ohos.app.form.formHost |@ohos.application.formHost.d.ts|
-|废弃版本有变化|方法名 or 属性名：notifyVisibleForms<br>废弃版本：|方法名 or 属性名：notifyVisibleForms<br>废弃版本：9<br>代替接口：ohos.app.form.formHost |@ohos.application.formHost.d.ts|
-|废弃版本有变化|方法名 or 属性名：notifyInvisibleForms<br>废弃版本：|方法名 or 属性名：notifyInvisibleForms<br>废弃版本：9<br>代替接口：ohos.app.form.formHost |@ohos.application.formHost.d.ts|
-|废弃版本有变化|方法名 or 属性名：enableFormsUpdate<br>废弃版本：|方法名 or 属性名：enableFormsUpdate<br>废弃版本：9<br>代替接口：ohos.app.form.formHost |@ohos.application.formHost.d.ts|
-|废弃版本有变化|方法名 or 属性名：disableFormsUpdate<br>废弃版本：|方法名 or 属性名：disableFormsUpdate<br>废弃版本：9<br>代替接口：ohos.app.form.formHost |@ohos.application.formHost.d.ts|
-|废弃版本有变化|方法名 or 属性名：isSystemReady<br>废弃版本：|方法名 or 属性名：isSystemReady<br>废弃版本：9<br>代替接口：ohos.app.form.formHost |@ohos.application.formHost.d.ts|
-|废弃版本有变化|方法名 or 属性名：getAllFormsInfo<br>废弃版本：|方法名 or 属性名：getAllFormsInfo<br>废弃版本：9<br>代替接口：ohos.app.form.formHost |@ohos.application.formHost.d.ts|
-|废弃版本有变化|方法名 or 属性名：getFormsInfo<br>废弃版本：|方法名 or 属性名：getFormsInfo<br>废弃版本：9<br>代替接口：ohos.app.form.formHost |@ohos.application.formHost.d.ts|
-|废弃版本有变化|方法名 or 属性名：deleteInvalidForms<br>废弃版本：|方法名 or 属性名：deleteInvalidForms<br>废弃版本：9<br>代替接口：ohos.app.form.formHost |@ohos.application.formHost.d.ts|
-|废弃版本有变化|方法名 or 属性名：acquireFormState<br>废弃版本：|方法名 or 属性名：acquireFormState<br>废弃版本：9<br>代替接口：ohos.app.form.formHost |@ohos.application.formHost.d.ts|
-|废弃版本有变化|方法名 or 属性名：on_formUninstall<br>废弃版本：|方法名 or 属性名：on_formUninstall<br>废弃版本：9<br>代替接口：ohos.app.form.formHost |@ohos.application.formHost.d.ts|
-|废弃版本有变化|方法名 or 属性名：off_formUninstall<br>废弃版本：|方法名 or 属性名：off_formUninstall<br>废弃版本：9<br>代替接口：ohos.app.form.formHost |@ohos.application.formHost.d.ts|
-|废弃版本有变化|方法名 or 属性名：notifyFormsVisible<br>废弃版本：|方法名 or 属性名：notifyFormsVisible<br>废弃版本：9<br>代替接口：ohos.app.form.formHost |@ohos.application.formHost.d.ts|
-|废弃版本有变化|方法名 or 属性名：notifyFormsEnableUpdate<br>废弃版本：|方法名 or 属性名：notifyFormsEnableUpdate<br>废弃版本：9<br>代替接口：ohos.app.form.formHost |@ohos.application.formHost.d.ts|
-|废弃版本有变化|方法名 or 属性名：shareForm<br>废弃版本：|方法名 or 属性名：shareForm<br>废弃版本：9<br>代替接口：ohos.app.form.formHost |@ohos.application.formHost.d.ts|
-|废弃版本有变化|类名：formInfo<br>废弃版本：|类名：formInfo<br>废弃版本：9<br>代替接口：ohos.app.form.formInfo |@ohos.application.formInfo.d.ts|
-|废弃版本有变化|类名：FormInfo<br>废弃版本：|类名：FormInfo<br>废弃版本：9<br>代替接口：ohos.app.form.formInfo |@ohos.application.formInfo.d.ts|
-|废弃版本有变化|方法名 or 属性名：bundleName<br>废弃版本：|方法名 or 属性名：bundleName<br>废弃版本：9<br>代替接口：ohos.app.form.formInfo |@ohos.application.formInfo.d.ts|
-|废弃版本有变化|方法名 or 属性名：moduleName<br>废弃版本：|方法名 or 属性名：moduleName<br>废弃版本：9<br>代替接口：ohos.app.form.formInfo |@ohos.application.formInfo.d.ts|
-|废弃版本有变化|方法名 or 属性名：abilityName<br>废弃版本：|方法名 or 属性名：abilityName<br>废弃版本：9<br>代替接口：ohos.app.form.formInfo |@ohos.application.formInfo.d.ts|
-|废弃版本有变化|方法名 or 属性名：name<br>废弃版本：|方法名 or 属性名：name<br>废弃版本：9<br>代替接口：ohos.app.form.formInfo |@ohos.application.formInfo.d.ts|
-|废弃版本有变化|方法名 or 属性名：description<br>废弃版本：|方法名 or 属性名：description<br>废弃版本：9<br>代替接口：ohos.app.form.formInfo |@ohos.application.formInfo.d.ts|
-|废弃版本有变化|方法名 or 属性名：type<br>废弃版本：|方法名 or 属性名：type<br>废弃版本：9<br>代替接口：ohos.app.form.formInfo |@ohos.application.formInfo.d.ts|
-|废弃版本有变化|方法名 or 属性名：jsComponentName<br>废弃版本：|方法名 or 属性名：jsComponentName<br>废弃版本：9<br>代替接口：ohos.app.form.formInfo |@ohos.application.formInfo.d.ts|
-|废弃版本有变化|方法名 or 属性名：colorMode<br>废弃版本：|方法名 or 属性名：colorMode<br>废弃版本：9<br>代替接口：ohos.app.form.formInfo |@ohos.application.formInfo.d.ts|
-|废弃版本有变化|方法名 or 属性名：isDefault<br>废弃版本：|方法名 or 属性名：isDefault<br>废弃版本：9<br>代替接口：ohos.app.form.formInfo |@ohos.application.formInfo.d.ts|
-|废弃版本有变化|方法名 or 属性名：updateEnabled<br>废弃版本：|方法名 or 属性名：updateEnabled<br>废弃版本：9<br>代替接口：ohos.app.form.formInfo |@ohos.application.formInfo.d.ts|
-|废弃版本有变化|方法名 or 属性名：formVisibleNotify<br>废弃版本：|方法名 or 属性名：formVisibleNotify<br>废弃版本：9<br>代替接口：ohos.app.form.formInfo |@ohos.application.formInfo.d.ts|
-|废弃版本有变化|方法名 or 属性名：relatedBundleName<br>废弃版本：|方法名 or 属性名：relatedBundleName<br>废弃版本：9<br>代替接口：ohos.app.form.formInfo |@ohos.application.formInfo.d.ts|
-|废弃版本有变化|方法名 or 属性名：scheduledUpdateTime<br>废弃版本：|方法名 or 属性名：scheduledUpdateTime<br>废弃版本：9<br>代替接口：ohos.app.form.formInfo |@ohos.application.formInfo.d.ts|
-|废弃版本有变化|方法名 or 属性名：formConfigAbility<br>废弃版本：|方法名 or 属性名：formConfigAbility<br>废弃版本：9<br>代替接口：ohos.app.form.formInfo |@ohos.application.formInfo.d.ts|
-|废弃版本有变化|方法名 or 属性名：updateDuration<br>废弃版本：|方法名 or 属性名：updateDuration<br>废弃版本：9<br>代替接口：ohos.app.form.formInfo |@ohos.application.formInfo.d.ts|
-|废弃版本有变化|方法名 or 属性名：defaultDimension<br>废弃版本：|方法名 or 属性名：defaultDimension<br>废弃版本：9<br>代替接口：ohos.app.form.formInfo |@ohos.application.formInfo.d.ts|
-|废弃版本有变化|方法名 or 属性名：supportDimensions<br>废弃版本：|方法名 or 属性名：supportDimensions<br>废弃版本：9<br>代替接口：ohos.app.form.formInfo |@ohos.application.formInfo.d.ts|
-|废弃版本有变化|方法名 or 属性名：customizeData<br>废弃版本：|方法名 or 属性名：customizeData<br>废弃版本：9<br>代替接口：ohos.app.form.formInfo |@ohos.application.formInfo.d.ts|
-|废弃版本有变化|类名：FormType<br>废弃版本：|类名：FormType<br>废弃版本：9<br>代替接口：ohos.app.form.formInfo |@ohos.application.formInfo.d.ts|
-|废弃版本有变化|方法名 or 属性名：JS<br>废弃版本：|方法名 or 属性名：JS<br>废弃版本：9<br>代替接口：ohos.app.form.formInfo |@ohos.application.formInfo.d.ts|
-|废弃版本有变化|类名：ColorMode<br>废弃版本：|类名：ColorMode<br>废弃版本：9<br>代替接口：ohos.app.form.formInfo |@ohos.application.formInfo.d.ts|
-|废弃版本有变化|方法名 or 属性名：MODE_AUTO<br>废弃版本：|方法名 or 属性名：MODE_AUTO<br>废弃版本：9<br>代替接口：ohos.app.form.formInfo |@ohos.application.formInfo.d.ts|
-|废弃版本有变化|方法名 or 属性名：MODE_DARK<br>废弃版本：|方法名 or 属性名：MODE_DARK<br>废弃版本：9<br>代替接口：ohos.app.form.formInfo |@ohos.application.formInfo.d.ts|
-|废弃版本有变化|方法名 or 属性名：MODE_LIGHT<br>废弃版本：|方法名 or 属性名：MODE_LIGHT<br>废弃版本：9<br>代替接口：ohos.app.form.formInfo |@ohos.application.formInfo.d.ts|
-|废弃版本有变化|类名：FormStateInfo<br>废弃版本：|类名：FormStateInfo<br>废弃版本：9<br>代替接口：ohos.app.form.formInfo |@ohos.application.formInfo.d.ts|
-|废弃版本有变化|方法名 or 属性名：formState<br>废弃版本：|方法名 or 属性名：formState<br>废弃版本：9<br>代替接口：ohos.app.form.formInfo |@ohos.application.formInfo.d.ts|
-|废弃版本有变化|方法名 or 属性名：want<br>废弃版本：|方法名 or 属性名：want<br>废弃版本：9<br>代替接口：ohos.app.form.formInfo |@ohos.application.formInfo.d.ts|
-|废弃版本有变化|类名：FormState<br>废弃版本：|类名：FormState<br>废弃版本：9<br>代替接口：ohos.app.form.formInfo |@ohos.application.formInfo.d.ts|
-|废弃版本有变化|方法名 or 属性名：UNKNOWN<br>废弃版本：|方法名 or 属性名：UNKNOWN<br>废弃版本：9<br>代替接口：ohos.app.form.formInfo |@ohos.application.formInfo.d.ts|
-|废弃版本有变化|方法名 or 属性名：DEFAULT<br>废弃版本：|方法名 or 属性名：DEFAULT<br>废弃版本：9<br>代替接口：ohos.app.form.formInfo |@ohos.application.formInfo.d.ts|
-|废弃版本有变化|方法名 or 属性名：READY<br>废弃版本：|方法名 or 属性名：READY<br>废弃版本：9<br>代替接口：ohos.app.form.formInfo |@ohos.application.formInfo.d.ts|
-|废弃版本有变化|类名：FormParam<br>废弃版本：|类名：FormParam<br>废弃版本：9<br>代替接口：ohos.app.form.formInfo |@ohos.application.formInfo.d.ts|
-|废弃版本有变化|方法名 or 属性名：IDENTITY_KEY<br>废弃版本：|方法名 or 属性名：IDENTITY_KEY<br>废弃版本：9<br>代替接口：ohos.app.form.formInfo |@ohos.application.formInfo.d.ts|
-|废弃版本有变化|方法名 or 属性名：DIMENSION_KEY<br>废弃版本：|方法名 or 属性名：DIMENSION_KEY<br>废弃版本：9<br>代替接口：ohos.app.form.formInfo |@ohos.application.formInfo.d.ts|
-|废弃版本有变化|方法名 or 属性名：NAME_KEY<br>废弃版本：|方法名 or 属性名：NAME_KEY<br>废弃版本：9<br>代替接口：ohos.app.form.formInfo |@ohos.application.formInfo.d.ts|
-|废弃版本有变化|方法名 or 属性名：MODULE_NAME_KEY<br>废弃版本：|方法名 or 属性名：MODULE_NAME_KEY<br>废弃版本：9<br>代替接口：ohos.app.form.formInfo |@ohos.application.formInfo.d.ts|
-|废弃版本有变化|方法名 or 属性名：WIDTH_KEY<br>废弃版本：|方法名 or 属性名：WIDTH_KEY<br>废弃版本：9<br>代替接口：ohos.app.form.formInfo |@ohos.application.formInfo.d.ts|
-|废弃版本有变化|方法名 or 属性名：HEIGHT_KEY<br>废弃版本：|方法名 or 属性名：HEIGHT_KEY<br>废弃版本：9<br>代替接口：ohos.app.form.formInfo |@ohos.application.formInfo.d.ts|
-|废弃版本有变化|方法名 or 属性名：TEMPORARY_KEY<br>废弃版本：|方法名 or 属性名：TEMPORARY_KEY<br>废弃版本：9<br>代替接口：ohos.app.form.formInfo |@ohos.application.formInfo.d.ts|
-|废弃版本有变化|方法名 or 属性名：BUNDLE_NAME_KEY<br>废弃版本：|方法名 or 属性名：BUNDLE_NAME_KEY<br>废弃版本：9<br>代替接口：ohos.app.form.formInfo |@ohos.application.formInfo.d.ts|
-|废弃版本有变化|方法名 or 属性名：ABILITY_NAME_KEY<br>废弃版本：|方法名 or 属性名：ABILITY_NAME_KEY<br>废弃版本：9<br>代替接口：ohos.app.form.formInfo |@ohos.application.formInfo.d.ts|
-|废弃版本有变化|方法名 or 属性名：DEVICE_ID_KEY<br>废弃版本：|方法名 or 属性名：DEVICE_ID_KEY<br>废弃版本：9<br>代替接口：ohos.app.form.formInfo |@ohos.application.formInfo.d.ts|
-|废弃版本有变化|类名：FormInfoFilter<br>废弃版本：|类名：FormInfoFilter<br>废弃版本：9<br>代替接口：ohos.app.form.formInfo |@ohos.application.formInfo.d.ts|
-|废弃版本有变化|方法名 or 属性名：moduleName<br>废弃版本：|方法名 or 属性名：moduleName<br>废弃版本：9<br>代替接口：ohos.app.form.formInfo |@ohos.application.formInfo.d.ts|
-|废弃版本有变化|类名：FormDimension<br>废弃版本：|类名：FormDimension<br>废弃版本：9<br>代替接口：ohos.app.form.formInfo |@ohos.application.formInfo.d.ts|
-|废弃版本有变化|方法名 or 属性名：Dimension_1_2<br>废弃版本：|方法名 or 属性名：Dimension_1_2<br>废弃版本：9<br>代替接口：ohos.app.form.formInfo |@ohos.application.formInfo.d.ts|
-|废弃版本有变化|方法名 or 属性名：Dimension_2_2<br>废弃版本：|方法名 or 属性名：Dimension_2_2<br>废弃版本：9<br>代替接口：ohos.app.form.formInfo |@ohos.application.formInfo.d.ts|
-|废弃版本有变化|方法名 or 属性名：Dimension_2_4<br>废弃版本：|方法名 or 属性名：Dimension_2_4<br>废弃版本：9<br>代替接口：ohos.app.form.formInfo |@ohos.application.formInfo.d.ts|
-|废弃版本有变化|方法名 or 属性名：Dimension_4_4<br>废弃版本：|方法名 or 属性名：Dimension_4_4<br>废弃版本：9<br>代替接口：ohos.app.form.formInfo |@ohos.application.formInfo.d.ts|
-|废弃版本有变化|方法名 or 属性名：Dimension_2_1<br>废弃版本：|方法名 or 属性名：Dimension_2_1<br>废弃版本：9<br>代替接口：ohos.app.form.formInfo |@ohos.application.formInfo.d.ts|
-|废弃版本有变化|类名：formProvider<br>废弃版本：|类名：formProvider<br>废弃版本：9<br>代替接口：ohos.app.form.formProvider |@ohos.application.formProvider.d.ts|
-|废弃版本有变化|方法名 or 属性名：setFormNextRefreshTime<br>废弃版本：|方法名 or 属性名：setFormNextRefreshTime<br>废弃版本：9<br>代替接口：ohos.app.form.formProvider |@ohos.application.formProvider.d.ts|
-|废弃版本有变化|方法名 or 属性名：updateForm<br>废弃版本：|方法名 or 属性名：updateForm<br>废弃版本：9<br>代替接口：ohos.app.form.formProvider |@ohos.application.formProvider.d.ts|
-|废弃版本有变化|方法名 or 属性名：getFormsInfo<br>废弃版本：|方法名 or 属性名：getFormsInfo<br>废弃版本：9<br>代替接口：ohos.app.form.formProvider |@ohos.application.formProvider.d.ts|
-|废弃版本有变化|方法名 or 属性名：requestPublishForm<br>废弃版本：|方法名 or 属性名：requestPublishForm<br>废弃版本：9<br>代替接口：ohos.app.form.formProvider |@ohos.application.formProvider.d.ts|
-|废弃版本有变化|方法名 or 属性名：isRequestPublishFormSupported<br>废弃版本：|方法名 or 属性名：isRequestPublishFormSupported<br>废弃版本：9<br>代替接口：ohos.app.form.formProvider |@ohos.application.formProvider.d.ts|
-|废弃版本有变化|类名：missionManager<br>废弃版本：|类名：missionManager<br>废弃版本：9<br>代替接口：ohos.app.ability.missionManager |@ohos.application.missionManager.d.ts|
-|废弃版本有变化|方法名 or 属性名：registerMissionListener<br>废弃版本：|方法名 or 属性名：registerMissionListener<br>废弃版本：9<br>代替接口：ohos.app.ability.missionManager |@ohos.application.missionManager.d.ts|
-|废弃版本有变化|方法名 or 属性名：unregisterMissionListener<br>废弃版本：|方法名 or 属性名：unregisterMissionListener<br>废弃版本：9<br>代替接口：ohos.app.ability.missionManager |@ohos.application.missionManager.d.ts|
-|废弃版本有变化|方法名 or 属性名：getMissionInfo<br>废弃版本：|方法名 or 属性名：getMissionInfo<br>废弃版本：9<br>代替接口：ohos.app.ability.missionManager |@ohos.application.missionManager.d.ts|
-|废弃版本有变化|方法名 or 属性名：getMissionInfos<br>废弃版本：|方法名 or 属性名：getMissionInfos<br>废弃版本：9<br>代替接口：ohos.app.ability.missionManager |@ohos.application.missionManager.d.ts|
-|废弃版本有变化|方法名 or 属性名：getMissionSnapShot<br>废弃版本：|方法名 or 属性名：getMissionSnapShot<br>废弃版本：9<br>代替接口：ohos.app.ability.missionManager |@ohos.application.missionManager.d.ts|
-|废弃版本有变化|方法名 or 属性名：getLowResolutionMissionSnapShot<br>废弃版本：|方法名 or 属性名：getLowResolutionMissionSnapShot<br>废弃版本：9<br>代替接口：ohos.app.ability.missionManager |@ohos.application.missionManager.d.ts|
-|废弃版本有变化|方法名 or 属性名：lockMission<br>废弃版本：|方法名 or 属性名：lockMission<br>废弃版本：9<br>代替接口：ohos.app.ability.missionManager |@ohos.application.missionManager.d.ts|
-|废弃版本有变化|方法名 or 属性名：unlockMission<br>废弃版本：|方法名 or 属性名：unlockMission<br>废弃版本：9<br>代替接口：ohos.app.ability.missionManager |@ohos.application.missionManager.d.ts|
-|废弃版本有变化|方法名 or 属性名：clearMission<br>废弃版本：|方法名 or 属性名：clearMission<br>废弃版本：9<br>代替接口：ohos.app.ability.missionManager |@ohos.application.missionManager.d.ts|
-|废弃版本有变化|方法名 or 属性名：clearAllMissions<br>废弃版本：|方法名 or 属性名：clearAllMissions<br>废弃版本：9<br>代替接口：ohos.app.ability.missionManager |@ohos.application.missionManager.d.ts|
-|废弃版本有变化|方法名 or 属性名：moveMissionToFront<br>废弃版本：|方法名 or 属性名：moveMissionToFront<br>废弃版本：9<br>代替接口：ohos.app.ability.missionManager |@ohos.application.missionManager.d.ts|
-|废弃版本有变化|类名：ServiceExtensionAbility<br>废弃版本：|类名：ServiceExtensionAbility<br>废弃版本：9<br>代替接口：ohos.app.ability.ServiceExtensionAbility |@ohos.application.ServiceExtensionAbility.d.ts|
-|废弃版本有变化|方法名 or 属性名：context<br>废弃版本：|方法名 or 属性名：context<br>废弃版本：9<br>代替接口：ohos.app.ability.ServiceExtensionAbility |@ohos.application.ServiceExtensionAbility.d.ts|
-|废弃版本有变化|方法名 or 属性名：onCreate<br>废弃版本：|方法名 or 属性名：onCreate<br>废弃版本：9<br>代替接口：ohos.app.ability.ServiceExtensionAbility |@ohos.application.ServiceExtensionAbility.d.ts|
-|废弃版本有变化|方法名 or 属性名：onDestroy<br>废弃版本：|方法名 or 属性名：onDestroy<br>废弃版本：9<br>代替接口：ohos.app.ability.ServiceExtensionAbility |@ohos.application.ServiceExtensionAbility.d.ts|
-|废弃版本有变化|方法名 or 属性名：onRequest<br>废弃版本：|方法名 or 属性名：onRequest<br>废弃版本：9<br>代替接口：ohos.app.ability.ServiceExtensionAbility |@ohos.application.ServiceExtensionAbility.d.ts|
-|废弃版本有变化|方法名 or 属性名：onConnect<br>废弃版本：|方法名 or 属性名：onConnect<br>废弃版本：9<br>代替接口：ohos.app.ability.ServiceExtensionAbility |@ohos.application.ServiceExtensionAbility.d.ts|
-|废弃版本有变化|方法名 or 属性名：onDisconnect<br>废弃版本：|方法名 or 属性名：onDisconnect<br>废弃版本：9<br>代替接口：ohos.app.ability.ServiceExtensionAbility |@ohos.application.ServiceExtensionAbility.d.ts|
-|废弃版本有变化|方法名 or 属性名：onReconnect<br>废弃版本：|方法名 or 属性名：onReconnect<br>废弃版本：9<br>代替接口：ohos.app.ability.ServiceExtensionAbility |@ohos.application.ServiceExtensionAbility.d.ts|
-|废弃版本有变化|方法名 or 属性名：onConfigurationUpdated<br>废弃版本：|方法名 or 属性名：onConfigurationUpdated<br>废弃版本：9<br>代替接口：ohos.app.ability.ServiceExtensionAbility |@ohos.application.ServiceExtensionAbility.d.ts|
-|废弃版本有变化|方法名 or 属性名：dump<br>废弃版本：|方法名 or 属性名：dump<br>废弃版本：9<br>代替接口：ohos.app.ability.ServiceExtensionAbility |@ohos.application.ServiceExtensionAbility.d.ts|
-|废弃版本有变化|类名：StartOptions<br>废弃版本：|类名：StartOptions<br>废弃版本：9<br>代替接口：ohos.app.ability.StartOptions |@ohos.application.StartOptions.d.ts|
-|废弃版本有变化|方法名 or 属性名：windowMode<br>废弃版本：|方法名 or 属性名：windowMode<br>废弃版本：9<br>代替接口：ohos.app.ability.StartOptions |@ohos.application.StartOptions.d.ts|
-|废弃版本有变化|方法名 or 属性名：displayId<br>废弃版本：|方法名 or 属性名：displayId<br>废弃版本：9<br>代替接口：ohos.app.ability.StartOptions |@ohos.application.StartOptions.d.ts|
-|废弃版本有变化|类名：Want<br>废弃版本：|类名：Want<br>废弃版本：9<br>代替接口：ohos.app.ability.Want |@ohos.application.Want.d.ts|
-|废弃版本有变化|方法名 or 属性名：deviceId<br>废弃版本：|方法名 or 属性名：deviceId<br>废弃版本：9<br>代替接口：ohos.app.ability.Want |@ohos.application.Want.d.ts|
-|废弃版本有变化|方法名 or 属性名：bundleName<br>废弃版本：|方法名 or 属性名：bundleName<br>废弃版本：9<br>代替接口：ohos.app.ability.Want |@ohos.application.Want.d.ts|
-|废弃版本有变化|方法名 or 属性名：abilityName<br>废弃版本：|方法名 or 属性名：abilityName<br>废弃版本：9<br>代替接口：ohos.app.ability.Want |@ohos.application.Want.d.ts|
-|废弃版本有变化|方法名 or 属性名：uri<br>废弃版本：|方法名 or 属性名：uri<br>废弃版本：9<br>代替接口：ohos.app.ability.Want |@ohos.application.Want.d.ts|
-|废弃版本有变化|方法名 or 属性名：type<br>废弃版本：|方法名 or 属性名：type<br>废弃版本：9<br>代替接口：ohos.app.ability.Want |@ohos.application.Want.d.ts|
-|废弃版本有变化|方法名 or 属性名：flags<br>废弃版本：|方法名 or 属性名：flags<br>废弃版本：9<br>代替接口：ohos.app.ability.Want |@ohos.application.Want.d.ts|
-|废弃版本有变化|方法名 or 属性名：action<br>废弃版本：|方法名 or 属性名：action<br>废弃版本：9<br>代替接口：ohos.app.ability.Want |@ohos.application.Want.d.ts|
-|废弃版本有变化|方法名 or 属性名：parameters<br>废弃版本：|方法名 or 属性名：parameters<br>废弃版本：9<br>代替接口：ohos.app.ability.Want |@ohos.application.Want.d.ts|
-|废弃版本有变化|方法名 or 属性名：entities<br>废弃版本：|方法名 or 属性名：entities<br>废弃版本：9<br>代替接口：ohos.app.ability.Want |@ohos.application.Want.d.ts|
-|废弃版本有变化|方法名 or 属性名：moduleName<br>废弃版本：|方法名 or 属性名：moduleName<br>废弃版本：9<br>代替接口：ohos.app.ability.Want |@ohos.application.Want.d.ts|
-|废弃版本有变化|方法名 or 属性名：register<br>废弃版本：|方法名 or 属性名：register<br>废弃版本：9<br>代替接口：ohos.continuation.continuationManager.continuationManager|@ohos.continuation.continuationManager.d.ts|
-|废弃版本有变化|方法名 or 属性名：unregister<br>废弃版本：|方法名 or 属性名：unregister<br>废弃版本：9<br>代替接口：ohos.continuation.continuationManager.continuationManager|@ohos.continuation.continuationManager.d.ts|
-|废弃版本有变化|方法名 or 属性名：updateConnectStatus<br>废弃版本：|方法名 or 属性名：updateConnectStatus<br>废弃版本：9<br>代替接口：ohos.continuation.continuationManager.continuationManager|@ohos.continuation.continuationManager.d.ts|
-|废弃版本有变化|方法名 or 属性名：startDeviceManager<br>废弃版本：|方法名 or 属性名：startDeviceManager<br>废弃版本：9<br>代替接口：ohos.continuation.continuationManager.continuationManager|@ohos.continuation.continuationManager.d.ts|
-|废弃版本有变化|类名：wantAgent<br>废弃版本：|类名：wantAgent<br>废弃版本：9<br>代替接口：ohos.app.ability.wantAgent |@ohos.wantAgent.d.ts|
-|废弃版本有变化|方法名 or 属性名：getBundleName<br>废弃版本：|方法名 or 属性名：getBundleName<br>废弃版本：9<br>代替接口：ohos.app.ability.wantAgent |@ohos.wantAgent.d.ts|
-|废弃版本有变化|方法名 or 属性名：getUid<br>废弃版本：|方法名 or 属性名：getUid<br>废弃版本：9<br>代替接口：ohos.app.ability.wantAgent |@ohos.wantAgent.d.ts|
-|废弃版本有变化|方法名 or 属性名：getWant<br>废弃版本：|方法名 or 属性名：getWant<br>废弃版本：9<br>代替接口：ohos.app.ability.wantAgent |@ohos.wantAgent.d.ts|
-|废弃版本有变化|方法名 or 属性名：getWant<br>废弃版本：|方法名 or 属性名：getWant<br>废弃版本：9<br>代替接口：ohos.app.ability.wantAgent |@ohos.wantAgent.d.ts|
-|废弃版本有变化|方法名 or 属性名：cancel<br>废弃版本：|方法名 or 属性名：cancel<br>废弃版本：9<br>代替接口：ohos.app.ability.wantAgent |@ohos.wantAgent.d.ts|
-|废弃版本有变化|方法名 or 属性名：trigger<br>废弃版本：|方法名 or 属性名：trigger<br>废弃版本：9<br>代替接口：ohos.app.ability.wantAgent |@ohos.wantAgent.d.ts|
-|废弃版本有变化|方法名 or 属性名：trigger<br>废弃版本：|方法名 or 属性名：trigger<br>废弃版本：9<br>代替接口：ohos.app.ability.wantAgent |@ohos.wantAgent.d.ts|
-|废弃版本有变化|方法名 or 属性名：equal<br>废弃版本：|方法名 or 属性名：equal<br>废弃版本：9<br>代替接口：ohos.app.ability.wantAgent |@ohos.wantAgent.d.ts|
-|废弃版本有变化|方法名 or 属性名：getWantAgent<br>废弃版本：|方法名 or 属性名：getWantAgent<br>废弃版本：9<br>代替接口：ohos.app.ability.wantAgent |@ohos.wantAgent.d.ts|
-|废弃版本有变化|方法名 or 属性名：getOperationType<br>废弃版本：|方法名 or 属性名：getOperationType<br>废弃版本：9<br>代替接口：ohos.app.ability.wantAgent |@ohos.wantAgent.d.ts|
-|废弃版本有变化|类名：WantAgentFlags<br>废弃版本：|类名：WantAgentFlags<br>废弃版本：9<br>代替接口：ohos.app.ability.wantAgent |@ohos.wantAgent.d.ts|
-|废弃版本有变化|方法名 or 属性名：ONE_TIME_FLAG<br>废弃版本：|方法名 or 属性名：ONE_TIME_FLAG<br>废弃版本：9<br>代替接口：ohos.app.ability.wantAgent |@ohos.wantAgent.d.ts|
-|废弃版本有变化|方法名 or 属性名：NO_BUILD_FLAG<br>废弃版本：|方法名 or 属性名：NO_BUILD_FLAG<br>废弃版本：9<br>代替接口：ohos.app.ability.wantAgent |@ohos.wantAgent.d.ts|
-|废弃版本有变化|方法名 or 属性名：CANCEL_PRESENT_FLAG<br>废弃版本：|方法名 or 属性名：CANCEL_PRESENT_FLAG<br>废弃版本：9<br>代替接口：ohos.app.ability.wantAgent |@ohos.wantAgent.d.ts|
-|废弃版本有变化|方法名 or 属性名：UPDATE_PRESENT_FLAG<br>废弃版本：|方法名 or 属性名：UPDATE_PRESENT_FLAG<br>废弃版本：9<br>代替接口：ohos.app.ability.wantAgent |@ohos.wantAgent.d.ts|
-|废弃版本有变化|方法名 or 属性名：CONSTANT_FLAG<br>废弃版本：|方法名 or 属性名：CONSTANT_FLAG<br>废弃版本：9<br>代替接口：ohos.app.ability.wantAgent |@ohos.wantAgent.d.ts|
-|废弃版本有变化|方法名 or 属性名：REPLACE_ELEMENT<br>废弃版本：|方法名 or 属性名：REPLACE_ELEMENT<br>废弃版本：9<br>代替接口：ohos.app.ability.wantAgent |@ohos.wantAgent.d.ts|
-|废弃版本有变化|方法名 or 属性名：REPLACE_ACTION<br>废弃版本：|方法名 or 属性名：REPLACE_ACTION<br>废弃版本：9<br>代替接口：ohos.app.ability.wantAgent |@ohos.wantAgent.d.ts|
-|废弃版本有变化|方法名 or 属性名：REPLACE_URI<br>废弃版本：|方法名 or 属性名：REPLACE_URI<br>废弃版本：9<br>代替接口：ohos.app.ability.wantAgent |@ohos.wantAgent.d.ts|
-|废弃版本有变化|方法名 or 属性名：REPLACE_ENTITIES<br>废弃版本：|方法名 or 属性名：REPLACE_ENTITIES<br>废弃版本：9<br>代替接口：ohos.app.ability.wantAgent |@ohos.wantAgent.d.ts|
-|废弃版本有变化|方法名 or 属性名：REPLACE_BUNDLE<br>废弃版本：|方法名 or 属性名：REPLACE_BUNDLE<br>废弃版本：9<br>代替接口：ohos.app.ability.wantAgent |@ohos.wantAgent.d.ts|
-|废弃版本有变化|类名：OperationType<br>废弃版本：|类名：OperationType<br>废弃版本：9<br>代替接口：ohos.app.ability.wantAgent |@ohos.wantAgent.d.ts|
-|废弃版本有变化|方法名 or 属性名：UNKNOWN_TYPE<br>废弃版本：|方法名 or 属性名：UNKNOWN_TYPE<br>废弃版本：9<br>代替接口：ohos.app.ability.wantAgent |@ohos.wantAgent.d.ts|
-|废弃版本有变化|方法名 or 属性名：START_ABILITY<br>废弃版本：|方法名 or 属性名：START_ABILITY<br>废弃版本：9<br>代替接口：ohos.app.ability.wantAgent |@ohos.wantAgent.d.ts|
-|废弃版本有变化|方法名 or 属性名：START_ABILITIES<br>废弃版本：|方法名 or 属性名：START_ABILITIES<br>废弃版本：9<br>代替接口：ohos.app.ability.wantAgent |@ohos.wantAgent.d.ts|
-|废弃版本有变化|方法名 or 属性名：START_SERVICE<br>废弃版本：|方法名 or 属性名：START_SERVICE<br>废弃版本：9<br>代替接口：ohos.app.ability.wantAgent |@ohos.wantAgent.d.ts|
-|废弃版本有变化|方法名 or 属性名：SEND_COMMON_EVENT<br>废弃版本：|方法名 or 属性名：SEND_COMMON_EVENT<br>废弃版本：9<br>代替接口：ohos.app.ability.wantAgent |@ohos.wantAgent.d.ts|
-|废弃版本有变化|类名：CompleteData<br>废弃版本：|类名：CompleteData<br>废弃版本：9<br>代替接口：ohos.app.ability.wantAgent |@ohos.wantAgent.d.ts|
-|废弃版本有变化|方法名 or 属性名：info<br>废弃版本：|方法名 or 属性名：info<br>废弃版本：9<br>代替接口：ohos.app.ability.wantAgent |@ohos.wantAgent.d.ts|
-|废弃版本有变化|方法名 or 属性名：want<br>废弃版本：|方法名 or 属性名：want<br>废弃版本：9<br>代替接口：ohos.app.ability.wantAgent |@ohos.wantAgent.d.ts|
-|废弃版本有变化|方法名 or 属性名：finalCode<br>废弃版本：|方法名 or 属性名：finalCode<br>废弃版本：9<br>代替接口：ohos.app.ability.wantAgent |@ohos.wantAgent.d.ts|
-|废弃版本有变化|方法名 or 属性名：finalData<br>废弃版本：|方法名 or 属性名：finalData<br>废弃版本：9<br>代替接口：ohos.app.ability.wantAgent |@ohos.wantAgent.d.ts|
-|废弃版本有变化|方法名 or 属性名：extraInfo<br>废弃版本：|方法名 or 属性名：extraInfo<br>废弃版本：9<br>代替接口：ohos.app.ability.wantAgent |@ohos.wantAgent.d.ts|
-|废弃版本有变化|方法名 or 属性名：connectAbility<br>废弃版本：|方法名 or 属性名：connectAbility<br>废弃版本：9<br>代替接口：connectServiceExtensionAbility     |AbilityContext.d.ts|
-|废弃版本有变化|方法名 or 属性名：connectAbilityWithAccount<br>废弃版本：|方法名 or 属性名：connectAbilityWithAccount<br>废弃版本：9<br>代替接口：connectServiceExtensionAbilityWithAccount     |AbilityContext.d.ts|
-|废弃版本有变化|方法名 or 属性名：disconnectAbility<br>废弃版本：|方法名 or 属性名：disconnectAbility<br>废弃版本：9<br>代替接口：disconnectServiceExtensionAbility     |AbilityContext.d.ts|
-|废弃版本有变化|方法名 or 属性名：registerAbilityLifecycleCallback<br>废弃版本：|方法名 or 属性名：registerAbilityLifecycleCallback<br>废弃版本：9<br>代替接口：on     |ApplicationContext.d.ts|
-|废弃版本有变化|方法名 or 属性名：unregisterAbilityLifecycleCallback<br>废弃版本：|方法名 or 属性名：unregisterAbilityLifecycleCallback<br>废弃版本：9<br>代替接口：off     |ApplicationContext.d.ts|
-|废弃版本有变化|方法名 or 属性名：registerEnvironmentCallback<br>废弃版本：|方法名 or 属性名：registerEnvironmentCallback<br>废弃版本：9<br>代替接口：on     |ApplicationContext.d.ts|
-|废弃版本有变化|方法名 or 属性名：unregisterEnvironmentCallback<br>废弃版本：|方法名 or 属性名：unregisterEnvironmentCallback<br>废弃版本：9<br>代替接口：off     |ApplicationContext.d.ts|
-|废弃版本有变化|方法名 or 属性名：connectAbility<br>废弃版本：|方法名 or 属性名：connectAbility<br>废弃版本：9<br>代替接口：connectServiceExtensionAbility     |ServiceExtensionContext.d.ts|
-|废弃版本有变化|方法名 or 属性名：connectAbilityWithAccount<br>废弃版本：|方法名 or 属性名：connectAbilityWithAccount<br>废弃版本：9<br>代替接口：connectServiceExtensionAbilityWithAccount     |ServiceExtensionContext.d.ts|
-|废弃版本有变化|方法名 or 属性名：disconnectAbility<br>废弃版本：|方法名 or 属性名：disconnectAbility<br>废弃版本：9<br>代替接口：disconnectServiceExtensionAbility     |ServiceExtensionContext.d.ts|
+|访问级别有变化|方法名 or 属性名：startAbilityByCall<br>访问级别：公开API|方法名 or 属性名：startAbilityByCall<br>访问级别：系统API|AbilityContext.d.ts|
+|废弃版本有变化|类名：wantConstant<br>废弃版本：N/A|类名：wantConstant<br>废弃版本：9<br>代替接口：ohos.app.ability.wantConstant |@ohos.ability.wantConstant.d.ts|
+|废弃版本有变化|方法名 or 属性名：ACTION_APP_ACCOUNT_OAUTH<br>废弃版本：N/A|方法名 or 属性名：ACTION_APP_ACCOUNT_OAUTH<br>废弃版本：9<br>代替接口：wantConstant.Action|@ohos.ability.wantConstant.d.ts|
+|废弃版本有变化|类名：OnReleaseCallBack<br>废弃版本：N/A|类名：OnReleaseCallBack<br>废弃版本：9<br>代替接口：ohos.app.ability.UIAbility |@ohos.application.Ability.d.ts|
+|废弃版本有变化|类名：CalleeCallBack<br>废弃版本：N/A|类名：CalleeCallBack<br>废弃版本：9<br>代替接口：ohos.app.ability.UIAbility |@ohos.application.Ability.d.ts|
+|废弃版本有变化|类名：Caller<br>废弃版本：N/A|类名：Caller<br>废弃版本：9<br>代替接口：ohos.app.ability.UIAbility |@ohos.application.Ability.d.ts|
+|废弃版本有变化|类名：Callee<br>废弃版本：N/A|类名：Callee<br>废弃版本：9<br>代替接口：ohos.app.ability.UIAbility |@ohos.application.Ability.d.ts|
+|废弃版本有变化|类名：Ability<br>废弃版本：N/A|类名：Ability<br>废弃版本：9<br>代替接口：ohos.app.ability.UIAbility |@ohos.application.Ability.d.ts|
+|废弃版本有变化|类名：AbilityConstant<br>废弃版本：N/A|类名：AbilityConstant<br>废弃版本：9<br>代替接口：ohos.app.ability.AbilityConstant |@ohos.application.AbilityConstant.d.ts|
+|废弃版本有变化|类名：abilityDelegatorRegistry<br>废弃版本：N/A|类名：abilityDelegatorRegistry<br>废弃版本：9<br>代替接口：ohos.app.ability.abilityDelegatorRegistry |@ohos.application.abilityDelegatorRegistry.d.ts|
+|废弃版本有变化|类名：AbilityLifecycleCallback<br>废弃版本：N/A|类名：AbilityLifecycleCallback<br>废弃版本：9<br>代替接口：ohos.app.ability.AbilityLifecycleCallback |@ohos.application.AbilityLifecycleCallback.d.ts|
+|废弃版本有变化|类名：abilityManager<br>废弃版本：N/A|类名：abilityManager<br>废弃版本：9<br>代替接口：ohos.app.ability.abilityManager |@ohos.application.abilityManager.d.ts|
+|废弃版本有变化|类名：AbilityStage<br>废弃版本：N/A|类名：AbilityStage<br>废弃版本：9<br>代替接口：ohos.app.ability.AbilityStage |@ohos.application.AbilityStage.d.ts|
+|废弃版本有变化|类名：appManager<br>废弃版本：N/A|类名：appManager<br>废弃版本：9<br>代替接口：ohos.app.ability.appManager |@ohos.application.appManager.d.ts|
+|废弃版本有变化|类名：Configuration<br>废弃版本：N/A|类名：Configuration<br>废弃版本：9<br>代替接口：ohos.app.ability.Configuration |@ohos.application.Configuration.d.ts|
+|废弃版本有变化|类名：ConfigurationConstant<br>废弃版本：N/A|类名：ConfigurationConstant<br>废弃版本：9<br>代替接口：ohos.app.ability.ConfigurationConstant |@ohos.application.ConfigurationConstant.d.ts|
+|废弃版本有变化|类名：context<br>废弃版本：N/A|类名：context<br>废弃版本：9<br>代替接口：ohos.app.ability.common |@ohos.application.context.d.ts|
+|废弃版本有变化|类名：EnvironmentCallback<br>废弃版本：N/A|类名：EnvironmentCallback<br>废弃版本：9<br>代替接口：ohos.app.ability.EnvironmentCallback |@ohos.application.EnvironmentCallback.d.ts|
+|废弃版本有变化|类名：errorManager<br>废弃版本：N/A|类名：errorManager<br>废弃版本：9<br>代替接口：ohos.app.ability.errorManager |@ohos.application.errorManager.d.ts|
+|废弃版本有变化|类名：formBindingData<br>废弃版本：N/A|类名：formBindingData<br>废弃版本：9<br>代替接口：ohos.app.form.formBindingData |@ohos.application.formBindingData.d.ts|
+|废弃版本有变化|类名：FormExtension<br>废弃版本：N/A|类名：FormExtension<br>废弃版本：9<br>代替接口：ohos.app.form.FormExtensionAbility |@ohos.application.FormExtension.d.ts|
+|废弃版本有变化|类名：formHost<br>废弃版本：N/A|类名：formHost<br>废弃版本：9<br>代替接口：ohos.app.form.formHost |@ohos.application.formHost.d.ts|
+|废弃版本有变化|类名：formInfo<br>废弃版本：N/A|类名：formInfo<br>废弃版本：9<br>代替接口：ohos.app.form.formInfo |@ohos.application.formInfo.d.ts|
+|废弃版本有变化|类名：formProvider<br>废弃版本：N/A|类名：formProvider<br>废弃版本：9<br>代替接口：ohos.app.form.formProvider |@ohos.application.formProvider.d.ts|
+|废弃版本有变化|类名：missionManager<br>废弃版本：N/A|类名：missionManager<br>废弃版本：9<br>代替接口：ohos.app.ability.missionManager |@ohos.application.missionManager.d.ts|
+|废弃版本有变化|类名：ServiceExtensionAbility<br>废弃版本：N/A|类名：ServiceExtensionAbility<br>废弃版本：9<br>代替接口：ohos.app.ability.ServiceExtensionAbility |@ohos.application.ServiceExtensionAbility.d.ts|
+|废弃版本有变化|类名：StartOptions<br>废弃版本：N/A|类名：StartOptions<br>废弃版本：9<br>代替接口：ohos.app.ability.StartOptions |@ohos.application.StartOptions.d.ts|
+|废弃版本有变化|类名：Want<br>废弃版本：N/A|类名：Want<br>废弃版本：9<br>代替接口：ohos.app.ability.Want |@ohos.application.Want.d.ts|
+|废弃版本有变化|方法名 or 属性名：register<br>废弃版本：N/A|方法名 or 属性名：register<br>废弃版本：9<br>代替接口：ohos.continuation.continuationManager.continuationManager|@ohos.continuation.continuationManager.d.ts|
+|废弃版本有变化|方法名 or 属性名：register<br>废弃版本：N/A|方法名 or 属性名：register<br>废弃版本：9|@ohos.continuation.continuationManager.d.ts|
+|废弃版本有变化|方法名 or 属性名：register<br>废弃版本：N/A|方法名 or 属性名：register<br>废弃版本：9|@ohos.continuation.continuationManager.d.ts|
+|废弃版本有变化|方法名 or 属性名：unregister<br>废弃版本：N/A|方法名 or 属性名：unregister<br>废弃版本：9<br>代替接口：ohos.continuation.continuationManager.continuationManager|@ohos.continuation.continuationManager.d.ts|
+|废弃版本有变化|方法名 or 属性名：unregister<br>废弃版本：N/A|方法名 or 属性名：unregister<br>废弃版本：9|@ohos.continuation.continuationManager.d.ts|
+|废弃版本有变化|方法名 or 属性名：updateConnectStatus<br>废弃版本：N/A|方法名 or 属性名：updateConnectStatus<br>废弃版本：9<br>代替接口：ohos.continuation.continuationManager.continuationManager|@ohos.continuation.continuationManager.d.ts|
+|废弃版本有变化|方法名 or 属性名：updateConnectStatus<br>废弃版本：N/A|方法名 or 属性名：updateConnectStatus<br>废弃版本：9|@ohos.continuation.continuationManager.d.ts|
+|废弃版本有变化|方法名 or 属性名：startDeviceManager<br>废弃版本：N/A|方法名 or 属性名：startDeviceManager<br>废弃版本：9<br>代替接口：ohos.continuation.continuationManager.continuationManager|@ohos.continuation.continuationManager.d.ts|
+|废弃版本有变化|方法名 or 属性名：startDeviceManager<br>废弃版本：N/A|方法名 or 属性名：startDeviceManager<br>废弃版本：9|@ohos.continuation.continuationManager.d.ts|
+|废弃版本有变化|方法名 or 属性名：startDeviceManager<br>废弃版本：N/A|方法名 or 属性名：startDeviceManager<br>废弃版本：9|@ohos.continuation.continuationManager.d.ts|
+|废弃版本有变化|类名：wantAgent<br>废弃版本：N/A|类名：wantAgent<br>废弃版本：9<br>代替接口：ohos.app.ability.wantAgent |@ohos.wantAgent.d.ts|
+|废弃版本有变化|方法名 or 属性名：connectAbility<br>废弃版本：N/A|方法名 or 属性名：connectAbility<br>废弃版本：9<br>代替接口：connectServiceExtensionAbility     |AbilityContext.d.ts|
+|废弃版本有变化|方法名 or 属性名：connectAbilityWithAccount<br>废弃版本：N/A|方法名 or 属性名：connectAbilityWithAccount<br>废弃版本：9<br>代替接口：connectServiceExtensionAbilityWithAccount     |AbilityContext.d.ts|
+|废弃版本有变化|方法名 or 属性名：disconnectAbility<br>废弃版本：N/A|方法名 or 属性名：disconnectAbility<br>废弃版本：9<br>代替接口：disconnectServiceExtensionAbility     |AbilityContext.d.ts|
+|废弃版本有变化|方法名 or 属性名：disconnectAbility<br>废弃版本：N/A|方法名 or 属性名：disconnectAbility<br>废弃版本：9|AbilityContext.d.ts|
+|废弃版本有变化|方法名 or 属性名：registerAbilityLifecycleCallback<br>废弃版本：N/A|方法名 or 属性名：registerAbilityLifecycleCallback<br>废弃版本：9<br>代替接口：on     |ApplicationContext.d.ts|
+|废弃版本有变化|方法名 or 属性名：unregisterAbilityLifecycleCallback<br>废弃版本：N/A|方法名 or 属性名：unregisterAbilityLifecycleCallback<br>废弃版本：9<br>代替接口：off     |ApplicationContext.d.ts|
+|废弃版本有变化|方法名 or 属性名：unregisterAbilityLifecycleCallback<br>废弃版本：N/A|方法名 or 属性名：unregisterAbilityLifecycleCallback<br>废弃版本：9|ApplicationContext.d.ts|
+|废弃版本有变化|方法名 or 属性名：registerEnvironmentCallback<br>废弃版本：N/A|方法名 or 属性名：registerEnvironmentCallback<br>废弃版本：9<br>代替接口：on     |ApplicationContext.d.ts|
+|废弃版本有变化|方法名 or 属性名：unregisterEnvironmentCallback<br>废弃版本：N/A|方法名 or 属性名：unregisterEnvironmentCallback<br>废弃版本：9<br>代替接口：off     |ApplicationContext.d.ts|
+|废弃版本有变化|方法名 or 属性名：unregisterEnvironmentCallback<br>废弃版本：N/A|方法名 or 属性名：unregisterEnvironmentCallback<br>废弃版本：9|ApplicationContext.d.ts|
+|废弃版本有变化|方法名 or 属性名：connectAbility<br>废弃版本：N/A|方法名 or 属性名：connectAbility<br>废弃版本：9<br>代替接口：connectServiceExtensionAbility     |ServiceExtensionContext.d.ts|
+|废弃版本有变化|方法名 or 属性名：connectAbilityWithAccount<br>废弃版本：N/A|方法名 or 属性名：connectAbilityWithAccount<br>废弃版本：9<br>代替接口：connectServiceExtensionAbilityWithAccount     |ServiceExtensionContext.d.ts|
+|废弃版本有变化|方法名 or 属性名：disconnectAbility<br>废弃版本：N/A|方法名 or 属性名：disconnectAbility<br>废弃版本：9<br>代替接口：disconnectServiceExtensionAbility     |ServiceExtensionContext.d.ts|
+|废弃版本有变化|方法名 or 属性名：disconnectAbility<br>废弃版本：N/A|方法名 or 属性名：disconnectAbility<br>废弃版本：9|ServiceExtensionContext.d.ts|
+|起始版本有变化|类名：AbilityDelegator<br>起始版本：8|类名：AbilityDelegator<br>起始版本：9|abilityDelegator.d.ts|
 |删除(权限)|类名：distributedMissionManager<br>权限:ohos.permission.MANAGE_MISSIONS|类名：distributedMissionManager<br>权限:N/A|@ohos.distributedMissionManager.d.ts|
 |新增(错误码)||方法名 or 属性名：on_deviceConnect<br>错误码内容:401,16600001,16600002,16600004|@ohos.continuation.continuationManager.d.ts|
 |新增(错误码)||方法名 or 属性名：on_deviceDisconnect<br>错误码内容:401,16600001,16600002,16600004|@ohos.continuation.continuationManager.d.ts|
@@ -1079,3 +752,11 @@
 |新增(错误码)||方法名 or 属性名：terminateSelf<br>错误码内容:401|ServiceExtensionContext.d.ts|
 |新增(错误码)||方法名 or 属性名：terminateSelf<br>错误码内容:401|ServiceExtensionContext.d.ts|
 |新增(错误码)||方法名 or 属性名：startAbilityByCall<br>错误码内容:401|ServiceExtensionContext.d.ts|
+|新增(权限)|方法名 or 属性名：startSyncRemoteMissions<br>权限:N/A|方法名 or 属性名：startSyncRemoteMissions<br>权限:ohos.permission.MANAGE_MISSIONS|@ohos.distributedMissionManager.d.ts|
+|新增(权限)|方法名 or 属性名：startSyncRemoteMissions<br>权限:N/A|方法名 or 属性名：startSyncRemoteMissions<br>权限:ohos.permission.MANAGE_MISSIONS|@ohos.distributedMissionManager.d.ts|
+|新增(权限)|方法名 or 属性名：stopSyncRemoteMissions<br>权限:N/A|方法名 or 属性名：stopSyncRemoteMissions<br>权限:ohos.permission.MANAGE_MISSIONS|@ohos.distributedMissionManager.d.ts|
+|新增(权限)|方法名 or 属性名：stopSyncRemoteMissions<br>权限:N/A|方法名 or 属性名：stopSyncRemoteMissions<br>权限:ohos.permission.MANAGE_MISSIONS|@ohos.distributedMissionManager.d.ts|
+|新增(权限)|方法名 or 属性名：registerMissionListener<br>权限:N/A|方法名 or 属性名：registerMissionListener<br>权限:ohos.permission.MANAGE_MISSIONS|@ohos.distributedMissionManager.d.ts|
+|新增(权限)|方法名 or 属性名：registerMissionListener<br>权限:N/A|方法名 or 属性名：registerMissionListener<br>权限:ohos.permission.MANAGE_MISSIONS|@ohos.distributedMissionManager.d.ts|
+|新增(权限)|方法名 or 属性名：unRegisterMissionListener<br>权限:N/A|方法名 or 属性名：unRegisterMissionListener<br>权限:ohos.permission.MANAGE_MISSIONS|@ohos.distributedMissionManager.d.ts|
+|访问级别有变化|方法名 or 属性名：startAbilityByCall<br>访问级别：公开API|方法名 or 属性名：startAbilityByCall<br>访问级别：系统API|AbilityContext.d.ts|

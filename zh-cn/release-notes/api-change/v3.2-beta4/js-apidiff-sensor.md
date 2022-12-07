@@ -123,92 +123,87 @@
 |删除|模块名：ohos.sensor<br>类名:sensor<br>方法名 or 属性名:getSensorLists||@ohos.sensor.d.ts|
 |删除|模块名：ohos.sensor<br>类名:SensorType<br>方法名 or 属性名:SENSOR_TYPE_ID_LINEAR_ACCELEROMETER||@ohos.sensor.d.ts|
 |删除|模块名：ohos.sensor<br>类名:SensorType<br>方法名 or 属性名:SENSOR_TYPE_ID_HEART_BEAT_RATE||@ohos.sensor.d.ts|
-|废弃版本有变化|方法名 or 属性名：on_SensorType_SENSOR_TYPE_ID_ACCELEROMETER<br>废弃版本：|方法名 or 属性名：on_SensorType_SENSOR_TYPE_ID_ACCELEROMETER<br>废弃版本：9<br>代替接口：sensor|@ohos.sensor.d.ts|
-|废弃版本有变化|方法名 or 属性名：on_SensorType_SENSOR_TYPE_ID_ACCELEROMETER_UNCALIBRATED<br>废弃版本：|方法名 or 属性名：on_SensorType_SENSOR_TYPE_ID_ACCELEROMETER_UNCALIBRATED<br>废弃版本：9<br>代替接口：sensor|@ohos.sensor.d.ts|
-|废弃版本有变化|方法名 or 属性名：on_SensorType_SENSOR_TYPE_ID_AMBIENT_LIGHT<br>废弃版本：|方法名 or 属性名：on_SensorType_SENSOR_TYPE_ID_AMBIENT_LIGHT<br>废弃版本：9<br>代替接口：sensor|@ohos.sensor.d.ts|
-|废弃版本有变化|方法名 or 属性名：on_SensorType_SENSOR_TYPE_ID_AMBIENT_TEMPERATURE<br>废弃版本：|方法名 or 属性名：on_SensorType_SENSOR_TYPE_ID_AMBIENT_TEMPERATURE<br>废弃版本：9<br>代替接口：sensor|@ohos.sensor.d.ts|
-|废弃版本有变化|方法名 or 属性名：on_SensorType_SENSOR_TYPE_ID_BAROMETER<br>废弃版本：|方法名 or 属性名：on_SensorType_SENSOR_TYPE_ID_BAROMETER<br>废弃版本：9<br>代替接口：sensor|@ohos.sensor.d.ts|
-|废弃版本有变化|方法名 or 属性名：on_SensorType_SENSOR_TYPE_ID_GRAVITY<br>废弃版本：|方法名 or 属性名：on_SensorType_SENSOR_TYPE_ID_GRAVITY<br>废弃版本：9<br>代替接口：sensor|@ohos.sensor.d.ts|
-|废弃版本有变化|方法名 or 属性名：on_SensorType_SENSOR_TYPE_ID_GYROSCOPE<br>废弃版本：|方法名 or 属性名：on_SensorType_SENSOR_TYPE_ID_GYROSCOPE<br>废弃版本：9<br>代替接口：sensor|@ohos.sensor.d.ts|
-|废弃版本有变化|方法名 or 属性名：on_SensorType_SENSOR_TYPE_ID_GYROSCOPE_UNCALIBRATED<br>废弃版本：|方法名 or 属性名：on_SensorType_SENSOR_TYPE_ID_GYROSCOPE_UNCALIBRATED<br>废弃版本：9<br>代替接口：sensor|@ohos.sensor.d.ts|
-|废弃版本有变化|方法名 or 属性名：on_SensorType_SENSOR_TYPE_ID_HALL<br>废弃版本：|方法名 or 属性名：on_SensorType_SENSOR_TYPE_ID_HALL<br>废弃版本：9<br>代替接口：sensor|@ohos.sensor.d.ts|
-|废弃版本有变化|方法名 or 属性名：on_SensorType_SENSOR_TYPE_ID_HUMIDITY<br>废弃版本：|方法名 or 属性名：on_SensorType_SENSOR_TYPE_ID_HUMIDITY<br>废弃版本：9<br>代替接口：sensor|@ohos.sensor.d.ts|
-|废弃版本有变化|方法名 or 属性名：on_SensorType_SENSOR_TYPE_ID_MAGNETIC_FIELD<br>废弃版本：|方法名 or 属性名：on_SensorType_SENSOR_TYPE_ID_MAGNETIC_FIELD<br>废弃版本：9<br>代替接口：sensor|@ohos.sensor.d.ts|
-|废弃版本有变化|方法名 or 属性名：on_SensorType_SENSOR_TYPE_ID_MAGNETIC_FIELD_UNCALIBRATED<br>废弃版本：|方法名 or 属性名：on_SensorType_SENSOR_TYPE_ID_MAGNETIC_FIELD_UNCALIBRATED<br>废弃版本：9<br>代替接口：sensor|@ohos.sensor.d.ts|
-|废弃版本有变化|方法名 or 属性名：on_SensorType_SENSOR_TYPE_ID_ORIENTATION<br>废弃版本：|方法名 or 属性名：on_SensorType_SENSOR_TYPE_ID_ORIENTATION<br>废弃版本：9<br>代替接口：sensor|@ohos.sensor.d.ts|
-|废弃版本有变化|方法名 or 属性名：on_SensorType_SENSOR_TYPE_ID_PEDOMETER<br>废弃版本：|方法名 or 属性名：on_SensorType_SENSOR_TYPE_ID_PEDOMETER<br>废弃版本：9<br>代替接口：sensor|@ohos.sensor.d.ts|
-|废弃版本有变化|方法名 or 属性名：on_SensorType_SENSOR_TYPE_ID_PEDOMETER_DETECTION<br>废弃版本：|方法名 or 属性名：on_SensorType_SENSOR_TYPE_ID_PEDOMETER_DETECTION<br>废弃版本：9<br>代替接口：sensor|@ohos.sensor.d.ts|
-|废弃版本有变化|方法名 or 属性名：on_SensorType_SENSOR_TYPE_ID_PROXIMITY<br>废弃版本：|方法名 or 属性名：on_SensorType_SENSOR_TYPE_ID_PROXIMITY<br>废弃版本：9<br>代替接口：sensor|@ohos.sensor.d.ts|
-|废弃版本有变化|方法名 or 属性名：on_SensorType_SENSOR_TYPE_ID_ROTATION_VECTOR<br>废弃版本：|方法名 or 属性名：on_SensorType_SENSOR_TYPE_ID_ROTATION_VECTOR<br>废弃版本：9<br>代替接口：sensor|@ohos.sensor.d.ts|
-|废弃版本有变化|方法名 or 属性名：on_SensorType_SENSOR_TYPE_ID_SIGNIFICANT_MOTION<br>废弃版本：|方法名 or 属性名：on_SensorType_SENSOR_TYPE_ID_SIGNIFICANT_MOTION<br>废弃版本：9<br>代替接口：sensor|@ohos.sensor.d.ts|
-|废弃版本有变化|方法名 or 属性名：on_SensorType_SENSOR_TYPE_ID_WEAR_DETECTION<br>废弃版本：|方法名 or 属性名：on_SensorType_SENSOR_TYPE_ID_WEAR_DETECTION<br>废弃版本：9<br>代替接口：sensor|@ohos.sensor.d.ts|
-|废弃版本有变化|方法名 or 属性名：once<br>废弃版本：|方法名 or 属性名：once<br>废弃版本：9<br>代替接口：sensor|@ohos.sensor.d.ts|
-|废弃版本有变化|方法名 or 属性名：once<br>废弃版本：|方法名 or 属性名：once<br>废弃版本：9<br>代替接口：sensor|@ohos.sensor.d.ts|
-|废弃版本有变化|方法名 or 属性名：once<br>废弃版本：|方法名 or 属性名：once<br>废弃版本：9<br>代替接口：sensor|@ohos.sensor.d.ts|
-|废弃版本有变化|方法名 or 属性名：once<br>废弃版本：|方法名 or 属性名：once<br>废弃版本：9<br>代替接口：sensor|@ohos.sensor.d.ts|
-|废弃版本有变化|方法名 or 属性名：once<br>废弃版本：|方法名 or 属性名：once<br>废弃版本：9<br>代替接口：sensor|@ohos.sensor.d.ts|
-|废弃版本有变化|方法名 or 属性名：once<br>废弃版本：|方法名 or 属性名：once<br>废弃版本：9<br>代替接口：sensor|@ohos.sensor.d.ts|
-|废弃版本有变化|方法名 or 属性名：once<br>废弃版本：|方法名 or 属性名：once<br>废弃版本：9<br>代替接口：sensor|@ohos.sensor.d.ts|
-|废弃版本有变化|方法名 or 属性名：once<br>废弃版本：|方法名 or 属性名：once<br>废弃版本：9<br>代替接口：sensor|@ohos.sensor.d.ts|
-|废弃版本有变化|方法名 or 属性名：once<br>废弃版本：|方法名 or 属性名：once<br>废弃版本：9<br>代替接口：sensor|@ohos.sensor.d.ts|
-|废弃版本有变化|方法名 or 属性名：once<br>废弃版本：|方法名 or 属性名：once<br>废弃版本：9<br>代替接口：sensor|@ohos.sensor.d.ts|
-|废弃版本有变化|方法名 or 属性名：once<br>废弃版本：|方法名 or 属性名：once<br>废弃版本：9<br>代替接口：sensor|@ohos.sensor.d.ts|
-|废弃版本有变化|方法名 or 属性名：once<br>废弃版本：|方法名 or 属性名：once<br>废弃版本：9<br>代替接口：sensor|@ohos.sensor.d.ts|
-|废弃版本有变化|方法名 or 属性名：once<br>废弃版本：|方法名 or 属性名：once<br>废弃版本：9<br>代替接口：sensor|@ohos.sensor.d.ts|
-|废弃版本有变化|方法名 or 属性名：once<br>废弃版本：|方法名 or 属性名：once<br>废弃版本：9<br>代替接口：sensor|@ohos.sensor.d.ts|
-|废弃版本有变化|方法名 or 属性名：once<br>废弃版本：|方法名 or 属性名：once<br>废弃版本：9<br>代替接口：sensor|@ohos.sensor.d.ts|
-|废弃版本有变化|方法名 or 属性名：once<br>废弃版本：|方法名 or 属性名：once<br>废弃版本：9<br>代替接口：sensor|@ohos.sensor.d.ts|
-|废弃版本有变化|方法名 or 属性名：once<br>废弃版本：|方法名 or 属性名：once<br>废弃版本：9<br>代替接口：sensor|@ohos.sensor.d.ts|
-|废弃版本有变化|方法名 or 属性名：once<br>废弃版本：|方法名 or 属性名：once<br>废弃版本：9<br>代替接口：sensor|@ohos.sensor.d.ts|
-|废弃版本有变化|方法名 or 属性名：once<br>废弃版本：|方法名 or 属性名：once<br>废弃版本：9<br>代替接口：sensor|@ohos.sensor.d.ts|
-|废弃版本有变化|方法名 or 属性名：off_SensorType_SENSOR_TYPE_ID_ACCELEROMETER<br>废弃版本：|方法名 or 属性名：off_SensorType_SENSOR_TYPE_ID_ACCELEROMETER<br>废弃版本：9<br>代替接口：sensor|@ohos.sensor.d.ts|
-|废弃版本有变化|方法名 or 属性名：off_SensorType_SENSOR_TYPE_ID_ACCELEROMETER_UNCALIBRATED<br>废弃版本：|方法名 or 属性名：off_SensorType_SENSOR_TYPE_ID_ACCELEROMETER_UNCALIBRATED<br>废弃版本：9<br>代替接口：sensor|@ohos.sensor.d.ts|
-|废弃版本有变化|方法名 or 属性名：off_SensorType_SENSOR_TYPE_ID_AMBIENT_LIGHT<br>废弃版本：|方法名 or 属性名：off_SensorType_SENSOR_TYPE_ID_AMBIENT_LIGHT<br>废弃版本：9<br>代替接口：sensor|@ohos.sensor.d.ts|
-|废弃版本有变化|方法名 or 属性名：off_SensorType_SENSOR_TYPE_ID_AMBIENT_TEMPERATURE<br>废弃版本：|方法名 or 属性名：off_SensorType_SENSOR_TYPE_ID_AMBIENT_TEMPERATURE<br>废弃版本：9<br>代替接口：sensor|@ohos.sensor.d.ts|
-|废弃版本有变化|方法名 or 属性名：off_SensorType_SENSOR_TYPE_ID_BAROMETER<br>废弃版本：|方法名 or 属性名：off_SensorType_SENSOR_TYPE_ID_BAROMETER<br>废弃版本：9<br>代替接口：sensor|@ohos.sensor.d.ts|
-|废弃版本有变化|方法名 or 属性名：off_SensorType_SENSOR_TYPE_ID_GRAVITY<br>废弃版本：|方法名 or 属性名：off_SensorType_SENSOR_TYPE_ID_GRAVITY<br>废弃版本：9<br>代替接口：sensor|@ohos.sensor.d.ts|
-|废弃版本有变化|方法名 or 属性名：off_SensorType_SENSOR_TYPE_ID_GYROSCOPE<br>废弃版本：|方法名 or 属性名：off_SensorType_SENSOR_TYPE_ID_GYROSCOPE<br>废弃版本：9<br>代替接口：sensor|@ohos.sensor.d.ts|
-|废弃版本有变化|方法名 or 属性名：off_SensorType_SENSOR_TYPE_ID_GYROSCOPE_UNCALIBRATED<br>废弃版本：|方法名 or 属性名：off_SensorType_SENSOR_TYPE_ID_GYROSCOPE_UNCALIBRATED<br>废弃版本：9<br>代替接口：sensor|@ohos.sensor.d.ts|
-|废弃版本有变化|方法名 or 属性名：off_SensorType_SENSOR_TYPE_ID_HALL<br>废弃版本：|方法名 or 属性名：off_SensorType_SENSOR_TYPE_ID_HALL<br>废弃版本：9<br>代替接口：sensor|@ohos.sensor.d.ts|
-|废弃版本有变化|方法名 or 属性名：off_SensorType_SENSOR_TYPE_ID_HUMIDITY<br>废弃版本：|方法名 or 属性名：off_SensorType_SENSOR_TYPE_ID_HUMIDITY<br>废弃版本：9<br>代替接口：sensor|@ohos.sensor.d.ts|
-|废弃版本有变化|方法名 or 属性名：off_SensorType_SENSOR_TYPE_ID_MAGNETIC_FIELD<br>废弃版本：|方法名 or 属性名：off_SensorType_SENSOR_TYPE_ID_MAGNETIC_FIELD<br>废弃版本：9<br>代替接口：sensor|@ohos.sensor.d.ts|
-|废弃版本有变化|方法名 or 属性名：off_SensorType_SENSOR_TYPE_ID_MAGNETIC_FIELD_UNCALIBRATED<br>废弃版本：|方法名 or 属性名：off_SensorType_SENSOR_TYPE_ID_MAGNETIC_FIELD_UNCALIBRATED<br>废弃版本：9<br>代替接口：sensor|@ohos.sensor.d.ts|
-|废弃版本有变化|方法名 or 属性名：off_SensorType_SENSOR_TYPE_ID_ORIENTATION<br>废弃版本：|方法名 or 属性名：off_SensorType_SENSOR_TYPE_ID_ORIENTATION<br>废弃版本：9<br>代替接口：sensor|@ohos.sensor.d.ts|
-|废弃版本有变化|方法名 or 属性名：off_SensorType_SENSOR_TYPE_ID_PEDOMETER<br>废弃版本：|方法名 or 属性名：off_SensorType_SENSOR_TYPE_ID_PEDOMETER<br>废弃版本：9<br>代替接口：sensor|@ohos.sensor.d.ts|
-|废弃版本有变化|方法名 or 属性名：off_SensorType_SENSOR_TYPE_ID_PEDOMETER_DETECTION<br>废弃版本：|方法名 or 属性名：off_SensorType_SENSOR_TYPE_ID_PEDOMETER_DETECTION<br>废弃版本：9<br>代替接口：sensor|@ohos.sensor.d.ts|
-|废弃版本有变化|方法名 or 属性名：off_SensorType_SENSOR_TYPE_ID_PROXIMITY<br>废弃版本：|方法名 or 属性名：off_SensorType_SENSOR_TYPE_ID_PROXIMITY<br>废弃版本：9<br>代替接口：sensor|@ohos.sensor.d.ts|
-|废弃版本有变化|方法名 or 属性名：off_SensorType_SENSOR_TYPE_ID_ROTATION_VECTOR<br>废弃版本：|方法名 or 属性名：off_SensorType_SENSOR_TYPE_ID_ROTATION_VECTOR<br>废弃版本：9<br>代替接口：sensor|@ohos.sensor.d.ts|
-|废弃版本有变化|方法名 or 属性名：off_SensorType_SENSOR_TYPE_ID_SIGNIFICANT_MOTION<br>废弃版本：|方法名 or 属性名：off_SensorType_SENSOR_TYPE_ID_SIGNIFICANT_MOTION<br>废弃版本：9<br>代替接口：sensor|@ohos.sensor.d.ts|
-|废弃版本有变化|方法名 or 属性名：off_SensorType_SENSOR_TYPE_ID_WEAR_DETECTION<br>废弃版本：|方法名 or 属性名：off_SensorType_SENSOR_TYPE_ID_WEAR_DETECTION<br>废弃版本：9<br>代替接口：sensor|@ohos.sensor.d.ts|
-|废弃版本有变化|方法名 or 属性名：getGeomagneticField<br>废弃版本：|方法名 or 属性名：getGeomagneticField<br>废弃版本：9<br>代替接口：sensor|@ohos.sensor.d.ts|
-|废弃版本有变化|方法名 or 属性名：getAltitude<br>废弃版本：|方法名 or 属性名：getAltitude<br>废弃版本：9<br>代替接口：sensor|@ohos.sensor.d.ts|
-|废弃版本有变化|方法名 or 属性名：getGeomagneticDip<br>废弃版本：|方法名 or 属性名：getGeomagneticDip<br>废弃版本：9<br>代替接口：sensor|@ohos.sensor.d.ts|
-|废弃版本有变化|方法名 or 属性名：getAngleModify<br>废弃版本：|方法名 or 属性名：getAngleModify<br>废弃版本：9<br>代替接口：sensor|@ohos.sensor.d.ts|
-|废弃版本有变化|方法名 or 属性名：createRotationMatrix<br>废弃版本：|方法名 or 属性名：createRotationMatrix<br>废弃版本：9<br>代替接口：sensor|@ohos.sensor.d.ts|
-|废弃版本有变化|方法名 or 属性名：transformCoordinateSystem<br>废弃版本：|方法名 or 属性名：transformCoordinateSystem<br>废弃版本：9<br>代替接口：sensor|@ohos.sensor.d.ts|
-|废弃版本有变化|方法名 or 属性名：createQuaternion<br>废弃版本：|方法名 or 属性名：createQuaternion<br>废弃版本：9<br>代替接口：sensor|@ohos.sensor.d.ts|
-|废弃版本有变化|方法名 or 属性名：getDirection<br>废弃版本：|方法名 or 属性名：getDirection<br>废弃版本：9<br>代替接口：sensor|@ohos.sensor.d.ts|
-|废弃版本有变化|方法名 or 属性名：createRotationMatrix<br>废弃版本：|方法名 or 属性名：createRotationMatrix<br>废弃版本：9<br>代替接口：sensor|@ohos.sensor.d.ts|
-|废弃版本有变化|类名：SensorType<br>废弃版本：|类名：SensorType<br>废弃版本：9<br>代替接口：sensor.SensorId     |@ohos.sensor.d.ts|
-|废弃版本有变化|方法名 or 属性名：SENSOR_TYPE_ID_ACCELEROMETER<br>废弃版本：|方法名 or 属性名：SENSOR_TYPE_ID_ACCELEROMETER<br>废弃版本：9<br>代替接口：sensor.SensorId     |@ohos.sensor.d.ts|
-|废弃版本有变化|方法名 or 属性名：SENSOR_TYPE_ID_GYROSCOPE<br>废弃版本：|方法名 or 属性名：SENSOR_TYPE_ID_GYROSCOPE<br>废弃版本：9<br>代替接口：sensor.SensorId     |@ohos.sensor.d.ts|
-|废弃版本有变化|方法名 or 属性名：SENSOR_TYPE_ID_AMBIENT_LIGHT<br>废弃版本：|方法名 or 属性名：SENSOR_TYPE_ID_AMBIENT_LIGHT<br>废弃版本：9<br>代替接口：sensor.SensorId     |@ohos.sensor.d.ts|
-|废弃版本有变化|方法名 or 属性名：SENSOR_TYPE_ID_MAGNETIC_FIELD<br>废弃版本：|方法名 or 属性名：SENSOR_TYPE_ID_MAGNETIC_FIELD<br>废弃版本：9<br>代替接口：sensor.SensorId     |@ohos.sensor.d.ts|
-|废弃版本有变化|方法名 or 属性名：SENSOR_TYPE_ID_BAROMETER<br>废弃版本：|方法名 or 属性名：SENSOR_TYPE_ID_BAROMETER<br>废弃版本：9<br>代替接口：sensor.SensorId     |@ohos.sensor.d.ts|
-|废弃版本有变化|方法名 or 属性名：SENSOR_TYPE_ID_HALL<br>废弃版本：|方法名 or 属性名：SENSOR_TYPE_ID_HALL<br>废弃版本：9<br>代替接口：sensor.SensorId     |@ohos.sensor.d.ts|
-|废弃版本有变化|方法名 or 属性名：SENSOR_TYPE_ID_PROXIMITY<br>废弃版本：|方法名 or 属性名：SENSOR_TYPE_ID_PROXIMITY<br>废弃版本：9<br>代替接口：sensor.SensorId     |@ohos.sensor.d.ts|
-|废弃版本有变化|方法名 or 属性名：SENSOR_TYPE_ID_HUMIDITY<br>废弃版本：|方法名 or 属性名：SENSOR_TYPE_ID_HUMIDITY<br>废弃版本：9<br>代替接口：sensor.SensorId     |@ohos.sensor.d.ts|
-|废弃版本有变化|方法名 or 属性名：SENSOR_TYPE_ID_ORIENTATION<br>废弃版本：|方法名 or 属性名：SENSOR_TYPE_ID_ORIENTATION<br>废弃版本：9<br>代替接口：sensor.SensorId     |@ohos.sensor.d.ts|
-|废弃版本有变化|方法名 or 属性名：SENSOR_TYPE_ID_GRAVITY<br>废弃版本：|方法名 or 属性名：SENSOR_TYPE_ID_GRAVITY<br>废弃版本：9<br>代替接口：sensor.SensorId     |@ohos.sensor.d.ts|
-|废弃版本有变化|方法名 or 属性名：SENSOR_TYPE_ID_ROTATION_VECTOR<br>废弃版本：|方法名 or 属性名：SENSOR_TYPE_ID_ROTATION_VECTOR<br>废弃版本：9<br>代替接口：sensor.SensorId     |@ohos.sensor.d.ts|
-|废弃版本有变化|方法名 or 属性名：SENSOR_TYPE_ID_AMBIENT_TEMPERATURE<br>废弃版本：|方法名 or 属性名：SENSOR_TYPE_ID_AMBIENT_TEMPERATURE<br>废弃版本：9<br>代替接口：sensor.SensorId     |@ohos.sensor.d.ts|
-|废弃版本有变化|方法名 or 属性名：SENSOR_TYPE_ID_MAGNETIC_FIELD_UNCALIBRATED<br>废弃版本：|方法名 or 属性名：SENSOR_TYPE_ID_MAGNETIC_FIELD_UNCALIBRATED<br>废弃版本：9<br>代替接口：sensor.SensorId     |@ohos.sensor.d.ts|
-|废弃版本有变化|方法名 or 属性名：SENSOR_TYPE_ID_GYROSCOPE_UNCALIBRATED<br>废弃版本：|方法名 or 属性名：SENSOR_TYPE_ID_GYROSCOPE_UNCALIBRATED<br>废弃版本：9<br>代替接口：sensor.SensorId     |@ohos.sensor.d.ts|
-|废弃版本有变化|方法名 or 属性名：SENSOR_TYPE_ID_SIGNIFICANT_MOTION<br>废弃版本：|方法名 or 属性名：SENSOR_TYPE_ID_SIGNIFICANT_MOTION<br>废弃版本：9<br>代替接口：sensor.SensorId     |@ohos.sensor.d.ts|
-|废弃版本有变化|方法名 or 属性名：SENSOR_TYPE_ID_PEDOMETER_DETECTION<br>废弃版本：|方法名 or 属性名：SENSOR_TYPE_ID_PEDOMETER_DETECTION<br>废弃版本：9<br>代替接口：sensor.SensorId     |@ohos.sensor.d.ts|
-|废弃版本有变化|方法名 or 属性名：SENSOR_TYPE_ID_PEDOMETER<br>废弃版本：|方法名 or 属性名：SENSOR_TYPE_ID_PEDOMETER<br>废弃版本：9<br>代替接口：sensor.SensorId     |@ohos.sensor.d.ts|
-|废弃版本有变化|方法名 or 属性名：SENSOR_TYPE_ID_WEAR_DETECTION<br>废弃版本：|方法名 or 属性名：SENSOR_TYPE_ID_WEAR_DETECTION<br>废弃版本：9<br>代替接口：sensor.SensorId     |@ohos.sensor.d.ts|
-|废弃版本有变化|方法名 or 属性名：SENSOR_TYPE_ID_ACCELEROMETER_UNCALIBRATED<br>废弃版本：|方法名 or 属性名：SENSOR_TYPE_ID_ACCELEROMETER_UNCALIBRATED<br>废弃版本：9<br>代替接口：sensor.SensorId     |@ohos.sensor.d.ts|
-|废弃版本有变化|方法名 or 属性名：vibrate<br>废弃版本：|方法名 or 属性名：vibrate<br>废弃版本：9<br>代替接口：vibrator|@ohos.vibrator.d.ts|
-|废弃版本有变化|方法名 or 属性名：vibrate<br>废弃版本：|方法名 or 属性名：vibrate<br>废弃版本：9<br>代替接口：vibrator|@ohos.vibrator.d.ts|
-|废弃版本有变化|方法名 or 属性名：stop<br>废弃版本：|方法名 or 属性名：stop<br>废弃版本：9<br>代替接口：vibrator|@ohos.vibrator.d.ts|
+|废弃版本有变化|方法名 or 属性名：on_SensorType_SENSOR_TYPE_ID_ACCELEROMETER<br>废弃版本：N/A|方法名 or 属性名：on_SensorType_SENSOR_TYPE_ID_ACCELEROMETER<br>废弃版本：9<br>代替接口：sensor|@ohos.sensor.d.ts|
+|废弃版本有变化|方法名 or 属性名：on_SensorType_SENSOR_TYPE_ID_ACCELEROMETER_UNCALIBRATED<br>废弃版本：N/A|方法名 or 属性名：on_SensorType_SENSOR_TYPE_ID_ACCELEROMETER_UNCALIBRATED<br>废弃版本：9<br>代替接口：sensor|@ohos.sensor.d.ts|
+|废弃版本有变化|方法名 or 属性名：on_SensorType_SENSOR_TYPE_ID_AMBIENT_LIGHT<br>废弃版本：N/A|方法名 or 属性名：on_SensorType_SENSOR_TYPE_ID_AMBIENT_LIGHT<br>废弃版本：9<br>代替接口：sensor|@ohos.sensor.d.ts|
+|废弃版本有变化|方法名 or 属性名：on_SensorType_SENSOR_TYPE_ID_AMBIENT_TEMPERATURE<br>废弃版本：N/A|方法名 or 属性名：on_SensorType_SENSOR_TYPE_ID_AMBIENT_TEMPERATURE<br>废弃版本：9<br>代替接口：sensor|@ohos.sensor.d.ts|
+|废弃版本有变化|方法名 or 属性名：on_SensorType_SENSOR_TYPE_ID_BAROMETER<br>废弃版本：N/A|方法名 or 属性名：on_SensorType_SENSOR_TYPE_ID_BAROMETER<br>废弃版本：9<br>代替接口：sensor|@ohos.sensor.d.ts|
+|废弃版本有变化|方法名 or 属性名：on_SensorType_SENSOR_TYPE_ID_GRAVITY<br>废弃版本：N/A|方法名 or 属性名：on_SensorType_SENSOR_TYPE_ID_GRAVITY<br>废弃版本：9<br>代替接口：sensor|@ohos.sensor.d.ts|
+|废弃版本有变化|方法名 or 属性名：on_SensorType_SENSOR_TYPE_ID_GYROSCOPE<br>废弃版本：N/A|方法名 or 属性名：on_SensorType_SENSOR_TYPE_ID_GYROSCOPE<br>废弃版本：9<br>代替接口：sensor|@ohos.sensor.d.ts|
+|废弃版本有变化|方法名 or 属性名：on_SensorType_SENSOR_TYPE_ID_GYROSCOPE_UNCALIBRATED<br>废弃版本：N/A|方法名 or 属性名：on_SensorType_SENSOR_TYPE_ID_GYROSCOPE_UNCALIBRATED<br>废弃版本：9<br>代替接口：sensor|@ohos.sensor.d.ts|
+|废弃版本有变化|方法名 or 属性名：on_SensorType_SENSOR_TYPE_ID_HALL<br>废弃版本：N/A|方法名 or 属性名：on_SensorType_SENSOR_TYPE_ID_HALL<br>废弃版本：9<br>代替接口：sensor|@ohos.sensor.d.ts|
+|废弃版本有变化|方法名 or 属性名：on_SensorType_SENSOR_TYPE_ID_HUMIDITY<br>废弃版本：N/A|方法名 or 属性名：on_SensorType_SENSOR_TYPE_ID_HUMIDITY<br>废弃版本：9<br>代替接口：sensor|@ohos.sensor.d.ts|
+|废弃版本有变化|方法名 or 属性名：on_SensorType_SENSOR_TYPE_ID_MAGNETIC_FIELD<br>废弃版本：N/A|方法名 or 属性名：on_SensorType_SENSOR_TYPE_ID_MAGNETIC_FIELD<br>废弃版本：9<br>代替接口：sensor|@ohos.sensor.d.ts|
+|废弃版本有变化|方法名 or 属性名：on_SensorType_SENSOR_TYPE_ID_MAGNETIC_FIELD_UNCALIBRATED<br>废弃版本：N/A|方法名 or 属性名：on_SensorType_SENSOR_TYPE_ID_MAGNETIC_FIELD_UNCALIBRATED<br>废弃版本：9<br>代替接口：sensor|@ohos.sensor.d.ts|
+|废弃版本有变化|方法名 or 属性名：on_SensorType_SENSOR_TYPE_ID_ORIENTATION<br>废弃版本：N/A|方法名 or 属性名：on_SensorType_SENSOR_TYPE_ID_ORIENTATION<br>废弃版本：9<br>代替接口：sensor|@ohos.sensor.d.ts|
+|废弃版本有变化|方法名 or 属性名：on_SensorType_SENSOR_TYPE_ID_PEDOMETER<br>废弃版本：N/A|方法名 or 属性名：on_SensorType_SENSOR_TYPE_ID_PEDOMETER<br>废弃版本：9<br>代替接口：sensor|@ohos.sensor.d.ts|
+|废弃版本有变化|方法名 or 属性名：on_SensorType_SENSOR_TYPE_ID_PEDOMETER_DETECTION<br>废弃版本：N/A|方法名 or 属性名：on_SensorType_SENSOR_TYPE_ID_PEDOMETER_DETECTION<br>废弃版本：9<br>代替接口：sensor|@ohos.sensor.d.ts|
+|废弃版本有变化|方法名 or 属性名：on_SensorType_SENSOR_TYPE_ID_PROXIMITY<br>废弃版本：N/A|方法名 or 属性名：on_SensorType_SENSOR_TYPE_ID_PROXIMITY<br>废弃版本：9<br>代替接口：sensor|@ohos.sensor.d.ts|
+|废弃版本有变化|方法名 or 属性名：on_SensorType_SENSOR_TYPE_ID_ROTATION_VECTOR<br>废弃版本：N/A|方法名 or 属性名：on_SensorType_SENSOR_TYPE_ID_ROTATION_VECTOR<br>废弃版本：9<br>代替接口：sensor|@ohos.sensor.d.ts|
+|废弃版本有变化|方法名 or 属性名：on_SensorType_SENSOR_TYPE_ID_SIGNIFICANT_MOTION<br>废弃版本：N/A|方法名 or 属性名：on_SensorType_SENSOR_TYPE_ID_SIGNIFICANT_MOTION<br>废弃版本：9<br>代替接口：sensor|@ohos.sensor.d.ts|
+|废弃版本有变化|方法名 or 属性名：on_SensorType_SENSOR_TYPE_ID_WEAR_DETECTION<br>废弃版本：N/A|方法名 or 属性名：on_SensorType_SENSOR_TYPE_ID_WEAR_DETECTION<br>废弃版本：9<br>代替接口：sensor|@ohos.sensor.d.ts|
+|废弃版本有变化|方法名 or 属性名：once<br>废弃版本：N/A|方法名 or 属性名：once<br>废弃版本：9<br>代替接口：sensor|@ohos.sensor.d.ts|
+|废弃版本有变化|方法名 or 属性名：once<br>废弃版本：N/A|方法名 or 属性名：once<br>废弃版本：9<br>代替接口：sensor|@ohos.sensor.d.ts|
+|废弃版本有变化|方法名 or 属性名：once<br>废弃版本：N/A|方法名 or 属性名：once<br>废弃版本：9<br>代替接口：sensor|@ohos.sensor.d.ts|
+|废弃版本有变化|方法名 or 属性名：once<br>废弃版本：N/A|方法名 or 属性名：once<br>废弃版本：9<br>代替接口：sensor|@ohos.sensor.d.ts|
+|废弃版本有变化|方法名 or 属性名：once<br>废弃版本：N/A|方法名 or 属性名：once<br>废弃版本：9<br>代替接口：sensor|@ohos.sensor.d.ts|
+|废弃版本有变化|方法名 or 属性名：once<br>废弃版本：N/A|方法名 or 属性名：once<br>废弃版本：9<br>代替接口：sensor|@ohos.sensor.d.ts|
+|废弃版本有变化|方法名 or 属性名：once<br>废弃版本：N/A|方法名 or 属性名：once<br>废弃版本：9<br>代替接口：sensor|@ohos.sensor.d.ts|
+|废弃版本有变化|方法名 or 属性名：once<br>废弃版本：N/A|方法名 or 属性名：once<br>废弃版本：9<br>代替接口：sensor|@ohos.sensor.d.ts|
+|废弃版本有变化|方法名 or 属性名：once<br>废弃版本：N/A|方法名 or 属性名：once<br>废弃版本：9<br>代替接口：sensor|@ohos.sensor.d.ts|
+|废弃版本有变化|方法名 or 属性名：once<br>废弃版本：N/A|方法名 or 属性名：once<br>废弃版本：9<br>代替接口：sensor|@ohos.sensor.d.ts|
+|废弃版本有变化|方法名 or 属性名：once<br>废弃版本：N/A|方法名 or 属性名：once<br>废弃版本：9<br>代替接口：sensor|@ohos.sensor.d.ts|
+|废弃版本有变化|方法名 or 属性名：once<br>废弃版本：N/A|方法名 or 属性名：once<br>废弃版本：9<br>代替接口：sensor|@ohos.sensor.d.ts|
+|废弃版本有变化|方法名 or 属性名：once<br>废弃版本：N/A|方法名 or 属性名：once<br>废弃版本：9<br>代替接口：sensor|@ohos.sensor.d.ts|
+|废弃版本有变化|方法名 or 属性名：once<br>废弃版本：N/A|方法名 or 属性名：once<br>废弃版本：9<br>代替接口：sensor|@ohos.sensor.d.ts|
+|废弃版本有变化|方法名 or 属性名：once<br>废弃版本：N/A|方法名 or 属性名：once<br>废弃版本：9<br>代替接口：sensor|@ohos.sensor.d.ts|
+|废弃版本有变化|方法名 or 属性名：once<br>废弃版本：N/A|方法名 or 属性名：once<br>废弃版本：9<br>代替接口：sensor|@ohos.sensor.d.ts|
+|废弃版本有变化|方法名 or 属性名：once<br>废弃版本：N/A|方法名 or 属性名：once<br>废弃版本：9<br>代替接口：sensor|@ohos.sensor.d.ts|
+|废弃版本有变化|方法名 or 属性名：once<br>废弃版本：N/A|方法名 or 属性名：once<br>废弃版本：9<br>代替接口：sensor|@ohos.sensor.d.ts|
+|废弃版本有变化|方法名 or 属性名：once<br>废弃版本：N/A|方法名 or 属性名：once<br>废弃版本：9<br>代替接口：sensor|@ohos.sensor.d.ts|
+|废弃版本有变化|方法名 or 属性名：off_SensorType_SENSOR_TYPE_ID_ACCELEROMETER<br>废弃版本：N/A|方法名 or 属性名：off_SensorType_SENSOR_TYPE_ID_ACCELEROMETER<br>废弃版本：9<br>代替接口：sensor|@ohos.sensor.d.ts|
+|废弃版本有变化|方法名 or 属性名：off_SensorType_SENSOR_TYPE_ID_ACCELEROMETER_UNCALIBRATED<br>废弃版本：N/A|方法名 or 属性名：off_SensorType_SENSOR_TYPE_ID_ACCELEROMETER_UNCALIBRATED<br>废弃版本：9<br>代替接口：sensor|@ohos.sensor.d.ts|
+|废弃版本有变化|方法名 or 属性名：off_SensorType_SENSOR_TYPE_ID_AMBIENT_LIGHT<br>废弃版本：N/A|方法名 or 属性名：off_SensorType_SENSOR_TYPE_ID_AMBIENT_LIGHT<br>废弃版本：9<br>代替接口：sensor|@ohos.sensor.d.ts|
+|废弃版本有变化|方法名 or 属性名：off_SensorType_SENSOR_TYPE_ID_AMBIENT_TEMPERATURE<br>废弃版本：N/A|方法名 or 属性名：off_SensorType_SENSOR_TYPE_ID_AMBIENT_TEMPERATURE<br>废弃版本：9<br>代替接口：sensor|@ohos.sensor.d.ts|
+|废弃版本有变化|方法名 or 属性名：off_SensorType_SENSOR_TYPE_ID_BAROMETER<br>废弃版本：N/A|方法名 or 属性名：off_SensorType_SENSOR_TYPE_ID_BAROMETER<br>废弃版本：9<br>代替接口：sensor|@ohos.sensor.d.ts|
+|废弃版本有变化|方法名 or 属性名：off_SensorType_SENSOR_TYPE_ID_GRAVITY<br>废弃版本：N/A|方法名 or 属性名：off_SensorType_SENSOR_TYPE_ID_GRAVITY<br>废弃版本：9<br>代替接口：sensor|@ohos.sensor.d.ts|
+|废弃版本有变化|方法名 or 属性名：off_SensorType_SENSOR_TYPE_ID_GYROSCOPE<br>废弃版本：N/A|方法名 or 属性名：off_SensorType_SENSOR_TYPE_ID_GYROSCOPE<br>废弃版本：9<br>代替接口：sensor|@ohos.sensor.d.ts|
+|废弃版本有变化|方法名 or 属性名：off_SensorType_SENSOR_TYPE_ID_GYROSCOPE_UNCALIBRATED<br>废弃版本：N/A|方法名 or 属性名：off_SensorType_SENSOR_TYPE_ID_GYROSCOPE_UNCALIBRATED<br>废弃版本：9<br>代替接口：sensor|@ohos.sensor.d.ts|
+|废弃版本有变化|方法名 or 属性名：off_SensorType_SENSOR_TYPE_ID_HALL<br>废弃版本：N/A|方法名 or 属性名：off_SensorType_SENSOR_TYPE_ID_HALL<br>废弃版本：9<br>代替接口：sensor|@ohos.sensor.d.ts|
+|废弃版本有变化|方法名 or 属性名：off_SensorType_SENSOR_TYPE_ID_HUMIDITY<br>废弃版本：N/A|方法名 or 属性名：off_SensorType_SENSOR_TYPE_ID_HUMIDITY<br>废弃版本：9<br>代替接口：sensor|@ohos.sensor.d.ts|
+|废弃版本有变化|方法名 or 属性名：off_SensorType_SENSOR_TYPE_ID_MAGNETIC_FIELD<br>废弃版本：N/A|方法名 or 属性名：off_SensorType_SENSOR_TYPE_ID_MAGNETIC_FIELD<br>废弃版本：9<br>代替接口：sensor|@ohos.sensor.d.ts|
+|废弃版本有变化|方法名 or 属性名：off_SensorType_SENSOR_TYPE_ID_MAGNETIC_FIELD_UNCALIBRATED<br>废弃版本：N/A|方法名 or 属性名：off_SensorType_SENSOR_TYPE_ID_MAGNETIC_FIELD_UNCALIBRATED<br>废弃版本：9<br>代替接口：sensor|@ohos.sensor.d.ts|
+|废弃版本有变化|方法名 or 属性名：off_SensorType_SENSOR_TYPE_ID_ORIENTATION<br>废弃版本：N/A|方法名 or 属性名：off_SensorType_SENSOR_TYPE_ID_ORIENTATION<br>废弃版本：9<br>代替接口：sensor|@ohos.sensor.d.ts|
+|废弃版本有变化|方法名 or 属性名：off_SensorType_SENSOR_TYPE_ID_PEDOMETER<br>废弃版本：N/A|方法名 or 属性名：off_SensorType_SENSOR_TYPE_ID_PEDOMETER<br>废弃版本：9<br>代替接口：sensor|@ohos.sensor.d.ts|
+|废弃版本有变化|方法名 or 属性名：off_SensorType_SENSOR_TYPE_ID_PEDOMETER_DETECTION<br>废弃版本：N/A|方法名 or 属性名：off_SensorType_SENSOR_TYPE_ID_PEDOMETER_DETECTION<br>废弃版本：9<br>代替接口：sensor|@ohos.sensor.d.ts|
+|废弃版本有变化|方法名 or 属性名：off_SensorType_SENSOR_TYPE_ID_PROXIMITY<br>废弃版本：N/A|方法名 or 属性名：off_SensorType_SENSOR_TYPE_ID_PROXIMITY<br>废弃版本：9<br>代替接口：sensor|@ohos.sensor.d.ts|
+|废弃版本有变化|方法名 or 属性名：off_SensorType_SENSOR_TYPE_ID_ROTATION_VECTOR<br>废弃版本：N/A|方法名 or 属性名：off_SensorType_SENSOR_TYPE_ID_ROTATION_VECTOR<br>废弃版本：9<br>代替接口：sensor|@ohos.sensor.d.ts|
+|废弃版本有变化|方法名 or 属性名：off_SensorType_SENSOR_TYPE_ID_SIGNIFICANT_MOTION<br>废弃版本：N/A|方法名 or 属性名：off_SensorType_SENSOR_TYPE_ID_SIGNIFICANT_MOTION<br>废弃版本：9<br>代替接口：sensor|@ohos.sensor.d.ts|
+|废弃版本有变化|方法名 or 属性名：off_SensorType_SENSOR_TYPE_ID_WEAR_DETECTION<br>废弃版本：N/A|方法名 or 属性名：off_SensorType_SENSOR_TYPE_ID_WEAR_DETECTION<br>废弃版本：9<br>代替接口：sensor|@ohos.sensor.d.ts|
+|废弃版本有变化|方法名 or 属性名：getGeomagneticField<br>废弃版本：N/A|方法名 or 属性名：getGeomagneticField<br>废弃版本：9<br>代替接口：sensor|@ohos.sensor.d.ts|
+|废弃版本有变化|方法名 or 属性名：getGeomagneticField<br>废弃版本：N/A|方法名 or 属性名：getGeomagneticField<br>废弃版本：9|@ohos.sensor.d.ts|
+|废弃版本有变化|方法名 or 属性名：getAltitude<br>废弃版本：N/A|方法名 or 属性名：getAltitude<br>废弃版本：9<br>代替接口：sensor|@ohos.sensor.d.ts|
+|废弃版本有变化|方法名 or 属性名：getAltitude<br>废弃版本：N/A|方法名 or 属性名：getAltitude<br>废弃版本：9|@ohos.sensor.d.ts|
+|废弃版本有变化|方法名 or 属性名：getGeomagneticDip<br>废弃版本：N/A|方法名 or 属性名：getGeomagneticDip<br>废弃版本：9<br>代替接口：sensor|@ohos.sensor.d.ts|
+|废弃版本有变化|方法名 or 属性名：getGeomagneticDip<br>废弃版本：N/A|方法名 or 属性名：getGeomagneticDip<br>废弃版本：9|@ohos.sensor.d.ts|
+|废弃版本有变化|方法名 or 属性名：getAngleModify<br>废弃版本：N/A|方法名 or 属性名：getAngleModify<br>废弃版本：9<br>代替接口：sensor|@ohos.sensor.d.ts|
+|废弃版本有变化|方法名 or 属性名：getAngleModify<br>废弃版本：N/A|方法名 or 属性名：getAngleModify<br>废弃版本：9|@ohos.sensor.d.ts|
+|废弃版本有变化|方法名 or 属性名：createRotationMatrix<br>废弃版本：N/A|方法名 or 属性名：createRotationMatrix<br>废弃版本：9<br>代替接口：sensor|@ohos.sensor.d.ts|
+|废弃版本有变化|方法名 or 属性名：createRotationMatrix<br>废弃版本：N/A|方法名 or 属性名：createRotationMatrix<br>废弃版本：9|@ohos.sensor.d.ts|
+|废弃版本有变化|方法名 or 属性名：transformCoordinateSystem<br>废弃版本：N/A|方法名 or 属性名：transformCoordinateSystem<br>废弃版本：9<br>代替接口：sensor|@ohos.sensor.d.ts|
+|废弃版本有变化|方法名 or 属性名：transformCoordinateSystem<br>废弃版本：N/A|方法名 or 属性名：transformCoordinateSystem<br>废弃版本：9|@ohos.sensor.d.ts|
+|废弃版本有变化|方法名 or 属性名：createQuaternion<br>废弃版本：N/A|方法名 or 属性名：createQuaternion<br>废弃版本：9<br>代替接口：sensor|@ohos.sensor.d.ts|
+|废弃版本有变化|方法名 or 属性名：createQuaternion<br>废弃版本：N/A|方法名 or 属性名：createQuaternion<br>废弃版本：9|@ohos.sensor.d.ts|
+|废弃版本有变化|方法名 or 属性名：getDirection<br>废弃版本：N/A|方法名 or 属性名：getDirection<br>废弃版本：9<br>代替接口：sensor|@ohos.sensor.d.ts|
+|废弃版本有变化|方法名 or 属性名：getDirection<br>废弃版本：N/A|方法名 or 属性名：getDirection<br>废弃版本：9|@ohos.sensor.d.ts|
+|废弃版本有变化|方法名 or 属性名：createRotationMatrix<br>废弃版本：N/A|方法名 or 属性名：createRotationMatrix<br>废弃版本：9<br>代替接口：sensor|@ohos.sensor.d.ts|
+|废弃版本有变化|方法名 or 属性名：createRotationMatrix<br>废弃版本：N/A|方法名 or 属性名：createRotationMatrix<br>废弃版本：9|@ohos.sensor.d.ts|
+|废弃版本有变化|类名：SensorType<br>废弃版本：N/A|类名：SensorType<br>废弃版本：9<br>代替接口：sensor.SensorId     |@ohos.sensor.d.ts|
+|废弃版本有变化|方法名 or 属性名：SENSOR_TYPE_ID_LINEAR_ACCELERATION<br>废弃版本：9|方法名 or 属性名：SENSOR_TYPE_ID_LINEAR_ACCELERATION<br>废弃版本：N/A<br>代替接口：sensor.SensorId     |@ohos.sensor.d.ts|
+|废弃版本有变化|方法名 or 属性名：SENSOR_TYPE_ID_HEART_RATE<br>废弃版本：9|方法名 or 属性名：SENSOR_TYPE_ID_HEART_RATE<br>废弃版本：N/A<br>代替接口：sensor.SensorId     |@ohos.sensor.d.ts|
+|废弃版本有变化|方法名 or 属性名：vibrate<br>废弃版本：N/A|方法名 or 属性名：vibrate<br>废弃版本：9<br>代替接口：vibrator|@ohos.vibrator.d.ts|
+|废弃版本有变化|方法名 or 属性名：vibrate<br>废弃版本：N/A|方法名 or 属性名：vibrate<br>废弃版本：9|@ohos.vibrator.d.ts|
+|废弃版本有变化|方法名 or 属性名：vibrate<br>废弃版本：N/A|方法名 or 属性名：vibrate<br>废弃版本：9<br>代替接口：vibrator|@ohos.vibrator.d.ts|
+|废弃版本有变化|方法名 or 属性名：vibrate<br>废弃版本：N/A|方法名 or 属性名：vibrate<br>废弃版本：9|@ohos.vibrator.d.ts|
+|废弃版本有变化|方法名 or 属性名：stop<br>废弃版本：N/A|方法名 or 属性名：stop<br>废弃版本：9<br>代替接口：vibrator|@ohos.vibrator.d.ts|
+|废弃版本有变化|方法名 or 属性名：stop<br>废弃版本：N/A|方法名 or 属性名：stop<br>废弃版本：9|@ohos.vibrator.d.ts|

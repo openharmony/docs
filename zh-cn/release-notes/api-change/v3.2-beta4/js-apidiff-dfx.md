@@ -67,8 +67,6 @@
 |删除|模块名: ohos.hiAppEvent<br>类名: AppEventInfo<br>方法名 or 属性名：name||@ohos.hiAppEvent.d.ts|
 |删除|模块名: ohos.hiAppEvent<br>类名: AppEventInfo<br>方法名 or 属性名：eventType||@ohos.hiAppEvent.d.ts|
 |删除|模块名: ohos.hiAppEvent<br>类名: AppEventInfo<br>方法名 or 属性名：params||@ohos.hiAppEvent.d.ts|
-|删除|模块名：ohos.hiAppEvent<br>类名:hiAppEvent<br>方法名 or 属性名:write||@ohos.hiAppEvent.d.ts|
-|删除|模块名：ohos.hiAppEvent<br>类名:hiAppEvent<br>方法名 or 属性名:write||@ohos.hiAppEvent.d.ts|
 |删除|模块名: ohos.hiAppEvent<br>类名: AppEventPackage||@ohos.hiAppEvent.d.ts|
 |删除|模块名: ohos.hiAppEvent<br>类名: AppEventPackage<br>方法名 or 属性名：packageId||@ohos.hiAppEvent.d.ts|
 |删除|模块名: ohos.hiAppEvent<br>类名: AppEventPackage<br>方法名 or 属性名：row||@ohos.hiAppEvent.d.ts|
@@ -93,33 +91,18 @@
 |删除|模块名：ohos.hiAppEvent<br>类名:hiAppEvent<br>方法名 or 属性名:addWatcher||@ohos.hiAppEvent.d.ts|
 |删除|模块名：ohos.hiAppEvent<br>类名:hiAppEvent<br>方法名 or 属性名:removeWatcher||@ohos.hiAppEvent.d.ts|
 |删除|模块名：ohos.hiAppEvent<br>类名:hiAppEvent<br>方法名 or 属性名:clearData||@ohos.hiAppEvent.d.ts|
-|废弃版本有变化|类名：bytrace<br>废弃版本：|类名：bytrace<br>废弃版本：8<br>代替接口：ohos.hiTraceMeter  |@ohos.bytrace.d.ts|
-|废弃版本有变化|方法名 or 属性名：startTrace<br>废弃版本：|方法名 or 属性名：startTrace<br>废弃版本：8<br>代替接口：ohos.hiTraceMeter.startTrace   |@ohos.bytrace.d.ts|
-|废弃版本有变化|方法名 or 属性名：finishTrace<br>废弃版本：|方法名 or 属性名：finishTrace<br>废弃版本：8<br>代替接口：ohos.hiTraceMeter.finishTrace   |@ohos.bytrace.d.ts|
-|废弃版本有变化|方法名 or 属性名：traceByValue<br>废弃版本：|方法名 or 属性名：traceByValue<br>废弃版本：8<br>代替接口：ohos.hiTraceMeter.traceByValue   |@ohos.bytrace.d.ts|
-|废弃版本有变化|方法名 or 属性名：querySelfFaultLog<br>废弃版本：|方法名 or 属性名：querySelfFaultLog<br>废弃版本：9<br>代替接口：ohos.faultlogger/FaultLogger|@ohos.faultLogger.d.ts|
-|废弃版本有变化|方法名 or 属性名：querySelfFaultLog<br>废弃版本：|方法名 or 属性名：querySelfFaultLog<br>废弃版本：9<br>代替接口：ohos.faultlogger/FaultLogger|@ohos.faultLogger.d.ts|
-|废弃版本有变化|类名：hiAppEvent<br>废弃版本：|类名：hiAppEvent<br>废弃版本：9<br>代替接口：ohos.hiviewdfx.hiAppEvent |@ohos.hiAppEvent.d.ts|
-|废弃版本有变化|类名：EventType<br>废弃版本：|类名：EventType<br>废弃版本：9<br>代替接口：ohos.hiviewdfx.hiAppEvent |@ohos.hiAppEvent.d.ts|
-|废弃版本有变化|方法名 or 属性名：FAULT<br>废弃版本：|方法名 or 属性名：FAULT<br>废弃版本：9<br>代替接口：ohos.hiviewdfx.hiAppEvent |@ohos.hiAppEvent.d.ts|
-|废弃版本有变化|方法名 or 属性名：STATISTIC<br>废弃版本：|方法名 or 属性名：STATISTIC<br>废弃版本：9<br>代替接口：ohos.hiviewdfx.hiAppEvent |@ohos.hiAppEvent.d.ts|
-|废弃版本有变化|方法名 or 属性名：SECURITY<br>废弃版本：|方法名 or 属性名：SECURITY<br>废弃版本：9<br>代替接口：ohos.hiviewdfx.hiAppEvent |@ohos.hiAppEvent.d.ts|
-|废弃版本有变化|方法名 or 属性名：BEHAVIOR<br>废弃版本：|方法名 or 属性名：BEHAVIOR<br>废弃版本：9<br>代替接口：ohos.hiviewdfx.hiAppEvent |@ohos.hiAppEvent.d.ts|
-|废弃版本有变化|类名：Event<br>废弃版本：|类名：Event<br>废弃版本：9<br>代替接口：ohos.hiviewdfx.hiAppEvent |@ohos.hiAppEvent.d.ts|
-|废弃版本有变化|方法名 or 属性名：USER_LOGIN<br>废弃版本：|方法名 or 属性名：USER_LOGIN<br>废弃版本：9<br>代替接口：ohos.hiviewdfx.hiAppEvent |@ohos.hiAppEvent.d.ts|
-|废弃版本有变化|方法名 or 属性名：USER_LOGOUT<br>废弃版本：|方法名 or 属性名：USER_LOGOUT<br>废弃版本：9<br>代替接口：ohos.hiviewdfx.hiAppEvent |@ohos.hiAppEvent.d.ts|
-|废弃版本有变化|方法名 or 属性名：DISTRIBUTED_SERVICE_START<br>废弃版本：|方法名 or 属性名：DISTRIBUTED_SERVICE_START<br>废弃版本：9<br>代替接口：ohos.hiviewdfx.hiAppEvent |@ohos.hiAppEvent.d.ts|
-|废弃版本有变化|类名：Param<br>废弃版本：|类名：Param<br>废弃版本：9<br>代替接口：ohos.hiviewdfx.hiAppEvent |@ohos.hiAppEvent.d.ts|
-|废弃版本有变化|方法名 or 属性名：USER_ID<br>废弃版本：|方法名 or 属性名：USER_ID<br>废弃版本：9<br>代替接口：ohos.hiviewdfx.hiAppEvent |@ohos.hiAppEvent.d.ts|
-|废弃版本有变化|方法名 or 属性名：DISTRIBUTED_SERVICE_NAME<br>废弃版本：|方法名 or 属性名：DISTRIBUTED_SERVICE_NAME<br>废弃版本：9<br>代替接口：ohos.hiviewdfx.hiAppEvent |@ohos.hiAppEvent.d.ts|
-|废弃版本有变化|方法名 or 属性名：DISTRIBUTED_SERVICE_INSTANCE_ID<br>废弃版本：|方法名 or 属性名：DISTRIBUTED_SERVICE_INSTANCE_ID<br>废弃版本：9<br>代替接口：ohos.hiviewdfx.hiAppEvent |@ohos.hiAppEvent.d.ts|
-|废弃版本有变化|方法名 or 属性名：configure<br>废弃版本：|方法名 or 属性名：configure<br>废弃版本：9<br>代替接口：ohos.hiviewdfx.hiAppEvent |@ohos.hiAppEvent.d.ts|
-|废弃版本有变化|类名：ConfigOption<br>废弃版本：|类名：ConfigOption<br>废弃版本：9<br>代替接口：ohos.hiviewdfx.hiAppEvent |@ohos.hiAppEvent.d.ts|
-|废弃版本有变化|方法名 or 属性名：disable<br>废弃版本：|方法名 or 属性名：disable<br>废弃版本：9<br>代替接口：ohos.hiviewdfx.hiAppEvent |@ohos.hiAppEvent.d.ts|
-|废弃版本有变化|方法名 or 属性名：maxStorage<br>废弃版本：|方法名 or 属性名：maxStorage<br>废弃版本：9<br>代替接口：ohos.hiviewdfx.hiAppEvent |@ohos.hiAppEvent.d.ts|
-|废弃版本有变化|方法名 or 属性名：addRule<br>废弃版本：|方法名 or 属性名：addRule<br>废弃版本：9<br>代替接口：ohos.hichecker/hichecker|@ohos.hichecker.d.ts|
-|废弃版本有变化|方法名 or 属性名：removeRule<br>废弃版本：|方法名 or 属性名：removeRule<br>废弃版本：9<br>代替接口：ohos.hichecker/hichecker|@ohos.hichecker.d.ts|
-|废弃版本有变化|方法名 or 属性名：contains<br>废弃版本：|方法名 or 属性名：contains<br>废弃版本：9<br>代替接口：ohos.hichecker/hichecker|@ohos.hichecker.d.ts|
-|废弃版本有变化|方法名 or 属性名：startProfiling<br>废弃版本：|方法名 or 属性名：startProfiling<br>废弃版本：9<br>代替接口：ohos.hidebug/hidebug.startJsCpuProfiling     |@ohos.hidebug.d.ts|
-|废弃版本有变化|方法名 or 属性名：stopProfiling<br>废弃版本：|方法名 or 属性名：stopProfiling<br>废弃版本：9<br>代替接口：ohos.hidebug/hidebug.stopJsCpuProfiling     |@ohos.hidebug.d.ts|
-|废弃版本有变化|方法名 or 属性名：dumpHeapData<br>废弃版本：|方法名 or 属性名：dumpHeapData<br>废弃版本：9<br>代替接口：ohos.hidebug/hidebug.dumpJsHeapData     |@ohos.hidebug.d.ts|
+|废弃版本有变化|类名：bytrace<br>废弃版本：N/A|类名：bytrace<br>废弃版本：8<br>代替接口：ohos.hiTraceMeter  |@ohos.bytrace.d.ts|
+|废弃版本有变化|方法名 or 属性名：startTrace<br>废弃版本：N/A|方法名 or 属性名：startTrace<br>废弃版本：8<br>代替接口：ohos.hiTraceMeter.startTrace   |@ohos.bytrace.d.ts|
+|废弃版本有变化|方法名 or 属性名：finishTrace<br>废弃版本：N/A|方法名 or 属性名：finishTrace<br>废弃版本：8<br>代替接口：ohos.hiTraceMeter.finishTrace   |@ohos.bytrace.d.ts|
+|废弃版本有变化|方法名 or 属性名：traceByValue<br>废弃版本：N/A|方法名 or 属性名：traceByValue<br>废弃版本：8<br>代替接口：ohos.hiTraceMeter.traceByValue   |@ohos.bytrace.d.ts|
+|废弃版本有变化|方法名 or 属性名：querySelfFaultLog<br>废弃版本：N/A|方法名 or 属性名：querySelfFaultLog<br>废弃版本：9<br>代替接口：ohos.faultlogger/FaultLogger|@ohos.faultLogger.d.ts|
+|废弃版本有变化|方法名 or 属性名：querySelfFaultLog<br>废弃版本：N/A|方法名 or 属性名：querySelfFaultLog<br>废弃版本：9<br>代替接口：ohos.faultlogger/FaultLogger|@ohos.faultLogger.d.ts|
+|废弃版本有变化|类名：hiAppEvent<br>废弃版本：N/A|类名：hiAppEvent<br>废弃版本：9<br>代替接口：ohos.hiviewdfx.hiAppEvent |@ohos.hiAppEvent.d.ts|
+|废弃版本有变化|方法名 or 属性名：write<br>废弃版本：9|方法名 or 属性名：write<br>废弃版本：N/A<br>代替接口：ohos.hiviewdfx.hiAppEvent |@ohos.hiAppEvent.d.ts|
+|废弃版本有变化|方法名 or 属性名：write<br>废弃版本：9|方法名 or 属性名：write<br>废弃版本：N/A|@ohos.hiAppEvent.d.ts|
+|废弃版本有变化|方法名 or 属性名：addRule<br>废弃版本：N/A|方法名 or 属性名：addRule<br>废弃版本：9<br>代替接口：ohos.hichecker/hichecker|@ohos.hichecker.d.ts|
+|废弃版本有变化|方法名 or 属性名：removeRule<br>废弃版本：N/A|方法名 or 属性名：removeRule<br>废弃版本：9<br>代替接口：ohos.hichecker/hichecker|@ohos.hichecker.d.ts|
+|废弃版本有变化|方法名 or 属性名：contains<br>废弃版本：N/A|方法名 or 属性名：contains<br>废弃版本：9<br>代替接口：ohos.hichecker/hichecker|@ohos.hichecker.d.ts|
+|废弃版本有变化|方法名 or 属性名：startProfiling<br>废弃版本：N/A|方法名 or 属性名：startProfiling<br>废弃版本：9<br>代替接口：ohos.hidebug/hidebug.startJsCpuProfiling     |@ohos.hidebug.d.ts|
+|废弃版本有变化|方法名 or 属性名：stopProfiling<br>废弃版本：N/A|方法名 or 属性名：stopProfiling<br>废弃版本：9<br>代替接口：ohos.hidebug/hidebug.stopJsCpuProfiling     |@ohos.hidebug.d.ts|
+|废弃版本有变化|方法名 or 属性名：dumpHeapData<br>废弃版本：N/A|方法名 or 属性名：dumpHeapData<br>废弃版本：9<br>代替接口：ohos.hidebug/hidebug.dumpJsHeapData     |@ohos.hidebug.d.ts|

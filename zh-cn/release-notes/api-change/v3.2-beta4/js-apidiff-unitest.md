@@ -106,6 +106,6 @@
 |删除|模块名：ohos.uitest<br>类名:UiDriver<br>方法名 or 属性名:waitForIdle||@ohos.uitest.d.ts|
 |删除|模块名：ohos.uitest<br>类名:UiDriver<br>方法名 or 属性名:fling||@ohos.uitest.d.ts|
 |删除|模块名：ohos.uitest<br>类名:UiDriver<br>方法名 or 属性名:injectMultiPointerAction||@ohos.uitest.d.ts|
-|废弃版本有变化|类名：By<br>废弃版本：|类名：By<br>废弃版本：9<br>代替接口：ohos.uitest.On |@ohos.uitest.d.ts|
-|废弃版本有变化|类名：UiComponent<br>废弃版本：|类名：UiComponent<br>废弃版本：9<br>代替接口：ohos.uitest.Component |@ohos.uitest.d.ts|
-|废弃版本有变化|类名：UiDriver<br>废弃版本：|类名：UiDriver<br>废弃版本：9<br>代替接口：ohos.uitest.Driver |@ohos.uitest.d.ts|
+|废弃版本有变化|类名：By<br>废弃版本：N/A|类名：By<br>废弃版本：9<br>代替接口：ohos.uitest.On |@ohos.uitest.d.ts|
+|废弃版本有变化|类名：UiComponent<br>废弃版本：N/A|类名：UiComponent<br>废弃版本：9<br>代替接口：ohos.uitest.Component |@ohos.uitest.d.ts|
+|废弃版本有变化|类名：UiDriver<br>废弃版本：N/A|类名：UiDriver<br>废弃版本：9<br>代替接口：ohos.uitest.Driver |@ohos.uitest.d.ts|

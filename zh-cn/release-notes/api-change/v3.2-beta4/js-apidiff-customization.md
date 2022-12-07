@@ -71,6 +71,8 @@
 |删除|模块名: DeviceSettingsManager<br>类名: DeviceSettingsManager||DeviceSettingsManager.d.ts|
 |删除|模块名: DeviceSettingsManager<br>类名: DeviceSettingsManager<br>方法名 or 属性名： setDateTime||DeviceSettingsManager.d.ts|
 |删除|模块名: DeviceSettingsManager<br>类名: DeviceSettingsManager<br>方法名 or 属性名： setDateTime||DeviceSettingsManager.d.ts|
+|访问级别有变化|类名：configPolicy<br>访问级别：公开API|类名：configPolicy<br>访问级别：系统API|@ohos.configPolicy.d.ts|
 |新增(错误码)||方法名 or 属性名：getOneCfgFile<br>错误码内容:401|@ohos.configPolicy.d.ts|
 |新增(错误码)||方法名 or 属性名：getCfgFiles<br>错误码内容:401|@ohos.configPolicy.d.ts|
 |新增(错误码)||方法名 or 属性名：getCfgDirList<br>错误码内容:401|@ohos.configPolicy.d.ts|
+|访问级别有变化|类名：configPolicy<br>访问级别：公开API|类名：configPolicy<br>访问级别：系统API|@ohos.configPolicy.d.ts|

@@ -39,6 +39,7 @@
 |新增||模块名: ohos.resourceschedule.backgroundTaskManager<br>类名: EfficiencyResourcesRequest<br>方法名 or 属性名： isPersist|@ohos.resourceschedule.backgroundTaskManager.d.ts|
 |新增||模块名: ohos.resourceschedule.backgroundTaskManager<br>类名: EfficiencyResourcesRequest<br>方法名 or 属性名： isProcess|@ohos.resourceschedule.backgroundTaskManager.d.ts|
 |新增||模块名: ohos.resourceschedule.backgroundTaskManager<br>类名: EfficiencyResourcesRequest<br>方法名 or 属性名： reason|@ohos.resourceschedule.backgroundTaskManager.d.ts|
+|新增||模块名: ohos.resourceschedule.usageStatistics<br>类名: usageStatistics|@ohos.resourceschedule.usageStatistics.d.ts|
 |新增||模块名: ohos.resourceschedule.usageStatistics<br>类名: BundleStatsInfo|@ohos.resourceschedule.usageStatistics.d.ts|
 |新增||模块名: ohos.resourceschedule.usageStatistics<br>类名: BundleStatsInfo<br>方法名 or 属性名： id|@ohos.resourceschedule.usageStatistics.d.ts|
 |新增||模块名: ohos.resourceschedule.usageStatistics<br>类名: BundleStatsInfo<br>方法名 or 属性名： abilityInFgTotalTime|@ohos.resourceschedule.usageStatistics.d.ts|
@@ -227,118 +228,54 @@
 |删除|模块名：ohos.bundleState<br>类名:bundleState<br>方法名 or 属性名:queryBundleActiveEventStates||@ohos.bundleState.d.ts|
 |删除|模块名：ohos.bundleState<br>类名:bundleState<br>方法名 or 属性名:queryAppNotificationNumber||@ohos.bundleState.d.ts|
 |删除|模块名：ohos.bundleState<br>类名:bundleState<br>方法名 or 属性名:queryAppNotificationNumber||@ohos.bundleState.d.ts|
-|废弃版本有变化|方法名 or 属性名：startBackgroundRunning<br>废弃版本：|方法名 or 属性名：startBackgroundRunning<br>废弃版本：9<br>代替接口：ohos.resourceschedule.backgroundTaskManager.startBackgroundRunning   |@ohos.ability.particleAbility.d.ts|
-|废弃版本有变化|方法名 or 属性名：cancelBackgroundRunning<br>废弃版本：|方法名 or 属性名：cancelBackgroundRunning<br>废弃版本：9<br>代替接口：ohos.resourceschedule.backgroundTaskManager.stopBackgroundRunning   |@ohos.ability.particleAbility.d.ts|
-|废弃版本有变化|类名：backgroundTaskManager<br>废弃版本：|类名：backgroundTaskManager<br>废弃版本：9<br>代替接口：ohos.resourceschedule.backgroundTaskManager |@ohos.backgroundTaskManager.d.ts|
-|废弃版本有变化|类名：DelaySuspendInfo<br>废弃版本：|类名：DelaySuspendInfo<br>废弃版本：9<br>代替接口：ohos.resourceschedule.backgroundTaskManager.DelaySuspendInfo     |@ohos.backgroundTaskManager.d.ts|
-|废弃版本有变化|方法名 or 属性名：requestId<br>废弃版本：|方法名 or 属性名：requestId<br>废弃版本：9<br>代替接口：ohos.resourceschedule.backgroundTaskManager.DelaySuspendInfo     |@ohos.backgroundTaskManager.d.ts|
-|废弃版本有变化|方法名 or 属性名：actualDelayTime<br>废弃版本：|方法名 or 属性名：actualDelayTime<br>废弃版本：9<br>代替接口：ohos.resourceschedule.backgroundTaskManager.DelaySuspendInfo     |@ohos.backgroundTaskManager.d.ts|
-|废弃版本有变化|方法名 or 属性名：cancelSuspendDelay<br>废弃版本：|方法名 or 属性名：cancelSuspendDelay<br>废弃版本：9<br>代替接口：ohos.resourceschedule.backgroundTaskManager.cancelSuspendDelay     |@ohos.backgroundTaskManager.d.ts|
-|废弃版本有变化|方法名 or 属性名：getRemainingDelayTime<br>废弃版本：|方法名 or 属性名：getRemainingDelayTime<br>废弃版本：9<br>代替接口：ohos.resourceschedule.backgroundTaskManager.getRemainingDelayTime     |@ohos.backgroundTaskManager.d.ts|
-|废弃版本有变化|方法名 or 属性名：requestSuspendDelay<br>废弃版本：|方法名 or 属性名：requestSuspendDelay<br>废弃版本：9<br>代替接口：ohos.resourceschedule.backgroundTaskManager.requestSuspendDelay     |@ohos.backgroundTaskManager.d.ts|
-|废弃版本有变化|方法名 or 属性名：startBackgroundRunning<br>废弃版本：|方法名 or 属性名：startBackgroundRunning<br>废弃版本：9<br>代替接口：ohos.resourceschedule.backgroundTaskManager.startBackgroundRunning     |@ohos.backgroundTaskManager.d.ts|
-|废弃版本有变化|方法名 or 属性名：stopBackgroundRunning<br>废弃版本：|方法名 or 属性名：stopBackgroundRunning<br>废弃版本：9<br>代替接口：ohos.resourceschedule.backgroundTaskManager.stopBackgroundRunning     |@ohos.backgroundTaskManager.d.ts|
-|废弃版本有变化|方法名 or 属性名：applyEfficiencyResources<br>废弃版本：|方法名 or 属性名：applyEfficiencyResources<br>废弃版本：9<br>代替接口：ohos.resourceschedule.backgroundTaskManager.applyEfficiencyResources     |@ohos.backgroundTaskManager.d.ts|
-|废弃版本有变化|方法名 or 属性名：resetAllEfficiencyResources<br>废弃版本：|方法名 or 属性名：resetAllEfficiencyResources<br>废弃版本：9<br>代替接口：ohos.resourceschedule.backgroundTaskManager.resetAllEfficiencyResources      |@ohos.backgroundTaskManager.d.ts|
-|废弃版本有变化|类名：BackgroundMode<br>废弃版本：|类名：BackgroundMode<br>废弃版本：9<br>代替接口：ohos.resourceschedule.backgroundTaskManager.BackgroundMode     |@ohos.backgroundTaskManager.d.ts|
-|废弃版本有变化|方法名 or 属性名：DATA_TRANSFER<br>废弃版本：|方法名 or 属性名：DATA_TRANSFER<br>废弃版本：9<br>代替接口：ohos.resourceschedule.backgroundTaskManager.BackgroundMode     |@ohos.backgroundTaskManager.d.ts|
-|废弃版本有变化|方法名 or 属性名：AUDIO_PLAYBACK<br>废弃版本：|方法名 or 属性名：AUDIO_PLAYBACK<br>废弃版本：9<br>代替接口：ohos.resourceschedule.backgroundTaskManager.BackgroundMode     |@ohos.backgroundTaskManager.d.ts|
-|废弃版本有变化|方法名 or 属性名：AUDIO_RECORDING<br>废弃版本：|方法名 or 属性名：AUDIO_RECORDING<br>废弃版本：9<br>代替接口：ohos.resourceschedule.backgroundTaskManager.BackgroundMode     |@ohos.backgroundTaskManager.d.ts|
-|废弃版本有变化|方法名 or 属性名：LOCATION<br>废弃版本：|方法名 or 属性名：LOCATION<br>废弃版本：9<br>代替接口：ohos.resourceschedule.backgroundTaskManager.BackgroundMode     |@ohos.backgroundTaskManager.d.ts|
-|废弃版本有变化|方法名 or 属性名：BLUETOOTH_INTERACTION<br>废弃版本：|方法名 or 属性名：BLUETOOTH_INTERACTION<br>废弃版本：9<br>代替接口：ohos.resourceschedule.backgroundTaskManager.BackgroundMode     |@ohos.backgroundTaskManager.d.ts|
-|废弃版本有变化|方法名 or 属性名：MULTI_DEVICE_CONNECTION<br>废弃版本：|方法名 or 属性名：MULTI_DEVICE_CONNECTION<br>废弃版本：9<br>代替接口：ohos.resourceschedule.backgroundTaskManager.BackgroundMode     |@ohos.backgroundTaskManager.d.ts|
-|废弃版本有变化|方法名 or 属性名：WIFI_INTERACTION<br>废弃版本：|方法名 or 属性名：WIFI_INTERACTION<br>废弃版本：9<br>代替接口：ohos.resourceschedule.backgroundTaskManager.BackgroundMode     |@ohos.backgroundTaskManager.d.ts|
-|废弃版本有变化|方法名 or 属性名：VOIP<br>废弃版本：|方法名 or 属性名：VOIP<br>废弃版本：9<br>代替接口：ohos.resourceschedule.backgroundTaskManager.BackgroundMode     |@ohos.backgroundTaskManager.d.ts|
-|废弃版本有变化|方法名 or 属性名：TASK_KEEPING<br>废弃版本：|方法名 or 属性名：TASK_KEEPING<br>废弃版本：9<br>代替接口：ohos.resourceschedule.backgroundTaskManager.BackgroundMode     |@ohos.backgroundTaskManager.d.ts|
-|废弃版本有变化|类名：ResourceType<br>废弃版本：|类名：ResourceType<br>废弃版本：9<br>代替接口：ohos.resourceschedule.backgroundTaskManager.ResourceType     |@ohos.backgroundTaskManager.d.ts|
-|废弃版本有变化|方法名 or 属性名：CPU<br>废弃版本：|方法名 or 属性名：CPU<br>废弃版本：9<br>代替接口：ohos.resourceschedule.backgroundTaskManager.ResourceType     |@ohos.backgroundTaskManager.d.ts|
-|废弃版本有变化|方法名 or 属性名：COMMON_EVENT<br>废弃版本：|方法名 or 属性名：COMMON_EVENT<br>废弃版本：9<br>代替接口：ohos.resourceschedule.backgroundTaskManager.ResourceType     |@ohos.backgroundTaskManager.d.ts|
-|废弃版本有变化|方法名 or 属性名：TIMER<br>废弃版本：|方法名 or 属性名：TIMER<br>废弃版本：9<br>代替接口：ohos.resourceschedule.backgroundTaskManager.ResourceType     |@ohos.backgroundTaskManager.d.ts|
-|废弃版本有变化|方法名 or 属性名：WORK_SCHEDULER<br>废弃版本：|方法名 or 属性名：WORK_SCHEDULER<br>废弃版本：9<br>代替接口：ohos.resourceschedule.backgroundTaskManager.ResourceType     |@ohos.backgroundTaskManager.d.ts|
-|废弃版本有变化|方法名 or 属性名：BLUETOOTH<br>废弃版本：|方法名 or 属性名：BLUETOOTH<br>废弃版本：9<br>代替接口：ohos.resourceschedule.backgroundTaskManager.ResourceType     |@ohos.backgroundTaskManager.d.ts|
-|废弃版本有变化|方法名 or 属性名：GPS<br>废弃版本：|方法名 or 属性名：GPS<br>废弃版本：9<br>代替接口：ohos.resourceschedule.backgroundTaskManager.ResourceType     |@ohos.backgroundTaskManager.d.ts|
-|废弃版本有变化|方法名 or 属性名：AUDIO<br>废弃版本：|方法名 or 属性名：AUDIO<br>废弃版本：9<br>代替接口：ohos.resourceschedule.backgroundTaskManager.ResourceType     |@ohos.backgroundTaskManager.d.ts|
-|废弃版本有变化|类名：EfficiencyResourcesRequest<br>废弃版本：|类名：EfficiencyResourcesRequest<br>废弃版本：9<br>代替接口：ohos.resourceschedule.backgroundTaskManager.EfficiencyResourcesRequest     |@ohos.backgroundTaskManager.d.ts|
-|废弃版本有变化|方法名 or 属性名：resourceTypes<br>废弃版本：|方法名 or 属性名：resourceTypes<br>废弃版本：9<br>代替接口：ohos.resourceschedule.backgroundTaskManager.EfficiencyResourcesRequest     |@ohos.backgroundTaskManager.d.ts|
-|废弃版本有变化|方法名 or 属性名：isApply<br>废弃版本：|方法名 or 属性名：isApply<br>废弃版本：9<br>代替接口：ohos.resourceschedule.backgroundTaskManager.EfficiencyResourcesRequest     |@ohos.backgroundTaskManager.d.ts|
-|废弃版本有变化|方法名 or 属性名：timeOut<br>废弃版本：|方法名 or 属性名：timeOut<br>废弃版本：9<br>代替接口：ohos.resourceschedule.backgroundTaskManager.EfficiencyResourcesRequest     |@ohos.backgroundTaskManager.d.ts|
-|废弃版本有变化|方法名 or 属性名：isPersist<br>废弃版本：|方法名 or 属性名：isPersist<br>废弃版本：9<br>代替接口：ohos.resourceschedule.backgroundTaskManager.EfficiencyResourcesRequest     |@ohos.backgroundTaskManager.d.ts|
-|废弃版本有变化|方法名 or 属性名：isProcess<br>废弃版本：|方法名 or 属性名：isProcess<br>废弃版本：9<br>代替接口：ohos.resourceschedule.backgroundTaskManager.EfficiencyResourcesRequest     |@ohos.backgroundTaskManager.d.ts|
-|废弃版本有变化|方法名 or 属性名：reason<br>废弃版本：|方法名 or 属性名：reason<br>废弃版本：9<br>代替接口：ohos.resourceschedule.backgroundTaskManager.EfficiencyResourcesRequest     |@ohos.backgroundTaskManager.d.ts|
-|废弃版本有变化|类名：BundleStateInfo<br>废弃版本：|类名：BundleStateInfo<br>废弃版本：9<br>代替接口：ohos.resourceschedule.usageStatistics.BundleStatsInfo     |@ohos.bundleState.d.ts|
-|废弃版本有变化|方法名 or 属性名：id<br>废弃版本：|方法名 or 属性名：id<br>废弃版本：9<br>代替接口：ohos.resourceschedule.usageStatistics.BundleStatsInfo     |@ohos.bundleState.d.ts|
-|废弃版本有变化|方法名 or 属性名：abilityInFgTotalTime<br>废弃版本：|方法名 or 属性名：abilityInFgTotalTime<br>废弃版本：9<br>代替接口：ohos.resourceschedule.usageStatistics.BundleStatsInfo     |@ohos.bundleState.d.ts|
-|废弃版本有变化|方法名 or 属性名：abilityPrevAccessTime<br>废弃版本：|方法名 or 属性名：abilityPrevAccessTime<br>废弃版本：9<br>代替接口：ohos.resourceschedule.usageStatistics.BundleStatsInfo     |@ohos.bundleState.d.ts|
-|废弃版本有变化|方法名 or 属性名：abilityPrevSeenTime<br>废弃版本：|方法名 or 属性名：abilityPrevSeenTime<br>废弃版本：9<br>代替接口：ohos.resourceschedule.usageStatistics.BundleStatsInfo     |@ohos.bundleState.d.ts|
-|废弃版本有变化|方法名 or 属性名：abilitySeenTotalTime<br>废弃版本：|方法名 or 属性名：abilitySeenTotalTime<br>废弃版本：9<br>代替接口：ohos.resourceschedule.usageStatistics.BundleStatsInfo     |@ohos.bundleState.d.ts|
-|废弃版本有变化|方法名 or 属性名：bundleName<br>废弃版本：|方法名 or 属性名：bundleName<br>废弃版本：9<br>代替接口：ohos.resourceschedule.usageStatistics.BundleStatsInfo     |@ohos.bundleState.d.ts|
-|废弃版本有变化|方法名 or 属性名：fgAbilityAccessTotalTime<br>废弃版本：|方法名 or 属性名：fgAbilityAccessTotalTime<br>废弃版本：9<br>代替接口：ohos.resourceschedule.usageStatistics.BundleStatsInfo     |@ohos.bundleState.d.ts|
-|废弃版本有变化|方法名 or 属性名：fgAbilityPrevAccessTime<br>废弃版本：|方法名 or 属性名：fgAbilityPrevAccessTime<br>废弃版本：9<br>代替接口：ohos.resourceschedule.usageStatistics.BundleStatsInfo     |@ohos.bundleState.d.ts|
-|废弃版本有变化|方法名 or 属性名：infosBeginTime<br>废弃版本：|方法名 or 属性名：infosBeginTime<br>废弃版本：9<br>代替接口：ohos.resourceschedule.usageStatistics.BundleStatsInfo     |@ohos.bundleState.d.ts|
-|废弃版本有变化|方法名 or 属性名：infosEndTime<br>废弃版本：|方法名 or 属性名：infosEndTime<br>废弃版本：9<br>代替接口：ohos.resourceschedule.usageStatistics.BundleStatsInfo     |@ohos.bundleState.d.ts|
-|废弃版本有变化|方法名 or 属性名：merge<br>废弃版本：|方法名 or 属性名：merge<br>废弃版本：9<br>代替接口：ohos.resourceschedule.usageStatistics.BundleStatsInfo     |@ohos.bundleState.d.ts|
-|废弃版本有变化|类名：BundleActiveState<br>废弃版本：|类名：BundleActiveState<br>废弃版本：9<br>代替接口：ohos.resourceschedule.usageStatistics.BundleEvents     |@ohos.bundleState.d.ts|
-|废弃版本有变化|方法名 or 属性名：appUsagePriorityGroup<br>废弃版本：|方法名 or 属性名：appUsagePriorityGroup<br>废弃版本：9<br>代替接口：ohos.resourceschedule.usageStatistics.BundleEvents     |@ohos.bundleState.d.ts|
-|废弃版本有变化|方法名 or 属性名：bundleName<br>废弃版本：|方法名 or 属性名：bundleName<br>废弃版本：9<br>代替接口：ohos.resourceschedule.usageStatistics.BundleEvents     |@ohos.bundleState.d.ts|
-|废弃版本有变化|方法名 or 属性名：indexOfLink<br>废弃版本：|方法名 or 属性名：indexOfLink<br>废弃版本：9<br>代替接口：ohos.resourceschedule.usageStatistics.BundleEvents     |@ohos.bundleState.d.ts|
-|废弃版本有变化|方法名 or 属性名：nameOfClass<br>废弃版本：|方法名 or 属性名：nameOfClass<br>废弃版本：9<br>代替接口：ohos.resourceschedule.usageStatistics.BundleEvents     |@ohos.bundleState.d.ts|
-|废弃版本有变化|方法名 or 属性名：stateOccurredTime<br>废弃版本：|方法名 or 属性名：stateOccurredTime<br>废弃版本：9<br>代替接口：ohos.resourceschedule.usageStatistics.BundleEvents     |@ohos.bundleState.d.ts|
-|废弃版本有变化|方法名 or 属性名：stateType<br>废弃版本：|方法名 or 属性名：stateType<br>废弃版本：9<br>代替接口：ohos.resourceschedule.usageStatistics.BundleEvents     |@ohos.bundleState.d.ts|
-|废弃版本有变化|方法名 or 属性名：isIdleState<br>废弃版本：|方法名 or 属性名：isIdleState<br>废弃版本：9<br>代替接口：ohos.resourceschedule.usageStatistics.isIdleState     |@ohos.bundleState.d.ts|
-|废弃版本有变化|方法名 or 属性名：queryAppUsagePriorityGroup<br>废弃版本：|方法名 or 属性名：queryAppUsagePriorityGroup<br>废弃版本：9<br>代替接口：ohos.resourceschedule.usageStatistics.queryAppGroup     |@ohos.bundleState.d.ts|
-|废弃版本有变化|类名：BundleActiveInfoResponse<br>废弃版本：|类名：BundleActiveInfoResponse<br>废弃版本：9<br>代替接口：ohos.resourceschedule.usageStatistics.BundleStatsMap     |@ohos.bundleState.d.ts|
-|废弃版本有变化|方法名 or 属性名：BundleActiveInfoResponse<br>废弃版本：|方法名 or 属性名：BundleActiveInfoResponse<br>废弃版本：9<br>代替接口：ohos.resourceschedule.usageStatistics.BundleStatsMap     |@ohos.bundleState.d.ts|
-|废弃版本有变化|方法名 or 属性名：queryBundleStateInfos<br>废弃版本：|方法名 or 属性名：queryBundleStateInfos<br>废弃版本：9<br>代替接口：ohos.resourceschedule.usageStatistics.queryBundleStatsInfos     |@ohos.bundleState.d.ts|
-|废弃版本有变化|类名：IntervalType<br>废弃版本：|类名：IntervalType<br>废弃版本：9<br>代替接口：ohos.resourceschedule.usageStatistics.IntervalType     |@ohos.bundleState.d.ts|
-|废弃版本有变化|方法名 or 属性名：BY_OPTIMIZED<br>废弃版本：|方法名 or 属性名：BY_OPTIMIZED<br>废弃版本：9<br>代替接口：ohos.resourceschedule.usageStatistics.IntervalType     |@ohos.bundleState.d.ts|
-|废弃版本有变化|方法名 or 属性名：BY_DAILY<br>废弃版本：|方法名 or 属性名：BY_DAILY<br>废弃版本：9<br>代替接口：ohos.resourceschedule.usageStatistics.IntervalType     |@ohos.bundleState.d.ts|
-|废弃版本有变化|方法名 or 属性名：BY_WEEKLY<br>废弃版本：|方法名 or 属性名：BY_WEEKLY<br>废弃版本：9<br>代替接口：ohos.resourceschedule.usageStatistics.IntervalType     |@ohos.bundleState.d.ts|
-|废弃版本有变化|方法名 or 属性名：BY_MONTHLY<br>废弃版本：|方法名 or 属性名：BY_MONTHLY<br>废弃版本：9<br>代替接口：ohos.resourceschedule.usageStatistics.IntervalType     |@ohos.bundleState.d.ts|
-|废弃版本有变化|方法名 or 属性名：BY_ANNUALLY<br>废弃版本：|方法名 or 属性名：BY_ANNUALLY<br>废弃版本：9<br>代替接口：ohos.resourceschedule.usageStatistics.IntervalType     |@ohos.bundleState.d.ts|
-|废弃版本有变化|方法名 or 属性名：queryBundleStateInfoByInterval<br>废弃版本：|方法名 or 属性名：queryBundleStateInfoByInterval<br>废弃版本：9<br>代替接口：ohos.resourceschedule.usageStatistics.queryBundleStatsInfoByInterval     |@ohos.bundleState.d.ts|
-|废弃版本有变化|方法名 or 属性名：queryBundleActiveStates<br>废弃版本：|方法名 or 属性名：queryBundleActiveStates<br>废弃版本：9<br>代替接口：ohos.resourceschedule.usageStatistics.queryBundleEvents     |@ohos.bundleState.d.ts|
-|废弃版本有变化|方法名 or 属性名：queryCurrentBundleActiveStates<br>废弃版本：|方法名 or 属性名：queryCurrentBundleActiveStates<br>废弃版本：9<br>代替接口：ohos.resourceschedule.usageStatistics.queryCurrentBundleEvents     |@ohos.bundleState.d.ts|
-|废弃版本有变化|类名：workScheduler<br>废弃版本：|类名：workScheduler<br>废弃版本：9<br>代替接口：ohos.resourceschedule.workScheduler |@ohos.workScheduler.d.ts|
-|废弃版本有变化|类名：WorkInfo<br>废弃版本：|类名：WorkInfo<br>废弃版本：9<br>代替接口：ohos.resourceschedule.workScheduler.WorkInfo     |@ohos.workScheduler.d.ts|
-|废弃版本有变化|方法名 or 属性名：workId<br>废弃版本：|方法名 or 属性名：workId<br>废弃版本：9<br>代替接口：ohos.resourceschedule.workScheduler.WorkInfo     |@ohos.workScheduler.d.ts|
-|废弃版本有变化|方法名 or 属性名：bundleName<br>废弃版本：|方法名 or 属性名：bundleName<br>废弃版本：9<br>代替接口：ohos.resourceschedule.workScheduler.WorkInfo     |@ohos.workScheduler.d.ts|
-|废弃版本有变化|方法名 or 属性名：abilityName<br>废弃版本：|方法名 or 属性名：abilityName<br>废弃版本：9<br>代替接口：ohos.resourceschedule.workScheduler.WorkInfo     |@ohos.workScheduler.d.ts|
-|废弃版本有变化|方法名 or 属性名：isPersisted<br>废弃版本：|方法名 or 属性名：isPersisted<br>废弃版本：9<br>代替接口：ohos.resourceschedule.workScheduler.WorkInfo     |@ohos.workScheduler.d.ts|
-|废弃版本有变化|方法名 or 属性名：networkType<br>废弃版本：|方法名 or 属性名：networkType<br>废弃版本：9<br>代替接口：ohos.resourceschedule.workScheduler.WorkInfo     |@ohos.workScheduler.d.ts|
-|废弃版本有变化|方法名 or 属性名：isCharging<br>废弃版本：|方法名 or 属性名：isCharging<br>废弃版本：9<br>代替接口：ohos.resourceschedule.workScheduler.WorkInfo     |@ohos.workScheduler.d.ts|
-|废弃版本有变化|方法名 or 属性名：chargerType<br>废弃版本：|方法名 or 属性名：chargerType<br>废弃版本：9<br>代替接口：ohos.resourceschedule.workScheduler.WorkInfo     |@ohos.workScheduler.d.ts|
-|废弃版本有变化|方法名 or 属性名：batteryLevel<br>废弃版本：|方法名 or 属性名：batteryLevel<br>废弃版本：9<br>代替接口：ohos.resourceschedule.workScheduler.WorkInfo     |@ohos.workScheduler.d.ts|
-|废弃版本有变化|方法名 or 属性名：batteryStatus<br>废弃版本：|方法名 or 属性名：batteryStatus<br>废弃版本：9<br>代替接口：ohos.resourceschedule.workScheduler.WorkInfo     |@ohos.workScheduler.d.ts|
-|废弃版本有变化|方法名 or 属性名：storageRequest<br>废弃版本：|方法名 or 属性名：storageRequest<br>废弃版本：9<br>代替接口：ohos.resourceschedule.workScheduler.WorkInfo     |@ohos.workScheduler.d.ts|
-|废弃版本有变化|方法名 or 属性名：repeatCycleTime<br>废弃版本：|方法名 or 属性名：repeatCycleTime<br>废弃版本：9<br>代替接口：ohos.resourceschedule.workScheduler.WorkInfo     |@ohos.workScheduler.d.ts|
-|废弃版本有变化|方法名 or 属性名：isRepeat<br>废弃版本：|方法名 or 属性名：isRepeat<br>废弃版本：9<br>代替接口：ohos.resourceschedule.workScheduler.WorkInfo     |@ohos.workScheduler.d.ts|
-|废弃版本有变化|方法名 or 属性名：repeatCount<br>废弃版本：|方法名 or 属性名：repeatCount<br>废弃版本：9<br>代替接口：ohos.resourceschedule.workScheduler.WorkInfo     |@ohos.workScheduler.d.ts|
-|废弃版本有变化|方法名 or 属性名：isDeepIdle<br>废弃版本：|方法名 or 属性名：isDeepIdle<br>废弃版本：9<br>代替接口：ohos.resourceschedule.workScheduler.WorkInfo     |@ohos.workScheduler.d.ts|
-|废弃版本有变化|方法名 or 属性名：idleWaitTime<br>废弃版本：|方法名 or 属性名：idleWaitTime<br>废弃版本：9<br>代替接口：ohos.resourceschedule.workScheduler.WorkInfo     |@ohos.workScheduler.d.ts|
-|废弃版本有变化|方法名 or 属性名：parameters<br>废弃版本：|方法名 or 属性名：parameters<br>废弃版本：9<br>代替接口：ohos.resourceschedule.workScheduler.WorkInfo     |@ohos.workScheduler.d.ts|
-|废弃版本有变化|方法名 or 属性名：startWork<br>废弃版本：|方法名 or 属性名：startWork<br>废弃版本：9<br>代替接口：ohos.resourceschedule.workScheduler.startWork     |@ohos.workScheduler.d.ts|
-|废弃版本有变化|方法名 or 属性名：stopWork<br>废弃版本：|方法名 or 属性名：stopWork<br>废弃版本：9<br>代替接口：ohos.resourceschedule.workScheduler.stopWork     |@ohos.workScheduler.d.ts|
-|废弃版本有变化|方法名 or 属性名：getWorkStatus<br>废弃版本：|方法名 or 属性名：getWorkStatus<br>废弃版本：9<br>代替接口：ohos.resourceschedule.workScheduler.getWorkStatus     |@ohos.workScheduler.d.ts|
-|废弃版本有变化|方法名 or 属性名：obtainAllWorks<br>废弃版本：|方法名 or 属性名：obtainAllWorks<br>废弃版本：9<br>代替接口：ohos.resourceschedule.workScheduler.obtainAllWorks     |@ohos.workScheduler.d.ts|
-|废弃版本有变化|方法名 or 属性名：stopAndClearWorks<br>废弃版本：|方法名 or 属性名：stopAndClearWorks<br>废弃版本：9<br>代替接口：ohos.resourceschedule.workScheduler.stopAndClearWorks     |@ohos.workScheduler.d.ts|
-|废弃版本有变化|方法名 or 属性名：isLastWorkTimeOut<br>废弃版本：|方法名 or 属性名：isLastWorkTimeOut<br>废弃版本：9<br>代替接口：ohos.resourceschedule.workScheduler.isLastWorkTimeOut     |@ohos.workScheduler.d.ts|
-|废弃版本有变化|类名：NetworkType<br>废弃版本：|类名：NetworkType<br>废弃版本：9<br>代替接口：ohos.resourceschedule.workScheduler.NetworkType    |@ohos.workScheduler.d.ts|
-|废弃版本有变化|方法名 or 属性名：NETWORK_TYPE_ANY<br>废弃版本：|方法名 or 属性名：NETWORK_TYPE_ANY<br>废弃版本：9<br>代替接口：ohos.resourceschedule.workScheduler.NetworkType    |@ohos.workScheduler.d.ts|
-|废弃版本有变化|方法名 or 属性名：NETWORK_TYPE_MOBILE<br>废弃版本：|方法名 or 属性名：NETWORK_TYPE_MOBILE<br>废弃版本：9<br>代替接口：ohos.resourceschedule.workScheduler.NetworkType    |@ohos.workScheduler.d.ts|
-|废弃版本有变化|方法名 or 属性名：NETWORK_TYPE_WIFI<br>废弃版本：|方法名 or 属性名：NETWORK_TYPE_WIFI<br>废弃版本：9<br>代替接口：ohos.resourceschedule.workScheduler.NetworkType    |@ohos.workScheduler.d.ts|
-|废弃版本有变化|方法名 or 属性名：NETWORK_TYPE_BLUETOOTH<br>废弃版本：|方法名 or 属性名：NETWORK_TYPE_BLUETOOTH<br>废弃版本：9<br>代替接口：ohos.resourceschedule.workScheduler.NetworkType    |@ohos.workScheduler.d.ts|
-|废弃版本有变化|方法名 or 属性名：NETWORK_TYPE_WIFI_P2P<br>废弃版本：|方法名 or 属性名：NETWORK_TYPE_WIFI_P2P<br>废弃版本：9<br>代替接口：ohos.resourceschedule.workScheduler.NetworkType    |@ohos.workScheduler.d.ts|
-|废弃版本有变化|方法名 or 属性名：NETWORK_TYPE_ETHERNET<br>废弃版本：|方法名 or 属性名：NETWORK_TYPE_ETHERNET<br>废弃版本：9<br>代替接口：ohos.resourceschedule.workScheduler.NetworkType    |@ohos.workScheduler.d.ts|
-|废弃版本有变化|类名：ChargingType<br>废弃版本：|类名：ChargingType<br>废弃版本：9<br>代替接口：ohos.resourceschedule.workScheduler.ChargingType    |@ohos.workScheduler.d.ts|
-|废弃版本有变化|方法名 or 属性名：CHARGING_PLUGGED_ANY<br>废弃版本：|方法名 or 属性名：CHARGING_PLUGGED_ANY<br>废弃版本：9<br>代替接口：ohos.resourceschedule.workScheduler.ChargingType    |@ohos.workScheduler.d.ts|
-|废弃版本有变化|方法名 or 属性名：CHARGING_PLUGGED_AC<br>废弃版本：|方法名 or 属性名：CHARGING_PLUGGED_AC<br>废弃版本：9<br>代替接口：ohos.resourceschedule.workScheduler.ChargingType    |@ohos.workScheduler.d.ts|
-|废弃版本有变化|方法名 or 属性名：CHARGING_PLUGGED_USB<br>废弃版本：|方法名 or 属性名：CHARGING_PLUGGED_USB<br>废弃版本：9<br>代替接口：ohos.resourceschedule.workScheduler.ChargingType    |@ohos.workScheduler.d.ts|
-|废弃版本有变化|方法名 or 属性名：CHARGING_PLUGGED_WIRELESS<br>废弃版本：|方法名 or 属性名：CHARGING_PLUGGED_WIRELESS<br>废弃版本：9<br>代替接口：ohos.resourceschedule.workScheduler.ChargingType    |@ohos.workScheduler.d.ts|
-|废弃版本有变化|类名：BatteryStatus<br>废弃版本：|类名：BatteryStatus<br>废弃版本：9<br>代替接口：ohos.resourceschedule.workScheduler.BatteryStatus    |@ohos.workScheduler.d.ts|
-|废弃版本有变化|方法名 or 属性名：BATTERY_STATUS_LOW<br>废弃版本：|方法名 or 属性名：BATTERY_STATUS_LOW<br>废弃版本：9<br>代替接口：ohos.resourceschedule.workScheduler.BatteryStatus    |@ohos.workScheduler.d.ts|
-|废弃版本有变化|方法名 or 属性名：BATTERY_STATUS_OKAY<br>废弃版本：|方法名 or 属性名：BATTERY_STATUS_OKAY<br>废弃版本：9<br>代替接口：ohos.resourceschedule.workScheduler.BatteryStatus    |@ohos.workScheduler.d.ts|
-|废弃版本有变化|方法名 or 属性名：BATTERY_STATUS_LOW_OR_OKAY<br>废弃版本：|方法名 or 属性名：BATTERY_STATUS_LOW_OR_OKAY<br>废弃版本：9<br>代替接口：ohos.resourceschedule.workScheduler.BatteryStatus    |@ohos.workScheduler.d.ts|
-|废弃版本有变化|类名：StorageRequest<br>废弃版本：|类名：StorageRequest<br>废弃版本：9<br>代替接口：ohos.resourceschedule.workScheduler.StorageRequest    |@ohos.workScheduler.d.ts|
-|废弃版本有变化|方法名 or 属性名：STORAGE_LEVEL_LOW<br>废弃版本：|方法名 or 属性名：STORAGE_LEVEL_LOW<br>废弃版本：9<br>代替接口：ohos.resourceschedule.workScheduler.StorageRequest    |@ohos.workScheduler.d.ts|
-|废弃版本有变化|方法名 or 属性名：STORAGE_LEVEL_OKAY<br>废弃版本：|方法名 or 属性名：STORAGE_LEVEL_OKAY<br>废弃版本：9<br>代替接口：ohos.resourceschedule.workScheduler.StorageRequest    |@ohos.workScheduler.d.ts|
-|废弃版本有变化|方法名 or 属性名：STORAGE_LEVEL_LOW_OR_OKAY<br>废弃版本：|方法名 or 属性名：STORAGE_LEVEL_LOW_OR_OKAY<br>废弃版本：9<br>代替接口：ohos.resourceschedule.workScheduler.StorageRequest    |@ohos.workScheduler.d.ts|
+|废弃版本有变化|方法名 or 属性名：startBackgroundRunning<br>废弃版本：N/A|方法名 or 属性名：startBackgroundRunning<br>废弃版本：9<br>代替接口：ohos.resourceschedule.backgroundTaskManager.startBackgroundRunning   |@ohos.ability.particleAbility.d.ts|
+|废弃版本有变化|方法名 or 属性名：startBackgroundRunning<br>废弃版本：N/A|方法名 or 属性名：startBackgroundRunning<br>废弃版本：9|@ohos.ability.particleAbility.d.ts|
+|废弃版本有变化|方法名 or 属性名：cancelBackgroundRunning<br>废弃版本：N/A|方法名 or 属性名：cancelBackgroundRunning<br>废弃版本：9<br>代替接口：ohos.resourceschedule.backgroundTaskManager.stopBackgroundRunning   |@ohos.ability.particleAbility.d.ts|
+|废弃版本有变化|方法名 or 属性名：cancelBackgroundRunning<br>废弃版本：N/A|方法名 or 属性名：cancelBackgroundRunning<br>废弃版本：9|@ohos.ability.particleAbility.d.ts|
+|废弃版本有变化|类名：backgroundTaskManager<br>废弃版本：N/A|类名：backgroundTaskManager<br>废弃版本：9<br>代替接口：ohos.resourceschedule.backgroundTaskManager |@ohos.backgroundTaskManager.d.ts|
+|废弃版本有变化|类名：DelaySuspendInfo<br>废弃版本：N/A|类名：DelaySuspendInfo<br>废弃版本：9<br>代替接口：ohos.resourceschedule.backgroundTaskManager.DelaySuspendInfo     |@ohos.backgroundTaskManager.d.ts|
+|废弃版本有变化|方法名 or 属性名：cancelSuspendDelay<br>废弃版本：N/A|方法名 or 属性名：cancelSuspendDelay<br>废弃版本：9<br>代替接口：ohos.resourceschedule.backgroundTaskManager.cancelSuspendDelay     |@ohos.backgroundTaskManager.d.ts|
+|废弃版本有变化|方法名 or 属性名：getRemainingDelayTime<br>废弃版本：N/A|方法名 or 属性名：getRemainingDelayTime<br>废弃版本：9<br>代替接口：ohos.resourceschedule.backgroundTaskManager.getRemainingDelayTime     |@ohos.backgroundTaskManager.d.ts|
+|废弃版本有变化|方法名 or 属性名：getRemainingDelayTime<br>废弃版本：N/A|方法名 or 属性名：getRemainingDelayTime<br>废弃版本：9|@ohos.backgroundTaskManager.d.ts|
+|废弃版本有变化|方法名 or 属性名：requestSuspendDelay<br>废弃版本：N/A|方法名 or 属性名：requestSuspendDelay<br>废弃版本：9<br>代替接口：ohos.resourceschedule.backgroundTaskManager.requestSuspendDelay     |@ohos.backgroundTaskManager.d.ts|
+|废弃版本有变化|方法名 or 属性名：startBackgroundRunning<br>废弃版本：N/A|方法名 or 属性名：startBackgroundRunning<br>废弃版本：9<br>代替接口：ohos.resourceschedule.backgroundTaskManager.startBackgroundRunning     |@ohos.backgroundTaskManager.d.ts|
+|废弃版本有变化|方法名 or 属性名：startBackgroundRunning<br>废弃版本：N/A|方法名 or 属性名：startBackgroundRunning<br>废弃版本：9|@ohos.backgroundTaskManager.d.ts|
+|废弃版本有变化|方法名 or 属性名：stopBackgroundRunning<br>废弃版本：N/A|方法名 or 属性名：stopBackgroundRunning<br>废弃版本：9<br>代替接口：ohos.resourceschedule.backgroundTaskManager.stopBackgroundRunning     |@ohos.backgroundTaskManager.d.ts|
+|废弃版本有变化|方法名 or 属性名：stopBackgroundRunning<br>废弃版本：N/A|方法名 or 属性名：stopBackgroundRunning<br>废弃版本：9|@ohos.backgroundTaskManager.d.ts|
+|废弃版本有变化|方法名 or 属性名：applyEfficiencyResources<br>废弃版本：N/A|方法名 or 属性名：applyEfficiencyResources<br>废弃版本：9<br>代替接口：ohos.resourceschedule.backgroundTaskManager.applyEfficiencyResources     |@ohos.backgroundTaskManager.d.ts|
+|废弃版本有变化|方法名 or 属性名：resetAllEfficiencyResources<br>废弃版本：N/A|方法名 or 属性名：resetAllEfficiencyResources<br>废弃版本：9<br>代替接口：ohos.resourceschedule.backgroundTaskManager.resetAllEfficiencyResources      |@ohos.backgroundTaskManager.d.ts|
+|废弃版本有变化|类名：BackgroundMode<br>废弃版本：N/A|类名：BackgroundMode<br>废弃版本：9<br>代替接口：ohos.resourceschedule.backgroundTaskManager.BackgroundMode     |@ohos.backgroundTaskManager.d.ts|
+|废弃版本有变化|类名：ResourceType<br>废弃版本：N/A|类名：ResourceType<br>废弃版本：9<br>代替接口：ohos.resourceschedule.backgroundTaskManager.ResourceType     |@ohos.backgroundTaskManager.d.ts|
+|废弃版本有变化|类名：EfficiencyResourcesRequest<br>废弃版本：N/A|类名：EfficiencyResourcesRequest<br>废弃版本：9<br>代替接口：ohos.resourceschedule.backgroundTaskManager.EfficiencyResourcesRequest     |@ohos.backgroundTaskManager.d.ts|
+|废弃版本有变化|类名：bundleState<br>废弃版本：N/A|类名：bundleState<br>废弃版本：9<br>代替接口：ohos.resourceschedule.usageStatistics |@ohos.bundleState.d.ts|
+|废弃版本有变化|类名：BundleStateInfo<br>废弃版本：N/A|类名：BundleStateInfo<br>废弃版本：9<br>代替接口：ohos.resourceschedule.usageStatistics.BundleStatsInfo     |@ohos.bundleState.d.ts|
+|废弃版本有变化|类名：BundleActiveState<br>废弃版本：N/A|类名：BundleActiveState<br>废弃版本：9<br>代替接口：ohos.resourceschedule.usageStatistics.BundleEvents     |@ohos.bundleState.d.ts|
+|废弃版本有变化|方法名 or 属性名：isIdleState<br>废弃版本：N/A|方法名 or 属性名：isIdleState<br>废弃版本：9<br>代替接口：ohos.resourceschedule.usageStatistics.isIdleState     |@ohos.bundleState.d.ts|
+|废弃版本有变化|方法名 or 属性名：isIdleState<br>废弃版本：N/A|方法名 or 属性名：isIdleState<br>废弃版本：9|@ohos.bundleState.d.ts|
+|废弃版本有变化|方法名 or 属性名：queryAppUsagePriorityGroup<br>废弃版本：N/A|方法名 or 属性名：queryAppUsagePriorityGroup<br>废弃版本：9<br>代替接口：ohos.resourceschedule.usageStatistics.queryAppGroup     |@ohos.bundleState.d.ts|
+|废弃版本有变化|方法名 or 属性名：queryAppUsagePriorityGroup<br>废弃版本：N/A|方法名 or 属性名：queryAppUsagePriorityGroup<br>废弃版本：9|@ohos.bundleState.d.ts|
+|废弃版本有变化|类名：BundleActiveInfoResponse<br>废弃版本：N/A|类名：BundleActiveInfoResponse<br>废弃版本：9<br>代替接口：ohos.resourceschedule.usageStatistics.BundleStatsMap     |@ohos.bundleState.d.ts|
+|废弃版本有变化|方法名 or 属性名：queryBundleStateInfos<br>废弃版本：N/A|方法名 or 属性名：queryBundleStateInfos<br>废弃版本：9<br>代替接口：ohos.resourceschedule.usageStatistics.queryBundleStatsInfos     |@ohos.bundleState.d.ts|
+|废弃版本有变化|方法名 or 属性名：queryBundleStateInfos<br>废弃版本：N/A|方法名 or 属性名：queryBundleStateInfos<br>废弃版本：9|@ohos.bundleState.d.ts|
+|废弃版本有变化|类名：IntervalType<br>废弃版本：N/A|类名：IntervalType<br>废弃版本：9<br>代替接口：ohos.resourceschedule.usageStatistics.IntervalType     |@ohos.bundleState.d.ts|
+|废弃版本有变化|方法名 or 属性名：queryBundleStateInfoByInterval<br>废弃版本：N/A|方法名 or 属性名：queryBundleStateInfoByInterval<br>废弃版本：9<br>代替接口：ohos.resourceschedule.usageStatistics.queryBundleStatsInfoByInterval     |@ohos.bundleState.d.ts|
+|废弃版本有变化|方法名 or 属性名：queryBundleStateInfoByInterval<br>废弃版本：N/A|方法名 or 属性名：queryBundleStateInfoByInterval<br>废弃版本：9|@ohos.bundleState.d.ts|
+|废弃版本有变化|方法名 or 属性名：queryBundleActiveStates<br>废弃版本：N/A|方法名 or 属性名：queryBundleActiveStates<br>废弃版本：9<br>代替接口：ohos.resourceschedule.usageStatistics.queryBundleEvents     |@ohos.bundleState.d.ts|
+|废弃版本有变化|方法名 or 属性名：queryBundleActiveStates<br>废弃版本：N/A|方法名 or 属性名：queryBundleActiveStates<br>废弃版本：9|@ohos.bundleState.d.ts|
+|废弃版本有变化|方法名 or 属性名：queryCurrentBundleActiveStates<br>废弃版本：N/A|方法名 or 属性名：queryCurrentBundleActiveStates<br>废弃版本：9<br>代替接口：ohos.resourceschedule.usageStatistics.queryCurrentBundleEvents     |@ohos.bundleState.d.ts|
+|废弃版本有变化|方法名 or 属性名：queryCurrentBundleActiveStates<br>废弃版本：N/A|方法名 or 属性名：queryCurrentBundleActiveStates<br>废弃版本：9|@ohos.bundleState.d.ts|
+|废弃版本有变化|类名：workScheduler<br>废弃版本：N/A|类名：workScheduler<br>废弃版本：9<br>代替接口：ohos.resourceschedule.workScheduler |@ohos.workScheduler.d.ts|
+|废弃版本有变化|类名：WorkInfo<br>废弃版本：N/A|类名：WorkInfo<br>废弃版本：9<br>代替接口：ohos.resourceschedule.workScheduler.WorkInfo     |@ohos.workScheduler.d.ts|
+|废弃版本有变化|方法名 or 属性名：startWork<br>废弃版本：N/A|方法名 or 属性名：startWork<br>废弃版本：9<br>代替接口：ohos.resourceschedule.workScheduler.startWork     |@ohos.workScheduler.d.ts|
+|废弃版本有变化|方法名 or 属性名：stopWork<br>废弃版本：N/A|方法名 or 属性名：stopWork<br>废弃版本：9<br>代替接口：ohos.resourceschedule.workScheduler.stopWork     |@ohos.workScheduler.d.ts|
+|废弃版本有变化|方法名 or 属性名：getWorkStatus<br>废弃版本：N/A|方法名 or 属性名：getWorkStatus<br>废弃版本：9<br>代替接口：ohos.resourceschedule.workScheduler.getWorkStatus     |@ohos.workScheduler.d.ts|
+|废弃版本有变化|方法名 or 属性名：getWorkStatus<br>废弃版本：N/A|方法名 or 属性名：getWorkStatus<br>废弃版本：9|@ohos.workScheduler.d.ts|
+|废弃版本有变化|方法名 or 属性名：obtainAllWorks<br>废弃版本：N/A|方法名 or 属性名：obtainAllWorks<br>废弃版本：9<br>代替接口：ohos.resourceschedule.workScheduler.obtainAllWorks     |@ohos.workScheduler.d.ts|
+|废弃版本有变化|方法名 or 属性名：obtainAllWorks<br>废弃版本：N/A|方法名 or 属性名：obtainAllWorks<br>废弃版本：9|@ohos.workScheduler.d.ts|
+|废弃版本有变化|方法名 or 属性名：stopAndClearWorks<br>废弃版本：N/A|方法名 or 属性名：stopAndClearWorks<br>废弃版本：9<br>代替接口：ohos.resourceschedule.workScheduler.stopAndClearWorks     |@ohos.workScheduler.d.ts|
+|废弃版本有变化|方法名 or 属性名：isLastWorkTimeOut<br>废弃版本：N/A|方法名 or 属性名：isLastWorkTimeOut<br>废弃版本：9<br>代替接口：ohos.resourceschedule.workScheduler.isLastWorkTimeOut     |@ohos.workScheduler.d.ts|
+|废弃版本有变化|方法名 or 属性名：isLastWorkTimeOut<br>废弃版本：N/A|方法名 or 属性名：isLastWorkTimeOut<br>废弃版本：9|@ohos.workScheduler.d.ts|
+|废弃版本有变化|类名：NetworkType<br>废弃版本：N/A|类名：NetworkType<br>废弃版本：9<br>代替接口：ohos.resourceschedule.workScheduler.NetworkType    |@ohos.workScheduler.d.ts|
+|废弃版本有变化|类名：ChargingType<br>废弃版本：N/A|类名：ChargingType<br>废弃版本：9<br>代替接口：ohos.resourceschedule.workScheduler.ChargingType    |@ohos.workScheduler.d.ts|
+|废弃版本有变化|类名：BatteryStatus<br>废弃版本：N/A|类名：BatteryStatus<br>废弃版本：9<br>代替接口：ohos.resourceschedule.workScheduler.BatteryStatus    |@ohos.workScheduler.d.ts|
+|废弃版本有变化|类名：StorageRequest<br>废弃版本：N/A|类名：StorageRequest<br>废弃版本：9<br>代替接口：ohos.resourceschedule.workScheduler.StorageRequest    |@ohos.workScheduler.d.ts|

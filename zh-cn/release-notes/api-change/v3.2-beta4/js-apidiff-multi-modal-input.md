@@ -11,7 +11,7 @@
 |新增||模块名：ohos.multimodalInput.inputDeviceCooperate<br>类名:EventMsg<br>方法名 or 属性名:MSG_COOPERATE_INFO_FAIL|@ohos.multimodalInput.inputDeviceCooperate.d.ts|
 |新增||模块名：ohos.multimodalInput.inputDeviceCooperate<br>类名:EventMsg<br>方法名 or 属性名:MSG_COOPERATE_STATE_ON|@ohos.multimodalInput.inputDeviceCooperate.d.ts|
 |新增||模块名：ohos.multimodalInput.inputDeviceCooperate<br>类名:EventMsg<br>方法名 or 属性名:MSG_COOPERATE_STATE_OFF|@ohos.multimodalInput.inputDeviceCooperate.d.ts|
-|废弃版本有变化|方法名 or 属性名：getDeviceIds<br>废弃版本：|方法名 or 属性名：getDeviceIds<br>废弃版本：9<br>代替接口：ohos.multimodalInput.inputDevice|@ohos.multimodalInput.inputDevice.d.ts|
+|废弃版本有变化|方法名 or 属性名：getDeviceIds<br>废弃版本：N/A|方法名 or 属性名：getDeviceIds<br>废弃版本：9<br>代替接口：ohos.multimodalInput.inputDevice|@ohos.multimodalInput.inputDevice.d.ts|
 |废弃版本有变化|方法名 or 属性名：getDeviceIds<br>废弃版本：N/A|方法名 or 属性名：getDeviceIds<br>废弃版本：9<br>代替接口：ohos.multimodalInput.inputDevice|@ohos.multimodalInput.inputDevice.d.ts|
 |废弃版本有变化|方法名 or 属性名：getDevice<br>废弃版本：N/A|方法名 or 属性名：getDevice<br>废弃版本：9<br>代替接口：ohos.multimodalInput.inputDevice|@ohos.multimodalInput.inputDevice.d.ts|
 |废弃版本有变化|方法名 or 属性名：getDevice<br>废弃版本：N/A|方法名 or 属性名：getDevice<br>废弃版本：9<br>代替接口：ohos.multimodalInput.inputDevice|@ohos.multimodalInput.inputDevice.d.ts|

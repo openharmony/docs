@@ -137,69 +137,48 @@
 |删除|模块名: ohos.uiAppearance<br>类名: uiAppearance<br>方法名 or 属性名： setDarkMode||@ohos.uiAppearance.d.ts|
 |删除|模块名: ohos.uiAppearance<br>类名: uiAppearance<br>方法名 or 属性名： getDarkMode||@ohos.uiAppearance.d.ts|
 |删除|模块名：web<br>类名:WebAttribute<br>方法名 or 属性名:fileFromUrlAccess||web.d.ts|
-|废弃版本有变化|方法名 or 属性名：update<br>废弃版本：|方法名 or 属性名：update<br>废弃版本：9<br>代替接口：ohos.animator.reset   |@ohos.animator.d.ts|
-|废弃版本有变化|方法名 or 属性名：createAnimator<br>废弃版本：|方法名 or 属性名：createAnimator<br>废弃版本：9<br>代替接口：ohos.animator.create   |@ohos.animator.d.ts|
-|废弃版本有变化|类名：prompt<br>废弃版本：|类名：prompt<br>废弃版本：9<br>代替接口：ohos.promptAction |@ohos.prompt.d.ts|
-|废弃版本有变化|类名：ShowToastOptions<br>废弃版本：|类名：ShowToastOptions<br>废弃版本：9<br>代替接口：ohos.promptAction |@ohos.prompt.d.ts|
-|废弃版本有变化|方法名 or 属性名：message<br>废弃版本：|方法名 or 属性名：message<br>废弃版本：9<br>代替接口：ohos.promptAction |@ohos.prompt.d.ts|
-|废弃版本有变化|方法名 or 属性名：duration<br>废弃版本：|方法名 or 属性名：duration<br>废弃版本：9<br>代替接口：ohos.promptAction |@ohos.prompt.d.ts|
-|废弃版本有变化|方法名 or 属性名：bottom<br>废弃版本：|方法名 or 属性名：bottom<br>废弃版本：9<br>代替接口：ohos.promptAction |@ohos.prompt.d.ts|
-|废弃版本有变化|类名：Button<br>废弃版本：|类名：Button<br>废弃版本：9<br>代替接口：ohos.promptAction |@ohos.prompt.d.ts|
-|废弃版本有变化|方法名 or 属性名：text<br>废弃版本：|方法名 or 属性名：text<br>废弃版本：9<br>代替接口：ohos.promptAction |@ohos.prompt.d.ts|
-|废弃版本有变化|方法名 or 属性名：color<br>废弃版本：|方法名 or 属性名：color<br>废弃版本：9<br>代替接口：ohos.promptAction |@ohos.prompt.d.ts|
-|废弃版本有变化|类名：ShowDialogSuccessResponse<br>废弃版本：|类名：ShowDialogSuccessResponse<br>废弃版本：9<br>代替接口：ohos.promptAction |@ohos.prompt.d.ts|
-|废弃版本有变化|方法名 or 属性名：index<br>废弃版本：|方法名 or 属性名：index<br>废弃版本：9<br>代替接口：ohos.promptAction |@ohos.prompt.d.ts|
-|废弃版本有变化|类名：ShowDialogOptions<br>废弃版本：|类名：ShowDialogOptions<br>废弃版本：9<br>代替接口：ohos.promptAction |@ohos.prompt.d.ts|
-|废弃版本有变化|方法名 or 属性名：title<br>废弃版本：|方法名 or 属性名：title<br>废弃版本：9<br>代替接口：ohos.promptAction |@ohos.prompt.d.ts|
-|废弃版本有变化|方法名 or 属性名：message<br>废弃版本：|方法名 or 属性名：message<br>废弃版本：9<br>代替接口：ohos.promptAction |@ohos.prompt.d.ts|
-|废弃版本有变化|方法名 or 属性名：buttons<br>废弃版本：|方法名 or 属性名：buttons<br>废弃版本：9<br>代替接口：ohos.promptAction |@ohos.prompt.d.ts|
-|废弃版本有变化|类名：ActionMenuSuccessResponse<br>废弃版本：|类名：ActionMenuSuccessResponse<br>废弃版本：9<br>代替接口：ohos.promptAction |@ohos.prompt.d.ts|
-|废弃版本有变化|方法名 or 属性名：index<br>废弃版本：|方法名 or 属性名：index<br>废弃版本：9<br>代替接口：ohos.promptAction |@ohos.prompt.d.ts|
-|废弃版本有变化|类名：ActionMenuOptions<br>废弃版本：|类名：ActionMenuOptions<br>废弃版本：9<br>代替接口：ohos.promptAction |@ohos.prompt.d.ts|
-|废弃版本有变化|方法名 or 属性名：title<br>废弃版本：|方法名 or 属性名：title<br>废弃版本：9<br>代替接口：ohos.promptAction |@ohos.prompt.d.ts|
-|废弃版本有变化|方法名 or 属性名：buttons<br>废弃版本：|方法名 or 属性名：buttons<br>废弃版本：9<br>代替接口：ohos.promptAction |@ohos.prompt.d.ts|
-|废弃版本有变化|方法名 or 属性名：showToast<br>废弃版本：|方法名 or 属性名：showToast<br>废弃版本：9<br>代替接口：ohos.promptAction |@ohos.prompt.d.ts|
-|废弃版本有变化|方法名 or 属性名：showDialog<br>废弃版本：|方法名 or 属性名：showDialog<br>废弃版本：9<br>代替接口：ohos.promptAction |@ohos.prompt.d.ts|
-|废弃版本有变化|方法名 or 属性名：showActionMenu<br>废弃版本：|方法名 or 属性名：showActionMenu<br>废弃版本：9<br>代替接口：ohos.promptAction |@ohos.prompt.d.ts|
-|废弃版本有变化|方法名 or 属性名：push<br>废弃版本：|方法名 or 属性名：push<br>废弃版本：9<br>代替接口：ohos.router.router|@ohos.router.d.ts|
-|废弃版本有变化|方法名 or 属性名：replace<br>废弃版本：|方法名 or 属性名：replace<br>废弃版本：9<br>代替接口：ohos.router.router|@ohos.router.d.ts|
-|废弃版本有变化|方法名 or 属性名：enableAlertBeforeBackPage<br>废弃版本：|方法名 or 属性名：enableAlertBeforeBackPage<br>废弃版本：9<br>代替接口：ohos.router.router|@ohos.router.d.ts|
-|废弃版本有变化|方法名 or 属性名：staticClear<br>废弃版本：|方法名 or 属性名：staticClear<br>废弃版本：9<br>代替接口：AppStorage.Clear   |common_ts_ets_api.d.ts|
-|废弃版本有变化|方法名 or 属性名：subTitle<br>废弃版本：|方法名 or 属性名：subTitle<br>废弃版本：9<br>代替接口：title   |navigation.d.ts|
-|废弃版本有变化|方法名 or 属性名：ructor(message<br>废弃版本：|方法名 or 属性名：ructor(message<br>废弃版本：9<br>代替接口：ohos.web.ConsoleMessage|web.d.ts|
-|废弃版本有变化|类名：WebController<br>废弃版本：|类名：WebController<br>废弃版本：9<br>代替接口：ohos.web.webview.webview.WebviewController |web.d.ts|
-|废弃版本有变化|方法名 or 属性名：onInactive<br>废弃版本：|方法名 or 属性名：onInactive<br>废弃版本：9<br>代替接口：ohos.web.webview.webview.WebviewController|web.d.ts|
-|废弃版本有变化|方法名 or 属性名：onActive<br>废弃版本：|方法名 or 属性名：onActive<br>废弃版本：9<br>代替接口：ohos.web.webview.webview.WebviewController|web.d.ts|
-|废弃版本有变化|方法名 or 属性名：zoom<br>废弃版本：|方法名 or 属性名：zoom<br>废弃版本：9<br>代替接口：ohos.web.webview.webview.WebviewController|web.d.ts|
-|废弃版本有变化|方法名 or 属性名：zoomIn<br>废弃版本：|方法名 or 属性名：zoomIn<br>废弃版本：9<br>代替接口：ohos.web.webview.webview.WebviewController |web.d.ts|
-|废弃版本有变化|方法名 or 属性名：zoomOut<br>废弃版本：|方法名 or 属性名：zoomOut<br>废弃版本：9<br>代替接口：ohos.web.webview.webview.WebviewController |web.d.ts|
-|废弃版本有变化|方法名 or 属性名：clearHistory<br>废弃版本：|方法名 or 属性名：clearHistory<br>废弃版本：9<br>代替接口：ohos.web.webview.webview.WebviewController|web.d.ts|
-|废弃版本有变化|方法名 or 属性名：runJavaScript<br>废弃版本：|方法名 or 属性名：runJavaScript<br>废弃版本：9<br>代替接口：ohos.web.webview.webview.WebviewController|web.d.ts|
-|废弃版本有变化|方法名 or 属性名：createWebMessagePorts<br>废弃版本：|方法名 or 属性名：createWebMessagePorts<br>废弃版本：9<br>代替接口：ohos.web.webview.webview.WebviewController |web.d.ts|
-|废弃版本有变化|方法名 or 属性名：postMessage<br>废弃版本：|方法名 or 属性名：postMessage<br>废弃版本：9<br>代替接口：ohos.web.webview.webview.WebviewController |web.d.ts|
-|废弃版本有变化|方法名 or 属性名：loadData<br>废弃版本：|方法名 or 属性名：loadData<br>废弃版本：9<br>代替接口：ohos.web.webview.webview.WebviewController|web.d.ts|
-|废弃版本有变化|方法名 or 属性名：loadUrl<br>废弃版本：|方法名 or 属性名：loadUrl<br>废弃版本：9<br>代替接口：ohos.web.webview.webview.WebviewController|web.d.ts|
-|废弃版本有变化|方法名 or 属性名：refresh<br>废弃版本：|方法名 or 属性名：refresh<br>废弃版本：9<br>代替接口：ohos.web.webview.webview.WebviewController|web.d.ts|
-|废弃版本有变化|方法名 or 属性名：stop<br>废弃版本：|方法名 or 属性名：stop<br>废弃版本：9<br>代替接口：ohos.web.webview.webview.WebviewController|web.d.ts|
-|废弃版本有变化|方法名 or 属性名：registerJavaScriptProxy<br>废弃版本：|方法名 or 属性名：registerJavaScriptProxy<br>废弃版本：9<br>代替接口：ohos.web.webview.webview.WebviewController|web.d.ts|
-|废弃版本有变化|方法名 or 属性名：deleteJavaScriptRegister<br>废弃版本：|方法名 or 属性名：deleteJavaScriptRegister<br>废弃版本：9<br>代替接口：ohos.web.webview.webview.WebviewController|web.d.ts|
-|废弃版本有变化|方法名 or 属性名：getHitTest<br>废弃版本：|方法名 or 属性名：getHitTest<br>废弃版本：9<br>代替接口：ohos.web.webview.webview.WebviewController|web.d.ts|
-|废弃版本有变化|方法名 or 属性名：getHitTestValue<br>废弃版本：|方法名 or 属性名：getHitTestValue<br>废弃版本：9<br>代替接口：ohos.web.webview.webview.WebviewController |web.d.ts|
-|废弃版本有变化|方法名 or 属性名：getWebId<br>废弃版本：|方法名 or 属性名：getWebId<br>废弃版本：9<br>代替接口：ohos.web.webview.webview.WebviewController |web.d.ts|
-|废弃版本有变化|方法名 or 属性名：getDefaultUserAgent<br>废弃版本：|方法名 or 属性名：getDefaultUserAgent<br>废弃版本：9<br>代替接口：ohos.web.webview.webview.WebviewController |web.d.ts|
-|废弃版本有变化|方法名 or 属性名：getTitle<br>废弃版本：|方法名 or 属性名：getTitle<br>废弃版本：9<br>代替接口：ohos.web.webview.webview.WebviewController |web.d.ts|
-|废弃版本有变化|方法名 or 属性名：getPageHeight<br>废弃版本：|方法名 or 属性名：getPageHeight<br>废弃版本：9<br>代替接口：ohos.web.webview.webview.WebviewController |web.d.ts|
-|废弃版本有变化|方法名 or 属性名：requestFocus<br>废弃版本：|方法名 or 属性名：requestFocus<br>废弃版本：9<br>代替接口：ohos.web.webview.webview.WebviewController|web.d.ts|
-|废弃版本有变化|方法名 or 属性名：accessBackward<br>废弃版本：|方法名 or 属性名：accessBackward<br>废弃版本：9<br>代替接口：ohos.web.webview.webview.WebviewController|web.d.ts|
-|废弃版本有变化|方法名 or 属性名：accessForward<br>废弃版本：|方法名 or 属性名：accessForward<br>废弃版本：9<br>代替接口：ohos.web.webview.webview.WebviewController|web.d.ts|
-|废弃版本有变化|方法名 or 属性名：accessStep<br>废弃版本：|方法名 or 属性名：accessStep<br>废弃版本：9<br>代替接口：ohos.web.webview.webview.WebviewController|web.d.ts|
-|废弃版本有变化|方法名 or 属性名：backward<br>废弃版本：|方法名 or 属性名：backward<br>废弃版本：9<br>代替接口：ohos.web.webview.webview.WebviewController|web.d.ts|
-|废弃版本有变化|方法名 or 属性名：forward<br>废弃版本：|方法名 or 属性名：forward<br>废弃版本：9<br>代替接口：ohos.web.webview.webview.WebviewController|web.d.ts|
-|废弃版本有变化|方法名 or 属性名：backOrForward<br>废弃版本：|方法名 or 属性名：backOrForward<br>废弃版本：9<br>代替接口：ohos.web.webview.webview.WebviewController |web.d.ts|
-|废弃版本有变化|方法名 or 属性名：getCookieManager<br>废弃版本：|方法名 or 属性名：getCookieManager<br>废弃版本：9<br>代替接口：ohos.web.webview.webview.WebviewController |web.d.ts|
-|废弃版本有变化|方法名 or 属性名：searchAllAsync<br>废弃版本：|方法名 or 属性名：searchAllAsync<br>废弃版本：9<br>代替接口：ohos.web.webview.webview.WebviewController |web.d.ts|
-|废弃版本有变化|方法名 or 属性名：clearMatches<br>废弃版本：|方法名 or 属性名：clearMatches<br>废弃版本：9<br>代替接口：ohos.web.webview.webview.WebviewController |web.d.ts|
-|废弃版本有变化|方法名 or 属性名：searchNext<br>废弃版本：|方法名 or 属性名：searchNext<br>废弃版本：9<br>代替接口：ohos.web.webview.webview.WebviewController |web.d.ts|
-|废弃版本有变化|方法名 or 属性名：clearSslCache<br>废弃版本：|方法名 or 属性名：clearSslCache<br>废弃版本：9<br>代替接口：ohos.web.webview.webview.WebviewController |web.d.ts|
-|废弃版本有变化|方法名 or 属性名：clearClientAuthenticationCache<br>废弃版本：|方法名 or 属性名：clearClientAuthenticationCache<br>废弃版本：9<br>代替接口：ohos.web.webview.webview.WebviewController |web.d.ts|
+|访问级别有变化|方法名 or 属性名：springMotion<br>访问级别：公开API|方法名 or 属性名：springMotion<br>访问级别：系统API|@ohos.curves.d.ts|
+|访问级别有变化|方法名 or 属性名：responsiveSpringMotion<br>访问级别：公开API|方法名 or 属性名：responsiveSpringMotion<br>访问级别：系统API|@ohos.curves.d.ts|
+|访问级别有变化|类名：BlurStyle<br>访问级别：公开API|类名：BlurStyle<br>访问级别：系统API|common.d.ts|
+|访问级别有变化|方法名 or 属性名：Thin<br>访问级别：公开API|方法名 or 属性名：Thin<br>访问级别：系统API|common.d.ts|
+|访问级别有变化|方法名 or 属性名：Regular<br>访问级别：公开API|方法名 or 属性名：Regular<br>访问级别：系统API|common.d.ts|
+|访问级别有变化|方法名 or 属性名：Thick<br>访问级别：公开API|方法名 or 属性名：Thick<br>访问级别：系统API|common.d.ts|
+|访问级别有变化|方法名 or 属性名：backgroundBlurStyle<br>访问级别：公开API|方法名 or 属性名：backgroundBlurStyle<br>访问级别：系统API|common.d.ts|
+|访问级别有变化|方法名 or 属性名：extendViewModel<br>访问级别：公开API|方法名 or 属性名：extendViewModel<br>访问级别：系统API|viewmodel.d.ts|
+|废弃版本有变化|方法名 or 属性名：update<br>废弃版本：N/A|方法名 or 属性名：update<br>废弃版本：9<br>代替接口：ohos.animator.reset   |@ohos.animator.d.ts|
+|废弃版本有变化|方法名 or 属性名：createAnimator<br>废弃版本：N/A|方法名 or 属性名：createAnimator<br>废弃版本：9<br>代替接口：ohos.animator.create   |@ohos.animator.d.ts|
+|废弃版本有变化|类名：prompt<br>废弃版本：N/A|类名：prompt<br>废弃版本：9<br>代替接口：ohos.promptAction |@ohos.prompt.d.ts|
+|废弃版本有变化|方法名 or 属性名：push<br>废弃版本：N/A|方法名 or 属性名：push<br>废弃版本：9<br>代替接口：ohos.router.router|@ohos.router.d.ts|
+|废弃版本有变化|方法名 or 属性名：replace<br>废弃版本：N/A|方法名 or 属性名：replace<br>废弃版本：9<br>代替接口：ohos.router.router|@ohos.router.d.ts|
+|废弃版本有变化|方法名 or 属性名：enableAlertBeforeBackPage<br>废弃版本：N/A|方法名 or 属性名：enableAlertBeforeBackPage<br>废弃版本：9<br>代替接口：ohos.router.router|@ohos.router.d.ts|
+|废弃版本有变化|方法名 or 属性名：staticClear<br>废弃版本：N/A|方法名 or 属性名：staticClear<br>废弃版本：9<br>代替接口：AppStorage.Clear   |common_ts_ets_api.d.ts|
+|废弃版本有变化|方法名 or 属性名：subTitle<br>废弃版本：N/A|方法名 or 属性名：subTitle<br>废弃版本：9<br>代替接口：title   |navigation.d.ts|
+|废弃版本有变化|方法名 or 属性名：ructor(message<br>废弃版本：N/A|方法名 or 属性名：ructor(message<br>废弃版本：9<br>代替接口：ohos.web.ConsoleMessage|web.d.ts|
+|废弃版本有变化|类名：WebController<br>废弃版本：N/A|类名：WebController<br>废弃版本：9<br>代替接口：ohos.web.webview.webview.WebviewController |web.d.ts|
+|废弃版本有变化|方法名 or 属性名：onInactive<br>废弃版本：N/A|方法名 or 属性名：onInactive<br>废弃版本：9<br>代替接口：ohos.web.webview.webview.WebviewController|web.d.ts|
+|废弃版本有变化|方法名 or 属性名：onActive<br>废弃版本：N/A|方法名 or 属性名：onActive<br>废弃版本：9<br>代替接口：ohos.web.webview.webview.WebviewController|web.d.ts|
+|废弃版本有变化|方法名 or 属性名：zoom<br>废弃版本：N/A|方法名 or 属性名：zoom<br>废弃版本：9<br>代替接口：ohos.web.webview.webview.WebviewController|web.d.ts|
+|废弃版本有变化|方法名 or 属性名：clearHistory<br>废弃版本：N/A|方法名 or 属性名：clearHistory<br>废弃版本：9<br>代替接口：ohos.web.webview.webview.WebviewController|web.d.ts|
+|废弃版本有变化|方法名 or 属性名：runJavaScript<br>废弃版本：N/A|方法名 or 属性名：runJavaScript<br>废弃版本：9<br>代替接口：ohos.web.webview.webview.WebviewController|web.d.ts|
+|废弃版本有变化|方法名 or 属性名：loadData<br>废弃版本：N/A|方法名 or 属性名：loadData<br>废弃版本：9<br>代替接口：ohos.web.webview.webview.WebviewController|web.d.ts|
+|废弃版本有变化|方法名 or 属性名：loadUrl<br>废弃版本：N/A|方法名 or 属性名：loadUrl<br>废弃版本：9<br>代替接口：ohos.web.webview.webview.WebviewController|web.d.ts|
+|废弃版本有变化|方法名 or 属性名：refresh<br>废弃版本：N/A|方法名 or 属性名：refresh<br>废弃版本：9<br>代替接口：ohos.web.webview.webview.WebviewController|web.d.ts|
+|废弃版本有变化|方法名 or 属性名：stop<br>废弃版本：N/A|方法名 or 属性名：stop<br>废弃版本：9<br>代替接口：ohos.web.webview.webview.WebviewController|web.d.ts|
+|废弃版本有变化|方法名 or 属性名：registerJavaScriptProxy<br>废弃版本：N/A|方法名 or 属性名：registerJavaScriptProxy<br>废弃版本：9<br>代替接口：ohos.web.webview.webview.WebviewController|web.d.ts|
+|废弃版本有变化|方法名 or 属性名：deleteJavaScriptRegister<br>废弃版本：N/A|方法名 or 属性名：deleteJavaScriptRegister<br>废弃版本：9<br>代替接口：ohos.web.webview.webview.WebviewController|web.d.ts|
+|废弃版本有变化|方法名 or 属性名：getHitTest<br>废弃版本：N/A|方法名 or 属性名：getHitTest<br>废弃版本：9<br>代替接口：ohos.web.webview.webview.WebviewController|web.d.ts|
+|废弃版本有变化|方法名 or 属性名：requestFocus<br>废弃版本：N/A|方法名 or 属性名：requestFocus<br>废弃版本：9<br>代替接口：ohos.web.webview.webview.WebviewController|web.d.ts|
+|废弃版本有变化|方法名 or 属性名：accessBackward<br>废弃版本：N/A|方法名 or 属性名：accessBackward<br>废弃版本：9<br>代替接口：ohos.web.webview.webview.WebviewController|web.d.ts|
+|废弃版本有变化|方法名 or 属性名：accessForward<br>废弃版本：N/A|方法名 or 属性名：accessForward<br>废弃版本：9<br>代替接口：ohos.web.webview.webview.WebviewController|web.d.ts|
+|废弃版本有变化|方法名 or 属性名：accessStep<br>废弃版本：N/A|方法名 or 属性名：accessStep<br>废弃版本：9<br>代替接口：ohos.web.webview.webview.WebviewController|web.d.ts|
+|废弃版本有变化|方法名 or 属性名：backward<br>废弃版本：N/A|方法名 or 属性名：backward<br>废弃版本：9<br>代替接口：ohos.web.webview.webview.WebviewController|web.d.ts|
+|废弃版本有变化|方法名 or 属性名：forward<br>废弃版本：N/A|方法名 or 属性名：forward<br>废弃版本：9<br>代替接口：ohos.web.webview.webview.WebviewController|web.d.ts|
 |起始版本有变化|方法名 or 属性名：extendViewModel<br>起始版本：|方法名 or 属性名：extendViewModel<br>起始版本：4|viewmodel.d.ts|
+|访问级别有变化|方法名 or 属性名：springMotion<br>访问级别：公开API|方法名 or 属性名：springMotion<br>访问级别：系统API|@ohos.curves.d.ts|
+|访问级别有变化|方法名 or 属性名：responsiveSpringMotion<br>访问级别：公开API|方法名 or 属性名：responsiveSpringMotion<br>访问级别：系统API|@ohos.curves.d.ts|
+|访问级别有变化|类名：BlurStyle<br>访问级别：公开API|类名：BlurStyle<br>访问级别：系统API|common.d.ts|
+|访问级别有变化|方法名 or 属性名：Thin<br>访问级别：公开API|方法名 or 属性名：Thin<br>访问级别：系统API|common.d.ts|
+|访问级别有变化|方法名 or 属性名：Regular<br>访问级别：公开API|方法名 or 属性名：Regular<br>访问级别：系统API|common.d.ts|
+|访问级别有变化|方法名 or 属性名：Thick<br>访问级别：公开API|方法名 or 属性名：Thick<br>访问级别：系统API|common.d.ts|
+|访问级别有变化|方法名 or 属性名：backgroundBlurStyle<br>访问级别：公开API|方法名 or 属性名：backgroundBlurStyle<br>访问级别：系统API|common.d.ts|
+|访问级别有变化|方法名 or 属性名：extendViewModel<br>访问级别：公开API|方法名 or 属性名：extendViewModel<br>访问级别：系统API|viewmodel.d.ts|

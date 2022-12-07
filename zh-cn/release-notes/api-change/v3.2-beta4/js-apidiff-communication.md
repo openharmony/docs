@@ -278,6 +278,7 @@
 |新增||模块名：ohos.rpc<br>类名:Ashmem<br>方法名 or 属性名:setProtectionType|@ohos.rpc.d.ts|
 |新增||模块名：ohos.rpc<br>类名:Ashmem<br>方法名 or 属性名:writeAshmem|@ohos.rpc.d.ts|
 |新增||模块名：ohos.rpc<br>类名:Ashmem<br>方法名 or 属性名:readAshmem|@ohos.rpc.d.ts|
+|新增||模块名: ohos.wifiManager<br>类名: wifiManager|@ohos.wifiManager.d.ts|
 |新增||模块名: ohos.wifiManager<br>类名: wifiManager<br>方法名 or 属性名： enableWifi|@ohos.wifiManager.d.ts|
 |新增||模块名: ohos.wifiManager<br>类名: wifiManager<br>方法名 or 属性名： disableWifi|@ohos.wifiManager.d.ts|
 |新增||模块名: ohos.wifiManager<br>类名: wifiManager<br>方法名 or 属性名： isWifiActive|@ohos.wifiManager.d.ts|
@@ -554,6 +555,7 @@
 |新增||模块名: ohos.wifiManager<br>类名: GroupOwnerBand<br>方法名 or 属性名： GO_BAND_AUTO|@ohos.wifiManager.d.ts|
 |新增||模块名: ohos.wifiManager<br>类名: GroupOwnerBand<br>方法名 or 属性名： GO_BAND_2GHZ|@ohos.wifiManager.d.ts|
 |新增||模块名: ohos.wifiManager<br>类名: GroupOwnerBand<br>方法名 or 属性名： GO_BAND_5GHZ|@ohos.wifiManager.d.ts|
+|新增||模块名: ohos.wifiManagerExt<br>类名: wifiManagerExt|@ohos.wifiManagerExt.d.ts|
 |新增||模块名: ohos.wifiManagerExt<br>类名: wifiManagerExt<br>方法名 or 属性名： enableHotspot|@ohos.wifiManagerExt.d.ts|
 |新增||模块名: ohos.wifiManagerExt<br>类名: wifiManagerExt<br>方法名 or 属性名： disableHotspot|@ohos.wifiManagerExt.d.ts|
 |新增||模块名: ohos.wifiManagerExt<br>类名: wifiManagerExt<br>方法名 or 属性名： getSupportedPowerMode|@ohos.wifiManagerExt.d.ts|
@@ -720,332 +722,136 @@
 |删除|模块名: nfctech<br>类名: MifareUltralightType<br>方法名 or 属性名：TYPE_ULTRALIGHT_C||nfctech.d.ts|
 |删除|模块名：nfctech<br>类名:MifareUltralightTag<br>方法名 or 属性名:writeSinglePages||nfctech.d.ts|
 |删除|模块名：nfctech<br>类名:MifareUltralightTag<br>方法名 or 属性名:writeSinglePages||nfctech.d.ts|
-|废弃版本有变化|类名：MessageParcel<br>废弃版本：|类名：MessageParcel<br>废弃版本：9<br>代替接口：ohos.rpc.MessageSequence     |@ohos.rpc.d.ts|
-|废弃版本有变化|方法名 or 属性名：create<br>废弃版本：|方法名 or 属性名：create<br>废弃版本：9<br>代替接口：ohos.rpc.MessageSequence     |@ohos.rpc.d.ts|
-|废弃版本有变化|方法名 or 属性名：reclaim<br>废弃版本：|方法名 or 属性名：reclaim<br>废弃版本：9<br>代替接口：ohos.rpc.MessageSequence     |@ohos.rpc.d.ts|
-|废弃版本有变化|方法名 or 属性名：writeRemoteObject<br>废弃版本：|方法名 or 属性名：writeRemoteObject<br>废弃版本：9<br>代替接口：ohos.rpc.MessageSequence     |@ohos.rpc.d.ts|
-|废弃版本有变化|方法名 or 属性名：readRemoteObject<br>废弃版本：|方法名 or 属性名：readRemoteObject<br>废弃版本：9<br>代替接口：ohos.rpc.MessageSequence     |@ohos.rpc.d.ts|
-|废弃版本有变化|方法名 or 属性名：writeInterfaceToken<br>废弃版本：|方法名 or 属性名：writeInterfaceToken<br>废弃版本：9<br>代替接口：ohos.rpc.MessageSequence     |@ohos.rpc.d.ts|
-|废弃版本有变化|方法名 or 属性名：readInterfaceToken<br>废弃版本：|方法名 or 属性名：readInterfaceToken<br>废弃版本：9<br>代替接口：ohos.rpc.MessageSequence     |@ohos.rpc.d.ts|
-|废弃版本有变化|方法名 or 属性名：getSize<br>废弃版本：|方法名 or 属性名：getSize<br>废弃版本：9<br>代替接口：ohos.rpc.MessageSequence     |@ohos.rpc.d.ts|
-|废弃版本有变化|方法名 or 属性名：getCapacity<br>废弃版本：|方法名 or 属性名：getCapacity<br>废弃版本：9<br>代替接口：ohos.rpc.MessageSequence     |@ohos.rpc.d.ts|
-|废弃版本有变化|方法名 or 属性名：setSize<br>废弃版本：|方法名 or 属性名：setSize<br>废弃版本：9<br>代替接口：ohos.rpc.MessageSequence     |@ohos.rpc.d.ts|
-|废弃版本有变化|方法名 or 属性名：setCapacity<br>废弃版本：|方法名 or 属性名：setCapacity<br>废弃版本：9<br>代替接口：ohos.rpc.MessageSequence     |@ohos.rpc.d.ts|
-|废弃版本有变化|方法名 or 属性名：getWritableBytes<br>废弃版本：|方法名 or 属性名：getWritableBytes<br>废弃版本：9<br>代替接口：ohos.rpc.MessageSequence     |@ohos.rpc.d.ts|
-|废弃版本有变化|方法名 or 属性名：getReadableBytes<br>废弃版本：|方法名 or 属性名：getReadableBytes<br>废弃版本：9<br>代替接口：ohos.rpc.MessageSequence     |@ohos.rpc.d.ts|
-|废弃版本有变化|方法名 or 属性名：getReadPosition<br>废弃版本：|方法名 or 属性名：getReadPosition<br>废弃版本：9<br>代替接口：ohos.rpc.MessageSequence     |@ohos.rpc.d.ts|
-|废弃版本有变化|方法名 or 属性名：getWritePosition<br>废弃版本：|方法名 or 属性名：getWritePosition<br>废弃版本：9<br>代替接口：ohos.rpc.MessageSequence     |@ohos.rpc.d.ts|
-|废弃版本有变化|方法名 or 属性名：rewindRead<br>废弃版本：|方法名 or 属性名：rewindRead<br>废弃版本：9<br>代替接口：ohos.rpc.MessageSequence     |@ohos.rpc.d.ts|
-|废弃版本有变化|方法名 or 属性名：rewindWrite<br>废弃版本：|方法名 or 属性名：rewindWrite<br>废弃版本：9<br>代替接口：ohos.rpc.MessageSequence     |@ohos.rpc.d.ts|
-|废弃版本有变化|方法名 or 属性名：writeNoException<br>废弃版本：|方法名 or 属性名：writeNoException<br>废弃版本：9<br>代替接口：ohos.rpc.MessageSequence     |@ohos.rpc.d.ts|
-|废弃版本有变化|方法名 or 属性名：readException<br>废弃版本：|方法名 or 属性名：readException<br>废弃版本：9<br>代替接口：ohos.rpc.MessageSequence     |@ohos.rpc.d.ts|
-|废弃版本有变化|方法名 or 属性名：writeByte<br>废弃版本：|方法名 or 属性名：writeByte<br>废弃版本：9<br>代替接口：ohos.rpc.MessageSequence     |@ohos.rpc.d.ts|
-|废弃版本有变化|方法名 or 属性名：writeShort<br>废弃版本：|方法名 or 属性名：writeShort<br>废弃版本：9<br>代替接口：ohos.rpc.MessageSequence     |@ohos.rpc.d.ts|
-|废弃版本有变化|方法名 or 属性名：writeInt<br>废弃版本：|方法名 or 属性名：writeInt<br>废弃版本：9<br>代替接口：ohos.rpc.MessageSequence     |@ohos.rpc.d.ts|
-|废弃版本有变化|方法名 or 属性名：writeLong<br>废弃版本：|方法名 or 属性名：writeLong<br>废弃版本：9<br>代替接口：ohos.rpc.MessageSequence     |@ohos.rpc.d.ts|
-|废弃版本有变化|方法名 or 属性名：writeFloat<br>废弃版本：|方法名 or 属性名：writeFloat<br>废弃版本：9<br>代替接口：ohos.rpc.MessageSequence     |@ohos.rpc.d.ts|
-|废弃版本有变化|方法名 or 属性名：writeDouble<br>废弃版本：|方法名 or 属性名：writeDouble<br>废弃版本：9<br>代替接口：ohos.rpc.MessageSequence     |@ohos.rpc.d.ts|
-|废弃版本有变化|方法名 or 属性名：writeBoolean<br>废弃版本：|方法名 or 属性名：writeBoolean<br>废弃版本：9<br>代替接口：ohos.rpc.MessageSequence     |@ohos.rpc.d.ts|
-|废弃版本有变化|方法名 or 属性名：writeChar<br>废弃版本：|方法名 or 属性名：writeChar<br>废弃版本：9<br>代替接口：ohos.rpc.MessageSequence     |@ohos.rpc.d.ts|
-|废弃版本有变化|方法名 or 属性名：writeString<br>废弃版本：|方法名 or 属性名：writeString<br>废弃版本：9<br>代替接口：ohos.rpc.MessageSequence     |@ohos.rpc.d.ts|
-|废弃版本有变化|方法名 or 属性名：writeSequenceable<br>废弃版本：|方法名 or 属性名：writeSequenceable<br>废弃版本：9<br>代替接口：ohos.rpc.MessageSequence     |@ohos.rpc.d.ts|
-|废弃版本有变化|方法名 or 属性名：writeByteArray<br>废弃版本：|方法名 or 属性名：writeByteArray<br>废弃版本：9<br>代替接口：ohos.rpc.MessageSequence     |@ohos.rpc.d.ts|
-|废弃版本有变化|方法名 or 属性名：writeShortArray<br>废弃版本：|方法名 or 属性名：writeShortArray<br>废弃版本：9<br>代替接口：ohos.rpc.MessageSequence     |@ohos.rpc.d.ts|
-|废弃版本有变化|方法名 or 属性名：writeIntArray<br>废弃版本：|方法名 or 属性名：writeIntArray<br>废弃版本：9<br>代替接口：ohos.rpc.MessageSequence     |@ohos.rpc.d.ts|
-|废弃版本有变化|方法名 or 属性名：writeLongArray<br>废弃版本：|方法名 or 属性名：writeLongArray<br>废弃版本：9<br>代替接口：ohos.rpc.MessageSequence     |@ohos.rpc.d.ts|
-|废弃版本有变化|方法名 or 属性名：writeFloatArray<br>废弃版本：|方法名 or 属性名：writeFloatArray<br>废弃版本：9<br>代替接口：ohos.rpc.MessageSequence     |@ohos.rpc.d.ts|
-|废弃版本有变化|方法名 or 属性名：writeDoubleArray<br>废弃版本：|方法名 or 属性名：writeDoubleArray<br>废弃版本：9<br>代替接口：ohos.rpc.MessageSequence     |@ohos.rpc.d.ts|
-|废弃版本有变化|方法名 or 属性名：writeBooleanArray<br>废弃版本：|方法名 or 属性名：writeBooleanArray<br>废弃版本：9<br>代替接口：ohos.rpc.MessageSequence     |@ohos.rpc.d.ts|
-|废弃版本有变化|方法名 or 属性名：writeCharArray<br>废弃版本：|方法名 or 属性名：writeCharArray<br>废弃版本：9<br>代替接口：ohos.rpc.MessageSequence     |@ohos.rpc.d.ts|
-|废弃版本有变化|方法名 or 属性名：writeStringArray<br>废弃版本：|方法名 or 属性名：writeStringArray<br>废弃版本：9<br>代替接口：ohos.rpc.MessageSequence     |@ohos.rpc.d.ts|
-|废弃版本有变化|方法名 or 属性名：writeSequenceableArray<br>废弃版本：|方法名 or 属性名：writeSequenceableArray<br>废弃版本：9<br>代替接口：ohos.rpc.MessageSequence     |@ohos.rpc.d.ts|
-|废弃版本有变化|方法名 or 属性名：writeRemoteObjectArray<br>废弃版本：|方法名 or 属性名：writeRemoteObjectArray<br>废弃版本：9<br>代替接口：ohos.rpc.MessageSequence     |@ohos.rpc.d.ts|
-|废弃版本有变化|方法名 or 属性名：readByte<br>废弃版本：|方法名 or 属性名：readByte<br>废弃版本：9<br>代替接口：ohos.rpc.MessageSequence     |@ohos.rpc.d.ts|
-|废弃版本有变化|方法名 or 属性名：readShort<br>废弃版本：|方法名 or 属性名：readShort<br>废弃版本：9<br>代替接口：ohos.rpc.MessageSequence     |@ohos.rpc.d.ts|
-|废弃版本有变化|方法名 or 属性名：readInt<br>废弃版本：|方法名 or 属性名：readInt<br>废弃版本：9<br>代替接口：ohos.rpc.MessageSequence     |@ohos.rpc.d.ts|
-|废弃版本有变化|方法名 or 属性名：readLong<br>废弃版本：|方法名 or 属性名：readLong<br>废弃版本：9<br>代替接口：ohos.rpc.MessageSequence     |@ohos.rpc.d.ts|
-|废弃版本有变化|方法名 or 属性名：readFloat<br>废弃版本：|方法名 or 属性名：readFloat<br>废弃版本：9<br>代替接口：ohos.rpc.MessageSequence     |@ohos.rpc.d.ts|
-|废弃版本有变化|方法名 or 属性名：readDouble<br>废弃版本：|方法名 or 属性名：readDouble<br>废弃版本：9<br>代替接口：ohos.rpc.MessageSequence     |@ohos.rpc.d.ts|
-|废弃版本有变化|方法名 or 属性名：readBoolean<br>废弃版本：|方法名 or 属性名：readBoolean<br>废弃版本：9<br>代替接口：ohos.rpc.MessageSequence     |@ohos.rpc.d.ts|
-|废弃版本有变化|方法名 or 属性名：readChar<br>废弃版本：|方法名 or 属性名：readChar<br>废弃版本：9<br>代替接口：ohos.rpc.MessageSequence     |@ohos.rpc.d.ts|
-|废弃版本有变化|方法名 or 属性名：readString<br>废弃版本：|方法名 or 属性名：readString<br>废弃版本：9<br>代替接口：ohos.rpc.MessageSequence     |@ohos.rpc.d.ts|
-|废弃版本有变化|方法名 or 属性名：readSequenceable<br>废弃版本：|方法名 or 属性名：readSequenceable<br>废弃版本：9<br>代替接口：ohos.rpc.MessageSequence     |@ohos.rpc.d.ts|
-|废弃版本有变化|方法名 or 属性名：readByteArray<br>废弃版本：|方法名 or 属性名：readByteArray<br>废弃版本：9<br>代替接口：ohos.rpc.MessageSequence     |@ohos.rpc.d.ts|
-|废弃版本有变化|方法名 or 属性名：readByteArray<br>废弃版本：|方法名 or 属性名：readByteArray<br>废弃版本：9<br>代替接口：ohos.rpc.MessageSequence     |@ohos.rpc.d.ts|
-|废弃版本有变化|方法名 or 属性名：readShortArray<br>废弃版本：|方法名 or 属性名：readShortArray<br>废弃版本：9<br>代替接口：ohos.rpc.MessageSequence     |@ohos.rpc.d.ts|
-|废弃版本有变化|方法名 or 属性名：readShortArray<br>废弃版本：|方法名 or 属性名：readShortArray<br>废弃版本：9<br>代替接口：ohos.rpc.MessageSequence     |@ohos.rpc.d.ts|
-|废弃版本有变化|方法名 or 属性名：readIntArray<br>废弃版本：|方法名 or 属性名：readIntArray<br>废弃版本：9<br>代替接口：ohos.rpc.MessageSequence     |@ohos.rpc.d.ts|
-|废弃版本有变化|方法名 or 属性名：readIntArray<br>废弃版本：|方法名 or 属性名：readIntArray<br>废弃版本：9<br>代替接口：ohos.rpc.MessageSequence     |@ohos.rpc.d.ts|
-|废弃版本有变化|方法名 or 属性名：readLongArray<br>废弃版本：|方法名 or 属性名：readLongArray<br>废弃版本：9<br>代替接口：ohos.rpc.MessageSequence     |@ohos.rpc.d.ts|
-|废弃版本有变化|方法名 or 属性名：readLongArray<br>废弃版本：|方法名 or 属性名：readLongArray<br>废弃版本：9<br>代替接口：ohos.rpc.MessageSequence     |@ohos.rpc.d.ts|
-|废弃版本有变化|方法名 or 属性名：readFloatArray<br>废弃版本：|方法名 or 属性名：readFloatArray<br>废弃版本：9<br>代替接口：ohos.rpc.MessageSequence     |@ohos.rpc.d.ts|
-|废弃版本有变化|方法名 or 属性名：readFloatArray<br>废弃版本：|方法名 or 属性名：readFloatArray<br>废弃版本：9<br>代替接口：ohos.rpc.MessageSequence     |@ohos.rpc.d.ts|
-|废弃版本有变化|方法名 or 属性名：readDoubleArray<br>废弃版本：|方法名 or 属性名：readDoubleArray<br>废弃版本：9<br>代替接口：ohos.rpc.MessageSequence     |@ohos.rpc.d.ts|
-|废弃版本有变化|方法名 or 属性名：readDoubleArray<br>废弃版本：|方法名 or 属性名：readDoubleArray<br>废弃版本：9<br>代替接口：ohos.rpc.MessageSequence     |@ohos.rpc.d.ts|
-|废弃版本有变化|方法名 or 属性名：readBooleanArray<br>废弃版本：|方法名 or 属性名：readBooleanArray<br>废弃版本：9<br>代替接口：ohos.rpc.MessageSequence     |@ohos.rpc.d.ts|
-|废弃版本有变化|方法名 or 属性名：readBooleanArray<br>废弃版本：|方法名 or 属性名：readBooleanArray<br>废弃版本：9<br>代替接口：ohos.rpc.MessageSequence     |@ohos.rpc.d.ts|
-|废弃版本有变化|方法名 or 属性名：readCharArray<br>废弃版本：|方法名 or 属性名：readCharArray<br>废弃版本：9<br>代替接口：ohos.rpc.MessageSequence     |@ohos.rpc.d.ts|
-|废弃版本有变化|方法名 or 属性名：readCharArray<br>废弃版本：|方法名 or 属性名：readCharArray<br>废弃版本：9<br>代替接口：ohos.rpc.MessageSequence     |@ohos.rpc.d.ts|
-|废弃版本有变化|方法名 or 属性名：readStringArray<br>废弃版本：|方法名 or 属性名：readStringArray<br>废弃版本：9<br>代替接口：ohos.rpc.MessageSequence     |@ohos.rpc.d.ts|
-|废弃版本有变化|方法名 or 属性名：readStringArray<br>废弃版本：|方法名 or 属性名：readStringArray<br>废弃版本：9<br>代替接口：ohos.rpc.MessageSequence     |@ohos.rpc.d.ts|
-|废弃版本有变化|方法名 or 属性名：readSequenceableArray<br>废弃版本：|方法名 or 属性名：readSequenceableArray<br>废弃版本：9<br>代替接口：ohos.rpc.MessageSequence     |@ohos.rpc.d.ts|
-|废弃版本有变化|方法名 or 属性名：readRemoteObjectArray<br>废弃版本：|方法名 or 属性名：readRemoteObjectArray<br>废弃版本：9<br>代替接口：ohos.rpc.MessageSequence     |@ohos.rpc.d.ts|
-|废弃版本有变化|方法名 or 属性名：readRemoteObjectArray<br>废弃版本：|方法名 or 属性名：readRemoteObjectArray<br>废弃版本：9<br>代替接口：ohos.rpc.MessageSequence     |@ohos.rpc.d.ts|
-|废弃版本有变化|方法名 or 属性名：closeFileDescriptor<br>废弃版本：|方法名 or 属性名：closeFileDescriptor<br>废弃版本：9<br>代替接口：ohos.rpc.MessageSequence     |@ohos.rpc.d.ts|
-|废弃版本有变化|方法名 or 属性名：dupFileDescriptor<br>废弃版本：|方法名 or 属性名：dupFileDescriptor<br>废弃版本：9<br>代替接口：ohos.rpc.MessageSequence     |@ohos.rpc.d.ts|
-|废弃版本有变化|方法名 or 属性名：containFileDescriptors<br>废弃版本：|方法名 or 属性名：containFileDescriptors<br>废弃版本：9<br>代替接口：ohos.rpc.MessageSequence     |@ohos.rpc.d.ts|
-|废弃版本有变化|方法名 or 属性名：writeFileDescriptor<br>废弃版本：|方法名 or 属性名：writeFileDescriptor<br>废弃版本：9<br>代替接口：ohos.rpc.MessageSequence     |@ohos.rpc.d.ts|
-|废弃版本有变化|方法名 or 属性名：readFileDescriptor<br>废弃版本：|方法名 or 属性名：readFileDescriptor<br>废弃版本：9<br>代替接口：ohos.rpc.MessageSequence     |@ohos.rpc.d.ts|
-|废弃版本有变化|方法名 or 属性名：writeAshmem<br>废弃版本：|方法名 or 属性名：writeAshmem<br>废弃版本：9<br>代替接口：ohos.rpc.MessageSequence     |@ohos.rpc.d.ts|
-|废弃版本有变化|方法名 or 属性名：readAshmem<br>废弃版本：|方法名 or 属性名：readAshmem<br>废弃版本：9<br>代替接口：ohos.rpc.MessageSequence     |@ohos.rpc.d.ts|
-|废弃版本有变化|方法名 or 属性名：getRawDataCapacity<br>废弃版本：|方法名 or 属性名：getRawDataCapacity<br>废弃版本：9<br>代替接口：ohos.rpc.MessageSequence     |@ohos.rpc.d.ts|
-|废弃版本有变化|方法名 or 属性名：writeRawData<br>废弃版本：|方法名 or 属性名：writeRawData<br>废弃版本：9<br>代替接口：ohos.rpc.MessageSequence     |@ohos.rpc.d.ts|
-|废弃版本有变化|方法名 or 属性名：readRawData<br>废弃版本：|方法名 or 属性名：readRawData<br>废弃版本：9<br>代替接口：ohos.rpc.MessageSequence     |@ohos.rpc.d.ts|
-|废弃版本有变化|类名：Sequenceable<br>废弃版本：|类名：Sequenceable<br>废弃版本：9<br>代替接口：ohos.rpc.Parcelable     |@ohos.rpc.d.ts|
-|废弃版本有变化|方法名 or 属性名：marshalling<br>废弃版本：|方法名 or 属性名：marshalling<br>废弃版本：9<br>代替接口：ohos.rpc.Parcelable     |@ohos.rpc.d.ts|
-|废弃版本有变化|方法名 or 属性名：unmarshalling<br>废弃版本：|方法名 or 属性名：unmarshalling<br>废弃版本：9<br>代替接口：ohos.rpc.Parcelable     |@ohos.rpc.d.ts|
-|废弃版本有变化|类名：SendRequestResult<br>废弃版本：|类名：SendRequestResult<br>废弃版本：9<br>代替接口：ohos.rpc.RequestResult     |@ohos.rpc.d.ts|
-|废弃版本有变化|方法名 or 属性名：errCode<br>废弃版本：|方法名 or 属性名：errCode<br>废弃版本：9<br>代替接口：ohos.rpc.RequestResult     |@ohos.rpc.d.ts|
-|废弃版本有变化|方法名 or 属性名：code<br>废弃版本：|方法名 or 属性名：code<br>废弃版本：9<br>代替接口：ohos.rpc.RequestResult     |@ohos.rpc.d.ts|
-|废弃版本有变化|方法名 or 属性名：data<br>废弃版本：|方法名 or 属性名：data<br>废弃版本：9<br>代替接口：ohos.rpc.RequestResult     |@ohos.rpc.d.ts|
-|废弃版本有变化|方法名 or 属性名：reply<br>废弃版本：|方法名 or 属性名：reply<br>废弃版本：9<br>代替接口：ohos.rpc.RequestResult     |@ohos.rpc.d.ts|
-|废弃版本有变化|方法名 or 属性名：queryLocalInterface<br>废弃版本：|方法名 or 属性名：queryLocalInterface<br>废弃版本：9<br>代替接口：ohos.rpc.IRemoteObject|@ohos.rpc.d.ts|
+|废弃版本有变化|类名：MessageParcel<br>废弃版本：N/A|类名：MessageParcel<br>废弃版本：9<br>代替接口：ohos.rpc.MessageSequence     |@ohos.rpc.d.ts|
+|废弃版本有变化|类名：Sequenceable<br>废弃版本：N/A|类名：Sequenceable<br>废弃版本：9<br>代替接口：ohos.rpc.Parcelable     |@ohos.rpc.d.ts|
+|废弃版本有变化|类名：SendRequestResult<br>废弃版本：N/A|类名：SendRequestResult<br>废弃版本：9<br>代替接口：ohos.rpc.RequestResult     |@ohos.rpc.d.ts|
+|废弃版本有变化|方法名 or 属性名：queryLocalInterface<br>废弃版本：N/A|方法名 or 属性名：queryLocalInterface<br>废弃版本：9<br>代替接口：ohos.rpc.IRemoteObject|@ohos.rpc.d.ts|
 |废弃版本有变化|方法名 or 属性名：sendRequest<br>废弃版本：8|方法名 or 属性名：sendRequest<br>废弃版本：9|@ohos.rpc.d.ts|
-|废弃版本有变化|方法名 or 属性名：sendRequest<br>废弃版本：|方法名 or 属性名：sendRequest<br>废弃版本：9<br>代替接口：ohos.rpc.IRemoteObject|@ohos.rpc.d.ts|
-|废弃版本有变化|方法名 or 属性名：addDeathRecipient<br>废弃版本：|方法名 or 属性名：addDeathRecipient<br>废弃版本：9<br>代替接口：ohos.rpc.IRemoteObject|@ohos.rpc.d.ts|
-|废弃版本有变化|方法名 or 属性名：removeDeathRecipient<br>废弃版本：|方法名 or 属性名：removeDeathRecipient<br>废弃版本：9<br>代替接口：ohos.rpc.IRemoteObject|@ohos.rpc.d.ts|
-|废弃版本有变化|方法名 or 属性名：getInterfaceDescriptor<br>废弃版本：|方法名 or 属性名：getInterfaceDescriptor<br>废弃版本：9<br>代替接口：ohos.rpc.IRemoteObject|@ohos.rpc.d.ts|
-|废弃版本有变化|方法名 or 属性名：queryLocalInterface<br>废弃版本：|方法名 or 属性名：queryLocalInterface<br>废弃版本：9<br>代替接口：ohos.rpc.RemoteObject|@ohos.rpc.d.ts|
-|废弃版本有变化|方法名 or 属性名：getInterfaceDescriptor<br>废弃版本：|方法名 or 属性名：getInterfaceDescriptor<br>废弃版本：9<br>代替接口：ohos.rpc.RemoteObject|@ohos.rpc.d.ts|
-|废弃版本有变化|方法名 or 属性名：sendRequest<br>废弃版本：|方法名 or 属性名：sendRequest<br>废弃版本：9<br>代替接口：ohos.rpc.RemoteObject|@ohos.rpc.d.ts|
-|废弃版本有变化|方法名 or 属性名：attachLocalInterface<br>废弃版本：|方法名 or 属性名：attachLocalInterface<br>废弃版本：9<br>代替接口：ohos.rpc.RemoteObject|@ohos.rpc.d.ts|
-|废弃版本有变化|方法名 or 属性名：queryLocalInterface<br>废弃版本：|方法名 or 属性名：queryLocalInterface<br>废弃版本：9<br>代替接口：ohos.rpc.RemoteProxy|@ohos.rpc.d.ts|
-|废弃版本有变化|方法名 or 属性名：addDeathRecipient<br>废弃版本：|方法名 or 属性名：addDeathRecipient<br>废弃版本：9<br>代替接口：ohos.rpc.RemoteProxy|@ohos.rpc.d.ts|
-|废弃版本有变化|方法名 or 属性名：removeDeathRecipient<br>废弃版本：|方法名 or 属性名：removeDeathRecipient<br>废弃版本：9<br>代替接口：ohos.rpc.RemoteProxy|@ohos.rpc.d.ts|
-|废弃版本有变化|方法名 or 属性名：getInterfaceDescriptor<br>废弃版本：|方法名 or 属性名：getInterfaceDescriptor<br>废弃版本：9<br>代替接口：ohos.rpc.RemoteProxy|@ohos.rpc.d.ts|
-|废弃版本有变化|方法名 or 属性名：sendRequest<br>废弃版本：|方法名 or 属性名：sendRequest<br>废弃版本：9<br>代替接口：ohos.rpc.RemoteProxy|@ohos.rpc.d.ts|
-|废弃版本有变化|方法名 or 属性名：flushCommands<br>废弃版本：|方法名 or 属性名：flushCommands<br>废弃版本：9<br>代替接口：ohos.rpc.IPCSkeleton|@ohos.rpc.d.ts|
-|废弃版本有变化|方法名 or 属性名：setCallingIdentity<br>废弃版本：|方法名 or 属性名：setCallingIdentity<br>废弃版本：9<br>代替接口：ohos.rpc.IPCSkeleton|@ohos.rpc.d.ts|
-|废弃版本有变化|方法名 or 属性名：createAshmem<br>废弃版本：|方法名 or 属性名：createAshmem<br>废弃版本：9<br>代替接口：ohos.rpc.Ashmem|@ohos.rpc.d.ts|
-|废弃版本有变化|方法名 or 属性名：createAshmemFromExisting<br>废弃版本：|方法名 or 属性名：createAshmemFromExisting<br>废弃版本：9<br>代替接口：ohos.rpc.Ashmem|@ohos.rpc.d.ts|
-|废弃版本有变化|方法名 or 属性名：mapAshmem<br>废弃版本：|方法名 or 属性名：mapAshmem<br>废弃版本：9<br>代替接口：ohos.rpc.Ashmem|@ohos.rpc.d.ts|
-|废弃版本有变化|方法名 or 属性名：mapReadAndWriteAshmem<br>废弃版本：|方法名 or 属性名：mapReadAndWriteAshmem<br>废弃版本：9<br>代替接口：ohos.rpc.Ashmem|@ohos.rpc.d.ts|
-|废弃版本有变化|方法名 or 属性名：mapReadOnlyAshmem<br>废弃版本：|方法名 or 属性名：mapReadOnlyAshmem<br>废弃版本：9<br>代替接口：ohos.rpc.Ashmem|@ohos.rpc.d.ts|
-|废弃版本有变化|方法名 or 属性名：setProtection<br>废弃版本：|方法名 or 属性名：setProtection<br>废弃版本：9<br>代替接口：ohos.rpc.Ashmem|@ohos.rpc.d.ts|
-|废弃版本有变化|方法名 or 属性名：writeToAshmem<br>废弃版本：|方法名 or 属性名：writeToAshmem<br>废弃版本：9<br>代替接口：ohos.rpc.Ashmem|@ohos.rpc.d.ts|
-|废弃版本有变化|方法名 or 属性名：readFromAshmem<br>废弃版本：|方法名 or 属性名：readFromAshmem<br>废弃版本：9<br>代替接口：ohos.rpc.Ashmem|@ohos.rpc.d.ts|
-|废弃版本有变化|方法名 or 属性名：enableWifi<br>废弃版本：|方法名 or 属性名：enableWifi<br>废弃版本：9<br>代替接口：ohos.wifiManager/wifiManager.enableWifi     |@ohos.wifi.d.ts|
-|废弃版本有变化|方法名 or 属性名：disableWifi<br>废弃版本：|方法名 or 属性名：disableWifi<br>废弃版本：9<br>代替接口：ohos.wifiManager/wifiManager.disableWifi     |@ohos.wifi.d.ts|
-|废弃版本有变化|方法名 or 属性名：isWifiActive<br>废弃版本：|方法名 or 属性名：isWifiActive<br>废弃版本：9<br>代替接口：ohos.wifiManager/wifiManager.isWifiActive     |@ohos.wifi.d.ts|
-|废弃版本有变化|方法名 or 属性名：scan<br>废弃版本：|方法名 or 属性名：scan<br>废弃版本：9<br>代替接口：ohos.wifiManager/wifiManager.scan     |@ohos.wifi.d.ts|
-|废弃版本有变化|方法名 or 属性名：getScanInfos<br>废弃版本：|方法名 or 属性名：getScanInfos<br>废弃版本：9<br>代替接口：ohos.wifiManager/wifiManager.getScanResults     |@ohos.wifi.d.ts|
-|废弃版本有变化|方法名 or 属性名：addDeviceConfig<br>废弃版本：|方法名 or 属性名：addDeviceConfig<br>废弃版本：9<br>代替接口：ohos.wifiManager/wifiManager.addDeviceConfig     |@ohos.wifi.d.ts|
-|废弃版本有变化|方法名 or 属性名：connectToNetwork<br>废弃版本：|方法名 or 属性名：connectToNetwork<br>废弃版本：9<br>代替接口：ohos.wifiManager/wifiManager.connectToNetwork     |@ohos.wifi.d.ts|
-|废弃版本有变化|方法名 or 属性名：connectToDevice<br>废弃版本：|方法名 or 属性名：connectToDevice<br>废弃版本：9<br>代替接口：ohos.wifiManager/wifiManager.connectToDevice     |@ohos.wifi.d.ts|
-|废弃版本有变化|方法名 or 属性名：disconnect<br>废弃版本：|方法名 or 属性名：disconnect<br>废弃版本：9<br>代替接口：ohos.wifiManager/wifiManager.disconnect     |@ohos.wifi.d.ts|
-|废弃版本有变化|方法名 or 属性名：getSignalLevel<br>废弃版本：|方法名 or 属性名：getSignalLevel<br>废弃版本：9<br>代替接口：ohos.wifiManager/wifiManager.getSignalLevel     |@ohos.wifi.d.ts|
-|废弃版本有变化|方法名 or 属性名：getLinkedInfo<br>废弃版本：|方法名 or 属性名：getLinkedInfo<br>废弃版本：9<br>代替接口：ohos.wifiManager/wifiManager.getLinkedInfo     |@ohos.wifi.d.ts|
-|废弃版本有变化|方法名 or 属性名：isConnected<br>废弃版本：|方法名 or 属性名：isConnected<br>废弃版本：9<br>代替接口：ohos.wifiManager/wifiManager.isConnected     |@ohos.wifi.d.ts|
-|废弃版本有变化|方法名 or 属性名：getSupportedFeatures<br>废弃版本：|方法名 or 属性名：getSupportedFeatures<br>废弃版本：9<br>代替接口：ohos.wifiManager/wifiManager.getSupportedFeatures     |@ohos.wifi.d.ts|
-|废弃版本有变化|方法名 or 属性名：isFeatureSupported<br>废弃版本：|方法名 or 属性名：isFeatureSupported<br>废弃版本：9<br>代替接口：ohos.wifiManager/wifiManager.isFeatureSupported     |@ohos.wifi.d.ts|
-|废弃版本有变化|方法名 or 属性名：getDeviceMacAddress<br>废弃版本：|方法名 or 属性名：getDeviceMacAddress<br>废弃版本：9<br>代替接口：ohos.wifiManager/wifiManager.getDeviceMacAddress     |@ohos.wifi.d.ts|
-|废弃版本有变化|方法名 or 属性名：getIpInfo<br>废弃版本：|方法名 or 属性名：getIpInfo<br>废弃版本：9<br>代替接口：ohos.wifiManager/wifiManager.getIpInfo     |@ohos.wifi.d.ts|
-|废弃版本有变化|方法名 or 属性名：getCountryCode<br>废弃版本：|方法名 or 属性名：getCountryCode<br>废弃版本：9<br>代替接口：ohos.wifiManager/wifiManager.getCountryCode     |@ohos.wifi.d.ts|
-|废弃版本有变化|方法名 or 属性名：reassociate<br>废弃版本：|方法名 or 属性名：reassociate<br>废弃版本：9<br>代替接口：ohos.wifiManager/wifiManager.reassociate     |@ohos.wifi.d.ts|
-|废弃版本有变化|方法名 or 属性名：reconnect<br>废弃版本：|方法名 or 属性名：reconnect<br>废弃版本：9<br>代替接口：ohos.wifiManager/wifiManager.reconnect     |@ohos.wifi.d.ts|
-|废弃版本有变化|方法名 or 属性名：getDeviceConfigs<br>废弃版本：|方法名 or 属性名：getDeviceConfigs<br>废弃版本：9<br>代替接口：ohos.wifiManager/wifiManager.getDeviceConfigs     |@ohos.wifi.d.ts|
-|废弃版本有变化|方法名 or 属性名：updateNetwork<br>废弃版本：|方法名 or 属性名：updateNetwork<br>废弃版本：9<br>代替接口：ohos.wifiManager/wifiManager.updateNetwork     |@ohos.wifi.d.ts|
-|废弃版本有变化|方法名 or 属性名：disableNetwork<br>废弃版本：|方法名 or 属性名：disableNetwork<br>废弃版本：9<br>代替接口：ohos.wifiManager/wifiManager.disableNetwork     |@ohos.wifi.d.ts|
-|废弃版本有变化|方法名 or 属性名：removeAllNetwork<br>废弃版本：|方法名 or 属性名：removeAllNetwork<br>废弃版本：9<br>代替接口：ohos.wifiManager/wifiManager.removeAllNetwork     |@ohos.wifi.d.ts|
-|废弃版本有变化|方法名 or 属性名：removeDevice<br>废弃版本：|方法名 or 属性名：removeDevice<br>废弃版本：9<br>代替接口：ohos.wifiManager/wifiManager.removeDevice     |@ohos.wifi.d.ts|
-|废弃版本有变化|方法名 or 属性名：enableHotspot<br>废弃版本：|方法名 or 属性名：enableHotspot<br>废弃版本：9<br>代替接口：ohos.wifiManager/wifiManager.enableHotspot     |@ohos.wifi.d.ts|
-|废弃版本有变化|方法名 or 属性名：disableHotspot<br>废弃版本：|方法名 or 属性名：disableHotspot<br>废弃版本：9<br>代替接口：ohos.wifiManager/wifiManager.disableHotspot     |@ohos.wifi.d.ts|
-|废弃版本有变化|方法名 or 属性名：isHotspotDualBandSupported<br>废弃版本：|方法名 or 属性名：isHotspotDualBandSupported<br>废弃版本：9<br>代替接口：ohos.wifiManager/wifiManager.isHotspotDualBandSupported     |@ohos.wifi.d.ts|
-|废弃版本有变化|方法名 or 属性名：isHotspotActive<br>废弃版本：|方法名 or 属性名：isHotspotActive<br>废弃版本：9<br>代替接口：ohos.wifiManager/wifiManager.isHotspotActive     |@ohos.wifi.d.ts|
-|废弃版本有变化|方法名 or 属性名：setHotspotConfig<br>废弃版本：|方法名 or 属性名：setHotspotConfig<br>废弃版本：9<br>代替接口：ohos.wifiManager/wifiManager.setHotspotConfig     |@ohos.wifi.d.ts|
-|废弃版本有变化|方法名 or 属性名：getHotspotConfig<br>废弃版本：|方法名 or 属性名：getHotspotConfig<br>废弃版本：9<br>代替接口：ohos.wifiManager/wifiManager.getHotspotConfig     |@ohos.wifi.d.ts|
-|废弃版本有变化|方法名 or 属性名：getStations<br>废弃版本：|方法名 or 属性名：getStations<br>废弃版本：9<br>代替接口：ohos.wifiManager/wifiManager.getStations     |@ohos.wifi.d.ts|
-|废弃版本有变化|方法名 or 属性名：getP2pLinkedInfo<br>废弃版本：|方法名 or 属性名：getP2pLinkedInfo<br>废弃版本：9<br>代替接口：ohos.wifiManager/wifiManager.getP2pLinkedInfo     |@ohos.wifi.d.ts|
-|废弃版本有变化|方法名 or 属性名：getCurrentGroup<br>废弃版本：|方法名 or 属性名：getCurrentGroup<br>废弃版本：9<br>代替接口：ohos.wifiManager/wifiManager.getCurrentGroup     |@ohos.wifi.d.ts|
-|废弃版本有变化|方法名 or 属性名：getP2pPeerDevices<br>废弃版本：|方法名 or 属性名：getP2pPeerDevices<br>废弃版本：9<br>代替接口：ohos.wifiManager/wifiManager.getP2pPeerDevices     |@ohos.wifi.d.ts|
-|废弃版本有变化|方法名 or 属性名：createGroup<br>废弃版本：|方法名 or 属性名：createGroup<br>废弃版本：9<br>代替接口：ohos.wifiManager/wifiManager.createGroup     |@ohos.wifi.d.ts|
-|废弃版本有变化|方法名 or 属性名：removeGroup<br>废弃版本：|方法名 or 属性名：removeGroup<br>废弃版本：9<br>代替接口：ohos.wifiManager/wifiManager.removeGroup     |@ohos.wifi.d.ts|
-|废弃版本有变化|方法名 or 属性名：p2pConnect<br>废弃版本：|方法名 or 属性名：p2pConnect<br>废弃版本：9<br>代替接口：ohos.wifiManager/wifiManager.p2pConnect     |@ohos.wifi.d.ts|
-|废弃版本有变化|方法名 or 属性名：p2pCancelConnect<br>废弃版本：|方法名 or 属性名：p2pCancelConnect<br>废弃版本：9<br>代替接口：ohos.wifiManager/wifiManager.p2pDisonnect     |@ohos.wifi.d.ts|
-|废弃版本有变化|方法名 or 属性名：startDiscoverDevices<br>废弃版本：|方法名 or 属性名：startDiscoverDevices<br>废弃版本：9<br>代替接口：ohos.wifiManager/wifiManager.startDiscoverDevices     |@ohos.wifi.d.ts|
-|废弃版本有变化|方法名 or 属性名：stopDiscoverDevices<br>废弃版本：|方法名 or 属性名：stopDiscoverDevices<br>废弃版本：9<br>代替接口：ohos.wifiManager/wifiManager.stopDiscoverDevices     |@ohos.wifi.d.ts|
-|废弃版本有变化|方法名 or 属性名：deletePersistentGroup<br>废弃版本：|方法名 or 属性名：deletePersistentGroup<br>废弃版本：9<br>代替接口：ohos.wifiManager/wifiManager.deletePersistentGroup     |@ohos.wifi.d.ts|
-|废弃版本有变化|方法名 or 属性名：setDeviceName<br>废弃版本：|方法名 or 属性名：setDeviceName<br>废弃版本：9<br>代替接口：ohos.wifiManager/wifiManager.setDeviceName     |@ohos.wifi.d.ts|
-|废弃版本有变化|方法名 or 属性名：on_wifiStateChange<br>废弃版本：|方法名 or 属性名：on_wifiStateChange<br>废弃版本：9<br>代替接口：ohos.wifiManager/wifiManager.on|@ohos.wifi.d.ts|
-|废弃版本有变化|方法名 or 属性名：off_wifiStateChange<br>废弃版本：|方法名 or 属性名：off_wifiStateChange<br>废弃版本：9<br>代替接口：ohos.wifiManager/wifiManager.off|@ohos.wifi.d.ts|
-|废弃版本有变化|方法名 or 属性名：on_wifiConnectionChange<br>废弃版本：|方法名 or 属性名：on_wifiConnectionChange<br>废弃版本：9<br>代替接口：ohos.wifiManager/wifiManager.on|@ohos.wifi.d.ts|
-|废弃版本有变化|方法名 or 属性名：off_wifiConnectionChange<br>废弃版本：|方法名 or 属性名：off_wifiConnectionChange<br>废弃版本：9<br>代替接口：ohos.wifiManager/wifiManager.off|@ohos.wifi.d.ts|
-|废弃版本有变化|方法名 or 属性名：on_wifiScanStateChange<br>废弃版本：|方法名 or 属性名：on_wifiScanStateChange<br>废弃版本：9<br>代替接口：ohos.wifiManager/wifiManager.on|@ohos.wifi.d.ts|
-|废弃版本有变化|方法名 or 属性名：off_wifiScanStateChange<br>废弃版本：|方法名 or 属性名：off_wifiScanStateChange<br>废弃版本：9<br>代替接口：ohos.wifiManager/wifiManager.off|@ohos.wifi.d.ts|
-|废弃版本有变化|方法名 or 属性名：on_wifiRssiChange<br>废弃版本：|方法名 or 属性名：on_wifiRssiChange<br>废弃版本：9<br>代替接口：ohos.wifiManager/wifiManager.on|@ohos.wifi.d.ts|
-|废弃版本有变化|方法名 or 属性名：off_wifiRssiChange<br>废弃版本：|方法名 or 属性名：off_wifiRssiChange<br>废弃版本：9<br>代替接口：ohos.wifiManager/wifiManager.off|@ohos.wifi.d.ts|
-|废弃版本有变化|方法名 or 属性名：on_streamChange<br>废弃版本：|方法名 or 属性名：on_streamChange<br>废弃版本：9<br>代替接口：ohos.wifiManager/wifiManager.on|@ohos.wifi.d.ts|
-|废弃版本有变化|方法名 or 属性名：off_streamChange<br>废弃版本：|方法名 or 属性名：off_streamChange<br>废弃版本：9<br>代替接口：ohos.wifiManager/wifiManager.off|@ohos.wifi.d.ts|
-|废弃版本有变化|方法名 or 属性名：on_hotspotStateChange<br>废弃版本：|方法名 or 属性名：on_hotspotStateChange<br>废弃版本：9<br>代替接口：ohos.wifiManager/wifiManager.on|@ohos.wifi.d.ts|
-|废弃版本有变化|方法名 or 属性名：off_hotspotStateChange<br>废弃版本：|方法名 or 属性名：off_hotspotStateChange<br>废弃版本：9<br>代替接口：ohos.wifiManager/wifiManager.off|@ohos.wifi.d.ts|
-|废弃版本有变化|方法名 or 属性名：on_hotspotStaJoin<br>废弃版本：|方法名 or 属性名：on_hotspotStaJoin<br>废弃版本：9<br>代替接口：ohos.wifiManager/wifiManager.on|@ohos.wifi.d.ts|
-|废弃版本有变化|方法名 or 属性名：off_hotspotStaJoin<br>废弃版本：|方法名 or 属性名：off_hotspotStaJoin<br>废弃版本：9<br>代替接口：ohos.wifiManager/wifiManager.off|@ohos.wifi.d.ts|
-|废弃版本有变化|方法名 or 属性名：on_hotspotStaLeave<br>废弃版本：|方法名 or 属性名：on_hotspotStaLeave<br>废弃版本：9<br>代替接口：ohos.wifiManager/wifiManager.on|@ohos.wifi.d.ts|
-|废弃版本有变化|方法名 or 属性名：off_hotspotStaLeave<br>废弃版本：|方法名 or 属性名：off_hotspotStaLeave<br>废弃版本：9<br>代替接口：ohos.wifiManager/wifiManager.off|@ohos.wifi.d.ts|
-|废弃版本有变化|方法名 or 属性名：on_p2pStateChange<br>废弃版本：|方法名 or 属性名：on_p2pStateChange<br>废弃版本：9<br>代替接口：ohos.wifiManager/wifiManager.on|@ohos.wifi.d.ts|
-|废弃版本有变化|方法名 or 属性名：off_p2pStateChange<br>废弃版本：|方法名 or 属性名：off_p2pStateChange<br>废弃版本：9<br>代替接口：ohos.wifiManager/wifiManager.off|@ohos.wifi.d.ts|
-|废弃版本有变化|方法名 or 属性名：on_p2pConnectionChange<br>废弃版本：|方法名 or 属性名：on_p2pConnectionChange<br>废弃版本：9<br>代替接口：ohos.wifiManager/wifiManager.on|@ohos.wifi.d.ts|
-|废弃版本有变化|方法名 or 属性名：off_p2pConnectionChange<br>废弃版本：|方法名 or 属性名：off_p2pConnectionChange<br>废弃版本：9<br>代替接口：ohos.wifiManager/wifiManager.off|@ohos.wifi.d.ts|
-|废弃版本有变化|方法名 or 属性名：on_p2pDeviceChange<br>废弃版本：|方法名 or 属性名：on_p2pDeviceChange<br>废弃版本：9<br>代替接口：ohos.wifiManager/wifiManager.on|@ohos.wifi.d.ts|
-|废弃版本有变化|方法名 or 属性名：off_p2pDeviceChange<br>废弃版本：|方法名 or 属性名：off_p2pDeviceChange<br>废弃版本：9<br>代替接口：ohos.wifiManager/wifiManager.off|@ohos.wifi.d.ts|
-|废弃版本有变化|方法名 or 属性名：on_p2pPeerDeviceChange<br>废弃版本：|方法名 or 属性名：on_p2pPeerDeviceChange<br>废弃版本：9<br>代替接口：ohos.wifiManager/wifiManager.on|@ohos.wifi.d.ts|
-|废弃版本有变化|方法名 or 属性名：off_p2pPeerDeviceChange<br>废弃版本：|方法名 or 属性名：off_p2pPeerDeviceChange<br>废弃版本：9<br>代替接口：ohos.wifiManager/wifiManager.off|@ohos.wifi.d.ts|
-|废弃版本有变化|方法名 or 属性名：on_p2pPersistentGroupChange<br>废弃版本：|方法名 or 属性名：on_p2pPersistentGroupChange<br>废弃版本：9<br>代替接口：ohos.wifiManager/wifiManager.on|@ohos.wifi.d.ts|
-|废弃版本有变化|方法名 or 属性名：off_p2pPersistentGroupChange<br>废弃版本：|方法名 or 属性名：off_p2pPersistentGroupChange<br>废弃版本：9<br>代替接口：ohos.wifiManager/wifiManager.off|@ohos.wifi.d.ts|
-|废弃版本有变化|方法名 or 属性名：on_p2pDiscoveryChange<br>废弃版本：|方法名 or 属性名：on_p2pDiscoveryChange<br>废弃版本：9<br>代替接口：ohos.wifiManager/wifiManager.on|@ohos.wifi.d.ts|
-|废弃版本有变化|方法名 or 属性名：off_p2pDiscoveryChange<br>废弃版本：|方法名 or 属性名：off_p2pDiscoveryChange<br>废弃版本：9<br>代替接口：ohos.wifiManager/wifiManager.off|@ohos.wifi.d.ts|
-|废弃版本有变化|类名：WifiDeviceConfig<br>废弃版本：|类名：WifiDeviceConfig<br>废弃版本：9<br>代替接口：ohos.wifiManager/wifiManager.WifiDeviceConfig     |@ohos.wifi.d.ts|
-|废弃版本有变化|方法名 or 属性名：ssid<br>废弃版本：|方法名 or 属性名：ssid<br>废弃版本：9<br>代替接口：ohos.wifiManager/wifiManager.WifiDeviceConfig     |@ohos.wifi.d.ts|
-|废弃版本有变化|方法名 or 属性名：bssid<br>废弃版本：|方法名 or 属性名：bssid<br>废弃版本：9<br>代替接口：ohos.wifiManager/wifiManager.WifiDeviceConfig     |@ohos.wifi.d.ts|
-|废弃版本有变化|方法名 or 属性名：preSharedKey<br>废弃版本：|方法名 or 属性名：preSharedKey<br>废弃版本：9<br>代替接口：ohos.wifiManager/wifiManager.WifiDeviceConfig     |@ohos.wifi.d.ts|
-|废弃版本有变化|方法名 or 属性名：isHiddenSsid<br>废弃版本：|方法名 or 属性名：isHiddenSsid<br>废弃版本：9<br>代替接口：ohos.wifiManager/wifiManager.WifiDeviceConfig     |@ohos.wifi.d.ts|
-|废弃版本有变化|方法名 or 属性名：securityType<br>废弃版本：|方法名 or 属性名：securityType<br>废弃版本：9<br>代替接口：ohos.wifiManager/wifiManager.WifiDeviceConfig     |@ohos.wifi.d.ts|
-|废弃版本有变化|方法名 or 属性名：creatorUid<br>废弃版本：|方法名 or 属性名：creatorUid<br>废弃版本：9<br>代替接口：ohos.wifiManager/wifiManager.WifiDeviceConfig     |@ohos.wifi.d.ts|
-|废弃版本有变化|方法名 or 属性名：disableReason<br>废弃版本：|方法名 or 属性名：disableReason<br>废弃版本：9<br>代替接口：ohos.wifiManager/wifiManager.WifiDeviceConfig     |@ohos.wifi.d.ts|
-|废弃版本有变化|方法名 or 属性名：netId<br>废弃版本：|方法名 or 属性名：netId<br>废弃版本：9<br>代替接口：ohos.wifiManager/wifiManager.WifiDeviceConfig     |@ohos.wifi.d.ts|
-|废弃版本有变化|方法名 or 属性名：randomMacType<br>废弃版本：|方法名 or 属性名：randomMacType<br>废弃版本：9<br>代替接口：ohos.wifiManager/wifiManager.WifiDeviceConfig     |@ohos.wifi.d.ts|
-|废弃版本有变化|方法名 or 属性名：randomMacAddr<br>废弃版本：|方法名 or 属性名：randomMacAddr<br>废弃版本：9<br>代替接口：ohos.wifiManager/wifiManager.WifiDeviceConfig     |@ohos.wifi.d.ts|
-|废弃版本有变化|方法名 or 属性名：ipType<br>废弃版本：|方法名 or 属性名：ipType<br>废弃版本：9<br>代替接口：ohos.wifiManager/wifiManager.WifiDeviceConfig     |@ohos.wifi.d.ts|
-|废弃版本有变化|方法名 or 属性名：staticIp<br>废弃版本：|方法名 or 属性名：staticIp<br>废弃版本：9<br>代替接口：ohos.wifiManager/wifiManager.WifiDeviceConfig     |@ohos.wifi.d.ts|
-|废弃版本有变化|类名：IpConfig<br>废弃版本：|类名：IpConfig<br>废弃版本：9<br>代替接口：ohos.wifiManager/wifiManager.IpConfig     |@ohos.wifi.d.ts|
-|废弃版本有变化|方法名 or 属性名：ipAddress<br>废弃版本：|方法名 or 属性名：ipAddress<br>废弃版本：9<br>代替接口：ohos.wifiManager/wifiManager.IpConfig     |@ohos.wifi.d.ts|
-|废弃版本有变化|方法名 or 属性名：gateway<br>废弃版本：|方法名 or 属性名：gateway<br>废弃版本：9<br>代替接口：ohos.wifiManager/wifiManager.IpConfig     |@ohos.wifi.d.ts|
-|废弃版本有变化|方法名 or 属性名：dnsServers<br>废弃版本：|方法名 or 属性名：dnsServers<br>废弃版本：9<br>代替接口：ohos.wifiManager/wifiManager.IpConfig     |@ohos.wifi.d.ts|
-|废弃版本有变化|方法名 or 属性名：domains<br>废弃版本：|方法名 or 属性名：domains<br>废弃版本：9<br>代替接口：ohos.wifiManager/wifiManager.IpConfig     |@ohos.wifi.d.ts|
-|废弃版本有变化|类名：WifiScanInfo<br>废弃版本：|类名：WifiScanInfo<br>废弃版本：9<br>代替接口：ohos.wifiManager/wifiManager.WifiScanInfo     |@ohos.wifi.d.ts|
-|废弃版本有变化|方法名 or 属性名：ssid<br>废弃版本：|方法名 or 属性名：ssid<br>废弃版本：9<br>代替接口：ohos.wifiManager/wifiManager.WifiScanInfo     |@ohos.wifi.d.ts|
-|废弃版本有变化|方法名 or 属性名：bssid<br>废弃版本：|方法名 or 属性名：bssid<br>废弃版本：9<br>代替接口：ohos.wifiManager/wifiManager.WifiScanInfo     |@ohos.wifi.d.ts|
-|废弃版本有变化|方法名 or 属性名：capabilities<br>废弃版本：|方法名 or 属性名：capabilities<br>废弃版本：9<br>代替接口：ohos.wifiManager/wifiManager.WifiScanInfo     |@ohos.wifi.d.ts|
-|废弃版本有变化|方法名 or 属性名：securityType<br>废弃版本：|方法名 or 属性名：securityType<br>废弃版本：9<br>代替接口：ohos.wifiManager/wifiManager.WifiScanInfo     |@ohos.wifi.d.ts|
-|废弃版本有变化|方法名 or 属性名：rssi<br>废弃版本：|方法名 or 属性名：rssi<br>废弃版本：9<br>代替接口：ohos.wifiManager/wifiManager.WifiScanInfo     |@ohos.wifi.d.ts|
-|废弃版本有变化|方法名 or 属性名：band<br>废弃版本：|方法名 or 属性名：band<br>废弃版本：9<br>代替接口：ohos.wifiManager/wifiManager.WifiScanInfo     |@ohos.wifi.d.ts|
-|废弃版本有变化|方法名 or 属性名：frequency<br>废弃版本：|方法名 or 属性名：frequency<br>废弃版本：9<br>代替接口：ohos.wifiManager/wifiManager.WifiScanInfo     |@ohos.wifi.d.ts|
-|废弃版本有变化|方法名 or 属性名：channelWidth<br>废弃版本：|方法名 or 属性名：channelWidth<br>废弃版本：9<br>代替接口：ohos.wifiManager/wifiManager.WifiScanInfo     |@ohos.wifi.d.ts|
-|废弃版本有变化|方法名 or 属性名：timestamp<br>废弃版本：|方法名 or 属性名：timestamp<br>废弃版本：9<br>代替接口：ohos.wifiManager/wifiManager.WifiScanInfo     |@ohos.wifi.d.ts|
-|废弃版本有变化|类名：WifiSecurityType<br>废弃版本：|类名：WifiSecurityType<br>废弃版本：9<br>代替接口：ohos.wifiManager/wifiManager.WifiSecurityType     |@ohos.wifi.d.ts|
-|废弃版本有变化|方法名 or 属性名：WIFI_SEC_TYPE_INVALID<br>废弃版本：|方法名 or 属性名：WIFI_SEC_TYPE_INVALID<br>废弃版本：9<br>代替接口：ohos.wifiManager/wifiManager.WifiSecurityType     |@ohos.wifi.d.ts|
-|废弃版本有变化|方法名 or 属性名：WIFI_SEC_TYPE_OPEN<br>废弃版本：|方法名 or 属性名：WIFI_SEC_TYPE_OPEN<br>废弃版本：9<br>代替接口：ohos.wifiManager/wifiManager.WifiSecurityType     |@ohos.wifi.d.ts|
-|废弃版本有变化|方法名 or 属性名：WIFI_SEC_TYPE_WEP<br>废弃版本：|方法名 or 属性名：WIFI_SEC_TYPE_WEP<br>废弃版本：9<br>代替接口：ohos.wifiManager/wifiManager.WifiSecurityType     |@ohos.wifi.d.ts|
-|废弃版本有变化|方法名 or 属性名：WIFI_SEC_TYPE_PSK<br>废弃版本：|方法名 or 属性名：WIFI_SEC_TYPE_PSK<br>废弃版本：9<br>代替接口：ohos.wifiManager/wifiManager.WifiSecurityType     |@ohos.wifi.d.ts|
-|废弃版本有变化|方法名 or 属性名：WIFI_SEC_TYPE_SAE<br>废弃版本：|方法名 or 属性名：WIFI_SEC_TYPE_SAE<br>废弃版本：9<br>代替接口：ohos.wifiManager/wifiManager.WifiSecurityType     |@ohos.wifi.d.ts|
-|废弃版本有变化|类名：WifiLinkedInfo<br>废弃版本：|类名：WifiLinkedInfo<br>废弃版本：9<br>代替接口：ohos.wifiManager/wifiManager.WifiLinkedInfo     |@ohos.wifi.d.ts|
-|废弃版本有变化|方法名 or 属性名：ssid<br>废弃版本：|方法名 or 属性名：ssid<br>废弃版本：9<br>代替接口：ohos.wifiManager/wifiManager.WifiLinkedInfo     |@ohos.wifi.d.ts|
-|废弃版本有变化|方法名 or 属性名：bssid<br>废弃版本：|方法名 or 属性名：bssid<br>废弃版本：9<br>代替接口：ohos.wifiManager/wifiManager.WifiLinkedInfo     |@ohos.wifi.d.ts|
-|废弃版本有变化|方法名 or 属性名：networkId<br>废弃版本：|方法名 or 属性名：networkId<br>废弃版本：9<br>代替接口：ohos.wifiManager/wifiManager.WifiLinkedInfo     |@ohos.wifi.d.ts|
-|废弃版本有变化|方法名 or 属性名：rssi<br>废弃版本：|方法名 or 属性名：rssi<br>废弃版本：9<br>代替接口：ohos.wifiManager/wifiManager.WifiLinkedInfo     |@ohos.wifi.d.ts|
-|废弃版本有变化|方法名 or 属性名：band<br>废弃版本：|方法名 or 属性名：band<br>废弃版本：9<br>代替接口：ohos.wifiManager/wifiManager.WifiLinkedInfo     |@ohos.wifi.d.ts|
-|废弃版本有变化|方法名 or 属性名：linkSpeed<br>废弃版本：|方法名 or 属性名：linkSpeed<br>废弃版本：9<br>代替接口：ohos.wifiManager/wifiManager.WifiLinkedInfo     |@ohos.wifi.d.ts|
-|废弃版本有变化|方法名 or 属性名：frequency<br>废弃版本：|方法名 or 属性名：frequency<br>废弃版本：9<br>代替接口：ohos.wifiManager/wifiManager.WifiLinkedInfo     |@ohos.wifi.d.ts|
-|废弃版本有变化|方法名 or 属性名：isHidden<br>废弃版本：|方法名 or 属性名：isHidden<br>废弃版本：9<br>代替接口：ohos.wifiManager/wifiManager.WifiLinkedInfo     |@ohos.wifi.d.ts|
-|废弃版本有变化|方法名 or 属性名：isRestricted<br>废弃版本：|方法名 or 属性名：isRestricted<br>废弃版本：9<br>代替接口：ohos.wifiManager/wifiManager.WifiLinkedInfo     |@ohos.wifi.d.ts|
-|废弃版本有变化|方法名 or 属性名：chload<br>废弃版本：|方法名 or 属性名：chload<br>废弃版本：9<br>代替接口：ohos.wifiManager/wifiManager.WifiLinkedInfo     |@ohos.wifi.d.ts|
-|废弃版本有变化|方法名 or 属性名：snr<br>废弃版本：|方法名 or 属性名：snr<br>废弃版本：9<br>代替接口：ohos.wifiManager/wifiManager.WifiLinkedInfo     |@ohos.wifi.d.ts|
-|废弃版本有变化|方法名 or 属性名：macAddress<br>废弃版本：|方法名 or 属性名：macAddress<br>废弃版本：9<br>代替接口：ohos.wifiManager/wifiManager.WifiLinkedInfo     |@ohos.wifi.d.ts|
-|废弃版本有变化|方法名 or 属性名：ipAddress<br>废弃版本：|方法名 or 属性名：ipAddress<br>废弃版本：9<br>代替接口：ohos.wifiManager/wifiManager.WifiLinkedInfo     |@ohos.wifi.d.ts|
-|废弃版本有变化|方法名 or 属性名：suppState<br>废弃版本：|方法名 or 属性名：suppState<br>废弃版本：9<br>代替接口：ohos.wifiManager/wifiManager.WifiLinkedInfo     |@ohos.wifi.d.ts|
-|废弃版本有变化|方法名 or 属性名：connState<br>废弃版本：|方法名 or 属性名：connState<br>废弃版本：9<br>代替接口：ohos.wifiManager/wifiManager.WifiLinkedInfo     |@ohos.wifi.d.ts|
-|废弃版本有变化|类名：IpInfo<br>废弃版本：|类名：IpInfo<br>废弃版本：9<br>代替接口：ohos.wifiManager/wifiManager.IpInfo     |@ohos.wifi.d.ts|
-|废弃版本有变化|方法名 or 属性名：ipAddress<br>废弃版本：|方法名 or 属性名：ipAddress<br>废弃版本：9<br>代替接口：ohos.wifiManager/wifiManager.IpInfo     |@ohos.wifi.d.ts|
-|废弃版本有变化|方法名 or 属性名：gateway<br>废弃版本：|方法名 or 属性名：gateway<br>废弃版本：9<br>代替接口：ohos.wifiManager/wifiManager.IpInfo     |@ohos.wifi.d.ts|
-|废弃版本有变化|方法名 or 属性名：netmask<br>废弃版本：|方法名 or 属性名：netmask<br>废弃版本：9<br>代替接口：ohos.wifiManager/wifiManager.IpInfo     |@ohos.wifi.d.ts|
-|废弃版本有变化|方法名 or 属性名：primaryDns<br>废弃版本：|方法名 or 属性名：primaryDns<br>废弃版本：9<br>代替接口：ohos.wifiManager/wifiManager.IpInfo     |@ohos.wifi.d.ts|
-|废弃版本有变化|方法名 or 属性名：secondDns<br>废弃版本：|方法名 or 属性名：secondDns<br>废弃版本：9<br>代替接口：ohos.wifiManager/wifiManager.IpInfo     |@ohos.wifi.d.ts|
-|废弃版本有变化|方法名 or 属性名：serverIp<br>废弃版本：|方法名 or 属性名：serverIp<br>废弃版本：9<br>代替接口：ohos.wifiManager/wifiManager.IpInfo     |@ohos.wifi.d.ts|
-|废弃版本有变化|方法名 or 属性名：leaseDuration<br>废弃版本：|方法名 or 属性名：leaseDuration<br>废弃版本：9<br>代替接口：ohos.wifiManager/wifiManager.IpInfo     |@ohos.wifi.d.ts|
-|废弃版本有变化|类名：HotspotConfig<br>废弃版本：|类名：HotspotConfig<br>废弃版本：9<br>代替接口：ohos.wifiManager/wifiManager.HotspotConfig     |@ohos.wifi.d.ts|
-|废弃版本有变化|方法名 or 属性名：ssid<br>废弃版本：|方法名 or 属性名：ssid<br>废弃版本：9<br>代替接口：ohos.wifiManager/wifiManager.HotspotConfig     |@ohos.wifi.d.ts|
-|废弃版本有变化|方法名 or 属性名：securityType<br>废弃版本：|方法名 or 属性名：securityType<br>废弃版本：9<br>代替接口：ohos.wifiManager/wifiManager.HotspotConfig     |@ohos.wifi.d.ts|
-|废弃版本有变化|方法名 or 属性名：band<br>废弃版本：|方法名 or 属性名：band<br>废弃版本：9<br>代替接口：ohos.wifiManager/wifiManager.HotspotConfig     |@ohos.wifi.d.ts|
-|废弃版本有变化|方法名 or 属性名：preSharedKey<br>废弃版本：|方法名 or 属性名：preSharedKey<br>废弃版本：9<br>代替接口：ohos.wifiManager/wifiManager.HotspotConfig     |@ohos.wifi.d.ts|
-|废弃版本有变化|方法名 or 属性名：maxConn<br>废弃版本：|方法名 or 属性名：maxConn<br>废弃版本：9<br>代替接口：ohos.wifiManager/wifiManager.HotspotConfig     |@ohos.wifi.d.ts|
-|废弃版本有变化|类名：StationInfo<br>废弃版本：|类名：StationInfo<br>废弃版本：9<br>代替接口：ohos.wifiManager/wifiManager.StationInfo     |@ohos.wifi.d.ts|
-|废弃版本有变化|方法名 or 属性名：name<br>废弃版本：|方法名 or 属性名：name<br>废弃版本：9<br>代替接口：ohos.wifiManager/wifiManager.StationInfo     |@ohos.wifi.d.ts|
-|废弃版本有变化|方法名 or 属性名：macAddress<br>废弃版本：|方法名 or 属性名：macAddress<br>废弃版本：9<br>代替接口：ohos.wifiManager/wifiManager.StationInfo     |@ohos.wifi.d.ts|
-|废弃版本有变化|方法名 or 属性名：ipAddress<br>废弃版本：|方法名 or 属性名：ipAddress<br>废弃版本：9<br>代替接口：ohos.wifiManager/wifiManager.StationInfo     |@ohos.wifi.d.ts|
-|废弃版本有变化|类名：IpType<br>废弃版本：|类名：IpType<br>废弃版本：9<br>代替接口：ohos.wifiManager/wifiManager.IpType     |@ohos.wifi.d.ts|
-|废弃版本有变化|方法名 or 属性名：STATIC<br>废弃版本：|方法名 or 属性名：STATIC<br>废弃版本：9<br>代替接口：ohos.wifiManager/wifiManager.IpType     |@ohos.wifi.d.ts|
-|废弃版本有变化|方法名 or 属性名：DHCP<br>废弃版本：|方法名 or 属性名：DHCP<br>废弃版本：9<br>代替接口：ohos.wifiManager/wifiManager.IpType     |@ohos.wifi.d.ts|
-|废弃版本有变化|方法名 or 属性名：UNKNOWN<br>废弃版本：|方法名 or 属性名：UNKNOWN<br>废弃版本：9<br>代替接口：ohos.wifiManager/wifiManager.IpType     |@ohos.wifi.d.ts|
-|废弃版本有变化|类名：SuppState<br>废弃版本：|类名：SuppState<br>废弃版本：9<br>代替接口：ohos.wifiManager/wifiManager.SuppState     |@ohos.wifi.d.ts|
-|废弃版本有变化|方法名 or 属性名：DISCONNECTED<br>废弃版本：|方法名 or 属性名：DISCONNECTED<br>废弃版本：9<br>代替接口：ohos.wifiManager/wifiManager.SuppState     |@ohos.wifi.d.ts|
-|废弃版本有变化|方法名 or 属性名：INTERFACE_DISABLED<br>废弃版本：|方法名 or 属性名：INTERFACE_DISABLED<br>废弃版本：9<br>代替接口：ohos.wifiManager/wifiManager.SuppState     |@ohos.wifi.d.ts|
-|废弃版本有变化|方法名 or 属性名：INACTIVE<br>废弃版本：|方法名 or 属性名：INACTIVE<br>废弃版本：9<br>代替接口：ohos.wifiManager/wifiManager.SuppState     |@ohos.wifi.d.ts|
-|废弃版本有变化|方法名 or 属性名：SCANNING<br>废弃版本：|方法名 or 属性名：SCANNING<br>废弃版本：9<br>代替接口：ohos.wifiManager/wifiManager.SuppState     |@ohos.wifi.d.ts|
-|废弃版本有变化|方法名 or 属性名：AUTHENTICATING<br>废弃版本：|方法名 or 属性名：AUTHENTICATING<br>废弃版本：9<br>代替接口：ohos.wifiManager/wifiManager.SuppState     |@ohos.wifi.d.ts|
-|废弃版本有变化|方法名 or 属性名：ASSOCIATING<br>废弃版本：|方法名 or 属性名：ASSOCIATING<br>废弃版本：9<br>代替接口：ohos.wifiManager/wifiManager.SuppState     |@ohos.wifi.d.ts|
-|废弃版本有变化|方法名 or 属性名：ASSOCIATED<br>废弃版本：|方法名 or 属性名：ASSOCIATED<br>废弃版本：9<br>代替接口：ohos.wifiManager/wifiManager.SuppState     |@ohos.wifi.d.ts|
-|废弃版本有变化|方法名 or 属性名：FOUR_WAY_HANDSHAKE<br>废弃版本：|方法名 or 属性名：FOUR_WAY_HANDSHAKE<br>废弃版本：9<br>代替接口：ohos.wifiManager/wifiManager.SuppState     |@ohos.wifi.d.ts|
-|废弃版本有变化|方法名 or 属性名：GROUP_HANDSHAKE<br>废弃版本：|方法名 or 属性名：GROUP_HANDSHAKE<br>废弃版本：9<br>代替接口：ohos.wifiManager/wifiManager.SuppState     |@ohos.wifi.d.ts|
-|废弃版本有变化|方法名 or 属性名：COMPLETED<br>废弃版本：|方法名 or 属性名：COMPLETED<br>废弃版本：9<br>代替接口：ohos.wifiManager/wifiManager.SuppState     |@ohos.wifi.d.ts|
-|废弃版本有变化|方法名 or 属性名：UNINITIALIZED<br>废弃版本：|方法名 or 属性名：UNINITIALIZED<br>废弃版本：9<br>代替接口：ohos.wifiManager/wifiManager.SuppState     |@ohos.wifi.d.ts|
-|废弃版本有变化|方法名 or 属性名：INVALID<br>废弃版本：|方法名 or 属性名：INVALID<br>废弃版本：9<br>代替接口：ohos.wifiManager/wifiManager.SuppState     |@ohos.wifi.d.ts|
-|废弃版本有变化|类名：ConnState<br>废弃版本：|类名：ConnState<br>废弃版本：9<br>代替接口：ohos.wifiManager/wifiManager.ConnState     |@ohos.wifi.d.ts|
-|废弃版本有变化|方法名 or 属性名：SCANNING<br>废弃版本：|方法名 or 属性名：SCANNING<br>废弃版本：9<br>代替接口：ohos.wifiManager/wifiManager.ConnState     |@ohos.wifi.d.ts|
-|废弃版本有变化|方法名 or 属性名：CONNECTING<br>废弃版本：|方法名 or 属性名：CONNECTING<br>废弃版本：9<br>代替接口：ohos.wifiManager/wifiManager.ConnState     |@ohos.wifi.d.ts|
-|废弃版本有变化|方法名 or 属性名：AUTHENTICATING<br>废弃版本：|方法名 or 属性名：AUTHENTICATING<br>废弃版本：9<br>代替接口：ohos.wifiManager/wifiManager.ConnState     |@ohos.wifi.d.ts|
-|废弃版本有变化|方法名 or 属性名：OBTAINING_IPADDR<br>废弃版本：|方法名 or 属性名：OBTAINING_IPADDR<br>废弃版本：9<br>代替接口：ohos.wifiManager/wifiManager.ConnState     |@ohos.wifi.d.ts|
-|废弃版本有变化|方法名 or 属性名：CONNECTED<br>废弃版本：|方法名 or 属性名：CONNECTED<br>废弃版本：9<br>代替接口：ohos.wifiManager/wifiManager.ConnState     |@ohos.wifi.d.ts|
-|废弃版本有变化|方法名 or 属性名：DISCONNECTING<br>废弃版本：|方法名 or 属性名：DISCONNECTING<br>废弃版本：9<br>代替接口：ohos.wifiManager/wifiManager.ConnState     |@ohos.wifi.d.ts|
-|废弃版本有变化|方法名 or 属性名：DISCONNECTED<br>废弃版本：|方法名 or 属性名：DISCONNECTED<br>废弃版本：9<br>代替接口：ohos.wifiManager/wifiManager.ConnState     |@ohos.wifi.d.ts|
-|废弃版本有变化|方法名 or 属性名：UNKNOWN<br>废弃版本：|方法名 or 属性名：UNKNOWN<br>废弃版本：9<br>代替接口：ohos.wifiManager/wifiManager.ConnState     |@ohos.wifi.d.ts|
-|废弃版本有变化|类名：WifiP2pDevice<br>废弃版本：|类名：WifiP2pDevice<br>废弃版本：9<br>代替接口：ohos.wifiManager/wifiManager.WifiP2pDevice     |@ohos.wifi.d.ts|
-|废弃版本有变化|方法名 or 属性名：deviceName<br>废弃版本：|方法名 or 属性名：deviceName<br>废弃版本：9<br>代替接口：ohos.wifiManager/wifiManager.WifiP2pDevice     |@ohos.wifi.d.ts|
-|废弃版本有变化|方法名 or 属性名：deviceAddress<br>废弃版本：|方法名 or 属性名：deviceAddress<br>废弃版本：9<br>代替接口：ohos.wifiManager/wifiManager.WifiP2pDevice     |@ohos.wifi.d.ts|
-|废弃版本有变化|方法名 or 属性名：primaryDeviceType<br>废弃版本：|方法名 or 属性名：primaryDeviceType<br>废弃版本：9<br>代替接口：ohos.wifiManager/wifiManager.WifiP2pDevice     |@ohos.wifi.d.ts|
-|废弃版本有变化|方法名 or 属性名：deviceStatus<br>废弃版本：|方法名 or 属性名：deviceStatus<br>废弃版本：9<br>代替接口：ohos.wifiManager/wifiManager.WifiP2pDevice     |@ohos.wifi.d.ts|
-|废弃版本有变化|方法名 or 属性名：groupCapabilitys<br>废弃版本：|方法名 or 属性名：groupCapabilitys<br>废弃版本：9<br>代替接口：ohos.wifiManager/wifiManager.WifiP2pDevice     |@ohos.wifi.d.ts|
-|废弃版本有变化|类名：WifiP2PConfig<br>废弃版本：|类名：WifiP2PConfig<br>废弃版本：9<br>代替接口：ohos.wifiManager/wifiManager.WifiP2PConfig     |@ohos.wifi.d.ts|
-|废弃版本有变化|方法名 or 属性名：deviceAddress<br>废弃版本：|方法名 or 属性名：deviceAddress<br>废弃版本：9<br>代替接口：ohos.wifiManager/wifiManager.WifiP2PConfig     |@ohos.wifi.d.ts|
-|废弃版本有变化|方法名 or 属性名：netId<br>废弃版本：|方法名 or 属性名：netId<br>废弃版本：9<br>代替接口：ohos.wifiManager/wifiManager.WifiP2PConfig     |@ohos.wifi.d.ts|
-|废弃版本有变化|方法名 or 属性名：passphrase<br>废弃版本：|方法名 or 属性名：passphrase<br>废弃版本：9<br>代替接口：ohos.wifiManager/wifiManager.WifiP2PConfig     |@ohos.wifi.d.ts|
-|废弃版本有变化|方法名 or 属性名：groupName<br>废弃版本：|方法名 or 属性名：groupName<br>废弃版本：9<br>代替接口：ohos.wifiManager/wifiManager.WifiP2PConfig     |@ohos.wifi.d.ts|
-|废弃版本有变化|方法名 or 属性名：goBand<br>废弃版本：|方法名 or 属性名：goBand<br>废弃版本：9<br>代替接口：ohos.wifiManager/wifiManager.WifiP2PConfig     |@ohos.wifi.d.ts|
-|废弃版本有变化|类名：WifiP2pGroupInfo<br>废弃版本：|类名：WifiP2pGroupInfo<br>废弃版本：9<br>代替接口：ohos.wifiManager/wifiManager.WifiP2pGroupInfo     |@ohos.wifi.d.ts|
-|废弃版本有变化|方法名 or 属性名：isP2pGo<br>废弃版本：|方法名 or 属性名：isP2pGo<br>废弃版本：9<br>代替接口：ohos.wifiManager/wifiManager.WifiP2pGroupInfo     |@ohos.wifi.d.ts|
-|废弃版本有变化|方法名 or 属性名：ownerInfo<br>废弃版本：|方法名 or 属性名：ownerInfo<br>废弃版本：9<br>代替接口：ohos.wifiManager/wifiManager.WifiP2pGroupInfo     |@ohos.wifi.d.ts|
-|废弃版本有变化|方法名 or 属性名：passphrase<br>废弃版本：|方法名 or 属性名：passphrase<br>废弃版本：9<br>代替接口：ohos.wifiManager/wifiManager.WifiP2pGroupInfo     |@ohos.wifi.d.ts|
-|废弃版本有变化|方法名 or 属性名：interface<br>废弃版本：|方法名 or 属性名：interface<br>废弃版本：9<br>代替接口：ohos.wifiManager/wifiManager.WifiP2pGroupInfo     |@ohos.wifi.d.ts|
-|废弃版本有变化|方法名 or 属性名：groupName<br>废弃版本：|方法名 or 属性名：groupName<br>废弃版本：9<br>代替接口：ohos.wifiManager/wifiManager.WifiP2pGroupInfo     |@ohos.wifi.d.ts|
-|废弃版本有变化|方法名 or 属性名：networkId<br>废弃版本：|方法名 or 属性名：networkId<br>废弃版本：9<br>代替接口：ohos.wifiManager/wifiManager.WifiP2pGroupInfo     |@ohos.wifi.d.ts|
-|废弃版本有变化|方法名 or 属性名：frequency<br>废弃版本：|方法名 or 属性名：frequency<br>废弃版本：9<br>代替接口：ohos.wifiManager/wifiManager.WifiP2pGroupInfo     |@ohos.wifi.d.ts|
-|废弃版本有变化|方法名 or 属性名：clientDevices<br>废弃版本：|方法名 or 属性名：clientDevices<br>废弃版本：9<br>代替接口：ohos.wifiManager/wifiManager.WifiP2pGroupInfo     |@ohos.wifi.d.ts|
-|废弃版本有变化|方法名 or 属性名：goIpAddress<br>废弃版本：|方法名 or 属性名：goIpAddress<br>废弃版本：9<br>代替接口：ohos.wifiManager/wifiManager.WifiP2pGroupInfo     |@ohos.wifi.d.ts|
-|废弃版本有变化|类名：P2pConnectState<br>废弃版本：|类名：P2pConnectState<br>废弃版本：9<br>代替接口：ohos.wifiManager/wifiManager.P2pConnectState     |@ohos.wifi.d.ts|
-|废弃版本有变化|方法名 or 属性名：DISCONNECTED<br>废弃版本：|方法名 or 属性名：DISCONNECTED<br>废弃版本：9<br>代替接口：ohos.wifiManager/wifiManager.P2pConnectState     |@ohos.wifi.d.ts|
-|废弃版本有变化|方法名 or 属性名：CONNECTED<br>废弃版本：|方法名 or 属性名：CONNECTED<br>废弃版本：9<br>代替接口：ohos.wifiManager/wifiManager.P2pConnectState     |@ohos.wifi.d.ts|
-|废弃版本有变化|类名：WifiP2pLinkedInfo<br>废弃版本：|类名：WifiP2pLinkedInfo<br>废弃版本：9<br>代替接口：ohos.wifiManager/wifiManager.WifiP2pLinkedInfo     |@ohos.wifi.d.ts|
-|废弃版本有变化|方法名 or 属性名：connectState<br>废弃版本：|方法名 or 属性名：connectState<br>废弃版本：9<br>代替接口：ohos.wifiManager/wifiManager.WifiP2pLinkedInfo     |@ohos.wifi.d.ts|
-|废弃版本有变化|方法名 or 属性名：isGroupOwner<br>废弃版本：|方法名 or 属性名：isGroupOwner<br>废弃版本：9<br>代替接口：ohos.wifiManager/wifiManager.WifiP2pLinkedInfo     |@ohos.wifi.d.ts|
-|废弃版本有变化|方法名 or 属性名：groupOwnerAddr<br>废弃版本：|方法名 or 属性名：groupOwnerAddr<br>废弃版本：9<br>代替接口：ohos.wifiManager/wifiManager.WifiP2pLinkedInfo     |@ohos.wifi.d.ts|
-|废弃版本有变化|类名：P2pDeviceStatus<br>废弃版本：|类名：P2pDeviceStatus<br>废弃版本：9<br>代替接口：ohos.wifiManager/wifiManager.P2pDeviceStatus     |@ohos.wifi.d.ts|
-|废弃版本有变化|方法名 or 属性名：CONNECTED<br>废弃版本：|方法名 or 属性名：CONNECTED<br>废弃版本：9<br>代替接口：ohos.wifiManager/wifiManager.P2pDeviceStatus     |@ohos.wifi.d.ts|
-|废弃版本有变化|方法名 or 属性名：INVITED<br>废弃版本：|方法名 or 属性名：INVITED<br>废弃版本：9<br>代替接口：ohos.wifiManager/wifiManager.P2pDeviceStatus     |@ohos.wifi.d.ts|
-|废弃版本有变化|方法名 or 属性名：FAILED<br>废弃版本：|方法名 or 属性名：FAILED<br>废弃版本：9<br>代替接口：ohos.wifiManager/wifiManager.P2pDeviceStatus     |@ohos.wifi.d.ts|
-|废弃版本有变化|方法名 or 属性名：AVAILABLE<br>废弃版本：|方法名 or 属性名：AVAILABLE<br>废弃版本：9<br>代替接口：ohos.wifiManager/wifiManager.P2pDeviceStatus     |@ohos.wifi.d.ts|
-|废弃版本有变化|方法名 or 属性名：UNAVAILABLE<br>废弃版本：|方法名 or 属性名：UNAVAILABLE<br>废弃版本：9<br>代替接口：ohos.wifiManager/wifiManager.P2pDeviceStatus     |@ohos.wifi.d.ts|
-|废弃版本有变化|类名：GroupOwnerBand<br>废弃版本：|类名：GroupOwnerBand<br>废弃版本：9<br>代替接口：ohos.wifiManager/wifiManager.GroupOwnerBand     |@ohos.wifi.d.ts|
-|废弃版本有变化|方法名 or 属性名：GO_BAND_AUTO<br>废弃版本：|方法名 or 属性名：GO_BAND_AUTO<br>废弃版本：9<br>代替接口：ohos.wifiManager/wifiManager.GroupOwnerBand     |@ohos.wifi.d.ts|
-|废弃版本有变化|方法名 or 属性名：GO_BAND_2GHZ<br>废弃版本：|方法名 or 属性名：GO_BAND_2GHZ<br>废弃版本：9<br>代替接口：ohos.wifiManager/wifiManager.GroupOwnerBand     |@ohos.wifi.d.ts|
-|废弃版本有变化|方法名 or 属性名：GO_BAND_5GHZ<br>废弃版本：|方法名 or 属性名：GO_BAND_5GHZ<br>废弃版本：9<br>代替接口：ohos.wifiManager/wifiManager.GroupOwnerBand     |@ohos.wifi.d.ts|
-|废弃版本有变化|方法名 or 属性名：enableHotspot<br>废弃版本：|方法名 or 属性名：enableHotspot<br>废弃版本：9<br>代替接口：ohos.wifiManagerExt/wifiManagerExt.enableHotspot     |@ohos.wifiext.d.ts|
-|废弃版本有变化|方法名 or 属性名：disableHotspot<br>废弃版本：|方法名 or 属性名：disableHotspot<br>废弃版本：9<br>代替接口：ohos.wifiManagerExt/wifiManagerExt.disableHotspot      |@ohos.wifiext.d.ts|
-|废弃版本有变化|方法名 or 属性名：getSupportedPowerModel<br>废弃版本：|方法名 or 属性名：getSupportedPowerModel<br>废弃版本：9<br>代替接口：ohos.wifiManagerExt/wifiManagerExt.getSupportedPowerMode     |@ohos.wifiext.d.ts|
-|废弃版本有变化|方法名 or 属性名：getPowerModel<br>废弃版本：|方法名 or 属性名：getPowerModel<br>废弃版本：9<br>代替接口：ohos.wifiManagerExt/wifiManagerExt.getPowerMode     |@ohos.wifiext.d.ts|
-|废弃版本有变化|方法名 or 属性名：setPowerModel<br>废弃版本：|方法名 or 属性名：setPowerModel<br>废弃版本：9<br>代替接口：ohos.wifiManagerExt/wifiManagerExt.setPowerMode     |@ohos.wifiext.d.ts|
-|废弃版本有变化|类名：PowerModel<br>废弃版本：|类名：PowerModel<br>废弃版本：9<br>代替接口：ohos.wifiManagerExt/wifiManagerExt.PowerMode     |@ohos.wifiext.d.ts|
-|废弃版本有变化|方法名 or 属性名：SLEEPING<br>废弃版本：|方法名 or 属性名：SLEEPING<br>废弃版本：9<br>代替接口：ohos.wifiManagerExt/wifiManagerExt.PowerMode     |@ohos.wifiext.d.ts|
-|废弃版本有变化|方法名 or 属性名：GENERAL<br>废弃版本：|方法名 or 属性名：GENERAL<br>废弃版本：9<br>代替接口：ohos.wifiManagerExt/wifiManagerExt.PowerMode     |@ohos.wifiext.d.ts|
-|废弃版本有变化|方法名 or 属性名：THROUGH_WALL<br>废弃版本：|方法名 or 属性名：THROUGH_WALL<br>废弃版本：9<br>代替接口：ohos.wifiManagerExt/wifiManagerExt.PowerMode     |@ohos.wifiext.d.ts|
+|废弃版本有变化|方法名 or 属性名：sendRequest<br>废弃版本：N/A|方法名 or 属性名：sendRequest<br>废弃版本：9<br>代替接口：ohos.rpc.IRemoteObject|@ohos.rpc.d.ts|
+|废弃版本有变化|方法名 or 属性名：addDeathRecipient<br>废弃版本：N/A|方法名 or 属性名：addDeathRecipient<br>废弃版本：9<br>代替接口：ohos.rpc.IRemoteObject|@ohos.rpc.d.ts|
+|废弃版本有变化|方法名 or 属性名：removeDeathRecipient<br>废弃版本：N/A|方法名 or 属性名：removeDeathRecipient<br>废弃版本：9<br>代替接口：ohos.rpc.IRemoteObject|@ohos.rpc.d.ts|
+|废弃版本有变化|方法名 or 属性名：getInterfaceDescriptor<br>废弃版本：N/A|方法名 or 属性名：getInterfaceDescriptor<br>废弃版本：9<br>代替接口：ohos.rpc.IRemoteObject|@ohos.rpc.d.ts|
+|废弃版本有变化|方法名 or 属性名：queryLocalInterface<br>废弃版本：N/A|方法名 or 属性名：queryLocalInterface<br>废弃版本：9<br>代替接口：ohos.rpc.RemoteObject|@ohos.rpc.d.ts|
+|废弃版本有变化|方法名 or 属性名：getInterfaceDescriptor<br>废弃版本：N/A|方法名 or 属性名：getInterfaceDescriptor<br>废弃版本：9<br>代替接口：ohos.rpc.RemoteObject|@ohos.rpc.d.ts|
+|废弃版本有变化|方法名 or 属性名：sendRequest<br>废弃版本：N/A|方法名 or 属性名：sendRequest<br>废弃版本：9<br>代替接口：ohos.rpc.RemoteObject|@ohos.rpc.d.ts|
+|废弃版本有变化|方法名 or 属性名：attachLocalInterface<br>废弃版本：N/A|方法名 or 属性名：attachLocalInterface<br>废弃版本：9<br>代替接口：ohos.rpc.RemoteObject|@ohos.rpc.d.ts|
+|废弃版本有变化|方法名 or 属性名：queryLocalInterface<br>废弃版本：N/A|方法名 or 属性名：queryLocalInterface<br>废弃版本：9<br>代替接口：ohos.rpc.RemoteProxy|@ohos.rpc.d.ts|
+|废弃版本有变化|方法名 or 属性名：addDeathRecipient<br>废弃版本：N/A|方法名 or 属性名：addDeathRecipient<br>废弃版本：9<br>代替接口：ohos.rpc.RemoteProxy|@ohos.rpc.d.ts|
+|废弃版本有变化|方法名 or 属性名：removeDeathRecipient<br>废弃版本：N/A|方法名 or 属性名：removeDeathRecipient<br>废弃版本：9<br>代替接口：ohos.rpc.RemoteProxy|@ohos.rpc.d.ts|
+|废弃版本有变化|方法名 or 属性名：getInterfaceDescriptor<br>废弃版本：N/A|方法名 or 属性名：getInterfaceDescriptor<br>废弃版本：9<br>代替接口：ohos.rpc.RemoteProxy|@ohos.rpc.d.ts|
+|废弃版本有变化|方法名 or 属性名：sendRequest<br>废弃版本：N/A|方法名 or 属性名：sendRequest<br>废弃版本：9<br>代替接口：ohos.rpc.RemoteProxy|@ohos.rpc.d.ts|
+|废弃版本有变化|方法名 or 属性名：flushCommands<br>废弃版本：N/A|方法名 or 属性名：flushCommands<br>废弃版本：9<br>代替接口：ohos.rpc.IPCSkeleton|@ohos.rpc.d.ts|
+|废弃版本有变化|方法名 or 属性名：setCallingIdentity<br>废弃版本：N/A|方法名 or 属性名：setCallingIdentity<br>废弃版本：9<br>代替接口：ohos.rpc.IPCSkeleton|@ohos.rpc.d.ts|
+|废弃版本有变化|方法名 or 属性名：createAshmem<br>废弃版本：N/A|方法名 or 属性名：createAshmem<br>废弃版本：9<br>代替接口：ohos.rpc.Ashmem|@ohos.rpc.d.ts|
+|废弃版本有变化|方法名 or 属性名：createAshmemFromExisting<br>废弃版本：N/A|方法名 or 属性名：createAshmemFromExisting<br>废弃版本：9<br>代替接口：ohos.rpc.Ashmem|@ohos.rpc.d.ts|
+|废弃版本有变化|方法名 or 属性名：mapAshmem<br>废弃版本：N/A|方法名 or 属性名：mapAshmem<br>废弃版本：9<br>代替接口：ohos.rpc.Ashmem|@ohos.rpc.d.ts|
+|废弃版本有变化|方法名 or 属性名：mapReadAndWriteAshmem<br>废弃版本：N/A|方法名 or 属性名：mapReadAndWriteAshmem<br>废弃版本：9<br>代替接口：ohos.rpc.Ashmem|@ohos.rpc.d.ts|
+|废弃版本有变化|方法名 or 属性名：mapReadOnlyAshmem<br>废弃版本：N/A|方法名 or 属性名：mapReadOnlyAshmem<br>废弃版本：9<br>代替接口：ohos.rpc.Ashmem|@ohos.rpc.d.ts|
+|废弃版本有变化|方法名 or 属性名：setProtection<br>废弃版本：N/A|方法名 or 属性名：setProtection<br>废弃版本：9<br>代替接口：ohos.rpc.Ashmem|@ohos.rpc.d.ts|
+|废弃版本有变化|方法名 or 属性名：writeToAshmem<br>废弃版本：N/A|方法名 or 属性名：writeToAshmem<br>废弃版本：9<br>代替接口：ohos.rpc.Ashmem|@ohos.rpc.d.ts|
+|废弃版本有变化|方法名 or 属性名：readFromAshmem<br>废弃版本：N/A|方法名 or 属性名：readFromAshmem<br>废弃版本：9<br>代替接口：ohos.rpc.Ashmem|@ohos.rpc.d.ts|
+|废弃版本有变化|方法名 or 属性名：enableWifi<br>废弃版本：N/A|方法名 or 属性名：enableWifi<br>废弃版本：9<br>代替接口：ohos.wifiManager/wifiManager.enableWifi     |@ohos.wifi.d.ts|
+|废弃版本有变化|方法名 or 属性名：disableWifi<br>废弃版本：N/A|方法名 or 属性名：disableWifi<br>废弃版本：9<br>代替接口：ohos.wifiManager/wifiManager.disableWifi     |@ohos.wifi.d.ts|
+|废弃版本有变化|方法名 or 属性名：isWifiActive<br>废弃版本：N/A|方法名 or 属性名：isWifiActive<br>废弃版本：9<br>代替接口：ohos.wifiManager/wifiManager.isWifiActive     |@ohos.wifi.d.ts|
+|废弃版本有变化|方法名 or 属性名：scan<br>废弃版本：N/A|方法名 or 属性名：scan<br>废弃版本：9<br>代替接口：ohos.wifiManager/wifiManager.scan     |@ohos.wifi.d.ts|
+|废弃版本有变化|方法名 or 属性名：getScanInfos<br>废弃版本：N/A|方法名 or 属性名：getScanInfos<br>废弃版本：9<br>代替接口：ohos.wifiManager/wifiManager.getScanResults     |@ohos.wifi.d.ts|
+|废弃版本有变化|方法名 or 属性名：getScanInfos<br>废弃版本：N/A|方法名 or 属性名：getScanInfos<br>废弃版本：9|@ohos.wifi.d.ts|
+|废弃版本有变化|方法名 or 属性名：addDeviceConfig<br>废弃版本：N/A|方法名 or 属性名：addDeviceConfig<br>废弃版本：9<br>代替接口：ohos.wifiManager/wifiManager.addDeviceConfig     |@ohos.wifi.d.ts|
+|废弃版本有变化|方法名 or 属性名：addDeviceConfig<br>废弃版本：N/A|方法名 or 属性名：addDeviceConfig<br>废弃版本：9|@ohos.wifi.d.ts|
+|废弃版本有变化|方法名 or 属性名：connectToNetwork<br>废弃版本：N/A|方法名 or 属性名：connectToNetwork<br>废弃版本：9<br>代替接口：ohos.wifiManager/wifiManager.connectToNetwork     |@ohos.wifi.d.ts|
+|废弃版本有变化|方法名 or 属性名：connectToDevice<br>废弃版本：N/A|方法名 or 属性名：connectToDevice<br>废弃版本：9<br>代替接口：ohos.wifiManager/wifiManager.connectToDevice     |@ohos.wifi.d.ts|
+|废弃版本有变化|方法名 or 属性名：disconnect<br>废弃版本：N/A|方法名 or 属性名：disconnect<br>废弃版本：9<br>代替接口：ohos.wifiManager/wifiManager.disconnect     |@ohos.wifi.d.ts|
+|废弃版本有变化|方法名 or 属性名：getSignalLevel<br>废弃版本：N/A|方法名 or 属性名：getSignalLevel<br>废弃版本：9<br>代替接口：ohos.wifiManager/wifiManager.getSignalLevel     |@ohos.wifi.d.ts|
+|废弃版本有变化|方法名 or 属性名：getLinkedInfo<br>废弃版本：N/A|方法名 or 属性名：getLinkedInfo<br>废弃版本：9<br>代替接口：ohos.wifiManager/wifiManager.getLinkedInfo     |@ohos.wifi.d.ts|
+|废弃版本有变化|方法名 or 属性名：getLinkedInfo<br>废弃版本：N/A|方法名 or 属性名：getLinkedInfo<br>废弃版本：9|@ohos.wifi.d.ts|
+|废弃版本有变化|方法名 or 属性名：isConnected<br>废弃版本：N/A|方法名 or 属性名：isConnected<br>废弃版本：9<br>代替接口：ohos.wifiManager/wifiManager.isConnected     |@ohos.wifi.d.ts|
+|废弃版本有变化|方法名 or 属性名：getSupportedFeatures<br>废弃版本：N/A|方法名 or 属性名：getSupportedFeatures<br>废弃版本：9<br>代替接口：ohos.wifiManager/wifiManager.getSupportedFeatures     |@ohos.wifi.d.ts|
+|废弃版本有变化|方法名 or 属性名：isFeatureSupported<br>废弃版本：N/A|方法名 or 属性名：isFeatureSupported<br>废弃版本：9<br>代替接口：ohos.wifiManager/wifiManager.isFeatureSupported     |@ohos.wifi.d.ts|
+|废弃版本有变化|方法名 or 属性名：getDeviceMacAddress<br>废弃版本：N/A|方法名 or 属性名：getDeviceMacAddress<br>废弃版本：9<br>代替接口：ohos.wifiManager/wifiManager.getDeviceMacAddress     |@ohos.wifi.d.ts|
+|废弃版本有变化|方法名 or 属性名：getIpInfo<br>废弃版本：N/A|方法名 or 属性名：getIpInfo<br>废弃版本：9<br>代替接口：ohos.wifiManager/wifiManager.getIpInfo     |@ohos.wifi.d.ts|
+|废弃版本有变化|方法名 or 属性名：getCountryCode<br>废弃版本：N/A|方法名 or 属性名：getCountryCode<br>废弃版本：9<br>代替接口：ohos.wifiManager/wifiManager.getCountryCode     |@ohos.wifi.d.ts|
+|废弃版本有变化|方法名 or 属性名：reassociate<br>废弃版本：N/A|方法名 or 属性名：reassociate<br>废弃版本：9<br>代替接口：ohos.wifiManager/wifiManager.reassociate     |@ohos.wifi.d.ts|
+|废弃版本有变化|方法名 or 属性名：reconnect<br>废弃版本：N/A|方法名 or 属性名：reconnect<br>废弃版本：9<br>代替接口：ohos.wifiManager/wifiManager.reconnect     |@ohos.wifi.d.ts|
+|废弃版本有变化|方法名 or 属性名：getDeviceConfigs<br>废弃版本：N/A|方法名 or 属性名：getDeviceConfigs<br>废弃版本：9<br>代替接口：ohos.wifiManager/wifiManager.getDeviceConfigs     |@ohos.wifi.d.ts|
+|废弃版本有变化|方法名 or 属性名：updateNetwork<br>废弃版本：N/A|方法名 or 属性名：updateNetwork<br>废弃版本：9<br>代替接口：ohos.wifiManager/wifiManager.updateNetwork     |@ohos.wifi.d.ts|
+|废弃版本有变化|方法名 or 属性名：disableNetwork<br>废弃版本：N/A|方法名 or 属性名：disableNetwork<br>废弃版本：9<br>代替接口：ohos.wifiManager/wifiManager.disableNetwork     |@ohos.wifi.d.ts|
+|废弃版本有变化|方法名 or 属性名：removeAllNetwork<br>废弃版本：N/A|方法名 or 属性名：removeAllNetwork<br>废弃版本：9<br>代替接口：ohos.wifiManager/wifiManager.removeAllNetwork     |@ohos.wifi.d.ts|
+|废弃版本有变化|方法名 or 属性名：removeDevice<br>废弃版本：N/A|方法名 or 属性名：removeDevice<br>废弃版本：9<br>代替接口：ohos.wifiManager/wifiManager.removeDevice     |@ohos.wifi.d.ts|
+|废弃版本有变化|方法名 or 属性名：enableHotspot<br>废弃版本：N/A|方法名 or 属性名：enableHotspot<br>废弃版本：9<br>代替接口：ohos.wifiManager/wifiManager.enableHotspot     |@ohos.wifi.d.ts|
+|废弃版本有变化|方法名 or 属性名：disableHotspot<br>废弃版本：N/A|方法名 or 属性名：disableHotspot<br>废弃版本：9<br>代替接口：ohos.wifiManager/wifiManager.disableHotspot     |@ohos.wifi.d.ts|
+|废弃版本有变化|方法名 or 属性名：isHotspotDualBandSupported<br>废弃版本：N/A|方法名 or 属性名：isHotspotDualBandSupported<br>废弃版本：9<br>代替接口：ohos.wifiManager/wifiManager.isHotspotDualBandSupported     |@ohos.wifi.d.ts|
+|废弃版本有变化|方法名 or 属性名：isHotspotActive<br>废弃版本：N/A|方法名 or 属性名：isHotspotActive<br>废弃版本：9<br>代替接口：ohos.wifiManager/wifiManager.isHotspotActive     |@ohos.wifi.d.ts|
+|废弃版本有变化|方法名 or 属性名：setHotspotConfig<br>废弃版本：N/A|方法名 or 属性名：setHotspotConfig<br>废弃版本：9<br>代替接口：ohos.wifiManager/wifiManager.setHotspotConfig     |@ohos.wifi.d.ts|
+|废弃版本有变化|方法名 or 属性名：getHotspotConfig<br>废弃版本：N/A|方法名 or 属性名：getHotspotConfig<br>废弃版本：9<br>代替接口：ohos.wifiManager/wifiManager.getHotspotConfig     |@ohos.wifi.d.ts|
+|废弃版本有变化|方法名 or 属性名：getStations<br>废弃版本：N/A|方法名 or 属性名：getStations<br>废弃版本：9<br>代替接口：ohos.wifiManager/wifiManager.getStations     |@ohos.wifi.d.ts|
+|废弃版本有变化|方法名 or 属性名：getP2pLinkedInfo<br>废弃版本：N/A|方法名 or 属性名：getP2pLinkedInfo<br>废弃版本：9<br>代替接口：ohos.wifiManager/wifiManager.getP2pLinkedInfo     |@ohos.wifi.d.ts|
+|废弃版本有变化|方法名 or 属性名：getP2pLinkedInfo<br>废弃版本：N/A|方法名 or 属性名：getP2pLinkedInfo<br>废弃版本：9|@ohos.wifi.d.ts|
+|废弃版本有变化|方法名 or 属性名：getCurrentGroup<br>废弃版本：N/A|方法名 or 属性名：getCurrentGroup<br>废弃版本：9<br>代替接口：ohos.wifiManager/wifiManager.getCurrentGroup     |@ohos.wifi.d.ts|
+|废弃版本有变化|方法名 or 属性名：getCurrentGroup<br>废弃版本：N/A|方法名 or 属性名：getCurrentGroup<br>废弃版本：9|@ohos.wifi.d.ts|
+|废弃版本有变化|方法名 or 属性名：getP2pPeerDevices<br>废弃版本：N/A|方法名 or 属性名：getP2pPeerDevices<br>废弃版本：9<br>代替接口：ohos.wifiManager/wifiManager.getP2pPeerDevices     |@ohos.wifi.d.ts|
+|废弃版本有变化|方法名 or 属性名：getP2pPeerDevices<br>废弃版本：N/A|方法名 or 属性名：getP2pPeerDevices<br>废弃版本：9|@ohos.wifi.d.ts|
+|废弃版本有变化|方法名 or 属性名：createGroup<br>废弃版本：N/A|方法名 or 属性名：createGroup<br>废弃版本：9<br>代替接口：ohos.wifiManager/wifiManager.createGroup     |@ohos.wifi.d.ts|
+|废弃版本有变化|方法名 or 属性名：removeGroup<br>废弃版本：N/A|方法名 or 属性名：removeGroup<br>废弃版本：9<br>代替接口：ohos.wifiManager/wifiManager.removeGroup     |@ohos.wifi.d.ts|
+|废弃版本有变化|方法名 or 属性名：p2pConnect<br>废弃版本：N/A|方法名 or 属性名：p2pConnect<br>废弃版本：9<br>代替接口：ohos.wifiManager/wifiManager.p2pConnect     |@ohos.wifi.d.ts|
+|废弃版本有变化|方法名 or 属性名：p2pCancelConnect<br>废弃版本：N/A|方法名 or 属性名：p2pCancelConnect<br>废弃版本：9<br>代替接口：ohos.wifiManager/wifiManager.p2pDisonnect     |@ohos.wifi.d.ts|
+|废弃版本有变化|方法名 or 属性名：startDiscoverDevices<br>废弃版本：N/A|方法名 or 属性名：startDiscoverDevices<br>废弃版本：9<br>代替接口：ohos.wifiManager/wifiManager.startDiscoverDevices     |@ohos.wifi.d.ts|
+|废弃版本有变化|方法名 or 属性名：stopDiscoverDevices<br>废弃版本：N/A|方法名 or 属性名：stopDiscoverDevices<br>废弃版本：9<br>代替接口：ohos.wifiManager/wifiManager.stopDiscoverDevices     |@ohos.wifi.d.ts|
+|废弃版本有变化|方法名 or 属性名：deletePersistentGroup<br>废弃版本：N/A|方法名 or 属性名：deletePersistentGroup<br>废弃版本：9<br>代替接口：ohos.wifiManager/wifiManager.deletePersistentGroup     |@ohos.wifi.d.ts|
+|废弃版本有变化|方法名 or 属性名：setDeviceName<br>废弃版本：N/A|方法名 or 属性名：setDeviceName<br>废弃版本：9<br>代替接口：ohos.wifiManager/wifiManager.setDeviceName     |@ohos.wifi.d.ts|
+|废弃版本有变化|方法名 or 属性名：on_wifiStateChange<br>废弃版本：N/A|方法名 or 属性名：on_wifiStateChange<br>废弃版本：9<br>代替接口：ohos.wifiManager/wifiManager.on|@ohos.wifi.d.ts|
+|废弃版本有变化|方法名 or 属性名：off_wifiStateChange<br>废弃版本：N/A|方法名 or 属性名：off_wifiStateChange<br>废弃版本：9<br>代替接口：ohos.wifiManager/wifiManager.off|@ohos.wifi.d.ts|
+|废弃版本有变化|方法名 or 属性名：on_wifiConnectionChange<br>废弃版本：N/A|方法名 or 属性名：on_wifiConnectionChange<br>废弃版本：9<br>代替接口：ohos.wifiManager/wifiManager.on|@ohos.wifi.d.ts|
+|废弃版本有变化|方法名 or 属性名：off_wifiConnectionChange<br>废弃版本：N/A|方法名 or 属性名：off_wifiConnectionChange<br>废弃版本：9<br>代替接口：ohos.wifiManager/wifiManager.off|@ohos.wifi.d.ts|
+|废弃版本有变化|方法名 or 属性名：on_wifiScanStateChange<br>废弃版本：N/A|方法名 or 属性名：on_wifiScanStateChange<br>废弃版本：9<br>代替接口：ohos.wifiManager/wifiManager.on|@ohos.wifi.d.ts|
+|废弃版本有变化|方法名 or 属性名：off_wifiScanStateChange<br>废弃版本：N/A|方法名 or 属性名：off_wifiScanStateChange<br>废弃版本：9<br>代替接口：ohos.wifiManager/wifiManager.off|@ohos.wifi.d.ts|
+|废弃版本有变化|方法名 or 属性名：on_wifiRssiChange<br>废弃版本：N/A|方法名 or 属性名：on_wifiRssiChange<br>废弃版本：9<br>代替接口：ohos.wifiManager/wifiManager.on|@ohos.wifi.d.ts|
+|废弃版本有变化|方法名 or 属性名：off_wifiRssiChange<br>废弃版本：N/A|方法名 or 属性名：off_wifiRssiChange<br>废弃版本：9<br>代替接口：ohos.wifiManager/wifiManager.off|@ohos.wifi.d.ts|
+|废弃版本有变化|方法名 or 属性名：on_streamChange<br>废弃版本：N/A|方法名 or 属性名：on_streamChange<br>废弃版本：9<br>代替接口：ohos.wifiManager/wifiManager.on|@ohos.wifi.d.ts|
+|废弃版本有变化|方法名 or 属性名：off_streamChange<br>废弃版本：N/A|方法名 or 属性名：off_streamChange<br>废弃版本：9<br>代替接口：ohos.wifiManager/wifiManager.off|@ohos.wifi.d.ts|
+|废弃版本有变化|方法名 or 属性名：on_hotspotStateChange<br>废弃版本：N/A|方法名 or 属性名：on_hotspotStateChange<br>废弃版本：9<br>代替接口：ohos.wifiManager/wifiManager.on|@ohos.wifi.d.ts|
+|废弃版本有变化|方法名 or 属性名：off_hotspotStateChange<br>废弃版本：N/A|方法名 or 属性名：off_hotspotStateChange<br>废弃版本：9<br>代替接口：ohos.wifiManager/wifiManager.off|@ohos.wifi.d.ts|
+|废弃版本有变化|方法名 or 属性名：on_hotspotStaJoin<br>废弃版本：N/A|方法名 or 属性名：on_hotspotStaJoin<br>废弃版本：9<br>代替接口：ohos.wifiManager/wifiManager.on|@ohos.wifi.d.ts|
+|废弃版本有变化|方法名 or 属性名：off_hotspotStaJoin<br>废弃版本：N/A|方法名 or 属性名：off_hotspotStaJoin<br>废弃版本：9<br>代替接口：ohos.wifiManager/wifiManager.off|@ohos.wifi.d.ts|
+|废弃版本有变化|方法名 or 属性名：on_hotspotStaLeave<br>废弃版本：N/A|方法名 or 属性名：on_hotspotStaLeave<br>废弃版本：9<br>代替接口：ohos.wifiManager/wifiManager.on|@ohos.wifi.d.ts|
+|废弃版本有变化|方法名 or 属性名：off_hotspotStaLeave<br>废弃版本：N/A|方法名 or 属性名：off_hotspotStaLeave<br>废弃版本：9<br>代替接口：ohos.wifiManager/wifiManager.off|@ohos.wifi.d.ts|
+|废弃版本有变化|方法名 or 属性名：on_p2pStateChange<br>废弃版本：N/A|方法名 or 属性名：on_p2pStateChange<br>废弃版本：9<br>代替接口：ohos.wifiManager/wifiManager.on|@ohos.wifi.d.ts|
+|废弃版本有变化|方法名 or 属性名：off_p2pStateChange<br>废弃版本：N/A|方法名 or 属性名：off_p2pStateChange<br>废弃版本：9<br>代替接口：ohos.wifiManager/wifiManager.off|@ohos.wifi.d.ts|
+|废弃版本有变化|方法名 or 属性名：on_p2pConnectionChange<br>废弃版本：N/A|方法名 or 属性名：on_p2pConnectionChange<br>废弃版本：9<br>代替接口：ohos.wifiManager/wifiManager.on|@ohos.wifi.d.ts|
+|废弃版本有变化|方法名 or 属性名：off_p2pConnectionChange<br>废弃版本：N/A|方法名 or 属性名：off_p2pConnectionChange<br>废弃版本：9<br>代替接口：ohos.wifiManager/wifiManager.off|@ohos.wifi.d.ts|
+|废弃版本有变化|方法名 or 属性名：on_p2pDeviceChange<br>废弃版本：N/A|方法名 or 属性名：on_p2pDeviceChange<br>废弃版本：9<br>代替接口：ohos.wifiManager/wifiManager.on|@ohos.wifi.d.ts|
+|废弃版本有变化|方法名 or 属性名：off_p2pDeviceChange<br>废弃版本：N/A|方法名 or 属性名：off_p2pDeviceChange<br>废弃版本：9<br>代替接口：ohos.wifiManager/wifiManager.off|@ohos.wifi.d.ts|
+|废弃版本有变化|方法名 or 属性名：on_p2pPeerDeviceChange<br>废弃版本：N/A|方法名 or 属性名：on_p2pPeerDeviceChange<br>废弃版本：9<br>代替接口：ohos.wifiManager/wifiManager.on|@ohos.wifi.d.ts|
+|废弃版本有变化|方法名 or 属性名：off_p2pPeerDeviceChange<br>废弃版本：N/A|方法名 or 属性名：off_p2pPeerDeviceChange<br>废弃版本：9<br>代替接口：ohos.wifiManager/wifiManager.off|@ohos.wifi.d.ts|
+|废弃版本有变化|方法名 or 属性名：on_p2pPersistentGroupChange<br>废弃版本：N/A|方法名 or 属性名：on_p2pPersistentGroupChange<br>废弃版本：9<br>代替接口：ohos.wifiManager/wifiManager.on|@ohos.wifi.d.ts|
+|废弃版本有变化|方法名 or 属性名：off_p2pPersistentGroupChange<br>废弃版本：N/A|方法名 or 属性名：off_p2pPersistentGroupChange<br>废弃版本：9<br>代替接口：ohos.wifiManager/wifiManager.off|@ohos.wifi.d.ts|
+|废弃版本有变化|方法名 or 属性名：on_p2pDiscoveryChange<br>废弃版本：N/A|方法名 or 属性名：on_p2pDiscoveryChange<br>废弃版本：9<br>代替接口：ohos.wifiManager/wifiManager.on|@ohos.wifi.d.ts|
+|废弃版本有变化|方法名 or 属性名：off_p2pDiscoveryChange<br>废弃版本：N/A|方法名 or 属性名：off_p2pDiscoveryChange<br>废弃版本：9<br>代替接口：ohos.wifiManager/wifiManager.off|@ohos.wifi.d.ts|
+|废弃版本有变化|类名：WifiDeviceConfig<br>废弃版本：N/A|类名：WifiDeviceConfig<br>废弃版本：9<br>代替接口：ohos.wifiManager/wifiManager.WifiDeviceConfig     |@ohos.wifi.d.ts|
+|废弃版本有变化|类名：IpConfig<br>废弃版本：N/A|类名：IpConfig<br>废弃版本：9<br>代替接口：ohos.wifiManager/wifiManager.IpConfig     |@ohos.wifi.d.ts|
+|废弃版本有变化|类名：WifiScanInfo<br>废弃版本：N/A|类名：WifiScanInfo<br>废弃版本：9<br>代替接口：ohos.wifiManager/wifiManager.WifiScanInfo     |@ohos.wifi.d.ts|
+|废弃版本有变化|类名：WifiSecurityType<br>废弃版本：N/A|类名：WifiSecurityType<br>废弃版本：9<br>代替接口：ohos.wifiManager/wifiManager.WifiSecurityType     |@ohos.wifi.d.ts|
+|废弃版本有变化|类名：WifiLinkedInfo<br>废弃版本：N/A|类名：WifiLinkedInfo<br>废弃版本：9<br>代替接口：ohos.wifiManager/wifiManager.WifiLinkedInfo     |@ohos.wifi.d.ts|
+|废弃版本有变化|类名：IpInfo<br>废弃版本：N/A|类名：IpInfo<br>废弃版本：9<br>代替接口：ohos.wifiManager/wifiManager.IpInfo     |@ohos.wifi.d.ts|
+|废弃版本有变化|类名：HotspotConfig<br>废弃版本：N/A|类名：HotspotConfig<br>废弃版本：9<br>代替接口：ohos.wifiManager/wifiManager.HotspotConfig     |@ohos.wifi.d.ts|
+|废弃版本有变化|类名：StationInfo<br>废弃版本：N/A|类名：StationInfo<br>废弃版本：9<br>代替接口：ohos.wifiManager/wifiManager.StationInfo     |@ohos.wifi.d.ts|
+|废弃版本有变化|类名：IpType<br>废弃版本：N/A|类名：IpType<br>废弃版本：9<br>代替接口：ohos.wifiManager/wifiManager.IpType     |@ohos.wifi.d.ts|
+|废弃版本有变化|类名：SuppState<br>废弃版本：N/A|类名：SuppState<br>废弃版本：9<br>代替接口：ohos.wifiManager/wifiManager.SuppState     |@ohos.wifi.d.ts|
+|废弃版本有变化|类名：ConnState<br>废弃版本：N/A|类名：ConnState<br>废弃版本：9<br>代替接口：ohos.wifiManager/wifiManager.ConnState     |@ohos.wifi.d.ts|
+|废弃版本有变化|类名：WifiP2pDevice<br>废弃版本：N/A|类名：WifiP2pDevice<br>废弃版本：9<br>代替接口：ohos.wifiManager/wifiManager.WifiP2pDevice     |@ohos.wifi.d.ts|
+|废弃版本有变化|类名：WifiP2PConfig<br>废弃版本：N/A|类名：WifiP2PConfig<br>废弃版本：9<br>代替接口：ohos.wifiManager/wifiManager.WifiP2PConfig     |@ohos.wifi.d.ts|
+|废弃版本有变化|类名：WifiP2pGroupInfo<br>废弃版本：N/A|类名：WifiP2pGroupInfo<br>废弃版本：9<br>代替接口：ohos.wifiManager/wifiManager.WifiP2pGroupInfo     |@ohos.wifi.d.ts|
+|废弃版本有变化|类名：P2pConnectState<br>废弃版本：N/A|类名：P2pConnectState<br>废弃版本：9<br>代替接口：ohos.wifiManager/wifiManager.P2pConnectState     |@ohos.wifi.d.ts|
+|废弃版本有变化|类名：WifiP2pLinkedInfo<br>废弃版本：N/A|类名：WifiP2pLinkedInfo<br>废弃版本：9<br>代替接口：ohos.wifiManager/wifiManager.WifiP2pLinkedInfo     |@ohos.wifi.d.ts|
+|废弃版本有变化|类名：P2pDeviceStatus<br>废弃版本：N/A|类名：P2pDeviceStatus<br>废弃版本：9<br>代替接口：ohos.wifiManager/wifiManager.P2pDeviceStatus     |@ohos.wifi.d.ts|
+|废弃版本有变化|类名：GroupOwnerBand<br>废弃版本：N/A|类名：GroupOwnerBand<br>废弃版本：9<br>代替接口：ohos.wifiManager/wifiManager.GroupOwnerBand     |@ohos.wifi.d.ts|
+|废弃版本有变化|方法名 or 属性名：enableHotspot<br>废弃版本：N/A|方法名 or 属性名：enableHotspot<br>废弃版本：9<br>代替接口：ohos.wifiManagerExt/wifiManagerExt.enableHotspot     |@ohos.wifiext.d.ts|
+|废弃版本有变化|方法名 or 属性名：disableHotspot<br>废弃版本：N/A|方法名 or 属性名：disableHotspot<br>废弃版本：9<br>代替接口：ohos.wifiManagerExt/wifiManagerExt.disableHotspot      |@ohos.wifiext.d.ts|
+|废弃版本有变化|方法名 or 属性名：getSupportedPowerModel<br>废弃版本：N/A|方法名 or 属性名：getSupportedPowerModel<br>废弃版本：9<br>代替接口：ohos.wifiManagerExt/wifiManagerExt.getSupportedPowerMode     |@ohos.wifiext.d.ts|
+|废弃版本有变化|方法名 or 属性名：getSupportedPowerModel<br>废弃版本：N/A|方法名 or 属性名：getSupportedPowerModel<br>废弃版本：9|@ohos.wifiext.d.ts|
+|废弃版本有变化|方法名 or 属性名：getPowerModel<br>废弃版本：N/A|方法名 or 属性名：getPowerModel<br>废弃版本：9<br>代替接口：ohos.wifiManagerExt/wifiManagerExt.getPowerMode     |@ohos.wifiext.d.ts|
+|废弃版本有变化|方法名 or 属性名：getPowerModel<br>废弃版本：N/A|方法名 or 属性名：getPowerModel<br>废弃版本：9|@ohos.wifiext.d.ts|
+|废弃版本有变化|方法名 or 属性名：setPowerModel<br>废弃版本：N/A|方法名 or 属性名：setPowerModel<br>废弃版本：9<br>代替接口：ohos.wifiManagerExt/wifiManagerExt.setPowerMode     |@ohos.wifiext.d.ts|
+|废弃版本有变化|类名：PowerModel<br>废弃版本：N/A|类名：PowerModel<br>废弃版本：9<br>代替接口：ohos.wifiManagerExt/wifiManagerExt.PowerMode     |@ohos.wifiext.d.ts|
 |删除(权限)|方法名 or 属性名：getNdefMessage<br>权限:ohos.permission.NFC_TAG|方法名 or 属性名：getNdefMessage<br>权限:N/A|nfctech.d.ts|
 |删除(权限)|方法名 or 属性名：getSectorCount<br>权限:ohos.permission.NFC_TAG|方法名 or 属性名：getSectorCount<br>权限:N/A|nfctech.d.ts|
 |删除(权限)|方法名 or 属性名：getBlockCountInSector<br>权限:ohos.permission.NFC_TAG|方法名 or 属性名：getBlockCountInSector<br>权限:N/A|nfctech.d.ts|
