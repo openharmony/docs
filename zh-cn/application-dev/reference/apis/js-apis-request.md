@@ -366,7 +366,6 @@ on(type: 'progress', callback:(uploadedSize: number, totalSize: number) =&gt; vo
 **示例：**
 
   ```js
-  let uploadTask;
   uploadTask.on('progress', function callback(uploadedSize, totalSize) {
       console.info("upload totalSize:" + totalSize + "  uploadedSize:" + uploadedSize);
   }
@@ -400,7 +399,6 @@ on(type: 'headerReceive', callback:  (header: object) =&gt; void): void
 **示例：**
 
   ```js
-  let uploadTask;
   uploadTask.on('headerReceive', function callback(headers){   
       console.info("upOnHeader headers:" + JSON.stringify(headers));
   }
@@ -434,7 +432,6 @@ on(type: 'headerReceive', callback:  (header: object) =&gt; void): void
 **示例：**
 
   ```js
-  let uploadTask;
   uploadTask.on('complete', function callback(taskStates) {
     for (let i = 0; i < taskStates.length; i++ ) {
       console.info("upOnComplete taskState:" + JSON.stringify(taskStates[i]));
@@ -478,7 +475,6 @@ off(type:  'progress',  callback?: (uploadedSize: number, totalSize: number) =&g
 **示例：**
 
   ```js
-  let uploadTask;
   uploadTask.off('progress', function callback(uploadedSize, totalSize) {
       console.info('uploadedSize: ' + uploadedSize, 'totalSize: ' + totalSize);
   }
@@ -512,7 +508,6 @@ off(type: 'headerReceive', callback?: (header: object) =&gt; void): void
 **示例：**
 
   ```js
-  let uploadTask;
   uploadTask.off('headerReceive', function callback(headers) {
       console.info("upOnHeader headers:" + JSON.stringify(headers));
   }
@@ -545,7 +540,6 @@ off(type: 'headerReceive', callback?: (header: object) =&gt; void): void
 **示例：**
 
   ```js
-  let uploadTask;
   uploadTask.off('complete', function callback(taskStates) {
     for (let i = 0; i < taskStates.length; i++ ) {
       console.info("upOnComplete taskState:" + JSON.stringify(taskStates[i]));
@@ -579,7 +573,6 @@ delete(): Promise&lt;boolean&gt;
 **示例：**
 
   ```js
-  let uploadTask;
   uploadTask.delete().then((result) => {
       if (result) {
           console.info('Upload task removed successfully. ');
@@ -611,7 +604,6 @@ delete(callback: AsyncCallback&lt;boolean&gt;): void
 **示例：**
 
   ```js
-  let uploadTask;
   uploadTask.delete((err, result) => {
       if (err) {
           console.error('Failed to remove the upload task. Cause: ' + JSON.stringify(err));
@@ -647,7 +639,6 @@ remove(): Promise&lt;boolean&gt;
 **示例：**
 
   ```js
-  let uploadTask;
   uploadTask.remove().then((result) => {
       if (result) {
           console.info('Upload task removed successfully. ');
@@ -681,7 +672,6 @@ remove(callback: AsyncCallback&lt;boolean&gt;): void
 **示例：**
 
   ```js
-  let uploadTask;
   uploadTask.remove((err, result) => {
       if (err) {
           console.error('Failed to remove the upload task. Cause: ' + JSON.stringify(err));
@@ -1008,7 +998,6 @@ on(type: 'progress', callback:(receivedSize: number, totalSize: number) =&gt; vo
 **示例：**
 
   ```js
-  let downloadTask;
   downloadTask.on('progress', function download_callback(receivedSize, totalSize) {
       console.info("download receivedSize:" + receivedSize + " totalSize:" + totalSize);
   }
@@ -1070,7 +1059,6 @@ on(type: 'complete'|'pause'|'remove', callback:() =&gt; void): void
 **示例：**
 
   ```js
-  let downloadTask;
   downloadTask.on('complete', function callback() {
       console.info('Download task completed.');
   }
@@ -1098,7 +1086,6 @@ off(type: 'complete'|'pause'|'remove', callback?:() =&gt; void): void
 **示例：**
 
   ```js
-  let downloadTask;
   downloadTask.off('complete', function callback() {
       console.info('Download task completed.');
   }
@@ -1132,7 +1119,6 @@ on(type: 'fail', callback: (err: number) =&gt; void): void
 **示例：**
 
   ```js 
-  let downloadTask;
   downloadTask.on('fail', function callBack(err) {
       console.info('Download task failed. Cause:' + err);
   }
@@ -1166,7 +1152,6 @@ off(type: 'fail', callback?: (err: number) =&gt; void): void
 **示例：**
 
   ```js
-  let downloadTask;
   downloadTask.off('fail', function callBack(err) {
       console.info('Download task failed. Cause:' + err);
   } 
@@ -1192,7 +1177,6 @@ delete(): Promise&lt;boolean&gt;
 **示例：**
 
   ```js
-  let downloadTask;
   downloadTask.delete().then((result) => {
       if (result) {
           console.info('Download task removed.');
@@ -1224,7 +1208,6 @@ delete(callback: AsyncCallback&lt;boolean&gt;): void
 **示例：**
 
   ```js
-  let downloadTask;
   downloadTask.delete((err, result)=>{
       if(err) {
           console.error('Failed to remove the download task.');
@@ -1258,7 +1241,6 @@ getTaskInfo(): Promise&lt;DownloadInfo&gt;
 **示例：**
 
   ```js
-  let downloadTask;
   downloadTask.getTaskInfo().then((downloadInfo) => {    
       console.info('Download task queried. Data:' + JSON.stringify(downloadInfo))
   }) .catch((err) => {
@@ -1286,7 +1268,6 @@ getTaskInfo(callback: AsyncCallback&lt;DownloadInfo&gt;): void
 **示例：**
 
   ```js
-  let downloadTask;
   downloadTask.getTaskInfo((err, downloadInfo)=>{
       if(err) {
           console.error('Failed to query the download mimeType. Cause:' + JSON.stringify(err));
@@ -1316,7 +1297,6 @@ getTaskMimeType(): Promise&lt;string&gt;
 **示例：**
 
   ```js
-  let downloadTask;
   downloadTask.getTaskMimeType().then((data) => {    
       console.info('Download task queried. Data:' + JSON.stringify(data));
   }).catch((err) => {
@@ -1344,7 +1324,6 @@ getTaskMimeType(callback: AsyncCallback&lt;string&gt;): void;
 **示例：**
 
   ```js
-  let downloadTask;
   downloadTask.getTaskMimeType((err, data)=>{
       if(err) {
           console.error('Failed to query the download mimeType. Cause:' + JSON.stringify(err));
@@ -1374,7 +1353,6 @@ suspend(): Promise&lt;boolean&gt;
 **示例：**
 
   ```js
-  let downloadTask;
   downloadTask.suspend().then((result) => {    
       if (result) {
            console.info('Download task paused. ');
@@ -1406,7 +1384,6 @@ suspend(callback: AsyncCallback&lt;boolean&gt;): void
 **示例：**
 
   ```js
-  let downloadTask;
   downloadTask.suspend((err, result)=>{
       if(err) {
           console.error('Failed to pause the download task. Cause:' + JSON.stringify(err));
@@ -1440,7 +1417,6 @@ restore(): Promise&lt;boolean&gt;
 **示例：**
 
   ```js
-  let downloadTask;
   downloadTask.restore().then((result) => {
       if (result) {
           console.info('Download task resumed.')
@@ -1473,7 +1449,6 @@ restore(callback: AsyncCallback&lt;boolean&gt;): void
 **示例：**
 
   ```js
-  let downloadTask;
   downloadTask.restore((err, result)=>{
       if (err) {
           console.error('Failed to resume the download task. Cause:' + err);
@@ -1510,7 +1485,6 @@ remove(): Promise&lt;boolean&gt;
 **示例：**
 
   ```js
-  let downloadTask;
   downloadTask.remove().then((result) => {
       if (result) {
           console.info('Download task removed.');
@@ -1544,7 +1518,6 @@ remove(callback: AsyncCallback&lt;boolean&gt;): void
 **示例：**
 
   ```js
-  let downloadTask;
   downloadTask.remove((err, result)=>{
       if(err) {
           console.error('Failed to remove the download task.');
@@ -1580,7 +1553,6 @@ query(): Promise&lt;DownloadInfo&gt;
 **示例：**
 
   ```js
-  let downloadTask;
   downloadTask.query().then((downloadInfo) => {    
       console.info('Download task queried. Data:' + JSON.stringify(downloadInfo))
   }) .catch((err) => {
@@ -1610,7 +1582,6 @@ query(callback: AsyncCallback&lt;DownloadInfo&gt;): void
 **示例：**
 
   ```js
-  let downloadTask;
   downloadTask.query((err, downloadInfo)=>{
       if(err) {
           console.error('Failed to query the download mimeType. Cause:' + JSON.stringify(err));
@@ -1642,7 +1613,6 @@ queryMimeType(): Promise&lt;string&gt;
 **示例：**
 
   ```js
-  let downloadTask;
   downloadTask.queryMimeType().then((data) => {    
       console.info('Download task queried. Data:' + JSON.stringify(data));
   }).catch((err) => {
@@ -1672,7 +1642,6 @@ queryMimeType(callback: AsyncCallback&lt;string&gt;): void;
 **示例：**
 
   ```js
-  let downloadTask;
   downloadTask.queryMimeType((err, data)=>{
       if(err) {
           console.error('Failed to query the download mimeType. Cause:' + JSON.stringify(err));
@@ -1704,7 +1673,6 @@ pause(): Promise&lt;void&gt;
 **示例：**
 
   ```js
-  let downloadTask;
   downloadTask.pause().then((result) => {    
       if (result) {
            console.info('Download task paused. ');
@@ -1738,7 +1706,6 @@ pause(callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
   ```js
-  let downloadTask;
   downloadTask.pause((err, result)=>{
       if(err) {
           console.error('Failed to pause the download task. Cause:' + JSON.stringify(err));
@@ -1774,7 +1741,6 @@ resume(): Promise&lt;void&gt;
 **示例：**
 
   ```js
-  let downloadTask;
   downloadTask.resume().then((result) => {
       if (result) {
           console.info('Download task resumed.')
@@ -1809,7 +1775,6 @@ resume(callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
   ```js
-  let downloadTask;
   downloadTask.resume((err, result)=>{
       if (err) {
           console.error('Failed to resume the download task. Cause:' + err);
