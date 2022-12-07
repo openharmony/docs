@@ -18,6 +18,8 @@ import systemTimer from '@ohos.systemTimer';
 
 支持创建的定时器类型。
 
+**系统能力：** SystemCapability.MiscServices.Time
+
 | 名称                | 类型   | 值   | 说明                         |
 | ------------------- | ------ | ---- | ---------------------------- |
 | TIMER_TYPE_REALTIME | number | 1    | 系统启动时间定时器。（定时器启动时间不能晚于当前设置的系统时间）         |
@@ -139,14 +141,13 @@ export default {
             repeat:false
         }
       let timerId = await systemTimer.createTimer(options)
-  	  let triggerTime = new Date().getTime()
+      let triggerTime = new Date().getTime()
       triggerTime += 3000
-      systemTimer.startTimer(timerId, triggerTime, (error, data) => {
+      systemTimer.startTimer(timerId, triggerTime, (error) => {
           if (error) {
               console.error(`Failed to start timer. Cause:` + JSON.stringify(error));
               return;
           }
-          console.log(`Succeeded in startting timer. Data:` + JSON.stringify(data));
       });
     }
 }
@@ -219,7 +220,7 @@ export default {
           repeat:false
       }
       let timerId = await systemTimer.createTimer(options)
-  	let triggerTime = new Date().getTime()
+      let triggerTime = new Date().getTime()
       triggerTime += 3000
       systemTimer.startTimer(timerId, triggerTime)
       systemTimer.stopTimer(timerId, (error) => {
@@ -262,7 +263,7 @@ export default {
           repeat:false
       }
       let timerId = await systemTimer.createTimer(options)
-  	let triggerTime = new Date().getTime()
+  	  let triggerTime = new Date().getTime()
       triggerTime += 3000
       systemTimer.startTimer(timerId, triggerTime)
       systemTimer.stopTimer(timerId).then((data) => {
