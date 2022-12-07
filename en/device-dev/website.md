@@ -441,6 +441,7 @@
      - [HiLog Development](subsystems/subsys-dfx-hilog-rich.md)
      - [HiLog\_Lite Development](subsystems/subsys-dfx-hilog-lite.md)
      - [HiTraceChain Development](subsystems/subsys-dfx-hitracechain.md)
+     - [HiTraceMeter Development](subsystems/subsys-dfx-hitracemeter.md)
      - [HiCollie Development](subsystems/subsys-dfx-hicollie.md)
      - HiSysEvent Development
        - [HiSysEvent Overview](subsystems/subsys-dfx-hisysevent-overview.md)
