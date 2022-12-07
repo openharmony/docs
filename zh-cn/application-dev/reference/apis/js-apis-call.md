@@ -3236,12 +3236,12 @@ IP多媒体系统调用模式。
 | INCOMING_CALLS_BARRED_WITHIN_THE_CUG            | 55   | CUG内禁止来电                           |
 | BEARER_CAPABILITY_NOT_AUTHORIZED                | 57   | 未授权承载能力                          |
 | BEARER_CAPABILITY_NOT_PRESENTLY_AVAILABLE       | 58   | 承载能力目前不可用                      |
-| SERVICE_OR_OPTION_NOT_AVAILABLE_UNSPECIFIED     | 63   | 服务或选项不可用，未使用                |
+| SERVICE_OR_OPTION_NOT_AVAILABLE_UNSPECIFIED     | 63   | 服务或选项不可用，未指定                |
 | BEARER_SERVICE_NOT_IMPLEMENTED                  | 65   | 未实现承载服务                          |
-| ACM_EQUALTO_OR_GREATE_THAN_ACMMAX               | 68   | ACM等于或大于ACMmax                     |
+| ACM_EQUALTO_OR_GREATER_THAN_THE_MAXIMUM_VALUE   | 68   | ACM大于或等于最大值                     |
 | REQUESTED_FACILITY_NOT_IMPLEMENTED              | 69   | 请求的设施未实施                        |
 | ONLY_RESTRICTED_DIGITAL_INFO_BEARER_CAPABILITY_IS_AVAILABLE | 70   | 仅限BC有限数字信息可用      |
-| SERVICE_OR_OPTION_NOT_IMPLEMENTED_UNSPECIFIED   | 79   | 服务或选项未实施，未使用                |
+| SERVICE_OR_OPTION_NOT_IMPLEMENTED_UNSPECIFIED   | 79   | 服务或选项未实施，未指定                |
 | INVALID_TRANSACTION_IDENTIFIER_VALUE            | 81   | 无效的业务标识符值                      |
 | USER_NOT_MEMBER_OF_CUG                          | 87   | 用户不是CUG成员                         |
 | INCOMPATIBLE_DESTINATION                        | 88   | 目标不兼容                              |
