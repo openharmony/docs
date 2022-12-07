@@ -23,7 +23,7 @@ registerErrorObserver(observer: ErrorObserver): number;
  
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| observer | [ErrorObserver](js-apis-inner-application-errorObserver.md) | 否 | 返回观察者的数字代码。 |
+| observer | [ErrorObserver](js-apis-inner-application-errorObserver.md) | 是 | 返回观察者的数字代码。 |
 
 **示例：**
     
@@ -48,8 +48,8 @@ unregisterErrorObserver(observerId: number,  callback: AsyncCallback\<void>): vo
  
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| observerId | number | 否 | 返回观察者的数字代码。 |
-| callback | AsyncCallback\<void> | 否 | 表示指定的回调方法。 |
+| observerId | number | 是 | 返回观察者的数字代码。 |
+| callback | AsyncCallback\<void> | 是 | 表示指定的回调方法。 |
 
 **示例：**
     
@@ -77,7 +77,7 @@ unregisterErrorObserver(observerId: number): Promise\<void>;
  
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| observerId | number | 否 | 返回观察者的数字代码。 |
+| observerId | number | 是 | 返回观察者的数字代码。 |
 
 **返回值：**
 

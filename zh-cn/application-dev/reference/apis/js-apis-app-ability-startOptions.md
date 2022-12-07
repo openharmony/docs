@@ -18,7 +18,7 @@ import StartOptions from '@ohos.app.ability.StartOptions';
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
 
-| 名称 | 可读 | 可写 | 参数类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- | -------- | -------- |
-| [windowMode](js-apis-application-abilityConstant.md#abilityconstantwindowmode) | 是 | 否 | number | 否 | 窗口模式。 |
-| displayId | 是 | 否 | number | 否 | 显示ID。 |
+| 名称 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| [windowMode](js-apis-application-abilityConstant.md#abilityconstantwindowmode) | number | 否 | 窗口模式。 |
+| displayId | number | 否 | 显示ID。 |

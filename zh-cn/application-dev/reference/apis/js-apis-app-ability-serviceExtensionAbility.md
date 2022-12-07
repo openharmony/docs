@@ -23,7 +23,7 @@ import ServiceExtension from '@ohos.app.ability.ServiceExtensionAbility';
 
 **系统API**: 此接口为系统接口，三方应用不支持调用。
 
-| 名称 | 参数类型 | 可读 | 可写 | 说明 | 
+| 名称 | 类型 | 可读 | 可写 | 说明 | 
 | -------- | -------- | -------- | -------- | -------- |
 | context | [ServiceExtensionContext](js-apis-inner-application-serviceExtensionContext.md)  | 是 | 否 | ServiceExtension的上下文环境，继承自ExtensionContext。 | 
 
@@ -198,9 +198,9 @@ onReconnect(want: Want): void;
   }
   ```
 
-## ServiceExtensionAbility.onConfigurationUpdated
+## ServiceExtensionAbility.onConfigurationUpdate
 
-onConfigurationUpdated(config: Configuration): void;
+onConfigurationUpdate(config: Configuration): void;
 
 当Extension更新配置信息时调用。
 
@@ -218,15 +218,15 @@ onConfigurationUpdated(config: Configuration): void;
     
   ```ts
   class ServiceExt extends ServiceExtension {
-      onConfigurationUpdated(config) {
-          console.log('onConfigurationUpdated, config:' + JSON.stringify(config));
+      onConfigurationUpdate(config) {
+          console.log('onConfigurationUpdate, config:' + JSON.stringify(config));
       }
   }
   ```
 
-## ServiceExtensionAbility.dump
+## ServiceExtensionAbility.onDump
 
-dump(params: Array\<string>): Array\<string>;
+onDump(params: Array\<string>): Array\<string>;
 
 转储客户端信息时调用。
 
@@ -244,7 +244,7 @@ dump(params: Array\<string>): Array\<string>;
     
   ```ts
   class ServiceExt extends ServiceExtension {
-      dump(params) {
+      onDump(params) {
           console.log('dump, params:' + JSON.stringify(params));
           return ["params"]
       }

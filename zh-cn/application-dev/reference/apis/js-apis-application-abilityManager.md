@@ -41,7 +41,7 @@ updateConfiguration(config: Configuration, callback: AsyncCallback\<void>): void
  
 **参数**：
 
-| 名称        | 类型                                       | 必填   | 描述             |
+| 参数名        | 类型                                       | 必填   | 说明             |
 | --------- | ---------------------------------------- | ---- | -------------- |
 | config    | [Configuration](js-apis-application-configuration.md)   | 是    | 新的配置项。 |
 | callback  | AsyncCallback\<void>                   | 是    | 被指定的回调方法。      |
@@ -72,7 +72,7 @@ updateConfiguration(config: Configuration): Promise\<void>
 
 **参数**：
 
-| 名称        | 类型                                       | 必填   | 描述             |
+| 参数名        | 类型                                       | 必填   | 说明             |
 | --------- | ---------------------------------------- | ---- | -------------- |
 | config    | [Configuration](js-apis-application-configuration.md)   | 是    | 新的配置项。 |
 
@@ -110,7 +110,7 @@ getAbilityRunningInfos(callback: AsyncCallback\<Array\<AbilityRunningInfo>>): vo
 
 **参数**：
 
-| 名称        | 类型                                       | 必填   | 描述             |
+| 参数名        | 类型                                       | 必填   | 说明             |
 | --------- | ---------------------------------------- | ---- | -------------- |
 | callback  | AsyncCallback\<Array\<AbilityRunningInfo>>  | 是    | 被指定的回调方法。      |
 
@@ -164,7 +164,7 @@ getExtensionRunningInfos(upperLimit: number, callback: AsyncCallback\<Array\<Ext
 
 **参数**：
 
-| 名称        | 类型                                       | 必填   | 描述             |
+| 参数名        | 类型                                       | 必填   | 说明             |
 | --------- | ---------------------------------------- | ---- | -------------- |
 | upperLimit | number                                   | 是 | 获取消息数量的最大限制。 |
 | callback  | AsyncCallback\<Array\<AbilityRunningInfo>>  | 是    | 被指定的回调方法。      |
@@ -193,7 +193,7 @@ getExtensionRunningInfos(upperLimit: number): Promise\<Array\<ExtensionRunningIn
 
 **参数**：
 
-| 名称        | 类型                                       | 必填   | 描述             |
+| 参数名        | 类型                                       | 必填   | 说明             |
 | --------- | ---------------------------------------- | ---- | -------------- |
 | upperLimit | number                                   | 是 | 获取消息数量的最大限制。 |
 
@@ -227,7 +227,7 @@ getTopAbility(callback: AsyncCallback\<ElementName>): void;
 
 **参数**：
 
-| 名称        | 类型                                       | 必填   | 描述             |
+| 参数名        | 类型                                       | 必填   | 说明             |
 | --------- | ---------------------------------------- | ---- | -------------- |
 | callback  | AsyncCallback\<ElementName>  | 是    | 被指定的回调方法。      |
 

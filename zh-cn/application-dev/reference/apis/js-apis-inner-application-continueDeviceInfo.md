@@ -4,7 +4,7 @@
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Mission
 
-| 名称       | 参数类型   | 可读   | 可写   | 说明      |
+| 名称       | 类型   | 可读   | 可写   | 说明      |
 | -------- | ------ | ---- | ---- | ------- |
 | srcDeviceId | string | 是    | 是    | 表示任务迁移源设备ID。 |
 | dstDeviceId | string | 是    | 是    | 表示任务迁移目标设备ID。 |

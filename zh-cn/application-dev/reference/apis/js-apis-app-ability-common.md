@@ -15,21 +15,21 @@ import common from '@ohos.app.ability.common'
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityBase
 
-| 名称        | 读写属性 | 类型                 | 必填 | 描述                                                         |
-| ----------- | -------- | -------------------- | ---- | ------------------------------------------------------------ |
-| UIAbilityContext    | 只读     | [UIAbilityContext](js-apis-inner-application-uiAbilityContext.md)               | 否   | UIAbilityContext二级模块。                                |
-| AbilityStageContext   | 只读     | [AbilityStageContext](js-apis-inner-application-abilityStageContext.md)               | 否   | AbilityStageContext二级模块。 |
-| ApplicationContext   | 只读     | [ApplicationContext](js-apis-inner-application-applicationContext.md)               | 否   | ApplicationContext二级模块。 |
-| BaseContext   | 只读     | [BaseContext](js-apis-inner-application-baseContext.md)               | 否   | BaseContext二级模块。 |
-| Context   | 只读     | [Context](js-apis-inner-application-context.md)               | 否   | Context二级模块。 |
-| ExtensionContext   | 只读     | [ExtensionContext](js-apis-inner-application-extensionContext.md)               | 否   | ExtensionContext二级模块。 |
-| FormExtensionContext   | 只读     | [FormExtensionContext](js-apis-inner-application-formExtensionContext.md)               | 否   | FormExtensionContext二级模块。 |
-| AreaMode   | 只读     | [AreaMode](#areamode)               | 否   | AreaMode枚举值。 |
-| EventHub   | 只读     | [EventHub](js-apis-inner-application-eventHub.md)               | 否   | EventHub二级模块。 |
-| PermissionRequestResult   | 只读     | [PermissionRequestResult](js-apis-inner-application-permissionRequestResult.md)               | 否   | PermissionRequestResult二级模块。 |
-| PacMap   | 只读     | [PacMap](js-apis-inner-ability-dataAbilityHelper.md#PacMap)               | 否   | PacMap二级模块。 |
-| AbilityResult   | 只读     | [AbilityResult](js-apis-inner-ability-abilityResult.md)               | 否   | AbilityResult二级模块。 |
-| ConnectOptions   | 只读     | [ConnectOptions](js-apis-inner-ability-connectOptions.md)               | 否   | ConnectOptions二级模块。 |
+| 名称        | 类型                 | 必填 | 说明                                                         |
+| ----------- | -------------------- | ---- | ------------------------------------------------------------ |
+| UIAbilityContext    | [UIAbilityContext](js-apis-inner-application-uiAbilityContext.md)               | 否   | UIAbilityContext二级模块。                                |
+| AbilityStageContext   | [AbilityStageContext](js-apis-inner-application-abilityStageContext.md)               | 否   | AbilityStageContext二级模块。 |
+| ApplicationContext   | [ApplicationContext](js-apis-inner-application-applicationContext.md)               | 否   | ApplicationContext二级模块。 |
+| BaseContext   | [BaseContext](js-apis-inner-application-baseContext.md)               | 否   | BaseContext二级模块。 |
+| Context   | [Context](js-apis-inner-application-context.md)               | 否   | Context二级模块。 |
+| ExtensionContext   | [ExtensionContext](js-apis-inner-application-extensionContext.md)               | 否   | ExtensionContext二级模块。 |
+| FormExtensionContext   | [FormExtensionContext](js-apis-inner-application-formExtensionContext.md)               | 否   | FormExtensionContext二级模块。 |
+| AreaMode   | [AreaMode](#areamode)               | 否   | AreaMode枚举值。 |
+| EventHub   | [EventHub](js-apis-inner-application-eventHub.md)               | 否   | EventHub二级模块。 |
+| PermissionRequestResult   | [PermissionRequestResult](js-apis-inner-application-permissionRequestResult.md)               | 否   | PermissionRequestResult二级模块。 |
+| PacMap   | [PacMap](js-apis-inner-ability-dataAbilityHelper.md#PacMap)               | 否   | PacMap二级模块。 |
+| AbilityResult   | [AbilityResult](js-apis-inner-ability-abilityResult.md)               | 否   | AbilityResult二级模块。 |
+| ConnectOptions   | [ConnectOptions](js-apis-inner-ability-connectOptions.md)               | 否   | ConnectOptions二级模块。 |
 
 **示例：**
 ```ts
@@ -56,7 +56,7 @@ let connectOptions: common.ConnectOptions;
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
 
-| 变量            | 值    | 描述            |
+| 名称            | 值    | 说明            |
 | --------------- | ---- | --------------- |
 | EL1             | 0    | 设备级加密区。   |
 | EL2             | 1    | 用户凭据加密区。默认为EL2。 |

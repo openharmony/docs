@@ -13,9 +13,9 @@ Ability模块提供对Ability生命周期、上下文环境等调用管理的能
 import Ability from '@ohos.app.ability.Ability';
 ```
 
-## Ability.onConfigurationUpdated
+## Ability.onConfigurationUpdate
 
-onConfigurationUpdated(config: Configuration): void;
+onConfigurationUpdate(config: Configuration): void;
 
 当系统配置更新时调用。
 
@@ -31,8 +31,8 @@ onConfigurationUpdated(config: Configuration): void;
     
   ```ts
   class myAbility extends Ability {
-      onConfigurationUpdated(config) {
-          console.log('onConfigurationUpdated, config:' + JSON.stringify(config));
+      onConfigurationUpdate(config) {
+          console.log('onConfigurationUpdate, config:' + JSON.stringify(config));
       }
   }
   ```

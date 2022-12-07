@@ -392,11 +392,11 @@ connectAbility(request: Want, options:ConnectOptions): number
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
 
-| 参数名           | 读写属性 | 类型       | 必填   | 说明                        |
-| ------------ | ---- | -------- | ---- | ------------------------- |
-| onConnect    | 只读   | function | 是    | 连接成功时的回调函数。               |
-| onDisconnect | 只读   | function | 是    | 连接失败时的回调函数。               |
-| onFailed     | 只读   | function | 是    | ConnectAbility调用失败时的回调函数。 |
+| 名称           | 类型       | 必填   | 说明                        |
+| ------------ | -------- | ---- | ------------------------- |
+| onConnect    | function | 是    | 连接成功时的回调函数。               |
+| onDisconnect | function | 是    | 连接失败时的回调函数。               |
+| onFailed     | function | 是    | ConnectAbility调用失败时的回调函数。 |
 
 **示例**：
 

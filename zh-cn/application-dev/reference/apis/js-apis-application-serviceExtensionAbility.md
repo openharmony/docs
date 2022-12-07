@@ -23,7 +23,7 @@ import ServiceExtensionAbility from '@ohos.application.ServiceExtensionAbility';
 
 **系统API**: 此接口为系统接口，三方应用不支持调用。
 
-| 名称 | 参数类型 | 可读 | 可写 | 说明 | 
+| 名称 | 类型 | 可读 | 可写 | 说明 | 
 | -------- | -------- | -------- | -------- | -------- |
 | context | [ServiceExtensionContext](js-apis-inner-application-serviceExtensionContext.md)  | 是 | 否 | ServiceExtension的上下文环境，继承自ExtensionContext。 | 
 

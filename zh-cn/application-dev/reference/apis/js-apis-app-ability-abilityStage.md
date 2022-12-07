@@ -9,7 +9,7 @@ AbilityStage类提供在HAP加载的时候，通知开发者，可以在此进�
 > 本模块首批接口从API version 9 开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。  
 > 本模块接口仅可在Stage模型下使用。
 
-## 导入类
+## 导入模块
 
 ```ts
 import AbilityStage from '@ohos.app.ability.AbilityStage';
@@ -66,9 +66,9 @@ onAcceptWant(want: Want): string;
   ```
 
 
-## AbilityStage.onConfigurationUpdated
+## AbilityStage.onConfigurationUpdate
 
-onConfigurationUpdated(config: Configuration): void;
+onConfigurationUpdate(newConfig: Configuration): void;
 
 环境变化通知接口，发生全局配置变更时回调。
 
@@ -78,14 +78,14 @@ onConfigurationUpdated(config: Configuration): void;
 
   | 参数名 | 类型 | 必填 | 说明 | 
   | -------- | -------- | -------- | -------- |
-  | config | [Configuration](js-apis-app-ability-configuration.md) | 是 | 发生全局配置变更时触发回调，当前全局配置包括系统语言、深浅色模式。 | 
+  | newConfig | [Configuration](js-apis-app-ability-configuration.md) | 是 | 发生全局配置变更时触发回调，当前全局配置包括系统语言、深浅色模式。 | 
 
 **示例：**
     
   ```ts
   class MyAbilityStage extends AbilityStage {
-      onConfigurationUpdated(config) {
-          console.log('onConfigurationUpdated, language:' + config.language);
+      onConfigurationUpdate(config) {
+          console.log('onConfigurationUpdate, language:' + config.language);
       }
   }
   ```
@@ -96,7 +96,7 @@ onMemoryLevel(level: AbilityConstant.MemoryLevel): void;
 
 当系统已决定调整内存时调用。例如，当该功能在后台运行时，没有足够的内存来运行尽可能多的后台进程时可以使用。
 
-**系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 **参数：**
 

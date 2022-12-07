@@ -30,7 +30,7 @@ class MainAbility extends AccessibilityExtensionAbility {
 
 **系统能力**：以下各项对应的系统能力均为 SystemCapability.BarrierFree.Accessibility.Core
 
-| 名称       | 描述      |
+| 名称       | 说明      |
 | -------- | ------- |
 | up       | 表示向上查询。 |
 | down     | 表示向上查询。 |
@@ -45,7 +45,7 @@ class MainAbility extends AccessibilityExtensionAbility {
 
 **系统能力**：以下各项对应的系统能力均为 SystemCapability.BarrierFree.Accessibility.Core
 
-| 名称            | 描述          |
+| 名称            | 说明          |
 | ------------- | ----------- |
 | accessibility | 表示无障碍的焦点类型。 |
 | normal        | 表示普通的焦点类型。  |
@@ -69,7 +69,7 @@ class MainAbility extends AccessibilityExtensionAbility {
 
 **系统能力**：以下各项对应的系统能力均为 SystemCapability.BarrierFree.Accessibility.Core
 
-| 名称          | 描述        |
+| 名称          | 说明        |
 | ----------- | --------- |
 | application | 表示应用窗口类型。 |
 | system      | 表示系统窗口类型。 |

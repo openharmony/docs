@@ -4,7 +4,7 @@ appManager模块提供App管理的能力，包括查询当前是否处于稳定�
 
 > **说明：**
 > 
-> 本模块首批接口从API version 8 开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+> 本模块首批接口从API version 7 开始支持，从API version 9废弃，替换模块为[@ohos.app.ability.appManager](js-apis-app-ability-appManager.md)。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
 ## 导入模块
 
@@ -24,7 +24,7 @@ static isRunningInStabilityTest(callback: AsyncCallback&lt;boolean&gt;): void
 
   | 参数名 | 类型 | 必填 | 说明 | 
   | -------- | -------- | -------- | -------- |
-  | callback | AsyncCallback&lt;boolean&gt; | 否 | 返回当前是否处于稳定性测试场景。 | 
+  | callback | AsyncCallback&lt;boolean&gt; | 是 | 返回当前是否处于稳定性测试场景。 | 
 
 **示例：**
     
@@ -98,7 +98,7 @@ isRamConstrainedDevice(callback: AsyncCallback\<boolean>): void;
 
   | 参数名 | 类型 | 必填 | 说明 | 
   | -------- | -------- | -------- | -------- |
-  | callback | AsyncCallback&lt;boolean&gt; | 否 | 返回当前是否是ram受限设备。 | 
+  | callback | AsyncCallback&lt;boolean&gt; | 是 | 返回当前是否是ram受限设备。 | 
 
 **示例：**
     
@@ -145,7 +145,7 @@ getAppMemorySize(callback: AsyncCallback\<number>): void;
 
   | 参数名 | 类型 | 必填 | 说明 | 
   | -------- | -------- | -------- | -------- |
-  | callback | AsyncCallback&lt;number&gt; | 否 | 应用程序内存大小。 | 
+  | callback | AsyncCallback&lt;number&gt; | 是 | 应用程序内存大小。 | 
 
 **示例：**
     
@@ -199,7 +199,7 @@ getProcessRunningInfos(callback: AsyncCallback\<Array\<ProcessRunningInfo>>): vo
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| callback | AsyncCallback\<Array\<ProcessRunningInfo>> | 否 | 获取有关运行进程的信息。 |
+| callback | AsyncCallback\<Array\<ProcessRunningInfo>> | 是 | 获取有关运行进程的信息。 |
 
 **示例：**
     
@@ -250,7 +250,7 @@ getProcessRunningInformation(callback: AsyncCallback\<Array\<ProcessRunningInfor
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| callback | AsyncCallback\<Array\<[ProcessRunningInformation](js-apis-inner-application-processRunningInformation.md)>> | 否 | 获取有关运行进程的信息。 |
+| callback | AsyncCallback\<Array\<[ProcessRunningInformation](js-apis-inner-application-processRunningInformation.md)>> | 是 | 获取有关运行进程的信息。 |
 
 **示例：**
     
@@ -277,7 +277,7 @@ registerApplicationStateObserver(observer: ApplicationStateObserver): number;
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| observer | [ApplicationStateObserver](js-apis-inner-application-applicationStateObserver.md) | 否 | 返回观察者的数字代码。 |
+| observer | [ApplicationStateObserver](js-apis-inner-application-applicationStateObserver.md) | 是 | 返回观察者的数字代码。 |
 
 **示例：**
     
@@ -319,8 +319,8 @@ registerApplicationStateObserver(observer: ApplicationStateObserver, bundleNameL
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| observer | [ApplicationStateObserver](js-apis-inner-application-applicationStateObserver.md) | 否 | 返回观察者的数字代码。 |
-| bundleNameList | Array<string> | 否 | 表示需要注册监听的bundleName数组。最大值128。 |
+| observer | [ApplicationStateObserver](js-apis-inner-application-applicationStateObserver.md) | 是 | 返回观察者的数字代码。 |
+| bundleNameList | Array<string> | 是 | 表示需要注册监听的bundleName数组。最大值128。 |
 
 **示例：**
     
@@ -362,8 +362,8 @@ unregisterApplicationStateObserver(observerId: number,  callback: AsyncCallback\
  
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| observerId | number | 否 | 表示观察者的编号代码。 |
-| callback | AsyncCallback\<void> | 否 | 表示指定的回调方法。 |
+| observerId | number | 是 | 表示观察者的编号代码。 |
+| callback | AsyncCallback\<void> | 是 | 表示指定的回调方法。 |
 
 **示例：**
     
@@ -394,7 +394,7 @@ unregisterApplicationStateObserver(observerId: number): Promise\<void>;
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| observerId | number | 否 | 表示观察者的编号代码。 |
+| observerId | number | 是 | 表示观察者的编号代码。 |
 
 **返回值：**
 
@@ -432,7 +432,7 @@ getForegroundApplications(callback: AsyncCallback\<Array\<AppStateData>>): void;
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| callback | AsyncCallback\<Array\<AppStateData>> | 否 | 表示应用的状态数据。 |
+| callback | AsyncCallback\<Array\<AppStateData>> | 是 | 表示应用的状态数据。 |
 
 **示例：**
     
@@ -562,8 +562,8 @@ killProcessesByBundleName(bundleName: string, callback: AsyncCallback\<void>);
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| bundleName | string | 否 | 表示包名。 |
-| callback | AsyncCallback\<void> | 否 | 表示指定的回调方法。 |
+| bundleName | string | 是 | 表示包名。 |
+| callback | AsyncCallback\<void> | 是 | 表示指定的回调方法。 |
 
 **示例：**
     
@@ -595,7 +595,7 @@ killProcessesByBundleName(bundleName: string): Promise\<void>;
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| bundleName | string | 否 | 表示包名。 |
+| bundleName | string | 是 | 表示包名。 |
 
 **返回值：**
 
@@ -632,8 +632,8 @@ clearUpApplicationData(bundleName: string, callback: AsyncCallback\<void>);
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| bundleName | string | 否 | 表示包名。 |
-| callback | AsyncCallback\<void> | 否 | 表示指定的回调方法。 |
+| bundleName | string | 是 | 表示包名。 |
+| callback | AsyncCallback\<void> | 是 | 表示指定的回调方法。 |
 
 **示例：**
     
@@ -665,7 +665,7 @@ clearUpApplicationData(bundleName: string): Promise\<void>;
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| bundleName | string | 否 | 表示包名。 |
+| bundleName | string | 是 | 表示包名。 |
 
 **返回值：**
 
@@ -686,213 +686,13 @@ clearUpApplicationData(bundleName: string): Promise\<void>;
     })
   ```
 
-## ApplicationStateObserver.onForegroundApplicationChanged<sup>8+</sup>
-
-onForegroundApplicationChanged(appStateData: AppStateData): void;
-
-将在前台或后台应用程序更改时调用。
-
-**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
-
-**系统API**：该接口为系统接口，三方应用不支持调用。
-
-**参数：**
-
-| 参数名 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| appStateData | [AppStateData](js-apis-inner-application-appStateData.md) | 否 | 状态更改的应用程序信息。 |
-
-**示例：**
-    
-```ts
-var applicationStateObserver = {
-  onForegroundApplicationChanged(appStateData) {
-      console.log('------------ onForegroundApplicationChanged -----------', appStateData);
-  },
-  onAbilityStateChanged(abilityStateData) {
-      console.log('------------ onAbilityStateChanged -----------', abilityStateData);
-  },
-  onProcessCreated(processData) {
-      console.log('------------ onProcessCreated -----------', processData);
-  },
-  onProcessDied(processData) {
-      console.log('------------ onProcessDied -----------', processData);
-  },
-  onProcessStateChanged(processData) {
-      console.log('------------ onProcessStateChanged -----------', processData);
-  }
-}
-const observerCode = app.registerApplicationStateObserver(applicationStateObserver);
-console.log('-------- observerCode: ---------', observerCode);
-```
-
-## ApplicationStateObserver.onAbilityStateChanged<sup>8+</sup>
-
-onAbilityStateChanged(abilityStateData: AbilityStateData): void;
-
-将在能力状态更改时调用。
-
-**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
-
-**系统API**：该接口为系统接口，三方应用不支持调用。
-
-**参数：**
-
-| 参数名 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| abilityStateData | [AbilityStateData](js-apis-inner-application-abilityStateData.md) | 否 | 状态更改的能力信息。 |
-
-**示例：**
-    
-```ts
-var applicationStateObserver = {
-  onForegroundApplicationChanged(appStateData) {
-      console.log('------------ onForegroundApplicationChanged -----------', appStateData);
-  },
-  onAbilityStateChanged(abilityStateData) {
-      console.log('------------ onAbilityStateChanged -----------', abilityStateData);
-  },
-  onProcessCreated(processData) {
-      console.log('------------ onProcessCreated -----------', processData);
-  },
-  onProcessDied(processData) {
-      console.log('------------ onProcessDied -----------', processData);
-  },
-  onProcessStateChanged(processData) {
-      console.log('------------ onProcessStateChanged -----------', processData);
-  }
-}
-const observerCode = app.registerApplicationStateObserver(applicationStateObserver);
-console.log('-------- observerCode: ---------', observerCode);
-```
-
-## ApplicationStateObserver.onProcessCreated<sup>8+</sup>
-
-onProcessCreated(processData: ProcessData): void;
-
-将在创建进程时调用。
-
-**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
-
-**系统API**：该接口为系统接口，三方应用不支持调用。
-
-**参数：**
-
-| 参数名 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| processData | [ProcessData](js-apis-inner-application-processData.md) | 否 | 进程信息。 |
-
-**示例：**
-    
-```ts
-var applicationStateObserver = {
-  onForegroundApplicationChanged(appStateData) {
-      console.log('------------ onForegroundApplicationChanged -----------', appStateData);
-  },
-  onAbilityStateChanged(abilityStateData) {
-      console.log('------------ onAbilityStateChanged -----------', abilityStateData);
-  },
-  onProcessCreated(processData) {
-      console.log('------------ onProcessCreated -----------', processData);
-  },
-  onProcessDied(processData) {
-      console.log('------------ onProcessDied -----------', processData);
-  },
-  onProcessStateChanged(processData) {
-      console.log('------------ onProcessStateChanged -----------', processData);
-  }
-}
-const observerCode = app.registerApplicationStateObserver(applicationStateObserver);
-console.log('-------- observerCode: ---------', observerCode);
-```
-
-## ApplicationStateObserver.onProcessDied<sup>8+</sup>
-
-onProcessDied(processData: ProcessData): void;
-
-将在进程终止时调用。
-
-**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
-
-**系统API**：该接口为系统接口，三方应用不支持调用。
-
-**参数：**
-
-| 参数名 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| processData | [ProcessData](js-apis-inner-application-processData.md) | 否 | 进程信息。 |
-
-**示例：**
-    
-```ts
-var applicationStateObserver = {
-  onForegroundApplicationChanged(appStateData) {
-      console.log('------------ onForegroundApplicationChanged -----------', appStateData);
-  },
-  onAbilityStateChanged(abilityStateData) {
-      console.log('------------ onAbilityStateChanged -----------', abilityStateData);
-  },
-  onProcessCreated(processData) {
-      console.log('------------ onProcessCreated -----------', processData);
-  },
-  onProcessDied(processData) {
-      console.log('------------ onProcessDied -----------', processData);
-  },
-  onProcessStateChanged(processData) {
-      console.log('------------ onProcessStateChanged -----------', processData);
-  }
-}
-const observerCode = app.registerApplicationStateObserver(applicationStateObserver);
-console.log('-------- observerCode: ---------', observerCode);
-```
-
-## ApplicationStateObserver.onProcessStateChanged<sup>9+</sup>
-
- onProcessStateChanged(processData: ProcessData): void;
-
-当进程状态更改时调用。
-
-**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
-
-**系统API**：该接口为系统接口，三方应用不支持调用。
-
-**参数：**
-
-| 参数名 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| processData | [ProcessData](js-apis-inner-application-processData.md) | 否 | 进程信息。 |
-
-**示例：**
-    
-```ts
-var applicationStateObserver = {
-  onForegroundApplicationChanged(appStateData) {
-      console.log('------------ onForegroundApplicationChanged -----------', appStateData);
-  },
-  onAbilityStateChanged(abilityStateData) {
-      console.log('------------ onAbilityStateChanged -----------', abilityStateData);
-  },
-  onProcessCreated(processData) {
-      console.log('------------ onProcessCreated -----------', processData);
-  },
-  onProcessDied(processData) {
-      console.log('------------ onProcessDied -----------', processData);
-  },
-  onProcessStateChanged(processData) {
-      console.log('------------ onProcessStateChanged -----------', processData);
-  }
-}
-const observerCode = app.registerApplicationStateObserver(applicationStateObserver);
-console.log('-------- observerCode: ---------', observerCode);
-```
-
 ## ApplicationState<sup>9+</sup>
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 **系统API**: 此接口为系统接口，三方应用不支持调用。
 
-| 名称                 | 值  | 描述                               |
+| 名称                 | 值  | 说明                               |
 | -------------------- | --- | --------------------------------- |
 | STATE_CREATE    | 1   |   当应用在创建中的时候处于的状态。         |
 | STATE_FOREGROUND          | 2   |      当应用切换到前台的时候处于的状态。            |
@@ -906,7 +706,7 @@ console.log('-------- observerCode: ---------', observerCode);
 
 **系统API**: 此接口为系统接口，三方应用不支持调用。
 
-| 名称                 | 值  | 描述                               |
+| 名称                 | 值  | 说明                               |
 | -------------------- | --- | --------------------------------- |
 | STATE_CREATE    | 1   |      当进程在创建中的时候处于的状态。       |
 | STATE_FOREGROUND          | 2   |            当进程切换到前台的时候处于的状态。      |

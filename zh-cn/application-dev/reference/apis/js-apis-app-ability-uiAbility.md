@@ -22,7 +22,7 @@ import Ability from '@ohos.app.ability.UIAbility';
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.AbilityCore
 
-| 名称 | 参数类型 | 可读 | 可写 | 说明 | 
+| 名称 | 类型 | 可读 | 可写 | 说明 | 
 | -------- | -------- | -------- | -------- | -------- |
 | context | [UIAbilityContext](js-apis-inner-application-uiAbilityContext.md) | 是 | 否 | 上下文。 | 
 | launchWant | [Want](js-apis-app-ability-want.md) | 是 | 否 | Ability启动时的参数。 | 
@@ -240,9 +240,9 @@ onNewWant(want: Want, launchParams: AbilityConstant.LaunchParam): void;
   }
   ```
 
-## Ability.dump
+## Ability.onDump
 
-dump(params: Array\<string>): Array\<string>;
+onDump(params: Array\<string>): Array\<string>;
 
 转储客户端信息时调用。
 
@@ -258,7 +258,7 @@ dump(params: Array\<string>): Array\<string>;
     
   ```ts
   class myAbility extends Ability {
-      dump(params) {
+      onDump(params) {
           console.log('dump, params:' + JSON.stringify(params));
           return ["params"]
       }
@@ -332,11 +332,8 @@ call(method: string, data: rpc.Sequenceable): Promise&lt;void&gt;;
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
-| 201 | The application does not have permission to call the interface. |
-| 401 | Invalid input parameter. |
-| 16200001 | Caller released. The caller has been released. |
-| 16200002 | Callee invalid. The callee does not exist. |
-| 16000050 | Internal Error. |
+| 401 | If the input parameter is not valid parameter. |
+其他ID见[元能力子系统错误码](../errorcodes/errorcode-ability.md)
 
 **示例：**
     
@@ -416,11 +413,8 @@ callWithResult(method: string, data: rpc.Sequenceable): Promise&lt;rpc.MessagePa
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
-| 201 | The application does not have permission to call the interface. |
-| 401 | Invalid input parameter. |
-| 16200001 | Caller released. The caller has been released. |
-| 16200002 | Callee invalid. The callee does not exist. |
-| 16000050 | Internal Error. |
+| 401 | If the input parameter is not valid parameter. |
+其他ID见[元能力子系统错误码](../errorcodes/errorcode-ability.md)
 
 **示例：**
 
@@ -541,9 +535,8 @@ release(): void;
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
-| 401 | Invalid input parameter. |
-| 16200001 | Caller released. The caller has been released. |
-| 16000050 | Internal Error. |
+| 401 | If the input parameter is not valid parameter. |
+其他ID见[元能力子系统错误码](../errorcodes/errorcode-ability.md)
 
 **示例：**
     
@@ -581,7 +574,7 @@ release(): void;
 
 ## Callee.on
 
-on(method: string, callback: CalleeCallBack): void;
+on(method: string, callback: CalleeCallback): void;
 
 通用组件服务端注册消息通知callback。
 
@@ -592,15 +585,14 @@ on(method: string, callback: CalleeCallBack): void;
   | 参数名 | 类型 | 必填 | 说明 | 
   | -------- | -------- | -------- | -------- |
   | method | string | 是 | 与客户端约定的通知消息字符串。 | 
-  | callback | CalleeCallBack | 是 | 一个rpc.MessageParcel类型入参的js通知同步回调函数,&nbsp;回调函数至少要返回一个空的rpc.Sequenceable数据对象,&nbsp;其他视为函数执行错误。 | 
+  | callback | CalleeCallback | 是 | 一个rpc.MessageParcel类型入参的js通知同步回调函数,&nbsp;回调函数至少要返回一个空的rpc.Sequenceable数据对象,&nbsp;其他视为函数执行错误。 | 
 
 **错误码：**
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
-| 401 | Invalid input parameter. |
-| 16200004 | Method registered. The method has registered. |
-| 16000050 | Internal Error. |
+| 401 | If the input parameter is not valid parameter. |
+其他ID见[元能力子系统错误码](../errorcodes/errorcode-ability.md)
 
 **示例：**
 
@@ -665,9 +657,8 @@ off(method: string): void;
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
-| 401 | Invalid input parameter. |
-| 16200005 | Method not registered. The method has not registered. |
-| 16000050 | Internal Error. |
+| 401 | If the input parameter is not valid parameter. |
+其他ID见[元能力子系统错误码](../errorcodes/errorcode-ability.md)
 
 
 **示例：**
@@ -694,9 +685,9 @@ off(method: string): void;
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
 
-| 名称 | 参数类型 | 可读 | 可写 | 说明 | 
+| 名称 | 可读 | 可写 | 类型 | 说明 | 
 | -------- | -------- | -------- | -------- | -------- |
-| (msg: string) | function | 是 | 否 | 调用者注册的侦听器函数接口的原型。 | 
+| (msg: string) | 是 | 否 | function | 调用者注册的侦听器函数接口的原型。 | 
 
 ## CalleeCallback
 
@@ -704,6 +695,6 @@ off(method: string): void;
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
 
-| 名称 | 参数类型 | 可读 | 可写 | 说明 | 
+| 名称 | 可读 | 可写 | 类型 | 说明 | 
 | -------- | -------- | -------- | -------- | -------- |
-| (indata: rpc.MessageParcel) | rpc.Sequenceable | 是 | 否 | 被调用方注册的消息侦听器函数接口的原型。 | 
+| (indata: rpc.MessageParcel) | 是 | 否 | rpc.Sequenceable | 被调用方注册的消息侦听器函数接口的原型。 | 

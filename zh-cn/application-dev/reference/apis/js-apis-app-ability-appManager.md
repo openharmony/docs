@@ -9,7 +9,7 @@ appManager模块提供App管理的能力，包括查询当前是否处于稳定�
 ## 导入模块
 
 ```ts
-import app from '@ohos.app.ability.appManager';
+import appManager from '@ohos.app.ability.appManager';
 ```
 
 ## appManager.isRunningInStabilityTest<sup>9+</sup>
@@ -24,7 +24,7 @@ static isRunningInStabilityTest(callback: AsyncCallback&lt;boolean&gt;): void
 
   | 参数名 | 类型 | 必填 | 说明 | 
   | -------- | -------- | -------- | -------- |
-  | callback | AsyncCallback&lt;boolean&gt; | 否 | 返回当前是否处于稳定性测试场景。 | 
+  | callback | AsyncCallback&lt;boolean&gt; | 是 | 返回当前是否处于稳定性测试场景。 | 
 
 **示例：**
     
@@ -98,7 +98,7 @@ isRamConstrainedDevice(callback: AsyncCallback\<boolean>): void;
 
   | 参数名 | 类型 | 必填 | 说明 | 
   | -------- | -------- | -------- | -------- |
-  | callback | AsyncCallback&lt;boolean&gt; | 否 | 返回当前是否是ram受限设备。 | 
+  | callback | AsyncCallback&lt;boolean&gt; | 是 | 返回当前是否是ram受限设备。 | 
 
 **示例：**
     
@@ -145,7 +145,7 @@ getAppMemorySize(callback: AsyncCallback\<number>): void;
 
   | 参数名 | 类型 | 必填 | 说明 | 
   | -------- | -------- | -------- | -------- |
-  | callback | AsyncCallback&lt;number&gt; | 否 | 应用程序内存大小。 | 
+  | callback | AsyncCallback&lt;number&gt; | 是 | 应用程序内存大小。 | 
 
 **示例：**
     
@@ -166,6 +166,8 @@ getProcessRunningInfos(): Promise\<Array\<ProcessRunningInfo>>;
 **需要权限**：ohos.permission.GET_RUNNING_INFO
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**系统API**: 此接口为系统接口，三方应用不支持调用。
 
 **返回值：**
 
@@ -195,6 +197,8 @@ getProcessRunningInfos(callback: AsyncCallback\<Array\<ProcessRunningInfo>>): vo
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
+**系统API**: 此接口为系统接口，三方应用不支持调用。
+
 **参数：**
 
 | 参数名 | 类型 | 必填 | 说明 |
@@ -219,6 +223,8 @@ getProcessRunningInformation(): Promise\<Array\<ProcessRunningInformation>>;
 **需要权限**：ohos.permission.GET_RUNNING_INFO
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**系统API**: 此接口为系统接口，三方应用不支持调用。
 
 **返回值：**
 
@@ -250,7 +256,7 @@ getProcessRunningInformation(callback: AsyncCallback\<Array\<ProcessRunningInfor
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| callback | AsyncCallback\<Array\<[ProcessRunningInformation](js-apis-inner-application-processRunningInformation.md)>> | 否 | 获取有关运行进程的信息。 |
+| callback | AsyncCallback\<Array\<[ProcessRunningInformation](js-apis-inner-application-processRunningInformation.md)>> | 是 | 获取有关运行进程的信息。 |
 
 **示例：**
     
@@ -261,9 +267,9 @@ getProcessRunningInformation(callback: AsyncCallback\<Array\<ProcessRunningInfor
   })
   ```
 
-## appManager.registerApplicationStateObserver<sup>9+</sup>
+## appManager.on
 
-registerApplicationStateObserver(observer: ApplicationStateObserver): number;
+on(type: "applicationState", observer: ApplicationStateObserver): number;
 
 注册全部应用程序状态观测器。
 
@@ -277,11 +283,12 @@ registerApplicationStateObserver(observer: ApplicationStateObserver): number;
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| observer | [ApplicationStateObserver](js-apis-inner-application-applicationStateObserver.md) | 否 | 返回观察者的数字代码。 |
+| type | string | 是 | 调用接口类型 |
+| observer | [ApplicationStateObserver](./js-apis-inner-application-applicationStateObserver.md) | 是 | 返回观察者的数字代码。 |
 
 **示例：**
     
-  ```ts
+  ```js
   var applicationStateObserver = {
     onForegroundApplicationChanged(appStateData) {
         console.log('------------ onForegroundApplicationChanged -----------', appStateData);
@@ -299,13 +306,18 @@ registerApplicationStateObserver(observer: ApplicationStateObserver): number;
         console.log('------------ onProcessStateChanged -----------', processData);
     }
   }
-  const observerCode = app.registerApplicationStateObserver(applicationStateObserver);
-  console.log('-------- observerCode: ---------', observerCode);
+  try {
+    const observerCode = app.on(applicationStateObserver);
+    console.log('-------- observerCode: ---------', observerCode);
+  } catch (paramError) {
+    console.log('error: ' + paramError.code + ', ' + paramError.message);
+  }
+
   ```
 
-## appManager.registerApplicationStateObserver<sup>9+</sup>
+## appManager.on
 
-registerApplicationStateObserver(observer: ApplicationStateObserver, bundleNameList: Array\<string>): number;
+on(type: "applicationState", observer: ApplicationStateObserver, bundleNameList: Array\<string>): number;
 
 注册指定应用程序状态观测器。
 
@@ -319,12 +331,13 @@ registerApplicationStateObserver(observer: ApplicationStateObserver, bundleNameL
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| observer | [ApplicationStateObserver](js-apis-inner-application-applicationStateObserver.md) | 否 | 返回观察者的数字代码。 |
-| bundleNameList | Array<string> | 否 | 表示需要注册监听的bundleName数组。最大值128。 |
+| type | string | 是 | 调用接口类型 |
+| observer | [ApplicationStateObserver](./js-apis-inner-application-applicationStateObserver.md) | 是 | 返回观察者的数字代码。 |
+| bundleNameList | Array<string> | 是 | 表示需要注册监听的bundleName数组。最大值128。 |
 
 **示例：**
     
-  ```ts
+  ```js
   var applicationStateObserver = {
     onForegroundApplicationChanged(appStateData) {
         console.log('------------ onForegroundApplicationChanged -----------', appStateData);
@@ -343,12 +356,17 @@ registerApplicationStateObserver(observer: ApplicationStateObserver, bundleNameL
     }
   }
   var bundleNameList = ['bundleName1', 'bundleName2'];
-  const observerCode = app.registerApplicationStateObserver(applicationStateObserver, bundleNameList);
-  console.log('-------- observerCode: ---------', observerCode);
-  ```
-## appManager.unregisterApplicationStateObserver<sup>9+</sup>
+  try {
+    const observerCode = app.on("applicationState", applicationStateObserver, bundleNameList);
+    console.log('-------- observerCode: ---------', observerCode);
+  } catch (paramError) {
+    console.log('error: ' + paramError.code + ', ' + paramError.message);
+  }
 
-unregisterApplicationStateObserver(observerId: number,  callback: AsyncCallback\<void>): void;
+  ```
+## appManager.off
+
+off(type: "applicationState", observerId: number,  callback: AsyncCallback\<void>): void;
 
 取消注册应用程序状态观测器。
 
@@ -362,22 +380,100 @@ unregisterApplicationStateObserver(observerId: number,  callback: AsyncCallback\
  
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| observerId | number | 否 | 表示观察者的编号代码。 |
-| callback | AsyncCallback\<void> | 否 | 表示指定的回调方法。 |
+| type | string | 是 | 调用接口类型 |
+| observerId | number | 是 | 表示观察者的编号代码。 |
+| callback | AsyncCallback\<void> | 是 | 表示指定的回调方法。 |
 
 **示例：**
     
-  ```ts
-  var observerId = 100;
-  function unregisterApplicationStateObserverCallback(err) {
-    if (err) {
-        console.log('------------ unregisterApplicationStateObserverCallback ------------', err);
+  ```js
+    var observerId = 100;
+
+    function unregisterApplicationStateObserverCallback(err) {
+      if (err) {
+          console.log('------------ unregisterApplicationStateObserverCallback ------------', err);
+      }
     }
-  }
-  app.unregisterApplicationStateObserver(observerId, unregisterApplicationStateObserverCallback);
+    try {
+      app.off(observerId, unregisterApplicationStateObserverCallback);
+    } catch (paramError) {
+      console.log('error: ' + paramError.code + ', ' + paramError.message);
+    }
   ```
 
-## appManager.unregisterApplicationStateObserver<sup>9+</sup>
+## appManager.off
+
+off(type: "applicationState", observerId: number): Promise\<void>;
+
+取消注册应用程序状态观测器。
+
+**需要权限**：ohos.permission.RUNNING_STATE_OBSERVER
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**系统API**：该接口为系统接口，三方应用不支持调用。
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| type | string | 是 | 调用接口类型 |
+| observerId | number | 否 | 表示观察者的编号代码。 |
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| Promise\<void> | 返回执行结果。 |
+
+**示例：**
+    
+  ```js
+    var observerId = 100;
+    
+    try {
+      app.off(observerId)
+        .then((data) => {
+          console.log('----------- unregisterApplicationStateObserver success ----------', data);
+        })
+        .catch((err) => {
+          console.log('----------- unregisterApplicationStateObserver fail ----------', err);
+        })
+    } catch (paramError) {
+      console.log('error: ' + paramError.code + ', ' + paramError.message);
+    }
+  ```
+
+## appManager.getForegroundApplications
+
+getForegroundApplications(callback: AsyncCallback\<Array\<AppStateData>>): void;
+
+获取前台进程的应用程序。
+
+**需要权限**：ohos.permission.GET_RUNNING_INFO
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**系统API**：该接口为系统接口，三方应用不支持调用。
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| callback | AsyncCallback\<Array\<AppStateData>> | 是 | 表示应用的状态数据。 |
+
+**示例：**
+    
+  ```js
+    function getForegroundApplicationsCallback(err, data) {
+      if (err) {
+          console.log('--------- getForegroundApplicationsCallback fail ---------', err.code + ': ' + err.message);
+      } else {
+          console.log('--------- getForegroundApplicationsCallback success ---------', data)
+      }
+    }
+    app.getForegroundApplications(getForegroundApplicationsCallback);
+  ```
 
 unregisterApplicationStateObserver(observerId: number): Promise\<void>;
 
@@ -393,7 +489,7 @@ unregisterApplicationStateObserver(observerId: number): Promise\<void>;
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| observerId | number | 否 | 表示观察者的编号代码。 |
+| observerId | number | 是 | 表示观察者的编号代码。 |
 
 **返回值：**
 
@@ -430,7 +526,7 @@ getForegroundApplications(callback: AsyncCallback\<Array\<AppStateData>>): void;
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| callback | AsyncCallback\<Array\<AppStateData>> | 否 | 表示应用的状态数据。 |
+| callback | AsyncCallback\<Array\<AppStateData>> | 是 | 表示应用的状态数据。 |
 
 **示例：**
     
@@ -560,8 +656,8 @@ killProcessesByBundleName(bundleName: string, callback: AsyncCallback\<void>);
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| bundleName | string | 否 | 表示包名。 |
-| callback | AsyncCallback\<void> | 否 | 表示指定的回调方法。 |
+| bundleName | string | 是 | 表示包名。 |
+| callback | AsyncCallback\<void> | 是 | 表示指定的回调方法。 |
 
 **示例：**
     
@@ -593,7 +689,7 @@ killProcessesByBundleName(bundleName: string): Promise\<void>;
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| bundleName | string | 否 | 表示包名。 |
+| bundleName | string | 是 | 表示包名。 |
 
 **返回值：**
 
@@ -630,8 +726,8 @@ clearUpApplicationData(bundleName: string, callback: AsyncCallback\<void>);
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| bundleName | string | 否 | 表示包名。 |
-| callback | AsyncCallback\<void> | 否 | 表示指定的回调方法。 |
+| bundleName | string | 是 | 表示包名。 |
+| callback | AsyncCallback\<void> | 是 | 表示指定的回调方法。 |
 
 **示例：**
     
@@ -663,7 +759,7 @@ clearUpApplicationData(bundleName: string): Promise\<void>;
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| bundleName | string | 否 | 表示包名。 |
+| bundleName | string | 是 | 表示包名。 |
 
 **返回值：**
 
@@ -690,7 +786,7 @@ clearUpApplicationData(bundleName: string): Promise\<void>;
 
 **系统API**: 此接口为系统接口，三方应用不支持调用。
 
-| 名称                 | 值  | 描述                               |
+| 名称                 | 值  | 说明                               |
 | -------------------- | --- | --------------------------------- |
 | STATE_CREATE    | 1   |   当应用在创建中的时候处于的状态。         |
 | STATE_FOREGROUND          | 2   |      当应用切换到前台的时候处于的状态。            |
@@ -704,7 +800,7 @@ clearUpApplicationData(bundleName: string): Promise\<void>;
 
 **系统API**: 此接口为系统接口，三方应用不支持调用。
 
-| 名称                 | 值  | 描述                               |
+| 名称                 | 值  | 说明                               |
 | -------------------- | --- | --------------------------------- |
 | STATE_CREATE    | 1   |      当进程在创建中的时候处于的状态。       |
 | STATE_FOREGROUND          | 2   |            当进程切换到前台的时候处于的状态。      |

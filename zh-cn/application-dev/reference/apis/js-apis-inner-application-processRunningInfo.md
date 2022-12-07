@@ -10,7 +10,7 @@
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Mission
 
-| 名称 | 参数类型 | 可读 | 可写 | 说明 | 
+| 名称 | 类型 | 可读 | 可写 | 说明 | 
 | -------- | -------- | -------- | -------- | -------- |
 | pid | number | 是 | 否 | 进程ID。 | 
 | uid | number | 是 | 否 | 用户ID。 | 

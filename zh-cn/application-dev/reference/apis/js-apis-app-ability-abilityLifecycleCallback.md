@@ -17,7 +17,7 @@ import AbilityLifecycleCallback from "@ohos.app.ability.AbilityLifecycleCallback
 
 ## AbilityLifecycleCallback.onAbilityCreate
 
-onAbilityCreate(ability: Ability): void;
+onAbilityCreate(ability: UIAbility): void;
 
 注册监听应用上下文的生命周期后，在ability创建时触发回调。
 
@@ -27,12 +27,12 @@ onAbilityCreate(ability: Ability): void;
 
   | 参数名 | 类型 | 必填 | 说明 | 
   | -------- | -------- | -------- | -------- |
-  | ability | [Ability](js-apis-application-ability.md#Ability) | 是 | 当前Ability对象 | 
+  | ability | [UIAbility](js-apis-application-ability.md#Ability) | 是 | 当前Ability对象 | 
 
 
 ## AbilityLifecycleCallback.onWindowStageCreate
 
-onWindowStageCreate(ability: Ability, windowStage: window.WindowStage): void;
+onWindowStageCreate(ability: UIAbility, windowStage: window.WindowStage): void;
 
 注册监听应用上下文的生命周期后，在windowStage创建时触发回调。
 
@@ -42,13 +42,13 @@ onWindowStageCreate(ability: Ability, windowStage: window.WindowStage): void;
 
   | 参数名 | 类型 | 必填 | 说明 | 
   | -------- | -------- | -------- | -------- |
-  | ability | [Ability](js-apis-application-ability.md#Ability) | 是 | 当前Ability对象 |  
+  | ability | [UIAbility](js-apis-application-ability.md#Ability) | 是 | 当前Ability对象 |  
   | windowStage | [window.WindowStage](js-apis-window.md#windowstage9) | 是 | 当前WindowStage对象 |    
 
 
 ## AbilityLifecycleCallback.onWindowStageActive
 
-onWindowStageActive(ability: Ability, windowStage: window.WindowStage): void;
+onWindowStageActive(ability: UIAbility, windowStage: window.WindowStage): void;
 
 注册监听应用上下文的生命周期后，在windowStage获焦时触发回调。
 
@@ -58,13 +58,13 @@ onWindowStageActive(ability: Ability, windowStage: window.WindowStage): void;
 
   | 参数名 | 类型 | 必填 | 说明 | 
   | -------- | -------- | -------- | -------- |
-  | ability | [Ability](js-apis-application-ability.md#Ability) | 是 | 当前Ability对象 |  
+  | ability | [UIAbility](js-apis-application-ability.md#Ability) | 是 | 当前Ability对象 |  
   | windowStage | [window.WindowStage](js-apis-window.md#windowstage9) | 是 | 当前WindowStage对象 |    
 
 
 ## AbilityLifecycleCallback.onWindowStageInactive
 
-onWindowStageInactive(ability: Ability, windowStage: window.WindowStage): void;
+onWindowStageInactive(ability: UIAbility, windowStage: window.WindowStage): void;
 
 注册监听应用上下文的生命周期后，在windowStage失焦时触发回调。
 
@@ -74,13 +74,13 @@ onWindowStageInactive(ability: Ability, windowStage: window.WindowStage): void;
 
   | 参数名 | 类型 | 必填 | 说明 | 
   | -------- | -------- | -------- | -------- |
-  | ability | [Ability](js-apis-application-ability.md#Ability) | 是 | 当前Ability对象 |  
+  | ability | [UIAbility](js-apis-application-ability.md#Ability) | 是 | 当前Ability对象 |  
   | windowStage | [window.WindowStage](js-apis-window.md#windowstage9) | 是 | 当前WindowStage对象 |  
 
 
 ## AbilityLifecycleCallback.onWindowStageDestroy
 
-onWindowStageDestroy(ability: Ability, windowStage: window.WindowStage): void;
+onWindowStageDestroy(ability: UIAbility, windowStage: window.WindowStage): void;
 
 注册监听应用上下文的生命周期后，在windowStage销毁时触发回调。
 
@@ -90,13 +90,13 @@ onWindowStageDestroy(ability: Ability, windowStage: window.WindowStage): void;
 
   | 参数名 | 类型 | 必填 | 说明 | 
   | -------- | -------- | -------- | -------- |
-  | ability | [Ability](js-apis-application-ability.md#Ability) | 是 | 当前Ability对象 |  
+  | ability | [UIAbility](js-apis-application-ability.md#Ability) | 是 | 当前Ability对象 |  
   | windowStage | [window.WindowStage](js-apis-window.md#windowstage9) | 是 | 当前WindowStage对象 |  
 
 
 ## AbilityLifecycleCallback.onAbilityDestroy
 
-onAbilityDestroy(ability: Ability): void;
+onAbilityDestroy(ability: UIAbility): void;
 
 注册监听应用上下文的生命周期后，在ability销毁时触发回调。
 
@@ -106,12 +106,12 @@ onAbilityDestroy(ability: Ability): void;
 
   | 参数名 | 类型 | 必填 | 说明 | 
   | -------- | -------- | -------- | -------- |
-  | ability | [Ability](js-apis-application-ability.md#Ability) | 是 | 当前Ability对象 | 
+  | ability | [UIAbility](js-apis-application-ability.md#Ability) | 是 | 当前Ability对象 | 
 
 
 ## AbilityLifecycleCallback.onAbilityForeground
 
-onAbilityForeground(ability: Ability): void;
+onAbilityForeground(ability: UIAbility): void;
 
 注册监听应用上下文的生命周期后，在ability的状态从后台转到前台时触发回调。
 
@@ -121,12 +121,12 @@ onAbilityForeground(ability: Ability): void;
 
   | 参数名 | 类型 | 必填 | 说明 | 
   | -------- | -------- | -------- | -------- |
-  | ability | [Ability](js-apis-application-ability.md#Ability) | 是 | 当前Ability对象 | 
+  | ability | [UIAbility](js-apis-application-ability.md#Ability) | 是 | 当前Ability对象 | 
 
 
 ## AbilityLifecycleCallback.onAbilityBackground
 
-onAbilityBackground(ability: Ability): void;
+onAbilityBackground(ability: UIAbility): void;
 
 注册监听应用上下文的生命周期后，在ability的状态从前台转到后台时触发回调。
 
@@ -136,12 +136,12 @@ onAbilityBackground(ability: Ability): void;
 
   | 参数名 | 类型 | 必填 | 说明 | 
   | -------- | -------- | -------- | -------- |
-  | ability | [Ability](js-apis-application-ability.md#Ability) | 是 | 当前Ability对象 | 
+  | ability | [UIAbility](js-apis-application-ability.md#Ability) | 是 | 当前Ability对象 | 
 
 
 ## AbilityLifecycleCallback.onAbilityContinue
 
-onAbilityContinue(ability: Ability): void;
+onAbilityContinue(ability: UIAbility): void;
 
 注册监听应用上下文的生命周期后，在ability迁移时触发回调。
 
@@ -151,15 +151,15 @@ onAbilityContinue(ability: Ability): void;
 
   | 参数名 | 类型 | 必填 | 说明 | 
   | -------- | -------- | -------- | -------- |
-  | ability | [Ability](js-apis-application-ability.md#Ability) | 是 | 当前Ability对象 | 
+  | ability | [UIAbility](js-apis-application-ability.md#Ability) | 是 | 当前Ability对象 | 
 
 **示例：**
     
 
   ```ts
-  import Ability from "@ohos.application.Ability";
+  import UIAbility from "@ohos.app.ability.UIAbility";
   
-  export default class MyAbility extends Ability {
+  export default class MyAbility extends UIAbility {
       onCreate() {
           console.log("MyAbility onCreate")
           let AbilityLifecycleCallback  =  {

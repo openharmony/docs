@@ -84,7 +84,7 @@ updateForm(formId: string, formBindingData: formBindingData.FormBindingData,call
   | 参数名 | 类型                                                                    | 必填 | 说明             |
   | ------ | ---------------------------------------------------------------------- | ---- | ---------------- |
   | formId | string                                                                 | 是   | 请求更新的卡片标识。 |
-  | formBindingData | [FormBindingData](js-apis-application-formBindingData.md#formbindingdata) | 是   | 用于更新的数据。    |
+  | formBindingData.FormBindingData | [FormBindingData](js-apis-application-formBindingData.md#formbindingdata) | 是   | 用于更新的数据。    |
   | callback | AsyncCallback&lt;void&gt; | 是 | 回调函数。 |
 
 **示例：**
@@ -113,7 +113,7 @@ updateForm(formId: string, formBindingData: formBindingData.FormBindingData): Pr
   | 参数名 | 类型                                                                    | 必填 | 说明             |
   | ------ | ---------------------------------------------------------------------- | ---- | ---------------- |
   | formId | string                                                                 | 是   | 请求更新的卡片标识。 |
-  | formBindingData | [FormBindingData](js-apis-application-formBindingData.md#formbindingdata) | 是   | 用于更新的数据。    |
+  | formBindingData.FormBindingData | [FormBindingData](js-apis-application-formBindingData.md#formbindingdat) | 是   | 用于更新的数据。    |
 
 **返回值：**
 
@@ -241,7 +241,7 @@ requestPublishForm(want: Want, formBindingData: formBindingData.FormBindingData,
 | 参数名 | 类型                                                                    | 必填 | 说明             |
 | ------ | ---------------------------------------------------------------------- | ---- | ---------------- |
 | want | [Want](js-apis-application-want.md)                           | 是   | 发布请求。需包含以下字段。<br>abilityName: 目标卡片ability<br>parameters:<br>"ohos.extra.param.key.form_dimension"<br>"ohos.extra.param.key.form_name"<br>"ohos.extra.param.key.module_name" |
-| formBindingData | [FormBindingData](js-apis-application-formBindingData.md#formbindingdata) | 是   | 创建卡片的数据。 |
+| formBindingData.FormBindingData | [FormBindingData](js-apis-application-formBindingData.md#formbindingdata) | 是   | 创建卡片的数据。 |
 | callback | AsyncCallback&lt;string&gt; | 是 | 回调函数。返回卡片标识。 |
 
 **示例：**
@@ -318,7 +318,7 @@ requestPublishForm(want: Want, formBindingData?: formBindingData.FormBindingData
 | 参数名          | 类型                                                         | 必填 | 说明                                                         |
 | --------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | want            | [Want](js-apis-application-want.md)                          | 是   | 发布请求。需包含以下字段。<br>abilityName: 目标卡片ability<br>parameters:<br>"ohos.extra.param.key.form_dimension"<br>"ohos.extra.param.key.form_name"<br>"ohos.extra.param.key.module_name" |
-| formBindingData | [FormBindingData](js-apis-application-formBindingData.md#formbindingdata) | 否   | 创建卡片的数据。                                           |
+| formBindingData.FormBindingData | [FormBindingData](js-apis-application-formBindingData.md#formbindingdata) | 否   | 创建卡片的数据。                                           |
 
 **返回值：**
 

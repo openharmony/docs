@@ -4,7 +4,7 @@
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Mission
 
-| 名称          | 参数类型    | 可读   | 可写   | 说明          |
+| 名称          | 类型    | 可读   | 可写   | 说明          |
 | ----------- | ------- | ---- | ---- | ----------- |
 | deviceId    | string  | 是    | 是    | 表示设备ID。     |
 | fixConflict | boolean | 是    | 是    | 表示是否存在版本冲突。 |

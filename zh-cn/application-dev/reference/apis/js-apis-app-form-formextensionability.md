@@ -17,7 +17,7 @@ import FormExtensionAbility from '@ohos.app.form.FormExtensionAbility';
 
 **系统能力**：SystemCapability.Ability.Form
 
-| 名称    | 参数类型                                                | 可读 | 可写 | 说明                                                |
+| 名称    | 类型                                                | 可读 | 可写 | 说明                                                |
 | ------- | ------------------------------------------------------- | ---- | ---- | --------------------------------------------------- |
 | context | [FormExtensionContext](js-apis-inner-application-formExtensionContext.md) | 是   | 否   | FormExtensionAbility的上下文环境，继承自ExtensionContext。 |
 
@@ -197,7 +197,7 @@ export default class MyFormExtensionAbility extends FormExtensionAbility {
 
 ## onConfigurationUpdate
 
-onConfigurationUpdate(config: Configuration): void;
+onConfigurationUpdate(newConfig: Configuration): void;
 
 当系统配置更新时调用。
 
@@ -207,7 +207,7 @@ onConfigurationUpdate(config: Configuration): void;
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| config | [Configuration](js-apis-configuration.md) | 是 | 表示需要更新的配置信息。 |
+| newConfig | [Configuration](js-apis-configuration.md) | 是 | 表示需要更新的配置信息。 |
 
 **示例：**
 
@@ -231,7 +231,7 @@ onAcquireFormState?(want: Want): formInfo.FormState;
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-application-want.md) | 否 | want表示获取卡片状态的描述。描述包括包名称、能力名称、模块名称、卡片名和卡片维度。 |
+| want | [Want](js-apis-application-want.md) | 是 | want表示获取卡片状态的描述。描述包括包名称、能力名称、模块名称、卡片名和卡片维度。 |
 
 **示例：**
 

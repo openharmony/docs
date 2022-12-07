@@ -32,11 +32,10 @@ deleteForm(formId: string, callback: AsyncCallback&lt;void&gt;): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 16501001 | The ID of the form to be operated does not exist. |
-| 16501003 | The form can not be operated by the current application. |
+| 401 | If the input parameter is not valid parameter. |
+以上错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。
 
 **示例：**
 
@@ -81,11 +80,10 @@ deleteForm(formId: string): Promise&lt;void&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 16501001 | The ID of the form to be operated does not exist. |
-| 16501003 | The form can not be operated by the current application. |
+| 401 | If the input parameter is not valid parameter. |
+以上错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。
 
 **参数：**
 
@@ -121,11 +119,10 @@ releaseForm(formId: string, callback: AsyncCallback&lt;void&gt;): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 16501001 | The ID of the form to be operated does not exist. |
-| 16501003 | The form can not be operated by the current application. |
+| 401 | If the input parameter is not valid parameter. |
+以上错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。
 
 **示例：**
 
@@ -162,11 +159,10 @@ releaseForm(formId: string, isReleaseCache: boolean, callback: AsyncCallback&lt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 16501001 | The ID of the form to be operated does not exist. |
-| 16501003 | The form can not be operated by the current application. |
+| 401 | If the input parameter is not valid parameter. |
+以上错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。
 
 **示例：**
 
@@ -208,11 +204,10 @@ releaseForm(formId: string, isReleaseCache?: boolean): Promise&lt;void&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 16501001 | The ID of the form to be operated does not exist. |
-| 16501003 | The form can not be operated by the current application. |
+| 401 | If the input parameter is not valid parameter. |
+以上错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。
 
 **示例：**
 
@@ -248,11 +243,10 @@ requestForm(formId: string, callback: AsyncCallback&lt;void&gt;): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 16501001 | The ID of the form to be operated does not exist. |
-| 16501003 | The form can not be operated by the current application. |
+| 401 | If the input parameter is not valid parameter. |
+以上错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。
 
 **示例：**
 
@@ -293,11 +287,10 @@ requestForm(formId: string): Promise&lt;void&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 16501001 | The ID of the form to be operated does not exist. |
-| 16501003 | The form can not be operated by the current application. |
+| 401 | If the input parameter is not valid parameter. |
+以上错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。
 
 **示例：**
 
@@ -315,9 +308,9 @@ try {
 
 ```
 
-## castTempForm
+## castToNormalForm
 
-castTempForm(formId: string, callback: AsyncCallback&lt;void&gt;): void
+castToNormalForm(formId: string, callback: AsyncCallback&lt;void&gt;): void
 
 将指定的临时卡片转换为普通卡片。使用callback异步回调。
 
@@ -334,18 +327,17 @@ castTempForm(formId: string, callback: AsyncCallback&lt;void&gt;): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 16501001 | The ID of the form to be operated does not exist. |
-| 16501003 | The form can not be operated by the current application. |
+| 401 | If the input parameter is not valid parameter. |
+以上错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。
 
 **示例：**
 
 ```ts
 try {
   var formId = "12400633174999288";
-  formHost.castTempForm(formId, (error, data) => {
+  formHost.castToNormalForm(formId, (error, data) => {
     if (error) {
       console.log('formHost castTempForm, error:' + JSON.stringify(error));
     }
@@ -355,9 +347,9 @@ try {
 }
 ```
 
-## castTempForm
+## castToNormalForm
 
-castTempForm(formId: string): Promise&lt;void&gt;
+castToNormalForm(formId: string): Promise&lt;void&gt;
 
 将指定的临时卡片转换为普通卡片。使用Promise异步回调。
 
@@ -379,18 +371,17 @@ castTempForm(formId: string): Promise&lt;void&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 16501001 | The ID of the form to be operated does not exist. |
-| 16501003 | The form can not be operated by the current application. |
+| 401 | If the input parameter is not valid parameter. |
+以上错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。
 
 **示例：**
 
 ```ts
 try {
   var formId = "12400633174999288";
-  formHost.castTempForm(formId).then(() => {
+  formHost.castToNormalForm(formId).then(() => {
     console.log('formHost castTempForm success');
   }).catch((error) => {
     console.log('formHost castTempForm, error:' + JSON.stringify(error));
@@ -419,10 +410,10 @@ notifyVisibleForms(formIds: Array&lt;string&gt;, callback: AsyncCallback&lt;void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 16501000 | A functional error occurred. |
+| 401 | If the input parameter is not valid parameter. |
+以上错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。
 
 **示例：**
 
@@ -463,10 +454,10 @@ notifyVisibleForms(formIds: Array&lt;string&gt;): Promise&lt;void&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 16501000 | A functional error occurred. |
+| 401 | If the input parameter is not valid parameter. |
+以上错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。
 
 **示例：**
 
@@ -502,10 +493,10 @@ notifyInvisibleForms(formIds: Array&lt;string&gt;, callback: AsyncCallback&lt;vo
 
 **错误码：**
 
-以下错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 16501000 | A functional error occurred. |
+| 401 | If the input parameter is not valid parameter. |
+以上错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。
 
 **示例：**
 
@@ -546,10 +537,10 @@ notifyInvisibleForms(formIds: Array&lt;string&gt;): Promise&lt;void&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 16501000 | A functional error occurred. |
+| 401 | If the input parameter is not valid parameter. |
+以上错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。
 
 **示例：**
 
@@ -585,11 +576,10 @@ enableFormsUpdate(formIds: Array&lt;string&gt;, callback: AsyncCallback&lt;void&
 
 **错误码：**
 
-以下错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 16501000 | A functional error occurred. |
-| 16501003 | The form can not be operated by the current application. |
+| 401 | If the input parameter is not valid parameter. |
+以上错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。
 
 **示例：**
 
@@ -630,11 +620,10 @@ enableFormsUpdate(formIds: Array&lt;string&gt;): Promise&lt;void&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 16501000 | A functional error occurred. |
-| 16501003 | The form can not be operated by the current application. |
+| 401 | If the input parameter is not valid parameter. |
+以上错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。
 
 **示例：**
 
@@ -670,11 +659,10 @@ disableFormsUpdate(formIds: Array&lt;string&gt;, callback: AsyncCallback&lt;void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 16501000 | A functional error occurred. |
-| 16501003 | The form can not be operated by the current application. |
+| 401 | If the input parameter is not valid parameter. |
+以上错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。
 
 **示例：**
 
@@ -715,11 +703,10 @@ disableFormsUpdate(formIds: Array&lt;string&gt;): Promise&lt;void&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 16501000 | A functional error occurred. |
-| 16501003 | The form can not be operated by the current application. |
+| 401 | If the input parameter is not valid parameter. |
+以上错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。
 
 **示例：**
 
@@ -875,10 +862,10 @@ getFormsInfo(bundleName: string, callback: AsyncCallback&lt;Array&lt;formInfo.Fo
 
 **错误码：**
 
-以下错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 16500100 | Failed to obtain configuration information. |
+| 401 | If the input parameter is not valid parameter. |
+以上错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。
 
 **示例：**
 
@@ -916,10 +903,10 @@ getFormsInfo(bundleName: string, moduleName: string, callback: AsyncCallback&lt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 16500100 | Failed to obtain configuration information. |
+| 401 | If the input parameter is not valid parameter. |
+以上错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。
 
 **示例：**
 
@@ -962,10 +949,10 @@ getFormsInfo(bundleName: string, moduleName?: string): Promise&lt;Array&lt;formI
 
 **错误码：**
 
-以下错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 16500100 | Failed to obtain configuration information. |
+| 401 | If the input parameter is not valid parameter. |
+以上错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。
 
 **示例：**
 
@@ -1071,10 +1058,10 @@ acquireFormState(want: Want, callback: AsyncCallback&lt;formInfo.FormStateInfo&g
 
 **错误码：**
 
-以下错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 16501000 | A functional error occurred. |
+| 401 | If the input parameter is not valid parameter. |
+以上错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。
 
 **示例：**
 
@@ -1126,10 +1113,10 @@ acquireFormState(want: Want): Promise&lt;formInfo.FormStateInfo&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 16501000 | A functional error occurred. |
+| 401 | If the input parameter is not valid parameter. |
+以上错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。
 
 **示例：**
 
@@ -1223,10 +1210,10 @@ notifyFormsVisible(formIds: Array&lt;string&gt;, isVisible: boolean, callback: A
 
 **错误码：**
 
-以下错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 16501003 | The form can not be operated by the current application. |
+| 401 | If the input parameter is not valid parameter. |
+以上错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。
 
 **示例：**
 
@@ -1268,10 +1255,10 @@ notifyFormsVisible(formIds: Array&lt;string&gt;, isVisible: boolean): Promise&lt
 
 **错误码：**
 
-以下错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 16501003 | The form can not be operated by the current application. |
+| 401 | If the input parameter is not valid parameter. |
+以上错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。
 
 **示例：**
 
@@ -1308,10 +1295,10 @@ notifyFormsEnableUpdate(formIds: Array&lt;string&gt;, isEnableUpdate: boolean, c
 
 **错误码：**
 
-以下错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 16501003 | The form can not be operated by the current application. |
+| 401 | If the input parameter is not valid parameter. |
+以上错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。
 
 **示例：**
 
@@ -1353,10 +1340,10 @@ notifyFormsEnableUpdate(formIds: Array&lt;string&gt;, isEnableUpdate: boolean): 
 
 **错误码：**
 
-以下错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 16501003 | The form can not be operated by the current application. |
+| 401 | If the input parameter is not valid parameter. |
+以上错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。
 
 **示例：**
 
@@ -1378,7 +1365,7 @@ shareForm(formId: string, deviceId: string, callback: AsyncCallback&lt;void&gt;)
 
 指定formId和远程设备Id进行卡片分享。使用callback异步回调。
 
-**需要权限**：ohos.permission.REQUIRE_FORM
+**需要权限**：ohos.permission.REQUIRE_FORM 和 ohos.permission.DISTRIBUTED_DATASYNC
 
 **系统能力**：SystemCapability.Ability.Form
 
@@ -1392,11 +1379,10 @@ shareForm(formId: string, deviceId: string, callback: AsyncCallback&lt;void&gt;)
 
 **错误码：**
 
-以下错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 16500100 | Failed to obtain configuration information. |
-| 16501000 | A functional error occurred. |
+| 401 | If the input parameter is not valid parameter. |
+以上错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。
 
 
 **示例：**
@@ -1421,7 +1407,7 @@ shareForm(formId: string, deviceId: string): Promise&lt;void&gt;
 
 指定formId和远程设备Id进行卡片分享。使用Promise异步回调。
 
-**需要权限**：ohos.permission.REQUIRE_FORM
+**需要权限**：ohos.permission.REQUIRE_FORM 和 ohos.permission.DISTRIBUTED_DATASYNC
 
 **系统能力**：SystemCapability.Ability.Form
 
@@ -1440,11 +1426,10 @@ shareForm(formId: string, deviceId: string): Promise&lt;void&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 16500100 | Failed to obtain configuration information. |
-| 16501000 | A functional error occurred. |
+| 401 | If the input parameter is not valid parameter. |
+以上错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。
 
 **参数：**
 
@@ -1464,7 +1449,7 @@ try {
 
 ## notifyFormsPrivacyProtected
 
-notifyFormsPrivacyProtected(formIds: Array<string>, isProtected: boolean, callback: AsyncCallback<void>): void
+notifyFormsPrivacyProtected(formIds: Array\<string>, isProtected: boolean, callback: AsyncCallback\<void>): void
 
 **需要权限**：ohos.permission.REQUIRE_FORM
 

@@ -15,17 +15,17 @@ import ExtensionAbility from '@ohos.application.ExtensionAbility';
 
 ## ExtensionAbility.onConfigurationUpdated
 
-onConfigurationUpdated(config: Configuration): void;
+onConfigurationUpdated(newConfig: Configuration): void;
 
 当系统配置更新时调用。
 
-**系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 **参数：**
 
   | 参数名 | 类型 | 必填 | 说明 | 
   | -------- | -------- | -------- | -------- |
-  | config | [Configuration](js-apis-application-configuration.md) | 是 | 表示需要更新的配置信息。 | 
+  | newConfig | [Configuration](js-apis-application-configuration.md) | 是 | 表示需要更新的配置信息。 | 
 
 **示例：**
     
