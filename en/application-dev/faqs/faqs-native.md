@@ -1,12 +1,30 @@
 # Native API Usage
 
+## Is there a native API that provides functions similar to Canvas?
+
+Applicable to: OpenHarmony SDK 3.2.5.3, stage model of API version 9
+
+Yes. The native API **Drawing** provides similar functions. It can be used for 2D drawing.
+
 ## When a native HAP is running, the error message "Obj is not a valid object" is displayed for the imported namespace. What should I do?
 
 Applicable to: OpenHarmony SDK 3.2.5.3, stage model of API version 9
 
 Check the **abiFilters** parameter value in the **build-profile.json5** file in the root directory of the module (not the root directory of the project). If the device is 32-bit, the value must be **armeabi-v7a**. If the device is 64-bit, the value must be **arm64-v8a**.
 
-## How do I obtain the value of version in the package.json file of a module in the C++ code developed using native APIs?
+## What should I do when the error message "install parse profile prop check error" is displayed during the running of a native HAP?
+
+Applicable to: OpenHarmony SDK 3.2.6.3, stage model of API version 9
+
+Check the **abiFilters** parameter value in the **build-profile.json5** file in the root directory of the module (not the root directory of the project). If the device is 32-bit, the value must be **armeabi-v7a**. If the device is 64-bit, the value must be **arm64-v8a**.
+
+## What should I do when the error message "undefined symbol: OH_LOG_Print" is displayed during log printing by **OH_LOG_Print**?
+
+Applicable to: OpenHarmony SDK 3.2.6.3, stage model of API version 9
+
+Modify the **CMakeLists.txt** file by adding **libhilog_ndk.z.so** to the end of **target_link_libraries**.
+
+## How do I obtain the value of version in the package.json file of a module?
 
 Applicable to: OpenHarmony SDK 3.2.5.3, stage model of API version 9
 
@@ -53,3 +71,9 @@ static napi_value Add(napi_env env, napi_callback_info info)
     return fixed_version_value;
 }
 ```
+
+## How do I traverse files in rawfile?
+
+Applicable to: OpenHarmony SDK 3.2 or later, stage model of API version 9
+
+Use the native API **OH_ResourceManager_OpenRawDir()** to obtain the root directory of **rawfile** and traverse the root directory.  

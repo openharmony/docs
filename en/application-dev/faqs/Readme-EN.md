@@ -1,10 +1,12 @@
 # FAQs
 
 - [Ability Framework Development](faqs-ability.md)
-- [ArkUI (JavaScript) Development](faqs-ui-js.md)
+- [Bundle Management Development](faqs-bundle.md)
 - [ArkUI (eTS) Development](faqs-ui-ets.md)
+- [ArkUI (JavaScript) Development](faqs-ui-js.md)
 - [Graphics and Image Development](faqs-graphics.md)
 - [File Management Development](faqs-file-management.md)
+- [Media Development](faqs-media.md)
 - [Network and Connection Development](faqs-connectivity.md)
 - [Data Management Development](faqs-data-management.md)
 - [Device Management Development](faqs-device-management.md)
