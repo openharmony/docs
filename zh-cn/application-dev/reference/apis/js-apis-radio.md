@@ -1797,7 +1797,7 @@ radio.off('imsRegStateChange', 0, radio.ImsServiceType.TYPE_VIDEO, (err, data) =
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CoreService。
 
 |    名称     |           类型              | 必填 |      说明          |
-| ----------- | --------------------------- | ---- | --------------- -- |
+| ----------- | --------------------------- | ---- | ----------------- |
 | signalType  | [NetworkType](#networktype) | 是   | 网络信号强度类型。 |
 | signalLevel | number                      | 是   | 网络信号强度等级。 |
 

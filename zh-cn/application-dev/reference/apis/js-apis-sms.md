@@ -870,7 +870,7 @@ promise.then(data => {
 
 ## sms.isImsSmsSupported<sup>8+</sup>
 
-isImsSmsSupported(callback: AsyncCallback<boolean\>): void
+isImsSmsSupported(slotId: number, callback: AsyncCallback<boolean\>): void
 
 如果IMS已注册并且在IMS上支持SMS，则支持通过IMS发送SMS。使用callback异步回调。
 
@@ -882,12 +882,14 @@ isImsSmsSupported(callback: AsyncCallback<boolean\>): void
 
 | 参数名   | 类型                         | 必填 | 说明       |
 | -------- | ---------------------------- | ---- | ---------- |
+| slotId   | number                       | 是   | SIM卡槽ID：<br/>- 0：卡槽1<br/>- 1：卡槽2 |
 | callback | AsyncCallback&lt;boolean&gt; | 是   | 回调函数。 |
 
 **示例：**
 
 ```js
-sms.isImsSmsSupported((err, data) => {
+let slotId = 0;
+sms.isImsSmsSupported(slotId, (err, data) => {
       console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
 ```
@@ -895,13 +897,19 @@ sms.isImsSmsSupported((err, data) => {
 
 ## sms.isImsSmsSupported<sup>8+</sup>
 
-isImsSmsSupported(): Promise<boolean\>
+isImsSmsSupported(slotId: number): Promise<boolean\>
 
 如果IMS已注册并且在IMS上支持SMS，则支持通过IMS发送SMS。使用Promise异步回调。
 
 此接口为系统接口。
 
 **系统能力**：SystemCapability.Telephony.SmsMms
+
+**参数：**
+
+| 参数名 | 类型   | 必填  | 说明                                  |
+| ------ | ------ | ---- | -------------------------------------- |
+| slotId | number | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
 
 **返回值：**
 
@@ -912,7 +920,8 @@ isImsSmsSupported(): Promise<boolean\>
 **示例：**
 
 ```js
-let promise = sms.isImsSmsSupported();
+let slotId = 0;
+let promise = sms.isImsSmsSupported(slotId);
 promise.then(data => {
     console.log(`isImsSmsSupported success, promise: data->${JSON.stringify(data)}`);
 }).catch(err => {
@@ -1116,7 +1125,7 @@ promise.then(data => {
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.SmsMms。
 
-| 参数名                   |                  类型                   | 必填 | 说明                                                         |
+|         名称             |                  类型                   | 必填 | 说明                                                         |
 | ------------------------ | --------------------------------------- | ---- | ------------------------------------------------------------ |
 | hasReplyPath             | boolean                                 |  是  | 收到的短信是否包含“TP-Reply-Path”，默认为false。<br/>“TP-Reply-Path”：设备根据发送SMS消息的短消息中心进行回复。  |
 | isReplaceMessage         | boolean                                 |  是  | 收到的短信是否为“替换短信”，默认为false。<br/>“替换短信”有关详细信息，参见 “3GPP TS 23.040 9.2.3.9”。 |

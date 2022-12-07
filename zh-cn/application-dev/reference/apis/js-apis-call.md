@@ -1707,7 +1707,7 @@ on\(type: 'callDisconnectedCause', callback: Callback<DisconnectedDetails\>): vo
 | 参数名   | 类型                                                   | 必填 | 说明                       |
 | -------- | ------------------------------------------------------ | ---- | -------------------------- |
 | type     | string                                                 | 是   | 通话时监听断开连接的原因。 |
-| callback | Callback<[DisconnectedDetails](#disconnecteddetails8)> | 是   | 回调函数。                 |
+| callback | Callback<[DisconnectedDetails](#disconnecteddetails9)> | 是   | 回调函数。                 |
 
 **示例：**
 
@@ -1815,7 +1815,7 @@ off\(type: 'callDisconnectedCause', callback?: Callback<DisconnectedDetails\>\):
 | 参数名   | 类型                                                       | 必填 | 说明                 |
 | -------- | ---------------------------------------------------------- | ---- | -------------------- |
 | type     | 'callDisconnectedCause'                                    | 是   | 调用断开连接的原因。 |
-| callback | Callback**<**[DisconnectedDetails](#disconnecteddetails8)> | 否   | 回调函数。           |
+| callback | Callback**<**[DisconnectedDetails](#disconnecteddetails9)> | 否   | 回调函数。           |
 
 **示例：**
 
@@ -2910,11 +2910,15 @@ IP多媒体系统调用模式。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CallManager。
 
-|     名称    | 类型                                                 | 必填 | 说明             |
-| ----------- | ---------------------------------------------------- | ---- | ---------------- |
-| transferNum | string                                               | 是   | 转移编号         |
-| type        | [CallTransferType](#calltransfertype8)               | 是   | 呼叫转移类型     |
-| settingType | [CallTransferSettingType](#calltransfersettingtype8) | 是   | 设置呼叫转移类型 |
+|          名称            | 类型                                                 | 必填 | 说明             |
+| ------------------------ | ---------------------------------------------------- | ---- | ---------------- |
+| transferNum              | string                                               | 是   | 转移编号         |
+| type                     | [CallTransferType](#calltransfertype8)               | 是   | 呼叫转移类型     |
+| settingType              | [CallTransferSettingType](#calltransfersettingtype8) | 是   | 设置呼叫转移类型 |
+| startHour<sup>9+</sup>   | number                                               | 否   | 开始时间的小时数 |
+| startMinute<sup>9+</sup> | number                                               | 否   | 开始时间的分钟数 |
+| endHour<sup>9+</sup>     | number                                               | 否   | 结束时间的分钟数 |
+| endMinute<sup>9+</sup>   | number                                               | 否   | 结束时间的分钟数 |
 
 ## CallTransferType<sup>8+</sup>
 
@@ -3130,10 +3134,14 @@ IP多媒体系统调用模式。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CallManager。
 
-|  名称  |                 类型               | 必填 | 说明     |
-| ------ | ---------------------------------- | ---- | -------- |
-| status | [TransferStatus](#transferstatus8) |  是  | 转移状态 |
-| number | string                             |  是  | 号码     |
+|          名称            |                 类型               | 必填 |       说明       |
+| ------------------------ | ---------------------------------- | ---- | ---------------- |
+| status                   | [TransferStatus](#transferstatus8) |  是  | 转移状态         |
+| number                   | string                             |  是  | 号码             |
+| startHour<sup>9+</sup>   | number                             |  是  | 开始时间的小时数 |
+| startMinute<sup>9+</sup> | number                             |  是  | 开始时间的分钟数 |
+| endHour<sup>9+</sup>     | number                             |  是  | 结束时间的分钟数 |
+| endMinute<sup>9+</sup>   | number                             |  是  | 结束时间的分钟数 |
 
 ## CallWaitingStatus<sup>7+</sup>
 
@@ -3174,7 +3182,20 @@ IP多媒体系统调用模式。
 | TRANSFER_DISABLE | 0    | 禁用转移 |
 | TRANSFER_ENABLE  | 1    | 启用转移 |
 
-## DisconnectedDetails<sup>8+</sup>
+## DisconnectedDetails<sup>9+</sup>
+
+通话结束原因。
+
+此接口为系统接口。
+
+**系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CallManager。
+
+| 名称    |                    类型                    | 必填 | 说明            |
+| ------- | ------------------------------------------ | ---- | --------------- |
+| reason  | [DisconnectedReason](#disconnectedreason8) | 是   | 通话结束原因    |
+| message | string                                     | 是   | 通话结束提示信息|
+
+## DisconnectedReason<sup>8+</sup>
 
 断开连接的详细信息。
 
@@ -3182,28 +3203,87 @@ IP多媒体系统调用模式。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CallManager。
 
-| 名称                        | 值   | 说明                   |
-| --------------------------- | ---- | ---------------------- |
-| UNASSIGNED_NUMBER           | 1    | 未分配的号码(空号)     |
-| NO_ROUTE_TO_DESTINATION     | 3    | 无至目的地的路由       |
-| CHANNEL_UNACCEPTABLE        | 6    | 不可接受的通路         |
-| OPERATOR_DETERMINED_BARRING | 8    | 运营商闭锁             |
-| NORMAL_CALL_CLEARING        | 16   | 清除正常呼叫           |
-| USER_BUSY                   | 17   | 用户忙                 |
-| NO_USER_RESPONDING          | 18   | 无用户响应             |
-| USER_ALERTING_NO_ANSWER     | 19   | 已有用户提醒，但无应答 |
-| CALL_REJECTED               | 21   | 呼叫拒绝               |
-| NUMBER_CHANGED              | 22   | 号码改变               |
-| DESTINATION_OUT_OF_ORDER    | 27   | 终点故障               |
-| INVALID_NUMBER_FORMAT       | 28   | 无效号码格式           |
-| NETWORK_OUT_OF_ORDER        | 38   | 网络故障               |
-| TEMPORARY_FAILURE           | 41   | 临时故障               |
-| INVALID_PARAMETER           | 1025 | 无效参数               |
-| SIM_NOT_EXIT                | 1026 | SIM卡未退出            |
-| SIM_PIN_NEED                | 1027 | 需要SIM卡PIN码         |
-| CALL_NOT_ALLOW              | 1029 | 不允许呼叫             |
-| SIM_INVALID                 | 1045 | SIM卡无效              |
-| UNKNOWN                     | 1279 | 未知原因               |
+|                     名称                        | 值   |                  说明                   |
+| ----------------------------------------------- | ---- | --------------------------------------- |
+| UNASSIGNED_NUMBER                               | 1    | 未分配的号码(空号)                      |
+| NO_ROUTE_TO_DESTINATION                         | 3    | 无至目的地的路由                        |
+| CHANNEL_UNACCEPTABLE                            | 6    | 不可接受的通路                          |
+| OPERATOR_DETERMINED_BARRING                     | 8    | 运营商闭锁                              |
+| CALL_COMPLETED_ELSEWHERE                        | 13   | 呼叫在其他地方完成                      |
+| NORMAL_CALL_CLEARING                            | 16   | 清除正常呼叫                            |
+| USER_BUSY                                       | 17   | 用户忙                                  |
+| NO_USER_RESPONDING                              | 18   | 无用户响应                              |
+| USER_ALERTING_NO_ANSWER                         | 19   | 已有用户提醒，但无应答                  |
+| CALL_REJECTED                                   | 21   | 呼叫拒绝                                |
+| NUMBER_CHANGED                                  | 22   | 号码改变                                |
+| CALL_REJECTED_DUE_TO_FEATURE_AT_THE_DESTINATION | 24   | 当由于目标地址（例如匿名）导致呼叫被拒绝 |
+| FAILED_PRE_EMPTION                              | 25   | 抢占失败                                |
+| NON_SELECTED_USER_CLEARING                      | 26   | 非选定用户清除                          |
+| DESTINATION_OUT_OF_ORDER                        | 27   | 终点故障                                |
+| INVALID_NUMBER_FORMAT                           | 28   | 无效号码格式                            |
+| FACILITY_REJECTED                               | 29   | 增补业务拒绝                            |
+| RESPONSE_TO_STATUS_ENQUIRY                      | 30   | 对状态查询的响应                        |
+| NORMAL_UNSPECIFIED                              | 31   | 正常，未指定                            |
+| NO_CIRCUIT_CHANNEL_AVAILABLE                    | 34   | 无电路/通道可用                         |
+| NETWORK_OUT_OF_ORDER                            | 38   | 网络故障                                |
+| TEMPORARY_FAILURE                               | 41   | 临时故障                                |
+| SWITCHING_EQUIPMENT_CONGESTION                  | 42   | 交换设备拥塞                            |
+| ACCESS_INFORMATION_DISCARDED                    | 43   | 已丢弃访问信息                          |
+| REQUEST_CIRCUIT_CHANNEL_NOT_AVAILABLE           | 44   | 请求的电路/通道不可用                   |
+| RESOURCES_UNAVAILABLE_UNSPECIFIED               | 47   | 未指定资源不可用                        |
+| QUALITY_OF_SERVICE_UNAVAILABLE                  | 49   | 服务质量不可用                          |
+| REQUESTED_FACILITY_NOT_SUBSCRIBED               | 50   | 请求的设施未订阅                        |
+| INCOMING_CALLS_BARRED_WITHIN_THE_CUG            | 55   | CUG内禁止来电                           |
+| BEARER_CAPABILITY_NOT_AUTHORIZED                | 57   | 未授权承载能力                          |
+| BEARER_CAPABILITY_NOT_PRESENTLY_AVAILABLE       | 58   | 承载能力目前不可用                      |
+| SERVICE_OR_OPTION_NOT_AVAILABLE_UNSPECIFIED     | 63   | 服务或选项不可用，未使用                |
+| BEARER_SERVICE_NOT_IMPLEMENTED                  | 65   | 未实现承载服务                          |
+| ACM_EQUALTO_OR_GREATE_THAN_ACMMAX               | 68   | ACM等于或大于ACMmax                     |
+| REQUESTED_FACILITY_NOT_IMPLEMENTED              | 69   | 请求的设施未实施                        |
+| ONLY_RESTRICTED_DIGITAL_INFO_BEARER_CAPABILITY_IS_AVAILABLE | 70   | 仅限BC有限数字信息可用      |
+| SERVICE_OR_OPTION_NOT_IMPLEMENTED_UNSPECIFIED   | 79   | 服务或选项未实施，未使用                |
+| INVALID_TRANSACTION_IDENTIFIER_VALUE            | 81   | 无效的业务标识符值                      |
+| USER_NOT_MEMBER_OF_CUG                          | 87   | 用户不是CUG成员                         |
+| INCOMPATIBLE_DESTINATION                        | 88   | 目标不兼容                              |
+| INVALID_TRANSIT_NETWORK_SELECTION               | 91   | 选择的传输网络无效                      |
+| SEMANTICALLY_INCORRECT_MESSAGE                  | 95   | 语义错误的消息                          |
+| INVALID_MANDATORY_INFORMATION                   | 96   | 无效的强制信息                          |
+| MESSAGE_TYPE_NON_EXISTENT_OR_NOT_IMPLEMENTED    | 97   | 消息类型不存在或未实现                  |
+| MESSAGE_TYPE_NOT_COMPATIBLE_WITH_PROTOCOL_STATE | 98   | 消息类型与协议状态不兼容                |
+| INFORMATION_ELEMENT_NON_EXISTENT_OR_NOT_IMPLEMENTED    | 99   | IE不存在或未实现                 |
+| CONDITIONAL_IE_ERROR                            | 100  | 条件IE错误                              |
+| MESSAGE_NOT_COMPATIBLE_WITH_PROTOCOL_STATE      | 101  | 消息与协议状态不兼容                    |
+| RECOVERY_ON_TIMER_EXPIRED                       | 102  | 计时器过期时恢复计时器编号              |
+| PROTOCOL_ERROR_UNSPECIFIED                      | 111  | 协议错误，未指定                        |
+| INTERWORKING_UNSPECIFIED                        | 127  | 互通，未指定                            |
+| CALL_BARRED                                     | 240  | 呼叫被禁止                              |
+| FDN_BLOCKED                                     | 241  | FDN受阻                                 |
+| IMSI_UNKNOWN_IN_VLR                             | 242  | VLR中的IMSI未知                         |
+| IMEI_NOT_ACCEPTED                               | 243  | IMEI未被接受                            |
+| DIAL_MODIFIED_TO_USSD                           | 244  | 拨号修改为USSD                          |
+| DIAL_MODIFIED_TO_SS                             | 245  | 拨号修改为USSD号                        |
+| DIAL_MODIFIED_TO_DIAL                           | 246  | 拨号已修改为正常                        |
+| RADIO_OFF                                       | 247  | 无线电通讯已关闭                        |
+| OUT_OF_SERVICE                                  | 248  | 停止服务                                |
+| NO_VALID_SIM                                    | 249  | SIM卡无效                               |
+| RADIO_INTERNAL_ERROR                            | 250  | 无线电通讯内部错误                      |
+| NETWORK_RESP_TIMEOUT                            | 251  | 网络响应超时                            |
+| NETWORK_REJECT                                  | 252  | 网络拒绝                                |
+| RADIO_ACCESS_FAILURE                            | 253  | 无线电接入故障                          |
+| RADIO_LINK_FAILURE                              | 254  | 无线电链路故障                          |
+| RADIO_LINK_LOST                                 | 255  | 无线电链路丢失                          |
+| RADIO_UPLINK_FAILURE                            | 256  | 无线电上行链路故障                      |
+| RADIO_SETUP_FAILURE                             | 257  | 无线电通讯设置失败                      |
+| RADIO_RELEASE_NORMAL                            | 258  | 无线电释放正常                          |
+| RADIO_RELEASE_ABNORMAL                          | 259  | 无线电释放异常                          |
+| ACCESS_CLASS_BLOCKED                            | 260  | 访问类被阻止                            |
+| NETWORK_DETACH                                  | 261  | 网络分离                                |
+| INVALID_PARAMETER                               | 1025 | 无效参数                                |
+| SIM_NOT_EXIT                                    | 1026 | SIM卡未退出                             |
+| SIM_PIN_NEED                                    | 1027 | 需要SIM卡PIN码                          |
+| CALL_NOT_ALLOW                                  | 1029 | 不允许呼叫                              |
+| SIM_INVALID                                     | 1045 | SIM卡无效                               |
+| UNKNOWN                                         | 1279 | 未知原因                                |
 
 ## MmiCodeResults<sup>9+</sup>
 
