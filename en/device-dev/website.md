@@ -357,6 +357,7 @@
      - Related Operations
        - [Building a Subsystem](subsystems/subsys-build-subsystem.md)
        - [Building a Product](subsystems/subsys-build-product.md)
+       - [Building a Subsystem](subsystems/subsys-build-subsystem.md)
        - [Building a Component](subsystems/subsys-build-component.md)
        - [Building a Module](subsystems/subsys-build-module.md)
        - [Building a Chipset Solution](subsystems/subsys-build-chip_solution.md)
