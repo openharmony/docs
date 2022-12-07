@@ -595,6 +595,8 @@ httpResponseCache.delete().then() => {
 
 http的数据类型。
 
+**系统能力**：SystemCapability.Communication.NetStack
+
 | 名称 | 值 | 说明     |
 | ------------------ | -- | ----------- |
 | STRING              | 0 | 字符串类型。 |
@@ -604,6 +606,8 @@ http的数据类型。
 ## HttpProtocol<sup>9+</sup>
 
 http协议版本。
+
+**系统能力**：SystemCapability.Communication.NetStack
 
 | 名称  | 说明     |
 | :-------- | :----------- |
