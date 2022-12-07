@@ -3635,7 +3635,7 @@ let rssi = gattClient.getRssiValue().then((data) => {
 
 | 名称               | 类型                | 可读   | 可写   | 说明                 |
 | ---------------- | ------------------- | ---- | ---- | ------------------ |
-| manufactureId    | Array&lt;string&gt; | 是    | 是    | 表示制造商的ID，由蓝牙SIG分配。 |
+| manufactureId    | number  | 是    | 是    | 表示制造商的ID，由蓝牙SIG分配。 |
 | manufactureValue | ArrayBuffer         | 是    | 是    | 表示制造商发送的制造商数据。     |
 
 
@@ -3838,7 +3838,7 @@ let rssi = gattClient.getRssiValue().then((data) => {
 
 | 名称                               | 值    | 说明              |
 | -------------------------------- | ------ | --------------- |
-| PROFILE_A2DP_SOURCE              | 0x0001 | 表示A2DP profile。 |
-| PROFILE_HANDS_FREE_AUDIO_GATEWAY | 0x0004 | 表示HFP profile。  |
-| PROFILE_HID_HOST<sup>9+</sup> | 0x0006 | 表示HID profile。  |
-| PROFILE_PAN_NETWORK<sup>9+</sup> | 0x0007 | 表示PAN profile。  |
+| PROFILE_A2DP_SOURCE              | 1 | 表示A2DP profile。 |
+| PROFILE_HANDS_FREE_AUDIO_GATEWAY | 4 | 表示HFP profile。  |
+| PROFILE_HID_HOST<sup>9+</sup> | 6 | 表示HID profile。  |
+| PROFILE_PAN_NETWORK<sup>9+</sup> | 7 | 表示PAN profile。  |
