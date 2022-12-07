@@ -92,6 +92,7 @@
   - [HiLog Development](subsys-dfx-hilog-rich.md)
   - [HiLog\_Lite Development](subsys-dfx-hilog-lite.md)
   - [HiTraceChain Development](subsys-dfx-hitracechain.md)
+  - [HiTraceMeter Development](subsys-dfx-hitracemeter.md)
   - [HiCollie Development](subsys-dfx-hicollie.md)
   - HiSysEvent Development
     - [HiSysEvent Logging Configuration](subsys-dfx-hisysevent-logging-config.md)
