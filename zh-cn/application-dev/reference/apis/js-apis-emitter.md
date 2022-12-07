@@ -139,7 +139,7 @@ emitter.emit(innerEvent, eventData);
 
 **系统能力**: 以下各项对应的系统能力均为 SystemCapability.Notification.Emitter
 
-| 名称     | 参数类型                        | 可读 | 可写 | 说明                               |
+| 名称     | 类型                        | 可读 | 可写 | 说明                               |
 | -------- | ------------------------------- | ---- | ---- | ---------------------------------- |
 | eventId  | number                          | 是   | 是   | 事件的ID，由开发者定义用来辨别事件。 |
 | priority | [EventPriority](#eventpriority) | 是   | 是   | 事件被投递的优先级。         |
@@ -150,6 +150,6 @@ emitter.emit(innerEvent, eventData);
 
 **系统能力**: 以下各项对应的系统能力均为 SystemCapability.Notification.Emitter
 
-| 名称 | 参数类型           | 可读 | 可写 | 说明           |
+| 名称 | 类型           | 可读 | 可写 | 说明           |
 | ---- | ------------------ | ---- | ---- | -------------- |
 | data | [key: string]: any | 是   | 是   | 发送事件时传递的数据，数据类型支持字符串、整型和布尔型。 |
