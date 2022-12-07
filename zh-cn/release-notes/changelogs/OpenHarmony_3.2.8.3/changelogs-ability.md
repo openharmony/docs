@@ -1,4 +1,4 @@
-# 元能力子系统ChangeLog
+元能力子系统ChangeLog
 
 ## cl.ability.1 应用组件启动规则变更
 
@@ -217,3 +217,143 @@
             "associatedWakeUp": true
         }
         ```
+
+## cl.ability.3 API异常处理方式变更
+
+元能力部分接口使用业务逻辑返回值表示错误信息，不符合OpenHarmony接口错误码规范。
+
+**变更影响**
+
+基于此前版本开发的应用，需适配变更接口的错误信息返回方式，否则会影响原有业务逻辑。
+
+**关键接口/组件变更**
+
+为适配统一的API异常处理方式，对元能力相关接口进行废弃（下表中 原接口 列内容），并新增对应接口（下表中 新接口 列内容）。新增接口支持统一的错误码异常处理规范，功能上与原接口保持一致。
+
+| 原接口                                          | 新接口                                          |
+| ----------------------------------------------- | ----------------------------------------------- |
+| @ohos.ability.wantConstant.d.ts                 | @ohos.app.ability.wantConstant.d.ts             |
+| @ohos.application.Ability.d.ts                  | @ohos.app.ability.UIAbility.d.ts                |
+| @ohos.application.AbilityConstant.d.ts          | @ohos.app.ability.AbilityConstant.d.ts          |
+| @ohos.application.abilityDelegatorRegistry.d.ts | @ohos.app.ability.abilityDelegatorRegistry.d.ts |
+| @ohos.application.AbilityLifecycleCallback.d.ts | @ohos.app.ability.AbilityLifecycleCallback.d.ts |
+| @ohos.application.abilityManager.d.ts           | @ohos.app.ability.abilityManager.d.ts           |
+| @ohos.application.AbilityStage.d.ts             | @ohos.app.ability.AbilityStage.d.ts             |
+| @ohos.application.appManager.d.ts               | @ohos.app.ability.appManager.d.ts               |
+| @ohos.application.Configuration.d.ts            | @ohos.app.ability.Configuration.d.ts            |
+| @ohos.application.ConfigurationConstant.d.ts    | @ohos.app.ability.ConfigurationConstant.d.ts    |
+| @ohos.application.context.d.ts                  | @ohos.app.ability.common.d.ts                   |
+| @ohos.application.EnvironmentCallback.d.ts      | @ohos.app.ability.EnvironmentCallback.d.ts      |
+| @ohos.application.errorManager.d.ts             | @ohos.app.ability.errorManager.d.ts             |
+| @ohos.application.ExtensionAbility.d.ts         | @ohos.app.ability.ExtensionAbility.d.ts         |
+| @ohos.application.formBindingData.d.ts          | @ohos.app.form.formBindingData.d.ts             |
+| @ohos.application.FormExtension.d.ts            | @ohos.app.form.FormExtensionAbility.d.ts        |
+| @ohos.application.formHost.d.ts                 | @ohos.app.form.formHost.d.ts                    |
+| @ohos.application.formInfo.d.ts                 | @ohos.app.form.formInfo.d.ts                    |
+| @ohos.application.formProvider.d.ts             | @ohos.app.form.formProvider.d.ts                |
+| @ohos.application.missionManager.d.ts           | @ohos.app.ability.missionManager.d.ts           |
+| @ohos.application.quickFixManager.d.ts          | @ohos.app.ability.quickFixManager.d.ts          |
+| @ohos.application.ServiceExtensionAbility.d.ts  | @ohos.app.ability.ServiceExtensionAbility.d.ts  |
+| @ohos.application.StartOptions.d.ts             | @ohos.app.ability.StartOptions.d.ts             |
+| @ohos.application.Want.d.ts                     | @ohos.app.ability.Want.d.ts                     |
+| @ohos.wantAgent.d.ts                            | @ohos.app.ability.wantAgent.d.ts                |
+
+**适配指导**
+
+如上所述，仅将老接口平移到了新的namespace中，所以可以通过修改import来解决适配问题：
+
+如原先接口使用了@ohos.application.missionManager
+
+```js
+import missionManager from '@ohos.application.missionManager';
+```
+
+可以通过直接修改import，来切换到新的namespace上：
+
+```js
+import missionManager from '@ohos.app.ability.missionManager';
+```
+
+此外还需要适配异常处理，具体参考新接口的接口文档。
+
+## cl.ability.4 接口变更
+
+对元能力部分接口名进行了变更。
+
+**关键的接口/组件变更**
+
+| 模块名                                    | 类名                    | 方法/属性/枚举/常量                                          | 变更类型 |
+| ----------------------------------------- | ----------------------- | ------------------------------------------------------------ | -------- |
+| @ohos.application.Ability                 | Caller                  | onRelease(callback: OnReleaseCallBack): **void**;            | 废弃     |
+| @ohos.app.ability.UIAbility               | Caller                  | on(**type**: "release", callback: OnReleaseCallBack): **void**; | 新增     |
+| @ohos.application.Ability                 | Ability                 | dump(params: Array<**string**>): Array<**string**>;          | 废弃     |
+| @ohos.app.ability.UIAbility               | UIAbility               | onDump(params: Array<**string**>): Array<**string**>;        | 新增     |
+| @ohos.application.appManager              | appManager              | **function** registerApplicationStateObserver(observer: ApplicationStateObserver): **number**; | 废弃     |
+| @ohos.application.appManager              | appManager              | **function** registerApplicationStateObserver(observer: ApplicationStateObserver, bundleNameList: Array<**string**>): **number**; | 废弃     |
+| @ohos.application.appManager              | appManager              | **function** unregisterApplicationStateObserver(observerId: **number**, callback: AsyncCallback<**void**>): **void**; | 废弃     |
+| @ohos.application.appManager              | appManager              | **function** unregisterApplicationStateObserver(observerId: **number**): Promise<**void**>; | 废弃     |
+| @ohos.app.ability.appManager              | appManager              | **function** on(**type**: "applicationState", observer: ApplicationStateObserver): **number**; | 新增     |
+| @ohos.app.ability.appManager              | appManager              | **function** on(**type**: "applicationState", observer: ApplicationStateObserver, bundleNameList: Array<**string**>): **number**; | 新增     |
+| @ohos.app.ability.appManager              | appManager              | **function** off(**type**: "applicationState", observerId: **number**, callback: AsyncCallback<**void**>): **void**; | 新增     |
+| @ohos.app.ability.appManager              | appManager              | **function** off(**type**: "applicationState", observerId: **number**): Promise<**void**>; | 新增     |
+| @ohos.application.errorManager            | errorManager            | **function** registerErrorObserver(observer: ErrorObserver): **number**; | 废弃     |
+| @ohos.application.errorManager            | errorManager            | **function** unregisterErrorObserver(observerId: **number**, callback: AsyncCallback<**void**>): **void**; | 废弃     |
+| @ohos.application.errorManager            | errorManager            | **function** unregisterErrorObserver(observerId: **number**): Promise<**void**>; | 废弃     |
+| @ohos.app.ability.errorManager            | errorManager            | **function** on(**type**: "error", observer: ErrorObserver): **number**; | 新增     |
+| @ohos.app.ability.errorManager            | errorManager            | **function** off(**type**: "error", observerId: **number**, callback: AsyncCallback<**void**>): **void**; | 新增     |
+| @ohos.app.ability.errorManager            | errorManager            | **function** off(**type**: "error", observerId: **number**): Promise<**void**>; | 新增     |
+| @ohos.application.missionManager          | missionManager          | **function** registerMissionListener(listener: MissionListener): **number**; | 废弃     |
+| @ohos.application.missionManager          | missionManager          | **function** unregisterMissionListener(listenerId: **number**, callback: AsyncCallback<**void**>): **void**; | 废弃     |
+| @ohos.application.missionManager          | missionManager          | **function** unregisterMissionListener(listenerId: **number**): Promise<**void**>; | 废弃     |
+| @ohos.app.ability.missionManager          | missionManager          | **function** on(**type**: "mission", listener: MissionListener): **number**; | 新增     |
+| @ohos.app.ability.missionManager          | missionManager          | **function** off(**type**: "mission", listenerId: **number**, callback: AsyncCallback<**void**>): **void**; | 新增     |
+| @ohos.app.ability.missionManager          | missionManager          | **function** off(**type**: "mission", listenerId: **number**): Promise<**void**>; | 新增     |
+| @ohos.application.FormExtension           | FormExtension           | onCreate(want: Want): formBindingData.FormBindingData;       | 废弃     |
+| @ohos.application.FormExtension           | FormExtension           | onCastToNormal(formId: **string**): **void**;                | 废弃     |
+| @ohos.application.FormExtension           | FormExtension           | onUpdate(formId: **string**): **void**;                      | 废弃     |
+| @ohos.application.FormExtension           | FormExtension           | onVisibilityChange(newStatus: { [key: **string**]: **number** }): **void**; | 废弃     |
+| @ohos.application.FormExtension           | FormExtension           | onEvent(formId: **string**, message: **string**): **void**;  | 废弃     |
+| @ohos.application.FormExtension           | FormExtension           | onDestroy(formId: **string**): **void**;                     | 废弃     |
+| @ohos.application.FormExtension           | FormExtension           | onShare?(formId: **string**): {[key: **string**]: **any**};  | 废弃     |
+| @ohos.app.form.FormExtensionAbility       | FormExtensionAbility    | onAddForm(want: Want): formBindingData.FormBindingData;      | 新增     |
+| @ohos.app.form.FormExtensionAbility       | FormExtensionAbility    | onCastToNormalForm(formId: **string**): **void**;            | 新增     |
+| @ohos.app.form.FormExtensionAbility       | FormExtensionAbility    | onUpdateForm(formId: **string**): **void**;                  | 新增     |
+| @ohos.app.form.FormExtensionAbility       | FormExtensionAbility    | onChangeFormVisibility(newStatus: { [key: **string**]: **number** }): **void**; | 新增     |
+| @ohos.app.form.FormExtensionAbility       | FormExtensionAbility    | onFormEvent(formId: **string**, message: **string**): **void**; | 新增     |
+| @ohos.app.form.FormExtensionAbility       | FormExtensionAbility    | onRemoveForm(formId: **string**): **void**;                  | 新增     |
+| @ohos.app.form.FormExtensionAbility       | FormExtensionAbility    | onShareForm?(formId: **string**): {[key: **string**]: **any**}; | 新增     |
+| @ohos.application.formHost.d.ts           | formHost                | **function** castTempForm(formId: **string**, callback: AsyncCallback<**void**>): **void**; | 废弃     |
+| @ohos.application.formHost.d.ts           | formHost                | **function** castTempForm(formId: **string**): Promise<**void**>; | 废弃     |
+| @ohos.app.form.formHost.d.ts              | formHost                | **function** castToNormalForm(formId: **string**, callback: AsyncCallback<**void**>): **void**; | 新增     |
+| @ohos.app.form.formHost.d.ts              | formHost                | **function** castToNormalForm(formId: **string**): Promise<**void**>; | 新增     |
+| @ohos.application.ServiceExtensionAbility | ServiceExtensionAbility | dump(params: Array<**string**>): Array<**string**>;          | 废弃     |
+| @ohos.app.ability.ServiceExtensionAbility | ServiceExtensionAbility | onDump(params: Array<**string**>): Array<**string**>;        | 新增     |
+| application/AbilityContext                | AbilityContext          | connectAbility(want: Want, options: ConnectOptions): **number**; | 废弃     |
+| application/AbilityContext                | AbilityContext          | connectAbilityWithAccount(want: Want, accountId: **number**, options: ConnectOptions): **number**; | 废弃     |
+| application/AbilityContext                | AbilityContext          | disconnectAbility(connection: **number**, callback: AsyncCallback<**void**>): **void**; | 废弃     |
+| application/AbilityContext                | AbilityContext          | disconnectAbility(connection: **number**): Promise<**void**>; | 废弃     |
+| application/UIAbilityContext              | UIAbilityContext        | connectServiceExtensionAbilityWithAccount(want: Want, accountId: **number**, options: ConnectOptions): **number**; | 新增     |
+| application/UIAbilityContext              | UIAbilityContext        | connectServiceExtensionAbilityWithAccount(want: Want, accountId: **number**, options: ConnectOptions): **number**; | 新增     |
+| application/UIAbilityContext              | UIAbilityContext        | disconnectServiceExtensionAbility(connection: **number**, callback: AsyncCallback<**void**>): **void**; | 新增     |
+| application/UIAbilityContext              | UIAbilityContext        | disconnectServiceExtensionAbility(connection: **number**): Promise<**void**>; | 新增     |
+| application/ApplicationContext            | ApplicationContext      | registerAbilityLifecycleCallback(callback: AbilityLifecycleCallback): **number**; | 废弃     |
+| application/ApplicationContext            | ApplicationContext      | unregisterAbilityLifecycleCallback(callbackId: **number**, callback: AsyncCallback<**void**>): **void**; | 废弃     |
+| application/ApplicationContext            | ApplicationContext      | unregisterAbilityLifecycleCallback(callbackId: **number**): Promise<**void**>; | 废弃     |
+| application/ApplicationContext            | ApplicationContext      | registerEnvironmentCallback(callback: EnvironmentCallback): **number**; | 废弃     |
+| application/ApplicationContext            | ApplicationContext      | unregisterEnvironmentCallback(callbackId: **number**, callback: AsyncCallback<**void**>): **void**; | 废弃     |
+| application/ApplicationContext            | ApplicationContext      | unregisterEnvironmentCallback(callbackId: **number**): Promise<**void**>; | 废弃     |
+| application/ApplicationContext            | ApplicationContext      | on(**type**: "abilityLifecycle", callback: AbilityLifecycleCallback): **number**; | 新增     |
+| application/ApplicationContext            | ApplicationContext      | off(**type**: "abilityLifecycle", callbackId: **number**, callback: AsyncCallback<**void**>): **void**; | 新增     |
+| application/ApplicationContext            | ApplicationContext      | off(**type**: "abilityLifecycle", callbackId: **number**): Promise<**void**>; | 新增     |
+| application/ApplicationContext            | ApplicationContext      | on(**type**: "environment", callback: EnvironmentCallback): **number**; | 新增     |
+| application/ApplicationContext            | ApplicationContext      | off(**type**: "environment", callbackId: **number**, callback: AsyncCallback<**void**>): **void**; | 新增     |
+| application/ApplicationContext            | ApplicationContext      | off(**type**: "environment", callbackId: **number**): Promise<**void**>; | 新增     |
+| application/ServiceExtensionContext       | ServiceExtensionContext | connectAbility(want: Want, options: ConnectOptions): **number**; | 废弃     |
+| application/ServiceExtensionContext       | ServiceExtensionContext | connectAbilityWithAccount(want: Want, accountId: **number**, options: ConnectOptions): **number**; | 废弃     |
+| application/ServiceExtensionContext       | ServiceExtensionContext | disconnectAbility(connection: **number**, callback: AsyncCallback<**void**>): **void**; | 废弃     |
+| application/ServiceExtensionContext       | ServiceExtensionContext | disconnectAbility(connection: **number**): Promise<**void**>; | 废弃     |
+| application/ServiceExtensionContext       | ServiceExtensionContext | connectServiceExtensionAbility(want: Want, options: ConnectOptions): **number**; | 新增     |
+| application/ServiceExtensionContext       | ServiceExtensionContext | connectServiceExtensionAbilityWithAccount(want: Want, accountId: **number**, options: ConnectOptions): **number**; | 新增     |
+| application/ServiceExtensionContext       | ServiceExtensionContext | disconnectServiceExtensionAbility(connection: **number**, callback: AsyncCallback<**void**>): **void**; | 新增     |
+| application/ServiceExtensionContext       | ServiceExtensionContext | disconnectServiceExtensionAbility(connection: **number**): Promise<**void**>; | 新增     |
+
