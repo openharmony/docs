@@ -733,7 +733,7 @@ on(type: 'cameraMute', callback: AsyncCallback<boolean\>): void
 
 禁用回调，通过注册回调函数获取相机禁用状态变化。
 
-此接口为公开接口。
+此接口为系统接口。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
