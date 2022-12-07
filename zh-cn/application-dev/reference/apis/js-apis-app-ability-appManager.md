@@ -155,64 +155,6 @@ getAppMemorySize(callback: AsyncCallback\<number>): void;
       console.log('startAbility result success:' + JSON.stringify(data));
   })
   ```
-## appManager.getProcessRunningInfos<sup>(deprecated)</sup>
-
-getProcessRunningInfos(): Promise\<Array\<ProcessRunningInfo>>;
-
-获取有关运行进程的信息。
-
-> 从 API Version 9 开始废弃，建议使用[appManager.getProcessRunningInformation<sup>9+</sup>](#appmanagergetprocessrunninginformation9)替代。
-
-**需要权限**：ohos.permission.GET_RUNNING_INFO
-
-**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
-
-**系统API**: 此接口为系统接口，三方应用不支持调用。
-
-**返回值：**
-
-| 类型 | 说明 |
-| -------- | -------- |
-| Promise\<Array\<ProcessRunningInfo>> | 获取有关运行进程的信息。 |
-
-**示例：**
-    
-  ```ts
-  app.getProcessRunningInfos().then((data) => {
-      console.log('success:' + JSON.stringify(data));
-  }).catch((error) => {
-      console.log('failed:' + JSON.stringify(error));
-  });
-  ```
-
-## appManager.getProcessRunningInfos<sup>(deprecated)</sup>
-
-getProcessRunningInfos(callback: AsyncCallback\<Array\<ProcessRunningInfo>>): void;
-
-获取有关运行进程的信息。
-
-> 从 API Version 9 开始废弃，建议使用[appManager.getProcessRunningInformation<sup>9+</sup>](#appmanagergetprocessrunninginformation9-1)替代。
-
-**需要权限**：ohos.permission.GET_RUNNING_INFO
-
-**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
-
-**系统API**: 此接口为系统接口，三方应用不支持调用。
-
-**参数：**
-
-| 参数名 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| callback | AsyncCallback\<Array\<ProcessRunningInfo>> | 否 | 获取有关运行进程的信息。 |
-
-**示例：**
-    
-  ```ts
-  app.getProcessRunningInfos((err, data) => {
-      console.log('startAbility result failed :' + JSON.stringify(err));
-      console.log('startAbility result success:' + JSON.stringify(data));
-  })
-  ```
 
 ## appManager.getProcessRunningInformation<sup>9+</sup>
 
@@ -251,6 +193,8 @@ getProcessRunningInformation(callback: AsyncCallback\<Array\<ProcessRunningInfor
 **需要权限**：ohos.permission.GET_RUNNING_INFO
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**系统API**: 此接口为系统接口，三方应用不支持调用。
 
 **参数：**
 
@@ -418,7 +362,7 @@ off(type: "applicationState", observerId: number): Promise\<void>;
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | type | string | 是 | 调用接口类型 |
-| observerId | number | 否 | 表示观察者的编号代码。 |
+| observerId | number | 是 | 表示观察者的编号代码。 |
 
 **返回值：**
 

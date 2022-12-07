@@ -15,7 +15,7 @@ import Ability from '@ohos.app.ability.Ability';
 
 ## Ability.onConfigurationUpdate
 
-onConfigurationUpdate(config: Configuration): void;
+onConfigurationUpdate(newConfig: Configuration): void;
 
 当系统配置更新时调用。
 
@@ -25,7 +25,7 @@ onConfigurationUpdate(config: Configuration): void;
 
   | 参数名 | 类型 | 必填 | 说明 | 
   | -------- | -------- | -------- | -------- |
-  | config | [Configuration](js-apis-app-ability-configuration.md) | 是 | 表示需要更新的配置信息。 | 
+  | newConfig | [Configuration](js-apis-app-ability-configuration.md) | 是 | 表示需要更新的配置信息。 | 
 
 **示例：**
     

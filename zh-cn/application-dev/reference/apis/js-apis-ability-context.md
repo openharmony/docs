@@ -53,7 +53,7 @@ startAbility(want: Want, callback: AsyncCallback&lt;void&gt;): void;
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
-| 401 | Invalid input parameter. |
+| 401 | If the input parameter is not valid parameter. |
 其他ID见[元能力子系统错误码](../errorcodes/errorcode-ability.md)
 
 **示例：**
@@ -103,7 +103,7 @@ startAbility(want: Want, options: StartOptions, callback: AsyncCallback&lt;void&
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
-| 401 | Invalid input parameter. |
+| 401 | If the input parameter is not valid parameter. |
 其他ID见[元能力子系统错误码](../errorcodes/errorcode-ability.md)
 
 **示例：**
@@ -161,7 +161,7 @@ startAbility(want: Want, options?: StartOptions): Promise&lt;void&gt;;
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
-| 401 | Invalid input parameter. |
+| 401 | If the input parameter is not valid parameter. |
 其他ID见[元能力子系统错误码](../errorcodes/errorcode-ability.md)
 
 **示例：**
@@ -213,7 +213,7 @@ startAbilityForResult(want: Want, callback: AsyncCallback&lt;AbilityResult&gt;):
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
-| 401 | Invalid input parameter. |
+| 401 | If the input parameter is not valid parameter. |
 其他ID见[元能力子系统错误码](../errorcodes/errorcode-ability.md)
 
 **示例：**
@@ -264,7 +264,7 @@ startAbilityForResult(want: Want, options: StartOptions, callback: AsyncCallback
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
-| 401 | Invalid input parameter. |
+| 401 | If the input parameter is not valid parameter. |
 其他ID见[元能力子系统错误码](../errorcodes/errorcode-ability.md)
 
 **示例：**
@@ -325,7 +325,7 @@ startAbilityForResult(want: Want, options?: StartOptions): Promise&lt;AbilityRes
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
-| 401 | Invalid input parameter. |
+| 401 | If the input parameter is not valid parameter. |
 其他ID见[元能力子系统错误码](../errorcodes/errorcode-ability.md)
 
 **示例：**
@@ -381,7 +381,7 @@ startAbilityForResultWithAccount(want: Want, accountId: number, callback: AsyncC
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
-| 401 | Invalid input parameter. |
+| 401 | If the input parameter is not valid parameter. |
 其他ID见[元能力子系统错误码](../errorcodes/errorcode-ability.md)
 
 **示例：**
@@ -439,7 +439,7 @@ startAbilityForResultWithAccount(want: Want, accountId: number, options: StartOp
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
-| 401 | Invalid input parameter. |
+| 401 | If the input parameter is not valid parameter. |
 其他ID见[元能力子系统错误码](../errorcodes/errorcode-ability.md)
 
 **示例：**
@@ -505,7 +505,7 @@ startAbilityForResultWithAccount(want: Want, accountId: number, options?: StartO
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
-| 401 | Invalid input parameter. |
+| 401 | If the input parameter is not valid parameter. |
 其他ID见[元能力子系统错误码](../errorcodes/errorcode-ability.md)
 
 **示例：**
@@ -560,7 +560,7 @@ startServiceExtensionAbility(want: Want, callback: AsyncCallback\<void>): void;
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
-| 401 | Invalid input parameter. |
+| 401 | If the input parameter is not valid parameter. |
 其他ID见[元能力子系统错误码](../errorcodes/errorcode-ability.md)
 
 **示例：**
@@ -610,7 +610,7 @@ startServiceExtensionAbility(want: Want): Promise\<void>;
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
-| 401 | Invalid input parameter. |
+| 401 | If the input parameter is not valid parameter. |
 其他ID见[元能力子系统错误码](../errorcodes/errorcode-ability.md)
 
 **示例：**
@@ -664,7 +664,7 @@ startServiceExtensionAbilityWithAccount(want: Want, accountId: number, callback:
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
-| 401 | Invalid input parameter. |
+| 401 | If the input parameter is not valid parameter. |
 其他ID见[元能力子系统错误码](../errorcodes/errorcode-ability.md)
 
 **示例：**
@@ -718,7 +718,7 @@ startServiceExtensionAbilityWithAccount(want: Want, accountId: number): Promise\
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
-| 401 | Invalid input parameter. |
+| 401 | If the input parameter is not valid parameter. |
 其他ID见[元能力子系统错误码](../errorcodes/errorcode-ability.md)
 
 **示例：**
@@ -769,7 +769,7 @@ stopServiceExtensionAbility(want: Want, callback: AsyncCallback\<void>): void;
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
-| 401 | Invalid input parameter. |
+| 401 | If the input parameter is not valid parameter. |
 其他ID见[元能力子系统错误码](../errorcodes/errorcode-ability.md)
 
 **示例：**
@@ -819,7 +819,7 @@ stopServiceExtensionAbility(want: Want): Promise\<void>;
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
-| 401 | Invalid input parameter. |
+| 401 | If the input parameter is not valid parameter. |
 其他ID见[元能力子系统错误码](../errorcodes/errorcode-ability.md)
 
 **示例：**
@@ -873,7 +873,7 @@ stopServiceExtensionAbilityWithAccount(want: Want, accountId: number, callback: 
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
-| 401 | Invalid input parameter. |
+| 401 | If the input parameter is not valid parameter. |
 其他ID见[元能力子系统错误码](../errorcodes/errorcode-ability.md)
 
 **示例：**
@@ -927,7 +927,7 @@ stopServiceExtensionAbilityWithAccount(want: Want, accountId: number): Promise\<
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
-| 401 | Invalid input parameter. |
+| 401 | If the input parameter is not valid parameter. |
 其他ID见[元能力子系统错误码](../errorcodes/errorcode-ability.md)
 
 **示例：**
@@ -976,7 +976,7 @@ terminateSelf(callback: AsyncCallback&lt;void&gt;): void;
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
-| 401 | Invalid input parameter. |
+| 401 | If the input parameter is not valid parameter. |
 其他ID见[元能力子系统错误码](../errorcodes/errorcode-ability.md)
 
 **示例：**
@@ -1013,7 +1013,7 @@ terminateSelf(): Promise&lt;void&gt;;
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
-| 401 | Invalid input parameter. |
+| 401 | If the input parameter is not valid parameter. |
 其他ID见[元能力子系统错误码](../errorcodes/errorcode-ability.md)
 
 **示例：**
@@ -1049,7 +1049,7 @@ terminateSelfWithResult(parameter: AbilityResult, callback: AsyncCallback&lt;voi
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
-| 401 | Invalid input parameter. |
+| 401 | If the input parameter is not valid parameter. |
 其他ID见[元能力子系统错误码](../errorcodes/errorcode-ability.md)
 
 **示例：**
@@ -1109,7 +1109,7 @@ terminateSelfWithResult(parameter: AbilityResult): Promise&lt;void&gt;;
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
-| 401 | Invalid input parameter. |
+| 401 | If the input parameter is not valid parameter. |
 其他ID见[元能力子系统错误码](../errorcodes/errorcode-ability.md)
 
 
@@ -1160,7 +1160,7 @@ connectServiceExtensionAbility(want: Want, options: ConnectOptions): number;
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | want | [Want](js-apis-application-want.md) | 是 | 启动Ability的want信息。 |
-| options | [ConnectOptions](js-apis-inner-ability-connectOptions.md) | 否 | 远端对象实例。 |
+| options | [ConnectOptions](js-apis-inner-ability-connectOptions.md) | 是 | 远端对象实例。 |
 
 **返回值：**
 
@@ -1172,7 +1172,7 @@ connectServiceExtensionAbility(want: Want, options: ConnectOptions): number;
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
-| 401 | Invalid input parameter. |
+| 401 | If the input parameter is not valid parameter. |
 其他ID见[元能力子系统错误码](../errorcodes/errorcode-ability.md)
 
 **示例：**
@@ -1218,7 +1218,7 @@ connectServiceExtensionAbilityWithAccount(want: Want, accountId: number, options
 | -------- | -------- | -------- | -------- |
 | want | [Want](js-apis-application-want.md) | 是 | 启动Ability的want信息。 |
 | accountId | number | 是 | 系统帐号的帐号ID，详情参考[getCreatedOsAccountsCount](js-apis-osAccount.md#getosaccountlocalidfromprocess)。 |
-| options | [ConnectOptions](js-apis-inner-ability-connectOptions.md) | 否 | 远端对象实例。 |
+| options | [ConnectOptions](js-apis-inner-ability-connectOptions.md) | 是 | 远端对象实例。 |
 
 **返回值：**
 
@@ -1230,7 +1230,7 @@ connectServiceExtensionAbilityWithAccount(want: Want, accountId: number, options
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
-| 401 | Invalid input parameter. |
+| 401 | If the input parameter is not valid parameter. |
 其他ID见[元能力子系统错误码](../errorcodes/errorcode-ability.md)
 
 **示例：**
@@ -1266,8 +1266,6 @@ disconnectServiceExtensionAbility(connection: number): Promise\<void>;
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
-**系统API**: 此接口为系统接口，三方应用不支持调用。
-
 **参数：**
 
 | 参数名 | 类型 | 必填 | 说明 |
@@ -1284,7 +1282,7 @@ disconnectServiceExtensionAbility(connection: number): Promise\<void>;
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
-| 401 | Invalid input parameter. |
+| 401 | If the input parameter is not valid parameter. |
 其他ID见[元能力子系统错误码](../errorcodes/errorcode-ability.md)
 
 **示例：**
@@ -1319,8 +1317,6 @@ disconnectServiceExtensionAbility(connection: number, callback:AsyncCallback\<vo
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
-**系统API**: 此接口为系统接口，三方应用不支持调用。
-
 **参数：**
 
 | 参数名 | 类型 | 必填 | 说明 |
@@ -1332,7 +1328,7 @@ disconnectServiceExtensionAbility(connection: number, callback:AsyncCallback\<vo
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
-| 401 | Invalid input parameter. |
+| 401 | If the input parameter is not valid parameter. |
 其他ID见[元能力子系统错误码](../errorcodes/errorcode-ability.md)
 
 **示例：**
@@ -1366,6 +1362,8 @@ startAbilityByCall(want: Want): Promise&lt;Caller&gt;;
 启动指定Ability至前台或后台，同时获取其Caller通信接口，调用方可使用Caller与被启动的Ability进行通信。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**系统API**: 此接口为系统接口，三方应用不支持调用。
 
 **参数：**
 
@@ -1470,7 +1468,7 @@ startAbilityWithAccount(want: Want, accountId: number, callback: AsyncCallback\<
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
-| 401 | Invalid input parameter. |
+| 401 | If the input parameter is not valid parameter. |
 其他ID见[元能力子系统错误码](../errorcodes/errorcode-ability.md)
 
 **示例：**
@@ -1520,14 +1518,14 @@ startAbilityWithAccount(want: Want, accountId: number, options: StartOptions, ca
 | -------- | -------- | -------- | -------- |
 | want | [Want](js-apis-application-want.md) | 是 | 启动Ability的want信息。 |
 | accountId | number | 是 | 系统帐号的帐号ID，详情参考[getCreatedOsAccountsCount](js-apis-osAccount.md#getosaccountlocalidfromprocess)。|
-| options | [StartOptions](js-apis-application-startOptions.md) | 否 | 启动Ability所携带的参数。 |
+| options | [StartOptions](js-apis-application-startOptions.md) | 是 | 启动Ability所携带的参数。 |
 | callback | AsyncCallback\<void\> | 是 | 启动Ability的回调函数。 |
 
 **错误码：**
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
-| 401 | Invalid input parameter. |
+| 401 | If the input parameter is not valid parameter. |
 其他ID见[元能力子系统错误码](../errorcodes/errorcode-ability.md)
 
 **示例：**
@@ -1586,7 +1584,7 @@ startAbilityWithAccount(want: Want, accountId: number, options?: StartOptions): 
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
-| 401 | Invalid input parameter. |
+| 401 | If the input parameter is not valid parameter. |
 其他ID见[元能力子系统错误码](../errorcodes/errorcode-ability.md)
 
 **示例：**
@@ -1835,7 +1833,7 @@ restoreWindowStage(localStorage: LocalStorage) : void;
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| localStorage | image.LocalStorage | 是 | 用于恢复window stage的存储数据。 |
+| localStorage | LocalStorage | 是 | 用于恢复window stage的存储数据。 |
 
 **示例：**
 
