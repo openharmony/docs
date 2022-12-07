@@ -20,7 +20,7 @@ import featureAbility from "@ohos.ability.featureAbility";
 let context = featureAbility.getContext()
 ```
 
-最终返回的对象为Context，其对应的接口说明请参见[接口文档](../reference/apis/js-apis-Context.md)。
+最终返回的对象为Context，其对应的接口说明请参见[接口文档](../reference/apis/js-apis-inner-app-context.md)。
 
 
 ## 开发步骤

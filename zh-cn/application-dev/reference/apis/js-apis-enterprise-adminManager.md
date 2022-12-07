@@ -28,7 +28,7 @@ enableAdmin(admin: Want, enterpriseInfo: EnterpriseInfo, type: AdminType, callba
 
 | 参数名            | 类型                                  | 必填   | 说明                 |
 | -------------- | ----------------------------------- | ---- | ------------------ |
-| admin          | [Want](js-apis-application-Want.md) | 是    | 设备管理员应用            |
+| admin          | [Want](js-apis-app-ability-want.md) | 是    | 设备管理员应用            |
 | enterpriseInfo | [EnterpriseInfo](#enterpriseinfo)   | 是    | 设备管理员应用的企业信息       |
 | type           | [AdminType](#admintype)             | 是    | 激活的设备管理员类型         |
 | callback       | AsyncCallback\<void>                | 是    | callback方式返回是否激活成功 |
@@ -79,7 +79,7 @@ enableAdmin(admin: Want, enterpriseInfo: EnterpriseInfo, type: AdminType, userId
 
 | 参数名            | 类型                                  | 必填   | 说明                           |
 | -------------- | ----------------------------------- | ---- | ---------------------------- |
-| admin          | [Want](js-apis-application-Want.md) | 是    | 设备管理员应用                      |
+| admin          | [Want](js-apis-app-ability-want.md) | 是    | 设备管理员应用                      |
 | enterpriseInfo | [EnterpriseInfo](#enterpriseinfo)   | 是    | 设备管理员应用的企业信息                 |
 | type           | [AdminType](#admintype)             | 是    | 激活的设备管理员类型                   |
 | userId         | number                              | 是    | 用户ID。默认值：调用方所在用户，取值范围：大于等于0。 |
@@ -131,7 +131,7 @@ enableAdmin(admin: Want, enterpriseInfo: EnterpriseInfo, type: AdminType, userId
 
 | 参数名            | 类型                                  | 必填   | 说明                           |
 | -------------- | ----------------------------------- | ---- | ---------------------------- |
-| admin          | [Want](js-apis-application-Want.md) | 是    | 设备管理员应用                      |
+| admin          | [Want](js-apis-app-ability-want.md) | 是    | 设备管理员应用                      |
 | enterpriseInfo | [EnterpriseInfo](#enterpriseinfo)   | 是    | 设备管理员应用的企业信息                 |
 | type           | [AdminType](#admintype)             | 是    | 激活的设备管理员类型                   |
 | userId         | number                              | 否    | 用户ID。默认值：调用方所在用户，取值范围：大于等于0。 |
@@ -185,7 +185,7 @@ disableAdmin(admin: Want, callback: AsyncCallback\<void>): void
 
 | 参数名      | 类型                                  | 必填   | 说明                  |
 | -------- | ----------------------------------- | ---- | ------------------- |
-| admin    | [Want](js-apis-application-Want.md) | 是    | 普通设备管理员应用           |
+| admin    | [Want](js-apis-app-ability-want.md) | 是    | 普通设备管理员应用           |
 | callback | AsyncCallback\<void>                | 是    | callback方式返回是否去激活成功 |
 
 **错误码**:
@@ -228,7 +228,7 @@ disableAdmin(admin: Want, userId: number, callback: AsyncCallback\<void>): void
 
 | 参数名      | 类型                                  | 必填   | 说明                           |
 | -------- | ----------------------------------- | ---- | ---------------------------- |
-| admin    | [Want](js-apis-application-Want.md) | 是    | 普通设备管理员应用                    |
+| admin    | [Want](js-apis-app-ability-want.md) | 是    | 普通设备管理员应用                    |
 | userId   | number                              | 是    | 用户ID。默认值：调用方所在用户，取值范围：大于等于0。 |
 | callback | AsyncCallback\<void>                | 是    | callback方式返回是否去激活成功          |
 
@@ -272,7 +272,7 @@ disableAdmin(admin: Want, userId?: number): Promise\<void>
 
 | 参数名    | 类型                                  | 必填   | 说明                           |
 | ------ | ----------------------------------- | ---- | ---------------------------- |
-| admin  | [Want](js-apis-application-Want.md) | 是    | 普通设备管理员应用                    |
+| admin  | [Want](js-apis-app-ability-want.md) | 是    | 普通设备管理员应用                    |
 | userId | number                              | 否    | 用户ID。默认值：调用方所在用户，取值范围：大于等于0。 |
 
 **返回值：**
@@ -396,7 +396,7 @@ isAdminEnabled(admin: Want, callback: AsyncCallback\<boolean>): void
 
 | 参数名      | 类型                                  | 必填   | 说明                   |
 | -------- | ----------------------------------- | ---- | -------------------- |
-| admin    | [Want](js-apis-application-Want.md) | 是    | 设备管理员应用              |
+| admin    | [Want](js-apis-app-ability-want.md) | 是    | 设备管理员应用              |
 | callback | AsyncCallback\<boolean>             | 是    | callback方式返回是否处于激活状态 |
 
 **示例**：
@@ -429,7 +429,7 @@ isAdminEnabled(admin: Want, userId: number, callback: AsyncCallback\<boolean>): 
 
 | 参数名      | 类型                                  | 必填   | 说明                           |
 | -------- | ----------------------------------- | ---- | ---------------------------- |
-| admin    | [Want](js-apis-application-Want.md) | 是    | 设备管理员应用                      |
+| admin    | [Want](js-apis-app-ability-want.md) | 是    | 设备管理员应用                      |
 | userId   | number                              | 是    | 用户ID。默认值：调用方所在用户，取值范围：大于等于0。 |
 | callback | AsyncCallback\<boolean>             | 是    | callback方式返回是否处于激活状态         |
 
@@ -463,7 +463,7 @@ isAdminEnabled(admin: Want, userId?: number): Promise\<boolean>
 
 | 参数名    | 类型                                  | 必填   | 说明                           |
 | ------ | ----------------------------------- | ---- | ---------------------------- |
-| admin  | [Want](js-apis-application-Want.md) | 是    | 设备管理员应用                      |
+| admin  | [Want](js-apis-app-ability-want.md) | 是    | 设备管理员应用                      |
 | userId | number                              | 否    | 用户ID。默认值：调用方所在用户，取值范围：大于等于0。 |
 
 **返回值：**
@@ -565,7 +565,7 @@ setEnterpriseInfo(admin: Want, enterpriseInfo: EnterpriseInfo, callback: AsyncCa
 
 | 参数名            | 类型                                  | 必填   | 说明                     |
 | -------------- | ----------------------------------- | ---- | ---------------------- |
-| admin          | [Want](js-apis-application-Want.md) | 是    | 设备管理员应用                |
+| admin          | [Want](js-apis-app-ability-want.md) | 是    | 设备管理员应用                |
 | enterpriseInfo | [EnterpriseInfo](#enterpriseinfo)   | 是    | 设备管理员应用的企业信息           |
 | callback       | AsyncCallback\<void>;               | 是    | callback方式返回是否设置企业信息成功 |
 
@@ -613,7 +613,7 @@ setEnterpriseInfo(admin: Want, enterpriseInfo: EnterpriseInfo): Promise\<void>;
 
 | 参数名            | 类型                                  | 必填   | 说明           |
 | -------------- | ----------------------------------- | ---- | ------------ |
-| admin          | [Want](js-apis-application-Want.md) | 是    | 设备管理员应用      |
+| admin          | [Want](js-apis-app-ability-want.md) | 是    | 设备管理员应用      |
 | enterpriseInfo | [EnterpriseInfo](#enterpriseinfo)   | 是    | 设备管理员应用的企业信息 |
 
 **返回值：**
@@ -660,7 +660,7 @@ getEnterpriseInfo(admin: Want, callback: AsyncCallback&lt;EnterpriseInfo&gt;): v
 
 | 参数名      | 类型                                       | 必填   | 说明                       |
 | -------- | ---------------------------------------- | ---- | ------------------------ |
-| admin    | [Want](js-apis-application-Want.md)      | 是    | 设备管理员应用                  |
+| admin    | [Want](js-apis-app-ability-want.md)      | 是    | 设备管理员应用                  |
 | callback | AsyncCallback&lt;[EnterpriseInfo](#enterpriseinfo)&gt; | 是    | callback方式返回设备管理员应用的企业信息 |
 
 **错误码**：
@@ -702,7 +702,7 @@ getEnterpriseInfo(admin: Want): Promise&lt;EnterpriseInfo&gt;
 
 | 参数名   | 类型                                  | 必填   | 说明      |
 | ----- | ----------------------------------- | ---- | ------- |
-| admin | [Want](js-apis-application-Want.md) | 是    | 设备管理员应用 |
+| admin | [Want](js-apis-app-ability-want.md) | 是    | 设备管理员应用 |
 
 **返回值：**
 
@@ -749,7 +749,7 @@ subscribeManagedEvent(admin: Want, managedEvents: Array\<ManagedEvent>, callback
 
 | 参数名   | 类型                                  | 必填   | 说明      |
 | ----- | ----------------------------------- | ---- | ------- |
-| admin | [Want](js-apis-application-Want.md) | 是    | 设备管理员应用。 |
+| admin | [Want](js-apis-app-ability-want.md) | 是    | 设备管理员应用。 |
 | managedEvents  | Array\<[ManagedEvent](#managedevent)> | 是 | 订阅事件数组。 |
 | callback | AsyncCallback\<void> | 是 | 回调函数。当系统管理事件订阅成功err为null，否则为错误对象。 |
 
@@ -793,7 +793,7 @@ subscribeManagedEvent(admin: Want, managedEvents: Array\<ManagedEvent>): Promise
 
 | 参数名   | 类型                                  | 必填   | 说明      |
 | ----- | ----------------------------------- | ---- | ------- |
-| admin | [Want](js-apis-application-Want.md) | 是    | 设备管理员应用。 |
+| admin | [Want](js-apis-app-ability-want.md) | 是    | 设备管理员应用。 |
 | managedEvents  | Array\<[ManagedEvent](#managedevent)> | 是 | 订阅事件数组。 |
 
 **返回值：**
@@ -841,7 +841,7 @@ unsubscribeManagedEvent(admin: Want, managedEvents: Array\<ManagedEvent>, callba
 
 | 参数名   | 类型                                  | 必填   | 说明      |
 | ----- | ----------------------------------- | ---- | ------- |
-| admin | [Want](js-apis-application-Want.md) | 是    | 设备管理员应用。 |
+| admin | [Want](js-apis-app-ability-want.md) | 是    | 设备管理员应用。 |
 | managedEvents  | Array\<[ManagedEvent](#managedevent)> | 是 | 取消订阅事件数组。 |
 | callback | AsyncCallback\<void> | 是 | 回调函数。当系统管理事件取消订阅成功err为null，否则为错误对象。 |
 
@@ -885,7 +885,7 @@ unsubscribeManagedEvent(admin: Want, managedEvents: Array\<ManagedEvent>): Promi
 
 | 参数名   | 类型                                  | 必填   | 说明      |
 | ----- | ----------------------------------- | ---- | ------- |
-| admin | [Want](js-apis-application-Want.md) | 是    | 设备管理员应用。 |
+| admin | [Want](js-apis-app-ability-want.md) | 是    | 设备管理员应用。 |
 | managedEvents  | Array\<[ManagedEvent](#managedevent)> | 是 | 取消订阅事件数组。 |
 
 **返回值：**

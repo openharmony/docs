@@ -183,7 +183,7 @@ bundle.getBundleInstaller().then(installer=>{
 | statusMessage | string                                                       | 是   | 否   | 表示安装或卸载的字符串结果信息。 |
 
 ## 获取应用的沙箱路径
-对于FA模型，应用的沙箱路径可以通过[Context](js-apis-Context.md)中的方法获取；对于Stage模型，应用的沙箱路径可以通过[Context](js-apis-ability-context.md#abilitycontext)中的属性获取。下面以获取沙箱文件路径为例。
+对于FA模型，应用的沙箱路径可以通过[Context](js-apis-inner-app-context.md)中的方法获取；对于Stage模型，应用的沙箱路径可以通过[Context](js-apis-ability-context.md#abilitycontext)中的属性获取。下面以获取沙箱文件路径为例。
 
 **示例：**
 ``` ts

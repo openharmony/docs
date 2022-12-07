@@ -42,7 +42,7 @@ FA卡片开发，即基于[FA模型](fa-brief.md)的卡片提供方开发，主�
 | onDestroy(formId: string): void                              | 卡片提供方接收销毁卡片的通知接口。           |
 | onAcquireFormState?(want: Want): formInfo.FormState          | 卡片提供方接收查询卡片状态的通知接口。       |
 
-FormProvider类具体的API详见[接口文档](../reference/apis/js-apis-formprovider.md)。
+FormProvider类具体的API详见[接口文档](../reference/apis/js-apis-application-formProvider.md)。
 
 **表2** FormProvider API接口功能介绍
 

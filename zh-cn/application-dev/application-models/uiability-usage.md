@@ -1,7 +1,7 @@
 # UIAbility组件基本用法
 
 
-UIAbility组件的基本用法包括：指定UIAbility的启动页面以及获取UIAbility的上下文[UIAbilityContext](../reference/apis/js-apis-ability-context.md)。
+UIAbility组件的基本用法包括：指定UIAbility的启动页面以及获取UIAbility的上下文[UIAbilityContext](../reference/apis/js-apis-inner-application-uiAbilityContext.md)。
 
 
 ## 指定UIAbility的启动页面
@@ -31,7 +31,7 @@ export default class EntryAbility extends UIAbility {
 
 ## 获取UIAbility的上下文信息
 
-UIAbility类拥有自身的上下文信息，该信息为[UIAbilityContext](../reference/apis/js-apis-ability-context.md)类的实例，[UIAbilityContext](../reference/apis/js-apis-ability-context.md)类拥有abilityInfo、currentHapModuleInfo等属性。通过UIAbilityContext可以获取UIAbility的相关配置信息，如包代码路径、Bundle名称、Ability名称和应用程序需要的环境状态等属性信息，以及可以获取操作UIAbility实例的方法（如startAbility()、connectServiceExtensionAbility()、terminateSelf()等）。
+UIAbility类拥有自身的上下文信息，该信息为[UIAbilityContext](../reference/apis/js-apis-inner-application-uiAbilityContext.md)类的实例，[UIAbilityContext](../reference/apis/js-apis-inner-application-uiAbilityContext.md)类拥有abilityInfo、currentHapModuleInfo等属性。通过UIAbilityContext可以获取UIAbility的相关配置信息，如包代码路径、Bundle名称、Ability名称和应用程序需要的环境状态等属性信息，以及可以获取操作UIAbility实例的方法（如startAbility()、connectServiceExtensionAbility()、terminateSelf()等）。
 
 - 在UIAbility中可以通过this.context获取UIAbility实例的上下文信息。
   
@@ -72,7 +72,7 @@ UIAbility类拥有自身的上下文信息，该信息为[UIAbilityContext](../r
   }
   ```
 
-  也可以在导入依赖资源context模块后，在具体使用[UIAbilityContext](../reference/apis/js-apis-ability-context.md)前进行变量定义。
+  也可以在导入依赖资源context模块后，在具体使用[UIAbilityContext](../reference/apis/js-apis-inner-application-uiAbilityContext.md)前进行变量定义。
 
   
   ```ts

@@ -13,7 +13,7 @@ DataShare即数据共享模块，提供了向其他应用共享以及管理其�
 |query?(uri: string, predicates: DataSharePredicates, columns: Array&lt;string&gt;, callback: AsyncCallback&lt;Object&gt;): void|业务函数，在访问方查询数据时回调。|
 |delete?(uri: string, predicates: DataSharePredicates, callback: AsyncCallback&lt;number&gt;): void|业务函数，在访问方删除数据时回调。|
 
-完整的数据提供方接口请见[DataShareExtensionAbility](../reference/apis/js-apis-application-DataShareExtensionAbility.md)。
+完整的数据提供方接口请见[DataShareExtensionAbility](../reference/apis/js-apis-application-dataShareExtensionAbility.md)。
 
 **表2** 数据访问方API说明
 

@@ -3,7 +3,7 @@
 
 ## Want的定义与用途
 
-[Want](../reference/apis/js-apis-application-Want.md)是对象间信息传递的载体，可以用于应用组件间的信息传递。其使用场景之一是作为startAbility()的参数，包含了指定的启动目标以及启动时需携带的相关数据，如bundleName和abilityName字段分别指明目标Ability所在应用的包名以及对应包内的Ability名称。当UIAbilityA启动UIAbilityB并需要传入一些数据给UIAbilityB时，Want可以作为一个载体将数据传给UIAbilityB。
+[Want](../reference/apis/js-apis-app-ability-want.md)是对象间信息传递的载体，可以用于应用组件间的信息传递。其使用场景之一是作为startAbility()的参数，包含了指定的启动目标以及启动时需携带的相关数据，如bundleName和abilityName字段分别指明目标Ability所在应用的包名以及对应包内的Ability名称。当UIAbilityA启动UIAbilityB并需要传入一些数据给UIAbilityB时，Want可以作为一个载体将数据传给UIAbilityB。
 
   **图1** Want用法示意  
 <img src="figures/usage-of-want.png" alt="usage-of-want" style="zoom:80%;" />
@@ -12,7 +12,7 @@
 ## Want的类型
 
 - **显式Want**：在启动Ability时指定了abilityName和bundleName的Want称为显式Want。
-    当有明确处理请求的对象时，通过提供目标Ability所在应用的包名信息（bundleName），并在Want内指定abilityName便可启动目标Ability。显式Want通常用于在当前应用开发中启动某个已知的Ability。参数说明参见[Want参数说明](#Want参数说明)。
+    当有明确处理请求的对象时，通过提供目标Ability所在应用的包名信息（bundleName），并在Want内指定abilityName便可启动目标Ability。显式Want通常用于在当前应用开发中启动某个已知的Ability。参数说明参见[Want参数说明](want-overview.md#Want参数说明)。
     
   ```ts
   let wantInfo = {
@@ -61,4 +61,4 @@
 | [action](../reference/apis/js-apis-ability-wantConstant.md) | 只读 | string | 否 | 表示要执行的通用操作（如：查看、分享、应用详情）。在隐式Want中，您可定义该字段，配合uri或parameters来表示对数据要执行的操作。如打开，查看该uri数据。例如，当uri为一段网址，action为ohos.want.action.viewData则表示匹配可查看该网址的Ability。 |
 | [entities](../reference/apis/js-apis-ability-wantConstant.md) | 只读 | Array&lt;string&gt; | 否 | 表示目标Ability额外的类别信息（如：浏览器，视频播放器），在隐式Want中是对action的补充。在隐式Want中，您可定义该字段，来过滤匹配UIAbility类别，如必须是浏览器。例如，在action字段的举例中，可存在多个应用声明了支持查看网址的操作，其中有应用为普通社交应用，有的为浏览器应用，您可通过entity.system.browsable过滤掉非浏览器的其他应用。 |
 | [flags](../reference/apis/js-apis-ability-wantConstant.md#wantconstantflags) | 只读 | number | 否 | 表示处理Want的方式。例如通过wantConstant.Flags.FLAG_ABILITY_CONTINUATION表示是否以设备间迁移方式启动Ability。 |
-| parameters | 只读 | {[key:&nbsp;string]:&nbsp;any} | 否 | 此参数用于传递自定义数据，通过用户自定义的键值对进行数据填充，具体支持的数据类型如[Want&nbsp;API](../reference/apis/js-apis-application-Want.md)所示。 |
+| parameters | 只读 | {[key:&nbsp;string]:&nbsp;any} | 否 | 此参数用于传递自定义数据，通过用户自定义的键值对进行数据填充，具体支持的数据类型如[Want&nbsp;API](../reference/apis/js-apis-app-ability-want.md)所示。 |

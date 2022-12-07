@@ -21,7 +21,7 @@ singleton启动模式为单实例模式，也是默认情况下的启动模式�
 <img src="figures/uiability-launch-type1.png" alt="uiability-launch-type1" style="zoom:50%;" />
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
-> 应用的UIAbility实例已创建，该UIAbility配置为单实例模式，再次调用startAbility()方法启动该UIAbility实例，此时只会进入该UIAbility的[onNewWant()](../reference/apis/js-apis-application-ability.md#abilityonnewwant)回调，不会进入其onCreate()和onWindowStageCreate()生命周期回调。
+> 应用的UIAbility实例已创建，该UIAbility配置为单实例模式，再次调用startAbility()方法启动该UIAbility实例，此时只会进入该UIAbility的[onNewWant()](../reference/apis/js-apis-app-ability-uiAbility.md#abilityonnewwant)回调，不会进入其onCreate()和onWindowStageCreate()生命周期回调。
 
 如果需要使用singleton启动模式，在[module.json5配置文件](../quick-start/module-configuration-file.md)中的"launchType"字段配置为"singleton"即可。
 
@@ -76,7 +76,7 @@ specified启动模式为指定实例模式，针对一些特殊场景使用（�
 <img src="figures/uiability-launch-type2.png" alt="uiability-launch-type2" style="zoom:50%;" />
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
-> 应用的UIAbility实例已创建，该UIAbility配置为指定实例模式，再次调用startAbility()方法启动该UIAbility实例，且[AbilityStage](abilitystage.md)的[onAcceptWant()](../reference/apis/js-apis-application-abilitystage.md#abilitystageonacceptwant)回调匹配到一个已创建的UIAbility实例。此时，再次启动该UIAbility时，只会进入该UIAbility的[onNewWant()](../reference/apis/js-apis-application-ability.md#abilityonnewwant)回调，不会进入其onCreate()和onWindowStageCreate()生命周期回调。
+> 应用的UIAbility实例已创建，该UIAbility配置为指定实例模式，再次调用startAbility()方法启动该UIAbility实例，且[AbilityStage](abilitystage.md)的[onAcceptWant()](../reference/apis/js-apis-app-ability-abilityStage.md#abilitystageonacceptwant)回调匹配到一个已创建的UIAbility实例。此时，再次启动该UIAbility时，只会进入该UIAbility的[onNewWant()](../reference/apis/js-apis-app-ability-uiAbility.md#abilityonnewwant)回调，不会进入其onCreate()和onWindowStageCreate()生命周期回调。
 
 例如有两个UIAbility：EntryAbility和FuncAbility，FuncAbility配置为specified启动模式，需要从EntryAbility的页面中启动FuncAbility。
 
@@ -122,7 +122,7 @@ specified启动模式为指定实例模式，针对一些特殊场景使用（�
    })
    ```
 
-3. 由于FuncAbility的启动模式配置为了指定实例启动模式，在FuncAbility启动之前，会先进入其对应的AbilityStage的[onAcceptWant()](../reference/apis/js-apis-application-abilitystage.md#abilitystageonacceptwant)生命周期回调中，解析传入的want参数，获取"instanceKey"自定义参数。根据业务需要通过AbilityStage的[onAcceptWant()](../reference/apis/js-apis-application-abilitystage.md#abilitystageonacceptwant)生命周期回调返回一个字符串Key标识。[如果返回的Key对应一个已启动的UIAbility](mission-management-launch-type.md#fig14520125175314)，则会将之前的UIAbility拉回前台并获焦，而不创建新的实例，否则创建新的实例并启动。
+3. 由于FuncAbility的启动模式配置为了指定实例启动模式，在FuncAbility启动之前，会先进入其对应的AbilityStage的[onAcceptWant()](../reference/apis/js-apis-app-ability-abilityStage.md#abilitystageonacceptwant)生命周期回调中，解析传入的want参数，获取"instanceKey"自定义参数。根据业务需要通过AbilityStage的[onAcceptWant()](../reference/apis/js-apis-app-ability-abilityStage.md#abilitystageonacceptwant)生命周期回调返回一个字符串Key标识。[如果返回的Key对应一个已启动的UIAbility](mission-management-launch-type.md#fig14520125175314)，则会将之前的UIAbility拉回前台并获焦，而不创建新的实例，否则创建新的实例并启动。
    
    ```ts
    import AbilityStage from '@ohos.app.ability.AbilityStage';
