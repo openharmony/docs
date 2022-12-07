@@ -487,7 +487,7 @@ async function createTonePlayerBefore(){
 
 ## AudioSamplingRate<sup>8+</sup>
 
-枚举，音频采样率，具体设备支持的采样率规格可能不同。
+枚举，音频采样率，具体设备支持的采样率规格会存在差异。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Core
 
