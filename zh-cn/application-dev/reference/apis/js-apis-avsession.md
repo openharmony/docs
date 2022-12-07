@@ -2506,7 +2506,7 @@ sendControlCommand(command: AVControlCommand): Promise\<void>
 
 **参数：**
 
-| 名称    | 类型                                  | 必填 | 说明                           |
+| 参数名    | 类型                                  | 必填 | 说明                           |
 | ------- | ------------------------------------- | ---- | ------------------------------ |
 | command | [AVControlCommand](#avcontrolcommand) | 是   | 会话的相关命令和命令相关参数。 |
 
@@ -3056,7 +3056,7 @@ controller.off('outputDeviceChange');
 | album           | string                  | 否   | 专辑名称。                                                               |
 | writer          | string                  | 否   | 词作者。                                                                |
 | composer        | string                  | 否   | 作曲者。                                                                |
-| duration        | string                  | 否   | 媒体时长，单位毫秒（ms）。                                                  |
+| duration        | number                  | 否   | 媒体时长，单位毫秒（ms）。                                                  |
 | mediaImage      | image.PixelMap &#124; string | 否   | 图片的像素数据或者图片路径地址(本地路径或网络路径)。                             |
 | publishDate     | Date                    | 否   | 发行日期。                                                               |
 | subtitle        | string                  | 否   | 子标题。                                                                |
