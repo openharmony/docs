@@ -2,6 +2,7 @@
 The **WindowAnimationManager** module provides APIs to listen for application start/exit events and window minimization/maximization events and associate animations with these events.
 
 >  **NOTE**
+>
 >  The APIs of this module are supported since API version 9. Updates will be marked with a superscript to indicate their earliest API version.
 >
 >  The APIs provided by this module are system APIs.
@@ -61,7 +62,7 @@ let controller = {
         console.log('onScreenUnlock called');
         finishCallback.onAnimationFinish();
     },
-    onWindowAnimationTargetsUpdate(fullScreenWindowTarget: windowAnimationManager.WindowAnimationTarget, floatingWindowTargets: Array<windowAnimationManager.WindowAnimationTarget>): void{
+    onWindowAnimationTargetsUpdate(fullScreenWindowTarget: windowAnimationManager.WindowAnimationTarget, floatingWindowTargets: Array<windowAnimationManager.WindowAnimationTarget>): void {
         console.log('onWindowAnimationTargetsUpdate, the fullScreenWindowTarget is: ' + fullScreenWindowTarget);
         console.log('onWindowAnimationTargetsUpdate, the floatingWindowTargets are: ' + floatingWindowTargets);
     }
@@ -83,7 +84,7 @@ Minimizes the window that displays the animation. This API uses an asynchronous 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | windowTarget | [WindowAnimationTarget](#windowanimationtarget) | Yes| Target window to minimize.|
-| callback | AsyncCallback&lt;[WindowAnimationFinishedCallback](#windowanimationfinishedcallback)&gt; | Yes| Callback invoked when the animation is finished.|
+| callback | AsyncCallback&lt;[WindowAnimationFinishedCallback](#windowanimationfinishedcallback)&gt; | Yes| Callback used to return the result. If the target window is minimized, **err** is **undefined** and **data** is the **WindowAnimationFinishedCallback** obtained; otherwise, **err.code** is **-1** and **data** is **undefined**.|
 
 **Example**
 
@@ -92,52 +93,59 @@ let target: WindowAnimationTarget = undefined;
 let controller = {
     onStartAppFromLauncher(startingWindowTarget: windowAnimationManager.WindowAnimationTarget, finishCallback: windowAnimationManager.WindowAnimationFinishedCallback): void {
         console.log('onStartAppFromLauncher, the startingWindowTarget is: ' + startingWindowTarget);
+        target = startingWindowTarget;
         finishCallback.onAnimationFinish();
 	  },
     onStartAppFromRecent(startingWindowTarget: windowAnimationManager.WindowAnimationTarget, finishCallback: windowAnimationManager.WindowAnimationFinishedCallback): void {
         console.log('onStartAppFromRecent, the startingWindowTarget is: ' + startingWindowTarget);
+        target = startingWindowTarget;
         finishCallback.onAnimationFinish();
     },
     onStartAppFromOther(startingWindowTarget: windowAnimationManager.WindowAnimationTarget, finishCallback: windowAnimationManager.WindowAnimationFinishedCallback): void {
         console.log('onStartAppFromOther, the startingWindowTarget is: ' + startingWindowTarget);
+        target = startingWindowTarget;
         finishCallback.onAnimationFinish();
     },
     onAppTransition(fromWindowTarget: windowAnimationManager.WindowAnimationTarget, toWindowTarget: WindowAnimationTarget, finishCallback: windowAnimationManager.WindowAnimationFinishedCallback): void {
         console.log('onAppTransition, the fromWindowTarget is: ' + fromWindowTarget);
         console.log('onAppTransition, the toWindowTarget is: ' + toWindowTarget);
+        target = toWindowTarget;
         finishCallback.onAnimationFinish();
     },
     onMinimizeWindow(minimizingWindowTarget: windowAnimationManager.WindowAnimationTarget, finishCallback: windowAnimationManager.WindowAnimationFinishedCallback): void {
         console.log('onMinimizeWindow, the minimizingWindowTarget is: ' + minimizingWindowTarget);
+        target = minimizingWindowTarget;
         finishCallback.onAnimationFinish();
     },
     onCloseWindow(closingWindowTarget: windowAnimationManager.WindowAnimationTarget, finishCallback: windowAnimationManager.WindowAnimationFinishedCallback): void {
         console.log('onCloseWindow, the closingWindowTarget is: ' + closingWindowTarget);
+        target = closingWindowTarget;
         finishCallback.onAnimationFinish();
     },
     onScreenUnlock(finishCallback: windowAnimationManager.WindowAnimationFinishedCallback): void {
         console.log('onScreenUnlock called');
         finishCallback.onAnimationFinish();
     },
-    onWindowAnimationTargetsUpdate(fullScreenWindowTarget: windowAnimationManager.WindowAnimationTarget, floatingWindowTargets: Array<windowAnimationManager.WindowAnimationTarget>): void{
+    onWindowAnimationTargetsUpdate(fullScreenWindowTarget: windowAnimationManager.WindowAnimationTarget, floatingWindowTargets: Array<windowAnimationManager.WindowAnimationTarget>): void {
         console.log('onWindowAnimationTargetsUpdate, the fullScreenWindowTarget is: ' + fullScreenWindowTarget);
         console.log('onWindowAnimationTargetsUpdate, the floatingWindowTargets are: ' + floatingWindowTargets);
+        target = fullScreenWindowTarget;
     }
 }
 
 windowAnimationManager.setController(controller)
 
-let finishedCallback = null;
+let finishedCallback: windowAnimationManager.WindowAnimationFinishedCallback = undefined;
 windowAnimationManager.minimizeWindowWithAnimation(target, (err, data) => {
-    if (err.code) {
+    if (err) {
         console.error('Failed to minimize the window target. Cause: ' + JSON.stringify(err));
         return;
     }
-
     finishedCallback = data;
-});
 
-finishedCallback.onAnimationFinish();
+    // After the callback is received, the window starts to play the animation. After the animation is finished, the **onAnimationFinish** callback is invoked.
+    finishedCallback.onAnimationFinish();
+});
 ```
 
 ## windowAnimationManager.minimizeWindowWithAnimation
@@ -195,7 +203,7 @@ let controller = {
         console.log('onScreenUnlock called');
         finishCallback.onAnimationFinish();
     },
-    onWindowAnimationTargetsUpdate(fullScreenWindowTarget: windowAnimationManager.WindowAnimationTarget, floatingWindowTargets: Array<windowAnimationManager.WindowAnimationTarget>): void{
+    onWindowAnimationTargetsUpdate(fullScreenWindowTarget: windowAnimationManager.WindowAnimationTarget, floatingWindowTargets: Array<windowAnimationManager.WindowAnimationTarget>): void {
         console.log('onWindowAnimationTargetsUpdate, the fullScreenWindowTarget is: ' + fullScreenWindowTarget);
         console.log('onWindowAnimationTargetsUpdate, the floatingWindowTargets are: ' + floatingWindowTargets);
     }
@@ -374,22 +382,22 @@ Defines a window to display animation.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
-| Name     | Type    | Description|
-| ------- | ------ | ----------------------- |
-| bundleName  | string | Bundle name corresponding to the target window.|
-| abilityName | string | Ability name corresponding to the target window.|
-| windowBounds | [RRect](#rrect) | Actual size of the target window.|
-| missionId  | number | Mission ID.|
+| Name     | Type    | Mandatory| Description|
+| ------- | ------ | ------ | ----------------------- |
+| bundleName  | string | Yes|Bundle name corresponding to the target window.|
+| abilityName | string | Yes|Ability name corresponding to the target window.|
+| windowBounds | [RRect](#rrect) | Yes|Actual size of the target window.|
+| missionId  | number | Yes|Mission ID, which is used to match an ability when there are multiple missions.|
 
 ## RRect
 Describes a rounded rectangle.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
-| Name     | Type    | Description|
-| ------- | ------ | ----------------------- |
-| left  | number | Horizontal coordinate of the upper left corner of the target window relative to the screen.|
-| top | number | Vertical coordinate of the upper left corner of the target window relative to the screen.|
-| width | number | Width of the target window.|
-| height | number | Height of the target window.|
-| radius | number | Radius of the rounded corner of the target window.|
+| Name     | Type    | Mandatory| Description|
+| ------- | ------ | ------|----------------------- |
+| left  | number | Yes|Horizontal coordinate of the upper left corner of the target window relative to the screen.|
+| top | number | Yes|Vertical coordinate of the upper left corner of the target window relative to the screen.|
+| width | number | Yes|Width of the target window.|
+| height | number | Yes|Height of the target window.|
+| radius | number | Yes|Radius of the rounded corner of the target window.|
