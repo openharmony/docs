@@ -9,9 +9,9 @@ API参考采用两种方式标记组件或接口开始支持的版本号：
 - 对于新增组件或接口，会在章节开头进行说明，如：本模块首批接口从API version 7开始支持。
 - 对于某个已有组件或接口的新增特性，会在对应特性后进行标注，如：“uid<sup>8+</sup>”表示从API Version 8开始支持属性uid。
 
-## Ability框架模型说明
+## 应用模型说明
 
-Ability是系统调度应用的最小单元，是能够完成一个独立功能的组件。一个应用可以包含一个或多个Ability。Ability框架模型具有两种形态，分为FA模型和Stage模型。具体可参考[Ability框架概述](../../ability/ability-brief.md)。
+随着系统的演进发展，OpenHarmony先后提供了两种应用模型，FA模型和Stage模型，两者的差异说明可参考[应用模型解读](../../application-models/application-model-description.md)。
 
 - 如果某个模块的接口仅支持其中一种模型，会在文档开头说明：本模块接口仅可在FA模型/Stage模型下使用。
 - 如果某个接口仅支持其中一种模型，会在具体的接口描述中说明：此接口仅可在FA模型/Stage模型下使用。
