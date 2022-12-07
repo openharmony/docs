@@ -11,7 +11,7 @@ AbilityConstant提供启动参数的接口的能力，包括设置初次开始�
 
 ## 导入模块
 
-```js
+```ts
 import AbilityConstant from '@ohos.application.AbilityConstant';
 ```
 
@@ -70,7 +70,7 @@ import AbilityConstant from '@ohos.application.AbilityConstant';
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
 
-| 名称                        | 取值 | 说明                 |
+| 名称                        | 值 | 说明                 |
 | ---                         | --- | ---                  |
 | WINDOW_MODE_UNDEFINED       | 0   | 未定义窗口模式。       |
 | WINDOW_MODE_FULLSCREEN      | 1   | 全屏模式。            |
@@ -84,7 +84,7 @@ import AbilityConstant from '@ohos.application.AbilityConstant';
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
 
-| 名称                         | 取值 | 说明                |
+| 名称                         | 值 | 说明                |
 | ---                         | --- | ---                  |
 | MEMORY_LEVEL_MODERATE       | 0   | 内存占用适中。       |
 | MEMORY_LEVEL_LOW            | 1   | 内存占用低。            |

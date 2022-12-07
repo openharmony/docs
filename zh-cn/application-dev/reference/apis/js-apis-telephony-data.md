@@ -59,7 +59,7 @@ promise.then((data) => {
 });
 ```
 
-## data.getDefaultCellularDataSlotIdSync
+## data.getDefaultCellularDataSlotIdSync<sup>9+</sup>
 
 getDefaultCellularDataSlotIdSync(): number
 

@@ -1101,14 +1101,3 @@ WantAgent.getOperationType(wantAgent).then((OperationType) => {
 | finalCode      | number                          | 是   | 触发wantAgent的请求代码。|
 | finalData      | string                          | 否   | 公共事件收集的最终数据。  |
 | extraInfo      | {[key: string]: any}            | 否   | 额外数据。               |
-
-## TriggerInfo
-
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
-
-| 名称       | 类型                 | 必填 | 说明        |
-| ---------- | -------------------- | ---- | ----------- |
-| code       | number               | 是   | result code。 |
-| want       | Want                 | 否   | Want。        |
-| permission | string               | 否   | 权限定义。    |
-| extraInfo  | {[key: string]: any} | 否   | 额外数据。    |

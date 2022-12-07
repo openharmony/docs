@@ -10,7 +10,7 @@ AbilityLifecycleCallback模块提供应用上下文ApplicationContext的生命�
 
 ## 导入模块
 
-```js
+```ts
 import AbilityLifecycleCallback from "@ohos.app.ability.AbilityLifecycleCallback";
 ```
 
@@ -156,7 +156,7 @@ onAbilityContinue(ability: UIAbility): void;
 **示例：**
     
 
-  ```js
+  ```ts
   import UIAbility from "@ohos.app.ability.UIAbility";
   
   export default class MyAbility extends UIAbility {

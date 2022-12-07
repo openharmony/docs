@@ -292,7 +292,7 @@ class MainAbility extends Ability {
 ### 开发步骤
 
 1. 申请权限。
-   创建`WindowType.TYPE_FLOAT`即悬浮窗类型的窗口，需要在`module.json5`文件的`requestPermissions`对象中配置`ohos.permission.SYSTEM_FLOAT_WINDOW`权限。更多配置信息详见[应用包结构配置文件的说明](../quick-start/stage-structure.md)。
+   创建`WindowType.TYPE_FLOAT`即悬浮窗类型的窗口，需要在`module.json5`文件的`requestPermissions`对象中配置`ohos.permission.SYSTEM_FLOAT_WINDOW`权限。更多配置信息详见[Stage模型应用程序包结构](../quick-start/application-package-structure-stage.md)。
 
    > **说明：**
    > 虽然悬浮窗具备始终在前台显示的能力，但如果创建悬浮窗的应用任务被系统回收，仍然会导致悬浮窗从界面移除。如果想要保持悬浮窗口始终在前台显示，请申请[长时任务](../task-management/background-task-overview.md)。

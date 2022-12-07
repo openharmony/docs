@@ -34,7 +34,7 @@ for(let cameraIndex = 0; cameraIndex < this.cameraArray.length; cameraIndex++) {
 	   break
    }
 }
-cameraInput = await this.cameraManager.createCameraInput(cameraId)熊文帅
+cameraInput = await this.cameraManager.createCameraInput(cameraId)
 ```
 
 ## 如何进行图片剪切

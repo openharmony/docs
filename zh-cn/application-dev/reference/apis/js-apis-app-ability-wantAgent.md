@@ -1132,16 +1132,16 @@ try {
 
 | 名称                | 值             | 说明                                                         |
 | ------------------- | -------------- | ------------------------------------------------------------ |
-| ONE_TIME_FLAG       | WantAgentFlags | WantAgent仅能使用一次。                                      |
-| NO_BUILD_FLAG       | WantAgentFlags | 如果描述WantAgent对象不存在，则不创建它，直接返回null。      |
-| CANCEL_PRESENT_FLAG | WantAgentFlags | 在生成一个新的WantAgent对象前取消已存在的一个WantAgent对象。 |
-| UPDATE_PRESENT_FLAG | WantAgentFlags | 使用新的WantAgent的额外数据替换已存在的WantAgent中的额外数据。 |
-| CONSTANT_FLAG       | WantAgentFlags | WantAgent是不可变的。                                        |
-| REPLACE_ELEMENT     | WantAgentFlags | 当前Want中的element属性可被WantAgent.trigger()中Want的element属性取代 |
-| REPLACE_ACTION      | WantAgentFlags | 当前Want中的action属性可被WantAgent.trigger()中Want的action属性取代 |
-| REPLACE_URI         | WantAgentFlags | 当前Want中的uri属性可被WantAgent.trigger()中Want的uri属性取代 |
-| REPLACE_ENTITIES    | WantAgentFlags | 当前Want中的entities属性可被WantAgent.trigger()中Want的entities属性取代 |
-| REPLACE_BUNDLE      | WantAgentFlags | 当前Want中的bundleName属性可被WantAgent.trigger()中Want的bundleName属性取代 |
+| ONE_TIME_FLAG       | 0 | WantAgent仅能使用一次。                                      |
+| NO_BUILD_FLAG       | 1 | 如果描述WantAgent对象不存在，则不创建它，直接返回null。      |
+| CANCEL_PRESENT_FLAG | 2 | 在生成一个新的WantAgent对象前取消已存在的一个WantAgent对象。 |
+| UPDATE_PRESENT_FLAG | 3 | 使用新的WantAgent的额外数据替换已存在的WantAgent中的额外数据。 |
+| CONSTANT_FLAG       | 4 | WantAgent是不可变的。                                        |
+| REPLACE_ELEMENT     | 5 | 当前Want中的element属性可被WantAgent.trigger()中Want的element属性取代 |
+| REPLACE_ACTION      | 6 | 当前Want中的action属性可被WantAgent.trigger()中Want的action属性取代 |
+| REPLACE_URI         | 7 | 当前Want中的uri属性可被WantAgent.trigger()中Want的uri属性取代 |
+| REPLACE_ENTITIES    | 8 | 当前Want中的entities属性可被WantAgent.trigger()中Want的entities属性取代 |
+| REPLACE_BUNDLE      | 9 | 当前Want中的bundleName属性可被WantAgent.trigger()中Want的bundleName属性取代 |
 
 
 
@@ -1151,11 +1151,11 @@ try {
 
 | 名称              | 值            | 说明                      |
 | ----------------- | ------------- | ------------------------- |
-| UNKNOWN_TYPE      | OperationType | 不识别的类型。            |
-| START_ABILITY     | OperationType | 开启一个有页面的Ability。 |
-| START_ABILITIES   | OperationType | 开启多个有页面的Ability。 |
-| START_SERVICE     | OperationType | 开启一个无页面的ability。 |
-| SEND_COMMON_EVENT | OperationType | 发送一个公共事件。        |
+| UNKNOWN_TYPE      | 0 | 不识别的类型。            |
+| START_ABILITY     | 1 | 开启一个有页面的Ability。 |
+| START_ABILITIES   | 2 | 开启多个有页面的Ability。 |
+| START_SERVICE     | 3 | 开启一个无页面的ability。 |
+| SEND_COMMON_EVENT | 4 | 发送一个公共事件。        |
 
 
 

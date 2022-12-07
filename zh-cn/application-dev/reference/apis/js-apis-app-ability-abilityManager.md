@@ -9,7 +9,7 @@ AbilityManager模块提供对Ability相关信息和状态信息进行获取、�
 
 ## 导入模块
 
-```js
+```ts
 import AbilityManager from '@ohos.app.ability.abilityManager'
 ```
 
@@ -48,7 +48,7 @@ updateConfiguration(config: Configuration, callback: AsyncCallback\<void>): void
 
 **示例**：
 
-```js
+```ts
 import abilitymanager from '@ohos.app.ability.abilityManager';
 
 var config = {
@@ -89,7 +89,7 @@ updateConfiguration(config: Configuration): Promise\<void>
 
 **示例**：
 
-```js
+```ts
 import abilitymanager from '@ohos.app.ability.abilityManager';
 
 var config = {
@@ -126,7 +126,7 @@ getAbilityRunningInfos(callback: AsyncCallback\<Array\<AbilityRunningInfo>>): vo
 
 **示例**：
 
-```js
+```ts
 import abilitymanager from '@ohos.app.ability.abilityManager';
 
 try {
@@ -157,7 +157,7 @@ getAbilityRunningInfos(): Promise\<Array\<AbilityRunningInfo>>
 
 **示例**：
 
-```js
+```ts
 import abilitymanager from '@ohos.app.ability.abilityManager';
  
 try {
@@ -191,7 +191,7 @@ getExtensionRunningInfos(upperLimit: number, callback: AsyncCallback\<Array\<Ext
 
 **示例**：
 
-```js
+```ts
 import abilitymanager from '@ohos.app.ability.abilityManager';
 
 var upperLimit = 0;
@@ -230,7 +230,7 @@ getExtensionRunningInfos(upperLimit: number): Promise\<Array\<ExtensionRunningIn
 
 **示例**：
 
-```js
+```ts
 import abilitymanager from '@ohos.app.ability.abilityManager';
 
 var upperLimit = 0;
@@ -263,7 +263,7 @@ getTopAbility(callback: AsyncCallback\<ElementName>): void;
 
 **示例**：
 
-```js
+```ts
 import abilitymanager from '@ohos.app.ability.abilityManager';
 
 try {
@@ -292,7 +292,7 @@ getTopAbility(): Promise\<ElementName>;
 
 **示例**：
 
-```js
+```ts
 import abilitymanager from '@ohos.app.ability.abilityManager';
 
 try {

@@ -84,7 +84,7 @@ dial\(phoneNumber: string, options?: DialOptions\): Promise<boolean\>
 | 参数名      | 类型                        | 必填 | 说明                                   |
 | ----------- | --------------------------- | ---- | -------------------------------------- |
 | phoneNumber | string                      | 是   | 电话号码。                             |
-| options     | [DialOptions](#dialoptions) | 是   | 通话参数，选择为语音通话还是视频通话。 |
+| options     | [DialOptions](#dialoptions) | 否   | 通话参数，选择为语音通话还是视频通话。 |
 
 **返回值：**
 
@@ -338,7 +338,7 @@ isEmergencyPhoneNumber\(phoneNumber: string, options?: EmergencyNumberOptions\):
 | 参数名      | 类型                                               | 必填 | 说明           |
 | ----------- | -------------------------------------------------- | ---- | -------------- |
 | phoneNumber | string                                             | 是   | 电话号码。     |
-| options     | [EmergencyNumberOptions](#emergencynumberoptions7) | 是   | 电话号码参数。 |
+| options     | [EmergencyNumberOptions](#emergencynumberoptions7) | 否   | 电话号码参数。 |
 
 **返回值：**
 
@@ -426,7 +426,7 @@ formatPhoneNumber\(phoneNumber: string, options?: NumberFormatOptions\): Promise
 | 参数名      | 类型                                         | 必填 | 说明                   |
 | ----------- | -------------------------------------------- | ---- | ---------------------- |
 | phoneNumber | string                                       | 是   | 电话号码。             |
-| options     | [NumberFormatOptions](#numberformatoptions7) | 是   | 格式化参数，如国家码。 |
+| options     | [NumberFormatOptions](#numberformatoptions7) | 否   | 格式化参数，如国家码。 |
 
 **返回值：**
 
@@ -566,32 +566,6 @@ promise.then(data => {
 });
 ```
 
-## call.answer<sup>7+</sup>
-
-answer\(callback: AsyncCallback<void\>\): void
-
-接听来电。使用callback异步回调。
-
-此接口为系统接口。
-
-**需要权限**：ohos.permission.ANSWER_CALL
-
-**系统能力**：SystemCapability.Telephony.CallManager
-
-**参数：**
-
-| 参数名   | 类型                      | 必填 | 说明       |
-| -------- | ------------------------- | ---- | ---------- |
-| callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。 |
-
-**示例：**
-
-```js
-call.answer((err, data) => {
-    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
-});
-```
-
 
 ## call.answer<sup>7+</sup>
 
@@ -656,32 +630,6 @@ promise.then(data => {
 });
 ```
 
-## call.hangup<sup>7+</sup>
-
-hangup\(callback: AsyncCallback<void\>\): void
-
-挂断电话。使用callback异步回调。
-
-此接口为系统接口。
-
-**需要权限**：ohos.permission.ANSWER_CALL
-
-**系统能力**：SystemCapability.Telephony.CallManager
-
-**参数：**
-
-| 参数名   | 类型                      | 必填 | 说明       |
-| -------- | ------------------------- | ---- | ---------- |
-| callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。 |
-
-**示例：**
-
-```js
-call.hangup((err, data) => {
-    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
-});
-```
-
 
 ## call.hangup<sup>7+</sup>
 
@@ -706,6 +654,33 @@ hangup\(callId: number, callback: AsyncCallback<void\>\): void
 
 ```js
 call.hangup(1, (err, data) => {
+    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+});
+```
+
+
+## call.answer<sup>9+</sup>
+
+answer\(callback: AsyncCallback<void\>\): void
+
+接听来电。使用callback异步回调。
+
+此接口为系统接口。
+
+**需要权限**：ohos.permission.ANSWER_CALL
+
+**系统能力**：SystemCapability.Telephony.CallManager
+
+**参数：**
+
+| 参数名   | 类型                      | 必填 | 说明       |
+| -------- | ------------------------- | ---- | ---------- |
+| callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。 |
+
+**示例：**
+
+```js
+call.answer((err, data) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
 ```
@@ -746,11 +721,12 @@ promise.then(data => {
 });
 ```
 
-## call.reject<sup>7+</sup>
 
-reject\(callback: AsyncCallback<void\>\): void
+## call.hangup<sup>9+</sup>
 
-拒绝来电。使用callback异步回调。
+hangup\(callback: AsyncCallback<void\>\): void
+
+挂断电话。使用callback异步回调。
 
 此接口为系统接口。
 
@@ -767,38 +743,7 @@ reject\(callback: AsyncCallback<void\>\): void
 **示例：**
 
 ```js
-call.reject((err, data) => {
-    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
-});
-```
-
-
-## call.reject<sup>7+</sup>
-
-reject\(options: RejectMessageOptions, callback: AsyncCallback<void\>\): void
-
-拒绝来电。使用callback异步回调。
-
-此接口为系统接口。
-
-**需要权限**：ohos.permission.ANSWER_CALL
-
-**系统能力**：SystemCapability.Telephony.CallManager
-
-**参数：**
-
-| 参数名   | 类型                                           | 必填 | 说明           |
-| -------- | ---------------------------------------------- | ---- | -------------- |
-| options  | [RejectMessageOptions](#rejectmessageoptions7) | 是   | 拒绝消息选项。 |
-| callback | AsyncCallback&lt;void&gt;                      | 是   | 回调函数。     |
-
-**示例：**
-
-```js
-let rejectMessageOptions={
-    messageContent: "拦截陌生号码"
-}
-call.reject(rejectMessageOptions, (err, data) => {
+call.hangup((err, data) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
 ```
@@ -830,6 +775,7 @@ call.reject(1, (err, data) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
 ```
+
 
 ## call.reject<sup>7+</sup>
 
@@ -901,6 +847,65 @@ promise.then(data => {
     console.error(`reject fail, promise: err->${JSON.stringify(err)}`);
 });
 ```
+
+
+## call.reject<sup>9+</sup>
+
+reject\(callback: AsyncCallback<void\>\): void
+
+拒绝来电。使用callback异步回调。
+
+此接口为系统接口。
+
+**需要权限**：ohos.permission.ANSWER_CALL
+
+**系统能力**：SystemCapability.Telephony.CallManager
+
+**参数：**
+
+| 参数名   | 类型                      | 必填 | 说明       |
+| -------- | ------------------------- | ---- | ---------- |
+| callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。 |
+
+**示例：**
+
+```js
+call.reject((err, data) => {
+    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+});
+```
+
+
+## call.reject<sup>9+</sup>
+
+reject\(options: RejectMessageOptions, callback: AsyncCallback<void\>\): void
+
+拒绝来电。使用callback异步回调。
+
+此接口为系统接口。
+
+**需要权限**：ohos.permission.ANSWER_CALL
+
+**系统能力**：SystemCapability.Telephony.CallManager
+
+**参数：**
+
+| 参数名   | 类型                                           | 必填 | 说明           |
+| -------- | ---------------------------------------------- | ---- | -------------- |
+| options  | [RejectMessageOptions](#rejectmessageoptions7) | 是   | 拒绝消息选项。 |
+| callback | AsyncCallback&lt;void&gt;                      | 是   | 回调函数。     |
+
+**示例：**
+
+```js
+let rejectMessageOptions={
+    messageContent: "拦截陌生号码"
+}
+call.reject(rejectMessageOptions, (err, data) => {
+    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+});
+```
+
 
 ## call.holdCall<sup>7+</sup>
 
@@ -2424,7 +2429,7 @@ call.setAudioDevice(1, (err, data) => {
 ```
 
 
-## call.setAudioDevice<sup>8+</sup>
+## call.setAudioDevice<sup>9+</sup>
 
 setAudioDevice\(device: AudioDevice, options: AudioDeviceOptions, callback: AsyncCallback<void\>\): void
 
@@ -2454,7 +2459,7 @@ call.setAudioDevice(1, audioDeviceOptions, (err, data) => {
 ```
 
 
-## call.setAudioDevice<sup>8+</sup>
+## call.setAudioDevice<sup>9+</sup>
 
 setAudioDevice(device: AudioDevice, options?: AudioDeviceOptions): Promise<void\>
 
@@ -2805,7 +2810,7 @@ promise.then(data => {
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CallManager。
 
-| 参数名                   | 类型                               | 必填 | 说明                                                         |
+|        名称              | 类型                               | 必填 | 说明                                                         |
 | ------------------------ | ---------------------------------- | ---- | ------------------------------------------------------------ |
 | extras                   | boolean                            | 否   | 根据extras的值判断是否为视频通话，默认为语音通话。<br/>- true：视频通话。<br/>- false：语音通话。 |
 | accountId <sup>8+</sup>  | number                             | 否   | 帐户Id。<br/>- 0：卡槽1<br/>- 1：卡槽2<br/>此接口为系统接口。                                   |
@@ -2832,7 +2837,7 @@ promise.then(data => {
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CallManager。
 
-| 参数名 | 类型   | 必填 | 说明                                           |
+|  名称  | 类型   | 必填 | 说明                                           |
 | ------ | ------ | ---- | ---------------------------------------------- |
 | slotId | number | 否   | 卡槽ID：<br/>- 卡槽1：`0`。<br/>- 卡槽2：`1`。 |
 
@@ -2842,7 +2847,7 @@ promise.then(data => {
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CallManager。
 
-| 参数名      | 类型   | 必填 | 说明                                                       |
+|    名称     | 类型   | 必填 | 说明                                                       |
 | ----------- | ------ | ---- | ---------------------------------------------------------- |
 | countryCode | string | 否   | 国家码，支持所有国家的国家码，如：CN（中国）。默认为：CN。 |
 
@@ -2905,7 +2910,7 @@ IP多媒体系统调用模式。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CallManager。
 
-| 参数名      | 类型                                                 | 必填 | 说明             |
+|     名称    | 类型                                                 | 必填 | 说明             |
 | ----------- | ---------------------------------------------------- | ---- | ---------------- |
 | transferNum | string                                               | 是   | 转移编号         |
 | type        | [CallTransferType](#calltransfertype8)               | 是   | 呼叫转移类型     |
@@ -2949,7 +2954,7 @@ IP多媒体系统调用模式。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CallManager。
 
-| 参数名          | 类型                                     | 必填 | 说明           |
+|      名称       | 类型                                     | 必填 | 说明           |
 | --------------- | ---------------------------------------- | ---- | -------------- |
 | accountNumber   | string                                   | 是   | 帐号号码       |
 | speakerphoneOn  | boolean                                  | 是   | 扬声器接通电话 |
@@ -3033,7 +3038,7 @@ IP多媒体系统调用模式。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CallManager。
 
-| 参数名   | 类型                                         | 必填 | 说明         |
+|   名称   | 类型                                         | 必填 | 说明         |
 | -------- | -------------------------------------------- | ---- | ------------ |
 | type     | [CallRestrictionType](#callrestrictiontype8) | 是   | 呼叫限制类型 |
 | password | string                                       | 是   | 密码         |
@@ -3060,7 +3065,7 @@ IP多媒体系统调用模式。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CallManager。
 
-| 参数名  | 类型                                       | 必填 | 说明           |
+|   名称  | 类型                                       | 必填 | 说明           |
 | ------- | ------------------------------------------ | ---- | -------------- |
 | eventId | [CallAbilityEventId](#callabilityeventid8) | 是   | 呼叫能力事件Id |
 
@@ -3113,7 +3118,7 @@ IP多媒体系统调用模式。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CallManager。
 
-| 参数名         | 类型   | 必填 | 说明     |
+|     名称       | 类型   | 必填 | 说明     |
 | -------------- | ------ | ---- | -------- |
 | messageContent | string | 是   | 消息内容 |
 
@@ -3125,10 +3130,10 @@ IP多媒体系统调用模式。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CallManager。
 
-| 参数名 | 类型                               | 必填 | 说明     |
+|  名称  |                 类型               | 必填 | 说明     |
 | ------ | ---------------------------------- | ---- | -------- |
-| status | [TransferStatus](#transferstatus8) | 是   | 转移状态 |
-| number | string                             | 是   | 号码     |
+| status | [TransferStatus](#transferstatus8) |  是  | 转移状态 |
+| number | string                             |  是  | 号码     |
 
 ## CallWaitingStatus<sup>7+</sup>
 

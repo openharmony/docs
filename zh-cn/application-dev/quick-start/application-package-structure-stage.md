@@ -1,13 +1,13 @@
 # Stage模型应用程序包结构
 
 
-基于[Stage模型](application-configuration-file-overview-stage.md)开发的应用，经编译打包后，其应用程序包结构如图[应用程序包结构（Stage模型）](figures/Stage-.png)所示。开发者需要熟悉应用程序包结构相关的基本概念。
+基于[Stage模型](application-configuration-file-overview-stage.md)开发的应用，经编译打包后，其应用程序包结构如下图**应用程序包结构（Stage模型）**所示。开发者需要熟悉应用程序包结构相关的基本概念。
 
 
 - 在开发态，一个应用包含一个或者多个Module，可以在[DevEco Studio](https://developer.harmonyos.com/cn/develop/deveco-studio/)工程中[创建一个或者多个Module](https://developer.harmonyos.com/cn/docs/documentation/doc-guides-V3/ohos-adding-deleting-module-0000001218760594-V3)。Module是OpenHarmony应用/服务的基本功能单元，包含了源代码、资源文件、第三方库及应用/服务配置文件，每一个Module都可以独立进行编译和运行。Module分为“Ability”和“Library”两种类型，“Ability”类型的Module对应于编译后的HAP（Harmony Ability Package）；“Library”类型的Module对应于[HAR](har-structure.md)（Harmony Ability Resources）包，即编译后的.tgz文件。
   一个Module可以包含一个或多个[UIAbility](../application-models/uiability-overview.md)组件，如[Module与UIAbility组件关系示意图](figures/ability-and-module.png)所示。
 
-    **图1** Module与UIAbility组件关系示意图  
+    **图1** Module与UIAbility组件关系示意图  
   ![ability-and-module](figures/ability-and-module.png)
 
   全文中介绍到的Module默认指的是“Ability”类型的Module。
@@ -21,10 +21,10 @@
 - 打包后的HAP包结构包括ets、libs、resources等文件夹和resources.index、module.json、pack.info等文件。
   - ets目录用于存放应用代码编译后的字节码文件。
   - libs目录用于存放库文件。库文件是OpenHarmony应用依赖的第三方代码（例如.so、.jar、.bin、.har等二进制文件）。
-  - resources目录用于存放应用的资源文件（字符串、图片等），便于开发者使用和维护，详见[资源文件的使用](../key-features/multi-device-app-dev/resource-usage.md/)。
+  - resources目录用于存放应用的资源文件（字符串、图片等），便于开发者使用和维护，详见[资源文件的使用](../key-features/multi-device-app-dev/resource-usage.md)。
   - resources.index是资源索引表，由IDE编译工程时生成。
   - module.json是HAP的配置文件，内容由工程配置中的module.json5和app.json5组成，该文件是HAP中必不可少的文件。IDE会自动生成一部分默认配置，开发者按需修改其中的配置。详细字段请参见[应用配置文件](application-configuration-file-overview-stage.md)。
   - pack.info是Bundle中用于描述每个HAP属性的文件，例如app中的bundleName和versionCode信息、module中的name、type和abilities等信息，由IDE工具生成Bundle包时自动生成。
 
-   **图2** 应用程序包结构（Stage模型）  
-     ![Stage-](figures/Stage-.png)
+   **图2** 应用程序包结构（Stage模型）  
+     ![app-pack-stage](figures/app-pack-stage.png)

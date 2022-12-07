@@ -661,7 +661,7 @@ let rationalNumber = new util.RationalNumber();
 rationalNumber.parseRationalNumber(1,2)
   ```
 
-### constructor<sup>8+(deprecated)</sup>
+### constructor<sup>(deprecated)</sup>
 
 > **NOTE**
 >
@@ -846,7 +846,7 @@ let rationalNumber = new util.RationalNumber(1,2);
 let result = util.RationalNumber.getCommonFactor(4,6);
   ```
 
-### getCommonDivisor<sup>8+(deprecated)</sup>
+### getCommonDivisor<sup>(deprecated)</sup>
 > **NOTE**
 >
 > This API is deprecated since API version 9. You are advised to use [getCommonFactor9+](#getcommonfactor9) instead.
@@ -1541,7 +1541,7 @@ pro.put(2,10);
 let result = pro[Symbol.iterator]();
   ```
 
-## LruBuffer<sup>8+(deprecated)</sup>
+## LruBuffer<sup>(deprecated)</sup>
 
 > **NOTE**
 >
@@ -1563,7 +1563,7 @@ let result = pro[Symbol.iterator]();
   let result = pro.length;
   ```
 
-### constructor<sup>8+(deprecated)</sup>
+### constructor<sup>(deprecated)</sup>
 
 > **NOTE**
 >
@@ -1586,7 +1586,7 @@ A constructor used to create a **LruBuffer** instance. The default capacity of t
   let lrubuffer= new util.LruBuffer();
   ```
 
-### updateCapacity<sup>8+(deprecated)</sup>
+### updateCapacity<sup>(deprecated)</sup>
 
 > **NOTE**
 >
@@ -1610,7 +1610,7 @@ Changes the **LruBuffer** capacity. If the new capacity is less than or equal to
   let result = pro.updateCapacity(100);
   ```
 
-### toString<sup>8+(deprecated)</sup>
+### toString<sup>(deprecated)</sup>
 
 > **NOTE**
 >
@@ -1637,7 +1637,7 @@ Obtains the string representation of this **LruBuffer** object.
   let result = pro.toString();
   ```
 
-### getCapacity<sup>8+(deprecated)</sup>
+### getCapacity<sup>(deprecated)</sup>
 
 > **NOTE**
 >
@@ -1661,7 +1661,7 @@ Obtains the capacity of this buffer.
   let result = pro.getCapacity();
   ```
 
-### clear<sup>8+(deprecated)</sup>
+### clear<sup>(deprecated)</sup>
 
 > **NOTE**
 >
@@ -1681,7 +1681,7 @@ Clears key-value pairs from this buffer. The **afterRemoval()** method will be c
   pro.clear();
   ```
 
-### getCreateCount<sup>8+(deprecated)</sup>
+### getCreateCount<sup>(deprecated)</sup>
 
 > **NOTE**
 >
@@ -1706,7 +1706,7 @@ Obtains the number of return values for **createDefault()**.
   let result = pro.getCreateCount();
   ```
 
-### getMissCount<sup>8+(deprecated)</sup>
+### getMissCount<sup>(deprecated)</sup>
 
 > **NOTE**
 >
@@ -1732,7 +1732,7 @@ Obtains the number of times that the queried values are mismatched.
   let result = pro.getMissCount();
   ```
 
-### getRemovalCount<sup>8+(deprecated)</sup>
+### getRemovalCount<sup>(deprecated)</sup>
 
 > **NOTE**
 >
@@ -1759,7 +1759,7 @@ Obtains the number of removals from this buffer.
   let result = pro.getRemovalCount();
   ```
 
-### getMatchCount<sup>8+(deprecated)</sup>
+### getMatchCount<sup>(deprecated)</sup>
 
 > **NOTE**
 >
@@ -1785,7 +1785,7 @@ Obtains the number of times that the queried values are matched.
   let result = pro.getMatchCount();
   ```
 
-### getPutCount<sup>8+(deprecated)</sup>
+### getPutCount<sup>(deprecated)</sup>
 
 > **NOTE**
 >
@@ -1810,7 +1810,7 @@ Obtains the number of additions to this buffer.
   let result = pro.getPutCount();
   ```
 
-### isEmpty<sup>8+(deprecated)</sup>
+### isEmpty<sup>(deprecated)</sup>
 
 > **NOTE**
 >
@@ -1835,7 +1835,7 @@ Checks whether this buffer is empty.
   let result = pro.isEmpty();
   ```
 
-### get<sup>8+(deprecated)</sup>
+### get<sup>(deprecated)</sup>
 
 > **NOTE**
 >
@@ -1866,7 +1866,7 @@ Obtains the value of the specified key.
   let result  = pro.get(2);
   ```
 
-### put<sup>8+(deprecated)</sup>
+### put<sup>(deprecated)</sup>
 
 > **NOTE**
 >
@@ -1897,7 +1897,7 @@ Adds a key-value pair to this buffer.
   let result = pro.put(2,10);
   ```
 
-### values<sup>8+(deprecated)</sup>
+### values<sup>(deprecated)</sup>
 
 > **NOTE**
 >
@@ -1924,7 +1924,7 @@ Obtains all values in this buffer, listed from the most to the least recently ac
   let result = pro.values();
   ```
 
-### keys<sup>8+(deprecated)</sup>
+### keys<sup>(deprecated)</sup>
 
 > **NOTE**
 >
@@ -1949,7 +1949,7 @@ Obtains all keys in this buffer, listed from the most to the least recently acce
   let result = pro.keys();
   ```
 
-### remove<sup>8+(deprecated)</sup>
+### remove<sup>(deprecated)</sup>
 
 > **NOTE**
 >
@@ -1980,7 +1980,7 @@ Removes the specified key and its value from this buffer.
   let result = pro.remove(20);
   ```
 
-### afterRemoval<sup>8+(deprecated)</sup>
+### afterRemoval<sup>(deprecated)</sup>
 
 > **NOTE**
 >
@@ -2022,7 +2022,7 @@ Performs subsequent operations after a value is removed.
   lru.afterRemoval(false,10,30,null);
   ```
 
-### contains<sup>8+(deprecated)</sup>
+### contains<sup>(deprecated)</sup>
 
 > **NOTE**
 >
@@ -2053,7 +2053,7 @@ Checks whether this buffer contains the specified key.
   let result = pro.contains(20);
   ```
 
-### createDefault<sup>8+(deprecated)</sup>
+### createDefault<sup>(deprecated)</sup>
 
 > **NOTE**
 >
@@ -2083,7 +2083,7 @@ Creates a value if the value of the specified key is not available.
   let result = pro.createDefault(50);
   ```
 
-### entries<sup>8+(deprecated)</sup>
+### entries<sup>(deprecated)</sup>
 
 > **NOTE**
 >
@@ -2108,11 +2108,11 @@ Obtains a new iterator object that contains all key-value pairs in this object.
   let result = pro.entries();
   ```
 
-### [Symbol.iterator]<sup>8+(deprecated)</sup>
+### [Symbol.iterator]<sup>(deprecated)</sup>
 
 > **NOTE**
 >
-> This API is deprecated since API version 9. You are advised to use [Symbol.iterator9+](#symboliterator9) instead.
+> This API is deprecated since API version 9. You are advised to use [Symbol.iterator<sup>9+</sup>](#symboliterator9) instead.
 
 [Symbol.iterator]\(): IterableIterator&lt;[K, V]&gt;
 
@@ -2524,13 +2524,13 @@ let range = new util.ScopeHelper(tempLower, tempUpper);
 let result = range.clamp(tempMiDF);
   ```
 
-## Scope<sup>8+(deprecated)</sup>
+## Scope<sup>(deprecated)</sup>
 
 > **NOTE**
 >
 > This class is deprecated since API version 9. You are advised to use [ScopeHelper9+](#scopehelper9) instead.
 
-### constructor<sup>8+(deprecated)</sup>
+### constructor<sup>(deprecated)</sup>
 
 > **NOTE**
 >
@@ -2556,7 +2556,7 @@ A constructor used to create a **Scope** object with the specified upper and low
   let range = new util.Scope(tempLower, tempUpper);
   ```
 
-### toString<sup>8+(deprecated)</sup>
+### toString<sup>(deprecated)</sup>
 
 > **NOTE**
 >
@@ -2582,7 +2582,7 @@ Obtains a string representation that contains this **Scope**.
   let result = range.toString();
   ```
 
-### intersect<sup>8+(deprecated)</sup>
+### intersect<sup>(deprecated)</sup>
 
 > **NOTE**
 >
@@ -2598,13 +2598,13 @@ Obtains the intersection of this **Scope** and the given **Scope**.
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| range | [Scope](#scope8) | Yes| **Scope** specified.|
+| range | [Scope](#scopedeprecated) | Yes| **Scope** specified.|
 
 **Return value**
 
 | Type| Description|
 | -------- | -------- |
-| [Scope](#scope8) | Intersection of this **Scope** and the given **Scope**.|
+| [Scope](#scopedeprecated) | Intersection of this **Scope** and the given **Scope**.|
 
 **Example**
 
@@ -2618,7 +2618,7 @@ Obtains the intersection of this **Scope** and the given **Scope**.
   range.intersect(rangeFir );
   ```
 
-### intersect<sup>8+(deprecated)</sup>
+### intersect<sup>(deprecated)</sup>
 
 > **NOTE**
 >
@@ -2641,7 +2641,7 @@ Obtains the intersection of this **Scope** and the given lower and upper limits.
 
 | Type| Description|
 | -------- | -------- |
-| [Scope](#scope8) | Intersection of this **Scope** and the given lower and upper limits.|
+| [Scope](#scopedeprecated) | Intersection of this **Scope** and the given lower and upper limits.|
 
 **Example**
   ```js
@@ -2653,7 +2653,7 @@ Obtains the intersection of this **Scope** and the given lower and upper limits.
   let result = range.intersect(tempMiDF, tempMidS);
   ```
 
-### getUpper<sup>8+(deprecated)</sup>
+### getUpper<sup>(deprecated)</sup>
 
 > **NOTE**
 >
@@ -2679,7 +2679,7 @@ Obtains the upper limit of this **Scope**.
   let result = range.getUpper();
   ```
 
-### getLower<sup>8+(deprecated)</sup>
+### getLower<sup>(deprecated)</sup>
 
 > **NOTE**
 >
@@ -2705,7 +2705,7 @@ Obtains the lower limit of this **Scope**.
   let result = range.getLower();
   ```
 
-### expand<sup>8+(deprecated)</sup>
+### expand<sup>(deprecated)</sup>
 
 > **NOTE**
 >
@@ -2728,7 +2728,7 @@ Obtains the union set of this **Scope** and the given lower and upper limits.
 
 | Type| Description|
 | -------- | -------- |
-| [Scope](#scope8) | Union set of this **Scope** and the given lower and upper limits.|
+| [Scope](#scopedeprecated) | Union set of this **Scope** and the given lower and upper limits.|
 
 **Example**
 
@@ -2741,7 +2741,7 @@ Obtains the union set of this **Scope** and the given lower and upper limits.
   let result = range.expand(tempMiDF, tempMidS);
   ```
 
-### expand<sup>8+(deprecated)</sup>
+### expand<sup>(deprecated)</sup>
 
 > **NOTE**
 >
@@ -2757,13 +2757,13 @@ Obtains the union set of this **Scope** and the given **Scope**.
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| range | [Scope](#scope8) | Yes| **Scope** specified.|
+| range | [Scope](#scopedeprecated) | Yes| **Scope** specified.|
 
 **Return value**
 
 | Type| Description|
 | -------- | -------- |
-| [Scope](#scope8) | Union set of this **Scope** and the given **Scope**.|
+| [Scope](#scopedeprecated) | Union set of this **Scope** and the given **Scope**.|
 
 **Example**
   ```js
@@ -2776,7 +2776,7 @@ Obtains the union set of this **Scope** and the given **Scope**.
   let result = range.expand(rangeFir);
   ```
 
-### expand<sup>8+(deprecated)</sup>
+### expand<sup>(deprecated)</sup>
 
 > **NOTE**
 >
@@ -2798,7 +2798,7 @@ Obtains the union set of this **Scope** and the given value.
 
 | Type| Description|
 | -------- | -------- |
-| [Scope](#scope8) | Union set of this **Scope** and the given value.|
+| [Scope](#scopedeprecated) | Union set of this **Scope** and the given value.|
 
 **Example**
   ```js
@@ -2809,7 +2809,7 @@ Obtains the union set of this **Scope** and the given value.
   let result = range.expand(tempMiDF);
   ```
 
-### contains<sup>8+(deprecated)</sup>
+### contains<sup>(deprecated)</sup>
 
 > **NOTE**
 >
@@ -2842,7 +2842,7 @@ Checks whether a value is within this **Scope**.
   range.contains(tempMiDF);
   ```
 
-### contains<sup>8+(deprecated)</sup>
+### contains<sup>(deprecated)</sup>
 
 > **NOTE**
 >
@@ -2858,7 +2858,7 @@ Checks whether a range is within this **Scope**.
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| range | [Scope](#scope8) | Yes| **Scope** specified.|
+| range | [Scope](#scopedeprecated) | Yes| **Scope** specified.|
 
 **Return value**
 
@@ -2878,7 +2878,7 @@ Checks whether a range is within this **Scope**.
   let result = range.contains(rangeSec);
   ```
 
-### clamp<sup>8+(deprecated)</sup>
+### clamp<sup>(deprecated)</sup>
 
 > **NOTE**
 >
@@ -3113,13 +3113,13 @@ that.decode(array).then(val=>{
   ```
 
 
-## Base64<sup>8+(deprecated)</sup>
+## Base64<sup>(deprecated)</sup>
 
 > **NOTE**
 >
 > This class is deprecated since API version 9. You are advised to use [Base64Helper9+](#base64helper9) instead.
 
-### constructor<sup>8+(deprecated)</sup>
+### constructor<sup>(deprecated)</sup>
 
 > **NOTE**
 >
@@ -3136,7 +3136,7 @@ A constructor used to create a **Base64** object.
   let base64 = new  util.Base64();
   ```
 
-### encodeSync<sup>8+(deprecated)</sup>
+### encodeSync<sup>(deprecated)</sup>
 
 > **NOTE**
 >
@@ -3168,7 +3168,7 @@ Encodes the input content.
   let result = that.encodeSync(array);
   ```
 
-### encodeToStringSync<sup>8+(deprecated)</sup>
+### encodeToStringSync<sup>(deprecated)</sup>
 
 > **NOTE**
 >
@@ -3199,7 +3199,7 @@ Encodes the input content.
   let result = that.encodeToStringSync(array);
   ```
 
-### decodeSync<sup>8+(deprecated)</sup>
+### decodeSync<sup>(deprecated)</sup>
 
 > **NOTE**
 >
@@ -3230,7 +3230,7 @@ Decodes the input content.
   let result = that.decodeSync(buff);
   ```
 
-### encode<sup>8+(deprecated)</sup>
+### encode<sup>(deprecated)</sup>
 
 > **NOTE**
 >
@@ -3266,7 +3266,7 @@ Encodes the input content asynchronously.
   })
   ```
 
-### encodeToString<sup>8+(deprecated)</sup>
+### encodeToString<sup>(deprecated)</sup>
 
 > **NOTE**
 >
@@ -3299,7 +3299,7 @@ Encodes the input content asynchronously.
   })
   ```
 
-### decode<sup>8+(deprecated)</sup>
+### decode<sup>(deprecated)</sup>
 
 > **NOTE**
 >

@@ -1518,7 +1518,7 @@ queryKey(id: number, holder?: Holder): Promise&lt;string&gt;
 
 ### 属性
 
-| 名称              | 参数类型                                | 可读 | 可写 | 说明                                   |
+|       名称        |                   类型                  | 可读 | 可写 | 说明                                   |
 | ----------------- | --------------------------------------- | ---- | ---- | -------------------------------------- |
 | id                | number                                  | 是   | 否   | 联系人的id。                           |
 | key               | string                                  | 是   | 否   | 联系人的key。                          |
@@ -1580,7 +1580,7 @@ myContact.phoneNumbers = [phoneNumber];
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Applications.ContactsData。
 
-| 名称       | 参数类型                  | 可读 | 可写 | 说明             |
+| 名称       |            类型           | 可读 | 可写 | 说明             |
 | ---------- | ------------------------- | ---- | ---- | ---------------- |
 | attributes | [Attribute](#attribute)[] | 是   | 是   | 联系人属性列表。 |
 
@@ -1661,7 +1661,7 @@ let attributes = [contact.Attribute.ATTR_EMAIL, contact.Attribute.ATTR_NAME, con
 
 ### 属性
 
-| 名称        | 参数类型 | 可读 | 可写 | 说明             |
+| 名称        |   类型   | 可读 | 可写 | 说明             |
 | ----------- | -------- | ---- | ---- | ---------------- |
 | email       | string   | 是   | 是   | 邮箱地址。       |
 | labelName   | string   | 是   | 是   | 邮箱的类型名称。 |
@@ -1695,7 +1695,7 @@ email.email = "xxx@email.com";
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Applications.ContactsData。
 
-| 名称        | 参数类型 | 可读 | 可写 | 说明       |
+| 名称        |   类型   | 可读 | 可写 | 说明       |
 | ----------- | -------- | ---- | ---- | ---------- |
 | bundleName  | string   | 是   | 否   | 包名。     |
 | displayName | string   | 是   | 否   | 应用名称。 |
@@ -1739,7 +1739,7 @@ holder.holderId = 0;
 
 ### 属性
 
-| 名称      | 参数类型 | 可读 | 可写 | 说明           |
+|    名称   |   类型   | 可读 | 可写 | 说明           |
 | --------- | -------- | ---- | ---- | -------------- |
 | eventDate | string   | 是   | 是   | 事件的日期。   |
 | labelName | string   | 是   | 是   | 事件类型名称。 |
@@ -1770,7 +1770,7 @@ event.eventDate = "xxxxxx";
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Applications.ContactsData。
 
-| 名称    | 参数类型 | 可读 | 可写 | 说明               |
+| 名称    |   类型   | 可读 | 可写 | 说明               |
 | ------- | -------- | ---- | ---- | ------------------ |
 | groupId | number   | 是   | 是   | 联系人群组的id。   |
 | title   | string   | 是   | 是   | 联系人群组的名称。 |
@@ -1818,7 +1818,7 @@ group.title = "title";
 
 ### 属性
 
-| 名称      | 参数类型 | 可读 | 可写 | 说明               |
+| 名称      |   类型   | 可读 | 可写 | 说明               |
 | --------- | -------- | ---- | ---- | ------------------ |
 | imAddress | string   | 是   | 是   | 即时消息地址。     |
 | labelName | string   | 是   | 是   | 即时消息类型名称。 |
@@ -1851,7 +1851,7 @@ imAddress.imAddress = "imAddress";
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Applications.ContactsData。
 
-| 名称               | 参数类型 | 可读 | 可写 | 说明                        |
+| 名称               |   类型   | 可读 | 可写 | 说明                        |
 | ------------------ | -------- | ---- | ---- | --------------------------- |
 | familyName         | string   | 是   | 是   | 联系人的家庭姓名。          |
 | familyNamePhonetic | string   | 是   | 是   | 联系人的家庭姓名拼音。      |
@@ -1890,7 +1890,7 @@ name.fullName = "fullName";
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Applications.ContactsData。
 
-| 名称     | 参数类型 | 可读 | 可写 | 说明           |
+| 名称     |   类型   | 可读 | 可写 | 说明           |
 | -------- | -------- | ---- | ---- | -------------- |
 | nickName | string   | 是   | 是   | 联系人的昵称。 |
 
@@ -1919,7 +1919,7 @@ nickName.nickName = "nickName";
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Applications.ContactsData。
 
-| 名称        | 参数类型 | 可读 | 可写 | 说明               |
+| 名称        |   类型   | 可读 | 可写 | 说明               |
 | ----------- | -------- | ---- | ---- | ------------------ |
 | noteContent | string   | 是   | 是   | 联系人的备注内容。 |
 
@@ -1948,7 +1948,7 @@ note.noteContent = "noteContent";
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Applications.ContactsData。
 
-| 名称  | 参数类型 | 可读 | 可写 | 说明       |
+| 名称  |   类型   | 可读 | 可写 | 说明       |
 | ----- | -------- | ---- | ---- | ---------- |
 | name  | string   | 是   | 是   | 组织名称。 |
 | title | string   | 是   | 是   | 组织标题。 |
@@ -2010,7 +2010,7 @@ organization.title = "title";
 
 ### 属性
 
-| 名称        | 参数类型 | 可读 | 可写 | 说明               |
+| 名称        |   类型   | 可读 | 可写 | 说明               |
 | ----------- | -------- | ---- | ---- | ------------------ |
 | labelName   | string   | 是   | 是   | 电话号码类型名称。 |
 | phoneNumber | string   | 是   | 是   | 电话号码。         |
@@ -2042,7 +2042,7 @@ phoneNumber.phoneNumber = "138xxxxxxxx";
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Applications.ContactsData。
 
-| 名称 | 参数类型 | 可读 | 可写 | 说明           |
+| 名称 |   类型   | 可读 | 可写 | 说明           |
 | ---- | -------- | ---- | ---- | -------------- |
 | uri  | string   | 是   | 是   | 联系人的头像。 |
 
@@ -2084,7 +2084,7 @@ portrait.uri = "uri";
 
 ### 属性
 
-| 名称          | 参数类型 | 可读 | 可写 | 说明                       |
+| 名称          |   类型   | 可读 | 可写 | 说明                       |
 | ------------- | -------- | ---- | ---- | -------------------------- |
 | city          | string   | 是   | 是   | 联系人所在的城市。         |
 | country       | string   | 是   | 是   | 联系人所在的国家。         |
@@ -2146,7 +2146,7 @@ postalAddress.city = "city";
 
 ### 属性
 
-| 名称         | 参数类型 | 可读 | 可写 | 说明           |
+| 名称         |   类型   | 可读 | 可写 | 说明           |
 | ------------ | -------- | ---- | ---- | -------------- |
 | labelName    | string   | 是   | 是   | 关系类型名称。 |
 | relationName | string   | 是   | 是   | 关系名称。     |
@@ -2192,7 +2192,7 @@ relation.labelId = contact.Relation.RELATION_ASSISTANT;
 
 ### 属性
 
-| 名称       | 参数类型 | 可读 | 可写 | 说明                              |
+| 名称       |   类型   | 可读 | 可写 | 说明                              |
 | ---------- | -------- | ---- | ---- | --------------------------------- |
 | labelName  | string   | 是   | 是   | 会话发起协议（SIP）地址类型名称。 |
 | sipAddress | string   | 是   | 是   | 会话发起协议（SIP）地址。         |
@@ -2222,7 +2222,7 @@ sipAddress.sipAddress = "sipAddress";
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Applications.ContactsData。
 
-| 名称    | 参数类型 | 可读 | 可写 | 说明               |
+| 名称    |   类型   | 可读 | 可写 | 说明               |
 | ------- | -------- | ---- | ---- | ------------------ |
 | website | string   | 是   | 是   | 联系人的网站信息。 |
 

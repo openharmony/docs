@@ -612,7 +612,7 @@ udp.off('error');
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Communication.NetStack。
 
-| 参数名  | 类型   | 必填 | 说明                                                         |
+| 名称  | 类型   | 必填 | 说明                                                         |
 | ------- | ------ | ---- | ------------------------------------------------------------ |
 | address | string | 是   | 本地绑定的ip地址。                                           |
 | port    | number | 否   | 端口号 ，范围0~65535。如果不指定系统随机分配端口。           |
@@ -624,7 +624,7 @@ UDPSocket发送参数。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Communication.NetStack。
 
-| 参数名  | 类型                               | 必填 | 说明           |
+| 名称  | 类型                               | 必填 | 说明           |
 | ------- | ---------------------------------- | ---- | -------------- |
 | data    | string \| ArrayBuffer<sup>7+</sup>                          | 是   | 发送的数据。   |
 | address | [NetAddress](#netaddress) | 是   | 目标地址信息。 |
@@ -635,7 +635,7 @@ UDPSocket连接的其他属性。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Communication.NetStack。
 
-| 参数名            | 类型    | 必填 | 说明                             |
+| 名称            | 类型    | 必填 | 说明                             |
 | ----------------- | ------- | ---- | -------------------------------- |
 | broadcast         | boolean | 否   | 是否可以发送广播。默认为false。  |
 | receiveBufferSize | number  | 否   | 接收缓冲区大小（单位：Byte）。   |
@@ -649,7 +649,7 @@ Socket的状态信息。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Communication.NetStack。
 
-| 参数名      | 类型    | 必填 | 说明       |
+| 名称      | 类型    | 必填 | 说明       |
 | ----------- | ------- | ---- | ---------- |
 | isBound     | boolean | 是   | 是否绑定。 |
 | isClose     | boolean | 是   | 是否关闭。 |
@@ -661,7 +661,7 @@ Socket的连接信息。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Communication.NetStack。
 
-| 参数名  | 类型   | 必填 | 说明                                                         |
+| 名称  | 类型   | 必填 | 说明                                                         |
 | ------- | ------ | ---- | ------------------------------------------------------------ |
 | address | string | 是   | 本地绑定的ip地址。                                           |
 | family  | string | 是   | 网络协议类型，可选类型：<br />- IPv4<br />- IPv6<br />默认为IPv4。 |
@@ -1421,7 +1421,7 @@ TCPSocket连接的参数。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Communication.NetStack。
 
-| 参数名  | 类型                               | 必填 | 说明                       |
+| 名称  | 类型                               | 必填 | 说明                       |
 | ------- | ---------------------------------- | ---- | -------------------------- |
 | address | [NetAddress](#netaddress) | 是   | 绑定的地址以及端口。       |
 | timeout | number                             | 否   | 超时时间，单位毫秒（ms）。 |
@@ -1432,7 +1432,7 @@ TCPSocket发送请求的参数。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Communication.NetStack。
 
-| 参数名   | 类型   | 必填 | 说明                                                         |
+| 名称   | 类型   | 必填 | 说明                                                         |
 | -------- | ------ | ---- | ------------------------------------------------------------ |
 | data     | string\| ArrayBuffer<sup>7+</sup>  | 是   | 发送的数据。                                                 |
 | encoding | string | 否   | 字符编码(UTF-8，UTF-16BE，UTF-16LE，UTF-16，US-AECII，ISO-8859-1)，默认为UTF-8。 |
@@ -1443,7 +1443,7 @@ TCPSocket连接的其他属性。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Communication.NetStack。
 
-| 参数名            | 类型    | 必填 | 说明                                                         |
+| 名称            | 类型    | 必填 | 说明                                                         |
 | ----------------- | ------- | ---- | ------------------------------------------------------------ |
 | keepAlive         | boolean | 否   | 是否保持连接。默认为false。                                  |
 | OOBInline         | boolean | 否   | 是否为OOB内联。默认为false。                                 |
@@ -1459,8 +1459,6 @@ TCPSocket连接的其他属性。
 constructTLSSocketInstance(): TLSSocket
 
 创建并返回一个TLSSocket对象。
-
-**需要权限**：ohos.permission.INTERNET
 
 **系统能力**：SystemCapability.Communication.NetStack
 
@@ -1500,6 +1498,7 @@ bind\(address: NetAddress, callback: AsyncCallback<void\>\): void
 **错误码：**
 
 | 错误码ID | 错误信息                 |
+| ------- | ----------------------- |
 | 401     | Parameter error.        |
 | 201     | Permission denied.      |
 | 2303198 | Address already in use. |
@@ -1532,7 +1531,7 @@ bind\(address: NetAddress\): Promise<void\>
 
 | 参数名  | 类型                               | 必填 | 说明                                                   |
 | ------- | ---------------------------------- | ---- | ------------------------------------------------------ |
-| address | [NetAddress](#netaddress) | 是   | 目标地址信息，参考[NetAddress](#netaddress)。 |
+| address | [NetAddress](#netaddress)          | 是   | 目标地址信息，参考[NetAddress](#netaddress)。 |
 
 **返回值：**
 
@@ -1543,6 +1542,7 @@ bind\(address: NetAddress\): Promise<void\>
 **错误码：**
 
 | 错误码ID | 错误信息                 |
+| ------- | ----------------------- |
 | 401     | Parameter error.        |
 | 201     | Permission denied.      |
 | 2303198 | Address already in use. |
@@ -1577,6 +1577,7 @@ getState\(callback: AsyncCallback<SocketStateBase\>\): void
 **错误码：**
 
 | 错误码ID | 错误信息                        |
+| ------- | ------------------------------ |
 | 2303188 | Socket operation on non-socket.|
 | 2300002 | System internal error.         |
 
@@ -1617,6 +1618,7 @@ getState\(\): Promise<SocketStateBase\>
 **错误码：**
 
 | 错误码ID | 错误信息                        |
+| ------- | ------------------------------ |
 | 2303188 | Socket operation on non-socket.|
 | 2300002 | System internal error.         |
 
@@ -1657,6 +1659,7 @@ setExtraOptions\(options: TCPExtraOptions, callback: AsyncCallback<void\>\): voi
 **错误码：**
 
 | 错误码ID | 错误信息                        |
+| ------- | -----------------------------  |
 | 401     | Parameter error.               |
 | 2303188 | Socket operation on non-socket.|
 | 2300002 | System internal error.         |
@@ -1714,6 +1717,7 @@ setExtraOptions\(options: TCPExtraOptions\): Promise<void\>
 **错误码：**
 
 | 错误码ID | 错误信息                        |
+| ------- | ------------------------------ |
 | 401     | Parameter error.               |
 | 2303188 | Socket operation on non-socket.|
 | 2300002 | System internal error.         |
@@ -1764,6 +1768,7 @@ connect(options: TLSConnectOptions, callback: AsyncCallback\<void>): void
 **错误码：**
 
 | 错误码ID | 错误信息                                      |
+| ------- | -------------------------------------------- |
 | 401     | Parameter error.                             |
 | 2303104 | Interrupted system call.                     |
 | 2303109 | Bad file number.                             |
@@ -1864,6 +1869,7 @@ connect(options: TLSConnectOptions): Promise\<void>
 **错误码：**
 
 | 错误码ID | 错误信息                                      |
+| ------- | -------------------------------------------- |
 | 401     | Parameter error.                             |
 | 2303104 | Interrupted system call.                     |
 | 2303109 | Bad file number.                             |
@@ -2087,6 +2093,7 @@ getRemoteCertificate(callback: AsyncCallback\<[X509CertRawData](#x509certrawdata
 **错误码：**
 
 | 错误码ID | 错误信息                        |
+| ------- | ------------------------------ |
 | 2303501 | SSL is null.                   |
 | 2300002 | System internal error.         |
 
@@ -2119,6 +2126,7 @@ getRemoteCertificate():Promise\<[X509CertRawData](#x509certrawdata9)>
 **错误码：**
 
 | 错误码ID | 错误信息                        |
+| ------- | ------------------------------ |
 | 2303501 | SSL is null.                   |
 | 2300002 | System internal error.         |
 
@@ -2149,6 +2157,7 @@ getProtocol(callback: AsyncCallback\<string>): void
 **错误码：**
 
 | 错误码ID | 错误信息                        |
+| ------- | -----------------------------  |
 | 2303501 | SSL is null.                   |
 | 2303505 | Error occurred in the tls system call. |
 | 2300002 | System internal error.         |
@@ -2182,6 +2191,7 @@ getProtocol():Promise\<string>
 **错误码：**
 
 | 错误码ID | 错误信息                        |
+| ------- | ------------------------------ |
 | 2303501 | SSL is null.                   |
 | 2303505 | Error occurred in the tls system call. |
 | 2300002 | System internal error.         |
@@ -2213,6 +2223,7 @@ getCipherSuite(callback: AsyncCallback\<Array\<string>>): void
 **错误码：**
 
 | 错误码ID | 错误信息                        |
+| ------- | ------------------------------ |
 | 2303501 | SSL is null.                   |
 | 2303502 | Error in tls reading.          |
 | 2303505 | Error occurred in the tls system call. |
@@ -2247,6 +2258,7 @@ getCipherSuite(): Promise\<Array\<string>>
 **错误码：**
 
 | 错误码ID | 错误信息                        |
+| ------- | ------------------------------ |
 | 2303501 | SSL is null.                   |
 | 2303502 | Error in tls reading.          |
 | 2303505 | Error occurred in the tls system call. |
@@ -2279,6 +2291,7 @@ getSignatureAlgorithms(callback: AsyncCallback\<Array\<string>>): void
 **错误码：**
 
 | 错误码ID | 错误信息                        |
+| ------- | ------------------------------ |
 | 2303501 | SSL is null.                   |
 | 2300002 | System internal error.         |
 
@@ -2311,6 +2324,7 @@ getSignatureAlgorithms(): Promise\<Array\<string>>
 **错误码：**
 
 | 错误码ID | 错误信息                        |
+| ------- | ------------------------------ |
 | 2303501 | SSL is null.                   |
 | 2300002 | System internal error.         |
 
@@ -2342,6 +2356,7 @@ send(data: string, callback: AsyncCallback\<void>): void
 **错误码：**
 
 | 错误码ID | 错误信息                                      |
+| ------- | -------------------------------------------- |
 | 401     | Parameter error.                             |
 | 2303501 | SSL is null.                                 |
 | 2303503 | Error in tls writing                         |
@@ -2378,6 +2393,7 @@ send(data: string): Promise\<void>
 **错误码：**
 
 | 错误码ID | 错误信息                                      |
+| ------- | -------------------------------------------- |
 | 401     | Parameter error.                             |
 | 2303501 | SSL is null.                                 |
 | 2303503 | Error in tls writing                         |
@@ -2418,6 +2434,7 @@ close(callback: AsyncCallback\<void>): void
 **错误码：**
 
 | 错误码ID | 错误信息                                      |
+| ------- | -------------------------------------------- |
 | 2303501 | SSL is null.                                 |
 | 2303505 | Error occurred in the tls system call.       |
 | 2303506 | Error clearing tls connection.               |
@@ -2452,6 +2469,7 @@ close(): Promise\<void>
 **错误码：**
 
 | 错误码ID | 错误信息                                      |
+| ------- | -------------------------------------------- |
 | 2303501 | SSL is null.                                 |
 | 2303505 | Error occurred in the tls system call.       |
 | 2303506 | Error clearing tls connection.               |
@@ -2473,11 +2491,11 @@ TLS连接的操作。
 
 **系统能力**：SystemCapability.Communication.NetStack
 
-| 参数名          | 类型                                   | 说明            |
-| -------------- | ------------------------------------- | -------------- |
-| address        | [NetAddress](#netaddress)             | 网关地址。       |
-| secureOptions  | [TLSSecureOptions](#tlssecureoptions9) | TLS安全相关操作。|
-| ALPNProtocols  | Array\<string>                         | ALPN协议。      |
+| 名称          | 类型                                     | 必填 | 说明            |
+| -------------- | ------------------------------------- | ---  |-------------- |
+| address        | [NetAddress](#netaddress)             | 是  |  网关地址。       |
+| secureOptions  | [TLSSecureOptions](#tlssecureoptions9) | 是 | TLS安全相关操作。|
+| ALPNProtocols  | Array\<string>                         | 是 | ALPN协议。      |
 
 ## TLSSecureOptions<sup>9+</sup>
 
@@ -2485,16 +2503,16 @@ TLS安全相关操作，其中ca证书为必选参数，其他参数为可选参
 
 **系统能力**：SystemCapability.Communication.NetStack
 
-| 参数名                 | 类型                    | 说明                                |
-| --------------------- | ---------------------- | ----------------------------------- |
-| ca                    | string \| Array\<string> | 服务端的ca证书，用于认证校验服务端的数字证书。|
-| cert                  | string                 | 本地客户端的数字证书。                 |
-| key                   | string                 | 本地数字证书的私钥。                   |
-| passwd                | string                 | 读取私钥的密码。                         |
-| protocols             | [Protocol](#protocol9) \| Array\<[Protocol](#protocol9)> | TLS的协议版本。 |
-| useRemoteCipherPrefer | boolean                | 优先使用对等方的密码套件。               |
-| signatureAlgorithms   | string                 | 通信过程中的签名算法。                  |
-| cipherSuite           | string                 | 通信过程中的加密套件。                   |
+| 名称                 | 类型                                                    | 必填 | 说明                                |
+| --------------------- | ------------------------------------------------------ | --- |----------------------------------- |
+| ca                    | string \| Array\<string>                               | 是 | 服务端的ca证书，用于认证校验服务端的数字证书。|
+| cert                  | string                                                  | 否 | 本地客户端的数字证书。                 |
+| key                   | string                                                  | 否 | 本地数字证书的私钥。                   |
+| passwd                | string                                                  | 否 | 读取私钥的密码。                      |
+| protocols             | [Protocol](#protocol9) \|Array\<[Protocol](#protocol9)> | 否 | TLS的协议版本。                  |
+| useRemoteCipherPrefer | boolean                                                 | 否 | 优先使用对等方的密码套件。          |
+| signatureAlgorithms   | string                                                 | 否 | 通信过程中的签名算法。               |
+| cipherSuite           | string                                                 | 否 | 通信过程中的加密套件。               |
 
 ## Protocol<sup>9+</sup>
 
@@ -2502,10 +2520,10 @@ TLS通信的协议版本。
 
 **系统能力**：SystemCapability.Communication.NetStack
 
-| **protocol 的合法值** | 说明                |
-| :------------------ | :------------------ |
-| TLSv12              |  使用TLSv1.2协议通信。 |
-| TLSv13              |  使用TLSv1.3协议通信。 |
+| 名称      |    值    | 说明                |
+| --------- | --------- |------------------ |
+| TLSv12    | "TLSv1.2" | 使用TLSv1.2协议通信。 |
+| TLSv13    | "TLSv1.3" | 使用TLSv1.3协议通信。 |
 
 ## X509CertRawData<sup>9+</sup>
 
@@ -2513,7 +2531,6 @@ TLS通信的协议版本。
 
 **系统能力**：SystemCapability.Communication.NetStack
 
-| 参数名          | 类型                           | 说明            |
-| -------------- | ----------------------------- | -------------- |
-| data           | Uint8Array                    | 证书内容。       |
-| encodingFormat | number                        | 编码格式der。    |
+| 类型                                                                   | 说明                   |
+| --------------------------------------------------------------------- | --------------------- |
+|[cryptoFramework.EncodingBlob](js-apis-cryptoFramework.md#EncodingBlob) | 存储证书的数据和编码格式 |

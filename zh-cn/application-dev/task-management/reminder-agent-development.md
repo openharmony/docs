@@ -7,24 +7,24 @@
 
   **表1** reminderAgentManager主要接口
 
-| 接口名 | 描述 | 
-| -------- | -------- |
-| publishReminder(reminderReq:&nbsp;ReminderRequest,&nbsp;callback:&nbsp;AsyncCallback&lt;number&gt;):&nbsp;void<br/>publishReminder(reminderReq:&nbsp;ReminderRequest):&nbsp;Promise&lt;number&gt; | 发布一个定时提醒类通知。<br/>-&nbsp;单个应用有效的提醒个数最多支持30个（不包括已经超时，即后续不会再提醒的提醒实例）。<br/>-&nbsp;整个系统有效的提醒个数最多支持2000个（不包括已经超时，即后续不会再提醒的提醒实例）。 | 
-| cancelReminder(reminderId:&nbsp;number,&nbsp;callback:&nbsp;AsyncCallback&lt;void&gt;):&nbsp;void<br/>cancelReminder(reminderId:&nbsp;number):&nbsp;Promise&lt;void&gt; | 取消一个指定的提醒类通知（reminderId从publishReminder的返回值获取）。 | 
-| getValidReminders(callback:&nbsp;AsyncCallback&lt;Array&lt;ReminderRequest&gt;&gt;):&nbsp;void<br/>getValidReminders():&nbsp;Promise&lt;Array&lt;ReminderRequest&gt;&gt; | 获取当前应用设置的所有有效的提醒。 | 
-| cancelAllReminders(callback:&nbsp;AsyncCallback&lt;void&gt;):&nbsp;void<br/>cancelAllReminders():&nbsp;Promise&lt;void&gt; | 取消当前应用设置的所有提醒。 | 
-| addNotificationSlot(slot:&nbsp;NotificationSlot,&nbsp;callback:&nbsp;AsyncCallback&lt;void&gt;):&nbsp;void<br/>addNotificationSlot(slot:&nbsp;NotificationSlot):&nbsp;Promise&lt;void&gt; | 注册一个提醒类需要使用的NotificationSlot。 | 
-| removeNotificationSlot(slotType:&nbsp;notification.SlotType,&nbsp;callback:&nbsp;AsyncCallback&lt;void&gt;):&nbsp;void<br/>removeNotificationSlot(slotType:&nbsp;notification.SlotType):&nbsp;Promise&lt;void&gt; | 删除指定类型的NotificationSlot。 | 
+| 接口名                                      | 描述                                       |
+| ---------------------------------------- | ---------------------------------------- |
+| publishReminder(reminderReq:&nbsp;ReminderRequest,&nbsp;callback:&nbsp;AsyncCallback&lt;number&gt;):&nbsp;void<br/>publishReminder(reminderReq:&nbsp;ReminderRequest):&nbsp;Promise&lt;number&gt; | 发布一个定时提醒类通知。<br/>-&nbsp;单个应用有效的提醒个数最多支持30个（不包括已经超时，即后续不会再提醒的提醒实例）。<br/>-&nbsp;整个系统有效的提醒个数最多支持2000个（不包括已经超时，即后续不会再提醒的提醒实例）。 |
+| cancelReminder(reminderId:&nbsp;number,&nbsp;callback:&nbsp;AsyncCallback&lt;void&gt;):&nbsp;void<br/>cancelReminder(reminderId:&nbsp;number):&nbsp;Promise&lt;void&gt; | 取消一个指定的提醒类通知（reminderId从publishReminder的返回值获取）。 |
+| getValidReminders(callback:&nbsp;AsyncCallback&lt;Array&lt;ReminderRequest&gt;&gt;):&nbsp;void<br/>getValidReminders():&nbsp;Promise&lt;Array&lt;ReminderRequest&gt;&gt; | 获取当前应用设置的所有有效的提醒。                        |
+| cancelAllReminders(callback:&nbsp;AsyncCallback&lt;void&gt;):&nbsp;void<br/>cancelAllReminders():&nbsp;Promise&lt;void&gt; | 取消当前应用设置的所有提醒。                           |
+| addNotificationSlot(slot:&nbsp;NotificationSlot,&nbsp;callback:&nbsp;AsyncCallback&lt;void&gt;):&nbsp;void<br/>addNotificationSlot(slot:&nbsp;NotificationSlot):&nbsp;Promise&lt;void&gt; | 注册一个提醒类需要使用的NotificationSlot。            |
+| removeNotificationSlot(slotType:&nbsp;notification.SlotType,&nbsp;callback:&nbsp;AsyncCallback&lt;void&gt;):&nbsp;void<br/>removeNotificationSlot(slotType:&nbsp;notification.SlotType):&nbsp;Promise&lt;void&gt; | 删除指定类型的NotificationSlot。                 |
 
 
 ## 开发步骤
 
 1. 申请`ohos.permission.PUBLISH_AGENT_REMINDER`权限，配置方式请参阅[访问控制授权申请指导](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/accesstoken-guidelines.md#stage%E6%A8%A1%E5%9E%8B)。
 
-2. [使能通知开关](notification-enable.md)，获得用户授权后，才能使用代理提醒功能。
+2. [使能通知开关](../notification/notification-enable.md)，获得用户授权后，才能使用代理提醒功能。
 
 3. 导入模块。
-   
+
    ```
    import reminderAgentManager from '@ohos.reminderAgentManager';
    import NotificationManager from '@ohos.notificationManager';
@@ -32,7 +32,7 @@
 
 4. 定义目标提醒代理。开发者根据实际需要，选择定义如下类型的提醒。
    - 定义倒计时实例。
-     
+
       ```
       let targetReminderAgent: reminderAgentManager.ReminderRequestTimer = {
         reminderType: reminderAgentManager.ReminderType.REMINDER_TYPE_TIMER, // 提醒类型为倒计时类型
@@ -59,7 +59,7 @@
       }
       ```
    - 定义日历实例。
-     
+
       ```
       let targetReminderAgent: reminderAgentManager.ReminderRequestCalendar = {
         reminderType: reminderAgentManager.ReminderType.REMINDER_TYPE_CALENDAR, // 提醒类型为日历类型
@@ -103,7 +103,7 @@
       }
       ```
    - 定义闹钟实例。
-     
+
       ```
       let targetReminderAgent: reminderAgentManager.ReminderRequestAlarm = {
         reminderType: reminderAgentManager.ReminderType.REMINDER_TYPE_ALARM, // 提醒类型为闹钟类型
@@ -141,7 +141,7 @@
       ```
 
 5. 发布相应的提醒代理。代理发布后，应用即可使用后台代理提醒功能。
-   
+
    ```
    try {
      reminderAgentManager.publishReminder(targetReminderAgent).then(res => {
@@ -161,10 +161,10 @@
    ![zh-cn_image_0000001416585578](figures/zh-cn_image_0000001416585578.png)
 
 6. 若需要删除提醒任务，可以通过调用[reminderAgentManager.cancelReminder()](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-reminderAgentManager.md#reminderagentmanagercancelreminder)方法来实现。
-   
+
    ```
    let reminderId = 0; // reminderId的值从发布提醒代理成功之后的回调中获得
-   
+
    try {
        reminderAgentManager.cancelReminder(reminderId).then(() => {
            console.log("cancelReminder promise");

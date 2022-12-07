@@ -33,8 +33,8 @@ want操作的常数。
 | ACTION_DISMISS_TIMER                        | ohos.want.action.dismissTimer            | 指示启动页面功能以关闭计时器的操作。                           |
 |  ACTION_SEND_SMS                            | ohos.want.action.sendSms                 | 指示启动发送sms的页面功能的操作。                              |
 | ACTION_CHOOSE                               | ohos.want.action.choose                  | 指示启动页面功能以打开联系人或图片的操作。                      |
-| ACTION_IMAGE_CAPTURE<sup>8+</sup>           | ohos.want.action.imageCapture            | 指示启动页面拍照功能的操作。                                   |
-| ACTION_VIDEO_CAPTURE<sup>8+</sup>           | ohos.want.action.videoCapture            | 指示启动页面功能以拍摄视频的操作。                             |
+| ACTION_IMAGE_CAPTURE           | ohos.want.action.imageCapture            | 指示启动页面拍照功能的操作。                                   |
+| ACTION_VIDEO_CAPTURE           | ohos.want.action.videoCapture            | 指示启动页面功能以拍摄视频的操作。                             |
 | ACTION_SELECT                               | ohos.want.action.select                  | 指示显示应用程序选择对话框的操作。                             |
 | ACTION_SEND_DATA                            | ohos.want.action.sendData                | 指示发送单个数据记录的操作。                                  |
 | ACTION_SEND_MULTIPLE_DATA                   | ohos.want.action.sendMultipleData        | 指示发送多个数据记录的操作。                                  |
@@ -44,8 +44,7 @@ want操作的常数。
 |  INTENT_PARAMS_INTENT                       | ability.want.params.INTENT               | 指示用行为选择器来展示选择的操作。                             |
 |  INTENT_PARAMS_TITLE                        | ability.want.params.TITLE                | 指示与行为选择器一起使用时的字符序列对话框标题。                |
 |  ACTION_FILE_SELECT            | ohos.action.fileSelect                   | 指示选择文件的操作。                                          |
-|  PARAMS_STREAM                 | ability.params.stream                    | 指示发送数据时与目标关联的数据流的URI                          |
-|  ACTION_APP_ACCOUNT_OAUTH      | ohos.account.appAccount.action.oauth     | 指示提供oauth服务的操作。                                     |
+|  PARAMS_STREAM                 | ability.params.stream                    | 指示发送数据时与目标关联的数据流的URI                          |                                     |
 |  ACTION_APP_ACCOUNT_AUTH      | account.appAccount.action.auth     | 指示提供auth服务的操作。                                      |
 |  ACTION_MARKET_DOWNLOAD    | ohos.want.action.marketDownload     | 表示从应用程序市场下载应用程序的的操作。<br>**系统API**：该接口为系统接口，三方应用不支持调用。  |
 |  ACTION_MARKET_CROWDTEST    | ohos.want.action.marketCrowdTest     | 指示从应用程序市场众测应用程序的操作。<br>**系统API**：该接口为系统接口，三方应用不支持调用。  |

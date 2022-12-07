@@ -4,12 +4,12 @@ AbilityManager模块提供对Ability相关信息和状态信息进行获取、�
 
 > **说明：**
 >
-> 本模块首批接口从API version 8开始支持, 从API version 9废弃，替换模块为[@ohos.app.ability.abilityManager](js-apis-app-ability-abilityManager.md)。后续版本的新增接口，采用上角标单独标记接口的起始版本。  
+> 本模块首批接口从API version 8开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。  
 > 本模块接口均为系统接口，三方应用不支持调用。
 
 ## 导入模块
 
-```js
+```ts
 import AbilityManager from '@ohos.application.abilityManager'
 ```
 
@@ -43,12 +43,12 @@ updateConfiguration(config: Configuration, callback: AsyncCallback\<void>): void
 
 | 参数名        | 类型                                       | 必填   | 说明             |
 | --------- | ---------------------------------------- | ---- | -------------- |
-| config    | [Configuration](js-apis-configuration.md)   | 是    | 新的配置项。 |
+| config    | [Configuration](js-apis-application-configuration.md)   | 是    | 新的配置项。 |
 | callback  | AsyncCallback\<void>                   | 是    | 被指定的回调方法。      |
 
 **示例**：
 
-```js
+```ts
 import abilitymanager from '@ohos.application.abilityManager';
 
 var config = {
@@ -74,7 +74,7 @@ updateConfiguration(config: Configuration): Promise\<void>
 
 | 参数名        | 类型                                       | 必填   | 说明             |
 | --------- | ---------------------------------------- | ---- | -------------- |
-| config    | [Configuration](js-apis-configuration.md)   | 是    | 新的配置项。 |
+| config    | [Configuration](js-apis-application-configuration.md)   | 是    | 新的配置项。 |
 
 **返回值：**
 
@@ -84,7 +84,7 @@ updateConfiguration(config: Configuration): Promise\<void>
 
 **示例**：
 
-```js
+```ts
 import abilitymanager from '@ohos.application.abilityManager';
 
 var config = {
@@ -116,7 +116,7 @@ getAbilityRunningInfos(callback: AsyncCallback\<Array\<AbilityRunningInfo>>): vo
 
 **示例**：
 
-```js
+```ts
 import abilitymanager from '@ohos.application.abilityManager';
 
 abilitymanager.getAbilityRunningInfos((err,data) => { 
@@ -142,7 +142,7 @@ getAbilityRunningInfos(): Promise\<Array\<AbilityRunningInfo>>
 
 **示例**：
 
-```js
+```ts
 import abilitymanager from '@ohos.application.abilityManager';
  
 abilitymanager.getAbilityRunningInfos().then((data) => {
@@ -171,7 +171,7 @@ getExtensionRunningInfos(upperLimit: number, callback: AsyncCallback\<Array\<Ext
 
 **示例**：
 
-```js
+```ts
 import abilitymanager from '@ohos.application.abilityManager';
 
 var upperLimit = 0;
@@ -205,7 +205,7 @@ getExtensionRunningInfos(upperLimit: number): Promise\<Array\<ExtensionRunningIn
 
 **示例**：
 
-```js
+```ts
 import abilitymanager from '@ohos.application.abilityManager';
 
 var upperLimit = 0;
@@ -233,7 +233,7 @@ getTopAbility(callback: AsyncCallback\<ElementName>): void;
 
 **示例**：
 
-```js
+```ts
 import abilitymanager from '@ohos.application.abilityManager';
 
 abilitymanager.getTopAbility((err,data) => { 
@@ -257,7 +257,7 @@ getTopAbility(): Promise\<ElementName>;
 
 **示例**：
 
-```js
+```ts
 import abilitymanager from '@ohos.application.abilityManager';
 
 abilitymanager.getTopAbility().then((data) => {

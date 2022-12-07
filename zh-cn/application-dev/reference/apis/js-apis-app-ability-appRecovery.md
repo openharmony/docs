@@ -7,7 +7,7 @@ appRecovery模块提供了应用在故障状态下的恢复能力。
 > 本模块首批接口从API version 9开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。当前版本仅支持单进程中单Ability的应用恢复。
 
 ## 导入模块
-```
+```ts
 import appRecovery from '@ohos.app.ability.appRecovery'
 ```
 
@@ -78,7 +78,7 @@ export default class MyAbilityStage extends AbilityStage {
 
 restartApp(): void;
 
-重启当前App进程，可以配合[errorManager](js-apis-errorManager.md#errorobserver)相关接口使用。
+重启当前App进程，可以配合[errorManager](js-apis-app-ability-errorManager.md)相关接口使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -99,7 +99,7 @@ var observer = {
 
 saveAppState(): boolean;
 
-保存当前App状态，可以配合[errorManager](js-apis-errorManager.md#errorobserver)相关接口使用
+保存当前App状态，可以配合[errorManager](js-apis-app-ability-errorManager.md)相关接口使用
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -118,5 +118,4 @@ var observer = {
         appRecovery.saveAppState();
     }
 }
-
 ```
