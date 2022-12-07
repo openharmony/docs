@@ -66,4 +66,4 @@ Hi3516DV300 supports burning for the small system through the USB port, network 
 
    ![en-us_image_0000001276317464](figures/en-us_image_0000001276317464.png)
 
-8. When the burning is successful, perform the operations in [Running](quickstart-ide-3516-running.md) to start the system.
+8. When the burning is successful, perform the operations in [Running an Image](quickstart-ide-3516-running.md) to start the system.

@@ -1,7 +1,7 @@
 # Writing a Hello World Program
 
 
-The following exemplifies how to run the first program on the development board. The created program outputs the message "Hello World!" .
+The following exemplifies how to run the first program on the development board. This program displays the message "Hello World!".
 
 
 ## Prerequisites
@@ -157,7 +157,7 @@ Perform the steps below in the source code directory:
    In the **productdefine/common/products/rk3568.json** file, add the **hello** part after the existing part.
    > ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
    >
-   > In this example, the OpenHarmony-v3.1-Release version is used, where the RK3568 configuration file is **productdefine/common/products/rk3568.json**. In a version later than OpenHarmony-v3.1-Release, the RK3568 configuration file is **vendor/hihope/rk3568/config.json**.
+   > In this example, the OpenHarmony-v3.1-Release version is used, where the RK3568 configuration file is **productdefine/common/products/rk3568.json**. In OpenHarmony-v3.2-Beta2 and later versions, the RK3568 configuration file is **vendor/hihope/rk3568/config.json**.
    
    
    ```
