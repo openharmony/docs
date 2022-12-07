@@ -188,7 +188,7 @@ getSupportedOutputCapability(camera:CameraDevice, callback: AsyncCallback<Camera
 
 | 参数名         | 类型                                                            | 必填 | 说明                      |
 | ------------ |--------------------------------------------------------------- | -- | -------------------------- |
-| cameraDevice | [CameraDevice](#cameradevice)                              | 是 | 相机设备。                       |
+| cameraDevice | [CameraDevice](#cameradevice)                              | 是 | 相机设备，通过 getSupportedCameras 接口获取       |
 | callback     | AsyncCallback<[CameraOutputCapability](#cameraoutputcapability)\> | 是 | 使用callback方式获取相机输出能力。 |
 
 **示例：**
@@ -216,7 +216,7 @@ getSupportedOutputCapability(camera:CameraDevice): Promise<CameraOutputCapabilit
 
 | 参数名      | 类型                              | 必填  | 说明        |
 | -------- | --------------------------------- | ---- | ---------- |
-| cameradevice   | [CameraDevice](#cameradevice)     |  是  | 相机设备。   |
+| cameradevice   | [CameraDevice](#cameradevice)     |  是  | 相机设备，通过 getSupportedCameras 接口获取   |
 
 **返回值：**
 
@@ -228,7 +228,7 @@ getSupportedOutputCapability(camera:CameraDevice): Promise<CameraOutputCapabilit
 
 ```js
 let cameraDevice = cameras[0];
-cameraManager.getSupportedOutputCapability(cameradevice).then((cameraoutputcapability) => {
+cameraManager.getSupportedOutputCapability(cameraDevice).then((cameraoutputcapability) => {
     console.log('Promise returned with an array of supported outputCapability');
 })
 ```
@@ -306,8 +306,6 @@ createCameraInput(camera: CameraDevice, callback: AsyncCallback<CameraInput\>): 
 
 使用CameraDevice对象异步创建CameraInput实例，通过注册回调函数获取结果。
 
-此接口为公开接口。
-
 **需要权限：** ohos.permission.CAMERA
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
@@ -316,7 +314,7 @@ createCameraInput(camera: CameraDevice, callback: AsyncCallback<CameraInput\>): 
 
 | 参数名     | 类型                                         | 必填 | 说明                                |
 | -------- | ------------------------------------------- | ---- | --------------------------------- |
-| cameraDevice   | [CameraDevice](#cameradevice)               | 是   | CameraDevice对象。                        |
+| cameraDevice   | [CameraDevice](#cameradevice)               | 是   | CameraDevice对象，通过 getSupportedCameras 接口获取   |
 | callback | AsyncCallback<[CameraInput](#camerainput)\> | 是   | 回调函数，用于获取CameraInput实例。    |
 
 **示例：**
@@ -338,8 +336,6 @@ createCameraInput(cameraDevice: CameraDevice): Promise<CameraInput\>
 
 使用CameraDevice对象异步创建CameraInput实例，通过Promise获取结果。
 
-此接口为公开接口。
-
 **需要权限：** ohos.permission.CAMERA
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
@@ -348,7 +344,7 @@ createCameraInput(cameraDevice: CameraDevice): Promise<CameraInput\>
 
 | 参数名     | 类型                           | 必填 | 说明         |
 | -------- | ----------------------------- | ---- | ---------- |
-| cameraDevice   | [CameraDevice](#cameradevice) | 是   | CameraDevice对象。 |
+| cameraDevice   | [CameraDevice](#cameradevice) | 是   | CameraDevice对象，通过 getSupportedCameras 接口获取 |
 
 **返回值：**
 
@@ -371,8 +367,6 @@ createCameraInput(position: CameraPosition, type: CameraType, callback: AsyncCal
 
 根据相机位置和类型创建CameraInput实例，通过注册回调函数获取结果。
 
-此接口为公开接口。
-
 **需要权限：** ohos.permission.CAMERA
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
@@ -381,8 +375,8 @@ createCameraInput(position: CameraPosition, type: CameraType, callback: AsyncCal
 
 | 参数名     | 类型                                        | 必填 | 说明                                |
 | -------- | ------------------------------------------- | ---- | --------------------------------- |
-| position | [CameraPosition](#cameraposition)           | 是   | 相机位置。                          |
-| type     | [CameraType](#cameratype)                   | 是   | 相机类型。                          |
+| position | [CameraPosition](#cameraposition)           | 是   | 相机位置，通过 getSupportedCameras 接口获取设备，然后获取设备位置信息  |
+| type     | [CameraType](#cameratype)                   | 是   | 相机类型，通过 getSupportedCameras 接口获取设备，然后获取设备类型信息  |
 | callback | AsyncCallback<[CameraInput](#camerainput)\> | 是   | 回调函数，用于获取CameraInput实例。    |
 
 **示例：**
@@ -406,8 +400,6 @@ createCameraInput(position: CameraPosition, type:CameraType ): Promise<CameraInp
 
 根据相机位置和类型创建CameraInput实例，通过Promise获取结果。
 
-此接口为公开接口。
-
 **需要权限：** ohos.permission.CAMERA
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
@@ -416,8 +408,8 @@ createCameraInput(position: CameraPosition, type:CameraType ): Promise<CameraInp
 
 | 参数名     | 类型                               | 必填 | 说明           |
 | -------- | --------------------------------- | ---- | ------------ |
-| position | [CameraPosition](#cameraposition) | 是   | 相机位置。     |
-| type     | [CameraType](#cameratype)         | 是   | 相机类型。     |
+| position | [CameraPosition](#cameraposition) | 是   | 相机位置，通过 getSupportedCameras 接口获取设备，然后获取设备位置信息     |
+| type     | [CameraType](#cameratype)         | 是   | 相机类型，通过 getSupportedCameras 接口获取设备，然后获取设备类型信息     |
 
 **返回值：**
 
@@ -625,7 +617,7 @@ createMetadataOutput(metadataObjectTypes:Array<MetadataObjectType\>, callback: A
 
 | 参数名                  | 类型                                               | 必填 | 说明                          |
 | -------------------- | -------------------------------------------------- | --- | ---------------------------- |
-| metadataObjectTypes  | Array<[MetadataObjectType](#metadataobjecttype)\>  | 是  | metadata流类型信息。            |
+| metadataObjectTypes  | Array<[MetadataObjectType](#metadataobjecttype)\>  | 是  | metadata流类型信息，通过getSupportedOutputCapability接口获取。 |
 | callback             | AsyncCallback<[MetadataOutput](#metadataoutput)\>  | 是   | 回调函数，用于获取MetadataOutput实例。    |
 
 **示例：**
@@ -653,7 +645,7 @@ createMetadataOutput(metadataObjectTypes:Array<MetadataObjectType\>): Promise<Me
 
 | 参数名                  | 类型                                               | 必填 | 说明                 |
 | -------------------- | -------------------------------------------------- | --- | -------------------- |
-| metadataObjectTypes  | Array<[MetadataObjectType](#metadataobjecttype)\>  | 是  | metadata流类型信息。   |
+| metadataObjectTypes  | Array<[MetadataObjectType](#metadataobjecttype)\>  | 是  | metadata流类型信息，通过getSupportedOutputCapability接口获取。  |
 
 **返回值：**
 
@@ -3896,8 +3888,8 @@ on(type: 'metadataObjectsAvailable', callback: AsyncCallback<Array<MetadataObjec
 **示例：**
 
 ```js
-metadataOutput.on('metadataObjectsAvailable', (metadataObject) => {
-    console.log(`metadata output error code: ${metadataObject.code}`);
+metadataOutput.on('metadataObjectsAvailable', (metadataObjectArr) => {
+    console.log(`metadata output metadataObjectsAvailable`);
 })
 ```
 
@@ -3970,7 +3962,7 @@ metadata输出错误码。
 
 ## MetadataObject
 
-相机元能力信息，[CameraInput](#camerainput)相机信息中的数据来源。
+相机元能力信息，[CameraInput](#camerainput)相机信息中的数据来源，通过metadataOutput.on('metadataObjectsAvailable')接口获取
 
 ### getType
 
@@ -3989,6 +3981,7 @@ getType(callback: AsyncCallback<MetadataObjectType\>): void
 **示例：**
 
 ```js
+let metadataObject = metadataObjectArr[0];
 metadataObject.getType((err, metadataObjectType) => {
     if (err) {
         console.error(`Failed to get type. ${err.message}`);
@@ -4015,6 +4008,7 @@ getType(): Promise<MetadataObjectType\>
 **示例：**
 
 ```js
+let metadataObject = metadataObjectArr[0];
 metadataObject.getType().then((metadataObjectType) => {
     console.log('Callback returned with an array of metadataObjectType.');
 })
@@ -4037,6 +4031,7 @@ getTimestamp(callback: AsyncCallback<number\>): void
 **示例：**
 
 ```js
+let metadataObject = metadataObjectArr[0];
 metadataObject.getTimestamp((err,timestamp) => {
     if (err) {
         console.error(`Failed to get timestamp. ${err.message}`);
@@ -4063,6 +4058,7 @@ getTimestamp(): Promise<number\>
 **示例：**
 
 ```js
+let metadataObject = metadataObjectArr[0];
 metadataObject.getTimestamp().then((timestamp) => {
     console.log('Callback returned with timestamp getted timestamp : ${timestamp}');
 })
@@ -4085,6 +4081,7 @@ getBoundingBox(callback: AsyncCallback<Rect\>): void
 **示例：**
 
 ```js
+let metadataObject = metadataObjectArr[0];
 metadataObject.getBoundingBox((err, rect) => {
     if (err) {
         console.error(`Failed to get boundingBox. ${err.message}`);
@@ -4111,6 +4108,7 @@ getBoundingBox(): Promise<Rect\>
 **示例：**
 
 ```js
+let metadataObject = metadataObjectArr[0];
 metadataObject.getBoundingBox().then((rect) => {
     console.log('Callback returned with boundingBox getted.');
 })
