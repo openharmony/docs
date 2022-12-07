@@ -15,7 +15,6 @@
     - Development Fundamentals
         - [Application Package Structure Configuration File (FA Model)](quick-start/package-structure.md)
         - [Application Package Structure Configuration File (Stage Model)](quick-start/stage-structure.md)
-        - [Resource File Categories](quick-start/basic-resource-file-categories.md)
         - [SysCap](quick-start/syscap.md)
 - Development
     - [Ability Development](ability/Readme-EN.md)
