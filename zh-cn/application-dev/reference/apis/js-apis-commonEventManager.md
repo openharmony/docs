@@ -197,12 +197,7 @@ publish(event: string, callback: AsyncCallback\<void>): void
 
 |错误码ID    |错误信息            |
 |-----------|--------------------|
-|1500001    |Want action is null |
-|1500002    |sandbox application can not send common event|
-|1500003    |common event send frequency too high|
 |1500004    |not System services or System app|
-|1500005    |subscriber can not found|
-|1500006    |usreId is invalid|
 |1500007    |message send error|
 |1500008    |CEMS error|
 |1500009    |system error|
@@ -246,15 +241,11 @@ publish(event: string, options: CommonEventPublishData, callback: AsyncCallback\
 **错误码：**
 |错误码ID    |错误信息            |
 |-----------|--------------------|
-|1500001    |Want action is null |
-|1500002    |sandbox application can not send common event|
-|1500003    |common event send frequency too high|
 |1500004    |not System services or System app|
-|1500005    |subscriber can not found|
-|1500006    |usreId is invalid|
 |1500007    |message send error|
 |1500008    |CEMS error|
 |1500009    |system error|
+
 
 **示例：**
 
@@ -307,12 +298,7 @@ publishAsUser(event: string, userId: number, callback: AsyncCallback\<void>): vo
 **错误码：**
 |错误码ID    |错误信息            |
 |-----------|--------------------|
-|1500001    |Want action is null |
-|1500002    |sandbox application can not send common event|
-|1500003    |common event send frequency too high|
 |1500004    |not System services or System app|
-|1500005    |subscriber can not found|
-|1500006    |usreId is invalid|
 |1500007    |message send error|
 |1500008    |CEMS error|
 |1500009    |system error|
@@ -364,12 +350,7 @@ publishAsUser(event: string, userId: number, options: CommonEventPublishData, ca
 **错误码：**
 |错误码ID    |错误信息            |
 |-----------|--------------------|
-|1500001    |Want action is null |
-|1500002    |sandbox application can not send common event|
-|1500003    |common event send frequency too high|
 |1500004    |not System services or System app|
-|1500005    |subscriber can not found|
-|1500006    |usreId is invalid|
 |1500007    |message send error|
 |1500008    |CEMS error|
 |1500009    |system error|
@@ -421,19 +402,6 @@ createSubscriber(subscribeInfo: CommonEventSubscribeInfo, callback: AsyncCallbac
 | subscribeInfo | [CommonEventSubscribeInfo](#commoneventsubscribeinfo)        | 是   | 表示订阅信息。             |
 | callback      | AsyncCallback\<[CommonEventSubscriber](#commoneventsubscriber)> | 是   | 表示创建订阅者的回调方法。 |
 
-**错误码：**
-|错误码ID    |错误信息            |
-|-----------|--------------------|
-|1500001    |Want action is null |
-|1500002    |sandbox application can not send common event|
-|1500003    |common event send frequency too high|
-|1500004    |not System services or System app|
-|1500005    |subscriber can not found|
-|1500006    |usreId is invalid|
-|1500007    |message send error|
-|1500008    |CEMS error|
-|1500009    |system error|
-
 **示例：**
 
 
@@ -484,19 +452,6 @@ createSubscriber(subscribeInfo: CommonEventSubscribeInfo): Promise\<CommonEventS
 | --------------------------------------------------------- | ---------------- |
 | Promise\<[CommonEventSubscriber](#commoneventsubscriber)> | 返回订阅者对象。 |
 
-**错误码：**
-|错误码ID    |错误信息            |
-|-----------|--------------------|
-|1500001    |Want action is null |
-|1500002    |sandbox application can not send common event|
-|1500003    |common event send frequency too high|
-|1500004    |not System services or System app|
-|1500005    |subscriber can not found|
-|1500006    |usreId is invalid|
-|1500007    |message send error|
-|1500008    |CEMS error|
-|1500009    |system error|
-
 **示例：**
 
 ```ts
@@ -537,19 +492,6 @@ subscribe(subscriber: CommonEventSubscriber, callback: AsyncCallback\<CommonEven
 | ---------- | ---------------------------------------------------- | ---- | -------------------------------- |
 | subscriber | [CommonEventSubscriber](#commoneventsubscriber)     | 是   | 表示订阅者对象。                 |
 | callback   | AsyncCallback\<[CommonEventData](#commoneventdata)> | 是   | 表示接收公共事件数据的回调函数。 |
-
-**错误码：**
-|错误码ID    |错误信息            |
-|-----------|--------------------|
-|1500001    |Want action is null |
-|1500002    |sandbox application can not send common event|
-|1500003    |common event send frequency too high|
-|1500004    |not System services or System app|
-|1500005    |subscriber can not found|
-|1500006    |usreId is invalid|
-|1500007    |message send error|
-|1500008    |CEMS error|
-|1500009    |system error|
 
 **示例：**
 
@@ -611,19 +553,6 @@ unsubscribe(subscriber: CommonEventSubscriber, callback?: AsyncCallback\<void>):
 | ---------- | ----------------------------------------------- | ---- | ------------------------ |
 | subscriber | [CommonEventSubscriber](#commoneventsubscriber) | 是   | 表示订阅者对象。         |
 | callback   | AsyncCallback\<void>                            | 否   | 表示取消订阅的回调方法。 |
-
-**错误码：**
-|错误码ID    |错误信息            |
-|-----------|--------------------|
-|1500001    |Want action is null |
-|1500002    |sandbox application can not send common event|
-|1500003    |common event send frequency too high|
-|1500004    |not System services or System app|
-|1500005    |subscriber can not found|
-|1500006    |usreId is invalid|
-|1500007    |message send error|
-|1500008    |CEMS error|
-|1500009    |system error|
 
 **示例：**
 
