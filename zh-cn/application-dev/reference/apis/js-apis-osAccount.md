@@ -115,7 +115,7 @@ activateOsAccount(localId: number): Promise&lt;void&gt;
 
 | 类型                | 说明                                  |
 | ------------------- | ------------------------------------ |
-| Promise&lt;void&gt; | Promise对象。无返回结果的Promise对象。 |
+| Promise&lt;void&gt; | Promise对象，无返回结果的Promise对象。 |
 
 **错误码：**
 
@@ -668,7 +668,7 @@ removeOsAccount(localId: number): Promise&lt;void&gt;
 
 | 类型                | 说明                                  |
 | ------------------- | ------------------------------------ |
-| Promise&lt;void&gt; | Promise对象。无返回结果的Promise对象。 |
+| Promise&lt;void&gt; | Promise对象，无返回结果的Promise对象。 |
 
 **错误码：**
 
@@ -770,7 +770,7 @@ setOsAccountConstraints(localId: number, constraints: Array&lt;string&gt;, enabl
 
 | 类型                | 说明                                 |
 | :------------------ | :----------------------------------- |
-| Promise&lt;void&gt; | Promise对象。无返回结果的Promise对象。 |
+| Promise&lt;void&gt; | Promise对象，无返回结果的Promise对象。 |
 
 **错误码：**
 
@@ -868,7 +868,7 @@ setOsAccountName(localId: number, localName: string): Promise&lt;void&gt;
 
 | 类型                | 说明                                  |
 | ------------------- | ------------------------------------ |
-| Promise&lt;void&gt; | Promise对象。无返回结果的Promise对象。 |
+| Promise&lt;void&gt; | Promise对象，无返回结果的Promise对象。 |
 
 **错误码：**
 
@@ -2182,7 +2182,7 @@ setOsAccountProfilePhoto(localId: number, photo: string): Promise&lt;void&gt;
 
 | 类型                | 说明                                 |
 | ------------------- | ------------------------------------ |
-| Promise&lt;void&gt; | Promise对象。无返回结果的Promise对象。 |
+| Promise&lt;void&gt; | Promise对象，无返回结果的Promise对象。 |
 
 **错误码：**
 
@@ -2715,9 +2715,9 @@ isMultiOsAccountEnable(callback: AsyncCallback&lt;boolean&gt;): void
 
 判断是否支持多系统帐号。使用callback异步回调。
 
-> **说明：** 从API version 9开始废弃，建议使用[checkMultiOsAccountEnabled](#checkmultiosaccountenabled9)
+> **说明：** 
 >
-> 从 API version 7开始支持。
+> 从 API version 7开始支持，从API version 9开始废弃。建议使用[checkMultiOsAccountEnabled](#checkmultiosaccountenabled9)。
 
 **系统能力：** SystemCapability.Account.OsAccount
 
@@ -2746,9 +2746,9 @@ isMultiOsAccountEnable(): Promise&lt;boolean&gt;
 
 判断是否支持多系统帐号。使用Promise异步回调。
 
-> **说明：** 从API version 9开始废弃，建议使用[checkMultiOsAccountEnabled](#checkmultiosaccountenabled9-1)
+> **说明：** 
 >
-> 从 API version 7开始支持。
+> 从 API version 7开始支持，从API version 9开始废弃。建议使用[checkMultiOsAccountEnabled](#checkmultiosaccountenabled9-1)。
 
 **系统能力：** SystemCapability.Account.OsAccount
 
@@ -2776,9 +2776,9 @@ isOsAccountActived(localId: number, callback: AsyncCallback&lt;boolean&gt;): voi
 
 判断指定系统帐号是否处于激活状态。使用callback异步回调。
 
-> **说明：** 从API version 9开始废弃, 建议使用[checkOsAccountActivated](#checkosaccountactivated9)
+> **说明：** 
 >
-> 从 API version 7开始支持。
+> 从 API version 7开始支持从API version 9开始废弃, 建议使用[checkOsAccountActivated](#checkosaccountactivated9)。
 
 **需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS 或 ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
 
@@ -2811,9 +2811,9 @@ isOsAccountActived(localId: number): Promise&lt;boolean&gt;
 
 判断指定系统帐号是否处于激活状态。使用Promise异步回调。
 
-> **说明：** 从API version 9开始废弃, 建议使用[checkOsAccountActivated](#checkosaccountactivated9-1)
+> **说明：** 
 >
-> 从 API version 7开始支持。
+> 从 API version 7开始支持从API version 9开始废弃, 建议使用[checkOsAccountActivated](#checkosaccountactivated9-1)。
 
 **需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS 或 ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
 
@@ -2849,9 +2849,9 @@ isOsAccountConstraintEnable(localId: number, constraint: string, callback: Async
 
 判断指定系统帐号是否具有指定约束。使用callback异步回调。
 
-> **说明：** 从API version 9开始废弃，建议使用[checkConstraintEnabled](#checkconstraintenabled9)
+> **说明：** 
 >
-> 从 API version 7开始支持。
+> 从 API version 7开始支持，从API version 9开始废弃。建议使用[checkConstraintEnabled](#checkconstraintenabled9)。
 
 **需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS
 
@@ -2886,9 +2886,9 @@ isOsAccountConstraintEnable(localId: number, constraint: string): Promise&lt;boo
 
 判断指定系统帐号是否具有指定约束。使用Promise异步回调。
 
-> **说明：** 从API version 9开始废弃，建议使用[checkConstraintEnabled](#checkconstraintenabled9-1)
+> **说明：** 
 >
-> 从 API version 7开始支持。
+> 从 API version 7开始支持，从API version 9开始废弃。建议使用[checkConstraintEnabled](#checkconstraintenabled9-1)。
 
 **需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS
 
@@ -2926,9 +2926,9 @@ isTestOsAccount(callback: AsyncCallback&lt;boolean&gt;): void
 
 检查当前系统帐号是否为测试帐号。使用callback异步回调。
 
-> **说明：** 从API version 9开始废弃，建议使用[checkOsAccountTestable](#checkosaccounttestable9)
+> **说明：** 
 >
-> 从 API version 7开始支持。
+> 从 API version 7开始支持，从API version 9开始废弃。建议使用[checkOsAccountTestable](#checkosaccounttestable9)。
 
 **系统能力：** SystemCapability.Account.OsAccount
 
@@ -2957,9 +2957,9 @@ isTestOsAccount(): Promise&lt;boolean&gt;
 
 检查当前系统帐号是否为测试帐号。使用Promise异步回调。
 
-> **说明：** 从API version 9开始废弃，建议使用[checkOsAccountTestable](#checkosaccounttestable9-1)
+> **说明：** 
 >
-> 从 API version 7开始支持。
+> 从 API version 7开始支持，从API version 9开始废弃。建议使用[checkOsAccountTestable](#checkosaccounttestable9-1)。
 
 **系统能力：** SystemCapability.Account.OsAccount
 
@@ -2986,9 +2986,9 @@ isOsAccountVerified(callback: AsyncCallback&lt;boolean&gt;): void
 
 检查当前系统帐号是否已验证。使用callback异步回调。
 
-> **说明：** 从API version 9开始废弃，建议使用[checkOsAccountVerified](#checkosaccountverified9)
+> **说明：** 
 >
-> 从 API version 7开始支持。
+> 从 API version 7开始支持，从API version 9开始废弃。建议使用[checkOsAccountVerified](#checkosaccountverified9)。
 
 **需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS 或 ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
 
@@ -3019,9 +3019,9 @@ isOsAccountVerified(localId: number, callback: AsyncCallback&lt;boolean&gt;): vo
 
 检查指定系统帐号是否已验证。使用callback异步回调。
 
-> **说明：** 从API version 9开始废弃，建议使用[checkOsAccountVerified](#checkosaccountverified9-1)
+> **说明：** 
 >
-> 从 API version 7开始支持。
+> 从 API version 7开始支持，从API version 9开始废弃。建议使用[checkOsAccountVerified](#checkosaccountverified9-1)。
 
 **需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS 或 ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
 
@@ -3054,9 +3054,9 @@ isOsAccountVerified(localId?: number): Promise&lt;boolean&gt;
 
 检查指定系统帐号是否已验证。使用Promise异步回调。
 
-> **说明：** 从API version 9开始废弃，建议使用[checkOsAccountVerified](#checkosaccountverified9-2)
+> **说明：** 
 >
-> 从 API version 7开始支持。
+> 从 API version 7开始支持，从API version 9开始废弃。建议使用[checkOsAccountVerified](#checkosaccountverified9-2)。
 
 **需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS 或 ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
 
@@ -3091,9 +3091,9 @@ getCreatedOsAccountsCount(callback: AsyncCallback&lt;number&gt;): void
 
 获取已创建的系统帐号数量。使用callback异步回调。
 
-> **说明：** 从API version 9开始废弃，建议使用[getOsAccountCount](#getosaccountcount9)
+> **说明：** 
 >
-> 从 API version 7开始支持。
+> 从 API version 7开始支持，从API version 9开始废弃。建议使用[getOsAccountCount](#getosaccountcount9)。
 
 **需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS
 
@@ -3124,9 +3124,9 @@ getCreatedOsAccountsCount(): Promise&lt;number&gt;
 
 获取已创建的系统帐号数量，使用Promise异步回调。
 
-> **说明：** 从API version 9开始废弃，建议使用[getOsAccountCount](#getosaccountcount9-1)
+> **说明：** 
 >
-> 从 API version 7开始支持。
+> 从 API version 7开始支持，从API version 9开始废弃。建议使用[getOsAccountCount](#getosaccountcount9-1)。
 
 **需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS
 
@@ -3155,9 +3155,9 @@ getOsAccountLocalIdFromProcess(callback: AsyncCallback&lt;number&gt;): void
 
 获取当前进程所属的系统帐号ID，使用callback异步回调。
 
-> **说明：** 从API version 9开始废弃，建议使用[queryOsAccountLocalIdFromProcess](#queryosaccountlocalidfromprocess9)
+> **说明：** 
 >
-> 从 API version 7开始支持。
+> 从 API version 7开始支持，从API version 9开始废弃。建议使用[queryOsAccountLocalIdFromProcess](#queryosaccountlocalidfromprocess9)。
 
 **系统能力：** SystemCapability.Account.OsAccount
 
@@ -3186,9 +3186,9 @@ getOsAccountLocalIdFromProcess(): Promise&lt;number&gt;
 
 获取当前进程所属的系统帐号ID，使用Promise异步回调。
 
-> **说明：** 从API version 9开始废弃，建议使用[queryOsAccountLocalIdFromProcess](#queryosaccountlocalidfromprocess9-1)
+> **说明：**
 >
-> 从 API version 7开始支持。
+> 从 API version 7开始支持，从API version 9开始废弃。建议使用[queryOsAccountLocalIdFromProcess](#queryosaccountlocalidfromprocess9-1)。
 
 **系统能力：** SystemCapability.Account.OsAccount
 
@@ -3215,9 +3215,9 @@ getOsAccountLocalIdFromUid(uid: number, callback: AsyncCallback&lt;number&gt;): 
 
 根据uid查询对应的系统帐号ID。使用callback异步回调。
 
-> **说明：** 从API version 9开始废弃，建议使用[queryOsAccountLocalIdFromUid](#queryosaccountlocalidfromuid9)
+> **说明：** 
 >
-> 从 API version 7开始支持。
+> 从 API version 7开始支持，从API version 9开始废弃。建议使用[queryOsAccountLocalIdFromUid](#queryosaccountlocalidfromuid9)。
 
 **系统能力：** SystemCapability.Account.OsAccount
 
@@ -3248,9 +3248,9 @@ getOsAccountLocalIdFromUid(uid: number): Promise&lt;number&gt;
 
 根据uid查询对应的系统帐号ID，使用Promise异步回调。
 
-> **说明：** 从API version 9开始废弃，建议使用[queryOsAccountLocalIdFromUid](#queryosaccountlocalidfromuid9-1)
+> **说明：** 
 >
-> 从 API version 7开始支持。
+> 从 API version 7开始支持，从API version 9开始废弃。建议使用[queryOsAccountLocalIdFromUid](#queryosaccountlocalidfromuid9-1)。
 
 **系统能力：** SystemCapability.Account.OsAccount
 
@@ -3284,9 +3284,9 @@ getOsAccountLocalIdFromDomain(domainInfo: DomainAccountInfo, callback: AsyncCall
 
 根据域帐号信息，获取与其关联的系统帐号的帐号ID。使用callback异步回调。
 
-> **说明：** 从API version 9开始废弃，建议使用[queryOsAccountLocalIdFromDomain](#queryosaccountlocalidfromdomain9)
+> **说明：** 
 >
-> 从 API version 8开始支持。
+> 从 API version 8开始支持，从API version 9开始废弃。建议使用[queryOsAccountLocalIdFromDomain](#queryosaccountlocalidfromdomain9)。
 
 **需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS
 
@@ -3319,9 +3319,9 @@ getOsAccountLocalIdFromDomain(domainInfo: DomainAccountInfo): Promise&lt;number&
 
 根据域帐号信息，获取与其关联的系统帐号的帐号ID。使用Promise异步回调。
 
-> **说明：** 从API version 9开始废弃，建议使用[queryOsAccountLocalIdFromDomain](#queryosaccountlocalidfromdomain9-1)
+> **说明：** 
 >
-> 从 API version 8开始支持。
+> 从 API version 8开始支持，从API version 9开始废弃。建议使用[queryOsAccountLocalIdFromDomain](#queryosaccountlocalidfromdomain9-1)。
 
 **需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS
 
@@ -3357,9 +3357,9 @@ getOsAccountAllConstraints(localId: number, callback: AsyncCallback&lt;Array&lt;
 
 获取指定系统帐号的全部约束。使用callback异步回调。
 
-> **说明：** 从API version 9开始废弃，建议使用[getOsAccountConstraints](#getosaccountconstraints9)
+> **说明：** 
 >
-> 从 API version 7开始支持。
+> 从 API version 7开始支持，从API version 9开始废弃。建议使用[getOsAccountConstraints](#getosaccountconstraints9)。
 
 **需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS
 
@@ -3387,9 +3387,9 @@ getOsAccountAllConstraints(localId: number, callback: AsyncCallback&lt;Array&lt;
 
 getOsAccountAllConstraints(localId: number): Promise&lt;Array&lt;string&gt;&gt;
 
-> **说明：** 从API version 9开始废弃，建议使用[getOsAccountConstraints](#getosaccountconstraints9-1)
+> **说明：** 
 >
-> 从 API version 7开始支持。
+> 从 API version 7开始支持，从API version 9开始废弃。建议使用[getOsAccountConstraints](#getosaccountconstraints9-1)。
 
 获取指定系统帐号的全部约束。使用Promise异步回调。
 
@@ -3427,9 +3427,9 @@ queryActivatedOsAccountIds(callback: AsyncCallback&lt;Array&lt;number&gt;&gt;): 
 
 查询当前处于激活状态的系统帐号的ID列表。使用callback异步回调。
 
-> **说明：** 从API version 9开始废弃，建议使用[getActivatedOsAccountIds](#getactivatedosaccountids9)
+> **说明：** 
 >
-> 从 API version 8开始支持。
+> 从 API version 8开始支持，从API version 9开始废弃。建议使用[getActivatedOsAccountIds](#getactivatedosaccountids9)。
 
 **系统能力：** SystemCapability.Account.OsAccount
 
@@ -3456,9 +3456,9 @@ queryActivatedOsAccountIds(callback: AsyncCallback&lt;Array&lt;number&gt;&gt;): 
 
 queryActivatedOsAccountIds(): Promise&lt;Array&lt;number&gt;&gt;
 
-> **说明：** 从API version 9开始废弃，建议使用[getActivatedOsAccountIds](#getactivatedosaccountids9-1)
+> **说明：** 
 >
-> 从 API version 8开始支持。
+> 从 API version 8开始支持，从API version 9开始废弃。建议使用[getActivatedOsAccountIds](#getactivatedosaccountids9-1)。
 
 查询当前处于激活状态的系统帐号的ID列表。使用Promise异步回调。
 
@@ -3487,9 +3487,9 @@ queryCurrentOsAccount(callback: AsyncCallback&lt;OsAccountInfo&gt;): void
 
 查询当前进程所属的系统帐号的信息。使用callback异步回调。
 
-> **说明：** 从API version 9开始废弃，建议使用[getCurrentOsAccount](#getcurrentosaccount9)
+> **说明：** 
 >
-> 从 API version 7开始支持。
+> 从 API version 7开始支持，从API version 9开始废弃。建议使用[getCurrentOsAccount](#getcurrentosaccount9)。
 
 **需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS
 
@@ -3517,9 +3517,9 @@ queryCurrentOsAccount(): Promise&lt;OsAccountInfo&gt;
 
 查询当前进程所属的系统帐号的信息。使用Promise异步回调。
 
-> **说明：** 从API version 9开始废弃，建议使用[getCurrentOsAccount](#getcurrentosaccount9-1)
+> **说明：** 
 >
-> 从 API version 7开始支持。
+> 从 API version 7开始支持，从API version 9开始废弃。建议使用[getCurrentOsAccount](#getcurrentosaccount9-1)。
 
 **需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS
 
@@ -3548,9 +3548,9 @@ getOsAccountTypeFromProcess(callback: AsyncCallback&lt;OsAccountType&gt;): void
 
 查询当前进程所属的系统帐号的帐号类型。使用callback异步回调。
 
-> **说明：** 从API version 9开始废弃，建议使用[getOsAccountType](#getosaccounttype9)
+> **说明：** 
 >
-> 从 API version 7开始支持。
+> 从 API version 7开始支持，从API version 9开始废弃。建议使用[getOsAccountType](#getosaccounttype9)。
 
 **系统能力：** SystemCapability.Account.OsAccount
 
@@ -3576,9 +3576,9 @@ getOsAccountTypeFromProcess(): Promise&lt;OsAccountType&gt;
 
 查询当前进程所属的系统帐号的帐号类型。使用Promise异步回调。
 
-> **说明：** 从API version 9开始废弃，建议使用[getOsAccountType](#getosaccounttype9-1)
+> **说明：**
 >
-> 从 API version 7开始支持。
+> 从 API version 7开始支持，从API version 9开始废弃。建议使用[getOsAccountType](#getosaccounttype9-1)。
 
 **系统能力：** SystemCapability.Account.OsAccount
 
@@ -3605,9 +3605,9 @@ getDistributedVirtualDeviceId(callback: AsyncCallback&lt;string&gt;): void
 
 获取分布式虚拟设备ID。使用callback异步回调。
 
-> **说明：** 从API version 9开始废弃，建议使用[queryDistributedVirtualDeviceId](#querydistributedvirtualdeviceid9)
+> **说明：** 
 >
-> 从 API version 7开始支持。
+> 从 API version 7开始支持，从API version 9开始废弃。建议使用[queryDistributedVirtualDeviceId](#querydistributedvirtualdeviceid9)。
 
 **需要权限：** ohos.permission.DISTRIBUTED_DATASYNC 或 ohos.permission.MANAGE_LOCAL_ACCOUNTS
 
@@ -3635,9 +3635,9 @@ getDistributedVirtualDeviceId(): Promise&lt;string&gt;
 
 获取分布式虚拟设备ID。使用Promise异步回调。
 
-> **说明：** 从API version 9开始废弃，建议使用[queryDistributedVirtualDeviceId](#querydistributedvirtualdeviceid9-1)
+> **说明：** 
 >
-> 从 API version 7开始支持。
+> 从 API version 7开始支持，从API version 9开始废弃。建议使用[queryDistributedVirtualDeviceId](#querydistributedvirtualdeviceid9-1)。
 
 **需要权限：** ohos.permission.DISTRIBUTED_DATASYNC 或 ohos.permission.MANAGE_LOCAL_ACCOUNTS
 
@@ -3666,9 +3666,9 @@ getOsAccountLocalIdBySerialNumber(serialNumber: number, callback: AsyncCallback&
 
 通过SN码查询与其关联的系统帐号的帐号ID。使用callback异步回调。
 
-> **说明：** 从API version 9开始废弃，建议使用[queryOsAccountLocalIdBySerialNumber](#queryosaccountlocalidbyserialnumber9)
+> **说明：** 
 >
-> 从 API version 8开始支持。
+> 从 API version 8开始支持，从API version 9开始废弃。建议使用[queryOsAccountLocalIdBySerialNumber](#queryosaccountlocalidbyserialnumber9)。
 
 **系统能力：** SystemCapability.Account.OsAccount
 
@@ -3696,9 +3696,9 @@ getOsAccountLocalIdBySerialNumber(serialNumber: number): Promise&lt;number&gt;
 
 通过SN码查询与其关联的系统帐号的帐号ID。使用Promise异步回调。
 
-> **说明：** 从API version 9开始废弃，建议使用[queryOsAccountLocalIdBySerialNumber](#queryosaccountlocalidbyserialnumber9-1)
+> **说明：** 
 >
-> 从 API version 8开始支持。
+> 从 API version 8开始支持，从API version 9开始废弃。建议使用[queryOsAccountLocalIdBySerialNumber](#queryosaccountlocalidbyserialnumber9-1)。
 
 **系统能力：** SystemCapability.Account.OsAccount
 
@@ -3732,9 +3732,9 @@ getSerialNumberByOsAccountLocalId(localId: number, callback: AsyncCallback&lt;nu
 
 通过系统帐号ID获取与该系统帐号关联的SN码。使用callback异步回调。
 
-> **说明：** 从API version 9开始废弃，建议使用[querySerialNumberByOsAccountLocalId](#queryserialnumberbyosaccountlocalid9)
+> **说明：** 
 >
-> 从 API version 8开始支持。
+> 从 API version 8开始支持，从API version 9开始废弃。建议使用[querySerialNumberByOsAccountLocalId](#queryserialnumberbyosaccountlocalid9)。
 
 **系统能力：** SystemCapability.Account.OsAccount
 
@@ -3762,9 +3762,9 @@ getSerialNumberByOsAccountLocalId(localId: number): Promise&lt;number&gt;
 
 通过系统帐号ID获取与该系统帐号关联的SN码。使用Promise异步回调。
 
-> **说明：** 从API version 9开始废弃，建议使用[querySerialNumberByOsAccountLocalId](#queryserialnumberbyosaccountlocalid9-1)
+> **说明：** 
 >
-> 从 API version 8开始支持。
+> 从 API version 8开始支持，从API version 9开始废弃。建议使用[querySerialNumberByOsAccountLocalId](#queryserialnumberbyosaccountlocalid9-1)。
 
 **系统能力：** SystemCapability.Account.OsAccount
 
@@ -4052,7 +4052,7 @@ setProperty(request: SetPropertyRequest): Promise&lt;void&gt;;
 
 | 类型                  | 说明                                                           |
 | :-------------------- | :------------------------------------------------------------ |
-| Promise&lt;void&gt; | Promise对象。无返回结果的Promise对象。 |
+| Promise&lt;void&gt; | Promise对象，无返回结果的Promise对象。 |
 
 **错误码：**
 
