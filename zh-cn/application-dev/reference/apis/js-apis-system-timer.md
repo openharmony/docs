@@ -348,7 +348,7 @@ export default {
         triggerTime += 3000
         systemTimer.startTimer(timerId, triggerTime)
         systemTimer.stopTimer(timerId)
-        systemTimer.destroyTimer(timerId, 10000).then((data) => {
+        systemTimer.destroyTimer(timerId).then((data) => {
             console.log(`Succeeded in destroying timer. Data:` + JSON.stringify(data));
         }).catch((error) => {
             console.error(`Failed to destroy timer. Cause:` + JSON.stringify(error));
