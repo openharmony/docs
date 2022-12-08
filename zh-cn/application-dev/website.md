@@ -401,7 +401,6 @@
     - 应用事件打点
       - [应用事件打点开发指导](dfx/hiappevent-guidelines.md)
     - 性能打点跟踪
-      - [性能打点跟踪概述](dfx/hitracemeter-overview.md)
       - [性能打点跟踪开发指导](dfx/hitracemeter-guidelines.md)
     - 分布式跟踪
       - [分布式跟踪开发指导](dfx/hitracechain-guidelines.md)
