@@ -4,7 +4,7 @@ The application development documents provide reference for you to develop appli
 
 The documents are carefully organized as follows:
 
-### Getting Started
+### Quick Start
 
 [Here](quick-start/start-overview.md) you'll learn how to quickly get started with OpenHarmony application development.
 
