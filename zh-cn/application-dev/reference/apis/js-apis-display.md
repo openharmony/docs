@@ -35,10 +35,10 @@ import display from '@ohos.display';
 
 | 名称   | 类型 | 可读 | 可写 | 说明               |
 | ------ | -------- | ---- | ---- | ------------------ |
-| left   | number   | 是   | 是   | 矩形区域的左边界。 |
-| top    | number   | 是   | 是   | 矩形区域的上边界。 |
-| width  | number   | 是   | 是   | 矩形区域的宽度。   |
-| height | number   | 是   | 是   | 矩形区域的高度。   |
+| left   | number   | 是   | 是   | 矩形区域的左边界，单位为像素。 |
+| top    | number   | 是   | 是   | 矩形区域的上边界，单位为像素。 |
+| width  | number   | 是   | 是   | 矩形区域的宽度，单位为像素。   |
+| height | number   | 是   | 是   | 矩形区域的高度，单位为像素。   |
 
 ## WaterfallDisplayAreaRects<sup>9+</sup>
 
