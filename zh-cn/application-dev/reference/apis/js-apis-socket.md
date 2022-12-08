@@ -1507,7 +1507,6 @@ bind\(address: NetAddress, callback: AsyncCallback<void\>\): void
 **示例：**
 
 ```js
-let tls = socket.constructTLSSocketInstance();
 tls.bind({address: '192.168.xx.xxx', port: xxxx, family: 1}, err => {
   if (err) {
     console.log('bind fail');
@@ -1551,7 +1550,6 @@ bind\(address: NetAddress\): Promise<void\>
 **示例：**
 
 ```js
-let tls = socket.constructTLSSocketInstance();
 let promise = tls.bind({address: '192.168.xx.xxx', port: xxxx, family: 1});
 promise.then(() => {
   console.log('bind success');
@@ -1584,7 +1582,6 @@ getState\(callback: AsyncCallback<SocketStateBase\>\): void
 **示例：**
 
 ```js
-let tls = socket.constructTLSSocketInstance();
 let promise = tls.bind({address: '192.168.xx.xxx', port: xxxx, family: 1}, err => {
   if (err) {
     console.log('bind fail');
@@ -1625,7 +1622,6 @@ getState\(\): Promise<SocketStateBase\>
 **示例：**
 
 ```js
-let tls = socket.constructTLSSocketInstance();
 tls.bind({address: '192.168.xx.xxx', port: xxxx, family: 1}, err => {
   if (err) {
     console.log('bind fail');
@@ -1667,7 +1663,6 @@ setExtraOptions\(options: TCPExtraOptions, callback: AsyncCallback<void\>\): voi
 **示例：**
 
 ```js
-let tls = socket.constructTLSSocketInstance();
 tls.bind({address: '192.168.xx.xxx', port: xxxx, family: 1}, err => {
   if (err) {
     console.log('bind fail');
@@ -1725,7 +1720,6 @@ setExtraOptions\(options: TCPExtraOptions\): Promise<void\>
 **示例：**
 
 ```js
-let tls = socket.constructTLSSocketInstance();
 tls.bind({address: '192.168.xx.xxx', port: xxxx, family: 1}, err => {
   if (err) {
     console.log('bind fail');
@@ -1789,15 +1783,14 @@ connect(options: TLSConnectOptions, callback: AsyncCallback\<void>): void
 **示例：**
 
 ```js
-let tls = socket.constructTLSSocketInstance(); // Two way authentication
-tls.bind({address: '192.168.xxx.xxx', port: xxxx, family: 1}, err => {
+let tlsTwoWay = socket.constructTLSSocketInstance(); // Two way authentication
+tlsTwoWay.bind({address: '192.168.xxx.xxx', port: xxxx, family: 1}, err => {
   if (err) {
     console.log('bind fail');
     return;
   }
   console.log('bind success');
 });
-let Protocol = socket.Protocol;
 let options = {
   ALPNProtocols: ["spdy/1", "http/1.1"],
   address: {
@@ -1810,15 +1803,15 @@ let options = {
     cert: "xxxx",
     ca: ["xxxx"],
     passwd: "xxxx",
-    protocols: [Protocol.TLSv12],
+    protocols: [socket.Protocol.TLSv12],
     useRemoteCipherPrefer: true,
-    signatureAlgorithms: rsa_pss_rsae_sha256:ECDSA+SHA25,
-    cipherSuite: AES256-SHA256,
+    signatureAlgorithms: "rsa_pss_rsae_sha256:ECDSA+SHA256",
+    cipherSuite: "AES256-SHA256",
   },
 };
-tls.connect(options, (err, data) => {
-  console.info(err);
-  console.info(data);
+tlsTwoWay.connect(options, (err, data) => {
+  console.error(err);
+  console.log(data);
 });
 
 let tlsOneWay = socket.constructTLSSocketInstance(); // One way authentication
@@ -1837,12 +1830,12 @@ let oneWayOptions = {
   },
   secureOptions: {
     ca: ["xxxx","xxxx"],
-    cipherSuite: AES256-SHA256,
+    cipherSuite: "AES256-SHA256",
   },
 };
-tlsOneWay.connect(options, (err, data) => {
-  console.info(err);
-  console.info(data);
+tlsOneWay.connect(oneWayOptions, (err, data) => {
+  console.error(err);
+  console.log(data);
 });
 ```
 
@@ -1890,15 +1883,14 @@ connect(options: TLSConnectOptions): Promise\<void>
 **示例：**
 
 ```js
-let tls = socket.constructTLSSocketInstance(); // Two way authentication
-tls.bind({address: '192.168.xxx.xxx', port: xxxx, family: 1}, err => {
+let tlsTwoWay = socket.constructTLSSocketInstance(); // Two way authentication
+tlsTwoWay.bind({address: '192.168.xxx.xxx', port: xxxx, family: 1}, err => {
   if (err) {
     console.log('bind fail');
     return;
   }
   console.log('bind success');
 });
-let Protocol = socket.Protocol;
 let options = {
   ALPNProtocols: ["spdy/1", "http/1.1"],
   address: {
@@ -1911,14 +1903,14 @@ let options = {
     cert: "xxxx",
     ca: ["xxxx"],
     passwd: "xxxx",
-    protocols: [Protocol.TLSv12],
+    protocols: [socket.Protocol.TLSv12],
     useRemoteCipherPrefer: true,
-    signatureAlgorithms: rsa_pss_rsae_sha256:ECDSA+SHA25,
-    cipherSuite: AES256-SHA256,
+    signatureAlgorithms: "rsa_pss_rsae_sha256:ECDSA+SHA256",
+    cipherSuite: "AES256-SHA256",
   },
 };
-tls.connect(options).then(data => {
-  console.info(data);
+tlsTwoWay.connect(options).then(data => {
+  console.log(data);
 }).catch(err => {
   console.error(err);
 });
@@ -1939,11 +1931,11 @@ let oneWayOptions = {
   },
   secureOptions: {
     ca: ["xxxx","xxxx"],
-    cipherSuite: AES256-SHA256,
+    cipherSuite: "AES256-SHA256",
   },
 };
 tlsOneWay.connect(oneWayOptions).then(data => {
-  console.info(data);
+  console.log(data);
 }).catch(err => {
   console.error(err);
 });
@@ -2074,7 +2066,7 @@ getCertificate():Promise\<[X509CertRawData](#x509certrawdata9)>
 
 ```js
 tls.getCertificate().then(data => {
-  console.info(data);
+  console.log(data);
 }).catch(err => {
   console.error(err);
 });
@@ -2138,7 +2130,7 @@ getRemoteCertificate():Promise\<[X509CertRawData](#x509certrawdata9)>
 
 ```js
 tls.getRemoteCertificate().then(data => {
-  console.info(data);
+  console.log(data);
 }).catch(err => {
   console.error(err);
 });
@@ -2204,7 +2196,7 @@ getProtocol():Promise\<string>
 
 ```js
 tls.getProtocol().then(data => {
-  console.info(data);
+  console.log(data);
 }).catch(err => {
   console.error(err);
 });
@@ -2272,7 +2264,7 @@ getCipherSuite(): Promise\<Array\<string>>
 
 ```js
 tls.getCipherSuite().then(data => {
-  console.info(data);
+  console.log(data);
 }).catch(err => {
   console.error(err);
 });
@@ -2336,7 +2328,7 @@ getSignatureAlgorithms(): Promise\<Array\<string>>
 
 ```js
 tls.getSignatureAlgorithms().then(data => {
-  console.info(data);
+  console.log(data);
 }).catch(err => {
   console.error(err);
 });
@@ -2499,7 +2491,7 @@ TLS连接的操作。
 | -------------- | ------------------------------------- | ---  |-------------- |
 | address        | [NetAddress](#netaddress)             | 是  |  网关地址。       |
 | secureOptions  | [TLSSecureOptions](#tlssecureoptions9) | 是 | TLS安全相关操作。|
-| ALPNProtocols  | Array\<string>                         | 是 | ALPN协议。      |
+| ALPNProtocols  | Array\<string>                         | 否 | ALPN协议。      |
 
 ## TLSSecureOptions<sup>9+</sup>
 

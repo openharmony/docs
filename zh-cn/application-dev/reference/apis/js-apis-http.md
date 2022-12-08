@@ -490,8 +490,6 @@ flush(callback: AsyncCallback\<void>): void
 **示例：**
 
 ```js
-import http from '@ohos.net.http';
-let httpResponseCache = http.createHttpResponseCache();
 httpResponseCache.flush(err => {
   if (err) {
     console.log('flush fail');
@@ -518,9 +516,7 @@ flush(): Promise\<void>
 **示例：**
 
 ```js
-import http from '@ohos.net.http';
-let httpResponseCache = http.createHttpResponseCache();
-http.flush().then(() => {
+httpResponseCache.flush().then(() => {
   console.log('flush success');
 }).catch(err => {
   console.log('flush fail');
@@ -544,8 +540,6 @@ delete(callback: AsyncCallback\<void>): void
 **示例：**
 
 ```js
-import http from '@ohos.net.http';
-let httpResponseCache = http.createHttpResponseCache();
 httpResponseCache.delete(err => {
   if (err) {
     console.log('delete fail');
@@ -571,9 +565,7 @@ delete(): Promise\<void>
 **示例：**
 
 ```js
-import http from '@ohos.net.http';
-let httpResponseCache = http.createHttpResponseCache();
-httpResponseCache.delete().then() => {
+httpResponseCache.delete().then(() => {
   console.log('delete success');
 }).catch(err => {
   console.log('delete fail');
