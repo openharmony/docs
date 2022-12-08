@@ -157,7 +157,6 @@ connection.getAllNets(function (error, nets) {
 });
 ```
 
-
 ## connection.getAllNets
 
 getAllNets(): Promise&lt;Array&lt;NetHandle&gt;&gt;
@@ -379,7 +378,6 @@ connection.getDefaultNet().then(function (netHandle) {
 });
 ```
 
-
 ## connection.reportNetConnected
 
 reportNetConnected(netHandle: NetHandle): Promise&lt;void&gt;
@@ -412,7 +410,6 @@ connection.getDefaultNet().then(function (netHandle) {
 });
 ```
 
-
 ## connection.reportNetDisconnected
 
 reportNetDisconnected(netHandle: NetHandle, callback: AsyncCallback&lt;void&gt;): void
@@ -440,7 +437,6 @@ connection.getDefaultNet().then(function (netHandle) {
     });
 });
 ```
-
 
 ## connection.reportNetDisconnected
 
@@ -532,7 +528,6 @@ connection.getAddressesByName(host).then(function (addresses) {
 })
 ```
 
-
 ## connection.enableAirplaneMode
 
 enableAirplaneMode(callback: AsyncCallback\<void>): void
@@ -581,7 +576,6 @@ connection.enableAirplaneMode().then(function (error) {
 })
 ```
 
-
 ## connection.disableAirplaneMode
 
 disableAirplaneMode(callback: AsyncCallback\<void>): void
@@ -629,7 +623,6 @@ connection.disableAirplaneMode().then(function (error) {
     console.log(JSON.stringify(error))
 })
 ```
-
 
 ## connection.createNetConnection
 
@@ -887,33 +880,50 @@ bindSocket(socketParam: TCPSocket \| UDPSocket, callback: AsyncCallback\<void>):
 **示例：**
 
 ```js
-connection.getDefaultNet().then(function (netHandle) {
+import socket from "@ohos.net.socket";
+connection.getDefaultNet().then((netHandle)=>{
     var tcp = socket.constructTCPSocketInstance();
     var udp = socket.constructUDPSocketInstance();
-    let socketType = "xxxx";
+    let socketType = "TCPSocket";
     if (socketType == "TCPSocket") {
         tcp.bind({
-            address: "xxxx", port: xxxx, family: xxxx
+            address: '192.168.xx.xxx', port: xxxx, family: 1
         }, err => {
-            netHandle.bindSocket(tcp, function (error, data) {
-            console.log(JSON.stringify(error))
-            console.log(JSON.stringify(data))
+            if (err) {
+                console.log('bind fail');
+            }
+            netHandle.bindSocket(tcp, (error, data)=>{
+                if (error) {
+                    console.log(JSON.stringify(error));
+                } else {
+                    console.log(JSON.stringify(data));
+                }
+            })
         })
     } else {
+        let callback = value => {
+            console.log(TAG + "on message, message:" + value.message + ", remoteInfo:" + value.remoteInfo);
+        }
         udp.on('message', callback);
         udp.bind({
-            address: "xxxx", port: xxxx, family: xxxx
+            address: '192.168.xx.xxx', port: xxxx, family: 1
         }, err => {
+            if (err) {
+                console.log('bind fail');
+            }
             udp.on('message', (data) => {
-            console.log(JSON.stringify(data))
+                console.log(JSON.stringify(data))
             });
-            netHandle.bindSocket(udp, function (error, data) {
-            console.log(JSON.stringify(error))
-            console.log(JSON.stringify(data))
-            });
+            netHandle.bindSocket(udp,(error, data)=>{
+                if (error) {
+                    console.log(JSON.stringify(error));
+                } else {
+                    console.log(JSON.stringify(data));
+                }
+            })
         })
-     }
-}
+    }
+})
 ```
 
 ### bindSocket<sup>9+</sup>
@@ -939,31 +949,50 @@ bindSocket(socketParam: TCPSocket \| UDPSocket): Promise\<void>;
 **示例：**
 
 ```js
-connection.getDefaultNet().then(function (netHandle) {
+import socket from "@ohos.net.socket";
+connection.getDefaultNet().then((netHandle)=>{
     var tcp = socket.constructTCPSocketInstance();
     var udp = socket.constructUDPSocketInstance();
-    let socketType = "xxxx";
-    if(socketType == "TCPSocket") {
+    let socketType = "TCPSocket";
+    if (socketType == "TCPSocket") {
         tcp.bind({
-            address: "xxxx", port: xxxx, family: xxxx
+            address: '192.168.xx.xxx', port: xxxx, family: 1
         }, err => {
-            netHandle.bindSocket(tcp).then(err, data) {
-            console.log(JSON.stringify(data))
+            if (err) {
+                console.log('bind fail');
+            }
+            netHandle.bindSocket(tcp).then((err, data) => {
+                if (err) {
+                    console.log(JSON.stringify(err));
+                } else {
+                    console.log(JSON.stringify(data));
+                }
+            })
         })
     } else {
+        let callback = value => {
+            console.log(TAG + "on message, message:" + value.message + ", remoteInfo:" + value.remoteInfo);
+        }
         udp.on('message', callback);
         udp.bind({
-            address: "xxxx", port: xxxx, family: xxxx
+            address: '192.168.xx.xxx', port: xxxx, family: 1
         }, err => {
+            if (err) {
+                console.log('bind fail');
+            }
             udp.on('message', (data) => {
-            console.log(JSON.stringify(data))
-            });
-            netHandle.bindSocket(tcp).then(err, data) {
-            console.log(JSON.stringify(data))
-            });
+                console.log(JSON.stringify(data));
+            })
+            netHandle.bindSocket(udp).then((err, data) => {
+                if (err) {
+                    console.log(JSON.stringify(err));
+                } else {
+                    console.log(JSON.stringify(data));
+                }
+            })
         })
-     }
-}
+    }
+})
 ```
 
 ### getAddressesByName
