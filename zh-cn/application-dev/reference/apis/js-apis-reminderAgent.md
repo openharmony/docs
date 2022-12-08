@@ -497,7 +497,7 @@ ReminderRequestAlarm extends ReminderRequest
 | -------- | -------- | -------- | -------- |
 | hour | number | 是 | 指明提醒的目标时刻。 |
 | minute | number | 是 | 指明提醒的目标分钟。 |
-| daysOfWeek | Array&lt;number&gt; | 否 | 指明每周哪几天需要重复提醒。 |
+| daysOfWeek | Array&lt;number&gt; | 否 | 指明每周哪几天需要重复提醒。 范围为周一到周末，对应数字为1到7。|
 
 
 ## ReminderRequestTimer
