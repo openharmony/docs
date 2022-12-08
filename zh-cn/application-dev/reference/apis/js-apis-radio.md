@@ -1733,8 +1733,8 @@ on(type: 'imsRegStateChange', slotId: number, imsType: ImsServiceType, callback:
 **示例：**
 
 ```js
-radio.on('imsRegStateChange', 0, radio.ImsServiceType.TYPE_VIDEO, (err, data) => {
-    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+radio.on('imsRegStateChange', 0, radio.ImsServiceType.TYPE_VIDEO, data => {
+    console.log(`callback: data->${JSON.stringify(data)}`);
 });
 ```
 
@@ -1762,8 +1762,8 @@ off(type: 'imsRegStateChange', slotId: number, imsType: ImsServiceType, callback
 **示例：**
 
 ```js
-radio.off('imsRegStateChange', 0, radio.ImsServiceType.TYPE_VIDEO, (err, data) => {
-    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+radio.off('imsRegStateChange', 0, radio.ImsServiceType.TYPE_VIDEO, data => {
+    console.log(`callback: data->${JSON.stringify(data)}`);
 });
 ```
 
