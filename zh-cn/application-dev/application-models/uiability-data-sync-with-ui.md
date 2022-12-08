@@ -11,7 +11,7 @@
 
 ## 使用EventHub进行数据通信
 
-EventHub提供了UIAbility组件/ExtensionAbility组件级别的事件机制，以UIAbility组件/ExtensionAbility组件为中心提供了订阅、取消订阅和触发事件的数据通信能力。接口说明请参见[EventHub](../reference/apis/js-apis-eventhub.md)。
+EventHub提供了UIAbility组件/ExtensionAbility组件级别的事件机制，以UIAbility组件/ExtensionAbility组件为中心提供了订阅、取消订阅和触发事件的数据通信能力。接口说明请参见[EventHub](../reference/apis/js-apis-inner-application-eventHub.md)。
 
 在使用EventHub之前，首先需要获取EventHub对象。[基类Context](application-context-stage.md)提供了EventHub对象，本章节以使用EventHub实现UIAbility与UI之间的数据通信为例进行说明。
 
@@ -219,7 +219,7 @@ globalThis为[ArkTS引擎实例](thread-model-stage.md)下的全局对象，可�
 
 Stage模型上同名对象覆盖导致问题的场景举例说明。
 
-1. 在AbilityA文件中使用globalThis中存放了[UIAbilityContext](../reference/apis/js-apis-ability-context.md)。
+1. 在AbilityA文件中使用globalThis中存放了[UIAbilityContext](../reference/apis/js-apis-inner-application-uiAbilityContext.md)。
 
    ```ts
    import UIAbility from '@ohos.app.ability.UIAbility'
@@ -232,7 +232,7 @@ Stage模型上同名对象覆盖导致问题的场景举例说明。
    }
    ```
 
-2. 在AbilityA的页面中获取该[UIAbilityContext](../reference/apis/js-apis-ability-context.md)并进行使用。使用完成后将AbilityA实例切换至后台。
+2. 在AbilityA的页面中获取该[UIAbilityContext](../reference/apis/js-apis-inner-application-uiAbilityContext.md)并进行使用。使用完成后将AbilityA实例切换至后台。
 
    ```ts
    @Entry
@@ -252,7 +252,7 @@ Stage模型上同名对象覆盖导致问题的场景举例说明。
    }
    ```
 
-3. 在AbilityB文件中使用globalThis中存放了[UIAbilityContext](../reference/apis/js-apis-ability-context.md)，并且命名为相同的名称。
+3. 在AbilityB文件中使用globalThis中存放了[UIAbilityContext](../reference/apis/js-apis-inner-application-uiAbilityContext.md)，并且命名为相同的名称。
 
    ```ts
    import UIAbility from '@ohos.app.ability.UIAbility'
@@ -266,7 +266,7 @@ Stage模型上同名对象覆盖导致问题的场景举例说明。
    }
    ```
 
-4. 在AbilityB的页面中获取该[UIAbilityContext](../reference/apis/js-apis-ability-context.md)并进行使用。此时获取到的globalThis.context已经表示为AbilityB中赋值的[UIAbilityContext](../reference/apis/js-apis-ability-context.md)内容。
+4. 在AbilityB的页面中获取该[UIAbilityContext](../reference/apis/js-apis-inner-application-uiAbilityContext.md)并进行使用。此时获取到的globalThis.context已经表示为AbilityB中赋值的[UIAbilityContext](../reference/apis/js-apis-inner-application-uiAbilityContext.md)内容。
 
    ```ts
    @Entry
@@ -299,7 +299,7 @@ Stage模型上同名对象覆盖导致问题的场景举例说明。
    }
    ```
 
-6. 在AbilityA的页面再次回到前台时，其获取到的globalThis.context表示的为AbilityB的[UIAbilityContext](../reference/apis/js-apis-ability-context.md)，而不是AbilityA的[UIAbilityContext](../reference/apis/js-apis-ability-context.md)，在AbilityA的页面中使用则会出错。
+6. 在AbilityA的页面再次回到前台时，其获取到的globalThis.context表示的为AbilityB的[UIAbilityContext](../reference/apis/js-apis-inner-application-uiAbilityContext.md)，而不是AbilityA的[UIAbilityContext](../reference/apis/js-apis-inner-application-uiAbilityContext.md)，在AbilityA的页面中使用则会出错。
 
    ```ts
    @Entry

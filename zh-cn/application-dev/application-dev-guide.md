@@ -35,7 +35,7 @@
 - [任务管理](task-management/background-task-overview.md)
 - [设备管理](device/usb-overview.md)
 - [设备使用信息统计](device-usage-statistics/device-usage-statistics-overview.md)
-- [DFX](dfx/hiappevent-overview.md)
+- [DFX](dfx/hiappevent-guidelines.md)
 - [国际化](internationalization/international-overview.md)
 - [应用测试](application-test/arkxtest-guidelines.md)
 - [IDL工具规格及使用说明书](IDL/idl-guidelines.md)
@@ -63,7 +63,7 @@ API参考提供了OpenHarmony全量组件和接口的参考文档，可以帮助
 
 - [JS服务卡片UI组件参考](reference/js-service-widget-ui/Readme-CN.md)
 
-- [接口参考（JS及TS API）](reference/apis/js-apis-DataUriUtils.md)
+- [接口参考（JS及TS API）](reference/apis/js-apis-ability-dataUriUtils.md)
 
 - 接口参考（Native API）
     - [OpenHarmony Native API](reference/native-apis/_o_h___native_x_component.md)

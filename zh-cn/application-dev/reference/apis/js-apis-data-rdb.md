@@ -29,7 +29,7 @@ getRdbStoreV9(context: Context, config: StoreConfigV9, version: number, callback
 
 | 参数名   | 类型                                           | 必填 | 说明                                                         |
 | -------- | ---------------------------------------------- | ---- | ------------------------------------------------------------ |
-| context  | Context                                        | 是   | 应用的上下文。 <br>FA模型的应用Context定义见[Context](js-apis-Context.md)。<br>Stage模型的应用Context定义见[Context](js-apis-ability-context.md)。 |
+| context  | Context                                        | 是   | 应用的上下文。 <br>FA模型的应用Context定义见[Context](js-apis-inner-app-context.md)。<br>Stage模型的应用Context定义见[Context](js-apis-ability-context.md)。 |
 | config   | [StoreConfigV9](#storeconfigv99)               | 是   | 与此RDB存储相关的数据库配置。                                |
 | version  | number                                         | 是   | 数据库版本。<br>目前暂不支持通过version自动识别数据库升级降级操作，只能由开发者自行维护。                                                 |
 | callback | AsyncCallback&lt;[RdbStoreV9](#rdbstorev9)&gt; | 是   | 指定callback回调函数，返回RdbStoreV9对象。                   |
@@ -100,7 +100,7 @@ getRdbStoreV9(context: Context, config: StoreConfigV9, version: number): Promise
 
 | 参数名  | 类型                             | 必填 | 说明                                                         |
 | ------- | -------------------------------- | ---- | ------------------------------------------------------------ |
-| context | Context                          | 是   | 应用的上下文。 <br>FA模型的应用Context定义见[Context](js-apis-Context.md)。<br>Stage模型的应用Context定义见[Context](js-apis-ability-context.md)。 |
+| context | Context                          | 是   | 应用的上下文。 <br>FA模型的应用Context定义见[Context](js-apis-inner-app-context.md)。<br>Stage模型的应用Context定义见[Context](js-apis-ability-context.md)。 |
 | config  | [StoreConfigV9](#storeconfigv99) | 是   | 与此RDB存储相关的数据库配置。                                |
 | version | number                           | 是   | 数据库版本。<br>目前暂不支持通过version自动识别数据库升级降级操作，只能由开发者自行维护。                                                 |
 
@@ -174,7 +174,7 @@ deleteRdbStoreV9(context: Context, name: string, callback: AsyncCallback&lt;void
 
 | 参数名   | 类型                      | 必填 | 说明                                                         |
 | -------- | ------------------------- | ---- | ------------------------------------------------------------ |
-| context  | Context                   | 是   | 应用的上下文。 <br>FA模型的应用Context定义见[Context](js-apis-Context.md)。<br>Stage模型的应用Context定义见[Context](js-apis-ability-context.md)。 |
+| context  | Context                   | 是   | 应用的上下文。 <br>FA模型的应用Context定义见[Context](js-apis-inner-app-context.md)。<br>Stage模型的应用Context定义见[Context](js-apis-ability-context.md)。 |
 | name     | string                    | 是   | 数据库名称。                                                 |
 | callback | AsyncCallback&lt;void&gt; | 是   | 指定callback回调函数。                                       |
 
@@ -239,7 +239,7 @@ deleteRdbStoreV9(context: Context, name: string): Promise&lt;void&gt;
 
 | 参数名  | 类型    | 必填 | 说明                                                         |
 | ------- | ------- | ---- | ------------------------------------------------------------ |
-| context | Context | 是   | 应用的上下文。 <br>FA模型的应用Context定义见[Context](js-apis-Context.md)。<br>Stage模型的应用Context定义见[Context](js-apis-ability-context.md)。 |
+| context | Context | 是   | 应用的上下文。 <br>FA模型的应用Context定义见[Context](js-apis-inner-app-context.md)。<br>Stage模型的应用Context定义见[Context](js-apis-ability-context.md)。 |
 | name    | string  | 是   | 数据库名称。                                                 |
 
 **返回值**：
@@ -311,7 +311,7 @@ getRdbStore(context: Context, config: StoreConfig, version: number, callback: As
 
 | 参数名   | 类型                                       | 必填 | 说明                                                         |
 | -------- | ------------------------------------------ | ---- | ------------------------------------------------------------ |
-| context  | Context                                    | 是   | 应用的上下文。 <br>FA模型的应用Context定义见[Context](js-apis-Context.md)。<br>Stage模型的应用Context定义见[Context](js-apis-ability-context.md)。 |
+| context  | Context                                    | 是   | 应用的上下文。 <br>FA模型的应用Context定义见[Context](js-apis-inner-app-context.md)。<br>Stage模型的应用Context定义见[Context](js-apis-ability-context.md)。 |
 | config   | [StoreConfig](#storeconfig)                | 是   | 与此RDB存储相关的数据库配置。                                |
 | version  | number                                     | 是   | 数据库版本。<br>目前暂不支持通过version自动识别数据库升级降级操作，只能由开发者自行维护。                                                 |
 | callback | AsyncCallback&lt;[RdbStore](#rdbstore)&gt; | 是   | 指定callback回调函数，返回RdbStore对象。                     |
@@ -375,7 +375,7 @@ getRdbStore(context: Context, config: StoreConfig, version: number): Promise&lt;
 
 | 参数名  | 类型                        | 必填 | 说明                                                         |
 | ------- | --------------------------- | ---- | ------------------------------------------------------------ |
-| context | Context                     | 是   | 应用的上下文。 <br>FA模型的应用Context定义见[Context](js-apis-Context.md)。<br>Stage模型的应用Context定义见[Context](js-apis-ability-context.md)。 |
+| context | Context                     | 是   | 应用的上下文。 <br>FA模型的应用Context定义见[Context](js-apis-inner-app-context.md)。<br>Stage模型的应用Context定义见[Context](js-apis-ability-context.md)。 |
 | config  | [StoreConfig](#storeconfig) | 是   | 与此RDB存储相关的数据库配置。                                |
 | version | number                      | 是   | 数据库版本。<br>目前暂不支持通过version自动识别数据库升级降级操作，只能由开发者自行维护。                                                 |
 
@@ -442,7 +442,7 @@ deleteRdbStore(context: Context, name: string, callback: AsyncCallback&lt;void&g
 
 | 参数名   | 类型                      | 必填 | 说明                                                         |
 | -------- | ------------------------- | ---- | ------------------------------------------------------------ |
-| context  | Context                   | 是   | 应用的上下文。 <br>FA模型的应用Context定义见[Context](js-apis-Context.md)。<br>Stage模型的应用Context定义见[Context](js-apis-ability-context.md)。 |
+| context  | Context                   | 是   | 应用的上下文。 <br>FA模型的应用Context定义见[Context](js-apis-inner-app-context.md)。<br>Stage模型的应用Context定义见[Context](js-apis-ability-context.md)。 |
 | name     | string                    | 是   | 数据库名称。                                                 |
 | callback | AsyncCallback&lt;void&gt; | 是   | 指定callback回调函数。                                       |
 
@@ -503,7 +503,7 @@ deleteRdbStore(context: Context, name: string): Promise&lt;void&gt;
 
 | 参数名  | 类型    | 必填 | 说明                                                         |
 | ------- | ------- | ---- | ------------------------------------------------------------ |
-| context | Context | 是   | 应用的上下文。 <br>FA模型的应用Context定义见[Context](js-apis-Context.md)。<br>Stage模型的应用Context定义见[Context](js-apis-ability-context.md)。 |
+| context | Context | 是   | 应用的上下文。 <br>FA模型的应用Context定义见[Context](js-apis-inner-app-context.md)。<br>Stage模型的应用Context定义见[Context](js-apis-ability-context.md)。 |
 | name    | string  | 是   | 数据库名称。                                                 |
 
 **返回值**：

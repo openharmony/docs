@@ -239,7 +239,7 @@ export default class MainAbility extends Ability {
 
 卡片业务相关，点下面链接了解。
 
-​        [FormExtensionContext](../reference/apis/js-apis-formextensioncontext.md)
+​        [FormExtensionContext](../reference/apis/js-apis-inner-application-formExtensionContext.md)
 
 ### 在ArkTS页面中访问Context
 

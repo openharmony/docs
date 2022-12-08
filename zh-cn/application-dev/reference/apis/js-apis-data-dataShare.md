@@ -182,7 +182,7 @@ insert(uri: string, value: ValuesBucket, callback: AsyncCallback&lt;number&gt;):
 | 参数名     | 类型                                                      | 必填 | 说明                                                        |
 | -------- | --------------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | uri      | string                                                    | 是   | 指示要插入的数据的路径。                                     |
-| value    | [ValuesBucket](js-apis-data-ValuesBucket.md#valuesbucket) | 是   | 指示要插入的数据。如果此参数为空，将插入一个空行。           |
+| value    | [ValuesBucket](js-apis-data-valuesBucket.md#valuesbucket) | 是   | 指示要插入的数据。如果此参数为空，将插入一个空行。           |
 | callback | AsyncCallback&lt;number&gt;                               | 是   | 回调函数。当将单条数据插入数据库成功，err为undefined，data为获取到的插入数据记录的索引；否则为错误对象。<br />因部分数据库（如KVDB）的相应接口并不支持返回索引，故若服务端使用了不支持索引的数据库，则此callback也无法返回索引值。 |
 
 **示例：**
@@ -221,7 +221,7 @@ insert(uri: string, value: ValuesBucket): Promise&lt;number&gt;
 | 参数名  | 类型                                                      | 必填 | 说明                                               |
 | ----- | --------------------------------------------------------- | ---- | -------------------------------------------------- |
 | uri   | string                                                    | 是   | 指示要插入的数据的路径。                           |
-| value | [ValuesBucket](js-apis-data-ValuesBucket.md#valuesbucket) | 是   | 指示要插入的数据。如果此参数为空，将插入一个空行。 |
+| value | [ValuesBucket](js-apis-data-valuesBucket.md#valuesbucket) | 是   | 指示要插入的数据。如果此参数为空，将插入一个空行。 |
 
 **返回值：**
 
@@ -426,7 +426,7 @@ update(uri: string, predicates: dataSharePredicates.DataSharePredicates, value: 
 | ---------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | uri        | string                                                       | 是   | 指示要更新的数据的路径。                                     |
 | predicates | [dataSharePredicates.DataSharePredicates](js-apis-data-dataSharePredicates.md#datasharepredicates) | 是   | 指示筛选条件。<br />update接口是否支持谓词筛选条件取决于服务端所选用的数据库，如KVDB目前并不支持谓词筛选条件，仅RDB支持。 |
-| value      | [ValuesBucket](js-apis-data-ValuesBucket.md#valuesbucket)    | 是   | 指示要更新的数据。                                           |
+| value      | [ValuesBucket](js-apis-data-valuesBucket.md#valuesbucket)    | 是   | 指示要更新的数据。                                           |
 | callback   | AsyncCallback&lt;number&gt;                                  | 是   | 回调函数。当更新数据库中的数据记录成功，err为undefined，data为获取到的更新的数据记录数；否则为错误对象。<br />因部分数据库（如KVDB）的相应接口并不提供相应支持，故若服务端使用此数据库，则此callback也无法返回更新的数据记录数。 |
 
 **示例：**
@@ -471,7 +471,7 @@ update(uri: string, predicates: dataSharePredicates.DataSharePredicates, value: 
 | ---------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | uri        | string                                                       | 是   | 指示要更新的数据的路径。                                     |
 | predicates | [dataSharePredicates.DataSharePredicates](js-apis-data-dataSharePredicates.md#datasharepredicates) | 是   | 指示筛选条件。<br />update接口是否支持谓词筛选条件取决于服务端所选用的数据库，如KVDB目前并不支持谓词筛选条件，仅RDB支持。 |
-| value      | [ValuesBucket](js-apis-data-ValuesBucket.md#valuesbucket)    | 是   | 指示要更新的数据。                                           |
+| value      | [ValuesBucket](js-apis-data-valuesBucket.md#valuesbucket)    | 是   | 指示要更新的数据。                                           |
 
 **返回值：**
 
@@ -518,7 +518,7 @@ batchInsert(uri: string, values: Array&lt;ValuesBucket&gt;, callback: AsyncCallb
 | 参数名     | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | uri      | string                                                       | 是   | 指示要插入的数据的路径。                                     |
-| values   | Array&lt;[ValuesBucket](js-apis-data-ValuesBucket.md#valuesbucket)&gt; | 是   | 指示要插入的数据。                                           |
+| values   | Array&lt;[ValuesBucket](js-apis-data-valuesBucket.md#valuesbucket)&gt; | 是   | 指示要插入的数据。                                           |
 | callback | AsyncCallback&lt;number&gt;                                  | 是   | 回调函数。当将批量数据插入数据库成功，err为undefined，data为获取到的插入的数据记录数；否则为错误对象。<br />因部分数据库（如KVDB）的相应接口并不提供相应支持，故若服务端使用此数据库，则此Promise也无法返回插入的数据记录数。 |
 
 **示例：**
@@ -555,7 +555,7 @@ batchInsert(uri: string, values: Array&lt;ValuesBucket&gt;): Promise&lt;number&g
 | 参数名   | 类型                                                         | 必填 | 说明                     |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------ |
 | uri    | string                                                       | 是   | 指示要插入的数据的路径。 |
-| values | Array&lt;[ValuesBucket](js-apis-data-ValuesBucket.md#valuesbucket)&gt; | 是   | 指示要插入的数据。       |
+| values | Array&lt;[ValuesBucket](js-apis-data-valuesBucket.md#valuesbucket)&gt; | 是   | 指示要插入的数据。       |
 
 **返回值：**
 

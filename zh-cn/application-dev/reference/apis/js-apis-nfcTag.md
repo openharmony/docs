@@ -318,7 +318,7 @@ getNdefFormatable(tagInfo: [TagInfo](#taginfo)): [NdefFormatableTag](js-apis-nfc
 
 ## tag.getTagInfo<sup>9+</sup>
 
-getTagInfo(want: [Want](js-apis-application-Want.md#Want)): [TagInfo](#taginfo)
+getTagInfo(want: [Want](js-apis-app-ability-want.md#Want)): [TagInfo](#taginfo)
 
 从Want中获取TagInfo，Want是被NFC服务初始化，包含了TagInfo所需的属性值。
 
@@ -328,7 +328,7 @@ getTagInfo(want: [Want](js-apis-application-Want.md#Want)): [TagInfo](#taginfo)
 
 | 参数名       | 类型                        | 必填   | 说明                                       |
 | --------- | ------------------------- | ---- | ---------------------------------------- |
-| want      | [Want](js-apis-application-Want.md#Want)                   | 是    | 分发Ability时，在系统onCreate入口函数的参数中获取。                              |
+| want      | [Want](js-apis-app-ability-want.md#Want)                   | 是    | 分发Ability时，在系统onCreate入口函数的参数中获取。                              |
 
 **返回值：**
 
@@ -626,7 +626,7 @@ NFC服务在读取到标签时给出的对象，通过改对象属性，应用�
 | uid<sup>9+</sup> | number[] | 是 | 否 | 标签的uid，每个number值是十六进制表示，范围是0x00~0xFF。|
 | technology<sup>9+</sup> | number[] | 是 | 否 | 支持的技术类型，每个number值表示所支持技术类型的常量值。 |
 | supportedProfiles | number[] | 是 | 否 |  支持的技术类型，从API9开始不支持，使用[tag.TagInfo#technology](#taginfo)替代。|
-| extrasData<sup>9+</sup> | [PacMap](js-apis-dataAbilityHelper.md#pacmap)[] | 是 | 否 |  标签所支持技术的扩展属性值。<br>**系统接口：** 此接口为系统接口。|
+| extrasData<sup>9+</sup> | [PacMap](js-apis-inner-ability-dataAbilityHelper.md#pacmap)[] | 是 | 否 |  标签所支持技术的扩展属性值。<br>**系统接口：** 此接口为系统接口。|
 | tagRfDiscId<sup>9+</sup> | number | 是 | 否 |  标签发现时分配的ID值。<br>**系统接口：** 此接口为系统接口。|
 | remoteTagService<sup>9+</sup> | [rpc.RemoteObject](js-apis-rpc.md#remoteobject) | 是 | 否 | NFC服务进程的远端对象，用于客户端和服务之间的接口通信。<br>**系统接口：** 此接口为系统接口。|
 ## NdefRecord<sup>9+</sup>

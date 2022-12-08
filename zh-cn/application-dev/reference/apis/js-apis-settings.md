@@ -703,7 +703,7 @@ getValueSync(dataAbilityHelper: DataAbilityHelper, name: string, defValue: strin
 
 | 参数名            | 类型                                              | 必填 | 说明                                                         |
 | ----------------- | ------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| dataAbilityHelper | [DataAbilityHelper](js-apis-dataAbilityHelper.md) | 是   | 数据管理辅助类。                                             |
+| dataAbilityHelper | [DataAbilityHelper](js-apis-inner-ability-dataAbilityHelper.md) | 是   | 数据管理辅助类。                                             |
 | name              | string                                            | 是   | 数据项的名称。数据项名称分为以下两种：<br>- 上述任意一个数据库中已存在的数据项。<br>- 开发者自行添加的数据项。 |
 | defValue          | string                                            | 是   | 默认值。由开发者设置，当未从数据库中查询到该数据时，表示返回该默认值。 |
 
@@ -742,7 +742,7 @@ setValueSync(dataAbilityHelper: DataAbilityHelper, name: string, value: string):
 
 | 参数名            | 类型                                              | 必填 | 说明                                                         |
 | ----------------- | ------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| dataAbilityHelper | [DataAbilityHelper](js-apis-dataAbilityHelper.md) | 是   | 数据管理辅助类。                                             |
+| dataAbilityHelper | [DataAbilityHelper](js-apis-inner-ability-dataAbilityHelper.md) | 是   | 数据管理辅助类。                                             |
 | name              | string                                            | 是   | 数据项的名称。数据项名称分为以下两种：<br>- 上述任意一个数据库中已存在的数据项。<br>- 开发者自行添加的数据项。 |
 | value             | string                                            | 是   | 数据项的具体数值。取值范围随业务变动。                       |
 

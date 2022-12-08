@@ -1,4 +1,4 @@
-# SysCap列表
+# 系统能力SystemCapability列表
 
 SysCap，全称SystemCapability，即系统能力，指操作系统中每一个相对独立的特性。
 

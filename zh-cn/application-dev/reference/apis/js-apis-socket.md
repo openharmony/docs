@@ -1966,6 +1966,7 @@ getRemoteAddress\(callback: AsyncCallback<NetAddress\>\): void
 **错误码：**
 
 | 错误码ID | 错误信息                        |
+| ------- | -----------------------------  |
 | 2303188 | Socket operation on non-socket.|
 | 2300002 | System internal error.         |
 
@@ -1998,6 +1999,7 @@ getRemoteAddress\(\): Promise\<NetAddress>
 **错误码：**
 
 | 错误码ID | 错误信息                        |
+| ------- | ------------------------------ |
 | 2303188 | Socket operation on non-socket.|
 | 2300002 | System internal error.         |
 
@@ -2029,6 +2031,7 @@ getCertificate(callback: AsyncCallback\<[X509CertRawData](#x509certrawdata9)>): 
 **错误码：**
 
 | 错误码ID | 错误信息                        |
+| ------- | ------------------------------ |
 | 2303501 | SSL is null.                   |
 | 2303504 | Error looking up x509.         |
 | 2300002 | System internal error.         |
@@ -2062,6 +2065,7 @@ getCertificate():Promise\<[X509CertRawData](#x509certrawdata9)>
 **错误码：**
 
 | 错误码ID | 错误信息                        |
+| ------- | ------------------------------ |
 | 2303501 | SSL is null.                   |
 | 2303504 | Error looking up x509.         |
 | 2300002 | System internal error.         |

@@ -3,7 +3,7 @@
 
 ## 概述
 
-[Context](../reference/apis/js-apis-application-context.md)是应用中对象的上下文，其提供了应用的一些基础信息，例如resourceManager（资源管理）、applicationInfo（当前应用信息）、dir（应用开发路径）、area（文件分区）等，以及应用的一些基本方法，例如createBundleContext()、getApplicationContext()等。UIAbility组件和各种ExtensionAbility派生类组件都有各自不同的Context类。分别有基类Context、ApplicationContext、AbilityStageContext、UIAbilityContext、ExtensionContext、ServiceExtensionContext等Context。
+[Context](../reference/apis/js-apis-inner-application-context.md)是应用中对象的上下文，其提供了应用的一些基础信息，例如resourceManager（资源管理）、applicationInfo（当前应用信息）、dir（应用开发路径）、area（文件分区）等，以及应用的一些基本方法，例如createBundleContext()、getApplicationContext()等。UIAbility组件和各种ExtensionAbility派生类组件都有各自不同的Context类。分别有基类Context、ApplicationContext、AbilityStageContext、UIAbilityContext、ExtensionContext、ServiceExtensionContext等Context。
 
 - 各类Context的继承关系
   <img src="figures/context-inheritance.png" alt="context-inheritance" style="zoom: 50%;" />
@@ -12,7 +12,7 @@
   <img src="figures/context-holding.png" alt="context-holding" style="zoom:50%;" />
 
 - 各类Context的获取方式
-  - 获取[UIAbilityContext](../reference/apis/js-apis-ability-context.md)。每个UIAbility中都包含了一个Context属性，提供操作Ability、获取Ability的配置信息、应用向用户申请授权等能力。
+  - 获取[UIAbilityContext](../reference/apis/js-apis-inner-application-uiAbilityContext.md)。每个UIAbility中都包含了一个Context属性，提供操作Ability、获取Ability的配置信息、应用向用户申请授权等能力。
     
      ```ts
      import UIAbility from '@ohos.app.ability.UIAbility';
@@ -23,7 +23,7 @@
          }
      }
      ```
-  - 获取特定场景[ExtensionContext](../reference/apis/js-apis-extension-context.md)。以ServiceExtensionContext为例，表示后台服务的上下文环境，继承自ExtensionContext，提供后台服务相关的接口能力。
+  - 获取特定场景[ExtensionContext](../reference/apis/js-apis-inner-application-extensionContext.md)。以ServiceExtensionContext为例，表示后台服务的上下文环境，继承自ExtensionContext，提供后台服务相关的接口能力。
     
      ```ts
      import ServiceExtensionAbility from '@ohos.app.ability.ServiceExtensionAbility';
@@ -34,7 +34,7 @@
          }
      }
      ```
-  - 获取[AbilityStageContext](../reference/apis/js-apis-abilitystagecontext.md)。Module级别的Context，和基类Context相比，额外提供HapModuleInfo、Configuration等信息。
+  - 获取[AbilityStageContext](../reference/apis/js-apis-inner-application-abilityStageContext.md)。Module级别的Context，和基类Context相比，额外提供HapModuleInfo、Configuration等信息。
     
      ```ts
      import AbilityStage from "@ohos.app.ability.AbilityStage";
@@ -45,7 +45,7 @@
          }
      }
      ```
-  - 获取[ApplicationContext](../reference/apis/js-apis-application-applicationContext.md)。应用级别的Context。ApplicationContext在基类Context的基础上提供了订阅应用内Ability的生命周期的变化、订阅系统内存变化和订阅应用内系统环境的变化的能力，在UIAbility、ExtensionAbility、AbilityStage中均可以获取。
+  - 获取[ApplicationContext](../reference/apis/js-apis-inner-application-applicationContext.md)。应用级别的Context。ApplicationContext在基类Context的基础上提供了订阅应用内Ability的生命周期的变化、订阅系统内存变化和订阅应用内系统环境的变化的能力，在UIAbility、ExtensionAbility、AbilityStage中均可以获取。
     
      ```ts
      import UIAbility from '@ohos.app.ability.UIAbility';
@@ -141,7 +141,7 @@ export default class EntryAbility extends UIAbility {
 
 ### 获取和修改加密分区
 
-上一个场景中，引入了加密等级的概念，通过对[Context的area属性](../reference/apis/js-apis-application-context.md)的读写来实现获取和设置当前加密分区，支持如下两种加密等级：
+上一个场景中，引入了加密等级的概念，通过对[Context的area属性](../reference/apis/js-apis-inner-application-context.md)的读写来实现获取和设置当前加密分区，支持如下两种加密等级：
 
 - AreaMode.EL1：设备级加密区，设备开机后可访问的数据区。
 
@@ -170,7 +170,7 @@ export default class EntryAbility extends UIAbility {
 
 ### 创建其他应用或其他Module的Context
 
-基类Context提供创建其他应用或其他Module的Context的方法有[createBundleContext(bundleName:string)](../reference/apis/js-apis-application-context.md#contextcreatebundlecontext)、[createModuleContext(moduleName:string)](../reference/apis/js-apis-application-context.md#contextcreatemodulecontext)和[createModuleContext(bundleName:string, moduleName:string)](../reference/apis/js-apis-application-context.md#contextcreatemodulecontext-1)接口，创建其他应用或者其他Module的Context，从而通过该Context获取相应的资源信息（例如获取其他Module的[获取应用开发路径](#获取应用开发路径)信息）。
+基类Context提供创建其他应用或其他Module的Context的方法有[createBundleContext(bundleName:string)](../reference/apis/js-apis-inner-application-context.md#contextcreatebundlecontext)、[createModuleContext(moduleName:string)](../reference/apis/js-apis-inner-application-context.md#contextcreatemodulecontext)和[createModuleContext(bundleName:string, moduleName:string)](../reference/apis/js-apis-inner-application-context.md#contextcreatemodulecontext-1)接口，创建其他应用或者其他Module的Context，从而通过该Context获取相应的资源信息（例如获取其他Module的[获取应用开发路径](#获取应用开发路径)信息）。
 
 - 调用createBundleContext(bundleName:string)方法，创建其他应用的Context信息。
   > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
@@ -235,7 +235,7 @@ export default class EntryAbility extends UIAbility {
 
 在应用内的DFX统计场景，如需要统计对应页面停留时间和访问频率等信息，可以使用订阅进程内Ability生命周期变化功能。
 
-在进程内Ability生命周期变化时，如创建、可见/不可见、获焦/失焦、销毁等，会触发进入相应的回调，其中返回的此次注册监听生命周期的ID（每次注册该ID会自增+1，当超过监听上限数量2^63-1时，返回-1），以在[UIAbilityContext](../reference/apis/js-apis-ability-context.md)中使用为例进行说明。
+在进程内Ability生命周期变化时，如创建、可见/不可见、获焦/失焦、销毁等，会触发进入相应的回调，其中返回的此次注册监听生命周期的ID（每次注册该ID会自增+1，当超过监听上限数量2^63-1时，返回-1），以在[UIAbilityContext](../reference/apis/js-apis-inner-application-uiAbilityContext.md)中使用为例进行说明。
 
 
 ```ts

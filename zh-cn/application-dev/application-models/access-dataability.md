@@ -201,4 +201,4 @@
    ```
 
 
-DataAbility的客户端的接口是由工具接口类对象DataAbilityHelper向外提供，相关接口可参考[DataAbilityHelper模块](../reference/apis/js-apis-dataAbilityHelper.md)。
+DataAbility的客户端的接口是由工具接口类对象DataAbilityHelper向外提供，相关接口可参考[DataAbilityHelper模块](../reference/apis/js-apis-inner-ability-dataAbilityHelper.md)。

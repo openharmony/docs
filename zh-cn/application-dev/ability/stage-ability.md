@@ -1,6 +1,6 @@
 # Ability开发指导
 ## 场景介绍
-Stage模型是区别于FA模型的一种应用开发模型，对此模型的介绍详见[Stage模型综述](stage-brief.md)。开发Stage模型应用时，需要在module.json5和app.json5配置文件中对应用的包结构进行声明，对应用包结构配置文件的说明详见[应用包结构配置文件的说明](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/quick-start/stage-structure.md)。基于Stage模型的Ability应用开发，主要涉及如下功能逻辑：
+Stage模型是区别于FA模型的一种应用开发模型，对此模型的介绍详见[Stage模型综述](stage-brief.md)。开发Stage模型应用时，需要在module.json5和app.json5配置文件中对应用的包结构进行声明，对应用包结构配置文件的说明详见[应用包结构配置文件的说明](../quick-start/application-package-structure-stage.md)。基于Stage模型的Ability应用开发，主要涉及如下功能逻辑：
 - 创建支持使用屏幕浏览及人机交互的Ability应用，包括实现Ability的生命周期、获取Ability配置信息、向用户申请授权及环境变化通知等场景。
 - 启动Ability应用，包括相同设备启动Ability、跨设备启动Ability以及指定页面启动Ability等场景。
 - 通用组件Call功能，详见[Call调用开发指导](stage-call.md)。
@@ -30,7 +30,7 @@ Ability支持单实例、多实例和指定实例3种启动模式，在module.js
 ```
 ## 创建Ability
 ### 接口说明
-AbilityStage功能如下（AbilityStage类，拥有context属性，具体的API详见[接口文档](../reference/apis/js-apis-application-abilitystage.md)）：
+AbilityStage功能如下（AbilityStage类，拥有context属性，具体的API详见[接口文档](../reference/apis/js-apis-app-ability-abilityStage.md)）：
 
 **表1** AbilityStage API接口功能介绍
 |接口名|描述|

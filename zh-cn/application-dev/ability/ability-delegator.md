@@ -46,15 +46,15 @@ DevEco Studio启动相关介绍见 [OpenHarmony测试框架](https://developer.h
 
 ## TestRunner介绍
 
-TestRunner是测试框架测试流程入口类。当测试流程启动时，系统会调用TestRunner内相关接口，开发者需要派生该类，并重写onPrepare、onRun方法。DevEco Studio在创建应用模板时会初始化一个默认TestRunner，并在onRun方法启动默认的TestAbility。开发者也可以修改TestAbility测试代码内容，也可以修改默认的TestRunner内onPrepare、onRun方法，自行实现测试代码。具体详细内容请参考TestRunnerAPI接口说明[TestRunner](../reference/apis/js-apis-testRunner.md)。
+TestRunner是测试框架测试流程入口类。当测试流程启动时，系统会调用TestRunner内相关接口，开发者需要派生该类，并重写onPrepare、onRun方法。DevEco Studio在创建应用模板时会初始化一个默认TestRunner，并在onRun方法启动默认的TestAbility。开发者也可以修改TestAbility测试代码内容，也可以修改默认的TestRunner内onPrepare、onRun方法，自行实现测试代码。具体详细内容请参考TestRunnerAPI接口说明[TestRunner](../reference/apis/js-apis-application-testRunner.md)。
 
 ## AbilityDelegatorRegistry介绍
 
-AbilityDelegatorRegistry是测试框架提供的AbilityDelegator仓库类。开发者可以使用AbilityDelegatorRegistry获取AbilityDelegator实例以及执行此次测试时传入和生成的相关参数AbilityDelegatorArgs。开发者可以使用AbilityDelegator调用测试框架提供的函数集进行测试验证。具体详细内容请参考AbilityDelegatorRegistry API接口说明[AbilityDelegatorRegistry](../reference/apis/js-apis-abilityDelegatorRegistry.md)。
+AbilityDelegatorRegistry是测试框架提供的AbilityDelegator仓库类。开发者可以使用AbilityDelegatorRegistry获取AbilityDelegator实例以及执行此次测试时传入和生成的相关参数AbilityDelegatorArgs。开发者可以使用AbilityDelegator调用测试框架提供的函数集进行测试验证。具体详细内容请参考AbilityDelegatorRegistry API接口说明[AbilityDelegatorRegistry](../reference/apis/js-apis-application-abilityDelegatorRegistry.md)。
 
 ## AbilityDelegatorArgs介绍
 
-AbilityDelegatorArgs是测试框架提供的测试参数类。开发者可以使用AbilityDelegatorArgs获取执行此次测试时传入和生成的相关参数。具体详细内容请参考AbilityDelegatorArgs API接口说明[AbilityDelegatorArgs](../reference/apis/js-apis-application-abilityDelegatorArgs.md)。
+AbilityDelegatorArgs是测试框架提供的测试参数类。开发者可以使用AbilityDelegatorArgs获取执行此次测试时传入和生成的相关参数。具体详细内容请参考AbilityDelegatorArgs API接口说明[AbilityDelegatorArgs](../reference/apis/js-apis-inner-application-abilityDelegatorArgs.md)。
 
 ## AbilityMonitor介绍
 
@@ -131,7 +131,7 @@ abilityDelegator.startAbility(want, (err, data) => {
 
 ### 调度Ability生命周期
 
-AbilityDelegator提供对Ability生命周期进行显示调度的能力，支持Foreground、Background，配合AbilityMonitor中对Ability生命周期监听方法，可以完整的测试Ability生命周期变化。具体详细内容请参考AbilityDelegator API接口说明[AbilityDelegator](../reference/apis/js-apis-application-abilityDelegator.md)。
+AbilityDelegator提供对Ability生命周期进行显示调度的能力，支持Foreground、Background，配合AbilityMonitor中对Ability生命周期监听方法，可以完整的测试Ability生命周期变化。具体详细内容请参考AbilityDelegator API接口说明[AbilityDelegator](../reference/apis/js-apis-inner-application-abilityDelegator.md)。
 
 ### 执行shellCMD命令
 

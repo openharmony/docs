@@ -30,7 +30,7 @@
 一个UIAbility实例对应一个单独的任务，因此应用调用startAbility()方法启动一个UIAbility时，就是创建了一个任务。
 
 
-桌面应用调用[missionManager](../reference/apis/js-apis-missionManager.md)的接口管理任务，需要申请`ohos.permission.MANAGE_MISSIONS`权限，配置方式请参阅[访问控制授权申请指导](../security/accesstoken-guidelines.md#stage模型)。
+桌面应用调用[missionManager](../reference/apis/js-apis-application-missionManager.md)的接口管理任务，需要申请`ohos.permission.MANAGE_MISSIONS`权限，配置方式请参阅[访问控制授权申请指导](../security/accesstoken-guidelines.md#stage模型)。
 
 
 利用missionManager进行任务管理（监听任务变化、获取任务信息、获取任务快照、清理任务、任务加锁/解锁等），示例代码如下：
