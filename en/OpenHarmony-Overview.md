@@ -156,7 +156,7 @@ Currently, the OpenHarmony community supports 17 types of development boards, wh
 
 ## Getting Started
 
-- [Getting Started for Device Development](device-dev/quick-start/quickstart-ide-lite-overview.md)
+- [Getting Started for Device Development](device-dev/quick-start/quickstart-overview.md)
 - [Getting Started for Application Development](application-dev/quick-start/start-overview.md)
 
 
