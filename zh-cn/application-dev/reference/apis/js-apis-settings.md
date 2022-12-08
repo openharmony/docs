@@ -372,9 +372,11 @@ let urivar = settings.getUriSync(settings.display.SCREEN_BRIGHTNESS_STATUS);
 
 getValue(context: Context, name: string, callback: AsyncCallback\<string>): void
 
-stage模型使用。获取数据库中指定数据项的值。使用callback异步回调。
+获取数据库中指定数据项的值。使用callback异步回调。
 
 **系统能力**：SystemCapability.Applications.settings.Core
+
+**模型约束**：此接口仅可在Stage模型下使用。
 
 **参数**：
 
@@ -400,9 +402,11 @@ settings.getValue(this.context, settings.display.SCREEN_BRIGHTNESS_STATUS, (err,
 
 getValue(context: Context, name: string): Promise\<string>
 
-stage模型使用。获取数据库中指定数据项的值。使用Promise异步回调。
+获取数据库中指定数据项的值。使用Promise异步回调。
 
 **系统能力**：SystemCapability.Applications.settings.Core
+
+**模型约束**：此接口仅可在Stage模型下使用。
 
 **参数**：
 
@@ -430,9 +434,11 @@ settings.getValue(this.context, settings.display.SCREEN_BRIGHTNESS_STATUS)
 
 getValueSync(context: Context, name: string, defValue: string): string
 
-stage模型使用。获取数据项的值。此方法相较getValue为同步方法。
+获取数据项的值。此方法相较getValue为同步方法。
 
 **系统能力**：SystemCapability.Applications.settings.Core
+
+**模型约束**：此接口仅可在Stage模型下使用。
 
 **参数**：
 
@@ -459,11 +465,13 @@ let value = settings.getValueSync(this.context, settings.display.SCREEN_BRIGHTNE
 
 setValue(context: Context, name: string, value: string, callback: AsyncCallback\<boolean>): void
 
-stage模型使用。将数据项名称及数据项的值保存到数据库中。使用callback异步回调。
+将数据项名称及数据项的值保存到数据库中。使用callback异步回调。
 
 **需要权限**：ohos.permission.MANAGE_SECURE_SETTINGS，仅系统应用可用。
 
 **系统能力**：SystemCapability.Applications.settings.Core
+
+**模型约束**：此接口仅可在Stage模型下使用。
 
 **参数**：
 
@@ -486,11 +494,13 @@ settings.setValue(this.context, settings.display.SCREEN_BRIGHTNESS_STATUS, '100'
 
 setValue(context: Context, name: string, value: string): Promise\<boolean>
 
-stage模型使用。将数据项名称及数据项的值保存到数据库中。使用Promise异步回调。
+将数据项名称及数据项的值保存到数据库中。使用Promise异步回调。
 
 **需要权限**：ohos.permission.MANAGE_SECURE_SETTINGS，仅系统应用可用。
 
 **系统能力**：SystemCapability.Applications.settings.Core
+
+**模型约束**：此接口仅可在Stage模型下使用。
 
 **参数**：
 
@@ -518,13 +528,15 @@ settings.setValue(helper, settings.display.SCREEN_BRIGHTNESS_STATUS, '100').then
 
 setValueSync(context: Context, name: string, value: string): boolean
 
-stage模型使用。设置数据项的值。此方法相较setValue为同步方法。
+设置数据项的值。此方法相较setValue为同步方法。
 
 如果数据库中已经存在该数据项，则setValueSync方法将更新该数据项的值；如果数据库中尚未存在该数据项，则setValueSync方法将向数据库中插入该数据项。
 
 **需要权限**：ohos.permission.MANAGE_SECURE_SETTINGS，仅系统应用可用。
 
 **系统能力**：SystemCapability.Applications.settings.Core
+
+**模型约束**：此接口仅可在Stage模型下使用。
 
 **参数**：
 
@@ -547,15 +559,17 @@ stage模型使用。设置数据项的值。此方法相较setValue为同步方�
 let ret = settings.setValueSync(this.context, settings.display.SCREEN_BRIGHTNESS_STATUS, '100');
 ```
 
-## setting.getValue<sup>deprecated</sup>
+## setting.getValue<sup>(deprecated)</sup>
 
-> 从API version 9开始不再维护，建议使用stage模型的对应接口。
+> 从API version 7开始支持，从API version 9开始废弃，推荐使用[getValue()](#settinggetvalue9)。
 
 getValue(dataAbilityHelper: DataAbilityHelper, name: string, callback: AsyncCallback\<string>): void
 
 获取数据库中指定数据项的值。使用callback异步回调。
 
 **系统能力**：SystemCapability.Applications.settings.Core
+
+**模型约束**：此接口仅可在FA模型下使用。
 
 **参数**：
 
@@ -581,15 +595,17 @@ settings.getValue(helper, settings.display.SCREEN_BRIGHTNESS_STATUS, (err, value
 });
 ```
 
-## setting.getValue<sup>deprecated</sup>
+## setting.getValue<sup>(deprecated)</sup>
 
-> 从API version 9开始不再维护，建议使用stage模型的对应接口。
+> 从API version 7开始支持，从API version 9开始废弃，推荐使用[getValue()](#settinggetvalue9-1)。
 
 getValue(dataAbilityHelper: DataAbilityHelper, name: string): Promise\<string>
 
 获取数据库中指定数据项的值。使用Promise异步回调。
 
 **系统能力**：SystemCapability.Applications.settings.Core
+
+**模型约束**：此接口仅可在FA模型下使用。
 
 **参数**：
 
@@ -616,9 +632,9 @@ settings.getValue(helper, settings.display.SCREEN_BRIGHTNESS_STATUS).then((value
 });
 ```
 
-## settings.setValue<sup>deprecated</sup>
+## settings.setValue<sup>(deprecated)</sup>
 
-> 从API version 9开始不再维护，建议使用stage模型的对应接口。
+> 从API version 7开始支持，从API version 9开始废弃，推荐使用[setValue()](#settingssetvalue9)。
 
 setValue(dataAbilityHelper: DataAbilityHelper, name: string, value: string, callback: AsyncCallback\<boolean>): void
 
@@ -627,6 +643,8 @@ setValue(dataAbilityHelper: DataAbilityHelper, name: string, value: string, call
 **系统接口**：此接口为系统接口。
 
 **系统能力**：SystemCapability.Applications.settings.Core
+
+**模型约束**：此接口仅可在FA模型下使用。
 
 **参数**：
 
@@ -650,9 +668,9 @@ settings.setValue(helper, settings.display.SCREEN_BRIGHTNESS_STATUS, '100', (res
 });
 ```
 
-## settings.setValue<sup>deprecated</sup>
+## settings.setValue<sup>(deprecated)</sup>
 
-> 从API version 9开始不再维护，建议使用stage模型的对应接口。
+> 从API version 7开始支持，从API version 9开始废弃，推荐使用[setValue()](#settingssetvalue9-1)。
 
 setValue(dataAbilityHelper: DataAbilityHelper, name: string, value: string): Promise\<boolean>
 
@@ -661,6 +679,8 @@ setValue(dataAbilityHelper: DataAbilityHelper, name: string, value: string): Pro
 **系统接口**：此接口为系统接口。
 
 **系统能力**：SystemCapability.Applications.settings.Core
+
+**模型约束**：此接口仅可在FA模型下使用。
 
 **参数**：
 
@@ -689,15 +709,17 @@ settings.setValue(helper, settings.display.SCREEN_BRIGHTNESS_STATUS, '100').then
 });
 ```
 
-## settings.getValueSync<sup>8+</sup> <sup>deprecated</sup>
+## settings.getValueSync<sup>(deprecated)</sup>
 
-> 从API version 9开始不再维护，建议使用stage模型的对应接口。
+> 从API version 8开始支持，从API version 9开始废弃，推荐使用[getValueSync()](#settingsgetvaluesync9)。
 
 getValueSync(dataAbilityHelper: DataAbilityHelper, name: string, defValue: string): string
 
 获取数据项的值。此方法相较getValue为同步方法。
 
 **系统能力**：SystemCapability.Applications.settings.Core
+
+**模型约束**：此接口仅可在FA模型下使用。
 
 **参数**：
 
@@ -724,9 +746,9 @@ let helper = featureAbility.acquireDataAbilityHelper(uri);
 let value = settings.getValueSync(helper, settings.display.SCREEN_BRIGHTNESS_STATUS, '10');
 ```
 
-## settings.setValueSync<sup>8+</sup> <sup>deprecated</sup>
+## settings.setValueSync<sup>(deprecated)</sup>
 
-> 从API version 9开始不再维护，建议使用stage模型的对应接口。
+> 从API version 8开始支持，从API version 9开始废弃，推荐使用[setValueSync()](#settingssetvaluesync9)。
 
 setValueSync(dataAbilityHelper: DataAbilityHelper, name: string, value: string): boolean
 
@@ -737,6 +759,8 @@ setValueSync(dataAbilityHelper: DataAbilityHelper, name: string, value: string):
 **需要权限**：ohos.permission.MANAGE_SECURE_SETTINGS，仅系统应用可用。
 
 **系统能力**：SystemCapability.Applications.settings.Core
+
+**模型约束**：此接口仅可在FA模型下使用。
 
 **参数**：
 
