@@ -931,7 +931,7 @@ getDenominator​(): number
 
 ```js
 let rationalNumber = new util.RationalNumber(1,2);
-lett result = rationalNumber.getDenominator();
+let result = rationalNumber.getDenominator();
 ```
 
 ### isZero<sup>8+</sup>
