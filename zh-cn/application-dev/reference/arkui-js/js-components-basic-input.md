@@ -125,16 +125,16 @@
    
    ```js
    // xxx.js
-   import prompt from '@system.prompt'
+   import promptAction from '@ohos.promptAction'
    export default {
      change(e){
-       prompt.showToast({
+       promptAction.showToast({
          message: "value: " + e.value,
          duration: 3000,
        });
      },
      enterkeyClick(e){
-       prompt.showToast({
+       promptAction.showToast({
          message: "enterkey clicked",
          duration: 3000,
        });
@@ -192,10 +192,10 @@
 
    ```js
    // xxx.js
-   import prompt from '@system.prompt'
+   import promptAction from '@ohos.promptAction'
    export default {
      checkboxOnChange(e) {
-       prompt.showToast({
+       promptAction.showToast({
          message:'checked: ' + e.checked,
          duration: 3000,
        });
@@ -227,11 +227,11 @@
 
    ```js
    // xxx.js
-   import prompt from '@system.prompt'
+   import promptAction from '@ohos.promptAction'
    export default {
      onRadioChange(inputValue, e) {
        if (inputValue === e.value) {
-         prompt.showToast({
+         promptAction.showToast({
            message: 'The chosen radio is ' + e.value,
            duration: 3000,
          });

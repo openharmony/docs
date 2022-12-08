@@ -216,7 +216,7 @@
            .height('5%')
            // 跳转按钮绑定onClick事件，点击时跳转到第二页
            .onClick(() => {
-             router.push({ url: 'pages/Second' })
+             router.pushUrl({ url: 'pages/Second' })
            })
          }
          .width('100%')
