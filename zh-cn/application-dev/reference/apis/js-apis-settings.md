@@ -561,7 +561,7 @@ getValue(dataAbilityHelper: DataAbilityHelper, name: string, callback: AsyncCall
 
 | 参数名            | 类型                                              | 必填 | 说明                                                         |
 | ----------------- | ------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| dataAbilityHelper | [DataAbilityHelper](js-apis-dataAbilityHelper.md) | 是   | 数据管理辅助类。                                             |
+| dataAbilityHelper | [DataAbilityHelper](js-apis-inner-ability-dataAbilityHelper.md) | 是   | 数据管理辅助类。                                             |
 | name              | string                                            | 是   | 数据项的名称。数据项名称分为以下两种：<br> - 上述任意一个数据库中已存在的数据项。<br>- 开发者自行添加的数据项。 |
 | callback          | AsyncCallback\<string>                            | 是   | 使用callback方式获取数据项的值。                             |
 
@@ -595,7 +595,7 @@ getValue(dataAbilityHelper: DataAbilityHelper, name: string): Promise\<string>
 
 | 参数名            | 类型                                              | 必填 | 说明                                                         |
 | ----------------- | ------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| dataAbilityHelper | [DataAbilityHelper](js-apis-dataAbilityHelper.md) | 是   | 数据管理辅助类。                                             |
+| dataAbilityHelper | [DataAbilityHelper](js-apis-inner-ability-dataAbilityHelper.md) | 是   | 数据管理辅助类。                                             |
 | name              | string                                            | 是   | 数据项的名称。数据项名称分为以下两种：<br> - 上述任意一个数据库中已存在的数据项。<br>- 开发者自行添加的数据项。 |
 
 **返回值**：
@@ -632,7 +632,7 @@ setValue(dataAbilityHelper: DataAbilityHelper, name: string, value: string, call
 
 | 参数名            | 类型                                              | 必填 | 说明                                                         |
 | ----------------- | ------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| dataAbilityHelper | [DataAbilityHelper](js-apis-dataAbilityHelper.md) | 是   | 数据管理辅助类。                                             |
+| dataAbilityHelper | [DataAbilityHelper](js-apis-inner-ability-dataAbilityHelper.md) | 是   | 数据管理辅助类。                                             |
 | name              | string                                            | 是   | 数据项的名称。数据项名称分为以下两种：<br>- 上述任意一个数据库中已存在的数据项。<br>- 开发者自行添加的数据项。 |
 | value             | string                                            | 是   | 数据项值。取值范围随业务变动。                               |
 | callback          | AsyncCallback\<boolean>                           | 是   | 回调函数。返回true表示操作成功，否则操作失败。               |
@@ -666,7 +666,7 @@ setValue(dataAbilityHelper: DataAbilityHelper, name: string, value: string): Pro
 
 | 参数名            | 类型                                              | 必填 | 说明                                                         |
 | ----------------- | ------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| dataAbilityHelper | [DataAbilityHelper](js-apis-dataAbilityHelper.md) | 是   | 数据管理辅助类。                                             |
+| dataAbilityHelper | [DataAbilityHelper](js-apis-inner-ability-dataAbilityHelper.md) | 是   | 数据管理辅助类。                                             |
 | name              | string                                            | 是   | 数据项的名称。数据项名称分为以下两种：<br>- 上述任意一个数据库中已存在的数据项。<br>- 开发者自行添加的数据项。 |
 | value             | string                                            | 是   | 数据项值。取值范围随业务变动。                               |
 
