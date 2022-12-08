@@ -461,7 +461,7 @@ setValue(context: Context, name: string, value: string, callback: AsyncCallback\
 
 stage模型使用。将数据项名称及数据项的值保存到数据库中。使用callback异步回调。
 
-**系统接口**：此接口为系统接口。
+**需要权限**：ohos.permission.MANAGE_SECURE_SETTINGS，仅系统应用可用。
 
 **系统能力**：SystemCapability.Applications.settings.Core
 
@@ -488,7 +488,7 @@ setValue(context: Context, name: string, value: string): Promise\<boolean>
 
 stage模型使用。将数据项名称及数据项的值保存到数据库中。使用Promise异步回调。
 
-**系统接口**：此接口为系统接口。
+**需要权限**：ohos.permission.MANAGE_SECURE_SETTINGS，仅系统应用可用。
 
 **系统能力**：SystemCapability.Applications.settings.Core
 
@@ -689,7 +689,7 @@ settings.setValue(helper, settings.display.SCREEN_BRIGHTNESS_STATUS, '100').then
 });
 ```
 
-## settings.getValueSync<sup>deprecated</sup>
+## settings.getValueSync<sup>8+</sup> <sup>deprecated</sup>
 
 > 从API version 9开始不再维护，建议使用stage模型的对应接口。
 
@@ -724,7 +724,7 @@ let helper = featureAbility.acquireDataAbilityHelper(uri);
 let value = settings.getValueSync(helper, settings.display.SCREEN_BRIGHTNESS_STATUS, '10');
 ```
 
-## settings.setValueSync<sup>deprecated</sup>
+## settings.setValueSync<sup>8+</sup> <sup>deprecated</sup>
 
 > 从API version 9开始不再维护，建议使用stage模型的对应接口。
 
