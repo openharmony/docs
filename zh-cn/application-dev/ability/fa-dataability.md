@@ -148,7 +148,7 @@ URI示例：
 
 1. 创建工具接口类对象。
 
-   工具接口类对象DataAbilityHelper相关接口可参考[DataAbilityHelper模块](../reference/apis/js-apis-dataAbilityHelper.md)。
+   工具接口类对象DataAbilityHelper相关接口可参考[DataAbilityHelper模块](../reference/apis/js-apis-inner-ability-dataAbilityHelper.md)。
    ```js
    // 作为参数传递的URI,与config中定义的URI的区别是多了一个"/",是因为作为参数传递的URI中,在第二个与第三个"/"中间,存在一个DeviceID的参数
    import featureAbility from '@ohos.ability.featureAbility'

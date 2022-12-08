@@ -68,7 +68,7 @@ FormExtensionAbility类拥有如下API接口，具体的API介绍详见[接口�
 | onConfigurationUpdate(config:&nbsp;Configuration):&nbsp;void | 当系统配置更新时调用。 |
 | onShareForm?(formId:&nbsp;string):&nbsp;{&nbsp;[key:&nbsp;string]:&nbsp;any&nbsp;} | 卡片提供方接收卡片分享的通知接口。 |
 
-FormExtensionAbility类还拥有成员context，为FormExtensionContext类，具体的API介绍详见[接口文档](../reference/apis/js-apis-formextensioncontext.md)。
+FormExtensionAbility类还拥有成员context，为FormExtensionContext类，具体的API介绍详见[接口文档](../reference/apis/js-apis-inner-application-formExtensionContext.md)。
 
   | 接口名 | 描述 | 
 | -------- | -------- |

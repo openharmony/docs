@@ -34,7 +34,7 @@
 
 ## 接口说明
 
-跨端迁移主要接口如下。详细接口介绍请参见[API参考](../reference/apis/js-apis-application-ability.md)。
+跨端迁移主要接口如下。详细接口介绍请参见[API参考](../reference/apis/js-apis-app-ability-uiAbility.md)。
 
   **表1** 跨端迁移接口
 
@@ -95,8 +95,8 @@
    }
    ```
 
-4. 在发起端UIAbility中实现[onContinue()](../reference/apis/js-apis-application-ability.md#abilityoncontinue)接口。
-     当应用触发迁移时，[onContinue()](../reference/apis/js-apis-application-ability.md#abilityoncontinue)接口在发起端被调用，开发者可以在该接口中保存迁移数据，实现应用兼容性检测，决定是否支持此次迁移。
+4. 在发起端UIAbility中实现[onContinue()](../reference/apis/js-apis-app-ability-uiAbility.md#abilityoncontinue)接口。
+     当应用触发迁移时，[onContinue()](../reference/apis/js-apis-app-ability-uiAbility.md#abilityoncontinue)接口在发起端被调用，开发者可以在该接口中保存迁移数据，实现应用兼容性检测，决定是否支持此次迁移。
    - 保存迁移数据：开发者可以将要迁移的数据通过键值对的方式保存在wantParam中。
    
    - 应用兼容性检测：开发者可以通过从wantParam中获取目标应用的版本号与本应用版本号做兼容性校验。

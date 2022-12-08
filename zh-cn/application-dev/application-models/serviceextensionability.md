@@ -1,10 +1,10 @@
 # ServiceExtensionAbility
 
 
-[ServiceExtensionAbility](../reference/apis/js-apis-service-extension-ability.md)是SERVICE类型的ExtensionAbility组件，提供后台服务相关扩展能力。
+[ServiceExtensionAbility](../reference/apis/js-apis-app-ability-serviceExtensionAbility.md)是SERVICE类型的ExtensionAbility组件，提供后台服务相关扩展能力。
 
 
-[ServiceExtensionAbility](../reference/apis/js-apis-service-extension-ability.md)可以被其他组件启动或连接，并根据调用者的请求信息在后台处理相关事务。[ServiceExtensionAbility](../reference/apis/js-apis-service-extension-ability.md)支持以启动和连接两种形式运行，系统应用可以调用[startServiceExtensionAbility()](../reference/apis/js-apis-ability-context.md#abilitycontextstartserviceextensionability)方法启动后台服务，也可以调用[connectServiceExtensionAbility()](../reference/apis/js-apis-ability-context.md#abilitycontextconnectserviceextensionability)方法连接后台服务，而三方应用只能调用[connectServiceExtensionAbility()](../reference/apis/js-apis-ability-context.md#abilitycontextconnectserviceextensionability)方法连接后台服务。启动和连接后台服务的差别：
+[ServiceExtensionAbility](../reference/apis/js-apis-app-ability-serviceExtensionAbility.md)可以被其他组件启动或连接，并根据调用者的请求信息在后台处理相关事务。[ServiceExtensionAbility](../reference/apis/js-apis-app-ability-serviceExtensionAbility.md)支持以启动和连接两种形式运行，系统应用可以调用[startServiceExtensionAbility()](../reference/apis/js-apis-inner-application-uiAbilityContext.md#abilitycontextstartserviceextensionability)方法启动后台服务，也可以调用[connectServiceExtensionAbility()](../reference/apis/js-apis-inner-application-uiAbilityContext.md#abilitycontextconnectserviceextensionability)方法连接后台服务，而三方应用只能调用[connectServiceExtensionAbility()](../reference/apis/js-apis-inner-application-uiAbilityContext.md#abilitycontextconnectserviceextensionability)方法连接后台服务。启动和连接后台服务的差别：
 
 
 - 启动：AbilityA启动ServiceB，启动后AbilityA和ServiceB为弱关联，AbilityA退出后，ServiceB可以继续存在。
@@ -12,7 +12,7 @@
 - 连接：AbilityA绑定ServiceB，绑定后AbilityA和ServiceB为强关联，AbilityA退出后，ServiceB也一起退出。
 
 
-每个类型的ExtensionAbility都有自己的Context，ServiceExtensionAbility通过[ServiceExtensionContext](../reference/apis/js-apis-service-extension-context.md)提供相关能力。本文描述中称被启动的ServiceExtensionAbility为服务端，称启动ServiceExtensionAbility的组件为客户端。
+每个类型的ExtensionAbility都有自己的Context，ServiceExtensionAbility通过[ServiceExtensionContext](../reference/apis/js-apis-inner-application-serviceExtensionContext.md)提供相关能力。本文描述中称被启动的ServiceExtensionAbility为服务端，称启动ServiceExtensionAbility的组件为客户端。
 
 
 本章节将从如下场景来介绍ServiceExtensionAbility的基本使用。
@@ -35,7 +35,7 @@
 
 ## 实现一个后台服务（仅对系统应用开放）
 
-[ServiceExtensionAbility](../reference/apis/js-apis-service-extension-ability.md)提供了onCreate()、onRequest()、onConnect()、onDisconnect()和onDestory()生命周期回调，根据需要重写对应的回调方法。下图展示了ServiceExtensionAbility的生命周期。
+[ServiceExtensionAbility](../reference/apis/js-apis-app-ability-serviceExtensionAbility.md)提供了onCreate()、onRequest()、onConnect()、onDisconnect()和onDestory()生命周期回调，根据需要重写对应的回调方法。下图展示了ServiceExtensionAbility的生命周期。
 
   **图1** ServiceExtensionAbility生命周期
 ![ServiceExtensionAbility-lifecycle](figures/ServiceExtensionAbility-lifecycle.png)
@@ -160,10 +160,10 @@
 
 ## 启动一个后台服务（仅对系统应用开放）
 
-系统应用通过[startServiceExtensionAbility()](../reference/apis/js-apis-ability-context.md#abilitycontextstartserviceextensionability)方法启动一个后台服务，服务的[onRequest()](../reference/apis/js-apis-service-extension-ability.md#serviceextensionabilityonrequest)回调就会被调用，并在该回调方法中接收到调用者传递过来的want对象。后台服务启动后，其生命周期独立于客户端，即使客户端已经销毁，该后台服务仍可继续运行。因此，后台服务需要在其工作完成时通过调用ServiceExtensionContext的[terminateSelf()](../reference/apis/js-apis-service-extension-context.md#serviceextensioncontextterminateself)来自行停止，或者由另一个组件调用[stopServiceExtensionAbility()](../reference/apis/js-apis-ability-context.md#abilitycontextstopserviceextensionability)来将其停止。
+系统应用通过[startServiceExtensionAbility()](../reference/apis/js-apis-inner-application-uiAbilityContext.md#abilitycontextstartserviceextensionability)方法启动一个后台服务，服务的[onRequest()](../reference/apis/js-apis-app-ability-serviceExtensionAbility.md#serviceextensionabilityonrequest)回调就会被调用，并在该回调方法中接收到调用者传递过来的want对象。后台服务启动后，其生命周期独立于客户端，即使客户端已经销毁，该后台服务仍可继续运行。因此，后台服务需要在其工作完成时通过调用ServiceExtensionContext的[terminateSelf()](../reference/apis/js-apis-inner-application-serviceExtensionContext.md#serviceextensioncontextterminateself)来自行停止，或者由另一个组件调用[stopServiceExtensionAbility()](../reference/apis/js-apis-inner-application-uiAbilityContext.md#abilitycontextstopserviceextensionability)来将其停止。
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
-> ServiceExtensionContext的[startServiceExtensionAbility()](../reference/apis/js-apis-ability-context.md#abilitycontextstartserviceextensionability)、[stopServiceExtensionAbility()](../reference/apis/js-apis-ability-context.md#abilitycontextstopserviceextensionability)和[terminateSelf()](../reference/apis/js-apis-service-extension-context.md#serviceextensioncontextterminateself)为系统接口，三方应用不支持调用。
+> ServiceExtensionContext的[startServiceExtensionAbility()](../reference/apis/js-apis-inner-application-uiAbilityContext.md#abilitycontextstartserviceextensionability)、[stopServiceExtensionAbility()](../reference/apis/js-apis-inner-application-uiAbilityContext.md#abilitycontextstopserviceextensionability)和[terminateSelf()](../reference/apis/js-apis-inner-application-serviceExtensionContext.md#serviceextensioncontextterminateself)为系统接口，三方应用不支持调用。
 
 1. 在系统应用中启动一个新的ServiceExtensionAbility。示例中的context的获取方式参见[获取UIAbility的Context属性](uiability-usage.md#获取uiability的上下文信息)。
    
@@ -210,18 +210,18 @@
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
 > 后台服务可以在后台长期运行，为了避免资源浪费，需要对后台服务的生命周期进行管理。即一个后台服务完成了请求方的任务，需要及时销毁。销毁已启动的后台服务有两种方式：
 > 
-> - 后台服务自身调用[terminateSelf()](../reference/apis/js-apis-service-extension-context.md#serviceextensioncontextterminateself)方法来自行停止。
+> - 后台服务自身调用[terminateSelf()](../reference/apis/js-apis-inner-application-serviceExtensionContext.md#serviceextensioncontextterminateself)方法来自行停止。
 > 
-> - 由其他组件调用[stopServiceExtensionAbility()](../reference/apis/js-apis-ability-context.md#abilitycontextstopserviceextensionability)方法来停止。
+> - 由其他组件调用[stopServiceExtensionAbility()](../reference/apis/js-apis-inner-application-uiAbilityContext.md#abilitycontextstopserviceextensionability)方法来停止。
 > 
-> 调用[terminateSelf()](../reference/apis/js-apis-service-extension-context.md#serviceextensioncontextterminateself)或[stopServiceExtensionAbility()](../reference/apis/js-apis-ability-context.md#abilitycontextstopserviceextensionability)方法之后，系统将销毁后台服务。
+> 调用[terminateSelf()](../reference/apis/js-apis-inner-application-serviceExtensionContext.md#serviceextensioncontextterminateself)或[stopServiceExtensionAbility()](../reference/apis/js-apis-inner-application-uiAbilityContext.md#abilitycontextstopserviceextensionability)方法之后，系统将销毁后台服务。
 
 
 ## 连接一个后台服务
 
-系统应用或者三方应用可以通过[connectServiceExtensionAbility()](../reference/apis/js-apis-ability-context.md#abilitycontextconnectserviceextensionability)连接一个服务（在Want对象中指定启动的目标服务），服务的[onConnect()](../reference/apis/js-apis-service-extension-ability.md#serviceextensionabilityonconnect)就会被调用，并在该回调方法中接收到调用者传递过来的Want对象，从而建立长连接。
+系统应用或者三方应用可以通过[connectServiceExtensionAbility()](../reference/apis/js-apis-inner-application-uiAbilityContext.md#abilitycontextconnectserviceextensionability)连接一个服务（在Want对象中指定启动的目标服务），服务的[onConnect()](../reference/apis/js-apis-app-ability-serviceExtensionAbility.md#serviceextensionabilityonconnect)就会被调用，并在该回调方法中接收到调用者传递过来的Want对象，从而建立长连接。
 
-ServiceExtensionAbility服务组件在[onConnect()](../reference/apis/js-apis-service-extension-ability.md#serviceextensionabilityonconnect)中返回IRemoteObject对象，开发者通过该IRemoteObject定义通信接口，用于客户端与服务端进行RPC交互。多个客户端可以同时连接到同一个后台服务，客户端完成与服务的交互后，客户端需要通过调用[disconnectServiceExtensionAbility()](../reference/apis/js-apis-ability-context.md#abilitycontextdisconnectserviceextensionability)来断开连接。如果所有连接到某个后台服务的客户端均已断开连接，则系统会销毁该服务。
+ServiceExtensionAbility服务组件在[onConnect()](../reference/apis/js-apis-app-ability-serviceExtensionAbility.md#serviceextensionabilityonconnect)中返回IRemoteObject对象，开发者通过该IRemoteObject定义通信接口，用于客户端与服务端进行RPC交互。多个客户端可以同时连接到同一个后台服务，客户端完成与服务的交互后，客户端需要通过调用[disconnectServiceExtensionAbility()](../reference/apis/js-apis-inner-application-uiAbilityContext.md#abilitycontextdisconnectserviceextensionability)来断开连接。如果所有连接到某个后台服务的客户端均已断开连接，则系统会销毁该服务。
 
 - 使用connectServiceExtensionAbility()建立与后台服务的连接。示例中的context的获取方式参见[获取UIAbility的Context属性](uiability-usage.md#获取uiability的上下文信息)。
   

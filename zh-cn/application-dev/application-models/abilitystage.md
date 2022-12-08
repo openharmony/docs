@@ -31,16 +31,16 @@ DevEco Studio默认工程中未自动生成AbilityStage，如需要使用Ability
    ```
 
 
-[AbilityStage](../reference/apis/js-apis-application-abilitystage.md)拥有[onCreate()](../reference/apis/js-apis-application-abilitystage.md#abilitystageoncreate)生命周期回调和[onAcceptWant()](../reference/apis/js-apis-application-abilitystage.md#abilitystageonacceptwant)、[onConfigurationUpdated()](../reference/apis/js-apis-application-abilitystage.md#abilitystageonconfigurationupdated)、[onMemoryLevel()](../reference/apis/js-apis-application-abilitystage.md#abilitystageonmemorylevel)事件回调。
+[AbilityStage](../reference/apis/js-apis-app-ability-abilityStage.md)拥有[onCreate()](../reference/apis/js-apis-app-ability-abilityStage.md#abilitystageoncreate)生命周期回调和[onAcceptWant()](../reference/apis/js-apis-app-ability-abilityStage.md#abilitystageonacceptwant)、[onConfigurationUpdated()](../reference/apis/js-apis-app-ability-abilityStage.md#abilitystageonconfigurationupdate)、[onMemoryLevel()](../reference/apis/js-apis-app-ability-abilityStage.md#abilitystageonmemorylevel)事件回调。
 
 
-- [onCreate()](../reference/apis/js-apis-application-abilitystage.md#abilitystageoncreate)生命周期回调：在开始加载对应Module的第一个UIAbility实例之前会先创建AbilityStage，并在AbilityStage创建完成之后执行其onCreate()生命周期回调。AbilityStage模块提供在Module加载的时候，通知开发者，可以在此进行该Module的初始化（如资源预加载，线程创建等）能力。
+- [onCreate()](../reference/apis/js-apis-app-ability-abilityStage.md#abilitystageoncreate)生命周期回调：在开始加载对应Module的第一个UIAbility实例之前会先创建AbilityStage，并在AbilityStage创建完成之后执行其onCreate()生命周期回调。AbilityStage模块提供在Module加载的时候，通知开发者，可以在此进行该Module的初始化（如资源预加载，线程创建等）能力。
 
-- [onAcceptWant()](../reference/apis/js-apis-application-abilitystage.md#abilitystageonacceptwant)事件回调：UIAbility[指定实例模式（specified）](uiability-launch-type.md#specified启动模式)启动时候触发的事件回调，具体使用请参见[UIAbility启动模式综述](uiability-launch-type.md)。
+- [onAcceptWant()](../reference/apis/js-apis-app-ability-abilityStage.md#abilitystageonacceptwant)事件回调：UIAbility[指定实例模式（specified）](uiability-launch-type.md#specified启动模式)启动时候触发的事件回调，具体使用请参见[UIAbility启动模式综述](uiability-launch-type.md)。
 
-- [onConfigurationUpdated()](../reference/apis/js-apis-application-abilitystage.md#abilitystageonconfigurationupdated)事件回调：当系统全局配置发生变更时触发的事件，系统语言、深浅色等，配置项目前均定义在[Configuration](../reference/apis/js-apis-configuration.md)类中。
+- [onConfigurationUpdated()](../reference/apis/js-apis-app-ability-abilityStage.md#abilitystageonconfigurationupdate)事件回调：当系统全局配置发生变更时触发的事件，系统语言、深浅色等，配置项目前均定义在[Configuration](../reference/apis/js-apis-configuration.md)类中。
 
-- [onMemoryLevel()](../reference/apis/js-apis-application-abilitystage.md#abilitystageonmemorylevel)事件回调：当系统调整内存时触发的事件。
+- [onMemoryLevel()](../reference/apis/js-apis-app-ability-abilityStage.md#abilitystageonmemorylevel)事件回调：当系统调整内存时触发的事件。
   
 应用被切换到后台时，系统会将在后台的应用保留在缓存中。即使应用处于缓存中，也会影响系统整体性能。当系统资源不足时，系统会通过多种方式从应用中回收内存，必要时会完全停止应用，从而释放内存用于执行关键任务。为了进一步保持系统内存的平衡，避免系统停止用户的应用进程，可以在AbilityStage中的onMemoryLevel()生命周期回调中订阅系统内存的变化情况，释放不必要的资源。
   

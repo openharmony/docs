@@ -15,7 +15,7 @@
   **图2** 任务与standard模式
 ![mission-and-standard](figures/mission-and-standard.png)
   
-- specified：指定实例模式，由[AbilityStage](abilitystage.md)的（[onAcceptWant](../reference/apis/js-apis-application-abilitystage.md#abilitystageonacceptwant)）决定是否创建新的实例。
+- specified：指定实例模式，由[AbilityStage](abilitystage.md)的（[onAcceptWant](../reference/apis/js-apis-app-ability-abilityStage.md#abilitystageonacceptwant)）决定是否创建新的实例。
   
   **图3** 任务与specified模式
   ![mission-and-specified](figures/mission-and-specified.png)

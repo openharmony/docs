@@ -35,7 +35,7 @@ import pasteboard from '@ohos.pasteboard';
 | -------- | -------- |
 | string | 表示string的类型。 |
 | image.PixelMap | 表示[image.PixelMap](js-apis-image.md#pixelmap7)的类型。 |
-| Want | 表示[Want](js-apis-application-Want.md)的类型。 |
+| Want | 表示[Want](js-apis-app-ability-want.md)的类型。 |
 | ArrayBuffer | 表示ArrayBuffer的类型。 |
 
 ## pasteboard.createData<sup>9+</sup>
@@ -171,7 +171,7 @@ createWantData(want: Want): PasteData
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-application-Want.md) | 是 | Want内容。 |
+| want | [Want](js-apis-app-ability-want.md) | 是 | Want内容。 |
 
 **返回值：**
 
@@ -291,7 +291,7 @@ createWantRecord(want: Want): PasteDataRecord
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-application-Want.md) | 是 | Want内容。 |
+| want | [Want](js-apis-app-ability-want.md) | 是 | Want内容。 |
 
 **返回值：**
 
@@ -394,7 +394,7 @@ let record = pasteboard.createUriRecord('dataability:///com.example.myapplicatio
 | 名称 | 类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
 | htmlText<sup>7+</sup> | string | 是 | 否 | HTML内容。 |
-| want<sup>7+</sup> | [Want](js-apis-application-Want.md) | 是 | 否 | Want内容。 |
+| want<sup>7+</sup> | [Want](js-apis-app-ability-want.md) | 是 | 否 | Want内容。 |
 | mimeType<sup>7+</sup> | string | 是 | 否 | 数据类型。 |
 | plainText<sup>7+</sup> | string | 是 | 否 | 纯文本内容。 |
 | uri<sup>7+</sup> | string | 是 | 否 | URI内容。 |
@@ -574,7 +574,7 @@ getPrimaryWant(): Want
 
 | 类型 | 说明 |
 | -------- | -------- |
-| [Want](js-apis-application-Want.md) | Want对象内容。 |
+| [Want](js-apis-app-ability-want.md) | Want对象内容。 |
 
 **示例：**
 
@@ -993,7 +993,7 @@ addWantRecord(want: Want): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-application-Want.md) | 是 | Want对象内容。 |
+| want | [Want](js-apis-app-ability-want.md) | 是 | Want对象内容。 |
 
 **示例：**
 

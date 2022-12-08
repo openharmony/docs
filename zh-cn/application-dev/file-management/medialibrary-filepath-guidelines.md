@@ -68,7 +68,7 @@ OpenHarmony提供应用沙箱机制，增加目录可见性数据访问防线，
 
 **开发步骤**
 
-1. 调用[context.filesDir](../reference/apis/js-apis-Context.md#contextgetfilesdir)获取应用沙箱路径。
+1. 调用[context.filesDir](../reference/apis/js-apis-inner-app-context.md#contextgetfilesdir)获取应用沙箱路径。
 2. 调用MediaLibrary.getFileAssets和FetchFileResult.getFirstObject获取公共目录中的FileAsset实例。
 3. 调用fileio.open打开沙箱路径文件。
 4. 调用fileAsset.open打开公共路径文件。

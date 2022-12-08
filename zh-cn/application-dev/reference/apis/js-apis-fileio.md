@@ -41,7 +41,7 @@ class MainAbility extends Ability {
  })
  ```
  
- FA模型context的具体获取方法参见[FA模型](js-apis-Context.md#Context模块)。
+ FA模型context的具体获取方法参见[FA模型](js-apis-inner-app-context.md#Context模块)。
 
 ## fileio.stat
 

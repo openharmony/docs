@@ -25,7 +25,7 @@ zipFile(inFile: string, outFile: string, options: Options): Promise&lt;void&gt;
 
 | 参数名  | 类型                | 必填 | 说明                                                         |
 | ------- | ------------------- | ---- | ------------------------------------------------------------ |
-| inFile  | string              | 是   | 指定压缩的文件夹路径或者文件路径，对应的路径参考[FA模型](js-apis-Context.md)，[Stage模型](js-apis-application-context.md)。 |
+| inFile  | string              | 是   | 指定压缩的文件夹路径或者文件路径，对应的路径参考[FA模型](js-apis-inner-app-context.md)，[Stage模型](js-apis-application-context.md)。 |
 | outFile | string              | 是   | 指定压缩结果的文件路径（文件的扩展名zip）。                  |
 | options | [Options](#options) | 是   | 压缩的可选参数。                                             |
 
@@ -89,7 +89,7 @@ unzipFile(inFile:string, outFile:string, options: Options): Promise&lt;void&gt;
 
 | 参数名  | 类型                | 必填 | 说明                                                         |
 | ------- | ------------------- | ---- | ------------------------------------------------------------ |
-| inFile  | string              | 是   | 指定压缩的文件夹路径或者文件路径，对应的路径参考[FA模型](js-apis-Context.md)，[stage模型](js-apis-application-context.md)。 |
+| inFile  | string              | 是   | 指定压缩的文件夹路径或者文件路径，对应的路径参考[FA模型](js-apis-inner-app-context.md)，[stage模型](js-apis-application-context.md)。 |
 | outFile | string              | 是   | 指定的解压文件路径。                                         |
 | options | [Options](#options) | 是   | 解压的可选参数。                                             |
 
@@ -131,7 +131,7 @@ compressFile(inFile: string, outFile: string, options: Options, callback: AsyncC
 
 | 参数名                  | 类型                | 必填 | 说明                                                         |
 | ----------------------- | ------------------- | ---- | ------------------------------------------------------------ |
-| inFile                  | string              | 是   | 指定压缩的文件夹路径或者文件路径，对应的路径参考[FA模型](js-apis-Context.md)，[stage模型](js-apis-application-context.md)。 |
+| inFile                  | string              | 是   | 指定压缩的文件夹路径或者文件路径，对应的路径参考[FA模型](js-apis-inner-app-context.md)，[stage模型](js-apis-application-context.md)。 |
 | outFile                 | string              | 是   | 指定的解压文件路径。                                           |
 | options                 | [Options](#options) | 是   | 压缩的配置参数。                                               |
 | AsyncCallback<**void**> | callback            | 否   | 压缩时的回调函数。                                             |
@@ -179,7 +179,7 @@ compressFile(inFile: string, outFile: string, options: Options): Promise\<void>;
 
 | 参数名  | 类型                | 必填 | 说明                                                         |
 | ------- | ------------------- | ---- | ------------------------------------------------------------ |
-| inFile  | string              | 是   | 指定压缩的文件夹路径或者文件路径，对应的路径参考[FA模型](js-apis-Context.md)，[stage模型](js-apis-application-context.md)。 |
+| inFile  | string              | 是   | 指定压缩的文件夹路径或者文件路径，对应的路径参考[FA模型](js-apis-inner-app-context.md)，[stage模型](js-apis-application-context.md)。 |
 | outFile | string              | 是   | 指定的解压文件路径。                                           |
 | options | [Options](#options) | 是   | 压缩的配置参数。                                               |
 
@@ -229,7 +229,7 @@ decompressFile(inFile: string, outFile: string, options: Options, callback: Asyn
 
 | 参数名                  | 类型                | 必填 | 说明                                                         |
 | ----------------------- | ------------------- | ---- | ------------------------------------------------------------ |
-| inFile                  | string              | 是   | 指定的待解压缩文件的文件路径，对应的路径参考[FA模型](js-apis-Context.md)，[stage模型](js-apis-application-context.md)。 |
+| inFile                  | string              | 是   | 指定的待解压缩文件的文件路径，对应的路径参考[FA模型](js-apis-inner-app-context.md)，[stage模型](js-apis-application-context.md)。 |
 | outFile                 | string              | 是   | 指定的解压后的目录路径。                                       |
 | options                 | [Options](#options) | 是   | 解压的配置参数。                                               |
 | AsyncCallback<**void**> | callback            | 否   | 解压是的回调函数。                                             |
@@ -278,7 +278,7 @@ decompressFile(inFile: string, outFile: string, options: Options): Promise\<void
 
 | 参数名  | 类型                | 必填 | 说明                                                         |
 | ------- | ------------------- | ---- | ------------------------------------------------------------ |
-| inFile  | string              | 是   | 指定的待解压缩文件的文件路径，对应的路径参考[FA模型](js-apis-Context.md)，[stage模型](js-apis-application-context.md)。 |
+| inFile  | string              | 是   | 指定的待解压缩文件的文件路径，对应的路径参考[FA模型](js-apis-inner-app-context.md)，[stage模型](js-apis-application-context.md)。 |
 | outFile | string              | 是   | 指定的解压后的目录路径。                                       |
 | options | [Options](#options) | 是   | 解压时的配置参数。                                             |
 
