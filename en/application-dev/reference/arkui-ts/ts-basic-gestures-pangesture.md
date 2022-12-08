@@ -21,7 +21,7 @@ PanGesture(value?: { fingers?: number; direction?: PanDirection; distance?: numb
 | direction | PanDirection | No| Pan direction. The enumerated value supports the AND (&amp;) and OR (\|) operations.<br>Default value: **PanDirection.All**|
 | distance | number | No| Minimum pan distance to trigger the gesture, in vp.<br>Default value: **5**<br>**NOTE**<br>If a pan gesture and tab swipe occur at the same time, set **distance** to **1** so that the gesture can be more easily recognized.|
 
-## PanDirection enums
+## PanDirection
 
 | Name| Description|
 | -------- | -------- |
@@ -126,6 +126,6 @@ Pannig to the left:
 
 ![en-us_image_0000001174264374](figures/en-us_image_0000001174264374.png) 
 
-Click Set PanGesture Trigger Condition to two fingers moving toward the lower left corner.
+Click **Set PanGesture Trigger Condition** to two fingers moving toward the lower left corner.
 
  ![en-us_image1_0000001174264374](figures/en-us_image1_0000001174264374.png) 
