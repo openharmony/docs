@@ -282,7 +282,7 @@ workerInstance.onexit = function(e) {
 workerInstance.terminate();
 
 //worker线程：
-parentPort.close()
+//parentPort.close()
 ```
 
 
@@ -566,7 +566,7 @@ parentPort.onmessage = function(e) {
 
 ### onmessage<sup>9+</sup>
 
-onmessage?: (event: MessageEvents) =&gt; void
+onmessage?: (this: ThreadWorkerGlobalScope, event: MessageEvents) =&gt; void
 
 DedicatedWorkerGlobalScope的onmessage属性表示Worker线程收到来自其宿主线程通过postMessage接口发送的消息时被调用的事件处理程序，处理程序在Worker线程中执行。
 
@@ -574,9 +574,10 @@ DedicatedWorkerGlobalScope的onmessage属性表示Worker线程收到来自其宿
 
 **参数：**
 
-| 参数名 | 类型                             | 必填 | 说明                     |
-| ------ | -------------------------------- | ---- | ------------------------ |
-| event  | [MessageEvents](#messageevents9) | 是   | 收到宿主线程发送的数据。 |
+| 参数名 | 类型                                                 | 必填 | 说明                     |
+| ------ | ---------------------------------------------------- | ---- | ------------------------ |
+| this   | [ThreadWorkerGlobalScope](#threadworkerglobalscope9) | 是   | 指向调用者对象。         |
+| event  | [MessageEvents](#messageevents9)                     | 是   | 收到宿主线程发送的数据。 |
 
 **示例：**
 
@@ -599,7 +600,7 @@ parentPort.onmessage = function(e) {
 
 ### onmessageerror<sup>9+</sup>
 
-onmessageerror?: (event: MessageEvents) =&gt; void
+onmessageerror?: (this: ThreadWorkerGlobalScope, event: MessageEvents) =&gt; void
 
 DedicatedWorkerGlobalScope的onmessageerror属性表示当Worker对象接收到一条无法被反序列化的消息时被调用的事件处理程序，处理程序在Worker线程中执行。
 
@@ -609,6 +610,7 @@ DedicatedWorkerGlobalScope的onmessageerror属性表示当Worker对象接收到�
 
 | 参数名 | 类型                             | 必填 | 说明       |
 | ------ | -------------------------------- | ---- | ---------- |
+| this   | [ThreadWorkerGlobalScope](#threadworkerglobalscope9) | 是   | 指向调用者对象。         |
 | event  | [MessageEvents](#messageevents9) | 是   | 异常数据。 |
 
 **示例：**
@@ -623,7 +625,7 @@ const workerInstance = new worker.ThreadWorker("workers/worker.js");
 // worker.js
 import worker from '@ohos.worker';
 const parentPort = worker.workerPort;
-parentPort.onmessageerror= function(e) {
+parentPort.onmessageerror = function(e) {
     console.log("worker.js onmessageerror")
 }
 ```
@@ -975,7 +977,7 @@ workerInstance.onexit = function(e) {
 workerInstance.terminate();
 
 //worker线程：
-parentPort.close()
+//parentPort.close()
 ```
 
 
@@ -1287,7 +1289,7 @@ parentPort.onmessage = function(e) {
 
 ### onmessage<sup>(deprecated)</sup>
 
-onmessage?: (event: MessageEvent) =&gt; void
+onmessage?: (this: DedicatedWorkerGlobalScope, event: MessageEvent) =&gt; void
 
 DedicatedWorkerGlobalScope的onmessage属性表示Worker线程收到来自其宿主线程通过postMessage接口发送的消息时被调用的事件处理程序，处理程序在Worker线程中执行。
 
@@ -1298,9 +1300,10 @@ DedicatedWorkerGlobalScope的onmessage属性表示Worker线程收到来自其宿
 
 **参数：**
 
-| 参数名 | 类型                           | 必填 | 说明                     |
-| ------ | ------------------------------ | ---- | ------------------------ |
-| event  | [MessageEvent](#messageeventt) | 是   | 收到宿主线程发送的数据。 |
+| 参数名 | 类型                                                         | 必填 | 说明                     |
+| ------ | ------------------------------------------------------------ | ---- | ------------------------ |
+| this   | [DedicatedWorkerGlobalScope](#dedicatedworkerglobalscopedeprecated) | 是   | 指向调用者对象。         |
+| event  | [MessageEvent](#messageeventt)                               | 是   | 收到宿主线程发送的数据。 |
 
 **示例：**
 
@@ -1322,7 +1325,7 @@ parentPort.onmessage = function(e) {
 
 ### onmessageerror<sup>(deprecated)</sup>
 
-onmessageerror?: (event: MessageEvent) =&gt; void
+onmessageerror?: (this: DedicatedWorkerGlobalScope, event: MessageEvent) =&gt; void
 
 DedicatedWorkerGlobalScope的onmessageerror属性表示当Worker对象接收到一条无法被反序列化的消息时被调用的事件处理程序，处理程序在Worker线程中执行。
 
@@ -1335,6 +1338,7 @@ DedicatedWorkerGlobalScope的onmessageerror属性表示当Worker对象接收到�
 
 | 参数名 | 类型                           | 必填 | 说明       |
 | ------ | ------------------------------ | ---- | ---------- |
+| this   | [DedicatedWorkerGlobalScope](#dedicatedworkerglobalscopedeprecated) | 是   | 指向调用者对象。 |
 | event  | [MessageEvent](#messageeventt) | 是   | 异常数据。 |
 
 **示例：**
@@ -1348,7 +1352,7 @@ const workerInstance = new worker.Worker("workers/worker.js");
 // worker.js
 import worker from '@ohos.worker';
 const parentPort = worker.parentPort;
-parentPort.onmessageerror= function(e) {
+parentPort.onmessageerror = function(e) {
     console.log("worker.js onmessageerror")
 }
 ```
