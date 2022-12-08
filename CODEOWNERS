@@ -171,9 +171,9 @@ zh-cn/application-dev/connectivity/net-mgmt-overview.md @zengyawen @zhang-hai-fe
 zh-cn/application-dev/connectivity/http-request.md @zengyawen @zhang-hai-feng @jyh926 @gaoxi785
 zh-cn/application-dev/connectivity/websocket-connection.md @zengyawen @zhang-hai-feng @jyh926 @gaoxi785
 zh-cn/application-dev/connectivity/socket-connection.md @zengyawen @zhang-hai-feng @jyh926 @gaoxi785
-zh-cn/application-dev/connectivity/ipc-rpc-overview.md @qinxiaowang @xuepianpian @zhaopeng_gitee @vagrant_world
-zh-cn/application-dev/connectivity/ipc-rpc-development-guideline.md @qinxiaowang @xuepianpian @zhaopeng_gitee @vagrant_world
-zh-cn/application-dev/connectivity/subscribe-remote-state.md @qinxiaowang @xuepianpian @zhaopeng_gitee @vagrant_world
+zh-cn/application-dev/connectivity/ipc-rpc-overview.md @RayShih @xuepianpian @zhaopeng_gitee @vagrant_world
+zh-cn/application-dev/connectivity/ipc-rpc-development-guideline.md @RayShih @xuepianpian @zhaopeng_gitee @vagrant_world
+zh-cn/application-dev/connectivity/subscribe-remote-state.md @RayShih @xuepianpian @zhaopeng_gitee @vagrant_world
 zh-cn/application-dev/telephony/ @zengyawen @zhang-hai-feng @jyh926 @gaoxi785
 zh-cn/application-dev/dfx/hiappevent-overview.md @zengyawen @stone2050 @stesen @elsen-liu
 zh-cn/application-dev/dfx/hiappevent-guidelines.md @zengyawen @stone2050 @stesen @elsen-liu
@@ -325,7 +325,7 @@ zh-cn/application-dev/reference/apis/js-apis-dataAbilityHelper.md @feng-aiwen @g
 zh-cn/application-dev/reference/apis/js-apis-DataUriUtils.md @feng-aiwen @ge-yafang @gong-a-shi @logic42
 zh-cn/application-dev/reference/apis/js-apis-deque.md @gongjunsong @ge-yafang @flyingwolf @BlackStone
 zh-cn/application-dev/reference/apis/js-apis-device-info.md @mupceet @zengyawen @handyohos @nan-xiansen
-zh-cn/application-dev/reference/apis/js-apis-device-manager.md @intermilano @qinxiaowang @william-ligang @liuhonggang123
+zh-cn/application-dev/reference/apis/js-apis-device-manager.md @intermilano @RayShih @william-ligang @liuhonggang123
 zh-cn/application-dev/reference/apis/js-apis-deviceUsageStatistics.md @shuaytao @RayShih @wangzhen107 @inter515
 zh-cn/application-dev/reference/apis/js-apis-display.md @zhangqiang183  @ge-yafang @zhouyaoying @zxg-gitee
 zh-cn/application-dev/reference/apis/js-apis-distributed-account.md @nianCode @zengyawen @JiDong-CS @murphy1984
@@ -409,7 +409,7 @@ zh-cn/application-dev/reference/apis/js-apis-reminderAgent.md @jayleehw @RayShih
 zh-cn/application-dev/reference/apis/js-apis-request.md @feng-aiwen @zengyawen @nagexiucai @murphy1984
 zh-cn/application-dev/reference/apis/js-apis-resource-manager.md @Buda-Liu @HelloCrease @budda-wang @yangqing3
 zh-cn/application-dev/reference/apis/js-apis-router.md @huaweimaxuchu @HelloCrease @niulihua @tomatodevboy
-zh-cn/application-dev/reference/apis/js-apis-rpc.md @xuepianpian @qinxiaowang @zhaopeng_gitee @vagrant_world
+zh-cn/application-dev/reference/apis/js-apis-rpc.md @xuepianpian @RayShih @zhaopeng_gitee @vagrant_world
 zh-cn/application-dev/reference/apis/js-apis-runninglock.md @aqxyjay @zengyawen @aqxyjay @alien0208
 zh-cn/application-dev/reference/apis/js-apis-screen-lock.md @feng-aiwen @ge-yafang @wangzhangjun @murphy1984
 zh-cn/application-dev/reference/apis/js-apis-screen.md @zhangqiang183  @ge-yafang @zhouyaoying @zxg-gitee
@@ -565,7 +565,7 @@ zh-cn/application-dev/reference/errorcodes/errorcode-CommonEventService.md @RayS
 zh-cn/application-dev/reference/errorcodes/errorcode-containers.md @ge-yafang
 zh-cn/application-dev/reference/errorcodes/errorcode-data-rdb.md @ge-yafang
 zh-cn/application-dev/reference/errorcodes/errorcode-datashare.md @ge-yafang
-zh-cn/application-dev/reference/errorcodes/errorcode-device-manager.md @qinxiaowang
+zh-cn/application-dev/reference/errorcodes/errorcode-device-manager.md @RayShih
 zh-cn/application-dev/reference/errorcodes/errorcode-DeviceUsageStatistics.md @HelloCrease
 zh-cn/application-dev/reference/errorcodes/errorcode-display.md @ge-yafang
 zh-cn/application-dev/reference/errorcodes/errorcode-distributed-dataObject.md @ge-yafang
@@ -592,7 +592,7 @@ zh-cn/application-dev/reference/errorcodes/errorcode-reminderAgentManager.md @He
 zh-cn/application-dev/reference/errorcodes/errorcode-request.md @zengyawen
 zh-cn/application-dev/reference/errorcodes/errorcode-resource-manager.md @HelloCrease
 zh-cn/application-dev/reference/errorcodes/errorcode-router.md @HelloCrease
-zh-cn/application-dev/reference/errorcodes/errorcode-rpc.md @qinxiaowang
+zh-cn/application-dev/reference/errorcodes/errorcode-rpc.md @RayShih
 zh-cn/application-dev/reference/errorcodes/errorcode-runninglock.md @zengyawen
 zh-cn/application-dev/reference/errorcodes/errorcode-sensor.md @HelloCrease
 zh-cn/application-dev/reference/errorcodes/errorcode-system-parameterV9.md @zengyawen
