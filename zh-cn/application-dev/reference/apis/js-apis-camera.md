@@ -194,13 +194,15 @@ getSupportedOutputCapability(camera:CameraDevice, callback: AsyncCallback<Camera
 **示例：**
 
 ```js
-let cameraDevice = cameras[0];
-cameraManager.getSupportedOutputCapability(cameraDevice, (err, CameraOutputCapability) => {
-    if (err) {
-        console.error(`Failed to get the outputCapability. ${err.message}`);
-        return;
-    }
-    console.log('Callback returned with an array of supported outputCapability');
+cameraManager.getSupportedCameras().then((cameras) => {
+    let cameraDevice = cameras[0];
+    cameraManager.getSupportedOutputCapability(cameraDevice, (err, CameraOutputCapability) => {
+        if (err) {
+            console.error(`Failed to get the outputCapability. ${err.message}`);
+            return;
+        }
+        console.log('Callback returned with an array of supported outputCapability');
+    })
 })
 ```
 
@@ -227,9 +229,11 @@ getSupportedOutputCapability(camera:CameraDevice): Promise<CameraOutputCapabilit
 **示例：**
 
 ```js
-let cameraDevice = cameras[0];
-cameraManager.getSupportedOutputCapability(cameraDevice).then((cameraoutputcapability) => {
-    console.log('Promise returned with an array of supported outputCapability');
+cameraManager.getSupportedCameras().then((cameras) => {
+    let cameraDevice = cameras[0];
+    cameraManager.getSupportedOutputCapability(cameraDevice).then((cameraoutputcapability) => {
+        console.log('Promise returned with an array of supported outputCapability');
+    })
 })
 ```
 
@@ -3254,9 +3258,16 @@ capture(setting: PhotoCaptureSetting, callback: AsyncCallback<void\>): void
 **示例：**
 
 ```js
-let settings:PhotoCaptureSetting = {
-    quality = 1,
-    rotation = 0
+let captureLocation = {
+  latitude: 0,
+  longitude: 0,
+  altitude: 0,
+}
+let settings = {
+  quality: camera.QualityLevel.QUALITY_LEVEL_LOW,
+  rotation: camera.ImageRotation.ROTATION_0,
+  location: captureLocation,
+  mirror: false
 }
 photoOutput.capture(settings, (err) => {
     if (err) {
