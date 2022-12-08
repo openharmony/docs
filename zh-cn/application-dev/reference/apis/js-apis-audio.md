@@ -4856,9 +4856,9 @@ setVolume(volume: number): Promise&lt;void&gt;
 
 **参数：**
 
-| 参数名     | 类型     | 必填   | 说明        |
-| ---------- | ------- | ------ | ---------- |
-| volume     | number  | 是     | 音量值。  |
+| 参数名     | 类型    | 必填   | 说明                 |
+| ---------- | ------- | ------ | ------------------- |
+| volume     | number  | 是     | 音量值范围为0.0-1.0。 |
 
 **返回值：**
 
@@ -4869,7 +4869,7 @@ setVolume(volume: number): Promise&lt;void&gt;
 **示例：**
 
 ```js
-audioRenderer.setVolume(10).then(data=>{
+audioRenderer.setVolume(0.5).then(data=>{
   console.info('setVolume Success!');
 }).catch((err) => {
   console.error(`setVolume Fail: ${err}`);
@@ -4885,15 +4885,15 @@ setVolume(volume: number, callback: AsyncCallback\<void>): void
 
 **参数：**
 
-| 参数名   | 类型       | 必填   | 说明            |
-| ------- | -----------| ------ | -------------- |
-|volume   | number     | 是     | 音量值。|
+| 参数名  | 类型       | 必填   | 说明                 |
+| ------- | -----------| ------ | ------------------- |
+|volume   | number     | 是     | 音量值范围为0.0-1.0。 |
 |callback | AsyncCallback\<void> | 是     |回调返回执行结果。|
 
 **示例：**
 
 ```js
-audioRenderer.setVolume(10, (err, data)=>{
+audioRenderer.setVolume(0.5, (err, data)=>{
   if(err){
     console.error(`setVolume Fail: ${err}`);
   }
