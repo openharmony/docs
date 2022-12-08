@@ -642,7 +642,8 @@ restore(wallpaperType: WallpaperType): Promise&lt;void&gt;
 
 **示例：**
   
-```js wallpaper.restore(wallpaper.WallpaperType.WALLPAPER_SYSTEM).then((data) => {
+```js 
+wallpaper.restore(wallpaper.WallpaperType.WALLPAPER_SYSTEM).then((data) => {
     console.log(`success to restore.`);
   }).catch((error) => {
     console.error(`failed to restore because: ` + JSON.stringify(error));
