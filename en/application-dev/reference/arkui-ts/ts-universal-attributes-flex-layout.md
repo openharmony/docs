@@ -10,10 +10,10 @@
 
 | Name        | Type                                    | Description                                      |
 | ---------- | ---------------------------------------- | ---------------------------------------- |
-| flexBasis  | string \| number             | Base size of a component in the main axis of the parent container.<br>Default value: **'auto'** (indicating that the base size of the component in the main axis is the original size of the component)|
+| flexBasis  | string \| number                         | Base size of a component in the main axis of the parent container.<br>Default value: **'auto'** (indicating that the base size of the component in the main axis is the original size of the component)|
 | flexGrow   | number                                   | Percentage of the parent container's remaining space that is allocated to the component.<br>Default value: **0**      |
-| flexShrink | number                                   | Percentage of the parent container's shrink size that is allocated to the component.<br>Default value: **1**    |
-| alignSelf  | [ItemAlign](ts-appendix-enums.md#itemalign) | he default **alignItems** configuration in the parent container.<br>Default value: **ItemAlign.Auto** |
+| flexShrink | number                                   | Percentage of the parent container's shrink size that is allocated to the component.<br>When the parent container is **\<Row>** or **\<Column>**, the default value is **0**.<br> When the parent container is **\<Flex>**, the default value is **1**.      |
+| alignSelf  | [ItemAlign](ts-appendix-enums.md#itemalign) | Alignment mode of the child components along the cross axis, which overwrites the default **alignItems** configuration in the parent container.<br>Default value: **ItemAlign.Auto**|
 
 
 ## Example
@@ -23,7 +23,6 @@
 @Entry
 @Component
 struct FlexExample {
-
   build() {
     Column({ space: 5 }) {
       Text('flexBasis').fontSize(9).fontColor(0xCCCCCC).width('90%')
@@ -109,4 +108,4 @@ struct FlexExample {
 }
 ```
 
-![en-us_image_0000001212378394](figures/en-us_image_0000001212378394.png)
+![en-us_image_0000001219744197](figures/en-us_image_0000001219744197.png)

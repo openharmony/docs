@@ -1,15 +1,15 @@
-# &lt;grid-container&gt; Development
+# Grid Layout
 
 
-The **&lt;grid-container&gt;** component is the root container of the grid layout. Within the root container, you can use **&lt;grid-row&gt;** and **&lt;grid-col&gt;** for the grid layout. For details, see [grid-container](../reference/arkui-js/js-components-grid-container.md).
+The **\<grid-container>** component is the root container of the grid layout. Within the root container, you can use **\<grid-row>** and **\<grid-col>** for the grid layout. For details, see [Grid-container](../reference/arkui-js/js-components-grid-container.md).
 
 
-## Creating a &lt;grid-container&gt; Component
+## Creating a \<grid-container> Component
 
-Create a **&lt;grid-container&gt;** component in the .hml file under **pages/index** and add a [**&lt;grid-row&gt;**](../reference/arkui-js/js-components-grid-row.md) child component.
+Create a **\<grid-container>** component in the .hml file under **pages/index** and add a [\<Grid-row>](../reference/arkui-js/js-components-grid-row.md) child component.
 
 
-```
+```html
 <!-- index.hml -->
 <div class="container">
   <grid-container id="mygrid" columns="5" gutter="20px" style="background-color: pink;">
@@ -22,7 +22,7 @@ Create a **&lt;grid-container&gt;** component in the .hml file under **pages/ind
 ```
 
 
-```
+```css
 /* xxx.css */
 .container{
   flex-direction: column;
@@ -35,16 +35,17 @@ Create a **&lt;grid-container&gt;** component in the .hml file under **pages/ind
 
 ![en-us_image_0000001276162725](figures/en-us_image_0000001276162725.png)
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE:**
-> **&lt;grid-container&gt;** supports only **&lt;grid-row&gt;** as a child component.
+> **NOTE**
+>
+> **\<grid-container>** supports only **\<grid-row>** as a child component.
 
 
 ## Methods
 
-Click the **&lt;grid-container&gt;** component to call the **getColumns**, **getColumnWidth**, and **getGutterWidth** methods to return the number of columns in the grid container, and column width and gutter width of the grid container. Press and hold the component to call the **getSizeType** method to return the size-responsive type of the grid container (**xs**|**sm**|**md**|**lg**).
+Touch the **\<grid-container>** component to call the **getColumns**, **getColumnWidth**, and **getGutterWidth** methods to return the number of columns in the grid container, and column width and gutter width of the grid container. Press and hold the component to call the **getSizeType** method to return the size-responsive type of the grid container (**xs**|**sm**|**md**|**lg**).
 
 
-```
+```html
 <!-- index.hml -->
 <div class="container">
   <grid-container id="mygrid" columns="6" gutter="20px" style="background-color: pink;padding-top: 100px;" 
@@ -61,7 +62,7 @@ Click the **&lt;grid-container&gt;** component to call the **getColumns**, **get
 ```
 
 
-```
+```css
 /* xxx.css */
 .container{
   flex-direction: column;
@@ -73,7 +74,7 @@ Click the **&lt;grid-container&gt;** component to call the **getColumns**, **get
 ```
 
 
-```
+```js
 // index.js
 import prompt from '@system.prompt';
 export default {
@@ -108,12 +109,12 @@ export default {
 ![en-us_image_0000001231843088](figures/en-us_image_0000001231843088.gif)
 
 
-## Adding &lt;grid-col&gt;
+## Adding \<grid-col>
 
-After adding a **&lt;grid-row&gt;** child component to **&lt;grid-container&gt;**, add a **&lt;grid-col&gt;** child component to **&lt;grid-row&gt;** to form a layout.
+After adding a **\<grid-row>** child component to **\<grid-container>**, add a **\<grid-col>** child component to **\<grid-row>** to form a layout.
 
 
-```
+```html
 <!-- index.hml -->
 <div class="container">
   <grid-container id="mygrid" columns="4" gutter="0" style="background-color: pink;" onclick="getColumns" onlongpress="getSizeType">
@@ -148,7 +149,7 @@ After adding a **&lt;grid-row&gt;** child component to **&lt;grid-container&gt;*
 ```
 
 
-```
+```css
 /* xxx.css */
 .container{
   flex-direction: column;
@@ -165,8 +166,9 @@ text{
 
 ![en-us_image_0000001231683124](figures/en-us_image_0000001231683124.png)
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE:**
-> **&lt;grid-row&gt;** supports only **&lt;grid-col&gt;** as a child component. You can add content only to **&lt;grid-col&gt;**.
+> **NOTE**
+>
+> **\<grid-row>** supports only **\<grid-col>** as a child component. You can add content only to **\<grid-col>**.
 
 
 ## Example Scenario
@@ -174,7 +176,7 @@ text{
 In this example, the content in the list is output cyclically to create a grid layout. When the user pulls down the screen, the **refresh** method is triggered. In this case, a piece of data is added to the list and **setTimeout** is set to refresh the request data.
 
 
-```
+```html
 <!-- index.hml -->
 <div class="container">
   <refresh refreshing="{{fresh}}" onrefresh="refresh">
@@ -197,7 +199,7 @@ In this example, the content in the list is output cyclically to create a grid l
 ```
 
 
-```
+```css
 /* xxx.css */
 .container{
   flex-direction: column;
@@ -211,7 +213,7 @@ text{
 ```
 
 
-```
+```js
 // index.js
 import prompt from '@system.prompt';
 export default {
@@ -242,9 +244,3 @@ export default {
 
 
 ![en-us_image_0000001276003501](figures/en-us_image_0000001276003501.gif)
-
-## Samples
-
-The following sample is provided to help you better understand how to develop the **\<grid>** component:
-
-[`JsGrid`: grid (JavaScript, API 8)](https://gitee.com/openharmony/app_samples/tree/master/UI/JsGrid)

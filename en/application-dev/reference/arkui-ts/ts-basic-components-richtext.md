@@ -2,17 +2,20 @@
 
 The **\<RichText>** component parses and displays HTML text.
 
-> **NOTE**
+>  **NOTE**
 >
 > This component is supported since API version 8. Updates will be marked with a superscript to indicate their earliest API version.
 
+## Required Permissions
+
+None
 ## Child Components
 
 Not supported
 
 ## APIs
 
-RichText(content:string)
+RichText(content: string)
 
 **Parameters**
 
@@ -42,7 +45,7 @@ RichText(content:string)
 | \<u>\</u> | Defines text that should be styled differently or have a non-textual annotation, such as misspelt words or a proper name in Chinese text. It is recommended that you avoid using the \<u> tag where it could be confused with a hyperlink.| \<p>\<u>This is an underlined paragraph\</u>\</p> |
 | \<style>\</style> | Used to embed CSS within an HTML document.| \<style>h1{color:red;}p{color:blue;}\</style> |
 | style | Defines the inline style of an element and is placed inside the tag. Use quotation marks (') to separate the styling text and use semicolons (;) to separate styles, for example, **style='width: 500px;height: 500px;border: 1px solid;margin: 0 auto;'**.| \<h1 style='color:blue;text-align:center'>This is a heading\</h1>\<p style='color:green'>This is a paragraph\</p> |
-| \<script>\</script> | Used to embed or reference a client-side script, such as JavaScript.| \<script>document.write("Hello World!")\</script> |
+| \<script>\</script> | Embeds or references a client-side script, such as JavaScript. | \<script>document.write("Hello World!")\</script> |
 
 ## Example
 

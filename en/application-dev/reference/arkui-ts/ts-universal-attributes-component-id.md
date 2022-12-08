@@ -4,19 +4,14 @@
 
 >  **NOTE**
 >
->  The APIs of this module are supported since API version 8. Updates will be marked with a superscript to indicate their earliest API version.
-
-
-## Required Permissions
-
-None
+> The APIs of this module are supported since API version 8. Updates will be marked with a superscript to indicate their earliest API version.
 
 
 ## Attributes
 
-| Name  | Type  | Default Value | Description                |
-| ---- | ------ | ---- | ------------------ |
-| id   | string | ''   | Unique ID you assigned to the component.|
+| Name  | Type    | Description                        |
+| -----| -------- | ----------------------------- |
+| id   | string   | Unique ID you assigned to the component.<br>Default value: **''**|
 
 
 ## APIs
@@ -26,101 +21,109 @@ None
 
 getInspectorByKey(id: string): string
 
-Obtains all attributes of the component with the specified ID, excluding the information about child components. This is a system API. 
+Obtains all attributes of the component with the specified ID, excluding the information about child components.
+This is a system API. 
 
-- Parameters
-  | Name  | Type    | Mandatory  | Default Value | Description         |
-  | ---- | ------ | ---- | ---- | ----------- |
-  | id   | string | Yes   | -    | ID of the component whose attributes are to be obtained.|
+**Parameters**
 
-- Return value
-  | Type    | Description             |
-  | ------ | --------------- |
-  | string | JSON string of the component attribute list.|
+| Name  | Type     | Mandatory    | Description       |
+| ---- | -------- | ---- | -------------|
+| id   | string   | Yes   | ID of the component whose attributes are to be obtained.|
+
+**Return value**
+
+| Type       | Description            |
+| -------| -------------- |
+| string | JSON string of the component attribute list.|
 
 ### getInspectorTree
 
 getInspectorTree(): string
 
-Obtains the component tree and component attributes. This is a system API. 
+Obtains the component tree and component attributes.
+This is a system API. 
 
-- Return value
+**Return value**
 
-  | Type    | Description                 |
-  | ------ | ------------------- |
-  | string | JSON string of the component tree and component attribute list.|
+| Type    | Description                           |
+| ------ | --------------------------- |
+| string | JSON string of the component tree and component attribute list.|
 
 ### sendEventByKey
 
 sendEventByKey(id: string, action: number, params: string): boolean
 
-Sends an event to the component with the specified ID. This is a system API. 
+Sends an event to the component with the specified ID.
+This is a system API. 
 
-- Parameters
-  | Name    | Type    | Mandatory  | Default Value | Description                                      |
-  | ------ | ------ | ---- | ---- | ---------------------------------------- |
-  | id     | string | Yes   | -    | ID of the component to which the event is to be sent.                            |
-  | action | number | Yes   | -    | Type of the event to be sent. The options are as follows:<br>- **10**: click event.<br>- **11**: long click event.|
-  | params | string | Yes   | -    | Event parameters. If there is no parameter, pass an empty string **""**.                  |
+**Parameters**
 
-- Return value
-  | Type     | Description                            |
-  | ------- | ------------------------------ |
-  | boolean | Returns **true** if the component with the specified ID is found; returns **false** otherwise.|
+| Name      | Type     | Mandatory      | Description                        |
+| ------ | -------| ---- | -------------------------- |
+| id     | string | Yes   | ID of the component to which the event is to be sent.                     |
+| action | number | Yes   | Type of the event to be sent. The options are as follows:<br>- **10**: click event.<br>- **11**: long-click event.|
+| params | string | Yes   | Event parameters. If there is no parameter, pass an empty string **""**.           |
+
+**Return value**
+
+| Type         | Description                        |
+| -------- | --------------------------|
+| boolean  | Returns **true** if the component with the specified ID is found; returns **false** otherwise.|
 
 ### sendTouchEvent
 
 sendTouchEvent(event: TouchObject): boolean
 
-Sends a touch event. This is a system API. 
+Sends a touch event.
+This is a system API. 
 
-- Parameters
+**Parameters**
 
-  | Name   | Type         | Mandatory  | Default Value | Description                                      |
-  | ----- | ----------- | ---- | ---- | ---------------------------------------- |
-  | event | TouchObject | Yes   | -    | Location where a touch event is triggered. For details, see [TouchEvent](ts-universal-events-touch.md#touchevent).|
+| Name     | Type           | Mandatory | Description                                                        |
+| ----- | ----------- | ---- | ------------------------------------------------------------ |
+| event | [TouchObject](ts-universal-events-touch.md#touchobject) | Yes   | Location where a touch event is triggered. For details, see [TouchEvent](ts-universal-events-touch.md#touchevent).|
 
-- Return value
+**Return value**
 
-  | Type     | Description                        |
-  | ------- | -------------------------- |
-  | boolean | Returns **true** if the event is sent successfully; returns **false** otherwise.|
+| Type     | Description                        |
+| ------- | ---------------------------|
+| boolean | Returns **true** if the event is sent successfully; returns **false** otherwise.|
 
 ### sendKeyEvent
 
 sendKeyEvent(event: KeyEvent): boolean
 
-Sends a key event. This is a system API. 
+Sends a key event.
 
-- Parameters
+**Parameters**
 
-  | Name   | Type      | Mandatory  | Default Value | Description                                      |
-  | ----- | -------- | ---- | ---- | ---------------------------------------- |
-  | event | KeyEvent | Yes   | -    | Key event. For details, see [KeyEvent](ts-universal-events-key.md#keyevent).|
+| Name   | Type    | Mandatory     | Description                                                        |
+| ----- | -------- | ----  | ------------------------------------------------------------ |
+| event | [KeyEvent](ts-universal-events-key.md#keyevent) | Yes    | Key event. For details, see [KeyEvent](ts-universal-events-key.md#keyevent).|
 
-- Return value
+**Return value**
 
-  | Type     | Description                         |
-  | ------- | --------------------------- |
-  | boolean | Returns **true** if the event is sent successfully; returns **false** otherwise.|
+| Type     | Description                          |
+| ------- | ------------------------------|
+| boolean | Returns **true** if the event is sent successfully; returns **false** otherwise.|
 
 ### sendMouseEvent
 
 sendMouseEvent(event: MouseEvent): boolean
 
-Sends a mouse event. This is a system API. 
+Sends a mouse event.
 
-- Parameters
+**Parameters**
 
-  | Name   | Type        | Mandatory  | Default Value | Description                                      |
-  | ----- | ---------- | ---- | ---- | ---------------------------------------- |
-  | event | MouseEvent | Yes   | -    | Mouse event. For details, see [MouseEvent](ts-universal-mouse-key.md#mouseevent).|
+| Name    | Type      | Mandatory      | Description                                    |
+| ----- | ---------- | ----  | --------------------------------------- |
+| event | [MouseEvent](ts-universal-mouse-key.md#mouseevent) | Yes   | Mouse event. For details, see [MouseEvent](ts-universal-mouse-key.md#mouseevent).|
 
-- Return value
+**Return value**
 
-  | Type     | Description                         |
-  | ------- | --------------------------- |
-  | boolean | Returns **true** if the event is sent successfully; returns **false** otherwise.|
+| Type     | Description                                |
+| ------- | ---------------------------------- |
+| boolean | Returns **true** if the event is sent successfully; returns **false** otherwise.|
 
 ## Example
 
@@ -133,6 +136,7 @@ class Utils {
   static rect_bottom;
   static rect_value;
 
+  // Obtain the coordinates of the rectangular area occupied by the component.
   static getComponentRect(key) {
     let strJson = getInspectorByKey(key);
     let obj = JSON.parse(strJson);
@@ -172,32 +176,32 @@ struct IdExample {
         console.info(getInspectorTree())
         this.text = "Button 'click to start' is clicked"
         setTimeout(() => {
-          sendEventByKey("longclick", 11, "")
+          sendEventByKey("longClick", 11, "") // Send a long-click event to the component whose ID is "longClick".
         }, 2000)
       }).id('click')
 
       Button() {
-        Text('longclick').fontSize(25).fontWeight(FontWeight.Bold)
+        Text('longClick').fontSize(25).fontWeight(FontWeight.Bold)
       }.margin({ top: 20 }).backgroundColor('#0D9FFB')
       .gesture(
       LongPressGesture().onActionEnd(() => {
         console.info('long clicked')
-        this.text = "Button 'longclick' is longclicked"
+        this.text = "Button 'longClick' is longclicked"
         setTimeout(() => {
-          let rect = Utils.getComponentRect('onTouch')
+          let rect = Utils.getComponentRect('onTouch') // Obtain the coordinates of the rectangular area occupied by the component whose ID is "onTouch".
           let touchPoint: TouchObject = {
             id: 1,
-            x: rect.left + (rect.right - rect.left) / 2,
-            y: rect.top + (rect.bottom - rect.top) / 2,
+            x: rect.left + (rect.right - rect.left) / 2, // X coordinate of the component center.
+            y: rect.top + (rect.bottom - rect.top) / 2, // Y coordinate of the component center.
             type: TouchType.Down,
-            screenX: rect.left + (rect.right - rect.left) / 2,
-            screenY: rect.left + (rect.right - rect.left) / 2,
+            screenX: rect.left + (rect.right - rect.left) / 2, // X coordinate of the component center.
+            screenY: rect.left + (rect.right - rect.left) / 2, // Y coordinate of the component center.
           }
-          sendTouchEvent(touchPoint)
+          sendTouchEvent(touchPoint) // Send a touch event.
           touchPoint.type = TouchType.Up
-          sendTouchEvent(touchPoint)
+          sendTouchEvent(touchPoint) // Send a touch event.
         }, 2000)
-      })).id('longclick')
+      })).id('longClick')
 
       Button() {
         Text('onTouch').fontSize(25).fontWeight(FontWeight.Bold)
@@ -206,14 +210,14 @@ struct IdExample {
         console.info('onTouch is clicked')
         this.text = "Button 'onTouch' is clicked"
         setTimeout(() => {
-          let rect = Utils.getComponentRect('onMouse')
+          let rect = Utils.getComponentRect('onMouse') // Obtain the coordinates of the rectangular area occupied by the component whose ID is "onMouse".
           let mouseEvent: MouseEvent = {
             button: MouseButton.Left,
             action: MouseAction.Press,
-            x: rect.left + (rect.right - rect.left) / 2,
-            y: rect.top + (rect.bottom - rect.top) / 2,
-            screenX: rect.left + (rect.right - rect.left) / 2,
-            screenY: rect.top + (rect.bottom - rect.top) / 2,
+            x: rect.left + (rect.right - rect.left) / 2, // X coordinate of the component center.
+            y: rect.top + (rect.bottom - rect.top) / 2, // Y coordinate of the component center.
+            screenX: rect.left + (rect.right - rect.left) / 2, // X coordinate of the component center.
+            screenY: rect.top + (rect.bottom - rect.top) / 2, // Y coordinate of the component center.
             timestamp: 1,
             target: {
               area: {
@@ -231,7 +235,7 @@ struct IdExample {
             },
             source: SourceType.Mouse
           }
-          sendMouseEvent(mouseEvent)
+          sendMouseEvent(mouseEvent) // Send a mouse event.
         }, 2000)
       }).id('onTouch')
 
@@ -251,7 +255,7 @@ struct IdExample {
             metaKey: 0,
             timestamp: 0
           }
-          sendKeyEvent(keyEvent)
+          sendKeyEvent(keyEvent) // Send a key event.
         }, 2000)
       }).id('onMouse')
 

@@ -10,10 +10,10 @@ An **ImageBitmap** object stores pixel data rendered on a canvas.
 
 ## Attributes
 
-| Name| Type| Description| 
+| Name| Type| Description|
 | -------- | -------- | -------- |
-| width | number | Pixel width of the **ImageBitmap** object.| 
-| height | number | Pixel height of the **ImageBitmap** object.| 
+| width | number | Pixel width of the **ImageBitmap** object.|
+| height | number | Pixel height of the **ImageBitmap** object.|
 
 **Example**
 

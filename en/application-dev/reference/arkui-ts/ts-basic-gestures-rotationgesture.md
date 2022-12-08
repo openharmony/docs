@@ -23,10 +23,10 @@ RotationGesture(value?: { fingers?: number, angle?: number })
 
 | Parameter| Description|
 | -------- | -------- |
-| onActionStart(event:(event?:&nbsp;[GestureEvent](ts-gesture-settings.md))&nbsp;=&gt;&nbsp;void) | Triggered when a rotation gesture is recognized.|
-| onActionUpdate(event:(event?:&nbsp;[GestureEvent](ts-gesture-settings.md))&nbsp;=&gt;&nbsp;void) | Triggered when the user moves the finger in a rotation gesture on the screen.|
-| onActionEnd(event:(event?:&nbsp;[GestureEvent](ts-gesture-settings.md))&nbsp;=&gt;&nbsp;void) | Triggered when the finger used for the rotation gesture is lift.|
-| onActionCancel(event:&nbsp;()&nbsp;=&gt;&nbsp;void) | Triggered when a tap cancellation event is received after the rotation gesture is recognized.|
+| onActionStart(event:(event?: [GestureEvent](ts-gesture-settings.md)) =&gt; void) | Triggered when a rotation gesture is recognized.|
+| onActionUpdate(event:(event?: [GestureEvent](ts-gesture-settings.md)) =&gt; void) | Triggered when the user moves the finger in a rotation gesture on the screen.|
+| onActionEnd(event:(event?: [GestureEvent](ts-gesture-settings.md)) =&gt; void) | Triggered when the finger used for the rotation gesture is lift.|
+| onActionCancel(event: () =&gt; void) | Triggered when a tap cancellation event is received after the rotation gesture is recognized.|
 
 
 ## Example
@@ -49,7 +49,7 @@ struct RotationGestureExample {
       .padding(20)
       .border({ width: 3 })
       .margin(80)
-      .rotate({ angle: this.angle })
+      .rotate({ z: 1, angle: this.angle })
       // The gesture event is triggered by rotating with two fingers.
       .gesture(
       RotationGesture()

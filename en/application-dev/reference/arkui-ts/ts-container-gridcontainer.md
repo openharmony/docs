@@ -1,59 +1,55 @@
 # GridContainer
 
+The **\<GridContainer>** component lays out components vertically. It is used only in the grid layout.
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
-> This component is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
-
-
-The **&lt;GridContainer&gt;** component lays out components vertically. It is used only in the grid layout.
-
-
-## Required Permissions
-
-None
+>  **NOTE**
+>
+>  This component is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
 
 ## Child Components
 
-This component can contain child components.
+Supported
 
 
 ## APIs
 
-GridContainer(options?: { columns?: number | 'auto', sizeType?: SizeType, gutter?: Length, margin?: Length})
+GridContainer(value?: { columns?: number | 'auto', sizeType?: SizeType, gutter?: number | string, margin?: number | string})
 
-- Parameter
-    | Name | Type | Mandatory | Default Value | Description |
-  | -------- | -------- | -------- | -------- | -------- |
-  | columns | number \| 'auto' | No | 'auto' | Total number of columns in the current layout. |
-  | sizeType | SizeType | No | SizeType.Auto | Device size type. |
-  | gutter | Length | No | - | Gutter of the grid layout. |
-  | margin | Length | No | - | Margin of the grid layout. |
+**Parameters**
 
-- SizeType enums
-    | Name | Description | 
-  | -------- | -------- |
-  | XS | Device of the minimum size. | 
-  | SM | Small-sized device. | 
-  | MD | Medium-sized device. | 
-  | LG | Large-sized device. | 
-  | Auto | Auto. The size type is selected based on the device type. | 
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| columns | number \| 'auto' | No| Total number of columns in the current layout.<br>Default value: **'auto'**|
+| sizeType | SizeType | No| Device size type.<br>Default value: **SizeType.Auto**|
+| gutter | number \| string | No| Gutter of the grid layout. This parameter cannot be set to a percentage. |
+| margin | number \| string | No| Margin of the grid layout. This parameter cannot be set to a percentage. |
+
+## SizeType
+
+| Name| Description|
+| -------- | -------- |
+| XS | Device of the minimum size.|
+| SM | Small-sized device.|
+| MD | Medium-sized device.|
+| LG | Large-sized device.|
+| Auto | Auto. The size type is selected based on the device type.|
 
 
 ## Attributes
 
-Universal attributes and [attributes](ts-container-column.md#attributes) of the **&lt;Column&gt;** component are supported.
+The universal attributes and attributes of the **[<Column\>](ts-container-column.md#attributes)** component are supported.
 
 
 ## Events
 
-Universal events are supported.
+The universal events are supported.
 
 
 ## Example
 
-
-```
+```ts
+// xxx.ets
 @Entry
 @Component
 struct GridContainerExample {

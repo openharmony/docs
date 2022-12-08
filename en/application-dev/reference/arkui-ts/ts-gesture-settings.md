@@ -137,4 +137,4 @@ struct GestureSettingsExample {
 }
 ```
 
-![en-us_image_0000001257058419](figures/en-us_image_0000001257058419.gif)
+![zh-cn_image_0000001210195016](figures/zh-cn_image_0000001210195016.gif)

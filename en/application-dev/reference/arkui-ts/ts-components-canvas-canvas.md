@@ -4,13 +4,7 @@ The **\<Canvas>** component can be used to customize drawings.
 
 > **NOTE**
 > 
-> This component is supported since API version 8. Updates will be marked with a superscript to indicate their earliest API version.
-
-
-
-## Required Permissions
-
-None
+>  This component is supported since API version 8. Updates will be marked with a superscript to indicate their earliest API version.
 
 ## Child Components
 
@@ -36,7 +30,7 @@ In addition to the [universal events](ts-universal-events-click.md), the followi
 
 | Name                           | Parameter  | Description                  |
 | ----------------------------- | ---- | -------------------- |
-| onReady(event: () => void) | -   | Triggered when a canvas is ready. |
+| onReady(event: () => void) | -   | Triggered when the canvas is ready. |
 
 
 **Example**

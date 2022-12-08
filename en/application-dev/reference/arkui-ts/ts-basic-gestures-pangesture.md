@@ -15,24 +15,24 @@ PanGesture(value?: { fingers?: number, direction?: PanDirection, distance?: numb
 
 **Parameters**
 
-| Name      | Type         | Mandatory | Description                              |
-| --------- | ------------ | --------- | ---------------------------------------- |
-| fingers   | number       | No        | Minimum number of fingers to trigger a pan gesture. The value ranges from 1 to 10.<br>Default value: **1** |
-| direction | PanDirection | No        | Pan direction. The enumerated value supports the AND (&amp;) and OR (\|) operations.<br>Default value: **PanDirection.All** |
-| distance  | number       | No        | Minimum pan distance to trigger the gesture, in vp.<br>Default value: **5**<br>**NOTE**<br>If a pan gesture and tab swipe occur at the same time, set **distance** to **1** so that the gesture can be more easily recognized. |
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| fingers | number | No| Minimum number of fingers to trigger a pan gesture. The value ranges from 1 to 10.<br>Default value: **1**|
+| direction | PanDirection | No| Pan direction. The enumerated value supports the AND (&amp;) and OR (\|) operations.<br>Default value: **PanDirection.All**|
+| distance | number | No| Minimum pan distance to trigger the gesture, in vp.<br>Default value: **5**<br>**NOTE**<br>If a pan gesture and tab swipe occur at the same time, set **distance** to **1** so that the gesture can be more easily recognized.|
 
 ## PanDirection enums
 
-| Name       | Description           |
-| ---------- | --------------------- |
-| All        | All directions.       |
-| Horizontal | Horizontal panning.   |
-| Vertical   | Vertical panning.     |
-| Left       | Panning to the left.  |
-| Right      | Panning to the right. |
-| Up         | Panning up.           |
-| Down       | Panning down.         |
-| None       | Panning disabled.     |
+| Name| Description|
+| -------- | -------- |
+| All | All directions.|
+| Horizontal | Horizontal panning.|
+| Vertical | Vertical panning.|
+| Left | Panning to the left.|
+| Right | Panning to the right.|
+| Up | Panning up.|
+| Down | Panning down.|
+| None | Panning disabled.|
 
 
 ## PanGestureOptions
@@ -47,21 +47,21 @@ See the **PanGesture** parameters.
 
 **APIs**
 
-| Name                              | Description                 |
-| --------------------------------- | --------------------------- |
-| setDirection(value: PanDirection) | Sets the direction.         |
-| setDistance(value: number)        | Sets the distance.          |
-| setFingers(value: number)         | Sets the number of fingers. |
+| Name| Description|
+| -------- | -------- |
+| setDirection(value: PanDirection) | Sets the direction.|
+| setDistance(value: number) | Sets the distance.|
+| setFingers(value: number) | Sets the number of fingers.|
 
 
 ## Events
 
-| Name                                     | Description                              |
-| ---------------------------------------- | ---------------------------------------- |
-| onActionStart(event: (event?: [GestureEvent](ts-gesture-settings.md)) =&gt; void) | Callback invoked when a pan gesture is recognized. |
-| onActionUpdate(event: (event?: [GestureEvent](ts-gesture-settings.md)) =&gt; void) | Callback invoked when the pan gesture status is updated. |
-| onActionEnd(event: (event?: [GestureEvent](ts-gesture-settings.md)) =&gt; void) | Callback invoked when the finger used for a pan gesture is lift. |
-| onActionCancel(event: () =&gt; void)     | Callback invoked when a tap cancellation event is received after a pan gesture is recognized. |
+| Name| Description|
+| -------- | -------- |
+| onActionStart(event: (event?: [GestureEvent](ts-gesture-settings.md)) =&gt; void) | Invoked when a pan gesture is recognized.|
+| onActionUpdate(event: (event?: [GestureEvent](ts-gesture-settings.md)) =&gt; void) | Invoked when the pan gesture status is updated.|
+| onActionEnd(event: (event?: [GestureEvent](ts-gesture-settings.md)) =&gt; void) | Invoked when the finger used for a pan gesture is lift.|
+| onActionCancel(event: () =&gt; void) | Invoked when a tap cancellation event is received after a pan gesture is recognized.|
 
 
 ## Example
@@ -115,3 +115,13 @@ struct PanGestureExample {
   }
 }
 ```
+
+**Diagrams**
+
+Pannig to the left:
+
+![en-us_image_0000001174264374](figures/en-us_image_0000001174264374.png) 
+
+Click **Set PanGesture Trigger Condition** to two fingers moving toward the lower left corner.
+
+ ![en-us_image1_0000001174264374](figures/en-us_image1_0000001174264374.png) 
