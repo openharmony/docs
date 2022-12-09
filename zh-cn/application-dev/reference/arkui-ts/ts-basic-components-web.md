@@ -688,10 +688,11 @@ blockNetwork(block: boolean)
 
   ```ts
   // xxx.ets
+  import web_webview from '@ohos.web.webview'
   @Entry
   @Component
   struct WebComponent {
-    controller: WebController = new WebController()
+    controller: web_webview.WebviewController = new web_webview.WebviewController()
     @State block: boolean = true
     build() {
       Column() {
@@ -2405,13 +2406,13 @@ onDataResubmitted(callback: (event: {handler: DataResubmissionHandler}) => void)
 
 onPageVisible(callback: (event: {url: string}) => void)
 
-设置页面开始加载时触发的回调函数。
+设置旧页面不再呈现，新页面即将可见时触发的回调函数。
 
 **参数：**
 
-| 参数名 | 参数类型 | 参数描述                |
-| ------ | -------- | ----------------------- |
-| url    | string   | 开始加载的页面url地址。 |
+| 参数名 | 参数类型 | 参数描述                                          |
+| ------ | -------- | ------------------------------------------------- |
+| url    | string   | 旧页面不再呈现，新页面即将可见时新页面的url地址。 |
 
 **示例：**
 
@@ -2445,6 +2446,12 @@ onInterceptKeyEvent(callback: (event: KeyEvent) => boolean)
 | ------ | ------------------------------------------------------- | -------------------- |
 | event  | [KeyEvent](ts-universal-events-key.md#keyevent对象说明) | 触发的KeyEvent事件。 |
 
+**返回值：**
+
+| 类型    | 说明                                                         |
+| ------- | ------------------------------------------------------------ |
+| boolean | 回调函数通过返回boolean类型值来决定是否继续将该KeyEvent传入Webview内核。 |
+
 **示例：**
 
   ```ts
@@ -2458,7 +2465,11 @@ onInterceptKeyEvent(callback: (event: KeyEvent) => boolean)
       Column() {
         Web({ src:'www.example.com', controller: this.controller })
          .onInterceptKeyEvent((event)=>{
-          console.log('onInterceptKeyEvent:' + JSON.stringify(event))
+          	if (event.keyCode == 2017 || event.keyCode == 2018) {
+            console.info(`onInterceptKeyEvent get event.keyCode ${event.keyCode}`)
+            return true;
+          }
+          return false;
         })
       }
     }

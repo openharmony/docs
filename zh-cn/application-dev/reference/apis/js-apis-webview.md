@@ -2226,15 +2226,15 @@ struct WebComponent {
 
 setNetworkAvailable(enable: boolean): void
 
-设置JavaScript中的window.navigator.isOnline属性。
+设置JavaScript中的window.navigator.onLine属性。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
 **参数：**
 
-| 参数名 | 类型    | 必填 | 说明                                |
-| ------ | ------- | ---- | ----------------------------------- |
-| enable | boolean | 是   | 是否使能window.navigator.isOnline。 |
+| 参数名 | 类型    | 必填 | 说明                              |
+| ------ | ------- | ---- | --------------------------------- |
+| enable | boolean | 是   | 是否使能window.navigator.onLine。 |
 
 **错误码：**
 
@@ -2311,7 +2311,7 @@ struct WebComponent {
       Button('hasImageCb')
         .onClick(() => {
           this.controller.hasImage((err, data) => {
-			console.log("hasImage: " + JSON.stringify(data));
+			console.log("hasImage: " + data);
           });
         })
       Web({ src: 'www.example.com', controller: this.controller })
@@ -2359,7 +2359,7 @@ struct WebComponent {
       Button('hasImagePm')
         .onClick(() => {
           this.controller.hasImage().then((data) => {
-              console.info("hasImage:" + JSON.stringify(data))
+              console.info("hasImage: " + data)
           }); 
         })
       Web({ src: 'www.example.com', controller: this.controller })
