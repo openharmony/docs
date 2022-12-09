@@ -1,62 +1,68 @@
 # list-item-group
 
-**\<list-item-group>** is a child component of **<[list](js-components-container-list.md)>** and is used to group items in a list. By default, the width of **\<list-item-group>** is equal to that of **\<list>**.
+>  **NOTE**
+>
+>  This component is supported since API version 4. Updates will be marked with a superscript to indicate their earliest API version.
 
-- To use this component, you must set the **columns** attribute of the parent component **\<list>** to **1**. Otherwise, **\<list-item-group>** is not displayed.
-- You can customize the width of each **\<list-item-group>**. However, if you retain the default value **stretch** of **align-items** for the parent component **\<list>**, the width of **\<list-item-group>** is equal to that of **\<list>**. You can set **align-items** to other values rather than **stretch** to make the customized **\<list-item-group>** width take effect.
+**\<list-item-group>** is a child component of **[\<list>](../arkui-js/js-components-container-list.md)** and is used to group items in a list. By default, the width of **\<list-item-group>** is equal to that of **\<list>**.
+
+
+- To use this component, you must set the **columns** attribute of the parent component **\<list>** to **1**. Otherwise, this component is not displayed.
+
+- You can customize the width of each **\<list-item-group>**. However, if you retain the default value **stretch** of **align-items** for the parent component **\<list>**, the width of **\<list-item-group>** is equal to that of **\<list>**. To make the customized **\<list-item-group>** width take effect, set **align-items** to other values rather than **stretch**.
 
 ## Required Permissions
 
 None
 
+
 ## Child Components
 
-Only **<[list-item](js-components-container-list-item.md)>** are supported.
+Only the **[\<list-item>](../arkui-js/js-components-container-list-item.md)** component is supported.
+
 
 ## Attributes
 
-In addition to the attributes in [Universal Attributes](js-components-common-attributes.md), the following attributes are supported.
+In addition to the [universal attributes](../arkui-js/js-components-common-attributes.md), the following attributes are supported.
 
+| Name  | Type    | Default Value    | Mandatory  | Description                                      |
+| ---- | ------ | ------- | ---- | ---------------------------------------- |
+| type | string | default | No   | Type of the list item group. A list supports multiple list item group types. The same type of list item groups must have the same view layout after being rendered. If the type is fixed, replace the **if** attribute with the **show** attribute to ensure that the view layout remains unchanged.|
 
-
-| Name | Type   | Default Value | Mandatory | Description                                                  |
-| ---- | ------ | ------------- | --------- | ------------------------------------------------------------ |
-| type | string | default       | No        | Type of the list-item-group. A list supports multiple list-item-group types. The same type of list-item-groups should have the same view layout after being rendered. When the type is fixed, replace the **if** attribute with the **show** attribute to ensure that the view layout remains unchanged. |
-
-> ![img](https://gitee.com/openharmony/docs/raw/OpenHarmony-3.1-Release/en/application-dev/public_sys-resources/icon-note.gif) **NOTE:**
+>  **NOTE**
 >
-> **id** in the common attributes is used to identify a group. The input parameters of related functions and event information in the list also use **id** to uniquely identify a group.
+> **id** in the universal attributes is used to identify a group. The input parameters of related functions and event information in the list also use **id** to uniquely identify a group.
+
 
 ## Styles
 
-In addition to the styles in [Universal Styles](js-components-common-styles.md), the following styles are supported.
+In addition to the [universal styles](../arkui-js/js-components-common-styles.md), the following styles are supported.
 
+| Name             | Type    | Default Value       | Mandatory  | Description                                      |
+| --------------- | ------ | ---------- | ---- | ---------------------------------------- |
+| flex-direction  | string | row        | No   | Main axis direction of the flex container, which defines how items are placed in the container. Available values are as follows:<br>- **column**: Items are placed vertically from top to bottom.<br>- **row**: Items are placed horizontally from left to right.|
+| justify-content | string | flex-start | No   | How items are aligned along the main axis of the flex container. Available values are as follows:<br>- **flex-start**: Items are packed toward the start edge of the container along the main axis.<br>- **flex-end**: Items are packed toward the end edge of the container along the main axis.<br>- **center**: Items are packed toward the center of the container along the main axis.<br>- **space-between**: Items are positioned with space between the rows.<br>- **space-around**: Items are positioned with space before, between, and after the rows.<br>- **space-evenly**<sup>5+</sup>: Items are distributed within the container along the main axis, with even space between each two.|
 
-
-| Name            | Type   | Default Value | Mandatory | Description                                                  |
-| --------------- | ------ | ------------- | --------- | ------------------------------------------------------------ |
-| flex-direction  | string | row           | No        | Main axis direction of the container. Available values are as follows:<br>- **column**: Items are placed vertically from top to bottom.<br>- **row**: Items are placed horizontally from left to right. |
-| justify-content | string | flex-start    | No        | How items are aligned along the main axis of the current row in the container. Available values are as follows:<br>- **flex-start**: Items are packed towards the start row.<br>- **flex-end**: Items are packed towards the end row.<br>- **center**: Items are centered along the row.<br>- **space-between**: Items are positioned with space between the rows.<br>- **space-around**: Items are positioned with space before, between, and after the rows.<br>- **space-evenly**<sup>5+</sup>: Items are arranged with even space between each two. |
 
 ## Events
 
-In addition to the events in [Universal Events](js-components-common-events.md), the following events are supported.
+In addition to the [universal events](../arkui-js/js-components-common-events.md), the following events are supported.
 
+| Name           | Name                                | Description                                      |
+| ------------- | ---------------------------------- | ---------------------------------------- |
+| groupclick    | { groupid: string } | Triggered when a group is clicked.<br>**groupid**: ID of the group that is clicked.    |
+| groupcollapse | { groupid: string } | Triggered when a group is collapsed.<br>**groupid**: ID of the group that is collapsed.<br>If the parameter is not carried or **groupid** is left empty, all groups are collapsed.|
+| groupexpand   | { groupid: string } | Triggered when a group is expanded.<br>**groupid**: ID of the group that is expanded.<br>If the parameter is not carried or **groupid** is left empty, all groups are expanded.|
 
-
-| Name          | Parameter           | Description                                                  |
-| ------------- | ------------------- | ------------------------------------------------------------ |
-| groupclick    | { groupid: string } | Triggered when a group is clicked.<br>**groupid**: ID of the group that is clicked. |
-| groupcollapse | { groupid: string } | Triggered when a group is collapsed.<br>**groupid**: ID of the group collapsed.<br>If the parameter is not carried or **groupid** is left empty, all groups are collapsed. |
-| groupexpand   | { groupid: string } | Triggered when a group is expanded.<br>**groupid**: ID of the group expanded.<br>If the parameter is not carried or **groupid** is left empty, all groups are expanded. |
 
 ## Methods
 
-Methods in [Universal Methods](js-components-common-methods.md) are supported.
+The [universal methods](../arkui-js/js-components-common-methods.md) are supported.
+
 
 ## Example
 
-```
+```html
 <!-- xxx.hml -->
 <div class="doc-page">
   <list style="width: 100%;" id="mylist">
@@ -86,6 +92,9 @@ Methods in [Universal Methods](js-components-common-methods.md) are supported.
     </list-item-group>
   </list>
 </div>
+```
+
+```css
 /* xxx.css */
 .doc-page {
   flex-direction: column;
@@ -111,12 +120,16 @@ Methods in [Universal Methods](js-components-common-methods.md) are supported.
   align-items: center;
   width:100%;
 }
+```
+
+```js
 // xxx.js
 import prompt from '@system.prompt';
 export default {
   data: {
     direction: 'column',
-    list: []
+    list: [],
+    listAdd: []
   },
   onInit() {
     this.list = []
@@ -157,4 +170,4 @@ export default {
 }
 ```
 
-![img](figures/list6.gif)
+![list6](figures/list6.gif)
