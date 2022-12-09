@@ -4,13 +4,15 @@
 下方将展示如何在单板上运行第一个应用程序，其中包括新建应用程序、编译、烧写、运行等步骤，最终输出“Hello World！”。
 
 
+
 ## 示例目录
 
+拉取openharmony项目代码，在代码根目录创建sample子系统文件夹，在子系统目录下创建hello部件文件夹，hello文件夹中创建hello源码目录，构建文件BUILD.gn及部件配置文件bundle.json。
 示例完整目录如下。
 
 
 ```
-applications/sample/hello
+sample/hello
 │── BUILD.gn
 │── include
 │   └── helloworld.h
@@ -31,7 +33,7 @@ vendor/hihope
 
 1. 创建目录，编写业务代码。
    
-   新建applications/sample/hello/src/helloworld.c目录及文件，代码如下所示，用户可以自定义修改打印内容（例如：修改World为OHOS）。其中helloworld.h包含字符串打印函数HelloPrint的声明。当前应用程序可支持标准C及C++的代码开发。
+   新建sample/hello/src/helloworld.c目录及文件，代码如下所示，用户可以自定义修改打印内容（例如：修改World为OHOS）。其中helloworld.h包含字符串打印函数HelloPrint的声明。当前应用程序可支持标准C及C++的代码开发。
 
    
    ```
@@ -52,7 +54,7 @@ vendor/hihope
    }
    ```
 
-   再添加头文件applications/sample/hello/include/helloworld.h，代码如下所示。
+   再添加头文件sample/hello/include/helloworld.h，代码如下所示。
 
    
    ```
@@ -75,7 +77,9 @@ vendor/hihope
    ```
 
 2. 新建编译组织文件。
-   1. 新建applications/sample/hello/BUILD.gn文件，内容如下所示：
+
+   1. 新建sample/hello/BUILD.gn，创建方法可参考链接：https://gitee.com/openharmony/docs/blob/master/zh-cn/device-dev/subsystems/subsys-build-module.md#cc%E6%A8%A1%E6%9D%BF%E7%A4%BA%E4%BE%8B，
+      创建BUILD.gn内容如下所示：
       
        ```
        import("//build/ohos.gni")  # 导入编译模板
@@ -96,7 +100,10 @@ vendor/hihope
          install_enable = true  # 是否默认安装（缺省默认不安装），可选
        }
        ```
-   2. 新建applications/sample/hello/bundle.json文件，添加sample部件描述，内容如下所示。
+3. 新建部件配置规则文件
+
+   1. 新建sample/hello/bundle.json文件，添加sample部件描述，创建方法可参考链接：https://gitee.com/openharmony/docs/blob/master/zh-cn/device-dev/subsystems/subsys-build-component.md#%E9%83%A8%E4%BB%B6%E9%85%8D%E7%BD%AE%E8%A7%84%E5%88%99
+      创建bundle.json内容如下所示。
       
        ```
        {
@@ -106,7 +113,7 @@ vendor/hihope
            "license": "Apache License 2.0",
            "publishAs": "code-segment",
            "segment": {
-               "destPath": "applications/sample/hello"
+               "destPath": "sample/hello"
            },
            "dirs": {},
            "scripts": {},
@@ -124,7 +131,7 @@ vendor/hihope
                },
                "build": {
                    "sub_component": [
-                       "//applications/sample/hello:helloworld"
+                       "//sample/hello:helloworld"
                    ],
                    "inner_kits": [],
                    "test": []
@@ -135,25 +142,45 @@ vendor/hihope
 
        bundle.json文件包含两个部分，第一部分描述该部件所属子系统的信息，第二部分component则定义该部件构建相关配置。添加的时候需要指明该部件包含的模块sub_component，假如有提供给其它部件的接口，需要在inner_kits中说明，假如有测试用例，需要在test中说明，inner_kits与test没有也可以不添加。
 
-3. 修改子系统配置文件。
+4. 修改子系统配置文件。
    
-   在build/subsystem_config.json中添加新建的子系统的配置。
-
+   在build/subsystem_config.json中添加新建的子系统的配置。修改方法可参考链接：https://gitee.com/openharmony/docs/blob/master/zh-cn/device-dev/subsystems/subsys-build-subsystem.md
+   新增子系统的配置如下所示。
    
    ```
    "sample": {
-       "path": "applications/sample/hello",
+       "path": "sample",
        "name": "sample"
      },
    ```
 
-4. 修改产品配置文件。
-     
-   在vendor/hihope/rk3568/config.json中添加对应的hello部件，直接添加到原有部件后即可。
-     
+5. 修改产品配置文件。
+
+      > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+      > OpenHarmony-v3.2-Beta2之前版本，RK3568的产品配置文件为productdefine/common/products/rk3568.json；从OpenHarmony-v3.2-Beta2版本开始，RK3568的产品配置文件为vendor/hihope/rk3568/config.json。
+
+   1. 3.2-Beta2之前版本
+      在productdefine/common/products/rk3568.json中添加对应的hello部件，直接添加到原有部件后即可。
+   
+   
    ```
        "usb:usb_manager_native":{},
        "applications:prebuilt_hap":{},
        "sample:hello":{},
        "wpa_supplicant-2.9:wpa_supplicant-2.9":{},
+   ```
+
+   2. 3.2-Beta2及之后版本
+      在vendor/hihope/rk3568/config.json中添加对应的hello部件，直接添加到原有部件后即可。
+
+   ```
+       {
+         "subsystem": "sample",
+         "components": [
+           {
+             "component": "hello",
+             "features": []
+           }
+         ]
+       },     
    ```
