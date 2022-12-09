@@ -216,9 +216,9 @@ struct Index {
 }
 ```
 
-> **NOTE**
-> 
-> For details about the request mode, timeout, and additional request parameters for loading online images, see [`request()`](../../reference/apis/js-apis-http.md) in the HTTP module.
+>  **NOTE**
+>  
+>  For details about the request mode, timeout, and additional request parameters for loading online images, see [`request()`](../../reference/apis/js-apis-http.md) in the HTTP module.
 
 ### Setting Attributes
 
@@ -351,3 +351,57 @@ struct ImageExample3 {
 ```
 
 ![en-us_image_0000001256858397](figures/en-us_image_0000001256858397.gif)
+
+###  Rendering Sandbox Images
+
+```ts
+import fileio from '@ohos.fileio'
+import context from '@ohos.application.context'
+
+@Entry
+@Component
+struct LoadImageExample {
+  @State resourcesPath: string = ''
+  @State sandboxPath: string = ''
+  context: context.AbilityContext
+
+  aboutToAppear() {
+    this.context = getContext(this) as context.AbilityContext
+  }
+
+  build() {
+    Column() {
+      Button ('Read Sandbox Image')
+        .margin({ bottom: 10, top: 10 })
+        .onClick(() => {
+          this.sandboxPath = this.context.getApplicationContext().filesDir + '/icon.png'
+          console.log(`Read the sandbox image=========>${this.sandboxPath}`)
+          let fd = fileio.openSync(this.sandboxPath, 0o100, 0o666)
+          console.log(`create file========>${fd}`)
+          let srcPath = this.context.bundleCodeDir + '/entry/resources/base/media/icon.png'
+          console.log('mySrcpath' + srcPath)
+          fileio.copyFileSync(srcPath, this.sandboxPath) // Copy the image to the sandbox path.
+          this.sandboxPath = 'file://' + this.context.getApplicationContext().filesDir + '/icon.png'
+        })
+      Button ('Read Image')
+        .margin({ bottom: 10 })
+        .onClick(() => {
+          this.resourcesPath = 'file://' + this.context.bundleCodeDir + '/entry/resources/base/media/icon.png'
+        })
+      Text(`Image path: ${this.resourcesPath}`)
+        .fontSize(20)
+        .margin({ bottom: 10 })
+      Image(this.resourcesPath)
+        .width(100)
+        .height(100)
+      Text(`Sandbox image path: ${this.sandboxPath}`)
+        .fontSize(20)
+        .margin({ bottom: 10 })
+      Image(this.sandboxPath)
+        .width(100)
+        .height(100)
+    }
+    .width('100%').height('100%')
+  }
+}
+```
