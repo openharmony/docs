@@ -18,6 +18,8 @@
 
   filename：工程中resources/rawfile目录下的文件名称。
 
+  **说明：** 在引用资源类型时，注意其数据类型要与属性方法本身的类型一致，例如某个属性方法支持设置string | Resource，那么在使用Resource引用类型时，其数据类型也应当为string。
+
 ## Length
 
 长度类型，用于描述尺寸单位。
