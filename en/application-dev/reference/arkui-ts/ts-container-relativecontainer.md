@@ -4,7 +4,9 @@ The **\<RelativeContainer>** component is used for element alignment in complex 
 
 >  **NOTE**
 >
->  This component is supported since API version 9. Updates will be marked with a superscript to indicate their earliest API version.
+> This component is supported since API version 9. Updates will be marked with a superscript to indicate their earliest API version.
+
+
 
 ## Rules 
 
