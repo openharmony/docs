@@ -68,7 +68,7 @@ FormAbility生命周期接口如下：
 | onAcquireFormState?(want:&nbsp;Want):&nbsp;formInfo.FormState | 卡片提供方接收查询卡片状态的通知接口。 |
 | onShare?(formId:&nbsp;string):&nbsp;{[key:&nbsp;string]:&nbsp;any} | 卡片提供方接收卡片分享的通知接口。 |
 
-FormProvider类有如下API接口，具体的API介绍详见[接口文档](../reference/apis/js-apis-app-form-formprovider.md)。
+FormProvider类有如下API接口，具体的API介绍详见[接口文档](../reference/apis/js-apis-app-form-formProvider.md)。
 
 
 | 接口名 | 描述 |
@@ -79,7 +79,7 @@ FormProvider类有如下API接口，具体的API介绍详见[接口文档](../re
 | updateForm(formId:&nbsp;string,&nbsp;formBindingData:&nbsp;FormBindingData):&nbsp;Promise&lt;void&gt;; | 更新指定的卡片，以promise方式返回。 |
 
 
-formBindingData类有如下API接口，具体的API介绍详见[接口文档](../reference/apis/js-apis-app-form-formbindingdata.md)。
+formBindingData类有如下API接口，具体的API介绍详见[接口文档](../reference/apis/js-apis-app-form-formBindingData.md)。
 
 
 | 接口名 | 描述 |
