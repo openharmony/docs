@@ -1,61 +1,55 @@
 # Navigator
 
+The **\<Navigator>** component provides redirection.
 
 > **NOTE**
 >
 > This component is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
 
-The **\<Navigator>** component provides redirection to the target page.
-
-
-## Required Permissions
-
-None
-
-
 ## Child Components
 
-This component can contain child components.
+Supported
 
 
 ## APIs
 
 Navigator(value?: {target: string, type?: NavigationType})
 
-Creates a navigator.
+**Parameters**
 
-- Parameters
-  | Name | Type | Mandatory | Default Value | Description |
-  | -------- | -------- | -------- | -------- | -------- |
-  | target | string | Yes | - | Path of the target page to be redirected to. |
-  | type | NavigationType | No | NavigationType.Push | Navigation type. |
+| Name| Type      | Mandatory| Description                                      |
+| ------ | -------------- | ---- | ---------------------------------------------- |
+| target | string         | Yes  | Path of the target page to be redirected to.    |
+| type   | [NavigationType](#navigationtype) | No  | Navigation type.<br>Default value: **NavigationType.Push**|
 
-- NavigationType enums
-  | Name | Description |
-  | -------- | -------- |
-  | Push | Navigates to a specified page in the application. |
-  | Replace | Replaces the current page with another one in the application and destroys the current page. |
-  | Back | Returns to the previous page or a specified page. |
+## NavigationType
+
+| Name     | Description                        |
+| ------- | -------------------------- |
+| Push    | Navigates to a specified page in the application.              |
+| Replace | Replaces the current page with another one in the application and destroys the current page.|
+| Back    | Returns to the previous page or a specified page.             |
 
 
 ## Attributes
 
-| Name | Parameters | Default Value | Description |
-| -------- | -------- | -------- | -------- |
-| active | boolean | - | Whether the **\<Navigator>** component is activated. If the component is activated, the corresponding navigation takes effect. |
-| params | Object | undefined | Data that needs to be passed to the target page during redirection. You can use **router.getParams()** to obtain the data on the target page. |
+| Name  | Parameter   | Description                                                        |
+| ------ | ------- | ------------------------------------------------------------ |
+| active | boolean | Whether the **\<Navigator>** component is activated. If the component is activated, the corresponding navigation takes effect.|
+| params | object  | Data that needs to be passed to the target page during redirection. You can use [router.getParams()](../apis/js-apis-router.md#routergetparams) to obtain the data on the target page.|
+| target | string         | Path of the target page to be redirected to. The target page must be added to the **main_pages.json** file.                        |
+| type   | [NavigationType](#navigationtype)  | Navigation type.<br>Default value: **NavigationType.Push**|
 
 
 ## Example
-
 
 ```ts
 // Navigator.ets
 @Entry
 @Component
 struct NavigatorExample {
-  @State active: boolean = false
+  @State active: boolean = false;
   @State Text: object = {name: 'news'}
 
   build() {
@@ -63,28 +57,28 @@ struct NavigatorExample {
       Navigator({ target: 'pages/container/navigator/Detail', type: NavigationType.Push }) {
         Text('Go to ' + this.Text['name'] + ' page')
             .width('100%').textAlign(TextAlign.Center)
-      }.params({ text: this.Text })
+      }.params({ text: this.Text }) // Transfer parameters to the Detail page.
 
       Navigator() {
         Text('Back to previous page').width('100%').textAlign(TextAlign.Center)
       }.active(this.active)
       .onClick(() => {
-        this.active = true
+        this.active = true;
       })
     }.height(150).width(350).padding(35)
   }
 }
 ```
 
-
 ```ts
 // Detail.ets
-import router from '@system.router'
+import router from '@ohos.router'
 
 @Entry
 @Component
 struct DetailExample {
-  @State text: any = router.getParams().text
+  // Receive the input parameters of Navigator.ets.
+  @State text: any = router.getParams().text;
 
   build() {
     Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Start, justifyContent: FlexAlign.SpaceBetween }) {
