@@ -290,6 +290,7 @@
   - [@ohos.enterprise.EnterpriseAdminExtensionAbility (EnterpriseAdminExtensionAbility)](js-apis-EnterpriseAdminExtensionAbility.md)
   - [@ohos.enterprise.adminManager (企业设备管理)](js-apis-enterprise-adminManager.md)
   - [@ohos.enterprise.dateTimeManager（系统时间管理）](js-apis-enterprise-dateTimeManager.md)
+  - [@ohos.enterprise.deviceInfo（设备信息管理）](js-apis-enterprise-deviceInfo.md)
 
 - 语言基础类库
   - [@ohos.buffer (Buffer)](js-apis-buffer.md)
