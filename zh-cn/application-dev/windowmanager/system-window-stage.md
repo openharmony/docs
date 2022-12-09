@@ -15,14 +15,14 @@
 
 | 实例名 | 接口名 | 描述 |
 | -------- | -------- | -------- |
-| window静态方法 | create(ctx: Context, id: string, type: WindowType, callback: AsyncCallback&lt;Window&gt;): void | 创建窗口。<br/>-`ctx`：为应用上下文信息。当`Context`为[ServiceExtensionContext](../reference/apis/js-apis-inner-application-serviceExtensionContext.md)时，创建系统窗口。<br/>-`type`：为创建的窗口类型。 |
-| Window | resetSize(width: number, height: number, callback: AsyncCallback&lt;void&gt;): void | 改变当前窗口大小。 |
-| Window | moveTo(x: number, y: number, callback: AsyncCallback&lt;void&gt;): void | 移动当前窗口位置。 |
-| Window | loadContent(path: string, callback: AsyncCallback&lt;void&gt;): void | 为当前窗口加载具体页面。 |
-| Window | show(callback: AsyncCallback\<void>): void | 显示当前窗口。 |
+| window静态方法 | createWindow(config: Configuration, callback: AsyncCallback<Window>): void | 创建子窗口或系统窗口。<br/>-`config`：创建窗口时的参数。 |
+| Window | resize(width: number, height: number, callback: AsyncCallback&lt;void&gt;): void | 改变当前窗口大小。 |
+| Window | moveWindowTo(x: number, y: number, callback: AsyncCallback&lt;void&gt;): void | 移动当前窗口位置。 |
+| Window | SetUIContent(path: string, callback: AsyncCallback&lt;void&gt;): void | 为当前窗口加载具体页面。 |
+| Window | showWindow(callback: AsyncCallback\<void>): void | 显示当前窗口。 |
 | Window | on(type: 'touchOutside', callback: Callback&lt;void&gt;): void | 开启本窗口区域外的点击事件的监听。 |
 | Window | hide (callback: AsyncCallback\<void>): void | 隐藏当前窗口。此接口为系统接口。 |
-| Window | destroy(callback: AsyncCallback&lt;void&gt;): void | 销毁当前窗口。 |
+| Window | destroyWindow(callback: AsyncCallback&lt;void&gt;): void | 销毁当前窗口。 |
 
 
 ## 开发步骤
@@ -33,7 +33,7 @@
 
 1. 创建系统窗口。
 
-   在[ServiceExtensionContext](../reference/apis/js-apis-inner-application-serviceExtensionContext.md)下，使用`window.create`接口创建音量条系统窗口。
+   在[ServiceExtensionContext](../reference/apis/js-apis-inner-application-serviceExtensionContext.md)下，使用`window.createWindow`接口创建音量条系统窗口。
 
 2. 操作或设置系统窗口的属性。
 
@@ -41,11 +41,11 @@
 
 3. 加载显示系统窗口的具体内容。
 
-   通过`loadContent`和`show`接口加载显示音量条窗口的具体内容。
+   通过`SetUIContent`和`showWindow`接口加载显示音量条窗口的具体内容。
 
 4. 隐藏/销毁系统窗口。
 
-   当不再需要音量条窗口时，可根据具体实现逻辑，使用`hide`接口或`destroy`接口对其进行隐藏或销毁。
+   当不再需要音量条窗口时，可根据具体实现逻辑，使用`hide`接口或`destroyWindow`接口对其进行隐藏或销毁。
 
 ```ts
 import ExtensionContext from '@ohos.application.ServiceExtensionAbility';
@@ -57,7 +57,8 @@ export default class ServiceExtensionAbility1 extends ExtensionContext {
         globalThis.abilityWant = want;
         // 1.创建音量条窗口。
         let windowClass = null;
-        window.create(this.context, "volume", window.WindowType.TYPE_VOLUME_OVERLAY, (err, data) => {
+        let config = {name: "volume", windowType: window.WindowType.TYPE_VOLUME_OVERLAY, ctx: this.context};
+        window.createWindow(config, (err, data) => {
             if (err.code) {
                 console.error('Failed to create the volume window. Cause:' + JSON.stringify(err));
                 return;
@@ -65,14 +66,14 @@ export default class ServiceExtensionAbility1 extends ExtensionContext {
             console.info('Succeeded in creating the volume window.')
             windowClass = data;
             // 2.创建音量条窗口成功之后，可以改变其大小、位置或设置背景色、亮度等属性。
-            windowClass.moveTo(300, 300, (err) => {
+            windowClass.moveWindowTo(300, 300, (err) => {
                 if (err.code) {
                     console.error('Failed to move the window. Cause:' + JSON.stringify(err));
                     return;
                 }
                 console.info('Succeeded in moving the window.');
             });
-            windowClass.resetSize(500, 1000, (err) => {
+            windowClass.resize(500, 500, (err) => {
                 if (err.code) {
                     console.error('Failed to change the window size. Cause:' + JSON.stringify(err));
                     return;
@@ -80,14 +81,14 @@ export default class ServiceExtensionAbility1 extends ExtensionContext {
                 console.info('Succeeded in changing the window size.');
             });
             // 3.为音量条窗口加载对应的目标页面。
-            windowClass.loadContent("pages/page_volume", (err) => {
+            windowClass.setUIContent("pages/page_volume", (err) => {
                 if (err.code) {
                     console.error('Failed to load the content. Cause:' + JSON.stringify(err));
                     return;
                 }
                 console.info('Succeeded in loading the content.');
                 // 3.显示音量条窗口。
-                windowClass.show((err) => {
+                windowClass.showWindow((err) => {
                     if (err.code) {
                         console.error('Failed to show the window. Cause:' + JSON.stringify(err));
                         return;
