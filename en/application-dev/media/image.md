@@ -21,23 +21,27 @@ let opts = { alphaType: 0, editable: true, pixelFormat: 4, scaleMode: 1, size: {
 // Create a PixelMap object.
 const color = new ArrayBuffer(96);
 let opts = { alphaType: 0, editable: true, pixelFormat: 4, scaleMode: 1, size: { height: 2, width: 3 } }
-image.createPixelMap(color, opts, pixelmap => {
+image.createPixelMap(color, opts, (err, pixelmap) => {
     console.log('Succeeded in creating pixelmap.');
 })
 
 // Read pixels.
-pixelmap.readPixels(area,(data) => {
-    if(data !== null) {
-        var bufferArr = new Uint8Array(area.pixels);
-        var res = true;
-        for (var i = 0; i < bufferArr.length; i++) {
-            console.info(' buffer ' + bufferArr[i]);
-            if(res) {
-                if(bufferArr[i] == 0) {
-                    res = false;
-                    console.log('readPixels end.');
-                    break;
-                }
+const area = {
+    pixels: new ArrayBuffer(8),
+    offset: 0,
+    stride: 8,
+    region: { size: { height: 1, width: 2 }, x: 0, y: 0 }
+}
+pixelmap.readPixels(area,() => {
+    var bufferArr = new Uint8Array(area.pixels);
+    var res = true;
+    for (var i = 0; i < bufferArr.length; i++) {
+        console.info(' buffer ' + bufferArr[i]);
+        if(res) {
+            if(bufferArr[i] == 0) {
+                res = false;
+                console.log('readPixels end.');
+                break;
             }
         }
     }
@@ -96,7 +100,7 @@ pixelmap.writeBufferToPixels(writeColor).then(() => {
 })
 
 // Obtain image information.
-pixelmap.getImageInfo( imageInfo => {
+pixelmap.getImageInfo((error, imageInfo) => {
     if (imageInfo !== null) {
 	    console.log('Succeeded in getting imageInfo');
     } 
@@ -128,7 +132,7 @@ imageSourceApi.release(() => {
 const imagePackerApi = image.createImagePacker();
 const imageSourceApi = image.createImageSource(0);
 let packOpts = { format:"image/jpeg", quality:98 };
-imagePackerApi.packing(imageSourceApi, packOpts, data => {
+imagePackerApi.packing(imageSourceApi, packOpts, (err, data) => {
     console.log('Succeeded in packing');
 })
  
@@ -156,7 +160,7 @@ let decodingOptions = {
     };
     
 // Create a pixel map in callback mode.
-imageSourceApi.createPixelMap(decodingOptions, pixelmap => {
+imageSourceApi.createPixelMap(decodingOptions, (err, pixelmap) => {
     console.log('Succeeded in creating pixelmap.');
 })
 
@@ -171,17 +175,13 @@ catch(error => {
 })
 
 // Obtain the number of bytes in each line of pixels.
-pixelmap.getBytesNumberPerRow( num => {
-    console.log('Succeeded in getting BytesNumber PerRow.');
-})
+var num = pixelmap.getBytesNumberPerRow();
 
 // Obtain the total number of pixel bytes.
-pixelmap.getPixelBytesNumber(num => {
-    console.log('Succeeded in getting PixelBytesNumber.');
-})
+var pixelSize = pixelmap.getPixelBytesNumber();
 
 // Obtain the pixel map information.
-pixelmap.getImageInfo( imageInfo => {})
+pixelmap.getImageInfo().then( imageInfo => {});
 
 // Release the PixelMap object.
 pixelmap.release(()=>{
@@ -229,7 +229,7 @@ imagePackerApi.packing(imageSourceApi, packOpts)
 imagePackerApi.release();
 
 // Obtain the image source information.
-imageSourceApi.getImageInfo(imageInfo => {
+imageSourceApi.getImageInfo((err, imageInfo) => {
     console.log('Succeeded in getting imageInfo');
 })
 
@@ -249,8 +249,9 @@ public async init(surfaceId: any) {
     var receiver = image.createImageReceiver(8 * 1024, 8, image.ImageFormat.JPEG, 1);
 
     // Obtain the surface ID.
-    var surfaceId = await receiver.getReceivingSurfaceId();
-
+    receiver.getReceivingSurfaceId((err, surfaceId) => {
+        console.info("receiver getReceivingSurfaceId success");
+    });
     // Register a surface listener, which is triggered after the buffer of the surface is ready.
     receiver.on('imageArrival', () => {
         // Obtain the latest buffer of the surface.
