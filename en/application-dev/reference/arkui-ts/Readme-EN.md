@@ -160,3 +160,5 @@
     - [Menu](ts-methods-menu.md)
 - [Built-in Enums](ts-appendix-enums.md)
 - [Types](ts-types.md)
+- Components No Longer Maintained 
+  - [GridContainer](ts-container-gridcontainer.md)
