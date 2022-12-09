@@ -13,20 +13,20 @@ PinchGesture(value?: { fingers?: number, distance?: number })
 
 **Parameters**
 
-| Name     | Type   | Mandatory | Description                              |
-| -------- | ------ | --------- | ---------------------------------------- |
-| fingers  | number | No        | Minimum number of fingers to trigger a pinch. The value ranges from 2 to 5.<br>Default value: **2** |
-| distance | number | No        | Minimum recognition distance, in vp.<br>Default value: **3** |
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| fingers | number | No| Minimum number of fingers to trigger a pinch. The value ranges from 2 to 5.<br>Default value: **2**|
+| distance | number | No| Minimum recognition distance, in vp.<br>Default value: **3**|
 
 
 ## Events
 
-| Name                                     | Description                              |
-| ---------------------------------------- | ---------------------------------------- |
-| onActionStart(event:(event?: [GestureEvent](ts-gesture-settings.md)) =&gt; void) | Triggered when a pinch gesture is recognized. |
-| onActionUpdate(event:(event?: [GestureEvent](ts-gesture-settings.md)) =&gt; void) | Triggered when the user moves the finger in a pinch gesture on the screen. |
-| onActionEnd(event:(event?: [GestureEvent](ts-gesture-settings.md)) =&gt; void) | Triggered when the finger used for a pinch gesture is lift. |
-| onActionCancel(event: () =&gt; void)     | Triggered when a tap cancellation event is received after a pinch gesture is recognized. |
+| Name| Description|
+| -------- | -------- |
+| onActionStart(event:(event?: [GestureEvent](ts-gesture-settings.md)) =&gt; void) | Triggered when a pinch gesture is recognized.|
+| onActionUpdate(event:(event?: [GestureEvent](ts-gesture-settings.md)) =&gt; void) | Triggered when the user moves the finger in a pinch gesture on the screen.|
+| onActionEnd(event:(event?: [GestureEvent](ts-gesture-settings.md)) =&gt; void) | Triggered when the finger used for a pinch gesture is lift.|
+| onActionCancel(event: () =&gt; void) | Triggered when a tap cancellation event is received after a pinch gesture is recognized.|
 
 
 ## Example

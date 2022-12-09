@@ -1,11 +1,10 @@
-# OffscreenCanvas
+# OffscreenCanvasRenderingContext2D
 
+**OffscreenCanvasRenderingContext2D** allows you to draw rectangles, text, images, and other objects on an offscreen canvas, which is a new buffer created by the GPU outside of the current buffer. For details, see [OffscreenCanvasRenderingContext2D](../reference/arkui-js/js-offscreencanvasrenderingcontext2d.md).
 
-Create an **OffscreenCanvas** canvas and create a **getContext2d** object on the canvas. Then, create an image and set the **filter** attribute to change the image style.
+In the following example, you first create an offscreen canvas, and then create a **getContext2d** object on the canvas, which is an image, and finally set the **filter** attribute for the image.
 
-
-
-```
+```html
 <!-- xxx.hml -->
 <div class="container">
   <canvas ref="canvas1"></canvas>
@@ -24,11 +23,11 @@ Create an **OffscreenCanvas** canvas and create a **getContext2d** object on the
 </div>
 ```
 
-
-
-```
+```css
 /* xxx.css */
 .container{
+  width: 100%;
+  height: 100%;
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -48,9 +47,7 @@ select{
 }
 ```
 
-
-
-```
+```js
 // xxx.js
 import prompt from '@system.prompt';
 export default {
@@ -75,12 +72,10 @@ export default {
     this.img.onerror = function() {
       prompt.showToast({message:"error",duration:2000})
     };
-    var bitmap = this.offscreen.transferToImageBitmap();
-    this.ctx.transferFromImageBitmap(bitmap);
+    var bitmap = this.offscreen.transferToImageBitmap();    this.ctx.transferFromImageBitmap(bitmap);
   },
   change(e){
-    this.offCanvas.filter = e.newValue;
-    this.offCanvas.drawImage(this.img, 100, 100, 400, 300);
+    this.offCanvas.filter = e.newValue;this.offCanvas.drawImage(this.img, 100, 100, 400, 300);
     var bitmap = this.offscreen.transferToImageBitmap();
     this.ctx.transferFromImageBitmap(bitmap);
   },
@@ -93,10 +88,10 @@ export default {
 
 ## Determining the Position
 
-Use **isPointInPath** and **isPointInStroke** to determine and show whether a coordinate is within the path area and whether a coordinate is on the edge of the path.
+Use **isPointInPath** to determine whether a coordinate is within the path area and use **isPointInStroke** to determine whether a coordinate is on the edge of the path.
 
 
-```
+```html
 <!-- xxx.hml -->
 <div class="container">
   <div class="content">
@@ -110,9 +105,11 @@ Use **isPointInPath** and **isPointInStroke** to determine and show whether a co
 ```
 
 
-```
+```css
 /* xxx.css */
 .container{
+  width: 100%;
+  height: 100%;
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -143,7 +140,7 @@ button{
 ```
 
 
-```
+```js
 // xxx.js
 export default {
   data: {
@@ -188,4 +185,4 @@ export default {
 }
 ```
 
-![en-us_image_0000001276003489](figures/en-us_image_0000001276003489.gif)
+![en-us_image_0000001178084014](figures/en-us_image_0000001178084014.gif)
