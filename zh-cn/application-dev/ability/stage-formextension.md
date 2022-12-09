@@ -30,7 +30,7 @@ Stage卡片开发，即基于[Stage模型](stage-brief.md)的卡片提供方开�
 
 ## 接口说明
 
-FormExtension类拥有如下API接口，具体的API介绍详见[接口文档](../reference/apis/js-apis-app-form-formextensionability.md)。
+FormExtension类拥有如下API接口，具体的API介绍详见[接口文档](../reference/apis/js-apis-app-form-formExtensionAbility.md)。
 
 **表1** FormExtension API接口功能介绍
 
