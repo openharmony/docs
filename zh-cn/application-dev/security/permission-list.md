@@ -94,7 +94,7 @@
 | ohos.permission.MANAGE_WIFI_HOTSPOT                      | system_core  | system_grant | TRUE    | 允许应用开启或者关闭WLAN热点。                               |
 | ohos.permission.GET_ALL_APP_ACCOUNTS                     | system_core  | system_grant | FALSE   | 允许应用获取所有应用账户信息。                               |
 | ohos.permission.MANAGE_SECURE_SETTINGS                   | system_basic | system_grant | TRUE    | 允许应用修改安全类系统设置。                                 |
-| ohos.permission.READ_DFX_SYSEVENT                        | system_basic | system_grant | FALSE   | 允许获取所有应用账号信息。                                   |
+| ohos.permission.READ_DFX_SYSEVENT                        | system_basic | system_grant | FALSE   | 允许应用访问系统事件打点数据。                                  |
 | ohos.permission.MANAGE_ADMIN                             | system_core  | system_grant | TRUE    | 允许应用激活设备管理员应用。                                 |
 | ohos.permission.EDM_MANAGE_DATETIME                      | normal       | system_grant | FALSE   | 允许设备管理员应用设置系统时间。                             |
 | ohos.permission.NFC_TAG                                  | normal       | system_grant | FALSE   | 允许应用读取Tag卡片。                                        |
