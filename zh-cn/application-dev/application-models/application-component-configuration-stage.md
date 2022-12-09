@@ -33,7 +33,7 @@
 
 - **入口图标和标签配置**
   
-    入口图标和标签需要在[app.json5配置文件](../quick-start/app-configuration-file.md)中配置，在abilities标签下面分别有icon和label标签。例如希望在桌面上显示该UIAbility的图标和标签，则需要在skills标签下面的entities中添加"entity.system.home"、actions中添加"action.system.home"。同一个应用有多个UIAbility配置上述字段时，桌面上会显示出多个图标和标签，分别对应各自的UIAbility。
+    入口图标和标签需要在[module.json5配置文件](../quick-start/module-configuration-file.md)中配置，在abilities标签下面分别有icon和label标签。例如希望在桌面上显示该UIAbility的图标和标签，则需要在skills标签下面的entities中添加"entity.system.home"、actions中添加"action.system.home"。同一个应用有多个UIAbility配置上述字段时，桌面上会显示出多个图标和标签，分别对应各自的UIAbility。
   
   ```json
   {
