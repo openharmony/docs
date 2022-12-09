@@ -55,7 +55,7 @@ FormExtensionAbility就是服务卡片扩展组件（以下简称“卡片”）
 
 ## 接口说明
 
-FormExtensionAbility类拥有如下API接口，具体的API介绍详见[接口文档](../reference/apis/js-apis-app-form-formextensionability.md)。
+FormExtensionAbility类拥有如下API接口，具体的API介绍详见[接口文档](../reference/apis/js-apis-app-form-formExtensionAbility.md)。
 
 | 接口名 | 描述 |
 | -------- | -------- |
@@ -75,7 +75,7 @@ FormExtensionAbility类还拥有成员context，为FormExtensionContext类，具
 | startAbility(want:&nbsp;Want,&nbsp;callback:&nbsp;AsyncCallback&lt;void&gt;):&nbsp;void | 回调形式拉起一个卡片所属应用的UIAbility（系统接口，三方应用不支持调用，需申请后台拉起权限）。 | 
 | startAbility(want:&nbsp;Want):&nbsp;Promise&lt;void&gt; | Promise形式拉起一个卡片所属应用的UIAbility（系统接口，三方应用不支持调用，需申请后台拉起权限）。 | 
 
-formProvider类有如下API接口，具体的API介绍详见[接口文档](../reference/apis/js-apis-app-form-formprovider.md)。
+formProvider类有如下API接口，具体的API介绍详见[接口文档](../reference/apis/js-apis-app-form-formProvider.md)。
 
   | 接口名 | 描述 | 
 | -------- | -------- |
@@ -84,7 +84,7 @@ formProvider类有如下API接口，具体的API介绍详见[接口文档](../re
 | updateForm(formId:&nbsp;string,&nbsp;formBindingData:&nbsp;FormBindingData,&nbsp;callback:&nbsp;AsyncCallback&lt;void&gt;):&nbsp;void; | 更新指定的卡片。 | 
 | updateForm(formId:&nbsp;string,&nbsp;formBindingData:&nbsp;FormBindingData):&nbsp;Promise&lt;void&gt;; | 更新指定的卡片，以promise方式返回。 | 
 
-formBindingData类有如下API接口，具体的API介绍详见[接口文档](../reference/apis/js-apis-app-form-formbindingdata.md)。
+formBindingData类有如下API接口，具体的API介绍详见[接口文档](../reference/apis/js-apis-app-form-formBindingData.md)。
 
   | 接口名 | 描述 | 
 | -------- | -------- |
