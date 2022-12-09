@@ -1,11 +1,11 @@
 # Web
 
+The **<Web\>** component can be used to display web pages.
+
 > **NOTE**
 >
 > - This component is supported since API version 8. Updates will be marked with a superscript to indicate their earliest API version.
 > - You can preview how this component looks on a real device. The preview is not yet available in the DevEco Studio Previewer.
-
-The **<Web\>** component can be used to display web pages.
 
 ## Required Permissions
 To use online resources, the application must have the **ohos.permission.INTERNET** permission. For details about how to apply for a permission, see [Declaring Permissions](../../security/accesstoken-guidelines.md).
@@ -24,10 +24,10 @@ Web(options: { src: ResourceStr, controller: WebController | WebviewController})
 
 **Parameters**
 
-| Name       | Type                           | Mandatory  | Description   |
-| ---------- | ------------------------------- | ---- | ------- |
-| src        | [ResourceStr](ts-types.md)                           | Yes   | Address of a web page resource.|
-| controller | [WebController](#webcontroller) or WebviewController |Yes   | Controller.   |
+| Name       | Type                                    | Mandatory  | Description   |
+| ---------- | ---------------------------------------- | ---- | ------- |
+| src        | [ResourceStr](ts-types.md)               | Yes   | Address of a web page resource.|
+| controller | [WebController](#webcontroller) \| [WebviewController<sup>9+</sup>](../apis/js-apis-webview.md#webviewcontroller) | Yes   | Controller.   |
 
 **Example**
 
@@ -88,7 +88,7 @@ Web(options: { src: ResourceStr, controller: WebController | WebviewController})
 
 ## Attributes
 
-The **\<Web>** component has network attributes.
+Only the following universal attributes are supported: [width](ts-universal-attributes-size.md#Attributes), [height](ts-universal-attributes-size.md#attributes), [padding](ts-universal-attributes-size.md#Attributes), [margin](ts-universal-attributes-size.md#attributes), and [border](ts-universal-attributes-border.md#attributes).
 
 ### domStorageAccess
 
@@ -98,8 +98,8 @@ Sets whether to enable the DOM Storage API. By default, this feature is disabled
 
 **Parameters**
 
-| Name             | Type   | Mandatory  | Default Value | Description                                |
-| ---------------- | ------- | ---- | ---- | ------------------------------------ |
+| Name             | Type   | Mandatory  | Default Value  | Description                                |
+| ---------------- | ------- | ---- | ----- | ------------------------------------ |
 | domStorageAccess | boolean | Yes   | false | Whether to enable the DOM Storage API.|
 
 **Example**
@@ -123,12 +123,12 @@ Sets whether to enable the DOM Storage API. By default, this feature is disabled
 
 fileAccess(fileAccess: boolean)
 
-Sets whether to enable access to the file system in the application. Access to the files in **rawfile** specified through [$rawfile(filepath/filename)](../../quick-start/resource-categories-and-access.md) are not affected by the setting.
+Sets whether to enable access to the file system in the application. This setting does not affect the access to the files specified through [$rawfile(filepath/filename)](../../quick-start/resource-categories-and-access.md).
 
 **Parameters**
 
-| Name       | Type   | Mandatory  | Default Value | Description                                    |
-| ---------- | ------- | ---- | ---- | ---------------------------------------- |
+| Name       | Type   | Mandatory  | Default Value | Description                  |
+| ---------- | ------- | ---- | ---- | ---------------------- |
 | fileAccess | boolean | Yes   | true | Whether to enable access to the file system in the application. By default, this feature is enabled.|
 
 **Example**
@@ -148,35 +148,6 @@ Sets whether to enable access to the file system in the application. Access to t
   }
   ```
 
-### fileFromUrlAccess<sup>9+</sup>
-
-fileFromUrlAccess(fileFromUrlAccess: boolean)
-
-Sets whether to allow the use of JavaScript scripts on web pages for access to content in the application file system. By default, this feature is disabled. Access to the files in **rawfile** specified through [$rawfile(filepath/filename)](../../quick-start/resource-categories-and-access.md) are not affected by the setting.
-
-**Parameters**
-
-| Name              | Type   | Mandatory  | Default Value  | Description                                    |
-| ----------------- | ------- | ---- | ----- | ---------------------------------------- |
-| fileFromUrlAccess | boolean | Yes   | false | Whether to allow the use of JavaScript scripts on web pages for access to content in the application file system. By default, this feature is disabled.|
-
-**Example**
-
-  ```ts
-  // xxx.ets
-  @Entry
-  @Component
-  struct WebComponent {
-    controller: WebController = new WebController()
-    build() {
-      Column() {
-        Web({ src: 'www.example.com', controller: this.controller })
-          .fileFromUrlAccess(true)
-      }
-    }
-  }
-  ```
-
 ### imageAccess
 
 imageAccess(imageAccess: boolean)
@@ -187,7 +158,7 @@ Sets whether to enable automatic image loading. By default, this feature is enab
 
 | Name        | Type   | Mandatory  | Default Value | Description           |
 | ----------- | ------- | ---- | ---- | --------------- |
-| imageAccess | boolean | Yes   | true | Whether to enable automatic image loading. By default, this feature is enabled.|
+| imageAccess | boolean | Yes   | true | Whether to enable automatic image loading.|
 
 **Example**
   ```ts
@@ -210,16 +181,16 @@ Sets whether to enable automatic image loading. By default, this feature is enab
 javaScriptProxy(javaScriptProxy: { object: object, name: string, methodList: Array\<string\>,
     controller: WebController | WebviewController})
 
-Injects a JavaScript object into the window. Methods of this object can be invoked in the window. The parameters cannot be updated.
+Registers a JavaScript object with the window. APIs of this object can then be invoked in the window. The parameters cannot be updated.
 
 **Parameters**
 
-| Name       | Type           | Mandatory  | Default Value | Description                     |
-| ---------- | --------------- | ---- | ---- | ------------------------- |
-| object     | object          | Yes   | -    | Object to be registered. Methods can be declared, but attributes cannot.   |
-| name       | string          | Yes   | -    | Name of the object to be registered, which is the same as that invoked in the window.|
-| methodList | Array\<string\> | Yes   | -    | Methods of the JavaScript object to be registered at the application side. |
-| controller | [WebController](#webcontroller) or WebviewController | Yes   | -    | Controller.   |
+| Name       | Type                                    | Mandatory  | Default Value | Description                     |
+| ---------- | ---------------------------------------- | ---- | ---- | ------------------------- |
+| object     | object                                   | Yes   | -    | Object to be registered. Methods can be declared, but attributes cannot.   |
+| name       | string                                   | Yes   | -    | Name of the object to be registered, which is the same as that invoked in the window.|
+| methodList | Array\<string\>                          | Yes   | -    | Methods of the JavaScript object to be registered at the application side. |
+| controller | [WebController](#webcontroller) or [WebviewController](../apis/js-apis-webview.md#webviewcontroller) | Yes   | -    | Controller.                     |
 
 **Example**
 
@@ -325,8 +296,8 @@ Sets whether to enable loading of HTTP and HTTPS hybrid content can be loaded. B
 
 **Parameters**
 
-| Name      | Type                       | Mandatory  | Default Value | Description     |
-| --------- | --------------------------- | ---- | ---- | --------- |
+| Name      | Type                       | Mandatory  | Default Value           | Description     |
+| --------- | --------------------------- | ---- | -------------- | --------- |
 | mixedMode | [MixedMode](#mixedmode)| Yes   | MixedMode.None | Mixed content to load.|
 
 **Example**
@@ -442,8 +413,8 @@ Sets whether to enable database access. By default, this feature is disabled.
 
 **Parameters**
 
-| Name           | Type   | Mandatory  | Default Value | Description             |
-| -------------- | ------- | ---- | ---- | ----------------- |
+| Name           | Type   | Mandatory  | Default Value  | Description             |
+| -------------- | ------- | ---- | ----- | ----------------- |
 | databaseAccess | boolean | Yes   | false | Whether to enable database access.|
 
 **Example**
@@ -471,9 +442,9 @@ Sets whether to enable geolocation access. By default, this feature is enabled.
 
 **Parameters**
 
-| Name           | Type   | Mandatory  | Default Value | Description             |
-| -------------- | ------- | ---- | ---- | ----------------- |
-| geolocationAccess | boolean | Yes   | true    | Whether to enable geolocation access.|
+| Name              | Type   | Mandatory  | Default Value | Description           |
+| ----------------- | ------- | ---- | ---- | --------------- |
+| geolocationAccess | boolean | Yes   | true | Whether to enable geolocation access.|
 
 **Example**
 
@@ -500,9 +471,9 @@ Sets whether a manual click is required for video playback.
 
 **Parameters**
 
-| Name      | Type  | Mandatory  | Default Value | Description     |
-| --------- | ------ | ---- | ---- | --------- |
-| access | boolean | Yes   | true    | Whether a manual click is required for video playback.|
+| Name   | Type   | Mandatory  | Default Value | Description             |
+| ------ | ------- | ---- | ---- | ----------------- |
+| access | boolean | Yes   | true | Whether a manual click is required for video playback.|
 
 **Example**
 
@@ -530,8 +501,8 @@ Sets whether to enable the multi-window permission.
 
 **Parameters**
 
-| Name           | Type   | Mandatory  | Default Value | Description             |
-| -------------- | ------- | ---- | ---- | ----------------- |
+| Name        | Type   | Mandatory  | Default Value  | Description        |
+| ----------- | ------- | ---- | ----- | ------------ |
 | multiWindow | boolean | Yes   | false | Whether to enable the multi-window permission.|
 
 **Example**
@@ -559,8 +530,8 @@ Sets the cache mode.
 
 **Parameters**
 
-| Name      | Type                       | Mandatory  | Default Value | Description     |
-| --------- | --------------------------- | ---- | ---- | --------- |
+| Name      | Type                       | Mandatory  | Default Value              | Description     |
+| --------- | --------------------------- | ---- | ----------------- | --------- |
 | cacheMode | [CacheMode](#cachemode)| Yes   | CacheMode.Default | Cache mode to set.|
 
 **Example**
@@ -589,9 +560,9 @@ Sets the text zoom ratio of the page. The default value is **100**, which indica
 
 **Parameters**
 
-| Name         | Type  | Mandatory  | Default Value | Description           |
-| ------------ | ------ | ---- | ---- | --------------- |
-| textZoomRatio | number | Yes   | 100 | Text zoom ratio to set.|
+| Name          | Type  | Mandatory  | Default Value | Description           |
+| ------------- | ------ | ---- | ---- | --------------- |
+| textZoomRatio | number | Yes   | 100  | Text zoom ratio to set.|
 
 **Example**
 
@@ -619,9 +590,9 @@ Sets the scale factor of the entire page. The default value is 100%.
 
 **Parameters**
 
-| Name         | Type  | Mandatory  | Default Value | Description           |
-| ------------ | ------ | ---- | ---- | --------------- |
-| percent | number | Yes   | 100 | Scale factor of the entire page.|
+| Name    | Type  | Mandatory  | Default Value | Description           |
+| ------- | ------ | ---- | ---- | --------------- |
+| percent | number | Yes   | 100  | Scale factor of the entire page.|
 
 **Example**
 
@@ -679,9 +650,9 @@ Sets whether to enable web debugging.
 
 **Parameters**
 
-| Name      | Type  | Mandatory  | Default Value | Description     |
-| --------- | ------ | ---- | ---- | --------- |
-| webDebuggingAccess | boolean | Yes   | false    | Whether to enable web debugging.|
+| Name               | Type   | Mandatory  | Default Value  | Description         |
+| ------------------ | ------- | ---- | ----- | ------------- |
+| webDebuggingAccess | boolean | Yes   | false | Whether to enable web debugging.|
 
 **Example**
 
@@ -700,10 +671,6 @@ Sets whether to enable web debugging.
     }
   }
   ```
-
->  **NOTE**<br>
->
->  Only the following universal attributes are supported: [width](ts-universal-attributes-size.md#Attributes), [height](ts-universal-attributes-size.md#attributes), [padding](ts-universal-attributes-size.md#Attributes), [margin](ts-universal-attributes-size.md#attributes), and [border](ts-universal-attributes-border.md#attributes).
 
 ## Events
 
@@ -771,7 +738,7 @@ Triggered when **alert()** is invoked to display an alert dialog box on the web 
 
 onBeforeUnload(callback: (event?: { url: string; message: string; result: JsResult }) => boolean)
 
-Triggered when the current page is about to exit after the user refreshes or closes the page. If the user refreshes the page, this callback is invoked only when the page has obtained focus.
+Triggered when this page is about to exit after the user refreshes or closes the page. This callback is triggered only when the page has obtained focus.
 
 **Parameters**
 
@@ -1262,9 +1229,9 @@ Triggered when loading of the web page is complete. This API is used by an appli
 
 **Parameters**
 
-| Name        | Type   | Description                             |
-| ----------- | ------- | --------------------------------- |
-| url         | string  | URL to be accessed.                          |
+| Name        | Type   | Description                                    |
+| ----------- | ------- | ---------------------------------------- |
+| url         | string  | URL to be accessed.                                 |
 | isRefreshed | boolean | Whether the page is reloaded. The value **true** means that the page is reloaded by invoking the [refresh](#refresh) API, and **false** means the opposite.|
 
 **Example**
@@ -1334,8 +1301,8 @@ Triggered to process an HTML form whose input type is **file**, in response to t
 
 **Return value**
 
-| Type     | Description                                 |
-| ------- | ----------------------------------- |
+| Type     | Description                                      |
+| ------- | ---------------------------------------- |
 | boolean | The value **true** means that the pop-up window provided by the system is displayed. The value **false** means that the default web pop-up window is displayed.|
 
 **Example**
@@ -1383,9 +1350,9 @@ Invoked to notify the **\<Web>** component of the URL of the loaded resource fil
 
 **Parameters**
 
-| Name | Type                                    | Description     |
-| ---- | ---------------------------------------- | --------- |
-| url | string | URL of the loaded resource file.|
+| Name | Type  | Description          |
+| ---- | ------ | -------------- |
+| url  | string | URL of the loaded resource file.|
 
 **Example**
 
@@ -1415,8 +1382,8 @@ Invoked when the display ratio of this page changes.
 
 **Parameters**
 
-| Name | Type                                    | Description     |
-| ---- | ---------------------------------------- | --------- |
+| Name     | Type  | Description        |
+| -------- | ------ | ------------ |
 | oldScale | number | Display ratio of the page before the change.|
 | newScale | number | Display ratio of the page after the change.|
 
@@ -1493,8 +1460,8 @@ Invoked when the **\<Web>** component is about to access a URL. This API is used
 
 **Return value**
 
-| Type                                      | Description                         |
-| ---------------------------------------- | --------------------------- |
+| Type                                      | Description                                      |
+| ---------------------------------------- | ---------------------------------------- |
 | [WebResourceResponse](#webresourceresponse) | If response data is returned, the data is loaded based on the response data. If no response data is returned, null is returned, indicating that the data is loaded in the original mode.|
 
 **Example**
@@ -1621,10 +1588,10 @@ Invoked when an SSL error occurs during resource loading.
 
 **Parameters**
 
-| Name    | Type                          | Description            |
-| ------- | ------------------------------------ | ----------------    |
+| Name    | Type                                | Description          |
+| ------- | ------------------------------------ | -------------- |
 | handler | [SslErrorHandler](#sslerrorhandler9) | The user's operation.|
-| error   | [SslError](#sslerror9)       | Error code.|
+| error   | [SslError](#sslerror9)          | Error code.          |
 
 **Example**
 
@@ -1668,19 +1635,19 @@ Invoked when an SSL error occurs during resource loading.
 
 ### onClientAuthenticationRequest<sup>9+</sup>
 
-onClientAuthenticationRequest(callback: (event: {handler : ClientAuthenticationHandler, host : string, port : number, keyTypes : Array\<string>, issuers : Array\<string>}) => void)
+onClientAuthenticationRequest(callback: (event: {handler : ClientAuthenticationHandler, host : string, port : number, keyTypes : Array<string>, issuers : Array<string>}) => void)
 
 Invoked when an SSL client certificate request is received.
 
 **Parameters**
 
-| Name  | Type                            | Description            |
-| ------- | ------------------------------------ | ----------------    |
-| handler | [ClientAuthenticationHandler](#clientauthenticationhandler9) | The user's operation.|
-| host    | string          | Host name of the server that requests a certificate.|
-| port    | number          | Port number of the server that requests a certificate.|
-| keyTypes| Array\<string>  | Acceptable asymmetric private key types.|
-| issuers | Array\<string>  | Issuer of the certificate that matches the private key.|
+| Name     | Type                                    | Description           |
+| -------- | ---------------------------------------- | --------------- |
+| handler  | [ClientAuthenticationHandler](#clientauthenticationhandler9) | The user's operation. |
+| host     | string                                   | Host name of the server that requests a certificate.   |
+| port     | number                                   | Port number of the server that requests a certificate.   |
+| keyTypes | Array\<string>                          | Acceptable asymmetric private key types.   |
+| issuers  | Array\<string>                           | Issuer of the certificate that matches the private key.|
 
   **Example**
   ```ts
@@ -1729,9 +1696,9 @@ Invoked when a permission request is received.
 
 **Parameters**
 
-| Name    | Type                                | Description            |
-| ------- | ------------------------------------ | ---------------- |
-| request | [PermissionRequest](#permissionrequest9) | The user's operation.  |
+| Name    | Type                                    | Description          |
+| ------- | ---------------------------------------- | -------------- |
+| request | [PermissionRequest](#permissionrequest9) | The user's operation.|
 
 **Example**
 
@@ -1778,15 +1745,15 @@ Invoked when a context menu is displayed upon a long press on a specific element
 
 **Parameters**
 
-| Name    | Type                                | Description            |
-| ------- | ------------------------------------ | ---------------- |
-| param   | [WebContextMenuParam](#webcontextmenuparam9)   | Parameters related to the context menu.|
-| result  | [WebContextMenuResult](#webcontextmenuresult9) | Result of the context menu.|
+| Name   | Type                                    | Description       |
+| ------ | ---------------------------------------- | ----------- |
+| param  | [WebContextMenuParam](#webcontextmenuparam9) | Parameters related to the context menu.    |
+| result | [WebContextMenuResult](#webcontextmenuresult9) | Result of the context menu.|
 
 **Return value**
 
-| Type    | Description                  |
-| ------ | -------------------- |
+| Type     | Description                      |
+| ------- | ------------------------ |
 | boolean | The value **true** means a custom menu, and **false** means the default menu.|
 
 **Example**
@@ -1818,10 +1785,10 @@ Invoked when the scrollbar of the page scrolls.
 
 **Parameters**
 
-| Name    | Type                                | Description            |
-| ------- | ------------------------------------ | ---------------- |
-| xOffset   | number   | Position of the scrollbar on the x-axis.|
-| yOffset  | number | Position of the scrollbar on the y-axis.|
+| Name    | Type  | Description        |
+| ------- | ------ | ------------ |
+| xOffset | number | Position of the scrollbar on the x-axis.|
+| yOffset | number | Position of the scrollbar on the y-axis.|
 
 **Example**
 
@@ -1851,8 +1818,8 @@ Registers a callback for receiving a request to obtain the geolocation informati
 
 **Parameters**
 
-| Name     | Type                        | Description         |
-| ----------- | ------------------------------- | ---------------- |
+| Name        | Type                           | Description          |
+| ----------- | ------------------------------- | -------------- |
 | origin      | string                          | Index of the origin.    |
 | geolocation | [JsGeolocation](#jsgeolocation) | The user's operation.|
 
@@ -1896,9 +1863,9 @@ Triggered to notify the user that the request for obtaining the geolocation info
 
 **Parameters**
 
-| Name     | Type                        | Description         |
-| ----------- | ------------------------------- | ---------------- |
-| callback     | () => void           | Callback invoked when the request for obtaining geolocation information has been canceled. |
+| Name     | Type      | Description                |
+| -------- | ---------- | -------------------- |
+| callback | () => void | Callback invoked when the request for obtaining geolocation information has been canceled. |
 
 **Example**
 
@@ -1928,9 +1895,9 @@ Registers a callback for the component's entering into full screen mode.
 
 **Parameters**
 
-| Name     | Type                        | Description         |
-| ----------- | ------------------------------- | ---------------- |
-| handler     | [FullScreenExitHandler](#fullscreenexithandler9)           | Function handle for exiting full screen mode.|
+| Name    | Type                                    | Description          |
+| ------- | ---------------------------------------- | -------------- |
+| handler | [FullScreenExitHandler](#fullscreenexithandler9) | Function handle for exiting full screen mode.|
 
 **Example**
 
@@ -1961,9 +1928,9 @@ Registers a callback for the component's exiting full screen mode.
 
 **Parameters**
 
-| Name     | Type                        | Description         |
-| ----------- | ------------------------------- | ---------------- |
-| callback     | () => void           | Callback invoked when the component exits full screen mode.|
+| Name     | Type      | Description         |
+| -------- | ---------- | ------------- |
+| callback | () => void | Callback invoked when the component exits full screen mode.|
 
 **Example**
 
@@ -1997,12 +1964,12 @@ Registers a callback for window creation.
 
 **Parameters**
 
-| Name     | Type                        | Description         |
-| ----------- | ------------------------------- | ---------------- |
-| isAlert     | boolean           | Whether to open the target URL in a new window. The value **true** means to open the target URL in a new window, and **false** means to open the target URL in a new tab.|
-| isUserTrigger | boolean           | Whether the creation is triggered by the user. The value **true** means that the creation is triggered by the user, and **false** means the opposite.|
-| targetUrl     | string           | Target URL.|
-| handler     | [ControllerHandler](#controllerhandler9) | **WebController** instance for setting the new window.|
+| Name          | Type                                    | Description                      |
+| ------------- | ---------------------------------------- | -------------------------- |
+| isAlert       | boolean                                  | Whether to open the target URL in a new window. The value **true** means to open the target URL in a new window, and **false** means to open the target URL in a new tab.|
+| isUserTrigger | boolean                                  | Whether the creation is triggered by the user. The value **true** means that the creation is triggered by the user, and **false** means the opposite.  |
+| targetUrl     | string                                   | Target URL.                    |
+| handler       | [ControllerHandler](#controllerhandler9) | **WebController** instance for setting the new window. |
 
 **Example**
 
@@ -2034,9 +2001,9 @@ Registers a callback for window closure.
 
 **Parameters**
 
-| Name     | Type                        | Description         |
-| ----------- | ------------------------------- | ---------------- |
-| callback     | () => void           | Callback invoked when the window closes.|
+| Name     | Type      | Description        |
+| -------- | ---------- | ------------ |
+| callback | () => void | Callback invoked when the window closes.|
 
 **Example**
 
@@ -2052,6 +2019,41 @@ Registers a callback for window closure.
         .onWindowExit(() => {
           console.log("onWindowExit...")
         })
+      }
+    }
+  }
+  ```
+
+### onSearchResultReceive<sup>9+</sup>
+
+onSearchResultReceive(callback: (event?: {activeMatchOrdinal: number, numberOfMatches: number, isDoneCounting: boolean}) => void): WebAttribute
+
+Invoked to notify the caller of the search result on the web page.
+
+**Parameters**
+
+| Name               | Type   | Description                                    |
+| ------------------ | ------- | ---------------------------------------- |
+| activeMatchOrdinal | number  | Sequence number of the current match, which starts from 0.                      |
+| numberOfMatches    | number  | Total number of matches.                           |
+| isDoneCounting     | boolean | Whether the search operation on the current page is complete. This API may be called multiple times until **isDoneCounting** is **true**.|
+
+**Example**
+
+  ```ts
+  // xxx.ets
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: WebController = new WebController()
+
+    build() {
+      Column() {
+        Web({ src: 'www.example.com', controller: this.controller })
+     	  .onSearchResultReceive(ret => {
+            console.log("on search result receive:" + "[cur]" + ret.activeMatchOrdinal +
+              "[total]" + ret.numberOfMatches + "[isDone]"+ ret.isDoneCounting)
+          })
       }
     }
   }
@@ -2139,7 +2141,7 @@ Notifies the **\<Web>** component of the user's confirm operation in the dialog 
 
 ## FullScreenExitHandler<sup>9+</sup>
 
-Defines a **FullScreenExitHandler** for listening for exiting full screen mode. For the sample code, see [onFullScreenEnter](#onfullscreenenter9).
+Implements a **FullScreenExitHandler** object for listening for exiting full screen mode. For the sample code, see [onFullScreenEnter](#onfullscreenenter9).
 
 ### exitFullScreen<sup>9+</sup>
 
@@ -2149,7 +2151,7 @@ Exits full screen mode.
 
 ## ControllerHandler<sup>9+</sup>
 
-Defines a **WebController** for new web components. For the sample code, see [onWindowNew](#onwindownew9).
+Implements a **WebController** object for new **\<Web>** components. For the sample code, see [onWindowNew](#onwindownew9).
 
 ### setWebController<sup>9+</sup>
 
@@ -2159,8 +2161,8 @@ Sets a **WebController** object.
 
 **Parameters**
 
-| Name   | Type  | Mandatory  | Default Value | Description       |
-| ------ | ------ | ---- | ---- | ----------- |
+| Name       | Type         | Mandatory  | Default Value | Description                     |
+| ---------- | ------------- | ---- | ---- | ------------------------- |
 | controller | WebController | Yes   | -    | **WebController** object to set.|
 
 ## WebResourceError
@@ -2540,7 +2542,7 @@ Continues using the SSL certificate.
 
 ## ClientAuthenticationHandler<sup>9+</sup>
 
-Defines a **ClientAuthenticationHandler** object returned by the **\<Web>** component. For details about the sample code, see [onClientAuthenticationRequest](#onclientauthenticationrequest9).
+Implements a **ClientAuthenticationHandler** object returned by the **\<Web>** component. For details about the sample code, see [onClientAuthenticationRequest](#onclientauthenticationrequest9).
 
 ### confirm<sup>9+</sup>
 
@@ -2550,10 +2552,10 @@ Uses the specified private key and client certificate chain.
 
 **Parameters**
 
-| Name        | Type| Mandatory  | Description       |
-| --------      | ------   | ----  | ----------     |
-| priKeyFile    | string   | Yes   | File that stores the private key, which is a directory including the file name.|
-| certChainFile | string   | Yes   | File that stores the certificate chain, which is a directory including the file name.|
+| Name          | Type  | Mandatory  | Description              |
+| ------------- | ------ | ---- | ------------------ |
+| priKeyFile    | string | Yes   | File that stores the private key, which is a directory including the file name. |
+| certChainFile | string | Yes   | File that stores the certificate chain, which is a directory including the file name.|
 
 ### cancel<sup>9+</sup>
 
@@ -2585,9 +2587,9 @@ Obtains the origin of this web page.
 
 **Return value**
 
-| Type     | Description                   |
-| ------- | --------------------- |
-| string  | Origin of the web page that requests the permission.|
+| Type    | Description          |
+| ------ | ------------ |
+| string | Origin of the web page that requests the permission.|
 
 ### getAccessibleResource<sup>9+</sup>
 
@@ -2597,8 +2599,8 @@ Obtains the list of accessible resources requested for the web page. For details
 
 **Return value**
 
-| Type           | Description                    |
-| --------------- | ----------------------- |
+| Type             | Description           |
+| --------------- | ------------- |
 | Array\<string\> | List of accessible resources requested by the web page.|
 
 ### grant<sup>9+</sup>
@@ -2609,9 +2611,9 @@ Grants the permission for resources requested by the web page.
 
 **Parameters**
 
-| Name    | Type       | Mandatory| Default Value| Description               |
-| --------- | --------------- | ---- | ----- | ---------------------- |
-| resources | Array\<string\> | Yes  | -     | List of accessible resources requested by the web page.|
+| Name      | Type           | Mandatory  | Default Value | Description         |
+| --------- | --------------- | ---- | ---- | ------------- |
+| resources | Array\<string\> | Yes   | -    | List of accessible resources requested by the web page.|
 
 ## WebContextMenuParam<sup>9+</sup>
 
@@ -2625,8 +2627,8 @@ Obtains the X coordinate of the context menu.
 
 **Return value**
 
-| Type           | Description                    |
-| --------------- | ----------------------- |
+| Type    | Description                |
+| ------ | ------------------ |
 | number | If the display is normal, a non-negative integer is returned. Otherwise, **-1** is returned.|
 
 ### y<sup>9+</sup>
@@ -2637,8 +2639,8 @@ Obtains the Y coordinate of the context menu.
 
 **Return value**
 
-| Type           | Description                    |
-| --------------- | ----------------------- |
+| Type    | Description                |
+| ------ | ------------------ |
 | number | If the display is normal, a non-negative integer is returned. Otherwise, **-1** is returned.|
 
 ### getLinkUrl<sup>9+</sup>
@@ -2649,8 +2651,8 @@ Obtains the URL of the destination link.
 
 **Return value**
 
-| Type           | Description                    |
-| --------------- | ----------------------- |
+| Type    | Description                       |
+| ------ | ------------------------- |
 | string | If it is a link that is being long pressed, the URL that has passed the security check is returned.|
 
 ### getUnfilterendLinkUrl<sup>9+</sup>
@@ -2661,8 +2663,8 @@ Obtains the URL of the destination link.
 
 **Return value**
 
-| Type           | Description                    |
-| --------------- | ----------------------- |
+| Type    | Description                   |
+| ------ | --------------------- |
 | string | If it is a link that is being long pressed, the original URL is returned.|
 
 ### getSourceUrl<sup>9+</sup>
@@ -2673,8 +2675,8 @@ Obtain the source URL.
 
 **Return value**
 
-| Type           | Description                    |
-| --------------- | ----------------------- |
+| Type    | Description                      |
+| ------ | ------------------------ |
 | string | If the selected element has the **src** attribute, the URL in the **src** is returned.|
 
 ### existsImageContents<sup>9+</sup>
@@ -2685,13 +2687,13 @@ Checks whether image content exists.
 
 **Return value**
 
-| Type           | Description                    |
-| --------------- | ----------------------- |
+| Type     | Description                       |
+| ------- | ------------------------- |
 | boolean | The value **true** means that there is image content in the element being long pressed, and **false** means the opposite.|
 
 ## WebContextMenuResult<sup>9+</sup>
 
-Defines the response event executed when a context menu is displayed. For details about the sample code, see [onContextMenuShow](#oncontextmenushow9).
+Implements the response event executed when a context menu is displayed. For details about the sample code, see [onContextMenuShow](#oncontextmenushow9).
 
 ### closeContextMenu<sup>9+</sup>
 
@@ -2717,15 +2719,15 @@ Sets the geolocation permission status of a web page.
 
 **Parameters**
 
-| Name    | Type| Mandatory| Default Value| Description              |
-| --------- | ------- | ---- | ----- | ---------------------- |
-| origin    | string  | Yes  | -     | Index of the origin.    |
-| allow     | boolean | Yes  | -     | Geolocation permission status.|
-| retain    | boolean | Yes  | -     | Whether the geolocation permission status can be saved to the system. The **[GeolocationPermissions](#geolocationpermissions9)** API can be used to manage the geolocation permission status saved to the system.|
+| Name   | Type   | Mandatory  | Default Value | Description                                    |
+| ------ | ------- | ---- | ---- | ---------------------------------------- |
+| origin | string  | Yes   | -    | Index of the origin.                              |
+| allow  | boolean | Yes   | -    | Geolocation permission status.                            |
+| retain | boolean | Yes   | -    | Whether the geolocation permission status can be saved to the system. The **[GeolocationPermissions](#geolocationpermissions9)** API can be used to manage the geolocation permission status saved to the system.|
 
 ## WebController
 
-Defines a **WebController** to control the behavior of the **\<Web>** component. A **WebController** can control only one **\<Web>** component, and the APIs in the **WebController** can be invoked only after it has been bound to the target **\<Web>** component.
+Implements a **WebController** object to control the behavior of the **\<Web>** component. A **WebController** can control only one **\<Web>** component, and the APIs in the **WebController** can be invoked only after it has been bound to the target **\<Web>** component.
 
 ### Creating an Object
 
@@ -3364,7 +3366,7 @@ Sets a zoom factor for the current web page.
 ### zoomIn<sup>9+</sup>
 zoomIn(): boolean
 
-Zooms in on the current web page by 20%.
+Zooms in on this web page by 20%.
 
 **Return value**
 
@@ -3397,7 +3399,7 @@ Zooms in on the current web page by 20%.
 ### zoomOut<sup>9+</sup>
 zoomOut(): boolean
 
-Zooms out of the current web page by 20%.
+Zooms out of this web page by 20%.
 
 **Return value**
 
@@ -3524,7 +3526,7 @@ Registers a JavaScript object and invokes the methods of the object in the windo
 
 runJavaScript(options: { script: string, callback?: (result: string) => void })
 
-Asynchronously executes a JavaScript script. This API uses a callback to return the script execution result. **runJavaScript** can be invoked only after **loadUrl** is executed. For example, it can be executed in **onPageEnd**.
+Executes a JavaScript script. This API uses an asynchronous callback to return the script execution result. **runJavaScript** can be invoked only after **loadUrl** is executed. For example, it can be invoked in **onPageEnd**.
 
 **Parameters**
 
@@ -3664,7 +3666,7 @@ Clears the user operation corresponding to the SSL certificate error event recor
 
 clearClientAuthenticationCache(): void
 
-Clears the user operation corresponding to the client certificate request event recorded by the \<Web> component.
+Clears the user operation corresponding to the client certificate request event recorded by the **\<Web>** component.
 
 **Example**
 
@@ -3729,8 +3731,8 @@ Creates web message ports.
 **Return value**
 
 
-| Type                             | Description           |
-| ------------------------------- | ------------- |
+| Type                                      | Description        |
+| ---------------------------------------- | ---------- |
 | Array\<[WebMessagePort](#webmessageport9)\> | List of web message ports.|
 
 **Example**
@@ -3763,10 +3765,10 @@ Sends a web message to an HTML5 window.
 
 **Parameters**
 
-| Name       | Type           | Mandatory  | Default Value | Description                     |
-| ---------- | --------------- | ---- | ---- | ------------------------- |
-| message     | [WebMessageEvent](#webmessageevent9)          | Yes   | -    |Message to send, including the data and message port.|
-| uri       | string          | Yes   | -    | URI for receiving the message.|
+| Name    | Type                                | Mandatory  | Default Value | Description             |
+| ------- | ------------------------------------ | ---- | ---- | ----------------- |
+| message | [WebMessageEvent](#webmessageevent9) | Yes   | -    | Message to send, including the data and message port.|
+| uri     | string                               | Yes   | -    | URI for receiving the message.       |
 
 **Example**
 
@@ -3870,12 +3872,12 @@ Sends a web message to an HTML5 window.
 
 getUrl(): string
 
-Obtains the URL of the current page.
+Obtains the URL of this page.
 
 **Return value**
 
-| Type                             | Description           |
-| ------------------------------- | ------------- |
+| Type    | Description         |
+| ------ | ----------- |
 | string | URL of the current page.|
 
 **Example**
@@ -3891,6 +3893,113 @@ Obtains the URL of the current page.
         Button('getUrl')
           .onClick(() => {
             console.log("url: " + this.controller.getUrl())
+          })
+        Web({ src: 'www.example.com', controller: this.controller })
+      }
+    }
+  }
+  ```
+
+### searchAllAsync<sup>9+</sup>
+
+searchAllAsync(searchString: string): void
+
+Searches the web page for content that matches the keyword specified by **'searchString'** and highlights the matches on the page. This API returns the result asynchronously through [onSearchResultReceive](#onsearchresultreceive9).
+
+**Parameters**
+
+| Name         | Type  | Mandatory  | Default Value | Description   |
+| ------------ | ------ | ---- | ---- | ------- |
+| searchString | string | Yes   | -    | Search keyword.|
+
+**Example**
+
+  ```ts
+  // xxx.ets
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: WebController = new WebController()
+    @State searchString: string = "xxx"
+
+    build() {
+      Column() {
+        Button('searchString')
+          .onClick(() => {
+            this.controller.searchAllAsync(this.searchString)
+          })
+        Button('clearMatches')
+          .onClick(() => {
+            this.controller.clearMatches()
+          })
+        Button('searchNext')
+          .onClick(() => {
+            this.controller.searchNext(true)
+          })
+        Web({ src: 'www.example.com', controller: this.controller })
+     	  .onSearchResultReceive(ret => {
+            console.log("on search result receive:" + "[cur]" + ret.activeMatchOrdinal +
+              "[total]" + ret.numberOfMatches + "[isDone]"+ ret.isDoneCounting)
+          })
+      }
+    }
+  }
+  ```
+
+### clearMatches<sup>9+</sup>
+
+clearMatches(): void
+
+Clears the matches found through [searchAllAsync](#searchallasync9).
+
+**Example**
+
+  ```ts
+  // xxx.ets
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: WebController = new WebController()
+
+    build() {
+      Column() {
+        Button('clearMatches')
+          .onClick(() => {
+            this.controller.clearMatches()
+          })
+        Web({ src: 'www.example.com', controller: this.controller })
+      }
+    }
+  }
+  ```
+
+### searchNext<sup>9+</sup>
+
+searchNext(forward: boolean): void
+
+Searches for and highlights the next match.
+
+**Parameters**
+
+| Name    | Type   | Mandatory  | Default Value | Description       |
+| ------- | ------- | ---- | ---- | ----------- |
+| forward | boolean | Yes   | -    | Whether to search forward.|
+
+
+**Example**
+
+  ```ts
+  // xxx.ets
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: WebController = new WebController()
+
+    build() {
+      Column() {
+        Button('searchNext')
+          .onClick(() => {
+            this.controller.searchNext(true)
           })
         Web({ src: 'www.example.com', controller: this.controller })
       }
@@ -4008,14 +4117,14 @@ Obtains the cookie value corresponding to the specified URL.
 
 **Parameters**
 
-| Name  | Type  | Mandatory  | Default Value | Description             |
-| ----- | ------ | ---- | ---- | ----------------- |
-| url   | string | Yes   | -    | URL of the cookie value to obtain.|
+| Name | Type  | Mandatory  | Default Value | Description             |
+| ---- | ------ | ---- | ---- | ----------------- |
+| url  | string | Yes   | -    | URL of the cookie value to obtain.|
 
 **Return value**
 
-| Type     | Description                  |
-| ------- | -------------------- |
+| Type    | Description               |
+| ------ | ----------------- |
 | string | Cookie value corresponding to the specified URL.|
 
 **Example**
@@ -4051,12 +4160,12 @@ Sets a cookie value for the specified URL.
 | Name  | Type  | Mandatory  | Default Value | Description             |
 | ----- | ------ | ---- | ---- | ----------------- |
 | url   | string | Yes   | -    | URL of the cookie to set.|
-| value   | string | Yes   | -    | Cookie value to set.|
+| value | string | Yes   | -    | Cookie value to set.    |
 
 **Return value**
 
-| Type     | Description                  |
-| ------- | -------------------- |
+| Type     | Description           |
+| ------- | ------------- |
 | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
 
 **Example**
@@ -4123,8 +4232,8 @@ Saves cookies in the memory to the drive. This API uses a promise to return the 
 
 **Return value**
 
-| Type     | Description                  |
-| ------- | -------------------- |
+| Type               | Description                         |
+| ----------------- | --------------------------- |
 | Promise\<boolean> | Promise used to return the result.|
 
 **Example**
@@ -4162,9 +4271,9 @@ Saves cookies in the memory to the drive. This API uses an asynchronous callback
 
 **Parameters**
 
-| Name  | Type  | Mandatory  | Default Value | Description             |
-| ----- | ------ | ---- | ---- | ----------------- |
-| callback   | AsyncCallback\<boolean> | Yes   | -    | Callback used to return the operation result.|
+| Name     | Type                   | Mandatory  | Default Value | Description                        |
+| -------- | ----------------------- | ---- | ---- | ---------------------------- |
+| callback | AsyncCallback\<boolean> | Yes   | -    | Callback used to return the operation result.|
 
 **Example**
 
@@ -4197,8 +4306,8 @@ Checks whether the **WebCookieManager** instance has the permission to send and 
 
 **Return value**
 
-| Type     | Description                  |
-| ------- | -------------------- |
+| Type     | Description                 |
+| ------- | ------------------- |
 | boolean | Whether the **WebCookieManager** instance has the permission to send and receive cookies.|
 
 **Example**
@@ -4231,9 +4340,9 @@ Sets whether the **WebCookieManager** instance has the permission to send and re
 
 **Parameters**
 
-| Name  | Type  | Mandatory  | Default Value | Description             |
-| ----- | ------ | ---- | ---- | ----------------- |
-| accept   | boolean | Yes   | -    | Whether the **WebCookieManager** instance has the permission to send and receive cookies.|
+| Name   | Type   | Mandatory  | Default Value | Description                 |
+| ------ | ------- | ---- | ---- | --------------------- |
+| accept | boolean | Yes   | -    | Whether the **WebCookieManager** instance has the permission to send and receive cookies.|
 
 **Example**
 
@@ -4264,8 +4373,8 @@ Checks whether the **WebCookieManager** instance has the permission to send and 
 
 **Return value**
 
-| Type     | Description                  |
-| ------- | -------------------- |
+| Type     | Description                    |
+| ------- | ---------------------- |
 | boolean | Whether the **WebCookieManager** instance has the permission to send and receive third-party cookies.|
 
 **Example**
@@ -4298,9 +4407,9 @@ Sets whether the **WebCookieManager** instance has the permission to send and re
 
 **Parameters**
 
-| Name  | Type  | Mandatory  | Default Value | Description             |
-| ----- | ------ | ---- | ---- | ----------------- |
-| accept   | boolean | Yes   | -    | Whether the **WebCookieManager** instance has the permission to send and receive third-party cookies.|
+| Name   | Type   | Mandatory  | Default Value | Description                    |
+| ------ | ------- | ---- | ---- | ------------------------ |
+| accept | boolean | Yes   | -    | Whether the **WebCookieManager** instance has the permission to send and receive third-party cookies.|
 
 **Example**
 
@@ -4331,8 +4440,8 @@ Checks whether cookies exist.
 
 **Return value**
 
-| Type     | Description                  |
-| ------- | -------------------- |
+| Type     | Description         |
+| ------- | ----------- |
 | boolean | Whether cookies exist.|
 
 **Example**
@@ -4419,7 +4528,7 @@ Implements the **WebDataBase** object.
 
 static existHttpAuthCredentials(): boolean
 
-Checks whether any saved HTTP authentication credentials exist. This API is synchronous.
+Checks whether any saved HTTP authentication credentials exist. This API returns the result synchronously. 
 
 **Return value**
 
@@ -4482,7 +4591,7 @@ Deletes all HTTP authentication credentials saved in the cache. This API returns
 
 static getHttpAuthCredentials(host: string, realm: string): Array\<string\>
 
-Retrieves HTTP authentication credentials for a given host and domain. This API is synchronous.
+Retrieves HTTP authentication credentials for a given host and domain. This API returns the result synchronously. 
 
 **Parameters**
 
@@ -4565,19 +4674,19 @@ Saves HTTP authentication credentials for a given host and realm. This API retur
 
 ## GeolocationPermissions<sup>9+</sup>
 
-Defines a **GeolocationPermissions** object.
+Implements a **GeolocationPermissions** object.
 
 ### allowGeolocation<sup>9+</sup>
 
 static allowGeolocation(origin: string): void
 
-Allows the specified source to use the geolocation information.
+Allows the specified origin to use the geolocation information.
 
 **Parameters**
 
-| Name   | Type| Mandatory| Default Value| Description      |
-| -------- | -------- | ---- | ----- | ------------- |
-| origin   | string   | Yes  | -     | Index of the origin.|
+| Name   | Type  | Mandatory  | Default Value | Description      |
+| ------ | ------ | ---- | ---- | ---------- |
+| origin | string | Yes   | -    | Index of the origin.|
 
 **Example**
 
@@ -4605,13 +4714,13 @@ Allows the specified source to use the geolocation information.
 
 static deleteGeolocation(origin: string): void
 
-Clears the geolocation permission status of a specified source.
+Clears the geolocation permission status of a specified origin.
 
 **Parameters**
 
-| Name   | Type| Mandatory| Default Value| Description      |
-| -------- | -------- | ---- | ----- | ------------- |
-| origin   | string   | Yes  | -     | Index of the origin.|
+| Name   | Type  | Mandatory  | Default Value | Description      |
+| ------ | ------ | ---- | ---- | ---------- |
+| origin | string | Yes   | -    | Index of the origin.|
 
 **Example**
 
@@ -4670,10 +4779,10 @@ Obtains the geolocation permission status of the specified source. This API uses
 
 **Parameters**
 
-| Name   | Type| Mandatory| Default Value| Description      |
-| -------- | -------- | ---- | ----- | ------------- |
-| origin   | string   | Yes  | -     | Index of the origin.|
-| callback | AsyncCallback\<boolean\> | Yes| - | Callback used to return the geolocation permission status of the specified source. If the operation is successful, the value **true** means that the geolocation permission is granted, and **false** means the opposite. If the operation fails, the geolocation permission status of the specified source is not found.|
+| Name     | Type                    | Mandatory  | Default Value | Description                                    |
+| -------- | ------------------------ | ---- | ---- | ---------------------------------------- |
+| origin   | string                   | Yes   | -    | Index of the origin.                              |
+| callback | AsyncCallback\<boolean\> | Yes   | -    | Callback used to return the geolocation permission status of the specified source. If the operation is successful, the value **true** means that the geolocation permission is granted, and **false** means the opposite. If the operation fails, the geolocation permission status of the specified source is not found.|
 
 **Example**
 
@@ -4711,14 +4820,14 @@ Obtains the geolocation permission status of the specified source. This API uses
 
 **Parameters**
 
-| Name   | Type| Mandatory| Default Value| Description      |
-| -------- | -------- | ---- | ----- | ------------- |
-| origin   | string   | Yes  | -     | Index of the origin.|
+| Name   | Type  | Mandatory  | Default Value | Description      |
+| ------ | ------ | ---- | ---- | ---------- |
+| origin | string | Yes   | -    | Index of the origin.|
 
 **Return value**
 
-| Type              | Description                                 |
-| ------------------ | ------------------------------------ |
+| Type                | Description                                      |
+| ------------------ | ---------------------------------------- |
 | Promise\<boolean\> | Promise used to return the geolocation permission status of the specified source. If the operation is successful, the value **true** means that the geolocation permission is granted, and **false** means the opposite. If the operation fails, the geolocation permission status of the specified source is not found.|
 
 **Example**
@@ -4755,9 +4864,9 @@ Obtains the geolocation permission status of all sources. This API uses an async
 
 **Parameters**
 
-| Name   | Type| Mandatory| Default Value| Description      |
-| -------- | -------- | ---- | ----- | ------------- |
-| callback | AsyncCallback\<Array\<string\>\> | Yes| - | Callback used to return the geolocation permission status of all sources.|
+| Name     | Type                            | Mandatory  | Default Value | Description                |
+| -------- | -------------------------------- | ---- | ---- | -------------------- |
+| callback | AsyncCallback\<Array\<string\>\> | Yes   | -    | Callback used to return the geolocation permission status of all sources.|
 
 **Example**
 
@@ -4795,14 +4904,14 @@ Obtains the geolocation permission status of all sources. This API uses a promis
 
 **Parameters**
 
-| Name   | Type| Mandatory| Default Value| Description      |
-| -------- | -------- | ---- | ----- | ------------- |
-| callback | AsyncCallback\<Array\<string\>\> | Yes| - | Callback used to return the geolocation permission status of all sources.|
+| Name     | Type                            | Mandatory  | Default Value | Description                |
+| -------- | -------------------------------- | ---- | ---- | -------------------- |
+| callback | AsyncCallback\<Array\<string\>\> | Yes   | -    | Callback used to return the geolocation permission status of all sources.|
 
 **Return value**
 
-| Type                      | Description                                 |
-| -------------------------- | ------------------------------------ |
+| Type                        | Description                              |
+| -------------------------- | -------------------------------- |
 | Promise\<Array\<string\>\> | Promise used to return the geolocation permission status of all sources.|
 
 **Example**
@@ -4836,7 +4945,7 @@ Implements the **WebStorage** object, which can be used to manage the Web SQL an
 ### deleteAllData<sup>9+</sup>
 static deleteAllData(): void
 
-Deletes all data in the Web SQL database.
+Deletes all data in the Web SQL Database.
 
 **Example**
 
@@ -4897,7 +5006,7 @@ Deletes all data in the specified origin.
 ### getOrigins<sup>9+</sup>
 static getOrigins(callback: AsyncCallback\<Array\<WebStorageOrigin>>) : void
 
-Obtains information about all origins that are currently using the Web SQL database. This API uses an asynchronous callback to return the result.
+Obtains information about all origins that are currently using the Web SQL Database. This API uses an asynchronous callback to return the result.
 
 **Parameters**
 
@@ -4941,7 +5050,7 @@ Obtains information about all origins that are currently using the Web SQL datab
 ### getOrigins<sup>9+</sup>
 static getOrigins() : Promise\<Array\<WebStorageOrigin>>
 
-Obtains information about all origins that are currently using the Web SQL database. This API uses a promise to return the result.
+Obtains information about all origins that are currently using the Web SQL Database. This API uses a promise to return the result.
 
 **Return value**
 
@@ -4985,7 +5094,7 @@ Obtains information about all origins that are currently using the Web SQL datab
 ### getOriginQuota<sup>9+</sup>
 static getOriginQuota(origin : string, callback : AsyncCallback\<number>) : void
 
-Obtains the storage quota of an origin in the Web SQL database, in bytes. This API uses an asynchronous callback to return the result.
+Obtains the storage quota of an origin in the Web SQL Database, in bytes. This API uses an asynchronous callback to return the result.
 
 **Parameters**
 
@@ -5026,7 +5135,7 @@ Obtains the storage quota of an origin in the Web SQL database, in bytes. This A
 ### getOriginQuota<sup>9+</sup>
 static getOriginQuota(origin : string) : Promise\<number>
 
-Obtains the storage quota of an origin in the Web SQL database, in bytes. This API uses a promise to return the result.
+Obtains the storage quota of an origin in the Web SQL Database, in bytes. This API uses a promise to return the result.
 
 **Parameters**
 
@@ -5072,7 +5181,7 @@ Obtains the storage quota of an origin in the Web SQL database, in bytes. This A
 ### getOriginUsage<sup>9+</sup>
 static getOriginUsage(origin : string, callback : AsyncCallback\<number>) : void
 
-Obtains the storage usage of an origin in the Web SQL database, in bytes. This API uses an asynchronous callback to return the result.
+Obtains the storage usage of an origin in the Web SQL Database, in bytes. This API uses an asynchronous callback to return the result.
 
 **Parameters**
 
@@ -5113,7 +5222,7 @@ Obtains the storage usage of an origin in the Web SQL database, in bytes. This A
 ### getOriginUsage<sup>9+</sup>
 static getOriginUsage(origin : string) : Promise\<number>
 
-Obtains the storage usage of an origin in the Web SQL database, in bytes. This API uses a promise to return the result.
+Obtains the storage usage of an origin in the Web SQL Database, in bytes. This API uses a promise to return the result.
 
 **Parameters**
 
@@ -5155,151 +5264,10 @@ Obtains the storage usage of an origin in the Web SQL database, in bytes. This A
     }
   }
   ```
-### searchAllAsync<sup>9+</sup>
-
-searchAllAsync(searchString: string): void
-
-Searches the web page for content that matches the keyword specified by **'searchString'** and highlights the matches on the page. This API returns the result asynchronously through [onSearchResultReceive](#onsearchresultreceive9).
-
-**Parameters**
-
-| Name | Type  | Mandatory  | Default Value | Description                 |
-| ---- | ------ | ---- | ---- | --------------------- |
-| searchString | string | Yes   | -    | Search keyword.|
-
-**Example**
-
-  ```ts
-  // xxx.ets
-  @Entry
-  @Component
-  struct WebComponent {
-    controller: WebController = new WebController()
-    @State searchString: string = "xxx"
-
-    build() {
-      Column() {
-        Button('searchString')
-          .onClick(() => {
-            this.controller.searchAllAsync(this.searchString)
-          })
-        Button('clearMatches')
-          .onClick(() => {
-            this.controller.clearMatches()
-          })
-        Button('searchNext')
-          .onClick(() => {
-            this.controller.searchNext(true)
-          })
-        Web({ src: 'www.example.com', controller: this.controller })
-     	  .onSearchResultReceive(ret => {
-            console.log("on search result receive:" + "[cur]" + ret.activeMatchOrdinal +
-              "[total]" + ret.numberOfMatches + "[isDone]"+ ret.isDoneCounting)
-          })
-      }
-    }
-  }
-  ```
-
-### clearMatches<sup>9+</sup>
-
-clearMatches(): void
-
-Clears the matches found through [searchAllAsync](#searchallasync9).
-
-**Example**
-
-  ```ts
-  // xxx.ets
-  @Entry
-  @Component
-  struct WebComponent {
-    controller: WebController = new WebController()
-
-    build() {
-      Column() {
-        Button('clearMatches')
-          .onClick(() => {
-            this.controller.clearMatches()
-          })
-        Web({ src: 'www.example.com', controller: this.controller })
-      }
-    }
-  }
-  ```
-
-### searchNext<sup>9+</sup>
-
-searchNext(forward: boolean): void
-
-Searches for and highlights the next match.
-
-**Parameters**
-
-| Name | Type  | Mandatory  | Default Value | Description                 |
-| ---- | ------ | ---- | ---- | --------------------- |
-| forward | boolean | Yes   | -    | Whether to search forward.|
-
-
-**Example**
-
-  ```ts
-  // xxx.ets
-  @Entry
-  @Component
-  struct WebComponent {
-    controller: WebController = new WebController()
-
-    build() {
-      Column() {
-        Button('searchNext')
-          .onClick(() => {
-            this.controller.searchNext(true)
-          })
-        Web({ src: 'www.example.com', controller: this.controller })
-      }
-    }
-  }
-  ```
-
-### onSearchResultReceive<sup>9+</sup>
-
-onSearchResultReceive(callback: (event?: {activeMatchOrdinal: number, numberOfMatches: number, isDoneCounting: boolean}) => void): WebAttribute
-
-Invoked to notify the caller of the search result on the web page.
-
-**Parameters**
-
-| Name               | Type         | Description                               |
-| ------------------ | ------------- | ----------------------------------- |
-| activeMatchOrdinal | number        | Sequence number of the current match, which starts from 0.|
-| numberOfMatches    | number        | Total number of matches.|
-| isDoneCounting     | boolean       | Whether the search operation on the current page is complete. This API may be called multiple times until **isDoneCounting** is **true**.|
-
-**Example**
-
-  ```ts
-  // xxx.ets
-  @Entry
-  @Component
-  struct WebComponent {
-    controller: WebController = new WebController()
-
-    build() {
-      Column() {
-        Web({ src: 'www.example.com', controller: this.controller })
-     	  .onSearchResultReceive(ret => {
-            console.log("on search result receive:" + "[cur]" + ret.activeMatchOrdinal +
-              "[total]" + ret.numberOfMatches + "[isDone]"+ ret.isDoneCounting)
-          })
-      }
-    }
-  }
-  ```
 
 ## WebStorageOrigin<sup>9+</sup>
 
-Provides usage information about the Web SQL database.
+Provides usage information about the Web SQL Database.
 
 **Parameters**
 
@@ -5365,23 +5333,24 @@ Enumerates the reasons why the rendering process exits.
 | HttpAnchorImg | Image with a hyperlink, where **src** is **http**.|
 | Img           | HTML::img tag.            |
 | Map           | Geographical address.                   |
+| Phone         | Phone number.                   |
 | Unknown       | Unknown content.                   |
 
 ## SslError<sup>9+</sup>
 
 Enumerates the error codes returned by **onSslErrorEventReceive** API.
 
-| Name          | Description                 |
-| -------------- | -----------------    |
-| Invalid        | Minor error.           |
-| HostMismatch   | The host name does not match.       |
-| DateInvalid    | The certificate has an invalid date.       |
-| Untrusted      | The certificate issuer is not trusted.|
+| Name          | Description         |
+| ------------ | ----------- |
+| Invalid      | Minor error.      |
+| HostMismatch | The host name does not match.    |
+| DateInvalid  | The certificate has an invalid date.    |
+| Untrusted    | The certificate issuer is not trusted.|
 
 ## ProtectedResourceType<sup>9+</sup>
 
-| Name     | Description           | Remarks          |
-| --------- | -------------- | -------------- |
+| Name       | Description           | Remarks                        |
+| --------- | ------------- | -------------------------- |
 | MidiSysex | MIDI SYSEX resource.| Currently, only permission events can be reported. MIDI devices are not yet supported.|
 
 ## WebAsyncController
@@ -5397,7 +5366,7 @@ webAsyncController: WebAsyncController = new WebAsyncController(webController);
 
 ### storeWebArchive<sup>9+</sup>
 
-storeWebArchive(baseName: string, autoName: boolean, callback: AsyncCallback\<string>): void
+storeWebArchive(baseName: string, autoName: boolean, callback: AsyncCallback<string>): void
 
 Stores this web page. This API uses an asynchronous callback to return the result.
 
@@ -5405,9 +5374,9 @@ Stores this web page. This API uses an asynchronous callback to return the resul
 
 | Name     | Type                                    | Mandatory  | Description                                 |
 | -------- | ---------------------------------------- | ---- | ----------------------------------- |
-| baseName | string | Yes| Save path. The value cannot be null. |
-| autoName | boolean | Yes| Whether to automatically generate a file name.<br>The value **false** means not to automatically generate a file name.<br>The value **true** means to automatically generate a file name based on the URL of current page and the **baseName** value. In this case, **baseName** is regarded as a directory. |
-| callback | AsyncCallback\<string> | Yes   | Callback used to return the save path if the operation is successful and null otherwise.|
+| baseName | string | Yes| Save path. The value cannot be null.|
+| autoName | boolean | Yes| Whether to automatically generate a file name.<br>The value **false** means not to automatically generate a file name.<br>The value **true** means to automatically generate a file name based on the URL of current page and the **baseName** value. In this case, **baseName** is regarded as a directory.|
+| callback | AsyncCallback<string> | Yes   | Callback used to return the save path if the operation is successful and null otherwise.|
 
 **Example**
 
@@ -5437,7 +5406,7 @@ Stores this web page. This API uses an asynchronous callback to return the resul
 
 ### storeWebArchive<sup>9+</sup>
 
-storeWebArchive(baseName: string, autoName: boolean): Promise\<string>
+storeWebArchive(baseName: string, autoName: boolean): Promise<string>
 
 Stores this web page. This API uses a promise to return the result.
 
@@ -5445,14 +5414,14 @@ Stores this web page. This API uses a promise to return the result.
 
 | Name     | Type                                    | Mandatory  | Description                                 |
 | -------- | ---------------------------------------- | ---- | ----------------------------------- |
-| baseName | string | Yes| Save path. The value cannot be null. |
-| autoName | boolean | Yes| Whether to automatically generate a file name.<br>The value **false** means not to automatically generate a file name.<br>The value **true** means to automatically generate a file name based on the URL of current page and the **baseName** value. In this case, **baseName** is regarded as a directory. |
+| baseName | string | Yes| Save path. The value cannot be null.|
+| autoName | boolean | Yes| Whether to automatically generate a file name.<br>The value **false** means not to automatically generate a file name.<br>The value **true** means to automatically generate a file name based on the URL of current page and the **baseName** value. In this case, **baseName** is regarded as a directory.|
 
 **Return value**
 
-| Type             | Description                                                  |
-| ---------------- | ------------------------------------------------------------ |
-| Promise\<string> | Promise used to return the save path if the operation is successful and null otherwise. |
+| Type             | Description                              |
+| --------------- | -------------------------------- |
+| Promise<string> | Promise used to return the save path if the operation is successful and null otherwise.|
 
 **Example**
 
@@ -5483,7 +5452,7 @@ Stores this web page. This API uses a promise to return the result.
 
 ## WebMessagePort<sup>9+</sup>
 
-Defines a **WebMessagePort** instance, which can be used to send and receive messages.
+Implements a **WebMessagePort** instance, which can be used to send and receive messages.
 
 ### close<sup>9+</sup>
 close(): void
@@ -5497,9 +5466,9 @@ Sends messages. For the complete sample code, see [postMessage](#postmessage9).
 
 **Parameters**
 
-| Name  | Type  | Mandatory  | Default Value | Description             |
-| ----- | ------ | ---- | ---- | ----------------- |
-| message   | [WebMessageEvent](#webmessageevent9) | Yes   | -    | Message to send.|
+| Name    | Type                                | Mandatory  | Default Value | Description   |
+| ------- | ------------------------------------ | ---- | ---- | ------- |
+| message | [WebMessageEvent](#webmessageevent9) | Yes   | -    | Message to send.|
 
 **Example**
 
@@ -5532,9 +5501,9 @@ Registers a callback to receive messages from an HTML5 page. For the complete sa
 
 **Parameters**
 
-| Name  | Type  | Mandatory  | Default Value | Description             |
-| ----- | ------ | ---- | ---- | ----------------- |
-| callback   | function | Yes   | -    | Callback for receiving messages.|
+| Name     | Type    | Mandatory  | Default Value | Description      |
+| -------- | -------- | ---- | ---- | ---------- |
+| callback | function | Yes   | -    | Callback for receiving messages.|
 
 **Example**
 
@@ -5572,8 +5541,8 @@ Obtains the messages stored in this object.
 
 **Return value**
 
-| Type                             | Description           |
-| ------------------------------- | ------------- |
+| Type    | Description            |
+| ------ | -------------- |
 | string | Message stored in the object of this type.|
 
 **Example**
@@ -5604,9 +5573,9 @@ Sets the message in this object. For the complete sample code, see [postMessage]
 
 **Parameters**
 
-| Name  | Type  | Mandatory  | Default Value | Description             |
-| ----- | ------ | ---- | ---- | ----------------- |
-| data   | string | Yes   | -    | Message to send.|
+| Name | Type  | Mandatory  | Default Value | Description   |
+| ---- | ------ | ---- | ---- | ------- |
+| data | string | Yes   | -    | Message to send.|
 
 **Example**
 
@@ -5638,8 +5607,8 @@ Obtains the message port stored in this object.
 
 **Return value**
 
-| Type                             | Description           |
-| ------------------------------- | ------------- |
+| Type                                      | Description              |
+| ---------------------------------------- | ---------------- |
 | Array\<[WebMessagePort](#webmessageport9)\> | Message port stored in the object of this type.|
 
 **Example**
@@ -5672,9 +5641,9 @@ Sets the message port in this object. For the complete sample code, see [postMes
 
 **Parameters**
 
-| Name  | Type  | Mandatory  | Default Value | Description             |
-| ----- | ------ | ---- | ---- | ----------------- |
-| ports   | Array\<[WebMessagePort](#webmessageport9)\> | Yes   | -    | Message port.|
+| Name  | Type                                    | Mandatory  | Default Value | Description     |
+| ----- | ---------------------------------------- | ---- | ---- | --------- |
+| ports | Array\<[WebMessagePort](#webmessageport9)\> | Yes   | -    | Message port.|
 
 **Example**
 
