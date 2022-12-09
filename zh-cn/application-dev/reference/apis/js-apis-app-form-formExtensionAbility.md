@@ -39,7 +39,7 @@ onAddForm(want: Want): formBindingData.FormBindingData
 
 | 类型                                                         | 说明                                                        |
 | ------------------------------------------------------------ | ----------------------------------------------------------- |
-| [formBindingData.FormBindingData](js-apis-app-form-formbindingdata.md#formbindingdata) | formBindingData.FormBindingData对象，卡片要显示的数据。 |
+| [formBindingData.FormBindingData](js-apis-app-form-formBindingData.md#formbindingdata) | formBindingData.FormBindingData对象，卡片要显示的数据。 |
 
 **示例：**
 
