@@ -2,7 +2,7 @@
 
 ## Background
 
-* API type: [Public API | Test API | HDI]
+* API type: [Public API | System API | Test API | HDI]
 * API requirement source:
 * API usage scenario:
 * Belonging subsystem:
