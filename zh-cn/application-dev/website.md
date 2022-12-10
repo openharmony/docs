@@ -17,7 +17,7 @@
       - 应用程序包多HAP机制
         - [多HAP机制设计目标](quick-start/multi-hap-objective.md)
         - [多HAP构建视图](quick-start/multi-hap-build-view.md)
-        - [多HAP发布部署流程](quick-start/multi-hap-release-deployment.md)
+        - [多HAP的开发调试与发布部署流程](quick-start/multi-hap-release-deployment.md)
         - [多HAP使用规则](quick-start/multi-hap-rules.md)
         - [多HAP运行机制及数据通信方式](quick-start/multi-hap-principles.md)
       - [应用程序包安装和卸载流程](quick-start/application-package-install-uninstall.md)
