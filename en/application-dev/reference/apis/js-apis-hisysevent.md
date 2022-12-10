@@ -1,13 +1,13 @@
-# 系统事件打点
+# HiSysEvent
 
-本模块提供了系统事件打点能力，包括系统事件的埋点、落盘系统事件的订阅及已落盘的系统事件的查询能力。
+This module provides the system event logging functions, such as configuring trace points, subscribing to system events, and querying system events written to the event file.
 
-> **说明：**
-> - 本模块首批接口从API version 9开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
-> - 本模块的接口为系统接口。
+> **NOTE**
+> - The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+> - The APIs provided by this module are system APIs.
 
 
-## 导入模块
+## Modules to Import
 
 ```js
 import hiSysEvent from '@ohos.hiSysEvent';
@@ -15,51 +15,51 @@ import hiSysEvent from '@ohos.hiSysEvent';
 
 ## EventType
 
-系统事件类型枚举。
+Enumerates event types.
 
-**系统能力：** SystemCapability.HiviewDFX.HiSysEvent
+**System capability**: SystemCapability.HiviewDFX.HiSysEvent
 
-| 名称 | 值 | 说明 |
+| Name| Value| Description|
 | -------- | -------- | -------- |
-| FAULT | 1 | 错误事件类型。 |
-| STATISTIC | 2 | 统计事件类型。 |
-| SECURITY | 3 | 安全事件类型。 |
-| BEHAVIOR | 4 | 用户行为事件类型。 |
+| FAULT | 1 | Error event.|
+| STATISTIC | 2 | Statistic event.|
+| SECURITY | 3 | Security event.|
+| BEHAVIOR | 4 | User behavior event.|
 
 ## SysEventInfo
 
-系统事件信息对象接口。
+Defines a system event.
 
-**系统能力：** SystemCapability.HiviewDFX.HiSysEvent
+**System capability**: SystemCapability.HiviewDFX.HiSysEvent
 
-| 名称 | 类型 | 必填 | 说明 |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| domain | string | 是 | 事件领域。 |
-| name | string | 是 | 事件名称。 |
-| eventType | [EventType](#eventtype) | 是 | 事件类型。 |
-| params | object | 否 | 事件参数。 |
+| domain | string | Yes| Event domain.|
+| name | string | Yes| Event name.|
+| eventType | [EventType](#eventtype) | Yes| Event type.|
+| params | object | No| Event parameters.|
 
 
 ## hiSysEvent.write
 
 write(info: SysEventInfo, callback: AsyncCallback&lt;void&gt;): void
 
-系统事件打点方法，接收[SysEventInfo](#syseventinfo)类型的对象作为事件参数，使用callback方式作为异步回调。
+Writes event information to the event file. This API uses an asynchronous callback to return the result.
 
-**系统能力：** SystemCapability.HiviewDFX.HiSysEvent
+**System capability**: SystemCapability.HiviewDFX.HiSysEvent
 
-**参数：**
+**Parameters**
 
-| 参数名    | 类型                      | 必填 | 说明                                                         |
+| Name   | Type                     | Mandatory| Description                                                        |
 | --------- | ------------------------- | ---- | ------------------------------------------------------------ |
-| info | [SysEventInfo](#syseventinfo) | 是 | 系统事件。 |
-| callback  | AsyncCallback&lt;void&gt; | 是 | 回调函数，可以在回调函数中处理接口返回值。<br/>- 0表示事件校验成功，事件正常异步写入事件文件；<br/>- 正值表示事件打点存在异常，但可以正常写入；<br/>- 负值表示事件打点失败。 |
+| info | [SysEventInfo](#syseventinfo) | Yes| System event information.|
+| callback  | AsyncCallback&lt;void&gt; | Yes| Callback used to process the received return value.<br>- Value **0**: The event verification is successful, and the event will be written to the event file asynchronously. <br>- A value greater than **0**: Invalid parameters are present in the event, and the event will be written to the event file asynchronously after the invalid parameters are ignored.<br>- A value smaller than **0**: The event parameter verification fails, and the event will not be written to the event file.|
 
-**错误码：**
+**Error codes**
 
-以下错误码的详细介绍请参见[系统事件错误码](../errorcodes/errorcode-hisysevent.md)。
+For details about the error codes, see [HiSysEvent Error Codes](../errorcodes/errorcode-hisysevent.md).
 
-| 错误码ID | 错误信息 |
+| ID| Error Message|
 | ------- | ----------------------------------------------------------------- |
 | 11200001 | Invalid event domain.                                            |
 | 11200002 | Invalid event name.                                              |
@@ -70,7 +70,7 @@ write(info: SysEventInfo, callback: AsyncCallback&lt;void&gt;): void
 | 11200053 | Count of event parameters is over limit.                         |
 | 11200054 | Count of event parameter of the array type is over limit.        |
 
-**示例：**
+**Example**
 
 ```js
 import hiSysEvent from '@ohos.hiSysEvent';
@@ -100,27 +100,27 @@ try {
 
 write(info: SysEventInfo): Promise&lt;void&gt;
 
-系统事件打点方法，接收[SysEventInfo](#syseventinfo)类型的对象作为事件参数，使用promise方式作为异步回调。
+Writes event information to the event file. This API uses a promise to return the result.
 
-**系统能力：** SystemCapability.HiviewDFX.HiSysEvent
+**System capability**: SystemCapability.HiviewDFX.HiSysEvent
 
-**参数：**
+**Parameters**
 
-| 参数名    | 类型                    | 必填 | 说明 |
+| Name   | Type                   | Mandatory| Description|
 | --------- | ----------------------- | ---- | --------------- |
-| info | [SysEventInfo](#syseventinfo) | 是   | 系统事件。 |
+| info | [SysEventInfo](#syseventinfo) | Yes  | System event information.|
 
-**返回值：**
+**Return value**
 
-| 类型                | 说明                                                         |
+| Type               | Description                                                        |
 | ------------------- | ------------------------------------------------------------ |
-| Promise&lt;void&gt; | Promise实例，可以在其then()、catch()方法中分别对系统事件写入成功、写入异常的回调进行处理。 |
+| Promise&lt;void&gt; | Promise used to return the result. Depending on whether event writing is successful, you can use the **then()** or **catch()** method to process the callback.|
 
-**错误码：**
+**Error codes**
 
-以下错误码的详细介绍请参见[系统事件错误码](../errorcodes/errorcode-hisysevent.md)。
+For details about the error codes, see [HiSysEvent Error Codes](../errorcodes/errorcode-hisysevent.md).
 
-| 错误码ID | 错误信息 |
+| ID| Error Message|
 | -------- | ---------------------------------------------------------------- |
 | 11200001 | Invalid event domain.                                            |
 | 11200002 | Invalid event name.                                              |
@@ -131,7 +131,7 @@ write(info: SysEventInfo): Promise&lt;void&gt;
 | 11200053 | Count of event parameters is over limit.                         |
 | 11200054 | Count of event parameter of the array type is over limit.        |
 
-**示例：**
+**Example**
 
 ```js
 import hiSysEvent from '@ohos.hiSysEvent';
@@ -164,67 +164,67 @@ try {
 
 ## RuleType
 
-匹配规则类型枚举。
+Enumerates matching rule types.
 
-**系统能力：** SystemCapability.HiviewDFX.HiSysEvent
+**System capability**: SystemCapability.HiviewDFX.HiSysEvent
 
-| 名称 | 值 | 说明 |
+| Name| Value| Description|
 | -------- | -------- | -------- |
-| WHOLE_WORD | 1 | 全词匹配类型。 |
-| PREFIX | 2 | 前缀匹配类型。 |
-| REGULAR | 3 | 正则匹配类型。 |
+| WHOLE_WORD | 1 | Whole word matching.|
+| PREFIX | 2 | Prefix matching.|
+| REGULAR | 3 | Regular expression matching.|
 
 ## WatchRule
 
-系统事件订阅规则对象接口。
+Defines event subscription rules.
 
-**系统能力：** SystemCapability.HiviewDFX.HiSysEvent
+**System capability**: SystemCapability.HiviewDFX.HiSysEvent
 
-| 名称 | 类型 | 必填 | 说明 |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| domain | string | 是 | 事件领域。 |
-| name | string | 是 | 事件名称。 |
-| tag | string | 否 | 事件标签。 |
-| ruleType | [RuleType](#ruletype) | 是 | 匹配规则类型。 |
+| domain | string | Yes| Event domain.|
+| name | string | Yes| Event name.|
+| tag | string | No| Event tag.|
+| ruleType | [RuleType](#ruletype) | Yes| Matching rule type.|
 
 ## Watcher
 
-系统事件订阅者对象接口。
+Defines a watcher for event subscription.
 
-**系统能力：** SystemCapability.HiviewDFX.HiSysEvent
+**System capability**: SystemCapability.HiviewDFX.HiSysEvent
 
-| 名称 | 类型 | 必填 | 说明 |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| rules | [WatchRule](#watchrule)[] | 是 | 订阅对象数组，每个订阅者对象包含多个订阅规则。 |
-| onEvent | function | 是 | 订阅事件的回调方法(info: [SysEventInfo](#syseventinfo)) => void。 |
-| onServiceDied | function | 是 | 系统事件服务关闭的回调方法() => void。 |
+| rules | [WatchRule](#watchrule)[] | Yes| Array of matching event subscription rules.|
+| onEvent | function | Yes| Callback for event subscription: (info: [SysEventInfo](#syseventinfo)) => void|
+| onServiceDied | function | Yes| Callback for disabling of event subscription: () => void|
 
 ## hiSysEvent.addWatcher
 
 addWatcher(watcher: Watcher): void
 
-订阅系统事件，接收[Watcher](#watcher)类型的对象作为事件参数。
+Adds a watcher for event subscription.
 
-**需要权限：** ohos.permission.READ_DFX_SYSEVENT
+**Required permission**: ohos.permission.READ_DFX_SYSEVENT
 
-**系统能力：** SystemCapability.HiviewDFX.HiSysEvent
+**System capability**: SystemCapability.HiviewDFX.HiSysEvent
 
-**参数：**
+**Parameters**
 
-| 参数名 | 类型 | 必填 | 说明 |
+| Name| Type| Mandatory| Description|
 | ------ | ----------------------------- | ---- | ------------------------ |
-| watcher | [Watcher](#watcher) | 是 | 系统事件订阅者对象。 |
+| watcher | [Watcher](#watcher) | Yes| Watcher for event subscription.|
 
-**错误码：**
+**Error codes**
 
-以下错误码的详细介绍请参见[系统事件错误码](../errorcodes/errorcode-hisysevent.md)。
+For details about the error codes, see [HiSysEvent Error Codes](../errorcodes/errorcode-hisysevent.md).
 
-| 错误码ID | 错误信息 |
+| ID| Error Message|
 | -------- | ----------------------------------- |
 | 11200101 | Count of watchers is over limit.    |
 | 11200102 | Count of watch rules is over limit. |
 
-**示例：**
+**Example**
 
 ```js
 import hiSysEvent from '@ohos.hiSysEvent';
@@ -254,27 +254,27 @@ try {
 
 removeWatcher(watcher: Watcher): void
 
-取消订阅系统事件，接收[Watcher](#watcher)类型的对象作为事件参数。
+Removes a watcher used for event subscription.
 
-**需要权限：** ohos.permission.READ_DFX_SYSEVENT
+**Required permission**: ohos.permission.READ_DFX_SYSEVENT
 
-**系统能力：** SystemCapability.HiviewDFX.HiSysEvent
+**System capability**: SystemCapability.HiviewDFX.HiSysEvent
 
-**参数：**
+**Parameters**
 
-| 参数名 | 类型  | 必填 | 说明  |
+| Name| Type | Mandatory| Description |
 | ------ | ------------- | ---- | ------------------------- |
-| watcher | [Watcher](#watcher) | 是 | 系统事件订阅者对象。 |
+| watcher | [Watcher](#watcher) | Yes| Watcher for event subscription.|
 
-**错误码：**
+**Error codes**
 
-以下错误码的详细介绍请参见[系统事件错误码](../errorcodes/errorcode-hisysevent.md)。
+For details about the error codes, see [HiSysEvent Error Codes](../errorcodes/errorcode-hisysevent.md).
 
-| 错误码ID | 错误信息 |
+| ID| Error Message|
 | -------- | --------------------------- |
 | 11200201 | The watcher does not exist. |
 
-**示例：**
+**Example**
 
 ```js
 import hiSysEvent from '@ohos.hiSysEvent';
@@ -303,68 +303,68 @@ try {
 
 ## QueryArg
 
-系统事件查询参数对象接口。
+Defines arguments for an event query.
 
-**系统能力：** SystemCapability.HiviewDFX.HiSysEvent
+**System capability**: SystemCapability.HiviewDFX.HiSysEvent
 
-| 名称 | 类型 | 必填 | 说明 |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| beginTime | number | 是 | 查询的系统事件起始时间（13位时间戳）。 |
-| endTime | number | 是 | 查询的系统事件结束时间（13位时间戳）。 |
-| maxEvents | number | 是 | 查询的系统事件最多条数。 |
+| beginTime | number | Yes| Start time (13-digit timestamp) for the event query.|
+| endTime | number | Yes| End time (13-digit timestamp) for the event query.|
+| maxEvents | number | Yes| Maximum number of events that can be queried.|
 
 ## QueryRule 
 
-系统事件查询规则对象接口。
+Defines event query rules.
 
-**系统能力：** SystemCapability.HiviewDFX.HiSysEvent
+**System capability**: SystemCapability.HiviewDFX.HiSysEvent
 
-| 名称 | 类型 | 必填 | 说明 |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| domain | string | 是 | 查询包含的事件领域。 |
-| names | string[] | 是 | 查询所包含的多个事件名称，每个查询规则对象包含多个系统事件名称。 |
+| domain | string | Yes| Event domain.|
+| names | string[] | Yes| Array of event names. A **QueryRule** object contains multiple system event names.|
 
 ## Querier
 
-系统事件查询者对象接口。
+Defines an event query instance.
 
-**系统能力：** SystemCapability.HiviewDFX.HiSysEvent
+**System capability**: SystemCapability.HiviewDFX.HiSysEvent
 
-| 名称 | 类型 | 必填 | 说明 |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| onQuery | function | 是 | 返回查询到的系统事件的回调方法(infos: [SysEventInfo](#syseventinfo)[]) => void。 |
-| onComplete | function | 是 | 查询结果统计的回调方法(reason: number, total: number) => void。 |
+| onQuery | function | Yes| Callback used to return the queried system events: (infos: [SysEventInfo](#syseventinfo)[]) => void.|
+| onComplete | function | Yes| Callback used to return the query result statistics: (reason: number, total: number) => void|
 
 ## hiSysEvent.query
 
 query(queryArg: QueryArg, rules: QueryRule[], querier: Querier): void
 
-查询系统事件。
+Queries system events.
 
-**需要权限：** ohos.permission.READ_DFX_SYSEVENT
+**Required permission**: ohos.permission.READ_DFX_SYSEVENT
 
-**系统能力：** SystemCapability.HiviewDFX.HiSysEvent
+**System capability**: SystemCapability.HiviewDFX.HiSysEvent
 
-**参数：**
+**Parameters**
 
-| 参数名 | 类型 | 必填 | 说明 |
+| Name| Type| Mandatory| Description|
 | ------ | ----------------------------- | ---- | ------------------------ |
-| queryArg | [QueryArg](#queryarg) | 是   | 查询需要配置的查询参数。 |
-| rules | [QueryRule](#queryrule)[] | 是   | 查询规则数组，每次查询可配置多个查询规则。 |
-| querier | [Querier](#querier) | 是   | 查询者对象，包含查询结果及结束的相关回调。 |
+| queryArg | [QueryArg](#queryarg) | Yes  | Arguments for event query.|
+| rules | [QueryRule](#queryrule)[] | Yes  | Array of event query rules.|
+| querier | [Querier](#querier) | Yes  | Event query instance.|
 
-**错误码：**
+**Error codes**
 
-以下错误码的详细介绍请参见[系统事件错误码](../errorcodes/errorcode-hisysevent.md)。
+For details about the error codes, see [HiSysEvent Error Codes](../errorcodes/errorcode-hisysevent.md).
 
-| 错误码ID | 错误信息 |
+| ID| Error Message|
 | -------- | ------------------------------------------- |
 | 11200301 | Count of query rules is over limit.         |
 | 11200302 | Invalid query rule.                         |
 | 11200303 | Count of concurrent queriers is over limit. |
 | 11200304 | Query frequency is over limit.              |
 
-**示例：**
+**Example**
 
 ```js
 import hiSysEvent from '@ohos.hiSysEvent';

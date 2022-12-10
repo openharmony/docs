@@ -1,283 +1,283 @@
-# 系统事件错误码
+# HiSysEvent Error Codes
 
-## 1120001 非法的事件领域
+## 1120001 Invalid Event Domain
 
-**错误信息**
+**Error Message**
 
 Invalid event domain.
 
-**错误描述**
+**Description**
 
-在调用write接口进行系统事件打点时，由于传入了非法的事件领域名称，系统将忽略此次系统事件打点。
+This error code is reported if the **write** API is called to perform system event logging but the system ignores the logging operation because the input event domain name is invalid.
 
-**可能原因**
+**Possible Causes**
 
-1.系统事件领域名称长度超过16个字符；
-2.系统事件领域名称包含特殊字符；
-3.系统事件领域名称为空。
+1. The event domain name contains more than 16 characters.
+2. The event domain name contains special characters.
+3. The event domain name is empty.
 
-**处理步骤**
+**Solution**
 
-检查系统事件领域名称是否合法。
+Specify a valid event domain name.
 
-## 1120002 非法的事件名称
+## 1120002 Invalid Event Name
 
-**错误信息**
+**Error Message**
 
 Invalid event name.
 
-**错误描述**
+**Description**
 
-在调用write接口进行系统事件打点时，由于传入了非法的事件名称，系统将忽略此次系统事件打点。
+This error code is reported if the **write** API is called to perform system event logging but the system ignores the logging operation because the input event name is invalid.
 
-**可能原因**
+**Possible Causes**
 
-1.系统事件名称长度超过32个字符；
-2.系统事件名称包含特殊字符；
-3.系统事件名称为空。
+1. The event name contains more than 32 characters.
+2. The event name contains special characters.
+3. The event name is empty.
 
-**处理步骤**
+**Solution**
 
-检查系统事件名称是否合法。
+Check whether the event name is valid.
 
-## 11200003 环境异常
+## 11200003 Environment Error
 
-**错误信息**
+**Error Message**
 
 Abnormal environment.
 
-**错误描述**
+**Description**
 
-在调用write接口进行系统事件打点时，由于环境异常，系统将忽略此次系统事件打点。
+This error code is reported if the **write** API is called to perform system event logging but the system ignores the logging operation because the environment is abnormal.
 
-**可能原因**
+**Possible Causes**
 
-1.hiview服务未成功启动；
-2.hiview服务socket异常。
+1. The hiview service fails to be started.
+2. The socket of the hiview service is abnormal.
 
-**处理步骤**
+**Solution**
 
-尝试重新调用write接口进行打点。
+Call the **write** API again to perform event logging.
 
-## 11200004 事件长度超过限制
+## 11200004 Invalid Event Length
 
-**错误信息**
+**Error Message**
 
 Length of the event is over limit.
 
-**错误描述**
+**Description**
 
-在调用write接口进行系统事件打点时，由于传入的事件总长度超过限制，系统将忽略此次系统事件打点。
+This error code is reported if the **write** API is called to perform system event logging but the system ignores the logging operation because the total event length is invalid.
 
-**可能原因**
+**Possible Causes**
 
-系统事件总长度超过384K。
+The total event length exceeds 384 KB.
 
-**处理步骤**
+**Solution**
 
-检查系统事件总长度是否大于384K。
+Check whether the total event length is greater than 384 KB.
 
-## 11200051 非法的事件参数
+## 11200051 Invalid Event Parameter
 
-**错误信息**
+**Error Message**
 
 Invalid event parameter.
 
-**错误描述**
+**Description**
 
-在调用write接口进行系统事件打点时，由于传入了非法的参数名称，系统以抛出错误的形式提示，但会完成此次系统事件打点。
+This error code is reported if the **write** API is called to perform system event logging but the system throws an exception because the input parameter name is invalid. However, the system will continue to complete the logging operation.
 
-**可能原因**
+**Possible Causes**
 
-1.系统事件参数名称长度超过32个字符；
-2.系统事件参数名称包含特殊字符；
-3.系统事件参数名为空。
+1. The event parameter name contains more than 32 characters.
+2. The event parameter name contains special characters.
+3. The event parameter name is empty.
 
-**处理步骤**
+**Solution**
 
-检查系统事件参数名称是否合法。
+Check whether the event parameter name is valid.
 
-## 11200052 字符串类型的事件参数值的长度超过限制
+## 11200052 Length of Event Parameter Values of the String Type Exceeding the Limit
 
-**错误信息**
+**Error Message**
 
 Size of the event parameter of the string type is over limit.
 
-**错误描述**
+**Description**
 
-在调用write接口进行系统事件打点时，由于传入了长度超限的字符串类型参数，系统以抛出错误的形式提示，但会完成此次系统事件打点。
+This error code is reported if the **write** API is called to perform system event logging but the system throws an exception because the length of event parameter values of the string type is invalid. However, the system will continue to complete the logging operation.
 
-**可能原因**
+**Possible Causes**
 
-字符串类型的参数值的长度超过10K。
+The length of parameter values of the string type exceeds 10 KB.
 
-**处理步骤**
+**Solution**
 
-检查系统事件中字符串类型的参数值的长度是否超过10K。
+Check whether the length of parameter values of the string type exceeds 10 KB.
 
-## 11200053 事件参数的数量超过限制
+## 11200053 Number of Event Parameters Exceeding the Limit
 
-**错误信息**
+**Error Message**
 
 Count of event parameters is over limit.
 
-**错误描述**
+**Description**
 
-在调用write接口进行系统事件打点时，由于传入的事件参数数量超过限制，系统以抛出错误的形式提示，但会完成此次系统事件打点。
+This error code is reported if the **write** API is called to perform system event logging but the system throws an exception because the number of event parameters is invalid. However, the system will continue to complete the logging operation.
 
-**可能原因**
+**Possible Causes**
 
-系统事件的参数数量超过128个。
+The number of event parameters exceeds 128.
 
-**处理步骤**
+**Solution**
 
-检查系统事件的参数数量是否超过了128个。
+Check whether the number of event parameters exceeds 128.
 
-## 11200054 数组类型的事件参数值的长度超过限制
+## 11200054 Length of Event Parameter Values of the Array Type Exceeding the Limit
 
-**错误信息**
+**Error Message**
 
 Count of event parameter of the array type is over limit.
 
-**错误描述**
+**Description**
 
-在调用write接口进行系统事件打点时，由于传入了长度超过限制的数组类型的参数，系统以抛出错误的形式提示，但会完成此次系统事件打点。
+This error code is reported if the **write** API is called to perform system event logging but the system throws an exception because the length of event parameter values of the array type is invalid. However, the system will continue to complete the logging operation.
 
-**可能原因**
+**Possible Causes**
 
-系统事件中有数组类型的参数值的长度超过100。
+The length of a parameter values of the array type exceeds 100.
 
-**处理步骤**
+**Solution**
 
-检查数组类型的参数值的长度是否超过100.
+Check whether the length of the parameter value of the array type exceeds 100.
 
-## 11200101 事件监听者的数量超过限制
+## 11200101 Number of Event Watchers Exceeding the Limit
 
-**错误信息**
+**Error Message**
 
 Count of watchers is over limit.
 
-**错误描述**
+**Description**
 
-在调用addWatcher接口添加系统事件监听者时，由于添加的监听者数量超过限制，系统将拒绝此系统事件监听者的添加。
+This error code is reported if the **addWatcher** API is called to add an event watcher but the system rejects the operation because the number of watchers has exceeded the limit.
 
-**可能原因**
+**Possible Causes**
 
-hiview服务已添加30个系统事件监听者，无法添加新的系统事件监听者。
+A total of 30 event watchers have been added.
 
-**处理步骤**
+**Solution**
 
-检查已成功添加的系统事件监听者数量是否超过了30个。
+Check whether the number of event watchers exceeds 30.
 
-## 11200102 事件监听者包含的监听规则数量超过限制
+## 11200102 Number of Event Watcher Rules Exceeding the Limit
 
-**错误信息**
+**Error Message**
 
 Count of watch rules is over limit.
 
-**错误描述**
+**Description**
 
-在调用addWatcher接口添加系统事件监听者时，由于该系统事件监听者包含的监听规则数量超过限制，系统将拒绝此系统事件监听者的添加。
+This error code is reported if the **addWatcher** API is called to add an event watcher but the system rejects the operation because the number of watcher rules has exceeded the limit.
 
-**可能原因**
+**Possible Causes**
 
-系统事件监听者包含的监听规则的数量超过20个。
+A total of 20 event watcher rules have been added.
 
-**处理步骤**
+**Solution**
 
-检查系统事件监听者包含的监听规则数量是否超过20个。
+Check whether the number of event watcher rules exceeds 20.
 
-## 11200201 事件监听者不存在
+## 11200201 Event Watcher Not Exist
 
-**错误信息**
+**Error Message**
 
 The watcher does not exist.
 
-**错误描述**
+**Description**
 
-在调用removeWatcher移除系统事件监听者时，由于该系统事件监听者不在监听队列，系统将拒绝此系统事件监听者的移除。
+This error code is reported if the **removeWatcher** API is called to remove an event watcher but the system rejects the operation because the watcher does not exist.
 
-**可能原因**
+**Possible Causes**
 
-1.尝试移除的系统事件监听者为空；
-2.尝试移除的系统事件监听者没有被成功添加过。
+1. The event watcher to be removed is empty.
+2. The event watcher to be removed has not been successfully added.
 
-**处理步骤**
+**Solution**
 
-检查移除的系统事件监听者是否为空，或者是否成功添加过此系统事件监听者。
+Check whether the event watcher to the removed is empty or whether the event watcher has been successfully added.
 
-## 11200301 查询规则的数量超过限制
+## 11200301 Number of Query Rules Exceeding the Limit
 
-**错误信息**
+**Error Message**
 
 Count of query rules is over limit.
 
-**错误描述**
+**Description**
 
-在调用query接口查询系统事件时，由于传入的查询规则数量超限，系统将忽略此次系统事件的查询。
+This error code is reported if the **query** API is called to query system events but the system ignores the operation because the number of query rules has exceeded the limit.
 
-**可能原因**
+**Possible Causes**
 
-查询规则个数超过10个。
+The number of query rules exceeds 10.
 
-**处理步骤**
+**Solution**
 
-检查查询规则数量是否超过10个。
+Check whether the number of query rules exceeds 10.
 
 
-## 11200302 非法的查询规则
+## 11200302 Invalid Query Rule
 
-**错误信息**
+**Error Message**
 
 Invalid query rule.
 
 
-**错误描述**
+**Description**
 
-在调用query接口查询系统事件时，由于传入了非法的查询规则，系统将忽略此次系统事件的查询。
+This error code is reported if the **query** API is called to query system events but the system ignores the operation because the input query rule is invalid.
 
-**可能原因**
+**Possible Causes**
 
-1.查询规则中的事件领域名称长度超过16个字符或者事件名称长度超过32个字符；
-2.查询规则中的事件领域名称或者事件名称包含特殊字符；
-3.查询规则中的事件领域名称或者事件名称为空。
+1. The event domain name in the query rule contains more than 16 characters or the event name contains more than 32 characters.
+2. The event domain name or event name in the query rule contains special characters.
+3. The event domain name or event name in the query rule is empty.
 
-**处理步骤**
+**Solution**
 
-检查查询规则中配置的事件领域名称及事件名称是否合法。
+Check whether the event domain name and event name configured in the query rule are valid.
 
-## 11200303 并发查询的数量超过限制
+## 11200303 Number of Concurrent Queries Exceeding the Limit
 
-**错误信息**
+**Error Message**
 
-Count of concurrent queriers is over limit.
+Count of concurrent queries is over limit.
 
-**错误描述**
+**Description**
 
-在调用query接口查询系统事件时，由于在同一时间点并发查询的数量超过限制，系统将忽略此次系统事件的查询。
+This error code is reported if the **query** API is called to query system events but the system ignores the operation because the number of concurrent queries has exceeded the limit.
 
-**可能原因**
+**Possible Causes**
 
-并发查询的数量超过4个。
+The number of concurrent queries exceeds 4.
 
-**处理步骤**
+**Solution**
 
-检查在同一时间点是否有4个以上的查询操作。
+Check whether more than four queries are performed at the same time.
 
-## 11200304 查询频率超过限制
+## 11200304  Query Frequency Exceeding the Limit
 
-**错误信息**
+**Error Message**
 
 Query frequency is over limit.
 
-**错误描述**
+**Description**
 
-在调用query接口查询系统事件时，由于查询频率超过限制，系统将忽略此次系统事件的查询。
+This error code is reported if the **query** API is called to query system events but the system ignores the operation because the query frequency has exceeded the limit.
 
-**可能原因**
+**Possible Causes**
 
-查询频率超过1次/秒。
+More than one query is performed in one second.
 
-**处理步骤**
+**Solution**
 
-检查是否在1秒内进行1次以上的查询。
+Check whether more than one query is performed in one second.
