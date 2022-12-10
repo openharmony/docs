@@ -43,20 +43,62 @@ on(type:"mission", listener: MissionListener): number;
 **示例：**
 
 ```ts
-  var listener = {
-      onMissionCreated: function (mission) {console.log("--------onMissionCreated-------")},
-      onMissionDestroyed: function (mission) {console.log("--------onMissionDestroyed-------")},
-      onMissionSnapshotChanged: function (mission) {console.log("--------onMissionSnapshotChanged-------")},
-      onMissionMovedToFront: function (mission) {console.log("--------onMissionMovedToFront-------")},
-      onMissionIconUpdated: function (mission, icon) {console.log("--------onMissionIconUpdated-------")},
-      onMissionClosed: function (mission) {console.log("--------onMissionClosed-------")}
-  };
-  console.log("registerMissionListener")
-  try {
-    var listenerid = missionManager.on("mission", listener);
-  } catch (paramError) {
-    console.log("error: " + paramError.code + ", " + paramError.message);
-  }
+import Ability from '@ohos.application.Ability'
+import missionManager from '@ohos.app.ability.missionManager';
+
+var listener = {
+    onMissionCreated: function (mission) {console.log("--------onMissionCreated-------")},
+    onMissionDestroyed: function (mission) {console.log("--------onMissionDestroyed-------")},
+    onMissionSnapshotChanged: function (mission) {console.log("--------onMissionSnapshotChanged-------")},
+    onMissionMovedToFront: function (mission) {console.log("--------onMissionMovedToFront-------")},
+    onMissionIconUpdated: function (mission, icon) {console.log("--------onMissionIconUpdated-------")},
+    onMissionClosed: function (mission) {console.log("--------onMissionClosed-------")}
+};
+
+var listenerId = -1;
+
+export default class MainAbility extends Ability {
+    onCreate(want, launchParam) {
+        console.log("[Demo] MainAbility onCreate")
+        globalThis.abilityWant = want;
+        globalThis.context = this.context;
+    }
+
+    onDestroy() {
+        try {
+            if (listenerId != -1) {
+                missionManager.off("mission", listenerId).catch(function (err) {
+                    console.log(err);
+                });
+            }
+        } catch (paramError) {
+            console.log("error: " + paramError.code + ", " + paramError.message);
+        }
+        console.log("[Demo] MainAbility onDestroy")
+    }
+
+    onWindowStageCreate(windowStage) {
+        // Main window is created, set main page for this ability
+        console.log("[Demo] MainAbility onWindowStageCreate")
+        try {
+            listenerId = missionManager.on("mission", listener);
+        } catch (paramError) {
+            console.log("error: " + paramError.code + ", " + paramError.message);
+        }
+
+        windowStage.loadContent("pages/index", (err, data) => {
+            if (err.code) {
+                console.error('Failed to load the content. Cause:' + JSON.stringify(err));
+                return;
+            }
+            console.info('Succeeded in loading the content. Data: ' + JSON.stringify(data))
+        });
+
+        if (globalThis.flag) {
+            return;
+        }
+    }
+};
 ```
 
 
@@ -82,24 +124,62 @@ off(type: "mission", listenerId: number, callback: AsyncCallback&lt;void&gt;): v
 **示例：**
 
 ```ts
-  var listener = {
-      onMissionCreated: function (mission) {console.log("--------onMissionCreated-------")},
-      onMissionDestroyed: function (mission) {console.log("--------onMissionDestroyed-------")},
-      onMissionSnapshotChanged: function (mission) {console.log("--------onMissionSnapshotChanged-------")},
-      onMissionMovedToFront: function (mission) {console.log("--------onMissionMovedToFront-------")},
-      onMissionIconUpdated: function (mission, icon) {console.log("--------onMissionIconUpdated-------")},
-      onMissionClosed: function (mission) {console.log("--------onMissionClosed-------")}
-  };
-  console.log("registerMissionListener")
-  try {
-    var listenerid = missionManager.registerMissionListener(listener);
+import Ability from '@ohos.application.Ability'
+import missionManager from '@ohos.app.ability.missionManager';
 
-    missionManager.unregisterMissionListener(listenerid, (error) => {
-      console.log("unregisterMissionListener");
-    })
-  } catch (paramError) {
-    console.log("error: " + paramError.code + ", " + paramError.message);
-  }
+var listener = {
+    onMissionCreated: function (mission) {console.log("--------onMissionCreated-------")},
+    onMissionDestroyed: function (mission) {console.log("--------onMissionDestroyed-------")},
+    onMissionSnapshotChanged: function (mission) {console.log("--------onMissionSnapshotChanged-------")},
+    onMissionMovedToFront: function (mission) {console.log("--------onMissionMovedToFront-------")},
+    onMissionIconUpdated: function (mission, icon) {console.log("--------onMissionIconUpdated-------")},
+    onMissionClosed: function (mission) {console.log("--------onMissionClosed-------")}
+};
+
+var listenerId = -1;
+
+export default class MainAbility extends Ability {
+    onCreate(want, launchParam) {
+        console.log("[Demo] MainAbility onCreate")
+        globalThis.abilityWant = want;
+        globalThis.context = this.context;
+    }
+
+    onDestroy() {
+        try {
+            if (listenerId != -1) {
+                missionManager.off("mission", listenerId, (err) => {
+                    console.log(err);
+                });
+            }
+        } catch (paramError) {
+            console.log("error: " + paramError.code + ", " + paramError.message);
+        }
+        console.log("[Demo] MainAbility onDestroy")
+    }
+
+    onWindowStageCreate(windowStage) {
+        // Main window is created, set main page for this ability
+        console.log("[Demo] MainAbility onWindowStageCreate")
+        try {
+            listenerId = missionManager.on("mission", listener);
+        } catch (paramError) {
+            console.log("error: " + paramError.code + ", " + paramError.message);
+        }
+
+        windowStage.loadContent("pages/index", (err, data) => {
+            if (err.code) {
+                console.error('Failed to load the content. Cause:' + JSON.stringify(err));
+                return;
+            }
+            console.info('Succeeded in loading the content. Data: ' + JSON.stringify(data))
+        });
+
+        if (globalThis.flag) {
+            return;
+        }
+    }
+};
 ```
 
 
@@ -130,24 +210,63 @@ off(type: "mission", listenerId: number): Promise&lt;void&gt;;
 **示例：**
 
 ```ts
-  var listener = {
-      onMissionCreated: function (mission) {console.log("--------onMissionCreated-------")},
-      onMissionDestroyed: function (mission) {console.log("--------onMissionDestroyed-------")},
-      onMissionSnapshotChanged: function (mission) {console.log("--------onMissionSnapshotChanged-------")},
-      onMissionMovedToFront: function (mission) {console.log("--------onMissionMovedToFront-------")},
-      onMissionIconUpdated: function (mission, icon) {console.log("--------onMissionIconUpdated-------")},
-      onMissionClosed: function (mission) {console.log("--------onMissionClosed-------")}
-  };
-  console.log("registerMissionListener")
-  try {
-  var listenerid = missionManager.registerMissionListener(listener);
+import Ability from '@ohos.application.Ability'
+import missionManager from '@ohos.app.ability.missionManager';
 
-    missionManager.unregisterMissionListener(listenerid).catch(function (err) {
-      console.log(err);
-    });
-  } catch (paramError) {
-    console.log("error: " + paramError.code + ", " + paramError.message);
-  }
+var listener = {
+    onMissionCreated: function (mission) {console.log("--------onMissionCreated-------")},
+    onMissionDestroyed: function (mission) {console.log("--------onMissionDestroyed-------")},
+    onMissionSnapshotChanged: function (mission) {console.log("--------onMissionSnapshotChanged-------")},
+    onMissionMovedToFront: function (mission) {console.log("--------onMissionMovedToFront-------")},
+    onMissionIconUpdated: function (mission, icon) {console.log("--------onMissionIconUpdated-------")},
+    onMissionClosed: function (mission) {console.log("--------onMissionClosed-------")}
+};
+
+var listenerId = -1;
+
+export default class MainAbility extends Ability {
+    onCreate(want, launchParam) {
+        console.log("[Demo] MainAbility onCreate")
+        globalThis.abilityWant = want;
+        globalThis.context = this.context;
+    }
+
+    onDestroy() {
+        try {
+            if (listenerId != -1) {
+                missionManager.off("mission", listenerId).catch(function (err) {
+                    console.log(err);
+                });
+            }
+        } catch (paramError) {
+            console.log("error: " + paramError.code + ", " + paramError.message);
+        }
+        console.log("[Demo] MainAbility onDestroy")
+    }
+
+    onWindowStageCreate(windowStage) {
+        // Main window is created, set main page for this ability
+        console.log("[Demo] MainAbility onWindowStageCreate")
+        try {
+            listenerId = missionManager.on("mission", listener);
+        } catch (paramError) {
+            console.log("error: " + paramError.code + ", " + paramError.message);
+        }
+
+        windowStage.loadContent("pages/index", (err, data) => {
+            if (err.code) {
+                console.error('Failed to load the content. Cause:' + JSON.stringify(err));
+                return;
+            }
+            console.info('Succeeded in loading the content. Data: ' + JSON.stringify(data))
+        });
+
+        if (globalThis.flag) {
+            return;
+        }
+    }
+};
+
 ```
 
 
