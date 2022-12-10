@@ -8,7 +8,7 @@ The event logging function helps applications log various information generated 
 
 JS application event logging APIs are provided by the **hiAppEvent** module.
 
-The following table provides only a brief description of related APIs. For details, see [HiAppEvent](../reference/apis/js-apis-hiappevent.md).
+The following table provides only a brief description of related APIs. For details, see [HiAppEvent](../reference/apis/js-apis-hiviewdfx-hiappevent.md).
 
 **Table 1** APIs for application event logging
 
@@ -17,17 +17,11 @@ The following table provides only a brief description of related APIs. For detai
 | write(AppEventInfo info, AsyncCallback\<void> callback): void | Logs application events in asynchronous mode. This API uses an asynchronous callback to return the result.|
 | write(AppEventInfo info): Promise\<void>                     | Logs application events in asynchronous mode. This API uses a promise to return the result. |
 
-When an asynchronous callback is used, the return value can be processed directly in the callback.
-
-If a promise is used, the return value can also be processed in the promise in a similar way.
-
-For details about the result codes, see [Event Verification Result Codes](#event-verification-result-codes).
-
 **Table 2** APIs for event logging configuration 
 
-| API                                 | Description                                                |
-| --------------------------------------- | ---------------------------------------------------- |
-| configure(ConfigOption config): boolean | Sets the configuration options for application event logging.|
+| API                              | Description                                                |
+| ------------------------------------ | ---------------------------------------------------- |
+| configure(ConfigOption config): void | Sets the configuration options for application event logging.|
 
 **Table 3** APIs for watcher management
 
@@ -42,32 +36,14 @@ For details about the result codes, see [Event Verification Result Codes](#event
 | ----------------- | -------------------- |
 | clearData(): void | Clears local logging data.|
 
-### Event Verification Result Codes
-
-| Result Code| Cause                         | Verification Rules                                                    | Handling Method                                                  |
-| ------ | ----------------------------- | ------------------------------------------------------------ | ---------------------------------------------------------- |
-| 0      | N/A                           | Event verification is successful.                                                | Event logging is normal. No action is required.                                            |
-| -1     | Invalid event name               | The name is not empty and contains a maximum of 48 characters.<br>The name consists of only the following characters: digits (0 to 9), letters (a to z), and underscore \(_).<br>The name does not start with a digit or underscore \(_).| Ignore this event and do not perform logging.                                  |
-| -2     | Invalid event parameter type       | The event name must be a string.<br>The event type must be a number.<br>The event parameter must be an object.| Ignore this event and do not perform logging.                                  |
-| -4     | Invalid event domain name           | The name is not empty and contains a maximum of 32 characters.<br>The name consists of only the following characters: digits (0 to 9), letters (a to z), and underscore \(_).<br>The name does not start with a digit or underscore \(_).| Ignore this event and do not perform logging.                                  |
-| -99    | Application event logging disabled           | Application event logging is disabled.                                        | Ignore this event and do not perform logging.                                  |
-| -100   | Unknown error                     | None.                                                        | Ignore this event and do not perform logging.                                  |
-| 1      | Invalid key name            | The name is not empty and contains a maximum of 16 characters.<br>The name consists of only the following characters: digits (0 to 9), letters (a to z), and underscore \(_).<br>The name does not start with a digit or underscore \(_).<br>The name does not end with an underscore \(_).| Ignore the key-value pair and continue to perform logging.                        |
-| 2      | Invalid key type            | The key must be a string.                                   | Ignore the key-value pair and continue to perform logging.                        |
-| 3      | Invalid value type          | The supported value types vary depending on the programming language:<br>boolean, number, string, or Array [basic element]| Ignore the key-value pair and continue to perform logging.                        |
-| 4      | Invalid length for values of the string type| For a value of the string type, the maximum length is 8*1024 characters.                    | Truncate the value with the first 8*1024 characters retained, and continue to perform logging.|
-| 5      | Excess key-value pairs        | The number of key-value pairs must be less than or equal to 32.                     | Ignore the excess key-value pairs and continue to perform logging.                |
-| 6      | Invalid number of elements in values of the array type | For a value of the array type, the number of elements must be less than or equal to 100.             | Truncate the array with the first 100 elements retained, and continue to perform logging.     |
-| 7      | Invalid parameters in values of the array type | For a value of the array type, all the parameters must be of the same type, which can only be boolean, number, or string.| Ignore the key-value pair and continue to perform logging.                        |
-
-## Development Procedure
+## How to Develop
 
 The following uses a one-time event watcher as an example to illustrate the development procedure.
 
-1. Create an ArkTS application project. In the displayed **Project** window, choose **entry** > **src** > **main** > **ets** > **pages** > **index.ets**, and double-click **index.ets**. Then, add three buttons to simulate the process of watching for application events. Wherein, button 1 is used to invoke application event logging, button 2 to add an event watcher that automatically triggers a callback, and button 3 to remove the watcher. The complete sample code is as follows:
+1. Create an eTS application project. In the displayed **Project** window, choose **entry** > **src** > **main** > **ets** > **pages** > **index.ets**, and double-click **index.ets**. Then, add three buttons to simulate the process of watching for application events. Wherein, button 1 is used to invoke application event logging, button 2 to add an event watcher that automatically triggers a callback, and button 3 to remove the watcher. The complete sample code is as follows:
 
    ```ts
-   import hiAppEvent from '@ohos.hiAppEvent';
+   import hiAppEvent from '@ohos.hiviewdfx.hiAppEvent';
    
    @Entry
    @Component
@@ -91,10 +67,10 @@ The following uses a one-time event watcher as an example to illustrate the deve
                  int_data: 100,
                  str_data: "strValue"
                }
-             }).then((value) => {
-               console.log(`HiAppEvent success to write event: ${value}`);
+             }).then(() => {
+               console.log(`HiAppEvent success to write event`);
              }).catch((err) => {
-               console.error(`HiAppEvent failed to write event because ${err.code}`);
+               console.error(`code: ${err.code}, message: ${err.message}`);
              });
            })
    
@@ -120,12 +96,12 @@ The following uses a one-time event watcher as an example to illustrate the deve
                  // Obtain the event package based on the configured size threshold. If returned event package is null, all event data has been obtained.
                  while ((eventPkg = holder.takeNext()) != null) {
                    // Parse the obtained event package and display the result on the Log page.
-                   console.info('HiAppEvent eventPkg.packageId=' + eventPkg.packageId);
-                   console.info('HiAppEvent eventPkg.row=' + eventPkg.row);
-                   console.info('HiAppEvent eventPkg.size=' + eventPkg.size);
+                   console.info(`HiAppEvent eventPkg.packageId=${eventPkg.packageId}`);
+                   console.info(`HiAppEvent eventPkg.row=${eventPkg.row}`);
+                   console.info(`HiAppEvent eventPkg.size=${eventPkg.size}`);
                    // Traverse and parse event string arrays in the obtained event package.
                    for (const eventInfo of eventPkg.data) {
-                     console.info('HiAppEvent eventPkg.data=' + eventInfo);
+                     console.info(`HiAppEvent eventPkg.data=${eventInfo}`);
                    }
                  }
                }
@@ -169,4 +145,4 @@ The following uses a one-time event watcher as an example to illustrate the deve
 
 The following sample is provided to help you better understand how to develop the application event logging feature:
 
-- [`JsDotTest` (JS) (API8)](https://gitee.com/openharmony/applications_app_samples/tree/master/DFX/JsDotTest)
+- [`JsDotTest`: Event Logging (JS) (API8)](https://gitee.com/openharmony/applications_app_samples/tree/master/DFX/JsDotTest)
