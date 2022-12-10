@@ -25,7 +25,7 @@ ohos_resources
 
 # Other templates
 # Configuration file
-ohos_prebuild_etc
+ohos_prebuilt_etc
 
 # SA profile
 ohos_sa_profile
