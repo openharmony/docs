@@ -5,7 +5,7 @@ With reference to industry standards and best practices, this document provides 
 
 ## Secure Coding Test
 
-1. Review the code of each module, and ensure that the code complies with the [Code Style](./code-contribution.md#code-style).
+1. Review the code of each module, and ensure that the code complies with the [Coding Style](./code-contribution.md#coding-style).
 
 2. Use a dedicated tool to scan the code and ensure all the alarms are cleared. A secure code scanning tool has been integrated in the OpenHarmony gated check-in.
 
@@ -22,7 +22,7 @@ Review and verify the security design of each module, and ensure that the securi
 
 2. Perform blackbox fuzzing tests on exposed user-mode APIs, including system service APIs, kernel driver APIs, socket network APIs, and more.
 
-3. Use a build scanning tool to check the build option settings. The build files must comply with the [OpenHarmony Build Specifications](https://gitee.com/openharmony/community/blob/master/sig/sig-buildsystem/build-guide.md).
+3. Use a build scanning tool to check the build option settings. The build files must comply with the OpenHarmony Build Specifications.
 
 4. Use the mainstream vulnerability scanning tools to scan open-source components. Ensure that all the detected vulnerabilities have been fixed according to the vulnerability management process of the community.
 
