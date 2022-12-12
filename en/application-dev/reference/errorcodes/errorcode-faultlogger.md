@@ -1,4 +1,4 @@
-# faultLogger Error Codes
+# FaultLogger Error Codes
 
 ## 10600001 Service Faulty or Not Started
 
