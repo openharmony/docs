@@ -12,9 +12,9 @@ To ensure the application running efficiency, most **MediaLibrary** API calls ar
 
 You can obtain images and videos in an album in either of the following ways:
 
-- Call [MediaLibrary.getFileAssets](../reference/apis/js-apis-medialibrary.md#getfileassets7-1) with an album specified to obtain the media assets. For details, see [Querying Media Assets with the Specified Album Name](medialibrary-resource-guidelines#querying-media-assets-with-the-specified-album-name).
+- Call [MediaLibrary.getFileAssets](../reference/apis/js-apis-medialibrary.md#getfileassets7-1) with an album specified to obtain the media assets. For details, see [Querying Media Assets with the Specified Album Name](medialibrary-resource-guidelines.md#querying-media-assets-with-the-specified-album-name).
 
-- Call [Album.getFileAssets](../reference/apis/js-apis-medialibrary.md#getfileassets7-3) to obtain an **Album** instance, so as to obtain the media assets in it. For details, see [Obtaining Images and Videos in an Album](medialibrary-resource-guidelines#obtaining-images-and-videos-in-an-album).
+- Call [Album.getFileAssets](../reference/apis/js-apis-medialibrary.md#getfileassets7-3) to obtain an **Album** instance, so as to obtain the media assets in it. For details, see [Obtaining Images and Videos in an Album](medialibrary-resource-guidelines.md#obtaining-images-and-videos-in-an-album).
 
 ## Creating an Album
 
