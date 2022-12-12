@@ -39,7 +39,7 @@ For details about the error codes, see [reminderAgentManager Error Codes](../err
 
 | ID  | Error Message|
 | --------- | ------- |
-| 1700001    | Notification does not enable. |
+| 1700001    | Notification is not enabled. |
 | 1700002    | The number of reminders exceeds the limit. |
 
 **Example**
@@ -88,7 +88,7 @@ For details about the error codes, see [reminderAgentManager Error Codes](../err
 
 | ID  | Error Message|
 | --------- | ------- |
-| 1700001    | Notification does not enable. |
+| 1700001    | Notification is not enabled. |
 | 1700002    | The number of reminders exceeds the limit. |
 
 **Example**
@@ -131,7 +131,7 @@ For details about the error codes, see [reminderAgentManager Error Codes](../err
 | ID  | Error Message|
 | --------- | ------- |
 | 1700003    | The reminder does not exist. |
-| 1700004    | The package name does not exist. |
+| 1700004    | The bundle name does not exist. |
 
 **Example**
 
@@ -177,7 +177,7 @@ For details about the error codes, see [reminderAgentManager Error Codes](../err
 | ID  | Error Message|
 | --------- | ------- |
 | 1700003    | The reminder does not exist. |
-| 1700004    | The package name does not exist. |
+| 1700004    | The bundle name does not exist. |
 
 **Example**
 
@@ -214,7 +214,7 @@ For details about the error codes, see [reminderAgentManager Error Codes](../err
 
 | ID  | Error Message|
 | --------- | ------- |
-| 1700004    | The package name does not exist. |
+| 1700004    | The bundle name does not exist. |
 
 **Example**
 
@@ -274,7 +274,7 @@ For details about the error codes, see [reminderAgentManager Error Codes](../err
 
 | ID  | Error Message|
 | --------- | ------- |
-| 1700004    | The package name does not exist. |
+| 1700004    | The bundle name does not exist. |
 
 **Example**
 
@@ -332,7 +332,7 @@ For details about the error codes, see [reminderAgentManager Error Codes](../err
 
 | ID  | Error Message|
 | --------- | ------- |
-| 1700004    | The package name does not exist. |
+| 1700004    | The bundle name does not exist. |
 
 **Example**
 
@@ -371,7 +371,7 @@ For details about the error codes, see [reminderAgentManager Error Codes](../err
 
 | ID  | Error Message|
 | --------- | ------- |
-| 1700004    | The package name does not exist. |
+| 1700004    | The bundle name does not exist. |
 
 **Example**
 
@@ -541,7 +541,7 @@ Enumerates button types.
 
 **System capability**: SystemCapability.Notification.ReminderAgent
 
-| Name| Default Value| Description|
+| Name| Value| Description|
 | -------- | -------- | -------- |
 | ACTION_BUTTON_TYPE_CLOSE | 0 | Button for closing the reminder.|
 | ACTION_BUTTON_TYPE_SNOOZE | 1 | Button for snoozing the reminder.|
@@ -553,7 +553,7 @@ Enumerates reminder types.
 
 **System capability**: SystemCapability.Notification.ReminderAgent
 
-| Name| Default Value| Description|
+| Name| Value| Description|
 | -------- | -------- | -------- |
 | REMINDER_TYPE_TIMER | 0 | Countdown reminder.|
 | REMINDER_TYPE_CALENDAR | 1 | Calendar reminder.|
@@ -646,7 +646,7 @@ Defines a reminder for an alarm.
 | -------- | -------- | -------- | -------- |
 | hour | number | Yes| Hour portion of the reminder time.|
 | minute | number | Yes| Minute portion of the reminder time.|
-| daysOfWeek | Array&lt;number&gt; | No| Days of a week when the reminder repeats.|
+| daysOfWeek | Array&lt;number&gt; | No| Days of a week when the reminder repeats. The value ranges from 1 to 7, corresponding to the data from Monday to Sunday.|
 
 
 ## ReminderRequestTimer

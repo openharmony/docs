@@ -4,7 +4,7 @@
 
 **Error Message**
 
-Notification does not enable.
+Notification is not enabled.
 
 **Description**
 
@@ -63,7 +63,7 @@ The reminder passed in **cancelReminder()** does not exist.
 
 **Error Message**
 
-The package name does not exist.
+The bundle name does not exist.
 
 **Description**
 
