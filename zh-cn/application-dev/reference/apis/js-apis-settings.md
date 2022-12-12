@@ -541,7 +541,7 @@ setValueSync(dataAbilityHelper: DataAbilityHelper, name: string, value: string):
 
 如果数据库中已经存在该数据项，则setValueSync方法将更新该数据项的值；如果数据库中尚未存在该数据项，则setValueSync方法将向数据库中插入该数据项。
 
-**需要权限**：ohos.permission.MANAGE_SECUER_SETTINGS，仅系统应用可用。
+**需要权限**：ohos.permission.MANAGE_SECURE_SETTINGS，仅系统应用可用。
 
 **系统能力**：SystemCapability.Applications.settings.Core
 
