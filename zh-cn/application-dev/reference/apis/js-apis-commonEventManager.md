@@ -206,7 +206,7 @@ publish(event: string, callback: AsyncCallback\<void>): void
 
 ```ts
 //发布公共事件回调
-function PublishCallBack(err) {
+function publishCallBack(err) {
 	if (err) {
         console.error("publish failed " + JSON.stringify(err));
     } else {
@@ -216,7 +216,7 @@ function PublishCallBack(err) {
 
 //发布公共事件
 try {
-    CommonEventManager.publish("event", PublishCallBack);
+    CommonEventManager.publish("event", publishCallBack);
 } catch(err) {
     console.error('publish failed, catch error' + JSON.stringify(err));
 }
@@ -259,7 +259,7 @@ var options = {
 }
 
 //发布公共事件回调
-function PublishCallBack(err) {
+function publishCallBack(err) {
 	if (err) {
         console.error("publish failed " + JSON.stringify(err));
     } else {
@@ -269,7 +269,7 @@ function PublishCallBack(err) {
 
 //发布公共事件
 try {
-    CommonEventManager.publish("event", options, PublishCallBack);
+    CommonEventManager.publish("event", options, publishCallBack);
 } catch (err) {
     console.error('publish failed, catch error' + JSON.stringify(err));
 }
@@ -307,7 +307,7 @@ publishAsUser(event: string, userId: number, callback: AsyncCallback\<void>): vo
 
 ```ts
 //发布公共事件回调
-function PublishAsUserCallBack(err) {
+function publishAsUserCallBack(err) {
 	if (err) {
         console.error("publishAsUser failed " + JSON.stringify(err));
     } else {
@@ -320,7 +320,7 @@ var userId = 100;
 
 //发布公共事件
 try {
-    CommonEventManager.publishAsUser("event", userId, PublishAsUserCallBack);
+    CommonEventManager.publishAsUser("event", userId, publishAsUserCallBack);
 } catch (err) {
     console.error('publishAsUser failed, catch error' + JSON.stringify(err));
 }
@@ -366,7 +366,7 @@ var options = {
 }
 
 //发布公共事件回调
-function PublishAsUserCallBack(err) {
+function publishAsUserCallBack(err) {
 	if (err) {
         console.error("publishAsUser failed " + JSON.stringify(err));
     } else {
@@ -379,7 +379,7 @@ var userId = 100;
 
 //发布公共事件
 try {
-    CommonEventManager.publishAsUser("event", userId, options, PublishAsUserCallBack);
+    CommonEventManager.publishAsUser("event", userId, options, publishAsUserCallBack);
 } catch (err) {
     console.error('publishAsUser failed, catch error' + JSON.stringify(err));
 }
@@ -414,7 +414,7 @@ var subscribeInfo = {
 };
 
 //创建订阅者回调
-function CreateSubscriberCallBack(err, commonEventSubscriber) {
+function createSubscriberCallBack(err, commonEventSubscriber) {
     if(!err) {
         console.info("createSubscriber");
         subscriber = commonEventSubscriber;
@@ -425,7 +425,7 @@ function CreateSubscriberCallBack(err, commonEventSubscriber) {
 
 //创建订阅者
 try {
-    CommonEventManager.createSubscriber(subscribeInfo, CreateSubscriberCallBack);
+    CommonEventManager.createSubscriber(subscribeInfo, createSubscriberCallBack);
 } catch (err) {
     console.error('createSubscriber failed, catch error' + JSON.stringify(err));
 }
@@ -514,7 +514,7 @@ function SubscribeCallBack(err, data) {
 }
 
 //创建订阅者回调
-function CreateSubscriberCallBack(err, commonEventSubscriber) {
+function createSubscriberCallBack(err, commonEventSubscriber) {
     if(!err) {
         console.info("createSubscriber");
         subscriber = commonEventSubscriber;
@@ -531,7 +531,7 @@ function CreateSubscriberCallBack(err, commonEventSubscriber) {
 
 //创建订阅者
 try {
-    CommonEventManager.createSubscriber(subscribeInfo, CreateSubscriberCallBack);
+    CommonEventManager.createSubscriber(subscribeInfo, createSubscriberCallBack);
 } catch (err) {
     console.error('createSubscriber failed, catch error' + JSON.stringify(err));
 }
@@ -563,7 +563,7 @@ var subscribeInfo = {
     events: ["event"]
 };
 //订阅公共事件回调
-function SubscribeCallBack(err, data) {
+function subscribeCallBack(err, data) {
     if (err) {
         console.info("subscribe failed " + JSON.stringify(err));
     } else {
@@ -571,7 +571,7 @@ function SubscribeCallBack(err, data) {
     }
 }
 //创建订阅者回调
-function CreateSubscriberCallBack(err, commonEventSubscriber) {
+function createSubscriberCallBack(err, commonEventSubscriber) {
     if (err) {
         console.info("createSubscriber failed " + JSON.stringify(err));
     } else {
@@ -579,14 +579,14 @@ function CreateSubscriberCallBack(err, commonEventSubscriber) {
         subscriber = commonEventSubscriber;
         //订阅公共事件
         try {
-            CommonEventManager.subscribe(subscriber, SubscribeCallBack);
+            CommonEventManager.subscribe(subscriber, subscribeCallBack);
         } catch(err) {
             console.info("subscribe failed " + JSON.stringify(err));
         }
     }
 }
 //取消订阅公共事件回调
-function UnsubscribeCallBack(err) {
+function unsubscribeCallBack(err) {
     if (err) {
         console.info("unsubscribe failed " + JSON.stringify(err));
     } else {
@@ -595,14 +595,14 @@ function UnsubscribeCallBack(err) {
 }
 //创建订阅者
 try {
-    CommonEventManager.createSubscriber(subscribeInfo, CreateSubscriberCallBack);
+    CommonEventManager.createSubscriber(subscribeInfo, createSubscriberCallBack);
 } catch (err) {
     console.info("createSubscriber failed " + JSON.stringify(err));
 }
 
 //取消订阅公共事件
 try {
-    CommonEventManager.unsubscribe(subscriber, UnsubscribeCallBack);
+    CommonEventManager.unsubscribe(subscriber, unsubscribeCallBack);
 } catch (err) {
     console.info("unsubscribe failed " + JSON.stringify(err));
 }
