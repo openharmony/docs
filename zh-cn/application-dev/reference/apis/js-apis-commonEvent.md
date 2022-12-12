@@ -192,7 +192,7 @@ publish(event: string, callback: AsyncCallback\<void>): void
 
 ```js
 //发布公共事件回调
-function PublishCallBack(err) {
+function publishCallBack(err) {
 	if (err.code) {
         console.error("publish failed " + JSON.stringify(err));
     } else {
@@ -201,7 +201,7 @@ function PublishCallBack(err) {
 }
 
 //发布公共事件
-CommonEvent.publish("event", PublishCallBack);
+CommonEvent.publish("event", publishCallBack);
 ```
 
 
@@ -234,7 +234,7 @@ let options = {
 }
 
 //发布公共事件回调
-function PublishCallBack(err) {
+function publishCallBack(err) {
 	if (err.code) {
         console.error("publish failed " + JSON.stringify(err));
     } else {
@@ -243,7 +243,7 @@ function PublishCallBack(err) {
 }
 
 //发布公共事件
-CommonEvent.publish("event", options, PublishCallBack);
+CommonEvent.publish("event", options, publishCallBack);
 ```
 
 
@@ -270,7 +270,7 @@ publishAsUser(event: string, userId: number, callback: AsyncCallback\<void>): vo
 
 ```js
 //发布公共事件回调
-function PublishAsUserCallBack(err) {
+function publishAsUserCallBack(err) {
 	if (err.code) {
         console.error("publishAsUser failed " + JSON.stringify(err));
     } else {
@@ -282,7 +282,7 @@ function PublishAsUserCallBack(err) {
 let userId = 100;
 
 //发布公共事件
-CommonEvent.publishAsUser("event", userId, PublishAsUserCallBack);
+CommonEvent.publishAsUser("event", userId, publishAsUserCallBack);
 ```
 
 
@@ -317,7 +317,7 @@ let options = {
 }
 
 //发布公共事件回调
-function PublishAsUserCallBack(err) {
+function publishAsUserCallBack(err) {
 	if (err.code) {
         console.error("publishAsUser failed " + JSON.stringify(err));
     } else {
@@ -329,7 +329,7 @@ function PublishAsUserCallBack(err) {
 let userId = 100;
 
 //发布公共事件
-CommonEvent.publishAsUser("event", userId, options, PublishAsUserCallBack);
+CommonEvent.publishAsUser("event", userId, options, publishAsUserCallBack);
 ```
 
 
@@ -361,7 +361,7 @@ let subscribeInfo = {
 };
 
 //创建订阅者回调
-function CreateSubscriberCallBack(err, commonEventSubscriber) {
+function createSubscriberCallBack(err, commonEventSubscriber) {
     if (err.code) {
         console.error("createSubscriber failed " + JSON.stringify(err));
     } else {
@@ -371,7 +371,7 @@ function CreateSubscriberCallBack(err, commonEventSubscriber) {
 }
 
 //创建订阅者
-CommonEvent.createSubscriber(subscribeInfo, CreateSubscriberCallBack);
+CommonEvent.createSubscriber(subscribeInfo, createSubscriberCallBack);
 ```
 
 
@@ -442,7 +442,7 @@ let subscribeInfo = {
 };
 
 //订阅公共事件回调
-function SubscribeCallBack(err, data) {
+function subscribeCallBack(err, data) {
     if (err.code) {
         console.error("subscribe failed " + JSON.stringify(err));
     } else {
@@ -451,19 +451,19 @@ function SubscribeCallBack(err, data) {
 }
 
 //创建订阅者回调
-function CreateSubscriberCallBack(err, commonEventSubscriber) {
+function createSubscriberCallBack(err, commonEventSubscriber) {
     if (err.code) {
         console.error("createSubscriber failed " + JSON.stringify(err));
     } else {
         console.info("createSubscriber");
         subscriber = commonEventSubscriber;
         //订阅公共事件
-        CommonEvent.subscribe(subscriber, SubscribeCallBack);
+        CommonEvent.subscribe(subscriber, subscribeCallBack);
     }
 }
 
 //创建订阅者
-CommonEvent.createSubscriber(subscribeInfo, CreateSubscriberCallBack);
+CommonEvent.createSubscriber(subscribeInfo, createSubscriberCallBack);
 ```
 
 
@@ -494,7 +494,7 @@ let subscribeInfo = {
 };
 
 //订阅公共事件回调
-function SubscribeCallBack(err, data) {
+function subscribeCallBack(err, data) {
     if (err.code) {
         console.info("subscribe failed " + JSON.stringify(err));
     } else {
@@ -503,19 +503,19 @@ function SubscribeCallBack(err, data) {
 }
 
 //创建订阅者回调
-function CreateSubscriberCallBack(err, commonEventSubscriber) {
+function createSubscriberCallBack(err, commonEventSubscriber) {
     if (err.code) {
         console.info("createSubscriber failed " + JSON.stringify(err));
     } else {
         console.info("createSubscriber");
         subscriber = commonEventSubscriber;
         //订阅公共事件
-        CommonEvent.subscribe(subscriber, SubscribeCallBack);
+        CommonEvent.subscribe(subscriber, subscribeCallBack);
     }
 }
 
 //取消订阅公共事件回调
-function UnsubscribeCallBack(err) {
+function unsubscribeCallBack(err) {
 	if (err.code) {
         console.info("unsubscribe failed " + JSON.stringify(err));
     } else {
@@ -524,10 +524,10 @@ function UnsubscribeCallBack(err) {
 }
 
 //创建订阅者
-CommonEvent.createSubscriber(subscribeInfo, CreateSubscriberCallBack);
+CommonEvent.createSubscriber(subscribeInfo, createSubscriberCallBack);
 
 //取消订阅公共事件
-CommonEvent.unsubscribe(subscriber, UnsubscribeCallBack);
+CommonEvent.unsubscribe(subscriber, unsubscribeCallBack);
 ```
 
 ## CommonEventSubscriber
