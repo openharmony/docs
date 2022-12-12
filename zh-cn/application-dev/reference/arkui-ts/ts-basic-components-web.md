@@ -2379,7 +2379,7 @@ onDataResubmitted(callback: (event: {handler: DataResubmissionHandler}) => void)
 
 | 参数名  | 参数类型                                             | 参数描述               |
 | ------- | ---------------------------------------------------- | ---------------------- |
-| handler | [DataResubmissionHandler](#DataResubmissionHandler9) | 表单数据重新提交句柄。 |
+| handler | [DataResubmissionHandler](#dataresubmissionhandler9) | 表单数据重新提交句柄。 |
 
 **示例：**
 

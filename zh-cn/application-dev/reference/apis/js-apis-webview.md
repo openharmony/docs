@@ -2445,7 +2445,7 @@ getBackForwardEntries(): BackForwardList
 
 | 类型                                | 说明                        |
 | ----------------------------------- | --------------------------- |
-| [BackForwardList](#BackForwardList) | 当前Webview的历史信息列表。 |
+| [BackForwardList](#backforwardlist) | 当前Webview的历史信息列表。 |
 
 **错误码：**
 
@@ -4140,7 +4140,7 @@ getItemAtIndex(index: number): HistoryItem
 
 | 类型                        | 说明         |
 | --------------------------- | ------------ |
-| [HistoryItem](#HistoryItem) | 历史记录项。 |
+| [HistoryItem](#historyitem) | 历史记录项。 |
 
 **错误码：**
 
