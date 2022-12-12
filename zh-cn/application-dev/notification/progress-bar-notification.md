@@ -3,14 +3,14 @@
 
 进度条通知也是常见的通知类型，主要应用于文件下载、事务处理进度显示。OpenHarmony提供了进度条模板，发布通知应用设置好进度条模板的属性值，如模板名、模板数据，通过通知子系统发送到通知栏显示。
 
-目前系统模板仅支持进度条模板，通知模板[NotificationTemplate](../reference/apis/js-apis-notification.md#notificationtemplate8)中的data参数为用户自定义数据，用于显示与模块相关的数据，效果示意如下图所示。
+目前系统模板仅支持进度条模板，通知模板[NotificationTemplate](../reference/apis/js-apis-notificationManager.md#notificationtemplate)中的data参数为用户自定义数据，用于显示与模块相关的数据，效果示意如下图所示。
 
 ![zh-cn_image_0000001416903138](figures/zh-cn_image_0000001416903138.png)
 
 
 ## 接口说明
 
-[isSupportTemplate()](../reference/apis/js-apis-notification.md#notificationissupporttemplate8)是查询模板是否支持接口，目前仅支持进度条模板。
+[isSupportTemplate()](../reference/apis/js-apis-notificationManager.md#notificationissupporttemplate)是查询模板是否支持接口，目前仅支持进度条模板。
 
 | | |
 | -------- | -------- |
