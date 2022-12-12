@@ -91,29 +91,29 @@
 
 ```js
 // xxx.js
-import prompt from '@system.prompt';
+import promptAction from '@ohos.promptAction';
 export default {
     data: {
         title: 'World'
     },
     switchChange(e) {
         if (e.checked) {
-            prompt.showToast({
+            prompActiont.showToast({
                 message: "打开开关"
             });
         } else {
-            prompt.showToast({
+            promptAction.showToast({
                 message: "关闭开关"
             });
         }
     },
     normalswitchChange(e) {
         if (e.checked) {
-            prompt.showToast({
+            promptAction.showToast({
                 message: "switch on"
             });
         } else {
-            prompt.showToast({
+            promptAction.showToast({
                 message: "switch off"
             });
         }

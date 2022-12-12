@@ -144,7 +144,7 @@ Text(`count: ${this.count}`)
   ...
 
   Button('add counter')
-    .onClick(this.myClickHandler)
+    .onClick(this.myClickHandler.bind(this))
   ```
 
 ### 子组件配置

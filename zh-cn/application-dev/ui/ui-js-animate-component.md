@@ -388,7 +388,7 @@ button{
 
 ```js
 // xxx.js
-import prompt from '@system.prompt';
+import promptAction from '@ohos.promptAction';
 export default {
   data: {
     animation: '',
@@ -427,17 +427,17 @@ export default {
       ];
       this.animation = this.$element('content').animate(frames, options);
       this.animation.onstart = function(){
-        prompt.showToast({
+        promptAction.showToast({
           message: "start"
         });
       };
       this.animation.onrepeat = function(){
-        prompt.showToast({
+        promptAction.showToast({
           message: " repeated"
         });
       };
       this.animation.onfinish = function(){
-        prompt.showToast({
+        promptAction.showToast({
           message: " finished"
       });
     };

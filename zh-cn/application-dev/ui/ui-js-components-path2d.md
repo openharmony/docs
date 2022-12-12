@@ -36,8 +36,6 @@ canvas {
 
 ```js
 // xxx.js
-import prompt from '@system.prompt';
-
 export default {
     onShow() {
         let ctx = this.$refs.canvas.getContext('2d', {
@@ -139,8 +137,6 @@ text {
 
 ```js
 // xxx.js
-import prompt from '@system.prompt';
-
 export default {
     data: {
         ctx: null,

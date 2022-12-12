@@ -138,7 +138,7 @@ button{
 
 ```js
 // xxx.js
-import prompt from '@system.prompt';
+import promptAction from '@ohos.promptAction';
 export default{
   data:{
     animation:'',
@@ -161,19 +161,19 @@ export default{
     this.animation = this.$element('idName').animate(frames, options);
     // handle finish event
     this.animation.onfinish = function(){
-      prompt.showToast({
+      promptAction.showToast({
         message: "The animation is finished."
       });
     };
     // handle cancel event
     this.animation.oncancel = function(){
-      prompt.showToast({
+      promptAction.showToast({
         message: "The animation is canceled."
       });
     };
     // handle repeat event
     this.animation.onrepeat = function(){
-       prompt.showToast({
+       promptAction.showToast({
           message: "The animation is repeated."
        });
     };
