@@ -223,8 +223,7 @@ select {
 
 ```js
 // xxx.js
-import router from '@system.router';
-import prompt from '@system.prompt';
+import promptAction from '@ohos.promptAction';
 
 export default {
     data: {
@@ -252,63 +251,63 @@ export default {
     },
     textonchange(e) {
         this.textvalue = e.newValue;
-        prompt.showToast({
+        promptAction.showToast({
             message: "text:" + e.newValue + ",newSelected:" + e.newSelected
         })
     },
     textoncancel(e) {
-        prompt.showToast({
+        promptAction.showToast({
             message: "text: textoncancel"
         })
     },
     dateonchange(e) {
         this.datevalue = e.year + "-" + e.month + "-" + e.day;
-        prompt.showToast({
+        promptAction.showToast({
             message: "date:" + e.year + "-" + (e.month + 1) + "-" + e.day
         })
     },
     dateoncancel() {
-        prompt.showToast({
+        promptAction.showToast({
             message: "date: dateoncancel"
         })
     },
     timeonchange(e) {
         if (this.containsecond) {
             this.timevalue = e.hour + ":" + e.minute + ":" + e.second;
-            prompt.showToast({
+            promptAction.showToast({
                 message: "Time:" + e.hour + ":" + e.minute + ":" + e.second
             })
         } else {
             this.timevalue = e.hour + ":" + e.minute;
-            prompt.showToast({
+            promptAction.showToast({
                 message: "Time:" + e.hour + ":" + e.minute
             })
         }
     },
     timeoncancel() {
-        prompt.showToast({
+        promptAction.showToast({
             message: "timeoncancel"
         })
     },
     datetimeonchange(e) {
         this.datetimevalue = e.year + "-" + e.month + "-" + e.day + " " + e.hour + ":" + e.minute;
-        prompt.showToast({
+        promptAction.showToast({
             message: "Time:" + (e.month + 1) + "-" + e.day + " " + e.hour + ":" + e.minute
         })
     },
     datetimeoncancel() {
-        prompt.showToast({
+        promptAction.showToast({
             message: "datetimeoncancel"
         })
     },
     multitextonchange(e) {
         this.multitextvalue = e.newValue;
-        prompt.showToast({
+        promptAction.showToast({
             message: "Multi-column text change" + e.newValue
         })
     },
     multitextoncancel() {
-        prompt.showToast({
+        promptAction.showToast({
             message: "multitextoncancel"
         })
     },

@@ -106,7 +106,7 @@
 
 ```js
 // xxx.js
-import prompt from '@system.prompt';
+import promptAction from '@ohos.promptAction';
 export default {
   data: {
     list:[],
@@ -120,7 +120,7 @@ export default {
     }
   },
   refresh: function (e) {
-    prompt.showToast({
+    promptAction.showToast({
       message: '刷新中...'
     })
     var that = this;
@@ -129,7 +129,7 @@ export default {
       that.fresh = false;
       var addItem = '更新元素';
       that.list.unshift(addItem);
-      prompt.showToast({
+      promptAction.showToast({
         message: '刷新完成!'
       })
     }, 2000)

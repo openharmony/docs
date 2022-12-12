@@ -252,29 +252,29 @@
    ```
 
    ```css
-  /* xxx.css */
-  .container {
+    /* xxx.css */
+    .container {
     flex-direction: column;
     width: 100%;
     height: 100%;
-  }
-  .content {
+    }
+    .content {
     width: 200px;
     height: 200px;
     background-color: red;
-  }
+    }
    ```
 
    ```js
    // xxx.js
-   import prompt from '@system.prompt';
+   import promptAction from '@ohos.promptAction';
    export default {
      data:{
        left:0,
        top:0,
      },
      dragstart(e){
-       prompt.showToast({
+       promptAction.showToast({
          message: 'Start to be dragged'
        })
      },
@@ -283,7 +283,7 @@
        this.top = e.globalY;
      },
      dragend(e){
-       prompt.showToast({
+       promptAction.showToast({
          message: 'End Drag'
        })
      }
@@ -320,7 +320,7 @@
 
    ```js
    // xxx.js
-   import prompt from '@system.prompt';
+   import promptAction from '@ohos.promptAction';
    export default {
      data:{
        left:0,
@@ -331,22 +331,22 @@
        this.top = e.globalY;
      },
      dragenter(e){
-       prompt.showToast({
+       promptAction.showToast({
          message: 'enter'
        })
      },
      dragover(e){
-       prompt.showToast({
+       promptAction.showToast({
          message: 'over'
        })
      },
      dragleave(e){
-       prompt.showToast({
+       promptAction.showToast({
          message: 'leave'
        })
      },
      drop(e){
-       prompt.showToast({
+       promptAction.showToast({
          message: 'drop'
        })
      }
@@ -384,25 +384,25 @@
 
    ```js
    // xxx.js
-   import prompt from '@system.prompt';
+   import promptAction from '@ohos.promptAction';
    export default {
      pinchstart(e){
-       prompt.showToast({
+       promptAction.showToast({
          message: 'pinchstart!!!'
        })
      },
      pinchupdate(e){
-       prompt.showToast({
+       promptAction.showToast({
          message: 'Two-finger pinch update'
        })
      },
      pinchend(e){
-       prompt.showToast({
+       promptAction.showToast({
          message: 'Finished with two fingers pinching'
        })
      },
      pinchcancel(e){
-       prompt.showToast({
+       promptAction.showToast({
          message: 'Finger pinching is interrupted'
        })
      }

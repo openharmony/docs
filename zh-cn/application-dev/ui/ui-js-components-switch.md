@@ -61,15 +61,15 @@ switch {
 
 ```js
 // xxx.js
-import prompt from '@system.prompt';
+import promptAction from '@ohos.promptAction';
 export default {
   switchChange(e){
     if(e.checked){
-      prompt.showToast({
+      promptAction.showToast({
         message: "open"
       });
     }else{
-      prompt.showToast({
+      promptAction.showToast({
         message: "close"
       });
     }
@@ -167,7 +167,6 @@ switch{
 
 ```js
 // xxx.js
-import prompt from '@system.prompt';
 export default {
   data:{
     address: '',

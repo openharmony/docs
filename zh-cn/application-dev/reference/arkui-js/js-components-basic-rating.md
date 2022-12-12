@@ -83,10 +83,10 @@ rating {
 
 ```js
 // xxx.js
-import prompt from '@system.prompt';
+import promptAction from '@ohos.promptAction';
 export default {
     changeRating(e){
-        prompt.showToast({
+        promptAction.showToast({
             message: e.rating
         });
     }

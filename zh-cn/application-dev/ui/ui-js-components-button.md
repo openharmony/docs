@@ -81,7 +81,7 @@ button是按钮组件，其类型包括胶囊按钮、圆形按钮、文本按�
 如果需要添加ohos.permission.INTERNET权限，则在resources文件夹下的config.json文件里进行权限配置。
 
 
-```
+```json
 <!-- config.json -->
 "module": {
   "reqPermissions": [{
@@ -121,7 +121,7 @@ button是按钮组件，其类型包括胶囊按钮、圆形按钮、文本按�
 
 ```js
 // xxx.js
-import prompt from '@system.prompt';
+import promptAction from '@ohos.promptAction';
 export default {
   data: {
     percent: 0,
@@ -135,7 +135,7 @@ export default {
         this.percent += 1;
         this.downloadText = this.percent+ "%";
        } else{
-         prompt.showToast({
+         promptAction.showToast({
             message: "Download succeeded."
          })
          this.paused()
@@ -151,13 +151,13 @@ export default {
   },
  setProgress(e) {
     if(this.isPaused){
-      prompt.showToast({
+      promptAction.showToast({
         message: "Started Downloading"
       })
       this.start();
       this.isPaused = false;
     }else{
-      prompt.showToast({
+      promptAction.showToast({
         message: "Paused."
       })
       this.paused();

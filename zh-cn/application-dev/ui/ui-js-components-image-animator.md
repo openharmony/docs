@@ -177,7 +177,7 @@ export default {
 
 ```js
 // index.js
-import prompt from '@system.prompt';
+import promptAction from '@ohos.promptAction';
 export default {
   data: {
     imginfo: [
@@ -201,22 +201,22 @@ export default {
     this.$element('img').resume()
   },
   popstart(e) {
-    prompt.showToast({
+    promptAction.showToast({
       message: '开始'
     })
   },
   poppause(e) {
-    prompt.showToast({
+    promptAction.showToast({
       message: '暂停'
     })
   },
   popstop(e) {
-    prompt.showToast({
+    promptAction.showToast({
       message: '停止'
     })
   },
   popresume(e) {
-    prompt.showToast({
+    promptAction.showToast({
       message: '恢复'
     })
   }
@@ -285,7 +285,7 @@ button{
 
 ```js
 // index.js
-import prompt from '@system.prompt';
+import promptAction from '@ohos.promptAction';
 export default {
   data: {
     rev:false,
@@ -317,7 +317,7 @@ export default {
     this.$element('img').resume()
   },
   getimgstate(e) {
-    prompt.showToast({
+    promptAction.showToast({
       message: '当前状态：' + this.$element('img').getState()
     })
   },

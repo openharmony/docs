@@ -120,15 +120,15 @@ form是一个表单容器，支持容器内[Input](../reference/arkui-js/js-comp
 
 ```js
 // xxx.js
-import prompt from '@system.prompt';
+import promptAction from '@ohos.promptAction';
 export default{
   onSubmit(result) {
-    prompt.showToast({
+    promptAction.showToast({
       message: result.value.radioGroup
     })
   },
   onReset() {
-    prompt.showToast({
+    promptAction.showToast({
       message: 'Reset All'
     })
   }
@@ -201,15 +201,15 @@ label{
 
 ```js
 // xxx.js
-import prompt from '@system.prompt';
+import promptAction from '@ohos.promptAction';
 export default {
   formSubmit() {
-    prompt.showToast({
+    promptAction.showToast({
       message: 'Submitted.'
     })
   },
   formReset() {
-    prompt.showToast({
+    promptAction.showToast({
       message: 'Reset.'
     })
   }
