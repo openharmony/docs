@@ -299,7 +299,7 @@ try {
 
 getBundlePackInfo(bundleName: string, bundlePackFlag : BundlePackFlag): Promise\<BundlePackInfo>;
 
-Obtains **bundlePackInfo** based on **bundleName** and **bundlePackFlag**. This API uses a promise to return the result.
+Obtains **bundlePackInfo** based on **bundleName** and **bundleFlag**. This API uses a promise to return the result.
 
 **System API**: This is a system API.
 
@@ -363,10 +363,6 @@ Obtains the dispatch information. This API uses an asynchronous callback to retu
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | callback | AsyncCallback<[DispatchInfo](js-apis-bundleManager-dispatchInfo.md)> | Yes  | Callback used to return the result. If the operation is successful, **err** is **null**, and **data** is the [DispatchInfo](js-apis-bundleManager-dispatchInfo.md) object obtained. otherwise, **err** is an error object.|
 
-**Error codes**
-
-For details about the error codes, see [Bundle Error Codes](../errorcodes/errorcode-bundle.md).
-
 **Example**
 
 ```js
@@ -401,10 +397,6 @@ Obtains the dispatch information. This API uses a promise to return the result.
 | Type                                            | Description                                                        |
 | ------------------------------------------------ | ------------------------------------------------------------ |
 | Promise<[DispatchInfo](js-apis-bundleManager-dispatchInfo.md)> | Promise used to return the [DispatchInfo](js-apis-bundleManager-dispatchInfo.md) object obtained.|
-
-**Error codes**
-
-For details about the error codes, see [Bundle Error Codes](../errorcodes/errorcode-bundle.md).
 
 **Example**
 

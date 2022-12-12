@@ -1182,8 +1182,6 @@ Deregisters the callback for application group changes. This API uses a promise 
 
 **System API**: This is a system API.
 
-**Parameters**: none
-
 **Return value**
 
 | Type           | Description                      |
@@ -1297,7 +1295,7 @@ For details about the error codes, see [DeviceUsageStatistics Error Codes](../er
 | 10000002   | Parcel operation failed.              | 
 | 10000003   | System service operation failed.      | 
 | 10000004   | IPC Communication failed.             | 
-| 10000006   | Get application info failed           |
+| 10000006   | Get application info failed.          |
 | 10000007   | Get system or actual time failed.     |
 
 **Example**
@@ -1345,7 +1343,7 @@ For details about the error codes, see [DeviceUsageStatistics Error Codes](../er
 | 10000002   | Parcel operation failed.              | 
 | 10000003   | System service operation failed.      | 
 | 10000004   | IPC Communication failed.             | 
-| 10000006   | Get application info failed           |
+| 10000006   | Get application info failed.           |
 | 10000007   | Get system or actual time failed.     |
 
 **Example**
@@ -1400,7 +1398,7 @@ For details about the error codes, see [DeviceUsageStatistics Error Codes](../er
 | 10000002   | Parcel operation failed.              | 
 | 10000003   | System service operation failed.      | 
 | 10000004   | IPC Communication failed.             | 
-| 10000006   | Get application info failed           |
+| 10000006   | Get application info failed.          |
 | 10000007   | Get system or actual time failed.     |
 
 **Example**
@@ -1448,7 +1446,7 @@ For details about the error codes, see [DeviceUsageStatistics Error Codes](../er
 | 10000002   | Parcel operation failed.              | 
 | 10000003   | System service operation failed.      | 
 | 10000004   | IPC Communication failed.             | 
-| 10000006   | Get application info failed           |
+| 10000006   | Get application info failed.          |
 | 10000007   | Get system or actual time failed.     |
 
 **Example**
@@ -1566,6 +1564,8 @@ Provides the usage duration information of an application.
 
 **System capability**: SystemCapability.ResourceSchedule.UsageStatistics.App
 
+**System API**: This is a system API.
+
 | Name                           | Type                                      | Mandatory  | Description            |
 | ------------------------------ | ---------------------------------------- | ---- | -------------- |
 | [key: string]: BundleStatsInfo | [key: string]: [BundleStatsInfo](#bundlestatsinfo) | Yes   | Usage duration information by application.|
@@ -1590,7 +1590,9 @@ Enumerates the interval types for querying the application usage duration.
 
 **System capability**: SystemCapability.ResourceSchedule.UsageStatistics.App
 
-| Name          | Default Value | Description                                      |
+**System API**: This is a system API.
+
+| Name          | Value | Description                                      |
 | ------------ | ---- | ---------------------------------------- |
 | BY_OPTIMIZED | 0    | The system queries the application usage duration statistics in the specified time frame at the interval the system deems appropriate.|
 | BY_DAILY     | 1    | The system queries the application usage duration statistics in the specified time frame on a daily basis.             |
@@ -1606,7 +1608,7 @@ Enumerates the application group types.
 
 **System API**: This is a system API.
 
-| Name                | Default Value | Description               |
+| Name                | Value | Description               |
 | ------------------ | ---- | ----------------- |
 | ALIVE_GROUP | 10   | Group of active applications.             |
 | DAILY_GROUP | 20   | Group of frequently used applications that are not in the active state.   |

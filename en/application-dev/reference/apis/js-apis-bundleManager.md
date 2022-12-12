@@ -3,7 +3,6 @@
 The **bundleManager** module provides APIs for querying information about bundles, applications, abilities, Extension abilities, and more.
 
 > **NOTE**
->
 > The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 ## Modules to Import
@@ -101,13 +100,13 @@ Enumerates the types of Extension abilities.
 | WORK_SCHEDULER   | 1   | [WorkSchedulerExtensionAbility](../../task-management/work-scheduler-dev-guide.md): enables applications to execute non-real-time tasks when the system is idle.|
 | INPUT_METHOD     | 2   | [InputMethodExtensionAbility](js-apis-inputmethod-extension-ability.md): provides APIs for developing input method applications.|
 | SERVICE          | 3   | [ServiceExtensionAbility](../../ability/stage-serviceextension.md): enables applications to run in the background and provide services.|
-| ACCESSIBILITY    | 4   | [AccessibilityExtensionAbility](js-apis-application-AccessibilityExtensionAbility.md): provides accessibility for access to and operations on the UI.|
+| ACCESSIBILITY    | 4   | [AccessibilityExtensionAbility](js-apis-application-accessibilityExtensionAbility.md): provides accessibility for access to and operations on the UI.|
 | DATA_SHARE       | 5   | [DataShareExtensionAbility](../../database/database-datashare-guidelines.md): enables applications to read and write data.|
 | FILE_SHARE       | 6   | FileShareExtensionAbility: enables file sharing between applications. This ability is reserved.|
 | STATIC_SUBSCRIBER| 7   | [StaticSubscriberExtensionAbility](js-apis-application-staticSubscriberExtensionAbility.md): provides APIs for processing static events, such as the startup event.|
 | WALLPAPER        | 8   | WallpaperExtensionAbility: provides APIs to implement the home screen wallpaper. This ability is reserved.|
 | BACKUP           |  9  | BackupExtensionAbility: provides APIs for backing up and restoring application data and public data. This ability is reserved.|
-| WINDOW           |  10 | [WindowExtensionAbility](js-apis-application-WindowExtensionAbility.md): allows system applications to display UIs of other applications.|
+| WINDOW           |  10 | [WindowExtensionAbility](js-apis-application-windowExtensionAbility.md): allows system applications to display UIs of other applications.|
 | ENTERPRISE_ADMIN |  11 | [EnterpriseAdminExtensionAbility](js-apis-EnterpriseAdminExtensionAbility.md): provides APIs for processing enterprise management events, such as application installation events on devices and events indicating too many incorrect screen-lock password attempts.|
 | THUMBNAIL        | 13  | ThumbnailExtensionAbility: provides thumbnails for files. This ability is reserved.|
 | PREVIEW          | 14  | PreviewExtensionAbility: provides APIs for file preview so that other applications can be embedded and displayed in the current application. This ability is reserved.|
@@ -410,6 +409,7 @@ Obtains the bundle information based on the given bundle name, bundle flags, and
 **Error codes**
 
 For details about the error codes, see [Bundle Error Codes](../errorcodes/errorcode-bundle.md).
+
 | ID| Error Message                           |
 | -------- | --------------------------------------|
 | 17700001 | The specified bundleName is not found. |
@@ -1547,7 +1547,7 @@ Clears cache files of a bundle. This API uses a promise to return the result.
 
 | Type          | Description                                                        |
 | -------------- | ------------------------------------------------------------ |
-| Promise\<void> | Promise used to return the result. If the operation is successful, no value is returned. Otherwise, an error message is returned.|
+| Promise\<void> | Promise used to return the result. If the operation is successful, **true** is returned. Otherwise, **false** is returned.|
 
 **Error codes**
 
@@ -1556,7 +1556,7 @@ For details about the error codes, see [Bundle Error Codes](../errorcodes/errorc
 | ID| Error Message                                                  |
 | -------- | ---------------------------------------------------------- |
 | 17700001 | The specified bundleName is not found.                      |
-| 17700030 | The specified bundle does not support cleaning cache files. |
+| 17700030 | The specified bundle does not support clearing of cache files. |
 
 **Example**
 
@@ -1689,7 +1689,7 @@ Enables or disables an ability. This API uses an asynchronous callback to return
 | Name   | Type       | Mandatory| Description                                 |
 | -------- | ----------- | ---- | ------------------------------------- |
 | info     | [AbilityInfo](js-apis-bundleManager-abilityInfo.md) | Yes  | Information about the target ability.             |
-| isEnabled| boolean     | Yes  | Whether to enable the ability. The value **true** means to enable the ability, and **false** means to disable the ability.|
+| isEnabled| boolean     | Yes  | Whether to enable the application. The value **true** means to enable the application, and **false** means to disable the application.|
 | callback | AsyncCallback\<void> | Yes| Callback used to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object.|
 
 **Error codes**
@@ -1750,7 +1750,7 @@ Enables or disables an ability. This API uses a promise to return the result.
 | Name   | Type       | Mandatory| Description                                 |
 | -------- | ----------- | ---- | ------------------------------------- |
 | info     | [AbilityInfo](js-apis-bundleManager-abilityInfo.md) | Yes  | Information about the target ability.                  |
-| isEnabled| boolean     | Yes  | Whether to enable the ability. The value **true** means to enable the ability, and **false** means to disable the ability.|
+| isEnabled| boolean     | Yes  | Whether to enable the application. The value **true** means to enable the application, and **false** means to disable the application.|
 
 **Return value**
 
@@ -2034,7 +2034,7 @@ For details about the error codes, see [Bundle Error Codes](../errorcodes/errorc
 | ID| Error Message                            |
 | -------- | --------------------------------------|
 | 17700001 | The specified bundleName is not found. |
-| 17700004 | The specified user ID is not found     |
+| 17700004 | The specified user ID is not found.     |
 | 17700026 | The specified bundle is disabled.      |
 
 **Example**
@@ -2083,7 +2083,7 @@ For details about the error codes, see [Bundle Error Codes](../errorcodes/errorc
 | ID| Error Message                            |
 | -------- | --------------------------------------|
 | 17700001 | The specified bundleName is not found. |
-| 17700004 | The specified user ID is not found     |
+| 17700004 | The specified user ID is not found.     |
 | 17700026 | The specified bundle is disabled.      |
 
 **Example**
@@ -2300,7 +2300,7 @@ For details about the error codes, see [Bundle Error Codes](../errorcodes/errorc
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 17700002 | The specified moduleName is not existed.                      |
-| 17700003 | The specified extensionAbilityName is not existed.            |
+| 17700003 | The specified extensionAbilityName not existed.            |
 | 17700024 | Failed to get the profile because there is no profile in the HAP. |
 | 17700026 | The specified bundle is disabled.                             |
 
@@ -2354,7 +2354,7 @@ For details about the error codes, see [Bundle Error Codes](../errorcodes/errorc
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 17700002 | The specified moduleName is not existed.                      |
-| 17700003 | The specified extensionAbilityName is not existed.            |
+| 17700003 | The specified extensionAbilityName not existed.            |
 | 17700024 | Failed to get the profile because there is no profile in the HAP. |
 | 17700026 | The specified bundle is disabled.                             |
 
@@ -2735,7 +2735,7 @@ For details about the error codes, see [Bundle Error Codes](../errorcodes/errorc
 | ID| Error Message                            |
 | -------- | -------------------------------------- |
 | 17700001 | The specified bundleName is not found. |
-| 17700004 | The specified userId is not found.     |
+| 17700004 | The specified user ID is not found.     |
 | 17700026 | The specified bundle is disabled.      |
 
 **Example**

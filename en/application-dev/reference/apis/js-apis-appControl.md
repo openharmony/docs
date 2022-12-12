@@ -45,7 +45,7 @@ For details about the error codes, see [Bundle Error Codes](../errorcodes/errorc
 
 | ID| Error Message                               |
 | ------ | -------------------------------------- |
-| 17700005 |  The specified appId was not found.  |
+| 17700005 |  The specified app ID is not found.  |
 
 **Example**
 
@@ -91,7 +91,7 @@ For details about the error codes, see [Bundle Error Codes](../errorcodes/errorc
 
 | ID| Error Message                               |
 | ------ | -------------------------------------- |
-| 17700005 |  The specified appId was not found.  |
+| 17700005 |  The specified app ID is not found.  |
 
 **Example**
 
@@ -142,7 +142,7 @@ For details about the error codes, see [Bundle Error Codes](../errorcodes/errorc
 
 | ID| Error Message                               |
 | ------ | -------------------------------------- |
-| 17700005 |  The specified appId was not found.  |
+| 17700005 |  The specified app ID is not found.  |
 
 **Example**
 
@@ -186,7 +186,7 @@ For details about the error codes, see [Bundle Error Codes](../errorcodes/errorc
 
 | ID| Error Message                               |
 | ------ | -------------------------------------- |
-| 17700005 |  The specified appId was not found.  |
+| 17700005 |  The specified app ID is not found.  |
 
 **Example**
 
@@ -236,7 +236,7 @@ For details about the error codes, see [Bundle Error Codes](../errorcodes/errorc
 
 | ID| Error Message                               |
 | ------ | -------------------------------------- |
-| 17700005 |  The specified appId was not found.  |
+| 17700005 |  The specified app ID is not found.  |
 
 **Example**
 
@@ -280,7 +280,7 @@ For details about the error codes, see [Bundle Error Codes](../errorcodes/errorc
 
 | ID| Error Message                               |
 | ------ | -------------------------------------- |
-| 17700005 |  The specified appId was not found.  |
+| 17700005 |  The specified app ID is not found.  |
 
 **Example**
 
