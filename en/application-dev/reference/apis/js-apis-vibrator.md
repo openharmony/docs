@@ -1,6 +1,6 @@
 # Vibrator
 
-The **Vibrator** module provides APIs for triggering or stopping vibration.
+The **vibrator** module provides APIs for starting or stopping vibration.
 
 > **NOTE**
 >
@@ -17,7 +17,7 @@ import vibrator from '@ohos.vibrator';
 
 startVibration(effect: VibrateEffect, attribute: VibrateAttribute, callback: AsyncCallback&lt;void&gt;): void
 
-Triggers vibration with the specified effect and attribute. This API uses a promise to return the result.
+Starts vibration with the specified effect and attribute. This API uses an asynchronous callback to return the result.
 
 **Required permissions**: ohos.permission.VIBRATE
 
@@ -29,35 +29,35 @@ Triggers vibration with the specified effect and attribute. This API uses a prom
 | --------- | -------------------------------------- | ---- | :--------------------------------------------------------- |
 | effect    | [VibrateEffect](#vibrateeffect9)       | Yes  | Vibration effect.                                            |
 | attribute | [VibrateAttribute](#vibrateattribute9) | Yes  | Vibration attribute.                                            |
-| callback  | AsyncCallback&lt;void&gt;              | Yes  | Callback used to the result. If the vibration starts, **err** is **undefined**. Otherwise, **err** is an error object.|
+| callback  | AsyncCallback&lt;void&gt;              | Yes  | Callback used to return the result. If the vibration starts, **err** is **undefined**; otherwise, **err** is an error object.|
 
 **Error codes**
 
 For details about the error codes, see [Vibrator Error Codes](../errorcodes/errorcode-vibrator.md).
 
-| ID| Error Message                 |
-| -------- | ------------------------- |
-| 14600101 | Device operation failed.|
+| ID| Error Message                |
+| -------- | ------------------------ |
+| 14600101 | Device operation failed. |
 
 **Example**
 
 ```js
 try {
     vibrator.startVibration({
-    type:'time',
-    duration:1000,
-    },{
-        id:0,
+        type: 'time',
+        duration: 1000,
+    }, {
+        id: 0,
         usage: 'alarm'
-    }, (error)=>{
-        if(error){
-            console.log('vibrate fail, error.code: ' + error.code + 'error.message: ', + error.message);
-        }else{
-            console.log('Callback returned to indicate a successful vibration.');
+    }, (error) => {
+        if (error) {
+            console.error('vibrate fail, error.code: ' + error.code + 'error.message: ', + error.message);
+            return;
         }
+        console.log('Callback returned to indicate a successful vibration.');
     });
-} catch(err) {
-      console.info('errCode: ' + err.code + ' ,msg: ' + err.message);
+} catch (err) {
+    console.error('errCode: ' + err.code + ' ,msg: ' + err.message);
 }
 ```
 
@@ -65,7 +65,7 @@ try {
 
 startVibration(effect: VibrateEffect, attribute: VibrateAttribute): Promise&lt;void&gt;
 
-Triggers vibration with the specified effect and attribute. This API uses a promise to return the result.
+Starts vibration with the specified effect and attribute. This API uses a promise to return the result.
 
 **Required permissions**: ohos.permission.VIBRATE
 
@@ -88,27 +88,27 @@ Triggers vibration with the specified effect and attribute. This API uses a prom
 
 For details about the error codes, see [Vibrator Error Codes](../errorcodes/errorcode-vibrator.md).
 
-| ID| Error Message                 |
-| -------- | ------------------------- |
-| 14600101 | Device operation failed.|
+| ID| Error Message                |
+| -------- | ------------------------ |
+| 14600101 | Device operation failed. |
 
 **Example**
 
   ```js
 try {
     vibrator.startVibration({
-    type: 'time',
-    duration: 1000
+        type: 'time',
+        duration: 1000
     }, {
         id: 0,
         usage: 'alarm'
-    }).then(()=>{
+    }).then(() => {
         console.log('Promise returned to indicate a successful vibration');
-    }).catch((error)=>{
-        console.log('error.code' + error.code + 'error.message' + error.message);
-    })
-} catch(err) {
-      console.info('errCode: ' + err.code + ' ,msg: ' + err.message);
+    }, (error) => {
+        console.error('error.code' + error.code + 'error.message' + error.message);
+    });
+} catch (err) {
+    console.error('errCode: ' + err.code + ' ,msg: ' + err.message);
 }
   ```
 
@@ -116,7 +116,7 @@ try {
 
 stopVibration(stopMode: VibratorStopMode, callback: AsyncCallback&lt;void&gt;): void
 
-Stops the vibration with the specified **stopMode**. This API uses a promise to return the result. If the specified **stopMode** is different from the mode used to trigger the vibration, this API fails to be called.
+Stops vibration in the specified mode. This API uses an asynchronous callback to return the result.
 
 **Required permissions**: ohos.permission.VIBRATE
 
@@ -127,21 +127,41 @@ Stops the vibration with the specified **stopMode**. This API uses a promise to 
 | Name  | Type                                 | Mandatory| Description                                                        |
 | -------- | ------------------------------------- | ---- | ------------------------------------------------------------ |
 | stopMode | [VibratorStopMode](#vibratorstopmode) | Yes  | Mode to stop the vibration.                                    |
-| callback | AsyncCallback&lt;void&gt;             | Yes  | Callback used to the result. If the vibration stops, **err** is **undefined**. Otherwise, **err** is an error object.|
+| callback | AsyncCallback&lt;void&gt;             | Yes  | Callback used to return the result. If the vibration stops, **err** is **undefined**; otherwise, **err** is an error object.|
 
 **Example**
 
   ```js
 try {
-    vibrator.stopVibration(vibrator.VibratorStopMode.VIBRATOR_STOP_MODE_PRESET, function(error){
-        if(error){
-            console.log('error.code' + error.code + 'error.message' + error.message);
-        }else{
-            console.log('Callback returned to indicate successful.');
+    // Start vibration at a fixed duration.
+    vibrator.startVibration({
+        type: 'time',
+        duration: 1000,
+    }, {
+        id: 0,
+        usage: 'alarm'
+    }, (error) => {
+        if (error) {
+            console.error('vibrate fail, error.code: ' + error.code + 'error.message: ', + error.message);
+            return;
         }
+        console.log('Callback returned to indicate a successful vibration.');
+    });
+} catch (err) {
+    console.error('errCode: ' + err.code + ' ,msg: ' + err.message);
+}
+
+try {
+    // Stop vibration in VIBRATOR_STOP_MODE_TIME mode.
+    vibrator.stopVibration(vibrator.VibratorStopMode.VIBRATOR_STOP_MODE_TIME, function (error) {
+        if (error) {
+            console.log('error.code' + error.code + 'error.message' + error.message);
+            return;
+        }
+        console.log('Callback returned to indicate successful.');
     })
-} catch(err) {
-      console.info('errCode: ' + err.code + ' ,msg: ' + err.message);
+} catch (err) {
+    console.info('errCode: ' + err.code + ' ,msg: ' + err.message);
 }
   ```
 
@@ -149,7 +169,7 @@ try {
 
 stopVibration(stopMode: VibratorStopMode): Promise&lt;void&gt;
 
-Stops the vibration with the specified **stopMode**. This API uses a promise to return the result. If the specified **stopMode** is different from the mode used to trigger the vibration, this API fails to be called.
+Stops vibration in the specified mode. This API uses a promise to return the result.
 
 **Required permissions**: ohos.permission.VIBRATE
 
@@ -171,25 +191,43 @@ Stops the vibration with the specified **stopMode**. This API uses a promise to 
 
   ```js
 try {
-    vibrator.stopVibration(vibrator.VibratorStopMode.VIBRATOR_STOP_MODE_PRESET).then(()=>{
-    console.log('Promise returned to indicate a successful vibration.');
-    }, (error)=>{
+    // Start vibration at a fixed duration.
+    vibrator.startVibration({
+        type: 'time',
+        duration: 1000
+    }, {
+        id: 0,
+        usage: 'alarm'
+    }).then(() => {
+        console.log('Promise returned to indicate a successful vibration');
+    }, (error) => {
+        console.error('error.code' + error.code + 'error.message' + error.message);
+    });
+} catch (err) {
+    console.error('errCode: ' + err.code + ' ,msg: ' + err.message);
+}
+
+try {
+    // Stop vibration in VIBRATOR_STOP_MODE_TIME mode.
+    vibrator.stopVibration(vibrator.VibratorStopMode.VIBRATOR_STOP_MODE_PRESET).then(() => {
+        console.log('Promise returned to indicate a successful vibration.');
+    }, (error) => {
         console.log('error.code' + error.code + 'error.message' + error.message);
     });
-} catch(err) {
-      console.info('errCode: ' + err.code + ' ,msg: ' + err.message);
+} catch (err) {
+    console.info('errCode: ' + err.code + ' ,msg: ' + err.message);
 }
   ```
 
 ## EffectId
 
-Describes the vibration effect ID.
+Describes the preset vibration effect ID.
 
 **System capability**: SystemCapability.Sensors.MiscDevice
 
-| Name              | Default Value              | Description              |
-| ------------------ | -------------------- | ------------------ |
-| EFFECT_CLOCK_TIMER | "haptic.clock.timer" | Preset vibration effect ID.|
+| Name              | Value                  | Description                            |
+| ------------------ | -------------------- | -------------------------------- |
+| EFFECT_CLOCK_TIMER | "haptic.clock.timer" | Vibration effect of the vibrator when a user adjusts the timer.|
 
 
 ## VibratorStopMode
@@ -198,10 +236,10 @@ Enumerates the modes available to stop the vibration.
 
 **System capability**: SystemCapability.Sensors.MiscDevice
 
-| Name                     | Default Value  | Description                                                        |
-| ------------------------- | -------- | ------------------------------------------------------------ |
-| VIBRATOR_STOP_MODE_TIME   | "time"   | The vibration to stop is in **duration** mode. This vibration is triggered with the parameter **duration** of the **number** type.|
-| VIBRATOR_STOP_MODE_PRESET | "preset" | The vibration to stop is in **EffectId** mode. This vibration is triggered with the parameter **effectId** of the **EffectId** type.|
+| Name                     | Value      | Description                          |
+| ------------------------- | -------- | ------------------------------ |
+| VIBRATOR_STOP_MODE_TIME   | "time"   | The vibration to stop is in **duration** mode.|
+| VIBRATOR_STOP_MODE_PRESET | "preset" | The vibration to stop is in **EffectId** mode.|
 
 ## VibrateEffect<sup>9+</sup>
 
@@ -220,7 +258,7 @@ Describes the vibration with the specified duration.
 
 **System capability**: SystemCapability.Sensors.MiscDevice
 
-| Name    | Default Value| Description                          |
+| Name    | Value| Description                          |
 | -------- | ------ | ------------------------------ |
 | type     | "time" | Vibration with the specified duration.|
 | duration | -      | Vibration duration, in ms.        |
@@ -231,7 +269,7 @@ Describes the vibration with a preset effect.
 
 **System capability**: SystemCapability.Sensors.MiscDevice
 
-| Name    | Default Value  | Description                          |
+| Name    | Value      | Description                          |
 | -------- | -------- | ------------------------------ |
 | type     | "preset" | Vibration with the specified effect.|
 | effectId | -        | Preset vibration effect ID.            |
@@ -243,7 +281,7 @@ Describes the vibration attribute.
 
 **System capability**: SystemCapability.Sensors.MiscDevice
 
-| Name | Default Value| Description          |
+| Name | Value| Description          |
 | ----- | ------ | -------------- |
 | id    | 0      | Vibrator ID.    |
 | usage | -      | Vibration scenario.|
@@ -293,9 +331,9 @@ This API is deprecated since API version 9. You are advised to use [vibrator.sta
 **Example**
 
   ```js
-vibrator.vibrate(1000).then(()=>{
+vibrator.vibrate(1000).then(() => {
     console.log('Promise returned to indicate a successful vibration.');
-}, (error)=>{
+}, (error) => {
     console.log('error.code' + error.code + 'error.message' + error.message);
 });
   ```
@@ -317,15 +355,15 @@ This API is deprecated since API version 9. You are advised to use [vibrator.sta
 | Name  | Type                     | Mandatory| Description                                                      |
 | -------- | ------------------------- | ---- | ---------------------------------------------------------- |
 | duration | number                    | Yes  | Vibration duration, in ms.                                    |
-| callback | AsyncCallback&lt;void&gt; | No  | Callback used to the result. If the vibration starts, **err** is **undefined**. Otherwise, **err** is an error object.|
+| callback | AsyncCallback&lt;void&gt; | No  | Callback used to return the result. If the vibration starts, **err** is **undefined**; otherwise, **err** is an error object.|
 
 **Example**
 
   ```js
-vibrator.vibrate(1000,function(error){
-    if(error){
+vibrator.vibrate(1000, function (error) {
+    if (error) {
         console.log('error.code' + error.code + 'error.message' + error.message);
-    }else{
+    } else {
         console.log('Callback returned to indicate a successful vibration.');
     }
 })
@@ -359,9 +397,9 @@ This API is deprecated since API version 9. You are advised to use [vibrator.sta
 **Example**
 
   ```js
-vibrator.vibrate(vibrator.EffectId.EFFECT_CLOCK_TIMER).then(()=>{
+vibrator.vibrate(vibrator.EffectId.EFFECT_CLOCK_TIMER).then(() => {
     console.log('Promise returned to indicate a successful vibration.');
-}, (error)=>{
+}, (error) => {
     console.log('error.code' + error.code + 'error.message' + error.message);
 });
   ```
@@ -384,15 +422,15 @@ This API is deprecated since API version 9. You are advised to use [vibrator.sta
 | Name  | Type                     | Mandatory| Description                                                      |
 | -------- | ------------------------- | ---- | ---------------------------------------------------------- |
 | effectId | [EffectId](#effectid)     | Yes  | Preset vibration effect ID.                                        |
-| callback | AsyncCallback&lt;void&gt; | No  | Callback used to the result. If the vibration starts, **err** is **undefined**. Otherwise, **err** is an error object.|
+| callback | AsyncCallback&lt;void&gt; | No  | Callback used to return the result. If the vibration starts, **err** is **undefined**; otherwise, **err** is an error object.|
 
 **Example**
 
   ```js
-vibrator.vibrate(vibrator.EffectId.EFFECT_CLOCK_TIMER, function(error){
-    if(error){
+vibrator.vibrate(vibrator.EffectId.EFFECT_CLOCK_TIMER, function (error) {
+    if (error) {
         console.log('error.code' + error.code + 'error.message' + error.message);
-    }else{
+    } else {
         console.log('Callback returned to indicate a successful vibration.');
     }
 })
@@ -402,7 +440,7 @@ vibrator.vibrate(vibrator.EffectId.EFFECT_CLOCK_TIMER, function(error){
 
 stop(stopMode: VibratorStopMode): Promise&lt;void&gt;
 
-Stops the vibration with the specified **stopMode**. This API uses a promise to return the result. If the specified **stopMode** is different from the mode used to trigger the vibration, this API fails to be called.
+Stops vibration in the specified mode. This API uses a promise to return the result.
 
 This API is deprecated since API version 9. You are advised to use [vibrator.stopVibration](#vibratorstopvibration9-1) instead.
 
@@ -425,9 +463,18 @@ This API is deprecated since API version 9. You are advised to use [vibrator.sto
 **Example**
 
   ```js
-vibrator.stop(vibrator.VibratorStopMode.VIBRATOR_STOP_MODE_PRESET).then(()=>{
+// Start vibration based on the specified effect ID.
+vibrator.vibrate(vibrator.EffectId.EFFECT_CLOCK_TIMER, function (error) {
+    if (error) {
+        console.log('error.code' + error.code + 'error.message' + error.message);
+    } else {
+        console.log('Callback returned to indicate a successful vibration.');
+    }
+})
+// Stop vibration in VIBRATOR_STOP_MODE_PRESET mode.
+vibrator.stop(vibrator.VibratorStopMode.VIBRATOR_STOP_MODE_PRESET).then(() => {
     console.log('Promise returned to indicate a successful vibration.');
-}, (error)=>{
+}, (error) => {
     console.log('error.code' + error.code + 'error.message' + error.message);
 });
   ```
@@ -437,7 +484,7 @@ vibrator.stop(vibrator.VibratorStopMode.VIBRATOR_STOP_MODE_PRESET).then(()=>{
 
 stop(stopMode: VibratorStopMode, callback?: AsyncCallback&lt;void&gt;): void
 
-Stops the vibration with the specified **stopMode**. This API uses a promise to return the result. If the specified **stopMode** is different from the mode used to trigger the vibration, this API fails to be called.
+Stops vibration in the specified mode. This API uses an asynchronous callback to return the result.
 
 This API is deprecated since API version 9. You are advised to use [vibrator.stopVibration](#vibratorstopvibration9) instead.
 
@@ -450,15 +497,24 @@ This API is deprecated since API version 9. You are advised to use [vibrator.sto
 | Name  | Type                                 | Mandatory| Description                                                        |
 | -------- | ------------------------------------- | ---- | ------------------------------------------------------------ |
 | stopMode | [VibratorStopMode](#vibratorstopmode) | Yes  | Mode to stop the vibration.                                    |
-| callback | AsyncCallback&lt;void&gt;             | No  | Callback used to the result. If the vibration stops, **err** is **undefined**. Otherwise, **err** is an error object.|
+| callback | AsyncCallback&lt;void&gt;             | No  | Callback used to return the result. If the vibration stops, **err** is **undefined**; otherwise, **err** is an error object.|
 
 **Example**
 
   ```js
-vibrator.stop(vibrator.VibratorStopMode.VIBRATOR_STOP_MODE_PRESET, function(error){
-    if(error){
+// Start vibration based on the specified effect ID.
+vibrator.vibrate(vibrator.EffectId.EFFECT_CLOCK_TIMER, function (error) {
+    if (error) {
         console.log('error.code' + error.code + 'error.message' + error.message);
-    }else{
+    } else {
+        console.log('Callback returned to indicate a successful vibration.');
+    }
+})
+// Stop vibration in VIBRATOR_STOP_MODE_PRESET mode.
+vibrator.stop(vibrator.VibratorStopMode.VIBRATOR_STOP_MODE_PRESET, function (error) {
+    if (error) {
+        console.log('error.code' + error.code + 'error.message' + error.message);
+    } else {
         console.log('Callback returned to indicate successful.');
     }
 })
