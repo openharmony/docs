@@ -1,7 +1,7 @@
 # Ability开发
 
 > **说明：**<br/>
-> 当前文件夹内容已废弃，相关指南请查阅[应用模型](../application-models/Readme-CN.md)。
+> 当前目录内容已废弃，相关指南请查阅[应用模型](../application-models/Readme-CN.md)。
 
 - [Ability框架概述](ability-brief.md)
 - [应用上下文Context概述](context-userguide.md)
