@@ -354,6 +354,7 @@ struct ImageExample3 {
 
 ```ts
 import fileio from '@ohos.fileio'
+import fs from '@ohos.file.fs';
 import context from '@ohos.application.context'
 
 @Entry
@@ -374,7 +375,7 @@ struct LoadImageExample {
         .onClick(() => {
           this.sandboxPath = this.context.getApplicationContext().filesDir + '/icon.png'
           console.log(`读取沙箱图片=========>${this.sandboxPath}`)
-          let fd = fileio.openSync(this.sandboxPath, 0o100, 0o666)
+          let fd = fs.openSync(this.sandboxPath, 0o100)
           console.log(`create file========>${fd}`)
           let srcPath = this.context.bundleCodeDir + '/entry/resources/base/media/icon.png'
           console.log('mySrcpath' + srcPath)

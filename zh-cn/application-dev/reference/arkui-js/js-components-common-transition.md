@@ -257,7 +257,7 @@ Page1有一个不透明盒子，点击盒子会跳转到Page2，当点击Page2�
    </div>
    ```
 
-   ```css
+   ```js
    // xxx.js
    import router from '@ohos.router';
    export default {
