@@ -2393,7 +2393,7 @@ onDataResubmitted(callback: (event: {handler: DataResubmissionHandler}) => void)
     build() {
       Column() {
         Web({ src:'www.example.com', controller: this.controller })
-         .onDataResubmitted((event)=>{
+         .onDataResubmitted((event) => {
           console.log('onDataResubmitted')
           event.handler.resend();
         })
@@ -2426,7 +2426,7 @@ onPageVisible(callback: (event: {url: string}) => void)
     build() {
       Column() {
         Web({ src:'www.example.com', controller: this.controller })
-         .onPageVisible((event)=>{
+         .onPageVisible((event) => {
           console.log('onPageVisible url:' + event.url)
         })
       }
@@ -2464,7 +2464,7 @@ onInterceptKeyEvent(callback: (event: KeyEvent) => boolean)
     build() {
       Column() {
         Web({ src:'www.example.com', controller: this.controller })
-         .onInterceptKeyEvent((event)=>{
+         .onInterceptKeyEvent((event) => {
           	if (event.keyCode == 2017 || event.keyCode == 2018) {
             console.info(`onInterceptKeyEvent get event.keyCode ${event.keyCode}`)
             return true;
@@ -2500,8 +2500,8 @@ onTouchIconUrlReceived(callback: (event: {url: string, precomposed: boolean}) =>
     controller: web_webview.WebviewController = new web_webview.WebviewController()
     build() {
       Column() {
-        Web({ src:'www.example.com', controller: this.controller })
-         .onTouchIconUrlReceived((event)=>{
+        Web({ src:'www.baidu.com', controller: this.controller })
+         .onTouchIconUrlReceived((event) => {
           console.log('onTouchIconUrlReceived:' + JSON.stringify(event))
         })
       }
@@ -2535,7 +2535,8 @@ onFaviconReceived(callback: (event: {favicon: image.PixelMap}) => void)
     build() {
       Column() {
         Web({ src:'www.example.com', controller: this.controller })
-         .onFaviconReceived((event)=>{
+         .onFaviconReceived((event) => {
+          console.log('onFaviconReceived:' + JSON.stringify(event))
           this.icon = event.favicon;
         })
       }
@@ -6177,7 +6178,7 @@ resend(): void
     build() {
       Column() {
         Web({ src:'www.example.com', controller: this.controller })
-         .onDataResubmitted((event)=>{
+         .onDataResubmitted((event) => {
           console.log('onDataResubmitted')
           event.handler.resend();
         })
@@ -6204,7 +6205,7 @@ cancel(): void
     build() {
       Column() {
         Web({ src:'www.example.com', controller: this.controller })
-         .onDataResubmitted((event)=>{
+         .onDataResubmitted((event) => {
           console.log('onDataResubmitted')
           event.handler.cancel();
         })
@@ -6212,5 +6213,3 @@ cancel(): void
     }
   }
   ```
-
-### 

@@ -2310,9 +2310,17 @@ struct WebComponent {
     Column() {
       Button('hasImageCb')
         .onClick(() => {
-          this.controller.hasImage((err, data) => {
-			console.log("hasImage: " + data);
-          });
+          try {
+            this.controller.hasImage((err, data) => {
+                if (error) {
+                  console.info(`hasImage error: ` + JSON.stringify(error))
+                  return;
+                }
+                console.info("hasImage: " + data);
+              });
+          } catch (error) {
+            console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+          }
         })
       Web({ src: 'www.example.com', controller: this.controller })
     }
@@ -2358,9 +2366,16 @@ struct WebComponent {
     Column() {
       Button('hasImagePm')
         .onClick(() => {
-          this.controller.hasImage().then((data) => {
-              console.info("hasImage: " + data)
-          }); 
+          try {
+            this.controller.hasImage().then((data) => {
+                console.info('hasImage: ' + data);
+              })
+              .catch(function (error) {
+                console.error("error: " + error);
+              })
+          } catch (error) {
+            console.error(`Errorcode: ${error.code}, Message: ${error.message}`);
+          }
         })
       Web({ src: 'www.example.com', controller: this.controller })
     }
