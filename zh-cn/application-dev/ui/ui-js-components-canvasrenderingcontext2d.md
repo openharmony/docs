@@ -51,7 +51,6 @@ select{
 
 ```js
 // xxx.js
-import prompt from '@system.prompt';
 export default {
   data:{
     el: null,
@@ -254,7 +253,6 @@ select{
 
 ```js
 // xxx.js
-import prompt from '@system.prompt';
 export default {
   data:{
     el: null,
@@ -352,7 +350,6 @@ select{
 
 ```js
 // xxx.js
-import prompt from '@system.prompt';
 export default {
   data:{
     el: null,
@@ -478,7 +475,6 @@ select{
 
 ```js
 // xxx.js
-import prompt from '@system.prompt';
 export default {
   data:{
     el: null,
@@ -635,7 +631,7 @@ text{
 
 ```js
 // xxx.js
-import prompt from '@system.prompt';
+import promptAction from '@ohos.promptAction';
 export default {
   data:{
     compositeOperation: 'source-over'
@@ -678,7 +674,7 @@ export default {
     };
     // 图片获取失败触发方法
     img1.onerror = function() {
-      prompt.showToast({message:"error",duration:2000})
+      promptAction.showToast({message:"error",duration:2000})
     };
   },
   rotate(){
@@ -805,7 +801,7 @@ text{
 
 ```js
 // xxx.js
-import prompt from '@system.prompt';
+import promptAction from '@ohos.promptAction';
 export default {
   data:{
     ctx: '',
@@ -818,7 +814,7 @@ export default {
   save(){
     // 画笔储存
     this.ctx.save();
-    prompt.showToast({message:"save succeed"});
+    promptAction.showToast({message:"save succeed"});
   },
   clear(){ 
     this.ctx.clearRect(0,0,600,500);

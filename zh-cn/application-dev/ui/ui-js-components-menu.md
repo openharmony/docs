@@ -150,15 +150,15 @@ option{
 
 ```js
 // xxx.js
-import prompt from '@system.prompt';
+import promptAction from '@ohos.promptAction';
 export default {
   select(e) {
-    prompt.showToast({
+    promptAction.showToast({
       message: e.value
     })
   },
   cancel(){
-    prompt.showToast({
+    promptAction.showToast({
       message: "cancel"
     })
   },
@@ -242,7 +242,6 @@ option{
 
 ```js
 // xxx.js
-import prompt from '@system.prompt';
 export default {
   data:{
     fresh: false,

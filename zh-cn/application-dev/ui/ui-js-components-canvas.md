@@ -9,7 +9,7 @@ Canvas组件提供画布，用于自定义绘制图形。具体用法请参考[C
 在pages/index目录下的hml文件中创建一个Canvas组件。
 
 
-```
+```html
 <!-- xxx.hml -->
 <div class="container">
   <canvas></canvas>
@@ -116,7 +116,7 @@ Canvas添加长按事件，长按后可获取Canvas组件的dataUrl值（toDataU
 
 ```js
 // xxx.js
-import prompt from '@system.prompt';
+import promptAction from '@ohos.promptAction';
 export default {
   data:{
     dataURL:null,
@@ -130,7 +130,7 @@ export default {
     let el = this.$refs.canvas1
     let dataUrl = el.toDataURL()
     this.dataURL = dataUrl;
-    prompt.showToast({duration:2000,message:"long press,get dataURL"})
+    promptAction.showToast({duration:2000,message:"long press,get dataURL"})
   }
 }
 ```

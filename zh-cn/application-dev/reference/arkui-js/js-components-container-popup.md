@@ -110,10 +110,10 @@
 
 ```js
 // xxx.js
-import prompt from '@system.prompt'
+import promptAction from '@ohos.promptAction'
 export default {
   visibilitychange(e) {
-    prompt.showToast({
+    promptAction.showToast({
       message: 'visibility change visibility: ' + e.visibility,
         duration: 3000
     }); 
