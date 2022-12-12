@@ -3,7 +3,7 @@
 
 ## 基本概念
 
-LMS全称为Lite Memory Sanitizer，是一种实时检测内存操作合法性的调测工具。LMS能够实时检测缓冲区溢出（buffer overflow），释放后使用（use after free) 和重复释放（double Free), 在异常发生的第一时间通知操作系统，结合backtrace等定位手段，能准确定位到产生内存问题的代码行，极大提升内存问题定位效率。
+LMS全称为Lite Memory Sanitizer，是一种实时检测内存操作合法性的调测工具。LMS能够实时检测缓冲区溢出（buffer overflow），释放后使用（use after free) 和重复释放（double free), 在异常发生的第一时间通知操作系统，结合backtrace等定位手段，能准确定位到产生内存问题的代码行，极大提升内存问题定位效率。
 
 OpenHarmony LiteOS-A内核的LMS模块提供下面几种功能：
 
@@ -20,7 +20,7 @@ OpenHarmony LiteOS-A内核的LMS模块提供下面几种功能：
 
 LMS使用影子内存映射标记系统内存的状态，一共可标记为三个状态：可读写，不可读写，已释放。影子内存存放在内存池的尾部。
 
-- 内存从堆上申请后，会将数据区的影子内存设置为“可读写”状态，并将头结点区的影子内存设置为“不可读写”状态。
+- 内存从堆上申请后，会将数据区的影子内存设置为“可读写”状态，并将头节点区的影子内存设置为“不可读写”状态。
 
 - 内存在堆上被释放时，会将被释放内存的影子内存设置为“已释放”状态。
 
@@ -38,12 +38,12 @@ OpenHarmony LiteOS-A内核的LMS模块提供下面几种功能，接口详细信
 
   **表1** LMS模块接口说明
 
-| 功能分类 | 接口名 | 描述 | 
+| 功能分类 | 接口名 | 描述 |
 | -------- | -------- | -------- |
-| 添加指定内存池被检测 | LOS_LmsCheckPoolAdd | 将指定内存池的地址范围添加到LMS的内存检测链表上，当访问的地址在链表范围内时，LMS才进行合法性校验；且LOS_MemInit接口会调用该接口，默认将初始化的内存池挂入到检测链表中。 | 
-| 删除指定内存池不被检测 | LOS_LmsCheckPoolDel | 不检测指定内存池地址范围内的合法性校验。 | 
-| 使能指定内存段锁保护 | LOS_LmsAddrProtect | 为某段内存地址上锁，设置为不可读写，一旦访问则报错。 | 
-| 去能指定内存段锁保护 | LOS_LmsAddrDisableProtect | 为某段内存地址解锁，设置为可读写。 | 
+| 添加指定内存池被检测 | LOS_LmsCheckPoolAdd | 将指定内存池的地址范围添加到LMS的内存检测链表上，当访问的地址在链表范围内时，LMS才进行合法性校验；且LOS_MemInit接口会调用该接口，默认将初始化的内存池挂入到检测链表中。 |
+| 删除指定内存池不被检测 | LOS_LmsCheckPoolDel | 不检测指定内存池地址范围内的合法性校验。 |
+| 使能指定内存段锁保护 | LOS_LmsAddrProtect | 为某段内存地址上锁，设置为不可读写，一旦访问则报错。 |
+| 去能指定内存段锁保护 | LOS_LmsAddrDisableProtect | 为某段内存地址解锁，设置为可读写。 |
 
 
 ### 用户态
@@ -61,19 +61,19 @@ OpenHarmony LiteOS-A内核的LMS模块提供下面几种功能，接口详细信
 1. 配置LMS模块相关宏。
    配置LMS控制宏LOSCFG_KERNEL_LMS，默认关，在kernel/liteos_a目录下执行 make update_config命令配置"Kernel-&gt;Enable Lite Memory Sanitizer"中打开YES：
 
-     | 宏 | menuconfig选项 | 含义 | 取值 | 
+     | 宏 | menuconfig选项 | 含义 | 取值 |
    | -------- | -------- | -------- | -------- |
-   | LOSCFG_KERNEL_LMS | Enable&nbsp;Lms&nbsp;Feature | Lms模块的裁剪开关 | YES/NO | 
-   | LOSCFG_LMS_MAX_RECORD_POOL_NUM | Lms&nbsp;check&nbsp;pool&nbsp;max&nbsp;num | LMS支持的检测内存池最大个数 | INT | 
-   | LOSCFG_LMS_LOAD_CHECK | Enable&nbsp;lms&nbsp;read&nbsp;check | LMS内存读检测的裁剪开关 | YES/NO | 
-   | LOSCFG_LMS_STORE_CHECK | Enable&nbsp;lms&nbsp;write&nbsp;check | LMS内存写检测的裁剪开关 | YES/NO | 
-   | LOSCFG_LMS_CHECK_STRICT | Enable&nbsp;lms&nbsp;strict&nbsp;check,&nbsp;byte-by-byte | LMS内存逐字节严格检测的裁剪开关 | YES/NO | 
+   | LOSCFG_KERNEL_LMS | Enable&nbsp;Lms&nbsp;Feature | Lms模块的裁剪开关 | YES/NO |
+   | LOSCFG_LMS_MAX_RECORD_POOL_NUM | Lms&nbsp;check&nbsp;pool&nbsp;max&nbsp;num | LMS支持的检测内存池最大个数 | INT |
+   | LOSCFG_LMS_LOAD_CHECK | Enable&nbsp;lms&nbsp;read&nbsp;check | LMS内存读检测的裁剪开关 | YES/NO |
+   | LOSCFG_LMS_STORE_CHECK | Enable&nbsp;lms&nbsp;write&nbsp;check | LMS内存写检测的裁剪开关 | YES/NO |
+   | LOSCFG_LMS_CHECK_STRICT | Enable&nbsp;lms&nbsp;strict&nbsp;check,&nbsp;byte-by-byte | LMS内存逐字节严格检测的裁剪开关 | YES/NO |
 
 2. 在被检测模块的编译脚本中，修改编译选项。
    增加LMS检测编译选项-fsanitize=kernel-address。为避免编译器优化，增加-O0编译选项。
 
      gcc与clang编译选项存在差异，参照如下示例：
-     
+
    ```
    if ("$ohos_build_compiler_specified" == "gcc") {
        cflags_c = [
@@ -105,14 +105,15 @@ OpenHarmony LiteOS-A内核的LMS模块提供下面几种功能，接口详细信
 
 2. 构造内存溢出错误和释放后使用错误。
 
-3. 添加-fsanitize=kernel-address后编译执行，观察输出结果
+3. 添加-fsanitize=kernel-address后编译执行，观察输出结果。
 
 
 #### 内核态示例代码
 
+  该示例代码的测试函数可以加在 kernel /liteos_a/testsuites /kernel /src /osTest.c  中的 TestTaskEntry 中进行测试。
   实例代码如下：
-  
-```
+
+```c
 #define PAGE_SIZE       (0x1000U)
 #define INDEX_MAX       20
 UINT32 g_lmsTestTaskId;
@@ -138,31 +139,32 @@ static VOID LmsTestUseAfterFree(VOID)
     PRINTK("\n######%s start ######\n", __FUNCTION__);
     UINT32 i;
     CHAR *str = (CHAR *)LOS_MemAlloc(g_testLmsPool, INDEX_MAX);
-    LOS_MemFree(g_testLmsPool, str);
+    (VOID)LOS_MemFree(g_testLmsPool, str);
     PRINTK("str[%2d]=0x%2x ", 0, str[0]); /* trigger use after free at str[0] */
     PRINTK("\n######%s stop ######\n", __FUNCTION__);
 }
 VOID LmsTestCaseTask(VOID)
-{ 
+{
     testPoolInit();
     LmsTestOsmallocOverflow();
     LmsTestUseAfterFree();
 }
-UINT32 Example_Lms_test(VOID){
-    UINT32 ret;    
-    TSK_INIT_PARAM_S lmsTestTask;    
-    /* 创建用于lms测试的任务 */    
-    memset(&lmsTestTask, 0, sizeof(TSK_INIT_PARAM_S));    
+UINT32 Example_Lms_test(VOID)
+{
+    UINT32 ret;
+    TSK_INIT_PARAM_S lmsTestTask;
+    /* 创建用于lms测试的任务 */
+    memset(&lmsTestTask, 0, sizeof(TSK_INIT_PARAM_S));
     lmsTestTask.pfnTaskEntry = (TSK_ENTRY_FUNC)LmsTestCaseTask;
-    lmsTestTask.pcName       = "TestLmsTsk";    /* 测试任务名称 */    				     
-    lmsTestTask.uwStackSize  = 0x800;    
-    lmsTestTask.usTaskPrio   = 5;    
-    lmsTestTask.uwResved   = LOS_TASK_STATUS_DETACHED;    
-    ret = LOS_TaskCreate(&g_lmsTestTaskId, &lmsTestTask);    
-    if(ret != LOS_OK){        
-        PRINT_ERR("LmsTestTask create failed .\n");        
-        return LOS_NOK;    
-    } 
+    lmsTestTask.pcName       = "TestLmsTsk";    /* 测试任务名称 */
+    lmsTestTask.uwStackSize  = 0x800; // 0x800: lms test task stack size
+    lmsTestTask.usTaskPrio   = 5; // 5: lms test task priority
+    lmsTestTask.uwResved   = LOS_TASK_STATUS_DETACHED;
+    ret = LOS_TaskCreate(&g_lmsTestTaskId, &lmsTestTask);
+    if (ret != LOS_OK) {
+        PRINT_ERR("LmsTestTask create failed .\n");
+        return LOS_NOK;
+    }
     return LOS_OK;
 }
 LOS_MODULE_INIT(Example_Lms_test, LOS_INIT_LEVEL_KMOD_EXTENDED);
@@ -172,7 +174,7 @@ LOS_MODULE_INIT(Example_Lms_test, LOS_INIT_LEVEL_KMOD_EXTENDED);
 #### 内核态结果验证
 
   输出结果如下：
-  
+
 ```
 ######LmsTestOsmallocOverflow start ######
 [ERR][KProcess:LmsTestCaseTask]*  Kernel Address Sanitizer Error Detected Start *
@@ -257,9 +259,9 @@ str[ 0]=0x 0
 
 ### 用户态开发流程
 
-在待检测的app编译脚本中，添加如下参数即可， 完整示例可参见/kernel/liteos_a/apps/lms/BUILD.gn。
+在待检测的app编译脚本中，添加如下参数即可， 完整示例可参见 [/kernel/liteos_a/apps/lms/BUILD.gn](https://gitee.com/openharmony/kernel_liteos_a/blob/master/apps/lms/BUILD.gn)。
 
-  
+
 ```
 if ("$ohos_build_compiler_specified" == "gcc") {
         cflags_c = [
@@ -308,14 +310,14 @@ if ("$ohos_build_compiler_specified" == "gcc") {
 
 1. 构造内存溢出错误和释放后使用错误。
 
-2. 添加对应编译选项后，重新编译执行
+2. 添加对应编译选项后，重新编译执行。
 
 
 #### 用户态示例代码
 
   实例代码如下：
-  
-```
+
+```c
 static void BufWriteTest(void *buf, int start, int end)
 {
     for (int i = start; i <= end; i++) {
@@ -332,7 +334,7 @@ static void BufReadTest(void *buf, int start, int end)
 static void LmsMallocTest(void)
 {
     printf("\n-------- LmsMallocTest Start --------\n");
-    char *buf = (char *)malloc(16);
+    char *buf = (char *)malloc(16); // 16: buffer size for test
     BufReadTest(buf, -1, 16);
     free(buf);
     printf("\n-------- LmsMallocTest End --------\n");
@@ -340,7 +342,7 @@ static void LmsMallocTest(void)
 static void LmsFreeTest(void)
 {
     printf("\n-------- LmsFreeTest Start --------\n");
-    char *buf = (char *)malloc(16);
+    char *buf = (char *)malloc(16); // 16: buffer size for test
     free(buf);
     BufReadTest(buf, 1, 1);
     free(buf);
@@ -349,7 +351,7 @@ static void LmsFreeTest(void)
 int main(int argc, char * const * argv)
 {
     printf("\n############### Lms Test start ###############\n");
-    char *tmp = (char *)malloc(5000);
+    char *tmp = (char *)malloc(5000); // 5000: temp buffer size
     LmsMallocTest();
     LmsFreeTest();
     printf("\n############### Lms Test End ###############\n");
@@ -360,7 +362,7 @@ int main(int argc, char * const * argv)
 #### 用户态结果验证
 
   输出结果如下：
-  
+
 ```
 *  Lite Memory Sanitizer Error Detected  *
 Heap buffer overflow error detected!
