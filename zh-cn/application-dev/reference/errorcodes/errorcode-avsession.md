@@ -4,7 +4,7 @@
 
 **错误信息**
 
-Session service exception
+Session service exception.
 
 **错误描述**
 
@@ -24,7 +24,7 @@ Session service exception
 
 **错误信息**
 
-The session does not exist
+The session does not exist.
 
 **错误描述**
 
@@ -44,7 +44,7 @@ The session does not exist
 
 **错误信息**
 
-The session controller does not exist
+The session controller does not exist.
 
 **错误描述**
 
@@ -62,7 +62,7 @@ The session controller does not exist
 
 **错误信息**
 
-The remote session connection failed
+The remote session connection failed.
 
 **错误描述**
 
@@ -80,7 +80,7 @@ The remote session connection failed
 
 **错误信息**
 
-Invalid session command
+Invalid session command.
 
 **错误描述**
 
@@ -98,7 +98,7 @@ Invalid session command
 
 **错误信息**
 
-The session not active
+The session is not activated.
 
 **错误描述**
 
@@ -116,7 +116,7 @@ The session not active
 
 **错误信息**
 
-Command or event overload
+Too many commands or events.
 
 **错误描述**
 
