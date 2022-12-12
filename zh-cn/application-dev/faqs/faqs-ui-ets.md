@@ -314,11 +314,11 @@ fontColor( '#7F000000' )
 
 TextInput组件设置type为InputType.Password时，右侧出现眼睛图标，showPasswordIcon控制图标显示隐藏，不支持自定义。更多信息可参考文档：[TextInput组件](../reference/arkui-ts/ts-basic-components-textinput.md)
 
-## Image图片加载目前只能加载https的 不能加载http的
+## Image图片加载目前只能加载https的，不能加载http的
 
 适用于：OpenHarmony SDK3.2.5.5, API9 Stage模型
 
-htpp是不安全的，会被白名单过滤掉，建议使用https。
+http是不安全的，会被白名单过滤掉，建议使用https。
 
 ## TextView布局设置间距与显示界面不符合
 
