@@ -19,9 +19,9 @@ PanGesture(value?: { fingers?: number, direction?: PanDirection, distance?: numb
 | -------- | -------- | -------- | -------- |
 | fingers | number | No| Minimum number of fingers to trigger a pan gesture. The value ranges from 1 to 10.<br>Default value: **1**|
 | direction | PanDirection | No| Pan direction. The enumerated value supports the AND (&amp;) and OR (\|) operations.<br>Default value: **PanDirection.All**|
-| distance | number | No| Minimum pan distance to trigger the gesture, in vp.<br>Default value: **5**<br>**NOTE**<br>If a pan gesture and tab swipe occur at the same time, set **distance** to **1** so that the gesture can be more easily recognized.|
+| distance | number | No| Minimum pan distance to trigger the gesture, in vp.<br>Default value: **5**<br>**NOTE**<br>If a pan gesture and [tab](ts-container-tabs.md) swipe occur at the same time, set **distance** to **1** so that the gesture can be more easily recognized. |
 
-## PanDirection enums
+## PanDirection
 
 | Name| Description|
 | -------- | -------- |

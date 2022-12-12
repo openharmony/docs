@@ -428,7 +428,7 @@ struct LineDashOffset {
           this.context.arc(100, 75, 50, 0, 6.28)
           this.context.setLineDash([10,20])
           this.context.lineDashOffset = 10.0
-          this.context.stroke();
+          this.context.stroke()
       })
     }
     .width('100%')
@@ -721,8 +721,8 @@ Draws an outlined rectangle on the canvas.
   @Entry
   @Component
   struct StrokeRect {
-    private settings: RenderingContextSettings = new RenderingContextSettings(true);
-    private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings);
+    private settings: RenderingContextSettings = new RenderingContextSettings(true)
+    private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
 
     build() {
       Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
@@ -802,6 +802,7 @@ Draws filled text on the canvas.
 | text     | string | Yes  | ''     | Text to draw.         |
 | x        | number | Yes  | 0      | X-coordinate of the lower left corner of the text.|
 | y        | number | Yes  | 0      | Y-coordinate of the lower left corner of the text.|
+| maxWidth | number | No  | -      | Maximum width allowed for the text.     |
 
 **Example**
 
@@ -2268,7 +2269,7 @@ struct CanvasGetLineDash {
           .onReady(() => {
             this.context.arc(100, 75, 50, 0, 6.28)
             this.context.setLineDash([10,20])
-            this.context.stroke();
+            this.context.stroke()
             let res = this.context.getLineDash()
           })
       }
@@ -2407,8 +2408,7 @@ Restores the saved drawing context.
   struct CanvasExample {
     private settings: RenderingContextSettings = new RenderingContextSettings(true)
     private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
-    private img:ImageBitmap = new ImageBitmap("common/images/icon.jpg")
-  
+
     build() {
       Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
         Canvas(this.context)
